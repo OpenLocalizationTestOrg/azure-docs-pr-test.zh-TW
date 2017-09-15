@@ -1,9 +1,9 @@
 
-| 層： | 可用 | 基本 | 標準 |
+| <span data-ttu-id="bc14b-101">層：</span><span class="sxs-lookup"><span data-stu-id="bc14b-101">TIER:</span></span> | <span data-ttu-id="bc14b-102">可用</span><span class="sxs-lookup"><span data-stu-id="bc14b-102">FREE</span></span> | <span data-ttu-id="bc14b-103">基本</span><span class="sxs-lookup"><span data-stu-id="bc14b-103">BASIC</span></span> | <span data-ttu-id="bc14b-104">標準</span><span class="sxs-lookup"><span data-stu-id="bc14b-104">STANDARD</span></span> |
 | --- | --- | --- | --- |
-| 已包括的推送 |100 萬 |1000 萬 |1000 萬 |
-| 使用中裝置 |500 |200,000 | 1000 萬 |
-| 每一個安裝/註冊的標籤配額 |60 |60 |60 |
+| <span data-ttu-id="bc14b-105">已包括的推送</span><span class="sxs-lookup"><span data-stu-id="bc14b-105">Included Pushes</span></span> |<span data-ttu-id="bc14b-106">100 萬</span><span class="sxs-lookup"><span data-stu-id="bc14b-106">1 Million</span></span> |<span data-ttu-id="bc14b-107">1000 萬</span><span class="sxs-lookup"><span data-stu-id="bc14b-107">10 Million</span></span> |<span data-ttu-id="bc14b-108">1000 萬</span><span class="sxs-lookup"><span data-stu-id="bc14b-108">10 Million</span></span> |
+| <span data-ttu-id="bc14b-109">使用中裝置</span><span class="sxs-lookup"><span data-stu-id="bc14b-109">Active Devices</span></span> |<span data-ttu-id="bc14b-110">500</span><span class="sxs-lookup"><span data-stu-id="bc14b-110">500</span></span> |<span data-ttu-id="bc14b-111">200,000</span><span class="sxs-lookup"><span data-stu-id="bc14b-111">200,000</span></span> | <span data-ttu-id="bc14b-112">1000 萬</span><span class="sxs-lookup"><span data-stu-id="bc14b-112">10 million</span></span> |
+| <span data-ttu-id="bc14b-113">每一個安裝/註冊的標籤配額</span><span class="sxs-lookup"><span data-stu-id="bc14b-113">Tag quota per installation/registration</span></span> |<span data-ttu-id="bc14b-114">60</span><span class="sxs-lookup"><span data-stu-id="bc14b-114">60</span></span> |<span data-ttu-id="bc14b-115">60</span><span class="sxs-lookup"><span data-stu-id="bc14b-115">60</span></span> |<span data-ttu-id="bc14b-116">60</span><span class="sxs-lookup"><span data-stu-id="bc14b-116">60</span></span> |
 
-如需這些限制的其他詳細資料和價格的相關資訊，請參閱 [通知中樞價格](https://azure.microsoft.com/pricing/details/notification-hubs/)。 
+<span data-ttu-id="bc14b-117">如需這些限制的其他詳細資料和價格的相關資訊，請參閱 [通知中樞價格](https://azure.microsoft.com/pricing/details/notification-hubs/)。</span><span class="sxs-lookup"><span data-stu-id="bc14b-117">For additional details on these limits and for information on pricing, see [Notification Hubs Pricing](https://azure.microsoft.com/pricing/details/notification-hubs/).</span></span> 
 

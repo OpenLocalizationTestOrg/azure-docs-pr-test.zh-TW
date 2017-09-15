@@ -1,9 +1,9 @@
-本文假設：
+<span data-ttu-id="5d4e5-101">本文假設：</span><span class="sxs-lookup"><span data-stu-id="5d4e5-101">This article assumes that</span></span>
 
-1. 已經建立內部部署網路與 Azure 虛擬網路之間的**站對站 VPN** 或 **Express Route** 連線。
-2. 您的使用者帳戶有權限在虛擬機器容錯移轉至的 Azure 訂用帳戶中建立新的虛擬機器。
-3. 您的訂用帳戶至少有 4 個核心可用來加快新的處理序伺服器虛擬機器。
-4. 您有**設定伺服器複雜密碼**可用。
+1. <span data-ttu-id="5d4e5-102">已經建立內部部署網路與 Azure 虛擬網路之間的**站對站 VPN** 或 **Express Route** 連線。</span><span class="sxs-lookup"><span data-stu-id="5d4e5-102">A **Site to Site VPN** or an **Express Route** connection between your on-premises network and the Azure Virtual Network has already been established.</span></span>
+2. <span data-ttu-id="5d4e5-103">您的使用者帳戶有權限在虛擬機器容錯移轉至的 Azure 訂用帳戶中建立新的虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="5d4e5-103">Your user account has permissions to create a new virtual machine in the Azure Subscription that the virtual machines have been failed over into.</span></span>
+3. <span data-ttu-id="5d4e5-104">您的訂用帳戶至少有 4 個核心可用來加快新的處理序伺服器虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="5d4e5-104">Your subscription has a minimum of 4 Cores available to spin up a new Process Server virtual machine.</span></span>
+4. <span data-ttu-id="5d4e5-105">您有**設定伺服器複雜密碼**可用。</span><span class="sxs-lookup"><span data-stu-id="5d4e5-105">You have the **Configuration Server Passphrase** available.</span></span>
 
 > [!TIP]
-> 確保您能夠從虛擬機器已容錯移轉至的 Azure 虛擬網路，連接設定伺服器 (在內部部署執行) 的連接埠 443。
+> <span data-ttu-id="5d4e5-106">確保您能夠從虛擬機器已容錯移轉至的 Azure 虛擬網路，連接設定伺服器 (在內部部署執行) 的連接埠 443。</span><span class="sxs-lookup"><span data-stu-id="5d4e5-106">Ensure that you are able to connect port 443 of the Configuration Server (running on-premises) from the Azure Virtual Network that the virtual machines have been failed over into.</span></span>

@@ -1,27 +1,27 @@
-#### <a name="expressroute-limits"></a>ExpressRoute 限制
-下列限制適用於每個訂用帳戶的 ExpressRoute 資源。
+#### <a name="expressroute-limits"></a><span data-ttu-id="eb7a3-101">ExpressRoute 限制</span><span class="sxs-lookup"><span data-stu-id="eb7a3-101">ExpressRoute Limits</span></span>
+<span data-ttu-id="eb7a3-102">下列限制適用於每個訂用帳戶的 ExpressRoute 資源。</span><span class="sxs-lookup"><span data-stu-id="eb7a3-102">The following limits apply to ExpressRoute resources per subscription.</span></span>
 
-| 資源 | 預設限制 |
+| <span data-ttu-id="eb7a3-103">資源</span><span class="sxs-lookup"><span data-stu-id="eb7a3-103">Resource</span></span> | <span data-ttu-id="eb7a3-104">預設限制</span><span class="sxs-lookup"><span data-stu-id="eb7a3-104">Default Limit</span></span> |
 | --- | --- |
-| 每個訂用帳戶的 ExpressRoute 電路 |10 |
-| ARM 的每個訂用帳戶每個區域的 ExpressRoute 電路 |10 |
-| 具有 ExpressRoute Standard 的 Azure 私人對等互連的最大路由數目 |4,000 |
-| 具有 ExpressRoute Premium 附加元件的 Azure 私人對等互連的最大路由數目 |10,000 |
-| 具有 ExpressRoute Standard 的 Azure 公用對等互連的最大路由數目 |200 |
-| 具有 ExpressRoute Premium 附加元件的 Azure 公用對等互連的最大路由數目 |200 |
-| 具有 ExpressRoute Standard 的 Azure Microsoft 對等互連的最大路由數目 |200 |
-| 具有 ExpressRoute Premium 附加元件的 Azure Microsoft 對等互連的最大路由數目 |200 |
-| 每個 ExpressRoute 電路允許的虛擬網路連結數目 |請參閱下表 |
+| <span data-ttu-id="eb7a3-105">每個訂用帳戶的 ExpressRoute 電路</span><span class="sxs-lookup"><span data-stu-id="eb7a3-105">ExpressRoute circuits per subscription</span></span> |<span data-ttu-id="eb7a3-106">10</span><span class="sxs-lookup"><span data-stu-id="eb7a3-106">10</span></span> |
+| <span data-ttu-id="eb7a3-107">ARM 的每個訂用帳戶每個區域的 ExpressRoute 電路</span><span class="sxs-lookup"><span data-stu-id="eb7a3-107">ExpressRoute circuits per region per subscription for ARM</span></span> |<span data-ttu-id="eb7a3-108">10</span><span class="sxs-lookup"><span data-stu-id="eb7a3-108">10</span></span> |
+| <span data-ttu-id="eb7a3-109">具有 ExpressRoute Standard 的 Azure 私人對等互連的最大路由數目</span><span class="sxs-lookup"><span data-stu-id="eb7a3-109">Maximum number of routes for Azure private peering with ExpressRoute standard</span></span> |<span data-ttu-id="eb7a3-110">4,000</span><span class="sxs-lookup"><span data-stu-id="eb7a3-110">4,000</span></span> |
+| <span data-ttu-id="eb7a3-111">具有 ExpressRoute Premium 附加元件的 Azure 私人對等互連的最大路由數目</span><span class="sxs-lookup"><span data-stu-id="eb7a3-111">Maximum number of routes for Azure private peering with ExpressRoute premium add-on</span></span> |<span data-ttu-id="eb7a3-112">10,000</span><span class="sxs-lookup"><span data-stu-id="eb7a3-112">10,000</span></span> |
+| <span data-ttu-id="eb7a3-113">具有 ExpressRoute Standard 的 Azure 公用對等互連的最大路由數目</span><span class="sxs-lookup"><span data-stu-id="eb7a3-113">Maximum number of routes for Azure public peering with ExpressRoute standard</span></span> |<span data-ttu-id="eb7a3-114">200</span><span class="sxs-lookup"><span data-stu-id="eb7a3-114">200</span></span> |
+| <span data-ttu-id="eb7a3-115">具有 ExpressRoute Premium 附加元件的 Azure 公用對等互連的最大路由數目</span><span class="sxs-lookup"><span data-stu-id="eb7a3-115">Maximum number of routes for Azure public peering with ExpressRoute premium add-on</span></span> |<span data-ttu-id="eb7a3-116">200</span><span class="sxs-lookup"><span data-stu-id="eb7a3-116">200</span></span> |
+| <span data-ttu-id="eb7a3-117">具有 ExpressRoute Standard 的 Azure Microsoft 對等互連的最大路由數目</span><span class="sxs-lookup"><span data-stu-id="eb7a3-117">Maximum number of routes for Azure Microsoft peering with ExpressRoute standard</span></span> |<span data-ttu-id="eb7a3-118">200</span><span class="sxs-lookup"><span data-stu-id="eb7a3-118">200</span></span> |
+| <span data-ttu-id="eb7a3-119">具有 ExpressRoute Premium 附加元件的 Azure Microsoft 對等互連的最大路由數目</span><span class="sxs-lookup"><span data-stu-id="eb7a3-119">Maximum number of routes for Azure Microsoft peering with ExpressRoute premium add-on</span></span> |<span data-ttu-id="eb7a3-120">200</span><span class="sxs-lookup"><span data-stu-id="eb7a3-120">200</span></span> |
+| <span data-ttu-id="eb7a3-121">每個 ExpressRoute 電路允許的虛擬網路連結數目</span><span class="sxs-lookup"><span data-stu-id="eb7a3-121">Number of virtual network links allowed per ExpressRoute circuit</span></span> |<span data-ttu-id="eb7a3-122">請參閱下表</span><span class="sxs-lookup"><span data-stu-id="eb7a3-122">see table below</span></span> |
 
-#### <a name="number-of-virtual-networks-per-expressroute-circuit"></a>每個 ExpressRoute 電路的虛擬網路數目
-| **電路大小** | **Standard 的 VNet 連結數目** | **具有 Premium 附加元件的 VNet 連結數目** |
+#### <a name="number-of-virtual-networks-per-expressroute-circuit"></a><span data-ttu-id="eb7a3-123">每個 ExpressRoute 電路的虛擬網路數目</span><span class="sxs-lookup"><span data-stu-id="eb7a3-123">Number of Virtual Networks per ExpressRoute circuit</span></span>
+| <span data-ttu-id="eb7a3-124">**電路大小**</span><span class="sxs-lookup"><span data-stu-id="eb7a3-124">**Circuit Size**</span></span> | <span data-ttu-id="eb7a3-125">**Standard 的 VNet 連結數目**</span><span class="sxs-lookup"><span data-stu-id="eb7a3-125">**Number of VNet links for standard**</span></span> | <span data-ttu-id="eb7a3-126">**具有 Premium 附加元件的 VNet 連結數目**</span><span class="sxs-lookup"><span data-stu-id="eb7a3-126">**Number of VNet Links with Premium add-on**</span></span> |
 | --- | --- | --- |
-| 50 Mbps |10 |20 |
-| 100 Mbps |10 |25 |
-| 200 Mbps |10 |25 |
-| 500 Mbps |10 |40 |
-| 1 Gbps |10 |50 |
-| 2 Gbps |10 |60 |
-| 5 Gbps |10 |75 |
-| 10 Gbps |10 |100 |
+| <span data-ttu-id="eb7a3-127">50 Mbps</span><span class="sxs-lookup"><span data-stu-id="eb7a3-127">50 Mbps</span></span> |<span data-ttu-id="eb7a3-128">10</span><span class="sxs-lookup"><span data-stu-id="eb7a3-128">10</span></span> |<span data-ttu-id="eb7a3-129">20</span><span class="sxs-lookup"><span data-stu-id="eb7a3-129">20</span></span> |
+| <span data-ttu-id="eb7a3-130">100 Mbps</span><span class="sxs-lookup"><span data-stu-id="eb7a3-130">100 Mbps</span></span> |<span data-ttu-id="eb7a3-131">10</span><span class="sxs-lookup"><span data-stu-id="eb7a3-131">10</span></span> |<span data-ttu-id="eb7a3-132">25</span><span class="sxs-lookup"><span data-stu-id="eb7a3-132">25</span></span> |
+| <span data-ttu-id="eb7a3-133">200 Mbps</span><span class="sxs-lookup"><span data-stu-id="eb7a3-133">200 Mbps</span></span> |<span data-ttu-id="eb7a3-134">10</span><span class="sxs-lookup"><span data-stu-id="eb7a3-134">10</span></span> |<span data-ttu-id="eb7a3-135">25</span><span class="sxs-lookup"><span data-stu-id="eb7a3-135">25</span></span> |
+| <span data-ttu-id="eb7a3-136">500 Mbps</span><span class="sxs-lookup"><span data-stu-id="eb7a3-136">500 Mbps</span></span> |<span data-ttu-id="eb7a3-137">10</span><span class="sxs-lookup"><span data-stu-id="eb7a3-137">10</span></span> |<span data-ttu-id="eb7a3-138">40</span><span class="sxs-lookup"><span data-stu-id="eb7a3-138">40</span></span> |
+| <span data-ttu-id="eb7a3-139">1 Gbps</span><span class="sxs-lookup"><span data-stu-id="eb7a3-139">1 Gbps</span></span> |<span data-ttu-id="eb7a3-140">10</span><span class="sxs-lookup"><span data-stu-id="eb7a3-140">10</span></span> |<span data-ttu-id="eb7a3-141">50</span><span class="sxs-lookup"><span data-stu-id="eb7a3-141">50</span></span> |
+| <span data-ttu-id="eb7a3-142">2 Gbps</span><span class="sxs-lookup"><span data-stu-id="eb7a3-142">2 Gbps</span></span> |<span data-ttu-id="eb7a3-143">10</span><span class="sxs-lookup"><span data-stu-id="eb7a3-143">10</span></span> |<span data-ttu-id="eb7a3-144">60</span><span class="sxs-lookup"><span data-stu-id="eb7a3-144">60</span></span> |
+| <span data-ttu-id="eb7a3-145">5 Gbps</span><span class="sxs-lookup"><span data-stu-id="eb7a3-145">5 Gbps</span></span> |<span data-ttu-id="eb7a3-146">10</span><span class="sxs-lookup"><span data-stu-id="eb7a3-146">10</span></span> |<span data-ttu-id="eb7a3-147">75</span><span class="sxs-lookup"><span data-stu-id="eb7a3-147">75</span></span> |
+| <span data-ttu-id="eb7a3-148">10 Gbps</span><span class="sxs-lookup"><span data-stu-id="eb7a3-148">10 Gbps</span></span> |<span data-ttu-id="eb7a3-149">10</span><span class="sxs-lookup"><span data-stu-id="eb7a3-149">10</span></span> |<span data-ttu-id="eb7a3-150">100</span><span class="sxs-lookup"><span data-stu-id="eb7a3-150">100</span></span> |
 

@@ -19,40 +19,40 @@ ms.translationtype: MT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 08/29/2017
 ---
-## <a name="setting-up-your-web-server-or-project"></a>設定您的 Web 伺服器或專案
+## <a name="setting-up-your-web-server-or-project"></a><span data-ttu-id="0d3d4-103">設定您的 Web 伺服器或專案</span><span class="sxs-lookup"><span data-stu-id="0d3d4-103">Setting up your web server or project</span></span>
 
-> 想要改為下載此範例的專案嗎？ 
-> - [下載 Visual Studio 專案](https://github.com/Azure-Samples/active-directory-javascript-graphapi-v2/archive/VisualStudio.zip)
+> <span data-ttu-id="0d3d4-104">想要改為下載此範例的專案嗎？</span><span class="sxs-lookup"><span data-stu-id="0d3d4-104">Prefer to download this sample's project instead?</span></span> 
+> - [<span data-ttu-id="0d3d4-105">下載 Visual Studio 專案</span><span class="sxs-lookup"><span data-stu-id="0d3d4-105">Download the Visual Studio project</span></span>](https://github.com/Azure-Samples/active-directory-javascript-graphapi-v2/archive/VisualStudio.zip)
 >
-> 或
-> - [下載本機網頁伺服器的專案檔](https://github.com/Azure-Samples/active-directory-javascript-graphapi-v2/archive/core.zip)，例如 Python
+> <span data-ttu-id="0d3d4-106">或</span><span class="sxs-lookup"><span data-stu-id="0d3d4-106">or</span></span>
+> - <span data-ttu-id="0d3d4-107">[下載本機網頁伺服器的專案檔](https://github.com/Azure-Samples/active-directory-javascript-graphapi-v2/archive/core.zip)，例如 Python</span><span class="sxs-lookup"><span data-stu-id="0d3d4-107">[Download the project files](https://github.com/Azure-Samples/active-directory-javascript-graphapi-v2/archive/core.zip) for a local web server, such as Python</span></span>
 >
-> 然後跳至[設定步驟](#create-an-application-express)，以在執行之前先設定程式碼範例。
+> <span data-ttu-id="0d3d4-108">然後跳至[設定步驟](#create-an-application-express)，以在執行之前先設定程式碼範例。</span><span class="sxs-lookup"><span data-stu-id="0d3d4-108">And then  skip to the [Configuration step](#create-an-application-express) to configure the code sample before executing it.</span></span>
 
-## <a name="prerequisites"></a>必要條件
-需要有本機網頁伺服器 (例如 [Python http.server](https://www.python.org/downloads/)、[http-server](https://www.npmjs.com/package/http-server/)、[.NET Core](https://www.microsoft.com/net/core) 或與 [Visual Studio 2017](https://www.visualstudio.com/downloads/) 的 IIS Express 整合)，才能執行此指引設定。 
+## <a name="prerequisites"></a><span data-ttu-id="0d3d4-109">必要條件</span><span class="sxs-lookup"><span data-stu-id="0d3d4-109">Prerequisites</span></span>
+<span data-ttu-id="0d3d4-110">需要有本機網頁伺服器 (例如 [Python http.server](https://www.python.org/downloads/)、[http-server](https://www.npmjs.com/package/http-server/)、[.NET Core](https://www.microsoft.com/net/core) 或與 [Visual Studio 2017](https://www.visualstudio.com/downloads/) 的 IIS Express 整合)，才能執行此指引設定。</span><span class="sxs-lookup"><span data-stu-id="0d3d4-110">A local web server such as [Python http.server](https://www.python.org/downloads/), [http-server](https://www.npmjs.com/package/http-server/), [.NET Core](https://www.microsoft.com/net/core), or IIS Express integration with [Visual Studio 2017](https://www.visualstudio.com/downloads/) is required to run this guided setup.</span></span> 
 
-本指南中的指示是以 Python 和 Visual Studio 2017 為基礎，但可以自由使用任何其他開發環境或網頁伺服器。
+<span data-ttu-id="0d3d4-111">本指南中的指示是以 Python 和 Visual Studio 2017 為基礎，但可以自由使用任何其他開發環境或網頁伺服器。</span><span class="sxs-lookup"><span data-stu-id="0d3d4-111">Instructions in this guide are based on both Python and Visual Studio 2017, but feel free to use any other development environment or Web Server.</span></span>
 
-## <a name="create-your-project"></a>建立專案 
+## <a name="create-your-project"></a><span data-ttu-id="0d3d4-112">建立專案</span><span class="sxs-lookup"><span data-stu-id="0d3d4-112">Create your project</span></span> 
 
-> ### <a name="option-1-visual-studio"></a>選項 1：Visual Studio 
-> 如果您使用 Visual Studio 並建立新的專案，請遵循下列步驟來建立新的 Visual Studio 解決方案：
-> 1.    在 Visual Studio 中：`File` > `New` > `Project`
-> 2.    在 `Visual C#\Web` 之下選取 `ASP.NET Web Application (.NET Framework)`
-> 3.    為您的應用程式命名並按一下 [確定]
-> 4.    在 `New ASP.NET Web Application` 之下選取 `Empty`
+> ### <a name="option-1-visual-studio"></a><span data-ttu-id="0d3d4-113">選項 1：Visual Studio</span><span class="sxs-lookup"><span data-stu-id="0d3d4-113">Option 1: Visual Studio</span></span> 
+> <span data-ttu-id="0d3d4-114">如果您使用 Visual Studio 並建立新的專案，請遵循下列步驟來建立新的 Visual Studio 解決方案：</span><span class="sxs-lookup"><span data-stu-id="0d3d4-114">If you are using Visual Studio and are creating a new project, follow the steps below to create a new Visual Studio solution:</span></span>
+> 1.    <span data-ttu-id="0d3d4-115">在 Visual Studio 中：`File` > `New` > `Project`</span><span class="sxs-lookup"><span data-stu-id="0d3d4-115">In Visual Studio:  `File` > `New` > `Project`</span></span>
+> 2.    <span data-ttu-id="0d3d4-116">在 `Visual C#\Web` 之下選取 `ASP.NET Web Application (.NET Framework)`</span><span class="sxs-lookup"><span data-stu-id="0d3d4-116">Under `Visual C#\Web`, select `ASP.NET Web Application (.NET Framework)`</span></span>
+> 3.    <span data-ttu-id="0d3d4-117">為您的應用程式命名並按一下 [確定]</span><span class="sxs-lookup"><span data-stu-id="0d3d4-117">Name your application and click *OK*</span></span>
+> 4.    <span data-ttu-id="0d3d4-118">在 `New ASP.NET Web Application` 之下選取 `Empty`</span><span class="sxs-lookup"><span data-stu-id="0d3d4-118">Under `New ASP.NET Web Application`, select `Empty`</span></span>
 
 <p/><!-- -->
 
-> ### <a name="option-2-python-other-web-servers"></a>選項 2：Python/其他網頁伺服器
-> 請確定您已安裝 [Python](https://www.python.org/downloads/)，然後遵循下列步驟執行：
-> - 建立資料夾來裝載您的應用程式。
+> ### <a name="option-2-python-other-web-servers"></a><span data-ttu-id="0d3d4-119">選項 2：Python/其他網頁伺服器</span><span class="sxs-lookup"><span data-stu-id="0d3d4-119">Option 2: Python/ other web servers</span></span>
+> <span data-ttu-id="0d3d4-120">請確定您已安裝 [Python](https://www.python.org/downloads/)，然後遵循下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="0d3d4-120">Make sure you have installed [Python](https://www.python.org/downloads/), then follow the step below:</span></span>
+> - <span data-ttu-id="0d3d4-121">建立資料夾來裝載您的應用程式。</span><span class="sxs-lookup"><span data-stu-id="0d3d4-121">Create a folder to host your application.</span></span>
 
 
-## <a name="create-your-single-page-applications-ui"></a>建立單一頁面應用程式的 UI
-1.  為您的 JavaScript SPA 建立 *index.html* 檔案。 如果您使用 Visual Studio，請選取專案 (專案根資料夾)，以滑鼠右鍵按一下並選取：`Add` > `New Item` > `HTML page`，而且將它命名為 index.html
-2.  將下列程式碼新增至您的頁面：
+## <a name="create-your-single-page-applications-ui"></a><span data-ttu-id="0d3d4-122">建立單一頁面應用程式的 UI</span><span class="sxs-lookup"><span data-stu-id="0d3d4-122">Create your single page application’s UI</span></span>
+1.  <span data-ttu-id="0d3d4-123">為您的 JavaScript SPA 建立 *index.html* 檔案。</span><span class="sxs-lookup"><span data-stu-id="0d3d4-123">Create an *index.html* file for your JavaScript SPA.</span></span> <span data-ttu-id="0d3d4-124">如果您使用 Visual Studio，請選取專案 (專案根資料夾)，以滑鼠右鍵按一下並選取：`Add` > `New Item` > `HTML page`，而且將它命名為 index.html</span><span class="sxs-lookup"><span data-stu-id="0d3d4-124">If you are using Visual Studio, select the project (project root folder), right click and select: `Add` > `New Item` > `HTML page` and name it index.html</span></span>
+2.  <span data-ttu-id="0d3d4-125">將下列程式碼新增至您的頁面：</span><span class="sxs-lookup"><span data-stu-id="0d3d4-125">Add the following code to your page:</span></span>
 ```html
 <!DOCTYPE html>
 <html>

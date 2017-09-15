@@ -1,9 +1,9 @@
-* [App Service 驗證/授權概觀](../articles/app-service/app-service-authentication-overview.md)
-* [將驗證新增至 Web 應用程式](../articles/app-service-web/app-service-web-get-started-2.md#authenticate-your-users)
-* 將驗證新增至您的行動裝置應用程式： [iOS][ios-get-started-users]， [Android][android-get-started-users]， [Windows 通用][windows-get-started-users]， [Xamarin.Android][xamarin-android-get-started-users]， [Xamarin.iOS][xamarin-ios-get-started-users]， [Xamarin.Forms] [ xamarin-forms-get-started-users]， [Cordova][cordova-get-started-users]  
-  深入了解如何將 App Service 驗證新增至行動應用程式。
-* API Apps 中的驗證︰[使用者主體](../articles/app-service-api/app-service-api-dotnet-user-principal-auth.md)、[服務主體](../articles/app-service-api/app-service-api-dotnet-service-principal-auth.md)  
-  深入了解如何使用 App Service 驗證保護 API 應用程式。
+* [<span data-ttu-id="7965a-101">App Service 驗證/授權概觀</span><span class="sxs-lookup"><span data-stu-id="7965a-101">App Service Authentication / Authorization overview</span></span>](../articles/app-service/app-service-authentication-overview.md)
+* [<span data-ttu-id="7965a-102">將驗證新增至 Web 應用程式</span><span class="sxs-lookup"><span data-stu-id="7965a-102">Add authentication to a Web App</span></span>](../articles/app-service-web/app-service-web-get-started-2.md#authenticate-your-users)
+* <span data-ttu-id="7965a-103">將驗證新增至您的行動裝置應用程式： [iOS][ios-get-started-users]， [Android][android-get-started-users]， [Windows 通用][windows-get-started-users]， [Xamarin.Android][xamarin-android-get-started-users]， [Xamarin.iOS][xamarin-ios-get-started-users]， [Xamarin.Forms] [ xamarin-forms-get-started-users]， [Cordova][cordova-get-started-users]</span><span class="sxs-lookup"><span data-stu-id="7965a-103">Add authentication to your Mobile App: [iOS][ios-get-started-users], [Android][android-get-started-users], [Windows Universal][windows-get-started-users], [Xamarin.Android][xamarin-android-get-started-users], [Xamarin.iOS][xamarin-ios-get-started-users], [Xamarin.Forms][xamarin-forms-get-started-users], [Cordova][cordova-get-started-users]</span></span>  
+  <span data-ttu-id="7965a-104">深入了解如何將 App Service 驗證新增至行動應用程式。</span><span class="sxs-lookup"><span data-stu-id="7965a-104">Learn how to add App Service authenication to your mobile app.</span></span>
+* <span data-ttu-id="7965a-105">API Apps 中的驗證︰[使用者主體](../articles/app-service-api/app-service-api-dotnet-user-principal-auth.md)、[服務主體](../articles/app-service-api/app-service-api-dotnet-service-principal-auth.md)</span><span class="sxs-lookup"><span data-stu-id="7965a-105">Authentication in API Apps: [user principal](../articles/app-service-api/app-service-api-dotnet-user-principal-auth.md), [service principal](../articles/app-service-api/app-service-api-dotnet-service-principal-auth.md)</span></span>  
+  <span data-ttu-id="7965a-106">深入了解如何使用 App Service 驗證保護 API 應用程式。</span><span class="sxs-lookup"><span data-stu-id="7965a-106">Learn how to secure your API app using App Service authentication.</span></span>
 
 [android-get-started-users]: ../articles/app-service-mobile/app-service-mobile-android-get-started-users.md
 [cordova-get-started-users]: ../articles/app-service-mobile/app-service-mobile-cordova-get-started-users.md

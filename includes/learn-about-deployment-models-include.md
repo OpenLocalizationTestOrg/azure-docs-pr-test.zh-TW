@@ -1,2 +1,2 @@
 > [!IMPORTANT]
-> 使用 Azure 資源之前，請先熟悉部署模型： [資源管理員和傳統](../articles/azure-resource-manager/resource-manager-deployment-model.md)。
+> <span data-ttu-id="fe23c-101">使用 Azure 資源之前，請先熟悉部署模型： [資源管理員和傳統](../articles/azure-resource-manager/resource-manager-deployment-model.md)。</span><span class="sxs-lookup"><span data-stu-id="fe23c-101">Before you work with Azure resources, get familiar with the deployment models: [Resource Manager, and classic](../articles/azure-resource-manager/resource-manager-deployment-model.md).</span></span>

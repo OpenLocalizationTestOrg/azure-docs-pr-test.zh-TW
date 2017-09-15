@@ -1,12 +1,12 @@
-Azure 備份服務有兩種類型的保存庫：備份保存庫和復原服務保存庫。 先是備份保存庫。 然後是復原服務保存庫，以支援擴充的 Resource Manager 部署。 除非您特別需要傳統部署，否則 Microsoft 建議使用 Resource Manager 部署。
+<span data-ttu-id="aad81-101">Azure 備份服務有兩種類型的保存庫：備份保存庫和復原服務保存庫。</span><span class="sxs-lookup"><span data-stu-id="aad81-101">The Azure Backup service has two types of vaults - the Backup vault and the Recovery Services vault.</span></span> <span data-ttu-id="aad81-102">先是備份保存庫。</span><span class="sxs-lookup"><span data-stu-id="aad81-102">The Backup vault came first.</span></span> <span data-ttu-id="aad81-103">然後是復原服務保存庫，以支援擴充的 Resource Manager 部署。</span><span class="sxs-lookup"><span data-stu-id="aad81-103">Then the Recovery Services vault came along to support the expanded Resource Manager deployments.</span></span> <span data-ttu-id="aad81-104">除非您特別需要傳統部署，否則 Microsoft 建議使用 Resource Manager 部署。</span><span class="sxs-lookup"><span data-stu-id="aad81-104">Microsoft recommends using Resource Manager deployments unless you specifically require a Classic deployment.</span></span>
 
-| **部署** | **入口網站** | **保存庫** |
+| <span data-ttu-id="aad81-105">**部署**</span><span class="sxs-lookup"><span data-stu-id="aad81-105">**Deployment**</span></span> | <span data-ttu-id="aad81-106">**入口網站**</span><span class="sxs-lookup"><span data-stu-id="aad81-106">**Portal**</span></span> | <span data-ttu-id="aad81-107">**保存庫**</span><span class="sxs-lookup"><span data-stu-id="aad81-107">**Vault**</span></span> |
 | --- | --- | --- |
-| 傳統 |[傳統](https://manage.windowsazure.com) |備份 |
-| Resource Manager |[Azure](https://portal.azure.com) |[復原服務] |
+| <span data-ttu-id="aad81-108">傳統</span><span class="sxs-lookup"><span data-stu-id="aad81-108">Classic</span></span> |[<span data-ttu-id="aad81-109">傳統</span><span class="sxs-lookup"><span data-stu-id="aad81-109">Classic</span></span>](https://manage.windowsazure.com) |<span data-ttu-id="aad81-110">備份</span><span class="sxs-lookup"><span data-stu-id="aad81-110">Backup</span></span> |
+| <span data-ttu-id="aad81-111">Resource Manager</span><span class="sxs-lookup"><span data-stu-id="aad81-111">Resource Manager</span></span> |[<span data-ttu-id="aad81-112">Azure</span><span class="sxs-lookup"><span data-stu-id="aad81-112">Azure</span></span>](https://portal.azure.com) |<span data-ttu-id="aad81-113">[復原服務]</span><span class="sxs-lookup"><span data-stu-id="aad81-113">Recovery Services</span></span> |
 
 > [!NOTE]
-> 備份保存庫無法保護 Resource Manager 部署的解決方案。 不過，您可以使用復原服務保存庫來保護傳統方式部署的伺服器和 VM。  
+> <span data-ttu-id="aad81-114">備份保存庫無法保護 Resource Manager 部署的解決方案。</span><span class="sxs-lookup"><span data-stu-id="aad81-114">Backup vaults cannot protect Resource Manager-deployed solutions.</span></span> <span data-ttu-id="aad81-115">不過，您可以使用復原服務保存庫來保護傳統方式部署的伺服器和 VM。</span><span class="sxs-lookup"><span data-stu-id="aad81-115">However, you can use a Recovery Services vault to protect classically-deployed servers and VMs.</span></span>  
 > 
 > 
 

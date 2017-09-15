@@ -1,24 +1,24 @@
-下表依照閘道 SKU 顯示閘道類型和預估的彙總輸送量。 此表適用於 Resource Manager 與傳統部署模型。 
+<span data-ttu-id="66fc1-101">下表依照閘道 SKU 顯示閘道類型和預估的彙總輸送量。</span><span class="sxs-lookup"><span data-stu-id="66fc1-101">The following table shows the gateway types and the estimated aggregate throughput by gateway SKU.</span></span> <span data-ttu-id="66fc1-102">此表適用於 Resource Manager 與傳統部署模型。</span><span class="sxs-lookup"><span data-stu-id="66fc1-102">This table applies to the Resource Manager and classic deployment models.</span></span> 
 
-閘道 SKU 之間的價格並不相同。 如需詳細資訊，請參閱 [VPN 閘道價格](https://azure.microsoft.com/pricing/details/vpn-gateway)。
+<span data-ttu-id="66fc1-103">閘道 SKU 之間的價格並不相同。</span><span class="sxs-lookup"><span data-stu-id="66fc1-103">Pricing differs between gateway SKUs.</span></span> <span data-ttu-id="66fc1-104">如需詳細資訊，請參閱 [VPN 閘道價格](https://azure.microsoft.com/pricing/details/vpn-gateway)。</span><span class="sxs-lookup"><span data-stu-id="66fc1-104">For more information, see [VPN Gateway Pricing](https://azure.microsoft.com/pricing/details/vpn-gateway).</span></span>
 
-請注意下表未顯示 UltraPerformance 閘道 SKU。 如需 UltraPerformance SKU 的相關資訊，請參閱 [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md) 文件。
+<span data-ttu-id="66fc1-105">請注意下表未顯示 UltraPerformance 閘道 SKU。</span><span class="sxs-lookup"><span data-stu-id="66fc1-105">Note that the UltraPerformance gateway SKU is not represented in this table.</span></span> <span data-ttu-id="66fc1-106">如需 UltraPerformance SKU 的相關資訊，請參閱 [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md) 文件。</span><span class="sxs-lookup"><span data-stu-id="66fc1-106">For information about the UltraPerformance SKU, see the [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md) documentation.</span></span>
 
-|  | **VPN 閘道輸送量 (1)** | **VPN 閘道最大 IPsec 通道 (2)** | **ExpressRoute 閘道輸送量** | **VPN 閘道與 ExpressRoute 共存** |
+|  | <span data-ttu-id="66fc1-107">**VPN 閘道輸送量 (1)**</span><span class="sxs-lookup"><span data-stu-id="66fc1-107">**VPN Gateway throughput (1)**</span></span> | <span data-ttu-id="66fc1-108">**VPN 閘道最大 IPsec 通道 (2)**</span><span class="sxs-lookup"><span data-stu-id="66fc1-108">**VPN Gateway max IPsec tunnels (2)**</span></span> | <span data-ttu-id="66fc1-109">**ExpressRoute 閘道輸送量**</span><span class="sxs-lookup"><span data-stu-id="66fc1-109">**ExpressRoute Gateway throughput**</span></span> | <span data-ttu-id="66fc1-110">**VPN 閘道與 ExpressRoute 共存**</span><span class="sxs-lookup"><span data-stu-id="66fc1-110">**VPN Gateway and ExpressRoute coexist**</span></span> |
 | --- | --- | --- | --- | --- |
-| **基本 SKU (3)(5)(6)** |100 Mbps |10 |500 Mbps (6) |否 |
-| **標準 SKU (4)(5)** |100 Mbps |10 |1000 Mbps |是 |
-| **高效能 SKU (4)** |200 Mbps |30 |2000 Mbps |是 |
+| <span data-ttu-id="66fc1-111">**基本 SKU (3)(5)(6)**</span><span class="sxs-lookup"><span data-stu-id="66fc1-111">**Basic SKU (3)(5)(6)**</span></span> |<span data-ttu-id="66fc1-112">100 Mbps</span><span class="sxs-lookup"><span data-stu-id="66fc1-112">100 Mbps</span></span> |<span data-ttu-id="66fc1-113">10</span><span class="sxs-lookup"><span data-stu-id="66fc1-113">10</span></span> |<span data-ttu-id="66fc1-114">500 Mbps (6)</span><span class="sxs-lookup"><span data-stu-id="66fc1-114">500 Mbps (6)</span></span> |<span data-ttu-id="66fc1-115">否</span><span class="sxs-lookup"><span data-stu-id="66fc1-115">No</span></span> |
+| <span data-ttu-id="66fc1-116">**標準 SKU (4)(5)**</span><span class="sxs-lookup"><span data-stu-id="66fc1-116">**Standard SKU (4)(5)**</span></span> |<span data-ttu-id="66fc1-117">100 Mbps</span><span class="sxs-lookup"><span data-stu-id="66fc1-117">100 Mbps</span></span> |<span data-ttu-id="66fc1-118">10</span><span class="sxs-lookup"><span data-stu-id="66fc1-118">10</span></span> |<span data-ttu-id="66fc1-119">1000 Mbps</span><span class="sxs-lookup"><span data-stu-id="66fc1-119">1000 Mbps</span></span> |<span data-ttu-id="66fc1-120">是</span><span class="sxs-lookup"><span data-stu-id="66fc1-120">Yes</span></span> |
+| <span data-ttu-id="66fc1-121">**高效能 SKU (4)**</span><span class="sxs-lookup"><span data-stu-id="66fc1-121">**High Performance SKU (4)**</span></span> |<span data-ttu-id="66fc1-122">200 Mbps</span><span class="sxs-lookup"><span data-stu-id="66fc1-122">200 Mbps</span></span> |<span data-ttu-id="66fc1-123">30</span><span class="sxs-lookup"><span data-stu-id="66fc1-123">30</span></span> |<span data-ttu-id="66fc1-124">2000 Mbps</span><span class="sxs-lookup"><span data-stu-id="66fc1-124">2000 Mbps</span></span> |<span data-ttu-id="66fc1-125">是</span><span class="sxs-lookup"><span data-stu-id="66fc1-125">Yes</span></span> |
 
 
-(1) VPN 輸送量是根據相同 Azure 區域中 VNet 之間度量的概略估計。 這不是網際網路上跨單位連線的保證輸送量。 這是可能的最大輸送量測量。
+<span data-ttu-id="66fc1-126">(1) VPN 輸送量是根據相同 Azure 區域中 VNet 之間度量的概略估計。</span><span class="sxs-lookup"><span data-stu-id="66fc1-126">(1) The VPN throughput is a rough estimate based on the measurements between VNets in the same Azure region.</span></span> <span data-ttu-id="66fc1-127">這不是網際網路上跨單位連線的保證輸送量。</span><span class="sxs-lookup"><span data-stu-id="66fc1-127">It is not a guaranteed throughput for cross-premises connections across the Internet.</span></span> <span data-ttu-id="66fc1-128">這是可能的最大輸送量測量。</span><span class="sxs-lookup"><span data-stu-id="66fc1-128">It is the maximum possible throughput measurement.</span></span>
 
-(2) 通道的數目請參閱路由式 VPN。 原則式 VPN 只能支援一個站對站 VPN 通道。
+<span data-ttu-id="66fc1-129">(2) 通道的數目請參閱路由式 VPN。</span><span class="sxs-lookup"><span data-stu-id="66fc1-129">(2) The number of tunnels refer to RouteBased VPNs.</span></span> <span data-ttu-id="66fc1-130">原則式 VPN 只能支援一個站對站 VPN 通道。</span><span class="sxs-lookup"><span data-stu-id="66fc1-130">A PolicyBased VPN can only support one Site-to-Site VPN tunnel.</span></span>
 
-(3) 基本 SKU 不支援 BGP。
+<span data-ttu-id="66fc1-131">(3) 基本 SKU 不支援 BGP。</span><span class="sxs-lookup"><span data-stu-id="66fc1-131">(3) BGP is not supported for the Basic SKU.</span></span>
 
-(4) 此 SKU 不支援原則式 VPN。 只有基本 SKU 提供支援。
+<span data-ttu-id="66fc1-132">(4) 此 SKU 不支援原則式 VPN。</span><span class="sxs-lookup"><span data-stu-id="66fc1-132">(4) PolicyBased VPNs are not supported for this SKU.</span></span> <span data-ttu-id="66fc1-133">只有基本 SKU 提供支援。</span><span class="sxs-lookup"><span data-stu-id="66fc1-133">They are supported for the Basic SKU only.</span></span>
 
-(5) 此 SKU 不支援主動-主動 S2S VPN 閘道連線。 只有高效能 SKU 支援主動-主動。
+<span data-ttu-id="66fc1-134">(5) 此 SKU 不支援主動-主動 S2S VPN 閘道連線。</span><span class="sxs-lookup"><span data-stu-id="66fc1-134">(5) Active-active S2S VPN Gateway connections are not supported for this SKU.</span></span> <span data-ttu-id="66fc1-135">只有高效能 SKU 支援主動-主動。</span><span class="sxs-lookup"><span data-stu-id="66fc1-135">Active-active is supported on the HighPerformance SKU only.</span></span>
 
-(6) 基本 SKU 已不再支援與 ExpressRoute 並用。
+<span data-ttu-id="66fc1-136">(6) 基本 SKU 已不再支援與 ExpressRoute 並用。</span><span class="sxs-lookup"><span data-stu-id="66fc1-136">(6) Basic SKU is deprecated for use with ExpressRoute.</span></span>

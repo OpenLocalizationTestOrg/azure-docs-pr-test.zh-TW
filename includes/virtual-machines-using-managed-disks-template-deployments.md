@@ -1,10 +1,10 @@
-# <a name="using-managed-disks-in-azure-resource-manager-templates"></a>在 Azure Resource Manager 範本中使用受控磁碟
+# <a name="using-managed-disks-in-azure-resource-manager-templates"></a><span data-ttu-id="58d76-101">在 Azure Resource Manager 範本中使用受控磁碟</span><span class="sxs-lookup"><span data-stu-id="58d76-101">Using Managed Disks in Azure Resource Manager Templates</span></span>
 
-本文逐步解說當使用 Azure Resource Manager 範本佈建虛擬機器時，受控與非受控磁碟之間的差異。 這有助於您將使用非受控磁碟的現有範本更新為使用受控磁碟。 如需參考，我們會使用 [101-vm-simple-windows](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows) \(英文\) 範本作為指南。 如果您想要直接進行比較，您可以看到使用[受控磁碟](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows/azuredeploy.json) \(英文\) 的範本以及使用[非受控磁碟](https://github.com/Azure/azure-quickstart-templates/tree/93b5f72a9857ea9ea43e87d2373bf1b4f724c6aa/101-vm-simple-windows/azuredeploy.json) \(英文\) 的先前版本。
+<span data-ttu-id="58d76-102">本文逐步解說當使用 Azure Resource Manager 範本佈建虛擬機器時，受控與非受控磁碟之間的差異。</span><span class="sxs-lookup"><span data-stu-id="58d76-102">This document walks through the differences between managed and unmanaged disks when using Azure Resource Manager templates to provision virtual machines.</span></span> <span data-ttu-id="58d76-103">這有助於您將使用非受控磁碟的現有範本更新為使用受控磁碟。</span><span class="sxs-lookup"><span data-stu-id="58d76-103">This will help you to update existing templates that are using unmanaged Disks to managed disks.</span></span> <span data-ttu-id="58d76-104">如需參考，我們會使用 [101-vm-simple-windows](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows) \(英文\) 範本作為指南。</span><span class="sxs-lookup"><span data-stu-id="58d76-104">For reference, we are using the [101-vm-simple-windows](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows) template as a guide.</span></span> <span data-ttu-id="58d76-105">如果您想要直接進行比較，您可以看到使用[受控磁碟](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows/azuredeploy.json) \(英文\) 的範本以及使用[非受控磁碟](https://github.com/Azure/azure-quickstart-templates/tree/93b5f72a9857ea9ea43e87d2373bf1b4f724c6aa/101-vm-simple-windows/azuredeploy.json) \(英文\) 的先前版本。</span><span class="sxs-lookup"><span data-stu-id="58d76-105">You can see the template using both [managed Disks](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows/azuredeploy.json) and a prior version using [unmanaged disks](https://github.com/Azure/azure-quickstart-templates/tree/93b5f72a9857ea9ea43e87d2373bf1b4f724c6aa/101-vm-simple-windows/azuredeploy.json) if you'd like to directly compare them.</span></span>
 
-## <a name="unmanaged-disks-template-formatting"></a>非受控磁碟範本格式
+## <a name="unmanaged-disks-template-formatting"></a><span data-ttu-id="58d76-106">非受控磁碟範本格式</span><span class="sxs-lookup"><span data-stu-id="58d76-106">Unmanaged Disks template formatting</span></span>
 
-一開始，我們先看一下如何部署非受控磁碟。 建立非受控磁碟時，您需要有一個儲存體帳戶來保存 VHD 檔案。 您可以建立新儲存體帳戶，或使用現有儲存體帳戶。 此文章將說明如何建立新儲存體帳戶。 若要執行此動作，您需要在資源區塊中有一個儲存體帳戶資源，如下所示。
+<span data-ttu-id="58d76-107">一開始，我們先看一下如何部署非受控磁碟。</span><span class="sxs-lookup"><span data-stu-id="58d76-107">To begin, we take a look at how unmanaged disks are deployed.</span></span> <span data-ttu-id="58d76-108">建立非受控磁碟時，您需要有一個儲存體帳戶來保存 VHD 檔案。</span><span class="sxs-lookup"><span data-stu-id="58d76-108">When creating unmanaged disks, you need a storage account to hold the VHD files.</span></span> <span data-ttu-id="58d76-109">您可以建立新儲存體帳戶，或使用現有儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="58d76-109">You can create a new storage account or use one that already exists.</span></span> <span data-ttu-id="58d76-110">此文章將說明如何建立新儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="58d76-110">This article will show you how to create a new storage account.</span></span> <span data-ttu-id="58d76-111">若要執行此動作，您需要在資源區塊中有一個儲存體帳戶資源，如下所示。</span><span class="sxs-lookup"><span data-stu-id="58d76-111">To accomplish this, you need a storage account resource in the resources block as shown below.</span></span>
 
 ```
 {
@@ -20,7 +20,7 @@
 }
 ```
 
-在虛擬機器物件中，我們需要依賴儲存體帳戶，以確保它在虛擬機器之前建立。 然後，在 `storageProfile` 區段中，我們會指定 VHD 位置的完整 URI，它會參照儲存體帳戶，而且 OS 磁碟與所有資料磁碟都需要它。 
+<span data-ttu-id="58d76-112">在虛擬機器物件中，我們需要依賴儲存體帳戶，以確保它在虛擬機器之前建立。</span><span class="sxs-lookup"><span data-stu-id="58d76-112">Within the virtual machine object, we need a dependency on the storage account to ensure that it's created before the virtual machine.</span></span> <span data-ttu-id="58d76-113">然後，在 `storageProfile` 區段中，我們會指定 VHD 位置的完整 URI，它會參照儲存體帳戶，而且 OS 磁碟與所有資料磁碟都需要它。</span><span class="sxs-lookup"><span data-stu-id="58d76-113">Within the `storageProfile` section, we then specify the full URI of the VHD location, which references the storage account and is needed for the OS disk and any data disks.</span></span> 
 
 ```
 {
@@ -68,18 +68,18 @@
 }
 ```
 
-## <a name="managed-disks-template-formatting"></a>受控磁碟範本格式
+## <a name="managed-disks-template-formatting"></a><span data-ttu-id="58d76-114">受控磁碟範本格式</span><span class="sxs-lookup"><span data-stu-id="58d76-114">Managed disks template formatting</span></span>
 
-有了 Azure 受控磁碟，磁碟會變成最上層資源，且不再需要使用者建立儲存體帳戶。 受控磁碟是在 `2016-04-30-preview` API 版本中首次公開，在後續的 API 版本中皆可取得，而且現在它們是預設的磁碟類型。 以下幾節會逐步解說預設設定，並詳細說明如何進一步自訂您的磁碟。
+<span data-ttu-id="58d76-115">有了 Azure 受控磁碟，磁碟會變成最上層資源，且不再需要使用者建立儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="58d76-115">With Azure Managed Disks, the disk becomes a top-level resource and no longer requires a storage account to be created by the user.</span></span> <span data-ttu-id="58d76-116">受控磁碟是在 `2016-04-30-preview` API 版本中首次公開，在後續的 API 版本中皆可取得，而且現在它們是預設的磁碟類型。</span><span class="sxs-lookup"><span data-stu-id="58d76-116">Managed disks were first exposed in the `2016-04-30-preview` API version, they are available in all subsequent API versions and are now the default disk type.</span></span> <span data-ttu-id="58d76-117">以下幾節會逐步解說預設設定，並詳細說明如何進一步自訂您的磁碟。</span><span class="sxs-lookup"><span data-stu-id="58d76-117">The following sections walk through the default settings and detail how to further customize your disks.</span></span>
 
 > [!NOTE]
-> 建議使用 `2016-04-30-preview` 以後的 API 版本，因為 `2016-04-30-preview` 和 `2017-03-30` 之間有重大變更。
+> <span data-ttu-id="58d76-118">建議使用 `2016-04-30-preview` 以後的 API 版本，因為 `2016-04-30-preview` 和 `2017-03-30` 之間有重大變更。</span><span class="sxs-lookup"><span data-stu-id="58d76-118">It is recommended to use an API version later than `2016-04-30-preview` as there were breaking changes between `2016-04-30-preview` and `2017-03-30`.</span></span>
 >
 >
 
-### <a name="default-managed-disk-settings"></a>預設的受控磁碟設定
+### <a name="default-managed-disk-settings"></a><span data-ttu-id="58d76-119">預設的受控磁碟設定</span><span class="sxs-lookup"><span data-stu-id="58d76-119">Default managed disk settings</span></span>
 
-若要建立使用受控磁碟的 VM，您不再需要建立儲存體帳戶資源，而且可以更新虛擬機器資源，如下所示。 請特別注意，`apiVersion` 會反映出 `2017-03-30` 和 `osDisk` 和 `dataDisks` 不再參照 VHD 的特定 URI。 若部署而不指定其他屬性，磁碟將會使用 [標準 LRS 儲存體](../articles/storage/common/storage-redundancy.md) 。 若未指定名稱，它的 OS 磁碟格式為 `<VMName>_OsDisk_1_<randomstring>`，而每個資料磁碟的格式為 `<VMName>_disk<#>_<randomstring>`。 預設已停用 Azure 磁碟加密；OS 磁碟的快取為 [讀取/寫入]，資料磁碟的快取則為 [無]。 您可能會注意到，在下列範例中仍有儲存體帳戶相依性，但這只適用於儲存體的診斷，而且磁碟儲存體並不需要相依性。
+<span data-ttu-id="58d76-120">若要建立使用受控磁碟的 VM，您不再需要建立儲存體帳戶資源，而且可以更新虛擬機器資源，如下所示。</span><span class="sxs-lookup"><span data-stu-id="58d76-120">To create a VM with managed disks, you no longer need to create the storage account resource and can update your virtual machine resource as follows.</span></span> <span data-ttu-id="58d76-121">請特別注意，`apiVersion` 會反映出 `2017-03-30` 和 `osDisk` 和 `dataDisks` 不再參照 VHD 的特定 URI。</span><span class="sxs-lookup"><span data-stu-id="58d76-121">Specifically note that the `apiVersion` reflects `2017-03-30` and the `osDisk` and `dataDisks` no longer refer to a specific URI for the VHD.</span></span> <span data-ttu-id="58d76-122">若部署而不指定其他屬性，磁碟將會使用 [標準 LRS 儲存體](../articles/storage/common/storage-redundancy.md) 。</span><span class="sxs-lookup"><span data-stu-id="58d76-122">When deploying without specifying additional properties, the disk will use [Standard LRS storage](../articles/storage/common/storage-redundancy.md).</span></span> <span data-ttu-id="58d76-123">若未指定名稱，它的 OS 磁碟格式為 `<VMName>_OsDisk_1_<randomstring>`，而每個資料磁碟的格式為 `<VMName>_disk<#>_<randomstring>`。</span><span class="sxs-lookup"><span data-stu-id="58d76-123">If no name is specified, it takes the format of `<VMName>_OsDisk_1_<randomstring>` for the OS disk and `<VMName>_disk<#>_<randomstring>` for each data disk.</span></span> <span data-ttu-id="58d76-124">預設已停用 Azure 磁碟加密；OS 磁碟的快取為 [讀取/寫入]，資料磁碟的快取則為 [無]。</span><span class="sxs-lookup"><span data-stu-id="58d76-124">By default, Azure disk encryption is disabled; caching is Read/Write for the OS disk and None for data disks.</span></span> <span data-ttu-id="58d76-125">您可能會注意到，在下列範例中仍有儲存體帳戶相依性，但這只適用於儲存體的診斷，而且磁碟儲存體並不需要相依性。</span><span class="sxs-lookup"><span data-stu-id="58d76-125">You may notice in the example below there is still a storage account dependency, though this is only for storage of diagnostics and is not needed for disk storage.</span></span>
 
 ```
 {
@@ -118,9 +118,9 @@
 }
 ```
 
-### <a name="using-a-top-level-managed-disk-resource"></a>使用最上層受控磁碟資源
+### <a name="using-a-top-level-managed-disk-resource"></a><span data-ttu-id="58d76-126">使用最上層受控磁碟資源</span><span class="sxs-lookup"><span data-stu-id="58d76-126">Using a top-level managed disk resource</span></span>
 
-作為在虛擬機器物件中指定磁碟組態的替代方式，您可以建立最上層磁碟資源，並在建立虛擬機器時連結它。 例如，我們可以建立如下所示的磁碟資源，來作為資料磁碟使用。
+<span data-ttu-id="58d76-127">作為在虛擬機器物件中指定磁碟組態的替代方式，您可以建立最上層磁碟資源，並在建立虛擬機器時連結它。</span><span class="sxs-lookup"><span data-stu-id="58d76-127">As an alternative to specifying the disk configuration in the virtual machine object, you can create a top-level disk resource and attach it as part of the virtual machine creation.</span></span> <span data-ttu-id="58d76-128">例如，我們可以建立如下所示的磁碟資源，來作為資料磁碟使用。</span><span class="sxs-lookup"><span data-stu-id="58d76-128">For example, we can create a disk resource as follows to use as a data disk.</span></span>
 
 ```
 {
@@ -140,7 +140,7 @@
 }
 ```
 
-然後，在 VM 物件中，我們可以參照這個要連結的磁碟物件。 指定我們在 `managedDisk` 屬性中建立之受控磁碟的資源識別碼，可允許在建立 VM 時連結磁碟。 請注意，VM 資源的 `apiVersion` 是設定成 `2017-03-30`。 也請注意，我們在磁碟資源上建立了相依性，以確保它在建立 VM 之前成功建立。 
+<span data-ttu-id="58d76-129">然後，在 VM 物件中，我們可以參照這個要連結的磁碟物件。</span><span class="sxs-lookup"><span data-stu-id="58d76-129">Within the VM object, we can then reference this disk object to be attached.</span></span> <span data-ttu-id="58d76-130">指定我們在 `managedDisk` 屬性中建立之受控磁碟的資源識別碼，可允許在建立 VM 時連結磁碟。</span><span class="sxs-lookup"><span data-stu-id="58d76-130">Specifying the resource ID of the managed disk we created in the `managedDisk` property allows the attachment of the disk as the VM is created.</span></span> <span data-ttu-id="58d76-131">請注意，VM 資源的 `apiVersion` 是設定成 `2017-03-30`。</span><span class="sxs-lookup"><span data-stu-id="58d76-131">Note that the `apiVersion` for the VM resource is set to `2017-03-30`.</span></span> <span data-ttu-id="58d76-132">也請注意，我們在磁碟資源上建立了相依性，以確保它在建立 VM 之前成功建立。</span><span class="sxs-lookup"><span data-stu-id="58d76-132">Also note that we've created a dependency on the disk resource to ensure it's successfully created before VM creation.</span></span> 
 
 ```
 {
@@ -183,9 +183,9 @@
 }
 ```
 
-### <a name="create-managed-availability-sets-with-vms-using-managed-disks"></a>為使用受控磁碟的 VM 建立受控可用性設定組
+### <a name="create-managed-availability-sets-with-vms-using-managed-disks"></a><span data-ttu-id="58d76-133">為使用受控磁碟的 VM 建立受控可用性設定組</span><span class="sxs-lookup"><span data-stu-id="58d76-133">Create managed availability sets with VMs using managed disks</span></span>
 
-若要為使用受控磁碟的 VM 建立受控可用性設定組，請將 `sku` 物件新增至可用性設定組資源，並將 `name` 屬性設定為 `Aligned`。 這可確保每個 VM 的磁碟彼此之間都充分隔離，以避免發生單一失敗點。 另請注意，可用性設定組資源的 `apiVersion` 是設定成 `2017-03-30`。
+<span data-ttu-id="58d76-134">若要為使用受控磁碟的 VM 建立受控可用性設定組，請將 `sku` 物件新增至可用性設定組資源，並將 `name` 屬性設定為 `Aligned`。</span><span class="sxs-lookup"><span data-stu-id="58d76-134">To create managed availability sets with VMs using managed disks, add the `sku` object to the availability set resource and set the `name` property to `Aligned`.</span></span> <span data-ttu-id="58d76-135">這可確保每個 VM 的磁碟彼此之間都充分隔離，以避免發生單一失敗點。</span><span class="sxs-lookup"><span data-stu-id="58d76-135">This ensures that the disks for each VM are sufficiently isolated from each other to avoid single points of failure.</span></span> <span data-ttu-id="58d76-136">另請注意，可用性設定組資源的 `apiVersion` 是設定成 `2017-03-30`。</span><span class="sxs-lookup"><span data-stu-id="58d76-136">Also note that the `apiVersion` for the availability set resource is set to `2017-03-30`.</span></span>
 
 ```
 {
@@ -203,17 +203,17 @@
 }
 ```
 
-### <a name="additional-scenarios-and-customizations"></a>其他案例和自訂
+### <a name="additional-scenarios-and-customizations"></a><span data-ttu-id="58d76-137">其他案例和自訂</span><span class="sxs-lookup"><span data-stu-id="58d76-137">Additional scenarios and customizations</span></span>
 
-若要尋找有關 REST API 規格的完整資訊，請檢閱[建立受控磁碟 REST API 文件](/rest/api/manageddisks/disks/disks-create-or-update)。 您會找到其他案例，以及可透過範本部署提交至 API 之預設及可接受的值。 
+<span data-ttu-id="58d76-138">若要尋找有關 REST API 規格的完整資訊，請檢閱[建立受控磁碟 REST API 文件](/rest/api/manageddisks/disks/disks-create-or-update)。</span><span class="sxs-lookup"><span data-stu-id="58d76-138">To find full information on the REST API specifications, please review the [create a managed disk REST API documentation](/rest/api/manageddisks/disks/disks-create-or-update).</span></span> <span data-ttu-id="58d76-139">您會找到其他案例，以及可透過範本部署提交至 API 之預設及可接受的值。</span><span class="sxs-lookup"><span data-stu-id="58d76-139">You will find additional scenarios, as well as default and acceptable values that can be submitted to the API through template deployments.</span></span> 
 
-## <a name="next-steps"></a>後續步驟
+## <a name="next-steps"></a><span data-ttu-id="58d76-140">後續步驟</span><span class="sxs-lookup"><span data-stu-id="58d76-140">Next steps</span></span>
 
-* 如需使用受控磁碟的完整範本，請瀏覽下列「Azure 快速入門存放庫」連結。
-    * [使用受控磁碟的 Windows VM](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows) \(英文\)
-    * [使用受控磁碟的 Linux VM](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-linux) \(英文\)
-    * [受控磁碟範本的完整清單](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md) \(英文\)
-* 瀏覽 [Azure 受控磁碟概觀](../articles/virtual-machines/windows/managed-disks-overview.md)文件，深入了解受控磁碟。
-* 瀏覽 [Microsoft.Compute/virtualMachines 範本參考](/templates/microsoft.compute/virtualmachines)文件，檢閱虛擬機器資源的範本參考文件。
-* 瀏覽 [Microsoft.Compute/disks 範本參考](/templates/microsoft.compute/disks)文件，檢閱磁碟資源的範本參考文件。
+* <span data-ttu-id="58d76-141">如需使用受控磁碟的完整範本，請瀏覽下列「Azure 快速入門存放庫」連結。</span><span class="sxs-lookup"><span data-stu-id="58d76-141">For full templates that use managed disks visit the following Azure Quickstart Repo links.</span></span>
+    * <span data-ttu-id="58d76-142">[使用受控磁碟的 Windows VM](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows) \(英文\)</span><span class="sxs-lookup"><span data-stu-id="58d76-142">[Windows VM with managed disk](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows)</span></span>
+    * <span data-ttu-id="58d76-143">[使用受控磁碟的 Linux VM](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-linux) \(英文\)</span><span class="sxs-lookup"><span data-stu-id="58d76-143">[Linux VM with managed disk](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-linux)</span></span>
+    * <span data-ttu-id="58d76-144">[受控磁碟範本的完整清單](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md) \(英文\)</span><span class="sxs-lookup"><span data-stu-id="58d76-144">[Full list of managed disk templates](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md)</span></span>
+* <span data-ttu-id="58d76-145">瀏覽 [Azure 受控磁碟概觀](../articles/virtual-machines/windows/managed-disks-overview.md)文件，深入了解受控磁碟。</span><span class="sxs-lookup"><span data-stu-id="58d76-145">Visit the [Azure Managed Disks Overview](../articles/virtual-machines/windows/managed-disks-overview.md) document to learn more about managed disks.</span></span>
+* <span data-ttu-id="58d76-146">瀏覽 [Microsoft.Compute/virtualMachines 範本參考](/templates/microsoft.compute/virtualmachines)文件，檢閱虛擬機器資源的範本參考文件。</span><span class="sxs-lookup"><span data-stu-id="58d76-146">Review the template reference documentation for virtual machine resources by visiting the [Microsoft.Compute/virtualMachines template reference](/templates/microsoft.compute/virtualmachines) document.</span></span>
+* <span data-ttu-id="58d76-147">瀏覽 [Microsoft.Compute/disks 範本參考](/templates/microsoft.compute/disks)文件，檢閱磁碟資源的範本參考文件。</span><span class="sxs-lookup"><span data-stu-id="58d76-147">Review the template reference documentation for disk resources by visiting the [Microsoft.Compute/disks template reference](/templates/microsoft.compute/disks) document.</span></span>
  

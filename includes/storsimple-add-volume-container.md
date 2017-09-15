@@ -1,20 +1,20 @@
 <!--author=SharS last changed: 1/7/2016-->
 
-#### <a name="to-add-a-volume-container"></a>若要新增磁碟區容器
-1. 在 [裝置] 頁面中，選取並按兩下裝置，然後按一下 [磁碟區容器] 索引標籤。
-2. 按一下頁面底部的 [新增]  。 在 [建立磁碟區容器] 對話方塊中，執行下列動作：
+#### <a name="to-add-a-volume-container"></a><span data-ttu-id="7232a-101">若要新增磁碟區容器</span><span class="sxs-lookup"><span data-stu-id="7232a-101">To add a volume container</span></span>
+1. <span data-ttu-id="7232a-102">在 [裝置] 頁面中，選取並按兩下裝置，然後按一下 [磁碟區容器] 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="7232a-102">On the **Devices** page, select the device, double-click it, and then click the **Volume containers** tab.</span></span>
+2. <span data-ttu-id="7232a-103">按一下頁面底部的 [新增]  。</span><span class="sxs-lookup"><span data-stu-id="7232a-103">Click **Add** at the bottom of the page.</span></span> <span data-ttu-id="7232a-104">在 [建立磁碟區容器] 對話方塊中，執行下列動作：</span><span class="sxs-lookup"><span data-stu-id="7232a-104">In the **Create volume container** dialog box, do the following:</span></span>
    
-   1. 提供磁碟區容器的唯一 [ **名稱** ]。 此名稱最多可以包含 32 個字元。
-   2. 選取與這個磁碟區容器相關聯的 [ **儲存體帳戶** ]。 您可以從相同訂用帳戶內的現有儲存體帳戶中選擇，或是選取 [ **新增其他** ] 以從其他訂用帳戶選取儲存體帳戶。 您也可以選擇建立服務時第一個產生的儲存體帳戶。
-   3. 如果您想要耗用所有可用的頻寬，將頻寬指定為 [無限]，或者 [自訂] 以使用頻寬控制。 對於自訂頻寬，提供介於 1 與 1000 Mbps 之間的值。 若要根據排程配置頻寬，您可以 [ **選取頻寬範本**]。
-   4. 我們建議您保留選取 [ **啟用雲端儲存體加密** ]，以加密移至雲端的資料。 只有當您採用其他方法來加密您的資料時，才停用加密。 在建立磁碟區容器之後，您就無法修改加密設定。
-   5. 提供長度為 8 到 32 個字元的 [ **雲端儲存體加密金鑰** ]。 裝置會使用這個金鑰來存取加密的資料。 在 [ **確認雲端儲存體加密金鑰** ] 欄位中，再次輸入雲端儲存體加密金鑰，以便確認。 
-   6. 按一下箭頭以繼續前往下一頁。
+   1. <span data-ttu-id="7232a-105">提供磁碟區容器的唯一 [ **名稱** ]。</span><span class="sxs-lookup"><span data-stu-id="7232a-105">Supply a unique **Name** for your volume container.</span></span> <span data-ttu-id="7232a-106">此名稱最多可以包含 32 個字元。</span><span class="sxs-lookup"><span data-stu-id="7232a-106">This name can contain a maximum of 32 characters.</span></span>
+   2. <span data-ttu-id="7232a-107">選取與這個磁碟區容器相關聯的 [ **儲存體帳戶** ]。</span><span class="sxs-lookup"><span data-stu-id="7232a-107">Select a **Storage Account** to be associated with this volume container.</span></span> <span data-ttu-id="7232a-108">您可以從相同訂用帳戶內的現有儲存體帳戶中選擇，或是選取 [ **新增其他** ] 以從其他訂用帳戶選取儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="7232a-108">You can choose from an existing storage account within the same subscription or select **Add more** to select a storage account from another subscription.</span></span> <span data-ttu-id="7232a-109">您也可以選擇建立服務時第一個產生的儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="7232a-109">You can also choose the storage account that was first generated when the service was created.</span></span>
+   3. <span data-ttu-id="7232a-110">如果您想要耗用所有可用的頻寬，將頻寬指定為 [無限]，或者 [自訂] 以使用頻寬控制。</span><span class="sxs-lookup"><span data-stu-id="7232a-110">Specify bandwidth as **Unlimited** if you want to consume all available bandwidth, or **Custom** to employ bandwidth controls.</span></span> <span data-ttu-id="7232a-111">對於自訂頻寬，提供介於 1 與 1000 Mbps 之間的值。</span><span class="sxs-lookup"><span data-stu-id="7232a-111">For a custom bandwidth, supply a value between 1 and 1000 Mbps.</span></span> <span data-ttu-id="7232a-112">若要根據排程配置頻寬，您可以 [ **選取頻寬範本**]。</span><span class="sxs-lookup"><span data-stu-id="7232a-112">To allocate bandwidth based on a schedule, you can **Select a bandwidth template**.</span></span>
+   4. <span data-ttu-id="7232a-113">我們建議您保留選取 [ **啟用雲端儲存體加密** ]，以加密移至雲端的資料。</span><span class="sxs-lookup"><span data-stu-id="7232a-113">We recommend that you keep **Enable Cloud Storage Encryption** selected to encrypt the data that is going to the cloud.</span></span> <span data-ttu-id="7232a-114">只有當您採用其他方法來加密您的資料時，才停用加密。</span><span class="sxs-lookup"><span data-stu-id="7232a-114">Disable encryption only if you are employing other means to encrypt your data.</span></span> <span data-ttu-id="7232a-115">在建立磁碟區容器之後，您就無法修改加密設定。</span><span class="sxs-lookup"><span data-stu-id="7232a-115">You cannot modify the encryption setting once the volume container has been created.</span></span>
+   5. <span data-ttu-id="7232a-116">提供長度為 8 到 32 個字元的 [ **雲端儲存體加密金鑰** ]。</span><span class="sxs-lookup"><span data-stu-id="7232a-116">Provide a **Cloud Storage Encryption Key** that contains between 8 and 32 characters.</span></span> <span data-ttu-id="7232a-117">裝置會使用這個金鑰來存取加密的資料。</span><span class="sxs-lookup"><span data-stu-id="7232a-117">The device uses this key to access the encrypted data.</span></span> <span data-ttu-id="7232a-118">在 [ **確認雲端儲存體加密金鑰** ] 欄位中，再次輸入雲端儲存體加密金鑰，以便確認。</span><span class="sxs-lookup"><span data-stu-id="7232a-118">In the **Confirm Cloud Storage Encryption Key** field, enter the cloud storage encryption key again to confirm it.</span></span> 
+   6. <span data-ttu-id="7232a-119">按一下箭頭以繼續前往下一頁。</span><span class="sxs-lookup"><span data-stu-id="7232a-119">Click the arrow to proceed to the next page.</span></span>
       
       ![使用頻寬範本 1 建立磁碟區容器](./media/storsimple-add-volume-container/HCS_CreateVCBT1-include.png) 
-3. 如果您指定「選取頻寬範本」 ，請從現有頻寬範本的下拉式清單中選擇。 檢閱排程設定，然後按一下勾號圖示 ![核取圖示](./media/storsimple-configure-new-storage-account/HCS_CheckIcon-include.png)。
+3. <span data-ttu-id="7232a-121">如果您指定「選取頻寬範本」 ，請從現有頻寬範本的下拉式清單中選擇。</span><span class="sxs-lookup"><span data-stu-id="7232a-121">If you specified **Select a bandwidth template**, choose from the dropdown list of existing bandwidth templates.</span></span> <span data-ttu-id="7232a-122">檢閱排程設定，然後按一下勾號圖示 ![核取圖示](./media/storsimple-configure-new-storage-account/HCS_CheckIcon-include.png)。</span><span class="sxs-lookup"><span data-stu-id="7232a-122">Review the schedule settings and click the check icon ![check icon](./media/storsimple-configure-new-storage-account/HCS_CheckIcon-include.png).</span></span>
    
     ![使用頻寬範本 2 建立磁碟區容器](./media/storsimple-add-volume-container/HCS_CreateVCBT2-include.png) 
 
-將會儲存磁碟區容器，新建立的磁碟區容器將列於 [ **磁碟區容器** ] 頁面上。
+<span data-ttu-id="7232a-124">將會儲存磁碟區容器，新建立的磁碟區容器將列於 [ **磁碟區容器** ] 頁面上。</span><span class="sxs-lookup"><span data-stu-id="7232a-124">The volume container will be saved and the newly created volume container will be listed on the **Volume container** page.</span></span>
 

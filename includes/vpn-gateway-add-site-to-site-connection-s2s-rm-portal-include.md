@@ -1,16 +1,16 @@
-1. 瀏覽至虛擬網路閘道的刀鋒視窗並加以開啟。 瀏覽的方法有好幾種。 在我們的範例中，我們藉由移至 [TestVNet1] -> [概觀]- > [已連線的裝置] -> [VNet1GW]，瀏覽至 'VNet1GW' 閘道。
-2. 在 VNet1GW 的刀鋒視窗上，按一下 [連線]。 在 [連線] 刀鋒視窗的頂部，按一下 [+新增] 以開啟 [新增連線] 刀鋒視窗。
+1. <span data-ttu-id="e58df-101">瀏覽至虛擬網路閘道的刀鋒視窗並加以開啟。</span><span class="sxs-lookup"><span data-stu-id="e58df-101">Navigate to and open the blade for your virtual network gateway.</span></span> <span data-ttu-id="e58df-102">瀏覽的方法有好幾種。</span><span class="sxs-lookup"><span data-stu-id="e58df-102">There are multiple ways to navigate.</span></span> <span data-ttu-id="e58df-103">在我們的範例中，我們藉由移至 [TestVNet1] -> [概觀]- > [已連線的裝置] -> [VNet1GW]，瀏覽至 'VNet1GW' 閘道。</span><span class="sxs-lookup"><span data-stu-id="e58df-103">In our example, we navigated to the gateway 'VNet1GW' by going to **TestVNet1 -> Overview -> Connected devices -> VNet1GW**.</span></span>
+2. <span data-ttu-id="e58df-104">在 VNet1GW 的刀鋒視窗上，按一下 [連線]。</span><span class="sxs-lookup"><span data-stu-id="e58df-104">On the blade for VNet1GW, click **Connections**.</span></span> <span data-ttu-id="e58df-105">在 [連線] 刀鋒視窗的頂部，按一下 [+新增] 以開啟 [新增連線] 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="e58df-105">At the top of the Connections blade, click **+Add** to open the **Add connection** blade.</span></span>
 
     ![建立站對站連線](./media/vpn-gateway-add-site-to-site-connection-s2s-rm-portal-include/connection1.png)
 
-3. 在 [新增連線] 刀鋒視窗上，填入值以建立您的連線。
+3. <span data-ttu-id="e58df-107">在 [新增連線] 刀鋒視窗上，填入值以建立您的連線。</span><span class="sxs-lookup"><span data-stu-id="e58df-107">On the **Add connection** blade, fill in the values to create your connection.</span></span>
 
-  - **名稱：**為您的連線命名。 我們在範例中使用 **VNet1toSite2**。
-  - **連線類型：**選取 [站對站 (IPSec)]。
-  - **虛擬網路閘道：**因為您正從此閘道連線，所以值是固定的。
-  - **區域網路閘道：**按一下 [選擇區域網路閘道] 並選取要使用的區域網路閘道。 在我們的範例中，我們使用 **Site2**。
-  - **共用金鑰：**這裡的值必須與您用於本機內部部署 VPN 裝置的值相符。 在範例中，我們使用的是 'abc123'，但是您可以(且應該) 使用更為複雜的值。 重要的是，您在此指定的值必須與您在設定 VPN 裝置時指定的值相同。
-  - **訂用帳戶**、**資源群組**和**位置**的其餘值是固定的。
+  - <span data-ttu-id="e58df-108">**名稱：**為您的連線命名。</span><span class="sxs-lookup"><span data-stu-id="e58df-108">**Name:** Name your connection.</span></span> <span data-ttu-id="e58df-109">我們在範例中使用 **VNet1toSite2**。</span><span class="sxs-lookup"><span data-stu-id="e58df-109">We use **VNet1toSite2** in our example.</span></span>
+  - <span data-ttu-id="e58df-110">**連線類型：**選取 [站對站 (IPSec)]。</span><span class="sxs-lookup"><span data-stu-id="e58df-110">**Connection type:** Select **Site-to-site(IPSec)**.</span></span>
+  - <span data-ttu-id="e58df-111">**虛擬網路閘道：**因為您正從此閘道連線，所以值是固定的。</span><span class="sxs-lookup"><span data-stu-id="e58df-111">**Virtual network gateway:** The value is fixed because you are connecting from this gateway.</span></span>
+  - <span data-ttu-id="e58df-112">**區域網路閘道：**按一下 [選擇區域網路閘道] 並選取要使用的區域網路閘道。</span><span class="sxs-lookup"><span data-stu-id="e58df-112">**Local network gateway:** Click **Choose a local network gateway** and select the local network gateway that you want to use.</span></span> <span data-ttu-id="e58df-113">在我們的範例中，我們使用 **Site2**。</span><span class="sxs-lookup"><span data-stu-id="e58df-113">In our example, we use **Site2**.</span></span>
+  - <span data-ttu-id="e58df-114">**共用金鑰：**這裡的值必須與您用於本機內部部署 VPN 裝置的值相符。</span><span class="sxs-lookup"><span data-stu-id="e58df-114">**Shared Key:** the value here must match the value that you are using for your local on-premises VPN device.</span></span> <span data-ttu-id="e58df-115">在範例中，我們使用的是 'abc123'，但是您可以(且應該) 使用更為複雜的值。</span><span class="sxs-lookup"><span data-stu-id="e58df-115">In the example, we used 'abc123', but you can (and should) use something more complex.</span></span> <span data-ttu-id="e58df-116">重要的是，您在此指定的值必須與您在設定 VPN 裝置時指定的值相同。</span><span class="sxs-lookup"><span data-stu-id="e58df-116">The important thing is that the value you specify here must be the same value that you specified when configuring your VPN device.</span></span>
+  - <span data-ttu-id="e58df-117">**訂用帳戶**、**資源群組**和**位置**的其餘值是固定的。</span><span class="sxs-lookup"><span data-stu-id="e58df-117">The remaining values for **Subscription**, **Resource Group**, and **Location** are fixed.</span></span>
 
-4. 按一下 [確定]  來建立連線。 您會看到畫面上閃爍「正在建立連線」  。
-5. 您可以在虛擬網路閘道的 [連線] 刀鋒視窗中檢視連線。 狀態將會從 [未知] 變成 [連線中]，然後變成 [成功]。
+4. <span data-ttu-id="e58df-118">按一下 [確定]  來建立連線。</span><span class="sxs-lookup"><span data-stu-id="e58df-118">Click **OK** to create your connection.</span></span> <span data-ttu-id="e58df-119">您會看到畫面上閃爍「正在建立連線」  。</span><span class="sxs-lookup"><span data-stu-id="e58df-119">You'll see *Creating Connection* flash on the screen.</span></span>
+5. <span data-ttu-id="e58df-120">您可以在虛擬網路閘道的 [連線] 刀鋒視窗中檢視連線。</span><span class="sxs-lookup"><span data-stu-id="e58df-120">You can view the connection in the **Connections** blade of the virtual network gateway.</span></span> <span data-ttu-id="e58df-121">狀態將會從 [未知] 變成 [連線中]，然後變成 [成功]。</span><span class="sxs-lookup"><span data-stu-id="e58df-121">The Status will go from *Unknown* to *Connecting*, and then to *Succeeded*.</span></span>

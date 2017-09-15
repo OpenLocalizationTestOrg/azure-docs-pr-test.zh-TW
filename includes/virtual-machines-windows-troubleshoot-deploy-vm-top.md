@@ -1,4 +1,4 @@
-下列最常發生的問題可能有助於解決您的問題。 若要開始進行移難排解，請檢閱下列步驟：
+<span data-ttu-id="d6adf-101">下列最常發生的問題可能有助於解決您的問題。</span><span class="sxs-lookup"><span data-stu-id="d6adf-101">The following top issues may help resolve your issue.</span></span> <span data-ttu-id="d6adf-102">若要開始進行移難排解，請檢閱下列步驟：</span><span class="sxs-lookup"><span data-stu-id="d6adf-102">To start troubleshooting, review these steps:</span></span>
 
-- [叢集無法支援要求的 VM 大小](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-cannot-support-the-requested-vm-size)
-- [叢集沒有可用的資源](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-does-not-have-free-resources)
+- [<span data-ttu-id="d6adf-103">叢集無法支援要求的 VM 大小</span><span class="sxs-lookup"><span data-stu-id="d6adf-103">The cluster cannot support the requested VM size</span></span>](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-cannot-support-the-requested-vm-size)
+- [<span data-ttu-id="d6adf-104">叢集沒有可用的資源</span><span class="sxs-lookup"><span data-stu-id="d6adf-104">The cluster does not have free resources</span></span>](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-does-not-have-free-resources)

@@ -1,5 +1,5 @@
-## <a name="issue-custom-image-provisioning-errors"></a>問題：自訂映像；佈建錯誤
-如果您上傳或擷取一般化的 VM 映像做為特殊化 VM 的映像，會發生佈建錯誤，反之亦然。 前者會導致佈建逾時錯誤，後者將導致佈建失敗。 若要毫無錯誤地部署自訂映像，必須確定擷取過程中映像類型不會變更。
+## <a name="issue-custom-image-provisioning-errors"></a><span data-ttu-id="8dbdd-101">問題：自訂映像；佈建錯誤</span><span class="sxs-lookup"><span data-stu-id="8dbdd-101">Issue: Custom image; provisioning errors</span></span>
+<span data-ttu-id="8dbdd-102">如果您上傳或擷取一般化的 VM 映像做為特殊化 VM 的映像，會發生佈建錯誤，反之亦然。</span><span class="sxs-lookup"><span data-stu-id="8dbdd-102">Provisioning errors arise if you upload or capture a generalized VM image as a specialized VM image or vice versa.</span></span> <span data-ttu-id="8dbdd-103">前者會導致佈建逾時錯誤，後者將導致佈建失敗。</span><span class="sxs-lookup"><span data-stu-id="8dbdd-103">The former will cause a provisioning timeout error and the latter will cause a provisioning failure.</span></span> <span data-ttu-id="8dbdd-104">若要毫無錯誤地部署自訂映像，必須確定擷取過程中映像類型不會變更。</span><span class="sxs-lookup"><span data-stu-id="8dbdd-104">To deploy your custom image without errors, you must ensure that the type of the image does not change during the capture process.</span></span>
 
-下表列出一般化和特殊化映像的可能組合、您會遇到的錯誤類型、以及要如何修正錯誤。
+<span data-ttu-id="8dbdd-105">下表列出一般化和特殊化映像的可能組合、您會遇到的錯誤類型、以及要如何修正錯誤。</span><span class="sxs-lookup"><span data-stu-id="8dbdd-105">The following table lists the possible combinations of generalized and specialized images, the error type you will encounter and what you need to do to fix the errors.</span></span>
 

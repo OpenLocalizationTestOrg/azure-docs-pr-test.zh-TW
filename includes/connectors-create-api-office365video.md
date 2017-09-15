@@ -1,16 +1,16 @@
-### <a name="prerequisites"></a>必要條件
-* [Office 365 影片](https://support.office.com/article/Meet-Office-365-Video-ca1cc1a9-a615-46e1-b6a3-40dbd99939a6) 帳戶  
+### <a name="prerequisites"></a><span data-ttu-id="ab49c-101">必要條件</span><span class="sxs-lookup"><span data-stu-id="ab49c-101">Prerequisites</span></span>
+* <span data-ttu-id="ab49c-102">[Office 365 影片](https://support.office.com/article/Meet-Office-365-Video-ca1cc1a9-a615-46e1-b6a3-40dbd99939a6) 帳戶</span><span class="sxs-lookup"><span data-stu-id="ab49c-102">A [Office 365 Video](https://support.office.com/article/Meet-Office-365-Video-ca1cc1a9-a615-46e1-b6a3-40dbd99939a6) account</span></span>  
 
-您必須先授權邏輯應用程式連接到您的 Office 365 影片帳戶，才可以在邏輯應用程式中使用您的 Office 365 影片帳戶。幸運的是，您可以輕鬆地在 Azure 入口網站上從邏輯應用程式內完成。  
+<span data-ttu-id="ab49c-103">您必須先授權邏輯應用程式連接到您的 Office 365 影片帳戶，才可以在邏輯應用程式中使用您的 Office 365 影片帳戶。幸運的是，您可以輕鬆地在 Azure 入口網站上從邏輯應用程式內完成。</span><span class="sxs-lookup"><span data-stu-id="ab49c-103">Before you can use your Office 365 Video account in a Logic app, you must authorize the Logic app to connect to your Office 365 Video account.Fortunately, you can do this easily from within your Logic app on the Azure Portal.</span></span>  
 
-若要授與邏輯應用程式連接到 Office 365 影片帳戶的權限，其步驟如下：  
+<span data-ttu-id="ab49c-104">若要授與邏輯應用程式連接到 Office 365 影片帳戶的權限，其步驟如下：</span><span class="sxs-lookup"><span data-stu-id="ab49c-104">Here are the steps to authorize your Logic app to connect to your Office 365 Video account:</span></span>  
 
-1. 若要建立 Office 365 影片連接，請在邏輯應用程式設計工具的下拉式清單中選取 [Show Microsoft managed APIs] \(顯示 Microsoft Managed API)  ，然後在搜尋方塊中輸入 *Office 365 影片* 。 選取您要使用的觸發程序或動作：  
-   ![Office 365 影片連接的建立步驟](./media/connectors-create-api-office365video/office365video-1.png)  
-2. 如果您之前尚未建立任何 Office 365 影片連接，系統會提示您提供 Office 365 影片認證。 這些認證會用來授與邏輯應用程式連接並存取 Office 365 影片帳戶資料的權限：  
+1. <span data-ttu-id="ab49c-105">若要建立 Office 365 影片連接，請在邏輯應用程式設計工具的下拉式清單中選取 [Show Microsoft managed APIs] \(顯示 Microsoft Managed API)  ，然後在搜尋方塊中輸入 *Office 365 影片* 。</span><span class="sxs-lookup"><span data-stu-id="ab49c-105">To create a connection to Office 365 Video, in the Logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *Office 365 Video* in the search box.</span></span> <span data-ttu-id="ab49c-106">選取您要使用的觸發程序或動作：</span><span class="sxs-lookup"><span data-stu-id="ab49c-106">Select the trigger or action you'll like to use:</span></span>  
+   <span data-ttu-id="ab49c-107">![Office 365 影片連接的建立步驟](./media/connectors-create-api-office365video/office365video-1.png)</span><span class="sxs-lookup"><span data-stu-id="ab49c-107">![Office 365 Video connection creation step](./media/connectors-create-api-office365video/office365video-1.png)</span></span>  
+2. <span data-ttu-id="ab49c-108">如果您之前尚未建立任何 Office 365 影片連接，系統會提示您提供 Office 365 影片認證。</span><span class="sxs-lookup"><span data-stu-id="ab49c-108">If you haven't created any connections to Office 365 Video before, you'll get prompted to provide your Office 365 Video credentials.</span></span> <span data-ttu-id="ab49c-109">這些認證會用來授與邏輯應用程式連接並存取 Office 365 影片帳戶資料的權限：</span><span class="sxs-lookup"><span data-stu-id="ab49c-109">These credentials will be used to authorize your Logic app to connect to, and access your Office 365 Video account's data:</span></span>  
    ![Office 365 影片連接的建立步驟](./media/connectors-create-api-office365video/office365video-2.png)  
-3. 請提供認證以連接到 Office 365 影片︰  
+3. <span data-ttu-id="ab49c-111">請提供認證以連接到 Office 365 影片︰</span><span class="sxs-lookup"><span data-stu-id="ab49c-111">Provide your credentials to connect to Office 365 Video:</span></span>  
    ![Office 365 影片連接的建立步驟](./media/connectors-create-api-office365video/office365video-3.png)  
-4. 請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：  
+4. <span data-ttu-id="ab49c-113">請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：</span><span class="sxs-lookup"><span data-stu-id="ab49c-113">Notice the connection has been created and you are now free to proceed with the other steps in your Logic app:</span></span>  
    ![Office 365 影片連接的建立步驟](./media/connectors-create-api-office365video/office365video-4.png)  
 

@@ -1,4 +1,4 @@
-| 資源 | 限制 |
+| <span data-ttu-id="093fa-101">資源</span><span class="sxs-lookup"><span data-stu-id="093fa-101">Resource</span></span> | <span data-ttu-id="093fa-102">限制</span><span class="sxs-lookup"><span data-stu-id="093fa-102">Limit</span></span> |
 | --- | --- |
-| 每個區域的事件訂閱數 |1000 |
-| 每個區域的自訂主題數 |20 |
+| <span data-ttu-id="093fa-103">每個區域的事件訂閱數</span><span class="sxs-lookup"><span data-stu-id="093fa-103">Event Subscriptions per region</span></span> |<span data-ttu-id="093fa-104">1000</span><span class="sxs-lookup"><span data-stu-id="093fa-104">1000</span></span> |
+| <span data-ttu-id="093fa-105">每個區域的自訂主題數</span><span class="sxs-lookup"><span data-stu-id="093fa-105">Custom Topics per region</span></span> |<span data-ttu-id="093fa-106">20</span><span class="sxs-lookup"><span data-stu-id="093fa-106">20</span></span> |

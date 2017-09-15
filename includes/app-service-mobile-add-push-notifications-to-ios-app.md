@@ -1,16 +1,16 @@
 
-**Objective-C**：
+<span data-ttu-id="aaa20-101">**Objective-C**：</span><span class="sxs-lookup"><span data-stu-id="aaa20-101">**Objective-C**:</span></span>
 
-1. 在 **QSAppDelegate.m** 中，匯入 iOS SDK 和 **QSTodoService.h**：
+1. <span data-ttu-id="aaa20-102">在 **QSAppDelegate.m** 中，匯入 iOS SDK 和 **QSTodoService.h**：</span><span class="sxs-lookup"><span data-stu-id="aaa20-102">In **QSAppDelegate.m**, import the iOS SDK and **QSTodoService.h**:</span></span>
    
         #import <MicrosoftAzureMobile/MicrosoftAzureMobile.h>
         #import "QSTodoService.h"
-2. 在 **QSAppDelegate.m** 的 `didFinishLaunchingWithOptions` 中，於 `return YES;` 之前插入下列幾行：
+2. <span data-ttu-id="aaa20-103">在 **QSAppDelegate.m** 的 `didFinishLaunchingWithOptions` 中，於 `return YES;` 之前插入下列幾行：</span><span class="sxs-lookup"><span data-stu-id="aaa20-103">In `didFinishLaunchingWithOptions` in **QSAppDelegate.m**, insert the following lines right before `return YES;`:</span></span>
    
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
-3. 在 **QSAppDelegate.m**中，新增下列處理常式方法。 您的應用程式現在已更新為支援推播通知。 
+3. <span data-ttu-id="aaa20-104">在 **QSAppDelegate.m**中，新增下列處理常式方法。</span><span class="sxs-lookup"><span data-stu-id="aaa20-104">In **QSAppDelegate.m**, add the following handler methods.</span></span> <span data-ttu-id="aaa20-105">您的應用程式現在已更新為支援推播通知。</span><span class="sxs-lookup"><span data-stu-id="aaa20-105">Your app is now updated to support push notifications.</span></span> 
    
         // Registration with APNs is successful
         - (void)application:(UIApplication *)application
@@ -77,17 +77,17 @@
    
         }
 
-**Swift**：
+<span data-ttu-id="aaa20-106">**Swift**：</span><span class="sxs-lookup"><span data-stu-id="aaa20-106">**Swift**:</span></span>
 
-1. 新增含有以下內容的檔案 **ClientManager.swift** 。 使用 Azure 行動應用程式後端的 URL 取代 *%AppUrl%*。
+1. <span data-ttu-id="aaa20-107">新增含有以下內容的檔案 **ClientManager.swift** 。</span><span class="sxs-lookup"><span data-stu-id="aaa20-107">Add file **ClientManager.swift** with the following contents.</span></span> <span data-ttu-id="aaa20-108">使用 Azure 行動應用程式後端的 URL 取代 *%AppUrl%*。</span><span class="sxs-lookup"><span data-stu-id="aaa20-108">Replace *%AppUrl%* with the URL of the Azure Mobile App backend.</span></span>
    
         class ClientManager {
             static let sharedClient = MSClient(applicationURLString: "%AppUrl%")
         }
-2. 在 **ToDoTableViewController.swift** 中，將初始化 `MSClient` 的 `let client` 行取代為這一行：
+2. <span data-ttu-id="aaa20-109">在 **ToDoTableViewController.swift** 中，將初始化 `MSClient` 的 `let client` 行取代為這一行：</span><span class="sxs-lookup"><span data-stu-id="aaa20-109">In **ToDoTableViewController.swift**, replace the `let client` line that initializes an `MSClient` with this line:</span></span>
    
         let client = ClientManager.sharedClient
-3. 在 **AppDelegate.swift**，將 `func application` 的主體取代為：
+3. <span data-ttu-id="aaa20-110">在 **AppDelegate.swift**，將 `func application` 的主體取代為：</span><span class="sxs-lookup"><span data-stu-id="aaa20-110">In **AppDelegate.swift**, replace the body of `func application` as follows:</span></span>
    
         func application(application: UIApplication,
           didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -97,7 +97,7 @@
            application.registerForRemoteNotifications()
            return true
         }
-4. 在 **AppDelegate.swift**中，新增下列處理常式方法。 您的應用程式現在已更新為支援推播通知。
+4. <span data-ttu-id="aaa20-111">在 **AppDelegate.swift**中，新增下列處理常式方法。</span><span class="sxs-lookup"><span data-stu-id="aaa20-111">In **AppDelegate.swift**, add the following handler methods.</span></span> <span data-ttu-id="aaa20-112">您的應用程式現在已更新為支援推播通知。</span><span class="sxs-lookup"><span data-stu-id="aaa20-112">Your app is now updated to support push notifications.</span></span>
    
         func application(application: UIApplication,
            didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {

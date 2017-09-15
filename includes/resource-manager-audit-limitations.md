@@ -1,4 +1,4 @@
-活動記錄包含在您的資源上執行的所有寫入作業 (PUT、POST、DELETE)。 不包含讀取作業 (GET)。 您可以使用稽核記錄檔在進行疑難排解時發現錯誤，或是監視貴組織使用者修改資源的方式。
+<span data-ttu-id="2b8d3-101">活動記錄包含在您的資源上執行的所有寫入作業 (PUT、POST、DELETE)。</span><span class="sxs-lookup"><span data-stu-id="2b8d3-101">The activity log contains all write operations (PUT, POST, DELETE) performed on your resources.</span></span> <span data-ttu-id="2b8d3-102">不包含讀取作業 (GET)。</span><span class="sxs-lookup"><span data-stu-id="2b8d3-102">It does not include read operations (GET).</span></span> <span data-ttu-id="2b8d3-103">您可以使用稽核記錄檔在進行疑難排解時發現錯誤，或是監視貴組織使用者修改資源的方式。</span><span class="sxs-lookup"><span data-stu-id="2b8d3-103">You can use the audit logs to find an error when troubleshooting or to monitor how a user in your organization modified a resource.</span></span>
 
-活動記錄檔會保留 90 天。 您可以查詢任何的日期範圍，只要開始日期不是在過去 90 天以前。
+<span data-ttu-id="2b8d3-104">活動記錄檔會保留 90 天。</span><span class="sxs-lookup"><span data-stu-id="2b8d3-104">Activity logs are retained for 90 days.</span></span> <span data-ttu-id="2b8d3-105">您可以查詢任何的日期範圍，只要開始日期不是在過去 90 天以前。</span><span class="sxs-lookup"><span data-stu-id="2b8d3-105">You can query for any range of dates, as long as the starting date is not more than 90 days in the past.</span></span>
 

@@ -1,31 +1,31 @@
-1. 在新的視窗中，登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 在左側功能表中，依序按一下 [新增]、[資料庫]，並在 [Azure Cosmos DB] 下按一下 [建立]。
+1. <span data-ttu-id="b752d-101">在新的視窗中，登入 [Azure 入口網站](https://portal.azure.com/)。</span><span class="sxs-lookup"><span data-stu-id="b752d-101">In a new window, sign in to the [Azure portal](https://portal.azure.com/).</span></span>
+2. <span data-ttu-id="b752d-102">在左側功能表中，依序按一下 [新增]、[資料庫]，並在 [Azure Cosmos DB] 下按一下 [建立]。</span><span class="sxs-lookup"><span data-stu-id="b752d-102">In the left menu, click **New**, click **Databases**, and then under **Azure Cosmos DB**, click **Create**.</span></span>
    
    ![Azure 入口網站的螢幕擷取畫面，其中反白顯示 [其他服務] 和 Azure Cosmos DB](./media/cosmos-db-create-dbaccount-table/create-nosql-db-databases-json-tutorial-1.png)
 
-3. 在 [新增帳戶] 刀鋒視窗中，指定想要的 Azure Cosmos DB 帳戶組態。 
+3. <span data-ttu-id="b752d-104">在 [新增帳戶] 刀鋒視窗中，指定想要的 Azure Cosmos DB 帳戶組態。</span><span class="sxs-lookup"><span data-stu-id="b752d-104">In the **New account** blade, specify the desired configuration for the Azure Cosmos DB account.</span></span> 
 
-    在使用 Azure Cosmos DB 時，您可以選擇下列四種程式設計模型的其中一種︰Gremlin (圖形)、MongoDB、SQL (DocumentDB) 和資料表 (索引鍵-值)。 
+    <span data-ttu-id="b752d-105">在使用 Azure Cosmos DB 時，您可以選擇下列四種程式設計模型的其中一種︰Gremlin (圖形)、MongoDB、SQL (DocumentDB) 和資料表 (索引鍵-值)。</span><span class="sxs-lookup"><span data-stu-id="b752d-105">With Azure Cosmos DB, you can choose one of four programming models: Gremlin (graph), MongoDB, SQL (DocumentDB), and Table (key-value).</span></span> 
     
-    在本快速入門中，我們會針對資料表 API 進行程式設計，因此您會在填寫表單時選擇 [資料表 (索引鍵-值)]。 但是，如果您有用於社交媒體應用程式的圖形資料、來自目錄應用程式的文件資料，或從 MongoDB 應用程式移轉而來的資料，請了解 Azure Cosmos DB 可以提供高度可用、全域分散式的資料庫服務平台來供您所有的任務關鍵性應用程式使用。
+    <span data-ttu-id="b752d-106">在本快速入門中，我們會針對資料表 API 進行程式設計，因此您會在填寫表單時選擇 [資料表 (索引鍵-值)]。</span><span class="sxs-lookup"><span data-stu-id="b752d-106">In this quick start we'll be programming against the Table API so you'll choose **Table (key-value)** as you fill out the form.</span></span> <span data-ttu-id="b752d-107">但是，如果您有用於社交媒體應用程式的圖形資料、來自目錄應用程式的文件資料，或從 MongoDB 應用程式移轉而來的資料，請了解 Azure Cosmos DB 可以提供高度可用、全域分散式的資料庫服務平台來供您所有的任務關鍵性應用程式使用。</span><span class="sxs-lookup"><span data-stu-id="b752d-107">But if you have graph data for a social media app, document data from a catalog app, or data migrated from a MongoDB app, realize that Azure Cosmos DB can provide a highly available, globally-distributed database service platform for all your mission-critical applications.</span></span>
 
-    使用螢幕擷取畫面中的資訊作為指南來填寫 [新增帳戶] 刀鋒視窗。 在設定帳戶時請選擇唯一值，不要讓您的值與螢幕擷取畫面完全相同。 
+    <span data-ttu-id="b752d-108">使用螢幕擷取畫面中的資訊作為指南來填寫 [新增帳戶] 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="b752d-108">Fill out the New account blade using the information in the screenshot as a guide.</span></span> <span data-ttu-id="b752d-109">在設定帳戶時請選擇唯一值，不要讓您的值與螢幕擷取畫面完全相同。</span><span class="sxs-lookup"><span data-stu-id="b752d-109">You will choose unique values as you set up your account so your values will not match the screenshot exactly.</span></span> 
  
     ![[新增 Azure Cosmos DB] 刀鋒視窗的螢幕擷取畫面](./media/cosmos-db-create-dbaccount-table/create-nosql-db-databases-json-tutorial-2.png)
 
-    設定|建議的值|說明
+    <span data-ttu-id="b752d-111">設定</span><span class="sxs-lookup"><span data-stu-id="b752d-111">Setting</span></span>|<span data-ttu-id="b752d-112">建議的值</span><span class="sxs-lookup"><span data-stu-id="b752d-112">Suggested value</span></span>|<span data-ttu-id="b752d-113">說明</span><span class="sxs-lookup"><span data-stu-id="b752d-113">Description</span></span>
     ---|---|---
-    ID|唯一值|您選擇用來識別 Azure Cosmos DB 帳戶的唯一名稱。 documents.azure.com 會附加到您所提供的識別碼以建立 URI，因此，請使用可供辨識的唯一識別碼。 此識別碼只能包含小寫字母、數字及 '-' 字元，且長度必須為 3 到 50 個字元。
-    API|資料表 (索引鍵-值)|在本文稍後，我們會針對[資料表 API](../articles/cosmos-db/table-introduction.md) 進行程式設計。|
-    訂用帳戶|*您的訂用帳戶*|您要用於 Azure Cosmos DB 帳戶的 Azure 訂用帳戶。 
-    資源群組|與識別碼相同的值|您帳戶的新資源群組名稱。 為求簡化，您可以使用和識別碼相同的名稱。 
-    位置|最接近使用者的區域|用來主控 Azure Cosmos DB 帳戶的地理位置。 請選擇最接近使用者的位置，以便他們能以最快速度存取到資料。   
+    <span data-ttu-id="b752d-114">ID</span><span class="sxs-lookup"><span data-stu-id="b752d-114">ID</span></span>|<span data-ttu-id="b752d-115">唯一值</span><span class="sxs-lookup"><span data-stu-id="b752d-115">*Unique value*</span></span>|<span data-ttu-id="b752d-116">您選擇用來識別 Azure Cosmos DB 帳戶的唯一名稱。</span><span class="sxs-lookup"><span data-stu-id="b752d-116">A unique name you choose to identify the Azure Cosmos DB account.</span></span> <span data-ttu-id="b752d-117">documents.azure.com 會附加到您所提供的識別碼以建立 URI，因此，請使用可供辨識的唯一識別碼。</span><span class="sxs-lookup"><span data-stu-id="b752d-117">*documents.azure.com* is appended to the ID you provide to create your URI, so use a unique but identifiable ID.</span></span> <span data-ttu-id="b752d-118">此識別碼只能包含小寫字母、數字及 '-' 字元，且長度必須為 3 到 50 個字元。</span><span class="sxs-lookup"><span data-stu-id="b752d-118">The ID may contain only lowercase letters, numbers, and the '-' character, and must be between 3 and 50 characters.</span></span>
+    <span data-ttu-id="b752d-119">API</span><span class="sxs-lookup"><span data-stu-id="b752d-119">API</span></span>|<span data-ttu-id="b752d-120">資料表 (索引鍵-值)</span><span class="sxs-lookup"><span data-stu-id="b752d-120">Table (key-value)</span></span>|<span data-ttu-id="b752d-121">在本文稍後，我們會針對[資料表 API](../articles/cosmos-db/table-introduction.md) 進行程式設計。</span><span class="sxs-lookup"><span data-stu-id="b752d-121">We'll be programming against the [Table API](../articles/cosmos-db/table-introduction.md) later in this article.</span></span>|
+    <span data-ttu-id="b752d-122">訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="b752d-122">Subscription</span></span>|<span data-ttu-id="b752d-123">*您的訂用帳戶*</span><span class="sxs-lookup"><span data-stu-id="b752d-123">*Your subscription*</span></span>|<span data-ttu-id="b752d-124">您要用於 Azure Cosmos DB 帳戶的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="b752d-124">The Azure subscription that you want to use for the Azure Cosmos DB account.</span></span> 
+    <span data-ttu-id="b752d-125">資源群組</span><span class="sxs-lookup"><span data-stu-id="b752d-125">Resource Group</span></span>|<span data-ttu-id="b752d-126">與識別碼相同的值</span><span class="sxs-lookup"><span data-stu-id="b752d-126">*The same value as ID*</span></span>|<span data-ttu-id="b752d-127">您帳戶的新資源群組名稱。</span><span class="sxs-lookup"><span data-stu-id="b752d-127">The new resource group name for your account.</span></span> <span data-ttu-id="b752d-128">為求簡化，您可以使用和識別碼相同的名稱。</span><span class="sxs-lookup"><span data-stu-id="b752d-128">For simplicity, you can use the same name as your ID.</span></span> 
+    <span data-ttu-id="b752d-129">位置</span><span class="sxs-lookup"><span data-stu-id="b752d-129">Location</span></span>|<span data-ttu-id="b752d-130">最接近使用者的區域</span><span class="sxs-lookup"><span data-stu-id="b752d-130">*The region closest to your users*</span></span>|<span data-ttu-id="b752d-131">用來主控 Azure Cosmos DB 帳戶的地理位置。</span><span class="sxs-lookup"><span data-stu-id="b752d-131">The geographic location in which to host your Azure Cosmos DB account.</span></span> <span data-ttu-id="b752d-132">請選擇最接近使用者的位置，以便他們能以最快速度存取到資料。</span><span class="sxs-lookup"><span data-stu-id="b752d-132">Choose the location closest to your users to give them the fastest access to the data.</span></span>   
 
-4. 按一下 [建立]  來建立帳戶。
-5. 在工具列上，按一下 [通知] 以監視部署程序。
+4. <span data-ttu-id="b752d-133">按一下 [建立]  來建立帳戶。</span><span class="sxs-lookup"><span data-stu-id="b752d-133">Click **Create** to create the account.</span></span>
+5. <span data-ttu-id="b752d-134">在工具列上，按一下 [通知] 以監視部署程序。</span><span class="sxs-lookup"><span data-stu-id="b752d-134">On the toolbar, click **Notifications** to monitor the deployment process.</span></span>
 
     ![「部署已啟動」通知](./media/cosmos-db-create-dbaccount-table/notification.png)
 
-6.  當部署完成時，從 [所有資源] 圖格開啟新的帳戶。 
+6.  <span data-ttu-id="b752d-136">當部署完成時，從 [所有資源] 圖格開啟新的帳戶。</span><span class="sxs-lookup"><span data-stu-id="b752d-136">When the deployment is complete, open the new account from the All Resources tile.</span></span> 
 
     ![[所有資源] 圖格上的 DocumentDB 帳戶](./media/cosmos-db-create-dbaccount-table/all-resources.png)

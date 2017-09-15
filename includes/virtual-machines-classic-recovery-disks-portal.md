@@ -1,23 +1,23 @@
-如果 Azure 中的虛擬機器 (VM) 發生開機或磁碟錯誤，您可能需要對虛擬硬碟本身執行疑難排解步驟。 常見的例子是應用程式更新無效，導致 VM 無法成功開機。 本文說明如何使用 Azure 入口網站將虛擬硬碟連接至另一個 VM，以修正任何錯誤，然後重新建立原始 VM。
+<span data-ttu-id="f8a2a-101">如果 Azure 中的虛擬機器 (VM) 發生開機或磁碟錯誤，您可能需要對虛擬硬碟本身執行疑難排解步驟。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-101">If your virtual machine (VM) in Azure encounters a boot or disk error, you may need to perform troubleshooting steps on the virtual hard disk itself.</span></span> <span data-ttu-id="f8a2a-102">常見的例子是應用程式更新無效，導致 VM 無法成功開機。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-102">A common example would be a failed application update that prevents the VM from booting successfully.</span></span> <span data-ttu-id="f8a2a-103">本文說明如何使用 Azure 入口網站將虛擬硬碟連接至另一個 VM，以修正任何錯誤，然後重新建立原始 VM。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-103">This article describes how to use Azure portal to connect your virtual hard disk to another VM to fix any errors and then re-create your original VM.</span></span>
 
-## <a name="recovery-process-overview"></a>復原程序概觀
-疑難排解程序如下所示︰
+## <a name="recovery-process-overview"></a><span data-ttu-id="f8a2a-104">復原程序概觀</span><span class="sxs-lookup"><span data-stu-id="f8a2a-104">Recovery process overview</span></span>
+<span data-ttu-id="f8a2a-105">疑難排解程序如下所示︰</span><span class="sxs-lookup"><span data-stu-id="f8a2a-105">The troubleshooting process is as follows:</span></span>
 
-1. 刪除遇到問題的 VM，但保留虛擬硬碟。
-2. 將虛擬硬碟連結和裝載至另一個 VM，以進行疑難排解。
-3. 連接至疑難排解 VM。 編輯檔案或執行工具來修正原始虛擬硬碟的錯誤。
-4. 從疑難排解 VM 卸載並中斷連結虛擬硬碟。
-5. 使用原始虛擬硬碟建立 VM。
+1. <span data-ttu-id="f8a2a-106">刪除遇到問題的 VM，但保留虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-106">Delete the VM that's encountering issues, but retain the virtual hard disks.</span></span>
+2. <span data-ttu-id="f8a2a-107">將虛擬硬碟連結和裝載至另一個 VM，以進行疑難排解。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-107">Attach and mount the virtual hard disk to another VM for troubleshooting.</span></span>
+3. <span data-ttu-id="f8a2a-108">連接至疑難排解 VM。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-108">Connect to the troubleshooting VM.</span></span> <span data-ttu-id="f8a2a-109">編輯檔案或執行工具來修正原始虛擬硬碟的錯誤。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-109">Edit files or run tools to fix errors on the original virtual hard disk.</span></span>
+4. <span data-ttu-id="f8a2a-110">從疑難排解 VM 卸載並中斷連結虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-110">Unmount and detach the virtual hard disk from the troubleshooting VM.</span></span>
+5. <span data-ttu-id="f8a2a-111">使用原始虛擬硬碟建立 VM。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-111">Create a VM by using the original virtual hard disk.</span></span>
 
-## <a name="delete-the-original-vm"></a>刪除原始的 VM
-虛擬硬碟和 VM 在 Azure 中是兩個不同的資源。 虛擬硬碟中儲存作業系統、應用程式和設定。 VM 只是中繼資料，可定義大小或位置，還可參考資源，例如虛擬硬碟或虛擬網路介面卡 (NIC)。 每個虛擬硬碟在連結至 VM 時會獲派租用。 雖然即使 VM 正在執行時也可以連結和中斷連結資料磁碟，但除非刪除 VM 資源，否則無法中斷連結 OS 磁碟。 即使 VM 處於已停止和解除配置的狀態，租用仍會持續讓 OS 磁碟與 VM 產生關聯。
+## <a name="delete-the-original-vm"></a><span data-ttu-id="f8a2a-112">刪除原始的 VM</span><span class="sxs-lookup"><span data-stu-id="f8a2a-112">Delete the original VM</span></span>
+<span data-ttu-id="f8a2a-113">虛擬硬碟和 VM 在 Azure 中是兩個不同的資源。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-113">Virtual hard disks and VMs are two distinct resources in Azure.</span></span> <span data-ttu-id="f8a2a-114">虛擬硬碟中儲存作業系統、應用程式和設定。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-114">A virtual hard disk is where the operating system, applications, and configurations are stored.</span></span> <span data-ttu-id="f8a2a-115">VM 只是中繼資料，可定義大小或位置，還可參考資源，例如虛擬硬碟或虛擬網路介面卡 (NIC)。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-115">The VM is just metadata that defines the size or location and that references resources such as a virtual hard disk or virtual network interface card (NIC).</span></span> <span data-ttu-id="f8a2a-116">每個虛擬硬碟在連結至 VM 時會獲派租用。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-116">Each virtual hard disk gets a lease assigned when that disk is attached to a VM.</span></span> <span data-ttu-id="f8a2a-117">雖然即使 VM 正在執行時也可以連結和中斷連結資料磁碟，但除非刪除 VM 資源，否則無法中斷連結 OS 磁碟。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-117">Although data disks can be attached and detached even while the VM is running, the OS disk cannot be detached unless the VM resource is deleted.</span></span> <span data-ttu-id="f8a2a-118">即使 VM 處於已停止和解除配置的狀態，租用仍會持續讓 OS 磁碟與 VM 產生關聯。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-118">The lease continues to associate the OS disk to a VM even when that VM is in a stopped and deallocated state.</span></span>
 
-復原 VM 的第一個步驟是刪除 VM 資源本身。 刪除 VM 時，虛擬硬碟會留在儲存體帳戶中。 刪除 VM 之後，您可以將虛擬硬碟連結至另一個 VM，以進行疑難排解並解決錯誤。 
+<span data-ttu-id="f8a2a-119">復原 VM 的第一個步驟是刪除 VM 資源本身。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-119">The first step to recovering your VM is to delete the VM resource itself.</span></span> <span data-ttu-id="f8a2a-120">刪除 VM 時，虛擬硬碟會留在儲存體帳戶中。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-120">Deleting the VM leaves the virtual hard disks in your storage account.</span></span> <span data-ttu-id="f8a2a-121">刪除 VM 之後，您可以將虛擬硬碟連結至另一個 VM，以進行疑難排解並解決錯誤。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-121">After the VM is deleted, you can attach the virtual hard disk to another VM to troubleshoot and resolve the errors.</span></span> 
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。 
-2. 在左側功能表中，按一下 [虛擬機器 (傳統)]。
-3. 選取發生問題的 VM，按一下 [磁碟]，然後識別虛擬硬碟的名稱。 
-4. 選取 OS 虛擬硬碟，並檢查 [位置] 來識別包含該虛擬硬碟的儲存體帳戶。 在下列範例中，".blob.core.windows.net" 前面緊鄰的字串是儲存體帳戶名稱。
+1. <span data-ttu-id="f8a2a-122">登入 [Azure 入口網站](https://portal.azure.com)。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-122">Sign in to the [Azure portal](https://portal.azure.com).</span></span> 
+2. <span data-ttu-id="f8a2a-123">在左側功能表中，按一下 [虛擬機器 (傳統)]。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-123">On the menu on the left side, click **Virtual Machines (classic)**.</span></span>
+3. <span data-ttu-id="f8a2a-124">選取發生問題的 VM，按一下 [磁碟]，然後識別虛擬硬碟的名稱。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-124">Select the VM that has the problem, click **Disks**, and then identify the name of the virtual hard disk.</span></span> 
+4. <span data-ttu-id="f8a2a-125">選取 OS 虛擬硬碟，並檢查 [位置] 來識別包含該虛擬硬碟的儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-125">Select the OS virtual hard disk and check the **Location** to identify the storage account that contains that virtual hard disk.</span></span> <span data-ttu-id="f8a2a-126">在下列範例中，".blob.core.windows.net" 前面緊鄰的字串是儲存體帳戶名稱。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-126">In the following example, the string immediately before ".blob.core.windows.net" is the storage account name.</span></span>
 
     ```
     https://portalvhds73fmhrw5xkp43.blob.core.windows.net/vhds/SCCM2012-2015-08-28.vhd
@@ -25,37 +25,37 @@
 
     ![VM 位置的相關影像](./media/virtual-machines-classic-recovery-disks-portal/vm-location.png)
 
-5. 以滑鼠右鍵按一下 VM，然後選取 [刪除]。 請確定當您刪除 VM 時未選取磁碟。
-6. 建立新的復原 VM。 此 VM 必須與問題 VM 位於相同的區域和資源群組 (雲端服務)。
-7. 選取復原 VM，然後選取 [磁碟] > [連結現有項目]。
-8. 若要選取您現有的虛擬硬碟，請按一下 [VHD 檔案]：
+5. <span data-ttu-id="f8a2a-128">以滑鼠右鍵按一下 VM，然後選取 [刪除]。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-128">Right-click the VM and then select **Delete**.</span></span> <span data-ttu-id="f8a2a-129">請確定當您刪除 VM 時未選取磁碟。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-129">Make sure that the disks are not selected when you delete the VM.</span></span>
+6. <span data-ttu-id="f8a2a-130">建立新的復原 VM。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-130">Create a new recovery VM.</span></span> <span data-ttu-id="f8a2a-131">此 VM 必須與問題 VM 位於相同的區域和資源群組 (雲端服務)。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-131">This VM must be in the same region and resource group (Cloud Service) as the problem VM.</span></span>
+7. <span data-ttu-id="f8a2a-132">選取復原 VM，然後選取 [磁碟] > [連結現有項目]。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-132">Select the recovery VM, and then select **Disks** > **Attach Existing**.</span></span>
+8. <span data-ttu-id="f8a2a-133">若要選取您現有的虛擬硬碟，請按一下 [VHD 檔案]：</span><span class="sxs-lookup"><span data-stu-id="f8a2a-133">To select your existing virtual hard disk, click **VHD File**:</span></span>
 
     ![瀏覽現有 VHD](./media/virtual-machines-classic-recovery-disks-portal/select-vhd-location.png)
 
-9. 選取儲存體帳戶 > VHD 容器 > 虛擬硬碟，按一下 [選取] 按鈕，以確認您的選擇。
+9. <span data-ttu-id="f8a2a-135">選取儲存體帳戶 > VHD 容器 > 虛擬硬碟，按一下 [選取] 按鈕，以確認您的選擇。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-135">Select the storage account > VHD container > the virtual hard disk, click the **Select** button to confirm your choice.</span></span>
 
     ![選取現有 VHD](./media/virtual-machines-classic-recovery-disks-portal/select-vhd.png)
 
-10. 現在已選取 VHD，請選取 [確定] 以連結現有的虛擬硬碟。
-11. 幾秒鐘後，VM 的 [磁碟] 窗格將會顯示現有的虛擬硬碟已連線為資料磁碟︰
+10. <span data-ttu-id="f8a2a-137">現在已選取 VHD，請選取 [確定] 以連結現有的虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-137">With your VHD now selected, select **OK** to attach the existing virtual hard disk.</span></span>
+11. <span data-ttu-id="f8a2a-138">幾秒鐘後，VM 的 [磁碟] 窗格將會顯示現有的虛擬硬碟已連線為資料磁碟︰</span><span class="sxs-lookup"><span data-stu-id="f8a2a-138">After a few seconds, the **Disks** pane for your VM will display your existing virtual hard disk connected as a data disk:</span></span>
 
     ![現有虛擬硬碟已連結為資料磁碟](./media/virtual-machines-classic-recovery-disks-portal/attached-disk.png)
 
-## <a name="fix-issues-on-the-original-virtual-hard-disk"></a>修正原始虛擬硬碟的問題
-裝載現有的虛擬硬碟之後，您現在可以視需要執行任何維護和疑難排解步驟。 解決問題之後，請繼續進行下列步驟。
+## <a name="fix-issues-on-the-original-virtual-hard-disk"></a><span data-ttu-id="f8a2a-140">修正原始虛擬硬碟的問題</span><span class="sxs-lookup"><span data-stu-id="f8a2a-140">Fix issues on the original virtual hard disk</span></span>
+<span data-ttu-id="f8a2a-141">裝載現有的虛擬硬碟之後，您現在可以視需要執行任何維護和疑難排解步驟。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-141">When the existing virtual hard disk is mounted, you can now perform any maintenance and troubleshooting steps as needed.</span></span> <span data-ttu-id="f8a2a-142">解決問題之後，請繼續進行下列步驟。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-142">Once you have addressed the issues, continue with the following steps.</span></span>
 
-## <a name="unmount-and-detach-the-original-virtual-hard-disk"></a>卸載並中斷連結原始虛擬硬碟
-一旦解決任何錯誤，請從疑難排解 VM 卸載並中斷連結現有的虛擬硬碟。 直到釋放將虛擬硬碟連結至疑難排解 VM 的租用之後，您才能將虛擬硬碟和任何 VM 一起使用。  
+## <a name="unmount-and-detach-the-original-virtual-hard-disk"></a><span data-ttu-id="f8a2a-143">卸載並中斷連結原始虛擬硬碟</span><span class="sxs-lookup"><span data-stu-id="f8a2a-143">Unmount and detach the original virtual hard disk</span></span>
+<span data-ttu-id="f8a2a-144">一旦解決任何錯誤，請從疑難排解 VM 卸載並中斷連結現有的虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-144">Once any errors are resolved, unmount and detach the existing virtual hard disk from your troubleshooting VM.</span></span> <span data-ttu-id="f8a2a-145">直到釋放將虛擬硬碟連結至疑難排解 VM 的租用之後，您才能將虛擬硬碟和任何 VM 一起使用。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-145">You cannot use your virtual hard disk together with any other VM until the lease that attaches the virtual hard disk to the troubleshooting VM is released.</span></span>  
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。 
-2. 在左側功能表中，選取 [虛擬機器 (傳統)]。
-3. 找出復原 VM。 選取 [磁碟]，以滑鼠右鍵按一下磁碟，然後選取 [中斷連結]。
+1. <span data-ttu-id="f8a2a-146">登入 [Azure 入口網站](https://portal.azure.com)。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-146">Sign in to the [Azure portal](https://portal.azure.com).</span></span> 
+2. <span data-ttu-id="f8a2a-147">在左側功能表中，選取 [虛擬機器 (傳統)]。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-147">On the menu on the left side, select **Virtual Machines (classic)**.</span></span>
+3. <span data-ttu-id="f8a2a-148">找出復原 VM。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-148">Locate the recovery VM.</span></span> <span data-ttu-id="f8a2a-149">選取 [磁碟]，以滑鼠右鍵按一下磁碟，然後選取 [中斷連結]。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-149">Select Disks, right-click the disk, and then select **Detach**.</span></span>
 
-## <a name="create-a-vm-from-the-original-hard-disk"></a>從原始硬碟建立 VM
+## <a name="create-a-vm-from-the-original-hard-disk"></a><span data-ttu-id="f8a2a-150">從原始硬碟建立 VM</span><span class="sxs-lookup"><span data-stu-id="f8a2a-150">Create a VM from the original hard disk</span></span>
 
-若要從原始虛擬硬碟建立 VM，請使用 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+<span data-ttu-id="f8a2a-151">若要從原始虛擬硬碟建立 VM，請使用 [Azure 傳統入口網站](https://manage.windowsazure.com)。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-151">To create a VM from your original virtual hard disk, use [Azure classic portal](https://manage.windowsazure.com).</span></span>
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
-2. 在入口網站底部，選取 [新增] > [計算] > [虛擬機器] > [從資源庫]。
-3. 在 [選擇映像] 區段中，選取 [我的磁碟]，然後選取原始虛擬硬碟。 檢查位置資訊。 這是必須部署 VM 的區域。 選取下一步按鈕。
-4. 在 [虛擬機器設定] 區段中，輸入 VM 名稱並選取 VM 的大小。
+1. <span data-ttu-id="f8a2a-152">登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-152">Sign into [Azure classic portal](https://manage.windowsazure.com).</span></span>
+2. <span data-ttu-id="f8a2a-153">在入口網站底部，選取 [新增] > [計算] > [虛擬機器] > [從資源庫]。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-153">At the bottom of the portal, select **New** > **Compute** > **Virtual Machine** > **From Gallery**.</span></span>
+3. <span data-ttu-id="f8a2a-154">在 [選擇映像] 區段中，選取 [我的磁碟]，然後選取原始虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-154">In the **Choose an Image** section, select **My disks**, and then select the original virtual hard disk.</span></span> <span data-ttu-id="f8a2a-155">檢查位置資訊。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-155">Check the location information.</span></span> <span data-ttu-id="f8a2a-156">這是必須部署 VM 的區域。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-156">This is the region where the VM must be deployed.</span></span> <span data-ttu-id="f8a2a-157">選取下一步按鈕。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-157">Select the next button.</span></span>
+4. <span data-ttu-id="f8a2a-158">在 [虛擬機器設定] 區段中，輸入 VM 名稱並選取 VM 的大小。</span><span class="sxs-lookup"><span data-stu-id="f8a2a-158">In the **Virtual machine configuration** section, type the VM name and select a size for the VM.</span></span>

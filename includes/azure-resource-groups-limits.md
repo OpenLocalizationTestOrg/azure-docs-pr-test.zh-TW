@@ -1,25 +1,25 @@
-| 資源 | 預設限制 | 上限 |
+| <span data-ttu-id="a1588-101">資源</span><span class="sxs-lookup"><span data-stu-id="a1588-101">Resource</span></span> | <span data-ttu-id="a1588-102">預設限制</span><span class="sxs-lookup"><span data-stu-id="a1588-102">Default Limit</span></span> | <span data-ttu-id="a1588-103">上限</span><span class="sxs-lookup"><span data-stu-id="a1588-103">Maximum Limit</span></span> |
 | --- | --- | --- |
-| 每個[資源群組](../articles/azure-resource-manager/resource-group-overview.md#resource-groups)的資源 (每個資源類型) |800 |每個資源類型而異 |
-| 每個資源群組的部署 |800 |800 |
-| 每個部署的資源 |800 |800 |
-| 管理鎖定 (每個唯一的範圍) |20 |20 |
-| 標記數目 (每個資源或資源群組) |15 |15 |
-| 標記金鑰長度 |512 |512 |
-| 標記值長度 |256 |256 |
+| <span data-ttu-id="a1588-104">每個[資源群組](../articles/azure-resource-manager/resource-group-overview.md#resource-groups)的資源 (每個資源類型)</span><span class="sxs-lookup"><span data-stu-id="a1588-104">Resources per [resource group](../articles/azure-resource-manager/resource-group-overview.md#resource-groups) (per resource type)</span></span> |<span data-ttu-id="a1588-105">800</span><span class="sxs-lookup"><span data-stu-id="a1588-105">800</span></span> |<span data-ttu-id="a1588-106">每個資源類型而異</span><span class="sxs-lookup"><span data-stu-id="a1588-106">Varies per resource type</span></span> |
+| <span data-ttu-id="a1588-107">每個資源群組的部署</span><span class="sxs-lookup"><span data-stu-id="a1588-107">Deployments per resource group</span></span> |<span data-ttu-id="a1588-108">800</span><span class="sxs-lookup"><span data-stu-id="a1588-108">800</span></span> |<span data-ttu-id="a1588-109">800</span><span class="sxs-lookup"><span data-stu-id="a1588-109">800</span></span> |
+| <span data-ttu-id="a1588-110">每個部署的資源</span><span class="sxs-lookup"><span data-stu-id="a1588-110">Resources per deployment</span></span> |<span data-ttu-id="a1588-111">800</span><span class="sxs-lookup"><span data-stu-id="a1588-111">800</span></span> |<span data-ttu-id="a1588-112">800</span><span class="sxs-lookup"><span data-stu-id="a1588-112">800</span></span> |
+| <span data-ttu-id="a1588-113">管理鎖定 (每個唯一的範圍)</span><span class="sxs-lookup"><span data-stu-id="a1588-113">Management Locks (per unique scope)</span></span> |<span data-ttu-id="a1588-114">20</span><span class="sxs-lookup"><span data-stu-id="a1588-114">20</span></span> |<span data-ttu-id="a1588-115">20</span><span class="sxs-lookup"><span data-stu-id="a1588-115">20</span></span> |
+| <span data-ttu-id="a1588-116">標記數目 (每個資源或資源群組)</span><span class="sxs-lookup"><span data-stu-id="a1588-116">Number of Tags (per resource or resource group)</span></span> |<span data-ttu-id="a1588-117">15</span><span class="sxs-lookup"><span data-stu-id="a1588-117">15</span></span> |<span data-ttu-id="a1588-118">15</span><span class="sxs-lookup"><span data-stu-id="a1588-118">15</span></span> |
+| <span data-ttu-id="a1588-119">標記金鑰長度</span><span class="sxs-lookup"><span data-stu-id="a1588-119">Tag key length</span></span> |<span data-ttu-id="a1588-120">512</span><span class="sxs-lookup"><span data-stu-id="a1588-120">512</span></span> |<span data-ttu-id="a1588-121">512</span><span class="sxs-lookup"><span data-stu-id="a1588-121">512</span></span> |
+| <span data-ttu-id="a1588-122">標記值長度</span><span class="sxs-lookup"><span data-stu-id="a1588-122">Tag value length</span></span> |<span data-ttu-id="a1588-123">256</span><span class="sxs-lookup"><span data-stu-id="a1588-123">256</span></span> |<span data-ttu-id="a1588-124">256</span><span class="sxs-lookup"><span data-stu-id="a1588-124">256</span></span> |
 
 
-#### <a name="template-limits"></a>範本限制
+#### <a name="template-limits"></a><span data-ttu-id="a1588-125">範本限制</span><span class="sxs-lookup"><span data-stu-id="a1588-125">Template limits</span></span>
 
-| 值 | 預設限制 | 上限 |
+| <span data-ttu-id="a1588-126">值</span><span class="sxs-lookup"><span data-stu-id="a1588-126">Value</span></span> | <span data-ttu-id="a1588-127">預設限制</span><span class="sxs-lookup"><span data-stu-id="a1588-127">Default Limit</span></span> | <span data-ttu-id="a1588-128">上限</span><span class="sxs-lookup"><span data-stu-id="a1588-128">Maximum Limit</span></span> |
 | --- | --- | --- |
-| 參數 |256 |256 |
-| 變數 |256 |256 |
-| 資源 (包括複本計數) |800 |800 |
-| 輸出 |64 |64 |
-| 範本運算式 |24,576 個字元 |24,576 個字元 |
-| 已匯出範本中的資源 |200 |200 | 
-| 範本大小 |1 MB |1 MB |
-| 參數檔案大小 |64 KB |64 KB |
+| <span data-ttu-id="a1588-129">參數</span><span class="sxs-lookup"><span data-stu-id="a1588-129">Parameters</span></span> |<span data-ttu-id="a1588-130">256</span><span class="sxs-lookup"><span data-stu-id="a1588-130">256</span></span> |<span data-ttu-id="a1588-131">256</span><span class="sxs-lookup"><span data-stu-id="a1588-131">256</span></span> |
+| <span data-ttu-id="a1588-132">變數</span><span class="sxs-lookup"><span data-stu-id="a1588-132">Variables</span></span> |<span data-ttu-id="a1588-133">256</span><span class="sxs-lookup"><span data-stu-id="a1588-133">256</span></span> |<span data-ttu-id="a1588-134">256</span><span class="sxs-lookup"><span data-stu-id="a1588-134">256</span></span> |
+| <span data-ttu-id="a1588-135">資源 (包括複本計數)</span><span class="sxs-lookup"><span data-stu-id="a1588-135">Resources (including copy count)</span></span> |<span data-ttu-id="a1588-136">800</span><span class="sxs-lookup"><span data-stu-id="a1588-136">800</span></span> |<span data-ttu-id="a1588-137">800</span><span class="sxs-lookup"><span data-stu-id="a1588-137">800</span></span> |
+| <span data-ttu-id="a1588-138">輸出</span><span class="sxs-lookup"><span data-stu-id="a1588-138">Outputs</span></span> |<span data-ttu-id="a1588-139">64</span><span class="sxs-lookup"><span data-stu-id="a1588-139">64</span></span> |<span data-ttu-id="a1588-140">64</span><span class="sxs-lookup"><span data-stu-id="a1588-140">64</span></span> |
+| <span data-ttu-id="a1588-141">範本運算式</span><span class="sxs-lookup"><span data-stu-id="a1588-141">Template expression</span></span> |<span data-ttu-id="a1588-142">24,576 個字元</span><span class="sxs-lookup"><span data-stu-id="a1588-142">24,576 chars</span></span> |<span data-ttu-id="a1588-143">24,576 個字元</span><span class="sxs-lookup"><span data-stu-id="a1588-143">24,576 chars</span></span> |
+| <span data-ttu-id="a1588-144">已匯出範本中的資源</span><span class="sxs-lookup"><span data-stu-id="a1588-144">Resources in exported templates</span></span> |<span data-ttu-id="a1588-145">200</span><span class="sxs-lookup"><span data-stu-id="a1588-145">200</span></span> |<span data-ttu-id="a1588-146">200</span><span class="sxs-lookup"><span data-stu-id="a1588-146">200</span></span> | 
+| <span data-ttu-id="a1588-147">範本大小</span><span class="sxs-lookup"><span data-stu-id="a1588-147">Template size</span></span> |<span data-ttu-id="a1588-148">1 MB</span><span class="sxs-lookup"><span data-stu-id="a1588-148">1 MB</span></span> |<span data-ttu-id="a1588-149">1 MB</span><span class="sxs-lookup"><span data-stu-id="a1588-149">1 MB</span></span> |
+| <span data-ttu-id="a1588-150">參數檔案大小</span><span class="sxs-lookup"><span data-stu-id="a1588-150">Parameter file size</span></span> |<span data-ttu-id="a1588-151">64 KB</span><span class="sxs-lookup"><span data-stu-id="a1588-151">64 KB</span></span> |<span data-ttu-id="a1588-152">64 KB</span><span class="sxs-lookup"><span data-stu-id="a1588-152">64 KB</span></span> |
 
-使用巢狀範本，即可超出一些範本限制。 如需詳細資訊，請參閱[在部署 Azure 資源時使用連結的範本](../articles/azure-resource-manager/resource-group-linked-templates.md)。 若要減少參數、變數或輸出數目，您可以將數個值合併成一個物件。 如需詳細資訊，請參閱[物件作為參數](../articles/azure-resource-manager/resource-manager-objects-as-parameters.md)。
+<span data-ttu-id="a1588-153">使用巢狀範本，即可超出一些範本限制。</span><span class="sxs-lookup"><span data-stu-id="a1588-153">You can exceed some template limits by using a nested template.</span></span> <span data-ttu-id="a1588-154">如需詳細資訊，請參閱[在部署 Azure 資源時使用連結的範本](../articles/azure-resource-manager/resource-group-linked-templates.md)。</span><span class="sxs-lookup"><span data-stu-id="a1588-154">For more information, see [Using linked templates when deploying Azure resources](../articles/azure-resource-manager/resource-group-linked-templates.md).</span></span> <span data-ttu-id="a1588-155">若要減少參數、變數或輸出數目，您可以將數個值合併成一個物件。</span><span class="sxs-lookup"><span data-stu-id="a1588-155">To reduce the number of parameters, variables, or outputs, you can combine several values into an object.</span></span> <span data-ttu-id="a1588-156">如需詳細資訊，請參閱[物件作為參數](../articles/azure-resource-manager/resource-manager-objects-as-parameters.md)。</span><span class="sxs-lookup"><span data-stu-id="a1588-156">For more information, see [Objects as parameters](../articles/azure-resource-manager/resource-manager-objects-as-parameters.md).</span></span>

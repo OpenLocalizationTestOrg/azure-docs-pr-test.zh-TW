@@ -1,8 +1,8 @@
-**標準未受管理的虛擬機器磁碟：每一磁碟限制**
+<span data-ttu-id="1b729-101">**標準未受管理的虛擬機器磁碟：每一磁碟限制**</span><span class="sxs-lookup"><span data-stu-id="1b729-101">**Standard unmanaged virtual machine disks: per disk limits**</span></span>
 
-| VM 層 | 基本層 VM | 標準層 VM |
+| <span data-ttu-id="1b729-102">VM 層</span><span class="sxs-lookup"><span data-stu-id="1b729-102">VM Tier</span></span> | <span data-ttu-id="1b729-103">基本層 VM</span><span class="sxs-lookup"><span data-stu-id="1b729-103">Basic Tier VM</span></span> | <span data-ttu-id="1b729-104">標準層 VM</span><span class="sxs-lookup"><span data-stu-id="1b729-104">Standard Tier VM</span></span> |
 | --- | --- | --- |
-| 磁碟大小 |4095 GB |4095 GB |
-| 每一永久性磁碟最多 8 KB IOPS |300 |500 |
-| 執行最大 IOPS 的磁碟數量上限 |66 |40 |
+| <span data-ttu-id="1b729-105">磁碟大小</span><span class="sxs-lookup"><span data-stu-id="1b729-105">Disk size</span></span> |<span data-ttu-id="1b729-106">4095 GB</span><span class="sxs-lookup"><span data-stu-id="1b729-106">4095 GB</span></span> |<span data-ttu-id="1b729-107">4095 GB</span><span class="sxs-lookup"><span data-stu-id="1b729-107">4095 GB</span></span> |
+| <span data-ttu-id="1b729-108">每一永久性磁碟最多 8 KB IOPS</span><span class="sxs-lookup"><span data-stu-id="1b729-108">Max 8 KB IOPS per persistent disk</span></span> |<span data-ttu-id="1b729-109">300</span><span class="sxs-lookup"><span data-stu-id="1b729-109">300</span></span> |<span data-ttu-id="1b729-110">500</span><span class="sxs-lookup"><span data-stu-id="1b729-110">500</span></span> |
+| <span data-ttu-id="1b729-111">執行最大 IOPS 的磁碟數量上限</span><span class="sxs-lookup"><span data-stu-id="1b729-111">Max number of disks performing max IOPS</span></span> |<span data-ttu-id="1b729-112">66</span><span class="sxs-lookup"><span data-stu-id="1b729-112">66</span></span> |<span data-ttu-id="1b729-113">40</span><span class="sxs-lookup"><span data-stu-id="1b729-113">40</span></span> |
 

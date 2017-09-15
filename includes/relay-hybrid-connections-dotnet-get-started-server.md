@@ -1,15 +1,15 @@
-### <a name="create-a-console-application"></a>建立主控台應用程式
+### <a name="create-a-console-application"></a><span data-ttu-id="a96c9-101">建立主控台應用程式</span><span class="sxs-lookup"><span data-stu-id="a96c9-101">Create a console application</span></span>
 
-首先，啟動 Visual Studio，並建立新的**主控台應用程式 (.NET Framework)** 專案。
+<span data-ttu-id="a96c9-102">首先，啟動 Visual Studio，並建立新的**主控台應用程式 (.NET Framework)** 專案。</span><span class="sxs-lookup"><span data-stu-id="a96c9-102">First, launch Visual Studio and create a new **Console App (.NET Framework)** project.</span></span>
 
-### <a name="add-the-relay-nuget-package"></a>新增轉送 NuGet 封裝
+### <a name="add-the-relay-nuget-package"></a><span data-ttu-id="a96c9-103">新增轉送 NuGet 封裝</span><span class="sxs-lookup"><span data-stu-id="a96c9-103">Add the Relay NuGet package</span></span>
 
-1. 以滑鼠右鍵按一下新建立的專案，然後按一下 [管理 NuGet 套件]。
-2. 按一下 [瀏覽] 索引標籤，然後搜尋 "Microsoft Azure 轉送"，並選取 [Microsoft Azure 轉送] 項目。 按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。
+1. <span data-ttu-id="a96c9-104">以滑鼠右鍵按一下新建立的專案，然後按一下 [管理 NuGet 套件]。</span><span class="sxs-lookup"><span data-stu-id="a96c9-104">Right-click the newly created project and then click **Manage NuGet Packages**.</span></span>
+2. <span data-ttu-id="a96c9-105">按一下 [瀏覽] 索引標籤，然後搜尋 "Microsoft Azure 轉送"，並選取 [Microsoft Azure 轉送] 項目。</span><span class="sxs-lookup"><span data-stu-id="a96c9-105">Click the **Browse** tab, then search for "Microsoft.Azure.Relay" and select the **Microsoft Azure Relay** item.</span></span> <span data-ttu-id="a96c9-106">按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。</span><span class="sxs-lookup"><span data-stu-id="a96c9-106">Click **Install** to complete the installation, then close this dialog box.</span></span>
 
-### <a name="write-some-code-to-receive-messages"></a>撰寫一些程式碼來接收訊息
+### <a name="write-some-code-to-receive-messages"></a><span data-ttu-id="a96c9-107">撰寫一些程式碼來接收訊息</span><span class="sxs-lookup"><span data-stu-id="a96c9-107">Write some code to receive messages</span></span>
 
-1. 將 Program.cs 檔案頂端的現有 `using` 陳述式取代為下列 `using` 陳述式：
+1. <span data-ttu-id="a96c9-108">將 Program.cs 檔案頂端的現有 `using` 陳述式取代為下列 `using` 陳述式：</span><span class="sxs-lookup"><span data-stu-id="a96c9-108">Replace the existing `using` statements at the top of the Program.cs file with the following `using` statements:</span></span>
    
     ```csharp
     using System;
@@ -18,7 +18,7 @@
     using System.Threading.Tasks;
     using Microsoft.Azure.Relay;
     ```
-2. 將常數新增至 `Program` 類別以取得混合式連線詳細資料。 將方括號中的預留位置取代為在建立混合式連線時所取得的值。 務必使用完整命名空間名稱︰
+2. <span data-ttu-id="a96c9-109">將常數新增至 `Program` 類別以取得混合式連線詳細資料。</span><span class="sxs-lookup"><span data-stu-id="a96c9-109">Add constants to the `Program` class for the hybrid connection details.</span></span> <span data-ttu-id="a96c9-110">將方括號中的預留位置取代為在建立混合式連線時所取得的值。</span><span class="sxs-lookup"><span data-stu-id="a96c9-110">Replace the placeholders in brackets with the values you obtained when creating the hybrid connection.</span></span> <span data-ttu-id="a96c9-111">務必使用完整命名空間名稱︰</span><span class="sxs-lookup"><span data-stu-id="a96c9-111">Be sure to use the fully qualified namespace name:</span></span>
    
     ```csharp
     private const string RelayNamespace = "{RelayNamespace}.servicebus.windows.net";
@@ -26,7 +26,7 @@
     private const string KeyName = "{SASKeyName}";
     private const string Key = "{SASKey}";
     ```
-3. 將下列名為 `ProcessMessagesOnConnection` 的方法新增至 `Program` 類別：
+3. <span data-ttu-id="a96c9-112">將下列名為 `ProcessMessagesOnConnection` 的方法新增至 `Program` 類別：</span><span class="sxs-lookup"><span data-stu-id="a96c9-112">Add the following method called `ProcessMessagesOnConnection` to the `Program` class:</span></span>
    
     ```csharp
     // Method is used to initiate connection
@@ -77,7 +77,7 @@
         await relayConnection.CloseAsync(cts.Token);
     }
     ```
-4. 將另一個名為 `RunAsync` 的方法新增至 `Program` 類別，如下所示：
+4. <span data-ttu-id="a96c9-113">將另一個名為 `RunAsync` 的方法新增至 `Program` 類別，如下所示：</span><span class="sxs-lookup"><span data-stu-id="a96c9-113">Add another method called `RunAsync` to the `Program` class, as follows:</span></span>
    
     ```csharp
     private static async Task RunAsync()
@@ -122,13 +122,13 @@
         await listener.CloseAsync(cts.Token);
     }
     ```
-5. 將下列程式碼行新增至 `Program` 類別中的 `Main` 方法：
+5. <span data-ttu-id="a96c9-114">將下列程式碼行新增至 `Program` 類別中的 `Main` 方法：</span><span class="sxs-lookup"><span data-stu-id="a96c9-114">Add the following line of code to the `Main` method in the `Program` class:</span></span>
    
     ```csharp
     RunAsync().GetAwaiter().GetResult();
     ```
    
-    完整的 Program.cs 檔案看起來應該會像下面這樣：
+    <span data-ttu-id="a96c9-115">完整的 Program.cs 檔案看起來應該會像下面這樣：</span><span class="sxs-lookup"><span data-stu-id="a96c9-115">Here is what your completed Program.cs file should look like:</span></span>
    
     ```csharp
     namespace Server

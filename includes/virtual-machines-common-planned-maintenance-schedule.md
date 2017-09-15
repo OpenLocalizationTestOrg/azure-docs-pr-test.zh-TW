@@ -1,55 +1,55 @@
 
 
-## <a name="multi-and-single-instance-vms"></a>多重和單一執行個體 VM
-對於在 Azure 上執行的許多客戶而言，在 VM 進行計劃性維護時可以排程是非常重要的，因為維護期間會發生大約 15 分鐘的停機。 您可以在佈建的 VM 接受計劃性維護時，使用可用性設定組協助控制。
+## <a name="multi-and-single-instance-vms"></a><span data-ttu-id="4b318-101">多重和單一執行個體 VM</span><span class="sxs-lookup"><span data-stu-id="4b318-101">Multi and Single Instance VMs</span></span>
+<span data-ttu-id="4b318-102">對於在 Azure 上執行的許多客戶而言，在 VM 進行計劃性維護時可以排程是非常重要的，因為維護期間會發生大約 15 分鐘的停機。</span><span class="sxs-lookup"><span data-stu-id="4b318-102">Many customers running on Azure count it critical that they can schedule when their VMs undergo planned maintenance due to the downtime--about 15 minutes--that occurs during maintenance.</span></span> <span data-ttu-id="4b318-103">您可以在佈建的 VM 接受計劃性維護時，使用可用性設定組協助控制。</span><span class="sxs-lookup"><span data-stu-id="4b318-103">You can use availability sets to help control when provisioned VMs receive planned maintenance.</span></span>
 
-有兩個可能的 VM 設定在 Azure 上執行。 VM 可能會設定為多重執行個體或單一執行個體。 如果 VM 在可用性設定組中，它們會隨後設定為多重執行個體。 請注意，即使單一 VM 也可以部署在可用性設定組中，所以才會被視為多重執行個體。 如果 VM 不在可用性設定組中，它們會隨後設定為單一執行個體。  如需可用性設定組的詳細資料，請參閱[管理 Windows 虛擬機器的可用性](../articles/virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[管理 Linux 虛擬機器的可用性](../articles/virtual-machines/linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+<span data-ttu-id="4b318-104">有兩個可能的 VM 設定在 Azure 上執行。</span><span class="sxs-lookup"><span data-stu-id="4b318-104">There are two possible configurations for VMs running on Azure.</span></span> <span data-ttu-id="4b318-105">VM 可能會設定為多重執行個體或單一執行個體。</span><span class="sxs-lookup"><span data-stu-id="4b318-105">VMs are either configured as multi-instance or single-instance.</span></span> <span data-ttu-id="4b318-106">如果 VM 在可用性設定組中，它們會隨後設定為多重執行個體。</span><span class="sxs-lookup"><span data-stu-id="4b318-106">If VMs are in an availability set, then they are configured as multi-instance.</span></span> <span data-ttu-id="4b318-107">請注意，即使單一 VM 也可以部署在可用性設定組中，所以才會被視為多重執行個體。</span><span class="sxs-lookup"><span data-stu-id="4b318-107">Note, even single VMs can be deployed in an availability set, so that they are treated as multi-instance.</span></span> <span data-ttu-id="4b318-108">如果 VM 不在可用性設定組中，它們會隨後設定為單一執行個體。</span><span class="sxs-lookup"><span data-stu-id="4b318-108">If VMs are NOT in an availability set, then they are configured as single-instance.</span></span>  <span data-ttu-id="4b318-109">如需可用性設定組的詳細資料，請參閱[管理 Windows 虛擬機器的可用性](../articles/virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[管理 Linux 虛擬機器的可用性](../articles/virtual-machines/linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="4b318-109">For details on availability sets, see [Manage the Availability of your Windows Virtual Machines](../articles/virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) or [Manage the Availability of your Linux Virtual Machines](../articles/virtual-machines/linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
-單一執行個體和多重執行個體的 VM 計劃性維護更新會分別發生。 藉由將 VM 重新設定維單一執行個體 (如果它們是多重執行個體)，或設定為多重執行個體 (如果它們是單一執行個體)，您可以控制其 VM 收到計劃性維護的時間。 如需 Azure VM 計劃性維護的詳細資料，請參閱 [Azure Linux 虛擬機器的維護計劃](../articles/virtual-machines/linux/planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)或 [Azure Windows 虛擬機器的維護計劃](../articles/virtual-machines/windows/planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+<span data-ttu-id="4b318-110">單一執行個體和多重執行個體的 VM 計劃性維護更新會分別發生。</span><span class="sxs-lookup"><span data-stu-id="4b318-110">Planned maintenance updates to single-instance and multi-instance VMs happen separately.</span></span> <span data-ttu-id="4b318-111">藉由將 VM 重新設定維單一執行個體 (如果它們是多重執行個體)，或設定為多重執行個體 (如果它們是單一執行個體)，您可以控制其 VM 收到計劃性維護的時間。</span><span class="sxs-lookup"><span data-stu-id="4b318-111">By reconfiguring your VMs to be single-instance (if they are multi-instance) or to be multi-instance (if they are single-instance), you can control when their VMs receive the planned maintenance.</span></span> <span data-ttu-id="4b318-112">如需 Azure VM 計劃性維護的詳細資料，請參閱 [Azure Linux 虛擬機器的維護計劃](../articles/virtual-machines/linux/planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)或 [Azure Windows 虛擬機器的維護計劃](../articles/virtual-machines/windows/planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="4b318-112">See [Planned maintenance for Azure Linux virtual machines](../articles/virtual-machines/linux/planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) or [Planned maintenance for Azure Windows virtual machines](../articles/virtual-machines/windows/planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) for details on planned maintenance for Azure VMs.</span></span>
 
-## <a name="for-multi-instance-configuration"></a>對於多重執行個體組態
-您可以藉由將 VM 從可用性設定組中移除，來選取計劃性維護影響部署在「可用性設定組」組態中之 VM 的時間。
+## <a name="for-multi-instance-configuration"></a><span data-ttu-id="4b318-113">對於多重執行個體組態</span><span class="sxs-lookup"><span data-stu-id="4b318-113">For Multi-instance Configuration</span></span>
+<span data-ttu-id="4b318-114">您可以藉由將 VM 從可用性設定組中移除，來選取計劃性維護影響部署在「可用性設定組」組態中之 VM 的時間。</span><span class="sxs-lookup"><span data-stu-id="4b318-114">You can select the time planned maintenance impacts your VMs that are deployed in an Availability Set configuration by removing these VMs from availability sets.</span></span>
 
-1. 在計劃性維護 7 天前，會傳送電子郵件給您在多重執行個體組態中的 VM。 受影響多重執行個體 VM 的訂用帳戶識別碼和名稱會包含在電子郵件將電子郵件的本文中。
-2. 在這 7 天內，您可以藉由從可用性設定組移除該區域中的多重執行個體 VM，以選擇執行個體的更新時間。 此組態變更會導致重新開機，因為虛擬機器正在從一部以維護為目標的實體主機，移至另一部不是以維護為目標的實體主機。
-3. 您可以在 Azure 入口網站中從可用性設定組移除 VM。
+1. <span data-ttu-id="4b318-115">在計劃性維護 7 天前，會傳送電子郵件給您在多重執行個體組態中的 VM。</span><span class="sxs-lookup"><span data-stu-id="4b318-115">An email is sent to you seven calendar days before the planned maintenance to your VMs in a Multi-instance configuration.</span></span> <span data-ttu-id="4b318-116">受影響多重執行個體 VM 的訂用帳戶識別碼和名稱會包含在電子郵件將電子郵件的本文中。</span><span class="sxs-lookup"><span data-stu-id="4b318-116">The subscription IDs and names of the affected Multi-instance VMs are included in the body of the email.</span></span>
+2. <span data-ttu-id="4b318-117">在這 7 天內，您可以藉由從可用性設定組移除該區域中的多重執行個體 VM，以選擇執行個體的更新時間。</span><span class="sxs-lookup"><span data-stu-id="4b318-117">During those seven days, you can choose the time your instances are updated by removing your multi-instance VMs in that region from their availability set.</span></span> <span data-ttu-id="4b318-118">此組態變更會導致重新開機，因為虛擬機器正在從一部以維護為目標的實體主機，移至另一部不是以維護為目標的實體主機。</span><span class="sxs-lookup"><span data-stu-id="4b318-118">This change in configuration causes a reboot, as the Virtual Machine is moving from one physical host, targeted for maintenance, to another physical host that isn’t targeted for maintenance.</span></span>
+3. <span data-ttu-id="4b318-119">您可以在 Azure 入口網站中從可用性設定組移除 VM。</span><span class="sxs-lookup"><span data-stu-id="4b318-119">You can remove the VM from its availability set in the Azure portal.</span></span>
 
-   1. 在入口網站中，選取要從可用性設定組中移除的 VM。  
+   1. <span data-ttu-id="4b318-120">在入口網站中，選取要從可用性設定組中移除的 VM。</span><span class="sxs-lookup"><span data-stu-id="4b318-120">In the portal, select the VM to remove from the Availability Set.</span></span>  
 
-   2. 在 [設定] 之下，按一下 [可用性設定組]。
+   2. <span data-ttu-id="4b318-121">在 [設定] 之下，按一下 [可用性設定組]。</span><span class="sxs-lookup"><span data-stu-id="4b318-121">Under **settings**, click **Availability set**.</span></span>
 
       ![可用性設定組選取](./media/virtual-machines-planned-maintenance-schedule/availabilitysetselection.png)
 
-   3. 在可用性設定組下拉式功能表中，選取 [不是可用性設定組的一部分]。
+   3. <span data-ttu-id="4b318-123">在可用性設定組下拉式功能表中，選取 [不是可用性設定組的一部分]。</span><span class="sxs-lookup"><span data-stu-id="4b318-123">In the availability set dropdown menu, select “Not part of an availability set.”</span></span>
 
       ![從設定組移除](./media/virtual-machines-planned-maintenance-schedule/availabilitysetwarning.png)
 
-   4. 按一下頂端的 [儲存]。 按一下 [是] 確認此動作會重新啟動 VM。
+   4. <span data-ttu-id="4b318-125">按一下頂端的 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="4b318-125">At the top, click **Save**.</span></span> <span data-ttu-id="4b318-126">按一下 [是] 確認此動作會重新啟動 VM。</span><span class="sxs-lookup"><span data-stu-id="4b318-126">Click **Yes** to acknowledge that this action restarts the VM.</span></span>
 
    >[!TIP]
-   >您可以選取其中一個列出的可用性設定組，稍後再將 VM 重新設定為多個執行個體。
+   ><span data-ttu-id="4b318-127">您可以選取其中一個列出的可用性設定組，稍後再將 VM 重新設定為多個執行個體。</span><span class="sxs-lookup"><span data-stu-id="4b318-127">You can reconfigure the VM to multi-instance later by selecting one of the listed availability sets.</span></span>
 
-4. 從可用性設定組中移除的 VM 會移至單一執行個體的主機，而且不會在可用性設定組組態的計劃性維護期間更新。
-5. 可用性設定組 VM 更新完成 (根據原始電子郵件中所述的排程) 之後，您應該將 VM 新增回其可用性設定組。 成為可用性設定組的一部分可將 VM 重新設定為多重執行個體，並導致重新啟動。 一般而言，跨整個 Azure 環境的所有多重執行個體更新完成之後，就輪到單一執行個體維護。
+4. <span data-ttu-id="4b318-128">從可用性設定組中移除的 VM 會移至單一執行個體的主機，而且不會在可用性設定組組態的計劃性維護期間更新。</span><span class="sxs-lookup"><span data-stu-id="4b318-128">VMs removed from availability sets are moved to Single-Instance hosts and are not updated during the planned maintenance to Availability Set Configurations.</span></span>
+5. <span data-ttu-id="4b318-129">可用性設定組 VM 更新完成 (根據原始電子郵件中所述的排程) 之後，您應該將 VM 新增回其可用性設定組。</span><span class="sxs-lookup"><span data-stu-id="4b318-129">Once the update to Availability Set VMs is complete (according to schedule outlined in the original email), you should add the VMs back into their availability sets.</span></span> <span data-ttu-id="4b318-130">成為可用性設定組的一部分可將 VM 重新設定為多重執行個體，並導致重新啟動。</span><span class="sxs-lookup"><span data-stu-id="4b318-130">Becoming part of an Availability set reconfigures the VMs as multi-instance, and results in a reboot.</span></span> <span data-ttu-id="4b318-131">一般而言，跨整個 Azure 環境的所有多重執行個體更新完成之後，就輪到單一執行個體維護。</span><span class="sxs-lookup"><span data-stu-id="4b318-131">Typically, once all multi-instance updates are completed across the entire Azure environment, single-instance maintenance follows.</span></span>
 
-使用 Azure PowerShell 也可以達成從可用性設定組中移除 VM：
+<span data-ttu-id="4b318-132">使用 Azure PowerShell 也可以達成從可用性設定組中移除 VM：</span><span class="sxs-lookup"><span data-stu-id="4b318-132">Removing a VM from an availability set can also be achieved using Azure PowerShell:</span></span>
 
 ```
 Get-AzureVM -ServiceName "<VmCloudServiceName>" -Name "<VmName>" | Remove-AzureAvailabilitySet | Update-AzureVM
 ```
 
-## <a name="for-single-instance-configuration"></a>對於單一執行個體組態
-您可以藉由將這些 VM 新增至可用性設定組，以選取計劃性維護影響單一執行個體設定中之 VM 的時間。
+## <a name="for-single-instance-configuration"></a><span data-ttu-id="4b318-133">對於單一執行個體組態</span><span class="sxs-lookup"><span data-stu-id="4b318-133">For Single-instance Configuration</span></span>
+<span data-ttu-id="4b318-134">您可以藉由將這些 VM 新增至可用性設定組，以選取計劃性維護影響單一執行個體設定中之 VM 的時間。</span><span class="sxs-lookup"><span data-stu-id="4b318-134">You can select the time planned maintenance impacts you VMs in a Single-instance configuration by adding these VMs into availability sets.</span></span>
 
-逐步說明
+<span data-ttu-id="4b318-135">逐步說明</span><span class="sxs-lookup"><span data-stu-id="4b318-135">Step-by-step</span></span>
 
-1. 在計劃性維護 7 天前，會傳送電子郵件給單一執行個體組態中的 VM。 受影響單一執行個體的訂用帳戶識別碼和名稱會包含在電子郵件將電子郵件的本文中。
-2. 在這 7 天內，您可以藉由將單一執行個體 VM 新增至相同區域中的可用性設定組，以選擇執行個體重新啟動的時間。 此組態變更會導致重新開機，因為虛擬機器正在從一部以維護為目標的實體主機，移至另一部不是以維護為目標的實體主機。
-3. 遵循此處的指示以使用 Azure 入口網站和 Azure PowerShell，將現有的 VM 新增至可用性設定組。 (請參閱遵循下列步驟的 Azure PowerShell 範例。)
-4. 一旦這些 VM 重新設定為多重執行個體，隨即會從單一執行個體 VM 的計劃性維護排除。
-5. 單一執行個體 VM 更新完成 (根據原始電子郵件中的排程) 後，您可以從可用性設定組中移除 VM，讓 VM 回復為單一執行個體。
+1. <span data-ttu-id="4b318-136">在計劃性維護 7 天前，會傳送電子郵件給單一執行個體組態中的 VM。</span><span class="sxs-lookup"><span data-stu-id="4b318-136">An email is sent to you seven calendar days before the planned maintenance to VMs in a Single-instance configuration.</span></span> <span data-ttu-id="4b318-137">受影響單一執行個體的訂用帳戶識別碼和名稱會包含在電子郵件將電子郵件的本文中。</span><span class="sxs-lookup"><span data-stu-id="4b318-137">The subscription IDs and names of the affected Single-Instance VMs are included in the body of the email.</span></span>
+2. <span data-ttu-id="4b318-138">在這 7 天內，您可以藉由將單一執行個體 VM 新增至相同區域中的可用性設定組，以選擇執行個體重新啟動的時間。</span><span class="sxs-lookup"><span data-stu-id="4b318-138">During those seven days, you can choose the time your instance reboots by adding your Single-instance VMs to an availability set in that same region.</span></span> <span data-ttu-id="4b318-139">此組態變更會導致重新開機，因為虛擬機器正在從一部以維護為目標的實體主機，移至另一部不是以維護為目標的實體主機。</span><span class="sxs-lookup"><span data-stu-id="4b318-139">This change in configuration causes a reboot, as the Virtual Machine is moving from one physical host, targeted for maintenance, to another physical host that isn’t targeted for maintenance.</span></span>
+3. <span data-ttu-id="4b318-140">遵循此處的指示以使用 Azure 入口網站和 Azure PowerShell，將現有的 VM 新增至可用性設定組。</span><span class="sxs-lookup"><span data-stu-id="4b318-140">Follow instructions here to add existing VMs into availability sets using the Azure portal and Azure PowerShell.</span></span> <span data-ttu-id="4b318-141">(請參閱遵循下列步驟的 Azure PowerShell 範例。)</span><span class="sxs-lookup"><span data-stu-id="4b318-141">(See the Azure PowerShell sample that follows these steps.)</span></span>
+4. <span data-ttu-id="4b318-142">一旦這些 VM 重新設定為多重執行個體，隨即會從單一執行個體 VM 的計劃性維護排除。</span><span class="sxs-lookup"><span data-stu-id="4b318-142">Once these VMs are reconfigured as Multi-instance, they are excluded from the planned maintenance to Single-instance VMs.</span></span>
+5. <span data-ttu-id="4b318-143">單一執行個體 VM 更新完成 (根據原始電子郵件中的排程) 後，您可以從可用性設定組中移除 VM，讓 VM 回復為單一執行個體。</span><span class="sxs-lookup"><span data-stu-id="4b318-143">Once the single-instance VM update completes (according to schedule in the original email), you can return the VMs to single-instance by removing the VMs from their availability sets.</span></span>
 
-使用 Azure PowerShell 也可以達成將 VM 新增至可用性設定組：
+<span data-ttu-id="4b318-144">使用 Azure PowerShell 也可以達成將 VM 新增至可用性設定組：</span><span class="sxs-lookup"><span data-stu-id="4b318-144">Adding a VM to an availability set also can be achieved using Azure PowerShell:</span></span>
 
     Get-AzureVM -ServiceName "<VmCloudServiceName>" -Name "<VmName>" | Set-AzureAvailabilitySet -AvailabilitySetName "<AvSetName>" | Update-AzureVM
 

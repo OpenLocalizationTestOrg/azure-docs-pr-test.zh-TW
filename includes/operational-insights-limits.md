@@ -1,30 +1,30 @@
 
 >[!NOTE]
->Log Analytics 以前稱為 Operational Insights。
+><span data-ttu-id="182ed-101">Log Analytics 以前稱為 Operational Insights。</span><span class="sxs-lookup"><span data-stu-id="182ed-101">Log Analytics was formerly known as Operational Insights.</span></span>
 >
 >
 
-下列限制適用於每個訂用帳戶的 Log Analytics 資源：
+<span data-ttu-id="182ed-102">下列限制適用於每個訂用帳戶的 Log Analytics 資源：</span><span class="sxs-lookup"><span data-stu-id="182ed-102">The following limits apply to Log Analytics resources per subscription:</span></span>
 
-| 資源 | 預設限制 | 註解
+| <span data-ttu-id="182ed-103">資源</span><span class="sxs-lookup"><span data-stu-id="182ed-103">Resource</span></span> | <span data-ttu-id="182ed-104">預設限制</span><span class="sxs-lookup"><span data-stu-id="182ed-104">Default Limit</span></span> | <span data-ttu-id="182ed-105">註解</span><span class="sxs-lookup"><span data-stu-id="182ed-105">Comments</span></span>
 | --- | --- | --- |
-| 每一訂用帳戶的可用工作區數目 | 10 | 此限制無法增加。 |
-| 每一訂用帳戶的付費工作區數目 | N/A | 您會受到資源群組內的資源數目和每一訂用帳戶的資源群組數目所限制 | 
+| <span data-ttu-id="182ed-106">每一訂用帳戶的可用工作區數目</span><span class="sxs-lookup"><span data-stu-id="182ed-106">Number of free workspaces per subscription</span></span> | <span data-ttu-id="182ed-107">10</span><span class="sxs-lookup"><span data-stu-id="182ed-107">10</span></span> | <span data-ttu-id="182ed-108">此限制無法增加。</span><span class="sxs-lookup"><span data-stu-id="182ed-108">This limit cannot be increased.</span></span> |
+| <span data-ttu-id="182ed-109">每一訂用帳戶的付費工作區數目</span><span class="sxs-lookup"><span data-stu-id="182ed-109">Number of paid workspaces per subscription</span></span> | <span data-ttu-id="182ed-110">N/A</span><span class="sxs-lookup"><span data-stu-id="182ed-110">N/A</span></span> | <span data-ttu-id="182ed-111">您會受到資源群組內的資源數目和每一訂用帳戶的資源群組數目所限制</span><span class="sxs-lookup"><span data-stu-id="182ed-111">You are limited by the number of resources within a resource group and number of resource groups per subscription</span></span> | 
 
 
-下列限制適用於每個 Log Analytics 工作區：
+<span data-ttu-id="182ed-112">下列限制適用於每個 Log Analytics 工作區：</span><span class="sxs-lookup"><span data-stu-id="182ed-112">The following limits apply to each Log Analytics workspace:</span></span>
 
-|  | 免費 | 標準 | 高級 | 獨立 | OMS |
+|  | <span data-ttu-id="182ed-113">免費</span><span class="sxs-lookup"><span data-stu-id="182ed-113">Free</span></span> | <span data-ttu-id="182ed-114">標準</span><span class="sxs-lookup"><span data-stu-id="182ed-114">Standard</span></span> | <span data-ttu-id="182ed-115">高級</span><span class="sxs-lookup"><span data-stu-id="182ed-115">Premium</span></span> | <span data-ttu-id="182ed-116">獨立</span><span class="sxs-lookup"><span data-stu-id="182ed-116">Standalone</span></span> | <span data-ttu-id="182ed-117">OMS</span><span class="sxs-lookup"><span data-stu-id="182ed-117">OMS</span></span> |
 | --- | --- | --- | --- | --- | --- |
-| 每日所收集的資料量 |500 MB<sup>1</sup> |None |None | None | None
-| 資料保留期間 |7 天 |1 個月 |12 個月 | 1 個月 <sup>2</sup> | 1 個月 <sup>2</sup>|
+| <span data-ttu-id="182ed-118">每日所收集的資料量</span><span class="sxs-lookup"><span data-stu-id="182ed-118">Data volume collected per day</span></span> |<span data-ttu-id="182ed-119">500 MB<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="182ed-119">500 MB<sup>1</sup></span></span> |<span data-ttu-id="182ed-120">None</span><span class="sxs-lookup"><span data-stu-id="182ed-120">None</span></span> |<span data-ttu-id="182ed-121">None</span><span class="sxs-lookup"><span data-stu-id="182ed-121">None</span></span> | <span data-ttu-id="182ed-122">None</span><span class="sxs-lookup"><span data-stu-id="182ed-122">None</span></span> | <span data-ttu-id="182ed-123">None</span><span class="sxs-lookup"><span data-stu-id="182ed-123">None</span></span>
+| <span data-ttu-id="182ed-124">資料保留期間</span><span class="sxs-lookup"><span data-stu-id="182ed-124">Data retention period</span></span> |<span data-ttu-id="182ed-125">7 天</span><span class="sxs-lookup"><span data-stu-id="182ed-125">7 days</span></span> |<span data-ttu-id="182ed-126">1 個月</span><span class="sxs-lookup"><span data-stu-id="182ed-126">1 month</span></span> |<span data-ttu-id="182ed-127">12 個月</span><span class="sxs-lookup"><span data-stu-id="182ed-127">12 months</span></span> | <span data-ttu-id="182ed-128">1 個月 <sup>2</sup></span><span class="sxs-lookup"><span data-stu-id="182ed-128">1 month<sup>2</sup></span></span> | <span data-ttu-id="182ed-129">1 個月 <sup>2</sup></span><span class="sxs-lookup"><span data-stu-id="182ed-129">1 month <sup>2</sup></span></span>|
 
-<sup>1</sup>當客戶達到每日 500MB 資料傳輸限制時，系統會停止資料分析，並在次日開始時繼續。 一天是以 UTC 為基礎。
+<span data-ttu-id="182ed-130"><sup>1</sup>當客戶達到每日 500MB 資料傳輸限制時，系統會停止資料分析，並在次日開始時繼續。</span><span class="sxs-lookup"><span data-stu-id="182ed-130"><sup>1</sup> When customers reach their 500 MB daily data transfer limit, data analysis stops and resumes at the start of the next day.</span></span> <span data-ttu-id="182ed-131">一天是以 UTC 為基礎。</span><span class="sxs-lookup"><span data-stu-id="182ed-131">A day is based on UTC.</span></span>
 
-<sup>2</sup>獨立和 OMS 定價方案的資料保留期限可增加到 730 天。
+<span data-ttu-id="182ed-132"><sup>2</sup>獨立和 OMS 定價方案的資料保留期限可增加到 730 天。</span><span class="sxs-lookup"><span data-stu-id="182ed-132"><sup>2</sup> The data retention period for the Standalone and OMS pricing plans can be increased to 730 days.</span></span>
 
-| 類別 | 限制 | 註解
+| <span data-ttu-id="182ed-133">類別</span><span class="sxs-lookup"><span data-stu-id="182ed-133">Category</span></span> | <span data-ttu-id="182ed-134">限制</span><span class="sxs-lookup"><span data-stu-id="182ed-134">Limits</span></span> | <span data-ttu-id="182ed-135">註解</span><span class="sxs-lookup"><span data-stu-id="182ed-135">Comments</span></span>
 | --- | --- | --- |
-| 資料收集器 API | 單一篇文章的大小上限為 30 MB<br>欄位值的大小上限為 32 KB | 將較大的磁碟區分割成多篇文章<br>超過 32 KB 的欄位會被截斷。 |
-| 搜尋 API | 傳回非彙總資料的 5000 筆記錄<br>彙總資料的 500000 筆記錄 | 彙總資料是包含 `measure` 命令的搜尋
+| <span data-ttu-id="182ed-136">資料收集器 API</span><span class="sxs-lookup"><span data-stu-id="182ed-136">Data Collector API</span></span> | <span data-ttu-id="182ed-137">單一篇文章的大小上限為 30 MB</span><span class="sxs-lookup"><span data-stu-id="182ed-137">Maximum size for a single post is 30 MB</span></span><br><span data-ttu-id="182ed-138">欄位值的大小上限為 32 KB</span><span class="sxs-lookup"><span data-stu-id="182ed-138">Maximum size for field values is 32 KB</span></span> | <span data-ttu-id="182ed-139">將較大的磁碟區分割成多篇文章</span><span class="sxs-lookup"><span data-stu-id="182ed-139">Split larger volumes into multiple posts</span></span><br><span data-ttu-id="182ed-140">超過 32 KB 的欄位會被截斷。</span><span class="sxs-lookup"><span data-stu-id="182ed-140">Fields longer than 32 KB are truncated.</span></span> |
+| <span data-ttu-id="182ed-141">搜尋 API</span><span class="sxs-lookup"><span data-stu-id="182ed-141">Search API</span></span> | <span data-ttu-id="182ed-142">傳回非彙總資料的 5000 筆記錄</span><span class="sxs-lookup"><span data-stu-id="182ed-142">5000 records returned for non-aggregated data</span></span><br><span data-ttu-id="182ed-143">彙總資料的 500000 筆記錄</span><span class="sxs-lookup"><span data-stu-id="182ed-143">500000 records for aggregated data</span></span> | <span data-ttu-id="182ed-144">彙總資料是包含 `measure` 命令的搜尋</span><span class="sxs-lookup"><span data-stu-id="182ed-144">Aggregated data is a search that includes the `measure` command</span></span>
  

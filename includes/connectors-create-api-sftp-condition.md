@@ -1,12 +1,12 @@
-1. 選取 [+ 新步驟]  來新增動作。  
-2. 選取 [新增動作]  連結。 這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。 以這個範例來說，感興趣的動作是 SharePoint 動作。    
-   ![SFTP 連線圖像 1](./media/connectors-create-api-sftp/condition-1.png)    
-3. 選取左邊的 [選擇值]  。 
-   ![SFTP 連線圖像 2](./media/connectors-create-api-sftp/condition-2.png)    
-4. 選取 [檔案內容]  以表示您想要在條件中評估檔案內容。      
-   ![SFTP 連線圖像 3](./media/connectors-create-api-sftp/condition-3.png)   
-5. 從運算子清單中選取 [包含]  。       
-   ![SFTP 連線圖像 4](./media/connectors-create-api-sftp/condition-4.png)   
-6. 選取右邊的 [選擇值]  ，然後輸入 *ExtractMeFirst*。 在此範例中，ExtractMeFirst 是能夠存取 SFTP 資料夾的人員預期檔案中要有的值，用以指出檔案是應該要擷取的封存檔案。  
-   ![SFTP 連線圖像 5](./media/connectors-create-api-sftp/condition-5.png)   
+1. <span data-ttu-id="5b530-101">選取 [+ 新步驟]  來新增動作。</span><span class="sxs-lookup"><span data-stu-id="5b530-101">Select **+ New step** to add the action.</span></span>  
+2. <span data-ttu-id="5b530-102">選取 [新增動作]  連結。</span><span class="sxs-lookup"><span data-stu-id="5b530-102">Select the **Add an action** link.</span></span> <span data-ttu-id="5b530-103">這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。</span><span class="sxs-lookup"><span data-stu-id="5b530-103">This opens the search box where you can search for any action you would like to take.</span></span> <span data-ttu-id="5b530-104">以這個範例來說，感興趣的動作是 SharePoint 動作。</span><span class="sxs-lookup"><span data-stu-id="5b530-104">For this example, SharePoint actions are of interest.</span></span>    
+   <span data-ttu-id="5b530-105">![SFTP 連線圖像 1](./media/connectors-create-api-sftp/condition-1.png)</span><span class="sxs-lookup"><span data-stu-id="5b530-105">![SFTP condition image 1](./media/connectors-create-api-sftp/condition-1.png)</span></span>    
+3. <span data-ttu-id="5b530-106">選取左邊的 [選擇值]  。</span><span class="sxs-lookup"><span data-stu-id="5b530-106">Select **Choose a value** on the left.</span></span> 
+   <span data-ttu-id="5b530-107">![SFTP 連線圖像 2](./media/connectors-create-api-sftp/condition-2.png)</span><span class="sxs-lookup"><span data-stu-id="5b530-107">![SFTP condition image 2](./media/connectors-create-api-sftp/condition-2.png)</span></span>    
+4. <span data-ttu-id="5b530-108">選取 [檔案內容]  以表示您想要在條件中評估檔案內容。</span><span class="sxs-lookup"><span data-stu-id="5b530-108">Select **File content** to indicate that you want to evaluate the file contents in the condition.</span></span>      
+   <span data-ttu-id="5b530-109">![SFTP 連線圖像 3](./media/connectors-create-api-sftp/condition-3.png)</span><span class="sxs-lookup"><span data-stu-id="5b530-109">![SFTP condition image 3](./media/connectors-create-api-sftp/condition-3.png)</span></span>   
+5. <span data-ttu-id="5b530-110">從運算子清單中選取 [包含]  。</span><span class="sxs-lookup"><span data-stu-id="5b530-110">Select *contains* from the list of operators.</span></span>       
+   <span data-ttu-id="5b530-111">![SFTP 連線圖像 4](./media/connectors-create-api-sftp/condition-4.png)</span><span class="sxs-lookup"><span data-stu-id="5b530-111">![SFTP condition image 4](./media/connectors-create-api-sftp/condition-4.png)</span></span>   
+6. <span data-ttu-id="5b530-112">選取右邊的 [選擇值]  ，然後輸入 *ExtractMeFirst*。</span><span class="sxs-lookup"><span data-stu-id="5b530-112">Select **Choose a value** on the right and enter *ExtractMeFirst*.</span></span> <span data-ttu-id="5b530-113">在此範例中，ExtractMeFirst 是能夠存取 SFTP 資料夾的人員預期檔案中要有的值，用以指出檔案是應該要擷取的封存檔案。</span><span class="sxs-lookup"><span data-stu-id="5b530-113">In this example, ExtractMeFirst is a value that is expected to be in a file by persons who have access to the SFTP folder to indicate that it is an archive file that should be extracted.</span></span>  
+   <span data-ttu-id="5b530-114">![SFTP 連線圖像 5](./media/connectors-create-api-sftp/condition-5.png)</span><span class="sxs-lookup"><span data-stu-id="5b530-114">![SFTP condition image 5](./media/connectors-create-api-sftp/condition-5.png)</span></span>   
 

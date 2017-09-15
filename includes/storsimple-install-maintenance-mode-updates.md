@@ -1,19 +1,19 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="to-install-maintenance-mode-updates-via-windows-powershell-for-storsimple"></a>透過 Windows PowerShell for StorSimple 安裝維護模式更新
-1. 如果您尚未這樣做，請存取裝置序列主控台並選取選項 1 [使用完整存取權登入] 。 
-2. 輸入密碼。 預設密碼為 **Password1**。
-3. 在命令提示字元中，輸入：
+#### <a name="to-install-maintenance-mode-updates-via-windows-powershell-for-storsimple"></a><span data-ttu-id="2aa24-101">透過 Windows PowerShell for StorSimple 安裝維護模式更新</span><span class="sxs-lookup"><span data-stu-id="2aa24-101">To install Maintenance mode updates via Windows PowerShell for StorSimple</span></span>
+1. <span data-ttu-id="2aa24-102">如果您尚未這樣做，請存取裝置序列主控台並選取選項 1 [使用完整存取權登入] 。</span><span class="sxs-lookup"><span data-stu-id="2aa24-102">If you haven't done so already, access the device serial console and select option 1, **Log in with full access**.</span></span> 
+2. <span data-ttu-id="2aa24-103">輸入密碼。</span><span class="sxs-lookup"><span data-stu-id="2aa24-103">Type the password.</span></span> <span data-ttu-id="2aa24-104">預設密碼為 **Password1**。</span><span class="sxs-lookup"><span data-stu-id="2aa24-104">The default password is **Password1**.</span></span>
+3. <span data-ttu-id="2aa24-105">在命令提示字元中，輸入：</span><span class="sxs-lookup"><span data-stu-id="2aa24-105">At the command prompt, type:</span></span>
    
      `Get-HcsUpdateAvailability` 
-4. 系統將通知您是否有可用的更新，以及更新是否為破壞性或非破壞性更新。 若要套用干擾性更新，您需要使裝置進入維護模式。 如需相關指示，請參閱[步驟 2：進入維護模式](../articles/storsimple/storsimple-update-device.md#step2)。
-5. 當裝置處於維護模式時，在命令提示字元中輸入： `Start-HcsUpdate`
-6. 系統將提示您進行確認。 當您確認更新之後，它們將安裝於您目前正在存取的控制站上。 安裝更新之後，將重新啟動控制站。 
-7. 監視更新的狀態。 輸入：
+4. <span data-ttu-id="2aa24-106">系統將通知您是否有可用的更新，以及更新是否為破壞性或非破壞性更新。</span><span class="sxs-lookup"><span data-stu-id="2aa24-106">You will be notified if updates are available and whether the updates are disruptive or non-disruptive.</span></span> <span data-ttu-id="2aa24-107">若要套用干擾性更新，您需要使裝置進入維護模式。</span><span class="sxs-lookup"><span data-stu-id="2aa24-107">To apply disruptive updates, you need to put the device into Maintenance mode.</span></span> <span data-ttu-id="2aa24-108">如需相關指示，請參閱[步驟 2：進入維護模式](../articles/storsimple/storsimple-update-device.md#step2)。</span><span class="sxs-lookup"><span data-stu-id="2aa24-108">See [Step 2: Enter Maintenance mode](../articles/storsimple/storsimple-update-device.md#step2) for instructions.</span></span>
+5. <span data-ttu-id="2aa24-109">當裝置處於維護模式時，在命令提示字元中輸入： `Start-HcsUpdate`</span><span class="sxs-lookup"><span data-stu-id="2aa24-109">When your device is in Maintenance mode, at the command prompt, type: `Start-HcsUpdate`</span></span>
+6. <span data-ttu-id="2aa24-110">系統將提示您進行確認。</span><span class="sxs-lookup"><span data-stu-id="2aa24-110">You will be prompted for confirmation.</span></span> <span data-ttu-id="2aa24-111">當您確認更新之後，它們將安裝於您目前正在存取的控制站上。</span><span class="sxs-lookup"><span data-stu-id="2aa24-111">After you confirm the updates, they will be installed on the controller that you are currently accessing.</span></span> <span data-ttu-id="2aa24-112">安裝更新之後，將重新啟動控制站。</span><span class="sxs-lookup"><span data-stu-id="2aa24-112">After the updates are installed, the controller will restart.</span></span> 
+7. <span data-ttu-id="2aa24-113">監視更新的狀態。</span><span class="sxs-lookup"><span data-stu-id="2aa24-113">Monitor the status of updates.</span></span> <span data-ttu-id="2aa24-114">輸入：</span><span class="sxs-lookup"><span data-stu-id="2aa24-114">Type:</span></span>
    
     `Get-HcsUpdateStatus`
    
-    如果 `RunInProgress` 是 `True`，表示更新仍在進行中。 如果 `RunInProgress` 是 `False`，表示已完成更新。  
-8. 當目前的控制站上已安裝更新並重新啟動後，請連接到另一個控制站，然後執行步驟 1 到 6。
-9. 更新這兩個控制站之後，結束維護模式。 如需相關指示，請參閱[步驟 4：結束維護模式](../articles/storsimple/storsimple-update-device.md#step4)。
+    <span data-ttu-id="2aa24-115">如果 `RunInProgress` 是 `True`，表示更新仍在進行中。</span><span class="sxs-lookup"><span data-stu-id="2aa24-115">If the `RunInProgress` is `True`, the update is still in progress.</span></span> <span data-ttu-id="2aa24-116">如果 `RunInProgress` 是 `False`，表示已完成更新。</span><span class="sxs-lookup"><span data-stu-id="2aa24-116">If `RunInProgress` is `False`, it indicates that the update has completed.</span></span>  
+8. <span data-ttu-id="2aa24-117">當目前的控制站上已安裝更新並重新啟動後，請連接到另一個控制站，然後執行步驟 1 到 6。</span><span class="sxs-lookup"><span data-stu-id="2aa24-117">When the update is installed on the current controller and it has restarted, connect to the other controller and perform steps 1 through 6.</span></span>
+9. <span data-ttu-id="2aa24-118">更新這兩個控制站之後，結束維護模式。</span><span class="sxs-lookup"><span data-stu-id="2aa24-118">After both controllers are updated, exit Maintenance mode.</span></span> <span data-ttu-id="2aa24-119">如需相關指示，請參閱[步驟 4：結束維護模式](../articles/storsimple/storsimple-update-device.md#step4)。</span><span class="sxs-lookup"><span data-stu-id="2aa24-119">See [Step 4: Exit Maintenance mode](../articles/storsimple/storsimple-update-device.md#step4) for instructions.</span></span>
 

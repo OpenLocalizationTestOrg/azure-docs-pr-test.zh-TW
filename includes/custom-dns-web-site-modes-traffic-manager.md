@@ -1,4 +1,4 @@
-在由流量管理員進行負載平衡的 Azure App Service 中的 Web 應用程式上設定自訂網域名稱只適用於 [ **標準** ] 模式網站。 將 Web 應用程式從「免費」App Service 方案模式切換到「共用」、「基本」或「標準」模式之前，您必須先移除您的 App Service 訂用帳戶的支出上限。 
+<span data-ttu-id="ae60d-101">在由流量管理員進行負載平衡的 Azure App Service 中的 Web 應用程式上設定自訂網域名稱只適用於 [ **標準** ] 模式網站。</span><span class="sxs-lookup"><span data-stu-id="ae60d-101">Setting a custom domain name on a web app in Azure App Service that is load balanced by Traffic Manager is only available for **Standard** mode websites.</span></span> <span data-ttu-id="ae60d-102">將 Web 應用程式從「免費」App Service 方案模式切換到「共用」、「基本」或「標準」模式之前，您必須先移除您的 App Service 訂用帳戶的支出上限。</span><span class="sxs-lookup"><span data-stu-id="ae60d-102">Before switching a web app from the Free App Service plan mode to the Shared, Basic or Standard mode, you must first remove spending caps in place for your App Service subscription.</span></span> 
 
-如需 App Service 計劃模式的詳細資訊 (包括如何變更網站模式)，請參閱 [如何調整網站規模](../articles/app-service-web/web-sites-scale.md)。
+<span data-ttu-id="ae60d-103">如需 App Service 計劃模式的詳細資訊 (包括如何變更網站模式)，請參閱 [如何調整網站規模](../articles/app-service-web/web-sites-scale.md)。</span><span class="sxs-lookup"><span data-stu-id="ae60d-103">For more information on the App Service plan modes, including how to change the mode of your site, see [How to scale web sites](../articles/app-service-web/web-sites-scale.md).</span></span>
 

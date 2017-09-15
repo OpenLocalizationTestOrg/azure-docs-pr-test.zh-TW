@@ -1,34 +1,34 @@
-### <a name="number-of-fault-domains-per-region"></a>每個區域的容錯網域數目
+### <a name="number-of-fault-domains-per-region"></a><span data-ttu-id="6f5b0-101">每個區域的容錯網域數目</span><span class="sxs-lookup"><span data-stu-id="6f5b0-101">Number of Fault Domains per region</span></span>
 
-| 區域              | 容錯網域的數目上限  |
+| <span data-ttu-id="6f5b0-102">區域</span><span class="sxs-lookup"><span data-stu-id="6f5b0-102">Region</span></span>              | <span data-ttu-id="6f5b0-103">容錯網域的數目上限</span><span class="sxs-lookup"><span data-stu-id="6f5b0-103">Max # of Fault Domains</span></span>  |
 |---------------------|-------------------------|
-| 美國東部             | 3                       |
-| 美國東部 2           | 3                       |
-| 美國西部             | 3                       |
-| 美國西部 2           | 2                       |
-| 美國中部          | 3                       |
-| 美國中北部    | 3                       |
-| 美國中南部    | 3                       |
-| 美國中西部     | 2                       |
-| 加拿大中部      | 2                       |
-| 加拿大東部         | 2                       |
+| <span data-ttu-id="6f5b0-104">美國東部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-104">East US</span></span>             | <span data-ttu-id="6f5b0-105">3</span><span class="sxs-lookup"><span data-stu-id="6f5b0-105">3</span></span>                       |
+| <span data-ttu-id="6f5b0-106">美國東部 2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-106">East US 2</span></span>           | <span data-ttu-id="6f5b0-107">3</span><span class="sxs-lookup"><span data-stu-id="6f5b0-107">3</span></span>                       |
+| <span data-ttu-id="6f5b0-108">美國西部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-108">West US</span></span>             | <span data-ttu-id="6f5b0-109">3</span><span class="sxs-lookup"><span data-stu-id="6f5b0-109">3</span></span>                       |
+| <span data-ttu-id="6f5b0-110">美國西部 2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-110">West US 2</span></span>           | <span data-ttu-id="6f5b0-111">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-111">2</span></span>                       |
+| <span data-ttu-id="6f5b0-112">美國中部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-112">Central US</span></span>          | <span data-ttu-id="6f5b0-113">3</span><span class="sxs-lookup"><span data-stu-id="6f5b0-113">3</span></span>                       |
+| <span data-ttu-id="6f5b0-114">美國中北部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-114">North Central US</span></span>    | <span data-ttu-id="6f5b0-115">3</span><span class="sxs-lookup"><span data-stu-id="6f5b0-115">3</span></span>                       |
+| <span data-ttu-id="6f5b0-116">美國中南部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-116">South Central US</span></span>    | <span data-ttu-id="6f5b0-117">3</span><span class="sxs-lookup"><span data-stu-id="6f5b0-117">3</span></span>                       |
+| <span data-ttu-id="6f5b0-118">美國中西部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-118">West Central US</span></span>     | <span data-ttu-id="6f5b0-119">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-119">2</span></span>                       |
+| <span data-ttu-id="6f5b0-120">加拿大中部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-120">Canada Central</span></span>      | <span data-ttu-id="6f5b0-121">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-121">2</span></span>                       |
+| <span data-ttu-id="6f5b0-122">加拿大東部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-122">Canada East</span></span>         | <span data-ttu-id="6f5b0-123">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-123">2</span></span>                       |
 |                     |                         |
-| 北歐        | 3                       |
-| 西歐         | 3                       |
-| 英國南部            | 2                       |
-| 英國西部             | 2                       |
+| <span data-ttu-id="6f5b0-124">北歐</span><span class="sxs-lookup"><span data-stu-id="6f5b0-124">North Europe</span></span>        | <span data-ttu-id="6f5b0-125">3</span><span class="sxs-lookup"><span data-stu-id="6f5b0-125">3</span></span>                       |
+| <span data-ttu-id="6f5b0-126">西歐</span><span class="sxs-lookup"><span data-stu-id="6f5b0-126">West Europe</span></span>         | <span data-ttu-id="6f5b0-127">3</span><span class="sxs-lookup"><span data-stu-id="6f5b0-127">3</span></span>                       |
+| <span data-ttu-id="6f5b0-128">英國南部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-128">UK South</span></span>            | <span data-ttu-id="6f5b0-129">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-129">2</span></span>                       |
+| <span data-ttu-id="6f5b0-130">英國西部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-130">UK West</span></span>             | <span data-ttu-id="6f5b0-131">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-131">2</span></span>                       |
 |                     |                         |
-| 東亞           | 2                       |
-| 東南亞     | 2                       |
-| 日本東部          | 2                       |
-| 日本西部          | 2                       |
-| 印度南部         | 2                       |
-| 印度中部       | 2                       |
-| 印度西部          | 2                       |
-| 韓國中部       | 2                       |
-| 韓國南部         | 2                       |
+| <span data-ttu-id="6f5b0-132">東亞</span><span class="sxs-lookup"><span data-stu-id="6f5b0-132">East Asia</span></span>           | <span data-ttu-id="6f5b0-133">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-133">2</span></span>                       |
+| <span data-ttu-id="6f5b0-134">東南亞</span><span class="sxs-lookup"><span data-stu-id="6f5b0-134">South East Asia</span></span>     | <span data-ttu-id="6f5b0-135">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-135">2</span></span>                       |
+| <span data-ttu-id="6f5b0-136">日本東部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-136">Japan East</span></span>          | <span data-ttu-id="6f5b0-137">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-137">2</span></span>                       |
+| <span data-ttu-id="6f5b0-138">日本西部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-138">Japan West</span></span>          | <span data-ttu-id="6f5b0-139">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-139">2</span></span>                       |
+| <span data-ttu-id="6f5b0-140">印度南部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-140">South India</span></span>         | <span data-ttu-id="6f5b0-141">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-141">2</span></span>                       |
+| <span data-ttu-id="6f5b0-142">印度中部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-142">Central India</span></span>       | <span data-ttu-id="6f5b0-143">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-143">2</span></span>                       |
+| <span data-ttu-id="6f5b0-144">印度西部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-144">West India</span></span>          | <span data-ttu-id="6f5b0-145">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-145">2</span></span>                       |
+| <span data-ttu-id="6f5b0-146">韓國中部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-146">Korea Central</span></span>       | <span data-ttu-id="6f5b0-147">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-147">2</span></span>                       |
+| <span data-ttu-id="6f5b0-148">韓國南部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-148">Korea South</span></span>         | <span data-ttu-id="6f5b0-149">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-149">2</span></span>                       |
 |                     |                         |
-| 澳洲東部      | 2                       |
-| 澳洲東南部 | 2                       |
+| <span data-ttu-id="6f5b0-150">澳洲東部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-150">Australia East</span></span>      | <span data-ttu-id="6f5b0-151">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-151">2</span></span>                       |
+| <span data-ttu-id="6f5b0-152">澳洲東南部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-152">Australia Southeast</span></span> | <span data-ttu-id="6f5b0-153">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-153">2</span></span>                       |
 |                     |                         |
-| 巴西南部        | 2                       |
+| <span data-ttu-id="6f5b0-154">巴西南部</span><span class="sxs-lookup"><span data-stu-id="6f5b0-154">Brazil South</span></span>        | <span data-ttu-id="6f5b0-155">2</span><span class="sxs-lookup"><span data-stu-id="6f5b0-155">2</span></span>                       |

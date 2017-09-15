@@ -1,26 +1,26 @@
-UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <要用於傳輸資料的 IP 位址] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]
+<span data-ttu-id="25af8-101">UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <要用於傳輸資料的 IP 位址] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]</span><span class="sxs-lookup"><span data-stu-id="25af8-101">UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <IP address to be used for data transfer] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]</span></span>
 
-參數：
+<span data-ttu-id="25af8-102">參數：</span><span class="sxs-lookup"><span data-stu-id="25af8-102">Parameters:</span></span>
 
-* / ServerMode：必要。 指定應該同時安裝組態和處理序伺服器，還是只安裝處理序伺服器。 輸入值：CS、PS
-* InstallLocation：必要。 在其中安裝元件的資料夾。
-* /MySQLCredsFilePath。 必要。 儲存 MySQL 伺服器認證的檔案路徑。 檔案格式應該如下：
-* [MySQLCredentials]
-* MySQLRootPassword = "<Password>"
-* MySQLUserPassword = "<Password>"
-* /VaultCredsFilePath。 必要。 保存庫認證檔的位置
-* /EnvType。 必要。 安裝類型。 值：VMware、NonVMware
-* /PSIP 和 /CSIP。 必要。 處理序伺服器和組態伺服器 IP 位址。
-* /PassphraseFilePath。 必要。 複雜密碼檔案的位置。
-* /BypassProxy。 選用。 指定組態伺服器不使用 Proxy 連接至 Azure。
-* /ProxySettingsFilePath。 選用。 Proxy 設定 (預設 Proxy 需要驗證或自訂的 Proxy)。 檔案格式應該如下：
-* [ProxySettings]
-* ProxyAuthentication = "Yes/No"
-* Proxy IP = "IP Address>"
-* ProxyPort = "<Port>"
-* ProxyUserName="<User Name>"
-* ProxyPassword="<Password>"
-* DataTransferSecurePort。 選用。 複寫資料的連接埠號碼。
-* SkipSpaceCheck。 選用。 略過快取的空間檢查。
-* AcceptThirdpartyEULA。 必要。 接受協力廠商使用者授權合約。
-* ShowThirdpartyEULA。 必要。 顯示協力廠商使用者授權合約。 如果提供作為輸入，則會忽略所有其他參數。
+* <span data-ttu-id="25af8-103">/ ServerMode：必要。</span><span class="sxs-lookup"><span data-stu-id="25af8-103">/ServerMode: Mandatory.</span></span> <span data-ttu-id="25af8-104">指定應該同時安裝組態和處理序伺服器，還是只安裝處理序伺服器。</span><span class="sxs-lookup"><span data-stu-id="25af8-104">Specifies whether both the configuration and process servers should be installed, or the process server only.</span></span> <span data-ttu-id="25af8-105">輸入值：CS、PS</span><span class="sxs-lookup"><span data-stu-id="25af8-105">Input values: CS, PS.</span></span>
+* <span data-ttu-id="25af8-106">InstallLocation：必要。</span><span class="sxs-lookup"><span data-stu-id="25af8-106">InstallLocation: Mandatory.</span></span> <span data-ttu-id="25af8-107">在其中安裝元件的資料夾。</span><span class="sxs-lookup"><span data-stu-id="25af8-107">The folder in which the components are installed.</span></span>
+* <span data-ttu-id="25af8-108">/MySQLCredsFilePath。</span><span class="sxs-lookup"><span data-stu-id="25af8-108">/MySQLCredsFilePath.</span></span> <span data-ttu-id="25af8-109">必要。</span><span class="sxs-lookup"><span data-stu-id="25af8-109">Mandatory.</span></span> <span data-ttu-id="25af8-110">儲存 MySQL 伺服器認證的檔案路徑。</span><span class="sxs-lookup"><span data-stu-id="25af8-110">The file path in which the MySQL server credentials are stored.</span></span> <span data-ttu-id="25af8-111">檔案格式應該如下：</span><span class="sxs-lookup"><span data-stu-id="25af8-111">The file should be in this format:</span></span>
+* <span data-ttu-id="25af8-112">[MySQLCredentials]</span><span class="sxs-lookup"><span data-stu-id="25af8-112">[MySQLCredentials]</span></span>
+* <span data-ttu-id="25af8-113">MySQLRootPassword = "<Password>"</span><span class="sxs-lookup"><span data-stu-id="25af8-113">MySQLRootPassword = "<Password>"</span></span>
+* <span data-ttu-id="25af8-114">MySQLUserPassword = "<Password>"</span><span class="sxs-lookup"><span data-stu-id="25af8-114">MySQLUserPassword = "<Password>"</span></span>
+* <span data-ttu-id="25af8-115">/VaultCredsFilePath。</span><span class="sxs-lookup"><span data-stu-id="25af8-115">/VaultCredsFilePath.</span></span> <span data-ttu-id="25af8-116">必要。</span><span class="sxs-lookup"><span data-stu-id="25af8-116">Mandatory.</span></span> <span data-ttu-id="25af8-117">保存庫認證檔的位置</span><span class="sxs-lookup"><span data-stu-id="25af8-117">The location of the vault credentials file</span></span>
+* <span data-ttu-id="25af8-118">/EnvType。</span><span class="sxs-lookup"><span data-stu-id="25af8-118">/EnvType.</span></span> <span data-ttu-id="25af8-119">必要。</span><span class="sxs-lookup"><span data-stu-id="25af8-119">Mandatory.</span></span> <span data-ttu-id="25af8-120">安裝類型。</span><span class="sxs-lookup"><span data-stu-id="25af8-120">The type of installation.</span></span> <span data-ttu-id="25af8-121">值：VMware、NonVMware</span><span class="sxs-lookup"><span data-stu-id="25af8-121">Values: VMware, NonVMware</span></span>
+* <span data-ttu-id="25af8-122">/PSIP 和 /CSIP。</span><span class="sxs-lookup"><span data-stu-id="25af8-122">/PSIP and /CSIP.</span></span> <span data-ttu-id="25af8-123">必要。</span><span class="sxs-lookup"><span data-stu-id="25af8-123">Mandatory.</span></span> <span data-ttu-id="25af8-124">處理序伺服器和組態伺服器 IP 位址。</span><span class="sxs-lookup"><span data-stu-id="25af8-124">The IP address of the process server and configuration server.</span></span>
+* <span data-ttu-id="25af8-125">/PassphraseFilePath。</span><span class="sxs-lookup"><span data-stu-id="25af8-125">/PassphraseFilePath.</span></span> <span data-ttu-id="25af8-126">必要。</span><span class="sxs-lookup"><span data-stu-id="25af8-126">Mandatory.</span></span> <span data-ttu-id="25af8-127">複雜密碼檔案的位置。</span><span class="sxs-lookup"><span data-stu-id="25af8-127">The location of the passphrase file.</span></span>
+* <span data-ttu-id="25af8-128">/BypassProxy。</span><span class="sxs-lookup"><span data-stu-id="25af8-128">/BypassProxy.</span></span> <span data-ttu-id="25af8-129">選用。</span><span class="sxs-lookup"><span data-stu-id="25af8-129">Optional.</span></span> <span data-ttu-id="25af8-130">指定組態伺服器不使用 Proxy 連接至 Azure。</span><span class="sxs-lookup"><span data-stu-id="25af8-130">Specifies that the configuration server connects to Azure without a proxy.</span></span>
+* <span data-ttu-id="25af8-131">/ProxySettingsFilePath。</span><span class="sxs-lookup"><span data-stu-id="25af8-131">/ProxySettingsFilePath.</span></span> <span data-ttu-id="25af8-132">選用。</span><span class="sxs-lookup"><span data-stu-id="25af8-132">Optional.</span></span> <span data-ttu-id="25af8-133">Proxy 設定 (預設 Proxy 需要驗證或自訂的 Proxy)。</span><span class="sxs-lookup"><span data-stu-id="25af8-133">Proxy settings (The default proxy requires authentication, or a custom proxy).</span></span> <span data-ttu-id="25af8-134">檔案格式應該如下：</span><span class="sxs-lookup"><span data-stu-id="25af8-134">The file should be in this format:</span></span>
+* <span data-ttu-id="25af8-135">[ProxySettings]</span><span class="sxs-lookup"><span data-stu-id="25af8-135">[ProxySettings]</span></span>
+* <span data-ttu-id="25af8-136">ProxyAuthentication = "Yes/No"</span><span class="sxs-lookup"><span data-stu-id="25af8-136">ProxyAuthentication = "Yes/No"</span></span>
+* <span data-ttu-id="25af8-137">Proxy IP = "IP Address>"</span><span class="sxs-lookup"><span data-stu-id="25af8-137">Proxy IP = "IP Address>"</span></span>
+* <span data-ttu-id="25af8-138">ProxyPort = "<Port>"</span><span class="sxs-lookup"><span data-stu-id="25af8-138">ProxyPort = "<Port>"</span></span>
+* <span data-ttu-id="25af8-139">ProxyUserName="<User Name>"</span><span class="sxs-lookup"><span data-stu-id="25af8-139">ProxyUserName="<User Name>"</span></span>
+* <span data-ttu-id="25af8-140">ProxyPassword="<Password>"</span><span class="sxs-lookup"><span data-stu-id="25af8-140">ProxyPassword="<Password>"</span></span>
+* <span data-ttu-id="25af8-141">DataTransferSecurePort。</span><span class="sxs-lookup"><span data-stu-id="25af8-141">DataTransferSecurePort.</span></span> <span data-ttu-id="25af8-142">選用。</span><span class="sxs-lookup"><span data-stu-id="25af8-142">Optional.</span></span> <span data-ttu-id="25af8-143">複寫資料的連接埠號碼。</span><span class="sxs-lookup"><span data-stu-id="25af8-143">The port number for replication data.</span></span>
+* <span data-ttu-id="25af8-144">SkipSpaceCheck。</span><span class="sxs-lookup"><span data-stu-id="25af8-144">SkipSpaceCheck.</span></span> <span data-ttu-id="25af8-145">選用。</span><span class="sxs-lookup"><span data-stu-id="25af8-145">Optional.</span></span> <span data-ttu-id="25af8-146">略過快取的空間檢查。</span><span class="sxs-lookup"><span data-stu-id="25af8-146">Skip space checking for cache.</span></span>
+* <span data-ttu-id="25af8-147">AcceptThirdpartyEULA。</span><span class="sxs-lookup"><span data-stu-id="25af8-147">AcceptThirdpartyEULA.</span></span> <span data-ttu-id="25af8-148">必要。</span><span class="sxs-lookup"><span data-stu-id="25af8-148">Mandatory.</span></span> <span data-ttu-id="25af8-149">接受協力廠商使用者授權合約。</span><span class="sxs-lookup"><span data-stu-id="25af8-149">Accepts the third-party EULA.</span></span>
+* <span data-ttu-id="25af8-150">ShowThirdpartyEULA。</span><span class="sxs-lookup"><span data-stu-id="25af8-150">ShowThirdpartyEULA.</span></span> <span data-ttu-id="25af8-151">必要。</span><span class="sxs-lookup"><span data-stu-id="25af8-151">Mandatory.</span></span> <span data-ttu-id="25af8-152">顯示協力廠商使用者授權合約。</span><span class="sxs-lookup"><span data-stu-id="25af8-152">Displays third-party EULA.</span></span> <span data-ttu-id="25af8-153">如果提供作為輸入，則會忽略所有其他參數。</span><span class="sxs-lookup"><span data-stu-id="25af8-153">If provided as input, all other parameters are ignored.</span></span>

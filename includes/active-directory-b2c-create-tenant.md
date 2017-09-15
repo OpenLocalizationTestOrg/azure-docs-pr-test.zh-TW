@@ -1,21 +1,21 @@
-按一下 [新增] 按鈕。 在 [搜尋 Marketplace] 欄位中，輸入 `Azure Active Directory B2C`。
+<span data-ttu-id="b1c85-101">按一下 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="b1c85-101">Click the **New** button.</span></span> <span data-ttu-id="b1c85-102">在 [搜尋 Marketplace] 欄位中，輸入 `Azure Active Directory B2C`。</span><span class="sxs-lookup"><span data-stu-id="b1c85-102">In the **Search the marketplace** field, enter `Azure Active Directory B2C`.</span></span>
 
 ![在 [搜尋 Marketplace]欄位中新增醒目提示的按鈕和 Azure Active Directory B2C 文字](./media/active-directory-b2c-create-tenant/find-azure-ad-b2c.png)
 
-在結果清單中選取 [Azure Active Directory B2C]。
+<span data-ttu-id="b1c85-104">在結果清單中選取 [Azure Active Directory B2C]。</span><span class="sxs-lookup"><span data-stu-id="b1c85-104">In the results list, select **Azure Active Directory B2C**.</span></span>
 
 ![結果清單中選取的 Azure Active Directory B2C](./media/active-directory-b2c-create-tenant/find-azure-ad-b2c-result.png)
 
-系統會顯示有關 Azure Active Directory B2C 的詳細資料。 若要開始設定新的 Azure Active Directory B2C 租用戶，請按一下 [建立] 按鈕。
+<span data-ttu-id="b1c85-106">系統會顯示有關 Azure Active Directory B2C 的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="b1c85-106">Details about Azure Active Directory B2C are shown.</span></span> <span data-ttu-id="b1c85-107">若要開始設定新的 Azure Active Directory B2C 租用戶，請按一下 [建立] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="b1c85-107">To begin configuring your new Azure Active Directory B2C tenant, click the **Create** button.</span></span>
 
-選取 [建立新的 Azure AD B2C 租用戶]。 然後，使用表格中所指定的設定。
+<span data-ttu-id="b1c85-108">選取 [建立新的 Azure AD B2C 租用戶]。</span><span class="sxs-lookup"><span data-stu-id="b1c85-108">Select **Create a new Azure AD B2C Tenant**.</span></span> <span data-ttu-id="b1c85-109">然後，使用表格中所指定的設定。</span><span class="sxs-lookup"><span data-stu-id="b1c85-109">Then, use the settings specified in the table.</span></span>
 
 ![使用可用欄位中的範例文字建立 Azure AD B2C 租用戶](./media/active-directory-b2c-create-tenant/create-new-b2c-tenant.png)
 
-| 設定      | 範例值  | 說明                                        |
+| <span data-ttu-id="b1c85-111">設定</span><span class="sxs-lookup"><span data-stu-id="b1c85-111">Setting</span></span>      | <span data-ttu-id="b1c85-112">範例值</span><span class="sxs-lookup"><span data-stu-id="b1c85-112">Sample value</span></span>  | <span data-ttu-id="b1c85-113">說明</span><span class="sxs-lookup"><span data-stu-id="b1c85-113">Description</span></span>                                        |
 | ------------ | ------- | -------------------------------------------------- |
-| **組織名稱** | Contoso | 組織名稱。 | 
-| **初始網域名稱** |  ContosoB2CTenant | B2C 租用戶的網域名稱。 根據預設，初始網域名稱會包含 .microsoft.com。您可以新增貴組織稍後要使用的網域名稱。 您無法使用與先前刪除之租用戶相同的名稱來建立租用戶。 如果這是測試租用戶，請選擇 非生產環境名稱 (例如 ContosoB2CTesting)。 |
-| **國家或區域** | 美國 | 選擇目錄的國家或區域。 此目錄會建立於此位置，稍後無法變更。  |
+| <span data-ttu-id="b1c85-114">**組織名稱**</span><span class="sxs-lookup"><span data-stu-id="b1c85-114">**Organization name**</span></span> | <span data-ttu-id="b1c85-115">Contoso</span><span class="sxs-lookup"><span data-stu-id="b1c85-115">Contoso</span></span> | <span data-ttu-id="b1c85-116">組織名稱。</span><span class="sxs-lookup"><span data-stu-id="b1c85-116">Name of the organization.</span></span> | 
+| <span data-ttu-id="b1c85-117">**初始網域名稱**</span><span class="sxs-lookup"><span data-stu-id="b1c85-117">**Initial domain name**</span></span> |  <span data-ttu-id="b1c85-118">ContosoB2CTenant</span><span class="sxs-lookup"><span data-stu-id="b1c85-118">ContosoB2CTenant</span></span> | <span data-ttu-id="b1c85-119">B2C 租用戶的網域名稱。</span><span class="sxs-lookup"><span data-stu-id="b1c85-119">Domain name for the B2C tenant.</span></span> <span data-ttu-id="b1c85-120">根據預設，初始網域名稱會包含 .microsoft.com。您可以新增貴組織稍後要使用的網域名稱。</span><span class="sxs-lookup"><span data-stu-id="b1c85-120">By default, the initial domain name will include .microsoft.com. You can add a domain name your organization uses later.</span></span> <span data-ttu-id="b1c85-121">您無法使用與先前刪除之租用戶相同的名稱來建立租用戶。</span><span class="sxs-lookup"><span data-stu-id="b1c85-121">You cannot create a tenant with the same name as a previously deleted tenant.</span></span> <span data-ttu-id="b1c85-122">如果這是測試租用戶，請選擇 非生產環境名稱 (例如 ContosoB2CTesting)。</span><span class="sxs-lookup"><span data-stu-id="b1c85-122">If this is a test tenant, choose a non-production name such as ContosoB2CTesting.</span></span> |
+| <span data-ttu-id="b1c85-123">**國家或區域**</span><span class="sxs-lookup"><span data-stu-id="b1c85-123">**Country or region**</span></span> | <span data-ttu-id="b1c85-124">美國</span><span class="sxs-lookup"><span data-stu-id="b1c85-124">United States</span></span> | <span data-ttu-id="b1c85-125">選擇目錄的國家或區域。</span><span class="sxs-lookup"><span data-stu-id="b1c85-125">Choose the country or region for the directory.</span></span> <span data-ttu-id="b1c85-126">此目錄會建立於此位置，稍後無法變更。</span><span class="sxs-lookup"><span data-stu-id="b1c85-126">The directory will be created in this location and cannot be changed later.</span></span>  |
 
-按一下 [建立]  按鈕以建立租用戶。 建立租用戶可能需要幾分鐘的時間。 完成時，您會在通知中收到警示。
+<span data-ttu-id="b1c85-127">按一下 [建立]  按鈕以建立租用戶。</span><span class="sxs-lookup"><span data-stu-id="b1c85-127">Click the **Create** button to create your tenant.</span></span> <span data-ttu-id="b1c85-128">建立租用戶可能需要幾分鐘的時間。</span><span class="sxs-lookup"><span data-stu-id="b1c85-128">Creating the tenant may take a few minutes.</span></span> <span data-ttu-id="b1c85-129">完成時，您會在通知中收到警示。</span><span class="sxs-lookup"><span data-stu-id="b1c85-129">You are alerted in your notifications when it is complete.</span></span>

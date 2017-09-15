@@ -1,27 +1,27 @@
 
 
 
-若要建立以 Oracle 映像為基礎的虛擬機器，請登入 [Azure 入口網站](https://portal.azure.com/)，按一下 [Marketplace]，按一下 [運算]，然後在 [搜尋] 方塊中輸入 **Oracle**。 選取映像並遵循指示在 Microsoft Azure 上設定映像。 請注意，在 [Azure 入口網站](https://portal.azure.com/) 上由 Microsoft 提供的 Oracle 映像在 Windows 上執行，而由 Oracle 提供的 Oracle 映像則在 Oracle Linux 上執行。
+<span data-ttu-id="c52f2-101">若要建立以 Oracle 映像為基礎的虛擬機器，請登入 [Azure 入口網站](https://portal.azure.com/)，按一下 [Marketplace]，按一下 [運算]，然後在 [搜尋] 方塊中輸入 **Oracle**。</span><span class="sxs-lookup"><span data-stu-id="c52f2-101">To create virtual machines based on Oracle images, sign in to the [Azure portal](https://portal.azure.com/), click **Marketplace**, click **Compute**, and then type **Oracle** into the Search box.</span></span> <span data-ttu-id="c52f2-102">選取映像並遵循指示在 Microsoft Azure 上設定映像。</span><span class="sxs-lookup"><span data-stu-id="c52f2-102">Select an image and follow the instructions to set up the image on Microsoft Azure.</span></span> <span data-ttu-id="c52f2-103">請注意，在 [Azure 入口網站](https://portal.azure.com/) 上由 Microsoft 提供的 Oracle 映像在 Windows 上執行，而由 Oracle 提供的 Oracle 映像則在 Oracle Linux 上執行。</span><span class="sxs-lookup"><span data-stu-id="c52f2-103">Note that Oracle images by Microsoft on the [Azure portal](https://portal.azure.com/) run on Windows, and Oracle images by Oracle run on Oracle Linux.</span></span>
 
-## <a name="windows-based-virtual-machine-images"></a>Windows 虛擬機器映像
-以下是可用的 Oracle 虛擬機器映像清單，可在 Azure 的 Windows Server 上執行。 這些映像是「隨用隨付」，表示 Oracle 授權費用已包含在這些映像的使用量中。 Microsoft 不再於 Azure Marketplace 中發佈 Oracle Database 或 WebLogic 映像。  您仍然可以建立自己的自訂映像及使用自備授權模型，在 Microsoft Azure 上執行 Oracle 軟體。 
+## <a name="windows-based-virtual-machine-images"></a><span data-ttu-id="c52f2-104">Windows 虛擬機器映像</span><span class="sxs-lookup"><span data-stu-id="c52f2-104">Windows-based virtual machine images</span></span>
+<span data-ttu-id="c52f2-105">以下是可用的 Oracle 虛擬機器映像清單，可在 Azure 的 Windows Server 上執行。</span><span class="sxs-lookup"><span data-stu-id="c52f2-105">The following is a list of the available Oracle virtual machine images that run on Windows Server on Azure.</span></span> <span data-ttu-id="c52f2-106">這些映像是「隨用隨付」，表示 Oracle 授權費用已包含在這些映像的使用量中。</span><span class="sxs-lookup"><span data-stu-id="c52f2-106">These images are pay-as-you-go, meaning that Oracle license fees are included in the usage of these images.</span></span> <span data-ttu-id="c52f2-107">Microsoft 不再於 Azure Marketplace 中發佈 Oracle Database 或 WebLogic 映像。</span><span class="sxs-lookup"><span data-stu-id="c52f2-107">Microsoft no longer publishes Oracle Database or WebLogic images in Azure Marketplace.</span></span>  <span data-ttu-id="c52f2-108">您仍然可以建立自己的自訂映像及使用自備授權模型，在 Microsoft Azure 上執行 Oracle 軟體。</span><span class="sxs-lookup"><span data-stu-id="c52f2-108">You can still create your own custom image and use the Bring Your Own License model in order to run Oracle software on Microsoft Azure.</span></span> 
 
-### <a name="java-virtual-machine-images"></a>Java 虛擬機器映像
-* JDK 8 on Windows Server 2012 R2
-* JDK 7 on Windows Server 2012
-* Windows Server 2012 上的 JDK 6
+### <a name="java-virtual-machine-images"></a><span data-ttu-id="c52f2-109">Java 虛擬機器映像</span><span class="sxs-lookup"><span data-stu-id="c52f2-109">Java virtual machine images</span></span>
+* <span data-ttu-id="c52f2-110">JDK 8 on Windows Server 2012 R2</span><span class="sxs-lookup"><span data-stu-id="c52f2-110">JDK 8 on Windows Server 2012 R2</span></span>
+* <span data-ttu-id="c52f2-111">JDK 7 on Windows Server 2012</span><span class="sxs-lookup"><span data-stu-id="c52f2-111">JDK 7 on Windows Server 2012</span></span>
+* <span data-ttu-id="c52f2-112">Windows Server 2012 上的 JDK 6</span><span class="sxs-lookup"><span data-stu-id="c52f2-112">JDK 6 on Windows Server 2012</span></span>
 
-## <a name="oracle-linux-virtual-machine-images"></a>Oracle Linux 虛擬機器映像
-以下是可用的預先設定 Oracle 虛擬機器映像清單，可在 Azure 的 Oracle Linux 上執行。 您預期針對這些映像使用您自己的授權，因為 Oracle 授權費用並未包含使用這些預先設定的虛擬機器映像。 您也可以在 Windows 或 Linux 的自訂虛擬機器上使用自己的授權安裝並執行 Oracle 軟體。 在 [Azure 上的 Oracle 授權](http://www.oracle.com/technetwork/topics/cloud/faq-1963009.html#support)中有完整的詳細資料。 而以下是使用[您自己的映像](../articles/virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)建立虛擬機器的詳細資料。
+## <a name="oracle-linux-virtual-machine-images"></a><span data-ttu-id="c52f2-113">Oracle Linux 虛擬機器映像</span><span class="sxs-lookup"><span data-stu-id="c52f2-113">Oracle Linux virtual machine images</span></span>
+<span data-ttu-id="c52f2-114">以下是可用的預先設定 Oracle 虛擬機器映像清單，可在 Azure 的 Oracle Linux 上執行。</span><span class="sxs-lookup"><span data-stu-id="c52f2-114">The following is a list of the available preconfigured Oracle virtual machine images that run on Oracle Linux on Azure.</span></span> <span data-ttu-id="c52f2-115">您預期針對這些映像使用您自己的授權，因為 Oracle 授權費用並未包含使用這些預先設定的虛擬機器映像。</span><span class="sxs-lookup"><span data-stu-id="c52f2-115">You are expected to bring your own license for these images, as Oracle license fees are not included in the usage of these preconfigured virtual machine images.</span></span> <span data-ttu-id="c52f2-116">您也可以在 Windows 或 Linux 的自訂虛擬機器上使用自己的授權安裝並執行 Oracle 軟體。</span><span class="sxs-lookup"><span data-stu-id="c52f2-116">You can also bring your own license to install and run Oracle software on custom virtual machines on Windows or Linux.</span></span> <span data-ttu-id="c52f2-117">在 [Azure 上的 Oracle 授權](http://www.oracle.com/technetwork/topics/cloud/faq-1963009.html#support)中有完整的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="c52f2-117">Here are complete details on [Oracle licensing on Azure](http://www.oracle.com/technetwork/topics/cloud/faq-1963009.html#support).</span></span> <span data-ttu-id="c52f2-118">而以下是使用[您自己的映像](../articles/virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)建立虛擬機器的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="c52f2-118">And here are details on creating virtual machines using [your own images](../articles/virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).</span></span>
 
-* Oracle Linux 上的 Oracle Database 12c Enterprise Edition
-* Oracle Linux 上的 Oracle Database 12c Standard Edition
-* Oracle Linux 上的 Oracle WebLogic Server 12c Enterprise Edition 
-* Oracle Linux 6.4.0.0.0
-* Oracle Linux 6.7.0.0.0
-* Oracle Linux 7.0.0.0.0
-* Oracle Linux 7.2.0.0.0
+* <span data-ttu-id="c52f2-119">Oracle Linux 上的 Oracle Database 12c Enterprise Edition</span><span class="sxs-lookup"><span data-stu-id="c52f2-119">Oracle Database 12c Enterprise Edition on Oracle Linux</span></span>
+* <span data-ttu-id="c52f2-120">Oracle Linux 上的 Oracle Database 12c Standard Edition</span><span class="sxs-lookup"><span data-stu-id="c52f2-120">Oracle Database 12c Standard Edition on Oracle Linux</span></span>
+* <span data-ttu-id="c52f2-121">Oracle Linux 上的 Oracle WebLogic Server 12c Enterprise Edition </span><span class="sxs-lookup"><span data-stu-id="c52f2-121">Oracle WebLogic Server 12c Enterprise Edition on Oracle Linux</span></span>
+* <span data-ttu-id="c52f2-122">Oracle Linux 6.4.0.0.0</span><span class="sxs-lookup"><span data-stu-id="c52f2-122">Oracle Linux 6.4.0.0.0</span></span>
+* <span data-ttu-id="c52f2-123">Oracle Linux 6.7.0.0.0</span><span class="sxs-lookup"><span data-stu-id="c52f2-123">Oracle Linux 6.7.0.0.0</span></span>
+* <span data-ttu-id="c52f2-124">Oracle Linux 7.0.0.0.0</span><span class="sxs-lookup"><span data-stu-id="c52f2-124">Oracle Linux 7.0.0.0.0</span></span>
+* <span data-ttu-id="c52f2-125">Oracle Linux 7.2.0.0.0</span><span class="sxs-lookup"><span data-stu-id="c52f2-125">Oracle Linux 7.2.0.0.0</span></span>
 
-## <a name="additional-resources"></a>其他資源
-[Oracle 虛擬機器映像 - 其他考量](#miscellaneous-considerations-for-oracle-virtual-machine-images-new-article)
+## <a name="additional-resources"></a><span data-ttu-id="c52f2-126">其他資源</span><span class="sxs-lookup"><span data-stu-id="c52f2-126">Additional resources</span></span>
+[<span data-ttu-id="c52f2-127">Oracle 虛擬機器映像 - 其他考量</span><span class="sxs-lookup"><span data-stu-id="c52f2-127">Oracle virtual machine images - miscellaneous considerations</span></span>](#miscellaneous-considerations-for-oracle-virtual-machine-images-new-article)
 
