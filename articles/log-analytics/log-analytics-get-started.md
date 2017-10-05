@@ -1,0 +1,157 @@
+---
+title: "開始使用 Azure Log Analytics 工作區 | Microsoft Docs"
+description: "您可以在幾分鐘之內啟動並執行 Log Analytics 工作區。"
+services: log-analytics
+documentationcenter: 
+author: MGoedtel
+manager: carmonm
+editor: 
+ms.assetid: 508716de-72d3-4c06-9218-1ede631f23a6
+ms.service: log-analytics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 08/08/2017
+ms.author: magoedte
+ms.openlocfilehash: 7bdbdf8654ae22ba143d5f87384e04fe4a11d10e
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/18/2017
+---
+# <a name="get-started-with-a-log-analytics-workspace"></a><span data-ttu-id="26aff-103">開始使用 Log Analytics 工作區</span><span class="sxs-lookup"><span data-stu-id="26aff-103">Get started with a Log Analytics workspace</span></span>
+<span data-ttu-id="26aff-104">您可以使用 Azure Log Analytics 快速啟動並執行，以協助您評估從 IT 基礎結構收集到的營運情報。</span><span class="sxs-lookup"><span data-stu-id="26aff-104">You can get up and running quickly with Azure Log Analytics, which helps you evaluate operational intelligence gathered from your IT infrastructure.</span></span> <span data-ttu-id="26aff-105">運用本文，您可以輕鬆地開始對您所收集的資料進行瀏覽、分析並採取動作，一切「免費」。</span><span class="sxs-lookup"><span data-stu-id="26aff-105">Using this article, you can easily start exploring, analyzing, and take action on data that you collect *for free*.</span></span>
+
+<span data-ttu-id="26aff-106">本文會簡介 Log Analytics，透過簡短的教學課程，逐步引導您在 Azure 中完成最小型的部署，以便您可以開始使用此服務。</span><span class="sxs-lookup"><span data-stu-id="26aff-106">This article serves as an introduction to Log Analytics using a brief tutorial to walk you through a minimal deployment in Azure so that you can start using the service.</span></span> <span data-ttu-id="26aff-107">Azure 中用來儲存管理資料的邏輯容器稱為工作區。</span><span class="sxs-lookup"><span data-stu-id="26aff-107">The logical container where your management data in Azure is stored is called a workspace.</span></span> <span data-ttu-id="26aff-108">在檢閱過此資訊並完成您自己的評估後，您可以移除評估工作區。</span><span class="sxs-lookup"><span data-stu-id="26aff-108">After you've reviewed this information and completed your own evaluation, you can remove the evaluation workspace.</span></span> <span data-ttu-id="26aff-109">本文屬教學課程，因此不會探討業務需求、規劃或架構方面的指引。</span><span class="sxs-lookup"><span data-stu-id="26aff-109">Because this article is a tutorial, it doesn't address business requirements, planning, or architecture guidance.</span></span>
+
+>[!NOTE]
+><span data-ttu-id="26aff-110">如果您是使用 Microsoft Azure Government 雲端，請改用 [Azure Government 監視和管理文件](https://docs.microsoft.com/azure/azure-government/documentation-government-services-monitoringandmanagement#log-analytics)。</span><span class="sxs-lookup"><span data-stu-id="26aff-110">If you use the Microsoft Azure Government Cloud, use [Azure Government Monitoring + Management documentation](https://docs.microsoft.com/azure/azure-government/documentation-government-services-monitoringandmanagement#log-analytics) instead.</span></span>
+
+<span data-ttu-id="26aff-111">以下是開始使用程序的快速概覽︰</span><span class="sxs-lookup"><span data-stu-id="26aff-111">Here's a quick look at the process used to get started:</span></span>
+
+![程序流程圖](./media/log-analytics-get-started/onboard-oms.png)
+
+## <a name="1-create-an-azure-account-and-sign-in"></a><span data-ttu-id="26aff-113">1 建立 Azure 帳戶並登入</span><span class="sxs-lookup"><span data-stu-id="26aff-113">1 Create an Azure account and sign in</span></span>
+
+<span data-ttu-id="26aff-114">如果您還沒有 Azure 帳戶，請建立一個帳戶以使用 Log Analytics。</span><span class="sxs-lookup"><span data-stu-id="26aff-114">If you don't already have an Azure account, you need to create one to use Log Analytics.</span></span> <span data-ttu-id="26aff-115">您可以建立可使用 30 天的[免費帳戶](https://azure.microsoft.com/free/)，以便存取任何 Azure 服務。</span><span class="sxs-lookup"><span data-stu-id="26aff-115">You can create a [free account](https://azure.microsoft.com/free/) that is good for 30 days that lets you access any Azure service.</span></span>
+
+### <a name="to-create-a-free-account-and-sign-in"></a><span data-ttu-id="26aff-116">建立免費帳戶並登入</span><span class="sxs-lookup"><span data-stu-id="26aff-116">To create a free account and sign in</span></span>
+1. <span data-ttu-id="26aff-117">遵循[建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)中的指示。</span><span class="sxs-lookup"><span data-stu-id="26aff-117">Follow the directions at [Create your free Azure account](https://azure.microsoft.com/free/).</span></span>
+2. <span data-ttu-id="26aff-118">前往 [Azure 入口網站](https://portal.azure.com)並登入。</span><span class="sxs-lookup"><span data-stu-id="26aff-118">Go to the [Azure portal](https://portal.azure.com) and sign in.</span></span>
+
+## <a name="2-create-a-workspace"></a><span data-ttu-id="26aff-119">2 建立工作區</span><span class="sxs-lookup"><span data-stu-id="26aff-119">2 Create a workspace</span></span>
+
+<span data-ttu-id="26aff-120">下一個步驟是建立工作區。</span><span class="sxs-lookup"><span data-stu-id="26aff-120">The next step is to create a workspace.</span></span>
+
+1. <span data-ttu-id="26aff-121">在 Azure 入口網站中，搜尋 Marketplace 服務清單以找到 *Log Analytics*，然後選取 **Log Analytics**。</span><span class="sxs-lookup"><span data-stu-id="26aff-121">In the Azure portal, search the list of services in the Marketplace for *Log Analytics*, and then select **Log Analytics**.</span></span>  
+    <span data-ttu-id="26aff-122">![Azure 入口網站](./media/log-analytics-get-started/log-analytics-portal.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-122">![Azure portal](./media/log-analytics-get-started/log-analytics-portal.png)</span></span>
+2. <span data-ttu-id="26aff-123">按一下 [建立]，然後選取下列項目：</span><span class="sxs-lookup"><span data-stu-id="26aff-123">Click **Create**, then select choices for the following items:</span></span>
+   * <span data-ttu-id="26aff-124">**OMS 工作區** - 輸入工作區的名稱。</span><span class="sxs-lookup"><span data-stu-id="26aff-124">**OMS Workspace** - Type a name for your workspace.</span></span>
+   * <span data-ttu-id="26aff-125">**訂用帳戶** - 如果您有多個訂用帳戶，請選擇想要與新工作區建立關聯的帳戶。</span><span class="sxs-lookup"><span data-stu-id="26aff-125">**Subscription** - If you have multiple subscriptions, choose the one you want to associate with the new workspace.</span></span>
+   * <span data-ttu-id="26aff-126">**資源群組**</span><span class="sxs-lookup"><span data-stu-id="26aff-126">**Resource group**</span></span>
+   * <span data-ttu-id="26aff-127">**位置**</span><span class="sxs-lookup"><span data-stu-id="26aff-127">**Location**</span></span>
+   * <span data-ttu-id="26aff-128">**定價層**</span><span class="sxs-lookup"><span data-stu-id="26aff-128">**Pricing tier**</span></span>  
+       <span data-ttu-id="26aff-129">![快速建立](./media/log-analytics-get-started/oms-onboard-quick-create.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-129">![quick create](./media/log-analytics-get-started/oms-onboard-quick-create.png)</span></span>
+3. <span data-ttu-id="26aff-130">按一下 [確定] 以查看工作區清單。</span><span class="sxs-lookup"><span data-stu-id="26aff-130">Click **OK** to see a list of your workspaces.</span></span>
+4. <span data-ttu-id="26aff-131">選取工作區以查看其在 Azure 入口網站中的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="26aff-131">Select a workspace to see its details in the Azure portal.</span></span>       
+    ![工作區詳細資料](./media/log-analytics-get-started/oms-onboard-workspace-details.png)         
+
+## <a name="3-upgrade-workspace-to-new-log-search"></a><span data-ttu-id="26aff-133">3 將工作區升級為新的記錄搜尋</span><span class="sxs-lookup"><span data-stu-id="26aff-133">3 Upgrade workspace to new log search</span></span>
+<span data-ttu-id="26aff-134">已發行新的 Log Analytics 查詢語言，若要利用該語言，您必須轉換您的工作區。</span><span class="sxs-lookup"><span data-stu-id="26aff-134">A new Log Analytics query language has been released and in order to take advantage of it, you need to convert your workspace.</span></span>  <span data-ttu-id="26aff-135">如果您的工作區的裝載區域已升級，您應會在工作區頂端看到邀請您轉換的紫色橫幅。</span><span class="sxs-lookup"><span data-stu-id="26aff-135">If the region your workspace is hosted in has been upgraded, you should see a purple banner across the top of your workspace inviting you to convert.</span></span> <span data-ttu-id="26aff-136">升級屬完全自願性，並不會影響您使用 Log Analytics 和任何您新增之解決方案的經驗。</span><span class="sxs-lookup"><span data-stu-id="26aff-136">The upgrade is completely voluntary and does not impact your experience working with Log Analytics and any solutions you add.</span></span>  
+
+<span data-ttu-id="26aff-137">如需進一步了解優點、考量和升級程序的詳細資訊，請參閱[將 Azure Log Analytics 升級為新的記錄搜尋](log-analytics-log-search-upgrade.md)。</span><span class="sxs-lookup"><span data-stu-id="26aff-137">For further information to understand the benefits, considerations, and process to upgrade, see [Upgrading Azure Log Analytics to new log search](log-analytics-log-search-upgrade.md).</span></span>  
+
+## <a name="4-add-solutions-and-solution-offerings"></a><span data-ttu-id="26aff-138">4 新增解決方案和解決方案供應項目</span><span class="sxs-lookup"><span data-stu-id="26aff-138">4 Add solutions and solution offerings</span></span>
+
+<span data-ttu-id="26aff-139">接下來，新增管理解決方案和解決方案供應項目。</span><span class="sxs-lookup"><span data-stu-id="26aff-139">Next, add management solutions and solution offerings.</span></span> <span data-ttu-id="26aff-140">管理解決方案是邏輯、視覺效果和資料擷取規則的集合，可提供針對特定問題領域進行計量的樞紐分析。</span><span class="sxs-lookup"><span data-stu-id="26aff-140">Management solutions are a collection of logic, visualization, and data acquisition rules that provide metrics pivoted around a particular problem area.</span></span> <span data-ttu-id="26aff-141">解決方案供應項目是管理解決方案的組合。</span><span class="sxs-lookup"><span data-stu-id="26aff-141">A solution offering is a bundle of management solutions.</span></span>
+
+<span data-ttu-id="26aff-142">在工作區中新增解決方案可讓 Log Analytics 使用代理程式，從連線到工作區的電腦收集各種類型的資料。</span><span class="sxs-lookup"><span data-stu-id="26aff-142">Adding solutions to your workspace allows Log Analytics to collect various kinds of data from computers that are connected to your workspace using agents.</span></span> <span data-ttu-id="26aff-143">我們會於稍後討論如何啟用代理程式。</span><span class="sxs-lookup"><span data-stu-id="26aff-143">We cover onboarding agents later.</span></span>
+
+### <a name="to-add-solutions-and-solution-offerings"></a><span data-ttu-id="26aff-144">新增解決方案和解決方案供應項目</span><span class="sxs-lookup"><span data-stu-id="26aff-144">To add solutions and solution offerings</span></span>
+
+1. <span data-ttu-id="26aff-145">在 Azure 入口網站中按一下 [新增]，接著在 [搜尋 Marketplace] 方塊中輸入**活動 Log Analytics**，然後按 ENTER。</span><span class="sxs-lookup"><span data-stu-id="26aff-145">In Azure portal, click **New** and then in the **Search the marketplace** box, type **Activity Log Analytics** and then press ENTER.</span></span>
+2. <span data-ttu-id="26aff-146">在 [所有項目] 刀鋒視窗中選取 [活動 Log Analytics]，然後按一下 [建立]。</span><span class="sxs-lookup"><span data-stu-id="26aff-146">In the Everything blade, select **Activity Log Analytics** and then click **Create**.</span></span>  
+    <span data-ttu-id="26aff-147">![活動 Log Analytics](./media/log-analytics-get-started/activity-log-analytics.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-147">![Activity Log Analytics](./media/log-analytics-get-started/activity-log-analytics.png)</span></span>  
+3. <span data-ttu-id="26aff-148">在 [管理解決方案名稱] 刀鋒視窗中，選取要與管理解決方案相關聯的工作區。</span><span class="sxs-lookup"><span data-stu-id="26aff-148">In the *management solution name* blade, select a workspace that you want to associate with the management solution.</span></span>
+4. <span data-ttu-id="26aff-149">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="26aff-149">Click **Create**.</span></span>  
+    <span data-ttu-id="26aff-150">![解決方案工作區](./media/log-analytics-get-started/solution-workspace.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-150">![solution workspace](./media/log-analytics-get-started/solution-workspace.png)</span></span>  
+5. <span data-ttu-id="26aff-151">重複步驟 1 - 4 以新增下列項目：</span><span class="sxs-lookup"><span data-stu-id="26aff-151">Repeat steps 1 - 4 to add:</span></span>
+    - <span data-ttu-id="26aff-152">**安全性與合規性**服務供應項目，內含反惡意程式碼評估以及安全性和稽核解決方案。</span><span class="sxs-lookup"><span data-stu-id="26aff-152">The **Security & Compliance** service offering with the Antimalware Assessment and Security and Audit solutions.</span></span>
+    - <span data-ttu-id="26aff-153">**自動化與控制**服務供應項目，內含自動化混合式背景工作角色、變更追蹤和系統更新評估 (也稱為更新管理) 解決方案。</span><span class="sxs-lookup"><span data-stu-id="26aff-153">The **Automation & Control** service offering with the Automation Hybrid Worker, Change Tracking, and System Update Assessment (also called Update Management) solutions.</span></span> <span data-ttu-id="26aff-154">當您在新增解決方案供應項目時，您必須建立自動化帳戶。</span><span class="sxs-lookup"><span data-stu-id="26aff-154">You must create an Automation account when you add the solution offering.</span></span>  
+        <span data-ttu-id="26aff-155">![自動化帳戶](./media/log-analytics-get-started/automation-account.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-155">![Automation account](./media/log-analytics-get-started/automation-account.png)</span></span>  
+6. <span data-ttu-id="26aff-156">您可以瀏覽至 [Log Analytics] > [訂用帳戶] > [工作區名稱] > [概觀]，以檢視您新增至工作區的管理解決方案。</span><span class="sxs-lookup"><span data-stu-id="26aff-156">You can view the management solutions that you added to your workspace by navigating to **Log Analytics** > **Subscriptions** > ***workspace name*** > **Overview**.</span></span> <span data-ttu-id="26aff-157">您所新增之管理解決方案的圖格會隨即顯示出來。</span><span class="sxs-lookup"><span data-stu-id="26aff-157">Tiles for the management solutions that you added are shown.</span></span>  
+    >[!NOTE]
+    ><span data-ttu-id="26aff-158">我們尚未將任何代理程式連線至工作區，因此您不會看見所新增的解決方案出現任何資料。</span><span class="sxs-lookup"><span data-stu-id="26aff-158">Because we have not yet connected any agents to the workspace, you do not see any data for the solutions that you added.</span></span>  
+
+    ![沒有資料的解決方案圖格](./media/log-analytics-get-started/solutions-no-data.png)
+
+## <a name="4-create-a-vm-and-onboard-an-agent"></a><span data-ttu-id="26aff-160">4 建立 VM 並啟用代理程式</span><span class="sxs-lookup"><span data-stu-id="26aff-160">4 Create a VM and onboard an agent</span></span>
+
+<span data-ttu-id="26aff-161">接下來，在 Azure 中建立簡單的虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="26aff-161">Next, create a simple virtual machine in Azure.</span></span> <span data-ttu-id="26aff-162">在建立 VM 後，請啟用 OMS 代理程式。</span><span class="sxs-lookup"><span data-stu-id="26aff-162">After you create a VM, onboard the OMS agent to enable it.</span></span> <span data-ttu-id="26aff-163">啟用代理程式後，便會開始從 VM 收集資料，並將資料傳送到 Log Analytics。</span><span class="sxs-lookup"><span data-stu-id="26aff-163">Enabling the agent starts data collection from the VM and sends data to Log Analytics.</span></span>
+
+### <a name="to-create-a-virtual-machine"></a><span data-ttu-id="26aff-164">建立虛擬機器</span><span class="sxs-lookup"><span data-stu-id="26aff-164">To create a virtual machine</span></span>
+
+- <span data-ttu-id="26aff-165">遵循[在 Azure 入口網站中建立第一個 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)中的指示，並啟動新的虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="26aff-165">Follow the directions at [Create your first Windows virtual machine in the Azure portal](../virtual-machines/virtual-machines-windows-hero-tutorial.md) and  start the new virtual machine.</span></span>
+
+### <a name="connect-the-virtual-machine-to-log-analytics"></a><span data-ttu-id="26aff-166">將虛擬機器連線到 Log Analytics</span><span class="sxs-lookup"><span data-stu-id="26aff-166">Connect the virtual machine to Log Analytics</span></span>
+
+- <span data-ttu-id="26aff-167">遵循[將 Azure 虛擬機器連接到 Log Analytics](log-analytics-azure-vm-extension.md)中的指示，使用 Azure 入口網站將 VM 連接到 Log Analytics。</span><span class="sxs-lookup"><span data-stu-id="26aff-167">Follow the directions at [Connect Azure virtual machines to Log Analytics](log-analytics-azure-vm-extension.md) to connect the VM to Log Analytics using the Azure portal.</span></span>
+
+## <a name="6-view-and-act-on-data"></a><span data-ttu-id="26aff-168">6 檢視和處理資料</span><span class="sxs-lookup"><span data-stu-id="26aff-168">6 View and act on data</span></span>
+
+<span data-ttu-id="26aff-169">之前您已啟用活動 Log Analytics 解決方案、安全性與合規性以及自動化與控制服務供應項目。</span><span class="sxs-lookup"><span data-stu-id="26aff-169">Previously, you enabled the Activity Log Analytics solution and the Security & Compliance and Automation & Control service offerings.</span></span> <span data-ttu-id="26aff-170">接下來，我們要開始查看解決方案所收集的資料和記錄搜尋中的結果。</span><span class="sxs-lookup"><span data-stu-id="26aff-170">Next, we start looking at data collected by solutions and results in log searches.</span></span>
+
+<span data-ttu-id="26aff-171">一開始，請先查看從解決方案內顯示的資料。</span><span class="sxs-lookup"><span data-stu-id="26aff-171">To start, look at data that is displayed from within solutions.</span></span> <span data-ttu-id="26aff-172">然後，查看一些透過記錄搜尋所取得的記錄搜尋。</span><span class="sxs-lookup"><span data-stu-id="26aff-172">Then, look at some log searches that are accessed from log searches.</span></span> <span data-ttu-id="26aff-173">記錄檔搜尋可讓您結合和相互關聯您環境內多個來源的任何電腦資料。</span><span class="sxs-lookup"><span data-stu-id="26aff-173">Log searches allow you to combine and correlate any machine data from multiple sources within your environment.</span></span> <span data-ttu-id="26aff-174">如需詳細資訊，請參閱 [Log Analytics 中的記錄搜尋](log-analytics-log-searches.md)，而如果您的工作區已轉換為新的查詢語言，請參閱[了解 Log Analytics 中的記錄搜尋](log-analytics-log-search-new.md)。</span><span class="sxs-lookup"><span data-stu-id="26aff-174">For more information, see [Log searches in Log Analytics](log-analytics-log-searches.md) or if you converted your workspace to the new query language, see [understanding log searches in Log Analytics](log-analytics-log-search-new.md).</span></span> 
+
+### <a name="to-view-antimalware-data"></a><span data-ttu-id="26aff-175">檢視反惡意程式碼資料</span><span class="sxs-lookup"><span data-stu-id="26aff-175">To view Antimalware data</span></span>
+
+1. <span data-ttu-id="26aff-176">在 Azure 入口網站中，瀏覽至 [Log Analytics] > [您的工作區]。</span><span class="sxs-lookup"><span data-stu-id="26aff-176">In the Azure portal, navigate to **Log Analytics** > ***your workspace***.</span></span>
+2. <span data-ttu-id="26aff-177">在工作區的刀鋒視窗中，按一下 [一般] 底下的 [概觀]。</span><span class="sxs-lookup"><span data-stu-id="26aff-177">In the blade for your workspace, under **General**, click **Overview**.</span></span>  
+    <span data-ttu-id="26aff-178">![概觀](./media/log-analytics-get-started/overview.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-178">![Overview](./media/log-analytics-get-started/overview.png)</span></span>
+3. <span data-ttu-id="26aff-179">按一下 [反惡意程式碼評估] 圖格。</span><span class="sxs-lookup"><span data-stu-id="26aff-179">Click the **Antimalware Assessment** tile.</span></span> <span data-ttu-id="26aff-180">在此範例中，您可以看到電腦上已安裝 Windows Defender，但其簽章已過期。</span><span class="sxs-lookup"><span data-stu-id="26aff-180">In this example, you can see that Windows Defender is installed on one computer, but it's signature is out of date.</span></span>  
+    <span data-ttu-id="26aff-181">![反惡意程式碼](./media/log-analytics-get-started/solution-antimalware.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-181">![Antimalware](./media/log-analytics-get-started/solution-antimalware.png)</span></span>
+4. <span data-ttu-id="26aff-182">針對此範例，請按一下 [保護狀態] 底下的 [簽章已過期]，開啟記錄搜尋並檢視簽章已過期之電腦的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="26aff-182">For this example, under **Protection status**, click **Signature out of date** to open Log Search and view details about the computers that have out of date signatures.</span></span> <span data-ttu-id="26aff-183">請注意，在此範例中，電腦命名為 getstarted。</span><span class="sxs-lookup"><span data-stu-id="26aff-183">In this example, note that the computer is named *getstarted*.</span></span> <span data-ttu-id="26aff-184">如果簽章已過期的電腦不只一部，它們全都會顯示在記錄搜尋結果中。</span><span class="sxs-lookup"><span data-stu-id="26aff-184">If there were more than one computer with out of date signatures, they would all appear in the Log Search results.</span></span>  
+    <span data-ttu-id="26aff-185">![反惡意程式碼已過期](./media/log-analytics-get-started/antimalware-search.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-185">![Antimalware out of date](./media/log-analytics-get-started/antimalware-search.png)</span></span>
+
+### <a name="to-view-security-and-audit-data"></a><span data-ttu-id="26aff-186">檢視安全性和稽核資料</span><span class="sxs-lookup"><span data-stu-id="26aff-186">To view Security and Audit data</span></span>
+
+1. <span data-ttu-id="26aff-187">在工作區的刀鋒視窗中，按一下 [一般] 底下的 [概觀]。</span><span class="sxs-lookup"><span data-stu-id="26aff-187">In the blade for your workspace, under **General**, click **Overview**.</span></span>  
+2. <span data-ttu-id="26aff-188">按一下 [安全性和稽核] 圖格。</span><span class="sxs-lookup"><span data-stu-id="26aff-188">Click the **Security and Audit** tile.</span></span> <span data-ttu-id="26aff-189">在此範例中，您會看到兩個值得注意的問題︰有一部電腦遺漏重大更新，另有一部電腦的保護不足。</span><span class="sxs-lookup"><span data-stu-id="26aff-189">In this example, you can see that there are two notable issues: there is one computer that is missing critical updates and there is one computer with insufficient protection.</span></span>  
+    <span data-ttu-id="26aff-190">![安全性和稽核](./media/log-analytics-get-started/security-audit.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-190">![Security and Audit](./media/log-analytics-get-started/security-audit.png)</span></span>
+3. <span data-ttu-id="26aff-191">針對此範例，請按一下 [值得注意的問題] 底下的 [遺漏重大更新的電腦]，開啟記錄搜尋並檢視遺漏重大更新之電腦的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="26aff-191">For this example, under **Notable Issues**, click **Computers missing critical updates** to open Log Search and view details about computers missing critical updates.</span></span> <span data-ttu-id="26aff-192">在此範例中，總共遺漏了 1 個重大更新和 63 個其他更新。</span><span class="sxs-lookup"><span data-stu-id="26aff-192">In this example, there is one critical update missing and 63 other updates missing.</span></span>  
+    <span data-ttu-id="26aff-193">![安全性和稽核記錄搜尋](./media/log-analytics-get-started/security-audit-log-search.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-193">![Security and Audit Log Search](./media/log-analytics-get-started/security-audit-log-search.png)</span></span>
+
+### <a name="to-view-and-act-on-system-update-data"></a><span data-ttu-id="26aff-194">檢視及處理系統更新資料</span><span class="sxs-lookup"><span data-stu-id="26aff-194">To view and act on System Update data</span></span>
+
+1. <span data-ttu-id="26aff-195">在工作區的刀鋒視窗中，按一下 [一般] 底下的 [概觀]。</span><span class="sxs-lookup"><span data-stu-id="26aff-195">In the blade for your workspace, under **General**, click **Overview**.</span></span>  
+2. <span data-ttu-id="26aff-196">按一下 [系統更新評估] 圖格。</span><span class="sxs-lookup"><span data-stu-id="26aff-196">Click the **System Update Assessment** tile.</span></span> <span data-ttu-id="26aff-197">在此範例中，您會看到有一部名為 getstarted 的 Windows 電腦需要重大更新，另有一部電腦需要定義更新。</span><span class="sxs-lookup"><span data-stu-id="26aff-197">In this example, you can see that there is one Windows computer named *getstarted* that needs critical updates and one that needs definition updates.</span></span>  
+    <span data-ttu-id="26aff-198">![系統更新](./media/log-analytics-get-started/system-updates.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-198">![System Updates](./media/log-analytics-get-started/system-updates.png)</span></span>
+3. <span data-ttu-id="26aff-199">針對此範例，請按一下 [遺漏更新] 底下的 [重大更新]，開啟記錄搜尋並檢視遺漏重大更新之電腦的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="26aff-199">For this example, under **Missing Updates**, click **Critical Updates** to open Log Search and view details about computers missing critical updates.</span></span> <span data-ttu-id="26aff-200">在此範例中，有一個遺漏的更新以及一個必要更新。</span><span class="sxs-lookup"><span data-stu-id="26aff-200">In this example, there is one missing update and there is one required update.</span></span>  
+    <span data-ttu-id="26aff-201">![系統更新記錄搜尋](./media/log-analytics-get-started/system-updates-log-search.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-201">![System Updates Log Search](./media/log-analytics-get-started/system-updates-log-search.png)</span></span>
+4. <span data-ttu-id="26aff-202">移至 [Operations Management Suite](http://microsoft.com/oms) 網站並使用 Azure 帳戶登入。</span><span class="sxs-lookup"><span data-stu-id="26aff-202">Go to the [Operations Management Suite](http://microsoft.com/oms) website and sign in with your Azure account.</span></span> <span data-ttu-id="26aff-203">在登入時，請注意解決方案資訊會類似於您在 Azure 入口網站中看到的內容。</span><span class="sxs-lookup"><span data-stu-id="26aff-203">When signed in, notice that the solution information is similar to what you've see in the Azure portal.</span></span>  
+    <span data-ttu-id="26aff-204">![OMS 入口網站](./media/log-analytics-get-started/oms-portal.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-204">![OMS portal](./media/log-analytics-get-started/oms-portal.png)</span></span>
+5. <span data-ttu-id="26aff-205">按一下 [更新管理] 圖格。</span><span class="sxs-lookup"><span data-stu-id="26aff-205">Click the **Update Management** tile.</span></span>
+6. <span data-ttu-id="26aff-206">在更新管理儀表板中，請注意系統更新資訊會類似於您在 Azure 入口網站中看到的系統更新資訊。</span><span class="sxs-lookup"><span data-stu-id="26aff-206">In the Update Management dashboard, notice that the system update information is similar to the System Update information you've seen in the Azure portal.</span></span> <span data-ttu-id="26aff-207">不過，[管理更新部署] 是新的圖格。</span><span class="sxs-lookup"><span data-stu-id="26aff-207">However, the **Manage Update Deployments** tile is new.</span></span> <span data-ttu-id="26aff-208">按一下 [管理更新部署] 圖格。</span><span class="sxs-lookup"><span data-stu-id="26aff-208">Click the **Manage Update Deployments** tile.</span></span>  
+    <span data-ttu-id="26aff-209">![更新管理圖格](./media/log-analytics-get-started/update-management.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-209">![Update Management tile](./media/log-analytics-get-started/update-management.png)</span></span>
+7. <span data-ttu-id="26aff-210">在 [更新部署] 頁面上，按一下 [新增] 以建立「更新執行」。</span><span class="sxs-lookup"><span data-stu-id="26aff-210">On the **Update Deployments** page, click **Add** to create an *update run*.</span></span>  
+    <span data-ttu-id="26aff-211">![更新部署](./media/log-analytics-get-started/update-management-update-deployments.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-211">![Update Deployments](./media/log-analytics-get-started/update-management-update-deployments.png)</span></span>
+8.  <span data-ttu-id="26aff-212">在 [新增更新部署] 頁面上，輸入更新部署的名稱，選取要更新的電腦 (在此範例中為 getstarted)，選擇排程，然後按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="26aff-212">On the **New Update Deployment** page, type a name for the update deployment, select computers to update (in this example, *getstarted*), choose a schedule, and then click **Save**.</span></span>  
+    <span data-ttu-id="26aff-213">![新增部署](./media/log-analytics-get-started/new-deployment.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-213">![New Deployment](./media/log-analytics-get-started/new-deployment.png)</span></span>  
+    <span data-ttu-id="26aff-214">在儲存更新部署後，您會看到已排程的更新。</span><span class="sxs-lookup"><span data-stu-id="26aff-214">After you save the update deployment, you see the scheduled update.</span></span>  
+    <span data-ttu-id="26aff-215">![已排程的更新](./media/log-analytics-get-started/scheduled-update.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-215">![scheduled update](./media/log-analytics-get-started/scheduled-update.png)</span></span>  
+    <span data-ttu-id="26aff-216">更新執行完成後，狀態會顯示 [已完成]。</span><span class="sxs-lookup"><span data-stu-id="26aff-216">After the update run is completed, the status shows **Finished**.</span></span>
+    <span data-ttu-id="26aff-217">![已完成的更新](./media/log-analytics-get-started/completed-update.png)</span><span class="sxs-lookup"><span data-stu-id="26aff-217">![finished update](./media/log-analytics-get-started/completed-update.png)</span></span>
+9. <span data-ttu-id="26aff-218">更新執行完成後，您可以檢視執行是否成功，並可檢視所套用之更新的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="26aff-218">After the update run is finished, you can view whether the run was successful or not and you can view details about what updates where applied.</span></span>
+
+## <a name="after-evaluation"></a><span data-ttu-id="26aff-219">評估之後</span><span class="sxs-lookup"><span data-stu-id="26aff-219">After evaluation</span></span>
+
+<span data-ttu-id="26aff-220">在本教學課程中，您已在虛擬機器上安裝代理程式，並快速開始使用。</span><span class="sxs-lookup"><span data-stu-id="26aff-220">In this tutorial, you installed an agent on a virtual machine and got started quickly.</span></span> <span data-ttu-id="26aff-221">您所遵循的步驟既快速又簡單。</span><span class="sxs-lookup"><span data-stu-id="26aff-221">The steps that you followed were quick and simple.</span></span> <span data-ttu-id="26aff-222">不過，大型組織和企業的內部部署 IT 基礎結構大多較複雜。</span><span class="sxs-lookup"><span data-stu-id="26aff-222">However, most large organizations and enterprises have complex on-premises IT infrastructures.</span></span> <span data-ttu-id="26aff-223">因此，要從這些複雜的環境中收集資料，必須比本教學課程進行更多的規劃與精力。</span><span class="sxs-lookup"><span data-stu-id="26aff-223">So, collecting data from those complex environments takes additional planning and effort than the tutorial does.</span></span> <span data-ttu-id="26aff-224">請檢閱隨後的＜後續步驟＞一節中的資訊，以取得實用文章的連結。</span><span class="sxs-lookup"><span data-stu-id="26aff-224">Review the information in the following Next steps section for links to helpful articles.</span></span>
+
+<span data-ttu-id="26aff-225">您可以選擇移除在本教學課程中建立的工作區。</span><span class="sxs-lookup"><span data-stu-id="26aff-225">You can optionally remove the workspace that you created with this tutorial.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="26aff-226">後續步驟</span><span class="sxs-lookup"><span data-stu-id="26aff-226">Next steps</span></span>
+* <span data-ttu-id="26aff-227">了解如何將 [Windows 代理程式](log-analytics-windows-agents.md)連線到 Log Analytics。</span><span class="sxs-lookup"><span data-stu-id="26aff-227">Learn about connecting [Windows agents](log-analytics-windows-agents.md) to Log Analytics.</span></span>
+* <span data-ttu-id="26aff-228">了解如何將 [Operations Manager 代理程式](log-analytics-om-agents.md)連線到 Log Analytics。</span><span class="sxs-lookup"><span data-stu-id="26aff-228">Learn about connecting [Operations Manager agents](log-analytics-om-agents.md) to Log Analytics.</span></span>
+* <span data-ttu-id="26aff-229">[從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md) ，以加入功能和收集資料。</span><span class="sxs-lookup"><span data-stu-id="26aff-229">[Add Log Analytics solutions from the Solutions Gallery](log-analytics-add-solutions.md) to add functionality and gather data.</span></span>
+* <span data-ttu-id="26aff-230">熟悉 [記錄搜尋](log-analytics-log-searches.md) 以檢視方案所收集的詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="26aff-230">Get familiar with [log searches](log-analytics-log-searches.md) to view detailed information gathered by solutions.</span></span>

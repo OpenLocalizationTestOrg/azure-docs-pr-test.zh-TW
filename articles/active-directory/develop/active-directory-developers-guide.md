@@ -1,0 +1,74 @@
+---
+title: "開發人員適用的 Azure Active Directory | Microsoft Docs"
+description: "本文提供使用 Azure Active Directory 登入 Microsoft 工作和學校帳戶的概觀。"
+services: active-directory
+author: dstrockis
+manager: mbaldwin
+editor: 
+ms.assetid: 5c872c89-ef04-4f4c-98de-bc0c7460c7c2
+ms.service: active-directory
+ms.devlang: na
+ms.topic: hero-article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 04/07/2017
+ms.author: dastrock
+ms.custom: aaddev
+ms.openlocfilehash: dce813b885d492343428428056a2e8aada27b461
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 07/11/2017
+---
+# <a name="azure-active-directory-for-developers"></a><span data-ttu-id="a74fd-103">開發人員適用的 Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="a74fd-103">Azure Active Directory for developers</span></span>
+<span data-ttu-id="a74fd-104">Azure Active Directory 是一項雲端識別服務，可讓開發人員使用 Microsoft 所支援的工作或學校帳戶安全地讓任何使用者登入。</span><span class="sxs-lookup"><span data-stu-id="a74fd-104">Azure Active Directory is a cloud identity service that allows developers to securely sign-in any user with a work or school account backed by Microsoft.</span></span>  <span data-ttu-id="a74fd-105">此處的文件說明如何使用業界標準驗證通訊協定 (OAuth 和 OpenID Connect)，將 Azure AD 支援新增至您的應用程式。</span><span class="sxs-lookup"><span data-stu-id="a74fd-105">The documentation here shows you how to add Azure AD support to your application using industry standard authentication protocols, OAuth & OpenID Connect.</span></span>
+
+| | |
+| --- | --- |
+|[<span data-ttu-id="a74fd-106">驗證基本概念</span><span class="sxs-lookup"><span data-stu-id="a74fd-106">Auth basics</span></span>](active-directory-authentication-scenarios.md) | <span data-ttu-id="a74fd-107">使用 Azure AD 進行驗證的簡介</span><span class="sxs-lookup"><span data-stu-id="a74fd-107">An introduction to authentication with Azure AD</span></span> |
+|[<span data-ttu-id="a74fd-108">應用程式類型</span><span class="sxs-lookup"><span data-stu-id="a74fd-108">Types of applications</span></span>](active-directory-authentication-scenarios.md#application-types-and-scenarios) | <span data-ttu-id="a74fd-109">Azure AD 所支援的驗證案例概觀</span><span class="sxs-lookup"><span data-stu-id="a74fd-109">An overview of the authentication scenarios supported by Azure AD</span></span> |                                
+                                                                              
+## <a name="get-started"></a><span data-ttu-id="a74fd-110">開始使用</span><span class="sxs-lookup"><span data-stu-id="a74fd-110">Get started</span></span>
+<span data-ttu-id="a74fd-111">這些引導式安裝程式會逐步引導您使用我們的驗證程式庫讓 Azure Active Directory 使用者登入。</span><span class="sxs-lookup"><span data-stu-id="a74fd-111">These guided setups walk you through using our authentication libraries to sign in Azure Active Directory users.</span></span>
+
+|  |  |  |  |
+| --- | --- | --- | --- |
+| <span data-ttu-id="a74fd-112"><center>![行動和桌面應用程式](./media/active-directory-developers-guide/NativeApp_Icon.png)</span><span class="sxs-lookup"><span data-stu-id="a74fd-112"><center>![Mobile & Desktop Apps](./media/active-directory-developers-guide/NativeApp_Icon.png)</span></span><br /><span data-ttu-id="a74fd-113">行動和桌面應用程式</center></span><span class="sxs-lookup"><span data-stu-id="a74fd-113">Mobile & Desktop Apps</center></span></span> | [<span data-ttu-id="a74fd-114">概觀</span><span class="sxs-lookup"><span data-stu-id="a74fd-114">Overview</span></span>](active-directory-authentication-scenarios.md#native-application-to-web-api)<br /><br />[<span data-ttu-id="a74fd-115">iOS</span><span class="sxs-lookup"><span data-stu-id="a74fd-115">iOS</span></span>](active-directory-devquickstarts-ios.md)<br /><br />[<span data-ttu-id="a74fd-116">Android</span><span class="sxs-lookup"><span data-stu-id="a74fd-116">Android</span></span>](active-directory-devquickstarts-android.md) | [<span data-ttu-id="a74fd-117">.NET</span><span class="sxs-lookup"><span data-stu-id="a74fd-117">.NET</span></span>](active-directory-devquickstarts-dotnet.md)<br /><br />[<span data-ttu-id="a74fd-118">Windows</span><span class="sxs-lookup"><span data-stu-id="a74fd-118">Windows</span></span>](active-directory-devquickstarts-windowsstore.md)<br /><br />[<span data-ttu-id="a74fd-119">Xamarin</span><span class="sxs-lookup"><span data-stu-id="a74fd-119">Xamarin</span></span>](active-directory-devquickstarts-xamarin.md) | [<span data-ttu-id="a74fd-120">Cordova</span><span class="sxs-lookup"><span data-stu-id="a74fd-120">Cordova</span></span>](active-directory-devquickstarts-cordova.md)<br /><br />[<span data-ttu-id="a74fd-121">OAuth 2.0</span><span class="sxs-lookup"><span data-stu-id="a74fd-121">OAuth 2.0</span></span>](active-directory-protocols-oauth-code.md) |
+| <span data-ttu-id="a74fd-122"><center>![Web Apps](./media/active-directory-developers-guide/Web_app.png)</span><span class="sxs-lookup"><span data-stu-id="a74fd-122"><center>![Web Apps](./media/active-directory-developers-guide/Web_app.png)</span></span><br /><span data-ttu-id="a74fd-123">Web Apps</center></span><span class="sxs-lookup"><span data-stu-id="a74fd-123">Web Apps</center></span></span> | [<span data-ttu-id="a74fd-124">概觀</span><span class="sxs-lookup"><span data-stu-id="a74fd-124">Overview</span></span>](active-directory-authentication-scenarios.md#web-browser-to-web-application)<br /><br />[<span data-ttu-id="a74fd-125">ASP.NET</span><span class="sxs-lookup"><span data-stu-id="a74fd-125">ASP.NET</span></span>](active-directory-devquickstarts-webapp-dotnet.md)<br /><br />[<span data-ttu-id="a74fd-126">Java</span><span class="sxs-lookup"><span data-stu-id="a74fd-126">Java</span></span>](active-directory-devquickstarts-webapp-java.md) | [<span data-ttu-id="a74fd-127">NodeJS</span><span class="sxs-lookup"><span data-stu-id="a74fd-127">NodeJS</span></span>](active-directory-devquickstarts-openidconnect-nodejs.md)<br /><br />[<span data-ttu-id="a74fd-128">OpenID Connect 1.0</span><span class="sxs-lookup"><span data-stu-id="a74fd-128">OpenID Connect 1.0</span></span>](active-directory-protocols-openid-connect-code.md) |  |
+| <span data-ttu-id="a74fd-129"><center>![Single Page Apps](./media/active-directory-developers-guide/SPA.png)</span><span class="sxs-lookup"><span data-stu-id="a74fd-129"><center>![Single Page Apps](./media/active-directory-developers-guide/SPA.png)</span></span><br /><span data-ttu-id="a74fd-130">Single Page Apps</center></span><span class="sxs-lookup"><span data-stu-id="a74fd-130">Single Page Apps</center></span></span> | [<span data-ttu-id="a74fd-131">概觀</span><span class="sxs-lookup"><span data-stu-id="a74fd-131">Overview</span></span>](active-directory-authentication-scenarios.md#single-page-application-spa)<br /><br />[<span data-ttu-id="a74fd-132">AngularJS</span><span class="sxs-lookup"><span data-stu-id="a74fd-132">AngularJS</span></span>](active-directory-devquickstarts-angular.md)<br /><br />[<span data-ttu-id="a74fd-133">JavaScript</span><span class="sxs-lookup"><span data-stu-id="a74fd-133">JavaScript</span></span>](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi) |  |  |
+| <span data-ttu-id="a74fd-134"><center>![Web API](./media/active-directory-developers-guide/Web_API.png)</span><span class="sxs-lookup"><span data-stu-id="a74fd-134"><center>![Web APIs](./media/active-directory-developers-guide/Web_API.png)</span></span><br /><span data-ttu-id="a74fd-135">Web API</center></span><span class="sxs-lookup"><span data-stu-id="a74fd-135">Web APIs</center></span></span> | [<span data-ttu-id="a74fd-136">概觀</span><span class="sxs-lookup"><span data-stu-id="a74fd-136">Overview</span></span>](active-directory-authentication-scenarios.md#web-application-to-web-api)<br /><br />[<span data-ttu-id="a74fd-137">ASP.NET</span><span class="sxs-lookup"><span data-stu-id="a74fd-137">ASP.NET</span></span>](active-directory-devquickstarts-webapi-dotnet.md)<br /><br />[<span data-ttu-id="a74fd-138">NodeJS</span><span class="sxs-lookup"><span data-stu-id="a74fd-138">NodeJS</span></span>](active-directory-devquickstarts-webapi-nodejs.md) | &nbsp; |
+| <span data-ttu-id="a74fd-139"><center>![服務對服務](./media/active-directory-developers-guide/Service_App.png)</span><span class="sxs-lookup"><span data-stu-id="a74fd-139"><center>![Service-to-service](./media/active-directory-developers-guide/Service_App.png)</span></span><br /><span data-ttu-id="a74fd-140">服務對服務</center></span><span class="sxs-lookup"><span data-stu-id="a74fd-140">Service-to-Service</center></span></span> | [<span data-ttu-id="a74fd-141">概觀</span><span class="sxs-lookup"><span data-stu-id="a74fd-141">Overview</span></span>](active-directory-authentication-scenarios.md#daemon-or-server-application-to-web-api)<br /><br />[<span data-ttu-id="a74fd-142">.NET</span><span class="sxs-lookup"><span data-stu-id="a74fd-142">.NET</span></span>](active-directory-code-samples.md#server-or-daemon-application-to-web-api)<br /><br />[<span data-ttu-id="a74fd-143">OAuth 2.0 用戶端認證</span><span class="sxs-lookup"><span data-stu-id="a74fd-143">OAuth 2.0 Client Credentials</span></span>](active-directory-protocols-oauth-service-to-service.md) |  |
+
+## <a name="guides"></a><span data-ttu-id="a74fd-144">手冊</span><span class="sxs-lookup"><span data-stu-id="a74fd-144">Guides</span></span>
+<span data-ttu-id="a74fd-145">這些文章說明如何使用 Azure Active Directory 執行一般工作。</span><span class="sxs-lookup"><span data-stu-id="a74fd-145">These articles inform you how to perform common tasks with Azure Active Directory.</span></span>
+
+|                                                                           |  |
+|---------------------------------------------------------------------------| --- |
+|[<span data-ttu-id="a74fd-146">應用程式註冊</span><span class="sxs-lookup"><span data-stu-id="a74fd-146">App registration</span></span>](active-directory-integrating-applications.md)           | <span data-ttu-id="a74fd-147">如何在 Azure AD 中註冊應用程式</span><span class="sxs-lookup"><span data-stu-id="a74fd-147">How to register an app in Azure AD</span></span> |
+|[<span data-ttu-id="a74fd-148">多租用戶應用程式</span><span class="sxs-lookup"><span data-stu-id="a74fd-148">Multi-tenant apps</span></span>](active-directory-devhowto-multi-tenant-overview.md)    | <span data-ttu-id="a74fd-149">如何登入任何 Microsoft 工作帳戶</span><span class="sxs-lookup"><span data-stu-id="a74fd-149">How to sign in any Microsoft work account</span></span> |
+|[<span data-ttu-id="a74fd-150">OAuth 和 OpenID Connect</span><span class="sxs-lookup"><span data-stu-id="a74fd-150">OAuth & OpenID Connect</span></span>](active-directory-protocols-openid-connect-code.md)| <span data-ttu-id="a74fd-151">如何使用我們的新式驗證通訊協定讓使用者登入並呼叫 Web API</span><span class="sxs-lookup"><span data-stu-id="a74fd-151">How to sign-in users and call web APIs using our modern auth protocols</span></span> |
+|[<span data-ttu-id="a74fd-152">更多指南...</span><span class="sxs-lookup"><span data-stu-id="a74fd-152">More guides...</span></span>](active-directory-developers-guide-index.md#guides)        |     |
+
+## <a name="reference"></a><span data-ttu-id="a74fd-153">參考</span><span class="sxs-lookup"><span data-stu-id="a74fd-153">Reference</span></span>
+<span data-ttu-id="a74fd-154">這些文章提供 API、通訊協定訊息和 Azure Active Directory 中所用詞彙的詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="a74fd-154">These articles provide detailed information on APIs, protocol messages, and terms used in Azure Active Directory.</span></span>
+
+|                                                                                   | |
+| ----------------------------------------------------------------------------------| --- |
+| [<span data-ttu-id="a74fd-155">驗證程式庫 (ADAL)</span><span class="sxs-lookup"><span data-stu-id="a74fd-155">Authentication Libraries (ADAL)</span></span>](active-directory-authentication-libraries.md)   | <span data-ttu-id="a74fd-156">Azure AD 所提供的程式庫和 SDK 概觀</span><span class="sxs-lookup"><span data-stu-id="a74fd-156">An overview of the libraries & SDKs provided by Azure AD</span></span> |
+| [<span data-ttu-id="a74fd-157">程式碼範例</span><span class="sxs-lookup"><span data-stu-id="a74fd-157">Code Samples</span></span>](active-directory-code-samples.md)                                  | <span data-ttu-id="a74fd-158">所有 Azure AD 程式碼範例的清單</span><span class="sxs-lookup"><span data-stu-id="a74fd-158">A list of all Azure AD code samples</span></span> |
+| [<span data-ttu-id="a74fd-159">詞彙</span><span class="sxs-lookup"><span data-stu-id="a74fd-159">Glossary</span></span>](active-directory-dev-glossary.md)                                      | <span data-ttu-id="a74fd-160">本文件中使用的術語和文字定義</span><span class="sxs-lookup"><span data-stu-id="a74fd-160">Terminology and definitions of words used throughout this documentation</span></span> |
+| [<span data-ttu-id="a74fd-161">更多參考資料...</span><span class="sxs-lookup"><span data-stu-id="a74fd-161">More reference material...</span></span>](active-directory-developers-guide-index.md#reference)|     |
+
+## <a name="help--support"></a><span data-ttu-id="a74fd-162">說明及支援</span><span class="sxs-lookup"><span data-stu-id="a74fd-162">Help & Support</span></span>
+<span data-ttu-id="a74fd-163">以下是取得在 Azure Active Directory 開發之協助的最佳位置。</span><span class="sxs-lookup"><span data-stu-id="a74fd-163">These are the best places to get help with developing on Azure Active Directory.</span></span>
+
+|  |  
+|---|
+|[<span data-ttu-id="a74fd-164">Stack Overflow 的 `azure-active-directory` 和 `adal` 標籤</span><span class="sxs-lookup"><span data-stu-id="a74fd-164">Stack Overflow's `azure-active-directory` and `adal` tags</span></span>](http://stackoverflow.com/questions/tagged/azure-active-directory+or+adal)      |
+|[<span data-ttu-id="a74fd-165">Azure Active Directory 的意見反應</span><span class="sxs-lookup"><span data-stu-id="a74fd-165">Feedback on Azure Active Directory</span></span>](https://feedback.azure.com/forums/169401-azure-active-directory/category/164757-developer-experiences)|
+| [<span data-ttu-id="a74fd-166">試用 Microsoft Dev Chat (限時免費)</span><span class="sxs-lookup"><span data-stu-id="a74fd-166">Try out Microsoft Dev Chat (free for a limited time)</span></span>](http://aka.ms/devchat) |
+
+<br />
+
+> [!NOTE]
+> <span data-ttu-id="a74fd-167">如果您需要登入 Microsoft 個人帳戶，您可能要考慮使用 [Azure AD v2.0 端點](active-directory-appmodel-v2-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="a74fd-167">If you need to sign-in Microsoft personal accounts, you may want to consider using the [Azure AD v2.0 endpoint](active-directory-appmodel-v2-overview.md).</span></span>  <span data-ttu-id="a74fd-168">Azure AD v2.0 端點可將 Microsoft 個人帳戶和 Microsoft 工作帳戶 (來自 Azure AD) 統一成單一驗證系統。</span><span class="sxs-lookup"><span data-stu-id="a74fd-168">The Azure AD v2.0 endpoint is the unification of Microsoft personal accounts & Microsoft work accounts (from Azure AD) into a single authentication system.</span></span>

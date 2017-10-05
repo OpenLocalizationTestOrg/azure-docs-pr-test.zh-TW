@@ -1,0 +1,120 @@
+---
+title: "了解 Azure Active Directory 架構 | Microsoft Docs"
+description: "說明 Azure AD 租用戶是什麼，以及如何透過 Azure Active Directory 管理 Azure"
+services: active-directory
+documentationcenter: 
+author: MarkusVi
+writer: v-lorisc
+manager: femila
+ms.assetid: 
+ms.service: active-directory
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 08/02/2017
+ms.author: markvi
+ms.openlocfilehash: 50dad848cfbdab7f5b1fff0fcec3b5f754e6ae74
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/18/2017
+---
+# <a name="understand-azure-active-directory-architecture"></a><span data-ttu-id="b6a76-103">了解 Azure Active Directory 架構</span><span class="sxs-lookup"><span data-stu-id="b6a76-103">Understand Azure Active Directory architecture</span></span>
+<span data-ttu-id="b6a76-104">Azure Active Directory (Azure AD) 可讓您安全地管理您使用者的 Azure 服務和資源存取權。</span><span class="sxs-lookup"><span data-stu-id="b6a76-104">Azure Active Directory (Azure AD) enables you to securely manage access to Azure services and resources for your users.</span></span> <span data-ttu-id="b6a76-105">Azure AD 隨附一套完整的身分識別管理功能。</span><span class="sxs-lookup"><span data-stu-id="b6a76-105">Included with Azure AD is a full suite of identity management capabilities.</span></span> <span data-ttu-id="b6a76-106">如需 Azure AD 功能的詳細資訊，請參閱[什麼是 Azure Active Directory？](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis)</span><span class="sxs-lookup"><span data-stu-id="b6a76-106">For information about Azure AD features, see [What is Azure Active Directory?](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis)</span></span>
+
+<span data-ttu-id="b6a76-107">您可以使用 Azure AD，建立及管理使用者和群組，並啟用權限以允許和拒絕企業資源存取。</span><span class="sxs-lookup"><span data-stu-id="b6a76-107">With Azure AD, you can create and manage users and groups, and enable permissions to allow and deny access to enterprise resources.</span></span> <span data-ttu-id="b6a76-108">如需身分識別管理的相關資訊，請參閱 [Azure 身分識別管理的基本概念](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity)。</span><span class="sxs-lookup"><span data-stu-id="b6a76-108">For information about identity management, see [The fundamentals of Azure identity management](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity).</span></span>
+
+## <a name="azure-ad-architecture"></a><span data-ttu-id="b6a76-109">Azure AD 架構</span><span class="sxs-lookup"><span data-stu-id="b6a76-109">Azure AD architecture</span></span>
+<span data-ttu-id="b6a76-110">Azure AD 分佈各地的架構結合了廣泛監視、自動化重設路徑、容錯移轉和復原功能，可讓我們為客戶提供企業層級的可用性和效能。</span><span class="sxs-lookup"><span data-stu-id="b6a76-110">Azure AD's geographically distributed architecture combines extensive monitoring, automated rerouting, failover, and recovery capabilities enable us to deliver enterprise-level availability and performance to our customers.</span></span>
+
+<span data-ttu-id="b6a76-111">本文涵蓋下列架構元素︰</span><span class="sxs-lookup"><span data-stu-id="b6a76-111">The following architecture elements are covered in this article:</span></span>
+ *  <span data-ttu-id="b6a76-112">服務架構設計</span><span class="sxs-lookup"><span data-stu-id="b6a76-112">Service architecture design</span></span>
+ *  <span data-ttu-id="b6a76-113">延展性</span><span class="sxs-lookup"><span data-stu-id="b6a76-113">Scalability</span></span> 
+ *  <span data-ttu-id="b6a76-114">持續可用性</span><span class="sxs-lookup"><span data-stu-id="b6a76-114">Continuous availability</span></span>
+ *  <span data-ttu-id="b6a76-115">資料中心</span><span class="sxs-lookup"><span data-stu-id="b6a76-115">Data centers</span></span>
+
+### <a name="service-architecture-design"></a><span data-ttu-id="b6a76-116">服務架構設計</span><span class="sxs-lookup"><span data-stu-id="b6a76-116">Service architecture design</span></span>
+<span data-ttu-id="b6a76-117">若要建置可調整、高度可用、資料豐富的系統，最常見方式就是透過 Azure AD 資料層的獨立建置組塊或縮放單位 (稱之為「資料分割」)。</span><span class="sxs-lookup"><span data-stu-id="b6a76-117">The most common way to build a scalable, highly-available, data-rich system is through independent building blocks or scale units for the Azure AD data tier, scale units are called *partitions*.</span></span> 
+
+<span data-ttu-id="b6a76-118">資料層有數個可提供讀寫功能的前端服務。</span><span class="sxs-lookup"><span data-stu-id="b6a76-118">The data tier has several front-end services that provide read-write capability.</span></span> <span data-ttu-id="b6a76-119">下圖顯示單一目錄分割的元件如何分散於各地的資料中心。</span><span class="sxs-lookup"><span data-stu-id="b6a76-119">The diagram below shows how the components of a single-directory partition are distributed throughout geographically-distrubuted data centers.</span></span> 
+
+  ![單一目錄分割](./media/active-directory-architecture/active-directory-architecture.png)
+
+<span data-ttu-id="b6a76-121">Azure AD 架構的元件包括主要複本和次要複本。</span><span class="sxs-lookup"><span data-stu-id="b6a76-121">The components of Azure AD architecture include a primary replica and secondary replicas.</span></span>
+
+<span data-ttu-id="b6a76-122">**主要複本**</span><span class="sxs-lookup"><span data-stu-id="b6a76-122">**Primary replica**</span></span>
+
+<span data-ttu-id="b6a76-123">「主要複本」會接收其所屬資料分割的所有「寫入」。</span><span class="sxs-lookup"><span data-stu-id="b6a76-123">The *primary replica* receives all *writes* for the partition it belongs to.</span></span> <span data-ttu-id="b6a76-124">所有寫入作業會先立即複寫至不同資料中心內的次要複本，然後將成功傳回給呼叫端，因而確保寫入的地理備援持久性。</span><span class="sxs-lookup"><span data-stu-id="b6a76-124">Any write operation is immediately replicated to a secondary replica in a different datacenter before returning success to the caller, thus ensuring geo-redundant durability of writes.</span></span>
+
+<span data-ttu-id="b6a76-125">**次要複本**</span><span class="sxs-lookup"><span data-stu-id="b6a76-125">**Secondary replicas**</span></span>
+
+<span data-ttu-id="b6a76-126">所有目錄「讀取」是由「次要複本」提供服務，而次要複本是在實際位於不同地理位置的資料中心。</span><span class="sxs-lookup"><span data-stu-id="b6a76-126">All directory *reads* are serviced from *secondary replicas*, which are at data centers that are physically located across different geographies.</span></span> <span data-ttu-id="b6a76-127">次要複本有許多個，因為資料會以非同步方式複寫。</span><span class="sxs-lookup"><span data-stu-id="b6a76-127">There are many secondary replicas, as data is replicated asynchronously.</span></span> <span data-ttu-id="b6a76-128">目錄讀取 (例如驗證要求) 是由客戶服務附近的資料中心提供服務。</span><span class="sxs-lookup"><span data-stu-id="b6a76-128">Directory reads, such as authentication requests, are serviced from data centers that are close to our customers.</span></span> <span data-ttu-id="b6a76-129">次要複本負責提供讀取延展性。</span><span class="sxs-lookup"><span data-stu-id="b6a76-129">The secondary replicas are responsible for read scalability.</span></span>
+
+### <a name="scalability"></a><span data-ttu-id="b6a76-130">延展性</span><span class="sxs-lookup"><span data-stu-id="b6a76-130">Scalability</span></span>
+
+<span data-ttu-id="b6a76-131">延展性是擴充服務以符合效能需求的能力。</span><span class="sxs-lookup"><span data-stu-id="b6a76-131">Scalability is the ability of a service to expand to meet increasing performance demands.</span></span> <span data-ttu-id="b6a76-132">寫入延展性是由分割資料來達成。</span><span class="sxs-lookup"><span data-stu-id="b6a76-132">Write scalability is achieved by partitioning the data.</span></span> <span data-ttu-id="b6a76-133">讀取延展性則是由將資料從一個資料分割複寫到分散世界各地的多個次要複本來達成。</span><span class="sxs-lookup"><span data-stu-id="b6a76-133">Read scalability is achieved by replicating data from one partition to multiple secondary replicas distributed throughout the world.</span></span>
+
+<span data-ttu-id="b6a76-134">來自目錄應用程式的要求通常會路由傳送至它們實際最接近的資料中心。</span><span class="sxs-lookup"><span data-stu-id="b6a76-134">Requests from directory applications are generally routed to the datacenter that they are physically closest to.</span></span> <span data-ttu-id="b6a76-135">寫入會透明地重新導向到主要複本，以提供讀寫一致性。</span><span class="sxs-lookup"><span data-stu-id="b6a76-135">Writes are transparently redirected to the primary replica to provide read-write consistency.</span></span> <span data-ttu-id="b6a76-136">次要複本會大幅擴充資料分割的規模，因為目錄通常會為讀取提供服務。</span><span class="sxs-lookup"><span data-stu-id="b6a76-136">Secondary replicas significantly extend the scale of partitions because the directories are typically serving reads most of the time.</span></span>
+
+<span data-ttu-id="b6a76-137">目錄應用程式會連接到最接近的資料中心。</span><span class="sxs-lookup"><span data-stu-id="b6a76-137">Directory applications connect to the nearest datacenters.</span></span> <span data-ttu-id="b6a76-138">這可改善效能，因此有可能相應放大。</span><span class="sxs-lookup"><span data-stu-id="b6a76-138">This improves performance, and therefore scaling out is possible.</span></span> <span data-ttu-id="b6a76-139">由於目錄分割可以有許多次要複本，所以次要複本可放置於較接近目錄用戶端的地方。</span><span class="sxs-lookup"><span data-stu-id="b6a76-139">Since a directory partition can have many secondary replicas, secondary replicas can be placed closer to the directory clients.</span></span> <span data-ttu-id="b6a76-140">只有密集寫入的內部目錄服務元件會直接以使用中主要複本為目標。</span><span class="sxs-lookup"><span data-stu-id="b6a76-140">Only internal directory service components that are write-intensive target the active primary replica directly.</span></span>
+
+### <a name="continuous-availability"></a><span data-ttu-id="b6a76-141">持續可用性</span><span class="sxs-lookup"><span data-stu-id="b6a76-141">Continuous availability</span></span>
+
+<span data-ttu-id="b6a76-142">可用性 (或運作時間) 定義系統執行不中斷的能力。</span><span class="sxs-lookup"><span data-stu-id="b6a76-142">Availability (or uptime) defines the ability of a system to perform uninterrupted.</span></span> <span data-ttu-id="b6a76-143">Azure AD 高可用性的關鍵在於我們的服務可以快速地將流量轉換於分散在分散各地的資料中心。</span><span class="sxs-lookup"><span data-stu-id="b6a76-143">The key to Azure AD’s high-availability is that our services can quickly shift traffic across multiple geographically-distributed data centers.</span></span> <span data-ttu-id="b6a76-144">每個資料中心都是獨立的，可啟用無關聯性失敗模式。</span><span class="sxs-lookup"><span data-stu-id="b6a76-144">Each data center is independent, which enables de-correlated failure modes.</span></span>
+
+<span data-ttu-id="b6a76-145">相較於企業 AD 設計，Azure AD 的資料分割設計已簡化，對於相應提升系統而言很重要。</span><span class="sxs-lookup"><span data-stu-id="b6a76-145">Azure AD’s partition design is simplified compared to the enterprise AD design, which is critical for scaling up the system.</span></span> <span data-ttu-id="b6a76-146">我們採用了單一主設計，其包含仔細協調且具決定性的主要複本容錯移轉程序。</span><span class="sxs-lookup"><span data-stu-id="b6a76-146">We adopted a single-master design that includes a carefully orchestrated and deterministic primary replica failover process.</span></span>
+
+<span data-ttu-id="b6a76-147">**容錯**</span><span class="sxs-lookup"><span data-stu-id="b6a76-147">**Fault tolerance**</span></span>
+
+<span data-ttu-id="b6a76-148">如果可容忍硬體、網路和軟體失敗，則系統的可用性更高。</span><span class="sxs-lookup"><span data-stu-id="b6a76-148">A system is more available if it is tolerant to hardware, network, and software failures.</span></span> <span data-ttu-id="b6a76-149">若為目錄上的每個資料分割，則存在高可用性的主複本︰即主要複本。</span><span class="sxs-lookup"><span data-stu-id="b6a76-149">For each partition on the directory, a highly available master replica exists: The primary replica.</span></span> <span data-ttu-id="b6a76-150">只有對磁碟分割的寫入會在此複本執行。</span><span class="sxs-lookup"><span data-stu-id="b6a76-150">Only writes to the partition are performed at this replica.</span></span> <span data-ttu-id="b6a76-151">此複本正受到持續且嚴密的監視，而如果偵測到失敗，寫入即可立即轉換至另一個複本 (會成為新的主要複本）。</span><span class="sxs-lookup"><span data-stu-id="b6a76-151">This replica is being continuously and closely monitored, and writes can be immediately shifted to another replica (which becomes the new primary) if a failure is detected.</span></span> <span data-ttu-id="b6a76-152">在容錯移轉期間，通常可能喪失寫入可用性 1-2 分鐘。</span><span class="sxs-lookup"><span data-stu-id="b6a76-152">During failover, there could be a loss of write availability typically of 1-2 minutes.</span></span> <span data-ttu-id="b6a76-153">在這段期間，讀取可用性不受影響。</span><span class="sxs-lookup"><span data-stu-id="b6a76-153">Read availability is not affected during this time.</span></span>
+
+<span data-ttu-id="b6a76-154">讀取作業 (其數目大幅超出寫入的數量) 只會移至次要複本。</span><span class="sxs-lookup"><span data-stu-id="b6a76-154">Read operations (which outnumber writes by many orders of magnitude) only go to secondary replicas.</span></span> <span data-ttu-id="b6a76-155">由於次要複本具等冪性，將讀取導向另一個複本 (通常位於相同資料中心) 可輕鬆補償在指定之資料分割中任何一個複本的遺失。</span><span class="sxs-lookup"><span data-stu-id="b6a76-155">Since secondary replicas are idempotent, loss of any one replica in a given partition is easily compensated by directing the reads to another replica, usually in the same datacenter.</span></span>
+
+<span data-ttu-id="b6a76-156">**資料耐久性**</span><span class="sxs-lookup"><span data-stu-id="b6a76-156">**Data durability**</span></span>
+
+<span data-ttu-id="b6a76-157">在認可 (Acknowledge) 之前，系統會將寫入永久認可 (Commit) 到至少兩個資料中心。</span><span class="sxs-lookup"><span data-stu-id="b6a76-157">A write is durably committed to at least two data centers prior to it being acknowledged.</span></span> <span data-ttu-id="b6a76-158">先在主要複本上認可寫入，而後立即將寫入複寫到至少一個其他資料中心，即可達成。</span><span class="sxs-lookup"><span data-stu-id="b6a76-158">This happens by first committing the write on the primary, and then immediately replicating the write to at least one other data center.</span></span> <span data-ttu-id="b6a76-159">這可確保裝載主要複本的資料中心潛在的重大損失不會導致資料遺失。</span><span class="sxs-lookup"><span data-stu-id="b6a76-159">This ensures that a potential catastrophic loss of the data center hosting the primary does not result in data loss.</span></span>
+
+<span data-ttu-id="b6a76-160">Azure AD 會針對權杖發行和目錄讀取維持零[復原時間目標 (RTO)](https://en.wikipedia.org/wiki/Recovery_time_objective)，並針對目錄寫入維持大約數分鐘 (~5 分鐘) 的 RTO。</span><span class="sxs-lookup"><span data-stu-id="b6a76-160">Azure AD maintains a zero [Recovery Time Objective (RTO)](https://en.wikipedia.org/wiki/Recovery_time_objective) for token issuance and directory reads and in the order of minutes (~5 minutes) RTO for directory writes.</span></span> <span data-ttu-id="b6a76-161">我們也會維持零[復原點目標 (RPO)](https://en.wikipedia.org/wiki/Recovery_point_objective) 且在容錯移轉時不會遺失資料。</span><span class="sxs-lookup"><span data-stu-id="b6a76-161">We also maintain zero [Recovery Point Objective (RPO)](https://en.wikipedia.org/wiki/Recovery_point_objective) and will not lose data on failovers.</span></span>
+
+### <a name="data-centers"></a><span data-ttu-id="b6a76-162">資料中心</span><span class="sxs-lookup"><span data-stu-id="b6a76-162">Data centers</span></span>
+
+<span data-ttu-id="b6a76-163">Azure AD 的複本會儲存在位於世界各地的資料中心。</span><span class="sxs-lookup"><span data-stu-id="b6a76-163">Azure AD’s replicas are stored in datacenters located throughout the world.</span></span> <span data-ttu-id="b6a76-164">如需詳細資訊，請參閱 [Azure 資料中心](https://azure.microsoft.com/en-us/overview/datacenters)。</span><span class="sxs-lookup"><span data-stu-id="b6a76-164">For more information, see [Azure datacenters](https://azure.microsoft.com/en-us/overview/datacenters).</span></span>
+
+<span data-ttu-id="b6a76-165">Azure AD 跨越具下列特性的資料中心運作︰</span><span class="sxs-lookup"><span data-stu-id="b6a76-165">Azure AD operates across data centers with the following characteristics:</span></span>
+
+ * <span data-ttu-id="b6a76-166">驗證、圖表和其他 AD 服務位於閘道服務後面。</span><span class="sxs-lookup"><span data-stu-id="b6a76-166">Authentication, Graph and other AD services reside behind the Gateway service.</span></span> <span data-ttu-id="b6a76-167">閘道會管理這些服務的負載平衡。</span><span class="sxs-lookup"><span data-stu-id="b6a76-167">The Gateway manages load balancing of these services.</span></span> <span data-ttu-id="b6a76-168">如果使用交易健康狀態探查偵測到任何狀況不良的伺服器，它就會自動容錯移轉。</span><span class="sxs-lookup"><span data-stu-id="b6a76-168">It will failover automatically if any unhealthy servers are detected using transactional health probes.</span></span> <span data-ttu-id="b6a76-169">根據這些健康狀態探查，閘道會以動態方式將流量路由傳送至狀況良好的資料中心。</span><span class="sxs-lookup"><span data-stu-id="b6a76-169">Based on these health probes, the Gateway dynamically routes traffic to healthy data centers.</span></span>
+ * <span data-ttu-id="b6a76-170">對於「讀取」，在多個資料中心運作的主動-主動組態中，目錄有次要複本和對應的前端服務。</span><span class="sxs-lookup"><span data-stu-id="b6a76-170">For *reads*, the directory has secondary replicas and corresponding front-end services in an active-active configuration operating in multiple data centers.</span></span> <span data-ttu-id="b6a76-171">在整個資料中心發生失敗的情況下，流量將會自動路由傳送至不同的資料中心。</span><span class="sxs-lookup"><span data-stu-id="b6a76-171">In case of a failure of an entire data center, traffic will be automatically routed to a different datacenter.</span></span>
+ *  <span data-ttu-id="b6a76-172">對於「寫入」，目錄會透過計劃性 (新的主要複本會同步處理至舊的主要複本) 或緊急容錯移轉程序，將主要複本容錯移轉至各資料中心。</span><span class="sxs-lookup"><span data-stu-id="b6a76-172">For *writes*, the directory will failover primary (master) replica across data centers via planned (new primary is synchronized to old primary) or emergency failover procedures.</span></span> <span data-ttu-id="b6a76-173">將任何認可複寫到至少兩個資料中心，即可達成資料持續性。</span><span class="sxs-lookup"><span data-stu-id="b6a76-173">Data durability is achieved by replicating any commit to at least two data centers.</span></span>
+
+<span data-ttu-id="b6a76-174">**資料一致性**</span><span class="sxs-lookup"><span data-stu-id="b6a76-174">**Data consistency**</span></span>
+
+<span data-ttu-id="b6a76-175">目錄模型是其中一項最終一致性。</span><span class="sxs-lookup"><span data-stu-id="b6a76-175">The directory model is one of eventual consistency.</span></span> <span data-ttu-id="b6a76-176">以非同步方式複寫的分散式系統有一個典型問題，就是從「特定」複本傳回的資料可能不是最新狀態。</span><span class="sxs-lookup"><span data-stu-id="b6a76-176">One typical problem with distributed asynchronously replicating systems is that the data returned from a “particular” replica may not be up to date.</span></span> 
+
+<span data-ttu-id="b6a76-177">Azure AD 會對以次要複本為目標的應用程式提供讀寫一致性，其做法是將其寫入路由傳送至主要複本，並以同步方式將寫入提取回到次要複本。</span><span class="sxs-lookup"><span data-stu-id="b6a76-177">Azure AD provides read-write consistency for applications targeting a secondary replica by routing its writes to the primary replica, and synchronously pulling the writes back to the secondary replica.</span></span>
+
+<span data-ttu-id="b6a76-178">使用 Azure AD 圖形 API 的應用程式寫入會為了讀寫一致性，而從維護目錄複本同質性中抽取出來。</span><span class="sxs-lookup"><span data-stu-id="b6a76-178">Application writes using the Graph API of Azure AD are abstracted from maintaining affinity to a directory replica for read-write consistency.</span></span> <span data-ttu-id="b6a76-179">Azure AD 圖形服務會維護邏輯工作階段，其具有用於讀取之次要複本的同質性；在圖形服務使用分散式快取所快取的「複本權杖」中可擷取同質性。</span><span class="sxs-lookup"><span data-stu-id="b6a76-179">The Azure AD Graph service maintains a logical session, which has affinity to a secondary replica used for reads; affinity is captured in a “replica token” that the graph service caches using a distributed cache.</span></span> <span data-ttu-id="b6a76-180">此權杖則會接著用於相同邏輯工作階段中的後續作業。</span><span class="sxs-lookup"><span data-stu-id="b6a76-180">This token is then used for subsequent operations in the same logical session.</span></span> 
+
+ >[!NOTE]
+ ><span data-ttu-id="b6a76-181">寫入會立即複寫到邏輯工作階段的讀取所發行至的次要複本。</span><span class="sxs-lookup"><span data-stu-id="b6a76-181">Writes are immediately replicated to the secondary replica to which the logical session's reads were issued.</span></span>
+ >
+
+<span data-ttu-id="b6a76-182">**備份保護**</span><span class="sxs-lookup"><span data-stu-id="b6a76-182">**Backup protection**</span></span>
+
+<span data-ttu-id="b6a76-183">目錄會對使用者和租用戶實作虛刪除 (而不是實刪除)，以便在遭客戶意外刪除的情況下輕鬆復原。</span><span class="sxs-lookup"><span data-stu-id="b6a76-183">The directory implements soft deletes, instead of hard deletes, for users and tenants for easy recovery in case of accidental deletes by a customer.</span></span> <span data-ttu-id="b6a76-184">如果您的租用戶系統管理員不小心刪除使用者，他們可以輕鬆地復原並還原已刪除的使用者。</span><span class="sxs-lookup"><span data-stu-id="b6a76-184">If your tenant administrator accidently deletes users, they can easily undo and restore the deleted users.</span></span> 
+
+<span data-ttu-id="b6a76-185">Azure AD 會實作所有資料的每日備份，因此可以在任何邏輯刪除或損毀的情況下可靠地還原資料。</span><span class="sxs-lookup"><span data-stu-id="b6a76-185">Azure AD implements daily backups of all data, and therefore can authoritatively restore data in case of any logical deletions or corruptions.</span></span> <span data-ttu-id="b6a76-186">我們的資料層會運用錯誤修正碼，以便檢查有錯誤並自動更正特定類型的磁碟錯誤。</span><span class="sxs-lookup"><span data-stu-id="b6a76-186">Our data tier employs error correcting codes, so that it can check for errors and automatically correct particular types of disk errors.</span></span>
+
+<span data-ttu-id="b6a76-187">**計量和監視**</span><span class="sxs-lookup"><span data-stu-id="b6a76-187">**Metrics and monitors**</span></span>
+
+<span data-ttu-id="b6a76-188">執行高可用性服務需要世界級的計量和監視功能。</span><span class="sxs-lookup"><span data-stu-id="b6a76-188">Running a high availability service requires world-class metrics and monitoring capabilities.</span></span> <span data-ttu-id="b6a76-189">Azure AD 會持續分析及報告其每項服務的重要服務健康狀態計量和成功準則。</span><span class="sxs-lookup"><span data-stu-id="b6a76-189">Azure AD continually analyzes and reports key service health metrics and success criteria for each of its services.</span></span> <span data-ttu-id="b6a76-190">我們會持續開發並微調計量，以及監視與警示每項 Azure AD 服務及所有服務內的每個案例。</span><span class="sxs-lookup"><span data-stu-id="b6a76-190">We continuously develop and tune metrics, monitoring and alerting for each scenario, within each Azure AD service and across all services.</span></span>
+
+<span data-ttu-id="b6a76-191">如果任何 Azure AD 服務無法如預期般運作，我們會立即採取行動以盡快還原功能。</span><span class="sxs-lookup"><span data-stu-id="b6a76-191">If any Azure AD service is not working as expected, we immediately take action to restore functionality as quickly as possible.</span></span> <span data-ttu-id="b6a76-192">Azure AD 追蹤的最重要計量是我們如何才能快速偵測及緩和客戶或即時網站問題。</span><span class="sxs-lookup"><span data-stu-id="b6a76-192">The most important metric Azure AD tracks is how quickly we can detect and mitigate a customer or live site issue.</span></span> <span data-ttu-id="b6a76-193">我們大舉投入監視和警示，以將偵測時間降至最低 (TTD 目標︰<5 分鐘)，並投入作業整備性以將緩和時間降至最低 (TTM 目標︰<30 分鐘)。</span><span class="sxs-lookup"><span data-stu-id="b6a76-193">We invest heavily in monitoring and alerts to minimize time to detect (TTD Target: <5 minutes) and operational readiness to minimize time to mitigate (TTM Target: <30 minutes).</span></span>
+
+<span data-ttu-id="b6a76-194">**安全作業**</span><span class="sxs-lookup"><span data-stu-id="b6a76-194">**Secure operations**</span></span>
+
+<span data-ttu-id="b6a76-195">我們會運用任何作業的作業控制項 (例如 Multi-Factor Authentication (MFA))，以及稽核所有的作業。</span><span class="sxs-lookup"><span data-stu-id="b6a76-195">We employ operational controls such as multi-factor authentication (MFA) for any operation, as well as auditing of all operations.</span></span> <span data-ttu-id="b6a76-196">此外，我們使用即時提高權限系統，隨時對任何操作工作授與必要的暫時存取權。</span><span class="sxs-lookup"><span data-stu-id="b6a76-196">In addition, we use a just-in-time elevation system to grant necessary temporary access for any operational task-on-demand on an ongoing basis.</span></span> <span data-ttu-id="b6a76-197">如需詳細資訊，請參閱[受信任的雲端](https://azure.microsoft.com/en-us/support/trust-center)。</span><span class="sxs-lookup"><span data-stu-id="b6a76-197">For more information, see [The Trusted Cloud](https://azure.microsoft.com/en-us/support/trust-center).</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="b6a76-198">後續步驟</span><span class="sxs-lookup"><span data-stu-id="b6a76-198">Next steps</span></span>
+[<span data-ttu-id="b6a76-199">Azure Active Directory 開發人員指南</span><span class="sxs-lookup"><span data-stu-id="b6a76-199">Azure Active Directory developer's guide</span></span>](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-developers-guide)
+
