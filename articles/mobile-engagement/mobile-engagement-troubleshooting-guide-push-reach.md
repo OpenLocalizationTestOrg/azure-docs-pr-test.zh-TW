@@ -1,0 +1,102 @@
+---
+title: "Azure Mobile Engagement 疑難排解指南 - 推送/觸達"
+description: "Azure Mobile Engagement 中使用者互動與通知問題的疑難排解"
+services: mobile-engagement
+documentationcenter: 
+author: piyushjo
+manager: erikre
+editor: 
+ms.assetid: 3f1886b7-1fdd-47f4-b6b0-d79f158d5ef3
+ms.service: mobile-engagement
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: mobile-multiple
+ms.workload: mobile
+ms.date: 08/19/2016
+ms.author: piyushjo
+ms.openlocfilehash: ef6f34404b97a6972fc136262920a1bdbc4117b0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 07/11/2017
+---
+# <a name="troubleshooting-guide-for-push-and-reach-issues"></a><span data-ttu-id="5e2f4-103">推送與觸達問題的疑難排解指南</span><span class="sxs-lookup"><span data-stu-id="5e2f4-103">Troubleshooting guide for Push and Reach issues</span></span>
+<span data-ttu-id="5e2f4-104">以下是您可能會遇到，有關 Azure Mobile Engagement 如何傳送資訊給使用者的問題。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-104">The following are possible issues you may encounter with how Azure Mobile Engagement sends information to your users.</span></span>
+
+## <a name="push-failures"></a><span data-ttu-id="5e2f4-105">推送失敗</span><span class="sxs-lookup"><span data-stu-id="5e2f4-105">Push failures</span></span>
+### <a name="issue"></a><span data-ttu-id="5e2f4-106">問題</span><span class="sxs-lookup"><span data-stu-id="5e2f4-106">Issue</span></span>
+* <span data-ttu-id="5e2f4-107">推送沒有運作 (在應用程式中、在應用程式外，或兩者)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-107">Pushes don't work (in app, out of app, or both).</span></span>
+
+### <a name="causes"></a><span data-ttu-id="5e2f4-108">原因</span><span class="sxs-lookup"><span data-stu-id="5e2f4-108">Causes</span></span>
+* <span data-ttu-id="5e2f4-109">許多時候，推送失敗表示 Azure Mobile Engagement、Reach 或 Azure Mobile Engagement 的其他進階功能未正確整合，或是需要升級 SDK 以修正新的作業系統或裝置平台的已知問題。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-109">Many times a push failure is an indication that Azure Mobile Engagement, Reach, or another advanced feature of Azure Mobile Engagement is not correctly integrated or that an upgrade is required in the SDK to fix a known issue with a new OS or Device platform.</span></span>
+* <span data-ttu-id="5e2f4-110">測試應用程式內推送和應用程式外推送，以判斷這是應用程式內或應用程式外的問題。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-110">Test just an In App push and just an Out of App push to determine if something is an In App or Out of App issue.</span></span>
+* <span data-ttu-id="5e2f4-111">同時從 UI 與 API 測試以做為疑難排解步驟，藉以查看這兩者中有哪些其他的錯誤資訊。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-111">Test from both the UI and the API as a troubleshooting step to see what additional error information is available both places.</span></span>
+* <span data-ttu-id="5e2f4-112">除非 SDK 中整合了 Azure Mobile Engagement 與 Reach，否則應用程式外推送不會運作。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-112">Out of App pushes won't work unless both Azure Mobile Engagement and Reach are integrated in the SDK.</span></span>
+* <span data-ttu-id="5e2f4-113">如果憑證無效，或正在正確使用 PROD 與DEV 正確 (僅限 iOS)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-113">Pushes won't work if certificates aren't valid, or are using PROD vs. DEV correctly (iOS only).</span></span> <span data-ttu-id="5e2f4-114">**注意**：如果您同時安裝開發版 (DEV) 和產品版 (PROD) 的應用程式在同一部裝置上，「應用程式外」推送將不會遞送給 iOS，因為與您憑證關聯的安全性權杖可能會由 Apple 作廢。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-114">(**Note:** "Out of app" push notifications may not be delivered to iOS, if you have both the development (DEV) and production (PROD) versions of your application installed on the same device since the security token associated with your certificate may be invalidated by Apple.</span></span> <span data-ttu-id="5e2f4-115">若要解決這個問題，請先解除安裝 DEV 和 PROD 版本的應用程式，然後在您的裝置上只安裝其中一個版本。)</span><span class="sxs-lookup"><span data-stu-id="5e2f4-115">To resolve this issue, uninstall both the DEV and PROD versions of your application and re-install only the one version on your device.)</span></span>
+* <span data-ttu-id="5e2f4-116">應用程式外推送計數在不同的平台上有不同的處理方式 (如果裝置停用原生推送，iOS 顯示的資訊會比 Android 少，API 可以提供比 UI 更多的推送狀態相關資訊)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-116">Out of App push counts are handled differently in different platforms (iOS shows less information than Android if native pushes are disabled on a device, the API can provide more information than the UI on push stats).</span></span>
+* <span data-ttu-id="5e2f4-117">應用程式外推送可以由客戶在作業系統層級 (iOS 與 Android) 封鎖。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-117">Out of App pushes can be blocked by customers at OS level (iOS and Android).</span></span>
+* <span data-ttu-id="5e2f4-118">如果應用程式外推送未正確整合，在 Azure Mobile Engagement UI 中會顯示為停用，但可能會從 API 以無訊息方式發生失敗。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-118">Out of App pushes will be shown as disabled in the Azure Mobile Engagement UI if they aren't integrated correctly, but may fail silently from the API.</span></span>
+* <span data-ttu-id="5e2f4-119">除非 SDK 中同時整合了 Azure Mobile Engagement 與 Reach，否則應用程式內推送不會運作。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-119">In App pushes won't work unless both Azure Mobile Engagement and Reach are integrated in the SDK.</span></span>
+* <span data-ttu-id="5e2f4-120">除非 SDK 中整合了 Azure Mobile Engagement 與特定伺服器，否則 GCM 與 ADM 推送不會運作 (僅限 Android)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-120">GCM and ADM pushes won't work unless Azure Mobile Engagement and the specific server are integrated in the SDK (Android only).</span></span>
+* <span data-ttu-id="5e2f4-121">應用程式內推送和應用程式外推送應個別測試，以判斷是「推送」或「觸達」問題。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-121">In App and Out of App pushes should be tested separately to determine if it is a Push or Reach issue.</span></span>
+* <span data-ttu-id="5e2f4-122">應用程式內推送要求應用程式開放被接收功能。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-122">In App pushes require that the app be open to be received.</span></span>
+* <span data-ttu-id="5e2f4-123">應用程式內推送通常設定為依據加入 (opt-in) 或退出 (opt-out) 應用程式資訊標記來篩選。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-123">In App pushes are often setup to be filtered by an opt-in or opt-out app info tag.</span></span>
+* <span data-ttu-id="5e2f4-124">如果您在 Reach 中使用自訂類別來顯示應用程式內通知，您必須遵循通知的正確生命週期，否則當使用者關閉通知時可能不會清除通知。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-124">If you use a custom category in Reach to display in-app notifications, you need to follow the correct life-cycle of the notification, or else the notification may not be cleared when the user dismiss it.</span></span>
+* <span data-ttu-id="5e2f4-125">如果您開始了一個沒有結束日期的活動，且裝置接收到應用程式內通知但尚未顯示，那麼即使您手動結束活動，使用者在下一次登入應用程式時仍然會收到通知。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-125">If you start a campaign with no end date and a device receives the in app notification but does not display it yet, the user will still receive the notification the next time they log into the app, even if you manually end the campaign.</span></span>
+* <span data-ttu-id="5e2f4-126">對於推送 API 的問題，請確認您真的希望使用推送 API 而不是觸達 API (因為觸達 API 更常使用)，且您並沒有混淆 "payload" 和 "notifier" 參數。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-126">For issues with the Push API, confirm that you really do want to use the Push API instead of the Reach API (since the Reach API is used more often) and that you are not confusing the "payload" and "notifier" parameters.</span></span>
+* <span data-ttu-id="5e2f4-127">使用透過 WIFI 與 3G 連線的裝置測試您的推播活動，來消除可能為問題來源的網路連線。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-127">Test your push campaign with both a device connected via WIFI and 3G to eliminate the network connection as a possible source of problems.</span></span>
+
+## <a name="push-testing"></a><span data-ttu-id="5e2f4-128">推送測試</span><span class="sxs-lookup"><span data-stu-id="5e2f4-128">Push testing</span></span>
+### <a name="issue"></a><span data-ttu-id="5e2f4-129">問題</span><span class="sxs-lookup"><span data-stu-id="5e2f4-129">Issue</span></span>
+* <span data-ttu-id="5e2f4-130">推送可以依據裝置識別碼傳送給特定的裝置。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-130">Pushes can be sent to a specific device based on a Device ID.</span></span>
+
+### <a name="causes"></a><span data-ttu-id="5e2f4-131">原因</span><span class="sxs-lookup"><span data-stu-id="5e2f4-131">Causes</span></span>
+* <span data-ttu-id="5e2f4-132">測試裝置在各平台上有不同的設定，但是在您測試裝置上的應用程式中引發事件，以及在入口網站尋找您的裝置識別碼的功能應該運作，以尋找您的裝置在所有平台上的裝置識別碼。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-132">Test devices are setup differently for each platform, but causing an event in your app on a test device and looking for your Device ID in the portal should work to find your device ID for all platforms.</span></span>
+* <span data-ttu-id="5e2f4-133">測試裝置與 IDFA 與IDFV 搭配使用時運作方式不同 (僅 iOS)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-133">Test devices work differently with IDFA vs. IDFV (iOS only).</span></span>
+
+## <a name="push-customization"></a><span data-ttu-id="5e2f4-134">自訂推送</span><span class="sxs-lookup"><span data-stu-id="5e2f4-134">Push customization</span></span>
+### <a name="issue"></a><span data-ttu-id="5e2f4-135">問題</span><span class="sxs-lookup"><span data-stu-id="5e2f4-135">Issue</span></span>
+* <span data-ttu-id="5e2f4-136">進階推送內容項目無法運作 (徽章、響鈴、震動、圖片等)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-136">Advanced push content item won't work (badge, ring, vibrate, picture, etc.).</span></span>
+* <span data-ttu-id="5e2f4-137">推送中的連結沒有作用 (應用程式外、應用程式內、網站連結、應用程式中的位置連結)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-137">Links from pushes don't work (out of app, in app, to a website, to a location in app).</span></span>
+* <span data-ttu-id="5e2f4-138">推送統計資料顯示推送並沒有傳送給預期的人數 (太多或不足)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-138">Push statistics show that a push was not sent to as many people as expected (too many or not enough).</span></span>
+* <span data-ttu-id="5e2f4-139">重複推送，並且收到兩次。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-139">Push duplicated and received twice.</span></span>
+* <span data-ttu-id="5e2f4-140">無法為 Azure Mobile Engagement 推送註冊測試裝置 (使用您自己的 Prod 或 DEV 應用程式)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-140">Can't register test device for Azure Mobile Engagement Pushes (with your own Prod or DEV app).</span></span>
+
+### <a name="causes"></a><span data-ttu-id="5e2f4-141">原因</span><span class="sxs-lookup"><span data-stu-id="5e2f4-141">Causes</span></span>
+* <span data-ttu-id="5e2f4-142">要連結到應用程式內的特定位置時需要「類別」(僅限 Android)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-142">To link to a specific location in app requires “categories” (Android only).</span></span>
+* <span data-ttu-id="5e2f4-143">按一下推播通知後，重新導向使用者到替代位置的深層連結配置，必須由應用程式與裝置作業系統建立及管理，而非直接透過 Mobile Engagement。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-143">Deep linking schemes to redirect users to an alternate location after clicking a push notification need to be created in and managed by your application and the device OS not by Mobile Engagement directly.</span></span> <span data-ttu-id="5e2f4-144">(**注意**：應用程式外通知在 iOS 上無法像 Android 般，直接連結到應用程式位置。)</span><span class="sxs-lookup"><span data-stu-id="5e2f4-144">(**Note:** Out of app notifications can't link directly to in app locations with iOS as they can with Android.)</span></span>
+* <span data-ttu-id="5e2f4-145">外部影像伺服器必須能夠使用 HTTP "GET" 與 "HEAD"，大型圖片推送才能運作 (僅限 Android)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-145">External image servers need to be able to use HTTP "GET" and "HEAD" for big picture pushes to work (Android only).</span></span>
+* <span data-ttu-id="5e2f4-146">在您的程式碼中，您可以在鍵盤開啟時停用 Azure Mobile Engagement 代理程式，並讓程式碼在鍵盤關閉時重新啟用 Azure Mobile Engagement 代理程式，這樣一來鍵盤就不會影響您的通知的外觀 (僅限 iOS)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-146">In your code, you can disable the Azure Mobile Engagement agent when the keyboard is opened, and have your code re-activate the Azure Mobile Engagement agent once the keyboard is closed so that the keyboard won't affect the appearance of your notification (iOS only).</span></span>
+* <span data-ttu-id="5e2f4-147">部分項目在測試模擬中沒有作用，只有在實際活動 (徽章、響鈴、震動、圖片等) 中才會有作用。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-147">Some items don't work in test simulations, but only real campaigns (badge, ring, vibrate, picture, etc.).</span></span>
+* <span data-ttu-id="5e2f4-148">當您使用按鈕「測試」推送時，不會記錄任何伺服器端的資料。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-148">No server side data is logged when you use the button to "test" pushes.</span></span> <span data-ttu-id="5e2f4-149">只會記錄實際推送活動的資料。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-149">Data is only logged for real push campaigns.</span></span>
+* <span data-ttu-id="5e2f4-150">為了協助您找出問題，請以測試、模擬及實際活動來執行疑難排解，因為它們各自的運作方式稍有不同。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-150">To help isolate your issue, troubleshoot with: test, simulate, and a real campaign since they each work slightly differently.</span></span>
+* <span data-ttu-id="5e2f4-151">由於活動執行時，活動只會傳遞到「應用程式中」的使用者 (以及將裝置設定為接收「應用程式外」通知的使用者)，「應用程式中」與「任何時間」活動所安排執行的時間長度會影響傳遞的數目。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-151">The length of time your "in app" and "any time" campaigns are scheduled to run can effect delivery numbers since a campaign will only be delivered to users who are "in app" while the campaign runs (and users who have their device settings set to receive notifications "out of app").</span></span>
+* <span data-ttu-id="5e2f4-152">Android 和 iOS 處理應用程式外通知方式的不同，導致難以直接比較應用程式 Android 和 iOS 版本兩者的推送統計數據。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-152">The differences between how Android and iOS handle out of app notifications makes it difficult to directly compare push statistics between the Android and iOS version of your application.</span></span> <span data-ttu-id="5e2f4-153">Android 相較於 iOS，提供較多作業系統層級的通知資訊。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-153">Android provides more OS level notification information than iOS does.</span></span> <span data-ttu-id="5e2f4-154">Android 在通知中心中接收、按一下、或是刪除原生通知時會報告，但 iOS 中除非按一下通知，否則不會報告此資訊，。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-154">Android reports when a native notification is received, clicked, or deleted in the notification center, but iOS does not report this information unless the notification is clicked.</span></span> 
+* <span data-ttu-id="5e2f4-155">觸達活動的「已推送」數目與「已傳遞」數目不同的主要原因，在於「應用程式中」與「應用程式外」的通知以不同的方式計算。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-155">The main reason that "pushed" numbers are different than different than "delivered" numbers for reach campaigns is that "in app" and "out of app" notifications are counted differently.</span></span> <span data-ttu-id="5e2f4-156">「應用程式中」通知由 Mobile Engagement 處理，但「應用程式外」通知則由裝置作業系統中的通知中心處理。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-156">"In app" notifications are handled by Mobile Engagement, but "Out of app" notifications are handled by the notification center in the OS of your device.</span></span>
+
+## <a name="push-targeting"></a><span data-ttu-id="5e2f4-157">推送目標</span><span class="sxs-lookup"><span data-stu-id="5e2f4-157">Push targeting</span></span>
+### <a name="issue"></a><span data-ttu-id="5e2f4-158">問題</span><span class="sxs-lookup"><span data-stu-id="5e2f4-158">Issue</span></span>
+* <span data-ttu-id="5e2f4-159">內建目標未如預期般運作。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-159">Built in targeting doesn't work as expected.</span></span>
+* <span data-ttu-id="5e2f4-160">應用程式資訊標記目標未如預期般運作。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-160">App Info Tag targeting doesn't work as expected.</span></span>
+* <span data-ttu-id="5e2f4-161">地理位置目標未如預期般運作。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-161">Geo-Location targeting doesn't work as expected.</span></span>
+* <span data-ttu-id="5e2f4-162">語言選項未如預期般運作。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-162">Language options don't work as expected.</span></span>
+
+### <a name="causes"></a><span data-ttu-id="5e2f4-163">原因</span><span class="sxs-lookup"><span data-stu-id="5e2f4-163">Causes</span></span>
+* <span data-ttu-id="5e2f4-164">請確定您已經透過 Azure Mobile Engagement UI 或 API 上傳應用程式資訊標記。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-164">Make sure that you have uploaded app info tags via the Azure Mobile Engagement UI or API.</span></span>
+* <span data-ttu-id="5e2f4-165">於應用程式層級控制推送速度或推送配額，或於活動層級限制對象，可以防止使用者接收特定的推送，即使它們符合您其他的目標準則。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-165">Throttling the push speed or push quota at the application level, or limiting the audience at the campaign level can prevent a person from receiving a specific push even if they meet your other targeting criteria.</span></span> 
+* <span data-ttu-id="5e2f4-166">設定「語言」和依據國家或地區設定目標不同，這也和依據地理位置、手機位置或 GPS 定位位置設定目標不同。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-166">Setting a “Language” is different than targeting based on country or locale, which is also different than targeting based on Geo-location based on a phone location or GPS location.</span></span>
+* <span data-ttu-id="5e2f4-167">系統會傳送使用「預設語言」的訊息給未將其裝置設定為您所指定之替代語言之一的任何客戶。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-167">The message in the “default language” is sent to any customer who doesn't have their device set to one of the alternate languages you specify.</span></span>
+
+## <a name="push-scheduling"></a><span data-ttu-id="5e2f4-168">推送排程</span><span class="sxs-lookup"><span data-stu-id="5e2f4-168">Push scheduling</span></span>
+### <a name="issue"></a><span data-ttu-id="5e2f4-169">問題</span><span class="sxs-lookup"><span data-stu-id="5e2f4-169">Issue</span></span>
+* <span data-ttu-id="5e2f4-170">推送排程未如預期般運作 (過早或延遲傳送)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-170">Push scheduling doesn't work as expected (sent too early or delayed).</span></span>
+
+### <a name="causes"></a><span data-ttu-id="5e2f4-171">原因</span><span class="sxs-lookup"><span data-stu-id="5e2f4-171">Causes</span></span>
+* <span data-ttu-id="5e2f4-172">時區可能導致排程問題，特別是在使用使用者的時區時。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-172">Time zones can issues with scheduling, especially when using the end users' time zone.</span></span>
+* <span data-ttu-id="5e2f4-173">進階推送功能可能會延遲推送。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-173">Advanced push features can delay pushes.</span></span>
+* <span data-ttu-id="5e2f4-174">根據手機設定 (而不是根據應用程式資訊標記) 設定的目標可能會延遲推送，因為 Azure Mobile Engagement 可能必須在傳送推送之前，即時要求手機資料。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-174">Targeting based on phone settings (instead of App Info Tags) can delay pushes since Azure Mobile Engagement may have to request data from the phone real time before sending a push.</span></span>
+* <span data-ttu-id="5e2f4-175">建立時未設定結束日期的活動會將推送儲存在本機裝置上，並在下一次應用程式開啟時顯示，即使活動已手動結束。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-175">Campaigns created without an end date store the push locally on the device and show it the next time the app is opened even if the campaign is manually ended.</span></span>
+* <span data-ttu-id="5e2f4-176">同時啟動多個活動可能需要較長時間來掃描您的使用者基礎 (請嘗試一次只啟動一個活動 (上限為四個)，目標也只限定於您在作用中的使用者，如此就不需要掃描舊的使用者)。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-176">Starting more than one campaign at the same time can take a longer time to scan your user base (try to only start one campaign at a time with a maximum of four, also target only to your active users so that old users don't have to be scanned).</span></span>
+* <span data-ttu-id="5e2f4-177">如果您在觸達活動的 [活動] 區段中使用 [略過對象，推送將透過 API 傳送給使用者] 選項，活動將不會自動傳送，您必須以手動方式透過「觸達 API」傳送活動。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-177">If you use the "Ignore Audience, push will be sent to users via the API" option in the "Campaign" section of a Reach campaign, the campaign will NOT automatically send, you will need to send it manually via the Reach API.</span></span>
+* <span data-ttu-id="5e2f4-178">如果您在 Reach 中使用自訂類別來顯示應用程式內通知，您必須遵循通知的正確生命週期，否則當使用者關閉通知時可能不會清除通知。</span><span class="sxs-lookup"><span data-stu-id="5e2f4-178">If you use a custom category in Reach to display in-app notifications, you need to follow the correct life-cycle of a notification, or else the notification may not be cleared when the user dismiss it.</span></span>
+

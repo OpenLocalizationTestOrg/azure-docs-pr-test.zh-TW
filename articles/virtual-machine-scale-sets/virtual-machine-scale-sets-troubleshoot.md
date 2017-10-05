@@ -1,0 +1,84 @@
+---
+title: "針對使用虛擬機器擴展集的自動調整進行疑難排解 | Microsoft Docs"
+description: "針對使用虛擬機器擴展集的自動調整進行疑難排解。 了解所遇到的一般問題和解決方式。"
+services: virtual-machine-scale-sets
+documentationcenter: 
+author: gbowerman
+manager: timlt
+editor: 
+tags: azure-resource-manager
+ms.assetid: c7d87b72-ee24-4e52-9377-a42f337f76fa
+ms.service: virtual-machine-scale-sets
+ms.workload: na
+ms.tgt_pltfrm: windows
+ms.devlang: na
+ms.topic: article
+ms.date: 10/28/2016
+ms.author: guybo
+ms.openlocfilehash: bd45a0fb99a77851aa7b91d23bd4b830b6f5cc7b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 07/11/2017
+---
+# <a name="troubleshooting-autoscale-with-virtual-machine-scale-sets"></a><span data-ttu-id="c7b6c-104">針對使用虛擬機器擴展集的自動調整進行疑難排解</span><span class="sxs-lookup"><span data-stu-id="c7b6c-104">Troubleshooting autoscale with Virtual Machine Scale Sets</span></span>
+<span data-ttu-id="c7b6c-105">**問題** – 您已使用 VM 擴展集在 Azure Resource Manager 中建立自動調整基礎結構，例如藉由部署範本，如下所示︰https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale – 您有已定義的調整規則，並且運作良好，美中不足的是無論您在 VM 上放置多少負載，它都不會自動調整。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-105">**Problem** – you’ve created an autoscaling infrastructure in Azure Resource Manager using VM Scale Sets –  for example by deploying a template like this: https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale  – you have your scale rules defined and it works great, except that no matter how much load you put on the VMs, it won’t autoscale.</span></span>
+
+## <a name="troubleshooting-steps"></a><span data-ttu-id="c7b6c-106">疑難排解步驟</span><span class="sxs-lookup"><span data-stu-id="c7b6c-106">Troubleshooting steps</span></span>
+<span data-ttu-id="c7b6c-107">要考量的事項包括：</span><span class="sxs-lookup"><span data-stu-id="c7b6c-107">Some things to consider include:</span></span>
+
+* <span data-ttu-id="c7b6c-108">每個 VM 擁有多少核心，以及您是否讓每個核心都有負載？</span><span class="sxs-lookup"><span data-stu-id="c7b6c-108">How many cores does each VM have, and are you loading each core?</span></span>
+  <span data-ttu-id="c7b6c-109">上述的範例 Azure 快速入門範本具有 do_work.php 指令碼，它會載入單一核心。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-109">The example Azure Quickstart template above has a do_work.php script, which loads a single core.</span></span> <span data-ttu-id="c7b6c-110">如果您使用大於單一核心大小類似 Standard_A1 或 D1 的 VM，則您需要多次執行此負載。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-110">If you’re using a VM bigger than a single core VM size like Standard_A1 or D1 then you’d need to run this load multiple times.</span></span> <span data-ttu-id="c7b6c-111">藉由檢閱 [Azure 中 Windows 虛擬機器的大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="c7b6c-111">Check how many cores your VMs by reviewing [Sizes for Windows virtual machines in Azure](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)</span></span>
+* <span data-ttu-id="c7b6c-112">VM 擴展集中有多少 VM，您是否在每一個 VM 上執行工作？</span><span class="sxs-lookup"><span data-stu-id="c7b6c-112">How many VMs in the VM Scale Set, are you doing work on each one?</span></span>
+  
+    <span data-ttu-id="c7b6c-113">相應放大只會在擴展集中 **所有** VM 的平均 CPU，經過自動調整規則中定義的內部時間之後超過臨界值時發生。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-113">A scale out event will only take place when the average CPU across **all** the VMs in a scale set exceeds the threshold value, over the time internal defined in the autoscale rules.</span></span>
+* <span data-ttu-id="c7b6c-114">您是否遺漏任何調整事件？</span><span class="sxs-lookup"><span data-stu-id="c7b6c-114">Did you miss any scale events?</span></span>
+  
+    <span data-ttu-id="c7b6c-115">在 Azure 入口網站中檢查調整事件的稽核記錄檔。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-115">Check the audit logs in the Azure portal for scale events.</span></span> <span data-ttu-id="c7b6c-116">或許遺漏相應增加和相應減少。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-116">Maybe there was a scale up and a scale down which was missed.</span></span> <span data-ttu-id="c7b6c-117">您可以依「調整」進行篩選。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-117">You can filter by “Scale”..</span></span>
+  
+    ![稽核記錄檔][audit]
+* <span data-ttu-id="c7b6c-119">您的相應縮小和相應放大的臨界值是否有足夠的差異？</span><span class="sxs-lookup"><span data-stu-id="c7b6c-119">Are your scale-in and scale-out thresholds sufficiently different?</span></span>
+  
+    <span data-ttu-id="c7b6c-120">假設您在平均 CPU 於 5 分鐘後大於 50% 時將規則設為相應放大，而在平均 CPU 小於 50% 時將規則設為相應縮小。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-120">Suppose you set a rule to scale out when average CPU is greater than 50% over 5 minutes, and to scale in when average CPU is less than 50%.</span></span> <span data-ttu-id="c7b6c-121">當 CPU 使用量很接近此臨界值時，且調整動作經常增加和減少集合的大小，會導致「flapping」問題。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-121">This would cause a “flapping” problem when CPU usage is close to this threshold, with scale actions constantly increasing and decreasing the size of the set.</span></span> <span data-ttu-id="c7b6c-122">因為這個緣故，自動調整服務會嘗試防止「flapping」，可以表示為未調整。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-122">Because of this, the autoscale service tries to prevent “flapping”, which can manifest as not scaling.</span></span> <span data-ttu-id="c7b6c-123">因此請確定您的相應放大和相應縮小的臨界值有足夠的差異，以便在調整之間容許一些空間。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-123">Therefore make sure your scale-out and scale-in thresholds are sufficiently different to allow some space in between scaling.</span></span>
+* <span data-ttu-id="c7b6c-124">您是否撰寫自己的 JSON 範本？</span><span class="sxs-lookup"><span data-stu-id="c7b6c-124">Did you write your own JSON template?</span></span>
+  
+    <span data-ttu-id="c7b6c-125">很容易發生錯誤，所以請從如上所述已經過證明可以運作的範本開始，並且進行小的增量變更。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-125">It is easy to make mistakes, so start with a template like the one above which is proven to work, and make small incremental changes.</span></span> 
+* <span data-ttu-id="c7b6c-126">是否可以手動相應縮小或相應放大？</span><span class="sxs-lookup"><span data-stu-id="c7b6c-126">Can you manually scale in or out?</span></span>
+  
+    <span data-ttu-id="c7b6c-127">請嘗試使用不同的「容量」設定重新部署 VM 擴展集資源，以手動變更 VM 數目。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-127">Try redeploying the VM Scale Set resource with a different “capacity” setting to change the number of VMs manually.</span></span> <span data-ttu-id="c7b6c-128">執行這項操作的範例範本如下︰https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing – 您可能需要編輯範本以確定它有與您的擴展集所使用的相同機器大小。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-128">An example template to do this is here: https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing – you may need to edit the template to make sure it has the same machine size as your Scale Set is using.</span></span> <span data-ttu-id="c7b6c-129">如果您可以成功手動變更 VM 數目，則您知道問題與自動調整無關。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-129">If you can successfully change the number of VMs manually, then you know the problem is isolated to autoscale.</span></span>
+* <span data-ttu-id="c7b6c-130">請在 [Azure 資源總管](https://resources.azure.com/)中檢查您的 Microsoft.Compute/virtualMachineScaleSet 和 Microsoft.Insights 資源。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-130">Check your Microsoft.Compute/virtualMachineScaleSet, and Microsoft.Insights resources in the [Azure Resource Explorer](https://resources.azure.com/)</span></span>
+  
+    <span data-ttu-id="c7b6c-131">這是向您顯示 Azure Resource Manager 資源的狀態不可或缺的疑難排解工具。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-131">This is an indispensable troubleshooting tool which shows you the state of your Azure Resource Manager resources.</span></span> <span data-ttu-id="c7b6c-132">按一下您的訂用帳戶，查看您正在進行疑難排解的資源群組。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-132">Click on your subscription and look at the Resource Group you are troubleshooting.</span></span> <span data-ttu-id="c7b6c-133">在「計算」資源提供者下查看您建立的 VM 擴展集，並且檢查執行個體檢視，它會顯示部署的狀態。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-133">Under the Compute resource provider look at the VM Scale Set you created and check the Instance View, which shows you the state of a deployment.</span></span> <span data-ttu-id="c7b6c-134">也請檢查 VM 擴展集中的 VM 執行個體檢視。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-134">Also check the instance view of VMs in the VM Scale Set.</span></span> <span data-ttu-id="c7b6c-135">然後進入 Microsoft.Insights 資源提供者，並且檢查自動調整規則看起來是否沒有問題。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-135">Then go into the Microsoft.Insights resource provider and check the autoscale rules look good.</span></span>
+* <span data-ttu-id="c7b6c-136">診斷擴充是否正常運作，而且發出效能資料？</span><span class="sxs-lookup"><span data-stu-id="c7b6c-136">Is the Diagnostic extension working and emitting performance data?</span></span>
+  
+    <span data-ttu-id="c7b6c-137">**更新︰**已增強 Azure 自動調整，以使用不再需要安裝診斷擴充功能的主機型度量管線。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-137">**Update:** Azure autoscale has been enhanced to use a host based metrics pipeline which no longer requires a diagnostics extension to be installed.</span></span> <span data-ttu-id="c7b6c-138">這表示如果您使用新的管線建立自動調整應用程式，則不再適用於後續幾個段落。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-138">This means the next few paragraphs no longer apply if you create an autoscaling application using the new pipeline.</span></span> <span data-ttu-id="c7b6c-139">已經轉換為使用主機管線的 Azure 範本範例在：https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-139">An example of Azure templates which have been converted to use the host pipeline is: https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale.</span></span> 
+  
+    <span data-ttu-id="c7b6c-140">使用主機型度量進行自動調整較佳，原因如下︰</span><span class="sxs-lookup"><span data-stu-id="c7b6c-140">Using host based metrics for autoscale is better for the following reasons:</span></span>
+  
+  * <span data-ttu-id="c7b6c-141">無需安裝診斷延伸模組，因此移動組件較少。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-141">Fewer moving parts as no diagnostics extensions need to be installed.</span></span>
+  * <span data-ttu-id="c7b6c-142">更簡單的範本。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-142">Simpler templates.</span></span> <span data-ttu-id="c7b6c-143">只將 insights 自動調整規則新增至現有的擴展集範本。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-143">Just add insights autoscale rules to an existing scale set template.</span></span>
+  * <span data-ttu-id="c7b6c-144">新 VM 的報告更可靠且啟動更快速。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-144">More reliable reporting and faster launching of new VMs.</span></span>
+    
+    <span data-ttu-id="c7b6c-145">您可能想要繼續使用診斷延伸模組的唯一原因是您需要記憶體診斷報告/調整大小。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-145">The only reasons you might want to keep using a diagnostic extension would be if you need memory diagnostics reporting/scaling.</span></span> <span data-ttu-id="c7b6c-146">主機型度量資訊不會報告記憶體。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-146">Host based metrics doesn't report memory.</span></span>
+    
+    <span data-ttu-id="c7b6c-147">記住這點之後，如果您仍在使用診斷延伸模組進行自動調整，才需依照本文的其餘部分。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-147">With that in mind, only follow the rest of this article if you are still using diagnostic extensions for your autoscaling.</span></span>
+    
+    <span data-ttu-id="c7b6c-148">Azure Resource Manager 中的自動調整可以 (但不再必要) 透過稱為診斷擴充功能的 VM 延伸模組運作。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-148">Autoscale in Azure Resource Manager can work (but no longer has to) by means of a VM extension called the Diagnostics Extension.</span></span> <span data-ttu-id="c7b6c-149">它會將效能資料發出至您在範本中定義的儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-149">It emits performance data to a storage account you define in the template.</span></span> <span data-ttu-id="c7b6c-150">然後 Azure 監視器服務會彙總此資料。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-150">This data is then aggregated by the Azure Monitor service.</span></span>
+    
+    <span data-ttu-id="c7b6c-151">如果 Insights 服務無法讀取來自 VM 的資料，就會傳送電子郵件給您，例如，如果 VM 關閉，請查看您的電子郵件 (您在建立 Azure 帳戶所指定的電子郵件)。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-151">If the Insights service can’t read data from the VMs, it is supposed to send you an email – for example if the VMs were down, so check your email (the one you specified when creating the Azure account).</span></span>
+    
+    <span data-ttu-id="c7b6c-152">您也可以自行前往並查看資料。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-152">You can also go and look at the data yourself.</span></span> <span data-ttu-id="c7b6c-153">使用雲端總管查看 Azure 儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-153">Look at the Azure storage account using a cloud explorer.</span></span> <span data-ttu-id="c7b6c-154">例如使用 [Visual Studio 雲端總管](https://visualstudiogallery.msdn.microsoft.com/aaef6e67-4d99-40bc-aacf-662237db85a2)、登入，並且挑選您使用的 Azure 訂用帳戶，以及您的部署範本中的診斷擴充定義中參考的診斷儲存體帳戶名稱.</span><span class="sxs-lookup"><span data-stu-id="c7b6c-154">For example using the [Visual Studio Cloud Explorer](https://visualstudiogallery.msdn.microsoft.com/aaef6e67-4d99-40bc-aacf-662237db85a2), log in and pick the Azure subscription you’re using, and the Diagnostics storage account name referenced in the Diagnostics extension definition in your deployment template..</span></span>
+    
+    ![雲端總管][explorer]
+    
+    <span data-ttu-id="c7b6c-156">您會在這裡看到許多資料表，在其中儲存每個 VM 的資料。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-156">Here you will see a bunch of tables where the data from each VM is being stored.</span></span> <span data-ttu-id="c7b6c-157">以 Linux 和 CPU 度量為例，查看最新的資料列。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-157">Taking Linux and the CPU metric as an example, look at the most recent rows.</span></span> <span data-ttu-id="c7b6c-158">Visual Studio 雲端總管支援一種查詢語言，因此您可以執行類似 “Timestamp gt datetime’2016-02-02T21:20:00Z’” 的查詢，以確定取得最新的事件 (假設時間是 UTC 格式)。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-158">The Visual Studio cloud explorer supports a query language so you can run a query like “Timestamp gt datetime’2016-02-02T21:20:00Z’” to make sure you get the most recent events (assume time is in UTC).</span></span> <span data-ttu-id="c7b6c-159">您在那裡看到的資料是否對應您設定的調整規則？</span><span class="sxs-lookup"><span data-stu-id="c7b6c-159">Does the data you see in there correspond to the scale rules you set up?</span></span> <span data-ttu-id="c7b6c-160">在下列範例中，機器 20 的 CPU 在過去 5 分鐘開始增加到 100%.</span><span class="sxs-lookup"><span data-stu-id="c7b6c-160">In the example below, the CPU for machine 20 started increasing to 100% over the last 5 minutes..</span></span>
+    
+    ![儲存體資料表][tables]
+    
+    <span data-ttu-id="c7b6c-162">如果資料不存在，則表示問題是出在 VM 中執行的診斷擴充。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-162">If the data is not there, then it implies the problem is with the diagnostic extension running in the VMs.</span></span> <span data-ttu-id="c7b6c-163">如果有資料，則表示您的調整規則或 Insights 服務有問題。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-163">If the data is there, it implies there is either a problem with your scale rules, or with the Insights service.</span></span> <span data-ttu-id="c7b6c-164">檢查 [Azure 狀態](https://azure.microsoft.com/status/)。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-164">Check [Azure Status](https://azure.microsoft.com/status/).</span></span>
+    
+    <span data-ttu-id="c7b6c-165">一旦您完成這些步驟後，如果仍有自動調整問題，您可以嘗試 [MSDN](https://social.msdn.microsoft.com/forums/azure/home?category=windowsazureplatform%2Cazuremarketplace%2Cwindowsazureplatformctp) 上的論壇，或 [Stack Overflow](http://stackoverflow.com/questions/tagged/azure)，或記錄支援呼叫。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-165">Once you’ve been through these steps, if you are still having autoscale problems you could try the forums on [MSDN](https://social.msdn.microsoft.com/forums/azure/home?category=windowsazureplatform%2Cazuremarketplace%2Cwindowsazureplatformctp), or [Stack overflow](http://stackoverflow.com/questions/tagged/azure), or log a support call.</span></span> <span data-ttu-id="c7b6c-166">請準備共用範本和效能資料的檢視。</span><span class="sxs-lookup"><span data-stu-id="c7b6c-166">Be prepared to share the template and a view of the performance data.</span></span>
+
+[audit]: ./media/virtual-machine-scale-sets-troubleshoot/image3.png
+[explorer]: ./media/virtual-machine-scale-sets-troubleshoot/image1.png
+[tables]: ./media/virtual-machine-scale-sets-troubleshoot/image4.png
