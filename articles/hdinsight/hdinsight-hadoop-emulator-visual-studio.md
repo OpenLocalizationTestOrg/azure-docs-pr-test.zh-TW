@@ -1,0 +1,209 @@
+---
+title: "搭配 Hortonworks 沙箱使用 Data Lake tools for Visual Studio - Azure HDInsight | Microsoft Docs"
+description: "了解如何搭配在本機 VM 中執行的 Hortonworks 沙箱使用 Azure Data Lake tools for Visual Studio。 您可以使用這些工具，在沙箱上建立和執行 Hive 和 Pig 作業，以及檢視作業輸出和歷程記錄。"
+services: hdinsight
+documentationcenter: 
+author: Blackmist
+manager: jhubbard
+editor: cgronlun
+ms.assetid: e3434c45-95d1-4b96-ad4c-fb59870e2ff0
+ms.service: hdinsight
+ms.custom: hdinsightactive
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: big-data
+ms.date: 08/11/2017
+ms.author: larryfr
+ms.openlocfilehash: 574ccaa8b2d9448a60ddf8adc7f92fa3683b1d61
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/18/2017
+---
+# <a name="use-the-azure-data-lake-tools-for-visual-studio-with-the-hortonworks-sandbox"></a><span data-ttu-id="b7620-104">搭配 Hortonworks 沙箱使用 Azure Data Lake tools for Visual Studio</span><span class="sxs-lookup"><span data-stu-id="b7620-104">Use the Azure Data Lake tools for Visual Studio with the Hortonworks Sandbox</span></span>
+
+<span data-ttu-id="b7620-105">Azure Data Lake 包含使用於一般 Hadoop 叢集的工具。</span><span class="sxs-lookup"><span data-stu-id="b7620-105">Azure Data Lake includes tools for working with generic Hadoop clusters.</span></span> <span data-ttu-id="b7620-106">針對在本機虛擬機器中執行的 Hortonworks 沙箱，本文提供搭配使用 Data Lake 工具所需的步驟。</span><span class="sxs-lookup"><span data-stu-id="b7620-106">This document provides the steps needed to use the Data Lake tools with the Hortonworks Sandbox running in a local virtual machine.</span></span>
+
+<span data-ttu-id="b7620-107">使用 Hortonworks 沙箱，可讓您在本機開發環境上使用 Hadoop。</span><span class="sxs-lookup"><span data-stu-id="b7620-107">Using the Hortonworks Sandbox allows you to work with Hadoop locally on your development environment.</span></span> <span data-ttu-id="b7620-108">開發解決方案之後並想要進行大規模部署時，您可以接著移至 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="b7620-108">After you have developed a solution and want to deploy it at scale, you can then move to an HDInsight cluster.</span></span>
+
+## <a name="prerequisites"></a><span data-ttu-id="b7620-109">先決條件</span><span class="sxs-lookup"><span data-stu-id="b7620-109">Prerequisites</span></span>
+
+* <span data-ttu-id="b7620-110">在您的開發環境上虛擬機器中執行的 Hortonworks 沙箱。</span><span class="sxs-lookup"><span data-stu-id="b7620-110">The Hortonworks Sandbox, running in a virtual machine on your development environment.</span></span> <span data-ttu-id="b7620-111">此文件是使用在 Oracle VirtualBox 上執行的沙箱所撰寫並測試。</span><span class="sxs-lookup"><span data-stu-id="b7620-111">This document was written and tested with the sandbox running in Oracle VirtualBox.</span></span> <span data-ttu-id="b7620-112">若要了解沙箱的設定，請參閱 [Hortonworks 沙箱使用者入門](hdinsight-hadoop-emulator-get-started.md)</span><span class="sxs-lookup"><span data-stu-id="b7620-112">For information on setting up the sandbox, see the [Get started with the Hortonworks sandbox.](hdinsight-hadoop-emulator-get-started.md)</span></span> <span data-ttu-id="b7620-113">文件。</span><span class="sxs-lookup"><span data-stu-id="b7620-113">document.</span></span>
+
+* <span data-ttu-id="b7620-114">Visual Studio 2013、Visual Studio 2015 或 Visual Studio 2017 (任一版本)。</span><span class="sxs-lookup"><span data-stu-id="b7620-114">Visual Studio 2013, Visual Studio 2015, or Visual Studio 2017 (any edition).</span></span>
+
+* <span data-ttu-id="b7620-115">[Azure SDK for .NET](https://azure.microsoft.com/downloads/) 2.7.1 或更新版本。</span><span class="sxs-lookup"><span data-stu-id="b7620-115">The [Azure SDK for .NET](https://azure.microsoft.com/downloads/) 2.7.1 or later.</span></span>
+
+* <span data-ttu-id="b7620-116">[Azure Data Lake tools for Visual Studio](https://www.microsoft.com/download/details.aspx?id=49504)。</span><span class="sxs-lookup"><span data-stu-id="b7620-116">The [Azure Data Lake tools for Visual Studio](https://www.microsoft.com/download/details.aspx?id=49504).</span></span>
+
+## <a name="configure-passwords-for-the-sandbox"></a><span data-ttu-id="b7620-117">設定沙箱的密碼</span><span class="sxs-lookup"><span data-stu-id="b7620-117">Configure passwords for the sandbox</span></span>
+
+<span data-ttu-id="b7620-118">確定 Hortonworks 沙箱正在執行。</span><span class="sxs-lookup"><span data-stu-id="b7620-118">Make sure that the Hortonworks Sandbox is running.</span></span> <span data-ttu-id="b7620-119">依照 [Hortonworks 沙箱使用者入門](hdinsight-hadoop-emulator-get-started.md#set-sandbox-passwords)文件中的步驟執行。</span><span class="sxs-lookup"><span data-stu-id="b7620-119">Then follow the steps in the [Get started in the Hortonworks Sandbox](hdinsight-hadoop-emulator-get-started.md#set-sandbox-passwords) document.</span></span> <span data-ttu-id="b7620-120">這些步驟會設定 SSH `root` 帳戶以及 Ambari `admin` 帳戶的密碼。</span><span class="sxs-lookup"><span data-stu-id="b7620-120">These steps configure the password for the SSH `root` account, and the Ambari `admin` account.</span></span> <span data-ttu-id="b7620-121">從 Visual Studio 連線至沙箱時會使用這些密碼。</span><span class="sxs-lookup"><span data-stu-id="b7620-121">These passwords are used when you connect to the sandbox from Visual Studio.</span></span>
+
+## <a name="connect-the-tools-to-the-sandbox"></a><span data-ttu-id="b7620-122">將工具連線至沙箱</span><span class="sxs-lookup"><span data-stu-id="b7620-122">Connect the tools to the sandbox</span></span>
+
+1. <span data-ttu-id="b7620-123">開啟 Visual Studio，選取 [檢視]，然後選取 [伺服器總管]。</span><span class="sxs-lookup"><span data-stu-id="b7620-123">Open Visual Studio, select **View**, and then select **Server Explorer**.</span></span>
+
+2. <span data-ttu-id="b7620-124">從 [伺服器總管]，以滑鼠右鍵按一下 [HDInsight] 項目，然後選取 [連線至 HDInsight Emulator]。</span><span class="sxs-lookup"><span data-stu-id="b7620-124">From **Server Explorer**, right-click the **HDInsight** entry, and then select **Connect to HDInsight Emulator**.</span></span>
+
+    ![[伺服器總管] 的螢幕擷取畫面，其中 [連線到 HDInsight 模擬器] 已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/connect-emulator.png)
+
+3. <span data-ttu-id="b7620-126">從 [連線到 HDInsight 模擬器] 對話方塊，輸入您為 Ambari 設定的密碼。</span><span class="sxs-lookup"><span data-stu-id="b7620-126">From the **Connect to HDInsight Emulator** dialog box, enter the password that you configured for Ambari.</span></span>
+
+    ![對話方塊的螢幕擷取畫面，其中密碼文字方塊已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/enter-ambari-password.png)
+
+    <span data-ttu-id="b7620-128">選取 [下一步] 以繼續操作。</span><span class="sxs-lookup"><span data-stu-id="b7620-128">Select **Next** to continue.</span></span>
+
+4. <span data-ttu-id="b7620-129">使用 [密碼] 欄位來輸入您為 `root` 帳戶所設定的密碼。</span><span class="sxs-lookup"><span data-stu-id="b7620-129">Use the **Password** field to enter the password you configured for the `root` account.</span></span> <span data-ttu-id="b7620-130">讓其他欄位保持預設值。</span><span class="sxs-lookup"><span data-stu-id="b7620-130">Leave the other fields at the default value.</span></span>
+
+    ![對話方塊的螢幕擷取畫面，其中密碼文字方塊已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/enter-root-password.png)
+
+    <span data-ttu-id="b7620-132">選取 [下一步] 以繼續操作。</span><span class="sxs-lookup"><span data-stu-id="b7620-132">Select **Next** to continue.</span></span>
+
+5. <span data-ttu-id="b7620-133">等候服務的驗證完成。</span><span class="sxs-lookup"><span data-stu-id="b7620-133">Wait for validation of the services to finish.</span></span> <span data-ttu-id="b7620-134">在某些情況下，驗證可能會失敗並提示您更新設定。</span><span class="sxs-lookup"><span data-stu-id="b7620-134">In some cases, validation may fail and prompt you to update the configuration.</span></span> <span data-ttu-id="b7620-135">如果驗證失敗，請選取 [更新] 並等候服務的設定和驗證完成。</span><span class="sxs-lookup"><span data-stu-id="b7620-135">If validation fails, select **Update**, and wait for the configuration and verification for the service to finish.</span></span>
+
+    ![對話方塊的螢幕擷取畫面，其中 [更新] 按鈕已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/fail-and-update.png)
+
+    > [!NOTE]
+    > <span data-ttu-id="b7620-137">更新程序會使用 Ambari，將 Hortonworks 沙箱設定修改成 Data Lake tools for Visual Studio 所預期的組態。</span><span class="sxs-lookup"><span data-stu-id="b7620-137">The update process uses Ambari to modify the Hortonworks Sandbox configuration to what is expected by the Data Lake tools for Visual Studio.</span></span>
+
+6. <span data-ttu-id="b7620-138">驗證完成後，請選取 [完成] 以完成設定。</span><span class="sxs-lookup"><span data-stu-id="b7620-138">After validation has finished, select **Finish** to complete configuration.</span></span>
+    <span data-ttu-id="b7620-139">![對話方塊的螢幕擷取畫面，其中 [完成] 按鈕已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/finished-connect.png)</span><span class="sxs-lookup"><span data-stu-id="b7620-139">![Screenshot of dialog box, with Finish button highlighted](./media/hdinsight-hadoop-emulator-visual-studio/finished-connect.png)</span></span>
+
+     >[!NOTE]
+     > <span data-ttu-id="b7620-140">視您的開發環境的速度，以及配置給虛擬機器的記憶體數量而定，可能需要幾分鐘的時間來設定及驗證服務。</span><span class="sxs-lookup"><span data-stu-id="b7620-140">Depending on the speed of your development environment, and the amount of memory allocated to the virtual machine, it can take several minutes to configure and validate the services.</span></span>
+
+<span data-ttu-id="b7620-141">完成這些步驟後，您會發現 [伺服器總管] 的 [HDInsight] 區段下出現 [HDInsight 本機叢集] 項目。</span><span class="sxs-lookup"><span data-stu-id="b7620-141">After following these steps, you now have an **HDInsight local cluster** entry in Server Explorer, under the **HDInsight** section.</span></span>
+
+## <a name="write-a-hive-query"></a><span data-ttu-id="b7620-142">撰寫 Hive 查詢</span><span class="sxs-lookup"><span data-stu-id="b7620-142">Write a Hive query</span></span>
+
+<span data-ttu-id="b7620-143">Hive 會提供類似 SQL 的查詢語言 (HiveQL)，以便處理結構化資料。</span><span class="sxs-lookup"><span data-stu-id="b7620-143">Hive provides a SQL-like query language (HiveQL) for working with structured data.</span></span> <span data-ttu-id="b7620-144">執行下列步驟，了解如何針對本機叢集執行特定查詢。</span><span class="sxs-lookup"><span data-stu-id="b7620-144">Use the following steps to learn how to run on-demand queries against the local cluster.</span></span>
+
+1. <span data-ttu-id="b7620-145">在 [伺服器總管] 中，以滑鼠右鍵按一下您先前新增的本機叢集項目，然後選取 [撰寫 Hive 查詢]。</span><span class="sxs-lookup"><span data-stu-id="b7620-145">In **Server Explorer**, right-click the entry for the local cluster that you added previously, and then select **Write a Hive Query**.</span></span>
+
+    ![[伺服器總管] 的螢幕擷取畫面，其中 [撰寫 Hive 查詢] 已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/write-hive-query.png)
+
+    <span data-ttu-id="b7620-147">新的查詢視窗隨即開啟。</span><span class="sxs-lookup"><span data-stu-id="b7620-147">A new query window appears.</span></span> <span data-ttu-id="b7620-148">您可以在此視窗迅速寫入查詢並提交到本機叢集。</span><span class="sxs-lookup"><span data-stu-id="b7620-148">Here you can quickly write and submit a query to the local cluster.</span></span>
+
+2. <span data-ttu-id="b7620-149">在新的查詢視窗中，輸入下列命令︰</span><span class="sxs-lookup"><span data-stu-id="b7620-149">In the new query window, enter the following command:</span></span>
+
+        select count(*) from sample_08;
+
+    <span data-ttu-id="b7620-150">若要執行查詢，請選取視窗頂端的 [提交]。</span><span class="sxs-lookup"><span data-stu-id="b7620-150">To run the query, select **Submit** at the top of the window.</span></span> <span data-ttu-id="b7620-151">讓其他值 ([批次] 和伺服器名稱) 保持預設值。</span><span class="sxs-lookup"><span data-stu-id="b7620-151">Leave the other values (**Batch** and server name) at the default values.</span></span>
+
+    ![查詢視窗的螢幕擷取畫面，其中 [提交] 按鈕已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/submit-hive.png)
+
+    <span data-ttu-id="b7620-153">您也可以使用 [提交] 旁邊的下拉式功能表來選取 [進階]。</span><span class="sxs-lookup"><span data-stu-id="b7620-153">You can also use the drop-down menu next to **Submit** to select **Advanced**.</span></span> <span data-ttu-id="b7620-154">進階選項可讓您在提交作業時提供其他選項。</span><span class="sxs-lookup"><span data-stu-id="b7620-154">Advanced options allow you to provide additional options when you submit the job.</span></span>
+
+    ![[提交指令碼] 對話方塊的螢幕擷取畫面](./media/hdinsight-hadoop-emulator-visual-studio/advanced-hive.png)
+
+3. <span data-ttu-id="b7620-156">提交查詢後，將會顯示作業狀態。</span><span class="sxs-lookup"><span data-stu-id="b7620-156">After you submit the query, the job status appears.</span></span> <span data-ttu-id="b7620-157">作業狀態會顯示 Hadoop 處理作業時的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="b7620-157">The job status displays information about the job as it is processed by Hadoop.</span></span> <span data-ttu-id="b7620-158">[作業狀態] 提供作業的狀態。</span><span class="sxs-lookup"><span data-stu-id="b7620-158">**Job State** provides the status of the job.</span></span> <span data-ttu-id="b7620-159">狀態會定期更新，您也可以使用重新整理圖示來手動重新整理狀態。</span><span class="sxs-lookup"><span data-stu-id="b7620-159">The state is updated periodically, or you can use the refresh icon to refresh the state manually.</span></span>
+
+    ![[作業檢視] 對話方塊的螢幕擷取畫面，其中 [作業狀態] 已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/job-state.png)
+
+    <span data-ttu-id="b7620-161">當 [作業狀態] 變更為 [已完成] 之後，有向非循環圖 (DAG) 隨即顯示。</span><span class="sxs-lookup"><span data-stu-id="b7620-161">After the **Job State** changes to **Finished**, a Directed Acyclic Graph (DAG) is displayed.</span></span> <span data-ttu-id="b7620-162">此圖說明處理 Hive 查詢時由 Tez 所決定的執行路徑。</span><span class="sxs-lookup"><span data-stu-id="b7620-162">This diagram describes the execution path that was determined by Tez when processing the Hive query.</span></span> <span data-ttu-id="b7620-163">Tez 是本機叢集上 Hive 的預設執行引擎。</span><span class="sxs-lookup"><span data-stu-id="b7620-163">Tez is the default execution engine for Hive on the local cluster.</span></span>
+
+    > [!NOTE]
+    > <span data-ttu-id="b7620-164">Tez 也是當您使用 Linux 型 HDInsight 叢集時的預設值。</span><span class="sxs-lookup"><span data-stu-id="b7620-164">Tez is also the default when you are using Linux-based HDInsight clusters.</span></span> <span data-ttu-id="b7620-165">它不是 Windows 型 HDInsight 的預設值。</span><span class="sxs-lookup"><span data-stu-id="b7620-165">It is not the default on Windows-based HDInsight.</span></span> <span data-ttu-id="b7620-166">若要在該處使用它，您必須將 `set hive.execution.engine = tez;` 行新增到 Hive 查詢的開頭。</span><span class="sxs-lookup"><span data-stu-id="b7620-166">To use it there, you must add the line `set hive.execution.engine = tez;` to the beginning of your Hive query.</span></span>
+
+    <span data-ttu-id="b7620-167">使用 [作業輸出] 連結來檢視輸出。</span><span class="sxs-lookup"><span data-stu-id="b7620-167">Use the **Job Output** link to view the output.</span></span> <span data-ttu-id="b7620-168">在此案例中，它是 823，亦即 sample_08 資料表中的資料列數目。</span><span class="sxs-lookup"><span data-stu-id="b7620-168">In this case, it is 823, the number of rows in the sample_08 table.</span></span> <span data-ttu-id="b7620-169">您可以使用 [作業記錄] 和 [下載 YARN 記錄] 連結，檢視作業的相關診斷資訊。</span><span class="sxs-lookup"><span data-stu-id="b7620-169">You can view diagnostics information about the job by using the **Job Log** and **Download YARN Log** links.</span></span>
+
+4. <span data-ttu-id="b7620-170">您也可以將 [批次] 欄位變更為 [互動式]，以互動方式執行 Hive 作業。</span><span class="sxs-lookup"><span data-stu-id="b7620-170">You can also run Hive jobs interactively by changing the **Batch** field to **Interactive**.</span></span> <span data-ttu-id="b7620-171">接著，選取 [執行]。</span><span class="sxs-lookup"><span data-stu-id="b7620-171">Then select **Execute**.</span></span>
+
+    ![[互動式] 與 [執行] 按鈕已反白顯示的螢幕擷取畫面](./media/hdinsight-hadoop-emulator-visual-studio/interactive-query.png)
+
+    <span data-ttu-id="b7620-173">互動式查詢會將處理期間所產生的輸出記錄串流處理至 [HiveServer2 輸出] 視窗。</span><span class="sxs-lookup"><span data-stu-id="b7620-173">An interactive query streams the output log generated during processing to the **HiveServer2 Output** window.</span></span>
+
+    > [!NOTE]
+    > <span data-ttu-id="b7620-174">此資訊與作業完成後可從 [作業記錄] 連結取得的資訊相同。</span><span class="sxs-lookup"><span data-stu-id="b7620-174">The information is the same that is available from the **Job Log** link after a job has finished.</span></span>
+
+    ![輸出記錄的螢幕擷取畫面](./media/hdinsight-hadoop-emulator-visual-studio/hiveserver2-output.png)
+
+## <a name="create-a-hive-project"></a><span data-ttu-id="b7620-176">建立 Hive 專案</span><span class="sxs-lookup"><span data-stu-id="b7620-176">Create a Hive project</span></span>
+
+<span data-ttu-id="b7620-177">您也可以建立包含多個 Hive 指令碼的專案。</span><span class="sxs-lookup"><span data-stu-id="b7620-177">You can also create a project that contains multiple Hive scripts.</span></span> <span data-ttu-id="b7620-178">若有相關的指令碼或想要儲存指令碼於有版本控制的系統，您可以使用專案。</span><span class="sxs-lookup"><span data-stu-id="b7620-178">Use a project when you have related scripts or want to store scripts in a version control system.</span></span>
+
+1. <span data-ttu-id="b7620-179">在 Visual Studio 中，選取 [檔案]、[新增]，然後選取 [專案]。</span><span class="sxs-lookup"><span data-stu-id="b7620-179">In Visual Studio, select **File**, **New**, and then **Project**.</span></span>
+
+2. <span data-ttu-id="b7620-180">從專案清單，展開 [範本]，展開 [Azure Data Lake]，然後選取 [HIVE (HDInsight)]。</span><span class="sxs-lookup"><span data-stu-id="b7620-180">From the list of projects, expand **Templates**, expand **Azure Data Lake**, and then select **HIVE (HDInsight)**.</span></span> <span data-ttu-id="b7620-181">從範本清單中，選取 [Hive 範例]。</span><span class="sxs-lookup"><span data-stu-id="b7620-181">From the list of templates, select **Hive Sample**.</span></span> <span data-ttu-id="b7620-182">輸入名稱和位置，然後選取 [確定]。</span><span class="sxs-lookup"><span data-stu-id="b7620-182">Enter a name and location, and then select **OK**.</span></span>
+
+    ![[新增專案] 視窗的螢幕擷取畫面，其中 [Azure Data Lake]、[HIVE]、[Hive 範例] 與 [確定] 已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/new-hive-project.png)
+
+<span data-ttu-id="b7620-184">[Hive 範例] 專案包含兩個指令碼：**WebLogAnalysis.hql** 和 **SensorDataAnalysis.hql**。</span><span class="sxs-lookup"><span data-stu-id="b7620-184">The **Hive Sample** project contains two scripts, **WebLogAnalysis.hql** and **SensorDataAnalysis.hql**.</span></span> <span data-ttu-id="b7620-185">您可以使用前述視窗頂端的 [提交] 按鈕提交這些指令碼。</span><span class="sxs-lookup"><span data-stu-id="b7620-185">You can submit these scripts by using the same **Submit** button at the top of the window.</span></span>
+
+## <a name="create-a-pig-project"></a><span data-ttu-id="b7620-186">建立 Pig 專案</span><span class="sxs-lookup"><span data-stu-id="b7620-186">Create a Pig project</span></span>
+
+<span data-ttu-id="b7620-187">Hive 提供類似 SQL 的語言來處理結構化的資料，Pig 的運作方式是藉由對資料執行轉換。</span><span class="sxs-lookup"><span data-stu-id="b7620-187">While Hive provides a SQL-like language for working with structured data, Pig works by performing transformations on data.</span></span> <span data-ttu-id="b7620-188">Pig 提供可讓您開發轉換管線的語言 (Pig Latin)。</span><span class="sxs-lookup"><span data-stu-id="b7620-188">Pig provides a language (Pig Latin) that allows you to develop a pipeline of transformations.</span></span> <span data-ttu-id="b7620-189">若要搭配本機叢集使用 Pig，請依照這些步驟執行：</span><span class="sxs-lookup"><span data-stu-id="b7620-189">To use Pig with the local cluster, follow these steps:</span></span>
+
+1. <span data-ttu-id="b7620-190">開啟 Visual Studio，並依序選取 [檔案] > [新增] 和 [專案]。</span><span class="sxs-lookup"><span data-stu-id="b7620-190">Open Visual Studio, and select **File**, **New**, and then **Project**.</span></span> <span data-ttu-id="b7620-191">從專案清單，展開 [範本]、[Azure Data Lake]，然後選取 [Pig (HDInsight)]。</span><span class="sxs-lookup"><span data-stu-id="b7620-191">From the list of projects, expand **Templates**, expand **Azure Data Lake**, and then select **Pig (HDInsight)**.</span></span> <span data-ttu-id="b7620-192">從範本清單中，選取 [Pig 應用程式]。</span><span class="sxs-lookup"><span data-stu-id="b7620-192">From the list of templates, select **Pig Application**.</span></span> <span data-ttu-id="b7620-193">輸入名稱、位置，然後選取 [確定]。</span><span class="sxs-lookup"><span data-stu-id="b7620-193">Enter a name, location, and then select **OK**.</span></span>
+
+    ![[新增專案] 視窗的螢幕擷取畫面，其中 [Azure Data Lake]、[Pig]、[Pig 應用程式] 與 [確定] 已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/new-pig.png)
+
+2. <span data-ttu-id="b7620-195">輸入下列文字作為與此專案一起建立之檔案 **script.pig** 的內容。</span><span class="sxs-lookup"><span data-stu-id="b7620-195">Enter the following text as the contents of the **script.pig** file that was created with this project.</span></span>
+
+        a = LOAD '/demo/data/Website/Website-Logs' AS (
+            log_id:int,
+            ip_address:chararray,
+            date:chararray,
+            time:chararray,
+            landing_page:chararray,
+            source:chararray);
+        b = FILTER a BY (log_id > 100);
+        c = GROUP b BY ip_address;
+        DUMP c;
+
+    <span data-ttu-id="b7620-196">雖然 Pig 使用與 Hive 不同的語言，但您透過 [提交] 按鈕在這兩種語言之間執行作業的方式一致。</span><span class="sxs-lookup"><span data-stu-id="b7620-196">While Pig uses a different language than Hive, how you run the jobs is consistent between both languages, through the **Submit** button.</span></span> <span data-ttu-id="b7620-197">選取 [提交] 旁邊的下拉式清單，即可顯示 Pig 的進階提交對話方塊。</span><span class="sxs-lookup"><span data-stu-id="b7620-197">Selecting the drop-down beside **Submit** displays an advanced submit dialog box for Pig.</span></span>
+
+    ![[提交指令碼] 對話方塊的螢幕擷取畫面](./media/hdinsight-hadoop-emulator-visual-studio/advanced-pig.png)
+
+3. <span data-ttu-id="b7620-199">如同 Hive 查詢，也會顯示作業狀態和輸出。</span><span class="sxs-lookup"><span data-stu-id="b7620-199">The job status and output is also displayed, the same as a Hive query.</span></span>
+
+    ![已完成 Pig 作業的螢幕擷取畫面](./media/hdinsight-hadoop-emulator-visual-studio/completed-pig.png)
+
+## <a name="view-jobs"></a><span data-ttu-id="b7620-201">檢視作業</span><span class="sxs-lookup"><span data-stu-id="b7620-201">View jobs</span></span>
+
+<span data-ttu-id="b7620-202">Data Lake 工具也可讓您輕鬆地檢視已在 Hadoop 上執行之作業的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="b7620-202">Data Lake tools also allow you to easily view information about jobs that have been run on Hadoop.</span></span> <span data-ttu-id="b7620-203">使用下列步驟來查看已在本機叢集上執行的作業。</span><span class="sxs-lookup"><span data-stu-id="b7620-203">Use the following steps to see the jobs that have been run on the local cluster.</span></span>
+
+1. <span data-ttu-id="b7620-204">從 [伺服器總管]，在本機叢集上按一下滑鼠右鍵，然後選取 [檢視作業]。</span><span class="sxs-lookup"><span data-stu-id="b7620-204">From **Server Explorer**, right-click the local cluster, and then select **View Jobs**.</span></span> <span data-ttu-id="b7620-205">已提交至叢集的作業清單隨即顯示。</span><span class="sxs-lookup"><span data-stu-id="b7620-205">A list of jobs that have been submitted to the cluster is displayed.</span></span>
+
+    ![[伺服器總管] 的螢幕擷取畫面，其中 [檢視作業] 已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/view-jobs.png)
+
+2. <span data-ttu-id="b7620-207">選取作業清單中的作業，以檢視作業詳細資料。</span><span class="sxs-lookup"><span data-stu-id="b7620-207">From the list of jobs, select one to view the job details.</span></span>
+
+    ![[作業瀏覽器] 的螢幕擷取畫面，其中一個作業已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/view-job-details.png)
+
+    <span data-ttu-id="b7620-209">顯示的資訊與您在執行 Pig 或 Hive 查詢後看到的資訊類似，且包括用於檢視輸出和記錄資訊的連結。</span><span class="sxs-lookup"><span data-stu-id="b7620-209">The information displayed is similar to what you see after running a Hive or Pig query, including links to view the output and log information.</span></span>
+
+3. <span data-ttu-id="b7620-210">您也可以從這裡修改和重新提交作業。</span><span class="sxs-lookup"><span data-stu-id="b7620-210">You can also modify and resubmit the job from here.</span></span>
+
+## <a name="view-hive-databases"></a><span data-ttu-id="b7620-211">檢視 Hive 資料庫</span><span class="sxs-lookup"><span data-stu-id="b7620-211">View Hive databases</span></span>
+
+1. <span data-ttu-id="b7620-212">在 [伺服器總管] 中，展開 [HDInsight 本機叢集] 項目，然後展開 [Hive 資料庫]。</span><span class="sxs-lookup"><span data-stu-id="b7620-212">In **Server Explorer**, expand the **HDInsight local cluster** entry, and then expand **Hive Databases**.</span></span> <span data-ttu-id="b7620-213">本機叢集上的 [預設] 和 [xademo] 資料庫隨即顯示。</span><span class="sxs-lookup"><span data-stu-id="b7620-213">The **Default** and **xademo** databases on the local cluster are displayed.</span></span> <span data-ttu-id="b7620-214">展開資料庫即可顯示資料庫內的資料表。</span><span class="sxs-lookup"><span data-stu-id="b7620-214">Expanding a database shows the tables within the database.</span></span>
+
+    ![[伺服器總管] 的螢幕擷取畫面，其中資料庫已展開](./media/hdinsight-hadoop-emulator-visual-studio/expanded-databases.png)
+
+2. <span data-ttu-id="b7620-216">展開資料表即可顯示該資料表的資料行。</span><span class="sxs-lookup"><span data-stu-id="b7620-216">Expanding a table displays the columns for that table.</span></span> <span data-ttu-id="b7620-217">若要快速檢視資料，請以滑鼠右鍵按一下資料表，然後選取 [檢視前 100 個資料列]。</span><span class="sxs-lookup"><span data-stu-id="b7620-217">To quickly view the data, right-click a table, and select **View Top 100 Rows**.</span></span>
+
+    ![[伺服器總管] 的螢幕擷取畫面，其中資料表已展開且 [檢視前 100 個資料列] 已選取](./media/hdinsight-hadoop-emulator-visual-studio/view-100.png)
+
+### <a name="database-and-table-properties"></a><span data-ttu-id="b7620-219">資料庫和資料表屬性</span><span class="sxs-lookup"><span data-stu-id="b7620-219">Database and table properties</span></span>
+
+<span data-ttu-id="b7620-220">您可以檢視資料庫或資料表的屬性。</span><span class="sxs-lookup"><span data-stu-id="b7620-220">You can view the properties of a database or table.</span></span> <span data-ttu-id="b7620-221">選取 [屬性] 會在 [屬性] 視窗中顯示所選取項目的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="b7620-221">Selecting **Properties** displays details for the selected item in the properties window.</span></span> <span data-ttu-id="b7620-222">請參考下列螢幕擷取畫面中顯示的資訊為例：</span><span class="sxs-lookup"><span data-stu-id="b7620-222">For example, see the information shown in the following screenshot:</span></span>
+
+![[屬性] 視窗的螢幕擷取畫面](./media/hdinsight-hadoop-emulator-visual-studio/properties.png)
+
+### <a name="create-a-table"></a><span data-ttu-id="b7620-224">建立資料表</span><span class="sxs-lookup"><span data-stu-id="b7620-224">Create a table</span></span>
+
+<span data-ttu-id="b7620-225">若要建立資料表，請以滑鼠右鍵按一下資料庫，然後選取 [建立資料表]。</span><span class="sxs-lookup"><span data-stu-id="b7620-225">To create a table, right-click a database, and then select **Create Table**.</span></span>
+
+![[伺服器總管] 的螢幕擷取畫面，其中 [建立資料表] 已反白顯示](./media/hdinsight-hadoop-emulator-visual-studio/create-table.png)
+
+<span data-ttu-id="b7620-227">接著，您可以使用表單建立資料表。</span><span class="sxs-lookup"><span data-stu-id="b7620-227">You can then create the table using a form.</span></span> <span data-ttu-id="b7620-228">在下列螢幕擷取畫面底部，您可以看到用於建立資料表的原始 HiveQL。</span><span class="sxs-lookup"><span data-stu-id="b7620-228">At the bottom of the following screenshot, you can see the raw HiveQL that is used to create the table.</span></span>
+
+![用於建立資料表之表單的螢幕擷取畫面](./media/hdinsight-hadoop-emulator-visual-studio/create-table-form.png)
+
+## <a name="next-steps"></a><span data-ttu-id="b7620-230">後續步驟</span><span class="sxs-lookup"><span data-stu-id="b7620-230">Next steps</span></span>
+
+* <span data-ttu-id="b7620-231">[了解 Hortonworks 沙箱的訣竅](http://hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/) \(英文\)</span><span class="sxs-lookup"><span data-stu-id="b7620-231">[Learning the ropes of the Hortonworks Sandbox](http://hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)</span></span>
+* [<span data-ttu-id="b7620-232">Hadoop 教學課程 - 開始使用 HDP</span><span class="sxs-lookup"><span data-stu-id="b7620-232">Hadoop tutorial - Getting started with HDP</span></span>](http://hortonworks.com/hadoop-tutorial/hello-world-an-introduction-to-hadoop-hcatalog-hive-and-pig/)
