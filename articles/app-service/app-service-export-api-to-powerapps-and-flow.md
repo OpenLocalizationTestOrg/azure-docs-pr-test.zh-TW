@@ -1,0 +1,159 @@
+---
+title: "將 Azure 裝載 API 匯出至 PowerApps 和 Microsoft Flow | Microsoft Docs"
+description: "如何向 PowerApps 和 Microsoft Flow 公開 App Service 中裝載之 API 的概觀"
+services: app-service
+documentationcenter: 
+author: mattchenderson
+manager: erikre
+editor: 
+ms.assetid: 
+ms.service: app-service
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: multiple
+ms.topic: article
+ms.date: 06/20/2017
+ms.author: mahender
+ms.openlocfilehash: 0d166a2e5b60c3b9f911f9fc3ad49ad7f252abb4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 07/11/2017
+---
+# <a name="exporting-an-azure-hosted-api-to-powerapps-and-microsoft-flow"></a><span data-ttu-id="d74e9-103">將 Azure 裝載 API 匯出至 PowerApps 和 Microsoft Flow</span><span class="sxs-lookup"><span data-stu-id="d74e9-103">Exporting an Azure-hosted API to PowerApps and Microsoft Flow</span></span>
+
+## <a name="creating-custom-connectors-for-powerapps-and-microsoft-flow"></a><span data-ttu-id="d74e9-104">為 PowerApps 和 Microsoft Flow 建立自訂連接器</span><span class="sxs-lookup"><span data-stu-id="d74e9-104">Creating custom connectors for PowerApps and Microsoft Flow</span></span>
+
+<span data-ttu-id="d74e9-105">[PowerApps](https://powerapps.com) 是一種服務，可用來建置和使用自訂商務 App，以便跨越平台連接到您的資料和工作。</span><span class="sxs-lookup"><span data-stu-id="d74e9-105">[PowerApps](https://powerapps.com) is a service for building and using custom business apps that connect to your data and work across platforms.</span></span> <span data-ttu-id="d74e9-106">[Microsoft Flow](https://flow.microsoft.com) 可讓您輕易將最愛的應用程式與服務之間的工作流程和商業程序自動化。</span><span class="sxs-lookup"><span data-stu-id="d74e9-106">[Microsoft Flow](https://flow.microsoft.com) makes it easy to automate workflows and business processes between your favorite apps and services.</span></span> <span data-ttu-id="d74e9-107">PowerApps 和 Microsoft Flow 隨附資料來源 (如 Office 365、Dynamics 365、Salesforce 等等) 的各種內建連接器。</span><span class="sxs-lookup"><span data-stu-id="d74e9-107">Both PowerApps and Microsoft Flow come with a variety of built-in connectors to data sources such as Office 365, Dynamics 365, Salesforce, and more.</span></span> <span data-ttu-id="d74e9-108">不過，使用者也必須能夠利用其組織所建置的資料來源和 API。</span><span class="sxs-lookup"><span data-stu-id="d74e9-108">However, users also need to be able to leverage data sources and APIs being built by their organization.</span></span>
+
+<span data-ttu-id="d74e9-109">同樣地，想要在組織內更廣泛地公開其 API 的開發人員，可以讓 PowerApps 和 Microsoft Flow 使用者使用其 API。</span><span class="sxs-lookup"><span data-stu-id="d74e9-109">Similarly, developers that want to expose their APIs more broadly within the organization may want to make their APIs available to PowerApps and Microsoft Flow users.</span></span> <span data-ttu-id="d74e9-110">本主題將說明如何向 PowerApps 和 Microsoft Flow 公開使用 Azure App Service 或 Azure Functions 建置的 API。</span><span class="sxs-lookup"><span data-stu-id="d74e9-110">This topic will show you how to expose an API built with Azure App Service or Azure Functions to PowerApps and Microsoft Flow.</span></span> <span data-ttu-id="d74e9-111">[Azure App Service](https://azure.microsoft.com/services/app-service/) 是一項平台即服務方案供應項目，可讓開發人員快速且輕鬆地建置企業級 Web、行動及 API 應用程式。</span><span class="sxs-lookup"><span data-stu-id="d74e9-111">[Azure App Service](https://azure.microsoft.com/services/app-service/) is a platform-as-a-service offering that allows developers to quickly and easily build enterprise-grade web, mobile, and API applications.</span></span> <span data-ttu-id="d74e9-112">[Azure Functions](https://azure.microsoft.com/services/functions/) 是以事件為基礎的無伺服器計算解決方案，可讓您快速撰寫程式碼來回應您系統的其他部分並根據需求進行調整。</span><span class="sxs-lookup"><span data-stu-id="d74e9-112">[Azure Functions](https://azure.microsoft.com/services/functions/) is an event-based serverless compute solution that allows you to quickly author code that can react to other parts of your system and scale based on demand.</span></span>
+
+<span data-ttu-id="d74e9-113">若要深入了解這些服務，請參閱︰</span><span class="sxs-lookup"><span data-stu-id="d74e9-113">To learn more about these services, see:</span></span>
+- [<span data-ttu-id="d74e9-114">PowerApps 引導式學習</span><span class="sxs-lookup"><span data-stu-id="d74e9-114">PowerApps Guided Learning</span></span>](https://powerapps.microsoft.com/guided-learning/learning-introducing-powerapps/) 
+- [<span data-ttu-id="d74e9-115">Microsoft Flow 引導式學習</span><span class="sxs-lookup"><span data-stu-id="d74e9-115">Microsoft Flow Guided Learning</span></span>](https://flow.microsoft.com/guided-learning/learning-introducing-flow/)
+- [<span data-ttu-id="d74e9-116">什麼是 App Service？</span><span class="sxs-lookup"><span data-stu-id="d74e9-116">What is App Service?</span></span>](https://docs.microsoft.com/azure/app-service/app-service-value-prop-what-is)
+- [<span data-ttu-id="d74e9-117">什麼是 Azure Functions？</span><span class="sxs-lookup"><span data-stu-id="d74e9-117">What is Azure Functions</span></span>](https://docs.microsoft.com/azure/azure-functions/functions-overview)
+
+## <a name="sharing-an-api-definition"></a><span data-ttu-id="d74e9-118">共用 API 定義</span><span class="sxs-lookup"><span data-stu-id="d74e9-118">Sharing an API definition</span></span>
+
+<span data-ttu-id="d74e9-119">API 通常使用 [OpenAPI 文件](https://www.openapis.org/) (有時稱為 "Swagger" 文件) 來描述。</span><span class="sxs-lookup"><span data-stu-id="d74e9-119">APIs are often described using an [OpenAPI document](https://www.openapis.org/) (sometimes referred to as a "Swagger" document).</span></span> <span data-ttu-id="d74e9-120">這包含所有關於哪些作業可用以及如何組織資料的資訊。</span><span class="sxs-lookup"><span data-stu-id="d74e9-120">This contains all of the information about what operations are available and how the data should be structured.</span></span> <span data-ttu-id="d74e9-121">PowerApps 和 Microsoft Flow 可以為任何 OpenAPI 2.0 文件建立自訂連接器。</span><span class="sxs-lookup"><span data-stu-id="d74e9-121">PowerApps and Microsoft Flow can create custom connectors for any OpenAPI 2.0 document.</span></span> <span data-ttu-id="d74e9-122">建立自訂連接器後，即可用與其中一個內建連接器完全相同的方式加以使用，並可快速地整合到應用程式中。</span><span class="sxs-lookup"><span data-stu-id="d74e9-122">Once a custom connector is created, it can be used in exactly the same way as one of the built-in connectors and can quickly be integrated into an application.</span></span>
+
+<span data-ttu-id="d74e9-123">Azure App Service 和 Azure Functions 有[內建支援](https://docs.microsoft.com/azure/app-service-api/app-service-api-metadata)，可供建立、裝載及管理 OpenAPI 文件。</span><span class="sxs-lookup"><span data-stu-id="d74e9-123">Azure App Service and Azure Functions have [built-in support](https://docs.microsoft.com/azure/app-service-api/app-service-api-metadata) for creating, hosting, and managing an OpenAPI document.</span></span> <span data-ttu-id="d74e9-124">若要建立適用於 Web、行動、API 或函數應用程式的自訂連接器，則必須提供定義的複本給 PowerApps 和 Flow。</span><span class="sxs-lookup"><span data-stu-id="d74e9-124">In order to create a custom connector for a web, mobile, API, or function app, PowerApps and Flow need to be given a copy of the definition.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="d74e9-125">因為正在使用 API 定義的複本，所以 PowerApps 和 Microsoft Flow 不會立即知道應用程式的相關更新或重大變更。</span><span class="sxs-lookup"><span data-stu-id="d74e9-125">Because a copy of the API definition is being used, PowerApps and Microsoft Flow will not immediately know about updates or breaking changes to the application.</span></span> <span data-ttu-id="d74e9-126">如果可以使用新版的 API，應針對新版本重複這些步驟。</span><span class="sxs-lookup"><span data-stu-id="d74e9-126">If a new version of the API is made available, these steps should be repeated for the new version.</span></span> 
+
+<span data-ttu-id="d74e9-127">若要將您應用程式的裝載 API 定義提供給 PowerApps 和 Microsoft Flow，請依照這些步驟執行：</span><span class="sxs-lookup"><span data-stu-id="d74e9-127">To provide PowerApps and Microsoft Flow with the hosted API definition for your app, follow these steps:</span></span>
+
+1. <span data-ttu-id="d74e9-128">開啟 [Azure 入口網站](https://portal.azure.com)並瀏覽至 App Service 或 Azure Functions 應用程式。</span><span class="sxs-lookup"><span data-stu-id="d74e9-128">Open the [Azure Portal](https://portal.azure.com) and navigate to your App Service or Azure Functions application.</span></span>
+
+    <span data-ttu-id="d74e9-129">如果使用 Azure App Service，請從設定清單選取 [API 定義]。</span><span class="sxs-lookup"><span data-stu-id="d74e9-129">If using Azure App Service, select **API definition** from the settings list.</span></span> 
+    
+    <span data-ttu-id="d74e9-130">如果使用 Azure Functions，請選取您的函數應用程式，然後依序選擇 [平台功能]、[API 定義]。</span><span class="sxs-lookup"><span data-stu-id="d74e9-130">If using Azure Functions, select your function app, and then choose **Platform features**, and then **API definition**.</span></span> <span data-ttu-id="d74e9-131">您也可以改為選擇開啟 [API 定義 (預覽)] 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="d74e9-131">You could also choose to open the **API definition (preview)** tab instead.</span></span>
+
+2. <span data-ttu-id="d74e9-132">如果已提供 API 定義，您會看到 [匯出至 PowerApps + Microsoft Flow] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="d74e9-132">If an API definition has been provided, you will see an **Export to PowerApps + Microsoft Flow** button.</span></span> <span data-ttu-id="d74e9-133">按一下此按鈕，開始匯出程序。</span><span class="sxs-lookup"><span data-stu-id="d74e9-133">Click this button to begin the export process.</span></span>
+
+3. <span data-ttu-id="d74e9-134">選取 [匯出模式]。</span><span class="sxs-lookup"><span data-stu-id="d74e9-134">Select the **Export mode**.</span></span> <span data-ttu-id="d74e9-135">這會決定您建立連接器時將要遵循的步驟。</span><span class="sxs-lookup"><span data-stu-id="d74e9-135">This determines the steps you will need to follow to create a connector.</span></span> <span data-ttu-id="d74e9-136">App Service 提供兩種選項，供您將 API 定義提供給 PowerApps 和 Microsoft Flow：</span><span class="sxs-lookup"><span data-stu-id="d74e9-136">App Service offers two options for providing PowerApps and Microsoft Flow with your API definition:</span></span>
+
+    <span data-ttu-id="d74e9-137">[快速] 可讓您從 Azure 入口網站建立自訂連接器。</span><span class="sxs-lookup"><span data-stu-id="d74e9-137">**Express** lets you create the custom connector from within the Azure portal.</span></span> <span data-ttu-id="d74e9-138">它要求目前登入的使用者必須有在目標環境中建立連接器的權限。</span><span class="sxs-lookup"><span data-stu-id="d74e9-138">It requires that the curent logged-in user has permission to create connectors in the target environment.</span></span> <span data-ttu-id="d74e9-139">如果可符合該需求，則這是建議的方法。</span><span class="sxs-lookup"><span data-stu-id="d74e9-139">This is the recommended approach if that requirement can be met.</span></span> <span data-ttu-id="d74e9-140">如果使用此模式，請依照下面的[快速匯出](#express)指示執行。</span><span class="sxs-lookup"><span data-stu-id="d74e9-140">If using this mode, follow the [Express export](#express) instructions below.</span></span>
+
+    <span data-ttu-id="d74e9-141">[手動] 可讓您匯出 API 定義的複本，該複本可使用 PowerApps 或 Microsoft Flow 入口網站匯入。</span><span class="sxs-lookup"><span data-stu-id="d74e9-141">**Manual** lets you export a copy of the API definiton which can be imported using the PowerApps or Microsoft Flow portals.</span></span> <span data-ttu-id="d74e9-142">如果 Azure 使用者和具有建立連接器權限的使用者是不同的人，或連接器必須在另一個租用戶中建立，則這是建議的方法。</span><span class="sxs-lookup"><span data-stu-id="d74e9-142">This is the recommended approach if the Azure user and the user with permission to create connectors are different people or if the connector needs to be created in another tenant.</span></span> <span data-ttu-id="d74e9-143">如果使用此模式，請依照下面的[手動匯出和匯入](#manual)指示執行。</span><span class="sxs-lookup"><span data-stu-id="d74e9-143">If using this mode, follow the [Manual export and import](#manual) instructions below.</span></span>
+
+<a name="express"></a>
+## <a name="express-export"></a><span data-ttu-id="d74e9-144">快速匯出</span><span class="sxs-lookup"><span data-stu-id="d74e9-144">Express export</span></span>
+
+<span data-ttu-id="d74e9-145">在本節中，您會從 Azure 入口網站建立新的自訂連接器。</span><span class="sxs-lookup"><span data-stu-id="d74e9-145">In this section, you will create a new custom connector from within the Azure portal.</span></span> <span data-ttu-id="d74e9-146">您必須登入要作為匯出目標的租用戶，且必須有在目標環境中建立自訂連接器的權限。</span><span class="sxs-lookup"><span data-stu-id="d74e9-146">You must be logged into the tenant to which you wish to export, and you must have permission to create a custom connector in the target environment.</span></span>
+
+1. <span data-ttu-id="d74e9-147">選取您要在其中建立連接器的環境。</span><span class="sxs-lookup"><span data-stu-id="d74e9-147">Select the environment in which you would like to create the connector.</span></span> <span data-ttu-id="d74e9-148">然後提供您的自訂連接器名稱。</span><span class="sxs-lookup"><span data-stu-id="d74e9-148">Then provide a name for your custom connector.</span></span>
+
+2. <span data-ttu-id="d74e9-149">如果您的 API 定義包含任何安全性定義，則會在步驟 2 中叫出這些定義。</span><span class="sxs-lookup"><span data-stu-id="d74e9-149">If your API definition includes any security definitions, these will be called out in step #2.</span></span> <span data-ttu-id="d74e9-150">必要時，請提供授與使用者存取 API 權限所需的安全性設定詳細資料。</span><span class="sxs-lookup"><span data-stu-id="d74e9-150">If required, provide the security configuration details needed to grant users access to your API.</span></span> <span data-ttu-id="d74e9-151">如需詳細資訊，請參閱下面的[驗證](#auth)。</span><span class="sxs-lookup"><span data-stu-id="d74e9-151">For more information, see [Authentication](#auth) below.</span></span> 
+
+3. <span data-ttu-id="d74e9-152">按一下 [確定] 以建立自訂連接器。</span><span class="sxs-lookup"><span data-stu-id="d74e9-152">Click **OK** to create your custom connector.</span></span>
+
+
+<a name="manual"></a>
+## <a name="manual-export-and-import"></a><span data-ttu-id="d74e9-153">手動匯出和匯入</span><span class="sxs-lookup"><span data-stu-id="d74e9-153">Manual export and import</span></span>
+
+<span data-ttu-id="d74e9-154">若要為 Web、行動、API 或函式應用程式建立自訂連接器，必須執行兩個步驟︰</span><span class="sxs-lookup"><span data-stu-id="d74e9-154">In order to create a custom connector for a web, mobile, API, or function app, two steps will be needed:</span></span>
+
+1. [<span data-ttu-id="d74e9-155">從 App Service 或 Azure Functions 擷取 API 定義</span><span class="sxs-lookup"><span data-stu-id="d74e9-155">Retrieving the API definition from App Service or Azure Functions</span></span>](#export)
+2. [<span data-ttu-id="d74e9-156">將 API 定義匯入到 PowerApps 和 Microsoft Flow</span><span class="sxs-lookup"><span data-stu-id="d74e9-156">Importing the API definition into PowerApps and Microsoft Flow</span></span>](#import)
+
+<span data-ttu-id="d74e9-157">這兩個步驟可能必須由組織內的不同人員執行，因為指定的使用者可能不具備執行這兩個動作的權限。</span><span class="sxs-lookup"><span data-stu-id="d74e9-157">It is possible that these two steps will need to be carried out by separate individuals within an organization, as a given user may not have permission to perform both actions.</span></span> <span data-ttu-id="d74e9-158">在此情況下，擁有 App Service 或 Azure Functions 應用程式參與者權限的開發人員必須取得 API 定義 (單一 JSON 檔案) 或其連結。</span><span class="sxs-lookup"><span data-stu-id="d74e9-158">In this case, a developer who has contributor access to the App Service or Azure Functions application will need to obtain the API definition (a single JSON file) or a link to it.</span></span> <span data-ttu-id="d74e9-159">他們必須接著將該定義提供給 PowerApps 或 Microsoft Flow 擁有者。</span><span class="sxs-lookup"><span data-stu-id="d74e9-159">They will then need to provide that definition to a PowerApps or Microsoft Flow owner.</span></span> <span data-ttu-id="d74e9-160">該擁有者可以使用中繼資料來建立自訂連接器。</span><span class="sxs-lookup"><span data-stu-id="d74e9-160">That owner can use the metadata to create the custom connector.</span></span>
+
+<a name="export"></a>
+### <a name="retrieving-the-api-definition-from-app-service-or-azure-functions"></a><span data-ttu-id="d74e9-161">從 App Service 或 Azure Functions 擷取 API 定義</span><span class="sxs-lookup"><span data-stu-id="d74e9-161">Retrieving the API definition from App Service or Azure Functions</span></span>
+
+<span data-ttu-id="d74e9-162">在本節中，您將匯出 App Service API 的 API 定義，以便稍後使用於 PowerApps 或 Microsoft Flow 入口網站。</span><span class="sxs-lookup"><span data-stu-id="d74e9-162">In this section, you will export the API definition for your App Service API, to be used later in the PowerApps or Microsoft Flow portal.</span></span>
+
+1. <span data-ttu-id="d74e9-163">您可以選擇**下載 API 定義**或**取得連結**。</span><span class="sxs-lookup"><span data-stu-id="d74e9-163">You can choose to either **Download the API definition** or **Get a link**.</span></span> <span data-ttu-id="d74e9-164">不管您選擇何者，都會在下一節中提供結果。</span><span class="sxs-lookup"><span data-stu-id="d74e9-164">Whichever you choose, the result will be provided in the next section.</span></span> <span data-ttu-id="d74e9-165">選取其中一個選項並遵循指示。</span><span class="sxs-lookup"><span data-stu-id="d74e9-165">Select one of these options and follow the instructions.</span></span>
+ 
+2. <span data-ttu-id="d74e9-166">如果您的 API 定義包含任何安全性定義，則會在步驟 2 中叫出這些定義。</span><span class="sxs-lookup"><span data-stu-id="d74e9-166">If your API definition includes any security definitions, these will be called out in step #2.</span></span> <span data-ttu-id="d74e9-167">在匯入期間，PowerApps 和 Microsoft Flow 會偵測這些定義並提示輸入安全性資訊。</span><span class="sxs-lookup"><span data-stu-id="d74e9-167">During import, PowerApps and Microsoft Flow will detect these and will prompt for security information.</span></span> <span data-ttu-id="d74e9-168">收集與每個定義相關的認證，以便使用於下一節中。</span><span class="sxs-lookup"><span data-stu-id="d74e9-168">Gather the credentials related to each definition for use in the next section.</span></span> <span data-ttu-id="d74e9-169">如需詳細資訊，請參閱下面的[驗證](#auth)。</span><span class="sxs-lookup"><span data-stu-id="d74e9-169">For more information, see [Authentication](#auth) below.</span></span> 
+
+<a name="import"></a>
+### <a name="importing-the-api-definition-into-powerapps-and-microsoft-flow"></a><span data-ttu-id="d74e9-170">將 API 定義匯入 PowerApps 和 Microsoft Flow 中</span><span class="sxs-lookup"><span data-stu-id="d74e9-170">Importing the API definition into PowerApps and Microsoft Flow</span></span>
+
+<span data-ttu-id="d74e9-171">在本節中，您將使用稍早取得的 API 定義，在 PowerApps 和 Microsoft Flow 中建立自訂連接器。</span><span class="sxs-lookup"><span data-stu-id="d74e9-171">In this section, you will create a custom connector in PowerApps and Microsoft Flow using the API definition obtained earlier.</span></span> <span data-ttu-id="d74e9-172">自訂連接器會由這兩項服務共用，因此您只需要匯入定義一次。</span><span class="sxs-lookup"><span data-stu-id="d74e9-172">Custom connectors are shared between the two services, so you only need to import the definition once.</span></span> <span data-ttu-id="d74e9-173">如需有關自訂連接器的詳細資訊，請參閱[在 PowerApps 中註冊及使用自訂連接器]和[在 Microsoft Flow 中註冊及使用自訂連接器]。</span><span class="sxs-lookup"><span data-stu-id="d74e9-173">For more information on custom connectors, see [Register and use custom connectors in PowerApps] and [Register and use custom connectors in Microsoft Flow].</span></span>
+
+1. <span data-ttu-id="d74e9-174">開啟 [Powerapps Web 入口網站](https://web.powerapps.com)或 [Microsoft Flow Web 入口網站](https://flow.microsoft.com/)，並登入。</span><span class="sxs-lookup"><span data-stu-id="d74e9-174">Open the [Powerapps web portal](https://web.powerapps.com) or the [Microsoft Flow web portal](https://flow.microsoft.com/), and sign in.</span></span> 
+
+2. <span data-ttu-id="d74e9-175">按一下頁面右上角的 [設定] 按鈕 (齒輪圖示)，然後選取 [自訂連接器]。</span><span class="sxs-lookup"><span data-stu-id="d74e9-175">Click the **Settings** button (the gear icon) at the upper right of the page and select **Custom connectors**.</span></span> 
+
+3. <span data-ttu-id="d74e9-176">按一下 [建立自訂連接器]。</span><span class="sxs-lookup"><span data-stu-id="d74e9-176">Click **Create custom connector**.</span></span>
+
+4. <span data-ttu-id="d74e9-177">在 [一般] 索引標籤上提供您 API 的名稱，然後上傳 OpenAPI 定義或貼到中繼資料 URL 中。</span><span class="sxs-lookup"><span data-stu-id="d74e9-177">On the **General** tab, provide a name for your API, and then upload the OpenAPI definition or paste in the metadata URL.</span></span> <span data-ttu-id="d74e9-178">按一下 [繼續]。</span><span class="sxs-lookup"><span data-stu-id="d74e9-178">Click **Continue**.</span></span>
+
+4. <span data-ttu-id="d74e9-179">在 [安全性] 索引標籤上，如果系統提示您提供驗證詳細資訊，請輸入在上一節中取得的值。</span><span class="sxs-lookup"><span data-stu-id="d74e9-179">On the **Security** tab, if you are prompted to provide authentication details, enter the values obtained in the previous section.</span></span> <span data-ttu-id="d74e9-180">如果沒有，請繼續進行下一個步驟。</span><span class="sxs-lookup"><span data-stu-id="d74e9-180">If not, proceed to the next step.</span></span>
+
+5. <span data-ttu-id="d74e9-181">在 [定義] 索引標籤上，會自動填入在 OpenAPI 檔案定義的所有作業。</span><span class="sxs-lookup"><span data-stu-id="d74e9-181">On the **Definitions** tab, all the operations defined in your OpenAPI file are auto-populated.</span></span> <span data-ttu-id="d74e9-182">如果所有的必要作業皆已定義，您便可以前往下個步驟。</span><span class="sxs-lookup"><span data-stu-id="d74e9-182">If all your required operations are defined, you can go to the next step.</span></span> <span data-ttu-id="d74e9-183">如果沒有，您可以在此新增與修改作業。</span><span class="sxs-lookup"><span data-stu-id="d74e9-183">If not, you can add and modify operations here.</span></span>
+
+6. <span data-ttu-id="d74e9-184">按一下 [建立連接器]。</span><span class="sxs-lookup"><span data-stu-id="d74e9-184">Click **Create connector**.</span></span> <span data-ttu-id="d74e9-185">如果您想要測試 API 呼叫，請移至下一個步驟。</span><span class="sxs-lookup"><span data-stu-id="d74e9-185">If you want to test API calls, go to the next step.</span></span>
+
+7. <span data-ttu-id="d74e9-186">在 [測試] 索引標籤上，建立連接、選取作業，然後輸入作業所需的任何資料。</span><span class="sxs-lookup"><span data-stu-id="d74e9-186">On the **Test** tab, create a connection, select an operation to test, and enter any data required by the operation.</span></span>
+
+8. <span data-ttu-id="d74e9-187">按一下 [測試作業]。</span><span class="sxs-lookup"><span data-stu-id="d74e9-187">Click **Test operation**.</span></span>
+
+
+<a name="auth"></a>
+## <a name="authentication"></a><span data-ttu-id="d74e9-188">驗證</span><span class="sxs-lookup"><span data-stu-id="d74e9-188">Authentication</span></span>
+
+<span data-ttu-id="d74e9-189">PowerApps 和 Microsoft Flow 原生支援識別提供者集合，這可用來登入您自訂連接器的使用者。</span><span class="sxs-lookup"><span data-stu-id="d74e9-189">PowerApps and Microsoft Flow natively support a collection of identity providers which can be used to log in users of your custom connector.</span></span> <span data-ttu-id="d74e9-190">如果您的 API 需要驗證，請確保它會依照您 OpenAPI 文件中的_安全性定義_擷取。</span><span class="sxs-lookup"><span data-stu-id="d74e9-190">If your API requires authentication, ensure that it is captured as a _security definition_ in your OpenAPI document.</span></span> <span data-ttu-id="d74e9-191">在匯出期間，您必須提供設定值，允許 PowerApps 和 Microsoft Flow 執行登入動作。</span><span class="sxs-lookup"><span data-stu-id="d74e9-191">During export, you will need to provide configuration values that allow PowerApps an Microsoft Flow to perform login actions.</span></span>
+
+<span data-ttu-id="d74e9-192">本節涵蓋的驗證類型是快速流程所支援的類型：API 金鑰、Azure Active Directory 和 Generic OAuth 2.0。</span><span class="sxs-lookup"><span data-stu-id="d74e9-192">This section covers the authentication types which are supported by the express flow: API key, Azure Active Directory, and Generic OAuth 2.0.</span></span> <span data-ttu-id="d74e9-193">如需提供者和個別所需之認證的完整清單，請參閱[在 PowerApps 中註冊及使用自訂連接器]和[在 Microsoft Flow 中註冊及使用自訂連接器]。</span><span class="sxs-lookup"><span data-stu-id="d74e9-193">For a complete list of providers and the credentials each requires, see [Register and use custom connectors in PowerApps] and [Register and use custom connectors in Microsoft Flow].</span></span>
+
+### <a name="api-key"></a><span data-ttu-id="d74e9-194">API 金鑰</span><span class="sxs-lookup"><span data-stu-id="d74e9-194">API key</span></span>
+<span data-ttu-id="d74e9-195">若使用此安全性配置，當連接器的使用者建立連線時，系統會提示他們提供金鑰。</span><span class="sxs-lookup"><span data-stu-id="d74e9-195">When this security scheme is used, the users of your connector will be prompted to provide the key when they create a connection.</span></span> <span data-ttu-id="d74e9-196">您可以提供 API 金鑰名稱，協助他們了解所需的金鑰為何。</span><span class="sxs-lookup"><span data-stu-id="d74e9-196">You can provide an API key name to help them know which key is needed.</span></span> <span data-ttu-id="d74e9-197">針對 Azure Functions，這通常是涵蓋函數應用程式內許多功能的其中一個主機金鑰。</span><span class="sxs-lookup"><span data-stu-id="d74e9-197">For Azure Functions, this will typically be one of the host keys, covering several functions within the function app.</span></span>
+
+### <a name="azure-active-directory"></a><span data-ttu-id="d74e9-198">Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="d74e9-198">Azure Active Directory</span></span>
+<span data-ttu-id="d74e9-199">當設定需要 AAD 登入的自訂連接器時，需要兩個 AAD 應用程式註冊：一個用於建立後端 API 模型，另一個用於建立 PowerApps 和 Flow 中連接器的模型。</span><span class="sxs-lookup"><span data-stu-id="d74e9-199">When configuring a custom connector that requires AAD login, two AAD application registrations are required: one to model the backend API, and one to model the connector in PowerApps and Flow.</span></span>
+
+<span data-ttu-id="d74e9-200">您的 API 應該設定為搭配初次註冊使用，如果您使用 [App Service 驗證/授權](https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication)功能，則已經設定完成。</span><span class="sxs-lookup"><span data-stu-id="d74e9-200">Your API should be configured to work with the first registration, and this will already be taken care of if you used the [App Service Authentication/Authorization](https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication) feature.</span></span>
+
+<span data-ttu-id="d74e9-201">您將必須使用[新增 AAD 應用程式](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#adding-an-application)中所涵蓋的步驟，手動建立連接器的第二個註冊。</span><span class="sxs-lookup"><span data-stu-id="d74e9-201">You will have to manually create the second registration for the connector, using the steps covered in [Adding an AAD application](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#adding-an-application).</span></span> <span data-ttu-id="d74e9-202">註冊必須具有 API 和 `https://msmanaged-na.consent.azure-apim.net/redirect` 之回覆 URL 的委派存取權。</span><span class="sxs-lookup"><span data-stu-id="d74e9-202">The registration needs to have delegated access to your API and a reply URL of `https://msmanaged-na.consent.azure-apim.net/redirect`.</span></span> <span data-ttu-id="d74e9-203">請參閱[此範例](
+https://powerapps.microsoft.com/tutorials/customapi-azure-resource-manager-tutorial/)以取得詳細資訊，並以您的 API 取代 Azure Resource Manager。</span><span class="sxs-lookup"><span data-stu-id="d74e9-203">Please see [this example](
+https://powerapps.microsoft.com/tutorials/customapi-azure-resource-manager-tutorial/) for more detail, substituting your API for the Azure Resource Manager.</span></span>
+
+<span data-ttu-id="d74e9-204">下列設定值是必要的：</span><span class="sxs-lookup"><span data-stu-id="d74e9-204">The following configuration values are required:</span></span>
+- <span data-ttu-id="d74e9-205">**用戶端識別碼**：您連接器 AAD 註冊的用戶端識別碼</span><span class="sxs-lookup"><span data-stu-id="d74e9-205">**Client ID** - the client ID of your connector AAD registration</span></span>
+- <span data-ttu-id="d74e9-206">**用戶端祕密**：您連接器 AAD 註冊的用戶端祕密</span><span class="sxs-lookup"><span data-stu-id="d74e9-206">**Client secret** - the client secret of your connector AAD registration</span></span>
+- <span data-ttu-id="d74e9-207">**登入 URL**：AAD 的基底 URL。</span><span class="sxs-lookup"><span data-stu-id="d74e9-207">**Login URL** - the base URL for AAD.</span></span> <span data-ttu-id="d74e9-208">在公用 Azure 中，這通常是 `https://login.windows.net`。</span><span class="sxs-lookup"><span data-stu-id="d74e9-208">In public Azure, this will typically be `https://login.windows.net`.</span></span>
+- <span data-ttu-id="d74e9-209">**租用戶識別碼**：要用於登入的租用戶識別碼。</span><span class="sxs-lookup"><span data-stu-id="d74e9-209">**Tenant ID** - the ID of the tenant to be used for the login.</span></span> <span data-ttu-id="d74e9-210">這應該是 "common"，或建立連接器所在之租用戶的識別碼。</span><span class="sxs-lookup"><span data-stu-id="d74e9-210">This should be "common" or the ID of the tenant in which the connector is being created.</span></span>
+- <span data-ttu-id="d74e9-211">**資源 URL**：API 後端 AAD 註冊的資源 URL</span><span class="sxs-lookup"><span data-stu-id="d74e9-211">**Resource URL** - the resource URL of your API backend AAD registration</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="d74e9-212">如果另一個人會將 API 定義匯入到 PowerApps 和 Microsoft Flow 作為手動流程的一部分，您將需要提供**連接器註冊**的用戶端識別碼和用戶端祕密，以及 API 的資源 URL。</span><span class="sxs-lookup"><span data-stu-id="d74e9-212">If another individual will be importing the API definition into PowerApps and Microsoft Flow as part of the manual flow, you will need to provide them with the client ID and client secret **of the connector registration**, as well as the resource URL of your API.</span></span> <span data-ttu-id="d74e9-213">確定這些密碼都已受到安全地管理。</span><span class="sxs-lookup"><span data-stu-id="d74e9-213">Make sure that these secrets are managed securely.</span></span> <span data-ttu-id="d74e9-214">**請勿共用 API 本身的安全性認證。**</span><span class="sxs-lookup"><span data-stu-id="d74e9-214">**Do not share the security credentials of the API itself.**</span></span>
+
+### <a name="generic-oauth-20"></a><span data-ttu-id="d74e9-215">Generic OAuth 2.0</span><span class="sxs-lookup"><span data-stu-id="d74e9-215">Generic OAuth 2.0</span></span>
+<span data-ttu-id="d74e9-216">Generic OAuth 2.0 支援可讓您與任何 OAuth 2.0 提供者整合。</span><span class="sxs-lookup"><span data-stu-id="d74e9-216">The generic OAuth 2.0 support allows you to integrate with any OAuth 2.0 provider.</span></span> <span data-ttu-id="d74e9-217">這可讓您引入任何原生不支援的自訂提供者。</span><span class="sxs-lookup"><span data-stu-id="d74e9-217">This allows you to bring in any custom provider which is not natively supported.</span></span>
+
+<span data-ttu-id="d74e9-218">下列設定值是必要的：</span><span class="sxs-lookup"><span data-stu-id="d74e9-218">The following configuration values are required:</span></span>
+- <span data-ttu-id="d74e9-219">**用戶端識別碼**：OAuth 2.0 用戶端識別碼</span><span class="sxs-lookup"><span data-stu-id="d74e9-219">**Client ID** - the OAuth 2.0 client ID</span></span>
+- <span data-ttu-id="d74e9-220">**用戶端祕密**：OAuth 2.0 用戶端祕密</span><span class="sxs-lookup"><span data-stu-id="d74e9-220">**Client secret** - the OAuth 2.0 client secret</span></span>
+- <span data-ttu-id="d74e9-221">**授權 URL**：OAuth 2.0 授權 URL</span><span class="sxs-lookup"><span data-stu-id="d74e9-221">**Authorization URL** - the OAuth 2.0 authorization URL</span></span>
+- <span data-ttu-id="d74e9-222">**權杖 URL**：OAuth 2.0 權杖 URL</span><span class="sxs-lookup"><span data-stu-id="d74e9-222">**Token URL** - the OAuth 2.0 token URL</span></span>
+- <span data-ttu-id="d74e9-223">**重新整理 URL**：OAuth 2.0 重新整理 URL</span><span class="sxs-lookup"><span data-stu-id="d74e9-223">**Refresh URL** - the OAuth 2.0 refresh URL</span></span>
+
+
+
+<span data-ttu-id="d74e9-224">[在 PowerApps 中註冊及使用自訂連接器]: https://powerapps.microsoft.com/tutorials/register-custom-api/</span><span class="sxs-lookup"><span data-stu-id="d74e9-224">[Register and use custom connectors in PowerApps]: https://powerapps.microsoft.com/tutorials/register-custom-api/</span></span>
+<span data-ttu-id="d74e9-225">[在 Microsoft Flow 中註冊及使用自訂連接器]: https://flow.microsoft.com/documentation/register-custom-api/</span><span class="sxs-lookup"><span data-stu-id="d74e9-225">[Register and use custom connectors in Microsoft Flow]: https://flow.microsoft.com/documentation/register-custom-api/</span></span>

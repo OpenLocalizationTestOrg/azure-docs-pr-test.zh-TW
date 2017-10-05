@@ -1,0 +1,134 @@
+---
+title: "Azure 記錄整合常見問題集 | Microsoft Docs"
+description: "本文提供 Azure 記錄整合的相關問題解答。"
+services: security
+documentationcenter: na
+author: TomShinder
+manager: MBaldwin
+editor: TerryLanfear
+ms.assetid: d06d1ac5-5c3b-49de-800e-4d54b3064c64
+ms.service: security
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload8: na
+ms.date: 08/07/2017
+ms.author: TomSh
+ms.custom: azlog
+ms.openlocfilehash: bfdc7154160bb6bb7dc9c46eb2352ce74310c4de
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/29/2017
+---
+# <a name="azure-log-integration-faq"></a><span data-ttu-id="c2dae-103">Azure 記錄整合常見問題集</span><span class="sxs-lookup"><span data-stu-id="c2dae-103">Azure Log Integration FAQ</span></span>
+<span data-ttu-id="c2dae-104">本文提供 Azure 記錄整合的常見問題集 (FAQ) 解答。</span><span class="sxs-lookup"><span data-stu-id="c2dae-104">This article answers frequently asked questions (FAQ) about Azure Log Integration.</span></span> 
+
+<span data-ttu-id="c2dae-105">Azure 記錄整合是 Windows 作業系統服務，您可以使用此服務將來自 Azure 資源的未經處理記錄，整合到內部部署安全性資訊及事件管理 (SIEM) 系統內。</span><span class="sxs-lookup"><span data-stu-id="c2dae-105">Azure Log Integration is a Windows operating system service that you can use to integrate raw logs from your Azure resources into your on-premises security information and event management (SIEM) systems.</span></span> <span data-ttu-id="c2dae-106">這項整合為您在內部部署或雲端中的所有資產，提供一個整合儀表板。</span><span class="sxs-lookup"><span data-stu-id="c2dae-106">This integration provides a unified dashboard for all your assets, on-premises or in the cloud.</span></span> <span data-ttu-id="c2dae-107">您可以接著彙總、相互關聯、分析與應用程式建立關聯的安全性事件，並發出警示。</span><span class="sxs-lookup"><span data-stu-id="c2dae-107">You can then aggregate, correlate, analyze, and alert for security events associated with your applications.</span></span>
+
+## <a name="is-the-azure-log-integration-software-free"></a><span data-ttu-id="c2dae-108">Azure 記錄整合軟體是否為免費？</span><span class="sxs-lookup"><span data-stu-id="c2dae-108">Is the Azure Log Integration software free?</span></span>
+<span data-ttu-id="c2dae-109">是。</span><span class="sxs-lookup"><span data-stu-id="c2dae-109">Yes.</span></span> <span data-ttu-id="c2dae-110">Azure 記錄整合軟體不需任何費用。</span><span class="sxs-lookup"><span data-stu-id="c2dae-110">There is no charge for the Azure Log Integration software.</span></span>
+
+## <a name="where-is-azure-log-integration-available"></a><span data-ttu-id="c2dae-111">哪裡有提供 Azure 記錄整合？</span><span class="sxs-lookup"><span data-stu-id="c2dae-111">Where is Azure Log Integration available?</span></span>
+
+<span data-ttu-id="c2dae-112">它目前於 Azure Commercial 和 Azure Government 中提供，且無法在中國或德國使用。</span><span class="sxs-lookup"><span data-stu-id="c2dae-112">It is currently available in Azure Commercial and Azure Government and is not available in China or Germany.</span></span>
+
+## <a name="how-can-i-see-the-storage-accounts-from-which-azure-log-integration-is-pulling-azure-vm-logs"></a><span data-ttu-id="c2dae-113">如何查看 Azure 記錄整合從中提取 Azure VM 記錄的儲存體帳戶？</span><span class="sxs-lookup"><span data-stu-id="c2dae-113">How can I see the storage accounts from which Azure Log Integration is pulling Azure VM logs?</span></span>
+<span data-ttu-id="c2dae-114">執行 **azlog source list**命令。</span><span class="sxs-lookup"><span data-stu-id="c2dae-114">Run the command **azlog source list**.</span></span>
+
+## <a name="how-can-i-tell-which-subscription-the-azure-log-integration-logs-are-from"></a><span data-ttu-id="c2dae-115">如何分辨 Azure 記錄整合記錄來自哪一個訂用帳戶？</span><span class="sxs-lookup"><span data-stu-id="c2dae-115">How can I tell which subscription the Azure Log Integration logs are from?</span></span>
+
+<span data-ttu-id="c2dae-116">在稽核記錄位於 **AzureResourcemanagerJson** 目錄的案例中，訂用帳戶識別碼是在記錄檔名稱中。</span><span class="sxs-lookup"><span data-stu-id="c2dae-116">In the case of audit logs that are placed in the **AzureResourcemanagerJson** directories, the subscription ID is in the log file name.</span></span> <span data-ttu-id="c2dae-117">這也適用於 **AzureSecurityCenterJson** 資料夾中的記錄。</span><span class="sxs-lookup"><span data-stu-id="c2dae-117">This is also true for logs in the **AzureSecurityCenterJson** folder.</span></span> <span data-ttu-id="c2dae-118">例如：</span><span class="sxs-lookup"><span data-stu-id="c2dae-118">For example:</span></span>
+
+<span data-ttu-id="c2dae-119">20170407T070805_2768037.0000000023.**1111e5ee-1111-111b-a11e-1e111e1111dc**.json</span><span class="sxs-lookup"><span data-stu-id="c2dae-119">20170407T070805_2768037.0000000023.**1111e5ee-1111-111b-a11e-1e111e1111dc**.json</span></span>
+
+<span data-ttu-id="c2dae-120">Azure Active Directory 稽核記錄包含租用戶識別碼，作為名稱的一部分。</span><span class="sxs-lookup"><span data-stu-id="c2dae-120">Azure Active Directory audit logs include the tenant ID as part of the name.</span></span>
+
+<span data-ttu-id="c2dae-121">讀取自事件中樞的診斷記錄不會在名稱中包含訂用帳戶識別碼。</span><span class="sxs-lookup"><span data-stu-id="c2dae-121">Diagnostic logs that are read from an event hub do not include the subscription ID as part of the name.</span></span> <span data-ttu-id="c2dae-122">相反地，這些診斷記錄會包含建立事件中樞來源時所指定的易記名稱。</span><span class="sxs-lookup"><span data-stu-id="c2dae-122">Instead, they include the friendly name specified as part of the creation of the event hub source.</span></span> 
+
+## <a name="how-can-i-update-the-proxy-configuration"></a><span data-ttu-id="c2dae-123">如何更新 Proxy 組態？</span><span class="sxs-lookup"><span data-stu-id="c2dae-123">How can I update the proxy configuration?</span></span>
+<span data-ttu-id="c2dae-124">如果您的 Proxy 設定不允許直接存取 Azure 儲存體，請開啟 **c:\Program Files\Microsoft Azure Log Integration** 中的 **AZLOG.EXE.CONFIG** 檔案。</span><span class="sxs-lookup"><span data-stu-id="c2dae-124">If your proxy setting does not allow Azure storage access directly, open the **AZLOG.EXE.CONFIG** file in **c:\Program Files\Microsoft Azure Log Integration**.</span></span> <span data-ttu-id="c2dae-125">更新檔案，以便將組織的 Proxy 位址納入 **defaultProxy** 區段。</span><span class="sxs-lookup"><span data-stu-id="c2dae-125">Update the file to include the **defaultProxy** section with the proxy address of your organization.</span></span> <span data-ttu-id="c2dae-126">更新完成之後，使用 **net stop azlog** 和 **net start azlog** 命令停止並啟動服務。</span><span class="sxs-lookup"><span data-stu-id="c2dae-126">After the update is done, stop and start the service by using the commands **net stop azlog** and **net start azlog**.</span></span>
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <configuration>
+      <system.net>
+        <connectionManagement>
+          <add address="*" maxconnection="400" />
+        </connectionManagement>
+        <defaultProxy>
+          <proxy usesystemdefault="true"
+          proxyaddress=http://127.0.0.1:8888
+          bypassonlocal="true" />
+        </defaultProxy>
+      </system.net>
+      <system.diagnostics>
+        <performanceCounters filemappingsize="20971520" />
+      </system.diagnostics>   
+
+## <a name="how-can-i-see-the-subscription-information-in-windows-events"></a><span data-ttu-id="c2dae-127">如何查看 Windows 事件中的訂用帳戶資訊？</span><span class="sxs-lookup"><span data-stu-id="c2dae-127">How can I see the subscription information in Windows events?</span></span>
+<span data-ttu-id="c2dae-128">在新增來源時將訂用帳戶識別碼附加到易記名稱的後面：</span><span class="sxs-lookup"><span data-stu-id="c2dae-128">Append the subscription ID to the friendly name while adding the source:</span></span>
+
+    Azlog source add <sourcefriendlyname>.<subscription id> <StorageName> <StorageKey>  
+<span data-ttu-id="c2dae-129">事件 XML 具有下列中繼資料，包括訂用帳戶識別碼：</span><span class="sxs-lookup"><span data-stu-id="c2dae-129">The event XML has the following metadata, including the subscription ID:</span></span>
+
+![事件 XML][1]
+
+## <a name="error-messages"></a><span data-ttu-id="c2dae-131">錯誤訊息</span><span class="sxs-lookup"><span data-stu-id="c2dae-131">Error messages</span></span>
+### <a name="when-i-run-the-command-azlog-createazureid-why-do-i-get-the-following-error"></a><span data-ttu-id="c2dae-132">當我執行 **azlog createazureid** 命令時，為什麼收到下列錯誤？</span><span class="sxs-lookup"><span data-stu-id="c2dae-132">When I run the command **azlog createazureid**, why do I get the following error?</span></span>
+<span data-ttu-id="c2dae-133">Error:</span><span class="sxs-lookup"><span data-stu-id="c2dae-133">Error:</span></span>
+
+  <span data-ttu-id="c2dae-134">*無法建立 AAD 應用程式 - 租用戶 72f988bf-86f1-41af-91ab-2d7cd011db37 - 原因 = 「禁止」 - 訊息 = 「權限不足以完成作業。」*</span><span class="sxs-lookup"><span data-stu-id="c2dae-134">*Failed to create AAD Application - Tenant 72f988bf-86f1-41af-91ab-2d7cd011db37 - Reason = 'Forbidden' - Message = 'Insufficient privileges to complete the operation.'*</span></span>
+
+<span data-ttu-id="c2dae-135">**azlog createazureid** 命令嘗試在 Azure 登入具有存取權之訂用帳戶的所有 Azure AD 租用戶中建立服務主體。</span><span class="sxs-lookup"><span data-stu-id="c2dae-135">The **azlog createazureid** command attempts to create a service principal in all the Azure AD tenants for the subscriptions that the Azure login has access to.</span></span> <span data-ttu-id="c2dae-136">如果您的 Azure 登入在該 Azure AD 租用戶中只是來賓使用者，則命令會失敗，並出現「權限不足，無法完成此作業」。</span><span class="sxs-lookup"><span data-stu-id="c2dae-136">If your Azure login is only a guest user in that Azure AD tenant, the command fails with "Insufficient privileges to complete the operation."</span></span> <span data-ttu-id="c2dae-137">要求租用戶系統管理員將您的帳戶新增為租用戶中的使用者。</span><span class="sxs-lookup"><span data-stu-id="c2dae-137">Ask the tenant admin to add your account as a user in the tenant.</span></span>
+
+### <a name="when-i-run-the-command-azlog-authorize-why-do-i-get-the-following-error"></a><span data-ttu-id="c2dae-138">當我執行 **azlog authorize** 命令時，為什麼收到下列錯誤？</span><span class="sxs-lookup"><span data-stu-id="c2dae-138">When I run the command **azlog authorize**, why do I get the following error?</span></span>
+<span data-ttu-id="c2dae-139">Error:</span><span class="sxs-lookup"><span data-stu-id="c2dae-139">Error:</span></span>
+
+  <span data-ttu-id="c2dae-140">*建立角色指派警告 - AuthorizationFailed：具有物件識別碼 'fe9e03e4-4dad-4328-910f-fd24a9660bd2' 的用戶端 janedo@microsoft.com' 沒有在 '/subscriptions/70d95299-d689-4c97-b971-0d8ff0000000' 範圍內執行動作 'Microsoft.Authorization/roleAssignments/write' 的權限。*</span><span class="sxs-lookup"><span data-stu-id="c2dae-140">*Warning creating Role Assignment - AuthorizationFailed: The client janedo@microsoft.com' with object id 'fe9e03e4-4dad-4328-910f-fd24a9660bd2' does not have authorization to perform action 'Microsoft.Authorization/roleAssignments/write' over scope '/subscriptions/70d95299-d689-4c97-b971-0d8ff0000000'.*</span></span>
+
+<span data-ttu-id="c2dae-141">**azlog authorize** 命令會將 Azure AD 服務主體讀取者的角色 (以 **azlog createazureid** 建立) 指派給所提供的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="c2dae-141">The **azlog authorize** command assigns the role of reader to the Azure AD service principal (created with **azlog createazureid**) to the provided subscriptions.</span></span> <span data-ttu-id="c2dae-142">如果 Azure 登入不是訂用帳戶的共同管理員或擁有者，命令會失敗，並出現「授權失敗」錯誤訊息。</span><span class="sxs-lookup"><span data-stu-id="c2dae-142">If the Azure login is not a co-administrator or an owner of the subscription, it fails with an "Authorization Failed" error message.</span></span> <span data-ttu-id="c2dae-143">需要共同管理員或擁有者的 Azure 角色型存取控制 (RBAC) 才能完成此動作。</span><span class="sxs-lookup"><span data-stu-id="c2dae-143">Azure Role-Based Access Control (RBAC) of co-administrator or owner is needed to complete this action.</span></span>
+
+## <a name="where-can-i-find-the-definition-of-the-properties-in-the-audit-log"></a><span data-ttu-id="c2dae-144">哪裡可以找到稽核記錄中屬性的定義？</span><span class="sxs-lookup"><span data-stu-id="c2dae-144">Where can I find the definition of the properties in the audit log?</span></span>
+<span data-ttu-id="c2dae-145">請參閱：</span><span class="sxs-lookup"><span data-stu-id="c2dae-145">See:</span></span>
+
+* [<span data-ttu-id="c2dae-146">使用 Azure Resource Manager 來稽核作業</span><span class="sxs-lookup"><span data-stu-id="c2dae-146">Audit operations with Azure Resource Manager</span></span>](../azure-resource-manager/resource-group-audit.md)
+* [<span data-ttu-id="c2dae-147">在 Azure 監視器 REST API 中列出訂用帳戶中的管理事件</span><span class="sxs-lookup"><span data-stu-id="c2dae-147">List the management events in a subscription in the Azure Monitor REST API</span></span>](https://msdn.microsoft.com/library/azure/dn931934.aspx)
+
+## <a name="where-can-i-find-details-on-azure-security-center-alerts"></a><span data-ttu-id="c2dae-148">哪裡可以找到 Azure 資訊安全中心警示的詳細資訊？</span><span class="sxs-lookup"><span data-stu-id="c2dae-148">Where can I find details on Azure Security Center alerts?</span></span>
+<span data-ttu-id="c2dae-149">請參閱 [管理及回應 Azure 資訊安全中心的安全性警示](../security-center/security-center-managing-and-responding-alerts.md)。</span><span class="sxs-lookup"><span data-stu-id="c2dae-149">See [Managing and responding to security alerts in Azure Security Center](../security-center/security-center-managing-and-responding-alerts.md).</span></span>
+
+## <a name="how-can-i-modify-what-is-collected-with-vm-diagnostics"></a><span data-ttu-id="c2dae-150">如何修改 VM 診斷會收集什麼？</span><span class="sxs-lookup"><span data-stu-id="c2dae-150">How can I modify what is collected with VM diagnostics?</span></span>
+<span data-ttu-id="c2dae-151">如需如何取得、修改和設定 Azure 診斷設定的詳細資訊，請參閱[使用 PowerShell 在執行 Windows 的虛擬機器中啟用 Azure 診斷](../virtual-machines/windows/ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="c2dae-151">For details on how to get, modify, and set the Azure Diagnostics configuration, see [Use PowerShell to enable Azure Diagnostics in a virtual machine running Windows](../virtual-machines/windows/ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span> 
+
+<span data-ttu-id="c2dae-152">下列範例會取得 Azure 診斷設定：</span><span class="sxs-lookup"><span data-stu-id="c2dae-152">The following example gets the Azure Diagnostics configuration:</span></span>
+
+    -AzureRmVMDiagnosticsExtension -ResourceGroupName AzLog-Integration -VMName AzlogClient
+    $publicsettings = (Get-AzureRmVMDiagnosticsExtension -ResourceGroupName AzLog-Integration -VMName AzlogClient).PublicSettings
+    $encodedconfig = (ConvertFrom-Json -InputObject $publicsettings).xmlCfg
+    $xmlconfig = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($encodedconfig))
+    Write-Host $xmlconfig
+
+    $xmlconfig | Out-File -Encoding utf8 -FilePath "d:\WADConfig.xml"
+
+<span data-ttu-id="c2dae-153">下列範例會修改 Azure 診斷設定。</span><span class="sxs-lookup"><span data-stu-id="c2dae-153">The following example modifies the Azure Diagnostics configuration.</span></span> <span data-ttu-id="c2dae-154">在此設定中，只會從安全性事件記錄檔收集事件識別碼 4624 和事件識別碼 4625。</span><span class="sxs-lookup"><span data-stu-id="c2dae-154">In this configuration, only event ID 4624 and event ID 4625 are collected from the security event log.</span></span> <span data-ttu-id="c2dae-155">Microsoft Antimalware for Azure 事件則會從系統事件記錄檔收集。</span><span class="sxs-lookup"><span data-stu-id="c2dae-155">Microsoft Antimalware for Azure events are collected from the system event log.</span></span> <span data-ttu-id="c2dae-156">如需使用 XPath 運算式的詳細資訊，請參閱 [Consuming Events](https://msdn.microsoft.com/library/windows/desktop/dd996910(v=vs.85)) (取用事件)。</span><span class="sxs-lookup"><span data-stu-id="c2dae-156">For details on the use of XPath expressions, see [Consuming Events](https://msdn.microsoft.com/library/windows/desktop/dd996910(v=vs.85)).</span></span>
+
+    <WindowsEventLog scheduledTransferPeriod="PT1M">
+        <DataSource name="Security!*[System[(EventID=4624 or EventID=4625)]]" />
+        <DataSource name="System!*[System[Provider[@Name='Microsoft Antimalware']]]"/>
+    </WindowsEventLog>
+
+<span data-ttu-id="c2dae-157">下列範例會設定 Azure 診斷設定：</span><span class="sxs-lookup"><span data-stu-id="c2dae-157">The following example sets the Azure Diagnostics configuration:</span></span>
+
+    $diagnosticsconfig_path = "d:\WADConfig.xml"
+    Set-AzureRmVMDiagnosticsExtension -ResourceGroupName AzLog-Integration -VMName AzlogClient -DiagnosticsConfigurationPath $diagnosticsconfig_path -StorageAccountName log3121 -StorageAccountKey <storage key>
+
+<span data-ttu-id="c2dae-158">完成變更之後，請檢查儲存體帳戶，以確保會收集正確的事件。</span><span class="sxs-lookup"><span data-stu-id="c2dae-158">After you make changes, check the storage account to ensure that the correct events are collected.</span></span>
+
+<span data-ttu-id="c2dae-159">如果您在安裝和設定期間有任何問題，請開啟[支援要求](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request)。</span><span class="sxs-lookup"><span data-stu-id="c2dae-159">If you have any issues during the installation and configuration, please open a [support request](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request).</span></span> <span data-ttu-id="c2dae-160">選取 [記錄整合] 作為您要求支援的服務。</span><span class="sxs-lookup"><span data-stu-id="c2dae-160">Select **Log Integration** as the service for which you are requesting support.</span></span>
+
+## <a name="can-i-use-azure-log-integration-to-integrate-network-watcher-logs-into-my-siem"></a><span data-ttu-id="c2dae-161">可以使用 Azure 記錄整合將網路監看員記錄整合到 SIEM 嗎？</span><span class="sxs-lookup"><span data-stu-id="c2dae-161">Can I use Azure Log Integration to integrate Network Watcher logs into my SIEM?</span></span>
+
+<span data-ttu-id="c2dae-162">Azure 網路監看員會產生大量的記錄資訊。</span><span class="sxs-lookup"><span data-stu-id="c2dae-162">Azure Network Watcher generates large quantities of logging information.</span></span> <span data-ttu-id="c2dae-163">這些記錄不一定會傳送到 SIEM。</span><span class="sxs-lookup"><span data-stu-id="c2dae-163">These logs are not meant to be sent to a SIEM.</span></span> <span data-ttu-id="c2dae-164">網路監看員記錄的唯一支援目的地是儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="c2dae-164">The only supported destination for Network Watcher logs is a storage account.</span></span> <span data-ttu-id="c2dae-165">Azure 記錄整合不支援讀取這些記錄，並且讓它們可供 SIEM 使用。</span><span class="sxs-lookup"><span data-stu-id="c2dae-165">Azure Log Integration does not support reading these logs and making them available to a SIEM.</span></span>
+
+<!--Image references-->
+[1]: ./media/security-azure-log-integration-faq/event-xml.png
