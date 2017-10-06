@@ -1,5 +1,5 @@
 ---
-title: "使用 PowerShell 從 VHD 檔案建立 Azure DevTest Labs 自訂映像 | Microsoft Docs"
+title: "aaaCreate Azure DevTest Labs 自訂映像從 VHD 檔案，使用 PowerShell |Microsoft 文件"
 description: "使用 PowerShell 在 Azure DevTest Labs 中從 VHD 檔案自動建立自訂映像"
 services: devtest-lab,virtual-machines
 documentationcenter: na
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: a4729f70aae80a13233fbe96a5d8a56c0c9d01d3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 39b4005fa46cdf86cf0800ca376128134bcfb650
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-custom-image-from-a-vhd-file-using-powershell"></a>使用 PowerShell 從 VHD 檔案建立自訂映像
 
@@ -30,22 +30,22 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="step-by-step-instructions"></a>逐步指示
 
-下列步驟將逐步引導您使用 PowerShell 從 VHD 檔案建立自訂映像：
+hello 下列步驟引導您完成從 VHD 檔案，使用 PowerShell 建立自訂映像：
 
-1. 在 PowerShell 提示字元中，使用下列對 **Login-AzureRmAccount** Cmdlet 的呼叫來登入您的 Azure 帳戶。  
+1. 在 PowerShell 提示字元中，登入 tooyour Azure 帳戶以下列呼叫 toohello hello**登入 AzureRmAccount** cmdlet。  
     
     ```PowerShell
     Login-AzureRmAccount
     ```
 
-1.  呼叫 **Select-AzureRmSubscription** Cmdlet 來選取想要的 Azure 訂用帳戶。 以有效的 Azure 訂用帳戶 ID 取代 **$subscriptionId** 變數的下列預留位置。 
+1.  選取 hello 需要 Azure 訂用帳戶，請呼叫 hello**選取 AzureRmSubscription** cmdlet。 取代下列預留位置 hello hello **$subscriptionId**變數並提供有效的 Azure 訂用帳戶識別碼。 
 
     ```PowerShell
     $subscriptionId = '<Specify your subscription ID here>'
     Select-AzureRmSubscription -SubscriptionId $subscriptionId
     ```
 
-1.  呼叫 **Get-AzureRmResource** Cmdlet 來取得實驗室物件。 以您環境的適當值取代 **$labRg** 和 **$labName** 變數的下列預留位置。 
+1.  取得呼叫 hello hello 實驗室物件**Get AzureRmResource** cmdlet。 取代下列預留位置 hello hello **$labRg**和**$labName**變數以 hello 適當環境的值。 
 
     ```PowerShell
     $labRg = '<Specify your lab resource group name here>'
@@ -53,62 +53,62 @@ ms.lasthandoff: 07/11/2017
     $lab = Get-AzureRmResource -ResourceId ('/subscriptions/' + $subscriptionId + '/resourceGroups/' + $labRg + '/providers/Microsoft.DevTestLab/labs/' + $labName)
     ```
  
-1.  從實驗室物件取得實驗室儲存體帳戶和實驗室儲存體帳戶金鑰值。 
+1.  收到 hello 實驗室儲存體帳戶和實驗室儲存體帳戶金鑰值 hello 實驗室物件。 
 
     ```PowerShell
     $labStorageAccount = Get-AzureRmResource -ResourceId $lab.Properties.defaultStorageAccount 
     $labStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $labStorageAccount.ResourceGroupName -Name $labStorageAccount.ResourceName)[0].Value
     ```
 
-1.  以您所上傳 VHD 檔案的 URI 取代 **$vhdUri** 變數的下列預留位置。 您可以從 Azure 入口網站中儲存體帳戶的 Blob 刀鋒視窗取得 VHD 檔案的 URI。
+1.  取代下列預留位置 hello hello **$vhdUri**變數以 hello URI tooyour 所上傳 VHD 檔案。 您可以從 hello Azure 入口網站中的 hello 儲存體帳戶之 blob 刀鋒視窗取得 hello VHD 檔案的 URI。
 
     ```PowerShell
-    $vhdUri = '<Specify the VHD URI here>'
+    $vhdUri = '<Specify hello VHD URI here>'
     ```
 
-1.  使用 **New-AzureRmResourceGroupDeployment** Cmdlet 來建立自訂映像。 將 **$customImageName** 和 **$customImageDescription** 變數的下列預留位置取代為對您環境有意義的名稱。
+1.  建立 hello 自訂映像使用 hello**新增 AzureRmResourceGroupDeployment** cmdlet。 取代下列預留位置 hello hello **$customImageName**和**$customImageDescription**為您的環境變數 toomeaningful 名稱。
 
     ```PowerShell
-    $customImageName = '<Specify the custom image name>'
-    $customImageDescription = '<Specify the custom image description>'
+    $customImageName = '<Specify hello custom image name>'
+    $customImageDescription = '<Specify hello custom image description>'
 
     $parameters = @{existingLabName="$($lab.Name)"; existingVhdUri=$vhdUri; imageOsType='windows'; isVhdSysPrepped=$false; imageName=$customImageName; imageDescription=$customImageDescription}
 
     New-AzureRmResourceGroupDeployment -ResourceGroupName $lab.ResourceGroupName -Name CreateCustomImage -TemplateUri 'https://raw.githubusercontent.com/Azure/azure-devtestlab/master/Samples/201-dtl-create-customimage-from-vhd/azuredeploy.json' -TemplateParameterObject $parameters
     ```
 
-## <a name="powershell-script-to-create-a-custom-image-from-a-vhd-file"></a>可從 VHD 檔案建立自訂映像的 PowerShell 指令碼
+## <a name="powershell-script-toocreate-a-custom-image-from-a-vhd-file"></a>PowerShell 指令碼 toocreate 從 VHD 檔案的自訂映像
 
-您可以使用下列 PowerShell 指令碼從 VHD 檔案建立自訂映像。 以符合您需求的適當值取代預留位置 (開頭和結尾是角括弧)。 
+hello 下列 PowerShell 指令碼可以使用的 toocreate 從 VHD 檔案的自訂映像。 Hello 預留位置 （開始和結尾角括弧） 取代 hello 適當的值，針對您的需求。 
 
 ```PowerShell
-# Log in to your Azure account.  
+# Log in tooyour Azure account.  
 Login-AzureRmAccount
 
-# Select the desired Azure subscription. 
+# Select hello desired Azure subscription. 
 $subscriptionId = '<Specify your subscription ID here>'
 Select-AzureRmSubscription -SubscriptionId $subscriptionId
 
-# Get the lab object.
+# Get hello lab object.
 $labRg = '<Specify your lab resource group name here>'
 $labName = '<Specify your lab name here>'
 $lab = Get-AzureRmResource -ResourceId ('/subscriptions/' + $subscriptionId + '/resourceGroups/' + $labRg + '/providers/Microsoft.DevTestLab/labs/' + $labName)
 
-# Get the lab storage account and lab storage account key values.
+# Get hello lab storage account and lab storage account key values.
 $labStorageAccount = Get-AzureRmResource -ResourceId $lab.Properties.defaultStorageAccount 
 $labStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $labStorageAccount.ResourceGroupName -Name $labStorageAccount.ResourceName)[0].Value
 
-# Set the URI of the VHD file.  
-$vhdUri = '<Specify the VHD URI here>'
+# Set hello URI of hello VHD file.  
+$vhdUri = '<Specify hello VHD URI here>'
 
-# Set the custom image name and description values.
-$customImageName = '<Specify the custom image name>'
-$customImageDescription = '<Specify the custom image description>'
+# Set hello custom image name and description values.
+$customImageName = '<Specify hello custom image name>'
+$customImageDescription = '<Specify hello custom image description>'
 
-# Set up the parameters object.
+# Set up hello parameters object.
 $parameters = @{existingLabName="$($lab.Name)"; existingVhdUri=$vhdUri; imageOsType='windows'; isVhdSysPrepped=$false; imageName=$customImageName; imageDescription=$customImageDescription}
 
-# Create the custom image. 
+# Create hello custom image. 
 New-AzureRmResourceGroupDeployment -ResourceGroupName $lab.ResourceGroupName -Name CreateCustomImage -TemplateUri 'https://raw.githubusercontent.com/Azure/azure-devtestlab/master/Samples/201-dtl-create-customimage-from-vhd/azuredeploy.json' -TemplateParameterObject $parameters
 ```
 
@@ -119,4 +119,4 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $lab.ResourceGroupName -Na
 
 ##<a name="next-steps"></a>後續步驟
 
-- [將 VM 新增到實驗室](./devtest-lab-add-vm-with-artifacts.md)
+- [新增 VM tooyour 實驗室](./devtest-lab-add-vm-with-artifacts.md)

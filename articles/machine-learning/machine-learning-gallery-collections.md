@@ -1,5 +1,5 @@
 ---
-title: "Cortana Intelligence Gallery 集合 | Microsoft Docs"
+title: "aaaCortana 智慧組件庫集合 |Microsoft 文件"
 description: "探討與分享 Cortana Intelligence Gallery 中的集合。"
 services: machine-learning
 documentationcenter: 
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: 03f423fff9f4105bdb3a53b245514bde506b9743
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7252edd8973c90b25f79cb903b00d2f26853bdd7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="discover-and-share-collections-in-cortana-intelligence-gallery"></a>探討與分享 Cortana Intelligence Gallery 中的集合
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="collections"></a>集合
-您可以使用[集合](https://gallery.cortanaintelligence.com/collections)，將用於處理特定解決方案或概念的實驗、API 和其他資源庫項目劃分為同一個群組。 您可以將它們分組使用、儲存以供日後參考，或進行共用。
+您可以使用[集合](https://gallery.cortanaintelligence.com/collections)toogroup 實驗、 Api 和您使用特定的解決方案或概念的其他主機庫項目。 您可以將它們群 toouse，日後參考，或 tooshare toosave。
 
 ## <a name="discover"></a>探索
-若要瀏覽[資源庫](http://gallery.cortanaintelligence.com)中的集合，請在 [更多] 下選取 [集合]。
+toobrowse 集合[hello 組件庫中](http://gallery.cortanaintelligence.com)下**詳細**，選取**集合**。
 
-![在資源庫首頁選取集合](media/machine-learning-gallery-collections/select-collections-in-gallery.png)
+![Hello 組件庫主頁面上，選取集合](media/machine-learning-gallery-collections/select-collections-in-gallery.png)
 
-**[集合](https://gallery.cortanaintelligence.com/collections)** 頁面會顯示最近新增及熱門的教學課程清單。 若要檢視所有的集合，請選取 [查看全部]。 若要搜尋特定的集合，請選取 [查看全部]，然後選取篩選準則。 您也可以在資源庫頁面頂端的 [搜尋] 方塊中輸入搜尋字詞。
+hello **[集合](https://gallery.cortanaintelligence.com/collections)**頁面會顯示一份最近加入和常用的集合。 所有集合，都選取 tooview**查看所有**。 選取特定的集合，toosearch**查看所有**，，然後選取篩選準則。 您也可以搜尋詞彙在輸入 hello**搜尋**hello hello 圖庫頁頂端的方塊。
 
-在集合詳細資訊頁面上，您可以取得集合的詳細資料。 若要開啟集合詳細資料頁面，請選取集合。 在集合詳細資料頁面上的 [註解] 區段中，您可以留言、提供意見反應，或詢問有關集合的問題。 您甚至可以在 Twitter 或 LinkedIn 上與朋友或同事分享集合。 您也可以用電子郵件寄出集合詳細資料頁面連結，以邀請其他使用者檢視該頁面。
+您可以取得 hello 集合詳細資料頁面上集合的詳細資訊。 tooopen 集合詳細資料頁面上，選取 hello 集合。 在集合詳細資料 頁面中 hello**註解** 區段中，您可以註解、 提供意見反應或提出 hello 集合中的問題。 您甚至可以與朋友或同事 Twitter 或 LinkedIn 共用 hello 集合。 您也可以用電子郵件連結 toohello 集合詳細資料頁面上，tooinvite 其他使用者 tooview hello 頁面。
 
 ![與朋友分享此項目](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![新增您自己的留言](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="contribute"></a>參與
-您可以建立一個集合，其中含有您所擁有的項目或已由社群發表的項目。 集合中的項目可以是滿足特定解決方案或概念的資源庫項目。
+您可以建立具有您所擁有的項目或項目，有已由 hello 社群貢獻的集合。 集合中的項目可以是滿足特定解決方案或概念的資源庫項目。
 
-例如，您可以使用集合將特定主題的項目劃分為同一個群組，也可以將解決複雜問題的多步驟實驗劃分為同一個群組。 Microsoft 提供的初始集合包含多步驟機器學習實驗範本。 您可以使用範本協助解決實際問題，例如線上詐騙偵測、文字分類、零售預測或預測性維護。
+例如，您可以使用集合 toogroup 項目上的特定主題，或您可以將群組來解決複雜問題 multi-step 實驗。 Microsoft 所提供的 hello 初始集合是由多重步驟的機器學習實驗範本所組成。 您可以使用 hello 範本 toohelp 解決實際問題，例如線上詐騙偵測、 文字分類、 零售預測或預測性維護。
 
 ### <a name="create-a-collection"></a>建立集合
 
-1. 使用您的 Microsoft 帳戶登入資源庫
+1. 使用您的 Microsoft 帳戶登入 toohello 組件庫。
 
-2.  按一下您在頁面頂端的影像，然後選取您的名稱。
+2.  選取您在 hello hello 頁面頂端的映像，然後選取 您的名稱。
   
     ![選取您的帳戶名稱](media/machine-learning-gallery-collections/click-account-name.png)
 
 3. 選取 [新增項目]。
    
     ![選取 [新增項目]。](media/machine-learning-gallery-collections/click-new-item.png)
-4. 在 [描述] 頁面上，對於 [項目類型]，選取 [集合]。 輸入您集合的名稱、摘要、詳細的描述，以及有助於其他使用者找到您集合的任何標籤。
+4. 在 hello**描述** 頁面上，針對**項目類型**，選取**集合**。 輸入您集合的名稱、摘要、詳細的描述，以及有助於其他使用者找到您集合的任何標籤。
    
     ![輸入新集合的資訊](media/machine-learning-gallery-collections/create-collection-page-1.png)
-5. 在 [映像選取] 頁面上，選取與集合一起顯示的映像。 您可以上傳您自己的映像檔，也可以選取內建映像。 選擇可能有助於使用者識別集合內容與用途的映像。
+5. 在 hello**映像選取項目**頁面上，選取的映像，就會顯示 hello 集合。 您可以上傳您自己的映像檔，也可以選取內建映像。 選擇映像以幫助使用者識別 hello 內容和 hello 集合的用途。
    
     ![輸入新集合的資訊](media/machine-learning-gallery-collections/create-collection-page-2.png)
-6. 在 [設定] 頁面上，針對**可見性**，選取集合為 [公開] \(任何人都可以檢視集合) 或 [不列示] \(僅限有集合直接連結的使用者可以檢視)。
+6. 在 hello**設定** 頁面上，針對**可見性**，選取是否 hello 集合是**公用**（任何人都可以檢視 hello 集合） 或**Unlisted**（僅限直接連結 toohello 集合人士可以檢視它）。
    
    > [!IMPORTANT]
-   > 您將集合設定為 [公開]，然後選取 [建立] 之後，則無法將集合變更為 [不列示]。
+   > 設定集合太之後**公用**，然後選取 **建立**，您就不能變更 hello 集合太**Unlisted**。
    > 
    > 
    
     ![選取 [公開] 或 [不列示]](media/machine-learning-gallery-collections/create-collection-page-3.png)
 7. 選取 [ **建立**]。
 
-您的集合隨即出現在 Cortana Intelligence Gallery 中。 您的集合將列在您帳戶頁面的 [集合] 索引標籤上。
+您的集合隨即出現在 Cortana Intelligence Gallery 中。 您的集合會列在 [帳戶] 頁面，在 [hello**集合**] 索引標籤。
 
-### <a name="add-items-to-a-collection"></a>在集合中新增項目
-若要將項目新增至集合，請開啟集合，並選取 [編輯]，然後選取 [新增項目]。
+### <a name="add-items-tooa-collection"></a>新增項目 tooa 集合
+tooadd 項目 tooyour 集合，開啟 hello 集合選取**編輯**，然後選取**加入項目**。
 
-![從詳細資料頁面新增項目到集合](media/machine-learning-gallery-collections/add-to-collection-from-details-page.png)
+![新增項目 tooa 集合從 hello 詳細資料頁面](media/machine-learning-gallery-collections/add-to-collection-from-details-page.png)
 
-您的帳戶頁面將顯示您提供給資源庫的項目清單。 您也可以搜尋資源庫，找出要新增的項目。 選取您想要新增的項目。 您選取的項目將包含在要新增的項目集合中。 [新增] 按鈕將指出已選取多少個項目。
+項目清單已經造成的 toohello 圖庫會顯示在 [帳戶] 頁面。 您也可以搜尋項目 tooadd 的 hello 組件庫。 選取您想 tooadd hello 項目。 您選取每個項目包含的項目 tooadd hello 集中。 hello**新增**按鈕表示您已選取的項目數目。
 
-![新增到集合](media/machine-learning-gallery-collections/add-to-collection.png)
+![新增 toocollection](media/machine-learning-gallery-collections/add-to-collection.png)
 
-您瀏覽資源庫時，如果發現要新增的項目，可選取 [新增至集合] 開啟該項目。 選取要在其中新增項目的集合。
+如果您發現想要同時 tooadd 項目用來瀏覽 hello 圖庫，tooopen hello 項目中，選取**新增 toocollection**。 選取您想要 tooadd hello 項目 hello 集合。
 
-![從詳細資料頁面新增項目到集合](media/machine-learning-gallery-collections/add-to-collection-from-item-details.png)
+![新增項目 tooa 集合從 hello 詳細資料頁面](media/machine-learning-gallery-collections/add-to-collection-from-item-details.png)
 
-若要變更集合的摘要、描述或標記。請開啟集合，並選取 [編輯]。 
+toochange hello 摘要、 描述或標記您的集合，請開啟 hello 集合，，然後選取**編輯**。 
 
-您編輯集合時，可以變更項目在集合中排列的順序。 使用項目旁邊的箭號按鈕，即可在順序清單中向上或向下移動項目。 
+當您編輯您的集合時，您可以變更 hello hello hello 集合中的項目順序。 使用 hello 箭號按鈕下一步 tooan 項目 toomove 它向上或向下 hello 順序清單中。 
 
-若要將附註新增至集合中的項目，請選取項目的右上角，然後選取 [新增/編輯附註] 。 
+tooadd 備忘稿 toohello 項目在集合中，選取的項目，hello 右上角，然後選取**新增/編輯注意**。 
 
-若要從集合中移除項目，請選取 **Remove** (移除)。
+選取的項目從您的集合，tooremove**移除**。
 
 ![變更集合的詳細資料](media/machine-learning-gallery-collections/change-collection-details.png)
 
-**[移至資源庫](http://gallery.cortanaintelligence.com)**
+**[移 toohello 組件庫](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]

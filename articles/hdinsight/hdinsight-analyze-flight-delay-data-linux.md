@@ -1,6 +1,6 @@
 ---
-title: "在 HDInsight 上使用 Hive 分析航班延誤資料 - Azure | Microsoft Docs"
-description: "了解如何在 Linux 型 HDInsight 上使用 Hive 分析航班資料，然後使用 Sqoop 將資料匯出至 SQL Database。"
+title: "aaaAnalyze 飛行延遲資料與 HDInsight 的 Azure 上的登錄區 |Microsoft 文件"
+description: "了解如何 toouse tooanalyze 飛行資料上以 Linux 為基礎的 HDInsight hive 控制檔，然後再匯出 hello 資料 tooSQL Sqoop 資料庫。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,18 +16,18 @@ ms.topic: article
 ms.date: 07/31/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: 8cdc19ac8a517b6d8eefabb5476a686aa252a332
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7830457a7100880dff1c647dde1b4d203bfea3c6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-on-linux-based-hdinsight"></a>在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班延誤資料
 
-了解如何在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班延誤資料，然後使用 Sqoop 將資料匯出至 Azure SQL Database。
+了解如何以 Linux 為基礎的 HDInsight 上使用 Hive 則 tooanalyze 飛行延遲資料匯出 hello 資料 tooAzure SQL Database 使用 Sqoop。
 
 > [!IMPORTANT]
-> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+> 本文件中的 hello 步驟需要使用 Linux 的 HDInsight 叢集。 Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 ### <a name="prerequisites"></a>必要條件
 
@@ -35,13 +35,13 @@ ms.lasthandoff: 08/03/2017
 
 * **Azure SQL Database**。 您會使用 Azure SQL Database 做為目的地資料存放區。 如果您還沒有 SQL Database，請參閱 [SQL Database 教學課程：在幾分鐘內建立 SQL Database](../sql-database/sql-database-get-started.md)。
 
-* **Azure CLI**。 如果您尚未安裝 Azure CLI，請參閱 [安裝與設定 Azure CLI](../cli-install-nodejs.md) 的詳細步驟。
+* **Azure CLI**。 如果您尚未安裝 hello Azure CLI，請參閱[安裝及設定 hello Azure CLI](../cli-install-nodejs.md)的更多的步驟。
 
-## <a name="download-the-flight-data"></a>下載航班資料
+## <a name="download-hello-flight-data"></a>下載 hello 飛行資料
 
-1. 瀏覽至[創新技術研究管理部運輸統計處][rita-website]。
+1. 瀏覽過[研究和創新的技術管理、 運輸局所免費提供統計][rita-website]。
 
-2. 在此頁面上選取下列值：
+2. 在 hello 頁面上，選取下列值的 hello:
 
    | 名稱 | 值 |
    | --- | --- |
@@ -51,26 +51,26 @@ ms.lasthandoff: 08/03/2017
 
 3. 按一下 [下載] 。
 
-## <a name="upload-the-data"></a>上傳資料
+## <a name="upload-hello-data"></a>上傳 hello 資料
 
-1. 使用以下命令將 zip 檔案上傳到 HDInsight 叢集前端節點：
+1. 使用下列命令 tooupload hello zip 檔案 toohello HDInsight 叢集前端節點的 hello:
 
     ```
     scp FILENAME.zip USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:
     ```
 
-    以 zip 檔案名稱取代 **FILENAME** 。 以 HDInsight 叢集的 SSH 登入取代 **USERNAME** 。 將 CLUSTERNAME 取代為 HDInsight 叢集的名稱。
+    取代**FILENAME** hello hello zip 檔案的名稱。 取代**USERNAME**與 hello hello HDInsight 叢集的 SSH 登入。 CLUSTERNAME 取代 hello hello HDInsight 叢集名稱。
 
    > [!NOTE]
-   > 如果您使用密碼來驗證您的 SSH 登入，系統會提示您輸入密碼。 如果您使用的是公開金鑰，您可能必須使用 `-i` 參數並指定對應的私密金鑰路徑。 例如， `scp -i ~/.ssh/id_rsa FILENAME.zip USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:`。
+   > 如果您使用密碼 tooauthenticate SSH 登入，系統會提示您輸入 hello 密碼。 如果您使用公開金鑰，您可能需要 toouse hello`-i`參數並指定 hello 路徑 toohello 相符的私密金鑰。 例如： `scp -i ~/.ssh/id_rsa FILENAME.zip USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:`。
 
-2. 完成上傳之後，使用 SSH 連線到叢集：
+2. Hello 上傳完成後，請使用 SSH toohello 叢集的連線：
 
     ```ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net```
 
     如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-3. 連線之後，請使用以下命令解壓縮 .zip 檔案：
+3. 一旦連接之後，請使用下列 toounzip hello.zip 檔 hello:
 
     ```
     unzip FILENAME.zip
@@ -78,28 +78,28 @@ ms.lasthandoff: 08/03/2017
 
     此命令會解壓縮一個 .csv 檔案 (約為 60MB)。
 
-4. 使用下列命令在 HDInsight 儲存體上建立目錄，然後將檔案複製到目錄︰
+4. 使用 hello HDInsight 存放區中，下列命令 toocreate 目錄並複製 hello 檔案 toohello 目錄：
 
     ```
     hdfs dfs -mkdir -p /tutorials/flightdelays/data
     hdfs dfs -put FILENAME.csv /tutorials/flightdelays/data/
     ```
 
-## <a name="create-and-run-the-hiveql"></a>建立並執行 HiveQL
+## <a name="create-and-run-hello-hiveql"></a>建立和執行 hello HiveQL
 
-使用下列步驟將 CSV 檔案的資料匯入到名為 **Delays**的 Hive 資料表。
+使用 hello 下列步驟從 hello CSV 檔案至名為的 Hive 資料表 tooimport 資料**延遲**。
 
-1. 使用以下命令建立並編輯名為 **flightdelays.hql** 的新檔案：
+1. 使用 hello 下列命令 toocreate 和編輯新的檔案命名為**flightdelays.hql**:
 
     ```
     nano flightdelays.hql
     ```
 
-    使用下列文字做為此檔案的內容：
+    使用 hello hello 這個檔案的內容為下列文字：
 
     ```hiveql
     DROP TABLE delays_raw;
-    -- Creates an external table over the csv file
+    -- Creates an external table over hello csv file
     CREATE EXTERNAL TABLE delays_raw (
         YEAR string,
         FL_DATE string,
@@ -123,16 +123,16 @@ ms.lasthandoff: 08/03/2017
         NAS_DELAY float,
         SECURITY_DELAY float,
         LATE_AIRCRAFT_DELAY float)
-    -- The following lines describe the format and location of the file
+    -- hello following lines describe hello format and location of hello file
     ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     STORED AS TEXTFILE
     LOCATION '/tutorials/flightdelays/data';
 
-    -- Drop the delays table if it exists
+    -- Drop hello delays table if it exists
     DROP TABLE delays;
-    -- Create the delays table and populate it with data
-    -- pulled in from the CSV file (via the external table defined previously)
+    -- Create hello delays table and populate it with data
+    -- pulled in from hello CSV file (via hello external table defined previously)
     CREATE TABLE delays AS
     SELECT YEAR AS year,
         FL_DATE AS flight_date,
@@ -157,24 +157,24 @@ ms.lasthandoff: 08/03/2017
     FROM delays_raw;
     ```
 
-2. 若要儲存檔案，請按 **Ctrl + X**，再按 **Y**。
+2. toosave hello 檔案，使用**Ctrl + X**，然後**Y** 。
 
-3. 若要啟動 Hive 並執行 **flightdelays.hql** 檔案，請使用下列命令：
+3. toostart Hive 和執行的 hello **flightdelays.hql**檔案，請使用下列命令的 hello:
 
     ```
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -f flightdelays.hql
     ```
 
    > [!NOTE]
-   > 此範例會使用 `localhost`，因為您是連接到 HDInsight 叢集的前端節點，也就是 HiveServer2 執行所在位置。
+   > 在此範例中，`localhost`因為您是連接的 toohello hello HDInsight 叢集，也就是正在 HiveServer2 前端節點。
 
-4. 當 __flightdelays.hql__指令碼執行完畢之後，請使用下列命令來開啟互動式 Beeline 工作階段：
+4. 一次 hello __flightdelays.hql__完成執行時，使用 hello 下列命令 tooopen 互動式 Beeline 工作階段的指令碼：
 
     ```
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http'
     ```
 
-5. 當您接收 `jdbc:hive2://localhost:10001/>` 提示字元時，請使用以下查詢從匯入的航班延誤資料中擷取資料。
+5. 當您收到 hello`jdbc:hive2://localhost:10001/>`提示，請使用 匯入的 hello 飛行延遲資料中的下列查詢 tooretrieve 資料 hello。
 
     ```hiveql
     INSERT OVERWRITE DIRECTORY '/tutorials/flightdelays/output'
@@ -186,47 +186,47 @@ ms.lasthandoff: 08/03/2017
     GROUP BY origin_city_name;
     ```
 
-    此查詢會擷取因氣候因素而延誤的城市清單，以及平均延誤時間，並會儲存到 `/tutorials/flightdelays/output`。 稍後，Sqoop 會從此位置讀取該資料，並匯出到 Azure SQL Database。
+    此查詢會擷取一份城市有經驗的天氣延遲，以及 hello 平均延遲時間，並將它儲存到太`/tutorials/flightdelays/output`。 稍後，Sqoop 讀取 hello 資料從這個位置，將它匯出 tooAzure SQL 資料庫。
 
-6. 若要結束 Beeline，請在提示字元中輸入 `!quit` 。
+6. tooexit Beeline，輸入`!quit`在 hello 提示字元。
 
 ## <a name="create-a-sql-database"></a>建立 SQL Database
 
-如果您已經有 SQL Database，就必須取得伺服器名稱。 您可以在 [Azure 入口網站](https://portal.azure.com)中找到伺服器名稱，方法是選取 [SQL Database]，然後篩選您想要使用的資料庫名稱。 伺服器名稱會列在 [伺服器]  資料行中。
+如果您已經有 SQL 資料庫，您必須取得 hello 伺服器名稱。 您可以在 hello 找到 hello 伺服器名稱[Azure 入口網站](https://portal.azure.com)選取**SQL 資料庫**，然後在 hello hello 名稱上篩選資料庫和想 toouse。 hello 伺服器名稱會列在 hello**伺服器**資料行。
 
-如果您還沒有 SQL Database，請使用 [SQL Database 教學課程：在幾分鐘內建立 SQL Database](../sql-database/sql-database-get-started.md) 中的相關資訊來建立一個資料庫。 儲存用於資料庫的伺服器名稱。
+如果您已經沒有 SQL 資料庫，使用中的 hello 資訊[SQL Database 教學課程： 建立 SQL 資料庫，以分鐘為單位](../sql-database/sql-database-get-started.md)toocreate 其中一個。 儲存 hello hello 資料庫所使用的伺服器名稱。
 
 ## <a name="create-a-sql-database-table"></a>建立 SQL Database 資料表
 
 > [!NOTE]
-> 連接至 SQL Database 並建立資料表的方法有很多種。 下列步驟會從 HDInsight 叢集使用 [FreeTDS](http://www.freetds.org/) 。
+> 有許多方式 tooconnect tooSQL 資料庫及建立資料表。 hello 下列步驟使用[freetds 才能使用](http://www.freetds.org/)從 hello HDInsight 叢集。
 
 
-1. 使用 SSH 連線到 Linux 型 HDInsight 叢集，並從 SSH 工作階段執行下列步驟。
+1. 使用 SSH tooconnect toohello 以 Linux 為基礎的 HDInsight 叢集，並執行下列步驟從 hello SSH 工作階段的 hello。
 
-2. 使用下列命令來安裝 FreeTDS：
+2. 使用下列命令 tooinstall freetds 才能使用 hello:
 
     ```
     sudo apt-get --assume-yes install freetds-dev freetds-bin
     ```
 
-3. 安裝完成後，請使用下列命令來連接到 SQL Database 伺服器。 使用 SQL Database 伺服器名稱取代 **serverName** 。 使用 SQL Database 的登入取代 **adminLogin** 和 **adminPassword**。 使用資料庫名稱取代 **databaseName** 。
+3. Hello 安裝完成之後，請使用下列命令 tooconnect toohello SQL Database 伺服器 hello。 取代**serverName** hello SQL Database 伺服器名稱。 取代**adminLogin**和**adminPassword**與 SQL Database 的 hello 登入。 取代**databaseName** hello 資料庫名稱。
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D <databaseName>
     ```
 
-    您會收到如以下文字的輸出：
+    您收到的輸出類似 toohello 下列文字：
 
     ```
     locale is "en_US.UTF-8"
     locale charset is "UTF-8"
     using default charset "UTF-8"
-    Default database being set to sqooptest
+    Default database being set toosqooptest
     1>
     ```
 
-4. 在 `1>` 提示字元輸入下列幾行：
+4. 在 hello`1>`提示字元中，輸入下列行 hello:
 
     ```
     CREATE TABLE [dbo].[delays](
@@ -237,60 +237,60 @@ ms.lasthandoff: 08/03/2017
     GO
     ```
 
-    輸入 `GO` 陳述式後，將評估先前的陳述式。 此查詢會建立名為 **delays** 的資料表 (具有叢集索引)。
+    當 hello`GO`輸入陳述式、 評估 hello 前一個陳述式。 此查詢會建立名為 **delays** 的資料表 (具有叢集索引)。
 
-    使用下列查詢來確認已建立資料表：
+    已建立下列 hello 資料表的查詢 tooverify 使用 hello:
 
     ```
     SELECT * FROM information_schema.tables
     GO
     ```
 
-    輸出大致如下：
+    hello 輸出是類似 toohello 下列文字：
 
     ```
     TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
     databaseName       dbo     delays      BASE TABLE
     ```
 
-5. 在 `exit` at the `1>` 以結束 tsql 公用程式。
+5. 輸入`exit`在 hello`1>`提示 tooexit hello tsql 公用程式。
 
 ## <a name="export-data-with-sqoop"></a>使用 Sqoop 匯出資料
 
-1. 使用下列命令以確認 Sqoop 看得見您的 SQL Database：
+1. 使用下列命令 tooverify Sqoop 可以看到您的 SQL Database 的 hello:
 
     ```
     sqoop list-databases --connect jdbc:sqlserver://<serverName>.database.windows.net:1433 --username <adminLogin> --password <adminPassword>
     ```
 
-    此命令會傳回一份資料庫清單，包含您稍早在其中建立 delays 資料表的資料庫。
+    此命令會傳回一份資料庫，包括您稍早建立 hello 延遲資料表中的 hello 資料庫。
 
-2. 使用以下命令，將資料從 hivesampletable 匯出至 mobiledata 資料表：
+2. 使用 hello hivesampletable toohello mobiledata 資料表中的下列命令 tooexport 資料：
 
     ```
     sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=<databaseName>' --username <adminLogin> --password <adminPassword> --table 'delays' --export-dir '/tutorials/flightdelays/output' --fields-terminated-by '\t' -m 1
     ```
 
-    Sqoop 會連接到包含 delays 資料表的資料庫，並將資料從 `/tutorials/flightdelays/output` 目錄匯出至 delays 資料表。
+    Sqoop 連接 toohello 資料庫包含 hello 延遲資料表，並將資料從 hello 匯出`/tutorials/flightdelays/output`目錄 toohello 延遲資料表。
 
-3. 在命令完成後，使用下列程式碼連接至使用 TSQL 的資料庫：
+3. Hello 命令完成之後，使用下列 tooconnect toohello 資料庫使用 TSQL hello:
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D <databaseName>
     ```
 
-    連線之後，使用下列陳述式來確認資料已匯出到 mobiledata 資料表：
+    一旦連接之後，使用下列陳述式 tooverify hello 資料已匯出的 toohello mobiledata 資料表 hello:
 
     ```
     SELECT * FROM delays
     GO
     ```
 
-    您應會看到資料表中的資料清單。 輸入 `exit` 以結束 tsql 公用程式。
+    您應該會看到 hello 資料表中資料的清單。 型別`exit`tooexit hello tsql 公用程式。
 
 ## <a id="nextsteps"></a> 後續步驟
 
-若要了解更多 HDInsight 中資料的使用方式，請參閱下列文件：
+toolearn HDInsight 中的資料的多個方式 toowork 請參閱下列文件 hello:
 
 * [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
 * [搭配 HDInsight 使用 Oozie][hdinsight-use-oozie]

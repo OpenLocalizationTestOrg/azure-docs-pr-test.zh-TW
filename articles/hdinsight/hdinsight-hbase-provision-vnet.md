@@ -1,6 +1,6 @@
 ---
-title: "在虛擬網路上建立 HBase 叢集 - Azure | Microsoft Docs"
-description: "開始在 Azure HDInsight 中使用 HBase。 了解如何在 Azure 虛擬網路上建立 HDInsight HBase 叢集。"
+title: "在虛擬網路-Azure 中的 aaaCreate HBase 叢集 |Microsoft 文件"
+description: "開始在 Azure HDInsight 中使用 HBase。 了解 Azure 虛擬網路上 toocreate HDInsight HBase 叢集的方式。"
 keywords: 
 services: hdinsight,virtual-network
 documentationcenter: 
@@ -16,32 +16,32 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/17/2017
 ms.author: jgao
-ms.openlocfilehash: 668bd494ce3274188af56cf7d6253cec7af9abbc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 097338a5a650bb607a9f6f9ddb59bb88d098b56f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-hbase-clusters-on-hdinsight-in-azure-virtual-network"></a>在 Azure 虛擬網路的 HDInsight 上建立 HBase 叢集
-了解如何在 [Azure 虛擬網路][1]中建立 Azure HDInsight HBase 叢集。
+了解如何 toocreate Azure HDInsight HBase 叢集[Azure 虛擬網路][1]。
 
-由於 HBase 叢集已與虛擬網路整合，因此能夠部署到與您應用程式相同的虛擬網路，讓應用程式得以和 HBase 直接通訊。 其優點包括：
+與虛擬網路整合 HBase 叢集可以部署的 toohello 相同虛擬網路與您的應用程式因此應用程式可直接通訊使用 HBase。 hello 優點包括：
 
-* Web 應用程式可以直接連接到 HBase 叢集節點，因而能夠使用 HBase Java 遠端程序呼叫 (RPC) API 來進行通訊。
+* 直接連線的 hello web 應用程式 toohello hello HBase 叢集節點，可讓通訊透過 HBase Java 遠端程序呼叫 (RPC) Api。
 * 透過使流量不須經過多個閘道器及負載平衡器，以提升其效能。
-* 能夠以更安全的方式處理敏感資訊，而不會暴露公用端點。
+* hello 能力 tooprocess 機密資訊以更安全的方式，而不會讓公用端點。
 
 ### <a name="prerequisites"></a>必要條件
-開始進行本教學課程之前，您必須具備下列項目：
+開始本教學課程之前，您必須具備下列項目 hello:
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * **具有 Azure PowerShell 的工作站**。 請參閱 [安裝及使用 Azure PowerShell](https://azure.microsoft.com/documentation/videos/install-and-use-azure-powershell/)。
 
 ## <a name="create-hbase-cluster-into-virtual-network"></a>在虛擬網路上建立 HBase 叢集
-在本節中，您會使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-template-deploy.md)，在 Azure 虛擬網路中建立以 Linux 為基礎的 HBase 叢集與相依的 Azure 儲存體帳戶。 如需其他叢集建立方法及了解各項設定，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。 如需有關使用範本在 HDInsight 中建立 Hadoop 叢集的詳細資訊，請參閱 [使用 Azure Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-windows-clusters-arm-templates.md)
+在本節中，您必須建立以 Linux 為基礎的 HBase 叢集與 hello 相依 Azure 儲存體帳戶中的 Azure 虛擬網路使用[Azure Resource Manager 範本](../azure-resource-manager/resource-group-template-deploy.md)。 適用於其他叢集建立方法，並了解 hello 設定，請參閱[建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。 如需有關使用範本 toocreate Hadoop 叢集 HDInsight 中，請參閱 <<c0> [ 建立 Hadoop 叢集 HDInsight 使用 Azure Resource Manager 範本中](hdinsight-hadoop-create-windows-clusters-arm-templates.md)
 
 > [!NOTE]
-> 某些屬性已以硬式編碼方式寫入範本。 例如：
+> 有些屬性是硬式編碼成 hello 範本。 例如：
 >
 > * **位置**：美國東部 2
 > * **叢集版本**：3.5
@@ -52,66 +52,66 @@ ms.lasthandoff: 08/29/2017
 > * **子網路名稱**：subnet1
 > * **子網路位址範圍**：10.0.0.0/24
 >
-> 使用範本時，&lt;叢集名稱> 會取代為您提供的叢集名稱。
+> &lt;叢集名稱 > 取代為您提供使用 hello 範本時的 hello 叢集名稱。
 >
 >
 
-1. 按一下以下影像，在 Azure 入口網站中開啟範本。 範本位在 [Azure 快速入門範本 (英文)](https://azure.microsoft.com/resources/templates/101-hdinsight-hbase-linux-vnet/)。
+1. 按一下下列映像 tooopen hello 範本 hello Azure 入口網站中的 hello。 hello 範本位於[Azure 快速入門範本](https://azure.microsoft.com/resources/templates/101-hdinsight-hbase-linux-vnet/)。
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-linux-vnet%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hbase-provision-vnet/deploy-to-azure.png" alt="Deploy to Azure"></a>
-2. 從 [自訂部署] 刀鋒視窗中，輸入下列屬性：
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-linux-vnet%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hbase-provision-vnet/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+2. 從 hello**自訂部署**刀鋒視窗中，輸入下列屬性的 hello:
 
-   * **訂用帳戶**︰選取用來建立 HDInsight 叢集、相依儲存體帳戶和 Azure 虛擬網路的 Azure 訂用帳戶。
+   * **訂用帳戶**： 選取 使用的 Azure 訂用帳戶 toocreate hello HDInsight 叢集，hello 相依的儲存體帳戶，hello Azure 虛擬網路。
    * **資源群組**：選取 [新建] 並指定新的資源群組名稱。
-   * **位置**：選取資源群組的位置。
-   * **ClusterName**：輸入要建立的 Hadoop 叢集的名稱。
-   * **叢集登入名稱和密碼**：預設登入名稱是 **admin**。
-   * **SSH 使用者名稱和密碼**：預設使用者名稱是 **sshuser**。  您可以將它重新命名。
-   * **我同意上方所述的條款及條件**：(選取)
-3. 按一下 [購買]。 大約需要 20 分鐘的時間來建立叢集。 一旦建立叢集後，您可以在入口網站按一下 [叢集] 刀鋒視窗來開啟它。
+   * **位置**： 選取 hello 資源群組的位置。
+   * **ClusterName**： 輸入建立 hello Hadoop 叢集 toobe 的名稱。
+   * **叢集登入名稱和密碼**: hello 預設登入名稱是**admin**。
+   * **SSH 使用者名稱和密碼**: hello 預設使用者名稱是**sshuser**。  您可以將它重新命名。
+   * **我同意 toohello 使用條款 hello 上述**: （選取）
+3. 按一下 [購買]。 大約需要約 20 分鐘 toocreate 叢集。 一旦建立 hello 叢集後，您可以按一下 hello 叢集刀鋒視窗中 hello 入口 tooopen 它。
 
-完成本教學課程之後，您可以刪除叢集。 利用 HDInsight，您的資料會儲存在 Azure 儲存體中，以便您在未使用叢集時安全地進行刪除。 您也需支付 HDInsight 叢集的費用 (即使未使用)。 由於叢集費用是儲存體費用的許多倍，所以刪除未使用的叢集符合經濟效益。 如需有關刪除叢集的指示，請參閱[使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-management-portal.md#delete-clusters)。
+完成 hello 教學課程之後，您可能想 toodelete hello 叢集。 利用 HDInsight，您的資料會儲存在 Azure 儲存體中，以便您在未使用叢集時安全地進行刪除。 您也需支付 HDInsight 叢集的費用 (即使未使用)。 由於 hello 叢集 hello 費用的次數超過儲存體的 hello 費用，經濟效益 toodelete 叢集時未使用。 刪除叢集的 hello 指示，請參閱[HDInsight 中使用的管理 Hadoop 叢集 hello Azure 入口網站](hdinsight-administer-use-management-portal.md#delete-clusters)。
 
-若要開始使用新的 HBase 叢集，您可以使用＜ [開始在 HDInsight 中搭配使用 HBase 與 Hadoop](hdinsight-hbase-tutorial-get-started.md)＞中提供的程序。
+toobegin 使用新的 HBase 叢集，您可以使用 hello 程序中找到[開始透過 HDInsight 中的 Hadoop 使用 HBase](hdinsight-hbase-tutorial-get-started.md)。
 
-## <a name="connect-to-the-hbase-cluster-using-hbase-java-rpc-apis"></a>使用 HBase Java RPC API 連接到 HBase 叢集
-1. 相同的 Azure 虛擬網路和相同的子網路中建立基礎結構即服務 (IaaS) 虛擬機器。 如需建立新的 IaaS 虛擬機器的指示，請參閱[建立執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)。 當遵循本文件中的步驟時，您必須針對網路設定使用下列值：
+## <a name="connect-toohello-hbase-cluster-using-hbase-java-rpc-apis"></a>連接使用 HBase Java RPC Api toohello HBase 叢集
+1. 建立作為服務 (IaaS) 至虛擬機器的基礎結構 hello 相同 Azure 虛擬網路和 hello 相同子網路。 如需建立新的 IaaS 虛擬機器的指示，請參閱[建立執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)。 當遵循本文件中的 hello 步驟，您必須使用 hello hello 網路設定的值：
 
    * **虛擬網路**：&lt;叢集名稱>-vnet
    * **子網路**：subnet1
 
    > [!IMPORTANT]
-   > 將 &lt;叢集名稱> 取代為在上一個步驟中建立 HDInsight 叢集時使用的名稱。
+   > 取代&lt;叢集名稱 > hello 名稱時所使用在先前步驟中建立 hello HDInsight 叢集。
    >
    >
 
-   使用這些值會將虛擬機器放置在與 HDInsight 叢集相同的虛擬網路和子網路。 此組態可讓它們彼此直接通訊。 有一個使用空白邊緣節點建立 HDInsight 叢集的方法。 邊緣節點可用來管理叢集。  如需詳細資訊，請參閱 [Use empty edge nodes in HDInsight (在 HDInsight 中使用空白的邊緣節點)](hdinsight-apps-use-edge-node.md)。
+   使用這些值，hello 虛擬機器會放置在 hello 相同虛擬網路和子網路與 hello HDInsight 叢集。 此設定可讓它們 toodirectly 與對方進行通訊。 沒有方法 toocreate 與空白邊緣節點的 HDInsight 叢集。 hello 邊緣節點可以是使用的 toomanage hello 叢集。  如需詳細資訊，請參閱 [Use empty edge nodes in HDInsight (在 HDInsight 中使用空白的邊緣節點)](hdinsight-apps-use-edge-node.md)。
 
-2. 使用 Java 應用程式從遠端連接到 HBase 時，您必須使用完整網域名稱 (FQDN)。 若要決定此名稱，您必須取得 HBase 叢集的連線特定 DNS 尾碼。 若要這麼做，您可以使用下列其中一種方法：
+2. 當從遠端使用 Java 應用程式 tooconnect tooHBase，您必須使用 hello 完整的網域名稱 (FQDN)。 toodetermine，您必須取得 hello HBase 叢集 hello 連線特定 DNS 尾碼。 toodo，您可以使用其中一個 hello 下列方法：
 
-   * 使用網頁瀏覽器進行 Ambari 呼叫︰
+   * 使用 Web 瀏覽器 toomake Ambari 呼叫：
 
-     瀏覽至 https://&lt;ClusterName>.azurehdinsight.net/api/v1/clusters/&lt;ClusterName>/hosts?minimal_response=true。 結果是具有 DNS 尾碼的 JSON 檔案。
-   * 使用 Ambari 網站︰
+     瀏覽 toohttps: / /&lt;ClusterName >.azurehdinsight.net/api/v1/clusters/&lt;ClusterName > / 裝載？ minimal_response = true。 它會以 hello DNS 後置字元的 JSON 檔案。
+   * 使用 hello Ambari 網站：
 
-     1. 瀏覽至 https://&lt;ClusterName>.azurehdinsight.net。
-     2. 按一下頂端功能表中的 [主機]  。
-   * 使用 Curl 進行 REST 呼叫︰
+     1. 瀏覽過 https://&lt;ClusterName >。.azurehdinsight.net。
+     2. 按一下**主機**從 hello 上方的功能表。
+   * 使用 Curl toomake REST 呼叫：
 
     ```bash
         curl -u <username>:<password> -k https://<clustername>.azurehdinsight.net/ambari/api/v1/clusters/<clustername>.azurehdinsight.net/services/hbase/components/hbrest
     ```
 
-     在傳回的 JavaScript 物件標記法 (JSON) 資料中，找出 "host_name" 項目。 其中包含叢集中節點的 FQDN。 例如：
+     在 hello JavaScript Object Notation (JSON) 傳回的資料，尋找 hello"host_name"項目。 它包含 hello FQDN hello hello 叢集中的節點。 例如：
 
          ...
          "host_name": "wordkernode0.<clustername>.b1.cloudapp.net
          ...
 
-     以叢集名稱開頭的網域名稱部分就是 DNS 尾碼。 例如，mycluster.b1.cloudapp.net。
+     hello 部分 hello 網域名稱 hello 叢集名稱開頭是 hello DNS 尾碼。 例如，mycluster.b1.cloudapp.net。
    * 使用 Azure PowerShell
 
-     使用下列 Azure PowerShell 指令碼來註冊 **Get-ClusterDetail** 函數，此函數可用來傳回 DNS 尾碼：
+     使用下列 Azure PowerShell 指令碼 tooregister hello 的 hello **Get ClusterDetail**函式，它可以是使用的 tooreturn hello DNS 尾碼：
 
     ```powershell
         function Get-ClusterDetail(
@@ -131,29 +131,29 @@ ms.lasthandoff: 08/29/2017
         {
         <#
             .SYNOPSIS
-            Displays information to facilitate an HDInsight cluster-to-cluster scenario within the same virtual network.
+            Displays information toofacilitate an HDInsight cluster-to-cluster scenario within hello same virtual network.
             .Description
-            This command shows the following 4 properties of an HDInsight cluster:
+            This command shows hello following 4 properties of an HDInsight cluster:
             1. ZookeeperQuorum (supports only HBase type cluster)
-                Shows the value of HBase property "hbase.zookeeper.quorum".
+                Shows hello value of HBase property "hbase.zookeeper.quorum".
             2. ZookeeperClientPort (supports only HBase type cluster)
-                Shows the value of HBase property "hbase.zookeeper.property.clientPort".
+                Shows hello value of HBase property "hbase.zookeeper.property.clientPort".
             3. HBaseRestServers (supports only HBase type cluster)
-                Shows a list of host FQDNs that run the HBase REST server.
+                Shows a list of host FQDNs that run hello HBase REST server.
             4. FQDNSuffix (supports all cluster types)
-                Shows the FQDN suffix of hosts in the cluster.
+                Shows hello FQDN suffix of hosts in hello cluster.
             .EXAMPLE
             Get-ClusterDetail -ClusterDnsName {clusterDnsName} -Username {username} -Password {password} -PropertyName ZookeeperQuorum
-            This command shows the value of HBase property "hbase.zookeeper.quorum".
+            This command shows hello value of HBase property "hbase.zookeeper.quorum".
             .EXAMPLE
             Get-ClusterDetail -ClusterDnsName {clusterDnsName} -Username {username} -Password {password} -PropertyName ZookeeperClientPort
-            This command shows the value of HBase property "hbase.zookeeper.property.clientPort".
+            This command shows hello value of HBase property "hbase.zookeeper.property.clientPort".
             .EXAMPLE
             Get-ClusterDetail -ClusterDnsName {clusterDnsName} -Username {username} -Password {password} -PropertyName HBaseRestServers
-            This command shows a list of host FQDNs that run the HBase REST server.
+            This command shows a list of host FQDNs that run hello HBase REST server.
             .EXAMPLE
             Get-ClusterDetail -ClusterDnsName {clusterDnsName} -Username {username} -Password {password} -PropertyName FQDNSuffix
-            This command shows the FQDN suffix of hosts in the cluster.
+            This command shows hello FQDN suffix of hosts in hello cluster.
         #>
 
             $DnsSuffix = ".azurehdinsight.net"
@@ -205,33 +205,33 @@ ms.lasthandoff: 08/29/2017
         }
     ```
 
-     執行 Azure PowerShell 指令碼之後，透過下列命令使用 **Get-ClusterDetail** 函數傳回 DNS 尾碼。 使用此命令時，請指定您的 HDInsight HBase 叢集名稱、管理員名稱和管理員密碼。
+     執行 hello Azure PowerShell 指令碼之後, 使用 hello 下列命令的 tooreturn hello DNS 尾碼來使用 hello **Get ClusterDetail**函式。 使用此命令時，請指定您的 HDInsight HBase 叢集名稱、管理員名稱和管理員密碼。
 
     ```powershell
         Get-ClusterDetail -ClusterDnsName <yourclustername> -PropertyName FQDNSuffix -Username <clusteradmin> -Password <clusteradminpassword>
     ```
 
-     此命令會傳回 DNS 尾碼。 例如， **yourclustername.b4.internal.cloudapp.net**。
+     此命令會傳回 hello DNS 尾碼。 例如， **yourclustername.b4.internal.cloudapp.net**。
 
 
 <!--
-3.    Change the primary DNS suffix configuration of the virtual machine. This enables the virtual machine to automatically resolve the host name of the HBase cluster without explicit specification of the suffix. For example, the *workernode0* host name will be correctly resolved to workernode0 of the HBase cluster.
+3.    Change hello primary DNS suffix configuration of hello virtual machine. This enables hello virtual machine tooautomatically resolve hello host name of hello HBase cluster without explicit specification of hello suffix. For example, hello *workernode0* host name will be correctly resolved tooworkernode0 of hello HBase cluster.
 
-    To make the configuration change:
+    toomake hello configuration change:
 
-    1. RDP into the virtual machine.
-    2. Open **Local Group Policy Editor**. The executable is gpedit.msc.
+    1. RDP into hello virtual machine.
+    2. Open **Local Group Policy Editor**. hello executable is gpedit.msc.
     3. Expand **Computer Configuration**, expand **Administrative Templates**, expand **Network**, and then click **DNS Client**.
-    - Set **Primary DNS Suffix** to the value obtained in step 2:
+    - Set **Primary DNS Suffix** toohello value obtained in step 2:
 
         ![hdinsight.hbase.primary.dns.suffix][img-primary-dns-suffix]
     4. Click **OK**.
-    5. Reboot the virtual machine.
+    5. Reboot hello virtual machine.
 -->
 
-若要驗證虛擬機器能夠與 HBase 叢集通訊，請從虛擬機器使用命令 `ping headnode0.<dns suffix>` 。 例如，ping headnode0.mycluster.b1.cloudapp.net。
+hello 虛擬機器的 tooverify 可以與 hello HBase 叢集，請使用 hello 命令`ping headnode0.<dns suffix>`從 hello 虛擬機器。 例如，ping headnode0.mycluster.b1.cloudapp.net。
 
-若要在 Java 應用程式中使用此資訊，您可以依照＜ [使用 Maven 建置在 HDInsight (Hadoop) 上使用 HBase 的 Java 應用程式](hdinsight-hbase-build-java-maven.md) ＞(英文) 中的步驟來建立應用程式。 若要讓應用程式連接到遠端 HBase 伺服器，請修改此範例中的 **hbase-site.xml** 檔案，以使用 Zookeeper 的 FQDN。 例如：
+toouse 這項資訊在 Java 應用程式中，您可以依照中的 hello 步驟[使用 Maven toobuild Java 應用程式與 HDInsight (Hadoop) 使用 HBase](hdinsight-hbase-build-java-maven.md) toocreate 應用程式。 toohave hello 應用程式連接 tooa 遠端 HBase 伺服器，修改 hello **hbase-site.xml**中的檔案，此範例 toouse hello FQDN 動物園管理員。 例如：
 
     <property>
         <name>hbase.zookeeper.quorum</name>
@@ -239,12 +239,12 @@ ms.lasthandoff: 08/29/2017
     </property>
 
 > [!NOTE]
-> 如需 Azure 虛擬網路中名稱解析的詳細資訊，包括如何使用您自己的 DNS 伺服器，請參閱[名稱解析 (DNS)](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)。
+> 如需有關名稱解析在 Azure 虛擬網路中，包括如何 toouse DNS 伺服器，請參閱[名稱解析 (DNS)](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)。
 >
 >
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已了解如何建立 HBase 叢集。 若要深入了解，請參閱：
+在本教學課程中，您學到如何 toocreate HBase 叢集。 toolearn 詳細資訊，請參閱：
 
 * [開始使用 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)
 * [在 HDInsight 中使用空白邊緣節點](hdinsight-apps-use-edge-node.md)
@@ -295,7 +295,7 @@ ms.lasthandoff: 08/29/2017
 
 [img-dns-surffix]: ./media/hdinsight-hbase-provision-vnet/DNSSuffix.png
 [img-primary-dns-suffix]: ./media/hdinsight-hbase-provision-vnet/PrimaryDNSSuffix.png
-[img-provision-cluster-page1]: ./media/hdinsight-hbase-provision-vnet/hbasewizard1.png "佈建新 HBase 叢集的詳細資料"
-[img-provision-cluster-page5]: ./media/hdinsight-hbase-provision-vnet/hbasewizard5.png "使用指令碼動作以自訂 HBase 叢集"
+[img-provision-cluster-page1]: ./media/hdinsight-hbase-provision-vnet/hbasewizard1.png "Hello 新 HBase 叢集的佈建詳細資料"
+[img-provision-cluster-page5]: ./media/hdinsight-hbase-provision-vnet/hbasewizard5.png "使用指令碼動作 toocustomize HBase 叢集"
 
 [azure-preview-portal]: https://portal.azure.com

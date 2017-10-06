@@ -1,5 +1,5 @@
 ---
-title: "排程器限制及預設值"
+title: "aaaScheduler 限制及預設值"
 description: "排程器限制及預設值"
 services: scheduler
 documentationcenter: .NET
@@ -14,27 +14,27 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: deli
-ms.openlocfilehash: db6b1c196cb468f41c7a7ce34758de346b522abb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6fe0600d3ce3249d5aab1b877369b175316b5437
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scheduler-limits-and-defaults"></a>排程器限制及預設值
 ## <a name="scheduler-quotas-limits-defaults-and-throttles"></a>排程器配額、限制、預設值和節流
 [!INCLUDE [scheduler-limits-table](../../includes/scheduler-limits-table.md)]
 
-## <a name="the-x-ms-request-id-header"></a>x-ms-request-id 標頭
-每一個對排程器服務提出的要求都會傳回名為**x-ms-request-id**的回應標頭。 此標頭包含專門識別要求的不透明值。
+## <a name="hello-x-ms-request-id-header"></a>hello x ms-要求識別碼標頭
+每個對 hello 排程器服務所提出的要求會傳回回應標頭**x ms-要求識別碼**。此標頭包含唯一識別 hello 要求的不透明值。
 
-如果要求一直失敗，而且您已確認要求表達正確，則可以使用此值將錯誤回報給 Microsoft。 在您的報告中，請包括 x-ms-request-id 的值、提出要求的大約時間、訂用帳戶的識別碼、工作集合及/或工作，以及要求所嘗試的作業類型。
+如果要求不一致的方式失敗，且您有會確認 hello 要求為正確的組成之後，您可以使用此值 tooreport hello 錯誤 tooMicrosoft。 在報表中，加入 x ms-要求識別碼，hello 的大約時間 hello 值該 hello 製作要求之 hello hello 訂用帳戶、 工作集合和/或作業的識別碼和 hello hello 要求嘗試的作業類型。
 
 ## <a name="see-also"></a>另請參閱
  [排程器是什麼？](scheduler-intro.md)
 
  [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
 
- [在 Azure 入口網站中開始使用排程器](scheduler-get-started-portal.md)
+ [開始在 hello Azure 入口網站中使用排程器](scheduler-get-started-portal.md)
 
  [Azure 排程器的計劃和計費](scheduler-plans-billing.md)
 

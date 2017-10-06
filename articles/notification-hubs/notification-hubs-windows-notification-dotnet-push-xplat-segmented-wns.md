@@ -1,6 +1,6 @@
 ---
-title: "使用通知中樞傳送即時新聞 (Windows Universal)"
-description: "使用 Azure 通知中樞搭配註冊中的標籤，將重大新聞傳送至通用 Windows 應用程式。"
+title: "aaaUse 通知中樞 toosend 最新消息 （Windows 通用）"
+description: "使用 Azure 通知中樞與 hello 註冊 toosend 重大消息 tooa 通用 Windows 應用程式中的標記。"
 services: notification-hubs
 documentationcenter: windows
 author: ysxu
@@ -14,30 +14,30 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 0e945b5626a08fcb428131f2abb465c2c141011a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f102d286d2c7bd387fcfa2c7eab2ba31a0298517
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-notification-hubs-to-send-breaking-news"></a>使用通知中心傳送即時新聞
+# <a name="use-notification-hubs-toosend-breaking-news"></a>使用通知中樞 toosend 最新消息
 [!INCLUDE [notification-hubs-selector-breaking-news](../../includes/notification-hubs-selector-breaking-news.md)]
 
 ## <a name="overview"></a>概觀
-本主題將說明如何使用 Azure 通知中樞，將即時新聞通知廣播至 Windows Store 或 Windows Phone 8.1 (非 Silverlight) 應用程式。 如果您的目標是 Windows Phone 8.1 Silverlight，請參閱 [Windows Phone](notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md) 版本。 完成時，您便能夠註冊您所感興趣的即時新聞類別，並僅接收這些類別的推播通知。 此情況是許多應用程式的共同模式，這些應用程式必須將通知傳送給先前宣告對通知有興趣的使用者群組，例如，RSS 閱讀程式、供樂迷使用的應用程式等等。 
+本主題說明如何 toouse Azure 通知中樞 toobroadcast 重大消息通知 tooa Windows 市集或 Windows Phone 8.1 (非 Silverlight) 應用程式。 如果您的目標 Windows Phone 8.1 Silverlight，請參閱 toohello [Windows Phone](notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md)版本。 完成時，您將會是能 tooregister 中斷您感興趣的新聞分類，並且接收只有那些類別目錄的推播通知。 此案例中是通知其中具有先前尚未宣告感興趣，例如 RSS 讀取器，音樂迷，應用程式及等等的使用者傳送 toobe toogroups 許多應用程式的常見模式。 
 
-在通知中樞內建立註冊時，您可以透過包含一或多個 *tags* 來啟用廣播案例。 當標籤收到通知時，所有已註冊此標籤的裝置都會收到通知。 由於標籤只是簡單的字串而已，您無需預先佈建標籤。 如需標籤的詳細資訊，請參閱 [通知中樞路由與標記運算式](notification-hubs-tags-segment-push-message.md)。
+啟用廣播的案例包括下列一個或多個*標記*時建立 hello 通知中樞的註冊。 當通知傳送 tooa 標記時，所有已註冊的裝置 hello 標記會收到 hello 通知。 標記是只是字串，因為它們不需要預先佈建 toobe。 如需標記的詳細資訊，請參閱太[通知中樞路由和標記運算式](notification-hubs-tags-segment-push-message.md)。
 
 > [!NOTE]
 > Windows 市集和 Windows Phone 8.1 版與更早版本的專案在 Visual Studio 2017 不受支援。  如需詳細資訊，請參閱 [Visual Studio 2017 平台目標及相容性](https://www.visualstudio.com/en-us/productinfo/vs2017-compatibility-vs)。 
 
 ## <a name="prerequisites"></a>必要條件
-本主題會以您在[開始使用通知中樞][get-started]中所建立的應用程式為基礎。 開始本教學課程之前，您必須已完成[開始使用通知中樞][get-started]。
+本主題是根據您在建立 hello 應用程式[開始使用通知中樞][get-started]。 開始本教學課程之前，您必須已完成[開始使用通知中樞][get-started]。
 
-## <a name="add-category-selection-to-the-app"></a>在應用程式中新增類別選項
-第一個步驟是在您的現有主頁面上新增 UI 元素，以便使用者選取要註冊的類別。 使用者所選取的類別會儲存在裝置上。 啟動應用程式時，您的通知中心內會建立以所選取類別作為標籤的裝置註冊。
+## <a name="add-category-selection-toohello-app"></a>加入類別目錄選取 toohello 應用程式
+hello 第一個步驟為 tooadd hello UI 項目 tooyour 現有主要頁面，啟用 hello 使用者 tooselect 類別 tooregister。 使用者選取的 hello 類別會儲存在 hello 裝置。 Hello 應用程式啟動時，裝置註冊會建立您的通知中樞與 hello 選取類別目錄中，為標記。
 
-1. 開啟 MainPage.xaml 專案檔案，然後在 **Grid** 元素中複製下列程式碼：
+1. 開啟 hello MainPage.xaml 專案檔案，然後複製下列程式碼中 hello 的 hello**方格**項目：
    
         <Grid>
             <Grid.RowDefinitions>
@@ -60,13 +60,13 @@ ms.lasthandoff: 08/18/2017
             <ToggleSwitch Header="Sports" Name="SportsToggle" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"/>
             <Button Name="SubscribeButton" Content="Subscribe" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Click="SubscribeButton_Click"/>
         </Grid>
-2. 以滑鼠右鍵按一下 [共用] 專案中、新增名為 **Notifications** 的新類別、將 **public** 修飾詞新增至類別定義，然後在新的程式碼檔案中新增下列 **using** 陳述式：
+2. 以滑鼠右鍵按一下 hello**共用**專案，並加入新的類別，名為**通知**，新增 hello**公用**修飾詞 toohello 類別定義，然後新增下列 hello **使用**陳述式 toohello 新程式碼檔案：
    
         using Windows.Networking.PushNotifications;
         using Microsoft.WindowsAzure.Messaging;
         using Windows.Storage;
         using System.Threading.Tasks;
-3. 將下列程式碼複製到新的 **Notifications** 類別：
+3. 複製 hello 下列程式碼至新的 hello**通知**類別：
    
         private NotificationHub hub;
    
@@ -96,7 +96,7 @@ ms.lasthandoff: 08/18/2017
                 categories = RetrieveCategories();
             }
    
-            // Using a template registration to support notifications across platforms.
+            // Using a template registration toosupport notifications across platforms.
             // Any template notifications that contain messageParam and a corresponding tag expression
             // will be delivered for this registration.
    
@@ -106,29 +106,29 @@ ms.lasthandoff: 08/18/2017
                     categories);
         }
    
-    本類別會使用本機儲存體來儲存此裝置必須接收的新聞類別。 請注意，我們呼叫 *RegisterTemplateAsync* 而非 *RegisterNativeAsync* 方法來註冊使用範本註冊的類別。 
+    這個類別使用新聞此裝置有 tooreceive hello 本機儲存體 toostore hello 的類別。 請注意，而不是呼叫 hello *RegisterNativeAsync*方法我們呼叫*RegisterTemplateAsync* tooregister hello 類別使用的範本註冊。 
    
-    我們也為範本提供名稱 ("simpleWNSTemplateExample")，因為我們可能會想註冊多個範本 (例如，一個供快顯通知使用，一個供磚使用)，而且我們必須為其命名，才能加以更新或刪除。
+    我們也提供 hello 範本 (「 simpleWNSTemplateExample") 的名稱，因為我們可能會想 tooregister 多個範本 （例如一個快顯通知），另一個圖格，我們需要 tooname 中順序 toobe 無法 tooupdate 或刪除它們。
    
-    請注意，如果有裝置使用相同的標籤註冊多個範本，一個以該標籤為目標的傳入訊息將會使多個通知傳遞至裝置 (每個範本各一個)。 此行為在相同的邏輯訊息必須產生多個視覺化通知時將有所幫助，例如，在一個 Windows 市集應用程式中同時顯示徽章和快顯通知。
+    請注意，是否裝置具有相同標記，標記會導致為目標的內送訊息的 hello 註冊多個範本的多個通知傳遞 toohello 裝置 （一個用於每個範本）。 這種行為時相當實用 hello 相同的邏輯訊息 tooresult 在多個視覺通知中，執行個體中的 Windows 市集應用程式中顯示 徽章和快顯通知。
    
     如需範本的詳細資訊，請參閱 [範本](notification-hubs-templates-cross-platform-push-messages.md)。
-4. 在 App.xaml.cs 專案檔案中，新增下列屬性至 **App** 類別：
+4. 在 hello App.xaml.cs 專案檔案中，加入下列屬性 toohello hello**應用程式**類別：
    
         public Notifications notifications = new Notifications("<hub name>", "<connection string with listen access>");
    
-    此屬性可用來建立並存取 **Notifications** 執行個體。
+    這個屬性是使用的 toocreate 及存取**通知**執行個體。
    
-    在上述程式碼中，使用您的通知中樞名稱及先前取得的 *DefaultListenSharedAccessSignature* 連接字串，來取代 `<hub name>` 和 `<connection string with listen access>` 預留位置。
+    在上述程式碼的 hello，取代 hello`<hub name>`和`<connection string with listen access>`預留位置取代通知中樞名稱和 hello 的連接字串*DefaultListenSharedAccessSignature*您稍早取得。
    
    > [!NOTE]
-   > 因為隨用戶端應用程式散佈的憑證通常不安全，您應只將接聽存取權的金鑰隨用戶端應用程式散佈。 您的應用程式可透過接聽存取權來註冊通知，但無法修改現有的註冊或無法傳送通知。 在安全的後端服務中，會使用完整存取金鑰來傳送通知和變更現有的註冊。
+   > 發佈的用戶端應用程式的認證不是一般安全的因為您只應該與用戶端應用程式來散發 hello 接聽 」 存取權的索引鍵。 接聽存取啟用通知，但現有的註冊您的應用程式 tooregister 無法修改，而且無法傳送通知。 hello 完整的存取金鑰會用於傳送通知和變更現有註冊的受保護的後端服務。
    > 
    > 
-5. 在 MainPage.xaml.cs 中新增下列程式碼行：
+5. 在您 MainPage.xaml.cs 加入以下的 hello:
    
         using Windows.UI.Popups;
-6. 在 MainPage.xaml.cs 專案檔案中新增下列方法：
+6. 在 hello MainPage.xaml.cs 專案檔中加入下列方法 hello:
    
         private async void SubscribeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -147,19 +147,19 @@ ms.lasthandoff: 08/18/2017
             await dialog.ShowAsync();
         }
    
-    此方法會建立一份類別清單，並使用 **Notifications** 類別在本機儲存體中儲存清單，並在通知中心註冊對應標籤。 變更類別時，系統會使用新類別重新建立註冊。
+    這個方法會建立一份類別目錄，並使用 hello**通知**類別 toostore hello 本機儲存體中的 hello 清單，並使用您的通知中樞註冊 hello 相對應的標記。 類別目錄會變更時，重新建立 hello 註冊 hello 新類別。
 
-您的應用程式現在可以在裝置上的本機儲存體中儲存一組類別，並在使用者每次變更類別選項時在通知中心註冊。
+您的應用程式目前處於無法 toostore 一組類別目錄 hello 裝置上的本機儲存體，並向 hello 通知中樞，每當 hello 使用者變更 hello 選取的類別。
 
 ## <a name="register-for-notifications"></a>註冊通知
-這些步驟會在啟動時，使用已儲存在本機儲存體中的類別在通知中心註冊。
+這些步驟註冊在啟動時使用已儲存在本機儲存體的 hello 類別 hello 通知中樞。
 
 > [!NOTE]
-> 由於 Windows 通知服務 (WNS) 所指派的通道 URI 可以隨時變更，您應經常註冊通知以避免通知失敗。 此範例會在應用程式每次啟動時註冊通知。 若是經常執行 (一天多次) 的應用程式，如果距離上次註冊的時間不到一天，則您可能可以略過註冊以保留頻寬。
+> 因為 hello 通道 hello Windows 通知服務 (WNS) 所指派的 URI 可以隨時變更，您應該註冊通知經常 tooavoid 通知失敗。 每次該 hello 應用程式啟動時，這個範例會註冊通知。 針對經常執行的應用程式，一天一次以上，您可以可能略過註冊 toopreserve 頻寬如果少於一天，已經過 hello 先前的登錄。
 > 
 > 
 
-1. 開啟 App.xaml.cs 檔案並更新 **InitNotificationsAsync** 方法，以使用 `notifications` 類別根據類別來訂閱。
+1. 開啟 hello App.xaml.cs 檔案並更新 hello **InitNotificationsAsync**方法 toouse hello`notifications`類別 toosubscribe 類別為基礎。
    
         // *** Remove or comment out these lines *** 
         //var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
@@ -168,8 +168,8 @@ ms.lasthandoff: 08/18/2017
    
         var result = await notifications.SubscribeToCategories();
    
-    這會確保應用程式每次啟動時都會從本機儲存體擷取類別，並要求這些類別的註冊。 [開始使用通知中樞][get-started]教學課程的一部分是建立 **InitNotificationsAsync** 方法。
-2. 在 MainPage.xaml.cs 專案檔案中，在 *OnNavigatedTo* 方法中新增下列程式碼：
+    這可確保，每次 hello 應用程式啟動時從本機儲存體擷取 hello 類別並要求這些分類的登錄。 hello **InitNotificationsAsync**方法建立 hello 一部分[開始使用通知中樞][ get-started]教學課程。
+2. 在 hello MainPage.xaml.cs 專案檔案中，加入下列程式碼 toohello hello *OnNavigatedTo*方法：
    
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -183,45 +183,45 @@ ms.lasthandoff: 08/18/2017
             if (categories.Contains("Sports")) SportsToggle.IsOn = true;
         }
    
-    這會根據原先儲存的類別狀態更新主頁面。
+    此更新 hello 主頁先前根據 hello 狀態儲存類別。
 
-現在已完成此應用程式，且可在裝置本機儲存體中儲存一組類別，以供每次使用者變更類別選項在通知中心註冊時使用。 接著，我們會定義可將類別通知傳送至此應用程式的後端。
+hello 應用程式現在已完成，而且可以是儲存一組類別目錄中與 hello 通知中樞的 hello 裝置使用的本機儲存體 tooregister，每當 hello 使用者變更 hello 選取的類別。 接下來，我們會定義可以傳送類別通知 toothis 應用程式後端。
 
 ## <a name="sending-tagged-notifications"></a>傳送加註標記的通知
 [!INCLUDE [notification-hubs-send-categories-template](../../includes/notification-hubs-send-categories-template.md)]
 
-## <a name="run-the-app-and-generate-notifications"></a>執行應用程式並產生通知
-1. 在 Visual Studio 中，按 F5 以編譯並啟動應用程式。
+## <a name="run-hello-app-and-generate-notifications"></a>執行 hello 應用程式，並產生通知
+1. 在 Visual Studio 中，按下 F5 toocompile 並啟動 hello 應用程式。
    
     ![][1]
    
-    請注意，應用程式 UI 提供一組切換，可讓您選擇要訂閱的類別。
+    Hello 應用程式 UI 提供一組切換，請注意，可讓您選擇以 hello 類別 toosubscribe。
 2. 啟用一或多個類別切換，然後按一下 [訂閱] 。
    
-    應用程式會將選取的類別轉換成標籤，並在通知中心內為選取的標籤要求新裝置註冊。 系統會傳回已註冊類別並顯示在對話方塊中。
+    hello 應用程式將選取的 hello 類別轉換成標記，並從 hello 通知中樞要求新的裝置註冊 hello 選取標記。 hello 已註冊的類別會傳回並顯示在對話方塊中。
    
     ![][19]
-3. 若要從後端傳送新通知，您可以使用下列其中一種方式：
+3. 將新的通知傳送 hello 後端 hello 下列方式之一：
    
-   * **主控台應用程式：** 啟動主控台應用程式。
+   * **主控台應用程式：**啟動 hello 主控台應用程式。
    * **Java/PHP：** 執行您的應用程式/指令碼。
      
-     選取的類別通知會以快顯通知方式出現。
+     通知 hello 選取類別目錄會顯示為快顯通知。
      
      ![][14]
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，我們了解到如何按類別廣播即時新聞。 請考慮完成下列其中一個強調其他進階通知中心案例的教學課程：
+在此教學課程中我們學到如何 toobroadcast 依類別目錄中最新消息。 完成下列其中一個 hello 下列反白顯示其他進階的通知中心案例的教學課程，請考慮：
 
-* [使用通知中樞廣播已當地語系化的即時新聞]
+* [使用通知中樞 toobroadcast 當地語系化重大消息]
   
-    了解如何擴充即時新聞應用程式，以啟用傳送已當地語系化的通知。
+    了解如何傳送 tooenable 新聞應用程式的重大 tooexpand hello 當地語系化通知。
 
 <!-- Anchors. -->
-[Add category selection to the app]: #adding-categories
+[Add category selection toohello app]: #adding-categories
 [Register for notifications]: #register
 [Send notifications from your back-end]: #send
-[Run the app and generate notifications]: #test-app
+[Run hello app and generate notifications]: #test-app
 [Next Steps]: #next-steps
 
 <!-- Images. -->
@@ -234,11 +234,11 @@ ms.lasthandoff: 08/18/2017
 
 <!-- URLs.-->
 [get-started]: /manage/services/notification-hubs/getting-started-windows-dotnet/
-[使用通知中樞廣播已當地語系化的即時新聞]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
+[使用通知中樞 toobroadcast 當地語系化重大消息]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
 [Notify users with Notification Hubs]: /manage/services/notification-hubs/notify-users
 [Mobile Service]: /develop/mobile/tutorials/get-started/
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
-[Notification Hubs How-To for Windows Store]: http://msdn.microsoft.com/library/jj927172.aspx
+[Notification Hubs How-toofor Windows Store]: http://msdn.microsoft.com/library/jj927172.aspx
 [Submit an app page]: http://go.microsoft.com/fwlink/p/?LinkID=266582
 [My Applications]: http://go.microsoft.com/fwlink/p/?LinkId=262039
 [Live SDK for Windows]: http://go.microsoft.com/fwlink/p/?LinkId=262253

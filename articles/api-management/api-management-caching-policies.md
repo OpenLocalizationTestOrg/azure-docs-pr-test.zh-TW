@@ -1,6 +1,6 @@
 ---
-title: "Azure API 管理快取原則 | Microsoft Docs"
-description: "了解可在 Azure API 管理中使用的快取原則。"
+title: "aaaAzure API 管理快取原則 |Microsoft 文件"
+description: "深入了解快取原則可供使用，在 Azure API 管理中的 hello。"
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 2a8f012e7e223ef5c1683c8a6c5ecf2f3e96bed8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bd6b0721945609b28dbf6e7ef0631979c08c8c65
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-caching-policies"></a>API 管理快取原則
-本主題提供下列 API 管理原則的參考。 如需有關新增和設定原則的資訊，請參閱 [API 管理中的原則](http://go.microsoft.com/fwlink/?LinkID=398186)。  
+本主題提供下列 API 管理原則的 hello 的參考。 如需有關新增和設定原則的資訊，請參閱 [API 管理中的原則](http://go.microsoft.com/fwlink/?LinkID=398186)。  
   
 ##  <a name="CachingPolicies"></a>快取原則  
   
@@ -29,26 +29,26 @@ ms.lasthandoff: 07/11/2017
   
     -   [從快取中取得](api-management-caching-policies.md#GetFromCache) - 執行快取查閱並傳回有效的快取回應 (如果有的話)。  
   
-    -   [儲存至快取](api-management-caching-policies.md#StoreToCache) - 根據指定的快取控制組態來快取回應。  
+    -   [儲存 toocache](api-management-caching-policies.md#StoreToCache) -根據 toohello 指定快取控制組態快取回應。  
   
 -   值快取原則  
   
     -   [從快取取得值](#GetFromCacheByKey) - 依金鑰擷取快取的項目。  
   
-    -   [儲存快取中的值](#StoreToCacheByKey) -依金鑰儲存快取中的項目。  
+    -   [將值儲存在快取](#StoreToCacheByKey)-hello 快取中儲存的項目，依索引鍵。  
   
-    -   [移除快取中的值](#RemoveCacheByKey) - 依金鑰移除快取中的項目。  
+    -   [從快取中移除值](#RemoveCacheByKey)-hello 快取中移除項目，依索引鍵。  
   
 ##  <a name="GetFromCache"></a>從快取中取得  
- 使用 `cache-lookup` 原則來執行快取查閱並傳回有效的快取回應 (如果有的話)。 此原則可於回應內容在一段期間維持靜態時套用。 回應快取可降低加諸於後端 Web 伺服器的頻寬和處理需求，並縮短 API 取用者所感受的延遲時間。  
+ 使用 hello`cache-lookup`原則 tooperform 快取查閱，並傳回有效的快取回的應的話。 此原則可於回應內容在一段期間維持靜態時套用。 回應快取可減少頻寬和處理需求加諸於 hello 後端 web 伺服器，並降低延遲 API 取用者看得見。  
   
 > [!NOTE]
->  此原則必須有對應的[儲存至快取](api-management-caching-policies.md#StoreToCache)原則。  
+>  此原則必須有對應[存放區 toocache](api-management-caching-policies.md#StoreToCache)原則。  
   
 ### <a name="policy-statement"></a>原則陳述式  
   
 ```xml  
-<cache-lookup vary-by-developer="true | false" vary-by-developer-groups="true | false" downstream-caching-type="none | private | public" must-revalidate="true | false" allow-private-response-caching="@(expression to evaluate)">  
+<cache-lookup vary-by-developer="true | false" vary-by-developer-groups="true | false" downstream-caching-type="none | private | public" must-revalidate="true | false" allow-private-response-caching="@(expression tooevaluate)">  
   <vary-by-header>Accept</vary-by-header>  
   <!-- should be present in most cases -->  
   <vary-by-header>Accept-Charset</vary-by-header>  
@@ -82,18 +82,18 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 #### <a name="example-using-policy-expressions"></a>使用原則運算式的範例  
- 此範例說明如何設定 API 管理回應快取持續時間，使其符合備用服務之 `Cache-Control` 指示詞所指定的後端服務回應快取。 如需設定和使用此原則的示範，請觀賞 [Cloud Cover Episode 177: More API Management Features with Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)，快轉到 25:25。  
+ 這個範例會示範如何 tootooconfigure API 管理回應快取持續時間比對 hello 回應 hello hello 所指定的後端服務快取備份服務的`Cache-Control`指示詞。 如需設定和使用此原則的示範，請參閱[雲端涵蓋的時段 177： 更 API 管理功能與 Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)和 too25:25 向前快轉。  
   
 ```xml  
-<!-- The following cache policy snippets demonstrate how to control API Management reponse cache duration with Cache-Control headers sent by the backend service. -->  
+<!-- hello following cache policy snippets demonstrate how toocontrol API Management reponse cache duration with Cache-Control headers sent by hello backend service. -->  
   
-<!-- Copy this snippet into the inbound section -->  
+<!-- Copy this snippet into hello inbound section -->  
 <cache-lookup vary-by-developer="false" vary-by-developer-groups="false" downstream-caching-type="public" must-revalidate="true" >  
   <vary-by-header>Accept</vary-by-header>  
   <vary-by-header>Accept-Charset</vary-by-header>  
 </cache-lookup>  
   
-<!-- Copy this snippet into the outbound section. Note that cache duration is set to the max-age value provided in the Cache-Control header received from the backend service or to the deafult value of 5 min if none is found  -->  
+<!-- Copy this snippet into hello outbound section. Note that cache duration is set toohello max-age value provided in hello Cache-Control header received from hello backend service or toohello deafult value of 5 min if none is found  -->  
 <cache-store duration="@{  
     var header = context.Response.Headers.GetValueOrDefault("Cache-Control","");  
     var maxAge = Regex.Match(header, @"max-age=(?<maxAge>\d+)").Groups["maxAge"]?.Value;  
@@ -116,21 +116,21 @@ ms.lasthandoff: 07/11/2017
   
 |名稱|說明|必要|預設值|  
 |----------|-----------------|--------------|-------------|  
-|allow-private-response-caching|當設定為 `true` 時，可快取包含 Authorization 標頭的要求。|否|false|  
-|downstream-caching-type|此屬性必須設為下列其中一個值。<br /><br /> -   none - 不允許下游快取。<br />-   private - 允許下游私人快取。<br />-   public - 允許私人和共用下游快取。|否|無|  
-|must-revalidate|當下游快取啟用時，此屬性會開啟或關閉閘道回應中的 `must-revalidate` 快取控制指示詞。|否|true|  
-|vary-by-developer|設定為 `true` 可按照開發人員索引鍵來快取回應。|否|false|  
-|vary-by-developer-groups|設定為 `true` 可按照使用者角色來快取回應。|否|false|  
+|allow-private-response-caching|當設定太`true`，好讓快取的要求包含授權標頭。|否|false|  
+|downstream-caching-type|這個屬性必須設定下列值的 hello 的 tooone。<br /><br /> -   none - 不允許下游快取。<br />-   private - 允許下游私人快取。<br />-   public - 允許私人和共用下游快取。|否|無|  
+|must-revalidate|這個屬性下游快取啟用時開啟或關閉 hello`must-revalidate`閘道回應中的快取控制指示詞。|否|true|  
+|vary-by-developer|設定得`true`toocache 回應每個開發人員索引鍵。|否|false|  
+|vary-by-developer-groups|設定得`true`toocache 回應每個使用者角色。|否|false|  
   
 ### <a name="usage"></a>使用量  
- 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+ 此原則可用於下列原則 hello[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
 -   **原則區段︰**輸入  
   
 -   **原則範圍︰**API、作業、產品  
   
-##  <a name="StoreToCache"></a>儲存至快取  
- `cache-store` 原則會根據指定的快取設定來快取回應。 此原則可於回應內容在一段期間維持靜態時套用。 回應快取可降低加諸於後端 Web 伺服器的頻寬和處理需求，並縮短 API 取用者所感受的延遲時間。  
+##  <a name="StoreToCache"></a>存放區 toocache  
+ hello`cache-store`根據 toohello 原則快取的回應指定快取設定。 此原則可於回應內容在一段期間維持靜態時套用。 回應快取可減少頻寬和處理需求加諸於 hello 後端 web 伺服器，並降低延遲 API 取用者看得見。  
   
 > [!NOTE]
 >  此原則必須有對應的[從快取中取得](api-management-caching-policies.md#GetFromCache)原則。  
@@ -161,18 +161,18 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 #### <a name="example-using-policy-expressions"></a>使用原則運算式的範例  
- 此範例說明如何設定 API 管理回應快取持續時間，使其符合備用服務之 `Cache-Control` 指示詞所指定的後端服務回應快取。 如需設定和使用此原則的示範，請觀賞 [Cloud Cover Episode 177: More API Management Features with Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)，快轉到 25:25。  
+ 這個範例會示範如何 tootooconfigure API 管理回應快取持續時間比對 hello 回應 hello hello 所指定的後端服務快取備份服務的`Cache-Control`指示詞。 如需設定和使用此原則的示範，請參閱[雲端涵蓋的時段 177： 更 API 管理功能與 Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)和 too25:25 向前快轉。  
   
 ```xml  
-<!-- The following cache policy snippets demonstrate how to control API Management reponse cache duration with Cache-Control headers sent by the backend service. -->  
+<!-- hello following cache policy snippets demonstrate how toocontrol API Management reponse cache duration with Cache-Control headers sent by hello backend service. -->  
   
-<!-- Copy this snippet into the inbound section -->  
+<!-- Copy this snippet into hello inbound section -->  
 <cache-lookup vary-by-developer="false" vary-by-developer-groups="false" downstream-caching-type="public" must-revalidate="true" >  
   <vary-by-header>Accept</vary-by-header>  
   <vary-by-header>Accept-Charset</vary-by-header>  
 </cache-lookup>  
   
-<!-- Copy this snippet into the outbound section. Note that cache duration is set to the max-age value provided in the Cache-Control header received from the backend service or to the deafult value of 5 min if none is found  -->  
+<!-- Copy this snippet into hello outbound section. Note that cache duration is set toohello max-age value provided in hello Cache-Control header received from hello backend service or toohello deafult value of 5 min if none is found  -->  
 <cache-store duration="@{  
     var header = context.Response.Headers.GetValueOrDefault("Cache-Control","");  
     var maxAge = Regex.Match(header, @"max-age=(?<maxAge>\d+)").Groups["maxAge"]?.Value;  
@@ -193,17 +193,17 @@ ms.lasthandoff: 07/11/2017
   
 |名稱|說明|必要|預設值|  
 |----------|-----------------|--------------|-------------|  
-|duration|快取項目的存留時間，以秒為單位進行指定。|是|N/A|  
+|duration|存留時間的 hello 快取項目，以秒為單位指定。|是|N/A|  
   
 ### <a name="usage"></a>使用量  
- 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+ 此原則可用於下列原則 hello[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
 -   **原則區段︰**輸出  
   
 -   **原則範圍︰**API、作業、產品  
   
 ##  <a name="GetFromCacheByKey"></a>從快取取得值  
- 使用 `cache-lookup-value` 原則以執行依索引鍵的快取查閱，並傳回快取的值。 金鑰可以具有任意字串值，而且通常會使用原則運算式來提供。  
+ 使用 hello`cache-lookup-value`原則 tooperform 查閱快取索引鍵，並傳回快取的值。 hello 金鑰可以有任意字串值，而且通常會使用原則運算式來提供。  
   
 > [!NOTE]
 >  此原則必須有對應的[儲存快取中的值](#StoreToCacheByKey)原則。  
@@ -212,7 +212,7 @@ ms.lasthandoff: 07/11/2017
   
 ```xml  
 <cache-lookup-value key="cache key value"   
-    default-value="value to use if cache lookup resulted in a miss"   
+    default-value="value toouse if cache lookup resulted in a miss"   
     variable-name="name of a variable looked up value is assigned to" />  
 ```  
   
@@ -236,19 +236,19 @@ ms.lasthandoff: 07/11/2017
   
 |名稱|說明|必要|預設值|  
 |----------|-----------------|--------------|-------------|  
-|default-value|當快取索引鍵查閱沒有結果時，要指派給變數的值。 如果未指定此屬性，則會指派 `null`。|否|`null`|  
-|索引鍵|要在查閱中使用的快取索引鍵值。|是|N/A|  
-|variable-name|查閱成功時，要將查閱到的值指派到之[內容變數](api-management-policy-expressions.md#ContextVariables)的名稱。 如果查閱沒有結果，會對變數指派 `default-value` 屬性的值，如果省略 `default-value` 屬性，則會指派 `null`。|是|N/A|  
+|default-value|將會指派 toohello 變數，如果 hello 快取索引鍵查閱產生遺漏值。 如果未指定此屬性，則會指派 `null`。|否|`null`|  
+|key|快取索引鍵值 toouse hello 查閱中。|是|N/A|  
+|variable-name|名稱的 hello[內容變數](api-management-policy-expressions.md#ContextVariables)hello 查閱值會指派給，如果查閱成功。 如果查詢結果中遺漏，hello 變數將值指派給 hello hello`default-value`屬性或`null`，如果 hello`default-value`省略屬性。|是|N/A|  
   
 ### <a name="usage"></a>使用量  
- 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+ 此原則可用於下列原則 hello[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
 -   **原則區段︰**輸入、輸出、後端、錯誤  
   
 -   **原則範圍︰**全域、API、作業、產品  
   
 ##  <a name="StoreToCacheByKey"></a>儲存快取中的值  
- `cache-store-value` 會依索引鍵執行快取儲存。 金鑰可以具有任意字串值，而且通常會使用原則運算式來提供。  
+ hello`cache-store-value`執行快取存放區索引鍵。 hello 金鑰可以有任意字串值，而且通常會使用原則運算式來提供。  
   
 > [!NOTE]
 >  此原則必須有對應的[從快取取得值](#GetFromCacheByKey)原則。  
@@ -256,7 +256,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="policy-statement"></a>原則陳述式  
   
 ```xml  
-<cache-store-value key="cache key value" value="value to cache" duration="seconds" />  
+<cache-store-value key="cache key value" value="value toocache" duration="seconds" />  
 ```  
   
 ### <a name="example"></a>範例  
@@ -279,19 +279,19 @@ ms.lasthandoff: 07/11/2017
   
 |名稱|說明|必要|預設值|  
 |----------|-----------------|--------------|-------------|  
-|duration|會針對所提供的持續時間值來快取值，以秒為單位進行指定。|是|N/A|  
-|索引鍵|用來做為值儲存依據的快取索引鍵。|是|N/A|  
-|value|要快取的值。|是|N/A|  
+|duration|將快取 hello 提供持續時間值，指定以秒為單位的值。|是|N/A|  
+|key|快取索引鍵的 hello 值將會儲存在下。|是|N/A|  
+|value|hello 值 toobe 快取。|是|N/A|  
   
 ### <a name="usage"></a>使用量  
- 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+ 此原則可用於下列原則 hello[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
 -   **原則區段︰**輸入、輸出、後端、錯誤  
   
 -   **原則範圍︰**全域、API、作業、產品  
   
 ###  <a name="RemoveCacheByKey"></a>移除快取中的值  
- `cache-remove-value` 會刪除依其索引鍵所識別的快取項目。 金鑰可以具有任意字串值，而且通常會使用原則運算式來提供。  
+ hello`cache-remove-value`刪除快取項目由其索引鍵識別。 hello 金鑰可以有任意字串值，而且通常會使用原則運算式來提供。  
   
 #### <a name="policy-statement"></a>原則陳述式  
   
@@ -319,10 +319,10 @@ ms.lasthandoff: 07/11/2017
   
 |名稱|說明|必要|預設值|  
 |----------|-----------------|--------------|-------------|  
-|索引鍵|要從快取中移除之先前快取值的索引鍵。|是|N/A|  
+|key|hello 索引鍵的 hello 先前快取值 toobe 從 hello 快取中移除。|是|N/A|  
   
 #### <a name="usage"></a>使用量  
- 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+ 此原則可用於下列原則 hello[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
 -   **原則區段︰**輸入、輸出、後端、錯誤  
   

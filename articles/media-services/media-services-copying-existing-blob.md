@@ -1,6 +1,6 @@
 ---
-title: "將 blob 從儲存體帳戶複製到 Azure 媒體服務資產 | Microsoft Docs"
-description: "本主題說明如何將現有的 blob 複製到媒體服務資產。 下列範例會使用 Azure 媒體服務 .NET SDK 延伸模組。"
+title: "從儲存體帳戶到 Azure Media Services 資產 aaaCopying blob |Microsoft 文件"
+description: "本主題說明如何將現有的 toocopy blob 到 Media Services 資產。 hello 範例會使用 Azure Media Services.NET SDK Extensions。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,26 +14,26 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: juliako
-ms.openlocfilehash: 2bc1f0114a096920d4a7c9cb57e44c9b3612bf86
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 40660e5cbb3698fb2b0bdf414751e47d367794da
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="copying-existing-blobs-into-a-media-services-asset"></a>將現有的 blob 複製到媒體服務資產
-本主題說明如何使用 [Azure 媒體服務 .NET SDK 延伸模組](https://github.com/Azure/azure-sdk-for-media-services-extensions/)將 Blob 從儲存體帳戶複製到新的 Azure 媒體服務 (AMS) 資產。
+本主題說明如何 toocopy blob 的儲存體帳戶從新的 Azure 媒體服務 (AMS) 資產使用[Azure Media Services.NET SDK Extensions](https://github.com/Azure/azure-sdk-for-media-services-extensions/)。
 
-此擴充方法適用於：
+hello 擴充方法適用於：
 
 - 一般資產。
 - 即時封存資產 (FragBlob 格式)。
-- 屬於不同媒體服務帳戶 (甚至跨不同資料中心) 的來源和目的地資產。 不過，這麼做可能會向您索取費用。 如需有關定價的詳細資訊，請參閱 [資料傳輸](https://azure.microsoft.com/pricing/#header-11)。
+- 來源和目的地資產屬於 toodifferent Media Services 帳戶 （即使是跨不同資料中心）。 不過，這麼做可能會向您索取費用。 如需有關定價的詳細資訊，請參閱 [資料傳輸](https://azure.microsoft.com/pricing/#header-11)。
 
 > [!NOTE]
-> 請勿在不使用媒體服務 API 的情況下，嘗試變更由媒體服務所產生的 blob 容器內容。
+> 您不應嘗試 toochange hello 內容的 blob 容器所產生的 Media Services，而不使用媒體服務應用程式開發介面。
 > 
 
-本主題將示範兩個程式碼範例：
+hello 主題會示範兩個程式碼範例：
 
 1. 將 Blob 從一個 AMS 帳戶中的資產複製到另一個 AMS 帳戶中的新資產。
 2. 將 Blob 從某些儲存體帳戶複製到 AMS 帳戶中的新資產。
@@ -42,16 +42,16 @@ ms.lasthandoff: 08/29/2017
 
 ### <a name="prerequisites"></a>必要條件
 
-兩個媒體服務帳戶。 請參閱主題 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。
+兩個媒體服務帳戶。 請參閱 hello 主題[如何 tooCreate Media Services 帳戶](media-services-portal-create-account.md)。
 
 ### <a name="download-sample"></a>下載範例
-您可以遵循本文中的步驟，或者您可以從[這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-copy-blob-into-asset/)下載包含本文所述的程式碼範例。
+您可以遵循本文章中的 hello 步驟，或您可以下載範例，其中包含從本文中所述的 hello 程式碼[這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-copy-blob-into-asset/)。
 
 ### <a name="set-up-your-project"></a>設定專案
 
 1. 設定您的開發環境，如[使用 .NET 進行媒體服務開發](media-services-dotnet-how-to-use.md)中所述。 
 2. 新增此專案所需的其他參考：System.Configuration。
-3. 將 appSettings 區段新增至 .config 檔中，並根據媒體服務帳戶、目的地儲存體帳戶及來源資產識別碼將值更新。  
+3. 加入 hello appSettings 區段 toohello.config 檔案與更新 hello 值媒體服務帳戶為基礎、 hello 目的地儲存體帳戶和 hello 來源資產識別碼。  
 
 ```   
 <appSettings>
@@ -67,7 +67,7 @@ ms.lasthandoff: 08/29/2017
 
 ### <a name="copy-blobs-from-an-asset-in-one-ams-account-into-an-asset-in-another-ams-account"></a>將 Blob 從一個 AMS 帳戶中的資產複製到另一個 AMS 帳戶中的資產
 
-下列程式碼使用延伸模組 **IAsset.Copy**方法，將來源資產中的所有檔案都複製到使用單個延伸模組的目的地資產。
+hello 下列程式碼使用副檔名**IAsset.Copy**方法 toocopy 所有將使用單一的延伸模組的 hello 目的地資產檔案 hello 來源資產中。
 
 ```
 using System;
@@ -98,23 +98,23 @@ namespace CopyExistingBlobsIntoAsset
             var tokenCredentials2 = new AzureAdTokenCredentials(_destAADTenantDomain, AzureEnvironments.AzureCloudEnvironment);
             var tokenProvider2 = new AzureAdTokenProvider(tokenCredentials2);
 
-            // Create the context for your source Media Services account.
+            // Create hello context for your source Media Services account.
             _sourceContext = new CloudMediaContext(new Uri(_sourceRESTAPIEndpoint), tokenProvider1);
 
-            // Create the context for your destination Media Services account.
+            // Create hello context for your destination Media Services account.
             _destContext = new CloudMediaContext(new Uri(_destRESTAPIEndpoint), tokenProvider2);
 
-            // Get the credentials of the default Storage account bound to your destination Media Services account.
+            // Get hello credentials of hello default Storage account bound tooyour destination Media Services account.
             StorageCredentials destinationStorageCredentials =
                 new StorageCredentials(_destStorageAccountName, _destStorageAccountKey);
 
-            // Get a reference to the source asset in the source context.
+            // Get a reference toohello source asset in hello source context.
             IAsset sourceAsset = _sourceContext.Assets.Where(a => a.Id == _sourceAssetID).First();
 
-            // Create an empty destination asset in the destination context.
+            // Create an empty destination asset in hello destination context.
             IAsset destinationAsset = _destContext.Assets.Create(sourceAsset.Name, AssetCreationOptions.None);
 
-            // Copy the files in the source asset instance into the destination asset instance.
+            // Copy hello files in hello source asset instance into hello destination asset instance.
             sourceAsset.Copy(destinationAsset, destinationStorageCredentials);
 
             Console.WriteLine("Done");
@@ -127,14 +127,14 @@ namespace CopyExistingBlobsIntoAsset
 
 ### <a name="prerequisites"></a>必要條件
 
-- 您從中複製 Blob 的來源儲存體帳戶。
-- 您要將 Blob 複製到其中的 AMS 帳戶。
+- 要從中 toocopy blob 的一個儲存體帳戶。
+- 要 toocopy blob 到其中的一個 AMS 帳戶。
 
 ### <a name="set-up-your-project"></a>設定專案
 
 1. 設定您的開發環境，如[使用 .NET 進行媒體服務開發](media-services-dotnet-how-to-use.md)中所述。 
 2. 新增此專案所需的其他參考：System.Configuration。
-3. 將 appSettings 區段新增至 .config 檔案，並根據您的來源儲存體和目的地 AMS 帳戶將值更新。
+3. 新增 hello appSettings 區段 toohello.config 檔案，並更新 hello 值根據來源存放裝置和目的地 AMS 帳戶。
 
 ```
 <appSettings>
@@ -149,10 +149,10 @@ namespace CopyExistingBlobsIntoAsset
 
 ### <a name="copy-blobs-from-some-storage-account-into-a-new-asset-in-a-ams-account"></a>將 Blob 從某些儲存體帳戶複製到 AMS 帳戶中的新資產
 
-下列程式碼會將 Blob 從儲存體帳戶複製到媒體服務資產。 
+儲存體帳戶中的下列程式碼複製 blob，到 Media Services 資產的 hello。 
 
 >[!NOTE]
->對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 您應該使用 hello 如果一律使用相同的原則識別碼 hello 相同天 / 存取權限，例如，原則會就地預定的 tooremain 長時間 （非上載原則） 的定位器。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 
 ```
 using System;
@@ -167,7 +167,7 @@ namespace CopyExistingBlobsIntoAsset
 {
     class Program
     {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AMSAADTenantDomain =
             ConfigurationManager.AppSettings["AMSAADTenantDomain"];
         private static readonly string _AMSRESTAPIEndpoint =
@@ -192,7 +192,7 @@ namespace CopyExistingBlobsIntoAsset
                 AzureEnvironments.AzureCloudEnvironment);
             var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
 
-            // Create the context for your source Media Services account.
+            // Create hello context for your source Media Services account.
             _context = new CloudMediaContext(new Uri(_AMSRESTAPIEndpoint), tokenProvider);
             
             _sourceStorageAccount =
@@ -226,7 +226,7 @@ namespace CopyExistingBlobsIntoAsset
             ILocator destinationLocator =
                 _context.Locators.CreateLocator(LocatorType.Sas, asset, writePolicy);
 
-            // Get the asset container URI and Blob copy from mediaContainer to assetContainer. 
+            // Get hello asset container URI and Blob copy from mediaContainer tooassetContainer. 
             CloudBlobContainer destAssetContainer =
                 destBlobStorage.GetContainerReference((new Uri(destinationLocator.Path)).Segments[1]);
 
@@ -258,14 +258,14 @@ namespace CopyExistingBlobsIntoAsset
             destinationLocator.Delete();
             writePolicy.Delete();
 
-            // Set the primary asset file.
+            // Set hello primary asset file.
             // If, for example, we copied a set of Smooth Streaming files, 
-            // set the .ism file to be the primary file. 
-            // If we, for example, copied an .mp4, then the mp4 would be the primary file. 
+            // set hello .ism file toobe hello primary file. 
+            // If we, for example, copied an .mp4, then hello mp4 would be hello primary file. 
             var ismAssetFile = asset.AssetFiles.ToList().
                 Where(f => f.Name.EndsWith(".ism", StringComparison.OrdinalIgnoreCase)).ToArray().FirstOrDefault();
 
-            // The following code assigns the first .ism file as the primary file in the asset.
+            // hello following code assigns hello first .ism file as hello primary file in hello asset.
             // An asset should have one .ism file.  
             if (ismAssetFile != null)
             {
@@ -277,10 +277,10 @@ namespace CopyExistingBlobsIntoAsset
         }
 
         /// <summary>
-        /// Copies the specified blob into the specified container.
+        /// Copies hello specified blob into hello specified container.
         /// </summary>
-        /// <param name="sourceBlob">The source container.</param>
-        /// <param name="destinationContainer">The destination container.</param>
+        /// <param name="sourceBlob">hello source container.</param>
+        /// <param name="destinationContainer">hello destination container.</param>
         static private void CopyBlob(ICloudBlob sourceBlob, CloudBlobContainer destinationContainer)
         {
             var signature = sourceBlob.GetSharedAccessSignature(new SharedAccessBlobPolicy
@@ -298,17 +298,17 @@ namespace CopyExistingBlobsIntoAsset
             else
             {
 
-                // Display the size of the source blob.
+                // Display hello size of hello source blob.
                 Console.WriteLine(sourceBlob.Properties.Length);
 
-                Console.WriteLine(string.Format("Copy blob '{0}' to '{1}'", sourceBlob.Uri, destinationBlob.Uri));
+                Console.WriteLine(string.Format("Copy blob '{0}' too'{1}'", sourceBlob.Uri, destinationBlob.Uri));
                 destinationBlob.StartCopyFromBlob(new Uri(sourceBlob.Uri.AbsoluteUri + signature));
 
                 while (true)
                 {
-                    // The StartCopyFromBlob is an async operation, 
-                    // so we want to check if the copy operation is completed before proceeding. 
-                    // To do that, we call FetchAttributes on the blob and check the CopyStatus. 
+                    // hello StartCopyFromBlob is an async operation, 
+                    // so we want toocheck if hello copy operation is completed before proceeding. 
+                    // toodo that, we call FetchAttributes on hello blob and check hello CopyStatus. 
                     destinationBlob.FetchAttributes();
                     if (destinationBlob.CopyState.Status != CopyStatus.Pending)
                     {
@@ -318,7 +318,7 @@ namespace CopyExistingBlobsIntoAsset
                     System.Threading.Thread.Sleep(1000);
                 }
 
-                // Display the size of the destination blob.
+                // Display hello size of hello destination blob.
                 Console.WriteLine(destinationBlob.Properties.Length);
 
             }
@@ -330,7 +330,7 @@ namespace CopyExistingBlobsIntoAsset
 
 您現在可以將上傳的資產編碼。 如需詳細資訊，請參閱 [為資產編碼](media-services-portal-encode.md)。
 
-您也可以使用 Azure Functions，以根據在所設定容器到達的檔案來觸發編碼作業。 如需詳細資訊，請參閱[此範例](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ )。
+您也可以使用 Azure 函式 tootrigger 抵達 hello 設定容器中的檔案為基礎的編碼工作。 如需詳細資訊，請參閱[此範例](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ )。
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

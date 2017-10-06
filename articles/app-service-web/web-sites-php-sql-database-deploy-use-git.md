@@ -1,6 +1,6 @@
 ---
-title: "建立 PHP-SQL Web 應用程式並使用 Git 部署至 Azure App Service"
-description: "示範如何建立 PHP Web 應用程式將資料儲存於 Azure SQL Database 以及使用 Git 部署至 Azure App Service 的教學課程。"
+title: "aaaCreate PHP SQL web 應用程式和部署 tooAzure 應用程式服務使用 Git"
+description: "此教學課程會示範如何 toocreate PHP web 應用程式將資料儲存在 Azure SQL Database 中，並使用 Git 部署 tooAzure 應用程式服務。"
 services: app-service\web, sql-database
 documentationcenter: php
 author: rmcmurray
@@ -14,90 +14,90 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: 0baa3eced3824fec0907ca937c594f127a2bdf8b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aaacb2fe0787bbcdafa72871912e8d08792be29d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-php-sql-web-app-and-deploy-to-azure-app-service-using-git"></a>建立 PHP-SQL Web 應用程式並使用 Git 部署至 Azure App Service
-本教學課程會示範如何在 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中建立連線到 Azure SQL Database 的 PHP Web 應用程式，以及如何使用 Git 來部署它。 本教學課程假設您的電腦上已安裝 [PHP][install-php]、[SQL Server Express][install-SQLExpress]、[Microsoft Drivers for SQL Server for PHP](http://www.microsoft.com/download/en/details.aspx?id=20098)，和 [Git][install-git]。 完成本指南的步驟後，您將擁有在 Azure 上運作的 PHP-SQL Web 應用程式。
+# <a name="create-a-php-sql-web-app-and-deploy-tooazure-app-service-using-git"></a>建立 PHP SQL web 應用程式和部署 tooAzure 應用程式服務使用 Git
+本教學課程告訴您如何 toocreate PHP web 應用程式中的[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)連接 tooAzure SQL Database 以及如何 toodeploy 使用 Git。 本教學課程假設您有[PHP][install-php]， [SQL Server Express][install-SQLExpress]，hello [Microsoft Drivers for for PHP SQL Server](http://www.microsoft.com/download/en/details.aspx?id=20098)，和[Git] [ install-git]安裝在電腦上。 完成本指南的步驟後，您將擁有在 Azure 上運作的 PHP-SQL Web 應用程式。
 
 > [!NOTE]
-> 您可以使用 [Microsoft Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx)來安裝和設定 PHP、SQL Server Express，和 Microsoft Drivers for SQL Server for PHP。
+> 您可以安裝和設定 PHP、 SQL Server Express 和 hello Microsoft Drivers for SQL Server 使用 hello PHP [Microsoft Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx)。
 > 
 > 
 
 您將了解：
 
-* 如何使用 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)建立 Azure Web 應用程式和 SQL Database。 由於預設會在 App Service Web Apps 上啟用 PHP，因此您不需要執行任何特殊步驟就能執行 PHP 程式碼。
-* 如何使用 Git 來發行與重新發行應用程式到 Azure。
+* Toocreate Azure web 應用程式和 SQL 資料庫使用 hello [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)。 因為預設 PHP 啟用 App Service Web 應用程式中，沒有特別的是需要的 toorun 您 PHP 程式碼。
+* 如何 toopublish 並重新發行您的應用程式 tooAzure 使用 Git。
 
-依照本教學課程進行，您將以 PHP 語法建構一個簡單的註冊網頁應用程式。 該應用程式將在 Azure 網站中託管。 完成之應用程式的螢幕擷取畫面如下：
+依照本教學課程進行，您將以 PHP 語法建構一個簡單的註冊網頁應用程式。 hello 應用程式將會裝載於 Azure 網站中。 底下是完成 hello 應用程式的螢幕擷取畫面：
 
 ![Azure PHP Web Site](./media/web-sites-php-sql-database-deploy-use-git/running_app_3.png)
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想 tooget 之前註冊 Azure 帳戶與 Azure 應用程式服務啟動時，請移至太[再試一次應用程式服務](https://azure.microsoft.com/try/app-service/)，可以立即存留較短的入門的 web 應用程式中建立應用程式服務。 不需要信用卡；沒有承諾。
 > 
 > 
 
 ## <a name="create-an-azure-web-app-and-set-up-git-publishing"></a>建立 Azure Web 應用程式並設定 Git 發行功能
-請遵循以下步驟來建立 Azure Web 應用程式與 SQL Database：
+請遵循這些步驟 toocreate Azure web 應用程式和 SQL 資料庫：
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 按一下儀表板左上方的 [新增] 圖示開啟 Azure Marketplace，然後按一下 Marketplace 旁的 [全選] 並選取 [Web + 行動]。
-3. 在 Marketplace 中，選取 [Web + 行動] 。
-4. 按一下 [Web 應用程式 + SQL]  圖示。
-5. 讀取 Web 應用程式 + SQL 應用程式的描述之後，選取 [建立] 。
-6. 按一下每個部分 ([資源群組]、[Web 應用程式]、[資料庫] 以及 [訂用帳戶])，然後輸入或選取必填欄位的值：
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com/)。
+2. Hello，即可開啟 hello Azure Marketplace**新增**hello 上方的圖示左邊 hello 儀表板上，按一下**全選**下一步 tooMarketplace 並選取**Web + 行動**。
+3. 在 hello Marketplace，選取  **Web + 行動**。
+4. 按一下 hello **Web 應用程式 + SQL**圖示。
+5. 閱讀後 hello hello Web 應用程式 + SQL 應用程式的描述，選取**建立**。
+6. 按一下 在每個部分 (**資源群組**， **Web 應用程式**，**資料庫**，和**訂用帳戶**) 然後輸入或選取所需的 hello 的值欄位：
    
    * 輸入您選擇的 URL 名稱    
    * 設定資料庫伺服器認證
-   * 選取最靠近您的區域
+   * 選取 hello 區域最接近 tooyou
      
      ![configure your app](./media/web-sites-php-sql-database-deploy-use-git/configure-db-settings.png)
-7. 定義 Web 應用程式完成之後，按一下 [建立] 。
+7. 完成定義 hello web 應用程式，請按一下**建立**。
    
-    建立 Web 應用程式後，[通知] 按鈕便會閃爍綠色**成功**並開啟資源群組刀鋒視窗，以顯示群組中的 Web 應用程式與 SQL 資料庫。
-8. 按一下資源群組分頁中的 Web 應用程式圖示，開啟 Web 應用程式分頁。
+    Hello web 應用程式建立後，hello**通知** 按鈕會閃爍綠色**成功**和 hello 資源群組刀鋒視窗中開啟 tooshow 這兩個 hello web 應用程式和 hello SQL database hello 群組中的。
+8. 按一下 hello 資源群組 刀鋒視窗 tooopen hello web 應用程式的刀鋒視窗中的 hello web 應用程式的圖示。
    
     ![Web 應用程式的資源群組](./media/web-sites-php-sql-database-deploy-use-git/resource-group-blade.png)
 9. 在 [設定] 中按一下 [繼續部署] > [設定必要設定]。 選取 [本機 Git 儲存機制]，按一下 [確定]。
    
     ![where is your source code](./media/web-sites-php-sql-database-deploy-use-git/setup-local-git.png)
    
-    如果您從未設定 Git 儲存機制，則必須提供使用者名稱和密碼。 若要這樣做，請按一下 Web 應用程式刀鋒視窗中的 [設定] > [部署認證]。
+    如果您從未設定 Git 儲存機制，則必須提供使用者名稱和密碼。 toodo 此，依序按一下**設定** > **部署認證**hello web 應用程式的刀鋒視窗中。
    
     ![](./media/web-sites-php-sql-database-deploy-use-git/deployment-credentials.png)
-10. 在 [設定] 中按一下 [屬性] 以查看稍後部署 PHP 應用程式時需要使用的 Git 遠端 URL。
+10. 在**設定**按一下**屬性**toosee hello Git 遠端 URL 您於稍後 toouse toodeploy PHP 應用程式。
 
 ## <a name="get-sql-database-connection-information"></a>取得 SQL Database 連線資訊
-若要連線到連結至 Web 應用程式的 SQL Database 執行個體，您將會需要在建立資料庫時所指定的連線資訊。 若要取得 SQL Database 連接資訊，請依照下列步驟進行：
+tooconnect toohello SQL Database 執行個體的連結 tooyour web 應用程式，您將需要 hello hello 資料庫的建立時指定的連接資訊。 tooget hello SQL 資料庫連接資訊，請遵循下列步驟：
 
-1. 回到資源群組分頁，按一下 SQL 資料庫的圖示。
-2. 在 SQL 資料庫刀鋒視窗中，按一下 [設定] > [屬性]，然後按一下 [顯示資料庫連線字串]。 
+1. 在 hello 資源群組的刀鋒視窗中，按一下 hello SQL 資料庫的圖示。
+2. 在 hello SQL database 的刀鋒視窗中，按一下 **設定** > **屬性**，然後按一下 **顯示資料庫的連接字串**。 
    
     ![檢視資料庫屬性](./media/web-sites-php-sql-database-deploy-use-git/view-database-properties.png)
-3. 從所產生對話方塊的 [PHP]**PHP** 區段中，請記下 `Server`、`SQL Database` 和 `User Name` 的值。 稍後將 PHP Web 應用程式發行至 Azure App Service 時，您將使用這些值。
+3. 從 hello **PHP** > 一節的 hello 產生 對話方塊中，記下的 hello 值`Server`， `SQL Database`，和`User Name`。 您將使用這些值稍後當發行您的 PHP web 應用程式 tooAzure 應用程式服務。
 
 ## <a name="build-and-test-your-application-locally"></a>在本機建置與測試您的應用程式
-註冊應用程式是一項簡單的 PHP 應用程式，您只需提供名稱與電子郵件地址就能註冊活動。 先前的註冊者相關資訊會顯示在資料表中。 註冊資訊會儲存在 SQL Database 執行個體中。 該應用程式包含兩個檔案 (複製/貼上以下提供的程式碼)：
+hello 註冊應用程式是簡單的 PHP 應用程式，可讓您藉由提供您的名稱和電子郵件地址的 tooregister 事件。 先前的註冊者相關資訊會顯示在資料表中。 註冊資訊會儲存在 SQL Database 執行個體中。 hello 應用程式包含兩個檔案 （如下所示複製/貼上程式碼）：
 
 * **index.php**：顯示註冊表單，以及內含註冊者資訊的資料表。
-* **createtable.php**：為應用程式建立 SQL 資料表。 只會使用一次此檔案。
+* **createtable.php**: hello SQL 資料庫的建立資料表 hello 應用程式。 只會使用一次此檔案。
 
-若要在本機執行應用程式，請遵循下列步驟。 請注意，這些步驟假設您的本機電腦上已設定 PHP、SQL Server Express，且您已啟用 [SQL Server 的 PDO 延伸模組][pdo-sqlsrv]。
+toorun hello 應用程式在本機，請遵循下列 hello 步驟。 請注意，這些步驟假設您有 PHP 和 SQL Server Express 設定在本機電腦，並已啟用 hello [PDO 擴充功能，適用於 SQL Server][pdo-sqlsrv]。
 
-1. 建立名為 `registration`的 SQL Server 資料庫。 您可以從 `sqlcmd` 命令提示字元中使用下列命令來建立此資料庫：
+1. 建立名為 `registration`的 SQL Server 資料庫。 您可以從 hello`sqlcmd`命令提示字元使用這些命令：
    
         >sqlcmd -S localhost\sqlexpress -U <local user name> -P <local password>
         1> create database registration
         2> GO    
 2. 在應用程式根目錄中建立兩個檔案，一個名為 `createtable.php`，另一個名為 `index.php`。
-3. 在文字編輯器或 IDE 中開啟 `createtable.php` 檔案，加入下列程式碼。 此程式碼將會在 `registration` 資料庫中用於建立 `registration_tbl` 資料表。
+3. 開啟 hello`createtable.php`在文字編輯器或 IDE 檔案，然後加入下列程式碼 hello。 此程式碼將會使用的 toocreate hello `registration_tbl` hello 中的資料表`registration`資料庫。
    
         <?php
         // DB connection info
@@ -122,12 +122,12 @@ ms.lasthandoff: 07/11/2017
         echo "<h3>Table created.</h3>";
         ?>
    
-    請注意，您將需要更新的值<code>$user</code>和<code>$pwd</code>使用您的本機 SQL Server 使用者名稱和密碼。
-4. 在終端機中，於應用程式的根目錄輸入下列命令：
+    請注意，您將需要 tooupdate hello 值<code>$user</code>和<code>$pwd</code>使用您的本機 SQL Server 使用者名稱和密碼。
+4. 在下列命令 hello 應用程式類型 hello hello 根目錄在終止：
    
         php -S localhost:8000
-5. 開啟網頁瀏覽器並瀏覽至 **http://localhost:8000/createtable.php**。 這會在資料庫中建立 `registration_tbl` 資料表。
-6. 在文字編輯器或 IDE 中開啟 **index.php** 檔案，加入頁面的基本 HTML 和 CSS 程式碼 (稍後的步驟中將加入 PHP 程式碼)。
+5. 開啟網頁瀏覽器並瀏覽過**http://localhost:8000/createtable.php**。 這會建立 hello `registration_tbl` hello 資料庫資料表中的。
+6. 開啟 hello**為 index.php**檔案文字編輯器或 IDE 中，然後加入 hello 基本 HTML 和 CSS 程式碼 hello 頁面 （hello PHP 程式碼會在稍後步驟中新增）。
    
         <html>
         <head>
@@ -148,7 +148,7 @@ ms.lasthandoff: 07/11/2017
         </head>
         <body>
         <h1>Register here!</h1>
-        <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
+        <p>Fill in your name and email address, then click <strong>Submit</strong> tooregister.</p>
         <form method="post" action="index.php" enctype="multipart/form-data" >
               Name  <input type="text" name="name" id="name"/></br>
               Email <input type="text" name="email" id="email"/></br>
@@ -159,14 +159,14 @@ ms.lasthandoff: 07/11/2017
         ?>
         </body>
         </html>
-7. 在 PHP 標籤內，加入用來連線至資料庫的 PHP 程式碼。
+7. Hello PHP 標記內加入連接 toohello 資料庫 PHP 程式碼。
    
         // DB connection info
         $host = "localhost\sqlexpress";
         $user = "user name";
         $pwd = "password";
         $db = "registration";
-        // Connect to database.
+        // Connect toodatabase.
         try {
             $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
             $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -175,8 +175,8 @@ ms.lasthandoff: 07/11/2017
             die(var_dump($e));
         }
    
-    同樣地，您將需要更新的值<code>$user</code>和<code>$pwd</code>本機 MySQL 使用者名稱與密碼。
-8. 在資料庫連接程式碼後面，加入可將登錄資訊插入至資料庫的程式碼。
+    同樣地，您將需要 tooupdate hello 值<code>$user</code>和<code>$pwd</code>本機 MySQL 使用者名稱與密碼。
+8. 下列程式碼 hello 資料庫連接，加入程式碼插入 hello 資料庫的註冊資訊。
    
         if(!empty($_POST)) {
         try {
@@ -197,7 +197,7 @@ ms.lasthandoff: 07/11/2017
         }
         echo "<h3>Your're registered!</h3>";
         }
-9. 最後，在上述程式碼後面，加入可從資料庫擷取資料的程式碼。
+9. 最後，遵循上述的 hello 程式碼，加入程式碼從 hello 資料庫擷取資料。
    
         $sql_select = "SELECT * FROM registration_tbl";
         $stmt = $conn->query($sql_select);
@@ -218,10 +218,10 @@ ms.lasthandoff: 07/11/2017
             echo "<h3>No one is currently registered.</h3>";
         }
 
-您現在可以瀏覽至 **http://localhost:8000/index.php** 測試應用程式。
+您現在可以瀏覽過**http://localhost:8000/index.php** tootest hello 應用程式。
 
-## <a name="publish-your-application"></a>發行您的應用程式
-當您在本機完成應用程式測試之後，就可以使用 Git 將其發行至 App Service Web Apps。 不過，首先您需要更新應用程式中的資料庫連線資訊。 使用您稍早取得的資料庫連線資訊 (在＜**取得 SQL Database 連線資訊**＞一節中)，將 `createdatabase.php` 和 `index.php`**「兩者」**檔案中的下列資訊都更新為適當的值：
+## <a name="publish-your-application"></a>發佈您的應用程式
+您已經測試過您的應用程式在本機上之後，您可以發行該 tooApp Service Web 應用程式使用 Git。 不過，您必須先 tooupdate hello 資料庫 hello 應用程式中的連接資訊。 使用您稍早取得的 hello 資料庫連接資訊 (在 hello**取得 SQL 資料庫連接資訊**> 一節)，下列中的資訊更新 hello**兩者**hello`createdatabase.php`和`index.php`檔案以 hello 適當值：
 
     // DB connection info
     $host = "tcp:<value of Server>";
@@ -230,18 +230,18 @@ ms.lasthandoff: 07/11/2017
     $db = "<value of SQL Database>";
 
 > [!NOTE]
-> 在<code>$host</code>，伺服器的值必須在前面加上與<code>tcp:</code>。
+> 在 hello <code>$host</code>，伺服器 hello 值必須在前面加上與<code>tcp:</code>。
 > 
 > 
 
-現在，您可以準備設定 Git 發行，並發行應用程式。
+現在，您已準備好 tooset 設定 Git 發行功能，並發佈 hello 應用程式。
 
 > [!NOTE]
-> 這些步驟與前述＜**建立 Azure Web 應用程式並設定 Git 發行功能**＞一節中最後面的步驟相同。
+> 這些都是相同的步驟記下在 hello 結尾 hello hello**建立 Azure web 應用程式，並設定 Git 發行功能**上一節。
 > 
 > 
 
-1. 開啟 GitBash (如果 Git 位於您的 `PATH`，則為終端機)，將目錄變更為應用程式的根目錄 ( **registration** 目錄)，並執行下列命令：
+1. 開啟 GitBash (或終端機，如果 Git 位於您`PATH`)，變更目錄 toohello 根目錄，您的應用程式 (hello**註冊**目錄)，並執行的 hello 遵循命令：
    
         git init
         git add .
@@ -249,27 +249,27 @@ ms.lasthandoff: 07/11/2017
         git remote add azure [URL for remote repository]
         git push azure master
    
-    系統會提示您輸入先前建立的密碼。
-2. 瀏覽至 **http://[web 應用程式名稱].azurewebsites.net/createtable.php**，建立應用程式的 SQL 資料庫資料表。
-3. 瀏覽至 **http://[web 應用程式名稱].azurewebsites.net/index.php**，開始使用應用程式。
+    安裝程式將會提示您稍早建立的 hello 密碼。
+2. 瀏覽過**http://[web 應用程式 name].azurewebsites.net/createtable.php** toocreate hello SQL 資料庫資料表 hello 應用程式。
+3. 瀏覽過**http://[web 應用程式 name].azurewebsites.net/index.php** toobegin 使用 hello 應用程式。
 
-發行應用程式之後，您可以開始對其進行變更，並使用 Git 來發行它們。 
+在發行您的應用程式之後，您可以開始製作變更 tooit，並使用 Git toopublish 它們。 
 
-## <a name="publish-changes-to-your-application"></a>將變更發行至您的應用程式
-若要將變更發行至應用程式，請依照以下步驟進行：
+## <a name="publish-changes-tooyour-application"></a>發行變更 tooyour 應用程式
+toopublish 變更 tooapplication，請遵循下列步驟：
 
-1. 在本機對您的應用程式進行變更。
-2. 開啟 GitBash (如果 Git 位於您的 `PATH`，則為終端機)，將目錄變更為應用程式的根目錄，並執行下列命令：
+1. 變更本機 tooyour 應用程式。
+2. 開啟 GitBash (或終端機中，it Git 是在您`PATH`)，變更目錄 toohello 根目錄，應用程式，並執行 hello 下列命令：
    
         git add .
         git commit -m "comment describing changes"
         git push azure master
    
-    系統會提示您輸入先前建立的密碼。
-3. 瀏覽至 **http://[web 應用程式名稱].azurewebsites.net/index.php** 以查看您的變更。
+    安裝程式將會提示您稍早建立的 hello 密碼。
+3. 瀏覽過**http://[web 應用程式 name].azurewebsites.net/index.php** toosee 您的變更。
 
 ## <a name="whats-changed"></a>變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
+* 從網站 tooApp 服務變更如指南 toohello: [Azure 應用程式服務和其對影響現有的 Azure 服務](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [install-php]: http://www.php.net/manual/en/install.php
 [install-SQLExpress]: http://www.microsoft.com/download/details.aspx?id=29062

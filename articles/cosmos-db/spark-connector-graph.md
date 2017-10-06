@@ -15,33 +15,33 @@ ms.devlang: gremlin
 ms.topic: article
 ms.date: 06/05/2017
 ms.author: khdang
-ms.openlocfilehash: 27c4d945e418b130c68cfde845571eb93658101e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0be5c9b12cdba4a428c809d00e1e68785a9ec1ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-perform-graph-analytics-by-using-spark-and-apache-tinkerpop-gremlin"></a>Azure Cosmos DB︰使用 Spark 和 Apache TinkerPop Gremlin 執行圖表分析
 
-[Azure Cosmos DB](introduction.md) 是 Microsoft 的全域分散式多模型資料庫服務。 您可以建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。 Azure Cosmos DB 支援使用 [Apache TinkerPop Gremlin](graph-introduction.md) 的線上交易處理 (OLTP) 圖形工作負載。
+[Azure Cosmos DB](introduction.md)是 hello Microsoft 全域散發、 多模型資料庫服務。 您可以建立及查詢文件、 索引鍵/值，以及 graph 資料庫，全部都是利用 Azure Cosmos DB hello 核心 hello 全域發佈和水平縮放功能。 Azure Cosmos DB 支援使用 [Apache TinkerPop Gremlin](graph-introduction.md) 的線上交易處理 (OLTP) 圖形工作負載。
 
-[Spark](http://spark.apache.org/) 是著重於一般用途線上分析處理 (OLAP) 資料處理的 Apache Software Foundation 專案。 Spark 會提供混合式記憶體內/磁碟型分散式運算模型，其類似於 Hadoop MapReduce 模型。 您可以使用 [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/) 在雲端部署 Apache Spark。
+[Spark](http://spark.apache.org/) 是著重於一般用途線上分析處理 (OLAP) 資料處理的 Apache Software Foundation 專案。 Spark 提供了混合中記憶體/磁碟為基礎分散式運算模型是類似 toohello Hadoop MapReduce 模型。 您可以使用來部署 hello 雲端中的 Apache Spark [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/)。
 
-結合 Azure Cosmos DB 與 Spark，您可以使用 Gremlin 執行 OLTP 和 OLAP 工作負載。 本快速入門文章示範如何在 Azure HDInsight Spark 叢集上對 Azure Cosmos DB 執行 Gremlin 查詢。
+結合 Azure Cosmos DB 與 Spark，您可以使用 Gremlin 執行 OLTP 和 OLAP 工作負載。 快速入門本文示範如何 toorun Gremlin 查詢 Azure Cosmos DB Azure HDInsight Spark 叢集上。
 
 ## <a name="prerequisites"></a>必要條件
 
-您必須具備下列必要條件，才能執行此範例：
+您可以執行此範例之前，您必須擁有下列必要條件 hello:
 * Azure HDInsight Spark 叢集 2.0
 * JDK 1.8+ (如果您沒有 JDK，則執行 `apt-get install default-jdk`。)
 * Maven (如果您沒有 Maven，則執行 `apt-get install maven`。)
 * Azure 訂用帳戶 ([!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)])
 
-如需有關如何設定 Azure HDInsight Spark 叢集的詳細資訊，請參閱[佈建 HDInsight 叢集](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)。
+如需有關資訊 tooset Azure HDInsight Spark 叢集，請參閱[佈建的 HDInsight 叢集](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)。
 
 ## <a name="create-an-azure-cosmos-db-database-account"></a>建立 Azure Cosmos DB 資料庫帳戶
 
-首先，執行下列動作以使用圖形 API 建立資料庫帳戶：
+首先，建立資料庫帳戶以 hello Graph API，藉由下列 hello:
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
@@ -51,11 +51,11 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="get-apache-tinkerpop"></a>取得 Apache TinkerPop
 
-執行下列動作來取得 Apache TinkerPop：
+取得 Apache TinkerPop 執行 hello 下列：
 
-1. 在 HDInsight 叢集 `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net` 的主要節點遠端。
+1. 遠端 toohello 的 hello HDInsight 叢集的主要節點`ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`。
 
-2. 複製 TinkerPop3 來源程式碼，在本機加以建置，並將它安裝至 Maven 快取。
+2. 複製 hello TinkerPop3 來源程式碼、 在本機建置它，再安裝 tooMaven 快取。
 
     ```bash
     git clone https://github.com/apache/tinkerpop.git
@@ -63,11 +63,11 @@ ms.lasthandoff: 07/11/2017
     mvn clean install
     ```
 
-3. 安裝 Spark-Gremlin 外掛程式 
+3. 安裝 hello Spark Gremlin 外掛程式 
 
-    a. 此外掛程式的安裝是由 Grape 處理。 填入 Grape 的存放庫資訊，才能下載外掛程式和其相依性。 
+    a. Grape 會處理 hello hello 外掛程式安裝。 才能下載外掛程式 hello 和其相依性，請填入 Grape hello 儲存機制資訊。 
 
-      建立 Grape 組態檔 (如果它未顯示於 `~/.groovy/grapeConfig.xml`)。 套用下列設定：
+      建立 hello 葡萄組態檔，如果不存在於`~/.groovy/grapeConfig.xml`。 使用下列設定的 hello:
 
     ```xml
     <ivysettings>
@@ -89,9 +89,9 @@ ms.lasthandoff: 07/11/2017
     </ivysettings>
     ``` 
 
-    b.這是另一個 C# 主控台應用程式。 啟動 Gremlin 主控台 `bin/gremlin.sh`。
+    b. 啟動 Gremlin 主控台 `bin/gremlin.sh`。
         
-    c. 使用您在先前步驟中建立的 3.3.0-SNAPSHOT 版來安裝 Spark-Gremlin 外掛程式：
+    c. 安裝版本與 hello Spark Gremlin 外掛程式 3.3.0-SNAPSHOT，建置於 hello 先前步驟中：
 
     ```bash
     $ bin/gremlin.sh
@@ -103,7 +103,7 @@ ms.lasthandoff: 07/11/2017
     plugin activated: tinkerpop.utilities
     plugin activated: tinkerpop.tinkergraph
     gremlin> :install org.apache.tinkerpop spark-gremlin 3.3.0-SNAPSHOT
-    ==>loaded: [org.apache.tinkerpop, spark-gremlin, 3.3.0-SNAPSHOT] - restart the console to use [tinkerpop.spark]
+    ==>loaded: [org.apache.tinkerpop, spark-gremlin, 3.3.0-SNAPSHOT] - restart hello console toouse [tinkerpop.spark]
     gremlin> :q
     $ bin/gremlin.sh
 
@@ -117,17 +117,17 @@ ms.lasthandoff: 07/11/2017
     ==>tinkerpop.spark activated
     ```
 
-4. 檢查 `Hadoop-Gremlin` 是否已啟動 `:plugin list`。 停用此外掛程式，因為它可能會干擾 Spark-Gremlin 外掛程式 `:plugin unuse tinkerpop.hadoop`。
+4. 是否檢查 toosee`Hadoop-Gremlin`會啟動`:plugin list`。 停用此外掛程式，因為它可能會干擾 hello Spark Gremlin 外掛程式`:plugin unuse tinkerpop.hadoop`。
 
 ## <a name="prepare-tinkerpop3-dependencies"></a>準備 TinkerPop3 相依性
 
-當您在上一個步驟中建置 TinkerPop3 時，處理序也會提取目標目錄中 Spark 與 Hadoop 的所有 jar 相依性。 使用預先與 HDI 一起安裝的 jar，並視需要只提取其他相依性。
+當您建置 TinkerPop3 hello 上一個步驟中時，hello 程序也會提取所有 jar 相依性 Spark 和 Hadoop hello 目標目錄中。 使用 hello （每，這些瓶），與 HDI，已預先安裝和提取中其他相依性只在必要時。
 
-1. 移至位於 `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone` 的 Gremlin 主控台目標目錄。 
+1. 移 toohello Gremlin 主控台目標目錄在`tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`。 
 
-2. 將 `ext/` 之下的所有 jar 移至 `lib/`：`find ext/ -name '*.jar' -exec mv {} lib/ \;`。
+2. 移動下的所有 （每瓶）`ext/`太`lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`。
 
-3. 移除 `lib/` 之下不在下列清單中的所有 jar 程式庫：
+3. 移除所有 jar 程式庫之下`lib/`，不能在 hello 下列清單：
 
     ```bash
     # TinkerPop3
@@ -174,15 +174,15 @@ ms.lasthandoff: 07/11/2017
     xml-apis-1.3.04.jar                        
     ```
 
-## <a name="get-the-azure-cosmos-db-spark-connector"></a>取得 Azure Cosmos DB Spark 連接器
+## <a name="get-hello-azure-cosmos-db-spark-connector"></a>取得 hello Azure Cosmos DB Spark 連接器
 
-1. 從 [GitHub 上的 Azure Cosmos DB Spark 連接器](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11)，取得 Azure Cosmos DB Spark 連接器`azure-documentdb-spark-0.0.3-SNAPSHOT.jar` 和 Cosmos DB Java SDK `azure-documentdb-1.10.0.jar`。
+1. 取得 hello Azure Cosmos DB Spark 連接器`azure-documentdb-spark-0.0.3-SNAPSHOT.jar`和 Cosmos DB Java SDK`azure-documentdb-1.10.0.jar`從[Azure Cosmos DB GitHub 上的 Spark 連接器](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11)。
 
-2. 或者，您可以在本機建置它。 因為最新版的 Spark-Gremlin 是使用 Spark 1.6.1 建置，且與 Azure Cosmos DB Spark 連接器中目前使用的 Spark 2.0.2 不相容，您可以建置最新的 TinkerPop3 程式碼及手動安裝 jar。 執行下列動作：
+2. 或者，您可以在本機建置它。 因為 hello 最新版的 Spark Gremlin Spark 1.6.1 在已建立，而且不與 Spark 2.0.2，目前 hello Azure Cosmos DB Spark 連接器中使用，您可以建置 hello 最新 TinkerPop3 程式碼，並手動安裝 hello （每瓶）。 請勿 hello 遵循：
 
-    a. 複製 Azure Cosmos DB Spark 連接器。
+    a. 複製 hello Azure Cosmos DB Spark 連接器。
 
-    b.這是另一個 C# 主控台應用程式。 建置 TinkerPop3 (已在先前步驟中完成)。 在本機安裝所有 TinkerPop 3.3.0-SNAPSHOT jar。
+    b. 建置 TinkerPop3 (已在先前步驟中完成)。 在本機安裝所有 TinkerPop 3.3.0-SNAPSHOT jar。
 
     ```bash
     mvn install:install-file -Dfile="gremlin-core-3.3.0-SNAPSHOT.jar" -DgroupId=org.apache.tinkerpop -DartifactId=gremlin-core -Dversion=3.3.0-SNAPSHOT -Dpackaging=jar
@@ -193,9 +193,9 @@ ms.lasthandoff: 07/11/2017
     mvn install:install-file -Dfile="tinkergraph-gremlin-3.3.0-SNAPSHOT.jar" -DgroupId=org.apache.tinkerpop -DartifactId=tinkergraph-gremlin -Dversion=3.3.0-SNAPSHOT -Dpackaging=jar`
     ```
 
-    c. 將 `tinkerpop.version` `azure-documentdb-spark/pom.xml` 更新為 `3.3.0-SNAPSHOT`。
+    c. 更新`tinkerpop.version``azure-documentdb-spark/pom.xml`太`3.3.0-SNAPSHOT`。
     
-    d. 使用 Maven 建置。 所需的 jar 都會置於 `target` 和 `target/alternateLocation` 中。
+    d. 使用 Maven 建置。 hello 需要 （每瓶） 會放在`target`和`target/alternateLocation`。
 
     ```bash
     git clone https://github.com/Azure/azure-cosmosdb-spark.git
@@ -203,7 +203,7 @@ ms.lasthandoff: 07/11/2017
     mvn clean package
     ```
 
-3. 將先前所提的 jar 複製到本機目錄 (位於 ~/azure-documentdb-spark)：
+3. 複製 hello 先前所述在 （每瓶） tooa 本機目錄 ~ / azure-documentdb-spark:
 
     ```bash
     $ azure-documentdb-spark:
@@ -212,22 +212,22 @@ ms.lasthandoff: 07/11/2017
     cp target/alternateLocation/azure-documentdb-1.10.0.jar ~/azure-documentdb-spark
     ```
 
-## <a name="distribute-the-dependencies-to-the-spark-worker-nodes"></a>將相依性散發至 Spark 背景工作角色節點 
+## <a name="distribute-hello-dependencies-toohello-spark-worker-nodes"></a>發佈 hello 相依性 toohello Spark 背景工作節點 
 
-1. 因為圖形資料的轉換取決於 TinkerPop3，所以您必須將相關的相依性散發至所有 Spark 背景工作角色節點。
+1. 因為圖形資料的 hello 轉換取決於 TinkerPop3，您必須將發佈 hello 相關相依性 tooall Spark 背景工作節點。
 
-2. 執行下列動作，將先前所提的 Gremlin 相依性、CosmosDB Spark 連接器 jar 和 CosmosDB Java SDK 複製到背景工作節點：
+2. 複製 hello 先前提到 Gremlin 相依性、 hello CosmosDB Spark 連接器 jar 和 CosmosDB Java SDK toohello 背景工作節點執行 hello 下列動作：
 
-    a. 將所有 jar 複製到 `~/azure-documentdb-spark` 中。
+    a. 複製所有 hello （每瓶） 到`~/azure-documentdb-spark`。
 
     ```bash
     $ /home/sshuser/tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone:
     cp lib/* ~/azure-documentdb-spark
     ```
 
-    b.這是另一個 C# 主控台應用程式。 在 `Spark2` 區段的 `Spark2 Clients` 清單中，取得所有 Spark 背景工作節點的清單 (您可以在 Ambari 儀表板上找到)。
+    b. 取得所有 Spark 背景工作節點，您可以在 hello Ambari 儀表板 上找到的 hello 清單`Spark2 Clients`列入 hello `Spark2` > 一節。
 
-    c. 將該目錄複製到每個節點。
+    c. 將複製 hello 節點的該目錄 tooeach。
 
     ```bash
     scp -r ~/azure-documentdb-spark sshuser@wn0-cosmos:/home/sshuser
@@ -235,19 +235,19 @@ ms.lasthandoff: 07/11/2017
     ...
     ```
     
-## <a name="set-up-the-environment-variables"></a>設定環境變數
+## <a name="set-up-hello-environment-variables"></a>設定 hello 環境變數
 
-1. 尋找 Spark 叢集的 HDP 版本。 這是 `/usr/hdp/` 之下的目錄名稱 (例如 2.5.4.2-7)。
+1. 尋找 hello Spark 叢集 hello HDP 版本。 它是 hello 目錄名稱下的`/usr/hdp/`(例如，2.5.4.2-7)。
 
-2. 設定所有節點的 hdp.version。 在 Ambari 儀表板中，移至 **YARN 區段** > [設定] > [進階]，然後執行下列動作： 
+2. 設定所有節點的 hdp.version。 Ambari 儀表板 移過**YARN 區段** > **Configs** > **進階**，並執行再 hello 遵循： 
  
-    a. 在 `Custom yarn-site` 中，於主要節點上新增一個屬性 `hdp.version`，其值為 HDP 版本。 
+    a. 在`Custom yarn-site`，加入新屬性`hdp.version`與 hello hello 主要節點上的 hello HDP 版本值。 
      
-    b.這是另一個 C# 主控台應用程式。 儲存組態。 出現警告，您可以忽略。 
+    b. 儲存 hello 的組態。 出現警告，您可以忽略。 
      
-    c. 如通知圖示所指出，重新啟動 YARN 和 Oozie 服務。
+    c. 重新啟動 hello YARN 和 Oozie 服務因為 hello 通知圖示表示。
 
-3. 在主要節點上設定下列環境變數 (取代為適當的值)︰
+3. 下列環境變數 （取代為適當的 hello 值） hello 主要節點上設定 hello:
 
     ```bash
     export HADOOP_GREMLIN_LIBS=/home/sshuser/tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/ext/spark-gremlin/lib
@@ -256,9 +256,9 @@ ms.lasthandoff: 07/11/2017
     export HADOOP_HOME=${HADOOP_HOME:-/usr/hdp/current/hadoop-client}
     ```
 
-## <a name="prepare-the-graph-configuration"></a>準備圖形組態
+## <a name="prepare-hello-graph-configuration"></a>準備 hello 圖形組態
 
-1. 使用 Azure Cosmos DB 連線參數和 Spark 設定來建立組態檔，並將它放在 `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`。
+1. 建立組態檔以 hello Azure Cosmos DB 連接參數和二手設定，然後放在`tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`。
 
     ```
     gremlin.graph=org.apache.tinkerpop.gremlin.hadoop.structure.HadoopGraph
@@ -278,7 +278,7 @@ ms.lasthandoff: 07/11/2017
     spark.kryo.registrator=org.apache.tinkerpop.gremlin.spark.structure.io.gryo.GryoRegistrator
     gremlin.spark.persistContext=true
 
-    # Classpath for the driver and executors
+    # Classpath for hello driver and executors
     spark.driver.extraClassPath=/usr/hdp/current/spark2-client/jars/*:/home/sshuser/azure-documentdb-spark/*
     spark.executor.extraClassPath=/usr/hdp/current/spark2-client/jars/*:/home/sshuser/azure-documentdb-spark/*
     
@@ -294,9 +294,9 @@ ms.lasthandoff: 07/11/2017
     spark.documentdb.preferredRegions=FILLIN
     ```
 
-2. 更新 `spark.driver.extraClassPath` 和 `spark.executor.extraClassPath` 以包含您在上一個步驟中散發之 jar 的目錄，在此例中為 `/home/sshuser/azure-documentdb-spark/*`。
+2. 更新 hello`spark.driver.extraClassPath`和`spark.executor.extraClassPath`hello （每，這些瓶），在此情況下在 hello 先前步驟中，分散式 tooinclude hello 目錄`/home/sshuser/azure-documentdb-spark/*`。
 
-3. 提供 Azure Cosmos DB 的下列詳細資料︰
+3. 提供 hello Azure Cosmos 資料庫的下列詳細資料：
 
     ```
     spark.documentdb.Endpoint=https://FILLIN.documents.azure.com:443/
@@ -307,10 +307,10 @@ ms.lasthandoff: 07/11/2017
     #spark.documentdb.preferredRegions=West\ US;West\ US\ 2
     ```
    
-## <a name="load-the-tinkerpop-graph-and-save-it-to-azure-cosmos-db"></a>載入 TinkerPop 圖形，然後將它儲存到 Azure Cosmos DB
-為了示範如何將圖形保存在 Azure Cosmos DB 中，此範例使用 TinkerPop 預先定義的 TinkerPop 新式圖形。 此圖形是以 Kryo 格式儲存，並且在 TinkerPop 存放庫中提供。
+## <a name="load-hello-tinkerpop-graph-and-save-it-tooazure-cosmos-db"></a>載入 hello TinkerPop 圖形，並將它儲存 tooAzure Cosmos DB
+toodemonstrate toopersist 圖形到 Azure Cosmos DB，此範例中使用 hello TinkerPop 預先 TinkerPop 現代圖形的定義。 hello 圖形是 Kryo 格式儲存，並且提供 hello TinkerPop 儲存機制中。
 
-1. 因為您是以 YARN 模式執行 Gremlin，所以您必須在 Hadoop 檔案系統中提供圖形資料。 使用下列命令建立一個目錄，並將本機圖形檔案複製到其中。 
+1. 因為您執行 Gremlin YARN 模式中，您必須提供 hello 圖形資料 hello Hadoop 檔案系統中。 使用 hello 下列命令 toomake 目錄複製 hello 本機圖形檔到其中。 
 
     ```bash
     $ tinkerpop:
@@ -318,18 +318,18 @@ ms.lasthandoff: 07/11/2017
     hadoop fs -copyFromLocal ~/tinkerpop/data/tinkerpop-modern.kryo /graphData/tinkerpop-modern.kryo
     ```
 
-2. 暫時更新 `gremlin-spark.properties` 檔案，以使用 `GryoInputFormat` 讀取圖形。 此外，指定 `inputLocation` 作為您建立的目錄，如下所示︰
+2. 暫時更新 hello`gremlin-spark.properties`檔案 toouse `GryoInputFormat` tooread hello 圖形。 也表示`inputLocation`hello 目錄為您建立，如 hello 下列所示：
 
     ```
     gremlin.hadoop.graphReader=org.apache.tinkerpop.gremlin.hadoop.structure.io.gryo.GryoInputFormat
     gremlin.hadoop.inputLocation=/graphData/tinkerpop-modern.kryo
     ```
 
-3. 啟動 Gremlin 主控台，然後建立下列計算步驟，將資料保留於已設定的 Azure Cosmos DB 集合︰  
+3. 啟動 Gremlin 主控台，然後建立下列計算步驟 toopersist 資料 toohello 設定 Azure Cosmos DB 收集 hello:  
 
-    a. 建立圖形 `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`。
+    a. 建立 hello 圖形`graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`。
 
-    b.這是另一個 C# 主控台應用程式。 使用 SparkGraphComputer 寫入 `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`。
+    b. 使用 SparkGraphComputer 寫入 `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`。
 
     ```bash
     gremlin> graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")
@@ -346,25 +346,25 @@ ms.lasthandoff: 07/11/2017
     ==>result[hadoopgraph[documentdbinputrdd->documentdboutputrdd],memory[size:1]]
     ```
 
-4. 在資料總管中，您可以確認資料已保存至 Cosmos DB。
+4. 從資料總管 中，您可以確認資料已該 hello 保存 tooAzure Cosmos DB。
 
-## <a name="load-the-graph-from-azure-cosmos-db-and-run-gremlin-queries"></a>從 Azure Cosmos DB 載入圖形，然後執行 Gremlin 查詢
+## <a name="load-hello-graph-from-azure-cosmos-db-and-run-gremlin-queries"></a>從 Azure Cosmos DB，載入 hello 圖形，並執行 Gremlin 查詢
 
-1. 若要載入圖形，請編輯 `gremlin-spark.properties` 以將 `graphReader` 設定為 `DocumentDBInputRDD`：
+1. tooload hello 圖形中，編輯`gremlin-spark.properties`tooset`graphReader`太`DocumentDBInputRDD`:
 
     ```
     gremlin.hadoop.graphReader=com.microsoft.azure.documentdb.spark.gremlin.DocumentDBInputRDD
     ```
 
-2. 執行下列動作，載入圖形、周遊資料，以及執行 Gremlin 查詢︰
+2. 負載 hello 圖形周遊 hello 資料及 Gremlin 查詢與它執行動作來執行 hello 下列：
 
-    a. 啟動 Gremlin 主控台 `bin/gremlin.sh`。
+    a. 啟動 hello Gremlin 主控台`bin/gremlin.sh`。
 
-    b.這是另一個 C# 主控台應用程式。 使用組態 `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')` 建立圖形。
+    b. Hello 組態建立 hello 圖形`graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')`。
 
     c. 使用 SparkGraphComputer `g = graph.traversal().withComputer(SparkGraphComputer)` 建立圖形周遊。
 
-    d. 執行下列 Gremlin 圖形查詢︰
+    d. 執行下列 Gremlin graph 查詢 hello:
 
     ```bash
     gremlin> graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")
@@ -397,11 +397,11 @@ ms.lasthandoff: 07/11/2017
     ```
 
 > [!NOTE]
-> 若要查看更詳細的記錄，請將 `conf/log4j-console.properties` 中的記錄層級設定為更詳細的層級。
+> toosee 詳細記錄 設定中的 hello 記錄層級`conf/log4j-console.properties`tooa 更多詳細資料層級。
 >
 
 ## <a name="next-steps"></a>後續步驟
 
-在本快速入門文章中，您已經了解如何結合 Azure Cosmos DB 與 Spark 來處理圖形。
+快速入門本文中，您已經學會如何與 toowork 圖形結合 Azure Cosmos DB 和 Spark。
 
 > [!div class="nextstepaction"]

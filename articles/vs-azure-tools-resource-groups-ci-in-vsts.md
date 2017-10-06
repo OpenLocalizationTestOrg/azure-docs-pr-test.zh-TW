@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 資源群組專案在 Visual Studio Team Services中進行連續整合 | Microsoft Docs"
-description: "使用 Azure 資源群組部署專案在 Visual Studio Team Services 中進行連續整合"
+title: "使用 Azure 資源群組專案的 VS Team Services 中的 aaaContinuous 整合 |Microsoft 文件"
+description: "描述在 Visual Studio Team Services 中使用 Azure 資源群組部署的連續整合 tooset Visual Studio 中的專案。"
 services: visual-studio-online
 documentationcenter: na
 author: mlearned
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2016
 ms.author: mlearned
-ms.openlocfilehash: e7d98ca3fa281a136595c37ed9b7e71de0cf7bff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0fe4a4b8989ee323e8ef2206fa4ebed503025670
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="continuous-integration-in-visual-studio-team-services-using-azure-resource-group-deployment-projects"></a>使用 Azure 資源群組部署專案在 Visual Studio Team Services 中進行連續整合
-若要部署 Azure 範本，您需要執行各種階段的工作：組建、測試、複製到 Azure (也稱為「暫存」) 及部署範本。 有兩種不同的方式可將範本部署至 Visual Studio Team Services (VS Team Services)。 兩種方法所產生的結果都相同，因此請選擇最符合您工作流程的方法。
+toodeploy Azure 的範本，您在執行工作各個階段： 建置時，測試中，複製 tooAzure （也稱為 「 預備 」），並部署範本。 有兩個不同的方式 toodeploy 範本 tooVisual Studio Team Services (VS Team Services)。 這兩種方法提供 hello 相同的結果，因此請選擇最適合您的工作流程的其中一個 hello。
 
-1. 在執行 PowerShell 指令碼的組建定義 (包含在 Azure 資源群組部署專案，Deploy-AzureResourceGroup.ps1) 中新增一個步驟。 指令碼會複製構件，接著部署範本。
+1. 加入執行包含 hello Azure 資源群組部署專案 (Deploy-azureresourcegroup.ps1) 中的 hello PowerShell 指令碼的單一步驟 tooyour 組建定義。 hello 指令碼複製成品，並將部署 hello 範本。
 2. 新增多個 VS Team Services 建置步驟，每個都執行一個階段工作。
 
-本文將示範兩個選項。 第一個選項的優點是能夠使用開發人員在 Visual Studio 中所使用的相同指令碼，並在整個生命週期中提供一致性。 第二個選項可提供內建指令碼的方便替代選項。 這兩個程序假設您已經在 VS Team Services 中簽入 Visual Studio 部署專案。
+本文將示範兩個選項。 hello 第一個選項優點 hello hello 使用相同的指令碼開發人員使用 Visual Studio 中，並提供整個 hello 生命週期的一致性。 hello 第二個選項可提供方便的替代 toohello 內建指令碼。 這兩個程序假設您已經在 VS Team Services 中簽入 Visual Studio 部署專案。
 
-## <a name="copy-artifacts-to-azure"></a>將構件複製到 Azure
-無論何種情況，如果您有範本部署所需的任何構件，則必須提供存取權給 Azure Resource Manager。 這些構件包括下列檔案：
+## <a name="copy-artifacts-tooazure"></a>複製成品 tooAzure
+不論 hello 案例中，如果您有任何所需的範本部署的成品必須提供 Azure Resource Manager 存取 toothem。 這些構件包括下列檔案：
 
 * 巢狀範本
 * 組態指令碼及 DSC 指令碼
 * 應用程式二進位檔
 
 ### <a name="nested-templates-and-configuration-scripts"></a>巢狀範本和組態指令碼
-當您使用 Visual Studio (或以 Visual Studio 程式碼片段建置的) 提供的範本時，PowerShell 指令碼不但會暫存構件，也會參數化資源 URI 以進行不同的部署。 接著，指令碼會將構件複製到 Azure 中的安全容器，並為該容器建立 SaS 權杖，再將該資訊傳遞至範本部署。 請參閱 [建立範本部署](https://msdn.microsoft.com/library/azure/dn790564.aspx) 以深入了解巢狀範本。  在 VS Team Services 中使用工作時，您必須針對範本部署選取適當的工作，且如果必要，必須從預備步驟將參數值傳遞至範本部署。
+當您使用 Visual Studio 所提供的 hello 範本 （或使用 Visual Studio 程式碼片段建置），hello PowerShell 指令碼不僅會設置 hello 成品，如需不同部署的 hello 資源 hello URI 也會參數化。 hello 指令碼，然後複製在 Azure 中的 hello 成品 tooa 安全容器、 建立 SaS 權杖，該容器，並接著會將 toohello 範本部署上的該資訊傳遞。 請參閱[建立範本部署](https://msdn.microsoft.com/library/azure/dn790564.aspx)toolearn 深入了解巢狀範本。  當 VS Team Services 中使用的工作，您必須選取針對範本部署的 hello 適當工作，並如有必要，請從預備環境步驟 toohello 範本部署的 hello 傳遞參數值。
 
 ## <a name="set-up-continuous-deployment-in-vs-team-services"></a>在 VS Team Services 中設定連續部署
-要在 VS Team Services 中呼叫 PowerShell 指令碼，請更新您的組建定義。 簡單來說，請執行下列步驟： 
+您需要 tooupdate toocall VS Team Services 中的 hello PowerShell 指令碼，您的組建定義。 簡單地說，hello 步驟如下： 
 
-1. 編輯組建定義。
+1. 編輯 hello 組建定義。
 2. 在 VS Team Services 中設定 Azure 授權。
-3. 新增參考 Azure 資源群組部署專案中 PowerShell 指令碼的 Azure PowerShell 組建步驟。
-4. 設定 *-ArtifactsStagingDirectory* 參數值，以與 VS Team Services 中建置的專案搭配使用。
+3. 新增參考 hello hello Azure 資源群組部署專案中的 PowerShell 指令碼的 Azure PowerShell 建置步驟。
+4. 設定 hello hello 值*-ArtifactsStagingDirectory*參數 toowork 與 VS Team Services 中所建置的專案。
 
 ### <a name="detailed-walkthrough-for-option-1"></a>選項 1 的詳細逐步解說
-下列程序會使用單一工作在您的專案中執行 PowerShell 指令碼，逐步引導您進行在 VS Team Services 中設定持續部署所需的步驟。 
+hello 下列程序引導您完成使用單一工作執行 hello PowerShell 指令碼專案中的 VS Team Services 中的 hello 步驟需要 tooconfigure 連續部署。 
 
-1. 編輯您的 VS Team Services 組建定義並新增 Azure PowerShell 建置步驟。 在 [組建定義] 類別下選擇組建定義，再選擇 [編輯] 連結。
+1. 編輯您的 VS Team Services 組建定義並新增 Azure PowerShell 建置步驟。 選擇在 hello hello 組建定義**組建定義**類別目錄，然後選擇 hello**編輯**連結。
    
    ![編輯組建定義][0]
-2. 在組建定義中新增 [Azure PowerShell] 組建步驟，再選擇 [新增組建步驟...] 按鈕。
+2. 加入新**Azure PowerShell**建置步驟 toohello 組建定義，然後選擇 hello**加入建置步驟...** 按鈕。
    
    ![新增組建步驟][1]
-3. 選擇 [部署工作] 類別，選取 [Azure PowerShell] 工作，再選擇其 [新增] 按鈕。
+3. 選擇 hello**部署工作**類別目錄中，選取 hello **Azure PowerShell**工作，並再選擇其**新增** 按鈕。
    
    ![新增工作][2]
-4. 選擇 [Azure PowerShell]  組建步驟，再填上其值。
+4. 選擇 hello **Azure PowerShell**建置步驟，然後填入其值。
    
-   1. 如果您已將 Azure 服務端點新增至 VS Team Services，請在 [Azure 訂用帳戶] 下拉式清單方塊中選擇訂用帳戶，並跳至下一節。 
+   1. 如果您已經有 Azure 服務端點加入 tooVS Team Services 中，選擇 hello 訂閱 hello **Azure 訂用帳戶**下拉式清單方塊，然後略過 toohello 下一節。 
       
-      如果您的 VS Team Services 中沒有 Azure 服務端點，請新增一個。 此訂用帳戶會帶您完成此程序。 如果您的 Azure 帳戶使用 Microsoft 帳戶 (例如 Hotmail)，您必須進行下列步驟以取得服務主體驗證。
-   2. 選擇 [Azure 訂用帳戶] 下拉式清單方塊旁的 [管理] 連結。
+      如果您還沒有 Azure 服務端點在 VS Team Services 中，您會需要 tooadd 其中一個。 本小節會帶領您完成 hello 程序。 如果您的 Azure 帳戶使用 Microsoft 帳戶 （例如 Hotmail)，您必須採取下列步驟 tooget hello 服務主體驗證。
+   2. 選擇 hello**管理**連結下一步 toohello **Azure 訂用帳戶**下拉式清單方塊。
       
       ![管理 Azure 訂用帳戶][3]
-   3. 在 [新服務端點] 下拉式清單方塊中選擇 [Azure]。
+   3. 選擇**Azure**在 hello**新的服務端點**下拉式清單方塊。
       
       ![新增服務端點][4]
-   4. 在 [新增 Azure 訂用帳戶] 對話方塊中，選取 [服務主體] 選項。
+   4. 在 hello**新增 Azure 訂用帳戶**對話方塊中，選取 hello**服務主體**選項。
       
       ![服務主體選項][5]
-   5. 在 [新增 Azure 訂用帳戶]  對話方塊中新增 Azure 訂用帳戶資訊。 您必須先提供下列項目：
+   5. 加入您的 Azure 訂用帳戶資訊 toohello**新增 Azure 訂用帳戶** 對話方塊。 您需要下列項目 tooprovide hello:
       
       * 訂用帳戶識別碼
       * 訂用帳戶名稱
       * 服務主體識別碼
       * 服務主體金鑰
       * 租用戶識別碼
-   6. 在 [訂用帳戶]  名稱方塊中新增您選擇的名稱。 此值稍後會出現在 VS Team Services 的 [Azure 訂用帳戶] 下拉式清單中。 
-   7. 如果您不知道 Azure 訂用帳戶識別碼，可以使用以下其中一個命令擷取。
+   6. 新增您選擇 toohello 名稱**訂用帳戶**名稱 方塊中。 這個值會出現在 hello 稍後**Azure 訂用帳戶**VS Team Services 中的下拉式清單。 
+   7. 如果您不知道您的 Azure 訂用帳戶 ID，您可以使用下列命令 tooretrieve hello 的其中一個它。
       
       對於 Azure PowerShell 指令碼，請使用：
       
@@ -89,31 +89,31 @@ ms.lasthandoff: 07/11/2017
       對於 Azure CLI，請使用：
       
       `azure account show`
-   8. 若要取得服務主體識別碼、服務主體金鑰及租用戶識別碼，請依照[使用入口網站建立 Active Directory 應用程式和服務主體](resource-group-create-service-principal-portal.md)或[以 Azure 資源管理員驗證服務主體](resource-group-authenticate-service-principal.md)中的程序。
-   9. 將服務主體識別碼、服務主體金鑰，以及租用戶識別碼值新增至 [新增 Azure 訂用帳戶] 對話方塊，然後選擇 [確定] 按鈕。
+   8. tooget 服務主體識別碼、 服務主要金鑰和租用戶識別碼，請依照下列中的 hello 程序[建立 Active Directory 應用程式和服務主體使用入口網站](resource-group-create-service-principal-portal.md)或[驗證的服務主體Azure 資源管理員](resource-group-authenticate-service-principal.md)。
+   9. 新增 hello 服務主體識別碼、 服務主要金鑰，以及租用戶識別碼值 toohello**新增 Azure 訂用帳戶**對話方塊方塊，然後選擇 [hello**確定**] 按鈕。
       
-      現在，您擁有可執行 Azure PowerShell 指令碼的有效服務主體。
-5. 編輯組建定義並選擇 **Azure PowerShell** 建置步驟。 在 [Azure 訂用帳戶] 下拉式清單方塊中選取訂用帳戶。 (如果訂用帳戶未出現，請選擇 [管理] 連結旁的 [重新整理]按鈕。) 
+      您現在有有效的服務主體 toouse toorun hello Azure PowerShell 指令碼。
+5. 編輯 hello 組建定義，並選擇 hello **Azure PowerShell**建置步驟。 選取 hello 訂用帳戶中 hello **Azure 訂用帳戶**下拉式清單方塊。 (如果 hello 訂用帳戶未出現，請選擇 hello**重新整理**按鈕的下一個 hello**管理**連結。) 
    
    ![安裝並設定 Azure PowerShell 建置工作][8]
-6. 提供 Deploy-AzureResourceGroup.ps1 PowerShell 指令碼的路徑。 若要這樣做，請選擇 [指令碼路徑] 方塊旁的省略符號 (…) 按鈕，瀏覽到您專案的 [指令碼] 資料夾中的 Deploy-AzureResourceGroup.ps1 PowerShell 指令碼，選取並選擇 [確定] 按鈕。    
+6. 提供路徑 toohello Deploy-azureresourcegroup.ps1 PowerShell 指令碼。 toodo，選擇 hello 省略符號 （...） 按鈕的下一個 toohello**指令碼路徑**方塊中，瀏覽 toohello Deploy-azureresourcegroup.ps1 PowerShell 指令碼，在 hello**指令碼**您的專案的資料夾，選取它，然後選擇 [hello**確定**] 按鈕。    
    
-   ![選取要編寫指令碼的路徑][9]
-7. 選取指令碼之後，將路徑更新到該指令碼，以便從 Build.StagingDirectory 執行 (與 *ArtifactsLocation* 設定的目錄相同)。 您可以在指令碼路徑的開頭加入 “$(Build.StagingDirectory)/” 以執行此項作業。
+   ![選取路徑 tooscript][9]
+7. 您選取 hello 指令碼之後，更新 hello 路徑 toohello 指令碼，讓它會執行從 hello Build.StagingDirectory (hello 相同的目錄， *ArtifactsLocation*設)。 您可以藉由新增"$（Build.StagingDirectory)/"toohello 開頭 hello 指令碼路徑。
    
-    ![選取要編寫指令碼的路徑][10]
-8. 在 [指令碼引數]  方塊中，輸入下列參數 (請輸入在同一行)。 當您在 Visual Studio 中執行指令碼時，可以在 [輸出]  視窗中看到 VS 如何使用參數。 您可以從這裡開始，在建置步驟中設定參數值。
+    ![編輯路徑 tooscript][10]
+8. 在 hello**指令碼引數**方塊中，輸入下列參數 （在單一行） 中的 hello。 當您執行 Visual Studio 中的 hello 指令碼時，您可以查看如何與使用 hello 參數在 hello**輸出**視窗。 您可以使用它做為起點建置步驟中設定 hello 參數值。
    
    | 參數 | 說明 |
    | --- | --- |
-   | -ResourceGroupLocation |資源群組所在的地理位置，例如 **eastus** 或**美國東部**。 (如果名稱中有空間，請加入單引號。)如需詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/en-us/regions/)。 |
-   | -ResourceGroupName |此部署使用的資源群組名稱。 |
-   | -UploadArtifacts |此參數出現時，可指定需要從本機系統上傳到 Azure 的構件。 您只需要在範本部署需要您希望暫存的其他構件時，使用 PowerShell 指令碼設定此轉換 (例如組態指令碼或巢狀範本) 即可。 |
-   | -StorageAccountName |用來暫存此部署之構件的儲存體帳戶名稱。 僅在您執行部署的成品時才會使用這個參數。 如果提供這個參數，則如果指令碼在先前部署期間尚未建立儲存體帳戶，便會建立新的儲存體帳戶。 如果指定參數，則儲存體帳戶必須已經存在。 |
-   | -StorageAccountResourceGroupName |與儲存體帳戶相關聯的資源群組名稱。 僅在您提供 StorageAccountName 參數的值時，才需要此參數。 |
-   | -TemplateFile |Azure 資源群組部署專案中的範本檔案路徑。 為了提高彈性，請使用與 PowerShell 指令碼相關的參數路徑，不要使用絕對路徑。 |
-   | -TemplateParametersFile |Azure 資源群組部署專案中的參數檔案路徑。 為了提高彈性，請使用與 PowerShell 指令碼相關的參數路徑，不要使用絕對路徑。 |
-   | -ArtifactStagingDirectory |此參數可讓 PowerShell 指令碼從應該複製專案二進位檔的位置取得資料夾。 這個值會覆寫 PowerShell 指令碼使用的預設值。 若要供 VS Team Services 使用，請將值設為：-ArtifactStagingDirectory $(Build.StagingDirectory) |
+   | -ResourceGroupLocation |hello hello 資源群組的位置，例如地理位置值**eastus**或**'美國東部'**。 （新增方以單引號包住如果 hello 名稱中有空格。）如需詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/en-us/regions/)。 |
+   | -ResourceGroupName |hello 用於這個部署的 hello 資源群組名稱。 |
+   | -UploadArtifacts |此參數存在時，會指定需要 toobe 的成品上傳 tooAzure 從 hello 本機系統。 您只需要 tooset 此交換器如果範本部署需要額外的 toostage 使用 hello PowerShell 指令碼 （例如設定指令碼或巢狀的範本） 的成品。 |
+   | -StorageAccountName |hello hello 儲存體帳戶名稱會用於此部署 toostage 成品。 僅在您執行部署的成品時才會使用這個參數。 如果沒有提供這個參數，如果 hello 指令碼已不會建立在先前的部署期間建立新的儲存體帳戶。 如果指定了 hello 參數，hello 儲存體帳戶必須已經存在。 |
+   | -StorageAccountResourceGroupName |hello hello hello 儲存體帳戶相關聯的資源群組名稱。 Hello StorageAccountName 參數中提供的值時，才需要此參數。 |
+   | -TemplateFile |hello 路徑 toohello 範本檔案 hello Azure 資源群組部署專案中。 使用這個參數，這是 hello PowerShell 指令碼，而不是絕對路徑的相對 toohello 位置路徑 tooenhance 彈性。 |
+   | -TemplateParametersFile |hello 路徑 toohello 參數檔案 hello Azure 資源群組部署專案中。 使用這個參數，這是 hello PowerShell 指令碼，而不是絕對路徑的相對 toohello 位置路徑 tooenhance 彈性。 |
+   | -ArtifactStagingDirectory |這個參數可讓您知道 hello 資料夾從 hello 專案的二進位檔案應該複製其中的 hello PowerShell 指令碼。 這個值會覆寫 hello hello PowerShell 指令碼所使用的預設值。 如需使用 VS Team Services，則將 hello 值設定為:-ArtifactStagingDirectory $(Build.StagingDirectory) |
    
    以下是指令碼引數的範例 (斷行以方便閱讀)：
    
@@ -123,62 +123,62 @@ ms.lasthandoff: 07/11/2017
    –StorageAccountResourceGroupName 'Default-Storage-EastUS' -ArtifactStagingDirectory '$(Build.StagingDirectory)'    
    ```
    
-   完成之後，[指令碼引數] 方塊應該如下清單所示：
+   當您完成時，hello**指令碼引數**方塊應該類似下列清單中的 hello:
    
    ![指令碼引數][11]
-9. 將所有必要的項目都加入 Azure PowerShell 建置步驟之後，請選擇 [佇列]  建置按鈕以建置專案。 [建置]  畫面會顯示 PowerShell 指令碼的輸出。
+9. 您已新增所有 hello Azure PowerShell 建置步驟的必要項目 toohello 之後，請選擇 hello**佇列**建置按鈕 toobuild hello 專案。 hello**建置**螢幕會顯示 hello hello PowerShell 指令碼的輸出。
 
 ### <a name="detailed-walkthrough-for-option-2"></a>選項 2 的詳細逐步解說
-下列程序會使用內建工作，逐步引導您進行在 VS Team Services 中設定持續部署所需的步驟。
+hello 下列程序引導您完成使用 hello 內建工作 VS Team Services 中的 hello 步驟需要 tooconfigure 連續部署。
 
-1. 編輯您的 VS Team Services 組建定義來新增兩個新的建置步驟。 在 [組建定義] 類別下選擇組建定義，再選擇 [編輯] 連結。
+1. 編輯您 VS Team Services 組建定義 tooadd 兩個新組建的步驟。 選擇在 hello hello 組建定義**組建定義**類別目錄，然後選擇 hello**編輯**連結。
    
    ![編輯組建定義][12]
-2. 將新的建置步驟新增至組建定義，方法為使用 [新增建置步驟...] 按鈕。
+2. 加入新的 hello 建置步驟 toohello 組建定義使用 hello**加入建置步驟...** 按鈕。
    
    ![新增組建步驟][13]
-3. 選擇 [部署工作] 類別，選取 [Azure 檔案複製] 工作，再選擇其 [新增] 按鈕。
+3. 選擇 hello**部署**工作分類中，選取 hello **Azure File Copy**工作，並再選擇其**新增** 按鈕。
    
    ![新增 Azure 檔案複製工作][14]
-4. 選擇 [Azure 資源群組部署] 工作，然後選擇其 [新增] 按鈕，然後 [關閉] [工作目錄]。
+4. 選擇 hello **Azure 資源群組部署**工作，然後選擇其**新增** 按鈕，然後**關閉**hello**工作目錄**。
    
    ![新增 [Azure 資源群組部署] 工作][15]
-5. 選擇 **Azure 檔案複製**工作並填入其值。
+5. 選擇 hello **Azure File Copy**工作，並填入其值。
    
-   如果您已將 Azure 服務端點新增至 VS Team Services，請在 [Azure 訂用帳戶] 下拉式清單方塊中選擇訂用帳戶。 如果您沒有訂用帳戶，請參閱[選項 1](#detailed-walkthrough-for-option-1)，以查看在 VS Team Services 中設定訂用帳戶的指示。
+   如果您已經有 Azure 服務端點加入 tooVS Team Services 中，選擇 hello 訂閱 hello **Azure 訂用帳戶**下拉式清單方塊。 如果您沒有訂用帳戶，請參閱[選項 1](#detailed-walkthrough-for-option-1)，以查看在 VS Team Services 中設定訂用帳戶的指示。
    
    * 來源 - 輸入 **$(Build.StagingDirectory)**
    * Azure 連線類型 - 選取 **Azure Resource Manager**
-   * Azure RM 訂用帳戶 - 在 [Azure 訂用帳戶] 下拉式清單方塊中，選取您想要使用之儲存體帳戶的訂用帳戶。 如果訂用帳戶未出現，請選擇 [管理] 連結旁的 [重新整理]按鈕。
+   * Azure RM 訂用帳戶-您想要在 hello toouse hello 儲存體帳戶的訂用帳戶選取 hello **Azure 訂用帳戶**下拉式清單方塊。 如果 hello 訂用帳戶未出現，請選擇 hello**重新整理**按鈕的下一個 hello**管理**連結。
    * 目的地類型 - 選取 **Azure Blob**
-   * RM 儲存體帳戶 - 選取您想要針對預備構件使用的儲存體帳戶
-   * 容器名稱 - 輸入您想要用於暫存的容器名稱，可以是任何有效的容器名稱，但請使用專用於此組建定義的名稱
+   * 希望臨時成品 toouse RM 儲存體帳戶-選取您 hello 儲存體帳戶。
+   * 容器名稱-輸入 hello 名稱的 hello 容器中，您想要 toouse 供暫存。它可以是任何有效的容器名稱，但使用一個專用的 toothis 組建定義
    
-   輸出值︰
+   Hello 輸出值：
    
    * 儲存體容器 URI - 輸入 **artifactsLocation**
    * 儲存體容器 SAS - 輸入 **artifactsLocationSasToken**
    
    ![設定 Azure 檔案複製工作][16]
-6. 選擇 [Azure 資源群組部署]  組建步驟，再填上其值。
+6. 選擇 hello **Azure 資源群組部署**建置步驟，然後填入其值。
    
    * Azure 連線類型 - 選取 **Azure Resource Manager**
-   * Azure RM 訂用帳戶 - 在 [Azure 訂用帳戶] 下拉式清單方塊中選取部署的訂用帳戶。 這通常與上一個步驟中使用的訂用帳戶相同
+   * Azure RM 訂閱 hello 中部署的訂用帳戶選取 hello **Azure 訂用帳戶**下拉式清單方塊。 這通常會是相同的訂用帳戶使用的 hello hello 上一個步驟中
    * 動作 - 選取 **建立或更新資源群組**
-   * 資源群組 - 選取資源群組或輸入部署的新資源群組名稱
-   * 位置 - 選取資源群組的位置
-   * 範本 - 輸入要部署之範本的名稱與路徑前面加上 **$(Build.StagingDirectory)**，例如︰**$(Build.StagingDirectory/DSC-CI/azuredeploy.json)**
-   * 範本參數 - 輸入要使用之參數的名稱與路徑，前面加上 **$(Build.StagingDirectory)**，例如︰**$(Build.StagingDirectory/DSC-CI/azuredeploy.parameters.json)**
-   * 覆寫範本參數 - 輸入或複製並貼上下列程式碼︰
+   * 資源群組-選取的資源群組，或輸入 hello 部署新的資源群組的 hello 名稱
+   * 位置-選取 hello hello 資源群組位置
+   * 範本-輸入 hello 路徑和名稱 hello 範本部署 toobe 前面加上的**$(Build.StagingDirectory)**，例如： **$(Build.StagingDirectory/DSC-CI/azuredeploy.json)**
+   * 範本參數的輸入 hello 路徑和名稱使用，hello 參數 toobe 前面加上**$(Build.StagingDirectory)**，例如： **$(Build.StagingDirectory/DSC-CI/azuredeploy.parameters.json)**
+   * 覆寫範本參數-輸入或複製並貼上下列程式碼的 hello:
      
      ```    
      -_artifactsLocation $(artifactsLocation) -_artifactsLocationSasToken (ConvertTo-SecureString -String "$(artifactsLocationSasToken)" -AsPlainText -Force)
      ```
      ![設定 [Azure 資源群組部署] 工作][17]
-7. 在新增所有必要的項目之後，儲存組建定義然後在頂端選擇 [將新組建排入佇列]。
+7. 您已新增 hello 所需的所有項目之後，儲存 hello 組建定義，然後選擇**新組建排入佇列**hello 頂端。
 
 ## <a name="next-steps"></a>後續步驟
-如需 Azure Resource Manager 和 Azure 資源群組的詳細資訊的詳細資訊，請參閱 [Azure Resource Manager 概觀](azure-resource-manager/resource-group-overview.md) 。
+讀取[Azure 資源管理員概觀](azure-resource-manager/resource-group-overview.md)toolearn 深入了解 Azure 資源管理員和 Azure 資源群組。
 
 [0]: ./media/vs-azure-tools-resource-groups-ci-in-vsts/walkthrough1.png
 [1]: ./media/vs-azure-tools-resource-groups-ci-in-vsts/walkthrough2.png

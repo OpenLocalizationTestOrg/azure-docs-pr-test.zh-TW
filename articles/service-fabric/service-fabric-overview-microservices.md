@@ -1,6 +1,6 @@
 ---
-title: "Azure 上的微服務簡介 | Microsoft Docs"
-description: "概述在現代應用程式開發中，為何使用微服務方法建置雲端應用程式很重要，以及 Azure Service Fabric 如何提供平台以達成此目標。"
+title: "在 Azure 上的 aaaIntroduction toomicroservices |Microsoft 文件"
+description: "建置雲端應用程式與 microservices 方法是很重要的現代應用程式開發，以及如何 Azure Service Fabric 提供平台 tooachieve 這的總覽。"
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/02/2017
 ms.author: msfussell
-ms.openlocfilehash: 53c142217c67465d29fa413f4edb4f96fcb4c6cc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b11920b9105e7575390e8fcf0d1ef6ab3c632978
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="why-a-microservices-approach-to-building-applications"></a>為何要用微服務方式建置應用程式？
-身為軟體開發人員，已熟悉思考如何將應用程式分解成元件部分。 它是物件導向、軟體抽象化和元件化的中心範型。 現在，這種分解經常以共用程式庫和技術層之間的類別與介面呈現。 通常是透過一種分層方法，有後端存放區、中間層商務邏輯和前端使用者介面 (UI)。 過去幾年來的變化  是身為開發人員的我們，開始為商業驅動和雲端建置分散式應用程式。
+# <a name="why-a-microservices-approach-toobuilding-applications"></a>為什麼 microservices 接近 toobuilding 應用程式嗎？
+身為軟體開發人員，已熟悉思考如何將應用程式分解成元件部分。 它是 hello 中央範例物件導向、 軟體的抽象概念和元件化。 現在，這個 factorization 傾向 tootake hello 表單的類別和介面之間共用程式庫和技術層級。 通常是透過一種分層方法，有後端存放區、中間層商務邏輯和前端使用者介面 (UI)。 什麼*具有*變更透過 hello 過去幾年來，我們，身為開發人員，建置是分散式的 hello 雲端應用程式和驅動 hello 的企業。
 
-變更的商務需求包括：
+hello 多變的商務需求如下：
 
-* 大規模建立和運作的服務，以便觸達新地理區域中的客戶 (舉例來說)。
-* 更快速提供特色與功能，靈活地回應客戶的需求。
-* 提高資源使用率來降低成本。
+* 服務的建置，且會在新的地理區域中的小數位數 tooreach 客戶運作 （例如）。
+* 更快的特色與功能 toobe 無法 toorespond toocustomer 要求敏捷的方式來傳遞。
+* 改善的資源使用量 tooreduce 成本。
 
 這些商務需求會影響我們「如何」  建置應用程式。
 
-如需 Azure 使用微服務之方式的詳細資訊，請參閱 [Microservices: An application revolution powered by the cloud (微服務︰採用雲端技術的應用程式革命)](https://azure.microsoft.com/blog/microservices-an-application-revolution-powered-by-the-cloud/)。
+Azure toomicroservices 的 hello 方法的相關資訊，請參閱[Microservices： 由 hello 雲端應用程式 revolution](https://azure.microsoft.com/blog/microservices-an-application-revolution-powered-by-the-cloud/)。
 
 ## <a name="monolithic-vs-microservice-design-approach"></a>單體式與微服務設計方法
-所有應用程式會隨著時間而演化。 成功的應用程式因為有實用性而演化。 失敗的應用程式不會演化，最後會取代。 問題在於：您現在對需求了解多少，以及未來有何變化？ 例如，假設您要建置某部門的報告應用程式。 您確定該應用程式會在您的公司範圍內，並且報告為短期報告。 那麼，您選擇的方法就會與要建置將視訊內容傳遞給數千萬客戶的服務不同。 
+所有應用程式會隨著時間而演化。 成功的應用程式的發展因 toopeople 很有用。 失敗的應用程式不會演化，最後會取代。 hello 問題： 多少執行您知道您的需求，而且什麼它們會在未來的 hello？ 例如，假設您要建置某部門的報告應用程式。 您已確定 hello 應用程式保持貴公司的 hello 範圍內，而且 hello 報表是很短。 您所選擇的方法，從不同說，建置的服務傳送數百萬個客戶的視訊內容 tootens。 
 
-在已知後來可以重新設計應用程式的情況下，有時向外尋求概念證明才是驅動因素。 從來不用卻過度設計並沒有太大意義。 這就是一般所謂的工程取捨。 另一方面，公司談論建置雲端時都會期望成長和使用量。 問題在於無法預期成長和範圍。 我們想要能夠迅速建立原型，同時還要了解我們正在通往未來成功的路徑上。 這是精簡的創業方法：建置、測量、學習及反覆執行。
+某些情況下，使用者入門內容 hello 門做為概念的證明是 hello 驅動因素，而您知道可以稍後會重新 hello 應用程式的設計。 從來不用卻過度設計並沒有太大意義。 它的 hello 一般工程取捨。 在 hello 相反地，當公司談論建置為 hello 雲端，hello 預期成長和使用方式。 hello 問題是，將無法預期的成長和小數位數。 我們希望 toobe 無法 tooprototype 快速時也知道我們會在未來的成功路徑 toodeal 上。 這是 hello 簡式的啟動方式： 建置、 量值、 了解，並逐一查看。
 
-在主從架構的時代，我們傾向專注於建立分層式應用程式，每一層都採用特定的技術。 已針對這些方法衍生出「單體式」應用程式一詞。 介面通常存在於各層之間，而在各層內的元件之間採用更緊密結合的設計。 開發人員設計並分解類別，將類別編譯成程式庫，然後連結起來成為一些可執行檔和 DLL。 
+在 hello 用戶端-伺服器紀元，我們傾向 toofocus 建置分層式的應用程式在每個階層中使用特定技術。 hello 詞彙*龐大*應用程式有一種，出現的這些方法。 hello 介面傾向 toobe hello 層之間，並在各層內的元件之間使用更緊密結合的設計。 開發人員設計並分解類別，將類別編譯成程式庫，然後連結起來成為一些可執行檔和 DLL。 
 
-這類單體式設計方法有一些優點。 設計通常比較簡單，元件之間通常透過處理序間通訊 (IPC) 而呼叫更快。 此外，每個人都只測試單一產品，人力資源運用更有效率。 缺點是分層式層級之間的結合緊密，以致您無法調整個別的元件。 如果您需要執行修正或升級，則必須等候其他人完成其測試。 更難以發揮靈活度。
+有優點 toosuch 僵化設計方法。 它通常是較簡單的 toodesign，並且它有快速的呼叫之間的元件，因為這些呼叫通常是透過處理序間通訊 (IPC)。 此外，每個人都測試單一產品，通常會 toobe 更多人資源的效率。 hello 缺點是階層式的圖層之間緊密結合在一起，而您無法調整個別的元件。 如果您需要 tooperform 修正或升級，您有其他人 toowait toofinish 其測試。 很難 toobe 敏捷式軟體開發。
 
-微服務可解決這些缺點，更密切配合上述的商務需求，但它們本身也都有優缺點。 微服務的優點是通常各自封裝較簡單的商務功能，您可以獨立地相應增加或減少、測試、部署和管理。 微服務方法的一個重要優點是團隊較具商務案例的導向，而不是分層方法所建議的技術導向。 實際上，較小的團隊會採用他們選擇的任何技術，根據客戶案例來開發微服務。 
+Microservices 解決這些缺點，更密切配合 hello 前面業務需求，但還具有優點和負債。 microservices hello 優點為每一個通常會封裝更簡單的商務功能，它相應增加或減少測試、 部署和獨立管理。 小組會導向多個商務案例比 hello 分層的方式的技術的微服務方法的重要優點是鼓勵。 實際上，較小的團隊會採用他們選擇的任何技術，根據客戶案例來開發微服務。 
 
-換句話說，組織不需要為了維護微服務應用程式而將技術標準化。 擁有服務的個別團隊可以根據團隊的專業知識，或什麼是最適合所要解決的問題，各自發揮所長。 實際上，最好有一組建議的技術，例如特定的 NoSQL 存放區或 Web 應用程式架構。
+換句話說，hello 組織不需要 toostandardize 技術 toomaintain 微服務應用程式。 個別團隊什麼意義，根據小組的專業知識，或最適當 toosolve hello 問題，可以自己的服務。 實際上，最好有一組建議的技術，例如特定的 NoSQL 存放區或 Web 應用程式架構。
 
-微服務的缺點包括需要管理越來越多的個別實體，以及處理更複雜的部署和版本控制。 微服務之間的網路流量會增加，而相對應的網路延遲也會增加。 經過大量論述之後，可知細微的服務是效能夢魘的解決良方。 如果沒有工具協助檢視這些相依性，很難「看見」整個系統。 
+管理不同的實體和處理更複雜的部署和版本控制的 hello 增加數目傳入 hello microservices 缺點。 Hello microservices 之間的網路流量增加以及 hello 對應的網路延遲。 經過大量論述之後，可知細微的服務是效能夢魘的解決良方。 沒有工具 toohelp 檢視這些相依性，很難太 「 看見 」 hello 整個系統。 
 
-標準會讓微服務方法奏效、在通訊方式上達成共識，以及只在乎您需要從服務取得什麼，而不是僵固的合約。 必須在設計的初期定義這些聯繫，因為服務會各自獨立地更新。 另一個在設計微服務方法時出現的描述是「細緻的服務導向架構 (SOA)」。
+標準進行 hello 微服務方法的運作方式是同意 toocommunicate 且容錯的只有 hello 事項您需要如何從一項服務，而不是固定的合約。 重要 toodefine hello 中這些最前面位置的合約設計，是因為服務彼此獨立更新。 另一個在設計微服務方法時出現的描述是「細緻的服務導向架構 (SOA)」。
 
-***簡而言之，微服務設計方法是低耦合的服務同盟，各自獨立變更，並達成一致的通訊標準。***
+***在最簡單 hello microservices 設計方式是關於解除解合通訊的服務，同意標準的獨立變更 tooeach 與同盟。***
 
-隨著越多的雲端應用程式產生，人們發現這種將整體應用程式分解成獨立、案例焦點式服務的做法，在長期上是較好的方法。
+人探索更多雲端應用程式所產生，因為此分解成獨立的案例已取得焦點的服務應用程式整體 hello 是長期更好的方法。
 
 ## <a name="comparison-between-application-development-approaches"></a>應用程式開發方法的比較
 ![Service Fabric 平台應用程式開發][Image1]
@@ -63,125 +63,125 @@ ms.lasthandoff: 08/03/2017
 
 3) 微服務應用程式會將個別功能分隔成個別較小的服務。
 
-4) 微服務方法可獨立部署每個服務而相應放大，跨伺服器/虛擬機器/容器建立這些服務的執行個體。
+4) hello microservices 方法標尺出藉由部署每個服務各自獨立地建立跨伺服器/虛擬機器的執行個體的這些服務/容器。
 
-使用微服務方法來設計並非所有專案的萬靈丹，但確實較符合稍早所述的商務目標。 如果您知道稍後將有機會將程式碼修改成微服務設計，或許可接受從單體方式開始著手。 較常見的情況是您從單體式應用程式開始著手，然後從需要更高調整性或靈活度的功能領域開始，分階段緩慢地將它拆解。
+設計與微服務方法並不是萬靈丹所有專案，但其未與先前所述的 hello 的商務目標更密切地對齊。 開始使用整合型的方法可以接受如果您知道，您將必須 hello 機會 toorework hello 將程式碼稍後 microservices 設計。 更常見的是，您以開頭整合的應用程式，緩時變分解在階段中，從 hello 需要 toobe 更可擴充或敏捷式軟體開發的功能區域。
 
-總而言之，微服務方法是以許多小型服務來組成應用程式。 這些服務會在部署於電腦叢集的容器中執行。 較小的團隊會開發著重於某個案例且獨立測試的服務、進行各服務的控制版本、部署和調整規模，所以應用程式可以整體演化。
+toosummarize，hello 微服務的方法是 toocompose 應用程式的許多小型的服務。 hello 服務執行跨機器的叢集部署的容器中。 以小型小組開發著重於案例的服務和獨立測試版本、 部署及調整每個服務，以便能持續改進 hello 整個應用程式。
 
 ## <a name="what-is-a-microservice"></a>什麼是微服務？
-有不同的微服務定義。 如果您搜尋網際網路，會發現許多有用的資源可提供自己的觀點和定義。 但在微服務的下列大部分特性上，已廣泛達成共識：
+有不同的微服務定義。 如果您搜尋 hello 網際網路時，您會發現許多實用的資源，提供他們自己的觀點和定義。 不過，大部分的下列特性的 microservices hello 會廣泛地同意：
 
-* 封裝客戶或商務案例。 您要解決什麼問題？
+* 封裝客戶或商務案例。 什麼是 hello 所解決的問題？
 * 由小型工程團隊開發。
 * 使用任何程式設計語言撰寫並使用任何架構。
 * 由獨立控制版本、部署及調整的程式碼和 (選擇性) 狀態所組成。
 * 透過定義完善的介面和通訊協定，與其他微服務互動。
-* 具有可用來解析位置的唯一名稱 (URL)。
-* 在失敗時維持一致且可用的。
+* 唯一的名稱 (Url) 使用的是 tooresolve 它們的位置。
+* 保持一致，而且用於失敗 hello 存在。
 
 您可以彙整這些特性︰
 
 ***微服務應用程式是由獨立控制版本和可調整的客戶焦點式服務所組成，這些服務透過標準通訊協定和定義完善的介面彼此通訊。***
 
-我們在上一節已說明前兩點，接下來將闡明並釐清其他各點。
+現在我們在上展開並釐清 hello 其他人和我們涵蓋 hello hello 前面一節中的前兩個點。
 
 ### <a name="written-in-any-programming-language-and-use-any-framework"></a>使用任何程式設計語言撰寫並使用任何架構。
-身為開發人員，我們應該根據本身的技術或服務需求，自由選擇我們想要的語言或架構。 在某些服務中，您可能認為 C++ 的效能優點勝於一切。 在其他服務中，C# 或 Java 的簡易管理開發可能才是最重要的。 在某些情況下，您可能需要使用特定的合作夥伴程式庫、資料儲存技術，或向用戶端公開服務的方式。
+身為開發人員，我們應該可用 toochoose 我們想根據我們的技術或 hello hello 服務需求的語言或架構。 在某些服務，您可能值優先於所有其他的 c + + hello 效能優點。 在其他服務，以 C# 或 Java managed 開發 hello 輕鬆可能是最重要。 在某些情況下，您可能需要 toouse 特定夥伴文件庫中，資料儲存技術，或公開的方法 hello 服務 tooclients。
 
-在選擇技術之後，接下來就是服務的操作或生命週期管理和調整。
+您已選擇一種技術之後，您會回到 toohello 操作或生命週期管理和調整 hello 服務。
 
-### <a name="allows-code-and-state-to-be-independently-versioned-deployed-and-scaled"></a>允許獨立控制版本、部署及調整的程式碼和狀態
-不論您選擇何種方式來撰寫微服務，程式碼和 (選擇性) 狀態都應該獨立地部署、升級及調整。 這確實是難以解決的問題之一，因為這涉及到您選擇的技術。 在調整方面，很不容易了解如何分割 (或分區化) 程式碼和狀態。 當程式碼和狀態使用不同的技術時 (目前的普遍情況)，微服務的部署指令碼必須能夠妥善調整兩者。 這也關乎靈活度和彈性，如此您就能升級部分微服務，而不需一次全部升級。
+### <a name="allows-code-and-state-toobe-independently-versioned-deployed-and-scaled"></a>可讓程式碼和狀態 toobe 獨立版本設定，部署，以及縮放
+不過您選擇 toowrite 您 microservices、 hello 程式碼和 （選擇性） hello 狀態應該獨立部署、 升級和縮放。 這是實際的困難問題 toosolve hello，因為這時候您就要 tooyour 技術的選擇。 縮放比例，了解如何 toopartition （或分區） 兩者會 hello 程式碼和狀態是一項挑戰。 當 hello 程式碼和狀態會使用不同的技術，是常見的今天，hello 部署指令碼，為您的微服務會需要 toobe 無法 toocope，連同調整兩者。 這也是關於靈活度和彈性，讓您可以升級 hello microservices 部分而不需要 tooupgrade 全部一次。
 
-暫時回到單體式和微服務方法的比較，下圖顯示狀態儲存方法的差異。
+傳回在當下 toohello 整合與微服務方法，hello 下列圖表顯示 hello 方法 toostoring 狀態中的 hello 差異。
 
 #### <a name="state-storage-between-application-styles"></a>應用程式樣式之間的狀態儲存
 ![Service Fabric 平台狀態儲存體][Image2]
 
-***左邊的單體式方法有單一資料庫和多層的特定技術。***
+***hello 左側的 hello 整合型方法有單一資料庫以及階層的特定技術。***
 
-***右邊的微服務方法有圖形顯示互連的微服務，其中狀態通常以微服務為範圍，並會使用各種技術。***
+***在右邊的 hello 的 hello microservices 方法有互連 microservices 其中狀態是通常已設定領域的 toohello 微服務，而使用各種技術的圖形。***
 
-在單體式方法中，應用程式通常會使用單一資料庫。 優點是這是單一位置，很容易部署。 每個元件可以有單一資料表來儲存其狀態。 挑戰之處在於團隊必須嚴格區分狀態。 無可避免地就想將新的資料行新增至現有的客戶資料表、在資料表之間執行聯結，以及對儲存層形成相依性。 發生這種情況後，您無法調整個別的元件。 
+在整合的方法中，通常 hello 應用程式會使用單一資料庫。 hello 優點是，它可讓您輕鬆 toodeploy 的單一位置。 每個元件可以有單一資料表 toostore 其狀態。 團隊必須 toostrictly 不同狀態，這是一項挑戰。 無可避免地有 temptations tooadd 新資料行 tooan 現有客戶資料表、 資料表之間進行 join 作業而建立 hello 儲存層的相依性。 發生這種情況後，您無法調整個別的元件。 
 
-在微服務方法中，每個服務都會管理並儲存自己的狀態。 每個服務負責同時調整程式碼和狀態，以滿足服務的需求。 缺點就是在需要建立應用程式資料的檢視或查詢時，您必須跨不同的狀態存放區進行查詢。 為了解決此問題，通常是由一個獨立的微服務建置一個跨許多微服務的檢視。 如果您需要在資料上執行多個即席查詢，則每個微服務應該考慮將其資料寫入資料倉儲服務，供離線分析。
+在 hello microservices 方法中，每個服務會管理及儲存自己的狀態。 每項服務負責縮放比例的 hello 服務的程式碼和狀態一起 toomeet hello 需求。 一個缺點是需要 toocreate 時檢視或查詢，您的應用程式資料，您需要跨不同的狀態存放區 tooquery。 為了解決此問題，通常是由一個獨立的微服務建置一個跨許多微服務的檢視。 如果您需要 tooperform hello 資料上的多個即席查詢，每個微服務應該考慮撰寫其資料 tooa 資料倉儲服務進行離線分析。
 
-版本控制是已部署的微服務版本所特有，以便部署和並行執行多個不同的版本。 當較新版的微服務在升級期間失敗，而需要回復至舊版時，版本控制可以解決這種情況。 版本控制的另一種情況是執行 A/B 樣式測試，其中不同的使用者會體驗到不同版本的服務。 比方說，在更廣泛推出新功能之前，通常會先針對一組特定的客戶升級微服務以測試新功能。 在微服務的生命週期管理之後，這現在會將我們帶往它們之間的通訊。
+版本設定是部署的特定 toohello 版微服務因此多個，不同版本的部署和並存執行。 版本控制位址 hello 案例較新版的微服務在升級期間發生失敗而需要 tooroll 後 tooan 較舊版本。 hello 其他案例進行版本控制正在執行 A/B 樣式測試不同的使用者體驗 hello 服務的不同版本的位置。 比方說，然後再發送多廣泛是常見 tooupgrade 一組特定的客戶 tootest 新功能的微服務。 之後的 microservices 生命週期管理時，現在這個引出 toocommunication 兩者之間。
 
 ### <a name="interacts-with-other-microservices-over-well-defined-interfaces-and-protocols"></a>透過定義完善的介面和通訊協定，與其他微服務互動
-本主題無需太多著墨，因為過去 10 年來發佈的大量服務導向架構文獻都已說明通訊模式。 一般而言，服務通訊使用 REST 方法，並搭配 HTTP 和 TCP 通訊協定及 XML 或 JSON 做為序列化格式。 從介面觀點來看，這是有關採用 Web 設計方法。 但並不禁止您使用二進位通訊協定或您自己的資料格式。 您公開的微服務會較難使用，要有心理準備。
+本主題需要少注意，因為已透過 hello 發行過去 10 年的服務導向架構的廣泛文獻描述通訊模式。 一般而言，服務通訊會使用其他方法 HTTP 和 TCP 通訊協定和 XML 或 JSON 做為 hello 序列化格式。 從介面的觀點而言，它是關於採用此種設計 hello web 方法。 但並不禁止您使用二進位通訊協定或您自己的資料格式。 準備的人 toohave 更難時間，使用您 microservices，如果公開使用這些項目。
 
-### <a name="has-a-unique-name-url-used-to-resolve-its-location"></a>具有可用來解析位置的唯一名稱 (URL)
-別忘了，我們一直表示微服務如何像 Web 一樣？ 就像 Web 一樣，微服務不論在何處執行，都必須可定址。 如果您正在考慮機器及哪一部要執行特定的微服務，很快就會陷入困境。 
+### <a name="has-a-unique-name-url-used-tooresolve-its-location"></a>唯一的名稱 (URL) 使用 tooresolve 具有它的位置
+還記得我們如何保留說 hello 微服務方法，就像是 hello web 嗎？ 就像 hello web、 您的微服務需要 toobe 可定址只要它正在執行。 如果您正在考慮機器及哪一部要執行特定的微服務，很快就會陷入困境。 
 
-就像 DNS 解析特定電腦的特定 URL 一樣，微服務需要有唯一的名稱，才可探索它目前所在的位置。 微服務需要有可定址的名稱，才能獨立於它們執行時所在的基礎結構之外。 這意味著服務的部署和探索方式之間會互相影響，因為需要有服務登錄。 同樣地，當電腦故障時，登錄服務必須告訴您服務現在執行所在的位置。 
+在 hello 相同方式 DNS 會解析特定 URL tooa 特定電腦，您的微服務需要 toohave 唯一的名稱，使其目前位置是可探索。 Microservices 需要可定址的名稱，因此獨立於 hello 基礎結構上執行。 這暗示會如何部署您的服務和其探索的方式之間的互動因為需要 toobe 服務登錄。 同樣地，當電腦失敗時，則 「 hello 登錄服務 」 必須告訴您其中 hello 服務現在正在執行。 
 
-接下來的課題：恢復能力和一致性。
+這會帶我們 toohello 下一個主題： 恢復功能和一致性。
 
-### <a name="remains-consistent-and-available-in-the-presence-of-failures"></a>失敗時維持一致且可用
-處理非預期的失敗是最難解決的問題之一，特別是在分散式系統中。 開發人員撰寫的程式碼大多是在處理例外狀況，這也是測試時花費最多時間的地方。 問題比撰寫程式碼來處理失敗更複雜。 當執行微服務的電腦故障時，該怎麼辦？ 您不僅需要偵測此微服務失敗 (本身就是棘手的問題)，還需要設法重新啟動微服務。 
+### <a name="remains-consistent-and-available-in-hello-presence-of-failures"></a>會維持一致且適用於失敗 hello 存在
+處理未預期的錯誤是其中一個最困難的問題 toosolve hello，尤其是在分散式系統。 大部分的 hello 我們身為開發人員撰寫的程式碼會處理例外狀況，而且這也 hello 大部分時間的測試。 hello 問題會比撰寫程式碼 toohandle 失敗更為複雜。 Hello hello 微服務執行所在的電腦失敗時，會發生什麼情況？ 不只執行您需要 toodetect 微服務失敗 （本身困難的問題），但您也需要的項目 toorestart 您的微服務。 
 
-微服務必須能夠從失敗中恢復，基於可用性理由，通常還必須在另一部電腦上重新啟動。 這也涉及到代表微服務儲存了何種狀態、微服務可從何處復原此狀態，以及微服務是否能夠順利重新啟動它。 換句話說，需要能夠恢復計算 (重新啟動處理序)，以及狀態或資料的恢復能力 (不遺失任何資料，資料保持一致)。
+微服務需要 toobe 彈性 toofailures 並重新啟動通常基於可用性的另一部電腦上。 這也會提供關閉儲存代表 hello 微服務，其中 hello 微服務可以復原，從這個狀態，以及是否 hello 微服務已成功為可以 toorestart toohello 狀態。 換句話說，需要 toobe 更有恢復 hello 計算 （hello 程序重新啟動） 以及更有恢復 hello 狀態或資料 （無資料遺失和 hello 資料保持一致的）。
 
-在其他情況下，恢復能力的問題更難處理，例如應用程式升級期間失敗。 在搭配部署系統一起運作時，微服務不需要復原。 它也需要判斷是否可以繼續升級到較新版本，還是復原為舊版來維護一致的狀態。 需要考慮一些問題，例如，是否有足夠的電腦可繼續升級，以及如何復原舊版的微服務。 這需要微服務發出狀況資訊，才能做出這些決定。
+hello 的恢復功能的問題會在其他案例，例如失敗時發生應用程式升級期間會更加惡化。 hello 微服務，使用 hello 部署系統，不需要 toorecover。 它也需要 toothen 決定它是否可以繼續 toomove 轉寄 toohello 較新版本，或改為復原先前版本 toomaintain tooa 一致的狀態。 這類電腦足以是否可用 tookeep 起 toorecover 舊版 hello 微服務需要 toobe 視為如何的問題。 這需要 hello 微服務 tooemit 健全狀況資訊 toobe 無法 toomake 這些決策。
 
 ### <a name="reports-health-and-diagnostics"></a>報告狀況和診斷
-微服務必須報告其健全狀況和診斷，這一點看似明顯，但卻經常被輕忽。 否則，難以從操作觀點上深入了解。 所面臨的挑戰是讓一組獨立服務的診斷事件相互關聯，並修正電腦時間差異以了解事件順序。 同樣地，透過同意的通訊協定和資料格式來與微服務互動時，需要將健全狀況和診斷事件的記錄方式標準化，這些事件最後會放入可供查詢和檢視的事件存放區。 在微服務方法中，關鍵在於不同團隊同意採用單一記錄格式。 需要有一致的方法可檢視整個應用程式中的診斷事件。
+微服務必須報告其健全狀況和診斷，這一點看似明顯，但卻經常被輕忽。 否則，難以從操作觀點上深入了解。 一組獨立的服務和處理很困難，toomake 意義 hello 事件順序的電腦時鐘偏差之間的關聯的診斷事件。 在 hello 您在透過同意通訊協定與資料互動的微服務相同的方式格式化、 那里轉換的標準化方式 toolog 健全狀況，以及最終都會在事件中的診斷事件存放區進行查詢和檢視中的需求。 在微服務方法中，關鍵在於不同團隊同意採用單一記錄格式。 需要 toobe hello 整個應用程式中的一致方法 tooviewing 診斷事件。
 
-狀況與診斷不同。 健全狀況是指微服務報告其目前狀態，以便採取適當的行動。 使用升級和部署機制來維護可用性是一個很好例子。 雖然目前服務可能由於處理序損毀或重新開機而狀況不良，但服務可能仍會運作。 您不應該執行升級而讓情況惡化。 最好是先進行調查，或讓微服務有時間復原。 微服務的健全狀況事件可協助我們做出明智的決策，實際上有助於建立自我修復的服務。
+狀況與診斷不同。 健全狀況是關於 hello 微服務報告其目前狀態 tootake 適當的動作。 升級與部署機制 toomaintain 可用性使用一個良好範例。 雖然服務可能是目前狀況不良，因為 tooa 處理序當機或電腦重新開機，hello 服務可能依然可運作。 您必須 hello 最後一件事是此變差 toomake 執行升級。 hello 最好的方法的第一個 toodo 進行調查，或允許 hello 微服務 toorecover 的時間。 微服務的健全狀況事件可協助我們做出明智的決策，實際上有助於建立自我修復的服務。
 
 ## <a name="service-fabric-as-a-microservices-platform"></a>Service Fabric 做為微服務平台
-Azure Service Fabric 源自於 Microsoft 從提供盒裝產品 (通常是單體式) 的轉換到提供服務。 建置和操作大型服務 (例如 Azure SQL Database、Azure Cosmos DB、圖形化 Service Fabric) 的經驗。 此平台已隨著越來越多的服務採用它而演化。 重要的是，Service Fabric 必須不僅在 Azure 中執行，還有在獨立式 Windows Server 部署中。
+Azure Service Fabric 中從方塊產品，已在樣式中，toodelivering 服務通常龐大出現從 microsoft 的轉換。 建立和操作大型的服務，例如 Azure SQL Database 和 Azure Cosmos DB 形狀 Service Fabric hello 體驗。 經過一段時間的 hello 平台發展，因為越來越多的服務採用它。 重要的是，Service Fabric 必須 toorun，而不只是在 Azure 中獨立 Windows 伺服器部署中。
 
-***Service Fabric 的目標是解決建置和執行服務方面的艱難問題，以及有效率地利用基礎結構資源，讓團隊可以使用微服務方法來解決商務問題。***
+***Service Fabric hello 目的 toosolve 建置和執行服務的 hello 艱難問題，且有效率地利用基礎結構資源，以便小組可以解決商務問題使用 microservices 方法。***
 
-Service Fabric 提供三個廣泛的領域，可協助您建置使用微服務方法的應用程式：
+Service Fabric 提供三個主要 toohelp 您建置應用程式，請使用 microservices 方法：
 
-* 一個提供系統服務的平台 - 這些服務可進行部署、升級、偵測及重新啟動失敗的服務、探索服務、路由傳送訊息、管理狀態，以及監視健康情況。 這些系統服務實際上具備上述微服務的許多特性。
-* 部署應用程式的能力 - 不論這些應用程式是在容器中執行，還是以處理序形式執行。 Service Fabric 是一個容器和處理序協調者。
-* 高生產力的程式設計 API - 可協助您將應用程式建置成微服務：[ASP.NET Core、Reliable Actors 及 Reliable Services](service-fabric-choose-framework.md)。 您可以選擇任何程式碼來建置微服務。 但使用這些 API 不僅可讓工作更簡單，也更深入地與平台整合。 例如，您可以取得健康狀態和診斷資訊，或利用內建的高可用性。
+* 提供系統服務 toodeploy，平台升級、 偵測，並重新啟動失敗的服務探索服務、 將訊息路由、 狀態，和監視健全狀況。 這些系統服務作用中實現許多 hello 特性 microservices 先前所述。
+* 在容器中，或做為任一個執行的處理能力 toodeploy 應用程式。 Service Fabric 是一個容器和處理序協調者。
+* 高生產力程式設計 Api，您建置應用程式為 microservices toohelp: [ASP.NET Core、 Reliable Actors 和可靠的服務](service-fabric-choose-framework.md)。 您可以選擇任何程式碼 toobuild 您的微服務。 但是這些 Api，讓 hello 工作更簡單，而且它們與更深層級的 hello 平台整合。 例如，您可以取得健康狀態和診斷資訊，或利用內建的高可用性。
 
-***Service Fabric 不會限制您建置服務的方式，您可以使用任何技術。不過，它提供可讓您輕鬆建置微服務的內建程式設計 API。***
+***Service Fabric 不會限制您建置服務的方式，您可以使用任何技術。不過，它提供內建的程式設計 Api，讓您更輕鬆 toobuild microservices。***
 
-### <a name="migrating-existing-applications-to-service-fabric"></a>將現有的應用程式移轉到 Service Fabric
-Service Fabric 的一個主要方法是重複使用現有的程式碼，而這些程式碼可接著藉由新的微服務來現代化。 應用程式的現代化階段有五個，而您可以在任何階段開始和停止。 這些階段包括：
+### <a name="migrating-existing-applications-tooservice-fabric"></a>移轉現有的應用程式 tooService 網狀架構
+索引鍵方法 tooService 網狀架構是 tooreuse 現有程式碼，然後可以使用新 microservices 現代化。 有五個階段 tooapplication 現代化，而且您可以啟動及停止在任何 hello 階段。 這些階段包括：
 
 1) 選擇一個傳統單體式應用程式
-2) 原封不動轉移 - 使用容器或客體可執行檔來裝載 Service Fabric 中現有的程式碼。
+2) 提起並移位-用於 Service Fabric 的容器或客體可執行檔 toohost 現有程式碼。
 3) 現代化 - 在現有的容器化程式碼之外，再加上新的微服務。 
-4) 創新 - 將單體完全根據需求拆解成微服務。
-5) 轉換成微服務 - 轉換現有的單體式應用程式，或建置新的原創應用程式。
+4) 創新-中斷 hello 龐大 microservices 單純地根據需求。
+5) 轉換成 microservices-hello 轉換現有的整合應用程式，或建立新的 「 綠地應用程式。
 
-![移轉成微服務][Image3]
+![移轉 tooMicroservices][Image3]
 
-再重新強調一遍，您可以**在這當中任何階段開始和停止**，不會被迫移至下一個階段。 現在，讓我們看看這每一個階段的範例。
+它是重要 tooemphasis 同樣地，您可以**啟動及停止在任何這些階段**，您不是被迫 toomoved toohello 下一個階段。 現在，讓我們看看這每一個階段的範例。
 
-**原封不動轉移** - 許多公司將現有單體式應用程式原封不動轉移到容器中的原因有兩個：
+**遷移**-會提升大量的公司和移位到容器 toofor 整合的現有應用程式的兩個原因;
 
-- 降低成本 - 不論是為了合併和移除現有的硬體，還是為了以更高密度的方式執行應用程式。 
+- 可能是因為 tooconsolidation 和移除的現有硬體或執行的應用程式在更高的密度的降低成本。 
 - 開發與作業之間的一致性部署合約。
 
-降低成本是可理解的，在 Microsoft 內，大量現有的應用程式都正透過容器化來節省數百萬美元。 一致性部署較難以評估，但同樣重要。 開發人員仍可自由選擇適合他們的技術，不過，作業將只接受單一的方式來部署和管理這些應用程式。 它緩和了作業必須處理許多不同技術的複雜性，或是強制開發人員只能選擇特定技術的情況。 基本上，每個應用程式都會透過容器化成為獨立性部署映像。
+成本大幅降低是容易了解，在 Microsoft 內會大量的現有應用程式容器化只要 toomillions 的 （美元）。 一致的部署是更難 tooevaluate，但同樣重要。 該處會指示開發人員可能仍為可用 toochoose hello 技術，該套件它們，不過 hello 作業只會接受單一方式 toodeploy 並管理這些應用程式。 它可減輕 hello 作業不需要的許多不同技術的 hello 複雜度 toodeal 或強制執行開發人員 tooonly 選擇特定的。 基本上，每個應用程式都會透過容器化成為獨立性部署映像。
 
-許多組織都在此停止。 它們已經享有容器的好處，而且 Service Fabric 提供包含了部署、升級、版本設定、復原、健康情況監視等完整的管理體驗。
+許多組織都在此停止。 他們已經有容器的 hello 優點，Service Fabric 提供 hello 完整管理體驗，包括部署、 升級、 版本控制、 復原等健全狀況監視。
 
-**現代化** - 是在現有的容器化程式碼之外，再加上新的服務。 如果您要撰寫新的程式碼，最好是決定順著微服務的路徑步步為營。 這可能是新增新的 REST API 端點，或是新的商務邏輯。 如此一來，您便開始了建置新微服務的旅程，以及練習開發和部署這些微服務。
+**現代化**-是新的服務，與現有的容器化程式碼一起 hello 新增。 如果您正在 toowrite 新的程式碼，則最佳 toodecide tootake 小步驟 hello microservices 路徑。 這可能是新增新的 REST API 端點，或是新的商務邏輯。 如此一來，您會開始建置新 microservices 和開發和部署的 hello 旅。
 
-**創新** - 還記得本文開頭那些促使採用微服務方法的原始變更業務需求嗎？ 在此階段，要判斷的是，這些情況是否發生在我目前的應用程式上，如果是，我便需要開始分割單體應用程式或進行創新。 這裡的其中一個範例，就是當資料庫因為作為工作流程佇列而變成處理瓶頸的時候。 隨著工作流程要求數目的增加，將需要分配工作來進行調整。 因此針對不進行調整或您需要更頻繁地更新的特定應用程式部分，請將此部分劃分出來成為微服務並進行創新。 
+**創新**-請記住這些原始多變的商務需求在 hello 開頭的本文中，隨著驅使 hello microservices 方法？ 在此階段 hello 決策是，這些狀況 toomy 目前應用程式，而且如果是，我需要 toostart 分割 hello monolith 或開創電腦科技。 這裡的其中一個範例，就是當資料庫因為作為工作流程佇列而變成處理瓶頸的時候。 做為工作流程的 hello 數增加 hello 的要求運作需求 toobe 發佈適用於小數位數。 因此 hello 應用程式不該特定部分的縮放比例，或您需要 tooupdate 多經常時分割成微服務及創新。 
 
-**轉換成微服務** - 這是應用程式完全由微服務構成 (或解構成微服務) 的階段。 到此階段，您已完成微服務旅程。 您可以從這裡開始，但是在沒有微服務平台來協助您的情況下執行此操作會是相當大的投資。 
+**轉換成微服務** - 這是應用程式完全由微服務構成 (或解構成微服務) 的階段。 tooreach 這裡，您所做 hello microservices 旅程。 您可以從這裡開始，但 toodo 這 microservices 平台 toohelp 不是大量投資。 
 
 ### <a name="are-microservices-right-for-my-application"></a>微服務適合我的應用程式嗎？
-可能。 根據我們的經驗，隨著 Microsoft 中越來越多團隊基於商業理由開始針對雲端進行建置，有許多團隊都了解到採用類似微服務的方法所帶來的優點。 例如，Bing 多年來一直在開發搜尋方面的微服務。 對於其他團隊而言，微服務方法很新穎。 團隊發現在他們的核心強項之外，還有需要解決的困難問題。 這就是為什麼 Service Fabric 受到重視而成為建置服務的最佳技術。
+可能。 我們的體驗已隨著 Microsoft 越來越多的小組開始 toobuild hello 雲端針對商業用途，其中許多實現 hello 優點採用類似微服務的方法。 例如，Bing 多年來一直在開發搜尋方面的微服務。 對於其他小組，hello microservices 方法，就是新。 小組發現了艱難問題 toosolve 強度核心範圍之外。 這就是為什麼 Service Fabric 獲得從此以後做選擇，來建置服務的 hello 技術。
 
-Service Fabric 的目標是將使用微服務方法建置應用程式時的複雜性降低，讓您不需要經歷許多耗費成本的重新設計工作。 方法就是從小規模開始、需要時調整、淘汰服務、加入新服務、隨客戶用法而演化。 我們也知道，為了讓微服務更易於為大部分開發人員所接受，還有許多其他尚待解決的問題。 容器和 Actor 程式設計模型都是朝此目標前進的一小步，我們確信將會浮現更多創新來輕鬆達成目標。
+Service Fabric hello 目標 tooreduce hello 的微服務方法使用建置應用程式變得複雜，許多最密切相關，所以您不需要為透過 toogo redesigns。 從小型專案開始和調整其規模需要時，服務已被取代，加入新的發展與客戶使用量是 hello 方法。 我們也會知道，還有許多其他問題 toobe 解決大部分的開發人員更容易實行 toomake microservices。 容器和 hello 執行者程式設計模型是小步驟，在該方向中的範例，而且我們確定的更多的創新便會浮現 toomake 這更容易。
  
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
+<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
 
 ## <a name="next-steps"></a>後續步驟
 * [Service Fabric 術語概觀](service-fabric-technical-overview.md)
-* [微服務︰採用雲端技術的應用程式革命](https://azure.microsoft.com/en-us/blog/microservices-an-application-revolution-powered-by-the-cloud/)
+* [Microservices： 由 hello 雲端應用程式 revolution](https://azure.microsoft.com/en-us/blog/microservices-an-application-revolution-powered-by-the-cloud/)
 
 [Image1]: media/service-fabric-overview-microservices/monolithic-vs-micro.png
 [Image2]: media/service-fabric-overview-microservices/statemonolithic-vs-micro.png

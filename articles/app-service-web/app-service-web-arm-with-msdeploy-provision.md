@@ -1,6 +1,6 @@
 ---
-title: "使用 MSDeploy、主機名稱與 SSL 憑證部署 Web 應用程式"
-description: "使用 Azure 資源管理員範本，透過 MSDeploy 及藉由設定自訂主機名稱與 SSL 憑證來部署 Web 應用程式"
+title: "aaaDeploy MSDeploy 使用主機名稱與 ssl 憑證的 web 應用程式"
+description: "使用 Azure Resource Manager 範本 toodeploy web 應用程式使用 MSDeploy 和設定自訂主機名稱與 SSL 憑證"
 services: app-service\web
 manager: erikre
 documentationcenter: 
@@ -13,30 +13,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2016
 ms.author: jodehavi
-ms.openlocfilehash: a0e944d0d74ecb72a919538d54db330cbbdeef64
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ac13f4a7d14ae182e8e7ced5adff30491422d1e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-a-web-app-with-msdeploy-custom-hostname-and-ssl-certificate"></a>使用 MSDeploy、自訂主機名稱與 SSL 憑證部署 Web 應用程式
-本指南將逐步說明如何利用 MSDeploy，以及將自訂主機名稱和 SSL 憑證新增至 ARM 範本，以建立 Azure Web 應用程式的端對端部署。
+本指南逐步建立端對端部署為 Azure Web 應用程式、 利用 MSDeploy，以及新增自訂主機名稱與 SSL 憑證 toohello ARM 範本。
 
 如需關於建立範本的詳細資訊，請參閱 [編寫 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
 ### <a name="create-sample-application"></a>建立範例應用程式
-您將部署 ASP.NET Web 應用程式。 第一個步驟是建立簡單的 Web 應用程式 (或者，您可以選擇使用現有的應用程式；若是如此，您可以略過此步驟)。
+您將部署 ASP.NET Web 應用程式。 hello 第一個步驟是 toocreate 簡單 web 應用程式 （或您可以選擇 toouse 現有-在此情況下略過此步驟）。
 
-開啟 Visual Studio 2015，然後選擇 [檔案] > [新增專案]。 在出現的對話方塊上，選擇 [Web] > [ASP.NET Web 應用程式]。 在 [範本] 下選擇 [Web]，然後選擇 MVC 範本。 將 [變更驗證類型] 設定為 [不需要驗證]。 這是為了讓範例應用程式盡可能簡單。
+開啟 Visual Studio 2015，然後選擇 [檔案] > [新增專案]。 在 hello 對話方塊上選擇 Web > ASP.NET Web 應用程式。 在 範本選擇 Web 並選擇 hello MVC 範本。 選取*變更驗證類型*太*非驗證*。 這是只 toomake hello 範例應用程式越簡單越好。
 
-此時，您將會有已備妥而可在部署程序中使用的基本 ASP.Net Web 應用程式。
+此時您會有基本 ASP.Net web 應用程式準備好 toouse 做為您的部署程序的一部分。
 
 ### <a name="create-msdeploy-package"></a>建立 MSDeploy 封裝
-下一個步驟是建立用以將 Web 應用程式部署至 Azure 的封裝。 若要這樣做，請儲存您的專案，然後從命令列中執行下列命令：
+下一個步驟是 toocreate hello 封裝 toodeploy hello web 應用程式 tooAzure。 toodo，儲存您的專案，然後從 hello 命令列執行 hello 下列：
 
     msbuild yourwebapp.csproj /t:Package /p:PackageLocation="path\to\package.zip"
 
-這將會在 PackageLocation 資料夾下建立壓縮的封裝。 應用程式現在已可供部署；您現在可以建置 Azure 資源管理員範本來執行此作業。
+這會建立壓縮的封裝 hello PackageLocation 資料夾下。 hello 應用程式是現在已準備 toobe 部署，您現在可以建置出 Azure Resource Manager 範本 toodo 的。
 
 ### <a name="create-arm-template"></a>建立 ARM 範本
 首先，我們先從會建立 Web 應用程式和主控方案的基本 ARM 範本開始 (請注意，為求簡潔，並不會顯示參數和變數)。
@@ -75,7 +75,7 @@ ms.lasthandoff: 08/29/2017
         }
     }
 
-接下來，您必須修改 Web 應用程式資源，以取用巢狀 MSDeploy 資源。 這可讓您參考稍早建立的封裝，並指示 Azure 資源管理員使用 MSDeploy 將封裝部署至 Azure WebApp。 以下顯示具有巢狀 MSDeploy 資源的 Microsoft.Web/網站資源：
+接下來，您將需要 toomodify hello web 應用程式資源 tootake 巢狀的 MSDeploy 資源。 這將允許您 tooreference hello 套件之前建立，並告訴 Azure Resource Manager toouse MSDeploy toodeploy hello 封裝 toohello Azure WebApp。 hello 下列範例示範使用巢狀的 hello MSDeploy 資源 hello Microsoft.Web/sites 資源：
 
     {
         "name": "[variables('webAppName')]",
@@ -117,13 +117,13 @@ ms.lasthandoff: 08/29/2017
         ]
     }
 
-現在您會注意到 MSDeploy 資源取用定義如下的 **packageUri** 屬性：
+現在您會注意到接受該 hello MSDeploy 資源**packageUri**屬性定義，如下所示：
 
     "packageUri": "[concat(parameters('_artifactsLocation'), '/', parameters('webDeployPackageFolder'), '/', parameters('webDeployPackageFileName'), parameters('_artifactsLocationSasToken'))]"
 
-此 **packageUri** 會取用一個儲存體帳戶 URI，該 URI 指向您的封裝 zip 所將上傳到的儲存體帳戶。 當您部署範本時，Azure 資源管理員會利用 [共用存取簽章](../storage/common/storage-dotnet-shared-access-signature-part-1.md) 從儲存體帳戶將封裝提取到本機。 此程序就會透過 PowerShell 指令碼而自動化，將封裝上傳，並呼叫 Azure 管理 API，以建立所需的金鑰，並將其傳入範本中做為參數 (_artifactsLocation 和 _artifactsLocationSasToken)。 您將必須針對封裝在儲存體容器下所將上傳到的資料夾和檔案名稱定義參數。
+這**packageUri**採用 hello toohello 儲存體帳戶，您將上傳至您封裝 zip 指向儲存體帳戶 uri。 hello Azure 資源管理員將會利用[共用存取簽章](../storage/common/storage-dotnet-shared-access-signature-part-1.md)toopull hello 封裝向 hello 儲存體帳戶，當您部署的 hello 範本從本機。 此程序將會自動透過 PowerShell 指令碼，將 hello 套件上傳及呼叫所需的 hello Azure 管理 API toocreate hello 金鑰並將那些 hello 範本到當做參數傳遞 (*_artifactsLocation*和*_artifactsLocationSasToken*)。 您將需要 toodefine 參數 hello 資料夾和檔案名稱 hello 封裝是上傳的 toounder hello 儲存體容器。
 
-接著，您必須在其他巢狀資源中新增，以設定主機名稱繫結來利用自訂網域。 首先，您必須確定您擁有主機名稱，然後加以設定，使其由 Azure 驗證您具有其所有權 - 請參閱 [在 Azure App Service 中設定自訂網域名稱](app-service-web-tutorial-custom-domain.md)。 完成此動作後，您可以在 Microsoft.Web/網站資源區段下新增下列項目：
+接下來，您必須在另一個巢狀的資源 toosetup hello 主機名稱繫結 tooleverage 自訂網域 tooadd。 您將第一個需要 tooensure 您擁有 hello 主機名稱，並將它設定 toobe 通過 Azure 的驗證您擁有該-請參閱[Azure App Service 中設定自訂網域名稱](app-service-web-tutorial-custom-domain.md)。 完成之後，您可以新增下列 tooyour 範本 hello Microsoft.Web/sites 資源區段下的 hello:
 
     {
         "apiVersion": "2015-08-01",
@@ -139,7 +139,7 @@ ms.lasthandoff: 08/29/2017
         }
     }
 
-最後，您必須新增另一項最上層資源 Microsoft.Web/憑證。 此資源將包含您的 SSL 憑證，且會與 Web 應用程式和主控方案存在於相同的層級。
+最後您需要 tooadd 另一個最上層資源，Microsoft.Web/certificates。 此資源將會包含您的 SSL 憑證，並將存在於相同的層級與您的 web 應用程式和主控計劃的 hello。
 
     {
         "name": "[parameters('certificateName')]",
@@ -152,25 +152,25 @@ ms.lasthandoff: 08/29/2017
         }
     }
 
-您必須具備有效的 SSL 憑證，才能設定這項資源。 如果您已具備有效憑證，接著必須要以 base64 字串的形式擷取 pfx 位元組。 要擷取此項目，使用下列 PowerShell 命令是選項之一：
+您將需要 toohave 順序 tooset 此資源的有效 SSL 憑證。 一旦您擁有該有效的憑證然後您需要 tooextract hello pfx 位元組做為 base64 字串。 其中一個選項 tooextract 這是 toouse hello 下列 PowerShell 命令：
 
     $fileContentBytes = get-content 'C:\path\to\cert.pfx' -Encoding Byte
 
     [System.Convert]::ToBase64String($fileContentBytes) | Out-File 'pfx-bytes.txt'
 
-接著，您可以將此項目傳遞至 ARM 部署範本做為參數。
+接著，您無法將此做為參數 tooyour ARM 部署範本。
 
-至此，ARM 範本已準備就緒。
+現在已可 hello ARM 範本。
 
 ### <a name="deploy-template"></a>部署範本
-最後的步驟是將各個項目整合為完整的端對端部署。 若要簡化部署，您可以利用您在 Visual Studio 中建立 Azure 資源群組專案時所新增的 **Deploy-AzureResourceGroup.ps1** PowerShell 指令碼，來上傳範本中所需的任何構件。 若要這麼做，您必須事先建立您要使用的儲存體帳戶。 在此範例中，我針對要上傳的 package.zip 建立了共用儲存體帳戶。 指令碼會利用 AzCopy 將封裝上傳至儲存體帳戶。 在您傳入構件資料夾位置後，指令碼會自動將該目錄中的所有檔案上傳至指定的儲存體容器。 在呼叫 Deploy-AzureResourceGroup.ps1 之後，您必須更新 SSL 繫結，以對應自訂主機名稱與您的 SSL 憑證。
+hello 最後一個步驟是 toopiece 這全部整合至完整端對端部署。 toomake 部署更容易，您可以利用 hello **Deploy-azureresourcegroup.ps1**您建立 Azure 資源群組專案在 Visual Studio toohelp 與上傳所需要的任何成品時所加入的 PowerShell 指令碼hello 範本。 它需要您 toohave 建立您想事先 toouse 之儲存體帳戶。 例如，我要建立 hello package.zip toobe 上傳的共用儲存體帳戶。 hello 指令碼將會利用 AzCopy tooupload hello 封裝 toohello 儲存體帳戶。 您傳遞您成品的資料夾位置，然後 hello 指令碼將會自動上傳該目錄 toohello，名為儲存體容器中的所有檔案。 在呼叫 Deploy-azureresourcegroup.ps1 之後您尚未 toothen 更新 hello SSL 繫結 toomap hello 自訂主機名稱與您的 SSL 憑證。
 
-下列 PowerShell 顯示呼叫 Deploy-AzureResourceGroup.ps1 的完整部署：
+下列 PowerShell 顯示 hello hello 完整部署呼叫 hello 部署-AzureResourceGroup.ps1:
 
     #Set resource group name
     $rgName = "Name-of-resource-group"
 
-    #call deploy-azureresourcegroup script to deploy web app
+    #call deploy-azureresourcegroup script toodeploy web app
 
     .\Deploy-AzureResourceGroup.ps1 -ResourceGroupLocation "East US" `
                                     -ResourceGroupName $rgName `
@@ -181,7 +181,7 @@ ms.lasthandoff: 08/29/2017
                                     -TemplateParametersFile "web-app-deploy-parameters.json" `
                                     -ArtifactStagingDirectory "C:\path\to\packagefolder\"
 
-    #update web app to bind ssl certificate to hostname. This has to be done after creation above.
+    #update web app toobind ssl certificate toohostname. This has toobe done after creation above.
 
     $cert = Get-PfxCertificate -FilePath C:\path\to\certificate.pfx
 
@@ -195,5 +195,5 @@ ms.lasthandoff: 08/29/2017
 
     Set-AzureRmResource -ApiVersion 2014-11-01 -Name nameofwebsite -ResourceGroupName $rgName -ResourceType Microsoft.Web/sites -PropertyObject $props
 
-此時，您的應用程式應已部署，且您應能夠透過 https://www.yourcustomdomain.com 加以瀏覽
+此時您的應用程式應該已部署，您應該能夠 toobrowse tooit 透過 https://www.yourcustomdomain.com
 

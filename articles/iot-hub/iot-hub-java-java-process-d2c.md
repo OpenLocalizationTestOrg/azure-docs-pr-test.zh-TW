@@ -1,6 +1,6 @@
 ---
-title: "處理 Azure IoT 中樞的裝置到雲端訊息 (Java) | Microsoft Docs"
-description: "如何使用路由規則和自訂端點來處理 IoT 中樞的裝置到雲端訊息，以將訊息分派至其他後端服務。"
+title: "aaaProcess Azure IoT Hub 裝置到雲端訊息 (Java) |Microsoft 文件"
+description: "如何使用路由規則和自訂端點 toodispatch IoT 中樞裝置到雲端訊息 tooprocess 訊息 tooother 後端服務。"
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/29/2017
 ms.author: dobett
-ms.openlocfilehash: d1aca8f39e305105d4ec9f63fbe7bee95487e294
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 084e84e721ca4297c4d7d6cb06a43b0bed9bce85
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="process-iot-hub-device-to-cloud-messages-java"></a>處理 IoT 中樞的裝置到雲端訊息 (Java)
 
 [!INCLUDE [iot-hub-selector-process-d2c](../../includes/iot-hub-selector-process-d2c.md)]
 
-Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。 其他教學課程 ([開始使用IoT 中樞入門]和[使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d]) 說明如何使用 IoT 中樞的裝置到雲端和雲端到裝置的基本傳訊功能。
+Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。 其他教學課程 ([開始使用 IoT 中樞]和[傳送雲端到裝置訊息與 IoT 中樞][lnk-c2d]) 顯示如何 toouse hello 基本裝置到雲端 」 和 「 雲端到裝置IoT 中樞的傳訊功能。
 
-本教學課程是以 [開始使用IoT 中樞入門]中顯示的程式碼為基礎，並示範如何使用訊息路由以可調整的方式來處理裝置到雲端訊息。 本教學課程說明如何從解決方案後端處理需要立即採取行動的訊息。 例如，裝置可能會傳送一則警示訊息，以觸發將票證插入 CRM 系統的作業。 相較之下，資料點訊息只會饋送至分析引擎。 例如，來自裝置且要儲存以供日後分析的溫度遙測就是資料點訊息。
+本教學課程是 hello 程式碼所示 hello[開始使用 IoT 中樞]教學課程中，並顯示 toouse 可擴充的方式郵件路由 tooprocess 裝置到雲端訊息的方式。 hello 教學課程說明如何 tooprocess 訊息需要立即採取行動 hello 方案從後端。 例如，裝置可能會傳送一則警示訊息，以觸發將票證插入 CRM 系統的作業。 相較之下，資料點訊息只會饋送至分析引擎。 例如，從 toobe 儲存供稍後分析的裝置的溫度遙測是資料點的訊息。
 
-在本教學課程結尾，您會執行三個 Java 主控台應用程式：
+在本教學課程的 hello 最後，您可以執行三個 Java 主控台應用程式：
 
-* **simulated-device**(在 [開始使用IoT 中樞入門] 教學課程中建立之應用程式的已修改版本) 會每秒傳送資料點裝置到雲端訊息，以及每 10 秒傳送互動式裝置到雲端訊息。 此應用程式會使用 AMQP 通訊協定與「IoT 中樞」進行通訊。
-* **read-d2c-messages** 會顯示您的裝置應用程式所傳送的遙測資料。
-* **read-critical-queue** 可從連接到 IoT 中樞的服務匯流排佇列中移除重要訊息。
+* **模擬裝置**，hello hello 中建立的應用程式的修改的版本[開始使用 IoT 中樞]教學課程中，傳送的資料點裝置到雲端訊息每秒，而互動式裝置到雲端訊息每隔 10秒數。 此應用程式使用 hello AMQP 通訊協定 toocommunicate 與 IoT 中樞。
+* **閱讀 d2c 郵件**會顯示您裝置的應用程式所傳送的 hello 遙測。
+* **讀取關鍵佇列**取消佇列 hello 重大訊息從 hello Service Bus 佇列附加 toohello IoT 中樞。
 
 > [!NOTE]
-> IoT 中樞對於許多裝置平台和語言 (包括 C、Java 和 JavaScript) 提供 SDK 支援。 如需了解如何以實體裝置取代本教學課程中的裝置，以及如何將裝置連接到「IoT 中樞」，請參閱 [Azure IoT 開發人員中心]。
+> IoT 中樞對於許多裝置平台和語言 (包括 C、Java 和 JavaScript) 提供 SDK 支援。 如需如何 tooreplace hello 本教學課程中使用實體裝置，裝置的指示和如何 tooconnect 裝置 tooan IoT 中樞，請參閱 hello [Azure IoT 開發人員中心]。
 
-若要完成此教學課程，您需要下列項目：
+toocomplete 本教學課程中，您需要遵循的 hello:
 
-* [開始使用IoT 中樞入門] 教學課程的完整運作版本。
-* 最新的 [Java SE 開發套件 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* 完成的工作版的 hello[開始使用 IoT 中樞]教學課程。
+* 最新 hello [Java SE 開發套件 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Maven 3](https://maven.apache.org/install.html)
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立 [免費帳戶][lnk-free-trial])。
 
 您應具備 [Azure 儲存體]和 [Azure 服務匯流排]的基本知識。
 
 ## <a name="send-interactive-messages-from-a-device-app"></a>從裝置應用程式傳送互動式訊息
-在本節中，您會修改您在[開始使用IoT 中樞入門]教學課程中建立的裝置應用程式，偶爾傳送需要立即處理的訊息。
+在本節中，您將修改 hello 裝置應用程式，您可以在 hello[開始使用 IoT 中樞]教學課程 toooccasionally 傳送需要立即處理的訊息。
 
-1. 使用文字編輯器來開啟 simulated-device\src\main\java\com\mycompany\app\App.java 檔案。 這個檔案包含您在 **開始使用 IoT 中樞** 教學課程中建立的 [開始使用IoT 中樞入門] 應用程式。
+1. 使用文字編輯器 tooopen hello simulated-device\src\main\java\com\mycompany\app\App.java 檔案。 這個檔案包含 hello hello 碼**模擬裝置**hello 中建立的應用程式[開始使用 IoT 中樞]教學課程。
 
-2. 以下列程式碼取代 **MessageSender** 類別：
+2. 取代 hello **MessageSender**類別以下列程式碼的 hello:
 
     ```java
     private static class MessageSender implements Runnable {
@@ -99,53 +99,53 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
     }
     ```
    
-    這個方法會隨機將 `"level": "critical"` 屬性新增至裝置所傳送的訊息，該裝置會模擬需要應用程式後端立即採取行動的訊息。 應用程式會在訊息屬性中傳遞此資訊，而不是在訊息主體中傳遞，因此 IoT 中樞可以將訊息路由傳送至適當的訊息目的地。
+    此方法會隨機將 hello 屬性`"level": "critical"`toomessages 傳送 hello 裝置，這將模擬 hello 應用程式後端時，需要立即採取行動的訊息。 hello 應用程式將此資訊傳遞在 hello 訊息內容中，而不是在 hello 訊息主體中，因此該 IoT 中樞可以路由傳送 hello 訊息 toohello 適當訊息目的地。
    
    > [!NOTE]
-   > 除了此處顯示的最忙碌路徑範例以外，您可以使用訊息屬性來路由傳送各種案例的訊息，包括冷門路徑處理。
+   > 您可以使用訊息內容 tooroute 訊息各種案例，包括冷路徑的處理，此外 toohello 最忙碌路徑範例所示。
 
-2. 儲存並關閉 simulated-device\src\main\java\com\mycompany\app\App.java 檔案。
+2. 儲存並關閉 hello simulated-device\src\main\java\com\mycompany\app\App.java 檔案。
 
     > [!NOTE]
-    > 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章 [Transient Fault Handling (暫時性錯誤處理)]所建議來實作重試原則 (例如指數型輪詢)。
+    > 為了簡化的 hello 起見，本教學課程未實作任何重試原則。 在實際執行程式碼，您應該實作重試原則，例如 hello MSDN 文章中建議的指數型撤退[暫時性錯誤處理]。
 
-3. 若要使用 Maven 建置 **simulated-device** 應用程式，請在命令提示字元中的 simulated-device 資料夾內執行下列命令：
+3. toobuild hello**模擬裝置**使用 Maven，應用程式執行下列命令在 hello hello 模擬裝置資料夾中的命令提示字元的 hello:
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
-## <a name="add-a-queue-to-your-iot-hub-and-route-messages-to-it"></a>將佇列新增至 IoT 中樞並將訊息路由傳送至該佇列
+## <a name="add-a-queue-tooyour-iot-hub-and-route-messages-tooit"></a>新增佇列 tooyour IoT 中樞與路由訊息 tooit
 
-本節中，您會建立服務匯流排佇列、將它連接到您的 IoT 中樞，以及設定您的 IoT 中樞，進而根據訊息的屬性目前狀態，將訊息傳送至佇列。 如需有關如何處理來自服務匯流排佇列之訊息的詳細資訊，請參閱[開始使用佇列][lnk-sb-queues-java]。
+在本節中，您可以建立服務匯流排佇列、 tooyour IoT 中樞時，將它連接並設定 IoT 中樞 toosend 訊息 toohello 佇列根據 hello hello 訊息上的屬性存在。 如需如何 tooprocess 訊息從服務匯流排佇列的詳細資訊，請參閱[開始使用佇列][lnk-sb-queues-java]。
 
-1. 如[開始使用佇列][lnk-sb-queues-java]所述，建立服務匯流排佇列。 記下命名空間和佇列名稱。
+1. 如[開始使用佇列][lnk-sb-queues-java]所述，建立服務匯流排佇列。 記下 hello 命名空間和佇列名稱。
 
-2. 在 Azure 入口網站中，開啟 IoT 中樞然後按一下 [端點]。
+2. 在 hello Azure 入口網站，開啟您的 IoT 中樞，然後按一下**端點**。
 
     ![IoT 中樞端點][30]
 
-3. 在 [端點] 刀鋒視窗中，按一下頂端的 [新增] 將您的佇列新增至 IoT 中樞。 將端點命名為 **CriticalQueue**，並使用下拉式清單來選取 [服務匯流排佇列]、您的佇列所在的服務匯流排命名空間，以及您的佇列名稱。 完成時，請按一下底部的 [儲存]。
+3. 在 hello**端點**刀鋒視窗中，按一下 **新增**在 hello 頂端 tooadd 佇列 tooyour IoT 中樞。 名稱 hello 端點**CriticalQueue**並用 hello 下拉式清單 tooselect **Service Bus 佇列**、 hello 佇列所在的服務匯流排命名空間和 hello 您的佇列名稱。 當您完成之後時，按一下 **儲存**hello 底部。
 
     ![新增端點][31]
 
-4. 現在按一下 IoT 中樞中的 [路由]。 按一下刀鋒視窗頂端的 [新增] 來建立路由規則，以便將訊息路由傳送至您剛才新增的佇列。 選取 **DeviceTelemetry** 做為資料來源。 輸入 `level="critical"` 做為條件，然後選擇您剛才新增為自訂端點的佇列做為路由規則端點。 完成時，請按一下底部的 [儲存]。
+4. 現在按一下 IoT 中樞中的 [路由]。 按一下**新增**頂端 hello hello 刀鋒視窗 toocreate 加入路由傳送訊息 toohello 佇列只路由規則。 選取**DeviceTelemetry** hello 的資料來源。 輸入`level="critical"`做為 hello 條件，然後選擇您剛才加入做為自訂的端點，如 hello 路由規則端點 hello 佇列。 當您完成之後時，按一下 **儲存**hello 底部。
 
     ![新增路由][32]
 
-    確定後援路由設定為 [開啟]。 此設定為 IoT 中樞的預設設定。
+    請確定 hello 後援路由設定得**ON**。 IoT 中樞 hello 預設設定此設定。
 
     ![後援路由][33]
 
-## <a name="optional-read-from-the-queue-endpoint"></a>(選用) 從佇列端點讀取
+## <a name="optional-read-from-hello-queue-endpoint"></a>（選擇性）讀取 hello 佇列端點
 
-您可以依照[開始使用佇列][lnk-sb-queues-java]中的指示，選擇性地從佇列端點讀取訊息。 將應用程式命名為 **read-critical-queue**。
+您可以選擇性地讀取 hello 訊息 hello 佇列端點中的 hello 指示[開始使用佇列][lnk-sb-queues-java]。 名稱 hello 應用程式**讀取關鍵佇列**。
 
-## <a name="run-the-applications"></a>執行應用程式
+## <a name="run-hello-applications"></a>執行 hello 應用程式
 
-現在您已經準備好執行這三個應用程式。
+現在您已準備好 toorun hello 三個應用程式。
 
-1. 若要執行 **read-d2c-messages** 應用程式，請在命令提示字元或殼層中，瀏覽至 read-d2c 資料夾，然後執行下列命令：
+1. toorun hello**閱讀 d2c 郵件**應用程式，在命令提示字元或殼層巡覽 toohello 讀取 d2c 資料夾，並執行下列命令的 hello:
 
    ```cmd/sh
    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
@@ -153,7 +153,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
    ![執行 read-d2c-messages][readd2c]
 
-2. 若要執行 **read-critical-queue** 應用程式，請在命令提示字元或殼層中，瀏覽至 read-critical-queue 資料夾，然後執行下列命令：
+2. toorun hello**讀取關鍵佇列**應用程式，在命令提示字元或殼層巡覽 toohello 讀取關鍵佇列資料夾，並執行下列命令的 hello:
 
    ```cmd/sh
    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
@@ -161,7 +161,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
    
    ![執行 read-critical-messages][readqueue]
 
-3. 若要執行 **simulated-device** 應用程式，請在命令提示字元或殼層中，瀏覽至 [simulated-device] 資料夾，然後執行下列命令：
+3. toorun hello**模擬裝置**應用程式中的，在命令提示字元或殼層巡覽 toohello 模擬裝置資料夾，並執行下列命令的 hello:
 
    ```cmd/sh
    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
@@ -171,15 +171,15 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已學到如何使用 IoT 中樞的訊息路由功能來可靠地分派裝置到雲端訊息。
+在本教學課程中，您學會如何 tooreliably 裝置到雲端訊息分派使用 IoT 中樞的 hello 訊息路由功能。
 
-[如何使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d]示範如何從解決方案後端將訊息傳送至您的裝置。
+hello [toosend 雲端到裝置與 IoT 中樞的訊息][ lnk-c2d]顯示 toosend 訊息從您的方案後端 tooyour 裝置的方式。
 
-若要查看使用 IoT 中樞的完整端對端解決方案範例，請參閱 [Azure IoT 套件][lnk-suite]。
+完整的端對端解決方案使用 IoT 中樞 toosee 範例請參閱[Azure IoT 套件][lnk-suite]。
 
-若要深入了解如何使用 IoT 中樞開發解決方案，請參閱 [IoT 中樞開發人員指南]。
+toolearn 進一步了解開發與 IoT 中樞的解決方案，請參閱 「 hello [IoT 中樞開發人員指南]。
 
-若要深入了解 IoT 中樞的訊息路由，請參閱[使用 IoT 中樞傳送和接收訊息][lnk-devguide-messaging]。
+請參閱詳細訊息路由在 IoT 中樞 toolearn[傳送和接收訊息與 IoT 中樞][lnk-devguide-messaging]。
 
 <!-- Images. -->
 <!-- TODO: UPDATE PICTURES -->
@@ -201,9 +201,9 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 [IoT 中樞開發人員指南]: iot-hub-devguide.md
 [lnk-devguide-messaging]: iot-hub-devguide-messaging.md
-[開始使用IoT 中樞入門]: iot-hub-java-java-getstarted.md
+[開始使用 IoT 中樞]: iot-hub-java-java-getstarted.md
 [Azure IoT 開發人員中心]: https://azure.microsoft.com/develop/iot
-[Transient Fault Handling (暫時性錯誤處理)]: https://msdn.microsoft.com/library/hh675232.aspx
+[暫時性錯誤處理]: https://msdn.microsoft.com/library/hh675232.aspx
 
 <!-- Links -->
 [暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx

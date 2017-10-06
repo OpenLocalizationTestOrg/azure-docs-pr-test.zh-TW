@@ -1,6 +1,6 @@
 ---
-title: "使用 Visual Studio 部署 WebJob"
-description: "了解如何使用 Visual Studio，將 Azure WebJob 部署至 Azure App Service Web Apps。"
+title: "aaaDeploy 使用 Visual Studio 的 WebJobs"
+description: "深入了解如何 toodeploy Azure WebJobs tooAzure App Service Web 應用程式使用 Visual Studio。"
 services: app-service
 documentationcenter: 
 author: ggailey777
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/27/2016
 ms.author: glenga
-ms.openlocfilehash: 5b0808afdadcf4d86a9a2d07ee6fc63b80b22993
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5fc5d9562e8836348f5ab6844fb6c23ff40a321c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-webjobs-using-visual-studio"></a>使用 Visual Studio 部署 WebJob
-## <a name="overview"></a>Overview
-本主題說明如何使用 Visual Studio 將主控台應用程式專案部署為 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714)中之 Web 應用程式的 [Azure WebJob](http://go.microsoft.com/fwlink/?LinkId=390226)。 如需如何使用 [Azure 入口網站](https://portal.azure.com)部署 WebJob 的相關資訊，請參閱[使用 WebJob 執行背景工作](web-sites-create-web-jobs.md)。
+## <a name="overview"></a>概觀
+本主題說明如何 toouse Visual Studio toodeploy 主控台應用程式專案中的 tooa web 應用程式[App Service](http://go.microsoft.com/fwlink/?LinkId=529714)為[Azure WebJob](http://go.microsoft.com/fwlink/?LinkId=390226)。 如需如何使用 toodeploy WebJobs hello [Azure 入口網站](https://portal.azure.com)，請參閱[以 WebJobs 執行背景工作](web-sites-create-web-jobs.md)。
 
 當 Visual Studio 部署具有 WebJobs 功能的主控台應用程式專案時，它會執行兩個工作：
 
-* 將執行階段檔案複製到 Web 應用程式中的適當資料夾 (若是連續 WebJobs，則是 *App_Data/jobs/continuous*，若是排程和隨選 WebJobs，則是 *App_Data/jobs/triggered*)。
-* 為已排定在特定時間執行的 WebJobs 設定 [Azure 排程器工作](#scheduler)。 (無需為連續 WebJobs 執行此動作。)
+* 複製執行階段檔案 toohello hello web 應用程式中適當的資料夾 (*App_Data/工作/連續*連續 web 工作，如*App_Data/工作/觸發*排程或隨選 Webjob 的)。
+* 設定[Azure 排程器作業](#scheduler)個是在特定時間排程的 toorun 的 WebJobs。 (無需為連續 WebJobs 執行此動作。)
 
-具有 WebJobs 功能的專案會新增下列項目：
+啟用 WebJobs 的專案具有下列項目加入的 tooit hello:
 
-* [Microsoft.Web.WebJobs.Publish](http://www.nuget.org/packages/Microsoft.Web.WebJobs.Publish/) NuGet 封裝。
+* hello [Microsoft.Web.WebJobs.Publish](http://www.nuget.org/packages/Microsoft.Web.WebJobs.Publish/) NuGet 封裝。
 * 包含部署和排程器設定的 [webjob-publish-settings.json](#publishsettings) 檔案。 
 
-![Diagram showing what is added to a Console App to enable deployment as a WebJob](./media/websites-dotnet-deploy-webjobs/convert.png)
+![顯示項目會成為 WebJob tooa 主控台應用程式 tooenable 部署的圖表](./media/websites-dotnet-deploy-webjobs/convert.png)
 
-您可以將這些項目新增至現有的主控台應用程式專案，或使用範本建立具有 WebJobs 功能的新主控台應用程式專案。 
+您可以加入這些項目 tooan，現有的主控台應用程式專案，或使用範本 toocreate 新的 Webjob 功能的主控台應用程式專案。 
 
-以 WebJob 的方式自我部署專案，或將專案連結到 Web 專案，因此每當您要部署 Web 專案時，專案便會自動部署。 若要連結專案，Visual Studio 會在 Web 專案的 [webjobs-list.json](#webjobslist) 檔案中加上具有 WebJobs 功能的專案名稱。
+您可以部署專案 webjob 本身，或將其連結 tooa web 專案，讓它自動將部署時部署 hello web 專案。 toolink 專案，Visual Studio 包含 hello hello 啟用 WebJobs 的專案名稱[webjobs list.json](#webjobslist) hello web 專案中的檔案。
 
-![Diagram showing WebJob project linking to web project](./media/websites-dotnet-deploy-webjobs/link.png)
+![顯示連結 tooweb 專案 WebJob 專案的圖表](./media/websites-dotnet-deploy-webjobs/link.png)
 
 ## <a name="prerequisites"></a>必要條件
-安裝 Azure SDK for .NET 時，您便可在 Visual Studio 中使用 WebJobs 部署功能：
+當您安裝 hello Azure SDK for.NET 時，可提供 Visual Studio 中使用 WebJobs 部署功能：
 
 * [Azure SDK for .NET (Visual Studio)](https://azure.microsoft.com/downloads/)。
 
@@ -52,77 +52,77 @@ ms.lasthandoff: 07/11/2017
 
 * [透過 Web 專案啟用自動部署](#convertlink)。
   
-    設定現有主控台應用程式專案，以便在您部署 Web 專案時，它會以 WebJob 的方式自動部署。 當您要在與執行相關 Web 應用程式相同的 Web 應用程式中執行 WebJob 時，請使用此選項。
+    設定現有主控台應用程式專案，以便在您部署 Web 專案時，它會以 WebJob 的方式自動部署。 當您想 toorun 您在 hello 中的 WebJob，請使用此選項讓您執行 hello 的相同 web 應用程式相關的 web 應用程式。
 * [不透過 Web 專案啟用部署](#convertnolink)。
   
-    設定現有主控台應用程式專案以 WebJob 的方式自我部署，且不具 Web 專案的連結。 當您要在 Web 應用程式中讓應用程式自行執行 WebJob，且 Web 應用程式中沒有正在執行的 Web 應用程式時，請使用此選項。 為了調整不受 Web 應用程式資源影響的 WebJob 資源，您可能會想執行此動作。
+    設定現有的主控台應用程式專案 toodeploy webjob 單獨使用時，與沒有連結 tooa web 專案。 當您單獨使用時，想 toorun web 應用程式中的 WebJob 與 hello web 應用程式中執行任何 web 應用程式時，請使用此選項。 您可能想要 toodo 這在順序 toobe 無法 tooscale WebJob 資源與您的 web 應用程式資源分開。
 
 ### <a id="convertlink"></a> 透過 Web 專案啟用自動 WebJobs 部署
-1. 以滑鼠右鍵按一下 [方案總管] 中的 Web 專案，然後依序按一下 [新增] > [Existing Project as Azure WebJob]。
+1. 中的以滑鼠右鍵按一下 hello web 專案**方案總管 中**，然後按一下**新增** > **現有 Azure WebJob 專案**。
    
     ![Existing Project as Azure WebJob](./media/websites-dotnet-deploy-webjobs/eawj.png)
    
-    [[Add Azure WebJob]](#configure) 對話方塊隨即出現。
-2. 在 [專案名稱]  下拉式清單中，選取要新增為 WebJob 的主控台應用程式專案。
+    hello[新增 Azure WebJob](#configure)  對話方塊隨即出現。
+2. 在 hello**專案名稱**下拉式清單中，選取 hello 主控台應用程式專案 tooadd webjob。
    
     ![Selecting project in Add Azure WebJob dialog](./media/websites-dotnet-deploy-webjobs/aaw1.png)
-3. 完成 [[Add Azure WebJob]](#configure) 對話方塊，然後按一下 [確定]。 
+3. 完整的 hello[新增 Azure WebJob](#configure)對話方塊，然後再按一下**確定**。 
 
 ### <a id="convertnolink"></a> 不透過 Web 專案啟用 WebJobs 部署
-1. 以滑鼠右鍵按一下 [方案總管] 中的主控台應用程式專案，然後按一下 [發行為 Azure WebJob]。 
+1. 以滑鼠右鍵按一下 hello 主控台應用程式專案中的**方案總管 中**，然後按一下**發行為 Azure WebJob...**. 
    
     ![發行為 Azure WebJob](./media/websites-dotnet-deploy-webjobs/paw.png)
    
-    [[加入 Azure WebJob]](#configure) 對話方塊隨即出現，而且 [專案名稱] 方塊中已選取此專案。
-2. 完成 [[加入 Azure WebJob]](#configure) 對話方塊，然後按一下 [確定]。
+    hello[新增 Azure WebJob](#configure)  對話方塊隨即出現，並選取 hello 中的 hello 專案**專案名稱**方塊。
+2. 完整的 hello[新增 Azure WebJob](#configure)對話方塊，然後按一下**確定**。
    
-   此時會出現 [發行 Web] 精靈。  如果您不打算立即發行，請關閉精靈。 您所輸入的設定會被儲存下來，以供[部署專案](#deploy)時使用。
+   hello**發行 Web**精靈 隨即出現。  如果您不立即想 toopublish，關閉 hello 精靈。 您輸入的 hello 設定會儲存的當您想太[部署 hello 專案](#deploy)。
 
 ## <a id="create"></a>建立具有 WebJobs 功能的新專案
-若要建立具有 WebJobs 功能的新專案，您可以使用主控台應用程式專案範本，並如 [上一節](#convert)中所述來啟用 WebJobs 部署。 另一種方式是，您可以使用 WebJobs 新專案範本：
+toocreate 新的 Webjob 啟用專案，您可以使用 hello 主控台應用程式專案範本，並啟用 WebJobs 部署中所述[hello 上一節](#convert)。 或者，您可以使用 hello WebJobs 新專案範本：
 
-* [在獨立的 WebJob 中使用 WebJobs 新專案範本](#createnolink)
+* [使用獨立的 WebJob hello WebJobs 新專案範本](#createnolink)
   
-    建立專案，並將專案設定為以 WebJob 的方式自我部署，且不具 Web 專案的連結。 當您要在 Web 應用程式中讓應用程式自行執行 WebJob，且 Web 應用程式中沒有正在執行的 Web 應用程式時，請使用此選項。 為了調整不受 Web 應用程式資源影響的 WebJob 資源，您可能會想執行此動作。
-* [在連結至 Web 專案的 WebJob 中使用 WebJobs 新專案範本](#createlink)
+    建立專案並且設定該 toodeploy 本身 webjob，與沒有連結 tooa web 專案。 當您單獨使用時，想 toorun web 應用程式中的 WebJob 與 hello web 應用程式中執行任何 web 應用程式時，請使用此選項。 您可能想要 toodo 這在順序 toobe 無法 tooscale WebJob 資源與您的 web 應用程式資源分開。
+* [WebJob 連結的 tooa web 專案使用 hello WebJobs 新專案範本](#createlink)
   
-    建立專案，並設定在針對位於相同解決方案中的 Web 專案進行部署時，會自動以 WebJob 的方式部署此專案。 當您要在與執行相關 Web 應用程式相同的 Web 應用程式中執行 WebJob 時，請使用此選項。
+    建立專案，會自動設定的 toodeploy webjob hello 部署相同方案中的 web 專案時。 當您想 toorun 您在 hello 中的 WebJob，請使用此選項讓您執行 hello 的相同 web 應用程式相關的 web 應用程式。
 
 > [!NOTE]
-> WebJobs 新專案範本自動安裝 NuGet 套件，並包括適用於 *WebJobs SDK* 的 [Program.cs](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/getting-started-with-windows-azure-webjobs)程式碼。 如果您不想使用 WebJobs SDK，請移除或變更 *Program.cs* 中的 `host.RunAndBlock` 陳述式。
+> hello WebJobs 新專案範本自動安裝 NuGet 封裝，並包含程式碼中的*Program.cs* hello [WebJobs SDK](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/getting-started-with-windows-azure-webjobs)。 如果您不想 toouse hello WebJobs SDK，移除或變更 hello`host.RunAndBlock`陳述式中的*Program.cs*。
 > 
 > 
 
-### <a id="createnolink"></a> 在獨立的 WebJob 中使用 WebJobs 新專案範本
-1. 依序按一下 [檔案] > [新增專案]，然後在 [新增專案] 對話方塊中，依序按一下 [雲端] > [Azure WebJob (.NET Framework)]。
+### <a id="createnolink"></a>使用獨立的 WebJob hello WebJobs 新專案範本
+1. 按一下**檔案** > **新專案**，然後在 hello**新專案**對話方塊中，按一下**雲端** >  **Azure WebJob (.NET Framework)**。
    
     ![顯示 WebJob 範本的 [新增專案] 對話方塊](./media/websites-dotnet-deploy-webjobs/np.png)
-2. 請依照稍早所示的指示，[將主控台應用程式專案設定成獨立的 WebJobs 專案](#convertnolink)。
+2. 請依照稍早所示的 hello 指示太[進行獨立的 Webjob 專案 hello 主控台應用程式專案](#convertnolink)。
 
-### <a id="createlink"></a> 在連結至 Web 專案的 WebJob 中使用 WebJobs 新專案範本
-1. 以滑鼠右鍵按一下 [方案總管] 中的 Web 專案，然後依序按一下 [新增] > [New Azure WebJob Project]。
+### <a id="createlink"></a>WebJob 連結的 tooa web 專案使用 hello WebJobs 新專案範本
+1. 中的以滑鼠右鍵按一下 hello web 專案**方案總管 中**，然後按一下**新增** > **新增 Azure WebJob 專案**。
    
     ![New Azure WebJob Project menu entry](./media/websites-dotnet-deploy-webjobs/nawj.png)
    
-    [[Add Azure WebJob]](#configure) 對話方塊隨即出現。
-2. 完成 [[Add Azure WebJob]](#configure) 對話方塊，然後按一下 [確定]。
+    hello[新增 Azure WebJob](#configure)  對話方塊隨即出現。
+2. 完整的 hello[新增 Azure WebJob](#configure)對話方塊，然後按一下**確定**。
 
-## <a id="configure"></a>[新增 Azure WebJob] 對話方塊
-[加入 Azure WebJob] 對話方塊可讓您輸入 WebJob 名稱和 WebJob 的執行模式設定。 
+## <a id="configure"></a>hello 新增 Azure WebJob 對話方塊
+hello**新增 Azure WebJob**對話方塊可讓您輸入 hello web 工作名稱和執行您 web 工作的模式設定。 
 
 ![[加入 Azure WebJob] 對話方塊](./media/websites-dotnet-deploy-webjobs/aaw2.png)
 
-此對話方塊中的欄位會對應至 Azure 入口網站中 [新增工作]  對話方塊上的欄位。 如需詳細資訊，請參閱[使用 WebJobs 執行背景工作](web-sites-create-web-jobs.md)。
+在這個對話方塊中的 hello 欄位對應上 hello toofields**新工作**hello Azure 入口網站 對話方塊。 如需詳細資訊，請參閱[使用 WebJobs 執行背景工作](web-sites-create-web-jobs.md)。
 
 > [!NOTE]
 > * 如需命令列部署的詳細資訊，請參閱[啟用 Azure WebJobs 的命令列或連續傳遞](https://azure.microsoft.com/blog/2014/08/18/enabling-command-line-or-continuous-delivery-of-azure-webjobs/)。
-> * 如果您部署了 WebJob，但之後決定變更 WebJob 的類型並重新部署，就必須刪除 webjobs-publish-settings.json 檔案。 這樣會讓 Visual Studio 再次顯示發佈選項，您才能夠變更 WebJob 的類型。
-> * 如果部署 WebJob，並在稍後將執行模式從連續變更為非連續 (或相反情形)，則在您重新部署時，Visual Studio 會在 Azure 中建立新的 WebJob。 如果您變更其他排程設定但保持執行模式不變，或在排程和隨選模式之間切換，則 Visual Studio 會更新現有的工作，而非建立新的工作。
+> * 如果您部署 WebJob，然後決定您想 toochange hello 類型 WebJob 和重新部署時，您將需要 toodelete hello webjobs 發佈 settings.json 檔案。 這會讓 Visual Studio 顯示 hello 同樣地，發行選項，因此您可以變更 WebJob hello 型別。
+> * 如果您部署 WebJob 和在之後變更 hello 執行的模式中從連續 toonon 連續或反之亦然，Visual Studio 會建立新的 WebJob 在 Azure 中重新部署時。 如果您變更排程的其他設定，但保留執行模式 hello 相同，或已排程和隨選之間切換，Visual Studio 更新 hello 現有的工作而非建立新的連線。
 > 
 > 
 
 ## <a id="publishsettings"></a>webjob-publish-settings.json
-設定 WebJobs 部署的主控台應用程式時，Visual Studio 會安裝 [Microsoft.Web.WebJobs.Publish](http://www.nuget.org/packages/Microsoft.Web.WebJobs.Publish/) NuGet 封裝，並將排程資訊儲存在 WebJobs 專案中專案 *Properties* 資料夾的 *webjob-publish-settings.json* 檔案。 以下是該檔案的範例：
+當您設定部署 WebJobs 的主控台應用程式時，Visual Studio 會安裝 hello [Microsoft.Web.WebJobs.Publish](http://www.nuget.org/packages/Microsoft.Web.WebJobs.Publish/) NuGet 封裝和排程資訊中的存放區*webjob 發行 settings.json* hello 專案檔案中的*屬性*hello Webjob 專案的資料夾。 以下是該檔案的範例：
 
         {
           "$schema": "http://schemastore.org/schemas/json/webjob-publish-settings.json",
@@ -134,10 +134,10 @@ ms.lasthandoff: 07/11/2017
           "runMode": "Continuous"
         }
 
-您可以編輯此檔案目錄，而 Visual Studio 會提供 IntelliSense。 檔案結構描述會儲存在 [http://schemastore.org](http://schemastore.org/schemas/json/webjob-publish-settings.json) ，您可以在該處進行檢視。  
+您可以編輯此檔案目錄，而 Visual Studio 會提供 IntelliSense。 hello 檔案結構描述儲存在[http://schemastore.org](http://schemastore.org/schemas/json/webjob-publish-settings.json)而且可以那里檢視。  
 
 ## <a id="webjobslist"></a>webjobs-list.json
-當您將具有 WebJobs 功能的專案連結到 Web 專案時，Visual Studio 會將 WebJobs 專案的名稱儲存在 Web 專案中 *Properties* 資料夾的 *webjobs-list.json* 檔案。 此清單可能包含多個 WebJobs 專案，如下列範例所示：
+當您連結 WebJobs 啟用專案 tooa web 專案時，Visual Studio 會儲存 hello Webjob 專案的 hello 名稱*webjobs list.json* hello web 專案的檔案中*屬性*資料夾。 hello 清單可能包含多個 WebJobs 的專案，hello 下列範例所示：
 
         {
           "$schema": "http://schemastore.org/schemas/json/webjobs-list.json",
@@ -151,17 +151,17 @@ ms.lasthandoff: 07/11/2017
           ]
         }
 
-您可以編輯此檔案目錄，而 Visual Studio 會提供 IntelliSense。 檔案結構描述會儲存在 [http://schemastore.org](http://schemastore.org/schemas/json/webjobs-list.json) ，您可以在該處進行檢視。
+您可以編輯此檔案目錄，而 Visual Studio 會提供 IntelliSense。 hello 檔案結構描述儲存在[http://schemastore.org](http://schemastore.org/schemas/json/webjobs-list.json)而且可以那里檢視。
 
 ## <a id="deploy"></a>部署 WebJobs 專案
-已連結到 Web 專案的 WebJobs 專案會透過 Web 專案自動部署。 如需 Web 專案部署的相關資訊，請參閱 [如何部署至 Web 應用程式](web-sites-deploy.md)。
+您已連結 tooa web 專案的 Webjob 專案會自動部署與 hello web 專案。 Web 專案部署的相關資訊，請參閱[如何 toodeploy tooWeb 應用程式](web-sites-deploy.md)。
 
-若要自我部署 WebJobs 專案，請以滑鼠右鍵按一下 [方案總管] 中的專案，然後按一下 [發行為 Azure WebJob]。 
+toodeploy Webjob 專案本身，以滑鼠右鍵按一下中的 hello 專案**方案總管 中**按一下**發行為 Azure WebJob...**. 
 
 ![發行為 Azure WebJob](./media/websites-dotnet-deploy-webjobs/paw.png)
 
-若是獨立的 WebJob，則 Web 專案所使用的相同 [發行 Web]  精靈隨即出現，但其中幾個設定可以變更。
+獨立的 web 工作，如 hello 相同**發行 Web**使用 web 專案會顯示，但使用較少的設定可用 toochange 精靈。
 
 ## <a id="nextsteps"></a>後續步驟
-本文說明如何使用 Visual Studio 部署 WebJobs。 如需如何部署 Azure WebJobs 的詳細資訊，請參閱 [Azure WebJobs - 建議的資源 - 部署](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/azure-webjobs-recommended-resources#deploying)。
+本文說明如何使用 Visual Studio toodeploy WebJobs。 如需有關如何 toodeploy Azure Webjob，請參閱[Azure WebJobs-資源-建議部署](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/azure-webjobs-recommended-resources#deploying)。
 

@@ -1,6 +1,6 @@
 ---
-title: "使用入口網站向 Azure AD v2.0 端點註冊應用程式 | Microsoft Docs"
-description: "如何向 Microsoft 註冊 app，以使用 v2.0 端點啟用登入及存取 Microsoft 服務"
+title: "aaaRegister hello Azure AD v2.0 端點使用 hello 入口網站的應用程式 |Microsoft 文件"
+description: "Tooregister 應用程式，但 Microsoft 來啟用登入及存取 Microsoft 服務使用 hello v2.0 端點"
 services: active-directory
 documentationcenter: 
 author: lnalepa
@@ -15,38 +15,38 @@ ms.topic: article
 ms.date: 05/01/2017
 ms.author: lenalepa
 ms.custom: aaddev
-ms.openlocfilehash: e6202aa8665c906382666fe08a561421e50e0a8d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c56c98906656062435516e820cb318a04c03149c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-register-an-app-with-the-v20-endpoint"></a>如何使用 v2.0 端點註冊 App
-若要建置同時接受 MSA 與 Azure AD 登入的應用程式，您必須先向 Microsoft 註冊應用程式。  您目前無法使用任何現有的 app 搭配 Azure AD 或 MSA - 您需要建立一個全新的 app。
+# <a name="how-tooregister-an-app-with-hello-v20-endpoint"></a>如何 tooregister 與 hello v2.0 端點的應用程式
+toobuild 接受 MSA 與 Azure AD 的應用程式登入時，您必須先 tooregister 與 Microsoft 的應用程式。  此時，您將不會是能 toouse 任何現有的應用程式，您可能必須向 Azure AD 或 MSA-您將需要 toocreate 新品牌。
 
 > [!NOTE]
-> v2.0 端點並非支援每個 Azure Active Directory 案例和功能。  若要判斷是否應該使用 v2.0 端點，請閱讀相關的 [v2.0 限制](active-directory-v2-limitations.md)。
+> 並非所有的 Azure Active Directory 案例和功能都受到 hello v2.0 端點。  toodetermine 如果應該使用 hello v2.0 端點，閱讀有關[v2.0 限制](active-directory-v2-limitations.md)。
 > 
 > 
 
-## <a name="visit-the-microsoft-app-registration-portal"></a>造訪 Microsoft App 註冊入口網站
-第一件事就是先瀏覽至 [https://apps.dev.microsoft.com/?deeplink=/appList](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)。  這是新的 app 註冊入口網站，可供您管理有關 Microsoft app 的所有一切。
+## <a name="visit-hello-microsoft-app-registration-portal"></a>請瀏覽 hello Microsoft 應用程式註冊入口網站
+首要之務先瀏覽過[https://apps.dev.microsoft.com/?deeplink=/appList](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)。  這是新的 app 註冊入口網站，可供您管理有關 Microsoft app 的所有一切。
 
 使用個人或公司或學校的 Microsoft 帳戶進行登入。  如果您沒有任何帳戶，請註冊新的個人帳戶。 請繼續進行，這不需要很長的時間 - 我們會在此等候。
 
 完成了嗎？ 您現在應該看一下您的 Microsoft 應用程式清單，該清單有可能空白。  讓我們改變這點。
 
-按一下 [新增應用程式]，並為它命名。  入口網站將會指派全域唯一的應用程式識別碼給您的應用程式，以便稍後在您的程式碼中使用。  如果您的應用程式包含的伺服器端元件需要用來呼叫 API (例如：Office、Azure 或您自己的 Web API) 的存取權杖，您也會想在此處建立**應用程式密碼**。
+按一下 [新增應用程式]，並為它命名。  hello 入口網站將會指派全域唯一的應用程式識別碼，稍後在程式碼中，您將使用您的應用程式。  如果您的應用程式包含伺服器端元件，需要存取權杖呼叫應用程式開發介面 (認為： Office、 Azure 或您自己的 web 應用程式開發介面)，您會想 toocreate**應用程式密碼**也這裡。
 
-接下來，加入您的 app 將使用的平台。
+接下來，新增 hello 將使用您的應用程式平台。
 
 * 針對 web 架構的 app，提供可傳送登入訊息的 **重新導向 URI** 。
-* 針對行動應用程式，複製系統自動為您建立的預設重新導向 URI。
+* 行動裝置應用程式，向下 hello 預設複製重新導向自動為您建立的 uri。
 
-(選擇性) 您可以在 [設定檔] 區段中自訂登入頁面的外觀及操作方式。  繼續之前，請務必按一下 [儲存]  。
+（選擇性） 您可以自訂您的登入頁面 hello 設定檔 > 一節中的 hello 外觀與風格。  請確定 tooclick**儲存**在繼續之前。
 
 > [!NOTE]
-> 當您使用 [https://apps.dev.microsoft.com/?deeplink=/appList](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) 建立應用程式時，系統將會在您用來登入入口網站的帳戶的家用租用戶中註冊該應用程式。  這表示您不能使用個人的 Microsoft 帳戶，在 Azure AD 租用戶中註冊應用程式。  如果您明確地想要在特定的租用戶中註冊應用程式，請使用原本在該租用戶中建立的帳戶登入。
+> 當您建立應用程式使用[https://apps.dev.microsoft.com/?deeplink=/appList](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)，hello 應用程式將在 hello hello 帳戶，您會使用 toosign hello 入口網站的主要租用戶中登錄。  這表示您不能使用個人的 Microsoft 帳戶，在 Azure AD 租用戶中註冊應用程式。  如果您明確地想 tooregister 應用程式特定的租用戶中，使用原先建立該租用戶中的帳戶登入。
 > 
 > 
 

@@ -64,7 +64,7 @@
 # 相關參考
 ## [Batch Shipyard](https://github.com/Azure/batch-shipyard)
 ## [透過 Batch 和 Data Factory 處理的資料](../data-factory/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json)
-## [Azure 雲端中的 Batch 和 HPC 解決方案](batch-hpc-solutions.md)
+## [Hello Azure 雲端中的批次和 HPC 解決方案](batch-hpc-solutions.md)
 
 # 資源
 ## [Azure 藍圖](https://azure.microsoft.com/roadmap/)

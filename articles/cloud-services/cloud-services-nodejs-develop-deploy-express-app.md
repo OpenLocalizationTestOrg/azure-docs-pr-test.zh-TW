@@ -1,6 +1,6 @@
 ---
-title: "Web 應用程式與 Express (Node.js) | Microsoft Docs"
-description: "以雲端服務教學課程為基礎的教學課程，示範如何使用 Express 模組。"
+title: "aaaWeb 快速 (Node.js) 的應用程式 |Microsoft 文件"
+description: "教學課程會建置 hello 雲端服務的教學課程，並示範如何 toouse hello Express 模組。"
 services: cloud-services
 documentationcenter: nodejs
 author: TomArcher
@@ -14,110 +14,110 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: tarcher
-ms.openlocfilehash: 54b715695e24786ec4e8dfcabefc648d76179c8b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 91921bfbe137eeca9a110d4cb18eb57b46b0060e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-nodejs-web-application-using-express-on-an-azure-cloud-service"></a>在 Azure 雲端服務上使用 Express 建立 Node.js Web 應用程式
-Node.js 包含核心執行時期的一組最低功能。
-開發人員在開發 Node.js 應用程式時，通常會使用協力廠商模組來提供更多功能。 在本教學課程中，您將使用 [Express][Express] 模組來建立新的應用程式，此模組提供用於建立 Node.js Web 應用程式的 MVC 架構。
+Node.js hello 核心執行階段中包含的最少的功能。
+開發人員在開發 Node.js 應用程式時，通常會使用第 3 個合作對象模組 tooprovide 額外的功能。 在本教學課程中，您將建立新的應用程式使用 hello [Express] [ Express]模組，可讓 MVC 架構建立 Node.js web 應用程式。
 
-完成之應用程式的螢幕擷取畫面如下：
+底下是完成 hello 應用程式的螢幕擷取畫面：
 
-![A web browser displaying Welcome to Express in Azure](./media/cloud-services-nodejs-develop-deploy-express-app/node36.png)
+![在 Azure 中顯示 歡迎使用 tooExpress 網頁瀏覽器](./media/cloud-services-nodejs-develop-deploy-express-app/node36.png)
 
 ## <a name="create-a-cloud-service-project"></a>建立雲端服務專案
 [!INCLUDE [install-dev-tools](../../includes/install-dev-tools.md)]
 
-請執行下列步驟來建立名為 'expressapp' 的新雲端服務專案：
+執行 hello 下列步驟 toocreate 新的雲端服務專案名為 'expressapp':
 
-1. 從 [開始功能表] 或 [開始畫面] 搜尋 **Windows PowerShell**。 最後，用滑鼠右鍵按一下 [Windows PowerShell]，然後選取 [以系統管理員身分執行]。
+1. 從 hello**開始功能表**或**[開始] 畫面**，搜尋**Windows PowerShell**。 最後，用滑鼠右鍵按一下 [Windows PowerShell]，然後選取 [以系統管理員身分執行]。
    
     ![Azure PowerShell icon](./media/cloud-services-nodejs-develop-deploy-express-app/azure-powershell-start.png)
-2. 切換至 **c:\\node** 目錄，然後輸入下列命令來建立名為 **expressapp** 的新方案和名為 **WebRole1** 的 Web 角色：
+2. 變更目錄 toohello **c:\\節點**目錄，然後輸入下列命令 toocreate 名為新方案的 hello **expressapp**和名為 web 角色**WebRole1**:
    
         PS C:\node> New-AzureServiceProject expressapp
         PS C:\Node\expressapp> Add-AzureNodeWebRole
         PS C:\Node\expressapp> Set-AzureServiceProjectRole WebRole1 Node 0.10.21
    
     > [!NOTE]
-    > **Add-AzureNodeWebRole** 預設會使用較舊版的 Node.js。 上方的 **Set-AzureServiceProjectRole** 陳述式會指示 Azure 使用 0.10.21 版本的節點。  請注意這些參數會區分大小寫。  您可以檢查 **WebRole1\package.json** 中的 **engines** 屬性，確認已選取正確的 Node.js 版本。
+    > **Add-AzureNodeWebRole** 預設會使用較舊版的 Node.js。 hello**組 AzureServiceProjectRole**上述陳述式會指示 Azure toouse v0.10.21 的節點。  請注意 hello 參數會區分大小寫。  您可以確認已選取 hello 正確版本的 Node.js 藉由檢查 hello**引擎**屬性**WebRole1\package.json**。
     > 
     > 
 
 ## <a name="install-express"></a>安裝 Express
-1. 發出下列命令來安裝 Express 產生器：
+1. 藉由發出下列命令的 hello 安裝 hello Express 產生器：
    
         PS C:\node\expressapp> npm install express-generator -g
    
-    npm 命令的輸出類似下列結果。 
+    hello hello npm 命令輸出應該看起來類似下列的 toohello 結果。 
    
-    ![Windows PowerShell displaying the output of the npm install express command.](./media/cloud-services-nodejs-develop-deploy-express-app/express-g.png)
-2. 切換至 **WebRole1** 目錄，然後使用 express 命令來產生新的應用程式：
+    ![Windows PowerShell 顯示 hello 輸出的 hello npm 安裝 express 命令。](./media/cloud-services-nodejs-develop-deploy-express-app/express-g.png)
+2. 變更目錄 toohello **WebRole1**目錄並用 hello express 命令 toogenerate 新的應用程式：
    
         PS C:\node\expressapp\WebRole1> express
    
-    系統會提示您覆寫先前的應用程式。 輸入 **y** 或 **yes** 繼續進行。 Express 會產生 app.js 檔案和資料夾結構來準備建立應用程式。
+    您將會提示的 toooverwrite 早的應用程式。 輸入**y**或**是**toocontinue。 Express 將會產生 hello app.js 檔案和建置您的應用程式的資料夾結構。
    
-    ![The output of the express command](./media/cloud-services-nodejs-develop-deploy-express-app/node23.png)
-3. 若要安裝 package.json 檔案中定義的其他相依性，請輸入下列命令：
+    ![hello hello express 命令輸出](./media/cloud-services-nodejs-develop-deploy-express-app/node23.png)
+3. tooinstall hello package.json 檔中定義的其他相依性輸入 hello 下列命令：
    
        PS C:\node\expressapp\WebRole1> npm install
    
-   ![The output of the npm install command](./media/cloud-services-nodejs-develop-deploy-express-app/node26.png)
-4. 使用下列命令，將 **bin/www** 檔案複製到 **server.js**。 正因如此，雲端服務便能找到此應用程式的進入點。
+   ![hello 輸出的 hello npm 安裝命令](./media/cloud-services-nodejs-develop-deploy-express-app/node26.png)
+4. 使用 hello 下列命令 toocopy hello **bin w**檔案太**立即轉譯 server.js**。 這是讓 hello 雲端服務可以找到 hello 進入點為此應用程式。
    
        PS C:\node\expressapp\WebRole1> copy bin/www server.js
    
-   此命令完成之後，您應該會在 WebRole1 目錄中擁有 **server.js** 檔案。
-5. 修改 **server.js** ，從下一行程式碼中移除其中一個 '.' 字元。
+   此命令完成之後，您應該有**立即轉譯 server.js** hello WebRole1 目錄中的檔案。
+5. 修改 hello**立即轉譯 server.js** tooremove hello 的其中一個 '。 ' hello 以下的字元。
    
        var app = require('../app');
    
-   進行這個修改之後，程式碼行應會以如下方式出現。
+   進行這項修改後, hello 行應該顯示如下。
    
        var app = require('./app');
    
-   由於我們已將檔案 (先前為 **bin/www**) 移至與應用程式檔案所需的相同目錄，因此，這是必要變更。 完成此變更之後，儲存 **server.js** 檔案。
-6. 使用下列命令，在 Azure 模擬器中執行應用程式：
+   這項變更是必要的因為我們將 hello 檔案移 (先前稱為**bin w**，) toohello hello 應用程式檔案需要同一個目錄。 變更之後，儲存 hello**立即轉譯 server.js**檔案。
+6. 使用下列命令 toorun hello 應用程式在 hello Azure 模擬器中的 hello:
    
        PS C:\node\expressapp\WebRole1> Start-AzureEmulator -launch
    
-    ![A web page containing welcome to express.](./media/cloud-services-nodejs-develop-deploy-express-app/node28.png)
+    ![包含  褖畫惎 tooexpress 的網頁。](./media/cloud-services-nodejs-develop-deploy-express-app/node28.png)
 
-## <a name="modifying-the-view"></a>修改檢視
-現在，修改檢視來顯示「歡迎在 Azure 中使用 Express」訊息。
+## <a name="modifying-hello-view"></a>修改 hello 檢視
+現在修改 hello 檢視 toodisplay hello 訊息 「 在 Azure 中的 歡迎使用 tooExpress"。
 
-1. 輸入下列命令來開啟 index.jade 檔案：
+1. 輸入下列命令 tooopen hello index.jade 檔 hello:
    
        PS C:\node\expressapp\WebRole1> notepad views/index.jade
    
-   ![The contents of the index.jade file.](./media/cloud-services-nodejs-develop-deploy-express-app/getting-started-19.png)
+   ![hello hello index.jade 檔案內容。](./media/cloud-services-nodejs-develop-deploy-express-app/getting-started-19.png)
    
-   Jade 是 Express 應用程式使用的預設檢視引擎。 如需有關 Jade 檢視引擎的詳細資訊，請參閱 [http://jade-lang.com][http://jade-lang.com]。
-2. 修改最後一行文字，加上 **in Azure**。
+   Jade 是 hello Express 應用程式所使用的預設檢視引擎。 如需有關 hello Jade 檢視引擎的詳細資訊，請參閱[http://jade-lang.com][http://jade-lang.com]。
+2. 修改 hello 最後一行的文字，藉由附加**在 Azure 中**。
    
-   ![index.jade 檔案，最後一行是：p Welcome to \#{title} in Azure](./media/cloud-services-nodejs-develop-deploy-express-app/node31.png)
-3. 儲存檔案並結束 [記事本]。
+   ![hello index.jade 檔案，hello 最後一行讀取： p 太歡迎\#{t} 在 Azure 中](./media/cloud-services-nodejs-develop-deploy-express-app/node31.png)
+3. 儲存 hello 檔案並結束 [記事本]。
 4. 重新整理瀏覽器，您將會看到變更。
    
-   ![A browser window, the page contains Welcome to Express in Azure](./media/cloud-services-nodejs-develop-deploy-express-app/node32.png)
+   ![瀏覽器視窗中，hello 頁面包含在 Azure 中的 歡迎使用 tooExpress](./media/cloud-services-nodejs-develop-deploy-express-app/node32.png)
 
-測試應用程式之後，請使用 **Stop-AzureEmulator** Cmdlet 來停止模擬器。
+測試的 hello 應用程式後使用 hello**停止 AzureEmulator** cmdlet toostop hello 模擬器。
 
-## <a name="publishing-the-application-to-azure"></a>將應用程式發行至 Azure
-在 Azure PowerShell 視窗中，請使用 **Publish-AzureServiceProject** Cmdlet 將應用程式部署至雲端服務
+## <a name="publishing-hello-application-tooazure"></a>發行 hello 應用程式 tooAzure
+在 hello Azure PowerShell 視窗中，使用 hello**發行 AzureServiceProject** cmdlet toodeploy hello 應用程式 tooa 雲端服務
 
     PS C:\node\expressapp\WebRole1> Publish-AzureServiceProject -ServiceName myexpressapp -Location "East US" -Launch
 
-部署作業完成時，瀏覽器會開啟並顯示網頁。
+Hello 部署作業完成之後，您的瀏覽器會開啟並顯示 hello 的網頁。
 
-![A web browser displaying the Express page. The URL indicates it is now hosted on Azure.](./media/cloud-services-nodejs-develop-deploy-express-app/node36.png)
+![網頁瀏覽器顯示 hello Express 頁面。 hello URL 表示它現在裝載於 Azure。](./media/cloud-services-nodejs-develop-deploy-express-app/node36.png)
 
 ## <a name="next-steps"></a>後續步驟
-如需詳細資訊，請參閱 [Node.js 開發人員中心](/develop/nodejs/)。
+如需詳細資訊，請參閱 hello [Node.js 開發人員中心](/develop/nodejs/)。
 
 [Node.js Web Application]: http://www.windowsazure.com/develop/nodejs/tutorials/getting-started/
 [Express]: http://expressjs.com/

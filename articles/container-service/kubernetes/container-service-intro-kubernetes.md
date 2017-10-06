@@ -1,6 +1,6 @@
 ---
-title: "Azure Container Service for Kubernetes 簡介 | Microsoft Docs"
-description: "Azure Container Service for Kubernetes 可讓您輕鬆地部署和管理 Azure 上的容器型應用程式。"
+title: "aaaIntroduction tooAzure Kubernetes 的容器服務 |Microsoft 文件"
+description: "Kubernetes azure 容器服務便可簡單 toodeploy 並管理容器應用程式在 Azure 上。"
 services: container-service
 documentationcenter: 
 author: gabrtv
@@ -17,22 +17,22 @@ ms.workload: na
 ms.date: 07/21/2017
 ms.author: gamonroy
 ms.custom: mvc
-ms.openlocfilehash: 92cdbe20e7a2974a734dfed5294c547866050290
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bfc85a180bdf4a405c9047eb882d3eed01640dd1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-azure-container-service-for-kubernetes"></a>Azure Container Service for Kubernetes 簡介
-Azure Container Service for Kubernetes 可讓您輕鬆建立、設定及管理虛擬機器的叢集，這些虛擬機器預先設定為執行容器化應用程式。 這樣可讓您使用現有技能，或運用大量且不斷成長的社群專業知識，在 Microsoft Azure 上部署及管理容器應用程式。
+# <a name="introduction-tooazure-container-service-for-kubernetes"></a>簡介 tooAzure Kubernetes 的容器服務
+使得簡單 toocreate Kubernetes azure 容器服務、 設定和管理所預先設定的 toorun 容器化應用程式的虛擬機器的叢集。 這可讓您 toouse 您現有的技術，或運用社群專業知識，toodeploy 大量且不斷主體和管理容器應用程式在 Microsoft Azure 上。
 
-藉由使用 Azure Container Service，您可以充分利用 Azure 的企業級功能，同時仍可保有應用程式在 Kubernetes 內的可攜性和 Docker 映像格式。
+藉由使用 Azure 容器服務，您可以利用 hello 企業級功能的 Azure，同時仍維持 Kubernetes 透過應用程式可攜性和 hello Docker 映像格式。
 
 ## <a name="using-azure-container-service-for-kubernetes"></a>使用 Azure Container Service for Kubernetes
-我們對於 Azure Container Service 的目標，是要使用現今頗受客戶歡迎的開放原始碼工具和技術，提供容器主控環境。 為了這個目的，我們已公開標準 Kubernetes API 端點。 透過這些標準端點，您可以利用任何能夠與 Kubernetes 叢集通訊的軟體。 例如，您可能會選擇 [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/)、[helm](https://helm.sh/) 或 [draft](https://github.com/Azure/draft)。
+我們使用 Azure 容器服務的目標是使用開放原始碼工具和技術，現在都可以在我們的客戶之間的熱門 tooprovide 容器主機環境。 toothis 結束時，我們展現 hello 標準 Kubernetes API 端點。 藉由使用這些標準端點，您可以利用能夠進行交談 tooa Kubernetes 叢集的任何軟體。 例如，您可能會選擇 [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/)、[helm](https://helm.sh/) 或 [draft](https://github.com/Azure/draft)。
 
 ## <a name="creating-a-kubernetes-cluster-using-azure-container-service"></a>使用 Azure Container Service 建立 Kubernetes 叢集
-若要開始使用 Azure Container Service，請使用 [Azure CLI 2.0](container-service-kubernetes-walkthrough.md) 或透過入口網站 (在 Marketplace 內搜尋 **Azure Container Service**) 來部署 Azure Container Service 叢集。 如果您是需要更充分控制 Azure Resource Manager 範本的進階使用者，您可以使用開放原始碼 [acs-engine](https://github.com/Azure/acs-engine) 專案來建立您自己的自訂 Kubernetes 叢集，並透過 `az` CLI 來部署它。
+使用 Azure 的容器服務 toobegin 部署 Azure 容器服務叢集以 hello [Azure CLI 2.0](container-service-kubernetes-walkthrough.md)或透過 hello 入口網站 (搜尋 hello Marketplace 的**Azure 容器服務**)。 如果您需要更充分掌控 hello Azure Resource Manager 範本的進階的使用者，您可以使用 hello 開放原始碼[acs 引擎](https://github.com/Azure/acs-engine)專案 toobuild 您自己自訂的 Kubernetes 叢集，並將其部署透過 hello `az` CLI。
 
 ### <a name="using-kubernetes"></a>使用 Kubernetes
 Kubernetes 能自動化部署、調整和管理容器化應用程式。 它包含一組豐富的功能，包括︰
@@ -47,7 +47,7 @@ Kubernetes 能自動化部署、調整和管理容器化應用程式。 它包�
 
 透過 Container Service 部署的 Kubernetes 架構圖：
 
-![Azure Container Service 設定為使用 Kubernetes。](media/acs-intro/kubernetes.png)
+![Azure 容器服務設定 toouse Kubernetes。](media/acs-intro/kubernetes.png)
 
 ## <a name="videos"></a>影片
 
@@ -65,4 +65,4 @@ Azure Container Service 中的 Kubernetes 支援 (Azure Friday，2017 年 1 月)
 
 ## <a name="next-steps"></a>後續步驟
 
-瀏覽 [Kubernetes 快速入門](container-service-kubernetes-walkthrough.md)，立即開始探索 Azure Container Service。
+瀏覽 hello [Kubernetes 快速入門](container-service-kubernetes-walkthrough.md)toobegin 今天瀏覽 Azure 容器服務。

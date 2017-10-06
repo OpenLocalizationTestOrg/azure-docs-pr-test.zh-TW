@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 啟用 Azure 雲端服務中角色的遠端桌面連線"
-description: "如何使用 PowerShell 設定的 Azure 雲端服務應用程式以允許遠端桌面連線"
+title: "aaaEnable 使用 PowerShell 的 Azure 雲端服務中的角色的遠端桌面連線"
+description: "如何 tooconfigure 您的 azure 雲端服務應用程式使用 PowerShell tooallow 遠端桌面連線"
 services: cloud-services
 documentationcenter: 
 author: thraka
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: adegeo
-ms.openlocfilehash: 171f27c92ee9de14301ebb664e9ba3bcd98c394d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3f46b014f29f1c0be0e1b485d2f0152424162bb2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-remote-desktop-connection-for-a-role-in-azure-cloud-services-using-powershell"></a>使用 PowerShell 啟用 Azure 雲端服務中角色的遠端桌面連線
 > [!div class="op_single_selector"]
@@ -29,39 +29,39 @@ ms.lasthandoff: 08/18/2017
 >
 >
 
-遠端桌面可讓您存取 Azure 內執行中角色的桌面。 您可以使用遠端桌面連線來疑難排解和診斷執行中應用程式的問題。
+遠端桌面可讓您在 Azure 中執行的角色 tooaccess hello 桌面。 您可以使用遠端桌面連線 tootroubleshoot 後診斷問題的應用程式，在執行時。
 
-這篇文章描述如何使用 PowerShell 在雲端服務角色上啟用遠端桌面。 如需這篇文章所需要的必要條件，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 。 PowerShell 會利用遠端桌面延伸模組，因此在應用程式部署之後，您也可以啟用遠端桌面。
+本文說明如何使用 PowerShell 將雲端服務角色上的 tooenable 遠端桌面。 請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview) hello 這個發行項所需的必要條件。 PowerShell 會利用 hello 遠端桌面延伸模組，因此您可以在 hello 應用程式部署之後啟用遠端桌面。
 
 ## <a name="configure-remote-desktop-from-powershell"></a>從 PowerShell 設定遠端桌面
-[Set-AzureServiceRemoteDesktopExtension](/powershell/module/azure/set-azureserviceremotedesktopextension?view=azuresmps-3.7.0) Cmdlet 可讓您在雲端服務部署的指定角色或所有角色上啟用遠端桌面。 此 Cmdlet 可讓您透過可接受 PSCredential 物件的 *Credential* 參數，指定遠端桌面使用者的使用者名稱和密碼。
+hello[組 AzureServiceRemoteDesktopExtension](/powershell/module/azure/set-azureserviceremotedesktopextension?view=azuresmps-3.7.0)指令程式可讓您指定的角色或您的雲端服務部署的所有角色上 tooenable 遠端桌面。 hello cmdlet 可讓您指定 hello 遠端桌面的使用者透過 hello hello 使用者名稱和密碼*認證*參數可接受 PSCredential 物件。
 
-如果您以互動方式使用 PowerShell，您可以呼叫 [Get-Credentials](https://technet.microsoft.com/library/hh849815.aspx) Cmdlet，輕鬆地設定 PSCredential 物件。
+如果您以互動方式使用 PowerShell，您可以輕鬆地設定 hello PSCredential 物件呼叫 hello[取得認證](https://technet.microsoft.com/library/hh849815.aspx)cmdlet。
 
 ```
 $remoteusercredentials = Get-Credential
 ```
 
-此命令會顯示對話方塊，可讓您以安全的方式輸入遠端使用者的使用者名稱和密碼。
+此命令會顯示對話方塊，讓您 tooenter hello 使用者名稱和密碼 hello 遠端使用者以安全的方式。
 
-由於 PowerShell 在自動化案例中非常實用，您也可以透過不需要使用者互動的方式設定 **PSCredential** 物件。 您必須先設定安全的密碼。 首先，指定純文字密碼，然後使用 [ConvertTo-SecureString](https://technet.microsoft.com/library/hh849818.aspx)轉換成安全字串。 接下來，您需要使用 [ConvertFrom-SecureString](https://technet.microsoft.com/library/hh849814.aspx)，將這個安全字串轉換成加密的標準字串。 現在，您可以使用 [Set-Content](https://technet.microsoft.com/library/ee176959.aspx)，將此加密的標準字串儲存到檔案。
+因為 PowerShell 可協助自動化案例中，您也可以設定 hello **PSCredential**物件不需要使用者互動的方式。 首先，您需要 tooset 安全密碼。 您開始使用指定的純文字密碼轉換 tooa 安全字串使用[Convertto-securestring](https://technet.microsoft.com/library/hh849818.aspx)。 接下來您需要 tooconvert 這個安全字串的加密標準字串使用[Convertfrom-securestring](https://technet.microsoft.com/library/hh849814.aspx)。 現在您可以將儲存此加密標準字串 tooa 檔案使用[Set-content](https://technet.microsoft.com/library/ee176959.aspx)。
 
-您也可以建立安全的密碼檔案，這樣就不需要每次都要輸入密碼。 此外，安全的密碼檔案也比純文字檔案安全。 使用下列 PowerShell 來建立安全的密碼檔案：
+您也可以建立安全密碼的檔案，所以您不需要 tootype hello 密碼在每次。 此外，安全的密碼檔案也比純文字檔案安全。 使用下列 PowerShell toocreate 安全密碼檔案的 hello:
 
 ```
 ConvertTo-SecureString -String "Password123" -AsPlainText -Force | ConvertFrom-SecureString | Set-Content "password.txt"
 ```
 
 > [!IMPORTANT]
-> 設定密碼時，請確定您符合 [複雜性需求](https://technet.microsoft.com/library/cc786468.aspx)。
+> 當設定 hello 密碼，請確定您符合 hello[複雜性需求](https://technet.microsoft.com/library/cc786468.aspx)。
 >
 >
 
-若要從安全的密碼檔案建立認證物件，您必須讀取檔案內容，並使用 [ConvertTo-SecureString](https://technet.microsoft.com/library/hh849818.aspx)將它們轉換回安全字串。
+從 hello 安全密碼檔案 toocreate hello 認證物件，您必須閱讀 hello 檔案內容並將它們轉換後的 tooa 安全字串使用[Convertto-securestring](https://technet.microsoft.com/library/hh849818.aspx)。
 
-[Set-AzureServiceRemoteDesktopExtension](/powershell/module/azure/set-azureserviceremotedesktopextension?view=azuresmps-3.7.0) Cmdlet 也接受 *Expiration* 參數，它可指定使用者帳戶到期的 **日期時間** 。 例如，您可以設定帳戶在目前日期和時間的幾天後到期。
+hello[組 AzureServiceRemoteDesktopExtension](/powershell/module/azure/set-azureserviceremotedesktopextension?view=azuresmps-3.7.0) cmdlet 也接受*到期*參數，指定**DateTime** hello 使用者帳戶到期。 例如，您可以設定 hello 帳戶 tooexpire 幾天從 hello 目前日期和時間。
 
-這個 PowerShell 範例示範如何在雲端服務上設定遠端桌面延伸模組：
+此 PowerShell 範例將示範如何 tooset hello 雲端服務上的遠端桌面延伸模組：
 
 ```
 $servicename = "cloudservice"
@@ -71,12 +71,12 @@ $expiry = $(Get-Date).AddDays(1)
 $credential = New-Object System.Management.Automation.PSCredential $username,$securepassword
 Set-AzureServiceRemoteDesktopExtension -ServiceName $servicename -Credential $credential -Expiration $expiry
 ```
-您可以選擇性地指定部署位置和您想要啟用遠端桌面的角色。 如果未指定這些參數，此 Cmdlet 會在「生產」  部署位置中的所有角色上啟用遠端桌面。
+您也可以指定 hello 部署位置和要 tooenable 遠端桌面的角色。 如果未指定這些參數，hello cmdlet 可讓 hello 中的所有角色的遠端桌面**生產**部署位置。
 
-遠端桌面延伸模組與部署相關聯。 如果您為服務建立新的部署，您必須啟用該部署上的遠端桌面。 如果您想一律啟用遠端桌面，則您應該考慮將 PowerShell 指令碼整合到您的部署工作流程中。
+hello 遠端桌面延伸模組是與部署相關聯。 如果您建立新的部署的 hello 服務時，您有 tooenable 遠端桌面該部署。 如果您一定想要啟用 toohave 遠端桌面，您應該考慮您的部署工作流程整合 hello PowerShell 指令碼。
 
 ## <a name="remote-desktop-into-a-role-instance"></a>從遠端桌面連接到角色執行個體
-[Get-AzureRemoteDesktopFile](/powershell/module/azure/get-azureremotedesktopfile?view=azuresmps-3.7.0) Cmdlet 用於從遠端桌面連接到雲端服務的特定角色執行個體。 您可以使用 *LocalPath* 參數將 RDP 檔案下載到本機。 或您可以使用 *Launch* 參數，直接啟動 [遠端桌面連線] 對話方塊來存取雲端服務角色執行個體。
+hello [Get-azureremotedesktopfile](/powershell/module/azure/get-azureremotedesktopfile?view=azuresmps-3.7.0)指令程式是使用的 tooremote 桌面連接到您的雲端服務的特定角色執行個體。 您可以使用 hello *LocalPath*參數 toodownload hello RDP 檔案在本機。 您可以使用 hello 或者*啟動*參數 toodirectly 啟動 hello 遠端桌面連線 對話方塊 tooaccess hello 雲端服務角色執行個體。
 
 ```
 Get-AzureRemoteDesktopFile -ServiceName $servicename -Name "WorkerRole1_IN_0" -Launch
@@ -84,29 +84,29 @@ Get-AzureRemoteDesktopFile -ServiceName $servicename -Name "WorkerRole1_IN_0" -L
 
 
 ## <a name="check-if-remote-desktop-extension-is-enabled-on-a-service"></a>檢查服務上是否已啟用遠端桌面延伸模組
-[Get-AzureServiceRemoteDesktopExtension](/powershell/module/azure/get-azureremotedesktopfile?view=azuresmps-3.7.0) Cmdlet 會顯示服務部署上的遠端桌面為啟用或停用。 此 Cmdlet 會傳回遠端桌面使用者的使用者名稱，以及已啟用遠端桌面延伸模組的角色。 根據預設，這會發生在部署位置上，而您可以選擇改為使用預備位置。
+hello [Get AzureServiceRemoteDesktopExtension](/powershell/module/azure/get-azureremotedesktopfile?view=azuresmps-3.7.0) cmdlet 會顯示的遠端桌面已啟用或停用服務部署。 hello cmdlet 會傳回 hello hello 遠端桌面使用者與 hello 角色 hello 遠端桌面延伸模組已啟用的使用者名稱。 根據預設，這發生在 hello 部署位置上，您可以選擇改為暫存位置 toouse hello。
 
 ```
 Get-AzureServiceRemoteDesktopExtension -ServiceName $servicename
 ```
 
 ## <a name="remove-remote-desktop-extension-from-a-service"></a>從服務移除遠端桌面延伸模組
-如果您已在部署上啟用遠端桌面延伸模組，且需要更新遠端桌面設定，則必須先移除延伸模組。 然後使用新的設定將它再次啟用。 例如，如果您想為遠端使用者帳戶或是已到期的帳戶設定新密碼。 必須在已啟用遠端桌面延伸模組的現有部署上執行此動作。 對於新部署，您可以直接套用延伸模組。
+如果您已啟用 hello 遠端桌面延伸模組的部署，而且需要 tooupdate hello 遠端桌面設定，請先移除 hello 延伸模組。 然後重新啟用的 hello 新設定。 例如，如果您想 tooset hello 遠端使用者帳戶或 hello 帳戶的新密碼過期。 執行此動作需要有 hello 遠端桌面啟用擴充功能的現有部署。 針對新的部署，您只可以直接套用 hello 延伸模組。
 
-若要從部署移除遠端桌面延伸模組，您可以使用 [Remove-AzureServiceRemoteDesktopExtension](/powershell/module/azure/remove-azureserviceremotedesktopextension?view=azuresmps-3.7.0) Cmdlet。 您也可以選擇性地指定您想要移除遠端桌面延伸模組的部署位置和角色。
+tooremove hello 遠端桌面延伸模組從 hello 部署，您可以使用 hello[移除 AzureServiceRemoteDesktopExtension](/powershell/module/azure/remove-azureserviceremotedesktopextension?view=azuresmps-3.7.0) cmdlet。 您也可以選擇指定 hello 部署位置和要從中 tooremove hello 遠端桌面延伸模組的角色。
 
 ```
 Remove-AzureServiceRemoteDesktopExtension -ServiceName $servicename -UninstallConfiguration
 ```
 
 > [!NOTE]
-> 若要完全移除延伸模組組態，您應該在呼叫 *remove* Cmdlet 時指定 **UninstallConfiguration** 參數。
+> toocompletely 移除 hello 延伸組態，您應該呼叫 hello*移除*cmdlet 搭配 hello **UninstallConfiguration**參數。
 >
-> **UninstallConfiguration** 參數會將任何已套用到服務的延伸模組組態解除安裝。 每個延伸模組組態都與服務組態相關連。 呼叫 remove Cmdlet 時未指定 **UninstallConfiguration** 會取消<mark>部署</mark>與擴充組態的關聯，因此實際上會移除延伸模組。 不過，延伸模組組態仍然與服務相關聯。
+> hello **UninstallConfiguration**參數解除安裝任何擴充功能組態也就是套用的 toohello 服務。 每個延伸模組組態會與 hello 服務組態關聯。 呼叫 hello*移除*cmdlet 而沒有**UninstallConfiguration**解除關聯 hello<mark>部署</mark>從 hello 延伸組態，因此有效地移除hello 延伸模組。 不過，hello 延伸模組組態會保持與 hello 服務相關聯。
 >
 >
 
 ## <a name="additional-resources"></a>其他資源
 
-[如何設定雲端服務](cloud-services-how-to-configure.md)
-[雲端服務常見問題集 - 遠端桌面](cloud-services-faq.md)
+[如何 tooConfigure 雲端服務](cloud-services-how-to-configure.md)
+[雲端服務的常見問題集-遠端桌面](cloud-services-faq.md)

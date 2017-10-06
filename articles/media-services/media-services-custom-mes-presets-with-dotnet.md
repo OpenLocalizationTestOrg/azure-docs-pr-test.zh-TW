@@ -1,6 +1,6 @@
 ---
-title: "自訂媒體編碼器標準預設 | Microsoft Docs"
-description: "本主題說明如何透過自訂 Media Encoder Standard 工作預設值執行進階編碼。 本主題說明如何使用媒體服務 .NET SDK 建立編碼工作與作業。 本主題也會說明如何提供自訂預設值給編碼作業。"
+title: "aaaCustomizing 標準媒體編碼器預設 |Microsoft 文件"
+description: "本主題說明如何 tooperform 進階自訂媒體編碼器標準工作預設編碼方式。 hello 主題顯示如何 toouse Media Services.NET SDK toocreate 編碼工作與工作。 它也會顯示自訂 toosupply 預設 toohello 編碼工作的設定。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: b4d25f07349043da8cb745930fde3371c98f9960
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fa8c3bef63b0c1ecc88a6b8874ecbff3a8028a57
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="customizing-media-encoder-standard-presets"></a>自訂媒體編碼器標準預設
 
 ## <a name="overview"></a>概觀
 
-本主題說明如何透過使用自訂預設的媒體編碼器標準 (MES) 執行進階編碼。 本主題使用 .NET 建立編碼工作與執行此工作的作業。  
+本主題說明 tooperform 進階編碼的媒體編碼器標準 (MES) 使用自訂的預設值。 hello 主題會使用.NET toocreate，編碼的工作和作業來執行這項工作。  
 
-在本主題中，您將了解如何採取 [H264 多重位元速率 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) 預設值來自訂預設，並減少圖層數目。 [自訂媒體編碼器標準預設](media-services-advanced-encoding-with-mes.md)主題示範可用於執行進階編碼工作的自訂預設。
+本主題中您會看到如何 toocustomize 採取的預設 hello [H264 多重位元速率 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md)預設及減少 hello 層的數目。 hello[自訂媒體編碼器標準預設](media-services-advanced-encoding-with-mes.md)主題示範如何自訂預設值可以是使用的 tooperform 進階編碼工作。
 
 ## <a id="customizing_presets"></a> 自訂 MES 預設值
 
 ### <a name="original-preset"></a>原始預設
 
-將 [H264 多重位元速率 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) 主題中定義的 JSON 儲存於一些副檔名為 .json 的檔案中。 例如，**CustomPreset_JSON.json**。
+儲存 hello JSON 定義中 hello [H264 多重位元速率 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md)某些.json 副檔名的檔案中的主題。 例如，**CustomPreset_JSON.json**。
 
 ### <a name="customized-preset"></a>自訂的預設
 
-開啟 **CustomPreset_JSON.json** 檔案，並從 **H264Layers** 移除前三層，您的檔案看起來就會像這樣。
+開啟 hello **CustomPreset_JSON.json**檔案，並移除從前三個層級**H264Layers**讓您的檔案，看起來像這樣。
 
     
     {  
@@ -111,24 +111,24 @@ ms.lasthandoff: 08/29/2017
 
 ## <a id="encoding_with_dotnet"></a>使用媒體服務 .NET SDK 進行編碼
 
-下列程式碼範例使用媒體服務 .NET SDK 執行下列工作：
+hello，下列程式碼範例會使用 Media Services.NET SDK tooperform hello 下列工作：
 
 - 建立編碼工作。
-- 取得對 Media Encoder Standard 編碼器的參考
-- 載入您在上一節建立的自訂 JSON 預設。 
+- 取得參考 toohello 媒體編碼器標準編碼器。
+- 載入自訂 JSON 預設您建立 hello 前一節中的 hello。 
   
-        // Load the JSON from the local file.
+        // Load hello JSON from hello local file.
         string configuration = File.ReadAllText(fileName);  
 
-- 將編碼工作新增至作業。 
-- 指定要編碼的輸入資產。
-- 建立將包含已編碼資產的輸出資產。
-- 加入事件處理常式來檢查工作進度。
-- 提交作業。
+- 新增編碼工作 toohello 工作。 
+- 指定 hello 輸入資產 toobe 編碼。
+- 建立會包含 hello 編碼資產的輸出資產。
+- 加入事件處理常式 toocheck hello 工作進度。
+- 送出 hello 作業。
    
 #### <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 
-設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
+設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
 
 #### <a name="example"></a>範例   
 
@@ -143,7 +143,7 @@ ms.lasthandoff: 08/29/2017
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -168,7 +168,7 @@ ms.lasthandoff: 08/29/2017
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate the output using custom presets.
+            // Encode and generate hello output using custom presets.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -178,11 +178,11 @@ ms.lasthandoff: 08/29/2017
         {
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-            // Get a media processor reference, and pass to it the name of the 
-            // processor to use for the specific task.
+            // Get a media processor reference, and pass tooit hello name of hello 
+            // processor toouse for hello specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-            // Load the XML (or JSON) from the local file.
+            // Load hello XML (or JSON) from hello local file.
             string configuration = File.ReadAllText("CustomPreset_JSON.json");
 
             // Create a task
@@ -191,11 +191,11 @@ ms.lasthandoff: 08/29/2017
             configuration,
             TaskOptions.None);
 
-            // Specify the input asset to be encoded.
+            // Specify hello input asset toobe encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset to contain the results of the job. 
+            // Add an output asset toocontain hello results of hello job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means the output asset is not encrypted. 
+            // means hello output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
             AssetCreationOptions.None);
 

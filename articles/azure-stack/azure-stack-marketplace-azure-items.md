@@ -1,5 +1,5 @@
 ---
-title: "Azure Stack 可用的 Azure Marketplace 項目清單 | Microsoft Docs"
+title: "aaaAzure marketplace 項目適用於 Azure 堆疊 |Microsoft 文件"
 description: "這些 Azure Marketplace 項目可用於 Azure Stack。"
 services: azure-stack
 documentationcenter: 
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/11/2017
 ms.author: erikje
-ms.openlocfilehash: aec0c8a7d5d0c219e5550e0a8aa9ecfa936ab051
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 829e15e7051b3f10d212aeee29f269d3a32dbd3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-marketplace-items-available-for-azure-stack"></a>Azure Stack 可用的 Azure Marketplace 項目
 
-Microsoft Azure Stack 支援下列 Azure Marketplace 項目：
+Microsoft Azure 」 堆疊支援下列 Azure marketplace 所提供的項目 hello:
 
 |  | 項目名稱 | 說明 | 發佈者 |
 | --- | --- | --- | --- |
@@ -34,13 +34,13 @@ Microsoft Azure Stack 支援下列 Azure Marketplace 項目：
 | ![](media/azure-stack-marketplace-azure-items/sql.png) | [Windows Server 2016 上的 SQL Server 2016 SP1 Express 版本](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.FreeLicenseSQLServer2016SP1ExpressWindowsServer2016?tab=Overview) | Express 版本的 SQL Server 2016 SP1 | Microsoft |
 | ![](media/azure-stack-marketplace-azure-items/sql.png) | [Windows Server 2016 上的 SQL Server 2016 SP1 Enterprise 版本](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.SQL2016SP1-WS2016?tab=Overview) | 適用於智慧型、任務關鍵式應用程式的資料庫平台。 | Microsoft |
 | ![](media/azure-stack-marketplace-azure-items/activemq.png) | [ActiveMQ](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.activemq?tab=Overview) | JAVA 中的開放原始碼訊息代理程式。 | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/akeneo.png) | [Akeneo](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.akeneo?tab=Overview) | 功能強大的 PIM，旨在簡化管理流程。 | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/akeneo.png) | [Akeneo](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.akeneo?tab=Overview) | 功能強大的 PIM 設計 toosimplify 管理程序。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/alfrescocommunity.png) | [Alfresco Community](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.alfrescocommunity?tab=Overview) | 可輕鬆管理文件的 ECM 系統。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/apachesolr.png) | [Apache Solr](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.apachesolr?tab=Overview) | 可靠的開放原始碼企業搜尋平台。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/canvaslms.png) | [Canvas LMS](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.canvaslms?tab=Overview) | 開放原始碼學習管理系統。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/cassandra.png) | [Cassandra](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.cassandra?tab=Overview) | 具有高可用性的可擴充開放原始碼資料庫。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/civicrm.png) | [CiviCRM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.civicrm?tab=Overview) | 以網路為基礎的簡易關聯管理系統。 | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/cmsmadesimple.png) | [CMS Made Simple](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.cmsmadesimple?tab=Overview) | 快速、輕鬆地建立和管理網站的方式。 | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/cmsmadesimple.png) | [CMS Made Simple](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.cmsmadesimple?tab=Overview) | 快速且輕鬆 toocreate 和管理網站。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/codiad.png) | [Codiad](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.codiad?tab=Overview) | 具有最少使用量的開放原始碼雲端整合式開發環境。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/concrete5.png) | [Concrete5](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.concrete5?tab=Overview) | 可輕鬆部署 Web 應用程式、網站、商店和論壇。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/coppermine.png) | [Coppermine](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.coppermine?tab=Overview) | 多用途、功能完整的 Web 資源庫。 | Bitnami |
@@ -59,7 +59,7 @@ Microsoft Azure Stack 支援下列 Azure Marketplace 項目：
 | ![](media/azure-stack-marketplace-azure-items/exoplatform.png) | [eXo Platform](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.exoplatform?tab=Overview) | 開放原始碼、為企業而設計的社交軟體。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/fatfreecrm.png) | [Fat Free CRM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.fatfreecrm?tab=Overview) | 開放原始碼、以 Ruby on Rails 為基礎的 CRM。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/bitnami.png) | [GitLab Community Edition](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.gitlab?tab=Overview) | 快速而安全的 Git 管理軟體。 | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/ghost.png) | [Ghost](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.ghost?tab=Overview) | 專門用來發佈的平台。 | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/ghost.png) | [Ghost](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.ghost?tab=Overview) | 平台專用 toopublishing。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/hadoop.png) | [Hadoop](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.hadoop?tab=Overview) | 用於可靠、可擴充及分散式運算的架構。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/hhvm.png) | [HHVM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.hhvmstack?tab=Overview) | 完全整合且隨時可執行的開發環境。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/hordegroupwarewebmail.png) | [Horde Groupware Webmail](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.hordegroupwarewebmail?tab=Overview) | 免費、適合企業使用、以瀏覽器為基礎的通訊套件。 | Bitnami |
@@ -68,7 +68,7 @@ Microsoft Azure Stack 支援下列 Azure Marketplace 項目：
 | ![](media/azure-stack-marketplace-azure-items/joomla.png) | [Joomla!](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.joomla?tab=Overview) | 方便使用的 CMS，可輕鬆建立網站。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/jruby.png) | [JRuby](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.jrubystack?tab=Overview) | Ruby 的高效能 JAVA 實作。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/kafka.png) | [Kafka](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kafka?tab=Overview) | 功能強大的分散式發佈訂閱傳訊系統。 | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/lamp.png) | [LAMP](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.lampstack?tab=Overview) | 完全整合且隨時可執行的開發環境。 | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/lamp.png) | [LAMP](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.lampstack?tab=Overview) | 完全整合，且準備好 toorun 開發環境。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/lapp.png) | [LAPP](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.lappstack?tab=Overview) | 完整的 PHP、PostgreSQL 和 Apache 開發環境。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/letschat.png) | [Let's Chat](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.letschat?tab=Overview) | 開放原始碼的持續傳訊應用程式。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/limesurvey.png) | [LimeSurvey](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.limesurvey?tab=Overview) | 問題和答案輪詢管理系統。 | Bitnami |
@@ -86,7 +86,7 @@ Microsoft Azure Stack 支援下列 Azure Marketplace 項目：
 | ![](media/azure-stack-marketplace-azure-items/moodle.png) | [Moodle](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.moodle?tab=Overview) | 針對線上學習社群設計的有效 CMS。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/multicraft.png) | [Multicraft](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.multicraft?tab=Overview) | Minecraft 伺服器裝載解決方案和控制台。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/mybb.png) | [MyBB](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mybb?tab=Overview) | 免費的開放原始碼論壇軟體。 | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/mysql.png) | [MySQL](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mysql?tab=Overview) | 最熱門的資料庫系統。 | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/mysql.png) | [MySQL](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mysql?tab=Overview) | hello 最受歡迎的資料庫系統。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/nginx.png) | [Nginx](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.nginxstack?tab=Overview) | 完整的 PHP、MySQL 和 Nginx 開發環境。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/nodejs.png) | [node.js](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.nodejs?tab=Overview) | 以 Javascript 撰寫的開放原始碼環境，可讓您輕鬆組建。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/odoo.png) | [Odoo](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.odoo?tab=Overview) | 可有效連接商務流程的 ERP 和 CRM 系統。 | Bitnami |
@@ -119,7 +119,7 @@ Microsoft Azure Stack 支援下列 Azure Marketplace 項目：
 | ![](media/azure-stack-marketplace-azure-items/ruby.png) | [Ruby](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.rubystack?tab=Overview) | 便於使用的 Ruby on Rails 開發環境。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/seopanel.png) | [SEO Panel](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.seopanel?tab=Overview) | 開放原始碼 SEO 管理應用程式，可追蹤多個網站。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/shopware.png) | [Shopware](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.shopware?tab=Overview) | 開放原始碼電子商務平台。 | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/simplemachinesforum.png) | [Simple Machines Forum](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.simplemachinesforum?tab=Overview) | 簡易論壇軟體，可組建您自己的線上社群。 | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/simplemachinesforum.png) | [Simple Machines Forum](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.simplemachinesforum?tab=Overview) | 簡單論壇軟體 toobuild 線上社群。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/spree.png) | [Spree](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.spree?tab=Overview) | 便於使用的電子商務平台。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/subversion.png) | [Subversion](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.subversion?tab=Overview) | 開放原始碼的版本控制系統。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/sugarcrm.png) | [SugarCRM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.sugarcrm?tab=Overview) | 彈性的客戶關係管理解決方案。 | Bitnami |
@@ -132,10 +132,10 @@ Microsoft Azure Stack 支援下列 Azure Marketplace 項目：
 | ![](media/azure-stack-marketplace-azure-items/weblate.png) | [Weblate](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.weblate?tab=Overview) | 以網路為基礎的翻譯管理系統。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/webmailprophp.png) | [WebMail Pro PHP](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.webmailpro?tab=Overview) | 具有企業功能的 Web 郵件系統。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/wildfly.png) | [WildFly](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.wildfly?tab=Overview) | 包含 Apache、WildFly、MySQL 和 JAVA 的應用程式伺服器。 | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/wordpress.png) | [WordPress](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.wordpress?tab=Overview) | 最熱門且隨時可開始的 CMS。 | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/wordpress.png) | [WordPress](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.wordpress?tab=Overview) | hello 最受歡迎且研究來移至已備妥的 CMS。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/x2enginesalescrm.png) | [X2Engine Sales CRM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.x2enginesalescrm?tab=Overview) | 小型的行銷、銷售與客戶服務應用程式。 | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/zurmo.png) | [Zurmo](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.zurmo?tab=Overview) | 開放原始碼的 CRM 系統：具有行動性、社交性且已遊戲化。 | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/debian8.png) | [具有反向移植核心的 Debian 8 (Jessie 版)](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/credativ.Debian8backports?tab=Overview) | Debian GNU/Linux 是最受歡迎其中一個 Linux 散發套件。 | credativ |
+| ![](media/azure-stack-marketplace-azure-items/debian8.png) | [具有反向移植核心的 Debian 8 (Jessie 版)](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/credativ.Debian8backports?tab=Overview) | Debian GNU/Linux 是其中一個 hello 最受歡迎之 Linux 發行套件。 | credativ |
 | ![](media/azure-stack-marketplace-azure-items/kemp.png) | [LoadMaster 負載平衡器 ADC 內容切換](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/kemptech.vlm-azure?tab=Overview) | 第 4-7 層應用程式傳遞控制器 (ADC) 負載平衡器、內容切換和流量管理員。 | KEMP Technologies Inc. |
 | ![](media/azure-stack-marketplace-azure-items/roguewave.png) | [CentOS 型 6.9](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/RogueWave.CentOSbased69?tab=Overview) | 這個 Linux 的配送映像是以 CentOS 版為基礎，由 Rogue Wave Software 所提供。 | Rogue Wave Software (先前稱為 OpenLogic)  |
 | ![](media/azure-stack-marketplace-azure-items/roguewave.png) | [CentOS 型 7.3](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/RogueWave.CentOSbased73?tab=Overview) | 這個 Linux 的配送映像是以 CentOS 版為基礎，由 Rogue Wave Software 所提供。 | Rogue Wave Software (先前稱為 OpenLogic) |

@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中建立由泛型 Webhook 所觸發的函式 | Microsoft Docs"
-description: "使用 Azure Functions 在 Azure 中建立 Webhook 所叫用的無伺服器函式。"
+title: "aaaCreate 泛型 webhook 所觸發的 Azure 中的函式 |Microsoft 文件"
+description: "使用 Azure 函式 toocreate 無伺服器的函式在 Azure 中的 webhook 所叫用。"
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,21 +16,21 @@ ms.workload: na
 ms.date: 08/12/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: f283f8d79c5ae5fb6a72c84c9e9edb7bb8de4a83
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0a4868da91d216c8d20930ce7ec82eaa059c75ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-function-triggered-by-a-generic-webhook"></a>建立由泛型 Webhook 所觸發的函式
 
-Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要先建立 VM 或發佈 Web 應用程式。 例如，您可以設定由 Azure 監視器引發之警示所觸發的函式。 本主題示範如何在將資源群組新增至訂用帳戶時執行 C# 程式碼。   
+Azure 的函式可讓您在無伺服器環境中執行您的程式碼，而不需要 toofirst 建立 VM，或發行 web 應用程式。 例如，您可以設定由 Azure 監視所產生的警示觸發函式 toobe。 本主題說明如何 tooexecute C# 程式碼的資源群組時加入 tooyour 訂用帳戶。   
 
-![Azure 入口網站中由泛型 Webhook 所觸發的函式](./media/functions-create-generic-webhook-triggered-function/function-completed.png)
+![泛型的 webhook 觸發 hello Azure 入口網站中的函式](./media/functions-create-generic-webhook-triggered-function/function-completed.png)
 
 ## <a name="prerequisites"></a>必要條件 
 
-若要完成本教學課程：
+toocomplete 本教學課程：
 
 + 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
@@ -40,68 +40,68 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 
 [!INCLUDE [Create function app Azure portal](../../includes/functions-create-function-app-portal.md)]
 
-接下來，您要在新的函式應用程式中建立函式。
+接下來，您會在 hello 新函式應用程式中建立函式。
 
 ## <a name="create-function"></a>建立由泛型 Webhook 所觸發的函式
 
-1. 展開函式應用程式，然後按一下 [Functions] 旁的 [+] 按鈕。 如果這個函式是您函式應用程式中的第一個函式，請選取 [自訂函式]。 這會顯示一組完整的函式範本。
+1. 展開您的函式應用程式，然後按一下 hello  **+** 太下一步按鈕**函式**。 如果此函式是 hello 第一個函式應用程式中的，選取**自訂函式**。 這會顯示 hello 組完整的函式樣板。
 
-    ![Azure 入口網站中的 Functions 快速入門](./media/functions-create-generic-webhook-triggered-function/add-first-function.png)
+    ![在 Azure 入口網站的 hello 函式 [快速入門] 頁面](./media/functions-create-generic-webhook-triggered-function/add-first-function.png)
 
-2. 選取**泛型 WebHook - C#** 範本。 鍵入您 C# 函式的名稱，然後選取 [建立]。
+2. 選取 hello**泛型 WebHook-C#**範本。 鍵入您 C# 函式的名稱，然後選取 [建立]。
 
-     ![在 Azure 入口網站中建立由泛型 Webhook 所觸發的函式](./media/functions-create-generic-webhook-triggered-function/functions-create-generic-webhook-trigger.png) 
+     ![在 hello Azure 入口網站中建立觸發泛型 webhook 函式](./media/functions-create-generic-webhook-triggered-function/functions-create-generic-webhook-trigger.png) 
 
-2. 在您的新函式中，按一下 [取得函式 URL]，然後複製並儲存值。 您可以使用此值來設定 Webhook。 
+2. 在新的函數中，按一下  **<> / Get 函式 URL**，然後複製並儲存 hello 值。 您使用此值 tooconfigure hello webhook。 
 
-    ![檢閱函式程式碼](./media/functions-create-generic-webhook-triggered-function/functions-copy-function-url.png)
+    ![檢閱 hello 函式程式碼](./media/functions-create-generic-webhook-triggered-function/functions-copy-function-url.png)
          
 接下來，您可以在 Azure 監視器的活動記錄警示中建立 Webhook 端點。 
 
 ## <a name="create-an-activity-log-alert"></a>建立活動記錄警示
 
-1. 在 Azure 入口網站中，巡覽至 [監視器] 服務，選取 [警示]，然後按一下 [新增活動記錄警示]。   
+1. 在 hello Azure 入口網站中瀏覽 toohello**監視器**服務中，選取**警示**，按一下**新增活動記錄檔警示**。   
 
     ![監視](./media/functions-create-generic-webhook-triggered-function/functions-monitor-add-alert.png)
 
-2. 使用表格中所指定的設定︰
+2. 使用 hello hello 資料表中所指定的設定：
 
     ![建立活動記錄警示](./media/functions-create-generic-webhook-triggered-function/functions-monitor-add-alert-settings.png)
 
     | 設定      |  建議的值   | 說明                              |
     | ------------ |  ------- | -------------------------------------------------- |
-    | **活動記錄警示名稱** | resource-group-create-alert | 活動記錄警示的名稱。 |
-    | **訂用帳戶** | 您的訂用帳戶 | 您將在本教學課程中使用的訂用帳戶。 | 
-    |  **資源群組** | myResourceGroup | 警示資源所要部署的目標資源群組。 使用相同的資源群組作為您的函式應用程式，就可以輕鬆地讓您在完成教學課程之後予以清除。 |
-    | **事件類別目錄** | 管理 | 此類別目錄包含對 Azure 資源所做的變更。  |
-    | **資源類型** | 資源群組 | 將警示篩選至資源群組活動。 |
+    | **活動記錄警示名稱** | resource-group-create-alert | Hello 活動記錄檔的警示名稱。 |
+    | **訂用帳戶** | 您的訂用帳戶 | 您使用此教學課程中的 hello 訂用帳戶。 | 
+    |  **資源群組** | myResourceGroup | hello hello 警示資源部署至資源群組。 使用在函式應用程式可讓您更輕鬆 tooclean 完成 hello 教學課程之後，hello 相同的資源群組。 |
+    | **事件類別目錄** | 管理 | 此類別包括 tooAzure 資源所做的變更。  |
+    | **資源類型** | 資源群組 | 篩選警示 tooresource 群組 」 活動。 |
     | **資源群組**<br/>和**資源** | 全部 | 監視所有資源。 |
-    | **作業名稱** | 建立資源群組 | 將警示篩選至建立作業。 |
+    | **作業名稱** | 建立資源群組 | 篩選警示 toocreate 作業。 |
     | **Level** | 資訊 | 包含資訊層級警示。 | 
-    | **狀態** | Succeeded | 將警示篩選至已順利完成的動作。 |
-    | **動作群組** | 新增 | 建立新的動作群組，以定義引發警示時所採取的動作。 |
-    | **動作群組名稱** | function-webhook | 用於識別動作群組的名稱。  | 
-    | **簡短名稱** | funcwebhook | 動作群組的簡短名稱。 |  
+    | **狀態** | Succeeded | 篩選警示 tooactions 已順利完成。 |
+    | **動作群組** | 新增 | 建立新的動作群組，定義 hello 動作會引發警示時。 |
+    | **動作群組名稱** | function-webhook | 此名稱 tooidentify hello 動作群組。  | 
+    | **簡短名稱** | funcwebhook | Hello 動作群組的簡短名稱。 |  
 
-3. 在 [動作] 中，使用如下表中所指定的設定來新增動作： 
+3. 在**動作**，加入使用 hello 設定 hello 資料表中所指定的動作： 
 
     ![新增動作群組](./media/functions-create-generic-webhook-triggered-function/functions-monitor-add-alert-settings-2.png)
 
     | 設定      |  建議的值   | 說明                              |
     | ------------ |  ------- | -------------------------------------------------- |
-    | **名稱** | CallFunctionWebhook | 動作的名稱。 |
-    | **動作類型** | Webhook | 警示的回應是呼叫 Webhook URL。 |
-    | **詳細資料** | 函式 URL | 貼上您之前複製之函式的 Webhook URL。 |v
+    | **名稱** | CallFunctionWebhook | Hello 動作的名稱。 |
+    | **動作類型** | Webhook | hello 回應 toohello 警示是稱為 Webhook URL。 |
+    | **詳細資料** | 函式 URL | 貼上您之前複製的 hello 函式的 hello webhook URL 中。 |v
 
-4. 按一下 [確定] 以建立警示和動作群組。  
+4. 按一下**確定**toocreate hello 警示和動作群組。  
 
-現在，當您在訂用帳戶中建立資源群組時，即會呼叫此 Webhook。 接下來，您要更新函式中的程式碼，以處理要求主體中的 JSON 記錄資料。   
+您的訂用帳戶中建立資源群組時，現在稱為 hello webhook。 接下來，您可以更新 hello 程式碼中您的函式 toohandle hello JSON hello hello 要求主體中的記錄資料。   
 
-## <a name="update-the-function-code"></a>更新函式程式碼
+## <a name="update-hello-function-code"></a>更新 hello 函式程式碼
 
-1. 在入口網站中巡覽回到您的函式應用程式，然後展開您的函式。 
+1. 瀏覽後 tooyour 函式的應用程式在 hello 入口網站，然後展開您的函式。 
 
-2. 在入口網站中使用下列程式碼取代函式中的 C# 指令碼：
+2. 取代下列程式碼的 hello hello 入口網站中的 hello 函式中的 hello C# 指令碼：
 
     ```csharp
     #r "Newtonsoft.Json"
@@ -115,12 +115,12 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
     {
         log.Info($"Webhook was triggered!");
     
-        // Get the activityLog object from the JSON in the message body.
+        // Get hello activityLog object from hello JSON in hello message body.
         string jsonContent = await req.Content.ReadAsStringAsync();
         JToken activityLog = JObject.Parse(jsonContent.ToString())
             .SelectToken("data.context.activityLog");
     
-        // Return an error if the resource in the activity log isn't a resource group. 
+        // Return an error if hello resource in hello activity log isn't a resource group. 
         if (activityLog == null || !string.Equals((string)activityLog["resourceType"], 
             "Microsoft.Resources/subscriptions/resourcegroups"))
         {
@@ -131,7 +131,7 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
             });
         }
     
-        // Write information about the created resource group to the streaming log.
+        // Write information about hello created resource group toohello streaming log.
         log.Info(string.Format("Resource group '{0}' was {1} on {2}.",
             (string)activityLog["resourceGroupName"],
             ((string)activityLog["subStatus"]).ToLower(), 
@@ -141,19 +141,19 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
     }
     ```
 
-現在，您可以在訂用帳戶中建立新的資源群組，來測試此函式。
+現在您可以在您的訂用帳戶中建立新的資源群組來測試 hello 函式。
 
-## <a name="test-the-function"></a>測試函式
+## <a name="test-hello-function"></a>測試 hello 函式
 
-1. 按一下 Azure 入口網站左側的資源群組圖示，選取 [+ 新增]，鍵入**資源群組名稱**，然後選取 [建立] 以建立空的資源群組。
+1. 按一下 hello 資源群組圖示在 hello hello Azure 入口網站，選取左邊**+ 加**，輸入**資源群組名稱**，然後選取**建立**toocreate 空的資源群組。
     
     ![建立資源群組。](./media/functions-create-generic-webhook-triggered-function/functions-create-resource-group.png)
 
-2. 返回您的函式並展開 [記錄] 視窗。 建立資源群組之後，活動記錄警示會觸發 Webhook 並執行函式。 您會看到新資源群組的名稱已寫入記錄。  
+2. 請返回 tooyour 函式，並展開 hello**記錄**視窗。 建立 hello 資源群組之後，hello 活動記錄檔的警示觸發程序 hello webhook 和 hello 函式會執行。 您會看到 hello hello 寫入 toohello 記錄新資源群組名稱。  
 
     ![新增測試應用程式設定。](./media/functions-create-generic-webhook-triggered-function/function-view-logs.png)
 
-3. (選擇性) 請返回並刪除您所建立的資源群組。 請注意，此活動不會觸發函式。 這是因為警示已篩選出刪除作業。 
+3. （選擇性）請返回並刪除您所建立的 hello 資源群組。 請注意，此活動不會觸發 hello 函式。 這是因為刪除作業會篩選出 hello 警示。 
 
 ## <a name="clean-up-resources"></a>清除資源
 
@@ -165,5 +165,5 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 
-如需 Webhook 觸發程序的詳細資訊，請參閱 [Azure Functions HTTP 和 Webhook 繫結](functions-bindings-http-webhook.md)。 若要深入了解如何使用 C# 開發函式，請參閱 [Azure Functions C# 指令碼開發人員參考](functions-reference-csharp.md)。
+如需 Webhook 觸發程序的詳細資訊，請參閱 [Azure Functions HTTP 和 Webhook 繫結](functions-bindings-http-webhook.md)。 toolearn 進一步了解開發函式，在 C# 中，請參閱[Azure 函式 C# 指令碼開發人員參考](functions-reference-csharp.md)。
 

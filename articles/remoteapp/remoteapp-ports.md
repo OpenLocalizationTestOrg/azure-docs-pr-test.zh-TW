@@ -1,6 +1,6 @@
 ---
-title: "加入客戶虛擬網路中部署的 Azure RemoteApp 白名單的連接埠和 URL 清單 | Microsoft Docs"
-description: "了解您必須設定哪些連接埠及 URL，才能透過 Azure RemoteApp 進行通訊。"
+title: "連接埠和 Url toowhitelist 的 Azure RemoteApp 部署客戶虛擬網路中的 aaaList |Microsoft 文件"
+description: "了解哪些連接埠及所需的通訊透過 Azure RemoteApp tooconfigure 的 Url。"
 services: remoteapp
 documentationcenter: 
 author: mghosh1616
@@ -13,21 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: c17ff8d5441ca92f7b893edb541a1e9730c2a847
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 039866f7b64ac763ca833d66031ade3def1d3543
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="list-of-ports-and-urls-to-permit-access-for-azure-remoteapp-deployed-in-customer-virtual-network"></a>允許存取客戶虛擬網路中部署的 Azure RemoteApp 的連接埠和 URL 清單
+# <a name="list-of-ports-and-urls-toopermit-access-for-azure-remoteapp-deployed-in-customer-virtual-network"></a>清單中的連接埠和 Url toopermit 存取的 Azure RemoteApp 部署客戶虛擬網路中
 > [!IMPORTANT]
-> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 讀取 hello[公告](https://go.microsoft.com/fwlink/?linkid=821148)如需詳細資訊。
 > 
 > 
 
-如果您要在虛擬網路 (VNET) 中部署 Azure RemoteApp 雲端或混合式集合，請看以下的連接埠資訊。 如需虛擬網路的詳細資訊，請參閱 [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。 如果您已經建立網路安全性群組 (NSG) 來限制流向您的集合中虛擬網路資源的流量，請確定可透過虛擬網路上的安全性原則存取並允許使用以下連接埠。 如需網路安全性群組的詳細資訊，請參閱[什麼是網路安全性群組？(NSG)？](../virtual-network/virtual-networks-nsg.md)。
+如果您要部署的虛擬網路 (VNET) 中的 Azure RemoteApp 雲端或混合式集合，請檢閱下列連接埠資訊的 hello。 如需虛擬網路的詳細資訊，請參閱 [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。 如果您已經建立網路安全性群組 (NSG) 限制您的集合中的流量 toohello 虛擬網路資源，請確定下列連接埠的 hello 可存取、 允許透過 hello hello 虛擬網路上的安全性原則。 如需網路安全性群組的詳細資訊，請參閱[什麼是網路安全性群組？(NSG)？](../virtual-network/virtual-networks-nsg.md)。
 
-## <a name="azure-remoteapp-subnet-needs-access-to-these-endpoints-and-urls"></a>Azure RemoteApp 子網路必須存取以下端點和 URL：
+## <a name="azure-remoteapp-subnet-needs-access-toothese-endpoints-and-urls"></a>Azure RemoteApp 的子網路必須存取 toothese 端點和 Url:
 * *.servicebus.windows.net
 * *.servicebus.net
 * https://*.remoteapp.windowsazure.com  
@@ -37,11 +37,11 @@ ms.lasthandoff: 07/11/2017
 * 輸出：TCP：443、9351、9352、10101-10175 
 * 選用 – UDP：10201-10275  
 
-## <a name="azure-remoteapp-clients-need-access-to-these-endpoints-and-urls"></a>Azure RemoteApp 用戶端必須存取以下端點和 URL：
-這裡的用戶端指的是使用者用來連線到 Azure RemoteApp 集合中部署應用程式的桌上型電腦、裝置等等。
+## <a name="azure-remoteapp-clients-need-access-toothese-endpoints-and-urls"></a>Azure RemoteApp 用戶端需要存取 toothese 端點和 Url:
+我是說 hello 等該人員的桌面裝置的用戶端使用 tooconnect toohello 應用程式部署在 hello Azure RemoteApp 集合。
 
 * https://telemetry.remoteapp.windowsazure.com  
-* https://*.remoteapp.windowsazure.com (選用的 UDP 連接埠是供此位址使用) 
+* https://*.remoteapp.windowsazure.com （此位址是 hello 選擇性 UDP 連接埠） 
 * https://login.windows.net  
 * https://login.microsoftonline.com  
 * https://www.remoteapp.windowsazure.com 

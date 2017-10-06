@@ -1,6 +1,6 @@
 ---
-title: "如何將 Azure 表格儲存體搭配 Python 使用 | Microsoft Docs"
-description: "使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。"
+title: "aaaHow toouse 使用 Python Azure 資料表儲存體 |Microsoft 文件"
+description: "使用 Azure 資料表儲存體，NoSQL 資料存放區的 hello 雲端中儲存結構化的資料。"
 services: storage
 documentationcenter: python
 author: mmacy
@@ -14,38 +14,38 @@ ms.devlang: python
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: marsma
-ms.openlocfilehash: c310a52182bbc3cf44ed4dc6a04e97aa59200a64
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fd0e1b05cc12618f348eaf2d85d0dce5ac32702a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-table-storage-in-python"></a>如何在 Python 中使用表格儲存體
+# <a name="how-toouse-table-storage-in-python"></a>如何 toouse Python 的表格儲存體
 
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 [!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
-本指南說明如何使用 [Microsoft Azure Storage SDK for Python](https://github.com/Azure/azure-storage-python) 在 Python 中執行一般 Azure 表格儲存體案例。 所涵蓋的案例包括建立與刪除資料表，以及插入與查詢實體。
+本指南也說明如何 tooperform 常見 Azure 資料表儲存體的案例中使用的 Python hello [Microsoft Azure 儲存體 SDK for Python](https://github.com/Azure/azure-storage-python)。 涵蓋的 hello 案例包括建立和刪除資料表，以及插入和查詢實體。
 
-在進行本教學課程中的案例時，您可以參閱 [Azure Storage SDK for Python API 參考資料 (英文)](https://azure-storage.readthedocs.io/en/latest/index.html)。
+在本教學課程 hello 情況下工作，同時您可能希望 toorefer toohello [Azure 儲存體 SDK for Python 應用程式開發介面參考](https://azure-storage.readthedocs.io/en/latest/index.html)。
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-## <a name="install-the-azure-storage-sdk-for-python"></a>安裝 Azure Storage SDK for Python
+## <a name="install-hello-azure-storage-sdk-for-python"></a>安裝 hello Azure 儲存體 SDK for Python
 
-儲存體帳戶已建立後，下一個步驟就是安裝 [Microsoft Azure Storage SDK for Python](https://github.com/Azure/azure-storage-python)。 如需安裝 SDK 的詳細資料，請參閱 GitHub 上 [Storage SDK for Python] 存放庫中的 [README.rst](https://github.com/Azure/azure-storage-python/blob/master/README.rst) 檔案。
+建立儲存體帳戶之後下, 一步為 tooinstall hello [Microsoft Azure 儲存體 SDK for Python](https://github.com/Azure/azure-storage-python)。 如需安裝的詳細資料 hello SDK，請參閱 toohello [README.rst](https://github.com/Azure/azure-storage-python/blob/master/README.rst)檔案中儲存體 SDK hello Python 儲存機制的 GitHub 上。
 
 ## <a name="create-a-table"></a>建立資料表
 
-若要在 Python 中使用 Azure 表格服務，您必須匯入 [TableService][py_TableService] 模組。 由於您將使用表格實體，因此也需要 [Entity][py_Entity] 類別。 在靠近您 Python 檔案的頂端處新增此程式碼，以匯入這兩者：
+toowork 以 hello Azure 表格服務有 Python，您必須匯入 hello [TableService] [ py_TableService]模組。 由於您會使用資料表實體，您也需要 hello[實體][ py_Entity]類別。 將這個 hello 頂端附近的程式碼加入您 Python 檔案 tooimport 這兩個：
 
 ```python
 from azure.storage.table import TableService, Entity
 ```
 
-建立 [TableService][py_TableService] 物件以傳遞您的儲存體帳戶名稱與帳戶金鑰。 以您的帳戶名稱與索引鍵取代 `myaccount` 與 `mykey`，然後呼叫 [create_table][py_create_table] 以便在 Azure 儲存體中建立資料表。
+建立 [TableService][py_TableService] 物件以傳遞您的儲存體帳戶名稱與帳戶金鑰。 取代`myaccount`和`mykey`與您的帳戶名稱和金鑰，並呼叫[create_table] [ py_create_table] toocreate hello 資料表在 Azure 儲存體。
 
 ```python
 table_service = TableService(account_name='myaccount', account_key='mykey')
@@ -53,48 +53,48 @@ table_service = TableService(account_name='myaccount', account_key='mykey')
 table_service.create_table('tasktable')
 ```
 
-## <a name="add-an-entity-to-a-table"></a>將實體加入至資料表
+## <a name="add-an-entity-tooa-table"></a>加入實體 tooa 表
 
-若要新增實體，您先建立一個代表您實體的物件，然後將物件傳遞至 [TableService][py_TableService].[insert_entity][py_insert_entity] 方法。 實體物件可以是字典或類型為 [Entity][py_Entity] 的物件，並定義您實體的屬性名稱與值。 除了您為實體定義的任何其他屬性外。每個實體必須包含必要的 [PartitionKey and RowKey](#partitionkey-and-rowkey) 屬性。
+tooadd 實體，您先建立物件，表示您的實體，然後傳遞 hello 物件 toohello [TableService][py_TableService]。[insert_entity] [ py_insert_entity]方法。 hello 實體物件可以是字典或型別的物件[實體][py_Entity]，並定義實體的屬性名稱和值。 每個實體都必須包含所需的 hello [PartitionKey 和 RowKey](#partitionkey-and-rowkey)屬性，在加法 tooany 其他屬性您定義 hello 實體。
 
-此範例會建立一個代表實體的字典物件，然後將該物件傳遞至 [insert_entity][py_insert_entity] 方法，以將它新增至資料表：
+這個範例會建立一個字典物件表示實體，然後將其傳遞 toohello [insert_entity] [ py_insert_entity]方法 tooadd 它 toohello 資料表：
 
 ```python
-task = {'PartitionKey': 'tasksSeattle', 'RowKey': '001', 'description' : 'Take out the trash', 'priority' : 200}
+task = {'PartitionKey': 'tasksSeattle', 'RowKey': '001', 'description' : 'Take out hello trash', 'priority' : 200}
 table_service.insert_entity('tasktable', task)
 ```
 
-此範例會建立一個代表[實體][py_Entity]的物件，然後將該物件傳遞至 [insert_entity][py_insert_entity] 方法，以將它新增至資料表：
+這個範例會建立[實體][ py_Entity]物件，然後將它傳遞至 toohello [insert_entity] [ py_insert_entity]方法 tooadd 它 toohello 資料表：
 
 ```python
 task = Entity()
 task.PartitionKey = 'tasksSeattle'
 task.RowKey = '002'
-task.description = 'Wash the car'
+task.description = 'Wash hello car'
 task.priority = 100
 table_service.insert_entity('tasktable', task)
 ```
 
 ### <a name="partitionkey-and-rowkey"></a>PartitionKey 和 RowKey
 
-您必須為每個實體指定 **PartitionKey** 與 **RowKey** 屬性。 這些屬性是您實體的唯一識別碼，共同形成實體的主要索引鍵。 使用這些值查詢的速度遠快於使用任何其他實體屬性查詢，因為系統只會將這些屬性編製索引。
+您必須為每個實體指定 **PartitionKey** 與 **RowKey** 屬性。 這些是 hello 唯一識別碼的實體，為在一起便形成 hello 主索引鍵的實體。 使用這些值查詢的速度遠快於使用任何其他實體屬性查詢，因為系統只會將這些屬性編製索引。
 
-表格服務會使用 **PartitionKey**，以智慧化方式在儲存體節點之間分散資料表實體。 具有相同 **PartitionKey** 的實體會儲存在相同的節點上。 **RowKey** 是實體在其所屬資料分割內的唯一識別碼。
+hello 資料表服務中使用**PartitionKey** toointelligently 將資料表實體分散到存放裝置節點。 具有實體 hello 相同**PartitionKey**儲存在 hello 上相同的節點。 **RowKey**是 hello 的 hello 實體所屬的 hello 磁碟分割內的唯一識別碼。
 
 ## <a name="update-an-entity"></a>更新實體
 
-若要更新實體的所有屬性值，請呼叫 [update_entity][py_update_entity] 方法。 此範例說明如何以實體的更新版本取代現有的實體：
+tooupdate 所有實體的屬性值，呼叫 hello [update_entity] [ py_update_entity]方法。 這個範例會示範如何 tooreplace 現有的實體，以更新的版本：
 
 ```python
-task = {'PartitionKey': 'tasksSeattle', 'RowKey': '001', 'description' : 'Take out the garbage', 'priority' : 250}
+task = {'PartitionKey': 'tasksSeattle', 'RowKey': '001', 'description' : 'Take out hello garbage', 'priority' : 250}
 table_service.update_entity('tasktable', task)
 ```
 
-如果正在更新的實體已不存在，則更新操作便會失敗。 如果您想要儲存實體，無論其是否存在，請使用 [insert_or_replace_entity][py_insert_or_replace_entity]。 在下列範例中，第一個呼叫將取代現有實體。 第二個呼叫將插入新實體，因為資料表中沒有具有指定 PartitionKey 和 RowKey 的實體存在。
+若要更新的 hello 實體不存在，hello 更新作業將會失敗。 如果您想 toostore 實體，是否存在與否，使用[insert_or_replace_entity][py_insert_or_replace_entity]。 在下列範例的 hello，hello 第一次呼叫將會取代 hello 現有實體。 hello 第二個呼叫會插入新實體，因為沒有實體以 hello 指定 PartitionKey 和 RowKey 存在 hello 資料表中。
 
 ```python
-# Replace the entity created earlier
-task = {'PartitionKey': 'tasksSeattle', 'RowKey': '001', 'description' : 'Take out the garbage again', 'priority' : 250}
+# Replace hello entity created earlier
+task = {'PartitionKey': 'tasksSeattle', 'RowKey': '001', 'description' : 'Take out hello garbage again', 'priority' : 250}
 table_service.insert_or_replace_entity('tasktable', task)
 
 # Insert a new entity
@@ -103,11 +103,11 @@ table_service.insert_or_replace_entity('tasktable', task)
 ```
 
 > [!TIP]
-> [update_entity][py_update_entity] 方法會取代現有實體其所有的屬性與值，您也可以用於移除現有實體的屬性。 您可以使用 [merge_entity][py_merge_entity] 方法以新或已修改的屬性值來更新現有的實體，而不完全取代該實體。
+> hello [update_entity] [ py_update_entity]方法會取代所有屬性和值的現有實體，您也可以使用 tooremove 屬性，從現有的實體。 您可以使用 hello [merge_entity] [ py_merge_entity]方法 tooupdate 新建或修改過的屬性值，而不會完全取代 hello 實體與現有的實體。
 
 ## <a name="modify-multiple-entities"></a>修改多個實體
 
-若要確保表格服務對要求的處理為不可部分完成，您可以在一個批次中一起提交多個作業。 首先，使用 [TableBatch][py_TableBatch] 類別將多個作業新增至單一批次。 接著，呼叫 [TableService][py_TableService].[commit_batch][py_commit_batch] 以不可部分完成的作業提交這些作業。 要以批次修改的所有文件必須在同一個分割中。
+tooensure hello hello 表格服務的要求不可部分完成的處理，您可以提交批次中在一起的多個作業。 首先，使用 hello [TableBatch] [ py_TableBatch]類別 tooadd 多個作業 tooa 單一批次。 接下來，呼叫[TableService][py_TableService]。[commit_batch] [ py_commit_batch] toosubmit hello 作業不可部分完成的作業中。 修改批次中的所有實體 toobe hello 必須都是相同的資料分割。
 
 此範例會在一個批次中同時新增兩個實體：
 
@@ -115,17 +115,17 @@ table_service.insert_or_replace_entity('tasktable', task)
 from azure.storage.table import TableBatch
 batch = TableBatch()
 task004 = {'PartitionKey': 'tasksSeattle', 'RowKey': '004', 'description' : 'Go grocery shopping', 'priority' : 400}
-task005 = {'PartitionKey': 'tasksSeattle', 'RowKey': '005', 'description' : 'Clean the bathroom', 'priority' : 100}
+task005 = {'PartitionKey': 'tasksSeattle', 'RowKey': '005', 'description' : 'Clean hello bathroom', 'priority' : 100}
 batch.insert_entity(task004)
 batch.insert_entity(task005)
 table_service.commit_batch('tasktable', batch)
 ```
 
-批次也可以與內容管理員語法搭配使用：
+批次也可以搭配 hello 內容管理員語法：
 
 ```python
 task006 = {'PartitionKey': 'tasksSeattle', 'RowKey': '006', 'description' : 'Go grocery shopping', 'priority' : 400}
-task007 = {'PartitionKey': 'tasksSeattle', 'RowKey': '007', 'description' : 'Clean the bathroom', 'priority' : 100}
+task007 = {'PartitionKey': 'tasksSeattle', 'RowKey': '007', 'description' : 'Clean hello bathroom', 'priority' : 100}
 
 with table_service.batch('tasktable') as batch:
     batch.insert_entity(task006)
@@ -134,7 +134,7 @@ with table_service.batch('tasktable') as batch:
 
 ## <a name="query-for-an-entity"></a>查詢實體
 
-若要查詢資料表中的實體，請將其 PartitionKey 與 RowKey 傳遞至 [TableService][py_TableService].[get_entity][py_get_entity] 方法。
+在資料表中，實體 tooquery 傳遞其 PartitionKey 和 RowKey toohello [TableService][py_TableService]。[get_entity] [ py_get_entity]方法。
 
 ```python
 task = table_service.get_entity('tasktable', 'tasksSeattle', '001')
@@ -144,7 +144,7 @@ print(task.priority)
 
 ## <a name="query-a-set-of-entities"></a>查詢實體集合
 
-您可以提供一個含 **filter** 參數的篩選字串，來查詢一組實體。 此範例會對 PartitionKey 套用篩選條件，以尋找西雅圖中的所有工作：
+您可以藉由提供篩選條件字串 hello 與查詢的一組實體**篩選**參數。 此範例會對 PartitionKey 套用篩選條件，以尋找西雅圖中的所有工作：
 
 ```python
 tasks = table_service.query_entities('tasktable', filter="PartitionKey eq 'tasksSeattle'")
@@ -155,12 +155,12 @@ for task in tasks:
 
 ## <a name="query-a-subset-of-entity-properties"></a>查詢實體屬性的子集
 
-您也可以限制會為查詢中的每個實體傳回哪些屬性。 這項稱為「投射」的技術可減少頻寬並提高查詢效能 (尤其是對大型實體或結果集而言)。 使用 **select** 參數並傳遞您要傳回到用戶端的屬性名稱。
+您也可以限制會為查詢中的每個實體傳回哪些屬性。 這項稱為「投射」的技術可減少頻寬並提高查詢效能 (尤其是對大型實體或結果集而言)。 使用 hello**選取**的您想要的 hello 屬性的參數，並傳入 hello 名稱傳回 toohello 用戶端。
 
-下列程式碼中的查詢只會傳回資料表中各實體的說明。
+hello，下列程式碼中的 hello 查詢會傳回只 hello 描述實體的 hello 資料表中。
 
 > [!NOTE]
-> 下列程式碼片段只針對 Azure 儲存體運作。 儲存體模擬器並不支援此程式碼片段。
+> 下列程式碼片段適用於只針對 hello Azure 儲存體的 hello。 它不支援 hello 儲存體模擬器。
 
 ```python
 tasks = table_service.query_entities('tasktable', filter="PartitionKey eq 'tasksSeattle'", select='description')
@@ -170,7 +170,7 @@ for task in tasks:
 
 ## <a name="delete-an-entity"></a>刪除實體
 
-透過將實體的 PartitionKey 與 RowKey 傳遞至 [delete_entity][py_delete_entity] 方法來刪除實體。
+刪除實體，藉由傳遞其 PartitionKey 和 RowKey toohello [delete_entity] [ py_delete_entity]方法。
 
 ```python
 table_service.delete_entity('tasktable', 'tasksSeattle', '001')
@@ -178,7 +178,7 @@ table_service.delete_entity('tasktable', 'tasksSeattle', '001')
 
 ## <a name="delete-a-table"></a>刪除資料表
 
-如果您不再需要資料表及其內的任何實體，請呼叫 [delete_table][py_delete_table] 方法將資料表永久地從 Azure 儲存體中刪除。
+如果您不再需要的資料表，或任何 hello 實體內，呼叫 hello [delete_table] [ py_delete_table]方法 toopermanently 從 Azure 儲存體刪除 hello 資料表。
 
 ```python
 table_service.delete_table('tasktable')

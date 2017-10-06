@@ -1,5 +1,5 @@
 ---
-title: "Azure 媒體服務社群概觀 | Microsoft Docs"
+title: "aaaAzure Media Services 社群概觀 |Microsoft 文件"
 description: "Azure 媒體服務 (AMS) 社群頁面討論您可以取得 AMS 更新資訊、查看新的影片和播客、提出問題並提供意見反應的不同方式。 "
 services: media-services
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: ef77ed3a4efee7ebcdd716376be78db38ce46f8f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 97329ef099752506af6ec6947a88a00c35d141a3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-media-services-community"></a>Azure 媒體服務社群
 Azure 媒體服務 (AMS) 社群頁面討論您可以取得 AMS 更新資訊、檢視新的影片和播客、提出問題並提供意見反應的不同方式。   
@@ -37,10 +37,10 @@ Azure 媒體服務 (AMS) 社群頁面討論您可以取得 AMS 更新資訊、�
 
 ## <a name="discussion"></a>討論區
 ### <a name="twitter"></a>Twitter
-使用 [@MSFTAzureMedia](https://twitter.com/MSFTAzureMedia) twitter 控制代碼，在 Twitter 上追蹤 AMS 消息和更新。 您可以使用 [@AzureSupport](https://twitter.com/azuresupport) twitter 控制代碼，以在 Twitter 上要求支援。  
+使用 hello [ @MSFTAzureMedia ](https://twitter.com/MSFTAzureMedia) twitter 控點 toofollow hello AMS 消息和 Twitter 上的更新。 您可以使用 hello [ @AzureSupport ](https://twitter.com/azuresupport) twitter 控點 toorequest 支援在 Twitter 上的。  
 
 ### <a name="online-forums"></a>線上論壇
-下列其中一個論壇可以用於詢問有關目前的產品和功能的問題。
+hello 下列論壇可以用於目前的產品和功能的相關詢問的問題。
 
 目前，MSDN 是 AMS 的主要論壇。
 
@@ -48,10 +48,10 @@ Azure 媒體服務 (AMS) 社群頁面討論您可以取得 AMS 更新資訊、�
 
 [![StackOverflow](./media/media-services-community/stack-overflow.png)](http://stackoverflow.com/questions/tagged/azure-media-services) 
 
-## <a name="contact-the-team"></a>連絡小組
+## <a name="contact-hello-team"></a>連絡 hello 小組
 Azure 媒體服務的主要電子郵件是： **mediaservices@microsoft.com**。
 
-下表列出功能子小組的電子郵件：
+hello 下表列出功能子小組的電子的郵件：
 
 | 功能 | 電子郵件 |
 | --- | --- |

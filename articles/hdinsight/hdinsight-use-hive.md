@@ -1,7 +1,7 @@
 ---
-title: "什麼是 Apache Hive 和 HiveQL - Azure HDInsight | Microsoft Docs"
-description: "Apache Hive 是適用於 Hadoop 的資料倉儲系統。 您可以使用 HiveQL (這類似於 TRANSACT-SQL) 查詢 Hive 中儲存的資料。 在本文件中，您將了解如何使用 Hive 和 HiveQL 搭配 Azure HDInsight。"
-keywords: "hiveql,什麼是 hive,hadoop hiveql,如何使用 hive,了解 hive,什麼是s hive"
+title: "aaaWhat 是 Apache Hive 和 HiveQL-Azure HDInsight |Microsoft 文件"
+description: "Apache Hive 是適用於 Hadoop 的資料倉儲系統。 您可以查詢資料儲存在登錄區利用 HiveQL，哪些類似 tooTransact SQL。 在這份文件，了解如何 toouse hive 控制檔和使用 Azure HDInsight HiveQL。"
+keywords: "hiveql，什麼是登錄區，hadoop hiveql 如何 toouse hive 控制檔，了解什麼是登錄區的 hive"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -17,31 +17,31 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/03/2017
 ms.author: larryfr
-ms.openlocfilehash: 6b3ee17141f773bec07cf40e0b6d63363e9b5164
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a2772312263895ff99b499898264c2e6d5e816e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-apache-hive-and-hiveql-on-azure-hdinsight"></a>Azure HDInsight 上的 Apache Hive 和 HiveQL 是什麼？
 
-[Apache Hive](http://hive.apache.org/) 是適用於 Hadoop 的資料倉儲系統。 Hive 可執行資料摘要、查詢以及資料分析。 Hive 查詢是以 HiveQL 撰寫而成，這是類似 SQL 的查詢語言。
+[Apache Hive](http://hive.apache.org/) 是適用於 Hadoop 的資料倉儲系統。 Hive 可執行資料摘要、查詢以及資料分析。 已寫入下列 HiveQL，也就是查詢語言類似 tooSQL hive 查詢。
 
-Hive 可讓您將結構投影在大量非結構化資料上。 定義結構後，您不需具備 Jave 或 MapReduce 相關知識，即可使用 HiveQL來查詢資料。
+登錄區可讓您 tooproject 結構上大部分的非結構化資料。 您可以定義 hello 結構之後，您可以使用 HiveQL tooquery hello 資料的 Java 或 MapReduce 不知情的情況下。
 
-HDInsight 提供數種已針對特定工作負載進行微調的叢集類型。 下列叢集類型最常用於 Hive 查詢︰
+HDInsight 提供數種已針對特定工作負載進行微調的叢集類型。 下列叢集類型的 hello 最常使用 Hive 查詢：
 
-* __Interactive Hive__︰提供[低延遲分析處理 (LLAP)](https://cwiki.apache.org/confluence/display/Hive/LLAP) 功能的 Hadoop 叢集，可改善互動式查詢的回應時間。 如需詳細資訊，請參閱[開始使用 HDInsight 中的 Interactive Hive](hdinsight-hadoop-use-interactive-hive.md) 文件。
+* __互動式 Hive__： 提供的 Hadoop 叢集[低延遲分析處理 (LLAP)](https://cwiki.apache.org/confluence/display/Hive/LLAP)互動式查詢功能 tooimprove 回應時間。 如需詳細資訊，請參閱 hello[開頭 HDInsight 中的互動式 Hive](hdinsight-hadoop-use-interactive-hive.md)文件。
 
-* __Hadoop__︰已針對批次處理工作負載進行微調的 Hadoop 叢集。 如需詳細資訊，請參閱[開始使用 HDInsight 中的 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md) 文件。
+* __Hadoop__︰已針對批次處理工作負載進行微調的 Hadoop 叢集。 如需詳細資訊，請參閱 hello[啟動 HDInsight 中的 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)文件。
 
-* __Spark__：Apache Spark 有可用於 Hive 的內建功能。 如需詳細資訊，請參閱[開始使用 HDInsight 上的 Spark](hdinsight-apache-spark-jupyter-spark-sql.md) 文件。
+* __Spark__：Apache Spark 有可用於 Hive 的內建功能。 如需詳細資訊，請參閱 hello[開頭 HDInsight 上的 Spark](hdinsight-apache-spark-jupyter-spark-sql.md)文件。
 
-* __HBase__：HiveQL 可以用來查詢 HBase 中儲存的資料。 如需詳細資訊，請參閱[開始使用 HDInsight 上的 HBase](hdinsight-hbase-tutorial-get-started-linux.md) 文件。
+* __對 HBase__: HiveQL 可以是使用的 tooquery 對 HBase 中所儲存的資料。 如需詳細資訊，請參閱 hello[開始在 HDInsight HBase](hdinsight-hbase-tutorial-get-started-linux.md)文件。
 
-## <a name="how-to-use-hive"></a>如何使用 Hive
+## <a name="how-toouse-hive"></a>如何 toouse hive 控制檔
 
-使用下表了解如何使用 Hive 搭配 HDInsight︰
+使用下列資料表 toodiscover toouse hive 控制檔與 HDInsight hello:
 
 | **使用此方法**，如果您想要... | ...一個 **互動式** 殼層 | ...**批次** 處理 | ...搭配此 **叢集作業系統** | ...從此 **用戶端作業系統** |
 |:--- |:---:|:---:|:--- |:--- |
@@ -52,17 +52,17 @@ HDInsight 提供數種已針對特定工作負載進行微調的叢集類型。 
 | [Windows PowerShell](hdinsight-hadoop-use-hive-powershell.md) |&nbsp; |✔ |Linux 或 Windows* |Windows |
 
 > [!IMPORTANT]
-> \* Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+> \*Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 >
-> 如果您使用以 Windows 為基礎的 HDInsight 叢集，您可以從瀏覽器或[遠端桌面](hdinsight-hadoop-use-hive-remote-desktop.md)使用[查詢主控台](hdinsight-hadoop-use-hive-query-console.md)來執行 Hive 查詢。
+> 如果您使用 Windows 為基礎的 HDInsight 叢集，您可以使用 hello[查詢主控台](hdinsight-hadoop-use-hive-query-console.md)從瀏覽器或[遠端桌面](hdinsight-hadoop-use-hive-remote-desktop.md)toorun Hive 查詢。
 
 ## <a name="hiveql-language-reference"></a>HiveQL 語言參考
 
-在[語言手冊 (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual) 中可取得 HiveQL 語言參考。
+這個語言參考位於 hello[語言手動 (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)。
 
 ## <a name="hive-and-data-structure"></a>Hive 和資料結構
 
-Hive 了解如何使用結構化和半結構化資料。 例如，以特定字元分隔欄位的文字檔案。 下列 HiveQL 陳述式會使用以空格分隔的資料建立資料表︰
+登錄區了解與 toowork 的結構化和半結構化的資料。 例如，文字檔 hello 欄位，以特定字元分隔。 hello HiveQL 陳述式之後建立的資料表，以空格分隔的資料：
 
 ```hiveql
 CREATE EXTERNAL TABLE log4jLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string)
@@ -70,35 +70,35 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY ' '
 STORED AS TEXTFILE LOCATION '/example/data/';
 ```
 
-Hive 也支援自訂複雜或不規則結構化資料的 **序列化/反序列化程式 (SerDe)** 。 如需詳細資訊，請參閱[如何搭配 HDInsight 使用自訂 JSON SerDe](http://blogs.msdn.com/b/bigdatasupport/archive/2014/06/18/how-to-use-a-custom-json-serde-with-microsoft-azure-hdinsight.aspx) 文件 (英文)。
+Hive 也支援自訂複雜或不規則結構化資料的 **序列化/反序列化程式 (SerDe)** 。 如需詳細資訊，請參閱 hello[如何 toouse 與 HDInsight 自訂 JSON SerDe](http://blogs.msdn.com/b/bigdatasupport/archive/2014/06/18/how-to-use-a-custom-json-serde-with-microsoft-azure-hdinsight.aspx)文件。
 
-如需 Hive 所支援檔案格式的詳細資訊，請參閱[語言手冊 (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
+如需有關登錄區所支援的檔案格式的詳細資訊，請參閱 hello[語言手動 (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
 
 ## <a name="hive-internal-tables-vs-external-tables"></a>Hive 內部和外部資料表比較。
 
 您可以使用 Hive 建立兩種類型的資料表：
 
-* __內部__︰資料會儲存在 Hive 資料倉儲中。 資料倉儲位於叢集之預設儲存體上的 `/hive/warehouse/`。
+* __內部__: hello Hive 資料倉儲中所儲存的資料。 hello 資料倉儲位於`/hive/warehouse/`hello hello 叢集的預設儲存體上。
 
     使用內部資料表的時機︰
 
     * 資料是暫存的。
-    * 您想要 Hive 管理資料表和資料的生命週期。
+    * 您想 Hive toomanage hello 生命週期的 hello 資料表和資料。
 
-* __外部__︰資料會儲存在資料倉儲之外。 資料可以儲存在叢集可存取的任何儲存體上。
+* __外部__： 資料會儲存外 hello 資料倉儲。 hello 資料可以儲存在任何可存取的存放裝置，由 hello 叢集。
 
     使用外部資料表的時機︰
 
-    * 資料也使用於 Hive 之外。 例如，資料檔案由其他程序所更新 (不會鎖定檔案)。
-    * 即使在刪除資料表後，資料都必須保留在基礎位置。
+    * hello 資料也會使用登錄區之外。 例如，hello 資料檔案會更新由其他處理序 （也就不會鎖定 hello 檔案。）
+    * 需要 tooremain hello 基礎位置，即使之後卸除 hello 資料表中的資料。
     * 您需要自訂位置，例如非預設儲存體帳戶。
-    * Hive 以外的程式管理資料格式、位置等等。
+    * 登錄區以外的程式管理 hello 資料格式、 位置等等。
 
-如需詳細資訊，請參閱 [Hive 內部和外部資料表簡介][cindygross-hive-tables]部落格文章。
+如需詳細資訊，請參閱 hello [hive 控制檔內部和外部資料表簡介][ cindygross-hive-tables]部落格文章。
 
 ## <a name="user-defined-functions-udf"></a>使用者定義函數 (UDF)
 
-Hive 也可透過 **使用者定義函數 (UDF)**延伸。 UDF 可讓您在 HiveQL 中實作功能或不易模型化的邏輯。 如需將 UDF 與 Hive 搭配使用的範例，請參閱以下文件：
+Hive 也可透過 **使用者定義函數 (UDF)**延伸。 UDF 可讓您 tooimplement 功能或 HiveQL 不容易模型化的邏輯。 使用 Hive Udf 的範例，請參閱下列文件的 hello:
 
 * [將 Java 使用者定義的函式與 Hive 搭配使用](hdinsight-hadoop-hive-java-udf.md)
 
@@ -106,17 +106,17 @@ Hive 也可透過 **使用者定義函數 (UDF)**延伸。 UDF 可讓您在 Hive
 
 * [使用 C# 使用者定義的函式搭配 Hive 和 Pig](hdinsight-hadoop-hive-pig-udf-dotnet-csharp.md)
 
-* [如何將自訂 Hive 使用者定義的函式新增至 HDInsight](http://blogs.msdn.com/b/bigdatasupport/archive/2014/01/14/how-to-add-custom-hive-udfs-to-hdinsight.aspx)
+* [使用者定義的自訂 Hive tooadd tooHDInsight 的運作方式](http://blogs.msdn.com/b/bigdatasupport/archive/2014/01/14/how-to-add-custom-hive-udfs-to-hdinsight.aspx)
 
-* [可將日期/時間格式轉換成 Hive 時間戳記的範例 Hive 使用者定義函式](https://github.com/Azure-Samples/hdinsight-java-hive-udf)
+* [範例登錄區的使用者定義函數 tooconvert 日期/時間格式 tooHive 時間戳記](https://github.com/Azure-Samples/hdinsight-java-hive-udf)
 
 ## <a id="data"></a>範例資料
 
-HDInsight 上的 Hive 已預先載入名為 `hivesampletable` 的內部資料表。 HDInsight 也提供可搭配 Hive 使用的範例資料集。 這些資料集會儲存在 `/example/data` 和 `/HdiSamples` 目錄中。 這些目錄存在於您叢集的預設儲存體中。
+HDInsight 上的 Hive 已預先載入名為 `hivesampletable` 的內部資料表。 HDInsight 也提供可搭配 Hive 使用的範例資料集。 這些資料集儲存在 hello`/example/data`和`/HdiSamples`目錄。 這些目錄存在於 hello 預設儲存體叢集。
 
 ## <a id="job"></a>範例 Hive 查詢
 
-下列 HiveQL 陳述式將資料行投影在 `/example/data/sample.log` 檔案︰
+hello 下列 HiveQL 陳述式投射資料行拖曳至 hello`/example/data/sample.log`檔案：
 
     set hive.execution.engine=tez;
     DROP TABLE log4jLogs;
@@ -125,31 +125,31 @@ HDInsight 上的 Hive 已預先載入名為 `hivesampletable` 的內部資料表
     STORED AS TEXTFILE LOCATION '/example/data/';
     SELECT t4 AS sev, COUNT(*) AS count FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log' GROUP BY t4;
 
-在上一個範例中，HiveQL 陳述式會執行下列動作：
+Hello 上述範例中，在 hello HiveQL 陳述式會執行下列動作的 hello:
 
-* `set hive.execution.engine=tez;`：設定執行引擎以使用 Tez。 使用 Tez 而非 MapReduce，可以提升查詢效能。 如需 Tez 的詳細資訊，請參閱 [使用 Apache Tez 以提升效能](#usetez) 一節。
+* `set hive.execution.engine=tez;`： 設定 hello 執行引擎 toouse Tez。 使用 Tez 而非 MapReduce，可以提升查詢效能。 如需有關 Tez 的詳細資訊，請參閱 hello[來改善效能的使用 Apache Tez](#usetez) > 一節。
 
     > [!NOTE]
-    > 只有在使用以 Windows 為基礎的 HDInsight 叢集時，才需要此陳述式。 Tez 是以 Linux 為基礎的 HDInsight 預設的執行引擎。
+    > 只有在使用以 Windows 為基礎的 HDInsight 叢集時，才需要此陳述式。 Tez 是以 Linux 為基礎的 HDInsight hello 預設執行引擎。
 
-* `DROP TABLE`︰如果資料表已存在，請刪除資料表。
+* `DROP TABLE`： 如果 hello 資料表已經存在，請將它刪除。
 
-* `CREATE EXTERNAL TABLE`：在 Hive 中建立新的**外部**資料表。 外部資料表只會將資料表定義儲存在 Hive 中。 資料會留在原來的位置，並保持原始格式。
+* `CREATE EXTERNAL TABLE`：在 Hive 中建立新的**外部**資料表。 外部資料表只會儲存在登錄區中的 hello 資料表定義。 hello 原始位置，並以 hello 原始格式保留 hello 資料。
 
-* `ROW FORMAT`：告訴 Hive 如何格式化資料。 在此情況下，每個記錄中的欄位會以空格隔開。
+* `ROW FORMAT`： 會告知的 Hive hello 資料格式化的方式。 在此情況下，每個記錄檔中的 hello 欄位會以空格分隔。
 
-* `STORED AS TEXTFILE LOCATION`：將資料的儲存位置告訴 Hive (`example/data` 目錄)，且資料會儲存為文字。 資料可以在目錄的一個檔案中，也可以分散在多個檔案中。
+* `STORED AS TEXTFILE LOCATION`： 會告知 Hive 其中 hello 資料會儲存 (hello`example/data`目錄)，則會儲存為文字。 hello 資料可以在一個檔案，或分散 hello 目錄內的多個檔案。
 
-* `SELECT`：選取資料行 **t4** 包含 **[ERROR]** 值的所有資料列計數。 這個陳述式會傳回值 **3**，因為有三個資料列包含此值。
+* `SELECT`： 選取所有資料列計數，其中 hello 資料行**t4**包含 hello 值**[錯誤]**。 這個陳述式會傳回值 **3**，因為有三個資料列包含此值。
 
-* `INPUT__FILE__NAME LIKE '%.log'` - Hive 嘗試將結構描述套用至目錄中的所有檔案。 在此情況下，目錄包含不符合結構描述的檔案。 若要防止結果中出現亂碼資料，此陳述式會告訴 Hive 我們只應該從檔名以 log 結尾的檔案傳回資料。
+* `INPUT__FILE__NAME LIKE '%.log'`-Hive 嘗試 tooapply hello 結構描述 tooall 檔案 hello 目錄中。 在此情況下，hello 目錄包含不符合 hello 結構描述的檔案。 tooprevent 記憶體回收 hello 結果中的資料，此陳述式會告知登錄區，我們應該只會傳回資料從檔案結尾。 記錄檔。
 
 > [!NOTE]
-> 當您預期會由外部來源來更新基礎資料時，請使用外部資料表。 例如，自動化的資料上傳程序，或 MapReduce 作業。
+> 當您希望產生 hello 由外部來源更新基礎資料 toobe，應該使用外部資料表。 例如，自動化的資料上傳程序，或 MapReduce 作業。
 >
-> 捨棄外部資料表並「不會」  刪除資料，只會刪除資料表定義。
+> 卸除的外部資料表沒有**不**刪除 hello 資料，它只會刪除 hello 資料表定義。
 
-若要建立**內部**資料表，而不是外部資料表，請使用下列 HiveQL：
+toocreate**內部**而不是外部資料表，請使用下列 HiveQL hello:
 
     set hive.execution.engine=tez;
     CREATE TABLE IF NOT EXISTS errorLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string)
@@ -157,59 +157,59 @@ HDInsight 上的 Hive 已預先載入名為 `hivesampletable` 的內部資料表
     INSERT OVERWRITE TABLE errorLogs
     SELECT t1, t2, t3, t4, t5, t6, t7 FROM log4jLogs WHERE t4 = '[ERROR]';
 
-這些陳述式會執行下列動作：
+這些陳述式會執行下列動作的 hello:
 
-* `CREATE TABLE IF NOT EXISTS`︰如果資料表不存在，請建立資料表。 因為未使用 **EXTERNAL** 關鍵字，這個陳述式會建立內部資料表。 資料表會儲存在 Hive 資料倉儲中，並完全受到 Hive 所管理。
+* `CREATE TABLE IF NOT EXISTS`： 如果 hello 資料表不存在，建立它。 因為 hello**外部**不是關鍵字，這個陳述式會建立內部資料表。 hello 資料表儲存在 hello Hive 資料倉儲和 Hive 完全管理。
 
-* `STORED AS ORC`：以最佳化資料列單欄式 (Optimized Row Columnar, ORC) 格式儲存資料。 ORC 是高度最佳化且有效率的 Hive 資料儲存格式。
+* `STORED AS ORC`: Hello 資料最佳化的資料列單欄式 (ORC) 格式儲存。 ORC 是高度最佳化且有效率的 Hive 資料儲存格式。
 
-* `INSERT OVERWRITE ... SELECT`：從 **log4jLogs** 資料表選取包含 **[ERROR]** 的資料列，然後將資料插入 **errorLogs** 資料表。
+* `INSERT OVERWRITE ... SELECT`： 選取資料列從 hello **log4jLogs**資料表，其中包含**[錯誤]**，然後插入 hello 資料到 hello 和**錯誤記錄檔**資料表。
 
 > [!NOTE]
-> 與外部資料表不同之處在於，捨棄內部資料表也會刪除基礎資料。
+> 不同於外部資料表，卸除內部資料表也會刪除 hello 基礎資料。
 
 ## <a name="improve-hive-query-performance"></a>改善 Hive 查詢效能
 
 ### <a id="usetez"></a>Apache Tez
 
-[Apache Tez](http://tez.apache.org) 是可讓資料高用量應用程式 (例如 Hive)，以大規模而更有效率方式執行作業的架構。 對於以 Linux 為基礎的 HDInsight 叢集，Tez 預設為開啟。
+[Apache Tez](http://tez.apache.org)是此架構可讓資料密集應用程式，例如登錄區，能更有效率地在標尺 toorun。 對於以 Linux 為基礎的 HDInsight 叢集，Tez 預設為開啟。
 
 > [!NOTE]
-> 對於 Windows 型的 HDInsight 叢集，Tez 目前預設為關閉，因而必須啟用。 若要充分發揮 Tez 的效益，您必須設定 Hive 查詢的下列值：
+> 對於 Windows 型的 HDInsight 叢集，Tez 目前預設為關閉，因而必須啟用。 Hive 查詢必須設定 tootake 優點 Tez，hello 下列值：
 >
 > `set hive.execution.engine=tez;`
 >
-> 對於以 Linux 為基礎的 HDInsight 叢集，Tez 是預設引擎。
+> Tez 是 hello 預設引擎以 Linux 為基礎的 HDInsight 叢集。
 
-[Tez 上的 Hive 設計文件](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Tez)包含實作選擇和調整組態的詳細資料。
+hello [Hive Tez 設計文件上](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Tez)包含 hello 實作選項和微調組態詳細資料。
 
-為了使用 Tez 來協助偵錯作業，HDInsight 提供下列 Web UI，讓您檢視 Tez 作業的詳細資料：
+使用 Tez tooaid 偵錯作業中的執行，HDInsight 提供下列 Tez 工作的 tooview 詳細資料可讓您的 web Ui 的 hello:
 
-* [在以 Linux 為基礎的 HDInsight 上使用 Ambari Tez 檢視](hdinsight-debug-ambari-tez-view.md)
+* [使用 hello Ambari Tez 以 Linux 為基礎的 HDInsight 上的檢視](hdinsight-debug-ambari-tez-view.md)
 
-* [在以 Windows 為基礎的 HDInsight 上使用 Tez UI](hdinsight-debug-tez-ui.md)
+* [使用 Windows 為基礎的 HDInsight 上的 hello Tez UI](hdinsight-debug-tez-ui.md)
 
 ### <a name="low-latency-analytical-processing-llap"></a>低延遲分析處理 (LLAP)
 
-[LLAP](https://cwiki.apache.org/confluence/display/Hive/LLAP) (有時也稱為 Live Long and Process) 是 Hive 2.0 的新功能，允許在記憶體中快取查詢。 LLAP 讓 Hive 查詢的速讀變快，在某些情況下可達到[比 Hive 1.x 快 26 倍](https://hortonworks.com/blog/announcing-apache-hive-2-1-25x-faster-queries-much/)。
+[LLAP](https://cwiki.apache.org/confluence/display/Hive/LLAP) (有時也稱為 Live Long and Process) 是 Hive 2.0 的新功能，允許在記憶體中快取查詢。 LLAP 會更快，向上的 Hive 查詢太[26 x 比 Hive 在某些情況下 1.x](https://hortonworks.com/blog/announcing-apache-hive-2-1-25x-faster-queries-much/)。
 
-HDInsight 可提供 Interactive Hive 叢集類型的 LLAP。 如需詳細資訊，請參閱[開始使用 Interactive Hive](hdinsight-hadoop-use-interactive-hive.md) 文件。
+HDInsight 提供 LLAP hello 互動式 Hive 叢集類型中。 如需詳細資訊，請參閱 hello[開頭互動式 Hive](hdinsight-hadoop-use-interactive-hive.md)文件。
 
 ## <a name="hive-jobs-and-sql-server-integration-services"></a>Hive 工作和 SQL Server 整合服務
 
-您可以使用 SQL Server Integration Services (SSIS) 來執行 Hive 作業。 適用於 SSIS 的 Azure Feature Pack 中提供下列元件可搭配 HDInsight 上的 Hive 工作使用。
+您可以使用 SQL Server Integration Services (SSIS) toorun Hive 工作。 hello Azure Feature Pack for SSIS 提供 hello 遵循使用 HDInsight 的登錄區工作的元件。
 
 * [Azure HDInsight Hive 工作][hivetask]
 
 * [Azure 訂用帳戶連接管理員][connectionmanager]
 
-在[這裡][ssispack]深入了解適用於 SSIS 的 Azure Feature Pack。
+深入了解 hello Azure Feature Pack for SSIS[這裡][ssispack]。
 
 ## <a id="nextsteps"></a>接續步驟
 
-現在您已了解什麼是 Hive 以及如何搭配 HDInsight 中的 Hadoop 使用它，接著請使用下列連結探索 Azure HDInsight 的其他使用方式。
+既然您已經學會 Hive 的是，以及如何使用 hello 下列 HDInsight 中的 Hadoop 連結 tooexplore Azure HDInsight 以其他方式 toowork toouse。
 
-* [將資料上傳至 HDInsight][hdinsight-upload-data]
+* [上傳資料 tooHDInsight][hdinsight-upload-data]
 * [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
 * [搭配 HDInsight 使用 MapReduce 作業][hdinsight-use-mapreduce]
 

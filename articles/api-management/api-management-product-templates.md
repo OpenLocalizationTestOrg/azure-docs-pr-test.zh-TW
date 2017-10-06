@@ -1,6 +1,6 @@
 ---
-title: "Azure API 管理中的產品範本 | Microsoft Docs"
-description: "了解如何在「Azure API 管理」開發人員入口網站中自訂產品頁面的內容。"
+title: "在 Azure API 管理 aaaProduct 範本 |Microsoft 文件"
+description: "了解 hello Azure API 管理開發人員入口網站中的 hello 產品 toocustomize hello 內容頁面的方式。"
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 9ddbb9860b437cb3e7334bdf5891f2fba1cffb76
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 60600299287aad87f9b621782ab5ceb866601d03
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="product-templates-in-azure-api-management"></a>Azure API 管理中的產品範本
-「Azure API 管理」可讓您使用一組可設定開發人員入口網站頁面內容的範本，來自訂那些頁面的內容。 使用這些範本時，您可以運用 [DotLiquid](http://dotliquidmarkup.org/) 語法和您選擇的編輯器 (例如 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers))，以及一組提供的當地語系化[字串資源](api-management-template-resources.md#strings)、[字符資源](api-management-template-resources.md#glyphs)和[頁面控制項](api-management-page-controls.md)，依照您的想法自由靈活地設定頁面內容。  
+Azure API 管理提供 hello 能力 toocustomize hello 網頁內容的開發人員入口網站使用的一組設定其內容的範本。 使用[DotLiquid](http://dotliquidmarkup.org/)語法和 hello 您選擇的編輯器例如[針對設計人員 DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers)，和一組提供的當地語系化[字串資源](api-management-template-resources.md#strings)， [字符資源](api-management-template-resources.md#glyphs)，和[頁面控制項](api-management-page-controls.md)，視使用這些範本，您會有很大的彈性 tooconfigure hello 網頁內容的 hello。  
   
- 本節的範本可讓您自訂開發人員入口網站中產品頁面的內容。  
+ 本節中的 hello 範本允許您 toocustomize hello 網頁內容的 hello 產品 hello 開發人員入口網站中。  
   
 -   [產品清單](#ProductList)  
   
 -   [產品](#Product)  
   
 > [!NOTE]
->  下列文件中包含範例預設範本，但範本可能會因持續進行的改善而有變更。 您可以瀏覽至想要的個別範本，來檢視開發人員入口網站中的即時預設範本。 如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。  
+>  預設範本範例隨附的 hello 下列文件，但主旨 toochange 到期 toocontinuous 增強功能。 您可以檢視 hello 開發人員入口網站中的 hello 即時預設範本，藉由瀏覽 toohello 需要個別的範本。 如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。  
   
 ##  <a name="ProductList"></a>產品清單  
- **清單**範本可讓您自訂開發人員入口網站中產品清單頁面的主體。  
+ hello**產品清單**範本可讓您 toocustomize hello 主體 hello 產品清單頁面 hello 開發人員入口網站中。  
   
  ![產品清單](./media/api-management-product-templates/APIM_ProductsListTemplatePage.png "APIM_ProductsListTemplatePage")  
   
@@ -66,7 +66,7 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ### <a name="controls"></a>控制  
- `Product list` 範本可能會使用下列[頁面控制項](api-management-page-controls.md)。  
+ hello`Product list`範本可能使用 hello 下列[頁面控制項](api-management-page-controls.md)。  
   
 -   [paging-control](api-management-page-controls.md#paging-control)  
   
@@ -76,9 +76,9 @@ ms.lasthandoff: 07/11/2017
   
 |屬性|類型|說明|  
 |--------------|----------|-----------------|  
-|分頁|[分頁](api-management-template-data-model-reference.md#Paging)實體。|產品集合的分頁資訊。|  
-|篩選|[篩選](api-management-template-data-model-reference.md#Filtering)實體。|產品清單頁面的篩選資訊。|  
-|產品|[產品](api-management-template-data-model-reference.md#Product)實體的集合。|目前使用者可看見的產品。|  
+|分頁|[分頁](api-management-template-data-model-reference.md#Paging)實體。|hello hello 產品集合的分頁資訊。|  
+|篩選|[篩選](api-management-template-data-model-reference.md#Filtering)實體。|hello 讓 hello 產品清單頁面篩選資訊。|  
+|產品|[產品](api-management-template-data-model-reference.md#Product)實體的集合。|hello 產品可見 toohello 目前的使用者。|  
   
 ### <a name="sample-template-data"></a>範例範本資料  
   
@@ -99,7 +99,7 @@ ms.lasthandoff: 07/11/2017
         {  
             "Id": "56f9445ffaf7560049060001",  
             "Title": "Starter",  
-            "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "Description": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "Terms": "",  
             "ProductState": 1,  
             "AllowMultipleSubscriptions": false,  
@@ -108,7 +108,7 @@ ms.lasthandoff: 07/11/2017
         {  
             "Id": "56f9445ffaf7560049060002",  
             "Title": "Unlimited",  
-            "Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "Description": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "Terms": null,  
             "ProductState": 1,  
             "AllowMultipleSubscriptions": false,  
@@ -119,7 +119,7 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ##  <a name="Product"></a>產品  
- **產品**範本可讓您自訂開發人員入口網站的產品頁面主體。  
+ hello**產品**範本可讓您 toocustomize hello hello 產品頁面主體 hello 開發人員入口網站中。  
   
  ![開發人員入口網站的產品頁面](./media/api-management-product-templates/APIM_ProductPage.png "APIM_ProductPage")  
   
@@ -193,7 +193,7 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ### <a name="controls"></a>控制  
- `Product list` 範本可能會使用下列[頁面控制項](api-management-page-controls.md)。  
+ hello`Product list`範本可能使用 hello 下列[頁面控制項](api-management-page-controls.md)。  
   
 -   [subscribe-button](api-management-page-controls.md#subscribe-button)  
   
@@ -201,17 +201,17 @@ ms.lasthandoff: 07/11/2017
   
 |屬性|類型|說明|  
 |--------------|----------|-----------------|  
-|產品|[產品](api-management-template-data-model-reference.md#Product)|指定的產品。|  
-|IsDeveloperSubscribed|布林值|目前的使用者是否已訂閱此產品。|  
-|SubscriptionState|number|訂用帳戶的狀態。 可能的狀態為：<br /><br /> -   `0 - suspended` – 訂用帳戶已遭封鎖，而且訂閱者無法呼叫產品的任何 API。<br />-   `1 - active` – 訂用帳戶是作用中狀態。<br />-   `2 - expired` – 訂用帳戶已達到期日，因此已停用。<br />-   `3 - submitted` – 開發人員已提出訂用帳戶要求，但尚未進行核准或拒絕。<br />-   `4 - rejected` – 系統管理員已拒絕訂用帳戶要求。<br />-   `5 - cancelled` – 開發人員或系統管理員已取消訂用帳戶。|  
+|產品|[產品](api-management-template-data-model-reference.md#Product)|hello 指定的產品。|  
+|IsDeveloperSubscribed|布林值|Hello 目前使用者是否已訂閱的 toothis 產品。|  
+|SubscriptionState|number|hello hello 訂用帳戶狀態。 可能的狀態為：<br /><br /> -   `0 - suspended`– hello 訂用帳戶遭到封鎖，且 hello 訂閱者無法呼叫 hello 產品的任何應用程式開發介面。<br />-   `1 - active`– hello 訂閱在作用中。<br />-   `2 - expired`– hello 訂用帳戶已達到其到期日並且已停用。<br />-   `3 - submitted`– hello 訂用帳戶要求 hello 開發人員已發出但尚未核准或拒絕。<br />-   `4 - rejected`– 系統管理員已拒絕 hello 訂用帳戶要求。<br />-   `5 - cancelled`– hello 開發人員或管理員已取消 hello 訂用帳戶。|  
 |限制|array|此屬性已被取代而不應該使用。|  
 |DelegatedSubscriptionEnabled|布林值|此訂用帳戶是否已啟用[委派](https://azure.microsoft.com/documentation/articles/api-management-howto-setup-delegation/)。|  
-|DelegatedSubscriptionUrl|字串|如果已啟用委派，則是所委派的訂用帳戶 URL。|  
-|IsAgreed|布林值|如果產品有條款，目前的使用者是否已同意條款。|  
-|訂用帳戶|[訂用帳戶摘要](api-management-template-data-model-reference.md#SubscriptionSummary)實體的集合。|產品的訂用帳戶。|  
-|Apis|[API](api-management-template-data-model-reference.md#API) 實體的集合。|此產品中的 API。|  
-|CannotAddBecauseSubscriptionNumberLimitReached|布林值|就訂用帳戶限制而言，目前的使用者是否有資格訂閱此產品。|  
-|CannotAddBecauseMultipleSubscriptionsNotAllowed|布林值|就是否允許多個訂用帳戶而言，目前的使用者是否有資格訂閱此產品。|  
+|DelegatedSubscriptionUrl|字串|如果已啟用委派，hello 委派訂閱 URL。|  
+|IsAgreed|布林值|如果 hello 產品有規定，是否 hello 目前使用者已同意 toohello 條款。|  
+|訂用帳戶|[訂用帳戶摘要](api-management-template-data-model-reference.md#SubscriptionSummary)實體的集合。|hello 訂閱 toohello 產品。|  
+|Apis|[API](api-management-template-data-model-reference.md#API) 實體的集合。|本產品中的 hello 應用程式開發介面。|  
+|CannotAddBecauseSubscriptionNumberLimitReached|布林值|Hello 目前使用者是否有資格 toosubscribe toothis 產品而考慮 toohello 訂用帳戶限制。|  
+|CannotAddBecauseMultipleSubscriptionsNotAllowed|布林值|Hello 目前使用者是否具有考慮 toomultiple 訂閱被允許或不合格 toosubscribe toothis 產品。|  
   
 ### <a name="sample-template-data"></a>範例範本資料  
   
@@ -220,7 +220,7 @@ ms.lasthandoff: 07/11/2017
     "Product": {  
         "Id": "56f9445ffaf7560049060001",  
         "Title": "Starter",  
-        "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+        "Description": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
         "Terms": "",  
         "ProductState": 1,  
         "AllowMultipleSubscriptions": false,  
@@ -258,4 +258,4 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="next-steps"></a>後續步驟
-如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](api-management-developer-portal-templates.md)。
+如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](api-management-developer-portal-templates.md)。

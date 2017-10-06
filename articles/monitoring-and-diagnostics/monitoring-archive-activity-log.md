@@ -1,6 +1,6 @@
 ---
-title: "封存 Azure 活動記錄檔 | Microsoft Docs"
-description: "了解如何封存 Azure 活動記錄檔以在儲存體帳戶中長期保存。"
+title: "aaaArchive hello Azure 活動記錄檔 |Microsoft 文件"
+description: "了解如何 tooarchive Azure 活動記錄檔以取得儲存體帳戶中的長期保存。"
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/09/2016
 ms.author: johnkem
-ms.openlocfilehash: 0e3a5b84f57eac96249430fa1c2c4cc076c2926a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 58c6d3a3a31398287f66f76999d48f2942ab5109
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="archive-the-azure-activity-log"></a>封存 Azure 活動記錄檔
-在本文中，我們示範如何使用 Azure 入口網站、PowerShell Cmdlet 或跨平台 CLI 封存儲存體帳戶中的 [**Azure 活動記錄檔**](monitoring-overview-activity-logs.md)。 如果您想要保留活動記錄檔超過 90 天 (而且對保留原則有完全的控制)，以便稽核、靜態分析或備份，這個選項非常有用。 如果您只需要保留事件 90 天或更短，則不需要設定封存至儲存體帳戶，因為在不啟用封存的情況下，活動記錄檔就會在 Azure 平台保留 90 天。
+# <a name="archive-hello-azure-activity-log"></a>封存 hello Azure 活動記錄檔
+在本文中，我們示範如何使用 hello Azure 入口網站、 PowerShell 指令程式或跨平台 CLI tooarchive 您[ **Azure 活動記錄檔**](monitoring-overview-activity-logs.md)儲存體帳戶中。 這個選項非常有用，如果您想要的 tooretain 您活動記錄中超過 90 天 （具有完整控制權 hello 保留原則的詳細資訊） 的稽核，靜態分析，或備份。 如果您只需要 tooretain 事件 90 天或更少，您不需要 tooset 保存 tooa 儲存體帳戶，因為活動記錄檔事件會保留在 hello Azure 平台 90 天內沒有啟用封存。
 
 ## <a name="prerequisites"></a>必要條件
-在開始之前，您需要 [建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account) ，以便將活動記錄檔封存至此。 我們強烈建議您不要使用已儲存了其他非監視資料的現有儲存體帳戶，這樣您對監視資料才能有更好的存取控制。 不過，如果您也要封存診斷記錄檔和度量至儲存體帳戶，則將同一儲存體帳戶用於活動記錄檔合情合理，因為可以將所有監視資料集中在一個位置。 您使用的儲存體帳戶必須是一般用途的儲存體帳戶，不可以是 blob 儲存體帳戶。 儲存體帳戶不一定要和訂用帳戶發出記錄檔屬於相同的訂用帳戶，只要使用者有適當的設定可 RBAC 存取這兩個訂用帳戶即可。
+在開始之前，您需要太[建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)toowhich 可以封存活動記錄。 我們強烈建議您務必使用現有的儲存體帳戶具有其他非監視資料，讓您更能夠控制存取 toomonitoring 資料儲存在其中。 不過，如果您也要封存診斷記錄檔和度量 tooa 儲存體帳戶，它會使意義 toouse 該儲存體帳戶為您的活動記錄檔以及 tookeep 監視的所有資料在集中位置。 您使用的 hello 儲存體帳戶必須是一般用途儲存體帳戶，而不是 blob 儲存體帳戶。 hello 儲存體帳戶中並沒有 toobe hello 發出記錄檔，只要將設定 hello 設定 hello 使用者擁有適當的 RBAC 存取 tooboth 訂閱 hello 訂用帳戶相同訂用帳戶。
 
 ## <a name="log-profile"></a>記錄檔設定檔
-若要使用下列任一方法封存活動記錄檔，請設定訂用帳戶的 **記錄檔設定檔** 。 記錄檔的設定檔定義了要儲存或串流的事件類型以及輸出 — 儲存體帳戶和/或事件中樞。 它也定義事件儲存在儲存體帳戶中的保留原則 (保留的天數)。 如果保留原則設定為零，則會無限期地儲存事件。 否則，這可以設為介於 1 到 2147483647 之間的任何值。 保留原則是每天套用，因此在一天結束時 (UTC)，這一天超過保留原則的記錄檔將被刪除。 例如，如果您的保留原則為一天，在今天一開始，昨天之前的記錄檔會被刪除。 [您可以至此處閱讀記錄檔設定檔的相關資訊](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile)。 
+tooarchive hello 使用任何下列的 hello 方法的活動記錄檔，設定 hello**記錄檔的設定檔**訂用帳戶。 hello 記錄檔的設定檔定義 hello 儲存或資料流處理之事件的類型與 hello 輸出-儲存體帳戶及/或事件中樞。 它也會定義事件儲存在儲存體帳戶中的 hello 保留原則 （天 tooretain 數目）。 如果 hello 保留原則設定 toozero，事件會無限期儲存。 否則，這可以設定 tooany 值介於 1 到 2147483647 之間。 保留原則套用的每日，因此在 hello 結束日 (UTC) 的記錄從 hello 天現在超出 hello 保留原則將會被刪除。 例如，如果您在一天的保留原則，hello 從今天 hello 日開始時 hello hello 天前昨天的記錄檔會刪除。 [您可以至此處閱讀記錄檔設定檔的相關資訊](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile)。 
 
-## <a name="archive-the-activity-log-using-the-portal"></a>使用入口網站封存活動記錄檔
-1. 在入口網站中，按一下左側導覽中的 [活動記錄檔]  連結。 如果您沒有看到活動記錄檔的連結，先按一下 [更多服務]  連結。
+## <a name="archive-hello-activity-log-using-hello-portal"></a>封存 hello 使用 hello 入口網站的活動記錄檔
+1. 在 hello 入口網站中，按一下 hello**活動記錄檔**hello 左側導覽上的連結。 如果您沒有看到 hello 活動記錄檔的連結，按一下 hello**更服務**連結第一次。
    
-    ![瀏覽至活動記錄檔刀鋒視窗](media/monitoring-archive-activity-log/act-log-portal-navigate.png)
-2. 在刀鋒視窗頂端，按一下 [匯出] 。
+    ![瀏覽 tooActivity 記錄刀鋒視窗](media/monitoring-archive-activity-log/act-log-portal-navigate.png)
+2. 在 hello hello 刀鋒視窗頂端，按一下**匯出**。
    
-    ![按一下匯出按鈕](media/monitoring-archive-activity-log/act-log-portal-export-button.png)
-3. 在出現的刀鋒視窗中，勾選 [匯出至儲存體帳戶]  方塊，選取儲存體帳戶。
+    ![按一下 hello 匯出按鈕](media/monitoring-archive-activity-log/act-log-portal-export-button.png)
+3. 在出現的 hello 刀鋒視窗，勾選 [hello] 方塊**tooa 儲存體帳戶匯出**並選取儲存體帳戶。
    
     ![設定儲存體帳戶](media/monitoring-archive-activity-log/act-log-portal-export-blade.png)
-4. 使用滑桿或文字方塊，定義活動記錄事件應該在儲存體帳戶中保留的天數。 如果您想要讓您的資料無限期保存在儲存體帳戶，將此數目設定為零。
+4. 使用 hello 滑桿或文字方塊中，定義的活動記錄檔事件應該保持儲存體帳戶中的天數。 如果您偏好的 toohave 資料無限期地保存 hello 儲存體帳戶中，設定此數字 toozero。
 5. 按一下 [儲存] 。
 
-## <a name="archive-the-activity-log-via-powershell"></a>透過 PowerShell 封存活動記錄檔
+## <a name="archive-hello-activity-log-via-powershell"></a>封存 hello 透過 PowerShell 活動記錄檔
 ```
 Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Locations global,westus,eastus -RetentionInDays 180 -Categories Write,Delete,Action
 ```
 
 | 屬性 | 必要 | 說明 |
 | --- | --- | --- |
-| StorageAccountId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
-| 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/en-us/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
-| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為 0 會無限期地 (永遠) 儲存記錄檔。 |
+| StorageAccountId |否 |應該儲存 hello 儲存體帳戶 toowhich 活動記錄檔的資源識別碼。 |
+| 位置 |是 |以逗號分隔清單的區域，您想要 toocollect 活動記錄檔事件。 您可以檢視所有區域的清單[造訪此頁](https://azure.microsoft.com/en-us/regions)或使用[hello Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
+| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為 0 會無限期儲存 hello 記錄檔 （永久）。 |
 | 類別 |是 |以逗號分隔的類別清單，其中列出應該收集的事件類別。 可能的值有 Write、Delete、Action。 |
 
-## <a name="archive-the-activity-log-via-cli"></a>透過 CLI 封存活動記錄檔
+## <a name="archive-hello-activity-log-via-cli"></a>封存 hello 透過 CLI 活動記錄檔
 ```
 azure insights logprofile add --name my_log_profile --storageId /subscriptions/s1/resourceGroups/insights-integration/providers/Microsoft.Storage/storageAccounts/my_storage --locations global,westus,eastus,northeurope --retentionInDays 180 –categories Write,Delete,Action
 ```
@@ -62,13 +62,13 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 | 屬性 | 必要 | 說明 |
 | --- | --- | --- |
 | 名稱 |是 |記錄檔設定檔的名稱。 |
-| storageId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
-| 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/en-us/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
-| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為 0 會無限期地 (永遠) 儲存記錄檔。 |
+| storageId |否 |應該儲存 hello 儲存體帳戶 toowhich 活動記錄檔的資源識別碼。 |
+| 位置 |是 |以逗號分隔清單的區域，您想要 toocollect 活動記錄檔事件。 您可以檢視所有區域的清單[造訪此頁](https://azure.microsoft.com/en-us/regions)或使用[hello Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
+| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 零值將會無限期儲存 hello 記錄檔 （永久）。 |
 | 類別 |是 |以逗號分隔的類別清單，其中列出應該收集的事件類別。 可能的值有 Write、Delete、Action。 |
 
-## <a name="storage-schema-of-the-activity-log"></a>活動記錄檔的儲存體結構描述
-一旦您已經設定封存，只要一發生活動記錄檔事件，就會在儲存體帳戶中建立儲存體容器。 在容器內的 blob 的活動記錄檔和診斷記錄檔會遵循相同的格式。 這些 blob 的結構為：
+## <a name="storage-schema-of-hello-activity-log"></a>儲存結構描述的 hello 活動記錄檔
+在您設定保存，儲存體容器將建立 hello 儲存體帳戶中，只要發生活動記錄檔事件。 hello 容器中的 hello blob 遵循的 hello 相同格式跨 hello 活動記錄檔和診斷記錄檔。 這些 blob hello 結構是：
 
 > insights-operational-logs/name=default/resourceId=/SUBSCRIPTIONS/{subscription ID}/y={four-digit numeric year}/m={two-digit numeric month}/d={two-digit numeric day}/h={two-digit 24-hour clock hour}/m=00/PT1H.json
 > 
@@ -80,9 +80,9 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 > 
 > 
 
-每個 PT1H.json blob 有一個 JSON blob，包含在 blob URL 指定時數內 (例如 h = 12) 發生的事件。 在目前這一小時，事件一發生就會附加到 PT1H.json 檔案。 分鐘值 (m = 00) 一定是 00，因為活動記錄檔事件是分成每小時的個別 blob。
+每個 PT1H.json blob 包含 JSON blob hello hello blob URL 中指定的一小時內發生的事件 (例如 h = 12)。 Hello 存在小時，在事件發生時是附加的 toohello PT1H.json 檔案。 hello 分鐘值 (m = 00) 一定是 00，因為活動記錄檔事件會分為個別每小時的 blob。
 
-在 PT1H.json 檔案中，每個事件會以下列格式儲存在 “records” 陣列︰
+在 hello PT1H.json 檔案中，每個事件會儲存在 hello 「 記錄 」 陣列中，遵循此格式：
 
 ```
 {
@@ -143,28 +143,28 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 
 | 元素名稱 | 說明 |
 | --- | --- |
-| 分析 |處理與事件對應之要求的Azure 服務產生事件時的時間戳記。 |
-| ResourceId |受影響資源的資源識別碼。 |
-| operationName |作業名稱。 |
-| category |事件的類別，例如 寫入、讀取、動作。 |
-| resultType |結果的類型，例如 成功、失敗、開始 |
-| resultSignature |取決於資源類型。 |
-| durationMs |作業的持續時間 (以毫秒為單位) |
-| callerIpAddress |已執行作業的使用者的 IP 地址，根據可用性的 UPN 宣告或 SPN 宣告。 |
-| correlationId |通常是字串格式的 GUID。 具有相同 correlationId、屬於同一 uber 動作的事件。 |
-| 身分識別 |描述授權和宣告的 JSON blob。 |
-| 授權 |事件的 RBAC 屬性的 blob。 通常包括 action、role 和 scope 屬性。 |
-| 層級 |事件的層級。 下列其中一個值：重大、錯誤、警告、資訊和詳細資訊 |
-| location |在 location 發生 (或全球) 的區域。 |
-| properties |描述事件詳細資料的一組 `<Key, Value>` 配對 (也就是字典)。 |
+| 分析 |Hello Azure 服務處理 hello 產生 hello 事件時的時間戳記要求相對應的 hello 事件。 |
+| resourceId |資源識別碼 hello 影響資源。 |
+| operationName |Hello 作業的名稱。 |
+| category |分類的 hello 動作，例如。 寫入、讀取、動作。 |
+| resultType |例如 hello hello 結果的型別。 成功、失敗、開始 |
+| resultSignature |Hello 資源類型而定。 |
+| durationMs |以毫秒為單位的 hello 作業的持續時間 |
+| callerIpAddress |已執行 hello 作業、 UPN 宣告或 SPN 宣告根據可用性的 hello 使用者的 IP 位址。 |
+| correlationId |通常是 hello 字串格式 GUID。 共用的相互關聯識別碼的事件屬於 toohello 相同超級動作。 |
+| 身分識別 |Hello 授權和宣告描述的 JSON blob。 |
+| 授權 |Blob hello 事件的 RBAC 屬性。 通常包含 hello 「 動作 」、 「 角色 」 和 「 範圍 」 屬性。 |
+| 層級 |Hello 事件層級。 Hello 下列值之一: 「 重大 」、 「 錯誤 」、 「 警告 」、 「 資訊 」 及 「 詳細資訊 」 |
+| location |Hello 位置發生 （或全域） 中的區域。 |
+| 屬性 |一組`<Key, Value>`組 （也就是字典） 描述 hello hello 事件詳細資料。 |
 
 > [!NOTE]
-> 屬性和這些屬性的使用方式，依資源而異。
+> hello 屬性和這些屬性的使用方式有所不同 hello 資源。
 > 
 > 
 
 ## <a name="next-steps"></a>後續步驟
 * [下載 blob 以供分析](../storage/blobs/storage-dotnet-how-to-use-blobs.md#download-blobs)
-* [將活動記錄檔串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
-* [深入了解活動記錄檔](monitoring-overview-activity-logs.md)
+* [資料流 hello 活動記錄檔 tooEvent 集線器](monitoring-stream-activity-logs-event-hubs.md)
+* [深入了解 hello 活動記錄檔](monitoring-overview-activity-logs.md)
 

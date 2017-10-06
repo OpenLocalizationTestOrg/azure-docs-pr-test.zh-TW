@@ -1,6 +1,6 @@
 ---
-title: "建立具有靜態公用 IP 位址的 VM - Azure Resource Manager 範本 | Microsoft Docs"
-description: "了解如何使用 Azure Resource Manager 範本建立具有靜態公用 IP 位址的 VM。"
+title: "aaaCreate VM 使用靜態公用 IP 位址-Azure Resource Manager 範本 |Microsoft 文件"
+description: "了解如何 toocreate VM 的靜態公用 IP 位址使用 Azure Resource Manager 範本。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,11 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 04/27/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 2f503aa60fdd9b7cf66ef482a1041e34c88e5c01
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a8640ed4fad06b0e09820e6114fd6789db73847
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-vm-with-a-static-public-ip-address-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本建立具有靜態公用 IP 位址的 VM
 
@@ -34,14 +34,14 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [virtual-network-deploy-static-pip-intro-include.md](../../includes/virtual-network-deploy-static-pip-intro-include.md)]
 
 > [!NOTE]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用 Resource Manager 部署模型，Microsoft 建議大部分的新部署使用此模型，而不是傳統部署模型。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文說明如何使用 hello Resource Manager 部署模型，Microsoft 建議您針對大部分新的部署，而不是 hello 傳統部署模型。
 
 [!INCLUDE [virtual-network-deploy-static-pip-scenario-include.md](../../includes/virtual-network-deploy-static-pip-scenario-include.md)]
 
 ## <a name="public-ip-address-resources-in-a-template-file"></a>範本檔案中的公用 IP 資源
-您可以檢視和下載 [範例範本](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/azuredeploy.json)。
+您可以檢視和下載 hello[範例範本](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/azuredeploy.json)。
 
-下一節根據上述案例顯示公用 IP 資源的定義：
+hello 下一節顯示 hello hello 公用 IP 資源，根據上述的 hello 案例定義：
 
 ```json
 {
@@ -58,9 +58,9 @@ ms.lasthandoff: 07/11/2017
 },
 ```
 
-請注意， **publicIPAllocationMethod** 屬性設定為 *Static*。 這個屬性可以是 Dynamic (預設值) 或 Static。 將它設定為 static 可確保指派的公用 IP 位址永遠不會變更。
+請注意 hello **publicIPAllocationMethod**屬性，設定得*靜態*。 這個屬性可以是 Dynamic (預設值) 或 Static。 設定 toostatic 可確保永遠不會變更 hello 指派公用 IP 位址。
 
-下一節說明公用 IP 位址與網路介面的關聯：
+hello 下一節顯示 hello 與之間的關聯 hello 公用 IP 位址的網路介面：
 
 ```json
   {
@@ -95,9 +95,9 @@ ms.lasthandoff: 07/11/2017
 },
 ```
 
-請注意，**publicIPAddress** 屬性指向資源 **variables('webVMSetting').pipName** 的 **Id**。 這是上述公用 IP 資源的名稱。
+請注意 hello **publicIPAddress**屬性指向 toohello**識別碼**的資源，名為**variables('webVMSetting').pipName**。 這是 hello hello 如上所示公用 IP 資源的名稱。
 
-最後，上述網路介面會列在建立的 VM 的 **networkProfile** 屬性中。
+最後，上述的 hello 網路介面會列在 hello **networkProfile** hello VM 正在建立的屬性。
 
 ```json
       "networkProfile": {
@@ -109,16 +109,16 @@ ms.lasthandoff: 07/11/2017
       }
 ```
 
-## <a name="deploy-the-template-by-using-click-to-deploy"></a>使用按一下即部署來部署範本
+## <a name="deploy-hello-template-by-using-click-toodeploy"></a>使用部署 hello 範本按一下 toodeploy
 
-公用儲存機制中可用的範例範本會使用一個包含預設值的參數檔案，這些預設值可用來產生上述案例。 若要使用「按一下即部署」來部署這個範本，請在[具有靜態 PIP 的 VM](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/03-Static-public-IP) 範本的 Readme.md 檔案中，按一下 [部署至 Azure]。 如果有需要，請取代預設參數值並輸入空白參數的值。  請遵循入口網站中的指示，利用靜態公用 IP 位址建立虛擬機器。
+hello 範例範本可用 hello 公用儲存機制中的會使用包含 hello 預設值使用 toogenerate hello 案例上面所述的參數檔案。 toodeploy 此範本使用按一下 toodeploy，按一下 **部署 tooAzure** hello hello Readme.md 檔案中[VM 使用靜態的 PIP](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/03-Static-public-IP)範本。 如果有需要，取代 hello 預設參數值並輸入 hello 空白參數的值。  請遵循 hello hello 入口 toocreate 具有靜態公用 IP 位址的虛擬機器中的指示。
 
-## <a name="deploy-the-template-by-using-powershell"></a>使用 PowerShell 部署範本
+## <a name="deploy-hello-template-by-using-powershell"></a>使用 PowerShell 來部署 hello 範本
 
-若要使用 PowerShell 部署您下載的範本，請依照下列步驟執行。
+您使用 PowerShell 下載 toodeploy hello 範本，請遵循下列 hello 步驟。
 
-1. 如果您從未使用過 Azure PowerShell，請完成[如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 文章中的步驟。
-2. 如有必要，請在 PowerShell 主控台中執行 `New-AzureRmResourceGroup` Cmdlet，以建立新的資源群組。 如果您已經建立資源群組，請移至步驟 3。
+1. 如果您從未使用過 Azure PowerShell，完成 hello 步驟 hello[如何 tooInstall 和設定 Azure PowerShell](/powershell/azure/overview)發行項。
+2. 在 PowerShell 主控台中，執行 hello `New-AzureRmResourceGroup` cmdlet toocreate 新的資源群組，如有必要。 如果您已經建立的資源群組，請移 toostep 3。
 
     ```powershell
     New-AzureRmResourceGroup -Name PIPTEST -Location westus
@@ -132,7 +132,7 @@ ms.lasthandoff: 07/11/2017
         Tags              :
         ResourceId        : /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/StaticPublicIP
 
-3. 在 PowerShell 主控台中，執行 `New-AzureRmResourceGroupDeployment` Cmdlet 以部署範本。
+3. 在 PowerShell 主控台中，執行 hello `New-AzureRmResourceGroupDeployment` cmdlet toodeploy hello 範本。
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name DeployVM -ResourceGroupName PIPTEST `
@@ -167,22 +167,22 @@ ms.lasthandoff: 07/11/2017
    
         Outputs           :
 
-## <a name="deploy-the-template-by-using-the-azure-cli"></a>使用 Azure CLI 部署範本
-若要使用 Azure CLI 部署範本，請完成下列步驟：
+## <a name="deploy-hello-template-by-using-hello-azure-cli"></a>使用 Azure CLI hello 部署 hello 範本
+使用 Azure CLI，完成下列步驟的 hello hello toodeploy hello 範本：
 
-1. 如果您從未使用過 Azure CLI，請依照[如何安裝和設定 Azure CLI](../cli-install-nodejs.md) 文章中的指示進行安裝和設定。
-2. 執行 `azure config mode` 命令，以切換為資源管理員模式，如下所示。
+1. 如果您從未使用過 Azure CLI，請遵循在 hello hello 步驟[安裝及設定 hello Azure CLI](../cli-install-nodejs.md)文章 tooinstall 並加以設定。
+2. 執行 hello`azure config mode`命令 tooswitch tooResource 管理員模式，如下所示。
 
     ```azurecli
     azure config mode arm
     ```
 
-    上述命令的預期輸出：
+    hello 預期 hello 上述命令中的輸出：
 
         info:    New mode is arm
 
-3. 開啟 [參數檔案](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/azuredeploy.parameters.json)，選取其內容，然後將該內容儲存至您電腦中的一個檔案。 在此範例中，參數會儲存到名為 *parameters.json*的檔案。 如有需要，變更檔案內的參數值，但建議您至少將 adminPassword 參數的值變更為唯一的複雜密碼。
-4. 執行 `azure group deployment create` Cmdlet，以使用先前下載並修改的範本和參數檔案，部署新的 VNet。 在下列命令中，將 <path> 取代為您儲存檔案的目標路徑。 
+3. 開啟 hello[參數檔](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/azuredeploy.parameters.json)、 選取其內容，和它 tooa 將檔案儲存在您的電腦。 例如，hello 參數會儲存名為 tooa 檔案*parameters.json*。 變更 hello 參數值，如有需要，hello 檔案內，但最少，建議您變更 hello hello adminPassword 參數 tooa 唯一的複雜密碼的值。
+4. 執行 hello `azure group deployment create` cmd toodeploy hello hello 範本和參數使用新的 VNet 檔案下載，並修改上方。 在下方的 hello 命令，取代<path>hello 路徑 hello 檔案儲存至。 
 
     ```azurecli
     azure group create -n PIPTEST2 -l westus --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/azuredeploy.json -e <path>\parameters.json

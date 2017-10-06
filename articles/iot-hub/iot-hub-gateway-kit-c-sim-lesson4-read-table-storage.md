@@ -1,6 +1,6 @@
 ---
 title: "模擬裝置與 Azure IoT 閘道 - 第 4 課：表格儲存體 | Microsoft Docs"
-description: "將訊息從 Intel NUC 儲存到您的 IoT 中樞，然後將訊息寫入 Azure 表格儲存體，並讀取雲端中的訊息。"
+description: "從 Intel NUC tooyour IoT 中樞儲存訊息、 將它們寫入 tooAzure 資料表儲存體，然後讀取它們從 hello 雲端。"
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,36 +17,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: de5fae794c195132e2a487c0095845c756aa28e3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 43e299d63bbbe10d4d867af25e700c3a7cc07c53
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="read-messages-persisted-in-azure-table-storage"></a>讀取保存在 Azure 表格儲存體中的訊息
 
 ## <a name="what-you-will-do"></a>將執行的作業
 
-- 在您的閘道器上執行閘道器範例應用程式，將訊息傳送至您的 IoT 中樞。
-- 在您的主機電腦上執行範例程式碼，以讀取 Azure表格儲存體中的訊息。
+- 傳送訊息 tooyour IoT 中樞在閘道上執行 hello 閘道範例應用程式。
+- 在您的 Azure 資料表儲存體中的主機電腦 tooread 訊息執行範例程式碼。
 
-如果您有任何問題，請在[疑難排解頁面](iot-hub-gateway-kit-c-sim-troubleshooting.md)尋求解決方案。
+如果您有任何問題，尋找解決方案上 hello[疑難排解頁面](iot-hub-gateway-kit-c-sim-troubleshooting.md)。
 
 ## <a name="what-you-will-learn"></a>學習目標
 
-如何使用 gulp 工具執行範例應用程式，以讀取在您的 Azure 表格儲存體中的訊息。
+如何 toouse hello 的 gulp 工具 toorun hello 範例程式碼 tooread 訊息在您的 Azure 資料表儲存體。
 
 ## <a name="what-you-need"></a>您需要什麼
 
-您已成功完成下列工作︰
+您有已成功地完成下列工作 hello:
 
-- [建立 Azure 函數應用程式與 Azure 儲存體帳戶](iot-hub-gateway-kit-c-sim-lesson4-deploy-resource-manager-template.md)。
-- [執行閘道器範例應用程式](iot-hub-gateway-kit-c-sim-lesson3-configure-simulated-device-app.md)。
+- [建立 hello Azure 函式應用程式和 hello Azure 儲存體帳戶](iot-hub-gateway-kit-c-sim-lesson4-deploy-resource-manager-template.md)。
+- [執行應用程式-閘道範例 hello](iot-hub-gateway-kit-c-sim-lesson3-configure-simulated-device-app.md)。
 - [讀取來自 IoT 中樞的傳入訊息](iot-hub-gateway-kit-c-sim-lesson3-read-messages-from-hub.md)。
 
 ## <a name="get-your-azure-storage-connection-strings"></a>取得您的 Azure 儲存體連接字串
 
-稍早在本課程中，您已成功建立 Azure 儲存體帳戶。 若要取得 Azure 儲存體帳戶的連接字串，請執行下列命令：
+稍早在本課程中，您已成功建立 Azure 儲存體帳戶。 hello Azure 儲存體帳戶，執行下列命令的 hello tooget hello 連接字串：
 
 * 列出您的所有儲存體帳戶。
 
@@ -60,13 +60,13 @@ az storage account list -g iot-gateway --query [].name
 az storage account show-connection-string -g iot-gateway -n {storage name}
 ```
 
-如果您在第 2 課中沒有變更值，請使用 `iot-gateway` 作為 `{resource group name}` 的值。
+使用`iot-gateway`做為 hello 值`{resource group name}`如果您沒有變更 hello 課程 2 中的值。
 
-## <a name="configure-the-device-connection"></a>設定裝置連線
+## <a name="configure-hello-device-connection"></a>設定 hello 裝置連線
 
-更新 `config-azure.json` 檔案，使在主機電腦上執行的範例程式碼可以讀取 Azure 表格儲存體中的訊息。 若要設定裝置連線，請遵循下列步驟：
+更新 hello`config-azure.json`檔案，以便在 hello 主機電腦執行的 hello 範例程式碼可以讀取您的 Azure 資料表儲存體中的訊息。 tooconfigure hello 裝置連線，請遵循下列步驟：
 
-1. 執行下列命令來產生裝置組態檔 `config-azure.json`：
+1. 開啟 hello 裝置組態檔`config-azure.json`藉由執行下列命令的 hello:
 
    ```bash
    # For Windows command prompt
@@ -77,26 +77,26 @@ az storage account show-connection-string -g iot-gateway -n {storage name}
 
    ![組態](media/iot-hub-gateway-kit-lessons/lesson4/config_azure.png)
 
-2. 將 `[Azure storage connection string]` 取代為您取得的 Azure 儲存體連接字串。
+2. 取代`[Azure storage connection string]`以 hello 您取得的 Azure 儲存體連接字串。
 
    `[IoT hub connection string]` 應該已經在第 3 課的[讀取來自 Azure IoT 中樞的傳入訊息](iot-hub-gateway-kit-c-sim-lesson3-read-messages-from-hub.md)中被取代。
 
 ## <a name="read-messages-in-your-azure-table-storage"></a>讀取 Azure 表格儲存體中的訊息
 
-執行閘道器範例應用程式，並使用下列命令讀取 Azure 表格儲存體訊息︰
+執行 hello 閘道範例應用程式，並讀取 Azure 資料表儲存體訊息 hello 下列命令：
 
 ```bash
 gulp run --table-storage
 ```
 
-您的 IoT 中樞會觸發您的 Azure 函數應用程式，當有新訊息進來時，後者會將訊息儲存到您的 Azure 表格儲存體。
-`gulp run` 命令會執行閘道器範例應用程式將訊息傳送至 IoT 中樞。 使用 `table-storage` 參數，它也會繁衍子程序來接收儲存在 Azure表格儲存體中的訊息。
+IoT 中樞觸發您 Azure 函式的應用程式 toosave 訊息到您的 Azure 資料表儲存體，新訊息到達時。
+hello`gulp run`命令執行閘道範例應用程式所傳送訊息 tooyour IoT 中樞。 與`table-storage`參數，它也會產生您的 Azure 資料表儲存體中儲存訊息的子處理序 tooreceive hello。
 
-傳送和接收的所有訊息皆會立即顯示在主機電腦的同一主控台視窗中。 範例應用程式執行個體會在 40 秒後自動終止。
+hello 訊息傳送，而且收到相同主控台視窗中的所有顯示立即在 hello hello 主機電腦。 hello 範例應用程式執行個體將會自動在 40 秒終止。
 
    ![gulp 讀取](media/iot-hub-gateway-kit-lessons/lesson4/gulp_run_read_table_simudev.png)
 
 
 ## <a name="summary"></a>摘要
 
-您已執行範例程式碼來讀取由您的 Azure 函數應用程式儲存在您的 Azure 表格儲存體中的訊息。
+您已在您 Azure 函式應用程式所儲存的 Azure 資料表儲存體執行 hello 範例程式碼 tooread hello 訊息。

@@ -1,6 +1,6 @@
 ---
-title: "適合企業使用的 Windows 10：使用裝置的工作方式 | Microsoft Docs"
-description: "部署適合企業使用的 Windows 10 裝置概觀，以及如何與適合 Windows 雲端的 Azure Active Directory 整合。 對照企業可透過 Azure 入口網站採用之裝置的各式佈建和使用方式。"
+title: "Hello 企業版的 Windows 10： 工作的方式 toouse 裝置 |Microsoft 文件"
+description: "部署 Windows 10 裝置的企業，以及如何與 Azure Active Directory 的 toointegrate hello Windows 雲端的概觀。 相反的裝置可以佈建，並透過 Azure 入口網站 hello 企業中使用 hello 不同方式。"
 keywords: "windows 雲端, Azure Active Directory 上的 Windows, Azure 上的 Windows 10 裝置, Azure Windows 裝置"
 services: active-directory
 documentationcenter: 
@@ -16,23 +16,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: markvi
-ms.openlocfilehash: 804156048a7596f9937098e6fe762f424526473c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 95b452bc5ba3937e16de769275a59c77cb821e23
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="windows-10-for-the-enterprise-ways-to-use-devices-for-work"></a>適合企業使用的 Windows 10：使用裝置的工作方式
-Windows 10 讓您可以充分利用 Azure Active Directory (Azure AD)。 您可以將 Windows 10 裝置連接到 Azure AD，以便使用者使用 Azure AD 帳戶或加入其 Azure 識別碼來登入 Windows，存取商務應用程式和資源。
+# <a name="windows-10-for-hello-enterprise-ways-toouse-devices-for-work"></a>Hello 企業版的 Windows 10： 工作的方式 toouse 裝置
+Windows 10 提供 hello 能力 tooleverage Azure Active Directory (Azure AD)。 您可以連接 Windows 10 裝置 tooAzure AD，讓使用者可以登入 tooWindows，使用 Azure AD 帳戶，或加入其 Azure Id toogain 存取 toobusiness 應用程式和資源。
 
 ![Azure Active Directory 與 Windows 雲端](./media/active-directory-azureadjoin/windows10-overview.png)
 
 ## <a name="integrating-windows-10-devices-with-azure-active-directory--a-content-map"></a>整合 Windows 10 裝置與 Azure Active Directory：內容對應
-下列主題提供在組織中發揮 Windows 10 裝置不同功能的深入看法。
+下列主題中的 hello 提供深入了解貴組織中的 Windows 10 裝置的不同功能。
 
 |  | 主題 |
 | --- | --- |
-| 開始使用 |[在您的工作場所中使用 Windows 10 裝置](active-directory-azureadjoin-windows10-devices.md) <br> <br> [透過 Azure Active Directory Join 擴充 Windows 10 裝置的雲端功能](active-directory-azureadjoin-overview.md) <br> <br> [透過 Microsoft Passport 不需要密碼就能驗證身分識別](active-directory-azureadjoin-passport.md) |
-| 部署 |[適用於 Azure AD Join 的使用案例和部署考量](active-directory-azureadjoin-deployment-aadjoindirect.md) <br><br> [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)<br><br>[啟用 Microsoft Passport 並在組織中運用](active-directory-azureadjoin-passport-deployment.md)<br><br> [為 Windows 10 啟用企業狀態漫遊](active-directory-windows-enterprise-state-roaming-overview.md)<br><br> |
-| 使用者工作 |[設定期間使用 Azure AD 設定新的 Windows 10 裝置](active-directory-azureadjoin-user-frx.md) <br><br> [從設定功能表使用 Azure AD 設定 Windows 10 裝置](active-directory-azureadjoin-user-upgrade.md) <br><br> [聯結個人 Windows 10 裝置到貴組織](active-directory-azureadjoin-personal-device.md) |
+| 開始使用 |[在您的工作場所中使用 Windows 10 裝置](active-directory-azureadjoin-windows10-devices.md) <br> <br> [擴充功能 tooWindows 10 裝置透過 Azure Active Directory 加入雲端](active-directory-azureadjoin-overview.md) <br> <br> [透過 Microsoft Passport 不需要密碼就能驗證身分識別](active-directory-azureadjoin-passport.md) |
+| 部署 |[適用於 Azure AD Join 的使用案例和部署考量](active-directory-azureadjoin-deployment-aadjoindirect.md) <br><br> [連接已加入網域裝置 tooAzure AD，適用於 Windows 10 體驗](active-directory-azureadjoin-devices-group-policy.md)<br><br>[啟用 Microsoft Passport hello 組織中的工作](active-directory-azureadjoin-passport-deployment.md)<br><br> [為 Windows 10 啟用企業狀態漫遊](active-directory-windows-enterprise-state-roaming-overview.md)<br><br> |
+| 使用者工作 |[設定期間使用 Azure AD 設定新的 Windows 10 裝置](active-directory-azureadjoin-user-frx.md) <br><br> [使用 Azure AD hello 設定] 功能表中的 Windows 10 裝置設定](active-directory-azureadjoin-user-upgrade.md) <br><br> [加入個人的 Windows 10 裝置 tooyour 公司](active-directory-azureadjoin-personal-device.md) |
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory 中的 B2B 共同作業使用者宣告對應 | Microsoft Docs"
+title: "aaaB2B 共同作業的使用者宣告的 Azure Active Directory 中的對應 |Microsoft 文件"
 description: "Azure Active Directory B2B 共同作業的宣告對應參考資料"
 services: active-directory
 documentationcenter: 
@@ -15,25 +15,25 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 03/15/2017
 ms.author: sasubram
-ms.openlocfilehash: 5f8559450b24effd40a38879aeae3a8dd03944a3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9e26085e91a6004b2f11286ae9c1df133bd47341
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="b2b-collaboration-user-claims-mapping-in-azure-active-directory"></a>Azure Active Directory 中的 B2B 共同作業使用者宣告對應
 
-Azure Active Directory (Azure AD) 支援針對 B2B 共同作業使用者自訂在 SAML 權杖中簽發的宣告。 當使用者對應用程式進行驗證時，Azure AD 會將 SAML 權杖簽發給應用程式，其中包含可唯一識別使用者的使用者相關資訊 (或宣告)。 根據預設值，其中包含使用者的使用者名稱、電子郵件地址、名字和姓氏。 您可以在 [屬性] 索引標籤下檢視或編輯在 SAML 權杖中傳送給應用程式的宣告。
+Azure Active Directory (Azure AD) 支援自訂 hello hello B2B 共同作業的使用者的 SAML 權杖中發出的宣告。 當使用者驗證 toohello 應用程式時，Azure AD 會發出 hello 使用者可唯一識別它們的相關資訊 （或宣告） 包含的 SAML 權杖 toohello 應用程式。 根據預設，這包括 hello 使用者的使用者名稱、 電子郵件地址、 名字和姓氏。 您可以檢視或編輯傳送嗨 hello 屬性] 索引標籤下的 SAML 權杖 toohello 應用程式中的 hello 宣告。
 
-編輯在 SAML 權杖中簽發的宣告有兩個可能原因。
+有兩個可能的原因為何，您可能需要在 hello SAML 權杖中發出的 tooedit hello 宣告。
 
-1. 應用程式是設計為要求不同的宣告 URI 組或宣告值
+1. 已寫入 hello 應用程式 toorequire 用不同的宣告的 Uri 設定，或宣告值
 
-2. 您的應用程式要求 NameIdentifier 宣告必須是 Azure Active Directory 中儲存之使用者主體名稱以外的項目。
+2. 您的應用程式需要 hello NameIdentifier 宣告 toobe hello 使用者主體名稱儲存在 Azure Active Directory 以外的項目。
 
   ![檢視 SAML 權杖中的宣告](media/active-directory-b2b-claims-mapping/view-claims-in-saml-token.png)
 
-如需有關如何新增及編輯宣告的詳細資訊，請查看此宣告自訂文章：[在 Azure Active Directory 中為預先整合的應用程式自訂在 SAML 權杖中發出的宣告](develop/active-directory-saml-claims-customization.md)。 對於 B2B 共同作業使用者，基於安全性原因，系統會防止對應 NameID 與 UPN 跨租用戶。
+如 tooadd 和編輯的宣告資訊，請參閱這篇文章上宣告自訂[自訂預先整合的應用程式在 Azure Active Directory 中的 hello SAML 權杖中發出的宣告](develop/active-directory-saml-claims-customization.md)。 對於 B2B 共同作業使用者，基於安全性原因，系統會防止對應 NameID 與 UPN 跨租用戶。
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -42,7 +42,7 @@ Azure Active Directory (Azure AD) 支援針對 B2B 共同作業使用者自訂�
 
 * [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [B2B 共同作業使用者屬性](active-directory-b2b-user-properties.md)
-* [將 B2B 共同作業使用者新增至角色](active-directory-b2b-add-guest-to-role.md)
+* [新增 B2B 共同作業使用者 tooa 角色](active-directory-b2b-add-guest-to-role.md)
 * [委派 B2B 共同作業邀請](active-directory-b2b-delegate-invitations.md)
 * [動態群組與 B2B 共同作業](active-directory-b2b-dynamic-groups.md)
 * [B2B 共同作業程式碼與 PowerShell 範例](active-directory-b2b-code-samples.md)

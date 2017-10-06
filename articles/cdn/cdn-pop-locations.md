@@ -1,5 +1,5 @@
 ---
-title: "Azure CDN POP 位置 | Microsoft Docs"
+title: "CDN POP 位置 aaaAzure |Microsoft 文件"
 description: "本主題列出 Azure CDN 存在點位置。"
 services: cdn
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 7c13931aa6d17036e59674cdd917e3ca221ac57f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f10afb12c168aa610f996f1e49b0ef133f2236a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cdn-pop-locations"></a>Azure CDN 的 POP 位置
 本主題會針對**來自 Verizon 的 Azure CDN** 和**來自 Akamai 的 Azure CDN** 列出目前的 POP 位置。
@@ -26,7 +26,7 @@ ms.lasthandoff: 07/11/2017
 > [!IMPORTANT]
 > \***來自 Akamai 的 Azure CDN** POP 位置不會個別揭露。  
 > 
-> 這兩個提供者可以不同方式建置其 CDN 基礎結構。  建議您不要使用 POP 位置來決定要使用哪個 Azure CDN 產品，並考慮改用功能和使用者效能。  測試兩個提供者的效能來為使用者選擇正確的 Azure CDN 產品。 
+> 這兩個提供者可以不同方式建置其 CDN 基礎結構。  我們建議您不要使用 POP 位置 toodecide 哪些 Azure CDN 產品 toouse，並考慮改為功能和使用者的效能。  測試 hello 效能與這兩個提供者 toochoose hello 右 Azure CDN 產品為您的使用者。 
 > 
 > 
 
@@ -44,5 +44,5 @@ ms.lasthandoff: 07/11/2017
 | 澳大利亞與紐西蘭 |墨爾本，澳大利亞<br />雪梨，澳大利亞 |**&#x2713;**\* |
 
 ## <a name="see-also"></a>另請參閱
-* [Azure CDN 邊緣節點 API 取得允許清單的最新 IP 位址 (英文)](https://docs.microsoft.com/en-us/rest/api/cdn/edgenodes)
+* [Azure CDN 邊緣節點 API tooget 最新的 IP 位址的允許清單](https://docs.microsoft.com/en-us/rest/api/cdn/edgenodes)
 

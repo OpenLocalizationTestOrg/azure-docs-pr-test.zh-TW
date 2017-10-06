@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員和開放原始碼工具執行網路入侵偵測 | Microsoft Docs"
-description: "本文說明如何使用 Azure 網路監看員和開放原始碼工具來執行網路入侵偵測"
+title: "aaaPerform 網路入侵偵測 Azure 網路監看員與開放原始碼工具 |Microsoft 文件"
+description: "本文說明如何在 Azure 網路監看員 toouse 和開放原始碼工具 tooperform 網路入侵偵測"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 82d5e525859ebe03b152c63e4debbae469049c12
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b5a909b827ab32ad6b2fd8e2911a944fd940249e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="perform-network-intrusion-detection-with-network-watcher-and-open-source-tools"></a>使用網路監看員和開放原始碼工具執行網路入侵偵測
 
-封包擷取是實作網路入侵偵測系統 (ID) 和執行網路安全性監視 (NSM) 的重要元件。 有數個開放原始碼 IDS 工具，可處理封包擷取並尋找可能的網路入侵和惡意活動的簽章。 使用網路監看員所提供的封包擷取，您可以分析您的網路找出任何有害的入侵或安全性弱點。
+封包擷取是實作網路入侵偵測系統 (ID) 和執行網路安全性監視 (NSM) 的重要元件。 有數個開放原始碼 IDS 工具，可處理封包擷取並尋找可能的網路入侵和惡意活動的簽章。 使用提供的網路監看員的 hello 封包擷取，您可以分析您的網路的任何危險入侵或弱點。
 
-一種開放原始碼工具是 Suricata，這是使用規則集監視網路流量且在可疑事件發生時就會觸發警示的 IDS 引擎。 Suricata 提供多執行緒的引擎，這表示它可以更高的速度和效率執行網路流量分析。 如需關於 Suricata 和其功能的詳細資訊，請瀏覽其網站︰https://suricata-ids.org/。
+這類的一項開放原始碼工具為 Suricata，ID 引擎，它會使用 ruleset toomonitor 網路流量，並可疑事件發生時觸發警示。 Suricata 提供多執行緒的引擎，這表示它可以更高的速度和效率執行網路流量分析。 如需關於 Suricata 和其功能的詳細資訊，請瀏覽其網站︰https://suricata-ids.org/。
 
 ## <a name="scenario"></a>案例
 
-本文說明如何使用網路監看員、Suricata 和彈性堆疊來設定您的環境，以執行網路入侵偵測。 網路監看員會提供用來執行網路入侵偵測的封包擷取。 Suricata 會根據比對指定的威脅規則集處理封包擷取和觸發警示。 這些警示會儲存在本機電腦上的記錄檔。 使用彈性堆疊的 Suricata 所產生之記錄可以編製索引及用來建立 Kibana 儀表板，提供您視覺表示法的記錄，以便快速獲得潛在網路弱點的見解。  
+本文說明如何註冊您的環境 tooperform tooset 網路使用網路監看員，Suricata，入侵偵測和 hello 彈性的堆疊。 網路監看員會提供您與 hello 封包擷取使用的 tooperform 網路入侵偵測。 擷取 Suricata 處理程序 hello 封包和觸發程序警示符合其指定的規則集的威脅的封包。 這些警示會儲存在本機電腦上的記錄檔。 使用 hello 彈性堆疊，hello Suricata 所產生的記錄檔可以編製索引，並使用 toocreate Kibana 儀表板，能提供較 hello 記錄檔的視覺表示法與表示 tooquickly 改善 insights toopotential 網路弱點。  
 
 ![簡單的 web 應用程式案例][1]
 
-可於 Azure VM 上設定這兩個開放原始碼工具，讓您能夠在您自己的 Azure 網路環境內執行這項分析。
+這兩個開放原始碼工具可以在上設定 Azure VM 中，可讓您 tooperform Azure 網路環境中的這項分析。
 
 ## <a name="steps"></a>步驟
 
@@ -40,7 +40,7 @@ ms.lasthandoff: 07/11/2017
 
 如需安裝的其他方法，請瀏覽 http://suricata.readthedocs.io/en/latest/install.html
 
-1. 在您 VM 的命令列終端機執行下列命令︰
+1. Hello 命令列終端機的 VM 中執行下列命令的 hello:
 
     ```
     sudo add-apt-repository ppa:oisf/suricata-stable
@@ -48,13 +48,13 @@ ms.lasthandoff: 07/11/2017
     sudo sudo apt-get install suricata
     ```
 
-1. 若要確認您的安裝，請執行命令 `suricata -h` 以查看命令的完整清單。
+1. tooverify 您的安裝，請執行 hello 命令`suricata -h`toosee hello 命令完整清單。
 
-### <a name="download-the-emerging-threats-ruleset"></a>下載新興的威脅規則集
+### <a name="download-hello-emerging-threats-ruleset"></a>下載 hello 新興的威脅規則集
 
-在這個階段，我們不需要執行 Suricata 的任何規則。 如果有您想要在您的網路偵測到的特定威脅，可以建立自己的規則，或者您也可以從多個提供者使用開發的規則集，例如新興的威脅，或從 Snort 使用 VRT 規則。 我們在這裡使用自由存取的新興威脅規則集︰
+在這個階段，我們不需要任何 Suricata toorun 的規則。 如果您想要 toodetect，特定威脅 tooyour 網路，或您也可以從許多提供者，例如新興的威脅或從 Snort VRT 規則開發使用規則集，您可以建立您自己的規則。 我們在此使用自由存取新興的威脅 ruleset hello:
 
-下載規則集，並將它們複製到目錄︰
+下載 hello 規則集，並將其複製到 hello 目錄：
 
 ```
 wget http://rules.emergingthreats.net/open/suricata/emerging.rules.tar.gz
@@ -64,24 +64,24 @@ sudo cp -r rules /etc/suricata/
 
 ### <a name="process-packet-captures-with-suricata"></a>使用 Suricata 處理封包擷取
 
-若要使用 Suricata 處理封包擷取，請執行下列命令︰
+使用 Suricata，執行下列命令的 hello 擷取 tooprocess 封包：
 
 ```
 sudo suricata -c /etc/suricata/suricata.yaml -r <location_of_pcapfile>
 ```
-若要檢查產生的警示，請閱讀 fast.log 檔案︰
+toocheck hello 產生警示，讀取 hello fast.log 檔案：
 ```
 tail -f /var/log/suricata/fast.log
 ```
 
-### <a name="set-up-the-elastic-stack"></a>設定彈性堆疊
+### <a name="set-up-hello-elastic-stack"></a>設定彈性堆疊 hello
 
-雖然 Suricata 產生的記錄檔包含有關我們網路上所發生事件的重要資訊，並不容易閱讀並了解這些記錄檔。 藉由連線 Suricata 與彈性堆疊，我們可以建立 Kibana 儀表板，讓我們可從記錄搜尋、繪圖、分析和洞察。
+雖然 Suricata 產生 hello 記錄檔包含有關最新動態的網路上的重要資訊，這些記錄檔不是 hello 最簡單 tooread，並了解。 藉由連接 Suricata 以 hello 彈性堆疊，我們可以建立 Kibana 儀表板，讓我們 toosearch、 圖形、 分析和洞察從我們的記錄檔。
 
 #### <a name="install-elasticsearch"></a>安裝 Elasticsearch
 
-1. 5.0 版和更新版本的彈性堆疊需要 Java 8。 執行命令 `java -version` 來檢查您的版本。 如果您沒有安裝 Java，請參閱 [Oracle 網站](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)上的文件
-1. 針對您的系統下載正確的二進位套件︰
+1. hello 彈性堆疊從 5.0 版和更新版本需要 Java 8。 執行 hello 命令`java -version`toocheck 您的版本。 如果您沒有安裝，請參閱 toodocumentation java [Oracle 的網站](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)
+1. 下載 hello 二進位的正確封裝您的系統：
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.2.0.deb
@@ -91,13 +91,13 @@ tail -f /var/log/suricata/fast.log
 
     可在 [Elasticsearch 安裝](https://www.elastic.co/guide/en/beats/libbeat/5.2/elasticsearch-installation.html)找到其他安裝方法
 
-1. 使用下列命令確認 Elasticsearch 正在執行︰
+1. 請確認 Elasticsearch 正以 hello 命令：
 
     ```
     curl http://127.0.0.1:9200
     ```
 
-    您應該會看到如下所示的回應：
+    您應該會看到回應類似 toothis:
 
     ```
     {
@@ -114,23 +114,23 @@ tail -f /var/log/suricata/fast.log
     }
     ```
 
-如需安裝彈性搜尋的進一步指示，請參閱[安裝](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)頁面
+如需有關安裝彈性的搜尋的進一步指示，請參閱 toohello 頁面[安裝](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)
 
 ### <a name="install-logstash"></a>安裝 Logstash
 
-1. 若要安裝 Logstash，請執行下列命令︰
+1. tooinstall Logstash 執行 hello 下列命令：
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/logstash/logstash-5.2.0.deb
     sudo dpkg -i logstash-5.2.0.deb
     ```
-1. 接下來我們需要設定 Logstash 以從 eve.json 檔案的輸出讀取。 建立 logstash.conf 檔案，使用︰
+1. 接下來，我們需要 tooconfigure Logstash tooread hello eve.json 檔案輸出。 建立 logstash.conf 檔案，使用︰
 
     ```
     sudo touch /etc/logstash/conf.d/logstash.conf
     ```
 
-1. 將下列內容新增至檔案 (請確定 eve.json 檔案的路徑正確)︰
+1. 新增下列內容 toohello 檔 hello （請確定該 hello 路徑 toohello eve.json 檔案是否正確）：
 
     ```ruby
     input {
@@ -202,48 +202,48 @@ tail -f /var/log/suricata/fast.log
     }
     ```
 
-1. 請務必提供正確權限給 eve.json 檔案，以便 Logstash 可內嵌檔案。
+1. 請確定 toogive hello 正確的權限 toohello eve.json 檔案以便 Logstash 可以內嵌 hello 檔案。
     
     ```
     sudo chmod 775 /var/log/suricata/eve.json
     ```
 
-1. 若要啟動 Logstash，請執行命令︰
+1. toostart Logstash 執行 hello 命令：
 
     ```
     sudo /etc/init.d/logstash start
     ```
 
-如需安裝 Logstash 的進一步指示，請參閱[正式文件](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)
+如需安裝 Logstash 的進一步指示，請參閱 toohello[官方文件集](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)
 
 ### <a name="install-kibana"></a>安裝 Kibana
 
-1. 執行下列命令以安裝 Kibana：
+1. 執行下列命令 tooinstall Kibana hello:
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/kibana/kibana-5.2.0-linux-x86_64.tar.gz
     tar xzvf kibana-5.2.0-linux-x86_64.tar.gz
 
     ```
-1. 若要執行 Kibana，請使用這些命令︰
+1. toorun Kibana 使用 hello 命令：
 
     ```
     cd kibana-5.2.0-linux-x86_64/
     ./bin/kibana
     ```
 
-1. 若要檢視 Kibana Web 介面，請瀏覽至`http://localhost:5601`
-1. 此案例中，用於 Suricata 記錄的索引模式是 "logstash-*"
+1. tooview Kibana web 介面，請瀏覽過`http://localhost:5601`
+1. 此案例中，用於的 hello Suricata 記錄的 hello 索引模式是 「 logstash-*"
 
-1. 如果您想要從遠端檢視 Kibana 儀表板，建立輸入 NSG 規則以允許存取**連接埠 5601**。
+1. 如果要從遠端 tooview hello Kibana 儀表板，請建立輸入的 NSG 規則允許存取太**連接埠 5601**。
 
 ### <a name="create-a-kibana-dashboard"></a>建立 Kibana 儀表板
 
-在本文中，我們提供了範例儀表板，讓您檢視警示中的趨勢和詳細資料。
+如本文中，我們已提供為您 tooview 趨勢的範例儀表板和中的警示詳細資料。
 
-1. 下載儀表板檔案 ([這裡](https://aka.ms/networkwatchersuricatadashboard))、視覺效果檔案 ([這裡](https://aka.ms/networkwatchersuricatavisualization))，以及儲存的搜尋檔案 ([這裡](https://aka.ms/networkwatchersuricatasavedsearch))。
+1. 下載 hello 儀表板檔案[這裡](https://aka.ms/networkwatchersuricatadashboard)，hello 視覺效果檔案[這裡](https://aka.ms/networkwatchersuricatavisualization)，和儲存的 hello 搜尋檔案[這裡](https://aka.ms/networkwatchersuricatasavedsearch)。
 
-1. 在 Kibana 的 [管理] 索引標籤下，瀏覽至 [儲存的物件] 並匯入這三個檔案。 然後您可以從 [儀表板] 索引標籤開啟並載入範例儀表板。
+1. 在 hello**管理** 索引標籤的 Kibana，瀏覽過**儲存物件**並匯入所有的三個檔案。 然後從 hello**儀表板** 索引標籤，您可以開啟和負載 hello 範例儀表板。
 
 您也可以針對自己感興趣的計量，量身製作自己的視覺效果和儀表板。 從 Kibana 的[正式文件](https://www.elastic.co/guide/en/kibana/current/visualize.html)深入了解如何建立 Kibana 視覺效果。
 
@@ -251,25 +251,25 @@ tail -f /var/log/suricata/fast.log
 
 ### <a name="visualize-ids-alert-logs"></a>以視覺化方式檢視 IDS 警示記錄
 
-範例儀表板會提供 Suricata 警示記錄的數個視覺效果︰
+hello 範例儀表板會提供數個視覺效果的 hello Suricata 警示記錄檔：
 
-1. 依 GeoIP 發佈警示 –根據地理位置 (由 IP 判斷) 依其國家/地區顯示警示分佈的地圖
+1. 依 GeoIP – 地圖，顯示的警示他們國家/地區的地理位置 （由 IP） hello 發佈警示
 
     ![地理 IP][3]
 
-1. 前 10 個警示 – 10 個最常見的觸發警示及其描述摘要。 按一下個別警示可向下篩選儀表板到該特定警示的相關資訊。
+1. 前 10 個警示 – hello 最常見的 10 觸發警示的摘要以及其描述。 按一下個別警示篩選下 hello 相關 toothat 特定警示的儀表板 toohello 資訊。
 
     ![影像 4][4]
 
-1. 警示數目 – 依規則集所觸發的警示總計數
+1. 警示數目 – hello hello 規則集所觸發的警示總數的計數
 
     ![影像 5][5]
 
-1. 前 20 個來源/目的地 IP/連接埠 - 顯示前 20 個觸發警示的 IP 和連接埠的圓形圖。 您可以在特定的 IP/連接埠向下篩選，以查看所觸發警示的數目和類型。
+1. 前 20 來源/目的地的 Ip/連接埠-圓形圖顯示 hello 前 20 個 Ip 並觸發警示的連接埠上。 您可以依特定的 Ip/連接埠 toosee 數量及向下篩選會觸發警示的類型。
 
     ![映像 6][6]
 
-1. 警示摘要 – 彙總每一個個別警示的特定詳細資料的資料表。 您可以自訂這個資料表，以顯示每個警示的其他感興趣參數。
+1. 警示摘要 – 彙總每一個個別警示的特定詳細資料的資料表。 您可以自訂此資料表 tooshow 感興趣，每個警示的其他參數。
 
     ![映像 7][7]
 
@@ -277,13 +277,13 @@ tail -f /var/log/suricata/fast.log
 
 ## <a name="conclusion"></a>結論
 
-藉由結合網路監看員所提供的封包擷取和開放原始碼 IDS 工具 (例如 Suricata)，您可以執行各式各樣威脅的網路入侵偵測。 這些儀表板可讓您快速發現您網路內的趨勢和異常，並且深入瞭解來探索警示資料的根本原因，例如惡意的使用者代理程式或連接埠弱點。 利用這個擷取的資料，您可以做出關於如何回應和保護網路免於任何有害入侵嘗試，以及建立規則來避免未來入侵您網路的明智決策。
+藉由結合網路監看員所提供的封包擷取和開放原始碼 IDS 工具 (例如 Suricata)，您可以執行各式各樣威脅的網路入侵偵測。 這些儀表板可讓您 tooquickly 找出趨勢和異常情況中您的網路，以及深入了解 hello 資料 toodiscover 根本原因，例如惡意的使用者代理程式或弱點連接埠的警示。 取代為這個擷取的資料，您可以做出明智的決策 tooreact tooand 如何保護您的網路中的任何危險的入侵嘗試，並建立規則 tooprevent 未來入侵 tooyour 網路。
 
 ## <a name="next-steps"></a>後續步驟
 
-若要了解如何根據警示觸發封包擷取，請造訪[使用封包擷取搭配 Azure Functions 進行主動式網路監視](network-watcher-alert-triggered-packet-capture.md)
+了解如何 tootrigger 擷取封包根據的警示造訪[使用封包擷取 toodo 主動式網路監視 Azure 函式](network-watcher-alert-triggered-packet-capture.md)
 
-若要了解如何利用 Power BI 將 NSG 流量記錄視覺化，請瀏覽[利用 Power BI 將 NSG 流量記錄視覺](network-watcher-visualize-nsg-flow-logs-power-bi.md)
+了解 toovisualize NSG 流程記錄的方式有了 Power BI 瀏覽[視覺化 NSG 流動 Power BI 的記錄檔](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 
 
 

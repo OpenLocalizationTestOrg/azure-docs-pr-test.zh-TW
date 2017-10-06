@@ -1,6 +1,6 @@
 ---
-title: "DevOps 適用的 Azure Application Insights 概觀 | Microsoft Docs"
-description: "了解如何在 Dev Ops 環境中使用 Application Insights。"
+title: "DevOps 的 Azure Application Insights aaaOverview |Microsoft 文件"
+description: "深入了解如何在環境中開發人員 Ops toouse Application Insights。"
 author: CFreemanwa
 services: application-insights
 documentationcenter: 
@@ -13,101 +13,101 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/26/2017
 ms.author: bwren
-ms.openlocfilehash: 4f9578fd39b80496a8de060b6cae8f5612e03aa7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 42139f4645e815f26378726f4716a9bfbdc78551
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-application-insights-for-devops"></a>DevOps 適用的 Application Insights 概觀
 
-透過 [Application Insights](app-insights-overview.md)，您可以迅速瞭解您的應用程式在作用中時如何執行和使用。 如果發生問題，它可讓您了解、協助您評估影響，以及協助您判斷原因。
+透過 [Application Insights](app-insights-overview.md)，您可以迅速瞭解您的應用程式在作用中時如何執行和使用。 如果沒有問題，它可讓您了解，可協助您評估 hello 影響，以及可協助您判斷 hello 可能的原因。
 
 以下是某個開發 Web 應用程式的小組的敘述：
 
-* *「幾天前，我們部署了次要的 Hotfix。我們沒有執行廣泛測試階段，但很不幸地，有些未預期的變更被合併到裝載中，造成前端與後端之間的不相容。伺服器例外狀況隨即湧現，警報發出，我們便知道了這個情況。在按幾下 Application Insights 入口網站之後，我們從例外狀況堆疊取得了足夠的資訊，而得以縮小問題。我們立即復原並將損害降至最低。Application Insights 使得這個部分的開發作業週期變得非常輕鬆且可行。」*
+* *「幾天前，我們部署了次要的 Hotfix。我們未執行廣泛測試通過，但不幸的是一些未預期的變更何時合併 hello 承載，造成 hello 前端和後端之間的不相容。立即 surged 伺服器例外狀況，我們警示引發，及我們做了知道 hello 情況。按幾下的滑鼠，離開 hello Application Insights 入口網站上，我們會了足夠的資訊從例外狀況呼叫堆疊 toonarrow hello 問題。我們會立即回復，而且有限的 hello 損毀。Application Insights 進行了循環 hello devops 這部分很簡單，且可採取動作。 」*
 
-在本文中，我們追隨 Fabrikam Bank 中一個開發線上銀行系統 (OBS) 的團隊，了解他們如何使用 Application Insights 快速回應客戶和進行更新。  
+本文章中我們會遵循小組開發 hello 的 Fabrikam 銀行線上銀行系統 (OBS) toosee 如何使用 Application Insights tooquickly 回應 toocustomers 及進行更新。  
 
-此團隊會處理下圖所示的 DevOps 循環：
+hello 小組處理 DevOps 循環 hello 下列圖例所示：
 
 ![DevOps 循環](./media/app-insights-detect-triage-diagnose/00-devcycle.png)
 
-送入其開發待處理項目 (工作清單) 的需求。 小組努力工作，經常交付可行的軟體 - 通常是對現有的應用程式進行改進和延伸。 上線的 app 則會經常更新新功能。 雖然 app 已經上線，但小組會透過 Application Insights 的協助監視其效能和使用情況。 這項 APM 資料會餵送回其開發待處理項目。
+送入其開發待處理項目 (工作清單) 的需求。 簡單地說，其運作通常提供工作的軟體-通常是在 hello 改良功能和擴充功能 toohello 現有應用程式表單的衝刺。 hello 即時應用程式經常會有新功能更新。 雖然是即時的 hello 小組用來監視其效能和使用 Application Insights hello 協助。 這項 APM 資料會餵送回其開發待處理項目。
 
-小組使用 Application Insights 密切監視上線 Web 應用程式的下列項目：
+hello 小組會使用 Application Insights toomonitor hello 即時 web 應用程式密切：
 
-* 效能。 他們想要了解回應時間如何隨著要求計數變化；使用多少 CPU、網路、磁碟和其他資源；以及瓶頸所在。
-* 失敗。 如果有例外狀況或失敗的要求，或如果效能計數器超出其舒適範圍，小組必須快速知道以便採取動作。
-* 使用狀況。 當發行新功能時，小組想要知道其使用程度，以及使用者在使用上是否有任何問題。
+* 效能。 他們想要如何回應時間隨著要求計數; toounderstand多少 CPU、 網路、 磁碟和其他資源正在使用;其中 hello 瓶頸。
+* 失敗。 如果有例外狀況或失敗的要求，或如果效能計數器超出舒適的範圍，hello 小組需要 tooknow 快速，讓它們可以採取的動作。
+* 使用狀況。 只要已發行的新功能，hello 小組需要 tooknow toowhat 範圍使用，而且使用者是否有任何問題，與它。
 
-接下來討論循環的回饋部分：
+讓我們重點討論 hello 意見反應部分 hello 週期：
 
 ![偵測-分級-診斷](./media/app-insights-detect-triage-diagnose/01-pipe1.png)
 
 ## <a name="detect-poor-availability"></a>偵測可用性不佳
-Marcela Markova 是 OBS 小組的資深開發人員，主導線上效能監視。 她設定了數項[可用性測試](app-insights-monitor-web-app-availability.md)：
+Marcela Markova 會 hello OBS 小組的資深開發人員，並採用 hello 負責人監視線上效能。 她設定了數項[可用性測試](app-insights-monitor-web-app-availability.md)：
 
-* 用於應用程式主要登陸頁面 (http://fabrikambank.com/onlinebanking/) 的單一 URL 測試。 她設定 HTTP 代碼 200 與文字「歡迎使用！」的準則。 如果此測試失敗，表示網路或伺服器發生嚴重錯誤，或可能有部署問題。 (或是有人變更了頁面上的「歡迎使用！」 訊息，但沒讓她知道。)
-* 更深入的多步驟測試將會記錄並取得目前帳戶清單，檢查每個頁面上的一些重要詳細資料。 此測試會驗證對帳戶資料庫的連結運作中。 她使用虛構的客戶識別碼：其中少數幾個保留供測試目的。
+* Hello 應用程式中，hello 主要登陸頁面的單一 URL 測試 http://fabrikambank.com/onlinebanking/。 她設定 HTTP 代碼 200 與文字「歡迎使用！」的準則。 如果此測試失敗，則有嚴重錯誤 hello 網路或 hello 伺服器或可能的部署問題。 （或有人變更過 hello 歡迎使用 ！ 訊息不讓她知道 hello 頁面上。）
+* 更深入的多步驟測試將會記錄並取得目前帳戶清單，檢查每個頁面上的一些重要詳細資料。 這項測試會驗證該 hello 連結 toohello 帳戶資料庫運作正常。 她使用虛構的客戶識別碼：其中少數幾個保留供測試目的。
 
-透過設定這些測試，Marcela 能確信若要任何中斷情況，小組將快速知道。  
+這些測試設定，Marcela 是確定該 hello 團隊會快速了解任何中斷。  
 
-失敗在 Web 測試圖表上會以紅點顯示：
+失敗會顯示為 hello web 測試圖表上的紅點：
 
-![顯示對前一個期間執行的 Web 測試](./media/app-insights-detect-triage-diagnose/04-webtests.png)
+![顯示的 hello 前面期間執行的 web 測試](./media/app-insights-detect-triage-diagnose/04-webtests.png)
 
-但更重要的是，任何失敗的相關警示會以電子郵件方式寄送給開發小組。 以該方式，他們幾乎可在所有客戶之前便得知該情況。
+但是更重要的是，任何失敗相關警示以電子郵件傳送 toohello 開發團隊。 如此一來，他們得知之前幾乎全部 hello 客戶。
 
 ## <a name="monitor-performance"></a>監視效能
-在 Application Insights 中的概觀頁面上，有一個顯示各種[重要度量](app-insights-web-monitor-performance.md)的圖表。
+在 Application Insights 中的 hello 概觀頁面上，有是折線圖，顯示各種[金鑰度量](app-insights-web-monitor-performance.md)。
 
 ![各種度量](./media/app-insights-detect-triage-diagnose/05-perfMetrics.png)
 
-瀏覽器頁面載入時間是從網頁直接傳送的遙測所衍生。 伺服器回應時間、伺服器要求計數和失敗的要求計數，都是在 Web 伺服器中測量，然後從該處傳送到 Application Insights。
+瀏覽器頁面載入時間是從網頁直接傳送的遙測所衍生。 伺服器回應時間、 伺服器要求計數，以及失敗的要求計數是所有衡量 hello web 伺服器中，並從該處傳送 tooApplication 深入資訊。
 
-Marcela 有些擔心伺服器回應圖形。 此圖表會顯示伺服器自收到使用者瀏覽器的 HTTP 要求，直到傳回回應這段期間的平均時間。 在這個圖表中看到差異並無不尋常，因為各系統的負載不同。 但在此情況下，要求數量些微增加與回應時間大幅增加似乎有某種關係。 這可能表示系統到達運作極限。
+Marcela 是稍微關心 hello 伺服器回應圖形。 此圖表顯示 hello 當 hello 伺服器從使用者的瀏覽器、 接收 HTTP 要求與它會傳回 hello 回應之間的平均時間。 它不是異常 toosee 變化，以在此圖中，隨著 hello 系統上的負載而改變。 但在此情況下，似乎那里 toobe 小上升 hello 計數的要求，而且其大小之間的相互關聯上升 hello 回應時間。 可能表示 hello 系統作業只在其限制。
 
-她將「伺服器」圖表打開：
+下次開啟 hello 伺服器圖表：
 
 ![各種度量](./media/app-insights-detect-triage-diagnose/06.png)
 
-其中似乎沒有資源限制的徵兆，也許伺服器回應圖表中的起伏只是巧合。
+似乎那里 toobe 沒有符號的資源限制，因此可能在 hello 伺服器回應圖表中的 hello 碰撞純屬巧合。
 
-## <a name="set-alerts-to-meet-goals"></a>設定警示以符合目標
-儘管如此，她還是會多加留意回應時間。 如果它們變得太高，她想立即知道。
+## <a name="set-alerts-toomeet-goals"></a>設定警示 toomeet 目標
+不過，她希望 tookeep 眼睛 hello 回應時間。 如果它們移得太高，她想 tooknow 資訊，請立即。
 
 因此，她針對回應時間大於一般臨界值的情況設定了一個[警示](app-insights-metrics-explorer.md)。 這可以確保當回應時間變慢時她就會知道。
 
 ![加入警示分頁](./media/app-insights-detect-triage-diagnose/07-alerts.png)
 
-您可以在其他各種不同的度量上設定警示。 例如，您可以在例外狀況計數變高或可用記憶體變低，或用戶端要求中有尖峰時收到電子郵件。
+您可以在其他各種不同的度量上設定警示。 比方說，您可以在 hello 例外狀況計數變成高，則 hello 可用的記憶體會變低，或在用戶端要求尖峰是否收到電子郵件。
 
 ## <a name="stay-informed-with-smart-detection-alerts"></a>獲得有關智慧型偵測警示的資訊
-隔天，確實收到了一封來自 Application Insights 的電子郵件。 但是開啟郵件之後，她發現並不是她所設定的回應時間警示。 而是郵件告知她失敗的要求 (也就是傳回 500 或更高數字之失敗代碼的要求) 數目突然提高。
+隔天，確實收到了一封來自 Application Insights 的電子郵件。 但是當她開啟它時，她發現它不是她所設定的 hello 回應時間警示。 而是郵件告知她失敗的要求 (也就是傳回 500 或更高數字之失敗代碼的要求) 數目突然提高。
 
-發生失敗的要求時使用者會看到錯誤，通常是在程式碼中擲出例外狀況之後。 也許他們會看到訊息指出 「抱歉，我們現在無法更新您的詳細資料。 」 或者，極度尷尬的是，使用者的螢幕上會顯示堆疊傾印 (出自於 Web 伺服器禮貌回應)。
+失敗的要求，則使用者已經看過的錯誤-通常遵循 hello 程式碼中擲回例外狀況。 也許他們會看到訊息指出 「抱歉，我們現在無法更新您的詳細資料。 」 或者，在絕對免於最差，堆疊傾印會出現在 hello 使用者畫面上，受 hello web 伺服器。
 
-這個警示令人驚訝，因為她上次查看時，失敗的要求計數很低，完全不用擔心。 其中一小部分的失敗預期是在忙碌的伺服器中。
+此警示是意外，因為 hello 她看，hello 的最後一次失敗計數偏 encouragingly 低的要求。 少量失敗是 toobe 忙碌的伺服器中必須要有。
 
-這也讓她稍微感到驚訝，因為她之前並不需要設定這個警示。 Application Insights 包含智慧型偵測。 它會自動調整至您 app 的一般失敗模式，並且「習慣」特定頁面、高負載或和其他計量連結的失敗。 只有當增加量超出預期的量時它才會發出警示。
+它也是為她奇怪的位元因為她不需要 tooconfigure 此警示。 Application Insights 包含智慧型偵測。 它會自動調整 tooyour 應用程式的一般失敗模式和 「 取得用來 「 失敗的特定頁面，或者在高負載或連結的 tooother 度量。 只有當此時上升，便會產生 hello 警示決定其上方出現 tooexpect。
 
 ![主動診斷電子郵件](./media/app-insights-detect-triage-diagnose/21.png)
 
-這封電子郵件非常有幫助。 它不只是發出警示。 它也會進行許多分級和診斷工作。
+這封電子郵件非常有幫助。 它不只是發出警示。 它會執行許多 hello 分級和診斷的工作、 太。
 
-它會顯示有多少客戶，以及哪些網頁或作業受到影響。 Marcela 可以決定是否需要動員整個小組來處理此問題，或者可以延後到下週再處理。
+它會顯示有多少客戶，以及哪些網頁或作業受到影響。 Marcela 可以決定是否需要這項工作以演習，tooget hello 整個小組，或等到下一週是否可以被忽略。
 
-該電子郵件也顯示發生的特定例外狀況，甚至 - 更有趣的 - 是與對特定資料庫呼叫失敗關聯的失敗。 這解釋了為何 Marcela 的團隊即使最近沒有部署任何更新也會突然發生錯誤。
+hello 電子郵件也會顯示特定的例外狀況發生，而-更有趣的該 hello 發生錯誤的失敗的呼叫 tooa 特定資料庫相關聯。 本節將說明為什麼 hello 錯誤突然出現即使 Marcela 的小組最近尚未部署的任何更新。
 
-Marcella 會根據這封電子郵件偵測資料庫團隊的主管。 她發現他們在過去半小時釋出了 Hot Fix；而不巧的是，或許是基礎結構有些微小變更...
+Marcella 偵測 hello 資料庫小組這封電子郵件為基礎的 hello 前置字元。 她會學習在發行中 hello 問題修正過去半小時。和糟糕或許可能有次要的結構描述變更...
 
-因此，在問題發生後的 15 分鐘內，甚至是在檢查紀錄之前，就已經開始修正問題。 不過，Marcela 按了一下連結來開啟 Application Insights。 此時直接開啟了一個失敗的要求，而且她可以在相依性呼叫的關聯清單中看到失敗的資料庫呼叫。
+因此 hello 問題是固定的即使之前調查記錄檔和它所產生的 15 分鐘內的 hello 方式 toobeing 上。 不過，Marcela 按一下 hello 連結 tooopen Application Insights。 它會直接進入失敗的要求，而她可以查看失敗的資料庫呼叫 hello 的相依性呼叫相關聯的清單中。
 
 ![失敗的要求](./media/app-insights-detect-triage-diagnose/23.png)
 
 ## <a name="detect-exceptions"></a>偵測例外狀況
-只要一點點設定，就可以將 [例外狀況](app-insights-asp-net-exceptions.md) 自動報告給 Application Insights。 也可以在程式碼中呼叫 [TrackException()](app-insights-api-custom-events-metrics.md#trackexception) ，明確擷取這些例外狀況：  
+利用最少的安裝程式，[例外狀況](app-insights-asp-net-exceptions.md)會自動回報的 tooApplication 深入資訊。 它們可以也擷取明確插入的呼叫太[之 trackexception （)](app-insights-api-custom-events-metrics.md#trackexception) hello 程式碼：  
 
     var telemetry = new TelemetryClient();
     ...
@@ -123,14 +123,14 @@ Marcella 會根據這封電子郵件偵測資料庫團隊的主管。 她發現�
        var measurements = new Dictionary <string, double>
          {{"Users", currentGame.Users.Count}};
 
-       // Send the exception telemetry:
+       // Send hello exception telemetry:
        telemetry.TrackException(ex, properties, measurements);
     }
 
 
-Fabrikam 銀行小組制定出一律在發生例外狀況時傳送遙測的作法，除非有明顯的恢復。  
+hello Fabrikam 銀行小組發展 hello 作法，一律將遙測傳送的例外狀況，除非有明顯的復原。  
 
-事實上，其策略甚至比此更為廣泛：他們會在每個客戶對要做的事感到挫折時便傳送遙測，而不論是否與程式碼中的例外狀況對應。 例如，如果外部的銀行內傳送系統因為某此作業原因 (不是客戶的錯誤) 而傳回「無法完成此交易」訊息，他們會追蹤該事件。
+事實上，其策略是比更： 將遙測傳送 hello 客戶是挫折在每個案例中他們想 toodo，是否不論對應 tooan hello 程式碼中的例外狀況。 比方說，如果 hello 外部間銀行傳輸系統因故操作 （hello 客戶的任何錯誤） 傳回 「 無法完成此交易 」 的訊息然後這些追蹤事件。
 
     var successCode = AttemptTransfer(transferAmount, ...);
     if (successCode < 0)
@@ -142,93 +142,93 @@ Fabrikam 銀行小組制定出一律在發生例外狀況時傳送遙測的作�
        telemetry.TrackEvent("transfer failed", properties, measurements);
     }
 
-TrackException 用來報告例外狀況，因為它會傳送堆疊的副本。 TrackEvent 用來報告其他事件。 您可以在診斷中附加可能有幫助的任何屬性。
+TrackException 是使用的 tooreport 例外狀況，因為它會傳送 hello 堆疊的複本。 TrackEvent 是使用的 tooreport 其他事件。 您可以在診斷中附加可能有幫助的任何屬性。
 
-例外狀況和事件會顯示在 [[診斷搜尋](app-insights-diagnostic-search.md)] 刀鋒視窗中。 您可以深入探索，以查看額外屬性和堆疊追蹤。
+例外狀況和事件顯示在 hello[診斷搜尋](app-insights-diagnostic-search.md)刀鋒視窗。 您可以鑽研到 toosee hello 其他屬性，堆疊追蹤。
 
-![在「診斷搜尋」中，請使用篩選器來顯示特定類型的資料](./media/app-insights-detect-triage-diagnose/appinsights-333facets.png)
+![在診斷搜尋中，使用篩選器 tooshow 特定資料類型](./media/app-insights-detect-triage-diagnose/appinsights-333facets.png)
 
 
 ## <a name="monitor-proactively"></a>主動監視
-Marcela 不會無所事事等候警示。 在每次重新部署之後，她都會立即查看[回應時間](app-insights-web-monitor-performance.md) - 除了例外狀況計數之外，也查看整體數據和最緩慢的要求表。  
+Marcela 不會無所事事等候警示。 隨後每個重新部署，她接受看[回應時間](app-insights-web-monitor-performance.md)-兩者 hello 整體圖與 hello 資料表最慢的要求，以及例外狀況計數。  
 
 ![回應時間圖及伺服器回應時間格線。](./media/app-insights-detect-triage-diagnose/09-dependencies.png)
 
-她可以評估每個部署的效能影響，通常是將每週與前一週比較。 如果突然有變慢的情況，她會將該情況向相關的開發人員反應。
+她可以評估 hello 效能影響每個部署，通常比較每週 hello 與上一次。 如果突然 worsening 時，她會引發，與 hello 相關開發人員。
 
 ## <a name="triage-issues"></a>分級問題
-分級 - 評估問題的嚴重性和程度 - 是偵測後的第一個步驟。 我們是否應該在半夜打電話給小組？ 或是問題可以留到累積的工作中下一次方便的時候？ 分級時有一些重要的問題。
+分級-評估 hello 嚴重性和問題的範圍-之後偵測的 hello 第一個步驟。 應該我們呼叫 hello 小組在午夜嗎？ 或者可以保留直到 hello 下一個方便的間距 hello 待辦項目嗎？ 分級時有一些重要的問題。
 
-發生頻率為何？ [概觀] 分頁的圖表可提供問題的某些觀點。 例如，Fabrikam 應用程式在一個晚上產生了四個 Web 測試警示。 小組在早上查看圖表，可以發現確實出現一些紅點，但多數的測試仍是綠色。 深入探索可用性圖表，很明顯地，這所有的間歇性問題都來自一個測試位置。 這顯然是僅影響一個路徑的網路問題，而且很可能可自行解決。  
+頻率它發生問題？hello 圖表 hello 概觀刀鋒視窗上的提供某些檢視方塊 tooa 問題。 例如，hello Fabrikam 應用程式會產生四個 web 測試警示一個晚上。 查看 hello 圖表中 hello 早上，hello 小組無法查看已確實某些紅點，但仍 hello 測試大多綠色。 鑽研 hello 可用性圖表，了解所有這些間歇性問題都已從一項測試的位置。 這顯然是僅影響一個路徑的網路問題，而且很可能可自行解決。  
 
-相反地，例外狀況計數或回應時間圖表中明顯且穩定的上升則明顯有其他問題需要注意。
+相反地，例外狀況計數或回應時間的 hello 圖形大幅且穩定升高很顯然 toopanic 有關。
 
-實用的分級策略是「自己動手做」。 如果您遇到相同問題，就會知道它是真的。
+實用的分級策略是「自己動手做」。 如果您遇到 hello 相同的問題，您會知道它真實。
 
-哪個部分的使用者受到影響？ 若要獲得約略的答案，請將失敗率除以工作階段計數。
+有多少比例的使用者受到影響？tooobtain 粗略的回應，會將 hello 失敗率除以 hello 工作階段計數。
 
 ![失敗的要求和工作階段的圖表](./media/app-insights-detect-triage-diagnose/10-failureRate.png)
 
-在緩慢回應的情況中，將回應最緩慢的要求表與每個頁面的使用頻率相比較。
+回應變慢時，比較最慢回應要求的 hello 資料表 hello 使用量頻率為每個頁面。
 
-封鎖案例的重要性如何？ 如果這是功能性問題，封鎖了特定的使用者劇本，有很大影響嗎？ 如果客戶無法支付帳單，便很嚴重；如果客戶無法變更其畫面色彩喜好設定，也可以稍候再解決。 事件或例外狀況的詳細資料或緩慢頁面的身分識別，會告知您客戶發生問題的位置。
+重要性是封鎖的 hello 案例？ 如果這是功能性問題，封鎖了特定的使用者劇本，有很大影響嗎？ 如果客戶無法支付帳單，便很嚴重；如果客戶無法變更其畫面色彩喜好設定，也可以稍候再解決。 hello hello 事件或例外狀況的詳細資料或 hello 識別的 hello 慢速網頁，告訴您發生客戶問題。
 
 ## <a name="diagnose-issues"></a>診斷問題
-診斷與偵測不太一樣。 開始追蹤程式碼之前，您應該對問題的原因、位置和發生時機有約略的構念。
+診斷不相當 hello 相同偵錯。 開始透過 hello 程式碼的追蹤之前，您應該為何，大概知道發生 hello 問題的位置和時間。
 
-**發生時機為何？** 事件和度量圖表提供的歷程檢視可讓您輕鬆將影響與可能原因產生相互關聯。 如果回應時間或例外狀況率中有間歇性的尖峰，請查看要求計數：如果尖峰是在相同時間，則可能是資源問題。 您需要指派更多 CPU 或記憶體嗎？ 或者它是無法管理負載的相依性？
+**何時它發生？** hello hello 事件和度量的圖表所提供的歷程記錄檢視可讓您輕鬆 toocorrelate 效果與可能的原因。 如果回應時間或例外狀況率間歇尖峰，查看 hello 要求計數： 如果它在 hello 尖峰相同時，則它看起來像是資源問題。 更多的 CPU 或記憶體需要 tooassign 嗎？ 或者都不能管理 hello 載入的相依性？
 
-**問題在於我們嗎？**  如果特定類型的要求效能突然下降 - 例如客戶想要對帳單時 - 則可能是外部子系統而非 Web 應用程式有問題。 在「計量瀏覽器」中，選取相依性失敗率和相依性期間率，並將其過去幾個小時或幾天的歷程記錄與您偵測到的問題比較。 如果有相互關聯的變更，則外部子系統可能是原因所在。  
+**問題在於我們嗎？**  如果您在突然-例如當 hello 客戶想要的帳戶陳述式-要求的特定類型的效能可能就可能是外部的子系統，而不是 web 應用程式。 計量瀏覽器中選取 hello 相依性失敗率和相依性持續時間率和比較其記錄 hello 過去幾個小時或天 hello 您偵測到的問題。 如果有會相互關聯的變更，外部的子系統可能是 tooblame。  
 
-![相依性失敗和對相依性呼叫期間的圖表](./media/app-insights-detect-triage-diagnose/11-dependencies.png)
+![相依性失敗和呼叫 toodependencies 持續時間的圖表](./media/app-insights-detect-triage-diagnose/11-dependencies.png)
 
 有些緩慢相依性的問題是地理位置問題。 Fabrikam 銀行使用 Azure virtual 機器，並發現他們誤將 Web 伺服器和帳戶伺服器放置在不同國家/地區。 透過移轉其中一部伺服器獲得明顯的改善。
 
-**我們做了什麼？** 如果問題似乎不在於相依性，而且如果不是持續有問題，則可能是由於最近的變更而導致。 度量和事件圖表提供的歷史觀點讓您輕鬆將任何突然的變更與部署產生相互關聯。 它可縮小問題的搜尋範圍。
+**我們做了什麼？** 如果 hello 問題不會出現 toobe 中相依性，而且不一定有，可能是最近的變更所造成。 hello hello 計量和事件的圖表所提供的歷程記錄檢視方塊可讓您輕鬆 toocorrelate 任何突變進行部署。 會縮減 hello 搜尋 hello 問題。
 
-**發生什麼？** 有些問題很少發生，而且透過離線測試可能難以追蹤。 我們能做的是嘗試在問題發生時擷取錯誤。 您可以在例外狀況報告中檢查堆疊傾印。 此外，您可以使用喜好的記錄架構或使用 TrackTrace() 或 TrackEvent() 來編寫追蹤呼叫。  
+**發生什麼？** 某些問題很少發生，而且可以是向下的困難 tootrack 藉由離線測試。 即時發生時，我們可以只是 tootry toocapture hello bug。 您可以檢查例外狀況報表中的 hello 堆疊傾印。 此外，您可以使用喜好的記錄架構或使用 TrackTrace() 或 TrackEvent() 來編寫追蹤呼叫。  
 
-Fabrikam 的帳戶間轉送發生間歇性問題，但只有某些帳戶類型有此情況。 為了更加了解發生的情況，他們在程式碼中的重要點插入了 TrackTrace() 呼叫，附加帳戶類型作為每個呼叫的內容。 那使得要在診斷搜尋中僅篩選掉這些追蹤更為輕鬆。 他們也將參數值附加為追蹤呼叫的屬性和測量。
+Fabrikam 的帳戶間轉送發生間歇性問題，但只有某些帳戶類型有此情況。 toounderstand 更好的事，它們在 hello 程式碼中，附加 hello 帳戶類型，做為屬性 tooeach 呼叫關鍵點插入 tracktrace （） 呼叫。 它只追蹤出輕鬆 toofilter 中進行診斷的搜尋。 它們也會附加為屬性和量值 toohello 追蹤呼叫的參數值。
 
-## <a name="respond-to-discovered-issues"></a>回應所發現的問題
-診斷問題之後，您可以製訂修正問題的計劃。 也許您需要復原最近的變更，或也許您可以繼續並修正它。 修正完成後，Application Insights 會告知您是否成功。  
+## <a name="respond-toodiscovered-issues"></a>回應 toodiscovered 問題
+一旦您已診斷 hello 的問題，您可以進行計劃 toofix 它。 或許您需要的 tooroll 回到最近的變更，或您或許可以繼續，修正此問題。 一旦完成 hello 修正程式，Application Insights 會告訴您是否成功。  
 
-Fabrikam 銀行的開發小組對效能測量採取較使用 Application Insights 之前更具結構的方法。
+銀行 Fabrikam 的開發小組採用更結構化方法 tooperformance 以往 toobefore 它們使用 Application Insights。
 
-* 他們會在 Application Insights 概觀頁面就特定度量設定效能目標。
-* 他們從頭為應用程式設計效能度量，例如透過「漏斗」測量使用者進度的度量。  
+* Hello Application Insights 概觀 頁面中設定這些欄位依據特定量值的效能目標。
+* 他們設計到 hello 從 hello 開始，例如 hello 度量會測量 '漏斗圖。' 的使用者進行的應用程式的效能量值  
 
 
 ## <a name="monitor-user-activity"></a>監視使用者活動
-當回應時間一直都不錯，而且例外狀況不多時，開發小組可以繼續往可用性的方向努力。 他們可以思考如何改善使用者體驗，以及如何鼓勵更多使用者達到想要的目標。
+當回應時間是一致的良好且有少數的例外狀況時，hello 開發小組就可以將 toousability 上。 它們可以思考如何 tooimprove hello 的使用者經驗，以及如何 tooencourage 更多使用者 tooachieve hello 預期的目標。
 
-Application Insights 也可以用來了解使用者在應用程式內執行的動作。 執行順暢時，小組會想要得知哪些功能最受歡迎、使用者喜歡或感到有困難的部份，以及使用者回來的頻率。 這些資訊有助於將他們近期的工作排定優先順序。 而他們可以計劃測量每個功能的成功度，作為開發週期的一部份。 
+Application Insights 也可以使用的 toolearn 哪些使用者操作應用程式。 一旦順利執行，hello 小組希望的 tooknow 的 hello 最受歡迎的功能什麼使用者喜歡還是有困難，和頻率他們回來。 這些資訊有助於將他們近期的工作排定優先順序。 他們可以將每個功能 toomeasure hello 成功計劃 hello 開發週期的一部分。 
 
-例如，使用者在網站上的典型使用者旅程是明確的「漏斗圖」。 許多客戶會研究不同類型的貸款利率。 少部分的客戶會繼續填寫報價單。 在取得報價單的客戶當中，有一部分會繼續，並取得貸款。
+比方說，透過 hello 網站的一般使用者旅程已清除 」 漏斗圖。 」 許多客戶看看不同類型的貸款 hello 率。 較小的數字，請移 toofill hello 引號的形式。 人取得引號，一些請繼續並取出 hello 貸款。
 
 ![頁面檢視計數](./media/app-insights-detect-triage-diagnose/12-funnel.png)
 
-透過找出最多客戶放棄的位置，企業可以思考如何讓更多使用者通過漏斗。 在某些情況下，可能是使用者體驗 (UX) 失敗 - 例如，很難找到 [下一步] 按鈕，或者指示不太明顯。 更有可能是因為重要的商業理由放棄：可能是貸款利率太高。
+考慮 hello 的客戶的最大數目的放置，hello 商務能找出如何 tooget 多個使用者都可以透過 toohello 底部 hello 漏斗。 在某些情況下，可能是使用者經驗 (UX) 失敗-例如，hello '下一步 按鈕會永久 toofind，或 hello 指示不明顯。 更有可能的原因有卸除出更重要的商業原因： 可能 hello 貸款的比率會太高。
 
-無論任何原因，資料都可協助團隊了解使用者在做什麼。 此時可以插入更多追蹤呼叫，了解更多細節。 TrackEvent() 可以用來計算任何使用者動作，小至個別的按鈕點擊，大到如付清貸款等重要成果。
+任何 hello 的理由，hello 資料可協助 hello 小組解決使用者所執行的動作。 多個追蹤呼叫可以插入 toowork 出更多詳細資料。 Trackevent （） 中的 hello 細微的詳細資料的任何使用者動作時可以是使用的 toocount 按一下個別的按鈕，例如支付貸款 toosignificant 成就。
 
-團隊一直都有使用者活動的相關資訊。 只是現在，每當設計出一個新功能時，就要思考如何取得其使用方式的意見反應。 團隊如果從一開始就在功能中設計追蹤呼叫， 就可以使用意見反應在每個開發週期中改進功能。
+hello 小組即將使用的 toohaving 使用者活動的資訊。 只是現在，每當設計出一個新功能時，就要思考如何取得其使用方式的意見反應。 這些設計追蹤呼叫 hello 功能從 hello 開始。 使用每個開發週期中的 hello 意見反應 tooimprove hello 功能。
 
 [深入了解如何追蹤使用量](app-insights-usage-overview.md)。
 
-## <a name="apply-the-devops-cycle"></a>套用 DevOps 週期
-以上就是一個小組如何使用 Application Insights 來不只是修正個別問題，還改善其開發週期的情況。 希望這已提供您一些概念，讓您了解 Application Insights 如何協助您在自己的應用程式中進行應用程式效能管理。
+## <a name="apply-hello-devops-cycle"></a>套用 hello DevOps 循環
+這就是如何團隊使用 Application Insights toofix 不只是每個問題，但 tooimprove 其開發生命週期。 希望這已提供您一些概念，讓您了解 Application Insights 如何協助您在自己的應用程式中進行應用程式效能管理。
 
 ## <a name="video"></a>影片
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
 
 ## <a name="next-steps"></a>後續步驟
-視您的應用程式特性而定，您可以從數種方式著手。 請挑選最適合您的方式：
+您可以開始在數種方式，根據您的應用程式的 hello 特性。 請挑選最適合您的方式：
 
 * [ASP.NET Web 應用程式](app-insights-asp-net.md)
 * [Java Web 應用程式](app-insights-java-get-started.md)
 * [Node.js Web 應用程式](app-insights-nodejs.md)
 * 裝載於 [IIS](app-insights-monitor-web-app-availability.md)、[J2EE](app-insights-java-live.md) 或 [Azure](app-insights-azure.md) 上的已部署應用程式。
-* [網頁](app-insights-javascript.md) - 單頁應用程式或一般網頁 - 單獨使用此選項或作為任何伺服器選項以外的附加選項。
-* 可從公用網際網路測試您應用程式的[可用性測試](app-insights-monitor-web-app-availability.md)。
+* [Web 網頁](app-insights-javascript.md)-單一頁面應用程式或一般的網頁-以此本身或加入 tooany hello 伺服器選項。
+* [可用性測試](app-insights-monitor-web-app-availability.md)tootest 應用程式從 hello 公用網際網路。

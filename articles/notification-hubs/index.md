@@ -1,6 +1,6 @@
 ---
-title: "Azure 通知中樞文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何透過通知中樞，將推播通知從任何後端傳送至任何行動裝置。 教學課程、API 參考和其他文件。"
+title: "aaaAzure 通知中心文件-教學課程中，API 參考 |Microsoft 文件"
+description: "了解如何 toosend 推播通知從任何後端 tooany 行動裝置與通知中樞。 教學課程、API 參考和其他文件。"
 services: notification-hubs
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 8657415f61d9977ad90883278f8737609248fed6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 050c70c32f50eb495cd53a6bfa5549d6ae189d89
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="notification-hubs-documentation"></a>通知中樞文件
 
-了解如何使用通知中樞 (可調整的多平台推播通知引擎) 快速傳送數百萬則訊息。 教學課程、API 參考和其他文件會示範如何設定推播通知，並將這類通知從任何後端傳送至任何行動裝置。 
+了解如何 toouse 通知中樞，多重平台、 可擴充式推播通知引擎快速傳送數百萬個訊息。 教學課程、 應用程式開發介面參考和其他文件會顯示您如何向上 tooset 及傳送推播通知從任何後端 tooany 行動裝置。 
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>開始使用 Azure 通知中樞將推播通知傳送至 Android (FCM)</h3>
+                        <h3>開始傳送推播通知 tooAndroid (FCM) 與 Azure 通知中心</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>開始使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式</h3>
+                        <h3>開始傳送推播通知 tooChrome 應用程式與 Azure 通知中心</h3>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>開始使用 Azure 通知中樞將推播通知傳送至 iOS</h3>
+                        <h3>開始傳送推播通知 tooiOS 與 Azure 通知中心</h3>
                     </div>
                 </div>
             </div>

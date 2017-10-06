@@ -1,5 +1,5 @@
 ---
-title: "Azure RemoteApp network bandwidth - general guidelines (Azure RemoteApp 網路頻寬 - 一般指導方針) | Microsoft Docs"
+title: "aaaAzure RemoteApp 網路頻寬的一般指導方針 |Microsoft 文件"
 description: "了解 Azure RemoteApp 集合和應用程式的一些基本網路頻寬指導方針。"
 services: remoteapp
 documentationcenter: 
@@ -13,30 +13,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 0b6521cc240556186890f0b797c6d80e431ac4be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3407eea71e2e8ac524787ee680cfd870c800864
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-remoteapp-network-bandwidth---general-guidelines-if-you-cant-test-your-own"></a>Azure RemoteApp network bandwidth - general guidelines (if you can't test your own) (Azure RemoteApp 網路頻寬 - 一般指導方針 (如果您無法自行測試))
 > [!IMPORTANT]
-> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 讀取 hello[公告](https://go.microsoft.com/fwlink/?linkid=821148)如需詳細資訊。
 > 
 > 
 
-如果您沒有時間或無法執行 Azure RemoteApp 的 [網路頻寬測試](remoteapp-bandwidthtests.md) ，以下是一些相當常用的指導方針，可協助您估計每位使用者的網路頻寬。
+如果您沒有 hello 時間或功能 toorun hello[網路頻寬測試](remoteapp-bandwidthtests.md)的 Azure RemoteApp，以下是一些相當普遍的指導方針可協助您估計每個使用者的網路頻寬。
 
-如果您混合使用這些案例，則不建議將小於 (或等於) 10 MB/s 的任何項目用作遠端環境中現代網際網路連線之應用程式的最小網路頻寬。 (但是，如所述，這不保證會優於一般使用者體驗)。
+如果您有混合的這些案例，我們不建議的任何項目 （或等於） 小於 10 MB/s 為 hello 現代化的網際網路連線應用程式，在遠端環境中的最小網路頻寬。 (但是，如所述，這不保證會優於一般使用者體驗)。
 
 ## <a name="complex-powerpoint-simple-powerpoint"></a>複雜 PowerPoint, 簡單 PowerPoint
-Azure RemoteApp 在 100 MB LAN 上運作地最好。 在 10 MB/s 網路設定檔中，高於 120 毫秒的抖動超過 5% 時，使用者會看到一般體驗。 在 1 MB/s 上，差異十分明顯 - 例如，在投影片放映中，使用者可能根本看不到動畫轉換，因為會略過畫面格。
+Azure RemoteApp 在 100 MB LAN 上運作地最好。 在 hello 10 MB/s 網路設定檔，上述 120 ms 抖動超過 5%時，hello 使用者會看到平均的體驗。 在 1 MB/s hello 不同 glaring-例如，以投影片放映，hello 使用者可能不會看到動畫的轉換完全因為框架會略過。
 
 ## <a name="internet-explorer-mixed-pdf-pdf-text"></a>Internet Explorer, 混合 PDF, PDF, 文字
-10 MB/s 網路設定檔的大部分層面都接近 LAN。 1 MB/s 將提供正常體驗，但是使用者捲動時可能會有一些抖動，而螢幕上會有影像。
+10 MB/s 的網路設定檔是關閉 tooLAN 在大部分的層面。 1 MB/s 會提供 [確定] 的經驗，雖然可能會有一些抖動使用者捲動時囉 」 畫面上沒有映像時。
 
 ## <a name="flash-video-youtube"></a>Flash 視訊 (YouTube)
-100 MB/s LAN 提供最佳體驗，而 10 MB/s 為可接受的體驗 (表示可以跟上畫面格速率，但抖動會增加)。 在 1 MB/s，抖動狀況極高，而且明顯。
+100 MB/s LAN 提供 hello 獲得最佳經驗，而 10 MB/s 為可接受 （表示我們跟上 hello 畫面播放速率，但抖動增加）。 在 1 MB/s，抖動狀況極高，而且明顯。
 
 ## <a name="word-typing-word-remote-input"></a>Word 輸入 (Word 遠端輸入)
 這是低頻寬使用案例。 在 256 KB/s，我們提供與 LAN 一樣好的體驗。

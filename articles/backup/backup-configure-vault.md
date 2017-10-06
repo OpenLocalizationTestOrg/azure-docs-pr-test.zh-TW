@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 備份代理程式來備份檔案和資料夾 | Microsoft Docs"
-description: "使用 Microsoft Azure 備份代理程式，可將 Windows 檔案和資料夾備份至 Azure。 建立復原服務保存庫、安裝備份代理程式、定義備份原則，並對檔案和資料夾執行初始備份。"
+title: "檔案及資料夾 aaaUse Azure 備份代理程式 tooback |Microsoft 文件"
+description: "使用 Windows 檔案和資料夾 tooAzure 向上 hello Microsoft Azure 備份代理程式 tooback。 建立復原服務保存庫、 安裝 hello 備份代理程式、 定義 hello 備份原則，並執行 hello 初始備份 hello 檔案及資料夾。"
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -15,173 +15,173 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/15/2017
 ms.author: markgal;trinadhk;
-ms.openlocfilehash: b95dc0a83d8e5618effb573353f419e1837d30c5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: be203c24841971872b5c6e7cf260a2fa5c58ac47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="back-up-a-windows-server-or-client-to-azure-using-the-resource-manager-deployment-model"></a>使用資源管理員部署模型將 Windows Server 或用戶端備份至 Azure
+# <a name="back-up-a-windows-server-or-client-tooazure-using-hello-resource-manager-deployment-model"></a>備份 Windows Server 或用戶端 tooAzure，使用 hello Resource Manager 部署模型
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](backup-configure-vault.md)
 > * [傳統入口網站](backup-configure-vault-classic.md)
 >
 >
 
-本文說明如何 Resource Manager 部署模型將 Windows Server (或 Windows 用戶端) 檔案和資料夾備份至 Azure。
+本文說明如何使用 Azure 備份您的 Windows Server （或 Windows 用戶端） tooback 檔案和資料夾 tooAzure hello Resource Manager 部署模型。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/backup-deployment-models.md)]
 
 ![備份程序步驟](./media/backup-configure-vault/initial-backup-process.png)
 
 ## <a name="before-you-start"></a>開始之前
-若要將伺服器或用戶端備份至 Azure，您需要 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立 [免費帳戶](https://azure.microsoft.com/free/) 。
+伺服器或用戶端 tooAzure tooback，您需要 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立 [免費帳戶](https://azure.microsoft.com/free/) 。
 
 ## <a name="create-a-recovery-services-vault"></a>建立復原服務保存庫
-復原服務保存庫是一個實體，會儲存歷來建立的所有備份和復原點。 復原服務保存庫也包含套用至受保護檔案和資料夾的備份原則。 當您建立復原服務保存庫時，也應該選取適當的儲存體備援選項。
+復原服務保存庫是儲存所有的 hello 備份和復原點建立一段時間的實體。 hello 復原服務保存庫也包含 hello 套用的備份原則 toohello 受保護檔案和資料夾。 當您建立的復原服務保存庫時，您應該也選取 hello 適當的儲存體備援選項。
 
-### <a name="to-create-a-recovery-services-vault"></a>建立復原服務保存庫
-1. 如果您尚未這麼做，請使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com/) 。
-2. 在 [中樞] 功能表上按一下 [更多服務]，在資源清單中輸入**復原服務**，然後按一下 [復原服務保存庫]。
+### <a name="toocreate-a-recovery-services-vault"></a>toocreate 復原服務保存庫
+1. 如果您尚未這樣做，請登入 toohello [Azure 入口網站](https://portal.azure.com/)使用您的 Azure 訂用帳戶。
+2. 在 hello 中樞功能表中，按一下 [**更多服務**hello] 清單中的資源，在輸入**復原服務**按一下**復原服務保存庫**。
 
     ![建立復原服務保存庫的步驟 1](./media/backup-try-azure-backup-in-10-mins/open-rs-vault-list.png) <br/>
 
-    如果訂用帳戶中有復原服務保存庫，則會列出保存庫。
+    如果 hello 訂用帳戶中沒有復原服務保存庫，則會列出 hello 保存庫。
 
-3. 在 [復原服務保存庫] 功能表上，按一下 [新增]。
+3. 在 hello**復原服務保存庫**功能表上，按一下 **新增**。
 
     ![建立復原服務保存庫的步驟 2](./media/backup-try-azure-backup-in-10-mins/rs-vault-menu.png)
 
-    [復原服務保存庫] 刀鋒視窗隨即開啟，並提示您提供 [名稱]、[訂用帳戶]、[資源群組] 和 [位置]。
+    hello 復原服務保存庫刀鋒視窗隨即開啟，提示您 tooprovide**名稱**，**訂用帳戶**，**資源群組**，和**位置**。
 
     ![建立復原服務保存庫的步驟 3](./media/backup-try-azure-backup-in-10-mins/rs-vault-step-3.png)
 
-4. 在 [名稱] 中，輸入易記名稱來識別保存庫。 必須是 Azure 訂用帳戶中唯一的名稱。 輸入包含 2 到 50 個字元的名稱。 該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。
+4. 如**名稱**，輸入好記名稱 tooidentify hello 保存庫。 hello 名稱必須 toobe 唯一 hello Azure 訂用帳戶。 輸入包含 2 到 50 個字元的名稱。 該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。
 
-5. 在 [訂用帳戶] 區段中，使用下拉式功能表來選擇 Azure 訂用帳戶。 如果您只使用一個訂用帳戶，該訂用帳戶會出現，您可以跳到下一個步驟。 如果您不確定要使用哪個訂用帳戶，請使用預設 (或建議) 的訂用帳戶。 只有在您的組織帳戶與多個 Azure 訂用帳戶相關聯時，才會有多個選擇。
+5. 在 hello**訂用帳戶**區段中，使用 hello 下拉式功能表 toochoose hello Azure 訂用帳戶。 如果您使用只有一個訂用帳戶時，會出現該訂用帳戶，所以您可以跳 toohello 下一個步驟。 如果您不確定哪一個訂用帳戶 toouse，使用預設的 hello （或建議） 訂用帳戶。 只有在您的組織帳戶與多個 Azure 訂用帳戶相關聯時，才會有多個選擇。
 
-6. 在 [資源群組] 區段中︰
+6. 在 hello**資源群組**> 一節：
 
-    * 如果您想建立新的資源群組，請選取 [新建]。
+    * 選取**建立新**如果您想 toocreate 新的資源群組。
     或
-    * 選取 [使用現有的]﹐然後按一下下拉式功能表，以查看可用的資源群組清單。
+    * 選取**使用現有**按一下 hello 下拉式功能表 toosee hello 可用的資源群組清單。
 
-  如需資源群組的完整資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
+  完整資源群組的詳細資訊，請參閱 hello [Azure 資源管理員概觀](../azure-resource-manager/resource-group-overview.md)。
 
-7. 按一下 [位置]  以選取保存庫的地理區域。 此選項會決定您的備份資料要傳送到哪個地理區域。
+7. 按一下**位置**hello 保存庫的 tooselect hello 地理區域。 這個選擇會決定您的備份資料的傳送目標的 hello 地理區域。
 
-8. 按一下 [復原服務保存庫] 刀鋒視窗底部的 [建立]。
+8. 在 hello hello 復原服務保存庫刀鋒視窗底部，按一下 **建立**。
 
-  建立復原服務保存庫可能需要一些時間。 請監視入口網站右上方區域中的狀態通知。 保存庫一旦建立好，就會出現在 [復原服務保存庫] 的清單中。 在數分鐘之後﹐如果您沒有看到您的保存庫，請按一下 [重新整理]。
+  可能需要幾分鐘的時間復原服務保存庫建立 toobe hello。 監視 hello 上方右側的區域中的 hello 入口網站的 hello 狀態通知。 一旦建立您的保存庫，它會出現在 hello 清單復原服務保存庫。 在數分鐘之後﹐如果您沒有看到您的保存庫，請按一下 [重新整理]。
 
   ![按一下 [重新整理] 按鈕。](./media/backup-try-azure-backup-in-10-mins/refresh-button.png)</br>
 
-  一旦在復原服務保存庫清單中看到您的保存庫，您即可開始設定儲存體備援。
+  一旦您看到您的保存庫中的 復原服務保存庫的 hello 清單，您就準備好 tooset hello 儲存體備援。
 
 
 ### <a name="set-storage-redundancy"></a>設定儲存體備援
 首次建立復原服務保存庫時會決定儲存體的複寫方式。
 
-1. 從 [復原服務保存庫] 刀鋒視窗，按一下 [新增保存庫]。
+1. 從 hello**復原服務保存庫**刀鋒視窗中，按一下 hello 新的保存庫。
 
-    ![從復原服務保存庫清單中選取新的保存庫](./media/backup-try-azure-backup-in-10-mins/rs-vault-list.png)
+    ![從 hello 復原服務保存庫清單中選取 hello 新的保存庫](./media/backup-try-azure-backup-in-10-mins/rs-vault-list.png)
 
-    當您選取保存庫時，[復原服務保存庫] 刀鋒視窗會縮小﹐而 [設定] 刀鋒視窗 (頂端有保存庫名稱) 和 [保存庫詳細資料] 刀鋒視窗隨即開啟。
+    當您選取 hello 保存庫時，hello**復原服務保存庫**刀鋒視窗縮小及 hello 設定 刀鋒視窗 (*hello 頂端具有 hello hello 保存庫名稱*) 和 hello 保存庫詳細資料 刀鋒視窗開啟。
 
-    ![檢視新保存庫的儲存體組態](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration-2.png)
+    ![檢視新的保存庫的 hello 儲存體設定](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration-2.png)
 
-2. 在新保存庫的 [設定] 刀鋒視窗中，使用垂直滑桿捲動至 [管理] 區段，然後按一下 [備份基礎結構]。
+2. 在 hello 新的保存庫的設定 刀鋒視窗中，使用 hello 垂直投影片 tooscroll toohello 管理 區段中，關閉，然後按一下**備份基礎結構**。
 
-  [備份基礎結構] 刀鋒視窗隨即開啟。
+  hello 備份基礎結構刀鋒視窗隨即開啟。
 
-3. 在 [備份基礎結構] 刀鋒視窗中，按一下 [備份設定]開啟 [備份設定] 刀鋒視窗。
+3. 在 hello 備份基礎結構刀鋒視窗中，按一下 **備份設定**tooopen hello**備份設定**刀鋒視窗。
 
-  ![為新保存庫設定儲存體組態](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration.png)
+  ![設定新的保存庫的 hello 儲存體設定](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration.png)
 
-4. 為保存庫選擇適當的儲存體複寫選項。
+4. 選擇您的保存庫的 hello 適當的儲存體複寫選項。
 
   ![儲存體組態選項](./media/backup-try-azure-backup-in-10-mins/choose-storage-configuration.png)
 
-  根據預設，保存庫具有異地備援儲存體。 如果您使用 Azure 做為主要的備份儲存體端點，請繼續使用 [異地備援]。 如果您未使用 Azure 做為主要的備份儲存體端點，則選擇 [本地備援]，以減少 Azure 儲存體成本。 在此[儲存體備援概觀](../storage/common/storage-redundancy.md)中，深入了解[異地備援](../storage/common/storage-redundancy.md#geo-redundant-storage)和[本地備援](../storage/common/storage-redundancy.md#locally-redundant-storage)儲存體選項。
+  根據預設，保存庫具有異地備援儲存體。 如果您使用 Azure 做為備份的主要儲存體端點時，繼續 toouse**異地備援**。 如果您不使用 Azure 做為備份的主要儲存體端點，然後選擇 **本機備援**，進而降低 hello Azure 儲存體成本。 在此[儲存體備援概觀](../storage/common/storage-redundancy.md)中，深入了解[異地備援](../storage/common/storage-redundancy.md#geo-redundant-storage)和[本地備援](../storage/common/storage-redundancy.md#locally-redundant-storage)儲存體選項。
 
-現在您已建立保存庫，接下來請下載及安裝 Microsoft Azure 復原服務代理程式、下載保存庫認證，以及使用這些認證向保存庫註冊代理程式，讓基礎結構做好備份檔案和資料夾的準備。
+既然您已建立保存庫，請下載和安裝 hello Microsoft Azure 復原服務代理程式、 下載保存庫認證，然後使用這些認證 tooregister hello 代理程式與準備您的基礎結構 tooback 檔案及資料夾hello 保存庫。
 
-## <a name="configure-the-vault"></a>設定保存庫
+## <a name="configure-hello-vault"></a>設定 hello 保存庫
 
-1. 在 [復原服務保存庫] 刀鋒視窗上 (針對剛建立的保存庫)，在 [開始使用] 區段中按一下 [備份]，然後在 [開始使用備份功能] 刀鋒視窗上，選取 [備份目標]。
+1. 在復原服務保存庫刀鋒視窗 （適用於 hello 保存庫中您剛建立），hello hello 開始使用 > 一節中，按一下**備份**，然後在 hello**開始使用備份**刀鋒視窗中，選取**備份目標**。
 
   ![開啟備份目標刀鋒視窗](./media/backup-try-azure-backup-in-10-mins/open-backup-settings.png)
 
-  [備份目標] 刀鋒視窗隨即開啟。 如果先前已設定過復原服務保存庫，當您按一下 [復原服務保存庫] 刀鋒視窗上的 [備份] 時，便會開啟 [備份目標] 刀鋒視窗。
+  hello**備份目標**刀鋒視窗隨即開啟。 如果之前已經設定的 hello 復原服務保存庫，然後 hello**備份目標**刀鋒視窗隨即開啟，當您按一下**備份**hello 復原服務保存庫刀鋒視窗。
 
   ![開啟備份目標刀鋒視窗](./media/backup-try-azure-backup-in-10-mins/backup-goal-blade.png)
 
-2. 從 [您的工作負載在何處執行?] 下拉式功能表中，選取 [內部部署]。
+2. 從 hello**其中執行您的工作負載？**下拉式選單中，選取**內部**。
 
   因為您的 Windows Server 或 Windows 電腦是不在 Azure 中的實體電腦，所以您選擇 [內部部署]。
 
-3. 從 [您要備份什麼?] 功能表中，選取 [檔案和資料夾]，然後按一下 [確定]。
+3. 從 hello**怎麼辦想 toobackup？**功能表上，選取**檔案和資料夾**，按一下**確定**。
 
   ![設定檔案和資料夾](./media/backup-try-azure-backup-in-10-mins/set-file-folder.png)
 
-  按一下 [確定] 後，[備份目標] 旁會出現勾選記號，且 [準備基礎結構] 刀鋒視窗隨即開啟。
+  之後按一下 確定 核取記號會出現 下一步太**備份目標**，和 hello**準備基礎結構**刀鋒視窗隨即開啟。
 
   ![已設定備份目標，接下來是準備基礎結構](./media/backup-try-azure-backup-in-10-mins/backup-goal-configed.png)
 
-4. 在 [準備基礎結構] 刀鋒視窗上，按 [下載 Windows Server 或 Windows Client 的代理程式]。
+4. 在 hello**準備基礎結構**刀鋒視窗中，按一下 **下載適用於 Windows Server 的代理程式或 Windows 用戶端**。
 
   ![準備基礎結構](./media/backup-try-azure-backup-in-10-mins/choose-agent-for-server-client.png)
 
-  如果您使用 Windows Server Essential，請選擇下載 Windows Server Essential 的代理程式。 快顯功能表會提示您執行或儲存 MARSAgentInstaller.exe。
+  如果您使用 Windows Server 基本項目，然後選擇 toodownload hello 代理程式的 Windows Server 不可或缺。 快顯功能表會提示您 toorun 或儲存 MARSAgentInstaller.exe。
 
   ![MARSAgentInstaller dialog](./media/backup-try-azure-backup-in-10-mins/mars-installer-run-save.png)
 
-5. 在下載快顯功能表中，按一下 [儲存]。
+5. 在 hello 下載快顯功能表上，按一下 **儲存**。
 
-  根據預設，**MARSagentinstaller.exe** 檔案會儲存至 [下載] 資料夾。 安裝程式完成時，您會看到快顯視窗，詢問您是否要執行安裝程式，或開啟資料夾。
+  根據預設，hello **MARSagentinstaller.exe** tooyour Downloads 資料夾儲存檔案。 Hello 安裝程式完成時，您會看到快顯視窗，詢問您想 toorun hello 安裝程式，或開啟 hello 資料夾。
 
   ![準備基礎結構](./media/backup-try-azure-backup-in-10-mins/mars-installer-complete.png)
 
-  您還不需要安裝代理程式。 您可以在下載保存庫認證之後﹐安裝代理程式。
+  您無須 tooinstall hello 代理程式。 您已下載 hello 保存庫認證之後，您可以安裝 hello 代理程式。
 
-6. 在 [準備基礎結構] 刀鋒視窗上，按 [下載]。
+6. 在 hello**準備基礎結構**刀鋒視窗中，按一下 **下載**。
 
   ![下載保存庫認證](./media/backup-try-azure-backup-in-10-mins/download-vault-credentials.png)
 
-  保存庫認證會下載至「下載」資料夾。 保存庫認證下載完成之後，您會看到快顯視窗，詢問您是否要開啟或儲存認證。 按一下 [儲存] 。 如果您不小心按到 [開啟]，請讓嘗試開啟保存庫認證的對話方塊失敗。 您無法開啟保存庫認證。 請繼續進行下一個步驟。 保存庫認證位於 [下載] 資料夾中。   
+  hello 保存庫認證下載 tooyour 下載 資料夾。 Hello 保存庫認證完成下載之後，您會看到快顯視窗，詢問您想 tooopen 或儲存 hello 認證。 按一下 [儲存] 。 如果您不小心按**開啟**、 讓 hello 對話方塊中嘗試 tooopen hello 保存庫認證失敗。 您無法開啟 hello 保存庫認證。 繼續 toohello 下一個步驟。 hello 保存庫認證是在 hello 下載 資料夾中。   
 
   ![保存庫認證下載完成](./media/backup-try-azure-backup-in-10-mins/vault-credentials-downloaded.png)
 
-## <a name="install-and-register-the-agent"></a>安裝和註冊代理程式
+## <a name="install-and-register-hello-agent"></a>安裝並註冊 hello 代理程式
 
 > [!NOTE]
-> 透過 Azure 入口網站啟用備份的功能尚未推出。 使用 Microsoft Azure 復原服務代理程式來備份檔案和資料夾。
+> 透過 hello Azure 入口網站啟用備份尚無法使用。 使用您的檔案及資料夾的 hello Microsoft Azure Recovery Services Agent tooback。
 >
 
-1. 在 [下載] 資料夾 (或其他儲存位置) 中找到 **MARSagentinstaller.exe** 並對其按兩下。
+1. 找出並按兩下 hello **MARSagentinstaller.exe** hello 下載資料夾 （或其他已儲存的位置）。
 
-  安裝程式在擷取、安裝和註冊復原服務代理程式時會提供一系列訊息。
+  hello 安裝程式會提供一系列的訊息，擷取安裝，並註冊 hello 復原服務代理程式。
 
   ![執行復原服務代理安裝程式的認證](./media/backup-try-azure-backup-in-10-mins/mars-installer-registration.png)
 
-2. 完成 Microsoft Azure 復原服務代理程式安裝精靈。 若要完成精靈，您需要︰
+2. 完成 hello Microsoft Azure Recovery Services Agent 安裝精靈。 您需要 toocomplete hello 精靈:
 
-  * 選擇安裝和快取資料夾的位置。
-  * 如果您使用 Proxy 伺服器來連線到網際網路，請提供您的 Proxy 伺服器資訊。
+  * 選擇 hello 安裝和快取資料夾的位置。
+  * 提供 proxy 伺服器資訊，如果您使用 proxy 伺服器 tooconnect toohello 網際網路。
   * 如果您使用已驗證的 Proxy，請提供您的使用者名稱和密碼詳細資料。
-  * 提供下載的保存庫認證
-  * 將加密複雜密碼存放在安全的位置。
+  * 提供 hello 下載保存庫認證
+  * 將 hello 加密複雜密碼儲存在安全的位置。
 
   > [!NOTE]
-  > 如果遺失或忘記複雜密碼，Microsoft 將無法協助您復原備份資料。 將檔案存放在安全的位置。 必須有此檔案才能還原備份。
+  > 如果您遺失或忘記 hello 複雜密碼時，Microsoft 無法協助復原 hello 備份資料。 將 hello 檔案儲存在安全的位置。 它是必要的 toorestore 備份。
   >
   >
 
-現已安裝代理程式，且已向保存庫註冊您的電腦。 您已準備好可以設定及排程備份。
+hello 代理程式現在已安裝，且您的電腦已註冊的 toohello 保存庫。 正在準備 tooconfigure，並將備份排程。
 
-## <a name="network-and-connectivity-requirements"></a>網路和連線性需求
+## <a name="network-and-connectivity-requirements"></a>網路和連線需求
 
-如果您的電腦/Proxy 具有受限的網際網路存取，請確保將電腦/Proxy 上的防火牆設定，設定為允許下列 URL： <br>
+如果您的電腦/proxy 具有有限的網際網路存取，請確定 hello 機器/proxy 上的防火牆設定已設定的 tooallow hello 下列 Url: <br>
     1. www.msftncsi.com
     2. *.Microsoft.com
     3. *.WindowsAzure.com
@@ -189,81 +189,81 @@ ms.lasthandoff: 08/29/2017
     5. *.windows.ne
 
 
-## <a name="create-the-backup-policy"></a>建立備份原則
-備份原則就是復原點擷取排程以及復原點保留時間長度。 請使用 Microsoft Azure 備份代理程式來為檔案和資料夾建立備份原則。
+## <a name="create-hello-backup-policy"></a>建立 hello 備份原則
+hello 備份原則時，hello 排程復原點會採取與 hello 的 hello 復原點，就會保留的時間長度。 使用檔案和資料夾的 hello Microsoft Azure 備份代理程式 toocreate hello 備份原則。
 
-### <a name="to-create-a-backup-schedule"></a>建立備份排程
-1. 開啟 Microsoft Azure 備份代理程式。 您可以透過在您的電腦中搜尋 **Microsoft Azure 備份**來找出備份。
+### <a name="toocreate-a-backup-schedule"></a>toocreate 備份排程
+1. 開啟 hello Microsoft Azure 備份代理程式。 您可以透過在您的電腦中搜尋 **Microsoft Azure 備份**來找出備份。
 
-    ![啟動 Azure 備份代理程式](./media/backup-configure-vault/snap-in-search.png)
-2. 在備份代理程式的 [動作] 窗格中，按一下 [排程備份] 以啟動「排程備份精靈」。
+    ![啟動 hello Azure 備份代理程式](./media/backup-configure-vault/snap-in-search.png)
+2. 在 [hello 備份代理程式的**動作**] 窗格中，按一下 [**排程備份**toolaunch hello 排程備份精靈]。
 
     ![Windows Server 備份排程](./media/backup-configure-vault/schedule-first-backup.png)
 
-3. 在排程備份精靈的 [開始使用] 頁面上，按 [下一步]。
-4. 在 [選取要備份的項目] 頁面上，按一下 [新增項目]。
+3. 在 hello**入門**的 hello 排程備份精靈 頁面上按一下**下一步**。
+4. 在 hello**選取項目 tooBackup**頁面上，按一下**新增的項目**。
 
-  [選取項目] 對話方塊隨即開啟。
+  hello 選取項目 對話方塊隨即開啟。
 
-5. 選取您要保護的檔案和資料夾，然後按一下 [確定]。
-6. 在 [選取要備份的項目] 頁面上，按 [下一步]。
-7. 在 [指定備份排程] 頁面上，指定備份排程並按 [下一步]。
+5. 選取 hello 檔案和資料夾，您想 tooprotect，然後再按一下**確定**。
+6. 在 hello**選取項目 tooBackup**頁面上，按一下**下一步**。
+7. 在 hello**指定備份排程**頁面上，指定 hello 備份排程，以及按一下**下一步**。
 
     您可以排程每日 (一天最多三次) 或每週備份。
 
     ![Windows Server 備份項目](./media/backup-configure-vault/specify-backup-schedule-close.png)
 
    > [!NOTE]
-   > 如需如何指定備份排程的相關詳細資訊，請參閱 [使用 Azure 備份來取代您的磁帶基礎結構](backup-azure-backup-cloud-as-tape.md)一文。
+   > 如需有關如何 toospecify hello 備份排程的詳細資訊，請參閱 hello 文章[使用 Azure Backup tooreplace 磁帶基礎結構](backup-azure-backup-cloud-as-tape.md)。
    >
    >
 
-8. 在 [選取保留原則] 頁面上，選擇用於備份複本的特定保留原則，然後按 [下一步]。
+8. 在 hello**選取保留原則**頁面上，選擇 hello 特定的保留原則 hello 為 hello 備份副本，然後按一下**下一步**。
 
-    保留原則會指定備份的儲存持續期間。 除了僅針對所有備份點指定「一般原則」之外，您可以指定在進行備份時根據不同的保留原則。 您可以修改每日、每週、每月和每年保留原則，以符合您的需求。
-9. 在 [選擇初始備份類型] 頁面上，選擇初始備份類型。 讓 [自動透過網路] 選項保持已選取狀態，然後按 [下一步]。
+    hello 保留原則指定 hello 持續時間的 hello 備份會儲存。 而不是只指定 「 一般原則 」 的所有備份的點，您可以指定不同的保留原則根據 hello 備份發生時。 您可以修改 hello 每日、 每週、 每月和每年保留原則 toomeet 您的需求。
+9. 在 [hello 選擇初始備份類型] 頁面上，選擇 hello 初始備份類型。 保留 hello 選項**自動透過網路 hello**選取，然後再按一下**下一步**。
 
-    您可以透過網路自動備份，也可以離線備份。 這篇文章的其餘部分說明自動備份的程序。 如果您想要執行離線備份，請檢閱 [在 Azure Backup 中離線備份工作流程](backup-azure-backup-import-export.md) 一文以了解其他資訊。
-10. 在 [確認] 頁面上檢閱資訊，然後按一下 [完成] 。
-11. 當精靈建立好備份排程時，請按一下 [關閉] 。
+    您可以備份自動 hello 網路上或您可以離線備份。 hello 本文其餘部分說明 hello 程序會自動備份。 如果您偏好 toodo 離線備份，請檢閱 hello 文件[Azure Backup 中的離線備份工作流程](backup-azure-backup-import-export.md)如需詳細資訊。
+10. 在 hello 確認頁面上，檢閱 hello 資訊，然後再按一下**完成**。
+11. Hello 精靈可讓您完成建立 hello 備份排程後，按一下**關閉**。
 
 ### <a name="enable-network-throttling"></a>啟用網路節流
-Microsoft Azure 備份代理程式提供網路節流。 節流會控制資料傳輸期間的網路頻寬使用方式。 如果您需要在上班時間內備份資料，但不希望備份程序干擾其他網際網路流量，這樣的控制會很有幫助。 節流適用於備份和還原活動。
+hello Microsoft Azure 備份代理程式會提供網路節流設定。 節流會控制資料傳輸期間的網路頻寬使用方式。 如果您需要 tooback 資料在工作時間，但不是想將備份程序 toointerfere hello 與其他的網際網路流量，此控制項可以是很有幫助。 節流設定會套用 tooback 和還原活動。
 
 > [!NOTE]
-> 網路節流不適用於 Windows Server 2008 R2 SP1、Windows Server 2008 SP2 或 Windows 7 (含 service pack)。 Azure 備份網路節流功能可保證本機作業系統上的服務品質 (QoS)。 雖然 Azure 備份可保護這些作業系統，但這些平台上可用的 QoS 版本無法與 Azure 備份網路節流搭配使用。 網路節流可使用於所有其他 [支援的作業系統](backup-azure-backup-faq.md)。
+> 網路節流不適用於 Windows Server 2008 R2 SP1、Windows Server 2008 SP2 或 Windows 7 (含 service pack)。 hello Azure Backup 網路節流功能會 hello 本機作業系統上的服務品質 (QoS)。 Azure 備份可保護這些作業系統，但不適用於 Azure Backup 網路節流設定 hello QoS 適用於這些平台版本。 網路節流可使用於所有其他 [支援的作業系統](backup-azure-backup-faq.md)。
 >
 >
 
-**啟用網路節流**
+**tooenable 網路節流設定**
 
-1. 在 Microsoft Azure 備份代理程式中，按一下 [變更屬性]。
+1. 在 hello Microsoft Azure 備份代理程式，按一下 **變更屬性**。
 
     ![變更屬性](./media/backup-configure-vault/change-properties.png)
-2. 在 [節流] 索引標籤上，選取 [啟用備份作業的網際網路頻寬使用節流功能] 核取方塊。
+2. 在 hello**節流**索引標籤，選取 hello**啟用網際網路頻寬使用節流設定的備份操作**核取方塊。
 
     ![網路節流](./media/backup-configure-vault/throttling-dialog.png)
-3. 在您啟用節流之後，請指定允許的頻寬進行 [工作時間] 和 [非工作時間] 期間的備份資料傳輸。
+3. 啟用節流設定後，指定允許的頻寬的備份資料傳輸期間的 hello**上班**和**非工作小時**。
 
-    頻寬值從每秒 512 KB (Kbps) 開始，並可高達每秒 1023 MB (Mbps)。 您也可以指定 [工作時間] 的開始和完成時間，以及一週中有哪幾天視為工作天。 指定之工作時間以外的時間則視為非工作時間。
+    hello 頻寬值開始每秒 (Kbps) 為 512 kb，最高 too1，023 mb / 秒 (MBps)。 也可以指定 hello 開始和完成**上班**，和 hello 一週的哪幾天都視為的工作日。 指定之工作時間以外的時間則視為非工作時間。
 4. 按一下 [確定] 。
 
-### <a name="to-back-up-files-and-folders-for-the-first-time"></a>第一次備份檔案和資料夾
-1. 在備份代理程式中，按一下 [立即備份]  ，以透過網路完成初始植入。
+### <a name="tooback-up-files-and-folders-for-hello-first-time"></a>tooback 檔案及資料夾的 hello 第一次
+1. 在 hello 備份代理程式，按一下 **立即備份**toocomplete hello 初始植入 hello 網路上。
 
     ![Windows Server 立即備份](./media/backup-configure-vault/backup-now.png)
-2. 在 [確認] 頁面上，檢閱立即備份精靈將用於備份電腦的設定。 然後按一下 [備份] 。
-3. 按一下 [關閉]  即可關閉精靈。 如果您在備份程序完成之前關閉精靈，精靈會繼續在背景中執行。
+2. 在 hello 確認頁面上，檢閱 hello 立即備份精靈的 hello 設定會使用 tooback hello 機器。 然後按一下 [備份] 。
+3. 按一下**關閉**tooclose hello 精靈。 如果 hello 備份程序完成之前，您可以這樣做，hello 精靈會繼續 toorun hello 背景。
 
-完成初始備份之後，備份主控台中會顯示 [作業已完成]  狀態。
+Hello 初始備份完成後，hello**作業已完成**hello Backup 主控台中顯示的狀態。
 
 ![IR 已完成](./media/backup-configure-vault/ircomplete.png)
 
 ## <a name="questions"></a>有疑問嗎？
-如果您有問題，或希望我們加入任何功能，請 [傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
+如果您有任何問題，或如果沒有任何功能，您想要納入，toosee[傳送意見反應](http://aka.ms/azurebackup_feedback)。
 
 ## <a name="next-steps"></a>後續步驟
 如需備份 VM 或其他工作負載的詳細資訊，請參閱︰
 
 * 現在您已備份好檔案和資料夾，接下來您可以 [管理您的保存庫和伺服器](backup-azure-manage-windows-server.md)。
-* 如果您需要還原備份，請使用本文來 [還原檔案到 Windows 電腦](backup-azure-restore-windows-server.md)。
+* 如果您需要 toorestore 備份，請使用本文章太[還原檔案 tooa Windows 機器](backup-azure-restore-windows-server.md)。

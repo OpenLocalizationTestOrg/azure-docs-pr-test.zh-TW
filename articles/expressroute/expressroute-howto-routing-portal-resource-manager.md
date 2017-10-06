@@ -1,6 +1,6 @@
 ---
-title: "如何設定 ExpressRoute 線路的路由 (對等互連)：Resource Manager：Azure | Microsoft Docs"
-description: "本文將逐步引導您為 ExpressRoute 線路建立和佈建私用、公用及 Microsoft 對等。 本文也示範如何檢查狀態、更新或刪除線路的對等。"
+title: "如何 tooconfigure ExpressRoute 電路的路由 （對等互連）： 資源管理員： Azure |Microsoft 文件"
+description: "這篇文章會引導您完成建立及佈建 hello 私人、 公用及 Microsoft 對等互連的 ExpressRoute 電路的 hello 步驟。 本文也會顯示 toocheck hello 狀態、 更新或刪除您的電路的互連的方式。"
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -15,186 +15,186 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
 ms.author: cherylmc
-ms.openlocfilehash: 55ccadfea55b8098ee58dcaef942f6ba54093665
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a8ca25f488dde728cb3b06cd2c91873f3069feaf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-modify-peering-for-an-expressroute-circuit"></a>建立和修改 ExpressRoute 線路的對等互連
 
-本文將協助您使用 Azure 入口網站，在 Resource Manager 部署模型中建立和管理 ExpressRoute 線路的路由設定。 您還可以檢查狀態、更新，或是刪除與取消佈建 ExpressRoute 線路的對等互連。 如果您想要對線路使用不同的方法，可選取下列清單中的文章：
+這篇文章可協助您建立和管理 ExpressRoute 電路 hello Resource Manager 部署模型使用 hello Azure 入口網站中的路由組態。 您也可以檢查 hello 狀態、 更新或刪除，並取消佈建 ExpressRoute 循環的對等互連。 如果您想 toouse 不同方法 toowork 與您的循環，請從下列清單中的 hello 選取一個發行項：
 
 
 ## <a name="configuration-prerequisites"></a>組態必要條件
 
-* 開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)頁面、[路由需求](expressroute-routing.md)頁面和[工作流程](expressroute-workflows.md)頁面。
-* 您必須擁有作用中的 ExpressRoute 線路。 繼續之前，請遵循指示來 [建立 ExpressRoute 線路](expressroute-howto-circuit-portal-resource-manager.md) ，並由您的連線提供者來啟用該線路。 ExpressRoute 線路必須處於已佈建和已啟用狀態，您才能執行下一節中的 Cmdlet。
-* 如果您打算使用共用金鑰/MD5 雜湊，請務必將它使用於通道的兩端，並將字元數目限制為最多 25 個。
+* 請確定您已經檢閱 hello[必要條件](expressroute-prerequisites.md)頁面 hello[路由需求](expressroute-routing.md)頁面和 hello[工作流程](expressroute-workflows.md)頁面開始設定之前。
+* 您必須擁有作用中的 ExpressRoute 線路。 請依照下列指示 hello 太[建立 ExpressRoute 電路](expressroute-howto-circuit-portal-resource-manager.md)和有 hello 電路啟用您的連線提供者，才能繼續。 hello ExpressRoute 電路必須位於您 toobe 無法 toorun hello cmdlet hello 下一節中的佈建並啟用狀態。
+* 如果您計劃 toouse 共用金鑰/MD5 雜湊，是確定 toouse 這兩端 hello 通道和 limit hello 數目的字元 tooa 最大值為 25。
 
-這些指示只適用於由提供第 2 層連線服務的服務提供者所建立的線路。 如果您使用的服務提供者提供受管理的第 3 層服務 (通常是 IPVPN，如 MPLS)，連線提供者會為您設定和管理路由。 
+這些說明僅適用於 toocircuits 建立與服務供應項目層級 2 連線服務的提供者。 如果您使用的服務提供者提供受管理的第 3 層服務 (通常是 IPVPN，如 MPLS)，連線提供者會為您設定和管理路由。 
 
 > [!IMPORTANT]
-> 我們目前不會透過服務管理入口網站來公告服務提供者所設定的對等。 我們正努力在近期推出這項功能。 設定 BGP 對等互連之前，請洽詢您的服務提供者。
+> 我們目前不會進行通告透過 hello 服務管理入口網站的服務提供者所設定的對等互連。 我們正努力在近期推出這項功能。 設定 BGP 對等互連之前，請洽詢您的服務提供者。
 > 
 > 
 
-您可以為 ExpressRoute 線路設定一個、兩個或全部三個對等 (Azure 私用、Azure 公用和 Microsoft)。 您可以依自己選擇的任何順序設定對等。 不過，您必須確定一次只完成一個對等的設定。
+您可以為 ExpressRoute 線路設定一個、兩個或全部三個對等 (Azure 私用、Azure 公用和 Microsoft)。 您可以依自己選擇的任何順序設定對等。 不過，您必須確定您完成每個對等互連一次一個的 hello 設定。
 
 ## <a name="azure-private-peering"></a>Azure 私用對等
 
-本節將協助您為 ExpressRoute 線路建立、取得、更新和刪除 Azure 私用對等互連設定。
+本節可協助您建立、 取得、 更新和刪除 hello Azure ExpressRoute 循環的私用對等設定。
 
-### <a name="to-create-azure-private-peering"></a>建立 Azure 私用對等
+### <a name="toocreate-azure-private-peering"></a>toocreate Azure 私人互連
 
-1. 設定 ExpressRoute 電路。 先確定連線提供者已完整佈建電路，再繼續作業。
+1. 設定 hello ExpressRoute 電路。 確保 hello 循環完全佈建的 hello 連線服務提供者才能繼續。
 
   ![list](./media/expressroute-howto-routing-portal-resource-manager/listprovisioned.png)
-2. 設定線路的 Azure 私用對等。 繼續執行接下來的步驟之前，請確定您有下列項目：
+2. 設定 Azure 私用對等互連 hello 循環。 請確定您具備下列項目，再繼續進行下一個步驟的 hello hello:
 
-  * 主要連結的 /30 子網路。 子網路不能在保留給虛擬網路的任何位址空間中。
-  * 次要連結的 /30 子網路。 子網路不能在保留給虛擬網路的任何位址空間中。
-  * 供建立此對等的有效 VLAN ID。 請確定線路有沒有其他對等使用相同的 VLAN ID。
+  * / 30 子網路 hello 主要連結。 hello 子網路不能保留的虛擬網路的任何位址空間的一部分。
+  * / 30 hello 次要連結的子網路。 hello 子網路不能保留的虛擬網路的任何位址空間的一部分。
+  * 有效的 VLAN ID tooestablish 此對等。 請確認沒有其他對等互連中 hello 循環使用 hello 相同 VLAN id。
   * 對等的 AS 編號。 您可以使用 2 位元組和 4 位元組 AS 編號。 您可以將私用 AS 編號用於此對等。 請確定您不是使用 65515。
-  * **選用：**MD5 雜湊 (如果選擇使用)。
-3. 如下列範例所示，選取 Azure 私用對等互連列：
+  * **選用-**如果您選擇其中一個 toouse 的 MD5 雜湊。
+3. 選取 hello Azure 私用的對等資料列，hello 下列範例所示：
 
   ![私用](./media/expressroute-howto-routing-portal-resource-manager/rprivate1.png)
-4. 設定私用對等。 下圖顯示設定範例：
+4. 設定私用對等。 hello 下列影像顯示組態範例：
 
   ![設定私用對等互連](./media/expressroute-howto-routing-portal-resource-manager/rprivate2.png)
-5. 指定所有參數後，請儲存組態。 成功接受設定後，會出現類似下列範例的畫面：
+5. 一旦您已指定所有參數，請儲存 hello 組態。 已成功接受 hello 組態之後，您會看到類似下列範例的 toohello:
 
   ![儲存私用對等互連](./media/expressroute-howto-routing-portal-resource-manager/rprivate3.png)
 
-### <a name="to-view-azure-private-peering-details"></a>檢視 Azure 私用對等詳細資訊
+### <a name="tooview-azure-private-peering-details"></a>tooview Azure 私用對等互連的詳細資料
 
-選取 Azure 私用對等，即可檢視該對等的屬性。
+您可以檢視選取對等互連 hello Azure 私人互連的 hello 的屬性。
 
 ![檢視私用對等互連](./media/expressroute-howto-routing-portal-resource-manager/rprivate3.png)
 
-### <a name="to-update-azure-private-peering-configuration"></a>更新 Azure 私用對等組態
+### <a name="tooupdate-azure-private-peering-configuration"></a>tooupdate Azure 私用對等組態
 
-您可以選取對等的資料列並修改對等屬性。
+您可以選取 hello 資料列的對等互連，並修改 hello 對等屬性。
 
 ![更新私用對等互連](./media/expressroute-howto-routing-portal-resource-manager/rprivate2.png)
 
-### <a name="to-delete-azure-private-peering"></a>刪除 Azure 私用對等
+### <a name="toodelete-azure-private-peering"></a>toodelete Azure 私人互連
 
-如下圖所示，您可以選取刪除圖示來移除對等互連設定：
+Hello 下列影像所示，您可以藉由選取 hello 刪除圖示，移除您對等的設定：
 
 ![刪除私用對等互連](./media/expressroute-howto-routing-portal-resource-manager/rprivate4.png)
 
 ## <a name="azure-public-peering"></a>Azure 公用對等
 
-本節將協助您為 ExpressRoute 線路建立、取得、更新和刪除 Azure 公用對等互連設定。
+本節可協助您建立、 取得、 更新和刪除 hello Azure ExpressRoute 循環的公用對等設定。
 
-### <a name="to-create-azure-public-peering"></a>建立 Azure 公用對等
+### <a name="toocreate-azure-public-peering"></a>toocreate Azure 公用對等互連
 
-1. 設定 ExpressRoute 電路。 先確定連線提供者已完整佈建電路，再繼續作業。
+1. 設定 ExpressRoute 電路。 確保 hello 循環完全佈建的 hello 連線服務提供者再進一步繼續。
 
   ![列出公用對等互連](./media/expressroute-howto-routing-portal-resource-manager/listprovisioned.png)
-2. 設定線路的 Azure 公用對等。 繼續執行接下來的步驟之前，請確定您有下列項目：
+2. 設定 Azure 公用對等互連 hello 循環。 請確定您具備下列項目，再繼續進行下一個步驟的 hello hello:
 
-  * 主要連結的 /30 子網路。 這必須是有效的公用 IPv4 首碼。
-  * 次要連結的 /30 子網路。 這必須是有效的公用 IPv4 首碼。
-  * 供建立此對等的有效 VLAN ID。 請確定線路有沒有其他對等使用相同的 VLAN ID。
+  * / 30 子網路 hello 主要連結。 這必須是有效的公用 IPv4 首碼。
+  * / 30 hello 次要連結的子網路。 這必須是有效的公用 IPv4 首碼。
+  * 有效的 VLAN ID tooestablish 此對等。 請確認沒有其他對等互連中 hello 循環使用 hello 相同 VLAN id。
   * 對等的 AS 編號。 您可以使用 2 位元組和 4 位元組 AS 編號。
-  * **選用：**MD5 雜湊 (如果選擇使用)。
-3. 如下圖所示，選取 Azure 公用對等互連列：
+  * **選用-**如果您選擇其中一個 toouse 的 MD5 雜湊。
+3. 請選取 hello Azure 公用對等資料列，hello 下列影像所示：
 
   ![選取公用對等互連列](./media/expressroute-howto-routing-portal-resource-manager/rpublic1.png)
-4. 設定公用對等。 下圖顯示設定範例：
+4. 設定公用對等。 hello 下列影像顯示組態範例：
 
   ![設定公用對等互連](./media/expressroute-howto-routing-portal-resource-manager/rpublic2.png)
-5. 指定所有參數後，請儲存組態。 成功接受設定後，會出現類似下列範例的畫面：
+5. 一旦您已指定所有參數，請儲存 hello 組態。 已成功接受 hello 組態之後，您會看到類似下列範例的 toohello:
 
   ![儲存公用對等互連設定](./media/expressroute-howto-routing-portal-resource-manager/rpublic3.png)
 
-### <a name="to-view-azure-public-peering-details"></a>檢視 Azure 公用對等詳細資訊
+### <a name="tooview-azure-public-peering-details"></a>tooview Azure 公用對等互連的詳細資料
 
-選取 Azure 公用對等，即可檢視該對等的屬性。
+您可以檢視選取對等互連 hello Azure 公用對等的 hello 的屬性。
 
 ![檢視公用對等互連屬性](./media/expressroute-howto-routing-portal-resource-manager/rpublic3.png)
 
-### <a name="to-update-azure-public-peering-configuration"></a>更新 Azure 公用對等組態
+### <a name="tooupdate-azure-public-peering-configuration"></a>tooupdate Azure 公用對等組態
 
-您可以選取對等的資料列並修改對等屬性。
+您可以選取 hello 資料列的對等互連，並修改 hello 對等屬性。
 
 ![選取公用對等互連列](./media/expressroute-howto-routing-portal-resource-manager/rpublic2.png)
 
-### <a name="to-delete-azure-public-peering"></a>刪除 Azure 公用對等
+### <a name="toodelete-azure-public-peering"></a>toodelete Azure 公用對等互連
 
-如下列範例所示，您可以選取刪除圖示來移除對等互連設定：
+Hello 下列範例所示，您可以藉由選取 hello 刪除圖示，移除您對等的設定：
 
 ![刪除公用對等互連](./media/expressroute-howto-routing-portal-resource-manager/rpublic4.png)
 
 ## <a name="microsoft-peering"></a>Microsoft 對等互連
 
-本節將協助您為 ExpressRoute 線路建立、取得、更新和刪除 Microsoft 對等互連設定。
+本節可協助您建立、 取得、 更新和刪除 ExpressRoute 循環的 hello Microsoft 對等設定。
 
 > [!IMPORTANT]
-> 在 2017 年 8 月 1 日以前設定之 ExpressRoute 線路的 Microsoft 對等互連，會透過 Microsoft 對等互連公告所有服務首碼，即使未定義路由篩選也一樣。 在 2017 年 8 月 1 日當日或以後設定之 ExpressRoute 線路的 Microsoft 對等互連，不會公告任何首碼，直到路由篩選連結至線路為止。 如需詳細資訊，請參閱[設定 Microsoft 對等互連的路由篩選](how-to-routefilter-powershell.md)。
+> Microsoft 對等互連的 ExpressRoute 電路已設定先前 tooAugust 1，2017年必須透過 hello Microsoft 對等互連，公告的所有服務首碼，即使未定義路由篩選器。 Microsoft 對等互連的當天或之後 2017 年 8 月 1，已設定的 ExpressRoute 電路並不會有任何前置詞通告的路由篩選器連接直到 toohello 循環。 如需詳細資訊，請參閱[設定 Microsoft 對等互連的路由篩選](how-to-routefilter-powershell.md)。
 > 
 > 
 
-### <a name="to-create-microsoft-peering"></a>建立 Microsoft 對等
+### <a name="toocreate-microsoft-peering"></a>toocreate Microsoft 對等互連
 
-1. 設定 ExpressRoute 電路。 先確定連線提供者已完整佈建電路，再繼續作業。
+1. 設定 ExpressRoute 電路。 確保 hello 循環完全佈建的 hello 連線服務提供者再進一步繼續。
 
   ![列出 Microsoft 對等互連](./media/expressroute-howto-routing-portal-resource-manager/listprovisioned.png)
-2. 設定線路的 Microsoft 對等。 繼續之前，請確定您擁有下列資訊。
+2. 設定 Microsoft 對等互連 hello 循環。 請確定您擁有 hello 下列資訊才能繼續。
 
-  * 主要連結的 /30 子網路。 這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
-  * 次要連結的 /30 子網路。 這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
-  * 供建立此對等的有效 VLAN ID。 請確定線路有沒有其他對等使用相同的 VLAN ID。
+  * / 30 子網路 hello 主要連結。 這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
+  * / 30 hello 次要連結的子網路。 這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
+  * 有效的 VLAN ID tooestablish 此對等。 請確認沒有其他對等互連中 hello 循環使用 hello 相同 VLAN id。
   * 對等的 AS 編號。 您可以使用 2 位元組和 4 位元組 AS 編號。
-  * 公告的首碼：您必須提供一份您打算在 BGP 工作階段上公告的所有首碼的清單。 只接受公用 IP 位址首碼。 如果計劃傳送一組首碼，可以傳送以逗號分隔的清單。 這些首碼必須在 RIR / IRR 中註冊給您。
-  * **選用：**客戶 ASN：如果您要公告的首碼未註冊給對等互連 AS 編號，則可以指定它們所註冊的 AS 編號。
-  * 路由登錄名稱：您可以指定可供註冊 AS 編號和首碼的 RIR / IRR。
-  * **選用：**MD5 雜湊 (如果選擇使用)。
-3. 如下列範例所示，您可以選取要設定的對等互連。 選取 Microsoft 對等資料列。
+  * 通告前置詞： 您必須提供清單的所有前置詞您計劃 tooadvertise 透過 hello BGP 工作階段。 只接受公用 IP 位址首碼。 如果您計劃 toosend 一組前置詞，您可以傳送的逗號分隔清單。 這些前置詞必須是已註冊的 tooyou 在 RIR / IRR。
+  * **選用-**客戶 ASN： 如果您不是數字的已註冊的 toohello 對等互連的廣告前置詞，您可以指定 hello 為其所註冊的數字 toowhich。
+  * 路由登錄名稱： 您可以指定 hello RIR / IRR 哪些 hello 做為數字，但前置詞會註冊。
+  * **選用-**如果您選擇其中一個 toouse 的 MD5 雜湊。
+3. 您可以選取 hello 對等互連想 tooconfigure，hello 下列所示範例。 選取 hello Microsoft 對等資料列。
 
   ![選取 Microsoft 對等互連列](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft1.png)
-4. 設定 Microsoft 對等。 下圖顯示設定範例：
+4. 設定 Microsoft 對等。 hello 下列影像顯示組態範例：
 
   ![設定 Microsoft 對等互連](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft2.png)
-5. 指定所有參數後，請儲存組態。
+5. 一旦您已指定所有參數，請儲存 hello 組態。
 
-  如果您的線路出現「需要驗證」狀態 (如下圖所示)，您必須開立支援票證，向我們的支援小組出示首碼擁有權的證明。
+  如果您的電路取得 tooa '所需的驗證' 狀態 （如 hello 映像中所示），您必須開啟支援票證 tooshow hello 前置詞 tooour 支援小組擁有權證明。
 
   ![儲存 Microsoft 對等互連設定](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft5.png)
 
-  如下列範例所示，您可以直接從入口網站開立支援票證：
+  您可以直接從 hello 入口網站中，開啟支援票證，hello 下列範例所示：
 
   ![](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft6.png)
 
 
-1. 成功接受設定後，會出現類似下圖的畫面：
+1. 已成功接受 hello 組態之後，您會看到類似下列映像的 toohello:
 
   ![](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft7.png)
 
-### <a name="to-view-microsoft-peering-details"></a>檢視 Microsoft 對等詳細資訊
+### <a name="tooview-microsoft-peering-details"></a>tooview Microsoft 對等詳細資料
 
-選取 Azure 公用對等，即可檢視該對等的屬性。
+您可以檢視選取對等互連 hello Azure 公用對等的 hello 的屬性。
 
 ![](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft3.png)
 
-### <a name="to-update-microsoft-peering-configuration"></a>更新 Microsoft 對等組態
+### <a name="tooupdate-microsoft-peering-configuration"></a>tooupdate Microsoft 對等組態
 
-您可以選取對等的資料列並修改對等屬性。
+您可以選取 hello 資料列的對等互連，並修改 hello 對等屬性。
 
 ![](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft7.png)
 
-### <a name="to-delete-microsoft-peering"></a>刪除 Microsoft 對等
+### <a name="toodelete-microsoft-peering"></a>toodelete Microsoft 對等互連
 
-如下圖所示，您可以選取刪除圖示來移除對等互連設定：
+Hello 下列影像所示，您可以藉由選取 hello 刪除圖示，移除您對等的設定：
 
 ![](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft4.png)
 
 ## <a name="next-steps"></a>後續步驟
 
-下一步，[將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-portal-resource-manager.md)
+下一步，[連結 VNet tooan ExpressRoute 電路](expressroute-howto-linkvnet-portal-resource-manager.md)
 * 如需 ExpressRoute 工作流程的詳細資訊，請參閱 [ExpressRoute 工作流程](expressroute-workflows.md)。
 * 如需線路對等的詳細資訊，請參閱 [ExpressRoute 線路和路由網域](expressroute-circuit-peerings.md)。
 * 如需使用虛擬網路的詳細資訊，請參閱 [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。

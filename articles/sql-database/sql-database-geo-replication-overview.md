@@ -1,6 +1,6 @@
 ---
-title: "容錯移轉群組和主動式異地複寫 - Azure SQL Database | Microsoft Docs"
-description: "自動容錯移轉群組與主動式異地複寫可讓您在任何 Azure 資料中心設定 4 個資料庫複本，在發生中斷情況時自動進行容錯移轉。"
+title: "aaaFailover 群組和作用中地理複寫的 Azure SQL Database |Microsoft 文件"
+description: "自動容錯移轉群組與作用中地理複寫可讓您的資料庫中任何 hello Azure 資料中心和 autoomatically 中斷的 hello 事件中的容錯移轉的 toosetup 4 複本。"
 services: sql-database
 documentationcenter: na
 author: anosov1960
@@ -15,131 +15,131 @@ ms.tgt_pltfrm: na
 ms.workload: NA
 ms.date: 07/10/2017
 ms.author: sashan
-ms.openlocfilehash: 9a2171f59c6192115dc1820e7f033fd783c9e077
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7a39af8505624c0f19c5abccff051af836b1f9bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-failover-groups-and-active-geo-replication"></a>概觀︰容錯移轉群組和主動式異地複寫
-主動式異地複寫可讓您在相同或不同資料中心位置 (區域) 中設定最多 4 個可讀取的次要資料庫。 在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫進行查詢和容錯移轉。 容錯移轉必須由使用者的應用程式手動起始。 容錯移轉之後，新的主要資料庫會有不同的連接端點。 
+作用中地理複寫可讓您向上 toofour 可讀取的次要資料庫在 hello tooconfigure 相同或不同資料中心位置 （地區）。 次要資料庫可用來查詢和在 hello 案例中的資料中心中斷或 hello 無法 tooconnect toohello 主要資料庫的容錯移轉。 hello 應用程式的 hello 使用者必須手動起始 hello 容錯移轉。 容錯移轉之後，hello 新主要複本會有不同的連接端點。 
 
 > [!NOTE]
 > 主動式異地複寫可供所有區域之所有服務層中的所有資料庫使用。
 >  
 
-Azure SQL Database 的自動容錯移轉群組 (預覽版) 是一項 SQL Database 功能，其設計目的是要自動管理異地複寫關聯性、連線能力和大規模容錯移轉。 客戶若使用此功能，就能夠在導致主要區域中完全或部分喪失 SQL Database 服務可用性的嚴重區域失敗或其他非計劃事件之後，自動復原次要地區中的多個相關資料庫。 此外，他們可以使用可讀取次要資料庫來卸載唯讀工作負載。  因為自動容錯移轉群組牽涉到多個資料庫，所以必須在主要伺服器上進行設定。 主要和次要伺服器都必須位於相同的訂用帳戶。 自動容錯移轉群組支援將群組中的所有資料庫都只複寫到不同區域的一部次要伺服器。 主動式異地複寫在未搭配自動容錯移轉群組時，於任何區域中最多可以有 4 個次要資料庫。
+Azure SQL Database 自動容錯移轉群組 （預覽版） 是 SQL Database 功能，特別設計 tooautomatically 管理地理複寫 」 關係、 連接及大規模的容錯移轉。 Hello 客戶獲得 hello 能力 tooautomatically 之後地區的災難性失敗或其他非計劃的事件，SQL Database 服務會導致完整或部分遺失的 hello, 復原 hello 次要區域中的多個相關的資料庫hello 主要區域中的可用性。 此外，他們可以使用 hello 可讀取次要資料庫 toooffload 唯讀工作負載。  因為自動容錯移轉群組包含多個資料庫，因此必須設定 hello 主要伺服器上。 主要和次要伺服器都必須在 hello 相同訂用帳戶。 自動容錯移轉群組支援 hello 群組 tooonly 一部次要伺服器位於不同的區域中的所有資料庫的複寫。 作用中地理複寫，不含自動容錯移轉群組，可讓向上 too4 次要資料庫的任何區域中。
 
-如果您使用主動式異地複寫，而且主要資料庫因為任何原因而失敗，或者只是需要離線，您可以起始容錯移轉至任何次要資料庫。 容錯移轉至其中一個次要資料庫啟動時，所有其他次要複本會自動連結至新的主要複本。 如果您使用自動容錯移轉群組 (預覽版) 來管理資料庫復原，則影響群組中一或多個資料庫的任何中斷都會造自動容錯移轉。 您可以設定最符合您應用程式需求的自動容錯移轉原則，或者您可以選擇不設定而使用手動啟動。 此外，自動容錯移轉群組 (預覽版) 還提供在容錯移轉期間仍保持不變的讀寫和唯讀接聽程式端點。 無論您使用手動或自動啟動容錯移轉，容錯移轉都會將群組中所有次要資料庫切換到主要資料庫。 資料庫容錯移轉完成後，DNS 記錄會自動更新以將端點重新導向至新的區域。
+如果您使用作用中地理複寫和任何主要資料庫失敗，原因或只需要 toobe，使其離線，您可以起始容錯移轉 tooany 的次要資料庫。 所有其他次要資料庫啟動的 tooone hello 次要資料庫的容錯移轉時，會自動連結的 toohello 新主要複本。 如果您使用自動容錯移轉群組 （預覽） toomanage 資料庫復原和任何會影響一個或多個自動容錯移轉中的 hello 群組結果中的 hello 資料庫的中斷。 您可以設定 hello 自動容錯移轉原則以最符合您應用程式的需求，或者您可以退出，並使用手動啟動。 此外，自動容錯移轉群組 (預覽版) 還提供在容錯移轉期間仍保持不變的讀寫和唯讀接聽程式端點。 無論您是使用手動或自動容錯移轉啟用，容錯移轉會在 hello 群組 tooprimary 切換所有次要資料庫。 Hello 資料庫容錯移轉完成之後，hello DNS 記錄是自動更新的 tooredirect hello 端點 toohello 新區域。
 
-您可以使用主動式異地複寫管理伺服器上或彈性集區中個別資料庫或一組資料庫的複寫和容錯移轉。 您可以使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md)、[Transact-SQL](sql-database-geo-replication-transact-sql.md) 或 [REST API](https://msdn.microsoft.com/library/azure/mt163685.aspx) 來進行。 容錯移轉之後，請確認已在新的主要資料庫上設定伺服器和資料庫的驗證需求。 如需詳細資訊，請參閱 [災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。 這適用於主動式異地複寫和自動容錯移轉群組 (預覽版) 兩者。
+您可以使用主動式異地複寫管理伺服器上或彈性集區中個別資料庫或一組資料庫的複寫和容錯移轉。 您可以使用 hello [Azure 入口網站](sql-database-geo-replication-portal.md)， [PowerShell](sql-database-geo-replication-powershell.md)， [TRANSACT-SQL](sql-database-geo-replication-transact-sql.md)，或使用 hello [REST API](https://msdn.microsoft.com/library/azure/mt163685.aspx)。 容錯移轉之後，確定已 hello 新主要複本上設定您的伺服器和資料庫的 hello 驗證需求。 如需詳細資訊，請參閱 [災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。 這適用於這兩個 tooactive 地理複寫 」 和 「 自動容錯移轉群組 （預覽）。
 
-主動式異地複寫會利用 SQL Server 的 [Always On (英文)](https://docs.microsoft.com/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server) 技術，使用讀取認可快照隔離 (RCSI) 以非同步方式將主要資料庫上認可的交易複寫到次要資料庫。 自動容錯移轉群組在主動式異地複寫之上提供群組語意，但使用相同的非同步複寫機制。 雖然次要資料可能會在任何指定時間點稍微落後主要資料庫，但是次要資料保證絕對不會含有部分交易。 跨區域備援可讓應用程式從天然災害、災難性人為錯誤或惡意行為所造成的全部或部分資料中心永久遺失快速復原。 在 [商務持續性概觀](sql-database-business-continuity.md)中可以找到特定的 RPO 資料。
+作用中地理複寫會運用 hello [Always On](https://docs.microsoft.com/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server)技術的 SQL Server tooasynchronously 複寫 hello 主要資料庫 tooa 次要資料庫上使用 read committed 快照集隔離 (RCSI) 已認可的交易。 自動容錯移轉群組提供在作用中地理複寫，但使用相同的非同步複寫機制 hello 之上 hello 群組語意。 在任何指定的時間點，而 hello 次要資料庫可能稍微落後主要資料庫的 hello、 hello 次要資料保證 toonever 有部分的交易。 跨區域備援可讓您免於永久遺失的整個資料中心或部分天災、 災難性人為錯誤或惡意行為造成資料中心的應用程式 tooquickly 復原。 hello 特定 RPO 的資料，請參閱[業務續航力概觀](sql-database-business-continuity.md)。
 
-下圖顯示以美國中北部區域的主要資料庫和美國中南部區域的次要資料庫所設定的作用中異地複寫範例。
+hello 下圖顯示範例的作用中地理複寫設定，在 hello 美國中北部區域的主要和次要 hello 美國中南部區域中。
 
 ![異地複寫關聯性](./media/sql-database-active-geo-replication/geo-replication-relationship.png)
 
-因為次要資料庫可讀取，所以可用來卸載唯讀工作負載，例如報告作業。 如果您使用主動式異地複寫，可以在具有主要資料庫的相同區域中建立次要資料庫，但這樣不會增加應用程式發生嚴重失敗時的恢復能力。 如果您使用自動容錯移轉群組 (預覽版)，則一律要在不同區域中建立次要資料庫。
+Hello 次要資料庫是可讀取的因為它們可能會報告工作，例如使用的 toooffload 唯讀工作負載。 如果您使用的作用中地理複寫，很可能 toocreate hello 次要資料庫在 hello 相同地區具有 hello 主要伺服器上，但它不會增加 hello 應用程式的恢復功能 toocatastrophic 失敗。 如果您使用自動容錯移轉群組 (預覽版)，則一律要在不同區域中建立次要資料庫。
 
-除了災害復原之外，主動式異地複寫還可用於下列案例︰
+此外 toodisaster 復原作用中地理複寫可用於下列案例的 hello:
 
-* **資料庫移轉**：您可以使用主動式異地複寫，以最少的停機時間將資料庫從一部伺服器移轉到另一個線上伺服器。
+* **資料庫移轉**： 您可以使用作用中地理複寫 toomigrate 將資料庫從一部伺服器 tooanother 線上以最少的停機時間。
 * **應用程式升級**：您可以在應用程式升級期間建立額外的次要資料庫做為容錯回復複本。
 
-若要達到真正的業務持續性，新增資料中心之間的資料庫備援只是解決方案的一部分。 在災難性失敗後要端對端復原應用程式 (服務) 需要復原構成服務的所有元件和任何相依的服務。 這些元件的範例包括用戶端軟體 (例如自訂 JavaScript 的瀏覽器)、web 前端、儲存體和 DNS。 所有元件都必須對相同的失敗具有恢復功能，並且在應用程式的復原時間目標 (RTO) 內可供使用。 因此，您需要識別所有相依服務並了解其提供的保證與功能。 然後，您必須採取適當步驟以確保服務功能在它所依賴的服務容錯移轉期間都正常。 如需有關設計災害復原解決方案的詳細資訊，請參閱[使用主動式異地複寫設計災害復原的雲端解決方案](sql-database-designing-cloud-solutions-for-disaster-recovery.md)。
+tooachieve 真正的業務連續性，請新增資料中心之間的資料庫備援是屬於 hello 方案。 嚴重的失敗需要的所有元件構成 hello 服務和任何相依的服務復原之後復原應用程式 （服務） 端對端。 這些元件的範例包括 hello 用戶端軟體 （例如，含自訂 JavaScript 的瀏覽器）、 web 前端、 儲存及 DNS。 很重要的所有元件為彈性 toohello 相同的失敗，而且 hello 復原時間目標 (RTO) 的應用程式內變為可用。 因此，您需要 tooidentify 所有相依的服務，並了解 hello 保證與它們所提供的功能。 然後，您必須採取服務函式期間 hello 它所依賴的 hello 服務的容錯移轉的適當的步驟，tooensure。 如需有關設計災害復原解決方案的詳細資訊，請參閱[使用主動式異地複寫設計災害復原的雲端解決方案](sql-database-designing-cloud-solutions-for-disaster-recovery.md)。
 
 ## <a name="active-geo-replication-capabilities"></a>主動式異地複寫功能
-主動式異地複寫功能提供下列基本功能：
-* **自動非同步複寫**︰您只能藉由加入至現有資料庫來建立次要資料庫。 您可以在任何 Azure SQL Database 伺服器建立次要資料庫。 一旦建立之後，次要資料庫就要填入從主要資料庫複製的資料。 這個程序稱為植入。 建立並植入次要資料庫之後，主要資料庫的更新會以非同步方式自動複製到次要資料庫。 非同步複寫表示交易會先在主要資料庫上受到認可，才會複製到次要資料庫。 
-* **可讀取的次要資料庫**：應用程式可以存取次要資料庫，使用用於存取主要資料庫的相同安全性主體或不同安全性主體進行唯讀作業。 在快照集隔離模式中執行次要資料庫，以確保主要資料庫更新的複寫 (記錄重播) 不會被次要資料庫上執行的查詢延遲。
+hello 作用中地理複寫功能提供下列基本功能的 hello:
+* **自動非同步複寫**： 您只能藉由新增 tooan 現有的資料庫建立次要資料庫。 次要的 hello 可由任何 Azure SQL Database 伺服器中。 一旦建立，hello 次要資料庫會填入 hello hello 主要資料庫從複製的資料。 這個程序稱為植入。 建立並植入次要資料庫之後，更新 toohello 主要資料庫會以非同步方式自動複寫 toohello 次要資料庫。 非同步複寫表示複寫的 toohello 次要資料庫之前，會 hello 主要資料庫上認可交易。 
+* **可讀取次要資料庫**： 應用程式可以存取的次要資料庫的唯讀作業使用 hello 相同或不同的安全性主體用於存取 hello 主要資料庫。 hello 次要資料庫在運作，快照集隔離 hello 次要上執行的查詢不延遲模式 tooensure 複寫的主要 hello hello 更新 （重新顯示記錄檔）。
 
    > [!NOTE]
-   > 如果有從主要資料庫接收的結構描述更新，則次要資料庫上的記錄重播會延遲，因為它需要次要資料庫上的結構描述鎖定。 
+   > 如果沒有結構描述更新接收 hello 需要 hello 次要資料庫的結構描述鎖定的主要 hello 次要資料庫上 hello 記錄重新執行就會延遲。 
    > 
 
-* **多個可讀取次要資料庫**：兩個或以上的次要資料庫可增加主要資料庫和應用程式的備援和保護層級。 如果有多個次要資料庫存在，即使其中一個次要資料庫失敗，應用程式仍會受到保護。 如果只有一個次要資料庫卻失敗了，應用程式會暴露在更高的風險中，直到建立新的次要資料庫。
+* **多個可讀取次要複本**： 兩個或多個次要資料庫增加備援和保護 hello 主要資料庫和應用程式層級。 如果存在多個次要資料庫，即使其中一個 hello 次要資料庫失敗 hello 應用程式仍受到保護。 如果只有一個次要資料庫，但又失敗，系統會公開 hello 應用程式建立新的次要資料庫之前 toohigher 風險。
 
    > [!NOTE]
-   > 如果您使用主動式異地複寫建置分散在世界各地的應用程式，而且必須在 4 個以上的區域中提供唯讀存取資料，您可以建立次要資料庫的次要資料庫 (稱為鏈結的程序)。 如此一來您就可以達到幾乎無限擴充的資料庫複寫。 此外，鏈結可減少來自主要資料庫的複寫額外負荷。 缺點是會增加分葉最尾端之次要資料庫上的複寫延遲。 。 
+   > 如果您使用作用中地理複寫 toobuild 全域散發的應用程式需要 tooprovide 唯讀存取 toodata 超過 4 區域中的，您可以建立次要的次要資料庫 （稱為鏈結的程序）。 如此一來您就可以達到幾乎無限擴充的資料庫複寫。 此外，鏈結可減少 hello 的 hello 主要資料庫複寫的額外負荷。 hello 代價是 hello 最分葉的次要資料庫上的 hello 增加的複寫延遲。 . 
    >
 
-* **支援彈性集區資料庫**：您可以為任何彈性集區中的任何資料庫設定主動式異地複寫。 次要資料庫可以在其他彈性集區中。 對於一般資料庫，只要服務層相同，次要資料庫可以是彈性集區，反之亦然。 
-* **次要資料庫的可設定效能層級**︰可以使用比主要資料庫低的效能層級建立次要資料庫。 主要和次要資料庫必須有相同的服務層。 對於具有高資料庫寫入活動的應用程式不建議使用這個選項，因為增加的複寫延遲會提高容錯移轉後遺失重要資料的風險。 此外，在容錯移轉之後應用程式的效能會受到影響，直到新的主要資料庫升級至較高的效能層級。 在 Azure 入口網站上的記錄 IO 百分比圖表，提供預估次要資料庫承受複寫負載所需的最少效能層級的好方法。 例如，如果您的主要資料庫是 P6 (1000 DTU) 和其記錄 IO 百分比為 50%，則次要資料庫必須至少是 P4 (500 DTU)。 您也可以使用 [sys.resource_stats](https://msdn.microsoft.com/library/dn269979.aspx) 或 [sys.dm_db_resource_stats](https://msdn.microsoft.com/library/dn800981.aspx) 資料庫檢視來擷取記錄 IO 資料。  如需 SQL Database 效能層級的詳細資訊，請參閱 [SQL Database 選項和效能](sql-database-service-tiers.md)。 
-* **使用者控制的容錯移轉和容錯回復**：應用程式或使用者可以隨時明確也將次要資料庫切換到主要角色。 在實際的中斷期間，應該使用「非計劃性」選項，這樣會立即將次要升級為主要。 當失敗的主要資料庫復原，並且可再次使用時，系統會自動將復原的主要資料庫標示為次要資料庫，並讓它與新的主要資料庫保持更新。 由於複寫的非同步本質，如果主要資料庫在將最新的變更複寫至次要資料庫之前失敗，則非計劃的容錯移轉期間會有少量的資料遺失。 當具有多個次要資料庫的主要資料庫容錯移轉時，系統會自動重新設定複寫關聯性，並且將剩餘的次要資料庫連結至新升級的主要資料庫，而不需要任何使用者介入。 解決造成容錯移轉的中斷之後，可能想要讓應用程式返回主要區域。 若要這麼做，應該使用「計劃」選項叫用容錯移轉命令。 
-* **保持認證和防火牆規則同步**︰我們建議針對異地複寫資料庫使用 [資料庫防火牆規則](sql-database-firewall-configure.md) ，這樣一來，這些規則可以使用資料庫複寫，以確保所有次要資料庫具有與主要資料庫相同的防火牆規則。 此方法不需要客戶手動設定及維護同時裝載主要和次要資料庫之伺服器上的防火牆規則。 同樣地，針對資料存取使用 [自主資料庫使用者](sql-database-manage-logins.md) ，確保主要與次要資料庫永遠具有相同的使用者認證，在容錯移轉時不會因為登入和密碼不相符而有任何中斷。 使用額外的 [Azure Active Directory](../active-directory/active-directory-whatis.md)，客戶可以管理主要和次要資料庫的使用者存取，並且排除在資料庫中管理認證的需求。
+* **支援彈性集區資料庫**：您可以為任何彈性集區中的任何資料庫設定主動式異地複寫。 hello 次要資料庫可以是另一個彈性集區中。 一般的資料庫，次要 hello 可以彈性集區，而且相同，反之亦然 hello 只要 hello 服務層。 
+* **Hello 次要資料庫可設定的效能層級**： 次要資料庫可以使用建立 hello 較低效能層級主要。 主要與次要資料庫所需 toohave hello 相同服務層。 這個選項不是建議應用程式使用高資料庫寫入活動因為 hello 增加的複寫延遲會增加容錯移轉之後的 hello 大量的資料遺失風險。 此外，容錯移轉 hello 應用程式的效能會受到影響之前 hello 新主要就升級的 tooa 較高的效能層級。 hello Azure 入口網站上的記錄 IO 百分比圖表提供很好的方式 tooestimate hello 所需要的 toosustain hello 複寫負載的 hello 次要的最少的效能層級。 例如，如果主要資料庫是 P6 (1000 DTU) 和其記錄 IO 百分比為 50 %hello 次要需要至少 toobe P4 (500 DTU)。 您也可以擷取 hello 記錄 IO 資料使用[sys.resource_stats](https://msdn.microsoft.com/library/dn269979.aspx)或[sys.dm_db_resource_stats](https://msdn.microsoft.com/library/dn800981.aspx)資料庫檢視。  如需有關 hello SQL Database 效能層級的詳細資訊，請參閱[SQL Database 選項及效能](sql-database-service-tiers.md)。 
+* **使用者控制的容錯移轉和容錯回復**:，次要資料庫可以明確 hello 應用程式或 hello 使用者隨時都能切換的 toohello 主要角色。 實際中斷 hello 期間 「 非計劃 」 選項應，其立即升級次要 toobe hello 主要。 Hello 失敗的主要復原和可用時同樣地，hello 系統自動標記 hello 復原主要為次要資料庫並使它與 hello 新主要複本的最新狀態。 由於複寫 toohello 非同步本質，少量資料可能會遺失未規劃的容錯移轉期間如果主要無法在複寫 hello 最新變更 toohello 次要前。 當多個次要複本與主要容錯移轉時，hello 系統會自動重新設定 hello 複寫關聯性和連結 hello 新剩餘的次要複本 toohello 升級主要而不需要使用者介入。 降低 hello 中斷造成 hello 容錯移轉之後，它可能會希望 tooreturn hello 應用程式 toohello 主要區域。 toodo hello 容錯移轉命令，應以 hello 叫用 「 計劃 」 選項。 
+* **保持認證和防火牆規則的同步**： 我們建議使用[資料庫防火牆規則](sql-database-firewall-configure.md)地理複寫的資料庫，這些規則可以複寫 hello 資料庫 tooensure 與所有次要資料庫有hello hello 主要相同的防火牆規則。 這種方法可以降低對的客戶 toomanually 設定及維護主控同時 hello 主要與次要資料庫伺服器上的防火牆規則的 hello 需求。 同樣地，使用[自主資料庫使用者](sql-database-manage-logins.md)資料存取可確保主要與次要資料庫一律具有相同的使用者認證，因此容錯移轉期間，沒有任何中斷的 hello 與登入到期 toomismatches 和密碼。 Hello 加入[Azure Active Directory](../active-directory/active-directory-whatis.md)，客戶可以管理使用者存取 tooboth 主要和次要資料庫，以及消除 hello 需要完全管理資料庫中的認證。
 
 ## <a name="auto-failover-group-capabilities"></a>自動容錯移轉群組功能
 
-自動容錯移轉群組功能支援群組層級的複寫和自動容錯移轉，提供強大的主動式異地複寫抽象概念。 此外，它提供額外的接聽程式端點，不需要在容錯移轉之後變更 SQL 連接字串。 
+自動容錯移轉群組功能支援群組層級的複寫和自動容錯移轉，提供強大的主動式異地複寫抽象概念。 此外，它會移除 hello 您不再需要 toochange hello SQL 連接字串在容錯移轉之後提供 hello 其他接聽程式端點。 
 
-* **容錯移轉群組**︰可以在不同區域 (主要和次要伺服器) 的兩部伺服器之間建立一或多個容錯移轉群組。 每個群組可包含一或多個作為復原單位的資料庫，以防所有或部分的主要資料庫因為主要區域服務中斷而變成無法使用。  
-* **主要伺服器**︰容錯移轉群組中裝載主要資料庫的伺服器。
-* **次要伺服器**︰容錯移轉群組中裝載次要資料庫的伺服器。 次要伺服器和主要伺服器不能位於相同區域。
-* **在容錯移轉群組中新增資料庫**︰您可以將伺服器或彈性集區內的多個資料庫放在同一個容錯移轉群組中。 如果您在群組中新增獨立的資料庫，它會使用相同的版本和效能層級自動建立次要資料庫。 如果主要資料庫在彈性集區中，則會使用相同名稱在該彈性集區中建立次要資料庫。 如果您新增在次要伺服器中已經有次要資料庫的資料庫，群組就會繼承該異地複寫。
-
-   > [!NOTE]
-   > 新增在伺服器中已經有次要資料庫但不屬於容錯移轉群組一部分的資料庫時，會在次要伺服器中建立新的次要資料庫。 
-   >
-
-* **容錯移轉群組讀寫接聽程式**︰指向目前主要伺服器 URL 且格式為 **&lt;容錯移轉群組名稱&gt;.database.windows.net** 的 DNS CNAME 記錄。 它可讓讀寫 SQL 應用程式在容錯移轉之後，當主要資料庫變更時毫無障礙地重新連線至主要資料庫。 
-* **容錯移轉群組唯讀接聽程式**︰指向目前次要伺服器 URL 且格式為 **&lt;容錯移轉群組名稱&gt;.secondary.database.windows.net** 的 DNS CNAME 記錄。 它可讓唯讀 SQL 應用程式使用指定的負載平衡規則毫無障礙地連線到次要資料庫。 您可以選擇性指定當次要伺服器無法使用時，是否要將唯讀流量自動重新導向到主要伺服器。
-* **自動容錯移轉原則**︰容錯移轉群組預設是利用自動容錯移轉原則設定。 一旦偵測到失敗，系統就會觸發容錯移轉。 如果您想要控制應用程式的容錯移轉工作流程，可以關閉自動容錯移轉。 
-* **手動容錯移轉**︰無論自動容錯移轉設定為何，您都可以在任何時候手動起始容錯移轉。 如果未設定自動容錯移轉原則，就需要手動容錯移轉才能復原容錯移轉群組中的資料庫。 您可以起始強制或易用容錯移轉 (具有完整的資料同步處理)。 後者可用來將作用中伺服器重新放置到主要區域。 容錯移轉完成時，DNS 記錄會自動更新以確保能連線到正確的伺服器。
-* **資料遺失的寬限期**︰因為主要和次要資料庫是使用非同步複寫進行同步處理，容錯移轉可能會導致資料遺失。 您可以自訂自動容錯移轉原則，以反映應用程式對資料遺失的容錯程度。 設定 **GracePeriodWithDataLossHours**，可以控制系統在起始可能造成資料遺失的容錯移轉之前等候的時間長度。 
+* **容錯移轉群組**︰可以在不同區域 (主要和次要伺服器) 的兩部伺服器之間建立一或多個容錯移轉群組。 每個群組可包含一或多個資料庫，以防所有或部分的主要資料庫變成無法使用，因為 tooan 中斷 hello 主要區域中，做為一個單位復原。  
+* **主要伺服器**： 裝載 hello hello 容錯移轉群組中的主要資料庫的伺服器。
+* **次要伺服器**： 裝載 hello hello 容錯移轉群組中的次要資料庫的伺服器。 hello 次要伺服器不能在 hello 與 hello 主要伺服器相同的區域。
+* **加入資料庫 toofailover 群組**： 您可以放在伺服器中的多個資料庫，或在彈性集區至 hello 相同容錯移轉群組。 如果您新增獨立資料庫 toohello 群組時，它會自動建立次要資料庫使用 hello 相同的版本和效能層級。 如果 hello 主要資料庫是彈性集區中，次要 hello 會自動建立 hello 彈性集區中以 hello 相同名稱。 如果您新增已包含 hello 次要伺服器中的 次要資料庫的資料庫，hello 群組都會繼承，地理複寫。
 
    > [!NOTE]
-   > 當系統偵測到群組中的資料庫仍保持線上狀態 (例如，中斷只影響了服務控制平面) 時，它會立即啟動具完整資料同步處理的容錯移轉 (易用容錯移轉)，無論 **GracePeriodWithDataLossHours** 所設定的值為何。 此行為可確保復原期間不會遺失任何資料。 寬限期只有在無法使用易用容錯移轉時才有效。 如果中斷情況在寬限期到期之前就趨緩，則不會啟動容錯移轉。
+   > 將已有不是 hello 容錯移轉群組一部分的伺服器中的 次要資料庫的資料庫時，hello 次要伺服器中建立新的次要資料庫。 
    >
 
-* **多個容錯移轉群組**︰您可以為相同的兩部伺服器設定多個容錯移轉群組來控制容錯移轉的規模。 每個群組分別進行容錯移轉。 如果您的多租用戶應用程式使用彈性集區，可以使用這項功能來混合每個集區中的主要和次要資料庫。 如此一來，可以讓中斷只影響一半的租用戶。
+* **容錯移轉群組讀取寫入接聽程式**： 做為格式正確的 DNS CNAME 記錄**&lt;容錯移轉-群組-名稱&gt;。.database.windows.net** ，以指 toohello 目前的主要伺服器 URL。 它允許 hello 讀寫 SQL 應用程式時容錯移轉之後變更 hello 主要 tootransparently 重新連線 toohello 主要資料庫。 
+* **容錯移轉群組唯讀接聽程式**： 做為格式正確的 DNS CNAME 記錄**&lt;容錯移轉-群組-名稱&gt;。 secondary.database.windows.net** ，以指 toohello 次要伺服器的 URL。 它允許 hello 唯讀 tootransparently 連接的 SQL 應用程式使用 hello toohello 次要資料庫，指定負載平衡規則。 您可以選擇指定是否您想 hello 唯讀流量 toobe 自動重新導向 toohello 主要伺服器無法使用 hello 次要伺服器時。
+* **自動容錯移轉原則**： 根據預設，使用自動容錯移轉原則設定 hello 容錯移轉群組。 一旦偵測到 hello 失敗 hello 系統會觸發容錯移轉。 如果您想從 hello 應用程式的 toocontrol hello 容錯移轉工作流程時，您可以關閉自動容錯移轉。 
+* **手動容錯移轉**： 您可以在任何時間，而不管 hello 自動容錯移轉設定為何，手動起始容錯移轉。 如果自動容錯移轉原則無法設定的手動容錯移轉是必要的 toorecover hello 容錯移轉群組中的資料庫。 您可以起始強制或易用容錯移轉 (具有完整的資料同步處理)。 hello 後者可能是使用的 toorelocate hello active server toohello 主要區域。 完成容錯移轉時 hello DNS 記錄將會自動更新的 tooensure 連線 toohello 正確的伺服器。
+* **會遺失資料的寬限期內**： 因為 hello 主要與次要資料庫已同步處理使用非同步複寫 hello 容錯移轉可能會導致資料遺失。 您可以自訂 hello 自動容錯移轉原則 tooreflect 應用程式的容錯 toodata 遺失。 藉由設定**GracePeriodWithDataLossHours**，您可以控制 hello 系統初始化 tooresult 可能資料遺失的 hello 容錯移轉之前等候的時間長度。 
+
+   > [!NOTE]
+   > 當系統偵測到 hello 群組中的 hello 資料庫均仍保持線上狀態 （例如，hello 中斷只影響 hello 服務控制平面），它會立即啟動 hello 容錯移轉，不論 hello 值的完整資料同步處理 （好記的容錯移轉）設定**GracePeriodWithDataLossHours**。 此行為可確保在 hello 復原期間會遺失任何資料。 hello 寬限期在易記的容錯移轉不可能時，才會生效。 Hello 中斷降低 hello 寬限期到期之前，如果未啟用 hello 容錯移轉。
+   >
+
+* **多個容錯移轉群組**： 您可以設定多個容錯移轉群組 hello 同一對伺服器的容錯移轉期間 toocontrol hello 標尺。 每個群組分別進行容錯移轉。 如果您的多租用戶應用程式使用彈性集區，您可以使用此功能 toomix 主要與次要資料庫中每個集區。 這種方式可以減少在 hello 影響的中斷 tooonly hello 租用戶的下半部。
 
 ## <a name="best-practices-of-building-highly-available-service"></a>建置高可用性服務的最佳作法
 
-若要建置使用 Azure SQL Database 的高可用性服務，客戶應遵循下列指導方針︰
-- **使用容錯移轉群組**︰可以在位於不同區域 (主要和次要伺服器) 的兩部伺服器之間建立一或多個容錯移轉群組。 每個群組可包含一或多個作為復原單位的資料庫，以防所有或部分的主要資料庫因為主要區域服務中斷而變成無法使用。 容錯移轉群組會使用和主要資料庫相同的服務目標，來建立異地次要資料庫。 如果您在容錯移轉群組中新增現有的異地複寫關聯性，請確定地區次要資料庫所設定的服務等級目標和主要資料庫相同。
-- **針對 OLTP 工作負載使用讀取寫入接聽程式**：在執行 OLTP 作業時使用 **&lt;容錯移轉群組名稱&gt;.database.windows.net** 作為伺服器 URL，連線將會自動導向至主要伺服器。 在容錯移轉之後，將不會變更此 URL。  
-請注意，容錯移轉牽涉到更新 DNS 記錄，因此只有在重新整理用戶端 DNS 快取之後，才會將用戶端連線重新導向至新的主要伺服器。
-- **針對唯讀工作負載使用唯讀接聽程式**：如果您有容忍某些過時資料的邏輯隔離唯讀工作負載，則可以使用應用程式中的次要資料庫。 針對唯讀工作階段，請使用 **&lt;容錯移轉群組名稱&gt;.secondary.database.windows.net** 作為伺服器 URL，連線將會自動導向至次要伺服器。 也建議您使用 **ApplicationIntent=ReadOnly**，在連接字串中表示讀取意圖。 
-- **對效能降低做好心理準備**：應用程式的其餘部分或所使用的其他服務並不會影響 SQL 的容錯移轉決策。 應用程式可能會「混用」某個區域的某些元件和另一個區域的某些元件。 若要避免效能降低，請務必要在 DR 區域中部署備援應用程式，並遵循本文中的指導方針。  
-請注意，DR 區域中的應用程式不一定非得使用不同的連接字串。  
-- **對資料遺失做好心理準備**：如果系統偵測到服務中斷，SQL 會在就我們所知並無資料遺失時，自動觸發讀寫容錯移轉。 否則，它會等候您透過 **GracePeriodWithDataLossHours** 所指定的這段時間。 如果您指定了 **GracePeriodWithDataLossHours**，請做好可能會遺失資料的心理準備。 服務中斷期間，Azure 一般會傾向維持可用性。 如果您無法承擔資料遺失情況，請務必將 **GracePeriodWithDataLossHours** 設定為足夠大的數字，例如 24 小時。 
+toobuild 高可用性的服務使用 Azure SQL database hello 客戶應該遵循這些指導方針：
+- **使用容錯移轉群組**︰可以在位於不同區域 (主要和次要伺服器) 的兩部伺服器之間建立一或多個容錯移轉群組。 每個群組可包含一或多個資料庫，以防所有或部分的主要資料庫變成無法使用，因為 tooan 中斷 hello 主要區域中，做為一個單位復原。 hello 容錯移轉群組會建立相同服務做為 hello 主要目標的 hello 地理次要資料庫。 如果您將加入現有異地複寫關聯性 toohello 容錯移轉群組請確定 hello 地理-次要複本已設定相同服務等級目標為 hello 與 hello 主要。
+- **使用針對 OLTP 工作負載的讀取寫入接聽程式**： 在執行 OLTP 作業使用**&lt;容錯移轉-群組-名稱&gt;。.database.windows.net**當 hello 伺服器 URL 和 hello 連線將會自動導向的 toohello 主要。 Hello 容錯移轉之後，不會變更此 URL。  
+請注意 hello 容錯移轉牽涉到更新 DNS 記錄，所以 hello 用戶端連接會重新導向的 toohello 新主要 hello 用戶端之後，才 DNS 快取重新整理的 hello。
+- **用於唯讀工作負載的唯讀狀態的接聽程式**： 如果您有邏輯上隔離的唯讀工作負載的容錯 toocertain 過時的資料，您可以使用 hello 次要資料庫中 hello 應用程式。 唯讀的工作階段使用**&lt;容錯移轉-群組-名稱&gt;。 secondary.database.windows.net**當 hello 伺服器 URL 和 hello 連接將會自動導向的 toohello 次要。 也建議您使用 **ApplicationIntent=ReadOnly**，在連接字串中表示讀取意圖。 
+- **準備效能降低的**: hello 其餘 hello 應用程式或使用其他服務與 SQL 容錯移轉決策無關。 hello 應用程式可能是"mixed"的一個區域，在另一個部分中的部分元件。 tooavoid hello 變差，確保 hello DR 區域中的 hello 多餘的應用程式部署，並遵循本文章中的 hello 指導方針。  
+請注意 hello DR 區域中的 hello 應用程式沒有 toouse 不同的連接字串。  
+- **準備資料遺失的**： 如果沒有零的資料遺失 toohello 我們知識的最佳偵測到發生中斷時，如果 SQL 自動觸發讀寫容錯移轉。 否則，它會等候您所指定的 hello 週期**GracePeriodWithDataLossHours**。 如果您指定了 **GracePeriodWithDataLossHours**，請做好可能會遺失資料的心理準備。 服務中斷期間，Azure 一般會傾向維持可用性。 如果您無法容忍遺失資料，請確定 tooset **GracePeriodWithDataLossHours** tooa 夠大的數目，例如 24 小時。 
 
 
 ## <a name="upgrading-or-downgrading-a-primary-database"></a>升級或降級主要資料庫
-您可以將主要資料庫升級或降級至不同的效能層級 (在相同的服務層內)，而不會中斷連接任何次要資料庫。 升級時，我們建議您先升級次要資料庫，然後再升級主要資料庫。 降級時，順序相反︰先降級主要資料庫，然後再降級次要資料庫。 當您將資料庫升級或降級到不同的服務層時，會強制執行這項建議。 
+您可以升級或降級的主要資料庫 tooa 不同的效能層級 （hello 內相同服務層） 而不中斷連線的任何次要資料庫。 升級時，我們建議您先升級 hello 次要資料庫，然後再升級 hello 主要。 降級時，會反向 hello 順序： 首先，降級 hello 主要和再降級 hello 次要資料庫。 當您升級或降級 hello 資料庫 tooa 不同服務層會強制執行這項建議。 
 
 > [!NOTE]
-> 如果您已在容錯移轉群組設定中建立次要資料庫，則不建議降級次要資料庫。 這是為了確保您的資料層在容錯移轉啟動之後有足夠的容量來處理一般工作負載。 
+> 如果您為 hello 容錯移轉群組組態的一部分建立次要資料庫不是建議的 toodowngrade hello 次要資料庫。 這是 tooensure 您的資料層擁有足夠的容量 tooprocess 您的一般工作負載後啟動容錯移轉。 
 >
 
-## <a name="preventing-the-loss-of-critical-data"></a>防止重要資料遺失
-由於廣域網路的高度延遲，連續複製採用非同步複寫機制。 如果發生失敗，非同步複寫導致部分資料遺失是無法避免的。 不過，有些應用程式可能會要求資料不能遺失。 若要保護這些重大更新，應用程式開發人員可以在認可交易後立即呼叫 [sp_wait_for_database_copy_sync](https://msdn.microsoft.com/library/dn467644.aspx) 系統程序。 呼叫 **sp_wait_for_database_copy_sync** 會封鎖呼叫執行緒，直到最後認可的交易傳輸到次要資料庫。 不過，它不會等候在次要資料庫上重新執行和認可傳輸的交易。 **sp_wait_for_database_copy_sync** 以特定的連續複製連結為範圍。 任何具備主要資料庫連接權限的使用者都可以呼叫此程序。
+## <a name="preventing-hello-loss-of-critical-data"></a>防止 hello 遺失重要資料
+由於廣域網路的 toohello 高延遲，連續複製採用非同步複寫機制。 如果發生失敗，非同步複寫導致部分資料遺失是無法避免的。 不過，有些應用程式可能會要求資料不能遺失。 tooprotect 這些重大更新、 應用程式開發人員可以呼叫 hello [sp_wait_for_database_copy_sync](https://msdn.microsoft.com/library/dn467644.aspx)認可 hello 交易之後立即系統程序。 呼叫**sp_wait_for_database_copy_sync**區塊 hello 呼叫執行緒，直到 hello 最後認可的交易已經傳送 toohello 次要資料庫。 不過，它不會等候傳送嗨交易 toobe 重新執行，而且在次要 hello 認可。 **sp_wait_for_database_copy_sync**是已設定領域的 tooa 特定的連續複製連結。 具有 hello 連接權限 toohello 主要資料庫的任何使用者都可以呼叫此程序。
 
 > [!NOTE]
-> **sp_wait_for_database_copy_sync** 可避免在容錯移轉之後資料遺失，但是不保證讀取權限會完整同步。 **sp_wait_for_database_copy_sync** 程序呼叫所造成的延遲可能會相當明顯，且取決於呼叫時的交易記錄大小。 
+> **sp_wait_for_database_copy_sync** 可避免在容錯移轉之後資料遺失，但是不保證讀取權限會完整同步。 hello 所造成的延遲**sp_wait_for_database_copy_sync**程序呼叫可能會很顯著，而在 hello 呼叫 hello 時間取決於 hello hello 交易記錄檔大小。 
 > 
 
 ## <a name="programmatically-managing-failover-groups-and-active-geo-replication"></a>以程式設計方式管理容錯移轉群組和主動式異地複寫
-如前所述，自動容錯移轉群組 (預覽版) 和主動式異地複寫也可以使用 Azure PowerShell 和 REST API，以程式設計的方式管理。 下表描述可用的命令集。
+如前所述，自動容錯移轉群組 （預覽） 和作用中地理複寫也可使用 Azure PowerShell 以程式設計方式，和 hello REST API。 hello 下表描述可用的命令 hello 集。
 
-**Azure Resource Manager API 和以角色為基礎的安全性**︰主動式異地複寫包含一組可管理的 Azure Resource Manager API，包括 [Azure SQL Database REST API](https://docs.microsoft.com/rest/api/sql/) 和 [Azure PowerShell Cmdlet](https://docs.microsoft.com/powershell/azure/overview)。 這些 API 需要使用資源群組，並支援以角色為基礎的安全性 (RBAC)。 如需如何實作存取角色的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-what-is.md)。
+**Azure 資源管理員 API 和以角色為基礎的安全性**： 作用中地理複寫包含一組 Azure 資源管理員 Api 進行管理，包括 hello [Azure SQL Database REST API](https://docs.microsoft.com/rest/api/sql/)和[AzurePowerShell 指令程式](https://docs.microsoft.com/powershell/azure/overview)。 這些 Api 需要 hello 使用的資源群組，並支援以角色為基礎的安全性 (RBAC)。 如需有關如何 tooimplement 存取角色的詳細資訊，請參閱[所有存取控制](../active-directory/role-based-access-control-what-is.md)。
 
 > [!NOTE]
-> 只有在使用以 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 為基礎的 [Azure SQL REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx) 和 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx) 時，才支援主動式異地複寫的許多新功能。 [(傳統) REST API](https://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx) 支援回溯相容性，因此建議使用以 Azure Resource Manager 為基礎的 API。 
+> 只有在使用以 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 為基礎的 [Azure SQL REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx) 和 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx) 時，才支援主動式異地複寫的許多新功能。 hello [（傳統） REST API](https://msdn.microsoft.com/library/azure/dn505719.aspx)和[Azure SQL Database （傳統） cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx)支援回溯相容性，因此使用的 hello 建議使用 Azure Resource Manager 為基礎的 API。 
 > 
 
 ## <a name="manage-sql-database-failover-using-using-transact-sql"></a>管理 SQL database 容錯移轉使用 TRANSACT-SQL
 
 | 命令 | 說明 |
 | --- | --- |
-| [ALTER DATABASE (Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx) |使用 ADD SECONDARY ON SERVER 引數，針對現有資料庫建立次要資料庫並開始資料複寫 |
-| [ALTER DATABASE (Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx) |使用 FAILOVER 或 FORCE_FAILOVER_ALLOW_DATA_LOSS，將次要資料庫切換為主要資料庫以便開始容錯移轉 |
-| [ALTER DATABASE (Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx) |使用 REMOVE SECONDARY ON SERVER，來終止 SQL Database 和指定次要資料庫間的資料複寫。 |
-| [sys.geo_replication_links (Azure SQL Database)](https://msdn.microsoft.com/library/mt575501.aspx) |針對 Azure SQL Database 邏輯伺服器上的每個資料庫，傳回所有結束複寫連結的相關資訊。 |
-| [sys.dm_geo_replication_link_status (Azure SQL Database)](https://msdn.microsoft.com/library/mt575504.aspx) |針對指定的 SQL Database，取得上次複寫時間、上次複寫延遲，以及複寫連結的其他相關資訊。 |
-| [sys.dm_operation_status (Azure SQL Database)](https://msdn.microsoft.com/library/dn270022.aspx) |顯示所有資料庫作業的狀態，包括複寫連結的狀態。 |
-| [sp_wait_for_database_copy_sync (Azure SQL Database)](https://msdn.microsoft.com/library/dn467644.aspx) |導致應用程式等候，直到作用中次要資料庫複寫並認可所有認可的交易為止。 |
+| [ALTER DATABASE (Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx) |新增次要 ON SERVER 引數 toocreate 次要資料庫用於現有的資料庫，並開始資料複寫 |
+| [ALTER DATABASE (Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx) |使用容錯移轉或 FORCE_FAILOVER_ALLOW_DATA_LOSS tooswitch 次要資料庫 toobe 主要 tooinitiate 容錯移轉 |
+| [ALTER DATABASE (Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx) |使用移除次要 ON SERVER tooterminate SQL Database 與 hello 指定的次要資料庫之間的資料複寫。 |
+| [sys.geo_replication_links (Azure SQL Database)](https://msdn.microsoft.com/library/mt575501.aspx) |傳回 hello Azure SQL Database 邏輯伺服器上的每個資料庫的所有現有複寫連結的相關資訊。 |
+| [sys.dm_geo_replication_link_status (Azure SQL Database)](https://msdn.microsoft.com/library/mt575504.aspx) |取得 hello 上次複寫的時間、 上次複寫延遲，以及其他相關資訊 hello 複寫連結指定的 SQL 資料庫。 |
+| [sys.dm_operation_status (Azure SQL Database)](https://msdn.microsoft.com/library/dn270022.aspx) |會顯示 hello 包括 hello hello 複寫連結狀態的所有資料庫作業的狀態。 |
+| [sp_wait_for_database_copy_sync (Azure SQL Database)](https://msdn.microsoft.com/library/dn467644.aspx) |會導致 hello 應用程式 toowait，直到所有已認可的交易都複寫及認可 hello 作用中次要資料庫為止。 |
 |  | |
 
 ## <a name="manage-sql-database-failover-using-using-powershell"></a>SQL 資料庫容錯移轉使用使用 PowerShell 管理
@@ -148,36 +148,36 @@ Azure SQL Database 的自動容錯移轉群組 (預覽版) 是一項 SQL Databas
 | --- | --- |
 | [Get-AzureRmSqlDatabase](/powershell/module/azurerm.sql/get-azurermsqldatabase) |取得一或多個資料庫。 |
 | [New-AzureRmSqlDatabaseSecondary](/powershell/module/azurerm.sql/new-azurermsqldatabasesecondary) |針對現有資料庫建立次要資料庫並開始資料複寫。 |
-| [Set-AzureRmSqlDatabaseSecondary](/powershell/module/azurerm.sql/set-azurermsqldatabasesecondary) |將次要資料庫切換為主要資料庫以開始容錯移轉。 |
-| [Remove-AzureRmSqlDatabaseSecondary](/powershell/module/azurerm.sql/remove-azurermsqldatabasesecondary) |終止 SQL Database 和指定次要資料庫間的資料複寫。 |
-| [Get-AzureRmSqlDatabaseReplicationLink](/powershell/module/azurerm.sql/get-azurermsqldatabasereplicationlink) |取得 Azure SQL Database 和資源群組或 SQL Server 之間的異地複寫連結。 |
+| [Set-AzureRmSqlDatabaseSecondary](/powershell/module/azurerm.sql/set-azurermsqldatabasesecondary) |切換次要資料庫 toobe 主要 tooinitiate 容錯移轉。 |
+| [Remove-AzureRmSqlDatabaseSecondary](/powershell/module/azurerm.sql/remove-azurermsqldatabasesecondary) |終止 SQL Database 與 hello 指定的次要資料庫之間的資料複寫。 |
+| [Get-AzureRmSqlDatabaseReplicationLink](/powershell/module/azurerm.sql/get-azurermsqldatabasereplicationlink) |取得 Azure SQL Database 與資源群組或 SQL Server 之間的 hello 異地複寫連結。 |
 | [New-AzureRmSqlDatabaseFailoverGroup](/powershell/module/azurerm.sql/set-azurermsqldatabasefailovergroup) |   此命令會建立容錯移轉群組，並同時在主要和次要伺服器上註冊|
-| [Remove-AzureRmSqlDatabaseFailoverGroup](/powershell/module/azurerm.sql/remove-azurermsqldatabasefailovergroup) | 從伺服器移除容錯移轉群組，並刪除包含群組的所有次要資料庫 |
-| [Get-AzureRmSqlDatabaseFailoverGroup](/powershell/module/azurerm.sql/get-azurermsqldatabasefailovergroup) | 擷取容錯移轉群組設定 |
-| [Set-AzureRmSqlDatabaseFailoverGroup](/powershell/module/azurerm.sql/set-azurermsqldatabasefailovergroup) |   修改容錯移轉群組的設定 |
-| [Switch-AzureRMSqlDatabaseFailoverGroup](/powershell/module/azurerm.sql/switch-azurermsqldatabasefailovergroup) | 觸發容錯移轉群組的容錯移轉到次要伺服器 |
+| [Remove-AzureRmSqlDatabaseFailoverGroup](/powershell/module/azurerm.sql/remove-azurermsqldatabasefailovergroup) | 移除 hello 伺服器 hello 容錯移轉群組，並刪除所有包含的次要資料庫 hello 群組 |
+| [Get-AzureRmSqlDatabaseFailoverGroup](/powershell/module/azurerm.sql/get-azurermsqldatabasefailovergroup) | 擷取 hello 容錯移轉群組組態 |
+| [Set-AzureRmSqlDatabaseFailoverGroup](/powershell/module/azurerm.sql/set-azurermsqldatabasefailovergroup) |   修改 hello hello 容錯移轉群組組態 |
+| [Switch-AzureRMSqlDatabaseFailoverGroup](/powershell/module/azurerm.sql/switch-azurermsqldatabasefailovergroup) | 觸發程序的 hello 容錯移轉群組 toohello 次要伺服器的容錯移轉 |
 |  | |
 
 > [!IMPORTANT]
 > 如需範例指令碼，請參閱[使用作用中異地複寫設定單一資料庫並進行容錯移轉](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)、[使用作用中異地複寫設定集區資料庫並進行容錯移轉](scripts/sql-database-setup-geodr-and-failover-pool-powershell.md)和[設定單一資料庫的容錯移轉群組並進行容錯移轉] \(預覽\) (scripts/sql-database-setup-geodr-failover-database-failover-group-powershell.md。
 >
 
-## <a name="manage-sql-database-failover-using-the-rest-api"></a>使用 REST API 管理 SQL 資料庫容錯移轉
+## <a name="manage-sql-database-failover-using-hello-rest-api"></a>管理 SQL database 容錯移轉使用 hello REST API
 | API | 說明 |
 | --- | --- |
 | [Create or Update Database (createMode=Restore)](/rest/api/sql/Databases/CreateOrUpdate) |建立、更新或還原主要或次要資料庫。 |
-| [取得建立或更新資料庫狀態](/rest/api/sql/Databases/CreateOrUpdate) |在建立作業期間傳回狀態。 |
-| [將次要資料庫設定為主要資料庫 (計劃性容錯移轉)](https://docs.microsoft.com/rest/api/sql/replicationlinkss#ReplicationLinks_Failover) |從目前主要複本資料庫進行容錯移轉，以設定主要的複本資料庫。 |
-| [將次要資料庫設定為主要資料庫 (非計劃的容錯移轉)](https://docs.microsoft.com/rest/api/sql/replicationlinks#ReplicationLinks_FailoverAllowDataLoss) |從目前主要複本資料庫進行容錯移轉，以設定主要的複本資料庫。 這項作業可能會導致資料遺失。 |
-| [取得複寫連結](/rest/api/sql/replicationlinks/get) |取得異地複寫關聯性中指定 SQL Database 的特定複寫連結。 它會擷取 sys.geo_replication_links 目錄檢視中顯示的資訊。 |
-| [複寫連結 - 依資料庫列示](/rest/api/sql/replicationlinks/listbydatabase) | 取得異地複寫關聯性中指定 SQL Database 的所有複寫連結。 它會擷取 sys.geo_replication_links 目錄檢視中顯示的資訊。 |
+| [取得建立或更新資料庫狀態](/rest/api/sql/Databases/CreateOrUpdate) |建立作業期間傳回 hello 狀態。 |
+| [將次要資料庫設定為主要資料庫 (計劃性容錯移轉)](https://docs.microsoft.com/rest/api/sql/replicationlinkss#ReplicationLinks_Failover) |設定哪些複本資料庫是主要由從目前主要複本資料庫 hello 容錯移轉。 |
+| [將次要資料庫設定為主要資料庫 (非計劃的容錯移轉)](https://docs.microsoft.com/rest/api/sql/replicationlinks#ReplicationLinks_FailoverAllowDataLoss) |設定哪些複本資料庫是主要由從目前主要複本資料庫 hello 容錯移轉。 這項作業可能會導致資料遺失。 |
+| [取得複寫連結](/rest/api/sql/replicationlinks/get) |取得異地複寫關聯性中指定 SQL Database 的特定複寫連結。 它會擷取 hello hello sys.geo_replication_links 目錄檢視中顯示的資訊。 |
+| [複寫連結 - 依資料庫列示](/rest/api/sql/replicationlinks/listbydatabase) | 取得異地複寫關聯性中指定 SQL Database 的所有複寫連結。 它會擷取 hello hello sys.geo_replication_links 目錄檢視中顯示的資訊。 |
 | [刪除複寫連結](/rest/api/sql/databases/delete) | 刪除資料庫複寫連結。 無法在容錯移轉期間進行。 |
 | [建立或更新容錯移轉群組]/rest/api/sql/failovergroups/createorupdate) | 建立或更新容錯移轉群組 |
-| [刪除容錯移轉群組](/rest/api/sql/failovergroups/delete) | 從伺服器中移除容錯移轉群組 |
-| [容錯移轉 (計劃性)](/rest/api/sql/failovergroups/failover) | 從目前主要伺服器容錯移轉到此伺服器。 |
-| [強制容錯移轉允許資料遺失](/rest/api/sql/failovergroups/forcefailoverallowdataloss) |從目前主要伺服器容錯移轉到此伺服器。 這項作業可能會導致資料遺失。 |
+| [刪除容錯移轉群組](/rest/api/sql/failovergroups/delete) | Hello 容錯移轉群組移除伺服器 hello |
+| [容錯移轉 (計劃性)](/rest/api/sql/failovergroups/failover) | 從目前的主要伺服器 toothis 伺服器 hello 容錯移轉。 |
+| [強制容錯移轉允許資料遺失](/rest/api/sql/failovergroups/forcefailoverallowdataloss) |從目前的主要伺服器 toothis 伺服器 hello ails 透過。 這項作業可能會導致資料遺失。 |
 | [取得容錯移轉群組](/rest/api/sql/failovergroups/get) | 取得容錯移轉群組。 |
-| [依伺服器列出容錯移轉群組](/rest/api/sql/failovergroups/listbyserver) | 列出伺服器中的容錯移轉群組。 |
+| [依伺服器列出容錯移轉群組](/rest/api/sql/failovergroups/listbyserver) | 列出在伺服器中的 hello 容錯移轉群組。 |
 | [更新容錯移轉群組](/rest/api/sql/failovergroups/update) | 更新容錯移轉群組。 |
 |  | |
 
@@ -187,7 +187,7 @@ Azure SQL Database 的自動容錯移轉群組 (預覽版) 是一項 SQL Databas
    - [使用作用中異地複寫設定集區資料庫並進行容錯移轉](scripts/sql-database-setup-geodr-and-failover-pool-powershell.md)
    - [設定單一資料庫的容錯移轉群組並進行容錯移轉 (預覽)](scripts/sql-database-setup-geodr-failover-database-failover-group-powershell.md)
 * 如需商務持續性概觀和案例，請參閱 [商務持續性概觀](sql-database-business-continuity.md)
-* 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)。
-* 若要了解如何使用自動備份進行復原，請參閱 [從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)。
-* 若要深入了解新的主要伺服器和資料庫的驗證需求，請參閱 [災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
+* toolearn 有關自動化 Azure SQL Database 備份，請參閱[SQL 資料庫自動備份](sql-database-automated-backups.md)。
+* toolearn 有關使用自動的備份進行復原，請參閱[hello 服務起始的備份還原的資料庫](sql-database-recovery-using-backups.md)。
+* toolearn 有關驗證需求，針對新的主要伺服器和資料庫，請參閱[後嚴重損壞修復的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
 

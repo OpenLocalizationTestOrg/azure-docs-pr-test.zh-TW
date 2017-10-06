@@ -1,6 +1,6 @@
 ---
-title: "使用 System for Cross-Domain Identity Management 自動將使用者和群組從 Azure Active Directory 佈建到應用程式 | Microsoft Docs"
-description: "Azure Active Directory 會利用 SCIM 通訊協定規格中定義的介面，自動佈建使用者和群組到 Web 服務前端的任何應用程式或身分識別存放區"
+title: "aaaUsing 跨網域的識別管理的系統自動佈建使用者和群組從 Azure Active Directory tooapplications |Microsoft 文件"
+description: "Azure Active Directory 會自動佈建使用者及群組 tooany 應用程式或身分識別存放區由 web 服務 fronted hello hello SCIM 通訊協定規格中定義的介面"
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -16,81 +16,81 @@ ms.date: 07/28/2017
 ms.author: asmalser
 ms.reviewer: asmalser
 ms.custom: aaddev;it-pro;oldportal
-ms.openlocfilehash: 91978cee88d55c99bcb63c63cdaf01581ae84668
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 43045c97e68d0d22db598dcb5ec23481c4e97718
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-system-for-cross-domain-identity-management-to-automatically-provision-users-and-groups-from-azure-active-directory-to-applications"></a>使用 System for Cross-Domain Identity Management 自動將使用者和群組從 Azure Active Directory 佈建到應用程式
+# <a name="using-system-for-cross-domain-identity-management-tooautomatically-provision-users-and-groups-from-azure-active-directory-tooapplications"></a>使用來自 Azure Active Directory tooapplications 跨網域身分識別管理 tooautomatically 佈建使用者和群組的系統
 
 ## <a name="overview"></a>概觀
-Azure Active Directory (Azure AD) 會利用 [System for Cross-Domain Identity Management (SCIM) 2.0 通訊協定規格](https://tools.ietf.org/html/draft-ietf-scim-api-19)中定義的介面，自動佈建使用者和群組到 Web 服務前端的任何應用程式或身分識別存放區。 Azure Active Directory 可以傳送要求以建立、修改或刪除指派給 Web 服務的使用者和群組。 然後 Web 服務可以將這些要求轉譯成目標身分識別存放區上的作業。 
+Azure Active Directory (Azure AD) 可自動佈建使用者及群組 tooany 應用程式或身分識別存放區由 web 服務 fronted hello 介面定義中 hello[系統跨網域身分識別管理 (SCIM) 2.0通訊協定規格](https://tools.ietf.org/html/draft-ietf-scim-api-19)。 Azure Active Directory 可以傳送要求 toocreate、 修改或刪除指定的使用者和群組 toohello web 服務。 hello web 服務可以再將這些要求轉譯成 hello 目標身分識別存放區上的作業。 
 
 > [!IMPORTANT]
-> Microsoft 建議您使用 Azure 入口網站中的 [Azure AD 系統管理中心](https://aad.portal.azure.com)來管理 Azure AD，而不要使用本文所提及的 Azure 傳統入口網站。 
+> Microsoft 建議您管理 Azure AD 使用 hello [Azure AD 系統管理中心](https://aad.portal.azure.com)hello 在 Azure 入口網站，而不是使用 hello 這個文件中參考的 Azure 傳統入口網站。 
 
 
 
 ![][0]
-圖 1：透過 Web 服務從 Azure Active Directory 佈建到身分識別存放區
+*圖 1： 佈建 Azure Active Directory web 服務透過 tooan 身分識別存放區從*
 
-這項功能可搭配 Azure AD 中的「自備應用程式」功能，以為提供 SCIM Web 服務或位於該服務後端的應用程式啟用單一登入和自動使用者佈建。
+這項功能可搭配 Azure AD tooenable 單一登入和自動使用者佈建來提供或為 fronted SCIM web 服務應用程式中的 hello 「 攜帶您自己的應用程式 」 功能。
 
 在 Azure Active Directory 中使用 SCIM 有兩個使用案例：
 
-* **將使用者與群組佈建至支援 SCIM 的應用程式** - 應用程式若支援 SCIM 2.0，而且使用 OAuth 持有人權杖進行驗證，將可直接與 Azure AD 搭配運作，不需其他設定。
-* **為支援其他 API 型佈建的應用程式建置您自己的佈建解決方案** - 對於非 SCIM 應用程式，您可以建立能夠在 Azure AD SCIM 端點與應用程式為使用者佈建支援的任何 API 之間進行轉譯的 SCIM 端點。 為了協助您開發 SCIM 端點，我們連同程式碼範例提供了通用語言基礎結構 (CLI) 程式庫，為您說明如何提供 SCIM 端點及轉譯 SCIM 訊息。  
+* **佈建使用者及群組 tooapplications 支援 SCIM**支援 SCIM 2.0 和使用的驗證可搭配不需設定 Azure AD 的 OAuth 承載語彙基元的應用程式。
+* **建置您自己的佈建解決方案針對支援其他應用程式開發介面為基礎的佈建應用程式**非 SCIM 應用程式，您可以建立 SCIM 端點 tootranslate hello Azure AD SCIM 端點之間任何 API hello 應用程式支援進行使用者佈建。 toohelp 開發 SCIM 端點，我們提供通用語言基礎結構 (CLI) 文件庫，以及程式碼範例會示範如何 toodo 提供 SCIM 端點，以及將 SCIM 訊息轉譯。  
 
-## <a name="provisioning-users-and-groups-to-applications-that-support-scim"></a>將使用者與群組佈建至支援 SCIM 的應用程式
-Azure AD 可以設定為將已指派的使用者和群組佈建至實作 [System for Cross-domain Identity Management 2 (SCIM)](https://tools.ietf.org/html/draft-ietf-scim-api-19) Web 服務、並接受以 OAuth 持有人權杖進行驗證的應用程式。 在 SCIM 2.0 規格中，應用程式必須符合下列需求：
+## <a name="provisioning-users-and-groups-tooapplications-that-support-scim"></a>佈建使用者及群組 tooapplications 支援 SCIM
+Azure AD 可設定的 tooautomatically 指派的佈建使用者及群組 tooapplications 可實作[跨網域 2 (SCIM) 的身分識別管理系統](https://tools.ietf.org/html/draft-ietf-scim-api-19)web 服務，並接受驗證的 OAuth 承載語彙基元. Hello SCIM 2.0 規格中的應用程式必須符合下列需求：
 
-* 支援根據 SCIM 通訊協定 3.3 小節建立使用者和 (或) 群組的作業。  
-* 支援根據 SCIM 通訊協定 3.5.2 小節修改具有修補要求的使用者和 (或) 群組的作業。  
-* 支援根據 SCIM 通訊協定 3.4.1 小節擷取已知資源的作業。  
-* 支援根據 SCIM 通訊協定 3.4.2 小節查詢使用者和 (或) 群組的作業。  依預設會依 externalId 來查詢使用者，並依 displayName 查詢群組。  
-* 支援根據 SCIM 通訊協定 3.4.2 小節，依 ID 和管理員查詢使用者的作業。  
-* 支援根據 SCIM 通訊協定 3.4.2 小節，依 ID 和成員查詢群組的作業。  
-* 接受根據 SCIM 通訊協定 2.1 小節以 OAuth 持有人權杖進行授權的作法。
+* 建立使用者和/或群組，根據 3.3 節 hello SCIM 通訊協定的支援。  
+* 修改使用者和/或群組與修補程式要求依照區段 3.5.2 hello SCIM 通訊協定的支援。  
+* 擷取已知的資源，根據區段 3.4.1 hello SCIM 通訊協定的支援。  
+* 查詢使用者和/或群組，依據區段 3.4.2 hello SCIM 通訊協定的支援。  依預設會依 externalId 來查詢使用者，並依 displayName 查詢群組。  
+* 查詢使用者 ID 和由管理員根據區段 3.4.2 hello SCIM 通訊協定的支援。  
+* 查詢群組 ID 和成員根據區段 3.4.2 hello SCIM 通訊協定的支援。  
+* 接受授權 > 一節 2.1 根據 hello SCIM 通訊協定的 OAuth 承載語彙基元。
 
 洽詢應用程式提供者，或參閱應用程式提供者文件中的相關陳述，以了解是否符合這些需求。
 
 ### <a name="getting-started"></a>開始使用
-支援本文所述 SCIM 設定檔的應用程式，可使用 Azure AD 應用程式庫中的「不在資源庫內的應用程式」功能連線到 Azure Active Directory。 連線之後，Azure AD 會每隔 20 分鐘執行一次同步處理程序，此程序會為指派的使用者和群組查詢應用程式的 SCIM 端點，並根據指派詳細資料加以建立或修改。
+支援在本文中所述的 hello SCIM 設定檔的應用程式可連接的 tooAzure Active Directory 使用 hello Azure AD 應用程式庫中的 hello 「 非組件庫應用程式 」 功能。 一旦連線、 Azure AD 執行同步處理程序會用來查詢應用程式 hello SCIM 端點每隔 20 分鐘指派使用者和群組，並建立或修改它們根據 toohello 指派詳細資料。
 
-**若要連接支援 SCIM 的應用程式：**
+**tooconnect 支援 SCIM 的應用程式：**
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。 
-2. 瀏覽至 **Azure Active Directory > 企業應用程式，然後選取 [	新增應用程式] > [全部] > [不在資源庫內的應用程式]。
-3. 輸入您的應用程式名稱，然後按一下 [新增] 圖示，以建立應用程式物件。
+1. 登入太[hello Azure 入口網站](https://portal.azure.com)。 
+2. 瀏覽過 * * Azure Active Directory > 企業應用程式，然後選取**新的應用程式 > 所有 > 非組件庫的應用程式**。
+3. 輸入您的應用程式的名稱，然後按一下**新增**圖示 toocreate 應用程式物件。
     
   ![][1]
   圖 2：使用 Azure AD 應用程式庫
     
-4. 在結果畫面中，選取左側資料行中的 [佈建] 索引標籤。
-5. 在 [佈建模式] 功能表上，選取 [自動]。
+4. 在 hello 結果 畫面上，選取 hello**佈建**hello 左側資料行中的索引標籤。
+5. 在 hello**佈建模式**功能表上，選取**自動**。
     
   ![][2]
-  圖 3：在 Azure 入口網站中設定佈建
+  *圖 3： 設定 hello Azure 入口網站中佈建*
     
-6. 在 [租用戶 URL] 欄位中，輸入應用程式 SCIM 端點的 URL。 範例：https://api.contoso.com/scim/v2/
-7. 如果 SCIM 端點需要來自非 Azure AD 簽發者的 OAuth 持有人權杖，那麼便將所需的 OAuth 持有人權杖複製到選擇性 [祕密權杖] 欄位。 如果此欄位保留空白，則 Azure AD 會在每個要求包含從 Azure AD 簽發的 OAuth 持有人權杖。 使用 Azure AD 作為識別提供者的應用程式，可以驗證此 Azure AD 簽發的權杖。
-8. 按一下 [測試連線] 按鈕，讓 Azure Active Directory 嘗試連線到 SCIM 端點。 如果嘗試失敗，則會顯示錯誤資訊。  
-9. 如果嘗試連線到應用程式成功，則按一下 [儲存] 以儲存管理員認證。
-10. 在 [對應] 區段中，有兩組可選取的屬性對應：一個用於使用者物件，一個用於群組物件。 選取其中一個以檢閱從 Azure Active Directory 同步處理至應用程式的屬性。 選取為 [比對] 屬性的屬性會用來比對應用程式中的使用者和群組以進行更新作業。 選取 [儲存] 按鈕以認可任何變更。
+6. 在 hello**租用戶 URL**欄位中，輸入 hello hello 應用程式的 SCIM 端點 URL。 範例：https://api.contoso.com/scim/v2/
+7. 如果 hello SCIM 端點需要簽發者以外的 Azure AD 中，從 OAuth 承載權杖，則複製 hello required OAuth 承載權杖到 hello 選擇性**密碼語彙基元**欄位。 如果此欄位保留空白，則 Azure AD 會在每個要求包含從 Azure AD 簽發的 OAuth 持有人權杖。 使用 Azure AD 作為識別提供者的應用程式，可以驗證此 Azure AD 簽發的權杖。
+8. 按一下 hello**測試連接**按鈕 toohave Azure Active Directory 嘗試 tooconnect toohello SCIM 端點。 如果 hello 嘗試都失敗，則會顯示資訊時發生錯誤。  
+9. 如果成功 hello 嘗試 tooconnect toohello 應用程式，然後按一下**儲存**toosave hello 系統管理員認證。
+10. 在 hello**對應**區段中，有兩組可選取的屬性對應： 一個給使用者物件，一個群組物件。 選取同步處理每一個 tooreview hello 屬性從 Azure Active Directory tooyour 應用程式。 hello 做為所選取的屬性**比對**屬性是您的應用程式進行更新作業中使用的 toomatch hello 使用者和群組。 選取 hello 儲存按鈕 toocommit 任何變更。
 
     >[!NOTE]
-    >您可以選擇性地藉由停用「群組」對應以停用同步處理群組物件。 
+    >您可以選擇性地停用正在同步處理群組物件的停用 hello 「 群組 」 對應。 
 
-11. 在 [設定] 底下的 [範圍] 欄位定義哪些使用者或群組會進行同步處理。 選取 [僅同步處理指派的使用者和群組]\(建議選項) 只會同步處理 [使用者和群組] 索引標籤中指派的使用者和群組。
-12. 一旦您的設定完成，請將 [佈建狀態] 變更為 [開啟]。
-13. 按一下 [儲存] 以啟動 Azure AD 佈建服務。 
-14. 如果僅同步處理指派的使用者和群組 (建議選項)，請務必選取 [使用者和群組] 索引標籤，並且指派您想要同步處理的使用者和/或群組。
+11. 在下**設定**，hello**範圍**欄位會定義哪些使用者或工作群組同步處理。 選取 「 同步處理只指派使用者和群組 （建議選項） 只會同步使用者和群組指派在 hello**使用者和群組** 索引標籤。
+12. 您的設定完成之後，請變更 hello**佈建狀態**太**上**。
+13. 按一下**儲存**toostart hello Azure AD 佈建服務。 
+14. 如果同步處理只會指派使用者和群組 （建議選項），是確定 tooselect hello**使用者和群組**索引標籤上，並指派 hello 使用者和/或您想 toosync 的群組。
 
-一旦啟動初始同步處理，您可以使用 [稽核記錄] 索引標籤以監視進度，進步會顯示佈建服務在您的應用程式上執行的所有動作。 如需如何讀取 Azure AD 佈建記錄的詳細資訊，請參閱[關於使用者帳戶自動佈建的報告](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting)。
+一旦啟動 hello 初始同步處理後，您可以使用 hello**稽核記錄檔**toomonitor 進度會顯示 hello 佈建應用程式上的服務所執行的所有動作索引標籤上。 如需有關 tooread hello Azure AD 佈建的記錄方式的詳細資訊，請參閱[報告使用者自動帳戶佈建](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting)。
 
 >[!NOTE]
->初始同步處理會比後續的同步處理花費較多時間執行，只要服務正在執行，大約每 20 分鐘便會發生一次。 
+>hello 初始同步處理會較長的 tooperform 比發生大約每隔 20 分鐘，只要 hello 服務正在執行的後續同步處理。 
 
 
 ## <a name="building-your-own-provisioning-solution-for-any-application"></a>為任何應用程式建置您自己的佈建解決方案
@@ -98,82 +98,82 @@ Azure AD 可以設定為將已指派的使用者和群組佈建至實作 [System
 
 其運作方式如下：
 
-1. Azure AD 提供名為 [Microsoft.SystemForCrossDomainIdentityManagement](https://www.nuget.org/packages/Microsoft.SystemForCrossDomainIdentityManagement/)的通用語言基礎結構程式庫。 系統整合業者和開發人員可以使用此程式庫來建立及部署能夠將 Azure AD 連線到任何應用程式的身分識別存放區的 SCIM 式 Web 服務端點。
-2. 對應會在 Web 服務中實作，以將標準的使用者結構描述對應到使用者結構描述和應用程式所需的通訊協定。
-3. 端點 URL 會在 Azure AD 中註冊，作為應用程式資源庫中自訂應用程式的一部分。
-4. 使用者和群組會在 Azure AD 中指派給此應用程式。 指派時，它們會被放入佇列，以同步處理至目標應用程式。 同步處理程序會每隔 20 分鐘處理佇列的執行。
+1. Azure AD 提供名為 [Microsoft.SystemForCrossDomainIdentityManagement](https://www.nuget.org/packages/Microsoft.SystemForCrossDomainIdentityManagement/)的通用語言基礎結構程式庫。 系統整合人員和開發人員可以使用此程式庫 toocreate 並部署 SCIM 為基礎的 web 服務端點連接的 Azure AD tooany 應用程式的身分識別存放區功能。
+2. 對應會實作 hello web 服務 toomap hello 標準的使用者結構描述 toohello 使用者結構描述和 hello 應用程式所需的通訊協定。
+3. hello 應用程式庫中的自訂應用程式一部分的 Azure AD 中註冊 hello 端點 URL。
+4. 使用者和群組指派 toothis 應用程式在 Azure AD 中。 指派，時，它們被放入佇列進行同步處理的 toobe toohello 目標應用程式。 處理 hello 佇列 hello 同步處理程序執行每隔 20 分鐘。
 
 ### <a name="code-samples"></a>程式碼範例
-為了讓這個程序更簡單，我們提供了一組 [程式碼範例](https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master) ，該範例會建立 SCIM Web 服務端點並示範自動佈建。 其中一個範例是維護代表使用者和群組、具有逗號分隔值資料列檔案的提供者。  另一個是在 Amazon Web 服務身分識別與存取管理服務上運作的提供者。  
+toomake 此程序會更容易，一組[程式碼範例](https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master)會提供可建立 SCIM web 服務端點，並示範自動佈建。 其中一個範例是維護代表使用者和群組、具有逗號分隔值資料列檔案的提供者。  其他 hello 是 hello Amazon Web Services 識別和存取管理服務上運作的提供者。  
 
 **必要條件**
 
 * Visual Studio 2013 或更新版本
 * [Azure SDK for .NET](https://azure.microsoft.com/downloads/)
-* 支援將 ASP.NET Framework 4.5 用作 SCIM 端點的 Windows 電腦。 必須能夠自雲端存取這台電腦
+* Hello SCIM 端點作為支援 hello ASP.NET framework 4.5 toobe 的 Windows 電腦。 此電腦必須能夠從 hello 雲端存取
 * [具有 Azure AD Premium 試用版或授權版的 Azure 訂用帳戶](https://azure.microsoft.com/services/active-directory/)
-* Amazon AWS 範例需要來自 [AWS Toolkit for Visual Studio](http://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/tkv_setup.html)的程式庫。 如需詳細資訊，請參閱範例隨附的讀我檔案。
+* hello Amazon AWS 範例需要程式庫 hello [AWS Toolkit for Visual Studio](http://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/tkv_setup.html)。 如需詳細資訊，請參閱 hello 讀我檔案包含 hello 範例檔。
 
 ### <a name="getting-started"></a>開始使用
-實作可以接受來自 Azure AD 的佈建要求的 SCIM 端點的最簡單的方式是建置和部署會將佈建的使用者輸出至以逗號分隔值 (CSV) 檔案的程式碼範例。
+hello 可接受佈建 SCIM 端點會從 Azure AD 要求最簡單方式 tooimplement toobuild 並部署 hello 輸出 hello 佈建的使用者 tooa 逗點分隔值 (CSV) 檔案的程式碼範例。
 
-**若要建立範例 SCIM 端點：**
+**toocreate 範例 SCIM 端點：**
 
-1. 在 [https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master](https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master)
-2. 將套件解壓縮並將放在 Windows 電腦上的位置，例如 C:\AzureAD-BYOA-Provisioning-Samples\。
-3. 在此資料夾中，於 Visual Studio 中啟動 FileProvisioningAgent 方案。
-4. 選取 [工具] > [程式庫套件管理員] > [套件管理員主控台]，然後執行以下命令，讓 FileProvisioningAgent 專案解析方案參考：
+1. 下載 hello 程式碼範例套件[https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master](https://github.com/Azure/AzureAD-BYOA-Provisioning-Samples/tree/master)
+2. 解壓縮 hello 封裝，並將它放在您的 Windows 電腦，例如 C:\AzureAD-BYOA-Provisioning-Samples\ 位置上。
+3. 在這個資料夾中，啟動 Visual Studio 中的 hello FileProvisioningAgent 方案。
+4. 選取**工具 > 程式庫套件管理員 > Package Manager Console**，並執行下列命令 hello FileProvisioningAgent 專案 tooresolve hello 解決方案參考的 hello:
   ```` 
    Install-Package Microsoft.SystemForCrossDomainIdentityManagement
    Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
    Install-Package Microsoft.Owin.Diagnostics
    Install-Package Microsoft.Owin.Host.SystemWeb
   ````
-5. 建置 FileProvisioningAgent 專案。
-6. 在 Windows 中啟動「命令提示字元」應用程式 (以系統管理員身分)，然後使用 **cd** 命令將目錄變更為您的 **\AzureAD-BYOA-Provisioning-Samples\ProvisioningAgent\bin\Debug** 資料夾。
-7. 執行以下命令，以 Windows 電腦的 IP 位址或網域名稱取代 <ip-address>：
+5. 建置 hello FileProvisioningAgent 專案。
+6. Hello 命令提示字元中啟動應用程式視窗 （以系統管理員身分），並使用 hello **cd**命令 toochange hello 目錄 tooyour **\AzureAD-BYOA-Provisioning-Samples\ProvisioningAgent\bin\Debug**資料夾。
+7. 執行下列命令，以 hello prb: hello Windows 電腦的發生 IP 位址或網域名稱取代 < 位址 > hello:
   ````   
    FileAgnt.exe http://<ip-address>:9000 TargetFile.csv
   ````
-8. 在 Windows 中，於 [Windows 設定] > [網路和網際網路設定] 底下，選取 [Windows 防火牆] > [進階設定]，然後建立允許對連接埠 9000 進行輸入存取的「輸入規則」。
-9. 如果 Windows 電腦位於路由器背後，必須將路由器設定為在公開到網際網路的連接埠 9000 和 Windows 電腦上的連接埠 9000 之間執行網路存取轉譯。 為了讓 Azure AD 能夠在雲端中存取這個端點，這是必要的。
+8. 在 Windows 下**Windows 設定 > 網路和網際網路設定**，選取 hello **Windows 防火牆 > 進階設定**，並建立**輸入規則**，允許對內的存取 tooport 9000。
+9. 如果 hello Windows 電腦之路由器的後面，hello 路由器需求設定 toobe tooperform 網路存取轉譯其連接埠 9000 之間所公開的 toohello 網際網路及連接埠 9000 hello Windows 電腦上的。 這是必要的 Azure AD toobe 無法 tooaccess hello 雲端中的這個端點。
 
-**若要在 Azure AD 中註冊範例 SCIM 端點：**
+**tooregister hello 範例 SCIM 端點在 Azure AD 中：**
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。 
-2. 瀏覽至 **Azure Active Directory > 企業應用程式，然後選取 [	新增應用程式] > [全部] > [不在資源庫內的應用程式]。
-3. 輸入您的應用程式名稱，然後按一下 [新增] 圖示，以建立應用程式物件。 建立的應用程式物件要代表您要佈建和實作登一登入的目標應用程式，而不只是 SCIM 端點。
-4. 在結果畫面中，選取左側資料行中的 [佈建] 索引標籤。
-5. 在 [佈建模式] 功能表上，選取 [自動]。
+1. 登入太[hello Azure 入口網站](https://portal.azure.com)。 
+2. 瀏覽過 * * Azure Active Directory > 企業應用程式，然後選取**新的應用程式 > 所有 > 非組件庫的應用程式**。
+3. 輸入您的應用程式的名稱，然後按一下**新增**圖示 toocreate 應用程式物件。 建立 hello 應用程式物件是預定的 toorepresent hello 目標應用程式會提供 tooand 實作單一登入，並不只是 hello SCIM 端點。
+4. 在 hello 結果 畫面上，選取 hello**佈建**hello 左側資料行中的索引標籤。
+5. 在 hello**佈建模式**功能表上，選取**自動**。
     
   ![][2]
-  圖 4：在 Azure 入口網站中設定佈建
+  *圖 4： 設定 hello Azure 入口網站中佈建*
     
-6. 在 [租用戶 URL] 欄位中，輸入網際網路公開的 URL 和 SCIM 端點的連接埠。 這看起來會像 http://testmachine.contoso.com:9000 或 http://<ip-address>:9000/，其中 <ip-address> 是網際網路公開 IP 位址。  
-7. 如果 SCIM 端點需要來自非 Azure AD 簽發者的 OAuth 持有人權杖，那麼便將所需的 OAuth 持有人權杖複製到選擇性 [祕密權杖] 欄位。 如果此欄位保留空白，則 Azure AD 將在每個要求包含從 Azure AD 簽發的 OAuth 持有人權杖。 使用 Azure AD 作為識別提供者的應用程式，可以驗證此 Azure AD 簽發的權杖。
-8. 按一下 [測試連線] 按鈕，讓 Azure Active Directory 嘗試連線到 SCIM 端點。 如果嘗試失敗，則會顯示錯誤資訊。  
-9. 如果嘗試連線到應用程式成功，則按一下 [儲存] 以儲存管理員認證。
-10. 在 [對應] 區段中，有兩組可選取的屬性對應：一個用於使用者物件，一個用於群組物件。 選取其中一個以檢閱從 Azure Active Directory 同步處理至應用程式的屬性。 選取為 [比對] 屬性的屬性會用來比對應用程式中的使用者和群組以進行更新作業。 選取 [儲存] 按鈕以認可任何變更。
-11. 在 [設定] 底下的 [範圍] 欄位定義哪些使用者或群組會進行同步處理。 選取 [僅同步處理指派的使用者和群組]\(建議選項) 只會同步處理 [使用者和群組] 索引標籤中指派的使用者和群組。
-12. 一旦您的設定完成，請將 [佈建狀態] 變更為 [開啟]。
-13. 按一下 [儲存] 以啟動 Azure AD 佈建服務。 
-14. 如果僅同步處理指派的使用者和群組 (建議選項)，請務必選取 [使用者和群組] 索引標籤，並且指派您想要同步處理的使用者和/或群組。
+6. 在 hello**租用戶 URL**欄位中，輸入 hello 網際網路公開的 URL 和連接埠 SCIM 端點。 這看起來應該像 http://testmachine.contoso.com:9000 或 http://<ip-address>:9000/，其中 < 位址 > 是 hello 網際網路公開 IP 位址。  
+7. 如果 hello SCIM 端點需要簽發者以外的 Azure AD 中，從 OAuth 承載權杖，則複製 hello required OAuth 承載權杖到 hello 選擇性**密碼語彙基元**欄位。 如果此欄位保留空白，則 Azure AD 將在每個要求包含從 Azure AD 簽發的 OAuth 持有人權杖。 使用 Azure AD 作為識別提供者的應用程式，可以驗證此 Azure AD 簽發的權杖。
+8. 按一下 hello**測試連接**按鈕 toohave Azure Active Directory 嘗試 tooconnect toohello SCIM 端點。 如果 hello 嘗試都失敗，則會顯示資訊時發生錯誤。  
+9. 如果成功 hello 嘗試 tooconnect toohello 應用程式，然後按一下**儲存**toosave hello 系統管理員認證。
+10. 在 hello**對應**區段中，有兩組可選取的屬性對應： 一個給使用者物件，一個群組物件。 選取同步處理每一個 tooreview hello 屬性從 Azure Active Directory tooyour 應用程式。 hello 做為所選取的屬性**比對**屬性是您的應用程式進行更新作業中使用的 toomatch hello 使用者和群組。 選取 hello 儲存按鈕 toocommit 任何變更。
+11. 在下**設定**，hello**範圍**欄位會定義哪些使用者或工作群組同步處理。 選取 「 同步處理只指派使用者和群組 （建議選項） 只會同步使用者和群組指派在 hello**使用者和群組** 索引標籤。
+12. 您的設定完成之後，請變更 hello**佈建狀態**太**上**。
+13. 按一下**儲存**toostart hello Azure AD 佈建服務。 
+14. 如果同步處理只會指派使用者和群組 （建議選項），是確定 tooselect hello**使用者和群組**索引標籤上，並指派 hello 使用者和/或您想 toosync 的群組。
 
-一旦啟動初始同步處理，您可以使用 [稽核記錄] 索引標籤以監視進度，進步會顯示佈建服務在您的應用程式上執行的所有動作。 如需如何讀取 Azure AD 佈建記錄的詳細資訊，請參閱[關於使用者帳戶自動佈建的報告](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting)。
+一旦啟動 hello 初始同步處理後，您可以使用 hello**稽核記錄檔**toomonitor 進度會顯示 hello 佈建應用程式上的服務所執行的所有動作索引標籤上。 如需有關 tooread hello Azure AD 佈建的記錄方式的詳細資訊，請參閱[報告使用者自動帳戶佈建](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting)。
 
-確認此範例的最後一個步驟是開啟 Windows 電腦上 \AzureAD-BYOA-Provisioning-Samples\ProvisioningAgent\bin\Debug 資料夾中的 TargetFile.csv 檔案。 一旦執行佈建程序，此檔案會顯示所有指派和佈建的使用者和群組的詳細資料。
+hello 驗證 hello 範例的最後一個步驟是 tooopen hello Windows 電腦上的 TargetFile.csv 檔 hello \AzureAD-BYOA-Provisioning-Samples\ProvisioningAgent\bin\Debug 資料夾中。 一旦執行 hello 佈建程序時，此檔案會顯示 hello 詳細資料，所有的指派，並佈建使用者和群組。
 
 ### <a name="development-libraries"></a>開發程式庫
-若要開發自己符合 SCIM 規格的 Web 服務，請先熟悉下列 Microsoft 所提供、有助於加速開發程序的程式庫： 
+toodevelop 您自己的 web 服務，並符合 toohello SCIM 規格，先熟悉下列程式庫，提供由 Microsoft toohelp 加速 hello 開發程序的 hello: 
 
-1. 提供通用語言基礎結構 (CLI) 程式庫，可與以該基礎結構為基礎的語言 (例如 C#) 搭配使用。 其中一個程式庫，[Microsoft.SystemForCrossDomainIdentityManagement.Service](https://www.nuget.org/packages/Microsoft.SystemForCrossDomainIdentityManagement/)，會宣告介面 (Microsoft.SystemForCrossDomainIdentityManagement.IProvider)，如下圖所示：使用程式庫的開發人員會以參考 (通常是作為提供者) 的類別來實作該介面。 程式庫可讓開發人員部署符合 SCIM 規格的 Web 服務。 Web 服務可以裝載在 Internet Information Services 或任何可執行的通用語言基礎結構組件。 要求會轉譯成對提供者的方法呼叫，該呼叫會由開發人員以程式方式設計，以對某些身分識別存放區進行操作。
+1. 提供通用語言基礎結構 (CLI) 程式庫，可與以該基礎結構為基礎的語言 (例如 C#) 搭配使用。 這些程式庫，其中[Microsoft.SystemForCrossDomainIdentityManagement.Service](https://www.nuget.org/packages/Microsoft.SystemForCrossDomainIdentityManagement/)，宣告的介面，Microsoft.SystemForCrossDomainIdentityManagement.IProvider，hello 下列圖例所示： A使用 hello 程式庫的開發人員會實作該介面，也就是，一般提供者的類別。 hello 程式庫可讓 hello 開發人員 toodeploy 符合 toohello SCIM 規格的 web 服務。 hello web 服務可以被裝載在 Internet Information Services 或任何可執行的通用語言基礎結構組件。 要求會轉譯成呼叫 toohello 提供者的方法，會由 hello 某些身分識別存放區上的開發人員 toooperate 編寫程式。
   
   ![][3]
   
-2. [ExpressRoute 處理常式](http://expressjs.com/guide/routing.html)可剖析代表對 node.js Web 服務發出之呼叫 (如 SCIM 規格所定義) 的 node.js 要求物件。   
+2. [Express 路由處理常式](http://expressjs.com/guide/routing.html)供剖析 node.js 要求物件，代表所呼叫 （它是由定義 hello SCIM 規格），的進行 tooa node.js web 服務。   
 
 ### <a name="building-a-custom-scim-endpoint"></a>建置自訂 SCIM 端點
-使用 CLI 程式庫，使用這些程式庫的開發人員可以將其服務託管在任何可執行的通用語言基礎結構組件內，或在網際網路資訊服務內。 以下是範例程式碼，此程式碼可將服務裝載於位於位址 http://localhost:9000 的可執行組件內： 
+使用 hello CLI 程式庫，使用這些程式庫的開發人員可以裝載任何可執行檔的通用語言基礎結構組件，或 Internet Information Services 中其服務。 以下是裝載在 hello 位址 http://localhost:9000 可執行組件內的服務範例程式碼： 
 
     private static void Main(string[] arguments)
     {
@@ -244,7 +244,7 @@ Azure AD 可以設定為將已指派的使用者和群組佈建至實作 [System
     }
     }
 
-這項服務必須具有 HTTP 位址，而其伺服器驗證憑證的根憑證授權單位是下列其中一項： 
+此服務必須要有 HTTP 位址和伺服器驗證憑證的 hello 的根憑證授權單位是 hello 下列其中一種： 
 
 * CNNIC
 * Comodo
@@ -256,13 +256,13 @@ Azure AD 可以設定為將已指派的使用者和群組佈建至實作 [System
 * Verisign
 * WoSign
 
-伺服器驗證憑證可以使用網路殼層公用程式繫結到 Windows 主機上的連接埠： 
+伺服器驗證憑證可以是使用 hello 網路殼層公用程式的 Windows 主機上的繫結的 tooa 連接埠： 
 
     netsh http add sslcert ipport=0.0.0.0:443 certhash=0000000000003ed9cd0c315bbb6dc1c08da5e6 appid={00112233-4455-6677-8899-AABBCCDDEEFF}  
 
-此處，對 certhash 引數提供的值為憑證指紋，而對 appid 引數提供的值為任意的全域唯一識別碼。  
+此處 hello 值提供給 hello certhash 引數都是 hello 憑證的指紋 hello，而 hello 值提供給 hello appid 引數是任意的全域唯一識別碼。  
 
-若要將服務託管在網際網路資訊服務內，開發人員會建置 CLA 程式碼程式庫組件，並在組件的預設命名空間中使用名為 Startup 的類別。  以下是這種類別的範例： 
+toohost hello Internet Information Services 中的服務，開發人員會使用類別 hello hello 組件的預設命名空間中的啟動建置 CLA 程式碼程式庫組件。  以下是這種類別的範例： 
 
     public class Startup
     {
@@ -293,11 +293,11 @@ Azure AD 可以設定為將已指派的使用者和群組佈建至實作 [System
     }
 
 ### <a name="handling-endpoint-authentication"></a>處理端點驗證
-來自 Azure Active Directory 的要求包括 OAuth 2.0 持有人權杖。   接收要求的任何服務應該代表預期的 Azure Active Directory 租用戶，將簽發者驗證為 Azure Active Directory，以存取 Azure Active Directory 圖形 Web 服務。  在 Token 中，簽發者是由 iss 宣告，例如："iss":"https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/"。  在此範例中，宣告值的基礎位址 https://sts.windows.net 會將 Azure Active Directory 識別為簽發者，而相對位址區段 cbb1a5ac-f33b-45fa-9bf5-f37db0fed422 則是簽發權杖時所代表之 Azure Active Directory 租用戶的唯一識別碼。  如果發出的權杖要用於存取 Azure Active Directory 圖形 Web 服務，則該服務的識別項 00000002-0000-0000-c000-000000000000，應該位於權杖的 aud 宣告中的值。  
+來自 Azure Active Directory 的要求包括 OAuth 2.0 持有人權杖。   任何服務接收 hello 要求應該驗證為 Azure Active Directory 代表 hello 必須是 Azure Active Directory 租用戶，如存取 toohello Azure Active Directory Graph web 服務的 hello 簽發者。  Hello 語彙基元，在 hello 簽發者由 iss 宣告，像是 「 iss":"https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/"。  在此範例中，基底位址 hello 宣告值 hello https://sts.windows.net，會識別 Azure Active Directory，為 hello 簽發者、 時 hello cbb1a5ac-f33b-45fa-9bf5-f37db0fed422，相對位址區段的唯一識別碼 hello Azure Active代表的 hello 發行權杖的目錄租用戶。  如果發行的存取 hello Azure Active Directory Graph web 服務，該服務，然後 hello 識別碼 hello 權杖 00000002-0000-0000-c000-000000000000，應該是 hello 語彙基元則 hello 值中宣告。  
 
-開發人員若使用 Microsoft 所提供的 CLA 程式庫來建置 SCIM 服務，可以依照下列步驟使用 Microsoft.Owin.Security.ActiveDirectory 套件以驗證來自 Azure Active Directory 的要求： 
+使用由 Microsoft 提供的建置 SCIM 服務的 hello CLA 程式庫的開發人員可以驗證要求，從 Azure Active Directory 使用 hello Microsoft.Owin.Security.ActiveDirectory 套件，依照下列步驟： 
 
-1. 在提供者中，透過讓 Microsoft.SystemForCrossDomainIdentityManagement.IProvider.StartupBehavior 屬性在每次服務啟動時傳回要呼叫的方法，來實作此屬性： 
+1. 提供者，讓它傳回 hello 服務啟動時呼叫方法 toobe 實作 hello Microsoft.SystemForCrossDomainIdentityManagement.IProvider.StartupBehavior 屬性： 
 
   ````
     public override Action\<Owin.IAppBuilder, System.Web.Http.HttpConfiguration.HttpConfiguration\> StartupBehavior
@@ -315,7 +315,7 @@ Azure AD 可以設定為將已指派的使用者和群組佈建至實作 [System
     }
   ````
 
-2. 將下列程式碼新增到該方法中，以將對任何服務端點發出的任何要求，都驗證為持有 Azure Active Directory 代表指定租用戶簽發的權杖，以存取 Azure AD 圖形 Web 服務： 
+2. 加入下列程式碼 toothat 方法 toohave hello hello 服務端點為 bearing 代表指定的租用戶，存取 toohello Azure AD Graph web 服務的 Azure Active Directory 所發出的權杖進行驗證的任何要求 tooany: 
 
   ````
     private void OnServiceStartup(
@@ -340,7 +340,7 @@ Azure AD 可以設定為將已指派的使用者和群組佈建至實作 [System
       WindowsAzureActiveDirectoryBearerAuthenticationOptions authenticationOptions =
         new WindowsAzureActiveDirectoryBearerAuthenticationOptions()    {
         TokenValidationParameters = tokenValidationParameters,
-        Tenant = "03F9FCBC-EA7B-46C2-8466-F81917F3C15E" // Substitute the appropriate tenant’s 
+        Tenant = "03F9FCBC-EA7B-46C2-8466-F81917F3C15E" // Substitute hello appropriate tenant’s 
                                                       // identifier for this one.  
       };
 
@@ -350,11 +350,11 @@ Azure AD 可以設定為將已指派的使用者和群組佈建至實作 [System
 
 
 ## <a name="user-and-group-schema"></a>使用者和群組結構描述
-Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  這些類型的資源是使用者和群組。  
+Azure Active Directory 可以佈建兩種類型的資源 tooSCIM web 服務。  這些類型的資源是使用者和群組。  
 
-使用者資源是由結構描述識別碼 urn:ietf:params:scim:schemas:extension:enterprise:2.0:User 識別，此識別碼包含在下列通訊協定規格中：http://tools.ietf.org/html/draft-ietf-scim-core-schema。  以下的表 1 提供相對於urn:ietf:params:scim:schemas:extension:enterprise:2.0:User 資源的屬性，Azure Active Directory 中使用者屬性的預設對應。  
+使用者資源由識別碼所識別 hello 結構描述，urn: ietf:params:scim:schemas:extension:enterprise:2.0:User，隨附於此通訊協定規格： http://tools.ietf.org/html/draft-ietf-scim-core-schema。  資料表 1，底下提供 hello 預設對應的 hello 屬性的 urn: ietf:params:scim:schemas:extension:enterprise:2.0:User 資源的 Azure Active Directory toohello 屬性中的使用者。  
 
-群組資源是由結構描述識別碼 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group 識別。  下面的表 2 顯示 Azure Active Directory 中的群組屬性與 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group 資源之屬性的預設對應。  
+群組資源會 hello 結構描述識別碼識別，http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group。  資料表 2 的下方顯示 hello 預設對應的 Azure Active Directory toohello 屬性在資源群組的 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group 的 hello 屬性。  
 
 ### <a name="table-1-default-user-attribute-mapping"></a>表 1：預設使用者屬性對應
 | Azure Active Directory 使用者 | urn:ietf:params:scim:schemas:extension:enterprise:2.0:User |
@@ -388,17 +388,17 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  
 | proxyAddresses |emails[type eq "other"].Value |
 
 ## <a name="user-provisioning-and-de-provisioning"></a>使用者佈建和取消佈建
-下圖顯示 Azure Active Directory 會傳送至 SCIM 服務的訊息，以管理使用者在其他身分識別存放區中的生命週期。 圖表也會示範使用 Microsoft 提供、用於建置此類服務的 CLI 程式庫所實作之 SCIM 服務如何將這些要求轉譯為對提供者的方法呼叫。  
+下列圖例顯示 hello 訊息，而 Azure Active Directory 會將 tooa SCIM 服務 toomanage hello 生命週期的使用者傳送另一個身分識別存放區中的 hello。 hello 圖表也會示範如何實作使用 hello CLI 程式庫的 SCIM 服務由 Microsoft 提供建置這類服務會將這些要求轉譯成提供者的呼叫 toohello 方法。  
 
 ![][4]
 圖 5：使用者佈建和取消佈建順序
 
-1. Azure Active Directory 會查詢服務是否有 externalId 屬性值與 Azure AD 中使用者的 mailNickname 屬性值相符的使用者。 查詢會以類似於此範例的超文字傳輸通訊協定 (HTTP) 要求表示，其中，jyoung 是 Azure Active Directory 中使用者的 mailNickname 範例： 
+1. Azure Active Directory 查詢 hello 使用者的服務與 Azure AD 中的比對使用者的 hello mailNickname 屬性的值為 externalId 屬性值。 hello 查詢會以超文字傳輸通訊協定 (HTTP) 的要求，例如此範例中，其中 jyoung 是 Azure Active Directory 中使用者的郵件別名的範例： 
   ````
     GET https://.../scim/Users?filter=externalId eq jyoung HTTP/1.1
     Authorization: Bearer ...
   ````
-  如果是使用 Microsoft 所提供、用於實作 SCIM 服務的通用語言基礎結構程式庫建置服務，會將要求轉譯為對服務提供者的 Query 方法的呼叫。  以下是該方法的簽章： 
+  如果使用實作 SCIM 服務由 Microsoft 提供的 hello 通用語言基礎結構程式庫來建置 hello 服務時，則 hello 要求時轉譯為呼叫 toohello hello 服務提供者的查詢方法。  以下是 hello 該方法的簽章： 
   ````
     // System.Threading.Tasks.Tasks is defined in mscorlib.dll.  
     // Microsoft.SystemForCrossDomainIdentityManagement.Resource is defined in 
@@ -410,7 +410,7 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  
       Microsoft.SystemForCrossDomainIdentityManagement.IQueryParameters parameters, 
       string correlationIdentifier);
   ````
-  以下是 Microsoft.SystemForCrossDomainIdentityManagement.IQueryParameters 介面的定義： 
+  以下是 hello hello Microsoft.SystemForCrossDomainIdentityManagement.IQueryParameters 介面定義： 
   ````
     public interface IQueryParameters: 
       Microsoft.SystemForCrossDomainIdentityManagement.IRetrievalParameters
@@ -446,14 +446,14 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  
         Equals
     }
   ````
-  在查詢具有給定值 externalId 屬性的使用者的下列範例中，傳遞至 Query 方法的引數值為： 
+  在下列範例，具有給定值為 hello externalId 屬性查詢使用者的 hello，hello 傳遞 toohello 查詢方法的引數的值為： 
   * parameters.AlternateFilters.Count: 1
   * parameters.AlternateFilters.ElementAt(0).AttributePath: "externalId"
   * parameters.AlternateFilters.ElementAt(0).ComparisonOperator: ComparisonOperator.Equals
   * parameters.AlternateFilter.ElementAt(0).ComparisonValue: "jyoung"
   * correlationIdentifier: System.Net.Http.HttpRequestMessage.GetOwinEnvironment["owin.RequestId"] 
 
-2. 如果向 Web 服務查詢是否有 externalId 屬性值與使用者的 mailNickname 值相符的使用者時，回應未傳回任何使用者，Azure Active Directory 就會要求服務佈建與 Azure Active Directory 中的使用者對應的使用者。  以下是這類要求的範例： 
+2. 如果 hello 回應 tooa 查詢 toohello web 服務的使用者具有 externalId 屬性值符合使用者的 hello mailNickname 屬性的值不會傳回任何使用者，Azure Active Directory 要求該 hello 服務佈建使用者對應 toohello 其中一個 Azure Active Directory 中。  以下是這類要求的範例： 
   ````
     POST https://.../scim/Users HTTP/1.1
     Authorization: Bearer ...
@@ -484,7 +484,7 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  
       "department":null,
       "manager":null}
   ````
-  Microsoft 所提供、用於實作 SCIM 服務的通用語言基礎結構程式庫，會將要求轉譯為對服務提供者的 Create 方法的呼叫。  Create 方法具有此簽章： 
+  hello 實作 SCIM 服務由 Microsoft 提供的通用語言基礎結構程式庫會將該要求轉譯成呼叫 toohello hello 服務提供者的建立方法。  Create 方法 hello 具有此簽章： 
   ````
     // System.Threading.Tasks.Tasks is defined in mscorlib.dll.  
     // Microsoft.SystemForCrossDomainIdentityManagement.Resource is defined in 
@@ -494,14 +494,14 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  
       Microsoft.SystemForCrossDomainIdentityManagement.Resource resource, 
       string correlationIdentifier);
   ````
-  在佈建使用者的要求中，資源引數的值會是 Microsoft.SystemForCrossDomainIdentityManagement 的執行個體。 Microsoft.SystemForCrossDomainIdentityManagement.Schemas 程式庫中定義的 Core2EnterpriseUser 類別。  如果佈建使用者的要求成功，則方法的實作應該會傳回 Microsoft.SystemForCrossDomainIdentityManagement 的執行個體。 Core2EnterpriseUser 類別，且其識別碼屬性值設定為新佈建使用者的唯一識別碼。  
+  要求 tooprovision 使用者，在 hello hello 資源引數是 hello Microsoft.SystemForCrossDomainIdentityManagement 的執行個體。 Hello Microsoft.SystemForCrossDomainIdentityManagement.Schemas 文件庫中定義的 Core2EnterpriseUser 類別。  如果 hello 要求 tooprovision hello 使用者成功，則 hello hello 方法的實作是預期的 tooreturn hello Microsoft.SystemForCrossDomainIdentityManagement 的執行個體。 Core2EnterpriseUser 類別，具有 hello 屬性值的 hello 識別碼設定 toohello hello 新佈建使用者的唯一識別碼。  
 
-3. 為了更新已知存在於前端為 SCIM 之身分識別存放區中的使用者，Azure Active Directory 會以類似下方的要求向服務要求該使用者的目前狀態，來繼續執行： 
+3. tooupdate 已知 tooexist fronted 由 SCIM，Azure Active Directory 會繼續進行這類要求 hello 服務要求 hello 目前狀態，該使用者的身分識別存放區中的使用者： 
   ````
     GET ~/scim/Users/54D382A4-2050-4C03-94D1-E769F1D15682 HTTP/1.1
     Authorization: Bearer ...
   ````
-  如果是使用 Microsoft 所提供、用於實作 SCIM 服務的通用語言基礎結構程式庫建置服務，會將要求轉譯為對服務提供者的 Retrieve 方法的呼叫。  以下是 Retrieve 方法的簽章： 
+  在服務中使用 hello 實作 SCIM 服務由 Microsoft 提供的通用語言基礎結構程式庫所建置，hello 要求會轉譯成呼叫 toohello hello 服務提供者的擷取方法。  以下是 hello hello 擷取方法簽章： 
   ````
     // System.Threading.Tasks.Tasks is defined in mscorlib.dll.  
     // Microsoft.SystemForCrossDomainIdentityManagement.Resource and 
@@ -529,19 +529,19 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  
           { get; set; }
     }
   ````
-  在擷取使用者目前狀態之要求的範例中，提供作為參數引數值的物件具有的屬性值如下所示： 
+  在 hello 範例中的使用者要求 tooretrieve hello 目前狀態，hello hello hello 物件提供給 hello hello 參數引數的值屬性的值如下： 
   
   * 識別碼："54D382A4-2050-4C03-94D1-E769F1D15682"
   * SchemaIdentifier: "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
 
-4. 如果要更新某個參考屬性，Azure Active Directory 就會查詢服務，以判斷以該服務作為前端之身分識別存放區中參考屬性目前的值，是否已經與 Azure Active Directory 中該屬性的值相符。 對於使用者，以這種方式可查詢目前值的唯一屬性會是管理員屬性。 要判斷特定使用者物件的管理員屬性目前是否具有某個值之要求的範例如下： 
+4. 如果不論 hello hello 身分識別存放區中的 hello 參考屬性的目前值 fronted 所參考屬性 toobe 更新，然後 Azure Active Directory 查詢 hello 服務 toodetermine hello 服務就會與 hello 該屬性的值在 Azure Active Directory。 對於使用者而言 hello 的目前值會以這種方式查詢的唯一屬性是 hello 的 hello 經理屬性。 以下是要求 toodetermine 的範例，特定的使用者物件的 hello 經理屬性目前已為某個值是否： 
   ````
     GET ~/scim/Users?filter=id eq 54D382A4-2050-4C03-94D1-E769F1D15682 and manager eq 2819c223-7f76-453a-919d-413861904646&attributes=id HTTP/1.1
     Authorization: Bearer ...
   ````
-  屬性查詢參數 id 的值，表示如果滿足提供做為篩選查詢參數值的運算式的使用者物件存在，則服務應該以 urn:ietf:params:scim:schemas:core:2.0:User 或 urn:ietf:params:scim:schemas:extension:enterprise:2.0:User 資源回應，包僅括該資源 id 屬性的值。  要求者知道**識別碼**屬性的值。 它包含在篩選查詢參數的值中；要求它的目的只是實際要求滿足篩選運算式作為任何這類物件是否存在指示之資源的最小表示。   
+  hello 值 hello 屬性查詢參數的識別碼，表示如果使用者物件存在，可滿足 hello 運算式提供給 hello 值 hello 篩選查詢參數，則 hello 服務是預期的 urn: ietf:params:scim:schemas toorespond:核心： 2.0:User 或 urn: ietf:params:scim:schemas:extension:enterprise:2.0:User 資源，包括只有 hello 該資源的 id 屬性的值。  hello 值 hello**識別碼**已知 toohello 要求者的屬性。 它包含在 hello 值 hello 篩選查詢參數。hello 目的要求它是實際 toorequest 滿足 hello 篩選運算式，以表示有這類物件存在資源的最小表示法。   
 
-  如果是使用 Microsoft 所提供、用於實作 SCIM 服務的通用語言基礎結構程式庫建置服務，會將要求轉譯為對服務提供者的 Query 方法的呼叫。 提供物件的屬性值作為參數引數的值，如下所示： 
+  如果使用實作 SCIM 服務由 Microsoft 提供的 hello 通用語言基礎結構程式庫來建置 hello 服務時，則 hello 要求時轉譯為呼叫 toohello hello 服務提供者的查詢方法。 hello hello hello 物件提供給 hello hello 參數引數的值屬性的值如下所示： 
   
   * parameters.AlternateFilters.Count: 2
   * parameters.AlternateFilters.ElementAt(x).AttributePath: "id"
@@ -553,9 +553,9 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  
   * parameters.RequestedAttributePaths.ElementAt(0): "id"
   * parameters.SchemaIdentifier: "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
 
-  在此處，索引 x 的值可能會是 0，而索引 y 的值可能是 1，或 x 值可能是 1 而 y 的值可能是 0，視篩選查詢參數運算式的順序而定。   
+  在這裡，hello hello 索引 x 值可能是 0 和 hello hello 索引的 y 值可能是 1，或 hello x 值的值可能是 1 和 hello y 的值可能是 0，hello hello filter 查詢參數運算式中的 hello 順序而定。   
 
-5. 以下是由 Azure Active Directory 對 SCIM 服務發出要求來更新使用者的範例： 
+5. 從 Azure Active Directory tooan SCIM 服務 tooupdate 使用者要求的範例如下： 
   ````
     PATCH ~/scim/Users/54D382A4-2050-4C03-94D1-E769F1D15682 HTTP/1.1
     Authorization: Bearer ...
@@ -575,7 +575,7 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  
                 "$ref":"http://.../scim/Users/2819c223-7f76-453a-919d-413861904646",
                 "value":"2819c223-7f76-453a-919d-413861904646"}]}]}
   ````
-  用於實作 SCIM 服務的 Microsoft 通用語言基礎結構程式庫，會將要求轉譯為對服務提供者的 Update 方法的呼叫。 以下是更新方法的簽章： 
+  hello Microsoft 通用語言基礎結構程式庫實作 SCIM 服務會將 hello 要求轉譯成呼叫 toohello hello 服務提供者的更新方法。 以下是 hello hello Update 方法簽章： 
   ````
     // System.Threading.Tasks.Tasks and 
     // System.Collections.Generic.IReadOnlyCollection<T>
@@ -656,7 +656,7 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  
       { get; set; }
     }
   ````
-    在更新使用者之要求的範例中，提供作為修補程式引數值的物件具有這些屬性值： 
+    在 hello 範例中的要求 tooupdate 使用者，提供給 hello 修補程式引數的 hello 值 hello 物件會具有這些屬性值： 
   
   * ResourceIdentifier.Identifier: "54D382A4-2050-4C03-94D1-E769F1D15682"
   * ResourceIdentifier.SchemaIdentifier: "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
@@ -667,12 +667,12 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  
   * (PatchRequest as PatchRequest2).Operations.ElementAt(0).Value.ElementAt(0).Reference: http://.../scim/Users/2819c223-7f76-453a-919d-413861904646
   * (PatchRequest as PatchRequest2).Operations.ElementAt(0).Value.ElementAt(0).Value: 2819c223-7f76-453a-919d-413861904646
 
-6. 若要將使用者從前端為 SCIM 服務的身分識別存放區中取消佈建，Azure AD 會傳送像以下的要求： 
+6. toode 佈建的使用者身分識別存放區 fronted SCIM 服務，例如 Azure AD 傳送的要求： 
   ````
     DELETE ~/scim/Users/54D382A4-2050-4C03-94D1-E769F1D15682 HTTP/1.1
     Authorization: Bearer ...
   ````
-  如果是使用 Microsoft 所提供、用於實作 SCIM 服務的通用語言基礎結構程式庫建置服務，會將要求轉譯為對服務提供者的 Delete 方法的呼叫。   該方法具有此簽章： 
+  如果使用實作 SCIM 服務由 Microsoft 提供的 hello 通用語言基礎結構程式庫來建置 hello 服務時，則 hello 要求時轉譯為呼叫 toohello hello 服務提供者的 Delete 方法。   該方法具有此簽章： 
   ````
     // System.Threading.Tasks.Tasks is defined in mscorlib.dll.  
     // Microsoft.SystemForCrossDomainIdentityManagement.IResourceIdentifier, 
@@ -682,29 +682,29 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。  
         resourceIdentifier, 
       string correlationIdentifier);
   ````
-  提供作為 resourceIdentifier 引數值的物件，在要取消佈建使用者之要求的範例中，會具有這些屬性值： 
+  hello 物件提供給 hello hello resourceIdentifier 引數的值具有這些屬性值在 hello 範例中的要求 toode 佈建使用者： 
   
   * ResourceIdentifier.Identifier: "54D382A4-2050-4C03-94D1-E769F1D15682"
   * ResourceIdentifier.SchemaIdentifier: "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
 
 ## <a name="group-provisioning-and-de-provisioning"></a>群組佈建和取消佈建
-下圖顯示 Azure AD 會傳送至 SCIM 服務的訊息，以管理群組在其他身分識別存放區中的生命週期。  這些訊息與使用者的訊息不同，有下列三個方面： 
+下列圖例顯示 hello 訊息，而 Azure AcD 傳送 tooa SCIM 服務 toomanage hello 生命週期的群組，另一個身分識別存放區中的 hello。  這些郵件差異 hello 訊息相關 toousers 三種方式： 
 
-* 群組資源的結構描述會識別為 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group。  
-* 擷取群組的要求會規定將成員屬性從回應要求中提供的任何資源中排除。  
-* 要求判斷參考屬性是否具有特定值，會是有關成員屬性的要求。  
+* hello 結構描述的群組資源會被視為 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group。  
+* Tooretrieve 群組中保證該 hello 成員屬性的要求是 toobe 排除回應 toohello 要求中提供的任何資源。  
+* 要求 toodetermine 參考屬性是否具有特定值，會要求有關 hello 成員屬性。  
 
 ![][5]
 圖 6：群組佈建和取消佈建順序
 
 ## <a name="related-articles"></a>相關文章
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-* [自動化 SaaS 應用程式使用者佈建/解除佈建](active-directory-saas-app-provisioning.md)
+* [自動化使用者佈建/取消佈建 tooSaaS 應用程式](active-directory-saas-app-provisioning.md)
 * [自訂使用者佈建的屬性對應](active-directory-saas-customizing-attribute-mappings.md)
 * [撰寫屬性對應的運算式](active-directory-saas-writing-expressions-for-attribute-mappings.md)
 * [適用於使用者佈建的範圍篩選器](active-directory-saas-scoping-filters.md)
 * [帳戶佈建通知](active-directory-saas-account-provisioning-notifications.md)
-* [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [如何教學課程清單 tooIntegrate SaaS 應用程式](active-directory-saas-tutorial-list.md)
 
 <!--Image references-->
 [0]: ./media/active-directory-scim-provisioning/scim-figure-1.PNG

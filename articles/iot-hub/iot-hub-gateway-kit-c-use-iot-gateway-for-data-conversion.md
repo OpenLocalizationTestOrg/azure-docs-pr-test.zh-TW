@@ -1,6 +1,6 @@
 ---
-title: "在 IoT 閘道上使用 Azure IoT Edge 進行資料轉換 | Microsoft Docs"
-description: "使用 IoT 閘道可從 Azure IoT Edge 透過自訂模組轉換感應器資料的格式。"
+title: "Azure IoT 邊緣 IoT 閘道上的 aaaData 轉換 |Microsoft 文件"
+description: "使用透過 Azure IoT 邊緣的自訂模組的感應器資料的 IoT 閘道 tooconvert hello 格式。"
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,88 +15,88 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/25/2017
 ms.author: xshi
-ms.openlocfilehash: d5c735a4adbc59e9526ec4fd40720c5ec136d63d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ae94b1f96f36dfcb4f77fadc0ece3cff3d0bba91
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-iot-gateway-for-sensor-data-transformation-with-azure-iot-edge"></a>搭配 Azure IoT Edge 使用 IoT 閘道進行感應器資料轉換
 
 > [!NOTE]
-> 開始本教學課程之前，請確定您循序完成下列課程：
+> 開始本教學課程之前，請確定您已完成下列課程序列中的 hello:
 > * [將 Intel NUC 設定為 IoT 閘道](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
-> * [使用 IoT 閘道將裝置連接到雲端 - SensorTag 至 Azure IoT 中樞](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
+> * [使用 IoT 閘道 tooconnect 事項 toohello 雲端 SensorTag tooAzure IoT 中樞](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
 
-IoT 閘道的其中一個用途是要在傳送資料至雲端之前處理所收集的資料。 Azure IoT Edge 推出的模組可用來建立和組合以形成資料處理工作流程。 模組會接收訊息、對其執行某個動作，然後移動它，以供其他模組處理。
+Iot 閘道的其中一個用途是 tooprocess 收集資料，再將它傳送 toohello 雲端。 Azure IoT 邊緣導入了可建立和組裝 tooform hello 資料處理工作流程的模組。 模組接收訊息、 執行一些動作，然後再針對其他模組 tooprocess 移動。
 
 ## <a name="what-you-learn"></a>您學到什麼
 
-您了解如何建立模組，將訊息從 SensorTag 轉換成不同格式。
+您了解 toocreate 模組 tooconvert 從 hello SensorTag 成不同格式的訊息。
 
 ## <a name="what-you-do"></a>您要做什麼
 
-* 建立模組，將已接收的訊息轉換成 .json 格式。
-* 編譯模組。
-* 透過 Azure IoT Edge 將模組新增至 BLE 範例應用程式。
-* 執行範例應用程式。
+* 建立模組 tooconvert 接收的訊息為 hello.json 格式。
+* 編譯 hello 模組。
+* 加入 Azure IoT 邊緣 hello 模組 toohello b 範例應用程式。
+* 執行 hello 範例應用程式。
 
 ## <a name="what-you-need"></a>您需要什麼
 
-* 循序完成下列教學課程：
+* 下列教學課程完成順序中的 hello:
   * [將 Intel NUC 設定為 IoT 閘道](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
-  * [使用 IoT 閘道將裝置連接到雲端 - SensorTag 至 Azure IoT 中樞](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
+  * [使用 IoT 閘道 tooconnect 事項 toohello 雲端 SensorTag tooAzure IoT 中樞](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
 * 在主機電腦上執行的 SSH 用戶端。 Windows 上建議使用 PuTTY。 Linux 和 macOS 已隨附 SSH 用戶端。
-* 從 SSH 用戶端存取閘道所用的 IP 位址和使用者名稱和密碼。
+* hello IP 位址和 hello 使用者名稱和密碼 tooaccess hello hello SSH 用戶端的閘道。
 * 網際網路連線。
 
 ## <a name="create-a-module"></a>建立模組
 
-1. 在主機電腦上，執行 SSH 用戶端並連線至 IoT 閘道。
-1. 執行下列命令，將轉換模組的原始程式檔從 GitHub 複製到 IoT 閘道的主目錄：
+1. Hello 主機電腦上，執行 hello SSH 用戶端，並連接 toohello IoT 閘道。
+1. 藉由執行下列命令的 hello 複製 hello hello 轉換模組從 GitHub toohello 主目錄的 hello IoT 閘道的原始程式檔：
 
    ```bash
    cd ~
    git clone https://github.com/Azure-Samples/iot-hub-c-intel-nuc-gateway-customized-module.git
    ```
 
-   這是以 C 程式設計語言撰寫的原生 Azure Edge 模組。 模組會將所接收訊息的格式轉換成下列其中一個：
+   這是 hello C 程式設計語言撰寫的原生 Azure 邊緣模組。 hello 模組會將 hello 格式接收的訊息轉換成下列其中一個 hello:
 
    ```json
    {"deviceId": "Intel NUC Gateway", "messageId": 0, "temperature": 0.0}
    ```
 
-## <a name="compile-the-module"></a>編譯模組
+## <a name="compile-hello-module"></a>編譯 hello 模組
 
-若要編譯模組，請執行下列命令：
+toocompile hello 模組，執行下列命令的 hello:
 
 ```bash
 cd iot-hub-c-intel-nuc-gateway-customized-module/my_module
-# change the build script runnable
+# change hello build script runnable
 chmod 777 build.sh
-# remove the invalid windows character
+# remove hello invalid windows character
 sed -i -e "s/\r$//" build.sh
-# run the build shell script
+# run hello build shell script
 ./build.sh
 ```
 
-編譯完成之後，您會得到 `libmy_module.so` 檔案。 記下此檔案的絕對路徑。
+您取得`libmy_module.so`檔案 hello 編譯完成之後。 記下 hello 此檔案的絕對路徑。
 
-## <a name="add-the-module-to-the-ble-sample-application"></a>將模組新增至 BLE 範例應用程式
+## <a name="add-hello-module-toohello-ble-sample-application"></a>新增 hello 模組 toohello b 範例應用程式
 
-1. 執行下列命令來前往範例資料夾：
+1. 藉由執行下列命令的 hello 移 toohello 範例資料夾中：
 
    ```bash
    cd /usr/share/azureiotgatewaysdk/samples
    ```
 
-1. 執行下列命令來開啟組態檔：
+1. 執行下列命令的 hello 開啟 hello 設定檔：
 
    ```bash
    vi ble_gateway.json
    ```
 
-1. 插入下列程式碼至 `modules` 區段來新增模組。
+1. 將模組插入下列程式碼 toohello hello `modules` > 一節。
 
    ```json
    {
@@ -111,8 +111,8 @@ sed -i -e "s/\r$//" build.sh
     },
     ```
 
-1. 將程式碼中的 `[Your libmy_module.so path]` 取代為 libmy_module.so 檔案的絕對路徑。
-1. 使用下列程式碼取代 `links` 區段中的程式碼：
+1. 取代`[Your libmy_module.so path]`hello hello libmy_module.so hello 絕對路徑的程式碼中 ' 檔案。
+1. Hello 中的 hello 程式碼取代`links`以 hello 下列其中一節：
 
    ```json
    {
@@ -125,18 +125,18 @@ sed -i -e "s/\r$//" build.sh
    }
    ```
 
-1. 按下 `ESC` 然後輸入 `:wq` 儲存檔案。
+1. 按`ESC`，然後輸入`:wq`toosave hello 檔案。
 
-## <a name="run-the-sample-application"></a>執行範例應用程式
+## <a name="run-hello-sample-application"></a>執行 hello 範例應用程式
 
-1. 開啟 SensorTag 的電源。
-1. 執行下列命令來設定 SSL_CERT_FILE 環境變數：
+1. Hello SensorTag 電源。
+1. 執行下列命令的 hello 設定 hello SSL_CERT_FILE 環境變數：
 
    ```bash
    export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
    ```
 
-1. 執行下列命令來使用新增的模組執行範例應用程式：
+1. 執行下列命令的 hello hello 範例應用程式執行與 hello 加入的模組：
 
    ```bash
    ./ble_gateway ble_gateway.json
@@ -144,6 +144,6 @@ sed -i -e "s/\r$//" build.sh
 
 ## <a name="next-steps"></a>後續步驟
 
-您已成功使用 IoT 閘道將訊息從 SensorTag 轉換為 .json 格式。
+已成功使用 hello IoT 閘道 tooconvert hello 訊息從 SensorTag 成 hello.json 格式。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

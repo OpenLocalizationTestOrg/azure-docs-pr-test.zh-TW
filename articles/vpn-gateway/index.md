@@ -1,6 +1,6 @@
 ---
-title: "Azure VPN 閘道文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何設定虛擬私人網路 (VPN) 閘道，以管理雲端虛擬網路與內部部署之間的流量或雲端 VNet 之間的流量。"
+title: "aaaAzure VPN 閘道文件-教學課程中，API 參考 |Microsoft 文件"
+description: "了解 tooconfigure 虛擬私人網路 (VPN) 閘道 toomanage 雲端虛擬網路和內部部署或雲端 Vnet 之間的流量。"
 services: vpn-gateway
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 350264be2b885720359b72660397d24dc4d03e11
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a518f39e0cb8761e239d0c033a7801803edfd0a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="vpn-gateway-documentation"></a>VPN 閘道文件
 
-了解如何設定 VPN 閘道、虛擬私人網路閘道。 文件會示範如何傳送 Azure 虛擬網路與內部部署位置或其他 Azure 虛擬網路 (VNet) 之間的網路流量。
+深入了解如何 tooconfigure VPN 閘道、 虛擬私人網路閘道。 文件會顯示如何 toosend 之間的網路流量的 Azure 虛擬網路和內部部署位置或其他 Azure 虛擬網路 (Vnet)。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Azure 入口網站開始建立站對站連線</h3>
+                        <h3>開始建立使用 hello Azure 入口網站的站對站連接</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Azure 入口網站開始建立點對站連線</h3>
+                        <h3>開始建立使用 hello Azure 入口網站的點對站連接</h3>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Azure 入口網站開始建立 VNet 對 VNet 連線</h3>
+                        <h3>開始建立使用 hello Azure 入口網站的 VNet 對 VNet 連線</h3>
                     </div>
                 </div>
             </div>

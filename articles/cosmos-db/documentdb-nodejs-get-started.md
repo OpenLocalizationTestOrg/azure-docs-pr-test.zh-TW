@@ -1,6 +1,6 @@
 ---
-title: "適用於 Azure Cosmos DB 的 DocumentDB API 之 Node.js 教學課程 | Microsoft Docs"
-description: "使用 DocumentDB API 所建立的 Cosmos DB 之 Node.js 教學課程。"
+title: "hello DocumentDB API 針對 Azure Cosmos DB aaaNode.js 教學課程 |Microsoft 文件"
+description: "建立以 hello DocumentDB API Cosmos DB Node.js 教學課程。"
 keywords: "node.js 教學課程，節點資料庫"
 services: cosmos-db
 documentationcenter: node.js
@@ -15,13 +15,13 @@ ms.devlang: node
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: anhoh
-ms.openlocfilehash: 6510e0270bb2efa252a2b2ad40014c5d26b74a81
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: fce244c6a5f321608e82ca51a2c987e84b98bffa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="nodejs-tutorial-use-the-documentdb-api-in-azure-cosmos-db-to-create-a-nodejs-console-application"></a>Node.js 教學課程：使用 Azure Cosmos DB 中的 DocumentDB API 以建立 Node.js 主控台應用程式
+# <a name="nodejs-tutorial-use-hello-documentdb-api-in-azure-cosmos-db-toocreate-a-nodejs-console-application"></a>Node.js 教學課程： Azure Cosmos DB toocreate Node.js 主控台應用程式中的使用 hello DocumentDB API
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-get-started.md)
 > * [.NET Core](documentdb-dotnetcore-get-started.md)
@@ -32,49 +32,49 @@ ms.lasthandoff: 08/18/2017
 >  
 > 
 
-歡迎使用 Azure Cosmos DB Node.js SDK 的 Node.js 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 Azure Cosmos DB 資源。
+ 褖畫惎 toohello hello Azure Cosmos DB Node.js SDK for Node.js 教學課程 ！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 Azure Cosmos DB 資源。
 
 本文將討論：
 
-* 建立及連線至 Azure Cosmos DB 帳戶
+* 建立及連接 tooan Azure Cosmos DB 帳戶
 * 設定您的應用程式
 * 建立節點資料庫
 * 建立集合
 * 建立 JSON 文件
-* 查詢集合
+* 查詢 hello 集合
 * 取代文件
 * 刪除文件
-* 刪除節點資料庫
+* 刪除 hello 節點資料庫
 
-沒有時間嗎？ 別擔心！ 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started)上找到完整的方案。 請參閱 [取得完整的解決方案](#GetSolution) ，以取得簡要指示。
+沒有時間嗎？ 別擔心！ hello 完整解決方案位於[GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started)。 請參閱[取得 hello 完整解決方案](#GetSolution)快速的指示。
 
-完成 Node.js 教學課程之後，請使用此頁面頂端和底部的投票按鈕來提供意見。 如果想要我們直接與您連絡，歡迎在留言中留下電子郵件地址。
+您已經完成 hello Node.js 教學課程之後，請使用 hello 投票按鈕 hello 頂端和底端的這個頁面 toogive 我們意見反應。 如果您希望我們 toocontact 您直接，認為您的電子郵件地址可用 tooinclude 註解中。
 
 讓我們開始吧！
 
-## <a name="prerequisites-for-the-nodejs-tutorial"></a>Node.js 教學課程的必要條件
-請確定您具有下列項目：
+## <a name="prerequisites-for-hello-nodejs-tutorial"></a>Hello Node.js 教學課程的必要條件
+請確定您擁有 hello 下列：
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，您可以註冊 [免費 Azure 試用](https://azure.microsoft.com/pricing/free-trial/)。
-    * 或者，您可以使用 [Azure Cosmos DB 模擬器](local-emulator.md)來進行本教學課程。
+    * 或者，您可以使用 hello [Azure Cosmos DB 模擬器](local-emulator.md)本教學課程。
 * [Node.js](https://nodejs.org/) v0.10.29 版或更高版本。
 
 ## <a name="step-1-create-an-azure-cosmos-db-account"></a>步驟 1：建立 Azure Cosmos DB 帳戶
-讓我們來建立 Azure Cosmos DB 帳戶。 如果您已經擁有想要使用的帳戶，就可以直接跳到[設定您的 Node.js 應用程式](#SetupNode)。 如果您是使用「Azure Cosmos DB 模擬器」，請依照 [Azure Cosmos DB 模擬器](local-emulator.md)的步驟來設定模擬器，然後直接跳到[設定您的 Node.js 應用程式](#SetupNode)。
+讓我們來建立 Azure Cosmos DB 帳戶。 如果您已經有您想要讓 toouse 帳戶，您可以向前跳過[設定 Node.js 應用程式，](#SetupNode)。 如果您使用 hello Azure Cosmos DB 模擬器，請依照步驟 hello [Azure Cosmos DB 模擬器](local-emulator.md)toosetup hello 模擬器並跳過[設定 Node.js 應用程式，](#SetupNode)。
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 ## <a id="SetupNode"></a>步驟 2：設定您的 Node.js 應用程式
 1. 開啟您偏好的終端機。
-2. 找出您想儲存 Node.js 應用程式的資料夾或目錄位置。
-3. 使用下列命令，建立兩個空白的 JavaScript 檔案：
+2. 找出 hello 資料夾或目錄的 toosave 位置 Node.js 應用程式。
+3. 使用下列命令的 hello 中建立兩個空白的 JavaScript 檔案：
    * Windows:
      * ```fsutil file createnew app.js 0```
      * ```fsutil file createnew config.js 0```
    * Linux/OS X：
      * ```touch app.js```
      * ```touch config.js```
-4. 透過 npm 安裝 documentdb 模組。 使用下列命令：
+4. 透過 npm hello documentdb 模組安裝。 使用下列命令的 hello:
    * ```npm install documentdb --save```
 
 太棒了！ 現在已完成安裝程式，讓我們開始撰寫一些程式碼。
@@ -82,22 +82,22 @@ ms.lasthandoff: 08/18/2017
 ## <a id="Config"></a>步驟 3：設定您的應用程式設定
 在您慣用的文字編輯器中開啟 ```config.js```。
 
-然後，複製並貼上以下的程式碼片段，以及將屬性 ```config.endpoint``` 和 ```config.primaryKey``` 設定為您的 Azure Cosmos DB 端點 uri 和主要金鑰。 您可以在 [Azure 入口網站](https://portal.azure.com)找到這些設定。
+然後、 複製和貼上下列的 hello 程式碼片段，然後```config.endpoint```和```config.primaryKey```tooyour Azure Cosmos DB 端點 uri 與主索引鍵。 這兩種這些設定可以在 hello [Azure 入口網站](https://portal.azure.com)。
 
-![node.js 教學課程 - 顯示 Azure Cosmos DB 帳戶的 Azure 入口網站螢幕擷取畫面，內含反白顯示的 [主動式] 集線器、[Azure Cosmos DB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值 - 節點資料庫][keys]
+![Node.js 教學課程-hello 顯示 Azure Cosmos DB 帳戶，與 hello 活躍的 Azure 入口網站的螢幕擷取畫面反白顯示，在 hello Azure Cosmos DB 帳戶刀鋒視窗中，hello URI，主索引鍵和次要金鑰值上 hello 反白顯示反白顯示 hello 金鑰 按鈕索引鍵刀鋒視窗中的節點資料庫][keys]
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     var config = {}
 
     config.endpoint = "~your Azure Cosmos DB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
 
-在您設定 ```config.endpoint``` 和 ```config.authKey``` 屬性的位置下面，複製 ```database id```、```collection id``` 和 ```JSON documents``` 並貼到您的 ```config``` 物件。 如果您已經有想要儲存於資料庫中的資料，就可以使用 Azure Cosmos DB 的 [資料移轉工具](import-data.md)，而不用新增文件定義。
+複製並貼上 hello ```database id```， ```collection id```，和```JSON documents```tooyour```config```物件下方，設定您```config.endpoint```和```config.authKey```屬性。 如果您已經有您想要 toostore 資料庫中的資料，您可以使用 Azure Cosmos DB 的[資料移轉工具](import-data.md)而非新增 hello 文件定義。
 
     config.endpoint = "~your Azure Cosmos DB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     config.database = {
         "id": "FamilyDB"
     };
@@ -164,55 +164,55 @@ ms.lasthandoff: 08/18/2017
     };
 
 
-資料庫、集合和文件定義將作為您 Azure Cosmos DB 的 ```database id```、```collection id``` 和文件的資料。
+hello 資料庫、 集合和文件定義做為您的 Azure Cosmos DB ```database id```， ```collection id```，和文件的資料。
 
-最後，匯出您的 ```config``` 物件，如此就可以在 ```app.js``` 檔案中參考它。
+最後，匯出您```config```物件，以便您可以在 hello 內參考該```app.js```檔案。
 
             },
             "isRegistered": false
         }
     };
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     module.exports = config;
 
-## <a id="Connect"></a>步驟 4：連線至 Azure Cosmos DB 帳戶
-在文字編輯器中開啟您的空白 ```app.js``` 檔案。 複製並貼上以下的程式碼，以匯入 ```documentdb``` 模組和新建的 ```config``` 模組。
+## <a id="Connect"></a>步驟 4： 連接 tooan Azure Cosmos DB 帳戶
+開啟您的空白```app.js```hello 文字編輯器中的檔案。 複製並貼上下列 tooimport hello 的 hello 程式碼```documentdb```模組，您新建```config```模組。
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     "use strict";
 
     var documentClient = require("documentdb").DocumentClient;
     var config = require("./config");
     var url = require('url');
 
-複製並貼上以下的程式碼，以使用先前儲存的 ```config.endpoint``` 和 ```config.primaryKey``` 來建立新的 DocumentClient。
+複製並貼上 hello 先前儲存的程式碼 toouse hello```config.endpoint```和```config.primaryKey```toocreate 新 DocumentClient。
 
     var config = require("./config");
     var url = require('url');
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     var client = new documentClient(config.endpoint, { "masterKey": config.primaryKey });
 
-您現在具有程式碼，可將 Azure Cosmos DB 用戶端初始化，讓我們看看如何使用 Azure Cosmos DB 資源。
+您已經有 hello 程式碼 tooinitialize hello Azure Cosmos DB 用戶端，讓我們看看使用 Azure Cosmos DB 資源。
 
 ## <a name="step-5-create-a-node-database"></a>步驟 5：建立節點資料庫
-複製並貼上以下的程式碼，以設定 [找不到] 的HTTP 狀態、資料庫 url 和集合 url。 這些 url 可讓 Azure Cosmos DB 用戶端尋找正確的資料庫和集合。
+將複製並貼 hello tooset hello HTTP 狀態下的程式碼找不到、 hello 資料庫 url 和 hello 集合 url。 這些 url 會 hello Azure Cosmos DB 用戶端如何找到 hello 正確的資料庫和集合。
 
     var client = new documentClient(config.endpoint, { "masterKey": config.primaryKey });
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     var HttpStatusCodes = { NOTFOUND: 404 };
     var databaseUrl = `dbs/${config.database.id}`;
     var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;
 
-可以使用 **DocumentClient** 類別的 [createDatabase](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函式來建立[資料庫](documentdb-resources.md#databases)。 資料庫是分割給多個集合之文件儲存體的邏輯容器。
+A[資料庫](documentdb-resources.md#databases)可以建立使用 hello [createDatabase](https://azure.github.io/azure-documentdb-node/DocumentClient.html)函式的 hello **DocumentClient**類別。 資料庫是 hello 存放文件分割於各個集合的邏輯容器。
 
-複製並貼上 **getDatabase** 函式，以 ```config``` 物件中指定的 ```id```，在 app.js 檔案中加入建立新資料庫的函式。 此函數會檢查具有相同 ```FamilyRegistry``` 識別碼的資料庫不存在。 如果存在，我們會傳回該資料庫，而不會建立新資料庫。
+複製並貼上 hello **getDatabase**函式以 hello hello app.js 檔案中建立新的資料庫```id```hello 中指定```config```物件。 hello 函式檢查時 hello 資料庫以 hello 相同```FamilyRegistry```識別碼不存在。 如果存在，我們會傳回該資料庫，而不會建立新資料庫。
 
     var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function getDatabase() {
         console.log(`Getting database:\n${config.database.id}\n`);
 
@@ -234,7 +234,7 @@ ms.lasthandoff: 08/18/2017
         });
     }
 
-複製並貼上以下的程式碼，以設定 **getDatabase** 函式來加入協助程式函式 **exit**，該函式會列印結束訊息和呼叫 **getDatabase** 函式。
+複製並貼上下列程式碼 hello，您可以設定 hello **getDatabase**函式 tooadd hello helper 函式**結束**，將會太列印 hello 結束訊息並 hello 呼叫**getDatabase**函式。
 
                 } else {
                     resolve(result);
@@ -243,10 +243,10 @@ ms.lasthandoff: 08/18/2017
         });
     }
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function exit(message) {
         console.log(message);
-        console.log('Press any key to exit');
+        console.log('Press any key tooexit');
         process.stdin.setRawMode(true);
         process.stdin.resume();
         process.stdin.on('data', process.exit.bind(process, 0));
@@ -256,7 +256,7 @@ ms.lasthandoff: 08/18/2017
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+在您的終端機中，找出您```app.js```檔，然後執行 hello 命令：```node app.js```
 
 恭喜！ 您已成功建立 Azure Cosmos DB 資料庫。
 
@@ -266,9 +266,9 @@ ms.lasthandoff: 08/18/2017
 > 
 > 
 
-可以使用 **DocumentClient** 類別的 [createCollection](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函式建立[集合](documentdb-resources.md#collections)。 集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。
+A[集合](documentdb-resources.md#collections)可以建立使用 hello [createCollection](https://azure.github.io/azure-documentdb-node/DocumentClient.html)函式的 hello **DocumentClient**類別。 集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。
 
-將 **getCollection** 函式複製並貼到 app.js 檔案中的 **getDatabase** 函式之下，以 ```config``` 物件中指定的 ```id``` 建立新的集合。 同樣地，我們會檢查確定具有相同 ```FamilyCollection``` 識別碼的集合不存在。 如果存在，我們會傳回該集合，而不會建立新集合。
+複製並貼上 hello **getCollection**函式下方 hello **getDatabase**函式在 hello app.js 檔案 toocreate 您新的集合，以 hello ```id``` hello中指定```config```物件。 同樣地，我們會檢查 toomake 確定集合與 hello 相同```FamilyCollection```識別碼不存在。 如果存在，我們會傳回該集合，而不會建立新集合。
 
                 } else {
                     resolve(result);
@@ -277,7 +277,7 @@ ms.lasthandoff: 08/18/2017
         });
     }
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function getCollection() {
         console.log(`Getting collection:\n${config.collection.id}\n`);
 
@@ -299,25 +299,25 @@ ms.lasthandoff: 08/18/2017
         });
     }
 
-將以下的程式碼複製並貼到對 **getDatabase** 的呼叫之下，以執行 **getCollection** 函式。
+複製並貼上 hello hello 呼叫下方的程式碼太**getDatabase** tooexecute hello **getCollection**函式。
 
     getDatabase()
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => getCollection())
     // ENDS HERE
 
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+在您的終端機中，找出您```app.js```檔，然後執行 hello 命令：```node app.js```
 
 恭喜！ 您已成功建立 Azure Cosmos DB 集合。
 
 ## <a id="CreateDoc"></a>步驟 7：建立文件
-可以使用 **DocumentClient** 類別的 [createDocument](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函式來建立[文件](documentdb-resources.md#documents)。 文件會是使用者定義的 (任意) JSON 內容。 您現在可以將文件插入 Azure Cosmos DB。
+A[文件](documentdb-resources.md#documents)可以建立使用 hello [createDocument](https://azure.github.io/azure-documentdb-node/DocumentClient.html)函式的 hello **DocumentClient**類別。 文件會是使用者定義的 (任意) JSON 內容。 您現在可以將文件插入 Azure Cosmos DB。
 
-將 **getFamilyDocument** 函式複製並貼到 **getCollection** 函式之下，以便建立包含 ```config``` 物件中儲存之 JSON 資料文件。 同樣地，我們會檢查以確定具有相同識別碼的文件不存在。
+複製並貼上 hello **getFamilyDocument**函式下方 hello **getCollection**函式建立 hello 文件包含 hello JSON 資料儲存在 hello```config```物件。 同樣地，我們會檢查 toomake 確定文件以 hello 尚未存在相同的識別碼。
 
                 } else {
                     resolve(result);
@@ -326,7 +326,7 @@ ms.lasthandoff: 08/18/2017
         });
     }
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function getFamilyDocument(document) {
         let documentUrl = `${collectionUrl}/docs/${document.id}`;
         console.log(`Getting document:\n${document.id}\n`);
@@ -349,12 +349,12 @@ ms.lasthandoff: 08/18/2017
         });
     };
 
-將以下的程式碼複製並貼到對 **getCollection** 的呼叫之下，以執行 **getFamilyDocument** 函式。
+複製並貼上 hello hello 呼叫下方的程式碼太**getCollection** tooexecute hello **getFamilyDocument**函式。
 
     getDatabase()
     .then(() => getCollection())
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => getFamilyDocument(config.documents.Andersen))
     .then(() => getFamilyDocument(config.documents.Wakefield))
     // ENDS HERE
@@ -362,16 +362,16 @@ ms.lasthandoff: 08/18/2017
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+在您的終端機中，找出您```app.js```檔，然後執行 hello 命令：```node app.js```
 
 恭喜！ 您已成功建立 Azure Cosmos DB 文件。
 
-![node.js 教學課程 - 說明帳戶、資料庫、集合和文件之間階層式關聯性的圖表 - 節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-cosmos-db-account.png)
+![Node.js 教學課程-說明 hello hello 帳戶、 hello 資料庫、 hello 集合和 hello 文件之間的階層式關聯性的圖表-節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-cosmos-db-account.png)
 
 ## <a id="Query"></a>步驟 8︰查詢 Azure Cosmos DB 資源
-Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行[豐富查詢](documentdb-sql-query.md)。 下列範例程式碼示範您可以針對集合中之文件執行的查詢。
+Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行[豐富查詢](documentdb-sql-query.md)。 hello 下列範例程式碼顯示您可以針對 hello 文件集合中執行的查詢。
 
-將 **queryCollection** 函式複製並貼到 app.js 檔案中的 **getFamilyDocument** 函式之下。 Azure Cosmos DB 支援類 SQL 查詢，如下所示。 如需建立複雜查詢的詳細資訊，請參閱[查詢遊樂場](https://www.documentdb.com/sql/demo)和[查詢文件](documentdb-sql-query.md)。
+複製並貼上 hello **queryCollection**函式下方 hello **getFamilyDocument** hello app.js 檔案中的函式。 Azure Cosmos DB 支援類 SQL 查詢，如下所示。 如需有關如何建立複雜的查詢的詳細資訊，請參閱 hello[查詢遊樂場](https://www.documentdb.com/sql/demo)和 hello[查詢文件](documentdb-sql-query.md)。
 
                 } else {
                     resolve(result);
@@ -380,7 +380,7 @@ Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行[豐富查
         });
     }
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function queryCollection() {
         console.log(`Querying collection through index:\n${config.collection.id}`);
 
@@ -403,32 +403,32 @@ Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行[豐富查
     };
 
 
-下圖說明如何針對您所建立的集合呼叫 Azure Cosmos DB SQL 查詢語法。
+hello 下列圖表說明 hello Azure Cosmos DB SQL 查詢語法稱為 hello 集合針對您建立的方式。
 
-![node.js 教學課程 - 說明查詢範圍和意義的圖表 - 節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-collection-documents.png)
+![Node.js 教學課程-圖表說明 hello 範圍和意義 hello 查詢-節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-collection-documents.png)
 
-因為 Azure Cosmos DB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#FromClause) 關鍵字是選擇性的。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 依預設，Azure Cosmos DB 會推斷該 Families、root 或您選擇的變數名稱來參考目前的集合。
+hello [FROM](documentdb-sql-query.md#FromClause)關鍵字是選擇性的 hello 查詢，因為 Azure Cosmos DB 查詢已設定領域的 tooa 單一集合。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 Azure Cosmos DB 會推斷家族、 根或 hello 變數名稱您已選擇，依預設參考 hello 目前集合。
 
-將以下的程式碼複製並貼到對 **getFamilyDocument** 的呼叫之下，以執行 **queryCollection** 函式。
+複製並貼上 hello hello 呼叫下方的程式碼太**getFamilyDocument** tooexecute hello **queryCollection**函式。
 
     .then(() => getFamilyDocument(config.documents.Andersen))
     .then(() => getFamilyDocument(config.documents.Wakefield))
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => queryCollection())
     // ENDS HERE
 
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+在您的終端機中，找出您```app.js```檔，然後執行 hello 命令：```node app.js```
 
 恭喜！ 您已成功查詢 Azure Cosmos DB 文件。
 
 ## <a id="ReplaceDocument"></a>步驟 9：取代文件
 Azure Cosmos DB 支援取代 JSON 文件。
 
-將 **replaceFamilyDocument** 函式複製並貼到 app.js 檔案中的 **queryCollection** 函式之下。
+複製並貼上 hello **replaceFamilyDocument**函式下方 hello **queryCollection** hello app.js 檔案中的函式。
 
                     }
                     console.log();
@@ -438,7 +438,7 @@ Azure Cosmos DB 支援取代 JSON 文件。
         });
     }
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function replaceFamilyDocument(document) {
         let documentUrl = `${collectionUrl}/docs/${document.id}`;
         console.log(`Replacing document:\n${document.id}\n`);
@@ -454,13 +454,13 @@ Azure Cosmos DB 支援取代 JSON 文件。
         });
     };
 
-將以下的程式碼複製並貼到對 **queryCollection** 的呼叫之下，以執行 **replaceDocument** 函式。 此外，再次將此程式碼加入至 **queryCollection** 呼叫，確認已成功變更文件。
+複製並貼上 hello hello 呼叫下方的程式碼太**queryCollection** tooexecute hello **replaceDocument**函式。 此外，請加入 hello 程式碼 toocall **queryCollection**再次 tooverify hello 文件已順利變更。
 
     .then(() => getFamilyDocument(config.documents.Andersen))
     .then(() => getFamilyDocument(config.documents.Wakefield))
     .then(() => queryCollection())
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => replaceFamilyDocument(config.documents.Andersen))
     .then(() => queryCollection())
     // ENDS HERE
@@ -468,14 +468,14 @@ Azure Cosmos DB 支援取代 JSON 文件。
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+在您的終端機中，找出您```app.js```檔，然後執行 hello 命令：```node app.js```
 
 恭喜！ 您已成功取代 Azure Cosmos DB 文件。
 
 ## <a id="DeleteDocument"></a>步驟 10︰刪除文件
 Azure Cosmos DB 支援刪除 JSON 文件。
 
-將 **deleteFamilyDocument** 函式複製並貼到 **replaceFamilyDocument** 函式之下。
+複製並貼上 hello **deleteFamilyDocument**函式下方 hello **replaceFamilyDocument**函式。
 
                 else {
                     resolve(result);
@@ -484,7 +484,7 @@ Azure Cosmos DB 支援刪除 JSON 文件。
         });
     };
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function deleteFamilyDocument(document) {
         let documentUrl = `${collectionUrl}/docs/${document.id}`;
         console.log(`Deleting document:\n${document.id}\n`);
@@ -499,27 +499,27 @@ Azure Cosmos DB 支援刪除 JSON 文件。
         });
     };
 
-將以下的程式碼複製並貼到對 **queryCollection** 的呼叫之下，以執行 **deleteDocument** 函式。
+複製並貼上下列 hello 呼叫 toohello 的 hello 程式碼時，第二個**queryCollection** tooexecute hello **deleteDocument**函式。
 
     .then(() => queryCollection())
     .then(() => replaceFamilyDocument(config.documents.Andersen))
     .then(() => queryCollection())
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => deleteFamilyDocument(config.documents.Andersen))
     // ENDS HERE
 
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+在您的終端機中，找出您```app.js```檔，然後執行 hello 命令：```node app.js```
 
-恭喜！ 您已成功將 Azure Cosmos DB 文件刪除。
+恭喜！ 您已成功刪除 Azure Cosmos DB 文件。
 
-## <a id="DeleteDatabase"></a>步驟 11：刪除節點資料庫
-刪除已建立的資料庫將會移除資料庫和所有子系資源 (集合、文件等)。
+## <a id="DeleteDatabase"></a>步驟 11： 刪除 hello 節點資料庫
+正在刪除 hello 已建立的資料庫將會移除 hello 資料庫和所有子系資源 （集合、 文件）。
 
-將 **cleanup** 函式複製並貼到 **deleteFamilyDocument** 函式之下，以移除資料庫和所有子系資源。
+複製並貼上 hello**清除**函式下方 hello **deleteFamilyDocument**函式 tooremove hello 資料庫和 hello 子系的所有資源。
 
                 else {
                     resolve(result);
@@ -528,7 +528,7 @@ Azure Cosmos DB 支援刪除 JSON 文件。
         });
     };
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function cleanup() {
         console.log(`Cleaning up by deleting database ${config.database.id}`);
 
@@ -540,11 +540,11 @@ Azure Cosmos DB 支援刪除 JSON 文件。
         });
     }
 
-將以下的程式碼複製並貼到對 **deleteFamilyDocument** 的呼叫之下，以執行 **cleanup** 函式。
+複製並貼上 hello hello 呼叫下方的程式碼太**deleteFamilyDocument** tooexecute hello**清除**函式。
 
     .then(() => deleteFamilyDocument(config.documents.Andersen))
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => cleanup())
     // ENDS HERE
 
@@ -552,7 +552,7 @@ Azure Cosmos DB 支援刪除 JSON 文件。
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
 ## <a id="Run"></a>步驟 12：一起執行您的 Node.js 應用程式！
-總之，呼叫您的函數的順序應如下所示︰
+發生，請呼叫函式的 hello 順序應該看起來像這樣：
 
     getDatabase()
     .then(() => getCollection())
@@ -566,9 +566,9 @@ Azure Cosmos DB 支援刪除 JSON 文件。
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
+在您的終端機中，找出您```app.js```檔，然後執行 hello 命令：```node app.js```
 
-您應該可以看到入門應用程式的輸出。 輸出應該會與下列範例文字相符。
+您應該會看到 hello 取得啟動應用程式的輸出。 hello 輸出應符合下列的 hello 範例文字。
 
     Getting database:
     FamilyDB
@@ -598,33 +598,33 @@ Azure Cosmos DB 支援刪除 JSON 文件。
 
     Cleaning up by deleting database FamilyDB
     Completed successfully
-    Press any key to exit
+    Press any key tooexit
 
-恭喜！ 您已完成 Node.js 教學課程，並擁有您的第一個 Azure Cosmos DB 主控台應用程式！
+恭喜！ 您已建立您已經完成 hello Node.js 教學課程，並將第一個 Azure Cosmos DB 主控台應用程式 ！
 
-## <a id="GetSolution"></a>取得完整的 Node.js 教學課程方案
-如果您沒有時間完成本教學課程中的步驟，或只想要下載程式碼，您可以從 [GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started) 取得程式碼。
+## <a id="GetSolution"></a>取得 hello 完整 Node.js 教學課程解決方案
+如果您沒有時間 toocomplete hello 步驟在本教學課程中，或只是想 toodownload hello 程式碼，就可以從[GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started)。
 
-若要執行包含本文中所有範例的 GetStarted 方案，您將需要下列項目：
+包含所有在本文中的 hello 範例 toorun hello GetStarted 方案，您將需要 hello 下列：
 
 * [Azure Cosmos DB 帳戶][create-account]。
-* 您可以在 GitHub 上找到 [GetStarted](https://github.com/Azure-Samples/documentdb-node-getting-started) 方案。
+* hello [GetStarted](https://github.com/Azure-Samples/documentdb-node-getting-started) GitHub 上有可用的解決方案。
 
-透過 npm 安裝 **documentdb** 模組。 使用下列命令：
+安裝 hello **documentdb**透過 npm 模組。 使用下列命令的 hello:
 
 * ```npm install documentdb --save```
 
-接下來，將 ```config.js``` 檔案中的 config.endpoint 和 config.authKey 的值更新為如 [步驟 3：設定您的應用程式組態](#Config)中所述。 
+接下來，在 hello```config.js```檔案，更新 hello config.endpoint 和 config.authKey 值中所述[步驟 3： 設定您的應用程式組態](#Config)。 
 
-然後在終端機，找到您的 ```app.js``` 檔案並執行命令：```node app.js```。
+然後在您的終端機中，找出您```app.js```檔，然後執行 hello 命令： ```node app.js```。
 
 建置就這麼容易，繼續努力！ 
 
 ## <a name="next-steps"></a>後續步驟
 * 需要更複雜的 Node.js 範例嗎？ 請參閱[使用 Azure Cosmos DB 來建置 Node.js Web 應用程式](documentdb-nodejs-application.md)。
-* 了解如何[監視 Azure Cosmos DB 帳戶](monitor-accounts.md)。
-* 在 [Query Playground](https://www.documentdb.com/sql/demo)中，針對範例資料集執行查詢。
-* 如需深入了解程式設計模型，請參閱 [Azure Cosmos DB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)中的＜開發＞一節。
+* 了解如何太[監視 Azure Cosmos DB 帳戶](monitor-accounts.md)。
+* 執行查詢，根據我們的範例資料集，在 hello[查詢遊樂場](https://www.documentdb.com/sql/demo)。
+* 深入了解 hello hello hello 開發一節中的程式設計模型[Azure Cosmos DB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)。
 
 [create-account]: create-documentdb-dotnet.md#create-account
 [keys]: media/documentdb-nodejs-get-started/node-js-tutorial-keys.png

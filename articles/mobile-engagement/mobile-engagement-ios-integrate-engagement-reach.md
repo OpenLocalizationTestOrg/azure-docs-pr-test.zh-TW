@@ -1,5 +1,5 @@
 ---
-title: "Azure Mobile Engagement iOS SDK Reach 整合 | Microsoft Docs"
+title: "Mobile Engagement iOS SDK 到達整合 aaaAzure |Microsoft 文件"
 description: "Azure Mobile Engagement iOS SDK 的最新更新與程序"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,16 +14,16 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 12/13/2016
 ms.author: piyushjo
-ms.openlocfilehash: ba74e0c442ac10f096d465f989e03d2ceae8cd88
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 40c9bfbdb475ab0b97bdbc9cea798a59cb8a71ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-integrate-engagement-reach-on-ios"></a>如何在 iOS 上整合 Engagement Reach
-在遵循此指南之前，您必須先遵循 [如何在 iOS 上整合 Engagement](mobile-engagement-ios-integrate-engagement.md) 文件中所說明的整合程序。
+# <a name="how-toointegrate-engagement-reach-on-ios"></a>如何 tooIntegrate Engagement 觸達在 iOS 上
+您必須遵循 hello 整合程序所述 hello[如何 tooIntegrate Engagement iOS 文件上的](mobile-engagement-ios-integrate-engagement.md)之前依照本指南。
 
-這份文件需要 XCode 8。 如果您實際上是仰賴 XCode 7，則可以使用 [iOS Engagement SDK v3.2.4](https://aka.ms/r6oouh)。 這個舊版本在 iOS 10 裝置上執行時有已知錯誤︰系統通知不會採取動作。 若要修正此錯誤，您必須在應用程式委派中實作已被取代的 API `application:didReceiveRemoteNotification:` ，方式如下︰
+這份文件需要 XCode 8。 如果您真的依賴 XCode 7，則您可能使用 hello [iOS Engagement SDK v3.2.4](https://aka.ms/r6oouh)。 這個舊版本在 iOS 10 裝置上執行時有已知錯誤︰系統通知不會採取動作。 toofix 就 tooimplement hello 這個已被取代 API`application:didReceiveRemoteNotification:`在您的應用程式委派，如下所示：
 
     - (void)application:(UIApplication*)application
     didReceiveRemoteNotification:(NSDictionary*)userInfo
@@ -32,23 +32,23 @@ ms.lasthandoff: 08/03/2017
     }
 
 > [!IMPORTANT]
-> **我們不建議此因應措施** ，因為此 iOS API 已被取代，此行為在任何即將推出的 (甚至次要的) iOS 版本升級中會有所變更。 您應盡快改用 XCode 8。
+> **我們不建議此因應措施** ，因為此 iOS API 已被取代，此行為在任何即將推出的 (甚至次要的) iOS 版本升級中會有所變更。 您應儘速切換 tooXCode 8。
 >
 >
 
-### <a name="enable-your-app-to-receive-silent-push-notifications"></a>啟用應用程式接收無聲推播通知
+### <a name="enable-your-app-tooreceive-silent-push-notifications"></a>啟用您的應用程式 tooreceive 無訊息的推播通知
 [!INCLUDE [mobile-engagement-ios-silent-push](../../includes/mobile-engagement-ios-silent-push.md)]
 
 ## <a name="integration-steps"></a>整合步驟
-### <a name="embed-the-engagement-reach-sdk-into-your-ios-project"></a>將 Engagement Reach SDK 嵌入您的 iOS 專案
-* 在您的 Xcode 專案中加入 Reach SDK。 在 Xcode 中，移至 [專案] \> [新增至專案]，然後選擇 `EngagementReach` 資料夾。
+### <a name="embed-hello-engagement-reach-sdk-into-your-ios-project"></a>內嵌至 iOS 專案中的 hello Engagement 觸達 SDK
+* 在您的 Xcode 專案中加入 hello 觸達 sdk。 在 Xcode 中，跳過**專案\>新增 tooproject**選擇 hello`EngagementReach`資料夾。
 
 ### <a name="modify-your-application-delegate"></a>修改您的應用程式代理人
-* 在您的實作檔案頂端，匯入 Engagement Reach 模組：
+* 在實作檔 hello 頂端，匯入 hello Engagement 觸達模組：
 
       [...]
       #import "AEReachModule.h"
-* 在 `applicationDidFinishLaunching:` 或 `application:didFinishLaunchingWithOptions:` 方法內建立觸達模組，並將它傳遞到您現有的 Engagement 初始化行：
+* 在方法內`applicationDidFinishLaunching:`或`application:didFinishLaunchingWithOptions:`、 建立觸達模組並將它傳遞 tooyour 現有 Engagement 初始化行：
 
       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         AEReachModule* reach = [AEReachModule moduleWithNotificationIcon:[UIImage imageNamed:@"icon.png"]];
@@ -57,14 +57,14 @@ ms.lasthandoff: 08/03/2017
 
         return YES;
       }
-* 使用您想做為通知圖示的影像名稱修改 **'icon.png'** 字串。
-* 如果您想在觸達活動中使用 [更新徽章值] 選項，或想使用原生推送 \</SaaS/Reach API/Campaign format/Native Push\> 活動，必須讓觸達模組自行管理徽章圖示 (它會自動清除應用程式徽章，也會重設每一次應用程式啟動或於前景執行時，由 Engagement 所儲存的值)。 做法是在觸達模組初始化之後加入以下這一行：
+* 修改**'icon.png'** hello 要作為通知圖示的影像名稱的字串。
+* 如果您想要 toouse hello 選項*更新徽章值*觸達活動，或如果您想 toouse 原生推送\<SaaS/觸達 API/活動格式/原生推送\>活動時，您必須讓 hello 觸達模組管理hello 徽章圖示本身 （它會自動清除 hello 應用程式徽章和也重設儲存 Engagement 每當 hello 應用程式未啟動或 foregrounded 的 hello 值）。 這是加入以下各觸達模組初始化之後 hello:
 
       [reach setAutoBadgeEnabled:YES];
-* 如果您想要處理觸達資料推送，必須讓您的應用程式委派符合 `AEReachDataPushDelegate` 通訊協定。 觸達模組初始化之後請加入以下這一行：
+* 如果您想 toohandle 觸達資料推送，您必須讓您的應用程式委派符合 toohello`AEReachDataPushDelegate`通訊協定。 加入以下各觸達模組初始化之後 hello:
 
       [reach setDataPushDelegate:self];
-* 然後您就可以在應用程式委派中實作 `onDataPushStringReceived:` 與 `onDataPushBase64ReceivedWithDecodedBody:andEncodedBody:` 方法：
+* 然後，您可以實作 hello 方法`onDataPushStringReceived:`和`onDataPushBase64ReceivedWithDecodedBody:andEncodedBody:`在應用程式委派：
 
       -(BOOL)didReceiveStringDataPushWithCategory:(NSString*)category body:(NSString*)body
       {
@@ -80,27 +80,27 @@ ms.lasthandoff: 08/03/2017
       }
 
 ### <a name="category"></a>類別
-當您建立「資料推送」活動時，類別參數是選用的，且可讓您篩選資料推送。 如果您想要推送不同種類的 `Base64` 資料，且想要在剖析這些資料之前識別其類型，這會很有用。
+hello 分類參數是選擇性的當您建立將資料推送活動時，可讓您 toofilter 資料推播通知。 這非常有用，如果您想 toopush 不同種類的`Base64`資料而且想 tooidentify 其類型，再剖析它們。
 
-**您的應用程式現在已準備好接收及顯示觸達內容！**
+**您的應用程式是現在準備好 tooreceive 和顯示達到內容 ！**
 
-## <a name="how-to-receive-announcements-and-polls-at-any-time"></a>如何隨時接收宣告和輪詢
-透過使用 Apple Push Notification Service，Engagement 就可以隨時傳送觸達通知給您的使用者。
+## <a name="how-tooreceive-announcements-and-polls-at-any-time"></a>如何 tooreceive 宣告與輪詢隨時
+Engagement 可以傳送觸達通知 tooyour 使用者隨時利用 hello Apple Push Notification Service。
 
-若要啟用這項功能，必須準備好您的應用程式以使用 Apple 推送通知，並修改您的應用程式委派。
+tooenable 這項功能，您將有 tooprepare Apple 推播通知的應用程式，並修改您應用程式的委派。
 
 ### <a name="prepare-your-application-for-apple-push-notifications"></a>準備好您的應用程式以使用 Apple 推送通知
-請依照本指南進行： [如何準備您的應用程式以使用 Apple 推播通知](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6)
+請遵循 hello 指南：[如何 tooPrepare Apple 推播通知您的應用程式](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6)
 
-### <a name="add-the-necessary-client-code"></a>加入必要的用戶端程式碼
-*目前您的應用程式應該在 Engagement 前端具備已註冊的 Apple 推送憑證。*
+### <a name="add-hello-necessary-client-code"></a>加入 hello 必要的用戶端程式碼
+*此時您的應用程式應該在 hello Engagement 前端有已註冊的 Apple 推播憑證。*
 
-如果尚未這麼做，必須註冊應用程式以接收推送通知。
+如果它尚未完成，您需要 tooregister 應用程式 tooreceive 推播通知。
 
-* 匯入 `User Notification` 架構：
+* 匯入 hello`User Notification`架構：
 
         #import <UserNotifications/UserNotifications.h>
-* 啟動您的應用程式時，請新增以下這一行 (通常在 `application:didFinishLaunchingWithOptions:`中)：
+* 新增 hello 行下，應用程式啟動時 (通常在`application:didFinishLaunchingWithOptions:`):
 
         if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0)
         {
@@ -118,14 +118,14 @@ ms.lasthandoff: 08/03/2017
             [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
         }
 
-然後，您需要將 Apple 伺服器傳回的裝置權杖提供給 Engagement。 這會在您應用程式委派的 `application:didRegisterForRemoteNotificationsWithDeviceToken:` 方法中完成：
+然後，您需要 Apple 伺服器傳回的 tooprovide tooEngagement hello 裝置權杖。 這是名為 「 hello 方法`application:didRegisterForRemoteNotificationsWithDeviceToken:`在應用程式委派：
 
     - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
     {
         [[EngagementAgent shared] registerDeviceToken:deviceToken];
     }
 
-最後，當您的應用程式接收到遠端通知時，必須告知 Engagement SDK。 若要這麼做，請呼叫您應用程式委派中的 `applicationDidReceiveRemoteNotification:fetchCompletionHandler:` 方法：
+最後，當您的應用程式收到遠端通知擁有 tooinform hello Engagement SDK。 會呼叫 toodo hello 方法`applicationDidReceiveRemoteNotification:fetchCompletionHandler:`在應用程式委派：
 
     - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     {
@@ -133,7 +133,7 @@ ms.lasthandoff: 08/03/2017
     }
 
 > [!IMPORTANT]
-> 根據預設，Engagement Reach 控制 completionHandler。 如果您想以手動方式回應您程式碼中的 `handler` 區塊，可以針對 `handler` 引數傳遞 nil並自行控制 completion 區塊。 請參閱 `UIBackgroundFetchResult` 類型，查看可能值清單。
+> 根據預設，Engagement 觸達控制 hello completionHandler。 如果您想 toomanually 回應 toohello`handler`封鎖您的程式碼中，您可以傳遞 hello nil`handler`引數和控制 hello 完成封鎖自己。 請參閱 hello`UIBackgroundFetchResult`種可能的值清單。
 >
 >
 
@@ -175,11 +175,11 @@ ms.lasthandoff: 08/03/2017
 
 如果您的應用程式或其中一個協力廠商程式庫都未實作 `UNUserNotificationCenterDelegate`，則可以略過這個部分。
 
-SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本上執行的裝置中的 Engagement 通知生命週期。 SDK 會實作自己的 `UNUserNotificationCenterDelegate` 通訊協定，但每個應用程式只能有一個 `UNUserNotificationCenter` 委派。 新增至 `UNUserNotificationCenter` 物件的任何其他委派會與 Engagement one 發生衝突。 如果 SDK 偵測到您的委派或任何其他協力廠商的委派，則不會使用它自己的實作來讓您有機會解決衝突。 您必須將 Engagement 邏輯新增至您自己的委派，以便解決衝突。
+A`UNUserNotificationCenter`委派由 hello SDK toomonitor hello 生命週期的 Engagement 大於或等於 10 在 iOS 上執行的裝置上的通知。 hello SDK 有它自己實作 hello`UNUserNotificationCenterDelegate`通訊協定，但可以是只有一個`UNUserNotificationCenter`委派每個應用程式。 任何其他的委派加入 toohello`UNUserNotificationCenter`物件會與 hello Engagement 其中一個衝突。 如果 hello SDK 偵測到您或任何其他協力廠商的委派，則不會使用它自己的實作 toogive 您機會 tooresolve hello 衝突。 您必須擁有在順序中的委派 tooresolve hello 衝突 tooadd hello Engagement 邏輯 tooyour。
 
-有兩種方式可以達到這個目的。
+有兩種方式 tooachieve 這。
 
-提案 1，直接將委派呼叫轉送給 SDK：
+提案 1，只要轉送您的委派呼叫 toohello SDK:
 
     #import <UIKit/UIKit.h>
     #import "EngagementAgent.h"
@@ -206,7 +206,7 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
     }
     @end
 
-或提案 2，繼承自 `AEUserNotificationHandler` 類別
+或透過繼承自 hello 提案 2，`AEUserNotificationHandler`類別
 
     #import "AEUserNotificationHandler.h"
     #import "EngagementAgent.h"
@@ -233,10 +233,10 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
     @end
 
 > [!NOTE]
-> 您可以藉由將通知的 `userInfo` 字典傳遞給代理程式的 `isEngagementPushPayload:` 類別方法，來決定通知是否來自 Engagement。
+> 您可以判斷通知來自 Engagement 或不是藉由傳遞其`userInfo`字典 toohello 代理程式`isEngagementPushPayload:`類別方法。
 
-請確定 `UNUserNotificationCenter` 物件的委派已設為您在 `application:willFinishLaunchingWithOptions:` 內的委派或應用程式委派的 `application:didFinishLaunchingWithOptions:` 方法。
-例如，如果您實作了上述提案 1：
+請確定該 hello`UNUserNotificationCenter`物件的委派設定中任一 hello tooyour 委派`application:willFinishLaunchingWithOptions:`或 hello`application:didFinishLaunchingWithOptions:`應用程式委派的方法。
+比方說，如果您已實作提案 1 以上的 hello:
 
       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         // Any other code
@@ -245,33 +245,33 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
         return YES;
       }
 
-## <a name="how-to-customize-campaigns"></a>如何自訂活動
+## <a name="how-toocustomize-campaigns"></a>如何 toocustomize 活動
 ### <a name="notifications"></a>通知
 有兩種通知類型： 系統通知和應用程式內通知。
 
 系統通知都是由 iOS 處理，且無法自訂。
 
-應用程式內通知，是由以動態方式加入到目前應用程式視窗中的檢視所組成。 這稱為通知重疊。 通知重疊非常適合用於快速整合，因為它們不需要您修改應用程式中的任何檢視。
+應用程式內通知是由以動態方式加入 toohello 目前應用程式視窗的檢視。 這稱為通知重疊。 通知的影像覆疊非常適合在快速地整合在一起，因為它們不需要您 toomodify 應用程式中的任何檢視。
 
 #### <a name="layout"></a>版面配置
-若要修改應用程式內通知的外觀，您可以依需求直接修改 `AENotificationView.xib` 檔案，只要保留標記值與現有子檢視的類型即可。
+您的應用程式內通知 toomodify hello 外觀，您可以只修改 hello 檔案`AENotificationView.xib`tooyour 需要只要您保留 hello 標記值和類型的 hello 現有 subviews。
 
-根據預設，應用程式內通知會出現在畫面底部。 如果您偏好將通知顯示在畫面頂端，請編輯所提供的 `AENotificationView.xib` 並變更主要檢視的 `AutoSizing` 屬性，讓通知可以保留在其 superview 的頂端。
+根據預設，應用程式內通知會顯示在 hello 囉 」 畫面底部。 如果您偏好 toodisplay 它們在畫面上，編輯 hello hello 頂端提供`AENotificationView.xib`並變更 hello `AutoSizing` hello 主要檢視，也可以保持在最上方 hello 其超級檢視表的屬性。
 
 #### <a name="categories"></a>類別
-當您修改提供的版面配置時，會修改您所有通知的外觀。 類別可讓您定義通知的各種目標外觀 (也可能是行為)。 當您建立觸達活動時可以指定類別。 請記住，類別也可讓您自訂宣告與輪詢，本文件稍後將會說明。
+當您修改 hello 提供版面配置時，您修改您的通知 hello 外觀。 類別可讓您 toodefine 各種目標會尋找通知 （可能是行為）。 當您建立觸達活動時可以指定類別。 請記住，類別也可讓您自訂宣告與輪詢，本文件稍後將會說明。
 
-若要為您的通知註冊類別處理常式，必須在觸達模組完成初始化後加入呼叫。
+tooregister 您的通知的類別處理常式，您需要的 tooadd 當 hello 達到模組的呼叫已初始化。
 
     AEReachModule* reach = [AEReachModule moduleWithNotificationIcon:[UIImage imageNamed:@"icon.png"]];
     [reach registerNotifier:myNotifier forCategory:@"my_category"];
     ...
 
-`myNotifier` 必須是符合 `AENotifier` 通訊協定之物件的執行個體。
+`myNotifier`必須是符合 toohello 通訊協定的物件執行個體`AENotifier`。
 
-您可以自己實作通訊協定方法，或選擇重新實作已經執行大部分工作的現有 `AEDefaultNotifier` 類別。
+您可以實作自己的 hello 通訊協定方法，或者您可以選擇 tooreimplement hello 現有類別`AEDefaultNotifier`它已經執行 hello 工作的絕大部分。
 
-例如，如果您想要重新定義特定類別的通知檢視，可以遵循此範例：
+例如，如果您想 tooredefine hello 通知檢視特定分類，您可以依照此範例中：
 
     #import "AEDefaultNotifier.h"
     #import "AENotificationView.h"
@@ -287,89 +287,89 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
 
     @end
 
-這個簡單的類別範例假設您已在主要的應用程式套件組合中有一個名為 `MyNotificationView.xib` 的檔案。 如果方法無法找到相對應的 `.xib`，將不會顯示通知且 Engagement 會在主控台中輸出一則訊息。
+這個簡單的類別範例假設您已在主要的應用程式套件組合中有一個名為 `MyNotificationView.xib` 的檔案。 如果 hello 方法不能 toofind 對應`.xib`、 將不會顯示 hello 通知和 Engagement 會輸出 hello 主控台中的訊息。
 
-提供的 nib 檔案應該遵守以下規則：
+提供的 hello nib 檔案應該遵守下列規則的 hello:
 
 * 它應該只包含一個檢視。
-* 子檢視的類型應該與提供的 nib 檔案 (名稱為 `AENotificationView.xib`
-* 子檢視應該具有與提供的 nib 檔案 (名稱為 `AENotificationView.xib`) 內標記相同的標記
+* Subviews 應該是相同類型作為 hello 是名為提供的 hello nib 檔案內的 hello`AENotificationView.xib`
+* Subviews 應該具有相同標記為 hello 是名為提供的 hello nib 檔案內的 hello`AENotificationView.xib`
 
 > [!TIP]
-> 複製提供的 nib 檔案 (名稱為 `AENotificationView.xib`)，並從該處開始工作。 但請小心，此 nib 檔案內的檢視與 `AENotificationView`類別相關聯。 這個類別重新定義了 `layoutSubViews` 方法，藉此根據內容來移動並重新調整其子檢視的大小。 您可以用 `UIView` 取代它，或是自訂檢視類別。
+> 只複製提供的 hello nib 檔，名稱為`AENotificationView.xib`，並開始從該處工作。 但請小心，hello 的內這個 nib 檔案相關聯 toohello 類別檢視`AENotificationView`。 這個類別已重新定義 hello 方法`layoutSubViews`toomove 和調整大小，根據 toocontext 其 subviews。 您可能會想 tooreplace 它與`UIView`或自訂的檢視類別。
 >
 >
 
-如果您需要更深入地自訂通知 (如果要讓執行個體直接從程式碼載入檢視)，建議您查看所提供之 `Protocol ReferencesDefaultNotifier` 與 `AENotifier` 的原始程式碼與類別文件。
+如果您需要更深入自訂您的通知 （如果您想執行個體 tooload 直接從 hello 程式碼檢視），則建議的 tootake hello 查看所提供的來源的程式碼和類別文件`Protocol ReferencesDefaultNotifier`和`AENotifier`。
 
-請注意，您可以針對多個類別使用相同的通知程式。
+請注意，您可以使用 hello 的多個類別相同的通知。
 
-您也可以重新定義預設通知程式，如下所示：
+您可以也重新定義的 hello 預設通知，就像這樣：
 
     AEReachModule* reach = [AEReachModule moduleWithNotificationIcon:[UIImage imageNamed:@"icon.png"]];
     [reach registerNotifier:myNotifier forCategory:kAEReachDefaultCategory];
 
 ##### <a name="notification-handling"></a>通知處理
-使用預設類別時，會在 `AEReachContent` 物件上呼叫部分生命週期方法，來報告統計資料並更新活動狀態：
+使用 hello 預設分類，某些存留週期方法會呼叫在 hello`AEReachContent`物件 tooreport 統計資料和更新 hello 活動狀態：
 
-* 在應用程式中顯示通知時，如果 `handleNotification:` 傳回 `YES`，則 `AEReachModule` 會呼叫 `displayNotification` 方法 (它會報告統計資料)。
-* 如果關閉通知，則會呼叫 `exitNotification` 方法、報告統計資料，且可以立即處理下一個活動。
-* 如果按一下通知，則會呼叫 `actionNotification` 、報告統計資料，並執行相關聯的動作。
+* 當應用程式中會顯示 hello 通知時，hello`displayNotification`方法呼叫 （它會報告統計資料） 所`AEReachModule`如果`handleNotification:`傳回`YES`。
+* 如果關閉 hello 通知，hello`exitNotification`呼叫方法時，統計資料會報告，並可立即處理下一個活動。
+* 如果按一下 hello 通知，`actionNotification`是呼叫，統計資料會報告並不會執行相關聯的 hello 動作。
 
-如果 `AENotifier` 的實作略過預設行為，您必須自行呼叫這些生命週期方法。 以下範例說明一些會略過預設行為的情況：
+如果您實作`AENotifier`略過 hello 預設行為，您自己有 toocall 這些生命週期的方法。 hello 遵循範例將說明某些情況下，會在略過 hello 預設行為：
 
 * 您不延伸 `AEDefaultNotifier`，例如從頭開始實作類別處理。
-* 您已覆寫 `prepareNotificationView:forContent:`，請務必至少將 `onNotificationActioned` 或 `onNotificationExited` 對應到其中一個 U.I 控制項。
+* 您已覆寫`prepareNotificationView:forContent:`，至少是確定 toomap`onNotificationActioned`或`onNotificationExited`tooone U.I 控制項。
 
 > [!WARNING]
-> 如果 `handleNotification:` 擲回例外狀況，則會刪除內容且會呼叫 `drop`，這會在統計資料中報告，且可以立即處理下一個活動。
+> 如果`handleNotification:`擲回例外狀況，hello 內容會刪除與`drop`是呼叫，這報告的統計資料，而現在可處理下一個活動。
 >
 >
 
 #### <a name="include-notification-as-part-of-an-existing-view"></a>將通知併入現有的檢視
 重疊最適合用於快速整合，但有些時候不太方便，或是造成不想要的副作用。
 
-如果您不滿意您部分檢視中的重疊系統，可以對這些檢視加以自訂。
+如果您不滿意 hello 重疊系統的某些資料檢視，您可以針對這些檢視來進行自訂。
 
-您可以決定在現有的檢視中包含我們的通知版面配置。 若要這樣做，有兩種實作樣式可用：
+您可以在現有的檢視決定 tooinclude 我們通知版面配置。 toodo，還有兩種實作樣式：
 
-1. 使用介面產生器加入通知檢視
+1. 新增使用介面產生器的 hello 通知檢視
 
    * 開啟 [介面產生器] 
-   * 放置您想要在其中顯示通知的 `UIView` (大小為 320x60，如果在 iPad 上則為 768x60)
-   * 將此檢視的標記值設定為： **36822491**
-2. 以程式設計方式新增通知檢視。 在您已經將檢視初始化時加入以下程式碼：
+   * 放置 320 x 60 （或 768 x 60，如果您在 iPad 上）`UIView`想 hello 通知 tooappear
+   * 設定此檢視的 hello 標記值太： **36822491**
+2. 以程式設計方式加入 hello 通知檢視。 只要加入您的檢視已初始化時，下列程式碼的 hello:
 
-       UIView* notificationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)]; //Replace x and y coordinate values to your needs.
+       UIView* notificationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)]; //Replace x and y coordinate values tooyour needs.
        notificationView.tag = NOTIFICATION_AREA_VIEW_TAG;
        [self.view addSubview:notificationView];
 
 您可以在 `AEDefaultNotifier.h` 中找到 `NOTIFICATION_AREA_VIEW_TAG` 巨集。
 
 > [!NOTE]
-> 預設通知程式會自動偵測此檢視中是否已包含通知版面配置，而且不會為它新增重疊。
+> hello 預設通知程式會自動偵測該 hello 通知版面配置包含在此檢視，就不會為其新增覆疊。
 >
 >
 
 ### <a name="announcements-and-polls"></a>宣告和輪詢
 #### <a name="layouts"></a>版面配置
-您可以修改 `AEDefaultAnnouncementView.xib` 與 `AEDefaultPollView.xib` 檔案，只要保留標記值與現有子檢視的類型即可。
+您可以修改 hello 檔`AEDefaultAnnouncementView.xib`和`AEDefaultPollView.xib`，只要您保留 hello 標記值和類型的 hello 現有 subviews。
 
 #### <a name="categories"></a>類別
 ##### <a name="alternate-layouts"></a>替代版面配置
-類似通知，活動類別可以用來做為宣告和輪詢的替代版片配置。
+通知，如同 hello 活動的類別可以是您的宣告與輪詢使用的 toohave 替代配置。
 
-若要建立宣告的類別，您必須在初始化觸達模組後延伸 **AEAnnouncementViewController** 並將它註冊：
+toocreate 通知的類別，您必須擴充**AEAnnouncementViewController**並將其註冊之後尚未初始化 hello 觸達模組：
 
     AEReachModule* reach = [AEReachModule moduleWithNotificationIcon:[UIImage imageNamed:@"icon.png"]];
     [reach registerAnnouncementController:[MyCustomAnnouncementViewController class] forCategory:@"my_category"];
 
 > [!NOTE]
-> 每次使用者按一下通知以取得 "my\_category" 類別的宣告時，會將您已經註冊的檢視控制器 (在此情況下為 `initWithAnnouncement:`) 透過呼叫 `MyCustomAnnouncementViewController` 方法來初始化，而且會將檢視新增到目前的應用程式視窗。
+> 每當使用者將按一下通知，以與 hello 類別宣告"我\_類別目錄 」，您已註冊的檢視控制器 (在此情況下`MyCustomAnnouncementViewController`) 會藉由呼叫 hello 方法初始化`initWithAnnouncement:`hello 檢視將會加入的 toohello 目前的應用程式視窗。
 >
 >
 
-在 `AEAnnouncementViewController` 類別的實作中，您必須讀取 `announcement` 屬性來初始化您的子檢視。 請考量以下範例，其中的兩個標籤會使用屬於 `AEReachAnnouncement` 類別的 `title` 和 `body` 屬性來初始化：
+在您實作中的 hello`AEAnnouncementViewController`類別就 tooread hello 屬性`announcement`tooinitialize 您 subviews。 請考慮 hello 範例所示，兩個標籤會使用初始化`title`和`body`屬性 hello`AEReachAnnouncement`類別：
 
     -(void)loadView
     {
@@ -387,28 +387,28 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
         [self.view addSubview:bodyLabel];
     }
 
-如果您不想要自行載入您的檢視，但是想要重複使用預設的宣告檢視配置，可以讓自訂檢視控制器延伸提供的 `AEDefaultAnnouncementViewController`類別。 在此情況下，請複製 nib 檔案 `AEDefaultAnnouncementView.xib` 並將它重新命名，讓您的自訂檢視控制器可以載入它 (若是名稱為 `CustomAnnouncementViewController` 的控制器，您應該呼叫您的 nib 檔案 `CustomAnnouncementView.xib`) 。
+如果您不想 tooload 檢視自己，但您只想 tooreuse hello 預設公告檢視版面配置，您只可以讓您自訂檢視的控制器延伸所提供的 hello 類別`AEDefaultAnnouncementViewController`。 在此情況下，重複的 hello nib 檔案`AEDefaultAnnouncementView.xib`並將它重新命名，所以它可以載入由您的自訂檢視控制器 (控制器，名為`CustomAnnouncementViewController`，您應該呼叫 nib 檔案`CustomAnnouncementView.xib`)。
 
-若要取代預設的宣告類別，只要針對 `kAEReachDefaultCategory`中定義的類別註冊您的自訂檢視控制器即可：
+tooreplace hello 預設分類的宣告，只是註冊 hello 類別中定義的自訂檢視控制器`kAEReachDefaultCategory`:
 
     [reach registerAnnouncementController:[MyCustomAnnouncementViewController class] forCategory:kAEReachDefaultCategory];
 
-可利用相同的方式自訂輪詢：
+輪詢可以是自訂的 hello 相同的方式：
 
     AEReachModule* reach = [AEReachModule moduleWithNotificationIcon:[UIImage imageNamed:@"icon.png"]];
     [reach registerPollController:[MyCustomPollViewController class] forCategory:@"my_category"];
 
-這一次，提供的 `MyCustomPollViewController` 必須延伸 `AEPollViewController`。 或者您可以選擇從預設控制器 `AEDefaultPollViewController`延伸。
+這個時間，提供 hello`MyCustomPollViewController`必須擴充`AEPollViewController`。 您可以選擇 tooextend hello 預設控制器或者： `AEDefaultPollViewController`。
 
 > [!IMPORTANT]
-> 請記得在關閉檢視控制器之前呼叫 `action` (若是自訂輪詢檢視控制器，則為 `submitAnswers:`)，或是呼叫 `exit` 方法。 否則，將不會傳送統計資料 (亦即無法分析活動)，更重要的是將不會通知下一個活動，直到應用程式處理程序重新啟動為止。
+> 請不要忘記 toocall `action` (`submitAnswers:`自訂輪詢檢視控制站) 或`exit`方法之前關閉 hello 檢視控制器。 否則，統計資料將不會傳送 （也就是在 hello 活動上的任何分析），而且 hello 應用程式處理序重新啟動之前，不會通知多個重要的是下一個活動。
 >
 >
 
 ##### <a name="implementation-example"></a>實作範例
-在此實作中，是從外部 xib 檔案載入自訂宣告檢視。
+在此實作中從外部 xib 檔案載入 hello 公告自訂檢視。
 
-就像進階通知的自訂一樣，也建議您查看標準實作的原始程式碼。
+類似的進階的通知自訂建議 toolook 在 hello 標準實作 hello 原始程式碼。
 
 `CustomAnnouncementViewController.h`
 

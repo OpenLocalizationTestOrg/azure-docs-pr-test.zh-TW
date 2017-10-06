@@ -1,6 +1,6 @@
 ---
-title: "建立 Azure Time Series Insights 環境 | Microsoft Docs"
-description: "在本教學課程中，您將了解如何迅速建立時間序列環境、將它連線到事件來源，以及做好準備以分析事件資料。"
+title: "aaaCreate Azure 時間數列 Insights 環境 |Microsoft 文件"
+description: "在本教學課程中，您將學習如何 toocreate 時間數列環境中，將它連接 tooan 事件來源和準備 tooanalyze 事件資料，以分鐘為單位。"
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -15,42 +15,42 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/21/2017
 ms.author: omravi
-ms.openlocfilehash: eb710795916a2d7beea75a6408a0982fb4dc8750
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7120fc9a6e4d4a4972f8cb37e4d9945cfb746fd2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-new-time-series-insights-environment-in-the-azure-portal"></a>在 Azure 入口網站中建立新的 Time Series Insights 環境
+# <a name="create-a-new-time-series-insights-environment-in-hello-azure-portal"></a>在 hello Azure 入口網站中建立新的時間序列 Insights 環境
 
-Time Series Insights 環境是具有輸入和儲存容量的 Azure 資源。 客戶需透過 Azure 入口網站來佈建環境和所需容量。
+Time Series Insights 環境是具有輸入和儲存容量的 Azure 資源。 客戶會使用所需的 hello 容量佈建透過 hello Azure 入口網站的環境。
 
-## <a name="steps-to-create-the-environment"></a>用以建立環境的步驟
+## <a name="steps-toocreate-hello-environment"></a>步驟 toocreate hello 環境
 
-請遵循下列步驟來建立環境：
+請遵循這些步驟 toocreate 您的環境：
 
-1.  登入 [Azure 入口網站](https://portal.azure.com)。
-2.  按一下左上角的加號 (“+”)。
-3.  在搜尋方塊中搜尋「Time Series Insights」。
+1.  登入 toohello [Azure 入口網站](https://portal.azure.com)。
+2.  按一下 hello 加上正負號 （"+"） 中的 hello 左上角。
+3.  搜尋 「 時間序列見解"hello [搜尋] 方塊中。
 
-  ![建立 Time Series Insights 環境](media/get-started/getstarted-create-environment1.png)
+  ![建立 hello 時間數列 Insights 環境](media/get-started/getstarted-create-environment1.png)
 
 4.  選取 [Time Series Insights]，然後按一下 [建立]。
 
-  ![建立 Time Series Insights 資源群組](media/get-started/getstarted-create-environment2.png)
+  ![建立 hello 時間數列 Insights 資源群組](media/get-started/getstarted-create-environment2.png)
 
-5.  指定環境名稱。 此名稱會代表[時間序列總管](https://insights.timeseries.azure.com)中的環境。
-6.  選取一個訂用帳戶。 請選擇包含事件來源的訂用帳戶。 Time Series Insights 可以自動偵測相同訂用帳戶中現有的 Azure IoT 中樞與事件中樞資源。
+5.  指定環境名稱。 這個名稱會表示中的 hello 環境[時間數列總管](https://insights.timeseries.azure.com)。
+6.  選取一個訂用帳戶。 請選擇包含事件來源的訂用帳戶。 時間序列 Insights 可自動偵測 Azure IoT 中樞，並在現有的事件中樞資源 hello 相同訂用帳戶。
 7.  選取或建立資源群組。 資源群組是一起使用之 Azure 資源的集合。
-8.  選取裝載位置。 若要避免在資料中心之間移動資料，請選擇事件來源所在的位置。
+8.  選取裝載位置。 tooavoid 移動資料在資料中心中，選擇包含您的事件來源的位置。
 9.  選取定價層。
 10. 選取容量。 您可以在環境建立後變更其容量。
-11. 建立您的環境。 您也可以將環境釘選到儀表板，以方便在登入時存取。
+11. 建立您的環境。 每當您登入，您也可以釘選環境 toohello 儀表板，以方便存取。
 
-  ![建立 Time Series Insights [釘選到儀表板]](media/get-started/getstarted-create-environment3.png)
+  ![建立 hello 時間數列 Insights pin toodashboard](media/get-started/getstarted-create-environment3.png)
 
 ## <a name="next-steps"></a>後續步驟
 
-* [定義資料存取原則](time-series-insights-data-access.md)以在 [Time Series Insights 入口網站](https://insights.timeseries.azure.com)中存取您的環境
+* [定義資料存取原則](time-series-insights-data-access.md)tooaccess 您的環境中[時間數列 Insights 入口網站](https://insights.timeseries.azure.com)
 * [建立事件來源](time-series-insights-add-event-source.md)
-* [將事件傳送](time-series-insights-send-events.md)到事件來源
+* [傳送事件](time-series-insights-send-events.md)toohello 事件來源

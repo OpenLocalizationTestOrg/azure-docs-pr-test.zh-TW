@@ -1,6 +1,6 @@
 ---
-title: "使用 .NET 將檔案上傳至媒體服務帳戶 | Microsoft Docs"
-description: "了解如何建立並上傳資產，以將媒體內容移至媒體服務中。"
+title: "使用適用於.NET 的 Media Services 帳戶將 aaaUpload 檔案 |Microsoft 文件"
+description: "了解如何 tooget 媒體內容至媒體服務建立和上傳資產。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/12/2017
 ms.author: juliako
-ms.openlocfilehash: ec8c1da633374ba684f6a0a895c542ee76ef73b8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 11c8a359b09efe04b54490fd48ac0cd7c366f8b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="upload-files-into-a-media-services-account-using-net"></a>使用 .NET 將檔案上傳至媒體服務帳戶
 > [!div class="op_single_selector"]
@@ -28,39 +28,39 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-在媒體服務中，您可以將數位檔案上傳 (或內嵌) 到資產。 **資產**實體可以包含視訊、音訊、影像、縮圖集合、文字播放軌及隱藏式輔助字幕檔案 (以及這些檔案的相關中繼資料)。上傳檔案之後，您的內容會安全地儲存在雲端，以進一步進行處理和串流處理。
+在媒體服務中，您可以將數位檔案上傳 (或內嵌) 到資產。 hello**資產**實體可以包含視訊、 音訊、 影像、 縮圖集合、 文字播放軌和隱藏式的字幕檔案 （和 hello 中繼資料，這些檔案的相關。）Hello 檔案上傳，一旦您的內容會安全地儲存在 hello 用於進一步處理和雲端資料流。
 
-資產中的檔案稱為 **資產檔案**。 **AssetFile** 執行個體和實際媒體檔是兩個不同的物件。 AssetFile 執行個體包含媒體檔案的相關中繼資料，而媒體檔案包含實際的媒體內容。
+hello 資產中的 hello 檔案被稱為**資產檔案**。 hello **AssetFile**執行個體與 hello 實際媒體檔案的兩個相異的物件。 hello AssetFile 執行個體包含 hello 媒體檔案的相關中繼資料，而 hello 媒體檔案包含 hello 實際的媒體內容。
 
 > [!NOTE]
-> 您必須考量下列事項：
+> hello 下列考量適用於：
 > 
-> * 建置串流內容的 URL (例如，http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters) 時，媒體服務會使用 IAssetFile.Name 屬性的值。基於這個理由，不允許 percent-encoding。 **Name** 屬性的值不能有下列任何[百分比編碼保留字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#[]"。 而且，副檔名只能有一個 '.'。
-> * 名稱長度不應超過 260 個字元。
-> * 對於在媒體服務處理檔案，支援的檔案大小有上限。 請參閱[此](media-services-quotas-and-limitations.md)主題，以取得有關檔案大小限制的詳細資料。
-> * 對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+> * Media Services 使用 hello hello IAssetFile.Name 屬性值，當建置 Url 的 hello 串流處理內容 (例如，http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters。)基於這個理由，不允許 percent-encoding。 hello hello 值**名稱**屬性不能有 hello 下列任何一項[百分比編碼的保留字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters): ！ *' （);: @& = + $，/？ %# []"。 此外，只能有一個 '。 ' hello 檔案名稱副檔名。
+> * hello hello 名稱長度不能超過 260 個字元。
+> * 沒有支援 Media Services 中的處理限制 toohello 最大檔案大小。 請參閱[這](media-services-quotas-and-limitations.md)hello 檔案大小限制的詳細主題。
+> * 對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 您應該使用 hello 如果一律使用相同的原則識別碼 hello 相同天 / 存取權限，例如，原則會就地預定的 tooremain 長時間 （非上載原則） 的定位器。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 > 
 
-建立資產時，您可以指定下列加密選項。 
+當您建立資產時，您可以指定下列加密選項的 hello。 
 
-* **None** - 不使用加密。 這是預設值。 請注意，使用這個選項時您的內容在傳輸中或在儲存體中不受保護。
-  如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。 
+* **None** - 不使用加密。 這是 hello 預設值。 請注意，使用這個選項時您的內容在傳輸中或在儲存體中不受保護。
+  如果您計畫使用漸進式下載 toodeliver MP4，請使用此選項。 
 * **CommonEncryption** - 如果您上傳的內容已經受到一般加密或 PlayReady DRM (例如，受到 PlayReady DRM 保護的 Smooth Streaming) 的加密保護，請使用此選項。
-* **EnvelopeEncrypted** - 如果您上傳以 AES 加密的 HLS，請使用此選項。 請注意，檔案必須已由 Transform Manager 編碼和加密。
-* **StorageEncrypted** - 使用 AES-256 位元加密對您的內容進行本機加密，接著上傳到已靜止加密儲存的 Azure 儲存體。 以儲存體加密保護的資產會自動解除加密並在編碼前放置在加密的檔案系統中，並且會在上傳為新輸出資產之前選擇性地重新編碼。 儲存體加密的主要使用案例是讓您可以使用強式加密來保護磁碟中靜止的高品質輸入媒體檔。
+* **EnvelopeEncrypted** - 如果您上傳以 AES 加密的 HLS，請使用此選項。 請注意，hello 檔案必須具有已編碼，並由 Transform Manager 加密。
+* **StorageEncrypted** -加密您清除的內容，在本機使用 AES 256 位元加密，並將其上傳 tooAzure 儲存體的方式予以儲存加密在靜止。 使用儲存體加密保護的資產會自動加密，並在 「 加密的檔案系統先前 tooencoding，及選擇性地重新加密的先前 toouploading 回為新輸出資產。 儲存體加密的 hello 主要使用案例是當您想的 toosecure 強式加密您高品質的輸入的媒體檔案放在磁碟。
   
     媒體服務可為您的資產提供磁碟上的儲存體加密，而不是在線上加密，例如數位版權管理員 (DRM)。
   
     如果您的資產是儲存體加密，必須設定資產傳遞原則。 如需詳細資訊，請參閱 [設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)。
 
-如果您指定使用 **CommonEncrypted** 選項或 **EnvelopeEncypted** 選項加密資產，則需要建立資產與 **ContentKey** 的關聯。 如需詳細資訊，請參閱 [如何建立 ContentKey](media-services-dotnet-create-contentkey.md)。 
+如果您指定與加密資產 toobe **CommonEncrypted**選項，或**EnvelopeEncypted**選項，您將需要 tooassociate 與資產**ContentKey**. 如需詳細資訊，請參閱[如何 toocreate ContentKey](media-services-dotnet-create-contentkey.md)。 
 
-如果您指定使用 **StorageEncrypted** 選項來加密資產，則 Media Services SDK for .NET 會建立資產的 **StorateEncrypted** 和 **ContentKey**。
+如果您指定與加密資產 toobe **StorageEncrypted**選項，hello Media Services SDK for.NET 會建立**StorateEncrypted** **ContentKey**的程式資產。
 
-本主題顯示如何使用 Media Services .NET SDK 以及 Media Services .NET SDK 延伸模組，以將檔案上傳到媒體服務資產。
+本主題說明如何 toouse 媒體服務.NET SDK，以及 Media Services.NET SDK 延伸模組 tooupload 檔案到 Media Services 資產。
 
 ## <a name="upload-a-single-file-with-media-services-net-sdk"></a>使用媒體服務 .NET SDK 上傳單一檔案
-以下範例程式碼會使用 .NET SDK 來上傳一個檔案。 AccessPolicy 與定位器會由所上傳的函式建立並終結。 
+下列的 hello 範例程式碼會使用.NET SDK tooupload 單一檔案。 hello AccessPolicy 與 Locator 建立和終結 hello 上載函式。 
 
 
         static public IAsset CreateAssetAndUploadSingleFile(AssetCreationOptions assetCreationOptions, string singleFilePath)
@@ -86,19 +86,19 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="upload-multiple-files-with-media-services-net-sdk"></a>使用媒體服務 .NET SDK 上傳多個檔案
-下列程式碼將說明如何建立資產並上傳多個檔案。
+hello 下列程式碼會示範如何 toocreate 資產及上傳多個檔案。
 
-此程式碼會執行下列動作：
+hello 程式碼沒有 hello 遵循：
 
-* 使用上一個步驟中所定義的 CreateEmptyAsset 方法，來建立空白資產。
-* 建立 **AccessPolicy** 執行個體，以定義存取資產所需的權限和規定期間。
-* 建立可用來存取資產的 **Locator** 執行個體。
-* 建立 **BlobTransferClient** 執行個體。 此類型代表在 Azure Blob 上作業的用戶端。 在此範例中，我們會使用用戶端來監視上傳進度。 
-* 逐一列舉所指定目錄中的檔案，並建立每個檔案的 **AssetFile** 執行個體。
-* 使用 **UploadAsync** 方法，將檔案上傳到媒體服務。 
+* 建立空白資產使用 hello 上一個步驟中所定義的 hello CreateEmptyAsset 方法。
+* 建立**AccessPolicy**定義 hello 權限和存取 toohello 資產的持續時間的執行個體。
+* 建立**定位器**提供存取 toohello 資產的執行個體。
+* 建立 **BlobTransferClient** 執行個體。 此類型代表的 hello Azure blob 操作的用戶端。 在此範例中，我們會使用 hello 用戶端 toomonitor hello 上傳進度。 
+* 列舉透過 hello 指定目錄中的檔案，並建立**AssetFile**每個檔案的執行個體。
+* 上傳到 Media Services 使用 hello hello 檔案**UploadAsync**方法。 
 
 > [!NOTE]
-> 使用 UploadAsync 方法確保未封鎖呼叫，並且平行上傳檔案。
+> 使用 hello UploadAsync 方法 tooensure hello 呼叫並未封鎖，以平行方式上傳 hello 檔案。
 > 
 > 
 
@@ -134,13 +134,13 @@ ms.lasthandoff: 08/29/2017
                 var assetFile = asset.AssetFiles.Create(Path.GetFileName(filePath));
                 Console.WriteLine("Created assetFile {0}", assetFile.Name);
 
-                // It is recommended to validate AccestFiles before upload. 
+                // It is recommended toovalidate AccestFiles before upload. 
                 Console.WriteLine("Start uploading of {0}", assetFile.Name);
                 uploadTasks.Add(assetFile.UploadAsync(filePath, blobTransferClient, locator, CancellationToken.None));
             }
 
             Task.WaitAll(uploadTasks.ToArray());
-            Console.WriteLine("Done uploading the files");
+            Console.WriteLine("Done uploading hello files");
 
             blobTransferClient.TransferProgressChanged -= blobTransferClient_TransferProgressChanged;
 
@@ -152,7 +152,7 @@ ms.lasthandoff: 08/29/2017
 
     static void  blobTransferClient_TransferProgressChanged(object sender, BlobTransferProgressChangedEventArgs e)
     {
-        if (e.ProgressPercentage > 4) // Avoid startup jitter, as the upload tasks are added.
+        if (e.ProgressPercentage > 4) // Avoid startup jitter, as hello upload tasks are added.
         {
             Console.WriteLine("{0}% upload competed for {1}.", e.ProgressPercentage, e.LocalFile);
         }
@@ -160,28 +160,28 @@ ms.lasthandoff: 08/29/2017
 
 
 
-上傳大量資產時，請考慮下列項目。
+當上傳大型資產數目，請考慮 hello 下列。
 
-* 為每個執行緒建立新的 **CloudMediaContext** 物件。 **CloudMediaContext** 類別不具備執行緒安全。
-* 將 NumberOfConcurrentTransfers 從預設值 2 增加為較高的值 (例如 5)。 設定此屬性會影響所有 **CloudMediaContext**執行個體。 
-* 將 ParallelTransferThreadCount 保持為預設值 10。
+* 為每個執行緒建立新的 **CloudMediaContext** 物件。 hello **CloudMediaContext**類別不是安全執行緒。
+* 增加 NumberOfConcurrentTransfers hello 的 2 tooa 5 像是較高值的預設值。 設定此屬性會影響所有 **CloudMediaContext**執行個體。 
+* ParallelTransferThreadCount 保持 hello 預設值 10。
 
 ## <a id="ingest_in_bulk"></a>使用媒體服務 .NET SDK 大量擷取資產
-上傳大型資產檔案可能會在建立資產期間造成瓶頸。 大量內嵌資產或「大量內嵌」包含透過上傳程序來解除結合資產建立。 若要使用大量內嵌方式，請建立可描述資產及其相關檔案的資訊清單 (IngestManifest)。 然後使用您選擇的上傳方法，將相關的檔案上傳至資訊清單的 Blob 容器。 Microsoft Azure 媒體服務會監看與資訊清單相關聯的 Blob 容器。 將檔案上傳至 Blob 容器之後，Microsoft Azure 媒體服務會根據資訊清單 (IngestManifestAsset) 中的資產組態來完成資產建立。
+上傳大型資產檔案可能會在建立資產期間造成瓶頸。 擷取資產的大量或 「 大量擷取 」，牽涉到分離資產建立與 hello 上傳程序。 toouse 大量擷取方法，建立資訊清單 (IngestManifest)，描述 hello 資產及其相關聯的檔案。 然後使用您選擇 tooupload hello 相關聯的檔案 toohello 資訊清單的 blob 容器的 hello 上傳方法。 Microsoft Azure Media Services 監看 hello 與 hello 資訊清單相關聯的 blob 容器。 一旦檔案已上傳的 toohello blob 容器，Microsoft Azure Media Services 完成 hello 資產建立根據 hello hello 資訊清單 (IngestManifestAsset) 中的 hello 資產的組態。
 
-若要建立新的 IngestManifest，請呼叫 CloudMediaContext 上 IngestManifests 集合所公開的 Create 方法。 此方法會使用您提供的資訊清單名稱來建立新的 IngestManifest。
+toocreate 新 IngestManifest 呼叫 hello hello CloudMediaContext Ingestmanifest 集合所公開的 hello 建立方法。 這個方法會建立新的 IngestManifest 與 hello 您所提供的資訊清單名稱。
 
     IIngestManifest manifest = context.IngestManifests.Create(name);
 
-建立將與大量 IngestManifest 相關聯的資產。 對資產設定想要的加密選項，以進行大量內嵌。
+建立要與 hello 大量 IngestManifest 相關聯的 hello 資產。 設定所需的 hello hello 大量擷取資產加密選項。
 
-    // Create the assets that will be associated with this bulk ingest manifest
+    // Create hello assets that will be associated with this bulk ingest manifest
     IAsset destAsset1 = _context.Assets.Create(name + "_asset_1", AssetCreationOptions.None);
     IAsset destAsset2 = _context.Assets.Create(name + "_asset_2", AssetCreationOptions.None);
 
-IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進行大量內嵌。 它也會建立構成每個資產之 AssetFile 的關聯。 若要建立 IngestManifestAsset，請在伺服器內容上使用 Create 方法。
+IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進行大量內嵌。 它也將會建立構成每個資產的 Assetfile hello 產生關聯。 toocreate IngestManifestAsset，hello 伺服器內容上使用 hello Create 方法。
 
-下列範例示範如何新增兩個新的 IngestManifestAsset，以建立先前建立之兩個資產與大量內嵌資訊清單的關聯。 每個 IngestManifestAsset 也會關聯在大量內嵌期間針對每個資產所上傳的一組檔案。  
+hello 下列範例示範將先前建立 toohello 大量 hello 兩個資產產生關聯的加入兩個新 Ingestmanifestasset 內嵌資訊清單。 每個 IngestManifestAsset 也會關聯在大量內嵌期間針對每個資產所上傳的一組檔案。  
 
     string filename1 = _singleInputMp4Path;
     string filename2 = _primaryFilePath;
@@ -190,7 +190,7 @@ IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進�
     IIngestManifestAsset bulkAsset1 =  manifest.IngestManifestAssets.Create(destAsset1, new[] { filename1 });
     IIngestManifestAsset bulkAsset2 =  manifest.IngestManifestAssets.Create(destAsset2, new[] { filename2, filename3 });
 
-您可以使用任何高速用戶端應用程式，而高速用戶端應用程式可以將資產檔案上傳至 IngestManifest 之 **IIngestManifest.BlobStorageUriForUpload** 屬性所提供的 Blob 儲存體容器 URI。 一個著名的高速上傳服務是 [Aspera On Demand for Azure Application](https://datamarket.azure.com/application/2cdbc511-cb12-4715-9871-c7e7fbbb82a6)。 您也可以撰寫程式碼來上傳資產檔案 (如下列程式碼範例所示)。
+您可以使用任何適當的高速用戶端的應用程式能夠將上傳 hello 資產檔案 toohello blob 儲存體容器 hello 所提供的 URI **IIngestManifest.BlobStorageUriForUpload** hello IngestManifest 的屬性。 一個著名的高速上傳服務是 [Aspera On Demand for Azure Application](https://datamarket.azure.com/application/2cdbc511-cb12-4715-9871-c7e7fbbb82a6)。 您也可以撰寫程式碼 tooupload hello 資產檔案中 hello 下列程式碼範例所示。
 
     static void UploadBlobFile(string destBlobURI, string filename)
     {
@@ -215,16 +215,16 @@ IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進�
         copytask.Start();
     }
 
-下列程式碼範例顯示上傳本主題中所用範例之資產檔案的程式碼。
+hello hello 範例使用本主題中的 hello 資產檔案上傳的程式碼所示 hello 下列程式碼範例。
 
     UploadBlobFile(manifest.BlobStorageUriForUpload, filename1);
     UploadBlobFile(manifest.BlobStorageUriForUpload, filename2);
     UploadBlobFile(manifest.BlobStorageUriForUpload, filename3);
 
 
-輪詢 **IngestManifest** 的 Statistics 屬性，即可判斷與 **IngestManifest** 相關聯之所有資產的大量內嵌進度。 若要更新進度資訊，每次輪詢 Statistics 屬性時，都必須使用新的 **CloudMediaContext** 。
+您可以判斷 hello hello 與相關聯的所有資產的大量擷取進度**IngestManifest**藉由輪詢 hello 統計資料屬性的 hello **IngestManifest**。 在訂單 tooupdate 進度資訊，您必須使用新**CloudMediaContext**每次輪詢 hello 統計資料屬性。
 
-下列範例示範如何依 **Id**輪詢 IngestManifest。
+hello 下列範例示範如何輪詢 IngestManifest 的其**識別碼**。
 
     static void MonitorBulkManifest(string manifestID)
     {
@@ -261,7 +261,7 @@ IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進�
 
 
 ## <a name="upload-files-using-net-sdk-extensions"></a>使用 .NET SDK 延伸模組上傳檔案
-下列範例顯示如何使用 .NET SDK 延伸模組上傳單一檔案。 在此情況下，會使用 **CreateFromFile** 方法，但也會提供非同步版本 (**CreateFromFileAsync**)。 **CreateFromFile** 方法可讓您指定檔案名稱、加密選項和回呼，以報告檔案的上傳進度。
+下列的 hello 範例示範如何 tooupload 的單一檔案使用.NET SDK 延伸模組。 在此情況下 hello **CreateFromFile**方法會使用，但也會提供 hello 非同步版本 (**CreateFromFileAsync**)。 hello **CreateFromFile**方法可讓您指定 hello 檔案名稱、 加密 選項，以及的回呼順序 tooreport hello 中上傳 hello 檔案的進度。
 
     static public IAsset UploadFile(string fileName, AssetCreationOptions options)
     {
@@ -278,7 +278,7 @@ IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進�
         return inputAsset;
     }
 
-下列範例會呼叫 UploadFile 函數，並指定儲存體加密做為資產建立選項。  
+hello 下列範例會呼叫 UploadFile 函式並指定儲存體加密為 hello 資產建立選項。  
 
     var asset = UploadFile(@"C:\VideoFiles\BigBuckBunny.mp4", AssetCreationOptions.StorageEncrypted);
 
@@ -286,7 +286,7 @@ IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進�
 
 您現在可以將上傳的資產編碼。 如需詳細資訊，請參閱 [為資產編碼](media-services-portal-encode.md)。
 
-您也可以使用 Azure Functions，以根據在所設定容器到達的檔案來觸發編碼作業。 如需詳細資訊，請參閱[此範例](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ )。
+您也可以使用 Azure 函式 tootrigger 抵達 hello 設定容器中的檔案為基礎的編碼工作。 如需詳細資訊，請參閱[此範例](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ )。
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -295,7 +295,7 @@ IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進�
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-step"></a>後續步驟
-您已將資產上傳至媒體服務，現在請移至 [如何取得媒體處理器][How to Get a Media Processor]主題。
+既然您已上傳資產 tooMedia 服務移 toohello[如何 tooGet 媒體處理器][ How tooGet a Media Processor]主題。
 
-[How to Get a Media Processor]: media-services-get-media-processor.md
+[How tooGet a Media Processor]: media-services-get-media-processor.md
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 手動調整 Web 應用程式 | Microsoft Docs"
+title: "PowerShell 指令碼範例-aaaAzure 手動調整 web 應用程式 |Microsoft 文件"
 description: "Azure PowerShell 指令碼範例 - 手動調整 Web 應用程式"
 services: app-service\web
 documentationcenter: 
@@ -16,25 +16,25 @@ ms.workload: web
 ms.date: 03/20/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: e99dfc02b6ab4123cd5f95997285dca5cb686380
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c749031fbe6c6bcbb25395387b4f32b2ba75cef4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-a-web-app-manually"></a>手動調整 Web 應用程式
 
-在此案例中，您會學習如何建立資源群組、App Service 方案和 Web 應用程式。 然後，您會將 App Service 方案從單一執行個體調整為多個執行個體。
+在此案例中，您將學習 toocreate 資源群組、 應用程式服務方案和 web 應用程式。 然後，您會縮放 hello App Service 方案，從單一執行個體 toomultiple 執行個體。
 
-您可以視需要使用 [Azure PowerShell 指南 (英文)](/powershell/azure/overview) 中的指示來安裝 Azure PowerShell，然後執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。
+如有需要安裝 Azure PowerShell 中使用 hello 指令位於 hello hello [Azure PowerShell 指南](/powershell/azure/overview)，然後執行`Login-AzureRmAccount`toocreate 與 Azure 的連線。
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[主要](../../../powershell_scripts/app-service/scale-manual/scale-manual.ps1 "手動調整 Web 應用程式")]
+[!code-powershell[main](../../../powershell_scripts/app-service/scale-manual/scale-manual.ps1 "Scale a web app manually")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、Web 應用程式和所有相關資源。
+Hello 指令碼範例執行後，下列命令的 hello 可以使用的 tooremove hello 資源群組、 web 應用程式和所有相關的資源。
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup -Force
@@ -42,7 +42,7 @@ Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼會使用下列命令。 下表中的每個命令都會連結至命令特定的文件。
+此指令碼會使用下列命令的 hello。 Hello 資料表連結 toocommand 特定文件中的每個命令。
 
 | 命令 | 注意事項 |
 |---|---|
@@ -53,6 +53,6 @@ Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 
 ## <a name="next-steps"></a>後續步驟
 
-如需有關 Azure PowerShell 模組的詳細資訊，請參閱 [Azure PowerShell 文件](/powershell/azure/overview)。
+如需有關 hello Azure PowerShell 模組的詳細資訊，請參閱[Azure PowerShell 文件](/powershell/azure/overview)。
 
-您可以在 [Azure PowerShell 範例](../app-service-powershell-samples.md)中找到適用於 App Service Web Apps 的其他 Azure PowerShell 範例。
+Azure App Service Web 應用程式的其他 Azure Powershell 範例可以在 hello [Azure PowerShell 範例](../app-service-powershell-samples.md)。

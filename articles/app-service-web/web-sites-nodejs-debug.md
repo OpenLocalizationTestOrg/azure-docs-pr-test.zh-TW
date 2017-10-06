@@ -1,6 +1,6 @@
 ---
-title: "如何在 Azure App Service 中偵錯 Node.js Web 應用程式"
-description: "了解如何在 Azure App Service 中偵錯 Node.js Web 應用程式。"
+title: "aaaHow toodebug Node.js web 應用程式在 Azure 應用程式服務"
+description: "了解如何 toodebug Node.js web 應用程式在 Azure App Service 中。"
 tags: azure-portal
 services: app-service\web
 documentationcenter: nodejs
@@ -15,123 +15,123 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: tarcher
-ms.openlocfilehash: 5e302a4c58a171d40e43a22c34c724e868019ec8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 888ec5c3f92cfc3aeea4ea86005b9b6a0d1306ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-debug-a-nodejs-web-app-in-azure-app-service"></a>如何在 Azure App Service 中偵錯 Node.js Web 應用程式
-Azure 提供內建的診斷程式來協助偵錯 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web Apps 中裝載的 Node.js 應用程式。 本文中，您將了解如何啟用 stdout 和 stderr 記錄、在瀏覽器中顯示錯誤資訊，以及如何下載和檢視記錄檔。
+# <a name="how-toodebug-a-nodejs-web-app-in-azure-app-service"></a>Toodebug Node.js web 應用程式在 Azure App Service 中的方式
+Azure 提供內建的診斷與偵錯 Node.js 應用程式中裝載的 tooassist [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web 應用程式。 在本文中，您將學習如何 tooenable 記錄 stdout 和 stderr、 在 hello 瀏覽器中顯示錯誤資訊和 toodownload 和檢視記錄檔。
 
-對於 Azure 上裝載的 Node.js 應用程式，診斷程式由 [IISNode]提供。 本文只討論最常用來收集診斷資訊的設定，不提供 IISNode 的完整使用參考。 如需有關使用 IISNode 的詳細資訊，請參閱 GitHub 的 [IISNode Readme] 。
+對於 Azure 上裝載的 Node.js 應用程式，診斷程式由 [IISNode]提供。 雖然這篇文章討論 hello 最常見的設定用於蒐集診斷資訊，它不使用 IISNode 提供完整的參考。 如需使用 IISNode 的詳細資訊，請參閱 hello [IISNode 讀我檔案]GitHub 上。
 
 <a id="enablelogging"></a>
 
 ## <a name="enable-logging"></a>啟用記錄
 依預設，App Service Web 應用程式只擷取關於部署的診斷資訊，例如使用 Git 來部署 Web 應用程式時。 如果您在部署時發生問題，此資訊很有用，例如安裝 **package.json**中參考的模組失敗時，或使用自訂部署指令碼時。
 
-若要啟用 stdout 和 stderr 資料流記錄，您必須在 Node.js 應用程式的根目錄中建立 **IISNode.yml** 檔案，並加入下列指令：
+tooenable hello stdout 和 stderr 資料流的記錄，您必須建立**IISNode.yml**根目錄 hello Node.js 應用程式檔案，然後加入下列 hello:
 
     loggingEnabled: true
 
-這會啟用記錄來自 Node.js 應用程式的 stderr 和 stdout。
+這可讓 hello 記錄 stderr 和 stdout 從 Node.js 應用程式。
 
-**IISNode.yml** 檔案也可用來控制當失敗發生時，將易懂的錯誤還是開發人員錯誤傳回至瀏覽器。 若要傳回開發人員錯誤，請將下一行加入至 **IISNode.yml** 檔案：
+hello **IISNode.yml**檔案也可以使用的 toocontrol 是否易懂的錯誤訊息或開發人員錯誤傳回 toohello 瀏覽器發生失敗時。 tooenable 開發人員錯誤，加入下列行 toohello hello **IISNode.yml**檔案：
 
     devErrorsEnabled: true
 
-啟用此選項之後，IISNode 會將傳送至 stderr 的最後 64K 資訊傳回，而不是易懂的錯誤，例如「發生內部伺服器錯誤」。
+一旦啟用此選項，IISNode 會傳回 hello 最後 64k 傳送 toostderr 而不是易記的錯誤，例如 「 發生內部伺服器錯誤 」 的資訊。
 
 > [!NOTE]
-> 雖然 devErrorsEnabled 在開發期間診斷問題時很有用，但在生產環境中啟用可能會導致將開發錯誤傳送給使用者。
+> 雖然 devErrorsEnabled 在開發期間在診斷問題時很有用，讓它在生產環境中可能會導致傳送 tooend 使用者開發錯誤。
 > 
 > 
 
-如果您的應用程式中尚無 **IISNode.yml** 檔案，則在發行已更新的應用程之後，您必須重新啟動 Web 應用程式。 如果只是在先前發行的現有 **IISNode.yml** 檔案中變更設定，則不需要重新啟動。
+如果 hello **IISNode.yml**檔案原本不存在您的應用程式內、 發行 hello 更新應用程式之後必須重新啟動您的 web 應用程式。 如果只是在先前發行的現有 **IISNode.yml** 檔案中變更設定，則不需要重新啟動。
 
 > [!NOTE]
-> 如果 Web 應用程式是以 Azure 命令列工具或 Azure PowerShell Cmdlets 建立，則會自動建立預設的 **IISNode.yml** 檔案。
+> 如果您的 web 應用程式使用 hello Azure 命令列工具或 Azure PowerShell Cmdlet，預設值建立**IISNode.yml**會自動建立檔案。
 > 
 > 
 
-若要重新啟動 Web 應用程式，請在 [Azure 入口網站](https://portal.azure.com) 中選取 Web 應用程式，然後按一下 [重新啟動] 按鈕：
+toorestart hello web 應用程式中，選取 hello web 應用程式在 hello [Azure 入口網站](https://portal.azure.com)，然後按一下**重新啟動**按鈕：
 
 ![restart button][restart-button]
 
-如果開發環境中已安裝 Azure 命令列工具，您可以使用下列命令來重新啟動 Web 應用程式：
+如果 hello Azure 命令列工具安裝在開發環境中，您可以使用下列命令 toorestart hello web 應用程式的 hello:
 
     azure site restart [sitename]
 
 > [!NOTE]
-> 雖然 loggingEnabled 和 devErrorsEnabled 是最常用來擷取診斷資訊的 IISNode.yml 組態選項，但 IISNode.yml 也能用來為主控環境設定各種選項。 如需完整的組態選項清單，請參閱 [iisnode_schema.xml](https://github.com/tjanczuk/iisnode/blob/master/src/config/iisnode_schema.xml) 檔案。
+> 雖然 loggingEnabled 和 devErrorsEnabled 擷取診斷資訊的最常用的 hello IISNode.yml 組態選項，IISNode.yml 可以使用的 tooconfigure 各種裝載環境的選項。 如需 hello 組態選項的完整清單，請參閱 hello [iisnode_schema.xml](https://github.com/tjanczuk/iisnode/blob/master/src/config/iisnode_schema.xml)檔案。
 > 
 > 
 
 <a id="viewlogs"></a>
 
 ## <a name="accessing-logs"></a>存取記錄檔
-有三種方式可存取診斷記錄檔：使用檔案傳輸通訊協定 (FTP)、下載 Zip 封存檔，或即使更新的記錄資料流 (又稱為 tail)。 需要有 Azure 命令列工具，才能下載記錄檔的 Zip 封存檔或檢視即時資料流。 請使用下列命令來安裝這些工具：
+三種方式; 可以存取診斷記錄檔使用 hello 檔案傳輸通訊協定 (FTP)，下載 Zip 封存，或做為即時更新的 hello 記錄 （也稱為結尾） 的資料流。 下載 hello Zip 封存的 hello 記錄檔，或檢視 hello 即時資料流需要 hello Azure 命令列工具。 這些可以使用下列命令的 hello 安裝：
 
     npm install azure-cli -g
 
-安裝之後，可使用 'azure' 命令來存取工具。 必須先設定命令列工具來使用您的 Azure 訂用帳戶。 如需有關如何完成此工作的詳細資訊，請參閱＜ **如何使用 Azure 命令列工具** ＞的＜ [如何下載和匯入發行設定](../xplat-cli-connect.md) ＞一節。
+安裝之後，就可以使用 hello 'azure' 命令來存取 hello 工具。 hello 命令列工具必須先設定的 toouse 您 Azure 訂用帳戶。 如需如何 tooaccomplish 這工作資訊，請參閱 hello **toodownload 和匯入發行設定**區段 hello [tooUse hello Azure 命令列工具的方式](../xplat-cli-connect.md)發行項。
 
 ### <a name="ftp"></a>FTP
-若要透過 FTP 來存取診斷資訊，請造訪 [Azure 入口網站](https://portal.azure.com)，選取您的 Web 應用程式，然後選取 [儀表板]。 在 [快速連結]區段中，[FTP DIAGNOSTIC LOGS] 和 [FTPS DIAGNOSTIC LOGS] 連結可讓您使用 FTP 通訊協定來存取記錄檔。
+透過 FTP，tooaccess hello 診斷資訊，請瀏覽 hello [Azure 入口網站](https://portal.azure.com)，選取您的 web 應用程式，然後選取 hello**儀表板**。 在 hello**快速連結**區段，hello **FTP 診斷記錄**和**FTPS 診斷記錄**連結提供使用 hello FTP 通訊協定存取 toohello 記錄檔。
 
 > [!NOTE]
-> 如果您先前沒有為 FTP 或部署設定使用者名稱和密碼，您可以從 [快速入門] 管理頁面中選取 [設定部署認證] 來設定。
+> 如果您先前未設定使用者名稱和密碼的 FTP 或部署，您可以從 hello**快速入門**管理頁面中的選取**設定部署認證**。
 > 
 > 
 
-儀表板中傳回的 FTP URL 是 **LogFiles** 目錄，內含下列子目錄：
+hello 傳回 hello 儀表板中的 FTP URL 為 hello **LogFiles**目錄，將會包含下列子目錄的 hello:
 
-* [部署方法](web-sites-deploy.md) - 如果您使用 Git 之類的部署方法，則會建立相同名稱的目錄，其中含有與部署相關的資訊。
+* [部署方法](web-sites-deploy.md)-如果您使用的部署方法，例如 Git，hello 相同名稱將會建立，而且會包含資訊的目錄相關 toodeployments。
 * nodejs - 從應用程式的所有執行個體擷取的 stdout 和 stderr 資訊 (當 loggingEnabled 為 true 時)。
 
 ### <a name="zip-archive"></a>Zip 封存檔
-若要下載診斷記錄的 Zip 封存檔，請從 Azure 命令列工具中使用下列命令：
+toodownload Zip 封存 hello 診斷記錄檔的使用 hello hello Azure 命令列工具中的下列命令：
 
     azure site log download [sitename]
 
-這會將 **diagnostics.zip** 下載到目前目錄。 此封存檔包含下列目錄結構：
+這會下載**diagnostics.zip** hello 目前目錄中。 這個封存包含下列目錄結構的 hello:
 
 * deployments - 關於應用程式部署的資訊記錄
 * LogFiles
   
-  * [部署方法](web-sites-deploy.md) - 如果您使用 Git 之類的部署方法，則會建立相同名稱的目錄，其中含有與部署相關的資訊。
+  * [部署方法](web-sites-deploy.md)-如果您使用的部署方法，例如 Git，hello 相同名稱將會建立，而且會包含資訊的目錄相關 toodeployments。
   * nodejs - 從應用程式的所有執行個體擷取的 stdout 和 stderr 資訊 (當 loggingEnabled 為 true 時)。
 
 ### <a name="live-stream-tail"></a>即時資料流 (tail)
-若要檢視診斷記錄資訊的即時資料流，請從 Azure 命令列工具中使用下列命令：
+tooview 即時資料流的診斷記錄檔資訊，使用 hello hello Azure 命令列工具中的下列命令：
 
     azure site log tail [sitename]
 
-這會傳回伺服器上最新發生之記錄事件的資料流。 此資料流會傳回部署資訊及 stdout 和 stderr 資訊 (當 loggingEnabled 為 true 時)。
+這會傳回 hello 伺服器上發生更新的記錄事件資料流。 此資料流會傳回部署資訊及 stdout 和 stderr 資訊 (當 loggingEnabled 為 true 時)。
 
 <a id="nextsteps"></a>
 
 ## <a name="next-steps"></a>後續步驟
-本文中，您學到如何啟用和存取 Azure 的診斷資訊。 此資訊有助於了解應用程式發生的問題，但也可能指出您使用的模組有問題，或 App Service Web Apps 使用的 Node.js 版本和部署環境中使用的版本不同。
+在這個發行項您學到如何 tooenable 和存取 azure 診斷資訊。 雖然這項資訊適用於瞭解問題發生的應用程式時，它可能會指向您要使用的模組或 Node.js App Service Web 應用程式所使用的 hello 版 tooa 問題是不同於部署中使用一個 hello環境。
 
 如需有關在 Azure 上使用模組的詳細資訊，請參閱＜ [在 Azure 應用程式中使用 Node.js 模組](../nodejs-use-node-modules-azure-apps.md)＞(英文)。
 
 如需有關為應用程式指定 Node.js 版本的詳細資訊，請參閱＜ [在 Azure 應用程式中指定 Node.js 版本]＞(英文)。
 
-如需詳細資訊，也請參閱 [Node.js 開發人員中心](/develop/nodejs/)。
+如需詳細資訊，請參閱 hello [Node.js 開發人員中心](/develop/nodejs/)。
 
 ## <a name="whats-changed"></a>變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
+* 從網站 tooApp 服務變更如指南 toohello: [Azure 應用程式服務和其對影響現有的 Azure 服務](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想 tooget 之前註冊 Azure 帳戶與 Azure 應用程式服務啟動時，請移至太[再試一次應用程式服務](https://azure.microsoft.com/try/app-service/)，可以立即存留較短的入門的 web 應用程式中建立應用程式服務。 不需要信用卡；沒有承諾。
 > 
 > 
 
 [IISNode]: https://github.com/tjanczuk/iisnode
-[IISNode Readme]: https://github.com/tjanczuk/iisnode#readme
-[How to Use The Azure Command-Line Interface]:../cli-install-nodejs.md
+[IISNode 讀我檔案]: https://github.com/tjanczuk/iisnode#readme
+[How tooUse hello Azure Command-Line Interface]:../cli-install-nodejs.md
 [Using Node.js Modules with Azure Applications]: ../nodejs-use-node-modules-azure-apps.md
 [在 Azure 應用程式中指定 Node.js 版本]: ../nodejs-specify-node-version-azure-apps.md
 

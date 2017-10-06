@@ -1,6 +1,6 @@
 ---
-title: "Azure 分析服務文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何在雲端使用 Analysis Services 設定資料模型。 文件會示範如何使用表格式資料來建立企業 BI 解決方案。"
+title: "aaaAzure Analysis Services 文件集的教學課程中，API 參考 |Microsoft 文件"
+description: "了解如何設定 Analysis Services 與 hello 中的資料模型化 tooset 雲端。 文件會顯示您如何 toocreate 企業 BI 解決方案使用表格式資料。"
 services: analysis-services
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: f5358e2395d5380841894e62a694a6d1253c9126
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 077b13f9eb6eea87b96833452382b8e019f09a6f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analysis-services-documentation"></a>Analysis Services 文件
 
-了解如何使用 Analysis Services 設定和管理資料模型。 教學課程和其他文件會示範如何使用表格式資料，在雲端或內部部署環境建立企業級 BI 解決方案。
+深入了解如何 tooset 及管理模型與 Analysis Services 的資料。 教學課程和其他文件告訴您如何使用 hello 雲端或內部部署中的表格式資料的 toocreate 企業級 BI 方案。
 
 <ul class="panelContent cardsFTitle">
     <li>

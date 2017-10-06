@@ -1,6 +1,6 @@
 ---
-title: "在 OMS Log Analytics 中收集自訂記錄 | Microsoft Docs"
-description: "Log Analytics 可從 Windows 和 Linux 電腦上的文字檔收集事件。  本文說明如何定義新的自訂記錄檔，以及它們在 OMS 儲存機制中建立的記錄詳細資料。"
+title: "aaaCollect 自訂登入 OMS 記錄分析 |Microsoft 文件"
+description: "Log Analytics 可從 Windows 和 Linux 電腦上的文字檔收集事件。  這篇文章描述如何 toodefine 新的自訂記錄檔和詳細資料的 hello 記錄它們建立 hello OMS 儲存機制中。"
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/15/2017
 ms.author: bwren
-ms.openlocfilehash: b7f28868e3ffdf95dbe39872f382e7c97eae692c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a75d058c371fecf7c43690a797d4e650c1570317
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="custom-logs-in-log-analytics"></a>Log Analytics 中的自訂記錄檔
-Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Linux 電腦上的文字檔案收集事件。 許多應用程式會將資訊記錄到文字檔而非標準的記錄服務，例如 Windows 事件記錄檔或 Syslog。  在收集之後，您就可以使用 Log Analytics 的[自訂欄位](log-analytics-custom-fields.md)功能將記錄中的每一筆記錄剖析成個別欄位。
+記錄分析中的 hello 自訂記錄檔資料來源可讓您從 Windows 和 Linux 電腦上的文字檔 toocollect 事件。 許多應用程式記錄資訊 tootext 檔，而不是標準的記錄服務，例如 Windows 事件記錄檔或 Syslog。  一旦收集完成，您可以剖析使用 hello tooindividual 欄位中的 hello 記錄檔中的每一筆記錄[自訂欄位](log-analytics-custom-fields.md)記錄分析的功能。
 
 ![自訂記錄檔收集](media/log-analytics-data-sources-custom-logs/overview.png)
 
-要收集的記錄檔必須符合下列準則。
+hello 收集的記錄檔 toobe 必須符合下列準則的 hello。
 
-- 記錄檔必須是每行一個項目，或在每個項目開頭使用符合下列其中一種格式的時間戳記。
+- hello 記錄必須有每行的單一項目，或使用時間戳記相符 hello 下列其中一種格式在 hello 開頭的每個項目。
 
     YYYY-MM-DD HH:MM:SS <br>M/D/YYYY HH:MM:SS AM/PM <br>Mon DD,YYYY HH:MM:SS
 
-- 記錄檔不得使用會以新的項目覆寫檔案的循環更新。
-- 記錄檔必須使用 ASCII 或 UTF-8 編碼。  不支援其他格式，例如 UTF-16。
+- hello 記錄檔不允許循環的更新會以新的項目覆寫 hello 檔案。
+- hello 記錄檔必須使用 ASCII 或 utf-8 編碼。  不支援其他格式，例如 UTF-16。
 
 >[!NOTE]
->如果記錄檔中有重複的項目，Log Analytics 會收集這些項目。  不過，搜尋結果會不一致，篩選結果所顯示的事件會比結果計數更多。  您必須驗證記錄，以判定建立該記錄的應用程式是否導致此行為，若可以的話，請先處理此問題，再建立自訂記錄集合定義。  
+>如果 hello 記錄檔中有重複的項目，將會收集記錄分析它們。  不過，hello 搜尋結果會不一致，hello 篩選結果會顯示數個事件比 hello 結果計數。  它將會驗證 hello 記錄 toodetermine 如果 hello 建立應用程式，它會造成這種行為，並盡可能建立 hello 自訂記錄檔集合定義之前解決。  
 >
   
 ## <a name="defining-a-custom-log"></a>定義自訂記錄檔
-使用下列程序來定義自訂記錄檔。  如需新增自訂記錄檔之範例的逐步解說，請捲動到本文結尾處。
+使用下列程序 toodefine 自訂記錄檔的 hello。  如需逐步解說的範例，以新增自訂的記錄檔的這篇文章捲動 toohello 結束。
 
-### <a name="step-1-open-the-custom-log-wizard"></a>步驟 1. 開啟自訂記錄檔精靈
-自訂記錄檔精靈會在 OMS 入口網站中執行，並可讓您定義要收集的新自訂記錄檔。
+### <a name="step-1-open-hello-custom-log-wizard"></a>步驟 1. 開啟 hello 自訂記錄檔精靈
+hello 自訂記錄檔精靈 hello OMS 入口網站中執行，並可讓您新的自訂記錄檔 toocollect toodefine。
 
-1. 在 OMS 入口網站中，移至 [設定] 。
+1. 在 hello OMS 入口網站中，移過**設定**。
 2. 按一下 [資料]，然後按一下 [自訂記錄檔]。
-3. 根據預設，所有設定變更都會自動發送給所有代理程式。  若是 Linux 代理程式，組態檔會傳送給 Fluentd 資料收集器。  如果您想以手動方式在每個 Linux 代理程式上修改這個檔案，只要取消核取 *[Apply below configuration to my Linux machines]* \(將下列設定套用至我的 Linux 機器) 方塊即可。
-4. 按一下 [新增+]  開啟自訂記錄檔精靈。
+3. 根據預設，所有的組態變更會自動推入 tooall 代理程式。  Linux 代理程式，請傳送 toohello Fluentd 資料收集器的組態檔案。  如果您想 toomodify 手動在每個 Linux 代理程式上的這個檔案，然後取消核取方塊 hello*套用下列組態 toomy Linux 電腦*。
+4. 按一下**新增 +** tooopen hello 自訂記錄檔精靈。
 
 ### <a name="step-2-upload-and-parse-a-sample-log"></a>步驟 2. 上傳和剖析範例記錄檔
-一開始您要上傳自訂記錄檔的範例。  精靈會剖析並顯示此檔案中的項目以供您驗證。  Log Analytics 會使用您指定的分隔符號來識別每一筆記錄。
+您開始上傳 hello 自訂記錄檔的範例。  hello 精靈將會剖析，並顯示您 toovalidate 此檔案中的 hello 項目。  記錄分析將使用您指定 tooidentify 每一筆記錄的 hello 分隔符號。
 
-**新行字元** 是預設的分隔符號，並且會用於每行一個項目的記錄檔。  如果一行的開頭是其中一種可用格式的日期和時間，則您可以指定 **時間戳記** 分隔符號，其可支援跨越多行的多個項目。
+**新的一行**為 hello 預設分隔符號，用於有單一項目，每行的記錄檔。  如果 hello 一行開頭的日期和時間，其中一種 hello 可用的格式，則您可以指定**時間戳記**支援跨越一行以上的項目分隔符號。
 
-如果使用時間戳記分隔符號，則儲存在 OMS 中的每一筆記錄的 TimeGenerated 屬性會填入針對記錄檔中的該項目指定的日期/時間。  如果使用新行字元分隔符號，則 TimeGenerated 會填入 Log Analytics 收集項目時的日期和時間。
+如果使用時間戳記分隔符號，則會與 hello 日期/時間為 hello 記錄檔中的項目指定填入 hello TimeGenerated 屬性儲存在 OMS 中的每一筆記錄。  如果使用新行的分隔符號，然後 TimeGenerated 會填入日期和時間，記錄分析會收集 hello 項目。
 
 > [!NOTE]
-> Log Analytics 目前會將使用時間戳記分隔符號從記錄檔中收集到的日期/時間視為 UTC。  這很快就會變更為使用代理程式上的時區。
+> 記錄分析目前會將 hello 日期/時間從使用為 UTC 時間戳記分隔符號的記錄檔收集。  很快就會變更的 toouse hello 時區 hello 代理程式上。
 >
 >
 
-1. 按一下 [瀏覽]  並瀏覽至範例檔案。  請注意，在某些瀏覽器中，這個按鈕可能標示為 [選擇檔案]  。
+1. 按一下**瀏覽**並瀏覽 tooa 範例檔案。  請注意，在某些瀏覽器中，這個按鈕可能標示為 [選擇檔案]  。
 2. 按一下 [下一步] 。
-3. 自訂記錄檔精靈會上傳檔案並列出其識別的記錄。
-4. 變更用來識別新記錄的分隔符號，並選取最能識別記錄檔中的記錄的分隔符號。
+3. hello 自訂記錄精靈會將上傳 hello 檔案和清單 hello 記錄，它會識別。
+4. 變更是使用的 tooidentify 新記錄的 hello 分隔符號和可識別最適合您的記錄檔中的 hello 記錄選取 hello 分隔符號。
 5. 按一下 [下一步] 。
 
 ### <a name="step-3-add-log-collection-paths"></a>步驟 3. 新增記錄檔收集路徑
-您必須在代理程式上定義一個或多個它可以在其中找到自訂記錄檔的路徑。  您可以提供該記錄檔的特定路徑和名稱，或者您可以使用萬用字元為該名稱指定路徑。  這可支援每天會建立一個新檔案的應用程式或在一個檔案到達特定大小時提供支援。  您也可以為單一記錄檔提供多個路徑。
+它可以在其中尋找 hello 自訂記錄檔的 hello 代理程式上，您必須定義一個或多個路徑。  您可以提供特定路徑和名稱為 hello 記錄檔，或您可以使用萬用字元 hello 名稱指定的路徑。  這可支援每天會建立一個新檔案的應用程式或在一個檔案到達特定大小時提供支援。  您也可以為單一記錄檔提供多個路徑。
 
-例如，應用程式可能會每天建立一個記錄檔，且名稱中會包含日期，如同 log20100316.txt。 這類記錄檔的模式可能是 *log\*.txt*，而這會套用到任何遵循應用程式命名配置的記錄檔。
+例如，應用程式可能會建立記錄檔每一天 hello 如同 log20100316.txt hello 名稱中包含的日期。 這類記錄檔的模式可能是*記錄\*.txt*會套用 tooany 遵循 hello 應用程式的記錄檔的命名配置。
 
-下表提供可用來指定不同記錄檔的有效模式範例。
+hello 下表提供有效的模式範例 toospecify 不同記錄檔。
 
 | 說明 | 路徑 |
 |:--- |:--- |
@@ -81,59 +81,59 @@ Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Li
 | Windows 代理程式上的 */var/log/audit* 中副檔名為 .txt 的所有檔案 |/var/log/audit/*.txt |
 | Linux 代理程式上的 */var/log/audit* 中，名稱開頭為 log 且副檔名為 .txt 的所有檔案 |/var/log/audit/log\*.txt |
 
-1. 選取 Windows 或 Linux 以指定您要新增的路徑格式。
-2. 輸入路徑並按一下 [+] **+** 按鈕。
-3. 針對任何其他路徑重複此程序。
+1. 選取您要加入其中的路徑格式的 Windows 或 Linux toospecify。
+2. 輸入 hello 路徑中，按一下 [hello  **+**  ] 按鈕。
+3. 任何其他路徑重複 hello 程序。
 
-### <a name="step-4-provide-a-name-and-description-for-the-log"></a>步驟 4. 提供記錄檔的名稱和描述
-您指定的名稱將用於如上所述的記錄檔類型。  它一定會以 _CL 結尾以將自己辨別為自訂記錄檔。
+### <a name="step-4-provide-a-name-and-description-for-hello-log"></a>步驟 4. 提供的名稱和描述 hello 記錄檔
+hello 您指定的名稱將用於 hello 記錄類型 （如上所述）。  它最後一定會與 _CL toodistinguish 它做為自訂的記錄檔。
 
-1. 輸入記錄檔的名稱。  **\__CL** 尾碼會自動提供。
+1. 輸入 hello 記錄檔的名稱。  hello  **\_CL**會自動被賦予後置詞。
 2. 新增選擇性的 [描述] 。
-3. 按 [下一步]  來儲存自訂記錄檔的定義。
+3. 按一下**下一步**toosave hello 自訂記錄檔定義。
 
-### <a name="step-5-validate-that-the-custom-logs-are-being-collected"></a>步驟 5。 驗證會收集自訂記錄檔
-最多可能需要一小時的時間，新的自訂記錄檔中的初始資料才會出現在 Log Analytics 中。  從您定義自訂記錄檔之後，它就會開始從您指定的路徑中所找到的記錄檔收集項目。  它不會保留您在建立自訂記錄檔期間上傳的項目，但它會收集它所找出之記錄檔中既有的項目。
+### <a name="step-5-validate-that-hello-custom-logs-are-being-collected"></a>步驟 5。 驗證所要收集 hello 自訂記錄檔
+它可能會佔用 tooan 小時從新的自訂記錄檔 tooappear 記錄分析中的 hello 初始資料。  它會開始收集項目從 hello 記錄檔路徑中找到 hello 從 hello 點指定該您定義的 hello 自訂記錄檔。  它將不會保留您上傳 hello 自訂記錄檔建立期間的 hello 項目，但它會收集 hello 找到的記錄檔中的現有項目。
 
-一旦 Log Analytics 開始從自訂記錄檔收集，就能透過「記錄檔搜尋」取得其記錄。  請使用您提供給自訂記錄檔的名稱來做為查詢中的 [類型]  。
+一旦記錄分析會開始收集從 hello 自訂記錄檔，其記錄將會提供記錄搜尋。  使用您提供給 hello hello 做的自訂記錄檔的 hello 名稱**類型**在查詢中。
 
 > [!NOTE]
-> 如果搜尋中遺漏 RawData 屬性，您可能需要先關閉再重新開啟瀏覽器。
+> 如果遺漏從 hello 搜尋 hello RawData 屬性，您可能需要 tooclose，並重新開啟您的瀏覽器。
 >
 >
 
-### <a name="step-6-parse-the-custom-log-entries"></a>步驟 6. 剖析自訂記錄檔項目
-整個記錄檔項目會儲存在稱為 **RawData**的單一屬性中。  您很可能會想要將每個項目中的不同資訊片段，分成儲存在記錄中的個別屬性。  您可以使用 Log Analytics 的 [自訂欄位](log-analytics-custom-fields.md) 功能來這麼做。
+### <a name="step-6-parse-hello-custom-log-entries"></a>步驟 6. 剖析 hello 自訂記錄項目
+hello 整個記錄檔項目會儲存在單一屬性呼叫**RawData**。  您最有可能會想 tooseparate hello 不同資訊片段中每個項目插入儲存在 hello 記錄中的個別屬性。  您使用 hello[自訂欄位](log-analytics-custom-fields.md)記錄分析的功能。
 
-這裡並未提供用來剖析自訂記錄檔項目的詳細步驟。  如需這項資訊，請參閱 [自訂欄位](log-analytics-custom-fields.md) 文件。
+這裡不會提供詳細的步驟，以剖析 hello 自訂記錄項目。  請參閱 toohello[自訂欄位](log-analytics-custom-fields.md)這項資訊的文件。
 
 ## <a name="disabling-a-custom-log"></a>停用自訂記錄檔
 自訂記錄檔定義一旦建立就無法移除，但您可以移除其所有集合路徑來停用它。
 
-1. 在 OMS 入口網站中，移至 [設定] 。
+1. 在 hello OMS 入口網站中，移過**設定**。
 2. 按一下 [資料]，然後按一下 [自訂記錄檔]。
-3. 按一下自訂記錄檔定義旁邊的 [詳細資料] 來停用它。
-4. 移除自訂記錄檔定義的每個集合路徑。
+3. 按一下**詳細資料**下一步 toohello 自訂記錄檔定義 toodisable。
+4. 移除每個 hello 自訂記錄檔定義的 hello 集合路徑。
 
 ## <a name="data-collection"></a>資料收集
-Log Analytics 會從每個自訂記錄檔收集新的項目，間隔大約為每 5 分鐘。  代理程式會記錄它在從中收集項目的每個記錄檔中的位置。  如果代理程式離線一段時間，Log Analytics 即會從上次停止的地方收集項目，即使這些項目是在代理程式離線時所建立亦同。
+Log Analytics 會從每個自訂記錄檔收集新的項目，間隔大約為每 5 分鐘。  hello 代理程式將會收集每個記錄檔中記錄其所在位置。  如果 hello 代理程式離線一段時間，然後記錄分析將收集項目從其上次離開的地方，即使那些項目在 hello agent 離線期間所建立。
 
-整個記錄檔項目的內容會寫入到稱為 **RawData**的單一屬性。  您可以將此屬性剖析成多個屬性，以在建立自訂記錄檔之後透過定義 [自訂欄位](log-analytics-custom-fields.md) 來個別分析和搜尋。
+hello hello 記錄項目整個內容寫入 tooa 單一屬性呼叫**RawData**。  您可以將此剖析成多個屬性，進行分析及藉由定義分別搜尋[自訂欄位](log-analytics-custom-fields.md)建立 hello 自訂記錄檔之後。
 
 ## <a name="custom-log-record-properties"></a>自訂記錄檔記錄的屬性
-自訂記錄檔記錄的類型具有您提供的記錄檔名稱和下表中的屬性。
+自訂記錄檔記錄都有您所提供和 hello hello 下表中的屬性 hello 記錄檔名稱的型別。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| TimeGenerated |Log Analytics 收集記錄時的日期和時間。  如果記錄使用以時間為基礎的分隔符號，則這是從項目收集到的時間。 |
-| SourceSystem |收集記錄的來源代理程式類型。 <br> OpsManager - Windows 代理程式，直接連線或由 System Center Operations Manager 管理 <br> Linux – 所有的 Linux 代理程式 |
-| RawData |所收集項目的完整文字。 |
-| ManagementGroupName |System Center Operations Manager 代理程式的管理群組名稱。  若為其他代理程式，此為 AOI-\<工作區 ID\> |
+| TimeGenerated |日期和時間 hello 記錄已分析所收集的記錄檔。  如果 hello 記錄檔會使用以時間為基礎的分隔符號這是從 hello 項目收集的 hello 時間。 |
+| SourceSystem |從收集的代理程式 hello 記錄類型。 <br> OpsManager - Windows 代理程式，直接連線或由 System Center Operations Manager 管理 <br> Linux – 所有的 Linux 代理程式 |
+| RawData |全文檢索的 hello 收集項目。 |
+| ManagementGroupName |System Center Operations Manage agents hello 管理群組名稱。  若為其他代理程式，此為 AOI-\<工作區 ID\> |
 
 ## <a name="log-searches-with-custom-log-records"></a>使用自訂記錄檔記錄來記錄搜尋
-和來自任何其他資料來源的記錄一樣，來自自訂記錄檔的記錄會儲存在 OMS 儲存機制中。  其類型會符合您在定義記錄檔時提供的名稱，因此您可以在搜尋中使用 [類型] 屬性，以擷取從特定記錄檔收集而來的記錄。
+從自訂的記錄檔的記錄會儲存在 hello OMS 儲存機制，就像任何其他資料來源的記錄。  這些使用者必須符合您提供當您定義 hello 記錄檔中，因此您可以使用 hello 類型屬性搜尋 tooretrieve 記錄收集從特定的記錄檔中的 hello 名稱的類型。
 
-下表提供從自訂記錄檔擷取記錄之記錄檔搜尋的不同範例。
+hello 下表提供的自訂記錄檔從擷取記錄的記錄搜尋不同的範例。
 
 | 查詢 | 說明 |
 |:--- |:--- |
@@ -141,7 +141,7 @@ Log Analytics 會從每個自訂記錄檔收集新的項目，間隔大約為每
 | Type=MyApp_CL Severity_CF=error |來自 MyApp_CL 自訂記錄檔且在 *Severity_CF* 自訂欄位中的值為 *error* 的所有事件。 |
 
 >[!NOTE]
-> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則以上查詢會變更如下。
+> 如果您的工作區已升級的 toohello[新的記錄分析查詢語言](log-analytics-log-search-upgrade.md)，然後 hello 上述查詢會變更 toohello 下列。
 
 > | 查詢 | 說明 |
 |:--- |:--- |
@@ -150,39 +150,39 @@ Log Analytics 會從每個自訂記錄檔收集新的項目，間隔大約為每
 
 
 ## <a name="sample-walkthrough-of-adding-a-custom-log"></a>新增自訂記錄檔的範例逐步解說
-下面的章節會逐步解說建立自訂記錄檔的範例。  所收集的範例記錄在每一行只有一個項目，其開頭為日期和時間，然後是以逗號分隔的程式碼、狀態及訊息欄位。  下面顯示了幾個範例項目。
+hello 下一節逐步解說建立自訂的記錄檔的範例。  hello 範例記錄檔收集對每一行開頭的日期和時間，並接著以逗號分隔的程式碼、 狀態及訊息欄位的單一項目。  下面顯示了幾個範例項目。
 
     2016-03-10 01:34:36 207,Success,Client 05a26a97-272a-4bc9-8f64-269d154b0e39 connected
     2016-03-10 01:33:33 208,Warning,Client ec53d95c-1c88-41ae-8174-92104212de5d disconnected
     2016-03-10 01:35:44 209,Success,Transaction 10d65890-b003-48f8-9cfc-9c74b51189c8 succeeded
-    2016-03-10 01:38:22 302,Error,Application could not connect to database
-    2016-03-10 01:31:34 303,Error,Application lost connection to database
+    2016-03-10 01:38:22 302,Error,Application could not connect toodatabase
+    2016-03-10 01:31:34 303,Error,Application lost connection toodatabase
 
 ### <a name="upload-and-parse-a-sample-log"></a>上傳和剖析範例記錄檔
-我們提供其中一個記錄檔，並可以看到將會收集的事件。  在此案例中，新行字元足以做為分隔符號。  但如果記錄檔中的單一項目跨越多行，就必須使用時間戳記分隔符號。
+我們提供一個 hello 記錄檔，可以看到 hello 將收集的事件。  在此案例中，新行字元足以做為分隔符號。  如果 hello 記錄檔中的單一項目無法透過跨越多行，則時間戳記分隔符號需要 toobe 使用。
 
 ![上傳和剖析範例記錄檔](media/log-analytics-data-sources-custom-logs/delimiter.png)
 
 ### <a name="add-log-collection-paths"></a>新增記錄檔收集路徑
-記錄檔將位於 *C:\MyApp\Logs*。  每一天都會建立一個新檔案，且其名稱中包括「appYYYYMMDD.log」 模式的日期。  此記錄檔的完整模式為 *C:\MyApp\Logs\\\*.log*。
+hello 記錄檔會位於*C:\MyApp\Logs*。  包含 hello 日期 hello 模式中的名稱與每一天會建立新的檔案*appYYYYMMDD.log*。  此記錄檔的完整模式為 *C:\MyApp\Logs\\\*.log*。
 
 ![記錄檔收集路徑](media/log-analytics-data-sources-custom-logs/collection-path.png)
 
-### <a name="provide-a-name-and-description-for-the-log"></a>提供記錄檔的名稱和描述
+### <a name="provide-a-name-and-description-for-hello-log"></a>提供的名稱和描述 hello 記錄檔
 我們使用 *MyApp_CL* 這個名稱並輸入 [描述]。
 
 ![記錄檔名稱](media/log-analytics-data-sources-custom-logs/log-name.png)
 
-### <a name="validate-that-the-custom-logs-are-being-collected"></a>驗證會收集自訂記錄檔
-我們使用 *Type=MyApp_CL* 這個查詢，以從收集到的記錄檔傳回所有記錄。
+### <a name="validate-that-hello-custom-logs-are-being-collected"></a>驗證所要收集 hello 自訂記錄檔
+我們使用的查詢*類型 = MyApp_CL* tooreturn 所有記錄從 hello 收集的記錄。
 
 ![無自訂欄位的記錄檔查詢](media/log-analytics-data-sources-custom-logs/query-01.png)
 
-### <a name="parse-the-custom-log-entries"></a>剖析自訂記錄檔項目
-我們使用「自訂欄位」來定義 *EventTime*、*Code*、*Status* 和 *Message* 欄位，而且我們可以在查詢所傳回的記錄中看到差異。
+### <a name="parse-hello-custom-log-entries"></a>剖析 hello 自訂記錄項目
+我們使用自訂欄位 toodefine hello *EventTime*，*程式碼*，*狀態*，和*訊息*欄位，而且我們可以看到 hello hello 差異hello 查詢所傳回的記錄。
 
 ![有自訂欄位的記錄檔查詢](media/log-analytics-data-sources-custom-logs/query-02.png)
 
 ## <a name="next-steps"></a>後續步驟
-* 使用[自訂欄位](log-analytics-custom-fields.md)，以將自訂記錄中的項目剖析至個別欄位。
-* 了解 [記錄搜尋](log-analytics-log-searches.md) ，以分析從資料來源和解決方案所收集的資料。
+* 使用[自訂欄位](log-analytics-custom-fields.md)tooparse hello hello tooindividual 欄位中的自訂記錄項目。
+* 深入了解[記錄搜尋](log-analytics-log-searches.md)tooanalyze hello 資料收集的資料來源和解決方案。

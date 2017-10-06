@@ -1,5 +1,5 @@
 ---
-title: "Azure Marketplace 文件 | Microsoft Docs"
+title: "aaaAzure Marketplace 文件 |Microsoft 文件"
 description: "了解 Azure Marketplace。"
 services: marketplace
 author: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 04/14/2017
 ms.author: carolz
-ms.openlocfilehash: 6dca59ddd5fe524b7778abe770b6387f8bb24f01
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc66c89a5e34ec41ff95851a2f02d836ff0d1261
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-marketplace-documentation"></a>Azure Marketplace 文件
 
-深入了解 Azure Marketplace，這是一個線上應用程式和服務市集，可讓新興和獨立軟體廠商 (ISV) 為全球的客戶提供解決方案。
+深入了解 Azure Marketplace 線上應用程式和服務可讓 Isv 啟動 tooenterprises toooffer 從 marketplace hello 世界各地其解決方案 toocustomers。
 
 <ul class="panelContent cardsFTitle">
     <li>

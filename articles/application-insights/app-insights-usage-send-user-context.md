@@ -1,5 +1,5 @@
 ---
-title: "傳送使用者內容以啟用 Azure Application Insights 中的使用體驗 | Microsoft Docs"
+title: "aaaSending 使用者內容 tooenable 使用量體驗 Azure Application Insights |Microsoft 文件"
 description: "為每個使用者指派 Application Insights 中唯一的持續性識別碼字串之後，追蹤使用者如何透過您的服務移動。"
 services: application-insights
 documentationcenter: 
@@ -12,45 +12,45 @@ ms.devlang: csharp
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: bwren
-ms.openlocfilehash: 9350029c775643be0dcc679b0f4bb9238b5f8aca
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0e6c2348f53a3ea970060334179b0dd070925e82
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-#  <a name="sending-user-context-to-enable-usage-experiences-in-azure-application-insights"></a>傳送使用者內容以啟用 Azure Application Insights 中的使用體驗
+#  <a name="sending-user-context-tooenable-usage-experiences-in-azure-application-insights"></a>傳送的使用者內容 tooenable 使用量體驗 Azure Application Insights
 
 ## <a name="tracking-users"></a>追蹤使用者
 
-Application Insights 可讓您透過一組產品使用量工具來監控並追蹤使用者： 
+Application Insights 可讓您 toomonitor 並追蹤您透過一組產品使用工具的使用者： 
 * [使用者、工作階段、事件](https://docs.microsoft.com/azure/application-insights/app-insights-usage-segmentation)
 * [漏斗圖](https://docs.microsoft.com/azure/application-insights/usage-funnels)
 * [保留](https://docs.microsoft.com/azure/application-insights/app-insights-usage-retention)
 * 同群使用者
 * [活頁簿](https://docs.microsoft.com/azure/application-insights/app-insights-usage-workbooks)
 
-若要追蹤使用者在一段時間內所做的行為，Application Insights 需要每個使用者或工作階段的識別碼。 包括每個自訂事件或頁面檢視中的識別碼。
+順序 tootrack 哪些使用者執行一段時間，在 Application Insights 需要每個使用者或工作階段的識別碼。 包括每個自訂事件或頁面檢視中的識別碼。
 - 使用者、漏斗圖、保留期和同群使用者：包含使用者識別碼。
 - 工作階段：包含工作階段識別碼。
 
-如果您的應用程式與 [JavaScript SDK](https://docs.microsoft.com/azure/application-insights/app-insights-javascript#set-up-application-insights-for-your-web-page) 整合，則會自動追蹤使用者識別碼。
+如果您的應用程式整合在一起以 hello [JavaScript SDK](https://docs.microsoft.com/azure/application-insights/app-insights-javascript#set-up-application-insights-for-your-web-page)，使用者會自動追蹤識別碼。
 
 ## <a name="choosing-user-ids"></a>選擇使用者識別碼
 
-使用者識別碼應該在使用者工作階段期間持續存在，以追蹤使用者在一段時間內的行為。 有多種方法可持續使用識別碼。
+使用者識別碼應保存跨使用者工作階段 tootrack 使用者一段時間的行為方式。 有各種方法保存 hello 識別碼。
 - 您的服務中已有使用者定義。
-- 如果服務可存取瀏覽器，該服務可利用識別碼將 cookie 傳遞給瀏覽器。 只要 cookie 保留在使用者的瀏覽器中，識別碼就會持續存在。
-- 如有必要，您可以每個工作階段都使用新的識別碼，但與使用者相關的結果會受到限制。 例如，您將無法看到使用者的行為如何隨著時間而變化。
+- 如果 hello 服務存取 tooa 瀏覽器，它可以傳入 hello 瀏覽器的 cookie 識別碼它。 hello 識別碼將會保存的只要 hello cookie 維持 hello 使用者的瀏覽器。
+- 如有必要，您可以使用新的識別碼。 每個工作階段，但與使用者相關的 hello 結果會受到限制。 例如，您必須能夠 toosee 如何隨著時間變更使用者的行為。
 
-識別碼應該是 Guid 或足夠複雜的另一個字串，以專門識別每個使用者。 例如，它可能是一個長的隨機數字。
+hello 識別碼應為 Guid 或另一個字串不夠複雜而 tooidentify 每位使用者唯一。 例如，它可能是一個長的隨機數字。
 
-如果識別碼包含使用者的個人識別資訊，則該值不適合傳送至 Application Insights 做為使用者識別碼。 您可以傳送此類識別碼做為[已驗證的使用者識別碼](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#authenticated-users)，但不符合使用案例的使用者識別碼需求。
+如果 hello 識別碼包含 hello 使用者的個人識別資訊，它不是適當的值 toosend tooApplication Insights 為使用者識別碼。 您可以傳送這類識別碼，表示為[驗證使用者識別碼](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#authenticated-users)，但不滿足使用案例的 hello 使用者識別碼的需求。
 
 ## <a name="aspnet-apps-set-user-context-in-an-itelemetryinitializer"></a>ASP.NET 應用程式：在 ITelemetryInitializer 中設定使用者內容
 
-建立遙測初始設定式 (依照[這裡](https://docs.microsoft.com/azure/application-insights/app-insights-api-filtering-sampling#add-properties-itelemetryinitializer)的詳細說明)，並設定 Context.User.Id 和 Context.Session.Id。
+在詳細資料中所述，建立遙測的初始設定式、[這裡](https://docs.microsoft.com/azure/application-insights/app-insights-api-filtering-sampling#add-properties-itelemetryinitializer)，和 hello Context.User.Id 和 hello Context.Session.Id 組。
 
-此範例會將使用者識別碼設定為在工作階段之後到期的識別碼。 如果可能，請使用工作階段期間持續存在的使用者識別碼。
+此範例會設定 hello 使用者識別碼 tooan 識別碼 hello 工作階段之後過期。 如果可能，請使用工作階段期間持續存在的使用者識別碼。
 
 *C#*
 
@@ -64,7 +64,7 @@ Application Insights 可讓您透過一組產品使用量工具來監控並追�
     namespace MvcWebRole.Telemetry
     {
       /*
-       * Custom TelemetryInitializer that sets the user ID.
+       * Custom TelemetryInitializer that sets hello user ID.
        *
        */
       public class MyTelemetryInitializer : ITelemetryInitializer
@@ -72,17 +72,17 @@ Application Insights 可讓您透過一組產品使用量工具來監控並追�
         public void Initialize(ITelemetry telemetry)
         {
             // For a full experience, track each user across sessions. For an incomplete view of user 
-            // behavior within a session, store user ID on the HttpContext Session.
-            // Set the user ID if we haven't done so yet.
+            // behavior within a session, store user ID on hello HttpContext Session.
+            // Set hello user ID if we haven't done so yet.
             if (HttpContext.Current.Session["UserId"] == null)
             {
                 HttpContext.Current.Session["UserId"] = Guid.NewGuid();
             }
 
-            // Set the user id on the Application Insights telemetry item.
+            // Set hello user id on hello Application Insights telemetry item.
             telemetry.Context.User.Id = (string)HttpContext.Current.Session["UserId"];
 
-            // Set the session id on the Application Insights telemetry item.
+            // Set hello session id on hello Application Insights telemetry item.
             telemetry.Context.Session.Id = HttpContext.Current.Session.SessionID;
         }
       }
@@ -90,8 +90,8 @@ Application Insights 可讓您透過一組產品使用量工具來監控並追�
 ```
 
 ## <a name="next-steps"></a>後續步驟
-- 若要啟用使用體驗，請開始傳送「自訂事件」[](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent)或「頁面檢視」[](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views)。
-- 如果您已傳送自訂事件或頁面檢視，請探索「使用量工具」，以了解使用者如何使用您的服務。
+- tooenable 使用狀況發生時，開始傳送[自訂事件](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent)或[頁面檢視](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views)。
+- 如果您已傳送自訂事件或網頁 檢視中瀏覽 hello 使用量工具 toolearn 如何使用者使用您的服務。
     * [使用量概觀](app-insights-usage-overview.md)
     * [使用者、工作階段和事件](app-insights-usage-segmentation.md)
     * [漏斗圖](usage-funnels.md)

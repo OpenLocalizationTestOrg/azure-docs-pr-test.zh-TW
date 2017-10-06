@@ -1,6 +1,6 @@
 ---
-title: "如何使用 iOS 中的 Azure Blob 儲存體 | Microsoft Docs"
-description: "使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
+title: "aaaHow toouse 從 iOS 的 Azure Blob 儲存體 |Microsoft 文件"
+description: "使用 Azure Blob 儲存體 （物件儲存體） 的 hello 雲端中儲存非結構化的資料。"
 services: storage
 documentationcenter: ios
 author: michaelhauss
@@ -14,39 +14,39 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: michaelhauss
-ms.openlocfilehash: cb2810636c8c23dbd476dc2adf58b17d1887d575
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 474c4263a4bfbd61bfa39e4fdb01ddd9c3829c77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-ios"></a>如何使用 iOS 的 Blob 儲存體
+# <a name="how-toouse-blob-storage-from-ios"></a>如何 toouse iOS 從 Blob 儲存體
 [!INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
 
-## <a name="overview"></a>Overview
-本文將示範如何使用 Microsoft Azure Blob 儲存體執行一般案例。 這些範例均以 Objective-C 撰寫，並使用 [Azure Storage Client Library for iOS](https://github.com/Azure/azure-storage-ios)。 所涵蓋的案例包括**上傳**、**列出**、**下載**及**刪除** Blob。 如需 Blob 的詳細資訊，請參閱 [後續步驟](#next-steps) 一節。 您也可以下載 [範例應用程式](https://github.com/Azure/azure-storage-ios/tree/master/BlobSample) ，以快速查看在 iOS 應用程式中使用 Azure 儲存體的方法。
+## <a name="overview"></a>概觀
+這篇文章將示範如何使用 Microsoft Azure Blob 儲存體 tooperform 常見案例。 hello 範例以 OBJECTIVE-C 所撰寫並使用 hello[適用於 iOS 的 Azure 儲存體用戶端程式庫](https://github.com/Azure/azure-storage-ios)。 hello 涵蓋案例包括**上載**，**列出**，**下載**，和**刪除**blob。 如需有關 blob 的詳細資訊，請參閱 hello[接下來的步驟](#next-steps)> 一節。 您也可以下載 hello[範例應用程式](https://github.com/Azure/azure-storage-ios/tree/master/BlobSample)tooquickly 看到 hello iOS 應用程式中的使用 Azure 儲存體。
 
 [!INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-## <a name="import-the-azure-storage-ios-library-into-your-application"></a>將 Azure 儲存體 iOS 程式庫匯入您的應用程式中
-您可以透過使用 [Azure 儲存體 CocoaPod](https://cocoapods.org/pods/AZSClient) 或匯入 **Framework** 檔，將 Azure 儲存體 iOS 程式庫匯入至您的應用程式。 CocoaPod 是建議的方式，因為它讓程式庫整合更容易，不過從架構匯入檔案較不干擾您的現有專案。
+## <a name="import-hello-azure-storage-ios-library-into-your-application"></a>Hello Azure 儲存體 iOS 的程式庫匯入您的應用程式
+Hello Azure 儲存體 iOS 的程式庫匯入您的應用程式使用 hello [Azure 儲存體 CocoaPod](https://cocoapods.org/pods/AZSClient)或匯入 hello **Framework**檔案。 CocoaPod 為建議的方式，因為它會讓整合 hello 庫較為簡單，不過匯入從 hello 架構檔案是較不干擾現有專案的 hello。
 
-若要使用此程式庫，您需要：
+toouse 此程式庫，您需要遵循的 hello:
 - iOS 8+
 - Xcode 7+
 
 ## <a name="cocoapod"></a>CocoaPod
-1. 如果您還沒有這麼做，請開啟終端機視窗，並執行下列命令，在電腦上 [安裝 CocoaPods](https://guides.cocoapods.org/using/getting-started.html#toc_3)
+1. 如果您沒有這樣做，[安裝 CocoaPods](https://guides.cocoapods.org/using/getting-started.html#toc_3)上開啟終端機視窗，然後執行下列命令的 hello 電腦
     
     ```shell   
     sudo gem install cocoapods
     ```
 
-2. 接下來，在專案目錄 (包含您 .xcodeproj 檔案的目錄) 中建立稱為 _Podfile_ 的檔案 (無副檔名)。 將下列內容加入至 _Podfile_ 並儲存。
+2. 接下來，在 hello 專案目錄中 （hello 目錄包含.xcodeproj 檔案），建立新的檔案，稱為_Podfile_（沒有副檔名）。 新增下列 too_Podfile_ hello 和儲存。
 
     ```ruby
     platform :ios, '8.0'
@@ -56,55 +56,55 @@ ms.lasthandoff: 08/18/2017
     end
     ```
 
-3. 在終端機視窗中，巡覽至專案目錄並執行下列命令
+3. 在 hello 終端機視窗，瀏覽 toohello 專案目錄並執行下列命令的 hello
 
     ```shell    
     pod install
     ```
 
-4. 如果您已在 Xcode 中開啟 .xcodeproj，請將它關閉。 在您的專案目錄中開啟新建立的專案檔案 (副檔名為 .xcworkspace)。 這是您從現在開始會使用的檔案。
+4. 如果您已在 Xcode 中開啟 .xcodeproj，請將它關閉。 專案目錄開啟 hello 新建立的專案檔中將有 hello.xcworkspace 延伸模組。 這是您將從現在在運作的 hello 檔案。
 
 ## <a name="framework"></a>Framework
-程式庫的另一個用法，是手動建立架構︰
+hello toouse hello 程式庫手動是 toobuild hello 架構，另一種方式：
 
-1. 首先，請下載或複製 [azure-storage-ios repo](https://github.com/azure/azure-storage-ios)。
+1. 第一個、 下載或複製 hello [azure 儲存體 ios 儲存機制](https://github.com/azure/azure-storage-ios)。
 2. 移至 *azure-storage-ios* -> *Lib* -> *Azure 儲存體用戶端程式庫*，然後在 Xcode 中開啟 `AZSClient.xcodeproj`。
-3. 在 Xcode 左上方，將作用中配置從「Azure 儲存體用戶端程式庫」變更為「架構」。
-4. 建置專案 (⌘ + B)。 這會在您的桌面上建立 `AZSClient.framework` 檔案。
+3. 在 hello 左上方的 Xcode 變更 hello active 配置從 「 Azure 儲存體用戶端程式庫 」 太 < Framework >。
+4. 建置 hello 專案 （⌘ + B）。 這會在您的桌面上建立 `AZSClient.framework` 檔案。
 
-您可以透過下列方式，將 Framework 檔案匯入至您的應用程式：
+您接著可以 hello 架構檔案匯入您的應用程式執行 hello 下列：
 
 1. 建立新的專案，或在 Xcode 中開啟現有的專案。
-2. 將 `AZSClient.framework` 拖曳到您的 Xcode 專案導覽器。
+2. 拖放 hello`AZSClient.framework`到您的 Xcode 專案導覽器。
 3. 選取 [必要時複製項目]，然後按一下 [完成]。
-4. 按一下左側導覽列中的專案，然後按一下專案編輯器頂端的 [一般]  索引標籤。
-5. 在 [連結的架構和程式庫]  區段下，按一下 [新增] 按鈕 (+)。
-6. 在已提供的程式庫清單中搜尋 `libxml2.2.tbd` ，並將它新增至您的專案。
+4. Hello 左側導覽中的專案上按一下，然後按一下 hello*一般*在 hello hello 專案編輯器頂端的索引標籤。
+5. 在 [hello*連結架構和程式庫*區段中，按一下 hello 新增] 按鈕 （+）。
+6. 在 [hello] 清單中已經提供的程式庫，搜尋`libxml2.2.tbd`並將它加入 tooyour 專案。
 
-## <a name="import-the-library"></a>匯入程式庫 
+## <a name="import-hello-library"></a>匯入 hello 程式庫 
 ```objc
-// Include the following import statement to use blob APIs.
+// Include hello following import statement toouse blob APIs.
 #import <AZSClient/AZSClient.h>
 ```
 
-如果您使用 Swift，必須建立橋接標頭並在標頭匯入 <AZSClient/AZSClient.h>︰
+如果您使用 Swift 時，您將需要 toocreate 橋接標頭，並那里匯入 < AZSClient/AZSClient.h >:
 
-1. 建立標頭檔 `Bridging-Header.h`，並加入上述匯入陳述式。
-2. 移至 [建置設定] 索引標籤，搜尋[OBJECTIVE-C 橋接標頭]。
-3. 按兩下 [OBJECTIVE-C 橋接標頭] 欄位，並將此路徑加入標頭檔︰`ProjectName/Bridging-Header.h`
-4. 建立專案 (⌘ + B) 以確認 Xcode 已收取橋接標頭。
-5. 直接在任何 Swift 檔案中開始使用程式庫，就不需要匯入陳述式。
+1. 建立標頭檔`Bridging-Header.h`，並加入 hello 上方匯入陳述式。
+2. 移 toohello*組建設定*索引標籤，並搜尋*OBJECTIVE-C 橋接標頭*。
+3. Hello 欄位上按兩下*OBJECTIVE-C 橋接標頭*將 hello 路徑 tooyour 標頭檔：`ProjectName/Bridging-Header.h`
+4. Hello 橋接標頭的組建 hello 專案 （⌘ + B） tooverify Xcode 已收取。
+5. 開始使用 hello 程式庫直接在任何 Swift 檔案中，不需要匯入陳述式。
 
 [!INCLUDE [storage-mobile-authentication-guidance](../../includes/storage-mobile-authentication-guidance.md)]
 
 ## <a name="asynchronous-operations"></a>非同步作業
 > [!NOTE]
-> 所有對服務執行要求的方法，都是非同步作業。 在程式碼範例中，您會發現這些方法具有完成處理常式。 完成處理常式內的程式碼會在要求完成 **之後** 執行。 完成處理常式後面的程式碼會在進行要求 **期間** 執行。
+> 執行對 hello 服務提出之要求的所有方法都是非同步作業。 在 hello 程式碼範例中，您會發現這些方法已完成處理常式。 Hello 完成處理常式內部的程式碼會執行**之後**hello 要求完成。 程式碼會執行 hello 完成處理常式之後**時**hello 要求所針對。
 > 
 > 
 
 ## <a name="create-a-container"></a>建立容器
-儲存體 Blob 中的每個 Blob 必須位於一個容器中。 下列範例說明如何在您的儲存體帳戶中建立名為 *newcontainer*的容器 (如果還不存在)。 為您的容器選擇名稱時，請留意上面提到的命名規則。
+儲存體 Blob 中的每個 Blob 必須位於一個容器中。 hello 下列範例顯示如何 toocreate 容器使用時，呼叫*newcontainer*，在儲存體帳戶，如果不存在。 選擇您的容器的名稱，留意 hello 命名上面所述的規則。
 
 ```objc
 -(void)createContainer{
@@ -123,7 +123,7 @@ ms.lasthandoff: 08/18/2017
     // Create a local container object.
     AZSCloudBlobContainer *blobContainer = [blobClient containerReferenceFromName:@"newcontainer"];
 
-    // Create container in your Storage account if the container doesn't already exist
+    // Create container in your Storage account if hello container doesn't already exist
     [blobContainer createContainerIfNotExistsWithCompletionHandler:^(NSError *error, BOOL exists) {
         if (error){
             NSLog(@"Error in creating container.");
@@ -132,16 +132,16 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-您可以查看 [Microsoft Azure 儲存體總管](http://storageexplorer.com) ，並驗證 *newcontainer* 位於儲存體帳戶的容器清單中，以確認運作正常。
+您可以確認其運作藉由查看 hello [Microsoft Azure 儲存體總管](http://storageexplorer.com)並確認*newcontainer* hello 容器使用的儲存體帳戶清單中。
 
 ## <a name="set-container-permissions"></a>設定容器權限
 依預設會針對 [私人]  存取設定容器的權限。 不過，容器會提供幾個不同的容器存取選項：
 
-* **私人**：只有帳戶擁有者可以讀取容器和 Blob 資料。
-* **Blob**：您可以透過匿名要求讀取此容器內的 Blob 資料，但您無法使用容器資料。 用戶端無法透過匿名要求列舉容器內的 Blob。
-* **容器**：可以透過匿名要求讀取容器和 Blob 資料。 用戶端可以透過匿名要求列舉容器內的 Blob，但無法列舉儲存體帳戶內的容器。
+* **私用**: hello 帳戶擁有者可以讀取容器和 blob 資料。
+* **Blob**：您可以透過匿名要求讀取此容器內的 Blob 資料，但您無法使用容器資料。 用戶端無法列舉 hello 透過匿名要求的容器中的 blob。
+* **容器**：可以透過匿名要求讀取容器和 Blob 資料。 用戶端透過匿名要求，hello 容器內的 blob，但無法列舉 hello 儲存體帳戶中的容器。
 
-下列範例說明如何建立具有 [容器]  存取權限，而允許網際網路上的所有使用者進行公用、唯讀存取的容器：
+hello 下列範例會示範如何與容器的 toocreate**容器**存取允許 hello 網際網路上的所有使用者公開的唯讀存取權限：
 
 ```objc
 -(void)createContainerWithPublicAccess{
@@ -160,7 +160,7 @@ ms.lasthandoff: 08/18/2017
     // Create a local container object.
     AZSCloudBlobContainer *blobContainer = [blobClient containerReferenceFromName:@"containerpublic"];
 
-    // Create container in your Storage account if the container doesn't already exist
+    // Create container in your Storage account if hello container doesn't already exist
     [blobContainer createContainerIfNotExistsWithAccessType:AZSContainerPublicAccessTypeContainer requestOptions:nil operationContext:nil completionHandler:^(NSError *error, BOOL exists){
         if (error){
             NSLog(@"Error in creating container.");
@@ -170,9 +170,9 @@ ms.lasthandoff: 08/18/2017
 ```
 
 ## <a name="upload-a-blob-into-a-container"></a>將 Blob 上傳至容器
-如 [Blob 服務概念](#blob-service-concepts) 一節中所述，Blob 儲存體提供三種不同類型的 Blob：區塊 Blob、附加 Blob 和分頁 Blob。 Azure 儲存體 iOS 程式庫支援三種類型的 Blob。 在大部分情況下，建議使用區塊 Blob 的類型。
+Hello 中所述[Blob 服務概念](#blob-service-concepts) 區段中，Blob 儲存體提供三種不同的 blob： 區塊 blob、 附加 blob 和分頁 blob。 hello Azure 儲存體 iOS 的程式庫支援所有的三種類型的 blob。 在大部分情況下，區塊 blob 是建議的型別 toouse hello。
 
-下列範例說明如何從 NSString 上傳區塊 Blob。 如果此容器中有相同名稱的 Blob 存在，此 Blob 的內容將會被覆寫。
+hello 下列範例會顯示從 NSString tooupload 區塊 blob 的方式。 如果此容器中已經有名稱相同的 hello 的 blob，此 blob 的 hello 內容會被覆寫。
 
 ```objc
 -(void)uploadBlobToContainer{
@@ -200,8 +200,8 @@ ms.lasthandoff: 08/18/2017
                 // Create a local blob object
                 AZSCloudBlockBlob *blockBlob = [blobContainer blockBlobReferenceFromName:@"sampleblob"];
 
-                // Upload blob to Storage
-                [blockBlob uploadFromText:@"This text will be uploaded to Blob Storage." completionHandler:^(NSError *error) {
+                // Upload blob tooStorage
+                [blockBlob uploadFromText:@"This text will be uploaded tooBlob Storage." completionHandler:^(NSError *error) {
                     if (error){
                         NSLog(@"Error in creating blob.");
                     }
@@ -211,30 +211,30 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-您可以查看 [Microsoft Azure 儲存體總管](http://storageexplorer.com)，並驗證容器 *containerpublic* 包含 Blob *sampleblob*，以確認運作正常。 在此範例中我們使用公用容器，所以您也可以移至 Blob URI 來確認應用程式運作是否正常：
+您可以確認其運作藉由查看 hello [Microsoft Azure 儲存體總管](http://storageexplorer.com)及驗證 hello 程序*containerpublic*，包含 hello blob *sampleblob*. 在此範例中，我們會使用公用容器，因此您也可以驗證，此應用程式的工作移 toohello blob URI:
 
     https://nameofyourstorageaccount.blob.core.windows.net/containerpublic/sampleblob
 
-除了從 NSString 上傳區塊 Blob 以外，NSData、NSInputStream 或本機檔案也有類似的方法。
+此外 toouploading NSString 從區塊 blob，類似的方法有 NSData、 NSInputStream 或本機檔案。
 
-## <a name="list-the-blobs-in-a-container"></a>列出容器中的 Blob
-下列範例說明如何列出容器中的所有 Blob。 執行此作業時，請留意下列參數：     
+## <a name="list-hello-blobs-in-a-container"></a>列出容器中的 hello blob
+下列範例會示範如何 toolist 所有 blob 容器中的 hello。 當執行這項作業，請留意 hello 下列參數：     
 
-* **continuationToken** - 接續權杖表示列出作業應從哪裡開始。 如果未提供權杖，則會從頭列出 Blob。 可以列出任何數目的 Blob，從零到設定的最大值皆可。 即使此方法傳回零個結果，如果 `results.continuationToken` 不是 nil，則可能會有服務上的更多 Blob 未列出。
-* **prefix** -您可以指定要用於 Blob 列出作業的前置詞。 只有開頭為此前置詞的 Blob 才會列出。
-* **useFlatBlobListing** - 如 [命名與參考容器和 Blob](/rest/api/storageservices/Naming-and-Referencing-Containers--Blobs--and-Metadata) 一節中所述，雖然 Blob 服務是一般儲存體配置，雖然您可以路徑資訊為 Blob 命名，以建立虛擬階層。 不過目前不支援非一般列出。 不久後將有此功能。 目前，此值應為 **YES**。
+* **continuationToken** -hello 接續 token 代表 hello 列出作業應該在此處開始。 如果未不提供任何 token，則它會列出從 hello 開頭的 blob。 可以列出任何數目的 blob，從零向上 tooa 設定最大值。 即使這個方法會傳回零個結果，如果`results.continuationToken`不是 nil，可能有 hello 服務上未列出的多個 blob。
+* **前置詞**-您可以指定 blob 清單的 hello 前置詞 toouse。 只有開頭為此前置詞的 Blob 才會列出。
+* **useFlatBlobListing** -hello 中所述[命名和參考容器和 blob](/rest/api/storageservices/Naming-and-Referencing-Containers--Blobs--and-Metadata)  區段中，雖然 hello Blob 服務是一般儲存體配置，您可以建立虛擬階層所命名的 blob 路徑資訊。 不過目前不支援非一般列出。 不久後將有此功能。 目前，此值應為 **YES**。
 
-* **blobListingDetails** - 您可以指定列出 Blob 時所要包含的項目
+* **blobListingDetails** -列出 blob 時，您可以指定哪些項目 tooinclude
   * _AZSBlobListingDetailsNone_：僅列出已認可的 Blob，且不傳回 Blob 中繼資料。
   * _AZSBlobListingDetailsSnapshots_︰列出已認可的 Blob 和 Blob 快照。
-  * _AZSBlobListingDetailsMetadata_：為清單中傳回的每個 Blob 擷取 Blob 中繼資料。
+  * _AZSBlobListingDetailsMetadata_: hello 清單中傳回擷取每一個 blob 的 blob 中繼資料。
   * _AZSBlobListingDetailsUncommittedBlobs_︰列出已認可和未認可的 Blob。
-  * _AZSBlobListingDetailsCopy_：在清單中包含複製屬性。
+  * _AZSBlobListingDetailsCopy_： 包含複製 hello 清單中的屬性。
   * _AZSBlobListingDetailsAll_：列出所有可用的已認可 Blob、未認可的 Blob 和快照，並傳回這些 Blob 的所有中繼資料和複製狀態。
-* **maxResults** - 要為此作業傳回的結果數目上限。 使用 -1 則不會設定限制。
-* **completionHandler** - 要執行的程式碼區塊與列出作業的結果。
+* **maxResults** -hello 結果 tooreturn 這項作業的最大數目。 使用-1 toonot 設定的限制。
+* **completionHandler** -hello 區塊的程式碼 tooexecute hello 的 hello 列出作業的結果。
 
-在此範例中，將會在每次傳回接續權杖時使用 Helper 方法以遞迴方式呼叫列出 Blob 方法。
+在此範例中，協助程式方法是使用的 toorecursively 呼叫 hello 清單 blob 方法每次會傳回接續 token。
 
 ```objc
 -(void)listBlobsInContainer{
@@ -288,7 +288,7 @@ ms.lasthandoff: 08/18/2017
 ```
 
 ## <a name="download-a-blob"></a>下載 Blob
-下列範例說明如何將 Blob 下載到 NSString 物件。
+下列範例會示範如何 hello toodownload blob tooa NSString 物件。
 
 ```objc
 -(void)downloadBlobToString{
@@ -323,7 +323,7 @@ ms.lasthandoff: 08/18/2017
 ```
 
 ## <a name="delete-a-blob"></a>刪除 Blob
-下列範例說明如何刪除 Blob。
+下列範例會示範如何 hello toodelete blob。
 
 ```objc
 -(void)deleteBlob{
@@ -355,7 +355,7 @@ ms.lasthandoff: 08/18/2017
 ```
 
 ## <a name="delete-a-blob-container"></a>刪除 Blob 容器
-下列範例說明如何刪除容器。
+下列範例會示範如何 hello toodelete 容器。
 
 ```objc
 -(void)deleteContainer{
@@ -384,13 +384,13 @@ ms.lasthandoff: 08/18/2017
 ```
 
 ## <a name="next-steps"></a>後續步驟
-您現在已經了解如何從 iOS 中使用 Blob 儲存體，請參考下列連結以深入了解 iOS 程式庫和儲存體服務。
+既然您已經學會如何 toouse Blob 儲存體從 iOS，請遵循這些連結 toolearn 更多關於 hello iOS 的程式庫及 hello 儲存體服務。
 
 * [Azure Storage Client Library for iOS](https://github.com/azure/azure-storage-ios)
 * [Azure 儲存體 iOS 參考文件](http://azure.github.io/azure-storage-ios/)
 * [Azure 儲存體服務 REST API](https://msdn.microsoft.com/library/azure/dd179355.aspx)
 * [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage)
 
-如果您有關於此程式庫的問題，歡迎您貼文到我們的 [MSDN Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=windowsazuredata)或 [Stack Overflow](http://stackoverflow.com/questions/tagged/windows-azure-storage+or+windows-azure-storage+or+azure-storage-blobs+or+azure-storage-tables+or+azure-table-storage+or+windows-azure-queues+or+azure-storage-queues+or+azure-storage-emulator+or+azure-storage-files)。
-如果您有 Azure 儲存體功能方面的建議，請貼文到 [Azure 儲存體意見反應](https://feedback.azure.com/forums/217298-storage/)。
+如果您有此文件庫有關的問題，則可以免費 toopost tooour [MSDN Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=windowsazuredata)或[堆疊溢位](http://stackoverflow.com/questions/tagged/windows-azure-storage+or+windows-azure-storage+or+azure-storage-blobs+or+azure-storage-tables+or+azure-table-storage+or+windows-azure-queues+or+azure-storage-queues+or+azure-storage-emulator+or+azure-storage-files)。
+如果您有 Azure 儲存體的功能建議，請張貼太[Azure 儲存體的意見反應](https://feedback.azure.com/forums/217298-storage/)。
 

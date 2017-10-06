@@ -1,6 +1,6 @@
 ---
-title: "建立 Azure 內部負載平衡器 - PowerShell | Microsoft Docs"
-description: "了解如何使用資源管理員中的 PowerShell 建立內部負載平衡器"
+title: "aaaCreate Azure 內部負載平衡器-PowerShell |Microsoft 文件"
+description: "了解 toocreate 內部負載平衡器使用 PowerShell 在資源管理員的方式"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 7bd31ab8f52ec5e81f6966000554be46eaa59396
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b9657c77aa32a142de49ff7871ed6a396b22223
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-internal-load-balancer-using-powershell"></a>使用 PowerShell 建立內部負載平衡器
 
@@ -31,29 +31,29 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!NOTE]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。  本文涵蓋之內容包括使用 Resource Manager 部署模型，Microsoft 建議大部分的新部署使用此模型，而不是[傳統部署模型](load-balancer-get-started-ilb-classic-ps.md)。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。  本文將說明如何使用 hello Resource Manager 部署模型，Microsoft 建議您針對大部分新的部署，而不是 hello[傳統部署模型](load-balancer-get-started-ilb-classic-ps.md)。
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-下列步驟說明如何搭配 PowerShell 使用 Azure Resource Manager，來建立內部負載平衡器。 使用 Azure Resource Manager 時，會個別設定建立內部負載平衡器所需的項目，然後結合在一起以建立負載平衡器。
+hello 下列步驟說明 toocreate 內部負載平衡器使用 PowerShell 的 Azure 資源管理員的方式。 使用 Azure 資源管理員中，hello 項目 toocreate 內部負載平衡器個別設定然後進行結合 toocreate 負載平衡器。
 
-您需要建立和設定下列物件以部署負載平衡器：
+您需要 toocreate 並設定下列物件 toodeploy 負載平衡器的 hello:
 
-* 前端 IP 組態 - 會設定傳入網路流量的私人 IP 位址
-* 後端位址集區 - 會設定可接收來自前端 IP 集區之負載平衡流量的網路介面
-* 負載平衡規則 - 負載平衡器的來源與本機連接埠組態。
-* 探查 - 設定虛擬機器執行個體的健全狀態探查。
-* 傳入 NAT 規則 - 設定直接存取其中一個虛擬機器執行個體的連接埠規則。
+* 結束 IP 組態的最上層-將設定 hello 私人 IP 位址的連入網路流量
+* 後端位址集區-將會設定將會接收來自前端 IP 集區的 hello 負載平衡流量 hello 網路介面
+* 負載平衡規則-來源和 hello 的本機連接埠設定負載平衡器。
+* 探查-設定 hello hello 虛擬機器執行個體的健全狀況狀態探查。
+* 輸入 NAT 規則-設定 hello 連接埠規則 toodirectly 存取其中一個 hello 虛擬機器執行個體。
 
 您可以在 [Azure 資源管理員的負載平衡器支援](load-balancer-arm.md)中取得關於負載平衡器元件與 Azure 資源管理員的詳細資訊。
 
-下列步驟說明如何在兩部虛擬機器之間設定負載平衡器。
+hello 下列步驟說明如何 tooconfigure 兩部虛擬機器之間的負載平衡器。
 
-## <a name="setup-powershell-to-use-resource-manager"></a>設定 PowerShell 以使用資源管理員
+## <a name="setup-powershell-toouse-resource-manager"></a>安裝 PowerShell toouse 資源管理員
 
-請確定您的 PowerShell 的 Azure 模組具有最新的實際執行版本，以及正確設定 PowerShell 以存取您的 Azure 訂用帳戶。
+請確定您擁有 hello 最新實際執行版本 hello Azure 模組的 powershell，並且正確設定 tooaccess 您 Azure 訂用帳戶的 PowerShell。
 
 ### <a name="step-1"></a>步驟 1
 
@@ -63,17 +63,17 @@ Login-AzureRmAccount
 
 ### <a name="step-2"></a>步驟 2
 
-檢查帳戶的訂用帳戶
+檢查 hello 訂閱 hello 帳戶
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-系統會提示使用您的認證進行驗證。
+您將會提示的 tooAuthenticate 使用您的認證。
 
 ### <a name="step-3"></a>步驟 3
 
-選擇其中一個要使用的 Azure 訂用帳戶。
+選擇 Azure 訂用帳戶 toouse。
 
 ```powershell
 Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
@@ -87,13 +87,13 @@ Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
 New-AzureRmResourceGroup -Name NRP-RG -location "West US"
 ```
 
-Azure 資源管理員需要所有的資源群組指定一個位置。 這用來作為該資源群組中資源的預設位置。 請確定所有建立負載平衡器的命令都是使用同一個資源群組。
+Azure Resource Manager 需要所有的資源群組指定一個位置。 這當做 hello 預設位置，該資源群組中的資源。 請確定所有命令的負載平衡器將會使用的 toocreate hello 相同資源群組。
 
-在上述範例中，我們已建立名為 "NRP-RG" 的資源群組，且位置為「美國西部」。
+在 hello 我們上述範例會建立資源群組，稱為 「 NRP RG 」 和 「 美國西部 」 的位置。
 
 ## <a name="create-virtual-network-and-a-private-ip-address-for-front-end-ip-pool"></a>建立前端 IP 集區的虛擬網路和私人 IP 位址
 
-建立虛擬網路的子網路，並指派給變數 $backendSubnet
+建立 hello 虛擬網路子網路，並將指派 toovariable $backendSubnet
 
 ```powershell
 $backendSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name LB-Subnet-BE -AddressPrefix 10.0.2.0/24
@@ -105,15 +105,15 @@ $backendSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name LB-Subnet-BE -Addre
 $vnet= New-AzureRmVirtualNetwork -Name NRPVNet -ResourceGroupName NRP-RG -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $backendSubnet
 ```
 
-建立虛擬網路，並將子網路 lb-subnet-be 加入至虛擬網路 NRPVNet，並指派給變數 $vnet
+建立 hello 虛擬網路，並將 hello 子網路子網路是 lb toohello 虛擬網路 NRPVNet 然後指派 toovariable $vnet
 
 ## <a name="create-front-end-ip-pool-and-backend-address-pool"></a>建立前端 IP 集區和後端位址集區
 
-設定傳入負載平衡器網路流量的前端 IP 集區以及後端位址集區，以接收負載平衡流量。
+傳入的 hello 的前端 IP 集區設定負載平衡器網路流量和後端位址集區 tooreceive hello 負載平衡流量。
 
 ### <a name="step-1"></a>步驟 1
 
-使用私人 IP 位址 10.0.2.5 為子網路 10.0.2.0/24 建立前端 IP 集區，做為傳入網路流量端點。
+建立用於 hello 子網路 10.0.2.0/24 會 hello 連入網路流量端點的私人 IP 位址 hello 10.0.2.5 前端 IP 集區。
 
 ```powershell
 $frontendIP = New-AzureRmLoadBalancerFrontendIpConfig -Name LB-Frontend -PrivateIpAddress 10.0.2.5 -SubnetId $vnet.subnets[0].Id
@@ -121,7 +121,7 @@ $frontendIP = New-AzureRmLoadBalancerFrontendIpConfig -Name LB-Frontend -Private
 
 ### <a name="step-2"></a>步驟 2
 
-設定用來從前端 IP 集區接收傳入流量的後端位址集區：
+設定後端位址集區使用 tooreceive 連入流量從前端 IP 集區：
 
 ```powershell
 $beaddresspool= New-AzureRmLoadBalancerBackendAddressPoolConfig -Name "LB-backend"
@@ -129,7 +129,7 @@ $beaddresspool= New-AzureRmLoadBalancerBackendAddressPoolConfig -Name "LB-backen
 
 ## <a name="create-lb-rules-nat-rules-probe-and-load-balancer"></a>建立 LB 規則、NAT 規則、探查及負載平衡器
 
-建立前端 IP 集區和後端位址集區之後，您必須建立將屬於負載平衡器資源的規則：
+建立 hello 前端 IP 集區和 hello 後端位址集區之後，您需要 toocreate hello 規則所屬 toohello 負載平衡器資源：
 
 ### <a name="step-1"></a>步驟 1
 
@@ -143,16 +143,16 @@ $healthProbe = New-AzureRmLoadBalancerProbeConfig -Name "HealthProbe" -RequestPa
 $lbrule = New-AzureRmLoadBalancerRuleConfig -Name "HTTP" -FrontendIpConfiguration $frontendIP -BackendAddressPool $beAddressPool -Probe $healthProbe -Protocol Tcp -FrontendPort 80 -BackendPort 80
 ```
 
-上述範例會建立下列項目：
+上述的 hello 範例會建立下列項目 hello:
 
-* NAT 規則，連接埠 3441 的所有傳入流量都會移至連接埠 3389。
-* 第二個 NAT 規則，連接埠 3442 的所有傳入流量都會移至連接埠 3389。
-* 負載平衡器規則，將公用連接埠 80 上的所有傳入流量，負載平衡至後端位址集區中的本機連接埠 80。
-* 探查規則，檢查路徑 "HealthProbe.aspx" 的健全狀態。
+* NAT 規則的所有連入流量 tooport 3441 將介紹 tooport 3389。
+* 第二個的 NAT 規則的所有連入流量 tooport 3442 將介紹 tooport 3389。
+* 負載平衡器規則將會載入平衡 hello 後端位址集區中公用連接埠 80 toolocal 連接埠 80 上的所有連入流量。
+* 探查規則會檢查路徑 」 HealthProbe.aspx"hello 健全狀況狀態
 
 ### <a name="step-2"></a>步驟 2
 
-建立負載平衡器，並將所有物件 (NAT 規則、負載平衡器規則、探查組態) 加在一起：
+建立 hello 負載平衡器將加在一起 （NAT 規則、 負載平衡器規則，探查設定） 的所有物件：
 
 ```powershell
 $NRPLB = New-AzureRmLoadBalancer -ResourceGroupName "NRP-RG" -Name "NRP-LB" -Location "West US" -FrontendIpConfiguration $frontendIP -InboundNatRule $inboundNATRule1,$inboundNatRule2 -LoadBalancingRule $lbrule -BackendAddressPool $beAddressPool -Probe $healthProbe
@@ -160,11 +160,11 @@ $NRPLB = New-AzureRmLoadBalancer -ResourceGroupName "NRP-RG" -Name "NRP-LB" -Loc
 
 ## <a name="create-network-interfaces"></a>建立網路介面
 
-建立內部負載平衡器之後，您需要定義要由哪些網路介面接收傳入的負載平衡網路流量，以及定義 NAT 規則和探查。 在此情況下需個別設定網路介面，並在稍後指派給虛擬機器。
+建立之後 hello 內部負載平衡器，您需要定義的網路介面接收 hello 連入負載平衡網路流量，NAT 規則和探查。 hello 網路介面在此情況下個別設定，並可以指派 tooa 虛擬機器稍後。
 
 ### <a name="step-1"></a>步驟 1
 
-取得資源的虛擬網路和子網路以建立網路介面：
+取得虛擬網路和子網路 toocreate 網路介面的 hello 資源：
 
 ```powershell
 $vnet = Get-AzureRmVirtualNetwork -Name NRPVNet -ResourceGroupName NRP-RG
@@ -172,7 +172,7 @@ $vnet = Get-AzureRmVirtualNetwork -Name NRPVNet -ResourceGroupName NRP-RG
 $backendSubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name LB-Subnet-BE -VirtualNetwork $vnet
 ```
 
-此步驟會建立屬於負載平衡器後端集區的網路介面，並針對此網路介面的 RDP 與第一個 NAT 規則建立關聯：
+這個步驟會建立網路介面將屬於 toohello 負載平衡器後端集區，並建立第一個 NAT 規則 hello rdp 關聯此網路介面：
 
 ```powershell
 $backendnic1= New-AzureRmNetworkInterface -ResourceGroupName "NRP-RG" -Name lb-nic1-be -Location "West US" -PrivateIpAddress 10.0.2.6 -Subnet $backendSubnet -LoadBalancerBackendAddressPool $nrplb.BackendAddressPools[0] -LoadBalancerInboundNatRule $nrplb.InboundNatRules[0]
@@ -182,13 +182,13 @@ $backendnic1= New-AzureRmNetworkInterface -ResourceGroupName "NRP-RG" -Name lb-n
 
 建立第二個網路介面，稱為 LB-Nic2-BE：
 
-此步驟會建立第二個網路介面，並指派給同一個負載平衡器後端集區，然後與針對 RDP 所建立的第二個 NAT 規則建立關聯：
+此步驟中建立第二個網路介面時，指派 toohello 相同負載平衡器回結束集區，並將第二個 NAT 規則 hello 建立 rdp:
 
 ```powershell
 $backendnic2= New-AzureRmNetworkInterface -ResourceGroupName "NRP-RG" -Name lb-nic2-be -Location "West US" -PrivateIpAddress 10.0.2.7 -Subnet $backendSubnet -LoadBalancerBackendAddressPool $nrplb.BackendAddressPools[0] -LoadBalancerInboundNatRule $nrplb.InboundNatRules[1]
 ```
 
-最終結果會顯示如下：
+hello 最終結果會顯示 hello 下列：
 
     $backendnic1
 
@@ -240,17 +240,17 @@ $backendnic2= New-AzureRmNetworkInterface -ResourceGroupName "NRP-RG" -Name lb-n
 
 ### <a name="step-3"></a>步驟 3
 
-使用 AzureRmVMNetworkInterface 命令將 NIC 指派給虛擬機器。
+使用 hello 命令新增 AzureRmVMNetworkInterface tooassign hello NIC tooa 虛擬機器。
 
-您可以在下列文件中找到建立虛擬機器並指派給 NIC 的逐步指示︰[使用 PowerShell 建立 Azure VM](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json)。
+您可以找到 hello 逐步解說指示 toocreate 虛擬機器，並指派 tooa NIC 遵循 hello 文件：[建立使用 PowerShell 的 Azure VM](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json)。
 
-## <a name="add-the-network-interface"></a>加入網路介面
+## <a name="add-hello-network-interface"></a>新增 hello 網路介面
 
-如果您已建立虛擬機器，您可以透過下列步驟新增網路介面：
+如果您已經建立的虛擬機器，您可以加入 hello 網路介面以 hello 下列步驟：
 
 ### <a name="step-1"></a>步驟 1
 
-將負載平衡器資源載入到變數之中 (如果您還沒這麼做)。 所使用的變數稱為 $lb，並使用來自以上建立之負載平衡器資源的相同名稱。
+（如果尚未執行此動作），則您可以載入變數 hello 負載平衡器資源。 呼叫的 $lb 而使用相同的名稱，從 hello 負載平衡器資源上面所建立的 hello hello 變數使用。
 
 ```powershell
 $lb = Get-AzureRmLoadBalancer –name NRP-LB -resourcegroupname NRP-RG
@@ -258,7 +258,7 @@ $lb = Get-AzureRmLoadBalancer –name NRP-LB -resourcegroupname NRP-RG
 
 ### <a name="step-2"></a>步驟 2
 
-將後端組態載入到變數之中。
+載入 hello 後端組態 tooa 變數。
 
 ```powershell
 $backend = Get-AzureRmLoadBalancerBackendAddressPoolConfig -name backendpool1 -LoadBalancer $lb
@@ -266,7 +266,7 @@ $backend = Get-AzureRmLoadBalancerBackendAddressPoolConfig -name backendpool1 -L
 
 ### <a name="step-3"></a>步驟 3
 
-將已建立的網路介面載入到變數之中。 所使用的變數名稱是 $nic。 所使用的網路介面名稱是來自上述範例的相同名稱。
+載入變數中的 hello 已經建立網路介面。 hello 使用的變數名稱是 $ nic。 hello 所使用的網路介面名稱是從上述的 hello 範例 hello 相同。
 
 ```powershell
 $nic = Get-AzureRmNetworkInterface –name lb-nic1-be -resourcegroupname NRP-RG
@@ -274,7 +274,7 @@ $nic = Get-AzureRmNetworkInterface –name lb-nic1-be -resourcegroupname NRP-RG
 
 ### <a name="step-4"></a>步驟 4
 
-變更網路介面上的後端組態。
+變更 hello hello 網路介面上的後端組態。
 
 ```powershell
 $nic.IpConfigurations[0].LoadBalancerBackendAddressPools=$backend
@@ -282,18 +282,18 @@ $nic.IpConfigurations[0].LoadBalancerBackendAddressPools=$backend
 
 ### <a name="step-5"></a>步驟 5
 
-儲存網路介面物件。
+儲存 hello 網路介面的物件。
 
 ```powershell
 Set-AzureRmNetworkInterface -NetworkInterface $nic
 ```
 
-網路介面在新增至負載平衡器的後端集區後，便會開始根據該負載平衡器資源的負載平衡規則接收網路流量。
+網路介面加入 toohello 負載平衡器後端集區之後，它會啟動接收根據 hello 負載平衡規則，該負載平衡器資源的網路流量。
 
 ## <a name="update-an-existing-load-balancer"></a>更新現有負載平衡器
 
 ### <a name="step-1"></a>步驟 1
-使用上述範例中的負載平衡器，透過 Get-AzureRmLoadBalancer 將負載平衡器物件指派給變數 $slb
+使用從 hello 上述範例中的 hello 負載平衡器，指定負載平衡器物件 toovariable $slb 使用 Get AzureRmLoadBalancer
 
 ```powershell
 $slb = Get-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
@@ -301,7 +301,7 @@ $slb = Get-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
 
 ### <a name="step-2"></a>步驟 2
 
-在下列範例中，您會使用前端的連接埠 81 和後端集區的連接埠 8181，將新的輸入 NAT 規則加入現有的負載平衡器
+在下列範例的 hello，您將加入新的輸入 NAT 規則使用連接埠 81 在 hello 前端和連接埠 8181 hello 後的結束集區 tooan 現有負載平衡器
 
 ```powershell
 $slb | Add-AzureRmLoadBalancerInboundNatRuleConfig -Name NewRule -FrontendIpConfiguration $slb.FrontendIpConfigurations[0] -FrontendPort 81  -BackendPort 8181 -Protocol Tcp
@@ -309,7 +309,7 @@ $slb | Add-AzureRmLoadBalancerInboundNatRuleConfig -Name NewRule -FrontendIpConf
 
 ### <a name="step-3"></a>步驟 3
 
-使用 Set-AzureLoadBalancer 儲存新組態
+儲存使用組 AzureLoadBalancer hello 新設定
 
 ```powershell
 $slb | Set-AzureRmLoadBalancer
@@ -317,14 +317,14 @@ $slb | Set-AzureRmLoadBalancer
 
 ## <a name="remove-a-load-balancer"></a>移除負載平衡器
 
-使用命令 Remove-AzureRmLoadBalancer 刪除資源群組 "NRP-RG" 中先前建立的負載平衡器 "NRP-LB"
+使用 hello 命令移除 AzureRmLoadBalancer toodelete 名為"NRP-LB 「 資源群組中稱為 「 NRP RG"先前建立的負載平衡器
 
 ```powershell
 Remove-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
 ```
 
 > [!NOTE]
-> 您可以使用選擇性參數 -Force 以避免出現刪除提示。
+> 您可以使用選擇性的 hello 切換-Force tooavoid hello 提示為刪除。
 
 ## <a name="next-steps"></a>後續步驟
 

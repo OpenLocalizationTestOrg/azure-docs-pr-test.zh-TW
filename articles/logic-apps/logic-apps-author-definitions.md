@@ -1,6 +1,6 @@
 ---
-title: "使用 JSON 定義工作流程 - Azure Logic Apps | Microsoft Docs"
-description: "如何以 JSON 撰寫 Logic Apps 的工作流程定義"
+title: "aaaDefine JSON-Azure 邏輯應用程式的工作流程 |Microsoft 文件"
+description: "如何 toowrite 工作流程定義，在 JSON 中的 logic apps"
 author: jeffhollan
 manager: anneta
 editor: 
@@ -15,23 +15,23 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 03/29/2017
 ms.author: LADocs; jehollan
-ms.openlocfilehash: 7f9e5a10066df8a464c285273e77a85c0d562ebb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d69d334ecee9c3e7f8684cfde68ef0e85280358
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-workflow-definitions-for-logic-apps-using-json"></a>使用 JSON 建立邏輯應用程式的工作流程定義
 
-您可以使用簡單、宣告式的 JSON 語言建立 [Azure Logic Apps](logic-apps-what-are-logic-apps.md) 的工作流程定義。 如果您還沒有這麼做，請先檢閱[如何使用邏輯應用程式設計工具建立第一個邏輯應用程式](logic-apps-create-a-logic-app.md)。 此外，請參閱[工作流程定義語言的完整參考](http://aka.ms/logicappsdocs)。
+您可以使用簡單、宣告式的 JSON 語言建立 [Azure Logic Apps](logic-apps-what-are-logic-apps.md) 的工作流程定義。 如果您還沒有這麼做，先檢閱[如何 toocreate 第一個邏輯應用程式與邏輯應用程式的設計工具](logic-apps-create-a-logic-app.md)。 此外，請參閱 hello[完整的 hello 工作流程定義語言參考](http://aka.ms/logicappsdocs)。
 
 ## <a name="repeat-steps-over-a-list"></a>對清單重複執行步驟
 
-若要逐一查看有多達 10,000 個項目的陣列，並針對每個項目執行動作，請使用 [foreach 類型](logic-apps-loops-and-scopes.md)。
+陣列，其中沒有 too10，000 項目和每個項目執行的動作，請使用 hello 透過 tooiterate [foreach 類型](logic-apps-loops-and-scopes.md)。
 
 ## <a name="handle-failures-if-something-goes-wrong"></a>若發生錯誤時會處理失敗
 
-通常，您想要包括*補救步驟* — 如果*且唯有*當一或多個呼叫失敗時執行的一些邏輯。 此範例會從各種地方取得資料，但如果呼叫失敗，我們想要在某處 POST 訊息，方便稍後追蹤該失敗。：  
+一般而言，您想 tooinclude*補救步驟*-執行一些邏輯*如果且只有*一或多個呼叫會失敗。 這個範例會取得資料，從不同位置，但是，如果 hello 呼叫失敗，我們要 tooPOST 訊息某處，我們可以稍後追蹤該失敗：  
 
 ```
 {
@@ -66,13 +66,13 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-若要指定 `postToErrorMessageQueue` 僅在 `readData` 已 `Failed` 之後才會執行，使用 `runAfter` 屬性，例如，指定可能值的清單，以便 `runAfter` 可能是 `["Succeeded", "Failed"]`。
+toospecify，`postToErrorMessageQueue`才會執行`readData`具有`Failed`，使用 hello`runAfter`屬性，例如 toospecify 一份可能的值，以便`runAfter`可能`["Succeeded", "Failed"]`。
 
-最後，因為此範例現在會處理錯誤，我們不再將執行結果標示為 `Failed`。 因為我們在此範例中新增處理此失敗的步驟，執行結果為 `Succeeded`，雖然其中一個步驟 `Failed`。
+最後，因為此範例中現在會處理 hello 錯誤，我們不再標示 hello 以執行`Failed`。 由於新增 hello 步驟處理此失敗，在此範例中，執行 hello 具有`Succeeded`雖然一個步驟`Failed`。
 
 ## <a name="execute-two-or-more-steps-in-parallel"></a>平行執行兩個以上步驟
 
-若要平行執行多個動作，`runAfter` 屬性在執行階段必須相同。 
+toorun 以平行方式，多個動作 hello`runAfter`屬性必須在執行階段對等。 
 
 ```
 {
@@ -122,13 +122,13 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-在此範例中，`branch1` 和 `branch2` 設定為在 `readData` 之後執行。 如此一來，這兩個分支會以平行方式執行。 兩個分支的時間戳記完全相同。
+在此範例中，同時`branch1`和`branch2`設定之後 toorun `readData`。 如此一來，這兩個分支會以平行方式執行。 這兩個分支的 hello 時間戳記是相同的。
 
 ![平行](media/logic-apps-author-definitions/parallel.png)
 
 ## <a name="join-two-parallel-branches"></a>聯結兩個平行分支
 
-透過先前範例中的方式在 `runAfter` 屬性新增項目，即可聯結設定為平行執行的兩個動作。
+您可以加入兩個動作以平行方式所設定的 toorun 的新增項目 toohello `runAfter` hello 先前範例所示的屬性。
 
 ```
 {
@@ -199,9 +199,9 @@ ms.lasthandoff: 07/11/2017
 
 ![平行](media/logic-apps-author-definitions/join.png)
 
-## <a name="map-list-items-to-a-different-configuration"></a>將清單項目對應至不同的組態
+## <a name="map-list-items-tooa-different-configuration"></a>將對應的清單項目 tooa 不同的組態
 
-接下來，假設我們想要根據屬性的值取得不同的內容。 我們可以建立值與目的地的對應做為參數：  
+接下來，假設我們想要根據屬性值 hello tooget 不同的內容。 我們可以做為參數建立值 toodestinations 的對應：  
 
 ```
 {
@@ -271,19 +271,19 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-在此情況下，我們先取得文章清單。 根據已定義為參數的類別，第二個步驟會使用對應查詢 URL 來取得內容。
+在此情況下，我們先取得文章清單。 Hello 類別目錄做為參數定義為基礎，hello 第二個步驟會使用對應 toolook 向上 hello URL 取得 hello 內容。
 
-這裡要注意的某些時間︰ 
+某些時間 toonote: 
 
-*   [ `intersection()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#intersection) 函式會檢查類別是否符合其中一個已知的定義類別。
+*   hello [ `intersection()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#intersection)函式會檢查是否 hello 類別目錄比對一個 hello 已知定義的類別。
 
-*   在取得類別後，我們可以使用方括號從對應提取項目：`parameters[...]`
+*   我們取得 hello 類別之後，我們可以提取 hello hello 對應使用方括號中的項目：`parameters[...]`
 
 ## <a name="process-strings"></a>處理序字串
 
-您可以使用不同的函式來操作字串。 例如，假設我們有想要傳遞到系統上的字串，但我們並不十分熟悉字元編碼的正確處理。 一種作法是以 base64 將此字串編碼。 不過，為了避免在 URL 中逸出，我們要取代幾個字元。 
+您可以使用各種函式 toomanipulate 字串。 例如，假設我們有我們想要 toopass tooa 系統，但我們不保險正確處理字元編碼的字串。 其中一個選項是 toobase64 將此字串編碼。 不過，在 URL 中，逸出 tooavoid 我們 tooreplace 的幾個字元。 
 
-我們也想要訂單名稱的子字串，因為不會用到前五個字元。
+我們也想 hello 順序名稱的子字串，因為不會使用 hello 前五個字元。
 
 ```
 {
@@ -318,23 +318,23 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-使用從內到外︰
+Toooutside 內運作：
 
-1. 取得訂購者名稱的 [`length()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#length)，以便我們傳回字元總數。
+1. 取得 hello [ `length()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#length) hello orderer 名稱，因此我們取回 hello 的總字元數。
 
 2. 減 5，因為我們要較短的字串。
 
-3. 實際取得 [`substring()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#substring)。 我們從索引 `5` 開始，並取得字串的其餘部分。
+3. 實際上，採取 hello [ `substring()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#substring)。 我們開始索引`5`並移 hello hello 字串的其餘部分。
 
-4. 將這個子字串轉換成 [`base64()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#base64) 字串。
+4. 轉換此子字串 tooa [ `base64()` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#base64)字串。
 
-5. [`replace()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#replace) 所有 `+` 字元換成 `-` 字元。
+5. [`replace()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#replace)所有的 hello`+`字元與`-`字元。
 
-6. [`replace()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#replace) 所有 `/` 字元換成 `_` 字元。
+6. [`replace()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#replace)所有的 hello`/`字元與`_`字元。
 
 ## <a name="work-with-date-times"></a>使用日期時間
 
-日期時間很有用，特別是在嘗試從不支援的觸發程序的資料來源提取資料時。 您也可以使用日期時間算出各步驟花費的時間。
+日期時間可能會很有用，特別是當您嘗試從資料來源不自然支援 toopull 資料*觸發程序*。 您也可以使用日期時間算出各步驟花費的時間。
 
 ```
 {
@@ -386,18 +386,18 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-在此範例中，我們從前一個步驟擷取 `startTime`。 然後我們會取得目前的時間，並減去一秒︰
+在此範例中，我們會擷取 hello `startTime` hello 上一個步驟。 然後我們取得 hello 目前的時間，並減去一秒：
 
 [`addseconds(..., -1)`](https://msdn.microsoft.com/library/azure/mt643789.aspx#addseconds) 
 
-您可以使用其他的時間單位，例如 `minutes` 或 `hours`。 最後，我們可以比較這兩個值。 如果第一個值小於第二個值，則自從訂單最初提交以來已超過一秒。
+您可以使用其他的時間單位，例如 `minutes` 或 `hours`。 最後，我們可以比較這兩個值。 Hello 第一個值是否小於第二個值 hello，則超過 1 秒後經過 hello 先訂單。
 
-若要格式化日期，我們可以使用字串格式子。 例如，若要取得 RFC1123，我們使用 [`utcnow('r')`](https://msdn.microsoft.com/library/azure/mt643789.aspx#utcnow)。 若要深入了解日期格式設定，請參閱[工作流程定義語言](https://msdn.microsoft.com/library/azure/mt643789.aspx#utcnow)。
+tooformat 日期，我們可以使用字串格式器。 例如，tooget hello rfc1123 格式，我們使用[ `utcnow('r')` ](https://msdn.microsoft.com/library/azure/mt643789.aspx#utcnow)。 toolearn 關於日期格式，請參閱[工作流程定義語言](https://msdn.microsoft.com/library/azure/mt643789.aspx#utcnow)。
 
 ## <a name="deployment-parameters-for-different-environments"></a>不同環境的部署參數
 
-通常，部署生命週期中會有開發環境、預備環境及生產環境。 例如，您可以在所有這些環境中使用相同的定義，但使用不同的資料庫。 同樣地，您可能想要跨不同的區域使用相同的定義，以發揮高可用性，但希望每個邏輯應用程式執行個體與該區域資料庫互動。
-這種情況與在執行階段採用參數不同，相反地，您應該如先前範例所示使用 `trigger()` 函式。
+通常，部署生命週期中會有開發環境、預備環境及生產環境。 例如，您可能會使用 hello 相同的定義，在所有這些環境中，但使用不同的資料庫。 同樣地，您可能會想 toouse hello 相同定義跨越不同地區的高可用性，但想要每個邏輯應用程式執行個體 tootalk toothat 區域的資料庫。
+此案例中不同於在參數*執行階段*位置，您應該改用 hello`trigger()`函式如 hello 先前範例所示。
 
 您可以從基本定義開始，如下範例所示：
 
@@ -429,13 +429,13 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-在邏輯應用程式的實際 `PUT` 要求中，您可以提供參數 `uri`。 因為預設值不存在，邏輯應用程式承載需要此參數︰
+在實際的 hello`PUT`要求 hello logic apps，您可以提供 hello 參數`uri`。 預設值不再存在，因此 hello 邏輯應用程式承載需要此參數：
 
 ```
 {
     "properties": {},
         "definition": {
-          // Use the definition from above here
+          // Use hello definition from above here
         },
         "parameters": {
             "connection": {
@@ -447,6 +447,6 @@ ms.lasthandoff: 07/11/2017
 }
 ``` 
 
-在每個環境中，您可以提供不同的值給 `connection` 參數。 
+在每個環境中，您可以提供不同的值為 hello`connection`參數。 
 
-如需有關建立及管理邏輯應用程式的所有可用選項，請參閱 [REST API 文件](https://msdn.microsoft.com/library/azure/mt643787.aspx)。 
+所有 hello 您有建立及管理邏輯應用程式的選項，請參閱 hello [REST API 文件](https://msdn.microsoft.com/library/azure/mt643787.aspx)。 

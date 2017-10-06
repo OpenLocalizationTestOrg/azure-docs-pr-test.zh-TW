@@ -1,6 +1,6 @@
 ---
-title: "Azure App Service 中 API Apps 的使用者驗證 | Microsoft Docs"
-description: "了解如何藉由僅允許經過驗證的使用者存取，保護 Azure App Service 中的 API 應用程式。"
+title: "在 Azure App Service API 應用程式的 aaaUser 驗證 |Microsoft 文件"
+description: "了解 tooprotect 藉由使用 Azure App Service 中的應用程式開發介面應用程式的唯一 tooauthenticated 使用者的存取方式。"
 services: app-service\api
 documentationcenter: .net
 author: alexkarcher-msft
@@ -14,193 +14,193 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/30/2016
 ms.author: alkarche
-ms.openlocfilehash: a5b713f3a60b3886d813438496d704f464d914e6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4702fc77fcfe736405e22b033c35d22ae3c5a300
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="user-authentication-for-api-apps-in-azure-app-service"></a>Azure App Service 中 API Apps 的使用者驗證
 ## <a name="overview"></a>概觀
-本文說明如何保護 Azure API 應用程式，以便只有已驗證的使用者可以呼叫它。 本文假設您已閱讀 [Azure App Service 驗證概觀](../app-service/app-service-authentication-overview.md)。
+這篇文章會示範如何 tooprotect 的 Azure API 應用程式，因此只能驗證的使用者可以呼叫它。 hello 文章假設您已閱讀 hello [Azure 應用程式服務驗證概觀](../app-service/app-service-authentication-overview.md)。
 
 您將了解：
 
-* 如何使用 Azure Active Directory (Azure AD) 的詳細資料設定驗證提供者。
-* 如何使用 [JavaScript 適用的 Active Directory 驗證程式庫 (ADAL)](https://github.com/AzureAD/azure-activedirectory-library-for-js)取用受保護的 API 應用程式。
+* 如何 tooconfigure 驗證提供者，具有 Azure Active Directory (Azure AD) 的詳細資料。
+* Tooconsume 受保護的應用程式開發介面應用程式使用方式 hello [Active Directory 驗證程式庫 (ADAL) for JavaScript](https://github.com/AzureAD/azure-activedirectory-library-for-js)。
 
-本文包含兩個部分：
+hello 文章包含兩個區段：
 
-* [如何在 Azure App Service 中設定使用者驗證](#authconfig) 一節大致說明如何為 API 應用程式設定使用者驗證，且一體適用於 App Service 支援的所有架構，包括 .NET、Node.js 和 Java。
-* 從 [繼續進行 .NET API Apps 教學課程](#tutorialstart) 一節開始，本文會引導您使用 .NET 後端和 AngularJS 前端設定範例應用程式，使其使用 Azure Active Directory 進行使用者驗證。 
+* hello[如何 tooconfigure Azure App Service 中的使用者驗證](#authconfig)章節將說明一般方式 tooconfigure 任何 API 應用程式的使用者驗證和同樣適用於支援的應用程式服務，包括.NET、 tooall 架構Node.js 和 Java。
+* 開頭為 hello[繼續 hello.NET API 的應用程式教學課程](#tutorialstart)區段中，hello 您完成設定的.NET 範例應用程式備份結束和 AngularJS 前端使其使用 Azure Active Directory 使用者的文件指南驗證。 
 
-## <a id="authconfig"></a> 如何在 Azure App Service 中設定使用者驗證
-本節提供適用於任何 API 應用程式的一般指示。 如需「待辦事項清單」.NET 範例應用程式的專用步驟，請移至 [繼續進行 .NET 入門教學課程](#tutorialstart)。
+## <a id="authconfig"></a>如何在 Azure App Service 中的 tooconfigure 使用者驗證
+本節提供適用於 tooany API 應用程式的一般指示。 步驟特定 toohello tooDo 清單.NET 範例應用程式，跳過[繼續 hello.NET 使用者入門教學課程](#tutorialstart)。
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，瀏覽至您想要保護的 API 應用程式的 [設定] 刀鋒視窗，尋找 [功能] 區段，再按一下 [驗證/授權]。
+1. 在 hello [Azure 入口網站](https://portal.azure.com/)，瀏覽 toohello**設定**刀鋒視窗中的 hello API 應用程式的 tooprotect，尋找 hello**功能**區段，，然後按一下**驗證 / 授權**。
    
     ![Azure 入口網站驗證/授權](./media/app-service-api-dotnet-user-principal-auth/features.png)
-2. 在 [驗證/授權] 刀鋒視窗中，按一下 [開啟]。
-3. 在 [要求未經驗證時所採取的動作]  下拉式清單中，選取其中一個選項。
+2. 在 hello**驗證 / 授權**刀鋒視窗中，按一下 **上**。
+3. 選取其中一個 hello 選項從 hello**當要求未經驗證的動作 tootake**下拉式清單。
    
-   * 如果您只想讓經過驗證的呼叫觸達 API 應用程式，請選擇其中一個 [登入方式]  選項。 此選項可讓您保護 API 應用程式，卻不需要撰寫任何在其中執行的程式碼。
-   * 如果您想讓所有呼叫觸達 API 應用程式，請選擇 [允許要求 (無動作)] 。 您可以使用此選項將未經驗證的呼叫端導向您選擇的驗證提供者。 若要使用此選項，您必須撰寫程式碼來處理授權。
+   * 如果您想只驗證的呼叫 tooreach 您 API 應用程式，選擇其中一個 hello**登入...**選項。 此選項可讓您 tooprotect hello API 應用程式而不需要撰寫任何程式碼中執行。
+   * 如果您想要的所有電話 tooreach 您 API 應用程式，選擇**允許要求 （無動作）**。 您可以使用這個選項 toodirect 未經驗證的呼叫端 tooa 選擇的驗證提供者。 使用此選項時，您會有 toowrite 程式碼 toohandle 授權。
      
      如需詳細資訊，請參閱 [Azure App Service 中的 API Apps 驗證與授權](app-service-api-authentication.md#multiple-protection-options)。
-4. 選取一或多個 [驗證提供者] 。
+4. 選取一或多個 hello**驗證提供者**。
    
-    下圖顯示要求所有呼叫端要由 Azure AD 進行驗證的選項。
+    hello 影像顯示的選項需要 Azure AD 驗證的所有呼叫端 toobe。
    
     ![Azure 入口網站驗證/授權刀鋒視窗](./media/app-service-api-dotnet-user-principal-auth/authblade.png)
    
-    當您選擇驗證提供者後，入口網站會顯示該提供者的設定刀鋒視窗。 
+    當您選擇的驗證提供者時，hello 入口網站組態刀鋒視窗中顯示該提供者。 
    
-    如需說明如何設定驗證提供者設定刀鋒視窗的詳細指示，請參閱[如何設定 App Service 應用程式使用 Azure Active Directory 登入](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md)。 (此連結會移至有關 Azure AD 的文章，但該文章本身含有連往其他驗證提供者之文章的索引標籤)。
-5. [驗證提供者設定] 刀鋒視窗使用完畢時，按一下 [確定] 。
-6. 在 [驗證/授權] 刀鋒視窗中，按一下 [儲存]。
+    如需詳細指示，說明如何 tooconfigure hello 驗證提供者組態刀鋒視窗，請參閱[如何 tooconfigure 您 App Service 應用程式 toouse 的 Azure Active Directory 登入](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md)。 （hello 連結是有關在 Azure AD，tooan 發行項，但是本身 hello 文章包含連結的 hello tooarticles 其他驗證提供者的索引標籤）。
+5. 當您完成 hello 驗證提供者組態刀鋒視窗中時，按一下 **確定**。
+6. 在 hello**驗證 / 授權**刀鋒視窗中，按一下 **儲存**。
 
-完成此作業後，App Service 就會先驗證 API 呼叫再讓其觸達 API 應用程式。 凡是 App Service 所支援的語言 (包括 .NET、Node.js 和 Java)，驗證服務的運作方式都相同。 
+完成此動作後，應用程式服務在到達 hello API 應用程式之前，就會驗證所有 API 呼叫。 hello 驗證服務的運作 hello 相同的應用程式的服務支援，包括.NET、 Node.js 和 Java 的所有語言。 
 
-為了讓 API 呼叫受到驗證，呼叫端會在 HTTP 要求的 Authorization 標頭中包含驗證提供者的 OAuth 2.0 持有人權杖。 若要取得權杖，請使用驗證提供者的 SDK。
+toomake 驗證 API 呼叫、 hello 呼叫端 hello 授權標頭的 HTTP 要求中包含 hello 驗證提供者的 OAuth 2.0 承載權杖。 hello 語彙基元可藉由使用 hello 驗證提供者的 SDK。
 
-## <a id="tutorialstart"></a> 繼續進行 .NET API Apps 教學課程
-如果您要遵循適用於 API 應用程式的 Node.js 或 Java 教學課程，請跳至下一節 [API Apps 的服務主體驗證](app-service-api-dotnet-service-principal-auth.md)。 
+## <a id="tutorialstart"></a>繼續 hello.NET API 的應用程式教學課程
+如果您要遵照 API 應用程式的 hello Node.js 或 Java 教學課程，請略過 toohello 下一個文件： [API 應用程式的服務主體驗證](app-service-api-dotnet-service-principal-auth.md)。 
 
-如果您要遵循適用於 API 應用程式的 .NET 教學課程系列，並已依照[第一個](app-service-api-dotnet-get-started.md)和[第二個](app-service-api-cors-consume-javascript.md)教學課程中的指示部署範例應用程式，請跳至在 [App Service 和 Azure AD 中設定驗證](#azureauth)一節。
+如果您要遵照 hello.NET 教學課程系列的 API 應用程式，並已部署 hello 範例應用程式中的 hello[第一個](app-service-api-dotnet-get-started.md)和[第二個](app-service-api-cors-consume-javascript.md)教學課程，請略過 toohello[設定應用程式服務和 Azure AD 中的驗證](#azureauth)> 一節。
 
-如果您想要遵循此教學課程，但又不想進行第一個和第二個教學課程，請進行下列步驟，其將會說明如何開始使用自動化程序來部署範例應用程式。
+如果您想 toofollow 本教學課程無須經過 hello 第一個和第二個教學課程，請勿 hello 下列步驟說明如何使用自動化程序 toodeploy hello 範例應用程式 tooget 啟動。
 
 > [!NOTE]
-> 下列步驟會讓您的起始點就彷彿已完成前兩個教學課程一樣，只有一點例外︰Visual Studio 不會知道每個專案部署至哪些 Web 應用程式或 API 應用程式。 這表示此教學課程中不會有說明如何部署至正確目標的確切指示。 如果您不熟悉該如何找出自行進行部署步驟的方式，您最好遵循 [第一個教學課程](app-service-api-dotnet-get-started.md) 中的教學課程系列，而非從這個自動化部署程序來開始。
+> hello 下列步驟協助您取得的 toohello 相同起點時，如果您未 hello 前兩個教學課程中的，有一個例外狀況： Visual Studio 不會知道哪些 web 應用程式或每個專案部署至 API 應用程式。 這表示您不需要在此教學課程中說明的確切指示如何 toodeploy toohello 右目標。 如果您不想要找出 toodo hello 部署您自己的步驟，是較佳 toofollow hello 教學課程系列從 hello[第一個教學課程](app-service-api-dotnet-get-started.md)比 toostart 與此自動化部署程序。
 > 
 > 
 
-1. 請確定您有 [第一個教學課程](app-service-api-dotnet-get-started.md)中所列的所有必要條件。 除了所列的必要條件之外，這些驗證教學課程還假設您已在 Visual Studio 和 Azure 入口網站中使用 App Service Web 應用程式和 API 應用程式。
-2. 按一下 [To Do List 範例儲存機制的讀我檔案](https://github.com/azure-samples/app-service-api-dotnet-todo-list/blob/master/readme.md)中的 [部署至 Azure] 按鈕，部署 API 應用程式和 Web 應用程式。 記下所建立的 Azure 資源群組，因為您稍後可以使用它來查閱 Web 應用程式和 API 應用程式名稱。
-3. 下載或複製 [To Do List 範例儲存機制](https://github.com/Azure-Samples/app-service-api-dotnet-todo-list) ，以取得您將在 Visual Studio 中本機使用的程式碼。
+1. 請確定您有所有 hello 中所列的 hello 必要條件[第一個教學課程](app-service-api-dotnet-get-started.md)。 中所列的加法 toohello 必要條件，這些驗證教學課程假設您已使用 App Service web 應用程式與 Visual Studio 中的應用程式開發介面應用程式和 hello Azure 入口網站。
+2. 按一下 hello**部署 tooAzure**按鈕在 hello [tooDo 清單範例儲存機制讀我檔案](https://github.com/azure-samples/app-service-api-dotnet-todo-list/blob/master/readme.md)toodeploy hello API 應用程式和 hello web 應用程式。 記下 hello Azure 資源群組的建立，因為您可以使用這個更新 toolook web 應用程式及 API 應用程式名稱。
+3. 下載或複製 hello [tooDo 清單範例儲存機制](https://github.com/Azure-Samples/app-service-api-dotnet-todo-list)tooget hello 程式碼，您會與本機 Visual Studio 中。
 
 ## <a id="azureauth"></a> 在 App Service 和 Azure AD 中設定驗證
-您現在已擁有在 Azure App Service 中執行、且不需要使用者接受驗證的應用程式。 在本節中，您將執行下列工作來新增驗證機制：
+您現在可以 hello Azure App Service 中執行，而不需要使用者進行驗證的應用程式。 在本節中，您可以加入驗證執行下列工作的 hello:
 
-* 設定 App Service 以要求在呼叫中介層 API 應用程式時需要進行 Azure Active Directory (Azure AD) 驗證。
+* 設定應用程式服務 toorequire Azure Active Directory (Azure AD) 驗證，來呼叫 hello 中介層應用程式開發介面應用程式。
 * 建立 Azure AD 應用程式。
-* 設定 Azure AD 應用程式，使其在登入後將持有人權杖傳送到 AngularJS 前端。 
+* 登入 toohello AngularJS 前端之後設定 hello Azure AD 應用程式 toosend hello 持有人權杖。 
 
-如果您遵循教學課程指示進行時遇到問題，請參閱教學課程尾端的 [疑難排解](#troubleshooting) 一節。 
+如果您執行下列 hello 教學課程指引時出現問題，請參閱 hello[疑難排解](#troubleshooting)hello 結尾 hello 教學課程 > 一節。 
 
-### <a name="configure-authentication-for-the-middle-tier-api-app"></a>為中介層 API 應用程式設定驗證
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，瀏覽至您想要為 ToDoListAPI 專案建立的 API 應用程式的 [設定] 刀鋒視窗，尋找 [功能] 區段，再按一下 [驗證/授權]。
+### <a name="configure-authentication-for-hello-middle-tier-api-app"></a>設定 hello 中介層應用程式開發介面應用程式的驗證
+1. 在 hello [Azure 入口網站](https://portal.azure.com/)，瀏覽 toohello**設定**hello API 應用程式，您所建立的刀鋒視窗中的 hello ToDoListAPI 專案中，尋找 hello**功能** 區段中，然後按一下**驗證 / 授權**。
    
     ![Azure 入口網站驗證/授權](./media/app-service-api-dotnet-user-principal-auth/features.png)
-2. 在 [驗證/授權] 刀鋒視窗中，按一下 [開啟]。
-3. 在 [要求未經驗證時所採取的動作] 下拉式清單中，選取 [登入 Azure Active Directory]。
+2. 在 hello**驗證 / 授權**刀鋒視窗中，按一下 **上**。
+3. 在 hello**當要求未經驗證的動作 tootake**下拉式清單中，選取**登入 Azure Active Directory**。
    
-    此選項可確保未經驗證的要求均無法觸達 API 應用程式。 
+    此選項可確保任何 unauathenticated 要求會到達 hello API 應用程式。 
 4. 在 [驗證提供者] 底下，按一下 [Azure Active Directory]。
    
     ![Azure 入口網站驗證/授權刀鋒視窗](./media/app-service-api-dotnet-user-principal-auth/authblade.png)
-5. 在 [Azure Active Directory 設定] 刀鋒視窗中，按一下 [快速]
+5. 在 hello **Azure Active Directory 設定**刀鋒視窗中，按一下  **Express**
    
     ![Azure 入口網站驗證/授權表達選項](./media/app-service-api-dotnet-user-principal-auth/aadsettings.png)
    
-    在使用 [快速] 選項時，App Service 可以自動在 Azure AD [租用戶](https://msdn.microsoft.com/en-us/library/azure/jj573650.aspx#BKMK_WhatIsAnAzureADTenant)中建立 Azure AD 應用程式。 
+    以 hello **Express**選項時，應用程式服務可以自動建立 Azure AD 應用程式在您的 Azure AD 中[租用戶](https://msdn.microsoft.com/en-us/library/azure/jj573650.aspx#BKMK_WhatIsAnAzureADTenant)。 
    
-    您不必建立租用戶，因為每個 Azure 帳戶都會自動擁有一個。
-6. 在 [管理模式] 下，按一下 **建立新的 AD 應用程式** \(如果尚未選取)，並記下 [建立應用程式] 文字方塊中的值；您稍後將在 Azure 傳統入口網站中查閱此 AAD 應用程式。
+    您不需要 toocreate 租用戶，因為每個 Azure 帳戶會自動擁有一個。
+6. 下**管理模式**，按一下**建立新的 AD 應用程式**如果尚未選取，並請注意在 hello hello 值**建立應用程式**文字方塊中，您將查閱此 AADhello Azure 傳統入口網站更新版本中的應用程式。
    
     ![Azure 入口網站 Azure AD 設定](./media/app-service-api-dotnet-user-principal-auth/aadsettings2.png)
    
-    Azure 會自動在 Azure AD 租用戶中建立包含指示值的 Azure AD 應用程式。 根據預設，Azure AD 應用程式的名稱會與 API 應用程式相同。 如有需要，也可以輸入不同名稱。
+    Azure 會自動建立 Azure AD 應用程式與 Azure AD 租用戶中的 hello 指定名稱。 根據預設，名為 hello Azure AD 應用程式相同 hello 與 hello API 應用程式。 如有需要，也可以輸入不同名稱。
 7. 按一下 [確定] 。
-8. 在 [驗證/授權] 刀鋒視窗中，按一下 [儲存]。
+8. 在 hello**驗證 / 授權**刀鋒視窗中，按一下 **儲存**。
    
-    ![按一下 [Save] (儲存)。](./media/app-service-api-dotnet-user-principal-auth/authsave.png)
+    ![按一下 [Save] \(儲存)。](./media/app-service-api-dotnet-user-principal-auth/authsave.png)
 
-現在，只有 Azure AD 租用戶中的使用者可以呼叫 API 應用程式。
+現在只有 Azure AD 租用戶的使用者，才可以呼叫 hello API 應用程式。
 
-### <a name="optional-test-the-api-app"></a>選擇性：測試 API 應用程式
-1. 在瀏覽器中，移至 API 應用程式的 URL：在 Azure 入口網站的 [API 應用程式] 刀鋒視窗中，按一下 [URL] 下方的連結。  
+### <a name="optional-test-hello-api-app"></a>選擇性： 測試 hello API 的應用程式
+1. 在瀏覽器中前往 toohello hello API 應用程式 URL: hello 中**API 應用程式**刀鋒視窗中 hello Azure 入口網站中，按一下底下的 hello 連結**URL**。  
    
-    由於未經驗證的要求不得觸達 API 應用程式，因此系統會將您重新導向至登入畫面。
+    您是重新導向的 tooa 登入畫面，因為 tooreach hello API 應用程式不允許未經驗證的要求。
    
-    如果瀏覽器移至 [已成功建立] 頁面，則表示瀏覽器可能已登入，若是如此，請開啟 InPrivate 或 Incognito 視窗並移至 API 應用程式的 URL。
+    如果您的瀏覽器 toohello 「 成功建立 」 頁面，hello 瀏覽器可能已登入-在此情況下，開啟 InPrivate 或 Incognito 視窗，並移 toohello API 應用程式的 URL。
 2. 在 Azure AD 租用戶中以使用者的認證進行登入。
    
-    登入後，[已成功建立] 頁面隨即出現在瀏覽器中。
-3. 關閉瀏覽器。
+    當您登入時，hello"建立成功 」 的頁面會顯示 hello 瀏覽器中。
+3. 關閉 hello 瀏覽器。
 
-### <a name="configure-the-azure-ad-application"></a>設定 Azure AD 應用程式
-當您設定了 Azure AD 驗證，App Service 就會為您建立 Azure AD 應用程式。 根據預設，新的 Azure AD 應用程式已設定為會將持有人權杖提供給 API 應用程式的 URL。 在本節中，您將會設定 Azure AD 應用程式，以將持有人權杖提供給 AngularJS 前端，而非直接提供給中介層 API 應用程式。 AngularJS 前端會在呼叫 API 應用程式時，將權杖傳送到 API 應用程式。
+### <a name="configure-hello-azure-ad-application"></a>Hello Azure AD 應用程式設定
+當您設定了 Azure AD 驗證，App Service 就會為您建立 Azure AD 應用程式。 根據預設 hello 新的 Azure AD 應用程式已設定的 tooprovide hello 持有人權杖 toohello API 應用程式的 URL。 本節中，您會設定 hello Azure AD 應用程式 tooprovide hello 持有人權杖 toohello AngularJS 前端而不是直接 toohello 中介層應用程式開發介面應用程式。 hello AngularJS 前端呼叫 hello API 應用程式時，會傳送 hello 語彙基元 toohello API 應用程式。
 
 > [!NOTE]
-> 為了盡可能簡化程序，本教學課程為前端和中介層 API 應用程式使用單一 Azure AD 應用程式。 另一個選項是使用兩個 Azure AD 應用程式。 在此情況下，您必須授與前端的 Azure AD 應用程式權限才能呼叫中介層的 Azure AD 應用程式。 此多重應用程式方法可讓您更精細地控制每一個層級的權限。
+> tookeep hello 程序越簡單越好，本教學課程會使用單一的 Azure AD 應用程式來進行 hello 前端和 hello 中介層應用程式開發介面應用程式。 另一個選項是 toouse 兩個 Azure AD 應用程式。 在此情況下，您必須 toogive hello 前端的 Azure AD 應用程式的權限 toocall hello 中介層的 Azure AD 應用程式。 此多重應用程式的方法會提供更細微地控制的權限 tooeach 層。
 > 
 > 
 
-1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中，移至 [Azure Active Directory]。
+1. 在 hello [Azure 傳統入口網站](https://manage.windowsazure.com/)，跳過**Azure Active Directory**。
    
-   您必須使用傳統入口網站，因為現行的 Azure 入口網站尚未提供您需要存取的特定 Azure Active Directory 設定。
-2. 在 [目錄]  索引標籤中，選取您的 AAD 租用戶。
+   您必須 toouse hello 傳統入口網站，因為某些 Azure Active Directory 設定，您需要存取 tooare 尚無法使用 hello 目前的 Azure 入口網站中。
+2. 在 hello**目錄**索引標籤上，按一下您的 AAD 租用戶。
    
    ![傳統入口網站的 Azure AD](./media/app-service-api-dotnet-user-principal-auth/selecttenant.png)
-3. 按一下 [應用程式] > [我的公司擁有的應用程式]，然後按一下核取記號。
+3. 按一下**應用程式 > 我公司所擁有的應用程式**，然後按一下hello 核取記號。
    
-   您可能還必須重新整理頁面，才能看見新的應用程式。
-4. 在應用程式清單中，按一下當您針對 API 應用程式啟用驗證時 Azure 為您建立的應用程式名稱。
+   您可能還有 toorefresh hello 頁面 toosee hello 新的應用程式。
+4. Hello 應用程式清單中按一下 hello hello 時您的應用程式開發介面應用程式啟用驗證為您建立 Azure 的其中一個名稱。
    
    ![Azure AD [應用程式] 索引標籤](./media/app-service-api-dotnet-user-principal-auth/appstab.png)
 5. 按一下 [設定] 。
    
    ![Azure AD [設定] 索引標籤](./media/app-service-api-dotnet-user-principal-auth/configure.png)
-6. 將 [登入 URL]  設定為 AngularJS Web 應用程式的 URL，且結尾不要有斜線。
+6. 設定**登入 URL** toohello URL AngularJS web 應用程式，沒有尾端斜線。
    
    例如：https://todolistangular.azurewebsites.net
    
    ![登入 URL](./media/app-service-api-dotnet-user-principal-auth/signonurlazure.png)
-7. 將 [回覆 URL]  設定為 Web 應用程式的 URL，且結尾不要有斜線。
+7. 設定**回覆 URL** toohello URL，web 應用程式，沒有尾端斜線。
    
    例如：https://todolistsangular.azurewebsites.net
 8. 按一下 [儲存] 。
    
    ![回覆 URL](./media/app-service-api-dotnet-user-principal-auth/replyurlazure.png)
-9. 在頁面底部，按一下 [管理資訊清單] > [下載資訊清單]。
+9. 在 hello hello 頁面底部，按一下**管理資訊清單 > 下載資訊清單**。
    
    ![下載資訊清單](./media/app-service-api-dotnet-user-principal-auth/downloadmanifest.png)
-10. 將檔案下載至可在其中編輯它的位置。
-11. 在下載的資訊清單檔案中，搜尋 `oauth2AllowImplicitFlow` 屬性。 將這個屬性的值從 `false` 變更為 `true`，然後儲存檔案。
+10. 下載 hello 檔案 tooa 位置可在其中編輯它。
+11. 在 hello 下載資訊清單檔案，搜尋 hello`oauth2AllowImplicitFlow`屬性。 變更這個屬性從 hello 值`false`太`true`，然後儲存 hello 檔案。
     
-    必須要有這項設定才能從 JavaScript 單一頁面應用程式進行存取。 它可讓 Oauth 2.0 持有人權杖傳回 URL 片段中。
-12. 按一下 [管理資訊清單] > [上傳資訊清單]，然後上傳您在上述步驟中更新的檔案。
+    必須要有這項設定才能從 JavaScript 單一頁面應用程式進行存取。 它可讓 hello Oauth 2.0 承載權杖 toobe hello URL 片段中傳回。
+12. 按一下**管理資訊清單 > 上傳資訊清單**，和上傳 hello 檔案，您在 hello 前面步驟中更新。
     
     ![上傳資訊清單](./media/app-service-api-dotnet-user-principal-auth/uploadmanifest.png)
-13. 複製 [用戶端識別碼]  值，並將其儲存至可在稍後取得此值的位置。
+13. 複製 hello**用戶端識別碼**值，並將其儲存的地方，就可以從更新版本。
 
-## <a name="configure-the-todolistangular-project-to-use-authentication"></a>設定 ToDoListAngular 專案以使用驗證
-在本節中，您將會變更 AngularJS 前端，使其使用 JS 適用的 Active Directory 驗證程式庫 (ADAL)，從 Azure AD 取得登入使用者的持有人權杖。 程式碼會將權杖包含在傳送至中介層的 HTTP 要求中，如下圖所示。 
+## <a name="configure-hello-todolistangular-project-toouse-authentication"></a>設定 hello ToDoListAngular 專案 toouse 驗證
+本節中您會變更 hello AngularJS 前端，使其使用 Active Directory 驗證程式庫 (ADAL) for JS tooacquire hello 登入的使用者從 Azure AD 的承載權杖。 hello 程式碼會將包含 hello 語彙基元傳送 toohello 中介層，HTTP 要求中 hello 下列圖表所示。 
 
 ![使用者驗證圖表](./media/app-service-api-dotnet-user-principal-auth/appdiagram.png)
 
-對 ToDoListAngular 專案中的檔案進行下列變更。
+請遵循變更 toofiles hello ToDoListAngular 專案中的 hello。
 
-1. 開啟 *index.cshtml* 檔。
-2. 將參考 JS 適用的 Active Directory 驗證程式庫 (ADAL) 指令碼的程式行取消註解。
+1. 開啟 hello *index.cshtml*檔案。
+2. 參考 JS 指令碼的 hello Active Directory 驗證程式庫 (ADAL) 的 hello 行取消註解。
    
         <script src="app/scripts/adal.js"></script>
         <script src="app/scripts/adal-angular.js"></script>
-3. 開啟 *app/scripts/app.js* 檔案。
-4. 將標記為「不需要驗證」的程式碼區塊註解化，並將標記為「需要驗證」的程式碼區塊取消註解。
+3. 開啟 hello *app/scripts/app.js*檔案。
+4. 註解的程式碼的 hello 區塊標示為 「 未驗證 」，並取消註解的程式碼的 hello 區塊標示為 [使用驗證]。
    
-    這項變更會參考 ADAL JS 驗證提供者，並為其提供設定值。 在下列步驟中，您會設定 API 應用程式和 Azure AD 應用程式的設定值。
-5. 在設定 `endpoints` 變數的程式碼中，將 API URL 設定為您為 ToDoListAPI 專案建立之 API 應用程式的 URL，並將 Azure AD 應用程式識別碼設定為您從 Azure 傳統入口網站複製而來的用戶端識別碼。
+    這項變更參考 hello ADAL JS 驗證提供者，並提供組態值 tooit。 您可以在 hello 下列步驟設定 hello API 應用程式和 Azure AD 應用程式的組態值。
+5. 設定 hello hello 程式碼中`endpoints`hello API 應用程式，您建立 hello ToDoListAPI 專案，並將設定的變數，將 hello API URL toohello URL hello Azure AD 應用程式識別碼 toohello 用戶端識別碼，您所複製的 hello Azure 傳統入口網站。
    
-    程式碼現在類似下列範例。
+    下列範例類似 toohello 的現在 hello 程式碼。
    
         var endpoints = {
             "https://todolistapi0121.azurewebsites.net/": "1cf55bc9-9ed8-4df31cf55bc9-9ed8-4df3"
         };
-6. 在 `adalProvider.init` 的呼叫中，將 `tenant` 設定為租用戶名稱，並將 `clientId` 設定為您在上一個步驟中使用的相同值。
+6. 在 hello 呼叫太`adalProvider.init`，將`tenant`tooyour 租用戶名稱和`clientId`toosame hello 先前步驟中的值。
    
-    程式碼現在類似下列範例。
+    下列範例類似 toohello 的現在 hello 程式碼。
    
         adalProvider.init(
             {
@@ -213,61 +213,61 @@ ms.lasthandoff: 07/11/2017
             $httpProvider
             );
    
-    這些 `app.js` 變更會指定讓呼叫端程式碼和接受呼叫的 API 位於相同的 Azure AD 應用程式。
-7. 開啟 *app/scripts/homeCtrl.js* 檔案。
-8. 將標記為「不需要驗證」的程式碼區塊註解化，並將標記為「需要驗證」的程式碼區塊取消註解。
-9. 開啟 *app/scripts/indexCtrl.js* 檔案。
-10. 將標記為「不需要驗證」的程式碼區塊註解化，並將標記為「需要驗證」的程式碼區塊取消註解。
+    這些變更太`app.js`指定 hello 呼叫程式碼和呼叫 API 的 hello 位於 hello 相同的 Azure AD 應用程式。
+7. 開啟 hello *app/scripts/homeCtrl.js*檔案。
+8. 註解的程式碼的 hello 區塊標示為 「 未驗證 」，並取消註解的程式碼的 hello 區塊標示為 [使用驗證]。
+9. 開啟 hello *app/scripts/indexCtrl.js*檔案。
+10. 註解的程式碼的 hello 區塊標示為 「 未驗證 」，並取消註解的程式碼的 hello 區塊標示為 [使用驗證]。
 
-### <a name="deploy-the-todolistangular-project-to-azure"></a>將 ToDoListAngular 專案部署到 Azure
-1. 在 [方案總管] 中，以滑鼠右鍵按一下 ToDoListAngular 專案，然後按一下 [發佈]。
+### <a name="deploy-hello-todolistangular-project-tooazure"></a>部署 hello ToDoListAngular 專案 tooAzure
+1. 在**方案總管 中**hello ToDoListAngular 專案中，以滑鼠右鍵按一下，然後按**發行**。
 2. 按一下 [發行] 。
    
-    Visual Studio 會部署專案並將瀏覽器開啟至 Web 應用程式的基底 URL。 這會顯示 403 錯誤頁面，這是嘗試從瀏覽器移至 Web API 基底 URL 時的正常現象。
+    Visual Studio 部署 hello 專案，並開啟瀏覽器 toohello web 應用程式的基底 URL。 這會顯示 403 錯誤頁面上，也就是從瀏覽器嘗試 toogo tooa Web API 基底 URL 的一般。
    
-    您還需要變更中介層 API 應用程式，才能測試應用程式。
-3. 關閉瀏覽器。
+    您仍然必須 toomake 變更 toohello 中介層應用程式開發介面應用程式之前，您可以測試 hello 應用程式。
+3. 關閉 hello 瀏覽器。
 
-## <a name="configure-the-todolistapi-project-to-use-authentication"></a>設定 ToDoListAPI 專案以使用驗證
-ToDoListAPI 專案目前會將 "*" 作為 `owner` 值傳送到 ToDoListDataAPI。 在本節中，您將會變更用來傳送登入使用者識別碼的程式碼。
+## <a name="configure-hello-todolistapi-project-toouse-authentication"></a>設定 hello ToDoListAPI 專案 toouse 驗證
+目前 hello ToDoListAPI 專案傳送"*"做為 hello`owner`值 tooToDoListDataAPI。 本節中您要變更 hello 程式碼 toosend hello hello 登入的使用者識別碼。
 
-對 ToDoListAPI 專案進行下列變更。
+請 hello 遵循 hello ToDoListAPI 專案中的變更。
 
-1. 開啟 Controllers/ToDoListController.cs 檔案，並將每個動作方法中會把 `owner` 設定為 Azure AD `NameIdentifier` 宣告值的程式行取消註解。 例如：
+1. 開啟 hello *Controllers/ToDoListController.cs*檔案，並設定每個動作方法中的 hello 行取消註解`owner`toohello Azure AD`NameIdentifier`宣告值。 例如：
    
         owner = ((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value;
    
-    **重要**︰不要取消註解 `ToDoListDataAPI` 方法中的程式碼；您稍後將在服務主體驗證教學課程中執行它。
+    **重要**： 不要取消註解程式碼中 hello`ToDoListDataAPI`方法; 您將會執行，稍後 hello 服務主體的驗證教學課程。
 
-### <a name="deploy-the-todolistapi-project-to-azure"></a>將 ToDoListAPI 專案部署到 Azure
-1. 在 [方案總管]中，以滑鼠右鍵按一下 ToDoListAPI 專案，然後按一下 [發佈]。
+### <a name="deploy-hello-todolistapi-project-tooazure"></a>部署 hello ToDoListAPI 專案 tooAzure
+1. 在**方案總管 中**hello ToDoListAPI 專案中，以滑鼠右鍵按一下，然後按**發行**。
 2. 按一下 [發行] 。
    
-    Visual Studio 會部署專案並將瀏覽器開啟至 API 應用程式的基底 URL。
-3. 關閉瀏覽器。
+    Visual Studio 部署 hello 專案，並開啟瀏覽器 toohello API 應用程式的基底 URL。
+3. 關閉 hello 瀏覽器。
 
-### <a name="test-the-application"></a>測試應用程式
-1. 使用 HTTPS 而非 HTTP 移至 Web 應用程式的 URL。
-2. 按一下 [待辦事項清單]  索引標籤。
+### <a name="test-hello-application"></a>測試 hello 應用程式
+1. 移 toohello hello web 應用程式，URL**使用 HTTPS，而不是 HTTP**。
+2. 按一下 hello **tooDo 清單** 索引標籤。
    
-    系統會提示您登入。
-3. 使用 AAD 租用戶中使用者的認證進行登入。
-4. [待辦事項清單]  頁面隨即出現。
+    您必須提示的 toolog 中。
+3. Hello AAD 租用戶中的使用者的認證登入。
+4. hello **tooDo 清單**頁面隨即出現。
    
-   ![待辦事項清單頁面](./media/app-service-api-dotnet-user-principal-auth/webappindex.png)
+   ![tooDo 清單頁面](./media/app-service-api-dotnet-user-principal-auth/webappindex.png)
    
-   目前並不會顯示任何待辦事項項目，因為這些項目到目前為止全都適用於擁有者 "*"。 現在中介層正在要求登入使用者的項目，但目前尚未建立任何項目。
-5. 新增待辦事項項目，以確認應用程式可以運作。
-6. 在另一個瀏覽器視窗中，移至 ToDoListDataAPI API 應用程式的 Swagger UI URL，並按一下 [ToDoList] > [取得]。 輸入星號來代表 `owner` 參數，然後按一下 [立即試用]。
+   目前並不會顯示任何待辦事項項目，因為這些項目到目前為止全都適用於擁有者 "*"。 Hello 中介層現在要求 hello 登入之使用者的項目，並無尚未建立。
+5. 加入新的待辦項目 tooverify 正在 hello 應用程式。
+6. 在另一個瀏覽器視窗中，移 toohello 的 UI Swagger URL hello ToDoListDataAPI API 應用程式，然後按一下**ToDoList > 取得**。 輸入星號 hello`owner`參數，然後再按一下**現在就試試看**。
    
-   回應顯示新的待辦事項項目在 Owner 屬性中擁有實際的 Azure AD 使用者識別碼。
+   hello 回應會顯示 hello 新待辦項目有 hello 實際的 Azure AD 使用者識別碼 hello 擁有者屬性中。
    
    ![JSON 回應中的擁有者識別碼](./media/app-service-api-dotnet-user-principal-auth/todolistapiauth.png)
 
-## <a name="building-the-projects-from-scratch"></a>從頭建置專案
-兩個 Web API 專案是透過使用 Azure API 應用程式  專案範本並以 ToDoList 控制器取代預設值控制器所建立。 
+## <a name="building-hello-projects-from-scratch"></a>建置從頭 hello 專案
+hello 兩個 Web API 專案所建立的 hello **Azure API 應用程式**專案範本和取代 hello 預設值的控制站與 ToDoList 控制站。 
 
-如需如何使用 Web API 2 後端建立 AngularJS 單一頁面應用程式的相關資訊，請參閱[實習實驗室：使用 ASP.NET Web API 和 Angular.js 建置單一頁面應用程式 (SPA)](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs)。 如需如何新增 Azure AD 驗證程式碼的相關資訊，請參閱下列資源：
+如需有關資訊太建立 AngularJS 單一頁面應用程式 Web API 2 的後端，請參閱[手上實驗室： 建置單一頁面應用程式 (SPA)，使用 ASP.NET Web API 和 Angular.js](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs)。 如需有關資訊 tooadd Azure AD 驗證程式碼，請參閱下列資源的 hello:
 
 * [使用 Azure AD 保護 AngularJS 單一頁面應用程式](../active-directory/active-directory-devquickstarts-angular.md)。
 * [簡介 ADAL JS v1](http://www.cloudidentity.com/blog/2015/02/19/introducing-adal-js-v1/)
@@ -275,9 +275,9 @@ ToDoListAPI 專案目前會將 "*" 作為 `owner` 值傳送到 ToDoListDataAPI�
 ## <a name="troubleshooting"></a>疑難排解
 [!INCLUDE [troubleshooting](../../includes/app-service-api-auth-troubleshooting.md)]
 
-* 請確定不要混淆 ToDoListAPI (中介層) 和 ToDoListDataAPI (資料層)。 例如，請確認將驗證新增至中介層 API 應用程式而非資料層。 
-* 請確定 AngularJS 原始碼其參考中介層 API 應用程式 URL (ToDoListAPI 而非 ToDoListDataAPI) 和正確的 Azure AD 用戶端識別碼。 
+* 請確定不要混淆 ToDoListAPI (中介層) 和 ToDoListDataAPI (資料層)。 例如，確認您新增 authentication toohello 中介層應用程式開發介面應用程式，hello 資料層。 
+* 請確定 hello AngularJS 來源的程式碼參考 hello 中介層應用程式開發介面應用程式 URL （ToDoListAPI、 不 ToDoListDataAPI） 和 hello 修正 Azure AD 用戶端識別碼。 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已了解如何使用 API 應用程式的 App Service 驗證，以及如何利用 ADAL JS 程式庫呼叫 API 應用程式。 在下一個教學課程中，您將學習如何 [對於服務對服務的案例保護您的 API 應用程式存取](app-service-api-dotnet-service-principal-auth.md)。
+在本教學課程中，您學會 toouse App Service API 應用程式的驗證和 toocall hello API 應用程式使用的方式 hello JS ADAL 程式庫。 Hello 下一個教學課程中您將學習如何太[tooyour API 應用程式安全地存取服務對服務案例](app-service-api-dotnet-service-principal-auth.md)。
 

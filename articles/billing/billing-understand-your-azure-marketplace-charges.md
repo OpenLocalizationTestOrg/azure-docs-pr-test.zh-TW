@@ -1,5 +1,5 @@
 ---
-title: "了解您的 Azure 外部服務費用 | Microsoft Docs"
+title: "aaaUnderstand Azure 外部的服務費用 |Microsoft 文件"
 description: "了解 Azure 中外部服務 (先前稱為 Marketplace) 費用的計費方式。"
 services: 
 documentationcenter: 
@@ -16,14 +16,14 @@ ms.topic: article
 ms.date: 06/13/2017
 ms.author: adpick
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 11701ce0162113ef6c8e056d3a30fe1d8f702f92
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d2cb28319e2ab4eff753177220993cbf94c96ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-your-azure-billing-for-external-service-charges"></a>了解外部服務費用的 Azure 計費方式
-外部服務先前稱為 Azure Marketplace。 一般而言，它們是由第三方發佈且適用於 Azure，但已完全整合於 Azure 內的服務。 例如，ClearDB 和 SendGrid 是可在 Azure 中購買的外部服務，然而它們並非由 Microsoft 所發行。
+呼叫 Azure Marketplace toobe 使用外部的服務。 一般而言，它們是由第三方發佈且適用於 Azure，但已完全整合於 Azure 內的服務。 例如，ClearDB 和 SendGrid 是可在 Azure 中購買的外部服務，然而它們並非由 Microsoft 所發行。
 
 當您佈建新的外部服務或資源時，系統會顯示警告︰
 
@@ -35,57 +35,57 @@ ms.lasthandoff: 07/11/2017
 > 
 
 ## <a name="how-external-services-are-billed"></a>如何對外部服務計費
-- 外部服務會分開計費。 系統會將這類服務視為 Azure 訂用帳戶內的個別訂單。 當您購買服務時，會設定每項服務的計費期間。 這樣做可避免與購買服務之訂用帳戶的計費期間混淆。 您還會收到獨立的帳單，而信用卡收費也會分開進行。
+- 外部服務會分開計費。 系統會將這類服務視為 Azure 訂用帳戶內的個別訂單。 您購買 hello 服務時，會設定為每個服務的 hello 計費週期。 不是 toobe hello hello 您購買它所在的訂用帳戶的計費期的問題感到困惑。 您還會收到獨立的帳單，而信用卡收費也會分開進行。
 - 每項外部服務都有各自的計費模式。 有些服務採用隨用隨付的方式計費，有些則使用按月付款模式。 您需要使用信用卡來支付 Azure 外部服務的費用，不能以發票付款的方式來購買。
-- 外部服務不適用於每個月的免費信用額度。 如果您使用含有[免費信用額度](https://azure.microsoft.com/pricing/spending-limits/)的 Azure 訂用帳戶，該信用額度將無法套用至外部服務帳單。 請使用信用卡來購買外部服務。
+- 外部服務不適用於每個月的免費信用額度。 如果您使用 Azure 訂用帳戶包含[免費信用額度](https://azure.microsoft.com/pricing/spending-limits/)，它們不能套用的 tooexternal 服務帳單。 使用信用卡 toopurchase 外部服務。
 
 
-## <a name="view-external-service-spending-and-history-in-the-azure-portal"></a>在 Azure 入口網站檢視外部服務消費和歷程記錄
-在 [Azure 入口網站](https://portal.azure.com/)內，您可以檢視每個訂用帳戶上的外部服務清單： 
+## <a name="view-external-service-spending-and-history-in-hello-azure-portal"></a>檢視外部服務消費和 hello Azure 入口網站中的歷程記錄
+您可以檢視一份 hello 外部服務的每個訂用帳戶內 hello [Azure 入口網站](https://portal.azure.com/): 
 
-1. 以帳戶管理員身分登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 在 [中樞] 功能表中，選取 [訂用帳戶]。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com/)hello 帳戶系統管理員身分。
+2. 在 hello 中樞功能表中，選取 **訂閱**。
    
-    ![Select Subscriptions in the Hub menu](./media/billing-understand-your-azure-marketplace-charges/sub-button.png) 
-3. 在 [訂用帳戶] 刀鋒視窗中，選取您想要檢視的訂用帳戶，然後選取 [外部服務]。
+    ![Hello 中樞功能表中選取訂用帳戶](./media/billing-understand-your-azure-marketplace-charges/sub-button.png) 
+3. 在 hello**訂閱**刀鋒視窗中，選取 hello 訂閱您想 tooview，，然後選取**外部服務**。
    
-    ![在計費刀鋒視窗中選取訂用帳戶](./media/billing-understand-your-azure-marketplace-charges/select-sub-external-services.png)
-4. 您應該會看到每項外部服務的訂單、發行者名稱、購買的服務層、資源的命名及目前的訂單狀態。 若要查看過去的帳單，請選取外部服務。
+    ![在 [hello 帳單] 刀鋒視窗中選取訂用帳戶](./media/billing-understand-your-azure-marketplace-charges/select-sub-external-services.png)
+4. 您應該會看到每個外部服務訂單、 hello 發行者名稱、 您購買的服務層、 hello 資源和 hello 目前的訂單狀態為您提供名稱。 toosee 過去的帳單，選取 外部服務。
    
     ![選取外部服務](./media/billing-understand-your-azure-marketplace-charges/external-service-blade2.png)
-5. 在這裡，您可以檢視過去的帳單金額，包括稅額細目。
+5. 從這裡，您可以檢視過去的包括 hello 稅分解的帳單金額。
    
     ![檢視外部服務帳單記錄](./media/billing-understand-your-azure-marketplace-charges/billing-overview-blade.png)
 
 ## <a name="view-external-service-spending-for-enterprise-agreement-ea-customers"></a>檢視 Enterprise 合約 (EA) 客戶的外部服務消費
-EA 客戶可以在 EA 入口網站看到外部服務消費並下載報告。 請參閱 [EA 客戶的 Azure Marketplace](https://ea.azure.com/helpdocs/azureMarketplace) 以便開始使用。
+EA 客戶可以查看消費外部服務，並下載 hello EA 入口網站中的報表。 請參閱[Azure Marketplace 中的 EA 客戶](https://ea.azure.com/helpdocs/azureMarketplace)tooget 啟動。
 
 ## <a name="manage-payment-methods-for-external-service-orders"></a>管理外部服務訂單的付款方法
-從[帳戶中心](https://account.windowsazure.com/)更新外部服務訂單的付款方法。
+更新付款方式的外部服務訂單從 hello[帳戶中心](https://account.windowsazure.com/)。
 
 > [!NOTE]
-> 如果您使用公司或學校帳戶來購買訂用帳戶，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)來變更付款方法。
+> 如果您購買訂用帳戶使用的公司或學校帳戶，[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)toomake 變更 tooyour 付款方法。
 > 
 > 
 
-1. 登入[帳戶中心](https://account.windowsazure.com/)並[瀏覽至 [Marketplace] 索引標籤](https://account.windowsazure.com/Store)
+1. 登入 toohello[帳戶中心](https://account.windowsazure.com/)和[瀏覽 toohello **marketplace**  索引標籤](https://account.windowsazure.com/Store)
    
-    ![在帳戶中心內選取 Marketplace](./media/billing-understand-your-azure-marketplace-charges/select-marketplace.png)
-2. 選取要管理的外部服務
+    ![Hello 帳戶中心] 中選取 [marketplace](./media/billing-understand-your-azure-marketplace-charges/select-marketplace.png)
+2. 選取您想要 toomanage hello 外部服務
    
-    ![選取要管理的外部服務](./media/billing-understand-your-azure-marketplace-charges/select-ext-service.png)
-3. 在頁面右側，按一下 [變更付款方式]。 此連結將帶您前往其他入口網站，以便您管理付款方法。
+    ![選取您想要 toomanage hello 外部服務](./media/billing-understand-your-azure-marketplace-charges/select-ext-service.png)
+3. 按一下**變更付款方式**右邊 hello hello 頁面。 此連結會帶您 tooa 不同入口 toomanage 付款方法。
    
     ![訂單摘要](./media/billing-understand-your-azure-marketplace-charges/change-payment.PNG)
-4. 按一下 [編輯資訊]，然後遵循指示更新付款資訊。
+4. 按一下**編輯資訊**並遵循指示 tooupdate 付款資訊。
    
     ![選取編輯資訊](./media/billing-understand-your-azure-marketplace-charges/edit-info.png)
 
 ## <a name="cancel-an-external-service-order"></a>取消外部服務訂單
-如果想要取消外部服務訂單，請在 [Azure 入口網站](https://portal.azure.com)中刪除該資源。
+如果您想 toocancel 外部服務順序，刪除在 hello hello 資源[Azure 入口網站](https://portal.azure.com)。
 
 ![刪除資源](./media/billing-understand-your-azure-marketplace-charges/deleteMarketplaceOrder.PNG)
 
 ## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。
-如果您仍有問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+如果您仍有問題，[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)tooget 快速解決您的問題。
 

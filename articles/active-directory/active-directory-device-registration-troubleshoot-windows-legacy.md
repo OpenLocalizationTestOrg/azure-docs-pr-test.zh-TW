@@ -1,6 +1,6 @@
 ---
-title: "針對已加入 Azure AD 網域之 Windows 下層用戶端電腦的自動註冊進行疑難排解 | Microsoft Docs"
-description: "針對已加入 Azure AD 網域之 Windows 下層用戶端電腦的自動註冊進行疑難排解。"
+title: "aaaTroubleshooting hello 自動登錄，Azure AD 網域的電腦加入 Windows 下層用戶端 |Microsoft 文件"
+description: "疑難排解 hello 自動註冊的 Azure AD 網域加入 Windows 下層用戶端的電腦。"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,15 +14,15 @@ ms.topic: article
 ms.date: 06/23/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: a7c8ef4c59c53c21258f0c61963d8f994a3946ba
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 84fe666576f13de09d1eaa5692517d45a4dbeebe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-auto-registration-of-domain-joined-computers-to-azure-ad-for-windows-down-level-clients"></a>針對已加入網域之 Windows 下層用戶端電腦的自動註冊 Azure AD 進行疑難排解 
+# <a name="troubleshooting-auto-registration-of-domain-joined-computers-tooazure-ad-for-windows-down-level-clients"></a>疑難排解自動登錄的網域加入 Windows 下層用戶端電腦 tooAzure AD 
 
-本主題僅適用於下列用戶端： 
+本主題僅適用於下列用戶端的唯一 toohello: 
 
 - Windows 7 
 - Windows 8.1 
@@ -31,38 +31,38 @@ ms.lasthandoff: 08/03/2017
 - Windows Server 2012 R2 
  
 
-針對 Windows 10 或 Windows Server 2016，請參閱[針對已加入網域之電腦的自動註冊 Azure AD 進行疑難排解 – Windows 10 和 Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md)。
+針對 Windows 10 或 Windows Server 2016，請參閱[疑難排解自動登錄的網域加入電腦 tooAzure AD – Windows 10 和 Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md)。
 
-本主題假設您已經依照[如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-device-registration-get-started.md)所述，設定讓已加入網域的裝置自動註冊。
+本主題假設您已設定自動註冊已加入網域的裝置如中所述述[如何 tooconfigure 自動註冊的 Windows 網域的裝置與 Azure Active Directory](active-directory-device-registration-get-started.md)。
  
-本主題提供有關如何解決潛在問題的疑難排解指引。  
-以下是獲得成功結果的一些注意事項： 
+此主題提供疑難排解指引 tooresolve 可能問題的方式。  
+成功的結果的一些事項 toonote: 
 
-- 在 Azure AD 上註冊這些用戶端時是依據個別使用者/裝置。 舉例來說：如果 jdoe 和 jharnett 登入此裝置，在 [使用者資訊] 索引標籤中就會為這每位使用者建立個別的註冊 (DeviceID)。  
+- 在 Azure AD 上註冊這些用戶端時是依據個別使用者/裝置。 例如： 如果 jdoe 和 jharnett 登入 toothis 裝置，這些使用者在 hello 使用者資訊] 索引標籤中的每個建立個別登錄 (DeviceID)。  
 
-- 預設是設定為在登入或鎖定/解除鎖定時嘗試註冊這些用戶端，而且可能會有 5 分鐘的延遲，這是使用「工作排程器」工作來觸發。 
+- 這些用戶端 hello 現成的註冊作業就會在登入或鎖定/解除鎖定設定的 tootry 和可能有 5 分鐘的延遲，這觸發使用工作排程器工作。 
 
-- 重新安裝作業系統或手動取消註冊再重新註冊時，可能會在 Azure AD 上建立新的註冊，而將導致在 Azure 入口網站中 [使用者資訊] 索引標籤底下有多個項目。 
+- 重新安裝，hello 作業系統或手動取消註冊及重新登錄可能會在 Azure AD 上建立新的註冊，並會導致多個項目 hello 使用者資訊] 索引標籤底下 hello Azure 入口網站。 
 
 
-## <a name="step-1-retrieve-the-registration-status"></a>步驟 1：擷取註冊狀態 
+## <a name="step-1-retrieve-hello-registration-status"></a>步驟 1： 擷取 hello 註冊狀態 
 
-**確認註冊狀態：**  
+**tooverify hello 註冊狀態：**  
 
-1. 以系統管理員身分開啟命令提示字元 
+1. 以系統管理員身分開啟 hello 命令提示字元 
 
 2. 輸入 `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /i"`
 
-此命令會顯示一個對話方塊，可提供您有關加入狀態的更多詳細資料。
+此命令會顯示對話方塊，讓您提供更多詳細 hello 聯結狀態。
 
 ![Workplace Join for Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/01.png)
 
 
-## <a name="step-2-evaluate-the-registration-status"></a>步驟 2：評估註冊狀態 
+## <a name="step-2-evaluate-hello-registration-status"></a>步驟 2： 評估 hello 登錄狀態 
 
-如果未成功加入，對話方塊會提供有關所發生問題的詳細資料。
+如果 hello 聯結不成功，hello 對話方塊會提供您 hello 問題已經發生的相關詳細資料。
 
-**最常見的問題包括：**
+**hello 最常見的問題是：**
 
 - AD FS 或 Azure AD 設定不正確
 
@@ -76,26 +76,26 @@ ms.lasthandoff: 08/03/2017
 
     ![Workplace Join for Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/04.png)
 
-- 服務沒有回應 
+- hello 服務沒有回應 
 
     ![Workplace Join for Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/05.png)
 
-您也可以在事件記錄檔的 [應用程式及服務記錄檔] > [Microsoft-Workplace Join] 底下找到狀態資訊。
+您也可以在 hello 事件記錄檔中找到 hello 狀態資訊**應用程式和服務 Log\Microsoft 地點**。
   
-**註冊失敗的最常見原因包括︰** 
+**hello 失敗註冊最常見的原因包括：** 
 
-- 您的電腦不在組織的內部網路上，或不在可連線到內部部署 AD 網域控制站的 VPN 上。
+- 您的電腦不在 hello 組織內部網路或 VPN 連線 tooan 沒有內部部署 AD 網域控制站。
 
-- 您是使用本機電腦帳戶來登入您的電腦。 
+- 您登入 tooyour 電腦與本機電腦帳戶。 
 
 - 服務組態問題： 
 
-  - 同盟伺服器已設定為支援 **WIAORMULTIAUTHN**。 
+  - hello 同盟伺服器已設定的 toosupport **WIAORMULTIAUTHN**。 
 
-  - 沒有「服務連接點」物件指向電腦所屬 AD 樹系之 Azure AD 中已驗證的網域名稱。
+  - 沒有在 Azure AD 中指向 tooyour 驗證的網域名稱，其中 hello 電腦屬於 hello AD 樹系中的服務連接點物件。
 
-  - 使用者已達到裝置限制。 請參閱＜開始使用 Azure Active Directory 裝置註冊＞。
+  - 使用者已達到 hello 的裝置。 請參閱＜開始使用 Azure Active Directory 裝置註冊＞。
 
 ## <a name="next-steps"></a>後續步驟
 
-如需詳細資訊，請參閱[自動裝置註冊常見問題集](active-directory-device-registration-faq.md) 
+如需詳細資訊，請參閱 hello[自動裝置註冊常見問題集](active-directory-device-registration-faq.md) 

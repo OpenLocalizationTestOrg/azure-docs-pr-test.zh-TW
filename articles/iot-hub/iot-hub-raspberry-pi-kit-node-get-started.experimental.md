@@ -1,12 +1,12 @@
 ---
-title: "Raspberry Pi 至 cloud (Node.js) - 將 Raspberry Pi 連接至 Azure IoT 中樞 | Microsoft Docs"
-description: "將 Raspberry Pi 連接至 Azure IoT Hub，以便 Raspberry Pi 將資料傳送至 Azure 雲端。"
+title: "aaaRaspberry Pi toocloud (Node.js) 的連線覆盆子 Pi tooAzure IoT 中樞 |Microsoft 文件"
+description: "連接覆盆子 Pi toosend 資料 toohello Azure 雲端的覆盆子 Pi tooAzure IoT 中樞。"
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "azure iot raspberry pi, raspberry pi iot 中樞, raspberry pi 將資料傳送至雲端, raspberry pi 至 cloud"
+keywords: "azure iot 木莓澆 pi 木莓澆 pi iot 中樞木莓澆 pi 傳送資料 toocloud 木莓澆 pi toocloud"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started
 ms.assetid: b0e14bfa-8e64-440a-a6ec-e507ca0f76ba
@@ -17,50 +17,50 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 5/27/2017
 ms.author: xshi
-ms.openlocfilehash: 956ed5ab0ed38ddebd978b35eb54bc96567f0d57
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 07bc66983c427eab8118be18d91abb25deb03ad3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-raspberry-pi-to-azure-iot-hub-nodejs"></a>將 Raspberry Pi 連接至 Azure IoT Hub (Node.js)
+# <a name="connect-raspberry-pi-tooazure-iot-hub-nodejs"></a>連接覆盆子 Pi tooAzure IoT 中樞 (Node.js)
 
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
-在本教學課程中，您會開始了解執行 Raspbian 的 Raspberry Pi 在使用方面的基本知識。 接著會了解如何使用 [Azure IoT 中樞](iot-hub-what-is-iot-hub.md)讓您的裝置順暢地與雲端連線。 如需 Windows 10 IoT 核心範例，請移至 [Windows 開發人員中心](http://www.windowsondevices.com/)。
+在本教學課程中，您必須開始學習使用執行 Raspbian 覆盆子 Pi 的 hello 基本。 然後您學習如何 tooseamlessly 裝置 toohello 雲端使用連線[Azure IoT 中樞](iot-hub-what-is-iot-hub.md)。 如需 Windows 10 IoT 核心版範例，請移 toohello [Windows 開發人員中心](http://www.windowsondevices.com/)。
 
-還沒有套件嗎？ 請嘗試 [Raspberry Pi 3 模擬器](https://blogs.msdn.microsoft.com/iliast/2016/11/10/how-to-emulate-raspberry-pi/)。 或在[這裡](https://azure.microsoft.com/develop/iot/starter-kits)購買新的套件。
+還沒有套件嗎？ 再試一次 hello[覆盆子 Pi 3 模擬器](https://blogs.msdn.microsoft.com/iliast/2016/11/10/how-to-emulate-raspberry-pi/)。 或在[這裡](https://azure.microsoft.com/develop/iot/starter-kits)購買新的套件。
 
 ## <a name="what-you-do"></a>您要做什麼
 
 * 設定 Raspberry Pi。
 * 建立 IoT 中樞。
 * 在 IoT 中樞對於 Pi 註冊裝置。
-* 在 Pi 上執行範例應用程式，將感應器資料傳送至 IoT 中樞。
+* Pi toosend 感應器資料 tooyour IoT 中樞上執行範例應用程式。
 
-將 Raspberry Pi 連接至您建立的 IoT 中樞。 然後，在 Pi 上執行範例應用程式，以收集 BME280 感應器中的溫度和溼度資料。 最後，將感應器資料傳送至 IoT 中樞。
+連接您所建立的覆盆子 Pi tooan IoT 中樞。 然後您範例應用程式上執行 Pi toocollect 氣溫和溼度資料從 BME280 感應器。 最後，您可以傳送 hello 感應器資料 tooyour IoT 中樞。
 
 ## <a name="what-you-learn"></a>您學到什麼
 
-* 如何建立 Azure IoT 中樞，並取得新的裝置連接字串。
-* 如何連接 Pi 與 BME280 感應器。
-* 如何在 Pi 上執行範例應用程式來收集感應器資料。
-* 如何將感應器資料傳送至 IoT 中樞。
+* 如何 toocreate Azure IoT 中樞，並取得新的裝置連接字串。
+* 如何 tooconnect Pi 與 BME280 感應器。
+* 如何執行範例應用程式上 Pi toocollect 感應器資料。
+* 如何 toosend 感應器資料 tooyour IoT 中樞。
 
 ## <a name="what-you-need"></a>您需要什麼
 
 ![您需要什麼](media/iot-hub-raspberry-pi-kit-node-get-started/0_starter_kit.jpg)
 
-* Raspberry Pi 2 或 Raspberry Pi 3 電路板。
-* 有效的 Azure 訂用帳戶。 如果您沒有 Azure 帳戶，請花幾分鐘的時間建立[免費的 Azure 試用帳戶](https://azure.microsoft.com/free/)。
-* 連接至 Pi 的監視器、 USB 鍵盤和滑鼠。
+* hello 覆盆子 Pi 2 或覆盆子 Pi 3 面板。
+* 有效的 Azure 訂用帳戶。 如果您沒有 Azure 帳戶，請花幾分鐘的時間[建立免費的 Azure 試用帳戶](https://azure.microsoft.com/free/)。
+* 監視、 USB 鍵盤和滑鼠連接 tooPi。
 * 執行 Windows 或 Linux 的 Mac 或 PC。
 * 網際網路連線。
 * 16 GB 以上的 microSD 記憶卡。
-* 一個 USB-SD 配接器或 microSD 記憶卡，以將作業系統映像燒錄到 microSD 記憶卡中。
-* 具備 6 英呎 micro USB 纜線的 5V 2A 電源供應器。
+* USB SD 卡或 microSD 卡 tooburn hello 作業系統映像到 hello microSD 卡。
+* 5 volt 2 amp 電源提供 hello 6 英呎微 USB 纜線。
 
-下列項目是選用項目︰
+hello 下列項目是選擇性項目：
 
 * 組裝的 Adafruit BME280 溫度、壓力溼度感應器。
 * 麵包板。
@@ -68,50 +68,50 @@ ms.lasthandoff: 07/11/2017
 * 1 顆漫射型 10 mm LED。
 
   > [!NOTE] 
-  這些項目都是選用項目，因為程式碼範例支援模擬感應器資料。
+  這些項目是選擇性的因為 hello 程式碼範例支援模擬感應器資料。
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
 ## <a name="setup-raspberry-pi"></a>設定 Raspberry Pi
 
-### <a name="install-the-raspbian-operating-system-for-pi"></a>安裝 Pi 的 Raspbian 作業系統
+### <a name="install-hello-raspbian-operating-system-for-pi"></a>Pi 安裝 hello Raspbian 作業系統
 
-準備好用來安裝 Raspbian 映像的 microSD 記憶卡。
+準備安裝 hello Raspbian 映像的 hello microSD 卡。
 
 1. 下載 Raspbian。
-   1. [下載具備 Pixel 的 Raspbian Jessie](https://www.raspberrypi.org/downloads/raspbian/) (.zip 檔案)。
-   1. 將 Raspbian 映像解壓縮到您電腦上的資料夾。
-1. 將 Raspbian 安裝到 microSD 記憶卡。
-   1. [下載並安裝 Etcher SD 記憶卡燒錄器公用程式](https://etcher.io/)。
-   1. 執行 Etcher 並選取您在步驟 1 中解壓縮的 Raspbian 映像。
-   1. 選取 microSD 記憶卡磁碟機。 注意：Etcher 可能已經選取正確的磁碟機。
-   1. 按一下 [Flash] 以將 Raspbian 安裝到 microSD 記憶卡。
-   1. 安裝完成時，請將 microSD 記憶卡從電腦移除。 您可以放心地直接移除 microSD 記憶卡，因為 Etcher 會在完成時自動退出或卸載 microSD 記憶卡。
-   1. 將 microSD 記憶卡插入 Pi。
+   1. [下載與像素 Raspbian 潔](https://www.raspberrypi.org/downloads/raspbian/)（hello.zip 檔案）。
+   1. 擷取 hello Raspbian 映像電腦上的 tooa 資料夾。
+1. 安裝 Raspbian toohello microSD 卡。
+   1. [下載並安裝 hello Etcher sd 記憶卡燒錄機公用程式](https://etcher.io/)。
+   1. 執行 Etcher，並在步驟 1 中選取您要解壓縮的 hello Raspbian 映像。
+   1. 選取 hello microSD 卡磁碟機。 請注意，Etcher 可能已經選取 hello 正確的磁碟機。
+   1. 按一下快閃 tooinstall Raspbian toohello microSD 卡。
+   1. 安裝完成時，請從電腦移除 hello microSD 卡。 因為它是安全的 tooremove hello microSD 卡直接 Etcher 自動退出，或取消掛接 hello microSD 卡在完成時。
+   1. 插入 Pi hello microSD 卡。
 
 ### <a name="enable-ssh-and-i2c"></a>啟用 SSH 和 I2C
 
-1. 將 Pi 連接至監視器、鍵盤和滑鼠，並啟動 Pi，然後使用使用者名稱 `pi` 和密碼 `raspberry` 登入 Raspbian。
-1. 按一下 Raspberry 圖示 > [偏好設定] > [Raspberry Pi 組態]。
+1. Pi toohello 監視器、 鍵盤和滑鼠連接、 啟動 Pi 後再登入 Raspbian 使用`pi`hello 使用者名稱和`raspberry`hello 密碼。
+1. 按一下 hello 木莓澆圖示 >**喜好設定** > **覆盆子 Pi 組態**。
 
-   ![[Raspbian 偏好設定] 功能表](media/iot-hub-raspberry-pi-kit-node-get-started/1_raspbian-preferences-menu.png)
+   ![hello Raspbian 偏好設定 功能表](media/iot-hub-raspberry-pi-kit-node-get-started/1_raspbian-preferences-menu.png)
 
-1. 在 [介面]索引標籤上，將 [I2C] 和 [SSH] 設定為 [啟用]，然後按一下 [確定]。 如果您沒有實體感應器，而且想要使用模擬的感應器資料，這便是選擇性步驟。
+1. 在 hello**介面**索引標籤上，設定**I2C**和**SSH**太**啟用**，然後按一下 **確定**。 如果沒有實體的感應器，然後想要模擬的 toouse 感應器資料，這個步驟是選擇性的。
 
    ![在 Raspberry Pi 上啟用 I2C 和 SSH](media/iot-hub-raspberry-pi-kit-node-get-started/2_enable-i2c-ssh-on-raspberry-pi.png)
 
 > [!NOTE] 
-若要啟用 I2C 和 SPI，您可以在 [raspberrypi.org](https://www.raspberrypi.org/documentation/remote-access/ssh/) 和[Adafruit.com](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c) 找到更多參考文件。
+tooenable SSH 和 I2C，您可以找到更多的參考文件上[raspberrypi.org](https://www.raspberrypi.org/documentation/remote-access/ssh/)和[Adafruit.com](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c)。
 
-### <a name="connect-the-sensor-to-pi"></a>將感應器連接至 Pi
+### <a name="connect-hello-sensor-toopi"></a>連接 hello 感應器 tooPi
 
-使用麵包板和跳線將 LED 和 BME280 連接至 Pi，如下所示。 如果沒有感應器，請略過本節。
+請使用 hello breadboard 和跳接器線路 tooconnect LED 和 BME280 tooPi，如下所示。 如果您沒有 hello 感應器，略過本節。
 
-![Raspberry Pi 和感應器連接](media/iot-hub-raspberry-pi-kit-node-get-started/3_raspberry-pi-sensor-connection.png)
+![hello 覆盆子 Pi 和感應器的連接](media/iot-hub-raspberry-pi-kit-node-get-started/3_raspberry-pi-sensor-connection.png)
 
-BME280 感應器可以收集溫度和溼度資料。 而如果裝置與雲端之間有通訊，LED 將會閃爍。 
+hello BME280 感應器可以收集溫度和溼度的資料。 如果沒有裝置和 hello 雲端之間的通訊，將會閃爍 hello LED。 
 
-針對感應器針腳，請使用下列接線方式：
+感應器 pin 碼，使用下列配線 hello:
 
 | 啟動 (感應器和 LED)     | 結束 (電路版)            | 纜線顏色   |
 | -----------------------  | ---------------------- | ------------: |
@@ -122,65 +122,65 @@ BME280 感應器可以收集溫度和溼度資料。 而如果裝置與雲端之
 | LED VDD (針腳 18F)        | GPIO 24 (針腳 18)       | 白色纜線   |
 | LED GND (針腳 17F)        | GND (針腳 20)           | 黑色纜線   |
 
-按一下以檢視 [Raspberry Pi 2 和 3 針腳對應](https://developer.microsoft.com/windows/iot/docs/pinmappingsrpi)進行參考。
+按一下 tooview[覆盆子 Pi 2 & 3 Pin 對應](https://developer.microsoft.com/windows/iot/docs/pinmappingsrpi)供您參考。
 
-將 BME280 成功連接至 Raspberry Pi 之後，應該如下圖所示。
+您已成功連接 BME280 tooyour 覆盆子 Pi 之後，它應該類似影像下方。
 
 ![連接的 Pi 和 BME280](media/iot-hub-raspberry-pi-kit-node-get-started/4_connected-pi.jpg)
 
-### <a name="connect-pi-to-the-network"></a>將 Pi 連線到網路
+### <a name="connect-pi-toohello-network"></a>Pi toohello 網路連線
 
-透過 micro USB 纜線和電源供應器來開啟 Pi。 使用乙太網路纜線將 Pi 連接到有線網路，或遵循來自 Raspberry Pi Foundation 的[指示](https://www.raspberrypi.org/learning/software-guide/wifi/)，將 Pi 連接到無線網路。 在 Pi 成功連線到網路之後，您需要記下 [Pi 的 IP 位址](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-3-network-setup/finding-your-pis-ip-address)。
+開啟 Pi 使用 hello 微 USB 纜線和 hello 電源供應器。 使用 hello 乙太網路纜線 tooconnect Pi tooyour 有線網路，或遵循 hello[指示從 hello 覆盆子 Pi Foundation](https://www.raspberrypi.org/learning/software-guide/wifi/) tooconnect Pi tooyour 無線網路。 您 Pi 已成功連接的 toohello 網路之後，您需要 tootake hello 記下[您 Pi 的 IP 位址](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-3-network-setup/finding-your-pis-ip-address)。
 
-![已連接到有線網路](media/iot-hub-raspberry-pi-kit-node-get-started/5_power-on-pi.jpg)
+![連接的 toowired 網路](media/iot-hub-raspberry-pi-kit-node-get-started/5_power-on-pi.jpg)
 
 > [!NOTE]
-> 請確定 Pi 是連接到與您電腦相同的網路。 例如，如果您的電腦連線到無線網路，而 Pi 連線到有線網路，您可能不會在 devdisco 輸出中看到 IP 位址。
+> 請確定 Pi 為您的電腦相同網路的連線的 toohello。 例如，如果您的電腦是連線的 tooa 無線網路，Pi 是連接的 tooa 有線網路時，您可能不會看到 hello IP 位址 hello devdisco 輸出中的。
 
 ## <a name="run-a-sample-application-on-pi"></a>在 Pi 上執行範例應用程式
 
-### <a name="clone-sample-application-and-install-the-prerequisite-packages"></a>複製範例應用程式並安裝必要條件套件
+### <a name="clone-sample-application-and-install-hello-prerequisite-packages"></a>複製範例應用程式並安裝 hello 必要條件套件
 
-1. 使用下列其中一個 SSH 用戶端，從主機電腦連接到 Raspberry Pi。
-    - [PuTTY](http://www.putty.org/) 適用於 Windows。 您需要 Pi 的 IP 位址才能透過 SSH 連接它。
-    - Ubuntu 或 macOS 上內建的 SSH 用戶端。 您可能需要執行 `ssh pi@<ip address of pi>`，才能透過 SSH 來連接 Pi。
+1. 使用其中一種您主機電腦 tooconnect tooyour 覆盆子 Pi 中的下列 SSH 用戶端 hello。
+    - [PuTTY](http://www.putty.org/) 適用於 Windows。 您需要的 Pi tooconnect hello IP 位址透過 SSH 它。
+    - hello 內建 SSH 用戶端上 Ubuntu 或 macOS。 您可能需要執行`ssh pi@<ip address of pi>`tooconnect 透過 SSH 的 Pi。
 
    > [!NOTE] 
-   預設使用者名稱為 `pi`，密碼為 `raspberry`。
+   hello 預設使用者名稱是`pi`，hello 密碼為`raspberry`。
 
-1. 將 Node.js 和 NPM 安裝到 Pi。
+1. 安裝 Node.js 及 NPM tooyour Pi。
    
-   首先，您應該使用下列命令檢查 Node.js 版本。 
+   首先，您應該以 hello 下列命令檢查 Node.js 版本。 
    
    ```bash
    node -v
    ```
 
-   如果版本低於 4.x 或 Pi 上沒有 Node.js，請執行下列命令以安裝或更新 Node.js。
+   如果 hello 版本低於 4.x 或您 pi 沒有 Node.js，然後執行下列命令 tooinstall hello 或更新 Node.js。
 
    ```bash
    curl -sL http://deb.nodesource.com/setup_4.x | sudo -E bash
    sudo apt-get -y install nodejs
    ```
 
-1. 執行下列命令，複製範例應用程式：
+1. 藉由執行下列命令的 hello 複製 hello 範例應用程式：
 
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-node-raspberrypi-client-app
    ```
 
-1. 執行下列命令安裝所有封裝。 其中包含 Azure IoT 裝置 SDK、BME280 感應器程式庫和接線 Pi 程式庫。
+1. Hello，下列命令安裝所有封裝。 其中包含 Azure IoT 裝置 SDK、BME280 感應器程式庫和接線 Pi 程式庫。
 
    ```bash
    cd iot-hub-node-raspberrypi-client-app
    sudo npm install
    ```
    > [!NOTE] 
-   端視網路連線而定，可能需要幾分鐘才能完成此安裝程序。
+   可能需要幾分鐘的時間 toofinish 這個安裝程序 denpening 上您的網路連線。
 
-### <a name="configure-the-sample-application"></a>設定範例應用程式
+### <a name="configure-hello-sample-application"></a>Hello 範例應用程式設定
 
-1. 執行下列命令以開啟組態檔：
+1. 執行下列命令的 hello 開啟 hello 設定檔：
 
    ```bash
    nano config.json
@@ -188,30 +188,30 @@ BME280 感應器可以收集溫度和溼度資料。 而如果裝置與雲端之
 
    ![組態檔](media/iot-hub-raspberry-pi-kit-node-get-started/6_config-file.png)
 
-   此檔案中有兩個項目可供您設定。 第一個是 `interval`，這可定義傳送至雲端的兩個訊息之間相隔的時間間隔。 第二個是 `simulatedData`，這是是否使用模擬感應器資料的布林值。
+   此檔案中有兩個項目可供您設定。 hello 第一次是`interval`，而後者可定義兩個訊息，傳送 toocloud hello 時間間隔。 hello 第二個`simulatedData`，這是 toouse 是否模擬感應器資料的布林值。
 
-   如果**沒有感應器**，請將 `simulatedData` 值設定為 `true`，使範例應用程式建立和使用模擬感應器資料。
+   如果您**沒有 hello 感應器**，將的 hello`simulatedData`值太`true`toomake hello 範例應用程式建立及使用模擬的感應器資料。
 
 1. 按下 [Control-O] > 輸入 > [Control-X] 儲存並結束。
 
-### <a name="run-the-sample-application"></a>執行範例應用程式
+### <a name="run-hello-sample-application"></a>執行 hello 範例應用程式
 
-1. 執行下列命令，執行範例應用程式：
+1. 藉由執行下列命令的 hello 執行 hello 範例應用程式：
 
    ```bash
    sudo node index.js '<your Azure IoT hub device connection string>'
    ```
 
    > [!NOTE] 
-   確定複製裝置連接字串，並貼到單引號中。
+   請確定您複製-貼上 hello 裝置連接字串到 hello 單引號。
 
 
-您應該會看見下列輸出，顯示傳送至 IoT 中樞的感應器資料和訊息。
+您應該會看到 hello 下列輸出顯示 hello 傳送 tooyour IoT 中樞的感應器資料及 hello 訊息。
 
-![輸出 - 從 Raspberry Pi 傳送至 IoT 中樞的感應器資料](media/iot-hub-raspberry-pi-kit-node-get-started/8_run-output.png)
+![輸出-從覆盆子 Pi tooyour IoT 中樞傳送的感應器資料](media/iot-hub-raspberry-pi-kit-node-get-started/8_run-output.png)
 
 ## <a name="next-steps"></a>後續步驟
 
-您已執行範例應用程式收集感應器資料並傳送至 IoT 中樞。
+您已執行範例應用程式 toocollect 感應器資料，並將它傳送 tooyour IoT 中樞。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

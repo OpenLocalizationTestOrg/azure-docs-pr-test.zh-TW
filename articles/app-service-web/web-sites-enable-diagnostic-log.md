@@ -1,6 +1,6 @@
 ---
-title: "在 Azure App Service 中針對 Web 應用程式啟用診斷記錄功能。"
-description: "了解如何啟用診斷記錄，並在您的應用程式中加入診斷工具，以及如何存取 Azure 所記錄的資訊。"
+title: "Azure App Service 中的 web 應用程式的 aaaEnable 診斷記錄"
+description: "深入了解如何 tooenable 診斷記錄新增檢測 tooyour 應用程式，以及如何 tooaccess hello Azure 所記錄的資訊。"
 services: app-service
 documentationcenter: .net
 author: cephalin
@@ -14,275 +14,275 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/06/2016
 ms.author: cephalin
-ms.openlocfilehash: 7b125aeb9c0ee1dcbb199da98b0ce079820ea85c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4b2903ff31cc93180552cf51196c33505ffbaf07
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-diagnostics-logging-for-web-apps-in-azure-app-service"></a>在 Azure App Service 中針對 Web 應用程式啟用診斷記錄功能。
-## <a name="overview"></a>Overview
-Azure 提供內建診斷功能，可協助對 [App Service Web 應用程式](http://go.microsoft.com/fwlink/?LinkId=529714)進行偵錯。 本文將說明如何啟用診斷記錄，並在您的應用程式中加入檢測，以及如何存取 Azure 所記錄的資訊。
+## <a name="overview"></a>概觀
+Azure 提供內建的診斷與偵錯的 tooassist [App Service web 應用程式](http://go.microsoft.com/fwlink/?LinkId=529714)。 在本文中，您將學習如何 tooenable 診斷記錄新增檢測 tooyour 應用程式，以及如何 tooaccess hello Azure 所記錄的資訊。
 
-本文使用 [Azure 入口網站](https://portal.azure.com)、Azure PowerShell 及 Azure 命令列介面 (Azure CLI) 來處理診斷記錄。 如需使用 Visual Studio 來處理診斷記錄的詳細資訊，請參閱 [在 Visual Studio 中疑難排解 Azure](web-sites-dotnet-troubleshoot-visual-studio.md)。
+本文使用 hello [Azure 入口網站](https://portal.azure.com)，Azure PowerShell 及 hello Azure 命令列介面 (Azure CLI) toowork 與診斷記錄檔。 如需使用 Visual Studio 來處理診斷記錄的詳細資訊，請參閱 [在 Visual Studio 中疑難排解 Azure](web-sites-dotnet-troubleshoot-visual-studio.md)。
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="whatisdiag"></a>Web 伺服器診斷和應用程式診斷
-App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的記錄資訊提供診斷功能。 這些資訊邏輯上可區分為 [Web 伺服器診斷] 與 [應用程式診斷]。
+App Service web 應用程式提供記錄資訊從 hello web 伺服器和 hello web 應用程式的診斷的功能。 這些資訊邏輯上可區分為 **Web 伺服器診斷**與**應用程式診斷**。
 
 ### <a name="web-server-diagnostics"></a>Web 伺服器診斷
-您可以啟用或停用下列各種記錄：
+您可以啟用或停用下列種類的記錄檔的 hello:
 
-* **詳細的錯誤記錄** - 對於表示失敗的 HTTP 狀態碼 (狀態碼 400 或更大) 的詳細錯誤資訊。 這當中包含的資訊可協助您判斷為何伺服器傳回錯誤碼。
-* **失敗的要求追蹤** - 關於失敗要求的詳細資訊，包括用於處理要求的 IIS 元件追蹤，以及每個元件所花費的時間。 如果您嘗試提升網站效能或是想要從傳回的特定 HTTP 錯誤中找到發生原因，這個方法非常實用。
-* **Web 伺服器記錄** - 使用 [W3C 擴充記錄檔格式](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx)的 HTTP 交易相關資訊。 當您需要判斷整體網站指標 (例如，處理的要求數量，或者有多少要求來自特定的 IP 位址) 時，這非常實用。
+* **詳細的錯誤記錄** - 對於表示失敗的 HTTP 狀態碼 (狀態碼 400 或更大) 的詳細錯誤資訊。 這可能包含可協助您判斷為什麼 hello 伺服器傳回 hello 錯誤碼的資訊。
+* **失敗要求追蹤**-詳細的失敗的要求，包括 hello IIS 使用的元件 tooprocess hello 要求和取得每個元件中的 hello 時間的追蹤資訊。 如果您正嘗試 tooincrease 站台效能或隔離造成特定的 HTTP 錯誤 toobe 傳回時，這可能會很有用。
+* **Web 伺服器記錄**-HTTP 交易使用 hello 資訊[W3C 擴充的記錄檔格式](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx)。 判斷整體站台的度量資訊，例如 hello 處理要求的數目或多少要求來自特定 IP 位址時，這非常有用。
 
 ### <a name="application-diagnostics"></a>應用程式診斷
-應用程式診斷功能可讓您擷取 Web 應用程式所產生的資訊。 ASP.NET 應用程式會使用 [System.Diagnostics.Trace](http://msdn.microsoft.com/library/36hhw2t6.aspx) 類別將資訊記錄到應用程式診斷記錄。 例如：
+應用程式診斷可讓您的 web 應用程式所產生的 toocapture 資訊。 ASP.NET 應用程式可以使用 hello [System.Diagnostics.Trace](http://msdn.microsoft.com/library/36hhw2t6.aspx)類別 toolog 資訊 toohello 應用程式診斷記錄。 例如：
 
     System.Diagnostics.Trace.TraceError("If you're seeing this, something bad happened");
 
-您可以在執行階段擷取這些記錄檔，以協助疑難排解。 如需詳細資訊，請參閱 [在 Visual Studio 中疑難排解 Azure Web 應用程式](web-sites-dotnet-troubleshoot-visual-studio.md)。
+在執行階段中，您可以擷取這些記錄檔 toohelp，進行疑難排解。 如需詳細資訊，請參閱 [在 Visual Studio 中疑難排解 Azure Web 應用程式](web-sites-dotnet-troubleshoot-visual-studio.md)。
 
-當您將內容發行至 Web 應用程式時，App Service Web 應用程式也會記錄部署資訊。 此動作會自動發生，因此無須任何組態設定即會記錄部署動作。 部署記錄功能可讓您判斷部署失敗的原因。 例如，如果您是使用自訂的部署指令碼，則您可以使用部署記錄功能來判斷指令碼失敗的原因。
+當您發佈內容 tooa web 應用程式時，app Service web 應用程式也記錄部署資訊。 此動作會自動發生，因此無須任何組態設定即會記錄部署動作。 部署記錄可讓您 toodetermine 部署失敗的原因。 例如，如果您使用的自訂部署指令碼，您可能會使用部署記錄 toodetermine hello 指令碼失敗的原因。
 
-## <a name="enablediag"></a>如何啟用診斷
-若要在 [Azure 入口網站](https://portal.azure.com)中啟用診斷，請移至 Web 應用程式的刀鋒視窗，然後依序按一下 [設定] > [診斷記錄]。
+## <a name="enablediag"></a>如何 tooenable 診斷
+在 hello tooenable 診斷[Azure 入口網站](https://portal.azure.com)、 移 toohello 刀鋒視窗，web 應用程式，然後按一下**設定 > 診斷記錄檔**。
 
 <!-- todo:cleanup dogfood addresses in screenshot -->
 ![記錄部分](./media/web-sites-enable-diagnostic-log/logspart.png)
 
-啟用 [應用程式診斷] 時，也會選擇 [層級]。 此設定可讓您篩選擷取至**資訊**、**警告**或**錯誤**資訊中的資訊。 將此功能設為 [詳細資訊] 會記錄所有由該應用程式所產生的資訊。
+當您啟用**應用程式診斷**您也可以選擇 hello**層級**。 此設定可讓您擷取太 toofilter hello 資訊**資訊**，**警告**或**錯誤**資訊。 將此設定太**verbose**會記錄 hello 應用程式所產生的所有資訊。
 
 > [!NOTE]
-> 與變更 web.config 檔案不同，啟用應用程式診斷或是變更診斷記錄層級並不會回收用來執行應用程式的應用程式網域。
+> 不同於變更 hello web.config 檔，啟用應用程式診斷，或變更診斷記錄層級不會加以回收 hello hello 應用程式中執行的應用程式定義域。
 >
 >
 
-在[傳統入口網站](https://manage.windowsazure.com) Web 應用程式的 [設定] 索引標籤中，您可以針對 [Web 伺服器記錄] 選取 [儲存體] 或 [檔案系統]。 選取 [儲存]  可讓您選取儲存體帳戶，並接著選取可供寫入記錄的 Blob 容器。 [網站診斷] 的其他所有記錄  都只會寫入檔案系統。
+在 hello[傳統入口網站](https://manage.windowsazure.com)Web 應用程式**設定**索引標籤上，您可以選取**儲存體**或**檔案系統**的**web 伺服器記錄**。 選取**儲存體**tooselect 儲存體帳戶，然後再 hello 記錄檔寫入的 blob 容器，可讓您。 所有其他記錄**網站診斷**寫入只 toohello 檔案系統。
 
-[傳統入口網站](https://manage.windowsazure.com) Web 應用程式的 [設定] 索引標籤也有其他應用程式診斷的設定：
+hello[傳統入口網站](https://manage.windowsazure.com)Web 應用程式**設定** 索引標籤也有其他應用程式診斷設定：
 
-* **檔案系統** - 將應用程式診斷資訊儲存至 Web 應用程式檔案系統。 這些檔案可透過 FTP 存取，或是使用 Azure PowerShell 或 Azure 命令列介面 (Azure CLI) 下載為 Zip 封存。
-* **資料表儲存體** - 會將應用程式診斷資訊儲存至指定的 Azure 儲存體帳戶與資料表名稱。
-* **Blob 儲存體** - 會將應用程式診斷資訊儲存至指定的 Azure 儲存體帳戶與 Blob 容器中。
-* **保留週期** - 依預設，所有記錄不會自動從 [Blob 儲存體] 中刪除。 如果您想要讓系統自動刪除記錄的話，請選取 [set retention]  並輸入記錄保留天數。
+* **檔案系統**-存放區 hello 應用程式診斷資訊 toohello web 應用程式檔案系統。 這些檔案可以存取的 FTP，或使用 hello Azure PowerShell 或 Azure 命令列介面 (Azure CLI) 下載的 Zip 封存。
+* **資料表儲存體**-存放區 hello hello 指定 Azure 儲存體帳戶和資料表名稱中的應用程式的診斷資訊。
+* **Blob 儲存體**-存放區 hello hello 指定的 Azure 儲存體帳戶和 blob 容器中的應用程式的診斷資訊。
+* **保留週期** - 依預設，所有記錄不會自動從 [Blob 儲存體] 中刪除。 選取**設定保留**，然後輸入 hello 數天內，如果您想 tooautomatically tookeep 記錄刪除記錄檔。
 
 > [!NOTE]
-> 如果您 [重新產生儲存體帳戶的存取金鑰](../storage/common/storage-create-storage-account.md)，您必須重設個別的記錄組態，才能使用更新的金鑰。 作法：
+> 如果您[重新產生儲存體帳戶的存取金鑰](../storage/common/storage-create-storage-account.md)，您必須重設 hello 各自的記錄組態 toouse hello 更新金鑰。 toodo 這樣：
 >
-> 1. 在 [設定] 索引標籤上，將個別的記錄功能設定為 [關閉]。 儲存您的設定。
-> 2. 重新啟用記錄至儲存體帳戶 Blob 或資料表。 儲存您的設定。
+> 1. 在 hello**設定**索引標籤上，設定得 hello 各自的記錄功能**關閉**。 儲存您的設定。
+> 2. 重新啟用記錄 toohello 儲存體帳戶 blob 或資料表。 儲存您的設定。
 >
 >
 
-包括檔案系統、資料表儲存體或是 Blob 儲存體都可以任意組合並同時啟用，並個別具有記錄層級組態。 例如，您也許想要將各種錯誤與警告資訊記錄到 Blob 儲存體做為長期的記錄解決方案，同時啟用詳細資訊層級的檔案系統記錄功能。
+檔案系統中，資料表儲存體或 blob 儲存體的任何組合，可以在 hello 相同的時間，並有個別的記錄層級組態啟用。 比方說，您可能需要 toolog 錯誤和警告 tooblob 儲存體做為長期的記錄解決方案，同時也可讓檔案系統記錄的詳細資訊層級。
 
-雖然以上三個儲存位置全都提供相同的基本資訊供您記錄事件，[資料表儲存體] 與 [Blob 儲存體] 會比 [檔案系統] 記錄更多的資訊，例如執行個體識別碼、執行緒識別碼以及更細緻的時間戳記 (刻度格式)。
+當所有三個儲存體位置提供 hello 時記錄的事件相同的基本資訊**資料表儲存體**和**blob 儲存體**記錄例如 hello 執行個體識別碼、 執行緒識別碼和更多的其他資訊細微的時間戳記 （刻度格式） 於記錄太**檔案系統**。
 
 > [!NOTE]
-> 儲存在 [資料表儲存體] 或 [Blob 儲存體] 內的資訊只能透過儲存用戶端，或是能夠直接使用這些儲存系統的應用程式來存取。 例如，Visual Studio 2013 內含的 [儲存體總管] 可用來探索資料表或 Blob 儲存體，而 HDInsight 則可存取儲存在 Blob 儲存體內的資料。 您也可以使用任何一項 [Azure SDK](/downloads/#)，撰寫可存取 Azure 儲存體的應用程式。
+> 儲存在 [資料表儲存體] 或 [Blob 儲存體] 內的資訊只能透過儲存用戶端，或是能夠直接使用這些儲存系統的應用程式來存取。 例如，Visual Studio 2013 包含可能是使用的 tooexplore 資料表或 blob 儲存體，儲存體總管，HDInsight 可以存取儲存在 blob 儲存體中的資料。 您也可以撰寫應用程式存取 Azure 儲存體使用其中一種 hello [Azure Sdk](/downloads/#)。
 >
 > [!NOTE]
-> 您也可以在 Azure PowerShell 中使用 **Set-AzureWebsite** Cmdlet 來啟用診斷功能。 如果您尚未安裝 Azure PowerShell，或尚未將其設定為使用 Azure 訂閱，請參閱 [如何使用 Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/)(英文)。
+> 診斷也可以啟用從 Azure PowerShell 中使用 hello**組 AzureWebsite** cmdlet。 如果尚未安裝 Azure PowerShell，或未設定它 toouse 您 Azure 訂用帳戶，請參閱[如何 tooUse Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/)。
 >
 >
 
 ## <a name="download"></a> 作法：下載記錄
-儲存在 Web 應用程式檔案系統中的診斷資訊，可透過 FTP 直接存取。 或是使用 Azure PowerShell 或 Azure 命令列介面下載為 Zip 封存。
+儲存診斷資訊 toohello web 應用程式檔案系統可以直接使用 FTP 存取。 也可以使用 Azure PowerShell 或 hello Azure 命令列介面的 Zip 封存下載。
 
-儲存這些記錄的目錄結構如下所示：
+hello hello 記錄會儲存於的目錄結構如下所示：
 
 * **應用程式記錄** - /LogFiles/Application/。 此資料夾內含有一或多個文字檔案，這些檔案涵蓋應用程式記錄所產生的資訊。
-* **失敗要求追蹤** - /LogFiles/W3SVC#########/。 此資料夾內含有一個 XSL 檔案和一或多個 XML 檔案。 請確保將 XSL 檔案下載至 XML 檔案所在的相同目錄，因為 XSL 檔案可提供格式化功能，讓您在 Internet Explorer 中檢視時能夠篩選 XML 檔案內容。
+* **失敗要求追蹤** - /LogFiles/W3SVC#########/。 此資料夾內含有一個 XSL 檔案和一或多個 XML 檔案。 請確定您 hello XSL 檔下載到 hello 與 hello XML 檔案，因為 hello XSL 檔案提供了用來格式化和篩選 hello hello XML 內容的功能相同的目錄檔案中 Internet Explorer 檢視時。
 * **詳細錯誤記錄** - /LogFiles/DetailedErrors/。 此資料夾包含一或多個 .htm 檔案，內含已經發生的任何 HTTP 錯誤之詳細資訊。
-* **Web 伺服器記錄** - /LogFiles/http/RawLogs。 此資料夾包含一或多個運用 [W3C 擴充記錄檔格式](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx)來格式化的文字檔案。
-* **部署記錄** - /LogFiles/Git。 此資料夾包含由內部部署處理序所產生，且可供 Azure Web 應用程式運用的記錄，以及適用於 Git 部署的記錄。
+* **Web 伺服器記錄** - /LogFiles/http/RawLogs。 這個資料夾包含一個或多個文字檔案格式是 「 hello [W3C 擴充的記錄檔格式](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx)。
+* **部署記錄** - /LogFiles/Git。 此資料夾包含 hello Azure web 應用程式，所使用的內部部署處理序所產生的記錄檔，以及記錄檔中的 Git 部署。
 
 ### <a name="ftp"></a>FTP
-若要使用 FTP 存取診斷資訊，請在[傳統入口網站](https://manage.windowsazure.com)中造訪您 Web 應用程式的 [儀表板]。 在 [Quick Glance] 區段中，使用 **FTP Diagnostic Logs** 連結以便透過 FTP 存取記錄檔案。 [Deployment/FTP User] 項目會列出應該用來存取 FTP 網站的使用者名稱。
+使用 FTP，請瀏覽 hello tooaccess 診斷資訊**儀表板**hello 在 web 應用程式的[傳統入口網站](https://manage.windowsazure.com)。 在 hello**快速概覽**區段中，使用 hello **FTP 診斷記錄**連結使用 FTP tooaccess hello 記錄檔。 hello**部署/FTP 使用者**項目會列出 hello 應該使用的 tooaccess hello FTP 站台的使用者名稱。
 
 > [!NOTE]
-> 如果未設定的 [部署/FTP 使用者] 項目，或是您忘記此使用者的密碼，您可以使用 [儀表板] 的 [快速概覽] 區段中**重設部署認證**連結來建立新的使用者名稱和密碼。
+> 如果 hello**部署/FTP 使用者**未設定項目，或您忘了 hello 這個使用者的密碼，您可以建立新的使用者和密碼使用 hello**重設部署認證**hello中的連結**快速概覽**區段 hello**儀表板**。
 >
 >
 
 ### <a name="download-with-azure-powershell"></a>使用 Azure PowerShell 來下載
-若要下載記錄檔，請啟動新的 Azure PowerShell 執行個體並使用下列命令：
+toodownload hello 記錄檔，啟動 Azure PowerShell 的新執行個體，並使用下列命令的 hello:
 
     Save-AzureWebSiteLog -Name webappname
 
-此舉會將 **-Name** 參數所指定的 Web 應用程式記錄儲存到目前目錄中名為 **logs.zip** 的檔案中。
+這會將 hello hello hello 所指定的 web 應用程式的記錄檔儲存**-名稱**參數 tooa 檔名為**logs.zip** hello 目前目錄中。
 
 > [!NOTE]
-> 如果您尚未安裝 Azure PowerShell，或尚未將其設定為使用 Azure 訂閱，請參閱 [如何使用 Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/)(英文)。
+> 如果尚未安裝 Azure PowerShell，或未設定它 toouse 您 Azure 訂用帳戶，請參閱[如何 tooUse Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/)。
 >
 >
 
 ### <a name="download-with-azure-command-line-interface"></a>使用 Azure 命列列介面來下載
-若要使用 Azure 命令列介面來下載記錄檔案，請開啟新的命令列提示字元、PowerShell、Bash 或終端機工作階段，然後輸入下列命令：
+toodownload hello 記錄檔使用 hello Azure 命令列介面，開啟新的命令提示字元、 PowerShell、 Bash 或終端機工作階段，並輸入下列命令的 hello:
 
     azure site log download webappname
 
-此舉會將名為 'webappname' 的 Web 應用程式記錄儲存至目前目錄中名為 **diagnostics.zip** 的檔案。
+這樣會將儲存 hello 記錄檔中的 hello web 應用程式名為 'webappname' tooa 檔名為**diagnostics.zip** hello 目前目錄中。
 
 > [!NOTE]
-> 如果您尚未安裝 Azure 命令列介面 (Azure CLI)，或是尚未將其設定為使用您的 Azure 訂用帳戶，請參閱 [如何使用 Azure CLI](../cli-install-nodejs.md)。
+> 如果您尚未安裝 hello Azure 命令列介面 (Azure CLI)，或未設定它 toouse 您 Azure 訂用帳戶，請參閱[如何 tooUse Azure CLI](../cli-install-nodejs.md)。
 >
 >
 
 ## <a name="how-to-view-logs-in-application-insights"></a>作法：在 Application Insights 中檢視記錄
-Visual Studio Application Insights 提供篩選與搜尋記錄的工具，以及將記錄與要求及其他事件建立相互關聯的工具。
+Visual Studio Application Insights 提供工具來篩選和搜尋記錄檔和相關的 hello 記錄要求和其他事件。
 
-1. 在 Visual Studio 中將 Application Insights SDK 加入至專案。
+1. Visual Studio 中加入 hello Application Insights SDK tooyour 專案。
    * 在 [方案總管] 中，以滑鼠右鍵按一下專案，然後選擇 [加入 Application Insights]。 系統將指導您完成包括建立 Application Insights 資源在內的所有步驟。 [深入了解](../application-insights/app-insights-asp-net.md)
-2. 將追蹤接聽套件新增至專案。
+2. 加入 hello 追蹤接聽項封裝 tooyour 專案。
    * 以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 套件]。 選取 `Microsoft.ApplicationInsights.TraceListener` [深入了解](../application-insights/app-insights-asp-net-trace-logs.md)
-3. 上傳您的專案並執行，以產生記錄資料。
-4. 在 [Azure 入口網站](https://portal.azure.com/)中，瀏覽至您新的 Application Insights 資源，然後開啟 [搜尋]。 您將會看到您的記錄資料，以及要求、使用情況及其他遙測。 有些遙測可能需要數分鐘才能抵達：按一下 [重新整理]。 [深入了解](../application-insights/app-insights-diagnostic-search.md)
+3. 上傳您的專案，然後執行 toogenerate 記錄資料。
+4. 在 hello [Azure 入口網站](https://portal.azure.com/)，瀏覽 tooyour 新的 Application Insights 資源，並開啟**搜尋**。 您將會看到您的記錄資料，以及要求、使用情況及其他遙測。 某些遙測可能需要幾分鐘的時間 tooarrive： 按一下 重新整理。 [深入了解](../application-insights/app-insights-diagnostic-search.md)
 
 [深入了解使用 Application Insights 的效能追蹤](../application-insights/app-insights-azure-web-apps.md)
 
 ## <a name="streamlogs"></a> 作法：串流記錄
-開發應用程式時，如果能夠幾近即時地檢視記錄資訊，通常會很實用。 您可以使用 Azure PowerShell 或 Azure 命令列介面，將記錄資訊串流至開發環境來達到這個目的。
+在開發應用程式時，通常會很有用的 toosee 接近即時的記錄資訊。 這可以透過串流處理將記錄資訊 tooyour 開發環境中使用 Azure PowerShell 或 hello Azure 命令列介面完成。
 
 > [!NOTE]
-> 某些記錄緩衝區類型會寫入記錄檔中，進而造成串流中的事件順序錯亂。 例如，使用者造訪某個網頁所產生的應用程式記錄項目，可能會比頁面要求的對應 HTTP 記錄項目優先顯示在串流中。
+> 某些類型的記錄緩衝區寫入 toohello 記錄檔，可能會導致 hello 資料流中失序的事件。 例如，當使用者造訪網頁時，就會發生的應用程式記錄檔項目可能顯示 hello hello 相對應 HTTP 記錄項目 hello 網頁要求之前的資料流中。
 >
 > [!NOTE]
-> 記錄串流也會將串流資訊寫入儲存於 **D:\\home\\LogFiles\\** 資料夾中的任何文字檔。
+> 記錄檔資料流也會串流資訊寫入 tooany 文字檔案儲存在 hello **d:\\家用\\LogFiles\\** 資料夾。
 >
 >
 
 ### <a name="streaming-with-azure-powershell"></a>使用 Azure PowerShell 來串流
-若要串流記錄資訊，請啟動新的 Azure PowerShell 執行個體並使用下列命令：
+toostream 記錄資訊，請啟動 Azure PowerShell 的新執行個體，並使用下列命令的 hello:
 
     Get-AzureWebSiteLog -Name webappname -Tail
 
-此舉會連線 **-Name** 參數所指定的 Web 應用程式，並在該 Web 應用程式產生記錄事件時，開始將資訊串流至 PowerShell 視窗。 任何寫入副檔名為 .txt、.log 或 .htm 的檔案中並存放在 /LogFiles 目錄 (d:/home/logfiles) 的資訊，都會串流至本機主控台。
+這會連接 toohello hello 所指定的 web 應用程式**-名稱**參數並開始串流處理資訊 toohello PowerShell 視窗，記錄檔事件發生於 hello web 應用程式。 將資料流寫入 toofiles 結尾.txt、.log 或.htm hello /LogFiles 目錄 （d: / 首頁/記錄檔） 中儲存的任何資訊 toohello 本機主控台。
 
-若要篩選特定事件，例如錯誤，請使用 **-Message** 參數。 例如：
+toofilter 特定事件，例如錯誤，使用 hello **-訊息**參數。 例如：
 
     Get-AzureWebSiteLog -Name webappname -Tail -Message Error
 
-若要篩選特定記錄類型，例如 HTTP，請使用 **-Path** 參數。 例如：
+toofilter 特定記錄類型，例如 HTTP、 使用 hello **-路徑**參數。 例如：
 
     Get-AzureWebSiteLog -Name webappname -Tail -Path http
 
-若要檢視可用的路徑清單，請使用 -ListPath 參數。
+toosee 的可用路徑，使用 hello-ListPath 參數清單。
 
 > [!NOTE]
-> 如果您尚未安裝 Azure PowerShell，或尚未將其設定為使用 Azure 訂閱，請參閱 [如何使用 Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/)(英文)。
+> 如果尚未安裝 Azure PowerShell，或未設定它 toouse 您 Azure 訂用帳戶，請參閱[如何 tooUse Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/)。
 >
 >
 
 ### <a name="streaming-with-azure-command-line-interface"></a>使用 Azure 命令列介面來串流
-若要串流記錄資訊，請開啟新的命列列提示字元、PowerShell、Bash 或終端機工作階段，然後輸入下列命令：
+toostream 記錄資訊，請開啟新的命令提示字元、 PowerShell、 Bash 或終端機工作階段，並輸入下列命令的 hello:
 
     azure site log tail webappname
 
-這會連接至名為 'webappname' 的 Web 應用程式，並在該 Web 應用程式產生記錄事件時，開始將資訊串流至視窗。 任何寫入副檔名為 .txt、.log 或 .htm 的檔案中並存放在 /LogFiles 目錄 (d:/home/logfiles) 的資訊，都會串流至本機主控台。
+將名為 'webappname' toohello web 應用程式連接，並開始串流處理資訊 toohello 視窗記錄事件發生於 hello web 應用程式。 將資料流寫入 toofiles 結尾.txt、.log 或.htm hello /LogFiles 目錄 （d: / 首頁/記錄檔） 中儲存的任何資訊 toohello 本機主控台。
 
-若要篩選特定事件，例如錯誤，請使用 **--Filter** 參數。 例如：
+toofilter 特定事件，例如錯誤，使用 hello **-篩選**參數。 例如：
 
     azure site log tail webappname --filter Error
 
-若要篩選特定記錄類型，例如 HTTP，請使用 **--Path** 參數。 例如：
+toofilter 特定記錄類型，例如 HTTP、 使用 hello **-路徑**參數。 例如：
 
     azure site log tail webappname --path http
 
 > [!NOTE]
-> 如果您尚未安裝 Azure 命令列介面，或是尚未將其設定為使用您的 Azure 訂用帳戶，請參閱 [如何使用 Azure 命令列介面](../cli-install-nodejs.md)。
+> 如果您尚未安裝 hello Azure 命令列介面，或未設定它 toouse 您 Azure 訂用帳戶，請參閱[如何 tooUse Azure 命令列介面](../cli-install-nodejs.md)。
 >
 >
 
 ## <a name="understandlogs"></a> 作法：了解診斷記錄
 ### <a name="application-diagnostics-logs"></a>應用程式診斷記錄
-應用程式診斷功能會根據您將記錄儲存至檔案系統、資料表儲存體或 Blob 儲存體的不同，將 .NET 應用程式的資訊儲存為特定格式。 這三種儲存類型所儲存的資料基底集合全都相同，包括事件發生的日期與時間、產生事件的處理序識別碼、事件類型 (資訊、警告與錯誤)，以及事件訊息。
+應用程式診斷資訊是以特定格式儲存對於.NET 應用程式，根據您是否儲存記錄檔 toohello 檔案系統中，資料表儲存體，或 blob 儲存體。 hello 組基本的資料儲存為相同 hello 到所有的三個儲存體類型-hello 日期和時間 hello、 發生事件 hello 產生 hello 事件、 hello 事件類型 （資訊、 警告、 錯誤） 和 hello 事件訊息的處理序識別碼。
 
 **檔案系統**
 
-每一行記錄到檔案系統的訊息，或是透過串流方式收到的訊息，都將採下列格式：
+記錄的 toohello 檔案系統，或使用資料流接收的每一行將處於下列格式的 hello:
 
     {Date}  PID[{process id}] {event type/level} {message}
 
-例如，錯誤事件可能會類似下列訊息：
+例如，錯誤事件會出現類似 toohello 下列：
 
-    2014-01-30T16:36:59  PID[3096] Error       Fatal error on the page!
+    2014-01-30T16:36:59  PID[3096] Error       Fatal error on hello page!
 
-記錄到檔案系統可針對三種可用的方法提供最基本的資訊，亦即僅提供時間、處理序識別碼、事件層級與訊息。
+記錄 toohello 檔案系統提供 hello 三個可用的方法，提供僅 hello 時間、 處理序識別碼、 事件層級，以及訊息的 hello 最基本的資訊。
 
 **資料表儲存體**
 
-記錄至資料表儲存體時，會使用其他屬性來協助搜尋儲存在資料表裡的資料，以及更精細的事件資訊。 以下內容 (資料行) 會用於資料表中儲存的每個實體 (列)。
+當記錄 tootable 儲存體，其他屬性會使用的 toofacilitate 搜尋 hello 資料儲存在 hello 資料表，以及更細微 hello 事件的詳細資訊。 hello 下列屬性 （資料行） 會用於儲存在 hello 資料表中每個實體 （資料列）。
 
 | 屬性名稱 | 值/格式 |
 | --- | --- |
-| PartitionKey |格式為 yyyyMMddHH 的事件日期/時間 |
+| PartitionKey |Hello 事件 yyyyMMddHH 格式的日期/時間。 |
 | RowKey |可唯一識別此實體的 GUID 值 |
-| Timestamp |事件發生的日期與時間 |
-| EventTickCount |事件發生的日期與時間 (刻度格式，精準度更高) |
-| ApplicationName |Web 應用程式名稱 |
-| 等級 |事件層級 (例如，錯誤、警告、資訊) |
-| EventId |如果沒有指定<p><p>這個事件的事件識別碼，則預設為 0 |
-| InstanceId |發生事件的 Web 應用程式執行個體 |
+| Timestamp |發生 hello 日期和時間的 hello 事件 |
+| EventTickCount |hello 發生日期和時間的 hello 事件，以刻度格式 （大於有效位數） |
+| ApplicationName |hello web 應用程式名稱 |
+| Level |事件層級 (例如，錯誤、警告、資訊) |
+| EventId |這個事件的 hello 事件識別碼<p><p>如果沒有指定，預設 too0 |
+| InstanceId |即使 hello hello web 應用程式的執行個體上發生 |
 | Pid |處理序識別碼 |
-| Tid |產生事件的執行緒之執行緒識別碼 |
+| Tid |產生 hello 事件 hello 執行緒 hello 執行緒 ID |
 | 訊息 |事件詳細資訊訊息 |
 
 **Blob 儲存體**
 
-登入 Blob 儲存體時，資料會儲存為逗號分隔值 (CSV) 的格式。 其他欄位則會以類似資料表儲存體的作法記錄起來，以提供更精細的事件相關資訊。 CSV 中的每一列會使用以下屬性：
+當記錄 tooblob 儲存體，資料會儲存在逗號分隔值 (CSV) 格式。 類似的 tootable 儲存體的其他欄位會記錄的 tooprovide hello 事件的詳細資訊。 hello 下列屬性適用於在 hello CSV 的每個資料列：
 
 | 屬性名稱 | 值/格式 |
 | --- | --- |
-| 日期 |事件發生的日期與時間 |
-| 等級 |事件層級 (例如，錯誤、警告、資訊) |
-| ApplicationName |Web 應用程式名稱 |
-| InstanceId |發生事件的 Web 應用程式執行個體 |
-| EventTickCount |事件發生的日期與時間 (刻度格式，精準度更高) |
-| EventId |如果沒有指定<p><p>這個事件的事件識別碼，則預設為 0 |
+| Date |發生 hello 日期和時間的 hello 事件 |
+| Level |事件層級 (例如，錯誤、警告、資訊) |
+| ApplicationName |hello web 應用程式名稱 |
+| InstanceId |Hello 事件 hello web 應用程式的執行個體上發生 |
+| EventTickCount |hello 發生日期和時間的 hello 事件，以刻度格式 （大於有效位數） |
+| EventId |這個事件的 hello 事件識別碼<p><p>如果沒有指定，預設 too0 |
 | Pid |處理序識別碼 |
-| Tid |產生事件的執行緒之執行緒識別碼 |
+| Tid |產生 hello 事件 hello 執行緒 hello 執行緒 ID |
 | 訊息 |事件詳細資訊訊息 |
 
-儲存在 Blob 中的資料類似以下內容：
+儲存在 blob 中的 hello 資料看起來類似 toohello 下列：
 
     date,level,applicationName,instanceId,eventTickCount,eventId,pid,tid,message
     2014-01-30T16:36:52,Error,mywebapp,6ee38a,635266966128818593,0,3096,9,An error occurred
 
 > [!NOTE]
-> 記錄的第一行會包含如此範例所示的資料行標題。
+> hello hello 記錄檔的第一行會包含 hello 資料行標頭，此範例中所示。
 >
 >
 
 ### <a name="failed-request-traces"></a>失敗要求追蹤
-失敗要求追蹤會儲存在名為 **fr######.xml**的 XML 檔案中。 為了讓您輕鬆地檢視記錄資訊，系統會在 XML 檔案所屬的相同目錄中，提供名為 **freb.xsl** 的 XSL 樣式表。 在 Internet Explorer 中開啟其中一個 XML 檔案會使用 XSL 樣式表，提供格式化的追蹤資訊顯示。 此資訊類似以下內容：
+失敗要求追蹤會儲存在名為 **fr######.xml**的 XML 檔案中。 toomake 它更容易 tooview hello 登入資訊、 名為的 XSL 樣式表**freb.xsl**所提供的 hello 相同目錄中如 hello XML 檔案。 在 Internet Explorer 中開啟其中一個 hello XML 檔案，將會使用 hello XSL 樣式表 tooprovide 格式化顯示 hello 追蹤資訊。 這會顯示類似 toohello 下列：
 
-![在瀏覽器中檢視的失敗要求](./media/web-sites-enable-diagnostic-log/tws-failedrequestinbrowser.png)
+![hello 瀏覽器中檢視失敗的要求](./media/web-sites-enable-diagnostic-log/tws-failedrequestinbrowser.png)
 
 ### <a name="detailed-error-logs"></a>詳細錯誤記錄
 詳細的錯誤記錄指的是可針對發生的 HTTP 錯誤提供更詳盡資訊的 HTML 文件。 由於它們都是單純的 HTML 文件，因此可以使用網頁瀏覽器來檢視。
 
 ### <a name="web-server-logs"></a>Web 伺服器記錄
-Web 伺服器記錄使用 [W3C 擴充記錄檔案格式](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx)來格式化。 此項資訊可透過文字編輯器來讀取，或是運用 [記錄檔剖析器](http://go.microsoft.com/fwlink/?LinkId=246619)(英文) 之類的公用程式來剖析。
+hello web 伺服器記錄檔的格式是 hello [W3C 擴充的記錄檔格式](http://msdn.microsoft.com/library/windows/desktop/aa814385.aspx)。 此項資訊可透過文字編輯器來讀取，或是運用 [記錄檔剖析器](http://go.microsoft.com/fwlink/?LinkId=246619)(英文) 之類的公用程式來剖析。
 
 > [!NOTE]
-> Azure Web 應用程式所產生的記錄並不支援 **s-computername**、**s-ip** 或 **cs-version** 欄位。
+> hello Azure web 應用程式所產生的記錄檔不支援 hello **s-computername**， **s ip**，或**cs 版本**欄位。
 >
 >
 
 ## <a name="nextsteps"></a> 後續步驟
-* [如何監視 Web 應用程式](http://docs.microsoft.com/en-us/azure/app-service-web/web-sites-monitor)
+* [如何 tooMonitor Web 應用程式](http://docs.microsoft.com/en-us/azure/app-service-web/web-sites-monitor)
 * [在 Visual Studio 中疑難排解 Azure Web App](web-sites-dotnet-troubleshoot-visual-studio.md)
 * [在 HDInsight 中分析 Web 應用程式記錄](http://gallery.technet.microsoft.com/scriptcenter/Analyses-Windows-Azure-web-0b27d413)
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想 tooget 之前註冊 Azure 帳戶與 Azure 應用程式服務啟動時，請移至太[再試一次應用程式服務](https://azure.microsoft.com/try/app-service/)，可以立即存留較短的入門的 web 應用程式中建立應用程式服務。 不需要信用卡；沒有承諾。
 >
 >
 
 ## <a name="whats-changed"></a>變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
-* 如需從舊的入口網站變更為新入口網站的指南，請參閱： [瀏覽 Azure 入口網站的參考](http://go.microsoft.com/fwlink/?LinkId=529715)
+* 從網站 tooApp 服務變更如指南 toohello: [Azure 應用程式服務和其對影響現有的 Azure 服務](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Hello 舊入口網站 toohello 新入口網站的變更如指南 toohello:[巡覽參考 hello Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)

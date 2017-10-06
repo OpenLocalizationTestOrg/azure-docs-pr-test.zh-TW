@@ -1,6 +1,6 @@
 ---
-title: "使用 Java 建立您第一個可靠的 Azure 微服務 | Microsoft Docs"
-description: "概述使用無狀態與具狀態服務來建立 Microsoft Azure Service Fabric 應用程式。"
+title: "aaaCreate 您第一次可靠 Azure 微服務在 Java 中的 |Microsoft 文件"
+description: "簡介 toocreating 無狀態與可設定狀態服務的 Microsoft Azure Service Fabric 應用程式。"
 services: service-fabric
 documentationcenter: java
 author: vturecek
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 1ebabe4844732412e04bab8c277f7ebbc4a5737c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 577d96591797bbfe6be5c1094426b5f1435cca0f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-reliable-services"></a>開始使用 Reliable Service
 > [!div class="op_single_selector"]
@@ -27,30 +27,30 @@ ms.lasthandoff: 08/29/2017
 >
 >
 
-本文說明 Azure Service Fabric Reliable Services 的基本概念，並將逐步引導您建立及部署以 Java 撰寫的簡單 Reliable Services 應用程式。 此 Microsoft Virtual Academy 影片也示範如何建立無狀態的 Reliable Service：<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=DOX8K86yC_206218965">  
+本文章說明 hello Azure Service Fabric 可靠服務基本概念，並將告訴您如何建立及部署在 Java 中撰寫的簡單可靠的服務應用程式。 Microsoft Virtual Academy 影片也將示範如何 toocreate 無狀態 Reliable service:<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=DOX8K86yC_206218965">  
 <img src="./media/service-fabric-reliable-services-quick-start-java/ReliableServicesJavaVid.png" WIDTH="360" HEIGHT="244">  
 </a></center>
 
 ## <a name="installation-and-setup"></a>安裝與設定
-開始之前，確定機器上已設定 Service Fabric 開發環境。
-如果您需要加以設定，請移至[在 Mac 上開始使用](service-fabric-get-started-mac.md)或[在 Linux 上開始使用](service-fabric-get-started-linux.md)。
+開始之前，請確定您擁有 hello Service Fabric 開發環境設定您的電腦上。
+如果您需要 tooset 總太移[Mac 上開始使用](service-fabric-get-started-mac.md)或[開始使用 Linux](service-fabric-get-started-linux.md)。
 
 ## <a name="basic-concepts"></a>基本概念
-若要開始使用 Reliable Services，您只需要了解幾個基本概念：
+tooget 開始使用可靠的服務，您只需要 toounderstand 某些基本概念：
 
-* **服務類型**：這是您的服務實作。 它是由您撰寫的類別定義，它會擴充 `StatelessService` 與其中使用的任何其他程式碼或相依性，以及名稱與版本號碼。
-* **具名服務執行個體**：若要執行您的服務，可以建立您服務類型的具名執行個體，很像您建立類別類型的物件執行個體一樣。 服務執行個體實際上就是您所撰寫服務類型的物件具現化。
-* **服務主機**：您建立的具名服務執行個體需要在主機內部執行。 服務主機只是您服務的執行個體可執行所在的程序。
-* **服務註冊**：註冊可將所有項目結合在一起。 服務類型必須在服務主機的 Service Fabric 執行階段中註冊，以允許 Service Fabric 建立其執行個體來執行。  
+* **服務類型**：這是您的服務實作。 它由您撰寫可擴充 hello 類別所定義`StatelessService`和任何其他程式碼或使用另有規定，以及名稱和版本號碼的相依性。
+* **名為服務執行個體**: toorun 您的服務，您建立您的服務類型的具名執行個體更像建立的類別類型的物件執行個體。 服務執行個體實際上就是您所撰寫服務類型的物件具現化。
+* **服務主機**: hello 名為您建立需要 toorun 主機內部的服務執行個體。 只要您的服務執行個體可以在上面執行的處理序 hello 服務主機。
+* **服務註冊**：註冊可將所有項目結合在一起。 hello 服務類型必須註冊以 hello Service Fabric 服務中的執行階段裝載 tooallow Service Fabric toocreate 的執行個體，toorun。  
 
 ## <a name="create-a-stateless-service"></a>建立無狀態服務
-從建立 Service Fabric 應用程式開始著手。 適用於 Linux 的 Service Fabric SDK 包含 Yeoman 產生器，可提供具無狀態服務之 Service Fabric 應用程式的樣板。 執行下列 Yeoman 命令開始作業：
+從建立 Service Fabric 應用程式開始著手。 hello Service Fabric SDK for Linux 包含 Yeoman Service Fabric 應用程式與無狀態服務的產生器 tooprovide hello scaffolding。 開始執行 hello Yeoman 下列命令：
 
 ```bash
 $ yo azuresfjava
 ```
 
-遵循指示建立**可靠的無狀態服務**。 本教學課程中，將應用程式命名為 HelloWorldApplication，將服務命名為 HelloWorld。 結果會包含 `HelloWorldApplication` 和 `HelloWorld` 的目錄。
+請遵循 hello 指示 toocreate**可靠的無狀態服務**。 此教學課程中，名稱 hello 應用程式"HelloWorldApplication 」 和 hello 服務"HelloWorld"。 hello 結果包含目錄 hello`HelloWorldApplication`和`HelloWorld`。
 
 ```bash
 HelloWorldApplication/
@@ -77,8 +77,8 @@ HelloWorldApplication/
 └── uninstall.sh
 ```
 
-## <a name="implement-the-service"></a>實作服務
-開啟 **HelloWorldApplication/HelloWorld/src/statelessservice/HelloWorldService.java**。 這個類別會定義服務類型，而且可以執行任何程式碼。 服務 API 為您的程式碼提供兩個進入點：
+## <a name="implement-hello-service"></a>實作 hello 服務
+開啟 **HelloWorldApplication/HelloWorld/src/statelessservice/HelloWorldService.java**。 這個類別定義 hello 服務型別，而且可以執行任何程式碼。 hello 服務 API 提供兩個進入點的程式碼：
 
 * 開放式的進入點方法 (稱為 `runAsync()`)，您可以在這裡開始執行任何工作負載，包括長時間執行的計算工作負載。
 
@@ -98,28 +98,28 @@ protected List<ServiceInstanceListener> createServiceInstanceListeners() {
 }
 ```
 
-在本教學課程中，我們會著重在 `runAsync()` 進入點方法。 這就是您可以立即開始執行程式碼的地方。
+在本教學課程中，我們將重點放在 hello`runAsync()`進入點方法。 這就是您可以立即開始執行程式碼的地方。
 
 ### <a name="runasync"></a>RunAsync
-當服務的執行個體已放置並且可以執行時，平台會呼叫這個方法。 針對無狀態服務，這僅表示開啟服務執行個體的時間。 會提供取消語彙基元以協調服務執行個體何時需要關閉。 在 Service Fabric 中，服務執行個體的開啟/關閉循環可能會在整個服務存留期中發生許多次。 發生這種情形的原因有很多，包括：
+服務的執行個體時放置並準備好 tooexecute hello 平台會呼叫這個方法。 無狀態的服務，這只是表示開啟 hello 服務執行個體時。 取消語彙基元提供 toocoordinate 您服務執行個體需要 toobe 關閉時。 在 Service Fabric 服務執行個體的此開啟/關閉週期可以發生多次存留 hello hello 服務的整個。 發生這種情形的原因有很多，包括：
 
-* 系統可能為了資源平衡移動您的服務執行個體。
+* hello 系統移動資源平衡服務執行的個體。
 * 在您的程式碼中發生錯誤。
-* 應用程式或系統已升級。
-* 基礎硬體發生中斷。
+* hello 應用程式或系統也會升級。
+* hello 基礎硬體發生中斷。
 
-此協調流程是由 Service Fabric 管理，可讓您的服務維持高度可用且正確平衡。
+此協調流程由 Service Fabric tookeep 管理您的服務高可用性且正確平衡。
 
-`runAsync()` 不應該同步封鎖。 您的 runAsync 實作應該傳回 CompletableFuture，以允許執行階段繼續執行。 如果您的工作負載需要實作長時間執行的工作，則該工作應該在 CompletableFuture 內完成。
+`runAsync()` 不應該同步封鎖。 RunAsync 的實作應該傳回 CompletableFuture tooallow hello 執行階段 toocontinue。 如果您的工作負載需要 tooimplement 長時間執行的工作應該在 hello CompletableFuture。
 
 #### <a name="cancellation"></a>取消
-取消您的工作負載是由所提供的取消語彙基元協調的協同努力。 系統會先等待您的工作結束 (依據成功完成、取消或錯誤)，然後才繼續執行。 系統要求取消時，務必接受取消權杖、完成任何工作，並儘快結束 `runAsync()`。 下列範例示範如何處理取消事件：
+取消您的工作負載是由提供取消語彙基元的 hello 協調合作式工作。 hello 系統會等到工作 tooend （由成功完成、 取消作業或錯誤） 之間移動之前。 它是重要的 toohonor hello 取消語彙基元，完成任何工作，並結束`runAsync()`hello 系統要求取消盡快。 hello 下列範例會示範如何 toohandle 取消事件：
 
 ```java
     @Override
     protected CompletableFuture<?> runAsync(CancellationToken cancellationToken) {
 
-        // TODO: Replace the following sample code with your own logic
+        // TODO: Replace hello following sample code with your own logic
         // or remove this runAsync override if it's not needed in your service.
 
         CompletableFuture.runAsync(() -> {
@@ -140,7 +140,7 @@ protected List<ServiceInstanceListener> createServiceInstanceListeners() {
 ```
 
 ### <a name="service-registration"></a>服務註冊
-會取消必須在 Service Fabric 執行階段註冊。 服務類型是在 `ServiceManifest.xml` 中以及實作 `StatelessService` 的服務類別中定義。 服務註冊是在程序主要進入點中執行。 在此範例中，程序的主要進入點是 `HelloWorldServiceHost.java`：
+服務類型必須向 hello Service Fabric 執行階段。 hello 服務類型定義於 hello`ServiceManifest.xml`和您的服務類別可實作`StatelessService`。 服務登錄是在 hello 程序的主要進入點執行。 在此範例中，hello 程序的主要進入點是`HelloWorldServiceHost.java`:
 
 ```java
 public static void main(String[] args) throws Exception {
@@ -156,9 +156,9 @@ public static void main(String[] args) throws Exception {
 }
 ```
 
-## <a name="run-the-application"></a>執行應用程式
+## <a name="run-hello-application"></a>執行 hello 應用程式
 
-Yeoman 樣板包含可建置應用程式的 gradle 指令碼，以及可部署和移除應用程式的 bash 指令碼。 若要執行應用程式，先建置含 gradle的應用程式︰
+hello Yeoman scaffolding 包含 gradle 指令碼 toobuild hello 應用程式和 bash 指令碼 toodeploy 和移除應用程式。 toorun hello 應用程式，第一個使用 gradle 的組建 hello 應用程式：
 
 ```bash
 $ gradle
@@ -168,7 +168,7 @@ $ gradle
 
 ### <a name="deploy-with-service-fabric-cli"></a>使用 Service Fabric CLI 部署
 
-Install.sh 指令碼包含部署應用程式套件所需的 Service Fabric CLI 命令。 請執行 install.sh 指令碼來部署應用程式。
+hello 為 install.sh 指令碼包含 hello 所需服務網狀架構 CLI 命令 toodeploy hello 應用程式套件。 執行為 install.sh 的指令碼 toodeploy hello 應用程式。
 
 ```bash
 $ ./install.sh

@@ -1,6 +1,6 @@
 ---
-title: "部署和管理 HDInsight 上的 Apache Storm 拓撲 | Microsoft Docs"
-description: "使用 Storm Dashboard on HDInsight，了解如何部署、監視和管理 Apache Storm 拓撲。 使用適用於 Visual Studio 的 Hadoop 工具。"
+title: "aaaDeploy 和管理 HDInsight 上的 Apache Storm 拓撲 |Microsoft 文件"
+description: "了解 toodeploy、 監視和管理 HDInsight 上使用 hello Storm 儀表板的 Apache Storm 拓撲的方式。 使用適用於 Visual Studio 的 Hadoop 工具。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,20 +16,20 @@ ms.workload: big-data
 ms.date: 03/01/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 34072574f83b51280e60e2f8766c6c5d5a33c307
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 05f05fe8dd519fe99fb771d36bfc3d28168ca85f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-and-manage-apache-storm-topologies-on-windows-based-hdinsight"></a>部署和管理以 Windows 為基礎的 HDInsight 上的 Apache Storm 拓撲
 
-Storm Dashboard 可讓您使用網頁瀏覽器輕鬆地部署和執行 Apache Storm 拓撲至 HDInsight 叢集。 您也可以使用儀表板來監視和管理執行中拓撲。 如果您使用 Visual Studio，則 HDInsight Tools for Visual Studio 會提供 Visual Studio 中的類似功能。
+hello Storm 儀表板可讓您 tooeasily 部署和執行 Apache Storm 拓撲 tooyour HDInsight 叢集使用網頁瀏覽器。 您也可以使用 hello 儀表板 toomonitor，並管理正在執行的拓撲。 如果您使用 Visual Studio，hello HDInsight Tools for Visual Studio 會提供類似的功能，Visual Studio 中。
 
-HDInsight Tools 的 Storm Dashboard 和 Storm 功能依賴 Storm REST API，此 API 可用來建立您專屬的監視和管理方案。
+hello Storm 儀表板和 hello HDInsight Tools 中的 hello Storm 功能上依賴 hello Storm REST API，可以使用的 toocreate 專屬監視和管理的解決方案。
 
 > [!IMPORTANT]
-> 這份文件中的步驟需要使用 Windows 做為作業系統的 Storm on HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+> 本文件中的 hello 步驟需要使用 Windows 做為 hello 作業系統的 HDInsight 叢集上出現。 Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 >
 > 如需透過使用 Linux 的 HDInsight 叢集來部署和管理 Storm 拓撲的詳細資訊，請參閱[部署和管理以 Linux 為基礎的 HDInsight 上的 Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
@@ -37,11 +37,11 @@ HDInsight Tools 的 Storm Dashboard 和 Storm 功能依賴 Storm REST API，此 
 
 * **Apache Storm on HDInsight** - 請參閱[開始使用 Apache Storm on HDInsight](hdinsight-apache-storm-tutorial-get-started.md)，以取得建立叢集的步驟。
 
-* 針對 **Storm Dashboard**：支援 HTML5 的新型網頁瀏覽器。
+* Hello **Storm 儀表板**： 支援 HTML5 的現代網頁瀏覽器。
 
-* 針對 **Visual Studio** - Azure SDK 2.5.1 或更新版本，以及 HDInsight Tools for Visual Studio。 請參閱[開始使用 HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) 以安裝及設定 HDInsight Tools for Visual Studio。
+* 如**Visual Studio** -Azure SDK 2.5.1 或更新版本和 hello HDInsight Tools for Visual Studio。 請參閱[開始使用 HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) tooinstall 和設定 hello HDInsight tools for Visual Studio。
 
-    下列其中一個 Visual Studio 版本：
+    下列版本的 Visual Studio 中的 hello 其中一項：
 
   * Visual Studio 2012 (含 Update 4)
 
@@ -53,140 +53,140 @@ HDInsight Tools 的 Storm Dashboard 和 Storm 功能依賴 Storm REST API，此 
 
 ## <a name="storm-dashboard"></a>Storm Dashboard
 
-Storm Dashboard 是可以在 Storm 叢集上使用的網頁。 URL 是 **https://&lt;clustername>.azurehdinsight.net/**，其中 **clustername** 是 Storm on HDInsight 叢集的名稱。
+hello Storm 儀表板是在 Storm 叢集上使用的網頁。 hello URL 是**https://&lt;clustername >.azurehdinsight.net/**，其中**clustername**是您在 HDInsight 叢集的 Storm hello 名稱。
 
-從 Storm Dashboard 的頂端，選取 [提交拓撲] 。 依照頁面上的指示來執行範例拓撲，或者上傳及執行您已建立的拓撲。
+從 hello hello Storm 儀表板頂端，選取**提交拓撲**。 遵循上 hello 頁面 toorun 拓樸範例 hello 指示或 tooupload 然後執行您所建立的拓撲。
 
-![提交拓撲頁面][storm-dashboard-submit]
+![hello 提交拓樸 頁面][storm-dashboard-submit]
 
 ### <a name="storm-ui"></a>Storm UI
 
-從 Storm Dashboard 中選取 [Storm UI]  連結。 這會顯示叢集和任何執行中拓撲的詳細資訊。
+從 hello Storm 儀表板，選取 hello **Storm UI**連結。 這在加法 tooany 執行拓樸中顯示 hello 叢集的相關資訊。
 
-![Storm UI][storm-dashboard-ui]
+![hello storm ui][storm-dashboard-ui]
 
 > [!NOTE]
-> 在 Internet Explorer 的某些版本中，您可能會發現 Storm UI 在您最初到訪之後不會重新整理。 例如，可能不會顯示您提交的新拓撲，或是可能將先前已停用的拓撲顯示為使用中。 Microsoft 知道這個問題，並正在找出解決方案。
+> 使用 Internet Explorer 的某些版本中，您可能會發現 Storm UI 不會重新整理之後，您必須先瀏覽該 hello。 例如，它可能不會顯示 hello 新拓撲您上傳，或您先前停用時，它可能會顯示為作用中的拓撲。 Microsoft 知道這個問題，並正在找出解決方案。
 
 #### <a name="main-page"></a>主頁面
 
-Storm UI 的主頁面會提供下列資訊：
+hello Storm UI hello 主頁面上提供下列資訊的 hello:
 
-* **叢集摘要**：Storm 叢集的基本資訊。
+* **叢集摘要**: hello Storm 叢集的基本資訊。
 
-* **拓撲摘要**：執行中拓撲的清單。 使用本節中的連結來檢視特定拓撲的詳細資訊。
+* **拓撲摘要**：執行中拓撲的清單。 使用有關特定拓撲中這個區段 tooview hello 連結的詳細資訊。
 
-* **監督員摘要**：Storm 監督員的資訊。
+* **摘要的監督員**: hello Storm 監督者的相關資訊。
 
-* **Nimbus 組態**：叢集的 Nimbus 組態。
+* **Nimbus 組態**: Nimbus hello 叢集組態。
 
 #### <a name="topology-summary"></a>拓撲摘要
 
-選取 [拓撲摘要]  區段中的連結會顯示拓撲的下列資訊：
+選取連結從 hello**拓撲摘要**區段會顯示 hello 下列 hello 拓撲的相關資訊：
 
-* **拓撲摘要**：拓撲的基本資訊。
+* **摘要的拓樸**: hello 拓撲的相關基本資訊。
 
-* **拓撲動作**：您可以針對拓撲執行的管理動作。
+* **拓樸動作**: hello 拓撲，您可以執行管理動作。
 
   * **啟用**：繼續處理已停用的拓撲。
 
   * **停用**：暫停執行中的拓撲。
 
-  * **重新平衡**：調整拓撲的平行處理原則。 變更叢集中的節點數目之後，您應該重新平衡執行中拓撲。 這可讓拓撲調整平行處理原則，以彌補叢集中增加或減少的節點數目。
+  * **重新平衡**： 調整 hello 拓樸的 hello 平行處理原則。 之後您已經變更 hello hello 叢集中的節點數目，您應該重新平衡執行的拓撲。 這可讓 hello 拓撲 tooadjust 平行處理原則 toocompensate hello 增加或減少 hello 叢集中的節點數目。
 
-      如需詳細資訊，請參閱[了解 Storm 拓撲的平行處理原則 (http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) (英文)](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)。
+      如需詳細資訊，請參閱[了解 hello 平行處理原則的 Storm 拓撲 (http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)。
 
-  * **終止**：在指定的逾時之後結束 Storm 拓撲。
+  * **Kill**: hello 指定逾時之後終止 Storm 拓撲。
 
-* **拓撲統計資料**：拓撲的統計資料。 使用 [視窗]  資料行中的連結，以設定頁面上其餘項目的時間範圍。
+* **拓樸 stats**: hello 拓撲的相關統計資料。 使用中 hello hello 連結**視窗**hello 剩餘項目在 hello 頁面上的資料行 tooset hello 時間範圍。
 
-* **Spout**：拓撲所使用的 Spout。 使用本節中的連結檢視特定 Spout 的詳細資訊。
+* **Spouts**: hello spouts hello 拓撲所使用。 使用此區段 tooview 中的 hello 連結特定 spouts 的詳細資訊。
 
-* **Bolt**：拓撲所使用的 Bolt。 使用本節中的連結檢視特定 Bolt 的詳細資訊。
+* **釘**: hello hello 拓撲所使用的攻擊。 使用此區段 tooview 中的 hello 連結特定攻擊的詳細資訊。
 
-* **拓撲組態**：所選取拓撲的組態。
+* **拓撲組態**: hello 選取拓撲的 hello 設定。
 
 #### <a name="spout-and-bolt-summary"></a>Spout 和 Bolt 摘要
 
-從 [Spout] 或 [Bolt] 區段中選取 Spout 會顯示所選取項目的下列資訊：
+選取從 hello spout **Spouts**或**釘**區段會顯示 hello 遵循 hello 選取項目的資訊：
 
-* **元件摘要**：Spout 或 Bolt 的基本資訊。
+* **元件摘要**: hello spout 或閃電的基本資訊。
 
-* **Spout/Bolt 統計資料**：Spout 或 Bolt 的統計資料。 使用 [視窗]  資料行中的連結，以設定頁面上其餘項目的時間範圍。
+* **Spout 閃電 stats**: hello 相關統計資料 spout 或閃電。 使用中 hello hello 連結**視窗**hello 剩餘項目在 hello 頁面上的資料行 tooset hello 時間範圍。
 
-* **輸入統計資料** (僅限 Bolt)：Bolt 所使用輸入資料流的資訊。
+* **輸入 stats** （只有閃電）： hello 的相關資訊輸入 hello 閃電所耗用的資料流。
 
-* **輸出統計資料**：此 Spout 或 Bolt 所發出資料流的資訊。
+* **輸出 stats**: spout 或閃電關於發出由此 hello 資料流的資訊。
 
-* **執行程式**：Spout 或 Bolt 執行個體的資訊。 選取特定執行程式的 [連接埠]  項目，以檢視針對此執行個體所產生之診斷資訊的記錄。
+* **執行程式**: hello spout 或閃電 hello 執行個體的相關資訊。 選取 hello**連接埠**這個執行個體所產生的項目特定的執行程式 tooview 診斷資訊的記錄檔。
 
 * **錯誤**：此 Spout 或 Bolt 的任何錯誤資訊。
 
 ## <a name="hdinsight-tools-for-visual-studio"></a>HDInsight Tools for Visual Studio
 
-HDInsight Tools 可以用來將 C# 或混合式拓撲提交至 Storm 叢集。 下列步驟使用範例應用程式。 如需使用 HDInsight Tools 建立您專屬拓撲的詳細資訊，請參閱 [使用 HDInsight Tools for Visual Studio 開發 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)。
+hello HDInsight 工具可以使用的 toosubmit C# 或混合式拓撲 tooyour Storm 叢集。 下列步驟的 hello 使用範例應用程式。 如需使用 hello HDInsight Tools 來建立您自己的拓撲資訊，請參閱[開發 C# 拓撲使用 hello HDInsight Tools for Visual Studio](hdinsight-storm-develop-csharp-visual-studio-topology.md)。
 
-使用下列步驟，將範例部署至 Storm on HDInsight 叢集，然後檢視和管理拓撲。
+使用下列步驟 toodeploy 範例 tooyour Storm HDInsight 叢集上的 hello 然後檢視和管理 hello 拓撲。
 
-1. 如果您尚未安裝最新版本的 HDInsight Tools for Visual Studio，請參閱[開始使用 HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md)。
+1. 如果您有尚未安裝 hello 最新版 hello HDInsight Tools for Visual Studio，請參閱[開始使用 HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md)。
 
 2. 開啟 Visual Studio，選取 [檔案]  >  [新增]  >  [專案]。
 
-3. 在 [新增專案] 對話方塊中，依序展開 [已安裝]  >  [範本]，然後選取 [HDInsight]。 從範本清單中，選取 [Storm 範例] 。 在對話方塊底部，輸入應用程式的名稱。
+3. 在 hello**新專案**對話方塊方塊中，展開 **已安裝** > **範本**，然後選取**HDInsight**。 從範本 hello 清單，選取**Storm 範例**。 在 hello hello 對話方塊下方，輸入 hello 應用程式的名稱。
 
     ![image](./media/hdinsight-storm-deploy-monitor-topology/sample.png)
 
-4. 在 [方案總管] 中，於專案上按一下滑鼠右鍵，然後選取 [提交至 Storm on HDInsight]。
+4. 在**方案總管 中**，hello 專案上按一下滑鼠右鍵，然後選取**提交 HDInsight 上的 tooStorm**。
 
    > [!NOTE]
-   > 如果出現提示，請輸入您 Azure 訂閱的登入認證。 如果您有多個訂用帳戶，請登入包含 Storm on HDInsight 叢集的訂用帳戶。
+   > 如果出現提示，請輸入您的 Azure 訂閱 hello 登入認證。 如果您有多個訂用帳戶，登入另一個則包含您在 HDInsight 叢集的 Storm toohello。
 
-5. 從 [Storm 叢集] 下拉式清單中選取 Storm on HDInsight 叢集，然後選取 [提交]。 您可以使用 [輸出]  視窗監視提交是否成功。
+5. 選取您在 HDInsight 叢集的 Storm 從 hello **Storm 叢集**下拉式清單，然後選取**送出**。 您可以監視是否 hello 提交成功使用 hello**輸出**視窗。
 
-6. 順利提交拓撲時，應該會出現叢集的 [Storm 拓撲]  。 從清單中選取拓撲，以檢視執行中拓撲的詳細資訊。
+6. 已成功送出 hello 拓樸，當 hello **Storm 拓撲**hello 叢集應該會出現。 從 hello 列出 tooview hello 執行拓撲的相關資訊，請選取 hello 拓撲。
 
     ![Visual Studio 監視器](./media/hdinsight-storm-deploy-monitor-topology/vsmonitor.png)
 
    > [!NOTE]
    > 您也可以透過展開 [Azure]  >  [HDInsight]，並在 Storm on HDInsight 叢集上按一下滑鼠右鍵，然後選取 [檢視 Storm 拓撲] 以從**伺服器總管**中檢視 [Storm 拓撲]。
 
-    選取 Spout 或 Bolt 的圖形以檢視這些元件的資訊。 隨即會針對每個選取的項目開啟新的視窗。
+    Hello spouts 或釘 tooview 這些元件的資訊，請選取 hello 圖形。 隨即會針對每個選取的項目開啟新的視窗。
 
    > [!NOTE]
-   > 拓撲的名稱是拓撲的類別名稱 (在此案例中為 `HelloWord`) 加上時間戳記。
+   > hello hello 拓撲檔案名 hello 拓樸的 hello 類別名稱 (在此情況下， `HelloWord`，) 附加時間戳記。
 
-7. 從 [拓撲摘要] 檢視中，選取 [終止] 停止拓撲。
+7. 從 hello**拓撲摘要**檢視中，選取**Kill** toostop hello 拓撲。
 
    > [!NOTE]
-   > 除非停止 Storm 拓撲或刪除叢集，否則 Storm 拓撲會繼續執行。
+   > Storm 拓撲會繼續執行，直到已停止或刪除 hello 叢集。
 
 
 ## <a name="rest-api"></a>REST API
 
-Storm UI 是以 REST API 為建置基礎，因此您可以使用 REST API 執行類似的管理和監視功能。 您可以使用 REST API 建立自訂工具來管理和監視 Storm 拓撲。
+hello REST API，乃是建立 hello Storm UI，讓您可以執行類似的管理和監視功能，可使用 hello REST API。 您可以使用 hello REST API toocreate 自訂工具來管理和監視 Storm 拓撲。
 
-如需詳細資訊，請參閱 [Storm UI REST API](https://github.com/apache/storm/blob/0.9.3-branch/STORM-UI-REST-API.md)。 下列資訊專用於搭配使用 REST API 與 Apache Storm on HDInsight。
+如需詳細資訊，請參閱 [Storm UI REST API](https://github.com/apache/storm/blob/0.9.3-branch/STORM-UI-REST-API.md)。 hello 下列資訊為特定 toousing hello 與 HDInsight 上的 Apache Storm 的 REST API。
 
 ### <a name="base-uri"></a>基底 URI
 
-REST API on HDInsight 叢集的基底 URI 是 **https://&lt;clustername>.azurehdinsight.net/stormui/api/v1/**，其中 **clustername** 是 Storm on HDInsight 叢集的名稱。
+hello hello REST API 在 HDInsight 叢集上的基底 URI 是**https://&lt;clustername >.azurehdinsight.net/stormui/api/v1/**，其中**clustername**位於您 Storm hello 名稱HDInsight 叢集。
 
 ### <a name="authentication"></a>驗證
 
-REST API 的要求必須使用 **基本驗證**，因此請使用 HDInsight 叢集管理員名稱和密碼。
+必須使用 REST API 的要求 toohello**基本驗證**，所以您可以使用 hello HDInsight 叢集系統管理員名稱和密碼。
 
 > [!NOTE]
-> 因為使用純文字傳送基本驗證，所以您應該 **一律** 使用 HTTPS 來保護與叢集通訊的安全。
+> 因為基本驗證會使用純文字傳送，您應該**一律**hello 叢集中使用 HTTPS toosecure 通訊。
 
 ### <a name="return-values"></a>傳回值
 
-從 REST API 傳回的資訊只能從叢集或與叢集相同之 Azure 虛擬網路上的虛擬機器內使用。 例如，無法從網際網路存取針對 Zookeeper 伺服器所傳回的完整網域名稱 (FQDN)。
+只能從 hello 叢集內可使用 REST API 或虛擬機器上 hello 與 hello 叢集相同 Azure 虛擬網路從 hello 傳回的資訊。 例如，傳回的動物園管理員伺服器 hello 完整的網域名稱 (FQDN) 是無法從 hello 網際網路存取。
 
 ## <a name="next-steps"></a>後續步驟
 
-現在，您已了解如何使用 Storm Dashboard 部署和監視拓撲，接著請了解如何：
+既然您已經學會如何使用 toodeploy 和監視器的拓樸 hello Storm 儀表板，了解如何：
 
-* [使用 HDInsight Tools for Visual Studio 開發 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)
+* [開發使用 hello HDInsight Tools for Visual Studio C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)
 
 * [使用 Maven 開發 Java 型拓撲](hdinsight-storm-develop-java-topology.md)
 

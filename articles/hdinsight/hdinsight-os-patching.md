@@ -1,6 +1,6 @@
 ---
-title: "為以 Linux 為基礎的 HDInsight 叢集設定作業系統修補排程 - Azure | Microsoft Docs"
-description: "了解如何為以 Linux 為基礎的 HDInsight 叢集設定作業系統修補排程。"
+title: "以 Linux 為基礎的 HDInsight 叢集-Azure aaaConfigure OS 修補排程 |Microsoft 文件"
+description: "了解如何 tooconfigure OS 修補排程以 Linux 為基礎的 HDInsight 叢集。"
 services: hdinsight
 documentationcenter: 
 author: bprakash
@@ -15,39 +15,38 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/21/2017
 ms.author: bhanupr
-ms.openlocfilehash: af3c5a19ae8e2e606e4b0506f9f6dddb41192e40
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1598d64e594d7e8a68573fc63dd86051a5a9d025
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="os-patching-for-hdinsight"></a>HDInsight 的作業系統修補 
-HDInsight 作為受管理的 Hadoop 服務，會負責修補 HDInsight 叢集所使用之基礎 VM 的作業系統。 自 2016 年 8 月 1 日起，我們已變更以 Linux 為基礎之 HDInsight 叢集 (3.4 版或更新版本) 的客體 OS 修補原則。 新原則的目標是大幅減少因為修補而產生的重新開機次數。 新的原則將會在每個星期一或星期四 UTC 上午 12 時開始，以交錯方式在任何指定叢集的節點之間，繼續修補 Linux 叢集上的虛擬機器 (VM)。 不過，任何指定的 VM 每隔 30 天只會因為客體 OS 修補而最多重新開機一次。 此外，新建立的叢集在叢集建立之後，也不會在 30 天內第一次重新開機。 VM 重新開機後，修補便會生效。
+為 managed Hadoop 服務時，會負責 HDInsight 修補 hello 作業系統的 HDInsight 叢集所使用的基礎 Vm hello。 從 2016 年 8 月 1 日開始，我們已用於以 Linux 為基礎的 HDInsight 叢集 （版本 3.4 或更新版本） 的 hello 客體 OS 修補原則。 hello hello 新的原則目標是 toosignificantly 減少重新開機次數 hello 到期 toopatching。 hello 新的原則將會繼續在 Linux 上的 toopatch 虛擬機器 (Vm) 叢集的每個星期一或星期四上午 12 utc，以交錯方式啟動任何指定的叢集節點之間。 不過，任何指定的 VM 會只重新開機一次每 30 天到期 tooguest OS 修補程式。 此外，新建立的叢集 hello 第一次重新開機不會發生更快地從 hello 叢集建立日期的 30 天前。 Hello Vm 重新開機後，修補程式就會生效。
 
-## <a name="how-to-configure-the-os-patching-schedule-for-linux-based-hdinsight-clusters"></a>如何為以 Linux 為基礎的 HDInsight 叢集設定作業系統修補排程
-HDInsight 叢集中的虛擬機器有時候需要重新開機，以便系統可以安裝重要的安全性修補程式。 自 2016 年 8 月 1 日起，新式的以 Linux 為基礎的 HDInsight 叢集 (3.4 版或更新版本) 會使用下列排程來重新開機︰
+## <a name="how-tooconfigure-hello-os-patching-schedule-for-linux-based-hdinsight-clusters"></a>如何 tooconfigure hello 以 Linux 為基礎的 HDInsight 叢集的 OS 修補排程
+hello HDInsight 叢集中的虛擬機器需要 toobe 以便可以安裝重要的安全性修補程式偶爾重新開機。 從 2016 年 8 月 1 日開始新 Linux 為基礎的 HDInsight 叢集 （版本 3.4 或更多，） 會重新開機，使用下列排程 hello:
 
-1. 在 30 天的期間內，叢集中的虛擬機器最多只能為了修補而重新開機一次。
-2. 重新開機作業會於 12AM UTC 開始。
-3. 叢集中的虛擬機器會錯開進行重新開機程序，因此在重新開機程序進行期間，叢集仍可供使用。
-4. 新建立之叢集的第一次重新開機，最快要在叢集建立日期的 30 天之後才會發生。
+1. Hello 叢集中的虛擬機器可以只重新開機的修補程式最多 30 天期間內一次。
+2. hello 重新開機，就會發生在上午 12 UTC 開始。
+3. hello 重新開機程序被階段性跨 hello 叢集中的虛擬機器，因此 hello 叢集 hello 重新開機程序期間仍然可以使用。
+4. hello 新建的叢集的第一次重新開機不會更快地 hello 叢集建立日期後的 30 天前發生。
 
-您可以使用本文所述的指令碼動作來修改作業系統修補排程，如下所示︰
+使用本文中所述的 hello 指令碼動作時，您就可以修改 hello OS 修補排程，如下所示：
 1. 啟用或停用自動重新開機
-2. 設定重新開機頻率 (重新開機間隔天數)
-3. 設定要在星期幾重新開機
+2. 組 hello 頻率的重新開機 （重新開機之間的天數）
+3. 設定 hello 星期幾 hello 發生重新開機
 
 > [!NOTE]
 > 此指令碼動作只適用於在 2016 年 8 月 1 日之後建立的以 Linux 為基礎的 HDInsight 叢集。 VM 重新開機後，修補才會生效。 
 >
 
-## <a name="how-to-use-the-script"></a>如何使用指令碼 
+## <a name="how-toouse-hello-script"></a>如何 toouse hello 指令碼 
 
-使用此指令碼時需要下列資訊︰
-1. 指令碼位置︰https://hdiconfigactions.blob.core.windows.net/linuxospatchingrebootconfigv01/os-patching-reboot-config.sh。
-    HDInsight 會使用此 URI 在叢集中的所有虛擬機器上尋找和執行指令碼。
+當使用這個指令碼需要下列資訊的 hello:
+1. hello 指令碼位置： https://hdiconfigactions.blob.core.windows.net/linuxospatchingrebootconfigv01/os-patching-reboot-config.sh。HDInsight 會使用此 URI toofind 和 hello 叢集中的所有 hello 虛擬機器上執行 hello 指令碼。
   
-2. 指令碼會套用到的叢集節點類型︰headnode、workernode、zookeeper。 此指令碼必須套用至叢集中的所有節點類型。 如果未套用至某個節點類型，則該節點類型的虛擬機器會繼續使用先前的修補排程。
+2. hello hello 指令碼套用至叢集節點型別： 叢集前端節點，workernode，動物園管理員。 此指令碼必須套用的 tooall hello 叢集中的節點型別。 如果不是套用的 tooa 節點型別，則 hello 虛擬機器，該節點型別會繼續 toouse hello 先前修補排程。
 
 
 3.  參數︰此指令碼接受三個數值參數︰
@@ -55,18 +54,18 @@ HDInsight 叢集中的虛擬機器有時候需要重新開機，以便系統可�
     | 參數 | 定義 |
     | --- | --- |
     | 啟用/停用自動重新開機 |0 或 1。 值為 0 會停用自動重新開機，1 則會啟用自動重新開機。 |
-    | 頻率 |7 到 90 (含)。 需要重新開機的修補程式在將虛擬機器重新開機之前所要等候的天數。 |
-    | 星期幾 |1 到 7 (含)。 值為 1 表示虛擬機器應該在星期一重新開機，7 則表示星期日。例如，使用參數 1 60 2，會導致虛擬機器每隔 60 天 (最多) 就會在星期二自動重新開機。 |
-    | 持續性 |對現有叢集套用指令碼動作時，您可以將指令碼標示為持續性。 持續性指令碼會在透過調整作業將新的 workernode 新增至叢集時套用。 |
+    | 頻率 |7 too90 （含）。 hello 天 toowait 之前重新開機 hello 修補程式需要重新開機的虛擬機器數目。 |
+    | 星期幾 |1 too7 （含）。 值為 1 表示 hello 重新開機應該會發生在星期一，7 表示 Sunday.For 範例中，使用參數 1 60 2 個導致自動重新啟動每隔 60 天 （最多） 個星期二。 |
+    | 持續性 |當套用指令碼動作 tooan 現有叢集，您可以將 hello 指令碼標示為保存。 加入新 workernodes toohello 叢集透過調整規模作業時，會套用保存的指令碼。 |
 
 > [!NOTE]
-> 在對現有叢集套用此指令碼時，您必須將其標示為持續性。 否則，透過調整作業所建立的新節點會使用預設的修補排程。
-如果您在進行叢集建立程序時套用指令碼，該指令碼會自動成為持續性狀態。
+> 您必須將此指令碼標示為保存套用 tooan 現有叢集時。 否則，任何透過調整作業建立新的節點將使用 hello 預設修補排程。
+如果您套用 hello 指令碼做為 hello 叢集建立程序的一部分，它會自動保存。
 >
 
 ## <a name="next-steps"></a>後續步驟
 
-如需使用指令碼動作的特定步驟，請參閱[使用指令碼動作來自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)中的以下章節：
+針對特定的步驟，需使用 hello 指令碼動作，請參閱下列各節中 hello hello[使用指令碼動作以自訂 Linuz 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md):
 
 * [在建立叢集期間使用指令碼動作](hdinsight-hadoop-customize-cluster-linux.md#use-a-script-action-during-cluster-creation)
-* [將指令碼動作套用到執行中的叢集](hdinsight-hadoop-customize-cluster-linux.md#apply-a-script-action-to-a-running-cluster)
+* [適用於執行叢集的指令碼動作 tooa](hdinsight-hadoop-customize-cluster-linux.md#apply-a-script-action-to-a-running-cluster)

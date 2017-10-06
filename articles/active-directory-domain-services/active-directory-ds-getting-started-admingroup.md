@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory Domain Services：開始使用 | Microsoft Docs"
-description: "使用 Azure 入口網站 (預覽) 啟用 Azure Active Directory Domain Services"
+description: "啟用 Azure Active Directory 網域服務使用 hello Azure 入口網站 （預覽）"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/15/2017
 ms.author: maheshu
-ms.openlocfilehash: f87bcf33d3b1eb21c7d84814e4c4086f664e293d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8bde872a13bc9960d1e62c74017ff78a8953a0a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-azure-active-directory-domain-services-using-the-azure-portal-preview"></a>使用 Azure 入口網站 (預覽) 啟用 Azure Active Directory Domain Services
+# <a name="enable-azure-active-directory-domain-services-using-hello-azure-portal-preview"></a>啟用 Azure Active Directory 網域服務使用 hello Azure 入口網站 （預覽）
 
 
 ## <a name="task-3-configure-administrative-group"></a>工作 3：設定系統管理群組
-在這項設定工作中，您可以在 Azure AD 目錄中建立系統管理群組。 這個特殊的系統管理群組稱為 *AAD DC 系統管理員*。 此群組的成員會獲得電腦的系統管理權限，而這類電腦已加入受管理的網域。 在加入網域的電腦上，這個群組會新增到系統管理員群組。 此外，此群組的成員可以使用遠端桌面，從遠端連接到已加入網域的電腦。
+在這項設定工作中，您可以在 Azure AD 目錄中建立系統管理群組。 這個特殊的系統管理群組稱為 *AAD DC 系統管理員*。 系統管理員權限的電腦已加入網域的 toohello 受管理的網域，會授與此群組的成員。 已加入網域的電腦上，此群組會加入 toohello administrators 群組。 此外，此群組的成員可以使用遠端桌面 tooconnect 遠端 toodomain 加入機器。
 
 > [!NOTE]
-> 您在使用 Azure Active Directory Domain Services 所建立的受管理網域內，沒有「網域系統管理員」或「企業系統管理員」權限。 在受管理的網域上，服務會保留這些權限，並不會提供給租用戶中的使用者使用。 不過，您可以使用在此組態工作中建立的特殊系統管理群組，執行某些特殊權限的作業。 這些作業包括將電腦加入網域、隸屬於已加入網域之電腦上的管理群組，以及設定群組原則。
+> 您沒有 hello 您使用 Azure Active Directory 網域服務建立的受管理網域的網域系統管理員或企業系統管理員權限。 上受管理的網域，這些權限所保留的 hello 服務，並不會使用 toousers hello 租用戶中。 不過，您可以使用特殊 hello 建立系統管理群組中此組態工作 tooperform 某些特殊權限操作。 這些作業包括加入電腦 toohello 網域屬於 toohello 管理群組已加入網域的機器上，設定群組原則。
 >
 
-精靈會在 Azure AD 目錄中自動建立系統管理群組。 此群組名為「AAD DC 系統管理員」。 如果在 Azure AD 目錄中已有此名稱的現有群組存在，精靈會選取此群組。 您可以使用 [Administrator 群組] 精靈分頁設定群組成員資格。
+hello 精靈會自動建立 Azure AD 目錄中的 hello 系統管理群組。 此群組名為「AAD DC 系統管理員」。 如果您有現有的群組具有此名稱在 Azure AD 目錄中，hello 精靈會選取此群組。 您可以設定群組成員資格使用 hello **Administrator 群組**精靈頁面。
 
-1. 若要設定群組成員資格，請按一下 [AAD DC 系統管理員]。
+1. tooconfigure 群組成員資格，按一下 [ **AAD DC 管理員**。
 
     ![設定群組成員資格](./media/getting-started/domain-services-blade-admingroup.png)
 
-2. 按一下 [新增成員] 按鈕，將使用者從 Azure AD 目錄新增至系統管理員群組。
+2. 按一下 hello**將成員加入**按鈕 tooadd 使用者從 Azure AD 目錄 toohello 系統管理員群組。
 
-3. 完成時，按一下 [確定] 以繼續前往精靈的 [摘要] 分頁。
+3. 當您完成之後時，按一下 [**確定**上 toohello toomove**摘要**hello 精靈頁面。
 
-4. 在精靈的 [摘要] 分頁中，檢閱受管理的網域的組態設定。 您可以視需要返回精靈的任何步驟以進行變更。 完成時，按一下 [確定] 來建立新的受管理的網域。
+4. 在 [hello**摘要**精靈頁面的 hello] 檢閱 hello 組態設定 hello 受管理的網域。 您可以移回 tooany 步驟的 hello 精靈 toomake 變更，如有必要。 當您完成之後時，按一下 [**確定**toocreate hello 新增受管理的網域。
 
     ![摘要](./media/getting-started/domain-services-blade-summary.png)
 
-5. 您會看到通知，顯示 Azure AD Domain Services 部署的進度。 按一下通知以查看部署的詳細進度。
+5. 您會看到顯示 Azure AD 網域服務部署的 hello 進度通知。 按一下 hello 通知 toosee 詳細 hello 部署的進度。
 
     ![通知 - 部署進行中](./media/getting-started/domain-services-blade-deployment-in-progress.png)
 
 
 ## <a name="provision-your-managed-domain"></a>佈建受管理的網域
-佈建受管理的網域的程序可能需要一小時的時間。
+佈建受管理的網域 hello 程序可能佔用 tooan 小時。
 
-1. 部署進行時，您可以在 [搜尋資源] 搜尋方塊中搜尋「網域服務」。 從搜尋結果選取 [Azure AD Domain Services]。 [Azure AD Domain Services] 刀鋒視窗會列出正在佈建的受管理的網域。
+1. 在進行部署時，您可以搜尋 ' 網域中的服務' hello**搜尋資源**搜尋] 方塊。 選取**Azure AD 網域服務**從 hello 搜尋結果。 hello **Azure AD 網域服務**刀鋒視窗會列出 hello 正在佈建的受管理的網域。
 
     ![找出正在佈建的受管理的網域](./media/getting-started/domain-services-provisioning-state-find-resource.png)
 
-2. 按一下受管理的網域名稱 (例如，'contoso100.com')，以查看網域的詳細資料。
+2. 按一下 hello 受管理網域 (例如，' contoso100.com') toosee hello 名稱 hello 定義域有關的更多詳細資料。
 
     ![Domain Services - 佈建狀態](./media/getting-started/domain-services-provisioning-state.png)
 
-3. [概觀] 索引標籤會顯示目前佈建的網域。 完整佈建之前，您無法設定受管理的網域。 完整佈建受管理的網域可能需要一小時的時間。
+3. hello**概觀**索引標籤會顯示目前正在佈建該 hello 網域。 完整佈建之前，您無法設定 hello 受管理的網域。 就會在完全佈建您受管理的網域 toobe tooan 小時。
 
-    ![Domain Services - 佈建狀態期間的概觀索引標籤 ](./media/getting-started/domain-services-provisioning-state-details.png)
+    ![網域服務的 hello 佈建狀態在 [概觀] 索引標籤 ](./media/getting-started/domain-services-provisioning-state-details.png)
 
-4. 當受管理的網域完整佈建時，[概觀] 索引標籤會將網域狀態顯示為 [執行中]。
+4. Hello 受管理的網域完整佈建，hello**概觀**索引標籤會顯示 hello 網域狀態為**執行**。
 
     ![Domain Services - 完全佈建後的 [概觀] 索引標籤](./media/getting-started/domain-services-provisioned.png)
 
-5. 在 [屬性] 索引標籤上，您會看到網域控制站可供虛擬網路使用的兩個 IP 位址。
+5. 在 [hello**屬性**索引標籤上，您會看到兩個在哪個網域控制站可供 hello 虛擬網路的 IP 位址。
 
     ![Domain Services - 完整佈建後的屬性索引標籤](./media/getting-started/domain-services-provisioned-properties.png)
 
 
 ## <a name="next-step"></a>後續步驟
-[工作 4：更新 Azure 虛擬網路的 DNS 設定](active-directory-ds-getting-started-dns.md)
+[工作 4： 更新 hello hello Azure 虛擬網路的 DNS 設定](active-directory-ds-getting-started-dns.md)

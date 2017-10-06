@@ -1,6 +1,6 @@
 ---
-title: "使用 REST 傳遞點播內容入門 | Microsoft Docs"
-description: "本教學課程會帶您逐步完成使用 REST API 實作含 Azure 媒體服務的點播內容傳遞應用程式。"
+title: "將內容傳送隨選使用 REST 入門 aaaGet |Microsoft 文件"
+description: "本教學課程會引導您實作上的要求內容傳遞應用程式透過 Azure Media Services 使用 REST API 的 hello 步驟。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,98 +14,98 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: f304f7671465862123f64c8b0f9af95a7c828cc2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f270ed59e9ae9745e8403ec6e19d5c3533fc82b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-delivering-content-on-demand-using-rest"></a>使用 REST 傳遞點播內容入門
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
-本快速入門將逐步引導您使用 REST API 完成利用 Azure 媒體服務 (AMS) 來實作點播視訊 (VoD) 內容傳遞應用程式。
+本快速入門將引導您完成 hello 步驟實作 Video-on-Demand (VoD) 傳遞內容的應用程式，使用 Azure 媒體服務 (AMS) REST Api。
 
-教學課程中介紹基本的媒體服務工作流程，以及媒體服務開發最常用的程式設計物件和必要工作。 完成本教學課程時，您將能夠串流或漸進式下載您已上傳、編碼和下載的範例媒體檔案。
+hello 教學課程介紹 hello 基本 Media Services 工作流程和 hello 最常見的程式設計物件，以及 Media Services 開發所需的工作。 在 hello 完成 hello 教學課程，您將會是能 toostream 或漸進式下載範例媒體檔案，您可以上傳、 編碼，以及下載。
 
-下列影像顯示針對媒體服務 OData 模型開發 VoD 應用程式時一些最常用的物件。
+hello 下圖顯示一些最常用的 hello 物件開發 VoD 針對 hello 媒體服務 OData 模型的應用程式時。
 
-按一下影像可以完整大小檢視。  
+按一下 hello 映像 tooview 它的完整大小。  
 
 <a href="./media/media-services-rest-get-started/media-services-overview-object-model.png" target="_blank"><img src="./media/media-services-rest-get-started/media-services-overview-object-model-small.png"></a> 
 
 ## <a name="prerequisites"></a>必要條件
-需要下列必要條件，才能開始使用 REST API 用媒體服務進行開發。
+hello 下列必要條件是必要的 toostart 使用媒體服務 REST api 進行開發。
 
 * 一個 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* 媒體服務帳戶。 若要建立媒體服務帳戶，請參閱[如何建立媒體服務帳戶](media-services-portal-create-account.md)。
-* 了解如何使用媒體服務 REST API 進行開發。 如需詳細資訊，請參閱[媒體服務 REST API 概觀](media-services-rest-how-to-use.md)。
+* 媒體服務帳戶。 toocreate Media Services 帳戶，請參閱[如何 tooCreate Media Services 帳戶](media-services-portal-create-account.md)。
+* 了解如何使用媒體服務 REST API toodevelop。 如需詳細資訊，請參閱[媒體服務 REST API 概觀](media-services-rest-how-to-use.md)。
 * 由您選擇可以傳送 HTTP 要求和回應的應用程式。 本教學課程使用 [Fiddler](http://www.telerik.com/download/fiddler)。
 
-本快速入門會顯示下列工作。
+本快速入門中，會顯示 hello 下列工作。
 
-1. 啟動串流端點 (使用 Azure 入口網站)。
-2. 使用 REST API 連接到媒體服務帳戶。
+1. 啟動串流端點 （使用 hello Azure 入口網站）。
+2. 使用 REST API 連接 toohello Media Services 帳戶。
 3. 使用 REST API 建立新資產並上傳視訊檔案。
-4. 使用 REST API 將來源檔案編碼為一組調適性位元速率 MP4 檔案。
-5. 使用 REST API 發行資產及取得串流和漸進式下載 URL。
+4. Hello 來源檔案編碼成一組彈性位元速率 MP4 檔案使用 REST API。
+5. 發佈 hello 資產和取得資料流及使用 REST API 的漸進式下載 Url。
 6. 播放您的內容。
 
 >[!NOTE]
->對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 您應該使用 hello 如果一律使用相同的原則識別碼 hello 相同天 / 存取權限，例如，原則會就地預定的 tooremain 長時間 （非上載原則） 的定位器。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 
 如需本主題中所用的 AMS REST 實體的詳細資訊，請參閱 [Azure 媒體服務 REST API 參考](/rest/api/media/services/azure-media-services-rest-api-reference)。 此外，請參閱 [Azure 媒體服務概念](media-services-concepts.md)。
 
 >[!NOTE]
 >在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 
-## <a name="start-streaming-endpoints-using-the-azure-portal"></a>使用 Azure 入口網站開始串流端點
+## <a name="start-streaming-endpoints-using-hello-azure-portal"></a>啟動串流端點使用 hello Azure 入口網站
 
-使用 Azure 媒體服務時，其中一個最常見的案例是透過自適性串流提供影片。 媒體服務提供動態封裝，這讓您以媒體服務即時支援的串流格式 (MPEG DASH、HLS、Smooth Streaming) 提供自適性 MP4 編碼內容，而不必儲存這些串流格式個別的預先封裝版本。
-
->[!NOTE]
->建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。
-
-若要啟動串流端點，請執行下列作業︰
-
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 在 [設定] 視窗中，按一下 [串流端點]。
-3. 按一下預設串流端點。
-
-    [預設串流端點詳細資料] 視窗隨即出現。
-
-4. 按一下 [啟動] 圖示。
-5. 按一下 [儲存] 按鈕以儲存您的變更。
-
-## <a id="connect"></a>使用 REST API 連接到媒體服務帳戶
-
-如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。 
+當使用 Azure Media Services hello 最常見的案例的其中一個會將視訊透過串流處理的彈性位元速率。 Media Services 提供的動態封裝，可讓您 toodeliver 您彈性位元速率編碼的 MP4 內容串流處理媒體服務 (MPEG DASH、 HLS、 Smooth Streaming) 在 just-in-time，支援不需要您 toostore 預先封裝格式每種串流處理格式的版本。
 
 >[!NOTE]
->順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。
+>AMS 帳戶建立時**預設**串流端點就會加入 tooyour 帳戶 hello**已停止**狀態。 串流處理您的內容，並採取利用動態封裝和動態加密，toostart hello 串流端點，您想要從中 toostream 內容已經在 hello toobe**執行**狀態。
 
-例如，如果您在嘗試進行連接之後得到下列結果：
+toostart hello 串流端點，請執行下列 hello:
+
+1. 在 hello 登入[Azure 入口網站](https://portal.azure.com/)。
+2. 在 hello 設定視窗中，按一下 串流端點。
+3. 按一下 hello 預設串流端點。
+
+    hello 預設串流端點詳細資料 視窗隨即出現。
+
+4. 按一下 hello 入門圖示。
+5. 按一下 hello 儲存按鈕 toosave 您的變更。
+
+## <a id="connect"></a>使用 REST API 連接 toohello Media Services 帳戶
+
+如需有關如何 tooconnect toohello AMS API，請參閱詳細[存取 hello Azure 媒體服務 API 與 Azure AD 驗證](media-services-use-aad-auth-to-access-ams-api.md)。 
+
+>[!NOTE]
+>已成功連接之後 toohttps://media.windows.net，您會收到指定另一個媒體服務 URI 的 301 重新導向。 您必須進行的後續呼叫 toohello 新的 URI。
+
+比方說，如果在嘗試後 tooconnect，您會取得 hello 下列：
 
     HTTP/1.1 301 Moved Permanently
     Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
 
-您應該將後續的 API 呼叫張貼到 https://wamsbayclus001rest-hs.cloudapp.net/api/。
+您應該張貼您後續的 API 呼叫 toohttps://wamsbayclus001rest-hs.cloudapp.net/api/。
 
 ## <a id="upload"></a>使用 REST API 建立新資產並上傳視訊檔案
 
-在媒體服務中，您會將數位檔案上傳到到資產。 **資產**實體可以包含視訊、音訊、影像、縮圖集合、文字播放軌及隱藏式輔助字幕檔案 (以及這些檔案的相關中繼資料)。一旦檔案會上傳到資產，您的內容會安全地儲存在雲端，以便進行進一步的處理和串流。
+在媒體服務中，您會將數位檔案上傳到到資產。 hello**資產**實體可以包含視訊、 音訊、 影像、 縮圖集合、 文字播放軌和隱藏式的字幕檔案 （和 hello 中繼資料，這些檔案的相關。）之後 hello 檔案上傳到 hello 資產時，您的內容會安全地儲存在 hello 用於進一步處理和雲端資料流。
 
-您必須建立資產時提供的值是資產建立選項。 **Options** 屬性是描述可以使用建立資產之加密選項的列舉值。 有效的值是以下清單的其中一個值，而不是值的組合。
+建立資產時，有 tooprovide hello 值的其中一個是資產建立選項。 hello**選項**屬性是描述可以建立資產的 hello 加密選項的列舉值。 有效的值是從 hello 清單下，此清單中的值組合的 hello 值的其中一個：
 
 * **None** = **0** - 不使用加密。 使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。
-    如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。
-* **StorageEncrypted** = **1** - 使用 AES-256 位元加密對您的內容進行本機加密，接著上傳到已靜止加密儲存的 Azure 儲存體。 以儲存體加密保護的資產會自動解除加密並在編碼前放置在加密的檔案系統中，並且會在上傳為新輸出資產之前選擇性地重新編碼。 儲存體加密的主要使用案例是讓您可以使用強式加密來保護磁碟中靜止的高品質輸入媒體檔。
+    如果您計畫使用漸進式下載 toodeliver MP4，請使用此選項。
+* **StorageEncrypted** = **1** -加密您清除的內容，在本機使用 AES 256 位元加密，並將其上傳 tooAzure 儲存體的方式予以儲存加密在靜止。 使用儲存體加密保護的資產會自動加密，並在 「 加密的檔案系統先前 tooencoding，及選擇性地重新加密的先前 toouploading 回為新輸出資產。 儲存體加密的 hello 主要使用案例是當您想 toosecure 強式加密在靜止高品質的輸入的媒體檔案在磁碟上。
 * **CommonEncryptionProtected** = **2** - 如果您要上傳已經使用一般加密或 PlayReady DRM (例如使用 PlayReady DRM 保護的 Smooth Streaming) 加密及保護的內容，請使用這個選項。
-* **EnvelopeEncryptionProtected** = **4** – 如果您要上傳使用 AES 加密的 HLS，請使用這個選項。 檔案必須已由 Transform Manager 編碼和加密。
+* **EnvelopeEncryptionProtected** = **4** – 如果您要上傳使用 AES 加密的 HLS，請使用這個選項。 hello 檔案必須已編碼並由 Transform Manager 加密。
 
 ### <a name="create-an-asset"></a>建立資產
-資產是媒體服務中多種類型或物件集的容器，包括視訊、音訊、影像、縮圖集合、文字播放軌和隱藏式字幕檔案。 在 REST API 中，建立資產必須傳送 POST 要求給媒體服務，並將關於您資產的任何屬性資訊放在要求主體中。
+資產是媒體服務中多種類型或物件集的容器，包括視訊、音訊、影像、縮圖集合、文字播放軌和隱藏式字幕檔案。 在 hello REST API，建立資產必須傳送 POST 要求 tooMedia 服務和 hello 要求本文中放置關於您資產的任何屬性資訊。
 
-下列範例示範如何建立資產。
+下列範例會示範如何 hello toocreate 資產。
 
 **HTTP 要求**
 
@@ -126,7 +126,7 @@ ms.lasthandoff: 08/29/2017
 
 **HTTP 回應**
 
-如果成功，則會傳回下列內容：
+如果成功，則會傳回 hello 下列：
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -157,9 +157,9 @@ ms.lasthandoff: 08/29/2017
     }
 
 ### <a name="create-an-assetfile"></a>建立 AssetFile
-[AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) 實體代表儲存在 blob 容器中的視訊或音訊檔案。 資產檔案一律會與資產相關聯，資產可包含一或多個 Assetfile。 如果資產檔案物件並未與 blob 容器中的數位檔案相關聯，媒體服務編碼器工作將會失敗。
+hello [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile)實體代表儲存在 blob 容器的視訊或音訊檔案。 資產檔案一律會與資產相關聯，資產可包含一或多個 Assetfile。 如果資產檔案物件不是 blob 容器中的數位檔案相關聯，hello Media Services 編碼器工作會失敗。
 
-您將數位媒體檔案上傳至 blob 容器之後，您將使用 **MERGE** HTTP 要求，以媒體檔案的相關資訊來更新 AssetFile (如本主題稍後所示)。
+您將數位媒體檔案上傳到 blob 容器之後，您會使用 hello**合併**HTTP 要求 tooupdate hello AssetFile 媒體檔案 （如 hello 主題稍後所示） 的相關資訊。
 
 **HTTP 要求**
 
@@ -218,10 +218,10 @@ ms.lasthandoff: 08/29/2017
     }
 
 
-### <a name="creating-the-accesspolicy-with-write-permission"></a>建立具有寫入權限的 AccessPolicy
-將任何檔案上傳到 blob 儲存體之前，請設定寫入資產的存取原則權限。 若要這樣做，請 POST HTTP 要求到 AccessPolicies 實體集。 請在建立時定義 DurationInMinutes 值，否則您會在回應中收到 500 內部伺服器錯誤訊息。 如需 AccessPolicies 的詳細資訊，請參閱 [AccessPolicy](https://docs.microsoft.com/rest/api/media/operations/accesspolicy)。
+### <a name="creating-hello-accesspolicy-with-write-permission"></a>建立具有寫入權限的 AccessPolicy hello
+將任何檔案上傳到 blob 儲存體之前, 設定 hello 存取原則撰寫 tooan 資產的權限。 toodo 的 POST HTTP 要求 toohello AccessPolicies 實體集。 請在建立時定義 DurationInMinutes 值，否則您會在回應中收到 500 內部伺服器錯誤訊息。 如需 AccessPolicies 的詳細資訊，請參閱 [AccessPolicy](https://docs.microsoft.com/rest/api/media/operations/accesspolicy)。
 
-下列範例示範如何建立 AccessPolicy：
+下列範例會示範如何 hello toocreate AccessPolicy:
 
 **HTTP 要求**
 
@@ -240,7 +240,7 @@ ms.lasthandoff: 08/29/2017
 
 **HTTP 回應**
 
-如果成功，則會傳回下列回應：
+如果成功，則會傳回下列回應 hello:
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -266,23 +266,23 @@ ms.lasthandoff: 08/29/2017
        "Permissions":2
     }
 
-### <a name="get-the-upload-url"></a>取得上傳 URL
+### <a name="get-hello-upload-url"></a>取得上傳 URL hello
 
-若要接收實際的上傳 URL，請建立 SAS 定位器。 定位器為想要存取資產中之檔案的用戶端定義連線端點的開始時間和類型。 您可以為指定的 AccessPolicy 與 Asset 配對建立多個 Locator 實體，以處理不同的用戶端要求與需求。 這些 Locator 每個都會使用 StartTime 值加上 AccessPolicy 的 DurationInMinutes 值，以判斷可以使用 URL 的時間長度。 如需詳細資訊，請參閱 [定位器](https://docs.microsoft.com/rest/api/media/operations/locator)。
+tooreceive hello 實際的上傳 URL，建立 SAS 定位器。 定位器會定義要 tooaccess 檔案資產中的用戶端 hello 開始時間和連線端點的型別。 要求與需求時，您便可以建立給定 AccessPolicy 與 Asset 配對 toohandle 不同的用戶端的多個 Locator 實體。 這些 locator 都會使用 hello StartTime 值加上的時間可以使用 URL hello AccessPolicy toodetermine hello 長度 hello 和 DurationInMinutes 值。 如需詳細資訊，請參閱 [定位器](https://docs.microsoft.com/rest/api/media/operations/locator)。
 
-SAS URL 具有下列格式：
+SAS URL 具有下列格式的 hello:
 
     {https://myaccount.blob.core.windows.net}/{asset name}/{video file name}?{SAS signature}
 
 適用一些考量事項：
 
 * 您一次不能有超過五個唯一定位器與指定的資產相關聯。 如需詳細資訊，請參閱＜定位器＞。
-* 如果您需要立即上傳檔案，您應該將 StartTime 值設為目前時間的五分鐘前。 這是因為用戶端電腦與媒體服務之間可能有時間差。 此外，您的 StartTime 值必須是以下日期時間格式：YYYY-MM-DDTHH:mm:ssZ (例如，"2014-05-23T17:53:50Z")。    
-* 建立 Locator 之後到它可供使用時，中間可能會有 30 到 40 秒的延遲。 此問題同時適用於 SAS URL 與原始定位器。
+* 如果您需要 tooupload 檔案立即，您應該設定您的 StartTime 值 toofive 分鐘，再 hello 目前的時間。 這是因為用戶端電腦與媒體服務之間可能有時間差。 此外，您的 StartTime 值必須在下列日期時間格式的 hello: YYYY-MM-DDTHH:mm:ssZ (例如，"2014年-05-23T17:53:50Z")。    
+* 可能有 30 到 40 秒延遲定位器建立 toowhen 它是可供使用之後。 此問題適用於 SAS URL tooboth 和原始定位器。
 
 如需 SAS 定位器的詳細資訊，請參閱[這個](http://southworks.com/blog/2015/05/27/reusing-azure-media-services-locators-to-avoid-facing-the-5-shared-access-policy-limitation/)部落格。
 
-下列範例會示範如何建立 SAS URL 定位器，如要求主體中的 Type 屬性所定義 ("1" 代表 SAS 定位器，"2" 代表隨選原始定位器)。 傳回的 **Path** 屬性包含上傳檔案必須使用的 URL。
+hello 下列範例顯示如何 toocreate SAS URL 定位器，所定義的 hello (如 SAS 定位器為"1") 和"2"的點播原始定位器 hello 要求主體中的類型屬性。 hello**路徑**屬性傳回包含 hello URL，您必須使用 tooupload 您的檔案。
 
 **HTTP 要求**
 
@@ -307,7 +307,7 @@ SAS URL 具有下列格式：
 
 **HTTP 回應**
 
-如果成功，則會傳回下列回應：
+如果成功，則會傳回下列回應 hello:
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -338,17 +338,17 @@ SAS URL 具有下列格式：
     }
 
 ### <a name="upload-a-file-into-a-blob-storage-container"></a>將檔案上傳至 blob 儲存體容器
-一旦設定 AccessPolicy 與 Locator，就會使用「Azure 儲存體 REST API」將實際檔案上傳到 Azure Blob 儲存體容器。 您必須將檔案以區塊 Blob 形式上傳。 「Azure 媒體服務」不支援分頁 Blob。  
+一旦您擁有 hello AccessPolicy 與 Locator 組，hello 實際的檔案是使用 hello Azure Storage REST Api 上傳的 tooan Azure blob 儲存體容器。 您必須將 hello 檔案上傳為區塊 blob。 「Azure 媒體服務」不支援分頁 Blob。  
 
 > [!NOTE]
-> 您必須將要上傳的檔案名稱新增到上一節中所收到的 Locator **Path** 值。 例如，https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? . . .
+> 您必須新增 hello 檔案名稱 hello 檔案中，您想 tooupload toohello 定位器**路徑**收到 hello 前一節中的值。 例如，https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? . . .
 >
 >
 
 如需使用 Azure 儲存體 blob 的詳細資訊，請參閱 [Blob 服務 REST API](https://docs.microsoft.com/rest/api/storageservices/Blob-Service-REST-API)。
 
-### <a name="update-the-assetfile"></a>更新 AssetFile
-現在，您已上傳您的檔案，請更新 FileAsset 大小 (及其他) 資訊。 例如：
+### <a name="update-hello-assetfile"></a>更新 AssetFile hello
+既然您已上傳您的檔案，更新 hello FileAsset 大小 （及其他） 資訊。 例如：
 
     MERGE https://wamsbayclus001rest-hs.cloudapp.net/api/Files('nb%3Acid%3AUUID%3Af13a0137-0a62-9d4c-b3b9-ca944b5142c5') HTTP/1.1
     Content-Type: application/json
@@ -371,12 +371,12 @@ SAS URL 具有下列格式：
 
 **HTTP 回應**
 
-如果成功，則會傳回下列內容：
+如果成功，則會傳回 hello 下列：
 
     HTTP/1.1 204 No Content
     ...
 
-## <a name="delete-the-locator-and-accesspolicy"></a>刪除 Locator 和 AccessPolicy
+## <a name="delete-hello-locator-and-accesspolicy"></a>刪除 hello Locator 和 AccessPolicy
 **HTTP 要求**
 
     DELETE https://wamsbayclus001rest-hs.cloudapp.net/api/Locators('nb%3Alid%3AUUID%3Aaf57bdd8-6751-4e84-b403-f3c140444b54') HTTP/1.1
@@ -391,7 +391,7 @@ SAS URL 具有下列格式：
 
 **HTTP 回應**
 
-如果成功，則會傳回下列內容：
+如果成功，則會傳回 hello 下列：
 
     HTTP/1.1 204 No Content
     ...
@@ -409,23 +409,23 @@ SAS URL 具有下列格式：
 
 **HTTP 回應**
 
-如果成功，則會傳回下列內容：
+如果成功，則會傳回 hello 下列：
 
     HTTP/1.1 204 No Content
     ...
 
-## <a id="encode"></a>將來源檔案編碼為一組調適性位元速率 MP4 檔案
+## <a id="encode"></a>Hello 原始程式檔編碼一組彈性位元速率 MP4 檔案
 
-將資產內嵌到媒體服務之後，可以先將媒體編碼、轉碼多工處理、加上浮水印等，再傳遞給用戶端。 這些活動會針對多個背景角色執行個體排定和執行，以確保高效能與可用性。 這些活動稱為作業，每個作業包含對資產檔案執行實際工作的不可部分完成的工作 (如需詳細資訊，請參閱[作業](/rest/api/media/services/job)、[工作](/rest/api/media/services/task)說明)。
+之前之後擷取到 Media Services，媒體資產可以編碼、 轉碼多工處理，浮水印等，它會傳遞 tooclients。 這些活動均已排程，並針對多種背景角色執行個體 tooensure 高效能、 可用性執行。 這些活動稱為作業和每個工作是不可部分完成的工作，請勿 hello hello 資產檔案上的實際工作所組成 (如需詳細資訊，請參閱[作業](/rest/api/media/services/job)，[工作](/rest/api/media/services/task)描述)。
 
-如稍早所提及，使用 Azure 媒體服務時，其中一個最常見的案例是將調適性位元速率串流傳遞給用戶端。 媒體服務可以以下列其中一種格式動態封裝一組自適性 MP4 檔案：HTTP 即時串流 (HLS)、Smooth Streaming 和 MPEG DASH。
+如已稍早所述，當使用 Azure Media Services 一個 hello 最常見的案例提供自動調整位元速率串流 tooyour 用戶端。 Media Services 可以動態封裝成 hello 下列格式的其中一個的一組彈性位元速率 MP4 檔案： HTTP Live Streaming (HLS)，Smooth Streaming、 MPEG DASH。
 
-下一節示範如何建立包含一個編碼工作的工作。 此工作指定使用 **媒體編碼器標準**，將夾層檔案轉換為一組調適性位元速率 MP4。 此節也會示範如何監視工作處理進度。 工作完成時，您將能夠建立存取資產所需的定位器。
+hello 下列區段會顯示如何 toocreate 之作業中包含一種編碼工作。 hello 工作指定 tootranscode hello 夾層檔為彈性位元速率 mp4 集使用一組**媒體編碼器標準**。 hello > 一節也會示範如何 toomonitor hello 工作處理進度。 Hello 工作完成時，您都可以 toocreate 定位器屬於所需的 tooget 存取 tooyour 資產。
 
 ### <a name="get-a-media-processor"></a>取得媒體處理器
-在媒體服務中，媒體處理器是可處理特定處理工作的元件，例如編碼、格式轉換、加密或解密媒體內容。 此教學課程中所示的編碼工作，我們將使用媒體編碼器標準。
+在媒體服務中，媒體處理器是可處理特定處理工作的元件，例如編碼、格式轉換、加密或解密媒體內容。 Hello 編碼工作顯示在本教學課程，我們 toouse hello 媒體編碼器標準。
 
-下列程式碼要求編碼器的識別碼。
+下列程式碼要求 hello 編碼器的識別碼 hello。
 
 **HTTP 要求**
 
@@ -469,9 +469,9 @@ SAS URL 具有下列格式：
     }
 
 ### <a name="create-a-job"></a>建立工作
-每個工作可以有一或多個工作，視您想要完成的處理類型而定。 您可以透過 REST API 以兩種方式的其中之一建立工作和其相關工作：工作可以透過 Job 實體上的 Tasks 導覽屬性，或透過 OData 批次處理進行內嵌定義。 媒體服務 SDK 使用批次處理。 不過，為了本主題中的程式碼範例可讀性，工作都是內嵌定義。 如需批次處理的資訊，請參閱 [開放式資料通訊協定 (OData) 批次處理](http://www.odata.org/documentation/odata-version-3-0/batch-processing/)。
+每個工作可以有一個或更多的工作，根據 hello 類型處理您想 tooaccomplish。 透過 hello REST API，您可以建立工作和其相關的工作中有兩種： 工作可以透過 hello 工作導覽屬性上作業的實體，或透過 OData 批次處理內嵌定義。 hello Media Services SDK 使用批次處理。 不過，本主題中的 hello 程式碼範例的 hello 可讀性，工作是內嵌定義。 如需批次處理的資訊，請參閱 [開放式資料通訊協定 (OData) 批次處理](http://www.odata.org/documentation/odata-version-3-0/batch-processing/)。
 
-下列範例會示範如何建立和張貼工作，並將一個工作設為在特定的解析度與品質將視訊編碼。 下列文件區段包含媒體編碼器標準處理器支援的所有 [工作預設](http://msdn.microsoft.com/library/mt269960) 清單。  
+hello 下列範例會示範如何 toocreate 和 post 作業的一項工作設定 tooencode 視訊在特定的解析度與品質。 下列文件區段的 hello 包含所有 hello hello 清單[工作預設](http://msdn.microsoft.com/library/mt269960)hello 媒體編碼器標準處理器所支援。  
 
 **HTTP 要求**
 
@@ -507,7 +507,7 @@ SAS URL 具有下列格式：
 
 **HTTP 回應**
 
-如果成功，則會傳回下列回應：
+如果成功，則會傳回下列回應 hello:
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -567,35 +567,35 @@ SAS URL 具有下列格式：
     }
 
 
-有任何工作要求中有一些重要事項要注意：
+在任何作業要求中有幾項重點 toonote:
 
-* TaskBody 屬性必須使用 XML 常值來定義工作所使用的輸入或輸出資產數目。 工作主題包含 XML 的 XML 結構描述定義。
-* 在 TaskBody 定義中，<inputAsset> 和 <outputAsset> 的每一個內部值必須設定為 JobInputAsset(value) 或 JobOutputAsset(value)。
+* TaskBody 屬性必須使用常值的輸入或輸出資產 hello 工作所使用的 XML toodefine hello 數目。 hello 工作主題包含 XML hello XML 結構描述定義。
+* 在 hello TaskBody 定義中，每個內部值<inputAsset>和<outputAsset>必須設定為 JobInputAsset(value) 或 JobOutputAsset(value)。
 * 每個工作可以有多個輸出資產。 一個 JobOutputAsset(x) 只能使用一次做為工作中的工作輸出。
 * 您可以指定 JobInputAsset 或 JobOutputAsset 做為工作的輸入資產。
 * 工作不能形成循環。
-* 您傳遞至 JobInputAsset 或 JobOutputAsset 的 value 參數代表資產的索引值。 實際資產定義在作業實體定義上的 InputMediaAsset 與 OutputMediaAsset 導覽屬性。
+* 您傳遞 tooJobInputAsset 或 JobOutputAsset 的 hello value 參數代表資產的 hello 索引值。 hello 實際資產被定義在 hello 工作實體定義的 hello Inputmediaasset 與 Outputmediaasset 導覽屬性中。
 
 > [!NOTE]
-> 由於媒體服務建置在 OData v3 之上，因此 InputMediaAsset 與 OutputMediaAsset 導覽屬性集合中的個別資產會透過 "__metadata : uri" 名稱 / 值組參考。
+> 因為 Media Services 內建於 OData v3，hello 個別資產 Inputmediaasset 與 Outputmediaasset 導覽屬性集合會透過參考"__metadata: uri"名稱 / 值組。
 >
 >
 
-* InputMediaAsset 對應至您在媒體服務中建立的一個或多個資產。 OutputMediaAsset 由系統建立。 它們不會參考現有的資產。
-* OutputMediaAsset 可以使用 assetName 屬性命名。 如果這個屬性不存在，則 OutputMediaAsset 的名稱是 <outputAsset> 元素的任何內部文字值，並且尾碼為工作名稱值或工作識別碼值 (在未定義 Name 屬性的情況下)。 例如，如果您將 assetName 的值設為 "Sample"，則 OutputMediaAsset Name 屬性會設為 "Sample"。 不過，如果您未設定 assetName 的值，但已將工作名稱設為 "NewJob"，則 OutputMediaAsset Name 會是 "JobOutputAsset(value)_NewJob"。
+* Inputmediaasset 對應 tooone 或您已建立 Media Services 中的多個資產。 Outputmediaasset 由 hello 系統建立。 它們不會參考現有的資產。
+* Outputmediaasset 可以使用 hello assetName 屬性命名。 如果這個屬性不存在，則 hello OutputMediaAsset hello 名稱是 hello 任何 hello 內部文字值<outputAsset>項目是與 hello 作業名稱值或 （在 hello hello Name 屬性不定義所在的情況下） 的 hello 作業識別碼值的尾碼。 例如，如果您設定 assetName 的值太 「 範例 」，則 OutputMediaAsset Name 屬性會設定 hello 太"Sample"。 不過，如果您未設定 assetName 的值，但未設定 hello 工作名稱太"NewJob"，然後 hello OutputMediaAsset Name 將"JobOutputAsset （值） _NewJob"。
 
-    下列範例示範如何設定 assetName 屬性：
+    hello 下列範例顯示如何 tooset hello assetName 屬性：
 
         "<?xml version=\"1.0\" encoding=\"utf-8\"?><taskBody><inputAsset>JobInputAsset(0)</inputAsset><outputAsset assetName=\"CustomOutputAssetName\">JobOutputAsset(0)</outputAsset></taskBody>"
-* 啟用工作鏈結：
+* tooenable 鏈結工作：
 
   * 工作必須有至少 2 個工作
-  * 必須有至少一個工作的輸入是工作中另一項工作的輸出。
+  * 必須有至少一個工作的輸入是 hello 作業中的另一個工作的輸出。
 
-如需詳細資訊，請參閱 [使用媒體服務 REST API 建立編碼工作](media-services-rest-encode-asset.md)。
+如需詳細資訊，請參閱[使用 hello 媒體服務 REST API 建立編碼工作](media-services-rest-encode-asset.md)。
 
 ### <a name="monitor-processing-progress"></a>監看處理進度
-您可以使用 State 屬性擷取工作狀態，如下列範例所示。
+Hello 下列範例所示，您可以使用 hello State 屬性擷取 hello 作業狀態。
 
 **HTTP 要求**
 
@@ -612,7 +612,7 @@ SAS URL 具有下列格式：
 
 **HTTP 回應**
 
-如果成功，則會傳回下列回應：
+如果成功，則會傳回下列回應 hello:
 
     HTTP/1.1 200 OK
     Cache-Control: no-cache
@@ -630,9 +630,9 @@ SAS URL 具有下列格式：
 
 
 ### <a name="cancel-a-job"></a>取消工作
-媒體服務可讓您透過 CancelJob 函式取消正在執行的工作。 如果您嘗試取消的工作狀態為已取消、取消中、錯誤或已完成，這項呼叫將傳回 400 錯誤碼。
+Media Services 可讓您 toocancel 透過 hello 利用 CancelJob 函數執行作業。 此呼叫會傳回 400 錯誤碼，如果您嘗試 toocancel 當其狀態為已取消的工作、 取消、 錯誤，或完成。
 
-下列範例示範如何呼叫 CancelJob。
+下列範例會示範如何 hello toocall CancelJob。
 
 **HTTP 要求**
 
@@ -649,12 +649,12 @@ SAS URL 具有下列格式：
 如果成功，會傳回 204 回應碼且沒有訊息主體。
 
 > [!NOTE]
-> 將工作識別碼做為參數傳遞到 CancelJob 時，您必須將工作識別碼進行 URL 編碼 (通常是 nb:jid:UUID: somevalue)。
+> 您必須進行 URL 編碼 hello 作業識別碼 (當成： somevalue) 時把它中當做參數 tooCancelJob 傳遞。
 >
 >
 
-### <a name="get-the-output-asset"></a>取得輸出資產
-下列程式碼示範如何要求輸出資產識別碼。
+### <a name="get-hello-output-asset"></a>取得 hello 輸出資產
+hello 下列程式碼會示範如何 toorequest hello 輸出資產識別碼。
 
 **HTTP 要求**
 
@@ -703,42 +703,42 @@ SAS URL 具有下列格式：
 
 
 
-## <a id="publish_get_urls"></a>使用 REST API 發行資產及取得串流和漸進式下載 URL
+## <a id="publish_get_urls"></a>發佈 hello 資產和取得資料流及使用 REST API 的漸進式下載 Url
 
-若要串流處理或下載資產，您必須先建立定位器來「發佈」它。 定位器提供對於資產中包含之檔案的存取。 媒體服務支援兩種類型的定位器：OnDemandOrigin 定位器，用於串流媒體 (例如，MPEG DASH、HLS 或 Smooth Streaming) 和存取簽章 (SAS) 定位器，用來下載媒體檔案。 如需 SAS 定位器的詳細資訊，請參閱[這個](http://southworks.com/blog/2015/05/27/reusing-azure-media-services-locators-to-avoid-facing-the-5-shared-access-policy-limitation/)部落格。
+toostream 或下載資產，您首先需要太 「 發行 」 它藉由建立定位器。 定位器提供存取 toofiles hello 資產中所包含。 Media Services 支援兩種類型的定位器： OnDemandOrigin 定位器，使用的 toostream 媒體 （例如，MPEG DASH、 HLS 或 Smooth Streaming） 和存取簽章 (SAS) 定位器，使用 toodownload 媒體檔案。 如需 SAS 定位器的詳細資訊，請參閱[這個](http://southworks.com/blog/2015/05/27/reusing-azure-media-services-locators-to-avoid-facing-the-5-shared-access-policy-limitation/)部落格。
 
-建立定位器之後，您便可以建立用來串流或下載檔案的 URL。
+一旦您建立 hello 定位器時，您可以建立 hello Url 使用的 toostream 或下載您的檔案。
 
 >[!NOTE]
->建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。
+>AMS 帳戶建立時**預設**串流端點就會加入 tooyour 帳戶 hello**已停止**狀態。 串流處理您的內容，並採取利用動態封裝和動態加密，toostart hello 串流端點，您想要從中 toostream 內容已經在 hello toobe**執行**狀態。
 
-Smooth Streaming 的串流 URL 具有下列格式：
+Smooth Streaming 的串流 URL 具有下列格式的 hello:
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest
 
-HLS 的串流 URL 具有下列格式：
+HLS 的串流 URL 具有下列格式的 hello:
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
 
-MPEG DASH 的串流 URL 具有下列格式：
+適用於 MPEG DASH 串流 URL 具有下列格式的 hello:
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
 
 
-用來下載檔案的 SAS URL 具有下列格式：
+使用 SAS URL toodownload 檔案具有下列格式的 hello:
 
     {blob container name}/{asset name}/{file name}/{SAS signature}
 
-本節示範如何執行「發佈」您的資產所需的下列工作。  
+本節說明影響 tooperform hello 下列工作需要太 「 發行 」 您的資產。  
 
-* 建立具有讀取權限的 AccessPolicy
+* 建立具有讀取權限的 AccessPolicy hello
 * 建立下載內容用的 SAS URL
 * 建立串流內容用的原始 URL
 
-### <a name="creating-the-accesspolicy-with-read-permission"></a>建立具有讀取權限的 AccessPolicy
-下載或串流任何媒體內容之前，請先定義具有讀取權限的 AccessPolicy，並建立適當的 Locator 實體，指定您想要為用戶端啟用的傳遞機制類型。 如需可用屬性的詳細資訊，請參閱 [AccessPolicy 實體屬性](https://docs.microsoft.com/rest/api/media/operations/accesspolicy#accesspolicy_properties)。
+### <a name="creating-hello-accesspolicy-with-read-permission"></a>建立具有讀取權限的 AccessPolicy hello
+然後再下載或串流任何媒體內容，先定義具有讀取權限的 AccessPolicy，並建立 hello 適當的 Locator 實體，指定 hello 類型的傳遞機制想 tooenable 為用戶端。 如需有關可用 hello 屬性的詳細資訊，請參閱[AccessPolicy 實體屬性](https://docs.microsoft.com/rest/api/media/operations/accesspolicy#accesspolicy_properties)。
 
-下列範例示範如何針對指定資產指定讀取權限的 AccessPolicy。
+hello 下列範例顯示如何 toospecify hello 指定之資產的讀取權限的 AccessPolicy。
 
     POST https://wamsbayclus001rest-hs.net/API/AccessPolicies HTTP/1.1
     Content-Type: application/json
@@ -753,15 +753,15 @@ MPEG DASH 的串流 URL 具有下列格式：
 
     {"Name": "DownloadPolicy", "DurationInMinutes" : "300", "Permissions" : 1}
 
-如果成功，會傳回 201 成功碼，描述您所建立的 AccessPolicy 實體。 然後，您將使用 AccessPolicy 識別碼以及資產的資產識別碼，其中此資產包含您要傳遞 (例如做為輸出資產) 以建立 Locator 實體的檔案。
+如果成功，會傳回 201 成功碼，描述您所建立的 hello AccessPolicy 實體。 然後，您可以使用在 hello AccessPolicy Id 與 hello hello 資產，其中包含您想要 toodeliver （例如輸出資產） toocreate hello Locator 實體的 hello 檔案資產識別碼。
 
 > [!NOTE]
-> 這個基本工作流程在擷取資產 時 (如本主題前面所討論) 與上傳檔案相同。 此外，就像上傳檔案，如果您 (或您的用戶端) 需要立即存取檔案，請將 StartTime 值設定為目前時間之前五分鐘。 需要進行此動作是因為用戶端電腦與媒體服務之間可能有時間差。 StartTime 值必須是以下日期時間格式：YYYY-MM-DDTHH:mm:ssZ (例如，"2014-05-23T17:53:50Z")。
+> 此基本工作流程是 hello 與上傳檔案時擷取資產 （如已稍早在本主題中所討論） 相同。 此外，例如上傳檔案，如果您 （或您的用戶端） 需要 tooaccess 檔案立即，設定您的 StartTime 值 toofive 分鐘，再 hello 目前的時間。 這個動作是必要的因為可能有時鐘誤差 hello 用戶端與 Media Services 之間。 hello StartTime 值必須在下列日期時間格式的 hello: YYYY-MM-DDTHH:mm:ssZ (例如，"2014年-05-23T17:53:50Z")。
 >
 >
 
 ### <a name="creating-a-sas-url-for-downloading-content"></a>建立下載內容用的 SAS URL
-下列程式碼示範如何取得可以用來下載先前建立及上傳之媒體檔案的 URL。 AccessPolicy 具有讀取權限集，而定位器路徑指向 SAS 下載 URL。
+hello，下列程式碼顯示如何 tooget 可以是使用的 toodownload 媒體檔案的 URL 建立和上傳先前。 hello AccessPolicy 具有讀取權限集，然後 hello 定位器路徑 tooa SAS 下載 URL。
 
     POST https://wamsbayclus001rest-hs.net/API/Locators HTTP/1.1
     Content-Type: application/json
@@ -776,7 +776,7 @@ MPEG DASH 的串流 URL 具有下列格式：
 
     {"AccessPolicyId": "nb:pid:UUID:38c71dd0-44c5-4c5f-8418-08bb6fbf7bf8", "AssetId" : "nb:cid:UUID:71d2dd33-efdf-ec43-8ea1-136a110bd42c", "StartTime" : "2014-05-17T16:45:53", "Type":1}
 
-如果成功，則會傳回下列回應：
+如果成功，則會傳回下列回應 hello:
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -819,24 +819,24 @@ MPEG DASH 的串流 URL 具有下列格式：
     }
 
 
-傳回的 **Path** 屬性包含 SAS URL。
+傳回的 hello**路徑**屬性包含 hello SAS URL。
 
 > [!NOTE]
-> 如果您下載儲存體加密內容，則必須手動將其解密才能呈現，或是在處理工作中使用儲存體解密 MediaProcessor，以純文字將處理的檔案輸出到 OutputAsset，然後從該資產下載。 如需有關處理的詳細資訊，請參閱＜使用媒體服務 REST API 建立編碼工作＞。 此外，已建立 SAS URL 定位器之後，無法更新它們。 例如，您無法以更新的 StartTime 值重複使用相同的定位器。 這是因為建立 SAS URL 的方式。 如果您想要在定位器過期之後存取資產以便下載，您必須用新的 StartTime 建立一個新的定位器。
+> 如果您下載儲存體加密內容，您就必須手動將其解密才能呈現，，或使用的 hello 中處理工作 toooutput Storage Decryption mediaprocessor 安全處理 hello 清除 tooan OutputAsset 中的檔案，然後從該資產下載。 如需有關處理的詳細資訊，請參閱使用 hello 媒體服務 REST API 建立編碼工作。 此外，已建立 SAS URL 定位器之後，無法更新它們。 例如，您無法重複使用 hello 與更新的 StartTime 值相同的定位器。 這是因為建立 SAS Url 的 hello 方式。 如果您想要 tooaccess 資產下載定位器過期之後，您必須建立一個新使用新的 StartTime。
 >
 >
 
 ### <a name="download-files"></a>下載檔案
-設定 AccessPolicy 與 Locator 之後，您可以使用 Azure 儲存體 REST API 下載檔案。  
+一旦您擁有 hello AccessPolicy 與 Locator 集，您可以使用下載檔案 hello Azure Storage REST Api。  
 
 > [!NOTE]
-> 您必須將要下載的檔案名稱新增到前一節中所收到的 Locator **Path** 值。 例如，https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? . . .
+> 您必須新增 hello 檔案名稱 hello 檔案中，您想 toodownload toohello 定位器**路徑**收到 hello 前一節中的值。 例如，https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? . . .
 >
 >
 
 如需使用 Azure 儲存體 blob 的詳細資訊，請參閱 [Blob 服務 REST API](https://docs.microsoft.com/rest/api/storageservices/Blob-Service-REST-API)。
 
-由於您先前執行的編碼工作 (編碼成自調適性 MP4 集)，您有多個可以漸進式下載的 MP4 檔案。 例如：    
+Hello 編碼您稍早執行的作業 （編碼成自動調整 MP4 組），因為您有多個，您可以漸進式下載 MP4 檔案。 例如：    
 
     https://storagetestaccount001.blob.core.windows.net/asset-38058602-a4b8-4b33-b9f0-6880dc1490ea/BigBuckBunny_H264_650kbps_AAC_und_ch2_96kbps.mp4?sv=2012-02-12&sr=c&si=166d5154-b801-410b-a226-ee2f8eac1929&sig=P2iNZJAvAWpp%2Bj9yV6TQjoz5DIIaj7ve8ARynmEM6Xk%3D&se=2015-02-14T01:13:05Z
 
@@ -856,7 +856,7 @@ MPEG DASH 的串流 URL 具有下列格式：
 
 
 ### <a name="creating-a-streaming-url-for-streaming-content"></a>建立串流內容用的串流 URL
-下列程式碼示範如何建立串流 URL 定位器：
+hello 下列程式碼會示範如何 toocreate 串流的 URL 定位器：
 
     POST https://wamsbayclus001rest-hs/API/Locators HTTP/1.1
     Content-Type: application/json
@@ -871,7 +871,7 @@ MPEG DASH 的串流 URL 具有下列格式：
 
     {"AccessPolicyId": "nb:pid:UUID:38c71dd0-44c5-4c5f-8418-08bb6fbf7bf8", "AssetId" : "nb:cid:UUID:eb5540a2-116e-4d36-b084-7e9958f7f3c3", "StartTime" : "2014-05-17T16:45:53",, "Type":2}
 
-如果成功，則會傳回下列回應：
+如果成功，則會傳回下列回應 hello:
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -913,23 +913,23 @@ MPEG DASH 的串流 URL 具有下列格式：
        }
     }
 
-若要在串流媒體播放器中串流 Smooth Streaming 原始 URL，您必須在 Path 屬性後附加 Smooth Streaming 資訊清單檔案的名稱，後面再接 "/manifest"。
+toostream Smooth Streaming 原始 URL，在串流媒體播放器，您必須將附加的 hello Smooth Streaming 資訊清單檔案，後面接"/manifest"hello 名稱 hello 路徑屬性。
 
     http://amstestaccount001.streaming.mediaservices.windows.net/ebf733c4-3e2e-4a68-b67b-cc5159d1d7f2/BigBuckBunny.ism/manifest
 
-若要串流 HLS，請在 "/manifest" 之後附加 (format=m3u8-aapl) 。
+toostream HLS，附加 (格式 = m3u8 aapl) hello 後"接 /manifest"。
 
     http://amstestaccount001.streaming.mediaservices.windows.net/ebf733c4-3e2e-4a68-b67b-cc5159d1d7f2/BigBuckBunny.ism/manifest(format=m3u8-aapl)
 
-若要串流 MPEG DASH，請在 "/manifest" 之後附加 (format=mpd-time-csf) 。
+toostream MPEG DASH 附加 (格式 = mpd-時間-csf) hello 後"接 /manifest"。
 
     http://amstestaccount001.streaming.mediaservices.windows.net/ebf733c4-3e2e-4a68-b67b-cc5159d1d7f2/BigBuckBunny.ism/manifest(format=mpd-time-csf)
 
 
 ## <a id="play"></a>播放您的內容
-若要串流您的視訊，請使用 [Azure 媒體服務播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
+視訊，您使用 toostream [Azure Media Services Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
 
-若要測試漸進式下載，請將 URL 貼入瀏覽器 (例如，IE、Chrome、Safari)。
+tootest 漸進式下載，將 URL 貼到瀏覽器 （例如，IE、 Chrome、 Safari）。
 
 ## <a name="next-steps-media-services-learning-paths"></a>後續步驟：媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

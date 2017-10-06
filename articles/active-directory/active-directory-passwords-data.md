@@ -1,6 +1,6 @@
 ---
 title: "Azure AD SSPR 資料需求 | Microsoft Docs"
-description: "Azure AD 自助式密碼重設的資料需求和如何滿足這些需求"
+description: "資料需求的 Azure AD 自助式密碼重設以及 toosatisfy 它們"
 services: active-directory
 keywords: 
 documentationcenter: 
@@ -16,24 +16,24 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: 2d1afd2d1265b371e0d311ed70fffbc55874b0a7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b68a1d7914dcd0bb4509d0e94914dc4309f4463a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-password-reset-without-requiring-end-user-registration"></a>部署密碼重設而不需要使用者註冊
 
-需要有驗證資料才能部署自助式密碼重設 (SSPR)。 某些組織會要求使用者自行輸入其驗證資料，但許多組織會選擇與 Active Directory 中現有的資料同步處理。 如果您已正確格式化內部部署目錄中的資料，並[使用快速設定完成 Azure AD Connect 設定](./connect/active-directory-aadconnect-get-started-express.md)，則 Azure AD 和 SSPR 可取用該資料，而不需要使用者互動。
+部署自助密碼重設 (SSPR) 需要驗證資料 toobe 存在。 某些組織有使用者輸入他們的驗證資料本身，但許多組織都希望 toosynchronize 與 Active Directory 中的現有資料。 如果您已正確地格式化資料在內部部署目錄中，並設定[使用快速設定的 Azure AD Connect](./connect/active-directory-aadconnect-get-started-express.md)，資料由可用 tooAzure AD 和 SSPR 與不需要使用者互動。
 
-任何電話號碼必須是這種格式才有效：+國碼 電話號碼。範例：+1 4255551234。
+任何電話號碼必須是在 hello 格式 + CountryCode PhoneNumber 範例: + 1 4255551234 toowork 正確。
 
 > [!NOTE]
-> 密碼重設不支援電話分機。 即使是 +1 4255551234X12345 格式，撥號之前都會移除分機號碼。
+> 密碼重設不支援電話分機。 即使在 hello + 1 4255551234 X 12345 格式 hello 呼叫開始之前，會移除延伸模組。
 
 ## <a name="fields-populated"></a>填入的欄位
 
-如果您使用 Azure AD Connect 的預設設定，則會建立下列對應。
+如果您使用下列 Azure AD Connect hello 中的 hello 預設設定建立對應。
 
 | 內部部署 AD | Azure AD | Azure AD 驗證的連絡資訊 |
 | --- | --- | --- |
@@ -43,21 +43,21 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="security-questions-and-answers"></a>安全性問題和答案
 
-安全性問題和答案會安全地儲存在 Azure AD 租用戶中，使用者只能透過 [SSPR 註冊入口網站](https://aka.ms/ssprsetup)存取。 系統管理員無法看到或修改其他使用者的問題和答案內容。
+安全性問題和答案會安全地儲存在 Azure AD 租用戶和是透過 hello 只存取 toousers [SSPR 註冊入口網站](https://aka.ms/ssprsetup)。 系統管理員無法看到或修改其他使用者的問題和答案 hello 內容。
 
 ### <a name="what-happens-when-a-user-registers"></a>使用者註冊時的情況
 
-當使用者註冊時，註冊頁面會設定下列欄位：
+當使用者註冊時，hello 註冊] 頁面上設定下列欄位的 hello:
 
 * 驗證電話
 * 驗證電子郵件
 * 安全性問題和答案
 
-如果您已提供 [行動電話] 或 [備用電子郵件] 的值，使用者即使尚未註冊此服務，也可以立即使用這些值來重設其密碼。 此外，使用者會在第一次註冊時看到這些值，並可隨意加以修改。 成功註冊之後，這些值就會分別保存在 [驗證電話] 和 [驗證電子郵件] 欄位中。
+如果您提供的值**行動電話**或**備用電子郵件**，使用者可以立即使用這些值 tooreset 他們的密碼，即使它們尚未註冊 hello 服務。 此外，使用者 hello 註冊第一次，請參閱這些值，而且如果他們想加以修改。 成功註冊之後，這些值將會保存在 hello**驗證電話**和**驗證電子郵件**分別欄位。
 
 ## <a name="set-and-read-authentication-data-using-powershell"></a>使用 PowerShell 設定和讀取驗證資料
 
-您可以使用 PowerShell 設定下列欄位
+可以使用 PowerShell 來設定下列欄位的 hello
 
 * 替代電子郵件
 * 行動電話
@@ -65,7 +65,7 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="using-powershell-v1"></a>使用 PowerShell V1
 
-首先，您必須[下載並安裝 Azure AD PowerShell 模組](https://msdn.microsoft.com/library/azure/jj151815.aspx#bkmk_installmodule)。 安裝之後，即可依照下列步驟設定每一個欄位。
+tooget 開始，您需要太[下載並安裝 hello Azure AD PowerShell 模組](https://msdn.microsoft.com/library/azure/jj151815.aspx#bkmk_installmodule)。 一旦您已經安裝，您可以依照每個欄位，請遵循 tooconfigure 的 hello 步驟。
 
 #### <a name="set-authentication-data-with-powershell-v1"></a>使用 PowerShell V1 設定驗證資料
 
@@ -91,7 +91,7 @@ Get-MsolUser -UserPrincipalName user@domain.com | select PhoneNumber
 Get-MsolUser | select DisplayName,UserPrincipalName,AlternateEmailAddresses,MobilePhone,PhoneNumber | Format-Table
 ```
 
-#### <a name="authentication-phone-and-authentication-email-can-only-be-read-using-powershell-v1-using-the-commands-that-follow"></a>必須在 Powershell V1 中使用下列命令，才能讀取 [驗證電話] 和 [驗證電子郵件]
+#### <a name="authentication-phone-and-authentication-email-can-only-be-read-using-powershell-v1-using-hello-commands-that-follow"></a>驗證電話驗證電子郵件可以只讀取和使用 Powershell V1 使用 hello 命令後面
 
 ```
 Connect-MsolService
@@ -101,9 +101,9 @@ Get-MsolUser -UserPrincipalName user@domain.com | select -Expand StrongAuthentic
 
 ### <a name="using-powershell-v2"></a>使用 PowerShell V2
 
-首先，您必須[下載並安裝 Azure AD V2 PowerShell 模組](https://github.com/Azure/azure-docs-powershell-azuread/blob/master/Azure%20AD%20Cmdlets/AzureAD/index.md)。 安裝之後，即可依照下列步驟設定每一個欄位。
+tooget 開始，您需要太[下載並安裝 Azure AD V2 hello PowerShell 模組](https://github.com/Azure/azure-docs-powershell-azuread/blob/master/Azure%20AD%20Cmdlets/AzureAD/index.md)。 一旦您已經安裝，您可以依照每個欄位，請遵循 tooconfigure 的 hello 步驟。
 
-若要從支援 Install-Module 的最新 PowerShell 版本快速安裝，請執行下列命令 (第一行只是檢查是否已安裝)︰
+快速從最新版本的 PowerShell 支援 Find-module、 install-module tooinstall 執行這些命令 （hello 第一行只檢查 toosee 如果安裝的話）：
 
 ```
 Get-Module AzureADPreview
@@ -137,14 +137,14 @@ Get-AzureADUser | select DisplayName,UserPrincipalName,otherMails,Mobile,Telepho
 
 ## <a name="next-steps"></a>後續步驟
 
-下列連結提供有關使用 Azure AD 重設密碼的其他資訊
+hello 下列連結提供有關密碼重設使用 Azure AD 的其他資訊
 
 * [**快速入門**](active-directory-passwords-getting-started.md) - 開始執行 Azure AD 自助式密碼管理 
 * [**授權**](active-directory-passwords-licensing.md) - 設定 Azure AD 授權
-* [**推出**](active-directory-passwords-best-practices.md) - 使用此處提供的指引來規劃 SSPR 並部署給使用者
-* [**自訂**](active-directory-passwords-customize.md) - 為您的公司自訂 SSPR 體驗的外觀及操作方式。
+* [**首度發行**](active-directory-passwords-best-practices.md) -計劃和部署 SSPR tooyour 使用者 hello 指引，請參閱
+* [**自訂**](active-directory-passwords-customize.md) -自訂的 hello SSPR 體驗您的公司 hello 外觀與風格。
 * [**原則**](active-directory-passwords-policy.md) - 了解並設定 Azure AD 密碼原則
 * [**報告**](active-directory-passwords-reporting.md) - 探索您的使用者是否、何時、何地存取 SSPR 功能
-* [**技術性深入探討**](active-directory-passwords-how-it-works.md) - 深入探索以了解其運作方式
-* [**常見問題集**](active-directory-passwords-faq.md) - 如何？ 原因為何？ 何事？ 何地？ 何人？ 何時？ - -您一直想要詢問之問題的答案
-* [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何解決我們看到的 SSPR 常見問題
+* [**技術的深入探討**](active-directory-passwords-how-it-works.md) -hello 帘 toounderstand 後方移它的運作方式
+* [**常見問題集**](active-directory-passwords-faq.md) - 如何？ 原因為何？ 何事？ 何地？ 何人？ 何時？ -回答您總是想 tooask tooquestions
+* [**疑難排解**](active-directory-passwords-troubleshoot.md) -了解如何 tooresolve 常見問題，我們會看到與 SSPR

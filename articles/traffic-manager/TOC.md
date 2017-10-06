@@ -21,8 +21,8 @@
 ## [驗證流量管理員設定](traffic-manager-testing-settings.md)
 ## [合併負載平衡服務](traffic-manager-load-balancing-azure.md)
 ## [測量流量管理員效能](traffic-manager-performance-considerations.md)
-## [使用 PowerShell 管理流量管理員](traffic-manager-powershell-arm.md)
-## [將您的網際網路網域指向流量管理員](traffic-manager-point-internet-domain.md)
+## [使用 PowerShell toomanage Traffic Manager](traffic-manager-powershell-arm.md)
+## [指向您的網際網路網域 tooTraffic 管理員](traffic-manager-point-internet-domain.md)
 ## 疑難排解
 ### [針對 Azure 流量管理員上的已降級狀態進行疑難排解](traffic-manager-troubleshooting-degraded.md)
 

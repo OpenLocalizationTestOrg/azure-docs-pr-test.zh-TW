@@ -1,6 +1,6 @@
 ---
-title: "使用適用於 Eclipse 的 Azure 工具組，將 Spring Boot 應用程式發佈為 Docker 容器 | Microsoft Docs"
-description: "了解如何使用適用於 Eclipse 的 Azure 工具組，將 Web 應用程式發佈至 Microsoft Azure 作為 Docker 容器。"
+title: "aaaPublish Spring 開機應用程式以使用 Docker 容器 hello Azure Toolkit for Eclipse |Microsoft 文件"
+description: "深入了解如何為 Docker 容器使用的 Azure web 應用程式 tooMicrosoft toopublish hello Azure Toolkit for Eclipse。"
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,27 +14,27 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/21/2017
 ms.author: robmcm
-ms.openlocfilehash: fcb60fcfbda26f5f37bfb0edcb01f8737188b6bc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 29390c49c339a1ebb87cb3951b21cea01c0da15f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-a-spring-boot-app-as-a-docker-container-by-using-the-azure-toolkit-for-eclipse"></a>使用適用於 Eclipse 的 Azure 工具組，將 Spring Boot 應用程式發佈為 Docker 容器
+# <a name="publish-a-spring-boot-app-as-a-docker-container-by-using-hello-azure-toolkit-for-eclipse"></a>Docker 容器發行 Spring 開機應用程式使用 hello Azure Toolkit for Eclipse
 
-[Spring Framework] 是一個開放原始碼解決方案，可協助 Java 開發人員建立企業級應用程式。 建立在該平台之基礎上的其中一個更熱門的專案是 [Spring Boot]，其中會提供用來建立獨立 Java 應用程式的簡化方法。
+hello [Spring 架構]是開放原始碼解決方案，可協助建立企業級應用程式的 Java 開發人員。 其中一個 hello 更常用建置的專案是在該平台是[Spring 開機]，可提供簡單的方法建立獨立的 Java 應用程式。
 
-[Docker] 是開放原始碼解決方案，可協助開發人員自動化部署、調整及管理容器中執行的應用程式。
+[Docker]是開放原始碼解決方案，可協助開發人員自動化 hello 部署、 調整及管理其容器中執行的應用程式。
 
-本教學課程會逐步引導您使用適用於 Eclipse 的 Azure 工具組，將 Spring Boot 應用程式作為 Docker 容器部署到 Microsoft Azure。
+本教學課程中引導您完成 hello 步驟 toodeploy Spring 開機應用程式，Azure Docker 容器 tooMicrosoft 為使用 hello Azure Toolkit for Eclipse。
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
-## <a name="clone-the-default-spring-boot-docker-repository"></a>複製預設 Spring Boot Docker 存放庫
+## <a name="clone-hello-default-spring-boot-docker-repository"></a>複製 hello 預設 Spring 開機 Docker 儲存機制
 
-### <a name="import-the-public-repository"></a>匯入公用存放庫
+### <a name="import-hello-public-repository"></a>匯入 hello 公用儲存機制
 
-下列步驟會逐步引導您使用 IntelliJ 將 Spring Boot Docker 存放庫複製到本機電腦。 如果您想要使用命令列，請參閱[將 Spring Boot 應用程式部署到 Azure Container Service 中的 Linux][Deploy Spring Boot on Linux in ACS]。
+hello 下列步驟引導您完成使用 IntelliJ 複製 hello Spring 開機 Docker 儲存機制 tooyour 本機電腦。 如果您想 toouse 命令列，請參閱[部署 Spring 開機應用程式在 Azure 容器服務中的 Linux 上][Deploy Spring Boot on Linux in ACS]。
 
 1. 開啟 Eclipse。
 
@@ -42,7 +42,7 @@ ms.lasthandoff: 08/03/2017
 
    ![檔案匯入功能表][CL01]
 
-1. 開啟 [匯入] 對話方塊時：
+1. 當 hello**匯入**對話方塊隨即開啟：
 
    a. 展開 [Git]。
 
@@ -52,7 +52,7 @@ ms.lasthandoff: 08/03/2017
 
    ![匯入對話方塊][CL02]
 
-1. 在 [Select Repository Source] (選取存放庫來源) 頁面上：
+1. 在 hello**選取儲存機制來源**頁面：
 
    a. 選取 [Clone URI] (複製 URI)。
    
@@ -60,37 +60,37 @@ ms.lasthandoff: 08/03/2017
 
    ![[選取存放庫來源] 頁面][CL03]
 
-1. 在 [Source Git Repository] (來源 Git 存放庫) 頁面上：
+1. 在 hello**來源 Git 儲存機制**頁面：
 
-   a. 針對 [URI]，輸入 `https://github.com/spring-guides/gs-spring-boot-docker.git`。 此步驟應該會自動填入 [主機] 和 [存放庫路徑] 欄位的正確值。
+   a. 針對 [URI]，輸入 `https://github.com/spring-guides/gs-spring-boot-docker.git`。 此步驟應該自動填入 hello**主機**和**儲存機制路徑**hello 欄位更正的值。
    
-   b. Spring Boot 是公用存放庫，因此您不應該輸入 Git 使用者名稱和密碼。
+   b. 讓您的 Git 使用者名稱和密碼，您應該不需要 tooenter，是公用的 hello Spring 開機儲存機制。
    
    c. 按一下 [下一步] 。
 
    ![[來源 Git 存放庫] 頁面][CL04]
 
-1. 在 [Branch Selection] \(分支選擇)  頁面上，按一下 [下一步]。
+1. 在 hello**分支選取**頁面上，按一下**下一步**。
 
    ![[分支選擇] 頁面][CL05]
 
-1. 在 [Local Destination] (本機目的地) 頁面上：
+1. 在 hello**本機目的地**頁面：
 
-   a. 指定您想要放置本機存放庫的本機資料夾。
+   a. 指定您想要您的本機儲存機制的 hello 本機資料夾。
    
-   b.這是另一個 C# 主控台應用程式。 按一下 [下一步] 。
+   b. 按一下 [下一步] 。
 
    ![[本機目的地] 頁面][CL06]
 
-1. 在 [Select a wizard to use for importing projects] (選取要用於匯入專案的精靈) 頁面上：
+1. 在 hello**選取匯入專案精靈 toouse**頁面：
 
    a. 選取 [Import as a general project] (匯入為一般專案)。
    
    b.這是另一個 C# 主控台應用程式。 按一下 [下一步] 。
 
-   ![[選取要用於匯入專案的精靈] 頁面][CL07]
+   ![[選擇匯入專案精靈 toouse] 頁面][CL07]
 
-1. 在 [Import Projects] (匯入專案) 頁面上：
+1. 在 hello**匯入專案**頁面：
 
    a. 指定專案名稱。
    
@@ -98,19 +98,19 @@ ms.lasthandoff: 08/03/2017
 
    ![[匯入專案] 頁面][CL08]
 
-1. 成功複製存放庫時，您會看到 Eclipse 中列出所有檔案。
+1. 當 hello 儲存機制成功複製時，您會看到在 Eclipse 中列出的所有 hello 檔案。
 
    ![Local repository (本機存放庫)][CL09]
 
 ### <a name="create-a-maven-project-from-your-local-repository"></a>從本機存放庫建立 Maven 專案
 
-Spring Boot Docker 存放庫包含將用於此教學課程的已完成 Maven 專案。 
+hello Spring 開機 Docker 儲存機制包含將用於此教學課程已完成的 Maven 專案。 
 
 1. 按一下 [檔案] > [匯入]。
 
-   ![[檔案] 功能表上的 [匯入] 命令][CL01]
+   ![匯入 hello 檔案 功能表上的命令][CL01]
 
-1. 開啟 [匯入] 對話方塊時：
+1. 當 hello**匯入**對話方塊隨即開啟：
 
    a. 展開 [Maven]。
    
@@ -120,83 +120,83 @@ Spring Boot Docker 存放庫包含將用於此教學課程的已完成 Maven 專
 
    ![匯入對話方塊][MV01]
 
-1. 在 [Maven Projects] (Maven 專案) 頁面上：
+1. 在 hello **Maven 專案**頁面：
 
-   a. 針對 [根目錄]，指定您本機存放庫中的 **complete** 資料夾。
+   a. 如**根目錄**，指定 hello**完成**本機儲存機制中的資料夾。
    
-   b. 展開 [進階] 區段，然後在 [Name template] (名稱範本) 中輸入自訂名稱。
+   b. 展開 hello**進階**區段，然後輸入的自訂名稱**名稱範本**。
    
-   c. 針對專案中的 **pom.xml** 檔案選取方塊。
+   c. 選取 hello 方塊 hello **pom.xml** hello 專案中的檔案。
    
    d. 按一下 [完成] 。
 
    ![[Maven 專案] 頁面][MV02]
 
-1. 成功開啟 Maven 專案時，您會看到 Eclipse 中列出第二個專案。
+1. 已成功開啟 hello Maven 專案時，您會看到在 Eclipse 中列出的第二個專案。
 
    ![Local Maven project (本機 Maven 專案)][MV03]
 
 ## <a name="build-your-spring-boot-app-by-using-maven"></a>使用 Maven 建置 Spring Boot 應用程式
 
-1. 在 Eclipse 專案總管中，選取 Maven 專案。
+1. 在 [hello Eclipse 的專案總管] 中，選取 hello Maven 專案。
 
 1. 按一下 [執行] > [執行身分] > [Maven 組建]。
 
-   ![以 Maven 組建方式執行的命令][BU01]
+   ![命令 toorun 為 Maven 建置][BU01]
 
-1. 成功建置應用程式時，主控台視窗會顯示狀態。
+1. 當您的應用程式建置成功時，hello 主控台視窗會顯示 hello 狀態。
 
    ![Successful Maven build (成功的 Maven 組建)][BU02]
 
-## <a name="publish-your-web-app-to-azure-by-using-a-docker-container"></a>使用 Docker 容器將您的 Web 應用程式發佈至 Azure
+## <a name="publish-your-web-app-tooazure-by-using-a-docker-container"></a>使用 Docker 容器發行您的 web 應用程式 tooAzure
 
-1. 在 Eclipse 專案總管中，選取 Maven 專案。
+1. 在 [hello Eclipse 的專案總管] 中，選取 hello Maven 專案。
 
-1. 按一下 Azure [發佈] 功能表，然後按一下 [發佈為 Docker 容器]。
+1. 按一下 hello Azure**發行**功能表，然後再按一下**發佈為 Docker 容器**。
 
    ![[發佈為 Docker 容器] 命令][PU01]
 
-1. 當 [在 Azure 上部署 Docker 容器] 對話方塊顯示時：
+1. 當 hello**在 Azure 上部署 Docker 容器** 對話方塊隨即出現：
 
    a. 輸入自訂 Docker 映像名稱。
    
-   b. 在 [Artifact to deploy] (要部署的構件) 中，指定您剛剛建置之 **gs-spring-boot-docker-0.1.0.jar** 檔案的路徑。
+   b. 如**成品 toodeploy**，指定 hello 路徑 toohello **gs-spring-開機-docker-0.1.0.jar**您剛才建置的檔案。
 
    ![Specify Docker options (指定 Docker 選項)][PU02]
 
    顯示任何現有的 Docker 主機。 
 
-1. 如果您選擇部署到現有的主機，您可以跳至步驟 5。 否則，請使用下列步驟來建立主機：
+1. 如果您選擇 toodeploy tooan 現有主機，您可以略過 toostep 5。 否則，請使用下列步驟 toocreate 主機 hello:
 
    a. 按一下 [新增] 。
 
       ![新增 Docker 主機][PU03]
 
-   b. 當 [建立 Docker 主機] 對話方塊顯示時，您可以選擇接受預設值，或是為新的 Docker 主機指定任何自訂設定。 (如需各種設定的詳細說明，請參閱[使用適用於 IntelliJ 的 Azure 工具組，將 Web 應用程式發佈為 Docker 容器][Publish Container with Azure Toolkit])。當您已指定要使用的設定時，按一下 [下一步]。
+   b. 當 hello**建立 Docker 主機** 對話方塊隨即出現，您可以選擇 tooaccept hello 預設值，或者您可以指定新的 Docker 主機的任何自訂設定。 (如需詳細說明 hello 的各種設定，請參閱[為 Docker 容器發行 web 應用程式，使用 IntelliJ hello Azure Toolkit][Publish Container with Azure Toolkit]。)按一下**下一步**當您指定哪些設定 toouse。
 
       ![指定 Docker 主機選項][PU04]
 
-   c. 您可以選擇使用 Azure Key Vault 中的現有登入認證，或者可以選擇輸入新的 Docker 登入認證。 當您已指定選項時，按一下 [完成]。
+   c. 您可以從 Azure 金鑰保存庫選擇 toouse 現有登入認證，或者您可以選擇 tooenter 新 Docker 登入認證。 當您已指定選項時，按一下 [完成]。
 
       ![指定 Docker 主機認證][PU05]
 
-1. 選取您的 Docker 主機，然後按一下 [下一步]。
+1. 選取您的 Docker 主機，然後按一下下一步。
 
-   ![選取要使用的 Docker 主機][PU06]
+   ![選取 Docker 主機 toouse][PU06]
 
-1. 在 [在 Azure 上部署 Docker 容器] 對話方塊的最後一頁，指定下列選項：
+1. Hello hello 最後一頁上**在 Azure 上部署 Docker 容器**對話方塊方塊中，指定下列選項的 hello:
 
-   a. 您可以選擇對將會主控 Docker 容器的容器指定自訂名稱，或者您可以接受預設值。
+   a. 您可以選擇 toospecify hello 容器，將會裝載您的 Docker 容器的自訂名稱，或者您可以接受 hello 預設值。
 
-   b. 使用下列語法輸入 Docker 主機的 TCP 連接埠：[外部連接埠]:[內部連接埠]。 例如，**80:8080** 會指定外部連接埠 80 和預設內部 Spring Boot 連接埠 8080。
+   b. 使用下列語法的 hello docker 主機輸入 hello TCP 連接埠： *[外部連接埠]*:*[內部連接埠]*。 例如， **80:8080**指定外部連接埠 80 與 hello 預設 Spring 開機的內部連接埠 8080。
    
-      如果您已自訂內部連接埠 (例如藉由編輯 application.yml 檔案)，您必須指定連接埠號碼才能在 Azure 中正確路由。
+      如果您已自訂您的內部連接埠 （例如，藉由編輯 hello application.yml 檔案），您需要 toospecify hello 連接埠號碼 hello 正確路由的 toooccur 在 Azure 中。
 
    c. 設定這些選項之後，按一下 [完成]。
 
    ![在 Azure 上部署 Docker 容器][PU07]
 
-1. 當 Azure 工具組完成發佈時，Azure 活動記錄會顯示狀態為「已發佈」。
+1. 當 hello Azure Toolkit 完成發行時，hello Azure 活動記錄檔顯示**發佈**hello 狀態。
 
    ![已成功部署 Docker 主機][PU08]
 
@@ -210,8 +210,8 @@ Spring Boot Docker 存放庫包含將用於此教學課程的已完成 Maven 專
 [Deploy Spring Boot on Linux in ACS]:container-service/kubernetes/container-service-deploy-spring-boot-app-on-linux.md
 [Docker]: https://www.docker.com/
 [Publish Container with Azure Toolkit]: ./azure-toolkit-for-intellij-publish-as-docker-container.md
-[Spring Boot]: http://projects.spring.io/spring-boot/
-[Spring Framework]: https://spring.io/
+[Spring 開機]: http://projects.spring.io/spring-boot/
+[Spring 架構]: https://spring.io/
 
 <!-- IMG List -->
 

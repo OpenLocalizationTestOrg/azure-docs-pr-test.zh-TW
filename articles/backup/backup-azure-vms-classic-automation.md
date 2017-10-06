@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 部署和管理 Azure VM 的備份 | Microsoft Docs"
-description: "了解如何使用 PowerShell 部署和管理 Azure 備份。"
+title: "aaaDeploy 及管理 Azure Vm 使用 PowerShell 備份 |Microsoft 文件"
+description: "深入了解如何 toodeploy 和管理使用 PowerShell 的 Azure 備份。"
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -15,46 +15,46 @@ ms.topic: article
 ms.date: 8/2/2017
 ms.author: markgal;trinadhk;jimpark
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 5f0f06adb8177ce2d17aa0b40666470279c04e22
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f3ecd3f94c5e3e8fc8018e8786302edd4847744b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azurermbackup-cmdlets-to-back-up-virtual-machines"></a>使用 AzureRM.Backup Cmdlet 備份虛擬機器
+# <a name="use-azurermbackup-cmdlets-tooback-up-virtual-machines"></a>使用虛擬機器 AzureRM.Backup cmdlet tooback
 > [!div class="op_single_selector"]
 > * [資源管理員](backup-azure-vms-automation.md)
 > * [傳統](backup-azure-vms-classic-automation.md)
 >
 >
 
-本文說明如何使用 Azure PowerShell 來備份和復原 Azure VM。 Azure 建立和處理資源的部署模型有二種：資源管理員和傳統。 本文說明如何使用傳統部署模型來將資料備份到備份保存庫。 如果您尚未在訂用帳戶中建立備份保存庫，請參閱[使用 AzureRM.RecoveryServices.Backup Cmdlet 備份虛擬機器](backup-azure-vms-automation.md)這篇文章的 Resource Manager 版本。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+本文將說明如何備份及修復 Azure Vm 的 toouse Azure PowerShell。 Azure 建立和處理資源的部署模型有二種：資源管理員和傳統。 本文說明如何使用 hello 傳統部署模型 tooback 資料 tooa 備份保存庫註冊。 如果您不在您的訂用帳戶中建立備份保存庫，請參閱這篇文章，hello 資源管理員版本[虛擬機器使用 AzureRM.RecoveryServices.Backup cmdlet tooback](backup-azure-vms-automation.md)。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。
 
 > [!IMPORTANT]
-> 您現在可以將備份保存庫升級至復原服務保存庫。 如需詳細資訊，請參閱[將備份保存庫升級至復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)文章。 Microsoft 鼓勵您將備份保存庫升級至復原服務保存庫。<br/> 在 2017 年 10 月 15 日之後，您就不能使用 PowerShell 建立備份保存庫。 **在 2017 年 11 月 1 日以前**：
->- 所有其餘的備份保存庫都會自動升級至復原服務保存庫。
->- 您將無法在傳統入口網站中存取您的備份資料。 相反地，使用 Azure 入口網站來存取您在復原服務保存庫中的備份資料。
+> 您現在可以升級您備份保存庫 tooRecovery 服務保存庫。 如需詳細資訊，請參閱 hello 文章[升級復原服務保存庫備份保存庫 tooa](backup-azure-upgrade-backup-to-recovery-services.md)。 Microsoft 會鼓勵 tooupgrade 您備份保存庫 tooRecovery 服務保存庫。<br/> 2017 年 10 月 15 之後，您無法使用 PowerShell toocreate 備份保存庫。 **在 2017 年 11 月 1 日以前**：
+>- 所有剩餘的備份保存庫會自動升級的 tooRecovery 服務保存庫。
+>- 您將無法 tooaccess hello 傳統入口網站中無法備份資料。 相反地，使用 Azure 入口網站 tooaccess hello 備份資料復原服務保存庫中。
 >
 
 ## <a name="concepts"></a>概念
-本文章提供用來備份虛擬機器之 PowerShell Cmdlet 的特定資訊。 如需有關保護 Azure VM 的基本資訊，請參閱 [Plan your VM backup infrastructure in Azure (在 Azure 中規劃 VM 備份基礎結構)](backup-azure-vms-introduction.md)。
+這篇文章會提供特定 toohello PowerShell cmdlet 使用 tooback 虛擬機器資訊。 如需有關保護 Azure VM 的基本資訊，請參閱 [Plan your VM backup infrastructure in Azure (在 Azure 中規劃 VM 備份基礎結構)](backup-azure-vms-introduction.md)。
 
 > [!NOTE]
-> 開始之前，請閱讀使用 Azure 備份所需的[必要條件](backup-azure-vms-prepare.md)，以及目前 VM 備份解決方案的[限制](backup-azure-vms-prepare.md#limitations-when-backing-up-and-restoring-a-vm)。
+> 開始之前，閱讀 hello[必要條件](backup-azure-vms-prepare.md)需要使用 Azure 備份 」 和 「 hello toowork[限制](backup-azure-vms-prepare.md#limitations-when-backing-up-and-restoring-a-vm)hello 目前 VM 備份解決方案。
 >
 >
 
-若要有效地使用 PowerShell，請花一點時間了解物件的階層以及從何處開始。
+toouse PowerShell 實際上，需要目前 toounderstand hello 階層的物件和從哪裡 toostart。
 
 ![物件階層](./media/backup-azure-vms-classic-automation/object-hierarchy.png)
 
-最重要的兩個流程是啟用 VM 保護，以及從復原點還原資料。 本文的重點是協助您熟練 PowerShell Cmdlet 來支援這兩種情況。
+hello 兩個最重要的流程會啟用保護的 vm，並從復原點還原資料。 這篇文章 hello 重點是 toohelp 您變得家 hello PowerShell cmdlet tooenable 使用這兩種情況。
 
 ## <a name="setup-and-registration"></a>設定和註冊
-開始：
+toobegin:
 
-1. [下載最新版 PowerShell](https://github.com/Azure/azure-powershell/releases) (所需的基本版本為：1.0.0)
-2. 輸入下列命令，以找到可用的 Azure 備份 PowerShell Cmdlet：
+1. [下載最新的 PowerShell](https://github.com/Azure/azure-powershell/releases) (所需最低版本為：1.0.0)
+2. 輸入下列命令的 hello 尋找可用的 hello Azure 備份的 PowerShell cmdlet:
 
 ```
 PS C:\> Get-Command *azurermbackup*
@@ -87,35 +87,35 @@ Cmdlet          Unregister-AzureRmBackupContainer                  1.0.1      Az
 Cmdlet          Wait-AzureRmBackupJob                              1.0.1      AzureRM.Backup
 ```
 
-PowerShell 可以自動化下列設定和註冊工作：
+hello 下列安裝和註冊工作可以自動化使用 PowerShell:
 
 * 建立備份保存庫
-* 向 Azure 備份服務註冊 VM
+* Hello Vm 向 hello Azure 備份服務
 
 ### <a name="create-a-backup-vault"></a>建立備份保存庫
 > [!WARNING]
-> 對於第一次使用 Azure 備份的客戶，您需要註冊 Azure 備份提供者以搭配您的訂用帳戶使用。 這可以透過執行下列命令來完成：Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.Backup"
+> Hello 第一次使用 Azure Backup 的客戶，您需要 tooregister hello Azure 備份提供者 toobe 搭配您的訂用帳戶。 這可藉由執行下列命令的 hello： 暫存器 AzureRmResourceProvider ProviderNamespace"Microsoft.Backup"
 >
 >
 
-您可以使用 **New-AzureRmBackupVault** Cmdlet，來建立新的備份保存庫。 備份保存庫是 ARM 資源，因此您必須將它放在資源群組內。 在提高權限的 Azure PowerShell 主控台中，執行下列命令：
+您可以建立新的備份保存庫使用 hello**新增 AzureRmBackupVault** cmdlet。 hello 備份保存庫是 ARM 資源，因此您需要 tooplace 它資源群組內。 在提升權限的 Azure PowerShell 主控台中，執行下列命令的 hello:
 
 ```
 PS C:\> New-AzureRmResourceGroup –Name “test-rg” –Location “West US”
 PS C:\> $backupvault = New-AzureRmBackupVault –ResourceGroupName “test-rg” –Name “test-vault” –Region “West US” –Storage GeoRedundant
 ```
 
-您可以使用 **Get-AzureRmBackupVault** Cmdlet，來取得特定訂用帳戶中所有備份保存庫的清單。
+您可以取得一份所有 hello 備份保存庫中指定的訂用帳戶使用 hello **Get AzureRmBackupVault** cmdlet。
 
 > [!NOTE]
-> 將備份保存庫物件儲存到變數中會很方便。 許多 Azure 備份 Cmdlet 都需要保存庫物件做為輸入。
+> 它是方便 toostore hello 備份保存庫物件放入變數中。 做為輸入，許多 Azure Backup cmdlet 需要 hello 保存庫的物件。
 >
 >
 
-### <a name="registering-the-vms"></a>註冊 VM
-使用 Azure 備份來設定備份的第一個步驟是向 Azure 備份保存庫註冊您的電腦或 VM。 **Register-AzureRmBackupContainer** Cmdlet 會取用 Azure IaaS 虛擬機器的輸入資訊，並對指定的保存庫進行註冊。 註冊作業會將 Azure 虛擬機器與備份保存庫相關聯，並於整個備份生命週期內追蹤 VM。
+### <a name="registering-hello-vms"></a>註冊 hello Vm
+hello 第一個步驟設定 Azure backup 備份是 tooregister 電腦或 VM 的 Azure 備份保存庫。 hello**暫存器 AzureRmBackupContainer** cmdlet 會採用 hello Azure IaaS 虛擬機器輸入的資訊與 hello 指定保存庫上登錄它。 hello 註冊作業會關聯 hello 備份保存庫中的 hello Azure 虛擬機器，並追蹤透過 hello 備份生命週期 hello VM。
 
-向 Azure 備份服務註冊您的 VM 會建立最上層的容器物件。 一個容器通常包含多個可備份的項目，但以 VM 而言，容器只有一個備份項目。
+以 hello Azure 備份服務註冊您的 VM 建立最上層的容器物件。 容器通常包含多個項目，可以備份，但是在 hello 案例中的 Vm 會 hello 容器只能有一個備份的項目。
 
 ```
 PS C:\> $registerjob = Register-AzureRmBackupContainer -Vault $backupvault -Name "testvm" -ServiceName "testvm"
@@ -123,7 +123,7 @@ PS C:\> $registerjob = Register-AzureRmBackupContainer -Vault $backupvault -Name
 
 ## <a name="backup-azure-vms"></a>備份 Azure VM
 ### <a name="create-a-protection-policy"></a>建立保護原則
-啟動 VM 的備份並不一定要建立新的保護原則。 保存庫隨附「預設原則」，可用來快速啟用保護，稍後再編輯正確的細節。 您可以使用 **Get-AzureRmBackupProtectionPolicy** Cmdlet，來取得保存庫中可用的原則清單：
+不強制 toocreate 新 Vm 的保護原則 toostart 備份。 hello 保存庫隨附 「 '預設原則' 是使用的 tooquickly 啟用保護，且與 hello 右邊的詳細資料然後稍後編輯。 您可以取得一份提供 hello 保存庫中的 hello 原則使用 hello **Get AzureRmBackupProtectionPolicy** cmdlet:
 
 ```
 PS C:\> Get-AzureRmBackupProtectionPolicy -Vault $backupvault
@@ -134,13 +134,13 @@ DefaultPolicy             AzureVM            Daily              26-Aug-15 12:30:
 ```
 
 > [!NOTE]
-> PowerShell 中 BackupTime 欄位的時區是 UTC。 不過，當備份時間顯示在 Azure 入口網站中時，時區會對應您的本機系統與 UTC 時差。
+> 在 PowerShell 中的 hello BackupTime 欄位的 hello 時區為 UTC。 不過，當 hello 備份時間所示為 hello Azure 入口網站，hello 時區是對齊的 tooyour 以及 hello UTC 位移的本機系統。
 >
 >
 
-備份原則至少與一個保留原則相關聯。 保留原則定義復原點在 Azure 備份中保留的時間長度。 **New-AzureRmBackupRetentionPolicy** Cmdlet 會建立可儲存保留原則資訊的 PowerShell 物件。 這些保留原則物件會用來做為 *New-AzureRmBackupProtectionPolicy* Cmdlet 的輸入，或直接與 *Enable-AzureRmBackupProtection* Cmdlet 搭配使用。
+備份原則至少與一個保留原則相關聯。 hello 保留原則會定義復原點保留多久向 Azure 備份。 hello**新增 AzureRmBackupRetentionPolicy** cmdlet 會建立 PowerShell 物件的保留原則資訊。 這些保留原則物件會當做輸入 toohello*新增 AzureRmBackupProtectionPolicy* cmdlet，或直接與 hello*啟用 AzureRmBackupProtection* cmdlet。
 
-備份原則定義項目備份的時間和頻率。 **New-AzureRmBackupProtectionPolicy** Cmdlet 會建立可儲存備份原則資訊的 PowerShell 物件。 備份原則會用來做為 *Enable-AzureRmBackupProtection* Cmdlet 的輸入。
+備份原則會定義時間和頻率 hello 備份的項目完成。 hello**新增 AzureRmBackupProtectionPolicy** cmdlet 會建立保留的備份原則資訊的 PowerShell 物件。 hello 備份原則時，會輸入 toohello*啟用 AzureRmBackupProtection* cmdlet。
 
 ```
 PS C:\> $Daily = New-AzureRmBackupRetentionPolicyObject -DailyRetention -Retention 30
@@ -152,14 +152,14 @@ DailyBackup01             AzureVM            Daily              01-Sep-15 3:30:0
 ```
 
 ### <a name="enable-protection"></a>啟用保護。
-啟用保護牽涉到兩個物件：項目和原則，兩者都必須屬於相同的保存庫。 一旦原則與項目相關聯，備份工作流程將依定義的排程開始運作。
+啟用保護牽涉到兩個物件-hello 項目和 hello 原則和兩個需要 toobelong toohello 相同保存庫。 一旦 hello 原則已與 hello 項目相關聯，hello 備份工作流程會開始運作在 hello 定義的排程。
 
 ```
 PS C:\> Get-AzureRmBackupContainer -Type AzureVM -Status Registered -Vault $backupvault | Get-AzureRmBackupItem | Enable-AzureRmBackupProtection -Policy $newpolicy
 ```
 
 ### <a name="initial-backup"></a>初始備份
-備份排程會負責執行項目的完整初始複製，以及後續備份的增量複製。 但如果您想要在特定時間強制進行初始備份，甚至是立即開始，請使用 **Backup-AzureRmBackupItem** Cmdlet：
+hello 備份排程會負責種 hello 完整初始複製 hello 項目的 hello 累加複製 hello 後續備份。 不過，如果您想 tooforce hello 初始備份 toohappen 在一段時間，或甚至立即然後使用 hello**備份 AzureRmBackupItem** cmdlet:
 
 ```
 PS C:\> $container = Get-AzureRmBackupContainer -Vault $backupvault -Type AzureVM -Name "testvm"
@@ -172,14 +172,14 @@ testvm          Backup          InProgress      01-Sep-15 12:24:01 PM  01-Jan-01
 ```
 
 > [!NOTE]
-> 在 PowerShell 中顯示的 StartTime 和 EndTime 欄位的時間為 UTC。 不過，當類似資訊顯示在 Azure 入口網站中時，時區會對應您的本機系統時鐘。
+> hello 時區的 hello StartTime 和 EndTime 欄位顯示在 PowerShell 中為 UTC。 不過，當 hello 類似的資訊會顯示 hello Azure 入口網站，hello 時區是對齊的 tooyour 本機系統時鐘。
 >
 >
 
 ### <a name="monitoring-a-backup-job"></a>監視備份工作
-Azure 備份中長時間執行的大部分作業都模擬成工作。 如此就很容易追蹤進度，而不需要一直開啟 Azure 入口網站。
+Azure 備份中長時間執行的大部分作業都模擬成工作。 這使得輕鬆 tootrack 進度而不需要隨時都能 tookeep hello Azure 入口網站開啟。
 
-若要取得進行中作業的最新狀態，請使用 **Get-AzureRmBackupJob** Cmdlet。
+tooget hello 的最新狀態為進行中工作時，使用 hello **Get AzureRmBackupJob** cmdlet。
 
 ```
 PS C:\> $joblist = Get-AzureRmBackupJob -Vault $backupvault -Status InProgress
@@ -190,7 +190,7 @@ WorkloadName    Operation       Status          StartTime              EndTime
 testvm          Backup          InProgress      01-Sep-15 12:24:01 PM  01-Jan-01 12:00:00 AM
 ```
 
-因為需要額外的程式碼且並非必要，所以不輪詢這些作業是否完成，而是更簡單地改用 **Wait-AzureRmBackupJob** Cmdlet。 在指令碼中使用此 Cmdlet 會暫停執行，直到工作完成或達到指定的逾時值為止。
+而不是輪詢-這是不需要額外的程式碼-完成這些工作是簡單 toouse hello**等候 AzureRmBackupJob** cmdlet。 指令碼中使用時，hello 指令程式將會暫停 hello 執行，直到 hello 作業完成或 hello 可讓您指定逾時值為止。
 
 ```
 PS C:\> Wait-AzureRmBackupJob -Job $joblist[0] -Timeout 43200
@@ -198,17 +198,17 @@ PS C:\> Wait-AzureRmBackupJob -Job $joblist[0] -Timeout 43200
 
 
 ## <a name="restore-an-azure-vm"></a>還原 Azure VM
-若要還原備份資料，您需要識別備份的「項目」和保存時間點資料的「復原點」。 這項資訊會提供給 Restore-AzureRmBackupItem Cmdlet，開始從保存庫將資料還原到客戶的帳戶。
+在訂單 toorestore 備份資料，您需 tooidentify hello 備份項目和 hello 復原點存 hello 時間點資料。 這項資訊是提供的 toohello 還原 AzureRmBackupItem cmdlet tooinitiate hello 保存庫 toohello 客戶的帳戶中的資料的還原。
 
-### <a name="select-the-vm"></a>選取 VM
-若要取得可識別正確備份項目的 PowerShell 物件，您需要從保存庫中的「容器」開始，向下深入物件階層。 若要選取代表 VM 的容器，請使用 **Get-AzureRmBackupContainer** Cmdlet，並透過管道將它傳送到 **Get-AzureRmBackupItem** Cmdlet。
+### <a name="select-hello-vm"></a>選取 hello VM
+tooget hello PowerShell 物件，可識別 hello 正確的備份項目，您需要從 hello 保存庫中的 hello 容器 toostart，由上至下物件階層架構。 代表 hello VM，使用 hello tooselect hello 容器**Get AzureRmBackupContainer** cmdlet 並使用管線傳送該 toohello **Get AzureRmBackupItem** cmdlet。
 
 ```
 PS C:\> $backupitem = Get-AzureRmBackupContainer -Vault $backupvault -Type AzureVM -name "testvm" | Get-AzureRmBackupItem
 ```
 
 ### <a name="choose-a-recovery-point"></a>選擇復原點
-您現在可以使用 **Get-AzureRmBackupRecoveryPoint** Cmdlet，列出備份項目的所有復原點，並選擇要還原的復原點。 使用者通常會從清單中選擇最近的 *AppConsistent* 點。
+您現在可以列出所有 hello 復原點的 hello 備份項目使用 hello **Get AzureRmBackupRecoveryPoint** cmdlet，然後選擇 hello 復原點 toorestore。 使用者通常會選擇最新的 hello *AppConsistent*點 hello 清單中。
 
 ```
 PS C:\> $rp =  Get-AzureRmBackupRecoveryPoint -Item $backupitem
@@ -219,13 +219,13 @@ RecoveryPointId    RecoveryPointType  RecoveryPointTime      ContainerName
 15273496567119     AppConsistent      01-Sep-15 12:27:38 PM  iaasvmcontainer;testvm;testv...
 ```
 
-變數 ```$rp``` 是所選取之備份項目的復原點陣列，以時間的回推順序排序 - 最近的復原點位於索引 0。 使用標準 PowerShell 陣列索引來挑選復原點。 例如： ```$rp[0]``` 將會選取最新的復原點。
+hello 變數```$rp```是陣列的復原點的 hello 選取備份項目，以相反順序排序的時間-hello 最新的復原點是在索引 0。 使用標準的 PowerShell 陣列索引 toopick hello 復原點。 例如：```$rp[0]```會選取 hello 最新的復原點。
 
 ### <a name="restoring-disks"></a>還原磁碟
-透過 Azure 入口網站或透過 Azure PowerShell 執行還原作業，兩者之間有一項重要差異。 如果使用 PowerShell，從復原點還原磁碟及組態資訊時，還原作業會停止。 不會建立虛擬機器。
+沒有完成透過 hello Azure 入口網站和 Azure PowerShell，hello 還原作業之間的主要差異。 使用 PowerShell，hello 還原作業會在還原的 hello 磁碟和組態資訊從 hello 復原點停止。 不會建立虛擬機器。
 
 > [!WARNING]
-> Restore-AzureRmBackupItem 不會建立 VM。 只會將磁碟還原到指定的儲存體帳戶。 這與 Azure 入口網站中的行為不同。
+> hello 還原 AzureRmBackupItem 並不會建立 VM。 它只會還原 hello 磁碟 toohello 指定儲存體帳戶。 這不是 hello hello Azure 入口網站中，將會經歷相同的行為。
 >
 >
 
@@ -238,15 +238,15 @@ WorkloadName    Operation       Status          StartTime              EndTime
 testvm          Restore         InProgress      01-Sep-15 1:14:01 PM   01-Jan-01 12:00:00 AM
 ```
 
-完成還原作業之後，可以使用 **Get-AzureRmBackupJobDetails** Cmdlet 來取得還原作業的詳細資料。 *ErrorDetails* 屬性會有重建 VM 所需的資訊。
+您可以取得 hello 詳細資料的 hello 還原作業使用 hello **Get AzureRmBackupJobDetails** cmdlet hello 還原作業完成。 hello *ErrorDetails*屬性會有 hello 資訊所需 toorebuild hello VM。
 
 ```
 PS C:\> $restorejob = Get-AzureRmBackupJob -Job $restorejob
 PS C:\> $details = Get-AzureRmBackupJobDetails -Job $restorejob
 ```
 
-### <a name="build-the-vm"></a>建置 VM
-如果要從還原的磁碟建置 VM，您可以使用較舊的 Azure 服務管理 PowerShell Cmdlet、新的 Azure Resource Manager 範本，或甚至使用 Azure 入口網站。 在快速的範例中，我們將說明如何使用 Azure 服務管理 Cmdlet 來達到目的。
+### <a name="build-hello-vm"></a>建置 hello VM
+建置 hello VM 超出 hello 還原磁碟，才可以使用 hello 較舊的 Azure 服務管理 PowerShell cmdlet，hello 新的 Azure 資源管理員範本，或甚至使用 hello Azure 入口網站。 在簡單的範例，我們將示範如何 tooget 該處使用 hello Azure 服務管理 cmdlet。
 
 ```
 $properties  = $details.Properties
@@ -289,15 +289,15 @@ if (!($dds -eq $null))
 New-AzureVM -ServiceName "panbhasample" -Location "SouthEast Asia" -VM $vm
 ```
 
-如需如何從還原的磁碟建置 VM 的詳細資訊，請參閱下列 Cmdlet：
+如需有關如何將 VM 從 hello toobuild 還原磁碟的詳細資訊，請閱讀下列 cmdlet 的 hello:
 
 * [Add-AzureDisk](https://msdn.microsoft.com/library/azure/dn495252.aspx)
 * [New-AzureVMConfig](https://msdn.microsoft.com/library/azure/dn495159.aspx)
 * [New-AzureVM](https://msdn.microsoft.com/library/azure/dn495254.aspx)
 
 ## <a name="code-samples"></a>程式碼範例
-### <a name="1-get-the-completion-status-of-job-sub-tasks"></a>1.取得作業子工作的完成狀態
-若要追蹤個別子作業的完成狀態，可以使用 **Get-AzureRmBackupJobDetails** Cmdlet：
+### <a name="1-get-hello-completion-status-of-job-sub-tasks"></a>1.取得 hello 作業子工作的完成狀態
+tootrack hello 個別的子工作的完成狀態，您可以使用 hello **Get AzureRmBackupJobDetails** cmdlet:
 
 ```
 PS C:\> $details = Get-AzureRmBackupJobDetails -JobId $backupjob.InstanceId -Vault $backupvault
@@ -306,11 +306,11 @@ PS C:\> $details.SubTasks
 Name                                                        Status
 ----                                                        ------
 Take Snapshot                                               Completed
-Transfer data to Backup vault                               InProgress
+Transfer data tooBackup vault                               InProgress
 ```
 
 ### <a name="2-create-a-dailyweekly-report-of-backup-jobs"></a>2.建立備份作業的每日/每週報表
-系統管理員通常想要知道備份作業在過去 24 小時的執行情況，以及那些備份作業的狀態。 此外，傳輸的資料量提供系統管理員一種預估其每月資料使用量的方式。 下列指令碼會從 Azure 備份服務提取原始資料，並將資訊顯示在 PowerShell 主控台上。
+系統管理員通常會想的 tooknow hello 過去 24 小時，有哪些備份作業執行 hello 的這些備份工作的狀態。 此外，hello 傳輸的資料量會讓系統管理員的方式 tooestimate 他們每月的資料使用量。 下列指令碼 hello 會提取 hello 的 hello Azure 備份服務的未經處理資料，並顯示 hello PowerShell 主控台中的 hello 資訊。
 
 ```
 param(  [Parameter(Mandatory=$True,Position=1)]
@@ -329,12 +329,12 @@ $startdate = ([datetime]::Today)
 for( $i = 1; $i -le $numberofdays; $i++ )
 {
     # We query one day at a time because pulling 7 days of data might be too much
-    $dailyjoblist = Get-AzureRmBackupJob -Vault $backupvault -From $startdate -To $enddate -Type AzureVM -Operation Backup
-    Write-Progress -Activity "Getting job information for the last $numberofdays days" -Status "Day -$i" -PercentComplete ([int]([decimal]$i*100/$numberofdays))
+    $dailyjoblist = Get-AzureRmBackupJob -Vault $backupvault -From $startdate -too$enddate -Type AzureVM -Operation Backup
+    Write-Progress -Activity "Getting job information for hello last $numberofdays days" -Status "Day -$i" -PercentComplete ([int]([decimal]$i*100/$numberofdays))
 
     foreach( $job in $dailyjoblist )
     {
-        #Extract the information for the reports
+        #Extract hello information for hello reports
         $newstatsobj = New-Object System.Object
         $newstatsobj | Add-Member -Type NoteProperty -Name Date -Value $startdate
         $newstatsobj | Add-Member -Type NoteProperty -Name VMName -Value $job.WorkloadName
@@ -353,7 +353,7 @@ for( $i = 1; $i -le $numberofdays; $i++ )
 $DAILYBACKUPSTATS | Out-GridView
 ```
 
-如果想要將製作圖表的功能加入這個報表輸出，請參閱 TechNet 部落格文章 [Charting with PowerShell (使用 PowerShell 製作圖表)](http://blogs.technet.com/b/richard_macdonald/archive/2009/04/28/3231887.aspx)
+如果您想 tooadd 圖表功能 toothis 報表輸出時，了解從 hello TechNet 部落格文章[圖表使用 PowerShell](http://blogs.technet.com/b/richard_macdonald/archive/2009/04/28/3231887.aspx)
 
 ## <a name="next-steps"></a>後續步驟
-如果您偏好使用 PowerShell 來與您的 Azure 資源交流，請參閱保護 Windows Server 的 PowerShell 文章：[部署和管理 Windows Server 的備份](backup-client-automation-classic.md)。 另請參閱管理 DPM 備份的 PowerShell 文章：[部署和管理 DPM 的備份](backup-dpm-automation-classic.md)。 這兩篇文章都有適用於 Resource Manager 部署以及傳統部署的版本。
+如果您喜歡使用 PowerShell tooengage 與您的 Azure 資源，請參閱 hello PowerShell 文件保護 Windows Server[部署和管理適用於 Windows Server 的備份](backup-client-automation-classic.md)。 另請參閱管理 DPM 備份的 PowerShell 文章：[部署和管理 DPM 的備份](backup-dpm-automation-classic.md)。 這兩篇文章都有適用於 Resource Manager 部署以及傳統部署的版本。

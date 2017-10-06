@@ -1,6 +1,6 @@
 ---
-title: "不使用 Azure 代理程式重設本機 Windows 密碼 | Microsoft Docs"
-description: "在 Azure 客體代理程式未安裝或運作於 VM 的情況下，如何重設本機 Windows 使用者帳戶的密碼"
+title: "沒有 Azure 代理程式的本機 Windows 密碼 aaaReset |Microsoft 文件"
+description: "如何 tooreset hello 與本機 Windows 使用者帳戶的密碼時 hello Azure 客體代理程式未安裝或在 VM 上正常運作"
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -14,70 +14,70 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 04/07/2017
 ms.author: iainfou
-ms.openlocfilehash: 880f5e5967298401fc2522124af3746d9906ffa8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c559c31ea142f9cf50d2c5b6182c5355fec9bac5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-reset-local-windows-password-for-azure-vm"></a>如何重設 Azure VM 的本機 Windows 密碼
-您可以使用 [Azure 入口網站或 Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 在 Azure 中重設 VM 的本機 Windows 密碼 (假設已安裝 Azure 客體代理程式)。 這個方法是為 Azure VM 重設密碼的主要方式。 如果您遇到 Azure 客體代理程式沒有回應，或無法在上傳自訂映像後進行安裝等問題，您可以手動重設 Windows 密碼。 本文將詳細說明如何將來源 OS 虛擬磁碟連接至另一部 VM，以重設本機帳戶密碼。 
+# <a name="how-tooreset-local-windows-password-for-azure-vm"></a>如何 tooreset 本機 Windows 密碼做為 Azure VM
+您可以使用 hello 在 Azure 中 VM 的 hello 本機 Windows 密碼重設[Azure 入口網站或 Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)提供 hello Azure 客體代理程式安裝。 這個方法是 hello 主要方式 tooreset Azure VM 的密碼。 如果您使用 hello Azure 客體代理程式沒有回應，或上傳自訂映像之後失敗 tooinstall 遇到問題，您可以手動重設 Windows 密碼。 這篇文章說明如何藉由附加的本機帳戶密碼 tooreset hello 來源 OS 虛擬磁碟 tooanother VM。 
 
 > [!WARNING]
-> 只能使用此程序做為最後手段。 一律先嘗試使用 [Azure 入口網站或 Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 重設密碼。
+> 只能使用此程序做為最後手段。 永遠嘗試使用 hello 密碼 tooreset [Azure 入口網站或 Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)第一次。
 > 
 > 
 
-## <a name="overview-of-the-process"></a>程序概觀
-無法存取 Azure 客體代理程式時，在 Azure 中為 Windows VM 執行本機密碼重設的核心步驟如下所示︰
+## <a name="overview-of-hello-process"></a>Hello 程序概觀
+執行本機密碼，沒有存取 toohello Azure 客體代理程式時，針對 Windows VM 在 Azure 中重設 hello 核心步驟如下所示：
 
-* 刪除來源 VM。 虛擬磁碟會保留下來。
-* 將來源 VM 的 OS 磁碟連接到 Azure 訂用帳戶內位於相同位置的另一部 VM。 此 VM 也稱為疑難排解 VM。
-* 使用疑難排解 VM，在來源 VM 的 OS 磁碟上建立一些組態檔。
-* 從疑難排解 VM 卸離 VM 的 OS 磁碟。
-* 使用原始虛擬磁碟，透過 Resource Manager 範本建立 VM。
-* 當新的 VM 開機時，您建立的組態檔會更新所需使用者的密碼。
+* 刪除 hello 來源 VM。 hello 虛擬磁碟會保留。
+* 附加 hello 來源 VM 之 OS 磁碟 tooanother VM 上 hello Azure 訂用帳戶內的相同位置。 此 VM 是參照的 tooas hello 疑難排解 VM。
+* 使用 hello 疑難排解 VM 建立 hello 來源 VM 之 OS 磁碟上的某些組態檔。
+* 卸離 hello 疑難排解 VM 中的 hello VM 之 OS 磁碟。
+* 使用資源管理員範本 toocreate 使用 hello 原始虛擬磁碟的 VM。
+* 當 hello 新 VM 馮鰹氶 a hello 設定檔會建立所需的 hello 使用者更新 hello 密碼。
 
 ## <a name="detailed-steps"></a>詳細步驟
-一律先嘗試使用 [Azure 入口網站或 Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 重設密碼，再嘗試下列步驟。 在開始之前，確定您有 VM 的備份。 
+永遠嘗試使用 hello 密碼 tooreset [Azure 入口網站或 Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)之前嘗試 hello 下列步驟。 在開始之前，確定您有 VM 的備份。 
 
-1. 在 Azure 入口網站中刪除受影響的 VM。 刪除 VM 只會刪除中繼資料 (Azure 內 VM 的參考)。 刪除 VM 時會保留虛擬磁碟：
+1. 刪除 hello 影響 VM 在 Azure 入口網站中。 正在刪除 hello VM 只會刪除 hello hello VM 在 Azure 中的 hello 參考中繼資料。 hello VM 刪除時，會保留 hello 虛擬磁碟：
    
-   * 在 Azure 入口網站中選取 VM，請按一下 [刪除]：
+   * 選取 hello VM hello Azure 入口網站中的按一下*刪除*:
      
      ![刪除現有的 VM](./media/reset-local-password-without-agent/delete_vm.png)
-2. 將來源 VM 的 OS 磁碟連接到疑難排解 VM。 疑難排解 VM 必須位於與來源 VM 的作業系統磁碟相同的區域 (例如 `West US`)：
+2. 附加 hello 來源 VM 之 OS 磁碟 toohello 疑難排解 VM。 hello 疑難排解 VM 必須在 hello 與 hello 來源 VM 之 OS 磁碟相同的區域 (例如`West US`):
    
-   * 在 Azure 入口網站中選取疑難排解 VM。 按一下 [磁碟] | [連接現有項目]：
+   * 選取 VM 疑難排解 hello Azure 入口網站中的 hello。 按一下 [磁碟] | [連接現有項目]：
      
      ![連接現有磁碟](./media/reset-local-password-without-agent/disks_attach_existing.png)
      
-     選取 [VHD 檔案]，然後選取包含來源 VM 的儲存體帳戶：
+     選取*VHD 檔案*，然後選取包含您的來源 VM 的 hello 儲存體帳戶：
      
      ![選取儲存體帳戶](./media/reset-local-password-without-agent/disks_select_storageaccount.PNG)
      
-     選取來源容器。 來源容器通常是 vhd：
+     選取 hello 來源容器。 hello 來源容器是通常*vhd*:
      
      ![選取儲存體容器](./media/reset-local-password-without-agent/disks_select_container.png)
      
-     選取要連接的 OS vhd。 按一下 [選取]，完成此程序：
+     選取 hello OS vhd tooattach。 按一下*選取*toocomplete hello 程序：
      
      ![選取來源虛擬磁碟](./media/reset-local-password-without-agent/disks_select_source_vhd.png)
-3. 使用遠端桌面連接到疑難排解 VM，並確定看得見來源 VM 的 OS 磁碟︰
+3. 連接 toohello 疑難排解使用遠端桌面的 VM，並確認看見 hello 來源 VM 之 OS 磁碟：
    
-   * 在 Azure 入口網站中選取疑難排解 VM，然後按一下 [連接]。
-   * 開啟下載的 RDP 檔案。 輸入疑難排解 VM 的使用者名稱和密碼。
-   * 在檔案總管中，尋找您所連接的資料磁碟。 如果來源 VM 的 VHD 是連接到疑難排解 VM 的唯一資料磁碟，則應該是 F: 磁碟機︰
+   * 選取 hello 疑難排解 hello Azure 入口網站中的 VM，然後按一下*連接*。
+   * 開啟下載的 hello RDP 檔案。 輸入 hello 使用者名稱和密碼的 hello 疑難排解 VM。
+   * 在檔案總管 中，尋找您所連接的 hello 資料磁碟。 如果 hello 來源 VM 的 VHD 是 hello 唯一的資料磁碟附加 toohello 疑難排解 VM，它應該 hello f： 磁碟機：
      
      ![檢視連接的資料磁碟](./media/reset-local-password-without-agent/troubleshooting_vm_fileexplorer.png)
-4. 在來源 VM 磁碟機的 `\Windows\System32\GroupPolicy` 中建立 `gpt.ini` (如果存在 gpt.ini，請將它重新命名為 gpt.ini.bak)︰
+4. 建立`gpt.ini`中`\Windows\System32\GroupPolicy`hello 來源 VM 的磁碟機上 （如果存在 gpt.ini，重新命名 toogpt.ini.bak）：
    
    > [!WARNING]
-   > 確保您不會在 C:\Windows (疑難排解 VM 的 OS 磁碟機) 中不小心建立下列檔案。 在連接成為資料磁碟的來源 VM OS 磁碟機中建立下列檔案。
+   > 請確定，不會無意建立下列檔案中 C:\Windows hello、 hello hello 疑難排解 VM 的作業系統磁碟機。 建立 hello 下列來源當做資料磁碟所連接的 VM 的 hello 作業系統磁碟機中的檔案。
    > 
    > 
    
-   * 將下列幾行新增至您建立的 `gpt.ini` 檔案：
+   * 新增下列幾行到 hello hello`gpt.ini`您建立的檔案：
      
      ```
      [General]
@@ -87,9 +87,9 @@ ms.lasthandoff: 07/11/2017
      ```
      
      ![建立 gpt.ini](./media/reset-local-password-without-agent/create_gpt_ini.png)
-5. 在 `\Windows\System32\GroupPolicy\Machine\Scripts` 中建立 `scripts.ini`。 確定已顯示隱藏的資料夾。 如有需要，請建立 `Machine` 或 `Scripts` 資料夾。
+5. 在 `\Windows\System32\GroupPolicy\Machine\Scripts` 中建立 `scripts.ini`。 確定已顯示隱藏的資料夾。 如有需要建立 hello`Machine`或`Scripts`資料夾。
    
-   * 將下列幾行新增至您建立的 `scripts.ini` 檔案：
+   * 新增下列幾行 hello hello`scripts.ini`您建立的檔案：
      
      ```
      [Startup]
@@ -98,7 +98,7 @@ ms.lasthandoff: 07/11/2017
      ```
      
      ![建立 scripts.ini](./media/reset-local-password-without-agent/create_scripts_ini.png)
-6. 使用下列內容在 `\Windows\System32` 中建立 `FixAzureVM.cmd`，並以您自己的值取代 `<username>` 和 `<newpassword>`：
+6. 建立`FixAzureVM.cmd`中`\Windows\System32`以下列內容，取代 hello`<username>`和`<newpassword>`以您自己的值：
    
     ```
     net user <username> <newpassword> /add
@@ -109,40 +109,40 @@ ms.lasthandoff: 07/11/2017
 
     ![建立 FixAzureVM.cmd](./media/reset-local-password-without-agent/create_fixazure_cmd.png)
    
-    定義新的密碼時，必須符合針對 VM 設定的密碼複雜性需求。
-7. 在 Azure 入口網站中，從疑難排解 VM 卸離磁碟：
+    定義 hello 新密碼時，必須符合您的 vm 設定 hello 密碼複雜性需求。
+7. 在 Azure 入口網站中卸離 hello hello 疑難排解 VM 磁碟：
    
-   * 在 Azure 入口網站中選取疑難排解 VM，按一下 [磁碟]。
-   * 選取在步驟 2 中連接的資料磁碟，按一下 [卸離]：
+   * 選取 VM 疑難排解 hello Azure 入口網站中的 hello*磁碟*。
+   * 選取 hello 資料磁碟附加在步驟 2 中，按一下*卸離*:
      
      ![卸離磁碟](./media/reset-local-password-without-agent/detach_disk.png)
-8. 建立 VM 之前，取得來源 OS 磁碟的 URI：
+8. 建立 VM 之前，取得 hello URI tooyour 來源作業系統磁碟：
    
-   * 在 Azure 入口網站中選取儲存體帳戶，按一下 [Blob]。
-   * 選取容器。 來源容器通常是 vhd：
+   * 選取 hello hello Azure 入口網站中的儲存體帳戶，請按一下*Blob*。
+   * 選取 hello 容器。 hello 來源容器是通常*vhd*:
      
      ![選取儲存體帳戶 Blob](./media/reset-local-password-without-agent/select_storage_details.png)
      
-     選取您的來源 VM OS VHD，然後按一下 [URL] 名稱旁邊的 [複製] 按鈕：
+     選取您 VM OS VHD 的來源，然後按一下 hello*複製*按鈕的下一個 toohello *URL*名稱：
      
      ![複製磁碟 URI](./media/reset-local-password-without-agent/copy_source_vhd_uri.png)
-9. 從來源 VM 的 OS 磁碟建立 VM：
+9. 從 hello 來源 VM 之 OS 磁碟中建立 VM:
    
-   * 使用[此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd)，從特定的 VHD 建立 VM。 按一下 `Deploy to Azure` 按鈕開啟 Azure 入口網站，其中包含為您填入的樣板化詳細資料。
-   * 如果您想要保留 VM 的所有先前設定，請選取 [編輯範本] 以提供現有的 VNet、子網路、網路介面卡或公用 IP。
-   * 在 `OSDISKVHDURI` 參數文字方塊中，貼上您在前一個步驟中取得的來源 VHD URI︰
+   * 使用[此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd)toocreate 將 VM 從特定的 VHD。 按一下 hello`Deploy tooAzure`按鈕 tooopen hello 與 hello 樣板化詳細資料，擴展您的 Azure 入口網站。
+   * 如果您想 tooretain hello VM 的 hello 先前設定時，選取*編輯範本*tooprovide 現有 VNet、 子網路、 網路介面卡或公用 IP。
+   * 在 hello`OSDISKVHDURI`參數文字方塊中，貼上您的來源 VHD URI 取得 hello 前面步驟中的 hello:
      
      ![從範本建立 VM](./media/reset-local-password-without-agent/create_new_vm_from_template.png)
-10. 執行新的 VM 後，使用您在 `FixAzureVM.cmd` 指令碼指定中的新密碼，透過遠端桌面連接到 VM。
-11. 從新 VM 的遠端工作階段，移除下列檔案以清理環境︰
+10. 新的 VM 正在執行中的 hello 之後, 連接 toohello hello hello 中所指定的新密碼與使用遠端桌面的 VM`FixAzureVM.cmd`指令碼。
+11. 從遠端工作階段 toohello 新的 VM，移除 hello 下列檔案 tooclean hello 環境：
     
     * 從 %windir%\System32
       * 移除 FixAzureVM.cmd
     * 從 %windir%\System32\GroupPolicy\Machine\
       * 移除 scripts.ini
     * 從 %windir%\System32\GroupPolicy
-      * 移除 gpt.ini (如果 gpt.ini 早已存在，且您已將它重新命名為 gpt.ini.bak，請將此 .bak 檔案重新命名為 gpt.ini)
+      * 移除 gpt.ini （如果 gpt.ini 存在之前，但您重新命名了 toogpt.ini.bak，重新命名 hello.bak 檔案後 toogpt.ini）
 
 ## <a name="next-steps"></a>後續步驟
-如果您仍然無法使用遠端桌面進行連接，請參閱 [RDP 疑難排解指南](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 [詳細的 RDP 疑難排解指南](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)會探討疑難排解方法，而不是特定的步驟。 您也可以[開啟 Azure 支援要求](https://azure.microsoft.com/support/options/)，以取得實際操作協助。
+如果您仍然無法連線使用遠端桌面，請參閱 hello [RDP 疑難排解指南](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 hello[詳細的疑難排解指南 RDP](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)查看疑難排解方法，而不是特定的步驟。 您也可以[開啟 Azure 支援要求](https://azure.microsoft.com/support/options/)，以取得實際操作協助。
 

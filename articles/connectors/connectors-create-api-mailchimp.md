@@ -1,6 +1,6 @@
 ---
-title: "Azure Logic Apps 中的 MailChimp 連接器 | Microsoft Docs"
-description: "使用 Azure App Service 建立邏輯應用程式。 MailChimp 是一項 SaaS 服務，可讓企業管理和自動化電子郵件行銷活動，包括傳送行銷電子郵件、自動化的訊息和有目標的行銷活動。"
+title: "Azure 邏輯應用程式中的 aaaMailChimp 連接器 |Microsoft 文件"
+description: "使用 Azure App Service 建立邏輯應用程式。 MailChimp 是可讓企業 toomanage SaaS 服務，並將電子郵件行銷活動，包括傳送電子郵件行銷、 自動化的訊息和目標的活動自動化。"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,31 +15,31 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 46de91881f84183d0359755f49a115e712a7033b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0b2b4262c899c2aa56a727d29b8b158fcef9a539
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-mailchimp-connector"></a>開始使用 MailChimp 連接器
-MailChimp 是一項 SaaS 服務，可讓企業管理和自動化電子郵件行銷活動，包括傳送行銷電子郵件、自動化的訊息和有目標的行銷活動。
+# <a name="get-started-with-hello-mailchimp-connector"></a>開始使用 hello MailChimp 連接器
+MailChimp 是可讓企業 toomanage SaaS 服務，並將電子郵件行銷活動，包括傳送電子郵件行銷、 自動化的訊息和目標的活動自動化。
 
 您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
-## <a name="create-a-connection-to-mailchimp"></a>建立 MailChimp 的連線
-若要使用 MailChimp 建立邏輯應用程式，您必須先建立**連接**，然後提供下列屬性的詳細資料︰
+## <a name="create-a-connection-toomailchimp"></a>建立連接 tooMailChimp
+使用 MailChimp toocreate Logic apps，您必須先建立**連接**然後提供下列屬性的 hello hello 詳細資料：
 
 | 屬性 | 必要 | 說明 |
 | --- | --- | --- |
 | 權杖 |是 |提供 MailChimp 認證 |
 
-> [!INCLUDE [Steps to create a connection to MailChimp](../../includes/connectors-create-api-mailchimp.md)]
+> [!INCLUDE [Steps toocreate a connection tooMailChimp](../../includes/connectors-create-api-mailchimp.md)]
 > 
 
 
 ## <a name="connector-specific-details"></a>連接器特定的詳細資料
 
-檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/mailchimp/)的所有限制。
+檢視任何觸發程序和動作中 hello swagger 定義，另請參閱 hello 的任何限制[連接器詳細資料](/connectors/mailchimp/)。
 
 ## <a name="more-connectors"></a>其他連接器
-返回 [API 清單](apis-list.md)。
+返回 toohello [Api 清單](apis-list.md)。

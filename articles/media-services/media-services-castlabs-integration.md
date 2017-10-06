@@ -1,6 +1,6 @@
 ---
-title: "使用 castLabs 將 Widevine 授權傳遞到 Azure 媒體服務 | Microsoft Docs"
-description: "本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。 PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 castLabs 授權伺服器傳遞。"
+title: "aaaUsing castLabs toodeliver Widevine 授權 tooAzure Media Services |Microsoft 文件"
+description: "本文說明如何使用 Azure 媒體服務 (AMS) toodeliver 以 PlayReady 和 Widevine DRMs AMS 動態加密的資料流。 hello PlayReady 授權來自 Media Services PlayReady 授權伺服器，並 Widevine 授權傳遞 castLabs 授權伺服器。"
 services: media-services
 documentationcenter: 
 author: Mingfeiy
@@ -14,97 +14,97 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: Mingfeiy;willzhan;Juliako
-ms.openlocfilehash: 5b69e804809f834e81221fb2787a997a52dbe286
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 80d2778fb283a96361e7e511990a36c2f551a310
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-castlabs-to-deliver-widevine-licenses-to-azure-media-services"></a>使用 castLabs 將 Widevine 授權傳遞到 Azure 媒體服務
+# <a name="using-castlabs-toodeliver-widevine-licenses-tooazure-media-services"></a>使用 castLabs toodeliver Widevine 授權 tooAzure 媒體服務
 > [!div class="op_single_selector"]
 > * [Axinom](media-services-axinom-integration.md)
 > * [castLabs](media-services-castlabs-integration.md)
 > 
 > 
 
-## <a name="overview"></a>Overview
-本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。 PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權則來自 **castLabs** 授權伺服器。
+## <a name="overview"></a>概觀
+本文說明如何使用 Azure 媒體服務 (AMS) toodeliver 以 PlayReady 和 Widevine DRMs AMS 動態加密的資料流。 hello PlayReady 授權來自 Media Services PlayReady 授權伺服器，且傳遞 Widevine 授權**castLabs**授權伺服器。
 
-若要播放受 CENC (PlayReady 和/或 Widevine) 保護的串流內容，您可以使用 [Azure 媒體播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html) 。 如需詳細資訊，請參閱 [AMP 文件](http://amp.azure.net/libs/amp/latest/docs/) 。
+tooplayback 串流處理受保護的內容由 CENC （PlayReady 和/或 Widevine），您可以使用[Azure Media Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。 如需詳細資訊，請參閱 [AMP 文件](http://amp.azure.net/libs/amp/latest/docs/) 。
 
-以下為 Azure 媒體服務與 castLabs 整合架構概況圖。
+下列圖表中的 hello 示範高層級的 Azure 媒體服務和 castLabs 整合架構。
 
 ![整合](./media/media-services-castlabs-integration/media-services-castlabs-integration.png)
 
 ## <a name="typical-system-set-up"></a>一般系統設定
 * 媒體內容儲存在 AMS 中。
 * 內容金鑰的金鑰識別碼儲存在 castLabs 與 AMS 中。
-* castLabs 與 AMS 皆有內建權杖驗證。 以下幾節將會討論驗證權杖。 
-* 用戶端要求串流視訊時，AMS 會使用 **一般加密** (CENC) 動態加密內容，並動態封裝到 Smooth Streaming 與 DASH。 我們也會針對 HLS 串流通訊協定傳遞 PlayReady M2TS 基礎資料流加密。
+* castLabs 與 AMS 皆有內建權杖驗證。 hello 下列各節討論驗證權杖。 
+* 當用戶端要求 toostream hello 視訊時，hello 內容動態加密**一般加密**(CENC) 和動態 AMS tooSmooth 來封裝資料流和虛線。 我們也會針對 HLS 串流通訊協定傳遞 PlayReady M2TS 基礎資料流加密。
 * PlayReady 授權擷取自 AMS 授權伺服器，Widevine 授權擷取自 castLabs 授權伺服器。 
-* 媒體播放器會根據平台功能自動決定提取哪些授權。 
+* Media Player 會自動決定哪些授權 toofetch，根據 hello 用戶端的平台功能。 
 
 ## <a name="authentication-token-generation-for-getting-a-license"></a>產生驗證權杖以取得授權
-castLabs 與 AMS 皆支援使用 JWT (JSON Web Token) 權杖格式進行授權。 
+CastLabs 和 AMS 支援 JWT （JSON Web 權杖） 使用的權杖格式 tooauthorize 授權。 
 
 ### <a name="jwt-token-in-ams"></a>AMS 中的 JWT 權杖
-下表說明 AMS 中的 JWT 權杖。 
+hello 下表描述 AMS 中的 JWT 語彙基元。 
 
-| 簽發者 | 所選安全權杖服務 (STS) 中的簽發者字串 |
+| 簽發者 | 簽發者字串 hello 選擇安全權杖服務 (STS) |
 | --- | --- |
-| Audience |所使用 STS 中的對象字串 |
+| 對象 |使用 STS 從 hello 的對象字串。 |
 | Claims |一組宣告 |
-| NotBefore |權杖的生效日期 |
-| Expires |權杖的有效期限 |
-| SigningCredentials |PlayReady 授權伺服器、castLabs 授權伺服器與 STS 之間共用的金鑰，可以是對稱或非對稱金鑰。 |
+| NotBefore |啟動 hello 語彙基元的有效性 |
+| Expires |Hello 語彙基元的結束有效性 |
+| SigningCredentials |PlayReady 授權伺服器，授權伺服器與 STS，castLabs 之間共用的 hello 索引鍵可能是對稱或非對稱金鑰。 |
 
 ### <a name="jwt-token-in-castlabs"></a>castLabs 中的 JWT 權杖
-下表說明 castLabs 中的 JWT 權杖。 
+hello 下表描述 castLabs 中的 JWT 語彙基元。 
 
 | 名稱 | 說明 |
 | --- | --- |
 | optData |JSON 字串，其中包含您的相關資訊。 |
-| crt |JSON 字串，其中包含資產、其授權資訊與播放權限的相關資訊。 |
-| iat |Epoch 中目前的日期時間。 |
-| jti |權杖的唯一識別碼 (每個權杖在 castLabs 系統中只使用一次)。 |
+| crt |含有 hello 資產的相關資訊的 JSON 字串，它的授權資訊與播放權限。 |
+| iat |epoch hello 目前日期時間。 |
+| jti |有關這個語彙基元 （每個權杖可以只用一次在 hello castLabs 系統） 的唯一識別碼。 |
 
 ## <a name="sample-solution-set-up"></a>範例解決方案設定
-[範例解決方案](https://github.com/AzureMediaServicesSamples/CastlabsIntegration) 包含兩個專案：
+hello[範例方案](https://github.com/AzureMediaServicesSamples/CastlabsIntegration)包含兩個專案：
 
-* 主控台應用程式，用於為 PlayReady 與 Widevine 在已內嵌的資產上設定 DRM 限制。
+* 可以是使用的 tooset DRM 的限制已經內嵌的資產，PlayReady 和 Widevine 主控台應用程式。
 * Web 應用程式，用於遞出權杖，可視為「非常簡易」的 STS 版本。
 
-若要使用主控台應用程式：
+toouse hello 主控台應用程式：
 
-1. 變更 app.config 以設定 AMS 認證、castLabs 認證、STS 組態及共用的金鑰。
+1. 變更 hello app.config toosetup AMS 認證、 castLabs 認證、 STS 組態和共用的金鑰。
 2. 將資產上傳到 AMS。
-3. 從已上傳的資產中取得 UUID，然後變更 Program.cs 檔中的行 32：
+3. 從 hello get hello UUID 上傳資產，並變更 hello Program.cs 檔案中的行 32:
    
       var objIAsset = _context.Assets.Where(x => x.Id == "nb:cid:UUID:dac53a5d-1500-80bd-b864-f1e4b62594cf").FirstOrDefault();
-4. 使用 AssetId 命名 castLabs 系統中的資產 (Program.cs 檔中的行 44)。
+4. 使用命名 hello castLabs 系統 (hello Program.cs 檔案中的行 44) 中的 hello 資產的 AssetId。
    
-   您必須設定 **castLabs**的 AssetId；必須是唯一的英數字元字串。
-5. 執行程式。
+   您必須設定為 AssetId **castLabs**; 它必須 toobe 唯一英數字串。
+5. 執行 hello 程式。
 
-若要使用 Web 應用程式 (STS)：
+toouse hello Web 應用程式 (STS):
 
-1. 變更 web.config 以設定 castlabs 商店識別碼、STS 組態和共用的金鑰。
-2. 部署到 Azure 網站。
-3. 瀏覽至該網站。
+1. 變更 hello web.config toosetup castlabs 商店識別碼、 hello STS 組態和 hello 共用的金鑰。
+2. 部署 tooAzure 網站。
+3. 瀏覽 toohello 網站。
 
 ## <a name="playing-back-a-video"></a>播放視訊
-若要播放使用一般加密 (PlayReady 和/或 Widevine) 技術加密的視訊，您可以使用 [Azure 媒體播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。 執行主控台應用程式時，會回應內容金鑰識別碼和資訊清單 URL。
+使用一般加密 （PlayReady 和/或 Widevine） 的 tooplayback 視訊加密，您可以使用 hello [Azure Media Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。 當執行 hello 主控台應用程式時，會回應 hello 內容金鑰識別碼和 hello 資訊清單的 URL。
 
 1. 開啟新索引標籤，並啟動 STS：http://[yourStsName].azurewebsites.net/api/token/assetid/[yourCastLabsAssetId]/contentkeyid/[thecontentkeyid]。
-2. 移至 [Azure Media Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
-3. 貼上資料流 URL。
-4. 按一下 [ **進階選項** ] 核取方塊。
-5. 在 [保護]  下拉式清單中選取 PlayReady 和/或 Widevine。
-6. 在 [權杖] 文字方塊中貼上您從 STS 取得的權杖。 
+2. 跳過[Azure Media Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
+3. 在 hello 串流 URL 中貼上。
+4. 按一下 hello**進階選項**核取方塊。
+5. 在 hello**保護**下拉式清單中，選取 PlayReady 和/或 Widevine。
+6. 貼上您向您的 STS hello 語彙基元文字方塊中的 hello 語彙基元。 
    
-   castLab 授權伺服器不需要權杖前有 “Bearer=” 前置詞。 因此請先移除該前置詞，再提交權杖。
-7. 更新播放程式。
-8. 視訊應隨即播放。
+   hello castLab 授權伺服器不需要 hello"Bearer ="hello 權杖前面的前置詞。 因此請先移除，再送出 hello 語彙基元。
+7. 更新 hello 播放程式。
+8. 應該播放視訊的 hello。
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

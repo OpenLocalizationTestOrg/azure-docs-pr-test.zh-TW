@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 管理 Azure CDN | Microsoft Docs"
-description: "了解如何使用 Azure PowerShell Cmdlet 管理 Azure CDN。"
+title: "使用 PowerShell 的 Azure CDN aaaManage |Microsoft 文件"
+description: "了解如何 toouse hello Azure PowerShell cmdlet toomanage Azure CDN。"
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 5bd2eed7b34cafa43e8f38279890405d4ae55568
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 269373136d4ef018e4d31f147456b4be2253b463
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-cdn-with-powershell"></a>使用 PowerShell 管理 Azure CDN
-PowerShell 提供一種最具彈性的方法，以管理您的 Azure CDN 設定檔和端點。  您可以用互動方式使用 PowerShell 或透過撰寫指令碼來自動進行管理工作。  本教學課程會示範數個您可透過 PowerShell 完成的最常見工作，以管理 Azure CDN 設定檔和端點。
+PowerShell 提供其中一個最有彈性方法 toomanage hello 您的 Azure CDN 設定檔和端點。  您可以使用 PowerShell，以互動方式或透過撰寫指令碼 tooautomate 管理工作。  本教學課程會示範數個 hello 最常見的工作可完成 PowerShell toomanage 與您的 Azure CDN 設定檔和端點。
 
 ## <a name="prerequisites"></a>必要條件
-若要使用 PowerShell 管理 Azure CDN 設定檔和端點，您必須安裝 Azure PowerShell 模組。  若要了解如何安裝 Azure PowerShell 及使用 `Login-AzureRmAccount` Cmdlet 連接至 Azure，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
+toouse PowerShell toomanage 您的 Azure CDN 設定檔和端點，您必須擁有 hello Azure PowerShell 模組安裝。  toolearn 如何 tooinstall Azure PowerShell，並連接使用 hello tooAzure`Login-AzureRmAccount`指令程式，請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。
 
 > [!IMPORTANT]
 > 您必須先使用 `Login-AzureRmAccount` 登入，才能執行 Azure PowerShell Cmdlet。
 > 
 > 
 
-## <a name="listing-the-azure-cdn-cmdlets"></a>列出 Azure CDN Cmdlet
-您可以使用 `Get-Command` Cmdlet 列出所有的 Azure CDN Cmdlet。
+## <a name="listing-hello-azure-cdn-cmdlets"></a>列出 hello Azure CDN cmdlet
+您可以列出所有的 hello Azure CDN cmdlet 使用 hello `Get-Command` cmdlet。
 
 ```text
 PS C:\> Get-Command -Module AzureRM.Cdn
@@ -62,7 +62,7 @@ Cmdlet          Unpublish-AzureRmCdnEndpointContent                2.0.0      Az
 ```
 
 ## <a name="getting-help"></a>取得說明
-您可以使用 `Get-Help` Cmdlet 取得這些 Cmdlet 的說明。  `Get-Help` 提供使用方式與語法，並選擇性地顯示範例。
+您可以取得說明與任何這些 cmdlet 使用 hello `Get-Help` cmdlet。  `Get-Help` 提供使用方式與語法，並選擇性地顯示範例。
 
 ```text
 PS C:\> Get-Help Get-AzureRmCdnProfile
@@ -86,59 +86,59 @@ DESCRIPTION
 RELATED LINKS
 
 REMARKS
-    To see the examples, type: "get-help Get-AzureRmCdnProfile -examples".
+    toosee hello examples, type: "get-help Get-AzureRmCdnProfile -examples".
     For more information, type: "get-help Get-AzureRmCdnProfile -detailed".
     For technical information, type: "get-help Get-AzureRmCdnProfile -full".
 
 ```
 
 ## <a name="listing-existing-azure-cdn-profiles"></a>列出現有的 Azure CDN 設定檔
-不含任何參數的 `Get-AzureRmCdnProfile` Cmdlet 會擷取所有現有的 CDN 設定檔。
+hello`Get-AzureRmCdnProfile`不含任何參數的 cmdlet 會擷取所有現有 CDN 設定檔。
 
 ```powershell
 Get-AzureRmCdnProfile
 ```
 
-此輸出可以輸送到 Cmdlet 以便列舉。
+此輸出可以傳送的 toocmdlets 列舉。
 
 ```powershell
-# Output the name of all profiles on this subscription.
+# Output hello name of all profiles on this subscription.
 Get-AzureRmCdnProfile | ForEach-Object { Write-Host $_.Name }
 
 # Return only **Azure CDN from Verizon** profiles.
 Get-AzureRmCdnProfile | Where-Object { $_.Sku.Name -eq "StandardVerizon" }
 ```
 
-您也可以指定設定檔名稱和資源群組，以傳回單一設定檔。
+您也可以指定 hello 設定檔名稱和資源群組，以傳回單一設定檔。
 
 ```powershell
 Get-AzureRmCdnProfile -ProfileName CdnDemo -ResourceGroupName CdnDemoRG
 ```
 
 > [!TIP]
-> 可能會有多個具有相同名稱的 CDN 設定檔，只要它們位於不同的資源群組即可。  省略 `ResourceGroupName` 參數會傳回所有具有相符名稱的設定檔。
+> 可能的 toohave，只要它們是不同的資源群組中多個的 CDN 設定檔名稱相同的 hello 與它。  省略 hello`ResourceGroupName`參數會傳回具有相符名稱的所有設定檔。
 > 
 > 
 
 ## <a name="listing-existing-cdn-endpoints"></a>列出現有的 CDN 端點
-`Get-AzureRmCdnEndpoint` 可以擷取設定檔上的個別端點或所有端點。  
+`Get-AzureRmCdnEndpoint`可以擷取個別端點或設定檔上的所有 hello 端點。  
 
 ```powershell
 # Get a single endpoint.
 Get-AzureRmCdnEndpoint -ProfileName CdnDemo -ResourceGroupName CdnDemoRG -EndpointName cdndocdemo
 
-# Get all of the endpoints on a given profile. 
+# Get all of hello endpoints on a given profile. 
 Get-AzureRmCdnEndpoint -ProfileName CdnDemo -ResourceGroupName CdnDemoRG
 
-# Return all of the endpoints on all of the profiles.
+# Return all of hello endpoints on all of hello profiles.
 Get-AzureRmCdnProfile | Get-AzureRmCdnEndpoint
 
-# Return all of the endpoints in this subscription that are currently running.
+# Return all of hello endpoints in this subscription that are currently running.
 Get-AzureRmCdnProfile | Get-AzureRmCdnEndpoint | Where-Object { $_.ResourceState -eq "Running" }
 ```
 
 ## <a name="creating-cdn-profiles-and-endpoints"></a>建立 CDN 設定檔和端點
-`New-AzureRmCdnProfile` 和 `New-AzureRmCdnEndpoint` 用來建立 CDN 設定檔和端點。
+`New-AzureRmCdnProfile`和`New-AzureRmCdnEndpoint`會使用的 toocreate CDN 設定檔和端點。
 
 ```powershell
 # Create a new profile
@@ -159,16 +159,16 @@ New-AzureRmCdnProfile -ProfileName CdnPoshDemo -ResourceGroupName CdnDemoRG -Sku
 # Retrieve availability
 $availability = Get-AzureRmCdnEndpointNameAvailability -EndpointName "cdnposhdoc"
 
-# If available, write a message to the console.
+# If available, write a message toohello console.
 If($availability.NameAvailable) { Write-Host "Yes, that endpoint name is available." }
 Else { Write-Host "No, that endpoint name is not available." }
 ```
 
 ## <a name="adding-a-custom-domain"></a>新增自訂網域
-`New-AzureRmCdnCustomDomain` 會將自訂網域名稱新增至現有端點。
+`New-AzureRmCdnCustomDomain`加入自訂網域名稱 tooan 現有端點。
 
 > [!IMPORTANT]
-> 您必須以[如何將自訂網域對應至內容傳遞網路 (CDN) 端點](cdn-map-content-to-custom-domain.md)中所述方式，透過您的 DNS 提供者設定 CNAME。  您可以先測試對應，然後使用 `Test-AzureRmCdnCustomDomain`修改端點。
+> 您必須設定 hello CNAME 與您的 DNS 提供者中所述[如何 toomap 自訂網域 tooContent 傳遞網路 (CDN) 端點](cdn-map-content-to-custom-domain.md)。  您可以測試 hello 對應之前修改程式端點，請使用`Test-AzureRmCdnCustomDomain`。
 > 
 > 
 
@@ -176,10 +176,10 @@ Else { Write-Host "No, that endpoint name is not available." }
 # Get an existing endpoint
 $endpoint = Get-AzureRmCdnEndpoint -ProfileName CdnPoshDemo -ResourceGroupName CdnDemoRG -EndpointName cdnposhdoc
 
-# Check the mapping
+# Check hello mapping
 $result = Test-AzureRmCdnCustomDomain -CdnEndpoint $endpoint -CustomDomainHostName "cdn.contoso.com"
 
-# Create the custom domain on the endpoint
+# Create hello custom domain on hello endpoint
 If($result.CustomDomainValidated){ New-AzureRmCdnCustomDomain -CustomDomainName Contoso -HostName "cdn.contoso.com" -CdnEndpoint $endpoint }
 ```
 
@@ -194,7 +194,7 @@ $endpoint = Get-AzureRmCdnEndpoint -ProfileName CdnPoshDemo -ResourceGroupName C
 $endpoint.IsCompressionEnabled = $true
 $endpoint.ContentTypesToCompress = "text/javascript","text/css","application/json"
 
-# Save the changed endpoint and apply the changes
+# Save hello changed endpoint and apply hello changes
 Set-AzureRmCdnEndpoint -CdnEndpoint $endpoint
 ```
 
@@ -213,10 +213,10 @@ Get-AzureRmCdnProfile | Get-AzureRmCdnEndpoint | Unpublish-AzureRmCdnEndpointCon
 ```
 
 ## <a name="startingstopping-cdn-endpoints"></a>啟動/停止 CDN 端點
-`Start-AzureRmCdnEndpoint` 和 `Stop-AzureRmCdnEndpoint` 可用來啟動和停止個別端點的端點群組。
+`Start-AzureRmCdnEndpoint`和`Stop-AzureRmCdnEndpoint`可以使用的 toostart 並停止個別端點群組。
 
 ```powershell
-# Stop the cdndocdemo endpoint
+# Stop hello cdndocdemo endpoint
 Stop-AzureRmCdnEndpoint -ProfileName CdnDemo -ResourceGroupName CdnDemoRG -EndpointName cdndocdemo
 
 # Stop all endpoints
@@ -227,13 +227,13 @@ Get-AzureRmCdnProfile | Get-AzureRmCdnEndpoint | Start-AzureRmCdnEndpoint
 ```
 
 ## <a name="deleting-cdn-resources"></a>刪除 CDN 資源
-`Remove-AzureRmCdnProfile` 和 `Remove-AzureRmCdnEndpoint` 可用來移除設定檔和端點。
+`Remove-AzureRmCdnProfile`和`Remove-AzureRmCdnEndpoint`可以是使用的 tooremove 設定檔和端點。
 
 ```powershell
 # Remove a single endpoint
 Remove-AzureRmCdnEndpoint -ProfileName CdnPoshDemo -ResourceGroupName CdnDemoRG -EndpointName cdnposhdoc
 
-# Remove all the endpoints on a profile and skip confirmation (-Force)
+# Remove all hello endpoints on a profile and skip confirmation (-Force)
 Get-AzureRmCdnProfile -ProfileName CdnPoshDemo -ResourceGroupName CdnDemoRG | Get-AzureRmCdnEndpoint | Remove-AzureRmCdnEndpoint -Force
 
 # Remove a single profile
@@ -241,7 +241,7 @@ Remove-AzureRmCdnProfile -ProfileName CdnPoshDemo -ResourceGroupName CdnDemoRG
 ```
 
 ## <a name="next-steps"></a>後續步驟
-了解如何透過 [.NET](cdn-app-dev-net.md) 或 [Node.js](cdn-app-dev-node.md) 自動化 Azure CDN。
+深入了解如何 tooautomate Azure CDN 與[.NET](cdn-app-dev-net.md)或[Node.js](cdn-app-dev-node.md)。
 
-若要了解 CDN 功能，請參閱 [CDN 概觀](cdn-overview.md)。
+toolearn 需 CDN 功能，請參閱[CDN 概觀](cdn-overview.md)。
 

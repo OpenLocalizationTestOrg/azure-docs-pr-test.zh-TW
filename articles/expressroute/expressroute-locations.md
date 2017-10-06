@@ -1,6 +1,6 @@
 ---
 title: "連線提供者和位置︰Azure ExpressRoute |Microsoft Docs"
-description: "本文提供提供服務所在位置以及如何連線到 Azure 區域的詳細概觀。 依連線提供者排序。"
+description: "本文章提供位置的詳細的概觀，其中提供服務，以及如何 tooconnect tooAzure 區域。 依連線提供者排序。"
 services: expressroute
 documentationcenter: na
 author: cherylmc
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/17/2017
 ms.author: kaanan
-ms.openlocfilehash: c9f44dbc943e854915c4e34b4dffa2c294f7866d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: df906ae6ff4e149c9cab4aa46ab78c8dd6aa4366
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="expressroute-partners-and-peering-locations"></a>ExpressRoute 合作夥伴和對等互連位置
 
@@ -27,17 +27,17 @@ ms.lasthandoff: 08/29/2017
 > * [依位置的提供者](expressroute-locations-providers.md)
 
 
-本文中的資料表會提供有關 ExpressRoute 連線提供者、ExpressRoute 地理涵蓋範圍、透過 ExpressRoute 支援的 Microsoft 雲端服務，以及 ExpressRoute 系統整合者 (SI) 的資訊。
+這篇文章中的 hello 資料表會提供 ExpressRoute 連線提供者、 ExpressRoute 地理涵蓋範圍，支援透過 ExpressRoute 和 ExpressRoute 系統整合業者 (Si) 的 Microsoft 雲端服務的相關資訊。
 
 ## <a name="partners"></a>ExpressRoute 連線提供者
-所有的 Azure 區域和位置都支援 ExpressRoute。 以下地圖提供了 Azure 區域和 ExpressRoute 位置的清單。 ExpressRoute 位置是指 Microsoft 與數個服務提供者對等互連的位置。
+所有的 Azure 區域和位置都支援 ExpressRoute。 下列地圖 hello 提供 Azure 區域和 ExpressRoute 位置的清單。 ExpressRoute 位置，請參閱的 toothose Microsoft 對等多個服務提供者的位置。
 
 ![位置圖][0]
 
-如果您至少與地緣政治區域內的一個 ExpressRoute 位置連線，您將有權存取地緣政治區域內所有區域中的 Azure 服務。
+如果您連接 tooat 至少有一個 ExpressRoute 位置 hello 地緣政治區域內，您將必須存取 tooAzure 服務地緣政治區域內的所有區域。
 
-### <a name="azure-regions-to-expressroute-locations-within-a-geopolitical-region"></a>地緣政治區域內 ExpressRoute 位置的 Azure 區域。
-下表提供地緣政治區域內 ExpressRoute 位置的 Azure 區域對應。
+### <a name="azure-regions-tooexpressroute-locations-within-a-geopolitical-region"></a>Azure 區域 tooExpressRoute 地緣政治區域內的位置。
+hello 下表提供的 Azure 區域對應 tooExpressRoute 地緣政治區域內的位置。
 
 | **地緣政治區域** | **Azure 區域** | **ExpressRoute 位置** |
 | --- | --- | --- |
@@ -51,7 +51,7 @@ ms.lasthandoff: 08/29/2017
 | **南韓** |韓國中部、韓國南部 |釜山、首爾 |
 
 ### <a name="regions-and-geopolitical-boundaries-for-national-clouds"></a>國家雲端的區域和地理政治界限
-下表提供國家雲端的區域和地理政治界限等資訊。
+hello 下表提供有關區域和地緣政治界限的國家 （地區） 的雲端。
 
 | **地緣政治區域** | **Azure 區域** | **ExpressRoute 位置** |
 | --- | --- | --- |
@@ -59,11 +59,11 @@ ms.lasthandoff: 08/29/2017
 | **中國** |中國北部、中國東部 |北京、上海 |
 | **德國** |德國中部、德國東部 |柏林、法蘭克福 |
 
-標準 ExpressRoute SKU 不支援跨地緣政治區域的連線。 您必須啟用 ExpressRoute 進階附加元件，以支援全球連線。 不支援連線至國家雲端環境。 如果有需要的話，您可以聯絡您的連線提供者。
+Hello 標準 ExpressRoute SKU 上不支援跨地理政治區域連線。 您將需要 tooenable hello ExpressRoute premium 附加元件 toosupport 全域連線能力。 不支援連線 toonational 雲端環境。 如果有需要的話，您可以聯絡您的連線提供者。
 
 ## <a name="locations"></a>連線提供者位置
 
-下表顯示服務提供者的位置。 如果您想依位置檢視可用的提供者，請參閱[位置服務提供者](expressroute-locations-providers.md#locations)。
+hello 下表顯示服務提供者的位置。 如果您想 tooview 依位置的可用提供者，請參閱[服務提供者位置](expressroute-locations-providers.md#locations)。
 
 
 ### <a name="production-azure"></a>生產 Azure
@@ -139,7 +139,7 @@ ms.lasthandoff: 08/29/2017
 | --- | --- | --- | --- |
 | **China Telecom** |支援 |不支援 |北京、上海 |
 
-若要深入了解，請參閱 [ExpressRoute (中國)](http://www.windowsazure.cn/home/features/expressroute/)。
+詳細資訊，請參閱 toolearn[中國 ExpressRoute](http://www.windowsazure.cn/home/features/expressroute/)。
 
 ### <a name="germany"></a>德國
 | **服務提供者** | **Microsoft Azure** | **Office 365** | **位置** |
@@ -155,7 +155,7 @@ ms.lasthandoff: 08/29/2017
 
 如果上一節中未列出您的連線提供者，您仍然可以建立連線。
 
-* 請洽詢您的連線提供者，以了解他們是否連線到上方表格中列出的任何 Exchange 提供者。 您可以檢查下列連結，以收集 Exchange 提供者所提供之服務的相關詳細資訊。 已有數個連線提供者連線到乙太網路 Exchange。
+* 如果已連線的 hello 上表中的 hello 交換 tooany，連絡您的連線提供者 toosee。 您可以檢查 hello 下列連結 toogather 交換服務提供者所提供服務的詳細資訊。 數個連線提供者都已連接的 tooEthernet 交換。
   * [Cologix](http://www.cologix.com/)
   * [Console](https://www.consoleconnect.com/partners/cloudsaas/)
   * [CoreSite](http://www.coresite.com/)
@@ -164,10 +164,10 @@ ms.lasthandoff: 08/29/2017
   * [Megaport](https://www.megaport.com/services/microsoft-expressroute/)
   * [NextDC](http://www.nextdc.com/)
   * [TeleCity CloudIX](http://www.telecitygroup.com/colocation-services/cloud-ix.htm)
-* 請您的連線提供者將您的網路延伸到選擇的對等互連位置。
+* 具有擴充您的網路 toohello 對等互連位置所選擇的連線提供者。
   * 請確保您的連線提供者以高可用性的方式延伸您的連線，因此不會有單一失敗點。
-* 排序一個 ExpressRoute 循環，將 Exchange 視為連線至 Microsoft 的連線提供者。
-  * 依照 [建立 ExpressRoute 循環](expressroute-howto-circuit-classic.md) 中的步驟來設定連線。
+* 為連線提供者 tooconnect tooMicrosoft 訂購 ExpressRoute 電路 hello 交換。
+  * 遵循的步驟[建立 ExpressRoute 電路](expressroute-howto-circuit-classic.md)tooset 連線設定。
 
 ## <a name="connectivity-through-additional-service-providers"></a>透過額外服務提供者連線
 
@@ -232,10 +232,10 @@ ms.lasthandoff: 08/29/2017
 | **SINET**|
 | **Surfnet，透過 GÉANT**|
 
-* 如果連線提供者未列於此處，請查看他們是否已連線到上列的任何 ExpressRoute Exchange 提供者。
+* 如果您連線服務提供者未列在此處，請檢查 toosee，如果連接的 tooany hello ExpressRoute 交換夥伴上面所列。
 
 ## <a name="expressroute-system-integrators"></a>ExpressRoute 系統整合者
-根據您的網路規模，為符合您的需求而啟用私人連線可能有一定的難度。 您可以使用下表所列出的任何系統整合者來協助您開始使用 ExpressRoute。
+啟用私人連線能力 toofit 您的需求可能會很困難，取決於您網路的 hello 小數位數。 您可以使用與任何一列在下列資料表 tooassist hello hello 系統整合者您上架 tooExpressRoute。
 
 | **系統整合者** | **Continent** |
 | --- | --- |
@@ -246,7 +246,7 @@ ms.lasthandoff: 08/29/2017
 | **[Equinix Professional Services](http://www.equinix.com/services/consulting/)** | 北美洲 |
 | **[FlexManage](http://www.flexmanage.com/cloud)** | 北美洲 |
 | **[Inframon](http://www.inframon.com/partner/microsoft/)** | 歐洲 |
-| **[The IT Consultancy Group](http://itconsult.com.au/microsoft-expressroute)** | 澳大利亞 |
+| **[hello 顧問的 IT 團隊](http://itconsult.com.au/microsoft-expressroute)** | 澳大利亞 |
 | **[MOQdigital](http://www.moqdigital.com.au/insights/technical/network-connectivity-options-for-azure)** | 澳大利亞 |
 | **[MSG Services](https://www.msg-services.de/it-services/managed-services/cloud-outsourcing/)** | 歐洲 (德國) |
 | **[Nelite](http://nelite.com/)** | 歐洲 |
@@ -260,7 +260,7 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="next-steps"></a>後續步驟
-* 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
+* 如需 ExpressRoute 的詳細資訊，請參閱 hello [ExpressRoute 常見問題集](expressroute-faqs.md)。
 * 請確定符合所有必要條件。 請參閱 [ExpressRoute 必要條件](expressroute-prerequisites.md)。
 
 <!--Image References-->

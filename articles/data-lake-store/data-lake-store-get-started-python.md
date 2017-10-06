@@ -1,6 +1,6 @@
 ---
-title: "透過 Python SDK 開始使用 Azure Data Lake Store | Microsoft Docs"
-description: "了解如何利用 Python SDK 來與 Data Lake Store 帳戶及檔案系統搭配使用。"
+title: "開始使用 Azure Data Lake Store 的 aaaUse hello Python SDK tooget |Microsoft 文件"
+description: "了解如何使用 Data Lake Store 帳戶和 hello toouse Python SDK toowork 檔案系統。"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 375a603360ac249fc1b08923a94c85652390a3fc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7061fdf25ef607608bab618a20ddd3d6fc7af01d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-store-using-python"></a>透過 Python 開始使用 Azure Data Lake Store
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-了解如何使用適用於 Azure 和 Azure Data Lake Store 的 Python SDK 來執行基本作業，例如建立資料夾、上傳和下載資料檔案等等。如需有關 Data Lake 的詳細資訊，請參閱 [Azure Data Lake Store](data-lake-store-overview.md)。
+了解如何 toouse hello Azure 的 Python SDK 和 Azure Data Lake Store tooperform 基本作業，例如建立資料夾、 上傳和下載資料檔等。如需有關 Data Lake 的詳細資訊，請參閱 [Azure Data Lake Store](data-lake-store-overview.md)。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -42,17 +42,17 @@ ms.lasthandoff: 07/11/2017
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-* **建立 Azure Active Directory 應用程式**。 您必須使用 Azure AD 應用程式來向 Azure AD 驗證 Data Lake Store 應用程式。 有不同的方法可向 Azure AD 進行驗證：**使用者驗證**或**服務對服務驗證**。 如需有關如何驗證的指示和詳細資訊，請參閱[使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)或[服務對服務驗證](data-lake-store-authenticate-using-active-directory.md)。
+* **建立 Azure Active Directory 應用程式**。 您可以使用 hello Azure AD 應用程式 tooauthenticate hello Data Lake Store 應用程式與 Azure AD。 有不同的方法 tooauthenticate 與 Azure AD，這是**使用者驗證**或**服務對服務驗證**。 如需指示和詳細資訊 tooauthenticate，請參閱[使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)或[服務對服務驗證](data-lake-store-authenticate-using-active-directory.md)。
 
-## <a name="install-the-modules"></a>安裝模組
+## <a name="install-hello-modules"></a>安裝 hello 模組
 
-若要透過 Python 使用 Data Lake Store，您需要安裝三個模組。
+toowork 與資料湖存放區使用 Python，您需要 tooinstall 三個模組。
 
-* `azure-mgmt-resource` 模組。 這包括適用於 Active Directory 等等的 Azure 模組。
-* `azure-mgmt-datalake-store` 模組。 這包括 Azure Data Lake Store 帳戶管理作業。 如需關於此模組的詳細資訊，請參閱 [Azure Data Lake Store Management module reference (Azure Data Lake Store 管理模組參考)](http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-store.html)。
-* `azure-datalake-store` 模組。 這包括 Azure Data Lake Store 檔案系統作業。 如需關於此模組的詳細資訊，請參閱 [Azure Data Lake Store Filesystem module reference (Azure Data Lake Store 檔案系統模組參考)](http://azure-datalake-store.readthedocs.io/en/latest/)。
+* hello`azure-mgmt-resource`模組。 這包括適用於 Active Directory 等等的 Azure 模組。
+* hello`azure-mgmt-datalake-store`模組。 這包括 hello Azure Data Lake Store 帳戶的管理作業。 如需關於此模組的詳細資訊，請參閱 [Azure Data Lake Store Management module reference (Azure Data Lake Store 管理模組參考)](http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-store.html)。
+* hello`azure-datalake-store`模組。 這包括 hello Azure Data Lake Store 檔案系統作業。 如需關於此模組的詳細資訊，請參閱 [Azure Data Lake Store Filesystem module reference (Azure Data Lake Store 檔案系統模組參考)](http://azure-datalake-store.readthedocs.io/en/latest/)。
 
-使用下列命令來安裝新模組。
+使用下列命令 tooinstall hello 模組 hello。
 
 ```
 pip install azure-mgmt-resource
@@ -62,9 +62,9 @@ pip install azure-datalake-store
 
 ## <a name="create-a-new-python-application"></a>建立新的 Python 應用程式
 
-1. 在您選定的整合式開發環境 (IDE) 中建立新的 Python 應用程式，例如 **mysample.py**。
+1. Hello 您選擇的 IDE 中建立新的 Python 應用程式，例如**mysample.py**。
 
-2. 加入以下文字行以匯入必要模組
+2. 新增下列幾行 tooimport hello 所需模組的 hello
 
     ```
     ## Use this only for Azure AD service-to-service authentication
@@ -91,11 +91,11 @@ pip install azure-datalake-store
     import logging, getpass, pprint, uuid, time
     ```
 
-3. 將變更儲存至 mysample.py。
+3. 儲存變更 toomysample.py。
 
 ## <a name="authentication"></a>驗證
 
-在本節中，我們會討論向 Azure AD 進行驗證的各種方式。 可用的選項如下︰
+在本節中，我們討論 hello 不同的方式 tooauthenticate 與 Azure AD。 hello 選項如下：
 
 * 使用者驗證
 * 服務對服務驗證
@@ -105,39 +105,39 @@ pip install azure-datalake-store
 
 ### <a name="end-user-authentication-for-account-management"></a>適用於帳戶管理的使用者驗證
 
-使用這個方法來向 Azure AD 驗證，以便進行帳戶管理作業 (建立/刪除 Data Lake Store 帳戶等等)。 您必須提供 Azure AD 使用者的使用者名稱和密碼。 請注意，使用者不應設定使用多重要素驗證。
+使用此 tooauthenticate 和 Azure AD 的帳戶管理操作 （建立/刪除 Data Lake Store 帳戶等。）。 您必須提供 Azure AD 使用者的使用者名稱和密碼。 請注意該 hello 使用者不應該設定多重要素驗證。
 
-    user = input('Enter the user to authenticate with that has permission to subscription: ')
+    user = input('Enter hello user tooauthenticate with that has permission toosubscription: ')
     password = getpass.getpass()
 
     credentials = UserPassCredentials(user, password)
 
 ### <a name="end-user-authentication-for-filesystem-operations"></a>檔案系統作業的使用者驗證
 
-使用這個方法來向 Azure AD 驗證，以便進行檔案系統作業 (建立資料夾、上傳檔案等等)。 請將此方法用於現有的 Azure AD「原生用戶端」應用程式。 您提供認證的 Azure AD 使用者不應設定使用多重要素驗證。
+使用此 tooauthenticate 和 Azure AD （建立資料夾、 上傳的檔案等） 的檔案系統作業。 請將此方法用於現有的 Azure AD「原生用戶端」應用程式。 您提供認證的 hello Azure AD 使用者不應該設定多重要素驗證。
 
     tenant_id = 'FILL-IN-HERE'
     client_id = 'FILL-IN-HERE'
-    user = input('Enter the user to authenticate with that has permission to subscription: ')
+    user = input('Enter hello user tooauthenticate with that has permission toosubscription: ')
     password = getpass.getpass()
 
     token = lib.auth(tenant_id, user, password, client_id)
 
 ### <a name="service-to-service-authentication-with-client-secret-for-account-management"></a>適用於帳戶管理的用戶端密碼服務對服務驗證
 
-使用這個方法來向 Azure AD 驗證，以便進行帳戶管理作業 (建立/刪除 Data Lake Store 帳戶等等)。 下列程式碼片段可供使用應用程式/服務主體的用戶端密碼，以非互動方式驗證您的應用程式。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。
+使用此 tooauthenticate 和 Azure AD 的帳戶管理操作 （建立/刪除 Data Lake Store 帳戶等。）。 下列程式碼片段 hello 可以是使用的 tooauthenticate 您的應用程式非互動方式，應用程式 / 服務主體使用 hello 用戶端密碼。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。
 
     credentials = ServicePrincipalCredentials(client_id = 'FILL-IN-HERE', secret = 'FILL-IN-HERE', tenant = 'FILL-IN-HERE')
 
 ### <a name="service-to-service-authentication-with-client-secret-for-filesystem-operations"></a>適用於檔案系統作業的用戶端密碼服務對服務驗證
 
-使用這個方法來向 Azure AD 驗證，以便進行檔案系統作業 (建立資料夾、上傳檔案等等)。 下列程式碼片段可供使用應用程式/服務主體的用戶端密碼，以非互動方式驗證您的應用程式。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。
+使用此 tooauthenticate 和 Azure AD （建立資料夾、 上傳的檔案等） 的檔案系統作業。 下列程式碼片段 hello 可以是使用的 tooauthenticate 您的應用程式非互動方式，應用程式 / 服務主體使用 hello 用戶端密碼。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。
 
     token = lib.auth(tenant_id = 'FILL-IN-HERE', client_secret = 'FILL-IN-HERE', client_id = 'FILL-IN-HERE')
 
 ### <a name="multi-factor-authentication-for-account-management"></a>適用於帳戶管理的 Multi-Factor Authentication
 
-使用這個方法來向 Azure AD 驗證，以便進行帳戶管理作業 (建立/刪除 Data Lake Store 帳戶等等)。 下列程式碼片段可供使用 Multi-Factor Authentication 來驗證您的應用程式。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。
+使用此 tooauthenticate 和 Azure AD 的帳戶管理操作 （建立/刪除 Data Lake Store 帳戶等。）。 hello 下列程式碼片段可以是使用 tooauthenticate 使用多因素驗證應用程式。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。
 
     authority_host_url = "https://login.microsoftonline.com"
     tenant = "FILL-IN-HERE"
@@ -154,13 +154,13 @@ pip install azure-datalake-store
 
 ### <a name="multi-factor-authentication-for-filesystem-management"></a>適用於檔案系統管理的 Multi-Factor Authentication
 
-使用這個方法來向 Azure AD 驗證，以便進行檔案系統作業 (建立資料夾、上傳檔案等等)。 下列程式碼片段可供使用 Multi-Factor Authentication 來驗證您的應用程式。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。
+使用此 tooauthenticate 和 Azure AD （建立資料夾、 上傳的檔案等） 的檔案系統作業。 hello 下列程式碼片段可以是使用 tooauthenticate 使用多因素驗證應用程式。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。
 
     token = lib.auth(tenant_id='FILL-IN-HERE')
 
 ## <a name="create-an-azure-resource-group"></a>建立 Azure 資源群組
 
-使用下列程式碼片段來建立 Azure 資源群組︰
+使用下列程式碼片段 toocreate Azure 資源群組的 hello:
 
     ## Declare variables
     subscriptionId= 'FILL-IN-HERE'
@@ -183,7 +183,7 @@ pip install azure-datalake-store
 
 ## <a name="create-clients-and-data-lake-store-account"></a>建立用戶端與 Data Lake Store 帳戶
 
-以下程式碼片段會先建立 Data Lake Store 帳戶用戶端。 它會使用用戶端物件來建立 Data Lake Store 帳戶。 最後，程式碼片段會建立檔案系統用戶端物件。
+下列程式碼片段的第一次的 hello 建立 hello Data Lake Store 帳戶用戶端。 它會使用 hello 用戶端物件 toocreate Data Lake Store 帳戶。 最後，hello 片段會建立檔案系統的用戶端物件。
 
     ## Declare variables
     subscriptionId = 'FILL-IN-HERE'
@@ -204,9 +204,9 @@ pip install azure-datalake-store
     ## Create a filesystem client object
     adlsFileSystemClient = core.AzureDLFileSystem(token, store_name=adlsAccountName)
 
-## <a name="list-the-data-lake-store-accounts"></a>列出 Data Lake Store 帳戶
+## <a name="list-hello-data-lake-store-accounts"></a>列出 hello Data Lake Store 帳戶
 
-    ## List the existing Data Lake Store accounts
+    ## List hello existing Data Lake Store accounts
     result_list_response = adlsAcctClient.account.list()
     result_list = list(result_list_response)
     for items in result_list:

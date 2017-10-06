@@ -1,6 +1,6 @@
 ---
-title: "透過 Azure 入口網站管理串流端點 | Microsoft Docs"
-description: "本主題說明如何透過 Azure 入口網站管理串流端點。"
+title: "aaaManage 串流端點，其中包含 hello Azure 入口網站 |Microsoft 文件"
+description: "本主題說明如何 toomanage 串流端點，其中包含 hello Azure 入口網站。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -15,27 +15,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 797dced6c3e2525730afa29987259cb9b435ba66
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dfa9352894d37edb317a6334d7f109419deb362b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-streaming-endpoints-with-the-azure-portal"></a>透過 Azure 入口網站管理串流端點
+# <a name="manage-streaming-endpoints-with-hello-azure-portal"></a>管理以 hello Azure 入口網站的串流端點
 
-本主題說明如何使用 Azure 入口網站來管理串流端點。 
+本主題說明如何 toouse hello Azure 入口網站 toomanage 串流端點。 
 
 >[!NOTE]
->務必檢閱[概觀](media-services-streaming-endpoints-overview.md)主題。 
+>請確定 tooreview hello[概觀](media-services-streaming-endpoints-overview.md)主題。 
 
-如需調整串流端點的相關資訊，請參閱 [這個](media-services-portal-scale-streaming-endpoints.md) 主題。
+如需如何 tooscale hello 串流端點資訊，請參閱[這](media-services-portal-scale-streaming-endpoints.md)主題。
 
 ## <a name="start-managing-streaming-endpoints"></a>開始管理串流端點 
 
-若要開始管理您帳戶的串流端點，請執行下列作業。
+管理您的帳戶，串流端點 toostart hello 遵循。
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，選取您的 Azure 媒體服務帳戶。
-2. 在 [設定] 刀鋒視窗中，選取 [串流端點]。
+1. 在 hello [Azure 入口網站](https://portal.azure.com/)，選取您的 Azure Media Services 帳戶。
+2. 在 hello**設定**刀鋒視窗中，選取**串流端點**。
    
     ![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints1.png)
 
@@ -45,22 +45,22 @@ ms.lasthandoff: 08/29/2017
 ## <a name="adddelete-a-streaming-endpoint"></a>新增/移除串流端點
 
 >[!NOTE]
->預設串流端點不可刪除。
+>無法刪除 hello 預設串流端點。
 
-若要使用 Azure 入口網站來新增或移除串流端點，以執行下列作業：
+tooadd/刪除串流端點使用 hello Azure 入口網站中，執行下列 hello:
 
-1. 若要新增串流端點，請按一下頁面頂端的 [+端點]  。 
+1. tooadd 串流端點中，按一下 hello **+ 端點**hello 頁面頂端的 hello。 
 
-    如果您打算有不同的 CDN 或一個 CDN 和直接存取，您可能需要有多個串流端點。
+    您可能會想多個串流端點，如果您計劃 toohave 不同 Cdn 或 CDN 和直接存取。
 
-2. 若要刪除串流端點，請按下 [刪除]  按鈕。      
-3. 按一下 [啟動]  按鈕以啟動串流端點。
+2. toodelete 串流端點，請按**刪除** 按鈕。      
+3. 按一下 hello**啟動**按鈕 toostart hello 串流端點。
    
     ![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints2.png)
 
 
-## <a id="configure_streaming_endpoints"></a>設定串流端點
-串流端點可讓您設定下列屬性：
+## <a id="configure_streaming_endpoints"></a>設定 hello 串流端點
+串流端點可讓您 tooconfigure hello 下列屬性：
 
 * 存取控制
 * 快取控制
@@ -68,18 +68,18 @@ ms.lasthandoff: 08/29/2017
 
 如需這些屬性的詳細資訊，請參閱 [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint)。
 
-若要設定串流端點，請執行以下作業：
+您可以設定串流端點，藉由下列 hello:
 
-1. 選取您想要設定的串流端點。
+1. 選取串流端點想 tooconfigure hello。
 2. 按一下 [設定] 。
 
-隨時顯示簡要的欄位說明。
+遵循 hello 欄位的簡短描述。
 
 ![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints4.png)
 
-1. 最大快取原則：用來設定透過此串流端點所提供的資源快取存留期。 如果沒有設定任何值，則會使用預設值。 預設值也可以直接在 Azure 儲存體中定義。 如果 Azure CDN 已針對串流端點啟用，您便不應該將快取原則值設定成少於 600 秒。  
-2. 允許的 IP 位址：用來指定能夠連接到已發佈之串流端點的 IP 位址。 若未指定 IP 位址，則任何 IP 位址都可連接。 IP 位址可以指定為單一 IP 位址 (例如 ‘10.0.0.1’)、使用 IP 位址和 CIDR 子網路遮罩的 IP 範圍 (例如 ‘10.0.0.1/22’)，或是使用 IP 位址和小數點十進位子網路遮罩的 IP 範圍 (例如 ‘10.0.0.1(255.255.255.0)’)。
-3. 針對 Akamai 簽章標頭驗證的設定：用來指定來自 Akamai 伺服器的簽章標頭驗證的設定方式。 到期時間的格式為 UTC。
+1. 最大快取原則： 使用的 tooconfigure 資產的快取生命週期服務透過此串流端點。 如果未不設定任何值，則會使用 hello 預設值。 hello 預設值也可以直接在 Azure 儲存體中定義。 Hello 串流端點啟用 Azure CDN，如果您不應將 hello 快取原則值 tooless 比 600 秒。  
+2. 允許的 IP 位址： 使用 toospecify tooconnect toohello 發佈串流端點允許的 IP 位址。 如果沒有指定的 IP 位址，任何 IP 位址是無法 tooconnect。 IP 位址可以指定為單一 IP 位址 (例如 ‘10.0.0.1’)、使用 IP 位址和 CIDR 子網路遮罩的 IP 範圍 (例如 ‘10.0.0.1/22’)，或是使用 IP 位址和小數點十進位子網路遮罩的 IP 範圍 (例如 ‘10.0.0.1(255.255.255.0)’)。
+3. Akamai 簽章標頭驗證設定： 使用的 toospecify 設定來自 Akamai 伺服器的簽章標頭驗證要求的方式。 到期時間的格式為 UTC。
 
 ## <a name="scale-your-premium-streaming-endpoint"></a>調整您的進階串流端點
 
@@ -89,25 +89,25 @@ ms.lasthandoff: 08/29/2017
 
 當您建立新的帳戶時，依預設會啟用預設串流端點 Azure CDN 整合。
 
-如果您稍後想要停用/啟用 CDN，串流端點必須處於**已停止**狀態。 可能需要將近 2 小時，Azure CDN 整合才會啟用，變更也才會遍及所有 CDN POP。 不過，您可以啟動串流端點，並從串流端點不停地串流，等到整合完成後，將會從 CDN 傳送資料流。 在佈建期間，串流端點會處於**啟動中**狀態，您可能會發現效能下降。
+如果您稍後想 toodisable/啟用 hello CDN，您的串流端點必須在 hello**停止**狀態。 可能需要跨所有 hello CDN 快顯 hello Azure CDN 整合 tooget 啟用和使用中的 hello 變更 toobe too2 小時。 不過，您可以從串流端點的 hello 啟動串流端點和且不被中斷的資料流和 hello 整合完成之後，直接從 hello CDN 傳送嗨資料流。 在佈建期間 hello 期間您的串流端點將處於**啟動**狀態，而且您可能會發現 degredad 效能。
 
-中國和聯邦政府區域除外，其他所有 Azure 資料中心都啟用 CDN 整合。
+所有 hello Azure 資料中心 execpt 中國和美國聯邦公文區域中，會啟用 CDN 整合。
 
-啟用後，**存取控制**、**自訂主機名稱**和 **Akamai 簽章驗證**設定就會停用。
+一旦啟用後，hello**存取控制**，**自訂主機名稱**和**Akamai 簽章驗證**組態取得停用。
  
 > [!IMPORTANT]
-> 如果是標準串流端點，Azure 媒體服務與 Azure CDN 的整合是在**來自 Verizon 的 Azure CDN** 上實作。 您可以使用所有 **Azure CDN 定價層和提供者**來設定進階串流端點。 如需 Azure CDN 功能的詳細資訊，請參閱 [CDN 概觀](../cdn/cdn-overview.md)。
+> 如果是標準串流端點，Azure 媒體服務與 Azure CDN 的整合是在**來自 Verizon 的 Azure CDN** 上實作。 您可以使用所有 **Azure CDN 定價層和提供者**來設定進階串流端點。 如需有關 Azure CDN 功能的詳細資訊，請參閱 hello [CDN 概觀](../cdn/cdn-overview.md)。
  
 ### <a name="additional-considerations"></a>其他考量
 
-* 對串流端點啟用 CDN 時，用戶端無法直接從來源要求內容。 如果您需要在具有 CDN 或不具有 CDN 的情況下測試您內容的能力，您可以建立另一個未啟用 CDN 的串流端點。
-* 您的串流端點主機名稱在啟用 CDN 之後維持不變。 您在啟用 CDN 之後不需要對您的媒體服務工作流程進行任何變更。 例如，如果您的串流端點主機名稱是 strasbourg.streaming.mediaservices.windows.net，則在啟用 CDN 之後，會使用完全相同的主機名稱。
-* 對於新的串流端點，只要建立新的端點就會啟用 CDN；對於現有的串流端點，您必須先停止端點，然後啟用/停用 CDN。
+* 為串流端點啟用 CDN 時，用戶端無法直接從 hello 原始要求內容。 如果您需要 hello 能力 tootest 您不論 CDN 的內容，您可以建立另一個未啟用 CDN 的串流端點。
+* 您的串流端點主機名稱維持 hello 相同啟用 CDN 之後。 啟用 CDN 之後您不需要指定 toomake 任何變更 tooyour 媒體服務工作流程。 例如，如果您的串流端點主機名稱是 strasbourg.streaming.mediaservices.windows.net，啟用 CDN 之後，會使用 hello 完全相同的主機名稱。
+* 針對新的資料流端點，您可以啟用 CDN 只是藉由建立新的端點。針對現有的資料流端點，您需要 toofirst 停止 hello 端點，然後啟用/停用 hello CDN。
 * 只有透過 Azure 管理入口網站使用 **Verizon 標準 CDN 提供者**，才能設定標準串流端點。 不過，您可以使用 REST API 來啟用其他 Azure CDN 提供者。
 
 ## <a name="configure-cdn-profile"></a>設定 CDN 設定檔
 
-您可以選取頂端的 [管理 CDN] 按鈕來設定 CDN 設定檔。
+您可以設定 hello 的 CDN 設定檔選取 hello**管理 CDN**從 hello 上方的按鈕。
 
 ![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints6.png)
 

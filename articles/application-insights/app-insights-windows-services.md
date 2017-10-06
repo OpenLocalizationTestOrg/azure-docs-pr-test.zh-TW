@@ -1,6 +1,6 @@
 ---
-title: "適用於 Windows 伺服器和背景工作角色的 Azure Application Insights | Microsoft Docs"
-description: "將 Application Insights SDK 手動新增至您的 ASP.NET 應用程式，以分析使用情況、可用性和效能。"
+title: "aaaAzure Insights 的應用程式的 Windows server 和背景工作角色 |Microsoft 文件"
+description: "手動新增 hello Application Insights SDK tooyour ASP.NET 應用程式 tooanalyze 使用狀況、 可用性和效能。"
 services: application-insights
 documentationcenter: .net
 author: CFreemanwa
@@ -13,15 +13,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/15/2017
 ms.author: bwren
-ms.openlocfilehash: 4b9f8c618a69c4c157dafeb7f726aae24efad428
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 64643ef637195d10f87fc6020a77169bca66c1f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manually-configure-application-insights-for-net-applications"></a>為 .NET 應用程式手動設定 Application Insights
 
-您可以設定 [Application Insights](app-insights-overview.md) 以監視各種不同的應用程式或應用程式角色、元件或微服務。 對於 Web 應用程式和服務，Visual Studio 會提供[單步驟設定](app-insights-asp-net.md)。 對於其他類型的 .NET 應用程式 (例如後端伺服器角色或桌面應用程式)，您可以手動設定 Application Insights。
+您可以設定[Application Insights](app-insights-overview.md) toomonitor 各種不同的應用程式或應用程式角色、 元件或 microservices。 對於 Web 應用程式和服務，Visual Studio 會提供[單步驟設定](app-insights-asp-net.md)。 對於其他類型的 .NET 應用程式 (例如後端伺服器角色或桌面應用程式)，您可以手動設定 Application Insights。
 
 ![範例效能監視圖表](./media/app-insights-windows-services/10-perf.png)
 
@@ -29,115 +29,115 @@ ms.lasthandoff: 08/18/2017
 
 您需要：
 
-* [Microsoft Azure](http://azure.com)訂用帳戶。 如果您的小組或組織擁有 Azure 訂用帳戶，擁有者就可以使用您的 [Microsoft 帳戶](http://live.com)將您加入。
+* 訂用帳戶太[Microsoft Azure](http://azure.com)。 如果您的小組或組織有 Azure 訂用帳戶，hello 擁有者可以將您加入 tooit，使用您[Microsoft 帳戶](http://live.com)。
 * Visual Studio 2013 或更新版本。
 
 ## <a name="add"></a>1.選擇 Application Insights 資源
 
-「資源」是在 Azure 入口網站中收集和顯示您資料的位置。 您需要決定是否要建立新的資源，或共用現有資源。
+hello 'resource' 是收集及顯示 hello Azure 入口網站中資料的位置。 您是否需要 toodecide toocreate 一個新或現有的共用。
 
 ### <a name="part-of-a-larger-app-use-existing-resource"></a>屬於大型應用程式︰使用現有資源
 
-如果您的 Web 應用程式有多個元件 (例如，前端 Web 應用程式和一或多個後端服務)，您應該將來自所有元件的遙測傳送至相同的資源。 這會讓它們顯示在單一應用程式對應上，並可追蹤元件之間的要求。
+如果您的 web 應用程式具有數個元件-例如前端的 web 應用程式和一個或多個後端服務層，則您應該從所有 hello 元件 toohello 傳送遙測相同的資源。 這會讓它們顯示在單一的應用程式對應，toobe，並將其可能 tootrace 來自一個元件 tooanother 的要求。
 
-因此，如果您已監視此應用程式的其他元件，只要使用相同的資源即可。
+因此，如果您已經監視此應用程式的其他元件，然後只使用 hello 相同資源。
 
-在 [Azure 入口網站](https://portal.azure.com/)中開啟資源。 
+在 hello 開啟 hello 資源[Azure 入口網站](https://portal.azure.com/)。 
 
 ### <a name="self-contained-app-create-a-new-resource"></a>獨立應用程式：建立新的資源
 
-如果新的應用程式與其他應用程式無關，則應該有自己的資源。
+如果 hello 新應用程式是不相關的 tooother 應用程式，它應該有它自己的資源。
 
-登入 [Azure 入口網站](https://portal.azure.com/)，並建立新的 Application Insights 資源。 選擇 ASP.NET 做為應用程式類型。
+登入 toohello [Azure 入口網站](https://portal.azure.com/)，並建立新的 Application Insights 資源。 選擇 ASP.NET 做為 hello 應用程式類型。
 
-![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-windows-services/01-new-asp.png)
+![按一下 新增，然後按一下Application Insights](./media/app-insights-windows-services/01-new-asp.png)
 
-所選的應用程式類型會設定資源刀鋒視窗的預設內容。
+應用程式類型的 hello 選擇設定 hello 的 hello 資源刀鋒視窗的預設內容。
 
-## <a name="2-copy-the-instrumentation-key"></a>2.複製檢測金鑰
-可識別資源的金鑰。 您很快就會將它安裝在 SDK 中，以便將資料導向資源。
+## <a name="2-copy-hello-instrumentation-key"></a>2.複製檢測機碼 hello
+hello 索引鍵識別 hello 資源。 您會將它安裝很快就在 hello SDK，順序 toodirect 資料 toohello 資源中。
 
-![按一下 [屬性]，選取金鑰，然後按下 CTRL+C](./media/app-insights-windows-services/02-props-asp.png)
+![按一下 內容選取 hello 金鑰，請按 ctrl + C](./media/app-insights-windows-services/02-props-asp.png)
 
-## <a name="sdk"></a>3.在您的應用程式中安裝 Application Insights 套件
-安裝和設定 Application Insights 套件會因您所正在使用的平台而有所不同。 
+## <a name="sdk"></a>3.安裝應用程式中的 hello Application Insights 套件
+安裝和設定 hello Application Insights 封裝會根據您正在使用的 hello 平台而有所不同。 
 
 1. 在 Visual Studio 中，以滑鼠右鍵按一下專案，然後選擇 [管理 Nuget 套件]。
    
-    ![以滑鼠右鍵按一下專案，然後選取 [管理 NuGet 套件]](./media/app-insights-windows-services/03-nuget.png)
-2. 針對 Windows Server 應用程式安裝 Application Insights 套件 "Microsoft.ApplicationInsights.WindowsServer"。
+    ![Hello 專案上按一下滑鼠右鍵，然後選取 管理 Nuget 封裝](./media/app-insights-windows-services/03-nuget.png)
+2. 安裝 Windows server 應用程式，「 Microsoft.ApplicationInsights.WindowsServer。"hello Application Insights 套件
    
     ![搜尋「Application Insights」](./media/app-insights-windows-services/04-ai-nuget.png)
    
     *哪個版本？*
 
-    如果您想要嘗試最新的功能，請勾選 [包括搶鮮版]。 相關的文件或部落格會指明您是否需要搶鮮版。
+    請檢查**包含發行前版本**如果您想 tootry 我們最新的功能。 hello 相關文件或部落格，請注意是否需要發行前版本。
     
     *可以使用其他封裝嗎？*
    
-    是。 如果您只想要使用 API 來傳送自己的遙測，請選擇 "Microsoft.ApplicationInsights"。 Windows Server 套件會包含 API 及其他套件，例如效能計數器收集和相依性監視。 
+    是。 如果您只想 toouse hello API toosend 您自己的遙測，請選擇 「 Microsoft.ApplicationInsights"。 hello Windows 伺服器套件包含 hello API 以及許多其他封裝，例如效能計數器集合與相依性監視。 
 
-### <a name="to-upgrade-to-future-package-versions"></a>升級至未來的套件版本
-我們隨時會發行新版的 SDK。
+### <a name="tooupgrade-toofuture-package-versions"></a>tooupgrade toofuture 封裝版本
+我們發行從時間 tootime hello SDK 的新版本。
 
-若要升級至[新版的套件](https://github.com/Microsoft/ApplicationInsights-dotnet-server/releases/)，請再次開啟 NuGet 套件管理員，並篩選出已安裝的套件。 選取 **Microsoft.ApplicationInsights.WindowsServer**，然後選擇 [升級]。
+tooupgrade tooa[新版 hello 封裝](https://github.com/Microsoft/ApplicationInsights-dotnet-server/releases/)，再次開啟 NuGet 封裝管理員，然後篩選已安裝的封裝。 選取 **Microsoft.ApplicationInsights.WindowsServer**，然後選擇 [升級]。
 
-如果您已對 ApplicationInsights.config 進行任何的自訂，請在升級前儲存複本，並在升級後合併您的變更到新版本中。
+如果您進行任何自訂 tooApplicationInsights.config，儲存一份之前升級，之後您的變更合併至 hello 新版本。
 
 ## <a name="4-send-telemetry"></a>4.傳送遙測
-**如果您只安裝 API 套件︰**
+**如果您已安裝只 hello API 套件：**
 
-* 在程式碼中設定檢測金鑰，例如在 `main()`中： 
+* 在中，例如設定在程式碼中的 hello 檢測金鑰`main()`: 
   
     `TelemetryConfiguration.Active.InstrumentationKey = "`您的金鑰 `";` 
-* [使用 API 撰寫自己的遙測](app-insights-api-custom-events-metrics.md#ikey)。
+* [撰寫您自己使用 hello API 的遙測](app-insights-api-custom-events-metrics.md#ikey)。
 
-**如果您安裝了其他 Application Insights 封裝** ，您可以視需要使用 .config 檔案來設定檢測金鑰︰
+**如果您已安裝其他的 Application Insights 套件，**您可以如果您想要的話，使用 hello.config 檔案 tooset hello 檢測金鑰：
 
-* 編輯 ApplicationInsights.config (已由 NuGet 安裝加入)。 在結尾標記前面插入此內容：
+* 編輯 ApplicationInsights.config （這由 hello NuGet 安裝所加入）。 這只前面插入結尾標記的 hello:
   
-    `<InstrumentationKey>`您複製的檢測金鑰 `</InstrumentationKey>`
-* 確定 [方案總管] 中 ApplicationInsights.config 的屬性已設定為 [建置動作] = [內容]、[複製到輸出目錄] = [複製] 。
+    `<InstrumentationKey>`*hello 檢測金鑰複製*`</InstrumentationKey>`
+* 請確定在 方案總管 ApplicationInsights.config hello 屬性會設太**建置動作 = 複製 tooOutput 目錄的內容 = 複製**。
 
-如果您想要[針對不同建置組態切換金鑰](app-insights-separate-resources.md)，在程式碼中設定檢測金鑰便很實用。 如果您在程式碼中設定金鑰，您不必在 `.config` 檔案中設定它。
+如果您想太是程式碼中的有用 tooset hello 檢測金鑰[不同組建組態的交換器 hello 金鑰](app-insights-separate-resources.md)。 如果您在程式碼中設定 hello 機碼，您不需要 tooset 在 hello`.config`檔案。
 
 ## <a name="run"></a> 執行專案
-使用 **F5** 執行應用程式並立即試用：開啟不同的頁面來產生一些遙測。
+使用 hello **F5** toorun 您的應用程式，現在就試試看： 開啟不同的網頁 toogenerate 某些遙測。
 
-在 Visual Studio 中，您可以看見已傳送到的事件計數。
+在 Visual Studio 中，您會看到已傳送的 hello 事件計數。
 
 ![Visual Studio 中的事件計數](./media/app-insights-windows-services/appinsights-09eventcount.png)
 
 ## <a name="monitor"></a> 檢視遙測
-返回 [Azure 入口網站](https://portal.azure.com/) ，並且瀏覽至您的 Application Insights 資源。
+傳回 toohello [Azure 入口網站](https://portal.azure.com/)並瀏覽 tooyour Application Insights 資源。
 
-在 [概觀] 圖表中尋找資料。 剛開始的時候，您只會看見一或兩個資料點。 例如：
+尋找在 hello 概觀圖表中的資料。 剛開始的時候，您只會看見一或兩個資料點。 例如：
 
-![Click through to more data](./media/app-insights-windows-services/12-first-perf.png)
+![瀏覽 toomore 資料](./media/app-insights-windows-services/12-first-perf.png)
 
-按一下任何圖表以查看詳細度量。 [深入了解度量。](app-insights-web-monitor-performance.md)
+按一下 透過任何圖表 toosee 度量詳細資訊。 [深入了解度量。](app-insights-web-monitor-performance.md)
 
 ### <a name="no-data"></a>沒有資料？
-* 使用應用程式、開啟不同頁面，以產生一些遙測。
-* 開啟 [ [搜尋](app-insights-diagnostic-search.md) ] 磚來查看個別事件。 有時候，事件通過計量管線所需的時間較長。
-* 請稍等片刻，然後按一下 [重新整理 ]。 圖表會定期自行重新整理，但是如果您在等待一些要顯示的資料，您可以手動重新整理。
+* 使用 hello 應用程式，使其產生某些遙測開啟不同的頁面。
+* 開啟 hello[搜尋](app-insights-diagnostic-search.md)磚，toosee 個別事件。 有時會事件稍長時 tooget hello 度量管線。
+* 請稍等片刻，然後按一下 [重新整理 ]。 圖表定期重新整理本身，但您可以手動重新整理如果正在等待某些資料 tooshow。
 * 請參閱 [疑難排解](app-insights-troubleshoot-faq.md)。
 
 ## <a name="publish-your-app"></a>發佈您的應用程式
-現在將應用程式部署至您的伺服器或 Azure，並觀看資料累積情形。
+現在，將您的應用程式 tooyour 伺服器部署或 tooAzure 和監看式 hello 資料會累積。
 
-![使用 Visual Studio 來發佈您的應用程式](./media/app-insights-windows-services/15-publish.png)
+![使用 Visual Studio toopublish 您的應用程式](./media/app-insights-windows-services/15-publish.png)
 
-以偵錯模式執行時，系統會透過管線迅速傳送遙測資料，因此您應該可以在幾秒內看見資料。 以發行組態部署應用程式時，資料累積會較為緩慢。
+當您在偵錯模式執行時，以便您應該會看到資料出現在數秒內加速遙測 hello 管線。 以發行組態部署應用程式時，資料累積會較為緩慢。
 
-### <a name="no-data-after-you-publish-to-your-server"></a>發佈資料到伺服器之後，卻沒有資料？
-請在您的伺服器防火牆中，開啟連出流量的連接埠。 請參閱[本頁](https://docs.microsoft.com/azure/application-insights/app-insights-ip-addresses)以取得必要位址清單 
+### <a name="no-data-after-you-publish-tooyour-server"></a>之後您發佈 tooyour 伺服器的任何資料嗎？
+請在您的伺服器防火牆中，開啟連出流量的連接埠。 請參閱[本頁](https://docs.microsoft.com/azure/application-insights/app-insights-ip-addresses)hello 清單的所需的位址 
 
 ### <a name="trouble-on-your-build-server"></a>組建伺服器發生問題？
 請參閱 [此疑難排解項目](app-insights-asp-net-troubleshoot-no-data.md#NuGetBuild)。
 
 > [!NOTE]
-> 如果您的應用程式會產生大量遙測，調適性取樣模型會自動藉由僅傳送事件代表性片段，減少傳送到入口網站的量。 不過，與同一個要求相關的事件會選取或取消選取為群組，讓您可以在相關事件之間瀏覽。 
+> 如果您的應用程式會產生大量的遙測，hello 調整取樣模組將會自動減少 hello 磁碟區所傳送的 toohello 入口網站傳送代表性數部分的事件。 不過，事件是相關的 toohello 相同的要求會被選取或取消選取此選項為群組，如此您可以瀏覽相關的事件之間。 
 > [了解取樣](app-insights-sampling.md)。
 > 
 > 
@@ -147,5 +147,5 @@ ms.lasthandoff: 08/18/2017
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
 
 ## <a name="next-steps"></a>後續步驟
-* [新增更多遙測](app-insights-asp-net-more.md) 可取得應用程式的完整 360 度檢視。
+* [新增更多的遙測](app-insights-asp-net-more.md)tooget hello 完整 360 度檢視您的應用程式。
 

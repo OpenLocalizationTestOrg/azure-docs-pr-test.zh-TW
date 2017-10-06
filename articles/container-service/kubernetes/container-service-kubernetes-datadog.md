@@ -1,5 +1,5 @@
 ---
-title: "使用 Datadog 監視 Azure Kubernetes 叢集 | Microsoft Docs"
+title: "aaaMonitor Datadog 叢集 Azure Kubernetes |Microsoft 文件"
 description: "使用 Datadog 監視 Azure Container Service 中的 Kubernetes 叢集"
 services: container-service
 documentationcenter: 
@@ -16,28 +16,28 @@ ms.workload: na
 ms.date: 12/09/2016
 ms.author: bburns
 ms.custom: mvc
-ms.openlocfilehash: 40b34457447a8f80d8cdf77579750e0c42df22d0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bccd8b59a048e0f791172fcfc4eeba6370dafcc0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-an-azure-container-service-cluster-with-datadog"></a>使用 DataDog 監視 Azure Container Service 叢集
 
 ## <a name="prerequisites"></a>必要條件
 本逐步解說假設您已[使用 Azure Container Service 建立 Kubernetes 叢集](container-service-kubernetes-walkthrough.md)。
 
-同時也假設您已經安裝 `az` Azure cli 和 `kubectl` 工具。
+它也假設您擁有 hello `az` Azure cli 和`kubectl`安裝工具。
 
-您可以藉由執行下列操作來測試是否已安裝 `az` 工具：
+您可以測試是否有 hello`az`安裝執行工具：
 
 ```console
 $ az --version
 ```
 
-如果您尚未安裝 `az` 工具，[這裡](https://github.com/azure/azure-cli#installation)有指示。
+如果您沒有 hello`az`工具安裝，指示[這裡](https://github.com/azure/azure-cli#installation)。
 
-您可以藉由執行下列操作來測試是否已安裝 `kubectl` 工具：
+您可以測試是否有 hello`kubectl`安裝執行工具：
 
 ```console
 $ kubectl version
@@ -52,13 +52,13 @@ $ az acs kubernetes install-cli
 ## <a name="datadog"></a>DataDog
 Datadog 是一項監視服務，會從 Azure 容器服務叢集內的容器收集監視資料。 Datadog 有 Docker 整合儀表板，可供您查看容器內的特定度量。 從容器收集到的度量會依 CPU、記憶體、網路和 I/O 來加以整理。 Datadog 會將度量分割成容器和映像。
 
-您必須先[建立帳戶 (英文)](https://www.datadoghq.com/lpg/)
+您必須先太[建立帳戶](https://www.datadoghq.com/lpg/)
 
-## <a name="installing-the-datadog-agent-with-a-daemonset"></a>使用 DaemonSet 安裝 Datadog Agent
-DaemonSet 是 Kubernetes 用來在叢集中每個主機上執行容器的單一執行個體。
+## <a name="installing-hello-datadog-agent-with-a-daemonset"></a>安裝 DaemonSet hello Datadog 代理程式
+DaemonSets 所使用的 Kubernetes toorun hello 叢集中各主機上的容器的單一執行個體。
 它們非常適合用來執行監視代理程式。
 
-當您登入 Datadog 之後，您可以依照 [Datadog 指示 (英文)](https://app.datadoghq.com/account/settings#agent/kubernetes) 使用 DaemonSet 在您的叢集上安裝 Datadog Agent。
+一旦您登入 Datadog，您可以依照 hello [Datadog 指示](https://app.datadoghq.com/account/settings#agent/kubernetes)tooinstall Datadog 代理程式使用 DaemonSet 在叢集上的。
 
 ## <a name="conclusion"></a>結論
-就這麼簡單！ 當代理程式啟動並執行之後，幾分鐘之內您應該會在主控台中看到資料。 您可以造訪這些整合式 [kubernetes 儀表板 (英文)](https://app.datadoghq.com/screen/integration/kubernetes) 以查看您的叢集摘要。
+就這麼簡單！ 一旦 hello 代理程式已啟動並執行您應該會看到 hello 主控台中的資料在幾分鐘的時間。 您可以瀏覽 hello 整合[kubernetes 儀表板](https://app.datadoghq.com/screen/integration/kubernetes)toosee 叢集的摘要。

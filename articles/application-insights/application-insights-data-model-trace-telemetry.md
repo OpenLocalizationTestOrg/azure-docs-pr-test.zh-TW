@@ -1,5 +1,5 @@
 ---
-title: "Azure Application Insights 遙測資料模型 - 追蹤遙測 | Microsoft Docs"
+title: "aaaAzure Insights 遙測資料模型的應用程式-追蹤遙測 |Microsoft 文件"
 description: "追蹤遙測的 Application Insights 資料模型"
 services: application-insights
 documentationcenter: .net
@@ -12,15 +12,15 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: e1da0d6a6fbd9ca5486936c326ade667d7b01006
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dfdee958e07d57448ff41abc5cd33bfd05dac090
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="trace-telemetry-application-insights-data-model"></a>追蹤遙測：Application Insights 資料模型
 
-追蹤遙測 (在 [Application Insights](app-insights-overview.md) 中) 代表以文字搜尋的 `printf` 樣式追蹤陳述式。 `Log4Net`、`NLog`和其他以文字為基礎的記錄檔項目會轉譯成此類型的執行個體。 追蹤沒有作為擴充性的度量。
+追蹤遙測 (在 [Application Insights](app-insights-overview.md) 中) 代表以文字搜尋的 `printf` 樣式追蹤陳述式。 `Log4Net`、`NLog`和其他以文字為基礎的記錄檔項目會轉譯成此類型的執行個體。 hello 追蹤沒有為擴充性的度量單位。
 
 ## <a name="message"></a>訊息
 

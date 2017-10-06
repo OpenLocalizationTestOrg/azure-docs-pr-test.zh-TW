@@ -1,6 +1,6 @@
 ---
-title: "對持續傳遞啟用遠端偵錯 | Microsoft Docs"
-description: "了解在使用連續傳遞來部署至 Azure 時如何啟用遠端偵錯"
+title: "遠端偵錯持續傳遞 aaaEnable |Microsoft 文件"
+description: "深入了解如何 tooenable 遠端偵錯時使用持續傳遞 toodeploy tooAzure"
 services: cloud-services
 documentationcenter: .net
 author: kraigb
@@ -14,44 +14,44 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/18/2016
 ms.author: kraigb
-ms.openlocfilehash: 7a8a853a93e3e9915f687a20c871444e6a0de50d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d9d9d1cfe5304c9526586a9164f172746a448e4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-remote-debugging-when-using-continuous-delivery-to-publish-to-azure"></a>使用連續傳遞來發行至 Azure 時啟用遠端偵錯
-當您使用 [連續傳遞](cloud-services-dotnet-continuous-delivery.md) 來發行至 Azure 時，您可以依照下列步驟在 Azure 中為雲端服務或虛擬機器啟用遠端偵錯。
+# <a name="enable-remote-debugging-when-using-continuous-delivery-toopublish-tooazure"></a>啟用遠端偵錯時使用持續傳遞 toopublish tooAzure
+您可以啟用遠端偵錯在 Azure 中，針對雲端服務或虛擬機器，當您使用[持續傳遞](cloud-services-dotnet-continuous-delivery.md)toopublish tooAzure，依照下列步驟。
 
 ## <a name="enabling-remote-debugging-for-cloud-services"></a>對雲端服務啟用遠端偵錯
-1. 在組建代理程式上，設定 Azure 的初始環境，如 [Azure 的命令列建置](http://msdn.microsoft.com/library/hh535755.aspx)所述。
-2. 因為封裝需要遠端偵錯執行階段 (msvsmon.exe)，請安裝 **Remote Tools for Visual Studio**。
+1. 在上 hello 組建代理程式，設定初始環境的 hello azure 中所述[為 Azure 命令列建置](http://msdn.microsoft.com/library/hh535755.aspx)。
+2. 因為需要 hello 套件 hello 遠端偵錯執行階段 (msvsmon.exe)，請安裝 hello **for Visual Studio 遠端工具**。
 
     * [Remote Tools for Visual Studio 2017](https://go.microsoft.com/fwlink/?LinkId=746570)
     * [Remote Tools for Visual Studio 2015](https://go.microsoft.com/fwlink/?LinkId=615470)
     * [Remote Tools for Visual Studio 2013 Update 5](https://www.microsoft.com/download/details.aspx?id=48156)
     
-    或者，您也可以從已安裝 Visual Studio 的系統中複製遠端偵錯二進位檔案。
+    或者，您可以從已安裝的 Visual Studio 有系統複製 hello 遠端偵錯二進位檔案。
 
-3. 建立憑證，如 [Azure 雲端服務憑證概觀](cloud-services-certs-create.md)中所述。 保留 .pfx 和 RDP 憑證指紋，並將憑證上傳至目標雲端服務。
-4. 在 MSBuild 命令列中使用下列選項，指定啟用遠端偵測來建置和封裝 (以系統和專案檔案的實際路徑替代角括弧括住的項目)。
+3. 建立憑證，如 [Azure 雲端服務憑證概觀](cloud-services-certs-create.md)中所述。 保留 hello.pfx 和 RDP 憑證指紋，並上傳 hello 憑證 toohello 目標雲端服務。
+4. 使用下列 hello MSBuild 命令列 toobuild 和封裝中的選項，啟用遠端偵錯的 hello。 （取代實際路徑 tooyour 系統和專案檔 hello 角括號的項目）。
    
-        msbuild /TARGET:PUBLISH /PROPERTY:Configuration=Debug;EnableRemoteDebugger=true;VSX64RemoteDebuggerPath="<remote tools path>";RemoteDebuggerConnectorCertificateThumbprint="<thumbprint of the certificate added to the cloud service>";RemoteDebuggerConnectorVersion="2.7" "<path to your VS solution file>"
+        msbuild /TARGET:PUBLISH /PROPERTY:Configuration=Debug;EnableRemoteDebugger=true;VSX64RemoteDebuggerPath="<remote tools path>";RemoteDebuggerConnectorCertificateThumbprint="<thumbprint of hello certificate added toohello cloud service>";RemoteDebuggerConnectorVersion="2.7" "<path tooyour VS solution file>"
    
-    `VSX64RemoteDebuggerPath` 是存放 Visual Studio 遠端工具中 msvsmon.exe 的資料夾的路徑。
-    `RemoteDebuggerConnectorVersion` 是雲端服務中的 Azure SDK 版本。 它也應符合隨 Visual Studio 一起安裝的版本。
-5. 使用前一個步驟中產生的封裝和 .cscfg 檔案來發行至目標雲端服務。
-6. 將憑證匯入 (.pfx file) 已安裝包含 Azure SDK for .NET 的 Visual Studio  的機器。 請務必匯入至 `CurrentUser\My` 憑證存放區，否則附加至 Visual Studio 中的偵錯工具將會失敗。
+    `VSX64RemoteDebuggerPath`這 hello 路徑 toohello 資料夾可以包含 msvsmon.exe hello 遠端工具中的 Visual Studio。
+    `RemoteDebuggerConnectorVersion`是雲端服務中的 hello Azure SDK 版本。 它也應該符合 hello 版本與 Visual Studio 一起安裝。
+5. 使用產生 hello 上一個步驟中的 hello 封裝和.cscfg 檔，以發行 toohello 目標雲端服務。
+6. 匯入具有 Visual Studio 和 Azure SDK for.NET 安裝 hello 憑證 （.pfx 檔案） toohello 機器。 請確定 tooimport toohello`CurrentUser\My`憑證存放區，否則 Visual Studio 中的附加 toohello 偵錯工具將會失敗。
 
 ## <a name="enabling-remote-debugging-for-virtual-machines"></a>對虛擬機器啟用遠端偵錯
 1. 建立 Azure 虛擬機器。 請參閱[建立執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[在 Visual Studio 中建立及管理 Azure 虛擬機器](../virtual-machines/windows/classic/manage-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
-2. 在 [Azure 傳統入口網站頁面](http://go.microsoft.com/fwlink/p/?LinkID=269851)，檢視虛擬機器儀表板來查看虛擬機器的 **RDP 憑證指紋**。 此值是用於延伸模組組態中的 `ServerThumbprint` 值。
-3. 建立用戶端憑證，如 [Azure 雲端服務憑證概觀](cloud-services-certs-create.md) 中所述 (保留 .pfx 和 RDP 憑證指紋)。
-4. 如 [如何安裝及設定 Azure PowerShell](/powershell/azure/overview)中所述安裝 Azure Powershell (0.7.4 版或更新版本)
-5. 執行下列指令碼來啟用 RemoteDebug 延伸模組。 將路徑和個人資料替換成您自己的路徑和個人資料，例如您的訂用帳戶、服務名稱和指紋。
+2. 在 hello [Azure 傳統入口網站頁面](http://go.microsoft.com/fwlink/p/?LinkID=269851)，檢視 hello 虛擬機器的儀表板 toosee hello 虛擬機器的**RDP 憑證指紋**。 這個值用於 hello `ServerThumbprint` hello 延伸模組設定中的值。
+3. 建立用戶端憑證中所述[Azure 雲端服務憑證概觀](cloud-services-certs-create.md)（保持 hello.pfx 和 RDP 憑證指紋）。
+4. 安裝 Azure Powershell (版本為 0.7.4 或更新版本) 中所述[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。
+5. 執行下列指令碼 tooenable hello RemoteDebug 延伸 hello。 Hello 路徑和個人資料以取代您自己的資源，例如您的訂用帳戶名稱、 服務名稱和指紋。
    
    > [!NOTE]
-   > 此指令碼是針對 Visual Studio 2015 所設計。 如果您使用 Visual Studio 2013 或 Visual Studio 2017，請將以下的 `$referenceName` 和 `$extensionName` 指派修改為 `RemoteDebugVS2013` 或 `RemoteDebugVS2017`。
+   > 此指令碼是針對 Visual Studio 2015 所設計。 如果您使用 Visual Studio 2013 或 Visual Studio 2017，修改 hello`$referenceName`和`$extensionName`指派下列太`RemoteDebugVS2013`或`RemoteDebugVS2017`。
 
     ```powershell   
     Add-AzureAccount
@@ -93,5 +93,5 @@ ms.lasthandoff: 08/29/2017
     $vm | Update-AzureVM
     ```
 
-6. 將憑證 (.pfx) 匯入已安裝 Visual Studio with Azure SDK for .NET 的機器。
+6. 匯入具有 Visual Studio 和 Azure SDK for.NET 安裝 hello 憑證 (.pfx) toohello 機器。
 

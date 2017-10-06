@@ -1,6 +1,6 @@
 ---
-title: "設定 Linux VM 的 DHCPv6 | Microsoft Docs"
-description: "如何設定 Linux VM 的 DHCPv6。"
+title: "適用於 Linux Vm aaaConfiguring DHCPv6 |Microsoft 文件"
+description: "如何 tooconfigure DHCPv6 適用於 Linux Vm。"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/14/2016
 ms.author: kumud
-ms.openlocfilehash: 5c591e7f1838c86ca74caea9dd3a5e8f874fd8a7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: abd5a98c3496b189946f59bab1d9c20dcd0aa2c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-dhcpv6-for-linux-vms"></a>設定 Linux VM 的 DHCPv6
 
-Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 設定。 若要支援 IPv6，在您使用的 Linux OS 散發套件內必須設定 DHCPv6。 不同 Linux 散發套件的 DHCPv6 設定方式不同，因為它們使用不同的套件。
+有些 hello Azure Marketplace 中的 hello Linux 虛擬機器映像沒有 DHCPv6 預設設定。 IPv6-DHCPv6 toosupport 必須內您要使用的 hello Linux 作業系統發佈中設定。 不同 Linux 散發套件的 DHCPv6 設定方式不同，因為它們使用不同的套件。
 
 > [!NOTE]
-> Azure Marketplace 中最新的 SUSE Linux 和 CoreOS 映像已有預先設定 DHCPv6。 使用這些映像不需要再進行額外的變更。
+> 已預先設定 DHCPv6 hello Azure Marketplace 中最近的 SUSE Linux 和 CoreOS 映像。 使用這些映像不需要再進行額外的變更。
 
-本文件說明如何啟用 DHCPv6 使您的 Linux 虛擬機器取得 IPv6 位址。
+本文件說明如何 tooenable DHCPv6，讓您的 Linux 虛擬機器取得 IPv6 位址。
 
 > [!WARNING]
-> 不當編輯網路組態檔可能會導致您失去 VM 的網路存取權。 我們建議您先在非生產系統上測試組態變更。 本文中的指示已經過在 Azure Marketplace 中最新版 Linux 映像上測試過。 如需您所用 Linux 版本的詳細指示，請參閱其文件。
+> 不當編輯網路組態檔可能會導致您 toolose 網路存取 tooyour VM。 我們建議您先在非生產系統上測試組態變更。 這篇文章中的 hello 指示 hello 的 hello Azure Marketplace 中的 hello Linux 映像的最新版本上測試。 您特定的 Linux 版本的更詳細的指示，請參閱 hello 文件。
 
 ## <a name="ubuntu"></a>Ubuntu
 
-1. 編輯 `/etc/dhcp/dhclient6.conf` 檔案，新增以下這一行：
+1. 編輯 hello 檔案`/etc/dhcp/dhclient6.conf`並加入以下的 hello:
 
         timeout 10;
 
-2. 編輯下列組態的 eth0 介面網路組態︰
+2. 以下列組態的 hello 編輯 hello hello eth0 介面的網路設定：
 
-   * 在 **Ubuntu 12.04 和 14.04** 上，編輯 `/etc/network/interfaces.d/eth0.cfg` 檔
-   * 在 **Ubuntu 16.04** 上，編輯 `/etc/network/interfaces.d/50-cloud-init.cfg` 檔
+   * 在**Ubuntu 12.04 和 14.04**，編輯 hello 檔案`/etc/network/interfaces.d/eth0.cfg`
+   * 在**Ubuntu 16.04**，編輯 hello 檔案`/etc/network/interfaces.d/50-cloud-init.cfg`
 
          iface eth0 inet6 auto
              up sleep 5
@@ -56,11 +56,11 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
 
 ## <a name="debian"></a>Debian
 
-1. 編輯 `/etc/dhcp/dhclient6.conf` 檔案，新增以下這一行：
+1. 編輯 hello 檔案`/etc/dhcp/dhclient6.conf`並加入以下的 hello:
 
         timeout 10;
 
-2. 編輯 `/etc/network/interfaces` 檔案，新增以下組態：
+2. 編輯 hello 檔案`/etc/network/interfaces`並加入下列組態的 hello:
 
         iface eth0 inet6 auto
             up sleep 5
@@ -74,11 +74,11 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
 
 ## <a name="rhel--centos--oracle-linux"></a>RHEL / CentOS / Oracle Linux
 
-1. 編輯 `/etc/sysconfig/network` 檔案，新增以下參數：
+1. 編輯 hello 檔案`/etc/sysconfig/network`並加入下列參數的 hello:
 
         NETWORKING_IPV6=yes
 
-2. 編輯 `/etc/sysconfig/network-scripts/ifcfg-eth0` 檔案，新增以下兩個參數：
+2. 編輯 hello 檔案`/etc/sysconfig/network-scripts/ifcfg-eth0`並加入下列兩個參數的 hello:
 
         IPV6INIT=yes
         DHCPV6C=yes
@@ -91,19 +91,19 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
 
 ## <a name="sles-11--opensuse-13"></a>SLES 11 & openSUSE 13
 
-在 Azure 中最新的 SLES 和 openSUSE 映像已預先設定 DHCPv6。 使用這些映像不需要再進行額外的變更。 如果您的 VM 是以較舊或自訂 SUSE 映像建置而成，請使用下列步驟︰
+在 Azure 中最新的 SLES 和 openSUSE 映像已預先設定 DHCPv6。 使用這些映像不需要再進行額外的變更。 如果您有根據舊或自訂 SUSE 映像的 VM，使用下列步驟的 hello:
 
-1. 如有需要，安裝 `dhcp-client` 套件：
+1. 安裝 hello`dhcp-client`封裝，如有需要：
 
     ```bash
     sudo zypper install dhcp-client
     ```
 
-2. 編輯 `/etc/sysconfig/network/ifcfg-eth0` 檔案，新增以下參數：
+2. 編輯 hello 檔案`/etc/sysconfig/network/ifcfg-eth0`並加入下列參數的 hello:
 
         DHCLIENT6_MODE='managed'
 
-3. 更新 IPv6 位址︰
+3. 更新 hello IPv6 位址：
 
     ```bash
     sudo ifdown eth0 && sudo ifup eth0
@@ -111,21 +111,21 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
 
 ## <a name="sles-12-and-opensuse-leap"></a>SLES 12 和 openSUSE Leap
 
-在 Azure 中最新的 SLES 和 openSUSE 映像已預先設定 DHCPv6。 使用這些映像不需要再進行額外的變更。 如果您的 VM 是以較舊或自訂 SUSE 映像建置而成，請使用下列步驟︰
+在 Azure 中最新的 SLES 和 openSUSE 映像已預先設定 DHCPv6。 使用這些映像不需要再進行額外的變更。 如果您有根據舊或自訂 SUSE 映像的 VM，使用下列步驟的 hello:
 
-1. 編輯 `/etc/sysconfig/network/ifcfg-eth0` 檔案，取代此參數
+1. 編輯 hello 檔案`/etc/sysconfig/network/ifcfg-eth0`和取代此參數
 
         #BOOTPROTO='dhcp4'
 
-    為下列值：
+    以 hello 下列值：
 
         BOOTPROTO='dhcp'
 
-2. 將下列參數新增至 `/etc/sysconfig/network/ifcfg-eth0`：
+2. 新增 hello 參數後面太`/etc/sysconfig/network/ifcfg-eth0`:
 
         DHCLIENT6_MODE='managed'
 
-3. 更新 IPv6 位址︰
+3. 更新 hello IPv6 位址：
 
     ```bash
     sudo ifdown eth0 && sudo ifup eth0
@@ -133,9 +133,9 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
 
 ## <a name="coreos"></a>CoreOS
 
-在 Azure 中最新的 SLES 映像已預先設定 DHCPv6。 使用這些映像不需要再進行額外的變更。 如果您的 VM 是以較舊或自訂 CoreOS 映像建置而成，請使用下列步驟︰
+在 Azure 中最新的 SLES 映像已預先設定 DHCPv6。 使用這些映像不需要再進行額外的變更。 如果您有根據舊或自訂 CoreOS 映像的 VM，使用下列步驟的 hello:
 
-1. 編輯 `/etc/systemd/network/10_dhcp.network`
+1. 編輯 hello 檔案`/etc/systemd/network/10_dhcp.network`
 
         [Match]
         eth0
@@ -143,7 +143,7 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
         [Network]
         DHCP=ipv6
 
-2. 更新 IPv6 位址︰
+2. 更新 hello IPv6 位址：
 
     ```bash
     sudo systemctl restart systemd-networkd

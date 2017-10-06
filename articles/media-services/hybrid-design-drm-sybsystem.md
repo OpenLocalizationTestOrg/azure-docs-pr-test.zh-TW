@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 媒體服務的 DRM 子系統混合式設計 | Microsoft Docs"
+title: "使用 Azure Media Services 的 DRM 子系統 aaaHybrid 設計 |Microsoft 文件"
 description: "本主題討論使用 Azure 媒體服務的 DRM 子系統混合式設計。"
 services: media-services
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: willzhan;juliako
-ms.openlocfilehash: 841b1164db6fd1a2c029b98392509c15f23158e2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4206248420ccd4dbfc9a87a86f4763534c6254a1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="hybrid-design-of-drm-subsystems"></a>DRM 子系統的混合式設計
 
@@ -26,26 +26,26 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="overview"></a>概觀
 
-Azure 媒體服務提供下列三個 DRM 系統支援：
+Azure Media Services 提供下列三個 DRM 系統 hello 支援：
 
 * PlayReady
 * Widevine (模組)
 * FairPlay
 
-DRM 支援包括 DRM 加密 (動態加密) 和授權傳遞，加上當作瀏覽器玩家 SDK 的所有 3 DRM Azure 媒體播放器支援。
+hello DRM 支援包括 DRM 加密 （動態加密） 和授權傳遞，使用 Azure Media Player 支援所有 3 DRMs 為瀏覽器播放程式 SDK。
 
-如需 DRM/CENC 子系統設計和實作的詳細處理方式，請參閱[使用多重 DRM 和存取控制的 CENC](media-services-cenc-with-multidrm-access-control.md) 一文。
+DRM/CENC 子系統設計和實作的詳細處理方式，請參閱標題為 hello 文件[存取控制與多重 DRM CENC](media-services-cenc-with-multidrm-access-control.md)。
 
-雖然我們為三種 DRM 系統提供完整的支援，但有時候客戶在 Azure 媒體服務之外，也需要使用自己的基礎結構/子系統的各種組件建置混合式的 DRM 子系統。
+雖然我們提供三種 DRM 系統的完整支援，有時候客戶必須 toouse 自己基礎結構/子系統加法 tooAzure Media Services toobuild 的混合式 DRM 子系統中的各個部分。
 
 以下是客戶常問的一些問題：
 
 * 「我可以使用自己的 DRM 授權伺服器嗎？」 (在此例中，客戶投資了內嵌商務邏輯的 DRM 授權伺服器叢集。)
 * 「我可以只使用 Azure 媒體服務的 DRM 授權傳遞，但 AMS 中不裝載內容嗎？」
 
-## <a name="modularity-of-the-ams-drm-platform"></a>AMS DRM 平台的模組化
+## <a name="modularity-of-hello-ams-drm-platform"></a>Hello AMS DRM 平台的模組化
 
-Azure 媒體服務 DRM 是全面雲端視訊平台的一部分，設計富彈性和模組化。 您可以使用 Azure 媒體服務搭配下表所述的任何不同組合 (後文有資料表所用標記法說明)。 
+Azure 媒體服務 DRM 是全面雲端視訊平台的一部分，設計富彈性和模組化。 您可以使用 Azure Media Services 與任何 hello 遵循 hello 表 （遵循用於 hello 資料表中的 hello 標記法的說明） 中描述的不同組合。 
 
 |**內容裝載與來源**|**內容加密**|**DRM 授權傳遞**|
 |---|---|---|
@@ -74,24 +74,24 @@ Azure 媒體服務 DRM 是全面雲端視訊平台的一部分，設計富彈性
 
 ### <a name="content-key"></a>內容金鑰
 
-透過內容金鑰的設定，您可以控制 AMS 動態加密和 AMS 授權傳遞服務的下列屬性：
+透過組態的內容金鑰，您可以控制下列屬性 AMS 動態加密和 AMS 授權傳遞服務的 hello:
 
-* 用於動態 DRM 加密的內容金鑰。
-* 由授權傳遞服務所傳遞的 DRM 授權內容：權限、內容金鑰和限制。
+* hello 動態 DRM 加密所使用的內容金鑰。
+* 由授權傳遞服務傳送 DRM 授權內容 toobe： 權限、 內容金鑰和限制。
 * **內容金鑰授權原則限制**的類型：開啟、IP 或權杖限制。
-* 如果**使用內容金鑰授權原則限制**的**權杖**類型，則必須符合**內容金鑰授權原則限制**才能簽發授權。
+* 如果**語彙基元**類型**使用內容金鑰授權原則限制**，hello**內容金鑰授權原則限制**必須符合才能發出授權。
 
 ### <a name="asset-delivery-policy"></a>資產傳遞原則
 
-透過資產傳遞原則設定，您可以控制 AMS 動態封裝程式和 AMS 串流端點動態加密所使用的下列屬性：
+透過設定資產遞送原則，您可以控制 hello 下列 AMS 動態封裝程式和動態加密的 AMS 串流端點所使用的屬性：
 
 * 串流處理通訊協定和 DRM 加密的組合，例如 CENC (PlayReady 和 Widevine) 下的 DASH、PlayReady 下的 Smooth Streaming、Widevine 或 PlayReady 下的 HLS。
-* 每個有關 DRM 的預設/內嵌授權傳遞 URL。
+* 每個 hello hello 預設/內嵌授權傳遞 Url 涉及 DRMs。
 * 無論 DASH MPD 或 HLS 播放清單的授權取得 URL (LA_URL) 是否分別包含 Widevine 和 FairPlay 的索引鍵識別碼 (KID) 查詢字串。
 
 ## <a name="scenarios-and-samples"></a>案例與範例
 
-根據上一節的說明，下列五個混合式案例分別使用**內容金鑰**-**資產傳遞原則**設定組合 (資料表最後一個資料行中提及的範例)：
+根據 hello hello 前一節中的說明，下列五個混合式案例的 hello 使用個別**內容金鑰**-**資產傳遞原則**組態的組合 (hellohello 最後一個資料行中所述的範例遵循 hello 資料表）：
 
 |**內容裝載與來源**|**DRM 加密**|**DRM 授權傳遞**|**設定內容金鑰**|**設定資產傳遞原則**|**範例**|
 |---|---|---|---|---|---|
@@ -101,7 +101,7 @@ Azure 媒體服務 DRM 是全面雲端視訊平台的一部分，設計富彈性
 |AMS|協力廠商|外部|否|否|範例 4|
 |協力廠商|協力廠商|AMS|是|否|    
 
-在範例中，PlayReady 保護對 DASH 和 Smooth Streaming 都有效。 下列的影片 URL 是 Smooth Streaming URL。 若要取得對應的 DASH URL，只要加上 "(format=mpd-time-csf)" 即可。 您可以使用 [Azure 媒體測試播放器](http://aka.ms/amtest)在瀏覽器中測試。 它可讓您設定要在哪些技術之下使用哪一個串流處理通訊協定。 Windows 10 的 IE11 和 MS Edge 都透過 EME 支援 PlayReady。 如需詳細資訊，請參閱[測試工具的詳細資料](https://blogs.msdn.microsoft.com/playready4/2016/02/28/azure-media-test-tool/)。
+在 hello 範例 PlayReady 保護適用於虛線和 smooth streaming。 下列 hello 視訊 Url 是 smooth streaming Url。 tooget hello 對應 DASH Url，只要附加"(格式 = mpd-時間-csf) 」。 您可以使用 hello [azure 媒體測試 player](http://aka.ms/amtest) tootest 瀏覽器中的。 它可讓您 tooconfigure 的串流處理通訊協定 toouse，底下的技術。 Windows 10 的 IE11 和 MS Edge 都透過 EME 支援 PlayReady。 如需詳細資訊，請參閱[hello 詳細測試工具](https://blogs.msdn.microsoft.com/playready4/2016/02/28/azure-media-test-tool/)。
 
 ### <a name="sample-1"></a>範例 1
 

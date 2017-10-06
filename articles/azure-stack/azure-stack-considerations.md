@@ -1,6 +1,6 @@
 ---
-title: "使用服務和建置應用程式時 Azure 和 Azure Stack 之間的主要差異 | Microsoft 文件"
-description: "使用服務或為 Azure Stack 建置應用程式時您需要了解的事項。"
+title: "Azure 和 Azure 堆疊，當您使用服務，並建置應用程式的 aaaKey 差異 |Microsoft 文件"
+description: "配備 tooknow 當您使用服務或 Azure 堆疊建置應用程式。"
 services: azure-stack
 documentationcenter: 
 author: twooley
@@ -14,46 +14,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/2/2017
 ms.author: twooley
-ms.openlocfilehash: 0567811e36102177af9f9c339587b251e04a1ff5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e302f20aeb3c74f944cb3daaee7e0db073ab5bfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="key-considerations-using-services-or-building-apps-for-azure-stack"></a>關鍵考量：使用服務或為 Azure Stack 建置應用程式
 
-使用服務或為 Azure Stack 建置應用程式時，您必須了解 Azure Stack 與 Azure 之間有所差異。 本文章提供當您以 Azure Stack 做為混合式雲端開發環境的目標時，關鍵考量事項的概觀。
+使用服務或為 Azure Stack 建置應用程式時，您必須了解 Azure Stack 與 Azure 之間有所差異。 混合式雲端開發環境做為目標 Azure 堆疊時，本文將提供概觀 hello 重要考量。
 
 ## <a name="overview"></a>概觀
 
-Azure Stack 是混合式雲端平台，可讓您從您的公司或服務提供者的資料中心使用 Azure 服務。 身為開發人員，您可以建置在 Azure Stack 上執行的應用程式。 然後，可以將這些應用程式部署至 Azure Stack、至 Azure，或可以建置利用 Azure Stack 雲端與 Azure 之間連線的真正混合式應用程式。
+Azure Stack 是混合式雲端平台，可讓您從您的公司或服務提供者的資料中心使用 Azure 服務。 身為開發人員，您可以建置在 Azure Stack 上執行的應用程式。 然後，您可以部署這些應用程式 tooAzure 堆疊，tooAzure，或您真的可以建置利用 hello Azure 堆疊雲端與 Azure 之間的連線的混合式應用程式。
 
-您的 Azure Stack 雲端系統管理員或服務提供者將讓您知道有哪些服務可供您使用，以及如何取得支援。 他們會透過其自訂方案和供應項目來提供這些服務。
+您的 Azure 堆疊的雲端系統管理員或服務提供者可讓您知道哪些服務可供您 toouse tooget 如何支援。 他們會透過其自訂方案和供應項目來提供這些服務。
 
-Azure 技術內容會假設應用程式是為了 Azure 服務 (而不是 Azure Stack) 開發。 建置和部署應用程式到 Azure Stack 時，必須了解一些主要差異，例如：
+hello Azure 技術的內容會假設應用程式，正在開發 Azure 服務，而不是 Azure 堆疊。 當您建置和部署應用程式 tooAzure 堆疊時，必須了解的一些主要差異，例如：
 
-* Azure Stack 提供 Azure 中所提供服務和功能的子集。
-* 您的公司或服務提供者可以選擇他們想要提供的服務。 這包括自訂的服務或應用程式。
-* 您必須使用正確的 Azure Stack 特定端點 (例如，入口網站位址的 URL 和 Azure Resource Manager 端點)。
+* Azure 堆疊傳遞 hello 服務和 Azure 中提供的功能的子集。
+* 您的公司或服務提供者可以選擇哪些服務希望 toooffer。 這包括自訂的服務或應用程式。
+* 您必須使用 hello 修正 Azure 堆疊特定端點 （例如 hello hello 入口網站的位址和 hello Azure 資源管理員端點的 Url）。
 * 您必須使用 Azure Stack 所支援的 PowerShell 和 API 版本。 這樣可確保您的應用程式可同時在 Azure Stack 和 Azure 中運作。
 
 ## <a name="cheat-sheet-high-level-differences"></a>功能提要：高層差異
 
-下表描述 Azure Stack 與 Azure 之間的高層差異。 當您為 Azure Stack 進行開發，或使用 Azure Stack 服務時，請記住這些事項。
+hello 下表描述 hello 高階 Azure 堆疊與 Azure 之間的差異。 當您為 Azure Stack 進行開發，或使用 Azure Stack 服務時，請記住這些事項。
 
 | 領域 | Azure (全域) | Azure Stack |
 | -------- | ------------- | ----------|
 | 由誰操作？ | Microsoft | 您的公司或服務提供者。|
-| 尋求支援的連絡對象？ | Microsoft | 如需 Azure Stack 開發套件的支援，請瀏覽 [Microsoft 論壇](https://social.msdn.microsoft.com/Forums/home?forum=azurestack)。 因為開發套件屬於評估環境，因此 Microsoft 客戶支援服務 (CSS) 不會提供官方支援。
-| 可用服務 | 查看 [Azure 產品](https://azure.microsoft.com/services/?b=17.04b)的清單。 可用的服務因 Azure 區域而異。 | Azure Stack 支援 Azure 服務的子集。 <br><br>實際服務會根據您的公司或服務提供者選擇提供的項目而異。
-| Azure Resource Manager 端點* | https://management.azure.com | 若為開發套件：https://management.local.azurestack.external
-| 入口網站 URL* | [https://portal.azure.com](https://portal.azure.com) | 若為開發套件：https://portal.local.azurestack.external
-| 區域 | 您可以選取想要部署的目標區域。 | 若為開發套件，區域一律為**本機**。 <br><br>開發套件僅支援一個區域。
-| 資源群組 | 資源群組可以跨區域。 | 若為開發套件，只有一個區域。
-|支援的命名空間、資源類型和 API 版本 | 最新版本 (或未過時的較早版本)。 | Azure Stack 支援特定版本。 請參閱本文章的＜版本需求＞一節。
+| 尋求支援的連絡對象？ | Microsoft | 如需 Azure 堆疊開發套件支援，請瀏覽 hello [Microsoft 論壇](https://social.msdn.microsoft.com/Forums/home?forum=azurestack)。 Hello 開發套件是評估環境，因為沒有提供透過 Microsoft 客戶支援服務 (CSS) 提供官方支援。
+| 可用服務 | 請參閱 hello 清單[Azure 產品](https://azure.microsoft.com/services/?b=17.04b)。 可用的服務因 Azure 區域而異。 | Azure Stack 支援 Azure 服務的子集。 <br><br>實際的服務會根據您的公司或服務提供者選擇 toooffer 而異。
+| Azure Resource Manager 端點* | https://management.azure.com | Hello 開發套件： https://management.local.azurestack.external
+| 入口網站 URL* | [https://portal.azure.com](https://portal.azure.com) | Hello 開發套件： https://portal.local.azurestack.external
+| 區域 | 您可以選取您想要的 toodeploy 至哪個區域。 | Hello 開發套件，一律為區域**本機**。 <br><br>hello 開發套件支援只有一個區域。
+| 資源群組 | 資源群組可以跨區域。 | Hello 開發套件，會有只有一個區域。
+|支援的命名空間、資源類型和 API 版本 | 最新 hello （或更早版本，尚不被取代）。 | Azure Stack 支援特定版本。 請參閱這篇文章 hello < 版本需求 > 一節。
 | | |
 
-* 如果您是 Azure Stack 雲端操作員，如需系統管理員入口網站和系統管理員 Resource Manager 端點 URL 的相關資訊，請參閱[使用 Azure Stack 中系統管理員和使用者的入口網站](azure-stack-manage-portals.md)。
+* 如果您是 Azure 堆疊雲端操作員，請參閱[使用 Azure 堆疊中的 hello 系統管理員和使用者入口網站](azure-stack-manage-portals.md)hello 系統管理員入口網站和管理員資源管理員端點 Url 的相關資訊。
 
 ## <a name="helpful-tools-and-best-practices"></a>實用工具和最佳作法
  
@@ -61,21 +61,21 @@ Azure 技術內容會假設應用程式是為了 Azure 服務 (而不是 Azure S
 
 | 建議 | 參考 | 
 | -------- | ------------- | 
-| 在開發人員工作站上安裝正確的工具。 | - [安裝 PowerShell](azure-stack-powershell-install.md)<br>- [下載工具](azure-stack-powershell-download.md)<br>- [設定 PowerShell](azure-stack-powershell-configure-user.md)<br>- [安裝 Visual Studio](azure-stack-install-visual-studio.md) 
-| 檢閱有關下列各項的相關資訊：<br>- Azure Resource Manager 範本考量<br>- 如何尋找快速入門範本<br>- 使用原則模組可協助您使用 Azure 來為 Azure Stack 進行開發 | [開發 Azure Stack](azure-stack-developer.md) | 
-| 檢閱並遵循範本的最佳作法。 | [Resource Manager 快速入門範本](https://github.com/Azure/azure-quickstart-templates/blob/master/1-CONTRIBUTION-GUIDE/best-practices.md#best-practices)
+| 開發人員工作站上安裝 hello 正確工具。 | - [安裝 PowerShell](azure-stack-powershell-install.md)<br>- [下載工具](azure-stack-powershell-download.md)<br>- [設定 PowerShell](azure-stack-powershell-configure-user.md)<br>- [安裝 Visual Studio](azure-stack-install-visual-studio.md) 
+| 檢閱有關 hello 下列資訊：<br>- Azure Resource Manager 範本考量<br>-如何 toofind 快速入門範本<br>-使用 Azure toodevelop 用於 Azure 堆疊原則模組 toohelp | [開發 Azure Stack](azure-stack-developer.md) | 
+| 檢閱並遵循 hello 的範本的最佳作法。 | [Resource Manager 快速入門範本](https://github.com/Azure/azure-quickstart-templates/blob/master/1-CONTRIBUTION-GUIDE/best-practices.md#best-practices)
 | | |
 
 ## <a name="version-requirements"></a>版本需求
 
-Azure Stack 支援特定版本的 Azure PowerShell 和 Azure 服務 API。 您必須使用支援的版本以確保您的應用程式可以同時部署至 Azure Stack 和 Azure。
+Azure Stack 支援特定版本的 Azure PowerShell 和 Azure 服務 API。 您必須使用支援的版本 tooensure tooboth Azure 堆疊和 tooAzure，可以部署應用程式。
 
-若要確定您使用的是正確版本的 Azure PowerShell，請使用 [API 版本設定檔](azure-stack-version-profiles.md)。 若要判斷您可以使用的最新 API 版本設定檔，您必須知道所使用的 Azure Stack 組建。 您可以向您的 Azure Stack 系統管理員取得這項資訊。
+確定您使用 Azure PowerShell，使用正確版本的 toomake [API 版本設定檔](azure-stack-version-profiles.md)。 toodetermine hello 最新 API 版本設定檔，您可以使用，您必須知道您所使用的 Azure 堆疊的組建。 您可以向您的 Azure Stack 系統管理員取得這項資訊。
 
 >[!NOTE]
- 如果您使用 Azure Stack 開發套件，而且您具有管理存取權，請參閱[管理更新](https://docs.microsoft.com/azure/azure-stack/azure-stack-updates#determine-the-current-version)的＜判斷目前的版本＞一節來判斷 Azure Stack 組建。
+ 如果您正在使用 hello Azure 堆疊開發套件，且您有系統管理存取權，請參閱 hello"判斷 hello 目前版本 > 一節[管理更新](https://docs.microsoft.com/azure/azure-stack/azure-stack-updates#determine-the-current-version)toodetermine hello Azure 堆疊組建。
 
-對於其他 API，執行下列 PowerShell 命令以輸出您的 Azure Stack 訂用帳戶中支援的命名空間、資源類型和 API 版本。 請注意，可能仍有屬性層級的差異。 (若要讓此命令運作，您必須已經為 Azure Stack 環境[安裝](azure-stack-powershell-install.md)和[設定](azure-stack-powershell-configure-user.md) PowerShell。 您也必須有 Azure Stack 供應項目的訂用帳戶。)
+對於其他應用程式開發介面，執行下列 PowerShell 命令 toooutput hello 命名空間、 資源類型和您 Azure 堆疊訂用帳戶中支援的 API 版本的 hello。 請注意，可能仍有屬性層級的差異。 (這個命令 toowork，您必須已經[安裝](azure-stack-powershell-install.md)和[設定](azure-stack-powershell-configure-user.md)PowerShell for Azure 堆疊環境。 您也必須擁有的訂用帳戶 tooan Azure 堆疊優惠。）
 
  ```powershell
 Get-AzureRmResourceProvider | Select ProviderNamespace -Expand ResourceTypes | Select * -Expand ApiVersions | `

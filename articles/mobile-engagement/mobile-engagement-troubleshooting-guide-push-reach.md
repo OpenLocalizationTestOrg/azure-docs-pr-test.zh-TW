@@ -1,5 +1,5 @@
 ---
-title: "Azure Mobile Engagement 疑難排解指南 - 推送/觸達"
+title: "aaaAzure Mobile Engagement 疑難排解指南-推入/觸達"
 description: "Azure Mobile Engagement 中使用者互動與通知問題的疑難排解"
 services: mobile-engagement
 documentationcenter: 
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: ef6f34404b97a6972fc136262920a1bdbc4117b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4ee0b34b9b753a98ccf24863acb28a5dc76bfb95
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-guide-for-push-and-reach-issues"></a>推送與觸達問題的疑難排解指南
-以下是您可能會遇到，有關 Azure Mobile Engagement 如何傳送資訊給使用者的問題。
+hello 以下是可能的問題，您可能會遇到與 Azure Mobile Engagement 傳送資訊 tooyour 使用者的方式。
 
 ## <a name="push-failures"></a>推送失敗
 ### <a name="issue"></a>問題
 * 推送沒有運作 (在應用程式中、在應用程式外，或兩者)。
 
 ### <a name="causes"></a>原因
-* 許多時候，推送失敗表示 Azure Mobile Engagement、Reach 或 Azure Mobile Engagement 的其他進階功能未正確整合，或是需要升級 SDK 以修正新的作業系統或裝置平台的已知問題。
-* 測試應用程式內推送和應用程式外推送，以判斷這是應用程式內或應用程式外的問題。
-* 同時從 UI 與 API 測試以做為疑難排解步驟，藉以查看這兩者中有哪些其他的錯誤資訊。
-* 除非 SDK 中整合了 Azure Mobile Engagement 與 Reach，否則應用程式外推送不會運作。
-* 如果憑證無效，或正在正確使用 PROD 與DEV 正確 (僅限 iOS)。 **注意**：如果您同時安裝開發版 (DEV) 和產品版 (PROD) 的應用程式在同一部裝置上，「應用程式外」推送將不會遞送給 iOS，因為與您憑證關聯的安全性權杖可能會由 Apple 作廢。 若要解決這個問題，請先解除安裝 DEV 和 PROD 版本的應用程式，然後在您的裝置上只安裝其中一個版本。)
-* 應用程式外推送計數在不同的平台上有不同的處理方式 (如果裝置停用原生推送，iOS 顯示的資訊會比 Android 少，API 可以提供比 UI 更多的推送狀態相關資訊)。
+* 多次推送失敗是表示，Azure Mobile Engagement 的觸達，另一項進階的功能的 Azure Mobile Engagement 未正確地整合或升級需要 hello SDK toofix 新的 OS 或裝置平台的已知的問題。
+* 測試只在應用程式的推播和只出的應用程式推入 toodetermine 動作是否在應用程式或超出應用程式的問題。
+* 從 hello UI 和 hello API 當做測試疑難排解的步驟 toosee 哪些其他錯誤資訊會使用這兩個位置。
+* 應用程式外推播通知會無法運作，除非同時 Azure Mobile Engagement 觸達已經整合 hello SDK 中。
+* 如果憑證無效，或正在正確使用 PROD 與DEV 正確 (僅限 iOS)。 (**附註：** "不在應用程式 「 推播通知無法傳遞 tooiOS，如果您有兩個 hello 開發 (DEV) 和實際執行環境 （生產環境） 您的應用程式上安裝的版本 hello 相同自 hello 安全性權杖相關聯的裝置使用您的憑證可能由 Apple 失效。 tooresolve 這個問題，請解除安裝 hello 開發和生產環境應用程式版本，然後重新安裝只有 hello 一個版本在您的裝置上。)
+* 應用程式外推入計數的處理方式不同在不同的平台 （iOS 顯示較少資訊比 Android 原生推播通知已停用裝置 hello API 推入統計資料可以提供比 hello UI 的詳細資訊）。
 * 應用程式外推送可以由客戶在作業系統層級 (iOS 與 Android) 封鎖。
-* 如果應用程式外推送未正確整合，在 Azure Mobile Engagement UI 中會顯示為停用，但可能會從 API 以無訊息方式發生失敗。
-* 除非 SDK 中同時整合了 Azure Mobile Engagement 與 Reach，否則應用程式內推送不會運作。
-* 除非 SDK 中整合了 Azure Mobile Engagement 與特定伺服器，否則 GCM 與 ADM 推送不會運作 (僅限 Android)。
-* 應用程式內推送和應用程式外推送應個別測試，以判斷是「推送」或「觸達」問題。
-* 應用程式內推送要求應用程式開放被接收功能。
-* 應用程式內推送通常設定為依據加入 (opt-in) 或退出 (opt-out) 應用程式資訊標記來篩選。
-* 如果您在 Reach 中使用自訂類別來顯示應用程式內通知，您必須遵循通知的正確生命週期，否則當使用者關閉通知時可能不會清除通知。
-* 如果您開始了一個沒有結束日期的活動，且裝置接收到應用程式內通知但尚未顯示，那麼即使您手動結束活動，使用者在下一次登入應用程式時仍然會收到通知。
-* 對於推送 API 的問題，請確認您真的希望使用推送 API 而不是觸達 API (因為觸達 API 更常使用)，且您並沒有混淆 "payload" 和 "notifier" 參數。
-* 使用透過 WIFI 與 3G 連線的裝置測試您的推播活動，來消除可能為問題來源的網路連線。
+* 應用程式外推播通知會顯示 hello Azure Mobile Engagement UI 中停用，如果不正確，整合，但可能從 hello API 會以無訊息模式失敗。
+* 在應用程式除非同時 Azure Mobile Engagement 觸達已經整合 hello SDK 中，將無法運作推播通知。
+* GCM 與 ADM 推播通知將無法運作，除非 Azure Mobile Engagement hello 特定伺服器已經整合在 hello SDK (僅 Android)。
+* 在應用程式和應用程式應該是推播通知的測試個別 toodetermine 如果是發送或觸達的問題。
+* 在應用程式推入需要該 hello 應用程式會收到開啟 toobe。
+* 在應用程式推入通常會安裝 toobe 以選擇加入或退出應用程式資訊標記進行篩選。
+* 如果您使用自訂分類在觸達 toodisplay 應用程式內通知、 需要 toofollow hello 正確生命週期的 hello 通知，否則可能不會清除 hello 通知時 hello 使用者關閉它。
+* 如果您沒有結束日期開始活動，且裝置收到 hello 中應用程式通知，但不會顯示它尚未，hello 使用者仍會收到 hello 通知 hello 下次登入 hello 應用程式，即使您以手動方式結束 hello 行銷活動。
+* 與 hello 推送 API 相關問題，請確認您真的想 toouse hello 推送 API 而不是 hello 觸達 API （因為 hello 觸達 API 的使用頻率），而且您不是令人混淆的 hello 「 裝載 」 和 「 通知 」 參數。
+* 測試您的推播宣傳活動與透過 WIFI 和 3g tooeliminate hello 網路連線問題的可能來源連接這兩個裝置。
 
 ## <a name="push-testing"></a>推送測試
 ### <a name="issue"></a>問題
-* 推送可以依據裝置識別碼傳送給特定的裝置。
+* 可傳送推播通知 tooa 特定裝置根據裝置識別碼。
 
 ### <a name="causes"></a>原因
-* 測試裝置在各平台上有不同的設定，但是在您測試裝置上的應用程式中引發事件，以及在入口網站尋找您的裝置識別碼的功能應該運作，以尋找您的裝置在所有平台上的裝置識別碼。
+* 測試裝置的安裝程式以不同的方式每個平台，但是測試裝置上的應用程式中引發的事件，並尋找您的裝置識別碼 hello 入口網站中應該運作 toofind 您用於所有平台的裝置識別碼。
 * 測試裝置與 IDFA 與IDFV 搭配使用時運作方式不同 (僅 iOS)。
 
 ## <a name="push-customization"></a>自訂推送
 ### <a name="issue"></a>問題
 * 進階推送內容項目無法運作 (徽章、響鈴、震動、圖片等)。
-* 推送中的連結沒有作用 (應用程式外、應用程式內、網站連結、應用程式中的位置連結)。
-* 推送統計資料顯示推送並沒有傳送給預期的人數 (太多或不足)。
+* 推播通知的連結沒有作用 （不在應用程式，在應用程式、 tooa 網站、 應用程式中的 tooa 位置）。
+* 推入不是發送統計資料顯示 tooas 如預期般許多人 （太多或傳送不足）。
 * 重複推送，並且收到兩次。
 * 無法為 Azure Mobile Engagement 推送註冊測試裝置 (使用您自己的 Prod 或 DEV 應用程式)。
 
 ### <a name="causes"></a>原因
-* 要連結到應用程式內的特定位置時需要「類別」(僅限 Android)。
-* 按一下推播通知後，重新導向使用者到替代位置的深層連結配置，必須由應用程式與裝置作業系統建立及管理，而非直接透過 Mobile Engagement。 (**注意**：應用程式外通知在 iOS 上無法像 Android 般，直接連結到應用程式位置。)
-* 外部影像伺服器必須能夠使用 HTTP "GET" 與 "HEAD"，大型圖片推送才能運作 (僅限 Android)。
-* 在您的程式碼中，您可以在鍵盤開啟時停用 Azure Mobile Engagement 代理程式，並讓程式碼在鍵盤關閉時重新啟用 Azure Mobile Engagement 代理程式，這樣一來鍵盤就不會影響您的通知的外觀 (僅限 iOS)。
+* toolink tooa 中特定位置的應用程式需要 「 類別 」 (僅 Android)。
+* 深層連結配置後按一下推播通知的 tooredirect 使用者 tooan 替代位置需要 toobe 中所建立和管理您的應用程式和 hello 裝置作業系統不是由 Mobile Engagement 直接。 (**附註：**不在應用程式通知無法連結直接 tooin iOS 應用程式位置，它們可以 Android。)
+* 外部影像伺服器需要 toobe 無法 toouse HTTP 「 GET 」 和 「 前端 」 的大圖片推播通知 toowork (僅 Android)。
+* 在您的程式碼中，您可以 hello Azure Mobile Engagement 代理程式時開啟 hello 鍵盤時，停用，讓您的程式碼重新啟動之後 hello 鍵盤已關閉的 hello 鍵盤不會影響 hello 外觀 hello Azure Mobile Engagement 代理程式(僅限 iOS) 的通知。
 * 部分項目在測試模擬中沒有作用，只有在實際活動 (徽章、響鈴、震動、圖片等) 中才會有作用。
-* 當您使用按鈕「測試」推送時，不會記錄任何伺服器端的資料。 只會記錄實際推送活動的資料。
-* 為了協助您找出問題，請以測試、模擬及實際活動來執行疑難排解，因為它們各自的運作方式稍有不同。
-* 由於活動執行時，活動只會傳遞到「應用程式中」的使用者 (以及將裝置設定為接收「應用程式外」通知的使用者)，「應用程式中」與「任何時間」活動所安排執行的時間長度會影響傳遞的數目。
-* Android 和 iOS 處理應用程式外通知方式的不同，導致難以直接比較應用程式 Android 和 iOS 版本兩者的推送統計數據。 Android 相較於 iOS，提供較多作業系統層級的通知資訊。 Android 在通知中心中接收、按一下、或是刪除原生通知時會報告，但 iOS 中除非按一下通知，否則不會報告此資訊，。 
-* 觸達活動的「已推送」數目與「已傳遞」數目不同的主要原因，在於「應用程式中」與「應用程式外」的通知以不同的方式計算。 「應用程式中」通知由 Mobile Engagement 處理，但「應用程式外」通知則由裝置作業系統中的通知中心處理。
+* 當您使用 hello 按鈕時，會記錄資料的任何伺服器端太"test"推播不通知。 只會記錄實際推送活動的資料。
+* toohelp 隔離您的問題，請使用進行疑難排解： 測試，模擬，與實際的活動，因為它們都各自的運作方式稍有不同。
+* hello 的您在 「 」 中的應用程式 」 和 「 任何時間 」 活動會排定的 toorun 的時間長度可以影響傳遞數字因為活動只會傳遞 toousers 」 中之應用程式"hello 活動執行時 （而且其裝置設定的使用者設定 tooreceive通知 「 不足應用程式 」）。
+* hello 差異如何 Android 和 iOS 應用程式通知的控制代碼很難 toodirectly 比較 hello Android 和 iOS 應用程式版本之間的推送統計資料。 Android 相較於 iOS，提供較多作業系統層級的通知資訊。 Android 原生通知收到、 按一下，或刪除在 hello 通知中心，但除非 hello 通知按下 iOS 不會報告這項資訊的詳細報表。 
+* hello 主要原因 「 推入 」 的數字都不同比不同比 「 傳送 」 的數字的到達活動的 於應用程式 」 及 「 不足 」 的應用程式通知的計數方式不同。 「 中 」 的應用程式通知由 Mobile Engagement 處理，但是 「 不在應用程式 」 通知由您的裝置 hello OS 中的 hello 通知中心處理。
 
 ## <a name="push-targeting"></a>推送目標
 ### <a name="issue"></a>問題
@@ -82,21 +82,21 @@ ms.lasthandoff: 07/11/2017
 * 語言選項未如預期般運作。
 
 ### <a name="causes"></a>原因
-* 請確定您已經透過 Azure Mobile Engagement UI 或 API 上傳應用程式資訊標記。
-* 於應用程式層級控制推送速度或推送配額，或於活動層級限制對象，可以防止使用者接收特定的推送，即使它們符合您其他的目標準則。 
+* 請確定您已上傳應用程式資訊標記透過 hello Azure Mobile Engagement UI 或應用程式開發介面。
+* 節流 hello 推送速度或推播配額 hello 應用程式層級或在 hello 活動層級的限制 hello 觀眾可以防止個人接收特定推入，即使它們符合您目標的準則。 
 * 設定「語言」和依據國家或地區設定目標不同，這也和依據地理位置、手機位置或 GPS 定位位置設定目標不同。
-* 系統會傳送使用「預設語言」的訊息給未將其裝置設定為您所指定之替代語言之一的任何客戶。
+* hello"預設語言 」 中的 hello 訊息會傳送 tooany 客戶，且沒有設定 tooone hello 替代語言，您指定的裝置。
 
 ## <a name="push-scheduling"></a>推送排程
 ### <a name="issue"></a>問題
 * 推送排程未如預期般運作 (過早或延遲傳送)。
 
 ### <a name="causes"></a>原因
-* 時區可能導致排程問題，特別是在使用使用者的時區時。
+* 時區可以排程的問題，尤其是使用 hello 畷樾簅時區。
 * 進階推送功能可能會延遲推送。
-* 根據手機設定 (而不是根據應用程式資訊標記) 設定的目標可能會延遲推送，因為 Azure Mobile Engagement 可能必須在傳送推送之前，即時要求手機資料。
-* 建立時未設定結束日期的活動會將推送儲存在本機裝置上，並在下一次應用程式開啟時顯示，即使活動已手動結束。
-* 同時啟動多個活動可能需要較長時間來掃描您的使用者基礎 (請嘗試一次只啟動一個活動 (上限為四個)，目標也只限定於您在作用中的使用者，如此就不需要掃描舊的使用者)。
-* 如果您在觸達活動的 [活動] 區段中使用 [略過對象，推送將透過 API 傳送給使用者] 選項，活動將不會自動傳送，您必須以手動方式透過「觸達 API」傳送活動。
-* 如果您在 Reach 中使用自訂類別來顯示應用程式內通知，您必須遵循通知的正確生命週期，否則當使用者關閉通知時可能不會清除通知。
+* 因為 Azure Mobile Engagement 可能擁有 toorequest hello 電話即時資料，然後才傳送推播，目標為依據的電話 （而不是應用程式資訊標記） 的設定可能會延遲推播通知。
+* 沒有結束日期的情況下建立的活動在 hello 裝置上本機儲存 hello 推入並將其顯示 hello 即使手動結束 hello 活動開啟 hello 應用程式的下一次。
+* 啟動多個活動在 hello 相同的時間可能需要較長的時間 tooscan 您使用者的基底 （四個，最多一次嘗試 tooonly 開始一個活動，也目標 tooyour 作用中使用者，讓舊的使用者不需要掃描 toobe）。
+* 如果您使用 hello"忽略受眾，推入將會傳送 hello 應用程式開發介面透過 toousers 」 選項 hello 「 活動 」 一節中的觸達活動，不會自動傳送 hello 行銷活動，您需要 toosend 它以手動方式透過 hello 觸達 API。
+* 如果您使用自訂分類在觸達 toodisplay 應用程式內通知、 需要 toofollow hello 正確生命週期的通知，否則可能不會清除 hello 通知時 hello 使用者關閉它。
 

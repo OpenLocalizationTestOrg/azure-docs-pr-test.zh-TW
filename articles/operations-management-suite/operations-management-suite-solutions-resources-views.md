@@ -1,6 +1,6 @@
 ---
-title: "Operations Management Suite (OMS) 管理解決方案中的檢視 | Microsoft Docs"
-description: "Operations Management Suite (OMS) 中的管理解決方案通常包含一或多個檢視，以將資料視覺化。  本文說明如何匯出檢視設計工具所建立的檢視並將它納入管理解決方案中。 "
+title: "Operations Management Suite (OMS) 的管理解決方案中 aaaViews |Microsoft 文件"
+description: "在 Operations Management Suite (OMS) 的管理解決方案通常會包含一個或多個檢視 toovisualize 資料。  本文描述如何 tooexport 來建立檢視表 hello 檢視表設計工具，並將它包含在管理解決方案。 "
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/11/2017
 ms.author: bwren
-ms.openlocfilehash: 533b5564a805e0b41f2b1a4ad92e12b133220952
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 303861465014a27289f831332b3d95925c0ae66d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="views-in-operations-management-suite-oms-management-solutions-preview"></a>Operations Management Suite (OMS) 管理解決方案中的檢視 (預覽)
 > [!NOTE]
-> 這是在 OMS 中建立管理解決方案 (目前處於預覽狀態) 的預備文件。 以下所述的任何結構描述可能會有所變更。    
+> 這是在 OMS 中建立管理解決方案 (目前處於預覽狀態) 的預備文件。 如下所述的任何結構描述是主體 toochange。    
 >
 >
 
-[Operations Management Suite (OMS) 中的管理解決方案](operations-management-suite-solutions.md)通常包含一或多個檢視，以將資料視覺化。  本文說明如何匯出[檢視設計工具](../log-analytics/log-analytics-view-designer.md)所建立的檢視並將它納入管理解決方案中。  
+[在 Operations Management Suite (OMS) 的管理解決方案](operations-management-suite-solutions.md)通常會包含一個或多個檢視 toovisualize 資料。  本文說明如何 tooexport 來建立檢視表 hello[檢視表設計工具](../log-analytics/log-analytics-view-designer.md)並將它包含在管理解決方案中。  
 
 > [!NOTE]
-> 本文中的範例使用管理解決方案所必要或通用的參數和變數，如[在 Operations Management Suite (OMS) 中建立管理解決方案](operations-management-suite-solutions-creating.md)所述。
+> hello 這篇文章中的範例使用參數和變數，都是必要或常見 toomanagement 解決方案中所述[Operations Management Suite (OMS) 中建立管理方案](operations-management-suite-solutions-creating.md)
 >
 >
 
 ## <a name="prerequisites"></a>必要條件
-本文假設您已經熟悉如何[建立管理解決方案](operations-management-suite-solutions-creating.md)和方案檔的結構。
+本文假設您已經熟悉如何太[建立管理方案](operations-management-suite-solutions-creating.md)和方案檔的 hello 結構。
 
-## <a name="overview"></a>Overview
-若要在管理解決方案中納入檢視，您可在[方案檔](operations-management-suite-solutions-creating.md)中建立其**資源**。  說明檢視詳細組態的 JSON 通常很複雜，典型方案作者無法以手動方式建立。  最常見的方法是使用[檢視設計工具](../log-analytics/log-analytics-view-designer.md)建立檢視、加以匯出，然後將其詳細組態新增至方案。
+## <a name="overview"></a>概觀
+建立 tooinclude 管理解決方案中的檢視，**資源**中 hello[方案檔](operations-management-suite-solutions-creating.md)。  hello JSON 描述 hello 檢視詳細的設定是通常複雜雖然和非，一般解決方案作者可以 toocreate 手動。  hello 最常見方法是使用 hello toocreate hello 檢視[檢視表設計工具](../log-analytics/log-analytics-view-designer.md)、 將它，匯出，然後再將它的詳細的組態 toohello 方案。
 
-將檢視新增至方案的基本步驟如下所示。  下列各節會進一步詳細說明每個步驟。
+hello 基本步驟 tooadd 檢視 tooa 方案如下所示。  在 hello 的以下各節將進一步詳細說明每個步驟。
 
-1. 將檢視匯出至檔案。
-2. 在方案中建立檢視資源。
-3. 新增檢視詳細資料。
+1. 匯出 hello 檢視 tooa 檔案。
+2. Hello 方案中建立 hello 檢視資源。
+3. 新增 hello 檢視詳細資料。
 
-## <a name="export-the-view-to-a-file"></a>將檢視匯出至檔案
-請依照 [Log Analytics 檢視設計工具](../log-analytics/log-analytics-view-designer.md)的指示將檢視匯出至檔案。  匯出的檔案會是 JSON 格式，具有與[方案檔相同的元素](operations-management-suite-solutions-solution-file.md)。  
+## <a name="export-hello-view-tooa-file"></a>匯出 hello 檢視 tooa 檔案
+請遵循指示 hello[記錄分析檢視表設計工具](../log-analytics/log-analytics-view-designer.md)tooexport 檢視 tooa 檔案。  hello 匯出的檔案將會以 JSON 格式與 hello 相同[為 hello 方案檔案的項目](operations-management-suite-solutions-solution-file.md)。  
 
-檢視檔的 **resources** 元素會有 **Microsoft.OperationalInsights/workspaces** 類型的資源，其代表 OMS 工作區。  此元素會有 **views** 類型的子元素，其代表檢視且包含詳細的組態。  您將複製此元素的詳細資料，然後將它複製到您的方案。
+hello**資源**hello 檢視檔案的項目將擁有的資源類型為**Microsoft.OperationalInsights/workspaces**代表 hello OMS 工作區。  這個項目必須具有類型的子元素**檢視**中代表 hello 檢視，且包含詳細的設定。  您將會複製這個項目的 hello 詳細資料，並再將它複製到您的方案。
 
-## <a name="create-the-view-resource-in-the-solution"></a>在方案中建立檢視資源
-將下列檢視資源新增至方案檔的 **resources** 元素。  這會使用您也必須新增的下述變數。  請注意，**Dashboard** 和 **OverviewTile** 屬性是您將以所匯出檢視檔中的對應屬性覆寫的預留位置。
+## <a name="create-hello-view-resource-in-hello-solution"></a>建立 hello 方案中的 hello 檢視資源
+新增下列檢視資源 toohello hello**資源**方案檔的項目。  這會使用您也必須新增的下述變數。  請注意該 hello**儀表板**和**OverviewTile**屬性都是預留位置，您將會覆寫與 hello hello 匯出的檢視檔案從對應的屬性。
 
     {
         "apiVersion": "[variables('LogAnalyticsApiVersion')]",
@@ -73,28 +73,28 @@ ms.lasthandoff: 07/11/2017
         }
     }
 
-將下列變數加入至解決方案檔的 variables 元素，並以您的解決方案值取代。
+新增 hello 遵循 hello 方案檔的變數 toohello 變數項目，並取代 hello 值 toothose 為您的方案。
 
     "LogAnalyticsApiVersion": "2015-11-01-preview",
     "ViewAuthor": "Your name."
-    "ViewDescription": "Optional description of the view."
-    "ViewName": "Provide a name for the view here."
+    "ViewDescription": "Optional description of hello view."
+    "ViewName": "Provide a name for hello view here."
 
 
-請注意，您無法從匯出的檢視檔複製整個檢視資源，但您必須進行下列變更，該資源才能您的方案中正常運作。  
+請注意，您無法複製 hello 整個檢視資源從匯出的檢視檔案，您必須依照變更 toomake hello toowork 方案中。  
 
-* 檢視資源的 **type** 必須從 **views** 變更為 **Microsoft.OperationalInsights/workspaces**。
-* 檢視資源的 **name** 屬性必須變更以包含工作區名稱。
-* 必須移除工作區的相依性，因為方案中未定義此工作區資源。
-* **DisplayName** 屬性必須新增至檢視。  **Id**、**Name** 和 **DisplayName** 必須完全相符。
-* 參數名稱必須變更以符合必要的參數集。
-* 變數應定義於方案中並使用於適當的屬性中。
+* hello**類型**hello 檢視的資源需要從變更的 toobe**檢視**太**Microsoft.OperationalInsights/workspaces**。
+* hello**名稱**hello 檢視資源的屬性必須變更 toobe tooinclude hello 工作區名稱。
+* hello hello 工作區上的相依性需要 toobe 移除，因為 hello 方案中未定義 hello 工作區的資源。
+* **DisplayName**屬性需求 toobe 加入 toohello 檢視。  hello**識別碼**，**名稱**，和**DisplayName**必須全部都會相符。
+* 必須變更參數名稱 toomatch hello 所需的參數集。
+* 變數應 hello 方案中定義和 hello 適當的內容中使用。
 
-## <a name="add-the-view-details"></a>新增檢視詳細資料
-所匯出檢視檔中的檢視資源會在 **properties** 元素中包含兩個名為 **Dashboard** 和 **OverviewTile** 的元素，而這兩個元素包含檢視的詳細組態。  將這兩個元素及其內容複製到方案檔中檢視資源的 **properties** 元素中。
+## <a name="add-hello-view-details"></a>新增 hello 檢視詳細資料
+hello 檢視資源 hello 中的匯出檔案會包含兩個項目在 hello 檢視**屬性**名**儀表板**和**OverviewTile**包含 hellohello 檢視的詳細的設定。  這兩個元素和其內容複製到 hello**屬性**hello 檢視資源方案檔中的項目。
 
 ## <a name="example"></a>範例
-例如，下列範例顯示包含一個檢視的簡單方案檔。  基於空間考量，**Dashboard** 和 **OverviewTile** 內容會顯示省略符號 (...)。
+比方說，hello 下列範例會示範檢視的簡單方案檔。  省略符號 （...） 會顯示 hello**儀表板**和**OverviewTile**基於空間考量的內容。
 
     {
         "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",

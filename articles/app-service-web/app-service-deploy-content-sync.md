@@ -1,6 +1,6 @@
 ---
-title: "將雲端資料夾的內容同步處理到 Azure App Service"
-description: "了解如何從雲端資料夾透過內容同步處理，將您的應用程式部署至 Azure App Service。"
+title: "從雲端資料夾 tooAzure App Service aaaSync 內容"
+description: "了解如何 toodeploy 內容透過您的應用程式 tooAzure 應用程式服務從同步處理雲端資料夾。"
 services: app-service
 documentationcenter: 
 author: dariagrigoriu
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2016
 ms.author: dariagrigoriu
-ms.openlocfilehash: 010e7dc492abefaa3afe814c0322af9f6fe5acd2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e1c6d53a427c36126d9cdb33cc21b4126b9d9c2f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sync-content-from-a-cloud-folder-to-azure-app-service"></a>將雲端資料夾的內容同步處理到 Azure App Service
-本教學課程將示範如何從受歡迎的雲端儲存體服務 (例如 Dropbox 與 OneDrive) 同步處理內容，以部署至 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 。 
+# <a name="sync-content-from-a-cloud-folder-tooazure-app-service"></a>從雲端資料夾 tooAzure 應用程式服務的同步處理內容
+本教學課程示範如何 toodeploy 太[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)所同步處理您的內容從 Dropbox 和 OneDrive 等熱門的雲端儲存體服務。 
 
 ## <a name="overview"></a>內容同步處理部署概觀
-隨選內容同步處理部署是由與 App Service 整合之 [Kudu 部署引擎](https://github.com/projectkudu/kudu/wiki) 所提供。 在 [Azure 入口網站](https://portal.azure.com)中，您可以在雲端儲存空間中指定特殊資料夾、在該資料夾中處理您的應用程式程式碼和內容，並按一下按鈕以同步至 App Service。 內容同步處理會在組建和部署使用 Kudu 程序。 
+hello 視內容的同步處理部署由 hello [Kudu 部署引擎](https://github.com/projectkudu/kudu/wiki)整合與應用程式服務。 在 hello [Azure 入口網站](https://portal.azure.com)，您可以指定您的雲端儲存體中的資料夾，使用您的應用程式程式碼和內容，在該資料夾中，然後以 hello 同步 tooApp 服務按一下按鈕。 內容的同步處理會使用組建和部署的 hello Kudu 程序。 
 
-## <a name="contentsync"></a>如何啟用內容同步處理部署
-若要從 [Azure 入口網站](https://portal.azure.com)啟用內容同步處理，請遵循下列步驟：
+## <a name="contentsync"></a>Tooenable 內容同步處理的部署方式
+從 hello tooenable 內容同步[Azure 入口網站](https://portal.azure.com)，請遵循下列步驟：
 
-1. 在 Azure 入口網站上您的應用程式刀鋒視窗中，按一下 [設定] > [部署來源]。 按一下 [選擇來源]，然後選取 [OneDrive] 或 [Dropbox] 作為部署來源。 
+1. 在您的應用程式] 刀鋒視窗 hello Azure 入口網站中，按一下 [**設定** > **部署來源**。 按一下**選擇來源**，然後選取**OneDrive**或**Dropbox**做為部署的 hello 來源。 
    
     ![內容同步處理](./media/app-service-deploy-content-sync/deployment_source.png)
    
    > [!NOTE]
-   > 由於 API 中的基礎差異，目前不支援**商務用 OneDrive**。 
+   > Hello 應用程式開發介面，因此基礎**商務用 OneDrive**不支援這一次。 
    > 
    > 
-2. 完成授權工作流程，以便讓 App Service 存取將會儲存所有 App Service 內容之 OneDrive 或 Dropbox 的特定預先定義指定路徑。  
-    授權之後，App Service 平台會提供您在指定內容路徑下建立內容資料夾的選項，或是選擇此指定的內容路徑下的現有內容資料夾。 以下為針對 App Service 同步處理所使用之雲端儲存體帳戶下的指定內容路徑：  
+2. 完成 hello 授權工作流程 tooenable App Service tooaccess 特定預先定義的指定之的路徑的 OneDrive 或 Dropbox 會儲存所有您應用程式服務的內容。  
+    應用程式服務平台可讓您的授權 hello 之後 hello 選項 toocreate 內容 資料夾之下的 hello 會指定內容的路徑或 toochoose 這個指定之內容的路徑下的現有內容資料夾。 在您用於應用程式服務同步處理的雲端儲存體帳戶下的 hello 指定內容路徑是 hello 下列：  
    
    * **OneDrive**：`Apps\Azure Web Apps` 
    * **Dropbox**：`Dropbox\Apps\Azure`
-3. 初始內容同步處理之後，內容同步處理可以視需要從 Azure 入口網站啟動。 [部署]  刀鋒視窗提供了部署歷程記錄。
+3. Hello 之後，您可以視需要從 hello Azure 入口網站啟動初始內容的同步處理 hello 內容同步處理。 部署歷程記錄是可用以 hello**部署**刀鋒視窗。
    
     ![部署歷程記錄](./media/app-service-deploy-content-sync/onedrive_sync.png)
 

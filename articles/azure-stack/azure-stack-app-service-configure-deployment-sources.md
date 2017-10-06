@@ -1,5 +1,5 @@
 ---
-title: "為 Azure Stack 上的應用程式服務設定部署來源 | Microsoft Docs"
+title: "aaaConfigure Azure 堆疊上的應用程式服務的部署來源 |Microsoft 文件"
 description: "服務管理員該如何為 Azure Stack 上的 App Service 設定部署來源 (Git、GitHub、BitBucket、DropBox 和 OneDrive)"
 services: azure-stack
 documentationcenter: 
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 4/6/2017
 ms.author: anwestg
-ms.openlocfilehash: be4b032e8f7370f696c47a7b8e82c0a819529f4d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2eaf0a7f4b6e52d64a302000c1dd3c3eb5d6a6ca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-deployment-sources"></a>設定部署來源
 
-Azure Stack 上的 App Service 支援從多個原始檔控制提供者進行隨選部署。  這項功能可讓應用程式開發人員能夠直接從其原始檔控制儲存機制進行部署。  為了讓租用戶能夠設定 App Service 以連線至其儲存機制，系統管理員必須先設定 Azure Stack 上的 App Service 與原始檔控制提供者之間的整合。  除了本機 Git 外，也支援下列原始檔控制提供者︰
+Azure Stack 上的 App Service 支援從多個原始檔控制提供者進行隨選部署。  此功能可讓應用程式開發人員 toobe 無法 toodeploy 直接從其原始檔控制儲存機制。  若要為租用戶 toobe 無法 tooconfigure App Service tooconnect tootheir 儲存機制、 系統管理員必須先設定 hello Azure 堆疊上的應用程式服務之間的整合和 hello 原始檔控制提供者。  hello 原始檔控制提供者支援，此外 toolocal Git，如下：
 
 * GitHub
 * BitBucket
@@ -31,114 +31,113 @@ Azure Stack 上的 App Service 支援從多個原始檔控制提供者進行隨�
 
 ## <a name="view-deployment-sources-in-app-service-administration"></a>檢視 App Service 管理中的部署來源
 
-1. 以服務管理員身分登入 Azure Stack 管理入口網站 ( https://adminportal.local.azurestack.external )。
-2. 瀏覽至 [資源提供者]，然後選取 [App Service 資源提供者管理]。
-    ![App Service 資源提供者管理][1]
-3. 按一下 [原始檔控制組態]。  您會在此看見所有已設定之部署來源的清單。
+1. Hello 服務系統管理員身分登入 toohello Azure 堆疊系統管理入口網站 (https://adminportal.local.azurestack.external)。
+2. 瀏覽過**資源提供者**和選取 hello**應用程式服務資源提供者系統管理員**。![App Service 資源提供者管理][1]
+3. 按一下 [原始檔控制組態]。  這裡您會看到所有設定的部署來源 hello 清單。
     ![App Service 資源提供者管理原始檔控制組態][2]
 
 ## <a name="configure-github"></a>設定 GitHub
 
 > [!NOTE]
-> 您需要有 GitHub 帳戶才能完成此工作。  您可能會想要使用組織的帳戶，而非個人帳戶。
+> 需要 GitHub 帳戶 toocomplete 這項工作。  您可能希望 toouse 帳戶，您的組織，而不是個人的帳戶。
 
-1. 登入 GitHub、瀏覽至 https://www.github.com/settings/developers ，然後按一下 [註冊新的應用程式] ![GitHub - 註冊新的應用程式][3]
+1. 登入 tooGitHub，瀏覽 toohttps://www.github.com/settings/developers 並按一下**註冊新的應用程式** ![GitHub-註冊新的應用程式][3]
 2. 輸入 [應用程式名稱]，例如，Azure Stack 上的 App Service
-3. 輸入 [首頁 URL]。  **首頁 URL 必須是 Azure Stack 入口網站位址**，例如 https://portal.local.azurestack.external
+3. 輸入 hello**首頁 URL**。  **hello 首頁 URL 必須是 hello Azure 堆疊入口網站位址**例如-https://portal.local.azurestack.external
 4. 輸入 [應用程式描述]
-5. 輸入 [授權回呼 URL]。  在預設的 Azure Stack 部署中，Url 的形式為 https://portal.local.azurestack.external/tokenauthorize ，如果您在不同的網域下執行，請以您的網域取代 azurestack.local ![GitHub - 使用填入的值註冊新的應用程式][4]
-6. 按一下 [註冊應用程式]。  您現在會看到列出應用程式之 [用戶端識別碼] 和 [用戶端密碼] 的頁面。
+5. 輸入 hello**授權回呼 URL**。  在預設 Azure 堆疊部署中，hello Url 是 hello 表單 https://portal.local.azurestack.external/tokenauthorize，如果您在不同的網域取代下執行網域中的為 azurestack.local ![GitHub-註冊新的應用程式以填入的值][4]
+6. 按一下 [註冊應用程式]。  您現在會以頁面清單 hello**用戶端識別碼**和**用戶端密碼**hello 應用程式。
     ![GitHub - 已完成的應用程式註冊][5]
-7.  在新的瀏覽器索引標籤或視窗中，以服務管理員身分登入 Azure Stack 管理入口網站 ( https://adminportal.local.azurestack.external )。 
-8.  瀏覽至 [資源提供者]，然後選取 [App Service 資源提供者管理]。 
+7.  在新的瀏覽器索引標籤或視窗登入 toohello Azure 堆疊管理入口網站 (https://adminportal.local.azurestack.external) hello 服務系統管理員身分。 
+8.  瀏覽過**資源提供者**和選取 hello**應用程式服務資源提供者系統管理員**。 
 9. 按一下 [原始檔控制組態]。
-10. 複製 [用戶端識別碼] 和 [用戶端密碼] 並貼到對應的 GitHub 輸入方塊。
+10. 複製並貼上 hello**用戶端識別碼**和**用戶端密碼**hello 對應輸入方塊中的 GitHub。
 11. 按一下 [儲存] 。
-12. 如果您不想設定任何其他部署來源，請繼續[排程管理角色的修復](azure-stack-app-service-configure-deployment-sources.md#schedule-repair-of-management-roles)。
+12. 如果您不想 tooconfigure 任何其他的部署來源，繼續太[的管理角色排程修復](azure-stack-app-service-configure-deployment-sources.md#schedule-repair-of-management-roles)。
 
 
 ## <a name="configure-bitbucket"></a>設定 BitBucket
 
 > [!NOTE]
-> 您需要有 BitBucket 帳戶才能完成此工作。  您可能會想要使用組織的帳戶，而非個人帳戶。
+> 這項工作需要 BitBucket 帳戶 toocomplete。  您可能希望 toouse 帳戶，您的組織，而不是個人的帳戶。
 
-1. 登入 BitBucket，然後瀏覽至您帳戶底下的 [整合] ![BitBucket 儀表板 - 整合][7]
+1. 登入 tooBitBucket 並瀏覽過**整合**您帳戶![BitBucket 儀表板-整合][7]
 2. 按一下 [存取管理] 底下的 [OAuth] 與 [新增取用者] ![BitBucket 新增 OAuth 取用者][8]
-3. 輸入取用者的 [名稱]，例如，Azure Stack 上的 App Service
-4. 輸入應用程式的 [描述]
-5. 輸入 [回呼 URL]。  在預設的 Azure Stack 部署中，回呼 Url 的形式為 https://portal.local.azurestack.external/TokenAuthorize ，如果您在不同的網域下執行，請以您的網域取代 azurestack.local。  Url 必須按照此處列出的大小寫，BitBucket 整合才能成功。
-6. 輸入 **URL**，此 Url 應為 Azure Stack 入口網站 URL，例如 https://portal.local.azurestack.external
-7. 選取所需**權限** -  **存放庫**: **讀取** **Webhook**: **讀取及寫入**
-8. 按一下 [儲存] 。  您現在會看到這個新的應用程式，以及 **OAuth 取用者**底下的**金鑰**和**密碼**。
+3. 輸入**名稱**hello 取用者，例如 Azure 堆疊上的應用程式服務
+4. 輸入**描述**hello 應用程式
+5. 輸入 hello**回呼 URL**。  在預設 Azure 堆疊部署中，回呼 Url hello 處於 hello 表單 https://portal.local.azurestack.external/TokenAuthorize，如果您在不同的網域取代下執行網域中的為 azurestack.local。  hello Url 必須遵循此處所列的 BitBucket 整合 toosucceed hello 大小寫。
+6. 輸入 hello **URL** -此 Url 應 hello Azure 堆疊入口網站 URL，例如 https://portal.local.azurestack.external
+7. 選取 hello**權限**必要**儲存機制**:**讀取** **Webhook**:**讀取和寫入**
+8. 按一下 [儲存] 。  您現在可以看到這個新的應用程式，以及 hello**金鑰**和**密碼**下**OAuth 取用者**。
     ![BitBucket 應用程式清單][9]
-9.  在新的瀏覽器索引標籤或視窗中，以服務管理員身分登入 Azure Stack 管理入口網站 ( https://adminportal.local.azurestack.external )。 
-10.  瀏覽至 [資源提供者]，然後選取 [App Service 資源提供者管理]。 
+9.  在新的瀏覽器索引標籤或視窗登入 toohello Azure 堆疊管理入口網站 (https://adminportal.local.azurestack.external) hello 服務系統管理員身分。 
+10.  瀏覽過**資源提供者**和選取 hello**應用程式服務資源提供者系統管理員**。 
 11. 按一下 [原始檔控制組態]。
-12. 複製**金鑰**並貼到 BitBucket 的 [用戶端識別碼] 輸入方塊，以及複製**密碼**並貼到 BitBucket 的 [用戶端密碼] 輸入方塊。
+12. 複製並貼上 hello**金鑰**到 hello**用戶端識別碼**輸入的方塊和**密碼**到 hello**用戶端密碼**是 bitbucket 適用的輸入的方塊。
 13. 按一下 [儲存] 。
-14. 如果您不想設定任何其他部署來源，請繼續[排程管理角色的修復](azure-stack-app-service-configure-deployment-sources.md#schedule-repair-of-management-roles)。
+14. 如果您不想 tooconfigure 任何其他的部署來源，繼續太[的管理角色排程修復](azure-stack-app-service-configure-deployment-sources.md#schedule-repair-of-management-roles)。
 
 ## <a name="configure-onedrive"></a>設定 OneDrive
 
 > [!NOTE]
-> 目前不支援商務用 OneDrive 帳戶。  您必須有連結到 OneDrive 帳戶的 Microsoft 帳戶，才能完成這項工作。  您可能會想要使用組織的帳戶，而非個人帳戶。
+> 目前不支援商務用 OneDrive 帳戶。  您需要 Microsoft 帳戶連結 tooa OneDrive 帳戶 toocomplete toohave 這項工作。  您可能希望 toouse 帳戶，您的組織，而不是個人的帳戶。
 
-1. 瀏覽至 https://apps.dev.microsoft.com/?referrer=https%3A%2F%2Fdev.onedrive.com%2Fapp-registration.htm 並使用 Microsoft 帳戶登入。
+1. 瀏覽 toohttps://apps.dev.microsoft.com/?referrer=https%3A%2F%2Fdev.onedrive.com%2Fapp-registration.htm 並使用您的 Microsoft 帳戶登入。
 2. 按一下 [我的應用程式] 底下的 [新增應用程式]
 ![OneDrive 應用程式][10]
-3. 為新的應用程式註冊輸入**名稱**，輸入 **Azure Stack 上的 App Service**，然後按一下 [建立應用程式]
-4. 下一個畫面會列出新應用程式的屬性。 記錄下**應用程式識別碼**
+3. 輸入**名稱**hello 新應用程式註冊，請輸入**Azure 堆疊上的應用程式服務**，然後按一下**建立應用程式**
+4. hello 下一個畫面會列出新的應用程式的 hello 屬性。 記錄 hello**應用程式識別碼**
 ![OneDrive 應用程式屬性][11]
-5. 在 [應用程式密碼] 底下按一下 [產生新密碼]，然後記錄**所產生的新密碼** - 這是您的應用程式密碼。
+5. 在下**應用程式密碼**按一下**產生新的密碼**和記錄 hello**產生新密碼**-這是您的應用程式密碼。
 > [!NOTE]
-> 請務必記下新密碼，因為一旦您在此階段按一下 [確定] 後就無法再擷取。
+> 記下確定 toomake hello 新密碼不是可擷取當您在此階段按一下 [確定]。
 6. 在 [平台] 下，按一下 [新增平台]，然後選取 [網站]
-7. 輸入 [重新導向 URI]。  在預設的 Azure Stack 部署中，重新導向 URI 的形式為 https://portal.local.azurestack.external/tokenauthorize ，如果您在不同的網域下執行，請以您的網域取代 azurestack.local ![OneDrive 應用程式 - 新增 Web 平台][12]
-8. 設定 [Microsoft Graph 權限] - [委派權限]
+7. 輸入 hello**重新導向 URI**。  在預設 Azure 堆疊部署中，重新導向 URI hello 處於 hello 表單 https://portal.local.azurestack.external/tokenauthorize，如果您在不同的網域取代下執行網域中的為 azurestack.local ![OneDrive 應用程式-加入 Web 平台][12]
+8. 設定 hello **Microsoft Graph 權限** - **委派的權限**
     - **Files.ReadWrite.AppFolder**
     - **User.Read**  
       ![OneDrive 應用程式 - Graph 權限][13]
 10. 按一下 [儲存] 。
-11.  在新的瀏覽器索引標籤或視窗中，以服務管理員身分登入 Azure Stack 管理入口網站 ( https://adminportal.local.azurestack.external )。 
-12.  瀏覽至 [資源提供者]，然後選取 [App Service 資源提供者管理]。 
+11.  在新的瀏覽器索引標籤或視窗登入 toohello Azure 堆疊管理入口網站 (https://adminportal.local.azurestack.external) hello 服務系統管理員身分。 
+12.  瀏覽過**資源提供者**和選取 hello**應用程式服務資源提供者系統管理員**。 
 13. 按一下 [原始檔控制組態]。
-14. 複製**應用程式識別碼**並貼到 OneDrive 的 [用戶端識別碼] 輸入方塊，以及複製**密碼**並貼到 OneDrive 的 [用戶端密碼] 輸入方塊。
+14. 複製並貼上 hello**應用程式識別碼**到 hello**用戶端識別碼**輸入的方塊和**密碼**到 hello**用戶端密碼**輸入的方塊OneDrive。
 15. 按一下 [儲存] 。
-16. 如果您不想設定任何其他部署來源，請繼續[排程管理角色的修復](azure-stack-app-service-configure-deployment-sources.md#schedule-repair-of-management-roles)。
+16. 如果您不想 tooconfigure 任何其他的部署來源，繼續太[的管理角色排程修復](azure-stack-app-service-configure-deployment-sources.md#schedule-repair-of-management-roles)。
 
 ## <a name="configure-dropbox"></a>設定 DropBox
 
 > [!NOTE]
-> 您必須有 DropBox 帳戶才能完成這項工作。  您可能會想要使用組織的帳戶，而非個人帳戶。
+> 您需要 toohave DropBox 帳戶 toocomplete 這項工作。  您可能希望 toouse 帳戶，您的組織，而不是個人的帳戶。
 
-1. 瀏覽至 https://www.dropbox.com/developers/apps，並使用 DropBox 帳戶登入
-2. 按一下 [建立應用程式]**** 
+1. 瀏覽 toohttps://www.dropbox.com/developers/apps 和使用您的 DropBox 帳戶登入
+2. 按一下 **建立應用程式** 
 ![Dropbox 應用程式][14]
 3. 選取 [DropBox API]
-4. 將存取層級設為 [應用程式資料夾]
+4. 設定 hello 存取層級太**應用程式的資料夾**
 5. 輸入應用程式的**名稱**。
 ![Dropbox 應用程式註冊][15]
-6. 按一下 [建立應用程式]。  您現在會看到列出應用程式設定的頁面，包括**應用程式金鑰**和**應用程式密碼**。
-7. 確認 [應用程式資料夾名稱] 已設為 **Azure Stack 上的 App Service**
-8. 設定 [OAuth 2 重新導向 URI]，然後按一下 [新增]。  在預設的 Azure Stack 部署中，重新導向 URI 的形式為 https://portal.local.azurestack.external/tokenauthorize ，如果您在不同的網域下執行，請以您的網域取代 azurestack.local ![Dropbox 應用程式設定][16]
-9.  在新的瀏覽器索引標籤或視窗中，以服務管理員身分登入 Azure Stack 管理入口網站 ( https://adminportal.local.azurestack.external )。 
-10.  瀏覽至 [資源提供者]，然後選取 [App Service 資源提供者管理]。 
+6. 按一下 [建立應用程式]。  您現在會看到與頁面列出 hello 設定 hello 應用程式包括**應用程式金鑰**和**應用程式秘鑰**。
+7. 檢查 hello**應用程式資料夾名稱**設定得**Azure 堆疊上的應用程式服務**
+8. 設定 hello **OAuth 2 重新導向 URI**按一下**新增**。  在預設 Azure 堆疊部署中，重新導向 URI hello 處於 hello 表單 https://portal.local.azurestack.external/tokenauthorize，如果您在不同的網域取代下執行網域中的為 azurestack.local ![Dropbox 應用程式組態][16]
+9.  在新的瀏覽器索引標籤或視窗登入 toohello Azure 堆疊管理入口網站 (https://adminportal.local.azurestack.external) hello 服務系統管理員身分。 
+10.  瀏覽過**資源提供者**和選取 hello**應用程式服務資源提供者系統管理員**。 
 11. 按一下 [原始檔控制組態]。
-12. 複製**應用程式金鑰**並貼到 DropBox 的 [用戶端識別碼] 輸入方塊，以及複製**應用程式密碼**並貼到 DropBox 的 [用戶端密碼] 輸入方塊。
+12. 複製並貼上 hello**應用程式金鑰**到 hello**用戶端識別碼**輸入的方塊和**應用程式秘鑰**到 hello**用戶端密碼**輸入的方塊DropBox。
 13. 按一下 [儲存] 。
-14. 如果您不想設定任何其他部署來源，請繼續[排程管理角色的修復](azure-stack-app-service-configure-deployment-sources.md#schedule-repair-of-management-roles)。
+14. 如果您不想 tooconfigure 任何其他的部署來源，繼續太[的管理角色排程修復](azure-stack-app-service-configure-deployment-sources.md#schedule-repair-of-management-roles)。
 
 ## <a name="schedule-repair-of-management-roles"></a>排程管理角色的修復
-為了套用各種部署來源組態中所更新的設定，您必須修復管理角色。  此程序可確保組態值能夠正確套用，並將所設定的部署來源提供給租用戶使用。
+為了讓更新 hello hello 組態中的 hello 設定不同的部署來源 toobe 套用，hello 管理角色需要 toobe 修復。  此程序以確保已正確套用 hello 組態值和 hello 設定部署來源進行可用 tootenants。
 
-1. 在新的瀏覽器索引標籤或視窗中，以服務管理員身分登入 Azure Stack 管理入口網站 ( https://adminportal.local.azurestack.external )。
-2. 瀏覽至 [資源提供者]，然後選取 [App Service 資源提供者管理]。
+1. 在新的瀏覽器索引標籤或視窗登入 toohello Azure 堆疊管理入口網站 (https://adminportal.local.azurestack.external) hello 服務系統管理員身分。
+2. 瀏覽過**資源提供者**和選取 hello**應用程式服務資源提供者系統管理員**。
 3. 按一下 [原始檔控制組態]
-4. 複製 [用戶端識別碼] 和 [用戶端密碼] 並貼到對應的 GitHub 輸入方塊。
+4. 複製並貼上 hello**用戶端識別碼**和**用戶端密碼**hello 對應輸入方塊中的 GitHub。
 5. 按一下 [儲存] 
 6. 按一下 [角色]
 7. 按一下 [管理伺服器]
-8. 按一下 [全部修復]，然後選取 [是]。  這項作業會在所有管理伺服器上排程修復作業，以便完成整合。  修復作業會受到控管，以將停機時間降低最低。
+8. 按一下 [全部修復]，然後選取 [是]。  這項作業排程的所有管理伺服器 toocomplete hello 整合修復。  hello 修復作業是 managed 的 toominimize 停機時間。
     ![App Service 資源提供者管理 - 角色 - 管理伺服器全部修復][6]
 
 <!--Image references-->

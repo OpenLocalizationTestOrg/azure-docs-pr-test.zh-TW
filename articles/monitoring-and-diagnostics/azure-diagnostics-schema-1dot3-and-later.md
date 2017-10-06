@@ -1,6 +1,6 @@
 ---
-title: "Azure 診斷擴充功能 1.3 版和更新版本的組態結構描述 | Microsoft Docs"
-description: "適用於 Azure 診斷的結構描述 1.3 版和更新版本隨附於 Microsoft Azure SDK 2.4 版和更新版本中。"
+title: "aaaAzure 診斷延伸模組 1.3 和更新版本的組態結構描述 |Microsoft 文件"
+description: "結構描述版本 1.3 和更新版本的 Azure 診斷出貨 hello Microsoft Azure SDK 2.4 和更新版本的一部分。"
 services: monitoring-and-diagnostics
 documentationcenter: .net
 author: rboucher
@@ -14,15 +14,15 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: robb
-ms.openlocfilehash: 0d814825fb08452238a254ccd30bde230380c74c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bd15d3a79ea818fcb3235854717e58d5da36518e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-diagnostics-13-and-later-configuration-schema"></a>Azure 診斷 1.3 版和更新版本的組態結構描述
 > [!NOTE]
-> Azure 診斷擴充功能這個元件可用來收集下列項目的效能計數器和其他統計資料︰
+> hello Azure 診斷擴充功能是 hello 元件使用 toocollect 效能計數器和其他統計資料：
 > - Azure 虛擬機器 
 > - 虛擬機器擴展集
 > - Service Fabric 
@@ -31,15 +31,15 @@ ms.lasthandoff: 07/11/2017
 > 
 > 此頁面只在您使用其中一個服務時才相關。
 
-此頁面適用於 1.3 版和更新版本 (Azure SDK 2.4 版和更新版本)。 我們會在較新的組態區段中加入標記，表示已將它們新增至哪一個版本中。  
+此頁面適用於 1.3 版和更新版本 (Azure SDK 2.4 版和更新版本)。 較新的組態區段會加上註解的 tooshow 中加入哪個版本。  
 
-當診斷監視器啟動時，此處所述的組態檔會用來設定診斷組態設定。  
+此處所述的 hello 設定檔 hello 診斷監視器啟動時使用的 tooset 診斷的組態設定。  
 
-此擴充功能要與 Azure 監視器、Application Insights 和 Log Analytics 等其他 Microsoft 診斷產品搭配使用。
+Azure 監視、 Application Insights 和記錄分析等其他 Microsoft 診斷產品搭配使用 hello 延伸。
 
 
 
-執行下列 PowerShell 命令，以下載公用組態檔結構描述定義：  
+藉由執行下列 PowerShell 命令的 hello 下載 hello 公用組態檔結構描述定義：  
 
 ```powershell  
 (Get-AzureServiceAvailableExtension -ExtensionName 'PaaSDiagnostics' -ProviderNamespace 'Microsoft.Azure.Diagnostics').PublicConfigurationSchema | Out-File –Encoding utf8 -FilePath 'C:\temp\WadConfig.xsd'  
@@ -47,8 +47,8 @@ ms.lasthandoff: 07/11/2017
 
 如需有關使用 Azure 診斷的詳細資訊，請參閱 [Azure 診斷擴充功能](azure-diagnostics.md)。  
 
-## <a name="example-of-the-diagnostics-configuration-file"></a>診斷組態檔的範例  
- 下列範例顯示一般的診斷組態檔：  
+## <a name="example-of-hello-diagnostics-configuration-file"></a>Hello 診斷組態檔的範例  
+ 下列範例中的 hello 顯示一般的診斷組態檔：  
 
 ```xml  
 <?xml version="1.0" encoding="utf-8"?>  
@@ -158,9 +158,9 @@ ms.lasthandoff: 07/11/2017
 
 ```  
 
-先前 XML 組態檔的對應 JSON。 
+JSON 等於 hello 先前 XML 組態檔。 
 
-因為在大部分的 JSON 使用案例中，PublicConfig 和 PrivateConfig 會分隔開來，因此我們會以不同變數來傳遞這兩個檔案。 這些案例包括 Resource Manager 範本、虛擬機器擴展集 PowerShell 和 Visual Studio。 
+因為大部分的 json 使用量情況下，它們做為傳遞不同的變數的 hello PublicConfig 和 PrivateConfig 是區隔。 這些案例包括 Resource Manager 範本、虛擬機器擴展集 PowerShell 和 Visual Studio。 
 
 ```json
 "PublicConfig" {
@@ -363,10 +363,10 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="reading-this-page"></a>閱讀本頁面  
- 下列標籤大致上會遵循上述範例中所示的順序。  如果您未在預期之處看見完整說明，請在頁面中搜尋該元素或屬性。  
+ hello 下列標記的大致順序 hello 前面範例所示。  如果您沒有您預期會看到完整描述，搜尋 hello 頁面 hello 項目或屬性。  
 
 ## <a name="common-attribute-types"></a>一般屬性類型  
- **scheduledTransferPeriod** 屬性會出現在數個元素中。 其為排程傳輸至儲存體之間的間隔，無條件進位到最接近的分鐘數。 值是 [XML「持續時間資料類型」(英文)](http://www.w3schools.com/schema/schema_dtypes_date.asp)。
+ **scheduledTransferPeriod** 屬性會出現在數個元素中。 它是 hello 排程的傳輸 toostorage 無條件進位 toohello 最接近的分鐘的間隔。 hello 值是[XML 「 持續時間資料類型 」。](http://www.w3schools.com/schema/schema_dtypes_date.asp)
 
 
 ## <a name="diagnosticsconfiguration-element"></a>DiagnosticsConfiguration 元素  
@@ -374,9 +374,9 @@ ms.lasthandoff: 07/11/2017
 
 已在 1.3 版中新增。  
 
-診斷組態檔的最上層元素。  
+hello hello 診斷組態檔的最上層項目。  
 
-**屬性** xmlns - 適用於診斷組態檔的 XML 命名空間如下：  
+**屬性**xmlns-hello XML 命名空間，hello 診斷組態檔為：  
 http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration  
 
 
@@ -389,19 +389,19 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 ## <a name="publicconfig-element"></a>PublicConfig 元素  
  樹狀結構︰根目錄 - DiagnosticsConfiguration - PublicConfig
 
- 說明公用診斷組態。  
+ 描述 hello 公用診斷組態。  
 
 |子元素|說明|  
 |--------------------|-----------------|  
 |**WadCfg**|必要。 請參閱本頁面上其他部分的說明。|  
-|**StorageAccount**|要儲存資料的 Azure 儲存體帳戶名稱。 可能也會在執行 Set-AzureServiceDiagnosticsExtension Cmdlet 時指定為參數。|  
-|**StorageType**|可以是 Table、Blob 或 TableAndBlob。 預設值是 Table。 若選擇 TableAndBlob，系統會將診斷資料寫入兩次 -- 每種類型寫入一次。|  
-|**LocalResourceDirectory**|虛擬機器上監視代理程式儲存事件資料的目錄。 如果沒有，請設定，否則會使用預設的目錄：<br /><br /> 針對背景工作/web 角色：`C:\Resources\<guid>\directory\<guid>.<RoleName.DiagnosticStore\`<br /><br /> 針對虛擬機器：`C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<WADVersion>\WAD<WADVersion>`<br /><br /> 必要屬性包括：<br /><br /> - **path** - 系統上 Azure 診斷所使用的目錄。<br /><br /> - **expandEnvironment** - 控制是否要展開路徑名稱中的環境變數。|  
+|**StorageAccount**|hello 的 hello Azure 儲存體帳戶 toostore hello 資料中的名稱。 可能時，也指定做為參數執行 hello 組 AzureServiceDiagnosticsExtension cmdlet。|  
+|**StorageType**|可以是 Table、Blob 或 TableAndBlob。 預設值是 Table。 當選定 TableAndBlob 時，診斷資料會寫入兩次一次 tooeach 型別。|  
+|**LocalResourceDirectory**|hello hello hello 監視代理程式儲存事件資料之處的虛擬機器上的目錄。 如果沒有，請設定，請使用 hello 預設目錄：<br /><br /> 針對背景工作/web 角色：`C:\Resources\<guid>\directory\<guid>.<RoleName.DiagnosticStore\`<br /><br /> 針對虛擬機器：`C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<WADVersion>\WAD<WADVersion>`<br /><br /> 必要屬性包括：<br /><br /> - **路徑**-hello Azure 診斷使用的 hello 系統 toobe 目錄。<br /><br /> - **expandEnvironment** -控制 hello 路徑名稱中是否會展開環境變數。|  
 
 ## <a name="wadcfg-element"></a>WadCFG 元素  
  樹狀結構︰根目錄 - DiagnosticsConfiguration - PublicConfig - WadCFG
  
- 識別並設定要收集的遙測資料。  
+ 識別，並設定 hello 遙測資料 toobe 收集。  
 
 
 ## <a name="diagnosticmonitorconfiguration-element"></a>DiagnosticMonitorConfiguration 元素 
@@ -411,15 +411,15 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 
 |屬性|說明|  
 |----------------|-----------------|  
-| **overallQuotaInMB** | 可供 Azure 診斷所收集的各種類型診斷資料取用的本機磁碟空間量上限。 預設設定為 5120 MB。<br />
-|**useProxyServer** | 設定 Azure 診斷來使用 Proxy 伺服器設定，如 IE 設定中所設定。|  
+| **overallQuotaInMB** | hello 可供 hello 的本機磁碟空間數量最大 Azure 診斷所收集的診斷資料的各種類型。 hello 預設設定為 5120 MB。<br />
+|**useProxyServer** | 在 IE 設定中設定 Azure 診斷 toouse hello proxy 伺服器設定。|  
 
 <br /> <br />
 
 |子元素|說明|  
 |--------------------|-----------------|  
 |**CrashDumps**|請參閱本頁面上其他部分的說明。|  
-|**DiagnosticInfrastructureLogs**|啟用收集 Azure 診斷所產生的記錄。 診斷基礎結構記錄適用於疑難排解診斷系統本身。 選用屬性包括：<br /><br /> - **scheduledTransferLogLevelFilter** - 設定所收集之記錄的最低嚴重性層級。<br /><br /> - **scheduledTransferPeriod** - 排程傳輸至儲存體之間的間隔，無條件進位到最接近的分鐘數。 值是 [XML「持續時間資料類型」(英文)](http://www.w3schools.com/schema/schema_dtypes_date.asp)。 |  
+|**DiagnosticInfrastructureLogs**|啟用收集 Azure 診斷所產生的記錄。 hello 診斷基礎結構記錄檔可用於疑難排解 hello 診斷系統本身。 選用屬性包括：<br /><br /> - **scheduledTransferLogLevelFilter** -設定 hello 最低嚴重性層級的 hello 所收集的記錄檔。<br /><br /> - **scheduledTransferPeriod** -hello 間隔排程的傳輸 toostorage 無條件進位 toohello 最接近的分鐘。 hello 值是[XML 「 持續時間資料類型 」。](http://www.w3schools.com/schema/schema_dtypes_date.asp) |  
 |**Directories**|請參閱本頁面上其他部分的說明。|  
 |**EtwProviders**|請參閱本頁面上其他部分的說明。|  
 |**計量**|請參閱本頁面上其他部分的說明。|  
@@ -432,30 +432,30 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 ## <a name="crashdumps-element"></a>CrashDumps 元素  
  樹狀結構︰根目錄 - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - CrashDumps
  
- 啟用收集損毀傾印。  
+ 啟用損毀傾印 hello 集合。  
 
 |屬性|說明|  
 |----------------|-----------------|  
-|**containerName**|選用。 在您的 Azure 儲存體帳戶中用來儲存損毀傾印的 Blob 容器名稱。|  
-|**crashDumpType**|選用。  設定 Azure 診斷來收集迷你或完整的損毀傾印。|  
-|**directoryQuotaPercentage**|選用。  設定要在 VM 上保留以供損毀傾印使用的 **overallQuotaInMB** 百分比。|  
+|**containerName**|選用。 在您的 Azure 儲存體帳戶 toobe hello blob 容器 hello 名稱使用 toostore 損毀傾印。|  
+|**crashDumpType**|選用。  設定 Azure 診斷 toocollect 迷你或完整損毀傾印。|  
+|**directoryQuotaPercentage**|選用。  設定 hello 百分比**overallQuotaInMB** toobe 保留給 hello VM 上的損毀傾印。|  
 
 |子元素|說明|  
 |--------------------|-----------------|  
-|**CrashDumpConfiguration**|必要。 定義每個處理序的組態值。<br /><br /> 以下也是必要屬性：<br /><br /> **processName** - 您希望 Azure 診斷收集損毀傾印的處理序名稱。|  
+|**CrashDumpConfiguration**|必要。 定義每個處理序的組態值。<br /><br /> 下列屬性的 hello 也是必要的：<br /><br /> **processName** -hello hello 您想要 Azure 診斷 toocollect 損毀傾印的處理程序的名稱。|  
 
 ## <a name="directories-element"></a>Directories 元素 
  樹狀結構︰根目錄 - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - Directories
 
- 啟用收集目錄、IIS 失敗的存取要求記錄和/或 IIS 記錄的內容。  
+ 啟用 hello hello 的目錄內容的集合，IIS 無法存取要求記錄檔及/或 IIS 記錄檔。  
 
  選用的 **scheduledTransferPeriod** 屬性。 請參閱稍早的說明。  
 
 |子元素|說明|  
 |--------------------|-----------------|  
-|**IISLogs**|在組態中包含此元素，就能收集 IIS 記錄：<br /><br /> **containerName** - 在您的 Azure 儲存體帳戶中用來儲存 IIS 記錄的 Blob 容器名稱。|   
-|**FailedRequestLogs**|在組態中包含此元素，就能夠收集對於 IIS 站台或應用程式之失敗要求的相關記錄。 您也必須在 **Web.config** 的 **system.WebServer** 下啟用追蹤選項。|  
-|**DataSources**|要監視的目錄清單。| 
+|**IISLogs**|Hello 組態中包含這個項目可讓 hello 收集 IIS 記錄檔：<br /><br /> **containerName** -hello blob 容器，在您的 Azure 儲存體帳戶 toobe hello 名稱使用 toostore hello IIS 記錄檔。|   
+|**FailedRequestLogs**|這個項目包括 hello 組態中啟用有關失敗的要求 tooan IIS 網站或應用程式記錄檔集合。 您也必須在 **Web.config** 的 **system.WebServer** 下啟用追蹤選項。|  
+|**DataSources**|目錄 toomonitor 清單。| 
 
 
 
@@ -463,11 +463,11 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 ## <a name="datasources-element"></a>DataSources 元素  
  樹狀結構︰根目錄 - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - Directories - DataSources
 
- 要監視的目錄清單。  
+ 目錄 toomonitor 清單。  
 
 |子元素|說明|  
 |--------------------|-----------------|  
-|**DirectoryConfiguration**|必要。 必要屬性：<br /><br /> **containerName** - 在您的 Azure 儲存體帳戶中用來儲存記錄檔的 Blob 容器名稱。|  
+|**DirectoryConfiguration**|必要。 必要屬性：<br /><br /> **containerName** -hello hello Azure 儲存體帳戶的 toobe 使用 toostore hello 記錄檔中的 blob 容器的名稱。|  
 
 
 
@@ -476,12 +476,12 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 ## <a name="directoryconfiguration-element"></a>DirectoryConfiguration 元素  
  樹狀結構︰根目錄 - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - Directories - DataSources - DirectoryConfiguration
 
- 可能包括 **Absolute** 或 **LocalResource** 元素，但非兩者。  
+ 可能包含任一 hello**絕對**或**LocalResource**項目，但非兩者。  
 
 |子元素|說明|  
 |--------------------|-----------------|  
-|**Absolute**|要監視之目錄的絕對路徑。 以下為必要屬性：<br /><br /> - **Path** - 要監視之目錄的絕對路徑。<br /><br /> - **expandEnvironment** - 設定是否要展開 Path 中的環境變數。|  
-|**LocalResource**|相對於要監視之本機資源的路徑。 必要屬性包括：<br /><br /> - **Name** - 包含要監視之目錄的本機資源<br /><br /> - **relativePath** - 包含要監視目錄之 Name 的相對路徑|  
+|**Absolute**|絕對路徑 toohello 目錄 toomonitor hello。 hello 下列屬性是必要的：<br /><br /> - **路徑**-hello 絕對路徑 toohello 目錄 toomonitor。<br /><br /> - **expandEnvironment** - 設定是否要展開 Path 中的環境變數。|  
+|**LocalResource**|hello 路徑相對 tooa 本機資源 toomonitor。 必要屬性包括：<br /><br /> - **名稱**-hello 包含 hello 目錄 toomonitor 的本機資源<br /><br /> - **relativePath** -hello 路徑相對 tooName 包含 hello 目錄 toomonitor|  
 
 
 
@@ -492,8 +492,8 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 
 |子元素|說明|  
 |--------------------|-----------------|  
-|**EtwEventSourceProviderConfiguration**|設定要收集從 [EventSource 類別](http://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource\(v=vs.110\).aspx)產生的事件。 必要屬性：<br /><br /> **provider** - EventSource 事件的類別名稱。<br /><br /> 選用屬性包括：<br /><br /> - **scheduledTransferLogLevelFilter** - 要傳輸至儲存體帳戶的最低嚴重性層級。<br /><br /> - **scheduledTransferPeriod** - 排程傳輸至儲存體之間的間隔，無條件進位到最接近的分鐘數。 值是 [XML「持續時間資料類型」(英文)](http://www.w3schools.com/schema/schema_dtypes_date.asp)。 |  
-|**EtwManifestProviderConfiguration**|必要屬性：<br /><br /> **provider** - 事件提供者的 GUID<br /><br /> 選用屬性包括：<br /><br /> - **scheduledTransferLogLevelFilter** - 要傳輸至儲存體帳戶的最低嚴重性層級。<br /><br /> - **scheduledTransferPeriod** - 排程傳輸至儲存體之間的間隔，無條件進位到最接近的分鐘數。 值是 [XML「持續時間資料類型」(英文)](http://www.w3schools.com/schema/schema_dtypes_date.asp)。 |  
+|**EtwEventSourceProviderConfiguration**|設定要收集從 [EventSource 類別](http://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource\(v=vs.110\).aspx)產生的事件。 必要屬性：<br /><br /> **提供者**-hello hello EventSource 事件類別名稱。<br /><br /> 選用屬性包括：<br /><br /> - **scheduledTransferLogLevelFilter** -hello 最低嚴重性層級 tootransfer tooyour 儲存體帳戶。<br /><br /> - **scheduledTransferPeriod** -hello 間隔排程的傳輸 toostorage 無條件進位 toohello 最接近的分鐘。 hello 值是[XML 「 持續時間資料類型 」。](http://www.w3schools.com/schema/schema_dtypes_date.asp) |  
+|**EtwManifestProviderConfiguration**|必要屬性：<br /><br /> **提供者**-hello hello 事件提供者的 GUID<br /><br /> 選用屬性包括：<br /><br /> - **scheduledTransferLogLevelFilter** -hello 最低嚴重性層級 tootransfer tooyour 儲存體帳戶。<br /><br /> - **scheduledTransferPeriod** -hello 間隔排程的傳輸 toostorage 無條件進位 toohello 最接近的分鐘。 hello 值是[XML 「 持續時間資料類型 」。](http://www.w3schools.com/schema/schema_dtypes_date.asp) |  
 
 
 
@@ -504,8 +504,8 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 
 |子元素|說明|  
 |--------------------|-----------------|  
-|**DefaultEvents**|選用屬性：<br/><br/> **eventDestination** - 要儲存事件的資料表名稱|  
-|**Event**|必要屬性：<br /><br /> **id** - 事件的識別碼。<br /><br /> 選用屬性：<br /><br /> **eventDestination** - 要儲存事件的資料表名稱|  
+|**DefaultEvents**|選用屬性：<br/><br/> **eventDestination** -hello hello 資料表 toostore hello 中的事件名稱|  
+|**Event**|必要屬性：<br /><br /> **識別碼**-hello 事件識別碼 hello。<br /><br /> 選用屬性：<br /><br /> **eventDestination** -hello hello 資料表 toostore hello 中的事件名稱|  
 
 
 
@@ -514,28 +514,28 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 
 |子元素|說明|  
 |--------------------|-----------------|  
-|**DefaultEvents**|選用屬性：<br /><br /> **eventDestination** - 要儲存事件的資料表名稱|  
-|**Event**|必要屬性：<br /><br /> **id** - 事件的識別碼。<br /><br /> 選用屬性：<br /><br /> **eventDestination** - 要儲存事件的資料表名稱|  
+|**DefaultEvents**|選用屬性：<br /><br /> **eventDestination** -hello hello 資料表 toostore hello 中的事件名稱|  
+|**Event**|必要屬性：<br /><br /> **識別碼**-hello 事件識別碼 hello。<br /><br /> 選用屬性：<br /><br /> **eventDestination** -hello hello 資料表 toostore hello 中的事件名稱|  
 
 
 
 ## <a name="metrics-element"></a>Metrics 元素  
  樹狀結構︰根目錄 - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - Metrics
 
- 讓您能夠產生已最佳化的效能計數器資料表來進行快速查詢。 除了效能計數器資料表之外，**PerformanceCounters** 元素中所定義的每個效能計數器都會儲存於 Metrics 資料表中。  
+ 可讓您 toogenerate 最適合用於快速查詢的效能計數器資料表。 Hello 中定義每個效能計數器**PerformanceCounters**項目會儲存在加法 toohello 效能計數器資料表中的 hello 度量資料表。  
 
- **resourceId** 是必要屬性。  您要部署 Azure 診斷的虛擬機器資源識別碼。 從 [Azure 入口網站](https://portal.azure.com)取得 **resourceID**。 選取 [瀏覽][資源群組] ->  -> **<Name\>**。 按一下 [屬性] 圖格，並複製 [識別碼] 欄位的值。  
+ hello **resourceId**是必要屬性。  hello hello 您要部署至 Azure 診斷的虛擬機器的資源識別碼。 取得 hello **resourceID**從 hello [Azure 入口網站](https://portal.azure.com)。 選取 [瀏覽][資源群組] ->  -> **<Name\>**。 按一下 hello**屬性**磚，然後從 hello 複製 hello 值**識別碼**欄位。  
 
 |子元素|說明|  
 |--------------------|-----------------|  
-|**MetricAggregation**|必要屬性：<br /><br /> **scheduledTransferPeriod** - 排程傳輸至儲存體之間的間隔，無條件進位到最接近的分鐘數。 值是 [XML「持續時間資料類型」(英文)](http://www.w3schools.com/schema/schema_dtypes_date.asp)。 |  
+|**MetricAggregation**|必要屬性：<br /><br /> **scheduledTransferPeriod** -hello 間隔排程的傳輸 toostorage 無條件進位 toohello 最接近的分鐘。 hello 值是[XML 「 持續時間資料類型 」。](http://www.w3schools.com/schema/schema_dtypes_date.asp) |  
 
 
 
 ## <a name="performancecounters-element"></a>PerformanceCounters 元素  
  樹狀結構︰根目錄 - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - PerformanceCounters
 
- 啟用收集效能計數器。  
+ 啟用效能計數器 hello 集合。  
 
  選用屬性：  
 
@@ -543,7 +543,7 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 
 |子元素|說明|  
 |-------------------|-----------------|  
-|**PerformanceCounterConfiguration**|以下為必要屬性：<br /><br /> - **counterSpecifier** - 效能計數器的名稱。 例如： `\Processor(_Total)\% Processor Time`。 若要在主機上取得效能計數器清單，請執行 `typeperf` 命令。<br /><br /> - **sampleRate** - 應針對計數器進行取樣的頻率。<br /><br /> 選用屬性：<br /><br /> **unit** - 計數器的測量單位。|  
+|**PerformanceCounterConfiguration**|hello 下列屬性是必要的：<br /><br /> - **counterSpecifier** -hello hello 效能計數器的名稱。 例如： `\Processor(_Total)\% Processor Time`。 tooget 一份效能計數器，您在主機上，執行 hello 命令`typeperf`。<br /><br /> - **sampleRate** -頻率 hello 應該取樣。<br /><br /> 選用屬性：<br /><br /> **單位**-hello hello 計數器的測量單位。|  
 
 
 
@@ -551,13 +551,13 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 ## <a name="windowseventlog-element"></a>WindowsEventLog 元素
  樹狀結構︰根目錄 - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - WindowsEventLog
  
- 啟用收集 Windows 事件記錄檔。  
+ 啟用 hello 集合的 「 Windows 事件記錄檔。  
 
  選用的 **scheduledTransferPeriod** 屬性。 請參閱稍早的說明。  
 
 |子元素|說明|  
 |-------------------|-----------------|  
-|**DataSource**|要收集的 Windows 事件記錄檔。 必要屬性：<br /><br /> **name** - 說明要收集之 Windows 事件的 XPath 查詢。 例如：<br /><br /> `Application!*[System[(Level <=3)]], System!*[System[(Level <=3)]], System!*[System[Provider[@Name='Microsoft Antimalware']]], Security!*[System[(Level <= 3)]`<br /><br /> 若要收集所有事件，請指定 "*"|  
+|**DataSource**|hello Windows 事件記錄檔 toocollect。 必要屬性：<br /><br /> **名稱**-收集描述 hello windows 事件 toobe hello XPath 查詢。 例如：<br /><br /> `Application!*[System[(Level <=3)]], System!*[System[(Level <=3)]], System!*[System[Provider[@Name='Microsoft Antimalware']]], Security!*[System[(Level <= 3)]`<br /><br /> toocollect 所有事件，都指定"*"|  
 
 
 
@@ -567,14 +567,14 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 
  出現在 1.0 和 1.1 版中。 在 1.2 中消失。 再度新增於 1.3 中。  
 
- 定義基本 Azure 記錄的緩衝區組態。  
+ 定義基本 Azure 記錄檔的 hello 緩衝區組態。  
 
 |屬性|類型|說明|  
 |---------------|----------|-----------------|  
-|**bufferQuotaInMB**|**unsignedInt**|選用。 指定適用於所指定資料的檔案系統儲存體數量上限。<br /><br /> 預設值為 0。|  
-|**scheduledTransferLogLevelFilterr**|**字串**|選用。 指定所傳輸記錄項目的最低嚴重性層級。 預設值為 **Undefined**，會傳輸所有記錄。 其他可能的值 (按照從大到小的順序排列) 為 **Verbose**、**Information**、**Warning**、**Error** 及 **Critical**。|  
-|**scheduledTransferPeriod**|**duration**|選用。 指定排程傳輸資料之間的間隔，無條件進位到最接近的分鐘數。<br /><br /> 預設值為 PT0S。|  
-|**sinks** 已在 1.5 中新增|**字串**|選用。 同時要傳送診斷資料的接收位置指標。 例如 Application Insights。|  
+|**bufferQuotaInMB**|**unsignedInt**|選用。 指定的檔案系統儲存體可供指定的 hello hello 最大數量的資料。<br /><br /> hello 預設值為 0。|  
+|**scheduledTransferLogLevelFilterr**|**字串**|選用。 指定最低嚴重性層級 hello 傳送的記錄項目。 hello 預設值是**Undefined**，傳輸的所有記錄。 其他可能的值 （依順序的最多 tooleast 資訊） 為**Verbose**，**資訊**，**警告**，**錯誤**，和**重大**。|  
+|**scheduledTransferPeriod**|**duration**|選用。 指定 hello 排程傳輸的資料，無條件進位 toohello 最接近的分鐘的間隔。<br /><br /> hello 預設值是 PT0S。|  
+|**sinks** 已在 1.5 中新增|**字串**|選用。 點 tooa 接收位置 tooalso 傳送診斷資料。 例如 Application Insights。|  
 
 ## <a name="dockersources"></a>DockerSources
  樹狀結構︰根目錄 - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - DockerSources
@@ -583,12 +583,12 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 
 |元素名稱|說明|  
 |------------------|-----------------|  
-|**Stats**|會請系統收集 Docker 容器的統計資料|  
+|**Stats**|會告知 hello 系統 toocollect Docker 容器的統計資料|  
 
 ## <a name="sinksconfig-element"></a>SinksConfig 元素  
  樹狀結構︰根目錄 - DiagnosticsConfiguration - PublicConfig - WadCFG - SinksConfig
 
- 傳送診斷資料的位置清單，以及與這些位置相關聯的組態。  
+ 位置 toosend 診斷資料 tooand hello 組態與那些位置相關聯的清單。  
 
 |元素名稱|說明|  
 |------------------|-----------------|  
@@ -599,15 +599,15 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 
  已在 1.5 版中新增。  
 
- 定義要傳送診斷資料的目標位置。 例如 Application Insights 服務。  
+ 定義位置 toosend 診斷資料。 例如，hello Application Insights 服務。  
 
 |屬性|類型|說明|  
 |---------------|----------|-----------------|  
-|**name**|字串|識別 sinkname 的字串。|  
+|**name**|字串|字串識別 hello sinkname。|  
 
 |元素|類型|說明|  
 |-------------|----------|-----------------|  
-|**Application Insights**|字串|僅會在將資料傳送至 Application Insights 時使用。 包含您有權存取之使用中 Application Insights 帳戶的檢測金鑰。|  
+|**Application Insights**|字串|只有在傳送資料 tooApplication Insights 時，才使用。 包含 hello 檢測金鑰的使用中的 Application Insights 帳戶具有存取權。|  
 |**Channels**|字串|每個可額外篩選該資料流的其中一個|  
 
 ## <a name="channels-element"></a>Channels 元素  
@@ -626,12 +626,12 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 
  已在 1.5 版中新增。  
 
- 定義要傳送診斷資料的目標位置。 例如 Application Insights 服務。  
+ 定義位置 toosend 診斷資料。 例如，hello Application Insights 服務。  
 
 |屬性|類型|說明|  
 |----------------|----------|-----------------|  
-|**logLevel**|**字串**|指定所傳輸記錄項目的最低嚴重性層級。 預設值為 **Undefined**，會傳輸所有記錄。 其他可能的值 (按照從大到小的順序排列) 為 **Verbose**、**Information**、**Warning**、**Error** 及 **Critical**。|  
-|**name**|**字串**|要參考之通道的唯一名稱|  
+|**logLevel**|**字串**|指定最低嚴重性層級 hello 傳送的記錄項目。 hello 預設值是**Undefined**，傳輸的所有記錄。 其他可能的值 （依順序的最多 tooleast 資訊） 為**Verbose**，**資訊**，**警告**，**錯誤**，和**重大**。|  
+|**name**|**字串**|Hello 通道 toorefer 以唯一的名稱|  
 
 
 ## <a name="privateconfig-element"></a>PrivateConfig 元素 
@@ -641,14 +641,14 @@ http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration
 
  選用  
 
- 存放儲存體帳戶的私用詳細資料 (名稱、金鑰和端點)。 此資訊會傳送至虛擬機器，但無法從中擷取。  
+ 儲存 hello hello 儲存體帳戶 （名稱、 金鑰和端點） 的私用詳細資料。 這項資訊會傳送 toohello 虛擬機器，但無法從其擷取。  
 
 |子元素|說明|  
 |--------------------|-----------------|  
-|**StorageAccount**|要使用的儲存體帳戶。 以下為必要屬性<br /><br /> - **name** - 儲存體帳戶的名稱。<br /><br /> - **key** - 儲存體帳戶的金鑰。<br /><br /> - **endpoint** - 要存取儲存體帳戶的端點。 <br /><br /> -**sasToken** (已在 1.8.1 版中新增) - 您可以在私用組態中指定 SAS 權杖 (而不是儲存體帳戶金鑰)。 如果提供此屬性，系統會忽略儲存體帳戶金鑰。 <br />SAS 權杖的需求︰ <br />- 僅支援帳戶 SAS 權杖 <br />- 需要 b、t 服務類型。 <br /> - 需要 a、c、u、w 權限。 <br /> - 需要 c、o 資源類型。 <br /> - 僅支援 HTTPS 通訊協定 <br /> - 開始和到期時間必須是有效的。|  
+|**StorageAccount**|hello 儲存體帳戶 toouse。 所需的下列屬性的 hello<br /><br /> - **名稱**-hello hello 儲存體帳戶的名稱。<br /><br /> - **索引鍵**-hello 金鑰 toohello 儲存體帳戶。<br /><br /> - **端點**-hello 端點 tooaccess hello 儲存體帳戶。 <br /><br /> -**sasToken** （加入 1.8.1)-您可以在 hello 私用組態中指定的 SAS 權杖，而不是儲存體帳戶金鑰。如果提供，則會忽略 hello 儲存體帳戶金鑰。 <br />Hello SAS 權杖的需求： <br />- 僅支援帳戶 SAS 權杖 <br />- 需要 b、t 服務類型。 <br /> - 需要 a、c、u、w 權限。 <br /> - 需要 c、o 資源類型。 <br /> -支援 hello HTTPS 通訊協定 <br /> - 開始和到期時間必須是有效的。|  
 
 
 ## <a name="isenabled-element"></a>IsEnabled 元素  
  樹狀結構︰根目錄 - DiagnosticsConfiguration - IsEnabled
 
- 布林值。 使用 `true` 來啟用診斷或 `false` 來停用診斷。
+ 布林值。 使用`true`tooenable hello 診斷或`false`toodisable hello 診斷。

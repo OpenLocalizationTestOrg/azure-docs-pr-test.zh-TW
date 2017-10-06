@@ -1,6 +1,6 @@
 ---
-title: "將您的應用程式部署至 Azure App Service | Microsoft Docs"
-description: "了解如何將您的應用程式部署至 Azure App Service。"
+title: "aaaDeploy 您應用程式服務的應用程式 tooAzure |Microsoft 文件"
+description: "深入了解如何 toodeploy 您應用程式 tooAzure 應用程式服務。"
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,152 +14,152 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/05/2017
 ms.author: cephalin
-ms.openlocfilehash: f41be4e00a9250b07ca260c2858e5fc45143f746
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5c84e4ca502874209d750c94efeb86a59aa71a48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-your-app-to-azure-app-service"></a>將您的應用程式部署至 Azure App Service
-這篇文章可協助您判斷將 Web 應用程式、行動應用程式後端或 API 應用程式檔案部署至 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)的最佳選項，並針對您的慣用選項，引導您參考含適當指示的資源。
+# <a name="deploy-your-app-tooazure-app-service"></a>部署您的應用程式 tooAzure 應用程式服務
+這篇文章可協助您判斷 hello 最佳選項 toodeploy hello 檔案給 web 應用程式、 行動裝置應用程式後端或應用程式開發介面應用程式太[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)，並接著會引導您指示特定 tooyour tooappropriate 資源慣用的選項。
 
 ## <a name="overview"></a>Azure App Service 部署概觀
-Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等等)。 有些架構會依預設啟用，而其他架構 (如 Java 和 Python) 則需要簡單的核取記號組態資訊才能啟用。 此外，您可以自訂您的應用程式架構，例如 PHP 版本或執行階段位元。 如需詳細資訊，請參閱 [在 Azure App Service 中設定您的應用程式](web-sites-configure.md)。
+Azure App Service 自動維護的 （ASP.NET、 PHP、 Node.js 等等） 的 hello 應用程式架構。 有些架構像 Java 和 Python 時，預設會啟用，可能就需要簡單的核取記號組態 tooenable 它。 此外，您可以自訂您的應用程式架構，例如 hello PHP 版本或 hello 位元版本的程式執行階段。 如需詳細資訊，請參閱 [在 Azure App Service 中設定您的應用程式](web-sites-configure.md)。
 
-由於您不需要擔心 Web 伺服器或應用程式架構，因此若要將您的應用程式部署至 App Service，只要將程式碼、二進位檔、內容檔案和其個別的目錄結構部署至 Azure 的 [**/site/wwwroot** 目錄](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure)即可 (或 WebJobs 的 **/site/wwwroot/App_Data/Jobs/** 目錄)。 App Service 支援三種不同的部署程序。 本文中的所有部署方法皆使用下列其中一種程序： 
+您還沒有 tooworry 有關 hello web 伺服器或應用程式架構，因為部署您的應用程式 tooApp 服務是要部署您的程式碼、 二進位檔、 內容檔案和其各自的目錄結構，toohello [   **/站台/wwwroot**目錄](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure)在 Azure 中 (或 hello **/站台/wwwroot/App_Data/工作/** WebJobs 目錄)。 App Service 支援三種不同的部署程序。 這篇文章中的所有 hello 部署方法可都使用其中一種 hello 下列處理程序： 
 
-* [FTP 或 FTPS](https://en.wikipedia.org/wiki/File_Transfer_Protocol)：使用您最喜愛的 FTP 或 FTPS 啟用工具將您的檔案移至 Azure，從 [FileZilla](https://filezilla-project.org) 到功能完整的整合式開發環境 (IDE) (例如 [NetBeans](https://netbeans.org))。 這完全是檔案上傳程序。 App Service 不會提供其他服務，例如版本控制、檔案結構管理等等。 
-* [Kudu (Git/Mercurial 或 OneDrive/Dropbox)](https://github.com/projectkudu/kudu/wiki/Deployment)：Kudu 是 App Service 中的[部署引擎](https://github.com/projectkudu/kudu/wiki)。 將您的程式碼直接從任何儲存機制推送到 Kudu。 Kudu 也會在程式碼推入時提供新增的服務，包括版本控制、封裝還原、MSBuild 和 [Web 勾點](https://github.com/projectkudu/kudu/wiki/Web-hooks) 以連續部署和其他自動化工作。 Kudu 部署引擎支援 3 種不同類型的部署來源：   
+* [FTP 或 FTPS](https://en.wikipedia.org/wiki/File_Transfer_Protocol)： 使用您喜愛的 FTP 或 FTPS 工具 toomove 您檔案 tooAzure，從啟用[FileZilla](https://filezilla-project.org) toofull 精選 Ide 喜歡[NetBeans](https://netbeans.org)。 這完全是檔案上傳程序。 App Service 不會提供其他服務，例如版本控制、檔案結構管理等等。 
+* [Kudu （Git/Mercurial 或 OneDrive/Dropbox）](https://github.com/projectkudu/kudu/wiki/Deployment): Kudu 為 hello[部署引擎](https://github.com/projectkudu/kudu/wiki)App Service 中。 將您的程式碼 tooKudu 推送直接從任何儲存機制。 Kudu 也提供新增的服務，每當程式碼 tooit，包括版本控制，封裝還原，MSBuild，和[web 攔截](https://github.com/projectkudu/kudu/wiki/Web-hooks)連續部署和其他自動化工作。 hello Kudu 部署引擎支援 3 種不同部署來源：   
   
   * OneDrive 和 Dropbox 的內容同步處理   
   * 以儲存機制為基礎的持續部署，其使用 GitHub、Bitbucket 和 Visual Studio Team Services 的自動同步處理  
   * 以儲存機制為基礎的部署，其使用本機 Git 手動同步處理  
-* [Web Deploy](http://www.iis.net/learn/publish/using-web-deploy/introduction-to-web-deploy)：可讓您使用自動部署至 IIS 伺服器的相同工具，直接從最愛的 Microsoft 工具 (例如 Visual Studio)，將程式碼部署至 App Service。 這項工具支援僅限差異比對的部署、資料庫建立、連接字串等的轉換等等。Web 部署不同於 Kudu 的地方，在於將應用程式二進位檔部署至 Azure 之前，會先進行建置。 類似於 FTP，App Service 不會提供其他服務。
+* [Web 部署](http://www.iis.net/learn/publish/using-web-deploy/introduction-to-web-deploy)： 部署程式碼 tooApp 服務直接從您喜愛的 Microsoft 工具，例如 Visual Studio 使用 hello 自動化部署 tooIIS 伺服器的相同工具。 這項工具支援僅限差異比對的部署、資料庫建立、連接字串等的轉換等等。Web Deploy 與 Kudu 的二進位檔之前，所建立的應用程式部署 tooAzure。 類似 tooFTP，應用程式服務不提供任何其他服務。
 
-熱門的 Web 開發工具支援一或多個這些部署程序。 雖然您選擇的工具會決定可以利用的部署程序，但可供您使用的實際 DevOps 功能取決於部署程序的組合以及且您選擇的特定工具。 例如，如果您從 [Visual Studio 搭配 Azure SDK](#vspros)執行 Web Deploy，即使您未從 Kudu 獲得自動化，仍可在 Visual Studio 中獲得套件還原和 MSBuild 自動化。 
+熱門的 Web 開發工具支援一或多個這些部署程序。 Hello 您選擇的工具判斷 hello 部署程序時您可以利用、 hello 實際達成的 DevOps 功能取決於 hello 組合 hello 部署程序和 hello 特定工具您選擇。 例如，如果您從 [Visual Studio 搭配 Azure SDK](#vspros)執行 Web Deploy，即使您未從 Kudu 獲得自動化，仍可在 Visual Studio 中獲得套件還原和 MSBuild 自動化。 
 
 > [!NOTE]
-> 這些部署程序並不會實際 [佈建 Azure 資源](../azure-resource-manager/resource-group-template-deploy-portal.md) ，但這些資源可能是您的應用程式需要的。 然而，大部分連結的作法文章會說明如何以端對端的方式佈建應用程式及將程式碼部署到應用程式。 您也可以在 [使用命令列工具自動化部署](#automate) 一節中找到佈建 Azure 資源的其他選項。
+> 這些部署處理程序實際上不[佈建 hello Azure 資源](../azure-resource-manager/resource-group-template-deploy-portal.md)可能需要您的應用程式。 不過，大部分的 hello 連結如何 tooarticles 示範 tooprovision hello 應用程式和部署您的程式碼 tooit 端對端的方式。 您也可以尋找佈建在 hello Azure 資源的其他選項[使用命令列工具來自動化部署](#automate)> 一節。
 > 
 > 
 
 ## <a name="ftp"></a>透過 FTP 上傳檔案來手動部署
-如果您習慣以手動方式將網站內容複製到 Web 伺服器，則可以使用 [FTP](http://en.wikipedia.org/wiki/File_Transfer_Protocol) 公用程式來複製檔案，例如 Windows 檔案總管或 [FileZilla](https://filezilla-project.org/)。
+如果您是使用的 toomanually 複製您的網頁內容 tooa web 伺服器時，您可以使用[FTP](http://en.wikipedia.org/wiki/File_Transfer_Protocol)公用程式 toocopy 檔案，例如 Windows 檔案總管或[FileZilla](https://filezilla-project.org/)。
 
-手動複製檔案的優點如下：
+hello 專業人員的手動複製檔案︰
 
 * FTP 工具易於上手且複雜性最小。 
 * 可明確掌握檔案的走向。
 * FTPS 的高安全性。
 
-手動複製檔案的缺點如下：
+手動複製檔案的 hello 缺點如下：
 
-* 必須知道如何將檔案部署至 App Service 中正確的目錄。 
+* 具有 tooknow toodeploy 如何在 App Service 中檔案 toohello 正確的目錄。 
 * 當發生失敗時沒有回復的版本控制。
 * 沒有內建的部署歷程記錄可針對部署問題進行疑難排解。
-* 部署時間可能會較長，因為有許多 FTP 工具不提供僅限差異比對的複製，而會複製所有檔案。  
+* 可能很長的部署時間許多 FTP 工具不提供差異比對僅限複製，因此直接複製 hello 的所有檔案。  
 
-### <a name="howtoftp"></a>如何透過 FTP 上傳檔案
-[Azure 入口網站](https://portal.azure.com)會提供您使用 FTP 或 FTPS 來連接到應用程式目錄時所需的一切資訊。
+### <a name="howtoftp"></a>Tooupload 如何透過 FTP 檔案
+hello [Azure 入口網站](https://portal.azure.com)提供您所有的 hello 資訊，您需要使用 FTP 或 FTPS tooconnect tooyour 應用程式的目錄。
 
-* [使用 FTP 將您的應用程式部署至 Azure App Service](app-service-deploy-ftp.md)
+* [部署您的應用程式 tooAzure 應用程式服務使用 FTP](app-service-deploy-ftp.md)
 
 ## <a name="dropbox"></a>與雲端資料夾同步處理以進行部署
-如果不想 [手動複製檔案](#ftp) ，理想替代方法是從雲端儲存空間 (例如 OneDrive 和 Dropbox)，將檔案和資料夾同步處理到 App Service。 與雲端資料夾同步處理時，會利用 Kudu 程序來進行部署 (請參閱 [部署程序概觀](#overview))。
+理想的替代方法太[手動複製檔案](#ftp)同步的檔案和資料夾 tooApp 服務從雲端儲存體服務，例如 OneDrive 和 Dropbox。 正在雲端資料夾與同步處理會利用部署的 hello Kudu 程序 (請參閱[部署程序的概觀](#overview))。
 
-與雲端資料夾同步處理的優點如下：
+hello 專業人員的同步處理與雲端資料夾是：
 
 * 部署的簡潔性。 部分服務 (例如 OneDrive 和 Dropbox) 提供桌面同步處理用戶端，使您的本機工作目錄也是部署目錄。
 * 單鍵部署。
-* 可使用 Kudu 部署引擎中的所有功能 (例如封裝還原和自動化)。
+* Hello Kudu 部署引擎中的所有功能 （例如封裝還原，自動化）。
 
-與雲端資料夾同步處理的缺點如下：
+與雲端資料夾同步處理 hello 優缺點如下：
 
 * 當發生失敗時沒有回復的版本控制。
 * 沒有自動化的部署，需要手動同步處理。
 
-### <a name="howtodropbox"></a>如何與雲端資料夾同步處理以進行部署
-在 [Azure 入口網站](https://portal.azure.com)中，您可以在 OneDrive 或 Dropbox 雲端儲存空間中指定要同步內容的資料夾、在該資料夾中處理您的應用程式程式碼和內容，並按一下按鈕以同步至 App Service。
+### <a name="howtodropbox"></a>如何 toodeploy 由雲端資料夾與同步處理
+在 hello [Azure 入口網站](https://portal.azure.com)，您可以在 OneDrive 或 Dropbox 雲端儲存體中指定的資料夾內容的同步處理、 工作與您的應用程式程式碼中該資料夾中，內容和同步 tooApp 服務以 hello 按一下按鈕。
 
-* [將雲端資料夾的內容同步處理到 Azure App Service](app-service-deploy-content-sync.md)。 
+* [同步處理內容，從雲端資料夾 tooAzure App Service](app-service-deploy-content-sync.md)。 
 
 ## <a name="continuousdeployment"></a>從雲端型原始檔控制服務進行持續部署
-如果您的開發團隊使用雲端型原始程式碼管理 (SCM) 服務，例如 [Visual Studio Team Services](http://www.visualstudio.com/)[GitHub](https://www.github.com)或 [BitBucket](https://bitbucket.org/)，您可以設定 App Service 與儲存機制整合，並持續部署。 
+如果您的開發小組會使用這類程式碼以雲端為基礎的來源管理 (SCM) 服務[Visual Studio Team Services](http://www.visualstudio.com/)， [GitHub](https://www.github.com)，或[BitBucket](https://bitbucket.org/)，您可以設定應用程式服務 toointegrate 與您的儲存機制，並持續部署。 
 
-從雲端型原始檔控制服務進行部署的優點如下：
+會從雲端架構的原始檔控制服務部署的 hello 專業人員：
 
-* 版本控制可進行回復。
-* 可設定適用於 Git 儲存機制 (若適用的話也含 Mercurial) 的持續部署。 
-* 分支專屬的部署，可以將不同的分支部署至不同的 [位置](web-sites-staged-publishing.md)。
-* 可使用 Kudu 部署引擎中的所有功能 (例如部署版本控制、回復、封裝還原和自動化)。
+* 版本控制 tooenable 復原。
+* 能力 tooconfigure 連續部署 git （和 Mercurial 適用的話） 儲存機制。 
+* 分公司特定部署中，可以部署不同的分支 toodifferent[插槽](web-sites-staged-publishing.md)。
+* Hello Kudu 部署引擎中的所有功能 （例如部署版本控制、 復原、 封裝還原，自動化）。
 
-從雲端型原始檔控制服務進行部署的缺點如下：
+從雲端架構的原始檔控制服務部署的 hello con 是：
 
-* 需對個別 SCM 服務有一定程度的了解。
+* Hello 個別 SCM 所需要的服務的一些知識。
 
-### <a name="vsts"></a>如何從雲端型原始檔控制服務進行持續部署
-在 [Azure 入口網站](https://portal.azure.com)中，您可以透過 GitHub、Bitbucket 和 Visual Studio Team Services 設定持續部署。
+### <a name="vsts"></a>Toodeploy 持續從雲端架構的原始檔控制服務的方式
+在 hello [Azure 入口網站](https://portal.azure.com)，您可以設定從 GitHub、 Bitbucket 和 Visual Studio Team Services 的連續部署。
 
-* [持續部署至 Azure App Service](app-service-continuous-deployment.md)。 
+* [連續部署 tooAzure App Service](app-service-continuous-deployment.md)。 
 
-若要了解如何從 Azure 入口網站未列出的雲端存放庫中手動設定連續部署 (例如 [GitLab](https://gitlab.com/))，請參閱[使用手動步驟設定連續部署](https://github.com/projectkudu/kudu/wiki/Continuous-deployment#setting-up-continuous-deployment-using-manual-steps)。
+toofind 出 tooconfigure 連續部署，以手動方式從雲端儲存機制不列出 hello Azure 入口網站的方式 (例如[GitLab](https://gitlab.com/))，請參閱[設定連續部署使用手動操作步驟](https://github.com/projectkudu/kudu/wiki/Continuous-deployment#setting-up-continuous-deployment-using-manual-steps)。
 
 ## <a name="localgitdeployment"></a>從本機 Git 進行部署
-如果開發團隊使用以 Git 為基礎的內部部署本機原始程式碼管理 (SCM) 服務，則您可將其設為 App Service 的部署來源。 
+如果您的開發小組會使用根據 Git 在內部部署本機來源的程式碼管理 (SCM) 服務，您可以設定此服務的部署來源 tooApp 為。 
 
 從本機 Git 進行部署的優點如下：
 
-* 版本控制可進行回復。
-* 分支專屬的部署，可以將不同的分支部署至不同的 [位置](web-sites-staged-publishing.md)。
-* 可使用 Kudu 部署引擎中的所有功能 (例如部署版本控制、回復、封裝還原和自動化)。
+* 版本控制 tooenable 復原。
+* 分公司特定部署中，可以部署不同的分支 toodifferent[插槽](web-sites-staged-publishing.md)。
+* Hello Kudu 部署引擎中的所有功能 （例如部署版本控制、 復原、 封裝還原，自動化）。
 
 從本機 Git 進行部署的缺點如下：
 
-* 需對個別 SCM 系統有一定程度的了解。
+* Hello 需要個別 SCM 系統的一些知識。
 * 沒有任何持續部署的現成解決方案。 
 
-### <a name="vsts"></a>如何從本機 Git 進行部署
-在 [Azure 入口網站](https://portal.azure.com)中，您可以設定本機 Git 部署。
+### <a name="vsts"></a>如何從本機 Git toodeploy
+在 hello [Azure 入口網站](https://portal.azure.com)，您可以設定本機 Git 部署。
 
-* [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md)。 
-* [從任何 git/hg 儲存機制發行至 Web Apps](http://blog.davidebbo.com/2013/04/publishing-to-azure-web-sites-from-any.html)。  
+* [本機 Git 部署 tooAzure App Service](app-service-deploy-local-git.md)。 
+* [發佈 tooWeb 應用程式從任何 git/hg 位儲存機制](http://blog.davidebbo.com/2013/04/publishing-to-azure-web-sites-from-any.html)。  
 
 ## <a name="deploy-using-an-ide"></a>使用整合式開發環境 (IDE) 部署
-如果您已經將 [Visual Studio](https://www.visualstudio.com/products/visual-studio-community-vs.aspx) 與 [Azure SDK](https://azure.microsoft.com/downloads/) 或其他整合式開發環境 (IDE) 套件 (例如 [Xcode](https://developer.apple.com/xcode/)[Eclipse](https://www.eclipse.org)和 [IntelliJ IDEA](https://www.jetbrains.com/idea/)) 搭配使用，您就可以直接從您的整合式開發環境 (IDE) 內部署到 Azure。 此選項適用於個別的開發人員。
+如果您已經在使用[Visual Studio](https://www.visualstudio.com/products/visual-studio-community-vs.aspx)與[Azure SDK](https://azure.microsoft.com/downloads/)，或其他 IDE 套件 like [Xcode](https://developer.apple.com/xcode/)， [Eclipse](https://www.eclipse.org)，和[IntelliJ 概念](https://www.jetbrains.com/idea/)，您可以部署 tooAzure 直接從您的 IDE 中。 此選項適用於個別的開發人員。
 
-視您的喜好設定而定，Visual Studio 支援所有三種部署程序 (FTP、Git 及 Web Deploy)，而其他 IDE 若有 FTP 或 Git 整合，便可以部署至 App Service (請參閱 [部署程序概觀](#overview))。
+Visual Studio 支援所有三種部署處理程序 （FTP、 Git、 和 Web Deploy），根據您的喜好設定，而如果有 FTP 或 Git 整合其他 Ide 可以部署 tooApp 服務 (請參閱[部署程序的概觀](#overview))。
 
-使用整合式開發環境 (IDE) 部署的優點如下：
+hello 專業人員的部署使用的 IDE 是：
 
-* 可能會減少您端對端應用程式生命週期的工具。 開發、偵錯、追蹤和部署應用程式至 Azure 而不會移動到您的整合式開發環境 (IDE) 之外。 
+* 可能會最小化工具來您端對端應用程式生命週期的 hello。 開發、 偵錯、 追蹤和部署應用程式 tooAzure 而不需移動您的 IDE 之外。 
 
-使用整合式開發環境 (IDE) 部署的缺點如下：
+部署使用的 IDE 的 hello 缺點如下：
 
 * 工具的複雜度增加。
 * 仍然需要團隊專案的原始檔控制系統。
 
 <a name="vspros"></a> 使用 Visual Studio 搭配 Azure SDK 進行部署的其他優點包括：
 
-* Azure SDK 會優先使用 Visual Studio 中的 Azure 資源。 建立、刪除、編輯、啟動和停止應用程式、查詢後端 SQL Database、即時偵錯 Azure 應用程式，以及更多。 
+* Azure SDK 會優先使用 Visual Studio 中的 Azure 資源。 建立、 刪除、 編輯、 啟動及停止應用程式、 查詢 hello 後端 SQL 資料庫、 即時偵錯 hello Azure 應用程式，以及執行更多。 
 * 即時編輯在 Azure 上的程式碼檔案。
 * 即時偵錯在 Azure 上的應用程式。
 * 整合式 Azure Explorer。
 * 僅限差異比對的部署。 
 
-### <a name="vs"></a>如何直接從 Visual Studio 進行部署
-* [開始使用 Azure 和 ASP.NET](app-service-web-get-started-dotnet.md)。 說明如何使用 Visual Studio 和 Web Deploy 建立及部署簡易的 ASP.NET MVC Web 專案。
-* [如何使用 Visual Studio 部署 Azure WebJob](websites-dotnet-deploy-webjobs.md)。 如何設定主控台應用程式專案，使其部署為 WebJob。  
-* [使用 Visual Studio 的 ASP.NET Web 部署](http://www.asp.net/mvc/tutorials/deployment/visual-studio-web-deployment/introduction)。 這是分成 12 個單元的教學課程系列，其中討論的部署工作比此處所列的其他資源更為詳盡。 本教學課程撰寫後已新增某些 Azure 部署功能，但稍後的附註會說明遺漏的功能。
-* [在 Visual Studio 2012 中直接從 Git 儲存機制將 ASP.NET 網站部署至 Azure](http://www.dotnetcurry.com/ShowArticle.aspx?ID=881)。 說明如何使用 Git 外掛程式將程式碼認可至 Git，以及將 Azure 連接到 Git 儲存機制，以在 Visual Studio 中部署 ASP.NET Web 專案。 自 Visual Studio 2013 起，Git 支援已是內建的功能，不需安裝外掛程式。
+### <a name="vs"></a>如何直接從 Visual Studio toodeploy
+* [開始使用 Azure 和 ASP.NET](app-service-web-get-started-dotnet.md)。 如何 toocreate 和使用 Visual Studio 和 Web Deploy 來部署簡單的 ASP.NET MVC web 專案。
+* [如何使用 Visual Studio 的 Azure WebJobs tooDeploy](websites-dotnet-deploy-webjobs.md)。 如何 tooconfigure 主控台應用程式的專案，讓它們為 WebJobs。  
+* [使用 Visual Studio 的 ASP.NET Web 部署](http://www.asp.net/mvc/tutorials/deployment/visual-studio-web-deployment/introduction)。 12 一部分教學課程的系列，它涵蓋了比其他 hello 這份清單中的部署工作更完整範圍。 因為 hello 教學課程所撰寫，但稍後新增附註說明何謂遺漏已加入一些 Azure 部署功能。
+* [直接部署從 Git 儲存機制的 Visual Studio 2012 中的 ASP.NET 網站 tooAzure](http://www.dotnetcurry.com/ShowArticle.aspx?ID=881)。 說明如何 toodeploy ASP.NET web 專案在 Visual Studio 中，使用 hello Git 外掛程式 toocommit hello 程式碼 tooGit 並連接 Azure toohello Git 儲存機制。 自 Visual Studio 2013 起，Git 支援已是內建的功能，不需安裝外掛程式。
 
-### <a name="aztk"></a>如何使用適用於 Eclipse 和 IntelliJ IDEA 的 Azure 工具組來進行部署
-Microsoft 可讓您透過[適用於 Eclipse 的 Azure 工具組](../azure-toolkit-for-eclipse.md)和[適用於 IntelliJ 的 Azure 工具組](../azure-toolkit-for-intellij.md)，將 Web Apps 直接從 Eclipse 和 IntelliJ 部署到 Azure。 下列教學課程說明使用上述任一整合式開發環境 (IDE)，將簡單的 "Hello" World Web 應用程式部署到 Azure 所涉及的步驟：
+### <a name="aztk"></a>如何使用 toodeploy hello Azure 工具套件 Eclipse 和 IntelliJ 概念
+Microsoft 對於它可能 toodeploy Web 應用程式 tooAzure，直接從 Eclipse 和 IntelliJ 透過 hello [Azure Toolkit for Eclipse](../azure-toolkit-for-eclipse.md)和[Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij.md)。 hello 下列教學課程說明部署簡單"Hello"世界 Web 應用程式 tooAzure 使用任一 IDE 所涉及的 hello 步驟：
 
-* [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)](app-service-web-eclipse-create-hello-world-web-app.md)。 本教學課程示範如何使用「適用於 Eclipse 的 Azure 工具組」來建立與部署 Azure 的 Hello World Web 應用程式。
-* [在 IntelliJ 中建立 Azure Hello World Web 應用程式](app-service-web-intellij-create-hello-world-web-app.md)。 本教學課程示範如何使用「適用於 IntelliJ 的 Azure 工具組」來建立與部署 Azure 的 Hello World Web 應用程式。
+* [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)](app-service-web-eclipse-create-hello-world-web-app.md)。 本教學課程會示範 toouse hello Azure Toolkit for Eclipse toocreate 和部署 Azure Hello World 網頁應用程式的方式。
+* [在 IntelliJ 中建立 Azure Hello World Web 應用程式](app-service-web-intellij-create-hello-world-web-app.md)。 本教學課程會示範 toouse hello Azure Toolkit for IntelliJ toocreate 和部署 Azure Hello World 網頁應用程式的方式。
 
 ## <a name="automate"></a>使用命令列工具進行自動化部署
-如果您偏好使用命令列終端機作為選擇的開發環境，您可以使用命令列工具為 App Service 應用程式編寫部署工作指令碼。 
+如果您想做選擇的 hello 開發環境的 hello 命令列的終端機，您可以使用命令列工具的應用程式服務應用程式編寫部署工作。 
 
 使用命令列工具進行部署的優點如下：
 
@@ -171,14 +171,14 @@ Microsoft 可讓您透過[適用於 Eclipse 的 Azure 工具組](../azure-toolki
 
 * 不適用於偏好 GUI 的開發人員。
 
-### <a name="automatehow"></a>如何使用命令列工具進行自動化部署
+### <a name="automatehow"></a>如何使用命令列工具的 tooautomate 部署
 
-如需命令列工具清單和教學課程連結，請參閱[使用命令列工具來自動部署 Azure 應用程式](app-service-deploy-command-line.md)。 
+請參閱[自動化部署您的 Azure 應用程式的命令列工具](app-service-deploy-command-line.md)命令列工具和連結 tootutorials 的清單。 
 
 ## <a name="nextsteps"></a>後續步驟
-在某些情況中，您可能想要輕鬆地在預備版本和生產版本的應用程式之間來回切換。 [如需詳細資訊，請參閱 Web Apps 上的預備部署](web-sites-staged-publishing.md)。
+在某些情況下，您可能想 toobe 無法 tooeasily 來回之間切換的臨時區域與您的應用程式的實際執行版本。 [如需詳細資訊，請參閱 Web Apps 上的預備部署](web-sites-staged-publishing.md)。
 
-具有備份及還原計劃是部署工作流程中相當重要的環節。 如需有關 App Service 備份和還原功能的資訊，請參閱 [Web Apps 備份](web-sites-backup.md)。  
+具有備份及還原計劃是部署工作流程中相當重要的環節。 Hello 應用程式服務備份和還原功能的相關資訊，請參閱[Web 應用程式備份](web-sites-backup.md)。  
 
-如需了解如何使用 Azure「角色型存取控制」來管理對 App Service 部署的存取，請參閱 [RBAC 和 Web 應用程式發行](https://azure.microsoft.com/blog/2015/01/05/rbac-and-azure-websites-publishing/)。
+如需如何 toouse Azure 角色型存取控制 toomanage 存取 tooApp 服務部署資訊，請參閱[RBAC 和 Web 應用程式發佈](https://azure.microsoft.com/blog/2015/01/05/rbac-and-azure-websites-publishing/)。
 

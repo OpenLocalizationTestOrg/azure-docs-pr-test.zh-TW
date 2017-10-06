@@ -1,6 +1,6 @@
 ---
-title: "搭配 Windows 型 Azure HDInsight 使用 Apache Phoenix 和 SQuirreL | Microsoft Docs"
-description: "了解如何使用 HDinsight 中的 Apache Phoenix，以及如何在您的工作站上安裝與設定 SQuirreL 以連線到 HDInsight 中的 HBase 叢集。"
+title: "aaaUse Apache in Phoenix 和與 windows Azure HDInsight 松鼠 |Microsoft 文件"
+description: "深入了解如何 toouse HDInsight 中的 Apache in Phoenix 以及 tooinstall 及設定松鼠 HDInsight 中您工作站 tooconnect tooan HBase 叢集。"
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -15,54 +15,54 @@ ms.workload: big-data
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: 024b70df99fdefa1598225ebb1fbfee85ea375d0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 147ac35fa882fd1bedbc5361ac804c36a4d56de1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-apache-phoenix-and-squirrel-with-windows-based-hbase-clusters-in-hdinsight"></a>在 HDInsight 中搭配 Windows 型 HBase 叢集使用 Apache Phoenix 和 SQuirreL
-了解如何使用 HDinsight 中的 [Apache Phoenix](http://phoenix.apache.org/) ，以及如何在您的工作站上安裝與設定 SQuirreL 以連線到 HDInsight 中的 HBase 叢集。 如需有關 Phoenix 的詳細資訊，請參閱 [15 分鐘內了解 Phoenix](http://phoenix.apache.org/Phoenix-in-15-minutes-or-less.html)。 如需 Phoenix 文法，請參閱 [Phoenix 文法](http://phoenix.apache.org/language/index.html)。
+深入了解如何 toouse [Apache in Phoenix](http://phoenix.apache.org/)在 HDInsight，以及如何 tooinstall 及設定松鼠 HDInsight 中您工作站 tooconnect tooan HBase 叢集。 如需有關 Phoenix 的詳細資訊，請參閱 [15 分鐘內了解 Phoenix](http://phoenix.apache.org/Phoenix-in-15-minutes-or-less.html)。 Hello in Phoenix 文法，請參閱[in Phoenix 文法](http://phoenix.apache.org/language/index.html)。
 
 > [!NOTE]
-> 如需 HDInsight 中的 Phoenix 版本資訊，請參閱 [HDInsight 在 Hadoop 叢集版本中提供什麼新功能？](hdinsight-component-versioning.md)
+> Hello in Phoenix HDInsight 中的版本資訊，請參閱[hello HDInsight 所提供的 Hadoop 叢集版本中最新消息？](hdinsight-component-versioning.md)。
 >
 
 > [!IMPORTANT]
-> 本文件的步驟只適用於 Windows 型 HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。 如需在 Linux 型 HDInsight 上使用 Phoenix 的相關資訊，請參閱[在 HDinsight 中搭配 Linux 型 HBase 叢集使用 Apache Phoenix](hdinsight-hbase-phoenix-squirrel-linux.md)。
+> hello 這個文件的唯一工作 Windows 為基礎的 HDInsight 叢集的步驟。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。 如需在 Linux 型 HDInsight 上使用 Phoenix 的相關資訊，請參閱[在 HDinsight 中搭配 Linux 型 HBase 叢集使用 Apache Phoenix](hdinsight-hbase-phoenix-squirrel-linux.md)。
 >
 
 
 
 ## <a name="use-sqlline"></a>使用 SQLLine
-[SQLLine](http://sqlline.sourceforge.net/) 是執行 SQL 的命令列公用程式。
+[SQLLine](http://sqlline.sourceforge.net/)是命令列公用程式 tooexecute SQL。
 
 ### <a name="prerequisites"></a>必要條件
-開始使用 SQLLine 之前，您必須具備下列項目：
+您可以使用 SQLLine 之前，您必須擁有 hello 下列：
 
 * **HDInsight 中的 HBase 叢集**。 如需有關佈建 HBase 叢集的資訊，請參閱[開始使用 HDInsight 中的 Apache HBase][hdinsight-hbase-get-started]。
-* **透過遠端桌面通訊協定連接到 HBase 叢集**。 如需相關指示，請參閱[使用 Azure 傳統入口網站管理 HDInsight 中的 Hadoop 叢集][hdinsight-manage-portal]。
+* **透過 hello 遠端桌面通訊協定 toohello HBase 叢集連線**。 如需指示，請參閱[使用 hello Azure 傳統入口網站來管理 Hadoop 叢集 HDInsight 中][hdinsight-manage-portal]。
 
-**找出主機名稱**
+**toofind 出 hello 主機名稱**
 
-1. 從桌面開啟 **Hadoop 命令列** 。
-2. 執行下列命令以取得 DNS 尾碼：
+1. 開啟**Hadoop 命令列**從 hello 桌面。
+2. 執行下列命令 tooget hello DNS 尾碼的 hello:
 
         ipconfig
 
-    並記下 **連線專用 DNS 尾碼**。 例如， *myhbasecluster.f5.internal.cloudapp.net*。 當您連線至 HBase 叢集時，您必須使用 FQDN 連線到其中一個 Zookeeper。 每個 HDInsight 叢集有 3 個 Zookeeper。 它們是 *zookeeper0*、*zookeeper1* 和 *zookeeper2*。 FQDN 看起來像是 *zookeeper2.myhbasecluster.f5.internal.cloudapp.net*。
+    並記下 **連線專用 DNS 尾碼**。 例如， *myhbasecluster.f5.internal.cloudapp.net*。 當您連接 tooan HBase 叢集時，您需要 tooconnect tooone 的 hello 動物園管理員使用的 FQDN。 每個 HDInsight 叢集有 3 個 Zookeeper。 它們是 *zookeeper0*、*zookeeper1* 和 *zookeeper2*。 hello FQDN 會像*zookeeper2.myhbasecluster.f5.internal.cloudapp.net*。
 
-**使用 SQLLine**
+**toouse SQLLine**
 
-1. 從桌面開啟 **Hadoop 命令列** 。
-2. 執行下列命令來開啟 SQLLine：
+1. 開啟**Hadoop 命令列**從 hello 桌面。
+2. 執行下列命令 tooopen SQLLine hello:
 
         cd %phoenix_home%\bin
-        sqlline.py [The FQDN of one of the Zookeepers]
+        sqlline.py [hello FQDN of one of hello Zookeepers]
 
     ![HDInsight hbase phoenix sqlline][hdinsight-hbase-phoenix-sqlline]
 
-    此範例中使用的命令：
+    hello hello 範例中所使用的命令：
 
         CREATE TABLE Company (COMPANY_ID INTEGER PRIMARY KEY, NAME VARCHAR(225));
 
@@ -75,115 +75,115 @@ ms.lasthandoff: 08/03/2017
 如需詳細資訊，請參閱 [SQLLine 手冊](http://sqlline.sourceforge.net/#manual)和 [Phoenix 文法](http://phoenix.apache.org/language/index.html)。
 
 ## <a name="use-squirrel"></a>使用 SQuirreL
-[SQuirrel SQL 用戶端](http://squirrel-sql.sourceforge.net/)是圖形化 Java 程式，可讓您檢視 JDBC 相容資料庫的結構、瀏覽資料表中的資料，並發出 SQL 命令等等。它可以用來連接到 HDInsight 上的 Apache Phoenix。
+[SQL 用戶端松鼠](http://squirrel-sql.sourceforge.net/)是圖形化的 Java 程式，將允許您 tooview hello JDBC 相容的資料庫結構，瀏覽 hello 資料表中的資料，發出 SQL 命令等。它可以是使用的 tooconnect tooApache in Phoenix HDInsight 上。
 
-本結說明如在您的工作站上安裝與設定 SQuirreL 以透過 VPN 連線到 HDInsight 中的 HBase 叢集。
+這個區段會顯示如何 tooinstall 和松鼠叢集上設定您的工作站 tooconnect tooan HBase HDInsight 中透過 VPN。
 
 ### <a name="prerequisites"></a>必要條件
-遵循程序之前，您必須具備下列項目：
+Hello 程序之前，您必須擁有 hello 下列：
 
-* 將 HBase 叢集部署至具備 DNS 虛擬機器的 Azure 虛擬網路。  如需相關指示，請參閱[在 Azure 虛擬網路上建立 HBase 叢集][hdinsight-hbase-provision-vnet]。
+* HBase 叢集部署 tooan 與 DNS 虛擬機器的 Azure 虛擬網路。  如需相關指示，請參閱[在 Azure 虛擬網路上建立 HBase 叢集][hdinsight-hbase-provision-vnet]。
 
-* 取得 HBase 叢集的連線專用 DNS 尾碼。 若要取得該尾碼，請 RDP 到叢集，然後執行 IPConfig。  DNS 尾碼會類似於：
+* 收到 hello HBase 叢集的叢集連線特定 DNS 尾碼。 tooget 它 RDP 到 hello 叢集中，然後執行 IPConfig。  hello DNS 尾碼是類似於：
 
         myhbase.b7.internal.cloudapp.net
-* 在您的工作站上下載並安裝 [Microsoft Visual Studio Express for Windows Desktop](https://www.visualstudio.com/products/visual-studio-express-vs.aspx) 。 您將需要封裝的 makecert 以建立您的憑證。  
+* 在您的工作站上下載並安裝 [Microsoft Visual Studio Express for Windows Desktop](https://www.visualstudio.com/products/visual-studio-express-vs.aspx) 。 您必須從 hello 封裝 toocreate makecert 您的憑證。  
 * 在您的工作站上下載並安裝 [Java Runtime Environment](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) 。  SQuirreL SQL 用戶端 3.0 版和更新版本需要 JRE 1.6 版或更新版本。  
 
-### <a name="configure-a-point-to-site-vpn-connection-to-the-azure-virtual-network"></a>設定點對站 VPN 連線到 Azure 虛擬網路
+### <a name="configure-a-point-to-site-vpn-connection-toohello-azure-virtual-network"></a>設定點對站 VPN 連線 toohello Azure 虛擬網路
 設定點對站 VPN 連線包含 3 個步驟：
 
 1. [設定虛擬網路和動態路由閘道](#Configure-a-virtual-network-and-a-dynamic-routing-gateway)
 2. [建立您的憑證](#Create-your-certificates)
 3. [設定 VPN 用戶端](#Configure-your-VPN-client)
 
-如需詳細資訊，請參閱 [設定點對站 VPN 連線到 Azure 虛擬網路](../vpn-gateway/vpn-gateway-point-to-site-create.md) 。
+請參閱[設定點對站 VPN 連線 tooan Azure 虛擬網路](../vpn-gateway/vpn-gateway-point-to-site-create.md)如需詳細資訊。
 
 #### <a name="configure-a-virtual-network-and-a-dynamic-routing-gateway"></a>設定虛擬網路和動態路由閘道
-確保您已在 Azure 虛擬網路中佈建 HBase 叢集 (請參閱本節的必要條件)。 下一步是設定點對站連線。
+確保您已佈建 HBase 叢集的 Azure 虛擬網路中 （請參閱本章節的 hello 必要條件）。 hello 下一個步驟是 tooconfigure 點對站連線。
 
-**設定點對站連線**
+**tooconfigure hello 點對站連線能力**
 
-1. 登入 [Azure 傳統入口網站][azure-portal]。
-2. 在左側按一下 [ **網路**]。
-3. 按一下您已建立的虛擬網路 (請參閱[在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet])。
-4. 按一下頂端的 [ **設定** ]。
-5. 在 [點對站連線] 區段中，選取 [設定點對站連線]。
-6. 設定**起始 IP** 和 **CIDR** 來指定您的 VPN 用戶端在連線時接收 IP 位址的 IP 位址範圍。 此範圍不能與任何位於內部部署網路及您將連線之 Azure 虛擬網路的範圍重疊。 例如， 如果您選取 10.0.0.0/20 做為虛擬網路，您可以選取 10.1.0.0/24 做為用戶端的位址空間。 如需詳細資訊，請參閱[點對站連線][vnet-point-to-site-connectivity]頁面。
-7. 在 [虛擬網路位址空間] 區段中，按一下 [ **新增閘道子網路**]。
-8. 按一下頁面底部的 [ **儲存** ]。
-9. 按一下 [ **是** ] 以確認變更。 請等候系統完成變更，才能繼續進行下一個程序。
+1. 登入 toohello [Azure 傳統入口網站][azure-portal]。
+2. Hello 左側，按一下 **網路**。
+3. 按一下您所建立的 hello 虛擬網路 (請參閱[佈建 HBase 叢集的 Azure 虛擬網路上][hdinsight-hbase-provision-vnet])。
+4. 按一下**設定**從 hello。
+5. 在 hello**點對站連線能力**區段中，選取**設定點對站連線能力**。
+6. 設定**起始 IP**和**CIDR** toospecify hello IP 位址範圍 VPN 用戶端將從其接收 IP 位址連線時。 hello 範圍不能與任何 hello 範圍位於內部網路，而且 hello 您將會連接到 Azure 虛擬網路重疊。 例如， 如果您選取 10.0.0.0/20 hello 虛擬網路，您可以選取 10.1.0.0/24 hello 用戶端的位址空間。 請參閱 hello[點對站連線能力][ vnet-point-to-site-connectivity]頁面以取得詳細的資訊。
+7. 在 hello 虛擬網路位址空間 區段中，按一下 **加入閘道子網路**。
+8. 按一下**儲存**上 hello hello 頁面的底部。
+9. 按一下**是**tooconfirm hello 變更。 請等到完成 hello 系統進行變更後再繼續下一個程序 toohello hello。
 
-**建立動態路由閘道**
+**toocreate 動態路由閘道**
 
-1. 從 Azure 傳統入口網站中，按一下頁面頂端的 [儀表板]  。
-2. 按一下頁面底部的 [ **建立閘道** ]。
-3. 按一下 [ **是** ] 以確認。 請等候建立閘道。
-4. 按一下頂端的 [ **儀表板** ]。  您會看到虛擬網路的視覺化圖表：
+1. 從 hello Azure 傳統入口網站，按一下 **儀表板**從 hello hello 頁面的頂端。
+2. 按一下**建立閘道**從 hello hello 頁面的底部。
+3. 按一下**是**tooconfirm。 請等到建立 hello 閘道。
+4. 按一下**儀表板**從 hello。  您會看見 hello 虛擬網路的視覺圖表：
 
     ![Azure 虛擬網路點對站虛擬圖表][img-vnet-diagram]
 
-    此圖表顯示 0 個用戶端連線。 建立虛擬網路的連線之後，此數字將會更新為一。
+    hello 圖表會顯示 0 的用戶端連線。 連接 toohello 虛擬網路之後，hello 數目將會更新的 tooone。
 
 #### <a name="create-your-certificates"></a>建立您的憑證
-建立 X.509 憑證的其中一個方式是使用 [Microsoft Visual Studio Express for Windows Desktop](https://www.visualstudio.com/products/visual-studio-express-vs.aspx) 隨附的憑證建立工具 (makecert.exe)。
+其中一種方式是使用 X.509 憑證的 toocreate hello 所隨附的憑證建立工具 (makecert.exe) [Microsoft Visual Studio Express for Windows Desktop](https://www.visualstudio.com/products/visual-studio-express-vs.aspx)。
 
-**建立自我簽署根憑證**
+**toocreate 自我簽署的根憑證**
 
 1. 從您的工作站，開啟命令提示字元視窗。
-2. 瀏覽至 [Visual Studio 工具] 資料夾。
-3. 下面範例中的下列命令將在您工作站上的個人憑證存放區中建立與安裝根憑證，並建立您稍後將上傳至 Azure 傳統入口網站的相對應 .cer 檔案。
+2. 瀏覽 toohello Visual Studio 工具 資料夾。
+3. 下列命令在 hello 面範例中的 hello 會建立與 hello 個人憑證存放區，您的工作站上安裝根憑證和也建立對應的.cer 檔案，您將於稍後上傳 toohello Azure 傳統入口網站。
 
         makecert -sky exchange -r -n "CN=HBaseVnetVPNRootCertificate" -pe -a sha1 -len 2048 -ss My "C:\Users\JohnDole\Desktop\HBaseVNetVPNRootCertificate.cer"
 
-    將變更為您想要在其中放置 .cer 檔案的目錄，在該目錄中 HBaseVnetVPNRootCertificate 是您想要使用的憑證名稱。
+    變更您想 hello.cer 檔案 toobe HBaseVnetVPNRootCertificate 其中您要 hello 憑證 toouse hello 名稱中，位於 toohello 目錄。
 
-    不要關閉命令提示字元。  您將在下一個程序中需要此提示字元。
+    不要關閉 hello 命令提示字元。  您需要在 hello 下一個程序。
 
    > [!NOTE]
-   > 因為您已經建立會產生用戶端憑證的根憑證，您可能會想要將此憑證及其私密金鑰匯出，並將它儲存到可復原的安全位置。
+   > 因為您已建立將會產生用戶端憑證的根憑證，您可能想 tooexport 連同私密金鑰一起此憑證，並將它儲存 tooa 安全的位置，或許可以修復它。
    >
    >
 
-**建立用戶端憑證**
+**toocreate 用戶端憑證**
 
-* 從相同的命令提示字元 (必須在您建立根憑證所在的相同電腦上。 用戶端憑證必須從根憑證產生)，執行下列命令：
+* Hello 從相同的命令提示字元 (對 hello toobe hello 根憑證的建立所在的同一部電腦。 hello 用戶端必須產生憑證從 hello 根憑證），執行 hello 下列命令：
 
           makecert.exe -n "CN=HBaseVnetVPNClientCertificate" -pe -sky exchange -m 96 -ss My -in "HBaseVnetVPNRootCertificate" -is my -a sha1
 
-    HBaseVnetVPNRootCertificate 是根憑證名稱。  它必須符合根憑證名稱。  
+    HBaseVnetVPNRootCertificate 是 hello 根憑證名稱。  它有 toomatch hello 根憑證名稱。  
 
-    根憑證和用戶端憑證都會儲存在電腦上的個人憑證存放區中。 使用 certmgr.msc 來驗證。
+    Hello 根憑證和 hello 用戶端憑證儲存在您的個人憑證存放區，您的電腦上。 使用 certmgr.msc tooverify。
 
     ![Azure 虛擬網路點對站 VPN 憑證][img-certificate]
 
-    您想要連接到虛擬網路的每一部電腦都必須安裝用戶端憑證。 建議您最好針對要連接到虛擬網路的每部電腦建立唯一的用戶端憑證。 若要匯出用戶端憑證，請使用 certmgr.msc。
+    用戶端憑證必須安裝在每部電腦上您想 tooconnect toohello 虛擬網路。 我們建議您建立唯一的用戶端憑證，每一部電腦的 tooconnect toohello 虛擬網路。 tooexport hello 用戶端憑證，請使用 certmgr.msc。
 
-**將根憑證上傳到 Azure 傳統入口網站**
+**tooupload hello 根憑證 toohello Azure 傳統入口網站**
 
-1. 從 Azure 傳統入口網站，按一下左邊的 [網路]  。
-2. 按一下 HBase 叢集部署所在的虛擬網路。
-3. 按一下頂端的 [ **憑證** ]。
-4. 按一下底部的 [ **上傳** ]，並指定您已在前一個程序中建立的根憑證檔案。 請等到憑證匯入。
-5. 按一下頂端的 [ **儀表板** ]。  虛擬圖表會顯示狀態。
+1. 從 hello Azure 傳統入口網站，按一下 **網路**hello 左側。
+2. 按一下 hello HBase 叢集部署到其中的虛擬網路。
+3. 按一下**憑證**從 hello。
+4. 按一下**上傳**hello 從下方，並指定您已建立在 hello 程序中最後一個以外的 hello 根憑證檔案。 請等到 hello 憑證已匯入。
+5. 按一下**儀表板**hello 上方。  hello 虛擬圖表會顯示 hello 狀態。
 
 #### <a name="configure-your-vpn-client"></a>設定 VPN 用戶端
-**下載與安裝用戶端 VPN 封裝**
+**toodownload 並安裝 hello 用戶端 VPN 封裝**
 
-1. 從快速瀏覽區段中虛擬網路的 [儀表板] 頁面，根據您的工作站 OS 版本按一下 [下載 64 位元用戶端 VPN 封裝] 或 [下載 32 位元用戶端 VPN 封裝]。
-2. 按一下 [ **執行** ] 以安裝封裝。
-3. 在安全性提示字元中，按一下 [更多資訊]，然後按一下 [仍要執行]。
+1. 從 hello 儀表板頁面的 hello 虛擬網路，在 hello 快速概覽區段中，按一下 **下載 hello 64 位元用戶端 VPN 封裝**或**下載 hello 32 位元用戶端 VPN 封裝**根據您工作站作業系統版本。
+2. 按一下**執行**tooinstall hello 封裝。
+3. 在 hello 安全性提示字元中，按一下**進一歩**，然後按一下**繼續執行**。
 4. 按兩下 [ **是** ]。
 
-**連線到 VPN**
+**tooconnect tooVPN**
 
-1. 在您的工作站桌面上，按一下工作列上的網路圖示。 您會看到虛擬網路名稱的 VPN 連線。
-2. 按一下 VPN 連線名稱。
-3. 按一下 [連接]。
+1. 在您的工作站的 hello 桌面上，按一下 hello hello 工作列上的網路圖示。 您會看到虛擬網路名稱的 VPN 連線。
+2. 按一下 hello VPN 連線名稱。
+3. 按一下 [ **連接**]。
 
-**測試 VPN 連線和網域名稱解析**
+**tootest hello VPN 連接和網域名稱解析**
 
-* 若 HBase 叢集的 DNS 尾碼為 myhbase.b7.internal.cloudapp.net，請從工作站開啟命令提示字元，並且 ping 下列其中一個名稱：
+* 從 hello 工作站上，開啟 命令提示字元，且下列名稱指定 hello HBase 叢集的 DNS 尾碼的 hello 的其中一個 ping myhbase.b7.internal.cloudapp.net:
 
         zookeeper0.myhbase.b7.internal.cloudapp.net
         zookeeper0.myhbase.b7.internal.cloudapp.net
@@ -193,84 +193,84 @@ ms.lasthandoff: 08/03/2017
         workernode0.myhbase.b7.internal.cloudapp.net
 
 ### <a name="install-and-configure-squirrel-on-your-workstation"></a>安裝與設定您的工作站上的 SQuirreL
-**安裝 SQuirreL**
+**tooinstall 松鼠**
 
-1. 從 [http://squirrel-sql.sourceforge.net/#installation](http://squirrel-sql.sourceforge.net/#installation)下載 SQuirrel SQL 用戶端 jar 檔案。
-2. 開啟/執行 jar 檔案。 它需要 [Java Runtime Environment](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html)。
+1. 下載 hello 松鼠 SQL 用戶端 jar 檔案從[http://squirrel-sql.sourceforge.net/#installation](http://squirrel-sql.sourceforge.net/#installation)。
+2. 開啟/執行 hello jar 檔案。 它需要 hello [Java Runtime Environment](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html)。
 3. 按兩下 [ **下一步** ]。
-4. 指定您具有寫入權限的路徑，然後按 [ **下一步**]。
+4. 指定您擁有寫入權限，並再按 hello 路徑**下一步**。
 
   > [!NOTE]
-  > 預設的安裝資料夾位於 C:\Program Files\squirrel sql 3.6 資料夾中。  若要寫入此路徑，必須將系統管理員權限授與安裝程式。 您可以系統管理員身分開啟命令提示字元、瀏覽至 Java 的 bin 資料夾，然後再執行：
+  > hello 預設安裝資料夾為 hello C:\Program Files\squirrel sql 3.6 資料夾中。  順序 toowrite toothis 路徑，hello 安裝程式必須授與 hello 系統管理員權限。 您可以開啟命令提示字元，以系統管理員身分，瀏覽 tooJava 的 bin 資料夾，然後再執行：
   >
-  >     java.exe-jar [SQuirreL jar 檔案的路徑]
-5. 按一下 [ **確定** ] 以確認建立目標目錄。
-6. 預設設定是安裝基底和標準封裝。  按一下 [下一步] 。
+  >     java.exe-jar [hello hello 松鼠 jar 檔案路徑]
+5. 按一下**確定**tooconfirm 建立 hello 目標目錄。
+6. hello 預設設定是 tooinstall hello 基底和標準的封裝。  按一下 [下一步] 。
 7. 依序按兩下 [下一步] 和 [完成]。
 
-**安裝 Phoenix 驅動程式**
+**tooinstall hello in Phoenix 驅動程式**
 
-Phoenix 驅動程式 jar 檔案位於 HBase 叢集上。 此路徑根據版本與下列項目相似：
+hello in phoenix 驅動程式 jar 檔案位於 hello HBase 叢集。 hello 路徑為 hello 版本為基礎的 toohello 下列類似：
 
     C:\apps\dist\phoenix-4.0.0.2.1.11.0-2316\phoenix-4.0.0.2.1.11.0-2316-client.jar
-您必須將它複製到您的工作站中的 [SQuirreL 安裝資料夾]/lib 路徑下。  最簡單的方法是 RDP 到叢集中，然後再使用檔案複製/貼上 (CTRL + C 和 CTRL + V 鍵)，將它複製到您的工作站。
+您需要 toocopy 它 hello [松鼠安裝資料夾] 下的 tooyour 工作站 / lib 路徑。  hello 最簡單方式是到 hello 叢集中，然後按一下 使用檔案複製/貼上 （CTRL + C 和 CTRL + V） toocopy tooRDP 它 tooyour 工作站。
 
-**將 Phoenix 驅動程式新增至 SQuirreL**
+**tooadd in Phoenix 驅動程式 tooSQuirreL**
 
 1. 從您的工作站開啟 SQuirreL SQL 用戶端。
-2. 按一下左邊的 [ **驅動程式** ] 索引標籤。
-3. 從 [驅動程式] 功能表，按一下[新增驅動程式]。
-4. 輸入以下資訊：
+2. 按一下 hello**驅動程式**hello 左邊的索引標籤。
+3. 從 hello**驅動程式**功能表上，按一下 **新的驅動程式**。
+4. 輸入下列資訊的 hello:
 
    * **名稱**：Phoenix
    * **範例 URL**：jdbc:phoenix:zookeeper2.contoso-hbase-eu.f5.internal.cloudapp.net
    * **類別名稱**：org.apache.phoenix.jdbc.PhoenixDriver
 
      > [!WARNING]
-     > 使用者在範例 URL 中全部小寫。 您可以使用完整 zookeeper 仲裁，以免其中一項已關閉。  主機名稱是 zookeeper0、zookeeper1 和 zookeeper2。
+     > 使用者在 hello 範例 URL 中的所有大小寫。 您可以使用完整 zookeeper 仲裁，以免其中一項已關閉。  hello 主機名稱為 zookeeper0、 zookeeper1 和 zookeeper2。
      >
      >
 
      ![HDInsight HBase Phoenix SQuirreL 驅動程式][img-squirrel-driver]
 5. 按一下 [確定] 。
 
-**建立 HBase 叢集的別名**
+**toocreate 別名 toohello HBase 叢集**
 
-1. 從 SQuirreL，按一下左邊的 [ **別名** ] 索引標籤。
-2. 從 [別名] 功能表，按一下 [新增別名]。
-3. 輸入以下資訊：
+1. 從松鼠，按一下 hello**別名**hello 左邊的索引標籤。
+2. 從 hello**別名**功能表上，按一下 **新別名**。
+3. 輸入下列資訊的 hello:
 
-   * **名稱**：HBase 叢集的名稱或您偏好的任何名稱。
-   * **驅動程式**：Phoenix。  必須符合您在上一個程序中建立的驅動程式名稱。
-   * **URL**：從驅動程式組態複製的 URL。 請確定使用者全部小寫。
-   * **使用者名稱**：可以是任何文字。  因為您在此使用 VPN 連線，所以完全不會使用使用者名稱。
+   * **名稱**: hello 名稱 hello HBase 叢集或任何您偏好的名稱。
+   * **驅動程式**：Phoenix。  這必須符合您在 hello 最後一個程序中建立的 hello 驅動程式名稱。
+   * **URL**: hello URL 已複製從驅動程式設定。 請確定 toouser 所有大小寫。
+   * **使用者名稱**：可以是任何文字。  因為您在這裡使用 VPN 連線能力，是不會在所有使用 hello 使用者名稱。
    * **密碼**：可以是任何文字。
 
      ![HDInsight HBase Phoenix SQuirreL 驅動程式][img-squirrel-alias]
 4. 按一下 [ **測試**]。
-5. 按一下 [連接]。 當它建立連線時，SQuirreL 如下所示：
+5. 按一下 [ **連接**]。 當建立 hello 連接時，松鼠看起來像：
 
     ![HBase Phoenix SQuirrel][img-squirrel]
 
-**執行測試**
+**toorun 測試**
 
-1. 按一下 [物件] 索引標籤旁邊的 [SQL] 索引標籤。
-2. 複製並貼上下列程式碼：
+1. 按一下 hello **SQL**索引標籤上的權限下一步 toohello**物件** 索引標籤。
+2. 複製並貼上下列程式碼的 hello:
 
         CREATE TABLE IF NOT EXISTS us_population (state CHAR(2) NOT NULL, city VARCHAR NOT NULL, population BIGINT  CONSTRAINT my_pk PRIMARY KEY (state, city))
-3. 按一下 [執行] 按鈕。
+3. 按一下 hello 執行 按鈕。
 
     ![HBase Phoenix SQuirrel][img-squirrel-sql]
-4. 切換回 [ **物件** ] 索引標籤。
-5. 展開別名名稱，然後再展開 **資料表**。  您會看到底下所列的新資料表。
+4. 切換後 toohello**物件** 索引標籤。
+5. 展開 hello 別名名稱，然後再展開**資料表**。  您應該會看到 hello 底下所列的新資料表。
 
 ## <a name="next-steps"></a>後續步驟
-在本文中，您已經學會如何在 HDInsight 中使用 Apache Phoenix。  若要深入了解，請參閱：
+在本文中，您已經學會如何 toouse Apache in Phoenix HDInsight 中。  toolearn 詳細資訊，請參閱
 
 * [HDInsight HBase 概觀][hdinsight-hbase-overview]：HBase 是建置於 Hadoop 上的 Apache 開放原始碼 NoSQL 資料庫，可針對大量非結構化及半結構化資料，提供隨機存取功能和強大一致性。
-* [在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet]：由於 HBase 叢集已與虛擬網路整合，因此能夠部署到和應用程式相同的虛擬網路，讓應用程式得以和 HBase 直接通訊。
-* [設定 HDInsight 中的 HBase 複寫](hdinsight-hbase-replication.md)：了解如何跨兩個 Azure 資料中心設定 HBase 複寫。
-* [利用 HDInsight 中的 HBase 分析 Twitter 情感][hbase-twitter-sentiment]：了解如何使用 HDInsight 之 Hadoop 叢集中的 HBase，執行巨量資料的即時[情感分析](http://en.wikipedia.org/wiki/Sentiment_analysis)。
+* [佈建 Azure 虛擬網路上的 HBase 叢集][hdinsight-hbase-provision-vnet]： 與虛擬網路整合 HBase 叢集可以部署的 toohello 相同虛擬網路與您的應用程式因此應用程式可以與通訊直接 HBase。
+* [設定在 HDInsight HBase 複寫](hdinsight-hbase-replication.md)： 了解如何 tooconfigure HBase 複寫，跨兩個 Azure 資料中心。
+* [分析與在 HDInsight HBase Twitter 情緒][hbase-twitter-sentiment]： 了解如何 toodo 即時[情緒分析](http://en.wikipedia.org/wiki/Sentiment_analysis)的巨量資料在 HDInsight Hadoop 叢集中使用 HBase。
 
 [azure-portal]: https://portal.azure.com
 [vnet-point-to-site-connectivity]: https://msdn.microsoft.com/library/azure/09926218-92ab-4f43-aa99-83ab4d355555#BKMK_VNETPT

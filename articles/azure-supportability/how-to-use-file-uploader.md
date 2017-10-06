@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Azure 新支援要求檔案上傳公用程式指導方針 | Microsoft Docs"
-description: "說明使用 Microsoft Azure 新支援要求檔案上傳公用程式的指導方針"
+title: "aaaMicrosoft Azure 新的支援要求的檔案上傳公用程式方針 |Microsoft 文件"
+description: "使用 Microsoft Azure 新的支援要求的檔案上傳公用程式時，描述 hello 指導方針"
 services: 
 documentationcenter: 
 author: genlin
@@ -15,28 +15,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
-ms.openlocfilehash: ba6dafd8d890d88478a5e3213dd023921908f4bf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 19e51b40b82a71454b4b04752ebeefd5d26c2db5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoft-azure-new-support-request-file-upload-utility-guidelines"></a>Microsoft Azure 新支援要求檔案上傳公用程式指導方針
-[建立支援要求](https://portal.azure.com/#create/Microsoft.Support)時，「檔案上傳」公用程式可協助您輕鬆上傳診斷檔案或您認為與事件相關的任何其他檔案。  
+當您[建立支援要求](https://portal.azure.com/#create/Microsoft.Support)，hello 檔案上傳公用程式可協助您輕鬆地上載診斷檔案或任何其他您認為是相關 toohello 事件的檔案。  
 
 > [!NOTE]
-> 若要保護您的隱私權，請勿在您的上傳中包含任何個人資訊。
+> tooprotect 您的隱私權，並在您上傳包含任何個人資訊。
 >
 >
 
-使用檔案上傳公用程式時，請遵循下列方針：
+當您使用 hello 檔案上傳公用程式時，請遵循下列指導方針：
 
-* 所有檔案必須有副檔名，例如 .docx 或 .xlsx。 請參閱表格以取得允許的檔案名稱副檔名清單。
-* 檔案名稱的長度不得超過 110 個字元。
+* 所有檔案必須有副檔名，例如 .docx 或 .xlsx。 請參閱 hello 表 hello 允許的檔案名稱的副檔名清單。
+* hello 檔案名稱必須是長度不得超過 110 個字元。
 * 您無法上傳多個檔案。
 * 檔案不能大於 4 MB。
 
-## <a name="table-of-the-allowed-file-name-extensions"></a>允許的檔案名稱副檔名的資料表
+## <a name="table-of-hello-allowed-file-name-extensions"></a>資料表的 hello 允許副檔名
 | 0-9、A-C    | D-G   | H-M         | N-P   | R-T      | U-W        | X-Z     |
 |-------------|-------|-------------|-------|----------|------------|---------|
 | .7z         | .dat  | .hwl        | .odx  | .rar     | .tdb       | .xlam   |

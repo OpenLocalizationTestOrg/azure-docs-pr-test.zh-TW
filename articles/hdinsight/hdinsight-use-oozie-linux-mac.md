@@ -1,6 +1,6 @@
 ---
-title: "在 Linux 型 HDInsight 上使用 Hadoop Oozie 工作流程 | Microsoft Docs"
-description: "在 Linux 型 HDInsight 上使用 Hadoop Oozie。 了解如何定義 Oozie 工作流程，以及提交 Oozie 工作。"
+title: "aaaUse Hadoop Oozie 工作流程中以 Linux 為基礎的 HDInsight |Microsoft 文件"
+description: "在 Linux 型 HDInsight 上使用 Hadoop Oozie。 深入了解如何 toodefine Oozie 工作流程，並提交 Oozie 作業。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,27 +16,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: larryfr
-ms.openlocfilehash: e3206078e451aefe02689bfb61ce22a20dd0fa70
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cb5682837543312621e3424b7a9341b5d2a00bf8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-oozie-with-hadoop-to-define-and-run-a-workflow-on-linux-based-hdinsight"></a>在 Linux 型 HDInsight 上搭配 Hadoop 使用 Oozie 來定義並執行工作流程
+# <a name="use-oozie-with-hadoop-toodefine-and-run-a-workflow-on-linux-based-hdinsight"></a>使用 Hadoop toodefine Oozie 和 Linux 為基礎的 HDInsight 上執行的工作流程
 
 [!INCLUDE [oozie-selector](../../includes/hdinsight-oozie-selector.md)]
 
-了解如何在 HDInsight 上搭配 Hadoop 使用 Apache Oozie。 Apache Oozie 是可管理 Hadoop 工作的工作流程/協調系統。 Oozie 已與 Hadoop 堆疊整合，並支援下列作業：
+深入了解如何 toouse Apache Oozie Hadoop HDInsight 上使用。 Apache Oozie 是可管理 Hadoop 工作的工作流程/協調系統。 Oozie hello Hadoop 堆疊，與整合並支援下列作業的 hello:
 
 * Apache MapReduce
 * Apache Pig
 * Apache Hive
 * Apache Sqoop
 
-Oozie 也可用來排程系統的特定工作，例如 Java 程式或 Shell 指令碼
+Oozie 也可以使用的 tooschedule 作業的特定 tooa 系統，例如 Java 程式或殼層指令碼
 
 > [!NOTE]
-> 還有另一個選項可以定義與 HDInsight 搭配的工作流程，那就是 Azure Data Factory。 若要深入了解 Azure Data Factory，請參閱[搭配 Data Factory 使用 Pig 和 Hive][azure-data-factory-pig-hive]。
+> 還有另一個選項可以定義與 HDInsight 搭配的工作流程，那就是 Azure Data Factory。 toolearn 深入了解 Azure Data Factory，請參閱[搭配使用 Pig 和 Hive 與 Data Factory][azure-data-factory-pig-hive]。
 
 > [!IMPORTANT]
 > Oozie 未在已加入網域的 HDInsight 上啟用。
@@ -46,64 +46,64 @@ Oozie 也可用來排程系統的特定工作，例如 Java 程式或 Shell 指�
 * **HDInsight 叢集**：請參閱 [開始使用 Linux 上的 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)
 
   > [!IMPORTANT]
-  > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+  > 本文件中的 hello 步驟需要使用 Linux 的 HDInsight 叢集。 Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 ## <a name="example-workflow"></a>範例工作流程
 
-此文件中使用的工作流程包含兩個動作。 動作就是工作的定義，例如執行 Hive、Sqoop、MapReduce 或其他處理序：
+使用這份文件中的 hello 工作流程包含兩個動作。 動作就是工作的定義，例如執行 Hive、Sqoop、MapReduce 或其他處理序：
 
 ![Workflow diagram][img-workflow-diagram]
 
-1. Hive 動作會執行 HiveQL 指令碼，以從 HDInsight 隨附的 **hivesampletable** 擷取記錄。 每個資料列均代表來自特定行動裝置的瀏覽。 顯示的記錄格式類似下列文字：
+1. 登錄區動作會在執行下列 HiveQL 指令碼 tooextract 記錄從 hello **hivesampletable**隨附 HDInsight。 每個資料列均代表來自特定行動裝置的瀏覽。 hello 記錄格式會顯示下列文字類似 toohello:
 
         8       18:54:20        en-US   Android Samsung SCH-i500        California     United States    13.9204007      0       0
         23      19:19:44        en-US   Android HTC     Incredible      Pennsylvania   United States    NULL    0       0
         23      19:19:46        en-US   Android HTC     Incredible      Pennsylvania   United States    1.4757422       0       1
 
-    本文件中使用的 Hive 指令碼會計算每個平台 (例如 Android 或 iPhone) 的總瀏覽次數，並將計數儲存到新的 Hive 資料表。
+    hello 本文件中使用的 Hive 指令碼計算 hello 總造訪每個平台 （例如 Android 或 iPhone），並會儲存 hello 計數 tooa 新 Hive 資料表。
 
     如需 Hive 的詳細資訊，請參閱[在 HDInsight 上使用 Hive][hdinsight-use-hive]。
 
-2. Sqoop 動作會將新的 Hive 資料表內容匯出至 Azure SQL Database 中的資料表。 如需 Sqoop 的詳細資訊，請參閱[搭配 HDInsight 使用 Hadoop Sqoop][hdinsight-use-sqoop]。
+2. Sqoop 動作會將匯出 hello 新 Hive 資料表 tooa 資料表中 Azure SQL database 的 hello 的內容。 如需 Sqoop 的詳細資訊，請參閱[搭配 HDInsight 使用 Hadoop Sqoop][hdinsight-use-sqoop]。
 
 > [!NOTE]
-> 如需 HDInsight 叢集支援的 Oozie 版本，請參閱 [HDInsight 提供之 Hadoop 叢集版本中的新增功能][hdinsight-versions]。
+> HDInsight 叢集上支援 Oozie 版本，請參閱[hello HDInsight 所提供的 Hadoop 叢集版本的新][hdinsight-versions]。
 
-## <a name="create-the-working-directory"></a>建立工作目錄
+## <a name="create-hello-working-directory"></a>建立 hello 工作目錄
 
-Oozie 的工作所需資源必須儲存在同一個目錄中。 這個範例會使用 **wasb:///tutorials/useoozie**。 請使用以下命令建立此目錄，以及建立資料目錄，以保存此工作流程所建立的新 Hive 資料表：
+Oozie 必須要有資源所需作業 toobe 儲存在 hello 相同目錄。 這個範例會使用 **wasb:///tutorials/useoozie**。 此目錄和 hello 保存 hello 由此工作流程建立新 Hive 資料表的資料目錄，請使用下列命令 toocreate hello:
 
 ```
 hdfs dfs -mkdir -p /tutorials/useoozie/data
 ```
 
 > [!NOTE]
-> `-p` 參數會使系統建立路徑中的所有目錄。 **data** 目錄是用來保存 **useooziewf.hql** 指令碼所使用的資料。
+> hello`-p`參數會導致 hello 路徑 toobe 建立所有目錄。 hello**資料**目錄是使用的 toohold 資料供 hello **useooziewf.hql**指令碼。
 
-此外，也請執行以下命令，確保 Oozie 在執行 Hive 和 Sqoop 工作時可以模擬您的使用者帳戶。 將 **USERNAME** 取代為您的登入名稱：
+也請執行下列命令，可確保 Oozie 可以模擬使用者帳戶時執行的 Hive 和 Sqoop 工作 hello。 將 **USERNAME** 取代為您的登入名稱：
 
 ```
 sudo adduser USERNAME users
 ```
 
 > [!NOTE]
-> 您可以忽略使用者已是 `users` 群組之成員的錯誤。
+> 您可以忽略錯誤 hello 使用者已屬於 hello`users`群組。
 
 ## <a name="add-a-database-driver"></a>新增資料庫驅動程式
 
-由於此工作流程會使用 Sqoop 將資料匯出至 SQL Database，因此您必須提供一份要用來與 SQL Database 溝通的 JDBC 驅動程式複本。 請使用以下命令將該複本複製到工作目錄：
+由於此工作流程使用 Sqoop tooexport 資料 tooSQL 資料庫，您必須提供一份 hello JDBC 驅動程式使用 tootalk tooSQL 資料庫。 使用 hello 下列命令 toocopy 它 toohello 工作目錄：
 
 ```
 hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
 ```
 
-如果工作流程使用了其他資源，例如含有 MapReduce 應用程式的 jar，則您也必須新增這些資源。
+如果您的工作流程會使用其他資源，例如 jar，包含 MapReduce 應用程式，您需要 tooadd 以及這些資源。
 
-## <a name="define-the-hive-query"></a>定義 Hive 查詢
+## <a name="define-hello-hive-query"></a>定義 hello Hive 查詢
 
-使用下列步驟建立 HiveQL 指令碼，以定義此文件之後的 Oozie 工作流程中要使用的查詢。
+使用下列步驟 toocreate 下列 HiveQL 指令碼會定義的查詢，在本文件稍後的 Oozie 工作流程中使用的 hello。
 
-1. 使用 SSH 連線到叢集。 下列命令是使用 `ssh` 命令的範例。 將 __USERNAME__ 取代為叢集的 SSH 使用者。 將 __CLUSTERNAME__ 取代為 HDInsight 叢集的名稱。
+1. Toohello 叢集使用 SSH 連線。 hello 下列命令會示範如何使用 hello`ssh`命令。 取代__USERNAME__與 hello SSH 使用者 hello 叢集。 取代__CLUSTERNAME__ hello hello HDInsight 叢集名稱。
 
     ```
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
@@ -111,13 +111,13 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
 
     如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-2. 從 SSH 連線，使用下列命令來建立檔案：
+2. 從 hello SSH 連線，使用下列命令 toocreate 檔案 hello:
 
     ```
     nano useooziewf.hql
     ```
 
-3. 開啟 nano 編輯器後，請使用下列查詢做為檔案的內容：
+3. 一旦 hello nano 編輯器隨即開啟，請使用 hello hello hello 檔案內容為下列查詢：
 
     ```hiveql
     DROP TABLE ${hiveTableName};
@@ -126,39 +126,39 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
     INSERT OVERWRITE TABLE ${hiveTableName} SELECT deviceplatform, COUNT(*) as count FROM hivesampletable GROUP BY deviceplatform;
     ```
 
-    指令碼中使用了兩個變數：
+    有兩個 hello 指令碼中使用的變數：
 
-    * **${hiveTableName}**：包含要建立的資料表名稱
+    * **${hiveTableName}**： 包含建立 hello 資料表 toobe hello 名稱
 
-    * **${hiveDataFolder}**：包含儲存資料表之資料檔案的位置
+    * **${hiveDataFolder}**： 包含 hello toostore hello 資料檔案位置 hello 資料表
 
-    工作流程定義檔 (在此教學課程中為 workflow.xml) 會在執行階段將這些值傳遞至此 HiveQL 指令碼
+    hello 工作流程定義檔 (在本教學課程 workflow.xml) 傳遞這些值 toothis 下列 HiveQL 指令碼在執行階段
 
-4. 若要結束編輯器，請按 Ctrl-X。 出現提示時，請選取 **Y** 儲存檔案，然後按 **Enter** 鍵以使用 **useooziewf.hql** 檔案名稱。
+4. tooexit hello 編輯器 中，按下 Ctrl X。 出現提示時，選取**Y** toosave hello 檔案，然後使用**Enter** toouse hello **useooziewf.hql**檔案名稱。
 
-5. 使用下列命令將 **useooziewf.hql** 複製到 **wasb:///tutorials/useoozie/useooziewf.hql**：
+5. 使用 hello 下列命令 toocopy **useooziewf.hql**太**wasb:///tutorials/useoozie/useooziewf.hql**:
 
     ```
     hdfs dfs -put useooziewf.hql /tutorials/useoozie/useooziewf.hql
     ```
 
-    這些命令會在叢集的 HDFS 相容儲存體上儲存 **useooziewf.hql** 檔案。
+    這些命令儲存 hello **useooziewf.hql** hello 叢集 hello HDFS 相容存放裝置上的檔案。
 
-## <a name="define-the-workflow"></a>定義工作流程
+## <a name="define-hello-workflow"></a>定義 hello 工作流程
 
-Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 使用下列步驟定義工作流程：
+Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 使用下列步驟 toodefine hello 工作流程的 hello:
 
-1. 使用以下陳述式建立和編輯新的檔案：
+1. 使用下列陳述式 toocreate hello 和編輯新檔案：
 
     ```
     nano workflow.xml
     ```
 
-2. 開啟 nano 編輯器後，請輸入下列 XML 做為檔案內容：
+2. 一旦 hello nano 編輯器隨即開啟，請輸入 hello hello 檔案內容為下列 XML:
 
     ```xml
     <workflow-app name="useooziewf" xmlns="uri:oozie:workflow:0.2">
-        <start to = "RunHiveScript"/>
+        <start too= "RunHiveScript"/>
         <action name="RunHiveScript">
         <hive xmlns="uri:oozie:hive-action:0.2">
             <job-tracker>${jobTracker}</job-tracker>
@@ -209,55 +209,55 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
     </workflow-app>
     ```
 
-    此工作流程中定義了兩個動作：
+    有兩個 hello 工作流程中定義的動作：
 
-   * **RunHiveScript**：這是起始動作，且會執行 **useooziewf.hql** Hive 指令碼
+   * **RunHiveScript**: hello 開始的動作，此動作，並執行 hello **useooziewf.hql** Hive 指令碼
 
-   * **RunSqoopExport**：此動作會使用 Sqoop 將 Hive 指令碼建立的資料匯出到 SQL Database。 只有 **RunHiveScript** 動作成功時才會執行此動作。
+   * **RunSqoopExport**： 這個動作將匯出的 hello 資料所建立的 hello Hive 指令碼 tooSQL Sqoop 資料庫。 這個動作才會執行 hello **RunHiveScript**動作是否成功。
 
-     工作流程有數個項目，例如 `${jobTracker}`。 這些項目會取代為您在工作定義中使用的值。 本文件稍後將說明建立工作定義。
+     hello 工作流程中有數個項目，例如`${jobTracker}`。 這些項目會以您在 hello 工作定義中使用的值取代。 在本文件稍後建立 hello 工作定義。
 
-     此外也請注意 Sqoop 區段中的 `<archive>sqljdbc4.jar</arcive>` 項目。 此項目會指示 Oozie 在此動作執行時，讓 Sqoop 可取得此封存。
+     也請注意 hello `<archive>sqljdbc4.jar</arcive>` hello Sqoop > 一節中的項目。 此項目執行此動作時，指示 Oozie toomake Sqoop 可用在此封存。
 
-3. 依序按 Ctrl-X、**Y** 和 **Enter** 鍵以儲存檔案。
+3. 然後使用 Ctrl-X **Y**和**Enter** toosave hello 檔案。
 
-4. 使用以下命令，將 **workflow.xml** 檔案複製到 **/tutorials/useoozie/workflow.xml**：
+4. 使用 hello 下列命令 toocopy hello **workflow.xml**檔案太**/tutorials/useoozie/workflow.xml**:
 
     ```
     hdfs dfs -put workflow.xml /tutorials/useoozie/workflow.xml
     ```
 
-## <a name="create-the-database"></a>建立資料庫
+## <a name="create-hello-database"></a>建立 hello 資料庫
 
-若要建立 Azure SQL Database，請依照[建立 SQL Database](../sql-database/sql-database-get-started.md) 文件中的步驟執行。 建立資料庫時，請使用 `oozietest` 做為資料庫名稱。 也請記下資料庫伺服器的名稱。
+Azure SQL Database，toocreate hello 中步驟 hello[建立 SQL Database](../sql-database/sql-database-get-started.md)文件。 建立 hello 資料庫時，使用`oozietest`與 hello 資料庫名稱。 也請記下 hello hello 資料庫伺服器名稱。
 
-### <a name="create-the-table"></a>建立資料表
+### <a name="create-hello-table"></a>建立 hello 資料表
 
 > [!NOTE]
-> 連接至 SQL Database 建立資料表的方法有很多種。 下列步驟會從 HDInsight 叢集使用 [FreeTDS](http://www.freetds.org/) 。
+> 有許多方式 tooconnect tooSQL 資料庫 toocreate 資料表。 hello 下列步驟使用[freetds 才能使用](http://www.freetds.org/)從 hello HDInsight 叢集。
 
 
-1. 使用以下命令在 HDInsight 叢集上安裝 FreeTDS：
+1. 使用下列命令 tooinstall freetds 才能使用 hello HDInsight 叢集上的 hello:
 
     ```
     sudo apt-get --assume-yes install freetds-dev freetds-bin
     ```
 
-2. 安裝 FreeTDS 後，請使用下列命令來連接至先前建立的 SQL Database 伺服器：
+2. 一旦安裝 freetds 才能使用之後，使用下列命令 tooconnect toohello SQL Database 伺服器您先前建立的 hello:
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <sqlLogin> -P <sqlPassword> -p 1433 -D oozietest
     ```
 
-    您會收到如以下文字的輸出：
+    您收到的輸出類似 toohello 下列文字：
 
         locale is "en_US.UTF-8"
         locale charset is "UTF-8"
         using default charset "UTF-8"
-        Default database being set to oozietest
+        Default database being set toooozietest
         1>
 
-3. 在 `1>` 提示字元輸入下列幾行：
+3. 在 hello`1>`提示字元中，輸入下列行 hello:
 
     ```
     CREATE TABLE [dbo].[mobiledata](
@@ -268,35 +268,35 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
     GO
     ```
 
-    輸入 `GO` 陳述式後，將評估先前的陳述式。 這些陳述式會建立工作流程所使用，名為 **mobiledata** 的資料表。
+    當 hello`GO`輸入陳述式、 評估 hello 前一個陳述式。 這些陳述式建立了名為**mobiledata** ，會由 hello 工作流程。
 
-    使用下列命令來確認已建立資料表：
+    已建立下列 hello 資料表的 tooverify 使用 hello:
 
     ```
     SELECT * FROM information_schema.tables
     GO
     ```
 
-    您會看到類似以下的文字：
+    您會看到下列文字的輸出類似 toohello:
 
     ```
     TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
     oozietest       dbo     mobiledata      BASE TABLE
     ```
 
-4. 在 `exit` at the `1>` 以結束 tsql 公用程式。
+4. 輸入`exit`在 hello`1>`提示 tooexit hello tsql 公用程式。
 
-## <a name="create-the-job-definition"></a>建立工作定義
+## <a name="create-hello-job-definition"></a>建立 hello 工作定義
 
-工作定義描述 workflow.xml 位於何處。 它也描述工作流程使用的其他檔案 (例如 useooziewf.hql) 位於何處。它也會定義工作流程中所使用的屬性值，以及相關聯的檔案。
+hello 工作定義描述 toofind hello workflow.xml 的位置。 它也會描述 where toofind hello 工作流程 （例如 useooziewf.hql。) 所使用的其他檔案它也會定義 hello 值的屬性 hello 工作流程中使用，而且相關聯的檔案。
 
-1. 使用以下命令取得預設儲存體的完整位址。 稍後在組態檔中會用到此位址：
+1. 使用下列命令 tooget hello 完整位址 hello 預設儲存體的 hello。 Hello 設定檔中會使用此位址，在不久後：
 
     ```
     sed -n '/<name>fs.default/,/<\/value>/p' /etc/hadoop/conf/core-site.xml
     ```
 
-    此命令會傳回類似以下 XML 的資訊：
+    此命令會傳回下列 XML 的資訊類似 toohello:
 
     ```xml
     <name>fs.defaultFS</name>
@@ -304,29 +304,29 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
     ```
 
     > [!NOTE]
-    > 若 HDInsight 叢集使用 Azure 儲存體做為預設儲存體，`<value>` 元素內容的開頭將會是 `wasb://`。 若改為使用 Azure Data Lake Store，則其開頭將會是 `adl://`。
+    > 如果 hello HDInsight 叢集會使用 Azure 儲存體為 hello 預設儲存體，hello`<value>`項目內容的開頭`wasb://`。 若改為使用 Azure Data Lake Store，則其開頭將會是 `adl://`。
 
-    儲存 `<value>` 元素的內容，因為在後續步驟將會用到它。
+    儲存 hello hello 內容`<value>`元素，因為它用於 hello 接下來的步驟。
 
-2. 使用以下命令取得叢集前端節點的 FQDN。 此資訊將用於叢集的 JobTracker 位址：
+2. 使用下列命令 tooget hello 叢集前端節點的 FQDN 的 hello。 這項資訊可用於 hello JobTracker hello 叢集位址：
 
     ```
     hostname -f
     ```
 
-    此命令會傳回類似以下文字的資訊：
+    這會傳回資訊的類似 toohello 下列文字：
 
     ```hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net```
 
-    用於 JobTracker 的連接埠是 8050，因此將用於 JobTracker 的完整位址是 `hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8050`。
+    hello 使用連接埠 hello JobTracker 是 8050，因此 hello 完整位址 toouse hello JobTracker `hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8050`。
 
-3. 使用以下命令建立 Oozie 工作定義組態：
+3. 使用下列 toocreate hello Oozie 工作定義組態 hello:
 
     ```
     nano job.xml
     ```
 
-4. 開啟 nano 編輯器後，請使用下列 XML 做為檔案的內容：
+4. 一旦 hello nano 編輯器隨即開啟，請使用 hello hello hello 檔案內容為下列 XML:
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -389,72 +389,72 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
     </configuration>
     ```
 
-   * 將 **wasb://mycontainer@mystorageaccount.blob.core.windows.net** 的所有執行個體取代為您之前收到的預設儲存體值。
+   * 所有執行個體 **wasb://mycontainer@mystorageaccount.blob.core.windows.net** 預設儲存體之前收到 hello 值。
 
      > [!WARNING]
-     > 若該路徑是 `wasb` 路徑，您必須使用完整路徑。 不要將它縮短為 `wasb:///`。
+     > 如果 hello 路徑`wasb`路徑，您必須使用 hello 完整路徑。 請勿它縮短 toojust `wasb:///`。
 
-   * 將 **JOBTRACKERADDRESS** 取代為您之前收到的 JobTracker/ResourceManager 位址。
-   * 用您 HDInsight 叢集的登入名稱取代 **YourName** 。
-   * 用您 Azure SQL Database 的資訊取代 **serverName**、**adminLogin** 和 **adminPassword**。
+   * 取代**JOBTRACKERADDRESS**以 hello 您稍早收到 JobTracker/ResourceManager 位址。
+   * 取代**YourName**與 hello HDInsight 叢集的登入名稱。
+   * 取代**serverName**， **adminLogin**，和**adminPassword** hello Azure SQL database 的資訊。
 
-     此檔案中大部分的資訊都會用來填入 workflow.xml 或 ooziewf.hql 檔案中所使用的值 (例如 ${nameNode})。
+     大部分的此檔案中的 hello 資訊是使用的 toopopulate hello 值用於 hello workflow.xml 或 ooziewf.hql 檔 （例如 ${nameNode}。）
 
      > [!NOTE]
-     > **oozie.wf.application.path** 項目會定義要在何處尋找 workflow.xml 檔案，該檔案包含此工作執行過的工作流程。
+     > hello **oozie.wf.application.path**項目會定義 where toofind hello workflow.xml 檔案，其中包含 hello 工作流程執行此作業。
 
-5. 依序按 Ctrl-X、**Y** 和 **Enter** 鍵以儲存檔案。
+5. 然後使用 Ctrl-X **Y**和**Enter** toosave hello 檔案。
 
-## <a name="submit-and-manage-the-job"></a>提交和管理工作
+## <a name="submit-and-manage-hello-job"></a>送出並管理 hello 工作
 
-下列步驟使用 Oozie 命令提交及管理叢集上的 Oozie 工作流程。 Oozie 命令是 [Oozie REST API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html)上的易記介面。
+hello 下列步驟使用 hello Oozie 命令 toosubmit 和管理 Oozie hello 叢集上的工作流程。 hello Oozie 命令是容易使用的介面，透過 hello [Oozie REST API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html)。
 
 > [!IMPORTANT]
-> 使用 Oozie 命令時，您必須使用 HDInsight 前端節點的 FQDN。 只有從叢集才能存取此 FQDN，或者，如果叢集位於 Azure 虛擬網路，就必須從同一個網路中的其他電腦來存取。
+> 當使用 hello Oozie 命令時，您必須使用 hello FQDN 的 hello HDInsight 叢集前端節點。 這個 FQDN 只能存取從 hello 叢集或 hello 叢集是否在 Azure 虛擬網路上，從 hello 上的其他機器相同網路。
 
 
-1. 使用以下命令取得 Oozie 服務的 URL：
+1. 使用下列 tooobtain hello URL toohello Oozie service hello:
 
     ```
     sed -n '/<name>oozie.base.url/,/<\/value>/p' /etc/oozie/conf/oozie-site.xml
     ```
 
-    此命令會傳回如以下 XML 的資訊：
+    這會傳回下列 XML 的資訊類似 toohello:
 
     ```xml
     <name>oozie.base.url</name>
     <value>http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie</value>
     ```
 
-    `http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie` 部分是要搭配 Oozie 命令使用的 URL。
+    hello`http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie`部分是 hello URL toouse 以 hello Oozie 命令。
 
-2. 使用以下命令建立 URL 的環境變數，讓您不必為每個命令輸入該 URL：
+2. 使用 hello hello url 遵循 toocreate 環境變數，所以您不需 tootype 會針對每個命令：
 
     ```
     export OOZIE_URL=http://HOSTNAMEt:11000/oozie
     ```
 
-    將 URL 取代為您稍早收到的 URL。
-3. 使用以下命令提交工作：
+    取代為您稍早收到 hello hello URL。
+3. 使用下列 toosubmit hello 作業 hello:
 
     ```
     oozie job -config job.xml -submit
     ```
 
-    此命令會從 **job.xml** 載入工作資訊，並將工作資訊提交至 Oozie，但不會執行該工作。
+    這個命令載入 hello 作業資訊從**job.xml**並將它提交 tooOozie，但無法執行它。
 
-    命令完成時，會傳回工作的 ID。 例如， `0000005-150622124850154-oozie-oozi-W`。 此 ID 將用來管理工作。
+    Hello 命令完成之後，它應該傳回 hello hello 作業識別碼。 例如： `0000005-150622124850154-oozie-oozi-W`。 這個識別碼是使用的 toomanage hello 作業。
 
-4. 使用以下命令檢視工作的狀態：
+4. 使用下列命令的 hello hello 工作檢視 hello 狀態：
 
     ```
     oozie job -info <JOBID>
     ```
 
     > [!NOTE]
-    > 將 `<JOBID>` 取代為上一個步驟中所傳回的 ID。
+    > 取代`<JOBID>`hello 上一個步驟中傳回以 hello 識別碼。
 
-    此命令會傳回類似以下文字的資訊：
+    這會傳回資訊的類似 toohello 下列文字：
 
     ```
     Job ID : 0000005-150622124850154-oozie-oozi-W
@@ -473,33 +473,33 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
     ------------------------------------------------------------------------------------------------------------------------------------
     ```
 
-    這項工作的狀態為 `PREP`。 這個狀態表示作業雖已建立但未啟動。
+    這項工作的狀態為 `PREP`。 這個狀態表示該 hello 作業所建立，但不是會啟動。
 
-5. 使用下列命令可啟動工作：
+5. 使用下列命令 toostart hello 作業 hello:
 
     ```
     oozie job -start JOBID
     ```
 
     > [!NOTE]
-    > 使用先前傳回的 ID 取代 `<JOBID>`。
+    > 取代`<JOBID>`以 hello 識別碼傳回前面。
 
-    如果您在使用此命令後檢查狀態，會發現作業為執行中狀態，並傳回作業內的動作資訊。
+    如果您檢查 hello 狀態這個命令之後，它處於執行狀態，並傳回 hello 作業中的 hello 動作的資訊。
 
-6. 工作順利完成後，您可以使用以下命令，確認是否已產生資料並匯出至 SQL Database 資料表：
+6. 一旦 hello 工作順利完成，您可以確認 hello 資料產生 toohello SQL 資料庫資料表使用匯出的 hello 下列命令：
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D oozietest
     ```
 
-    在 `1>` 提示字元輸入下列查詢：
+    在 hello`1>`提示字元中，輸入下列查詢的 hello:
 
     ```
     SELECT * FROM mobiledata
     GO
     ```
 
-    所傳回的資訊類似下列文字︰
+    傳回的 hello 資訊是類似 toohello 下列文字：
 
         deviceplatform  count
         Android 31591
@@ -510,79 +510,79 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
         Windows Phone   1791
         (6 rows affected)
 
-如需 Oozie 命令的詳細資訊，請參閱 [Oozie 命令列工具](https://oozie.apache.org/docs/4.1.0/DG_CommandLineTool.html)。
+如需有關 hello Oozie 命令的詳細資訊，請參閱[Oozie 命令列工具](https://oozie.apache.org/docs/4.1.0/DG_CommandLineTool.html)。
 
 ## <a name="oozie-rest-api"></a>Oozie REST API
 
-Oozie REST API 可讓您建置自己的工具來搭配 Oozie 使用。 以下為使用 Oozie REST API 時 HDInsight 的特定資訊：
+hello Oozie REST API 可讓您 toobuild 自己 Oozie 所使用的工具。 hello 下面是有關使用 hello Oozie REST API 的 HDInsight 特定資訊：
 
-* **URI**：可從叢集的外部 (位於 `https://CLUSTERNAME.azurehdinsight.net/oozie`) 存取 REST API
+* **URI**: hello 可從外部 hello 叢集存取 REST API`https://CLUSTERNAME.azurehdinsight.net/oozie`
 
-* **驗證**：使用叢集的 HTTP 帳戶 (admin) 和密碼來驗證 API。 例如：
+* **驗證**: toohello API 使用 hello 叢集 HTTP 帳戶 （管理員） 和密碼進行驗證。 例如：
 
     ```
     curl -u admin:PASSWORD https://CLUSTERNAME.azurehdinsight.net/oozie/versions
     ```
 
-如需使用 Oozie REST API 的詳細資訊，請參閱 [Oozie Web 服務 API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html)。
+如需有關使用 hello Oozie REST API 的詳細資訊，請參閱[Oozie Web 服務 API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html)。
 
 ## <a name="oozie-web-ui"></a>Oozie Web UI
 
-Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。 Web UI 可讓您檢視下列資訊︰
+hello Oozie Web UI hello 叢集上提供網頁 hello Oozie 工作狀態檢視。 hello web UI 可讓您 tooview hello 下列資訊：
 
 * 工作狀態
 * 工作定義
 * 組態
-* 工作中的動作圖表
-* 工作的記錄
+* Hello 作業中的 hello 動作的圖形
+* 記錄檔中的 hello 工作
 
 您也可以檢視工作內的動作詳細資料。
 
-若要存取 Oozie Web UI，請依照下列步驟進行：
+tooaccess hello Oozie Web UI，請使用下列步驟的 hello:
 
-1. 建立 HDInsight 叢集的 SSH 通道。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH 通道](hdinsight-linux-ambari-ssh-tunnel.md)文件。
+1. 建立 SSH 通道 toohello HDInsight 叢集。 如需資訊，請參閱 hello[使用 SSH 通道，與 HDInsight](hdinsight-linux-ambari-ssh-tunnel.md)文件。
 
-2. 建立通道後，請在網頁瀏覽器中開啟 Ambari Web UI。 Ambari 網站的 URI 是 **https://CLUSTERNAME.azurehdinsight.net**。 請將 **CLUSTERNAME** 取代為您的 Linux 型 HDInsight 叢集名稱。
+2. 一旦建立通道之後，請 web 瀏覽器中開啟 hello Ambari web UI。 hello URI hello Ambari 站台是**https://CLUSTERNAME.azurehdinsight.net**。 取代**CLUSTERNAME** hello 以 Linux 為基礎的 HDInsight 叢集名稱。
 
-3. 在頁面左邊選取 [Oozie]，然後依序選取 [快速連結] 和 [Oozie Web UI]。
+3. 從 hello hello 頁面的左側，選取**Oozie**，然後**快速連結**，最後再**Oozie Web UI**。
 
-    ![功能表的圖](./media/hdinsight-use-oozie-linux-mac/ooziewebuisteps.png)
+    ![hello 功能表的影像](./media/hdinsight-use-oozie-linux-mac/ooziewebuisteps.png)
 
-4. Oozie Web UI 預設會顯示執行中的工作流程工作。 若要查看所有的工作流程工作，請選取 [所有工作] 。
+4. hello Oozie Web UI 的預設值 toodisplaying 執行工作流程工作。 所有的工作流程工作，選取 toosee**所有工作**。
 
     ![顯示的所有工作](./media/hdinsight-use-oozie-linux-mac/ooziejobs.png)
 
-5. 選取一項工作，以檢視該工作的詳細資訊。
+5. 選取作業 tooview hello 工作的詳細資訊。
 
     ![工作資訊](./media/hdinsight-use-oozie-linux-mac/jobinfo.png)
 
-6. 您可以在 [Job Info (工作資訊)] 索引標籤中看到基本的工作資訊，以及工作內的個別動作。 使用上方的索引標籤，即可檢視 Job Definition (工作定義)、Job Configuration (工作組態)，以及存取 Job Log (工作記錄)，或檢視工作的定向非循環圖 (DAG)。
+6. 從 hello 工作資訊 索引標籤，您可以查看基本作業資訊和 hello hello 作業內的個別動作。 使用 hello 索引標籤頂端 hello 您可以檢視 hello 工作定義，作業設定存取 hello 作業記錄，或檢視導向非循環圖 (DAG) 的 hello 作業。
 
-   * **作業記錄**：選取 [取得記錄] 按鈕，以取得作業的所有記錄，或使用 [輸入搜尋篩選條件] 欄位來篩選記錄
+   * **作業記錄**： 選取 hello **GetLogs**按鈕 tooget hello 作業的所有記錄檔，或使用 hello**輸入的搜尋篩選器**欄位 toofilter 記錄檔
 
        ![工作記錄](./media/hdinsight-use-oozie-linux-mac/joblog.png)
 
-   * **JobDAG**：DAG 是將整個工作流程所採取的資料路徑予以圖形化的概觀
+   * **JobDAG**: hello DAG 是 hello 資料路徑，引導他們完成 hello 工作流程的圖形化概觀
 
        ![工作 DAG](./media/hdinsight-use-oozie-linux-mac/jobdag.png)
 
-7. 在 [作業資訊] 索引標籤中選取其中一個動作，以顯示該動作的資訊。 例如，選取 **RunHiveScript** 動作。
+7. 選取其中一個 hello 動作從 hello**作業資訊** 索引標籤會顯示 hello 動作的資訊。 例如，選取 hello **RunHiveScript**動作。
 
     ![動作資訊](./media/hdinsight-use-oozie-linux-mac/action.png)
 
-8. 您可以查看動作的詳細資料，例如 **Console URL** (主控台 URL) 的連結。 此連結可用來檢視工作的 JobTracker 資訊。
+8. 您可以看到 hello 動作，例如連結 toohello 詳細資料**主控台 URL**。 這個連結可以在使用的 tooview JobTracker hello 工作資訊。
 
 ## <a name="scheduling-jobs"></a>排程工作
 
-協調器可讓您指定工作的開始時間、結束時間和發生頻率。 若要定義工作流程的排程，請依照下列步驟進行：
+hello 協調器可讓您 toospecify 工作的開始、 結束和出現頻率。 toodefine hello 工作流程中，使用下列步驟的 hello 的排程：
 
-1. 使用以下命令建立名為 **coordinator.xml** 的檔案：
+1. 遵循 toocreate 名為的檔案使用 hello **coordinator.xml**:
 
     ```
     nano coordinator.xml
     ```
 
-    使用下列 XML 做為檔案的內容：
+    使用下列 XML 當做 hello hello 檔案內容的 hello:
 
     ```xml
     <coordinator-app name="my_coord_app" frequency="${coordFrequency}" start="${coordStart}" end="${coordEnd}" timezone="${coordTimezone}" xmlns="uri:oozie:coordinator:0.4">
@@ -595,33 +595,33 @@ Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。 Web UI �
     ```
 
     > [!NOTE]
-    > `${...}` 變數在執行階段將被工作定義中的值取代。 這些變數分為別：
+    > hello`${...}`以 hello 工作定義，在執行階段中的值取代變數。 hello 變數包括：
     >
-    > * `${coordFrequency}`：執行工作執行個體的間隔時間。
-    > ** `${coordStart}`：工作開始時間。
-    > * `${coordEnd}`：工作結束時間。
-    > * `${coordTimezone}`：協調器工作位在固定時區，不受日光節約時間影響 (通常使用 UTC 表示)。 此時區稱為「Oozie 處理時區」。
-    > * `${wfPath}`：workflow.xml 的路徑。
+    > * `${coordFrequency}`： 執行 hello 工作的執行個體之間的時間。
+    > ** `${coordStart}`: hello 工作開始時間。
+    > * `${coordEnd}`: hello 工作結束時間。
+    > * `${coordTimezone}`：協調器工作位在固定時區，不受日光節約時間影響 (通常使用 UTC 表示)。 這個時區稱為 hello"Oozie 處理 timezone。 」
+    > * `${wfPath}`: hello 路徑 toohello workflow.xml。
 
-2. 若要儲存檔案，請使用 Ctrl-X、**Y** 和 **Enter** 鍵。
+2. toosave hello 檔案，請使用 Ctrl-X **Y**，和**Enter**。
 
-3. 使用以下命令將該檔案複製到此作業的工作目錄：
+3. 使用下列命令 toocopy hello 檔案 toohello 工作目錄為此工作的 hello:
 
     ```
     hadoop fs -put coordinator.xml /tutorials/useoozie/coordinator.xml
     ```
 
-4. 使用以下命令修改 **job.xml** 檔案：
+4. 使用 hello 遵循 toomodify hello **job.xml**檔案：
 
     ```
     nano job.xml
     ```
 
-    進行下列變更：
+    進行下列變更 hello:
 
-   * 若要指示 Oozie 執行協調器檔案而非工作流程，請將 `<name>oozie.wf.application.path</name>` 變更為 `<name>oozie.coord.application.path</name>`。
+   * tooinstruct oozie toorun hello 協調器檔案而不是 hello 工作流程中，變更`<name>oozie.wf.application.path</name>`太`<name>oozie.coord.application.path</name>`。
 
-   * 若要設定協調器使用的 `workflowPath` 變數，請新增下列 XML：
+   * tooset hello `workflowPath` hello 協調器 中，所使用的變數加入下列 XML 的 hello:
 
         ```xml
         <property>
@@ -630,9 +630,9 @@ Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。 Web UI �
         </property>
         ```
 
-       將 `wasb://mycontainer@mystorageaccount.blob.core.windows` 文字取代為在 job.xml 檔案之其他項目中使用的值。
+       取代 hello `wasb://mycontainer@mystorageaccount.blob.core.windows` hello job.xml 檔案中的其他項目中所使用的 hello 值的文字。
 
-   * 若要定義協調器的開始時間、結束時間和頻率，請新增下列 XML：
+   * toodefine hello 開始、 結束和頻率 hello 協調器 中，加入下列 XML 的 hello:
 
         ```xml
         <property>
@@ -656,89 +656,89 @@ Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。 Web UI �
         </property>
         ```
 
-       這些值會將開始時間設為 2017 年 5 月 10 日下午 12:00，將結束時間設為 2017 年 5 月 12 日。 執行此工作的間隔是每日。 頻率的單位是分鐘，因此 24 小時 x 60 分鐘 = 1440 分鐘。 最後，時區會設定為 UTC。
+       這些值來設定 hello 開始時間 too12: 00 PM 2017 年 10 hello 的結束時間 tooMay 12，2017年。 hello 間隔為每日執行此作業。 hello 頻率是以分鐘為單位，因此 24 小時 x 60 分鐘 = 1440年分鐘。 最後，hello 時區會設定 tooUTC。
 
-5. 依序按 Ctrl-X、**Y** 和 **Enter** 鍵以儲存檔案。
+5. 然後使用 Ctrl-X **Y**和**Enter** toosave hello 檔案。
 
-6. 若要執行工作，請使用以下命令：
+6. 下列命令使用 hello toorun hello 工作：
 
     ```
     oozie job -config job.xml -run
     ```
 
-    此命令會提交並啟動工作。
+    此命令送出，並開始 hello 作業。
 
-7. 如果您瀏覽 Oozie Web UI，並選取 [Coordinator Jobs (協調器工作)] 索引標籤，您會看到如下圖的資訊：
+7. 如果您瀏覽 hello Oozie Web UI，並選取 hello**協調者作業**索引標籤上，您會看到下列映像的資訊類似 toohello:
 
     ![協調器工作索引標籤](./media/hdinsight-use-oozie-linux-mac/coordinatorjob.png)
 
-    [Next Materialization (下次具體化)] 項目包含下次工作執行的時間。
+    hello**下一步具體化**項目包含 hello hello 工作執行的下一次。
 
-8. 與先前的工作流程作業類似，在 Web UI 中選取作業項目會顯示作業的資訊：
+8. 類似 toohello 舊版工作流程工作，在 hello web UI 中選取 hello 工作項目會顯示 hello 作業有關的資訊：
 
     ![協調器工作資訊](./media/hdinsight-use-oozie-linux-mac/coordinatorjobinfo.png)
 
     > [!NOTE]
-    > 此影像只會顯示工作的成功執行項目，而不是排程工作流程內的個別動作。 若要查看這些動作，請選取其中一個 [動作]  項目。
+    > 此映像只會顯示成功執行 hello 作業不是個別 hello 排定的工作流程內的動作。 選取其中一個 hello toosee**動作**項目。
 
     ![動作資訊](./media/hdinsight-use-oozie-linux-mac/coordinatoractionjob.png)
 
 ## <a name="troubleshooting"></a>疑難排解
 
-Oozie UI 可讓您檢視 Oozie 記錄。 它也包含工作流程啟動之 MapReduce 工作的 JobTracker 記錄連結。 疑難排解的模式應該是：
+hello Oozie UI 可讓您 tooview Oozie 記錄檔。 它也包含連結 tooJobTracker 記錄檔中的 hello 工作流程啟動 MapReduce 工作。 如需疑難排解的 hello 模式應該是：
 
-1. 在 Oozie Web UI 中檢視工作。
+1. 檢視 hello Oozie Web UI 中的工作。
 
-2. 如果發生錯誤或特定動作失敗，請選取該動作，以查看 [Error Message] \(錯誤訊息)  欄位是否有提供失敗的詳細資訊。
+2. 如果沒有錯誤或特定的動作失敗，選取如果 hello hello 動作 toosee**錯誤訊息**欄位提供有關 hello 失敗的詳細資訊。
 
-3. 如果有提供，請使用動作的 URL 以檢視動作的更多詳細資料 (例如 JobTracker 記錄)。
+3. 如果有的話，使用 hello URL hello 動作 tooview 從更多詳細資料 （例如 JobTracker 記錄） hello 動作。
 
-以下是您可能會遇到的特定錯誤，以及解決這些問題的方法。
+hello 以下是您可能會遇到的特定錯誤及如何 tooresolve 它們。
 
 ### <a name="ja009-cannot-initialize-cluster"></a>JA009：無法初始化叢集
 
-**徵兆**：作業狀態會變更為 **SUSPENDED**。 工作的詳細資料會將 RunHiveScript 狀態顯示為 **START_MANUAL**。 選取該動作會顯示下列錯誤訊息：
+**徵兆**: hello 作業狀態變更太**SUSPENDED**。 Hello 工作的詳細資料顯示 hello RunHiveScript 狀態為**START_MANUAL**。 選取 hello 動作會顯示下列錯誤訊息的 hello:
 
     JA009: Cannot initialize Cluster. Please check your configuration for map
 
-**原因**：**job.xml** 檔案中使用的 WASB 位址未包含儲存體容器或儲存體帳戶名稱。 WASB 位址格式必須是 `wasb://containername@storageaccountname.blob.core.windows.net`。
+**可能的原因**: hello WASB 位址用於 hello **job.xml**檔案不包含 hello 儲存體容器或儲存體帳戶名稱。 hello WASB 位址格式必須為`wasb://containername@storageaccountname.blob.core.windows.net`。
 
-**解決方法**：變更工作所使用的 WASB 位址。
+**解析**： 變更 hello 作業所使用的 hello WASB 位址。
 
-### <a name="ja002-oozie-is-not-allowed-to-impersonate-ltuser"></a>JA002：不允許 Oozie 模擬 &lt;USER>
+### <a name="ja002-oozie-is-not-allowed-tooimpersonate-ltuser"></a>JA002: Oozie 不允許 tooimpersonate&lt;使用者 >
 
-**徵兆**：作業狀態會變更為 **SUSPENDED**。 工作的詳細資料會將 RunHiveScript 狀態顯示為 **START_MANUAL**。 選取該動作會顯示下列錯誤訊息：
+**徵兆**: hello 作業狀態變更太**SUSPENDED**。 Hello 工作的詳細資料顯示 hello RunHiveScript 狀態為**START_MANUAL**。 選取 hello 動作會顯示下列錯誤訊息的 hello:
 
-    JA002: User: oozie is not allowed to impersonate <USER>
+    JA002: User: oozie is not allowed tooimpersonate <USER>
 
-**原因**：目前的權限設定不允許 Oozie 模擬指定的使用者帳戶。
+**可能的原因**： 目前的權限設定不允許 Oozie tooimpersonate hello 指定使用者帳戶。
 
-**解決方法**：Oozie 可以模擬 **users** 群組中的使用者。 使用 `groups USERNAME` 查看使用者帳戶所屬的群組。 如果使用者不是 **users** 群組的成員，請使用以下命令將使用者新增至群組：
+**解析**: Oozie hello 中允許 tooimpersonate 使用者**使用者**群組。 使用 hello `groups USERNAME` hello 使用者帳戶的 toosee hello 群組是的成員。 如果 hello 使用者不屬於 hello**使用者**群組中，使用下列命令 tooadd hello 使用者 toohello 群組 hello:
 
     sudo adduser USERNAME users
 
 > [!NOTE]
-> 這可能需要幾分鐘，HDInsight 才能辨識出使用者已新增至該群組。
+> 可能需要幾分鐘的時間才能 HDInsight 辨識該 hello 使用者已新增 toohello 群組。
 
 ### <a name="launcher-error-sqoop"></a>啟動器錯誤 (Sqoop)
 
-**徵兆**：作業狀態會變更為 **KILLED**。 工作的詳細資料會將 RunSqoopExport 狀態顯示為 **ERROR**。 選取該動作會顯示下列錯誤訊息：
+**徵兆**: hello 作業狀態變更太**KILLED**。 Hello 工作的詳細資料顯示 hello RunSqoopExport 狀態為**錯誤**。 選取 hello 動作會顯示下列錯誤訊息的 hello:
 
     Launcher ERROR, reason: Main class [org.apache.oozie.action.hadoop.SqoopMain], exit code [1]
 
-**原因**：Sqoop 無法載入存取資料庫時所需的資料庫驅動程式。
+**可能的原因**: Sqoop 是無法 tooload hello 資料庫驅動程式需要的 tooaccess hello 資料庫。
 
-**解決方法**：從 Oozie 工作使用 Sqoop 時，必須將資料庫驅動程式與工作所使用的其他資源 (例如 workflow.xml) 包含在一起。 您還必須從 workflow.xml 的 `<sqoop>...</sqoop>` 區段，參考含有資料庫驅動程式的封存。
+**解析**： 當使用 Sqoop 從 Oozie 作業，您必須包含以 hello hello 資料庫驅動程式 hello 作業所使用其他資源 （例如 hello workflow.xml)。 也會參考包含 hello 資料庫驅動程式從 hello hello 封存`<sqoop>...</sqoop>`hello workflow.xml 一節。
 
-例如，您可以針對本文件中的工作使用下列步驟：
+比方說，這份文件中的 hello 作業，您會使用 hello 下列步驟：
 
-1. 將 sqljdbc4.1.jar 檔複製到 /tutorials/useoozie 目錄：
+1. 複製 hello sqljdbc4.1.jar 檔案 toohello /tutorials/useoozie 目錄：
 
     ```
     hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc41.jar /tutorials/useoozie/sqljdbc41.jar
     ```
 
-2. 修改 workflow.xml，在 `</sqoop>` 上方用新的一行加入下列 XML：
+2. 修改下列新的一行上述 XML hello workflow.xml tooadd hello `</sqoop>`:
 
     ```xml
     <archive>sqljdbc41.jar</archive>
@@ -746,7 +746,7 @@ Oozie UI 可讓您檢視 Oozie 記錄。 它也包含工作流程啟動之 MapRe
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已了解如何定義 Oozie 工作流程，以及如何執行 Oozie 工作。 若要深入了解如何使用 HDInsight，請參閱下列文章：
+在本教學課程中，您學到如何 toodefine Oozie 工作流程以及 toorun Oozie 作業。 toolearn 進一步了解使用 HDInsight，請參閱下列文章的 hello:
 
 * [搭配 HDInsight 使用以時間為基礎的 Hadoop Oozie 協調器][hdinsight-oozie-coordinator-time]
 * [在 HDInsight 中上傳 Hadoop 作業的資料][hdinsight-upload-data]

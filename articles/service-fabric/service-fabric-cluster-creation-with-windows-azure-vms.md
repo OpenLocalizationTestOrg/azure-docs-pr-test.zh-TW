@@ -1,6 +1,6 @@
 ---
-title: "建立具有執行 Windows 之 Azure VM 的獨立叢集 | Microsoft Docs"
-description: "了解如何在執行 Windows Server 的 Azure 虛擬機器上建立和管理 Azure Service Fabric 叢集。"
+title: "包含執行 Windows Azure Vm 叢集 aaaCreate 獨立 |Microsoft 文件"
+description: "深入了解如何 toocreate 和管理執行 Windows Server 的 Azure 虛擬機器上的 Azure Service Fabric 叢集。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -15,22 +15,22 @@ ms.workload: NA
 ms.date: 06/21/2017
 ms.author: ryanwi;chackdan
 redirect_url: /azure/service-fabric/service-fabric-cluster-creation-via-arm
-ms.openlocfilehash: f8a0305a22c00f9bdbdb1bdb06dc299cccee23dc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8900204fe69887a7a0ca54b06e0d32534421bcfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-three-node-standalone-service-fabric-cluster-with-azure-virtual-machines-running-windows-server"></a>建立三個具有執行 Windows Server 之 Azure 虛擬機器的節點獨立 Service Fabric 叢集
-本文說明如何使用適用於 Windows Server 的獨立 Service Fabric 安裝程式，在 Windows 型 Azure 虛擬機器 (VM) 上建立叢集。 這此案例為[建立和管理在 Windows Server 上執行的叢集](service-fabric-cluster-creation-for-windows-server.md)的特殊案例，其 VM 是[執行 Windows Server 的 Azure VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，但您不是在建立 [Azure 雲端型 Service Fabric 叢集](service-fabric-cluster-creation-via-portal.md)。 遵循此模式的差別，在於透過下列步驟所建立的獨立 Service Fabric 叢集是完全由您管理，而 Azure 雲端型 Service Fabric 叢集則是由 Service Fabric 資源提供者來管理和升級。
+本文說明如何 toocreate 的 windows Azure 虛擬機器 (Vm) 上的叢集，使用 hello 獨立 Service Fabric 安裝程式的 Windows 伺服器。 hello 案例是特殊案例[建立和管理 Windows Server 上執行叢集](service-fabric-cluster-creation-for-windows-server.md)hello Vm 所在[執行 Windows Server 的 Azure Vm](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，但是您不需要建立[Azure以雲端為基礎的 Service Fabric 叢集](service-fabric-cluster-creation-via-portal.md)。 遵循此模式中的 hello 差異並沒有那麼 hello 步驟所建立的 hello 獨立 Service Fabric 叢集完全受您，而管理的 hello Azure 雲端服務網狀架構叢集，並由 hello Service Fabric 升級資源提供者。
 
-## <a name="steps-to-create-the-standalone-cluster"></a>獨立叢集的建立步驟
-1. 登入 Azure 入口網站，並在資源群組中建立新的 Windows Server 2012 R2 Datacenter 或 Windows Server 2016 Datacenter VM。 如需詳細資訊，請閱讀[在 Azure 入口網站中建立 Windows VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 一文。
-2. 將數個額外的 VM 新增至相同的資源群組。 確定每個 VM 在建立時具有相同的系統管理員使用者名稱和密碼。 一旦建立好，您應該會在相同的虛擬網路中看到這三個 VM。
-3. 使用 [[伺服器管理員] &gt; [本機伺服器]](https://technet.microsoft.com/library/jj134147.aspx)儀表板連接到每個 VM 並關閉 Windows 防火牆。 這可確保網路流量可在電腦之間進行通訊。 在連接到每個電腦時，透過開啟命令提示字元並輸入 `ipconfig`來取得 IP 位址。 或者您可以在入口網站上看見每一部機器的 IP 位址，方法是選取資源群組的虛擬網路資源，並檢查為這些機器建立的網路介面。
-4. 連接到其中一個 VM，並測試您是否可以成功 ping 到其他兩個 VM。
-5. 連接到其中一個 VM，並 [下載適用於 Windows Server 的獨立 Service Fabric 封裝](http://go.microsoft.com/fwlink/?LinkId=730690) 到電腦上的新資料夾，然後解壓縮封裝。
-6. 在記事本開啟「ClusterConfig.Unsecure.MultiMachine.json」  檔案，然後使用電腦的三個 IP 位址編輯每個節點。 在頂端變更叢集名稱，然後儲存檔案。  叢集資訊清單的部分範例如下所示。
+## <a name="steps-toocreate-hello-standalone-cluster"></a>步驟 toocreate hello 獨立叢集
+1. 登入 toohello Azure 入口網站，並在資源群組中建立新的 Windows Server 2012 R2 Datacenter 或 Windows Server 2016 資料中心的 VM。 閱讀文章 hello [hello Azure 入口網站中建立的 Windows VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)如需詳細資訊。
+2. 加入一些其他的 Vm toohello 相同的資源群組。 請確定每個 hello Vm 有 hello 相同的系統管理員使用者名稱和密碼時建立。 您應該會看見 hello 中的所有三個 Vm 建立之後相同的虛擬網路。
+3. 連接的 hello Vm tooeach 並關閉 Windows 防火牆使用 hello hello[伺服器管理員 中，本機伺服器儀表板](https://technet.microsoft.com/library/jj134147.aspx)。 這可確保 hello 網路流量，可以 hello 機器之間進行通訊。 連接的 tooeach 機器時，請開啟命令提示字元並輸入取得 hello 的 IP 位址`ipconfig`。 或者，您可以看到 hello IP hello 入口網站中，選取 hello hello 資源群組的虛擬網路資源，並檢查這些機器的每個建立的 hello 網路介面上的每部機器的位址。
+4. 連接的 hello Vm tooone 和測試，您可以 ping 成功 hello 其他兩個 Vm。
+5. 連接的 hello Vm tooone 和[hello 獨立 Service Fabric 封裝下載適用於 Windows Server](http://go.microsoft.com/fwlink/?LinkId=730690) hello 上的新資料夾到電腦，並擷取 hello 封裝。
+6. 開啟 hello *ClusterConfig.Unsecure.MultiMachine.json* [記事本] 中，並編輯 hello 機器 hello 三個 IP 位址與每個節點。 變更在 hello 頂端 hello 叢集名稱，並儲存 hello 檔案。  Hello 叢集資訊清單的部分範例如下所示。
    
     ```
     {
@@ -61,20 +61,20 @@ ms.lasthandoff: 07/11/2017
         }
         ],
     ```
-7. 若您想要讓此叢集成為安全的叢集，請決定您要使用的安全性措施，並遵循相關連結的步驟：[X509 憑證](service-fabric-windows-cluster-x509-security.md)或 [Windows 安全性](service-fabric-windows-cluster-windows-security.md)。 若使用 Windows 安全性設定叢集，您必須設定網域控制站以管理 Active Directory。 請注意，不支援使用網域控制站電腦做為 Service Fabric 節點。
-8. 開啟 [PowerShell ISE 視窗](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/introducing-the-windows-powershell-ise)。 瀏覽至所下載獨立安裝程式封裝的解壓縮資料夾，然後儲存叢集設定檔案。 執行下列 PowerShell 命令來部署叢集：
+7. 如果您想要這個 toobe 安全的叢集，決定 hello 安全性措施，toouse 然後遵循 hello hello 步驟相關聯的連結： [X509 憑證](service-fabric-windows-cluster-x509-security.md)或[Windows 安全性](service-fabric-windows-cluster-windows-security.md)。 如果設定使用 Windows 安全性的 hello 叢集，您必須設定 Active Directory 網域控制站 toomanage tooset。 請注意，不支援使用網域控制站電腦做為 Service Fabric 節點。
+8. 開啟 [PowerShell ISE 視窗](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/introducing-the-windows-powershell-ise)。 瀏覽 toohello 資料夾您擷取 hello 下載的獨立安裝程式封裝並儲存 hello 叢集組態檔。 執行下列 PowerShell 命令 toodeploy hello 叢集 hello:
    
     ```
     .\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.Unsecure.MultiMachine.json
     ```
 
-該指令碼將會於遠端設定 Service Fabric 叢集，並應該會隨著部署推出報告進度。
+hello 指令碼都會從遠端設定 hello Service Fabric 叢集，而且應該報告進度，因為透過復原部署。
 
-9. 大約 1 分鐘過後，您就可以透過使用其中一部電腦的 IP 位址連接到 Service Fabric Explorer (例如使用 `http://10.1.0.5:19080/Explorer/index.html`)，來檢查叢集是否已運作。 
+9. 約一分鐘，您可以檢查如果 hello 叢集運作藉由連接 toohello 之後 Service Fabric 總管使用其中一種 hello 機器的 IP 位址，例如使用`http://10.1.0.5:19080/Explorer/index.html`。 
 
 ## <a name="next-steps"></a>後續步驟
 * [在 Windows Server 或 Linux 上建立獨立的 Service Fabric 叢集](service-fabric-deploy-anywhere.md)
-* [在獨立 Service Fabric 叢集中新增或移除節點](service-fabric-cluster-windows-server-add-remove-nodes.md)
+* [新增或移除節點 tooa 獨立 Service Fabric 叢集](service-fabric-cluster-windows-server-add-remove-nodes.md)
 * [獨立 Windows 叢集的組態設定](service-fabric-cluster-manifest.md)
 * [使用 Windows 安全性保護 Windows 上的獨立叢集](service-fabric-windows-cluster-windows-security.md)
 * [使用 X509 憑證保護 Windows 上的獨立叢集](service-fabric-windows-cluster-x509-security.md)

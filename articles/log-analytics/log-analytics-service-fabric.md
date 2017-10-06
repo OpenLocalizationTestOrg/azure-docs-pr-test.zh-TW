@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 以 Azure Log Analytics 評估 Service Fabric 應用程式 | Microsoft Docs"
-description: "您可以在 Log Analytics 中使用 PowerShell，使用 Service Fabric 解決方案評估 Service Fabric 應用程式、微服務、節點和叢集的風險和健全狀況。"
+title: "Service Fabric 應用程式以使用 PowerShell 的 Azure Log Analytics aaaAssess |Microsoft 文件"
+description: "您可以使用 hello Service Fabric 方案中使用 PowerShell tooassess hello 風險和健全狀況服務的網狀架構應用程式、 微服務、 節點和叢集的記錄分析。"
 services: log-analytics
 documentationcenter: 
 author: niniikhena
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/06/2017
 ms.author: nini
-ms.openlocfilehash: ca86787e344aa5e9e68934dee6e9e83aeb4cc340
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3f6d6c0df02d6d453b77e50b75b64bf7eb73bbbf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="assess-azure-service-fabric-applications-and-micro-services-with-powershell"></a>使用 PowerShell 評估 Azure Service Fabric 應用程式和微服務
 > [!div class="op_single_selector"]
@@ -30,51 +30,51 @@ ms.lasthandoff: 08/18/2017
 
 ![Service Fabric 符號](./media/log-analytics-service-fabric/service-fabric-assessment-symbol.png)
 
-這篇文章說明如何在 Log Analytics 中使用 Service Fabric 解決方案，協助識別整個 Service Fabric 叢集的問題並且進行疑難排解。 其可幫助您瞭解 Service Fabric 節點如何執行，以及您的應用程式與微服務的執行狀況。
+本文說明如何 toouse hello Service Fabric 方案中記錄分析 toohelp 識別及疑難排解問題跨 Service Fabric 叢集。 其可幫助您瞭解 Service Fabric 節點如何執行，以及您的應用程式與微服務的執行狀況。
 
-Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，方法是從 Azure WAD 資料表收集此資料。 接著 Log Analytics 會讀取下列 Service Fabric 架構事件：
+hello Service Fabric 解決方案會使用從您服務網狀架構的 Vm，Azure 診斷資料收集這項資料從 Azure WAD 資料表。 記錄分析會接著讀取 hello 遵循 Service Fabric 架構事件：
 
 - **可靠服務事件**
 - **動作項目事件**
 - **運作事件**
 - **自訂 ETW 事件**
 
-Service Fabric 解決方案儀表板會向您顯示 Service Fabric 環境中值得注意的問題和相關事件。
+hello Service Fabric 方案儀表板會顯示 Service Fabric 環境中您值得注意的問題和相關的事件。
 
-## <a name="installing-and-configuring-the-solution"></a>安裝和設定方案
-請遵循這三個簡單步驟以安裝及設定解決方案︰
+## <a name="installing-and-configuring-hello-solution"></a>安裝和設定 hello 方案
+請依照下列三個簡易步驟 tooinstall，並設定 hello 方案：
 
-1. 請將您用來建立所有叢集資源 (包括儲存體帳戶) 的 Azure 訂用帳戶與您的工作區建立關聯。 請參閱[開始使用 Log Analytics](log-analytics-get-started.md)，以取得建立 Log Analytics 工作區的詳細資訊。
-2. 設定 Log Analytics 以收集及檢視 Service Fabric 記錄檔。
-3. 在您的工作區中啟用 Service Fabric 解決方案。
+1. 建立 hello 您使用 toocreate 所有的叢集資源，包括使用的工作區的儲存體帳戶的 Azure 訂用帳戶的關聯。 請參閱[開始使用 Log Analytics](log-analytics-get-started.md)，以取得建立 Log Analytics 工作區的詳細資訊。
+2. 設定記錄分析 toocollect，並檢視 Service Fabric 記錄檔。
+3. 啟用工作區中的 hello Service Fabric 解決方案。
 
-## <a name="configure-log-analytics-to-collect-and-view-service-fabric-logs"></a>設定 Log Analytics 以收集及檢視 Service Fabric 記錄檔
-在本節中，您將學習如何設定 Log Analytics 以擷取 Service Fabric 記錄檔。 記錄檔可讓您使用 OMS 入口網站，針對叢集或叢集中所執行的應用程式與服務，檢視、分析其中的問題，並且進行疑難排解。
+## <a name="configure-log-analytics-toocollect-and-view-service-fabric-logs"></a>設定記錄分析 toocollect 並檢視 Service Fabric 記錄檔
+在本節中，您學會 tooconfigure 記錄分析 tooretrieve Service Fabric 記錄的方式。 hello 記錄 tooview 可讓您、 分析和疑難排解問題，在您的叢集或 hello 應用程式和服務在該叢集中，使用 hello OMS 入口網站中執行。
 
 > [!NOTE]
-> 設定 Azure 診斷擴充功能，以上傳儲存體資料表的記錄。 資料表必須符合 Log Analytics 尋找的項目。 如需詳細資訊，請參閱[使用 Azure 診斷收集記錄](../service-fabric/service-fabric-diagnostics-how-to-setup-wad.md)。 這份文章中的組態設定範例將顯示儲存體資料表的名稱。 在叢集上設定好診斷，並且將記錄檔上傳至儲存體帳戶之後，下一個步驟便是設定 Log Analytics 來收集這些記錄檔。
+> 設定 hello Azure 診斷擴充功能 tooupload hello 記錄的儲存體資料表。 hello 資料表必須符合記錄分析外觀。 如需詳細資訊，請參閱[toocollect 使用 Azure 診斷的記錄方式](../service-fabric/service-fabric-diagnostics-how-to-setup-wad.md)。 本文中的 hello 組態設定範例會顯示 hello 儲存體資料表應該是何種 hello 名稱。 一旦診斷 hello 叢集上設定，並為上傳記錄檔 tooa 儲存體帳戶，hello 下一個步驟是 tooconfigure 記錄分析 toocollect 這些記錄檔。
 >
 >
 
-確定您更新 **template.json** 檔案中的 **EtwEventSourceProviderConfiguration** 區段，以在藉由執行 **deploy.ps1** EventSources 的項目。 要上傳的資料表與 (ETWEventTable) 相同。 目前，Log Analytics 只能從 *WADETWEventTable* 資料表中讀取應用程式 ETW 事件。
+請務必更新 hello **EtwEventSourceProviderConfiguration** > 一節中 hello **template.json**檔 tooadd hello 新 EventSources 套用 hello 組態之前更新的項目執行**deploy.ps1**。 hello 資料表上傳為 hello 相同為 (ETWEventTable)。 在 hello 的時刻，記錄分析只能讀取應用程式的 ETW 事件從 hello *WADETWEventTable*資料表。
 
-下列工具是用來執行此章節中的某些作業：
+hello 下列工具將使用的 tooperform 一些在這一節中的 hello 作業：
 
 * Azure PowerShell
 * [Operations Management Suite](http://www.microsoft.com/oms)
 
-### <a name="configure-a-log-analytics-workspace-to-show-the-cluster-logs"></a>設定 Log Analytics 工作區來顯示叢集記錄檔
+### <a name="configure-a-log-analytics-workspace-tooshow-hello-cluster-logs"></a>設定記錄分析工作區 tooshow hello 叢集記錄檔
 
-建立 Log Analytics 工作區後，將該工作區設定為從 Azure 儲存體資料表提取記錄。 接著請執行下列 PowerShell 指令碼：
+建立記錄分析工作區之後，設定 hello Azure 儲存體資料表中的 hello 工作區 toopull 記錄檔。 然後，執行下列 PowerShell 指令碼的 hello:
 
 ```
 <#
-    This script will configure an Operations Management Suite workspace (previously called an Operational Insights workspace) to read Diagnostics from an Azure Storage account.
+    This script will configure an Operations Management Suite workspace (previously called an Operational Insights workspace) tooread Diagnostics from an Azure Storage account.
     It will enable all supported data types (currently Service Fabric Events, ETW Events and IIS Logs).
     It supports Resource Manager storage accounts.
-    If you have more than one Azure Subscription, you will be prompted for the subscription to configure.
-    If you have more than one Log Analytics workspace you will be prompted for the workspace to configure.
-    It will then look through your Service Fabric clusters, and configure your Log Analytics workspace to read Diagnostics from storage accounts that are connected to that cluster and have diagnostics enabled.
+    If you have more than one Azure Subscription, you will be prompted for hello subscription tooconfigure.
+    If you have more than one Log Analytics workspace you will be prompted for hello workspace tooconfigure.
+    It will then look through your Service Fabric clusters, and configure your Log Analytics workspace tooread Diagnostics from storage accounts that are connected toothat cluster and have diagnostics enabled.
 #>
 
 try
@@ -94,7 +94,7 @@ function Select-Subscription {
              0 {Write-Error "No Operations Management Suite workspaces found"}
              1 {return $allSubscriptions}
         default {
-            $uiPrompt = "Enter the number corresponding to the Azure subscription you would like to work with.`n"
+            $uiPrompt = "Enter hello number corresponding toohello Azure subscription you would like toowork with.`n"
 
             $count = 1
             foreach ($subscription in $allSubscriptions) {
@@ -117,7 +117,7 @@ function Select-Workspace {
         0 {Write-Error "No Operations Management Suite workspaces found. `n"}
         1 {return $allWorkspaces}
         default {
-            $uiPrompt = "Enter the number corresponding to the workspace you want to configure.`n"
+            $uiPrompt = "Enter hello number corresponding toohello workspace you want tooconfigure.`n"
             $count = 1
             foreach ($workspace in $allWorkspaces) {
                 $uiPrompt += "$count. " + $workspace.Name + " (" + $workspace.CustomerId + ")`n"
@@ -141,15 +141,15 @@ function Check-ETWProviderLogging {
          Write-Debug ("ID: $id Provider: $provider ExpectedTable $expectedTable ActualTable $table")
          if ( ($table -eq $null) -or ($table -eq ""))  
          {
-             Write-Warning ("$id No configuration found for $provider. Configure Azure diagnostics to write to $expectedTable.")
+             Write-Warning ("$id No configuration found for $provider. Configure Azure diagnostics toowrite too$expectedTable.")
          }  
          elseif ( $table -ne $expectedTable )
          {
-             Write-Warning ("$id $provider events are being written to $table instead of WAD$expectedTable. Events will not be collected by Log Analytics")
+             Write-Warning ("$id $provider events are being written too$table instead of WAD$expectedTable. Events will not be collected by Log Analytics")
          }  
          else
          {
-             Write-Verbose "$id $provider events are being written to WAD$expectedTable (Correct configuration.)"
+             Write-Verbose "$id $provider events are being written tooWAD$expectedTable (Correct configuration.)"
          }
  }
 
@@ -183,7 +183,7 @@ function Check-ServiceFabricScaleSetDiagnostics {
          $etwManifestProviderList = $scaleSetDiagnostics.WadCfg.DiagnosticMonitorConfiguration.EtwProviders.EtwManifestProviderConfiguration
      } else
      {
-         Write-Error "Unable to parse Azure Diagnostics setting for $id"
+         Write-Error "Unable tooparse Azure Diagnostics setting for $id"
              Write-Warning ("$id does not have diagnostics enabled")
      }
      foreach ($provider in $serviceFabricProviderList)  
@@ -223,7 +223,7 @@ function Check-ServiceFabricScaleSetDiagnostics {
 
 function Select-StorageAccount {
     $allResources = Get-AzureRmResource #pulls in all resources
-    $serviceFabricClusters = $allResources.Where({$_.ResourceType -eq "Microsoft.ServiceFabric/clusters"}) #pulls in all service fabric clusters in the resource
+    $serviceFabricClusters = $allResources.Where({$_.ResourceType -eq "Microsoft.ServiceFabric/clusters"}) #pulls in all service fabric clusters in hello resource
     $storageAccountList = @()
     foreach($cluster in $serviceFabricClusters) {
         Write-Host("Checking cluster: " + $cluster.Name)
@@ -256,7 +256,7 @@ function Select-StorageAccount {
                             }
                         catch
                             {
-                                # HTTP Not Found is returned if the storage insight doesn't exist
+                                # HTTP Not Found is returned if hello storage insight doesn't exist
                             }
                         if ($existingConfig) {                         
                                   [array]$Tables = $existingConfig.Tables
@@ -270,7 +270,7 @@ function Select-StorageAccount {
                                                Write-Host "$table is already configured.`n";
                                              }
                                       }
-                                      # If any of the tables from the table list are not already monitored, then we add them
+                                      # If any of hello tables from hello table list are not already monitored, then we add them
                                    if($dirty -eq $true) {
                                            Set-AzureRmOperationalInsightsStorageInsight -Workspace $workspace -Name $insightsName -Tables $Tables
                                            Write-Host "Updating Storage Insight. `n"
@@ -297,12 +297,12 @@ $workspace = Select-Workspace
 $storageAccount = Select-StorageAccount
 ```
 
-設定 Log Analytics 工作區以讀取儲存體帳戶的 Azure 資料表之後，接著請登入 Azure 入口網站。 選取 [所有資源] 中的 Log Analytics 工作區。 系統會顯示連接到該工作區的儲存體帳戶記錄數目。 選取 [儲存體帳戶記錄] 圖格。 檢閱儲存體帳戶記錄，確認您的儲存體帳戶連接到正確的工作區。
+設定從 hello Azure hello 記錄分析工作區 tooread 之後登入 toohello Azure 入口網站的儲存體帳戶中的資料表。 選取從 hello 記錄分析工作區**所有資源**。 儲存體帳戶連接的記錄檔 toohello 工作區的 hello 號碼會顯示。 選取 hello**儲存體帳戶記錄**磚。 檢閱您的儲存體帳戶會連線的 toohello 正確的工作區的儲存體帳戶記錄 tooverify hello 清單。
 
 ![儲存體帳戶記錄檔](./media/log-analytics-service-fabric/sf1.png)
 
-## <a name="enable-the-service-fabric-solution"></a>啟用 Service Fabric 解決方案
-使用下列指令碼以將解決方案新增至 Log Analytics 工作區。 在 PowerShell 中執行指令碼，使用與您想要在其中啟用 Service Fabric 解決方案的 Log Analytics 工作區相關聯的 Azure 訂用帳戶。
+## <a name="enable-hello-service-fabric-solution"></a>啟用 hello Service Fabric 解決方案
+使用下列指令碼 tooadd hello 方案 tooyour 記錄分析工作區的 hello。 在 PowerShell 中，使用 hello 與您想 tooenable hello Service Fabric 方案中的 hello 記錄分析工作區相關聯的 Azure 訂用帳戶執行 hello 指令碼。
 
 ```
 function Select-Subscription {
@@ -312,7 +312,7 @@ function Select-Subscription {
              0 {Write-Error "No Operations Management Suite workspaces found"}
              1 {return $allSubscriptions}
         default {
-            $uiPrompt = "Enter the number corresponding to the Azure subscription you would like to work with.`n"
+            $uiPrompt = "Enter hello number corresponding toohello Azure subscription you would like toowork with.`n"
             $count = 1
             foreach ($subscription in $allSubscriptions) {
                 $uiPrompt += "$count. " + $subscription.SubscriptionName + " (" + $subscription.SubscriptionId + ")`n"
@@ -333,7 +333,7 @@ function Select-Workspace {
         0 {Write-Error "No Operations Management Suite workspaces found"}
         1 {return $allWorkspaces}
         default {
-            $uiPrompt = "Enter the number corresponding to the workspace you want to configure.`n"
+            $uiPrompt = "Enter hello number corresponding toohello workspace you want tooconfigure.`n"
             $count = 1
             foreach ($workspace in $allWorkspaces) {
                 $uiPrompt += "$count. " + $workspace.Name + " (" + $workspace.CustomerId + ")`n"
@@ -353,12 +353,12 @@ $workspace = Select-Workspace
 Set-AzureRmOperationalInsightsIntelligencePack -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -IntelligencePackName "ServiceFabric" -Enabled $true
 ```
 
-在您啟用解決方案後，Service Fabric 圖格會新增至 Log Analytics 的 [概觀] 頁面上。 該頁面會顯示值得注意的問題，例如過去 24 小時內發生的 runAsync 失敗和取消作業。
+Hello Service Fabric 磚啟用 hello 方案之後，加入記錄分析 tooyour*概觀*頁面。 hello 頁面會顯示值得注意的問題，例如 runAsync 失敗和取消作業發生在 hello 過去 24 小時內的檢視。
 
 ![Service Fabric 圖格](./media/log-analytics-service-fabric/sf2.png)
 
 ### <a name="view-service-fabric-events"></a>檢視 Service Fabric 事件
-按一下 [Service Fabric] 圖格以開啟 Service Fabric 儀表板。 儀表板中包含下表中的資料行。 每個資料行依計數列出前 10 個事件，這幾個事件符合該資料行中指定時間範圍的準則。 您可以按一下每個資料行右下角的 [查看全部] ，或按一下資料行標頭，以執行記錄搜尋來提供完整清單。
+按一下 hello **Service Fabric**磚 tooopen hello Service Fabric 儀表板。 hello 儀表板包括 hello 表中的 hello 資料行。 每個資料行計數對應資料行的準則 hello 指定時間範圍列出 hello 前 10 個事件。 您可以執行，即可提供 hello 整個清單的記錄搜尋**查看所有**在 hello 右下的每個資料行，或按一下 hello 資料行標頭。
 
 | **Service Fabric 事件** | **description** |
 | --- | --- |
@@ -372,30 +372,30 @@ Set-AzureRmOperationalInsightsIntelligencePack -ResourceGroupName $workspace.Res
 
 ![Service Fabric 儀表板](./media/log-analytics-service-fabric/sf4.png)
 
-下表顯示 Service Fabric 的資料收集方法及如何收集資料的其他詳細資料：
+hello 下表顯示資料收集方法，以及適用於 Service Fabric 如何收集資料的其他詳細資料：
 
 | 平台 | 直接代理程式 | Operations Manager 代理程式 | Azure 儲存體 | 是否需要 Operations Manager？ | 透過管理群組傳送的 Operations Manager 代理程式資料 | 收集頻率 |
 | --- | --- | --- | --- | --- | --- | --- |
 | Windows |  |  | &#8226; |  |  |10 分鐘 |
 
 > [!NOTE]
-> 透過儀表板頂端的 [Data based on last seven days]\(根據最近 7 天的資料\) 變更事件範圍。 您也可以顯示過去七天、一天或六個小時內產生的事件。 或者，也可以選取 [自訂]，以指定自訂日期範圍。
+> 變更的事件與 hello 領域**資料根據過去七天**在 hello hello 儀表板的頂端。 您也可以顯示 hello 內產生過去七天一天或六個小時的事件。 或者，您可以選取**自訂**toospecify 自訂日期範圍。
 >
 >
 
 ## <a name="troubleshoot-your-service-fabric-and-log-analytics-configuration"></a>針對 Service Fabric 和 Log Analytics 組態進行疑難排解
-因為無法在 Log Analytics 中檢視事件資料，而需要確認 Log Analytics 設定時，請使用下列指令碼。 其會執行下列動作：
+如果您需要 tooverify 記錄分析設定因為您無法 tooview 中記錄分析的事件資料，請使用下列指令碼的 hello。 它會執行下列動作的 hello:
 
 1. 讀取您的 Service Fabric 診斷設定
-2. 檢查寫入表格的資料
-3. 確認 Log Analytics 已設定成從表格讀取
+2. 將資料寫入至 hello 資料表的檢查
+3. 確認記錄分析設定的 tooread hello 資料表
 
 ```
 <#
     Verify Service Fabric and Log Analytics configuration
     1. Read Service Fabric diagnostics configuration
-    2. Check for data being written into the tables
-    3. Verify Log Analytics is configured to read from the tables
+    2. Check for data being written into hello tables
+    3. Verify Log Analytics is configured tooread from hello tables
 
     Supported tables:
     WADServiceFabricReliableActorEventTable
@@ -404,7 +404,7 @@ Set-AzureRmOperationalInsightsIntelligencePack -ResourceGroupName $workspace.Res
     WADETWEventTable
 
     Script will write a warning for every misconfiguration detected
-    To see items that are correctly configured set $VerbosePreference="Continue"
+    toosee items that are correctly configured set $VerbosePreference="Continue"
 #>
 Param
 (
@@ -421,7 +421,7 @@ $WADtables = @("WADServiceFabricReliableActorEventTable",
                )
 
 <#
-    Check if OMS Log Analytics is configured to index service fabric events from the specified table
+    Check if OMS Log Analytics is configured tooindex service fabric events from hello specified table
 #>
 
 function Check-OMSLogAnalyticsConfiguration {
@@ -439,26 +439,26 @@ function Check-OMSLogAnalyticsConfiguration {
 
         if ("WADServiceFabric*EventTable" -in $currentStorageAccountInsight.Tables)
         {
-            Write-Verbose ("OMS Log Analytics workspace " + $workspace.Name + " is configured to index service fabric actor, service and operational events from " + $storageAccount.Name)
+            Write-Verbose ("OMS Log Analytics workspace " + $workspace.Name + " is configured tooindex service fabric actor, service and operational events from " + $storageAccount.Name)
         } else
         {
-            Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + " is not configured to index service fabric actor, service and operational events from " + $storageAccount.Name)
+            Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + " is not configured tooindex service fabric actor, service and operational events from " + $storageAccount.Name)
         }
         if ("WADETWEventTable" -in $currentStorageAccountInsight.Tables)
         {
-            Write-Verbose ("OMS Log Analytics workspace " + $workspace.Name + " is configured to index service fabric application events from " + $storageAccount.Name)
+            Write-Verbose ("OMS Log Analytics workspace " + $workspace.Name + " is configured tooindex service fabric application events from " + $storageAccount.Name)
         } else
         {
-            Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + " is not configured to index service fabric application events from " + $storageAccount.Name)
+            Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + " is not configured tooindex service fabric application events from " + $storageAccount.Name)
         }
     } else
     {
-        Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + "is not configured to read service fabric events from " + $storageAccount.Name)
+        Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + "is not configured tooread service fabric events from " + $storageAccount.Name)
     }    
 }
 
 <#
-    Check Azure table storage to confirm there is recent data written by Service Fabric
+    Check Azure table storage tooconfirm there is recent data written by Service Fabric
 #>
 
 function Check-TablesForData {
@@ -490,7 +490,7 @@ function Check-TablesForData {
             Write-Debug $entities
             if ($entities.Count -gt 0)
             {
-                Write-Verbose ("Data was written to $table in " + $storageAccount.ResourceName + "after $recently")
+                Write-Verbose ("Data was written too$table in " + $storageAccount.ResourceName + "after $recently")
             } else
             {
                 Write-Warning ("No data after $recently is in  $table in " + $storageAccount.ResourceName)
@@ -503,7 +503,7 @@ function Check-TablesForData {
 }
 
 <#
-    Check if ETW provider is configured to log events to the expected table storage
+    Check if ETW provider is configured toolog events toohello expected table storage
 #>
 function Check-ETWProviderLogging {
     param(
@@ -515,15 +515,15 @@ function Check-ETWProviderLogging {
         Write-Debug ("ID: $id Provider: $provider ExpectedTable $expectedTable ActualTable $table")
         if ( ($table -eq $null) -or ($table -eq ""))
         {
-            Write-Warning ("$id No configuration found for $provider. Configure Azure diagnostics to write to $expectedTable.")
+            Write-Warning ("$id No configuration found for $provider. Configure Azure diagnostics toowrite too$expectedTable.")
         }
         elseif ( $table -ne $expectedTable )
         {
-            Write-Warning ("$id $provider events are being written to $table instead of WAD$expectedTable. Events will not be collected by Log Analytics")
+            Write-Warning ("$id $provider events are being written too$table instead of WAD$expectedTable. Events will not be collected by Log Analytics")
         }
         else
         {
-            Write-Verbose "$id $provider events are being written to WAD$expectedTable (Correct configuration.)"
+            Write-Verbose "$id $provider events are being written tooWAD$expectedTable (Correct configuration.)"
         }
 }
 
@@ -560,7 +560,7 @@ function Check-ServiceFabricScaleSetDiagnostics {
         $etwManifestProviderList = $scaleSetDiagnostics.WadCfg.DiagnosticMonitorConfiguration.EtwProviders.EtwManifestProviderConfiguration
     } else
     {
-        Write-Error "Unable to parse Azure Diagnostics setting for $id"
+        Write-Error "Unable tooparse Azure Diagnostics setting for $id"
         Write-Warning ("$id does not have diagnostics enabled")
     }
 
@@ -618,7 +618,7 @@ $OMSworkspace = $allResources.Where({($_.ResourceType -eq "Microsoft.Operational
 
 if ($OMSworkspace.Name -ne $workspaceName)
 {
-    Write-Error ("Unable to find Log Analytics Workspace " + $workspaceName)
+    Write-Error ("Unable toofind Log Analytics Workspace " + $workspaceName)
 }
 
 $serviceFabricClusters = $allResources.Where({$_.ResourceType -eq "Microsoft.ServiceFabric/clusters"})
@@ -650,4 +650,4 @@ foreach($storageAccount in $storageAccountsToCheck)
 
 
 ## <a name="next-steps"></a>後續步驟
-* 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)，檢視詳細的 Service Fabric 事件資料。
+* 使用[中記錄分析記錄搜尋](log-analytics-log-searches.md)tooview 詳細 Service Fabric 事件資料。

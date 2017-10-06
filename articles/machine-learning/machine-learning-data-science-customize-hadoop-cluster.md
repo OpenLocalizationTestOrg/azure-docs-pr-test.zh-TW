@@ -1,5 +1,5 @@
 ---
-title: "自訂適用於 Team Data Science Process 的 Hadoop 叢集 | Microsoft Docs"
+title: "aaaCustomize Hadoop 叢集以提供 hello 資料科學的小組流程 |Microsoft 文件"
 description: "自訂 Azure HDInsight Hadoop 叢集中提供熱門 Python 模組。"
 services: machine-learning
 documentationcenter: 
@@ -14,78 +14,78 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: hangzh;bradsev
-ms.openlocfilehash: 53ff04ee66b08ae36f3550536c659a547c658fd9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e192542dd39f71bccbb5163382b4050d0f12ad95
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="customize-azure-hdinsight-hadoop-clusters-for-the-team-data-science-process"></a>自訂適用於 Team Data Science Process 的 Azure HDInsight Hadoop 叢集
-本文將說明若將 HDInsight Hadoop 叢集佈建為 HDInsight 服務，如何藉由在每個節點上安裝 64 位元的 Anaconda (Python 2.7) 來自訂該叢集。 它也會示範如何存取前端節點，以將自訂工作提交至叢集。 這項自訂讓許多熱門的 Python 模組 (隨附於 Anaconda) 非常方便地在使用者定義函式 (UDF) 中使用，這類函式是設計來處理叢集中的 Hive 記錄。 如需此案例中使用的程序的相關指示，請參閱 [如何提交 Hive 查詢](machine-learning-data-science-move-hive-tables.md#submit)。
+# <a name="customize-azure-hdinsight-hadoop-clusters-for-hello-team-data-science-process"></a>自訂 hello 小組資料科學程序的 Azure HDInsight Hadoop 叢集
+本文說明如何安裝 64 位元 Anaconda (Python 2.7) toocustomize HDInsight Hadoop 叢集每個節點上 hello 叢集佈建為 HDInsight 服務時。 它也會示範如何 tooaccess hello toosubmit 自訂工作 toohello 叢集中前端節點。 這項自訂許多熱門 Python 模組，隨附於 Anaconda，方便用於使用者定義的函數 (Udf) 是設計 tooprocess hello 叢集中的 Hive 記錄。 在此案例中使用的 hello 程序的指示，請參閱[如何 toosubmit Hive 查詢](machine-learning-data-science-move-hive-tables.md#submit)。
 
-以下功能表所連結的主題會說明如何設定 [Team Data Science Process (TDSP)](data-science-process-overview.md)所用的各種資料科學環境。
+hello 下列功能表連結，說明如何設定 hello tooset 各種資料科學環境使用 hello tootopics[小組資料科學程序 (TDSP)](data-science-process-overview.md)。
 
 [!INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
 ## <a name="customize"></a>自訂 Azure HDInsight Hadoop 叢集
-若要建立自訂的 HDInsight Hadoop 叢集，請先登入 [**Azure 傳統入口網站**](https://manage.windowsazure.com/)，按一下左下角的 [新增]，然後選取 [資料服務] -> [HDINSIGHT] -> [自訂建立]，以顯示 [叢集詳細資料] 視窗。 
+toocreate 自訂 HDInsight Hadoop 叢集中，啟動登入太[**Azure 傳統入口網站**](https://manage.windowsazure.com/)，按一下 **新增**hello 留在底端的角，，，然後選取 [資料服務-> [HDINSIGHT]-> [**自訂建立**向上 hello toobring**叢集詳細資料**視窗。 
 
 ![建立工作區](./media/machine-learning-data-science-customize-hadoop-cluster/customize-cluster-img1.png)
 
-在設定頁面 1 上輸入要建立的叢集名稱，並接受其他欄位的預設值。 按一下箭號，以前往下一個設定頁面。 
+輸入 hello hello 叢集 toobe 組態頁面 1，建立名稱，並接受預設值為 hello 其他欄位。 按一下 hello 箭號 toogo toohello 下一個組態頁面。 
 
 ![建立工作區](./media/machine-learning-data-science-customize-hadoop-cluster/customize-cluster-img1.png)
 
-在組態頁面 2 上，輸入 [資料節點] 的數目，選取 [區域/虛擬網路]，然後選取 [前端節點] 和 [資料節點] 的大小。 按一下箭號，以前往下一個設定頁面。
+在組態 頁面 2 輸入 hello 數目**資料節點**，選取 hello**地區/虛擬網路**，選取 hello 大小的 hello**前端節點**和 hello **資料節點**。 按一下 hello 箭號 toogo toohello 下一個組態頁面。
 
 > [!NOTE]
-> [區域/虛擬網路] 必須與即將用於 HDInsight Hadoop 叢集的儲存體帳戶區域相同。 否則，在第四個組態頁面中，儲存體帳戶將不會出現在 [帳戶名稱] 下拉式清單中。
+> hello**地區/虛擬網路**具有 toobe hello 相同為 hello hello 即將 toobe hello HDInsight Hadoop 叢集中使用的儲存體帳戶的區域。 否則，在 hello 第四個組態頁面中，hello 儲存體帳戶不會出現在下拉式清單中的 hello**帳戶名稱**。
 > 
 > 
 
 ![建立工作區](./media/machine-learning-data-science-customize-hadoop-cluster/customize-cluster-img3.png)
 
-在設定頁面 3 上，提供適用於 HDInsight Hadoop 叢集的使用者名稱和密碼。 **請勿**選取 [進入 Hive/Oozie 中繼存放區]。 然後按一下箭號，前往下一個設定頁面。 
+在設定第 3 頁，提供使用者名稱和密碼 hello HDInsight Hadoop 叢集。 **不這麼做**選取 hello *Enter hello Hive/Oozie 中繼存放區*。 然後，按一下 hello 箭號 toogo toohello 下一個組態頁面。 
 
 ![建立工作區](./media/machine-learning-data-science-customize-hadoop-cluster/customize-cluster-img4.png)
 
-在設定頁面 4 上，指定儲存體帳戶名稱，以及 HDInsight Hadoop 叢集的預設容器。 如果您在 [預設容器] 下拉式清單中選取 [建立預設容器]，就會建立名稱與叢集相同的容器。 按一下箭號，前往最後一個設定頁面。
+設定第 4 頁，指定 hello 儲存體帳戶名稱，hello HDInsight Hadoop 叢集中的 hello 預設容器。 如果您選取*建立預設容器*在 hello**預設容器**下拉式清單中，以 hello 容器相同的名稱，將會建立 hello 叢集。 按一下 hello 箭號 toogo toohello 最後一個組態頁面。
 
 ![建立工作區](./media/machine-learning-data-science-customize-hadoop-cluster/customize-cluster-img5.png)
 
-在最後的 [指令碼動作] 設定頁面中，按一下 [新增指令碼動作] 按鈕，然後使用下列值填入文字欄位。
+在最終的 hello**指令碼動作**組態] 頁面上，按一下 [**加入指令碼動作**按鈕，然後填入下列值的 hello 的 hello 文字欄位。
 
-* **名稱** - 可做為這個指令碼動作名稱的任何字串
+* **名稱**-hello 名稱，此指令碼動作的任何字串
 * **節點類型** - 選取 [所有節點]
 * **指令碼 URI** - *http://getgoing.blob.core.windows.net/publicscripts/Azure_HDI_Setup_Windows.ps1* 
-  * publicscripts 是儲存體帳戶中的公用容器 
-  * getgoing 可用來共用 PowerShell 指令碼檔案，以協助使用者在 Azure 中工作
+  * *publicscripts*是 hello 儲存體帳戶中的公用容器 
+  * *getgoing*我們在 Azure 中使用 tooshare PowerShell 指令碼檔案 toofacilitate 使用者的工作
 * **PARAMETERS** - (保留空白)
 
-最後，按一下勾號，開始建立自訂的 HDInsight Hadoop 叢集。 
+最後，按一下 hello 核取記號 toostart hello 建立自訂的 hello HDInsight Hadoop 叢集。 
 
 ![建立工作區](./media/machine-learning-data-science-customize-hadoop-cluster/script-actions.png)
 
-## <a name="headnode"></a> 存取 Hadoop 叢集的前端節點
-您必須先在 Azure 中啟用 Hadoop 叢集的遠端存取，才能透過 RDP 存取 Hadoop 叢集的前端節點。 
+## <a name="headnode"></a>存取 hello 的 Hadoop 叢集前端節點
+您可以透過 RDP 存取 hello hello Hadoop 叢集前端節點之前，您必須啟用 Azure 中的遠端存取 toohello Hadoop 叢集。 
 
-1. 登入 [**Azure 傳統入口網站**](https://manage.windowsazure.com/)，選取左側的 [HDInsight]，從叢集清單中選取您的 Hadoop 叢集，按一下 [設定] 索引標籤，然後按一下頁面底部的 [啟用遠端] 圖示。
+1. 登入 toohello [ **Azure 傳統入口網站**](https://manage.windowsazure.com/)，選取**HDInsight** hello 左側從 hello 群集清單選取 Hadoop 叢集，請按一下 hello **組態**索引標籤，然後再按一下 [hello**啟用遠端**在 hello hello 頁面底部的圖示。
    
     ![建立工作區](./media/machine-learning-data-science-customize-hadoop-cluster/enable-remote-access-1.png)
-2. 在 [設定遠端桌面]  視窗中，輸入 [使用者名稱] 和 [密碼] 欄位，然後選取遠端存取的到期日。 接著，按一下勾號，啟用對 Hadoop 叢集前端節點的遠端存取。
+2. 在 hello**設定遠端桌面**視窗中，輸入 hello 使用者名稱和密碼欄位，並選取 遠端存取的 hello 到期日。 然後按一下 hello 核取記號 tooenable hello 遠端存取 toohello 前端節點的 hello Hadoop 叢集。
    
     ![建立工作區](./media/machine-learning-data-science-customize-hadoop-cluster/enable-remote-access-2.png)
 
 > [!NOTE]
-> 適用於遠端存取的使用者名稱和密碼並非您在建立 Hadoop 叢集時所使用的使用者名稱和密碼。 這是另一組個別的認證。 此外，遠端存取的到期日必須在從目前日期起算的 7 天內。
+> hello 使用者名稱和密碼 hello 遠端存取的不 hello 使用者名稱和密碼，讓您用於建立 hello Hadoop 叢集時。 這是另一組個別的認證。 同時，hello 的 hello 遠端存取的到期日必須 toobe 7 天內從 hello 目前的日期。
 > 
 > 
 
-啟用遠端存取之後，按一下頁面底部的 [連接]  ，遠端連至前端節點。 您登入 Hadoop 叢集前端節點的方式是針對稍早指定的遠端存取使用者輸入認證。
+啟用遠端存取之後，請按一下**連接**底部 hello hello 頁面 tooremote hello 前端節點。 您輸入您稍早指定的 hello 遠端存取使用者的 hello 認證登入 toohello hello Hadoop 叢集前端節點。
 
 ![建立工作區](./media/machine-learning-data-science-customize-hadoop-cluster/enable-remote-access-3.png)
 
-[Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中說明了進階分析程序的後續步驟，其中可能包含將資料移至 HDInsight 並在其中處理資料與取樣，做為透過 Azure Machine Learning 從資料學習的準備。
+hello hello 進階分析程序中的下一個步驟中的對應 hello[小組資料科學程序 (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) ，而且可能包括將資料移入 HDInsight，然後處理以及它那里範例中學習 hello 資料的準備步驟使用 Azure Machine Learning 中。
 
-請參閱[如何提交 Hive 查詢](machine-learning-data-science-move-hive-tables.md#submit)中的相關指示，以了解如何在用來處理儲存於叢集的 Hive 記錄的使用者定義函式 (UDF) 中，從叢集的前端節點存取隨附於 Anaconda 的 Python 模組。
+請參閱[如何 toosubmit Hive 查詢](machine-learning-data-science-move-hive-tables.md#submit)如需有關如何 tooaccess hello Anaconda 中包含從 hello 中使用者定義函數 (Udf 所使用的 tooprocess) 的 hello 叢集前端節點的 Python 模組指示 hive 控制檔儲存的記錄hello 叢集中。
 

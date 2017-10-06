@@ -1,5 +1,5 @@
 ---
-title: "Azure 事件中樞驗證和安全性模型概觀 | Microsoft Docs"
+title: "Azure 事件中心驗證和安全性模型的 aaaOverview |Microsoft 文件"
 description: "事件中樞驗證和安全性模型概觀。"
 services: event-hubs
 documentationcenter: na
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: sethm;clemensv
-ms.openlocfilehash: 5abdbf70d4fdb2c7feb0f3537ecc0f2abf0775a0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e57ccda33e5ee20e635487cf91d9e8af594d3bd7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-hubs-authentication-and-security-model-overview"></a>事件中樞驗證和安全性模型概觀
-Azure 事件中樞安全性模型符合下列需求：
+hello Azure 事件中心的安全性模型符合下列需求的 hello:
 
-* 只有出示有效認證的用戶端才能將資料傳送到事件中樞。
+* 出示有效認證的唯一用戶端可以傳送資料 tooan 事件中心。
 * 一個用戶端無法模擬另一個用戶端。
-* 可封鎖惡意用戶端，讓它無法將資料傳送到事件中樞。
+* 惡意用戶端可以傳送資料 tooan 事件中樞被封鎖。
 
 ## <a name="client-authentication"></a>用戶端驗證
-事件中樞安全性模型是以 [共用存取簽章 (SAS)](../service-bus-messaging/service-bus-sas.md) 權杖和「事件發行者」的組合為基礎。 事件發行者會定義事件中樞的虛擬端點。 發行者只能用來將訊息傳送到事件中樞。 您無法接收來自發佈者的訊息。
+hello 事件中心的安全性模型為基礎的組合[共用存取簽章 (SAS)](../service-bus-messaging/service-bus-sas.md)語彙基元和*事件發行者*。 事件發行者會定義事件中樞的虛擬端點。 hello 發行者只能使用的 toosend 訊息 tooan 事件中心。 不可能 tooreceive 從 「 發行者 」 的訊息。
 
-一般而言，事件中樞會針對每個用戶端採用一個發行者。 系統會將傳送到事件中樞之任何發行者的所有訊息，排入該事件中樞內的佇列中。 發行者會啟用更細緻的存取控制和節流。
+一般而言，事件中樞會針對每個用戶端採用一個發行者。 傳送的事件中心的 hello 發行者 tooany 的所有訊息都的佇列該事件中心內。 發行者會啟用更細緻的存取控制和節流。
 
-系統會為每個「事件中樞」用戶端指派一個唯一權杖，該權杖會上傳到用戶端。 權杖的產生機制讓每個唯一權杖都能授與相異唯一發佈者的存取權限。 擁有權杖的用戶端只能傳送到一個發行者，無法再傳送到任何其他發行者。 如果多個用戶端共用同一個權杖，它們每一個就會共用一個發行者。
+每個事件中心用戶端會指派唯一的語彙基元，是上傳的 toohello 用戶端。 hello 語彙基元所產生的每個唯一的權杖會授與存取 tooa 不同的唯一發行者。 擁有權杖的用戶端只能傳送 tooone 發行者上，但沒有其他 「 發行者 」。 如果多個用戶端共用 hello 相同語彙基元，則每個共用發行者。
 
-您可以讓裝置具備可授與事件中樞直接存取權的權杖，不過並不建議這樣做。 任何擁有此權杖的裝置都可以將訊息直接傳送到該事件中樞。 這類裝置將不受節流所約束。 此外，您也無法將這類裝置加入黑名單，以禁止其傳送到該事件中樞。
+雖然不建議，很可能 tooequip 裝置權杖來授與直接存取 tooan 事件中心。 任何擁有此權杖的裝置都可以將訊息直接傳送到該事件中樞。 這類裝置將無法主旨 toothrottling。 此外，hello 裝置無法列入黑名單中而無法傳送 toothat 事件中心。
 
-所有權杖都經過 SAS 金鑰簽署。 一般而言，所有權杖都會經過同一個金鑰簽署。 用戶端並不知道該金鑰；這可避免其他用戶端製造權杖。
+所有權杖都經過 SAS 金鑰簽署。 一般而言，所有權杖都簽署以 hello 相同索引鍵。 用戶端不會察覺 hello 機碼。這可防止其他用戶端製造權杖。
 
-### <a name="create-the-sas-key"></a>建立 SAS 金鑰
+### <a name="create-hello-sas-key"></a>建立 hello SAS 金鑰
 
-建立事件中樞命名空間時，此服務會產生名為 **RootManageSharedAccessKey** 的 256 位元 SAS 金鑰。 這個金鑰能授與命名空間的傳送、聆聽及管理權限。 您也可以建立額外的金鑰。 建議您產生一個可授與對特定事件中樞之傳送權限的金鑰。 在本主題的其餘部分，假設您將此金鑰命名為 **EventHubSendKey**。
+Hello 服務時建立事件中樞命名空間，會產生名為 256 位元 SAS 金鑰**RootManageSharedAccessKey**。 這個金鑰授傳送、 接聽及管理 rights toohello 命名空間。 您也可以建立額外的金鑰。 建議您產生授權傳送權限 toohello 特定事件中心的索引鍵。 本主題的 hello 其餘部分，會假設名為此金鑰**EventHubSendKey**。
 
-以下範例會在建立事件中樞時，建立一個僅限傳送的金鑰：
+下列範例中的 hello 建立 hello 事件中樞時，會建立僅傳送金鑰：
 
 ```csharp
 // Create namespace manager.
@@ -53,7 +53,7 @@ Uri uri = ServiceBusEnvironment.CreateServiceUri("sb", serviceNamespace, string.
 TokenProvider td = TokenProvider.CreateSharedAccessSignatureTokenProvider(namespaceManageKeyName, namespaceManageKey);
 NamespaceManager nm = new NamespaceManager(namespaceUri, namespaceManageTokenProvider);
 
-// Create event hub with a SAS rule that enables sending to that event hub
+// Create event hub with a SAS rule that enables sending toothat event hub
 EventHubDescription ed = new EventHubDescription("MY_EVENT_HUB") { PartitionCount = 32 };
 string eventHubSendKeyName = "EventHubSendKey";
 string eventHubSendKey = SharedAccessAuthorizationRule.GenerateRandomKey();
@@ -64,46 +64,46 @@ nm.CreateEventHub(ed);
 
 ### <a name="generate-tokens"></a>產生權杖
 
-您可以使用 SAS 金鑰來產生權杖。 您只能為每個用戶端產生一個權杖。 您可以使用下列方法來產生權杖。 所有權杖都是以 **EventHubSendKey** 金鑰產生。 每個權杖均有一個指派的唯一 URI。
+您可以產生語彙基元使用 hello SAS 金鑰。 您只能為每個用戶端產生一個權杖。 語彙基元然後可使用下列方法 hello 來產生。 所有語彙基元使用產生的 hello **EventHubSendKey**索引鍵。 每個權杖均有一個指派的唯一 URI。
 
 ```csharp
 public static string SharedAccessSignatureTokenProvider.GetSharedAccessSignature(string keyName, string sharedAccessKey, string resource, TimeSpan tokenTimeToLive)
 ```
 
-在呼叫這個方法時，您應該將 URI 指定為 `//<NAMESPACE>.servicebus.windows.net/<EVENT_HUB_NAME>/publishers/<PUBLISHER_NAME>`。 此 URI 對所有權杖來說是完全相同的，但 `PUBLISHER_NAME`除外，每個權杖的該項目應該是不同的。 在理想的情況下，`PUBLISHER_NAME` 代表收到該權杖之用戶端的識別碼。
+Hello URI 呼叫此方法時，應該指定為`//<NAMESPACE>.servicebus.windows.net/<EVENT_HUB_NAME>/publishers/<PUBLISHER_NAME>`。 所有權杖 hello URI 為相同的 hello 例外`PUBLISHER_NAME`，應該針對每個權杖不同。 在理想情況下，`PUBLISHER_NAME`代表 hello hello 用戶端會接收該語彙基元的識別碼。
 
-這個方法會產生具有下列結構的權杖：
+這個方法會產生的語彙基元以 hello 下列結構：
 
 ```csharp
 SharedAccessSignature sr={URI}&sig={HMAC_SHA256_SIGNATURE}&se={EXPIRATION_TIME}&skn={KEY_NAME}
 ```
 
-以秒數為單位指定的權杖到期 (從 1970 年 1 月 1 日 開始)。 以下是權杖的範例：
+指定 hello 權杖到期時間的秒數從 1970 年 1 月 1 日。 hello 以下是語彙基元的範例：
 
 ```csharp
 SharedAccessSignature sr=contoso&sig=nPzdNN%2Gli0ifrfJwaK4mkK0RqAB%2byJUlt%2bGFmBHG77A%3d&se=1403130337&skn=RootManageSharedAccessKey
 ```
 
-一般而言，權杖的週期與用戶端的週期相近或更長。 如果用戶端能夠取得新的權杖，就可以使用週期較短的權杖。
+一般來說，hello 權杖具有類似或超過 hello 用戶端 hello 壽命的使用期限。 如果 hello 用戶端 hello 功能 tooobtain 新的權杖，可以使用具有較短使用期限的權杖。
 
 ### <a name="sending-data"></a>傳送資料
-建立權杖之後，系統就會為每個用戶端佈建其自己的唯一權杖。
+一旦已建立 hello 語彙基元，每個用戶端的佈建與它自己唯一的權杖。
 
-當用戶端將資料傳送到事件中樞時，會使用權杖標記自己傳送的要求。 為了防止攻擊者竊聽及竊取權杖，用戶端與事件中樞之間的通訊必須透過已加密的通道進行。
+當 hello 用戶端會將資料傳送到事件中心時，它會標記其傳送要求和 hello 語彙基元。 tooprevent 攻擊者竊聽並竊取權杖 hello、 hello hello 用戶端與 hello 事件中心之間的通訊必須透過加密通道進行。
 
 ### <a name="blacklisting-clients"></a>將用戶端列入黑名單
-如果權杖遭攻擊者竊取，攻擊者便可以模擬權杖遭竊的用戶端。 將用戶端列入黑名單可讓用戶端變成無法使用，直到它收到使用不同發行者的新權杖為止。
+如果攻擊者竊取權杖，hello 攻擊者可以模擬 hello 用戶端遭到竊取的語彙基元。 將用戶端列入黑名單可讓用戶端變成無法使用，直到它收到使用不同發行者的新權杖為止。
 
 ## <a name="authentication-of-back-end-applications"></a>後端應用程式的驗證
 
-為了驗證取用「事件中樞」用戶端所產生之資料的後端應用程式，「事件中樞」採用一個與「服務匯流排」主題所用模型相似的安全性模型。 事件中樞取用者群組等同於服務匯流排主題的訂用帳戶。 如果建立取用者群組的要求有附帶權杖，而該權杖可授與事件中樞或事件中樞所屬之命名空間的管理權限，用戶端便可以建立取用者群組。 如果接收要求有附帶權杖，而該權杖可授與該取用者群組、事件中樞或事件中樞所屬之命名空間的接收權限，用戶端便可以取用來自取用者群組的資料。
+使用事件中心用戶端，事件中心所產生的 hello 資料 tooauthenticate 後端應用程式採用是用於服務匯流排主題類似 toohello 模型的安全性模型。 事件中心取用者群組是相等的 tooa 訂用帳戶 tooa 服務匯流排主題。 如果 hello 要求 toocreate hello 取用者群組伴隨著授與管理 hello 事件中心的權限，或如 hello 命名空間 toowhich hello 事件中心所屬的語彙基元，用戶端可以建立取用者群組。 Tooconsume 資料取用者群組從如果 hello 接收要求伴隨著權杖，授權接收該取用者群組上的權限，hello 事件中心或 hello 命名空間 toowhich hello 事件中心所屬允許用戶端。
 
-目前版本的服務匯流排不支援個別訂用帳戶的 SAS 規則。 相同情況亦適用於事件中樞取用者群組。 我們會在日後將這兩項功能加入 SAS 支援。
+hello 的服務匯流排的目前版本不支援個別訂閱的 SAS 規則。 hello 同樣適用於事件中樞取用者群組。 這兩個功能中 hello 未來將加入 SAS 支援。
 
-由於個別取用者群組的 SAS 驗證不存在，因此您可以使用 SAS 金鑰來保護所有使用相同金鑰的取用者群組。 這個方法可讓應用程式取用來自事件中樞之任何取用者群組的資料。
+在 hello 沒有個別取用者群組的 SAS 驗證，您可以使用 SAS 金鑰 toosecure 所有取用者群組具有共同索引鍵。 這個方法可讓應用程式 tooconsume 資料，從任何 hello 事件中心取用者群組。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解事件中樞，請造訪下列主題：
+深入了解事件中心 toolearn 造訪 hello 下列主題：
 
 * [事件中樞概觀]
 * [共用存取簽章的概觀]

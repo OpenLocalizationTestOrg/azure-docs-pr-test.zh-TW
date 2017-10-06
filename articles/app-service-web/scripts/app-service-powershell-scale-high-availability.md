@@ -1,5 +1,5 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 透過高可用性架構將 Web 應用程式調整為全球可用 | Microsoft Docs"
+title: "aaaAzure PowerShell 指令碼範例-調整 web 應用程式與高可用性架構全球 |Microsoft 文件"
 description: "Azure PowerShell 指令碼範例 - 透過高可用性架構將 Web 應用程式調整為全球可用"
 services: app-service\web
 documentationcenter: 
@@ -16,25 +16,25 @@ ms.workload: web
 ms.date: 03/20/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 9acd1cf4d1a5705811c4dedc545505ec0ac55fc7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1fcda23250efe4966d63c5dfa744b76c26f3762a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-a-web-app-worldwide-with-a-high-availability-architecture"></a>透過高可用性架構將 Web 應用程式調整為全球可用
 
-在此案例中，您會建立一個資源群組、兩個 App Service 方案、兩個 Web 應用程式、一個流量管理員設定檔和兩個流量管理員端點。 完成此練習後，您就會擁有高可用性架構，可根據最低網路延遲來全球提供 Web 應用程式。
+在此案例中，您會建立一個資源群組、兩個 App Service 方案、兩個 Web 應用程式、一個流量管理員設定檔和兩個流量管理員端點。 一旦完成 hello 練習會有高可用性的架構可讓提供全域 hello 最低的網路延遲為基礎的 web 應用程式的可用性。
 
-您可以視需要使用 [Azure PowerShell 指南 (英文)](/powershell/azure/overview) 中的指示來安裝 Azure PowerShell，然後執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。
+如有需要安裝 Azure PowerShell 中使用 hello 指令位於 hello hello [Azure PowerShell 指南](/powershell/azure/overview)，然後執行`Login-AzureRmAccount`toocreate 與 Azure 的連線。
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[主要](../../../powershell_scripts/app-service/scale-geographic/scale-geographic.ps1 "透過高可用性架構將 Web 應用程式調整為全球可用")]
+[!code-powershell[main](../../../powershell_scripts/app-service/scale-geographic/scale-geographic.ps1 "Scale a web app worldwide with a high-availability architecture")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、Web 應用程式和所有相關資源。
+Hello 指令碼範例執行後，下列命令的 hello 可以使用的 tooremove hello 資源群組、 web 應用程式和所有相關的資源。
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup -Force
@@ -42,7 +42,7 @@ Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼會使用下列命令。 下表中的每個命令都會連結至命令特定的文件。
+此指令碼會使用下列命令的 hello。 Hello 資料表連結 toocommand 特定文件中的每個命令。
 
 | 命令 | 注意事項 |
 |---|---|
@@ -54,6 +54,6 @@ Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 
 ## <a name="next-steps"></a>後續步驟
 
-如需有關 Azure PowerShell 模組的詳細資訊，請參閱 [Azure PowerShell 文件](/powershell/azure/overview)。
+如需有關 hello Azure PowerShell 模組的詳細資訊，請參閱[Azure PowerShell 文件](/powershell/azure/overview)。
 
-您可以在 [Azure PowerShell 範例](../app-service-powershell-samples.md)中找到適用於 App Service Web Apps 的其他 Azure PowerShell 範例。
+Azure App Service Web 應用程式的其他 Azure Powershell 範例可以在 hello [Azure PowerShell 範例](../app-service-powershell-samples.md)。

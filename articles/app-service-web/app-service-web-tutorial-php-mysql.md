@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中建置 PHP 和 MySQL Web 應用程式 | Microsoft Docs"
-description: "了解如何取得在 Azure 中運作的 PHP 應用程式，並連線至 Azure 中的 MySQL 資料庫。"
+title: "aaaBuild PHP 和 MySQL web 應用程式在 Azure 中 |Microsoft 文件"
+description: "深入了解如何 tooget Azure ad 中運作的 PHP 應用程式，以連接 tooa MySQL 資料庫在 Azure 中。"
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
@@ -15,15 +15,15 @@ ms.topic: tutorial
 ms.date: 07/21/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 6e8d8962180f7534b0b9074f03ecc8ea431ae1a4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3c050b30e2e2c80d011bed989cd5f8cecac35d15
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-php-and-mysql-web-app-in-azure"></a>在 Azure 中建置 PHP 和 MySQL Web 應用程式
 
-[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) 提供可高度擴充、自我修復的 Web 主機服務。 本教學課程示範如何在 Azure 中建立 PHP Web 應用程式，並將它連線到 MySQL 資料庫。 完成後，您將有一個在 Azure App Service Web Apps 上執行的 [Laravel](https://laravel.com/) 應用程式。
+[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) 提供可高度擴充、自我修復的 Web 主機服務。 本教學課程會示範如何 toocreate PHP web 應用程式在 Azure 中的，並將它連接 tooa MySQL 資料庫。 完成後，您將有一個在 Azure App Service Web Apps 上執行的 [Laravel](https://laravel.com/) 應用程式。
 
 ![在 Azure App Service 中執行的 PHP 應用程式](./media/app-service-web-tutorial-php-mysql/complete-checkbox-published.png)
 
@@ -31,20 +31,20 @@ ms.lasthandoff: 08/29/2017
 
 > [!div class="checklist"]
 > * 在 Azure 中建立 MySQL 資料庫
-> * 將 PHP 應用程式連線至 MySQL
-> * 將應用程式部署至 Azure
-> * 將資料模型更新並將應用程式重新部署
+> * 連接 PHP 應用程式 tooMySQL
+> * 部署 hello 應用程式 tooAzure
+> * 更新 hello 資料模型，部署 hello 應用程式
 > * 來自 Azure 的串流診斷記錄
-> * 在 Azure 入口網站中管理應用程式
+> * 管理 hello hello Azure 入口網站中的應用程式
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本教學課程：
+toocomplete 本教學課程：
 
 * [安裝 Git](https://git-scm.com/)
 * [安裝 PHP 5.6.4 或更新版本](http://php.net/downloads.php)
 * [安裝編輯器](https://getcomposer.org/doc/00-intro.md)
-* 啟用下列 PHP 擴充功能 Laravel 需求︰OpenSSL、PDO-MySQL、Mbstring、Tokenizer、XML
+* 啟用下列 PHP 延伸模組 Laravel 需求 hello: OpenSSL、 PDO MySQL、 Mbstring、 Tokenizer、 XML
 * [下載並啟動 MySQL](https://dev.mysql.com/doc/refman/5.7/en/installing.html) 
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
@@ -53,21 +53,21 @@ ms.lasthandoff: 08/29/2017
 
 在此步驟中，您可以在本機 MySQL 伺服器中建立資料庫，供您在本教學課程中使用。
 
-### <a name="connect-to-local-mysql-server"></a>連線至本機 MySQL 伺服器
+### <a name="connect-toolocal-mysql-server"></a>Toolocal MySQL 伺服器連接
 
-在終端機視窗中，連線到您的本機 MySQL 伺服器。 您可使用這個終端機視窗來執行本教學課程中的所有命令。
+在終端機視窗中，連接 tooyour 本機 MySQL 伺服器。 您可以使用這個終端機視窗 toorun hello 的所有命令，在本教學課程。
 
 ```bash
 mysql -u root -p
 ```
 
-如果系統提示您輸入密碼，請輸入 `root` 帳戶的密碼。 如果您不記得根帳戶密碼，請參閱 [MySQL︰如何重設根密碼](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html)。
+如果系統提示您輸入密碼，輸入 hello 密碼 hello`root`帳戶。 如果您不記得您的根帳號密碼，請參閱[MySQL： 如何 tooReset hello 根密碼](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html)。
 
-如果您的命令執行成功，表示您的 MySQL 伺服器正在執行。 如果沒有，請遵循 [MySQL 後續安裝步驟](https://dev.mysql.com/doc/refman/5.7/en/postinstallation.html)，確定您已啟動本機 MySQL 伺服器。
+如果您的命令執行成功，表示您的 MySQL 伺服器正在執行。 如果沒有，請確定您的本機 MySQL 伺服器已啟動由下列 hello [MySQL 安裝後步驟](https://dev.mysql.com/doc/refman/5.7/en/postinstallation.html)。
 
 ### <a name="create-a-database-locally"></a>在本機建立資料庫
 
-在 `mysql` 提示中，建立資料庫。
+在 hello`mysql`提示字元中，建立資料庫。
 
 ```sql 
 CREATE DATABASE sampledb;
@@ -84,18 +84,18 @@ quit
 ## <a name="create-a-php-app-locally"></a>在本機建立 PHP 應用程式
 在此步驟中，您會取得 Laravel 範例應用程式、設定其資料庫連線，並在本機執行。 
 
-### <a name="clone-the-sample"></a>複製範例
+### <a name="clone-hello-sample"></a>複製 hello 範例
 
-在終端機視窗中，使用 `cd` 移至工作目錄。
+在 hello 終端機視窗， `cd` tooa 工作目錄。
 
-執行下列命令來複製範例存放庫。
+執行下列命令 tooclone hello 範例儲存機制的 hello。
 
 ```bash
 git clone https://github.com/Azure-Samples/laravel-tasks
 ```
 
-使用 `cd` 移至您複製的目錄。
-安裝必要的套件。
+`cd`tooyour 複製的目錄。
+安裝所需的 hello 封裝。
 
 ```bash
 cd laravel-tasks
@@ -104,7 +104,7 @@ composer install
 
 ### <a name="configure-mysql-connection"></a>設定 MySQL 連線
 
-在存放庫的根目錄中，建立名為 *.env* 的檔案。 將下列變數複製到 *.env* 檔案。 將 _&lt;root_password>_ 預留位置取代為 MySQL 根使用者的密碼。
+Hello 儲存機制在根目錄中，建立名為*.env*。 下列變數到 hello 複製 hello *.env*檔案。 取代 hello  _&lt;root_password >_預留位置 hello MySQL root 使用者的密碼。
 
 ```
 APP_ENV=local
@@ -118,11 +118,11 @@ DB_USERNAME=root
 DB_PASSWORD=<root_password>
 ```
 
-如需有關 Laravel 如何使用 _.env_ 檔案的資訊，請參閱 [Laravel 環境設定](https://laravel.com/docs/5.4/configuration#environment-configuration)。
+如需有關如何 Laravel 使用 hello 詳細_.env_檔案，請參閱[Laravel 環境組態](https://laravel.com/docs/5.4/configuration#environment-configuration)。
 
-### <a name="run-the-sample-locally"></a>在本機執行範例
+### <a name="run-hello-sample-locally"></a>在本機執行 hello 範例
 
-執行 [Laravel 資料庫移轉](https://laravel.com/docs/5.4/migrations)來建立應用程式所需的資料表。 若要查看移轉中會建立哪些資料表，請參閱 Git 存放庫中的 _database/migrations_ 目錄。
+執行[Laravel 資料庫移轉](https://laravel.com/docs/5.4/migrations)toocreate hello 資料表 hello 應用程式的需求。 哪些資料表在中建立 hello 移轉，查看 hello toosee_資料庫/移轉_hello Git 儲存機制的目錄。
 
 ```bash
 php artisan migrate
@@ -134,23 +134,23 @@ php artisan migrate
 php artisan key:generate
 ```
 
-執行應用程式。
+執行 hello 應用程式。
 
 ```bash
 php artisan serve
 ```
 
-在瀏覽器中，瀏覽至 `http://localhost:8000`。 在頁面中新增幾項工作。
+瀏覽過`http://localhost:8000`瀏覽器中。 Hello 頁面中新增一些工作。
 
-![PHP 成功連線至 MySQL](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
+![PHP 順利連線 tooMySQL](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
 
-若要停止 PHP，請在終端機中輸入 `Ctrl + C`。
+輸入 toostop PHP `Ctrl + C` hello 終端機中。
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
 ## <a name="create-mysql-in-azure"></a>在 Azure 中建立 MySQL
 
-在此步驟中，您會在[適用於 MySQL 的 Azure 資料庫 (預覽)](/azure/mysql) 中建立 MySQL 資料庫。 稍後，您要將 PHP 應用程式設定為連線至此資料庫。
+在此步驟中，您會在[適用於 MySQL 的 Azure 資料庫 (預覽)](/azure/mysql) 中建立 MySQL 資料庫。 稍後，您可以設定 hello PHP 應用程式 tooconnect toothis 資料庫。
 
 ### <a name="create-a-resource-group"></a>建立資源群組
 
@@ -158,9 +158,9 @@ php artisan serve
 
 ### <a name="create-a-mysql-server"></a>建立 MySQL 伺服器
 
-使用 [az mysql server create](/cli/azure/mysql/server#create) 命令，在適用於 MySQL 的 Azure 資料庫 (預覽) 中建立伺服器。
+Azure 資料庫中建立伺服器的 MySQL （預覽） 以 hello [az mysql 伺服器建立](/cli/azure/mysql/server#create)命令。
 
-在下列命令中，在您看見 _&lt;mysql_server_name>_ 預留位置的地方，取代成您自己的 MySQL 伺服器名稱 (有效字元有 `a-z`、`0-9`、`-`)。 這個名稱是 MySQL 伺服器主機名稱 (`<mysql_server_name>.database.windows.net`) 的一部分，必須是全域唯一的。
+在 hello 下列命令，以取代 MySQL 伺服器名稱，您會看到 hello  _&lt;mysql_server_name >_預留位置 (有效的字元是`a-z`， `0-9`，和`-`)。 這個名稱是 hello MySQL 伺服器的主機名稱的一部分 (`<mysql_server_name>.database.windows.net`)，它需要 toobe 全域唯一。
 
 ```azurecli-interactive
 az mysql server create \
@@ -171,7 +171,7 @@ az mysql server create \
     --admin-password MySQLAzure2017
 ```
 
-建立 MySQL 伺服器後，Azure CLI 會顯示類似下列範例的資訊：
+建立 hello MySQL 伺服器時，hello Azure CLI 顯示資訊的類似 toohello 下列範例：
 
 ```json
 {
@@ -188,7 +188,7 @@ az mysql server create \
 
 ### <a name="configure-server-firewall"></a>設定伺服器防火牆
 
-使用 [az mysql server firewall-rule create](/cli/azure/mysql/server/firewall-rule#create) 命令，建立 MySQL 伺服器的防火牆規則來允許用戶端連線。
+建立防火牆規則的 MySQL 伺服器 tooallow 用戶端連接使用 hello [az mysql 伺服器防火牆規則建立](/cli/azure/mysql/server/firewall-rule#create)命令。
 
 ```azurecli-interactive
 az mysql server firewall-rule create \
@@ -200,23 +200,23 @@ az mysql server firewall-rule create \
 ```
 
 > [!NOTE]
-> 適用於 MySQL 的 Azure 資料庫 (預覽) 目前沒有限制只能連線至 Azure 服務。 由於 Azure 中的 IP 位址為動態指派，最好是啟用所有的 IP 位址。 此服務為預覽狀態。 我們正在規劃更好的方法來保護您的資料庫。
+> Azure 資料庫的 MySQL （預覽） 目前並不會限制連線只 tooAzure 服務。 在 Azure 中的 IP 位址動態指派，它是較佳的 tooenable 所有 IP 位址。 hello 服務處於預覽狀態。 我們正在規劃更好的方法來保護您的資料庫。
 >
 >
 
-### <a name="connect-to-production-mysql-server-locally"></a>在本機連線到生產環境 MySQL 伺服器
+### <a name="connect-tooproduction-mysql-server-locally"></a>Tooproduction MySQL 伺服器本機連接
 
-在終端機視窗中，連線至 Azure 中的 MySQL 伺服器。 使用您先前為 _&lt;mysql_server_name>_ 指定的值。
+在 hello 終端機視窗中，連接在 Azure 中的 toohello MySQL 伺服器。 使用您先前指定的 hello 值 _&lt;mysql_server_name >_。
 
 ```bash
 mysql -u adminuser@<mysql_server_name> -h <mysql_server_name>.database.windows.net -P 3306 -p
 ```
 
-當系統提示您輸入密碼，使用您建立資料庫時指定的 _$tr0ngPa$w0rd!_。
+當提示您輸入密碼，請使用_$tr0ngPa$ w0rd ！_，這是您指定當您建立 hello 資料庫。
 
 ### <a name="create-a-production-database"></a>建立生產環境資料庫
 
-在 `mysql` 提示中，建立資料庫。
+在 hello`mysql`提示字元中，建立資料庫。
 
 ```sql
 CREATE DATABASE sampledb;
@@ -224,28 +224,28 @@ CREATE DATABASE sampledb;
 
 ### <a name="create-a-user-with-permissions"></a>建立具有權限的使用者
 
-建立名為 _phpappuser_ 的資料庫使用者，並將 `sampledb` 資料庫中所有的權限授權給它。
+建立資料庫使用者，稱為_phpappuser_並給予其所有特殊權限在 hello`sampledb`資料庫。
 
 ```sql
 CREATE USER 'phpappuser' IDENTIFIED BY 'MySQLAzure2017'; 
-GRANT ALL PRIVILEGES ON sampledb.* TO 'phpappuser';
+GRANT ALL PRIVILEGES ON sampledb.* too'phpappuser';
 ```
 
-輸入 `quit` 結束伺服器連線。
+結束輸入 hello 伺服器連接`quit`。
 
 ```sql
 quit
 ```
 
-## <a name="connect-app-to-azure-mysql"></a>將應用程式連線至 Azure MySQL
+## <a name="connect-app-tooazure-mysql"></a>連接應用程式 tooAzure MySQL
 
-在此步驟中，您要將 PHP 應用程式連線至您在適用於 MySQL 的 Azure 資料庫 (預覽) 中建立的 MySQL 資料庫。
+在此步驟中，您可以連接 hello PHP 應用程式 toohello MySQL 資料庫您 Azure 資料庫中建立的 MySQL （預覽）。
 
 <a name="devconfig"></a>
 
-### <a name="configure-the-database-connection"></a>設定資料庫連接
+### <a name="configure-hello-database-connection"></a>設定 hello 資料庫連接
 
-在存放庫根目錄中，建立 _.env.production_ 檔案，並將下列變數複製到檔案中。 取代預留位置 _&lt;mysql_server_name>_。
+在 hello 儲存機制根目錄中，建立_。 env.production_下列變數到其中的檔案，並複製 hello。 取代 hello 預留位置 _&lt;mysql_server_name >_。
 
 ```
 APP_ENV=production
@@ -260,17 +260,17 @@ DB_PASSWORD=MySQLAzure2017
 MYSQL_SSL=true
 ```
 
-儲存變更。
+儲存 hello 的變更。
 
 > [!TIP]
-> 為了保護您的 MySQL 連接資訊，Git 存放庫中已經排除此檔案 (請看_.gitignore_ 存放庫的根目錄)。 稍後，您將了解如何設定 App Service 中的環境變數，來連線至適用於 MySQL 的 Azure 資料庫 (預覽)。 使用環境變數，您在 App Service 中就不需要 *.env* 檔案。
+> 您的 MySQL 連接資訊，此檔案已經排除 hello Git 儲存機制的 toosecure (請參閱_.gitignore_ hello 儲存機制的根目錄中)。 更新版本中，您會學習如何在應用程式服務 tooconnect tooyour tooconfigure 環境變數資料庫 Azure Database 中的 MySQL （預覽）。 環境變數使用，您不需要 hello *.env* App Service 中的檔案。
 >
 
 ### <a name="configure-ssl-certificate"></a>設定 SSL 憑證
 
-根據預設，用於 MySQL 的 Azure 資料庫會強制用戶端使用 SSL 連線。 若要連線到您在 Azure 中的 MySQL 資料庫，您必須使用 _.pem_ SSL 憑證。
+根據預設，用於 MySQL 的 Azure 資料庫會強制用戶端使用 SSL 連線。 在 Azure 中的 tooconnect tooyour MySQL 資料庫，您必須使用_.pem_ SSL 憑證。
 
-開啟 _config/database.php_，在 `connections.mysql` 中新增 _sslmode_ 和 _options_ 參數，如下列程式碼所示。
+開啟_config/database.php_和新增 hello _sslmode_和_選項_參數太`connections.mysql`hello 下列程式碼所示。
 
 ```php
 'mysql' => [
@@ -282,54 +282,54 @@ MYSQL_SSL=true
 ],
 ```
 
-若要了解如何產生此 _certificate.pem_，請參閱[在您的應用程式中設定 SSL 連線能力，以安全地連線至適用於 MySQL 的 Azure 資料庫](../mysql/howto-configure-ssl.md)。
+toolearn 如何 toogenerate 這_certificate.pem_，請參閱[設定 SSL 連接，您的應用程式 toosecurely 所連接的 MySQL tooAzure 資料庫](../mysql/howto-configure-ssl.md)。
 
 > [!TIP]
-> _/ssl/certificate.pem_ 路徑指向 Git 存放庫中現有的 _certificate.pem_ 檔案。 本教學課程為了方便起見提供這個檔案。 實際的最佳做法是您不應該認可您的 _.pem_ 憑證進入原始檔控制。 
+> hello 路徑_/ssl/certificate.pem_點 tooan 現有_certificate.pem_ hello Git 儲存機制中的檔案。 本教學課程為了方便起見提供這個檔案。 實際的最佳做法是您不應該認可您的 _.pem_ 憑證進入原始檔控制。 
 >
 
-### <a name="test-the-application-locally"></a>在本機測試應用程式
+### <a name="test-hello-application-locally"></a>在本機測試 hello 應用程式
 
-使用 _.env.production_ 作為環境檔案來執行 Laravel 資料庫移轉，可在適用於 MySQL 的 Azure 資料庫 (預覽) 中建立資料表。 請記住，_.env.production_ 中有連線至您在 Azure 中的 MySQL 資料庫的連線資訊。
+執行 Laravel 資料庫移轉，而_。 env.production_為 hello MySQL （預覽） 環境內的檔案 toocreate hello 表格中 Azure 資料庫的 MySQL 資料庫。 請記住， _。 env.production_已在 Azure 中的 hello 連線資訊 tooyour MySQL 資料庫。
 
 ```bash
 php artisan migrate --env=production --force
 ```
 
-_.env.production_ 沒有有效的應用程式金鑰。 在終端機中為它產生一個新的。
+_.env.production_ 沒有有效的應用程式金鑰。 產生一個新的 hello 終端機中。
 
 ```bash
 php artisan key:generate --env=production --force
 ```
 
-使用 _.env.production_ 作為環境檔案來執行範例應用程式。
+執行與 hello 範例應用程式_。 env.production_為 hello 環境檔案。
 
 ```bash
 php artisan serve --env=production
 ```
 
-瀏覽至 `http://localhost:8000`。 如果頁面載入無誤，PHP 應用程式就會連線至 Azure 中的 MySQL 資料庫。
+瀏覽過`http://localhost:8000`。 如果 hello 頁面載入無錯誤，hello PHP 應用程式正在連接 Azure toohello MySQL 資料庫。
 
-在頁面中新增幾項工作。
+Hello 頁面中新增一些工作。
 
-![PHP 順利連線至適用於 MySQL 的 Azure 資料庫 (預覽)](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
+![PHP 連接成功 tooAzure 資料庫的 MySQL （預覽）](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
 
-若要停止 PHP，請在終端機中輸入 `Ctrl + C`。
+輸入 toostop PHP `Ctrl + C` hello 終端機中。
 
 ### <a name="commit-your-changes"></a>認可變更
 
-執行下列的 Git 命令認可您的變更：
+Git 命令 toocommit 執行 hello 下列變更：
 
 ```bash
 git add .
 git commit -m "database.php updates"
 ```
 
-您的應用程式已準備好進行部署。
+您的應用程式是部署的準備 toobe。
 
-## <a name="deploy-to-azure"></a>部署至 Azure
+## <a name="deploy-tooazure"></a>部署 tooAzure
 
-在此步驟中，您要將已與 MySQL 連線的 PHP 應用程式部署至 Azure App Service。
+在此步驟中，您可以部署 hello MySQL 連接 PHP 應用程式 tooAzure 應用程式服務。
 
 ### <a name="create-an-app-service-plan"></a>建立應用程式服務方案
 
@@ -339,11 +339,11 @@ git commit -m "database.php updates"
 
 [!INCLUDE [Create web app no h](../../includes/app-service-web-create-web-app-no-h.md)]
 
-### <a name="set-the-php-version"></a>設定 PHP 版本
+### <a name="set-hello-php-version"></a>Set hello PHP 版本
 
-使用 [az webapp config set](/cli/azure/webapp/config#set) 命令設定應用程式所需的 PHP 版本。
+Hello 應用程式的設定 hello PHP 版本需要使用 hello [az webapp 組態集](/cli/azure/webapp/config#set)命令。
 
-下列命令會將 PHP 版本設定為 _7.0_。
+hello 下列命令設定 hello PHP 版本 too_7.0_。
 
 ```azurecli-interactive
 az webapp config set \
@@ -354,11 +354,11 @@ az webapp config set \
 
 ### <a name="configure-database-settings"></a>設定資料庫設定
 
-如先前所指出，您可以使用 App Service 中的環境變數，連線至 Azure MySQL 資料庫。
+如先前，您可以連接 tooyour Azure MySQL 資料庫應用程式服務中使用環境變數。
 
-在 App Service 中，您可以使用 [az webapp config appsettings set](/cli/azure/webapp/config/appsettings#set) 命令將環境變數設定為「應用程式設定」。
+在應用程式服務中，您設定環境變數為_應用程式設定_使用 hello [az webapp config appsettings 組](/cli/azure/webapp/config/appsettings#set)命令。
 
-下列命令會設定 `DB_HOST`、`DB_DATABASE`、`DB_USERNAME`、`DB_PASSWORD` 應用程式設定。 取代預留位置 _&lt;appname>_ 和 _&lt;mysql_server_name>_。
+hello 下列命令會設定 hello 應用程式設定`DB_HOST`， `DB_DATABASE`， `DB_USERNAME`，和`DB_PASSWORD`。 Hello 預留位置取代 _&lt;appname >_和 _&lt;mysql_server_name >_。
 
 ```azurecli-interactive
 az webapp config appsettings set \
@@ -367,7 +367,7 @@ az webapp config appsettings set \
     --settings DB_HOST="<mysql_server_name>.database.windows.net" DB_DATABASE="sampledb" DB_USERNAME="phpappuser@<mysql_server_name>" DB_PASSWORD="MySQLAzure2017" MYSQL_SSL="true"
 ```
 
-您可以使用 PHP [getenv](http://www.php.net/manual/function.getenv.php) 方法來存取這些設定。 Laravel 程式碼會透過 PHP `getenv` 使用 [env](https://laravel.com/docs/5.4/helpers#method-env) 包裝函式。 例如，在 _config/database.php_ 中的 MySQL 設定看起來像這樣︰
+您可以使用 hello PHP [getenv](http://www.php.net/manual/function.getenv.php)方法 tooaccess hello 設定。 hello Laravel 程式碼會使用[env](https://laravel.com/docs/5.4/helpers#method-env)包裝函式透過 hello PHP `getenv`。 例如，hello MySQL 組態中的_config/database.php_看起來像下列程式碼的 hello:
 
 ```php
 'mysql' => [
@@ -384,13 +384,13 @@ az webapp config appsettings set \
 
 Laravel 在 App Service 中需要應用程式金鑰。 您可以使用應用程式設定加以設定。
 
-使用 `php artisan` 產生新的應用程式金鑰，而不將它儲存為 _.env_。
+使用`php artisan`toogenerate 新的應用程式金鑰，而不儲存 too_.env_。
 
 ```bash
 php artisan key:generate --show
 ```
 
-使用 [az webapp config appsettings set](/cli/azure/webapp/config/appsettings#set) 命令來設定 App Service Web 應用程式中的應用程式金鑰。 取代 _&lt;appname>_ 和 _&lt;outputofphpartisankey:generate>_ 預留位置。
+設定 hello 應用程式中索引鍵 hello App Service web 應用程式使用 hello [az webapp config appsettings 組](/cli/azure/webapp/config/appsettings#set)命令。 Hello 預留位置取代 _&lt;appname >_和 _&lt;outputofphpartisankey： 產生 >_。
 
 ```azurecli-interactive
 az webapp config appsettings set \
@@ -399,13 +399,13 @@ az webapp config appsettings set \
     --settings APP_KEY="<output_of_php_artisan_key:generate>" APP_DEBUG="true"
 ```
 
-當部署的 Web 應用程式遇到錯誤，`APP_DEBUG="true"` 會告訴 Laravel 傳回偵錯資訊。 執行生產環境應用程式時，將它設為 `false` 會更安全。
+`APP_DEBUG="true"`會告知 Laravel tooreturn 偵錯資訊 hello 部署 web 應用程式時遇到錯誤。 當執行生產應用程式，將它設定太`false`，這是更安全。
 
-### <a name="set-the-virtual-application-path"></a>設定虛擬應用程式路徑
+### <a name="set-hello-virtual-application-path"></a>設定 hello 虛擬應用程式路徑
 
-設定 Web 應用程式的虛擬應用程式路徑。 需要執行此步驟，是因為 [Laravel 應用程式生命週期](https://laravel.com/docs/5.4/lifecycle)是在「公用」目錄中啟動，而不是在應用程式的根目錄。 在根目錄中啟動生命週期的其他 PHP 架構，不需要手動設定虛擬應用程式路徑即可運作。
+設定 hello hello web 應用程式的虛擬應用程式路徑。 這個步驟是必要的因為 hello [Laravel 應用程式生命週期](https://laravel.com/docs/5.4/lifecycle)一開始會處於 hello_公用_目錄而不是 hello 應用程式的根目錄。 在 hello 根目錄開始其生命週期其他 PHP 架構可以運作而不需要手動設定的 hello 虛擬應用程式路徑。
 
-使用 [az resource update](/cli/azure/resource#update) 命令設定虛擬應用程式的路徑。 取代 _&lt;appname>_ 預留位置。
+設定 hello 虛擬應用程式路徑使用 hello [az 資源更新](/cli/azure/resource#update)命令。 取代 hello  _&lt;appname >_預留位置。
 
 ```azurecli-interactive
 az resource update \
@@ -418,7 +418,7 @@ az resource update \
     --api-version 2015-06-01
 ```
 
-依預設，Azure App Service 會將根虛擬應用程式路徑 (_/_) 指向已部署應用程式檔案的根目錄 (_sites\wwwroot_)。
+根據預設，Azure 應用程式服務點 hello 根虛擬應用程式路徑 (_/_) hello toohello 根目錄部署應用程式檔案 (_sites\wwwroot_)。
 
 ### <a name="configure-a-deployment-user"></a>設定部署使用者
 
@@ -428,15 +428,15 @@ az resource update \
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git-no-h.md)]
 
-### <a name="push-to-azure-from-git"></a>從 Git 推送至 Azure
+### <a name="push-tooazure-from-git"></a>從 Git 推送 tooAzure
 
-將 Azure 遠端新增至本機 Git 存放庫。
+新增 Azure 遠端 tooyour 本機 Git 儲存機制。
 
 ```bash
 git remote add azure <paste_copied_url_here>
 ```
 
-推送至 Azure 遠端以部署 PHP 應用程式。 建立部署使用者時，系統會提示您輸入稍早提供的密碼。
+推送 toohello Azure 遠端 toodeploy hello PHP 應用程式。 系統會提示您稍早提供一部分 hello hello 部署使用者建立的 hello 密碼。
 
 ```bash
 git push azure master
@@ -446,7 +446,7 @@ git push azure master
 
 ```bash
 Counting objects: 3, done.
-Delta compression using up to 8 threads.
+Delta compression using up too8 threads.
 Compressing objects: 100% (3/3), done.
 Writing objects: 100% (3/3), 291 bytes | 0 bytes/s, done.
 Total 3 (delta 2), reused 0 (delta 0)
@@ -460,18 +460,18 @@ remote: Running deployment command...
 ```
 
 > [!NOTE]
-> 您可能會注意到，部署程序會在結尾安裝 [Composer](https://getcomposer.org/) 套件。 App Service 不會在預設部署期間執行這些自動化，因此，這個範例存放庫在其根目錄中有三個其他檔案可啟用它：
+> 您可能會注意到 hello 部署程序會安裝[編輯器](https://getcomposer.org/)hello 結尾的封裝。 應用程式服務不會執行這些自動化增加了在預設部署期間，因此這個範例儲存機制有三個額外的檔案其根目錄 tooenable 它：
 >
-> - `.deployment` - 此檔案會告訴 App Service，執行 `bash deploy.sh` 以做為自訂部署指令碼。
-> - `deploy.sh` - 自訂部署指令碼。 如果您檢閱檔案，您將看到它會在 `npm install` 之後執行 `php composer.phar install`。
-> - `composer.phar` - Composer 套件管理員。
+> - `.deployment`-此檔案會告知應用程式服務 toorun `bash deploy.sh` hello 自訂部署指令碼。
+> - `deploy.sh`-hello 自訂部署指令碼。 如果您檢閱 hello 檔案時，您會看到應用程式會執行`php composer.phar install`之後`npm install`。
+> - `composer.phar`-hello 編輯器封裝管理員。
 >
-> 您可以使用這種方法，將您任何以 Git 為基礎的部署步驟新增至 App Service。 如需相關資訊，請參閱[自訂部署指令碼](https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script)。
+> 您可以使用此方法 tooadd 任何步驟 tooyour Git 架構部署 tooApp 服務。 如需相關資訊，請參閱[自訂部署指令碼](https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script)。
 >
 
-### <a name="browse-to-the-azure-web-app"></a>瀏覽至 Azure Web 應用程式
+### <a name="browse-toohello-azure-web-app"></a>瀏覽 toohello Azure web 應用程式
 
-瀏覽至 `http://<app_name>.azurewebsites.net` 並將幾項工作新增至清單。
+瀏覽過`http://<app_name>.azurewebsites.net`並加入一些工作 toohello 清單。
 
 ![在 Azure App Service 中執行的 PHP 應用程式](./media/app-service-web-tutorial-php-mysql/php-mysql-in-azure.png)
 
@@ -479,23 +479,23 @@ remote: Running deployment command...
 
 ## <a name="update-model-locally-and-redeploy"></a>在本機更新模型並重新部署
 
-在此步驟中，您會簡單變更 `task` 資料模型和 webapp，然後將更新發行至 Azure。
+在此步驟中，您可以進行簡單的變更 toohello`task`資料模型和 hello webapp，，然後將發行 hello 更新 tooAzure。
 
-在此工作案例中，您將修改應用程式，讓您可以將工作標示為完成。
+Hello 工作案例中，您會修改 hello 應用程式，使您可以將工作標示為完成。
 
 ### <a name="add-a-column"></a>新增資料行
 
-在終端機中，瀏覽至 Git 存放庫的根目錄。
+在終端機 hello，瀏覽 toohello hello Git 儲存機制的根目錄。
 
-為 `tasks` 資料表產生新的資料庫移轉：
+產生新的資料庫移轉 hello`tasks`資料表：
 
 ```bash
 php artisan make:migration add_complete_column --table=tasks
 ```
 
-此命令會顯示所產生的移轉檔案名稱。 在 _database/migrations_ 中找到這個檔案並開啟它。
+此命令會顯示 hello 所產生的 hello 移轉檔案的名稱。 在 _database/migrations_ 中找到這個檔案並開啟它。
 
-以下列程式碼取代 `up` 方法：
+取代 hello`up`方法，以下列程式碼的 hello:
 
 ```php
 public function up()
@@ -506,9 +506,9 @@ public function up()
 }
 ```
 
-上方的程式碼會在名為 `complete` 的 `tasks` 資料表中新增布林值資料行。
+hello 上述程式碼的布林資料行會在新增 hello`tasks`資料表稱為`complete`。
 
-將 `down` 方法取代為下列程式碼以進行復原動作︰
+取代 hello`down`方法，以下列程式碼執行 hello 復原動作的 hello:
 
 ```php
 public function down()
@@ -519,19 +519,19 @@ public function down()
 }
 ```
 
-在終端機中，執行 Laravel 資料庫移轉，以在本機資料庫中進行變更。
+在終端機 hello 執行 Laravel 資料庫移轉 toomake hello 變更 hello 本機資料庫中。
 
 ```bash
 php artisan migrate
 ```
 
-根據 [Laravel 命名慣例](https://laravel.com/docs/5.4/eloquent#defining-models)，依預設 `Task` 模型 (請看 app/Task.php) 會對應至 `tasks` 資料表。
+根據 hello [Laravel 命名慣例](https://laravel.com/docs/5.4/eloquent#defining-models)，hello 模型`Task`(請參閱_app/Task.php_) 對應 toohello`tasks`預設資料表。
 
 ### <a name="update-application-logic"></a>更新應用程式邏輯
 
-開啟 *routes/web.php* 檔案。 應用程式會在這裡定義其路由和商務邏輯。
+開啟 hello *routes/web.php*檔案。 hello 應用程式定義的路由和商務邏輯。
 
-在檔案的結尾，使用下列程式碼新增路由︰
+在 hello hello 檔案結尾，加入路由以下列程式碼的 hello:
 
 ```php
 /**
@@ -548,25 +548,25 @@ Route::post('/task/{id}', function ($id) {
 });
 ```
 
-上方的程式碼會切換 `complete` 的值，對資料模型進行簡單的更新。
+hello 上述程式碼就可以簡單更新 toohello 資料模型切換 hello 值`complete`。
 
-### <a name="update-the-view"></a>更新檢視
+### <a name="update-hello-view"></a>更新 hello 檢視
 
-開啟 *resources/views/tasks.blade.php* 檔案。 尋找 `<tr>` 開頭標記，並將它取代為︰
+開啟 hello *resources/views/tasks.blade.php*檔案。 尋找 hello`<tr>`開頭標記，並將它取代為：
 
 ```html
 <tr class="{{ $task->complete ? 'success' : 'active' }}" >
 ```
 
-上方的程式碼會視工作是否完成來變更資料列色彩。
+上述程式碼變更 hello 根據 hello 工作是否已完成的資料列色彩 hello。
 
-在下一行中，您會有下列程式碼︰
+在 hello 下一行中，您會有下列程式碼的 hello:
 
 ```html
 <td class="table-text"><div>{{ $task->name }}</div></td>
 ```
 
-將這一整行取代為下列程式碼：
+Hello 整行取代成下列程式碼的 hello:
 
 ```html
 <td>
@@ -581,31 +581,31 @@ Route::post('/task/{id}', function ($id) {
 </td>
 ```
 
-上方的程式碼新增的提交按鈕會參考您稍早定義的路由。
+hello 上述程式碼中加入參考先前定義的 hello 路由的 hello 送出按鈕。
 
-### <a name="test-the-changes-locally"></a>本機測試變更
+### <a name="test-hello-changes-locally"></a>在本機測試 hello 變更
 
-從 Git 存放庫的根目錄，執行程式開發伺服器。
+Hello 根目錄中的 hello Git 儲存機制，從執行 hello 程式開發伺服器。
 
 ```bash
 php artisan serve
 ```
 
-若要查看工作狀態的變更，瀏覽至 `http://localhost:8000`，然後選取核取方塊。
+toosee hello 工作狀態變更，瀏覽過`http://localhost:8000`和選取 hello 核取方塊。
 
-![已將核取方塊新增至工作](./media/app-service-web-tutorial-php-mysql/complete-checkbox.png)
+![加入核取方塊 tootask](./media/app-service-web-tutorial-php-mysql/complete-checkbox.png)
 
-若要停止 PHP，請在終端機中輸入 `Ctrl + C`。
+輸入 toostop PHP `Ctrl + C` hello 終端機中。
 
-### <a name="publish-changes-to-azure"></a>將變更發佈至 Azure
+### <a name="publish-changes-tooazure"></a>發行變更 tooAzure
 
-在終端機中，使用生產環境連接字串執行 Laravel 資料庫移轉，以在 Azure 資料庫中進行變更。
+在終端機 hello 執行 Laravel 資料庫移轉與 hello 生產連接字串 toomake hello 變更 hello Azure 資料庫中。
 
 ```bash
 php artisan migrate --env=production --force
 ```
 
-在 Git 中認可所有變更，然後將程式碼變更推送至 Azure。
+認可 Git 中的所有 hello 變更，並接著推送 hello 程式碼變更 tooAzure。
 
 ```bash
 git add .
@@ -613,17 +613,17 @@ git commit -m "added complete checkbox"
 git push azure master
 ```
 
-完成 `git push` 之後，瀏覽至 Azure Web 應用程式，然後測試新功能。
+一次 hello`git push`已完成，請瀏覽 toohello Azure web 應用程式和測試 hello 新功能。
 
-![發佈至 Azure 的模型和資料庫變更](media/app-service-web-tutorial-php-mysql/complete-checkbox-published.png)
+![發行 tooAzure 模型與資料庫的變更。](media/app-service-web-tutorial-php-mysql/complete-checkbox-published.png)
 
-如果您新增任何工作，它們會保留在資料庫中。 對資料結構描述進行的更新，現有資料會原封不動。
+如果您加入的任何工作時，它們會保留在 hello 資料庫。 更新 toohello 資料結構描述可讓現有的資料保持不變。
 
 ## <a name="stream-diagnostic-logs"></a>資料流診斷記錄
 
-當 PHP 應用程式在 Azure App Service 中執行時，您可以使用管線將主控台記錄傳送至終端機。 這樣一來，您就能取得相同的診斷訊息，以協助您偵錯應用程式錯誤。
+Hello PHP 應用程式執行時 Azure App Service 中，您可以取得 hello 主控台記錄檔傳送的 tooyour 終端機。 這樣一來，您可以取得 hello 相同的診斷訊息 toohelp 您偵錯應用程式錯誤。
 
-請使用 [az webapp log tail](/cli/azure/webapp/log#tail) 命令開始記錄資料流。
+資料流中，使用 hello toostart 記錄[az webapp 記錄結尾](/cli/azure/webapp/log#tail)命令。
 
 ```azurecli-interactive
 az webapp log tail \
@@ -631,28 +631,28 @@ az webapp log tail \
     --resource-group myResourceGroup
 ```
 
-開始記錄資料流之後，重新整理瀏覽器中的 Azure Web 應用程式，以取得部分 Web 流量。 您現在會看到使用管線傳送到終端機的主控台記錄。 如果您沒有立即看到主控台記錄，請在 30 秒後再查看。
+記錄檔資料流啟動之後，重新整理 hello Azure web 應用程式在 hello 瀏覽器 tooget 某些網路流量。 您現在可以看到主控台記錄檔傳送的 toohello 終端機。 如果您沒有立即看到主控台記錄，請在 30 秒後再查看。
 
-若要隨時停止記錄資料流，輸入 `Ctrl`+`C`。
+在任何時候、 資料流 toostop 記錄類型`Ctrl` + `C`。
 
 > [!TIP]
-> PHP 應用程式可以使用標準 [error_log()](http://php.net/manual/function.error-log.php) 輸出到主控台。 範例應用程式會在 _app/Http/routes.php_ 中使用這種方法。
+> PHP 應用程式可以使用 hello 標準[error_log()](http://php.net/manual/function.error-log.php) toooutput toohello 主控台。 hello 範例應用程式使用這個方法在_app/Http/routes.php_。
 >
-> 如同 web 架構，[Laravel 會使用 Monolog](https://laravel.com/docs/5.4/errors) 作為記錄提供者。 若要了解如何使 Monolog 將訊息輸出至主控台，請參閱 [PHP︰如何使用 Monolog 記錄至主控台 (php://out)](http://stackoverflow.com/questions/25787258/php-how-to-use-monolog-to-log-to-console-php-out)。
+> 一種 web 架構，為[Laravel 使用 Monolog](https://laravel.com/docs/5.4/errors)為 hello 記錄提供者。 toosee 如何 tooget Monolog toooutput 訊息 toohello 主控台中，請參閱[PHP： 如何 toouse monolog toolog tooconsole (php://out)](http://stackoverflow.com/questions/25787258/php-how-to-use-monolog-to-log-to-console-php-out)。
 >
 >
 
-## <a name="manage-the-azure-web-app"></a>管理 Azure Web 應用程式
+## <a name="manage-hello-azure-web-app"></a>管理 hello Azure web 應用程式
 
-請移至 [Azure 入口網站](https://portal.azure.com)，以管理您所建立的 Web 應用程式。
+移 toohello [Azure 入口網站](https://portal.azure.com)toomanage hello web 應用程式所建立。
 
-按一下左側功能表中的 [應用程式服務]，然後按一下 Azure Web 應用程式的名稱。
+從 hello 左窗格中，按一下 **應用程式服務**，然後按一下hello Azure web 應用程式名稱。
 
-![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-tutorial-php-mysql/access-portal.png)
+![入口網站瀏覽 tooAzure web 應用程式](./media/app-service-web-tutorial-php-mysql/access-portal.png)
 
 您會看到 Web 應用程式的 [概觀] 頁面。 您可以在這裡執行基本管理工作，像是停止、啟動、重新啟動、瀏覽、刪除。
 
-左側功能表提供的頁面可用來設定您的應用程式。
+hello 左側的功能表會提供如何設定您的應用程式頁面。
 
 ![Azure 入口網站中的 App Service 頁面](./media/app-service-web-tutorial-php-mysql/web-app-blade.png)
 
@@ -666,13 +666,13 @@ az webapp log tail \
 
 > [!div class="checklist"]
 > * 在 Azure 中建立 MySQL 資料庫
-> * 將 PHP 應用程式連線至 MySQL
-> * 將應用程式部署至 Azure
-> * 將資料模型更新並將應用程式重新部署
+> * 連接 PHP 應用程式 tooMySQL
+> * 部署 hello 應用程式 tooAzure
+> * 更新 hello 資料模型，部署 hello 應用程式
 > * 來自 Azure 的串流診斷記錄
-> * 在 Azure 入口網站中管理應用程式
+> * 管理 hello hello Azure 入口網站中的應用程式
 
-前往下一個教學課程，了解如何將自訂的 DNS 名稱對應至 Web 應用程式。
+前進 toohello 下一個教學課程 toolearn toomap 自訂的 DNS 名稱 tooa web 應用程式的方式。
 
 > [!div class="nextstepaction"]
-> [將現有的自訂 DNS 名稱對應至 Azure Web Apps](app-service-web-tutorial-custom-domain.md)
+> [將現有自訂 DNS 名稱 tooAzure Web 應用程式的對應](app-service-web-tutorial-custom-domain.md)
