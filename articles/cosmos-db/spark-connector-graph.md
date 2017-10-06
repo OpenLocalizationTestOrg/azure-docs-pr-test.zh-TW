@@ -15,47 +15,47 @@ ms.devlang: gremlin
 ms.topic: article
 ms.date: 06/05/2017
 ms.author: khdang
-ms.openlocfilehash: 27c4d945e418b130c68cfde845571eb93658101e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0be5c9b12cdba4a428c809d00e1e68785a9ec1ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-perform-graph-analytics-by-using-spark-and-apache-tinkerpop-gremlin"></a><span data-ttu-id="64a6a-103">Azure Cosmos DB︰使用 Spark 和 Apache TinkerPop Gremlin 執行圖表分析</span><span class="sxs-lookup"><span data-stu-id="64a6a-103">Azure Cosmos DB: Perform graph analytics by using Spark and Apache TinkerPop Gremlin</span></span>
+# <a name="azure-cosmos-db-perform-graph-analytics-by-using-spark-and-apache-tinkerpop-gremlin"></a><span data-ttu-id="922ff-103">Azure Cosmos DB︰使用 Spark 和 Apache TinkerPop Gremlin 執行圖表分析</span><span class="sxs-lookup"><span data-stu-id="922ff-103">Azure Cosmos DB: Perform graph analytics by using Spark and Apache TinkerPop Gremlin</span></span>
 
-<span data-ttu-id="64a6a-104">[Azure Cosmos DB](introduction.md) 是 Microsoft 的全域分散式多模型資料庫服務。</span><span class="sxs-lookup"><span data-stu-id="64a6a-104">[Azure Cosmos DB](introduction.md) is the globally distributed, multi-model database service from Microsoft.</span></span> <span data-ttu-id="64a6a-105">您可以建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。</span><span class="sxs-lookup"><span data-stu-id="64a6a-105">You can create and query document, key/value, and graph databases, all of which benefit from the global-distribution and horizontal-scale capabilities at the core of Azure Cosmos DB.</span></span> <span data-ttu-id="64a6a-106">Azure Cosmos DB 支援使用 [Apache TinkerPop Gremlin](graph-introduction.md) 的線上交易處理 (OLTP) 圖形工作負載。</span><span class="sxs-lookup"><span data-stu-id="64a6a-106">Azure Cosmos DB supports online transaction processing (OLTP) graph workloads that use [Apache TinkerPop Gremlin](graph-introduction.md).</span></span>
+<span data-ttu-id="922ff-104">[Azure Cosmos DB](introduction.md)是 hello Microsoft 全域散發、 多模型資料庫服務。</span><span class="sxs-lookup"><span data-stu-id="922ff-104">[Azure Cosmos DB](introduction.md) is hello globally distributed, multi-model database service from Microsoft.</span></span> <span data-ttu-id="922ff-105">您可以建立及查詢文件、 索引鍵/值，以及 graph 資料庫，全部都是利用 Azure Cosmos DB hello 核心 hello 全域發佈和水平縮放功能。</span><span class="sxs-lookup"><span data-stu-id="922ff-105">You can create and query document, key/value, and graph databases, all of which benefit from hello global-distribution and horizontal-scale capabilities at hello core of Azure Cosmos DB.</span></span> <span data-ttu-id="922ff-106">Azure Cosmos DB 支援使用 [Apache TinkerPop Gremlin](graph-introduction.md) 的線上交易處理 (OLTP) 圖形工作負載。</span><span class="sxs-lookup"><span data-stu-id="922ff-106">Azure Cosmos DB supports online transaction processing (OLTP) graph workloads that use [Apache TinkerPop Gremlin](graph-introduction.md).</span></span>
 
-<span data-ttu-id="64a6a-107">[Spark](http://spark.apache.org/) 是著重於一般用途線上分析處理 (OLAP) 資料處理的 Apache Software Foundation 專案。</span><span class="sxs-lookup"><span data-stu-id="64a6a-107">[Spark](http://spark.apache.org/) is an Apache Software Foundation project that's focused on general-purpose online analytical processing (OLAP) data processing.</span></span> <span data-ttu-id="64a6a-108">Spark 會提供混合式記憶體內/磁碟型分散式運算模型，其類似於 Hadoop MapReduce 模型。</span><span class="sxs-lookup"><span data-stu-id="64a6a-108">Spark provides a hybrid in-memory/disk-based distributed computing model that is similar to the Hadoop MapReduce model.</span></span> <span data-ttu-id="64a6a-109">您可以使用 [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/) 在雲端部署 Apache Spark。</span><span class="sxs-lookup"><span data-stu-id="64a6a-109">You can deploy Apache Spark in the cloud by using [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/).</span></span>
+<span data-ttu-id="922ff-107">[Spark](http://spark.apache.org/) 是著重於一般用途線上分析處理 (OLAP) 資料處理的 Apache Software Foundation 專案。</span><span class="sxs-lookup"><span data-stu-id="922ff-107">[Spark](http://spark.apache.org/) is an Apache Software Foundation project that's focused on general-purpose online analytical processing (OLAP) data processing.</span></span> <span data-ttu-id="922ff-108">Spark 提供了混合中記憶體/磁碟為基礎分散式運算模型是類似 toohello Hadoop MapReduce 模型。</span><span class="sxs-lookup"><span data-stu-id="922ff-108">Spark provides a hybrid in-memory/disk-based distributed computing model that is similar toohello Hadoop MapReduce model.</span></span> <span data-ttu-id="922ff-109">您可以使用來部署 hello 雲端中的 Apache Spark [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/)。</span><span class="sxs-lookup"><span data-stu-id="922ff-109">You can deploy Apache Spark in hello cloud by using [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/).</span></span>
 
-<span data-ttu-id="64a6a-110">結合 Azure Cosmos DB 與 Spark，您可以使用 Gremlin 執行 OLTP 和 OLAP 工作負載。</span><span class="sxs-lookup"><span data-stu-id="64a6a-110">By combining Azure Cosmos DB and Spark, you can perform both OLTP and OLAP workloads when you use Gremlin.</span></span> <span data-ttu-id="64a6a-111">本快速入門文章示範如何在 Azure HDInsight Spark 叢集上對 Azure Cosmos DB 執行 Gremlin 查詢。</span><span class="sxs-lookup"><span data-stu-id="64a6a-111">This quick-start article demonstrates how to run Gremlin queries against Azure Cosmos DB on an Azure HDInsight Spark cluster.</span></span>
+<span data-ttu-id="922ff-110">結合 Azure Cosmos DB 與 Spark，您可以使用 Gremlin 執行 OLTP 和 OLAP 工作負載。</span><span class="sxs-lookup"><span data-stu-id="922ff-110">By combining Azure Cosmos DB and Spark, you can perform both OLTP and OLAP workloads when you use Gremlin.</span></span> <span data-ttu-id="922ff-111">快速入門本文示範如何 toorun Gremlin 查詢 Azure Cosmos DB Azure HDInsight Spark 叢集上。</span><span class="sxs-lookup"><span data-stu-id="922ff-111">This quick-start article demonstrates how toorun Gremlin queries against Azure Cosmos DB on an Azure HDInsight Spark cluster.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="64a6a-112">必要條件</span><span class="sxs-lookup"><span data-stu-id="64a6a-112">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="922ff-112">必要條件</span><span class="sxs-lookup"><span data-stu-id="922ff-112">Prerequisites</span></span>
 
-<span data-ttu-id="64a6a-113">您必須具備下列必要條件，才能執行此範例：</span><span class="sxs-lookup"><span data-stu-id="64a6a-113">Before you can run this sample, you must have the following prerequisites:</span></span>
-* <span data-ttu-id="64a6a-114">Azure HDInsight Spark 叢集 2.0</span><span class="sxs-lookup"><span data-stu-id="64a6a-114">Azure HDInsight Spark cluster 2.0</span></span>
-* <span data-ttu-id="64a6a-115">JDK 1.8+ (如果您沒有 JDK，則執行 `apt-get install default-jdk`。)</span><span class="sxs-lookup"><span data-stu-id="64a6a-115">JDK 1.8+ (If you don't have JDK, run `apt-get install default-jdk`.)</span></span>
-* <span data-ttu-id="64a6a-116">Maven (如果您沒有 Maven，則執行 `apt-get install maven`。)</span><span class="sxs-lookup"><span data-stu-id="64a6a-116">Maven (If you don't have Maven, run `apt-get install maven`.)</span></span>
-* <span data-ttu-id="64a6a-117">Azure 訂用帳戶 ([!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)])</span><span class="sxs-lookup"><span data-stu-id="64a6a-117">An Azure subscription ([!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)])</span></span>
+<span data-ttu-id="922ff-113">您可以執行此範例之前，您必須擁有下列必要條件 hello:</span><span class="sxs-lookup"><span data-stu-id="922ff-113">Before you can run this sample, you must have hello following prerequisites:</span></span>
+* <span data-ttu-id="922ff-114">Azure HDInsight Spark 叢集 2.0</span><span class="sxs-lookup"><span data-stu-id="922ff-114">Azure HDInsight Spark cluster 2.0</span></span>
+* <span data-ttu-id="922ff-115">JDK 1.8+ (如果您沒有 JDK，則執行 `apt-get install default-jdk`。)</span><span class="sxs-lookup"><span data-stu-id="922ff-115">JDK 1.8+ (If you don't have JDK, run `apt-get install default-jdk`.)</span></span>
+* <span data-ttu-id="922ff-116">Maven (如果您沒有 Maven，則執行 `apt-get install maven`。)</span><span class="sxs-lookup"><span data-stu-id="922ff-116">Maven (If you don't have Maven, run `apt-get install maven`.)</span></span>
+* <span data-ttu-id="922ff-117">Azure 訂用帳戶 ([!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)])</span><span class="sxs-lookup"><span data-stu-id="922ff-117">An Azure subscription ([!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)])</span></span>
 
-<span data-ttu-id="64a6a-118">如需有關如何設定 Azure HDInsight Spark 叢集的詳細資訊，請參閱[佈建 HDInsight 叢集](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)。</span><span class="sxs-lookup"><span data-stu-id="64a6a-118">For information about how to set up an Azure HDInsight Spark cluster, see [Provisioning HDInsight clusters](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md).</span></span>
+<span data-ttu-id="922ff-118">如需有關資訊 tooset Azure HDInsight Spark 叢集，請參閱[佈建的 HDInsight 叢集](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)。</span><span class="sxs-lookup"><span data-stu-id="922ff-118">For information about how tooset up an Azure HDInsight Spark cluster, see [Provisioning HDInsight clusters](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md).</span></span>
 
-## <a name="create-an-azure-cosmos-db-database-account"></a><span data-ttu-id="64a6a-119">建立 Azure Cosmos DB 資料庫帳戶</span><span class="sxs-lookup"><span data-stu-id="64a6a-119">Create an Azure Cosmos DB database account</span></span>
+## <a name="create-an-azure-cosmos-db-database-account"></a><span data-ttu-id="922ff-119">建立 Azure Cosmos DB 資料庫帳戶</span><span class="sxs-lookup"><span data-stu-id="922ff-119">Create an Azure Cosmos DB database account</span></span>
 
-<span data-ttu-id="64a6a-120">首先，執行下列動作以使用圖形 API 建立資料庫帳戶：</span><span class="sxs-lookup"><span data-stu-id="64a6a-120">First, create a database account with the Graph API by doing the following:</span></span>
+<span data-ttu-id="922ff-120">首先，建立資料庫帳戶以 hello Graph API，藉由下列 hello:</span><span class="sxs-lookup"><span data-stu-id="922ff-120">First, create a database account with hello Graph API by doing hello following:</span></span>
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
-## <a name="add-a-collection"></a><span data-ttu-id="64a6a-121">新增集合</span><span class="sxs-lookup"><span data-stu-id="64a6a-121">Add a collection</span></span>
+## <a name="add-a-collection"></a><span data-ttu-id="922ff-121">新增集合</span><span class="sxs-lookup"><span data-stu-id="922ff-121">Add a collection</span></span>
 
 [!INCLUDE [cosmos-db-create-collection](../../includes/cosmos-db-create-collection.md)]
 
-## <a name="get-apache-tinkerpop"></a><span data-ttu-id="64a6a-122">取得 Apache TinkerPop</span><span class="sxs-lookup"><span data-stu-id="64a6a-122">Get Apache TinkerPop</span></span>
+## <a name="get-apache-tinkerpop"></a><span data-ttu-id="922ff-122">取得 Apache TinkerPop</span><span class="sxs-lookup"><span data-stu-id="922ff-122">Get Apache TinkerPop</span></span>
 
-<span data-ttu-id="64a6a-123">執行下列動作來取得 Apache TinkerPop：</span><span class="sxs-lookup"><span data-stu-id="64a6a-123">Get Apache TinkerPop by doing the following:</span></span>
+<span data-ttu-id="922ff-123">取得 Apache TinkerPop 執行 hello 下列：</span><span class="sxs-lookup"><span data-stu-id="922ff-123">Get Apache TinkerPop by doing hello following:</span></span>
 
-1. <span data-ttu-id="64a6a-124">在 HDInsight 叢集 `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net` 的主要節點遠端。</span><span class="sxs-lookup"><span data-stu-id="64a6a-124">Remote to the master node of the HDInsight cluster `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`.</span></span>
+1. <span data-ttu-id="922ff-124">遠端 toohello 的 hello HDInsight 叢集的主要節點`ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`。</span><span class="sxs-lookup"><span data-stu-id="922ff-124">Remote toohello master node of hello HDInsight cluster `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`.</span></span>
 
-2. <span data-ttu-id="64a6a-125">複製 TinkerPop3 來源程式碼，在本機加以建置，並將它安裝至 Maven 快取。</span><span class="sxs-lookup"><span data-stu-id="64a6a-125">Clone the TinkerPop3 source code, build it locally, and install it to Maven cache.</span></span>
+2. <span data-ttu-id="922ff-125">複製 hello TinkerPop3 來源程式碼、 在本機建置它，再安裝 tooMaven 快取。</span><span class="sxs-lookup"><span data-stu-id="922ff-125">Clone hello TinkerPop3 source code, build it locally, and install it tooMaven cache.</span></span>
 
     ```bash
     git clone https://github.com/apache/tinkerpop.git
@@ -63,11 +63,11 @@ ms.lasthandoff: 07/11/2017
     mvn clean install
     ```
 
-3. <span data-ttu-id="64a6a-126">安裝 Spark-Gremlin 外掛程式</span><span class="sxs-lookup"><span data-stu-id="64a6a-126">Install the Spark-Gremlin plug-in</span></span> 
+3. <span data-ttu-id="922ff-126">安裝 hello Spark Gremlin 外掛程式</span><span class="sxs-lookup"><span data-stu-id="922ff-126">Install hello Spark-Gremlin plug-in</span></span> 
 
-    <span data-ttu-id="64a6a-127">a.</span><span class="sxs-lookup"><span data-stu-id="64a6a-127">a.</span></span> <span data-ttu-id="64a6a-128">此外掛程式的安裝是由 Grape 處理。</span><span class="sxs-lookup"><span data-stu-id="64a6a-128">The installation of the plug-in is handled by Grape.</span></span> <span data-ttu-id="64a6a-129">填入 Grape 的存放庫資訊，才能下載外掛程式和其相依性。</span><span class="sxs-lookup"><span data-stu-id="64a6a-129">Populate the repositories information for Grape so it can download the plug-in and its dependencies.</span></span> 
+    <span data-ttu-id="922ff-127">a.</span><span class="sxs-lookup"><span data-stu-id="922ff-127">a.</span></span> <span data-ttu-id="922ff-128">Grape 會處理 hello hello 外掛程式安裝。</span><span class="sxs-lookup"><span data-stu-id="922ff-128">hello installation of hello plug-in is handled by Grape.</span></span> <span data-ttu-id="922ff-129">才能下載外掛程式 hello 和其相依性，請填入 Grape hello 儲存機制資訊。</span><span class="sxs-lookup"><span data-stu-id="922ff-129">Populate hello repositories information for Grape so it can download hello plug-in and its dependencies.</span></span> 
 
-      <span data-ttu-id="64a6a-130">建立 Grape 組態檔 (如果它未顯示於 `~/.groovy/grapeConfig.xml`)。</span><span class="sxs-lookup"><span data-stu-id="64a6a-130">Create the grape configuration file if it's not present at `~/.groovy/grapeConfig.xml`.</span></span> <span data-ttu-id="64a6a-131">套用下列設定：</span><span class="sxs-lookup"><span data-stu-id="64a6a-131">Use the following settings:</span></span>
+      <span data-ttu-id="922ff-130">建立 hello 葡萄組態檔，如果不存在於`~/.groovy/grapeConfig.xml`。</span><span class="sxs-lookup"><span data-stu-id="922ff-130">Create hello grape configuration file if it's not present at `~/.groovy/grapeConfig.xml`.</span></span> <span data-ttu-id="922ff-131">使用下列設定的 hello:</span><span class="sxs-lookup"><span data-stu-id="922ff-131">Use hello following settings:</span></span>
 
     ```xml
     <ivysettings>
@@ -89,9 +89,9 @@ ms.lasthandoff: 07/11/2017
     </ivysettings>
     ``` 
 
-    <span data-ttu-id="64a6a-132">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="64a6a-132">b.</span></span> <span data-ttu-id="64a6a-133">啟動 Gremlin 主控台 `bin/gremlin.sh`。</span><span class="sxs-lookup"><span data-stu-id="64a6a-133">Start Gremlin console `bin/gremlin.sh`.</span></span>
+    <span data-ttu-id="922ff-132">b.</span><span class="sxs-lookup"><span data-stu-id="922ff-132">b.</span></span> <span data-ttu-id="922ff-133">啟動 Gremlin 主控台 `bin/gremlin.sh`。</span><span class="sxs-lookup"><span data-stu-id="922ff-133">Start Gremlin console `bin/gremlin.sh`.</span></span>
         
-    <span data-ttu-id="64a6a-134">c.</span><span class="sxs-lookup"><span data-stu-id="64a6a-134">c.</span></span> <span data-ttu-id="64a6a-135">使用您在先前步驟中建立的 3.3.0-SNAPSHOT 版來安裝 Spark-Gremlin 外掛程式：</span><span class="sxs-lookup"><span data-stu-id="64a6a-135">Install the Spark-Gremlin plug-in with version 3.3.0-SNAPSHOT, which you built in the previous steps:</span></span>
+    <span data-ttu-id="922ff-134">c.</span><span class="sxs-lookup"><span data-stu-id="922ff-134">c.</span></span> <span data-ttu-id="922ff-135">安裝版本與 hello Spark Gremlin 外掛程式 3.3.0-SNAPSHOT，建置於 hello 先前步驟中：</span><span class="sxs-lookup"><span data-stu-id="922ff-135">Install hello Spark-Gremlin plug-in with version 3.3.0-SNAPSHOT, which you built in hello previous steps:</span></span>
 
     ```bash
     $ bin/gremlin.sh
@@ -103,7 +103,7 @@ ms.lasthandoff: 07/11/2017
     plugin activated: tinkerpop.utilities
     plugin activated: tinkerpop.tinkergraph
     gremlin> :install org.apache.tinkerpop spark-gremlin 3.3.0-SNAPSHOT
-    ==>loaded: [org.apache.tinkerpop, spark-gremlin, 3.3.0-SNAPSHOT] - restart the console to use [tinkerpop.spark]
+    ==>loaded: [org.apache.tinkerpop, spark-gremlin, 3.3.0-SNAPSHOT] - restart hello console toouse [tinkerpop.spark]
     gremlin> :q
     $ bin/gremlin.sh
 
@@ -117,17 +117,17 @@ ms.lasthandoff: 07/11/2017
     ==>tinkerpop.spark activated
     ```
 
-4. <span data-ttu-id="64a6a-136">檢查 `Hadoop-Gremlin` 是否已啟動 `:plugin list`。</span><span class="sxs-lookup"><span data-stu-id="64a6a-136">Check to see whether `Hadoop-Gremlin` is activated with `:plugin list`.</span></span> <span data-ttu-id="64a6a-137">停用此外掛程式，因為它可能會干擾 Spark-Gremlin 外掛程式 `:plugin unuse tinkerpop.hadoop`。</span><span class="sxs-lookup"><span data-stu-id="64a6a-137">Disable this plug-in, because it could interfere with the Spark-Gremlin plug-in `:plugin unuse tinkerpop.hadoop`.</span></span>
+4. <span data-ttu-id="922ff-136">是否檢查 toosee`Hadoop-Gremlin`會啟動`:plugin list`。</span><span class="sxs-lookup"><span data-stu-id="922ff-136">Check toosee whether `Hadoop-Gremlin` is activated with `:plugin list`.</span></span> <span data-ttu-id="922ff-137">停用此外掛程式，因為它可能會干擾 hello Spark Gremlin 外掛程式`:plugin unuse tinkerpop.hadoop`。</span><span class="sxs-lookup"><span data-stu-id="922ff-137">Disable this plug-in, because it could interfere with hello Spark-Gremlin plug-in `:plugin unuse tinkerpop.hadoop`.</span></span>
 
-## <a name="prepare-tinkerpop3-dependencies"></a><span data-ttu-id="64a6a-138">準備 TinkerPop3 相依性</span><span class="sxs-lookup"><span data-stu-id="64a6a-138">Prepare TinkerPop3 dependencies</span></span>
+## <a name="prepare-tinkerpop3-dependencies"></a><span data-ttu-id="922ff-138">準備 TinkerPop3 相依性</span><span class="sxs-lookup"><span data-stu-id="922ff-138">Prepare TinkerPop3 dependencies</span></span>
 
-<span data-ttu-id="64a6a-139">當您在上一個步驟中建置 TinkerPop3 時，處理序也會提取目標目錄中 Spark 與 Hadoop 的所有 jar 相依性。</span><span class="sxs-lookup"><span data-stu-id="64a6a-139">When you built TinkerPop3 in the previous step, the process also pulled all jar dependencies for Spark and Hadoop in the target directory.</span></span> <span data-ttu-id="64a6a-140">使用預先與 HDI 一起安裝的 jar，並視需要只提取其他相依性。</span><span class="sxs-lookup"><span data-stu-id="64a6a-140">Use the jars that are pre-installed with HDI, and pull in additional dependencies only as necessary.</span></span>
+<span data-ttu-id="922ff-139">當您建置 TinkerPop3 hello 上一個步驟中時，hello 程序也會提取所有 jar 相依性 Spark 和 Hadoop hello 目標目錄中。</span><span class="sxs-lookup"><span data-stu-id="922ff-139">When you built TinkerPop3 in hello previous step, hello process also pulled all jar dependencies for Spark and Hadoop in hello target directory.</span></span> <span data-ttu-id="922ff-140">使用 hello （每，這些瓶），與 HDI，已預先安裝和提取中其他相依性只在必要時。</span><span class="sxs-lookup"><span data-stu-id="922ff-140">Use hello jars that are pre-installed with HDI, and pull in additional dependencies only as necessary.</span></span>
 
-1. <span data-ttu-id="64a6a-141">移至位於 `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone` 的 Gremlin 主控台目標目錄。</span><span class="sxs-lookup"><span data-stu-id="64a6a-141">Go to the Gremlin Console target directory at `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`.</span></span> 
+1. <span data-ttu-id="922ff-141">移 toohello Gremlin 主控台目標目錄在`tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`。</span><span class="sxs-lookup"><span data-stu-id="922ff-141">Go toohello Gremlin Console target directory at `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`.</span></span> 
 
-2. <span data-ttu-id="64a6a-142">將 `ext/` 之下的所有 jar 移至 `lib/`：`find ext/ -name '*.jar' -exec mv {} lib/ \;`。</span><span class="sxs-lookup"><span data-stu-id="64a6a-142">Move all jars under `ext/` to `lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`.</span></span>
+2. <span data-ttu-id="922ff-142">移動下的所有 （每瓶）`ext/`太`lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`。</span><span class="sxs-lookup"><span data-stu-id="922ff-142">Move all jars under `ext/` too`lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`.</span></span>
 
-3. <span data-ttu-id="64a6a-143">移除 `lib/` 之下不在下列清單中的所有 jar 程式庫：</span><span class="sxs-lookup"><span data-stu-id="64a6a-143">Remove all jar libraries under `lib/` that are not in the following list:</span></span>
+3. <span data-ttu-id="922ff-143">移除所有 jar 程式庫之下`lib/`，不能在 hello 下列清單：</span><span class="sxs-lookup"><span data-stu-id="922ff-143">Remove all jar libraries under `lib/` that are not in hello following list:</span></span>
 
     ```bash
     # TinkerPop3
@@ -174,15 +174,15 @@ ms.lasthandoff: 07/11/2017
     xml-apis-1.3.04.jar                        
     ```
 
-## <a name="get-the-azure-cosmos-db-spark-connector"></a><span data-ttu-id="64a6a-144">取得 Azure Cosmos DB Spark 連接器</span><span class="sxs-lookup"><span data-stu-id="64a6a-144">Get the Azure Cosmos DB Spark connector</span></span>
+## <a name="get-hello-azure-cosmos-db-spark-connector"></a><span data-ttu-id="922ff-144">取得 hello Azure Cosmos DB Spark 連接器</span><span class="sxs-lookup"><span data-stu-id="922ff-144">Get hello Azure Cosmos DB Spark connector</span></span>
 
-1. <span data-ttu-id="64a6a-145">從 [GitHub 上的 Azure Cosmos DB Spark 連接器](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11)，取得 Azure Cosmos DB Spark 連接器`azure-documentdb-spark-0.0.3-SNAPSHOT.jar` 和 Cosmos DB Java SDK `azure-documentdb-1.10.0.jar`。</span><span class="sxs-lookup"><span data-stu-id="64a6a-145">Get the Azure Cosmos DB Spark connector `azure-documentdb-spark-0.0.3-SNAPSHOT.jar` and Cosmos DB Java SDK `azure-documentdb-1.10.0.jar` from [Azure Cosmos DB Spark Connector on GitHub](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11).</span></span>
+1. <span data-ttu-id="922ff-145">取得 hello Azure Cosmos DB Spark 連接器`azure-documentdb-spark-0.0.3-SNAPSHOT.jar`和 Cosmos DB Java SDK`azure-documentdb-1.10.0.jar`從[Azure Cosmos DB GitHub 上的 Spark 連接器](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11)。</span><span class="sxs-lookup"><span data-stu-id="922ff-145">Get hello Azure Cosmos DB Spark connector `azure-documentdb-spark-0.0.3-SNAPSHOT.jar` and Cosmos DB Java SDK `azure-documentdb-1.10.0.jar` from [Azure Cosmos DB Spark Connector on GitHub](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11).</span></span>
 
-2. <span data-ttu-id="64a6a-146">或者，您可以在本機建置它。</span><span class="sxs-lookup"><span data-stu-id="64a6a-146">Alternatively, you can build it locally.</span></span> <span data-ttu-id="64a6a-147">因為最新版的 Spark-Gremlin 是使用 Spark 1.6.1 建置，且與 Azure Cosmos DB Spark 連接器中目前使用的 Spark 2.0.2 不相容，您可以建置最新的 TinkerPop3 程式碼及手動安裝 jar。</span><span class="sxs-lookup"><span data-stu-id="64a6a-147">Because the latest version of Spark-Gremlin was built with Spark 1.6.1 and is not compatible with Spark 2.0.2, which is currently used in the Azure Cosmos DB Spark connector, you can build the latest TinkerPop3 code and install the jars manually.</span></span> <span data-ttu-id="64a6a-148">執行下列動作：</span><span class="sxs-lookup"><span data-stu-id="64a6a-148">Do the following:</span></span>
+2. <span data-ttu-id="922ff-146">或者，您可以在本機建置它。</span><span class="sxs-lookup"><span data-stu-id="922ff-146">Alternatively, you can build it locally.</span></span> <span data-ttu-id="922ff-147">因為 hello 最新版的 Spark Gremlin Spark 1.6.1 在已建立，而且不與 Spark 2.0.2，目前 hello Azure Cosmos DB Spark 連接器中使用，您可以建置 hello 最新 TinkerPop3 程式碼，並手動安裝 hello （每瓶）。</span><span class="sxs-lookup"><span data-stu-id="922ff-147">Because hello latest version of Spark-Gremlin was built with Spark 1.6.1 and is not compatible with Spark 2.0.2, which is currently used in hello Azure Cosmos DB Spark connector, you can build hello latest TinkerPop3 code and install hello jars manually.</span></span> <span data-ttu-id="922ff-148">請勿 hello 遵循：</span><span class="sxs-lookup"><span data-stu-id="922ff-148">Do hello following:</span></span>
 
-    <span data-ttu-id="64a6a-149">a.</span><span class="sxs-lookup"><span data-stu-id="64a6a-149">a.</span></span> <span data-ttu-id="64a6a-150">複製 Azure Cosmos DB Spark 連接器。</span><span class="sxs-lookup"><span data-stu-id="64a6a-150">Clone the Azure Cosmos DB Spark connector.</span></span>
+    <span data-ttu-id="922ff-149">a.</span><span class="sxs-lookup"><span data-stu-id="922ff-149">a.</span></span> <span data-ttu-id="922ff-150">複製 hello Azure Cosmos DB Spark 連接器。</span><span class="sxs-lookup"><span data-stu-id="922ff-150">Clone hello Azure Cosmos DB Spark connector.</span></span>
 
-    <span data-ttu-id="64a6a-151">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="64a6a-151">b.</span></span> <span data-ttu-id="64a6a-152">建置 TinkerPop3 (已在先前步驟中完成)。</span><span class="sxs-lookup"><span data-stu-id="64a6a-152">Build TinkerPop3 (already done in previous steps).</span></span> <span data-ttu-id="64a6a-153">在本機安裝所有 TinkerPop 3.3.0-SNAPSHOT jar。</span><span class="sxs-lookup"><span data-stu-id="64a6a-153">Install all TinkerPop 3.3.0-SNAPSHOT jars locally.</span></span>
+    <span data-ttu-id="922ff-151">b.</span><span class="sxs-lookup"><span data-stu-id="922ff-151">b.</span></span> <span data-ttu-id="922ff-152">建置 TinkerPop3 (已在先前步驟中完成)。</span><span class="sxs-lookup"><span data-stu-id="922ff-152">Build TinkerPop3 (already done in previous steps).</span></span> <span data-ttu-id="922ff-153">在本機安裝所有 TinkerPop 3.3.0-SNAPSHOT jar。</span><span class="sxs-lookup"><span data-stu-id="922ff-153">Install all TinkerPop 3.3.0-SNAPSHOT jars locally.</span></span>
 
     ```bash
     mvn install:install-file -Dfile="gremlin-core-3.3.0-SNAPSHOT.jar" -DgroupId=org.apache.tinkerpop -DartifactId=gremlin-core -Dversion=3.3.0-SNAPSHOT -Dpackaging=jar
@@ -193,9 +193,9 @@ ms.lasthandoff: 07/11/2017
     mvn install:install-file -Dfile="tinkergraph-gremlin-3.3.0-SNAPSHOT.jar" -DgroupId=org.apache.tinkerpop -DartifactId=tinkergraph-gremlin -Dversion=3.3.0-SNAPSHOT -Dpackaging=jar`
     ```
 
-    <span data-ttu-id="64a6a-154">c.</span><span class="sxs-lookup"><span data-stu-id="64a6a-154">c.</span></span> <span data-ttu-id="64a6a-155">將 `tinkerpop.version` `azure-documentdb-spark/pom.xml` 更新為 `3.3.0-SNAPSHOT`。</span><span class="sxs-lookup"><span data-stu-id="64a6a-155">Update `tinkerpop.version` `azure-documentdb-spark/pom.xml` to `3.3.0-SNAPSHOT`.</span></span>
+    <span data-ttu-id="922ff-154">c.</span><span class="sxs-lookup"><span data-stu-id="922ff-154">c.</span></span> <span data-ttu-id="922ff-155">更新`tinkerpop.version``azure-documentdb-spark/pom.xml`太`3.3.0-SNAPSHOT`。</span><span class="sxs-lookup"><span data-stu-id="922ff-155">Update `tinkerpop.version` `azure-documentdb-spark/pom.xml` too`3.3.0-SNAPSHOT`.</span></span>
     
-    <span data-ttu-id="64a6a-156">d.</span><span class="sxs-lookup"><span data-stu-id="64a6a-156">d.</span></span> <span data-ttu-id="64a6a-157">使用 Maven 建置。</span><span class="sxs-lookup"><span data-stu-id="64a6a-157">Build with Maven.</span></span> <span data-ttu-id="64a6a-158">所需的 jar 都會置於 `target` 和 `target/alternateLocation` 中。</span><span class="sxs-lookup"><span data-stu-id="64a6a-158">The needed jars are placed in `target` and `target/alternateLocation`.</span></span>
+    <span data-ttu-id="922ff-156">d.</span><span class="sxs-lookup"><span data-stu-id="922ff-156">d.</span></span> <span data-ttu-id="922ff-157">使用 Maven 建置。</span><span class="sxs-lookup"><span data-stu-id="922ff-157">Build with Maven.</span></span> <span data-ttu-id="922ff-158">hello 需要 （每瓶） 會放在`target`和`target/alternateLocation`。</span><span class="sxs-lookup"><span data-stu-id="922ff-158">hello needed jars are placed in `target` and `target/alternateLocation`.</span></span>
 
     ```bash
     git clone https://github.com/Azure/azure-cosmosdb-spark.git
@@ -203,7 +203,7 @@ ms.lasthandoff: 07/11/2017
     mvn clean package
     ```
 
-3. <span data-ttu-id="64a6a-159">將先前所提的 jar 複製到本機目錄 (位於 ~/azure-documentdb-spark)：</span><span class="sxs-lookup"><span data-stu-id="64a6a-159">Copy the previously mentioned jars to a local directory at ~/azure-documentdb-spark:</span></span>
+3. <span data-ttu-id="922ff-159">複製 hello 先前所述在 （每瓶） tooa 本機目錄 ~ / azure-documentdb-spark:</span><span class="sxs-lookup"><span data-stu-id="922ff-159">Copy hello previously mentioned jars tooa local directory at ~/azure-documentdb-spark:</span></span>
 
     ```bash
     $ azure-documentdb-spark:
@@ -212,22 +212,22 @@ ms.lasthandoff: 07/11/2017
     cp target/alternateLocation/azure-documentdb-1.10.0.jar ~/azure-documentdb-spark
     ```
 
-## <a name="distribute-the-dependencies-to-the-spark-worker-nodes"></a><span data-ttu-id="64a6a-160">將相依性散發至 Spark 背景工作角色節點</span><span class="sxs-lookup"><span data-stu-id="64a6a-160">Distribute the dependencies to the Spark worker nodes</span></span> 
+## <a name="distribute-hello-dependencies-toohello-spark-worker-nodes"></a><span data-ttu-id="922ff-160">發佈 hello 相依性 toohello Spark 背景工作節點</span><span class="sxs-lookup"><span data-stu-id="922ff-160">Distribute hello dependencies toohello Spark worker nodes</span></span> 
 
-1. <span data-ttu-id="64a6a-161">因為圖形資料的轉換取決於 TinkerPop3，所以您必須將相關的相依性散發至所有 Spark 背景工作角色節點。</span><span class="sxs-lookup"><span data-stu-id="64a6a-161">Because the transformation of graph data depends on TinkerPop3, you must distribute the related dependencies to all Spark worker nodes.</span></span>
+1. <span data-ttu-id="922ff-161">因為圖形資料的 hello 轉換取決於 TinkerPop3，您必須將發佈 hello 相關相依性 tooall Spark 背景工作節點。</span><span class="sxs-lookup"><span data-stu-id="922ff-161">Because hello transformation of graph data depends on TinkerPop3, you must distribute hello related dependencies tooall Spark worker nodes.</span></span>
 
-2. <span data-ttu-id="64a6a-162">執行下列動作，將先前所提的 Gremlin 相依性、CosmosDB Spark 連接器 jar 和 CosmosDB Java SDK 複製到背景工作節點：</span><span class="sxs-lookup"><span data-stu-id="64a6a-162">Copy the previously mentioned Gremlin dependencies, the CosmosDB Spark connector jar, and CosmosDB Java SDK to the worker nodes by doing the following:</span></span>
+2. <span data-ttu-id="922ff-162">複製 hello 先前提到 Gremlin 相依性、 hello CosmosDB Spark 連接器 jar 和 CosmosDB Java SDK toohello 背景工作節點執行 hello 下列動作：</span><span class="sxs-lookup"><span data-stu-id="922ff-162">Copy hello previously mentioned Gremlin dependencies, hello CosmosDB Spark connector jar, and CosmosDB Java SDK toohello worker nodes by doing hello following:</span></span>
 
-    <span data-ttu-id="64a6a-163">a.</span><span class="sxs-lookup"><span data-stu-id="64a6a-163">a.</span></span> <span data-ttu-id="64a6a-164">將所有 jar 複製到 `~/azure-documentdb-spark` 中。</span><span class="sxs-lookup"><span data-stu-id="64a6a-164">Copy all the jars into `~/azure-documentdb-spark`.</span></span>
+    <span data-ttu-id="922ff-163">a.</span><span class="sxs-lookup"><span data-stu-id="922ff-163">a.</span></span> <span data-ttu-id="922ff-164">複製所有 hello （每瓶） 到`~/azure-documentdb-spark`。</span><span class="sxs-lookup"><span data-stu-id="922ff-164">Copy all hello jars into `~/azure-documentdb-spark`.</span></span>
 
     ```bash
     $ /home/sshuser/tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone:
     cp lib/* ~/azure-documentdb-spark
     ```
 
-    <span data-ttu-id="64a6a-165">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="64a6a-165">b.</span></span> <span data-ttu-id="64a6a-166">在 `Spark2` 區段的 `Spark2 Clients` 清單中，取得所有 Spark 背景工作節點的清單 (您可以在 Ambari 儀表板上找到)。</span><span class="sxs-lookup"><span data-stu-id="64a6a-166">Get the list of all Spark worker nodes, which you can find on Ambari Dashboard, in the `Spark2 Clients` list in the `Spark2` section.</span></span>
+    <span data-ttu-id="922ff-165">b.</span><span class="sxs-lookup"><span data-stu-id="922ff-165">b.</span></span> <span data-ttu-id="922ff-166">取得所有 Spark 背景工作節點，您可以在 hello Ambari 儀表板 上找到的 hello 清單`Spark2 Clients`列入 hello `Spark2` > 一節。</span><span class="sxs-lookup"><span data-stu-id="922ff-166">Get hello list of all Spark worker nodes, which you can find on Ambari Dashboard, in hello `Spark2 Clients` list in hello `Spark2` section.</span></span>
 
-    <span data-ttu-id="64a6a-167">c.</span><span class="sxs-lookup"><span data-stu-id="64a6a-167">c.</span></span> <span data-ttu-id="64a6a-168">將該目錄複製到每個節點。</span><span class="sxs-lookup"><span data-stu-id="64a6a-168">Copy that directory to each of the nodes.</span></span>
+    <span data-ttu-id="922ff-167">c.</span><span class="sxs-lookup"><span data-stu-id="922ff-167">c.</span></span> <span data-ttu-id="922ff-168">將複製 hello 節點的該目錄 tooeach。</span><span class="sxs-lookup"><span data-stu-id="922ff-168">Copy that directory tooeach of hello nodes.</span></span>
 
     ```bash
     scp -r ~/azure-documentdb-spark sshuser@wn0-cosmos:/home/sshuser
@@ -235,19 +235,19 @@ ms.lasthandoff: 07/11/2017
     ...
     ```
     
-## <a name="set-up-the-environment-variables"></a><span data-ttu-id="64a6a-169">設定環境變數</span><span class="sxs-lookup"><span data-stu-id="64a6a-169">Set up the environment variables</span></span>
+## <a name="set-up-hello-environment-variables"></a><span data-ttu-id="922ff-169">設定 hello 環境變數</span><span class="sxs-lookup"><span data-stu-id="922ff-169">Set up hello environment variables</span></span>
 
-1. <span data-ttu-id="64a6a-170">尋找 Spark 叢集的 HDP 版本。</span><span class="sxs-lookup"><span data-stu-id="64a6a-170">Find the HDP version of the Spark cluster.</span></span> <span data-ttu-id="64a6a-171">這是 `/usr/hdp/` 之下的目錄名稱 (例如 2.5.4.2-7)。</span><span class="sxs-lookup"><span data-stu-id="64a6a-171">It is the directory name under `/usr/hdp/` (for example, 2.5.4.2-7).</span></span>
+1. <span data-ttu-id="922ff-170">尋找 hello Spark 叢集 hello HDP 版本。</span><span class="sxs-lookup"><span data-stu-id="922ff-170">Find hello HDP version of hello Spark cluster.</span></span> <span data-ttu-id="922ff-171">它是 hello 目錄名稱下的`/usr/hdp/`(例如，2.5.4.2-7)。</span><span class="sxs-lookup"><span data-stu-id="922ff-171">It is hello directory name under `/usr/hdp/` (for example, 2.5.4.2-7).</span></span>
 
-2. <span data-ttu-id="64a6a-172">設定所有節點的 hdp.version。</span><span class="sxs-lookup"><span data-stu-id="64a6a-172">Set hdp.version for all nodes.</span></span> <span data-ttu-id="64a6a-173">在 Ambari 儀表板中，移至 **YARN 區段** > [設定] > [進階]，然後執行下列動作：</span><span class="sxs-lookup"><span data-stu-id="64a6a-173">In Ambari Dashboard, go to **YARN section** > **Configs** > **Advanced**, and then do the following:</span></span> 
+2. <span data-ttu-id="922ff-172">設定所有節點的 hdp.version。</span><span class="sxs-lookup"><span data-stu-id="922ff-172">Set hdp.version for all nodes.</span></span> <span data-ttu-id="922ff-173">Ambari 儀表板 移過**YARN 區段** > **Configs** > **進階**，並執行再 hello 遵循：</span><span class="sxs-lookup"><span data-stu-id="922ff-173">In Ambari Dashboard, go too**YARN section** > **Configs** > **Advanced**, and then do hello following:</span></span> 
  
-    <span data-ttu-id="64a6a-174">a.</span><span class="sxs-lookup"><span data-stu-id="64a6a-174">a.</span></span> <span data-ttu-id="64a6a-175">在 `Custom yarn-site` 中，於主要節點上新增一個屬性 `hdp.version`，其值為 HDP 版本。</span><span class="sxs-lookup"><span data-stu-id="64a6a-175">In `Custom yarn-site`, add a new property `hdp.version` with the value of the HDP version on the master node.</span></span> 
+    <span data-ttu-id="922ff-174">a.</span><span class="sxs-lookup"><span data-stu-id="922ff-174">a.</span></span> <span data-ttu-id="922ff-175">在`Custom yarn-site`，加入新屬性`hdp.version`與 hello hello 主要節點上的 hello HDP 版本值。</span><span class="sxs-lookup"><span data-stu-id="922ff-175">In `Custom yarn-site`, add a new property `hdp.version` with hello value of hello HDP version on hello master node.</span></span> 
      
-    <span data-ttu-id="64a6a-176">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="64a6a-176">b.</span></span> <span data-ttu-id="64a6a-177">儲存組態。</span><span class="sxs-lookup"><span data-stu-id="64a6a-177">Save the configurations.</span></span> <span data-ttu-id="64a6a-178">出現警告，您可以忽略。</span><span class="sxs-lookup"><span data-stu-id="64a6a-178">There are warnings, which you can ignore.</span></span> 
+    <span data-ttu-id="922ff-176">b.</span><span class="sxs-lookup"><span data-stu-id="922ff-176">b.</span></span> <span data-ttu-id="922ff-177">儲存 hello 的組態。</span><span class="sxs-lookup"><span data-stu-id="922ff-177">Save hello configurations.</span></span> <span data-ttu-id="922ff-178">出現警告，您可以忽略。</span><span class="sxs-lookup"><span data-stu-id="922ff-178">There are warnings, which you can ignore.</span></span> 
      
-    <span data-ttu-id="64a6a-179">c.</span><span class="sxs-lookup"><span data-stu-id="64a6a-179">c.</span></span> <span data-ttu-id="64a6a-180">如通知圖示所指出，重新啟動 YARN 和 Oozie 服務。</span><span class="sxs-lookup"><span data-stu-id="64a6a-180">Restart the YARN and Oozie services as the notification icons indicate.</span></span>
+    <span data-ttu-id="922ff-179">c.</span><span class="sxs-lookup"><span data-stu-id="922ff-179">c.</span></span> <span data-ttu-id="922ff-180">重新啟動 hello YARN 和 Oozie 服務因為 hello 通知圖示表示。</span><span class="sxs-lookup"><span data-stu-id="922ff-180">Restart hello YARN and Oozie services as hello notification icons indicate.</span></span>
 
-3. <span data-ttu-id="64a6a-181">在主要節點上設定下列環境變數 (取代為適當的值)︰</span><span class="sxs-lookup"><span data-stu-id="64a6a-181">Set the following environment variables on the master node (replace the values as appropriate):</span></span>
+3. <span data-ttu-id="922ff-181">下列環境變數 （取代為適當的 hello 值） hello 主要節點上設定 hello:</span><span class="sxs-lookup"><span data-stu-id="922ff-181">Set hello following environment variables on hello master node (replace hello values as appropriate):</span></span>
 
     ```bash
     export HADOOP_GREMLIN_LIBS=/home/sshuser/tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/ext/spark-gremlin/lib
@@ -256,9 +256,9 @@ ms.lasthandoff: 07/11/2017
     export HADOOP_HOME=${HADOOP_HOME:-/usr/hdp/current/hadoop-client}
     ```
 
-## <a name="prepare-the-graph-configuration"></a><span data-ttu-id="64a6a-182">準備圖形組態</span><span class="sxs-lookup"><span data-stu-id="64a6a-182">Prepare the graph configuration</span></span>
+## <a name="prepare-hello-graph-configuration"></a><span data-ttu-id="922ff-182">準備 hello 圖形組態</span><span class="sxs-lookup"><span data-stu-id="922ff-182">Prepare hello graph configuration</span></span>
 
-1. <span data-ttu-id="64a6a-183">使用 Azure Cosmos DB 連線參數和 Spark 設定來建立組態檔，並將它放在 `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`。</span><span class="sxs-lookup"><span data-stu-id="64a6a-183">Create a configuration file with the Azure Cosmos DB connection parameters and Spark settings, and put it at `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`.</span></span>
+1. <span data-ttu-id="922ff-183">建立組態檔以 hello Azure Cosmos DB 連接參數和二手設定，然後放在`tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`。</span><span class="sxs-lookup"><span data-stu-id="922ff-183">Create a configuration file with hello Azure Cosmos DB connection parameters and Spark settings, and put it at `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`.</span></span>
 
     ```
     gremlin.graph=org.apache.tinkerpop.gremlin.hadoop.structure.HadoopGraph
@@ -278,7 +278,7 @@ ms.lasthandoff: 07/11/2017
     spark.kryo.registrator=org.apache.tinkerpop.gremlin.spark.structure.io.gryo.GryoRegistrator
     gremlin.spark.persistContext=true
 
-    # Classpath for the driver and executors
+    # Classpath for hello driver and executors
     spark.driver.extraClassPath=/usr/hdp/current/spark2-client/jars/*:/home/sshuser/azure-documentdb-spark/*
     spark.executor.extraClassPath=/usr/hdp/current/spark2-client/jars/*:/home/sshuser/azure-documentdb-spark/*
     
@@ -294,9 +294,9 @@ ms.lasthandoff: 07/11/2017
     spark.documentdb.preferredRegions=FILLIN
     ```
 
-2. <span data-ttu-id="64a6a-184">更新 `spark.driver.extraClassPath` 和 `spark.executor.extraClassPath` 以包含您在上一個步驟中散發之 jar 的目錄，在此例中為 `/home/sshuser/azure-documentdb-spark/*`。</span><span class="sxs-lookup"><span data-stu-id="64a6a-184">Update the `spark.driver.extraClassPath` and `spark.executor.extraClassPath` to include the directory of the jars that you distributed in the previous step, in this case `/home/sshuser/azure-documentdb-spark/*`.</span></span>
+2. <span data-ttu-id="922ff-184">更新 hello`spark.driver.extraClassPath`和`spark.executor.extraClassPath`hello （每，這些瓶），在此情況下在 hello 先前步驟中，分散式 tooinclude hello 目錄`/home/sshuser/azure-documentdb-spark/*`。</span><span class="sxs-lookup"><span data-stu-id="922ff-184">Update hello `spark.driver.extraClassPath` and `spark.executor.extraClassPath` tooinclude hello directory of hello jars that you distributed in hello previous step, in this case `/home/sshuser/azure-documentdb-spark/*`.</span></span>
 
-3. <span data-ttu-id="64a6a-185">提供 Azure Cosmos DB 的下列詳細資料︰</span><span class="sxs-lookup"><span data-stu-id="64a6a-185">Provide the following details for Azure Cosmos DB:</span></span>
+3. <span data-ttu-id="922ff-185">提供 hello Azure Cosmos 資料庫的下列詳細資料：</span><span class="sxs-lookup"><span data-stu-id="922ff-185">Provide hello following details for Azure Cosmos DB:</span></span>
 
     ```
     spark.documentdb.Endpoint=https://FILLIN.documents.azure.com:443/
@@ -307,10 +307,10 @@ ms.lasthandoff: 07/11/2017
     #spark.documentdb.preferredRegions=West\ US;West\ US\ 2
     ```
    
-## <a name="load-the-tinkerpop-graph-and-save-it-to-azure-cosmos-db"></a><span data-ttu-id="64a6a-186">載入 TinkerPop 圖形，然後將它儲存到 Azure Cosmos DB</span><span class="sxs-lookup"><span data-stu-id="64a6a-186">Load the TinkerPop graph, and save it to Azure Cosmos DB</span></span>
-<span data-ttu-id="64a6a-187">為了示範如何將圖形保存在 Azure Cosmos DB 中，此範例使用 TinkerPop 預先定義的 TinkerPop 新式圖形。</span><span class="sxs-lookup"><span data-stu-id="64a6a-187">To demonstrate how to persist a graph into Azure Cosmos DB, this example uses the TinkerPop predefined TinkerPop modern graph.</span></span> <span data-ttu-id="64a6a-188">此圖形是以 Kryo 格式儲存，並且在 TinkerPop 存放庫中提供。</span><span class="sxs-lookup"><span data-stu-id="64a6a-188">The graph is stored in Kryo format, and it's provided in the TinkerPop repository.</span></span>
+## <a name="load-hello-tinkerpop-graph-and-save-it-tooazure-cosmos-db"></a><span data-ttu-id="922ff-186">載入 hello TinkerPop 圖形，並將它儲存 tooAzure Cosmos DB</span><span class="sxs-lookup"><span data-stu-id="922ff-186">Load hello TinkerPop graph, and save it tooAzure Cosmos DB</span></span>
+<span data-ttu-id="922ff-187">toodemonstrate toopersist 圖形到 Azure Cosmos DB，此範例中使用 hello TinkerPop 預先 TinkerPop 現代圖形的定義。</span><span class="sxs-lookup"><span data-stu-id="922ff-187">toodemonstrate how toopersist a graph into Azure Cosmos DB, this example uses hello TinkerPop predefined TinkerPop modern graph.</span></span> <span data-ttu-id="922ff-188">hello 圖形是 Kryo 格式儲存，並且提供 hello TinkerPop 儲存機制中。</span><span class="sxs-lookup"><span data-stu-id="922ff-188">hello graph is stored in Kryo format, and it's provided in hello TinkerPop repository.</span></span>
 
-1. <span data-ttu-id="64a6a-189">因為您是以 YARN 模式執行 Gremlin，所以您必須在 Hadoop 檔案系統中提供圖形資料。</span><span class="sxs-lookup"><span data-stu-id="64a6a-189">Because you are running Gremlin in YARN mode, you must make the graph data available in the Hadoop file system.</span></span> <span data-ttu-id="64a6a-190">使用下列命令建立一個目錄，並將本機圖形檔案複製到其中。</span><span class="sxs-lookup"><span data-stu-id="64a6a-190">Use the following commands to make a directory and copy the local graph file into it.</span></span> 
+1. <span data-ttu-id="922ff-189">因為您執行 Gremlin YARN 模式中，您必須提供 hello 圖形資料 hello Hadoop 檔案系統中。</span><span class="sxs-lookup"><span data-stu-id="922ff-189">Because you are running Gremlin in YARN mode, you must make hello graph data available in hello Hadoop file system.</span></span> <span data-ttu-id="922ff-190">使用 hello 下列命令 toomake 目錄複製 hello 本機圖形檔到其中。</span><span class="sxs-lookup"><span data-stu-id="922ff-190">Use hello following commands toomake a directory and copy hello local graph file into it.</span></span> 
 
     ```bash
     $ tinkerpop:
@@ -318,18 +318,18 @@ ms.lasthandoff: 07/11/2017
     hadoop fs -copyFromLocal ~/tinkerpop/data/tinkerpop-modern.kryo /graphData/tinkerpop-modern.kryo
     ```
 
-2. <span data-ttu-id="64a6a-191">暫時更新 `gremlin-spark.properties` 檔案，以使用 `GryoInputFormat` 讀取圖形。</span><span class="sxs-lookup"><span data-stu-id="64a6a-191">Temporarily update the `gremlin-spark.properties` file to use `GryoInputFormat` to read the graph.</span></span> <span data-ttu-id="64a6a-192">此外，指定 `inputLocation` 作為您建立的目錄，如下所示︰</span><span class="sxs-lookup"><span data-stu-id="64a6a-192">Also indicate `inputLocation` as the directory you create, as in the following:</span></span>
+2. <span data-ttu-id="922ff-191">暫時更新 hello`gremlin-spark.properties`檔案 toouse `GryoInputFormat` tooread hello 圖形。</span><span class="sxs-lookup"><span data-stu-id="922ff-191">Temporarily update hello `gremlin-spark.properties` file toouse `GryoInputFormat` tooread hello graph.</span></span> <span data-ttu-id="922ff-192">也表示`inputLocation`hello 目錄為您建立，如 hello 下列所示：</span><span class="sxs-lookup"><span data-stu-id="922ff-192">Also indicate `inputLocation` as hello directory you create, as in hello following:</span></span>
 
     ```
     gremlin.hadoop.graphReader=org.apache.tinkerpop.gremlin.hadoop.structure.io.gryo.GryoInputFormat
     gremlin.hadoop.inputLocation=/graphData/tinkerpop-modern.kryo
     ```
 
-3. <span data-ttu-id="64a6a-193">啟動 Gremlin 主控台，然後建立下列計算步驟，將資料保留於已設定的 Azure Cosmos DB 集合︰</span><span class="sxs-lookup"><span data-stu-id="64a6a-193">Start Gremlin Console, and then create the following computation steps to persist data to the configured Azure Cosmos DB collection:</span></span>  
+3. <span data-ttu-id="922ff-193">啟動 Gremlin 主控台，然後建立下列計算步驟 toopersist 資料 toohello 設定 Azure Cosmos DB 收集 hello:</span><span class="sxs-lookup"><span data-stu-id="922ff-193">Start Gremlin Console, and then create hello following computation steps toopersist data toohello configured Azure Cosmos DB collection:</span></span>  
 
-    <span data-ttu-id="64a6a-194">a.</span><span class="sxs-lookup"><span data-stu-id="64a6a-194">a.</span></span> <span data-ttu-id="64a6a-195">建立圖形 `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`。</span><span class="sxs-lookup"><span data-stu-id="64a6a-195">Create the graph `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`.</span></span>
+    <span data-ttu-id="922ff-194">a.</span><span class="sxs-lookup"><span data-stu-id="922ff-194">a.</span></span> <span data-ttu-id="922ff-195">建立 hello 圖形`graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`。</span><span class="sxs-lookup"><span data-stu-id="922ff-195">Create hello graph `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`.</span></span>
 
-    <span data-ttu-id="64a6a-196">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="64a6a-196">b.</span></span> <span data-ttu-id="64a6a-197">使用 SparkGraphComputer 寫入 `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`。</span><span class="sxs-lookup"><span data-stu-id="64a6a-197">Use SparkGraphComputer for writing `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`.</span></span>
+    <span data-ttu-id="922ff-196">b.</span><span class="sxs-lookup"><span data-stu-id="922ff-196">b.</span></span> <span data-ttu-id="922ff-197">使用 SparkGraphComputer 寫入 `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`。</span><span class="sxs-lookup"><span data-stu-id="922ff-197">Use SparkGraphComputer for writing `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`.</span></span>
 
     ```bash
     gremlin> graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")
@@ -346,25 +346,25 @@ ms.lasthandoff: 07/11/2017
     ==>result[hadoopgraph[documentdbinputrdd->documentdboutputrdd],memory[size:1]]
     ```
 
-4. <span data-ttu-id="64a6a-198">在資料總管中，您可以確認資料已保存至 Cosmos DB。</span><span class="sxs-lookup"><span data-stu-id="64a6a-198">From Data Explorer, you can verify that the data has been persisted to Azure Cosmos DB.</span></span>
+4. <span data-ttu-id="922ff-198">從資料總管 中，您可以確認資料已該 hello 保存 tooAzure Cosmos DB。</span><span class="sxs-lookup"><span data-stu-id="922ff-198">From Data Explorer, you can verify that hello data has been persisted tooAzure Cosmos DB.</span></span>
 
-## <a name="load-the-graph-from-azure-cosmos-db-and-run-gremlin-queries"></a><span data-ttu-id="64a6a-199">從 Azure Cosmos DB 載入圖形，然後執行 Gremlin 查詢</span><span class="sxs-lookup"><span data-stu-id="64a6a-199">Load the graph from Azure Cosmos DB, and run Gremlin queries</span></span>
+## <a name="load-hello-graph-from-azure-cosmos-db-and-run-gremlin-queries"></a><span data-ttu-id="922ff-199">從 Azure Cosmos DB，載入 hello 圖形，並執行 Gremlin 查詢</span><span class="sxs-lookup"><span data-stu-id="922ff-199">Load hello graph from Azure Cosmos DB, and run Gremlin queries</span></span>
 
-1. <span data-ttu-id="64a6a-200">若要載入圖形，請編輯 `gremlin-spark.properties` 以將 `graphReader` 設定為 `DocumentDBInputRDD`：</span><span class="sxs-lookup"><span data-stu-id="64a6a-200">To load the graph, edit `gremlin-spark.properties` to set `graphReader` to `DocumentDBInputRDD`:</span></span>
+1. <span data-ttu-id="922ff-200">tooload hello 圖形中，編輯`gremlin-spark.properties`tooset`graphReader`太`DocumentDBInputRDD`:</span><span class="sxs-lookup"><span data-stu-id="922ff-200">tooload hello graph, edit `gremlin-spark.properties` tooset `graphReader` too`DocumentDBInputRDD`:</span></span>
 
     ```
     gremlin.hadoop.graphReader=com.microsoft.azure.documentdb.spark.gremlin.DocumentDBInputRDD
     ```
 
-2. <span data-ttu-id="64a6a-201">執行下列動作，載入圖形、周遊資料，以及執行 Gremlin 查詢︰</span><span class="sxs-lookup"><span data-stu-id="64a6a-201">Load the graph, traverse the data, and run Gremlin queries with it by doing the following:</span></span>
+2. <span data-ttu-id="922ff-201">負載 hello 圖形周遊 hello 資料及 Gremlin 查詢與它執行動作來執行 hello 下列：</span><span class="sxs-lookup"><span data-stu-id="922ff-201">Load hello graph, traverse hello data, and run Gremlin queries with it by doing hello following:</span></span>
 
-    <span data-ttu-id="64a6a-202">a.</span><span class="sxs-lookup"><span data-stu-id="64a6a-202">a.</span></span> <span data-ttu-id="64a6a-203">啟動 Gremlin 主控台 `bin/gremlin.sh`。</span><span class="sxs-lookup"><span data-stu-id="64a6a-203">Start the Gremlin Console `bin/gremlin.sh`.</span></span>
+    <span data-ttu-id="922ff-202">a.</span><span class="sxs-lookup"><span data-stu-id="922ff-202">a.</span></span> <span data-ttu-id="922ff-203">啟動 hello Gremlin 主控台`bin/gremlin.sh`。</span><span class="sxs-lookup"><span data-stu-id="922ff-203">Start hello Gremlin Console `bin/gremlin.sh`.</span></span>
 
-    <span data-ttu-id="64a6a-204">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="64a6a-204">b.</span></span> <span data-ttu-id="64a6a-205">使用組態 `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')` 建立圖形。</span><span class="sxs-lookup"><span data-stu-id="64a6a-205">Create the graph with the configuration `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')`.</span></span>
+    <span data-ttu-id="922ff-204">b.</span><span class="sxs-lookup"><span data-stu-id="922ff-204">b.</span></span> <span data-ttu-id="922ff-205">Hello 組態建立 hello 圖形`graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')`。</span><span class="sxs-lookup"><span data-stu-id="922ff-205">Create hello graph with hello configuration `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')`.</span></span>
 
-    <span data-ttu-id="64a6a-206">c.</span><span class="sxs-lookup"><span data-stu-id="64a6a-206">c.</span></span> <span data-ttu-id="64a6a-207">使用 SparkGraphComputer `g = graph.traversal().withComputer(SparkGraphComputer)` 建立圖形周遊。</span><span class="sxs-lookup"><span data-stu-id="64a6a-207">Create a graph traversal with SparkGraphComputer `g = graph.traversal().withComputer(SparkGraphComputer)`.</span></span>
+    <span data-ttu-id="922ff-206">c.</span><span class="sxs-lookup"><span data-stu-id="922ff-206">c.</span></span> <span data-ttu-id="922ff-207">使用 SparkGraphComputer `g = graph.traversal().withComputer(SparkGraphComputer)` 建立圖形周遊。</span><span class="sxs-lookup"><span data-stu-id="922ff-207">Create a graph traversal with SparkGraphComputer `g = graph.traversal().withComputer(SparkGraphComputer)`.</span></span>
 
-    <span data-ttu-id="64a6a-208">d.</span><span class="sxs-lookup"><span data-stu-id="64a6a-208">d.</span></span> <span data-ttu-id="64a6a-209">執行下列 Gremlin 圖形查詢︰</span><span class="sxs-lookup"><span data-stu-id="64a6a-209">Run the following Gremlin graph queries:</span></span>
+    <span data-ttu-id="922ff-208">d.</span><span class="sxs-lookup"><span data-stu-id="922ff-208">d.</span></span> <span data-ttu-id="922ff-209">執行下列 Gremlin graph 查詢 hello:</span><span class="sxs-lookup"><span data-stu-id="922ff-209">Run hello following Gremlin graph queries:</span></span>
 
     ```bash
     gremlin> graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")
@@ -397,11 +397,11 @@ ms.lasthandoff: 07/11/2017
     ```
 
 > [!NOTE]
-> <span data-ttu-id="64a6a-210">若要查看更詳細的記錄，請將 `conf/log4j-console.properties` 中的記錄層級設定為更詳細的層級。</span><span class="sxs-lookup"><span data-stu-id="64a6a-210">To see more detailed logging, set the log level in `conf/log4j-console.properties` to a more verbose level.</span></span>
+> <span data-ttu-id="922ff-210">toosee 詳細記錄 設定中的 hello 記錄層級`conf/log4j-console.properties`tooa 更多詳細資料層級。</span><span class="sxs-lookup"><span data-stu-id="922ff-210">toosee more detailed logging, set hello log level in `conf/log4j-console.properties` tooa more verbose level.</span></span>
 >
 
-## <a name="next-steps"></a><span data-ttu-id="64a6a-211">後續步驟</span><span class="sxs-lookup"><span data-stu-id="64a6a-211">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="922ff-211">後續步驟</span><span class="sxs-lookup"><span data-stu-id="922ff-211">Next steps</span></span>
 
-<span data-ttu-id="64a6a-212">在本快速入門文章中，您已經了解如何結合 Azure Cosmos DB 與 Spark 來處理圖形。</span><span class="sxs-lookup"><span data-stu-id="64a6a-212">In this quick-start article, you've learned how to work with graphs by combining Azure Cosmos DB and Spark.</span></span>
+<span data-ttu-id="922ff-212">快速入門本文中，您已經學會如何與 toowork 圖形結合 Azure Cosmos DB 和 Spark。</span><span class="sxs-lookup"><span data-stu-id="922ff-212">In this quick-start article, you've learned how toowork with graphs by combining Azure Cosmos DB and Spark.</span></span>
 
 > [!div class="nextstepaction"]

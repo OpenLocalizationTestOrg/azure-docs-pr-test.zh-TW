@@ -1,6 +1,6 @@
 ---
-title: "從 C++ 連線到 Azure Database for MySQL | Microsoft Docs"
-description: "本快速入門提供 C++ 程式碼範例，您可用於從 Azure Database for MySQL 連線及查詢資料。"
+title: "用於從 c + + 的 MySQL 連接 tooAzure 資料庫 |Microsoft 文件"
+description: "本快速入門會提供您可以使用 tooconnect 和查詢資料從 Azure 資料庫的 MySQL 的 c + + 程式碼範例。"
 services: mysql
 author: seanli1988
 ms.author: seal
@@ -11,56 +11,56 @@ ms.custom: mvc
 ms.devlang: C++
 ms.topic: hero-article
 ms.date: 08/03/2017
-ms.openlocfilehash: 63388b83b913d95136140fa4c56af0dbebbdad81
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d027597bf02b1eacab9b8808957399f6e54e63cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-mysql-use-connectorc-to-connect-and-query-data"></a><span data-ttu-id="d779c-103">Azure Database for MySQL︰使用 Connector/C++ 來連線及查詢資料</span><span class="sxs-lookup"><span data-stu-id="d779c-103">Azure Database for MySQL: Use Connector/C++ to connect and query data</span></span>
-<span data-ttu-id="d779c-104">本快速入門示範如何使用 C++ 應用程式來連線到 Azure Database for MySQL。</span><span class="sxs-lookup"><span data-stu-id="d779c-104">This quickstart demonstrates how to connect to an Azure Database for MySQL using a C++ application.</span></span> <span data-ttu-id="d779c-105">它會顯示如何使用 SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。</span><span class="sxs-lookup"><span data-stu-id="d779c-105">It shows how to use SQL statements to query, insert, update, and delete data in the database.</span></span> <span data-ttu-id="d779c-106">本文中的步驟假設您已熟悉使用 C++ 進行開發，但不熟悉 Azure Database for MySQL。</span><span class="sxs-lookup"><span data-stu-id="d779c-106">The steps in this article assume that you are familiar with developing using C++, and that you are new to working with Azure Database for MySQL.</span></span>
+# <a name="azure-database-for-mysql-use-connectorc-tooconnect-and-query-data"></a><span data-ttu-id="6c20b-103">Azure 資料庫的 MySQL： 使用連接器/c + + tooconnect 和查詢資料</span><span class="sxs-lookup"><span data-stu-id="6c20b-103">Azure Database for MySQL: Use Connector/C++ tooconnect and query data</span></span>
+<span data-ttu-id="6c20b-104">本快速入門示範如何 tooconnect tooan Azure 資料庫的 MySQL 使用 c + + 應用程式。</span><span class="sxs-lookup"><span data-stu-id="6c20b-104">This quickstart demonstrates how tooconnect tooan Azure Database for MySQL using a C++ application.</span></span> <span data-ttu-id="6c20b-105">它會顯示 toouse SQL 陳述式 tooquery，如何插入、 更新和刪除 hello 資料庫中的資料。</span><span class="sxs-lookup"><span data-stu-id="6c20b-105">It shows how toouse SQL statements tooquery, insert, update, and delete data in hello database.</span></span> <span data-ttu-id="6c20b-106">hello 本文章中的步驟假設您已熟悉開發使用 c + +，且新 tooworking 與 MySQL 的 Azure 資料庫。</span><span class="sxs-lookup"><span data-stu-id="6c20b-106">hello steps in this article assume that you are familiar with developing using C++, and that you are new tooworking with Azure Database for MySQL.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="d779c-107">必要條件</span><span class="sxs-lookup"><span data-stu-id="d779c-107">Prerequisites</span></span>
-<span data-ttu-id="d779c-108">本快速入門使用在以下任一指南中建立的資源作為起點︰</span><span class="sxs-lookup"><span data-stu-id="d779c-108">This quickstart uses the resources created in either of these guides as a starting point:</span></span>
-- [<span data-ttu-id="d779c-109">使用 Azure 入口網站建立適用於 MySQL 的 Azure 資料庫伺服器</span><span class="sxs-lookup"><span data-stu-id="d779c-109">Create an Azure Database for MySQL server using Azure portal</span></span>](./quickstart-create-mysql-server-database-using-azure-portal.md)
-- [<span data-ttu-id="d779c-110">使用 Azure CLI 建立適用於 MySQL 的 Azure 資料庫伺服器</span><span class="sxs-lookup"><span data-stu-id="d779c-110">Create an Azure Database for MySQL server using Azure CLI</span></span>](./quickstart-create-mysql-server-database-using-azure-cli.md)
+## <a name="prerequisites"></a><span data-ttu-id="6c20b-107">必要條件</span><span class="sxs-lookup"><span data-stu-id="6c20b-107">Prerequisites</span></span>
+<span data-ttu-id="6c20b-108">本快速入門會使用 hello 資源建立在其中一個這些指南做為起點：</span><span class="sxs-lookup"><span data-stu-id="6c20b-108">This quickstart uses hello resources created in either of these guides as a starting point:</span></span>
+- [<span data-ttu-id="6c20b-109">使用 Azure 入口網站建立適用於 MySQL 的 Azure 資料庫伺服器</span><span class="sxs-lookup"><span data-stu-id="6c20b-109">Create an Azure Database for MySQL server using Azure portal</span></span>](./quickstart-create-mysql-server-database-using-azure-portal.md)
+- [<span data-ttu-id="6c20b-110">使用 Azure CLI 建立適用於 MySQL 的 Azure 資料庫伺服器</span><span class="sxs-lookup"><span data-stu-id="6c20b-110">Create an Azure Database for MySQL server using Azure CLI</span></span>](./quickstart-create-mysql-server-database-using-azure-cli.md)
 
-<span data-ttu-id="d779c-111">您也需要：</span><span class="sxs-lookup"><span data-stu-id="d779c-111">You also need to:</span></span>
-- <span data-ttu-id="d779c-112">安裝 [.NET Framework](https://www.microsoft.com/net/download)</span><span class="sxs-lookup"><span data-stu-id="d779c-112">Install [.NET Framework](https://www.microsoft.com/net/download)</span></span>
-- <span data-ttu-id="d779c-113">安裝 [Visual Studio](https://www.visualstudio.com/downloads/)</span><span class="sxs-lookup"><span data-stu-id="d779c-113">Install [Visual Studio](https://www.visualstudio.com/downloads/)</span></span>
-- <span data-ttu-id="d779c-114">安裝 [MySQL Connector/C++](https://dev.mysql.com/downloads/connector/cpp/)</span><span class="sxs-lookup"><span data-stu-id="d779c-114">Install [MySQL Connector/C++](https://dev.mysql.com/downloads/connector/cpp/)</span></span> 
-- <span data-ttu-id="d779c-115">安裝 [Boost](http://www.boost.org/)</span><span class="sxs-lookup"><span data-stu-id="d779c-115">Install [Boost](http://www.boost.org/)</span></span>
+<span data-ttu-id="6c20b-111">您也需要：</span><span class="sxs-lookup"><span data-stu-id="6c20b-111">You also need to:</span></span>
+- <span data-ttu-id="6c20b-112">安裝 [.NET Framework](https://www.microsoft.com/net/download)</span><span class="sxs-lookup"><span data-stu-id="6c20b-112">Install [.NET Framework](https://www.microsoft.com/net/download)</span></span>
+- <span data-ttu-id="6c20b-113">安裝 [Visual Studio](https://www.visualstudio.com/downloads/)</span><span class="sxs-lookup"><span data-stu-id="6c20b-113">Install [Visual Studio](https://www.visualstudio.com/downloads/)</span></span>
+- <span data-ttu-id="6c20b-114">安裝 [MySQL Connector/C++](https://dev.mysql.com/downloads/connector/cpp/)</span><span class="sxs-lookup"><span data-stu-id="6c20b-114">Install [MySQL Connector/C++](https://dev.mysql.com/downloads/connector/cpp/)</span></span> 
+- <span data-ttu-id="6c20b-115">安裝 [Boost](http://www.boost.org/)</span><span class="sxs-lookup"><span data-stu-id="6c20b-115">Install [Boost](http://www.boost.org/)</span></span>
 
-## <a name="install-visual-studio-and-net"></a><span data-ttu-id="d779c-116">安裝 Visual Studio 和 .NET</span><span class="sxs-lookup"><span data-stu-id="d779c-116">Install Visual Studio and .NET</span></span>
-<span data-ttu-id="d779c-117">本節中的步驟假設您已熟悉使用 .NET 進行開發。</span><span class="sxs-lookup"><span data-stu-id="d779c-117">The steps in this section assume that you are familiar with developing using .NET.</span></span>
+## <a name="install-visual-studio-and-net"></a><span data-ttu-id="6c20b-116">安裝 Visual Studio 和 .NET</span><span class="sxs-lookup"><span data-stu-id="6c20b-116">Install Visual Studio and .NET</span></span>
+<span data-ttu-id="6c20b-117">本節中的 hello 步驟假設您已經熟悉使用.NET 開發。</span><span class="sxs-lookup"><span data-stu-id="6c20b-117">hello steps in this section assume that you are familiar with developing using .NET.</span></span>
 
-### <a name="windows"></a><span data-ttu-id="d779c-118">**Windows**</span><span class="sxs-lookup"><span data-stu-id="d779c-118">**Windows**</span></span>
-1. <span data-ttu-id="d779c-119">安裝 Visual Studio 2017 Community，這是功能完整且可擴充的免費 IDE，用以建立適用於 Android、iOS、Windows 以及 Web 和資料庫應用程式和雲端服務的新式應用程式。</span><span class="sxs-lookup"><span data-stu-id="d779c-119">Install Visual Studio 2017 Community, which is a full featured, extensible, free IDE for creating modern applications for Android, iOS, Windows, as well as web & database applications and cloud services.</span></span> <span data-ttu-id="d779c-120">您可以安裝完整的 .NET Framework 或只安裝 .NET Core。</span><span class="sxs-lookup"><span data-stu-id="d779c-120">You can install either the full .NET Framework or just .NET Core.</span></span> <span data-ttu-id="d779c-121">快速入門中的程式碼片段均可搭配使用。</span><span class="sxs-lookup"><span data-stu-id="d779c-121">The code snippets in the Quickstart work with either.</span></span> <span data-ttu-id="d779c-122">如果您已在電腦上安裝 Visual Studio，請略過後續兩個步驟。</span><span class="sxs-lookup"><span data-stu-id="d779c-122">If you already have Visual Studio installed on your machine, skip the next two steps.</span></span>
-   - <span data-ttu-id="d779c-123">下載 [Visual Studio 2017 安裝程式](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15)。</span><span class="sxs-lookup"><span data-stu-id="d779c-123">Download the [Visual Studio 2017 installer](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15).</span></span> 
-   - <span data-ttu-id="d779c-124">執行安裝程式並依照安裝提示來完成安裝。</span><span class="sxs-lookup"><span data-stu-id="d779c-124">Run the installer and follow the installation prompts to complete the installation.</span></span>
+### <a name="windows"></a><span data-ttu-id="6c20b-118">**Windows**</span><span class="sxs-lookup"><span data-stu-id="6c20b-118">**Windows**</span></span>
+1. <span data-ttu-id="6c20b-119">安裝 Visual Studio 2017 Community，這是功能完整且可擴充的免費 IDE，用以建立適用於 Android、iOS、Windows 以及 Web 和資料庫應用程式和雲端服務的新式應用程式。</span><span class="sxs-lookup"><span data-stu-id="6c20b-119">Install Visual Studio 2017 Community, which is a full featured, extensible, free IDE for creating modern applications for Android, iOS, Windows, as well as web & database applications and cloud services.</span></span> <span data-ttu-id="6c20b-120">您可以安裝 hello 完整.NET Framework，或是只.NET Core。</span><span class="sxs-lookup"><span data-stu-id="6c20b-120">You can install either hello full .NET Framework or just .NET Core.</span></span> <span data-ttu-id="6c20b-121">hello hello 快速入門工作使用中的程式碼片段。</span><span class="sxs-lookup"><span data-stu-id="6c20b-121">hello code snippets in hello Quickstart work with either.</span></span> <span data-ttu-id="6c20b-122">如果您已安裝在電腦上安裝的 Visual Studio，請略過 hello 下面兩個步驟。</span><span class="sxs-lookup"><span data-stu-id="6c20b-122">If you already have Visual Studio installed on your machine, skip hello next two steps.</span></span>
+   - <span data-ttu-id="6c20b-123">下載 hello [Visual Studio 2017 installer](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15)。</span><span class="sxs-lookup"><span data-stu-id="6c20b-123">Download hello [Visual Studio 2017 installer](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15).</span></span> 
+   - <span data-ttu-id="6c20b-124">執行 hello 安裝程式並遵循 hello 安裝提示 toocomplete hello 安裝。</span><span class="sxs-lookup"><span data-stu-id="6c20b-124">Run hello installer and follow hello installation prompts toocomplete hello installation.</span></span>
 
-### <a name="configure-visual-studio"></a><span data-ttu-id="d779c-125">**設定 Visual Studio**</span><span class="sxs-lookup"><span data-stu-id="d779c-125">**Configure Visual Studio**</span></span>
-1. <span data-ttu-id="d779c-126">從 Visual Studio 的專案屬性 > 組態屬性 > C/C++ > 連結器 > 一般 > 其他 library 目錄，新增 c++ 連接器的 lib\opt 目錄 (也就是 C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.9\lib\opt)。</span><span class="sxs-lookup"><span data-stu-id="d779c-126">From Visual Studio, project property > configuration properties > C/C++ > linker > general > additional library directories, add the lib\opt directory (i.e.: C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.9\lib\opt) of the c++ connector.</span></span>
-2. <span data-ttu-id="d779c-127">從 Visual Studio 的專案屬性 > 組態屬性 > C/C++ > 一般 > 其他 include 目錄</span><span class="sxs-lookup"><span data-stu-id="d779c-127">From Visual Studio, project property > configuration properties > C/C++ > general > additional include directories</span></span>
-   - <span data-ttu-id="d779c-128">新增 c++ 連接器的 include/ 目錄 (也就是 C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.9\include\)</span><span class="sxs-lookup"><span data-stu-id="d779c-128">Add include/ directory of c++ connector (i.e.: C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.9\include\)</span></span>
-   - <span data-ttu-id="d779c-129">新增 Boost 程式庫的根目錄 (也就是 C:\boost_1_64_0\)</span><span class="sxs-lookup"><span data-stu-id="d779c-129">Add Boost library's root directory (i.e.: C:\boost_1_64_0\)</span></span>
-3. <span data-ttu-id="d779c-130">從 Visual Studio 的專案屬性 > 組態屬性 > C/C++ > 連結器 > 輸入 > 其他相依性，將 mysqlcppconn.lib 新增到文字欄位中</span><span class="sxs-lookup"><span data-stu-id="d779c-130">From Visual Studio, project property > configuration properties > C/C++ > linker > Input > Additional Dependencies, add mysqlcppconn.lib into the text field</span></span>
-4. <span data-ttu-id="d779c-131">從步驟 3 的 c++ 連接器程式庫資料夾將 mysqlcppconn.dll 複製到與應用程式可執行檔相同的目錄，或將它新增至環境變數，您的應用程式便可找到它。</span><span class="sxs-lookup"><span data-stu-id="d779c-131">Either copy mysqlcppconn.dll from the c++ connector library folder in step 3 to the same directory as the application executable or add it to the environment variable so your application can find it.</span></span>
+### <a name="configure-visual-studio"></a><span data-ttu-id="6c20b-125">**設定 Visual Studio**</span><span class="sxs-lookup"><span data-stu-id="6c20b-125">**Configure Visual Studio**</span></span>
+1. <span data-ttu-id="6c20b-126">在 Visual Studio 的專案屬性 > 組態屬性 > C/c + + > 連結器 > 一般 > 其他程式庫目錄新增 hello lib\opt 目錄 (也就是： C:\Program Files (x86) \MySQL\MySQL 連接器 c + + 1.1.9\lib\opt) 的 hello c + +連接器。</span><span class="sxs-lookup"><span data-stu-id="6c20b-126">From Visual Studio, project property > configuration properties > C/C++ > linker > general > additional library directories, add hello lib\opt directory (i.e.: C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.9\lib\opt) of hello c++ connector.</span></span>
+2. <span data-ttu-id="6c20b-127">從 Visual Studio 的專案屬性 > 組態屬性 > C/C++ > 一般 > 其他 include 目錄</span><span class="sxs-lookup"><span data-stu-id="6c20b-127">From Visual Studio, project property > configuration properties > C/C++ > general > additional include directories</span></span>
+   - <span data-ttu-id="6c20b-128">新增 c++ 連接器的 include/ 目錄 (也就是 C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.9\include\)</span><span class="sxs-lookup"><span data-stu-id="6c20b-128">Add include/ directory of c++ connector (i.e.: C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.9\include\)</span></span>
+   - <span data-ttu-id="6c20b-129">新增 Boost 程式庫的根目錄 (也就是 C:\boost_1_64_0\)</span><span class="sxs-lookup"><span data-stu-id="6c20b-129">Add Boost library's root directory (i.e.: C:\boost_1_64_0\)</span></span>
+3. <span data-ttu-id="6c20b-130">在 Visual Studio 的專案屬性 > 組態屬性 > C/c + + > 連結器 > 輸入 > 其他相依性，新增 mysqlcppconn.lib hello 文字欄位</span><span class="sxs-lookup"><span data-stu-id="6c20b-130">From Visual Studio, project property > configuration properties > C/C++ > linker > Input > Additional Dependencies, add mysqlcppconn.lib into hello text field</span></span>
+4. <span data-ttu-id="6c20b-131">Hello c + + 連接器程式庫資料夾中步驟 3 toohello 任一複本 mysqlcppconn.dll hello 應用程式可執行檔相同的目錄或將它加入 toohello 環境變數，讓您的應用程式可以找到它。</span><span class="sxs-lookup"><span data-stu-id="6c20b-131">Either copy mysqlcppconn.dll from hello c++ connector library folder in step 3 toohello same directory as hello application executable or add it toohello environment variable so your application can find it.</span></span>
 
-## <a name="get-connection-information"></a><span data-ttu-id="d779c-132">取得連線資訊</span><span class="sxs-lookup"><span data-stu-id="d779c-132">Get connection information</span></span>
-<span data-ttu-id="d779c-133">取得連線到 Azure Database for MySQL 所需的連線資訊。</span><span class="sxs-lookup"><span data-stu-id="d779c-133">Get the connection information needed to connect to the Azure Database for MySQL.</span></span> <span data-ttu-id="d779c-134">您需要完整的伺服器名稱和登入認證。</span><span class="sxs-lookup"><span data-stu-id="d779c-134">You need the fully qualified server name and login credentials.</span></span>
+## <a name="get-connection-information"></a><span data-ttu-id="6c20b-132">取得連線資訊</span><span class="sxs-lookup"><span data-stu-id="6c20b-132">Get connection information</span></span>
+<span data-ttu-id="6c20b-133">取得 MySQL hello 連線所需的資訊 tooconnect toohello Azure 資料庫。</span><span class="sxs-lookup"><span data-stu-id="6c20b-133">Get hello connection information needed tooconnect toohello Azure Database for MySQL.</span></span> <span data-ttu-id="6c20b-134">您需要 hello 完整的伺服器名稱和登入認證。</span><span class="sxs-lookup"><span data-stu-id="6c20b-134">You need hello fully qualified server name and login credentials.</span></span>
 
-1. <span data-ttu-id="d779c-135">登入 [Azure 入口網站](https://portal.azure.com/)。</span><span class="sxs-lookup"><span data-stu-id="d779c-135">Log in to the [Azure portal](https://portal.azure.com/).</span></span>
-2. <span data-ttu-id="d779c-136">從 Azure 入口網站的左側功能表中，按一下 [所有資源]，然後搜尋您所建立的伺服器，例如 **myserver4demo**。</span><span class="sxs-lookup"><span data-stu-id="d779c-136">From the left-hand menu in Azure portal, click **All resources** and search for the server you have created, such as **myserver4demo**.</span></span>
-3. <span data-ttu-id="d779c-137">按一下伺服器名稱。</span><span class="sxs-lookup"><span data-stu-id="d779c-137">Click the server name.</span></span>
-4. <span data-ttu-id="d779c-138">選取伺服器的 [屬性] 頁面。</span><span class="sxs-lookup"><span data-stu-id="d779c-138">Select the server's **Properties** page.</span></span> <span data-ttu-id="d779c-139">記下 [伺服器名稱] 和 [伺服器管理員登入名稱]。</span><span class="sxs-lookup"><span data-stu-id="d779c-139">Make a note of the **Server name** and **Server admin login name**.</span></span>
- <span data-ttu-id="d779c-140">![Azure Database for MySQL 伺服器名稱](./media/connect-cpp/1_server-properties-name-login.png)</span><span class="sxs-lookup"><span data-stu-id="d779c-140">![Azure Database for MySQL server name](./media/connect-cpp/1_server-properties-name-login.png)</span></span>
-5. <span data-ttu-id="d779c-141">如果您忘記伺服器登入資訊，請瀏覽至 [概觀] 頁面來檢視伺服器管理員登入名稱，並視需要重設密碼。</span><span class="sxs-lookup"><span data-stu-id="d779c-141">If you forget your server login information, navigate to the **Overview** page to view the Server admin login name and, if necessary, reset the password.</span></span>
+1. <span data-ttu-id="6c20b-135">登入 toohello [Azure 入口網站](https://portal.azure.com/)。</span><span class="sxs-lookup"><span data-stu-id="6c20b-135">Log in toohello [Azure portal](https://portal.azure.com/).</span></span>
+2. <span data-ttu-id="6c20b-136">在 Azure 入口網站中的 hello 左側功能表中按一下**所有資源**，並搜尋您已經建立，例如 hello 伺服器**myserver4demo**。</span><span class="sxs-lookup"><span data-stu-id="6c20b-136">From hello left-hand menu in Azure portal, click **All resources** and search for hello server you have created, such as **myserver4demo**.</span></span>
+3. <span data-ttu-id="6c20b-137">按一下 hello 伺服器名稱。</span><span class="sxs-lookup"><span data-stu-id="6c20b-137">Click hello server name.</span></span>
+4. <span data-ttu-id="6c20b-138">選取 hello 伺服器**屬性**頁面。</span><span class="sxs-lookup"><span data-stu-id="6c20b-138">Select hello server's **Properties** page.</span></span> <span data-ttu-id="6c20b-139">請記下 hello**伺服器名稱**和**伺服器系統管理員登入名稱**。</span><span class="sxs-lookup"><span data-stu-id="6c20b-139">Make a note of hello **Server name** and **Server admin login name**.</span></span>
+ <span data-ttu-id="6c20b-140">![Azure Database for MySQL 伺服器名稱](./media/connect-cpp/1_server-properties-name-login.png)</span><span class="sxs-lookup"><span data-stu-id="6c20b-140">![Azure Database for MySQL server name](./media/connect-cpp/1_server-properties-name-login.png)</span></span>
+5. <span data-ttu-id="6c20b-141">如果您忘記您的伺服器登入資訊，請瀏覽 toohello**概觀**頁面 tooview hello 伺服器系統管理員登入名稱，並視需要重設 hello 密碼。</span><span class="sxs-lookup"><span data-stu-id="6c20b-141">If you forget your server login information, navigate toohello **Overview** page tooview hello Server admin login name and, if necessary, reset hello password.</span></span>
 
-## <a name="connect-create-table-and-insert-data"></a><span data-ttu-id="d779c-142">連線、建立資料表及插入資料</span><span class="sxs-lookup"><span data-stu-id="d779c-142">Connect, create table, and insert data</span></span>
-<span data-ttu-id="d779c-143">使用下列程式碼搭配 **CREATE TABLE** 和 **INSERT INTO** SQL 陳述式來連線和載入資料。</span><span class="sxs-lookup"><span data-stu-id="d779c-143">Use the following code to connect and load the data using **CREATE TABLE** and  **INSERT INTO** SQL statements.</span></span> <span data-ttu-id="d779c-144">此程式碼使用 sql::Driver 類別搭配 connect() 方法來建立 MySQL 連線。</span><span class="sxs-lookup"><span data-stu-id="d779c-144">The code uses sql::Driver class with the connect() method to establish a connection to MySQL.</span></span> <span data-ttu-id="d779c-145">然後，程式碼會使用 createStatement() 和 execute() 方法來執行資料庫命令。</span><span class="sxs-lookup"><span data-stu-id="d779c-145">Then the code uses method createStatement() and execute() to run the database commands.</span></span> 
+## <a name="connect-create-table-and-insert-data"></a><span data-ttu-id="6c20b-142">連線、建立資料表及插入資料</span><span class="sxs-lookup"><span data-stu-id="6c20b-142">Connect, create table, and insert data</span></span>
+<span data-ttu-id="6c20b-143">使用 hello 下列程式碼 tooconnect 並載入 hello 資料使用**CREATE TABLE**和**INSERT INTO** SQL 陳述式。</span><span class="sxs-lookup"><span data-stu-id="6c20b-143">Use hello following code tooconnect and load hello data using **CREATE TABLE** and  **INSERT INTO** SQL statements.</span></span> <span data-ttu-id="6c20b-144">hello 程式碼會使用與 hello connect （) 方法 tooestablish 連接 tooMySQL sql::Driver 類別。</span><span class="sxs-lookup"><span data-stu-id="6c20b-144">hello code uses sql::Driver class with hello connect() method tooestablish a connection tooMySQL.</span></span> <span data-ttu-id="6c20b-145">然後 hello 程式碼會使用方法 createStatement() 和 execute （） toorun hello 資料庫的命令。</span><span class="sxs-lookup"><span data-stu-id="6c20b-145">Then hello code uses method createStatement() and execute() toorun hello database commands.</span></span> 
 
-<span data-ttu-id="d779c-146">以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="d779c-146">Replace the Host, DBName, User, and Password parameters with the values that you specified when you created the server and database.</span></span> 
+<span data-ttu-id="6c20b-146">取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="6c20b-146">Replace hello Host, DBName, User, and Password parameters with hello values that you specified when you created hello server and database.</span></span> 
 
 ```c++
 #include <stdlib.h>
@@ -83,12 +83,12 @@ int main()
     try
     {
         driver = get_driver_instance();
-        //for demonstration only. never save password in the code!
+        //for demonstration only. never save password in hello code!
         con = driver>connect("tcp://myserver4demo.mysql.database.azure.com:3306/quickstartdb", "myadmin@myserver4demo", "server_admin_password");
     }
     catch (sql::SQLException e)
     {
-        cout << "Could not connect to database. Error message: " << e.what() << endl;
+        cout << "Could not connect toodatabase. Error message: " << e.what() << endl;
         system("pause");
         exit(1);
     }
@@ -123,11 +123,11 @@ int main()
 
 ```
 
-## <a name="read-data"></a><span data-ttu-id="d779c-147">讀取資料</span><span class="sxs-lookup"><span data-stu-id="d779c-147">Read data</span></span>
+## <a name="read-data"></a><span data-ttu-id="6c20b-147">讀取資料</span><span class="sxs-lookup"><span data-stu-id="6c20b-147">Read data</span></span>
 
-<span data-ttu-id="d779c-148">使用下列程式碼搭配 **SELECT** SQL 陳述式來連線和讀取資料。</span><span class="sxs-lookup"><span data-stu-id="d779c-148">Use the following code to connect and read the data using a **SELECT** SQL statement.</span></span> <span data-ttu-id="d779c-149">此程式碼使用 sql::Driver 類別搭配 connect() 方法來建立 MySQL 連線。</span><span class="sxs-lookup"><span data-stu-id="d779c-149">The code uses sql::Driver class with the connect() method to establish a connection to MySQL.</span></span> <span data-ttu-id="d779c-150">然後，程式碼會使用 prepareStatement() 和 executeQuery() 方法來執行 select 命令。</span><span class="sxs-lookup"><span data-stu-id="d779c-150">Then the code uses method prepareStatement() and executeQuery() to run the select commands.</span></span> <span data-ttu-id="d779c-151">程式碼最後會使用 next() 前往結果中的記錄。</span><span class="sxs-lookup"><span data-stu-id="d779c-151">Finally the code uses next() to advance to the records in the results.</span></span> <span data-ttu-id="d779c-152">接下來程式碼會使用 getInt() 和 getString() 來剖析記錄中的值。</span><span class="sxs-lookup"><span data-stu-id="d779c-152">Then the code uses getInt() and getString() to parse the values in the record.</span></span>
+<span data-ttu-id="6c20b-148">使用 hello 下列程式碼 tooconnect 並讀取 hello 資料使用**選取**SQL 陳述式。</span><span class="sxs-lookup"><span data-stu-id="6c20b-148">Use hello following code tooconnect and read hello data using a **SELECT** SQL statement.</span></span> <span data-ttu-id="6c20b-149">hello 程式碼會使用與 hello connect （) 方法 tooestablish 連接 tooMySQL sql::Driver 類別。</span><span class="sxs-lookup"><span data-stu-id="6c20b-149">hello code uses sql::Driver class with hello connect() method tooestablish a connection tooMySQL.</span></span> <span data-ttu-id="6c20b-150">然後 hello 程式碼會使用方法 prepareStatement() 和 executeQuery() toorun hello 選取命令。</span><span class="sxs-lookup"><span data-stu-id="6c20b-150">Then hello code uses method prepareStatement() and executeQuery() toorun hello select commands.</span></span> <span data-ttu-id="6c20b-151">最後 hello 程式碼會使用 next （） tooadvance toohello 記錄 hello 結果中。</span><span class="sxs-lookup"><span data-stu-id="6c20b-151">Finally hello code uses next() tooadvance toohello records in hello results.</span></span> <span data-ttu-id="6c20b-152">然後 hello 程式碼會使用 getInt() 和 Sr tooparse hello 值 hello 記錄中。</span><span class="sxs-lookup"><span data-stu-id="6c20b-152">Then hello code uses getInt() and getString() tooparse hello values in hello record.</span></span>
 
-<span data-ttu-id="d779c-153">以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="d779c-153">Replace the Host, DBName, User, and Password parameters with the values that you specified when you created the server and database.</span></span> 
+<span data-ttu-id="6c20b-153">取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="6c20b-153">Replace hello Host, DBName, User, and Password parameters with hello values that you specified when you created hello server and database.</span></span> 
 
 ```csharp
 #include <stdlib.h>
@@ -151,12 +151,12 @@ int main()
     try
     {
         driver = get_driver_instance();
-        //for demonstration only. never save password in the code!
+        //for demonstration only. never save password in hello code!
         con = driver>connect("tcp://myserver4demo.mysql.database.azure.com:3306/quickstartdb", "myadmin@myserver4demo", "server_admin_password");
     }
     catch (sql::SQLException e)
     {
-        cout << "Could not connect to database. Error message: " << e.what() << endl;
+        cout << "Could not connect toodatabase. Error message: " << e.what() << endl;
         system("pause");
         exit(1);
     }   
@@ -176,10 +176,10 @@ int main()
 }
 ```
 
-## <a name="update-data"></a><span data-ttu-id="d779c-154">更新資料</span><span class="sxs-lookup"><span data-stu-id="d779c-154">Update data</span></span>
-<span data-ttu-id="d779c-155">使用下列程式碼搭配 **UPDATE** SQL 陳述式來連線和讀取資料。</span><span class="sxs-lookup"><span data-stu-id="d779c-155">Use the following code to connect and read the data using a **UPDATE** SQL statement.</span></span> <span data-ttu-id="d779c-156">此程式碼使用 sql::Driver 類別搭配 connect() 方法來建立 MySQL 連線。</span><span class="sxs-lookup"><span data-stu-id="d779c-156">The code uses sql::Driver class with the connect() method to establish a connection to MySQL.</span></span> <span data-ttu-id="d779c-157">然後，程式碼會使用 prepareStatement() 和 executeQuery() 方法來執行 update 命令。</span><span class="sxs-lookup"><span data-stu-id="d779c-157">Then the code uses method prepareStatement() and executeQuery() to run the update commands.</span></span> 
+## <a name="update-data"></a><span data-ttu-id="6c20b-154">更新資料</span><span class="sxs-lookup"><span data-stu-id="6c20b-154">Update data</span></span>
+<span data-ttu-id="6c20b-155">使用 hello 下列程式碼 tooconnect 並讀取 hello 資料使用**更新**SQL 陳述式。</span><span class="sxs-lookup"><span data-stu-id="6c20b-155">Use hello following code tooconnect and read hello data using a **UPDATE** SQL statement.</span></span> <span data-ttu-id="6c20b-156">hello 程式碼會使用與 hello connect （) 方法 tooestablish 連接 tooMySQL sql::Driver 類別。</span><span class="sxs-lookup"><span data-stu-id="6c20b-156">hello code uses sql::Driver class with hello connect() method tooestablish a connection tooMySQL.</span></span> <span data-ttu-id="6c20b-157">然後 hello 程式碼會使用方法 prepareStatement() 和 executeQuery() toorun hello 更新命令。</span><span class="sxs-lookup"><span data-stu-id="6c20b-157">Then hello code uses method prepareStatement() and executeQuery() toorun hello update commands.</span></span> 
 
-<span data-ttu-id="d779c-158">以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="d779c-158">Replace the Host, DBName, User, and Password parameters with the values that you specified when you created the server and database.</span></span> 
+<span data-ttu-id="6c20b-158">取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="6c20b-158">Replace hello Host, DBName, User, and Password parameters with hello values that you specified when you created hello server and database.</span></span> 
 
 ```csharp
 #include <stdlib.h>
@@ -201,12 +201,12 @@ int main()
     try
     {
         driver = get_driver_instance();
-        //for demonstration only. never save password in the code!
+        //for demonstration only. never save password in hello code!
         con = driver>connect("tcp://myserver4demo.mysql.database.azure.com:3306/quickstartdb", "myadmin@myserver4demo", "server_admin_password");
     }
     catch (sql::SQLException e)
     {
-        cout << "Could not connect to database. Error message: " << e.what() << endl;
+        cout << "Could not connect toodatabase. Error message: " << e.what() << endl;
         system("pause");
         exit(1);
     }   
@@ -226,10 +226,10 @@ int main()
 ```
 
 
-## <a name="delete-data"></a><span data-ttu-id="d779c-159">刪除資料</span><span class="sxs-lookup"><span data-stu-id="d779c-159">Delete data</span></span>
-<span data-ttu-id="d779c-160">使用下列程式碼搭配 **DELETE** SQL 陳述式來連線和讀取資料。</span><span class="sxs-lookup"><span data-stu-id="d779c-160">Use the following code to connect and read the data using a **DELETE** SQL statement.</span></span> <span data-ttu-id="d779c-161">此程式碼使用 sql::Driver 類別搭配 connect() 方法來建立 MySQL 連線。</span><span class="sxs-lookup"><span data-stu-id="d779c-161">The code uses sql::Driver class with the connect() method to establish a connection to MySQL.</span></span> <span data-ttu-id="d779c-162">然後，程式碼會使用 prepareStatement() 和 executeQuery() 方法來執行 update 命令。</span><span class="sxs-lookup"><span data-stu-id="d779c-162">Then the code uses method prepareStatement() and executeQuery() to run the delete commands.</span></span>
+## <a name="delete-data"></a><span data-ttu-id="6c20b-159">刪除資料</span><span class="sxs-lookup"><span data-stu-id="6c20b-159">Delete data</span></span>
+<span data-ttu-id="6c20b-160">使用 hello 下列程式碼 tooconnect 並讀取 hello 資料使用**刪除**SQL 陳述式。</span><span class="sxs-lookup"><span data-stu-id="6c20b-160">Use hello following code tooconnect and read hello data using a **DELETE** SQL statement.</span></span> <span data-ttu-id="6c20b-161">hello 程式碼會使用與 hello connect （) 方法 tooestablish 連接 tooMySQL sql::Driver 類別。</span><span class="sxs-lookup"><span data-stu-id="6c20b-161">hello code uses sql::Driver class with hello connect() method tooestablish a connection tooMySQL.</span></span> <span data-ttu-id="6c20b-162">然後 hello 程式碼會使用方法 prepareStatement() 且 executeQuery() toorun hello 刪除命令。</span><span class="sxs-lookup"><span data-stu-id="6c20b-162">Then hello code uses method prepareStatement() and executeQuery() toorun hello delete commands.</span></span>
 
-<span data-ttu-id="d779c-163">以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="d779c-163">Replace the Host, DBName, User, and Password parameters with the values that you specified when you created the server and database.</span></span> 
+<span data-ttu-id="6c20b-163">取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="6c20b-163">Replace hello Host, DBName, User, and Password parameters with hello values that you specified when you created hello server and database.</span></span> 
 
 ```csharp
 #include <stdlib.h>
@@ -253,12 +253,12 @@ int main()
     try
     {
         driver = get_driver_instance();
-        //for demonstration only. never save password in the code!
+        //for demonstration only. never save password in hello code!
         con = driver>connect("tcp://myserver4demo.mysql.database.azure.com:3306/quickstartdb", "myadmin@myserver4demo", "server_admin_password");
     }
     catch (sql::SQLException e)
     {
-        cout << "Could not connect to database. Error message: " << e.what() << endl;
+        cout << "Could not connect toodatabase. Error message: " << e.what() << endl;
         system("pause");
         exit(1);
     }
@@ -277,6 +277,6 @@ int main()
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="d779c-164">後續步驟</span><span class="sxs-lookup"><span data-stu-id="d779c-164">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="6c20b-164">後續步驟</span><span class="sxs-lookup"><span data-stu-id="6c20b-164">Next steps</span></span>
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="d779c-165">使用傾印和還原來將 MySQL 資料庫移轉至適用於 MySQL 的 Azure 資料庫</span><span class="sxs-lookup"><span data-stu-id="d779c-165">Migrate your MySQL database to Azure Database for MySQL using dump and restore</span></span>](concepts-migrate-dump-restore.md)
+> [<span data-ttu-id="6c20b-165">用於使用傾印和還原 MySQL 移轉您的 MySQL 資料庫 tooAzure 資料庫</span><span class="sxs-lookup"><span data-stu-id="6c20b-165">Migrate your MySQL database tooAzure Database for MySQL using dump and restore</span></span>](concepts-migrate-dump-restore.md)

@@ -1,6 +1,6 @@
 ---
-title: "H 264 多重位元速率 4K 音訊 5.1 | Microsoft Docs"
-description: "本主題提供「H264 多重位元速率 4K 音訊 5.1」工作預設的概觀。"
+title: "aaa264 多重位元速率 4k 音訊 5.1 |Microsoft 文件"
+description: "hello 主題概略 hello * * 264 多重位元速率 4k 音訊 5.1* * 工作預設值。"
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 10e5c41be42b73e3e1458adac9642547c182530b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ea0169a86b132002233488ba748a6583fe08d51b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="h264-multiple-bitrate-4k-audio-51"></a><span data-ttu-id="bac27-103">H264 多重位元速率 4K 音訊 5.1</span><span class="sxs-lookup"><span data-stu-id="bac27-103">H264 Multiple Bitrate 4K Audio 5.1</span></span>
-<span data-ttu-id="bac27-104">`Media Encoder Standard` 定義一組編碼預設，供您在建立編碼作業時使用。</span><span class="sxs-lookup"><span data-stu-id="bac27-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="bac27-105">您可以使用 `preset name` 來指定您想要將媒體檔案編碼成哪一種格式。</span><span class="sxs-lookup"><span data-stu-id="bac27-105">You can either use a `preset name` to specify into which format you would like to encode your media file.</span></span> <span data-ttu-id="bac27-106">或者，您可以建立自己的 JSON 或 XML 型預設 (使用 UTF-8 或 UTF-16 編碼)。</span><span class="sxs-lookup"><span data-stu-id="bac27-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="bac27-107">然後，您要將自訂預設傳遞給編碼器。</span><span class="sxs-lookup"><span data-stu-id="bac27-107">You would then pass the custom preset to the encoder.</span></span> <span data-ttu-id="bac27-108">如需這個 `Media Encoder Standard` 編碼器支援的所有預設名稱清單，請參閱[媒體編碼器標準的工作預設](media-services-mes-presets-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="bac27-108">For the list of all the preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
+# <a name="h264-multiple-bitrate-4k-audio-51"></a><span data-ttu-id="498be-103">H264 多重位元速率 4K 音訊 5.1</span><span class="sxs-lookup"><span data-stu-id="498be-103">H264 Multiple Bitrate 4K Audio 5.1</span></span>
+<span data-ttu-id="498be-104">`Media Encoder Standard` 定義一組編碼預設，供您在建立編碼作業時使用。</span><span class="sxs-lookup"><span data-stu-id="498be-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="498be-105">您可以使用`preset name`toospecify 成哪一種格式中，您想要 tooencode 媒體檔案。</span><span class="sxs-lookup"><span data-stu-id="498be-105">You can either use a `preset name` toospecify into which format you would like tooencode your media file.</span></span> <span data-ttu-id="498be-106">或者，您可以建立自己的 JSON 或 XML 型預設 (使用 UTF-8 或 UTF-16 編碼)。</span><span class="sxs-lookup"><span data-stu-id="498be-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="498be-107">然後，您會傳遞 hello 自訂預設的 toohello 編碼器。</span><span class="sxs-lookup"><span data-stu-id="498be-107">You would then pass hello custom preset toohello encoder.</span></span> <span data-ttu-id="498be-108">所有的 hello hello 清單的預設名稱支援這`Media Encoder Standard`編碼器，請參閱[的媒體編碼器標準工作預設](media-services-mes-presets-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="498be-108">For hello list of all hello preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
   
- <span data-ttu-id="bac27-109">本主題說明 XML 和 JSON 格式的 `H264 Multiple Bitrate 4K Audio 5.1` 預設。</span><span class="sxs-lookup"><span data-stu-id="bac27-109">This topic shows the `H264 Multiple Bitrate 4K Audio 5.1` preset in XML and JSON format.</span></span>  
+ <span data-ttu-id="498be-109">本主題顯示 hello`H264 Multiple Bitrate 4K Audio 5.1`預設 XML 和 JSON 格式。</span><span class="sxs-lookup"><span data-stu-id="498be-109">This topic shows hello `H264 Multiple Bitrate 4K Audio 5.1` preset in XML and JSON format.</span></span>  
   
- <span data-ttu-id="bac27-110">此預設會產生一組 12 個對齊 GOP 的 MP4 檔案 (範圍從 20000 kbps 到 1000 kbps) 和 AAC 5.1 音訊。</span><span class="sxs-lookup"><span data-stu-id="bac27-110">This preset produces a set of 12 GOP-aligned MP4 files, ranging from 20000 kbps to 1000 kbps, and AAC 5.1 audio.</span></span> <span data-ttu-id="bac27-111">如需此預設的設定檔、位元速率、取樣率等的詳細資訊，請檢查以下定義的 XML 或 JSON。</span><span class="sxs-lookup"><span data-stu-id="bac27-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine the XML or JSON defined below.</span></span> <span data-ttu-id="bac27-112">如需每個元素的意義說明，以及每個元素的有效值，請參閱[媒體編碼器標準結構描述](media-services-mes-schema.md)。</span><span class="sxs-lookup"><span data-stu-id="bac27-112">For explanations of what each element means, and the valid values for each element, see the [Media Encoder Standard schema](media-services-mes-schema.md).</span></span>  
-  
-> [!NOTE]
->  <span data-ttu-id="bac27-113">您應該會取得具有 4K 編碼的進階保留單元類型。</span><span class="sxs-lookup"><span data-stu-id="bac27-113">You should get the Premium reserved unit type with 4K encodes.</span></span> <span data-ttu-id="bac27-114">如需詳細資訊，請參閱 [如何調整編碼](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units)。</span><span class="sxs-lookup"><span data-stu-id="bac27-114">For more information, see [How to Scale Encoding](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).</span></span>  
+ <span data-ttu-id="498be-110">此預設會產生一組 12 gop 之 MP4 檔案，範圍可從 20000 kbps too1000 kbps 和 AAC 5.1 音訊。</span><span class="sxs-lookup"><span data-stu-id="498be-110">This preset produces a set of 12 GOP-aligned MP4 files, ranging from 20000 kbps too1000 kbps, and AAC 5.1 audio.</span></span> <span data-ttu-id="498be-111">如需設定檔的詳細資訊，位元速率，取樣率、 等等。 這個預設值，請檢查 hello XML 或 JSON 定義如下。</span><span class="sxs-lookup"><span data-stu-id="498be-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine hello XML or JSON defined below.</span></span> <span data-ttu-id="498be-112">如對於每個項目，表示每個項目，和 hello 有效值的說明，請參閱 hello[媒體編碼器標準結構描述](media-services-mes-schema.md)。</span><span class="sxs-lookup"><span data-stu-id="498be-112">For explanations of what each element means, and hello valid values for each element, see hello [Media Encoder Standard schema](media-services-mes-schema.md).</span></span>  
   
 > [!NOTE]
->  <span data-ttu-id="bac27-115">跨層修改 `Width` 和 `Height` 值時，請確定長寬比保持一致。</span><span class="sxs-lookup"><span data-stu-id="bac27-115">When modifying the `Width` and `Height` values across layers, make sure that the aspect ratio remains consistent.</span></span> <span data-ttu-id="bac27-116">例如︰1920x1080、1280x720、1080x576、640x360。</span><span class="sxs-lookup"><span data-stu-id="bac27-116">For example: 1920x1080, 1280x720, 1080x576, 640x360.</span></span> <span data-ttu-id="bac27-117">請勿使用混合的長寬比，例如︰1280x720、720x480、640x360。</span><span class="sxs-lookup"><span data-stu-id="bac27-117">You should not use a mixture of aspect ratios, such as: 1280x720, 720x480, 640x360.</span></span>  
+>  <span data-ttu-id="498be-113">您應該會收到 hello Premium 保留單位類型與 4k 編碼。</span><span class="sxs-lookup"><span data-stu-id="498be-113">You should get hello Premium reserved unit type with 4K encodes.</span></span> <span data-ttu-id="498be-114">如需詳細資訊，請參閱[如何 tooScale 編碼](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units)。</span><span class="sxs-lookup"><span data-stu-id="498be-114">For more information, see [How tooScale Encoding](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).</span></span>  
   
- <span data-ttu-id="bac27-118">XML</span><span class="sxs-lookup"><span data-stu-id="bac27-118">XML</span></span>  
+> [!NOTE]
+>  <span data-ttu-id="498be-115">當修改 hello`Width`和`Height`值個層面，請確定該 hello 外觀比例會保持一致。</span><span class="sxs-lookup"><span data-stu-id="498be-115">When modifying hello `Width` and `Height` values across layers, make sure that hello aspect ratio remains consistent.</span></span> <span data-ttu-id="498be-116">例如︰1920x1080、1280x720、1080x576、640x360。</span><span class="sxs-lookup"><span data-stu-id="498be-116">For example: 1920x1080, 1280x720, 1080x576, 640x360.</span></span> <span data-ttu-id="498be-117">請勿使用混合的長寬比，例如︰1280x720、720x480、640x360。</span><span class="sxs-lookup"><span data-stu-id="498be-117">You should not use a mixture of aspect ratios, such as: 1280x720, 720x480, 640x360.</span></span>  
+  
+ <span data-ttu-id="498be-118">XML</span><span class="sxs-lookup"><span data-stu-id="498be-118">XML</span></span>  
   
 ```  
 <?xml version="1.0" encoding="utf-16"?>  
@@ -240,7 +240,7 @@ ms.lasthandoff: 08/29/2017
 </Preset>  
 ```  
   
- <span data-ttu-id="bac27-119">JSON</span><span class="sxs-lookup"><span data-stu-id="bac27-119">JSON</span></span>  
+ <span data-ttu-id="498be-119">JSON</span><span class="sxs-lookup"><span data-stu-id="498be-119">JSON</span></span>  
   
 ```  
 {  

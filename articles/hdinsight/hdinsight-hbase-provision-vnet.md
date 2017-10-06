@@ -1,6 +1,6 @@
 ---
-title: "在虛擬網路上建立 HBase 叢集 - Azure | Microsoft Docs"
-description: "開始在 Azure HDInsight 中使用 HBase。 了解如何在 Azure 虛擬網路上建立 HDInsight HBase 叢集。"
+title: "在虛擬網路-Azure 中的 aaaCreate HBase 叢集 |Microsoft 文件"
+description: "開始在 Azure HDInsight 中使用 HBase。 了解 Azure 虛擬網路上 toocreate HDInsight HBase 叢集的方式。"
 keywords: 
 services: hdinsight,virtual-network
 documentationcenter: 
@@ -16,102 +16,102 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/17/2017
 ms.author: jgao
-ms.openlocfilehash: 668bd494ce3274188af56cf7d6253cec7af9abbc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 097338a5a650bb607a9f6f9ddb59bb88d098b56f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-hbase-clusters-on-hdinsight-in-azure-virtual-network"></a><span data-ttu-id="fcd93-104">在 Azure 虛擬網路的 HDInsight 上建立 HBase 叢集</span><span class="sxs-lookup"><span data-stu-id="fcd93-104">Create HBase clusters on HDInsight in Azure Virtual Network</span></span>
-<span data-ttu-id="fcd93-105">了解如何在 [Azure 虛擬網路][1]中建立 Azure HDInsight HBase 叢集。</span><span class="sxs-lookup"><span data-stu-id="fcd93-105">Learn how to create Azure HDInsight HBase clusters in an [Azure Virtual Network][1].</span></span>
+# <a name="create-hbase-clusters-on-hdinsight-in-azure-virtual-network"></a><span data-ttu-id="5b5f9-104">在 Azure 虛擬網路的 HDInsight 上建立 HBase 叢集</span><span class="sxs-lookup"><span data-stu-id="5b5f9-104">Create HBase clusters on HDInsight in Azure Virtual Network</span></span>
+<span data-ttu-id="5b5f9-105">了解如何 toocreate Azure HDInsight HBase 叢集[Azure 虛擬網路][1]。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-105">Learn how toocreate Azure HDInsight HBase clusters in an [Azure Virtual Network][1].</span></span>
 
-<span data-ttu-id="fcd93-106">由於 HBase 叢集已與虛擬網路整合，因此能夠部署到與您應用程式相同的虛擬網路，讓應用程式得以和 HBase 直接通訊。</span><span class="sxs-lookup"><span data-stu-id="fcd93-106">With virtual network integration, HBase clusters can be deployed to the same virtual network as your applications so that applications can communicate with HBase directly.</span></span> <span data-ttu-id="fcd93-107">其優點包括：</span><span class="sxs-lookup"><span data-stu-id="fcd93-107">The benefits include:</span></span>
+<span data-ttu-id="5b5f9-106">與虛擬網路整合 HBase 叢集可以部署的 toohello 相同虛擬網路與您的應用程式因此應用程式可直接通訊使用 HBase。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-106">With virtual network integration, HBase clusters can be deployed toohello same virtual network as your applications so that applications can communicate with HBase directly.</span></span> <span data-ttu-id="5b5f9-107">hello 優點包括：</span><span class="sxs-lookup"><span data-stu-id="5b5f9-107">hello benefits include:</span></span>
 
-* <span data-ttu-id="fcd93-108">Web 應用程式可以直接連接到 HBase 叢集節點，因而能夠使用 HBase Java 遠端程序呼叫 (RPC) API 來進行通訊。</span><span class="sxs-lookup"><span data-stu-id="fcd93-108">Direct connectivity of the web application to the nodes of the HBase cluster, which enables communication via HBase Java remote procedure call (RPC) APIs.</span></span>
-* <span data-ttu-id="fcd93-109">透過使流量不須經過多個閘道器及負載平衡器，以提升其效能。</span><span class="sxs-lookup"><span data-stu-id="fcd93-109">Improved performance by not having your traffic go over multiple gateways and load-balancers.</span></span>
-* <span data-ttu-id="fcd93-110">能夠以更安全的方式處理敏感資訊，而不會暴露公用端點。</span><span class="sxs-lookup"><span data-stu-id="fcd93-110">The ability to process sensitive information in a more secure manner without exposing a public endpoint.</span></span>
+* <span data-ttu-id="5b5f9-108">直接連線的 hello web 應用程式 toohello hello HBase 叢集節點，可讓通訊透過 HBase Java 遠端程序呼叫 (RPC) Api。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-108">Direct connectivity of hello web application toohello nodes of hello HBase cluster, which enables communication via HBase Java remote procedure call (RPC) APIs.</span></span>
+* <span data-ttu-id="5b5f9-109">透過使流量不須經過多個閘道器及負載平衡器，以提升其效能。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-109">Improved performance by not having your traffic go over multiple gateways and load-balancers.</span></span>
+* <span data-ttu-id="5b5f9-110">hello 能力 tooprocess 機密資訊以更安全的方式，而不會讓公用端點。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-110">hello ability tooprocess sensitive information in a more secure manner without exposing a public endpoint.</span></span>
 
-### <a name="prerequisites"></a><span data-ttu-id="fcd93-111">必要條件</span><span class="sxs-lookup"><span data-stu-id="fcd93-111">Prerequisites</span></span>
-<span data-ttu-id="fcd93-112">開始進行本教學課程之前，您必須具備下列項目：</span><span class="sxs-lookup"><span data-stu-id="fcd93-112">Before you begin this tutorial, you must have the following items:</span></span>
+### <a name="prerequisites"></a><span data-ttu-id="5b5f9-111">必要條件</span><span class="sxs-lookup"><span data-stu-id="5b5f9-111">Prerequisites</span></span>
+<span data-ttu-id="5b5f9-112">開始本教學課程之前，您必須具備下列項目 hello:</span><span class="sxs-lookup"><span data-stu-id="5b5f9-112">Before you begin this tutorial, you must have hello following items:</span></span>
 
-* <span data-ttu-id="fcd93-113">**Azure 訂用帳戶**。</span><span class="sxs-lookup"><span data-stu-id="fcd93-113">**An Azure subscription**.</span></span> <span data-ttu-id="fcd93-114">請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。</span><span class="sxs-lookup"><span data-stu-id="fcd93-114">See [Get Azure free trial](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).</span></span>
-* <span data-ttu-id="fcd93-115">**具有 Azure PowerShell 的工作站**。</span><span class="sxs-lookup"><span data-stu-id="fcd93-115">**A workstation with Azure PowerShell**.</span></span> <span data-ttu-id="fcd93-116">請參閱 [安裝及使用 Azure PowerShell](https://azure.microsoft.com/documentation/videos/install-and-use-azure-powershell/)。</span><span class="sxs-lookup"><span data-stu-id="fcd93-116">See [Install and use Azure PowerShell](https://azure.microsoft.com/documentation/videos/install-and-use-azure-powershell/).</span></span>
+* <span data-ttu-id="5b5f9-113">**Azure 訂用帳戶**。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-113">**An Azure subscription**.</span></span> <span data-ttu-id="5b5f9-114">請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-114">See [Get Azure free trial](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).</span></span>
+* <span data-ttu-id="5b5f9-115">**具有 Azure PowerShell 的工作站**。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-115">**A workstation with Azure PowerShell**.</span></span> <span data-ttu-id="5b5f9-116">請參閱 [安裝及使用 Azure PowerShell](https://azure.microsoft.com/documentation/videos/install-and-use-azure-powershell/)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-116">See [Install and use Azure PowerShell](https://azure.microsoft.com/documentation/videos/install-and-use-azure-powershell/).</span></span>
 
-## <a name="create-hbase-cluster-into-virtual-network"></a><span data-ttu-id="fcd93-117">在虛擬網路上建立 HBase 叢集</span><span class="sxs-lookup"><span data-stu-id="fcd93-117">Create HBase cluster into virtual network</span></span>
-<span data-ttu-id="fcd93-118">在本節中，您會使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-template-deploy.md)，在 Azure 虛擬網路中建立以 Linux 為基礎的 HBase 叢集與相依的 Azure 儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="fcd93-118">In this section, you create a Linux-based HBase cluster with the dependent Azure Storage account in an Azure virtual network using an [Azure Resource Manager template](../azure-resource-manager/resource-group-template-deploy.md).</span></span> <span data-ttu-id="fcd93-119">如需其他叢集建立方法及了解各項設定，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。</span><span class="sxs-lookup"><span data-stu-id="fcd93-119">For other cluster creation methods and understanding the settings, see [Create HDInsight clusters](hdinsight-hadoop-provision-linux-clusters.md).</span></span> <span data-ttu-id="fcd93-120">如需有關使用範本在 HDInsight 中建立 Hadoop 叢集的詳細資訊，請參閱 [使用 Azure Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-windows-clusters-arm-templates.md)</span><span class="sxs-lookup"><span data-stu-id="fcd93-120">For more information about using a template to create Hadoop clusters in HDInsight, see [Create Hadoop clusters in HDInsight using Azure Resource Manager templates](hdinsight-hadoop-create-windows-clusters-arm-templates.md)</span></span>
+## <a name="create-hbase-cluster-into-virtual-network"></a><span data-ttu-id="5b5f9-117">在虛擬網路上建立 HBase 叢集</span><span class="sxs-lookup"><span data-stu-id="5b5f9-117">Create HBase cluster into virtual network</span></span>
+<span data-ttu-id="5b5f9-118">在本節中，您必須建立以 Linux 為基礎的 HBase 叢集與 hello 相依 Azure 儲存體帳戶中的 Azure 虛擬網路使用[Azure Resource Manager 範本](../azure-resource-manager/resource-group-template-deploy.md)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-118">In this section, you create a Linux-based HBase cluster with hello dependent Azure Storage account in an Azure virtual network using an [Azure Resource Manager template](../azure-resource-manager/resource-group-template-deploy.md).</span></span> <span data-ttu-id="5b5f9-119">適用於其他叢集建立方法，並了解 hello 設定，請參閱[建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-119">For other cluster creation methods and understanding hello settings, see [Create HDInsight clusters](hdinsight-hadoop-provision-linux-clusters.md).</span></span> <span data-ttu-id="5b5f9-120">如需有關使用範本 toocreate Hadoop 叢集 HDInsight 中，請參閱 <<c0> [ 建立 Hadoop 叢集 HDInsight 使用 Azure Resource Manager 範本中](hdinsight-hadoop-create-windows-clusters-arm-templates.md)</span><span class="sxs-lookup"><span data-stu-id="5b5f9-120">For more information about using a template toocreate Hadoop clusters in HDInsight, see [Create Hadoop clusters in HDInsight using Azure Resource Manager templates](hdinsight-hadoop-create-windows-clusters-arm-templates.md)</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="fcd93-121">某些屬性已以硬式編碼方式寫入範本。</span><span class="sxs-lookup"><span data-stu-id="fcd93-121">Some properties are hard-coded into the template.</span></span> <span data-ttu-id="fcd93-122">例如：</span><span class="sxs-lookup"><span data-stu-id="fcd93-122">For example:</span></span>
+> <span data-ttu-id="5b5f9-121">有些屬性是硬式編碼成 hello 範本。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-121">Some properties are hard-coded into hello template.</span></span> <span data-ttu-id="5b5f9-122">例如：</span><span class="sxs-lookup"><span data-stu-id="5b5f9-122">For example:</span></span>
 >
-> * <span data-ttu-id="fcd93-123">**位置**：美國東部 2</span><span class="sxs-lookup"><span data-stu-id="fcd93-123">**Location**: East US 2</span></span>
-> * <span data-ttu-id="fcd93-124">**叢集版本**：3.5</span><span class="sxs-lookup"><span data-stu-id="fcd93-124">**Cluster version**: 3.5</span></span>
-> * <span data-ttu-id="fcd93-125">**叢集背景工作節點計數**：2</span><span class="sxs-lookup"><span data-stu-id="fcd93-125">**Cluster worker node count**: 2</span></span>
-> * <span data-ttu-id="fcd93-126">**預設儲存體帳戶**：唯一的字串</span><span class="sxs-lookup"><span data-stu-id="fcd93-126">**Default storage account**: a unique string</span></span>
-> * <span data-ttu-id="fcd93-127">**虛擬網路名稱**：&lt;叢集名稱>-vnet</span><span class="sxs-lookup"><span data-stu-id="fcd93-127">**Virtual network name**: &lt;Cluster Name>-vnet</span></span>
-> * <span data-ttu-id="fcd93-128">**虛擬網路位址空間**10.0.0.0/16</span><span class="sxs-lookup"><span data-stu-id="fcd93-128">**Virtual network address space**: 10.0.0.0/16</span></span>
-> * <span data-ttu-id="fcd93-129">**子網路名稱**：subnet1</span><span class="sxs-lookup"><span data-stu-id="fcd93-129">**Subnet name**: subnet1</span></span>
-> * <span data-ttu-id="fcd93-130">**子網路位址範圍**：10.0.0.0/24</span><span class="sxs-lookup"><span data-stu-id="fcd93-130">**Subnet address range**: 10.0.0.0/24</span></span>
+> * <span data-ttu-id="5b5f9-123">**位置**：美國東部 2</span><span class="sxs-lookup"><span data-stu-id="5b5f9-123">**Location**: East US 2</span></span>
+> * <span data-ttu-id="5b5f9-124">**叢集版本**：3.5</span><span class="sxs-lookup"><span data-stu-id="5b5f9-124">**Cluster version**: 3.5</span></span>
+> * <span data-ttu-id="5b5f9-125">**叢集背景工作節點計數**：2</span><span class="sxs-lookup"><span data-stu-id="5b5f9-125">**Cluster worker node count**: 2</span></span>
+> * <span data-ttu-id="5b5f9-126">**預設儲存體帳戶**：唯一的字串</span><span class="sxs-lookup"><span data-stu-id="5b5f9-126">**Default storage account**: a unique string</span></span>
+> * <span data-ttu-id="5b5f9-127">**虛擬網路名稱**：&lt;叢集名稱>-vnet</span><span class="sxs-lookup"><span data-stu-id="5b5f9-127">**Virtual network name**: &lt;Cluster Name>-vnet</span></span>
+> * <span data-ttu-id="5b5f9-128">**虛擬網路位址空間**10.0.0.0/16</span><span class="sxs-lookup"><span data-stu-id="5b5f9-128">**Virtual network address space**: 10.0.0.0/16</span></span>
+> * <span data-ttu-id="5b5f9-129">**子網路名稱**：subnet1</span><span class="sxs-lookup"><span data-stu-id="5b5f9-129">**Subnet name**: subnet1</span></span>
+> * <span data-ttu-id="5b5f9-130">**子網路位址範圍**：10.0.0.0/24</span><span class="sxs-lookup"><span data-stu-id="5b5f9-130">**Subnet address range**: 10.0.0.0/24</span></span>
 >
-> <span data-ttu-id="fcd93-131">使用範本時，&lt;叢集名稱> 會取代為您提供的叢集名稱。</span><span class="sxs-lookup"><span data-stu-id="fcd93-131">&lt;Cluster Name> is replaced with the cluster name you provide when using the template.</span></span>
+> <span data-ttu-id="5b5f9-131">&lt;叢集名稱 > 取代為您提供使用 hello 範本時的 hello 叢集名稱。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-131">&lt;Cluster Name> is replaced with hello cluster name you provide when using hello template.</span></span>
 >
 >
 
-1. <span data-ttu-id="fcd93-132">按一下以下影像，在 Azure 入口網站中開啟範本。</span><span class="sxs-lookup"><span data-stu-id="fcd93-132">Click the following image to open the template in the Azure portal.</span></span> <span data-ttu-id="fcd93-133">範本位在 [Azure 快速入門範本 (英文)](https://azure.microsoft.com/resources/templates/101-hdinsight-hbase-linux-vnet/)。</span><span class="sxs-lookup"><span data-stu-id="fcd93-133">The template is located in [Azure QuickStart Templates](https://azure.microsoft.com/resources/templates/101-hdinsight-hbase-linux-vnet/).</span></span>
+1. <span data-ttu-id="5b5f9-132">按一下下列映像 tooopen hello 範本 hello Azure 入口網站中的 hello。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-132">Click hello following image tooopen hello template in hello Azure portal.</span></span> <span data-ttu-id="5b5f9-133">hello 範本位於[Azure 快速入門範本](https://azure.microsoft.com/resources/templates/101-hdinsight-hbase-linux-vnet/)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-133">hello template is located in [Azure QuickStart Templates](https://azure.microsoft.com/resources/templates/101-hdinsight-hbase-linux-vnet/).</span></span>
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-linux-vnet%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hbase-provision-vnet/deploy-to-azure.png" alt="Deploy to Azure"></a>
-2. <span data-ttu-id="fcd93-134">從 [自訂部署] 刀鋒視窗中，輸入下列屬性：</span><span class="sxs-lookup"><span data-stu-id="fcd93-134">From the **Custom deployment** blade, enter the following properties:</span></span>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-linux-vnet%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hbase-provision-vnet/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+2. <span data-ttu-id="5b5f9-134">從 hello**自訂部署**刀鋒視窗中，輸入下列屬性的 hello:</span><span class="sxs-lookup"><span data-stu-id="5b5f9-134">From hello **Custom deployment** blade, enter hello following properties:</span></span>
 
-   * <span data-ttu-id="fcd93-135">**訂用帳戶**︰選取用來建立 HDInsight 叢集、相依儲存體帳戶和 Azure 虛擬網路的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="fcd93-135">**Subscription**: Select an Azure subscription used to create the HDInsight cluster, the dependent Storage account and the Azure virtual network.</span></span>
-   * <span data-ttu-id="fcd93-136">**資源群組**：選取 [新建] 並指定新的資源群組名稱。</span><span class="sxs-lookup"><span data-stu-id="fcd93-136">**Resource group**: Select **Create new**, and specify a new resource group name.</span></span>
-   * <span data-ttu-id="fcd93-137">**位置**：選取資源群組的位置。</span><span class="sxs-lookup"><span data-stu-id="fcd93-137">**Location**: Select a location for the resource group.</span></span>
-   * <span data-ttu-id="fcd93-138">**ClusterName**：輸入要建立的 Hadoop 叢集的名稱。</span><span class="sxs-lookup"><span data-stu-id="fcd93-138">**ClusterName**: Enter a name for the Hadoop cluster to be created.</span></span>
-   * <span data-ttu-id="fcd93-139">**叢集登入名稱和密碼**：預設登入名稱是 **admin**。</span><span class="sxs-lookup"><span data-stu-id="fcd93-139">**Cluster login name and password**: The default login name is **admin**.</span></span>
-   * <span data-ttu-id="fcd93-140">**SSH 使用者名稱和密碼**：預設使用者名稱是 **sshuser**。</span><span class="sxs-lookup"><span data-stu-id="fcd93-140">**SSH username and password**: The default username is **sshuser**.</span></span>  <span data-ttu-id="fcd93-141">您可以將它重新命名。</span><span class="sxs-lookup"><span data-stu-id="fcd93-141">You can rename it.</span></span>
-   * <span data-ttu-id="fcd93-142">**我同意上方所述的條款及條件**：(選取)</span><span class="sxs-lookup"><span data-stu-id="fcd93-142">**I agree to the terms and the conditions stated above**: (Select)</span></span>
-3. <span data-ttu-id="fcd93-143">按一下 [購買]。</span><span class="sxs-lookup"><span data-stu-id="fcd93-143">Click **Purchase**.</span></span> <span data-ttu-id="fcd93-144">大約需要 20 分鐘的時間來建立叢集。</span><span class="sxs-lookup"><span data-stu-id="fcd93-144">It takes about around 20 minutes to create a cluster.</span></span> <span data-ttu-id="fcd93-145">一旦建立叢集後，您可以在入口網站按一下 [叢集] 刀鋒視窗來開啟它。</span><span class="sxs-lookup"><span data-stu-id="fcd93-145">Once the cluster is created, you can click the cluster blade in the portal to open it.</span></span>
+   * <span data-ttu-id="5b5f9-135">**訂用帳戶**： 選取 使用的 Azure 訂用帳戶 toocreate hello HDInsight 叢集，hello 相依的儲存體帳戶，hello Azure 虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-135">**Subscription**: Select an Azure subscription used toocreate hello HDInsight cluster, hello dependent Storage account and hello Azure virtual network.</span></span>
+   * <span data-ttu-id="5b5f9-136">**資源群組**：選取 [新建] 並指定新的資源群組名稱。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-136">**Resource group**: Select **Create new**, and specify a new resource group name.</span></span>
+   * <span data-ttu-id="5b5f9-137">**位置**： 選取 hello 資源群組的位置。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-137">**Location**: Select a location for hello resource group.</span></span>
+   * <span data-ttu-id="5b5f9-138">**ClusterName**： 輸入建立 hello Hadoop 叢集 toobe 的名稱。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-138">**ClusterName**: Enter a name for hello Hadoop cluster toobe created.</span></span>
+   * <span data-ttu-id="5b5f9-139">**叢集登入名稱和密碼**: hello 預設登入名稱是**admin**。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-139">**Cluster login name and password**: hello default login name is **admin**.</span></span>
+   * <span data-ttu-id="5b5f9-140">**SSH 使用者名稱和密碼**: hello 預設使用者名稱是**sshuser**。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-140">**SSH username and password**: hello default username is **sshuser**.</span></span>  <span data-ttu-id="5b5f9-141">您可以將它重新命名。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-141">You can rename it.</span></span>
+   * <span data-ttu-id="5b5f9-142">**我同意 toohello 使用條款 hello 上述**: （選取）</span><span class="sxs-lookup"><span data-stu-id="5b5f9-142">**I agree toohello terms and hello conditions stated above**: (Select)</span></span>
+3. <span data-ttu-id="5b5f9-143">按一下 [購買]。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-143">Click **Purchase**.</span></span> <span data-ttu-id="5b5f9-144">大約需要約 20 分鐘 toocreate 叢集。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-144">It takes about around 20 minutes toocreate a cluster.</span></span> <span data-ttu-id="5b5f9-145">一旦建立 hello 叢集後，您可以按一下 hello 叢集刀鋒視窗中 hello 入口 tooopen 它。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-145">Once hello cluster is created, you can click hello cluster blade in hello portal tooopen it.</span></span>
 
-<span data-ttu-id="fcd93-146">完成本教學課程之後，您可以刪除叢集。</span><span class="sxs-lookup"><span data-stu-id="fcd93-146">After you complete the tutorial, you might want to delete the cluster.</span></span> <span data-ttu-id="fcd93-147">利用 HDInsight，您的資料會儲存在 Azure 儲存體中，以便您在未使用叢集時安全地進行刪除。</span><span class="sxs-lookup"><span data-stu-id="fcd93-147">With HDInsight, your data is stored in Azure Storage, so you can safely delete a cluster when it is not in use.</span></span> <span data-ttu-id="fcd93-148">您也需支付 HDInsight 叢集的費用 (即使未使用)。</span><span class="sxs-lookup"><span data-stu-id="fcd93-148">You are also charged for an HDInsight cluster, even when it is not in use.</span></span> <span data-ttu-id="fcd93-149">由於叢集費用是儲存體費用的許多倍，所以刪除未使用的叢集符合經濟效益。</span><span class="sxs-lookup"><span data-stu-id="fcd93-149">Since the charges for the cluster are many times more than the charges for storage, it makes economic sense to delete clusters when they are not in use.</span></span> <span data-ttu-id="fcd93-150">如需有關刪除叢集的指示，請參閱[使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-management-portal.md#delete-clusters)。</span><span class="sxs-lookup"><span data-stu-id="fcd93-150">For the instructions of deleting a cluster, see [Manage Hadoop clusters in HDInsight by using the Azure portal](hdinsight-administer-use-management-portal.md#delete-clusters).</span></span>
+<span data-ttu-id="5b5f9-146">完成 hello 教學課程之後，您可能想 toodelete hello 叢集。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-146">After you complete hello tutorial, you might want toodelete hello cluster.</span></span> <span data-ttu-id="5b5f9-147">利用 HDInsight，您的資料會儲存在 Azure 儲存體中，以便您在未使用叢集時安全地進行刪除。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-147">With HDInsight, your data is stored in Azure Storage, so you can safely delete a cluster when it is not in use.</span></span> <span data-ttu-id="5b5f9-148">您也需支付 HDInsight 叢集的費用 (即使未使用)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-148">You are also charged for an HDInsight cluster, even when it is not in use.</span></span> <span data-ttu-id="5b5f9-149">由於 hello 叢集 hello 費用的次數超過儲存體的 hello 費用，經濟效益 toodelete 叢集時未使用。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-149">Since hello charges for hello cluster are many times more than hello charges for storage, it makes economic sense toodelete clusters when they are not in use.</span></span> <span data-ttu-id="5b5f9-150">刪除叢集的 hello 指示，請參閱[HDInsight 中使用的管理 Hadoop 叢集 hello Azure 入口網站](hdinsight-administer-use-management-portal.md#delete-clusters)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-150">For hello instructions of deleting a cluster, see [Manage Hadoop clusters in HDInsight by using hello Azure portal](hdinsight-administer-use-management-portal.md#delete-clusters).</span></span>
 
-<span data-ttu-id="fcd93-151">若要開始使用新的 HBase 叢集，您可以使用＜ [開始在 HDInsight 中搭配使用 HBase 與 Hadoop](hdinsight-hbase-tutorial-get-started.md)＞中提供的程序。</span><span class="sxs-lookup"><span data-stu-id="fcd93-151">To begin working with your new HBase cluster, you can use the procedures found in [Get started using HBase with Hadoop in HDInsight](hdinsight-hbase-tutorial-get-started.md).</span></span>
+<span data-ttu-id="5b5f9-151">toobegin 使用新的 HBase 叢集，您可以使用 hello 程序中找到[開始透過 HDInsight 中的 Hadoop 使用 HBase](hdinsight-hbase-tutorial-get-started.md)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-151">toobegin working with your new HBase cluster, you can use hello procedures found in [Get started using HBase with Hadoop in HDInsight](hdinsight-hbase-tutorial-get-started.md).</span></span>
 
-## <a name="connect-to-the-hbase-cluster-using-hbase-java-rpc-apis"></a><span data-ttu-id="fcd93-152">使用 HBase Java RPC API 連接到 HBase 叢集</span><span class="sxs-lookup"><span data-stu-id="fcd93-152">Connect to the HBase cluster using HBase Java RPC APIs</span></span>
-1. <span data-ttu-id="fcd93-153">相同的 Azure 虛擬網路和相同的子網路中建立基礎結構即服務 (IaaS) 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="fcd93-153">Create an infrastructure as a service (IaaS) virtual machine into the same Azure virtual network and the same subnet.</span></span> <span data-ttu-id="fcd93-154">如需建立新的 IaaS 虛擬機器的指示，請參閱[建立執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)。</span><span class="sxs-lookup"><span data-stu-id="fcd93-154">For instructions on creating a new IaaS virtual machine, see [Create a Virtual Machine Running Windows Server](../virtual-machines/virtual-machines-windows-hero-tutorial.md).</span></span> <span data-ttu-id="fcd93-155">當遵循本文件中的步驟時，您必須針對網路設定使用下列值：</span><span class="sxs-lookup"><span data-stu-id="fcd93-155">When following the steps in this document, you must use the following values for the Network configuration:</span></span>
+## <a name="connect-toohello-hbase-cluster-using-hbase-java-rpc-apis"></a><span data-ttu-id="5b5f9-152">連接使用 HBase Java RPC Api toohello HBase 叢集</span><span class="sxs-lookup"><span data-stu-id="5b5f9-152">Connect toohello HBase cluster using HBase Java RPC APIs</span></span>
+1. <span data-ttu-id="5b5f9-153">建立作為服務 (IaaS) 至虛擬機器的基礎結構 hello 相同 Azure 虛擬網路和 hello 相同子網路。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-153">Create an infrastructure as a service (IaaS) virtual machine into hello same Azure virtual network and hello same subnet.</span></span> <span data-ttu-id="5b5f9-154">如需建立新的 IaaS 虛擬機器的指示，請參閱[建立執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-154">For instructions on creating a new IaaS virtual machine, see [Create a Virtual Machine Running Windows Server](../virtual-machines/virtual-machines-windows-hero-tutorial.md).</span></span> <span data-ttu-id="5b5f9-155">當遵循本文件中的 hello 步驟，您必須使用 hello hello 網路設定的值：</span><span class="sxs-lookup"><span data-stu-id="5b5f9-155">When following hello steps in this document, you must use hello following values for hello Network configuration:</span></span>
 
-   * <span data-ttu-id="fcd93-156">**虛擬網路**：&lt;叢集名稱>-vnet</span><span class="sxs-lookup"><span data-stu-id="fcd93-156">**Virtual network**: &lt;Cluster name>-vnet</span></span>
-   * <span data-ttu-id="fcd93-157">**子網路**：subnet1</span><span class="sxs-lookup"><span data-stu-id="fcd93-157">**Subnet**: subnet1</span></span>
+   * <span data-ttu-id="5b5f9-156">**虛擬網路**：&lt;叢集名稱>-vnet</span><span class="sxs-lookup"><span data-stu-id="5b5f9-156">**Virtual network**: &lt;Cluster name>-vnet</span></span>
+   * <span data-ttu-id="5b5f9-157">**子網路**：subnet1</span><span class="sxs-lookup"><span data-stu-id="5b5f9-157">**Subnet**: subnet1</span></span>
 
    > [!IMPORTANT]
-   > <span data-ttu-id="fcd93-158">將 &lt;叢集名稱> 取代為在上一個步驟中建立 HDInsight 叢集時使用的名稱。</span><span class="sxs-lookup"><span data-stu-id="fcd93-158">Replace &lt;Cluster name> with the name you used when creating the HDInsight cluster in previous steps.</span></span>
+   > <span data-ttu-id="5b5f9-158">取代&lt;叢集名稱 > hello 名稱時所使用在先前步驟中建立 hello HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-158">Replace &lt;Cluster name> with hello name you used when creating hello HDInsight cluster in previous steps.</span></span>
    >
    >
 
-   <span data-ttu-id="fcd93-159">使用這些值會將虛擬機器放置在與 HDInsight 叢集相同的虛擬網路和子網路。</span><span class="sxs-lookup"><span data-stu-id="fcd93-159">Using these values, the virtual machine is placed in the same virtual network and subnet as the HDInsight cluster.</span></span> <span data-ttu-id="fcd93-160">此組態可讓它們彼此直接通訊。</span><span class="sxs-lookup"><span data-stu-id="fcd93-160">This configuration allows them to directly communicate with each other.</span></span> <span data-ttu-id="fcd93-161">有一個使用空白邊緣節點建立 HDInsight 叢集的方法。</span><span class="sxs-lookup"><span data-stu-id="fcd93-161">There is a way to create an HDInsight cluster with an empty edge node.</span></span> <span data-ttu-id="fcd93-162">邊緣節點可用來管理叢集。</span><span class="sxs-lookup"><span data-stu-id="fcd93-162">The edge node can be used to manage the cluster.</span></span>  <span data-ttu-id="fcd93-163">如需詳細資訊，請參閱 [Use empty edge nodes in HDInsight (在 HDInsight 中使用空白的邊緣節點)](hdinsight-apps-use-edge-node.md)。</span><span class="sxs-lookup"><span data-stu-id="fcd93-163">For more information, see [Use empty edge nodes in HDInsight](hdinsight-apps-use-edge-node.md).</span></span>
+   <span data-ttu-id="5b5f9-159">使用這些值，hello 虛擬機器會放置在 hello 相同虛擬網路和子網路與 hello HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-159">Using these values, hello virtual machine is placed in hello same virtual network and subnet as hello HDInsight cluster.</span></span> <span data-ttu-id="5b5f9-160">此設定可讓它們 toodirectly 與對方進行通訊。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-160">This configuration allows them toodirectly communicate with each other.</span></span> <span data-ttu-id="5b5f9-161">沒有方法 toocreate 與空白邊緣節點的 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-161">There is a way toocreate an HDInsight cluster with an empty edge node.</span></span> <span data-ttu-id="5b5f9-162">hello 邊緣節點可以是使用的 toomanage hello 叢集。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-162">hello edge node can be used toomanage hello cluster.</span></span>  <span data-ttu-id="5b5f9-163">如需詳細資訊，請參閱 [Use empty edge nodes in HDInsight (在 HDInsight 中使用空白的邊緣節點)](hdinsight-apps-use-edge-node.md)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-163">For more information, see [Use empty edge nodes in HDInsight](hdinsight-apps-use-edge-node.md).</span></span>
 
-2. <span data-ttu-id="fcd93-164">使用 Java 應用程式從遠端連接到 HBase 時，您必須使用完整網域名稱 (FQDN)。</span><span class="sxs-lookup"><span data-stu-id="fcd93-164">When using a Java application to connect to HBase remotely, you must use the fully qualified domain name (FQDN).</span></span> <span data-ttu-id="fcd93-165">若要決定此名稱，您必須取得 HBase 叢集的連線特定 DNS 尾碼。</span><span class="sxs-lookup"><span data-stu-id="fcd93-165">To determine this, you must get the connection-specific DNS suffix of the HBase cluster.</span></span> <span data-ttu-id="fcd93-166">若要這麼做，您可以使用下列其中一種方法：</span><span class="sxs-lookup"><span data-stu-id="fcd93-166">To do that, you can use one of the following methods:</span></span>
+2. <span data-ttu-id="5b5f9-164">當從遠端使用 Java 應用程式 tooconnect tooHBase，您必須使用 hello 完整的網域名稱 (FQDN)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-164">When using a Java application tooconnect tooHBase remotely, you must use hello fully qualified domain name (FQDN).</span></span> <span data-ttu-id="5b5f9-165">toodetermine，您必須取得 hello HBase 叢集 hello 連線特定 DNS 尾碼。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-165">toodetermine this, you must get hello connection-specific DNS suffix of hello HBase cluster.</span></span> <span data-ttu-id="5b5f9-166">toodo，您可以使用其中一個 hello 下列方法：</span><span class="sxs-lookup"><span data-stu-id="5b5f9-166">toodo that, you can use one of hello following methods:</span></span>
 
-   * <span data-ttu-id="fcd93-167">使用網頁瀏覽器進行 Ambari 呼叫︰</span><span class="sxs-lookup"><span data-stu-id="fcd93-167">Use a Web browser to make an Ambari call:</span></span>
+   * <span data-ttu-id="5b5f9-167">使用 Web 瀏覽器 toomake Ambari 呼叫：</span><span class="sxs-lookup"><span data-stu-id="5b5f9-167">Use a Web browser toomake an Ambari call:</span></span>
 
-     <span data-ttu-id="fcd93-168">瀏覽至 https://&lt;ClusterName>.azurehdinsight.net/api/v1/clusters/&lt;ClusterName>/hosts?minimal_response=true。</span><span class="sxs-lookup"><span data-stu-id="fcd93-168">Browse to https://&lt;ClusterName>.azurehdinsight.net/api/v1/clusters/&lt;ClusterName>/hosts?minimal_response=true.</span></span> <span data-ttu-id="fcd93-169">結果是具有 DNS 尾碼的 JSON 檔案。</span><span class="sxs-lookup"><span data-stu-id="fcd93-169">It turns a JSON file with the DNS suffixes.</span></span>
-   * <span data-ttu-id="fcd93-170">使用 Ambari 網站︰</span><span class="sxs-lookup"><span data-stu-id="fcd93-170">Use the Ambari website:</span></span>
+     <span data-ttu-id="5b5f9-168">瀏覽 toohttps: / /&lt;ClusterName >.azurehdinsight.net/api/v1/clusters/&lt;ClusterName > / 裝載？ minimal_response = true。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-168">Browse toohttps://&lt;ClusterName>.azurehdinsight.net/api/v1/clusters/&lt;ClusterName>/hosts?minimal_response=true.</span></span> <span data-ttu-id="5b5f9-169">它會以 hello DNS 後置字元的 JSON 檔案。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-169">It turns a JSON file with hello DNS suffixes.</span></span>
+   * <span data-ttu-id="5b5f9-170">使用 hello Ambari 網站：</span><span class="sxs-lookup"><span data-stu-id="5b5f9-170">Use hello Ambari website:</span></span>
 
-     1. <span data-ttu-id="fcd93-171">瀏覽至 https://&lt;ClusterName>.azurehdinsight.net。</span><span class="sxs-lookup"><span data-stu-id="fcd93-171">Browse to  https://&lt;ClusterName>.azurehdinsight.net.</span></span>
-     2. <span data-ttu-id="fcd93-172">按一下頂端功能表中的 [主機]  。</span><span class="sxs-lookup"><span data-stu-id="fcd93-172">Click **Hosts** from the top menu.</span></span>
-   * <span data-ttu-id="fcd93-173">使用 Curl 進行 REST 呼叫︰</span><span class="sxs-lookup"><span data-stu-id="fcd93-173">Use Curl to make REST calls:</span></span>
+     1. <span data-ttu-id="5b5f9-171">瀏覽過 https://&lt;ClusterName >。.azurehdinsight.net。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-171">Browse too https://&lt;ClusterName>.azurehdinsight.net.</span></span>
+     2. <span data-ttu-id="5b5f9-172">按一下**主機**從 hello 上方的功能表。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-172">Click **Hosts** from hello top menu.</span></span>
+   * <span data-ttu-id="5b5f9-173">使用 Curl toomake REST 呼叫：</span><span class="sxs-lookup"><span data-stu-id="5b5f9-173">Use Curl toomake REST calls:</span></span>
 
     ```bash
         curl -u <username>:<password> -k https://<clustername>.azurehdinsight.net/ambari/api/v1/clusters/<clustername>.azurehdinsight.net/services/hbase/components/hbrest
     ```
 
-     <span data-ttu-id="fcd93-174">在傳回的 JavaScript 物件標記法 (JSON) 資料中，找出 "host_name" 項目。</span><span class="sxs-lookup"><span data-stu-id="fcd93-174">In the JavaScript Object Notation (JSON) data returned, find the "host_name" entry.</span></span> <span data-ttu-id="fcd93-175">其中包含叢集中節點的 FQDN。</span><span class="sxs-lookup"><span data-stu-id="fcd93-175">It contains the FQDN for the nodes in the cluster.</span></span> <span data-ttu-id="fcd93-176">例如：</span><span class="sxs-lookup"><span data-stu-id="fcd93-176">For example:</span></span>
+     <span data-ttu-id="5b5f9-174">在 hello JavaScript Object Notation (JSON) 傳回的資料，尋找 hello"host_name"項目。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-174">In hello JavaScript Object Notation (JSON) data returned, find hello "host_name" entry.</span></span> <span data-ttu-id="5b5f9-175">它包含 hello FQDN hello hello 叢集中的節點。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-175">It contains hello FQDN for hello nodes in hello cluster.</span></span> <span data-ttu-id="5b5f9-176">例如：</span><span class="sxs-lookup"><span data-stu-id="5b5f9-176">For example:</span></span>
 
          ...
          "host_name": "wordkernode0.<clustername>.b1.cloudapp.net
          ...
 
-     <span data-ttu-id="fcd93-177">以叢集名稱開頭的網域名稱部分就是 DNS 尾碼。</span><span class="sxs-lookup"><span data-stu-id="fcd93-177">The portion of the domain name beginning with the cluster name is the DNS suffix.</span></span> <span data-ttu-id="fcd93-178">例如，mycluster.b1.cloudapp.net。</span><span class="sxs-lookup"><span data-stu-id="fcd93-178">For example, mycluster.b1.cloudapp.net.</span></span>
-   * <span data-ttu-id="fcd93-179">使用 Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="fcd93-179">Use Azure PowerShell</span></span>
+     <span data-ttu-id="5b5f9-177">hello 部分 hello 網域名稱 hello 叢集名稱開頭是 hello DNS 尾碼。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-177">hello portion of hello domain name beginning with hello cluster name is hello DNS suffix.</span></span> <span data-ttu-id="5b5f9-178">例如，mycluster.b1.cloudapp.net。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-178">For example, mycluster.b1.cloudapp.net.</span></span>
+   * <span data-ttu-id="5b5f9-179">使用 Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="5b5f9-179">Use Azure PowerShell</span></span>
 
-     <span data-ttu-id="fcd93-180">使用下列 Azure PowerShell 指令碼來註冊 **Get-ClusterDetail** 函數，此函數可用來傳回 DNS 尾碼：</span><span class="sxs-lookup"><span data-stu-id="fcd93-180">Use the following Azure PowerShell script to register the **Get-ClusterDetail** function, which can be used to return the DNS suffix:</span></span>
+     <span data-ttu-id="5b5f9-180">使用下列 Azure PowerShell 指令碼 tooregister hello 的 hello **Get ClusterDetail**函式，它可以是使用的 tooreturn hello DNS 尾碼：</span><span class="sxs-lookup"><span data-stu-id="5b5f9-180">Use hello following Azure PowerShell script tooregister hello **Get-ClusterDetail** function, which can be used tooreturn hello DNS suffix:</span></span>
 
     ```powershell
         function Get-ClusterDetail(
@@ -131,29 +131,29 @@ ms.lasthandoff: 08/29/2017
         {
         <#
             .SYNOPSIS
-            Displays information to facilitate an HDInsight cluster-to-cluster scenario within the same virtual network.
+            Displays information toofacilitate an HDInsight cluster-to-cluster scenario within hello same virtual network.
             .Description
-            This command shows the following 4 properties of an HDInsight cluster:
+            This command shows hello following 4 properties of an HDInsight cluster:
             1. ZookeeperQuorum (supports only HBase type cluster)
-                Shows the value of HBase property "hbase.zookeeper.quorum".
+                Shows hello value of HBase property "hbase.zookeeper.quorum".
             2. ZookeeperClientPort (supports only HBase type cluster)
-                Shows the value of HBase property "hbase.zookeeper.property.clientPort".
+                Shows hello value of HBase property "hbase.zookeeper.property.clientPort".
             3. HBaseRestServers (supports only HBase type cluster)
-                Shows a list of host FQDNs that run the HBase REST server.
+                Shows a list of host FQDNs that run hello HBase REST server.
             4. FQDNSuffix (supports all cluster types)
-                Shows the FQDN suffix of hosts in the cluster.
+                Shows hello FQDN suffix of hosts in hello cluster.
             .EXAMPLE
             Get-ClusterDetail -ClusterDnsName {clusterDnsName} -Username {username} -Password {password} -PropertyName ZookeeperQuorum
-            This command shows the value of HBase property "hbase.zookeeper.quorum".
+            This command shows hello value of HBase property "hbase.zookeeper.quorum".
             .EXAMPLE
             Get-ClusterDetail -ClusterDnsName {clusterDnsName} -Username {username} -Password {password} -PropertyName ZookeeperClientPort
-            This command shows the value of HBase property "hbase.zookeeper.property.clientPort".
+            This command shows hello value of HBase property "hbase.zookeeper.property.clientPort".
             .EXAMPLE
             Get-ClusterDetail -ClusterDnsName {clusterDnsName} -Username {username} -Password {password} -PropertyName HBaseRestServers
-            This command shows a list of host FQDNs that run the HBase REST server.
+            This command shows a list of host FQDNs that run hello HBase REST server.
             .EXAMPLE
             Get-ClusterDetail -ClusterDnsName {clusterDnsName} -Username {username} -Password {password} -PropertyName FQDNSuffix
-            This command shows the FQDN suffix of hosts in the cluster.
+            This command shows hello FQDN suffix of hosts in hello cluster.
         #>
 
             $DnsSuffix = ".azurehdinsight.net"
@@ -205,33 +205,33 @@ ms.lasthandoff: 08/29/2017
         }
     ```
 
-     <span data-ttu-id="fcd93-181">執行 Azure PowerShell 指令碼之後，透過下列命令使用 **Get-ClusterDetail** 函數傳回 DNS 尾碼。</span><span class="sxs-lookup"><span data-stu-id="fcd93-181">After running the Azure PowerShell script, use the following command to return the DNS suffix by using the **Get-ClusterDetail** function.</span></span> <span data-ttu-id="fcd93-182">使用此命令時，請指定您的 HDInsight HBase 叢集名稱、管理員名稱和管理員密碼。</span><span class="sxs-lookup"><span data-stu-id="fcd93-182">Specify your HDInsight HBase cluster name, admin name, and admin password when using this command.</span></span>
+     <span data-ttu-id="5b5f9-181">執行 hello Azure PowerShell 指令碼之後, 使用 hello 下列命令的 tooreturn hello DNS 尾碼來使用 hello **Get ClusterDetail**函式。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-181">After running hello Azure PowerShell script, use hello following command tooreturn hello DNS suffix by using hello **Get-ClusterDetail** function.</span></span> <span data-ttu-id="5b5f9-182">使用此命令時，請指定您的 HDInsight HBase 叢集名稱、管理員名稱和管理員密碼。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-182">Specify your HDInsight HBase cluster name, admin name, and admin password when using this command.</span></span>
 
     ```powershell
         Get-ClusterDetail -ClusterDnsName <yourclustername> -PropertyName FQDNSuffix -Username <clusteradmin> -Password <clusteradminpassword>
     ```
 
-     <span data-ttu-id="fcd93-183">此命令會傳回 DNS 尾碼。</span><span class="sxs-lookup"><span data-stu-id="fcd93-183">This command returns the DNS suffix.</span></span> <span data-ttu-id="fcd93-184">例如， **yourclustername.b4.internal.cloudapp.net**。</span><span class="sxs-lookup"><span data-stu-id="fcd93-184">For example, **yourclustername.b4.internal.cloudapp.net**.</span></span>
+     <span data-ttu-id="5b5f9-183">此命令會傳回 hello DNS 尾碼。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-183">This command returns hello DNS suffix.</span></span> <span data-ttu-id="5b5f9-184">例如， **yourclustername.b4.internal.cloudapp.net**。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-184">For example, **yourclustername.b4.internal.cloudapp.net**.</span></span>
 
 
 <!--
-3.    Change the primary DNS suffix configuration of the virtual machine. This enables the virtual machine to automatically resolve the host name of the HBase cluster without explicit specification of the suffix. For example, the *workernode0* host name will be correctly resolved to workernode0 of the HBase cluster.
+3.    Change hello primary DNS suffix configuration of hello virtual machine. This enables hello virtual machine tooautomatically resolve hello host name of hello HBase cluster without explicit specification of hello suffix. For example, hello *workernode0* host name will be correctly resolved tooworkernode0 of hello HBase cluster.
 
-    To make the configuration change:
+    toomake hello configuration change:
 
-    1. RDP into the virtual machine.
-    2. Open **Local Group Policy Editor**. The executable is gpedit.msc.
+    1. RDP into hello virtual machine.
+    2. Open **Local Group Policy Editor**. hello executable is gpedit.msc.
     3. Expand **Computer Configuration**, expand **Administrative Templates**, expand **Network**, and then click **DNS Client**.
-    - Set **Primary DNS Suffix** to the value obtained in step 2:
+    - Set **Primary DNS Suffix** toohello value obtained in step 2:
 
         ![hdinsight.hbase.primary.dns.suffix][img-primary-dns-suffix]
     4. Click **OK**.
-    5. Reboot the virtual machine.
+    5. Reboot hello virtual machine.
 -->
 
-<span data-ttu-id="fcd93-185">若要驗證虛擬機器能夠與 HBase 叢集通訊，請從虛擬機器使用命令 `ping headnode0.<dns suffix>` 。</span><span class="sxs-lookup"><span data-stu-id="fcd93-185">To verify that the virtual machine can communicate with the HBase cluster, use the command `ping headnode0.<dns suffix>` from the virtual machine.</span></span> <span data-ttu-id="fcd93-186">例如，ping headnode0.mycluster.b1.cloudapp.net。</span><span class="sxs-lookup"><span data-stu-id="fcd93-186">For example, ping headnode0.mycluster.b1.cloudapp.net.</span></span>
+<span data-ttu-id="5b5f9-185">hello 虛擬機器的 tooverify 可以與 hello HBase 叢集，請使用 hello 命令`ping headnode0.<dns suffix>`從 hello 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-185">tooverify that hello virtual machine can communicate with hello HBase cluster, use hello command `ping headnode0.<dns suffix>` from hello virtual machine.</span></span> <span data-ttu-id="5b5f9-186">例如，ping headnode0.mycluster.b1.cloudapp.net。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-186">For example, ping headnode0.mycluster.b1.cloudapp.net.</span></span>
 
-<span data-ttu-id="fcd93-187">若要在 Java 應用程式中使用此資訊，您可以依照＜ [使用 Maven 建置在 HDInsight (Hadoop) 上使用 HBase 的 Java 應用程式](hdinsight-hbase-build-java-maven.md) ＞(英文) 中的步驟來建立應用程式。</span><span class="sxs-lookup"><span data-stu-id="fcd93-187">To use this information in a Java application, you can follow the steps in [Use Maven to build Java applications that use HBase with HDInsight (Hadoop)](hdinsight-hbase-build-java-maven.md) to create an application.</span></span> <span data-ttu-id="fcd93-188">若要讓應用程式連接到遠端 HBase 伺服器，請修改此範例中的 **hbase-site.xml** 檔案，以使用 Zookeeper 的 FQDN。</span><span class="sxs-lookup"><span data-stu-id="fcd93-188">To have the application connect to a remote HBase server, modify the **hbase-site.xml** file in this example to use the FQDN for Zookeeper.</span></span> <span data-ttu-id="fcd93-189">例如：</span><span class="sxs-lookup"><span data-stu-id="fcd93-189">For example:</span></span>
+<span data-ttu-id="5b5f9-187">toouse 這項資訊在 Java 應用程式中，您可以依照中的 hello 步驟[使用 Maven toobuild Java 應用程式與 HDInsight (Hadoop) 使用 HBase](hdinsight-hbase-build-java-maven.md) toocreate 應用程式。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-187">toouse this information in a Java application, you can follow hello steps in [Use Maven toobuild Java applications that use HBase with HDInsight (Hadoop)](hdinsight-hbase-build-java-maven.md) toocreate an application.</span></span> <span data-ttu-id="5b5f9-188">toohave hello 應用程式連接 tooa 遠端 HBase 伺服器，修改 hello **hbase-site.xml**中的檔案，此範例 toouse hello FQDN 動物園管理員。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-188">toohave hello application connect tooa remote HBase server, modify hello **hbase-site.xml** file in this example toouse hello FQDN for Zookeeper.</span></span> <span data-ttu-id="5b5f9-189">例如：</span><span class="sxs-lookup"><span data-stu-id="5b5f9-189">For example:</span></span>
 
     <property>
         <name>hbase.zookeeper.quorum</name>
@@ -239,20 +239,20 @@ ms.lasthandoff: 08/29/2017
     </property>
 
 > [!NOTE]
-> <span data-ttu-id="fcd93-190">如需 Azure 虛擬網路中名稱解析的詳細資訊，包括如何使用您自己的 DNS 伺服器，請參閱[名稱解析 (DNS)](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)。</span><span class="sxs-lookup"><span data-stu-id="fcd93-190">For more information about name resolution in Azure virtual networks, including how to use your own DNS server, see [Name Resolution (DNS)](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md).</span></span>
+> <span data-ttu-id="5b5f9-190">如需有關名稱解析在 Azure 虛擬網路中，包括如何 toouse DNS 伺服器，請參閱[名稱解析 (DNS)](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-190">For more information about name resolution in Azure virtual networks, including how toouse your own DNS server, see [Name Resolution (DNS)](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md).</span></span>
 >
 >
 
-## <a name="next-steps"></a><span data-ttu-id="fcd93-191">後續步驟</span><span class="sxs-lookup"><span data-stu-id="fcd93-191">Next steps</span></span>
-<span data-ttu-id="fcd93-192">在本教學課程中，您已了解如何建立 HBase 叢集。</span><span class="sxs-lookup"><span data-stu-id="fcd93-192">In this tutorial, you learned how to create an HBase cluster.</span></span> <span data-ttu-id="fcd93-193">若要深入了解，請參閱：</span><span class="sxs-lookup"><span data-stu-id="fcd93-193">To learn more, see:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="5b5f9-191">後續步驟</span><span class="sxs-lookup"><span data-stu-id="5b5f9-191">Next steps</span></span>
+<span data-ttu-id="5b5f9-192">在本教學課程中，您學到如何 toocreate HBase 叢集。</span><span class="sxs-lookup"><span data-stu-id="5b5f9-192">In this tutorial, you learned how toocreate an HBase cluster.</span></span> <span data-ttu-id="5b5f9-193">toolearn 詳細資訊，請參閱：</span><span class="sxs-lookup"><span data-stu-id="5b5f9-193">toolearn more, see:</span></span>
 
-* [<span data-ttu-id="fcd93-194">開始使用 HDInsight</span><span class="sxs-lookup"><span data-stu-id="fcd93-194">Get started with HDInsight</span></span>](hdinsight-hadoop-linux-tutorial-get-started.md)
-* [<span data-ttu-id="fcd93-195">在 HDInsight 中使用空白邊緣節點</span><span class="sxs-lookup"><span data-stu-id="fcd93-195">Use empty edge nodes in HDInsight</span></span>](hdinsight-apps-use-edge-node.md)
-* [<span data-ttu-id="fcd93-196">在 HDInsight 中設定 HBase 複寫</span><span class="sxs-lookup"><span data-stu-id="fcd93-196">Configure HBase replication in HDInsight</span></span>](hdinsight-hbase-replication.md)
-* [<span data-ttu-id="fcd93-197">在 HDInsight 中建立 Hadoop 叢集</span><span class="sxs-lookup"><span data-stu-id="fcd93-197">Create Hadoop clusters in HDInsight</span></span>](hdinsight-hadoop-provision-linux-clusters.md)
-* [<span data-ttu-id="fcd93-198">開始在 HDInsight 中搭配使用 HBase 與 Hadoop</span><span class="sxs-lookup"><span data-stu-id="fcd93-198">Get started using HBase with Hadoop in HDInsight</span></span>](hdinsight-hbase-tutorial-get-started.md)
-* [<span data-ttu-id="fcd93-199">使用 HDInsight 中的 HBase 分析 Twitter 情緒</span><span class="sxs-lookup"><span data-stu-id="fcd93-199">Analyze Twitter sentiment with HBase in HDInsight</span></span>](hdinsight-hbase-analyze-twitter-sentiment.md)
-* <span data-ttu-id="fcd93-200">[虛擬網路概觀][vnet-overview]</span><span class="sxs-lookup"><span data-stu-id="fcd93-200">[Virtual Network Overview][vnet-overview]</span></span>
+* [<span data-ttu-id="5b5f9-194">開始使用 HDInsight</span><span class="sxs-lookup"><span data-stu-id="5b5f9-194">Get started with HDInsight</span></span>](hdinsight-hadoop-linux-tutorial-get-started.md)
+* [<span data-ttu-id="5b5f9-195">在 HDInsight 中使用空白邊緣節點</span><span class="sxs-lookup"><span data-stu-id="5b5f9-195">Use empty edge nodes in HDInsight</span></span>](hdinsight-apps-use-edge-node.md)
+* [<span data-ttu-id="5b5f9-196">在 HDInsight 中設定 HBase 複寫</span><span class="sxs-lookup"><span data-stu-id="5b5f9-196">Configure HBase replication in HDInsight</span></span>](hdinsight-hbase-replication.md)
+* [<span data-ttu-id="5b5f9-197">在 HDInsight 中建立 Hadoop 叢集</span><span class="sxs-lookup"><span data-stu-id="5b5f9-197">Create Hadoop clusters in HDInsight</span></span>](hdinsight-hadoop-provision-linux-clusters.md)
+* [<span data-ttu-id="5b5f9-198">開始在 HDInsight 中搭配使用 HBase 與 Hadoop</span><span class="sxs-lookup"><span data-stu-id="5b5f9-198">Get started using HBase with Hadoop in HDInsight</span></span>](hdinsight-hbase-tutorial-get-started.md)
+* [<span data-ttu-id="5b5f9-199">使用 HDInsight 中的 HBase 分析 Twitter 情緒</span><span class="sxs-lookup"><span data-stu-id="5b5f9-199">Analyze Twitter sentiment with HBase in HDInsight</span></span>](hdinsight-hbase-analyze-twitter-sentiment.md)
+* <span data-ttu-id="5b5f9-200">[虛擬網路概觀][vnet-overview]</span><span class="sxs-lookup"><span data-stu-id="5b5f9-200">[Virtual Network Overview][vnet-overview]</span></span>
 
 [1]: http://azure.microsoft.com/services/virtual-network/
 [2]: http://technet.microsoft.com/library/ee176961.aspx
@@ -295,7 +295,7 @@ ms.lasthandoff: 08/29/2017
 
 [img-dns-surffix]: ./media/hdinsight-hbase-provision-vnet/DNSSuffix.png
 [img-primary-dns-suffix]: ./media/hdinsight-hbase-provision-vnet/PrimaryDNSSuffix.png
-[img-provision-cluster-page1]: ./media/hdinsight-hbase-provision-vnet/hbasewizard1.png "佈建新 HBase 叢集的詳細資料"
-[img-provision-cluster-page5]: ./media/hdinsight-hbase-provision-vnet/hbasewizard5.png "使用指令碼動作以自訂 HBase 叢集"
+[img-provision-cluster-page1]: ./media/hdinsight-hbase-provision-vnet/hbasewizard1.png "Hello 新 HBase 叢集的佈建詳細資料"
+[img-provision-cluster-page5]: ./media/hdinsight-hbase-provision-vnet/hbasewizard5.png "使用指令碼動作 toocustomize HBase 叢集"
 
 [azure-preview-portal]: https://portal.azure.com

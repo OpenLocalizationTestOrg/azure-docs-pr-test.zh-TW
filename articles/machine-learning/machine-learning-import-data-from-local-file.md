@@ -1,7 +1,7 @@
 ---
-title: "將資料從檔案匯入到 Azure Machine Learning Studio | Microsoft Docs"
-description: "了解如何將訓練資料檔案從硬碟上傳到 Azure Machine Learning Studio。 這樣會在工作區中建立資料集模組。"
-keywords: "匯入資料,資料格式,資料類型,資料來源,定型資料"
+title: "從檔案到 Azure Machine Learning Studio aaaImport 資料 |Microsoft 文件"
+description: "了解從您的硬碟機 tooAzure Machine Learning Studio tooupload 定型資料檔案的方式。 這會建立資料集模組 hello 工作區。"
+keywords: "匯入資料、資料格式、資料類型、資料來源、定型資料"
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye;bradsev
-ms.openlocfilehash: 18010864160ceb2d76aea37196e6944bbe426457
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 636facd9042145382c953a1c75969149ede6f6fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="import-training-data-from-a-file-on-your-hard-drive-into-machine-learning-studio"></a><span data-ttu-id="31030-105">將訓練資料從硬碟上的檔案匯入到 Machine Learning Studio</span><span class="sxs-lookup"><span data-stu-id="31030-105">Import training data from a file on your hard drive into Machine Learning Studio</span></span>
+# <a name="import-training-data-from-a-file-on-your-hard-drive-into-machine-learning-studio"></a><span data-ttu-id="b1db0-105">將訓練資料從硬碟上的檔案匯入到 Machine Learning Studio</span><span class="sxs-lookup"><span data-stu-id="b1db0-105">Import training data from a file on your hard drive into Machine Learning Studio</span></span>
 [!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
-<span data-ttu-id="31030-106">了解如何上傳硬碟上的資料檔案，以在 Azure Machine Learning Studio 中做為訓練資料使用。</span><span class="sxs-lookup"><span data-stu-id="31030-106">Learn how to upload a data file from your hard drive to use as training data in Azure Machine Learning Studio.</span></span> <span data-ttu-id="31030-107">透過匯入資料檔案，您就有可在工作區中使用的資料集模組。</span><span class="sxs-lookup"><span data-stu-id="31030-107">By importing the data file, you have a dataset module ready for use in your workspace.</span></span>
+<span data-ttu-id="b1db0-106">了解從硬碟機 toouse tooupload 資料檔案做為 Azure Machine Learning Studio 中的定型資料方式。</span><span class="sxs-lookup"><span data-stu-id="b1db0-106">Learn how tooupload a data file from your hard drive toouse as training data in Azure Machine Learning Studio.</span></span> <span data-ttu-id="b1db0-107">匯入 hello 資料檔，您有可供使用的資料集 」 模組在您的工作區中。</span><span class="sxs-lookup"><span data-stu-id="b1db0-107">By importing hello data file, you have a dataset module ready for use in your workspace.</span></span>
 
-## <a name="steps-to-import-data-from-a-local-file"></a><span data-ttu-id="31030-108">從本機檔案匯入資料的步驟</span><span class="sxs-lookup"><span data-stu-id="31030-108">Steps to import data from a local file</span></span>
-<span data-ttu-id="31030-109">若要從本機硬碟匯入資料，請執行下列作業︰</span><span class="sxs-lookup"><span data-stu-id="31030-109">To import data from a local hard drive, do the following:</span></span>
+## <a name="steps-tooimport-data-from-a-local-file"></a><span data-ttu-id="b1db0-108">步驟 tooimport 資料從本機檔案</span><span class="sxs-lookup"><span data-stu-id="b1db0-108">Steps tooimport data from a local file</span></span>
+<span data-ttu-id="b1db0-109">tooimport 資料從本機硬碟，請勿 hello 遵循：</span><span class="sxs-lookup"><span data-stu-id="b1db0-109">tooimport data from a local hard drive, do hello following:</span></span>
 
-1. <span data-ttu-id="31030-110">在 [Machine Learning Studio] 視窗底部，按一下 [ **+新增** ]。</span><span class="sxs-lookup"><span data-stu-id="31030-110">Click **+NEW** at the bottom of the Machine Learning Studio window.</span></span>
-2. <span data-ttu-id="31030-111">選取 [資料集] 和 [從本機檔案]。</span><span class="sxs-lookup"><span data-stu-id="31030-111">Select **DATASET** and **FROM LOCAL FILE**.</span></span>
-3. <span data-ttu-id="31030-112">在 [ **上傳新的資料集** ] 對話方塊中，瀏覽至您要上傳的檔案。</span><span class="sxs-lookup"><span data-stu-id="31030-112">In the **Upload a new dataset** dialog, browse to the file you want to upload</span></span>
-4. <span data-ttu-id="31030-113">輸入名稱、識別資料類型，然後選擇性地輸入說明。</span><span class="sxs-lookup"><span data-stu-id="31030-113">Enter a name, identify the data type, and optionally enter a description.</span></span> <span data-ttu-id="31030-114">建議輸入說明 - 它可以讓您記錄資料的任何特性，您會希望在未來使用資料時記住這些特性。</span><span class="sxs-lookup"><span data-stu-id="31030-114">A description is recommended - it allows you to record any characteristics about the data that you want to remember when using the data in the future.</span></span>
-5. <span data-ttu-id="31030-115">核取方塊 [ **這是現有資料集的新版本** ] 可讓您使用新資料更新現有資料集。</span><span class="sxs-lookup"><span data-stu-id="31030-115">The checkbox **This is the new version of an existing dataset** allows you to update an existing dataset with new data.</span></span> <span data-ttu-id="31030-116">按一下此核取方塊然後輸入現有資料集的名稱即可。</span><span class="sxs-lookup"><span data-stu-id="31030-116">Click this checkbox and then enter the name of an existing dataset.</span></span>
+1. <span data-ttu-id="b1db0-110">按一下**+ 新增**在 hello hello Machine Learning Studio 視窗底部。</span><span class="sxs-lookup"><span data-stu-id="b1db0-110">Click **+NEW** at hello bottom of hello Machine Learning Studio window.</span></span>
+2. <span data-ttu-id="b1db0-111">選取 [資料集] 和 [從本機檔案]。</span><span class="sxs-lookup"><span data-stu-id="b1db0-111">Select **DATASET** and **FROM LOCAL FILE**.</span></span>
+3. <span data-ttu-id="b1db0-112">在 [hello**上傳新的資料集**] 對話方塊中，瀏覽 toohello 檔想 tooupload</span><span class="sxs-lookup"><span data-stu-id="b1db0-112">In hello **Upload a new dataset** dialog, browse toohello file you want tooupload</span></span>
+4. <span data-ttu-id="b1db0-113">輸入的名稱、 識別 hello 資料型別，並選擇性輸入描述。</span><span class="sxs-lookup"><span data-stu-id="b1db0-113">Enter a name, identify hello data type, and optionally enter a description.</span></span> <span data-ttu-id="b1db0-114">描述建議-它可讓您 toorecord hello 未來使用 hello 資料時，想要 tooremember 的 hello 資料相關的任何特性。</span><span class="sxs-lookup"><span data-stu-id="b1db0-114">A description is recommended - it allows you toorecord any characteristics about hello data that you want tooremember when using hello data in hello future.</span></span>
+5. <span data-ttu-id="b1db0-115">hello 核取方塊**這是現有的資料集的 hello 新版**可讓您 tooupdate 現有的資料集與新的資料。</span><span class="sxs-lookup"><span data-stu-id="b1db0-115">hello checkbox **This is hello new version of an existing dataset** allows you tooupdate an existing dataset with new data.</span></span> <span data-ttu-id="b1db0-116">按一下此核取方塊，然後輸入 hello 現有的資料集名稱。</span><span class="sxs-lookup"><span data-stu-id="b1db0-116">Click this checkbox and then enter hello name of an existing dataset.</span></span>
 
 ![上傳新的資料集](media/machine-learning-import-data-from-local-file/upload-dataset.png)
 
-<span data-ttu-id="31030-118">在上傳期間，您會看見訊息，指出您的檔案正在上傳。</span><span class="sxs-lookup"><span data-stu-id="31030-118">During upload, you'll see a message that your file is being uploaded.</span></span> <span data-ttu-id="31030-119">上傳時間取決於資料大小和連接至服務的速度。</span><span class="sxs-lookup"><span data-stu-id="31030-119">Upload time depends on the size of your data and the speed of your connection to the service.</span></span> <span data-ttu-id="31030-120">如果您知道上傳檔案將耗費很長的時間，您可以在等待時在 ML Studio 中執行其他動作。</span><span class="sxs-lookup"><span data-stu-id="31030-120">If you know the file will take a long time, you can do other things inside Machine Learning Studio while you wait.</span></span> <span data-ttu-id="31030-121">但是，關閉瀏覽器會導致資料上傳失敗。</span><span class="sxs-lookup"><span data-stu-id="31030-121">However, closing the browser causes the data upload to fail.</span></span>
+<span data-ttu-id="b1db0-118">在上傳期間，您會看見訊息，指出您的檔案正在上傳。</span><span class="sxs-lookup"><span data-stu-id="b1db0-118">During upload, you'll see a message that your file is being uploaded.</span></span> <span data-ttu-id="b1db0-119">上傳時間取決於您的資料和 hello 速度連線 toohello 服務的 hello 大小。</span><span class="sxs-lookup"><span data-stu-id="b1db0-119">Upload time depends on hello size of your data and hello speed of your connection toohello service.</span></span> <span data-ttu-id="b1db0-120">如果您知道 hello 檔案要花費較長的時間，您可以先做其他事情，Machine Learning Studio 中的，等候期間。</span><span class="sxs-lookup"><span data-stu-id="b1db0-120">If you know hello file will take a long time, you can do other things inside Machine Learning Studio while you wait.</span></span> <span data-ttu-id="b1db0-121">不過，關閉 hello 瀏覽器會導致 hello 資料上傳 toofail。</span><span class="sxs-lookup"><span data-stu-id="b1db0-121">However, closing hello browser causes hello data upload toofail.</span></span>
 
-## <a name="dataset-module-is-ready-for-use"></a><span data-ttu-id="31030-122">資料集模組已可供使用</span><span class="sxs-lookup"><span data-stu-id="31030-122">Dataset module is ready for use</span></span>
-<span data-ttu-id="31030-123">資料上傳之後，會儲存在資料集模組中，並且可供工作區中的任何實驗使用。</span><span class="sxs-lookup"><span data-stu-id="31030-123">Once your data is uploaded, it's stored in a dataset module and is available to any experiment in your workspace.</span></span>
+## <a name="dataset-module-is-ready-for-use"></a><span data-ttu-id="b1db0-122">資料集模組已可供使用</span><span class="sxs-lookup"><span data-stu-id="b1db0-122">Dataset module is ready for use</span></span>
+<span data-ttu-id="b1db0-123">一旦上傳您的資料時，它會儲存在資料集的模組中，而且是在您的工作區中的可用 tooany 實驗。</span><span class="sxs-lookup"><span data-stu-id="b1db0-123">Once your data is uploaded, it's stored in a dataset module and is available tooany experiment in your workspace.</span></span>
 
-<span data-ttu-id="31030-124">當您在編輯實驗時，您可以在模組調色盤的 [儲存的資料集] 清單底下的 [我的資料集] 清單內，找到您所建立的資料集。</span><span class="sxs-lookup"><span data-stu-id="31030-124">When you're editing an experiment, you can find the datasets you've created in the **My Datasets** list under the **Saved Datasets** list in the module palette.</span></span> <span data-ttu-id="31030-125">當您想將資料集用於進一步的分析和機器學習時，可以在實驗畫布上拖放資料集。</span><span class="sxs-lookup"><span data-stu-id="31030-125">You can drag and drop the dataset onto the experiment canvas when you want to use the dataset for further analytics and machine learning.</span></span>
+<span data-ttu-id="b1db0-124">當您編輯的實驗時，您可以找到您已在 hello 建立 hello 資料集**我的資料集**hello 底下清單**儲存的資料集**hello 模組調色盤中的清單。</span><span class="sxs-lookup"><span data-stu-id="b1db0-124">When you're editing an experiment, you can find hello datasets you've created in hello **My Datasets** list under hello **Saved Datasets** list in hello module palette.</span></span> <span data-ttu-id="b1db0-125">您可以藉由拖放 hello 資料集拖曳到 hello 實驗畫布上時要用於進一步的分析和機器學習 toouse hello 資料集。</span><span class="sxs-lookup"><span data-stu-id="b1db0-125">You can drag and drop hello dataset onto hello experiment canvas when you want toouse hello dataset for further analytics and machine learning.</span></span>

@@ -1,7 +1,7 @@
 ---
 layout: LandingPage
-description: "了解如何同步處理目錄及啟用單一登入。 文件會示範如何整合一套完整的身分識別管理功能。"
-title: "Azure Active Directory 文件 - 教學課程和 API 參考 | Microsoft Docs"
+description: "了解如何 toosynchronize 目錄並啟用單一登入。 文件會顯示您如何 toointegrate 一套完整的身分識別管理功能。"
+title: "aaaAzure Active Directory 文件-教學課程中，API 參考 |Microsoft 文件"
 services: active-directory
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 8933c77013d7b0d886d3e309dc0b1a72026eb677
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a99aa3cc979a518c5b53cb1540f037b6776fb157
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-documentation"></a>Azure Active Directory 文件
 
-了解如何利用 Azure Active Directory (Azure AD) 同步處理目錄及啟用單一登入。 教學課程、API 參考和其他文件會示範如何整合身分識別管理功能，包括多 Multi-Factor Authentication、裝置註冊、角色型存取控制，以及安全性監視和警示。
+了解如何 toosynchronize 目錄並啟用單一登入與 Azure Active Directory (Azure AD)。 教學課程、 應用程式開發介面參考和其他文件會顯示您 toointegrate 身分識別管理功能，包括多重要素驗證、 註冊裝置、 以角色為基礎的存取控制的方式，和安全性監視和警示。
 
 <ul class="panelContent cardsFTitle">
     <li>

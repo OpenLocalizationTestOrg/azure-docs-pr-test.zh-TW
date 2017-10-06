@@ -1,6 +1,6 @@
 ---
-title: "使用 Java 連線至 Azure Database for PostgreSQL | Microsoft Docs"
-description: "本快速入門提供 Java 程式碼範例，您可用於從 Azure Database for PostgreSQL 連線及查詢資料。"
+title: "使用 Java PostgreSQL 連接 tooAzure 資料庫 |Microsoft 文件"
+description: "本快速入門提供您可以使用 tooconnect 和查詢 PostgreSQL 資料從 Azure 資料庫的 Java 程式碼範例。"
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,38 +11,38 @@ ms.custom: mvc
 ms.devlang: java
 ms.topic: quickstart
 ms.date: 06/23/2017
-ms.openlocfilehash: 730a3f464b4437c260d09abc026a186a0e26293c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8f6e0a47a0d6dfebf29eb56c31ccccabd7c2b670
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-postgresql-use-java-to-connect-and-query-data"></a><span data-ttu-id="30ecf-103">Azure Database for PostgreSQL︰使用 Java 連線及查詢資料</span><span class="sxs-lookup"><span data-stu-id="30ecf-103">Azure Database for PostgreSQL: Use Java to connect and query data</span></span>
-<span data-ttu-id="30ecf-104">本快速入門示範如何使用 Java 應用程式來連線到 Azure Database for PostgreSQL。</span><span class="sxs-lookup"><span data-stu-id="30ecf-104">This quickstart demonstrates how to connect to an Azure Database for PostgreSQL using a Java application.</span></span> <span data-ttu-id="30ecf-105">它會顯示如何使用 SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。</span><span class="sxs-lookup"><span data-stu-id="30ecf-105">It shows how to use SQL statements to query, insert, update, and delete data in the database.</span></span> <span data-ttu-id="30ecf-106">本文中的步驟假設您已熟悉使用 Java 進行開發，但不熟悉 Azure Database for PostgreSQL。</span><span class="sxs-lookup"><span data-stu-id="30ecf-106">The steps in this article assume that you are familiar with developing using Java, and that you are new to working with Azure Database for PostgreSQL.</span></span>
+# <a name="azure-database-for-postgresql-use-java-tooconnect-and-query-data"></a><span data-ttu-id="297af-103">Azure PostgreSQL 資料庫： 使用 Java tooconnect 和查詢資料</span><span class="sxs-lookup"><span data-stu-id="297af-103">Azure Database for PostgreSQL: Use Java tooconnect and query data</span></span>
+<span data-ttu-id="297af-104">本快速入門示範如何 tooconnect tooan PostgreSQL 使用 Java 應用程式的 Azure 資料庫。</span><span class="sxs-lookup"><span data-stu-id="297af-104">This quickstart demonstrates how tooconnect tooan Azure Database for PostgreSQL using a Java application.</span></span> <span data-ttu-id="297af-105">它會顯示 toouse SQL 陳述式 tooquery，如何插入、 更新和刪除 hello 資料庫中的資料。</span><span class="sxs-lookup"><span data-stu-id="297af-105">It shows how toouse SQL statements tooquery, insert, update, and delete data in hello database.</span></span> <span data-ttu-id="297af-106">hello 本文章中的步驟假設您已熟悉開發使用 Java，且新 tooworking Azure PostgreSQL 資料庫。</span><span class="sxs-lookup"><span data-stu-id="297af-106">hello steps in this article assume that you are familiar with developing using Java, and that you are new tooworking with Azure Database for PostgreSQL.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="30ecf-107">必要條件</span><span class="sxs-lookup"><span data-stu-id="30ecf-107">Prerequisites</span></span>
-<span data-ttu-id="30ecf-108">本快速入門使用在以下任一指南中建立的資源作為起點︰</span><span class="sxs-lookup"><span data-stu-id="30ecf-108">This quickstart uses the resources created in either of these guides as a starting point:</span></span>
-- [<span data-ttu-id="30ecf-109">建立 DB - 入口網站</span><span class="sxs-lookup"><span data-stu-id="30ecf-109">Create DB - Portal</span></span>](quickstart-create-server-database-portal.md)
-- [<span data-ttu-id="30ecf-110">建立 DB - Azure CLI</span><span class="sxs-lookup"><span data-stu-id="30ecf-110">Create DB - Azure CLI</span></span>](quickstart-create-server-database-azure-cli.md)
+## <a name="prerequisites"></a><span data-ttu-id="297af-107">必要條件</span><span class="sxs-lookup"><span data-stu-id="297af-107">Prerequisites</span></span>
+<span data-ttu-id="297af-108">本快速入門會使用 hello 資源建立在其中一個這些指南做為起點：</span><span class="sxs-lookup"><span data-stu-id="297af-108">This quickstart uses hello resources created in either of these guides as a starting point:</span></span>
+- [<span data-ttu-id="297af-109">建立 DB - 入口網站</span><span class="sxs-lookup"><span data-stu-id="297af-109">Create DB - Portal</span></span>](quickstart-create-server-database-portal.md)
+- [<span data-ttu-id="297af-110">建立 DB - Azure CLI</span><span class="sxs-lookup"><span data-stu-id="297af-110">Create DB - Azure CLI</span></span>](quickstart-create-server-database-azure-cli.md)
 
-<span data-ttu-id="30ecf-111">您也需要：</span><span class="sxs-lookup"><span data-stu-id="30ecf-111">You also need to:</span></span>
-- <span data-ttu-id="30ecf-112">下載符合您 Java 和 Java Development Kit 版本的 [PostgreSQL JDBC 驅動程式](https://jdbc.postgresql.org/download.html)。</span><span class="sxs-lookup"><span data-stu-id="30ecf-112">Download the [PostgreSQL JDBC Driver](https://jdbc.postgresql.org/download.html) matching your version of Java and the Java Development Kit.</span></span>
-- <span data-ttu-id="30ecf-113">在您的應用程式 classpath 中納入 PostgreSQL JDBC jar 檔案 (例如 postgresql-42.1.1.jar)。</span><span class="sxs-lookup"><span data-stu-id="30ecf-113">Include the PostgreSQL JDBC jar file (for example postgresql-42.1.1.jar) in your application classpath.</span></span> <span data-ttu-id="30ecf-114">如需詳細資訊，請參閱 [classpath 詳細資料](https://jdbc.postgresql.org/documentation/head/classpath.html)。</span><span class="sxs-lookup"><span data-stu-id="30ecf-114">For more information, see [classpath details](https://jdbc.postgresql.org/documentation/head/classpath.html).</span></span>
+<span data-ttu-id="297af-111">您也需要：</span><span class="sxs-lookup"><span data-stu-id="297af-111">You also need to:</span></span>
+- <span data-ttu-id="297af-112">下載 hello [PostgreSQL JDBC 驅動程式](https://jdbc.postgresql.org/download.html)比對您的 Java 和 hello Java Development Kit 版本。</span><span class="sxs-lookup"><span data-stu-id="297af-112">Download hello [PostgreSQL JDBC Driver](https://jdbc.postgresql.org/download.html) matching your version of Java and hello Java Development Kit.</span></span>
+- <span data-ttu-id="297af-113">Hello PostgreSQL JDBC jar 檔案 (例如 42.1.1.jar postgresql) 併入您的應用程式 classpath 中。</span><span class="sxs-lookup"><span data-stu-id="297af-113">Include hello PostgreSQL JDBC jar file (for example postgresql-42.1.1.jar) in your application classpath.</span></span> <span data-ttu-id="297af-114">如需詳細資訊，請參閱 [classpath 詳細資料](https://jdbc.postgresql.org/documentation/head/classpath.html)。</span><span class="sxs-lookup"><span data-stu-id="297af-114">For more information, see [classpath details](https://jdbc.postgresql.org/documentation/head/classpath.html).</span></span>
 
-## <a name="get-connection-information"></a><span data-ttu-id="30ecf-115">取得連線資訊</span><span class="sxs-lookup"><span data-stu-id="30ecf-115">Get connection information</span></span>
-<span data-ttu-id="30ecf-116">取得連線到 Azure Database for PostgreSQL 所需的連線資訊。</span><span class="sxs-lookup"><span data-stu-id="30ecf-116">Get the connection information needed to connect to the Azure Database for PostgreSQL.</span></span> <span data-ttu-id="30ecf-117">您需要完整的伺服器名稱和登入認證。</span><span class="sxs-lookup"><span data-stu-id="30ecf-117">You need the fully qualified server name and login credentials.</span></span>
+## <a name="get-connection-information"></a><span data-ttu-id="297af-115">取得連線資訊</span><span class="sxs-lookup"><span data-stu-id="297af-115">Get connection information</span></span>
+<span data-ttu-id="297af-116">取得 PostgreSQL hello 連線所需的資訊 tooconnect toohello Azure 資料庫。</span><span class="sxs-lookup"><span data-stu-id="297af-116">Get hello connection information needed tooconnect toohello Azure Database for PostgreSQL.</span></span> <span data-ttu-id="297af-117">您需要 hello 完整的伺服器名稱和登入認證。</span><span class="sxs-lookup"><span data-stu-id="297af-117">You need hello fully qualified server name and login credentials.</span></span>
 
-1. <span data-ttu-id="30ecf-118">登入 [Azure 入口網站](https://portal.azure.com/)。</span><span class="sxs-lookup"><span data-stu-id="30ecf-118">Log in to the [Azure portal](https://portal.azure.com/).</span></span>
-2. <span data-ttu-id="30ecf-119">從 Azure 入口網站的左側功能表中，按一下 [所有資源]，然後搜尋您所建立的伺服器，例如 **mypgserver-20170401**。</span><span class="sxs-lookup"><span data-stu-id="30ecf-119">From the left-hand menu in Azure portal, click **All resources** and search for the server you have created, such as **mypgserver-20170401**.</span></span>
-3. <span data-ttu-id="30ecf-120">按一下伺服器名稱 [mypgserver-20170401]。</span><span class="sxs-lookup"><span data-stu-id="30ecf-120">Click the server name **mypgserver-20170401**.</span></span>
-4. <span data-ttu-id="30ecf-121">選取伺服器的 [概觀] 頁面。</span><span class="sxs-lookup"><span data-stu-id="30ecf-121">Select the server's **Overview** page.</span></span> <span data-ttu-id="30ecf-122">記下 [伺服器名稱] 和 [伺服器管理員登入名稱]。</span><span class="sxs-lookup"><span data-stu-id="30ecf-122">Make a note of the **Server name** and **Server admin login name**.</span></span>
- <span data-ttu-id="30ecf-123">![Azure Database for PostgreSQL - 伺服器管理員登入](./media/connect-java/1-connection-string.png)</span><span class="sxs-lookup"><span data-stu-id="30ecf-123">![Azure Database for PostgreSQL - Server Admin Login](./media/connect-java/1-connection-string.png)</span></span>
-5. <span data-ttu-id="30ecf-124">如果您忘記伺服器登入資訊，請瀏覽至 [概觀] 頁面來檢視伺服器管理員登入名稱，並視需要重設密碼。</span><span class="sxs-lookup"><span data-stu-id="30ecf-124">If you forget your server login information, navigate to the **Overview** page to view the Server admin login name and, if necessary, reset the password.</span></span>
+1. <span data-ttu-id="297af-118">登入 toohello [Azure 入口網站](https://portal.azure.com/)。</span><span class="sxs-lookup"><span data-stu-id="297af-118">Log in toohello [Azure portal](https://portal.azure.com/).</span></span>
+2. <span data-ttu-id="297af-119">在 Azure 入口網站中的 hello 左側功能表中按一下**所有資源**，並搜尋您已經建立，例如 hello 伺服器**mypgserver 20170401**。</span><span class="sxs-lookup"><span data-stu-id="297af-119">From hello left-hand menu in Azure portal, click **All resources** and search for hello server you have created, such as **mypgserver-20170401**.</span></span>
+3. <span data-ttu-id="297af-120">按一下伺服器名稱，hello **mypgserver 20170401**。</span><span class="sxs-lookup"><span data-stu-id="297af-120">Click hello server name **mypgserver-20170401**.</span></span>
+4. <span data-ttu-id="297af-121">選取 hello 伺服器**概觀**頁面。</span><span class="sxs-lookup"><span data-stu-id="297af-121">Select hello server's **Overview** page.</span></span> <span data-ttu-id="297af-122">請記下 hello**伺服器名稱**和**伺服器系統管理員登入名稱**。</span><span class="sxs-lookup"><span data-stu-id="297af-122">Make a note of hello **Server name** and **Server admin login name**.</span></span>
+ <span data-ttu-id="297af-123">![Azure Database for PostgreSQL - 伺服器管理員登入](./media/connect-java/1-connection-string.png)</span><span class="sxs-lookup"><span data-stu-id="297af-123">![Azure Database for PostgreSQL - Server Admin Login](./media/connect-java/1-connection-string.png)</span></span>
+5. <span data-ttu-id="297af-124">如果您忘記您的伺服器登入資訊，請瀏覽 toohello**概觀**頁面 tooview hello 伺服器系統管理員登入名稱，並視需要重設 hello 密碼。</span><span class="sxs-lookup"><span data-stu-id="297af-124">If you forget your server login information, navigate toohello **Overview** page tooview hello Server admin login name and, if necessary, reset hello password.</span></span>
 
-## <a name="connect-create-table-and-insert-data"></a><span data-ttu-id="30ecf-125">連線、建立資料表及插入資料</span><span class="sxs-lookup"><span data-stu-id="30ecf-125">Connect, create table, and insert data</span></span>
-<span data-ttu-id="30ecf-126">使用函式搭配 **INSERT** SQL 陳述式，利用下列程式碼來連線和載入資料。</span><span class="sxs-lookup"><span data-stu-id="30ecf-126">Use the following code to connect and load the data using the function with an **INSERT** SQL statement.</span></span> <span data-ttu-id="30ecf-127">[getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html)、[createStatement()](https://jdbc.postgresql.org/documentation/head/query.html) 和 [executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html) 方法用來連線、置放及建立資料表。</span><span class="sxs-lookup"><span data-stu-id="30ecf-127">The methods [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [createStatement()](https://jdbc.postgresql.org/documentation/head/query.html), and [executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html) are used to connect, drop, and create the table.</span></span> <span data-ttu-id="30ecf-128">[prepareStatement](https://jdbc.postgresql.org/documentation/head/query.html) 物件用來建置 insert 命令，並以 setString() 和 setInt() 繫結參數值。</span><span class="sxs-lookup"><span data-stu-id="30ecf-128">The [prepareStatement](https://jdbc.postgresql.org/documentation/head/query.html) object is used to build the insert commands, with setString() and setInt() to bind the parameter values.</span></span> <span data-ttu-id="30ecf-129">[executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) 方法會針對每組參數執行此命令。</span><span class="sxs-lookup"><span data-stu-id="30ecf-129">Method [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) runs the command for each set of parameters.</span></span> 
+## <a name="connect-create-table-and-insert-data"></a><span data-ttu-id="297af-125">連線、建立資料表及插入資料</span><span class="sxs-lookup"><span data-stu-id="297af-125">Connect, create table, and insert data</span></span>
+<span data-ttu-id="297af-126">下列程式碼 tooconnect 和負載 hello 資料使用 hello 函式的使用 hello**插入**SQL 陳述式。</span><span class="sxs-lookup"><span data-stu-id="297af-126">Use hello following code tooconnect and load hello data using hello function with an **INSERT** SQL statement.</span></span> <span data-ttu-id="297af-127">hello 方法[getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html)， [createStatement()](https://jdbc.postgresql.org/documentation/head/query.html)，和[executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html)會使用的 tooconnect，卸除，並建立 hello 資料表。</span><span class="sxs-lookup"><span data-stu-id="297af-127">hello methods [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [createStatement()](https://jdbc.postgresql.org/documentation/head/query.html), and [executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html) are used tooconnect, drop, and create hello table.</span></span> <span data-ttu-id="297af-128">hello [prepareStatement](https://jdbc.postgresql.org/documentation/head/query.html)物件是使用的 toobuild hello insert 命令，使用 setString() 和 setInt() toobind hello 參數值。</span><span class="sxs-lookup"><span data-stu-id="297af-128">hello [prepareStatement](https://jdbc.postgresql.org/documentation/head/query.html) object is used toobuild hello insert commands, with setString() and setInt() toobind hello parameter values.</span></span> <span data-ttu-id="297af-129">方法[executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html)執行 hello 每個參數集的命令。</span><span class="sxs-lookup"><span data-stu-id="297af-129">Method [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) runs hello command for each set of parameters.</span></span> 
 
-<span data-ttu-id="30ecf-130">以建立自己的伺服器和資料庫時所指定的值，取代主機、資料庫、使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="30ecf-130">Replace the host, database, user, and password parameters with the values that you specified when you created your own server and database.</span></span>
+<span data-ttu-id="297af-130">您指定當您建立您自己的伺服器和資料庫的 hello 值取代 hello 主機、 資料庫、 使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="297af-130">Replace hello host, database, user, and password parameters with hello values that you specified when you created your own server and database.</span></span>
 
 ```java
 import java.sql.*;
@@ -59,7 +59,7 @@ public class CreateTableInsertRows {
         String user = "mylogin@mypgserver-20170401";
         String password = "<server_admin_password>";
 
-        // check that the driver is installed
+        // check that hello driver is installed
         try
         {
             Class.forName("org.postgresql.Driver");
@@ -78,7 +78,7 @@ public class CreateTableInsertRows {
         {
             String url = String.format("jdbc:postgresql://%s/%s", host, database);
             
-            // set up the connection properties
+            // set up hello connection properties
             Properties properties = new Properties();
             properties.setProperty("user", user);
             properties.setProperty("password", password);
@@ -89,13 +89,13 @@ public class CreateTableInsertRows {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed to create connection to database.", e);
+            throw new SQLException("Failed toocreate connection toodatabase.", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection to database.");
+            System.out.println("Successfully created connection toodatabase.");
         
-            // Perform some SQL queries over the connection.
+            // Perform some SQL queries over hello connection.
             try
             {
                 // Drop previous table of same name if one exists.
@@ -123,7 +123,7 @@ public class CreateTableInsertRows {
                 nRowsInserted += preparedStatement.executeUpdate();
                 System.out.println(String.format("Inserted %d row(s) of data.", nRowsInserted));
     
-                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.
+                // NOTE No need toocommit all changes toodatabase, as auto-commit is enabled by default.
     
             }
             catch (SQLException e)
@@ -132,17 +132,17 @@ public class CreateTableInsertRows {
             }       
         }
         else {
-            System.out.println("Failed to create connection to database.");
+            System.out.println("Failed toocreate connection toodatabase.");
         }
         System.out.println("Execution finished.");
     }
 }
 ```
 
-## <a name="read-data"></a><span data-ttu-id="30ecf-131">讀取資料</span><span class="sxs-lookup"><span data-stu-id="30ecf-131">Read data</span></span>
-<span data-ttu-id="30ecf-132">使用下列程式碼搭配 **SELECT** SQL 陳述式來讀取資料。</span><span class="sxs-lookup"><span data-stu-id="30ecf-132">Use the following code to read the data with a **SELECT** SQL statement.</span></span> <span data-ttu-id="30ecf-133">[getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html)、[createStatement()](https://jdbc.postgresql.org/documentation/head/query.html) 和 [executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html) 方法用來連線、建立和執行 select 陳述式。</span><span class="sxs-lookup"><span data-stu-id="30ecf-133">The methods [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [createStatement()](https://jdbc.postgresql.org/documentation/head/query.html), and [executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html) are used to connect, create, and run the select statement.</span></span> <span data-ttu-id="30ecf-134">結果會使用 [ResultSet](https://www.postgresql.org/docs/7.4/static/jdbc-query.html) 物件進行處理。</span><span class="sxs-lookup"><span data-stu-id="30ecf-134">The results are processed using a [ResultSet](https://www.postgresql.org/docs/7.4/static/jdbc-query.html) object.</span></span> 
+## <a name="read-data"></a><span data-ttu-id="297af-131">讀取資料</span><span class="sxs-lookup"><span data-stu-id="297af-131">Read data</span></span>
+<span data-ttu-id="297af-132">使用 hello 下列程式碼與 tooread hello 資料**選取**SQL 陳述式。</span><span class="sxs-lookup"><span data-stu-id="297af-132">Use hello following code tooread hello data with a **SELECT** SQL statement.</span></span> <span data-ttu-id="297af-133">hello 方法[getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html)， [createStatement()](https://jdbc.postgresql.org/documentation/head/query.html)，和[executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html)會使用的 tooconnect，建立及執行 hello select 陳述式。</span><span class="sxs-lookup"><span data-stu-id="297af-133">hello methods [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [createStatement()](https://jdbc.postgresql.org/documentation/head/query.html), and [executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html) are used tooconnect, create, and run hello select statement.</span></span> <span data-ttu-id="297af-134">使用處理 hello 結果[ResultSet](https://www.postgresql.org/docs/7.4/static/jdbc-query.html)物件。</span><span class="sxs-lookup"><span data-stu-id="297af-134">hello results are processed using a [ResultSet](https://www.postgresql.org/docs/7.4/static/jdbc-query.html) object.</span></span> 
 
-<span data-ttu-id="30ecf-135">以建立自己的伺服器和資料庫時所指定的值，取代主機、資料庫、使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="30ecf-135">Replace the host, database, user, and password parameters with the values that you specified when you created your own server and database.</span></span>
+<span data-ttu-id="297af-135">您指定當您建立您自己的伺服器和資料庫的 hello 值取代 hello 主機、 資料庫、 使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="297af-135">Replace hello host, database, user, and password parameters with hello values that you specified when you created your own server and database.</span></span>
 
 ```java
 import java.sql.*;
@@ -159,7 +159,7 @@ public class ReadTable {
         String user = "mylogin@mypgserver-20170401";
         String password = "<server_admin_password>";
 
-        // check that the driver is installed
+        // check that hello driver is installed
         try
         {
             Class.forName("org.postgresql.Driver");
@@ -178,7 +178,7 @@ public class ReadTable {
         {
             String url = String.format("jdbc:postgresql://%s/%s", host, database);
             
-            // set up the connection properties
+            // set up hello connection properties
             Properties properties = new Properties();
             properties.setProperty("user", user);
             properties.setProperty("password", password);
@@ -189,13 +189,13 @@ public class ReadTable {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed to create connection to database.", e);
+            throw new SQLException("Failed toocreate connection toodatabase.", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection to database.");
+            System.out.println("Successfully created connection toodatabase.");
         
-            // Perform some SQL queries over the connection.
+            // Perform some SQL queries over hello connection.
             try
             {
     
@@ -218,7 +218,7 @@ public class ReadTable {
             }       
         }
         else {
-            System.out.println("Failed to create connection to database.");
+            System.out.println("Failed toocreate connection toodatabase.");
         }
         System.out.println("Execution finished.");
     }
@@ -226,10 +226,10 @@ public class ReadTable {
 
 ```
 
-## <a name="update-data"></a><span data-ttu-id="30ecf-136">更新資料</span><span class="sxs-lookup"><span data-stu-id="30ecf-136">Update data</span></span>
-<span data-ttu-id="30ecf-137">使用下列程式碼搭配 **UPDATE** SQL 陳述式來變更資料。</span><span class="sxs-lookup"><span data-stu-id="30ecf-137">Use the following code to change the data with an **UPDATE** SQL statement.</span></span> <span data-ttu-id="30ecf-138">[getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html)、[prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html) 和 [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) 方法用來連線、準備及執行 update 陳述式。</span><span class="sxs-lookup"><span data-stu-id="30ecf-138">The methods [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html), and [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) are used to connect, prepare, and run the update statement.</span></span> 
+## <a name="update-data"></a><span data-ttu-id="297af-136">更新資料</span><span class="sxs-lookup"><span data-stu-id="297af-136">Update data</span></span>
+<span data-ttu-id="297af-137">使用 hello 下列程式碼與 toochange hello 資料**更新**SQL 陳述式。</span><span class="sxs-lookup"><span data-stu-id="297af-137">Use hello following code toochange hello data with an **UPDATE** SQL statement.</span></span> <span data-ttu-id="297af-138">hello 方法[getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html)， [prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html)，和[executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html)會使用的 tooconnect，準備和執行 hello update 陳述式。</span><span class="sxs-lookup"><span data-stu-id="297af-138">hello methods [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html), and [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) are used tooconnect, prepare, and run hello update statement.</span></span> 
 
-<span data-ttu-id="30ecf-139">以建立自己的伺服器和資料庫時所指定的值，取代主機、資料庫、使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="30ecf-139">Replace the host, database, user, and password parameters with the values that you specified when you created your own server and database.</span></span>
+<span data-ttu-id="297af-139">您指定當您建立您自己的伺服器和資料庫的 hello 值取代 hello 主機、 資料庫、 使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="297af-139">Replace hello host, database, user, and password parameters with hello values that you specified when you created your own server and database.</span></span>
 
 ```java
 import java.sql.*;
@@ -245,7 +245,7 @@ public class UpdateTable {
         String user = "mylogin@mypgserver-20170401";
         String password = "<server_admin_password>";
 
-        // check that the driver is installed
+        // check that hello driver is installed
         try
         {
             Class.forName("org.postgresql.Driver");
@@ -264,7 +264,7 @@ public class UpdateTable {
         {
             String url = String.format("jdbc:postgresql://%s/%s", host, database);
             
-            // set up the connection properties
+            // set up hello connection properties
             Properties properties = new Properties();
             properties.setProperty("user", user);
             properties.setProperty("password", password);
@@ -275,13 +275,13 @@ public class UpdateTable {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed to create connection to database.", e);
+            throw new SQLException("Failed toocreate connection toodatabase.", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection to database.");
+            System.out.println("Successfully created connection toodatabase.");
         
-            // Perform some SQL queries over the connection.
+            // Perform some SQL queries over hello connection.
             try
             {
                 // Modify some data in table.
@@ -292,7 +292,7 @@ public class UpdateTable {
                 nRowsUpdated += preparedStatement.executeUpdate();
                 System.out.println(String.format("Updated %d row(s) of data.", nRowsUpdated));
     
-                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.
+                // NOTE No need toocommit all changes toodatabase, as auto-commit is enabled by default.
             }
             catch (SQLException e)
             {
@@ -300,16 +300,16 @@ public class UpdateTable {
             }       
         }
         else {
-            System.out.println("Failed to create connection to database.");
+            System.out.println("Failed toocreate connection toodatabase.");
         }
         System.out.println("Execution finished.");
     }
 }
 ```
-## <a name="delete-data"></a><span data-ttu-id="30ecf-140">刪除資料</span><span class="sxs-lookup"><span data-stu-id="30ecf-140">Delete data</span></span>
-<span data-ttu-id="30ecf-141">使用下列程式碼搭配 **DELETE** SQL 陳述式來移除資料。</span><span class="sxs-lookup"><span data-stu-id="30ecf-141">Use the following code to remove data with a **DELETE** SQL statement.</span></span> <span data-ttu-id="30ecf-142">[getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html)、[prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html) 和 [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) 方法用來連線、準備及執行 delete 陳述式。</span><span class="sxs-lookup"><span data-stu-id="30ecf-142">The methods [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html), and [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) are used to connect, prepare, and run the delete statement.</span></span> 
+## <a name="delete-data"></a><span data-ttu-id="297af-140">刪除資料</span><span class="sxs-lookup"><span data-stu-id="297af-140">Delete data</span></span>
+<span data-ttu-id="297af-141">使用 hello 下列程式碼與 tooremove 資料**刪除**SQL 陳述式。</span><span class="sxs-lookup"><span data-stu-id="297af-141">Use hello following code tooremove data with a **DELETE** SQL statement.</span></span> <span data-ttu-id="297af-142">hello 方法[getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html)， [prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html)，和[executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html)會使用的 tooconnect，準備和執行 hello delete 陳述式。</span><span class="sxs-lookup"><span data-stu-id="297af-142">hello methods [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html), and [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) are used tooconnect, prepare, and run hello delete statement.</span></span> 
 
-<span data-ttu-id="30ecf-143">以建立自己的伺服器和資料庫時所指定的值，取代主機、資料庫、使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="30ecf-143">Replace the host, database, user, and password parameters with the values that you specified when you created your own server and database.</span></span>
+<span data-ttu-id="297af-143">您指定當您建立您自己的伺服器和資料庫的 hello 值取代 hello 主機、 資料庫、 使用者和密碼參數。</span><span class="sxs-lookup"><span data-stu-id="297af-143">Replace hello host, database, user, and password parameters with hello values that you specified when you created your own server and database.</span></span>
 
 ```java
 import java.sql.*;
@@ -325,7 +325,7 @@ public class DeleteTable {
         String user = "mylogin@mypgserver-20170401";
         String password = "<server_admin_password>";
 
-        // check that the driver is installed
+        // check that hello driver is installed
         try
         {
             Class.forName("org.postgresql.Driver");
@@ -344,7 +344,7 @@ public class DeleteTable {
         {
             String url = String.format("jdbc:postgresql://%s/%s", host, database);
             
-            // set up the connection properties
+            // set up hello connection properties
             Properties properties = new Properties();
             properties.setProperty("user", user);
             properties.setProperty("password", password);
@@ -355,13 +355,13 @@ public class DeleteTable {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed to create connection to database.", e);
+            throw new SQLException("Failed toocreate connection toodatabase.", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection to database.");
+            System.out.println("Successfully created connection toodatabase.");
         
-            // Perform some SQL queries over the connection.
+            // Perform some SQL queries over hello connection.
             try
             {
                 // Delete some data from table.
@@ -371,7 +371,7 @@ public class DeleteTable {
                 nRowsDeleted += preparedStatement.executeUpdate();
                 System.out.println(String.format("Deleted %d row(s) of data.", nRowsDeleted));
     
-                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.
+                // NOTE No need toocommit all changes toodatabase, as auto-commit is enabled by default.
             }
             catch (SQLException e)
             {
@@ -379,13 +379,13 @@ public class DeleteTable {
             }       
         }
         else {
-            System.out.println("Failed to create connection to database.");
+            System.out.println("Failed toocreate connection toodatabase.");
         }
         System.out.println("Execution finished.");
     }
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="30ecf-144">後續步驟</span><span class="sxs-lookup"><span data-stu-id="30ecf-144">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="297af-144">後續步驟</span><span class="sxs-lookup"><span data-stu-id="297af-144">Next steps</span></span>
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="30ecf-145">使用匯出和匯入來移轉資料庫</span><span class="sxs-lookup"><span data-stu-id="30ecf-145">Migrate your database using Export and Import</span></span>](./howto-migrate-using-export-and-import.md)
+> [<span data-ttu-id="297af-145">使用匯出和匯入來移轉資料庫</span><span class="sxs-lookup"><span data-stu-id="297af-145">Migrate your database using Export and Import</span></span>](./howto-migrate-using-export-and-import.md)

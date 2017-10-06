@@ -1,9 +1,9 @@
 ---
 redirect_url: /azure/mobile-engagement/mobile-engagement-overview
-redirect_document_id: TRUE
+redirect_document_id: True
 ROBOTS: NOINDEX
-title: "使用 Azure Mobile Engagement 傳送個人化通知"
-description: "如何傳送個人化通知"
+title: "Azure Mobile Engagement aaaSend 個人化的通知"
+description: "如何 toosend 個人化的通知"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -17,9 +17,9 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: ca40016e10c184bb7a6bd6dd33b84b1f3771a64e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a23d92e22550c27e5b40884abb807ed6a976c108
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---

@@ -1,6 +1,6 @@
 ---
-title: "指派的應用程式未出現在存取面板上 | Microsoft Docs"
-description: "針對應用程式為什麼未出現在存取面板上進行疑難排解"
+title: "aaaAn 指派應用程式不會顯示在 hello 存取面板 |Microsoft 文件"
+description: "應用程式並未出現在 hello 存取面板進行疑難排解"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -14,659 +14,659 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
 ms.reviwer: japere
-ms.openlocfilehash: 9ea5744d77b90929598ea5feb80c7bbdff3772fc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 089883f406267df4552c7fc991883f335ad49fd5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="an-assigned-application-is-not-appearing-on-the-access-panel"></a><span data-ttu-id="885fa-103">指派的應用程式未出現在存取面板上</span><span class="sxs-lookup"><span data-stu-id="885fa-103">An assigned application is not appearing on the access panel</span></span>
+# <a name="an-assigned-application-is-not-appearing-on-hello-access-panel"></a><span data-ttu-id="bdbe3-103">指派的應用程式不會顯示 hello 存取面板上</span><span class="sxs-lookup"><span data-stu-id="bdbe3-103">An assigned application is not appearing on hello access panel</span></span>
 
-<span data-ttu-id="885fa-104">存取面板是網頁型入口網站，可讓在 Azure Active Directory (Azure AD) 中具有公司或學校帳戶的使用者，檢視和啟動 Azure AD 系統管理員已授權他們存取的雲端式應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-104">The Access Panel is a web-based portal which enables a user with a work or school account in Azure Active Directory (Azure AD) to view and start cloud-based applications that the Azure AD administrator has granted them access to.</span></span> <span data-ttu-id="885fa-105">在 Azure AD 入口網站中可代表使用者設定這些應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-105">These applications are configured on behalf of the user in the Azure AD portal.</span></span> <span data-ttu-id="885fa-106">應用程式必須經過正確的設定並指派至使用者或使用者所屬的群組，才能在存取面板中顯示該應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-106">The application must be configured properly and assigned to the user or a group the user is a member of to see the application in the Access Panel.</span></span>
+<span data-ttu-id="bdbe3-104">hello 存取面板是網頁型的入口網站，可讓使用者使用工作或學校帳戶，Azure Active Directory (Azure AD) tooview 並啟動雲端架構應用程式中的 hello Azure AD 系統管理員已授與它們存取權。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-104">hello Access Panel is a web-based portal which enables a user with a work or school account in Azure Active Directory (Azure AD) tooview and start cloud-based applications that hello Azure AD administrator has granted them access to.</span></span> <span data-ttu-id="bdbe3-105">這些應用程式會代表 hello Azure AD 入口網站中的 hello 使用者設定。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-105">These applications are configured on behalf of hello user in hello Azure AD portal.</span></span> <span data-ttu-id="bdbe3-106">hello 應用程式必須正確設定並指派的 toohello 使用者或群組 hello 使用者是 toosee hello 存取面板中的 hello 應用程式的成員。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-106">hello application must be configured properly and assigned toohello user or a group hello user is a member of toosee hello application in hello Access Panel.</span></span>
 
-<span data-ttu-id="885fa-107">使用者能看見的應用程式類型可分為以下類別：</span><span class="sxs-lookup"><span data-stu-id="885fa-107">The type of apps a user may be seeing fall in the following categories:</span></span>
+<span data-ttu-id="bdbe3-107">應用程式的使用者會看見 hello 類型落在 hello 下列類別：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-107">hello type of apps a user may be seeing fall in hello following categories:</span></span>
 
--   <span data-ttu-id="885fa-108">Office 365 應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-108">Office 365 Applications</span></span>
+-   <span data-ttu-id="bdbe3-108">Office 365 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-108">Office 365 Applications</span></span>
 
--   <span data-ttu-id="885fa-109">已設定同盟 SSO 的 Microsoft 及第三方應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-109">Microsoft and third-party applications configured with federation-based SSO</span></span>
+-   <span data-ttu-id="bdbe3-109">已設定同盟 SSO 的 Microsoft 及第三方應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-109">Microsoft and third-party applications configured with federation-based SSO</span></span>
 
--   <span data-ttu-id="885fa-110">密碼型 SSO 應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-110">Password-based SSO applications</span></span>
+-   <span data-ttu-id="bdbe3-110">密碼型 SSO 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-110">Password-based SSO applications</span></span>
 
--   <span data-ttu-id="885fa-111">含現有 SSO 解決方案的應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-111">Applications with existing SSO solutions</span></span>
+-   <span data-ttu-id="bdbe3-111">含現有 SSO 解決方案的應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-111">Applications with existing SSO solutions</span></span>
 
-## <a name="general-issues-to-check-first"></a><span data-ttu-id="885fa-112">首先檢查一般問題</span><span class="sxs-lookup"><span data-stu-id="885fa-112">General issues to check first</span></span>
+## <a name="general-issues-toocheck-first"></a><span data-ttu-id="bdbe3-112">一般會先發出 toocheck</span><span class="sxs-lookup"><span data-stu-id="bdbe3-112">General issues toocheck first</span></span>
 
--   <span data-ttu-id="885fa-113">如果才剛將應用程式新增至使用者，請在幾分鐘之後嘗試登入並再次登出使用者的存取面板，以查明是否已新增該應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-113">If an application was just added to a user, try to sign in and out again into the user’s Access Panel after a few minutes to see if the application is added.</span></span>
+-   <span data-ttu-id="bdbe3-113">如果應用程式剛加入 tooa 使用者，toosign 入和登出再試一次到 hello 使用者的存取面板後幾分鐘的時間 toosee 如果 hello 應用程式會加入。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-113">If an application was just added tooa user, try toosign in and out again into hello user’s Access Panel after a few minutes toosee if hello application is added.</span></span>
 
--   <span data-ttu-id="885fa-114">如果才剛從使用者或使用者所屬群組移除授權，則根據群組的大小和複雜度而定，可能要經過一段很長的時間，變更才會生效。</span><span class="sxs-lookup"><span data-stu-id="885fa-114">If a license was just removed from a user or group the user is a member of this may take a long time, depending on the size and complexity of the group for changes to be made.</span></span> <span data-ttu-id="885fa-115">登入存取面板之前，請多等一些時間。</span><span class="sxs-lookup"><span data-stu-id="885fa-115">Allow for extra time before signing into the Access Panel.</span></span>
+-   <span data-ttu-id="bdbe3-114">授權就已從使用者或群組 hello 使用者隸屬這可能需要很長的時間，取決於 hello 大小和複雜度所做的變更 toobe hello 群組。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-114">If a license was just removed from a user or group hello user is a member of this may take a long time, depending on hello size and complexity of hello group for changes toobe made.</span></span> <span data-ttu-id="bdbe3-115">允許額外的時間才能登入存取面板 hello。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-115">Allow for extra time before signing into hello Access Panel.</span></span>
 
-## <a name="problems-related-to-application-configuration"></a><span data-ttu-id="885fa-116">應用程式設定的相關問題</span><span class="sxs-lookup"><span data-stu-id="885fa-116">Problems related to application configuration</span></span>
+## <a name="problems-related-tooapplication-configuration"></a><span data-ttu-id="bdbe3-116">問題相關的 tooapplication 組態</span><span class="sxs-lookup"><span data-stu-id="bdbe3-116">Problems related tooapplication configuration</span></span>
 
-<span data-ttu-id="885fa-117">應用程式未出現在使用者的存取面板上可能是因為並未正確設定。</span><span class="sxs-lookup"><span data-stu-id="885fa-117">An application may not be appearing in a user’s Access Panel because it is not configured properly.</span></span> <span data-ttu-id="885fa-118">以下提供一些方式，可讓您用來針對應用程式設定的相關問題進行疑難排解：</span><span class="sxs-lookup"><span data-stu-id="885fa-118">Below are some ways you can troubleshoot issues related to application configuration:</span></span>
+<span data-ttu-id="bdbe3-117">應用程式未出現在使用者的存取面板上可能是因為並未正確設定。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-117">An application may not be appearing in a user’s Access Panel because it is not configured properly.</span></span> <span data-ttu-id="bdbe3-118">下面是的一些您可以疑難排解問題相關的 tooapplication 組態：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-118">Below are some ways you can troubleshoot issues related tooapplication configuration:</span></span>
 
--   [<span data-ttu-id="885fa-119">如何為 Azure AD 資源庫應用程式設定同盟單一登入</span><span class="sxs-lookup"><span data-stu-id="885fa-119">How to configure federated single sign-on for an Azure AD gallery application</span></span>](#how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application)
+-   [<span data-ttu-id="bdbe3-119">如何 tooconfigure 同盟單一登入 Azure AD 圖庫應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-119">How tooconfigure federated single sign-on for an Azure AD gallery application</span></span>](#how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application)
 
--   [<span data-ttu-id="885fa-120">如何為不在資源庫內的應用程式設定同盟單一登入</span><span class="sxs-lookup"><span data-stu-id="885fa-120">How to configure federated single sign-on for a non-gallery application</span></span>](#how-to-configure-federated-single-sign-on-for-a-non-gallery-application)
+-   [<span data-ttu-id="bdbe3-120">如何 tooconfigure 同盟單一登入非組件庫的應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-120">How tooconfigure federated single sign-on for a non-gallery application</span></span>](#how-to-configure-federated-single-sign-on-for-a-non-gallery-application)
 
--   [<span data-ttu-id="885fa-121">如何為 Azure AD 資源庫應用程式設定密碼單一登入應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-121">How to configure a password single sign-on application for an Azure AD gallery application</span></span>](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
+-   [<span data-ttu-id="bdbe3-121">如何 tooconfigure 密碼單一登入應用程式的 Azure AD 圖庫應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-121">How tooconfigure a password single sign-on application for an Azure AD gallery application</span></span>](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
 
--   [<span data-ttu-id="885fa-122">如何為不在資源庫內的應用程式設定密碼單一登入應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-122">How to configure a password single sign-on application for a non-gallery application</span></span>](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
+-   [<span data-ttu-id="bdbe3-122">如何 tooconfigure 密碼單一登入應用程式的非組件庫的應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-122">How tooconfigure a password single sign-on application for a non-gallery application</span></span>](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
 
-### <a name="how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a><span data-ttu-id="885fa-123">如何為 Azure AD 資源庫應用程式設定同盟單一登入</span><span class="sxs-lookup"><span data-stu-id="885fa-123">How to configure federated single sign-on for an Azure AD gallery application</span></span>
+### <a name="how-tooconfigure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a><span data-ttu-id="bdbe3-123">如何 tooconfigure 同盟單一登入 Azure AD 圖庫應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-123">How tooconfigure federated single sign-on for an Azure AD gallery application</span></span>
 
-<span data-ttu-id="885fa-124">Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式都提供逐步教學課程。</span><span class="sxs-lookup"><span data-stu-id="885fa-124">All applications in the Azure AD gallery enabled with Enterprise Single Sign-On capability has a step-by-step tutorial available.</span></span> <span data-ttu-id="885fa-125">您可以存取[如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/)，以取得詳細的逐步指引。</span><span class="sxs-lookup"><span data-stu-id="885fa-125">You can access the [List of tutorials on how to integrate SaaS apps with Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/) for a detail step-by-step guidance.</span></span>
+<span data-ttu-id="bdbe3-124">啟用具備企業單一登入功能的 hello Azure AD 資源庫中的所有應用程式有可用的逐步教學課程。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-124">All applications in hello Azure AD gallery enabled with Enterprise Single Sign-On capability has a step-by-step tutorial available.</span></span> <span data-ttu-id="bdbe3-125">您可以存取 hello[如何教學課程清單 toointegrate SaaS 應用程式與 Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/)如需詳細資料的逐步指引。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-125">You can access hello [List of tutorials on how toointegrate SaaS apps with Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/) for a detail step-by-step guidance.</span></span>
 
-<span data-ttu-id="885fa-126">若要設定 Azure AD 資源庫中的應用程式，您必須：</span><span class="sxs-lookup"><span data-stu-id="885fa-126">To configure an application from the Azure AD gallery you need to:</span></span>
+<span data-ttu-id="bdbe3-126">您需要 tooconfigure 從 hello Azure AD 的組件庫的應用程式：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-126">tooconfigure an application from hello Azure AD gallery you need to:</span></span>
 
--   [<span data-ttu-id="885fa-127">從 Azure AD 資源庫新增應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-127">Add an application from the Azure AD gallery</span></span>](#add-an-application-from-the-azure-ad-gallery)
+-   [<span data-ttu-id="bdbe3-127">從 hello Azure AD 資源庫新增應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-127">Add an application from hello Azure AD gallery</span></span>](#add-an-application-from-the-azure-ad-gallery)
 
--   [<span data-ttu-id="885fa-128">在 Azure AD 中設定應用程式的中繼資料值 (登入 URL、識別碼、回覆 URL)</span><span class="sxs-lookup"><span data-stu-id="885fa-128">Configure the application’s metadata values in Azure AD (Sign on URL, Identifier, Reply URL)</span></span>](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
+-   [<span data-ttu-id="bdbe3-128">設定 Azure AD （登入 URL，識別項，回覆 URL） 中的 hello 應用程式的中繼資料值</span><span class="sxs-lookup"><span data-stu-id="bdbe3-128">Configure hello application’s metadata values in Azure AD (Sign on URL, Identifier, Reply URL)</span></span>](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
 
--   [<span data-ttu-id="885fa-129">選取使用者識別碼並新增要傳送到應用程式的使用者屬性</span><span class="sxs-lookup"><span data-stu-id="885fa-129">Select User Identifier and add user attributes to be sent to the application</span></span>](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
+-   [<span data-ttu-id="bdbe3-129">選取使用者的識別項並新增使用者屬性傳送 toobe toohello 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-129">Select User Identifier and add user attributes toobe sent toohello application</span></span>](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
 
--   [<span data-ttu-id="885fa-130">擷取 Azure AD 中繼資料與憑證</span><span class="sxs-lookup"><span data-stu-id="885fa-130">Retrieve Azure AD metadata and certificate</span></span>](#download-the-azure-ad-metadata-or-certificate)
+-   [<span data-ttu-id="bdbe3-130">擷取 Azure AD 中繼資料與憑證</span><span class="sxs-lookup"><span data-stu-id="bdbe3-130">Retrieve Azure AD metadata and certificate</span></span>](#download-the-azure-ad-metadata-or-certificate)
 
--   [<span data-ttu-id="885fa-131">在應用程式中設定 Azure AD 中繼資料值 (登入 URL、簽發者、登出 URL 與憑證)</span><span class="sxs-lookup"><span data-stu-id="885fa-131">Configure Azure AD metadata values in the application (Sign on URL, Issuer, Logout URL and certificate)</span></span>](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
+-   [<span data-ttu-id="bdbe3-131">在 hello 應用程式 （登入 URL、 簽發者、 登出 URL 和憑證） 中設定 Azure AD 中繼資料值</span><span class="sxs-lookup"><span data-stu-id="bdbe3-131">Configure Azure AD metadata values in hello application (Sign on URL, Issuer, Logout URL and certificate)</span></span>](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
 
-#### <a name="add-an-application-from-the-azure-ad-gallery"></a><span data-ttu-id="885fa-132">從 Azure AD 資源庫新增應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-132">Add an application from the Azure AD gallery</span></span>
+#### <a name="add-an-application-from-hello-azure-ad-gallery"></a><span data-ttu-id="bdbe3-132">從 hello Azure AD 資源庫新增應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-132">Add an application from hello Azure AD gallery</span></span>
 
-<span data-ttu-id="885fa-133">若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-133">To add an application from the Azure AD Gallery, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-133">tooadd hello Azure AD 資源庫，從應用程式，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-133">tooadd an application from hello Azure AD Gallery, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-134">開啟 [Azure 入口網站](https://portal.azure.com)，然後以**全域管理員**或**共同管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-134">Open the [Azure Portal](https://portal.azure.com) and sign in as a **Global Administrator** or **Co-admin**</span></span>
+1.  <span data-ttu-id="bdbe3-134">開啟 hello [Azure 入口網站](https://portal.azure.com)身分登入和**全域管理員**或**共同管理員**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-134">Open hello [Azure Portal](https://portal.azure.com) and sign in as a **Global Administrator** or **Co-admin**</span></span>
 
-2.  <span data-ttu-id="885fa-135">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-135">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-135">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-135">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-136">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-136">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-136">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-136">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-137">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-137">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-137">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-137">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-138">按一下 [企業應用程式] 刀鋒視窗右上角的 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="885fa-138">click the **Add** button at the top-right corner on the **Enterprise Applications** blade.</span></span>
+5.  <span data-ttu-id="bdbe3-138">按一下 hello**新增**上 hello hello 右上角的按鈕**企業應用程式**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-138">click hello **Add** button at hello top-right corner on hello **Enterprise Applications** blade.</span></span>
 
-6.  <span data-ttu-id="885fa-139">在 [從資源庫新增] 區段的 [輸入名稱] 文字方塊中，輸入應用程式名稱。</span><span class="sxs-lookup"><span data-stu-id="885fa-139">In the **Enter a name** textbox from the **Add from the gallery** section, type the name of the application.</span></span>
+6.  <span data-ttu-id="bdbe3-139">在 hello**輸入的名稱**文字方塊中，從 hello**從 hello 圖庫新增**> 一節中，輸入 hello 名稱 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-139">In hello **Enter a name** textbox from hello **Add from hello gallery** section, type hello name of hello application.</span></span>
 
-7.  <span data-ttu-id="885fa-140">選取您要設為單一登入的應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-140">Select the application you want to configure for single sign-on.</span></span>
+7.  <span data-ttu-id="bdbe3-140">選取要用於單一登入 tooconfigure hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-140">Select hello application you want tooconfigure for single sign-on.</span></span>
 
-8.  <span data-ttu-id="885fa-141">新增應用程式之前，您可以從 [名稱] 文字方塊變更其名稱。</span><span class="sxs-lookup"><span data-stu-id="885fa-141">Before adding the application, you can change its name from the **Name** textbox.</span></span>
+8.  <span data-ttu-id="bdbe3-141">然後再加入 hello 應用程式，您可以變更其名稱從 hello**名稱**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-141">Before adding hello application, you can change its name from hello **Name** textbox.</span></span>
 
-9.  <span data-ttu-id="885fa-142">按一下 [新增] 按鈕新增應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-142">Click **Add** button, to add the application.</span></span>
+9.  <span data-ttu-id="bdbe3-142">按一下**新增**按鈕，tooadd hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-142">Click **Add** button, tooadd hello application.</span></span>
 
-<span data-ttu-id="885fa-143">稍候片刻，您便能看見應用程式的設定刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="885fa-143">After a short period, you be able to see the application’s configuration blade.</span></span>
+<span data-ttu-id="bdbe3-143">短時間，就能 toosee hello 應用程式的組態刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-143">After a short period, you be able toosee hello application’s configuration blade.</span></span>
 
-#### <a name="configure-single-sign-on-for-an-application-from-the-azure-ad-gallery"></a><span data-ttu-id="885fa-144">從 Azure AD 資源庫為應用程式設定單一登入</span><span class="sxs-lookup"><span data-stu-id="885fa-144">Configure single sign-on for an application from the Azure AD gallery</span></span>
+#### <a name="configure-single-sign-on-for-an-application-from-hello-azure-ad-gallery"></a><span data-ttu-id="bdbe3-144">設定單一登入應用程式從 hello Azure AD 資源庫</span><span class="sxs-lookup"><span data-stu-id="bdbe3-144">Configure single sign-on for an application from hello Azure AD gallery</span></span>
 
-<span data-ttu-id="885fa-145">若要設定應用程式使用單一登入，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-145">To configure single sign-on for an application, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-145">tooconfigure 單一登入的應用程式，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-145">tooconfigure single sign-on for an application, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-146">開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**或**共同管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-146">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
+1.  <span data-ttu-id="bdbe3-146">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-146">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
 
-2.  <span data-ttu-id="885fa-147">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-147">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-147">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-147">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-148">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-148">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-148">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-148">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-149">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-149">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-149">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-149">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-150">按一下 [所有應用程式]，以檢視所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-150">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="bdbe3-150">按一下**所有應用程式**tooview 所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-150">click **All Applications** tooview a list of all your applications.</span></span>
 
-  * <span data-ttu-id="885fa-151">若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-151">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+  * <span data-ttu-id="bdbe3-151">如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-151">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="885fa-152">選取您要設定單一登入的應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-152">Select the application you want to configure single sign-on.</span></span>
+6.  <span data-ttu-id="bdbe3-152">選取您想 tooconfigure 單一登入的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-152">Select hello application you want tooconfigure single sign-on.</span></span>
 
-7.  <span data-ttu-id="885fa-153">應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="885fa-153">Once the application loads, click the **Single sign-on** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="bdbe3-153">一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-153">Once hello application loads, click hello **Single sign-on** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="885fa-154">從 [模式] 下拉式清單選取 [SAML 登入]。</span><span class="sxs-lookup"><span data-stu-id="885fa-154">Select **SAML-based Sign-on** from the **Mode** dropdown.</span></span>
+8.  <span data-ttu-id="bdbe3-154">選取**SAML 型登入**從 hello**模式**下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-154">Select **SAML-based Sign-on** from hello **Mode** dropdown.</span></span>
 
-9.  <span data-ttu-id="885fa-155">在 [網域及 URL] 中輸入必要值。</span><span class="sxs-lookup"><span data-stu-id="885fa-155">Enter the required values in **Domain and URLs.**</span></span> <span data-ttu-id="885fa-156">這些值應從應用程式廠商處取得。</span><span class="sxs-lookup"><span data-stu-id="885fa-156">You should get these values from the application vendor.</span></span>
+9.  <span data-ttu-id="bdbe3-155">輸入中的所需的 hello 值**網域和 Url。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-155">Enter hello required values in **Domain and URLs.**</span></span> <span data-ttu-id="bdbe3-156">您應該從 hello 應用程式廠商，以取得這些值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-156">You should get these values from hello application vendor.</span></span>
 
-   1. <span data-ttu-id="885fa-157">若要將應用程式設定為 SP 啟始的 SSO，則登入 URL 為必要值。</span><span class="sxs-lookup"><span data-stu-id="885fa-157">To configure the application as SP-initiated SSO, the Sign on URL it’s a required value.</span></span> <span data-ttu-id="885fa-158">對於某些應用程式，識別碼也是必要值。</span><span class="sxs-lookup"><span data-stu-id="885fa-158">For some applications, the Identifier is also a required value.</span></span>
+   1. <span data-ttu-id="bdbe3-157">tooconfigure hello 應用程式做為 SP 起始的 SSO hello 登入 URL 是必要的值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-157">tooconfigure hello application as SP-initiated SSO, hello Sign on URL it’s a required value.</span></span> <span data-ttu-id="bdbe3-158">有些應用程式識別碼 hello 也是必要的值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-158">For some applications, hello Identifier is also a required value.</span></span>
 
-   2. <span data-ttu-id="885fa-159">若要將應用程式設定為 IdP 啟始的單一登入，則 [登入 URL] 為必要值。</span><span class="sxs-lookup"><span data-stu-id="885fa-159">To configure the application as IdP-initiated SSO, the Reply URL it’s a required value.</span></span> <span data-ttu-id="885fa-160">對於某些應用程式，識別碼也是必要值。</span><span class="sxs-lookup"><span data-stu-id="885fa-160">For some applications, the Identifier is also a required value.</span></span>
+   2. <span data-ttu-id="bdbe3-159">tooconfigure hello 應用程式做為 IdP 初始化的 SSO，hello 回覆 URL 是必要的值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-159">tooconfigure hello application as IdP-initiated SSO, hello Reply URL it’s a required value.</span></span> <span data-ttu-id="bdbe3-160">有些應用程式識別碼 hello 也是必要的值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-160">For some applications, hello Identifier is also a required value.</span></span>
 
-10. <span data-ttu-id="885fa-161">**選擇性：**如果您想要看到非必要值，請按一下 [顯示進階 URL 設定]。</span><span class="sxs-lookup"><span data-stu-id="885fa-161">**Optional:** click **Show advanced URL settings** if you want to see the non-required values.</span></span>
+10. <span data-ttu-id="bdbe3-161">**選擇性：**按一下**顯示進階的 URL 設定**您希望 toosee hello 非必要的值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-161">**Optional:** click **Show advanced URL settings** if you want toosee hello non-required values.</span></span>
 
-11. <span data-ttu-id="885fa-162">在 [使用者屬性] 中，從 [使用者識別碼] 下拉式清單選取使用者的唯一識別碼。</span><span class="sxs-lookup"><span data-stu-id="885fa-162">In the **User attributes**, select the unique identifier for your users in the **User Identifier** dropdown.</span></span>
+11. <span data-ttu-id="bdbe3-162">在 hello**使用者屬性**，選取 hello hello 中使用者的唯一識別碼**使用者識別碼**下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-162">In hello **User attributes**, select hello unique identifier for your users in hello **User Identifier** dropdown.</span></span>
 
-12. <span data-ttu-id="885fa-163">**選擇性：**按一下 [檢視和編輯所有其他使用者屬性]，以編輯當使用者登入時要以 SAML 權杖傳送至應用程式的屬性。</span><span class="sxs-lookup"><span data-stu-id="885fa-163">**Optional:** click **View and edit all other user attributes** to edit the attributes to be sent to the application in the SAML token when user sign in.</span></span>
+12. <span data-ttu-id="bdbe3-163">**選擇性：**按一下**檢視和編輯所有其他使用者屬性**tooedit hello 屬性 hello SAML 權杖中傳送的 toobe toohello 應用程式，當使用者登入。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-163">**Optional:** click **View and edit all other user attributes** tooedit hello attributes toobe sent toohello application in hello SAML token when user sign in.</span></span>
 
-   <span data-ttu-id="885fa-164">新增屬性：</span><span class="sxs-lookup"><span data-stu-id="885fa-164">To add an attribute:</span></span>
+   <span data-ttu-id="bdbe3-164">tooadd 屬性：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-164">tooadd an attribute:</span></span>
 
-   1. <span data-ttu-id="885fa-165">按一下 [新增屬性]。</span><span class="sxs-lookup"><span data-stu-id="885fa-165">click **Add attribute**.</span></span> <span data-ttu-id="885fa-166">輸入 [名稱]，然後從下拉式清單選取 [值]。</span><span class="sxs-lookup"><span data-stu-id="885fa-166">Enter the **Name** and the select the **Value** from the dropdown.</span></span>
+   1. <span data-ttu-id="bdbe3-165">按一下 [新增屬性]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-165">click **Add attribute**.</span></span> <span data-ttu-id="bdbe3-166">輸入 hello**名稱**和 hello 選取 hello**值**從 hello 下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-166">Enter hello **Name** and hello select hello **Value** from hello dropdown.</span></span>
 
-   2. <span data-ttu-id="885fa-167">按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="885fa-167">click **Save.**</span></span> <span data-ttu-id="885fa-168">您會在資料表中看到新屬性。</span><span class="sxs-lookup"><span data-stu-id="885fa-168">You see the new attribute in the table.</span></span>
+   2. <span data-ttu-id="bdbe3-167">按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-167">click **Save.**</span></span> <span data-ttu-id="bdbe3-168">您會看到 hello hello 資料表中的新屬性。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-168">You see hello new attribute in hello table.</span></span>
 
-13. <span data-ttu-id="885fa-169">按一下 [設定 &lt;應用程式名稱&gt;]，以存取如何在應用程式中設定單一登入的文件。</span><span class="sxs-lookup"><span data-stu-id="885fa-169">click **Configure &lt;application name&gt;** to access documentation on how to configure single sign-on in the application.</span></span> <span data-ttu-id="885fa-170">此外，您會有透過該應用程式設定 SSO 所需的中繼資料 URL 與憑證。</span><span class="sxs-lookup"><span data-stu-id="885fa-170">Also, you has the metadata URLs and certificate required to setup SSO with the application.</span></span>
+13. <span data-ttu-id="bdbe3-169">按一下**設定&lt;應用程式名稱&gt;** tooaccess 文件中的有關 tooconfigure 單一登入 hello 應用程式中。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-169">click **Configure &lt;application name&gt;** tooaccess documentation on how tooconfigure single sign-on in hello application.</span></span> <span data-ttu-id="bdbe3-170">此外，您有 hello 中繼資料 Url 和與 hello 應用程式所需的憑證 toosetup SSO。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-170">Also, you has hello metadata URLs and certificate required toosetup SSO with hello application.</span></span>
 
-14. <span data-ttu-id="885fa-171">按一下 [儲存] 以儲存組態。</span><span class="sxs-lookup"><span data-stu-id="885fa-171">click **Save** to save the configuration.</span></span>
+14. <span data-ttu-id="bdbe3-171">按一下**儲存**toosave hello 組態。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-171">click **Save** toosave hello configuration.</span></span>
 
-15. <span data-ttu-id="885fa-172">將使用者指派至應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-172">Assign users to the application.</span></span>
+15. <span data-ttu-id="bdbe3-172">將使用者指派 toohello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-172">Assign users toohello application.</span></span>
 
-#### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a><span data-ttu-id="885fa-173">選取使用者識別碼並新增要傳送到應用程式的使用者屬性</span><span class="sxs-lookup"><span data-stu-id="885fa-173">Select User Identifier and add user attributes to be sent to the application</span></span>
+#### <a name="select-user-identifier-and-add-user-attributes-toobe-sent-toohello-application"></a><span data-ttu-id="bdbe3-173">選取使用者的識別項並新增使用者屬性傳送 toobe toohello 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-173">Select User Identifier and add user attributes toobe sent toohello application</span></span>
 
-<span data-ttu-id="885fa-174">若要選取使用者識別碼或新增使用者屬性，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-174">To select the User Identifier or add user attributes, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-174">tooselect hello 使用者識別碼或新增使用者屬性，請遵循下列的 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-174">tooselect hello User Identifier or add user attributes, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-175">開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-175">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
+1.  <span data-ttu-id="bdbe3-175">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-175">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
 
-2.  <span data-ttu-id="885fa-176">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-176">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-176">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-176">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-177">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-177">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-177">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-177">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-178">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-178">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-178">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-178">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-179">按一下 [所有應用程式]，以檢視所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-179">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="bdbe3-179">按一下**所有應用程式**tooview 所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-179">click **All Applications** tooview a list of all your applications.</span></span>
 
-  * <span data-ttu-id="885fa-180">若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-180">If you do not see the application you want to show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+  * <span data-ttu-id="bdbe3-180">如果看不到您想 tooshow 這裡的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-180">If you do not see hello application you want tooshow up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="885fa-181">選取您已設定單一登入的應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-181">Select the application you have configured single sign-on.</span></span>
+6.  <span data-ttu-id="bdbe3-181">選取您已設定單一登入的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-181">Select hello application you have configured single sign-on.</span></span>
 
-7.  <span data-ttu-id="885fa-182">應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="885fa-182">Once the application loads, click the **Single sign-on** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="bdbe3-182">一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-182">Once hello application loads, click hello **Single sign-on** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="885fa-183">在 [使用者屬性] 區段下，從 [使用者識別碼] 下拉式清單選取使用者的唯一識別碼。</span><span class="sxs-lookup"><span data-stu-id="885fa-183">Under the **User attributes** section, select the unique identifier for your users in the **User Identifier** dropdown.</span></span> <span data-ttu-id="885fa-184">所選的選項必須符合應用程式中預期的值，才能驗證使用者。</span><span class="sxs-lookup"><span data-stu-id="885fa-184">The selected option needs to match the expected value in the application to authenticate the user.</span></span>
+8.  <span data-ttu-id="bdbe3-183">在 hello**使用者屬性**區段中，選取 hello hello 中使用者的唯一識別碼**使用者識別碼**下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-183">Under hello **User attributes** section, select hello unique identifier for your users in hello **User Identifier** dropdown.</span></span> <span data-ttu-id="bdbe3-184">hello 選取的選項必須在 hello 應用程式 tooauthenticate hello 使用者 toomatch hello 預期的值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-184">hello selected option needs toomatch hello expected value in hello application tooauthenticate hello user.</span></span>
 
    >[!NOTE] 
-   ><span data-ttu-id="885fa-185">Azure AD 會根據應用程式在 SAML AuthRequest 中選取的值或要求的格式，來選取 NameID 屬性 (使用者識別碼) 的格式。</span><span class="sxs-lookup"><span data-stu-id="885fa-185">Azure AD select the format for the NameID attribute (User Identifier) based on the value selected or the format requested by the application in the SAML AuthRequest.</span></span> <span data-ttu-id="885fa-186">如需詳細資訊，請參閱[單一登入 SAML 通訊協定](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest)文章中的＜NameIDPolicy＞一節。</span><span class="sxs-lookup"><span data-stu-id="885fa-186">For more information visit the article [Single Sign-On SAML protocol](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) under the section NameIDPolicy.</span></span>
+   ><span data-ttu-id="bdbe3-185">Hello NameID 屬性 （使用者識別碼） 的 azure AD 選取 hello 格式會根據選取的 hello 值或 hello hello hello SAML AuthRequest 中的應用程式所要求的格式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-185">Azure AD select hello format for hello NameID attribute (User Identifier) based on hello value selected or hello format requested by hello application in hello SAML AuthRequest.</span></span> <span data-ttu-id="bdbe3-186">如需詳細資訊，請造訪 hello 文章[單一登入的 SAML 通訊協定](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest)hello 下一節 NameIDPolicy。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-186">For more information visit hello article [Single Sign-On SAML protocol](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) under hello section NameIDPolicy.</span></span>
    >
    >
 
-9.  <span data-ttu-id="885fa-187">若要新增使用者屬性，按一下 [檢視和編輯所有其他使用者屬性]，以編輯當使用者登入時要以 SAML 權杖傳送至應用程式的屬性。</span><span class="sxs-lookup"><span data-stu-id="885fa-187">To add user attributes, click **View and edit all other user attributes** to edit the attributes to be sent to the application in the SAML token when user sign in.</span></span>
+9.  <span data-ttu-id="bdbe3-187">tooadd 使用者屬性，按一下**檢視和編輯所有其他使用者屬性**tooedit hello 屬性 hello SAML 權杖中傳送的 toobe toohello 應用程式，當使用者登入。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-187">tooadd user attributes, click **View and edit all other user attributes** tooedit hello attributes toobe sent toohello application in hello SAML token when user sign in.</span></span>
 
-   <span data-ttu-id="885fa-188">新增屬性：</span><span class="sxs-lookup"><span data-stu-id="885fa-188">To add an attribute:</span></span>
+   <span data-ttu-id="bdbe3-188">tooadd 屬性：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-188">tooadd an attribute:</span></span>
 
-   1. <span data-ttu-id="885fa-189">按一下 [新增屬性]。</span><span class="sxs-lookup"><span data-stu-id="885fa-189">click **Add attribute**.</span></span> <span data-ttu-id="885fa-190">輸入 [名稱]，然後從下拉式清單選取 [值]。</span><span class="sxs-lookup"><span data-stu-id="885fa-190">Enter the **Name** and the select the **Value** from the dropdown.</span></span>
+   1. <span data-ttu-id="bdbe3-189">按一下 [新增屬性]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-189">click **Add attribute**.</span></span> <span data-ttu-id="bdbe3-190">輸入 hello**名稱**和 hello 選取 hello**值**從 hello 下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-190">Enter hello **Name** and hello select hello **Value** from hello dropdown.</span></span>
 
-   2. <span data-ttu-id="885fa-191">按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="885fa-191">click **Save.**</span></span> <span data-ttu-id="885fa-192">您會在資料表中看到新屬性。</span><span class="sxs-lookup"><span data-stu-id="885fa-192">You will see the new attribute in the table.</span></span>
+   2. <span data-ttu-id="bdbe3-191">按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-191">click **Save.**</span></span> <span data-ttu-id="bdbe3-192">您會看見 hello hello 資料表中的新屬性。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-192">You will see hello new attribute in hello table.</span></span>
 
-#### <a name="download-the-azure-ad-metadata-or-certificate"></a><span data-ttu-id="885fa-193">下載 Azure AD 中繼資料或憑證</span><span class="sxs-lookup"><span data-stu-id="885fa-193">Download the Azure AD metadata or certificate</span></span>
+#### <a name="download-hello-azure-ad-metadata-or-certificate"></a><span data-ttu-id="bdbe3-193">下載 hello Azure AD 中繼資料或憑證</span><span class="sxs-lookup"><span data-stu-id="bdbe3-193">Download hello Azure AD metadata or certificate</span></span>
 
-<span data-ttu-id="885fa-194">若要從 Azure AD 下載應用程式中繼資料或憑證，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-194">To download the application metadata or certificate from Azure AD, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-194">toodownload hello 應用程式中繼資料或憑證從 Azure AD，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-194">toodownload hello application metadata or certificate from Azure AD, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-195">開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-195">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
+1.  <span data-ttu-id="bdbe3-195">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-195">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
 
-2.  <span data-ttu-id="885fa-196">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-196">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-196">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-196">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-197">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-197">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-197">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-197">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-198">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-198">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-198">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-198">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-199">按一下 [所有應用程式]，以檢視所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-199">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="bdbe3-199">按一下**所有應用程式**tooview 所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-199">click **All Applications** tooview a list of all your applications.</span></span>
 
-  * <span data-ttu-id="885fa-200">若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-200">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+  * <span data-ttu-id="bdbe3-200">如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-200">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="885fa-201">選取您已設定單一登入的應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-201">Select the application you have configured single sign-on.</span></span>
+6.  <span data-ttu-id="bdbe3-201">選取您已設定單一登入的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-201">Select hello application you have configured single sign-on.</span></span>
 
-7.  <span data-ttu-id="885fa-202">應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="885fa-202">Once the application loads, click the **Single sign-on** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="bdbe3-202">一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-202">Once hello application loads, click hello **Single sign-on** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="885fa-203">移至 [SAML 簽署憑證] 區段，然後按一下 [下載] 資料行值。</span><span class="sxs-lookup"><span data-stu-id="885fa-203">Go to **SAML Signing Certificate** section, then click **Download** column value.</span></span> <span data-ttu-id="885fa-204">根據應用程式設定單一登入時所需的項目，您會看到下載中繼資料 XML 或憑證的選項。</span><span class="sxs-lookup"><span data-stu-id="885fa-204">Depending on what the application requires configuring single sign-on, you see either the option to download the Metadata XML or the Certificate.</span></span>
+8.  <span data-ttu-id="bdbe3-203">跳過**SAML 簽章憑證**區段，然後按一下 **下載**資料行值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-203">Go too**SAML Signing Certificate** section, then click **Download** column value.</span></span> <span data-ttu-id="bdbe3-204">根據哪些 hello 應用程式需要設定單一登入，您會看到其中一個 hello 選項 toodownload hello 中繼資料 XML 或 hello 憑證。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-204">Depending on what hello application requires configuring single sign-on, you see either hello option toodownload hello Metadata XML or hello Certificate.</span></span>
 
-    <span data-ttu-id="885fa-205">Azure AD 不提供取得中繼資料的 URL。</span><span class="sxs-lookup"><span data-stu-id="885fa-205">Azure AD doesn’t provide a URL to get the metadata.</span></span> <span data-ttu-id="885fa-206">只能將中繼資料擷取為 XML 檔案。</span><span class="sxs-lookup"><span data-stu-id="885fa-206">The metadata can only be retrieved as a XML file.</span></span>
+    <span data-ttu-id="bdbe3-205">Azure AD 不會提供 URL tooget hello 中繼資料。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-205">Azure AD doesn’t provide a URL tooget hello metadata.</span></span> <span data-ttu-id="bdbe3-206">hello 中繼資料，才能擷取為 XML 檔案。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-206">hello metadata can only be retrieved as a XML file.</span></span>
 
-### <a name="how-to-configure-federated-single-sign-on-for-a-non-gallery-application"></a><span data-ttu-id="885fa-207">如何為不在資源庫內的應用程式設定同盟單一登入</span><span class="sxs-lookup"><span data-stu-id="885fa-207">How to configure federated single sign-on for a non-gallery application</span></span>
+### <a name="how-tooconfigure-federated-single-sign-on-for-a-non-gallery-application"></a><span data-ttu-id="bdbe3-207">如何 tooconfigure 同盟單一登入非組件庫的應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-207">How tooconfigure federated single sign-on for a non-gallery application</span></span>
 
-<span data-ttu-id="885fa-208">若要設定不在資源庫內的應用程式，您必須有 Azure AD Premium，且應用程式必須支援 SAML 2.0。</span><span class="sxs-lookup"><span data-stu-id="885fa-208">To configure a non-gallery application, you need to have Azure AD premium and the application supports SAML 2.0.</span></span> <span data-ttu-id="885fa-209">如需有關 Azure AD 版本的詳細資訊，請參閱 [Azure AD 定價](https://azure.microsoft.com/pricing/details/active-directory/)。</span><span class="sxs-lookup"><span data-stu-id="885fa-209">For more information about Azure AD versions, visit [Azure AD pricing](https://azure.microsoft.com/pricing/details/active-directory/).</span></span>
+<span data-ttu-id="bdbe3-208">tooconfigure 非組件庫的應用程式，您必須具備 toohave Azure AD premium 與 hello 應用程式支援 SAML 2.0。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-208">tooconfigure a non-gallery application, you need toohave Azure AD premium and hello application supports SAML 2.0.</span></span> <span data-ttu-id="bdbe3-209">如需有關 Azure AD 版本的詳細資訊，請參閱 [Azure AD 定價](https://azure.microsoft.com/pricing/details/active-directory/)。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-209">For more information about Azure AD versions, visit [Azure AD pricing](https://azure.microsoft.com/pricing/details/active-directory/).</span></span>
 
--   [<span data-ttu-id="885fa-210">在 Azure AD 中設定應用程式的中繼資料值 (登入 URL、識別碼、回覆 URL)</span><span class="sxs-lookup"><span data-stu-id="885fa-210">Configure the application’s metadata values in Azure AD (Sign on URL, Identifier, Reply URL)</span></span>](#configuring-single-sign-on)
+-   [<span data-ttu-id="bdbe3-210">設定 Azure AD （登入 URL，識別項，回覆 URL） 中的 hello 應用程式的中繼資料值</span><span class="sxs-lookup"><span data-stu-id="bdbe3-210">Configure hello application’s metadata values in Azure AD (Sign on URL, Identifier, Reply URL)</span></span>](#configuring-single-sign-on)
 
--   [<span data-ttu-id="885fa-211">選取使用者識別碼並新增要傳送到應用程式的使用者屬性</span><span class="sxs-lookup"><span data-stu-id="885fa-211">Select User Identifier and add user attributes to be sent to the application</span></span>](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
+-   [<span data-ttu-id="bdbe3-211">選取使用者的識別項並新增使用者屬性傳送 toobe toohello 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-211">Select User Identifier and add user attributes toobe sent toohello application</span></span>](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
 
--   [<span data-ttu-id="885fa-212">擷取 Azure AD 中繼資料與憑證</span><span class="sxs-lookup"><span data-stu-id="885fa-212">Retrieve Azure AD metadata and certificate</span></span>](#download-the-azure-ad-metadata-or-certificate)
+-   [<span data-ttu-id="bdbe3-212">擷取 Azure AD 中繼資料與憑證</span><span class="sxs-lookup"><span data-stu-id="bdbe3-212">Retrieve Azure AD metadata and certificate</span></span>](#download-the-azure-ad-metadata-or-certificate)
 
--   [<span data-ttu-id="885fa-213">在應用程式中設定 Azure AD 中繼資料值 (登入 URL、簽發者、登出 URL 與憑證)</span><span class="sxs-lookup"><span data-stu-id="885fa-213">Configure Azure AD metadata values in the application (Sign on URL, Issuer, Logout URL and certificate)</span></span>](#configuring-single-sign-on)
+-   [<span data-ttu-id="bdbe3-213">在 hello 應用程式 （登入 URL、 簽發者、 登出 URL 和憑證） 中設定 Azure AD 中繼資料值</span><span class="sxs-lookup"><span data-stu-id="bdbe3-213">Configure Azure AD metadata values in hello application (Sign on URL, Issuer, Logout URL and certificate)</span></span>](#configuring-single-sign-on)
 
-#### <a name="configure-the-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url"></a><span data-ttu-id="885fa-214">在 Azure AD 中設定應用程式的中繼資料值 (登入 URL、識別碼、回覆 URL)</span><span class="sxs-lookup"><span data-stu-id="885fa-214">Configure the application’s metadata values in Azure AD (Sign on URL, Identifier, Reply URL)</span></span>
+#### <a name="configure-hello-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url"></a><span data-ttu-id="bdbe3-214">設定 Azure AD （登入 URL，識別項，回覆 URL） 中的 hello 應用程式的中繼資料值</span><span class="sxs-lookup"><span data-stu-id="bdbe3-214">Configure hello application’s metadata values in Azure AD (Sign on URL, Identifier, Reply URL)</span></span>
 
-<span data-ttu-id="885fa-215">若要為不在 Azure AD 資源庫中的應用程式設定單一登入，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-215">To configure single sign-on for an application that is not in the Azure AD gallery, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-215">tooconfigure 單一登入的應用程式不在 hello Azure AD 資源庫，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-215">tooconfigure single sign-on for an application that is not in hello Azure AD gallery, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-216">開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-216">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
+1.  <span data-ttu-id="bdbe3-216">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-216">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
 
-2.  <span data-ttu-id="885fa-217">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-217">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-217">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-217">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-218">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-218">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-218">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-218">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-219">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-219">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-219">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-219">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-220">按一下 [企業應用程式] 刀鋒視窗右上角的 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="885fa-220">click the **Add** button at the top-right corner on the **Enterprise Applications** blade.</span></span>
+5.  <span data-ttu-id="bdbe3-220">按一下 hello**新增**上 hello hello 右上角的按鈕**企業應用程式**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-220">click hello **Add** button at hello top-right corner on hello **Enterprise Applications** blade.</span></span>
 
-6.  <span data-ttu-id="885fa-221">按一下 [新增您自己的應用程式] 區段中的 [不在資源庫內的應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-221">click **Non-gallery application** in the **Add your own app** section.</span></span>
+6.  <span data-ttu-id="bdbe3-221">按一下**非組件庫的應用程式**在 hello**新增您自己的應用程式**> 一節。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-221">click **Non-gallery application** in hello **Add your own app** section.</span></span>
 
-7.  <span data-ttu-id="885fa-222">在 [名稱] 文字方塊中輸入應用程式的名稱。</span><span class="sxs-lookup"><span data-stu-id="885fa-222">Enter the name of the application in the **Name** textbox.</span></span>
+7.  <span data-ttu-id="bdbe3-222">輸入 hello hello 應用程式名稱在 hello**名稱**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-222">Enter hello name of hello application in hello **Name** textbox.</span></span>
 
-8.  <span data-ttu-id="885fa-223">按一下 [新增] 按鈕以新增應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-223">Click **Add** button, to add the application.</span></span>
+8.  <span data-ttu-id="bdbe3-223">按一下**新增**按鈕，tooadd hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-223">Click **Add** button, tooadd hello application.</span></span>
 
-9.  <span data-ttu-id="885fa-224">應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="885fa-224">Once the application loads, click the **Single sign-on** from the application’s left hand navigation menu.</span></span>
+9.  <span data-ttu-id="bdbe3-224">一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-224">Once hello application loads, click hello **Single sign-on** from hello application’s left hand navigation menu.</span></span>
 
-10. <span data-ttu-id="885fa-225">在 [模式] 下拉式清單中選取 [SAML 登入]。</span><span class="sxs-lookup"><span data-stu-id="885fa-225">Select **SAML-based Sign-on** in the **Mode** dropdown.</span></span>
+10. <span data-ttu-id="bdbe3-225">選取**SAML 型登入**在 hello**模式**下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-225">Select **SAML-based Sign-on** in hello **Mode** dropdown.</span></span>
 
-11. <span data-ttu-id="885fa-226">在 [網域及 URL] 中輸入必要值。</span><span class="sxs-lookup"><span data-stu-id="885fa-226">Enter the required values in **Domain and URLs.**</span></span> <span data-ttu-id="885fa-227">這些值應從應用程式廠商處取得。</span><span class="sxs-lookup"><span data-stu-id="885fa-227">You should get these values from the application vendor.</span></span>
+11. <span data-ttu-id="bdbe3-226">輸入中的所需的 hello 值**網域和 Url。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-226">Enter hello required values in **Domain and URLs.**</span></span> <span data-ttu-id="bdbe3-227">您應該從 hello 應用程式廠商，以取得這些值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-227">You should get these values from hello application vendor.</span></span>
 
-   1. <span data-ttu-id="885fa-228">若要將應用程式設定為 IdP 啟始的 SSO，請輸入回覆 URL 與識別碼。</span><span class="sxs-lookup"><span data-stu-id="885fa-228">To configure the application as IdP-initiated SSO, enter the Reply URL and the Identifier.</span></span>
+   1. <span data-ttu-id="bdbe3-228">tooconfigure hello IdP 初始化的 SSO 應用程式輸入 hello 回覆 URL 和識別碼 hello。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-228">tooconfigure hello application as IdP-initiated SSO, enter hello Reply URL and hello Identifier.</span></span>
 
-   2.  <span data-ttu-id="885fa-229">**選擇性：**若要將應用程式設定為 SP 啟始的 SSO，則登入 URL 為必要值。</span><span class="sxs-lookup"><span data-stu-id="885fa-229">**Optional:** To configure the application as SP-initiated SSO, the Sign on URL it’s a required value.</span></span>
+   2.  <span data-ttu-id="bdbe3-229">**選擇性：** tooconfigure hello 應用程式做為 SP 起始的 SSO hello 登入 URL 是必要的值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-229">**Optional:** tooconfigure hello application as SP-initiated SSO, hello Sign on URL it’s a required value.</span></span>
 
-12. <span data-ttu-id="885fa-230">在 [使用者屬性] 中，從 [使用者識別碼] 下拉式清單選取使用者的唯一識別碼。</span><span class="sxs-lookup"><span data-stu-id="885fa-230">In the **User attributes**, select the unique identifier for your users in the **User Identifier** dropdown.</span></span>
+12. <span data-ttu-id="bdbe3-230">在 hello**使用者屬性**，選取 hello hello 中使用者的唯一識別碼**使用者識別碼**下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-230">In hello **User attributes**, select hello unique identifier for your users in hello **User Identifier** dropdown.</span></span>
 
-13. <span data-ttu-id="885fa-231">**選擇性：**按一下 [檢視和編輯所有其他使用者屬性]，以編輯當使用者登入時要以 SAML 權杖傳送至應用程式的屬性。</span><span class="sxs-lookup"><span data-stu-id="885fa-231">**Optional:** click **View and edit all other user attributes** to edit the attributes to be sent to the application in the SAML token when user sign in.</span></span>
+13. <span data-ttu-id="bdbe3-231">**選擇性：**按一下**檢視和編輯所有其他使用者屬性**tooedit hello 屬性 hello SAML 權杖中傳送的 toobe toohello 應用程式，當使用者登入。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-231">**Optional:** click **View and edit all other user attributes** tooedit hello attributes toobe sent toohello application in hello SAML token when user sign in.</span></span>
 
-   <span data-ttu-id="885fa-232">新增屬性：</span><span class="sxs-lookup"><span data-stu-id="885fa-232">To add an attribute:</span></span>
+   <span data-ttu-id="bdbe3-232">tooadd 屬性：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-232">tooadd an attribute:</span></span>
 
-   1. <span data-ttu-id="885fa-233">按一下 [新增屬性]。</span><span class="sxs-lookup"><span data-stu-id="885fa-233">click **Add attribute**.</span></span> <span data-ttu-id="885fa-234">輸入 [名稱]，然後從下拉式清單選取 [值]。</span><span class="sxs-lookup"><span data-stu-id="885fa-234">Enter the **Name** and the select the **Value** from the dropdown.</span></span>
+   1. <span data-ttu-id="bdbe3-233">按一下 [新增屬性]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-233">click **Add attribute**.</span></span> <span data-ttu-id="bdbe3-234">輸入 hello**名稱**和 hello 選取 hello**值**從 hello 下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-234">Enter hello **Name** and hello select hello **Value** from hello dropdown.</span></span>
 
-   2. <span data-ttu-id="885fa-235">按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="885fa-235">Click **Save.**</span></span> <span data-ttu-id="885fa-236">您會在資料表中看到新屬性。</span><span class="sxs-lookup"><span data-stu-id="885fa-236">You see the new attribute in the table.</span></span>
+   2. <span data-ttu-id="bdbe3-235">按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-235">Click **Save.**</span></span> <span data-ttu-id="bdbe3-236">您會看到 hello hello 資料表中的新屬性。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-236">You see hello new attribute in hello table.</span></span>
 
-14. <span data-ttu-id="885fa-237">按一下 [設定 &lt;應用程式名稱&gt;]，以存取如何在應用程式中設定單一登入的文件。</span><span class="sxs-lookup"><span data-stu-id="885fa-237">click **Configure &lt;application name&gt;** to access documentation on how to configure single sign-on in the application.</span></span> <span data-ttu-id="885fa-238">此外，您有應用程式所需的 Azure AD URL 與憑證。</span><span class="sxs-lookup"><span data-stu-id="885fa-238">Also, you has Azure AD URLs and certificate required for the application.</span></span>
+14. <span data-ttu-id="bdbe3-237">按一下**設定&lt;應用程式名稱&gt;** tooaccess 文件中的有關 tooconfigure 單一登入 hello 應用程式中。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-237">click **Configure &lt;application name&gt;** tooaccess documentation on how tooconfigure single sign-on in hello application.</span></span> <span data-ttu-id="bdbe3-238">此外，您有 Azure AD Url 和 hello 應用程式所需的憑證。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-238">Also, you has Azure AD URLs and certificate required for hello application.</span></span>
 
-#### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a><span data-ttu-id="885fa-239">選取使用者識別碼並新增要傳送到應用程式的使用者屬性</span><span class="sxs-lookup"><span data-stu-id="885fa-239">Select User Identifier and add user attributes to be sent to the application</span></span>
+#### <a name="select-user-identifier-and-add-user-attributes-toobe-sent-toohello-application"></a><span data-ttu-id="bdbe3-239">選取使用者的識別項並新增使用者屬性傳送 toobe toohello 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-239">Select User Identifier and add user attributes toobe sent toohello application</span></span>
 
-<span data-ttu-id="885fa-240">若要選取使用者識別碼或新增使用者屬性，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-240">To select the User Identifier or add user attributes, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-240">tooselect hello 使用者識別碼或新增使用者屬性，請遵循下列的 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-240">tooselect hello User Identifier or add user attributes, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-241">開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-241">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
+1.  <span data-ttu-id="bdbe3-241">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-241">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
 
-2.  <span data-ttu-id="885fa-242">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-242">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-242">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-242">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-243">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-243">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-243">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-243">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-244">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-244">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-244">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-244">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-245">按一下 [所有應用程式]，以檢視所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-245">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="bdbe3-245">按一下**所有應用程式**tooview 所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-245">click **All Applications** tooview a list of all your applications.</span></span>
 
-   * <span data-ttu-id="885fa-246">若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-246">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+   * <span data-ttu-id="bdbe3-246">如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-246">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="885fa-247">選取您已設定單一登入的應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-247">Select the application you have configured single sign-on.</span></span>
+6.  <span data-ttu-id="bdbe3-247">選取您已設定單一登入的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-247">Select hello application you have configured single sign-on.</span></span>
 
-7.  <span data-ttu-id="885fa-248">應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="885fa-248">Once the application loads, click the **Single sign-on** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="bdbe3-248">一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-248">Once hello application loads, click hello **Single sign-on** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="885fa-249">在 [使用者屬性] 區段下，從 [使用者識別碼] 下拉式清單選取使用者的唯一識別碼。</span><span class="sxs-lookup"><span data-stu-id="885fa-249">Under the **User attributes** section, select the unique identifier for your users in the **User Identifier** dropdown.</span></span> <span data-ttu-id="885fa-250">所選的選項必須符合應用程式中預期的值，才能驗證使用者。</span><span class="sxs-lookup"><span data-stu-id="885fa-250">The selected option needs to match the expected value in the application to authenticate the user.</span></span>
+8.  <span data-ttu-id="bdbe3-249">在 hello**使用者屬性**區段中，選取 hello hello 中使用者的唯一識別碼**使用者識別碼**下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-249">Under hello **User attributes** section, select hello unique identifier for your users in hello **User Identifier** dropdown.</span></span> <span data-ttu-id="bdbe3-250">hello 選取的選項必須在 hello 應用程式 tooauthenticate hello 使用者 toomatch hello 預期的值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-250">hello selected option needs toomatch hello expected value in hello application tooauthenticate hello user.</span></span>
 
    >[!NOTE] 
-   ><span data-ttu-id="885fa-251">Azure AD 會根據應用程式在 SAML AuthRequest 中選取的值或要求的格式，來選取 NameID 屬性 (使用者識別碼) 的格式。</span><span class="sxs-lookup"><span data-stu-id="885fa-251">Azure AD select the format for the NameID attribute (User Identifier) based on the value selected or the format requested by the application in the SAML AuthRequest.</span></span> <span data-ttu-id="885fa-252">如需詳細資訊，請參閱[單一登入 SAML 通訊協定](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest)文章中的＜NameIDPolicy＞一節。</span><span class="sxs-lookup"><span data-stu-id="885fa-252">For more information visit the article [Single Sign-On SAML protocol](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) under the section NameIDPolicy.</span></span>
+   ><span data-ttu-id="bdbe3-251">Hello NameID 屬性 （使用者識別碼） 的 azure AD 選取 hello 格式會根據選取的 hello 值或 hello hello hello SAML AuthRequest 中的應用程式所要求的格式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-251">Azure AD select hello format for hello NameID attribute (User Identifier) based on hello value selected or hello format requested by hello application in hello SAML AuthRequest.</span></span> <span data-ttu-id="bdbe3-252">如需詳細資訊，請造訪 hello 文章[單一登入的 SAML 通訊協定](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest)hello 下一節 NameIDPolicy。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-252">For more information visit hello article [Single Sign-On SAML protocol](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) under hello section NameIDPolicy.</span></span>
    >
    >
 
-9.  <span data-ttu-id="885fa-253">若要新增使用者屬性，按一下 [檢視和編輯所有其他使用者屬性]，以編輯當使用者登入時要以 SAML 權杖傳送至應用程式的屬性。</span><span class="sxs-lookup"><span data-stu-id="885fa-253">To add user attributes, click **View and edit all other user attributes** to edit the attributes to be sent to the application in the SAML token when user sign in.</span></span>
+9.  <span data-ttu-id="bdbe3-253">tooadd 使用者屬性，按一下**檢視和編輯所有其他使用者屬性**tooedit hello 屬性 hello SAML 權杖中傳送的 toobe toohello 應用程式，當使用者登入。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-253">tooadd user attributes, click **View and edit all other user attributes** tooedit hello attributes toobe sent toohello application in hello SAML token when user sign in.</span></span>
 
-   <span data-ttu-id="885fa-254">新增屬性：</span><span class="sxs-lookup"><span data-stu-id="885fa-254">To add an attribute:</span></span>
+   <span data-ttu-id="bdbe3-254">tooadd 屬性：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-254">tooadd an attribute:</span></span>
 
-   1. <span data-ttu-id="885fa-255">按一下 [新增屬性]。</span><span class="sxs-lookup"><span data-stu-id="885fa-255">click **Add attribute**.</span></span> <span data-ttu-id="885fa-256">輸入 [名稱]，然後從下拉式清單選取 [值]。</span><span class="sxs-lookup"><span data-stu-id="885fa-256">Enter the **Name** and the select the **Value** from the dropdown.</span></span>
+   1. <span data-ttu-id="bdbe3-255">按一下 [新增屬性]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-255">click **Add attribute**.</span></span> <span data-ttu-id="bdbe3-256">輸入 hello**名稱**和 hello 選取 hello**值**從 hello 下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-256">Enter hello **Name** and hello select hello **Value** from hello dropdown.</span></span>
 
-   2. <span data-ttu-id="885fa-257">按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="885fa-257">Click **Save.**</span></span> <span data-ttu-id="885fa-258">您會在資料表中看到新屬性。</span><span class="sxs-lookup"><span data-stu-id="885fa-258">You see the new attribute in the table.</span></span>
+   2. <span data-ttu-id="bdbe3-257">按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-257">Click **Save.**</span></span> <span data-ttu-id="bdbe3-258">您會看到 hello hello 資料表中的新屬性。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-258">You see hello new attribute in hello table.</span></span>
 
-#### <a name="download-the-azure-ad-metadata-or-certificate"></a><span data-ttu-id="885fa-259">下載 Azure AD 中繼資料或憑證</span><span class="sxs-lookup"><span data-stu-id="885fa-259">Download the Azure AD metadata or certificate</span></span>
+#### <a name="download-hello-azure-ad-metadata-or-certificate"></a><span data-ttu-id="bdbe3-259">下載 hello Azure AD 中繼資料或憑證</span><span class="sxs-lookup"><span data-stu-id="bdbe3-259">Download hello Azure AD metadata or certificate</span></span>
 
-<span data-ttu-id="885fa-260">若要從 Azure AD 下載應用程式中繼資料或憑證，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-260">To download the application metadata or certificate from Azure AD, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-260">toodownload hello 應用程式中繼資料或憑證從 Azure AD，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-260">toodownload hello application metadata or certificate from Azure AD, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-261">開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-261">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
+1.  <span data-ttu-id="bdbe3-261">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-261">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
 
-2.  <span data-ttu-id="885fa-262">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-262">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-262">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-262">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-263">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-263">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-263">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-263">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-264">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-264">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-264">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-264">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-265">按一下 [所有應用程式]，以檢視所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-265">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="bdbe3-265">按一下**所有應用程式**tooview 所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-265">click **All Applications** tooview a list of all your applications.</span></span>
 
-   * <span data-ttu-id="885fa-266">若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-266">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+   * <span data-ttu-id="bdbe3-266">如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-266">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="885fa-267">選取您已設定單一登入的應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-267">Select the application you have configured single sign-on.</span></span>
+6.  <span data-ttu-id="bdbe3-267">選取您已設定單一登入的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-267">Select hello application you have configured single sign-on.</span></span>
 
-7.  <span data-ttu-id="885fa-268">應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="885fa-268">Once the application loads, click the **Single sign-on** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="bdbe3-268">一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-268">Once hello application loads, click hello **Single sign-on** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="885fa-269">移至 [SAML 簽署憑證] 區段，然後按一下 [下載] 資料行值。</span><span class="sxs-lookup"><span data-stu-id="885fa-269">Go to **SAML Signing Certificate** section, then click **Download** column value.</span></span> <span data-ttu-id="885fa-270">根據應用程式設定單一登入時所需的項目，您會看到下載中繼資料 XML 或憑證的選項。</span><span class="sxs-lookup"><span data-stu-id="885fa-270">Depending on what the application requires configuring single sign-on, you see either the option to download the Metadata XML or the Certificate.</span></span>
+8.  <span data-ttu-id="bdbe3-269">跳過**SAML 簽章憑證**區段，然後按一下 **下載**資料行值。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-269">Go too**SAML Signing Certificate** section, then click **Download** column value.</span></span> <span data-ttu-id="bdbe3-270">根據哪些 hello 應用程式需要設定單一登入，您會看到其中一個 hello 選項 toodownload hello 中繼資料 XML 或 hello 憑證。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-270">Depending on what hello application requires configuring single sign-on, you see either hello option toodownload hello Metadata XML or hello Certificate.</span></span>
 
-<span data-ttu-id="885fa-271">Azure AD 不提供取得中繼資料的 URL。</span><span class="sxs-lookup"><span data-stu-id="885fa-271">Azure AD doesn’t provide a URL to get the metadata.</span></span> <span data-ttu-id="885fa-272">只能將中繼資料擷取為 XML 檔案。</span><span class="sxs-lookup"><span data-stu-id="885fa-272">The metadata can only be retrieved as a XML file.</span></span>
+<span data-ttu-id="bdbe3-271">Azure AD 不會提供 URL tooget hello 中繼資料。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-271">Azure AD doesn’t provide a URL tooget hello metadata.</span></span> <span data-ttu-id="bdbe3-272">hello 中繼資料，才能擷取為 XML 檔案。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-272">hello metadata can only be retrieved as a XML file.</span></span>
 
-### <a name="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application"></a><span data-ttu-id="885fa-273">如何為 Azure AD 資源庫應用程式設定密碼單一登入</span><span class="sxs-lookup"><span data-stu-id="885fa-273">How to configure password single sign-on for an Azure AD gallery application</span></span>
+### <a name="how-tooconfigure-password-single-sign-on-for-an-azure-ad-gallery-application"></a><span data-ttu-id="bdbe3-273">如何 tooconfigure 密碼單一登入 Azure AD 圖庫應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-273">How tooconfigure password single sign-on for an Azure AD gallery application</span></span>
 
-<span data-ttu-id="885fa-274">若要設定 Azure AD 資源庫中的應用程式，您必須：</span><span class="sxs-lookup"><span data-stu-id="885fa-274">To configure an application from the Azure AD gallery you need to:</span></span>
+<span data-ttu-id="bdbe3-274">您需要 tooconfigure 從 hello Azure AD 的組件庫的應用程式：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-274">tooconfigure an application from hello Azure AD gallery you need to:</span></span>
 
--   [<span data-ttu-id="885fa-275">從 Azure AD 資源庫新增應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-275">Add an application from the Azure AD gallery</span></span>](#add-an-application-from-the-azure-ad-gallery)
+-   [<span data-ttu-id="bdbe3-275">從 hello Azure AD 資源庫新增應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-275">Add an application from hello Azure AD gallery</span></span>](#add-an-application-from-the-azure-ad-gallery)
 
--   [<span data-ttu-id="885fa-276">設定應用程式使用密碼單一登入</span><span class="sxs-lookup"><span data-stu-id="885fa-276">Configure the application for password single sign-on</span></span>](#configure-the-application-for-password-single-sign-on)
+-   [<span data-ttu-id="bdbe3-276">設定密碼單一登入的 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-276">Configure hello application for password single sign-on</span></span>](#configure-the-application-for-password-single-sign-on)
 
-#### <a name="add-an-application-from-the-azure-ad-gallery"></a><span data-ttu-id="885fa-277">從 Azure AD 資源庫新增應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-277">Add an application from the Azure AD gallery</span></span>
+#### <a name="add-an-application-from-hello-azure-ad-gallery"></a><span data-ttu-id="bdbe3-277">從 hello Azure AD 資源庫新增應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-277">Add an application from hello Azure AD gallery</span></span>
 
-<span data-ttu-id="885fa-278">若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-278">To add an application from the Azure AD Gallery, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-278">tooadd hello Azure AD 資源庫，從應用程式，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-278">tooadd an application from hello Azure AD Gallery, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-279">開啟 [Azure 入口網站](https://portal.azure.com)，然後以**全域管理員**或**共同管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-279">Open the [Azure Portal](https://portal.azure.com) and sign in as a **Global Administrator** or **Co-admin**</span></span>
+1.  <span data-ttu-id="bdbe3-279">開啟 hello [Azure 入口網站](https://portal.azure.com)身分登入和**全域管理員**或**共同管理員**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-279">Open hello [Azure Portal](https://portal.azure.com) and sign in as a **Global Administrator** or **Co-admin**</span></span>
 
-2.  <span data-ttu-id="885fa-280">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-280">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-280">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-280">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-281">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-281">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-281">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-281">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-282">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-282">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-282">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-282">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-283">按一下 [企業應用程式] 刀鋒視窗右上角的 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="885fa-283">click the **Add** button at the top-right corner on the **Enterprise Applications** blade.</span></span>
+5.  <span data-ttu-id="bdbe3-283">按一下 hello**新增**上 hello hello 右上角的按鈕**企業應用程式**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-283">click hello **Add** button at hello top-right corner on hello **Enterprise Applications** blade.</span></span>
 
-6.  <span data-ttu-id="885fa-284">在 [從資源庫新增] 區段的 [輸入名稱] 文字方塊中，輸入應用程式名稱。</span><span class="sxs-lookup"><span data-stu-id="885fa-284">In the **Enter a name** textbox from the **Add from the gallery** section, type the name of the application.</span></span>
+6.  <span data-ttu-id="bdbe3-284">在 hello**輸入的名稱**文字方塊中，從 hello**從 hello 圖庫新增**> 一節中，輸入 hello 名稱 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-284">In hello **Enter a name** textbox from hello **Add from hello gallery** section, type hello name of hello application.</span></span>
 
-7.  <span data-ttu-id="885fa-285">選取您要設為單一登入的應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-285">Select the application you want to configure for single sign-on.</span></span>
+7.  <span data-ttu-id="bdbe3-285">選取要用於單一登入 tooconfigure hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-285">Select hello application you want tooconfigure for single sign-on.</span></span>
 
-8.  <span data-ttu-id="885fa-286">新增應用程式之前，您可以從 [名稱] 文字方塊變更其名稱。</span><span class="sxs-lookup"><span data-stu-id="885fa-286">Before adding the application, you can change its name from the **Name** textbox.</span></span>
+8.  <span data-ttu-id="bdbe3-286">然後再加入 hello 應用程式，您可以變更其名稱從 hello**名稱**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-286">Before adding hello application, you can change its name from hello **Name** textbox.</span></span>
 
-9.  <span data-ttu-id="885fa-287">按一下 [新增] 按鈕新增應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-287">Click **Add** button, to add the application.</span></span>
+9.  <span data-ttu-id="bdbe3-287">按一下**新增**按鈕，tooadd hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-287">Click **Add** button, tooadd hello application.</span></span>
 
-<span data-ttu-id="885fa-288">稍候片刻，您便能看見應用程式的設定刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="885fa-288">After a short period, you be able to see the application’s configuration blade.</span></span>
+<span data-ttu-id="bdbe3-288">短時間，就能 toosee hello 應用程式的組態刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-288">After a short period, you be able toosee hello application’s configuration blade.</span></span>
 
-#### <a name="configure-the-application-for-password-single-sign-on"></a><span data-ttu-id="885fa-289">設定應用程式使用密碼單一登入</span><span class="sxs-lookup"><span data-stu-id="885fa-289">Configure the application for password single sign-on</span></span>
+#### <a name="configure-hello-application-for-password-single-sign-on"></a><span data-ttu-id="bdbe3-289">設定密碼單一登入的 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-289">Configure hello application for password single sign-on</span></span>
 
-<span data-ttu-id="885fa-290">若要設定應用程式使用單一登入，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-290">To configure single sign-on for an application, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-290">tooconfigure 單一登入的應用程式，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-290">tooconfigure single sign-on for an application, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-291">開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**或**共同管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-291">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
+1.  <span data-ttu-id="bdbe3-291">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-291">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
 
-2.  <span data-ttu-id="885fa-292">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-292">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-292">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-292">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-293">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-293">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-293">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-293">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-294">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-294">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-294">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-294">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-295">按一下 [所有應用程式]，以檢視所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-295">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="bdbe3-295">按一下**所有應用程式**tooview 所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-295">click **All Applications** tooview a list of all your applications.</span></span>
 
-   * <span data-ttu-id="885fa-296">若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-296">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+   * <span data-ttu-id="bdbe3-296">如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-296">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="885fa-297">選取您要設定單一登入的應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-297">Select the application you want to configure single sign-on.</span></span>
+6.  <span data-ttu-id="bdbe3-297">選取您想 tooconfigure 單一登入的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-297">Select hello application you want tooconfigure single sign-on.</span></span>
 
-7.  <span data-ttu-id="885fa-298">應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="885fa-298">Once the application loads, click the **Single sign-on** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="bdbe3-298">一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-298">Once hello application loads, click hello **Single sign-on** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="885fa-299">選取 [以密碼為基礎的登入] 模式。</span><span class="sxs-lookup"><span data-stu-id="885fa-299">Select the mode **Password-based Sign-on.**</span></span>
+8.  <span data-ttu-id="bdbe3-299">選取 hello 模式**密碼式登入。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-299">Select hello mode **Password-based Sign-on.**</span></span>
 
-9.  <span data-ttu-id="885fa-300">[將使用者指派至應用程式](#how-to-assign-a-user-to-an-application-directly)。</span><span class="sxs-lookup"><span data-stu-id="885fa-300">[Assign users to the application](#how-to-assign-a-user-to-an-application-directly).</span></span>
+9.  <span data-ttu-id="bdbe3-300">[將使用者指派 toohello 應用程式](#how-to-assign-a-user-to-an-application-directly)。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-300">[Assign users toohello application](#how-to-assign-a-user-to-an-application-directly).</span></span>
 
-10. <span data-ttu-id="885fa-301">此外，您也可以選取使用者資料列，按一下 [更新認證]，然後代表使用者輸入使用者名稱和密碼，以代表使用者提供認證。</span><span class="sxs-lookup"><span data-stu-id="885fa-301">Additionally, you can also provide credentials on behalf of the user by selecting the rows of the users and clicking on **Update Credentials** and entering the username and password on behalf of the users.</span></span> <span data-ttu-id="885fa-302">否則，系統會提示使用者在啟動時自行輸入認證。</span><span class="sxs-lookup"><span data-stu-id="885fa-302">Otherwise, users be prompted to enter the credentials themselves upon launch.</span></span>
+10. <span data-ttu-id="bdbe3-301">此外，您也可以提供代表 hello 使用者認證選取 hello 的 hello 使用者的資料列，並按一下**更新認證**並代表 hello 使用者輸入 hello 使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-301">Additionally, you can also provide credentials on behalf of hello user by selecting hello rows of hello users and clicking on **Update Credentials** and entering hello username and password on behalf of hello users.</span></span> <span data-ttu-id="bdbe3-302">否則，使用者在提示的 tooenter hello 認證本身在啟動。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-302">Otherwise, users be prompted tooenter hello credentials themselves upon launch.</span></span>
 
-### <a name="how-to-configure-password-single-sign-on-for-a-non-gallery-application"></a><span data-ttu-id="885fa-303">如何為不在資源庫內的應用程式設定密碼單一登入</span><span class="sxs-lookup"><span data-stu-id="885fa-303">How to configure password single sign-on for a non-gallery application</span></span>
+### <a name="how-tooconfigure-password-single-sign-on-for-a-non-gallery-application"></a><span data-ttu-id="bdbe3-303">如何 tooconfigure 密碼單一登入非組件庫的應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-303">How tooconfigure password single sign-on for a non-gallery application</span></span>
 
-<span data-ttu-id="885fa-304">若要設定 Azure AD 資源庫中的應用程式，您必須：</span><span class="sxs-lookup"><span data-stu-id="885fa-304">To configure an application from the Azure AD gallery you need to:</span></span>
+<span data-ttu-id="bdbe3-304">您需要 tooconfigure 從 hello Azure AD 的組件庫的應用程式：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-304">tooconfigure an application from hello Azure AD gallery you need to:</span></span>
 
--   [<span data-ttu-id="885fa-305">新增不在資源庫內的應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-305">Add a non-gallery application</span></span>](#add-a-non-gallery-application)
+-   [<span data-ttu-id="bdbe3-305">新增不在資源庫內的應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-305">Add a non-gallery application</span></span>](#add-a-non-gallery-application)
 
--   [<span data-ttu-id="885fa-306">設定應用程式使用密碼單一登入</span><span class="sxs-lookup"><span data-stu-id="885fa-306">Configure the application for password single sign-on</span></span>](#configure-the-application-for-password-single-sign-on)
+-   [<span data-ttu-id="bdbe3-306">設定密碼單一登入的 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-306">Configure hello application for password single sign-on</span></span>](#configure-the-application-for-password-single-sign-on)
 
-#### <a name="add-a-non-gallery-application"></a><span data-ttu-id="885fa-307">新增不在資源庫內的應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-307">Add a non-gallery application</span></span>
+#### <a name="add-a-non-gallery-application"></a><span data-ttu-id="bdbe3-307">新增不在資源庫內的應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-307">Add a non-gallery application</span></span>
 
-<span data-ttu-id="885fa-308">若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-308">To add an application from the Azure AD Gallery, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-308">tooadd hello Azure AD 資源庫，從應用程式，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-308">tooadd an application from hello Azure AD Gallery, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-309">開啟 [Azure 入口網站](https://portal.azure.com)，然後以**全域管理員**或**共同管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-309">Open the [Azure Portal](https://portal.azure.com) and sign in as a **Global Administrator** or **Co-admin**.</span></span>
+1.  <span data-ttu-id="bdbe3-309">開啟 hello [Azure 入口網站](https://portal.azure.com)身分登入和**全域管理員**或**共同管理員**。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-309">Open hello [Azure Portal](https://portal.azure.com) and sign in as a **Global Administrator** or **Co-admin**.</span></span>
 
-2.  <span data-ttu-id="885fa-310">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-310">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-310">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-310">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-311">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-311">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-311">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-311">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-312">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-312">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-312">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-312">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-313">按一下 [企業應用程式] 刀鋒視窗右上角的 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="885fa-313">click the **Add** button at the top-right corner on the **Enterprise Applications** blade.</span></span>
+5.  <span data-ttu-id="bdbe3-313">按一下 hello**新增**上 hello hello 右上角的按鈕**企業應用程式**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-313">click hello **Add** button at hello top-right corner on hello **Enterprise Applications** blade.</span></span>
 
-6.  <span data-ttu-id="885fa-314">按一下 [不在資源庫內的應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-314">click **Non-gallery application.**</span></span>
+6.  <span data-ttu-id="bdbe3-314">按一下 [不在資源庫內的應用程式]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-314">click **Non-gallery application.**</span></span>
 
-7.  <span data-ttu-id="885fa-315">在 [名稱] 文字方塊中輸入應用程式的名稱。</span><span class="sxs-lookup"><span data-stu-id="885fa-315">Enter the name of your application in the **Name** textbox.</span></span> <span data-ttu-id="885fa-316">選取 [新增]。</span><span class="sxs-lookup"><span data-stu-id="885fa-316">Select **Add.**</span></span>
+7.  <span data-ttu-id="bdbe3-315">輸入 hello 應用程式的名稱在 hello**名稱**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-315">Enter hello name of your application in hello **Name** textbox.</span></span> <span data-ttu-id="bdbe3-316">選取 [新增]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-316">Select **Add.**</span></span>
 
-<span data-ttu-id="885fa-317">稍候片刻，您便能看見應用程式的設定刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="885fa-317">After a short period, you be able to see the application’s configuration blade.</span></span>
+<span data-ttu-id="bdbe3-317">短時間，就能 toosee hello 應用程式的組態刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-317">After a short period, you be able toosee hello application’s configuration blade.</span></span>
 
-#### <a name="configure-the-application-for-password-single-sign-on"></a><span data-ttu-id="885fa-318">設定應用程式使用密碼單一登入</span><span class="sxs-lookup"><span data-stu-id="885fa-318">Configure the application for password single sign-on</span></span>
+#### <a name="configure-hello-application-for-password-single-sign-on"></a><span data-ttu-id="bdbe3-318">設定密碼單一登入的 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-318">Configure hello application for password single sign-on</span></span>
 
-<span data-ttu-id="885fa-319">若要設定應用程式使用單一登入，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-319">To configure single sign-on for an application, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-319">tooconfigure 單一登入的應用程式，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-319">tooconfigure single sign-on for an application, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-320">開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**或**共同管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-320">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
+1.  <span data-ttu-id="bdbe3-320">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-320">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator** or **Co-admin.**</span></span>
 
-2.  <span data-ttu-id="885fa-321">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-321">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-321">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-321">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-322">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-322">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-322">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-322">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-323">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-323">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-323">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-323">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-324">按一下 [所有應用程式]，以檢視所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-324">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="bdbe3-324">按一下**所有應用程式**tooview 所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-324">click **All Applications** tooview a list of all your applications.</span></span>
 
-    1.  <span data-ttu-id="885fa-325">若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-325">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+    1.  <span data-ttu-id="bdbe3-325">如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-325">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="885fa-326">選取您要設定單一登入的應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-326">Select the application you want to configure single sign-on.</span></span>
+6.  <span data-ttu-id="bdbe3-326">選取您想 tooconfigure 單一登入的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-326">Select hello application you want tooconfigure single sign-on.</span></span>
 
-7.  <span data-ttu-id="885fa-327">應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="885fa-327">Once the application loads, click the **Single sign-on** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="bdbe3-327">一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-327">Once hello application loads, click hello **Single sign-on** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="885fa-328">選取 [以密碼為基礎的登入] 模式。</span><span class="sxs-lookup"><span data-stu-id="885fa-328">Select the mode **Password-based Sign-on.**</span></span>
+8.  <span data-ttu-id="bdbe3-328">選取 hello 模式**密碼式登入。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-328">Select hello mode **Password-based Sign-on.**</span></span>
 
-9.  <span data-ttu-id="885fa-329">輸入**登入 URL**。</span><span class="sxs-lookup"><span data-stu-id="885fa-329">Enter the **Sign-on URL**.</span></span> <span data-ttu-id="885fa-330">這是使用者輸入使用者名稱和密碼來登入的 URL。</span><span class="sxs-lookup"><span data-stu-id="885fa-330">This is the URL where users enter their username and password to sign in to.</span></span> <span data-ttu-id="885fa-331">確定在該 URL 上看得到登入欄位。</span><span class="sxs-lookup"><span data-stu-id="885fa-331">Ensure the sign in fields are visible at the URL.</span></span>
+9.  <span data-ttu-id="bdbe3-329">輸入 hello**登入 URL**。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-329">Enter hello **Sign-on URL**.</span></span> <span data-ttu-id="bdbe3-330">這是讓使用者輸入其使用者名稱和密碼 toosign 中的以 hello URL。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-330">This is hello URL where users enter their username and password toosign in to.</span></span> <span data-ttu-id="bdbe3-331">請確定 hello 登入欄位會顯示在 hello URL。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-331">Ensure hello sign in fields are visible at hello URL.</span></span>
 
-10. <span data-ttu-id="885fa-332">[將使用者指派給應用程式](#how-to-assign-a-user-to-an-application-directly)。</span><span class="sxs-lookup"><span data-stu-id="885fa-332">[Assign users to the application](#how-to-assign-a-user-to-an-application-directly).</span></span>
+10. <span data-ttu-id="bdbe3-332">[將使用者指派 toohello 應用程式](#how-to-assign-a-user-to-an-application-directly)。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-332">[Assign users toohello application](#how-to-assign-a-user-to-an-application-directly).</span></span>
 
-11. <span data-ttu-id="885fa-333">此外，您也可以選取使用者資料列，按一下 [更新認證]，然後代表使用者輸入使用者名稱和密碼，以代表使用者提供認證。</span><span class="sxs-lookup"><span data-stu-id="885fa-333">Additionally, you can also provide credentials on behalf of the user by selecting the rows of the users and clicking on **Update Credentials** and entering the username and password on behalf of the users.</span></span> <span data-ttu-id="885fa-334">否則，系統會提示使用者在啟動時自行輸入認證。</span><span class="sxs-lookup"><span data-stu-id="885fa-334">Otherwise, users be prompted to enter the credentials themselves upon launch.</span></span>
+11. <span data-ttu-id="bdbe3-333">此外，您也可以提供代表 hello 使用者認證選取 hello 的 hello 使用者的資料列，並按一下**更新認證**並代表 hello 使用者輸入 hello 使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-333">Additionally, you can also provide credentials on behalf of hello user by selecting hello rows of hello users and clicking on **Update Credentials** and entering hello username and password on behalf of hello users.</span></span> <span data-ttu-id="bdbe3-334">否則，使用者在提示的 tooenter hello 認證本身在啟動。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-334">Otherwise, users be prompted tooenter hello credentials themselves upon launch.</span></span>
 
-## <a name="problems-related-to-assigning-applications-to-users"></a><span data-ttu-id="885fa-335">將應用程式指派給使用者的相關問題</span><span class="sxs-lookup"><span data-stu-id="885fa-335">Problems related to assigning applications to users</span></span>
+## <a name="problems-related-tooassigning-applications-toousers"></a><span data-ttu-id="bdbe3-335">問題相關的 tooassigning 應用程式 toousers</span><span class="sxs-lookup"><span data-stu-id="bdbe3-335">Problems related tooassigning applications toousers</span></span>
 
-<span data-ttu-id="885fa-336">使用者可能因為未將他們指派給應用程式，而無法在其存取面板上看見該應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-336">A user may not be seeing an application on their Access Panel because they are not assigned to the application.</span></span> <span data-ttu-id="885fa-337">以下是一些檢查方法：</span><span class="sxs-lookup"><span data-stu-id="885fa-337">Below are some ways to check:</span></span>
+<span data-ttu-id="bdbe3-336">使用者可能不只可看見應用程式存取面板上因為它們不會指派 toohello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-336">A user may not be seeing an application on their Access Panel because they are not assigned toohello application.</span></span> <span data-ttu-id="bdbe3-337">以下是一些方式 toocheck:</span><span class="sxs-lookup"><span data-stu-id="bdbe3-337">Below are some ways toocheck:</span></span>
 
--   [<span data-ttu-id="885fa-338">檢查是否已將使用者指派給應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-338">Check if a user is assigned to the application</span></span>](#check-if-a-user-is-assigned-to-the-application)
+-   [<span data-ttu-id="bdbe3-338">檢查 toohello 應用程式時，是否要指派使用者</span><span class="sxs-lookup"><span data-stu-id="bdbe3-338">Check if a user is assigned toohello application</span></span>](#check-if-a-user-is-assigned-to-the-application)
 
--   [<span data-ttu-id="885fa-339">如何將使用者直接指派給應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-339">How to assign a user to an application directly</span></span>](#how-to-assign-a-user-to-an-application-directly)
+-   [<span data-ttu-id="bdbe3-339">如何 tooassign 使用者 tooan 應用程式直接</span><span class="sxs-lookup"><span data-stu-id="bdbe3-339">How tooassign a user tooan application directly</span></span>](#how-to-assign-a-user-to-an-application-directly)
 
--   [<span data-ttu-id="885fa-340">檢查是否已為使用者指派應用程式相關的授權</span><span class="sxs-lookup"><span data-stu-id="885fa-340">Check if a user is assigned to a license related to the application</span></span>](#check-if-a-user-is-under-a-license-related-to-the-application)
+-   [<span data-ttu-id="bdbe3-340">如果 tooa 授權指派給使用者的核取相關 toohello 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-340">Check if a user is assigned tooa license related toohello application</span></span>](#check-if-a-user-is-under-a-license-related-to-the-application)
 
--   <span data-ttu-id="885fa-341">如何[將授權指派給 Azure AD 中的使用者](#how-to-assign-a-user-a-license)</span><span class="sxs-lookup"><span data-stu-id="885fa-341">[How to assign a license to a user](#how-to-assign-a-user-a-license)</span></span>
+-   [<span data-ttu-id="bdbe3-341">如何 tooassign 授權 tooa 使用者</span><span class="sxs-lookup"><span data-stu-id="bdbe3-341">How tooassign a license tooa user</span></span>](#how-to-assign-a-user-a-license)
 
-### <a name="check-if-a-user-is-assigned-to-the-application"></a><span data-ttu-id="885fa-342">檢查是否已將使用者指派給應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-342">Check if a user is assigned to the application</span></span>
+### <a name="check-if-a-user-is-assigned-toohello-application"></a><span data-ttu-id="bdbe3-342">檢查 toohello 應用程式時，是否要指派使用者</span><span class="sxs-lookup"><span data-stu-id="bdbe3-342">Check if a user is assigned toohello application</span></span>
 
-<span data-ttu-id="885fa-343">若要檢查是否已將使用者指派給應用程式，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-343">To check if a user is assigned to the application, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-343">toocheck 如果使用者被指派 toohello 應用程式，請遵循 hello 執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-343">toocheck if a user is assigned toohello application, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-344">開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-344">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="bdbe3-344">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-344">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="885fa-345">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-345">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-345">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-345">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-346">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-346">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-346">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-346">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-347">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-347">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-347">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-347">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-348">按一下 [所有應用程式]，以檢視所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-348">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="bdbe3-348">按一下**所有應用程式**tooview 所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-348">click **All Applications** tooview a list of all your applications.</span></span>
 
-6.  <span data-ttu-id="885fa-349">**搜尋**相關應用程式的名稱。</span><span class="sxs-lookup"><span data-stu-id="885fa-349">**Search** for the name of the application in question.</span></span>
+6.  <span data-ttu-id="bdbe3-349">**搜尋**hello hello 有問題的應用程式名稱。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-349">**Search** for hello name of hello application in question.</span></span>
 
-7.  <span data-ttu-id="885fa-350">按一下 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-350">click **Users and groups**.</span></span>
+7.  <span data-ttu-id="bdbe3-350">按一下 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-350">click **Users and groups**.</span></span>
 
-8.  <span data-ttu-id="885fa-351">檢查是否已將使用者指派給應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-351">Check to see if your user is assigned to the application.</span></span>
+8.  <span data-ttu-id="bdbe3-351">如果您的使用者被指派 toohello 應用程式，請檢查 toosee。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-351">Check toosee if your user is assigned toohello application.</span></span>
 
-   * <span data-ttu-id="885fa-352">如果沒有，請依照＜如何將使用者直接指派給應用程式＞中的步驟來執行這項操作。</span><span class="sxs-lookup"><span data-stu-id="885fa-352">If not follow the steps in “How to assign a user to an application directly” to do so.</span></span>
+   * <span data-ttu-id="bdbe3-352">如果沒有依照中的 hello 步驟 「 如何 tooassign 使用者 tooan 應用程式直接"toodo 讓。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-352">If not follow hello steps in “How tooassign a user tooan application directly” toodo so.</span></span>
 
-### <a name="how-to-assign-a-user-to-an-application-directly"></a><span data-ttu-id="885fa-353">如何將使用者直接指派給應用程式</span><span class="sxs-lookup"><span data-stu-id="885fa-353">How to assign a user to an application directly</span></span>
+### <a name="how-tooassign-a-user-tooan-application-directly"></a><span data-ttu-id="bdbe3-353">如何 tooassign 使用者 tooan 應用程式直接</span><span class="sxs-lookup"><span data-stu-id="bdbe3-353">How tooassign a user tooan application directly</span></span>
 
-<span data-ttu-id="885fa-354">若要直接將一或多個使用者指派至應用程式，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-354">To assign one or more users to an application directly, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-354">tooassign 一或多個使用者 tooan 應用程式直接管理，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-354">tooassign one or more users tooan application directly, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-355">開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-355">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator**.</span></span>
+1.  <span data-ttu-id="bdbe3-355">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-355">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator**.</span></span>
 
-2.  <span data-ttu-id="885fa-356">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-356">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-356">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-356">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-357">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-357">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-357">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-357">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-358">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-358">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-358">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-358">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-359">按一下 [所有應用程式]，以檢視所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-359">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="bdbe3-359">按一下**所有應用程式**tooview 所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-359">click **All Applications** tooview a list of all your applications.</span></span>
 
-  * <span data-ttu-id="885fa-360">若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-360">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+  * <span data-ttu-id="bdbe3-360">如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-360">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="885fa-361">從清單中選取您想要指派使用者的應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-361">Select the application you want to assign a user to from the list.</span></span>
+6.  <span data-ttu-id="bdbe3-361">選取您想要使用者 toofrom hello 清單 tooassign hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-361">Select hello application you want tooassign a user toofrom hello list.</span></span>
 
-7.  <span data-ttu-id="885fa-362">應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-362">Once the application loads, click **Users and Groups** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="bdbe3-362">一旦 hello 應用程式載入時，按一下 **使用者和群組**從 hello 應用程式的左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-362">Once hello application loads, click **Users and Groups** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="885fa-363">按一下 [使用者和群組] 清單頂端的 [新增] 按鈕，以開啟 [新增指派] 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="885fa-363">Click the **Add** button on top of the **Users and Groups** list to open the **Add Assignment** blade.</span></span>
+8.  <span data-ttu-id="bdbe3-363">按一下 hello**新增**hello 頂端的按鈕**使用者和群組**清單 tooopen hello**將作業加入**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-363">Click hello **Add** button on top of hello **Users and Groups** list tooopen hello **Add Assignment** blade.</span></span>
 
-9.  <span data-ttu-id="885fa-364">從 [新增指派] 刀鋒視窗按一下 [使用者和群組] 選取器。</span><span class="sxs-lookup"><span data-stu-id="885fa-364">click the **Users and groups** selector from the **Add Assignment** blade.</span></span>
+9.  <span data-ttu-id="bdbe3-364">按一下 hello**使用者和群組**選取器從 hello**將作業加入**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-364">click hello **Users and groups** selector from hello **Add Assignment** blade.</span></span>
 
-10. <span data-ttu-id="885fa-365">在 [依姓名或電子郵件地址搜尋] 搜尋方塊中，輸入您有興趣指派之使用者的**全名**或**電子郵件地址**。</span><span class="sxs-lookup"><span data-stu-id="885fa-365">Type in the **full name** or **email address** of the user you are interested in assigning into the **Search by name or email address** search box.</span></span>
+10. <span data-ttu-id="bdbe3-365">Hello 中的型別**全名**或**電子郵件地址**hello 使用者您感興趣指派到 hello 的**依名稱或電子郵件地址搜尋**搜尋 方塊。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-365">Type in hello **full name** or **email address** of hello user you are interested in assigning into hello **Search by name or email address** search box.</span></span>
 
-11. <span data-ttu-id="885fa-366">將滑鼠停留在清單中的**使用者**上方，以顯示**核取方塊**。</span><span class="sxs-lookup"><span data-stu-id="885fa-366">Hover over the **user** in the list to reveal a **checkbox**.</span></span> <span data-ttu-id="885fa-367">按一下使用者設定檔照片或標誌旁邊的核取方塊，將使用者新增至 [已選取] 清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-367">Click the checkbox next to the user’s profile photo or logo to add your user to the **Selected** list.</span></span>
+11. <span data-ttu-id="bdbe3-366">將滑鼠停留在 hello**使用者**在 hello 清單 tooreveal**核取方塊**。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-366">Hover over hello **user** in hello list tooreveal a **checkbox**.</span></span> <span data-ttu-id="bdbe3-367">按一下 [hello] 核取方塊下一步 toohello 使用者的設定檔的相片或標誌 tooadd 使用者 toohello**選取**清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-367">Click hello checkbox next toohello user’s profile photo or logo tooadd your user toohello **Selected** list.</span></span>
 
-12. <span data-ttu-id="885fa-368">**選擇性︰**如果您想要**新增多位使用者**，請在 [依姓名或電子郵件地址搜尋] 搜尋方塊中，輸入另一個**全名**或**電子郵件地址**，然後按一下核取方塊，將此使用者新增至 [已選取] 清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-368">**Optional:** If you would like to **add more than one user**, type in another **full name** or **email address** into the **Search by name or email address** search box, and click the checkbox to add this user to the **Selected** list.</span></span>
+12. <span data-ttu-id="bdbe3-368">**選擇性：**如果您希望太**新增多個使用者**，在另一個類型**全名**或**電子郵件地址**到 hello**依名稱搜尋電子郵件地址或**搜尋 方塊中，然後按一下 hello 核取方塊 tooadd 這個使用者 toohello**選取**清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-368">**Optional:** If you would like too**add more than one user**, type in another **full name** or **email address** into hello **Search by name or email address** search box, and click hello checkbox tooadd this user toohello **Selected** list.</span></span>
 
-13. <span data-ttu-id="885fa-369">當您完成選取使用者時，按一下 [選取] 按鈕，將他們新增到要指派至應用程式的使用者和群組清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-369">When you are finished selecting users, click the **Select** button to add them to the list of users and groups to be assigned to the application.</span></span>
+13. <span data-ttu-id="bdbe3-369">當您完成選取的使用者，請按一下 hello**選取**按鈕 tooadd 它們的使用者和群組 toobe toohello 清單指派 toohello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-369">When you are finished selecting users, click hello **Select** button tooadd them toohello list of users and groups toobe assigned toohello application.</span></span>
 
-14. <span data-ttu-id="885fa-370">**選擇性︰**按一下 [新增指派] 刀鋒視窗中的 [選取角色] 選取器，以選取要指派給您已選取使用者的角色。</span><span class="sxs-lookup"><span data-stu-id="885fa-370">**Optional:** click the **Select Role** selector in the **Add Assignment** blade to select a role to assign to the users you have selected.</span></span>
+14. <span data-ttu-id="bdbe3-370">**選擇性：**按一下 hello**選取角色**hello 中的選取器**將作業加入**刀鋒視窗 tooselect 角色 tooassign toohello 使用者已選取。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-370">**Optional:** click hello **Select Role** selector in hello **Add Assignment** blade tooselect a role tooassign toohello users you have selected.</span></span>
 
-15. <span data-ttu-id="885fa-371">按一下 [指派] 按鈕，將應用程式指派給選取的使用者。</span><span class="sxs-lookup"><span data-stu-id="885fa-371">Click the **Assign** button to assign the application to the selected users.</span></span>
+15. <span data-ttu-id="bdbe3-371">按一下 hello**指派**按鈕 tooassign hello 應用程式 toohello 選取的使用者。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-371">Click hello **Assign** button tooassign hello application toohello selected users.</span></span>
 
-<span data-ttu-id="885fa-372">稍後片刻，您已選取的使用者便能在存取面板中啟動這些應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-372">After a short period, the users you have selected be able to launch these applications in the Access Panel.</span></span>
+<span data-ttu-id="bdbe3-372">在短時間，您已選取的 hello 使用者會無法 toolaunch 中的這些應用程式之後 hello 存取面板。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-372">After a short period, hello users you have selected be able toolaunch these applications in hello Access Panel.</span></span>
 
-### <a name="check-if-a-user-is-under-a-license-related-to-the-application"></a><span data-ttu-id="885fa-373">檢查使用者是否已獲應用程式相關的授權</span><span class="sxs-lookup"><span data-stu-id="885fa-373">Check if a user is under a license related to the application</span></span>
+### <a name="check-if-a-user-is-under-a-license-related-toohello-application"></a><span data-ttu-id="bdbe3-373">檢查是否授權使用者相關 toohello 應用程式</span><span class="sxs-lookup"><span data-stu-id="bdbe3-373">Check if a user is under a license related toohello application</span></span>
 
-<span data-ttu-id="885fa-374">若要檢查指派給使用者的授權，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-374">To check a user’s assigned licenses, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-374">toocheck 使用者的指派授權，後續 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-374">toocheck a user’s assigned licenses, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-375">開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-375">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="bdbe3-375">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-375">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="885fa-376">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-376">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-376">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-376">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-377">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-377">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-377">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-377">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-378">按一下瀏覽功能表中的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-378">click **Users and groups** in the navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-378">按一下**使用者和群組**hello 瀏覽功能表中。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-378">click **Users and groups** in hello navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-379">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="885fa-379">click **All users**.</span></span>
+5.  <span data-ttu-id="bdbe3-379">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-379">click **All users**.</span></span>
 
-6.  <span data-ttu-id="885fa-380">**搜尋**您感興趣的使用者，**按一下資料列**選取該使用者。</span><span class="sxs-lookup"><span data-stu-id="885fa-380">**Search** for the user you are interested in and **click the row** to select.</span></span>
+6.  <span data-ttu-id="bdbe3-380">**搜尋**hello 您感興趣的使用者和**按一下 hello 列**tooselect。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-380">**Search** for hello user you are interested in and **click hello row** tooselect.</span></span>
 
-7.  <span data-ttu-id="885fa-381">按一下 [授權]，以查看目前已指派給使用者的授權。</span><span class="sxs-lookup"><span data-stu-id="885fa-381">click **Licenses** to see which licenses the user currently has assigned.</span></span>
+7.  <span data-ttu-id="bdbe3-381">按一下**授權**toosee 授權 hello 使用者目前已指派。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-381">click **Licenses** toosee which licenses hello user currently has assigned.</span></span>
 
-  * <span data-ttu-id="885fa-382">如果已為使用者指派 Office 授權，這會讓第一方 Office 應用程式出現在使用者的存取面板上。</span><span class="sxs-lookup"><span data-stu-id="885fa-382">If the user is assigned to an Office license this enable First Party Office applications to appear on the user’s Access Panel.</span></span>
+  * <span data-ttu-id="bdbe3-382">如果這啟用第一個合作對象 Office 應用程式 tooappear tooan Office 授權指派給 hello 使用者 hello 使用者的存取面板。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-382">If hello user is assigned tooan Office license this enable First Party Office applications tooappear on hello user’s Access Panel.</span></span>
 
-### <a name="how-to-assign-a-user-a-license"></a><span data-ttu-id="885fa-383">如何為使用者指派授權</span><span class="sxs-lookup"><span data-stu-id="885fa-383">How to assign a user a license</span></span> 
+### <a name="how-tooassign-a-user-a-license"></a><span data-ttu-id="bdbe3-383">如何 tooassign 使用者授權</span><span class="sxs-lookup"><span data-stu-id="bdbe3-383">How tooassign a user a license</span></span> 
 
-<span data-ttu-id="885fa-384">若要為使用者指派授權，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-384">To assign a license to a user, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-384">tooassign 授權 tooa 使用者，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-384">tooassign a license tooa user, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-385">開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-385">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="bdbe3-385">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-385">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="885fa-386">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-386">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-386">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-386">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-387">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-387">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-387">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-387">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-388">按一下瀏覽功能表中的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-388">click **Users and groups** in the navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-388">按一下**使用者和群組**hello 瀏覽功能表中。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-388">click **Users and groups** in hello navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-389">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="885fa-389">click **All users**.</span></span>
+5.  <span data-ttu-id="bdbe3-389">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-389">click **All users**.</span></span>
 
-6.  <span data-ttu-id="885fa-390">**搜尋**您感興趣的使用者，**按一下資料列**選取該使用者。</span><span class="sxs-lookup"><span data-stu-id="885fa-390">**Search** for the user you are interested in and **click the row** to select.</span></span>
+6.  <span data-ttu-id="bdbe3-390">**搜尋**hello 您感興趣的使用者和**按一下 hello 列**tooselect。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-390">**Search** for hello user you are interested in and **click hello row** tooselect.</span></span>
 
-7.  <span data-ttu-id="885fa-391">按一下 [授權]，查看使用者目前已指派的授權。</span><span class="sxs-lookup"><span data-stu-id="885fa-391">click **Licenses** to see which licenses the user currently has assigned.</span></span>
+7.  <span data-ttu-id="bdbe3-391">按一下**授權**toosee 授權 hello 使用者目前已指派。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-391">click **Licenses** toosee which licenses hello user currently has assigned.</span></span>
 
-8.  <span data-ttu-id="885fa-392">按一下 [指派] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="885fa-392">click the **Assign** button.</span></span>
+8.  <span data-ttu-id="bdbe3-392">按一下 hello**指派** 按鈕。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-392">click hello **Assign** button.</span></span>
 
-9.  <span data-ttu-id="885fa-393">從可用產品清單中選取**一或多個產品**。</span><span class="sxs-lookup"><span data-stu-id="885fa-393">Select **one or more products** from the list of available products.</span></span>
+9.  <span data-ttu-id="bdbe3-393">選取**一或多個產品**hello 清單中的可用產品。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-393">Select **one or more products** from hello list of available products.</span></span>
 
-10. <span data-ttu-id="885fa-394">(**選擇性**) 按一下 [指派選項] 項目，更細微地指派產品。</span><span class="sxs-lookup"><span data-stu-id="885fa-394">**Optional** click the **assignment options** item to granularly assign products.</span></span> <span data-ttu-id="885fa-395">完成時按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="885fa-395">Click **Ok** when this is completed.</span></span>
+10. <span data-ttu-id="bdbe3-394">**選擇性**按一下 hello**指派選項**項目 toogranularly 指派產品。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-394">**Optional** click hello **assignment options** item toogranularly assign products.</span></span> <span data-ttu-id="bdbe3-395">完成時按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-395">Click **Ok** when this is completed.</span></span>
 
-11. <span data-ttu-id="885fa-396">按一下 [指派] 按鈕，將這些授權指派給這位使用者。</span><span class="sxs-lookup"><span data-stu-id="885fa-396">Click the **Assign** button to assign these licenses to this user.</span></span>
+11. <span data-ttu-id="bdbe3-396">按一下 hello**指派**按鈕 tooassign 這些授權 toothis 使用者。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-396">Click hello **Assign** button tooassign these licenses toothis user.</span></span>
 
-## <a name="problems-related-to-assigning-applications-to-groups"></a><span data-ttu-id="885fa-397">將應用程式指派給群組的相關問題</span><span class="sxs-lookup"><span data-stu-id="885fa-397">Problems related to assigning applications to groups</span></span>
+## <a name="problems-related-tooassigning-applications-toogroups"></a><span data-ttu-id="bdbe3-397">問題相關的 tooassigning 應用程式 toogroups</span><span class="sxs-lookup"><span data-stu-id="bdbe3-397">Problems related tooassigning applications toogroups</span></span>
 
-<span data-ttu-id="885fa-398">使用者可能因為屬於已被指派應用程式的群組，所以能在存取面板上看見該應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-398">A user may be seeing an application on their Access Panel because they are part of a group that has been assigned the application.</span></span> <span data-ttu-id="885fa-399">以下是一些檢查方法：</span><span class="sxs-lookup"><span data-stu-id="885fa-399">Below are some ways to check:</span></span>
+<span data-ttu-id="bdbe3-398">使用者會看見應用程式存取面板上因為它們已被指派 hello 應用程式群組的一部分。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-398">A user may be seeing an application on their Access Panel because they are part of a group that has been assigned hello application.</span></span> <span data-ttu-id="bdbe3-399">以下是一些方式 toocheck:</span><span class="sxs-lookup"><span data-stu-id="bdbe3-399">Below are some ways toocheck:</span></span>
 
--   [<span data-ttu-id="885fa-400">檢查使用者的群組成員資格</span><span class="sxs-lookup"><span data-stu-id="885fa-400">Check a user’s group memberships</span></span>](#check-a-users-group-memberships)
+-   [<span data-ttu-id="bdbe3-400">檢查使用者的群組成員資格</span><span class="sxs-lookup"><span data-stu-id="bdbe3-400">Check a user’s group memberships</span></span>](#check-a-users-group-memberships)
 
--   [<span data-ttu-id="885fa-401">如何將應用程式直接指派給群組</span><span class="sxs-lookup"><span data-stu-id="885fa-401">How to assign an application to a group directly</span></span>](#how-to-assign-an-application-to-a-group-directly)
+-   [<span data-ttu-id="bdbe3-401">如何 tooassign 應用程式 tooa 群組直接</span><span class="sxs-lookup"><span data-stu-id="bdbe3-401">How tooassign an application tooa group directly</span></span>](#how-to-assign-an-application-to-a-group-directly)
 
--   [<span data-ttu-id="885fa-402">檢查使用者是否屬於指派給授權的群組</span><span class="sxs-lookup"><span data-stu-id="885fa-402">Check if a user is part of group assigned to a license</span></span>](#check-if-a-user-is-part-of-group-assigned-to-a-license)
+-   [<span data-ttu-id="bdbe3-402">檢查使用者是否屬於 tooa 授權指派給群組</span><span class="sxs-lookup"><span data-stu-id="bdbe3-402">Check if a user is part of group assigned tooa license</span></span>](#check-if-a-user-is-part-of-group-assigned-to-a-license)
 
--   [<span data-ttu-id="885fa-403">如何將授權指派給群組</span><span class="sxs-lookup"><span data-stu-id="885fa-403">How to assign a license to a group</span></span>](#how-to-assign-a-license-to-a-group)
+-   [<span data-ttu-id="bdbe3-403">如何 tooassign 授權 tooa 群組</span><span class="sxs-lookup"><span data-stu-id="bdbe3-403">How tooassign a license tooa group</span></span>](#how-to-assign-a-license-to-a-group)
 
-### <a name="check-a-users-group-memberships"></a><span data-ttu-id="885fa-404">檢查使用者的群組成員資格</span><span class="sxs-lookup"><span data-stu-id="885fa-404">Check a user’s group memberships</span></span>
+### <a name="check-a-users-group-memberships"></a><span data-ttu-id="bdbe3-404">檢查使用者的群組成員資格</span><span class="sxs-lookup"><span data-stu-id="bdbe3-404">Check a user’s group memberships</span></span>
 
-<span data-ttu-id="885fa-405">若要檢查群組的成員資格，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-405">To check a group’s membership, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-405">toocheck 群組的成員資格，後續 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-405">toocheck a group’s membership, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-406">開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-406">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="bdbe3-406">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-406">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="885fa-407">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-407">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-407">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-407">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-408">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-408">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-408">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-408">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-409">按一下瀏覽功能表中的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-409">click **Users and groups** in the navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-409">按一下**使用者和群組**hello 瀏覽功能表中。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-409">click **Users and groups** in hello navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-410">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="885fa-410">click **All users**.</span></span>
+5.  <span data-ttu-id="bdbe3-410">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-410">click **All users**.</span></span>
 
-6.  <span data-ttu-id="885fa-411">**搜尋**您感興趣的使用者，然後**按一下資料列**加以選取。</span><span class="sxs-lookup"><span data-stu-id="885fa-411">**Search** for the user you are interested in and **click the row** to select.</span></span>
+6.  <span data-ttu-id="bdbe3-411">**搜尋**hello 您感興趣的使用者和**按一下 hello 列**tooselect。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-411">**Search** for hello user you are interested in and **click hello row** tooselect.</span></span>
 
-7.  <span data-ttu-id="885fa-412">按一下 [群組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-412">click **Groups**.</span></span>
+7.  <span data-ttu-id="bdbe3-412">按一下 [群組]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-412">click **Groups**.</span></span>
 
-8.  <span data-ttu-id="885fa-413">檢查使用者是否屬於已指派給應用程式的群組。</span><span class="sxs-lookup"><span data-stu-id="885fa-413">Check to see if your user is part of a Group assigned to the application.</span></span>
+8.  <span data-ttu-id="bdbe3-413">如果您的使用者屬於群組的核取 toosee 指派 toohello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-413">Check toosee if your user is part of a Group assigned toohello application.</span></span>
 
-  * <span data-ttu-id="885fa-414">如果您想要從群組移除使用者，請**按一下群組的資料列**，然後選取 [刪除]。</span><span class="sxs-lookup"><span data-stu-id="885fa-414">If you want to remove the user from the group, **click the row** of the group and select delete.</span></span>
+  * <span data-ttu-id="bdbe3-414">如果您想從 hello 群組 tooremove hello 使用者**按一下 hello 列**hello 群組和選取的刪除。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-414">If you want tooremove hello user from hello group, **click hello row** of hello group and select delete.</span></span>
 
-### <a name="how-to-assign-an-application-to-a-group-directly"></a><span data-ttu-id="885fa-415">如何將應用程式直接指派給群組</span><span class="sxs-lookup"><span data-stu-id="885fa-415">How to assign an application to a group directly</span></span>
+### <a name="how-tooassign-an-application-tooa-group-directly"></a><span data-ttu-id="bdbe3-415">如何 tooassign 應用程式 tooa 群組直接</span><span class="sxs-lookup"><span data-stu-id="bdbe3-415">How tooassign an application tooa group directly</span></span>
 
-<span data-ttu-id="885fa-416">若要將一或多個群組直接指派給應用程式，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-416">To assign one or more groups to an application directly, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-416">tooassign 一或多個群組 tooan 的應用程式直接管理，後續 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-416">tooassign one or more groups tooan application directly, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-417">開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-417">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator**.</span></span>
+1.  <span data-ttu-id="bdbe3-417">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-417">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator**.</span></span>
 
-2.  <span data-ttu-id="885fa-418">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-418">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-418">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-418">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-419">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-419">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-419">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-419">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-420">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-420">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-420">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-420">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-421">按一下 [所有應用程式]，以檢視所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-421">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="bdbe3-421">按一下**所有應用程式**tooview 所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-421">click **All Applications** tooview a list of all your applications.</span></span>
 
-  * <span data-ttu-id="885fa-422">若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="885fa-422">If you do not see the application you want show up here, use the **Filter** control at the top of the **All Applications List** and set the **Show** option to **All Applications.**</span></span>
+  * <span data-ttu-id="bdbe3-422">如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-422">If you do not see hello application you want show up here, use hello **Filter** control at hello top of hello **All Applications List** and set hello **Show** option too**All Applications.**</span></span>
 
-6.  <span data-ttu-id="885fa-423">從清單中選取您想要指派使用者的應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-423">Select the application you want to assign a user to from the list.</span></span>
+6.  <span data-ttu-id="bdbe3-423">選取您想要使用者 toofrom hello 清單 tooassign hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-423">Select hello application you want tooassign a user toofrom hello list.</span></span>
 
-7.  <span data-ttu-id="885fa-424">應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-424">Once the application loads, click **Users and Groups** from the application’s left hand navigation menu.</span></span>
+7.  <span data-ttu-id="bdbe3-424">一旦 hello 應用程式載入時，按一下 **使用者和群組**從 hello 應用程式的左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-424">Once hello application loads, click **Users and Groups** from hello application’s left hand navigation menu.</span></span>
 
-8.  <span data-ttu-id="885fa-425">按一下 [使用者和群組] 清單頂端的 [新增] 按鈕，以開啟 [新增指派] 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="885fa-425">Click the **Add** button on top of the **Users and Groups** list to open the **Add Assignment** blade.</span></span>
+8.  <span data-ttu-id="bdbe3-425">按一下 hello**新增**hello 頂端的按鈕**使用者和群組**清單 tooopen hello**將作業加入**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-425">Click hello **Add** button on top of hello **Users and Groups** list tooopen hello **Add Assignment** blade.</span></span>
 
-9.  <span data-ttu-id="885fa-426">從 [新增指派] 刀鋒視窗按一下 [使用者和群組] 選取器。</span><span class="sxs-lookup"><span data-stu-id="885fa-426">click the **Users and groups** selector from the **Add Assignment** blade.</span></span>
+9.  <span data-ttu-id="bdbe3-426">按一下 hello**使用者和群組**選取器從 hello**將作業加入**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-426">click hello **Users and groups** selector from hello **Add Assignment** blade.</span></span>
 
-10. <span data-ttu-id="885fa-427">在 [依姓名或電子郵件地址搜尋] 搜尋方塊中，輸入您有興趣指派之群組的**完整群組名稱**。</span><span class="sxs-lookup"><span data-stu-id="885fa-427">Type in the **full group name** of the group you are interested in assigning into the **Search by name or email address** search box.</span></span>
+10. <span data-ttu-id="bdbe3-427">型別在 hello**完整的群組名稱**您感興趣指派到 hello hello 群組的**依名稱或電子郵件地址搜尋**搜尋 方塊。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-427">Type in hello **full group name** of hello group you are interested in assigning into hello **Search by name or email address** search box.</span></span>
 
-11. <span data-ttu-id="885fa-428">將滑鼠停留在清單中的**群組**上方，以顯示**核取方塊**。</span><span class="sxs-lookup"><span data-stu-id="885fa-428">Hover over the **group** in the list to reveal a **checkbox**.</span></span> <span data-ttu-id="885fa-429">按一下群組設定檔照片或標誌旁邊的核取方塊，將使用者新增至 [已選取] 清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-429">Click the checkbox next to the group’s profile photo or logo to add your user to the **Selected** list.</span></span>
+11. <span data-ttu-id="bdbe3-428">將滑鼠停留在 hello**群組**在 hello 清單 tooreveal**核取方塊**。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-428">Hover over hello **group** in hello list tooreveal a **checkbox**.</span></span> <span data-ttu-id="bdbe3-429">按一下 [hello] 核取方塊下一步 toohello 群組的設定檔的相片或標誌 tooadd 使用者 toohello**選取**清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-429">Click hello checkbox next toohello group’s profile photo or logo tooadd your user toohello **Selected** list.</span></span>
 
-12. <span data-ttu-id="885fa-430">**選擇性︰**如果您想要**新增多個群組**，請在 [依姓名或電子郵件地址搜尋] 搜尋方塊中，輸入另一個**完整群組名稱**，然後按一下核取方塊，將此群組新增至 [已選取] 清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-430">**Optional:** If you would like to **add more than one group**, type in another **full group name** into the **Search by name or email address** search box, and click the checkbox to add this group to the **Selected** list.</span></span>
+12. <span data-ttu-id="bdbe3-430">**選擇性：**如果您希望太**新增多個群組**，在另一個類型**完整的群組名稱**到 hello**依名稱或電子郵件地址搜尋**搜尋方塊中，按一下此群組 toohello hello 核取方塊 tooadd**選取**清單。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-430">**Optional:** If you would like too**add more than one group**, type in another **full group name** into hello **Search by name or email address** search box, and click hello checkbox tooadd this group toohello **Selected** list.</span></span>
 
-13. <span data-ttu-id="885fa-431">當您完成選取群組時，按一下 [選取] 按鈕，將它們新增到要指派給應用程式的使用者和群組清單。</span><span class="sxs-lookup"><span data-stu-id="885fa-431">When you are finished selecting groups, click the **Select** button to add them to the list of users and groups to be assigned to the application.</span></span>
+13. <span data-ttu-id="bdbe3-431">當您完成選取群組，請按一下 hello**選取**按鈕 tooadd 它們的使用者和群組 toobe toohello 清單指派 toohello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-431">When you are finished selecting groups, click hello **Select** button tooadd them toohello list of users and groups toobe assigned toohello application.</span></span>
 
-14. <span data-ttu-id="885fa-432">**選擇性︰**按一下 [新增指派] 刀鋒視窗中的 [選取角色] 選取器，以選取要指派給您已選取群組的角色。</span><span class="sxs-lookup"><span data-stu-id="885fa-432">**Optional:** click the **Select Role** selector in the **Add Assignment** blade to select a role to assign to the groups you have selected.</span></span>
+14. <span data-ttu-id="bdbe3-432">**選擇性：**按一下 hello**選取角色**hello 中的選取器**將作業加入**刀鋒視窗 tooselect 角色 tooassign toohello 群組您已選取。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-432">**Optional:** click hello **Select Role** selector in hello **Add Assignment** blade tooselect a role tooassign toohello groups you have selected.</span></span>
 
-15. <span data-ttu-id="885fa-433">按一下 [指派] 按鈕，將應用程式指派給選取的群組。</span><span class="sxs-lookup"><span data-stu-id="885fa-433">Click the **Assign** button to assign the application to the selected groups.</span></span>
+15. <span data-ttu-id="bdbe3-433">按一下 hello**指派**按鈕 tooassign hello 應用程式 toohello 選取的群組。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-433">Click hello **Assign** button tooassign hello application toohello selected groups.</span></span>
 
-<span data-ttu-id="885fa-434">稍後片刻，您已選取的使用者便能在存取面板中啟動這些應用程式。</span><span class="sxs-lookup"><span data-stu-id="885fa-434">After a short period, the users you have selected be able to launch these applications in the Access Panel.</span></span>
+<span data-ttu-id="bdbe3-434">在短時間，您已選取的 hello 使用者會無法 toolaunch 中的這些應用程式之後 hello 存取面板。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-434">After a short period, hello users you have selected be able toolaunch these applications in hello Access Panel.</span></span>
 
-### <a name="check-if-a-user-is-part-of-group-assigned-to-a-license"></a><span data-ttu-id="885fa-435">檢查使用者是否屬於指派給授權的群組</span><span class="sxs-lookup"><span data-stu-id="885fa-435">Check if a user is part of group assigned to a license</span></span>
+### <a name="check-if-a-user-is-part-of-group-assigned-tooa-license"></a><span data-ttu-id="bdbe3-435">檢查使用者是否屬於 tooa 授權指派給群組</span><span class="sxs-lookup"><span data-stu-id="bdbe3-435">Check if a user is part of group assigned tooa license</span></span>
 
-1.  <span data-ttu-id="885fa-436">開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-436">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="bdbe3-436">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-436">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="885fa-437">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-437">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-437">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-437">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-438">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-438">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-438">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-438">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-439">按一下瀏覽功能表中的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-439">click **Users and groups** in the navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-439">按一下**使用者和群組**hello 瀏覽功能表中。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-439">click **Users and groups** in hello navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-440">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="885fa-440">click **All users**.</span></span>
+5.  <span data-ttu-id="bdbe3-440">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-440">click **All users**.</span></span>
 
-6.  <span data-ttu-id="885fa-441">**搜尋**您感興趣的使用者，然後**按一下資料列**加以選取。</span><span class="sxs-lookup"><span data-stu-id="885fa-441">**Search** for the user you are interested in and **click the row** to select.</span></span>
+6.  <span data-ttu-id="bdbe3-441">**搜尋**hello 您感興趣的使用者和**按一下 hello 列**tooselect。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-441">**Search** for hello user you are interested in and **click hello row** tooselect.</span></span>
 
-7.  <span data-ttu-id="885fa-442">按一下 [群組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-442">click **Groups**.</span></span>
+7.  <span data-ttu-id="bdbe3-442">按一下 [群組]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-442">click **Groups**.</span></span>
 
-8.  <span data-ttu-id="885fa-443">按一下特定群組的資料列。</span><span class="sxs-lookup"><span data-stu-id="885fa-443">click the row of a specific group.</span></span>
+8.  <span data-ttu-id="bdbe3-443">按一下 特定群組的 hello 資料列。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-443">click hello row of a specific group.</span></span>
 
-9.  <span data-ttu-id="885fa-444">按一下 [授權]，以查看已指派給群組的授權。</span><span class="sxs-lookup"><span data-stu-id="885fa-444">click **Licenses** to see which licenses the group has assigned to it.</span></span>
+9.  <span data-ttu-id="bdbe3-444">按一下**授權**toosee 授權 hello 群組已指派 tooit。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-444">click **Licenses** toosee which licenses hello group has assigned tooit.</span></span>
 
-   * <span data-ttu-id="885fa-445">如果已將群組指派給 Office 授權，這可能會讓某些第一方 Office 應用程式出現在使用者的存取面板上。</span><span class="sxs-lookup"><span data-stu-id="885fa-445">If the group is assigned to an Office license this may enable certain First Party Office applications to appear on the user’s Access Panel.</span></span>
+   * <span data-ttu-id="bdbe3-445">如果這可能會讓特定的第一個合作對象 Office 應用程式 tooappear tooan Office 授權指派給 hello 群組 hello 使用者的存取面板。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-445">If hello group is assigned tooan Office license this may enable certain First Party Office applications tooappear on hello user’s Access Panel.</span></span>
 
-### <a name="how-to-assign-a-license-to-a-group"></a><span data-ttu-id="885fa-446">如何將授權指派給群組</span><span class="sxs-lookup"><span data-stu-id="885fa-446">How to assign a license to a group</span></span>
+### <a name="how-tooassign-a-license-tooa-group"></a><span data-ttu-id="bdbe3-446">如何 tooassign 授權 tooa 群組</span><span class="sxs-lookup"><span data-stu-id="bdbe3-446">How tooassign a license tooa group</span></span>
 
-<span data-ttu-id="885fa-447">若要將授權指派給群組，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="885fa-447">To assign a license to a group, follow the steps below:</span></span>
+<span data-ttu-id="bdbe3-447">tooassign 授權 tooa 群組，請遵循下列 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="bdbe3-447">tooassign a license tooa group, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="885fa-448">開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="885fa-448">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="bdbe3-448">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**</span><span class="sxs-lookup"><span data-stu-id="bdbe3-448">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="885fa-449">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-449">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="bdbe3-449">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-449">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="885fa-450">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="885fa-450">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="bdbe3-450">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-450">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="885fa-451">按一下瀏覽功能表中的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-451">click **Users and groups** in the navigation menu.</span></span>
+4.  <span data-ttu-id="bdbe3-451">按一下**使用者和群組**hello 瀏覽功能表中。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-451">click **Users and groups** in hello navigation menu.</span></span>
 
-5.  <span data-ttu-id="885fa-452">按一下 [所有群組]。</span><span class="sxs-lookup"><span data-stu-id="885fa-452">click **All groups**.</span></span>
+5.  <span data-ttu-id="bdbe3-452">按一下 [所有群組]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-452">click **All groups**.</span></span>
 
-6.  <span data-ttu-id="885fa-453">**搜尋**您感興趣的群組，然後**按一下資料列**加以選取。</span><span class="sxs-lookup"><span data-stu-id="885fa-453">**Search** for the group you are interested in and **click the row** to select.</span></span>
+6.  <span data-ttu-id="bdbe3-453">**搜尋**hello 您感興趣的群組和**按一下 hello 列**tooselect。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-453">**Search** for hello group you are interested in and **click hello row** tooselect.</span></span>
 
-7.  <span data-ttu-id="885fa-454">按一下 [授權]，以查看目前已指派至群組的授權。</span><span class="sxs-lookup"><span data-stu-id="885fa-454">click **Licenses** to see which licenses the group currently has assigned.</span></span>
+7.  <span data-ttu-id="bdbe3-454">按一下**授權**toosee 授權 hello 群組目前已指派。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-454">click **Licenses** toosee which licenses hello group currently has assigned.</span></span>
 
-8.  <span data-ttu-id="885fa-455">按一下 [指派] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="885fa-455">click the **Assign** button.</span></span>
+8.  <span data-ttu-id="bdbe3-455">按一下 hello**指派** 按鈕。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-455">click hello **Assign** button.</span></span>
 
-9.  <span data-ttu-id="885fa-456">從可用產品清單中選取**一或多個產品**。</span><span class="sxs-lookup"><span data-stu-id="885fa-456">Select **one or more products** from the list of available products.</span></span>
+9.  <span data-ttu-id="bdbe3-456">選取**一或多個產品**hello 清單中的可用產品。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-456">Select **one or more products** from hello list of available products.</span></span>
 
-10. <span data-ttu-id="885fa-457">(**選擇性**) 按一下 [指派選項] 項目，更細微地指派產品。</span><span class="sxs-lookup"><span data-stu-id="885fa-457">**Optional** click the **assignment options** item to granularly assign products.</span></span> <span data-ttu-id="885fa-458">完成時按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="885fa-458">Click **Ok** when this is completed.</span></span>
+10. <span data-ttu-id="bdbe3-457">**選擇性**按一下 hello**指派選項**項目 toogranularly 指派產品。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-457">**Optional** click hello **assignment options** item toogranularly assign products.</span></span> <span data-ttu-id="bdbe3-458">完成時按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-458">Click **Ok** when this is completed.</span></span>
 
-11. <span data-ttu-id="885fa-459">按一下 [指派] 按鈕，將這些授權指派至這個群組。</span><span class="sxs-lookup"><span data-stu-id="885fa-459">Click the **Assign** button to assign these licenses to this group.</span></span> <span data-ttu-id="885fa-460">根據群組的大小和複雜度，這可能需要很長的時間。</span><span class="sxs-lookup"><span data-stu-id="885fa-460">This may take a long time, depending on the size and complexity of the group.</span></span>
+11. <span data-ttu-id="bdbe3-459">按一下 hello**指派**按鈕 tooassign 這些授權 toothis 群組。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-459">Click hello **Assign** button tooassign these licenses toothis group.</span></span> <span data-ttu-id="bdbe3-460">這可能需要很長的時間，取決於 hello 大小和複雜度 hello 群組。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-460">This may take a long time, depending on hello size and complexity of hello group.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="885fa-461">若要更快速執行此作業，請考慮暫時將授權直接指派給使用者。</span><span class="sxs-lookup"><span data-stu-id="885fa-461">To do this faster, consider temporarily assigning a license to the user directly.</span></span> 
+><span data-ttu-id="bdbe3-461">toodo 這速度更快，請考慮暫時直接指派授權 toohello 使用者。</span><span class="sxs-lookup"><span data-stu-id="bdbe3-461">toodo this faster, consider temporarily assigning a license toohello user directly.</span></span> 
 >
 >
 
-## <a name="next-steps"></a><span data-ttu-id="885fa-462">後續步驟</span><span class="sxs-lookup"><span data-stu-id="885fa-462">Next steps</span></span>
-[<span data-ttu-id="885fa-463">將新的使用者加入 Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="885fa-463">Add new users to Azure Active Directory</span></span>](active-directory-users-create-azure-portal.md)
+## <a name="next-steps"></a><span data-ttu-id="bdbe3-462">後續步驟</span><span class="sxs-lookup"><span data-stu-id="bdbe3-462">Next steps</span></span>
+[<span data-ttu-id="bdbe3-463">加入新使用者 tooAzure Active Directory</span><span class="sxs-lookup"><span data-stu-id="bdbe3-463">Add new users tooAzure Active Directory</span></span>](active-directory-users-create-azure-portal.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "將 Raspberry Pi (C) 連接到 Azure IoT - 第 1 課：取得工具 (Windows) | Microsoft Docs"
-description: "在 Windows 7 和更新版本上，針對 Pi 的第一個範例應用程式下載並安裝必要的工具和軟體。"
+title: "Connect Raspberry Pi (C) tooAzure IoT-第 1 課： 取得 tools (Windows) |Microsoft 文件"
+description: "下載並安裝在 Windows 7 和更新版本的 hello 必要工具及軟體 hello 第一個範例應用程式 Pi。"
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,69 +17,69 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 0e58975f4411f97223b2c4374bdd746fe6628c42
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 70ae6d15f9d6af116ff065a79a30d99afc67bffd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-the-tools-windows-7-or-later"></a><span data-ttu-id="ea801-104">取得工具 (Windows 7 或更新版本)</span><span class="sxs-lookup"><span data-stu-id="ea801-104">Get the tools (Windows 7 or later)</span></span>
+# <a name="get-hello-tools-windows-7-or-later"></a><span data-ttu-id="2a461-104">取得 hello tools (Windows 7 或更新版本)</span><span class="sxs-lookup"><span data-stu-id="2a461-104">Get hello tools (Windows 7 or later)</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="ea801-105">Windows 7 或更新版本</span><span class="sxs-lookup"><span data-stu-id="ea801-105">Windows 7 or later</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
-> * [<span data-ttu-id="ea801-106">Ubuntu 16.04</span><span class="sxs-lookup"><span data-stu-id="ea801-106">Ubuntu 16.04</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-ubuntu.md)
-> * [<span data-ttu-id="ea801-107">macOS 10.10</span><span class="sxs-lookup"><span data-stu-id="ea801-107">macOS 10.10</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-mac.md)
+> * [<span data-ttu-id="2a461-105">Windows 7 或更新版本</span><span class="sxs-lookup"><span data-stu-id="2a461-105">Windows 7 or later</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
+> * [<span data-ttu-id="2a461-106">Ubuntu 16.04</span><span class="sxs-lookup"><span data-stu-id="2a461-106">Ubuntu 16.04</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-ubuntu.md)
+> * [<span data-ttu-id="2a461-107">macOS 10.10</span><span class="sxs-lookup"><span data-stu-id="2a461-107">macOS 10.10</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-mac.md)
 
-## <a name="what-you-will-do"></a><span data-ttu-id="ea801-108">將執行的作業</span><span class="sxs-lookup"><span data-stu-id="ea801-108">What you will do</span></span>
-<span data-ttu-id="ea801-109">下載您 Raspberry Pi 3 第一個範例應用程式的開發工具和軟體。</span><span class="sxs-lookup"><span data-stu-id="ea801-109">Download the development tools and the software for the first sample application for Raspberry Pi 3.</span></span> <span data-ttu-id="ea801-110">如果您有任何問題，請在[疑難排解頁面](iot-hub-raspberry-pi-kit-c-troubleshooting.md)尋求解決方案。</span><span class="sxs-lookup"><span data-stu-id="ea801-110">If you have any problems, look for solutions on the [troubleshooting page](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="2a461-108">將執行的作業</span><span class="sxs-lookup"><span data-stu-id="2a461-108">What you will do</span></span>
+<span data-ttu-id="2a461-109">下載 hello 開發工具及 hello 第一個範例應用程式覆盆子 Pi 3 hello 軟體。</span><span class="sxs-lookup"><span data-stu-id="2a461-109">Download hello development tools and hello software for hello first sample application for Raspberry Pi 3.</span></span> <span data-ttu-id="2a461-110">如果您有任何問題，尋找解決方案上 hello[疑難排解頁面](iot-hub-raspberry-pi-kit-c-troubleshooting.md)。</span><span class="sxs-lookup"><span data-stu-id="2a461-110">If you have any problems, look for solutions on hello [troubleshooting page](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ea801-111">雖然主要邏輯的程式語言是 C，但這些課程中會使用 Node.js 工具來探索裝置，以及建置和部署範例應用程式。</span><span class="sxs-lookup"><span data-stu-id="ea801-111">Although the programming language of the main logic is C, Node.js tools are used in the lessons to discover devices, and build and deploy sample applications.</span></span>
+> <span data-ttu-id="2a461-111">雖然 hello 程式設計語言的 hello 主要邏輯是 C 的 Node.js 工具會用於 hello 課程 toodiscover 裝置，並建置和部署範例應用程式。</span><span class="sxs-lookup"><span data-stu-id="2a461-111">Although hello programming language of hello main logic is C, Node.js tools are used in hello lessons toodiscover devices, and build and deploy sample applications.</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="ea801-112">學習目標</span><span class="sxs-lookup"><span data-stu-id="ea801-112">What you will learn</span></span>
-<span data-ttu-id="ea801-113">在本文中，您將了解：</span><span class="sxs-lookup"><span data-stu-id="ea801-113">In this article, you will learn:</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="2a461-112">學習目標</span><span class="sxs-lookup"><span data-stu-id="2a461-112">What you will learn</span></span>
+<span data-ttu-id="2a461-113">在本文中，您將了解：</span><span class="sxs-lookup"><span data-stu-id="2a461-113">In this article, you will learn:</span></span>
 
-* <span data-ttu-id="ea801-114">如何安裝 Git 和 Node.js。</span><span class="sxs-lookup"><span data-stu-id="ea801-114">How to install Git and Node.js.</span></span>
-  * <span data-ttu-id="ea801-115">[Git](https://git-scm.com) 是一個開放原始碼分散式版本控制系統。</span><span class="sxs-lookup"><span data-stu-id="ea801-115">[Git](https://git-scm.com) is an open source distributed version control system.</span></span> <span data-ttu-id="ea801-116">本文的範例應用程式將會儲存在 Git 上。</span><span class="sxs-lookup"><span data-stu-id="ea801-116">The sample application for this article is stored on Git.</span></span>
-  * <span data-ttu-id="ea801-117">[Node.js](https://nodejs.org/en/) 是一個具有豐富套件生態系統的 JavaScript 執行階段。</span><span class="sxs-lookup"><span data-stu-id="ea801-117">[Node.js](https://nodejs.org/en/) is a JavaScript runtime with a rich package ecosystem.</span></span>
-* <span data-ttu-id="ea801-118">如何使用 NPM 安裝額外的 Node.js 開發工具。</span><span class="sxs-lookup"><span data-stu-id="ea801-118">How to use NPM to install additional Node.js development tools.</span></span>
-  * <span data-ttu-id="ea801-119">Node.js 的最低版本需求為 4.5 LTS。</span><span class="sxs-lookup"><span data-stu-id="ea801-119">The minimum version requirement of Node.js is 4.5 LTS.</span></span>
-  * <span data-ttu-id="ea801-120">[NPM](https://www.npmjs.com) 是 Node.js 的其中一個套件管理員。</span><span class="sxs-lookup"><span data-stu-id="ea801-120">[NPM](https://www.npmjs.com) is one of the package managers for Node.js.</span></span>
+* <span data-ttu-id="2a461-114">如何 tooinstall Git 和 Node.js。</span><span class="sxs-lookup"><span data-stu-id="2a461-114">How tooinstall Git and Node.js.</span></span>
+  * <span data-ttu-id="2a461-115">[Git](https://git-scm.com) 是一個開放原始碼分散式版本控制系統。</span><span class="sxs-lookup"><span data-stu-id="2a461-115">[Git](https://git-scm.com) is an open source distributed version control system.</span></span> <span data-ttu-id="2a461-116">這個發行項的 hello 範例應用程式會儲存在 Git。</span><span class="sxs-lookup"><span data-stu-id="2a461-116">hello sample application for this article is stored on Git.</span></span>
+  * <span data-ttu-id="2a461-117">[Node.js](https://nodejs.org/en/) 是一個具有豐富套件生態系統的 JavaScript 執行階段。</span><span class="sxs-lookup"><span data-stu-id="2a461-117">[Node.js](https://nodejs.org/en/) is a JavaScript runtime with a rich package ecosystem.</span></span>
+* <span data-ttu-id="2a461-118">如何 toouse NPM tooinstall 其他 Node.js 開發工具。</span><span class="sxs-lookup"><span data-stu-id="2a461-118">How toouse NPM tooinstall additional Node.js development tools.</span></span>
+  * <span data-ttu-id="2a461-119">Node.js hello 最低版本需求是 4.5 LTS。</span><span class="sxs-lookup"><span data-stu-id="2a461-119">hello minimum version requirement of Node.js is 4.5 LTS.</span></span>
+  * <span data-ttu-id="2a461-120">[NPM](https://www.npmjs.com)是其中一個 hello for Node.js 的封裝管理員。</span><span class="sxs-lookup"><span data-stu-id="2a461-120">[NPM](https://www.npmjs.com) is one of hello package managers for Node.js.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="ea801-121">您需要什麼</span><span class="sxs-lookup"><span data-stu-id="ea801-121">What you need</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="2a461-121">您需要什麼</span><span class="sxs-lookup"><span data-stu-id="2a461-121">What you need</span></span>
 
-<span data-ttu-id="ea801-122">若要完成此作業，您需要：</span><span class="sxs-lookup"><span data-stu-id="ea801-122">To complete this operation, you will need:</span></span>
+<span data-ttu-id="2a461-122">toocomplete 這項作業，您將需要：</span><span class="sxs-lookup"><span data-stu-id="2a461-122">toocomplete this operation, you will need:</span></span>
 
-* <span data-ttu-id="ea801-123">網際網路連線以下載開發工具和軟體。</span><span class="sxs-lookup"><span data-stu-id="ea801-123">An Internet connection to download the development tools and the software.</span></span>
-* <span data-ttu-id="ea801-124">一部執行 Windows 的電腦。</span><span class="sxs-lookup"><span data-stu-id="ea801-124">A computer that is running Windows.</span></span>
+* <span data-ttu-id="2a461-123">網際網路連線 toodownload hello 開發工具和 hello 軟體。</span><span class="sxs-lookup"><span data-stu-id="2a461-123">An Internet connection toodownload hello development tools and hello software.</span></span>
+* <span data-ttu-id="2a461-124">一部執行 Windows 的電腦。</span><span class="sxs-lookup"><span data-stu-id="2a461-124">A computer that is running Windows.</span></span>
 
-## <a name="install-git-and-nodejs"></a><span data-ttu-id="ea801-125">安裝 Git 和 Node.js</span><span class="sxs-lookup"><span data-stu-id="ea801-125">Install Git and Node.js</span></span>
+## <a name="install-git-and-nodejs"></a><span data-ttu-id="2a461-125">安裝 Git 和 Node.js</span><span class="sxs-lookup"><span data-stu-id="2a461-125">Install Git and Node.js</span></span>
 
-<span data-ttu-id="ea801-126">按一下下列連結以下載並安裝 Git for Windows 和適用於 Windows 的 Node.js LTS。</span><span class="sxs-lookup"><span data-stu-id="ea801-126">Click the links below to download and install Git and Node.js LTS for Windows.</span></span>
+<span data-ttu-id="2a461-126">按一下下方 toodownload hello 連結，並安裝 Git 和適用於 Windows 的 Node.js LTS。</span><span class="sxs-lookup"><span data-stu-id="2a461-126">Click hello links below toodownload and install Git and Node.js LTS for Windows.</span></span>
 
-* [<span data-ttu-id="ea801-127">取得 Git for Windows</span><span class="sxs-lookup"><span data-stu-id="ea801-127">Get Git for Windows</span></span>](https://git-scm.com/download/win/)
-* [<span data-ttu-id="ea801-128">取得適用於 Windows 的 Node.js LTS</span><span class="sxs-lookup"><span data-stu-id="ea801-128">Get Node.js LTS for Windows</span></span>](https://nodejs.org/en/)
+* [<span data-ttu-id="2a461-127">取得 Git for Windows</span><span class="sxs-lookup"><span data-stu-id="2a461-127">Get Git for Windows</span></span>](https://git-scm.com/download/win/)
+* [<span data-ttu-id="2a461-128">取得適用於 Windows 的 Node.js LTS</span><span class="sxs-lookup"><span data-stu-id="2a461-128">Get Node.js LTS for Windows</span></span>](https://nodejs.org/en/)
 
-## <a name="install-additional-nodejs-development-tools"></a><span data-ttu-id="ea801-129">安裝額外的 Node.js 開發工具</span><span class="sxs-lookup"><span data-stu-id="ea801-129">Install additional Node.js development tools</span></span>
+## <a name="install-additional-nodejs-development-tools"></a><span data-ttu-id="2a461-129">安裝額外的 Node.js 開發工具</span><span class="sxs-lookup"><span data-stu-id="2a461-129">Install additional Node.js development tools</span></span>
 
-<span data-ttu-id="ea801-130">使用 [gulp.js](http://gulpjs.com) 對 Pi 自動部署範例應用程式。</span><span class="sxs-lookup"><span data-stu-id="ea801-130">Use [gulp.js](http://gulpjs.com) to automate the deployment of the sample application to Pi.</span></span> <span data-ttu-id="ea801-131">使用 [device-discovery-cli](https://github.com/Azure/device-discovery-cli) 來擷取關於您 IoT 裝置的網路資訊。</span><span class="sxs-lookup"><span data-stu-id="ea801-131">Use the [device-discovery-cli](https://github.com/Azure/device-discovery-cli) to retrieve network information about your IoT devices.</span></span>
+<span data-ttu-id="2a461-130">使用[cwd](http://gulpjs.com) hello 範例應用程式 tooPi tooautomate hello 部署。</span><span class="sxs-lookup"><span data-stu-id="2a461-130">Use [gulp.js](http://gulpjs.com) tooautomate hello deployment of hello sample application tooPi.</span></span> <span data-ttu-id="2a461-131">使用 hello[裝置-探索-cli](https://github.com/Azure/device-discovery-cli) tooretrieve IoT 裝置相關的網路資訊。</span><span class="sxs-lookup"><span data-stu-id="2a461-131">Use hello [device-discovery-cli](https://github.com/Azure/device-discovery-cli) tooretrieve network information about your IoT devices.</span></span>
 
-<span data-ttu-id="ea801-132">以系統管理員身分開啟命令提示字元。</span><span class="sxs-lookup"><span data-stu-id="ea801-132">Start a command prompt as an administrator.</span></span> <span data-ttu-id="ea801-133">執行下列命令以安裝 `gulp` 和 `device-discovery-cli`：</span><span class="sxs-lookup"><span data-stu-id="ea801-133">Install `gulp` and `device-discovery-cli` by running the following command:</span></span>
+<span data-ttu-id="2a461-132">以系統管理員身分開啟命令提示字元。</span><span class="sxs-lookup"><span data-stu-id="2a461-132">Start a command prompt as an administrator.</span></span> <span data-ttu-id="2a461-133">安裝`gulp`和`device-discovery-cli`藉由執行下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="2a461-133">Install `gulp` and `device-discovery-cli` by running hello following command:</span></span>
 
 ```bash
 npm install -g device-discovery-cli gulp
 ```
 
-<span data-ttu-id="ea801-134">如果您於電腦上安裝 Node.js 和這些額外的 Node.js 開發工具時遇到問題，請參閱[疑難排解指南](iot-hub-raspberry-pi-kit-c-troubleshooting.md)以取得常見問題的解決方案。</span><span class="sxs-lookup"><span data-stu-id="ea801-134">If you experience issues installing Node.js and these additional Node.js development tools on your computer, see the [troubleshooting guide](iot-hub-raspberry-pi-kit-c-troubleshooting.md) for solutions to common problems.</span></span>
+<span data-ttu-id="2a461-134">如果您遇到您的電腦上安裝 Node.js 和下列其他的 Node.js 開發工具的問題，請參閱 hello[疑難排解指南](iot-hub-raspberry-pi-kit-c-troubleshooting.md)解決方案 toocommon 問題。</span><span class="sxs-lookup"><span data-stu-id="2a461-134">If you experience issues installing Node.js and these additional Node.js development tools on your computer, see hello [troubleshooting guide](iot-hub-raspberry-pi-kit-c-troubleshooting.md) for solutions toocommon problems.</span></span>
 
-## <a name="install-visual-studio-code"></a><span data-ttu-id="ea801-135">安裝 Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="ea801-135">Install Visual Studio Code</span></span>
+## <a name="install-visual-studio-code"></a><span data-ttu-id="2a461-135">安裝 Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="2a461-135">Install Visual Studio Code</span></span>
 
-<span data-ttu-id="ea801-136">[下載](https://code.visualstudio.com/docs/setup/windows)並安裝 Visual Studio Code。</span><span class="sxs-lookup"><span data-stu-id="ea801-136">[Download](https://code.visualstudio.com/docs/setup/windows) and install Visual Studio Code.</span></span> <span data-ttu-id="ea801-137">Visual Studio Code 是一個輕量且強大的原始程式碼編輯器，適用於 Windows、Linux 及 macOS。</span><span class="sxs-lookup"><span data-stu-id="ea801-137">Visual Studio Code is a lightweight but powerful source code editor for Windows, Linux, and macOS.</span></span> <span data-ttu-id="ea801-138">您可以稍後於教學課程中使用此編輯器來編輯範例程式碼。</span><span class="sxs-lookup"><span data-stu-id="ea801-138">You use this editor later in the tutorial to edit the sample code.</span></span>
+<span data-ttu-id="2a461-136">[下載](https://code.visualstudio.com/docs/setup/windows)並安裝 Visual Studio Code。</span><span class="sxs-lookup"><span data-stu-id="2a461-136">[Download](https://code.visualstudio.com/docs/setup/windows) and install Visual Studio Code.</span></span> <span data-ttu-id="2a461-137">Visual Studio Code 是一個輕量且強大的原始程式碼編輯器，適用於 Windows、Linux 及 macOS。</span><span class="sxs-lookup"><span data-stu-id="2a461-137">Visual Studio Code is a lightweight but powerful source code editor for Windows, Linux, and macOS.</span></span> <span data-ttu-id="2a461-138">您可以使用此編輯器 hello 教學課程 tooedit hello 範例程式碼中的更新版本。</span><span class="sxs-lookup"><span data-stu-id="2a461-138">You use this editor later in hello tutorial tooedit hello sample code.</span></span>
 
-## <a name="summary"></a><span data-ttu-id="ea801-139">摘要</span><span class="sxs-lookup"><span data-stu-id="ea801-139">Summary</span></span>
+## <a name="summary"></a><span data-ttu-id="2a461-139">摘要</span><span class="sxs-lookup"><span data-stu-id="2a461-139">Summary</span></span>
 
-<span data-ttu-id="ea801-140">您已安裝第一個範例應用程式所需的開發工具和軟體。</span><span class="sxs-lookup"><span data-stu-id="ea801-140">You've installed the required development tools and software for the first sample application.</span></span> <span data-ttu-id="ea801-141">下一個工作是在 Pi 上建立、部署和執行範例應用程式。</span><span class="sxs-lookup"><span data-stu-id="ea801-141">The next task is to create, deploy, and run the sample application on Pi.</span></span>
+<span data-ttu-id="2a461-140">您已安裝所需的 hello 開發工具及軟體 hello 第一個範例應用程式。</span><span class="sxs-lookup"><span data-stu-id="2a461-140">You've installed hello required development tools and software for hello first sample application.</span></span> <span data-ttu-id="2a461-141">hello 下一個工作是 toocreate、 部署和執行 pi 的 hello 範例應用程式。</span><span class="sxs-lookup"><span data-stu-id="2a461-141">hello next task is toocreate, deploy, and run hello sample application on Pi.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="ea801-142">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ea801-142">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2a461-142">後續步驟</span><span class="sxs-lookup"><span data-stu-id="2a461-142">Next steps</span></span>
 
-[<span data-ttu-id="ea801-143">1.3 建立並部署閃爍應用程式</span><span class="sxs-lookup"><span data-stu-id="ea801-143">Create and deploy the blink application</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-deploy-blink-app.md)
+[<span data-ttu-id="2a461-143">建立及部署 hello 閃爍應用程式</span><span class="sxs-lookup"><span data-stu-id="2a461-143">Create and deploy hello blink application</span></span>](iot-hub-raspberry-pi-kit-c-lesson1-deploy-blink-app.md)

@@ -1,6 +1,6 @@
 ---
-title: "如何使用 iOS 中的 Azure Blob 儲存體 | Microsoft Docs"
-description: "使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
+title: "aaaHow toouse 從 iOS 的 Azure Blob 儲存體 |Microsoft 文件"
+description: "使用 Azure Blob 儲存體 （物件儲存體） 的 hello 雲端中儲存非結構化的資料。"
 services: storage
 documentationcenter: ios
 author: michaelhauss
@@ -14,39 +14,39 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: michaelhauss
-ms.openlocfilehash: cb2810636c8c23dbd476dc2adf58b17d1887d575
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 474c4263a4bfbd61bfa39e4fdb01ddd9c3829c77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-ios"></a><span data-ttu-id="93735-103">如何使用 iOS 的 Blob 儲存體</span><span class="sxs-lookup"><span data-stu-id="93735-103">How to use Blob storage from iOS</span></span>
+# <a name="how-toouse-blob-storage-from-ios"></a><span data-ttu-id="85141-103">如何 toouse iOS 從 Blob 儲存體</span><span class="sxs-lookup"><span data-stu-id="85141-103">How toouse Blob storage from iOS</span></span>
 [!INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
 
-## <a name="overview"></a><span data-ttu-id="93735-104">Overview</span><span class="sxs-lookup"><span data-stu-id="93735-104">Overview</span></span>
-<span data-ttu-id="93735-105">本文將示範如何使用 Microsoft Azure Blob 儲存體執行一般案例。</span><span class="sxs-lookup"><span data-stu-id="93735-105">This article will show you how to perform common scenarios using Microsoft Azure Blob storage.</span></span> <span data-ttu-id="93735-106">這些範例均以 Objective-C 撰寫，並使用 [Azure Storage Client Library for iOS](https://github.com/Azure/azure-storage-ios)。</span><span class="sxs-lookup"><span data-stu-id="93735-106">The samples are written in Objective-C and use the [Azure Storage Client Library for iOS](https://github.com/Azure/azure-storage-ios).</span></span> <span data-ttu-id="93735-107">所涵蓋的案例包括**上傳**、**列出**、**下載**及**刪除** Blob。</span><span class="sxs-lookup"><span data-stu-id="93735-107">The scenarios covered include **uploading**, **listing**, **downloading**, and **deleting** blobs.</span></span> <span data-ttu-id="93735-108">如需 Blob 的詳細資訊，請參閱 [後續步驟](#next-steps) 一節。</span><span class="sxs-lookup"><span data-stu-id="93735-108">For more information on blobs, see the [Next Steps](#next-steps) section.</span></span> <span data-ttu-id="93735-109">您也可以下載 [範例應用程式](https://github.com/Azure/azure-storage-ios/tree/master/BlobSample) ，以快速查看在 iOS 應用程式中使用 Azure 儲存體的方法。</span><span class="sxs-lookup"><span data-stu-id="93735-109">You can also download the [sample app](https://github.com/Azure/azure-storage-ios/tree/master/BlobSample) to quickly see the use of Azure Storage in an iOS application.</span></span>
+## <a name="overview"></a><span data-ttu-id="85141-104">概觀</span><span class="sxs-lookup"><span data-stu-id="85141-104">Overview</span></span>
+<span data-ttu-id="85141-105">這篇文章將示範如何使用 Microsoft Azure Blob 儲存體 tooperform 常見案例。</span><span class="sxs-lookup"><span data-stu-id="85141-105">This article will show you how tooperform common scenarios using Microsoft Azure Blob storage.</span></span> <span data-ttu-id="85141-106">hello 範例以 OBJECTIVE-C 所撰寫並使用 hello[適用於 iOS 的 Azure 儲存體用戶端程式庫](https://github.com/Azure/azure-storage-ios)。</span><span class="sxs-lookup"><span data-stu-id="85141-106">hello samples are written in Objective-C and use hello [Azure Storage Client Library for iOS](https://github.com/Azure/azure-storage-ios).</span></span> <span data-ttu-id="85141-107">hello 涵蓋案例包括**上載**，**列出**，**下載**，和**刪除**blob。</span><span class="sxs-lookup"><span data-stu-id="85141-107">hello scenarios covered include **uploading**, **listing**, **downloading**, and **deleting** blobs.</span></span> <span data-ttu-id="85141-108">如需有關 blob 的詳細資訊，請參閱 hello[接下來的步驟](#next-steps)> 一節。</span><span class="sxs-lookup"><span data-stu-id="85141-108">For more information on blobs, see hello [Next Steps](#next-steps) section.</span></span> <span data-ttu-id="85141-109">您也可以下載 hello[範例應用程式](https://github.com/Azure/azure-storage-ios/tree/master/BlobSample)tooquickly 看到 hello iOS 應用程式中的使用 Azure 儲存體。</span><span class="sxs-lookup"><span data-stu-id="85141-109">You can also download hello [sample app](https://github.com/Azure/azure-storage-ios/tree/master/BlobSample) tooquickly see hello use of Azure Storage in an iOS application.</span></span>
 
 [!INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-## <a name="import-the-azure-storage-ios-library-into-your-application"></a><span data-ttu-id="93735-110">將 Azure 儲存體 iOS 程式庫匯入您的應用程式中</span><span class="sxs-lookup"><span data-stu-id="93735-110">Import the Azure Storage iOS library into your application</span></span>
-<span data-ttu-id="93735-111">您可以透過使用 [Azure 儲存體 CocoaPod](https://cocoapods.org/pods/AZSClient) 或匯入 **Framework** 檔，將 Azure 儲存體 iOS 程式庫匯入至您的應用程式。</span><span class="sxs-lookup"><span data-stu-id="93735-111">You can import the Azure Storage iOS library into your application either by using the [Azure Storage CocoaPod](https://cocoapods.org/pods/AZSClient) or by importing the **Framework** file.</span></span> <span data-ttu-id="93735-112">CocoaPod 是建議的方式，因為它讓程式庫整合更容易，不過從架構匯入檔案較不干擾您的現有專案。</span><span class="sxs-lookup"><span data-stu-id="93735-112">CocoaPod is the recommended way as it makes integrating the library easier, however importing from the framework file is less intrusive for your existing project.</span></span>
+## <a name="import-hello-azure-storage-ios-library-into-your-application"></a><span data-ttu-id="85141-110">Hello Azure 儲存體 iOS 的程式庫匯入您的應用程式</span><span class="sxs-lookup"><span data-stu-id="85141-110">Import hello Azure Storage iOS library into your application</span></span>
+<span data-ttu-id="85141-111">Hello Azure 儲存體 iOS 的程式庫匯入您的應用程式使用 hello [Azure 儲存體 CocoaPod](https://cocoapods.org/pods/AZSClient)或匯入 hello **Framework**檔案。</span><span class="sxs-lookup"><span data-stu-id="85141-111">You can import hello Azure Storage iOS library into your application either by using hello [Azure Storage CocoaPod](https://cocoapods.org/pods/AZSClient) or by importing hello **Framework** file.</span></span> <span data-ttu-id="85141-112">CocoaPod 為建議的方式，因為它會讓整合 hello 庫較為簡單，不過匯入從 hello 架構檔案是較不干擾現有專案的 hello。</span><span class="sxs-lookup"><span data-stu-id="85141-112">CocoaPod is hello recommended way as it makes integrating hello library easier, however importing from hello framework file is less intrusive for your existing project.</span></span>
 
-<span data-ttu-id="93735-113">若要使用此程式庫，您需要：</span><span class="sxs-lookup"><span data-stu-id="93735-113">To use this library, you need the following:</span></span>
-- <span data-ttu-id="93735-114">iOS 8+</span><span class="sxs-lookup"><span data-stu-id="93735-114">iOS 8+</span></span>
-- <span data-ttu-id="93735-115">Xcode 7+</span><span class="sxs-lookup"><span data-stu-id="93735-115">Xcode 7+</span></span>
+<span data-ttu-id="85141-113">toouse 此程式庫，您需要遵循的 hello:</span><span class="sxs-lookup"><span data-stu-id="85141-113">toouse this library, you need hello following:</span></span>
+- <span data-ttu-id="85141-114">iOS 8+</span><span class="sxs-lookup"><span data-stu-id="85141-114">iOS 8+</span></span>
+- <span data-ttu-id="85141-115">Xcode 7+</span><span class="sxs-lookup"><span data-stu-id="85141-115">Xcode 7+</span></span>
 
-## <a name="cocoapod"></a><span data-ttu-id="93735-116">CocoaPod</span><span class="sxs-lookup"><span data-stu-id="93735-116">CocoaPod</span></span>
-1. <span data-ttu-id="93735-117">如果您還沒有這麼做，請開啟終端機視窗，並執行下列命令，在電腦上 [安裝 CocoaPods](https://guides.cocoapods.org/using/getting-started.html#toc_3)</span><span class="sxs-lookup"><span data-stu-id="93735-117">If you haven't done so already, [Install CocoaPods](https://guides.cocoapods.org/using/getting-started.html#toc_3) on your computer by opening a terminal window and running the following command</span></span>
+## <a name="cocoapod"></a><span data-ttu-id="85141-116">CocoaPod</span><span class="sxs-lookup"><span data-stu-id="85141-116">CocoaPod</span></span>
+1. <span data-ttu-id="85141-117">如果您沒有這樣做，[安裝 CocoaPods](https://guides.cocoapods.org/using/getting-started.html#toc_3)上開啟終端機視窗，然後執行下列命令的 hello 電腦</span><span class="sxs-lookup"><span data-stu-id="85141-117">If you haven't done so already, [Install CocoaPods](https://guides.cocoapods.org/using/getting-started.html#toc_3) on your computer by opening a terminal window and running hello following command</span></span>
     
     ```shell   
     sudo gem install cocoapods
     ```
 
-2. <span data-ttu-id="93735-118">接下來，在專案目錄 (包含您 .xcodeproj 檔案的目錄) 中建立稱為 _Podfile_ 的檔案 (無副檔名)。</span><span class="sxs-lookup"><span data-stu-id="93735-118">Next, in the project directory (the directory containing your .xcodeproj file), create a new file called _Podfile_(no file extension).</span></span> <span data-ttu-id="93735-119">將下列內容加入至 _Podfile_ 並儲存。</span><span class="sxs-lookup"><span data-stu-id="93735-119">Add the following to _Podfile_ and save.</span></span>
+2. <span data-ttu-id="85141-118">接下來，在 hello 專案目錄中 （hello 目錄包含.xcodeproj 檔案），建立新的檔案，稱為_Podfile_（沒有副檔名）。</span><span class="sxs-lookup"><span data-stu-id="85141-118">Next, in hello project directory (hello directory containing your .xcodeproj file), create a new file called _Podfile_(no file extension).</span></span> <span data-ttu-id="85141-119">新增下列 too_Podfile_ hello 和儲存。</span><span class="sxs-lookup"><span data-stu-id="85141-119">Add hello following too_Podfile_ and save.</span></span>
 
     ```ruby
     platform :ios, '8.0'
@@ -56,55 +56,55 @@ ms.lasthandoff: 08/18/2017
     end
     ```
 
-3. <span data-ttu-id="93735-120">在終端機視窗中，巡覽至專案目錄並執行下列命令</span><span class="sxs-lookup"><span data-stu-id="93735-120">In the terminal window, navigate to the project directory and run the following command</span></span>
+3. <span data-ttu-id="85141-120">在 hello 終端機視窗，瀏覽 toohello 專案目錄並執行下列命令的 hello</span><span class="sxs-lookup"><span data-stu-id="85141-120">In hello terminal window, navigate toohello project directory and run hello following command</span></span>
 
     ```shell    
     pod install
     ```
 
-4. <span data-ttu-id="93735-121">如果您已在 Xcode 中開啟 .xcodeproj，請將它關閉。</span><span class="sxs-lookup"><span data-stu-id="93735-121">If your .xcodeproj is open in Xcode, close it.</span></span> <span data-ttu-id="93735-122">在您的專案目錄中開啟新建立的專案檔案 (副檔名為 .xcworkspace)。</span><span class="sxs-lookup"><span data-stu-id="93735-122">In your project directory open the newly created project file which will have the .xcworkspace extension.</span></span> <span data-ttu-id="93735-123">這是您從現在開始會使用的檔案。</span><span class="sxs-lookup"><span data-stu-id="93735-123">This is the file you'll work from for now on.</span></span>
+4. <span data-ttu-id="85141-121">如果您已在 Xcode 中開啟 .xcodeproj，請將它關閉。</span><span class="sxs-lookup"><span data-stu-id="85141-121">If your .xcodeproj is open in Xcode, close it.</span></span> <span data-ttu-id="85141-122">專案目錄開啟 hello 新建立的專案檔中將有 hello.xcworkspace 延伸模組。</span><span class="sxs-lookup"><span data-stu-id="85141-122">In your project directory open hello newly created project file which will have hello .xcworkspace extension.</span></span> <span data-ttu-id="85141-123">這是您將從現在在運作的 hello 檔案。</span><span class="sxs-lookup"><span data-stu-id="85141-123">This is hello file you'll work from for now on.</span></span>
 
-## <a name="framework"></a><span data-ttu-id="93735-124">Framework</span><span class="sxs-lookup"><span data-stu-id="93735-124">Framework</span></span>
-<span data-ttu-id="93735-125">程式庫的另一個用法，是手動建立架構︰</span><span class="sxs-lookup"><span data-stu-id="93735-125">The other way to use the library is to build the framework manually:</span></span>
+## <a name="framework"></a><span data-ttu-id="85141-124">Framework</span><span class="sxs-lookup"><span data-stu-id="85141-124">Framework</span></span>
+<span data-ttu-id="85141-125">hello toouse hello 程式庫手動是 toobuild hello 架構，另一種方式：</span><span class="sxs-lookup"><span data-stu-id="85141-125">hello other way toouse hello library is toobuild hello framework manually:</span></span>
 
-1. <span data-ttu-id="93735-126">首先，請下載或複製 [azure-storage-ios repo](https://github.com/azure/azure-storage-ios)。</span><span class="sxs-lookup"><span data-stu-id="93735-126">First, download or clone the [azure-storage-ios repo](https://github.com/azure/azure-storage-ios).</span></span>
-2. <span data-ttu-id="93735-127">移至 *azure-storage-ios* -> *Lib* -> *Azure 儲存體用戶端程式庫*，然後在 Xcode 中開啟 `AZSClient.xcodeproj`。</span><span class="sxs-lookup"><span data-stu-id="93735-127">Go into *azure-storage-ios* -> *Lib* -> *Azure Storage Client Library*, and open `AZSClient.xcodeproj` in Xcode.</span></span>
-3. <span data-ttu-id="93735-128">在 Xcode 左上方，將作用中配置從「Azure 儲存體用戶端程式庫」變更為「架構」。</span><span class="sxs-lookup"><span data-stu-id="93735-128">At the top-left of Xcode, change the active scheme from "Azure Storage Client Library" to "Framework".</span></span>
-4. <span data-ttu-id="93735-129">建置專案 (⌘ + B)。</span><span class="sxs-lookup"><span data-stu-id="93735-129">Build the project (⌘+B).</span></span> <span data-ttu-id="93735-130">這會在您的桌面上建立 `AZSClient.framework` 檔案。</span><span class="sxs-lookup"><span data-stu-id="93735-130">This will create an `AZSClient.framework` file on your Desktop.</span></span>
+1. <span data-ttu-id="85141-126">第一個、 下載或複製 hello [azure 儲存體 ios 儲存機制](https://github.com/azure/azure-storage-ios)。</span><span class="sxs-lookup"><span data-stu-id="85141-126">First, download or clone hello [azure-storage-ios repo](https://github.com/azure/azure-storage-ios).</span></span>
+2. <span data-ttu-id="85141-127">移至 *azure-storage-ios* -> *Lib* -> *Azure 儲存體用戶端程式庫*，然後在 Xcode 中開啟 `AZSClient.xcodeproj`。</span><span class="sxs-lookup"><span data-stu-id="85141-127">Go into *azure-storage-ios* -> *Lib* -> *Azure Storage Client Library*, and open `AZSClient.xcodeproj` in Xcode.</span></span>
+3. <span data-ttu-id="85141-128">在 hello 左上方的 Xcode 變更 hello active 配置從 「 Azure 儲存體用戶端程式庫 」 太 < Framework >。</span><span class="sxs-lookup"><span data-stu-id="85141-128">At hello top-left of Xcode, change hello active scheme from "Azure Storage Client Library" too"Framework".</span></span>
+4. <span data-ttu-id="85141-129">建置 hello 專案 （⌘ + B）。</span><span class="sxs-lookup"><span data-stu-id="85141-129">Build hello project (⌘+B).</span></span> <span data-ttu-id="85141-130">這會在您的桌面上建立 `AZSClient.framework` 檔案。</span><span class="sxs-lookup"><span data-stu-id="85141-130">This will create an `AZSClient.framework` file on your Desktop.</span></span>
 
-<span data-ttu-id="93735-131">您可以透過下列方式，將 Framework 檔案匯入至您的應用程式：</span><span class="sxs-lookup"><span data-stu-id="93735-131">You can then import the framework file into your application by doing the following:</span></span>
+<span data-ttu-id="85141-131">您接著可以 hello 架構檔案匯入您的應用程式執行 hello 下列：</span><span class="sxs-lookup"><span data-stu-id="85141-131">You can then import hello framework file into your application by doing hello following:</span></span>
 
-1. <span data-ttu-id="93735-132">建立新的專案，或在 Xcode 中開啟現有的專案。</span><span class="sxs-lookup"><span data-stu-id="93735-132">Create a new project or open up your existing project in Xcode.</span></span>
-2. <span data-ttu-id="93735-133">將 `AZSClient.framework` 拖曳到您的 Xcode 專案導覽器。</span><span class="sxs-lookup"><span data-stu-id="93735-133">Drag and drop the `AZSClient.framework` into your Xcode project navigator.</span></span>
-3. <span data-ttu-id="93735-134">選取 [必要時複製項目]，然後按一下 [完成]。</span><span class="sxs-lookup"><span data-stu-id="93735-134">Select *Copy items if needed*, and click on *Finish*.</span></span>
-4. <span data-ttu-id="93735-135">按一下左側導覽列中的專案，然後按一下專案編輯器頂端的 [一般]  索引標籤。</span><span class="sxs-lookup"><span data-stu-id="93735-135">Click on your project in the left-hand navigation and click the *General* tab at the top of the project editor.</span></span>
-5. <span data-ttu-id="93735-136">在 [連結的架構和程式庫]  區段下，按一下 [新增] 按鈕 (+)。</span><span class="sxs-lookup"><span data-stu-id="93735-136">Under the *Linked Frameworks and Libraries* section, click the Add button (+).</span></span>
-6. <span data-ttu-id="93735-137">在已提供的程式庫清單中搜尋 `libxml2.2.tbd` ，並將它新增至您的專案。</span><span class="sxs-lookup"><span data-stu-id="93735-137">In the list of libraries already provided, search for `libxml2.2.tbd` and add it to your project.</span></span>
+1. <span data-ttu-id="85141-132">建立新的專案，或在 Xcode 中開啟現有的專案。</span><span class="sxs-lookup"><span data-stu-id="85141-132">Create a new project or open up your existing project in Xcode.</span></span>
+2. <span data-ttu-id="85141-133">拖放 hello`AZSClient.framework`到您的 Xcode 專案導覽器。</span><span class="sxs-lookup"><span data-stu-id="85141-133">Drag and drop hello `AZSClient.framework` into your Xcode project navigator.</span></span>
+3. <span data-ttu-id="85141-134">選取 [必要時複製項目]，然後按一下 [完成]。</span><span class="sxs-lookup"><span data-stu-id="85141-134">Select *Copy items if needed*, and click on *Finish*.</span></span>
+4. <span data-ttu-id="85141-135">Hello 左側導覽中的專案上按一下，然後按一下 hello*一般*在 hello hello 專案編輯器頂端的索引標籤。</span><span class="sxs-lookup"><span data-stu-id="85141-135">Click on your project in hello left-hand navigation and click hello *General* tab at hello top of hello project editor.</span></span>
+5. <span data-ttu-id="85141-136">在 [hello*連結架構和程式庫*區段中，按一下 hello 新增] 按鈕 （+）。</span><span class="sxs-lookup"><span data-stu-id="85141-136">Under hello *Linked Frameworks and Libraries* section, click hello Add button (+).</span></span>
+6. <span data-ttu-id="85141-137">在 [hello] 清單中已經提供的程式庫，搜尋`libxml2.2.tbd`並將它加入 tooyour 專案。</span><span class="sxs-lookup"><span data-stu-id="85141-137">In hello list of libraries already provided, search for `libxml2.2.tbd` and add it tooyour project.</span></span>
 
-## <a name="import-the-library"></a><span data-ttu-id="93735-138">匯入程式庫</span><span class="sxs-lookup"><span data-stu-id="93735-138">Import the Library</span></span> 
+## <a name="import-hello-library"></a><span data-ttu-id="85141-138">匯入 hello 程式庫</span><span class="sxs-lookup"><span data-stu-id="85141-138">Import hello Library</span></span> 
 ```objc
-// Include the following import statement to use blob APIs.
+// Include hello following import statement toouse blob APIs.
 #import <AZSClient/AZSClient.h>
 ```
 
-<span data-ttu-id="93735-139">如果您使用 Swift，必須建立橋接標頭並在標頭匯入 <AZSClient/AZSClient.h>︰</span><span class="sxs-lookup"><span data-stu-id="93735-139">If you are using Swift, you will need to create a bridging header and import <AZSClient/AZSClient.h> there:</span></span>
+<span data-ttu-id="85141-139">如果您使用 Swift 時，您將需要 toocreate 橋接標頭，並那里匯入 < AZSClient/AZSClient.h >:</span><span class="sxs-lookup"><span data-stu-id="85141-139">If you are using Swift, you will need toocreate a bridging header and import <AZSClient/AZSClient.h> there:</span></span>
 
-1. <span data-ttu-id="93735-140">建立標頭檔 `Bridging-Header.h`，並加入上述匯入陳述式。</span><span class="sxs-lookup"><span data-stu-id="93735-140">Create a header file `Bridging-Header.h`, and add the above import statement.</span></span>
-2. <span data-ttu-id="93735-141">移至 [建置設定] 索引標籤，搜尋[OBJECTIVE-C 橋接標頭]。</span><span class="sxs-lookup"><span data-stu-id="93735-141">Go to the *Build Settings* tab, and search for *Objective-C Bridging Header*.</span></span>
-3. <span data-ttu-id="93735-142">按兩下 [OBJECTIVE-C 橋接標頭] 欄位，並將此路徑加入標頭檔︰`ProjectName/Bridging-Header.h`</span><span class="sxs-lookup"><span data-stu-id="93735-142">Double-click on the field of *Objective-C Bridging Header* and add the path to your header file: `ProjectName/Bridging-Header.h`</span></span>
-4. <span data-ttu-id="93735-143">建立專案 (⌘ + B) 以確認 Xcode 已收取橋接標頭。</span><span class="sxs-lookup"><span data-stu-id="93735-143">Build the project (⌘+B) to verify that the bridging header was picked up by Xcode.</span></span>
-5. <span data-ttu-id="93735-144">直接在任何 Swift 檔案中開始使用程式庫，就不需要匯入陳述式。</span><span class="sxs-lookup"><span data-stu-id="93735-144">Start using the library directly in any Swift file, there is no need for import statements.</span></span>
+1. <span data-ttu-id="85141-140">建立標頭檔`Bridging-Header.h`，並加入 hello 上方匯入陳述式。</span><span class="sxs-lookup"><span data-stu-id="85141-140">Create a header file `Bridging-Header.h`, and add hello above import statement.</span></span>
+2. <span data-ttu-id="85141-141">移 toohello*組建設定*索引標籤，並搜尋*OBJECTIVE-C 橋接標頭*。</span><span class="sxs-lookup"><span data-stu-id="85141-141">Go toohello *Build Settings* tab, and search for *Objective-C Bridging Header*.</span></span>
+3. <span data-ttu-id="85141-142">Hello 欄位上按兩下*OBJECTIVE-C 橋接標頭*將 hello 路徑 tooyour 標頭檔：`ProjectName/Bridging-Header.h`</span><span class="sxs-lookup"><span data-stu-id="85141-142">Double-click on hello field of *Objective-C Bridging Header* and add hello path tooyour header file: `ProjectName/Bridging-Header.h`</span></span>
+4. <span data-ttu-id="85141-143">Hello 橋接標頭的組建 hello 專案 （⌘ + B） tooverify Xcode 已收取。</span><span class="sxs-lookup"><span data-stu-id="85141-143">Build hello project (⌘+B) tooverify that hello bridging header was picked up by Xcode.</span></span>
+5. <span data-ttu-id="85141-144">開始使用 hello 程式庫直接在任何 Swift 檔案中，不需要匯入陳述式。</span><span class="sxs-lookup"><span data-stu-id="85141-144">Start using hello library directly in any Swift file, there is no need for import statements.</span></span>
 
 [!INCLUDE [storage-mobile-authentication-guidance](../../includes/storage-mobile-authentication-guidance.md)]
 
-## <a name="asynchronous-operations"></a><span data-ttu-id="93735-145">非同步作業</span><span class="sxs-lookup"><span data-stu-id="93735-145">Asynchronous Operations</span></span>
+## <a name="asynchronous-operations"></a><span data-ttu-id="85141-145">非同步作業</span><span class="sxs-lookup"><span data-stu-id="85141-145">Asynchronous Operations</span></span>
 > [!NOTE]
-> <span data-ttu-id="93735-146">所有對服務執行要求的方法，都是非同步作業。</span><span class="sxs-lookup"><span data-stu-id="93735-146">All methods that perform a request against the service are asynchronous operations.</span></span> <span data-ttu-id="93735-147">在程式碼範例中，您會發現這些方法具有完成處理常式。</span><span class="sxs-lookup"><span data-stu-id="93735-147">In the code samples, you'll find that these methods have a completion handler.</span></span> <span data-ttu-id="93735-148">完成處理常式內的程式碼會在要求完成 **之後** 執行。</span><span class="sxs-lookup"><span data-stu-id="93735-148">Code inside the completion handler will run **after** the request is completed.</span></span> <span data-ttu-id="93735-149">完成處理常式後面的程式碼會在進行要求 **期間** 執行。</span><span class="sxs-lookup"><span data-stu-id="93735-149">Code after the completion handler will run **while** the request is being made.</span></span>
+> <span data-ttu-id="85141-146">執行對 hello 服務提出之要求的所有方法都是非同步作業。</span><span class="sxs-lookup"><span data-stu-id="85141-146">All methods that perform a request against hello service are asynchronous operations.</span></span> <span data-ttu-id="85141-147">在 hello 程式碼範例中，您會發現這些方法已完成處理常式。</span><span class="sxs-lookup"><span data-stu-id="85141-147">In hello code samples, you'll find that these methods have a completion handler.</span></span> <span data-ttu-id="85141-148">Hello 完成處理常式內部的程式碼會執行**之後**hello 要求完成。</span><span class="sxs-lookup"><span data-stu-id="85141-148">Code inside hello completion handler will run **after** hello request is completed.</span></span> <span data-ttu-id="85141-149">程式碼會執行 hello 完成處理常式之後**時**hello 要求所針對。</span><span class="sxs-lookup"><span data-stu-id="85141-149">Code after hello completion handler will run **while** hello request is being made.</span></span>
 > 
 > 
 
-## <a name="create-a-container"></a><span data-ttu-id="93735-150">建立容器</span><span class="sxs-lookup"><span data-stu-id="93735-150">Create a container</span></span>
-<span data-ttu-id="93735-151">儲存體 Blob 中的每個 Blob 必須位於一個容器中。</span><span class="sxs-lookup"><span data-stu-id="93735-151">Every blob in Azure Storage must reside in a container.</span></span> <span data-ttu-id="93735-152">下列範例說明如何在您的儲存體帳戶中建立名為 *newcontainer*的容器 (如果還不存在)。</span><span class="sxs-lookup"><span data-stu-id="93735-152">The following example shows how to create a container, called *newcontainer*, in your Storage account if it doesn't already exist.</span></span> <span data-ttu-id="93735-153">為您的容器選擇名稱時，請留意上面提到的命名規則。</span><span class="sxs-lookup"><span data-stu-id="93735-153">When choosing a name for your container, be mindful of the naming rules mentioned above.</span></span>
+## <a name="create-a-container"></a><span data-ttu-id="85141-150">建立容器</span><span class="sxs-lookup"><span data-stu-id="85141-150">Create a container</span></span>
+<span data-ttu-id="85141-151">儲存體 Blob 中的每個 Blob 必須位於一個容器中。</span><span class="sxs-lookup"><span data-stu-id="85141-151">Every blob in Azure Storage must reside in a container.</span></span> <span data-ttu-id="85141-152">hello 下列範例顯示如何 toocreate 容器使用時，呼叫*newcontainer*，在儲存體帳戶，如果不存在。</span><span class="sxs-lookup"><span data-stu-id="85141-152">hello following example shows how toocreate a container, called *newcontainer*, in your Storage account if it doesn't already exist.</span></span> <span data-ttu-id="85141-153">選擇您的容器的名稱，留意 hello 命名上面所述的規則。</span><span class="sxs-lookup"><span data-stu-id="85141-153">When choosing a name for your container, be mindful of hello naming rules mentioned above.</span></span>
 
 ```objc
 -(void)createContainer{
@@ -123,7 +123,7 @@ ms.lasthandoff: 08/18/2017
     // Create a local container object.
     AZSCloudBlobContainer *blobContainer = [blobClient containerReferenceFromName:@"newcontainer"];
 
-    // Create container in your Storage account if the container doesn't already exist
+    // Create container in your Storage account if hello container doesn't already exist
     [blobContainer createContainerIfNotExistsWithCompletionHandler:^(NSError *error, BOOL exists) {
         if (error){
             NSLog(@"Error in creating container.");
@@ -132,16 +132,16 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-<span data-ttu-id="93735-154">您可以查看 [Microsoft Azure 儲存體總管](http://storageexplorer.com) ，並驗證 *newcontainer* 位於儲存體帳戶的容器清單中，以確認運作正常。</span><span class="sxs-lookup"><span data-stu-id="93735-154">You can confirm that this works by looking at the [Microsoft Azure Storage Explorer](http://storageexplorer.com) and verifying that *newcontainer* is in the list of containers for your Storage account.</span></span>
+<span data-ttu-id="85141-154">您可以確認其運作藉由查看 hello [Microsoft Azure 儲存體總管](http://storageexplorer.com)並確認*newcontainer* hello 容器使用的儲存體帳戶清單中。</span><span class="sxs-lookup"><span data-stu-id="85141-154">You can confirm that this works by looking at hello [Microsoft Azure Storage Explorer](http://storageexplorer.com) and verifying that *newcontainer* is in hello list of containers for your Storage account.</span></span>
 
-## <a name="set-container-permissions"></a><span data-ttu-id="93735-155">設定容器權限</span><span class="sxs-lookup"><span data-stu-id="93735-155">Set Container Permissions</span></span>
-<span data-ttu-id="93735-156">依預設會針對 [私人]  存取設定容器的權限。</span><span class="sxs-lookup"><span data-stu-id="93735-156">A container's permissions are configured for **Private** access by default.</span></span> <span data-ttu-id="93735-157">不過，容器會提供幾個不同的容器存取選項：</span><span class="sxs-lookup"><span data-stu-id="93735-157">However, containers provide a few different options for container access:</span></span>
+## <a name="set-container-permissions"></a><span data-ttu-id="85141-155">設定容器權限</span><span class="sxs-lookup"><span data-stu-id="85141-155">Set Container Permissions</span></span>
+<span data-ttu-id="85141-156">依預設會針對 [私人]  存取設定容器的權限。</span><span class="sxs-lookup"><span data-stu-id="85141-156">A container's permissions are configured for **Private** access by default.</span></span> <span data-ttu-id="85141-157">不過，容器會提供幾個不同的容器存取選項：</span><span class="sxs-lookup"><span data-stu-id="85141-157">However, containers provide a few different options for container access:</span></span>
 
-* <span data-ttu-id="93735-158">**私人**：只有帳戶擁有者可以讀取容器和 Blob 資料。</span><span class="sxs-lookup"><span data-stu-id="93735-158">**Private**: Container and blob data can be read by the account owner only.</span></span>
-* <span data-ttu-id="93735-159">**Blob**：您可以透過匿名要求讀取此容器內的 Blob 資料，但您無法使用容器資料。</span><span class="sxs-lookup"><span data-stu-id="93735-159">**Blob**: Blob data within this container can be read via anonymous request, but container data is not available.</span></span> <span data-ttu-id="93735-160">用戶端無法透過匿名要求列舉容器內的 Blob。</span><span class="sxs-lookup"><span data-stu-id="93735-160">Clients cannot enumerate blobs within the container via anonymous request.</span></span>
-* <span data-ttu-id="93735-161">**容器**：可以透過匿名要求讀取容器和 Blob 資料。</span><span class="sxs-lookup"><span data-stu-id="93735-161">**Container**: Container and blob data can be read via anonymous request.</span></span> <span data-ttu-id="93735-162">用戶端可以透過匿名要求列舉容器內的 Blob，但無法列舉儲存體帳戶內的容器。</span><span class="sxs-lookup"><span data-stu-id="93735-162">Clients can enumerate blobs within the container via anonymous request, but cannot enumerate containers within the storage account.</span></span>
+* <span data-ttu-id="85141-158">**私用**: hello 帳戶擁有者可以讀取容器和 blob 資料。</span><span class="sxs-lookup"><span data-stu-id="85141-158">**Private**: Container and blob data can be read by hello account owner only.</span></span>
+* <span data-ttu-id="85141-159">**Blob**：您可以透過匿名要求讀取此容器內的 Blob 資料，但您無法使用容器資料。</span><span class="sxs-lookup"><span data-stu-id="85141-159">**Blob**: Blob data within this container can be read via anonymous request, but container data is not available.</span></span> <span data-ttu-id="85141-160">用戶端無法列舉 hello 透過匿名要求的容器中的 blob。</span><span class="sxs-lookup"><span data-stu-id="85141-160">Clients cannot enumerate blobs within hello container via anonymous request.</span></span>
+* <span data-ttu-id="85141-161">**容器**：可以透過匿名要求讀取容器和 Blob 資料。</span><span class="sxs-lookup"><span data-stu-id="85141-161">**Container**: Container and blob data can be read via anonymous request.</span></span> <span data-ttu-id="85141-162">用戶端透過匿名要求，hello 容器內的 blob，但無法列舉 hello 儲存體帳戶中的容器。</span><span class="sxs-lookup"><span data-stu-id="85141-162">Clients can enumerate blobs within hello container via anonymous request, but cannot enumerate containers within hello storage account.</span></span>
 
-<span data-ttu-id="93735-163">下列範例說明如何建立具有 [容器]  存取權限，而允許網際網路上的所有使用者進行公用、唯讀存取的容器：</span><span class="sxs-lookup"><span data-stu-id="93735-163">The following example shows you how to create a container with **Container** access permissions, which will allow public, read-only access for all users on the Internet:</span></span>
+<span data-ttu-id="85141-163">hello 下列範例會示範如何與容器的 toocreate**容器**存取允許 hello 網際網路上的所有使用者公開的唯讀存取權限：</span><span class="sxs-lookup"><span data-stu-id="85141-163">hello following example shows you how toocreate a container with **Container** access permissions, which will allow public, read-only access for all users on hello Internet:</span></span>
 
 ```objc
 -(void)createContainerWithPublicAccess{
@@ -160,7 +160,7 @@ ms.lasthandoff: 08/18/2017
     // Create a local container object.
     AZSCloudBlobContainer *blobContainer = [blobClient containerReferenceFromName:@"containerpublic"];
 
-    // Create container in your Storage account if the container doesn't already exist
+    // Create container in your Storage account if hello container doesn't already exist
     [blobContainer createContainerIfNotExistsWithAccessType:AZSContainerPublicAccessTypeContainer requestOptions:nil operationContext:nil completionHandler:^(NSError *error, BOOL exists){
         if (error){
             NSLog(@"Error in creating container.");
@@ -169,10 +169,10 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-## <a name="upload-a-blob-into-a-container"></a><span data-ttu-id="93735-164">將 Blob 上傳至容器</span><span class="sxs-lookup"><span data-stu-id="93735-164">Upload a blob into a container</span></span>
-<span data-ttu-id="93735-165">如 [Blob 服務概念](#blob-service-concepts) 一節中所述，Blob 儲存體提供三種不同類型的 Blob：區塊 Blob、附加 Blob 和分頁 Blob。</span><span class="sxs-lookup"><span data-stu-id="93735-165">As mentioned in the [Blob service concepts](#blob-service-concepts) section, Blob Storage offers three different types of blobs: block blobs, append blobs, and page blobs.</span></span> <span data-ttu-id="93735-166">Azure 儲存體 iOS 程式庫支援三種類型的 Blob。</span><span class="sxs-lookup"><span data-stu-id="93735-166">The Azure Storage iOS library supports all three types of blobs.</span></span> <span data-ttu-id="93735-167">在大部分情況下，建議使用區塊 Blob 的類型。</span><span class="sxs-lookup"><span data-stu-id="93735-167">In most cases, block blob is the recommended type to use.</span></span>
+## <a name="upload-a-blob-into-a-container"></a><span data-ttu-id="85141-164">將 Blob 上傳至容器</span><span class="sxs-lookup"><span data-stu-id="85141-164">Upload a blob into a container</span></span>
+<span data-ttu-id="85141-165">Hello 中所述[Blob 服務概念](#blob-service-concepts) 區段中，Blob 儲存體提供三種不同的 blob： 區塊 blob、 附加 blob 和分頁 blob。</span><span class="sxs-lookup"><span data-stu-id="85141-165">As mentioned in hello [Blob service concepts](#blob-service-concepts) section, Blob Storage offers three different types of blobs: block blobs, append blobs, and page blobs.</span></span> <span data-ttu-id="85141-166">hello Azure 儲存體 iOS 的程式庫支援所有的三種類型的 blob。</span><span class="sxs-lookup"><span data-stu-id="85141-166">hello Azure Storage iOS library supports all three types of blobs.</span></span> <span data-ttu-id="85141-167">在大部分情況下，區塊 blob 是建議的型別 toouse hello。</span><span class="sxs-lookup"><span data-stu-id="85141-167">In most cases, block blob is hello recommended type toouse.</span></span>
 
-<span data-ttu-id="93735-168">下列範例說明如何從 NSString 上傳區塊 Blob。</span><span class="sxs-lookup"><span data-stu-id="93735-168">The following example shows how to upload a block blob from an NSString.</span></span> <span data-ttu-id="93735-169">如果此容器中有相同名稱的 Blob 存在，此 Blob 的內容將會被覆寫。</span><span class="sxs-lookup"><span data-stu-id="93735-169">If a blob with the same name already exists in this container, the contents of this blob will be overwritten.</span></span>
+<span data-ttu-id="85141-168">hello 下列範例會顯示從 NSString tooupload 區塊 blob 的方式。</span><span class="sxs-lookup"><span data-stu-id="85141-168">hello following example shows how tooupload a block blob from an NSString.</span></span> <span data-ttu-id="85141-169">如果此容器中已經有名稱相同的 hello 的 blob，此 blob 的 hello 內容會被覆寫。</span><span class="sxs-lookup"><span data-stu-id="85141-169">If a blob with hello same name already exists in this container, hello contents of this blob will be overwritten.</span></span>
 
 ```objc
 -(void)uploadBlobToContainer{
@@ -200,8 +200,8 @@ ms.lasthandoff: 08/18/2017
                 // Create a local blob object
                 AZSCloudBlockBlob *blockBlob = [blobContainer blockBlobReferenceFromName:@"sampleblob"];
 
-                // Upload blob to Storage
-                [blockBlob uploadFromText:@"This text will be uploaded to Blob Storage." completionHandler:^(NSError *error) {
+                // Upload blob tooStorage
+                [blockBlob uploadFromText:@"This text will be uploaded tooBlob Storage." completionHandler:^(NSError *error) {
                     if (error){
                         NSLog(@"Error in creating blob.");
                     }
@@ -211,30 +211,30 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-<span data-ttu-id="93735-170">您可以查看 [Microsoft Azure 儲存體總管](http://storageexplorer.com)，並驗證容器 *containerpublic* 包含 Blob *sampleblob*，以確認運作正常。</span><span class="sxs-lookup"><span data-stu-id="93735-170">You can confirm that this works by looking at the [Microsoft Azure Storage Explorer](http://storageexplorer.com) and verifying that the container, *containerpublic*, contains the blob, *sampleblob*.</span></span> <span data-ttu-id="93735-171">在此範例中我們使用公用容器，所以您也可以移至 Blob URI 來確認應用程式運作是否正常：</span><span class="sxs-lookup"><span data-stu-id="93735-171">In this sample, we used a public container so you can also verify that this application worked by going to the blobs URI:</span></span>
+<span data-ttu-id="85141-170">您可以確認其運作藉由查看 hello [Microsoft Azure 儲存體總管](http://storageexplorer.com)及驗證 hello 程序*containerpublic*，包含 hello blob *sampleblob*.</span><span class="sxs-lookup"><span data-stu-id="85141-170">You can confirm that this works by looking at hello [Microsoft Azure Storage Explorer](http://storageexplorer.com) and verifying that hello container, *containerpublic*, contains hello blob, *sampleblob*.</span></span> <span data-ttu-id="85141-171">在此範例中，我們會使用公用容器，因此您也可以驗證，此應用程式的工作移 toohello blob URI:</span><span class="sxs-lookup"><span data-stu-id="85141-171">In this sample, we used a public container so you can also verify that this application worked by going toohello blobs URI:</span></span>
 
     https://nameofyourstorageaccount.blob.core.windows.net/containerpublic/sampleblob
 
-<span data-ttu-id="93735-172">除了從 NSString 上傳區塊 Blob 以外，NSData、NSInputStream 或本機檔案也有類似的方法。</span><span class="sxs-lookup"><span data-stu-id="93735-172">In addition to uploading a block blob from an NSString, similar methods exist for NSData, NSInputStream, or a local file.</span></span>
+<span data-ttu-id="85141-172">此外 toouploading NSString 從區塊 blob，類似的方法有 NSData、 NSInputStream 或本機檔案。</span><span class="sxs-lookup"><span data-stu-id="85141-172">In addition toouploading a block blob from an NSString, similar methods exist for NSData, NSInputStream, or a local file.</span></span>
 
-## <a name="list-the-blobs-in-a-container"></a><span data-ttu-id="93735-173">列出容器中的 Blob</span><span class="sxs-lookup"><span data-stu-id="93735-173">List the blobs in a container</span></span>
-<span data-ttu-id="93735-174">下列範例說明如何列出容器中的所有 Blob。</span><span class="sxs-lookup"><span data-stu-id="93735-174">The following example shows how to list all blobs in a container.</span></span> <span data-ttu-id="93735-175">執行此作業時，請留意下列參數：</span><span class="sxs-lookup"><span data-stu-id="93735-175">When performing this operation, be mindful of the following parameters:</span></span>     
+## <a name="list-hello-blobs-in-a-container"></a><span data-ttu-id="85141-173">列出容器中的 hello blob</span><span class="sxs-lookup"><span data-stu-id="85141-173">List hello blobs in a container</span></span>
+<span data-ttu-id="85141-174">下列範例會示範如何 toolist 所有 blob 容器中的 hello。</span><span class="sxs-lookup"><span data-stu-id="85141-174">hello following example shows how toolist all blobs in a container.</span></span> <span data-ttu-id="85141-175">當執行這項作業，請留意 hello 下列參數：</span><span class="sxs-lookup"><span data-stu-id="85141-175">When performing this operation, be mindful of hello following parameters:</span></span>     
 
-* <span data-ttu-id="93735-176">**continuationToken** - 接續權杖表示列出作業應從哪裡開始。</span><span class="sxs-lookup"><span data-stu-id="93735-176">**continuationToken** - The continuation token represents where the listing operation should start.</span></span> <span data-ttu-id="93735-177">如果未提供權杖，則會從頭列出 Blob。</span><span class="sxs-lookup"><span data-stu-id="93735-177">If no token is provided, it will list blobs from the beginning.</span></span> <span data-ttu-id="93735-178">可以列出任何數目的 Blob，從零到設定的最大值皆可。</span><span class="sxs-lookup"><span data-stu-id="93735-178">Any number of blobs can be listed, from zero up to a set maximum.</span></span> <span data-ttu-id="93735-179">即使此方法傳回零個結果，如果 `results.continuationToken` 不是 nil，則可能會有服務上的更多 Blob 未列出。</span><span class="sxs-lookup"><span data-stu-id="93735-179">Even if this method returns zero results, if `results.continuationToken` is not nil, there may be more blobs on the service that have not been listed.</span></span>
-* <span data-ttu-id="93735-180">**prefix** -您可以指定要用於 Blob 列出作業的前置詞。</span><span class="sxs-lookup"><span data-stu-id="93735-180">**prefix** - You can specify the prefix to use for blob listing.</span></span> <span data-ttu-id="93735-181">只有開頭為此前置詞的 Blob 才會列出。</span><span class="sxs-lookup"><span data-stu-id="93735-181">Only blobs that begin with this prefix will be listed.</span></span>
-* <span data-ttu-id="93735-182">**useFlatBlobListing** - 如 [命名與參考容器和 Blob](/rest/api/storageservices/Naming-and-Referencing-Containers--Blobs--and-Metadata) 一節中所述，雖然 Blob 服務是一般儲存體配置，雖然您可以路徑資訊為 Blob 命名，以建立虛擬階層。</span><span class="sxs-lookup"><span data-stu-id="93735-182">**useFlatBlobListing** - As mentioned in the [Naming and referencing containers and blobs](/rest/api/storageservices/Naming-and-Referencing-Containers--Blobs--and-Metadata) section, although the Blob service is a flat storage scheme, you can create a virtual hierarchy by naming blobs with path information.</span></span> <span data-ttu-id="93735-183">不過目前不支援非一般列出。</span><span class="sxs-lookup"><span data-stu-id="93735-183">However, non-flat listing is currently not supported.</span></span> <span data-ttu-id="93735-184">不久後將有此功能。</span><span class="sxs-lookup"><span data-stu-id="93735-184">This feature is coming soon.</span></span> <span data-ttu-id="93735-185">目前，此值應為 **YES**。</span><span class="sxs-lookup"><span data-stu-id="93735-185">For now, this value should be **YES**.</span></span>
+* <span data-ttu-id="85141-176">**continuationToken** -hello 接續 token 代表 hello 列出作業應該在此處開始。</span><span class="sxs-lookup"><span data-stu-id="85141-176">**continuationToken** - hello continuation token represents where hello listing operation should start.</span></span> <span data-ttu-id="85141-177">如果未不提供任何 token，則它會列出從 hello 開頭的 blob。</span><span class="sxs-lookup"><span data-stu-id="85141-177">If no token is provided, it will list blobs from hello beginning.</span></span> <span data-ttu-id="85141-178">可以列出任何數目的 blob，從零向上 tooa 設定最大值。</span><span class="sxs-lookup"><span data-stu-id="85141-178">Any number of blobs can be listed, from zero up tooa set maximum.</span></span> <span data-ttu-id="85141-179">即使這個方法會傳回零個結果，如果`results.continuationToken`不是 nil，可能有 hello 服務上未列出的多個 blob。</span><span class="sxs-lookup"><span data-stu-id="85141-179">Even if this method returns zero results, if `results.continuationToken` is not nil, there may be more blobs on hello service that have not been listed.</span></span>
+* <span data-ttu-id="85141-180">**前置詞**-您可以指定 blob 清單的 hello 前置詞 toouse。</span><span class="sxs-lookup"><span data-stu-id="85141-180">**prefix** - You can specify hello prefix toouse for blob listing.</span></span> <span data-ttu-id="85141-181">只有開頭為此前置詞的 Blob 才會列出。</span><span class="sxs-lookup"><span data-stu-id="85141-181">Only blobs that begin with this prefix will be listed.</span></span>
+* <span data-ttu-id="85141-182">**useFlatBlobListing** -hello 中所述[命名和參考容器和 blob](/rest/api/storageservices/Naming-and-Referencing-Containers--Blobs--and-Metadata)  區段中，雖然 hello Blob 服務是一般儲存體配置，您可以建立虛擬階層所命名的 blob 路徑資訊。</span><span class="sxs-lookup"><span data-stu-id="85141-182">**useFlatBlobListing** - As mentioned in hello [Naming and referencing containers and blobs](/rest/api/storageservices/Naming-and-Referencing-Containers--Blobs--and-Metadata) section, although hello Blob service is a flat storage scheme, you can create a virtual hierarchy by naming blobs with path information.</span></span> <span data-ttu-id="85141-183">不過目前不支援非一般列出。</span><span class="sxs-lookup"><span data-stu-id="85141-183">However, non-flat listing is currently not supported.</span></span> <span data-ttu-id="85141-184">不久後將有此功能。</span><span class="sxs-lookup"><span data-stu-id="85141-184">This feature is coming soon.</span></span> <span data-ttu-id="85141-185">目前，此值應為 **YES**。</span><span class="sxs-lookup"><span data-stu-id="85141-185">For now, this value should be **YES**.</span></span>
 
-* <span data-ttu-id="93735-186">**blobListingDetails** - 您可以指定列出 Blob 時所要包含的項目</span><span class="sxs-lookup"><span data-stu-id="93735-186">**blobListingDetails** - You can specify which items to include when listing blobs</span></span>
-  * <span data-ttu-id="93735-187">_AZSBlobListingDetailsNone_：僅列出已認可的 Blob，且不傳回 Blob 中繼資料。</span><span class="sxs-lookup"><span data-stu-id="93735-187">_AZSBlobListingDetailsNone_: List only committed blobs, and do not return blob metadata.</span></span>
-  * <span data-ttu-id="93735-188">_AZSBlobListingDetailsSnapshots_︰列出已認可的 Blob 和 Blob 快照。</span><span class="sxs-lookup"><span data-stu-id="93735-188">_AZSBlobListingDetailsSnapshots_: List committed blobs and blob snapshots.</span></span>
-  * <span data-ttu-id="93735-189">_AZSBlobListingDetailsMetadata_：為清單中傳回的每個 Blob 擷取 Blob 中繼資料。</span><span class="sxs-lookup"><span data-stu-id="93735-189">_AZSBlobListingDetailsMetadata_: Retrieve blob metadata for each blob returned in the listing.</span></span>
-  * <span data-ttu-id="93735-190">_AZSBlobListingDetailsUncommittedBlobs_︰列出已認可和未認可的 Blob。</span><span class="sxs-lookup"><span data-stu-id="93735-190">_AZSBlobListingDetailsUncommittedBlobs_: List committed and uncommitted blobs.</span></span>
-  * <span data-ttu-id="93735-191">_AZSBlobListingDetailsCopy_：在清單中包含複製屬性。</span><span class="sxs-lookup"><span data-stu-id="93735-191">_AZSBlobListingDetailsCopy_: Include copy properties in the listing.</span></span>
-  * <span data-ttu-id="93735-192">_AZSBlobListingDetailsAll_：列出所有可用的已認可 Blob、未認可的 Blob 和快照，並傳回這些 Blob 的所有中繼資料和複製狀態。</span><span class="sxs-lookup"><span data-stu-id="93735-192">_AZSBlobListingDetailsAll_: List all available committed blobs, uncommitted blobs, and snapshots, and return all metadata and copy status for those blobs.</span></span>
-* <span data-ttu-id="93735-193">**maxResults** - 要為此作業傳回的結果數目上限。</span><span class="sxs-lookup"><span data-stu-id="93735-193">**maxResults** - The maximum number of results to return for this operation.</span></span> <span data-ttu-id="93735-194">使用 -1 則不會設定限制。</span><span class="sxs-lookup"><span data-stu-id="93735-194">Use -1 to not set a limit.</span></span>
-* <span data-ttu-id="93735-195">**completionHandler** - 要執行的程式碼區塊與列出作業的結果。</span><span class="sxs-lookup"><span data-stu-id="93735-195">**completionHandler** - The block of code to execute with the results of the listing operation.</span></span>
+* <span data-ttu-id="85141-186">**blobListingDetails** -列出 blob 時，您可以指定哪些項目 tooinclude</span><span class="sxs-lookup"><span data-stu-id="85141-186">**blobListingDetails** - You can specify which items tooinclude when listing blobs</span></span>
+  * <span data-ttu-id="85141-187">_AZSBlobListingDetailsNone_：僅列出已認可的 Blob，且不傳回 Blob 中繼資料。</span><span class="sxs-lookup"><span data-stu-id="85141-187">_AZSBlobListingDetailsNone_: List only committed blobs, and do not return blob metadata.</span></span>
+  * <span data-ttu-id="85141-188">_AZSBlobListingDetailsSnapshots_︰列出已認可的 Blob 和 Blob 快照。</span><span class="sxs-lookup"><span data-stu-id="85141-188">_AZSBlobListingDetailsSnapshots_: List committed blobs and blob snapshots.</span></span>
+  * <span data-ttu-id="85141-189">_AZSBlobListingDetailsMetadata_: hello 清單中傳回擷取每一個 blob 的 blob 中繼資料。</span><span class="sxs-lookup"><span data-stu-id="85141-189">_AZSBlobListingDetailsMetadata_: Retrieve blob metadata for each blob returned in hello listing.</span></span>
+  * <span data-ttu-id="85141-190">_AZSBlobListingDetailsUncommittedBlobs_︰列出已認可和未認可的 Blob。</span><span class="sxs-lookup"><span data-stu-id="85141-190">_AZSBlobListingDetailsUncommittedBlobs_: List committed and uncommitted blobs.</span></span>
+  * <span data-ttu-id="85141-191">_AZSBlobListingDetailsCopy_： 包含複製 hello 清單中的屬性。</span><span class="sxs-lookup"><span data-stu-id="85141-191">_AZSBlobListingDetailsCopy_: Include copy properties in hello listing.</span></span>
+  * <span data-ttu-id="85141-192">_AZSBlobListingDetailsAll_：列出所有可用的已認可 Blob、未認可的 Blob 和快照，並傳回這些 Blob 的所有中繼資料和複製狀態。</span><span class="sxs-lookup"><span data-stu-id="85141-192">_AZSBlobListingDetailsAll_: List all available committed blobs, uncommitted blobs, and snapshots, and return all metadata and copy status for those blobs.</span></span>
+* <span data-ttu-id="85141-193">**maxResults** -hello 結果 tooreturn 這項作業的最大數目。</span><span class="sxs-lookup"><span data-stu-id="85141-193">**maxResults** - hello maximum number of results tooreturn for this operation.</span></span> <span data-ttu-id="85141-194">使用-1 toonot 設定的限制。</span><span class="sxs-lookup"><span data-stu-id="85141-194">Use -1 toonot set a limit.</span></span>
+* <span data-ttu-id="85141-195">**completionHandler** -hello 區塊的程式碼 tooexecute hello 的 hello 列出作業的結果。</span><span class="sxs-lookup"><span data-stu-id="85141-195">**completionHandler** - hello block of code tooexecute with hello results of hello listing operation.</span></span>
 
-<span data-ttu-id="93735-196">在此範例中，將會在每次傳回接續權杖時使用 Helper 方法以遞迴方式呼叫列出 Blob 方法。</span><span class="sxs-lookup"><span data-stu-id="93735-196">In this example, a helper method is used to recursively call the list blobs method every time a continuation token is returned.</span></span>
+<span data-ttu-id="85141-196">在此範例中，協助程式方法是使用的 toorecursively 呼叫 hello 清單 blob 方法每次會傳回接續 token。</span><span class="sxs-lookup"><span data-stu-id="85141-196">In this example, a helper method is used toorecursively call hello list blobs method every time a continuation token is returned.</span></span>
 
 ```objc
 -(void)listBlobsInContainer{
@@ -287,8 +287,8 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-## <a name="download-a-blob"></a><span data-ttu-id="93735-197">下載 Blob</span><span class="sxs-lookup"><span data-stu-id="93735-197">Download a blob</span></span>
-<span data-ttu-id="93735-198">下列範例說明如何將 Blob 下載到 NSString 物件。</span><span class="sxs-lookup"><span data-stu-id="93735-198">The following example shows how to download a blob to a NSString object.</span></span>
+## <a name="download-a-blob"></a><span data-ttu-id="85141-197">下載 Blob</span><span class="sxs-lookup"><span data-stu-id="85141-197">Download a blob</span></span>
+<span data-ttu-id="85141-198">下列範例會示範如何 hello toodownload blob tooa NSString 物件。</span><span class="sxs-lookup"><span data-stu-id="85141-198">hello following example shows how toodownload a blob tooa NSString object.</span></span>
 
 ```objc
 -(void)downloadBlobToString{
@@ -322,8 +322,8 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-## <a name="delete-a-blob"></a><span data-ttu-id="93735-199">刪除 Blob</span><span class="sxs-lookup"><span data-stu-id="93735-199">Delete a blob</span></span>
-<span data-ttu-id="93735-200">下列範例說明如何刪除 Blob。</span><span class="sxs-lookup"><span data-stu-id="93735-200">The following example shows how to delete a blob.</span></span>
+## <a name="delete-a-blob"></a><span data-ttu-id="85141-199">刪除 Blob</span><span class="sxs-lookup"><span data-stu-id="85141-199">Delete a blob</span></span>
+<span data-ttu-id="85141-200">下列範例會示範如何 hello toodelete blob。</span><span class="sxs-lookup"><span data-stu-id="85141-200">hello following example shows how toodelete a blob.</span></span>
 
 ```objc
 -(void)deleteBlob{
@@ -354,8 +354,8 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-## <a name="delete-a-blob-container"></a><span data-ttu-id="93735-201">刪除 Blob 容器</span><span class="sxs-lookup"><span data-stu-id="93735-201">Delete a blob container</span></span>
-<span data-ttu-id="93735-202">下列範例說明如何刪除容器。</span><span class="sxs-lookup"><span data-stu-id="93735-202">The following example shows how to delete a container.</span></span>
+## <a name="delete-a-blob-container"></a><span data-ttu-id="85141-201">刪除 Blob 容器</span><span class="sxs-lookup"><span data-stu-id="85141-201">Delete a blob container</span></span>
+<span data-ttu-id="85141-202">下列範例會示範如何 hello toodelete 容器。</span><span class="sxs-lookup"><span data-stu-id="85141-202">hello following example shows how toodelete a container.</span></span>
 
 ```objc
 -(void)deleteContainer{
@@ -383,14 +383,14 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="93735-203">後續步驟</span><span class="sxs-lookup"><span data-stu-id="93735-203">Next steps</span></span>
-<span data-ttu-id="93735-204">您現在已經了解如何從 iOS 中使用 Blob 儲存體，請參考下列連結以深入了解 iOS 程式庫和儲存體服務。</span><span class="sxs-lookup"><span data-stu-id="93735-204">Now that you've learned how to use Blob Storage from iOS, follow these links to learn more about the iOS library and the Storage service.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="85141-203">後續步驟</span><span class="sxs-lookup"><span data-stu-id="85141-203">Next steps</span></span>
+<span data-ttu-id="85141-204">既然您已經學會如何 toouse Blob 儲存體從 iOS，請遵循這些連結 toolearn 更多關於 hello iOS 的程式庫及 hello 儲存體服務。</span><span class="sxs-lookup"><span data-stu-id="85141-204">Now that you've learned how toouse Blob Storage from iOS, follow these links toolearn more about hello iOS library and hello Storage service.</span></span>
 
-* [<span data-ttu-id="93735-205">Azure Storage Client Library for iOS</span><span class="sxs-lookup"><span data-stu-id="93735-205">Azure Storage Client Library for iOS</span></span>](https://github.com/azure/azure-storage-ios)
-* [<span data-ttu-id="93735-206">Azure 儲存體 iOS 參考文件</span><span class="sxs-lookup"><span data-stu-id="93735-206">Azure Storage iOS Reference Documentation</span></span>](http://azure.github.io/azure-storage-ios/)
-* [<span data-ttu-id="93735-207">Azure 儲存體服務 REST API</span><span class="sxs-lookup"><span data-stu-id="93735-207">Azure Storage Services REST API</span></span>](https://msdn.microsoft.com/library/azure/dd179355.aspx)
-* [<span data-ttu-id="93735-208">Azure 儲存體團隊部落格</span><span class="sxs-lookup"><span data-stu-id="93735-208">Azure Storage Team Blog</span></span>](http://blogs.msdn.com/b/windowsazurestorage)
+* [<span data-ttu-id="85141-205">Azure Storage Client Library for iOS</span><span class="sxs-lookup"><span data-stu-id="85141-205">Azure Storage Client Library for iOS</span></span>](https://github.com/azure/azure-storage-ios)
+* [<span data-ttu-id="85141-206">Azure 儲存體 iOS 參考文件</span><span class="sxs-lookup"><span data-stu-id="85141-206">Azure Storage iOS Reference Documentation</span></span>](http://azure.github.io/azure-storage-ios/)
+* [<span data-ttu-id="85141-207">Azure 儲存體服務 REST API</span><span class="sxs-lookup"><span data-stu-id="85141-207">Azure Storage Services REST API</span></span>](https://msdn.microsoft.com/library/azure/dd179355.aspx)
+* [<span data-ttu-id="85141-208">Azure 儲存體團隊部落格</span><span class="sxs-lookup"><span data-stu-id="85141-208">Azure Storage Team Blog</span></span>](http://blogs.msdn.com/b/windowsazurestorage)
 
-<span data-ttu-id="93735-209">如果您有關於此程式庫的問題，歡迎您貼文到我們的 [MSDN Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=windowsazuredata)或 [Stack Overflow](http://stackoverflow.com/questions/tagged/windows-azure-storage+or+windows-azure-storage+or+azure-storage-blobs+or+azure-storage-tables+or+azure-table-storage+or+windows-azure-queues+or+azure-storage-queues+or+azure-storage-emulator+or+azure-storage-files)。</span><span class="sxs-lookup"><span data-stu-id="93735-209">If you have questions regarding this library, feel free to post to our [MSDN Azure forum](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=windowsazuredata) or [Stack Overflow](http://stackoverflow.com/questions/tagged/windows-azure-storage+or+windows-azure-storage+or+azure-storage-blobs+or+azure-storage-tables+or+azure-table-storage+or+windows-azure-queues+or+azure-storage-queues+or+azure-storage-emulator+or+azure-storage-files).</span></span>
-<span data-ttu-id="93735-210">如果您有 Azure 儲存體功能方面的建議，請貼文到 [Azure 儲存體意見反應](https://feedback.azure.com/forums/217298-storage/)。</span><span class="sxs-lookup"><span data-stu-id="93735-210">If you have feature suggestions for Azure Storage, please post to [Azure Storage Feedback](https://feedback.azure.com/forums/217298-storage/).</span></span>
+<span data-ttu-id="85141-209">如果您有此文件庫有關的問題，則可以免費 toopost tooour [MSDN Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=windowsazuredata)或[堆疊溢位](http://stackoverflow.com/questions/tagged/windows-azure-storage+or+windows-azure-storage+or+azure-storage-blobs+or+azure-storage-tables+or+azure-table-storage+or+windows-azure-queues+or+azure-storage-queues+or+azure-storage-emulator+or+azure-storage-files)。</span><span class="sxs-lookup"><span data-stu-id="85141-209">If you have questions regarding this library, feel free toopost tooour [MSDN Azure forum](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=windowsazuredata) or [Stack Overflow](http://stackoverflow.com/questions/tagged/windows-azure-storage+or+windows-azure-storage+or+azure-storage-blobs+or+azure-storage-tables+or+azure-table-storage+or+windows-azure-queues+or+azure-storage-queues+or+azure-storage-emulator+or+azure-storage-files).</span></span>
+<span data-ttu-id="85141-210">如果您有 Azure 儲存體的功能建議，請張貼太[Azure 儲存體的意見反應](https://feedback.azure.com/forums/217298-storage/)。</span><span class="sxs-lookup"><span data-stu-id="85141-210">If you have feature suggestions for Azure Storage, please post too[Azure Storage Feedback](https://feedback.azure.com/forums/217298-storage/).</span></span>
 

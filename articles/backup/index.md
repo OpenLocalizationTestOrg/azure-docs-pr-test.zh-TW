@@ -1,6 +1,6 @@
 ---
-title: "Azure 備份文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "使用備份文件，了解如何備份至雲端。 請參閱應用程式、Windows Server 和 Azure 虛擬機器備份的教學課程和影片。"
+title: "aaaAzure 備份文件-教學課程中，API 參考 |Microsoft 文件"
+description: "使用備份文件 toolearn 如何向上 toohello tooback 雲端。 請參閱應用程式、Windows Server 和 Azure 虛擬機器備份的教學課程和影片。"
 services: backup
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 3d8b07dc9903a48f6481ceda1922479cc7cd9ef6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 648c83a3ecdc4770859fbea0cc5af9ac2d1fdfd2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="backup-documentation"></a>備份文件
 
-了解如何使用雲端中的 Azure 備份來保護資料，以便長期保存和復原。 教學課程、影片和其他文件會示範如何備份資料、應用程式、Windows Server 和 Azure 虛擬機器。
+了解如何在 hello toouse Azure Backup 雲端 tooprotect 長期保存和復原的資料。 教學課程、 影片和其他文件告訴您如何 tooback 資料、 應用程式、 Windows server 和 Azure 虛擬機器。
 
 <ul class="panelContent cardsFTitle">
     <li>

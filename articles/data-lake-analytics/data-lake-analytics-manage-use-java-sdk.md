@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Java SDK 管理 Azure Data Lake Analytics | Microsoft Docs"
-description: "使用 Azure Data Lake Analytics Java SDK 來開發應用程式"
+title: "使用 Azure Java SDK 的 Azure Data Lake Analytics aaaManage |Microsoft 文件"
+description: "使用 Azure Data Lake Analytics Java SDK toodevelop 應用程式"
 services: data-lake-analytics
 documentationcenter: 
 author: matt1883
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: saveenr
-ms.openlocfilehash: 8a0c1c7aab89f3bb62d0eb9f42e8ac65309d617e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 79e5fa1bacd5fd65072a1c3c480482a8e51d94b6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage--azure-data-lake-analytics-using-java-sdk"></a><span data-ttu-id="95aa7-103">使用 Java SDK 管理 Azure Data Lake Analytics</span><span class="sxs-lookup"><span data-stu-id="95aa7-103">Manage  Azure Data Lake Analytics using Java SDK</span></span>
+# <a name="manage--azure-data-lake-analytics-using-java-sdk"></a><span data-ttu-id="ddce2-103">使用 Java SDK 管理 Azure Data Lake Analytics</span><span class="sxs-lookup"><span data-stu-id="ddce2-103">Manage  Azure Data Lake Analytics using Java SDK</span></span>
 
-<span data-ttu-id="95aa7-104">在本教學課程中，您會開發一個 Java 主控台應用程式，以執行 Azure Data Lake 的一般作業。</span><span class="sxs-lookup"><span data-stu-id="95aa7-104">In this tutorial, you develop a Java console application that performs common operations for Azure Data Lake.</span></span>
+<span data-ttu-id="ddce2-104">在本教學課程中，您會開發一個 Java 主控台應用程式，以執行 Azure Data Lake 的一般作業。</span><span class="sxs-lookup"><span data-stu-id="ddce2-104">In this tutorial, you develop a Java console application that performs common operations for Azure Data Lake.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="95aa7-105">必要條件</span><span class="sxs-lookup"><span data-stu-id="95aa7-105">Prerequisites</span></span>
-* <span data-ttu-id="95aa7-106">**Java Development Kit (JDK) 8** (使用 Java 1.8 版)。</span><span class="sxs-lookup"><span data-stu-id="95aa7-106">**Java Development Kit (JDK) 8** (using Java version 1.8).</span></span>
-* <span data-ttu-id="95aa7-107">**IntelliJ** 或其他合適的 Java 開發環境。</span><span class="sxs-lookup"><span data-stu-id="95aa7-107">**IntelliJ** or another suitable Java development environment.</span></span> <span data-ttu-id="95aa7-108">本文件中的指示使用 IntelliJ。</span><span class="sxs-lookup"><span data-stu-id="95aa7-108">The instructions in this document use IntelliJ.</span></span>
-* <span data-ttu-id="95aa7-109">建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**、**租用戶識別碼**和**金鑰**。</span><span class="sxs-lookup"><span data-stu-id="95aa7-109">Create an Azure Active Directory (AAD) application and retrieve its **Client ID**, **Tenant ID**, and **Key**.</span></span> <span data-ttu-id="95aa7-110">如需了解 AAD 應用程式，以及如何取得用戶端識別碼的指示，請參閱 [使用入口網站建立 Active Directory 應用程式和服務主體](../azure-resource-manager/resource-group-create-service-principal-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="95aa7-110">For more information about AAD applications and instructions on how to get a client ID, see [Create Active Directory application and service principal using portal](../azure-resource-manager/resource-group-create-service-principal-portal.md).</span></span> <span data-ttu-id="95aa7-111">建立應用程式並產生金鑰後，可以從入口網站取得回覆 URI 和金鑰。</span><span class="sxs-lookup"><span data-stu-id="95aa7-111">The Reply URI and Key is available from the portal once you have the application created and key generated.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="ddce2-105">必要條件</span><span class="sxs-lookup"><span data-stu-id="ddce2-105">Prerequisites</span></span>
+* <span data-ttu-id="ddce2-106">**Java Development Kit (JDK) 8** (使用 Java 1.8 版)。</span><span class="sxs-lookup"><span data-stu-id="ddce2-106">**Java Development Kit (JDK) 8** (using Java version 1.8).</span></span>
+* <span data-ttu-id="ddce2-107">**IntelliJ** 或其他合適的 Java 開發環境。</span><span class="sxs-lookup"><span data-stu-id="ddce2-107">**IntelliJ** or another suitable Java development environment.</span></span> <span data-ttu-id="ddce2-108">這份文件中的 hello 指示使用 IntelliJ。</span><span class="sxs-lookup"><span data-stu-id="ddce2-108">hello instructions in this document use IntelliJ.</span></span>
+* <span data-ttu-id="ddce2-109">建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**、**租用戶識別碼**和**金鑰**。</span><span class="sxs-lookup"><span data-stu-id="ddce2-109">Create an Azure Active Directory (AAD) application and retrieve its **Client ID**, **Tenant ID**, and **Key**.</span></span> <span data-ttu-id="ddce2-110">如需 AAD 應用程式與指示如何 tooget 用戶端識別碼，請參閱[建立 Active Directory 應用程式和服務主體使用入口網站](../azure-resource-manager/resource-group-create-service-principal-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="ddce2-110">For more information about AAD applications and instructions on how tooget a client ID, see [Create Active Directory application and service principal using portal](../azure-resource-manager/resource-group-create-service-principal-portal.md).</span></span> <span data-ttu-id="ddce2-111">hello Reply URI，而且索引鍵，從 hello 入口網站一旦建立 hello 應用程式及產生金鑰。</span><span class="sxs-lookup"><span data-stu-id="ddce2-111">hello Reply URI and Key is available from hello portal once you have hello application created and key generated.</span></span>
 
-## <a name="authenticating-using-azure-active-directory"></a><span data-ttu-id="95aa7-112">使用 Azure Active Directory 進行驗證</span><span class="sxs-lookup"><span data-stu-id="95aa7-112">Authenticating using Azure Active Directory</span></span>
+## <a name="authenticating-using-azure-active-directory"></a><span data-ttu-id="ddce2-112">使用 Azure Active Directory 進行驗證</span><span class="sxs-lookup"><span data-stu-id="ddce2-112">Authenticating using Azure Active Directory</span></span>
 
-<span data-ttu-id="95aa7-113">下列程式碼片段提供**非互動式**驗證的程式碼，其中應用程式會提供它自己的認證。</span><span class="sxs-lookup"><span data-stu-id="95aa7-113">The code following snippet provides code for **non-interactive** authentication, where the application provides its own credentials.</span></span>
+<span data-ttu-id="ddce2-113">下列程式碼片段提供程式碼的程式碼的 hello**非互動式**驗證，其中 hello 應用程式提供它自己的認證。</span><span class="sxs-lookup"><span data-stu-id="ddce2-113">hello code following snippet provides code for **non-interactive** authentication, where hello application provides its own credentials.</span></span>
 
-## <a name="create-a-java-application"></a><span data-ttu-id="95aa7-114">建立 Java 應用程式</span><span class="sxs-lookup"><span data-stu-id="95aa7-114">Create a Java application</span></span>
-1. <span data-ttu-id="95aa7-115">開啟 IntelliJ，並使用 [命令列應用程式] 範本建立 Java 專案。</span><span class="sxs-lookup"><span data-stu-id="95aa7-115">Open IntelliJ and create a Java project using the **Command-Line App** template.</span></span>
-2. <span data-ttu-id="95aa7-116">在畫面左側的專案上按一下滑鼠右鍵，然後按一下 [新增架構支援] 。</span><span class="sxs-lookup"><span data-stu-id="95aa7-116">Right-click on the project on the left-hand side of your screen and click **Add Framework Support**.</span></span> <span data-ttu-id="95aa7-117">選擇 [Maven] 並按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="95aa7-117">Choose **Maven** and click **OK**.</span></span>
-3. <span data-ttu-id="95aa7-118">開啟新建立的 **"pom.xml"** 檔案，並在 **\</version>** 標記和 **\<</project>** 標記之間新增下列一小段文字︰</span><span class="sxs-lookup"><span data-stu-id="95aa7-118">Open the newly created **"pom.xml"** file and add the following snippet of text between the **\</version>** tag and the **\</project>** tag:</span></span>
+## <a name="create-a-java-application"></a><span data-ttu-id="ddce2-114">建立 Java 應用程式</span><span class="sxs-lookup"><span data-stu-id="ddce2-114">Create a Java application</span></span>
+1. <span data-ttu-id="ddce2-115">開啟 IntelliJ 並建立 Java 專案中使用 hello**命令列應用程式**範本。</span><span class="sxs-lookup"><span data-stu-id="ddce2-115">Open IntelliJ and create a Java project using hello **Command-Line App** template.</span></span>
+2. <span data-ttu-id="ddce2-116">左側 hello 螢幕 hello 專案上按一下滑鼠右鍵，然後按一下**新增架構支援**。</span><span class="sxs-lookup"><span data-stu-id="ddce2-116">Right-click on hello project on hello left-hand side of your screen and click **Add Framework Support**.</span></span> <span data-ttu-id="ddce2-117">選擇 [Maven] 並按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="ddce2-117">Choose **Maven** and click **OK**.</span></span>
+3. <span data-ttu-id="ddce2-118">開啟新建立的 hello **"pom.xml"**檔案，然後加入下列程式碼片段的文字之間 hello hello  **\</version >**標記和 hello  **\< /專案 >**標記：</span><span class="sxs-lookup"><span data-stu-id="ddce2-118">Open hello newly created **"pom.xml"** file and add hello following snippet of text between hello **\</version>** tag and hello **\</project>** tag:</span></span>
 
 ```
 <repositories>
@@ -89,9 +89,9 @@ ms.lasthandoff: 08/03/2017
 </dependencies>
 ```
 
-<span data-ttu-id="95aa7-119">移至 [檔案] > [設定] > [建置] > [執行] > [部署]。</span><span class="sxs-lookup"><span data-stu-id="95aa7-119">Go to **File > Settings > Build > Execution > Deployment**.</span></span> <span data-ttu-id="95aa7-120">選取 [建置工具] > [Maven] > [匯入]。</span><span class="sxs-lookup"><span data-stu-id="95aa7-120">Select **Build Tools > Maven > Importing**.</span></span> <span data-ttu-id="95aa7-121">然後勾選 [自動匯入 Maven 專案] 。</span><span class="sxs-lookup"><span data-stu-id="95aa7-121">Then check **Import Maven projects automatically**.</span></span>
+<span data-ttu-id="ddce2-119">跳過**檔案 > 設定 > 建置 > 執行 > 部署**。</span><span class="sxs-lookup"><span data-stu-id="ddce2-119">Go too**File > Settings > Build > Execution > Deployment**.</span></span> <span data-ttu-id="ddce2-120">選取 [建置工具] > [Maven] > [匯入]。</span><span class="sxs-lookup"><span data-stu-id="ddce2-120">Select **Build Tools > Maven > Importing**.</span></span> <span data-ttu-id="ddce2-121">然後勾選 [自動匯入 Maven 專案] 。</span><span class="sxs-lookup"><span data-stu-id="ddce2-121">Then check **Import Maven projects automatically**.</span></span>
 
-<span data-ttu-id="95aa7-122">開啟 `Main.java`，並以下列程式碼片段取代現有的程式碼區塊：</span><span class="sxs-lookup"><span data-stu-id="95aa7-122">Open `Main.java` and replace the existing code block with the following code snippet:</span></span>
+<span data-ttu-id="ddce2-122">開啟`Main.java`和取代 hello 現有程式碼區塊 hello 與下列程式碼片段：</span><span class="sxs-lookup"><span data-stu-id="ddce2-122">Open `Main.java` and replace hello existing code block with hello following code snippet:</span></span>
 
 ```
 package com.company;
@@ -175,10 +175,10 @@ public class Main {
         WaitForNewline("File created.", "Submitting a job.");
 
         // ----------------------------------------
-        // Submit a job to Data Lake Analytics
+        // Submit a job tooData Lake Analytics
         // ----------------------------------------
 
-string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input TO @\"/output1.csv\" USING Outputters.Csv();", "testJob";
+string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input too@\"/output1.csv\" USING Outputters.Csv();", "testJob";
         UUID jobId = SubmitJobByScript(script);
         WaitForNewline("Job submitted.", "Getting job status.");
 
@@ -201,21 +201,21 @@ string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extrac
 }
 ```
 
-<span data-ttu-id="95aa7-123">提供在程式碼片段中呼叫之參數的值：</span><span class="sxs-lookup"><span data-stu-id="95aa7-123">Provide the values for parameters called out in the code snippet:</span></span>
+<span data-ttu-id="ddce2-123">提供 hello 參數的值叫出 hello 程式碼片段：</span><span class="sxs-lookup"><span data-stu-id="ddce2-123">Provide hello values for parameters called out in hello code snippet:</span></span>
 * `localFolderPath`
 * `_adlaAccountName`
 * `_adlsAccountName`
 * `_resourceGroupName`
 
-<span data-ttu-id="95aa7-124">取代下列各項的預留位置：</span><span class="sxs-lookup"><span data-stu-id="95aa7-124">Replace the placeholders for:</span></span>
-* <span data-ttu-id="95aa7-125">`CLIENT-ID`,</span><span class="sxs-lookup"><span data-stu-id="95aa7-125">`CLIENT-ID`,</span></span>
-* <span data-ttu-id="95aa7-126">`CLIENT-SECRET`,</span><span class="sxs-lookup"><span data-stu-id="95aa7-126">`CLIENT-SECRET`,</span></span>
+<span data-ttu-id="ddce2-124">Hello 預留位置取代為：</span><span class="sxs-lookup"><span data-stu-id="ddce2-124">Replace hello placeholders for:</span></span>
+* <span data-ttu-id="ddce2-125">`CLIENT-ID`,</span><span class="sxs-lookup"><span data-stu-id="ddce2-125">`CLIENT-ID`,</span></span>
+* <span data-ttu-id="ddce2-126">`CLIENT-SECRET`,</span><span class="sxs-lookup"><span data-stu-id="ddce2-126">`CLIENT-SECRET`,</span></span>
 * `TENANT-ID`
 * `SUBSCRIPTION-ID`
 
-## <a name="helper-functions"></a><span data-ttu-id="95aa7-127">協助程式函式</span><span class="sxs-lookup"><span data-stu-id="95aa7-127">Helper functions</span></span>
+## <a name="helper-functions"></a><span data-ttu-id="ddce2-127">協助程式函式</span><span class="sxs-lookup"><span data-stu-id="ddce2-127">Helper functions</span></span>
 
-### <a name="setup-clients"></a><span data-ttu-id="95aa7-128">設定用戶端</span><span class="sxs-lookup"><span data-stu-id="95aa7-128">Setup clients</span></span>
+### <a name="setup-clients"></a><span data-ttu-id="ddce2-128">設定用戶端</span><span class="sxs-lookup"><span data-stu-id="ddce2-128">Setup clients</span></span>
 
 ```
 public static void SetupClients(ServiceClientCredentials creds)
@@ -231,7 +231,7 @@ public static void SetupClients(ServiceClientCredentials creds)
 ```
 
 
-### <a name="wait-for-input"></a><span data-ttu-id="95aa7-129">等待輸入</span><span class="sxs-lookup"><span data-stu-id="95aa7-129">Wait for input</span></span>
+### <a name="wait-for-input"></a><span data-ttu-id="ddce2-129">等待輸入</span><span class="sxs-lookup"><span data-stu-id="ddce2-129">Wait for input</span></span>
 
 ```
 public static void WaitForNewline(String reason, String nextAction)
@@ -239,7 +239,7 @@ public static void WaitForNewline(String reason, String nextAction)
     if (nextAction == null)
         nextAction = "";
 
-    System.out.println(reason + "\r\nPress ENTER to continue...");
+    System.out.println(reason + "\r\nPress ENTER toocontinue...");
     try{System.in.read();}
     catch(Exception e){}
 
@@ -250,7 +250,7 @@ public static void WaitForNewline(String reason, String nextAction)
 }
 ```
 
-### <a name="create-accounts"></a><span data-ttu-id="95aa7-130">建立帳戶</span><span class="sxs-lookup"><span data-stu-id="95aa7-130">Create accounts</span></span>
+### <a name="create-accounts"></a><span data-ttu-id="ddce2-130">建立帳戶</span><span class="sxs-lookup"><span data-stu-id="ddce2-130">Create accounts</span></span>
 
 ```
 public static void CreateAccounts() throws InterruptedException, CloudException, IOException 
@@ -284,7 +284,7 @@ public static void CreateAccounts() throws InterruptedException, CloudException,
 }
 ```
 
-### <a name="create-a-file"></a><span data-ttu-id="95aa7-131">建立檔案</span><span class="sxs-lookup"><span data-stu-id="95aa7-131">Create a file</span></span>
+### <a name="create-a-file"></a><span data-ttu-id="ddce2-131">建立檔案</span><span class="sxs-lookup"><span data-stu-id="ddce2-131">Create a file</span></span>
 
 ```
 public static void CreateFile(String path, String contents, boolean force) throws IOException, CloudException 
@@ -295,7 +295,7 @@ public static void CreateFile(String path, String contents, boolean force) throw
 }
 ```
 
-### <a name="delete-a-file"></a><span data-ttu-id="95aa7-132">刪除檔案</span><span class="sxs-lookup"><span data-stu-id="95aa7-132">Delete a file</span></span>
+### <a name="delete-a-file"></a><span data-ttu-id="ddce2-132">刪除檔案</span><span class="sxs-lookup"><span data-stu-id="ddce2-132">Delete a file</span></span>
 
 ```
 public static void DeleteFile(String filePath) throws IOException, CloudException 
@@ -304,7 +304,7 @@ public static void DeleteFile(String filePath) throws IOException, CloudExceptio
 }
 ```
 
-### <a name="download-a-file"></a><span data-ttu-id="95aa7-133">下載檔案</span><span class="sxs-lookup"><span data-stu-id="95aa7-133">Download a file</span></span>
+### <a name="download-a-file"></a><span data-ttu-id="ddce2-133">下載檔案</span><span class="sxs-lookup"><span data-stu-id="ddce2-133">Download a file</span></span>
 
 ```
 public static void DownloadFile(String srcPath, String destPath) throws IOException, CloudException 
@@ -336,7 +336,7 @@ public static void DownloadFile(String srcPath, String destPath) throws IOExcept
 }
 ```
 
-### <a name="submit-a-u-sql-job"></a><span data-ttu-id="95aa7-134">提交 U-SQL 作業</span><span class="sxs-lookup"><span data-stu-id="95aa7-134">Submit a U-SQL job</span></span>
+### <a name="submit-a-u-sql-job"></a><span data-ttu-id="ddce2-134">提交 U-SQL 作業</span><span class="sxs-lookup"><span data-stu-id="ddce2-134">Submit a U-SQL job</span></span>
 
 ```
 public static UUID SubmitJobByScript(String script, String jobName) throws IOException, CloudException 
@@ -367,7 +367,7 @@ public static JobResult WaitForJob(UUID jobId) throws IOException, CloudExceptio
 }
 ```
 
-### <a name="retrieve-job-status"></a><span data-ttu-id="95aa7-135">擷取作業狀態</span><span class="sxs-lookup"><span data-stu-id="95aa7-135">Retrieve job status</span></span>
+### <a name="retrieve-job-status"></a><span data-ttu-id="ddce2-135">擷取作業狀態</span><span class="sxs-lookup"><span data-stu-id="ddce2-135">Retrieve job status</span></span>
 
 ```
 public static String GetJobStatus(UUID jobId) throws IOException, CloudException 
@@ -377,8 +377,8 @@ public static String GetJobStatus(UUID jobId) throws IOException, CloudException
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="95aa7-136">後續步驟</span><span class="sxs-lookup"><span data-stu-id="95aa7-136">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ddce2-136">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ddce2-136">Next steps</span></span>
 
-* <span data-ttu-id="95aa7-137">若要了解 U-SQL，請參閱[開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。</span><span class="sxs-lookup"><span data-stu-id="95aa7-137">To learn U-SQL, see [Get started with Azure Data Lake Analytics U-SQL language](data-lake-analytics-u-sql-get-started.md), and [U-SQL language reference](http://go.microsoft.com/fwlink/?LinkId=691348).</span></span>
-* <span data-ttu-id="95aa7-138">針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="95aa7-138">For management tasks, see [Manage Azure Data Lake Analytics using Azure portal](data-lake-analytics-manage-use-portal.md).</span></span>
-* <span data-ttu-id="95aa7-139">若要取得 Data Lake Analytics 概觀，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="95aa7-139">To get an overview of Data Lake Analytics, see [Azure Data Lake Analytics overview](data-lake-analytics-overview.md).</span></span>
+* <span data-ttu-id="ddce2-137">toolearn U-SQL，請參閱[開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)，和[U SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。</span><span class="sxs-lookup"><span data-stu-id="ddce2-137">toolearn U-SQL, see [Get started with Azure Data Lake Analytics U-SQL language](data-lake-analytics-u-sql-get-started.md), and [U-SQL language reference](http://go.microsoft.com/fwlink/?LinkId=691348).</span></span>
+* <span data-ttu-id="ddce2-138">針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="ddce2-138">For management tasks, see [Manage Azure Data Lake Analytics using Azure portal](data-lake-analytics-manage-use-portal.md).</span></span>
+* <span data-ttu-id="ddce2-139">tooget 的概觀的 Data Lake Analytics，請參閱[Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="ddce2-139">tooget an overview of Data Lake Analytics, see [Azure Data Lake Analytics overview](data-lake-analytics-overview.md).</span></span>

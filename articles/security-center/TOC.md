@@ -4,7 +4,7 @@
 ## [資料安全性](security-center-data-security.md)
 ## 案例
 ### [事件回應](security-center-incident-response.md)
-### [使用增強安全性的建議](security-center-using-recommendations.md)
+### [使用建議 tooenhance 安全性](security-center-using-recommendations.md)
 ## [平台移轉](security-center-platform-migration.md)
 ### [平台移轉常見問題](security-center-platform-migration-faq.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員安全性群組檢視分析網路安全性 - Azure CLI 2.0 | Microsoft Docs"
-description: "本文會描述如何使用 Azure CLI 2.0，利用安全性群組檢視分析虛擬機器的安全性。"
+title: "與 Azure 網路監看員安全性群組檢視 Azure CLI 2.0 aaaAnalyze 網路安全性 |Microsoft 文件"
+description: "本文將說明如何 toouse Azure CLI 2.0 tooanalyze 的虛擬機器安全性與安全性的群組檢視。"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,60 +14,60 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 1756e14819e3b7c79361c193413a1fcd7f24a4e6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 31a4cd628f54d7548f495251fd275f099e79a060
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="analyze-your-virtual-machine-security-with-security-group-view-using-azure-cli-20"></a><span data-ttu-id="757bf-103">使用 Azure CLI 2.0，利用安全性群組檢視分析虛擬機器的安全性</span><span class="sxs-lookup"><span data-stu-id="757bf-103">Analyze your Virtual Machine security with Security Group View using Azure CLI 2.0</span></span>
+# <a name="analyze-your-virtual-machine-security-with-security-group-view-using-azure-cli-20"></a><span data-ttu-id="48040-103">使用 Azure CLI 2.0，利用安全性群組檢視分析虛擬機器的安全性</span><span class="sxs-lookup"><span data-stu-id="48040-103">Analyze your Virtual Machine security with Security Group View using Azure CLI 2.0</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="757bf-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="757bf-104">PowerShell</span></span>](network-watcher-security-group-view-powershell.md)
-> - [<span data-ttu-id="757bf-105">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="757bf-105">CLI 1.0</span></span>](network-watcher-security-group-view-cli-nodejs.md)
-> - [<span data-ttu-id="757bf-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="757bf-106">CLI 2.0</span></span>](network-watcher-security-group-view-cli.md)
-> - [<span data-ttu-id="757bf-107">REST API</span><span class="sxs-lookup"><span data-stu-id="757bf-107">REST API</span></span>](network-watcher-security-group-view-rest.md)
+> - [<span data-ttu-id="48040-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="48040-104">PowerShell</span></span>](network-watcher-security-group-view-powershell.md)
+> - [<span data-ttu-id="48040-105">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="48040-105">CLI 1.0</span></span>](network-watcher-security-group-view-cli-nodejs.md)
+> - [<span data-ttu-id="48040-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="48040-106">CLI 2.0</span></span>](network-watcher-security-group-view-cli.md)
+> - [<span data-ttu-id="48040-107">REST API</span><span class="sxs-lookup"><span data-stu-id="48040-107">REST API</span></span>](network-watcher-security-group-view-rest.md)
 
-<span data-ttu-id="757bf-108">安全性群組檢視會傳回套用至虛擬機器之已設定且有效的網路安全性規則。</span><span class="sxs-lookup"><span data-stu-id="757bf-108">Security group view returns configured and effective network security rules that are applied to a virtual machine.</span></span> <span data-ttu-id="757bf-109">這項功能可用來稽核及診斷 VM 所設定的網路安全性群組和規則，以確保會正確允許或拒絕流量。</span><span class="sxs-lookup"><span data-stu-id="757bf-109">This capability is useful to audit and diagnose Network Security Groups and rules that are configured on a VM to ensure traffic is being correctly allowed or denied.</span></span> <span data-ttu-id="757bf-110">在本文中，我們會說明如何使用 Azure CLI 來擷取虛擬機器所設定且有效的安全性規則</span><span class="sxs-lookup"><span data-stu-id="757bf-110">In this article, we show you how to retrieve the configured and effective security rules to a virtual machine using Azure CLI</span></span>
+<span data-ttu-id="48040-108">安全性的群組檢視會傳回已設定且有效的網路安全性規則所套用的 tooa 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="48040-108">Security group view returns configured and effective network security rules that are applied tooa virtual machine.</span></span> <span data-ttu-id="48040-109">這項功能會很有用的 tooaudit 及診斷網路安全性群組和 VM tooensure 流量所設定的規則已正確地允許或拒絕。</span><span class="sxs-lookup"><span data-stu-id="48040-109">This capability is useful tooaudit and diagnose Network Security Groups and rules that are configured on a VM tooensure traffic is being correctly allowed or denied.</span></span> <span data-ttu-id="48040-110">在本文中，我們會示範如何設定 tooretrieve hello 和有效的安全性規則 tooa 虛擬機器使用 Azure CLI</span><span class="sxs-lookup"><span data-stu-id="48040-110">In this article, we show you how tooretrieve hello configured and effective security rules tooa virtual machine using Azure CLI</span></span>
 
 
-<span data-ttu-id="757bf-111">本文使用資源管理部署模型的新一代 CLI：Azure CLI 2.0，它適用於 Windows、Mac 和 Linux。</span><span class="sxs-lookup"><span data-stu-id="757bf-111">This article uses our next generation CLI for the resource management deployment model, Azure CLI 2.0, which is available for Windows, Mac and Linux.</span></span>
+<span data-ttu-id="48040-111">本文使用我們的下一個層代 CLI hello 資源管理部署模型，Azure CLI 2.0 中，這是適用於 Windows、 Mac 和 Linux。</span><span class="sxs-lookup"><span data-stu-id="48040-111">This article uses our next generation CLI for hello resource management deployment model, Azure CLI 2.0, which is available for Windows, Mac and Linux.</span></span>
 
-<span data-ttu-id="757bf-112">若要執行本文的步驟，您需要[安裝適用於 Mac、Linux 和 Windows 的 Azure 命令列介面 (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)。</span><span class="sxs-lookup"><span data-stu-id="757bf-112">To perform the steps in this article, you need to [install the Azure Command-Line Interface for Mac, Linux, and Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).</span></span>
+<span data-ttu-id="48040-112">tooperform hello 步驟在本文中，您需要[hello Azure 命令列介面安裝的 Mac、 Linux 及 Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)。</span><span class="sxs-lookup"><span data-stu-id="48040-112">tooperform hello steps in this article, you need too[install hello Azure Command-Line Interface for Mac, Linux, and Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="757bf-113">開始之前</span><span class="sxs-lookup"><span data-stu-id="757bf-113">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="48040-113">開始之前</span><span class="sxs-lookup"><span data-stu-id="48040-113">Before you begin</span></span>
 
-<span data-ttu-id="757bf-114">此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。</span><span class="sxs-lookup"><span data-stu-id="757bf-114">This scenario assumes you have already followed the steps in [Create a Network Watcher](network-watcher-create.md) to create a Network Watcher.</span></span>
+<span data-ttu-id="48040-114">此案例假設您已依照中的 hello 步驟[建立網路監看員](network-watcher-create.md)toocreate 網路監看員。</span><span class="sxs-lookup"><span data-stu-id="48040-114">This scenario assumes you have already followed hello steps in [Create a Network Watcher](network-watcher-create.md) toocreate a Network Watcher.</span></span>
 
-## <a name="scenario"></a><span data-ttu-id="757bf-115">案例</span><span class="sxs-lookup"><span data-stu-id="757bf-115">Scenario</span></span>
+## <a name="scenario"></a><span data-ttu-id="48040-115">案例</span><span class="sxs-lookup"><span data-stu-id="48040-115">Scenario</span></span>
 
-<span data-ttu-id="757bf-116">本文涵蓋的案例會擷取指定虛擬機器之已設定且有效的安全性規則。</span><span class="sxs-lookup"><span data-stu-id="757bf-116">The scenario covered in this article retrieves the configured and effective security rules for a given virtual machine.</span></span>
+<span data-ttu-id="48040-116">hello 案例涵蓋在本文中擷取設定的 hello 和指定的虛擬機器的有效的安全性規則。</span><span class="sxs-lookup"><span data-stu-id="48040-116">hello scenario covered in this article retrieves hello configured and effective security rules for a given virtual machine.</span></span>
 
-## <a name="get-a-vm"></a><span data-ttu-id="757bf-117">取得 VM</span><span class="sxs-lookup"><span data-stu-id="757bf-117">Get a VM</span></span>
+## <a name="get-a-vm"></a><span data-ttu-id="48040-117">取得 VM</span><span class="sxs-lookup"><span data-stu-id="48040-117">Get a VM</span></span>
 
-<span data-ttu-id="757bf-118">必須有虛擬機器才能執行 `vm list` Cmdlet。</span><span class="sxs-lookup"><span data-stu-id="757bf-118">A virtual machine is required to run the `vm list` cmdlet.</span></span> <span data-ttu-id="757bf-119">下列命令會列出資源群組中的虛擬機器：</span><span class="sxs-lookup"><span data-stu-id="757bf-119">The following command lists the virtual machines in a resource group:</span></span>
+<span data-ttu-id="48040-118">虛擬機器為必要的 toorun hello `vm list` cmdlet。</span><span class="sxs-lookup"><span data-stu-id="48040-118">A virtual machine is required toorun hello `vm list` cmdlet.</span></span> <span data-ttu-id="48040-119">hello 下列命令會列出資源群組中的 hello 虛擬機器：</span><span class="sxs-lookup"><span data-stu-id="48040-119">hello following command lists hello virtual machines in a resource group:</span></span>
 
 ```azurecli
 az vm list -resource-group resourceGroupName
 ```
 
-<span data-ttu-id="757bf-120">在知道虛擬機器後，您可以使用 `vm show` Cmdlet 來取得其資源識別碼︰</span><span class="sxs-lookup"><span data-stu-id="757bf-120">Once you know the virtual machine, you can use the `vm show` cmdlet to get its resource Id:</span></span>
+<span data-ttu-id="48040-120">一旦您知道 hello 虛擬機器，您可以使用 hello `vm show` cmdlet tooget 其資源識別碼：</span><span class="sxs-lookup"><span data-stu-id="48040-120">Once you know hello virtual machine, you can use hello `vm show` cmdlet tooget its resource Id:</span></span>
 
 ```azurecli
 az vm show -resource-group resourceGroupName -name virtualMachineName
 ```
 
-## <a name="retrieve-security-group-view"></a><span data-ttu-id="757bf-121">擷取安全性群組檢視</span><span class="sxs-lookup"><span data-stu-id="757bf-121">Retrieve security group view</span></span>
+## <a name="retrieve-security-group-view"></a><span data-ttu-id="48040-121">擷取安全性群組檢視</span><span class="sxs-lookup"><span data-stu-id="48040-121">Retrieve security group view</span></span>
 
-<span data-ttu-id="757bf-122">下一步是擷取安全性群組檢視的結果。</span><span class="sxs-lookup"><span data-stu-id="757bf-122">The next step is to retrieve the security group view result.</span></span>
+<span data-ttu-id="48040-122">hello 下一個步驟是 tooretrieve hello 安全性的群組檢視結果。</span><span class="sxs-lookup"><span data-stu-id="48040-122">hello next step is tooretrieve hello security group view result.</span></span>
 
 ```azurecli
 az network watcher show-security-group-view --resource-group resourceGroupName --vm vmName
 ```
 
-## <a name="viewing-the-results"></a><span data-ttu-id="757bf-123">檢視結果</span><span class="sxs-lookup"><span data-stu-id="757bf-123">Viewing the results</span></span>
+## <a name="viewing-hello-results"></a><span data-ttu-id="48040-123">檢視 hello 結果</span><span class="sxs-lookup"><span data-stu-id="48040-123">Viewing hello results</span></span>
 
-<span data-ttu-id="757bf-124">下列範例是所傳回結果的縮短回應。</span><span class="sxs-lookup"><span data-stu-id="757bf-124">The following example is a shortened response of the results returned.</span></span> <span data-ttu-id="757bf-125">結果顯示虛擬機器上所有有效且套用的安全性規則，並細分為 **NetworkInterfaceSecurityRules**、**DefaultSecurityRules**和 **EffectiveSecurityRules** 群組。</span><span class="sxs-lookup"><span data-stu-id="757bf-125">The results show all the effective and applied security rules on the virtual machine broken down in groups of **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, and **EffectiveSecurityRules**.</span></span>
+<span data-ttu-id="48040-124">hello 下列範例是縮短的回應 hello 傳回的結果。</span><span class="sxs-lookup"><span data-stu-id="48040-124">hello following example is a shortened response of hello results returned.</span></span> <span data-ttu-id="48040-125">hello 結果會顯示所有 hello 有效且套用安全性規則 hello 細分的群組中的虛擬機器上**NetworkInterfaceSecurityRules**， **DefaultSecurityRules**，和**EffectiveSecurityRules**。</span><span class="sxs-lookup"><span data-stu-id="48040-125">hello results show all hello effective and applied security rules on hello virtual machine broken down in groups of **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, and **EffectiveSecurityRules**.</span></span>
 
 ```json
 {
@@ -157,8 +157,8 @@ az network watcher show-security-group-view --resource-group resourceGroupName -
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="757bf-126">後續步驟</span><span class="sxs-lookup"><span data-stu-id="757bf-126">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="48040-126">後續步驟</span><span class="sxs-lookup"><span data-stu-id="48040-126">Next steps</span></span>
 
-<span data-ttu-id="757bf-127">請瀏覽[使用網路監看員稽核網路安全性群組 (NSG)](network-watcher-nsg-auditing-powershell.md) 以了解如何自動驗證網路安全性群組。</span><span class="sxs-lookup"><span data-stu-id="757bf-127">Visit [Auditing Network Security Groups (NSG) with Network Watcher](network-watcher-nsg-auditing-powershell.md) to learn how to automate validation of Network Security Groups.</span></span>
+<span data-ttu-id="48040-127">請瀏覽[稽核網路安全性群組群組 (NSG) 與網路監看員](network-watcher-nsg-auditing-powershell.md)toolearn 如何 tooautomate 驗證的網路安全性群組。</span><span class="sxs-lookup"><span data-stu-id="48040-127">Visit [Auditing Network Security Groups (NSG) with Network Watcher](network-watcher-nsg-auditing-powershell.md) toolearn how tooautomate validation of Network Security Groups.</span></span>
 
-<span data-ttu-id="757bf-128">請瀏覽[安全性群組檢視概觀](network-watcher-security-group-view-overview.md)以深入了解套用到網路資源的安全性規則</span><span class="sxs-lookup"><span data-stu-id="757bf-128">Learn more about the security rules that are applied to your network resources by visiting [Security group view overview](network-watcher-security-group-view-overview.md)</span></span>
+<span data-ttu-id="48040-128">深入了解 hello 安全性規則所套用的 tooyour 網路資源，造訪[安全性的群組檢視概觀](network-watcher-security-group-view-overview.md)</span><span class="sxs-lookup"><span data-stu-id="48040-128">Learn more about hello security rules that are applied tooyour network resources by visiting [Security group view overview](network-watcher-security-group-view-overview.md)</span></span>

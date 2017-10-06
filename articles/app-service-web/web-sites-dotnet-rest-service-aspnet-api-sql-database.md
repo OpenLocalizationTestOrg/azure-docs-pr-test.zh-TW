@@ -1,6 +1,6 @@
 ---
-title: "使用 ASP.NET 和 SQL DB 在 Azure 中建立 REST API | Microsoft Docs"
-description: "指導如何使用 Visual Studio，將使用 ASP.NET Web API 的應用程式部署至 Azure Web 應用程式的教學課程。"
+title: "aaaCreate REST API 在 Azure 中使用 ASP.NET 和 SQL DB |Microsoft 文件"
+description: "教學課程，教導您 toodeploy 使用的應用程式如何使用 Visual Studio hello ASP.NET Web API tooan Azure web 應用程式。"
 services: app-service\web
 documentationcenter: .net
 author: Rick-Anderson
@@ -15,63 +15,63 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 02/29/2016
 ms.author: riande
-ms.openlocfilehash: 64c18f2cfabbb7af6ffd89b4c2a9095fca1cf799
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ef45dd1582bfda367e53c39f863164422ad678b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-rest-service-using-aspnet-web-api-and-sql-database-in-azure-app-service"></a><span data-ttu-id="ecc8b-103">在 Azure App Service 中使用 ASP.NET Web API 和 SQL Database 建立 REST 服務</span><span class="sxs-lookup"><span data-stu-id="ecc8b-103">Create a REST service using ASP.NET Web API and SQL Database in Azure App Service</span></span>
-<span data-ttu-id="ecc8b-104">本教學課程示範如何使用 Visual Studio 2013 或 Visual Studio 2013 Community Edition 中的 [發佈 Web] 精靈，將 ASP.NET Web 應用程式部署至 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-104">This tutorial shows how to deploy an ASP.NET web app to an [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) by using the Publish Web wizard in Visual Studio 2013 or Visual Studio 2013 Community Edition.</span></span> 
+# <a name="create-a-rest-service-using-aspnet-web-api-and-sql-database-in-azure-app-service"></a><span data-ttu-id="5863f-103">在 Azure App Service 中使用 ASP.NET Web API 和 SQL Database 建立 REST 服務</span><span class="sxs-lookup"><span data-stu-id="5863f-103">Create a REST service using ASP.NET Web API and SQL Database in Azure App Service</span></span>
+<span data-ttu-id="5863f-104">本教學課程示範如何 toodeploy ASP.NET web 應用程式 tooan [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)使用 hello 發行網站精靈，在 Visual Studio 2013 或 Visual Studio 2013 Community 版本。</span><span class="sxs-lookup"><span data-stu-id="5863f-104">This tutorial shows how toodeploy an ASP.NET web app tooan [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) by using hello Publish Web wizard in Visual Studio 2013 or Visual Studio 2013 Community Edition.</span></span> 
 
-<span data-ttu-id="ecc8b-105">您可以免費申請 Azure 帳戶，而且如果您還沒有 Visual Studio 2013，SDK 會自動安裝 Visual Studio 2013 for Web Express。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-105">You can open an Azure account for free, and if you don't already have Visual Studio 2013, the SDK automatically installs Visual Studio 2013 for Web Express.</span></span> <span data-ttu-id="ecc8b-106">如此您就能開始免費進行 Azure 相關開發。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-106">So you can start developing for Azure entirely for free.</span></span>
+<span data-ttu-id="5863f-105">您可以免費，開啟 Azure 帳戶和 hello SDK 如果您還沒有 Visual Studio 2013，自動安裝適用於 Web Express Visual Studio 2013。</span><span class="sxs-lookup"><span data-stu-id="5863f-105">You can open an Azure account for free, and if you don't already have Visual Studio 2013, hello SDK automatically installs Visual Studio 2013 for Web Express.</span></span> <span data-ttu-id="5863f-106">如此您就能開始免費進行 Azure 相關開發。</span><span class="sxs-lookup"><span data-stu-id="5863f-106">So you can start developing for Azure entirely for free.</span></span>
 
-<span data-ttu-id="ecc8b-107">本教學課程假設您先前沒有使用 Azure 的經驗。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-107">This tutorial assumes that you have no prior experience using Azure.</span></span> <span data-ttu-id="ecc8b-108">完成本教學課程後，您將有個簡單的 Web 應用程式已在雲端中啟動並執行。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-108">On completing this tutorial, you'll have a simple web app up and running in the cloud.</span></span>
+<span data-ttu-id="5863f-107">本教學課程假設您先前沒有使用 Azure 的經驗。</span><span class="sxs-lookup"><span data-stu-id="5863f-107">This tutorial assumes that you have no prior experience using Azure.</span></span> <span data-ttu-id="5863f-108">完成本教學課程，您必須設定簡單的 web 應用程式和 hello 雲端中執行。</span><span class="sxs-lookup"><span data-stu-id="5863f-108">On completing this tutorial, you'll have a simple web app up and running in hello cloud.</span></span>
 
-<span data-ttu-id="ecc8b-109">您將了解：</span><span class="sxs-lookup"><span data-stu-id="ecc8b-109">You'll learn:</span></span>
+<span data-ttu-id="5863f-109">您將了解：</span><span class="sxs-lookup"><span data-stu-id="5863f-109">You'll learn:</span></span>
 
-* <span data-ttu-id="ecc8b-110">如何安裝 Azure SDK 好讓電腦適合用於進行 Azure 開發。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-110">How to enable your machine for Azure development by installing the Azure SDK.</span></span>
-* <span data-ttu-id="ecc8b-111">如何建立 Visual Studio ASP.NET MVC 5 專案，並將它發行至 Azure 應用程式。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-111">How to create a Visual Studio ASP.NET MVC 5 project and publish it to an Azure app.</span></span>
-* <span data-ttu-id="ecc8b-112">如何使用 ASP.NET Web API 來啟用符合 REST 限制的 API 呼叫。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-112">How to use the ASP.NET Web API to enable Restful API calls.</span></span>
-* <span data-ttu-id="ecc8b-113">如何使用 SQL 資料庫在 Azure 中儲存資料。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-113">How to use a SQL database to store data in Azure.</span></span>
-* <span data-ttu-id="ecc8b-114">如何將應用程式更新發行至 Azure。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-114">How to publish application updates to Azure.</span></span>
+* <span data-ttu-id="5863f-110">如何 tooenable 電腦所安裝的 Azure 開發 hello Azure SDK。</span><span class="sxs-lookup"><span data-stu-id="5863f-110">How tooenable your machine for Azure development by installing hello Azure SDK.</span></span>
+* <span data-ttu-id="5863f-111">如何 toocreate Visual Studio ASP.NET MVC 5 專案，並將它發行 tooan Azure 應用程式。</span><span class="sxs-lookup"><span data-stu-id="5863f-111">How toocreate a Visual Studio ASP.NET MVC 5 project and publish it tooan Azure app.</span></span>
+* <span data-ttu-id="5863f-112">如何 toouse hello ASP.NET Web API tooenable Restful API 呼叫。</span><span class="sxs-lookup"><span data-stu-id="5863f-112">How toouse hello ASP.NET Web API tooenable Restful API calls.</span></span>
+* <span data-ttu-id="5863f-113">如何 toouse SQL 資料庫 toostore Azure 中的資料。</span><span class="sxs-lookup"><span data-stu-id="5863f-113">How toouse a SQL database toostore data in Azure.</span></span>
+* <span data-ttu-id="5863f-114">Toopublish 應用程式更新 tooAzure 的方式。</span><span class="sxs-lookup"><span data-stu-id="5863f-114">How toopublish application updates tooAzure.</span></span>
 
-<span data-ttu-id="ecc8b-115">您將建立一個簡單的連絡人清單 Web 應用程式，該應用程式建立於 ASP.NET MVC 5 之上，並使用 ADO.NET Entity Framework 進行資料庫存取。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-115">You'll build a simple contact list web application that is built on ASP.NET MVC 5 and uses the ADO.NET Entity Framework for database access.</span></span> <span data-ttu-id="ecc8b-116">下圖顯示完成的應用程式：</span><span class="sxs-lookup"><span data-stu-id="ecc8b-116">The following illustration shows the completed application:</span></span>
+<span data-ttu-id="5863f-115">您將建置簡單的連絡人清單 web 應用程式建置在 ASP.NET MVC 5 並使用 hello ADO.NET Entity Framework 來存取資料庫。</span><span class="sxs-lookup"><span data-stu-id="5863f-115">You'll build a simple contact list web application that is built on ASP.NET MVC 5 and uses hello ADO.NET Entity Framework for database access.</span></span> <span data-ttu-id="5863f-116">下列圖例顯示 hello hello 完成應用程式：</span><span class="sxs-lookup"><span data-stu-id="5863f-116">hello following illustration shows hello completed application:</span></span>
 
 ![網站的螢幕擷取畫面][intro001]
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
-### <a name="create-the-project"></a><span data-ttu-id="ecc8b-118">建立專案</span><span class="sxs-lookup"><span data-stu-id="ecc8b-118">Create the project</span></span>
-1. <span data-ttu-id="ecc8b-119">啟動 Visual Studio 2013。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-119">Start Visual Studio 2013.</span></span>
-2. <span data-ttu-id="ecc8b-120">從 [檔案] 功能表，按一下 [新增專案]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-120">From the **File** menu click **New Project**.</span></span>
-3. <span data-ttu-id="ecc8b-121">在 [新增專案] 對話方塊中，展開 [Visual C#] 並選取 [Web]，再選取 [ASP.NET Web 應用程式]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-121">In the **New Project** dialog box, expand **Visual C#** and select **Web**  and then select **ASP.NET Web Application**.</span></span> <span data-ttu-id="ecc8b-122">將應用程式命名為 **ContactManager**，再按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-122">Name the application **ContactManager** and click **OK**.</span></span>
+### <a name="create-hello-project"></a><span data-ttu-id="5863f-118">建立 hello 專案</span><span class="sxs-lookup"><span data-stu-id="5863f-118">Create hello project</span></span>
+1. <span data-ttu-id="5863f-119">啟動 Visual Studio 2013。</span><span class="sxs-lookup"><span data-stu-id="5863f-119">Start Visual Studio 2013.</span></span>
+2. <span data-ttu-id="5863f-120">從 hello**檔案**功能表上，按一下**新專案**。</span><span class="sxs-lookup"><span data-stu-id="5863f-120">From hello **File** menu click **New Project**.</span></span>
+3. <span data-ttu-id="5863f-121">在 hello**新專案**對話方塊方塊中，展開  **Visual C#**選取**Web** ，然後選取  **ASP.NET Web 應用程式**。</span><span class="sxs-lookup"><span data-stu-id="5863f-121">In hello **New Project** dialog box, expand **Visual C#** and select **Web**  and then select **ASP.NET Web Application**.</span></span> <span data-ttu-id="5863f-122">Hello 應用程式命名**ContactManager**按一下**確定**。</span><span class="sxs-lookup"><span data-stu-id="5863f-122">Name hello application **ContactManager** and click **OK**.</span></span>
    
     ![New Project dialog box](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr4.png)
-4. <span data-ttu-id="ecc8b-124">在 [New ASP.NET Project] 對話方塊中，選取 [MVC] 範本，勾選 [Web API]，再按一下 [變更驗證]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-124">In the **New ASP.NET Project** dialog box, select the **MVC** template, check **Web API** and then click **Change Authentication**.</span></span>
-5. <span data-ttu-id="ecc8b-125">在 [變更驗證] 對話方塊中，按一下 [不需要驗證]，然後按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-125">In the **Change Authentication** dialog box, click **No Authentication**, and then click **OK**.</span></span>
+4. <span data-ttu-id="5863f-124">在 hello**新增 ASP.NET 專案**對話方塊中，選取 hello **MVC**範本中，核取**Web API** ，然後按一下**變更驗證**。</span><span class="sxs-lookup"><span data-stu-id="5863f-124">In hello **New ASP.NET Project** dialog box, select hello **MVC** template, check **Web API** and then click **Change Authentication**.</span></span>
+5. <span data-ttu-id="5863f-125">在 hello**變更驗證**對話方塊中，按一下**非驗證**，然後按一下**確定**。</span><span class="sxs-lookup"><span data-stu-id="5863f-125">In hello **Change Authentication** dialog box, click **No Authentication**, and then click **OK**.</span></span>
    
     ![不需要驗證](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/GS13noauth.png)
    
-    <span data-ttu-id="ecc8b-127">您要建立的範例應用程式將不會有需要使用者登入的功能。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-127">The sample application you're creating won't have features that require users to log in.</span></span> <span data-ttu-id="ecc8b-128">如需關於如何實作驗證與授權功能的詳細資訊，請參閱本教學課程最後的 [後續步驟](#nextsteps) 小節。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-128">For information about how to implement authentication and authorization features, see the [Next Steps](#nextsteps) section at the end of this tutorial.</span></span> 
-6. <span data-ttu-id="ecc8b-129">在 [新增 ASP.NET 專案] 對話方塊中，請確定已勾選 [雲端中的主機]，然後按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-129">In the **New ASP.NET Project** dialog box, make sure the **Host in the Cloud** is checked and click **OK**.</span></span>
+    <span data-ttu-id="5863f-127">您要建立 hello 範例應用程式將不會有需要使用者 toolog 中的功能。</span><span class="sxs-lookup"><span data-stu-id="5863f-127">hello sample application you're creating won't have features that require users toolog in.</span></span> <span data-ttu-id="5863f-128">如需有關資訊 tooimplement 驗證和授權功能，請參閱 hello[接下來的步驟](#nextsteps)在本教學課程中的 hello 結尾區段。</span><span class="sxs-lookup"><span data-stu-id="5863f-128">For information about how tooimplement authentication and authorization features, see hello [Next Steps](#nextsteps) section at hello end of this tutorial.</span></span> 
+6. <span data-ttu-id="5863f-129">在 hello**新增 ASP.NET 專案**對話方塊中，請確定 hello **hello 雲端中的主機**已選取，然後按一下**確定**。</span><span class="sxs-lookup"><span data-stu-id="5863f-129">In hello **New ASP.NET Project** dialog box, make sure hello **Host in hello Cloud** is checked and click **OK**.</span></span>
 
-<span data-ttu-id="ecc8b-130">如果您先前未登入 Azure，系統將提示您登入。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-130">If you have not previously signed in to Azure, you will be prompted to sign in.</span></span>
+<span data-ttu-id="5863f-130">如果您不先簽署 tooAzure 中，您將會提示的 toosign 中。</span><span class="sxs-lookup"><span data-stu-id="5863f-130">If you have not previously signed in tooAzure, you will be prompted toosign in.</span></span>
 
-1. <span data-ttu-id="ecc8b-131">[組態] 精靈會根據 *ContactManager* 建議唯一名稱 (請參閱下圖)。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-131">The configuration wizard will suggest a unique name based on *ContactManager* (see the image below).</span></span> <span data-ttu-id="ecc8b-132">選取您附近的區域。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-132">Select a region near you.</span></span> <span data-ttu-id="ecc8b-133">若要尋找最低延遲的資料中心，您可以使用 [azurespeed.com](http://www.azurespeed.com/ "AzureSpeed.com") 。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-133">You can use [azurespeed.com](http://www.azurespeed.com/ "AzureSpeed.com") to find the lowest latency data center.</span></span> 
-2. <span data-ttu-id="ecc8b-134">如果您之前尚未建立資料庫伺服器，請選取 [建立新的伺服器] ，並輸入資料庫使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-134">If you haven't created a database server before, select **Create new server**, enter a database user name and password.</span></span>
+1. <span data-ttu-id="5863f-131">hello 組態精靈將會建議唯一的名稱，根據*ContactManager* （請參閱下面的 hello 影像）。</span><span class="sxs-lookup"><span data-stu-id="5863f-131">hello configuration wizard will suggest a unique name based on *ContactManager* (see hello image below).</span></span> <span data-ttu-id="5863f-132">選取您附近的區域。</span><span class="sxs-lookup"><span data-stu-id="5863f-132">Select a region near you.</span></span> <span data-ttu-id="5863f-133">您可以使用[azurespeed.com](http://www.azurespeed.com/ "AzureSpeed.com") toofind hello 最低延遲的資料中心。</span><span class="sxs-lookup"><span data-stu-id="5863f-133">You can use [azurespeed.com](http://www.azurespeed.com/ "AzureSpeed.com") toofind hello lowest latency data center.</span></span> 
+2. <span data-ttu-id="5863f-134">如果您之前尚未建立資料庫伺服器，請選取 [建立新的伺服器] ，並輸入資料庫使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="5863f-134">If you haven't created a database server before, select **Create new server**, enter a database user name and password.</span></span>
    
     ![設定 Azure 網站](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/configAz.PNG)
 
-<span data-ttu-id="ecc8b-136">如果您有資料庫伺服器，請用它來建立新的資料庫。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-136">If you have a database server, use that to create a new database.</span></span> <span data-ttu-id="ecc8b-137">資料庫伺服器是非常寶貴的資源，通常您會想要在相同伺服器上建立多個資料庫進行測試和開發，而非在每個資料庫上建立資料庫伺服器。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-137">Database servers are a precious resource, and you generally want to create multiple databases on the same server for testing and development rather than creating a database server per database.</span></span> <span data-ttu-id="ecc8b-138">請確定您的網站和資料庫位於相同的區域。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-138">Make sure your web site and database are in the same region.</span></span>
+<span data-ttu-id="5863f-136">如果您有資料庫伺服器時，使用該 toocreate 新的資料庫。</span><span class="sxs-lookup"><span data-stu-id="5863f-136">If you have a database server, use that toocreate a new database.</span></span> <span data-ttu-id="5863f-137">資料庫伺服器是非常寶貴的資源，而您通常想 toocreate hello 上的多個資料庫來進行測試和開發而建立的每個資料庫的資料庫伺服器的同一部伺服器。</span><span class="sxs-lookup"><span data-stu-id="5863f-137">Database servers are a precious resource, and you generally want toocreate multiple databases on hello same server for testing and development rather than creating a database server per database.</span></span> <span data-ttu-id="5863f-138">請確定您的網站和資料庫位於 hello 相同的區域。</span><span class="sxs-lookup"><span data-stu-id="5863f-138">Make sure your web site and database are in hello same region.</span></span>
 
 ![設定 Azure 網站](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/configWithDB.PNG)
 
-### <a name="set-the-page-header-and-footer"></a><span data-ttu-id="ecc8b-140">設定頁首及頁尾</span><span class="sxs-lookup"><span data-stu-id="ecc8b-140">Set the page header and footer</span></span>
-1. <span data-ttu-id="ecc8b-141">在 [方案總管] 中，展開 Views\Shared 資料夾，然後開啟 _Layout.cshtml 檔案。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-141">In **Solution Explorer**, expand the *Views\Shared* folder and open the *_Layout.cshtml* file.</span></span>
+### <a name="set-hello-page-header-and-footer"></a><span data-ttu-id="5863f-140">設定 hello 頁首和頁尾</span><span class="sxs-lookup"><span data-stu-id="5863f-140">Set hello page header and footer</span></span>
+1. <span data-ttu-id="5863f-141">在**方案總管] 中**，依序展開 [hello *_layout.cshtml*資料夾，然後開啟 hello *_Layout.cshtml*檔案。</span><span class="sxs-lookup"><span data-stu-id="5863f-141">In **Solution Explorer**, expand hello *Views\Shared* folder and open hello *_Layout.cshtml* file.</span></span>
    
     ![方案總管中的 _Layout.cshtml][newapp004]
-2. <span data-ttu-id="ecc8b-143">以下列程式碼取代 Views\Shared_Layout.cshtml 檔案中的內容：</span><span class="sxs-lookup"><span data-stu-id="ecc8b-143">Replace the contents of the *Views\Shared_Layout.cshtml* file with the following code:</span></span>
+2. <span data-ttu-id="5863f-143">取代 hello hello 內容*Views\Shared_Layout.cshtml*檔案以下列程式碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="5863f-143">Replace hello contents of hello *Views\Shared_Layout.cshtml* file with hello following code:</span></span>
 
         <!DOCTYPE html>
         <html lang="en">
@@ -109,46 +109,46 @@ ms.lasthandoff: 07/11/2017
         </body>
         </html>
 
-<span data-ttu-id="ecc8b-144">以上的標記會將應用程式名稱從 "My ASP.NET App" 變更為 "Contact Manager"，同時也移除 **Home**、**About** 及 **Contact** 的連結。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-144">The markup above changes the app name from "My ASP.NET App" to "Contact Manager", and it removes the links to **Home**, **About** and **Contact**.</span></span>
+<span data-ttu-id="5863f-144">hello 標記上方 hello 應用程式將名稱變更從 「 我的 ASP.NET 應用程式 」 太"連絡人管理員 」，並移除 hello 連結太**首頁**，**有關**和**連絡人**。</span><span class="sxs-lookup"><span data-stu-id="5863f-144">hello markup above changes hello app name from "My ASP.NET App" too"Contact Manager", and it removes hello links too**Home**, **About** and **Contact**.</span></span>
 
-### <a name="run-the-application-locally"></a><span data-ttu-id="ecc8b-145">在本機執行應用程式</span><span class="sxs-lookup"><span data-stu-id="ecc8b-145">Run the application locally</span></span>
-1. <span data-ttu-id="ecc8b-146">按 CTRL+F5 執行應用程式。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-146">Press CTRL+F5 to run the application.</span></span>
-   <span data-ttu-id="ecc8b-147">應用程式首頁隨即出現在預設瀏覽器中。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-147">The application home page appears in the default browser.</span></span>
-    <span data-ttu-id="ecc8b-148">![待辦事項清單首頁](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr5.png)</span><span class="sxs-lookup"><span data-stu-id="ecc8b-148">![To Do List home page](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr5.png)</span></span>
+### <a name="run-hello-application-locally"></a><span data-ttu-id="5863f-145">在本機執行 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="5863f-145">Run hello application locally</span></span>
+1. <span data-ttu-id="5863f-146">按 CTRL + F5 toorun hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="5863f-146">Press CTRL+F5 toorun hello application.</span></span>
+   <span data-ttu-id="5863f-147">hello 應用程式的首頁上會出現在 hello 預設瀏覽器。</span><span class="sxs-lookup"><span data-stu-id="5863f-147">hello application home page appears in hello default browser.</span></span>
+    <span data-ttu-id="5863f-148">![tooDo 清單首頁](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr5.png)</span><span class="sxs-lookup"><span data-stu-id="5863f-148">![tooDo List home page](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr5.png)</span></span>
 
-<span data-ttu-id="ecc8b-149">只需執行上述作業，即可建立稍後要部署至 Azure 的應用程式。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-149">This is all you need to do for now to create the application that you'll deploy to Azure.</span></span> <span data-ttu-id="ecc8b-150">稍後您將新增資料庫功能。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-150">Later you'll add database functionality.</span></span>
+<span data-ttu-id="5863f-149">這是您只需要 toodo 現在 toocreate hello 應用程式會將部署 tooAzure。</span><span class="sxs-lookup"><span data-stu-id="5863f-149">This is all you need toodo for now toocreate hello application that you'll deploy tooAzure.</span></span> <span data-ttu-id="5863f-150">稍後您將新增資料庫功能。</span><span class="sxs-lookup"><span data-stu-id="5863f-150">Later you'll add database functionality.</span></span>
 
-## <a name="deploy-the-application-to-azure"></a><span data-ttu-id="ecc8b-151">將應用程式部署至 Azure</span><span class="sxs-lookup"><span data-stu-id="ecc8b-151">Deploy the application to Azure</span></span>
-1. <span data-ttu-id="ecc8b-152">在 Visual Studio 的 [方案總管] 中以滑鼠右鍵按一下專案，再選取內容功能表中的 [發佈]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-152">In Visual Studio, right-click the project in **Solution Explorer** and select **Publish** from the context menu.</span></span>
+## <a name="deploy-hello-application-tooazure"></a><span data-ttu-id="5863f-151">部署 hello 應用程式 tooAzure</span><span class="sxs-lookup"><span data-stu-id="5863f-151">Deploy hello application tooAzure</span></span>
+1. <span data-ttu-id="5863f-152">在 Visual Studio 中，以滑鼠右鍵按一下中的 hello 專案**方案總管 中**選取**發行**hello 操作功能表中。</span><span class="sxs-lookup"><span data-stu-id="5863f-152">In Visual Studio, right-click hello project in **Solution Explorer** and select **Publish** from hello context menu.</span></span>
    
     ![專案內容功能表中的 [發行]][PublishVSSolution]
    
-    <span data-ttu-id="ecc8b-154">此時會開啟 [發行 Web]  精靈。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-154">The **Publish Web** wizard opens.</span></span>
-2. <span data-ttu-id="ecc8b-155">按一下 [發行] 。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-155">Click **Publish**.</span></span>
+    <span data-ttu-id="5863f-154">hello**發行 Web**精靈 隨即開啟。</span><span class="sxs-lookup"><span data-stu-id="5863f-154">hello **Publish Web** wizard opens.</span></span>
+2. <span data-ttu-id="5863f-155">按一下 [發行] 。</span><span class="sxs-lookup"><span data-stu-id="5863f-155">Click **Publish**.</span></span>
 
 ![[設定] 索引標籤](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/pw.png)
 
-<span data-ttu-id="ecc8b-157">Visual Studio 隨即開始進行將檔案複製至 Azure 伺服器的程序。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-157">Visual Studio begins the process of copying the files to the Azure server.</span></span> <span data-ttu-id="ecc8b-158">[輸出]  視窗會顯示已採取的部署動作，並報告部署作業已順利完成。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-158">The **Output** window shows what deployment actions were taken and reports successful completion of the deployment.</span></span>
+<span data-ttu-id="5863f-157">Visual Studio 開始複製 hello 檔案 toohello Azure 伺服器 hello 程序。</span><span class="sxs-lookup"><span data-stu-id="5863f-157">Visual Studio begins hello process of copying hello files toohello Azure server.</span></span> <span data-ttu-id="5863f-158">hello**輸出**視窗會顯示所執行的部署動作，並報告 hello 部署成功完成。</span><span class="sxs-lookup"><span data-stu-id="5863f-158">hello **Output** window shows what deployment actions were taken and reports successful completion of hello deployment.</span></span>
 
-1. <span data-ttu-id="ecc8b-159">預設瀏覽器會自動開啟已部署之網站的 URL。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-159">The default browser automatically opens to the URL of the deployed site.</span></span>
+1. <span data-ttu-id="5863f-159">hello 預設瀏覽器會自動開啟 toohello 部署的 hello 網站 URL。</span><span class="sxs-lookup"><span data-stu-id="5863f-159">hello default browser automatically opens toohello URL of hello deployed site.</span></span>
    
-   <span data-ttu-id="ecc8b-160">您建立的應用程式現在正在雲端中執行。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-160">The application you created is now running in the cloud.</span></span>
+   <span data-ttu-id="5863f-160">您建立的 hello 應用程式現在正在 hello 雲端中執行。</span><span class="sxs-lookup"><span data-stu-id="5863f-160">hello application you created is now running in hello cloud.</span></span>
    
-   ![在 Azure 中執行的待辦事項清單首頁][rxz2]
+   ![在 Azure 中執行將 tooDo 清單首頁][rxz2]
 
-## <a name="add-a-database-to-the-application"></a><span data-ttu-id="ecc8b-162">新增資料庫至應用程式</span><span class="sxs-lookup"><span data-stu-id="ecc8b-162">Add a database to the application</span></span>
-<span data-ttu-id="ecc8b-163">接下來，您將更新 MVC 應用程式，以加上顯示和更新資料庫中的連絡人，以及在資料庫中儲存資料的能力。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-163">Next, you'll update the MVC application to add the ability to display and update contacts and store the data in a database.</span></span> <span data-ttu-id="ecc8b-164">應用程式將使用 Entity Framework，以建立資料庫以及讀取和更新資料庫中的資料。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-164">The application will use the Entity Framework to create the database and to read and update data in the database.</span></span>
+## <a name="add-a-database-toohello-application"></a><span data-ttu-id="5863f-162">新增資料庫 toohello 應用程式</span><span class="sxs-lookup"><span data-stu-id="5863f-162">Add a database toohello application</span></span>
+<span data-ttu-id="5863f-163">接下來，您將更新 hello MVC 應用程式 tooadd hello 能力 toodisplay 和更新連絡人並儲存在資料庫中的 hello 資料。</span><span class="sxs-lookup"><span data-stu-id="5863f-163">Next, you'll update hello MVC application tooadd hello ability toodisplay and update contacts and store hello data in a database.</span></span> <span data-ttu-id="5863f-164">hello 應用程式會使用 hello Entity Framework toocreate hello 資料庫和 tooread，並更新 hello 資料庫中的資料。</span><span class="sxs-lookup"><span data-stu-id="5863f-164">hello application will use hello Entity Framework toocreate hello database and tooread and update data in hello database.</span></span>
 
-### <a name="add-data-model-classes-for-the-contacts"></a><span data-ttu-id="ecc8b-165">新增連絡人的資料模型類別</span><span class="sxs-lookup"><span data-stu-id="ecc8b-165">Add data model classes for the contacts</span></span>
-<span data-ttu-id="ecc8b-166">首先，您會在程式碼中建立簡單的資料模型。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-166">You begin by creating a simple data model in code.</span></span>
+### <a name="add-data-model-classes-for-hello-contacts"></a><span data-ttu-id="5863f-165">新增 hello 連絡人的資料模型類別</span><span class="sxs-lookup"><span data-stu-id="5863f-165">Add data model classes for hello contacts</span></span>
+<span data-ttu-id="5863f-166">首先，您會在程式碼中建立簡單的資料模型。</span><span class="sxs-lookup"><span data-stu-id="5863f-166">You begin by creating a simple data model in code.</span></span>
 
-1. <span data-ttu-id="ecc8b-167">在 [方案總管]，於 Models 資料夾上按一下滑鼠右鍵，按一下 [新增]，再按一下 [類別]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-167">In **Solution Explorer**, right-click the Models folder, click **Add**, and then **Class**.</span></span>
+1. <span data-ttu-id="5863f-167">在**方案總管 中**hello Models 資料夾上按一下滑鼠右鍵、 按一下**新增**，然後**類別**。</span><span class="sxs-lookup"><span data-stu-id="5863f-167">In **Solution Explorer**, right-click hello Models folder, click **Add**, and then **Class**.</span></span>
    
     ![在 Models 資料夾內容功能表中新增類別][adddb001]
-2. <span data-ttu-id="ecc8b-169">在 [加入新項目] 對話方塊中，將新的類別檔案命名為 *Contact.cs*，再按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-169">In the **Add New Item** dialog box, name the new class file *Contact.cs*, and then click **Add**.</span></span>
+2. <span data-ttu-id="5863f-169">在 hello**加入新項目**對話方塊中，名稱 hello 新的類別檔案*Contact.cs*，然後按一下**新增**。</span><span class="sxs-lookup"><span data-stu-id="5863f-169">In hello **Add New Item** dialog box, name hello new class file *Contact.cs*, and then click **Add**.</span></span>
    
     ![[加入新項目] 對話方塊][adddb002]
-3. <span data-ttu-id="ecc8b-171">以下列程式碼取代 Contacts.cs 檔案的內容。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-171">Replace the contents of the Contacts.cs file with the following code.</span></span>
+3. <span data-ttu-id="5863f-171">取代下列程式碼的 hello hello hello Contacts.cs 檔案內容。</span><span class="sxs-lookup"><span data-stu-id="5863f-171">Replace hello contents of hello Contacts.cs file with hello following code.</span></span>
    
         using System.Globalization;
         namespace ContactManager.Models
@@ -172,49 +172,49 @@ ms.lasthandoff: 07/11/2017
             }
         }
 
-<span data-ttu-id="ecc8b-172">**Contact** 類別定義您將為每個連絡人儲存的資料，加上資料庫需要的主要索引鍵 ContactID。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-172">The **Contact** class defines the data that you will store for each contact, plus a primary key, ContactID, that is needed by the database.</span></span> <span data-ttu-id="ecc8b-173">您可以在本教學課程結尾處的 [後續步驟](#nextsteps) 一節取得資料模型的詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-173">You can get more information about data models in the [Next Steps](#nextsteps) section at the end of this tutorial.</span></span>
+<span data-ttu-id="5863f-172">hello**連絡**類別定義儲存每個連絡人，再加上主索引鍵，ContactID hello 資料庫所需的 hello 資料。</span><span class="sxs-lookup"><span data-stu-id="5863f-172">hello **Contact** class defines hello data that you will store for each contact, plus a primary key, ContactID, that is needed by hello database.</span></span> <span data-ttu-id="5863f-173">您可以取得有關資料模型的詳細資訊，在 hello[接下來的步驟](#nextsteps)在本教學課程中的 hello 結尾區段。</span><span class="sxs-lookup"><span data-stu-id="5863f-173">You can get more information about data models in hello [Next Steps](#nextsteps) section at hello end of this tutorial.</span></span>
 
-### <a name="create-web-pages-that-enable-app-users-to-work-with-the-contacts"></a><span data-ttu-id="ecc8b-174">建立可讓應用程式使用者使用連絡人的網頁</span><span class="sxs-lookup"><span data-stu-id="ecc8b-174">Create web pages that enable app users to work with the contacts</span></span>
-<span data-ttu-id="ecc8b-175">ASP.NET MVC 樣板功能可自動產生程式碼來執行建立、讀取、更新和刪除 (CRUD) 動作。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-175">The ASP.NET MVC the scaffolding feature can automatically generate code that performs create, read, update, and delete (CRUD) actions.</span></span>
+### <a name="create-web-pages-that-enable-app-users-toowork-with-hello-contacts"></a><span data-ttu-id="5863f-174">建立網頁可讓應用程式使用者 toowork 與 hello 連絡人</span><span class="sxs-lookup"><span data-stu-id="5863f-174">Create web pages that enable app users toowork with hello contacts</span></span>
+<span data-ttu-id="5863f-175">hello ASP.NET MVC hello scaffolding 功能可以自動產生程式碼會執行建立、 讀取、 更新和刪除 (CRUD) 動作。</span><span class="sxs-lookup"><span data-stu-id="5863f-175">hello ASP.NET MVC hello scaffolding feature can automatically generate code that performs create, read, update, and delete (CRUD) actions.</span></span>
 
-## <a name="add-a-controller-and-a-view-for-the-data"></a><span data-ttu-id="ecc8b-176">新增控制器和資料檢視</span><span class="sxs-lookup"><span data-stu-id="ecc8b-176">Add a Controller and a view for the data</span></span>
-1. <span data-ttu-id="ecc8b-177">在 [方案總管] 中展開 Controllers 資料夾。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-177">In **Solution Explorer**, expand the Controllers folder.</span></span>
-2. <span data-ttu-id="ecc8b-178">建置專案 **(Ctrl+Shift+B)**。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-178">Build the project **(Ctrl+Shift+B)**.</span></span> <span data-ttu-id="ecc8b-179">(使用樣板機制前必須先建置專案。)</span><span class="sxs-lookup"><span data-stu-id="ecc8b-179">(You must build the project before using scaffolding mechanism.)</span></span> 
-3. <span data-ttu-id="ecc8b-180">在 Controllers 資料夾上按一下滑鼠右鍵，按一下 [新增]，再按一下 [控制器]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-180">Right-click the Controllers folder and click **Add**, and then click **Controller**.</span></span>
+## <a name="add-a-controller-and-a-view-for-hello-data"></a><span data-ttu-id="5863f-176">加入控制器與 hello 資料檢視</span><span class="sxs-lookup"><span data-stu-id="5863f-176">Add a Controller and a view for hello data</span></span>
+1. <span data-ttu-id="5863f-177">在**方案總管 中**，依序展開 hello Controllers 資料夾中。</span><span class="sxs-lookup"><span data-stu-id="5863f-177">In **Solution Explorer**, expand hello Controllers folder.</span></span>
+2. <span data-ttu-id="5863f-178">建置專案 hello **(Ctrl + Shift + B)**。</span><span class="sxs-lookup"><span data-stu-id="5863f-178">Build hello project **(Ctrl+Shift+B)**.</span></span> <span data-ttu-id="5863f-179">（您必須建置 hello 專案之前使用 scaffolding 機制）。</span><span class="sxs-lookup"><span data-stu-id="5863f-179">(You must build hello project before using scaffolding mechanism.)</span></span> 
+3. <span data-ttu-id="5863f-180">Hello 控制器 資料夾上按一下滑鼠右鍵，然後按一下**新增**，然後按一下**控制器**。</span><span class="sxs-lookup"><span data-stu-id="5863f-180">Right-click hello Controllers folder and click **Add**, and then click **Controller**.</span></span>
    
     ![在 Controllers 資料夾內容功能表中新增控制器][addcode001]
-4. <span data-ttu-id="ecc8b-182">在 [Add Scaffold] 對話方塊中，選取 [MVC Controller with views, using Entity Framework]，再按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-182">In the **Add Scaffold** dialog box, select **MVC Controller with views, using Entity Framework** and click **Add**.</span></span>
+4. <span data-ttu-id="5863f-182">在 hello**加入 Scaffold**對話方塊中，選取**使用 Entity Framework 的檢視，MVC 控制器**按一下**新增**。</span><span class="sxs-lookup"><span data-stu-id="5863f-182">In hello **Add Scaffold** dialog box, select **MVC Controller with views, using Entity Framework** and click **Add**.</span></span>
    
    ![新增控制器](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rrAC.png)
-5. <span data-ttu-id="ecc8b-184">將控制器名稱設定為 **HomeController**。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-184">Set the controller name to **HomeController**.</span></span> <span data-ttu-id="ecc8b-185">選取 [Contact]  模型類別。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-185">Select **Contact** as your model class.</span></span> <span data-ttu-id="ecc8b-186">按一下 [新資料內容] 按鈕，並接受 [新資料內容類型] 的預設值 "ContactManager.Models.ContactManagerContext"。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-186">Click the **New data context** button and accept the default "ContactManager.Models.ContactManagerContext" for the **New data context type**.</span></span> <span data-ttu-id="ecc8b-187">按一下 [新增] 。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-187">Click **Add**.</span></span>
+5. <span data-ttu-id="5863f-184">設定 hello 控制器名稱太**HomeController**。</span><span class="sxs-lookup"><span data-stu-id="5863f-184">Set hello controller name too**HomeController**.</span></span> <span data-ttu-id="5863f-185">選取 [Contact]  模型類別。</span><span class="sxs-lookup"><span data-stu-id="5863f-185">Select **Contact** as your model class.</span></span> <span data-ttu-id="5863f-186">按一下 hello**新的資料內容**按鈕，然後接受 hello 預設"ContactManager.Models.ContactManagerContext"hello**新資料內容型別**。</span><span class="sxs-lookup"><span data-stu-id="5863f-186">Click hello **New data context** button and accept hello default "ContactManager.Models.ContactManagerContext" for hello **New data context type**.</span></span> <span data-ttu-id="5863f-187">按一下 [新增] 。</span><span class="sxs-lookup"><span data-stu-id="5863f-187">Click **Add**.</span></span>
 
-    <span data-ttu-id="ecc8b-188">對話方塊會提示您：「名為 HomeController 的檔案已存在。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-188">A dialog box will prompt you: "A file with the name HomeController already exits.</span></span> <span data-ttu-id="ecc8b-189">您要取代該檔案嗎？</span><span class="sxs-lookup"><span data-stu-id="ecc8b-189">Do you want to replace it?".</span></span> <span data-ttu-id="ecc8b-190">」按一下 [是] 。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-190">Click **Yes**.</span></span> <span data-ttu-id="ecc8b-191">我們會覆寫隨著新專案一同建立的首頁控制器。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-191">We are overwriting the Home Controller that was created with the new project.</span></span> <span data-ttu-id="ecc8b-192">我們會將新的首頁控制器用於連絡人清單。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-192">We will use the new Home Controller for our contact list.</span></span>
+    <span data-ttu-id="5863f-188">對話方塊會提示您:"hello 名稱的檔案 HomeController 已經結束。</span><span class="sxs-lookup"><span data-stu-id="5863f-188">A dialog box will prompt you: "A file with hello name HomeController already exits.</span></span> <span data-ttu-id="5863f-189">您想 tooreplace 它嗎？ 」。</span><span class="sxs-lookup"><span data-stu-id="5863f-189">Do you want tooreplace it?".</span></span> <span data-ttu-id="5863f-190">按一下 [是] 。</span><span class="sxs-lookup"><span data-stu-id="5863f-190">Click **Yes**.</span></span> <span data-ttu-id="5863f-191">我們會覆寫 hello 首頁建立 hello 新專案中的控制站。</span><span class="sxs-lookup"><span data-stu-id="5863f-191">We are overwriting hello Home Controller that was created with hello new project.</span></span> <span data-ttu-id="5863f-192">我們將使用 hello 新主控制器的連絡人清單。</span><span class="sxs-lookup"><span data-stu-id="5863f-192">We will use hello new Home Controller for our contact list.</span></span>
 
-    <span data-ttu-id="ecc8b-193">Visual Studio 隨即針對 **Contact** 物件的 CRUD 資料庫操作，建立控制器方法與檢視。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-193">Visual Studio creates controller methods and views for CRUD database operations for **Contact** objects.</span></span>
+    <span data-ttu-id="5863f-193">Visual Studio 隨即針對 **Contact** 物件的 CRUD 資料庫操作，建立控制器方法與檢視。</span><span class="sxs-lookup"><span data-stu-id="5863f-193">Visual Studio creates controller methods and views for CRUD database operations for **Contact** objects.</span></span>
 
-## <a name="enable-migrations-create-the-database-add-sample-data-and-a-data-initializer"></a><span data-ttu-id="ecc8b-194">啟用移轉、建立資料庫、新增範例資料和資料初始設定式</span><span class="sxs-lookup"><span data-stu-id="ecc8b-194">Enable Migrations, create the database, add sample data and a data initializer</span></span>
-<span data-ttu-id="ecc8b-195">下一個工作是啟用 [Code First 移轉](http://curah.microsoft.com/55220) 功能，以便根據建立的資料模型建立資料庫。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-195">The next task is to enable the [Code First Migrations](http://curah.microsoft.com/55220) feature in order to create the database based on the data model you created.</span></span>
+## <a name="enable-migrations-create-hello-database-add-sample-data-and-a-data-initializer"></a><span data-ttu-id="5863f-194">啟用移轉，建立 hello 資料庫、 加入範例資料和資料的初始設定式</span><span class="sxs-lookup"><span data-stu-id="5863f-194">Enable Migrations, create hello database, add sample data and a data initializer</span></span>
+<span data-ttu-id="5863f-195">hello 下一個工作是 tooenable hello [Code First 移轉](http://curah.microsoft.com/55220)順序 toocreate hello 資料庫中的功能會根據您所建立的 hello 資料模型。</span><span class="sxs-lookup"><span data-stu-id="5863f-195">hello next task is tooenable hello [Code First Migrations](http://curah.microsoft.com/55220) feature in order toocreate hello database based on hello data model you created.</span></span>
 
-1. <span data-ttu-id="ecc8b-196">在 [工具] 功能表中，依序選取 [Library Package Manager] 及 [Package Manager Console]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-196">In the **Tools** menu, select **Library Package Manager** and then **Package Manager Console**.</span></span>
+1. <span data-ttu-id="5863f-196">在 hello**工具**功能表上，選取**程式庫套件管理員**然後**Package Manager Console**。</span><span class="sxs-lookup"><span data-stu-id="5863f-196">In hello **Tools** menu, select **Library Package Manager** and then **Package Manager Console**.</span></span>
    
     ![[工具] 功能表中的 Package Manager Console][addcode008]
-2. <span data-ttu-id="ecc8b-198">在 [Package Manager Console]  視窗中，輸入下列命令：</span><span class="sxs-lookup"><span data-stu-id="ecc8b-198">In the **Package Manager Console** window, enter the following command:</span></span>
+2. <span data-ttu-id="5863f-198">在 hello **Package Manager Console**視窗中，輸入下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="5863f-198">In hello **Package Manager Console** window, enter hello following command:</span></span>
    
         enable-migrations 
    
-    <span data-ttu-id="ecc8b-199">**enable-migrations** 命令會建立 *Migrations* 資料夾，並在該資料夾置入 *Configuration.cs* 檔案，您可以編輯該檔案來設定 [移轉]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-199">The **enable-migrations** command creates a *Migrations* folder and it puts in that folder a *Configuration.cs* file that you can edit to configure Migrations.</span></span> 
-3. <span data-ttu-id="ecc8b-200">在 [Package Manager Console]  視窗中，輸入下列命令：</span><span class="sxs-lookup"><span data-stu-id="ecc8b-200">In the **Package Manager Console** window, enter the following command:</span></span>
+    <span data-ttu-id="5863f-199">hello**啟用移轉**命令會建立*移轉*資料夾，然後將該資料夾中*configuration.cs 中*您可以編輯 tooconfigure 移轉的檔案。</span><span class="sxs-lookup"><span data-stu-id="5863f-199">hello **enable-migrations** command creates a *Migrations* folder and it puts in that folder a *Configuration.cs* file that you can edit tooconfigure Migrations.</span></span> 
+3. <span data-ttu-id="5863f-200">在 hello **Package Manager Console**視窗中，輸入下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="5863f-200">In hello **Package Manager Console** window, enter hello following command:</span></span>
    
         add-migration Initial
    
-    <span data-ttu-id="ecc8b-201">**add-migration Initial** 命令會產生可建立資料庫、名為 **&lt;date_stamp&gt;Initial** 的類別。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-201">The **add-migration Initial** command generates a class named **&lt;date_stamp&gt;Initial** that creates the database.</span></span> <span data-ttu-id="ecc8b-202">第一個參數 ( *Initial* ) 是任意的，用於建立檔案的名稱。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-202">The first parameter ( *Initial* ) is arbitrary and used to create the name of the file.</span></span> <span data-ttu-id="ecc8b-203">您可以在 [方案總管] 中看到新的類別檔案。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-203">You can see the new class files in **Solution Explorer**.</span></span>
+    <span data-ttu-id="5863f-201">hello**新增移轉初始**命令會產生類別，名為 **&lt;date_stamp&gt;初始**會建立 hello 資料庫。</span><span class="sxs-lookup"><span data-stu-id="5863f-201">hello **add-migration Initial** command generates a class named **&lt;date_stamp&gt;Initial** that creates hello database.</span></span> <span data-ttu-id="5863f-202">hello 第一個參數 (*初始*) 是任意和已使用 toocreate hello hello 檔案名稱。</span><span class="sxs-lookup"><span data-stu-id="5863f-202">hello first parameter ( *Initial* ) is arbitrary and used toocreate hello name of hello file.</span></span> <span data-ttu-id="5863f-203">您可以看到 hello 新類別檔案中的**方案總管 中**。</span><span class="sxs-lookup"><span data-stu-id="5863f-203">You can see hello new class files in **Solution Explorer**.</span></span>
    
-    <span data-ttu-id="ecc8b-204">在 **Initial** 類別中，**Up** 方法會建立 Contacts 資料表，**Down** 方法 (當您希望返回前個狀態時使用) 則會捨棄該資料表。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-204">In the **Initial** class, the **Up** method creates the Contacts table, and the **Down** method (used when you want to return to the previous state) drops it.</span></span>
-4. <span data-ttu-id="ecc8b-205">開啟 *Migrations\Configuration.cs* 檔案。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-205">Open the *Migrations\Configuration.cs* file.</span></span> 
-5. <span data-ttu-id="ecc8b-206">新增下列命名空間。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-206">Add the following namespaces.</span></span> 
+    <span data-ttu-id="5863f-204">在 [hello**初始**類別，hello**向上**方法會建立 hello 連絡人] 資料表和 hello**向下**（當您想要讓 tooreturn toohello 先前狀態時使用） 的方法會卸除它。</span><span class="sxs-lookup"><span data-stu-id="5863f-204">In hello **Initial** class, hello **Up** method creates hello Contacts table, and hello **Down** method (used when you want tooreturn toohello previous state) drops it.</span></span>
+4. <span data-ttu-id="5863f-205">開啟 hello *Migrations\Configuration.cs*檔案。</span><span class="sxs-lookup"><span data-stu-id="5863f-205">Open hello *Migrations\Configuration.cs* file.</span></span> 
+5. <span data-ttu-id="5863f-206">新增下列命名空間的 hello。</span><span class="sxs-lookup"><span data-stu-id="5863f-206">Add hello following namespaces.</span></span> 
    
          using ContactManager.Models;
-6. <span data-ttu-id="ecc8b-207">以下列程式碼取代 *Seed* 方法：</span><span class="sxs-lookup"><span data-stu-id="ecc8b-207">Replace the *Seed* method with the following code:</span></span>
+6. <span data-ttu-id="5863f-207">取代 hello*種子*方法，以下列程式碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="5863f-207">Replace hello *Seed* method with hello following code:</span></span>
    
         protected override void Seed(ContactManager.Models.ContactManagerContext context)
         {
@@ -272,23 +272,23 @@ ms.lasthandoff: 07/11/2017
                 );
         }
    
-    <span data-ttu-id="ecc8b-208">以上的這個程式碼會以連絡人資訊初始化資料庫。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-208">This code above will initialize the database with the contact information.</span></span> <span data-ttu-id="ecc8b-209">如需植入資料庫的詳細資訊，請參閱 [植入及偵錯 Entity Framework (EF) DB](http://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx)(英文)。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-209">For more information on seeding the database, see [Debugging Entity Framework (EF) DBs](http://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx).</span></span>
-7. <span data-ttu-id="ecc8b-210">在 [Package Manager Console]  中輸入命令：</span><span class="sxs-lookup"><span data-stu-id="ecc8b-210">In the **Package Manager Console** enter the command:</span></span>
+    <span data-ttu-id="5863f-208">上述這段程式碼將會初始化 hello 與 hello 連絡資訊的資料庫。</span><span class="sxs-lookup"><span data-stu-id="5863f-208">This code above will initialize hello database with hello contact information.</span></span> <span data-ttu-id="5863f-209">如需有關植入 hello 資料庫的詳細資訊，請參閱[偵錯 Entity Framework (EF) 資料庫使用](http://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx)。</span><span class="sxs-lookup"><span data-stu-id="5863f-209">For more information on seeding hello database, see [Debugging Entity Framework (EF) DBs](http://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx).</span></span>
+7. <span data-ttu-id="5863f-210">在 hello **Package Manager Console**輸入 hello 命令：</span><span class="sxs-lookup"><span data-stu-id="5863f-210">In hello **Package Manager Console** enter hello command:</span></span>
    
         update-database
    
     ![Package Manager Console commands][addcode009]
    
-    <span data-ttu-id="ecc8b-212">**update-database** 會執行第一次移轉，使資料庫建立。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-212">The **update-database** runs the first migration which creates the database.</span></span> <span data-ttu-id="ecc8b-213">根據預設，資料庫會以 SQL Server Express LocalDB 資料庫的形式建立。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-213">By default, the database is created as a SQL Server Express LocalDB database.</span></span>
-8. <span data-ttu-id="ecc8b-214">按 CTRL+F5 執行應用程式。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-214">Press CTRL+F5 to run the application.</span></span> 
+    <span data-ttu-id="5863f-212">hello**更新資料庫**執行 hello 第一次移轉會建立 hello 資料庫。</span><span class="sxs-lookup"><span data-stu-id="5863f-212">hello **update-database** runs hello first migration which creates hello database.</span></span> <span data-ttu-id="5863f-213">根據預設，會建立 hello 資料庫做為 SQL Server Express LocalDB 資料庫。</span><span class="sxs-lookup"><span data-stu-id="5863f-213">By default, hello database is created as a SQL Server Express LocalDB database.</span></span>
+8. <span data-ttu-id="5863f-214">按 CTRL + F5 toorun hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="5863f-214">Press CTRL+F5 toorun hello application.</span></span> 
 
-<span data-ttu-id="ecc8b-215">應用程式隨即顯示種子資料並提供編輯、詳細資料和刪除連結。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-215">The application shows the seed data and provides edit, details and delete links.</span></span>
+<span data-ttu-id="5863f-215">hello 應用程式顯示 hello 種子資料，並提供編輯詳細資料以及刪除連結。</span><span class="sxs-lookup"><span data-stu-id="5863f-215">hello application shows hello seed data and provides edit, details and delete links.</span></span>
 
 ![資料的 MVC 檢視][rxz3]
 
-## <a name="edit-the-view"></a><span data-ttu-id="ecc8b-217">編輯檢視</span><span class="sxs-lookup"><span data-stu-id="ecc8b-217">Edit the View</span></span>
-1. <span data-ttu-id="ecc8b-218">開啟 *Views\Home\Index.cshtml* 檔案。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-218">Open the *Views\Home\Index.cshtml* file.</span></span> <span data-ttu-id="ecc8b-219">在下一個步驟中，我們會將產生的標記取代為使用 [jQuery](http://jquery.com/) 和 [Knockout.js](http://knockoutjs.com/) 的程式碼。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-219">In the next step, we will replace the generated markup with code that uses [jQuery](http://jquery.com/) and [Knockout.js](http://knockoutjs.com/).</span></span> <span data-ttu-id="ecc8b-220">這個新的程式碼會使用 Web API 和 JSON 來擷取連絡人清單，然後再使用 knockout.js 使連絡人資料與 UI 繫結。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-220">This new code retrieves the list of contacts from using web API and JSON and then binds the contact data to the UI using knockout.js.</span></span> <span data-ttu-id="ecc8b-221">如需詳細資訊，請參閱本教學課程結尾處的 [後續步驟](#nextsteps) 一節。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-221">For more information, see the [Next Steps](#nextsteps) section at the end of this tutorial.</span></span> 
-2. <span data-ttu-id="ecc8b-222">以下列程式碼取代檔案的內容。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-222">Replace the contents of the file with the following code.</span></span>
+## <a name="edit-hello-view"></a><span data-ttu-id="5863f-217">編輯 hello 檢視</span><span class="sxs-lookup"><span data-stu-id="5863f-217">Edit hello View</span></span>
+1. <span data-ttu-id="5863f-218">開啟 hello *Views\Home\Index.cshtml*檔案。</span><span class="sxs-lookup"><span data-stu-id="5863f-218">Open hello *Views\Home\Index.cshtml* file.</span></span> <span data-ttu-id="5863f-219">在 hello 下一個步驟中，我們將使用的程式碼以取代 hello 產生標記[jQuery](http://jquery.com/)和[解 Knockout.js](http://knockoutjs.com/)。</span><span class="sxs-lookup"><span data-stu-id="5863f-219">In hello next step, we will replace hello generated markup with code that uses [jQuery](http://jquery.com/) and [Knockout.js](http://knockoutjs.com/).</span></span> <span data-ttu-id="5863f-220">這個新的程式碼會從使用 web 應用程式開發介面擷取 hello 的連絡人清單和 JSON，然後繫結 hello 連絡資料 toohello UI 使用解 knockout.js。</span><span class="sxs-lookup"><span data-stu-id="5863f-220">This new code retrieves hello list of contacts from using web API and JSON and then binds hello contact data toohello UI using knockout.js.</span></span> <span data-ttu-id="5863f-221">如需詳細資訊，請參閱 hello[接下來的步驟](#nextsteps)在本教學課程中的 hello 結尾區段。</span><span class="sxs-lookup"><span data-stu-id="5863f-221">For more information, see hello [Next Steps](#nextsteps) section at hello end of this tutorial.</span></span> 
+2. <span data-ttu-id="5863f-222">取代下列程式碼的 hello hello hello 檔案內容。</span><span class="sxs-lookup"><span data-stu-id="5863f-222">Replace hello contents of hello file with hello following code.</span></span>
    
         @model IEnumerable<ContactManager.Models.Contact>
         @{
@@ -377,12 +377,12 @@ ms.lasthandoff: 07/11/2017
                 <input type="submit" value="Add" />
             </fieldset>
         </form>
-3. <span data-ttu-id="ecc8b-223">在 Content 資料夾上按一下滑鼠右鍵，按一下 [新增]，再按一下 [新增項目...]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-223">Right-click the Content folder and click **Add**, and then click **New Item...**.</span></span>
+3. <span data-ttu-id="5863f-223">Hello 內容的資料夾上按一下滑鼠右鍵，然後按一下**新增**，然後按一下**新項目...**.</span><span class="sxs-lookup"><span data-stu-id="5863f-223">Right-click hello Content folder and click **Add**, and then click **New Item...**.</span></span>
    
     ![Content 資料夾內容功能表中的 [加入樣式表]][addcode005]
-4. <span data-ttu-id="ecc8b-225">在 [加入新項目] 對話方塊中，於右上角的搜尋方塊中輸入 **Style**，然後選取 [樣式表]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-225">In the **Add New Item** dialog box, enter **Style** in the upper right search box and then select **Style Sheet**.</span></span>
-    <span data-ttu-id="ecc8b-226">![[加入新項目] 對話方塊][rxStyle]</span><span class="sxs-lookup"><span data-stu-id="ecc8b-226">![Add New Item dialog box][rxStyle]</span></span>
-5. <span data-ttu-id="ecc8b-227">將檔案命名為 *Contacts.css*，然後按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-227">Name the file *Contacts.css* and click **Add**.</span></span> <span data-ttu-id="ecc8b-228">以下列程式碼取代檔案的內容。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-228">Replace the contents of the file with the following code.</span></span>
+4. <span data-ttu-id="5863f-225">在 hello**加入新項目**對話方塊方塊中，輸入**樣式**在 hello 上方右邊的搜尋方塊，然後選取 **樣式表**。</span><span class="sxs-lookup"><span data-stu-id="5863f-225">In hello **Add New Item** dialog box, enter **Style** in hello upper right search box and then select **Style Sheet**.</span></span>
+    <span data-ttu-id="5863f-226">![[加入新項目] 對話方塊][rxStyle]</span><span class="sxs-lookup"><span data-stu-id="5863f-226">![Add New Item dialog box][rxStyle]</span></span>
+5. <span data-ttu-id="5863f-227">名稱 hello 檔*Contacts.css*按一下**新增**。</span><span class="sxs-lookup"><span data-stu-id="5863f-227">Name hello file *Contacts.css* and click **Add**.</span></span> <span data-ttu-id="5863f-228">取代下列程式碼的 hello hello hello 檔案內容。</span><span class="sxs-lookup"><span data-stu-id="5863f-228">Replace hello contents of hello file with hello following code.</span></span>
    
         .column {
             float: left;
@@ -438,70 +438,70 @@ ms.lasthandoff: 07/11/2017
             text-decoration: none;
         }
    
-    <span data-ttu-id="ecc8b-229">我們會將此樣式表用於 Contact Manager 應用程式所用的版面配置、色彩及樣式。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-229">We will use this style sheet for the layout, colors and styles used in the contact manager app.</span></span>
-6. <span data-ttu-id="ecc8b-230">開啟 *App_Start\BundleConfig.cs* 檔案。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-230">Open the *App_Start\BundleConfig.cs* file.</span></span>
-7. <span data-ttu-id="ecc8b-231">新增以下程式碼以註冊 [Knockout](http://knockoutjs.com/index.html "KO") 外掛程式。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-231">Add the following code to register the [Knockout](http://knockoutjs.com/index.html "KO") plugin.</span></span>
+    <span data-ttu-id="5863f-229">我們將使用這個樣式表 hello 版面配置、 色彩和樣式 hello 連絡人管理員應用程式中使用。</span><span class="sxs-lookup"><span data-stu-id="5863f-229">We will use this style sheet for hello layout, colors and styles used in hello contact manager app.</span></span>
+6. <span data-ttu-id="5863f-230">開啟 hello *App_Start\BundleConfig.cs*檔案。</span><span class="sxs-lookup"><span data-stu-id="5863f-230">Open hello *App_Start\BundleConfig.cs* file.</span></span>
+7. <span data-ttu-id="5863f-231">新增下列程式碼 tooregister hello hello [Knockout](http://knockoutjs.com/index.html "僅限 KO")外掛程式。</span><span class="sxs-lookup"><span data-stu-id="5863f-231">Add hello following code tooregister hello [Knockout](http://knockoutjs.com/index.html "KO") plugin.</span></span>
    
         bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                     "~/Scripts/knockout-{version}.js"));
-    <span data-ttu-id="ecc8b-232">此範例使用 knockout 來簡化處理螢幕範本的動態 JavaScript 程式碼。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-232">This sample using knockout to simplify dynamic JavaScript code that handles the screen templates.</span></span>
-8. <span data-ttu-id="ecc8b-233">修改 contents/css 項目以註冊 *contacts.css* 樣式表。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-233">Modify the contents/css entry to register the *contacts.css* style sheet.</span></span> <span data-ttu-id="ecc8b-234">變更以下文字行：</span><span class="sxs-lookup"><span data-stu-id="ecc8b-234">Change the following line:</span></span>
+    <span data-ttu-id="5863f-232">這個範例使用 knockout toosimplify 動態 JavaScript 程式碼會處理 hello 螢幕範本。</span><span class="sxs-lookup"><span data-stu-id="5863f-232">This sample using knockout toosimplify dynamic JavaScript code that handles hello screen templates.</span></span>
+8. <span data-ttu-id="5863f-233">修改 hello 內容/css 項目 tooregister hello *contacts.css*樣式表。</span><span class="sxs-lookup"><span data-stu-id="5863f-233">Modify hello contents/css entry tooregister hello *contacts.css* style sheet.</span></span> <span data-ttu-id="5863f-234">變更下列行 hello:</span><span class="sxs-lookup"><span data-stu-id="5863f-234">Change hello following line:</span></span>
    
                  bundles.Add(new StyleBundle("~/Content/css").Include(
                    "~/Content/bootstrap.css",
                    "~/Content/site.css"));
-   <span data-ttu-id="ecc8b-235">變更為：</span><span class="sxs-lookup"><span data-stu-id="ecc8b-235">To:</span></span>
+   <span data-ttu-id="5863f-235">變更為：</span><span class="sxs-lookup"><span data-stu-id="5863f-235">To:</span></span>
    
         bundles.Add(new StyleBundle("~/Content/css").Include(
                    "~/Content/bootstrap.css",
                    "~/Content/contacts.css",
                    "~/Content/site.css"));
-9. <span data-ttu-id="ecc8b-236">在 Package Manager Console 中，執行下列命令以安裝 Knockout。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-236">In the Package Manager Console, run the following command to install Knockout.</span></span>
+9. <span data-ttu-id="5863f-236">在 hello Package Manager Console 中，執行下列命令 tooinstall Knockout hello。</span><span class="sxs-lookup"><span data-stu-id="5863f-236">In hello Package Manager Console, run hello following command tooinstall Knockout.</span></span>
    
         Install-Package knockoutjs
 
-## <a name="add-a-controller-for-the-web-api-restful-interface"></a><span data-ttu-id="ecc8b-237">為符合 REST 限制的 Web API 介面新增控制器</span><span class="sxs-lookup"><span data-stu-id="ecc8b-237">Add a controller for the Web API Restful interface</span></span>
-1. <span data-ttu-id="ecc8b-238">在 [方案總管]，於 Controllers 上按一下滑鼠右鍵，按一下 [新增]，再按一下 [控制器...]</span><span class="sxs-lookup"><span data-stu-id="ecc8b-238">In **Solution Explorer**, right-click Controllers and click **Add** and then **Controller....**</span></span> 
-2. <span data-ttu-id="ecc8b-239">在 [Add Scaffold] 對話方塊中，選取 [Web API 2 Controller with actions, using Entity Framework]，再按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-239">In the **Add Scaffold** dialog box, enter **Web API 2 Controller with actions, using Entity Framework** and then click **Add**.</span></span>
+## <a name="add-a-controller-for-hello-web-api-restful-interface"></a><span data-ttu-id="5863f-237">新增 hello Web API Restful 介面的控制站</span><span class="sxs-lookup"><span data-stu-id="5863f-237">Add a controller for hello Web API Restful interface</span></span>
+1. <span data-ttu-id="5863f-238">在 [方案總管]，於 Controllers 上按一下滑鼠右鍵，按一下 [新增]，再按一下 [控制器...]</span><span class="sxs-lookup"><span data-stu-id="5863f-238">In **Solution Explorer**, right-click Controllers and click **Add** and then **Controller....**</span></span> 
+2. <span data-ttu-id="5863f-239">在 hello**新增 Scaffold**對話方塊方塊中，輸入**Web API 2 控制器動作，使用 Entity Framework** ，然後按一下**新增**。</span><span class="sxs-lookup"><span data-stu-id="5863f-239">In hello **Add Scaffold** dialog box, enter **Web API 2 Controller with actions, using Entity Framework** and then click **Add**.</span></span>
    
     ![新增 API 控制器](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rt1.png)
-3. <span data-ttu-id="ecc8b-241">在 [加入控制器]  對話方塊中，輸入 "ContactsController" 作為控制器名稱。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-241">In the **Add Controller** dialog box, enter "ContactsController" as your controller name.</span></span> <span data-ttu-id="ecc8b-242">選取 "Contact (ContactManager.Models)" [模型類別] 。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-242">Select "Contact (ContactManager.Models)" for the **Model class**.</span></span>  <span data-ttu-id="ecc8b-243">保留 [資料內容類別] 的預設值。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-243">Keep the default value for the **Data context class**.</span></span> 
-4. <span data-ttu-id="ecc8b-244">按一下 [新增] 。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-244">Click **Add**.</span></span>
+3. <span data-ttu-id="5863f-241">在 hello**加入控制器**對話方塊方塊中，輸入 「 ContactsController"做為控制器名稱。</span><span class="sxs-lookup"><span data-stu-id="5863f-241">In hello **Add Controller** dialog box, enter "ContactsController" as your controller name.</span></span> <span data-ttu-id="5863f-242">選取"Contact (ContactManager.Models)"hello**模型類別**。</span><span class="sxs-lookup"><span data-stu-id="5863f-242">Select "Contact (ContactManager.Models)" for hello **Model class**.</span></span>  <span data-ttu-id="5863f-243">保留 hello 預設值為 hello**資料內容類別**。</span><span class="sxs-lookup"><span data-stu-id="5863f-243">Keep hello default value for hello **Data context class**.</span></span> 
+4. <span data-ttu-id="5863f-244">按一下 [新增] 。</span><span class="sxs-lookup"><span data-stu-id="5863f-244">Click **Add**.</span></span>
 
-### <a name="run-the-application-locally"></a><span data-ttu-id="ecc8b-245">在本機執行應用程式</span><span class="sxs-lookup"><span data-stu-id="ecc8b-245">Run the application locally</span></span>
-1. <span data-ttu-id="ecc8b-246">按 CTRL+F5 執行應用程式。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-246">Press CTRL+F5 to run the application.</span></span>
+### <a name="run-hello-application-locally"></a><span data-ttu-id="5863f-245">在本機執行 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="5863f-245">Run hello application locally</span></span>
+1. <span data-ttu-id="5863f-246">按 CTRL + F5 toorun hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="5863f-246">Press CTRL+F5 toorun hello application.</span></span>
    
     ![索引頁面][intro001]
-2. <span data-ttu-id="ecc8b-248">輸入連絡人，然後按一下 [新增] 。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-248">Enter a contact and click **Add**.</span></span> <span data-ttu-id="ecc8b-249">應用程式會返回首頁並顯示您輸入的連絡人。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-249">The app returns to the home page and displays the contact you entered.</span></span>
+2. <span data-ttu-id="5863f-248">輸入連絡人，然後按一下 [新增] 。</span><span class="sxs-lookup"><span data-stu-id="5863f-248">Enter a contact and click **Add**.</span></span> <span data-ttu-id="5863f-249">hello 應用程式傳回 toohello 首頁上，並顯示您輸入的 hello 連絡人。</span><span class="sxs-lookup"><span data-stu-id="5863f-249">hello app returns toohello home page and displays hello contact you entered.</span></span>
    
     ![含有待辦事項清單的索引頁面][addwebapi004]
-3. <span data-ttu-id="ecc8b-251">在瀏覽器中，於 URL 後方加上 **/api/contacts** 。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-251">In the browser, append **/api/contacts** to the URL.</span></span>
+3. <span data-ttu-id="5863f-251">在 hello 瀏覽器附加**/api/連絡人**toohello URL。</span><span class="sxs-lookup"><span data-stu-id="5863f-251">In hello browser, append **/api/contacts** toohello URL.</span></span>
    
-    <span data-ttu-id="ecc8b-252">產生的 URL 將類似 http://localhost:1234/api/contacts。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-252">The resulting URL will resemble http://localhost:1234/api/contacts.</span></span> <span data-ttu-id="ecc8b-253">您新增之符合 REST 限制的 Web API 會傳回儲存的連絡人。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-253">The RESTful web API you added returns the stored contacts.</span></span> <span data-ttu-id="ecc8b-254">Firefox 和 Chrome 會顯示 XML 格式的資料。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-254">Firefox and Chrome will display the data in XML format.</span></span>
+    <span data-ttu-id="5863f-252">hello 產生的 URL 會類似 http://localhost:1234/api/連絡人。</span><span class="sxs-lookup"><span data-stu-id="5863f-252">hello resulting URL will resemble http://localhost:1234/api/contacts.</span></span> <span data-ttu-id="5863f-253">hello RESTful web API 新增傳回 hello 儲存連絡人。</span><span class="sxs-lookup"><span data-stu-id="5863f-253">hello RESTful web API you added returns hello stored contacts.</span></span> <span data-ttu-id="5863f-254">Firefox 和 Chrome 會顯示 hello 資料以 XML 格式。</span><span class="sxs-lookup"><span data-stu-id="5863f-254">Firefox and Chrome will display hello data in XML format.</span></span>
    
     ![含有待辦事項清單的索引頁面][rxFFchrome]
 
-    <span data-ttu-id="ecc8b-256">IE 會提示您開啟或儲存連絡人。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-256">IE will prompt you to open or save the contacts.</span></span>
+    <span data-ttu-id="5863f-256">將會提示您 tooopen IE，或儲存 hello 連絡人。</span><span class="sxs-lookup"><span data-stu-id="5863f-256">IE will prompt you tooopen or save hello contacts.</span></span>
 
     ![Web API 儲存對話方塊][addwebapi006]
 
 
-    <span data-ttu-id="ecc8b-258">您可以利用記事本或瀏覽器開啟傳回的連絡人。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-258">You can open the returned contacts in notepad or a browser.</span></span>
+    <span data-ttu-id="5863f-258">您可以開啟 [記事本] 或瀏覽器中傳回的連絡人 hello。</span><span class="sxs-lookup"><span data-stu-id="5863f-258">You can open hello returned contacts in notepad or a browser.</span></span>
 
-    <span data-ttu-id="ecc8b-259">行動網頁或應用程式之類的其他應用程式亦可取用此輸出。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-259">This output can be consumed by another application such as mobile web page or application.</span></span>
+    <span data-ttu-id="5863f-259">行動網頁或應用程式之類的其他應用程式亦可取用此輸出。</span><span class="sxs-lookup"><span data-stu-id="5863f-259">This output can be consumed by another application such as mobile web page or application.</span></span>
 
     ![Web API 儲存對話方塊][addwebapi007]
 
-    <span data-ttu-id="ecc8b-261">**安全性警告**：此時您的應用程式並未受到保護，且容易遭受 CSRF 攻擊。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-261">**Security Warning**: At this point, your application is insecure and vulnerable to CSRF attack.</span></span> <span data-ttu-id="ecc8b-262">在本教學課程稍後的內容中，我們將移除這項弱點。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-262">Later in the tutorial we will remove this vulnerability.</span></span> <span data-ttu-id="ecc8b-263">如需詳細資訊，請參閱[避免跨網站偽造要求 (CSRF) 攻擊][prevent-csrf-attacks]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-263">For more information see [Preventing Cross-Site Request Forgery (CSRF) Attacks][prevent-csrf-attacks].</span></span>
-## <a name="add-xsrf-protection"></a><span data-ttu-id="ecc8b-264">新增 XSRF 保護</span><span class="sxs-lookup"><span data-stu-id="ecc8b-264">Add XSRF Protection</span></span>
-<span data-ttu-id="ecc8b-265">跨網站偽造要求 (亦稱為 XSRF 或 CSRF) 為以 Web 主控之應用程式為目標的攻擊，惡意網站能藉此影響用戶端瀏覽器和該瀏覽器信任之網站間的互動。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-265">Cross-site request forgery (also known as XSRF or CSRF) is an attack against web-hosted applications whereby a malicious website can influence the interaction between a client browser and a website trusted by that browser.</span></span> <span data-ttu-id="ecc8b-266">這些攻擊之所以能得逞，是因為網頁瀏覽器會隨著對網站的每個要求自動傳送驗證權杖。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-266">These attacks are made possible because web browsers will send authentication tokens automatically with every request to a website.</span></span> <span data-ttu-id="ecc8b-267">ASP.NET 的 Forms Authentication 票證即是驗證 Cookie 的標準範例。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-267">The canonical example is an authentication cookie, such as ASP.NET's Forms Authentication ticket.</span></span> <span data-ttu-id="ecc8b-268">然而，使用任何持續驗證機制 (如 Windows 驗證、基本驗證等等) 的網站都可能成為這些攻擊的目標。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-268">However, websites which use any persistent authentication mechanism (such as Windows Authentication, Basic, and so forth) can be targeted by these attacks.</span></span>
+    <span data-ttu-id="5863f-261">**安全性警告**： 此時，您的應用程式是不安全且易於遭受 tooCSRF 攻擊。</span><span class="sxs-lookup"><span data-stu-id="5863f-261">**Security Warning**: At this point, your application is insecure and vulnerable tooCSRF attack.</span></span> <span data-ttu-id="5863f-262">稍後在 hello 教學課程中我們將會移除這項弱點。</span><span class="sxs-lookup"><span data-stu-id="5863f-262">Later in hello tutorial we will remove this vulnerability.</span></span> <span data-ttu-id="5863f-263">如需詳細資訊，請參閱[避免跨網站偽造要求 (CSRF) 攻擊][prevent-csrf-attacks]。</span><span class="sxs-lookup"><span data-stu-id="5863f-263">For more information see [Preventing Cross-Site Request Forgery (CSRF) Attacks][prevent-csrf-attacks].</span></span>
+## <a name="add-xsrf-protection"></a><span data-ttu-id="5863f-264">新增 XSRF 保護</span><span class="sxs-lookup"><span data-stu-id="5863f-264">Add XSRF Protection</span></span>
+<span data-ttu-id="5863f-265">跨站台要求偽造 （也稱為 XSRF 或 CSRF） 是對 web 裝載的應用程式讓惡意網站可能會影響用戶端瀏覽器和瀏覽器的受信任的網站之間的 hello 互動的攻擊。</span><span class="sxs-lookup"><span data-stu-id="5863f-265">Cross-site request forgery (also known as XSRF or CSRF) is an attack against web-hosted applications whereby a malicious website can influence hello interaction between a client browser and a website trusted by that browser.</span></span> <span data-ttu-id="5863f-266">因為網頁瀏覽器會傳送驗證 token，與每個要求 tooa 網站會自動進行這些攻擊可能。</span><span class="sxs-lookup"><span data-stu-id="5863f-266">These attacks are made possible because web browsers will send authentication tokens automatically with every request tooa website.</span></span> <span data-ttu-id="5863f-267">hello 標準範例是驗證 cookie，例如 ASP。網路的表單驗證票證。</span><span class="sxs-lookup"><span data-stu-id="5863f-267">hello canonical example is an authentication cookie, such as ASP.NET's Forms Authentication ticket.</span></span> <span data-ttu-id="5863f-268">然而，使用任何持續驗證機制 (如 Windows 驗證、基本驗證等等) 的網站都可能成為這些攻擊的目標。</span><span class="sxs-lookup"><span data-stu-id="5863f-268">However, websites which use any persistent authentication mechanism (such as Windows Authentication, Basic, and so forth) can be targeted by these attacks.</span></span>
 
-<span data-ttu-id="ecc8b-269">XSRF 攻擊與網路釣魚攻擊不同。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-269">An XSRF attack is distinct from a phishing attack.</span></span> <span data-ttu-id="ecc8b-270">網路釣魚攻擊需要與受害者互動。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-270">Phishing attacks require interaction from the victim.</span></span> <span data-ttu-id="ecc8b-271">對於網路釣魚攻擊，惡意網站會偽裝成目標網站，致使受害者因受騙而將機密資訊提供給攻擊者。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-271">In a phishing attack, a malicious website will mimic the target website, and the victim is fooled into providing sensitive information to the attacker.</span></span> <span data-ttu-id="ecc8b-272">XSRF 攻擊則通常不需要與受害者互動。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-272">In an XSRF attack, there is often no interaction necessary from the victim.</span></span> <span data-ttu-id="ecc8b-273">反之，攻擊者需仰賴瀏覽器將所有相關的 Cookie 自動傳送給目的地網站。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-273">Rather, the attacker is relying on the browser automatically sending all relevant cookies to the destination website.</span></span>
+<span data-ttu-id="5863f-269">XSRF 攻擊與網路釣魚攻擊不同。</span><span class="sxs-lookup"><span data-stu-id="5863f-269">An XSRF attack is distinct from a phishing attack.</span></span> <span data-ttu-id="5863f-270">網路釣魚攻擊需要互動，舉凡 hello 犧牲者。</span><span class="sxs-lookup"><span data-stu-id="5863f-270">Phishing attacks require interaction from hello victim.</span></span> <span data-ttu-id="5863f-271">在詐騙攻擊中，惡意網站會模仿 hello 目標網站，並提供機密資訊 toohello 攻擊者到騙 hello 犧牲者，是。</span><span class="sxs-lookup"><span data-stu-id="5863f-271">In a phishing attack, a malicious website will mimic hello target website, and hello victim is fooled into providing sensitive information toohello attacker.</span></span> <span data-ttu-id="5863f-272">在 XSRF 攻擊中，通常會沒有互動所需從 hello 犧牲者。</span><span class="sxs-lookup"><span data-stu-id="5863f-272">In an XSRF attack, there is often no interaction necessary from hello victim.</span></span> <span data-ttu-id="5863f-273">相反地，hello 攻擊者依賴 hello 瀏覽器會自動傳送所有相關的 cookie toohello 目的地網站。</span><span class="sxs-lookup"><span data-stu-id="5863f-273">Rather, hello attacker is relying on hello browser automatically sending all relevant cookies toohello destination website.</span></span>
 
-<span data-ttu-id="ecc8b-274">如需詳細資訊，請參閱 [Open Web Application Security Project](https://www.owasp.org/index.php/Main_Page) (OWASP) [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_\(CSRF\))。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-274">For more information, see the [Open Web Application Security Project](https://www.owasp.org/index.php/Main_Page) (OWASP) [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_\(CSRF\)).</span></span>
+<span data-ttu-id="5863f-274">如需詳細資訊，請參閱 hello[開啟 Web 應用程式安全性專案](https://www.owasp.org/index.php/Main_Page)(OWASP) [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_\(CSRF\))。</span><span class="sxs-lookup"><span data-stu-id="5863f-274">For more information, see hello [Open Web Application Security Project](https://www.owasp.org/index.php/Main_Page) (OWASP) [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_\(CSRF\)).</span></span>
 
-1. <span data-ttu-id="ecc8b-275">在 [方案總管] 中，於 **ContactManager** 專案上按一下滑鼠右鍵，按一下 [新增]，再按一下 [類別]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-275">In **Solution Explorer**, right **ContactManager** project and click **Add** and then click **Class**.</span></span>
-2. <span data-ttu-id="ecc8b-276">將檔案命名為 *ValidateHttpAntiForgeryTokenAttribute.cs* ，然後新增以下程式碼：</span><span class="sxs-lookup"><span data-stu-id="ecc8b-276">Name the file *ValidateHttpAntiForgeryTokenAttribute.cs* and add the following code:</span></span>
+1. <span data-ttu-id="5863f-275">在 [方案總管] 中，於 **ContactManager** 專案上按一下滑鼠右鍵，按一下 [新增]，再按一下 [類別]。</span><span class="sxs-lookup"><span data-stu-id="5863f-275">In **Solution Explorer**, right **ContactManager** project and click **Add** and then click **Class**.</span></span>
+2. <span data-ttu-id="5863f-276">名稱 hello 檔*ValidateHttpAntiForgeryTokenAttribute.cs*並加入下列程式碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="5863f-276">Name hello file *ValidateHttpAntiForgeryTokenAttribute.cs* and add hello following code:</span></span>
    
         using System;
         using System.Collections.Generic;
@@ -570,15 +570,15 @@ ms.lasthandoff: 07/11/2017
                 }
             }
         }
-3. <span data-ttu-id="ecc8b-277">將以下 *using* 陳述式新增至連絡人控制器，使您得以存取 **[ValidateHttpAntiForgeryToken]** 屬性。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-277">Add the following *using* statement to the contracts controller so you have access to the **[ValidateHttpAntiForgeryToken]** attribute.</span></span>
+3. <span data-ttu-id="5863f-277">新增下列 hello*使用*陳述式 toohello 合約控制器，因此您需要存取 toohello **[ValidateHttpAntiForgeryToken]**屬性。</span><span class="sxs-lookup"><span data-stu-id="5863f-277">Add hello following *using* statement toohello contracts controller so you have access toohello **[ValidateHttpAntiForgeryToken]** attribute.</span></span>
    
         using ContactManager.Filters;
-4. <span data-ttu-id="ecc8b-278">將 [ValidateHttpAntiForgeryToken] 屬性新增至 **ContactsController** 的 Post 方法，使其免於遭受 XSRF 威脅的攻擊。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-278">Add the **[ValidateHttpAntiForgeryToken]** attribute to the Post methods of the **ContactsController** to protect it from XSRF threats.</span></span> <span data-ttu-id="ecc8b-279">您需要將其新增至 PutContact"、"PostContact" 及 **DeleteContact** 動作方法。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-279">You will add it to the "PutContact",  "PostContact" and **DeleteContact** action methods.</span></span>
+4. <span data-ttu-id="5863f-278">新增 hello **[ValidateHttpAntiForgeryToken]**屬性 toohello Post 方法的 hello **ContactsController** tooprotect 從 XSRF 威脅。</span><span class="sxs-lookup"><span data-stu-id="5863f-278">Add hello **[ValidateHttpAntiForgeryToken]** attribute toohello Post methods of hello **ContactsController** tooprotect it from XSRF threats.</span></span> <span data-ttu-id="5863f-279">您會將它加入 toohello"PutContact"，"PostContact 」 和**DeleteContact**動作方法。</span><span class="sxs-lookup"><span data-stu-id="5863f-279">You will add it toohello "PutContact",  "PostContact" and **DeleteContact** action methods.</span></span>
    
         [ValidateHttpAntiForgeryToken]
             public IHttpActionResult PutContact(int id, Contact contact)
             {
-5. <span data-ttu-id="ecc8b-280">更新 Views\Home\Index.cshtml 檔案的 Scripts 區段，使其包含取得 XSRF 權杖的程式碼。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-280">Update the *Scripts* section of the *Views\Home\Index.cshtml* file to include code to get the XSRF tokens.</span></span>
+5. <span data-ttu-id="5863f-280">更新 hello*指令碼*區段 hello *Views\Home\Index.cshtml*檔案 tooinclude 程式碼 tooget hello XSRF 權杖。</span><span class="sxs-lookup"><span data-stu-id="5863f-280">Update hello *Scripts* section of hello *Views\Home\Index.cshtml* file tooinclude code tooget hello XSRF tokens.</span></span>
    
          @section Scripts {
             @Scripts.Render("~/bundles/knockout")
@@ -633,59 +633,59 @@ ms.lasthandoff: 07/11/2017
             </script>
          }
 
-## <a name="publish-the-application-update-to-azure-and-sql-database"></a><span data-ttu-id="ecc8b-281">將應用程式更新發行至 Azure 和 SQL Database</span><span class="sxs-lookup"><span data-stu-id="ecc8b-281">Publish the application update to Azure and SQL Database</span></span>
-<span data-ttu-id="ecc8b-282">若要發行應用程式，您需要重複先前遵循過的程序。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-282">To publish the application, you repeat the procedure you followed earlier.</span></span>
+## <a name="publish-hello-application-update-tooazure-and-sql-database"></a><span data-ttu-id="5863f-281">發行 hello 應用程式更新 tooAzure 和 SQL Database</span><span class="sxs-lookup"><span data-stu-id="5863f-281">Publish hello application update tooAzure and SQL Database</span></span>
+<span data-ttu-id="5863f-282">toopublish hello 應用程式，您可以重複 hello 您稍早遵循的程序。</span><span class="sxs-lookup"><span data-stu-id="5863f-282">toopublish hello application, you repeat hello procedure you followed earlier.</span></span>
 
-1. <span data-ttu-id="ecc8b-283">在 [方案總管] 中以滑鼠右鍵按一下專案，再選取 [發行]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-283">In **Solution Explorer**, right click the project and select **Publish**.</span></span>
+1. <span data-ttu-id="5863f-283">在**方案總管 中**，以滑鼠右鍵按一下 hello 專案並選取**發行**。</span><span class="sxs-lookup"><span data-stu-id="5863f-283">In **Solution Explorer**, right click hello project and select **Publish**.</span></span>
    
     ![發佈][rxP]
-2. <span data-ttu-id="ecc8b-285">按一下 [設定]  索引標籤。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-285">Click the **Settings** tab.</span></span>
-3. <span data-ttu-id="ecc8b-286">在 **ContactsManagerContext(ContactsManagerContext)** 下方按一下 **v** 圖示，將 *Remote connection string* 變更為連絡人資料庫的連接字串。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-286">Under **ContactsManagerContext(ContactsManagerContext)**, click the **v** icon to change *Remote connection string* to the connection string for the contact database.</span></span> <span data-ttu-id="ecc8b-287">按一下 [ContactDB] 。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-287">Click **ContactDB**.</span></span>
+2. <span data-ttu-id="5863f-285">按一下 hello**設定** 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="5863f-285">Click hello **Settings** tab.</span></span>
+3. <span data-ttu-id="5863f-286">在下**ContactsManagerContext(ContactsManagerContext)**，按一下 hello **v**圖示 toochange*遠端的連接字串*toohello hello 連絡人的連接字串資料庫。</span><span class="sxs-lookup"><span data-stu-id="5863f-286">Under **ContactsManagerContext(ContactsManagerContext)**, click hello **v** icon toochange *Remote connection string* toohello connection string for hello contact database.</span></span> <span data-ttu-id="5863f-287">按一下 [ContactDB] 。</span><span class="sxs-lookup"><span data-stu-id="5863f-287">Click **ContactDB**.</span></span>
    
     ![設定](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rt5.png)
-4. <span data-ttu-id="ecc8b-289">勾選 [Execute Code First Migrations (runs on application start)] 的方塊。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-289">Check the box for **Execute Code First Migrations (runs on application start)**.</span></span>
-5. <span data-ttu-id="ecc8b-290">依序按 [下一步] 和 [預覽]。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-290">Click **Next** and then click **Preview**.</span></span> <span data-ttu-id="ecc8b-291">Visual Studio 會顯示即將新增或更新的檔案清單。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-291">Visual Studio displays a list of the files that will be added or updated.</span></span>
-6. <span data-ttu-id="ecc8b-292">按一下 [發行] 。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-292">Click **Publish**.</span></span>
-   <span data-ttu-id="ecc8b-293">部署完成後，瀏覽器會開啟應用程式的首頁。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-293">After the deployment completes, the browser opens to the home page of the application.</span></span>
+4. <span data-ttu-id="5863f-289">核取方塊 hello**執行 Code First 移轉 （在應用程式啟動時執行）**。</span><span class="sxs-lookup"><span data-stu-id="5863f-289">Check hello box for **Execute Code First Migrations (runs on application start)**.</span></span>
+5. <span data-ttu-id="5863f-290">依序按 [下一步] 和 [預覽]。</span><span class="sxs-lookup"><span data-stu-id="5863f-290">Click **Next** and then click **Preview**.</span></span> <span data-ttu-id="5863f-291">Visual Studio 會顯示 hello 檔案會加入或更新的清單。</span><span class="sxs-lookup"><span data-stu-id="5863f-291">Visual Studio displays a list of hello files that will be added or updated.</span></span>
+6. <span data-ttu-id="5863f-292">按一下 [發行] 。</span><span class="sxs-lookup"><span data-stu-id="5863f-292">Click **Publish**.</span></span>
+   <span data-ttu-id="5863f-293">Hello 部署完成之後，hello 瀏覽器會開啟 toohello hello 應用程式的首頁。</span><span class="sxs-lookup"><span data-stu-id="5863f-293">After hello deployment completes, hello browser opens toohello home page of hello application.</span></span>
    
     ![Index page with no contacts][intro001]
    
-    <span data-ttu-id="ecc8b-295">Visual Studio 發行程序會自動設定已部署之 *Web.config* 檔案中的連接字串，使其指向 SQL 資料庫。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-295">The Visual Studio publish process automatically configured the connection string in the deployed *Web.config* file to point to the SQL database.</span></span> <span data-ttu-id="ecc8b-296">它也設定了 Code First 移轉，使其在應用程式於部署完成後首次存取資料庫時，將資料庫自動升級為最新版本。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-296">It also configured Code First Migrations to automatically upgrade the database to the latest version the first time the application accesses the database after deployment.</span></span>
+    <span data-ttu-id="5863f-295">hello Visual Studio 發行處理程序會自動設定 hello 連接字串中部署的 hello *Web.config*檔案 toopoint toohello SQL 資料庫。</span><span class="sxs-lookup"><span data-stu-id="5863f-295">hello Visual Studio publish process automatically configured hello connection string in hello deployed *Web.config* file toopoint toohello SQL database.</span></span> <span data-ttu-id="5863f-296">它也會設定 Code First 移轉 tooautomatically 升級 hello 資料庫 toohello 最新版本 hello 第一個時間 hello 應用程式部署後存取 hello 資料庫。</span><span class="sxs-lookup"><span data-stu-id="5863f-296">It also configured Code First Migrations tooautomatically upgrade hello database toohello latest version hello first time hello application accesses hello database after deployment.</span></span>
    
-    <span data-ttu-id="ecc8b-297">由於這項組態的關係，Code First 會執行您稍早於 **Initial** 類別中建立的程式碼，進而建立資料庫。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-297">As a result of this configuration, Code First created the database by running the code in the **Initial** class that you created earlier.</span></span> <span data-ttu-id="ecc8b-298">它會在應用程式於部署完成後首次嘗試存取資料庫時執行這項作業。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-298">It did this the first time the application tried to access the database after deployment.</span></span>
-7. <span data-ttu-id="ecc8b-299">與在本機執行應用程式時一樣的方式輸入連絡人，以驗證資料庫部署是否成功。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-299">Enter a contact as you did when you ran the app locally, to verify that database deployment succeeded.</span></span>
+    <span data-ttu-id="5863f-297">由於這個設定，Code First 建立 hello 資料庫執行 hello 程式碼中 hello**初始**您稍早建立的類別。</span><span class="sxs-lookup"><span data-stu-id="5863f-297">As a result of this configuration, Code First created hello database by running hello code in hello **Initial** class that you created earlier.</span></span> <span data-ttu-id="5863f-298">這個 hello 第一個階段 hello 應用程式嘗試 tooaccess hello 資料庫成功部署之後。</span><span class="sxs-lookup"><span data-stu-id="5863f-298">It did this hello first time hello application tried tooaccess hello database after deployment.</span></span>
+7. <span data-ttu-id="5863f-299">如同執行 hello 應用程式在本機，已成功將資料庫部署的 tooverify 時，請輸入連絡人。</span><span class="sxs-lookup"><span data-stu-id="5863f-299">Enter a contact as you did when you ran hello app locally, tooverify that database deployment succeeded.</span></span>
 
-<span data-ttu-id="ecc8b-300">當您發現輸入的項目已儲存且出現在 Contact Manager 頁面時，表示該項目已儲存在資料庫中。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-300">When you see that the item you enter is saved and appears on the contact manager page, you know that it has been stored in the database.</span></span>
+<span data-ttu-id="5863f-300">當您看到您輸入該 hello 項目儲存，而且會出現在 hello 連絡人的管理員 頁面上時，您知道它已在 hello 資料庫中已儲存。</span><span class="sxs-lookup"><span data-stu-id="5863f-300">When you see that hello item you enter is saved and appears on hello contact manager page, you know that it has been stored in hello database.</span></span>
 
 ![含有連絡人的索引頁面][addwebapi004]
 
-<span data-ttu-id="ecc8b-302">應用程式現已在雲端運作，並使用 SQL Database 來儲存資料。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-302">The application is now running in the cloud, using SQL Database to store its data.</span></span> <span data-ttu-id="ecc8b-303">在 Azure 中完成應用程式測試後，請將應用程式刪除。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-303">After you finish testing the application in Azure, delete it.</span></span> <span data-ttu-id="ecc8b-304">應用程式已處於公開狀態且不具有限制存取權限的機制。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-304">The application is public and doesn't have a mechanism to limit access.</span></span>
+<span data-ttu-id="5863f-302">hello 應用程式現在正在 hello 雲端中使用 SQL Database toostore 其資料。</span><span class="sxs-lookup"><span data-stu-id="5863f-302">hello application is now running in hello cloud, using SQL Database toostore its data.</span></span> <span data-ttu-id="5863f-303">在 Azure 中測試 hello 應用程式完成之後，請將其刪除。</span><span class="sxs-lookup"><span data-stu-id="5863f-303">After you finish testing hello application in Azure, delete it.</span></span> <span data-ttu-id="5863f-304">hello 應用程式時為公用，且沒有機制 toolimit 存取權限。</span><span class="sxs-lookup"><span data-stu-id="5863f-304">hello application is public and doesn't have a mechanism toolimit access.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ecc8b-305">如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-305">If you want to get started with Azure App Service before signing up for an Azure account, go to [Try App Service](https://azure.microsoft.com/try/app-service/), where you can immediately create a short-lived starter web app in App Service.</span></span> <span data-ttu-id="ecc8b-306">不需要信用卡；沒有承諾。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-306">No credit cards required; no commitments.</span></span>
+> <span data-ttu-id="5863f-305">如果您想 tooget 之前註冊 Azure 帳戶與 Azure 應用程式服務啟動時，請移至太[再試一次應用程式服務](https://azure.microsoft.com/try/app-service/)，可以立即存留較短的入門的 web 應用程式中建立應用程式服務。</span><span class="sxs-lookup"><span data-stu-id="5863f-305">If you want tooget started with Azure App Service before signing up for an Azure account, go too[Try App Service](https://azure.microsoft.com/try/app-service/), where you can immediately create a short-lived starter web app in App Service.</span></span> <span data-ttu-id="5863f-306">不需要信用卡；沒有承諾。</span><span class="sxs-lookup"><span data-stu-id="5863f-306">No credit cards required; no commitments.</span></span>
 > 
 > 
 
-## <a name="next-steps"></a><span data-ttu-id="ecc8b-307">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ecc8b-307">Next Steps</span></span>
-<span data-ttu-id="ecc8b-308">另一個儲存 Azure 應用程式資料的方法是使用 Azure 儲存體，它能以 Blob 和資料表的形式提供非關聯式的資料儲存。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-308">Another way to store data in an Azure application is to use Azure storage, which provide non-relational data storage in the form of blobs and tables.</span></span> <span data-ttu-id="ecc8b-309">以下連結提供 Web API、ASP.NET MVC 及 Window Azure 的詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-309">The following links provide more information on Web API, ASP.NET MVC and Window Azure.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="5863f-307">後續步驟</span><span class="sxs-lookup"><span data-stu-id="5863f-307">Next Steps</span></span>
+<span data-ttu-id="5863f-308">Azure 應用程式中的另一個方式 toostore 資料是 toouse 提供 hello 格式的 blob 和資料表的非關聯式資料儲存體的 Azure 儲存體。</span><span class="sxs-lookup"><span data-stu-id="5863f-308">Another way toostore data in an Azure application is toouse Azure storage, which provide non-relational data storage in hello form of blobs and tables.</span></span> <span data-ttu-id="5863f-309">下列連結查看 hello 提供 Web API、 ASP.NET MVC 和 Windows Azure 的詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="5863f-309">hello following links provide more information on Web API, ASP.NET MVC and Window Azure.</span></span>
 
-* <span data-ttu-id="ecc8b-310">[使用 MVC 的 Entity Framework 入門][EFCodeFirstMVCTutorial]</span><span class="sxs-lookup"><span data-stu-id="ecc8b-310">[Getting Started with Entity Framework using MVC][EFCodeFirstMVCTutorial]</span></span>
-* [<span data-ttu-id="ecc8b-311">ASP.NET MVC 5 入門</span><span class="sxs-lookup"><span data-stu-id="ecc8b-311">Intro to ASP.NET MVC 5</span></span>](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)
-* [<span data-ttu-id="ecc8b-312">您的第一個 ASP.NET Web API</span><span class="sxs-lookup"><span data-stu-id="ecc8b-312">Your First ASP.NET Web API</span></span>](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api)
-* [<span data-ttu-id="ecc8b-313">偵錯 WAWS</span><span class="sxs-lookup"><span data-stu-id="ecc8b-313">Debugging WAWS</span></span>](web-sites-dotnet-troubleshoot-visual-studio.md)
+* <span data-ttu-id="5863f-310">[使用 MVC 的 Entity Framework 入門][EFCodeFirstMVCTutorial]</span><span class="sxs-lookup"><span data-stu-id="5863f-310">[Getting Started with Entity Framework using MVC][EFCodeFirstMVCTutorial]</span></span>
+* [<span data-ttu-id="5863f-311">簡介 tooASP.NET MVC 5</span><span class="sxs-lookup"><span data-stu-id="5863f-311">Intro tooASP.NET MVC 5</span></span>](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)
+* [<span data-ttu-id="5863f-312">您的第一個 ASP.NET Web API</span><span class="sxs-lookup"><span data-stu-id="5863f-312">Your First ASP.NET Web API</span></span>](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api)
+* [<span data-ttu-id="5863f-313">偵錯 WAWS</span><span class="sxs-lookup"><span data-stu-id="5863f-313">Debugging WAWS</span></span>](web-sites-dotnet-troubleshoot-visual-studio.md)
 
-<span data-ttu-id="ecc8b-314">本教學課程和範例應用程式是由 [Rick Anderson](http://blogs.msdn.com/b/rickandy/) (Twitter [@RickAndMSFT](https://twitter.com/RickAndMSFT)) 在 Tom Dykstra 和 Barry Dorrans (Twitter [@blowdart](https://twitter.com/blowdart)) 的協助下所撰寫。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-314">This tutorial and the sample application was written by [Rick Anderson](http://blogs.msdn.com/b/rickandy/) (Twitter [@RickAndMSFT](https://twitter.com/RickAndMSFT)) with assistance from Tom Dykstra and Barry Dorrans (Twitter [@blowdart](https://twitter.com/blowdart)).</span></span> 
+<span data-ttu-id="5863f-314">此教學課程和 hello 範例應用程式由寫入[Rick Anderson](http://blogs.msdn.com/b/rickandy/) (Twitter [ @RickAndMSFT ](https://twitter.com/RickAndMSFT)) Tom Dykstra 和 Barry Dorrans 的協助 (Twitter [ @blowdart](https://twitter.com/blowdart)).</span><span class="sxs-lookup"><span data-stu-id="5863f-314">This tutorial and hello sample application was written by [Rick Anderson](http://blogs.msdn.com/b/rickandy/) (Twitter [@RickAndMSFT](https://twitter.com/RickAndMSFT)) with assistance from Tom Dykstra and Barry Dorrans (Twitter [@blowdart](https://twitter.com/blowdart)).</span></span> 
 
-<span data-ttu-id="ecc8b-315">如果您發現喜歡的地方或希望我們改善的地方 (不論是針對本教學課程或其示範的產品)，歡迎留下意見反應。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-315">Please leave feedback on what you liked or what you would like to see improved, not only about the tutorial itself but also about the products that it demonstrates.</span></span> <span data-ttu-id="ecc8b-316">您的意見反應將協助我們訂出優先改善要務。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-316">Your feedback will help us prioritize improvements.</span></span> <span data-ttu-id="ecc8b-317">我們非常希望能了解您對於將設定和部署成員資格資料庫之程序更進一步自動化的期待為何。</span><span class="sxs-lookup"><span data-stu-id="ecc8b-317">We are especially interested in finding out how much interest there is in more automation for the process of configuring and deploying the membership database.</span></span> 
+<span data-ttu-id="5863f-315">請留下您喜歡的功能，或您想獲得改善，關於本身 hello 教學課程不僅 hello 的產品，它會示範 toosee 上的意見反應。</span><span class="sxs-lookup"><span data-stu-id="5863f-315">Please leave feedback on what you liked or what you would like toosee improved, not only about hello tutorial itself but also about hello products that it demonstrates.</span></span> <span data-ttu-id="5863f-316">您的意見反應將協助我們訂出優先改善要務。</span><span class="sxs-lookup"><span data-stu-id="5863f-316">Your feedback will help us prioritize improvements.</span></span> <span data-ttu-id="5863f-317">我們會特別有興趣了解更多自動化 hello 程序的設定和部署 hello 成員資格資料庫中已有多少感興趣。</span><span class="sxs-lookup"><span data-stu-id="5863f-317">We are especially interested in finding out how much interest there is in more automation for hello process of configuring and deploying hello membership database.</span></span> 
 
-## <a name="whats-changed"></a><span data-ttu-id="ecc8b-318">變更的項目</span><span class="sxs-lookup"><span data-stu-id="ecc8b-318">What's changed</span></span>
-* <span data-ttu-id="ecc8b-319">如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)</span><span class="sxs-lookup"><span data-stu-id="ecc8b-319">For a guide to the change from Websites to App Service see: [Azure App Service and Its Impact on Existing Azure Services](http://go.microsoft.com/fwlink/?LinkId=529714)</span></span>
+## <a name="whats-changed"></a><span data-ttu-id="5863f-318">變更的項目</span><span class="sxs-lookup"><span data-stu-id="5863f-318">What's changed</span></span>
+* <span data-ttu-id="5863f-319">從網站 tooApp 服務變更如指南 toohello: [Azure 應用程式服務和其對影響現有的 Azure 服務](http://go.microsoft.com/fwlink/?LinkId=529714)</span><span class="sxs-lookup"><span data-stu-id="5863f-319">For a guide toohello change from Websites tooApp Service see: [Azure App Service and Its Impact on Existing Azure Services](http://go.microsoft.com/fwlink/?LinkId=529714)</span></span>
 
 <!-- bookmarks -->
 [Add an OAuth Provider]: #addOauth
-[Add Roles to the Membership Database]:#mbrDB
+[Add Roles toohello Membership Database]:#mbrDB
 [Create a Data Deployment Script]:#ppd
-[Update the Membership Database]:#ppd2
+[Update hello Membership Database]:#ppd2
 [setupdbenv]: #bkmk_setupdevenv
 [setupwindowsazureenv]: #bkmk_setupwindowsazure
 [createapplication]: #bkmk_createmvc4app

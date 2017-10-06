@@ -2,7 +2,7 @@
 # 快速入門
 ## [Marketplace 範本](https://azuremarketplace.microsoft.com/marketplace/apps/pivotal.pivotal-cloud-foundry)
 # 教學課程
-## [將 CF 應用程式部署至 Azure](/azure/virtual-machines/linux/cloudfoundry-deploy-your-first-app)
+## [部署 tooAzure CF 應用程式](/azure/virtual-machines/linux/cloudfoundry-deploy-your-first-app)
 ## [Azure 上的 CloudFoundry](/azure/virtual-machines/linux/cloudfoundry-get-started)
 # 資源
 ## [Azure 藍圖](https://azure.microsoft.com/roadmap/)

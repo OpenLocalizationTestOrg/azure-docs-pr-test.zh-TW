@@ -1,6 +1,6 @@
 ---
 title: "教學課程：Azure Active Directory 與 SciQuest Spend Director 整合 | Microsoft Docs"
-description: "了解如何設定 Azure Active Directory 與 SciQuest Spend Director 之間的單一登入。"
+description: "了解 tooconfigure 的單一登入 Azure Active Directory 與 SciQuest 花主管之間。"
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -14,224 +14,224 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/17/2017
 ms.author: jeedes
-ms.openlocfilehash: 84b707668dc45e92e6151f422f1c919f638533b1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 47c46f1297054fd96b86c1d8c66e1a55ec151497
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-sciquest-spend-director"></a><span data-ttu-id="b49b4-103">教學課程：Azure Active Directory 與 SciQuest Spend Director 整合</span><span class="sxs-lookup"><span data-stu-id="b49b4-103">Tutorial: Azure Active Directory integration with SciQuest Spend Director</span></span>
-<span data-ttu-id="b49b4-104">本教學課程旨在說明如何整合 SciQuest Spend Director 與 Azure Active Directory (Azure AD)。</span><span class="sxs-lookup"><span data-stu-id="b49b4-104">The objective of this tutorial is to show you how to integrate SciQuest Spend Director with Azure Active Directory (Azure AD).</span></span>  
-<span data-ttu-id="b49b4-105">SciQuest Spend Director 與 Azure AD 整合提供下列優點：</span><span class="sxs-lookup"><span data-stu-id="b49b4-105">Integrating SciQuest Spend Director with Azure AD provides you with the following benefits:</span></span> 
+# <a name="tutorial-azure-active-directory-integration-with-sciquest-spend-director"></a><span data-ttu-id="bba7f-103">教學課程：Azure Active Directory 與 SciQuest Spend Director 整合</span><span class="sxs-lookup"><span data-stu-id="bba7f-103">Tutorial: Azure Active Directory integration with SciQuest Spend Director</span></span>
+<span data-ttu-id="bba7f-104">本教學課程的 hello 目標是 tooshow 您如何 toointegrate SciQuest 花導向器搭配 Azure Active Directory (Azure AD)。</span><span class="sxs-lookup"><span data-stu-id="bba7f-104">hello objective of this tutorial is tooshow you how toointegrate SciQuest Spend Director with Azure Active Directory (Azure AD).</span></span>  
+<span data-ttu-id="bba7f-105">與 Azure AD 整合 SciQuest 花主管可以提供下列優點的 hello:</span><span class="sxs-lookup"><span data-stu-id="bba7f-105">Integrating SciQuest Spend Director with Azure AD provides you with hello following benefits:</span></span> 
 
-* <span data-ttu-id="b49b4-106">您可以在 Azure AD 中控制可存取 SciQuest Spend Director 的人員。</span><span class="sxs-lookup"><span data-stu-id="b49b4-106">You can control in Azure AD who has access to SciQuest Spend Director</span></span> 
-* <span data-ttu-id="b49b4-107">您可以讓使用者使用他們的 Azure AD 帳戶自動登入 SciQuest Spend Director (單一登入)</span><span class="sxs-lookup"><span data-stu-id="b49b4-107">You can enable your users to automatically get signed-on to SciQuest Spend Director (Single Sign-On) with their Azure AD accounts</span></span>
-* <span data-ttu-id="b49b4-108">您可以在 Azure 傳統入口網站中集中管理您的帳戶</span><span class="sxs-lookup"><span data-stu-id="b49b4-108">You can manage your accounts in one central location - the Azure classic portal</span></span>
+* <span data-ttu-id="bba7f-106">您可以在 Azure AD 中已存取 tooSciQuest 支出主管人員控制</span><span class="sxs-lookup"><span data-stu-id="bba7f-106">You can control in Azure AD who has access tooSciQuest Spend Director</span></span> 
+* <span data-ttu-id="bba7f-107">您可以啟用您的使用者 tooautomatically get 登入 tooSciQuest （單一登入） 具有其 Azure AD 帳戶的支出導向器</span><span class="sxs-lookup"><span data-stu-id="bba7f-107">You can enable your users tooautomatically get signed-on tooSciQuest Spend Director (Single Sign-On) with their Azure AD accounts</span></span>
+* <span data-ttu-id="bba7f-108">您可以管理您的帳戶，在單一中央位置-hello Azure 傳統入口網站</span><span class="sxs-lookup"><span data-stu-id="bba7f-108">You can manage your accounts in one central location - hello Azure classic portal</span></span>
 
-<span data-ttu-id="b49b4-109">若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。</span><span class="sxs-lookup"><span data-stu-id="b49b4-109">If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="bba7f-109">如果您想 tooknow 詳細與 Azure AD SaaS 應用程式整合，請參閱[什麼是應用程式存取和單一登入與 Azure Active Directory](active-directory-appssoaccess-whatis.md)。</span><span class="sxs-lookup"><span data-stu-id="bba7f-109">If you want tooknow more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="b49b4-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="b49b4-110">Prerequisites</span></span>
-<span data-ttu-id="b49b4-111">若要使用 SciQuest Spend Director 設定 Azure AD 整合，您需要以下項目：</span><span class="sxs-lookup"><span data-stu-id="b49b4-111">To configure Azure AD integration with SciQuest Spend Director, you need the following items:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="bba7f-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="bba7f-110">Prerequisites</span></span>
+<span data-ttu-id="bba7f-111">tooconfigure SciQuest 花導向器與 Azure AD 整合，您需要下列項目 hello:</span><span class="sxs-lookup"><span data-stu-id="bba7f-111">tooconfigure Azure AD integration with SciQuest Spend Director, you need hello following items:</span></span>
 
-* <span data-ttu-id="b49b4-112">Azure AD 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="b49b4-112">An Azure AD subscription</span></span>
-* <span data-ttu-id="b49b4-113">啟用 SciQuest Spend Director 單一登入的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="b49b4-113">A SciQuest Spend Director single-sign on enabled subscription</span></span>
+* <span data-ttu-id="bba7f-112">Azure AD 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="bba7f-112">An Azure AD subscription</span></span>
+* <span data-ttu-id="bba7f-113">啟用 SciQuest Spend Director 單一登入的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="bba7f-113">A SciQuest Spend Director single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="b49b4-114">若要測試本教學課程中的步驟，我們不建議使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="b49b4-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="bba7f-114">本教學課程中的步驟 tootest hello，不建議使用實際執行環境。</span><span class="sxs-lookup"><span data-stu-id="bba7f-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 > 
 > 
 
-<span data-ttu-id="b49b4-115">若要測試本教學課程中的步驟，您應該遵循這些建議：</span><span class="sxs-lookup"><span data-stu-id="b49b4-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="bba7f-115">在本教學課程 tootest hello 步驟，您應該遵循這些建議：</span><span class="sxs-lookup"><span data-stu-id="bba7f-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-* <span data-ttu-id="b49b4-116">除非必要，否則您不應使用生產環境，。</span><span class="sxs-lookup"><span data-stu-id="b49b4-116">You should not use your production environment, unless this is necessary.</span></span>
-* <span data-ttu-id="b49b4-117">如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。</span><span class="sxs-lookup"><span data-stu-id="b49b4-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span> 
+* <span data-ttu-id="bba7f-116">除非必要，否則您不應使用生產環境，。</span><span class="sxs-lookup"><span data-stu-id="bba7f-116">You should not use your production environment, unless this is necessary.</span></span>
+* <span data-ttu-id="bba7f-117">如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。</span><span class="sxs-lookup"><span data-stu-id="bba7f-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span> 
 
-## <a name="scenario-description"></a><span data-ttu-id="b49b4-118">案例描述</span><span class="sxs-lookup"><span data-stu-id="b49b4-118">Scenario Description</span></span>
-<span data-ttu-id="b49b4-119">此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="b49b4-119">The objective of this tutorial is to enable you to test Azure AD single sign-on in a test environment.</span></span>  
-<span data-ttu-id="b49b4-120">本教學課程中說明的案例由二個主要建置組塊組成：</span><span class="sxs-lookup"><span data-stu-id="b49b4-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="bba7f-118">案例描述</span><span class="sxs-lookup"><span data-stu-id="bba7f-118">Scenario Description</span></span>
+<span data-ttu-id="bba7f-119">本教學課程的 hello 目標是 tooenable 您 tootest Azure AD 單一登入的測試環境中。</span><span class="sxs-lookup"><span data-stu-id="bba7f-119">hello objective of this tutorial is tooenable you tootest Azure AD single sign-on in a test environment.</span></span>  
+<span data-ttu-id="bba7f-120">本教學課程所述的 hello 案例包含兩個主要建置組塊：</span><span class="sxs-lookup"><span data-stu-id="bba7f-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="b49b4-121">從資源庫新增 SciQuest Spend Director</span><span class="sxs-lookup"><span data-stu-id="b49b4-121">Adding SciQuest Spend Director from the gallery</span></span> 
-2. <span data-ttu-id="b49b4-122">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="b49b4-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="bba7f-121">從 hello 圖庫加入 SciQuest 花導向器</span><span class="sxs-lookup"><span data-stu-id="bba7f-121">Adding SciQuest Spend Director from hello gallery</span></span> 
+2. <span data-ttu-id="bba7f-122">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="bba7f-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-sciquest-spend-director-from-the-gallery"></a><span data-ttu-id="b49b4-123">從資源庫新增 SciQuest Spend Director</span><span class="sxs-lookup"><span data-stu-id="b49b4-123">Adding SciQuest Spend Director from the gallery</span></span>
-<span data-ttu-id="b49b4-124">若要設定 SciQuest Spend Director 與 Azure AD 整合，您需要從資源庫將 SciQuest Spend Director 加入 受管理 SaaS app 的清單。</span><span class="sxs-lookup"><span data-stu-id="b49b4-124">To configure the integration of SciQuest Spend Director into Azure AD, you need to add SciQuest Spend Director from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-sciquest-spend-director-from-hello-gallery"></a><span data-ttu-id="bba7f-123">從 hello 圖庫加入 SciQuest 花導向器</span><span class="sxs-lookup"><span data-stu-id="bba7f-123">Adding SciQuest Spend Director from hello gallery</span></span>
+<span data-ttu-id="bba7f-124">tooconfigure hello 整合 SciQuest 花主管到 Azure AD，您需要從受管理的 SaaS 應用程式的 hello 圖庫 tooyour 清單 tooadd SciQuest 花導向器。</span><span class="sxs-lookup"><span data-stu-id="bba7f-124">tooconfigure hello integration of SciQuest Spend Director into Azure AD, you need tooadd SciQuest Spend Director from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="b49b4-125">**若要從資源庫新增 SciQuest Spend Director，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="b49b4-125">**To add SciQuest Spend Director from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="bba7f-125">**tooadd SciQuest 花導演 hello 圖庫中，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="bba7f-125">**tooadd SciQuest Spend Director from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="b49b4-126">在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。</span><span class="sxs-lookup"><span data-stu-id="b49b4-126">In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.</span></span> 
+1. <span data-ttu-id="bba7f-126">在 [hello **Azure 傳統入口網站**，在 hello 左側的導覽窗格中，按一下**Active Directory**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-126">In hello **Azure classic portal**, on hello left navigation pane, click **Active Directory**.</span></span> 
    
     ![Active Directory][1]
 
-2. <span data-ttu-id="b49b4-128">從 [目錄]  清單中，選取要啟用目錄整合的目錄。</span><span class="sxs-lookup"><span data-stu-id="b49b4-128">From the **Directory** list, select the directory for which you want to enable directory integration.</span></span>
+2. <span data-ttu-id="bba7f-128">從 hello**目錄**清單中，選取 hello 想 tooenable 目錄整合的目錄。</span><span class="sxs-lookup"><span data-stu-id="bba7f-128">From hello **Directory** list, select hello directory for which you want tooenable directory integration.</span></span>
 
-3. <span data-ttu-id="b49b4-129">若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。</span><span class="sxs-lookup"><span data-stu-id="b49b4-129">To open the applications view, in the directory view, click **Applications** in the top menu.</span></span>
+3. <span data-ttu-id="bba7f-129">tooopen hello 應用程式檢視在 hello 目錄檢視中，按一下**應用程式**hello 上方功能表中。</span><span class="sxs-lookup"><span data-stu-id="bba7f-129">tooopen hello applications view, in hello directory view, click **Applications** in hello top menu.</span></span>
    
     ![應用程式][2]
 
-4. <span data-ttu-id="b49b4-131">按一下頁面底部的 [新增]  。</span><span class="sxs-lookup"><span data-stu-id="b49b4-131">Click **Add** at the bottom of the page.</span></span>
+4. <span data-ttu-id="bba7f-131">按一下**新增**hello hello 頁底端。</span><span class="sxs-lookup"><span data-stu-id="bba7f-131">Click **Add** at hello bottom of hello page.</span></span>
    
     ![應用程式][3]
 
-5. <span data-ttu-id="b49b4-133">在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。</span><span class="sxs-lookup"><span data-stu-id="b49b4-133">On the **What do you want to do** dialog, click **Add an application from the gallery**.</span></span>
+5. <span data-ttu-id="bba7f-133">在 [hello**怎麼辦想 toodo** ] 對話方塊中，按一下**從 hello 組件庫新增應用程式**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-133">On hello **What do you want toodo** dialog, click **Add an application from hello gallery**.</span></span>
    
     ![應用程式][4]
 
-6. <span data-ttu-id="b49b4-135">在搜尋方塊中，輸入 **sciQuest spend director**。</span><span class="sxs-lookup"><span data-stu-id="b49b4-135">In the search box, type **sciQuest spend director**.</span></span>
+6. <span data-ttu-id="bba7f-135">在 [hello] 搜尋方塊中，輸入**sciQuest 花主管**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-135">In hello search box, type **sciQuest spend director**.</span></span>
    
     ![應用程式][5]
 
-7. <span data-ttu-id="b49b4-137">在結果窗格中，選取 [SciQuest Spend Director]，然後按一下 [完成] 來新增應用程式。</span><span class="sxs-lookup"><span data-stu-id="b49b4-137">In the results pane, select **SciQuest Spend Director**, and then click **Complete** to add the application.</span></span>
+7. <span data-ttu-id="bba7f-137">在 [hello] 結果窗格中，選取**SciQuest 花主管**，然後按一下**完成**tooadd hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="bba7f-137">In hello results pane, select **SciQuest Spend Director**, and then click **Complete** tooadd hello application.</span></span>
    
     ![應用程式][6]
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="b49b4-139">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="b49b4-139">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="b49b4-140">本節的目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，使用 SciQuest Spend Director 來設定及測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="b49b4-140">The objective of this section is to show you how to configure and test Azure AD single sign-on with SciQuest Spend Director based on a test user called "Britta Simon".</span></span>
+## <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="bba7f-139">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="bba7f-139">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="bba7f-140">hello 本節目標在於 tooshow 如何 tooconfigure 和測試 Azure AD 單一登入與 SciQuest 花導向器根據稱為 「 許 Simon"的測試使用者。</span><span class="sxs-lookup"><span data-stu-id="bba7f-140">hello objective of this section is tooshow you how tooconfigure and test Azure AD single sign-on with SciQuest Spend Director based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="b49b4-141">單一登入若要運作，Azure AD 必須知道 SciQuest Spend Director 與 Azure AD 中互相對應的使用者。</span><span class="sxs-lookup"><span data-stu-id="b49b4-141">For single sign-on to work, Azure AD needs to know what the counterpart user in SciQuest Spend Director to an user in Azure AD is.</span></span> <span data-ttu-id="b49b4-142">換句話說，必須在 Azure AD 使用者與 SciQuest Spend Director 中的相關使用者之間建立連結關聯性。</span><span class="sxs-lookup"><span data-stu-id="b49b4-142">In other words, a link relationship between an Azure AD user and the related user in SciQuest Spend Director needs to be established.</span></span>  
-<span data-ttu-id="b49b4-143">建立此連結關聯性的方法是將 Azure AD 中的**使用者名稱**的值指定為 SciQuest Spend Director 中 **Username**的值。</span><span class="sxs-lookup"><span data-stu-id="b49b4-143">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in SciQuest Spend Director.</span></span>
+<span data-ttu-id="bba7f-141">單一登入 toowork，Azure AD 需要 tooknow SciQuest 花主管 tooan 使用者在 Azure AD 中哪些 hello 對等項目的使用者。</span><span class="sxs-lookup"><span data-stu-id="bba7f-141">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in SciQuest Spend Director tooan user in Azure AD is.</span></span> <span data-ttu-id="bba7f-142">換句話說，Azure AD 使用者與 hello SciQuest 花導向器中的相關的使用者之間的連結關聯性需要 toobe 建立。</span><span class="sxs-lookup"><span data-stu-id="bba7f-142">In other words, a link relationship between an Azure AD user and hello related user in SciQuest Spend Director needs toobe established.</span></span>  
+<span data-ttu-id="bba7f-143">此連結關聯性建立 hello 將值指派為 hello**使用者名稱**做為 hello hello 值的 Azure AD 中**使用者名稱**SciQuest 花導向器中。</span><span class="sxs-lookup"><span data-stu-id="bba7f-143">This link relationship is established by assigning hello value of hello **user name** in Azure AD as hello value of hello **Username** in SciQuest Spend Director.</span></span>
 
-<span data-ttu-id="b49b4-144">若要使用 SciQuest Spend Director 設定並測試 Azure AD 單一登入，您需要完成下列建置組塊：</span><span class="sxs-lookup"><span data-stu-id="b49b4-144">To configure and test Azure AD single sign-on with SciQuest Spend Director, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="bba7f-144">tooconfigure 及測試 Azure AD 單一登入與 SciQuest 花導向器，您必須遵循的建置組塊 toocomplete hello:</span><span class="sxs-lookup"><span data-stu-id="bba7f-144">tooconfigure and test Azure AD single sign-on with SciQuest Spend Director, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="b49b4-145">**[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。</span><span class="sxs-lookup"><span data-stu-id="b49b4-145">**[Configuring Azure AD Single Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="b49b4-146">**[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="b49b4-146">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="b49b4-147">**[建立 SciQuest Spend Director 測試使用者](#creating-a-halogen-software-test-user)** - 使 SciQuest Spend Director 中對應的 Britta Simon 連結到她在 Azure AD 中的代表項目。</span><span class="sxs-lookup"><span data-stu-id="b49b4-147">**[Creating a SciQuest Spend Director test user](#creating-a-halogen-software-test-user)** - to have a counterpart of Britta Simon in SciQuest Spend Director that is linked to the Azure AD representation of her.</span></span>
-4. <span data-ttu-id="b49b4-148">**[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="b49b4-148">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="b49b4-149">**[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。</span><span class="sxs-lookup"><span data-stu-id="b49b4-149">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="bba7f-145">**[設定 Azure AD 單一單一登入](#configuring-azure-ad-single-single-sign-on)** -tooenable 使用者 toouse 這項功能。</span><span class="sxs-lookup"><span data-stu-id="bba7f-145">**[Configuring Azure AD Single Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="bba7f-146">**[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** -tootest Azure AD 單一登入與許 Simon。</span><span class="sxs-lookup"><span data-stu-id="bba7f-146">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="bba7f-147">**[建立測試使用者 SciQuest 花主管](#creating-a-halogen-software-test-user)** -toohave 許 Simon SciQuest 花導向器所連結的 toohello Azure AD 的她的表示法中對應項目。</span><span class="sxs-lookup"><span data-stu-id="bba7f-147">**[Creating a SciQuest Spend Director test user](#creating-a-halogen-software-test-user)** - toohave a counterpart of Britta Simon in SciQuest Spend Director that is linked toohello Azure AD representation of her.</span></span>
+4. <span data-ttu-id="bba7f-148">**[指派 hello Azure AD 的測試使用者](#assigning-the-azure-ad-test-user)** -tooenable 許 Simon toouse Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="bba7f-148">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="bba7f-149">**[測試單一登入](#testing-single-sign-on)** -tooverify 是否 hello 組態工作。</span><span class="sxs-lookup"><span data-stu-id="bba7f-149">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-single-sign-on"></a><span data-ttu-id="b49b4-150">設定 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="b49b4-150">Configuring Azure AD Single Single Sign-On</span></span>
-<span data-ttu-id="b49b4-151">本節目標是在 Azure 傳統入口網站啟用 Azure AD 單一登入，並在您的 SciQuest Spend Director 應用程式中設定單一登入。</span><span class="sxs-lookup"><span data-stu-id="b49b4-151">The objective of this section is to enable Azure AD single sign-on in the Azure classic portal and to configure single sign-on in your SciQuest Spend Director application.</span></span>
+### <a name="configuring-azure-ad-single-single-sign-on"></a><span data-ttu-id="bba7f-150">設定 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="bba7f-150">Configuring Azure AD Single Single Sign-On</span></span>
+<span data-ttu-id="bba7f-151">本節 hello 目標是 tooenable Azure AD 單一登入 Azure 傳統入口網站 hello 和 tooconfigure 單一登入 SciQuest 花導向器應用程式中。</span><span class="sxs-lookup"><span data-stu-id="bba7f-151">hello objective of this section is tooenable Azure AD single sign-on in hello Azure classic portal and tooconfigure single sign-on in your SciQuest Spend Director application.</span></span>
 
-<span data-ttu-id="b49b4-152">**若要使用 SciQuest Spend Director 設定 Azure AD 單一登入，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="b49b4-152">**To configure Azure AD single sign-on with SciQuest Spend Director, perform the following steps:**</span></span>
+<span data-ttu-id="bba7f-152">**Azure AD 單一登入的 tooconfigure SciQuest 花導向器，以執行 hello 下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="bba7f-152">**tooconfigure Azure AD single sign-on with SciQuest Spend Director, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="b49b4-153">在 Azure 傳統入口網站的 [SciQuest Spend Director] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。</span><span class="sxs-lookup"><span data-stu-id="b49b4-153">In the Azure classic portal, on the **SciQuest Spend Director** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.</span></span>
+1. <span data-ttu-id="bba7f-153">在 Azure 傳統入口網站，在 [hello hello **SciQuest 花主管**應用程式整合頁面上，按一下 [**設定單一登入**tooopen hello**設定單一登入**對話方塊。</span><span class="sxs-lookup"><span data-stu-id="bba7f-153">In hello Azure classic portal, on hello **SciQuest Spend Director** application integration page, click **Configure single sign-on** tooopen hello **Configure Single Sign-On**  dialog.</span></span>
    
     ![設定單一登入][8]
 
-2. <span data-ttu-id="b49b4-155">在 [要如何讓使用者登入 SciQuest Spend Director] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。</span><span class="sxs-lookup"><span data-stu-id="b49b4-155">On the **How would you like users to sign on to SciQuest Spend Director** page, select **Azure AD Single Sign-On**, and then click **Next**.</span></span>
+2. <span data-ttu-id="bba7f-155">Hello 上**如何想您 tooSciQuest 支出導向器上的使用者 toosign**頁面上，選取**Azure AD 單一登入**，然後按一下 [**下一步**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-155">On hello **How would you like users toosign on tooSciQuest Spend Director** page, select **Azure AD Single Sign-On**, and then click **Next**.</span></span>
    
     ![Azure AD 單一登入][9]
 
-3. <span data-ttu-id="b49b4-157">在 [設定應用程式設定]  對話方塊頁面上，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="b49b4-157">On the **Configure App Settings** dialog page, perform the following steps:</span></span> 
+3. <span data-ttu-id="bba7f-157">在 [hello**設定應用程式設定**對話方塊頁面上，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="bba7f-157">On hello **Configure App Settings** dialog page, perform hello following steps:</span></span> 
    
     ![設定 App 設定][10]
    
-     <span data-ttu-id="b49b4-159">a.</span><span class="sxs-lookup"><span data-stu-id="b49b4-159">a.</span></span> <span data-ttu-id="b49b4-160">在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 SciQuest Spend Director 應用程式時所使用的 URL：*https://.*sciquest.com/.**</span><span class="sxs-lookup"><span data-stu-id="b49b4-160">In the **Sign On URL** textbox, type your URL used by your users to sign on to your SciQuest Spend Director application using the following pattern: *https://.*sciquest.com/.**</span></span>
+     <span data-ttu-id="bba7f-159">a.</span><span class="sxs-lookup"><span data-stu-id="bba7f-159">a.</span></span> <span data-ttu-id="bba7f-160">在 [hello**登入 URL**文字方塊中，輸入您的使用者 toosign 上使用下列模式的 hello tooyour SciQuest 花導向器應用程式所使用的 URL: *https://。*sciquest.com/.**</span><span class="sxs-lookup"><span data-stu-id="bba7f-160">In hello **Sign On URL** textbox, type your URL used by your users toosign on tooyour SciQuest Spend Director application using hello following pattern: *https://.*sciquest.com/.**</span></span>
    
-     <span data-ttu-id="b49b4-161">b.</span><span class="sxs-lookup"><span data-stu-id="b49b4-161">b.</span></span> <span data-ttu-id="b49b4-162">在 [回覆 URL] 文字方塊中，輸入您在 [登入 URL] 文字方塊所輸入的相同值。</span><span class="sxs-lookup"><span data-stu-id="b49b4-162">In the **Reply URL** textbox, type the same value you have typed into the **Sign On URL** textbox.</span></span> 
+     <span data-ttu-id="bba7f-161">b.</span><span class="sxs-lookup"><span data-stu-id="bba7f-161">b.</span></span> <span data-ttu-id="bba7f-162">在 [hello**回覆 URL**文字方塊中，型別 hello 相同值已輸入 hello**登入 URL**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="bba7f-162">In hello **Reply URL** textbox, type hello same value you have typed into hello **Sign On URL** textbox.</span></span> 
    
-     <span data-ttu-id="b49b4-163">c.</span><span class="sxs-lookup"><span data-stu-id="b49b4-163">c.</span></span> <span data-ttu-id="b49b4-164">按一下 [下一步] 。</span><span class="sxs-lookup"><span data-stu-id="b49b4-164">Click **Next**.</span></span>
+     <span data-ttu-id="bba7f-163">c.</span><span class="sxs-lookup"><span data-stu-id="bba7f-163">c.</span></span> <span data-ttu-id="bba7f-164">按一下 [下一步] 。</span><span class="sxs-lookup"><span data-stu-id="bba7f-164">Click **Next**.</span></span>
 
-4. <span data-ttu-id="b49b4-165">在 [設定在 SciQuest Spend Director 單一登入] 頁面上，按一下 [下載中繼資料]，然後將中繼資料檔儲存在您的本機電腦上。</span><span class="sxs-lookup"><span data-stu-id="b49b4-165">On the **Configure single sign-on at SciQuest Spend Director** page, click **Download metadata**, and then save the metadata file locally on your computer.</span></span>
+4. <span data-ttu-id="bba7f-165">在 [hello **SciQuest 花主管在設定單一登入**頁面上，按一下**下載中繼資料**，然後儲存在本機電腦上的 hello 中繼資料檔案。</span><span class="sxs-lookup"><span data-stu-id="bba7f-165">On hello **Configure single sign-on at SciQuest Spend Director** page, click **Download metadata**, and then save hello metadata file locally on your computer.</span></span>
    
     ![何謂 Azure AD Connect][11]
 
-5. <span data-ttu-id="b49b4-167">連絡 SciQuest 支援來啟用使用上述下載的中繼資料進行驗證的方法。</span><span class="sxs-lookup"><span data-stu-id="b49b4-167">Contact SciQuest support to enable this authentication method using the above downloaded metadata.</span></span>
+5. <span data-ttu-id="bba7f-167">請連絡 SciQuest 支援 tooenable 這種驗證方法使用 hello 上述下載中繼資料。</span><span class="sxs-lookup"><span data-stu-id="bba7f-167">Contact SciQuest support tooenable this authentication method using hello above downloaded metadata.</span></span>
 
-6. <span data-ttu-id="b49b4-168">在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。</span><span class="sxs-lookup"><span data-stu-id="b49b4-168">On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.</span></span> 
+6. <span data-ttu-id="bba7f-168">在 hello Azure 傳統入口網站，選取 hello 單一登入組態確認，，然後按一下**完成**tooclose hello**設定單一登入**對話方塊。</span><span class="sxs-lookup"><span data-stu-id="bba7f-168">On hello Azure classic portal, select hello single sign-on configuration confirmation, and then click **Complete** tooclose hello **Configure Single Sign On** dialog.</span></span> 
    
     ![何謂 Azure AD Connect][15]
 
-7. <span data-ttu-id="b49b4-170">在 [單一登入確認] 頁面上，按一下 [完成]。</span><span class="sxs-lookup"><span data-stu-id="b49b4-170">On the **Single sign-on confirmation** page, click **Complete**.</span></span>  
+7. <span data-ttu-id="bba7f-170">在 [hello**單一登入確認**頁面上，按一下**完成**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-170">On hello **Single sign-on confirmation** page, click **Complete**.</span></span>  
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="b49b4-171">建立 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="b49b4-171">Creating an Azure AD test user</span></span>
-<span data-ttu-id="b49b4-172">本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。</span><span class="sxs-lookup"><span data-stu-id="b49b4-172">The objective of this section is to create a test user in the Azure classic portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="bba7f-171">建立 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="bba7f-171">Creating an Azure AD test user</span></span>
+<span data-ttu-id="bba7f-172">hello 本節目標在於 toocreate hello 呼叫許 Simon 的 Azure 傳統入口網站中的測試使用者。</span><span class="sxs-lookup"><span data-stu-id="bba7f-172">hello objective of this section is toocreate a test user in hello Azure classic portal called Britta Simon.</span></span>
 
-<span data-ttu-id="b49b4-173">**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="b49b4-173">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="bba7f-173">**toocreate 測試使用者在 Azure AD 中，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="bba7f-173">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="b49b4-174">在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。</span><span class="sxs-lookup"><span data-stu-id="b49b4-174">In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.</span></span>
+1. <span data-ttu-id="bba7f-174">在 [hello **Azure 傳統入口網站**，在 hello 左側的導覽窗格中，按一下**Active Directory**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-174">In hello **Azure classic portal**, on hello left navigation pane, click **Active Directory**.</span></span>
    
     ![何謂 Azure AD Connect][100] 
 
-2. <span data-ttu-id="b49b4-176">從 [目錄]  清單中，選取要啟用目錄整合的目錄。</span><span class="sxs-lookup"><span data-stu-id="b49b4-176">From the **Directory** list, select the directory for which you want to enable directory integration.</span></span>
+2. <span data-ttu-id="bba7f-176">從 hello**目錄**清單中，選取 hello 想 tooenable 目錄整合的目錄。</span><span class="sxs-lookup"><span data-stu-id="bba7f-176">From hello **Directory** list, select hello directory for which you want tooenable directory integration.</span></span>
 
-3. <span data-ttu-id="b49b4-177">若要顯示使用者清單，請按一下頂端功能表中的 [使用者] 。</span><span class="sxs-lookup"><span data-stu-id="b49b4-177">To display the list of users, in the menu on the top, click **Users**.</span></span>
+3. <span data-ttu-id="bba7f-177">toodisplay hello 清單中的使用者，hello hello 上方的功能表中按一下**使用者**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-177">toodisplay hello list of users, in hello menu on hello top, click **Users**.</span></span>
    
     ![何謂 Azure AD Connect][101] 
 
-4. <span data-ttu-id="b49b4-179">若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。</span><span class="sxs-lookup"><span data-stu-id="b49b4-179">To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**.</span></span> 
+4. <span data-ttu-id="bba7f-179">tooopen hello**新增使用者**對話方塊中，在 hello 下方的 hello 工具列中按一下**新增使用者**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-179">tooopen hello **Add User** dialog, in hello toolbar on hello bottom, click **Add User**.</span></span> 
    
     ![何謂 Azure AD Connect][102] 
 
-5. <span data-ttu-id="b49b4-181">在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="b49b4-181">On the **Tell us about this user** dialog page, perform the following steps:</span></span>
+5. <span data-ttu-id="bba7f-181">在 [hello**告訴我們這位使用者**對話方塊頁面上，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="bba7f-181">On hello **Tell us about this user** dialog page, perform hello following steps:</span></span>
    
     ![何謂 Azure AD Connect][103] 
    
-    <span data-ttu-id="b49b4-183">a.</span><span class="sxs-lookup"><span data-stu-id="b49b4-183">a.</span></span> <span data-ttu-id="b49b4-184">針對 [使用者類型]，選取 [您組織中的新使用者]。</span><span class="sxs-lookup"><span data-stu-id="b49b4-184">As **Type Of User**, select **New user in your organization**.</span></span>
+    <span data-ttu-id="bba7f-183">a.</span><span class="sxs-lookup"><span data-stu-id="bba7f-183">a.</span></span> <span data-ttu-id="bba7f-184">針對 [使用者類型]，選取 [您組織中的新使用者]。</span><span class="sxs-lookup"><span data-stu-id="bba7f-184">As **Type Of User**, select **New user in your organization**.</span></span>
    
-    <span data-ttu-id="b49b4-185">b.</span><span class="sxs-lookup"><span data-stu-id="b49b4-185">b.</span></span> <span data-ttu-id="b49b4-186">在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。</span><span class="sxs-lookup"><span data-stu-id="b49b4-186">In the User Name **textbox**, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="bba7f-185">b.</span><span class="sxs-lookup"><span data-stu-id="bba7f-185">b.</span></span> <span data-ttu-id="bba7f-186">在 [hello 使用者名稱**文字方塊**，型別**BrittaSimon**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-186">In hello User Name **textbox**, type **BrittaSimon**.</span></span>
    
-    <span data-ttu-id="b49b4-187">c.</span><span class="sxs-lookup"><span data-stu-id="b49b4-187">c.</span></span> <span data-ttu-id="b49b4-188">按一下 [下一步] 。</span><span class="sxs-lookup"><span data-stu-id="b49b4-188">Click **Next**.</span></span>
+    <span data-ttu-id="bba7f-187">c.</span><span class="sxs-lookup"><span data-stu-id="bba7f-187">c.</span></span> <span data-ttu-id="bba7f-188">按一下 [下一步] 。</span><span class="sxs-lookup"><span data-stu-id="bba7f-188">Click **Next**.</span></span>
 
-6. <span data-ttu-id="b49b4-189">在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="b49b4-189">On the **User Profile** dialog page, perform the following steps:</span></span> 
+6. <span data-ttu-id="bba7f-189">在 [hello**使用者設定檔**對話方塊頁面上，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="bba7f-189">On hello **User Profile** dialog page, perform hello following steps:</span></span> 
    
     ![何謂 Azure AD Connect][104] 
    
-    <span data-ttu-id="b49b4-191">a.</span><span class="sxs-lookup"><span data-stu-id="b49b4-191">a.</span></span> <span data-ttu-id="b49b4-192">在 [名字] 文字方塊中，輸入 **Britta**。</span><span class="sxs-lookup"><span data-stu-id="b49b4-192">In the **First Name** textbox, type **Britta**.</span></span>  
+    <span data-ttu-id="bba7f-191">a.</span><span class="sxs-lookup"><span data-stu-id="bba7f-191">a.</span></span> <span data-ttu-id="bba7f-192">在 [hello**名字**文字方塊中，輸入**許**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-192">In hello **First Name** textbox, type **Britta**.</span></span>  
    
-    <span data-ttu-id="b49b4-193">b.</span><span class="sxs-lookup"><span data-stu-id="b49b4-193">b.</span></span> <span data-ttu-id="b49b4-194">在 [姓氏] 文字方塊中輸入 **Simon**。</span><span class="sxs-lookup"><span data-stu-id="b49b4-194">In the **Last Name** txtbox, type, **Simon**.</span></span>
+    <span data-ttu-id="bba7f-193">b.</span><span class="sxs-lookup"><span data-stu-id="bba7f-193">b.</span></span> <span data-ttu-id="bba7f-194">在 [hello**姓氏**txtbox，型別， **Simon**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-194">In hello **Last Name** txtbox, type, **Simon**.</span></span>
    
-    <span data-ttu-id="b49b4-195">c.</span><span class="sxs-lookup"><span data-stu-id="b49b4-195">c.</span></span> <span data-ttu-id="b49b4-196">在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。</span><span class="sxs-lookup"><span data-stu-id="b49b4-196">In the **Display Name** textbox, type **Britta Simon**.</span></span>
+    <span data-ttu-id="bba7f-195">c.</span><span class="sxs-lookup"><span data-stu-id="bba7f-195">c.</span></span> <span data-ttu-id="bba7f-196">在 [hello**顯示名稱**文字方塊中，輸入**許 Simon**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-196">In hello **Display Name** textbox, type **Britta Simon**.</span></span>
    
-    <span data-ttu-id="b49b4-197">d.</span><span class="sxs-lookup"><span data-stu-id="b49b4-197">d.</span></span> <span data-ttu-id="b49b4-198">在 [角色] 清單中選取 [使用者]。</span><span class="sxs-lookup"><span data-stu-id="b49b4-198">In the **Role** list, select **User**.</span></span>
+    <span data-ttu-id="bba7f-197">d.</span><span class="sxs-lookup"><span data-stu-id="bba7f-197">d.</span></span> <span data-ttu-id="bba7f-198">在 [hello**角色**清單中，選取**使用者**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-198">In hello **Role** list, select **User**.</span></span>
    
-    <span data-ttu-id="b49b4-199">e.</span><span class="sxs-lookup"><span data-stu-id="b49b4-199">e.</span></span> <span data-ttu-id="b49b4-200">按一下 [下一步] 。</span><span class="sxs-lookup"><span data-stu-id="b49b4-200">Click **Next**.</span></span>
+    <span data-ttu-id="bba7f-199">e.</span><span class="sxs-lookup"><span data-stu-id="bba7f-199">e.</span></span> <span data-ttu-id="bba7f-200">按一下 [下一步] 。</span><span class="sxs-lookup"><span data-stu-id="bba7f-200">Click **Next**.</span></span>
 
-7. <span data-ttu-id="b49b4-201">在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。</span><span class="sxs-lookup"><span data-stu-id="b49b4-201">On the **Get temporary password** dialog page, click **create**.</span></span>
+7. <span data-ttu-id="bba7f-201">在 [hello**取得暫時密碼**對話方塊頁面上，按一下 [**建立**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-201">On hello **Get temporary password** dialog page, click **create**.</span></span>
    
     ![何謂 Azure AD Connect][105]  
 
-8. <span data-ttu-id="b49b4-203">在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="b49b4-203">On the **Get temporary password** dialog page, perform the following steps:</span></span>
+8. <span data-ttu-id="bba7f-203">在 [hello**取得暫時密碼**對話方塊頁面上，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="bba7f-203">On hello **Get temporary password** dialog page, perform hello following steps:</span></span>
    
     ![何謂 Azure AD Connect][106]   
    
-    <span data-ttu-id="b49b4-205">a.</span><span class="sxs-lookup"><span data-stu-id="b49b4-205">a.</span></span> <span data-ttu-id="b49b4-206">記下 [新密碼] 的值。</span><span class="sxs-lookup"><span data-stu-id="b49b4-206">Write down the value of the **New Password**.</span></span>
+    <span data-ttu-id="bba7f-205">a.</span><span class="sxs-lookup"><span data-stu-id="bba7f-205">a.</span></span> <span data-ttu-id="bba7f-206">請記下 hello hello 值**新密碼**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-206">Write down hello value of hello **New Password**.</span></span>
    
-    <span data-ttu-id="b49b4-207">b.</span><span class="sxs-lookup"><span data-stu-id="b49b4-207">b.</span></span> <span data-ttu-id="b49b4-208">按一下 [完成]。</span><span class="sxs-lookup"><span data-stu-id="b49b4-208">Click **Complete**.</span></span>   
+    <span data-ttu-id="bba7f-207">b.</span><span class="sxs-lookup"><span data-stu-id="bba7f-207">b.</span></span> <span data-ttu-id="bba7f-208">按一下 [完成]。</span><span class="sxs-lookup"><span data-stu-id="bba7f-208">Click **Complete**.</span></span>   
 
-### <a name="creating-a-sciquest-spend-director-test-user"></a><span data-ttu-id="b49b4-209">建立 SciQuest Spend Director 測試使用者</span><span class="sxs-lookup"><span data-stu-id="b49b4-209">Creating a SciQuest Spend Director test user</span></span>
-<span data-ttu-id="b49b4-210">本節目標是在 SciQuest Spend Director 中建立名為 Britta Simon 的使用者。</span><span class="sxs-lookup"><span data-stu-id="b49b4-210">The objective of this section is to create a user called Britta Simon in SciQuest Spend Director.</span></span>
+### <a name="creating-a-sciquest-spend-director-test-user"></a><span data-ttu-id="bba7f-209">建立 SciQuest Spend Director 測試使用者</span><span class="sxs-lookup"><span data-stu-id="bba7f-209">Creating a SciQuest Spend Director test user</span></span>
+<span data-ttu-id="bba7f-210">hello 本節目標在於 toocreate 呼叫許 Simon SciQuest 花導向器中的使用者。</span><span class="sxs-lookup"><span data-stu-id="bba7f-210">hello objective of this section is toocreate a user called Britta Simon in SciQuest Spend Director.</span></span>
 
-<span data-ttu-id="b49b4-211">您需要連絡您的 SciQuest Spend Director 支援小組，並提供他們與您的測試帳戶有關的詳細資料來建立帳戶。</span><span class="sxs-lookup"><span data-stu-id="b49b4-211">You need to contact your SciQuest Spend Director support team and provide them with the details about your test account to get it created.</span></span>
+<span data-ttu-id="bba7f-211">您需要 toocontact SciQuest 花主管支援小組，並為他們提供有關您建立它的測試帳戶 tooget hello 詳細資料。</span><span class="sxs-lookup"><span data-stu-id="bba7f-211">You need toocontact your SciQuest Spend Director support team and provide them with hello details about your test account tooget it created.</span></span>
 
-<span data-ttu-id="b49b4-212">您也可以利用 Just-In-Time 佈建功能，這是 SciQuest Spend Director 支援的單一登入功能。</span><span class="sxs-lookup"><span data-stu-id="b49b4-212">Alternatively, you can also leverage just-in-time provisioning, a single sign-on feature that is supported by SciQuest Spend Director.</span></span>  
-<span data-ttu-id="b49b4-213">啟用 Just-In-Time 佈建時，如果使用者不存在，SciQuest Spend Director 就會在使用者嘗試執行單一登入期間自動建立使用者。</span><span class="sxs-lookup"><span data-stu-id="b49b4-213">If just-in-time provisioning is enabled, users are automatically created by SciQuest Spend Director during a single sign-on attempt if they don't exist.</span></span> <span data-ttu-id="b49b4-214">使用此功能時就不需要手動建立單一登入對應使用者。</span><span class="sxs-lookup"><span data-stu-id="b49b4-214">This feature eliminates the need to manually create single sign-on counterpart users.</span></span>
+<span data-ttu-id="bba7f-212">您也可以利用 Just-In-Time 佈建功能，這是 SciQuest Spend Director 支援的單一登入功能。</span><span class="sxs-lookup"><span data-stu-id="bba7f-212">Alternatively, you can also leverage just-in-time provisioning, a single sign-on feature that is supported by SciQuest Spend Director.</span></span>  
+<span data-ttu-id="bba7f-213">啟用 Just-In-Time 佈建時，如果使用者不存在，SciQuest Spend Director 就會在使用者嘗試執行單一登入期間自動建立使用者。</span><span class="sxs-lookup"><span data-stu-id="bba7f-213">If just-in-time provisioning is enabled, users are automatically created by SciQuest Spend Director during a single sign-on attempt if they don't exist.</span></span> <span data-ttu-id="bba7f-214">這項功能會排除 hello 需要 toomanually 建立單一登入對等項目的使用者。</span><span class="sxs-lookup"><span data-stu-id="bba7f-214">This feature eliminates hello need toomanually create single sign-on counterpart users.</span></span>
 
-<span data-ttu-id="b49b4-215">若要啟用 Just-In-Time 佈建，您需要連絡您的 SciQuest Spend Director 支援小組。</span><span class="sxs-lookup"><span data-stu-id="b49b4-215">To get just-in-time provisioning enabled, you need to contact your your SciQuest Spend Director support team.</span></span>
+<span data-ttu-id="bba7f-215">tooget 中 just-in-time 佈建啟用，您需要 toocontact 正在 SciQuest 花主管支援小組。</span><span class="sxs-lookup"><span data-stu-id="bba7f-215">tooget just-in-time provisioning enabled, you need toocontact your your SciQuest Spend Director support team.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="b49b4-216">指派 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="b49b4-216">Assigning the Azure AD test user</span></span>
-<span data-ttu-id="b49b4-217">本節目標是授與 Britta Simon 對 SciQuest Spend Director 的存取權，讓她能夠使用 Azure 單一登入。</span><span class="sxs-lookup"><span data-stu-id="b49b4-217">The objective of this section is to enabling Britta Simon to use Azure single sign-on by granting her access to SciQuest Spend Director.</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="bba7f-216">指派 hello Azure AD 的測試使用者</span><span class="sxs-lookup"><span data-stu-id="bba7f-216">Assigning hello Azure AD test user</span></span>
+<span data-ttu-id="bba7f-217">本節 hello 目標是 tooenabling 許 Simon toouse Azure 單一登入授與他們存取 tooSciQuest 支出導向器。</span><span class="sxs-lookup"><span data-stu-id="bba7f-217">hello objective of this section is tooenabling Britta Simon toouse Azure single sign-on by granting her access tooSciQuest Spend Director.</span></span>
 
 ![何謂 Azure AD Connect][200]
 
-<span data-ttu-id="b49b4-219">**若要指派 Britta Simon 到 SciQuest Spend Director，請執行以下步驟：**</span><span class="sxs-lookup"><span data-stu-id="b49b4-219">**To assign Britta Simon to SciQuest Spend Director, perform the following steps:**</span></span>
+<span data-ttu-id="bba7f-219">**tooassign 許 Simon tooSciQuest 支出導向器，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="bba7f-219">**tooassign Britta Simon tooSciQuest Spend Director, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="b49b4-220">在 Azure 傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。</span><span class="sxs-lookup"><span data-stu-id="b49b4-220">On the Azure classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.</span></span>
+1. <span data-ttu-id="bba7f-220">在 [hello Azure 傳統入口網站，tooopen hello 應用程式] 檢視，在 hello 目錄檢視中，按一下 [**應用程式**hello 上方功能表中。</span><span class="sxs-lookup"><span data-stu-id="bba7f-220">On hello Azure classic portal, tooopen hello applications view, in hello directory view, click **Applications** in hello top menu.</span></span>
    
     ![何謂 Azure AD Connect][201]
 
-2. <span data-ttu-id="b49b4-222">在應用程式清單中，選取 [SciQuest Spend Director] 。</span><span class="sxs-lookup"><span data-stu-id="b49b4-222">In the applications list, select **SciQuest Spend Director**.</span></span>
+2. <span data-ttu-id="bba7f-222">在 [hello] 應用程式清單中，選取**SciQuest 花主管**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-222">In hello applications list, select **SciQuest Spend Director**.</span></span>
    
     ![何謂 Azure AD Connect][202]
 
-3. <span data-ttu-id="b49b4-224">在頂端的功能表中，按一下 [使用者] 。</span><span class="sxs-lookup"><span data-stu-id="b49b4-224">In the menu on the top, click **Users**.</span></span>
+3. <span data-ttu-id="bba7f-224">在 [hello 最上層顯示 hello 功能表上，按一下**使用者**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-224">In hello menu on hello top, click **Users**.</span></span>
    
     ![何謂 Azure AD Connect][203]
 
-4. <span data-ttu-id="b49b4-226">在 [使用者] 清單中，選取 [Britta Simon] 。</span><span class="sxs-lookup"><span data-stu-id="b49b4-226">In the Users list, select **Britta Simon**.</span></span>
+4. <span data-ttu-id="bba7f-226">在 hello 使用者清單中選取**許 Simon**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-226">In hello Users list, select **Britta Simon**.</span></span>
    
     ![何謂 Azure AD Connect][204]
 
-5. <span data-ttu-id="b49b4-228">在底部的工具列中，按一下 [指派] 。</span><span class="sxs-lookup"><span data-stu-id="b49b4-228">In the toolbar on the bottom, click **Assign**.</span></span>
+5. <span data-ttu-id="bba7f-228">在 hello hello 底部的工具列中按一下**指派**。</span><span class="sxs-lookup"><span data-stu-id="bba7f-228">In hello toolbar on hello bottom, click **Assign**.</span></span>
    
     ![何謂 Azure AD Connect][205]
 
-### <a name="testing-single-sign-on"></a><span data-ttu-id="b49b4-230">測試單一登入</span><span class="sxs-lookup"><span data-stu-id="b49b4-230">Testing Single Sign-On</span></span>
-<span data-ttu-id="b49b4-231">本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。</span><span class="sxs-lookup"><span data-stu-id="b49b4-231">The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.</span></span>  
-<span data-ttu-id="b49b4-232">當您在存取面板中按一下 [SciQuest Spend Director] 圖格時，您應該會自動登入您的 SciQuest Spend Director 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b49b4-232">When you click the SciQuest Spend Director tile in the Access Panel, you should get automatically signed-on to your SciQuest Spend Director application.</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="bba7f-230">測試單一登入</span><span class="sxs-lookup"><span data-stu-id="bba7f-230">Testing Single Sign-On</span></span>
+<span data-ttu-id="bba7f-231">hello 本節目標在於 tootest 您 Azure AD 單一登入組態使用 hello 存取面板。</span><span class="sxs-lookup"><span data-stu-id="bba7f-231">hello objective of this section is tootest your Azure AD single sign-on configuration using hello Access Panel.</span></span>  
+<span data-ttu-id="bba7f-232">當您按一下 hello SciQuest 花主管磚 hello 存取面板中的時，您應該取得自動登入 tooyour SciQuest 花導向器應用程式。</span><span class="sxs-lookup"><span data-stu-id="bba7f-232">When you click hello SciQuest Spend Director tile in hello Access Panel, you should get automatically signed-on tooyour SciQuest Spend Director application.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="b49b4-233">其他資源</span><span class="sxs-lookup"><span data-stu-id="b49b4-233">Additional Resources</span></span>
-* [<span data-ttu-id="b49b4-234">如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單</span><span class="sxs-lookup"><span data-stu-id="b49b4-234">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="b49b4-235">什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？</span><span class="sxs-lookup"><span data-stu-id="b49b4-235">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+## <a name="additional-resources"></a><span data-ttu-id="bba7f-233">其他資源</span><span class="sxs-lookup"><span data-stu-id="bba7f-233">Additional Resources</span></span>
+* [<span data-ttu-id="bba7f-234">如何教學課程清單 tooIntegrate SaaS 應用程式與 Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="bba7f-234">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="bba7f-235">什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？</span><span class="sxs-lookup"><span data-stu-id="bba7f-235">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 [1]: ./media/active-directory-saas-sciquest-spend-director-tutorial/tutorial_general_01.png

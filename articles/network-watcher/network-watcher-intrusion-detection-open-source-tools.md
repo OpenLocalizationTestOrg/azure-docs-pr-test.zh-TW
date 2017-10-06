@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員和開放原始碼工具執行網路入侵偵測 | Microsoft Docs"
-description: "本文說明如何使用 Azure 網路監看員和開放原始碼工具來執行網路入侵偵測"
+title: "aaaPerform 網路入侵偵測 Azure 網路監看員與開放原始碼工具 |Microsoft 文件"
+description: "本文說明如何在 Azure 網路監看員 toouse 和開放原始碼工具 tooperform 網路入侵偵測"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 82d5e525859ebe03b152c63e4debbae469049c12
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b5a909b827ab32ad6b2fd8e2911a944fd940249e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="perform-network-intrusion-detection-with-network-watcher-and-open-source-tools"></a><span data-ttu-id="bc1e3-103">使用網路監看員和開放原始碼工具執行網路入侵偵測</span><span class="sxs-lookup"><span data-stu-id="bc1e3-103">Perform network intrusion detection with Network Watcher and open source tools</span></span>
+# <a name="perform-network-intrusion-detection-with-network-watcher-and-open-source-tools"></a><span data-ttu-id="fe85a-103">使用網路監看員和開放原始碼工具執行網路入侵偵測</span><span class="sxs-lookup"><span data-stu-id="fe85a-103">Perform network intrusion detection with Network Watcher and open source tools</span></span>
 
-<span data-ttu-id="bc1e3-104">封包擷取是實作網路入侵偵測系統 (ID) 和執行網路安全性監視 (NSM) 的重要元件。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-104">Packet captures are a key component for implementing network intrusion detection systems (IDS) and performing Network Security Monitoring (NSM).</span></span> <span data-ttu-id="bc1e3-105">有數個開放原始碼 IDS 工具，可處理封包擷取並尋找可能的網路入侵和惡意活動的簽章。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-105">There are several open source IDS tools that process packet captures and look for signatures of possible network intrusions and malicious activity.</span></span> <span data-ttu-id="bc1e3-106">使用網路監看員所提供的封包擷取，您可以分析您的網路找出任何有害的入侵或安全性弱點。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-106">Using the packet captures provided by Network Watcher, you can analyze your network for any harmful intrusions or vulnerabilities.</span></span>
+<span data-ttu-id="fe85a-104">封包擷取是實作網路入侵偵測系統 (ID) 和執行網路安全性監視 (NSM) 的重要元件。</span><span class="sxs-lookup"><span data-stu-id="fe85a-104">Packet captures are a key component for implementing network intrusion detection systems (IDS) and performing Network Security Monitoring (NSM).</span></span> <span data-ttu-id="fe85a-105">有數個開放原始碼 IDS 工具，可處理封包擷取並尋找可能的網路入侵和惡意活動的簽章。</span><span class="sxs-lookup"><span data-stu-id="fe85a-105">There are several open source IDS tools that process packet captures and look for signatures of possible network intrusions and malicious activity.</span></span> <span data-ttu-id="fe85a-106">使用提供的網路監看員的 hello 封包擷取，您可以分析您的網路的任何危險入侵或弱點。</span><span class="sxs-lookup"><span data-stu-id="fe85a-106">Using hello packet captures provided by Network Watcher, you can analyze your network for any harmful intrusions or vulnerabilities.</span></span>
 
-<span data-ttu-id="bc1e3-107">一種開放原始碼工具是 Suricata，這是使用規則集監視網路流量且在可疑事件發生時就會觸發警示的 IDS 引擎。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-107">One such open source tool is Suricata, an IDS engine that uses rulesets to monitor network traffic and triggers alerts whenever suspicious events occur.</span></span> <span data-ttu-id="bc1e3-108">Suricata 提供多執行緒的引擎，這表示它可以更高的速度和效率執行網路流量分析。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-108">Suricata offers a multi-threaded engine, meaning it can perform network traffic analysis with increased speed and efficiency.</span></span> <span data-ttu-id="bc1e3-109">如需關於 Suricata 和其功能的詳細資訊，請瀏覽其網站︰https://suricata-ids.org/。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-109">For more details about Suricata and its capabilities, visit their website at https://suricata-ids.org/.</span></span>
+<span data-ttu-id="fe85a-107">這類的一項開放原始碼工具為 Suricata，ID 引擎，它會使用 ruleset toomonitor 網路流量，並可疑事件發生時觸發警示。</span><span class="sxs-lookup"><span data-stu-id="fe85a-107">One such open source tool is Suricata, an IDS engine that uses rulesets toomonitor network traffic and triggers alerts whenever suspicious events occur.</span></span> <span data-ttu-id="fe85a-108">Suricata 提供多執行緒的引擎，這表示它可以更高的速度和效率執行網路流量分析。</span><span class="sxs-lookup"><span data-stu-id="fe85a-108">Suricata offers a multi-threaded engine, meaning it can perform network traffic analysis with increased speed and efficiency.</span></span> <span data-ttu-id="fe85a-109">如需關於 Suricata 和其功能的詳細資訊，請瀏覽其網站︰https://suricata-ids.org/。</span><span class="sxs-lookup"><span data-stu-id="fe85a-109">For more details about Suricata and its capabilities, visit their website at https://suricata-ids.org/.</span></span>
 
-## <a name="scenario"></a><span data-ttu-id="bc1e3-110">案例</span><span class="sxs-lookup"><span data-stu-id="bc1e3-110">Scenario</span></span>
+## <a name="scenario"></a><span data-ttu-id="fe85a-110">案例</span><span class="sxs-lookup"><span data-stu-id="fe85a-110">Scenario</span></span>
 
-<span data-ttu-id="bc1e3-111">本文說明如何使用網路監看員、Suricata 和彈性堆疊來設定您的環境，以執行網路入侵偵測。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-111">This article explains how to set up your environment to perform network intrusion detection using Network Watcher, Suricata, and the Elastic Stack.</span></span> <span data-ttu-id="bc1e3-112">網路監看員會提供用來執行網路入侵偵測的封包擷取。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-112">Network Watcher provides you with the packet captures used to perform network intrusion detection.</span></span> <span data-ttu-id="bc1e3-113">Suricata 會根據比對指定的威脅規則集處理封包擷取和觸發警示。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-113">Suricata processes the packet captures and trigger alerts based on packets that match its given ruleset of threats.</span></span> <span data-ttu-id="bc1e3-114">這些警示會儲存在本機電腦上的記錄檔。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-114">These alerts are stored in a log file on your local machine.</span></span> <span data-ttu-id="bc1e3-115">使用彈性堆疊的 Suricata 所產生之記錄可以編製索引及用來建立 Kibana 儀表板，提供您視覺表示法的記錄，以便快速獲得潛在網路弱點的見解。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-115">Using the Elastic Stack, the logs generated by Suricata can be indexed and used to create a Kibana dashboard, providing you with a visual representation of the logs and a means to quickly gain insights to potential network vulnerabilities.</span></span>  
+<span data-ttu-id="fe85a-111">本文說明如何註冊您的環境 tooperform tooset 網路使用網路監看員，Suricata，入侵偵測和 hello 彈性的堆疊。</span><span class="sxs-lookup"><span data-stu-id="fe85a-111">This article explains how tooset up your environment tooperform network intrusion detection using Network Watcher, Suricata, and hello Elastic Stack.</span></span> <span data-ttu-id="fe85a-112">網路監看員會提供您與 hello 封包擷取使用的 tooperform 網路入侵偵測。</span><span class="sxs-lookup"><span data-stu-id="fe85a-112">Network Watcher provides you with hello packet captures used tooperform network intrusion detection.</span></span> <span data-ttu-id="fe85a-113">擷取 Suricata 處理程序 hello 封包和觸發程序警示符合其指定的規則集的威脅的封包。</span><span class="sxs-lookup"><span data-stu-id="fe85a-113">Suricata processes hello packet captures and trigger alerts based on packets that match its given ruleset of threats.</span></span> <span data-ttu-id="fe85a-114">這些警示會儲存在本機電腦上的記錄檔。</span><span class="sxs-lookup"><span data-stu-id="fe85a-114">These alerts are stored in a log file on your local machine.</span></span> <span data-ttu-id="fe85a-115">使用 hello 彈性堆疊，hello Suricata 所產生的記錄檔可以編製索引，並使用 toocreate Kibana 儀表板，能提供較 hello 記錄檔的視覺表示法與表示 tooquickly 改善 insights toopotential 網路弱點。</span><span class="sxs-lookup"><span data-stu-id="fe85a-115">Using hello Elastic Stack, hello logs generated by Suricata can be indexed and used toocreate a Kibana dashboard, providing you with a visual representation of hello logs and a means tooquickly gain insights toopotential network vulnerabilities.</span></span>  
 
 ![簡單的 web 應用程式案例][1]
 
-<span data-ttu-id="bc1e3-117">可於 Azure VM 上設定這兩個開放原始碼工具，讓您能夠在您自己的 Azure 網路環境內執行這項分析。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-117">Both open source tools can be set up on an Azure VM, allowing you to perform this analysis within your own Azure network environment.</span></span>
+<span data-ttu-id="fe85a-117">這兩個開放原始碼工具可以在上設定 Azure VM 中，可讓您 tooperform Azure 網路環境中的這項分析。</span><span class="sxs-lookup"><span data-stu-id="fe85a-117">Both open source tools can be set up on an Azure VM, allowing you tooperform this analysis within your own Azure network environment.</span></span>
 
-## <a name="steps"></a><span data-ttu-id="bc1e3-118">步驟</span><span class="sxs-lookup"><span data-stu-id="bc1e3-118">Steps</span></span>
+## <a name="steps"></a><span data-ttu-id="fe85a-118">步驟</span><span class="sxs-lookup"><span data-stu-id="fe85a-118">Steps</span></span>
 
-### <a name="install-suricata"></a><span data-ttu-id="bc1e3-119">安裝 Suricata</span><span class="sxs-lookup"><span data-stu-id="bc1e3-119">Install Suricata</span></span>
+### <a name="install-suricata"></a><span data-ttu-id="fe85a-119">安裝 Suricata</span><span class="sxs-lookup"><span data-stu-id="fe85a-119">Install Suricata</span></span>
 
-<span data-ttu-id="bc1e3-120">如需安裝的其他方法，請瀏覽 http://suricata.readthedocs.io/en/latest/install.html</span><span class="sxs-lookup"><span data-stu-id="bc1e3-120">For all other methods of installation, visit http://suricata.readthedocs.io/en/latest/install.html</span></span>
+<span data-ttu-id="fe85a-120">如需安裝的其他方法，請瀏覽 http://suricata.readthedocs.io/en/latest/install.html</span><span class="sxs-lookup"><span data-stu-id="fe85a-120">For all other methods of installation, visit http://suricata.readthedocs.io/en/latest/install.html</span></span>
 
-1. <span data-ttu-id="bc1e3-121">在您 VM 的命令列終端機執行下列命令︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-121">In the command-line terminal of your VM run the following commands:</span></span>
+1. <span data-ttu-id="fe85a-121">Hello 命令列終端機的 VM 中執行下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="fe85a-121">In hello command-line terminal of your VM run hello following commands:</span></span>
 
     ```
     sudo add-apt-repository ppa:oisf/suricata-stable
@@ -48,13 +48,13 @@ ms.lasthandoff: 07/11/2017
     sudo sudo apt-get install suricata
     ```
 
-1. <span data-ttu-id="bc1e3-122">若要確認您的安裝，請執行命令 `suricata -h` 以查看命令的完整清單。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-122">To verify your installation, run the command `suricata -h` to see the full list of commands.</span></span>
+1. <span data-ttu-id="fe85a-122">tooverify 您的安裝，請執行 hello 命令`suricata -h`toosee hello 命令完整清單。</span><span class="sxs-lookup"><span data-stu-id="fe85a-122">tooverify your installation, run hello command `suricata -h` toosee hello full list of commands.</span></span>
 
-### <a name="download-the-emerging-threats-ruleset"></a><span data-ttu-id="bc1e3-123">下載新興的威脅規則集</span><span class="sxs-lookup"><span data-stu-id="bc1e3-123">Download the Emerging Threats ruleset</span></span>
+### <a name="download-hello-emerging-threats-ruleset"></a><span data-ttu-id="fe85a-123">下載 hello 新興的威脅規則集</span><span class="sxs-lookup"><span data-stu-id="fe85a-123">Download hello Emerging Threats ruleset</span></span>
 
-<span data-ttu-id="bc1e3-124">在這個階段，我們不需要執行 Suricata 的任何規則。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-124">At this stage, we do not have any rules for Suricata to run.</span></span> <span data-ttu-id="bc1e3-125">如果有您想要在您的網路偵測到的特定威脅，可以建立自己的規則，或者您也可以從多個提供者使用開發的規則集，例如新興的威脅，或從 Snort 使用 VRT 規則。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-125">You can create your own rules if there are specific threats to your network you would like to detect, or you can also use developed rule sets from a number of providers, such as Emerging Threats, or VRT rules from Snort.</span></span> <span data-ttu-id="bc1e3-126">我們在這裡使用自由存取的新興威脅規則集︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-126">We use the freely accessible Emerging Threats ruleset here:</span></span>
+<span data-ttu-id="fe85a-124">在這個階段，我們不需要任何 Suricata toorun 的規則。</span><span class="sxs-lookup"><span data-stu-id="fe85a-124">At this stage, we do not have any rules for Suricata toorun.</span></span> <span data-ttu-id="fe85a-125">如果您想要 toodetect，特定威脅 tooyour 網路，或您也可以從許多提供者，例如新興的威脅或從 Snort VRT 規則開發使用規則集，您可以建立您自己的規則。</span><span class="sxs-lookup"><span data-stu-id="fe85a-125">You can create your own rules if there are specific threats tooyour network you would like toodetect, or you can also use developed rule sets from a number of providers, such as Emerging Threats, or VRT rules from Snort.</span></span> <span data-ttu-id="fe85a-126">我們在此使用自由存取新興的威脅 ruleset hello:</span><span class="sxs-lookup"><span data-stu-id="fe85a-126">We use hello freely accessible Emerging Threats ruleset here:</span></span>
 
-<span data-ttu-id="bc1e3-127">下載規則集，並將它們複製到目錄︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-127">Download the rule set and copy them into the directory:</span></span>
+<span data-ttu-id="fe85a-127">下載 hello 規則集，並將其複製到 hello 目錄：</span><span class="sxs-lookup"><span data-stu-id="fe85a-127">Download hello rule set and copy them into hello directory:</span></span>
 
 ```
 wget http://rules.emergingthreats.net/open/suricata/emerging.rules.tar.gz
@@ -62,26 +62,26 @@ tar zxf emerging.rules.tar.gz
 sudo cp -r rules /etc/suricata/
 ```
 
-### <a name="process-packet-captures-with-suricata"></a><span data-ttu-id="bc1e3-128">使用 Suricata 處理封包擷取</span><span class="sxs-lookup"><span data-stu-id="bc1e3-128">Process packet captures with Suricata</span></span>
+### <a name="process-packet-captures-with-suricata"></a><span data-ttu-id="fe85a-128">使用 Suricata 處理封包擷取</span><span class="sxs-lookup"><span data-stu-id="fe85a-128">Process packet captures with Suricata</span></span>
 
-<span data-ttu-id="bc1e3-129">若要使用 Suricata 處理封包擷取，請執行下列命令︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-129">To process packet captures using Suricata, run the following command:</span></span>
+<span data-ttu-id="fe85a-129">使用 Suricata，執行下列命令的 hello 擷取 tooprocess 封包：</span><span class="sxs-lookup"><span data-stu-id="fe85a-129">tooprocess packet captures using Suricata, run hello following command:</span></span>
 
 ```
 sudo suricata -c /etc/suricata/suricata.yaml -r <location_of_pcapfile>
 ```
-<span data-ttu-id="bc1e3-130">若要檢查產生的警示，請閱讀 fast.log 檔案︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-130">To check the resulting alerts, read the fast.log file:</span></span>
+<span data-ttu-id="fe85a-130">toocheck hello 產生警示，讀取 hello fast.log 檔案：</span><span class="sxs-lookup"><span data-stu-id="fe85a-130">toocheck hello resulting alerts, read hello fast.log file:</span></span>
 ```
 tail -f /var/log/suricata/fast.log
 ```
 
-### <a name="set-up-the-elastic-stack"></a><span data-ttu-id="bc1e3-131">設定彈性堆疊</span><span class="sxs-lookup"><span data-stu-id="bc1e3-131">Set up the Elastic Stack</span></span>
+### <a name="set-up-hello-elastic-stack"></a><span data-ttu-id="fe85a-131">設定彈性堆疊 hello</span><span class="sxs-lookup"><span data-stu-id="fe85a-131">Set up hello Elastic Stack</span></span>
 
-<span data-ttu-id="bc1e3-132">雖然 Suricata 產生的記錄檔包含有關我們網路上所發生事件的重要資訊，並不容易閱讀並了解這些記錄檔。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-132">While the logs that Suricata produces contain valuable information about what’s happening on our network, these log files aren’t the easiest to read and understand.</span></span> <span data-ttu-id="bc1e3-133">藉由連線 Suricata 與彈性堆疊，我們可以建立 Kibana 儀表板，讓我們可從記錄搜尋、繪圖、分析和洞察。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-133">By connecting Suricata with the Elastic Stack, we can create a Kibana dashboard what allows us to search, graph, analyze, and derive insights from our logs.</span></span>
+<span data-ttu-id="fe85a-132">雖然 Suricata 產生 hello 記錄檔包含有關最新動態的網路上的重要資訊，這些記錄檔不是 hello 最簡單 tooread，並了解。</span><span class="sxs-lookup"><span data-stu-id="fe85a-132">While hello logs that Suricata produces contain valuable information about what’s happening on our network, these log files aren’t hello easiest tooread and understand.</span></span> <span data-ttu-id="fe85a-133">藉由連接 Suricata 以 hello 彈性堆疊，我們可以建立 Kibana 儀表板，讓我們 toosearch、 圖形、 分析和洞察從我們的記錄檔。</span><span class="sxs-lookup"><span data-stu-id="fe85a-133">By connecting Suricata with hello Elastic Stack, we can create a Kibana dashboard what allows us toosearch, graph, analyze, and derive insights from our logs.</span></span>
 
-#### <a name="install-elasticsearch"></a><span data-ttu-id="bc1e3-134">安裝 Elasticsearch</span><span class="sxs-lookup"><span data-stu-id="bc1e3-134">Install Elasticsearch</span></span>
+#### <a name="install-elasticsearch"></a><span data-ttu-id="fe85a-134">安裝 Elasticsearch</span><span class="sxs-lookup"><span data-stu-id="fe85a-134">Install Elasticsearch</span></span>
 
-1. <span data-ttu-id="bc1e3-135">5.0 版和更新版本的彈性堆疊需要 Java 8。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-135">The Elastic Stack from version 5.0 and above requires Java 8.</span></span> <span data-ttu-id="bc1e3-136">執行命令 `java -version` 來檢查您的版本。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-136">Run the command `java -version` to check your version.</span></span> <span data-ttu-id="bc1e3-137">如果您沒有安裝 Java，請參閱 [Oracle 網站](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)上的文件</span><span class="sxs-lookup"><span data-stu-id="bc1e3-137">If you do not have java install, refer to documentation on [Oracle's website](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)</span></span>
-1. <span data-ttu-id="bc1e3-138">針對您的系統下載正確的二進位套件︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-138">Download the correct binary package for your system:</span></span>
+1. <span data-ttu-id="fe85a-135">hello 彈性堆疊從 5.0 版和更新版本需要 Java 8。</span><span class="sxs-lookup"><span data-stu-id="fe85a-135">hello Elastic Stack from version 5.0 and above requires Java 8.</span></span> <span data-ttu-id="fe85a-136">執行 hello 命令`java -version`toocheck 您的版本。</span><span class="sxs-lookup"><span data-stu-id="fe85a-136">Run hello command `java -version` toocheck your version.</span></span> <span data-ttu-id="fe85a-137">如果您沒有安裝，請參閱 toodocumentation java [Oracle 的網站](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)</span><span class="sxs-lookup"><span data-stu-id="fe85a-137">If you do not have java install, refer toodocumentation on [Oracle's website](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)</span></span>
+1. <span data-ttu-id="fe85a-138">下載 hello 二進位的正確封裝您的系統：</span><span class="sxs-lookup"><span data-stu-id="fe85a-138">Download hello correct binary package for your system:</span></span>
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.2.0.deb
@@ -89,15 +89,15 @@ tail -f /var/log/suricata/fast.log
     sudo /etc/init.d/elasticsearch start
     ```
 
-    <span data-ttu-id="bc1e3-139">可在 [Elasticsearch 安裝](https://www.elastic.co/guide/en/beats/libbeat/5.2/elasticsearch-installation.html)找到其他安裝方法</span><span class="sxs-lookup"><span data-stu-id="bc1e3-139">Other installation methods can be found at [Elasticsearch Installation](https://www.elastic.co/guide/en/beats/libbeat/5.2/elasticsearch-installation.html)</span></span>
+    <span data-ttu-id="fe85a-139">可在 [Elasticsearch 安裝](https://www.elastic.co/guide/en/beats/libbeat/5.2/elasticsearch-installation.html)找到其他安裝方法</span><span class="sxs-lookup"><span data-stu-id="fe85a-139">Other installation methods can be found at [Elasticsearch Installation](https://www.elastic.co/guide/en/beats/libbeat/5.2/elasticsearch-installation.html)</span></span>
 
-1. <span data-ttu-id="bc1e3-140">使用下列命令確認 Elasticsearch 正在執行︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-140">Verify that Elasticsearch is running with the command:</span></span>
+1. <span data-ttu-id="fe85a-140">請確認 Elasticsearch 正以 hello 命令：</span><span class="sxs-lookup"><span data-stu-id="fe85a-140">Verify that Elasticsearch is running with hello command:</span></span>
 
     ```
     curl http://127.0.0.1:9200
     ```
 
-    <span data-ttu-id="bc1e3-141">您應該會看到如下所示的回應：</span><span class="sxs-lookup"><span data-stu-id="bc1e3-141">You should see a response similar to this:</span></span>
+    <span data-ttu-id="fe85a-141">您應該會看到回應類似 toothis:</span><span class="sxs-lookup"><span data-stu-id="fe85a-141">You should see a response similar toothis:</span></span>
 
     ```
     {
@@ -114,23 +114,23 @@ tail -f /var/log/suricata/fast.log
     }
     ```
 
-<span data-ttu-id="bc1e3-142">如需安裝彈性搜尋的進一步指示，請參閱[安裝](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)頁面</span><span class="sxs-lookup"><span data-stu-id="bc1e3-142">For further instructions on installing Elastic search, refer to the page [Installation](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)</span></span>
+<span data-ttu-id="fe85a-142">如需有關安裝彈性的搜尋的進一步指示，請參閱 toohello 頁面[安裝](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)</span><span class="sxs-lookup"><span data-stu-id="fe85a-142">For further instructions on installing Elastic search, refer toohello page [Installation](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)</span></span>
 
-### <a name="install-logstash"></a><span data-ttu-id="bc1e3-143">安裝 Logstash</span><span class="sxs-lookup"><span data-stu-id="bc1e3-143">Install Logstash</span></span>
+### <a name="install-logstash"></a><span data-ttu-id="fe85a-143">安裝 Logstash</span><span class="sxs-lookup"><span data-stu-id="fe85a-143">Install Logstash</span></span>
 
-1. <span data-ttu-id="bc1e3-144">若要安裝 Logstash，請執行下列命令︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-144">To install Logstash run the following commands:</span></span>
+1. <span data-ttu-id="fe85a-144">tooinstall Logstash 執行 hello 下列命令：</span><span class="sxs-lookup"><span data-stu-id="fe85a-144">tooinstall Logstash run hello following commands:</span></span>
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/logstash/logstash-5.2.0.deb
     sudo dpkg -i logstash-5.2.0.deb
     ```
-1. <span data-ttu-id="bc1e3-145">接下來我們需要設定 Logstash 以從 eve.json 檔案的輸出讀取。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-145">Next we need to configure Logstash to read from the output of eve.json file.</span></span> <span data-ttu-id="bc1e3-146">建立 logstash.conf 檔案，使用︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-146">Create a logstash.conf file using:</span></span>
+1. <span data-ttu-id="fe85a-145">接下來，我們需要 tooconfigure Logstash tooread hello eve.json 檔案輸出。</span><span class="sxs-lookup"><span data-stu-id="fe85a-145">Next we need tooconfigure Logstash tooread from hello output of eve.json file.</span></span> <span data-ttu-id="fe85a-146">建立 logstash.conf 檔案，使用︰</span><span class="sxs-lookup"><span data-stu-id="fe85a-146">Create a logstash.conf file using:</span></span>
 
     ```
     sudo touch /etc/logstash/conf.d/logstash.conf
     ```
 
-1. <span data-ttu-id="bc1e3-147">將下列內容新增至檔案 (請確定 eve.json 檔案的路徑正確)︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-147">Add the following content to the file (make sure that the path to the eve.json file is correct):</span></span>
+1. <span data-ttu-id="fe85a-147">新增下列內容 toohello 檔 hello （請確定該 hello 路徑 toohello eve.json 檔案是否正確）：</span><span class="sxs-lookup"><span data-stu-id="fe85a-147">Add hello following content toohello file (make sure that hello path toohello eve.json file is correct):</span></span>
 
     ```ruby
     input {
@@ -202,88 +202,88 @@ tail -f /var/log/suricata/fast.log
     }
     ```
 
-1. <span data-ttu-id="bc1e3-148">請務必提供正確權限給 eve.json 檔案，以便 Logstash 可內嵌檔案。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-148">Make sure to give the correct permissions to the eve.json file so that Logstash can ingest the file.</span></span>
+1. <span data-ttu-id="fe85a-148">請確定 toogive hello 正確的權限 toohello eve.json 檔案以便 Logstash 可以內嵌 hello 檔案。</span><span class="sxs-lookup"><span data-stu-id="fe85a-148">Make sure toogive hello correct permissions toohello eve.json file so that Logstash can ingest hello file.</span></span>
     
     ```
     sudo chmod 775 /var/log/suricata/eve.json
     ```
 
-1. <span data-ttu-id="bc1e3-149">若要啟動 Logstash，請執行命令︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-149">To start Logstash run the command:</span></span>
+1. <span data-ttu-id="fe85a-149">toostart Logstash 執行 hello 命令：</span><span class="sxs-lookup"><span data-stu-id="fe85a-149">toostart Logstash run hello command:</span></span>
 
     ```
     sudo /etc/init.d/logstash start
     ```
 
-<span data-ttu-id="bc1e3-150">如需安裝 Logstash 的進一步指示，請參閱[正式文件](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)</span><span class="sxs-lookup"><span data-stu-id="bc1e3-150">For further instructions on installing Logstash, refer to the [official documentation](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)</span></span>
+<span data-ttu-id="fe85a-150">如需安裝 Logstash 的進一步指示，請參閱 toohello[官方文件集](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)</span><span class="sxs-lookup"><span data-stu-id="fe85a-150">For further instructions on installing Logstash, refer toohello [official documentation](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)</span></span>
 
-### <a name="install-kibana"></a><span data-ttu-id="bc1e3-151">安裝 Kibana</span><span class="sxs-lookup"><span data-stu-id="bc1e3-151">Install Kibana</span></span>
+### <a name="install-kibana"></a><span data-ttu-id="fe85a-151">安裝 Kibana</span><span class="sxs-lookup"><span data-stu-id="fe85a-151">Install Kibana</span></span>
 
-1. <span data-ttu-id="bc1e3-152">執行下列命令以安裝 Kibana：</span><span class="sxs-lookup"><span data-stu-id="bc1e3-152">Run the following commands to install Kibana:</span></span>
+1. <span data-ttu-id="fe85a-152">執行下列命令 tooinstall Kibana hello:</span><span class="sxs-lookup"><span data-stu-id="fe85a-152">Run hello following commands tooinstall Kibana:</span></span>
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/kibana/kibana-5.2.0-linux-x86_64.tar.gz
     tar xzvf kibana-5.2.0-linux-x86_64.tar.gz
 
     ```
-1. <span data-ttu-id="bc1e3-153">若要執行 Kibana，請使用這些命令︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-153">To run Kibana use the commands:</span></span>
+1. <span data-ttu-id="fe85a-153">toorun Kibana 使用 hello 命令：</span><span class="sxs-lookup"><span data-stu-id="fe85a-153">toorun Kibana use hello commands:</span></span>
 
     ```
     cd kibana-5.2.0-linux-x86_64/
     ./bin/kibana
     ```
 
-1. <span data-ttu-id="bc1e3-154">若要檢視 Kibana Web 介面，請瀏覽至`http://localhost:5601`</span><span class="sxs-lookup"><span data-stu-id="bc1e3-154">To view your Kibana web interface, navigate to `http://localhost:5601`</span></span>
-1. <span data-ttu-id="bc1e3-155">此案例中，用於 Suricata 記錄的索引模式是 "logstash-*"</span><span class="sxs-lookup"><span data-stu-id="bc1e3-155">For this scenario, the index pattern used for the Suricata logs is "logstash-*"</span></span>
+1. <span data-ttu-id="fe85a-154">tooview Kibana web 介面，請瀏覽過`http://localhost:5601`</span><span class="sxs-lookup"><span data-stu-id="fe85a-154">tooview your Kibana web interface, navigate too`http://localhost:5601`</span></span>
+1. <span data-ttu-id="fe85a-155">此案例中，用於的 hello Suricata 記錄的 hello 索引模式是 「 logstash-*"</span><span class="sxs-lookup"><span data-stu-id="fe85a-155">For this scenario, hello index pattern used for hello Suricata logs is "logstash-*"</span></span>
 
-1. <span data-ttu-id="bc1e3-156">如果您想要從遠端檢視 Kibana 儀表板，建立輸入 NSG 規則以允許存取**連接埠 5601**。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-156">If you want to view the Kibana dashboard remotely, create an inbound NSG rule allowing access to **port 5601**.</span></span>
+1. <span data-ttu-id="fe85a-156">如果要從遠端 tooview hello Kibana 儀表板，請建立輸入的 NSG 規則允許存取太**連接埠 5601**。</span><span class="sxs-lookup"><span data-stu-id="fe85a-156">If you want tooview hello Kibana dashboard remotely, create an inbound NSG rule allowing access too**port 5601**.</span></span>
 
-### <a name="create-a-kibana-dashboard"></a><span data-ttu-id="bc1e3-157">建立 Kibana 儀表板</span><span class="sxs-lookup"><span data-stu-id="bc1e3-157">Create a Kibana dashboard</span></span>
+### <a name="create-a-kibana-dashboard"></a><span data-ttu-id="fe85a-157">建立 Kibana 儀表板</span><span class="sxs-lookup"><span data-stu-id="fe85a-157">Create a Kibana dashboard</span></span>
 
-<span data-ttu-id="bc1e3-158">在本文中，我們提供了範例儀表板，讓您檢視警示中的趨勢和詳細資料。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-158">For this article, we have provided a sample dashboard for you to view trends and details in your alerts.</span></span>
+<span data-ttu-id="fe85a-158">如本文中，我們已提供為您 tooview 趨勢的範例儀表板和中的警示詳細資料。</span><span class="sxs-lookup"><span data-stu-id="fe85a-158">For this article, we have provided a sample dashboard for you tooview trends and details in your alerts.</span></span>
 
-1. <span data-ttu-id="bc1e3-159">下載儀表板檔案 ([這裡](https://aka.ms/networkwatchersuricatadashboard))、視覺效果檔案 ([這裡](https://aka.ms/networkwatchersuricatavisualization))，以及儲存的搜尋檔案 ([這裡](https://aka.ms/networkwatchersuricatasavedsearch))。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-159">Download the dashboard file [here](https://aka.ms/networkwatchersuricatadashboard), the visualization file [here](https://aka.ms/networkwatchersuricatavisualization), and the saved search file [here](https://aka.ms/networkwatchersuricatasavedsearch).</span></span>
+1. <span data-ttu-id="fe85a-159">下載 hello 儀表板檔案[這裡](https://aka.ms/networkwatchersuricatadashboard)，hello 視覺效果檔案[這裡](https://aka.ms/networkwatchersuricatavisualization)，和儲存的 hello 搜尋檔案[這裡](https://aka.ms/networkwatchersuricatasavedsearch)。</span><span class="sxs-lookup"><span data-stu-id="fe85a-159">Download hello dashboard file [here](https://aka.ms/networkwatchersuricatadashboard), hello visualization file [here](https://aka.ms/networkwatchersuricatavisualization), and hello saved search file [here](https://aka.ms/networkwatchersuricatasavedsearch).</span></span>
 
-1. <span data-ttu-id="bc1e3-160">在 Kibana 的 [管理] 索引標籤下，瀏覽至 [儲存的物件] 並匯入這三個檔案。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-160">Under the **Management** tab of Kibana, navigate to **Saved Objects** and import all three files.</span></span> <span data-ttu-id="bc1e3-161">然後您可以從 [儀表板] 索引標籤開啟並載入範例儀表板。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-161">Then from the **Dashboard** tab you can open and load the sample dashboard.</span></span>
+1. <span data-ttu-id="fe85a-160">在 hello**管理** 索引標籤的 Kibana，瀏覽過**儲存物件**並匯入所有的三個檔案。</span><span class="sxs-lookup"><span data-stu-id="fe85a-160">Under hello **Management** tab of Kibana, navigate too**Saved Objects** and import all three files.</span></span> <span data-ttu-id="fe85a-161">然後從 hello**儀表板** 索引標籤，您可以開啟和負載 hello 範例儀表板。</span><span class="sxs-lookup"><span data-stu-id="fe85a-161">Then from hello **Dashboard** tab you can open and load hello sample dashboard.</span></span>
 
-<span data-ttu-id="bc1e3-162">您也可以針對自己感興趣的計量，量身製作自己的視覺效果和儀表板。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-162">You can also create your own visualizations and dashboards tailored towards metrics of your own interest.</span></span> <span data-ttu-id="bc1e3-163">從 Kibana 的[正式文件](https://www.elastic.co/guide/en/kibana/current/visualize.html)深入了解如何建立 Kibana 視覺效果。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-163">Read more about creating Kibana visualizations from Kibana's [official documentation](https://www.elastic.co/guide/en/kibana/current/visualize.html).</span></span>
+<span data-ttu-id="fe85a-162">您也可以針對自己感興趣的計量，量身製作自己的視覺效果和儀表板。</span><span class="sxs-lookup"><span data-stu-id="fe85a-162">You can also create your own visualizations and dashboards tailored towards metrics of your own interest.</span></span> <span data-ttu-id="fe85a-163">從 Kibana 的[正式文件](https://www.elastic.co/guide/en/kibana/current/visualize.html)深入了解如何建立 Kibana 視覺效果。</span><span class="sxs-lookup"><span data-stu-id="fe85a-163">Read more about creating Kibana visualizations from Kibana's [official documentation](https://www.elastic.co/guide/en/kibana/current/visualize.html).</span></span>
 
 ![建立儀表板][2]
 
-### <a name="visualize-ids-alert-logs"></a><span data-ttu-id="bc1e3-165">以視覺化方式檢視 IDS 警示記錄</span><span class="sxs-lookup"><span data-stu-id="bc1e3-165">Visualize IDS alert logs</span></span>
+### <a name="visualize-ids-alert-logs"></a><span data-ttu-id="fe85a-165">以視覺化方式檢視 IDS 警示記錄</span><span class="sxs-lookup"><span data-stu-id="fe85a-165">Visualize IDS alert logs</span></span>
 
-<span data-ttu-id="bc1e3-166">範例儀表板會提供 Suricata 警示記錄的數個視覺效果︰</span><span class="sxs-lookup"><span data-stu-id="bc1e3-166">The sample dashboard provides several visualizations of the Suricata alert logs:</span></span>
+<span data-ttu-id="fe85a-166">hello 範例儀表板會提供數個視覺效果的 hello Suricata 警示記錄檔：</span><span class="sxs-lookup"><span data-stu-id="fe85a-166">hello sample dashboard provides several visualizations of hello Suricata alert logs:</span></span>
 
-1. <span data-ttu-id="bc1e3-167">依 GeoIP 發佈警示 –根據地理位置 (由 IP 判斷) 依其國家/地區顯示警示分佈的地圖</span><span class="sxs-lookup"><span data-stu-id="bc1e3-167">Alerts by GeoIP – a map showing the distribution of alerts by their country of origin based on geographic location (determined by IP)</span></span>
+1. <span data-ttu-id="fe85a-167">依 GeoIP – 地圖，顯示的警示他們國家/地區的地理位置 （由 IP） hello 發佈警示</span><span class="sxs-lookup"><span data-stu-id="fe85a-167">Alerts by GeoIP – a map showing hello distribution of alerts by their country of origin based on geographic location (determined by IP)</span></span>
 
     ![地理 IP][3]
 
-1. <span data-ttu-id="bc1e3-169">前 10 個警示 – 10 個最常見的觸發警示及其描述摘要。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-169">Top 10 Alerts – a summary of the 10 most frequent triggered alerts and their description.</span></span> <span data-ttu-id="bc1e3-170">按一下個別警示可向下篩選儀表板到該特定警示的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-170">Clicking an individual alert filters down the dashboard to the information pertaining to that specific alert.</span></span>
+1. <span data-ttu-id="fe85a-169">前 10 個警示 – hello 最常見的 10 觸發警示的摘要以及其描述。</span><span class="sxs-lookup"><span data-stu-id="fe85a-169">Top 10 Alerts – a summary of hello 10 most frequent triggered alerts and their description.</span></span> <span data-ttu-id="fe85a-170">按一下個別警示篩選下 hello 相關 toothat 特定警示的儀表板 toohello 資訊。</span><span class="sxs-lookup"><span data-stu-id="fe85a-170">Clicking an individual alert filters down hello dashboard toohello information pertaining toothat specific alert.</span></span>
 
     ![影像 4][4]
 
-1. <span data-ttu-id="bc1e3-172">警示數目 – 依規則集所觸發的警示總計數</span><span class="sxs-lookup"><span data-stu-id="bc1e3-172">Number of Alerts – the total count of alerts triggered by the ruleset</span></span>
+1. <span data-ttu-id="fe85a-172">警示數目 – hello hello 規則集所觸發的警示總數的計數</span><span class="sxs-lookup"><span data-stu-id="fe85a-172">Number of Alerts – hello total count of alerts triggered by hello ruleset</span></span>
 
     ![影像 5][5]
 
-1. <span data-ttu-id="bc1e3-174">前 20 個來源/目的地 IP/連接埠 - 顯示前 20 個觸發警示的 IP 和連接埠的圓形圖。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-174">Top 20 Source/Destination IPs/Ports - pie charts showing the top 20 IPs and ports that alerts were triggered on.</span></span> <span data-ttu-id="bc1e3-175">您可以在特定的 IP/連接埠向下篩選，以查看所觸發警示的數目和類型。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-175">You can filter down on specific IPs/ports to see how many and what kind of alerts are being triggered.</span></span>
+1. <span data-ttu-id="fe85a-174">前 20 來源/目的地的 Ip/連接埠-圓形圖顯示 hello 前 20 個 Ip 並觸發警示的連接埠上。</span><span class="sxs-lookup"><span data-stu-id="fe85a-174">Top 20 Source/Destination IPs/Ports - pie charts showing hello top 20 IPs and ports that alerts were triggered on.</span></span> <span data-ttu-id="fe85a-175">您可以依特定的 Ip/連接埠 toosee 數量及向下篩選會觸發警示的類型。</span><span class="sxs-lookup"><span data-stu-id="fe85a-175">You can filter down on specific IPs/ports toosee how many and what kind of alerts are being triggered.</span></span>
 
     ![映像 6][6]
 
-1. <span data-ttu-id="bc1e3-177">警示摘要 – 彙總每一個個別警示的特定詳細資料的資料表。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-177">Alert Summary – a table summarizing specific details of each individual alert.</span></span> <span data-ttu-id="bc1e3-178">您可以自訂這個資料表，以顯示每個警示的其他感興趣參數。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-178">You can customize this table to show other parameters of interest for each alert.</span></span>
+1. <span data-ttu-id="fe85a-177">警示摘要 – 彙總每一個個別警示的特定詳細資料的資料表。</span><span class="sxs-lookup"><span data-stu-id="fe85a-177">Alert Summary – a table summarizing specific details of each individual alert.</span></span> <span data-ttu-id="fe85a-178">您可以自訂此資料表 tooshow 感興趣，每個警示的其他參數。</span><span class="sxs-lookup"><span data-stu-id="fe85a-178">You can customize this table tooshow other parameters of interest for each alert.</span></span>
 
     ![映像 7][7]
 
-<span data-ttu-id="bc1e3-180">如需有關建立自訂視覺效果和儀表板的文件，請參閱 [Kibana 的正式文件](https://www.elastic.co/guide/en/kibana/current/introduction.html)。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-180">For more documentation on creating custom visualizations and dashboards, see [Kibana’s official documentation](https://www.elastic.co/guide/en/kibana/current/introduction.html).</span></span>
+<span data-ttu-id="fe85a-180">如需有關建立自訂視覺效果和儀表板的文件，請參閱 [Kibana 的正式文件](https://www.elastic.co/guide/en/kibana/current/introduction.html)。</span><span class="sxs-lookup"><span data-stu-id="fe85a-180">For more documentation on creating custom visualizations and dashboards, see [Kibana’s official documentation](https://www.elastic.co/guide/en/kibana/current/introduction.html).</span></span>
 
-## <a name="conclusion"></a><span data-ttu-id="bc1e3-181">結論</span><span class="sxs-lookup"><span data-stu-id="bc1e3-181">Conclusion</span></span>
+## <a name="conclusion"></a><span data-ttu-id="fe85a-181">結論</span><span class="sxs-lookup"><span data-stu-id="fe85a-181">Conclusion</span></span>
 
-<span data-ttu-id="bc1e3-182">藉由結合網路監看員所提供的封包擷取和開放原始碼 IDS 工具 (例如 Suricata)，您可以執行各式各樣威脅的網路入侵偵測。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-182">By combining packet captures provided by Network Watcher and open source IDS tools such as Suricata, you can perform network intrusion detection for a wide range of threats.</span></span> <span data-ttu-id="bc1e3-183">這些儀表板可讓您快速發現您網路內的趨勢和異常，並且深入瞭解來探索警示資料的根本原因，例如惡意的使用者代理程式或連接埠弱點。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-183">These dashboards allow you to quickly spot trends and anomalies within your network, as well dig into the data to discover root causes of alerts such as malicious user agents or vulnerable ports.</span></span> <span data-ttu-id="bc1e3-184">利用這個擷取的資料，您可以做出關於如何回應和保護網路免於任何有害入侵嘗試，以及建立規則來避免未來入侵您網路的明智決策。</span><span class="sxs-lookup"><span data-stu-id="bc1e3-184">With this extracted data, you can make informed decisions on how to react to and protect your network from any harmful intrusion attempts, and create rules to prevent future intrusions to your network.</span></span>
+<span data-ttu-id="fe85a-182">藉由結合網路監看員所提供的封包擷取和開放原始碼 IDS 工具 (例如 Suricata)，您可以執行各式各樣威脅的網路入侵偵測。</span><span class="sxs-lookup"><span data-stu-id="fe85a-182">By combining packet captures provided by Network Watcher and open source IDS tools such as Suricata, you can perform network intrusion detection for a wide range of threats.</span></span> <span data-ttu-id="fe85a-183">這些儀表板可讓您 tooquickly 找出趨勢和異常情況中您的網路，以及深入了解 hello 資料 toodiscover 根本原因，例如惡意的使用者代理程式或弱點連接埠的警示。</span><span class="sxs-lookup"><span data-stu-id="fe85a-183">These dashboards allow you tooquickly spot trends and anomalies within your network, as well dig into hello data toodiscover root causes of alerts such as malicious user agents or vulnerable ports.</span></span> <span data-ttu-id="fe85a-184">取代為這個擷取的資料，您可以做出明智的決策 tooreact tooand 如何保護您的網路中的任何危險的入侵嘗試，並建立規則 tooprevent 未來入侵 tooyour 網路。</span><span class="sxs-lookup"><span data-stu-id="fe85a-184">With this extracted data, you can make informed decisions on how tooreact tooand protect your network from any harmful intrusion attempts, and create rules tooprevent future intrusions tooyour network.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="bc1e3-185">後續步驟</span><span class="sxs-lookup"><span data-stu-id="bc1e3-185">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="fe85a-185">後續步驟</span><span class="sxs-lookup"><span data-stu-id="fe85a-185">Next steps</span></span>
 
-<span data-ttu-id="bc1e3-186">若要了解如何根據警示觸發封包擷取，請造訪[使用封包擷取搭配 Azure Functions 進行主動式網路監視](network-watcher-alert-triggered-packet-capture.md)</span><span class="sxs-lookup"><span data-stu-id="bc1e3-186">Learn how to trigger packet captures based on alerts by visiting [Use packet capture to do proactive network monitoring with Azure Functions](network-watcher-alert-triggered-packet-capture.md)</span></span>
+<span data-ttu-id="fe85a-186">了解如何 tootrigger 擷取封包根據的警示造訪[使用封包擷取 toodo 主動式網路監視 Azure 函式](network-watcher-alert-triggered-packet-capture.md)</span><span class="sxs-lookup"><span data-stu-id="fe85a-186">Learn how tootrigger packet captures based on alerts by visiting [Use packet capture toodo proactive network monitoring with Azure Functions](network-watcher-alert-triggered-packet-capture.md)</span></span>
 
-<span data-ttu-id="bc1e3-187">若要了解如何利用 Power BI 將 NSG 流量記錄視覺化，請瀏覽[利用 Power BI 將 NSG 流量記錄視覺](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span><span class="sxs-lookup"><span data-stu-id="bc1e3-187">Learn how to visualize your NSG flow logs with Power BI by visiting [Visualize NSG flows logs with Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span></span>
+<span data-ttu-id="fe85a-187">了解 toovisualize NSG 流程記錄的方式有了 Power BI 瀏覽[視覺化 NSG 流動 Power BI 的記錄檔](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span><span class="sxs-lookup"><span data-stu-id="fe85a-187">Learn how toovisualize your NSG flow logs with Power BI by visiting [Visualize NSG flows logs with Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span></span>
 
 
 

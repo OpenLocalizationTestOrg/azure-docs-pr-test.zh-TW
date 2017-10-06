@@ -1,6 +1,6 @@
 ---
-title: "存取 Azure AD 報告 API 的必要條件 | Microsoft Docs"
-description: "了解存取 Azure AD 報告 API 的必要條件"
+title: "aaaPrerequisites tooaccess hello Azure AD 報告 API |Microsoft 文件"
+description: "深入了解 hello 必要條件 tooaccess hello Azure AD 報告 API"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,177 +15,177 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 5fafd83c337e3c73260d89cdad7409a01ce5855b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ec28a7530f341dda31268a978754b615c727d66f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="prerequisites-to-access-the-azure-ad-reporting-api"></a><span data-ttu-id="62400-103">存取 Azure AD 報告 API 的必要條件</span><span class="sxs-lookup"><span data-stu-id="62400-103">Prerequisites to access the Azure AD reporting API</span></span>
+# <a name="prerequisites-tooaccess-hello-azure-ad-reporting-api"></a><span data-ttu-id="96ce5-103">必要條件 tooaccess hello Azure AD 報告 API</span><span class="sxs-lookup"><span data-stu-id="96ce5-103">Prerequisites tooaccess hello Azure AD reporting API</span></span>
 
-<span data-ttu-id="62400-104">[Azure AD 報告 API](https://msdn.microsoft.com/library/azure/ad/graph/howto/azure-ad-reports-and-events-preview) 透過一組以 REST 為基礎的 API 為您提供資料的程式設計方式存取。</span><span class="sxs-lookup"><span data-stu-id="62400-104">The [Azure AD reporting APIs](https://msdn.microsoft.com/library/azure/ad/graph/howto/azure-ad-reports-and-events-preview) provide you with programmatic access to the data through a set of REST-based APIs.</span></span> <span data-ttu-id="62400-105">您可以從各種程式設計語言和工具呼叫這些 API。</span><span class="sxs-lookup"><span data-stu-id="62400-105">You can call these APIs from a variety of programming languages and tools.</span></span>
+<span data-ttu-id="96ce5-104">hello [Azure AD 報告 Api](https://msdn.microsoft.com/library/azure/ad/graph/howto/azure-ad-reports-and-events-preview)提供您透過一組以 REST 為基礎的 Api 以程式設計方式存取 toohello 資料。</span><span class="sxs-lookup"><span data-stu-id="96ce5-104">hello [Azure AD reporting APIs](https://msdn.microsoft.com/library/azure/ad/graph/howto/azure-ad-reports-and-events-preview) provide you with programmatic access toohello data through a set of REST-based APIs.</span></span> <span data-ttu-id="96ce5-105">您可以從各種程式設計語言和工具呼叫這些 API。</span><span class="sxs-lookup"><span data-stu-id="96ce5-105">You can call these APIs from a variety of programming languages and tools.</span></span>
 
-<span data-ttu-id="62400-106">報告 API 會使用 [OAuth](https://msdn.microsoft.com/library/azure/dn645545.aspx) 授權存取 Web API。</span><span class="sxs-lookup"><span data-stu-id="62400-106">The reporting API uses [OAuth](https://msdn.microsoft.com/library/azure/dn645545.aspx) to authorize access to the web APIs.</span></span> 
+<span data-ttu-id="96ce5-106">報告應用程式開發介面使用的 hello [OAuth](https://msdn.microsoft.com/library/azure/dn645545.aspx) tooauthorize 存取 toohello web Api。</span><span class="sxs-lookup"><span data-stu-id="96ce5-106">hello reporting API uses [OAuth](https://msdn.microsoft.com/library/azure/dn645545.aspx) tooauthorize access toohello web APIs.</span></span> 
 
-<span data-ttu-id="62400-107">若要透過 API 來存取報告資料，您必須已具備下列其中一個指派的角色︰</span><span class="sxs-lookup"><span data-stu-id="62400-107">To get access to the reporting data through the API, you need to have one of the following roles assigned:</span></span>
+<span data-ttu-id="96ce5-107">tooget 透過 hello API 存取 toohello 報告資料，您需要 toohave hello 遵循指派角色的其中一個：</span><span class="sxs-lookup"><span data-stu-id="96ce5-107">tooget access toohello reporting data through hello API, you need toohave one of hello following roles assigned:</span></span>
 
-- <span data-ttu-id="62400-108">安全性讀取者</span><span class="sxs-lookup"><span data-stu-id="62400-108">Security Reader</span></span>
-- <span data-ttu-id="62400-109">安全性系統管理員</span><span class="sxs-lookup"><span data-stu-id="62400-109">Security Admin</span></span>
-- <span data-ttu-id="62400-110">全域管理員</span><span class="sxs-lookup"><span data-stu-id="62400-110">Global Admin</span></span>
+- <span data-ttu-id="96ce5-108">安全性讀取者</span><span class="sxs-lookup"><span data-stu-id="96ce5-108">Security Reader</span></span>
+- <span data-ttu-id="96ce5-109">安全性系統管理員</span><span class="sxs-lookup"><span data-stu-id="96ce5-109">Security Admin</span></span>
+- <span data-ttu-id="96ce5-110">全域管理員</span><span class="sxs-lookup"><span data-stu-id="96ce5-110">Global Admin</span></span>
 
 
-<span data-ttu-id="62400-111">若要準備存取報告 API，您必須︰</span><span class="sxs-lookup"><span data-stu-id="62400-111">To prepare your access to the reporting API, you must:</span></span>
+<span data-ttu-id="96ce5-111">tooprepare 報告 API 您存取 toohello，您必須：</span><span class="sxs-lookup"><span data-stu-id="96ce5-111">tooprepare your access toohello reporting API, you must:</span></span>
 
-1. <span data-ttu-id="62400-112">註冊應用程式</span><span class="sxs-lookup"><span data-stu-id="62400-112">Register an application</span></span> 
-2. <span data-ttu-id="62400-113">授與權限</span><span class="sxs-lookup"><span data-stu-id="62400-113">Grant permissions</span></span> 
-3. <span data-ttu-id="62400-114">收集組態設定</span><span class="sxs-lookup"><span data-stu-id="62400-114">Gather configuration settings</span></span> 
+1. <span data-ttu-id="96ce5-112">註冊應用程式</span><span class="sxs-lookup"><span data-stu-id="96ce5-112">Register an application</span></span> 
+2. <span data-ttu-id="96ce5-113">授與權限</span><span class="sxs-lookup"><span data-stu-id="96ce5-113">Grant permissions</span></span> 
+3. <span data-ttu-id="96ce5-114">收集組態設定</span><span class="sxs-lookup"><span data-stu-id="96ce5-114">Gather configuration settings</span></span> 
 
-<span data-ttu-id="62400-115">如有相關疑問、問題或意見，請[提出支援票證](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-troubleshooting-support-howto)。</span><span class="sxs-lookup"><span data-stu-id="62400-115">For questions, issues or feedback, please [file a support ticket](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-troubleshooting-support-howto).</span></span>
+<span data-ttu-id="96ce5-115">如有相關疑問、問題或意見，請[提出支援票證](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-troubleshooting-support-howto)。</span><span class="sxs-lookup"><span data-stu-id="96ce5-115">For questions, issues or feedback, please [file a support ticket](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-troubleshooting-support-howto).</span></span>
 
-## <a name="register-an-azure-active-directory-application"></a><span data-ttu-id="62400-116">註冊 Azure Active Directory 應用程式</span><span class="sxs-lookup"><span data-stu-id="62400-116">Register an Azure Active Directory application</span></span>
+## <a name="register-an-azure-active-directory-application"></a><span data-ttu-id="96ce5-116">註冊 Azure Active Directory 應用程式</span><span class="sxs-lookup"><span data-stu-id="96ce5-116">Register an Azure Active Directory application</span></span>
 
-<span data-ttu-id="62400-117">即使您使用指令碼來存取報告 API，也必須註冊應用程式。</span><span class="sxs-lookup"><span data-stu-id="62400-117">You need to register an app even if you are accessing the reporting API using a script.</span></span> <span data-ttu-id="62400-118">註冊可讓您取得**應用程式識別碼**，您必須有此識別碼才能進行授權呼叫，以便讓程式碼獲得權杖。</span><span class="sxs-lookup"><span data-stu-id="62400-118">This gives you an **Application ID**, which is required for an authorization call and it enables your code to receive tokens.</span></span>
+<span data-ttu-id="96ce5-117">即使您要存取 hello 報告 API 使用指令碼，您會需要 tooregister 應用程式。</span><span class="sxs-lookup"><span data-stu-id="96ce5-117">You need tooregister an app even if you are accessing hello reporting API using a script.</span></span> <span data-ttu-id="96ce5-118">這可讓您**應用程式識別碼**，這是必要的授權呼叫它可讓您的程式碼 tooreceive 語彙基元。</span><span class="sxs-lookup"><span data-stu-id="96ce5-118">This gives you an **Application ID**, which is required for an authorization call and it enables your code tooreceive tokens.</span></span>
 
-<span data-ttu-id="62400-119">若要設定您的目錄以存取 Azure AD 報告 API，您必須以 Azure 管理員帳戶登入 Azure 入口網站，而且該帳戶同時也是 Azure AD 租用戶**全域管理員**目錄角色的成員。</span><span class="sxs-lookup"><span data-stu-id="62400-119">To configure your directory to access the Azure AD reporting API, you must sign in to the Azure portal with an Azure administrator account that is also a member of the **Global Administrator** directory role in your Azure AD tenant.</span></span>
+<span data-ttu-id="96ce5-119">tooconfigure 目錄 tooaccess hello Azure AD 報告 API，您必須登入 toohello hello 的成員也是 Azure 系統管理員帳戶的 Azure 入口網站**全域管理員**Azure AD 租用戶中的目錄角色.</span><span class="sxs-lookup"><span data-stu-id="96ce5-119">tooconfigure your directory tooaccess hello Azure AD reporting API, you must sign in toohello Azure portal with an Azure administrator account that is also a member of hello **Global Administrator** directory role in your Azure AD tenant.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="62400-120">像這樣使用具有「管理員」權限的認證所執行的應用程式會非常強大，請務必確保應用程式的識別碼/密碼認證的安全性。</span><span class="sxs-lookup"><span data-stu-id="62400-120">Applications running under credentials with "admin" privileges like this can be very powerful, so please be sure to keep the application's ID/secret credentials secure.</span></span>
+> <span data-ttu-id="96ce5-120">使用像這樣的"admin"權限認證下執行的應用程式可能非常強大，因此請在確定 tookeep hello 應用程式的識別碼/密碼認證的安全性。</span><span class="sxs-lookup"><span data-stu-id="96ce5-120">Applications running under credentials with "admin" privileges like this can be very powerful, so please be sure tookeep hello application's ID/secret credentials secure.</span></span>
 > 
 
 
-<span data-ttu-id="62400-121">**若要註冊 Azure Active Directory 應用程式：**</span><span class="sxs-lookup"><span data-stu-id="62400-121">**To register an Azure Active Directory application:**</span></span>
+<span data-ttu-id="96ce5-121">**tooregister Azure Active Directory 應用程式：**</span><span class="sxs-lookup"><span data-stu-id="96ce5-121">**tooregister an Azure Active Directory application:**</span></span>
 
-1. <span data-ttu-id="62400-122">在 [Azure 入口網站](https://portal.azure.com)中，按一下左方瀏覽窗格的 [Active Directory]。</span><span class="sxs-lookup"><span data-stu-id="62400-122">In the [Azure portal](https://portal.azure.com), on the left navigation pane, click **Active Directory**.</span></span>
+1. <span data-ttu-id="96ce5-122">在 [hello [Azure 入口網站](https://portal.azure.com)，在 hello 左側的導覽窗格中，按一下**Active Directory**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-122">In hello [Azure portal](https://portal.azure.com), on hello left navigation pane, click **Active Directory**.</span></span>
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/01.png) 
 
-2. <span data-ttu-id="62400-124">在 [Azure Active Directory] 刀鋒視窗中，按一下 [應用程式註冊]。</span><span class="sxs-lookup"><span data-stu-id="62400-124">On the **Azure Active Directory** blade, click **App registrations**.</span></span>
+2. <span data-ttu-id="96ce5-124">在 [hello **Azure Active Directory**刀鋒視窗中，按一下 [**應用程式註冊**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-124">On hello **Azure Active Directory** blade, click **App registrations**.</span></span>
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/02.png) 
 
-3. <span data-ttu-id="62400-126">在 [應用程式註冊] 刀鋒視窗上，按一下頂端工具列中的 [新增應用程式註冊]。</span><span class="sxs-lookup"><span data-stu-id="62400-126">On the **App registrations** blade, in the toolbar on the top, click **New application registration**.</span></span>
+3. <span data-ttu-id="96ce5-126">在 [hello**應用程式註冊**刀鋒視窗中，在 hello 頂端的 hello 工具列中按一下**新應用程式註冊**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-126">On hello **App registrations** blade, in hello toolbar on hello top, click **New application registration**.</span></span>
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/03.png)
 
-4. <span data-ttu-id="62400-128">在 [建立] 刀鋒視窗上，執行下列步驟︰</span><span class="sxs-lookup"><span data-stu-id="62400-128">On the **Create** blade, perform the following steps:</span></span>
+4. <span data-ttu-id="96ce5-128">在 [hello**建立**刀鋒視窗中，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="96ce5-128">On hello **Create** blade, perform hello following steps:</span></span>
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/04.png)
 
-    <span data-ttu-id="62400-130">a.</span><span class="sxs-lookup"><span data-stu-id="62400-130">a.</span></span> <span data-ttu-id="62400-131">在 [名稱] 文字方塊中，輸入 `Reporting API application`。</span><span class="sxs-lookup"><span data-stu-id="62400-131">In the **Name** textbox, type `Reporting API application`.</span></span>
+    <span data-ttu-id="96ce5-130">a.</span><span class="sxs-lookup"><span data-stu-id="96ce5-130">a.</span></span> <span data-ttu-id="96ce5-131">在 [hello**名稱**文字方塊中，輸入`Reporting API application`。</span><span class="sxs-lookup"><span data-stu-id="96ce5-131">In hello **Name** textbox, type `Reporting API application`.</span></span>
 
-    <span data-ttu-id="62400-132">b.</span><span class="sxs-lookup"><span data-stu-id="62400-132">b.</span></span> <span data-ttu-id="62400-133">對於 [應用程式類型]，選取 [Web 應用程式/API]。</span><span class="sxs-lookup"><span data-stu-id="62400-133">As **Application type**, select **Web app / API**.</span></span>
+    <span data-ttu-id="96ce5-132">b.</span><span class="sxs-lookup"><span data-stu-id="96ce5-132">b.</span></span> <span data-ttu-id="96ce5-133">對於 [應用程式類型]，選取 [Web 應用程式/API]。</span><span class="sxs-lookup"><span data-stu-id="96ce5-133">As **Application type**, select **Web app / API**.</span></span>
 
-    <span data-ttu-id="62400-134">c.</span><span class="sxs-lookup"><span data-stu-id="62400-134">c.</span></span> <span data-ttu-id="62400-135">在 [登入 URL] 文字方塊中，輸入 `https://localhost`。</span><span class="sxs-lookup"><span data-stu-id="62400-135">In the **Sign-on URL** textbox, type `https://localhost`.</span></span>
+    <span data-ttu-id="96ce5-134">c.</span><span class="sxs-lookup"><span data-stu-id="96ce5-134">c.</span></span> <span data-ttu-id="96ce5-135">在 [hello**登入 URL**文字方塊中，輸入`https://localhost`。</span><span class="sxs-lookup"><span data-stu-id="96ce5-135">In hello **Sign-on URL** textbox, type `https://localhost`.</span></span>
 
-    <span data-ttu-id="62400-136">d.</span><span class="sxs-lookup"><span data-stu-id="62400-136">d.</span></span> <span data-ttu-id="62400-137">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="62400-137">Click **Create**.</span></span> 
+    <span data-ttu-id="96ce5-136">d.</span><span class="sxs-lookup"><span data-stu-id="96ce5-136">d.</span></span> <span data-ttu-id="96ce5-137">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="96ce5-137">Click **Create**.</span></span> 
 
 
-## <a name="grant-permissions"></a><span data-ttu-id="62400-138">授與權限</span><span class="sxs-lookup"><span data-stu-id="62400-138">Grant permissions</span></span> 
+## <a name="grant-permissions"></a><span data-ttu-id="96ce5-138">授與權限</span><span class="sxs-lookup"><span data-stu-id="96ce5-138">Grant permissions</span></span> 
 
-<span data-ttu-id="62400-139">此步驟的目標是要對應用程式授與 **Windows Azure Active Directory** API 的**讀取目錄資料**權限。</span><span class="sxs-lookup"><span data-stu-id="62400-139">The objective of this step is to grant your application **Read directory data** permissions to the **Windows Azure Active Directory** API.</span></span>
+<span data-ttu-id="96ce5-139">這個步驟中的 hello 目標應用程式是 toogrant**讀取目錄資料**權限 toohello **Windows Azure Active Directory**應用程式開發介面。</span><span class="sxs-lookup"><span data-stu-id="96ce5-139">hello objective of this step is toogrant your application **Read directory data** permissions toohello **Windows Azure Active Directory** API.</span></span>
 
 ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/16.png)
  
 
-<span data-ttu-id="62400-141">**若要對應用程式授與 API 使用權限：**</span><span class="sxs-lookup"><span data-stu-id="62400-141">**To grant your application permission to use the API:**</span></span>
+<span data-ttu-id="96ce5-141">**toogrant 您應用程式的權限 toouse hello API:**</span><span class="sxs-lookup"><span data-stu-id="96ce5-141">**toogrant your application permission toouse hello API:**</span></span>
 
-1. <span data-ttu-id="62400-142">在 [應用程式註冊] 刀鋒視窗中，按一下應用程式清單中的 [報告 API 應用程式]。</span><span class="sxs-lookup"><span data-stu-id="62400-142">On the **App registrations** blade, in the apps list, click **Reporting API application**.</span></span>
+1. <span data-ttu-id="96ce5-142">在 [hello**應用程式註冊**刀鋒視窗中的，在 hello 應用程式清單中，按一下**Reporting API 的應用程式**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-142">On hello **App registrations** blade, in hello apps list, click **Reporting API application**.</span></span>
 
-2. <span data-ttu-id="62400-143">在 [報告 API 應用程式] 刀鋒視窗中，按一下頂端工具列中的 [設定]。</span><span class="sxs-lookup"><span data-stu-id="62400-143">On the **Reporting API application** blade, in the toolbar on the top, click **Settings**.</span></span> 
+2. <span data-ttu-id="96ce5-143">在 [hello **Reporting API 的應用程式**刀鋒視窗中，在 hello 頂端的 hello 工具列中按一下**設定**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-143">On hello **Reporting API application** blade, in hello toolbar on hello top, click **Settings**.</span></span> 
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/05.png)
 
-3. <span data-ttu-id="62400-145">在 [設定] 刀鋒視窗中，按一下 [必要權限]。</span><span class="sxs-lookup"><span data-stu-id="62400-145">On the **Settings** blade, click **Required permissions**.</span></span> 
+3. <span data-ttu-id="96ce5-145">在 [hello**設定**刀鋒視窗中，按一下 [**必要的權限**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-145">On hello **Settings** blade, click **Required permissions**.</span></span> 
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/06.png)
 
-4. <span data-ttu-id="62400-147">在 [必要權限] 刀鋒視窗中，按一下 [API] 清單中的 [Windows Azure Active Directory]。</span><span class="sxs-lookup"><span data-stu-id="62400-147">On the **Required permissions** blade, in the **API** list, click **Windows Azure Active Directory**.</span></span> 
+4. <span data-ttu-id="96ce5-147">在 [hello**必要的權限**刀鋒視窗中的，在 hello **API**清單中，按一下**Windows Azure Active Directory**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-147">On hello **Required permissions** blade, in hello **API** list, click **Windows Azure Active Directory**.</span></span> 
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/07.png)
 
-5. <span data-ttu-id="62400-149">在 [啟用存取] 刀鋒視窗中，選取 [讀取目錄資料]。</span><span class="sxs-lookup"><span data-stu-id="62400-149">On the **Enable Access** blade, select **Read directory data**.</span></span> 
+5. <span data-ttu-id="96ce5-149">在 [hello**啟用存取**刀鋒視窗中，選取**讀取目錄資料**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-149">On hello **Enable Access** blade, select **Read directory data**.</span></span> 
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/08.png)
 
-6. <span data-ttu-id="62400-151">在頂端工具列中，按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="62400-151">In the toolbar on the top, click **Save**.</span></span>
+6. <span data-ttu-id="96ce5-151">在 hello hello 上方的工具列中按一下**儲存**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-151">In hello toolbar on hello top, click **Save**.</span></span>
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/15.png)
 
-## <a name="gather-configuration-settings"></a><span data-ttu-id="62400-153">收集組態設定</span><span class="sxs-lookup"><span data-stu-id="62400-153">Gather configuration settings</span></span> 
-<span data-ttu-id="62400-154">本節說明如何從您的目錄取得下列設定︰</span><span class="sxs-lookup"><span data-stu-id="62400-154">This section shows you how to get the following settings from your directory:</span></span>
+## <a name="gather-configuration-settings"></a><span data-ttu-id="96ce5-153">收集組態設定</span><span class="sxs-lookup"><span data-stu-id="96ce5-153">Gather configuration settings</span></span> 
+<span data-ttu-id="96ce5-154">這個區段會顯示如何 tooget hello 您目錄中的下列設定：</span><span class="sxs-lookup"><span data-stu-id="96ce5-154">This section shows you how tooget hello following settings from your directory:</span></span>
 
-* <span data-ttu-id="62400-155">網域名稱</span><span class="sxs-lookup"><span data-stu-id="62400-155">Domain name</span></span>
-* <span data-ttu-id="62400-156">用戶端識別碼</span><span class="sxs-lookup"><span data-stu-id="62400-156">Client ID</span></span>
-* <span data-ttu-id="62400-157">用戶端密碼</span><span class="sxs-lookup"><span data-stu-id="62400-157">Client secret</span></span>
+* <span data-ttu-id="96ce5-155">網域名稱</span><span class="sxs-lookup"><span data-stu-id="96ce5-155">Domain name</span></span>
+* <span data-ttu-id="96ce5-156">用戶端識別碼</span><span class="sxs-lookup"><span data-stu-id="96ce5-156">Client ID</span></span>
+* <span data-ttu-id="96ce5-157">用戶端密碼</span><span class="sxs-lookup"><span data-stu-id="96ce5-157">Client secret</span></span>
 
-<span data-ttu-id="62400-158">您在設定報告 API 的呼叫時需要這些值。</span><span class="sxs-lookup"><span data-stu-id="62400-158">You need these values when configuring calls to the reporting API.</span></span> 
+<span data-ttu-id="96ce5-158">設定呼叫 toohello 報告 API 時，您會需要這些值。</span><span class="sxs-lookup"><span data-stu-id="96ce5-158">You need these values when configuring calls toohello reporting API.</span></span> 
 
-### <a name="get-your-domain-name"></a><span data-ttu-id="62400-159">取得您的網域名稱</span><span class="sxs-lookup"><span data-stu-id="62400-159">Get your domain name</span></span>
+### <a name="get-your-domain-name"></a><span data-ttu-id="96ce5-159">取得您的網域名稱</span><span class="sxs-lookup"><span data-stu-id="96ce5-159">Get your domain name</span></span>
 
-<span data-ttu-id="62400-160">**若要取得網域名稱：**</span><span class="sxs-lookup"><span data-stu-id="62400-160">**To get your domain name:**</span></span>
+<span data-ttu-id="96ce5-160">**tooget 您的網域名稱：**</span><span class="sxs-lookup"><span data-stu-id="96ce5-160">**tooget your domain name:**</span></span>
 
-1. <span data-ttu-id="62400-161">在 [Azure 入口網站](https://portal.azure.com)中，按一下左方瀏覽窗格的 [Active Directory]。</span><span class="sxs-lookup"><span data-stu-id="62400-161">In the [Azure portal](https://portal.azure.com), on the left navigation pane, click **Active Directory**.</span></span>
+1. <span data-ttu-id="96ce5-161">在 [hello [Azure 入口網站](https://portal.azure.com)，在 hello 左側的導覽窗格中，按一下**Active Directory**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-161">In hello [Azure portal](https://portal.azure.com), on hello left navigation pane, click **Active Directory**.</span></span>
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/01.png) 
 
-2. <span data-ttu-id="62400-163">在 [Azure Active Directory] 刀鋒視窗中，按一下 [網域名稱]。</span><span class="sxs-lookup"><span data-stu-id="62400-163">On the **Azure Active Directory** blade, click **Domain names**.</span></span>
+2. <span data-ttu-id="96ce5-163">在 [hello **Azure Active Directory**刀鋒視窗中，按一下 [**網域名稱**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-163">On hello **Azure Active Directory** blade, click **Domain names**.</span></span>
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/09.png) 
 
-3. <span data-ttu-id="62400-165">從網域清單中複製網域名稱。</span><span class="sxs-lookup"><span data-stu-id="62400-165">Copy your domain name from the list of domains.</span></span>
+3. <span data-ttu-id="96ce5-165">複製 hello 網域清單中的網域名稱。</span><span class="sxs-lookup"><span data-stu-id="96ce5-165">Copy your domain name from hello list of domains.</span></span>
 
 
-### <a name="get-your-applications-client-id"></a><span data-ttu-id="62400-166">取得應用程式的用戶端識別碼</span><span class="sxs-lookup"><span data-stu-id="62400-166">Get your application's client ID</span></span>
+### <a name="get-your-applications-client-id"></a><span data-ttu-id="96ce5-166">取得應用程式的用戶端識別碼</span><span class="sxs-lookup"><span data-stu-id="96ce5-166">Get your application's client ID</span></span>
 
-<span data-ttu-id="62400-167">**若要取得應用程式的用戶端識別碼：**</span><span class="sxs-lookup"><span data-stu-id="62400-167">**To get your application's client ID:**</span></span>
+<span data-ttu-id="96ce5-167">**tooget 應用程式的用戶端識別碼：**</span><span class="sxs-lookup"><span data-stu-id="96ce5-167">**tooget your application's client ID:**</span></span>
 
-1. <span data-ttu-id="62400-168">在 [Azure 入口網站](https://portal.azure.com)中，按一下左方瀏覽窗格的 [Active Directory]。</span><span class="sxs-lookup"><span data-stu-id="62400-168">In the [Azure portal](https://portal.azure.com), on the left navigation pane, click **Active Directory**.</span></span>
+1. <span data-ttu-id="96ce5-168">在 [hello [Azure 入口網站](https://portal.azure.com)，在 hello 左側的導覽窗格中，按一下**Active Directory**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-168">In hello [Azure portal](https://portal.azure.com), on hello left navigation pane, click **Active Directory**.</span></span>
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/01.png) 
 
-2. <span data-ttu-id="62400-170">在 [應用程式註冊] 刀鋒視窗中，按一下應用程式清單中的 [報告 API 應用程式]。</span><span class="sxs-lookup"><span data-stu-id="62400-170">On the **App registrations** blade, in the apps list, click **Reporting API application**.</span></span>
+2. <span data-ttu-id="96ce5-170">在 [hello**應用程式註冊**刀鋒視窗中的，在 hello 應用程式清單中，按一下**Reporting API 的應用程式**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-170">On hello **App registrations** blade, in hello apps list, click **Reporting API application**.</span></span>
 
-3. <span data-ttu-id="62400-171">在 [報告 API 應用程式] 刀鋒視窗中，按一下 [應用程式識別碼] 中的 [按一下以複製]。</span><span class="sxs-lookup"><span data-stu-id="62400-171">On the **Reporting API application** blade, at the **Application ID**, click **Click to copy**.</span></span>
+3. <span data-ttu-id="96ce5-171">在 [hello **Reporting API 的應用程式**刀鋒視窗中的，在 hello**應用程式識別碼**，按一下 [**按一下 toocopy**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-171">On hello **Reporting API application** blade, at hello **Application ID**, click **Click toocopy**.</span></span>
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/11.png) 
 
 
 
-### <a name="get-your-applications-client-secret"></a><span data-ttu-id="62400-173">取得應用程式的用戶端祕密</span><span class="sxs-lookup"><span data-stu-id="62400-173">Get your application's client secret</span></span>
-<span data-ttu-id="62400-174">若要取得應用程式的用戶端密碼，您需要建立新的金鑰並在儲存新金鑰時儲存其值，因為稍後不可能再擷取此值。</span><span class="sxs-lookup"><span data-stu-id="62400-174">To get your application's client secret, you need to create a new key and save its value upon saving the new key because it is not possible to retrieve this value later anymore.</span></span>
+### <a name="get-your-applications-client-secret"></a><span data-ttu-id="96ce5-173">取得應用程式的用戶端祕密</span><span class="sxs-lookup"><span data-stu-id="96ce5-173">Get your application's client secret</span></span>
+<span data-ttu-id="96ce5-174">tooget 應用程式的用戶端秘密，toocreate 新的金鑰，儲存其值在儲存 hello 新的金鑰，因為它不可能 tooretrieve 時這個值稍後再。</span><span class="sxs-lookup"><span data-stu-id="96ce5-174">tooget your application's client secret, you need toocreate a new key and save its value upon saving hello new key because it is not possible tooretrieve this value later anymore.</span></span>
 
-<span data-ttu-id="62400-175">**若要取得應用程式的用戶端祕密：**</span><span class="sxs-lookup"><span data-stu-id="62400-175">**To get your application's client secret:**</span></span>
+<span data-ttu-id="96ce5-175">**tooget 應用程式的用戶端密碼：**</span><span class="sxs-lookup"><span data-stu-id="96ce5-175">**tooget your application's client secret:**</span></span>
 
-1. <span data-ttu-id="62400-176">在 [Azure 入口網站](https://portal.azure.com)中，按一下左方瀏覽窗格的 [Active Directory]。</span><span class="sxs-lookup"><span data-stu-id="62400-176">In the [Azure portal](https://portal.azure.com), on the left navigation pane, click **Active Directory**.</span></span>
+1. <span data-ttu-id="96ce5-176">在 [hello [Azure 入口網站](https://portal.azure.com)，在 hello 左側的導覽窗格中，按一下**Active Directory**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-176">In hello [Azure portal](https://portal.azure.com), on hello left navigation pane, click **Active Directory**.</span></span>
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/01.png) 
 
-2. <span data-ttu-id="62400-178">在 [應用程式註冊] 刀鋒視窗中，按一下應用程式清單中的 [報告 API 應用程式]。</span><span class="sxs-lookup"><span data-stu-id="62400-178">On the **App registrations** blade, in the apps list, click **Reporting API application**.</span></span>
+2. <span data-ttu-id="96ce5-178">在 [hello**應用程式註冊**刀鋒視窗中的，在 hello 應用程式清單中，按一下**Reporting API 的應用程式**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-178">On hello **App registrations** blade, in hello apps list, click **Reporting API application**.</span></span>
 
 
-3. <span data-ttu-id="62400-179">在 [報告 API 應用程式] 刀鋒視窗中，按一下頂端工具列中的 [設定]。</span><span class="sxs-lookup"><span data-stu-id="62400-179">On the **Reporting API application** blade, in the toolbar on the top, click **Settings**.</span></span> 
+3. <span data-ttu-id="96ce5-179">在 [hello **Reporting API 的應用程式**刀鋒視窗中，在 hello 頂端的 hello 工具列中按一下**設定**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-179">On hello **Reporting API application** blade, in hello toolbar on hello top, click **Settings**.</span></span> 
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/05.png)
 
-4. <span data-ttu-id="62400-181">在 [設定] 刀鋒視窗中，按一下 [APIR 存取] 區段中的 [金鑰]。</span><span class="sxs-lookup"><span data-stu-id="62400-181">On the **Settings** blade, in the **APIR Access** section, click **Keys**.</span></span> 
+4. <span data-ttu-id="96ce5-181">在 [hello**設定**刀鋒視窗中的，在 hello **APIR 存取**區段中，按一下**金鑰**。</span><span class="sxs-lookup"><span data-stu-id="96ce5-181">On hello **Settings** blade, in hello **APIR Access** section, click **Keys**.</span></span> 
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/12.png)
 
 
-5. <span data-ttu-id="62400-183">在 [金鑰] 刀鋒視窗上，執行下列步驟︰</span><span class="sxs-lookup"><span data-stu-id="62400-183">On the **Keys** blade, perform the following steps:</span></span>
+5. <span data-ttu-id="96ce5-183">在 [hello**金鑰**刀鋒視窗中，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="96ce5-183">On hello **Keys** blade, perform hello following steps:</span></span>
 
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites-azure-portal/14.png)
 
-    <span data-ttu-id="62400-185">a.</span><span class="sxs-lookup"><span data-stu-id="62400-185">a.</span></span> <span data-ttu-id="62400-186">在 [描述] 文字方塊中，輸入 `Reporting API`。</span><span class="sxs-lookup"><span data-stu-id="62400-186">In the **Description** textbox, type `Reporting API`.</span></span>
+    <span data-ttu-id="96ce5-185">a.</span><span class="sxs-lookup"><span data-stu-id="96ce5-185">a.</span></span> <span data-ttu-id="96ce5-186">在 [hello**描述**文字方塊中，輸入`Reporting API`。</span><span class="sxs-lookup"><span data-stu-id="96ce5-186">In hello **Description** textbox, type `Reporting API`.</span></span>
 
-    <span data-ttu-id="62400-187">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="62400-187">b.</span></span> <span data-ttu-id="62400-188">選取 [2 年後] 來作為 [到期]。</span><span class="sxs-lookup"><span data-stu-id="62400-188">As **Expires**, select **In 2 years**.</span></span>
+    <span data-ttu-id="96ce5-187">b.</span><span class="sxs-lookup"><span data-stu-id="96ce5-187">b.</span></span> <span data-ttu-id="96ce5-188">選取 [2 年後] 來作為 [到期]。</span><span class="sxs-lookup"><span data-stu-id="96ce5-188">As **Expires**, select **In 2 years**.</span></span>
 
-    <span data-ttu-id="62400-189">c.</span><span class="sxs-lookup"><span data-stu-id="62400-189">c.</span></span> <span data-ttu-id="62400-190">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="62400-190">Click **Save**.</span></span>
+    <span data-ttu-id="96ce5-189">c.</span><span class="sxs-lookup"><span data-stu-id="96ce5-189">c.</span></span> <span data-ttu-id="96ce5-190">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="96ce5-190">Click **Save**.</span></span>
 
-    <span data-ttu-id="62400-191">d.</span><span class="sxs-lookup"><span data-stu-id="62400-191">d.</span></span> <span data-ttu-id="62400-192">複製金鑰值。</span><span class="sxs-lookup"><span data-stu-id="62400-192">Copy the key value.</span></span>
+    <span data-ttu-id="96ce5-191">d.</span><span class="sxs-lookup"><span data-stu-id="96ce5-191">d.</span></span> <span data-ttu-id="96ce5-192">複製 hello 索引鍵的值。</span><span class="sxs-lookup"><span data-stu-id="96ce5-192">Copy hello key value.</span></span>
 
 
-## <a name="next-steps"></a><span data-ttu-id="62400-193">後續步驟</span><span class="sxs-lookup"><span data-stu-id="62400-193">Next Steps</span></span>
-* <span data-ttu-id="62400-194">您要以程式設計方式從 Azure AD 報告 API 存取資料嗎？</span><span class="sxs-lookup"><span data-stu-id="62400-194">Would you like to access the data from the Azure AD reporting API in a programmatic manner?</span></span> <span data-ttu-id="62400-195">請查看 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。</span><span class="sxs-lookup"><span data-stu-id="62400-195">Check out [Getting started with the Azure Active Directory Reporting API](active-directory-reporting-api-getting-started.md).</span></span>
-* <span data-ttu-id="62400-196">如果您想要深入了解 Azure Active Directory 報告，請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。</span><span class="sxs-lookup"><span data-stu-id="62400-196">If you would like to find out more about Azure Active Directory reporting, see the [Azure Active Directory Reporting Guide](active-directory-reporting-guide.md).</span></span>  
+## <a name="next-steps"></a><span data-ttu-id="96ce5-193">後續步驟</span><span class="sxs-lookup"><span data-stu-id="96ce5-193">Next Steps</span></span>
+* <span data-ttu-id="96ce5-194">您像 tooaccess hello hello Azure AD 的資料會報告 API 以程式設計的方式？</span><span class="sxs-lookup"><span data-stu-id="96ce5-194">Would you like tooaccess hello data from hello Azure AD reporting API in a programmatic manner?</span></span> <span data-ttu-id="96ce5-195">簽出[開始使用 Azure Active Directory 報告 API hello](active-directory-reporting-api-getting-started.md)。</span><span class="sxs-lookup"><span data-stu-id="96ce5-195">Check out [Getting started with hello Azure Active Directory Reporting API](active-directory-reporting-api-getting-started.md).</span></span>
+* <span data-ttu-id="96ce5-196">如果您想要深入了解 Azure Active Directory 報告 toofind，請參閱 hello [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。</span><span class="sxs-lookup"><span data-stu-id="96ce5-196">If you would like toofind out more about Azure Active Directory reporting, see hello [Azure Active Directory Reporting Guide](active-directory-reporting-guide.md).</span></span>  
 

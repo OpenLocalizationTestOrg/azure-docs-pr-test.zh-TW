@@ -1,6 +1,6 @@
 ---
-title: "建立 PHP-SQL Web 應用程式並使用 Git 部署至 Azure App Service"
-description: "示範如何建立 PHP Web 應用程式將資料儲存於 Azure SQL Database 以及使用 Git 部署至 Azure App Service 的教學課程。"
+title: "aaaCreate PHP SQL web 應用程式和部署 tooAzure 應用程式服務使用 Git"
+description: "此教學課程會示範如何 toocreate PHP web 應用程式將資料儲存在 Azure SQL Database 中，並使用 Git 部署 tooAzure 應用程式服務。"
 services: app-service\web, sql-database
 documentationcenter: php
 author: rmcmurray
@@ -14,90 +14,90 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: 0baa3eced3824fec0907ca937c594f127a2bdf8b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aaacb2fe0787bbcdafa72871912e8d08792be29d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-php-sql-web-app-and-deploy-to-azure-app-service-using-git"></a><span data-ttu-id="b51ab-103">建立 PHP-SQL Web 應用程式並使用 Git 部署至 Azure App Service</span><span class="sxs-lookup"><span data-stu-id="b51ab-103">Create a PHP-SQL web app and deploy to Azure App Service using Git</span></span>
-<span data-ttu-id="b51ab-104">本教學課程會示範如何在 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中建立連線到 Azure SQL Database 的 PHP Web 應用程式，以及如何使用 Git 來部署它。</span><span class="sxs-lookup"><span data-stu-id="b51ab-104">This tutorial shows you how to create a PHP web app in [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) that connects to Azure SQL Database and how to deploy it using Git.</span></span> <span data-ttu-id="b51ab-105">本教學課程假設您的電腦上已安裝 [PHP][install-php]、[SQL Server Express][install-SQLExpress]、[Microsoft Drivers for SQL Server for PHP](http://www.microsoft.com/download/en/details.aspx?id=20098)，和 [Git][install-git]。</span><span class="sxs-lookup"><span data-stu-id="b51ab-105">This tutorial assumes you have [PHP][install-php], [SQL Server Express][install-SQLExpress], the [Microsoft Drivers for SQL Server for PHP](http://www.microsoft.com/download/en/details.aspx?id=20098), and [Git][install-git] installed on your computer.</span></span> <span data-ttu-id="b51ab-106">完成本指南的步驟後，您將擁有在 Azure 上運作的 PHP-SQL Web 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b51ab-106">Upon completing this guide, you will have a PHP-SQL web app running in Azure.</span></span>
+# <a name="create-a-php-sql-web-app-and-deploy-tooazure-app-service-using-git"></a><span data-ttu-id="b7fd1-103">建立 PHP SQL web 應用程式和部署 tooAzure 應用程式服務使用 Git</span><span class="sxs-lookup"><span data-stu-id="b7fd1-103">Create a PHP-SQL web app and deploy tooAzure App Service using Git</span></span>
+<span data-ttu-id="b7fd1-104">本教學課程告訴您如何 toocreate PHP web 應用程式中的[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)連接 tooAzure SQL Database 以及如何 toodeploy 使用 Git。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-104">This tutorial shows you how toocreate a PHP web app in [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) that connects tooAzure SQL Database and how toodeploy it using Git.</span></span> <span data-ttu-id="b7fd1-105">本教學課程假設您有[PHP][install-php]， [SQL Server Express][install-SQLExpress]，hello [Microsoft Drivers for for PHP SQL Server](http://www.microsoft.com/download/en/details.aspx?id=20098)，和[Git] [ install-git]安裝在電腦上。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-105">This tutorial assumes you have [PHP][install-php], [SQL Server Express][install-SQLExpress], hello [Microsoft Drivers for SQL Server for PHP](http://www.microsoft.com/download/en/details.aspx?id=20098), and [Git][install-git] installed on your computer.</span></span> <span data-ttu-id="b7fd1-106">完成本指南的步驟後，您將擁有在 Azure 上運作的 PHP-SQL Web 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-106">Upon completing this guide, you will have a PHP-SQL web app running in Azure.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="b51ab-107">您可以使用 [Microsoft Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx)來安裝和設定 PHP、SQL Server Express，和 Microsoft Drivers for SQL Server for PHP。</span><span class="sxs-lookup"><span data-stu-id="b51ab-107">You can install and configure PHP, SQL Server Express, and the Microsoft Drivers for SQL Server for PHP using the [Microsoft Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx).</span></span>
+> <span data-ttu-id="b7fd1-107">您可以安裝和設定 PHP、 SQL Server Express 和 hello Microsoft Drivers for SQL Server 使用 hello PHP [Microsoft Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx)。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-107">You can install and configure PHP, SQL Server Express, and hello Microsoft Drivers for SQL Server for PHP using hello [Microsoft Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx).</span></span>
 > 
 > 
 
-<span data-ttu-id="b51ab-108">您將了解：</span><span class="sxs-lookup"><span data-stu-id="b51ab-108">You will learn:</span></span>
+<span data-ttu-id="b7fd1-108">您將了解：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-108">You will learn:</span></span>
 
-* <span data-ttu-id="b51ab-109">如何使用 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)建立 Azure Web 應用程式和 SQL Database。</span><span class="sxs-lookup"><span data-stu-id="b51ab-109">How to create an Azure web app and a SQL Database using the [Azure Portal](http://go.microsoft.com/fwlink/?LinkId=529715).</span></span> <span data-ttu-id="b51ab-110">由於預設會在 App Service Web Apps 上啟用 PHP，因此您不需要執行任何特殊步驟就能執行 PHP 程式碼。</span><span class="sxs-lookup"><span data-stu-id="b51ab-110">Because PHP is enabled in App Service Web Apps by default, nothing special is required to run your PHP code.</span></span>
-* <span data-ttu-id="b51ab-111">如何使用 Git 來發行與重新發行應用程式到 Azure。</span><span class="sxs-lookup"><span data-stu-id="b51ab-111">How to publish and re-publish your application to Azure using Git.</span></span>
+* <span data-ttu-id="b7fd1-109">Toocreate Azure web 應用程式和 SQL 資料庫使用 hello [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-109">How toocreate an Azure web app and a SQL Database using hello [Azure Portal](http://go.microsoft.com/fwlink/?LinkId=529715).</span></span> <span data-ttu-id="b7fd1-110">因為預設 PHP 啟用 App Service Web 應用程式中，沒有特別的是需要的 toorun 您 PHP 程式碼。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-110">Because PHP is enabled in App Service Web Apps by default, nothing special is required toorun your PHP code.</span></span>
+* <span data-ttu-id="b7fd1-111">如何 toopublish 並重新發行您的應用程式 tooAzure 使用 Git。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-111">How toopublish and re-publish your application tooAzure using Git.</span></span>
 
-<span data-ttu-id="b51ab-112">依照本教學課程進行，您將以 PHP 語法建構一個簡單的註冊網頁應用程式。</span><span class="sxs-lookup"><span data-stu-id="b51ab-112">By following this tutorial, you will build a simple registration web application in PHP.</span></span> <span data-ttu-id="b51ab-113">該應用程式將在 Azure 網站中託管。</span><span class="sxs-lookup"><span data-stu-id="b51ab-113">The application will be hosted in an Azure Website.</span></span> <span data-ttu-id="b51ab-114">完成之應用程式的螢幕擷取畫面如下：</span><span class="sxs-lookup"><span data-stu-id="b51ab-114">A screenshot of the completed application is below:</span></span>
+<span data-ttu-id="b7fd1-112">依照本教學課程進行，您將以 PHP 語法建構一個簡單的註冊網頁應用程式。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-112">By following this tutorial, you will build a simple registration web application in PHP.</span></span> <span data-ttu-id="b7fd1-113">hello 應用程式將會裝載於 Azure 網站中。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-113">hello application will be hosted in an Azure Website.</span></span> <span data-ttu-id="b7fd1-114">底下是完成 hello 應用程式的螢幕擷取畫面：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-114">A screenshot of hello completed application is below:</span></span>
 
 ![Azure PHP Web Site](./media/web-sites-php-sql-database-deploy-use-git/running_app_3.png)
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> <span data-ttu-id="b51ab-116">如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b51ab-116">If you want to get started with Azure App Service before signing up for an Azure account, go to [Try App Service](https://azure.microsoft.com/try/app-service/), where you can immediately create a short-lived starter web app in App Service.</span></span> <span data-ttu-id="b51ab-117">不需要信用卡；無需承諾。</span><span class="sxs-lookup"><span data-stu-id="b51ab-117">No credit cards required; no commitments.</span></span>
+> <span data-ttu-id="b7fd1-116">如果您想 tooget 之前註冊 Azure 帳戶與 Azure 應用程式服務啟動時，請移至太[再試一次應用程式服務](https://azure.microsoft.com/try/app-service/)，可以立即存留較短的入門的 web 應用程式中建立應用程式服務。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-116">If you want tooget started with Azure App Service before signing up for an Azure account, go too[Try App Service](https://azure.microsoft.com/try/app-service/), where you can immediately create a short-lived starter web app in App Service.</span></span> <span data-ttu-id="b7fd1-117">不需要信用卡；沒有承諾。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-117">No credit cards required; no commitments.</span></span>
 > 
 > 
 
-## <a name="create-an-azure-web-app-and-set-up-git-publishing"></a><span data-ttu-id="b51ab-118">建立 Azure Web 應用程式並設定 Git 發行功能</span><span class="sxs-lookup"><span data-stu-id="b51ab-118">Create an Azure web app and set up Git publishing</span></span>
-<span data-ttu-id="b51ab-119">請遵循以下步驟來建立 Azure Web 應用程式與 SQL Database：</span><span class="sxs-lookup"><span data-stu-id="b51ab-119">Follow these steps to create an Azure web app and a SQL Database:</span></span>
+## <a name="create-an-azure-web-app-and-set-up-git-publishing"></a><span data-ttu-id="b7fd1-118">建立 Azure Web 應用程式並設定 Git 發行功能</span><span class="sxs-lookup"><span data-stu-id="b7fd1-118">Create an Azure web app and set up Git publishing</span></span>
+<span data-ttu-id="b7fd1-119">請遵循這些步驟 toocreate Azure web 應用程式和 SQL 資料庫：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-119">Follow these steps toocreate an Azure web app and a SQL Database:</span></span>
 
-1. <span data-ttu-id="b51ab-120">登入 [Azure 入口網站](https://portal.azure.com/)。</span><span class="sxs-lookup"><span data-stu-id="b51ab-120">Log in to the [Azure Portal](https://portal.azure.com/).</span></span>
-2. <span data-ttu-id="b51ab-121">按一下儀表板左上方的 [新增] 圖示開啟 Azure Marketplace，然後按一下 Marketplace 旁的 [全選] 並選取 [Web + 行動]。</span><span class="sxs-lookup"><span data-stu-id="b51ab-121">Open the Azure Marketplace by clicking the **New** icon on the top left of the dashboard, click on **Select All** next to Marketplace and selecting **Web + Mobile**.</span></span>
-3. <span data-ttu-id="b51ab-122">在 Marketplace 中，選取 [Web + 行動] 。</span><span class="sxs-lookup"><span data-stu-id="b51ab-122">In the Marketplace, select **Web + Mobile**.</span></span>
-4. <span data-ttu-id="b51ab-123">按一下 [Web 應用程式 + SQL]  圖示。</span><span class="sxs-lookup"><span data-stu-id="b51ab-123">Click the **Web app + SQL** icon.</span></span>
-5. <span data-ttu-id="b51ab-124">讀取 Web 應用程式 + SQL 應用程式的描述之後，選取 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="b51ab-124">After reading the description of the Web app + SQL app, select **Create**.</span></span>
-6. <span data-ttu-id="b51ab-125">按一下每個部分 ([資源群組]、[Web 應用程式]、[資料庫] 以及 [訂用帳戶])，然後輸入或選取必填欄位的值：</span><span class="sxs-lookup"><span data-stu-id="b51ab-125">Click on each part (**Resource Group**, **Web App**, **Database**, and **Subscription**) and enter or select values for the required fields:</span></span>
+1. <span data-ttu-id="b7fd1-120">登入 toohello [Azure 入口網站](https://portal.azure.com/)。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-120">Log in toohello [Azure Portal](https://portal.azure.com/).</span></span>
+2. <span data-ttu-id="b7fd1-121">Hello，即可開啟 hello Azure Marketplace**新增**hello 上方的圖示左邊 hello 儀表板上，按一下**全選**下一步 tooMarketplace 並選取**Web + 行動**。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-121">Open hello Azure Marketplace by clicking hello **New** icon on hello top left of hello dashboard, click on **Select All** next tooMarketplace and selecting **Web + Mobile**.</span></span>
+3. <span data-ttu-id="b7fd1-122">在 hello Marketplace，選取  **Web + 行動**。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-122">In hello Marketplace, select **Web + Mobile**.</span></span>
+4. <span data-ttu-id="b7fd1-123">按一下 hello **Web 應用程式 + SQL**圖示。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-123">Click hello **Web app + SQL** icon.</span></span>
+5. <span data-ttu-id="b7fd1-124">閱讀後 hello hello Web 應用程式 + SQL 應用程式的描述，選取**建立**。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-124">After reading hello description of hello Web app + SQL app, select **Create**.</span></span>
+6. <span data-ttu-id="b7fd1-125">按一下 在每個部分 (**資源群組**， **Web 應用程式**，**資料庫**，和**訂用帳戶**) 然後輸入或選取所需的 hello 的值欄位：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-125">Click on each part (**Resource Group**, **Web App**, **Database**, and **Subscription**) and enter or select values for hello required fields:</span></span>
    
-   * <span data-ttu-id="b51ab-126">輸入您選擇的 URL 名稱</span><span class="sxs-lookup"><span data-stu-id="b51ab-126">Enter a URL name of your choice</span></span>    
-   * <span data-ttu-id="b51ab-127">設定資料庫伺服器認證</span><span class="sxs-lookup"><span data-stu-id="b51ab-127">Configure database server credentials</span></span>
-   * <span data-ttu-id="b51ab-128">選取最靠近您的區域</span><span class="sxs-lookup"><span data-stu-id="b51ab-128">Select the region closest to you</span></span>
+   * <span data-ttu-id="b7fd1-126">輸入您選擇的 URL 名稱</span><span class="sxs-lookup"><span data-stu-id="b7fd1-126">Enter a URL name of your choice</span></span>    
+   * <span data-ttu-id="b7fd1-127">設定資料庫伺服器認證</span><span class="sxs-lookup"><span data-stu-id="b7fd1-127">Configure database server credentials</span></span>
+   * <span data-ttu-id="b7fd1-128">選取 hello 區域最接近 tooyou</span><span class="sxs-lookup"><span data-stu-id="b7fd1-128">Select hello region closest tooyou</span></span>
      
      ![configure your app](./media/web-sites-php-sql-database-deploy-use-git/configure-db-settings.png)
-7. <span data-ttu-id="b51ab-130">定義 Web 應用程式完成之後，按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="b51ab-130">When finished defining the web app, click **Create**.</span></span>
+7. <span data-ttu-id="b7fd1-130">完成定義 hello web 應用程式，請按一下**建立**。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-130">When finished defining hello web app, click **Create**.</span></span>
    
-    <span data-ttu-id="b51ab-131">建立 Web 應用程式後，[通知] 按鈕便會閃爍綠色**成功**並開啟資源群組刀鋒視窗，以顯示群組中的 Web 應用程式與 SQL 資料庫。</span><span class="sxs-lookup"><span data-stu-id="b51ab-131">When the web app has been created, the **Notifications** button will flash a green **SUCCESS** and the resource group blade open to show both the web app and the SQL database in the group.</span></span>
-8. <span data-ttu-id="b51ab-132">按一下資源群組分頁中的 Web 應用程式圖示，開啟 Web 應用程式分頁。</span><span class="sxs-lookup"><span data-stu-id="b51ab-132">Click the web app's icon in the resource group blade to open the web app's blade.</span></span>
+    <span data-ttu-id="b7fd1-131">Hello web 應用程式建立後，hello**通知** 按鈕會閃爍綠色**成功**和 hello 資源群組刀鋒視窗中開啟 tooshow 這兩個 hello web 應用程式和 hello SQL database hello 群組中的。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-131">When hello web app has been created, hello **Notifications** button will flash a green **SUCCESS** and hello resource group blade open tooshow both hello web app and hello SQL database in hello group.</span></span>
+8. <span data-ttu-id="b7fd1-132">按一下 hello 資源群組 刀鋒視窗 tooopen hello web 應用程式的刀鋒視窗中的 hello web 應用程式的圖示。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-132">Click hello web app's icon in hello resource group blade tooopen hello web app's blade.</span></span>
    
     ![Web 應用程式的資源群組](./media/web-sites-php-sql-database-deploy-use-git/resource-group-blade.png)
-9. <span data-ttu-id="b51ab-134">在 [設定] 中按一下 [繼續部署] > [設定必要設定]。</span><span class="sxs-lookup"><span data-stu-id="b51ab-134">In **Settings** click **Continuous deployment** > **Configure required settings**.</span></span> <span data-ttu-id="b51ab-135">選取 [本機 Git 儲存機制]，按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="b51ab-135">Select **Local Git Repository** and click **OK**.</span></span>
+9. <span data-ttu-id="b7fd1-134">在 [設定] 中按一下 [繼續部署] > [設定必要設定]。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-134">In **Settings** click **Continuous deployment** > **Configure required settings**.</span></span> <span data-ttu-id="b7fd1-135">選取 [本機 Git 儲存機制]，按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-135">Select **Local Git Repository** and click **OK**.</span></span>
    
     ![where is your source code](./media/web-sites-php-sql-database-deploy-use-git/setup-local-git.png)
    
-    <span data-ttu-id="b51ab-137">如果您從未設定 Git 儲存機制，則必須提供使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="b51ab-137">If you have not set up a Git repository before, you must provide a user name and password.</span></span> <span data-ttu-id="b51ab-138">若要這樣做，請按一下 Web 應用程式刀鋒視窗中的 [設定] > [部署認證]。</span><span class="sxs-lookup"><span data-stu-id="b51ab-138">To do this, click **Settings** > **Deployment credentials** in the web app's blade.</span></span>
+    <span data-ttu-id="b7fd1-137">如果您從未設定 Git 儲存機制，則必須提供使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-137">If you have not set up a Git repository before, you must provide a user name and password.</span></span> <span data-ttu-id="b7fd1-138">toodo 此，依序按一下**設定** > **部署認證**hello web 應用程式的刀鋒視窗中。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-138">toodo this, click **Settings** > **Deployment credentials** in hello web app's blade.</span></span>
    
     ![](./media/web-sites-php-sql-database-deploy-use-git/deployment-credentials.png)
-10. <span data-ttu-id="b51ab-139">在 [設定] 中按一下 [屬性] 以查看稍後部署 PHP 應用程式時需要使用的 Git 遠端 URL。</span><span class="sxs-lookup"><span data-stu-id="b51ab-139">In **Settings** click on **Properties** to see the Git remote URL you need to use to deploy your PHP app later.</span></span>
+10. <span data-ttu-id="b7fd1-139">在**設定**按一下**屬性**toosee hello Git 遠端 URL 您於稍後 toouse toodeploy PHP 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-139">In **Settings** click on **Properties** toosee hello Git remote URL you need toouse toodeploy your PHP app later.</span></span>
 
-## <a name="get-sql-database-connection-information"></a><span data-ttu-id="b51ab-140">取得 SQL Database 連線資訊</span><span class="sxs-lookup"><span data-stu-id="b51ab-140">Get SQL Database connection information</span></span>
-<span data-ttu-id="b51ab-141">若要連線到連結至 Web 應用程式的 SQL Database 執行個體，您將會需要在建立資料庫時所指定的連線資訊。</span><span class="sxs-lookup"><span data-stu-id="b51ab-141">To connect to the SQL Database instance that is linked to your web app, your will need the connection information, which you specified when you created the database.</span></span> <span data-ttu-id="b51ab-142">若要取得 SQL Database 連接資訊，請依照下列步驟進行：</span><span class="sxs-lookup"><span data-stu-id="b51ab-142">To get the SQL Database connection information, follow these steps:</span></span>
+## <a name="get-sql-database-connection-information"></a><span data-ttu-id="b7fd1-140">取得 SQL Database 連線資訊</span><span class="sxs-lookup"><span data-stu-id="b7fd1-140">Get SQL Database connection information</span></span>
+<span data-ttu-id="b7fd1-141">tooconnect toohello SQL Database 執行個體的連結 tooyour web 應用程式，您將需要 hello hello 資料庫的建立時指定的連接資訊。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-141">tooconnect toohello SQL Database instance that is linked tooyour web app, your will need hello connection information, which you specified when you created hello database.</span></span> <span data-ttu-id="b7fd1-142">tooget hello SQL 資料庫連接資訊，請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-142">tooget hello SQL Database connection information, follow these steps:</span></span>
 
-1. <span data-ttu-id="b51ab-143">回到資源群組分頁，按一下 SQL 資料庫的圖示。</span><span class="sxs-lookup"><span data-stu-id="b51ab-143">Back in the resource group's blade, click the SQL database's icon.</span></span>
-2. <span data-ttu-id="b51ab-144">在 SQL 資料庫刀鋒視窗中，按一下 [設定] > [屬性]，然後按一下 [顯示資料庫連線字串]。</span><span class="sxs-lookup"><span data-stu-id="b51ab-144">In the SQL database's blade, click **Settings** > **Properties**, then click **Show database connection strings**.</span></span> 
+1. <span data-ttu-id="b7fd1-143">在 hello 資源群組的刀鋒視窗中，按一下 hello SQL 資料庫的圖示。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-143">Back in hello resource group's blade, click hello SQL database's icon.</span></span>
+2. <span data-ttu-id="b7fd1-144">在 hello SQL database 的刀鋒視窗中，按一下 **設定** > **屬性**，然後按一下 **顯示資料庫的連接字串**。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-144">In hello SQL database's blade, click **Settings** > **Properties**, then click **Show database connection strings**.</span></span> 
    
     ![檢視資料庫屬性](./media/web-sites-php-sql-database-deploy-use-git/view-database-properties.png)
-3. <span data-ttu-id="b51ab-146">從所產生對話方塊的 [PHP]**PHP** 區段中，請記下 `Server`、`SQL Database` 和 `User Name` 的值。</span><span class="sxs-lookup"><span data-stu-id="b51ab-146">From the **PHP** section of the resulting dialog, make note of the values for `Server`, `SQL Database`, and `User Name`.</span></span> <span data-ttu-id="b51ab-147">稍後將 PHP Web 應用程式發行至 Azure App Service 時，您將使用這些值。</span><span class="sxs-lookup"><span data-stu-id="b51ab-147">You will use these values later when publishing your PHP web app to Azure App Service.</span></span>
+3. <span data-ttu-id="b7fd1-146">從 hello **PHP** > 一節的 hello 產生 對話方塊中，記下的 hello 值`Server`， `SQL Database`，和`User Name`。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-146">From hello **PHP** section of hello resulting dialog, make note of hello values for `Server`, `SQL Database`, and `User Name`.</span></span> <span data-ttu-id="b7fd1-147">您將使用這些值稍後當發行您的 PHP web 應用程式 tooAzure 應用程式服務。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-147">You will use these values later when publishing your PHP web app tooAzure App Service.</span></span>
 
-## <a name="build-and-test-your-application-locally"></a><span data-ttu-id="b51ab-148">在本機建置與測試您的應用程式</span><span class="sxs-lookup"><span data-stu-id="b51ab-148">Build and test your application locally</span></span>
-<span data-ttu-id="b51ab-149">註冊應用程式是一項簡單的 PHP 應用程式，您只需提供名稱與電子郵件地址就能註冊活動。</span><span class="sxs-lookup"><span data-stu-id="b51ab-149">The Registration application is a simple PHP application that allows you to register for an event by providing your name and email address.</span></span> <span data-ttu-id="b51ab-150">先前的註冊者相關資訊會顯示在資料表中。</span><span class="sxs-lookup"><span data-stu-id="b51ab-150">Information about previous registrants is displayed in a table.</span></span> <span data-ttu-id="b51ab-151">註冊資訊會儲存在 SQL Database 執行個體中。</span><span class="sxs-lookup"><span data-stu-id="b51ab-151">Registration information is stored in a SQL Database instance.</span></span> <span data-ttu-id="b51ab-152">該應用程式包含兩個檔案 (複製/貼上以下提供的程式碼)：</span><span class="sxs-lookup"><span data-stu-id="b51ab-152">The application consists of two files (copy/paste code available below):</span></span>
+## <a name="build-and-test-your-application-locally"></a><span data-ttu-id="b7fd1-148">在本機建置與測試您的應用程式</span><span class="sxs-lookup"><span data-stu-id="b7fd1-148">Build and test your application locally</span></span>
+<span data-ttu-id="b7fd1-149">hello 註冊應用程式是簡單的 PHP 應用程式，可讓您藉由提供您的名稱和電子郵件地址的 tooregister 事件。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-149">hello Registration application is a simple PHP application that allows you tooregister for an event by providing your name and email address.</span></span> <span data-ttu-id="b7fd1-150">先前的註冊者相關資訊會顯示在資料表中。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-150">Information about previous registrants is displayed in a table.</span></span> <span data-ttu-id="b7fd1-151">註冊資訊會儲存在 SQL Database 執行個體中。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-151">Registration information is stored in a SQL Database instance.</span></span> <span data-ttu-id="b7fd1-152">hello 應用程式包含兩個檔案 （如下所示複製/貼上程式碼）：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-152">hello application consists of two files (copy/paste code available below):</span></span>
 
-* <span data-ttu-id="b51ab-153">**index.php**：顯示註冊表單，以及內含註冊者資訊的資料表。</span><span class="sxs-lookup"><span data-stu-id="b51ab-153">**index.php**: Displays a form for registration and a table containing registrant information.</span></span>
-* <span data-ttu-id="b51ab-154">**createtable.php**：為應用程式建立 SQL 資料表。</span><span class="sxs-lookup"><span data-stu-id="b51ab-154">**createtable.php**: Creates the SQL Database table for the application.</span></span> <span data-ttu-id="b51ab-155">只會使用一次此檔案。</span><span class="sxs-lookup"><span data-stu-id="b51ab-155">This file will only be used once.</span></span>
+* <span data-ttu-id="b7fd1-153">**index.php**：顯示註冊表單，以及內含註冊者資訊的資料表。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-153">**index.php**: Displays a form for registration and a table containing registrant information.</span></span>
+* <span data-ttu-id="b7fd1-154">**createtable.php**: hello SQL 資料庫的建立資料表 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-154">**createtable.php**: Creates hello SQL Database table for hello application.</span></span> <span data-ttu-id="b7fd1-155">只會使用一次此檔案。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-155">This file will only be used once.</span></span>
 
-<span data-ttu-id="b51ab-156">若要在本機執行應用程式，請遵循下列步驟。</span><span class="sxs-lookup"><span data-stu-id="b51ab-156">To run the application locally, follow the steps below.</span></span> <span data-ttu-id="b51ab-157">請注意，這些步驟假設您的本機電腦上已設定 PHP、SQL Server Express，且您已啟用 [SQL Server 的 PDO 延伸模組][pdo-sqlsrv]。</span><span class="sxs-lookup"><span data-stu-id="b51ab-157">Note that these steps assume you have PHP and SQL Server Express set up on your local machine, and that you have enabled the [PDO extension for SQL Server][pdo-sqlsrv].</span></span>
+<span data-ttu-id="b7fd1-156">toorun hello 應用程式在本機，請遵循下列 hello 步驟。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-156">toorun hello application locally, follow hello steps below.</span></span> <span data-ttu-id="b7fd1-157">請注意，這些步驟假設您有 PHP 和 SQL Server Express 設定在本機電腦，並已啟用 hello [PDO 擴充功能，適用於 SQL Server][pdo-sqlsrv]。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-157">Note that these steps assume you have PHP and SQL Server Express set up on your local machine, and that you have enabled hello [PDO extension for SQL Server][pdo-sqlsrv].</span></span>
 
-1. <span data-ttu-id="b51ab-158">建立名為 `registration`的 SQL Server 資料庫。</span><span class="sxs-lookup"><span data-stu-id="b51ab-158">Create a SQL Server database called `registration`.</span></span> <span data-ttu-id="b51ab-159">您可以從 `sqlcmd` 命令提示字元中使用下列命令來建立此資料庫：</span><span class="sxs-lookup"><span data-stu-id="b51ab-159">You can do this from the `sqlcmd` command prompt with these commands:</span></span>
+1. <span data-ttu-id="b7fd1-158">建立名為 `registration`的 SQL Server 資料庫。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-158">Create a SQL Server database called `registration`.</span></span> <span data-ttu-id="b7fd1-159">您可以從 hello`sqlcmd`命令提示字元使用這些命令：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-159">You can do this from hello `sqlcmd` command prompt with these commands:</span></span>
    
         >sqlcmd -S localhost\sqlexpress -U <local user name> -P <local password>
         1> create database registration
         2> GO    
-2. <span data-ttu-id="b51ab-160">在應用程式根目錄中建立兩個檔案，一個名為 `createtable.php`，另一個名為 `index.php`。</span><span class="sxs-lookup"><span data-stu-id="b51ab-160">In your application root directory, create two files in it - one called `createtable.php` and one called `index.php`.</span></span>
-3. <span data-ttu-id="b51ab-161">在文字編輯器或 IDE 中開啟 `createtable.php` 檔案，加入下列程式碼。</span><span class="sxs-lookup"><span data-stu-id="b51ab-161">Open the `createtable.php` file in a text editor or IDE and add the code below.</span></span> <span data-ttu-id="b51ab-162">此程式碼將會在 `registration` 資料庫中用於建立 `registration_tbl` 資料表。</span><span class="sxs-lookup"><span data-stu-id="b51ab-162">This code will be used to create the `registration_tbl` table in the `registration` database.</span></span>
+2. <span data-ttu-id="b7fd1-160">在應用程式根目錄中建立兩個檔案，一個名為 `createtable.php`，另一個名為 `index.php`。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-160">In your application root directory, create two files in it - one called `createtable.php` and one called `index.php`.</span></span>
+3. <span data-ttu-id="b7fd1-161">開啟 hello`createtable.php`在文字編輯器或 IDE 檔案，然後加入下列程式碼 hello。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-161">Open hello `createtable.php` file in a text editor or IDE and add hello code below.</span></span> <span data-ttu-id="b7fd1-162">此程式碼將會使用的 toocreate hello `registration_tbl` hello 中的資料表`registration`資料庫。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-162">This code will be used toocreate hello `registration_tbl` table in hello `registration` database.</span></span>
    
         <?php
         // DB connection info
@@ -122,12 +122,12 @@ ms.lasthandoff: 07/11/2017
         echo "<h3>Table created.</h3>";
         ?>
    
-    <span data-ttu-id="b51ab-163">請注意，您將需要更新的值<code>$user</code>和<code>$pwd</code>使用您的本機 SQL Server 使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="b51ab-163">Note that you will need to update the values for <code>$user</code> and <code>$pwd</code> with your local SQL Server user name and password.</span></span>
-4. <span data-ttu-id="b51ab-164">在終端機中，於應用程式的根目錄輸入下列命令：</span><span class="sxs-lookup"><span data-stu-id="b51ab-164">In a terminal at the root directory of the application type the following command:</span></span>
+    <span data-ttu-id="b7fd1-163">請注意，您將需要 tooupdate hello 值<code>$user</code>和<code>$pwd</code>使用您的本機 SQL Server 使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-163">Note that you will need tooupdate hello values for <code>$user</code> and <code>$pwd</code> with your local SQL Server user name and password.</span></span>
+4. <span data-ttu-id="b7fd1-164">在下列命令 hello 應用程式類型 hello hello 根目錄在終止：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-164">In a terminal at hello root directory of hello application type hello following command:</span></span>
    
         php -S localhost:8000
-5. <span data-ttu-id="b51ab-165">開啟網頁瀏覽器並瀏覽至 **http://localhost:8000/createtable.php**。</span><span class="sxs-lookup"><span data-stu-id="b51ab-165">Open a web browser and browse to **http://localhost:8000/createtable.php**.</span></span> <span data-ttu-id="b51ab-166">這會在資料庫中建立 `registration_tbl` 資料表。</span><span class="sxs-lookup"><span data-stu-id="b51ab-166">This will create the `registration_tbl` table in the database.</span></span>
-6. <span data-ttu-id="b51ab-167">在文字編輯器或 IDE 中開啟 **index.php** 檔案，加入頁面的基本 HTML 和 CSS 程式碼 (稍後的步驟中將加入 PHP 程式碼)。</span><span class="sxs-lookup"><span data-stu-id="b51ab-167">Open the **index.php** file in a text editor or IDE and add the basic HTML and CSS code for the page (the PHP code will be added in later steps).</span></span>
+5. <span data-ttu-id="b7fd1-165">開啟網頁瀏覽器並瀏覽過**http://localhost:8000/createtable.php**。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-165">Open a web browser and browse too**http://localhost:8000/createtable.php**.</span></span> <span data-ttu-id="b7fd1-166">這會建立 hello `registration_tbl` hello 資料庫資料表中的。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-166">This will create hello `registration_tbl` table in hello database.</span></span>
+6. <span data-ttu-id="b7fd1-167">開啟 hello**為 index.php**檔案文字編輯器或 IDE 中，然後加入 hello 基本 HTML 和 CSS 程式碼 hello 頁面 （hello PHP 程式碼會在稍後步驟中新增）。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-167">Open hello **index.php** file in a text editor or IDE and add hello basic HTML and CSS code for hello page (hello PHP code will be added in later steps).</span></span>
    
         <html>
         <head>
@@ -148,7 +148,7 @@ ms.lasthandoff: 07/11/2017
         </head>
         <body>
         <h1>Register here!</h1>
-        <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
+        <p>Fill in your name and email address, then click <strong>Submit</strong> tooregister.</p>
         <form method="post" action="index.php" enctype="multipart/form-data" >
               Name  <input type="text" name="name" id="name"/></br>
               Email <input type="text" name="email" id="email"/></br>
@@ -159,14 +159,14 @@ ms.lasthandoff: 07/11/2017
         ?>
         </body>
         </html>
-7. <span data-ttu-id="b51ab-168">在 PHP 標籤內，加入用來連線至資料庫的 PHP 程式碼。</span><span class="sxs-lookup"><span data-stu-id="b51ab-168">Within the PHP tags, add PHP code for connecting to the database.</span></span>
+7. <span data-ttu-id="b7fd1-168">Hello PHP 標記內加入連接 toohello 資料庫 PHP 程式碼。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-168">Within hello PHP tags, add PHP code for connecting toohello database.</span></span>
    
         // DB connection info
         $host = "localhost\sqlexpress";
         $user = "user name";
         $pwd = "password";
         $db = "registration";
-        // Connect to database.
+        // Connect toodatabase.
         try {
             $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
             $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -175,8 +175,8 @@ ms.lasthandoff: 07/11/2017
             die(var_dump($e));
         }
    
-    <span data-ttu-id="b51ab-169">同樣地，您將需要更新的值<code>$user</code>和<code>$pwd</code>本機 MySQL 使用者名稱與密碼。</span><span class="sxs-lookup"><span data-stu-id="b51ab-169">Again, you will need to update the values for <code>$user</code> and <code>$pwd</code> with your local MySQL user name and password.</span></span>
-8. <span data-ttu-id="b51ab-170">在資料庫連接程式碼後面，加入可將登錄資訊插入至資料庫的程式碼。</span><span class="sxs-lookup"><span data-stu-id="b51ab-170">Following the database connection code, add code for inserting registration information into the database.</span></span>
+    <span data-ttu-id="b7fd1-169">同樣地，您將需要 tooupdate hello 值<code>$user</code>和<code>$pwd</code>本機 MySQL 使用者名稱與密碼。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-169">Again, you will need tooupdate hello values for <code>$user</code> and <code>$pwd</code> with your local MySQL user name and password.</span></span>
+8. <span data-ttu-id="b7fd1-170">下列程式碼 hello 資料庫連接，加入程式碼插入 hello 資料庫的註冊資訊。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-170">Following hello database connection code, add code for inserting registration information into hello database.</span></span>
    
         if(!empty($_POST)) {
         try {
@@ -197,7 +197,7 @@ ms.lasthandoff: 07/11/2017
         }
         echo "<h3>Your're registered!</h3>";
         }
-9. <span data-ttu-id="b51ab-171">最後，在上述程式碼後面，加入可從資料庫擷取資料的程式碼。</span><span class="sxs-lookup"><span data-stu-id="b51ab-171">Finally, following the code above, add code for retrieving data from the database.</span></span>
+9. <span data-ttu-id="b7fd1-171">最後，遵循上述的 hello 程式碼，加入程式碼從 hello 資料庫擷取資料。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-171">Finally, following hello code above, add code for retrieving data from hello database.</span></span>
    
         $sql_select = "SELECT * FROM registration_tbl";
         $stmt = $conn->query($sql_select);
@@ -218,10 +218,10 @@ ms.lasthandoff: 07/11/2017
             echo "<h3>No one is currently registered.</h3>";
         }
 
-<span data-ttu-id="b51ab-172">您現在可以瀏覽至 **http://localhost:8000/index.php** 測試應用程式。</span><span class="sxs-lookup"><span data-stu-id="b51ab-172">You can now browse to **http://localhost:8000/index.php** to test the application.</span></span>
+<span data-ttu-id="b7fd1-172">您現在可以瀏覽過**http://localhost:8000/index.php** tootest hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-172">You can now browse too**http://localhost:8000/index.php** tootest hello application.</span></span>
 
-## <a name="publish-your-application"></a><span data-ttu-id="b51ab-173">發行您的應用程式</span><span class="sxs-lookup"><span data-stu-id="b51ab-173">Publish your application</span></span>
-<span data-ttu-id="b51ab-174">當您在本機完成應用程式測試之後，就可以使用 Git 將其發行至 App Service Web Apps。</span><span class="sxs-lookup"><span data-stu-id="b51ab-174">After you have tested your application locally, you can publish it to App Service Web Apps using Git.</span></span> <span data-ttu-id="b51ab-175">不過，首先您需要更新應用程式中的資料庫連線資訊。</span><span class="sxs-lookup"><span data-stu-id="b51ab-175">However, you first need to update the database connection information in the application.</span></span> <span data-ttu-id="b51ab-176">使用您稍早取得的資料庫連線資訊 (在＜**取得 SQL Database 連線資訊**＞一節中)，將 `createdatabase.php` 和 `index.php`**「兩者」**檔案中的下列資訊都更新為適當的值：</span><span class="sxs-lookup"><span data-stu-id="b51ab-176">Using the database connection information you obtained earlier (in the **Get SQL Database connection information** section), update the following information in **both** the `createdatabase.php` and `index.php` files with the appropriate values:</span></span>
+## <a name="publish-your-application"></a><span data-ttu-id="b7fd1-173">發佈您的應用程式</span><span class="sxs-lookup"><span data-stu-id="b7fd1-173">Publish your application</span></span>
+<span data-ttu-id="b7fd1-174">您已經測試過您的應用程式在本機上之後，您可以發行該 tooApp Service Web 應用程式使用 Git。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-174">After you have tested your application locally, you can publish it tooApp Service Web Apps using Git.</span></span> <span data-ttu-id="b7fd1-175">不過，您必須先 tooupdate hello 資料庫 hello 應用程式中的連接資訊。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-175">However, you first need tooupdate hello database connection information in hello application.</span></span> <span data-ttu-id="b7fd1-176">使用您稍早取得的 hello 資料庫連接資訊 (在 hello**取得 SQL 資料庫連接資訊**> 一節)，下列中的資訊更新 hello**兩者**hello`createdatabase.php`和`index.php`檔案以 hello 適當值：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-176">Using hello database connection information you obtained earlier (in hello **Get SQL Database connection information** section), update hello following information in **both** hello `createdatabase.php` and `index.php` files with hello appropriate values:</span></span>
 
     // DB connection info
     $host = "tcp:<value of Server>";
@@ -230,18 +230,18 @@ ms.lasthandoff: 07/11/2017
     $db = "<value of SQL Database>";
 
 > [!NOTE]
-> <span data-ttu-id="b51ab-177">在<code>$host</code>，伺服器的值必須在前面加上與<code>tcp:</code>。</span><span class="sxs-lookup"><span data-stu-id="b51ab-177">In the <code>$host</code>, the value of Server must be prepended with <code>tcp:</code>.</span></span>
+> <span data-ttu-id="b7fd1-177">在 hello <code>$host</code>，伺服器 hello 值必須在前面加上與<code>tcp:</code>。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-177">In hello <code>$host</code>, hello value of Server must be prepended with <code>tcp:</code>.</span></span>
 > 
 > 
 
-<span data-ttu-id="b51ab-178">現在，您可以準備設定 Git 發行，並發行應用程式。</span><span class="sxs-lookup"><span data-stu-id="b51ab-178">Now, you are ready to set up Git publishing and publish the application.</span></span>
+<span data-ttu-id="b7fd1-178">現在，您已準備好 tooset 設定 Git 發行功能，並發佈 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-178">Now, you are ready tooset up Git publishing and publish hello application.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="b51ab-179">這些步驟與前述＜**建立 Azure Web 應用程式並設定 Git 發行功能**＞一節中最後面的步驟相同。</span><span class="sxs-lookup"><span data-stu-id="b51ab-179">These are the same steps noted at the end of the **Create an Azure web app and set up Git publishing** section above.</span></span>
+> <span data-ttu-id="b7fd1-179">這些都是相同的步驟記下在 hello 結尾 hello hello**建立 Azure web 應用程式，並設定 Git 發行功能**上一節。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-179">These are hello same steps noted at hello end of hello **Create an Azure web app and set up Git publishing** section above.</span></span>
 > 
 > 
 
-1. <span data-ttu-id="b51ab-180">開啟 GitBash (如果 Git 位於您的 `PATH`，則為終端機)，將目錄變更為應用程式的根目錄 ( **registration** 目錄)，並執行下列命令：</span><span class="sxs-lookup"><span data-stu-id="b51ab-180">Open GitBash (or a terminal, if Git is in your `PATH`), change directories to the root directory of your application (the **registration** directory), and run the following commands:</span></span>
+1. <span data-ttu-id="b7fd1-180">開啟 GitBash (或終端機，如果 Git 位於您`PATH`)，變更目錄 toohello 根目錄，您的應用程式 (hello**註冊**目錄)，並執行的 hello 遵循命令：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-180">Open GitBash (or a terminal, if Git is in your `PATH`), change directories toohello root directory of your application (hello **registration** directory), and run hello following commands:</span></span>
    
         git init
         git add .
@@ -249,27 +249,27 @@ ms.lasthandoff: 07/11/2017
         git remote add azure [URL for remote repository]
         git push azure master
    
-    <span data-ttu-id="b51ab-181">系統會提示您輸入先前建立的密碼。</span><span class="sxs-lookup"><span data-stu-id="b51ab-181">You will be prompted for the password you created earlier.</span></span>
-2. <span data-ttu-id="b51ab-182">瀏覽至 **http://[web 應用程式名稱].azurewebsites.net/createtable.php**，建立應用程式的 SQL 資料庫資料表。</span><span class="sxs-lookup"><span data-stu-id="b51ab-182">Browse to **http://[web app name].azurewebsites.net/createtable.php** to create the SQL database table for the application.</span></span>
-3. <span data-ttu-id="b51ab-183">瀏覽至 **http://[web 應用程式名稱].azurewebsites.net/index.php**，開始使用應用程式。</span><span class="sxs-lookup"><span data-stu-id="b51ab-183">Browse to **http://[web app name].azurewebsites.net/index.php** to begin using the application.</span></span>
+    <span data-ttu-id="b7fd1-181">安裝程式將會提示您稍早建立的 hello 密碼。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-181">You will be prompted for hello password you created earlier.</span></span>
+2. <span data-ttu-id="b7fd1-182">瀏覽過**http://[web 應用程式 name].azurewebsites.net/createtable.php** toocreate hello SQL 資料庫資料表 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-182">Browse too**http://[web app name].azurewebsites.net/createtable.php** toocreate hello SQL database table for hello application.</span></span>
+3. <span data-ttu-id="b7fd1-183">瀏覽過**http://[web 應用程式 name].azurewebsites.net/index.php** toobegin 使用 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-183">Browse too**http://[web app name].azurewebsites.net/index.php** toobegin using hello application.</span></span>
 
-<span data-ttu-id="b51ab-184">發行應用程式之後，您可以開始對其進行變更，並使用 Git 來發行它們。</span><span class="sxs-lookup"><span data-stu-id="b51ab-184">After you have published your application, you can begin making changes to it and use Git to publish them.</span></span> 
+<span data-ttu-id="b7fd1-184">在發行您的應用程式之後，您可以開始製作變更 tooit，並使用 Git toopublish 它們。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-184">After you have published your application, you can begin making changes tooit and use Git toopublish them.</span></span> 
 
-## <a name="publish-changes-to-your-application"></a><span data-ttu-id="b51ab-185">將變更發行至您的應用程式</span><span class="sxs-lookup"><span data-stu-id="b51ab-185">Publish changes to your application</span></span>
-<span data-ttu-id="b51ab-186">若要將變更發行至應用程式，請依照以下步驟進行：</span><span class="sxs-lookup"><span data-stu-id="b51ab-186">To publish changes to application, follow these steps:</span></span>
+## <a name="publish-changes-tooyour-application"></a><span data-ttu-id="b7fd1-185">發行變更 tooyour 應用程式</span><span class="sxs-lookup"><span data-stu-id="b7fd1-185">Publish changes tooyour application</span></span>
+<span data-ttu-id="b7fd1-186">toopublish 變更 tooapplication，請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-186">toopublish changes tooapplication, follow these steps:</span></span>
 
-1. <span data-ttu-id="b51ab-187">在本機對您的應用程式進行變更。</span><span class="sxs-lookup"><span data-stu-id="b51ab-187">Make changes to your application locally.</span></span>
-2. <span data-ttu-id="b51ab-188">開啟 GitBash (如果 Git 位於您的 `PATH`，則為終端機)，將目錄變更為應用程式的根目錄，並執行下列命令：</span><span class="sxs-lookup"><span data-stu-id="b51ab-188">Open GitBash (or a terminal, it Git is in your `PATH`), change directories to the root directory of your application, and run the following commands:</span></span>
+1. <span data-ttu-id="b7fd1-187">變更本機 tooyour 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-187">Make changes tooyour application locally.</span></span>
+2. <span data-ttu-id="b7fd1-188">開啟 GitBash (或終端機中，it Git 是在您`PATH`)，變更目錄 toohello 根目錄，應用程式，並執行 hello 下列命令：</span><span class="sxs-lookup"><span data-stu-id="b7fd1-188">Open GitBash (or a terminal, it Git is in your `PATH`), change directories toohello root directory of your application, and run hello following commands:</span></span>
    
         git add .
         git commit -m "comment describing changes"
         git push azure master
    
-    <span data-ttu-id="b51ab-189">系統會提示您輸入先前建立的密碼。</span><span class="sxs-lookup"><span data-stu-id="b51ab-189">You will be prompted for the password you created earlier.</span></span>
-3. <span data-ttu-id="b51ab-190">瀏覽至 **http://[web 應用程式名稱].azurewebsites.net/index.php** 以查看您的變更。</span><span class="sxs-lookup"><span data-stu-id="b51ab-190">Browse to **http://[web app name].azurewebsites.net/index.php** to see your changes.</span></span>
+    <span data-ttu-id="b7fd1-189">安裝程式將會提示您稍早建立的 hello 密碼。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-189">You will be prompted for hello password you created earlier.</span></span>
+3. <span data-ttu-id="b7fd1-190">瀏覽過**http://[web 應用程式 name].azurewebsites.net/index.php** toosee 您的變更。</span><span class="sxs-lookup"><span data-stu-id="b7fd1-190">Browse too**http://[web app name].azurewebsites.net/index.php** toosee your changes.</span></span>
 
-## <a name="whats-changed"></a><span data-ttu-id="b51ab-191">變更的項目</span><span class="sxs-lookup"><span data-stu-id="b51ab-191">What's changed</span></span>
-* <span data-ttu-id="b51ab-192">如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)</span><span class="sxs-lookup"><span data-stu-id="b51ab-192">For a guide to the change from Websites to App Service see: [Azure App Service and Its Impact on Existing Azure Services](http://go.microsoft.com/fwlink/?LinkId=529714)</span></span>
+## <a name="whats-changed"></a><span data-ttu-id="b7fd1-191">變更的項目</span><span class="sxs-lookup"><span data-stu-id="b7fd1-191">What's changed</span></span>
+* <span data-ttu-id="b7fd1-192">從網站 tooApp 服務變更如指南 toohello: [Azure 應用程式服務和其對影響現有的 Azure 服務](http://go.microsoft.com/fwlink/?LinkId=529714)</span><span class="sxs-lookup"><span data-stu-id="b7fd1-192">For a guide toohello change from Websites tooApp Service see: [Azure App Service and Its Impact on Existing Azure Services](http://go.microsoft.com/fwlink/?LinkId=529714)</span></span>
 
 [install-php]: http://www.php.net/manual/en/install.php
 [install-SQLExpress]: http://www.microsoft.com/download/details.aspx?id=29062
