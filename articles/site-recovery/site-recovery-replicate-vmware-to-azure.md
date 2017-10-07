@@ -1,6 +1,6 @@
 ---
-title: "複寫應用程式 (VMware 至 Azure) | Microsoft Docs"
-description: "本文說明如何將在 VMware 上執行的虛擬機器設定複寫至 Azure。"
+title: "複寫應用程式 (VMware tooAzure) |Microsoft 文件"
+description: "本文說明如何 tooset 複寫的虛擬機器正在執行 VMware 到 Azure 上。"
 services: site-recovery
 documentationcenter: 
 author: asgang
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/05/2017
 ms.author: asgang
-ms.openlocfilehash: e0047a996c9bfd7d950b32f0871ddd7608924b42
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b07aabdacec521c7bd89e50f6a1427a774ff0287
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replicate-applications-running-on-vmware-vms-to-azure"></a>將 VMware VM 上執行的應用程式複寫至 Azure
+# <a name="replicate-applications-running-on-vmware-vms-tooazure"></a>複寫 tooAzure VMware Vm 上執行應用程式
 
 
 
-本文說明如何將在 VMware 上執行的虛擬機器設定複寫至 Azure。
+本文說明如何 tooset 複寫的虛擬機器正在執行 VMware 到 Azure 上。
 ## <a name="prerequisites"></a>必要條件
 
-本文假設您已經
+hello 文章假設您已經有
 
 1.  [設定內部部署來源環境](site-recovery-set-up-vmware-to-azure.md)
 2.  [在 Azure 中設定目標環境](site-recovery-prepare-target-vmware-to-azure.md)
@@ -37,82 +37,82 @@ ms.lasthandoff: 08/29/2017
 #### <a name="before-you-start"></a>開始之前
 當您要複寫 VMware 虛擬機器時，請注意下列事項︰
 
-* 您的 Azure 使用者帳戶必須具有特定[權限](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines)，才能將新的虛擬機器複寫至 Azure。
-* 系統會每隔 15 分鐘探索 VMware VM 一次。 在探索之後，可能需要 15 分鐘以上，VMware VM 才會出現在入口網站中。 同樣地，當您加入新的 vCenter 伺服器或 vSphere 主機時，探索可能需要 15 分鐘以上。
-* 虛擬機器上的環境變更 (例如 VMware 工具安裝) 會花上 15 分鐘以上的時間，才會在入口網站更新。
-* 您可以在 [組態伺服器] 刀鋒視窗上 vCenter 伺服器/vSphere 主機的 [上次連絡時間] 欄位中，查看 VMware VM 的上次探索時間。
-* 若要新增要複寫的機器而不等候已排定的探索，請反白選取組態伺服器 (不要按它)，然後按一下 [重新整理] 按鈕。
-* 當您啟用複寫時，如果機器已準備好，處理序伺服器會自動在其上安裝行動服務。
+* 您的 Azure 使用者帳戶需要 toohave 特定[權限](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines)新的虛擬機器 tooAzure tooenable 複寫。
+* 系統會每隔 15 分鐘探索 VMware VM 一次。 可能需要 15 分鐘或更長，tooappear 探索之後 hello 入口網站中的。 同樣地，當您加入新的 vCenter 伺服器或 vSphere 主機時，探索可能需要 15 分鐘以上。
+* Hello （例如 VMware 工具安裝） 的虛擬機器上的環境變更可能需要 15 分鐘或更多 toobe hello 入口網站中更新。
+* 您可以檢查 hello 上次探索時間 VMware vm 在 hello**上次連絡時間**欄位 hello vCenter 伺服器 /vsphere 主機，在 hello**設定伺服器**刀鋒視窗。
+* tooadd 機器的複寫不會等候 hello 已排程的探索，反白顯示 hello 組態伺服器 （但不要按），然後按一下 hello**重新整理** 按鈕。
+* 當您啟用複寫，如果 hello 機器已備妥時，hello 處理序伺服器自動安裝 hello 行動服務在其上。
 
 
 **立即啟用複寫，如下所示**︰
 
-1. 按一下 [步驟 2: 複寫應用程式]  >  [來源]。 第一次啟用複寫之後，請按一下保存庫中的 [+複寫]，以對其他機器啟用複寫。
-2. 在 [來源] 刀鋒視窗 > [來源] 中，選取組態伺服器。
+1. 按一下 [步驟 2: 複寫應用程式]  >  [來源]。 您已啟用複寫 hello 第一次之後，請按一下**+ 複寫**中的其他機器 hello 保存庫 tooenable 複寫。
+2. 在 hello**來源**刀鋒視窗 >**來源**，選取 hello 組態伺服器。
 3. 在 [機器類型] 中，選取 [虛擬機器] 或 [實體機器]。
-4. 在 [vCenter/vSphere Hypervisor] 中，選取管理 vSphere 主機的 vCenter 伺服器，或選取主機。 如果您是複寫實體機器，則這個設定不相關。
-5. 選取處理序伺服器。 如果您尚未建立任何額外的處理序伺服器，這將是組態伺服器的名稱。 然後按一下 [確定] 。
+4. 在**vCenter vSphere Hypervisor**、 選取 hello vCenter 伺服器負責管理 hello vSphere 主機，或選取 hello 的主機。 如果您是複寫實體機器，則這個設定不相關。
+5. 選取 hello 處理序伺服器。 如果您尚未建立任何額外的處理序伺服器會 hello hello 組態伺服器的名稱。 然後按一下 [確定] 。
 
     ![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication2.png)
 
-6. 在 [目標] 中，選取您想要在其中建立容錯移轉虛擬機器的訂用帳戶和資源群組。 選擇您想要在 Azure (傳統或資源管理) 中，針對容錯移轉虛擬機器使用的部署模型。
-7. 選取您要用來複寫資料的 Azure 儲存體帳戶。 請注意：
+6. 在**目標**選取 hello 訂用帳戶和您想要容錯移轉虛擬機器的 toocreate hello hello 資源群組。 選擇要容錯移轉虛擬機器的 hello toouse Azure （classic 或資源管理） 中的 hello 部署模型。
+7. 選取要用於複寫資料 toouse hello Azure 儲存體帳戶。 請注意：
 
-   * 您可以選取進階或標準儲存體帳戶。 如果選取進階帳戶，您需要針對進行中的複寫記錄檔，額外指定一個標準儲存體帳戶。 帳戶必須位於與復原服務保存庫相同的區域中。
-   * 如果您想要使用和您所擁有之儲存體帳戶不同的儲存體帳戶，您可以使用資源管理員建立一個建立儲存體帳戶的預留位置連結，這將在＜開始使用＞中涵蓋。 若要使用 Resource Manager 建立儲存體帳戶，請按一下 [新建]。 如果您想要使用傳統模型建立儲存體帳戶，請 [在 Azure 入口網站中](../storage/common/storage-create-storage-account.md)執行該作業。
+   * 您可以選取進階或標準儲存體帳戶。 如果您選取進階帳戶時，您必須 toospecify 額外標準儲存體帳戶進行中的複寫記錄檔。 帳戶必須在 hello 與 hello 相同區域復原服務保存庫。
+   * 如果您想 toouse 您有不同的儲存體帳戶以外，您可以建立一個*預留位置連結，開始建立使用資源的儲存體帳戶管理員將涵蓋這*。 按一下 儲存體帳戶使用資源管理員 toocreate**建立新**。 如果您想 toocreate 使用 hello 傳統模型的儲存體帳戶，您執行[hello Azure 入口網站中](../storage/common/storage-create-storage-account.md)。
 
-8. 選取 Azure VM 在容錯移轉後啟動時所要啟動的 Azure 網路和子網路。 此網路必須位於與復原服務保存庫相同的區域中。 選取 [立即設定選取的機器]，將網路設定套用至您選取要進行保護的所有機器。 選取 [稍後設定] 以選取每部機器的 Azure 網路。 如果您沒有網路，則必須[建立一個](#set-up-an-azure-network)。 若要使用 Resource Manager 建立網路，請按一下 [新建]。 如果您想要使用傳統模型建立網路，請[在 Azure 入口網站中](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)執行該作業。 選取適用的子網路。 然後按一下 [確定] 。
+8. 選取 hello Azure 網路和子網路 toowhich Azure Vm 將會連接，當它們容錯移轉後正在開始。 hello 網路必須位於 hello hello 與相同的區域復原服務保存庫。 選取**現在選取的機器設定**，tooapply hello 網路設定 tooall 您選取的機器進行保護。 選取**稍後設定**tooselect hello 每部機器的 Azure 網路。 如果您沒有網路，您需要太[建立一個](#set-up-an-azure-network)。 toocreate 網路使用資源管理員 中，按一下**建立新**。 如果您想 toocreate 網路使用 hello 傳統模式，這樣做， [hello Azure 入口網站中](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)。 選取適用的子網路。 然後按一下 [確定] 。
 
     ![啟用複寫](./media/site-recovery-vmware-to-azure/enable-rep3.png)
-9. 在 [虛擬機器] > [選取虛擬機器] 中，按一下並選取您要複寫的每部機器。 您只能選取可以啟用複寫的機器。 然後按一下 [確定] 。
+9. 在**虛擬機器** > **選取虛擬機器**，按一下並選取您想要 tooreplicate 每一部機器。 您只能選取可以啟用複寫的機器。 然後按一下 [確定] 。
 
     ![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication5.png)
-10. 在 [名稱]  > 中，選取處理序伺服器將用來在機器上自動安裝行動服務的帳戶。  
-11. 依預設會複寫所有磁碟。 若要將磁碟從複寫中排除，按一下 [所有磁碟]，然後清除任何您不想要複寫的磁碟。  然後按一下 [確定] 。 您可以稍後再設定其他屬性。 [深入了解](site-recovery-exclude-disk.md)排除磁碟。
+10. 在**屬性** > **設定屬性**，選取將由 hello 處理序伺服器 tooautomatically 的 hello 帳戶 hello 機器上安裝 hello 行動服務。  
+11. 依預設會複寫所有磁碟。 tooexclude 磁碟從複寫中，按一下**所有磁碟**並清除您不想 tooreplicate 任何磁碟。  然後按一下 [確定] 。 您可以稍後再設定其他屬性。 [深入了解](site-recovery-exclude-disk.md)排除磁碟。
 
     ![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication6.png)
 
-12. 在 [複寫設定] > [設定複寫設定] 中，確認已選取正確的複寫原則。 您可以在 [設定]  >  [複寫原則] > 原則名稱 > [編輯設定] 中修改複寫原則設定。 套用到原則的變更將會套用到複寫和新的機器。
-13. 如果您想要將機器聚集成一個複寫群組，請啟用 [多部 VM 一致性]  ，並指定群組的名稱。 然後按一下 [確定] 。 請注意：
+12. 在**複寫設定** > **設定複寫設定**，確認該 hello 正確選取複寫原則。 您可以在 [設定]  >  [複寫原則] > 原則名稱 > [編輯設定] 中修改複寫原則設定。 套用的 tooreplicating 和新的機器，將會套用 tooa 原則的變更。
+13. 啟用**多重 VM 一致性**如果 toogather 機器的複寫群組，並指定 hello 群組的名稱。 然後按一下 [確定] 。 請注意：
 
     * 複寫群組中的機器會一起複寫，並且在容錯移轉時會有共用的損毀一致和應用程式一致的復原點。
-    * 我們建議您將 VM 與實體伺服器一起收集，讓它們鏡像您的工作負載。 啟用多部 VM 一致性可能會影響工作負載的效能，應該只用於機器正在執行相同工作負載，且您需要一致性的情況。
+    * 我們建議您將 VM 與實體伺服器一起收集，讓它們鏡像您的工作負載。 啟用多重 VM 一致性可能會影響工作負載效能，應該只用於如果機器 hello 執行相同的工作負載，且需要一致性。
 
     ![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication7.png)
-14. 按一下 [啟用複寫] 。 您可以在 [設定]  >  [作業]  >  [Site Recovery 作業] 中，追蹤 [啟用保護] 作業的進度。 執行 [完成保護]  作業之後，機器即準備好進行容錯移轉。
+14. 按一下 [啟用複寫] 。 您可以追蹤進度的 hello**啟用保護**作業中**設定** > **作業** > **站台復原作業**. 之後 hello**完成保護**作業執行 hello 機器是否已做好容錯移轉。
 
 > [!NOTE]
-> 如果機器已準備好進行推送安裝，則當啟用保護時，將會安裝行動服務元件。 在機器上安裝元件之後，保護工作會啟動並失敗。 在失敗之後，您需要手動重新啟動每一部機器。 重新啟動之後，保護作業再次開始，並且會發生初始複寫。
+> 如果 hello 機器做好推入安裝 hello 行動服務元件將安裝時已啟用保護。 Hello 元件安裝後 hello 機器保護工作可啟動與失敗。 Hello 失敗後，您需要 toomanually 重新啟動每一部機器。 Hello 重新啟動 hello 保護之後作業會重新開始計算，就會發生初始複寫。
 >
 >
 
 ## <a name="view-and-manage-vm-properties"></a>檢視及管理 VM 屬性
 
-建議您確認來源機器的屬性。 請記住，Azure VM 名稱應該符合 [Azure 虛擬機器需求](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。
+我們建議您確認 hello hello 來源機器的屬性。 請記住該 hello Azure VM 名稱應該符合[Azure 虛擬機器需求](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。
 
-1. 按一下 [設定] > [複寫的項目]，然後選取機器。 [程式集]  刀鋒視窗會顯示機器設定與狀態的相關資訊。
-2. 在 [屬性] 中，您可以檢視 VM 的複寫和容錯移轉資訊。
-3. 在 [計算和網路] > [計算屬性] 中，您可以指定 Azure VM 名稱和目標大小。 視需要修改名稱以符合 Azure 需求。
+1. 按一下**設定** > **複寫項目**>，並選取 hello 機器。 hello **Essentials**刀鋒視窗會顯示電腦設定狀態的資訊。
+2. 在**屬性**，您可以檢視複寫和容錯移轉資訊 hello VM。
+3. 在**計算與網路** > **計算屬性**，您可以指定 hello Azure VM 的名稱和目標大小。 如果您需要，修改 hello 名稱 toocomply Azure 需求。
     ![啟用複寫](./media/site-recovery-vmware-to-azure/VMProperties_AVSET.png)
  
-4.  您可以選取電腦將成為其後置容錯移轉一部分的[資源群組](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines)。 您可以在容錯移轉之前隨時變更這項設定。 容錯移轉後，如果將電腦移轉到不同的資源群組，則會中斷電腦的保護設定。
-5. 如果您的電腦必須是其中一個後置容錯移轉，您可以選取[可用性設定組](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines)。 當選取可用性設定組時，請記住︰
+4.  您可以選取電腦將成為其後置容錯移轉一部分的[資源群組](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines)。 您可以在容錯移轉之前隨時變更這項設定。 Post 容錯移轉，如果您移轉 hello 機器 tooa 不同資源群組，則會中斷機器的保護設定。
+5. 您可以選取[可用性設定組](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines)如果您的電腦所需 toobe 變成一篇文章的一部分，容錯移轉。 當選取可用性設定組時，請記住︰
 
-    * 只將屬於指定之資源群組的可用性設定組列出  
+    * 可用性設定組隸屬 toohello 指定只會列出資源群組  
     * 虛擬網路不同的電腦不可在相同的可用性設定組中
     * 只有相同大小的虛擬機器可在相同的可用性設定組中
-5. 您也可以檢視和加入目標網路、子網路的相關資訊，以及將指派給 Azure VM 的 IP 位址。
-6. 在 [磁碟] 中，您可以看見 VM 上將要複寫的作業系統和資料磁碟。
+5. 您也可以檢視和新增 hello 目標網路、 子網路及指派 toohello Azure VM 的 IP 位址資訊。
+6. 在**磁碟**、 您所見 hello 作業系統和資料磁碟上的 hello 將複寫的 VM。
 
 ### <a name="network-adapters-and-ip-addressing"></a>網路介面卡和 IP 位址 
 
-- 您可以設定目標 IP 位址。 如果您未提供地址，則容錯移轉的機器會使用 DHCP。 如果您設定的位址在容錯移轉時無法使用，則容錯移轉會失敗。 如果位址可用於測試容錯移轉網路，則相同的目標 IP 位址可用於測試容錯移轉。
-- 網路介面卡的數目會視您指定給目標虛擬機器的大小而有所不同，如下所示：
-    - 如果來源電腦上的網路介面卡數目小於或等於針對目標機器大小所允許的介面卡數目，則目標將具備與來源相同的介面卡數目。
-    - 如果來源虛擬機器的介面卡數目超過針對目標大小所允許的數目，則將使用目標大小的最大值。
-    - 例如，如果來源機器具有兩張網路介面卡，而目標機器大小支援四張，則目標機器將會有兩張介面卡。 如果來源機器具有兩張介面卡，但支援的目標大小僅支援一張，則目標機器將只會有一張介面卡。
-    - 如果虛擬機器有多張網路介面卡，則全部會連接至相同的網路。
-    - 如果虛擬機器具有多個網路介面卡，則清單中顯示的第一個會變成 Azure 虛擬機器中的*預設*網路介面卡。
+- 您可以設定 hello 目標 IP 位址。 如果您沒有提供的地址，hello 無法容錯移轉的機器會使用 DHCP。 如果您將無法使用在容錯移轉的位址，將無法運作 hello 容錯移轉。 相同的目標 IP 位址可用於測試容錯移轉 hello 位址是否可用 hello 測試容錯移轉網路中的 hello。
+- hello 大小，如下所示為 hello 目標虛擬機器，指定的網路介面卡的 hello 數目會取決於：
+    - 如果 hello hello 來源電腦上的網路介面卡數目小於或等於 toohello 數目的介面卡允許 hello 目標機器的大小，則會有 hello 目標 hello 做 hello 來源的相同數目的介面卡。
+    - 如果 hello hello 來源虛擬機器介面卡的數目超過允許將使用 hello 目標大小則 hello 目標大小上限的 hello 數目。
+    - 例如，如果來源機器有兩個網路介面卡，而且 hello 目標機器大小支援四個，hello 目標電腦會有兩張介面卡。 如果 hello 來源機器有兩張介面卡，但 hello 支援的目標大小只支援一個 hello 目標電腦會有一個配接器。
+    - 如果 hello 虛擬機器具有多張網路介面卡將所有連線 toohello 相同的網路。
+    - 如果 hello 虛擬機器有多個網路介面卡則 hello 先 hello 清單所示的其中一個會變成 hello*預設*hello Azure 虛擬機器中的網路介面卡。
    
 
 
@@ -120,11 +120,11 @@ ms.lasthandoff: 08/29/2017
 ## <a name="common-issues"></a>常見問題
 
 * 各磁碟大小必須都小於 1 TB。
-* OS 磁碟應該是基本磁碟而非動態磁碟
-* 針對第 2 代/已啟用 UEFI 的虛擬機器，作業系統系列應為 Windows，而且開機磁碟應小於 300 GB
+* hello OS 磁碟應該是基本磁碟和非動態磁碟
+* 層代 2/UEFI 啟用虛擬機器，hello 作業系統系列應該是 Windows，而且應小於 300 GB 開機磁碟。
 
 ## <a name="next-steps"></a>後續步驟
 
-保護完成之後，您可以嘗試[容錯移轉](site-recovery-failover.md)，以檢查應用程式是否會出現在 Azure 中。
+完成 hello 保護之後，您可以嘗試[容錯移轉](site-recovery-failover.md)toocheck 是否應用程式出現在 Azure 中或不。
 
-如果您想要停用保護，請檢查如何[清除註冊與保護設定](site-recovery-manage-registration-and-protection.md)
+如果您想 toodisable 保護，請檢查如何太[清除登錄和保護設定](site-recovery-manage-registration-and-protection.md)

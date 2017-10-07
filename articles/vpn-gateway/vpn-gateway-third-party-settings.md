@@ -15,22 +15,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/04/2017
 ms.author: delhan
-ms.openlocfilehash: 79df187c9093eb01f18b3dfdc25d1d19a2f63c62
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c695d23167ddba11283f6e223769e29b18a5c7ba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="community-suggested-third-party-vpn-or-firewall-device-settings-for-azure-vpn-gateway"></a>適用於 Azure VPN 閘道的社群建議協力廠商 VPN 或防火牆裝置設定
 
 本文提供數種可搭配 Azure VPN 閘道使用之協力廠商 VPN 或防火牆裝置的建議解決方案。
 
 > [!Note]
-> 協力廠商 VPN 或防火牆裝置的技術支援是由裝置廠商提供。 
+> Hello 裝置廠商所提供的協力廠商 VPN 或防火牆裝置技術支援人員。 
 
 ## <a name="more-information"></a>詳細資訊
 
-下表列出數個常見裝置和相關說明：
+hello 下表列出數個常見的裝置和相關的說明：
 
 |產品    |參考                                                |
 |-----------|-----------------------------------------------------------|

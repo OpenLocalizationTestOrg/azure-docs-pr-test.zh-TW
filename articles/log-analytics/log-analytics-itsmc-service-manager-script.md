@@ -1,6 +1,6 @@
 ---
-title: "自動化的指令碼可建立與 OMS 中的 IT 服務管理連接器連線之 Service Manager Web 應用程式 | Microsoft Docs"
-description: "使用自動化的指令碼建立 Service Manager Web 應用程式，來與 OMS 中的 IT 服務管理連接器連線，並將 ITSM 工作項目集中監視及管理。"
+title: "aaaAutomated 指令碼 toocreate 與在 OMS 中的 IT 服務管理連接器服務管理員 Web 應用程式 tooconnect |Microsoft 文件"
+description: "建立 Service Manager Web 應用程式與 IT 服務管理連接器在 OMS 中，使用自動化的指令碼 tooconnect 和集中監視和管理 hello ITSM 工作項目。"
 services: log-analytics
 documentationcenter: 
 author: JYOTHIRMAISURI
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: v-jysur
-ms.openlocfilehash: ad69d82e57be8bfd9ba40dd88cbc0a979c9e1722
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cbe6a1f75548ac541fd428a977edf64eea959e4f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-service-manager-web-app-using-the-automated-script-preview"></a>使用自動化的指令碼建立 Service Manager Web 應用程式 (預覽)
+# <a name="create-service-manager-web-app-using-hello-automated-script-preview"></a>建立 Service Manager Web 應用程式使用 hello 自動化指令碼 （預覽）
 
-使用下列指令碼來建立您 Service Manager 執行個體的 Web 應用程式。 可在這裡找到 Service Manager 連線的相關詳細資訊：[Service Manager Web 應用程式](log-analytics-itsmc-connections.md#create-and-deploy-service-manager-web-app-service)
+使用下列指令碼 toocreate hello Web 應用程式服務管理員執行個體的 hello。 可在這裡找到 Service Manager 連線的相關詳細資訊：[Service Manager Web 應用程式](log-analytics-itsmc-connections.md#create-and-deploy-service-manager-web-app-service)
 
-提供下列必要的詳細資料來執行指令碼︰
+藉由提供下列必要的詳細資料的 hello 執行 hello 指令碼：
 
 - Azure 訂用帳戶詳細資料
 - 資源群組名稱
@@ -33,16 +33,16 @@ ms.lasthandoff: 07/11/2017
 - Web 應用程式的網站名稱前置詞
 - 服務匯流排命名空間。
 
-指令碼會使用您指定的名稱 (與其他可使它成為唯一的字串) 來建立 Web 應用程式。 它會產生 **Web 應用程式 URL**、**用戶端識別碼**和**用戶端祕密**。
+hello 指令碼會建立使用您指定的 hello 名稱 hello Web 應用程式 (以及幾個額外字串 toomake 它唯一)。 它會產生 hello **Web 應用程式 URL**，**用戶端識別碼**和**用戶端密碼**。
 
 將這些值儲存，當您使用 IT 服務管理連接器建立連線時會用到這些值。
 
 ## <a name="prerequisites"></a>必要條件
 
  Windows Management Framework 5.0 或更新版本。
-Windows 10 依預設包含 5.1。 您可以從[這裡](https://www.microsoft.com/download/details.aspx?id=53347)下載架構：
+Windows 10 依預設包含 5.1。 您可以下載從 hello framework[這裡](https://www.microsoft.com/download/details.aspx?id=53347):
 
-使用下列指令碼：
+使用下列指令碼的 hello:
 
 ```
 ####################################
@@ -52,7 +52,7 @@ Windows 10 依預設包含 5.1。 您可以從[這裡](https://www.microsoft.com
 # Subscription name in Azure account. Check in Azure Portal.
 $azureSubscriptionName = ""
 
-# Resource group name for resource deployment. Could be an existing resource group or a new one to be created.
+# Resource group name for resource deployment. Could be an existing resource group or a new one toobe created.
 $resourceGroupName = ""
 
 # Location for existing resource group or new resource group deployment
@@ -70,7 +70,7 @@ $username = ""
 $password = ""
 
 
-# Azure site Name Prefix. Default is "smoc". It can be configured to any desired value.
+# Azure site Name Prefix. Default is "smoc". It can be configured tooany desired value.
 $siteNamePrefix = ""
 
 # Service Bus namespace. Please provide an already existing service bus namespace.
@@ -85,7 +85,7 @@ $serviceName = ""
 # Installations
 ################
 
-# Allowing the execution of the script for current user.  
+# Allowing hello execution of hello script for current user.  
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 
 Write-Host "Checking for required modules..."
@@ -141,7 +141,7 @@ if(!$resourceProvider -or $resourceProvider[0].RegistrationState -ne "Registered
     }
     catch
     {
-        Write-Host "Failed to Register Microsoft.Web Resource Provider. Please register it in Azure Portal."
+        Write-Host "Failed tooRegister Microsoft.Web Resource Provider. Please register it in Azure Portal."
         exit
     }   
 }
@@ -203,7 +203,7 @@ try
 }
 catch
 {
-    # Delete the deployed web app if Azure AD application fails
+    # Delete hello deployed web app if Azure AD application fails
     Remove-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceName $siteName -ResourceType Microsoft.Web/sites -Force
 
     Write-Host "Faiure occured in Azure AD application....Try again!!"
@@ -247,10 +247,10 @@ catch
 {
     Write-Host "Web App configuration failed. Please ensure all values are provided in Service Manager Authentication Settings in User Configuration Section"
 
-    # Delete the AzureRm AD Application if confiuration fails
+    # Delete hello AzureRm AD Application if confiuration fails
     Remove-AzureRmADApplication -ObjectId $adApp.ObjectId -Force
 
-    # Delete the deployed web app if configuration fails
+    # Delete hello deployed web app if configuration fails
     Remove-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceName $siteName -ResourceType Microsoft.Web/sites -Force
 
     exit
@@ -276,7 +276,7 @@ if(!$resourceProvider -or $resourceProvider[0].RegistrationState -ne "Registered
     }
     catch
     {
-        Write-Host "Failed to Register Microsoft.Relay Resource Provider. Please register it in Azure Portal."
+        Write-Host "Failed tooRegister Microsoft.Relay Resource Provider. Please register it in Azure Portal."
     }   
 }
 
@@ -305,7 +305,7 @@ if(!$resource)
 
 }
 
-Write-Host "Note: Please Configure Hybrid connection in the Networking section of the web application in Azure Portal to link to the on-premises system.`n"
+Write-Host "Note: Please Configure Hybrid connection in hello Networking section of hello web application in Azure Portal toolink toohello on-premises system.`n"
 Write-Host "App Details"
 Write-Host "============"
 Write-Host "App Name:"  $siteName
@@ -319,4 +319,4 @@ if(!$err)
 
 ```
 ## <a name="next-steps"></a>後續步驟
-[設定混合式連線](log-analytics-itsmc-connections.md#configure-the-hybrid-connection)。
+[設定 hello 混合式連接](log-analytics-itsmc-connections.md#configure-the-hybrid-connection)。

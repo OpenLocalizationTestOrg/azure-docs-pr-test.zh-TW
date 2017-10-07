@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 媒體分析修訂臉部 | Microsoft Docs"
-description: "本主題示範如何使用 Azure 媒體分析修訂臉部。"
+title: "使用 Azure 媒體分析 aaaRedact 字體 |Microsoft 文件"
+description: "本主題示範使用 Azure media analytics tooredact 面臨的方式。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,24 +14,24 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako;
-ms.openlocfilehash: 747f3ae1a7484515083c590942de3da22568cd39
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1f5688a8c6374151c526a9c702b904d8c3e46164
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="redact-faces-with-azure-media-analytics"></a>使用 Azure 媒體分析修訂臉部
 ## <a name="overview"></a>概觀
-**Azure 媒體修訂器** 是 [Azure 媒體分析](media-services-analytics-overview.md) 媒體處理器 (MP)，可在雲端提供可調整的臉部修訂。 臉部修訂可讓您修改視訊，以模糊所選人物的臉部。 在公共安全和新聞媒體案例中，您可能會想要使用臉部修訂服務。 若要手動修訂包含多個臉部的幾分鐘影片，可能要花上數小時的時間，若使用此服務，則只需要幾個簡單的步驟就能完成臉部修訂程序。 如需詳細資訊，請參閱[此](https://azure.microsoft.com/blog/azure-media-redactor/)部落格。
+**Azure 媒體 Redactor**是[Azure 媒體分析](media-services-analytics-overview.md)提供可擴充的字體 redaction hello 雲端中的媒體處理器 (MP)。 字體 redaction 可讓您 toomodify 順序 tooblur 表面選取個人視訊。 您可以在公用的安全性和新聞媒體案例 toouse hello 朝 redaction 服務。 幾分鐘的影片，其中包含多個字型都會小時 tooredact 以手動方式，但具有此服務的 hello 圖示 redaction 程序將需要幾個簡單的步驟。 如需詳細資訊，請參閱[此](https://azure.microsoft.com/blog/azure-media-redactor/)部落格。
 
-本主題提供有關 **Azure 媒體修訂** 的詳細資料，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它。
+本主題詳細說明有關**Azure 媒體 Redactor** ，並示範如何 toouse 使用 Media Services SDK for.NET。
 
-**Azure 媒體修訂器** MP 目前為預覽功能。 在所有公開的 Azure 區域及美國政府和中國的數據中心皆有提供。 此預覽版本目前以免費方式提供。 
+hello **Azure 媒體 Redactor** MP 目前為預覽狀態。 在所有公開的 Azure 區域及美國政府和中國的數據中心皆有提供。 此預覽版本目前以免費方式提供。 
 
 ## <a name="face-redaction-modes"></a>臉部修訂模式
-臉部修訂的運作方式是，偵測視訊中每個畫面內出現的臉部，並及時向前及向後追蹤臉部物體，讓同一個人在其他角度也可以變得模糊。 自動化修訂程序非常複雜，而且不一定會 100% 產生所需的輸出，因此，媒體分析提供您幾種方式來修改最終輸出。
+臉部 redaction 運作方式是在每個畫面格的視訊中偵測到字體及追蹤 hello 朝物件，兩者向前及向後的時間，使 hello 相同的個人可以模糊從以及其他角度。 hello 自動化的 redaction 程序是很複雜的並不一定會產生 100%的所需的輸出，因此媒體分析提供讓您透過數種方式 toomodify hello 最終輸出。
 
-除了完全自動模式，還有一種兩段式的工作流程可讓您透過識別碼清單選取/取消選取找到的臉部。 此外，為了進行任意的每一畫面調整，MP 使用 JSON 格式的中繼資料檔案。 此工作流程分割成**分析**和**修訂**模式。 您可以將這兩種模式結合成單一階段，以在一個作業中執行這兩項工作，我們將這個模式稱為 **結合**。
+加法 tooa 完全自動模式中，在沒有兩段式工作流程可讓 hello 選取項目/還原-selection 的找到表面透過 Id 的清單。 此外，toomake 任意每框架調整 hello 管理組件會使用 JSON 格式的中繼資料檔案。 此工作流程分割成**分析**和**修訂**模式。 您可以結合在單一行程中一個作業，執行這兩項工作中的 hello 兩種模式這個模式稱為**組合**。
 
 ### <a name="combined-mode"></a>結合模式
 這會自動產生修訂的 mp4，而不需要手動輸入。
@@ -49,14 +49,14 @@ ms.lasthandoff: 08/29/2017
 [請觀看這個影片](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc6608001-e5da-429b-9ec8-d69d8f3bfc79%2Fdance_redacted.mp4)
 
 ### <a name="analyze-mode"></a>分析模式
-兩段式工作流程的 **分析** 階段會接受視訊輸入，並產生臉部位置的 JSON 檔案和每個偵測到之臉部的 jpg 影像。
+hello**分析**hello 兩段式工作流程的階段接受視訊輸入，並且會產生正面的位置，請在 JSON 檔案和 jpg 影像，每個偵測到的字體。
 
 | 階段 | 檔案名稱 | 注意事項 |
 | --- | --- | --- |
 | 輸入資產 |foo.bar |WMV、MPV 或 MP4 格式的視訊 |
 | 輸入組態 |作業組態預設值 |{'version':'1.0', 'options': {'mode':'analyze'}} |
-| 輸出資產 |foo_annotations.json |JSON 格式的臉部位置註解資料。 使用者可編輯此資料以修改模糊處理的邊框。 請參閱以下範例。 |
-| 輸出資產 |foo_thumb%06d.jpg [foo_thumb000001.jpg, foo_thumb000002.jpg] |所偵測到之每個臉部的已裁剪 jpg，數字表示臉部的 labelId |
+| 輸出資產 |foo_annotations.json |JSON 格式的臉部位置註解資料。 這可以編輯 hello 使用者 toomodify hello 模糊週框方塊。 請參閱以下範例。 |
+| 輸出資產 |foo_thumb%06d.jpg [foo_thumb000001.jpg, foo_thumb000002.jpg] |每個裁剪的 jpg 偵測到的表面，其中 hello 數字表示 hello 面臨的 hello labelId |
 
 #### <a name="output-example"></a>輸出範例：
 
@@ -108,22 +108,22 @@ ms.lasthandoff: 08/29/2017
     … truncated
 
 ### <a name="redact-mode"></a>修訂模式
-工作流程的第二個階段會接受必須結合成單一資產的較大量輸入。
+hello hello 工作流程的第二個階段會較大的輸入必須結合成單一資產的數目。
 
-這包括要模糊處理的識別碼清單、原始視訊和註解 JSON。 這個模式會使用註解在輸入視訊上套用模糊處理。
+這包括識別碼 tooblur、 hello 原始視訊，以及 hello 註解 JSON 的清單。 這個模式會使用 hello 註釋上 hello 輸入視訊模糊的 tooapply。
 
-分析階段的輸出不包含原始視訊。 視訊必須上傳到修訂模式工作的輸入資產並選取做為主要檔案。
+hello hello 分析階段的輸出不包括 hello 原始視訊。 hello 視訊需要 toobe 上傳到 hello hello Redact 模式工作的輸入資產，並選取為 hello 主要檔案。
 
 | 階段 | 檔案名稱 | 注意事項 |
 | --- | --- | --- |
 | 輸入資產 |foo.bar |WMV、MPV 或 MP4 格式的視訊。 和步驟 1 相同的視訊。 |
 | 輸入資產 |foo_annotations.json |來自第一個階段的註解中繼資料檔案，並帶有選擇性的修改。 |
-| 輸入資產 |foo_IDList.txt (選擇性) |要修訂之臉部 ID 的選擇性換行分隔清單。 如果保持空白，則會模糊所有臉部。 |
+| 輸入資產 |foo_IDList.txt (選擇性) |選擇性的新行分隔識別碼 tooredact 朝的清單。 如果保持空白，則會模糊所有臉部。 |
 | 輸入組態 |作業組態預設值 |{'version':'1.0', 'options': {'mode':'redact'}} |
 | 輸出資產 |foo_redacted.mp4 |已根據註解套用模糊處理的視訊 |
 
 #### <a name="example-output"></a>範例輸出
-這是選取了一個識別碼的 IDList 輸出。
+這是一個識別碼為選取 IDList hello 輸出。
 
 [請觀看這個影片](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fad6e24a2-4f9c-46ee-9fa7-bf05e20d19ac%2Fdance_redacted1.mp4)
 
@@ -135,9 +135,9 @@ Example foo_IDList.txt
 
 ## <a name="blur-types"></a>模糊類型
 
-在 [結合] 或 [修訂] 模式中，您可以透過 JSON 輸入設定從 5 種不同的模糊模式中進行選擇：[低]、[中]、[高]、[偵錯] 和 [黑色]。 預設會使用 [中]。
+在 hello**組合**或**Redact**模式中，有 5 不同模糊模式，您可以選擇透過 hello JSON 輸入組態：**低**， **Med**，**高**，**偵錯**，和**黑色**。 預設會使用 [中]。
 
-您可以在下面找到模糊類型的範例。
+您可以尋找範例的 hello 模糊下列型別。
 
 ### <a name="example-json"></a>範例 JSON：
 
@@ -163,25 +163,25 @@ Example foo_IDList.txt
 
 ![黑色](./media/media-services-face-redaction/blur5.png)
 
-## <a name="elements-of-the-output-json-file"></a>輸出 JSON 檔案的元素
+## <a name="elements-of-hello-output-json-file"></a>Hello 輸出 JSON 檔案的項目
 
-修訂 MP 能提供高精確度的臉部位置偵測和追蹤功能，可在單一視訊畫面中偵測到最多 64 個人類臉部。 正面的臉部能提供最佳結果，而側面的臉部和較小的臉部 (小於或等於 24x24 像素) 則頗具挑戰性。
+hello Redaction 管理組件提供高精確度朝位置偵測和追蹤可以偵測出 too64 人力字體視訊畫面中。 人臉正面提供 hello 獲得最佳結果，同時端字體和小型的字體 (小於或等於 too24x24 像素為單位) 一大挑戰。
 
 [!INCLUDE [media-services-analytics-output-json](../../includes/media-services-analytics-output-json.md)]
 
 ## <a name="net-sample-code"></a>.NET 範例程式碼
 
-下列程式將示範如何：
+hello 以下程式顯示如何：
 
-1. 建立資產並將媒體檔案上傳到資產。
-2. 根據包含下列 JSON 預設值的組態檔案，建立具有臉部修訂工作的作業。 
+1. 建立資產，並將媒體檔案上傳到 hello 資產。
+2. 建立工作，以根據組態檔包含下列 json 的預設 hello 朝 redaction 工作。 
    
         {'version':'1.0', 'options': {'mode':'combined'}}
-3. 下載輸出 JSON 檔案。 
+3. 下載 hello 輸出 JSON 檔案。 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 
-設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
+設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
 
 #### <a name="example"></a>範例
 
@@ -197,7 +197,7 @@ Example foo_IDList.txt
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -213,17 +213,17 @@ Example foo_IDList.txt
 
             _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-            // Run the FaceRedaction job.
+            // Run hello FaceRedaction job.
             var asset = RunFaceRedactionJob(@"C:\supportFiles\FaceRedaction\SomeFootage.mp4",
                         @"C:\supportFiles\FaceRedaction\config.json");
 
-            // Download the job output asset.
+            // Download hello job output asset.
             DownloadAsset(asset, @"C:\supportFiles\FaceRedaction\Output");
         }
 
         static IAsset RunFaceRedactionJob(string inputMediaFilePath, string configurationFile)
         {
-            // Create an asset and upload the input media file to storage.
+            // Create an asset and upload hello input media file toostorage.
             IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
             "My Face Redaction Input Asset",
             AssetCreationOptions.None);
@@ -231,38 +231,38 @@ Example foo_IDList.txt
             // Declare a new job.
             IJob job = _context.Jobs.Create("My Face Redaction Job");
 
-            // Get a reference to Azure Media Redactor.
+            // Get a reference tooAzure Media Redactor.
             string MediaProcessorName = "Azure Media Redactor";
 
             var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-            // Read configuration from the specified file.
+            // Read configuration from hello specified file.
             string configuration = File.ReadAllText(configurationFile);
 
-            // Create a task with the encoding details, using a string preset.
+            // Create a task with hello encoding details, using a string preset.
             ITask task = job.Tasks.AddNew("My Face Redaction Task",
             processor,
             configuration,
             TaskOptions.None);
 
-            // Specify the input asset.
+            // Specify hello input asset.
             task.InputAssets.Add(asset);
 
-            // Add an output asset to contain the results of the job.
+            // Add an output asset toocontain hello results of hello job.
             task.OutputAssets.AddNew("My Face Redaction Output Asset", AssetCreationOptions.None);
 
-            // Use the following event handler to check job progress.  
+            // Use hello following event handler toocheck job progress.  
             job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-            // Launch the job.
+            // Launch hello job.
             job.Submit();
 
-            // Check job execution and wait for job to finish.
+            // Check job execution and wait for job toofinish.
             Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
             progressJobTask.Wait();
 
-            // If job state is Error, the event handling
+            // If job state is Error, hello event handling
             // method for job progress should log errors.  Here we check
             // for error state and exit if needed.
             if (job.State == JobState.Error)

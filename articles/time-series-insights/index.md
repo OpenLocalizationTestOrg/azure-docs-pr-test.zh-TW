@@ -1,6 +1,6 @@
 ---
-title: "Azure Time Series Insights 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何透過完全受管理的事件處理，在雲端執行 IoT 分析。 即時分析來自應用程式、感應器、裝置等的資料。"
+title: "aaaAzure 時間數列 Insights 文件-教學課程中，API 參考 |Microsoft 文件"
+description: "了解如何在 hello toorun IoT 分析雲端完全受管理的事件處理。 即時分析來自應用程式、感應器、裝置等的資料。"
 services: time-series-insights
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 04/13/2017
 ms.author: carolz
-ms.openlocfilehash: d22a3f0484da78d03dbe8411e74eb408185b1f30
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2301d20aa2fb685279e2efc657ffcd41571af0c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-time-series-insights-documentation"></a>Azure Time Series Insights 文件 
  
-了解如何設立 Time Series Insights 環境，探索和分析您 IoT 解決方案或連接物件的時間序列資料。 文件中分享了必要條件、操作說明、API 參考和其他文件，可協助您在數分鐘內開始使用。 
+了解時間序列 Insights 環境 tooset 如何瀏覽及分析時間序列資料的 IoT 解決方案，或連接項目。 文件共用 hello 必要條件，如何，API 參考，而且您 tooget 啟動以分鐘為單位的其他文件 toohelp。 
  
 <ul class="panelContent cardsFTitle"> 
     <li> 

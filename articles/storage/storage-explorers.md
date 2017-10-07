@@ -1,6 +1,6 @@
 ---
-title: "與 Azure 儲存體搭配使用的工具 | Microsoft Docs"
-description: "可讓您檢視 Azure 儲存體資料並與其互動的工具清單。"
+title: "使用 Azure 儲存體 aaaTools |Microsoft 文件"
+description: "可讓您 tooview/與您 Azure 儲存體資料互動的工具清單。"
 services: storage
 documentationcenter: 
 author: dineshmurthy
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: dineshmurthy
-ms.openlocfilehash: 620efda06d8225b21b6bb9b104b79061ebb6515c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3308de2153099a05a676ab1d76426bd932e8a96c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-client-tools"></a>Azure 儲存體用戶端工具
-Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工具，檢視他們資料或與其互動。 我們在下表中列出幾個可讓您這麼做的工具。 如果該區塊可以列舉及/或存取資料抽象，我們便在該區塊中放一個 "X"。 下表也會顯示該工具是否免費提供。 「試用」表示有免費試用版，但完整產品並非免費。 「Y/N」表示有某個版本可供免費使用，而另一個版本則需購買使用。
+Azure 儲存體的使用者經常想 toobe 無法 tooview/互動與他們使用的 Azure 儲存體用戶端工具的資料。 在下列 hello 表格，我們列出數個工具可讓您 toodo 這。 我們將"X"每個區塊中提供 hello 能力 tooeither 列舉及/或存取 hello 資料抽象概念。 hello 資料表也會顯示 hello 工具是否可用。 「 試用 」 表示免費的試用版，但 hello 完整產品不是可用。 「Y/N」表示有某個版本可供免費使用，而另一個版本則需購買使用。
 
-我們只提供可用的 Azure 儲存體用戶端工具的快照。 這些工具在功能上可能會繼續發展及成長。 如果有修正或更新，請留言讓我們知道。 如果您知道有應該在這裡的工具，也請留言讓我們知道，我們很樂意將它們加入。
+我們只提供了 hello 可用的 Azure 儲存體用戶端工具的快照集。 這些工具可能會繼續 tooevolve 以及功能的方式成長。 如果沒有更正或更新，請將註解 toolet 我們知道。 hello 也是如此如果您知道工具應該 toobe 這裡，我們會很樂意 tooadd 它們。
 
 **Microsoft Azure 儲存體用戶端工具**
 
@@ -91,7 +91,7 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
 
 **協力廠商 Azure 儲存體工具**
 
-我們尚未驗證下列協力廠商工具所宣稱的功能或品質，且其清單並不代表 Microsoft 背書。
+我們並未驗證 hello 功能或宣告 hello 下列協力廠商工具和其清單的品質不代表 microsoft 背書。
 
 <table>
   <tr>

@@ -1,6 +1,6 @@
 ---
-title: "對 Azure Blob 儲存體中的容器與 Blob 啟用公用讀取權限 | Microsoft Docs"
-description: "了解如何讓容器與 Blob 可供匿名存取，以及如何以程式設計方式存取。"
+title: "aaaEnable 公開讀取權限為容器和 blob 在 Azure Blob 儲存體 |Microsoft 文件"
+description: "深入了解如何 toomake 容器和 blob 供匿名存取，以及如何 tooaccess 它們以程式設計的方式。"
 services: storage
 documentationcenter: 
 author: mmacy
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: marsma
-ms.openlocfilehash: c7b83667b58649c156a62fa68cebd854c13e2cba
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0675b5dc4d32a3a0a34376ae4c049542b07ba03a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-anonymous-read-access-to-containers-and-blobs"></a>管理對容器與 Blob 的匿名讀取權限。
-您可以對 Azure Blob 儲存體中的容器及其 Blob 啟用匿名與公用讀取權限。 如此您就可以將這些資源的唯讀存取權限授與他人，而無須共用您的帳戶金鑰，也無須要求共用存取簽章 (SAS)。
+# <a name="manage-anonymous-read-access-toocontainers-and-blobs"></a>管理匿名讀取權限 toocontainers 和 blob
+您可以啟用匿名、 公用讀取權限 tooa 容器和其在 Azure Blob 儲存體的 blob。 如此一來，您可以授與唯讀存取 toothese 資源共用您的帳戶金鑰，而不需要共用的存取簽章 (SAS)。
 
-公用讀取權限適用於您想要某些 Blob 永遠可供匿名讀取存取的狀況。 對於更深入的控管需求，您可以建立共用存取簽章。 共用存取簽章可讓您針對一段特定時間提供不同權限的限制存取。 如需建立共用存取簽章的詳細資訊，請參閱[在 Azure 儲存體中使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
+公用讀取權限是最佳的案例中，您特定 blob tooalways 可供匿名讀取權限。 對於更深入的控管需求，您可以建立共用存取簽章。 共用的存取簽章可讓您 tooprovide 限制存取特定的時間內使用不同的權限。 如需建立共用存取簽章的詳細資訊，請參閱[在 Azure 儲存體中使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
 
-## <a name="grant-anonymous-users-permissions-to-containers-and-blobs"></a>授與容器和 Blob 的匿名使用者權限
-根據預設，可能只有儲存體帳戶的擁有者能存取容器及其內部的任何 Blob。 若要為匿名使用者授與容器及其 Blob 的讀取權限，您可以設定容器權限以允許公用存取。 匿名使用者可以讀取可公開存取之容器內的 Blob，而不需驗證要求。
+## <a name="grant-anonymous-users-permissions-toocontainers-and-blobs"></a>授與匿名使用者的權限 toocontainers 和 blob
+根據預設，容器和內部任何 blob 能存取只能由 hello hello 儲存體帳戶的擁有者。 toogive 匿名使用者的讀取權限 tooa 容器和其 blob，您可以設定 hello 容器的權限 tooallow 公用存取。 匿名使用者可以讀取可公開存取容器中的 blob，而不需驗證 hello 要求。
 
-您可以為容器設定下列權限︰
+您可以設定容器具有下列權限的 hello:
 
-* **無公用讀取權限︰**只有儲存體帳戶擁有者可以存取容器和其 Blob。 這是所有新建容器的預設值。
-* **僅對 Blob 有公用讀取權限：**您可以透過匿名要求讀取容器內的 Blob，但您無法使用容器資料。 匿名用戶端無法列舉容器內的 Blob。
-* **完整的公用讀取權限：**可以透過匿名要求讀取所有容器和 Blob 資料。 用戶端可以透過匿名要求列舉容器內的 Blob，但無法列舉儲存體帳戶內的容器。
+* **沒有公開讀取權限：** hello 容器和其 blob 可以只由存取 hello 儲存體帳戶擁有者。 這是所有的新容器的 hello 預設。
+* **僅對 blob 具有公開讀取：** hello 容器中的 Blob 可以讀取的匿名要求，但沒有可用容器資料。 匿名用戶端無法列舉 hello hello 容器內的 blob。
+* **完整的公用讀取權限：**可以透過匿名要求讀取所有容器和 Blob 資料。 用戶端可以匿名要求，列舉 hello 容器中的 blob，但無法列舉 hello 儲存體帳戶中的容器。
 
-您可以使用下列方式設定容器權限：
+您可以使用下列 tooset 容器權限的 hello:
 
 * [Azure 入口網站](https://portal.azure.com)
 * [Azure PowerShell](storage-powershell-guide-full.md#how-to-manage-azure-blobs)
 * [Azure CLI 2.0](storage-azure-cli.md#create-and-manage-blobs)
-* 使用其中一個儲存體用戶端程式庫或 REST API 以程式設計方式設定
+* 以程式設計方式，利用其中一個 hello 儲存體用戶端程式庫或 hello REST API
 
-### <a name="set-container-permissions-in-the-azure-portal"></a>在 Azure 入口網站中設定容器權限
-若要在 [Azure 入口網站](https://portal.azure.com)中設定容器權限，請遵循下列步驟：
+### <a name="set-container-permissions-in-hello-azure-portal"></a>在 hello Azure 入口網站中設定容器的權限
+在 hello tooset 容器權限[Azure 入口網站](https://portal.azure.com)，請遵循下列步驟：
 
-1. 在入口網站中開啟 [儲存體帳戶] 刀鋒視窗。 您可以在主要入口網站的功能表刀鋒視窗中選取 [儲存體帳戶]，來尋找您的儲存體帳戶。
-1. 在功能表刀鋒視窗的 [BLOB 服務] 下，選取 [容器]。
-1. 以滑鼠右鍵按一下容器資料列或選取省略符號來開啟容器的**操作功能表**。
-1. 在操作功能表中選取 [存取原則]。
-1. 從下拉式功能表中選取 [存取類型]。
+1. 開啟您**儲存體帳戶**hello 入口網站中的刀鋒視窗。 您可以尋找儲存體帳戶選取**儲存體帳戶**hello 主要入口網站功能表刀鋒視窗中。
+1. 在下**BLOB 服務**hello 功能表 刀鋒視窗中，選取**容器**。
+1. 以滑鼠右鍵按一下 hello 容器資料列或選取 hello 省略 tooopen hello 容器的**操作功能表**。
+1. 選取**存取原則**hello 內容功能表中。
+1. 選取**存取類型**hello 從下拉功能表。
 
     ![編輯容器中繼資料對話方塊](./media/storage-manage-access-to-resources/storage-manage-access-to-resources-0.png)
 
 ### <a name="set-container-permissions-with-net"></a>使用 .NET 設定容器權限
-若要使用 .NET 的 C# 和儲存體用戶端程式庫來設定容器的權限，請先呼叫 **GetPermissions** 方法來擷取容器的現有權限。 接著為由 **GetPermissions** 方法傳回的 **BlobContainerPermissions** 物件設定 **PublicAccess** 屬性。 最後，使用更新的權限呼叫 **SetPermissions** 方法。
+tooset for.NET，使用 C# 和 hello 儲存體用戶端程式庫容器的權限第一次擷取 hello 容器的現有權限呼叫 hello **GetPermissions**方法。 然後組 hello **PublicAccess**屬性 hello **BlobContainerPermissions** hello 所傳回的物件**GetPermissions**方法。 最後，呼叫 hello **SetPermissions**方法 hello 與更新權限。
 
-下列範例將容器的權限設為完整公用讀取權限。 若只要將 Blob 的權限設為公用讀取權限，請將 **PublicAccess** 屬性設為 **BlobContainerPublicAccessType.Blob**。 若要移除匿名使用者的所有權限，請將屬性設為 **BlobContainerPublicAccessType.Off**。
+下列範例中的 hello 設定 hello 容器的權限 toofull 公用讀取權限。 tooset 權限 toopublic 「 讀取 」 存取 blob，設定 hello **PublicAccess**屬性太**BlobContainerPublicAccessType.Blob**。 tooremove 所有匿名使用者，權限設定太 hello 屬性**BlobContainerPublicAccessType.Off**。
 
 ```csharp
 public static void SetPublicContainerPermissions(CloudBlobContainer container)
@@ -67,21 +67,21 @@ public static void SetPublicContainerPermissions(CloudBlobContainer container)
 ```
 
 ## <a name="access-containers-and-blobs-anonymously"></a>匿名存取容器與 Blob
-匿名存取容器與 Blob 的用戶端可使用不需要認證的建構函式。 以下範例顯示可匿名參考 Blob 服務資源的不同方法。
+匿名存取容器與 Blob 的用戶端可使用不需要認證的建構函式。 hello 遵循範例顯示一些不同方式 tooreference Blob 服務資源以匿名方式。
 
 ### <a name="create-an-anonymous-client-object"></a>建立匿名用戶端物件
-您可以為帳戶提供 Blob 服務端點，來建立用於匿名存取的新服務用戶端物件。 不同，您也必須知道可供匿名存取的帳戶中的容器名稱。
+您可以藉由提供 hello Blob 服務端點 hello 帳戶建立新的服務用戶端物件來匿名存取。 不過，您也必須知道 hello 供匿名存取該帳戶中的容器名稱。
 
 ```csharp
 public static void CreateAnonymousBlobClient()
 {
-    // Create the client object using the Blob service endpoint.
+    // Create hello client object using hello Blob service endpoint.
     CloudBlobClient blobClient = new CloudBlobClient(new Uri(@"https://storagesample.blob.core.windows.net"));
 
-    // Get a reference to a container that's available for anonymous access.
+    // Get a reference tooa container that's available for anonymous access.
     CloudBlobContainer container = blobClient.GetContainerReference("sample-container");
 
-    // Read the container's properties. Note this is only possible when the container supports full public read access.
+    // Read hello container's properties. Note this is only possible when hello container supports full public read access.
     container.FetchAttributes();
     Console.WriteLine(container.Properties.LastModified);
     Console.WriteLine(container.Properties.ETag);
@@ -89,15 +89,15 @@ public static void CreateAnonymousBlobClient()
 ```
 
 ### <a name="reference-a-container-anonymously"></a>匿名參考容器
-如果您有可供匿名使用之容器的 URL，您可以使用該 URL 直接參考容器。
+如果您擁有 hello URL tooa 容器以匿名方式可用，您可以使用它 tooreference hello 容器直接。
 
 ```csharp
 public static void ListBlobsAnonymously()
 {
-    // Get a reference to a container that's available for anonymous access.
+    // Get a reference tooa container that's available for anonymous access.
     CloudBlobContainer container = new CloudBlobContainer(new Uri(@"https://storagesample.blob.core.windows.net/sample-container"));
 
-    // List blobs in the container.
+    // List blobs in hello container.
     foreach (IListBlobItem blobItem in container.ListBlobs())
     {
         Console.WriteLine(blobItem.Uri);
@@ -106,7 +106,7 @@ public static void ListBlobsAnonymously()
 ```
 
 ### <a name="reference-a-blob-anonymously"></a>匿名參考 Blob
-如果您有可供匿名存取之 Blob 的 URL，您可以使用該 URL 直接參考 Blob：
+如果您有可供匿名存取的 hello URL tooa blob，您可以參考直接使用該 URL 的 hello blob:
 
 ```csharp
 public static void DownloadBlobAnonymously()
@@ -116,8 +116,8 @@ public static void DownloadBlobAnonymously()
 }
 ```
 
-## <a name="features-available-to-anonymous-users"></a>匿名使用者可使用的功能
-下表顯示當容器的 ACL 設為允許公用存取時，匿名使用者可能會呼叫哪些作業。
+## <a name="features-available-tooanonymous-users"></a>功能可用 tooanonymous 使用者
+hello 下表顯示容器的 ACL 設定 tooallow 公用存取時，可能會由匿名使用者呼叫哪些作業。
 
 | REST 作業 | 具有完整公開讀取權限 | 僅對 Blob 有公開讀取權限 |
 | --- | --- | --- |
@@ -150,6 +150,6 @@ public static void DownloadBlobAnonymously()
 
 ## <a name="next-steps"></a>後續步驟
 
-* [Azure 儲存體服務的驗證](https://msdn.microsoft.com/library/azure/dd179428.aspx)
+* [Hello Azure 儲存體服務的驗證](https://msdn.microsoft.com/library/azure/dd179428.aspx)
 * [使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)
 * [使用共用存取簽章來委派存取權](https://msdn.microsoft.com/library/azure/ee395415.aspx)

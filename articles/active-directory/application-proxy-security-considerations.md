@@ -1,5 +1,5 @@
 ---
-title: "Azure AD 應用程式 Proxy 的安全性考量 | Microsoft Docs"
+title: "Azure AD Application Proxy 的 aaaSecurity 考量 |Microsoft 文件"
 description: "涵蓋使用 Azure AD 應用程式 Proxy 的安全性考量"
 services: active-directory
 documentationcenter: 
@@ -15,51 +15,51 @@ ms.date: 08/03/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: c6ead651133eb17fd55f7567cdb14dc3bcd64245
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ebd14b9d1fc8f4629c5916e5a910595727d935d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="security-considerations-for-accessing-apps-remotely-with-azure-ad-application-proxy"></a>使用 Azure AD 應用程式 Proxy 遠端存取應用程式的安全性考量
 
 本文說明 Azure Active Directory 應用程式 Proxy 如何提供遠端發佈及存取應用程式的安全服務。
 
-下圖顯示 Azure AD 如何讓您在內部部署應用程式實現安全的遠端存取。
+下列圖表顯示 Azure AD 的 hello 可讓安全遠端存取 tooyour 在內部部署應用程式。
 
  ![透過 Azure AD 應用程式 Proxy 進行安全遠端存取的示意圖](./media/application-proxy-security-considerations/secure-remote-access.png)
 
 ## <a name="security-benefits"></a>安全性優點
 
-Azure AD 應用程式 Proxy 提供下列安全性優點︰
+Azure AD 應用程式 Proxy 提供下列安全性優點的 hello:
 
 ### <a name="authenticated-access"></a>已驗證的存取 
 
-如果您選擇使用 Azure Active Directory 預先驗證，則只有已驗證的連線可以存取您的網路。
+如果您選擇 toouse Azure Active Directory 預先驗證時，已驗證的連線可以存取您的網路。
 
-Azure AD 應用程式 Proxy 依賴 Azure AD Security Token Service (STS) 來進行所有驗證。  預先驗證 (就其本質) 會封鎖大量匿名攻擊，因為只有已驗證的身分識別可以存取後端應用程式。
+Azure AD Application Proxy 依賴 hello 所有驗證的 Azure AD 安全性權杖服務 (STS)。  預先驗證，本質，區塊中，大量的匿名攻擊，因為只驗證之身分識別可以存取 hello 後端應用程式。
 
 如果您選擇 Passthrough 作為預先驗證方法，就無法獲得這項優點。 
 
 ### <a name="conditional-access"></a>條件式存取
 
-在建立您的網路連線之前，先套用更豐富的原則控制。
+適用於更豐富的原則控制項之前 tooyour 網路建立的連接。
 
-使用[條件式存取](active-directory-conditional-access-azuread-connected-apps.md)，就可以定義允許哪些流量存取後端應用程式上的限制。 您可以位置、驗證強度和使用者風險狀況作為基礎，來建立限制登入的原則。
+與[條件式存取](active-directory-conditional-access-azuread-connected-apps.md)，您可以定義哪些流量的限制允許 tooaccess 後端應用程式。 您可以位置、驗證強度和使用者風險狀況作為基礎，來建立限制登入的原則。
 
-您也可以使用條件式存取來設定 Multi-Factor Authentication 原則，為您的使用者驗證新增另一層的安全性。 
+您也可以使用條件式存取 tooconfigure 多重要素驗證原則，新增另一層的安全性 tooyour 使用者驗證。 
 
 ### <a name="traffic-termination"></a>流量終止
 
-終止雲端中所有的流量。
+所有流量會都終止 hello 雲端中。
 
-Azure AD 應用程式 Proxy 是反向 Proxy，因此所有至後端應用程式的流量會在服務終止。 工作階段只能利用後端伺服器來重新建立，也就是說，後端伺服器不會對直接的 HTTP 流量公開。 此設定表示，您會受到更妥善的保護，可免於目標型攻擊。
+因為 Azure AD Application Proxy 是反向 proxy，所有流量 tooback 端應用程式會都終止在 hello 服務。 hello 工作階段可以取得重新建立只能搭配 hello 後端伺服器，也就是說，您的後端伺服器在不公開 toodirect HTTP 流量。 此設定表示，您會受到更妥善的保護，可免於目標型攻擊。
 
 ### <a name="all-access-is-outbound"></a>所有存取都是輸出 
 
-不需要開啟連往公司網路的輸入連線。
+您不需要 tooopen 傳入的連接 toohello 公司網路。
 
-應用程式 Proxy 連接器只會使用連往 Azure AD 應用程式 Proxy 服務的輸出連線；亦即，您不需要開啟防火牆連接埠以供連入連線使用。 傳統 Proxy 需要周邊網路 (也稱為「DMZ」、「非軍事區」或「遮蔽式子網路」) 並在網路邊緣允許未經授權連線的存取權。 這種情節需要額外投資許多 Web 應用程式防火牆產品，以便分析流量並對環境提供額外的保護。 使用應用程式 Proxy，您就不需要周邊網路，因為所有連線皆為輸出方向，並且是透過安全通道來傳輸。
+應用程式 Proxy 連接器只使用輸出連線 toohello Azure AD 應用程式 Proxy 服務，這表示沒有必要 tooopen 防火牆連接埠的連入連線。 傳統的 proxy 所需的周邊網路 (也稱為*DMZ*，*非軍事區域*，或*過濾的子網路*)，允許存取 toounauthenticated在 hello 網路邊緣的連接。 此案例需要許多額外的投資在 web 應用程式的防火牆產品 tooanalyze 流量，並提供加法保護 toohello 環境。 使用應用程式 Proxy，您就不需要周邊網路，因為所有連線皆為輸出方向，並且是透過安全通道來傳輸。
 
 如需連接器的詳細資訊，請參閱[了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)。
 
@@ -67,109 +67,109 @@ Azure AD 應用程式 Proxy 是反向 Proxy，因此所有至後端應用程式�
 
 取得最新的安全性保護。
 
-因為應用程式 Proxy 是 Azure Active Directory 的一部分，所以可以利用 [Azure AD Identity Protection](active-directory-identityprotection.md)，其中包含來自 Microsoft Security Response Center 和 Digital Crimes Unit 的機器學習服務導向情報和資料。 我們共同主動識別遭入侵的帳戶，並提供來自高風險登入的即時防護。我們考慮許多因素，例如來自受感染裝置、透過匿名網路以及來自非典型與假位置的存取。
+因為它是 Azure Active Directory 的一部分，可以利用應用程式 Proxy [Azure AD Identity Protection](active-directory-identityprotection.md)、 機器學習驅動智慧與 hello Microsoft Security Response Center 和數位犯罪單位的資料。 我們共同主動識別遭入侵的帳戶，並提供來自高風險登入的即時防護。我們考慮許多因素，例如來自受感染裝置、透過匿名網路以及來自非典型與假位置的存取。
 
 這些報告和事件中有許多已可透過 API 與安全性資訊和事件管理 (SIEM) 系統整合。
 
 ### <a name="remote-access-as-a-service"></a>遠端存取即服務
 
-您不必擔心維護及修補內部部署伺服器的事宜。
+您不需要 tooworry 關於維護及修補內部部署伺服器。
 
-未更新的軟體仍需負責處理大量攻擊。 Azure AD 應用程式 Proxy 是 Microsoft 自有的網際網路級別服務，因此您永遠會獲得最新的安全性修補程式和升級。
+未更新的軟體仍需負責處理大量攻擊。 Azure AD Application Proxy 是 Microsoft 所擁有，網際網路規模服務，因此您一定要取得最新安全性修補程式 hello 與升級。
 
-為了改善 Azure AD 應用程式 Proxy 所發佈應用程式的安全性，我們會封鎖 Web 編目程式傀儡程式，使其無法對您的應用程式編製索引和進行保存。 每次 Web 編目程式傀儡程式嘗試擷取已發佈應用程式的傀儡程式設定時，應用程式 Proxy 會以含有 `User-agent: * Disallow: /` 的 robots.txt 檔案回覆。
+tooimprove hello 由 Azure AD Application Proxy 發行應用程式的安全性，我們會封鎖從編製索引和封存您的應用程式的 web crawler 機器人。 每次 Web 編目程式傀儡程式嘗試擷取已發佈應用程式的傀儡程式設定時，應用程式 Proxy 會以含有 `User-agent: * Disallow: /` 的 robots.txt 檔案回覆。
 
-## <a name="under-the-hood"></a>幕後
+## <a name="under-hello-hood"></a>Hello 幕後
 
 Azure AD 應用程式 Proxy 是由兩個部分組成︰
 
-* 雲端架構服務︰此服務會在 Azure 中執行，且外部用戶端/使用者會連線到此服務。
-* [內部部署連接器](application-proxy-understand-connectors.md)︰這是內部部署元件，此連接器會接聽來自 Azure AD 應用程式 Proxy 服務的要求，並處理對內部應用程式的連線。 
+* hello 雲端式服務： 此服務執行於 Azure，且其中 hello 外部的用戶端/使用者連線。
+* [hello 內部部署連接器](application-proxy-understand-connectors.md): hello 連接器在內部部署元件會接聽來自 hello Azure AD 應用程式 Proxy 服務的要求和處理連線 toohello 內部應用程式。 
 
-以下為建立連接器與應用程式 Proxy 服務之間流量的時機︰
+建立 hello 連接器與 hello 應用程式 Proxy 服務之間的資料流程時：
 
-* 第一次設定連接器。
-* 連接器會從應用程式 Proxy 服務提取設定資訊。
+* 先設定 hello 連接器。
+* hello 連接器會提取從 hello 應用程式 Proxy 服務的組態資訊。
 * 使用者會存取發佈的應用程式。
 
 >[!NOTE]
->所有通訊會透過 SSL 發生，且一律源自於至應用程式 Proxy 服務的連接器。 此服務只會輸出。
+>所有的通訊會透過 SSL，而且它們永遠都是源自於 hello 連接器 toohello 應用程式 Proxy 服務。 hello 服務僅輸出。
 
-連接器會使用用戶端憑證來驗證幾乎所有呼叫的應用程式 Proxy 服務。 此程序的唯一例外是可供建立用戶端憑證的初始設定步驟。
+hello 連接器會使用用戶端憑證 tooauthenticate toohello 幾乎所有呼叫的應用程式 Proxy 服務。 hello 只例外狀況 toothis 程序是 hello 初始設定步驟中，建立 hello 用戶端憑證的位置。
 
-### <a name="installing-the-connector"></a>安裝連接器
+### <a name="installing-hello-connector"></a>安裝 hello connector
 
-第一次設定連接器時，會發生下列流程事件：
+當第一次設定 hello 連接器時，hello 遵循的流程事件會發生：
 
-1. 連接器註冊服務會做為連接器安裝的一部分。 系統會提示使用者輸入其 Azure AD 系統管理員認證。 接著會向 Azure AD 應用程式 Proxy 服務顯示此驗證的必要權杖。
-2. 應用程式 Proxy 服務會評估權杖。 它會確保使用者是在獲得權杖之租用戶內的公司系統管理員。 如果使用者不是系統管理員，就會終止流程。
-3. 連接器會產生用戶端憑證要求，並與權杖一起傳遞至應用程式 Proxy 服務。 服務接著會驗證權杖，並簽署用戶端憑證要求。
-4. 連接器可以使用此用戶端憑證，以便未來與應用程式 Proxy 服務通訊。
-5. 連接器會使用其用戶端憑證從服務執行系統設定資料的初始提取，而它現在已準備好接受要求。
+1. hello 連接器註冊 toohello 服務就會發生 hello hello 連接器安裝的一部分。 使用者會提示的 tooenter 其 Azure AD 系統管理員認證。 從這項驗證權杖會接著呈現 toohello Azure AD 應用程式 Proxy 服務。
+2. hello 應用程式 Proxy 服務會評估 hello 語彙基元。 它會確保該 hello 使用者即 hello 語彙基元的 hello 租用戶內的公司系統管理員已發出。 如果 hello 使用者不是系統管理員，則會終止 hello 程序。
+3. hello 連接器產生的用戶端憑證要求，並傳遞，連同 hello 語彙基元，toohello 應用程式 Proxy 服務。 hello 服務接著會驗證 hello 語彙基元，並簽署 hello 用戶端憑證要求。
+4. hello 連接器會使用與 hello 應用程式 Proxy 服務的未來通訊 hello 用戶端憑證。
+5. hello 連接器 hello 系統組態資料的初始提取從 hello 服務使用用戶端憑證，並已準備好 tootake 要求。
 
-### <a name="updating-the-configuration-settings"></a>更新組態設定
+### <a name="updating-hello-configuration-settings"></a>更新 hello 組態設定
 
-每當應用程式 Proxy 服務更新組態設定時，就會發生下列流程事件︰
+每當應用程式 Proxy 服務的 hello 更新 hello 組態設定，hello 遵循的流程事件會發生：
 
-1. 連接器會使用其用戶端憑證連線至應用程式 Proxy 服務內的組態端點。
-2. 用戶端憑證經過驗證後，應用程式 Proxy 服務會將組態資料傳回連接器 (例如，連接器應屬之連接器群組)。
-3. 如果目前的憑證已存在超過 180 天，連接器就會產生新的憑證要求，每隔 180 天會有效地更新用戶端憑證。
+1. hello 連接器會使用其用戶端憑證，以連接 toohello hello 應用程式 Proxy 服務設定端點。
+2. Hello 應用程式 Proxy 服務已驗證 hello 用戶端憑證之後，傳回組態資料 toohello 連接器 （例如，hello 連接器的 hello 連接器群組應該是的一部分）。
+3. 如果 180 天以前 hello 目前的憑證，hello 連接器會產生新的憑證要求，並有效地更新每 180 天 hello 用戶端憑證。
 
 ### <a name="accessing-published-applications"></a>存取已發佈的應用程式
 
-當使用者存取已發佈的應用程式時，會在應用程式 Proxy 服務和應用程式 Proxy 連接器之間進行下列事件：
+當使用者存取已發行的應用程式時，hello 下列事件會發生 hello 應用程式 Proxy 服務之間 hello 應用程式 Proxy 連接器：
 
-1. [服務會驗證應用程式的使用者](#the-service-checks-the-configuration-settings-for-the-app)
-2. [服務會將要求放在連接器佇列中](#The-service-places-a-request-in-the-connector-queue)
-3. [連接器會處理來自佇列的要求](#the-connector-receives-the-request-from-the-queue)
-4. [連接器會等候回應](#the-connector-waits-for-a-response)
-5. [服務會將資料串流給使用者](#the-service-streams-data-to-the-user)
+1. [hello 服務會驗證 hello hello 應用程式的使用者](#the-service-checks-the-configuration-settings-for-the-app)
+2. [hello 服務會將要求放在 hello 連接器佇列](#The-service-places-a-request-in-the-connector-queue)
+3. [連接器處理 hello hello 佇列要求](#the-connector-receives-the-request-from-the-queue)
+4. [hello 連接器等候回應](#the-connector-waits-for-a-response)
+5. [hello 服務資料流資料 toohello 使用者](#the-service-streams-data-to-the-user)
 
-若要深入了解每個步驟中所發生的事項，請繼續閱讀。
-
-
-#### <a name="1-the-service-authenticates-the-user-for-the-app"></a>1.服務會驗證應用程式的使用者
-
-如果您將應用程式設定成使用 Passthrough 作為其預先驗證方法時，就會跳過本節中的步驟。
-
-如果您將應用程式設定為以 Azure AD 預先驗證時，使用者會重新導向至 Azure AD STS 驗證，並採取下列步驟：
-
-1. 應用程式 Proxy 會檢查特定應用程式的所有條件式存取原則需求。 這個步驟可確保已對應用程式指派使用者。 如果需要雙步驟驗證，驗證順序會提示使用者進行第二驗證方法。
-
-2. 通過所有檢查後，Azure AD STS 會針對應用程式發出已簽署權杖，並將使用者重新導向回到應用程式 Proxy 服務。
-
-3. 應用程式 Proxy 會驗證權杖已發給正確的應用程式。 它也會執行其他檢查，例如確保權杖是由 Azure AD 所簽署，且仍在有效期限內。
-
-4. 應用程式 Proxy 會設定加密的驗證 cookie，以表示已發生應用程式驗證。 此 cookie 包含根據 Azure AD 的權杖和其他資料之到期時間戳記，例如以驗證為基礎的使用者名稱。 會使用僅應用程式 Proxy 服務所知的私密金鑰來加密此 cookie。
-
-5. 應用程式 Proxy 會將使用者重新導向回到原始要求的 URL。
-
-如果預先驗證步驟的任何部分失敗，使用者的要求會遭到拒絕，且使用者會顯示訊息，指出問題的來源。
+深入了解什麼發生在每個步驟，toolearn 保留讀取。
 
 
-#### <a name="2-the-service-places-a-request-in-the-connector-queue"></a>2.服務會將要求放在連接器佇列中
+#### <a name="1-hello-service-authenticates-hello-user-for-hello-app"></a>1.hello 服務會驗證 hello hello 應用程式的使用者
 
-連接器保持對應用程式 Proxy 服務開啟輸出連線。 當要求傳入時，服務會在其中一個開啟連線上佇列要求，以供連接器挑選。
+如果您設定 hello 應用程式 toouse 傳遞做為其預先驗證方法時，會略過本節中的 hello 步驟。
 
-要求包含來自應用程式的項目，例如要求標頭、來自加密 cookie 的資料、提出要求的使用者，以及要求識別碼。 雖然來自加密 cookie 的資料會與要求一起傳送，但驗證 cookie 本身並不是。
+如果您使用 Azure AD 設定 hello 應用程式 toopreauthenticate，使用者會重新導向的 toohello Azure AD STS tooauthenticate，而且 hello 下列步驟進行：
 
-#### <a name="3-the-connector-processes-the-request-from-the-queue"></a>3.連接器會處理來自佇列的要求。 
+1. 應用程式 Proxy 會檢查任何 hello 特定應用程式的條件式存取原則需求。 這個步驟可確保該 hello 使用者已獲指派 toohello 應用程式。 如果需要雙步驟驗證，hello 驗證順序就會提示 hello 使用者在第二個驗證方法。
 
-根據要求，應用程式 Proxy 會執行下列其中一個動作︰
+2. 已通過所有檢查之後，hello Azure AD STS 發出 hello 應用程式的簽署語彙基元，並重新導向 hello 使用者回復 toohello 應用程式 Proxy 服務。
 
-* 如果要求是簡單的作業 (例如，主體內沒有資料現狀符合 RESTful「GET」要求)，連接器會建立連往目標內部資源的連線，然後等候回應。
+3. 應用程式 Proxy 會確認該 hello 語彙基元發出 toocorrect hello 應用程式。 它也會執行其他檢查權杖簽署由 Azure AD，例如確保該 hello，它仍在 hello 有效的視窗。
 
-* 如果要求在主體中具有與它相關聯的資料 (例如，RESTful「POST」作業)，連接器會使用用戶端憑證建立與應用程式 Proxy 執行個體的輸出連線。 它會建立此連線來要求資料，並開啟與內部部署資源的連線。 在收到來自連接器的要求後，應用程式 Proxy 服務會開始接受來自使用者的內容，並將資料轉送至連接器。 連接器會依次將資料轉送到內部資源。
+4. 應用程式 Proxy 設定發生驗證 toohello 應用程式加密的驗證 cookie tooindicate。 hello cookie 包含根據 hello 來自 Azure AD 的權杖及其他資料的到期時間戳記，例如 hello hello 驗證的使用者名稱為基礎。 使用已知 toohello 應用程式 Proxy 服務的私密金鑰來加密 hello cookie。
 
-#### <a name="4-the-connector-waits-for-a-response"></a>4.連接器會等候回應。
+5. 應用程式 Proxy 重新導向 hello 使用者回復 toohello 原始要求的 URL。
 
-完成所有內容的要求並傳輸至後端後，連接器會等候回應。
+如果 hello 預先驗證步驟的任何部分失敗，hello 使用者的要求遭到拒絕，並 hello 使用者顯示訊息，指出 hello hello 問題來源。
 
-在收到回應後，連接器會建立對應用程式 Proxy 服務的輸出連線，以傳回標頭詳細資料，並開始串流傳回的資料。
 
-#### <a name="5-the-service-streams-data-to-the-user"></a>5.服務會將資料串流給使用者。 
+#### <a name="2-hello-service-places-a-request-in-hello-connector-queue"></a>2.hello 服務會將要求放在 hello 連接器佇列
 
-應用程式的一些處理可能會在這裡發生。 如果您將應用程式中的應用程式 Proxy 應用程式設定為轉譯標頭或 URL，會視需要在此步驟進行該處理。
+連接器會將輸出連線開啟 toohello 應用程式 Proxy 服務。 當要求進入時，則會將 hello 服務上的向上 hello 連接器 toopick hello 開啟連接的其中一個 hello 要求排入佇列。
+
+hello 要求包含項目從 hello 應用程式，例如 hello 要求標頭，從 hello 加密 cookie 資料、 hello 使用者進行 hello 要求，並 hello 要求識別碼。 雖然資料從 hello 加密 cookie 傳送 hello 要求，但不是本身 hello 驗證 cookie。
+
+#### <a name="3-hello-connector-processes-hello-request-from-hello-queue"></a>3.hello 連接器處理 hello 從 hello 佇列的要求。 
+
+根據 hello 要求，應用程式 Proxy 會執行下列動作的 hello 的其中一個：
+
+* 如果 hello 要求是簡單的作業 (例如，沒有資料現況 RESTful hello 主體內*取得*要求)，hello 連接器可讓連接 toohello 目標內部資源，然後等候回應。
+
+* 如果 hello 要求有與其相關聯 hello 主體中的資料 (例如，RESTful *POST*作業)，hello 連接器可藉由使用 hello 用戶端憑證 toohello 應用程式 Proxy 執行個體的輸出連線。 它會建立此連線 toorequest hello 資料，並開啟連接 toohello 內部資源。 在收到 hello 連接器 hello 要求之後，hello 應用程式 Proxy 服務開始接受來自 hello 使用者內容，並將轉寄資料 toohello 連接器。 hello 連接器，亦會將轉送 hello 資料 toohello 內部資源。
+
+#### <a name="4-hello-connector-waits-for-a-response"></a>4.hello 連接器等候回應。
+
+Hello 要求及所有內容 toohello 傳輸回後端完成，hello 連接器等候回應。
+
+收到回應後，hello 連接器可讓輸出連線 toohello 應用程式 Proxy 服務，tooreturn hello 標頭的詳細資料，並開始串流處理 hello 傳回資料。
+
+#### <a name="5-hello-service-streams-data-toohello-user"></a>5.hello 服務資料流資料 toohello 使用者。 
+
+一些處理 hello 應用程式可能會發生以下。 如果您在應用程式中設定應用程式 Proxy tootranslate 標頭或 Url，該處理會視需要在此步驟進行。
 
 
 ## <a name="next-steps"></a>後續步驟

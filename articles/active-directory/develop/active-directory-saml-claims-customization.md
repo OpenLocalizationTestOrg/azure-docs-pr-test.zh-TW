@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Active Directory 中為預先整合的應用程式自訂在 SAML 權杖中發出的宣告 | Microsoft Docs"
-description: "了解如何在 Azure Active Directory 中為預先整合的應用程式自訂在 SAML 權杖中發出的宣告"
+title: "Azure Active Directory 中預先整合應用程式的 hello SAML 權杖中發出的 aaaCustomizing 宣告 |Microsoft 文件"
+description: "了解 toocustomize hello 發出宣告的方式在 hello Azure Active Directory 中預先整合應用程式的 SAML 權杖"
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -15,66 +15,66 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: jeedes
 ms.custom: aaddev
-ms.openlocfilehash: 6d232759630fcc567788a8326b566b659f89d17a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a376318929472403e799f02fdd3fbddc91d0a70c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="customizing-claims-issued-in-the-saml-token-for-pre-integrated-apps-in-azure-active-directory"></a>在 Azure Active Directory 中為預先整合的應用程式自訂在 SAML 權杖中發出的宣告
-目前 Azure Active Directory 支援 Azure AD 應用程式庫中數千個預先整合的應用程式，有 360 個以上的應用程式支援使用 SAML 2.0 通訊協定的單一登入。 當使用者使用 SAML 透過 Azure AD 驗證應用程式時，Azure AD 會將權杖傳送給應用程式 (透過 HTTP POST)。 然後，應用程式會驗證並使用權杖將使用者登入，而不會提示輸入使用者名稱和密碼。 這些 SAML 權杖包含關於使用者的資訊片段 (稱為「宣告」)。
+# <a name="customizing-claims-issued-in-hello-saml-token-for-pre-integrated-apps-in-azure-active-directory"></a>Azure Active Directory 中預先整合應用程式的 SAML 權杖在 hello 自訂宣告發出
+Azure Active Directory 現在支援數千種預先整合的應用程式中 hello Azure AD 應用程式庫，包括超過支援單一登入的 360 使用 hello SAML 2.0 通訊協定。 當使用者透過 Azure AD 使用 SAML tooan 應用程式，Azure AD 會傳送權杖 toohello 應用程式 （透過 HTTP POST)。 與然後 hello 應用程式會驗證使用中的 hello 語彙基元 toolog hello 使用者而不是提示輸入使用者名稱和密碼。 這些 SAML 權杖包含 hello 使用者稱為 「 宣告 」 的相關資訊。
 
-在身分識別交談中，「宣告」是身分識別提供者在為使用者發出的權杖中關於使用者說明的資訊。 在 [SAML 權杖](http://en.wikipedia.org/wiki/SAML_2.0)中，此資料通常包含在 SAML 屬性陳述式中。 使用者的唯一識別碼通常在 SAML Subject 中表示，也稱為「名稱識別碼」。
+在識別說，「 宣告 」 內 hello 語彙基元所發出該使用者的使用者身分識別提供者指出資訊。 在[SAML 權杖](http://en.wikipedia.org/wiki/SAML_2.0)，此資料通常會包含在 hello SAML 屬性陳述式。 hello 使用者的唯一識別碼通常都會在 hello SAML 主體也稱為名稱識別項。
 
-根據預設，Azure Active Directory 會發出 SAML 權杖給您的應用程式，其包含一個 NameIdentifier 宣告，具有使用者在 Azure AD 中的使用者名稱 (也稱為使用者主體名稱) 的值。 此值可唯一識別使用者。 SAML 權杖也包含額外的宣告，其包含使用者的電子郵件地址、名字和姓氏。
+根據預設，Azure Active Directory 發出 SAML 權杖 tooyour 應用程式，其中包含 NameIdentifier 宣告，以在 Azure AD 中的 hello 使用者的使用者名稱 （也稱為使用者主體名稱） 的值。 這個值可以唯一識別 hello 使用者。 hello SAML 語彙基元也會包含額外的宣告包含 hello 使用者的電子郵件地址、 名字和姓氏。
 
-若要檢視或編輯在 SAML 權杖中對應用程式發出的宣告，請在 Azure 入口網站中開啟應用程式。 然後在應用程式的 [使用者屬性] 區段中，選取 [檢視和編輯所有其他使用者屬性] 核取方塊。
+tooview 或編輯 hello 宣告 hello 發出 SAML 權杖 toohello 應用程式，開啟 hello Azure 入口網站中的應用程式。 然後選取 hello**檢視和編輯所有其他使用者屬性**核取方塊在 hello**使用者屬性**hello 應用程式 > 一節。
 
 ![使用者屬性區段][1]
 
-編輯在 SAML 權杖中簽發的宣告有兩個可能原因：
-* 應用程式是設計為要求不同的宣告 URI 組或宣告值。
-* 應用程式已部署為要求 NameIdentifier 宣告必須是 Azure Active Directory 中儲存之 username (也稱為使用者主體名稱) 以外的項目。
+有兩個可能的原因為何，您可能需要在 hello SAML 權杖中發出的 tooedit hello 宣告：
+* hello 應用程式已寫入的 toorequire 用不同的宣告的 Uri 設定，或宣告值。
+* hello 應用程式已部署需要 hello NameIdentifier 宣告 toobe 以外的項目 hello 使用者名稱 （也稱為使用者主體名稱） 儲存在 Azure Active Directory 中的方式。
 
-您可以編輯任何預設的宣告值。 選取 SAML 權杖屬性資料表中的宣告資料列。 這會開啟 [編輯屬性] 區段，然後您可以編輯宣告名稱、值，以及與宣告相關聯的命名空間。
+您可以編輯任何 hello 預設宣告值。 選取 hello SAML token 屬性資料表中的 hello 宣告資料列。 這會開啟 hello**編輯屬性**區段，然後您可以編輯宣告名稱、 值和命名空間與 hello 宣告相關聯。
 
 ![編輯使用者屬性][2]
 
-您也可以使用快顯功能表來移除宣告 (除了 NameIdentifier 以外)，按一下 [...] 圖示即可開啟該功能表。  使用 [新增屬性] 按鈕，也可以新增宣告。
+您也可以移除使用 hello 操作功能表，按一下在 hello 所開啟的 （非 NameIdentifier) 宣告**...**圖示。  您也可以加入新的宣告，使用 hello**加入屬性** 按鈕。
 
 ![編輯使用者屬性][3]
 
-## <a name="editing-the-nameidentifier-claim"></a>編輯 NameIdentifier 宣告
-若要解決使用不同的使用者名稱部署應用程式的問題，請按一下 [使用者屬性] 區段中的 [使用者識別碼] 下拉式清單。 這個動作會提供包含數個不同選項的對話方塊：
+## <a name="editing-hello-nameidentifier-claim"></a>編輯 hello NameIdentifier 宣告
+toosolve hello 問題已部署 hello 應用程式使用不同的使用者名稱，按一下 hello**使用者識別碼**下拉式清單中 hello**使用者屬性**> 一節。 這個動作會提供包含數個不同選項的對話方塊：
 
 ![編輯使用者屬性][4]
 
-在下拉式清單中，選取 [user.mail]，將 NameIdentifier 宣告設定為使用者在目錄中的電子郵件地址。 或者，選取 **user.onpremisessamaccountname** 設定為從內部部署 Azure AD 同步處理的使用者 SAM 帳戶名稱。
+在 hello 下拉式清單中，選取  **user.mail** tooset hello NameIdentifier 宣告 toobe hello 使用者的電子郵件地址 hello 目錄中。 或者，選取**user.onpremisessamaccountname** tooset toohello 使用者 SAM 帳戶名稱，從同步處理內部部署 Azure AD。
 
-您也可以使用特殊的 **ExtractMailPrefix()** 函式，從電子郵件地址、SAM 帳戶名稱或使用者主體名稱中將網域尾碼移除。 這只會擷取使用者名稱的第一個部分 (例如，"joe_smith" 而不是 joe_smith@contoso.com)。
+您也可以使用特殊的 hello **ExtractMailPrefix()**函式 tooremove hello 從 hello 電子郵件地址、 SAM 帳戶名稱或 hello 使用者主體名稱的網域尾碼。 這會擷取僅 hello 第一部分 hello 使用者名稱傳遞出去 (例如，"joe_smith"而不是joe_smith@contoso.com)。
 
 ![編輯使用者屬性][5]
 
-我們現在還新增了 **join()** 函式，以聯結已驗證的網域與使用者識別碼值。 當您選取 [使用者識別碼] 中的 join() 函式時，先選取像是電子郵件地址或使用者主體名稱的使用者識別碼，然後在第二個下拉式清單中選取已驗證的網域。 如果您選取包含已驗證網域的電子郵件地址，則 Azure AD 會從 joe_smith@contoso.com 的第一個值 joe_smith 中擷取使用者名稱，並將它與 contoso.onmicrosoft.com 附加。 請參閱下列範例：
+我們現在還新增了 hello **join （)**函式 toojoin hello 驗證網域與 hello 使用者識別碼值。 當您選取 hello join （） 函式在 hello**使用者識別碼**第一次選取類似電子郵件地址或使用者主體名稱為 hello 使用者識別碼，然後 hello 第二個下拉式清單中選取 已驗證的網域。 如果您選取 hello 電子郵件地址與 hello 已驗證網域，則 Azure AD 擷取從 hello 第一個值 joe_smith hello username joe_smith@contoso.com ，並將它附加與 contoso.onmicrosoft.com。請參閱下列範例中的 hello:
 
 ![編輯使用者屬性][6]
 
 ## <a name="adding-claims"></a>新增宣告
-新增宣告時，您可以指定屬性名稱 (不必根據 SAML 規格嚴格遵循 URI 模式)。 將值設定為儲存在目錄中的任何使用者屬性。
+當新增宣告，您可以指定 hello 屬性名稱 （不嚴格需要 toofollow 根據 hello SAML 規格的 URI 模式）。 設定 hello 值 tooany 使用者屬性儲存在 hello 目錄中。
 
 ![新增使用者屬性][7]
 
-例如，您必須傳送使用者在其組織內所屬的部門作為宣告 (例如，銷售)。 輸入應用程式預期的宣告名稱，然後選取 **user.department** 作為值。
+例如，您需要 toosend hello 使用者的 hello 部門所屬 tooin 組織 （例如，Sales) 宣告的形式。 如預期般 hello 應用程式中，輸入 hello 宣告名稱，然後選取**user.department** hello 值。
 
 > [!NOTE]
-> 如果指定的使用者沒有針對選取的屬性儲存的值，則權杖中不會發出該宣告。
+> 如果沒有針對選取的屬性儲存的值指定使用者，然後該宣告無法發行 hello 權杖中。
 
 > [!TIP]
-> 只有在使用 [Azure AD Connect 工具](../active-directory-aadconnect.md)從內部部署的 Active Directory 同步處理使用者資料時，才支援 **user.onpremisesecurityidentifier** 和 **user.onpremisesamaccountname**。
+> hello **user.onpremisesecurityidentifier**和**user.onpremisesamaccountname**時同步處理使用者資料，從內部部署 Active Directory 使用 hello，才支援[AzureAD Connect 工具](../active-directory-aadconnect.md)。
 
 ## <a name="restricted-claims"></a>受限制的宣告
 
-SAML 有一些受限制的宣告。 如果您新增這些宣告，則 Azure AD 不會傳送這些宣告。 以下是受限制的 SAML 宣告集：
+SAML 有一些受限制的宣告。 如果您新增這些宣告，則 Azure AD 不會傳送這些宣告。 以下是 hello SAML 限制宣告集：
 
     | 宣告類型 (URI) |
     | ------------------- |
@@ -127,7 +127,7 @@ SAML 有一些受限制的宣告。 如果您新增這些宣告，則 Azure AD �
 
 ## <a name="next-steps"></a>後續步驟
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](../active-directory-apps-index.md)
-* [設定對不在 Azure Active Directory 應用程式庫中的應用程式的單一登入](../active-directory-saas-custom-apps.md)
+* [設定單一登入 tooapplications 不在 hello Azure Active Directory 應用程式庫](../active-directory-saas-custom-apps.md)
 * [SAML 型單一登入疑難排解](active-directory-saml-debugging.md)
 
 <!--Image references-->

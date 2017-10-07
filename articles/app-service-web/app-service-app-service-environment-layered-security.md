@@ -1,5 +1,5 @@
 ---
-title: "具有 App Service 環境的多層式安全性架構"
+title: "aaaLayered 與應用程式服務環境的安全性架構"
 description: "實作具有 App Service 環境的多層式安全性架構。"
 services: app-service
 documentationcenter: 
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/30/2016
 ms.author: stefsch
-ms.openlocfilehash: 0fb02c13f99a8f4a46e0142c20da3b152c809b6b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0627ba6fa849908506fe62c451c888c147cabc03
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="implementing-a-layered-security-architecture-with-app-service-environments"></a>實作具有 App Service 環境的多層式安全性架構。
 ## <a name="overview"></a>Overview
 由於 App Service 環境提供部署至虛擬網路的隔離執行階段環境，因此開發人員能夠建立多層式安全性架構，針對每個實體應用程式層提供不同層級的網路存取。
 
-常見的需求之一，是要隱藏對 API 後端的一般網際網路存取，而只允許由上游 Web 應用程式呼叫 API。  [網路安全性群組 (NSG)][NetworkSecurityGroups] 可用於包含 App Service 環境的子網路，用以限制對 API 應用程式的公用存取。
+常見的 desire toohide API 的後端從一般的網際網路存取，並只允許由上游的 web 應用程式呼叫 Api toobe。  [網路安全性群組 (Nsg)] [ NetworkSecurityGroups]可以包含應用程式服務環境 toorestrict 公用存取 tooAPI 應用程式的子網路上使用。
 
-下圖顯示的範例架構，具有部署在 App Service 環境上的 WebAPI 型應用程式。  三個不同的 Web 應用程式執行個體部署在三個不同的 App Service 環境上，使後端呼叫相同的 WebAPI 應用程式。
+hello 圖顯示在 App Service 環境上部署的基礎 WebAPI 應用程式的範例架構。  三個不同的 web 應用程式部署執行個體，在三個個別應用程式服務環境，讓後端呼叫 toohello 相同 WebAPI 應用程式。
 
 ![概念性架構][ConceptualArchitecture] 
 
-綠色加號指出包含 "apiase" 之子網路上的網路安全性群組，允許來自於上游 Web 應用程式的傳入呼叫，及其本身的呼叫。  不過，相同的網路安全群組明確拒絕網際網路對一般輸入流量的存取。 
+hello 綠色加號表示該 hello 網路安全性群組，其中包含 「 apiase"hello 子網路上的允許輸入的電話 hello 從上游的 web 應用程式，以及呼叫其本身。  不過 hello 相同的網路安全性群組明確拒絕存取 toogeneral 輸入從 hello 網際網路的流量。 
 
-此主題的其餘部分將逐步解說在包含 "apiase" 的子網路上設定網路安全群組所需的步驟。
+hello 本主題其餘部分會包含"apiase"hello 子網路上逐步 hello 步驟所需的 tooconfigure hello 網路安全性群組。
 
-## <a name="determining-the-network-behavior"></a>判斷網路行為
-若要知道需要哪些網路安全性規則，您必須判斷哪些網路用戶端將能夠聯繫包含 API 應用程式的 App Service 服務環境，而哪些用戶端將遭到封鎖。
+## <a name="determining-hello-network-behavior"></a>判斷 hello 網路的行為
+在訂單 tooknow 網路安全性規則所需，您需要的 toodetermine tooreach hello App Service 環境包含 hello API 應用程式，以及哪些用戶端將會封鎖，將允許哪些網路用戶端。
 
-由於[網路安全性群組 (NSG)][NetworkSecurityGroups] 會套用至子網路，而 App Service 環境部署在子網路中，因此 NSG 中包含的規則將會套用至**所有**在 App Service 環境上執行的應用程式。  舊本文的範例架構而言，一旦將網路安全性群組套用至包含 "apiase" 的子網路後，所有在 "apiase" App Service 環境上執行的應用程式都將受到相同安全性規則集的保護。 
+因為[網路安全性群組 (Nsg)] [ NetworkSecurityGroups]套用的 toosubnets，而且應用程式服務環境部署至子網路，NSG 中所含的 hello 規則套用太**所有**App Service 環境上執行的應用程式。  相同設定的安全性規則套用的 toohello 包含"apiase，"hello"apiase"hello 將受保護的 App Service 環境上執行的所有應用程式的子網路的網路安全性群組之後，如本文中，使用 hello 範例架構。 
 
-* **判斷上游呼叫端的輸出 IP 位址：**上游呼叫端的 IP 位址為何？  這些位址在 NSG 中必須明確地允許存取。  由於 App Service 環境之間的呼叫會被視為「網際網路」呼叫，因此這表示指派給這三個上游 App Service 環境的輸出 IP 位址，在 "apiase" 子網路的 NSG 中必須是允許存取的。   若想進一步了解如何判斷在 App Service 環境中執行之應用程式的輸出 IP 位址，請參閱[網路架構][NetworkArchitecture]概觀文章。
-* **後端 API 應用程式是否需要呼叫本身？**  後端應用程式有時候需要呼叫本身，這是常會被忽略而難以察覺的情況。  如果 App Service 環境上的後端 API 應用程式需要呼叫本身，我們也會將其視為「網際網路」呼叫。  在範例架構中，這必須允許 "apiase" App Service 環境的輸出 IP 位址進行存取。
+* **判斷上游的呼叫端的 hello 輸出 IP 位址：** hello IP 位址或位址的 hello 上游的呼叫端是什麼？  這些位址必須 toobe hello NSG 中明確允許必要的可存取。  由於應用程式服務環境之間的呼叫會被視為 「 網際網路 」 呼叫，因此 hello 輸出 IP 位址指派 tooeach 的 hello 三個上游應用程式服務環境的需求 toobe hello NSG hello"apiase 「 子網路中允許的存取。   如需詳細資訊，需判斷 hello 輸出的 IP 位址，如 App Service 環境中執行的應用程式，請參閱 hello[網路架構][ NetworkArchitecture]概觀文件。
+* **Hello 後端應用程式開發介面應用程式需要 toocall 本身嗎？**  有時候是容易被忽略，而且難以察覺的點狀況下 hello hello 後端應用程式需要 toocall 本身的地方。  如果在 App Service 環境的後端應用程式開發介面應用程式需要 toocall 本身，這也會處理做為 「 網際網路 」 呼叫。  Hello 範例架構中，這需要允許存取的 hello"apiase"App Service 環境以及 hello 輸出 IP 位址。
 
-## <a name="setting-up-the-network-security-group"></a>設定網路安全性群組
-得知輸出 IP 位址集後，下一步是要建構網路安全群組。  您可以針對以 Resource Manager 為基礎的虛擬網路以及傳統虛擬網路建立網路安全性群組。  下列範例說明如何在傳統虛擬網路上使用 Powershell 建立和設定 NSG。
+## <a name="setting-up-hello-network-security-group"></a>設定 hello 網路安全性群組
+一旦 hello 設定的已知輸出的 IP 位址，hello 下一個步驟是 tooconstruct 網路安全性群組。  您可以針對以 Resource Manager 為基礎的虛擬網路以及傳統虛擬網路建立網路安全性群組。  hello 以下範例顯示建立及使用 Powershell 在傳統虛擬網路上設定 NSG。
 
-在範例架構中，環境位於美國中南部，因此會在該區域中建立空的 NSG：
+Hello 範例架構，hello 環境位於美國中南部，以便在該區域中建立空白的 nsg 關聯：
 
     New-AzureNetworkSecurityGroup -Name "RestrictBackendApi" -Location "South Central US" -Label "Only allow web frontend and loopback traffic"
 
-首先要為 Azure 管理基礎結構新增明確的允許規則，如 App Service 環境的[輸入流量][InboundTraffic]相關文章所說明。
+先明確允許 hello Azure 的管理基礎結構所述 hello 發行項上加入規則[輸入流量][ InboundTraffic]應用程式服務環境中。
 
     #Open ports for access by Azure management infrastructure
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW AzureMngmt" -Type Inbound -Priority 100 -Action Allow -SourceAddressPrefix 'INTERNET' -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '454-455' -Protocol TCP
 
-接著要新增兩個規則，以允許從第一個上游 App Service 環境 ("fe1ase") 進行 HTTP 和 HTTPS 呼叫。
+接下來，兩個規則會加入 tooallow HTTP 和 HTTPS 呼叫 hello 第一個上游 App Service 環境 (「 fe1ase")。
 
-    #Grant access to requests from the first upstream web front-end
+    #Grant access toorequests from hello first upstream web front-end
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP fe1ase" -Type Inbound -Priority 200 -Action Allow -SourceAddressPrefix '65.52.xx.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS fe1ase" -Type Inbound -Priority 300 -Action Allow -SourceAddressPrefix '65.52.xx.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-為第二個和第三個上游 App Service 環境 ("fe2ase" 和 "fe3ase") 重複相同步驟。
+確定並重複的 hello 第二個和第三個上游應用程式服務環境 （「 fe2ase"和"fe3ase"）。
 
-    #Grant access to requests from the second upstream web front-end
+    #Grant access toorequests from hello second upstream web front-end
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP fe2ase" -Type Inbound -Priority 400 -Action Allow -SourceAddressPrefix '191.238.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS fe2ase" -Type Inbound -Priority 500 -Action Allow -SourceAddressPrefix '191.238.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-    #Grant access to requests from the third upstream web front-end
+    #Grant access toorequests from hello third upstream web front-end
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP fe3ase" -Type Inbound -Priority 600 -Action Allow -SourceAddressPrefix '23.98.abc.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS fe3ase" -Type Inbound -Priority 700 -Action Allow -SourceAddressPrefix '23.98.abc.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-最後，授與後端 API 的 App Service 環境輸出 IP 位址的存取權，使其能夠回呼本身。
+最後，授與存取 toohello 輸出 IP 位址的 hello 後端 API 的應用程式服務環境，以便讓它可以在回呼至本身。
 
-    #Allow apps on the apiase environment to call back into itself
+    #Allow apps on hello apiase environment toocall back into itself
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP apiase" -Type Inbound -Priority 800 -Action Allow -SourceAddressPrefix '70.37.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS apiase" -Type Inbound -Priority 900 -Action Allow -SourceAddressPrefix '70.37.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-無須設定其他網路安全性規則，因為依預設每個 NSG 有一組預設規則會封鎖來自網際網路的輸入存取。
+沒有其他的網路安全性規則需要 toobe 預設設定，因為每個 NSG 具有一組區塊從 hello 網際網路對內的存取的預設規則。
 
-網路安全性群組中的完整規則清單顯示如下。  請留意最後一個規則 (反白顯示) 如何封鎖未被明確授與存取權的所有呼叫端進行的輸入存取。
+hello hello 網路安全性群組中的規則的完整清單如下所示。  請注意如何 hello 最後一個規則，會反白顯示，會封鎖從已被明確被授與存取以外的所有呼叫端的傳入的存取。
 
 ![NSG 組態][NSGConfiguration] 
 
-最後一個步驟是將 NSG 套用至包含 "apiase" App Service 環境的子網路。  
+hello 最後一個步驟是 tooapply hello NSG toohello 子網路，其中包含 hello"apiase"App Service 環境。  
 
-     #Apply the NSG to the backend API subnet
+     #Apply hello NSG toohello backend API subnet
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityGroupToSubnet -VirtualNetworkName 'yourvnetnamehere' -SubnetName 'API-ASE-Subnet'
 
-NSG 套用至子網路後，將只有三個上游 App Service 環境以及包含 API 後端的 App Service 環境能夠呼叫 "apiase" 環境。
+與 hello NSG 套用 toohello 子網路只 hello 三個上游的應用程式服務環境中，hello App Service 環境包含 hello API 後端允許和 toocall hello"apiase 」 環境中。
 
 ## <a name="additional-links-and-information"></a>其他連結和資訊
-您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+所有發行項以及-的應用程式服務環境的 hello[讀我檔案的應用程式服務環境](../app-service/app-service-app-service-environments-readme.md)。
 
 關於 [網路安全性群組](../virtual-network/virtual-networks-nsg.md)的資訊。 
 

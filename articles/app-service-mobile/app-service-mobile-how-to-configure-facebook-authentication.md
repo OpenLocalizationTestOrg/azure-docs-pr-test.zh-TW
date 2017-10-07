@@ -1,6 +1,6 @@
 ---
-title: "如何為您的應用程式服務應用程式設定 Facebook 驗證"
-description: "了解如何為您的應用程式服務應用程式設定 Facebook 驗證。"
+title: "aaaHow tooconfigure Facebook 驗證您的應用程式服務應用程式"
+description: "深入了解如何 tooconfigure Facebook 驗證您的應用程式服務應用程式。"
 services: app-service
 documentationcenter: 
 author: mattchenderson
@@ -14,50 +14,50 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: mahender
-ms.openlocfilehash: c1b4c91d384c56c4f55bf8d31ced250f51c0d837
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 53d03445a2ad17de1d2f69f5e770d14385b48ad4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-your-app-service-application-to-use-facebook-login"></a>如何設定 App Service 應用程式以使用 Facebook 登入
+# <a name="how-tooconfigure-your-app-service-application-toouse-facebook-login"></a>如何 tooconfigure 您 App Service 應用程式 toouse Facebook 登入
 [!INCLUDE [app-service-mobile-selector-authentication](../../includes/app-service-mobile-selector-authentication.md)]
 
-本主題說明如何設定 Azure App Service，以使用 Facebook 做為驗證提供者。
+本主題說明如何 tooconfigure Azure App Service toouse Facebook 做為驗證提供者。
 
-若要完成本主題的程序，您必須具有已通過電子郵件地址與手機號碼驗證的 Facebook 帳戶。 若要建立新的 Facebook 帳戶，請前往 [facebook.com]。
+toocomplete hello 程序，本主題中的，您必須擁有已驗證的電子郵件地址和行動電話號碼的 Facebook 帳戶。 新的 Facebook 帳戶，toocreate 太移[facebook.com]。
 
 ## <a name="register"> </a>向 Facebook 註冊您的應用程式
-1. 登入 [Azure 入口網站]，然後瀏覽到您的應用程式。 複製您的 **URL**。 您將使用此 URL 設定您的 Facebook 應用程式。
-2. 在其他瀏覽器視窗中，瀏覽至 [Facebook 開發人員] 網站，並以您的 Facebook 帳戶認證登入。
-3. (選擇性) 按一下 [應用程式] > [以開發人員身分註冊]，接受政策並遵循註冊步驟 (若您尚未註冊)。
+1. 登入 toohello [Azure 入口網站]，並瀏覽 tooyour 應用程式。 複製您的 **URL**。 您將使用此 tooconfigure Facebook 應用程式。
+2. 在另一個瀏覽器視窗中，瀏覽 toohello [Facebook 開發人員]網站，並使用您的 Facebook 登入帳戶的認證。
+3. （選擇性）如果您具有尚未註冊，請按一下**應用程式** > **身為開發人員註冊**，然後接受 hello 原則，並遵循 hello 註冊步驟。
 4. 按一下 [我的應用程式] > [新增應用程式] > [網站] > [略過並建立應用程式識別碼]。 
-5. 在 [顯示名稱] 中輸入應用程式的唯一名稱，輸入 [連絡人電子郵件]，選擇應用程式的 [類別]，然後按一下 [建立應用程式識別碼] 並完成安全性檢查。 這會將您帶到開發人員儀表板來設定新的 Facebook 應用程式。
-6. 在 [Facebook 登入] 下，按一下 [開始使用]。 將應用程式的**重新導向 URI**新增至 [有效的 OAuth 重新導向 URI]，然後按一下 [儲存變更]。 
+5. 在**顯示名稱**，輸入您的應用程式類型的唯一名稱您**Contact Email**，選擇**類別**應用程式，然後按一下**建立應用程式識別碼**並完成 hello 安全性檢查。 這會帶您 toohello 新的 Facebook 應用程式的開發人員儀表板。
+6. 在 [Facebook 登入] 下，按一下 [開始使用]。 新增您的應用程式**重新導向 URI**太**有效的 OAuth 重新導向 Uri**，然後按一下 **儲存變更**。 
    
    > [!NOTE]
-   > 您的重新導向 URI 是應用程式 URL 加上路徑 */.auth/login/facebook/callback*。 例如， `https://contoso.azurewebsites.net/.auth/login/facebook/callback`。 請確實使用 HTTPS 配置。
+   > 您重新導向 URI 是應用程式加上 hello 路徑 hello URL */.auth/login/facebook/callback*。 例如： `https://contoso.azurewebsites.net/.auth/login/facebook/callback`。 請確定您使用 hello HTTPS 配置。
    > 
    > 
-7. 在左側導覽中按一下 [設定]。 在 [應用程式密碼] 欄位中，按一下 [顯示]，在系統要求時提供您的密碼，然後記下 [應用程式識別碼] 和 [應用程式密碼] 的值。 稍後您會在 Azure 中使用這些資訊來設定您的應用程式。
+7. 在 hello 左側導覽中，按一下 **設定**。 在 hello**應用程式秘鑰**欄位中，按一下**顯示**，提供您的密碼，如果要求，然後記下的 hello 值**應用程式識別碼**和**應用程式秘鑰**. 您使用這些更新 tooconfigure 您的應用程式在 Azure 中。
    
    > [!IMPORTANT]
-   > 應用程式密鑰是重要的安全性認證。 請勿與任何人共用此密碼，或在用戶端應用程式中加以散發。
+   > hello 應用程式密碼是重要的安全性認證。 請勿與任何人共用此密碼，或在用戶端應用程式中加以散發。
    > 
    > 
-8. 用來註冊應用程式的 Facebook 帳戶是應用程式的系統管理員。 此時，只有系統管理員可以登入此應用程式。 若要驗證其他 Facebook 帳戶，請按一下 [應用程式檢閱] 並啟用 [公開 <您的應用程式名稱>]，以允許使用 Facebook 驗證來公開存取。
+8. hello 已使用的 tooregister hello 應用程式的 Facebook 帳戶是 hello 應用程式的系統管理員。 此時，只有系統管理員可以登入此應用程式。 tooauthenticate 其他 Facebook 帳戶，按一下**應用程式檢閱**並啟用**< 您的應用程式名稱 > 請公用**tooenable 使用 Facebook 驗證一般公用存取。
 
-## <a name="secrets"> </a>將 Facebook 資訊加入應用程式
-1. 回到 [Azure 入口網站]，並瀏覽到您的應用程式。 按一下 [設定] > [驗證/授權]，並確定 [App Service 驗證] 為 [開啟]。
-2. 按一下 [Facebook]，貼上先前取得的應用程式識別碼與應用程式密碼值，選擇性啟用應用程式需要的任何範圍，然後按一下 [確定]。
+## <a name="secrets"></a>新增 Facebook 資訊 tooyour 應用程式
+1. 在 hello [Azure 入口網站]，瀏覽 tooyour 應用程式。 按一下 [設定] > [驗證/授權]，並確定 [App Service 驗證] 為 [開啟]。
+2. 按一下**Facebook**，貼上您先前取得 hello 應用程式識別碼和應用程式密碼值，選擇性地啟用應用程式所需的任何範圍然後按一下**確定**。
    
     ![][0]
    
-    App Service 預設會提供驗證，但不會限制對您網站內容和 API 的已授權存取。 您必須在應用程式程式碼中授權使用者。
-3. (選擇性) 若要限制只有透過 Facebook 授權的使用者可以存取您的網站，請將 [要求未經驗證時所採取的動作] 設為 [Facebook]。 這會要求所有的要求都經過驗證，且所有未經驗證的要求會重新導向至 Facebook 以進行驗證。
+    根據預設，應用程式服務提供驗證但不會限制授權的存取 tooyour 網站內容和應用程式開發介面。 您必須在應用程式程式碼中授權使用者。
+3. （選擇性） toorestrict 存取 tooyour 網站 tooonly 使用者驗證 Facebook、 設定**當要求未經驗證的動作 tootake**太**Facebook**。 這需要驗證的所有要求，而所有未經驗證的要求重新導向的 tooFacebook 進行驗證。
 4. 設定驗證完成時，按一下 [儲存] 。
 
-現在，您已可在應用程式中使用 Facebook 進行驗證。
+現在您已準備好 toouse Facebook 驗證您的應用程式。
 
 ## <a name="related-content"> </a>相關內容
 [!INCLUDE [app-service-mobile-related-content-get-started-users](../../includes/app-service-mobile-related-content-get-started-users.md)]

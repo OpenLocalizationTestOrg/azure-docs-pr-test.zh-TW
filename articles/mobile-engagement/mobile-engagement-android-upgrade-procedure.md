@@ -1,5 +1,5 @@
 ---
-title: "Azure Mobile Engagement Android SDK 整合"
+title: "aaaAzure Mobile Engagement Android SDK 整合"
 description: "Android SDK for Azure Mobile Engagement 的最新更新和程序"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,23 +14,23 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 1f047f93fa8bc852b28c86e91d0c007a94fb4299
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: df5c82812fe0a242eaa5df8c906030237215b7eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="upgrade-procedures"></a>升級程序
-如果您已經整合我們的舊版 SDK 到您的應用程式，在升級 SDK 時您必須考慮以下幾點。
+如果您已經有整合至您的應用程式較舊版本的我們 SDK，您必須升級 hello SDK 時，下列點 tooconsider hello。
 
-如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。 例如，如果您要從 1.4.0 移轉到 1.6.0，必須先遵循「從 1.4.0 到 1.5.0」的程序，然後再依照「從 1.5.0 到 1.6.0」的程序進行。
+如果您錯過數個版本的 hello SDK 您可能需要指定 toofollow 數個程序。 例如，如果您從 1.4.0 移轉 too1.6.0 您有遵循 hello toofirst"1.4.0 從 too1.5.0 」 程序然後 hello 」 從 1.5.0 too1.6.0 」 程序。
 
-不論您升級開始的版本為何，都必須將 `mobile-engagement-VERSION.jar` 替換為新的。
+您升級，不論 hello 版本有 tooreplace hello`mobile-engagement-VERSION.jar`以 hello 新。
 
-## <a name="from-420-to-421"></a>從 4.2.0 到 4.2.1
-此步驟其實可以任何版本的 SDK 上完成，這是您在整合觸達活動時的安全性改善。
+## <a name="from-420-too421"></a>從 4.2.0 too4.2.1
+實際上在任何版本的 hello SDK 上完成這個步驟，就安全性改進整合觸達活動時。
 
-現在您應該新增 `exported="false"` 至所有觸達活動中。
+您現在應該加入`exported="false"`tooall 觸達活動。
 
 在您的 `AndroidManifest.xml`中，現在觸達活動應該看起來如下：
 
@@ -61,13 +61,13 @@ ms.lasthandoff: 07/11/2017
               </intent-filter>
             </activity>
 
-## <a name="from-400-to-410"></a>從 4.0.0 到 4.1.0
-SDK 現在處理 Android M 新的權限模型。
+## <a name="from-400-too410"></a>從 4.0.0 too4.1.0
+hello SDK 現在控制代碼新權限的模型從 Android M。
 
 如果您使用定位功能或大型圖片通知，請閱讀 [本章節](mobile-engagement-android-integrate-engagement.md#android-m-permissions)。
 
-除了新的權限模型，現在支援在執行階段設定定位功能。
-定位的資訊清單參數仍然相容，但現在已經被取代。 若要使用執行階段設定，請從您的 ``AndroidManifest.xml``移除下列區段：
+此外 toohello 新權限模型中，我們現在支援在執行階段設定位置功能。
+我們目前仍與 hello 位置的資訊清單參數相容，但現在已被取代。 toouse 執行階段組態，移除 hello 以下幾節從您``AndroidManifest.xml``:
 
     <meta-data
       android:name="engagement:locationReport:lazyArea"
@@ -82,11 +82,11 @@ SDK 現在處理 Android M 新的權限模型。
       android:name="engagement:locationReport:realTime:fine"
       android:value="true"/>
 
-並請閱讀 [此更新的程序](mobile-engagement-android-integrate-engagement.md#location-reporting) ，以改用執行階段設定。
+讀取和[這個更新的程序](mobile-engagement-android-integrate-engagement.md#location-reporting)toouse 執行階段組態改為。
 
-## <a name="from-300-to-400"></a>從 3.0.0 到 4.0.0
+## <a name="from-300-too400"></a>從 3.0.0 too4.0.0
 ### <a name="native-push"></a>原生推播
-原生推播 (GCM/ADM) 現在也用於應用程式通知，因此您必須為任何類型的推播行銷活動設定原生推播認證。
+原生推送 (GCM/ADM) 現在也用於應用程式內通知，您必須設定為任何類型的推播宣傳活動 hello 原生推送認證。
 
 如果尚未完成，請遵循 [此程序](mobile-engagement-android-integrate-engagement-reach.md#native-push)。
 
@@ -130,7 +130,7 @@ SDK 現在處理 Android M 新的權限模型。
     </receiver>
 
 現在當您按一下公告 (具有文字/網頁內容) 或輪詢，可能是載入畫面。
-您必須加入此項目，這些行銷活動才能在 4.0.0 中運作：
+您的 tooadd 這 4.0.0 中這些活動 toowork:
 
     <activity
       android:name="com.microsoft.azure.engagement.reach.activity.EngagementLoadingActivity"
@@ -142,13 +142,13 @@ SDK 現在處理 Android M 新的權限模型。
     </activity>
 
 ### <a name="resources"></a>資源
-內嵌新的 `res/layout/engagement_loading.xml` 檔案到您的專案。
+內嵌 hello 新`res/layout/engagement_loading.xml`將檔案貼入您的專案。
 
-## <a name="from-240-to-300"></a>從 2.4.0 到 3.0.0
-以下說明如何將 SDK 整合從 Capptain SAS 提供的 Capptain 服務，移轉到由 Azure Mobile Engagement 提供的應用程式內。 如果您是從較早版本移轉，請參閱 Capptain 網站，先移轉到 2.4.0 後再套用以下程序。
+## <a name="from-240-too300"></a>從 2.4.0 too3.0.0
+hello 下列程式碼說明如何 toomigrate hello Capptain 服務從 SDK 整合提供 Capptain SAS 到由 Azure Mobile Engagement 應用程式。 如果您從舊版移轉，請先參閱 hello Capptain 網站 toomigrate too2.4.0，然後套用 hello 遵循程序。
 
 > [!IMPORTANT]
-> Capptain 和 Mobile Engagement 是不同的服務，而以下程序只適用於移轉用戶端應用程式。 移轉應用程式中的 SDK「不會」將您的資料從 Capptain 伺服器移轉到 Mobile Engagement 伺服器。
+> Capptain Mobile Engagement 不 hello 相同的服務和 hello 下列程序只會反白顯示 toomigrate hello 用戶端應用程式的方式。 移轉 hello SDK hello 應用程式中的不會移轉您的資料從 hello Capptain 伺服器 toohello Mobile Engagement 伺服器。
 > 
 > 
 
@@ -156,42 +156,42 @@ SDK 現在處理 Android M 新的權限模型。
 將 `libs` 資料夾中的 `capptain.jar` 以 `mobile-engagement-VERSION.jar`取代。
 
 ### <a name="resource-files"></a>資源檔
-我們提供的每個資源檔 (前置詞為 `capptain_`) 都必須替換為新的資源檔 (前置詞為 `engagement_`)。
+我們提供每個資源檔 (前面加上`capptain_`) 已由新的 hello 取代 toobe (前面加上`engagement_`)。
 
-如果您已自訂這些檔案，則必須在新的檔案上重新套用自訂， 資源檔中的所有識別碼也已重新命名。
+如果您自訂這些檔案，您會有 toore-hello 新檔案，檔案上套用您的自訂**hello 資源檔中的所有 hello 識別碼也已重新都命名**。
 
 ### <a name="application-id"></a>應用程式識別碼
-現在 Engagement 使用連接字串來設定 SDK 識別碼，例如應用程式識別碼。
+現在 Engagement 使用連接字串 tooconfigure hello SDK 識別碼，例如 hello 應用程式識別項。
 
-您必須在啟動程式活動中使用 `EngagementAgent.init` 方法，如下所示：
+您有 toouse`EngagementAgent.init`方法在啟動器活動就像這樣：
 
             EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
             engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
             EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-您應用程式的連接字串會顯示在 Azure 入口網站。
+您的應用程式的 hello 連接字串會顯示在 Azure 入口網站。
 
-請移除對 `CapptainAgent.configure` 的所有呼叫，因為 `EngagementAgent.init` 已取代該方法。
+請移除任何呼叫太`CapptainAgent.configure`為`EngagementAgent.init`取代該方法。
 
-無法再使用 `AndroidManifest.xml` 設定 `appId`。
+hello`appId`可以再設定使用`AndroidManifest.xml`。
 
 如果您的 `AndroidManifest.xml` 有下列區段，請將其移除：
 
             <meta-data android:name="capptain:appId" android:value="<YOUR_APPID>"/>
 
 ### <a name="java-api"></a>Java API
-對 SDK 任何 Java 類別的各個呼叫都必須重新命名，例如 `CapptainAgent.getInstance(this)` 必須重新命名為 `EngagementAgent.getInstance(this)`、`extends CapptainActivity` 必須重新命名為 `extends EngagementActivity`，以此類推...
+每個呼叫 tooany 我們 SDK 的 Java 類別已重新命名; toobe例如，`CapptainAgent.getInstance(this)`必須重新命名`EngagementAgent.getInstance(this)`，`extends CapptainActivity`必須重新命名`extends EngagementActivity`等等...
 
-如果您已整合預設代理程式喜好設定檔，現在預設檔案名稱是 `engagement.agent`，而索引鍵為 `engagement:agent`。
+如果您已整合與預設代理程式喜好設定檔，hello 預設檔案名稱現在是`engagement.agent`hello 索引鍵是`engagement:agent`。
 
-建立 Web 公告時，Javascript 繫結器現在是 `engagementReachContent`。
+Hello Javascript 繫結器在建立 web 宣布，現在是`engagementReachContent`。
 
 ### <a name="androidmanifestxml"></a>AndroidManifest.xml
-這裡有許多變更，服務不再共用，且許多接收器也不再能匯出。
+許多變更發生那里、 hello 服務不會共用失效，且許多接收者不是可匯出了。
 
-服務宣告現在更為簡單，移除意圖篩選及其內所有中繼資料，然後加入 `exportable=false`。
+hello 服務宣告現在是更簡單。移除 hello 意圖篩選和內文的所有中繼資料，並加入`exportable=false`。
 
-再加上所有項目重新命名以使用 Engagement。
+加上的所有項目是已重新命名的 toouse engagement。
 
 現在的樣貌如下：
 
@@ -201,7 +201,7 @@ SDK 現在處理 Android M 新的權限模型。
               android:label="<Your application name>Service"
               android:process=":Engagement"/>
 
-當您想要啟用測試記錄檔時，中繼資料現在已經移至應用程式標記，並且已重新命名：
+當您想 tooenable 測試記錄檔時，中繼資料，hello 現已移 toohello 應用程式標記和已重新命名：
 
             <application>
 
@@ -211,7 +211,7 @@ SDK 現在處理 Android M 新的權限模型。
 
             </application>
 
-所有其他中繼資料都已重新命名，完整清單如下 (當然，請只重新命名您所使用的項目)：
+只要已重新命名所有其他中繼資料，以下是 hello 完整清單 (當然重新命名只有 hello 的您所使用):
 
             <meta-data
               android:name="engagement:reportCrash"
@@ -259,7 +259,7 @@ SDK 現在處理 Android M 新的權限模型。
                 android:value="false"/>
             </activity>
 
-已從 SDK 移除 Google Play 和 SmartAd 追蹤，您只需要移除它，不必取代：
+已移除 Google Play 和 SmartAd 追蹤從 SDK 您只需要 tooremove 這而不取代：
 
             <meta-data 
                 android:name="capptain:track:installReferrerForwardList"
@@ -268,7 +268,7 @@ SDK 現在處理 Android M 新的權限模型。
                 android:name="capptain:track:adservers"
                 android:value="smartad" />
 
-Reach 活動現在宣告如下：
+hello 觸達活動現在會宣告如下：
 
             <activity
               android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity"
@@ -297,9 +297,9 @@ Reach 活動現在宣告如下：
               </intent-filter>
             </activity>
 
-如果您有自訂的 Reach 活動，只需要變更意圖動作，以符合 `com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT` 或 `com.microsoft.azure.engagement.reach.intent.action.POLL`。
+如果您有自訂的觸達活動，您必須唯一 toochange hello 意圖動作 toomatch`com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT`或`com.microsoft.azure.engagement.reach.intent.action.POLL`。
 
-廣播接收器已重新命名，此外我們現在也已加入 `exported=false`。 以下是新規格之接收器的完整清單 (當然，請只重新命名您所使用的項目)：
+hello 廣播的接收者已重新命名，再加上現在加入`exported=false`。 以下是 hello 的 hello 接收者 hello 新規格 (當然重新命名只有 hello 的您所使用) 的完整清單：
 
             <receiver android:name="com.microsoft.azure.engagement.reach.EngagementReachReceiver"
               android:exported="false">
@@ -378,7 +378,7 @@ Reach 活動現在宣告如下：
               </intent-filter>
             </receiver>
 
-已移除追蹤接收器，所以您必須移除此區段：
+追蹤收件者已被移除，因此您需要 tooremove 這一節：
 
           <receiver android:name="com.ubikod.capptain.android.sdk.track.CapptainTrackReceiver">
             <intent-filter>
@@ -387,7 +387,7 @@ Reach 活動現在宣告如下：
             </intent-filter>
           </receiver>
 
-請注意，您的廣播接收器 **EngagementMessageReceiver** 實作的宣告已在 `AndroidManifest.xml` 中變更。 這是因為已經移除從任意 XMPP 實體傳送和接收任意 XMPP 訊息的 API，以及在裝置之間傳送和接收訊息的 API。 因此，您也必須從您的 **EngagementMessageReceiver** 實作刪除下列回呼：
+請注意您實作的 hello hello 宣告廣播接收者**EngagementMessageReceiver** hello 中已經變更`AndroidManifest.xml`。 這是因為 hello API toosend 和移除任意 XMPP 訊息從任意 XMPP 實體和 hello API toosend 而接收裝置之間的訊息已被移除。 因此，您必須也 toodelete hello 下列回呼您**EngagementMessageReceiver**實作：
 
             protected void onDeviceMessageReceived(android.content.Context context, java.lang.String deviceId, java.lang.String payload)
 
@@ -404,7 +404,7 @@ Reach 活動現在宣告如下：
             sendXMPPMessage(android.os.Bundle msg)
 
 ### <a name="proguard"></a>Proguard
-Proguard 組態受到品牌重新命名的影響，規則現在類似：
+Proguard 組態受到 rebranding，hello 規則現在正在尋找類似：
 
             -dontwarn android.**
             -keep class android.support.v4.** { *; }

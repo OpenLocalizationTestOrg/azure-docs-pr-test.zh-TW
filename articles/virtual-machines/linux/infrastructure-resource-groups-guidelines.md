@@ -1,6 +1,6 @@
 ---
-title: "Azure 中 Linux VM 的資源群組 | Microsoft Docs"
-description: "了解適合用來在 Azure 基礎結構服務中部署資源群組的關鍵設計和實作指導方針。"
+title: "在 Azure 中的 Linux Vm 的 aaaResource 群組 |Microsoft 文件"
+description: "深入了解 hello 金鑰設計和實作指導方針在 Azure 基礎結構服務中部署資源群組。"
 documentationcenter: 
 services: virtual-machines-linux
 author: iainfoulds
@@ -16,42 +16,42 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 452acde571164a3ab4ce2dcccf99d2aed90361fe
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8809cb5eeb9a166d2bcf1946cd26b0ee748f8cd6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-resource-group-guidelines-for-linux-vms"></a>適用於 Linux VM 的 Azure 資源群組指導方針 
 
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
-本文著重於了解如何在資源群組中以邏輯方式建置環境，並將所有元件分組的方式。
+本文著重在了解如何 toologically 建置您的環境和所有資源群組中的 hello 元件都群組。
 
 ## <a name="implementation-guidelines-for-resource-groups"></a>資源群組的實作指導方針
 决策：
 
-* 您要以核心基礎結構元件建置資源群組，還是以完整的應用程式部署？
-* 您是否需要使用角色型存取控制來限制資源群組的存取？
+* 要何種 toobuild 出資源群組由 hello 核心基礎結構元件，或完整的應用程式部署嗎？
+* 您需要 toorestrict 存取 tooResource 群組使用角色型存取控制？
 
 工作：
 
 * 定義核心基礎結構元件，以及您所需的專屬資源群組。
-* 檢閱如何實作 Resource Manager 範本以取得一致且可重現的部署。
-* 定義針對控制資源群組存取所需的使用者存取角色。
-* 使用您的命名慣例來建立資源群組組合。 您可以使用 Azure CLI 或入口網站。
+* 檢閱如何將資源管理員範本 tooimplement 一致、 可重現的部署。
+* 如需可控制哪些使用者存取角色存取 tooResource 群組的定義。
+* 建立資源群組使用您的命名慣例 hello 組。 您可以使用 Azure CLI hello 或入口網站。
 
 ## <a name="resource-groups"></a>資源群組
-在 Azure 中，您可以邏輯方式將相關資源 (例如儲存體帳戶、虛擬網路及虛擬機器 (VM)) 分組，以將它們當成單一實體進行部署、管理及維護。 從管理的角度來看，這個方式可讓您在將所有相關資源保持在一起的情況下，更輕鬆地部署應用程式，或是授與其他人存取該資源群組。 資源群組名稱長度最多可以有 90 個字元。 如需針對資源群組取得更完整的了解，請參閱 [Azure Resource Manager 概觀](../../azure-resource-manager/resource-group-overview.md)。
+在 Azure 中，您以邏輯方式群組相關的資源，例如儲存體帳戶、 虛擬網路以及虛擬機器 (Vm) toodeploy、 管理和維護它們當做單一實體。 這個方法可讓它更容易 toodeploy 應用程式時保留所有 hello 相關聯的資源一起從管理的觀點來看或 toogrant 其他人存取 toothat 群組的資源。 資源群組名稱長度最多可以有 90 個字元。 資源群組的更完整了解，您可以參閱 hello [Azure 資源管理員概觀](../../azure-resource-manager/resource-group-overview.md)。
 
-資源群組的其中一個關鍵功能，是使用宣告儲存體、網路及計算資源的 JSON 檔案來建置環境的能力。 您也可以定義任何要套用的相關自訂指令碼或設定。 透過使用這些 JSON 範本，您可以為應用程式建立一致且可重現的部署。 這種方式讓您可以建置開發環境，然後使用相同的範本建立生產環境部署，反之亦然。 如需深入了解範本的使用方式，請參閱 [範本逐步解說](../../azure-resource-manager/resource-manager-template-walkthrough.md) ，它將能引導您完成建置 JSON 範本的每個步驟。
+TooResource 群組是一項重要功能 hello 能力 toobuild 使用 JSON 檔案宣告 hello 儲存體、 網路、 環境和運算資源。 您也可以定義任何相關的自訂指令碼或組態 tooapply。 透過使用這些 JSON 範本，您可以為應用程式建立一致且可重現的部署。 這種方法可讓您建置在開發環境，然後使用該相同的範本 toocreate 生產部署，反之亦然。 進一步了解有關使用範本，讀取[hello 範本逐步解說](../../azure-resource-manager/resource-manager-template-walkthrough.md)，引導您完成建置出 JSON 範本的每個步驟。
 
 您在使用資源群組設計環境時，有兩種不同的執行方式：
 
-* 適用於每個應用程式部署的資源群組，其中結合了儲存體帳戶、虛擬網路和子網路、VM、負載平衡器等項目。
+* 資源群組結合了 hello 儲存體帳戶、 虛擬網路和子網路的 Vm，每個應用程式部署的負載平衡器等。
 * 集中式資源群組，其中包含您的核心虛擬網路和子網路或儲存體帳戶。 接著，您的應用程式會位於它們自己的資源群組中，其中只會包含 VM、負載平衡器、網路介面等項目。
 
-隨著您相應放大，為虛擬網路和子網路建立集中式資源群組，將能讓您更輕鬆地為混合式連線能力選項建立跨單位網路連線。 另一個替代方式是讓每個應用程式自行擁有需要個別設定和維護的虛擬網路。 [角色型存取控制](../../active-directory/role-based-access-control-what-is.md) 提供更細微的資源群組存取控制方法。 針對實際執行應用程式，您可以控制可以存取那些資源的使用者，或是針對核心基礎結構資源限制只有基礎結構工程師可以使用它們。 您的應用程式使用者只能存取他們資源群組內的應用程式元件，而非環境的核心 Azure 基礎結構。 當您設計環境時，請考慮需要存取資源的使用者，並據以設計您的資源群組。 
+當您向外延展，建立您的虛擬網路的集中式的資源群組和子網路可讓您更輕鬆 toobuild 跨單位網路連線的混合式連線選項。 hello 替代方法是針對每個應用程式 toohave 自己需要設定和維護的虛擬網路。 [角色型存取控制](../../active-directory/role-based-access-control-what-is.md)提供細微的方式 toocontrol 存取 tooResource 群組。 對於生產應用程式，您可以控制 hello 使用者可以存取這些資源，或 hello 核心基礎結構資源，您可以限制只有基礎結構工程師 toowork 它們。 您的應用程式擁有者只能有其資源群組和不 hello 核心 Azure 基礎結構，您的環境中存取 toohello 應用程式元件。 當您設計您的環境，請考慮 hello 使用者需要存取 toohello 資源，並據此設計您的資源群組。 
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]

@@ -1,6 +1,6 @@
 ---
-title: "使用 Data Factory 從 Salesforce 移動資料 | Microsoft Docs"
-description: "了解如何使用 Azure Data Factory 從 Salesforce 移動資料。"
+title: "將資料從 Salesforce aaaMove 使用 Data Factory |Microsoft 文件"
+description: "深入了解如何將資料從 Salesforce toomove 使用 Azure Data Factory。"
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,122 +14,122 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/04/2017
 ms.author: jingwang
-ms.openlocfilehash: 9390b992bce2dede750c3fc55b7783a6b0db678f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c1bde2a333f5a3c0a995eb8c13ecf585132888b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-salesforce-by-using-azure-data-factory"></a>使用 Azure Data Factory 從 Salesforce 移動資料
-本文概述如何在 Azure Data Factory 使用複製活動，將資料從 Salesforce 複製到 [支援的來源與接收](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 資料表的 [接收] 欄底下列出的任何資料存放區。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
+本文概述如何使用複製活動，以及在 Azure data factory toocopy 資料從 Salesforce tooany 資料存放區中 hello hello 接收的資料行底下所列[支援來源與接收](data-factory-data-movement-activities.md#supported-data-stores-and-formats)資料表。 這篇文章是根據 hello[資料移動活動](data-factory-data-movement-activities.md)文件，複製活動與支援的資料存放區組合顯示的資料移動的一般概觀。
 
-Azure Data Factory 目前只支援將資料從 Salesforce 移動到 [支援的接收資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)，但不支援將資料從其他資料存放區移動到 Salesforce。
+Azure Data Factory 目前只支援將資料從 Salesforce 移過[支援接收資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)，但不支援從其他資料存放區 tooSalesforce 移動資料。
 
 ## <a name="supported-versions"></a>支援的版本
-此連接器使用下列其中一個 Salesforce 版本︰Developer Edition、Professional Edition、Enterprise Edition 或 Unlimited Edition。 並且支援從 Salesforce 生產、沙箱和自訂網域複製。
+此連接器支援下列 Salesforce 的版本中的 hello: Developer Edition、 專業版、 企業版或無限制的版本。 並且支援從 Salesforce 生產、沙箱和自訂網域複製。
 
 ## <a name="prerequisites"></a>必要條件
 * 必須啟用 API 權限。 請參閱 [如何在 Salesforce 中透過權限集啟用 API 存取權？](https://www.data2crm.com/migration/faqs/enable-api-access-salesforce-permission-set/)
-* 若要將資料從 Salesforce 複製到內部部署資料存放區，您必須在內部部署環境中至少安裝資料管理閘道 2.0。
+* 從 Salesforce tooon 內部部署資料存放區 toocopy 資料，您必須至少在內部部署環境中安裝資料管理閘道器 2.0。
 
 ## <a name="salesforce-request-limits"></a>Salesforce 要求限制
-Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意下列幾點：
+Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意下列點 hello:
 
-- 如果並行要求數目超過限制，便會進行節流，而且您會看到隨機失敗。
-- 如果要求總數超過限制，Salesforce 帳戶將會封鎖 24 小時。
+- 如果 hello 並行要求數目超過 hello 限制，就會發生節流，而且您會看到隨機失敗。
+- 如果 hello 的總要求數超出 hello 限制，hello 的 Salesforce 帳戶會被封鎖 24 小時。
 
-在上述兩種情況中，您也可能會收到「REQUEST_LIMIT_EXCEEDED」錯誤。 如需詳細資訊，請參閱 [Salesforce 開發人員限制](http://resources.docs.salesforce.com/200/20/en-us/sfdc/pdf/salesforce_app_limits_cheatsheet.pdf)文章的＜API 要求限制＞一節。
+您也可能會收到 hello"REQUEST_LIMIT_EXCEEDED 」 錯誤，這兩種案例中。 請參閱 hello hello"應用程式開發介面要求的限制 」 一節[Salesforce 開發人員限制](http://resources.docs.salesforce.com/200/20/en-us/sfdc/pdf/salesforce_app_limits_cheatsheet.pdf)文件以取得詳細資料。
 
 ## <a name="getting-started"></a>開始使用
 您可以藉由使用不同的工具/API，建立內含複製活動的管線，以從 Salesforce 移動資料。
 
-建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
+最簡單方式 toocreate hello 管線為 toouse hello**複製精靈**。 請參閱[教學課程： 建立管線，使用複製精靈](data-factory-copy-data-wizard-tutorial.md)快速逐步解說中建立管線中使用 hello 複製資料精靈 」。
 
-您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API** 及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
+您也可以使用下列工具 toocreate 管線 hello: **Azure 入口網站**， **Visual Studio**， **Azure PowerShell**， **Azure Resource Manager 範本**， **.NET API**，和**REST API**。 請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)的逐步指示 toocreate 具有複製活動的管線。 
 
-不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線： 
+無論您是使用 hello 工具或 Api，會執行下列步驟 toocreate 移動來源資料中的資料存放區 tooa 接收資料存放區的管線的 hello: 
 
-1. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。
-2. 建立**資料集**，代表複製作業的輸入和輸出資料。 
+1. 建立**連結的服務**toolink 輸入和輸出資料存放區 tooyour 資料 factory。
+2. 建立**資料集**toorepresent 輸入和輸出 hello 的資料複製作業。 
 3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
 
-使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來從 Salesforce 複製資料之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例：將資料從 Salesforce 複製到 Azure Blob](#json-example-copy-data-from-salesforce-to-azure-blob) 一節。 
+當您使用 hello 精靈時，會自動為您建立這些 Data Factory 實體 （連結的服務、 資料集和 hello 管線） 的 JSON 定義。 當您使用 工具/Api （除了.NET 應用程式開發介面） 時，您會定義這些 Data Factory 實體使用 hello JSON 格式。  具有使用的 toocopy 資料來自 Salesforce 的 Data Factory 實體的 JSON 定義中的範例，請參閱[JSON 範例： 將資料從 Salesforce tooAzure Blob 複製](#json-example-copy-data-from-salesforce-to-azure-blob)本文一節。 
 
-下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 Salesforce 特定的 Data Factory 實體： 
+hello 下列各節提供有關使用的 toodefine Data Factory 實體特定 tooSalesforce 的 JSON 屬性的詳細資料： 
 
 ## <a name="linked-service-properties"></a>連結服務屬性
-下表提供 Salesforce 連結服務專屬 JSON 元素的描述。
+hello 下表提供說明是特定 toohello Salesforce 連結服務的 JSON 元素。
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |類型屬性必須設為： **Salesforce**。 |是 |
-| environmentUrl | 指定 Salesforce 執行個體的 URL。 <br><br> - 預設值為 "https://login.salesforce.com"。 <br> - 若要從沙箱複製資料，請指定 "https://test.salesforce.com"。 <br> - 若要從自訂網域複製資料，舉例來說，請指定 "https://[網域].my.salesforce.com"。 |否 |
-| username |指定使用者帳戶的使用者名稱。 |是 |
-| password |指定使用者帳戶的密碼。 |是 |
-| securityToken |指定使用者帳戶的安全性權杖。 如需如何重設/取得安全性權杖的指示，請參閱 [取得安全性權杖](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm) 。 若要整體了解安全性權杖，請參閱[安全性和 API](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm)。 |是 |
+| 類型 |hello 類型屬性必須設定為： **Salesforce**。 |是 |
+| environmentUrl | 指定 hello URL 的 Salesforce 執行個體。 <br><br> - 預設值為 " https://login.salesforce.com "。 <br> -從沙箱，toocopy 資料指定"https://test.salesforce.com"。 <br> -toocopy 資料從自訂網域，指定，例如，"https://[domain].my.salesforce.com"。 |否 |
+| username |指定 hello 使用者帳戶的使用者名稱。 |是 |
+| password |指定 hello 使用者帳戶的密碼。 |是 |
+| securityToken |指定 hello 使用者帳戶的安全性權杖。 請參閱[取得安全性權杖](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm)如需有關指示 tooreset 取得安全性權杖。 一般情況下，請參閱關於安全性權杖的 toolearn[安全性和 hello API](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm)。 |是 |
 
 ## <a name="dataset-properties"></a>資料集屬性
-如需定義資料集的區段和屬性完整清單，請參閱 [建立資料集](data-factory-create-datasets.md) 一文。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
+區段和屬性都可用來定義資料集的完整清單，請參閱 hello[建立資料集](data-factory-create-datasets.md)發行項。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
 
-每個資料集類型的 **typeProperties** 區段都不同，可提供資料存放區中的資料位置資訊。 **RelationalTable** 類型資料集的 typeProperties 區段有下列屬性：
+hello **typeProperties**區段是不同的資料集的每個型別，並提供 hello hello 資料存放區中的 hello 資料位置相關資訊。 hello typeProperties 區段 hello 類型的資料集**RelationalTable**具有下列屬性的 hello:
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |Salesforce 中資料表的名稱。 |否 (如果已指定 **RelationalSource** 的 **query**) |
+| tableName |在 Salesforce 中的 hello 資料表的名稱。 |否 (如果已指定 **RelationalSource** 的 **query**) |
 
 > [!IMPORTANT]
-> 任何自訂物件都需要 API 名稱的「__c」部分。
+> hello"__c"hello API 名稱部分所需的任何自訂的物件。
 
 ![Data Factory - Salesforce 連線 - API 名稱](media/data-factory-salesforce-connector/data-factory-salesforce-api-name.png)
 
 ## <a name="copy-activity-properties"></a>複製活動屬性
-如需定義活動的區段和屬性完整清單，請參閱 [建立管線](data-factory-create-pipelines.md) 一文。 名稱、描述、輸入和輸出資料表以及各種原則等屬性都適用於所有活動類型。
+區段和屬性都可用來定義活動的完整清單，請參閱 hello[建立管線](data-factory-create-pipelines.md)發行項。 名稱、描述、輸入和輸出資料表以及各種原則等屬性都適用於所有活動類型。
 
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
+中可用的 hello 屬性 hello typeProperties > 一節的 hello 活動 hello 另一方面，每個活動類型而有所不同。 複製活動它們而異的來源與接收的 hello 類型。
 
-在複製活動中，如果來源類型為 **RelationalSource** (包含 Salesforce)，則 typeProperties 區段可使用下列屬性：
+複製活動中，當 hello 來源 hello 型別的**RelationalSource** （包括 Salesforce），下列屬性的 hello 可用 typeProperties 區段中：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |SQL-92 查詢或 [Salesforce 物件查詢語言 (SOQL)](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) 查詢。 例如：`select * from MyTable__c`。 |否 (如果已指定 **dataset** 的 **tableName**) |
+| query |使用自訂查詢 tooread hello 的資料。 |SQL-92 查詢或 [Salesforce 物件查詢語言 (SOQL)](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) 查詢。 例如：`select * from MyTable__c`。 |否 (如果 hello **tableName**的 hello**資料集**指定) |
 
 > [!IMPORTANT]
-> 任何自訂物件都需要 API 名稱的「__c」部分。
+> hello"__c"hello API 名稱部分所需的任何自訂的物件。
 
 ![Data Factory - Salesforce 連線 - API 名稱](media/data-factory-salesforce-connector/data-factory-salesforce-api-name-2.png)
 
 ## <a name="query-tips"></a>查詢秘訣
 ### <a name="retrieving-data-using-where-clause-on-datetime-column"></a>在 DateTime 資料行上使用 Where 子句來擷取資料
-指定 SOQL 或 SQL 查詢時，請注意 DateTime 格式差異。 例如：
+何時指定 hello SOQL 或 SQL 查詢，請注意 toohello 日期時間格式的差異。 例如：
 
 * **SOQL 範例**：`$$Text.Format('SELECT Id, Name, BillingCity FROM Account WHERE LastModifiedDate >= {0:yyyy-MM-ddTHH:mm:ssZ} AND LastModifiedDate < {1:yyyy-MM-ddTHH:mm:ssZ}', WindowStart, WindowEnd)`
 * **SQL 範例**：
-    * **使用複製精靈指定查詢︰**`$$Text.Format('SELECT * FROM Account WHERE LastModifiedDate >= {{ts\'{0:yyyy-MM-dd HH:mm:ss}\'}} AND LastModifiedDate < {{ts\'{1:yyyy-MM-dd HH:mm:ss}\'}}', WindowStart, WindowEnd)`
-    * **使用 JSON 編輯指定查詢 (適當地逸出字元)︰**`$$Text.Format('SELECT * FROM Account WHERE LastModifiedDate >= {{ts\\'{0:yyyy-MM-dd HH:mm:ss}\\'}} AND LastModifiedDate < {{ts\\'{1:yyyy-MM-dd HH:mm:ss}\\'}}', WindowStart, WindowEnd)`
+    * **使用複製精靈 toospecify hello 查詢：**`$$Text.Format('SELECT * FROM Account WHERE LastModifiedDate >= {{ts\'{0:yyyy-MM-dd HH:mm:ss}\'}} AND LastModifiedDate < {{ts\'{1:yyyy-MM-dd HH:mm:ss}\'}}', WindowStart, WindowEnd)`
+    * **使用 JSON 編輯 toospecify hello 查詢 （逸出字元正確）：**`$$Text.Format('SELECT * FROM Account WHERE LastModifiedDate >= {{ts\\'{0:yyyy-MM-dd HH:mm:ss}\\'}} AND LastModifiedDate < {{ts\\'{1:yyyy-MM-dd HH:mm:ss}\\'}}', WindowStart, WindowEnd)`
 
 ### <a name="retrieving-data-from-salesforce-report"></a>從 Salesforce 報表擷取資料
 例如，您可以藉由以 `{call "<report name>"}` 方式指定查詢，從 Salesforce 報表擷取資料。 `"query": "{call \"TestReport\"}"`。
 
 ### <a name="retrieving-deleted-records-from-salesforce-recycle-bin"></a>從 Salesforce 資源回收筒擷取已刪除的記錄
-若要從「Salesforce 資源回收筒」查詢虛刪除記錄，您可以在查詢中指定 **"IsDeleted = 1"**。 例如，
+來自 Salesforce 的 資源回收筒 tooquery hello 虛刪除記錄，您可以指定**"IsDeleted = 1"**在查詢中。 例如，
 
-* 若只要查詢已刪除的記錄，請指定 "select * from MyTable__c **where IsDeleted= 1**"
-* 若要查詢所有記錄 (包括現有和已刪除的記錄)，請指定 "select * from MyTable__c **where IsDeleted = 0 or IsDeleted = 1**"
+* tooquery 只有 hello 刪除記錄，會指定 「 選取 * 從 MyTable__c**其中 IsDeleted = 1**"
+* 所有 hello 記錄包括現有的 hello 和刪除，hello tooquery 指定 「 選取 * 從 MyTable__c**其中 IsDeleted = 0 或 IsDeleted = 1**"
 
-## <a name="json-example-copy-data-from-salesforce-to-azure-blob"></a>JSON 範例：將資料從 Salesforce 複製到 Azure Blob
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 這些範例示範如何將資料從 Salesforce 複製到 Azure Blob 儲存體。 不過，您可以在 Azure Data Factory 中使用複製活動，將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。   
+## <a name="json-example-copy-data-from-salesforce-tooazure-blob"></a>JSON 範例： 從 Salesforce tooAzure Blob 複製資料
+hello 下列範例將提供範例 JSON 定義，您可以使用 toocreate 管線使用 hello [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)， [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)，或[Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)。 它們會顯示如何從 Salesforce tooAzure Blob 儲存體 toocopy 資料。 不過，資料可以複製的 tooany hello 接收所述的[這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats)使用 hello Azure Data Factory 中的複製活動。   
 
-以下是為了實作案例所必須建立的 Data Factory 構件。 清單後面的各節會提供有關這些步驟的詳細資料。
+以下是您將需要 toocreate tooimplement hello 案例 hello Data Factory 成品。 hello 以下各節 hello 清單提供關於這些步驟的詳細資料。
 
-* [Salesforce](#linked-service-properties)
-* [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)
-* [RelationalTable](#dataset-properties) 類型的輸入[資料集](data-factory-create-datasets.md)
-* [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties) 類型的輸出[資料集](data-factory-create-datasets.md)
+* 連結的類型之服務的 hello [Salesforce](#linked-service-properties)
+* 連結的類型之服務的 hello [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)
+* 輸入[資料集](data-factory-create-datasets.md)hello 型別的[RelationalTable](#dataset-properties)
+* 輸出[資料集](data-factory-create-datasets.md)hello 型別的[AzureBlob](data-factory-azure-blob-connector.md#dataset-properties)
 * 具有使用 [RelationalSource](#copy-activity-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) 之複製活動的[管線](data-factory-create-pipelines.md)
 
 **Salesforce 連結服務**
 
-此範例使用 **Salesforce** 連結服務。 如需此連結服務所支援的屬性，請參閱 [Salesforce 連結服務](#linked-service-properties) 一節。  如需如何重設/取得安全性權杖的指示，請參閱 [取得安全性權杖](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm) 。
+這個範例會使用 hello **Salesforce**連結服務。 請參閱 hello [Salesforce 連結服務](#linked-service-properties)hello 屬性這項連結服務所支援的區段。  請參閱[取得安全性權杖](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm)如需如何 tooreset/get hello 安全性權杖的指示。
 
 ```json
 {
@@ -186,16 +186,16 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
 }
 ```
 
-將 **external** 設定為 **true** 會通知 Data Factory 服務：這是 Data Factory 外部的資料集而且不是由 Data Factory 中的活動所產生。
+設定**外部**太**true**該 hello 集外部 toohello 資料處理站，且不產生 hello data factory 中的活動時，會通知 hello Data Factory 服務。
 
 > [!IMPORTANT]
-> 任何自訂物件都需要 API 名稱的「__c」部分。
+> hello"__c"hello API 名稱部分所需的任何自訂的物件。
 
 ![Data Factory - Salesforce 連線 - API 名稱](media/data-factory-salesforce-connector/data-factory-salesforce-api-name.png)
 
 **Azure Blob 輸出資料集**
 
-資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。
+資料會寫入 tooa 新 blob 的每個小時 (頻率： 小時、 interval: 1)。
 
 ```json
 {
@@ -219,9 +219,9 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
 
 **具有複製活動的管線**
 
-此管線包含「複製活動」，該活動已設定為使用輸入和輸出資料集，並且排定為每小時執行。 在管線 JSON 定義中，已將 **source** 類型設為 **RelationalSource**，並將 **sink** 類型設為 **BlobSink**。
+hello 管線包含設定的複製活動 toouse hello 輸入和輸出資料集，並為排程的 toorun 每個小時。 在 hello 管線 JSON 定義中，hello**來源**類型設定得**RelationalSource**，和 hello**接收**類型設定得**BlobSink**。
 
-如需 RelationalSource 支援的屬性清單，請參閱 [RelationalSource 類型屬性](#copy-activity-properties) 。
+請參閱[RelationalSource 類型屬性](#copy-activity-properties)的 hello hello RelationalSource 所支援的屬性清單。
 
 ```json
 {  
@@ -233,7 +233,7 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
         "activities":[  
         {
             "name": "SalesforceToAzureBlob",
-            "description": "Copy from Salesforce to an Azure blob",
+            "description": "Copy from Salesforce tooan Azure blob",
             "type": "Copy",
             "inputs": [
             {
@@ -270,7 +270,7 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
 }
 ```
 > [!IMPORTANT]
-> 任何自訂物件都需要 API 名稱的「__c」部分。
+> hello"__c"hello API 名稱部分所需的任何自訂的物件。
 
 ![Data Factory - Salesforce 連線 - API 名稱](media/data-factory-salesforce-connector/data-factory-salesforce-api-name-2.png)
 
@@ -299,9 +299,9 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
 | URL |String |
 
 > [!NOTE]
-> 若要將來自來源資料集的資料行與來自接收資料集的資料行對應，請參閱[在 Azure Data Factory 中對應資料集資料行](data-factory-map-columns.md)。
+> toomap 資料行從來源資料集 toocolumns 從接收的資料集，請參閱[Azure Data Factory 中的資料集資料行對應](data-factory-map-columns.md)。
 
 [!INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 
 ## <a name="performance-and-tuning"></a>效能和微調
-若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱 [複製活動的效能及微調指南](data-factory-copy-activity-performance.md) 。
+請參閱 hello[複製活動效能及微調指南](data-factory-copy-activity-performance.md)toolearn 金鑰的相關因素影響效能的資料移動 （複製活動） 在 Azure Data Factory 和各種方式 toooptimize 它。

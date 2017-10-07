@@ -1,6 +1,6 @@
 ---
-title: "Azure 儲存體文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用 Azure 儲存體 - 雲端中的 Blob、資料表、佇列、檔案和虛擬機器磁碟儲存體。 教學課程、API 參考和其他文件。"
+title: "aaaAzure 儲存體文件-教學課程中，API 參考 |Microsoft 文件"
+description: "深入了解如何 toouse Azure 儲存體-hello 雲端中的 Blob、 資料表、 佇列、 檔案和虛擬機器磁碟儲存體。 教學課程、API 參考和其他文件。"
 services: storage
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: af6bc7cc4245208d2dc92a9b248aa4686cf42272
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7155feb190c8c769eb9c8f8712cca939708d57b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="storage-documentation"></a>儲存體文件
 
-了解如何使用 Azure 儲存體，這是一項持久、可用且可調整的雲端儲存體服務。 教學課程、API 參考和其他文件會示範如何設定和管理 Blob、資料表、佇列、檔案和虛擬機器磁碟儲存體。
+深入了解如何 toouse Azure 儲存體，雲端儲存體服務，是持久、 可用且可延展。 教學課程、 應用程式開發介面參考和其他文件會顯示您如何 tooset 及管理 Blob、 資料表、 佇列、 檔案和虛擬機器磁碟的儲存體。
 
 <ul class="panelContent cardsFTitle">
     <li>

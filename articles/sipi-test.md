@@ -1,6 +1,6 @@
 ---
 title: "Sipi 測試檔案 |Microsoft 文件"
-description: "若要檢查 ReadyForTest 相依性的測試檔案"
+description: "測試檔案 toocheck ReadyForTest 相依性"
 services: active-directory-b2c
 documentationcenter: 
 author: Sipi
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 6/13/2017
 ms.author: Sipi
-ms.openlocfilehash: 871d58818dcbaee5f7a5f07c19e2297ec6459a6f
-ms.sourcegitcommit: b0af2a2cf44101a1b1ff41bd2ad795eaef29612a
+ms.openlocfilehash: afd3dc94dfb30926b316256fb06a768a391004f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sipi-test-file"></a>Sipi 測試檔案
 
-本快速入門協助您在幾分鐘內於 Microsoft Azure Active Directory (Azure AD) B2C 租用戶中註冊應用程式。 當您完成時，應用程式就已註冊完成，以便在 Azure B2C 租用戶中使用。
+本快速入門協助您在幾分鐘內於 Microsoft Azure Active Directory (Azure AD) B2C 租用戶中註冊應用程式。 當您完成時，使用 hello Azure B2C 租用戶中註冊您的應用程式。
 
 ## <a name="prerequisites"></a>必要條件
 
-若要建置可接受取用者註冊與登入的應用程式，您必須先使用 Azure Active Directory B2C 租用戶註冊該應用程式。 使用 [建立 Azure AD B2C 租用戶](active-directory-b2c-get-started.md)中概述的步驟來建立您自己的租用戶。
+toobuild 接受取用者註冊和登入的應用程式，您必須先 tooregister hello 應用程式與 Azure Active Directory B2C 租用戶。 使用 hello 中所述的步驟，以取得自己的租用戶[建立 Azure AD B2C 租用戶](active-directory-b2c-get-started.md)。
 
-在 Azure 入口網站中從 [Azure AD B2C] 刀鋒視窗建立的應用程式，必須從相同的位置進行管理。 如果您使用 PowerShell 或另一個入口網站編輯 B2C 應用程式，系統則不支援這些應用程式支援且無法搭配 Azure AD B2C 運作。 如需詳細資料，請參閱[ 發生錯誤的應用程式](#faulted-apps)一節。 
+從 Azure AD B2C hello 刀鋒視窗 hello Azure 入口網站中建立的應用程式必須從 hello 管理相同的位置。 如果您編輯使用 PowerShell 或另一個入口網站的 hello B2C 應用程式，它們會變成不受支援，無法搭配 Azure AD B2C。 查看詳細資料中 hello[發生錯誤的應用程式](#faulted-apps)> 一節。 
 
-## <a name="navigate-to-b2c-settings"></a>瀏覽至 B2C 設定
+## <a name="navigate-toob2c-settings"></a>瀏覽 tooB2C 設定
 
-以 B2C 租用戶的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com/)。 
+登入 toohello [Azure 入口網站](https://portal.azure.com/)為 hello hello B2C 租用戶的全域管理員。 
 
 [!INCLUDE [active-directory-b2c-switch-b2c-tenant](../includes/active-directory-b2c-switch-b2c-tenant.md)]
 
-根據您所註冊的應用程式類型，選擇後續步驟：
+選擇 [下一步] 步驟會依據您所註冊的 hello 應用程式類型：

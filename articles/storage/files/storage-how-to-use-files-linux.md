@@ -1,6 +1,6 @@
 ---
-title: "搭配 Linux 使用 Azure 檔案儲存體 | Microsoft Docs"
-description: "了解如何透過 Linux 上的 SMB 掛接 Azure 檔案共用。"
+title: "aaaUse Linux 的 Azure 檔案儲存體 |Microsoft 文件"
+description: "了解 toomount Azure 檔案如何透過在 Linux 上的 SMB 共用。"
 services: storage
 documentationcenter: na
 author: RenaShahMSFT
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/8/2017
 ms.author: renash
-ms.openlocfilehash: d8987082c559a374b8d19fd69e20cf5e81cb25ef
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: eeaa24b7f9e646724c5d86ae1e80dfdadaff34fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-file-storage-with-linux"></a>搭配 Linux 使用 Azure 檔案儲存體
-[Azure 檔案儲存體](../storage-dotnet-how-to-use-files.md)是 Microsoft 容易使用的雲端檔案系統。 Azure 檔案共用可裝載於使用 [cifs-utils 封裝](https://wiki.samba.org/index.php/LinuxCIFS_utils) (來自 [Samba 專案](https://www.samba.org/)) 的 Linux 發行版本。 本文將說明掛接 Azure 檔案共用的兩種方式：使用 `mount` 命令的隨選掛接，以及建立項目 `/etc/fstab` 的開機掛接。
+[Azure 檔案儲存體](../storage-dotnet-how-to-use-files.md)是 Microsoft 的簡單 toouse 雲端的檔案系統。 Azure 檔案共用使用 hello 之 Linux 發行套件中只能裝載[cifs utils 封裝](https://wiki.samba.org/index.php/LinuxCIFS_utils)從 hello [Samba 專案](https://www.samba.org/)。 本文將說明兩種方式 toomount Azure 檔案共用： 依需求以 hello`mount`命令，並在開機藉由建立中的項目`/etc/fstab`。
 
 > [!NOTE]  
-> 若要在 Azure 區域之外掛接 Azure 檔案共用，例如內部部署或是在不同的 Azure 區域，作業系統必須支援 SMB 3.0 的加密功能。 4.11 核心推出 Linux 的 SMB 3.0 適用的加密功能。 此功能讓您可從內部部署或不同 Azure 區域的 Azure 檔案共用進行掛接。 發佈時，這項功能已向前移植到 16.04 及以上版本的 Ubuntu。
+> 順序 toomount Azure 檔案共用之外 hello Azure 地區，例如在內部部署或在不同 Azure 區域中，hello OS 裝載於，必須支援 SMB 3.0 的 hello 加密的功能。 4.11 核心推出 Linux 的 SMB 3.0 適用的加密功能。 此功能讓您可從內部部署或不同 Azure 區域的 Azure 檔案共用進行掛接。 在發行的 hello 階段，這項功能已被 backported tooUbuntu 從 16.04 及更新版本。
 
 
-## <a name="prerequisities-for-mounting-an-azure-file-share-with-linux-and-the-cifs-utils-package"></a>以 Linux 掛接 Azure 檔案共用和 cifs-utils 封裝的必要條件
-* **挑選可安裝 cifs-utils 封裝的 Linux 發行版本**：Microsoft 建議使用 Azure 映像庫中的下列 Linux 發行版本：
+## <a name="prerequisities-for-mounting-an-azure-file-share-with-linux-and-hello-cifs-utils-package"></a>裝載 Azure 檔案共用與 Linux 和 hello cifs 公用程式封裝的必要條件
+* **挑選 Linux 散發套件可以已安裝的 hello cifs utils 封裝**: Microsoft 建議下列 Linux 散發套件 hello Azure 映像庫中的 hello:
 
     * Ubuntu Server 14.04+
     * RHEL 7+
@@ -37,82 +37,82 @@ ms.lasthandoff: 08/29/2017
     * openSUSE 13.2+
     * SUSE Linux Enterprise Server 12
 
-* <a id="install-cifs-utils"></a>**安裝 cifs-utils 封裝**：可使用封裝管理員將 cifs-utils 安裝在所選擇的 Linux 發行版本上。 
+* <a id="install-cifs-utils"></a>**hello cifs 公用程式安裝封裝**: hello cifs 公用程式可以在您選擇的 hello Linux 發佈使用 hello 封裝管理員來安裝。 
 
-    在 **Ubuntu** 和 **Debian 型**發行版本上，請使用 `apt-get` 封裝管理員：
+    在**Ubuntu**和**Debian 基礎**分佈，使用 hello`apt-get`封裝管理員：
 
     ```
     sudo apt-get update
     sudo apt-get install cifs-utils
     ```
 
-    在 **RHEL** 和 **CentOS** 上，請使用 `yum` 封裝管理員：
+    在**RHEL**和**CentOS**，使用 hello`yum`封裝管理員：
 
     ```
     sudo yum install samba-client samba-common cifs-utils
     ```
 
-    在 **openSUSE** 上，請使用 `zypper` 封裝管理員：
+    在**openSUSE**，使用 hello`zypper`封裝管理員：
 
     ```
     sudo zypper install samba*
     ```
 
-    在其他發行版本上，請使用適當的封裝管理員或[從來源編譯](https://wiki.samba.org/index.php/LinuxCIFS_utils#Download)。
+    其他的發佈，使用 hello 適當的封裝管理員或[從來源編譯](https://wiki.samba.org/index.php/LinuxCIFS_utils#Download)。
 
-* **對於掛接的共用決定目錄/檔案權限**：下列範例使用 0777 提供所有使用者的讀取、寫入和執行權限。 您可以視需要將它取代為其他 [chmod 權限](https://en.wikipedia.org/wiki/Chmod)。 
+* **Hello hello 掛接共用目錄/檔案權限決定**: hello 下列範例中，我們使用 0777，toogive 讀取、 寫入及執行 tooall 使用者權限。 您可以視需要將它取代為其他 [chmod 權限](https://en.wikipedia.org/wiki/Chmod)。 
 
-* **儲存體帳戶名稱**：若要掛接 Azure 檔案共用，您需要儲存體帳戶的名稱。
+* **儲存體帳戶名稱**: toomount Azure 檔案共用，您將需要 hello hello 儲存體帳戶名稱。
 
-* **儲存體帳戶金鑰**：若要掛接 Azure 檔案共用，您需要主要 (或次要) 金鑰。 掛接目前不支援 SAS 金鑰。
+* **儲存體帳戶金鑰**: toomount Azure 檔案共用，您將需要 hello 主要 （或次要） 的儲存體金鑰。 掛接目前不支援 SAS 金鑰。
 
-* **請確定已開啟連接埠 445**：SMB 透過 TCP 通訊埠 445 進行通訊 - 請檢查您的防火牆不會將 TCP 通訊埠 445 從用戶端電腦封鎖。
+* **請確定已開啟連接埠 445**: SMB 通訊透過 TCP 通訊埠 445-檢查 toosee，如果您的防火牆不會封鎖 TCP 連接埠 445，從用戶端電腦。
 
-## <a name="mount-the-azure-file-share-on-demand-with-mount"></a>使用 `mount` 隨需掛接 Azure 檔案共用
-1. **[在您的 Linux 發行版本上安裝 cifs-utils 封裝](#install-cifs-utils)**。
+## <a name="mount-hello-azure-file-share-on-demand-with-mount"></a>裝載 Azure 檔案共用上指定與 hello`mount`
+1. **[安裝 Linux 發佈的 hello cifs utils 套件](#install-cifs-utils)**。
 
-2. **建立掛接點的資料夾**：在檔案系統的任何位置均可完成此作業。
+2. **建立 hello 掛接點資料夾**： 這可以完成 hello 檔案系統中的任何位置。
 
     ```
     mkdir mymountpoint
     ```
 
-3. **使用 mount 命令掛接 Azure 檔案共用**：請記得要使用正確的資訊來取代 `<storage-account-name>`、`<share-name>` 和 `<storage-account-key>`。
+3. **使用 hello 掛接命令 toomount hello Azure 檔案共用**： 記住 tooreplace `<storage-account-name>`， `<share-name>`，和`<storage-account-key>`hello 適當資訊。
 
     ```
     sudo mount -t cifs //<storage-account-name>.file.core.windows.net/<share-name> ./mymountpoint -o vers=3.0,username=<storage-account-name>,password=<storage-account-key>,dir_mode=0777,file_mode=0777,serverino
     ```
 
 > [!Note]  
-> 使用 Azure 檔案共用後，即可使用 `sudo umount ./mymountpoint` 取消掛接共用。
+> 當您完成使用 hello Azure 檔案共用，您可以使用`sudo umount ./mymountpoint`toounmount hello 共用。
 
-## <a name="create-a-persistent-mount-point-for-the-azure-file-share-with-etcfstab"></a>使用 `/etc/fstab` 建立 Azure 檔案共用的持續掛接點
-1. **[在您的 Linux 發行版本上安裝 cifs-utils 封裝](#install-cifs-utils)**。
+## <a name="create-a-persistent-mount-point-for-hello-azure-file-share-with-etcfstab"></a>建立 hello Azure 檔案共用對象的持續掛接點`/etc/fstab`
+1. **[安裝 Linux 發佈的 hello cifs utils 套件](#install-cifs-utils)**。
 
-2. **建立掛接點的資料夾**：這可以在檔案系統中的任何位置完成，但是您必須記下資料夾的絕對路徑。 下列範例會建立在根目錄下的資料夾。
+2. **建立 hello 掛接點資料夾**： 這可以完成 hello 檔案系統中的任何位置，但您需要的 hello 資料夾 toonote hello 絕對路徑。 hello 下列範例會建立在根目錄下的資料夾。
 
     ```
     sudo mkdir /mymountpoint
     ```
 
-3. **使用下列命令將下列一行附加至 `/etc/fstab`**：請記得要使用正確的資訊來取代 `<storage-account-name>`、`<share-name>` 和 `<storage-account-key>`。
+3. **使用 hello 下列命令行下太 tooappend hello`/etc/fstab`**： 記住 tooreplace `<storage-account-name>`， `<share-name>`，和`<storage-account-key>`hello 適當資訊。
 
     ```
     sudo bash -c 'echo "//<storage-account-name>.file.core.windows.net/<share-name> /mymountpoint cifs vers=3.0,username=<storage-account-name>,password=<storage-account-key>,dir_mode=0777,file_mode=0777,serverino" >> /etc/fstab'
     ```
 
 > [!Note]  
-> 您可以使用 `sudo mount -a` 在編輯之後掛接 Azure 檔案共用`/etc/fstab`而不需要重新開機。
+> 您可以使用`sudo mount -a`toomount hello Azure 檔案共用，在編輯之後`/etc/fstab`而不需要重新開機。
 
 ## <a name="feedback"></a>意見反應
-Linux 使用者，歡迎您提供相關資訊！
+Linux 使用者，我們想要從您的 toohear ！
 
-Linux 使用者群組的 Azure 檔案儲存體提供論壇，讓您在 Linux 上評估並採用檔案儲存體的同時分享意見。 請寄電子郵件至 [Azure 檔案儲存體 Linux 使用者](mailto:azurefileslinuxusers@microsoft.com) 以加入使用者的群組。
+hello Linux users' 群組的 Azure 檔案儲存體論壇為您提供 tooshare 意見反應您評估及採用在 Linux 上的檔案存放裝置。 電子郵件[Azure 檔案儲存體 Linux 使用者](mailto:azurefileslinuxusers@microsoft.com)toojoin hello users' 群組。
 
 ## <a name="next-steps"></a>後續步驟
 請參閱這些連結以取得 Azure 檔案儲存體的相關詳細資訊。
 * [檔案服務 REST API 參考](http://msdn.microsoft.com/library/azure/dn167006.aspx)
-* [如何搭配使用 AzCopy 與 Microsoft Azure 儲存體](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)
-* [使用 Azure CLI 搭配 Azure 儲存體](../common/storage-azure-cli.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#create-and-manage-file-shares)
+* [如何使用 Microsoft Azure 儲存體 toouse AzCopy](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)
+* [使用 Azure CLI hello 與 Azure 儲存體](../common/storage-azure-cli.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#create-and-manage-file-shares)
 * [常見問題集](../storage-files-faq.md)
 * [疑難排解](storage-troubleshoot-linux-file-connection-problems.md)

@@ -1,5 +1,5 @@
 ---
-title: "為使用者設定 Azure AD Join| Microsoft Docs"
+title: "為您的使用者註冊 Azure AD Join aaaSetting |Microsoft 文件"
 description: "說明系統管理員如何設定 Azure AD Join 以用於內部部署目錄及裝置註冊。"
 services: active-directory
 documentationcenter: 
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/16/2017
 ms.author: markvi
-ms.openlocfilehash: c37adc2654f7e931fdda22627e4a6ece2789fd86
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 60a5aeb11292cb6057ab1065c3ab77e5981d0cdb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="setting-up-azure-ad-join-in-your-organization"></a>在組織中設定 Azure AD Join
-設定 Azure Active Directory Join (Azure AD Join) 之前，您需要將使用者的內部部署目錄同步處理至雲端，或在 Azure AD 中手動建立受管理的帳戶。
+設定 Azure Active Directory Join (Azure AD Join) 之前，您需要 tooeither 同步處理您的內部部署目錄的使用者 toohello 雲端或手動建立在 Azure AD 中的 受管理的帳戶。
 
-如需將內部部署使用者同步處理至 Azure AD 的詳細指示，請參閱 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
+同步處理您在內部部署使用者 tooAzure AD 中說明的詳細指示[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-若要在 Azure AD 中手動建立和管理使用者，請參閱 [Azure AD 中的使用者管理](https://msdn.microsoft.com/library/azure/hh967609.aspx)。
+toomanually 建立及管理 Azure AD 中的使用者，請參閱太[Azure AD 中的使用者管理](https://msdn.microsoft.com/library/azure/hh967609.aspx)。
 
 ## <a name="set-up-device-registration"></a>設定裝置註冊
-1. 以系統管理員身分登入 Azure 入口網站。
-2. 在左窗格中選取 [Active Directory] 。
-3. 在 [目錄]  索引標籤中，選取您的目錄。
-4. 選取 [設定]  索引標籤。
-5. 移至 [裝置]  區段。
-6. 在 [裝置]  索引標籤上，設定下列內容：  
-   * **每位使用者的裝置數目上限**：選取使用者可在 Azure AD 中擁有的裝置數目上限。  如果使用者達到此配額限制，則在移除一或多個現有的裝置之前，將無法新增其他裝置。
-   * **需要 Multi-factor Auth 才能聯結裝置**：設定使用者是否需要提供第二個驗證要素，才能將其裝置加入 Azure AD。 如需 Azure Multi-Factor Authentication 的詳細資訊，請參閱 [開始在雲端中使用 Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md)。
-   * **使用者可以將裝置加入 Azure AD**：選取允許將裝置加入 Azure AD 的使用者和群組。
-   * **加入 Azure AD 之裝置的其他系統管理員**：使用 Azure AD Premium 或 Enterprise Mobility Suite (EMS)，您可以選擇要為哪些使用者授與裝置的本機系統管理員權限。 全域系統管理員和裝置擁有者預設會授與本機系統管理員權限。
+1. Toohello Azure 入口網站管理員身分登入。
+2. 在 hello 左窗格中，選取  **Active Directory**。
+3. 在 hello**目錄**索引標籤上，選取您的目錄。
+4. 選取 hello**設定** 索引標籤。
+5. 移 toohello**裝置**> 一節。
+6. 在 hello**裝置**索引標籤上，hello 下列設定：  
+   * **最大數目的裝置每個使用者**： 選取 hello 的使用者可以在 Azure AD 中擁有的裝置數目上限。  如果使用者達到此配額時，它們將無法 tooadd 其他裝置之前無法移除一或多個現有的裝置。
+   * **需要 MULTI-FACTOR AUTH tooJOIN 裝置**： 設定使用者是否需要的 tooprovide 第二個驗證因素 toojoin 其裝置 tooAzure AD。 如需有關 Azure Multi-factor Authentication 的詳細資訊，請參閱[開始使用 Azure Multi-factor Authentication hello 定域機組中](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md)。
+   * **使用者可能 AZURE AD JOIN 裝置**： 選取 hello 使用者和群組允許 toojoin 裝置 tooAzure AD。
+   * **其他系統管理員在 AZURE AD 加入裝置**: Azure AD Premium 或 hello Enterprise Mobility Suite (EMS)，您可以選擇哪些使用者授與本機系統管理員權限 toohello 裝置。 全域系統管理員和裝置擁有者預設會授與本機系統管理員權限。
 
 <center>![設定裝置註冊](./media/active-directory-azureadjoin/active-directory-aadjoin-configure-devices.png) </center>
 
-為使用者設定 Azure AD Join 之後，他們就能透過其公司或個人裝置連接到 Azure AD。
+設定 Azure AD Join 為您的使用者之後，它們可以連接 tooAzure AD 透過其公司或個人裝置。
 
-以下是您可以用來讓使用者能夠設定 Azure AD Join 的三種案例：
+以下是您可以使用 tooenable 使用者 tooset 註冊 Azure AD Join hello 三個案例：
 
-* 使用者可將公司擁有的裝置直接加入 Azure AD。
-* 使用者可將公司擁有的裝置網域加入內部部署 Active Directory，然後將裝置擴充至 Azure AD。
-* 使用者可在個人裝置上將工作或學校帳戶新增至 Windows
+* 使用者將公司擁有的裝置直接 tooAzure AD。
+* 使用者網域加入公司擁有裝置 toohello 在內部部署 Active Directory，然後將擴充 hello 裝置 tooAzure AD。
+* 使用者新增工作或學校帳戶 tooWindows 個人裝置上
 
 ## <a name="additional-information"></a>其他資訊
-* [適合企業使用的 Windows 10：使用裝置工作的方式](active-directory-azureadjoin-windows10-devices-overview.md)
-* [透過 Azure Active Directory Join 擴充 Windows 10 裝置的雲端功能](active-directory-azureadjoin-user-upgrade.md)
+* [Hello 企業版的 Windows 10： 工作的方式 toouse 裝置](active-directory-azureadjoin-windows10-devices-overview.md)
+* [擴充功能 tooWindows 10 裝置透過 Azure Active Directory 加入雲端](active-directory-azureadjoin-user-upgrade.md)
 * [了解適用於 Azure AD Join 的使用案例](active-directory-azureadjoin-deployment-aadjoindirect.md)
-* [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
+* [連接已加入網域裝置 tooAzure AD 進行 Windows 10 體驗](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 

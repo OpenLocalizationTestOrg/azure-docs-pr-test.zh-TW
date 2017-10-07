@@ -1,6 +1,6 @@
 ---
-title: "Azure 中 Windows 虛擬機器的開機診斷 | Microsoft Docs"
-description: "Azure 中 Windows 虛擬機器的兩個偵錯功能概觀"
+title: "Windows Azure 中的虛擬機器的 aaaBoot 診斷 |Microsoft 文件"
+description: "功能的概觀 hello 兩個偵錯 Windows Azure 中的虛擬機器"
 services: virtual-machines-windows
 documentationcenter: virtual-machines-windows
 author: Deland-Han
@@ -15,12 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: delhan
-ms.openlocfilehash: 12edd2628d2f15ad608f940dcf5d46363d2e9172
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 353c58562929de2dc49bb8c89ce1d0d6b6a0aa18
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-boot-diagnostics-to-troubleshoot-windows-virtual-machines-in-azure"></a>如何使用開機診斷為 Azure 中的 Windows 虛擬機器進行疑難排解
+# <a name="how-toouse-boot-diagnostics-tootroubleshoot-windows-virtual-machines-in-azure"></a>Toouse 開機診斷 tootroubleshoot Windows 虛擬機器在 Azure 中的方式
 
 [!INCLUDE [virtual-machines-common-boot-diagnostics](../../../includes/virtual-machines-common-boot-diagnostics.md)]

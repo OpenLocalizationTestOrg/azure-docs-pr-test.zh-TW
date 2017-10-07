@@ -1,6 +1,6 @@
 ---
-title: "匯出 Azure Cosmos DB 模擬器憑證 | Microsoft Docs"
-description: "以不使用 Windows 憑證存放區的語言和執行階段進行開發時，您必須匯出和管理 SSL 憑證。 這篇文章提供逐步指示。"
+title: "aaaExport hello Azure Cosmos DB 模擬器憑證 |Microsoft 文件"
+description: "開發語言和執行階段，請勿使用 hello Windows 憑證存放區時將需要 tooexport，並管理 hello SSL 憑證。 這篇文章提供逐步指示。"
 services: cosmos-db
 documentationcenter: 
 keywords: "Azure Cosmos DB 模擬器"
@@ -16,36 +16,36 @@ ms.workload: na
 ms.date: 06/06/2017
 ms.author: tvoellm
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 4add5028d50972316902cecd8c399781c012cb77
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: db56cda856fccf93d71ae5b21c4090ccb9aa40a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="export-the-azure-cosmos-db-emulator-certificates-for-use-with-java-python-and-nodejs"></a>匯出 Azure Cosmos DB 模擬器憑證以與 Java、Python 和 Node.js 搭配使用
+# <a name="export-hello-azure-cosmos-db-emulator-certificates-for-use-with-java-python-and-nodejs"></a>搭配 Java、 Python 和 Node.js hello Azure Cosmos DB 模擬器憑證匯出
 
-[**下載模擬器**](https://aka.ms/cosmosdb-emulator)
+[**下載 hello 模擬器**](https://aka.ms/cosmosdb-emulator)
 
-Azure Cosmos DB 模擬器提供一個模擬 Azure Cosmos DB 服務的本機環境做為開發之用，當中也能使用 SSL 連線。 這篇文章示範如何匯出 SSL 憑證以用於未整合 Windows 憑證存放區的語言和執行階段，例如使用它自己的[憑證存放區 (certificate store)](https://docs.oracle.com/cd/E19830-01/819-4712/ablqw/index.html) 的 Java，和使用[通訊端包裝函式 (socket wrappers)](https://docs.python.org/2/library/ssl.html) 的 Python 以及使用 [tlsSocket](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback) 的 Node.js。 您可以閱讀[使用 Azure Cosmos DB 模擬器進行開發和測試](./local-emulator.md)，瞭解更多有關模擬器的資訊。
+hello Azure Cosmos DB 模擬器提供本機模擬的環境，hello Azure Cosmos 資料庫服務，為開發用途，包括其使用的 SSL 連線。 這篇文章會示範如何 tooexport hello SSL 憑證以用於語言和未整合 hello Windows 憑證存放區，例如 Java 使用自己的執行階段[憑證存放區](https://docs.oracle.com/cd/E19830-01/819-4712/ablqw/index.html)，並將其使用Python[通訊端的包裝函式](https://docs.python.org/2/library/ssl.html)和使用 Node.js [tlsSocket](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback)。 閱讀更多關於中的 hello 模擬器[使用 hello Azure Cosmos DB 模擬器進行開發和測試](./local-emulator.md)。
 
-本教學課程涵蓋下列工作：
+本教學課程涵蓋 hello 下列工作：
 
 > [!div class="checklist"]
 > * 輪替憑證
 > * 匯出 SSL 憑證
-> * 了解如何使用 Java、Python 和 Node.js 中的憑證
+> * 學習如何 toouse hello Java、 Python 和 Node.js 中的憑證
 
 ## <a name="certification-rotation"></a>憑證旋轉
 
-Azure Cosmos DB 本機模擬器中的憑證會在模擬器第一次執行時產生。 有兩個憑證。 一個用來連線到本機模擬器，一個用來管理模擬器中的機密資料。 您要匯出的憑證是有 "DocumentDBEmulatorCertificate" 易記名稱的連線憑證。
+憑證在 hello Azure Cosmos DB 本機模擬器產生 hello hello 模擬器執行的第一次。 有兩個憑證。 其中一個用來連線 toohello 本機模擬器，另一個用於管理 hello 模擬器中的機密資料。 您想要 tooexport hello 憑證是 hello 易記名稱 」 DocumentDBEmulatorCertificate"hello 連線憑證。
 
-您可以從 Windows 系統匣中執行的 Azure Cosmos DB 模擬器按一下 [重設資料] 來重新產生這兩個憑證，如下所示。 如果您重新產生憑證並將這些憑證安裝到 Java 憑證存放區或在其他地方使用它們，則必須更新這些憑證，否則您的應用程式將無法再連線到本機模擬器。
+這兩個憑證，可以按一下重新產生**重設資料**從 Azure Cosmos DB 模擬器 hello Windows 系統匣中執行如下所示。 如果您重新產生 hello 憑證和其安裝到 hello Java 憑證存放區或其他位置使用它們必須 tooupdate 它們，否則您的應用程式將無法再連接 toohello 本機模擬器。
 
 ![Azure Cosmos DB 本機模擬器的重設資料](./media/local-emulator-export-ssl-certificates/database-local-emulator-reset-data.png)
 
-## <a name="how-to-export-the-azure-cosmos-db-ssl-certificate"></a>如何匯出 Azure Cosmos DB SSL 憑證
+## <a name="how-tooexport-hello-azure-cosmos-db-ssl-certificate"></a>如何 tooexport hello Azure Cosmos DB SSL 憑證
 
-1. 執行 certlm.msc 啟動 Windows 憑證管理員，瀏覽至 [個人 -> 憑證] 資料夾並開啟有 **DocumentDbEmulatorCertificate** 易記名稱的憑證。
+1. 藉由執行 certlm.msc 啟動 hello Windows 憑證管理員，並瀏覽 toohello 個人-> 憑證 資料夾並開啟 hello 與 hello 易記名稱的憑證**DocumentDbEmulatorCertificate**。
 
     ![Azure Cosmos DB 本機模擬器的匯出步驟 1](./media/local-emulator-export-ssl-certificates/database-local-emulator-export-step-1.png)
 
@@ -53,7 +53,7 @@ Azure Cosmos DB 本機模擬器中的憑證會在模擬器第一次執行時產�
 
     ![Azure Cosmos DB 本機模擬器的匯出步驟 2](./media/local-emulator-export-ssl-certificates/database-local-emulator-export-step-2.png)
 
-3. 按一下 [複製到檔案...]。
+3. 按一下**複製 tooFile...**.
 
     ![Azure Cosmos DB 本機模擬器的匯出步驟 3](./media/local-emulator-export-ssl-certificates/database-local-emulator-export-step-3.png)
 
@@ -69,7 +69,7 @@ Azure Cosmos DB 本機模擬器中的憑證會在模擬器第一次執行時產�
 
     ![Azure Cosmos DB 本機模擬器的匯出步驟 6](./media/local-emulator-export-ssl-certificates/database-local-emulator-export-step-6.png)
 
-7. 指定憑證的名稱。 此案例中為 **documentdbemulatorcert**，然後按 [下一步]。
+7. 指定 hello 憑證的名稱。 此案例中為 **documentdbemulatorcert**，然後按 [下一步]。
 
     ![Azure Cosmos DB 本機模擬器的匯出步驟 7](./media/local-emulator-export-ssl-certificates/database-local-emulator-export-step-7.png)
 
@@ -77,32 +77,32 @@ Azure Cosmos DB 本機模擬器中的憑證會在模擬器第一次執行時產�
 
     ![Azure Cosmos DB 本機模擬器的匯出步驟 8](./media/local-emulator-export-ssl-certificates/database-local-emulator-export-step-8.png)
 
-## <a name="how-to-use-the-certificate-in-java"></a>如何在 Java 中使用憑證
+## <a name="how-toouse-hello-certificate-in-java"></a>如何 toouse hello 在 Java 中的憑證
 
-執行 Java 應用程式或執行使用 Java 用戶端的 MongoDB 應用程式時，將憑證安裝到 Java 預設憑證存放區比傳遞 "-Djavax.net.ssl.trustStore=<keystore> -Djavax.net.ssl.trustStorePassword="<password>" 旗標更簡單。 例如包含的 [Java 示範應用程式](https://localhost:8081/_explorer/index.html)會根據預設的憑證存放區。
+執行 Java 應用程式或使用 hello Java 用戶端的 MongoDB 應用程式時，更容易 tooinstall hello hello Java 預設憑證存放區與憑證傳遞 hello"-Djavax.net.ssl.trustStore=<keystore> -Djavax.net.ssl.trustStorePassword="<password>」 旗標。 如需範例包含的 hello [Java 示範應用程式](https://localhost:8081/_explorer/index.html)hello 預設憑證存放區而定。
 
-遵循[新增憑證至 Java CA 憑證存放區](https://docs.microsoft.com/azure/java-add-certificate-ca-store)中的指示，將 X.509 憑證匯入預設的 Java 憑證存放區。 請記住，執行 keytool 時您會在 %JAVA_HOME% 目錄中工作。
+遵循指示進行 hello hello[加入 Java CA 憑證存放區的憑證 toohello](https://docs.microsoft.com/azure/java-add-certificate-ca-store) tooimport hello X.509 憑證至 hello 預設 Java 憑證存放區。 請記住，您會使用在 hello %java_home%目錄中執行 keytool 時。
 
-"CosmosDBEmulatorCertificate" SSL 憑證安裝好之後，應用程式應該就能夠連線，並使用本機 Azure Cosmos DB 模擬器。 如果您仍然遇到問題，可以遵循[為 SSL/TLS 連線進行偵錯](http://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html) (英文) 文章。 很有可能是憑證未安裝至 %JAVA_HOME%/jre/lib/security/cacerts 存放區。 例如，如果您安裝多個 Java 版本，您的應用程式使用的 cacerts 存放區可能與您更新的不同。
+一次 hello"CosmosDBEmulatorCertificate"SSL 憑證已安裝應用程式應能 tooconnect，而且使用 hello 本機 Azure Cosmos DB 模擬器。 如果您繼續 toohave 問題可能會想 toofollow hello[偵錯 SSL/TLS 連線](http://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html)發行項。 很可能 hello 憑證未安裝到 hello %JAVA_HOME%/jre/lib/security/cacerts 存放區。 針對非 hello 您更新的其中一個，例如，如果您有多個已安裝的 Java 應用程式的版本可能使用不同 cacerts 存放區。
 
-## <a name="how-to-use-the-certificate-in-python"></a>如何在 Python 中使用憑證
+## <a name="how-toouse-hello-certificate-in-python"></a>Toouse hello Python 中的憑證的方式
 
-適用於 DocumentDB API 的 [Python SDK (2.0.0 版或更新版本)](documentdb-sdk-python.md) 在連線到本機模擬器時，預設不會嘗試和使用 SSL 憑證。 不過如果您想要使用 SSL 驗證，可以依照 [Python 通訊端包裝函式](https://docs.python.org/2/library/ssl.html) (英文) 文件中的範例。
+依預設 hello [Python SDK(version 2.0.0 or higher)](documentdb-sdk-python.md) hello DocumentDB API 將會無法再試一次並使用 hello SSL 憑證連接 toohello 本機模擬器時。 如果您想要 toouse SSL 驗證，不過您可以依照 hello 中的 hello 範例[Python 通訊端的包裝函式](https://docs.python.org/2/library/ssl.html)文件。
 
-## <a name="how-to-use-the-certificate-in-nodejs"></a>如何在 Node.js 中使用憑證
+## <a name="how-toouse-hello-certificate-in-nodejs"></a>如何 toouse hello Node.js 中的憑證
 
-適用於 DocumentDB API 的 [ (1.10.1 版或更新版本)](documentdb-sdk-node.md) 在連線到本機模擬器時，預設不會嘗試和使用 SSL 憑證。 不過如果您想要使用 SSL 驗證，可以依照 [Node.js 文件 (Node.js documentation)](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback) 文件中的範例。
+依預設 hello [Node.js SDK(version 1.10.1 or higher)](documentdb-sdk-node.md) hello DocumentDB API 將會無法再試一次並使用 hello SSL 憑證連接 toohello 本機模擬器時。 如果您想要 toouse SSL 驗證，不過您可以依照 hello 中的 hello 範例[Node.js 文件集](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback)。
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已完成下列操作：
+在本教學課程中，您們 hello 下列：
 
 > [!div class="checklist"]
 > * 輪替憑證
-> * 匯出 SSL 憑證
-> * 了解如何使用 Java、Python 和 Node.js 中的憑證
+> * 匯出的 hello SSL 憑證
+> * 學到如何 toouse hello Java、 Python 和 Node.js 中的憑證
 
-您現在可以繼續進行＜概念＞一節了解有關 Cosmos DB 的詳細資訊。
+您可以現在繼續 toohello 概念 > 一節，如需有關 Cosmos DB。
 
 > [!div class="nextstepaction"]
 > [全球發佈](distribute-data-globally.md) 

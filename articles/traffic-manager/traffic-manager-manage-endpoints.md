@@ -1,5 +1,5 @@
 ---
-title: "在 Azure 流量管理員中管理端點 | Microsoft Docs"
+title: "aaaManage 端點在 Azure Traffic Manager |Microsoft 文件"
 description: "本文將協助您從 Azure 流量管理員加入、移除、啟用和停用端點。"
 services: traffic-manager
 documentationcenter: 
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/08/2017
 ms.author: kumud
-ms.openlocfilehash: 765d12bc283d991783fb3190ce7917b573f9fc78
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fc65874ae2eaeb6fca5d8c4f33403c258307bdb0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="add-disable-enable-or-delete-endpoints"></a>新增、停用、啟用或刪除端點
 
-不論網站模式為何，Azure App Service 中的 Web Apps 功能已為資料中心內的網站提供容錯移轉和循環配置資源流量路由功能。 Azure 流量管理員可讓您在不同的資料中心的網站和雲端服務中指定容錯移轉和循環配置資源流量路由。 提供該項功能的首要步驟是將雲端服務或網站端點新增至流量管理員。
+Azure App Service 中的 hello Web 應用程式功能已提供容錯移轉和循環配置資源流量路由功能的網站內的資料中心，無論 hello 網站模式為何。 Azure Traffic Manager 可讓您 toospecify 容錯移轉和循環配置資源的流量路由的不同資料中心內的網站和雲端服務。 hello 第一個步驟所需 tooprovide 功能是 tooadd hello 雲端服務或網站端點 tooTraffic 管理員。
 
-您也可以停用屬於流量管理員設定檔一部分的個別端點。 停用端點會將端點做為設定檔的一部分保留，但是設定檔會以好像未包含端點的方式運作。 此動作對於暫時移除處於維護模式、或被重新部署的端點而言很有用。 在重新啟動並執行端點之後，您可以將它啟用。
+您也可以停用屬於流量管理員設定檔一部分的個別端點。 停用端點會讓它 hello 設定檔的一部分，但是 hello 設定檔行為會如同 hello 端點並未包含在內般。 此動作對於暫時移除處於維護模式、或被重新部署的端點而言很有用。 Hello 端點一旦再次啟動並執行，它可以啟用它。
 
 > [!NOTE]
-> 停用端點會與其在 Azure 中的部署狀態無關。 健全的端點將會持續運作，並且即使在流量管理員中停用該服務時仍然可以接收流量。 此外，在一個設定檔中停用端點並不會影響它在另一個設定檔中的狀態。
+> 停用端點會執行任何動作 toodo 與 Azure 中的部署狀態。 狀況良好的端點保持為最新，而且要能 tooreceive 流量，即使停用 Traffic Manager 中。 此外，在一個設定檔中停用端點並不會影響它在另一個設定檔中的狀態。
 
-## <a name="to-add-a-cloud-service-or-an-app-service-endpoint-to-a-traffic-manager-profile"></a>若要將雲端服務或應用程式服務端點新增至流量管理員設定檔：
+## <a name="tooadd-a-cloud-service-or-an-app-service-endpoint-tooa-traffic-manager-profile"></a>tooadd 雲端服務或應用程式服務端點 tooa Traffic Manager 設定檔
 
-1. 從瀏覽器登入 [Azure 入口網站](http://portal.azure.com)。
-2. 在入口網站的搜尋列中，搜尋您想要修改的**流量管理員設定檔**名稱，然後按一下結果中顯示的流量管理員設定檔。
-3. 在 [流量管理員設定檔] 刀鋒視窗中，請在 [設定] 區段中按一下 [端點]。
-4. 在顯示的 [端點] 刀鋒視窗中，按一下 [新增]。
-5. 在 [新增端點] 刀鋒視窗中，如下所示操作︰
+1. 從瀏覽器中，登入 toohello [Azure 入口網站](http://portal.azure.com)。
+2. 在 hello 入口網站的 搜尋 列，搜尋 hello **Traffic Manager 設定檔**您想 toomodify，，，然後按一下hello hello Traffic Manager 設定檔的名稱會顯示該 hello。
+3. 在 hello **Traffic Manager 設定檔**刀鋒視窗中的，在 hello**設定**區段中，按一下**端點**。
+4. 在 hello**端點**刀鋒視窗，其中會顯示按一下**新增**。
+5. 在 hello**加入端點**刀鋒視窗中，完成，如下所示：
     1. 在 [類型] 中，按一下 [Azure 端點]。
-    2. 提供您要用來識別這個端點的 [名稱]。
-    3. 對於 [目標資源類型]，從下拉式清單中選擇適當的資源類型。
-    4. 對於 [目標資源]，從下拉式清單中選擇適當的目標資源，以在 [資源] 刀鋒視窗中顯示相同訂用帳戶下的清單資源。 在顯示的 [資源] 刀鋒視窗中，挑選您想要新增為第一個端點的服務。
-    5. 在 [優先順序] 中，選取 [1]。 這會使得所有流量傳送至此端點 (如果狀況良好)。
+    2. 提供**名稱**要 toorecognize 此端點。
+    3. 如**目標資源類型**、 從 hello 下拉式清單中，選擇 hello 適當的資源類型。
+    4. 如**目標資源**、 從 hello 下拉式清單中，選擇適當的目標資源，hello tooshow hello 清單下的資源 hello 相同的訂用帳戶中 hello**資源刀鋒視窗**。 在 hello**資源**刀鋒視窗，其中會顯示您想 tooadd，如 hello 第一個端點挑選 hello 服務。
+    5. 在 [優先順序] 中，選取 [1]。 這會導致所有流量 toothis 端點是否狀況良好。
     6. 維持不勾選 [新增為已停用]。
-    7. 按一下 [確定] 
-6.  重複步驟 4 和 5，新增下一個 Azure 端點。 新增它時務必將 [優先順序] 值設為 [2]。
-7.  這兩個端點新增完畢後，它們會顯示在 [流量管理員設定檔] 刀鋒視窗中，而且監視狀態是 [線上]。
+    7. 按一下 [檔案] &gt; [新增] &gt; [專案] 
+6.  重複步驟 4 和 5 tooadd hello 下一個 Azure 端點。 請確定 tooadd 使用其**優先順序**在設定值**2**。
+7.  這兩個端點的 hello 加法完成時，它們會顯示在 hello **Traffic Manager 設定檔**刀鋒視窗，以及其監視的狀態為**線上**。
 
 > [!NOTE]
-> 在使用容錯移轉流量路由方法從設定檔新增或移除端點後，容錯移轉優先權清單可能無法依您想要的方式排序。 您可以在 [組態] 頁面上調整容錯移轉優先順序清單的順序。 如需詳細資訊，請參閱 [設定容錯移轉流量路由](traffic-manager-configure-failover-routing-method.md)。
+> 在新增或移除端點，從使用 hello 設定檔之後*容錯移轉*流量路由方法、 hello 容錯移轉優先順序清單可能無法排序它們您想要的方式。 您可以調整 hello hello 組態 頁面上的 hello 容錯移轉優先順序清單順序。 如需詳細資訊，請參閱 [設定容錯移轉流量路由](traffic-manager-configure-failover-routing-method.md)。
 
-## <a name="to-disable-an-endpoint"></a>若要停用端點
+## <a name="toodisable-an-endpoint"></a>toodisable 端點
 
-1. 從瀏覽器登入 [Azure 入口網站](http://portal.azure.com)。
-2. 在入口網站的搜尋列中，搜尋您想要修改的**流量管理員設定檔**名稱，然後按一下結果中顯示的流量管理員設定檔。
-3. 在 [流量管理員設定檔] 刀鋒視窗中，請在 [設定] 區段中按一下 [端點]。 
-4. 按一下您要停用的端點，然後在顯示的 [端點] 刀鋒視窗上，按一下 [編輯]。
-5. 在 [端點] 刀鋒視窗中，將端點狀態變更為 [已停用]，然後按一下 [儲存]。
-6. 用戶端會繼續將流量傳送至端點以取得存留時間 (TTL) 持續時間。 您可以在流量管理員設定檔的 [組態] 頁面上變更 TTL。
+1. 從瀏覽器中，登入 toohello [Azure 入口網站](http://portal.azure.com)。
+2. 在 hello 入口網站的 搜尋 列，搜尋 hello **Traffic Manager 設定檔**您想 toomodify，，，然後按一下顯示 hello 結果 hello Traffic Manager 設定檔的名稱。
+3. 在 hello **Traffic Manager 設定檔**刀鋒視窗中的，在 hello**設定**區段中，按一下**端點**。 
+4. 按一下您想 toodisable，hello 端點，然後在 hello**端點**刀鋒視窗，其中會顯示按一下**編輯**。
+5. 在 hello**端點**刀鋒視窗中，也變更 hello 端點狀態**已停用**，然後按一下**儲存**。
+6. 用戶端會繼續 toosend 流量 toohello 端點 hello 持續時間內的存留時間 (TTL)。 您可以變更 hello TTL hello 的 hello Traffic Manager 設定檔設定 頁面上。
 
-## <a name="to-enable-an-endpoint"></a>若要啟用端點
+## <a name="tooenable-an-endpoint"></a>tooenable 端點
 
-1. 從瀏覽器登入 [Azure 入口網站](http://portal.azure.com)。
-2. 在入口網站的搜尋列中，搜尋您想要修改的**流量管理員設定檔**名稱，然後按一下結果中顯示的流量管理員設定檔。
-3. 在 [流量管理員設定檔] 刀鋒視窗中，請在 [設定] 區段中按一下 [端點]。 
-4. 按一下您要停用的端點，然後在顯示的 [端點] 刀鋒視窗上，按一下 [編輯]。
-5. 在 [端點] 刀鋒視窗中，將端點狀態變更為 [已啟用]，然後按一下 [儲存]。
-6. 用戶端會繼續將流量傳送至端點以取得存留時間 (TTL) 持續時間。 您可以在流量管理員設定檔的 [組態] 頁面上變更 TTL。
+1. 從瀏覽器中，登入 toohello [Azure 入口網站](http://portal.azure.com)。
+2. 在 hello 入口網站的 搜尋 列，搜尋 hello **Traffic Manager 設定檔**您想 toomodify，，，然後按一下顯示 hello 結果 hello Traffic Manager 設定檔的名稱。
+3. 在 hello **Traffic Manager 設定檔**刀鋒視窗中的，在 hello**設定**區段中，按一下**端點**。 
+4. 按一下您想 toodisable，hello 端點，然後在 hello**端點**刀鋒視窗，其中會顯示按一下**編輯**。
+5. 在 hello**端點**刀鋒視窗中，也變更 hello 端點狀態**啟用**，然後按一下**儲存**。
+6. 用戶端會繼續 toosend 流量 toohello 端點 hello 持續時間內的存留時間 (TTL)。 您可以變更 hello TTL hello 的 hello Traffic Manager 設定檔設定 頁面上。
 
-## <a name="to-delete-an-endpoint"></a>若要刪除端點：
+## <a name="toodelete-an-endpoint"></a>toodelete 端點
 
-1. 從瀏覽器登入 [Azure 入口網站](http://portal.azure.com)。
-2. 在入口網站的搜尋列中，搜尋您想要修改的**流量管理員設定檔**名稱，然後按一下結果中顯示的流量管理員設定檔。
-3. 在 [流量管理員設定檔] 刀鋒視窗中，請在 [設定] 區段中按一下 [端點]。 
-4. 按一下您要停用的端點，然後在顯示的 [端點] 刀鋒視窗上，按一下 [編輯]。
-5. 在 [端點] 刀鋒視窗中，將端點狀態變更為 [已啟用]，然後按一下 [儲存]。
+1. 從瀏覽器中，登入 toohello [Azure 入口網站](http://portal.azure.com)。
+2. 在 hello 入口網站的 搜尋 列，搜尋 hello **Traffic Manager 設定檔**您想 toomodify，，，然後按一下顯示 hello 結果 hello Traffic Manager 設定檔的名稱。
+3. 在 hello **Traffic Manager 設定檔**刀鋒視窗中的，在 hello**設定**區段中，按一下**端點**。 
+4. 按一下您想 toodisable，hello 端點，然後在 hello**端點**刀鋒視窗，其中會顯示按一下**編輯**。
+5. 在 hello**端點**刀鋒視窗中，也變更 hello 端點狀態**啟用**，然後按一下**儲存**。
 
 
 ## <a name="next-steps"></a>後續步驟

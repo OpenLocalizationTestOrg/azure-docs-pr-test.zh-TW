@@ -1,6 +1,6 @@
 ---
-title: "使用 PHP 連線至 Azure Database for PostgreSQL | Microsoft Docs"
-description: "本快速入門提供 PHP 程式碼範例，您可用於從 Azure Database for PostgreSQL 連線及查詢資料。"
+title: "aaaConnect tooAzure 使用 PHP PostgreSQL 資料庫 |Microsoft 文件"
+description: "本快速入門會提供您可以使用 tooconnect 和 PostgreSQL 查詢從 Azure 資料庫的資料的 PHP 程式碼範例。"
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,17 +11,17 @@ ms.custom: mvc
 ms.devlang: php
 ms.topic: quickstart
 ms.date: 06/29/2017
-ms.openlocfilehash: ed7c92e0689bca4056401d562271e3b6b7144dcf
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 008505e837e37cb8c7fea3fc164b3446c3580e46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-postgresql-use-php-to-connect-and-query-data"></a>Azure Database for PostgreSQL︰使用 PHP 連線及查詢資料
-本快速入門示範如何使用 [PHP](http://php.net/manual/intro-whatis.php) 應用程式來連線到 Azure Database for PostgreSQL。 它會顯示如何使用 SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。 本文假設您已熟悉使用 PHP 進行開發，但不熟悉 Azure Database for PostgreSQL。
+# <a name="azure-database-for-postgresql-use-php-tooconnect-and-query-data"></a>Azure PostgreSQL 資料庫： 使用 PHP tooconnect 和查詢資料
+本快速入門示範如何使用 PostgreSQL 資料庫的 tooconnect tooan Azure [PHP](http://php.net/manual/intro-whatis.php)應用程式。 它會顯示 toouse SQL 陳述式 tooquery，如何插入、 更新和刪除 hello 資料庫中的資料。 本文假設您熟悉開發使用 PHP，但是，您就可以新增 tooworking Azure PostgreSQL 資料庫。
 
 ## <a name="prerequisites"></a>必要條件
-本快速入門使用在以下任一指南中建立的資源作為起點︰
+本快速入門會使用 hello 資源建立在其中一個這些指南做為起點：
 - [建立 DB - 入口網站](quickstart-create-server-database-portal.md)
 - [建立 DB - Azure CLI](quickstart-create-server-database-azure-cli.md)
 
@@ -30,36 +30,36 @@ ms.lasthandoff: 08/29/2017
 
 ### <a name="windows"></a>Windows
 - 下載 [PHP 7.1.4 非執行緒安全 (x64) 版本](http://windows.php.net/download#php-7.1)
-- 安裝 PHP 並參考 [PHP 手冊](http://php.net/manual/install.windows.php)以便進一步設定
-- 程式碼會使用 PHP 安裝內含的 **pgsql** 類別 (ext/php_pgsql.dll)。 
-- 藉由編輯 php.ini 組態 (通常位於 `C:\Program Files\PHP\v7.1\php.ini`)，啟用 **pgsql** 擴充功能。 組態檔應包含具有 `extension=php_pgsql.so` 文字的一行。 如果未顯示，請新增文字並儲存檔案。 如果此文字存在，但以分號前置詞標註，請藉由移除分號來取消註解文字。
+- 安裝 PHP 和參考 toohello [PHP 手冊](http://php.net/manual/install.windows.php)進一步的組態
+- hello 程式碼會使用 hello **pgsql** hello 的 PHP 安裝中包含的類別 (ext/php_pgsql.dll)。 
+- 啟用的 hello **pgsql**延伸模組 來編輯 hello php.ini 組態檔通常位於`C:\Program Files\PHP\v7.1\php.ini`。 hello 設定檔應內嵌於 hello 文字`extension=php_pgsql.so`。 如果未顯示，新增 hello 文字，並儲存 hello 檔案。 如果 hello 文字，以分號前置詞，但標記為註文字取消註解 hello 藉由移除 hello 分號。
 
 ### <a name="linux-ubuntu"></a>Linux (Ubuntu)
 - 下載 [PHP 7.1.4 非執行緒安全 (x64) 版本](http://php.net/downloads.php) 
-- 安裝 PHP 並參考 [PHP 手冊](http://php.net/manual/install.unix.php)以便進一步設定
-- 程式碼會使用 **pgsql** 類別 (php_pgsql.so)。 透過執行 `sudo apt-get install php-pgsql` 來進行安裝。
-- 藉由編輯 `/etc/php/7.0/mods-available/pgsql.ini` 組態檔，啟用 **pgsql** 擴充功能。 組態檔應包含具有 `extension=php_pgsql.so` 文字的一行。 如果未顯示，請新增文字並儲存檔案。 如果此文字存在，但以分號前置詞標註，請藉由移除分號來取消註解文字。
+- 安裝 PHP 和參考 toohello [PHP 手冊](http://php.net/manual/install.unix.php)進一步的組態
+- hello 程式碼會使用 hello **pgsql**類別 (php_pgsql.so)。 透過執行 `sudo apt-get install php-pgsql` 來進行安裝。
+- 啟用的 hello **pgsql**延伸模組 來編輯 hello`/etc/php/7.0/mods-available/pgsql.ini`組態檔。 hello 設定檔應內嵌於 hello 文字`extension=php_pgsql.so`。 如果未顯示，新增 hello 文字，並儲存 hello 檔案。 如果 hello 文字，以分號前置詞，但標記為註文字取消註解 hello 藉由移除 hello 分號。
 
 ### <a name="macos"></a>MacOS
 - 下載 [PHP 7.1.4 版本](http://php.net/downloads.php)
-- 安裝 PHP 並參考 [PHP 手冊](http://php.net/manual/install.macosx.php)以便進一步設定
+- 安裝 PHP 和參考 toohello [PHP 手冊](http://php.net/manual/install.macosx.php)進一步的組態
 
 ## <a name="get-connection-information"></a>取得連線資訊
-取得連線到 Azure Database for PostgreSQL 所需的連線資訊。 您需要完整的伺服器名稱和登入認證。
+取得 PostgreSQL hello 連線所需的資訊 tooconnect toohello Azure 資料庫。 您需要 hello 完整的伺服器名稱和登入認證。
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 從 Azure 入口網站的左側功能表中，按一下 [所有資源]，然後搜尋您所建立的伺服器，例如 **mypgserver-20170401**。
-3. 按一下伺服器名稱 [mypgserver-20170401]。
-4. 選取伺服器的 [概觀] 頁面。 記下 [伺服器名稱] 和 [伺服器管理員登入名稱]。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com/)。
+2. 在 Azure 入口網站中的 hello 左側功能表中按一下**所有資源**，並搜尋您已經建立，例如 hello 伺服器**mypgserver 20170401**。
+3. 按一下伺服器名稱，hello **mypgserver 20170401**。
+4. 選取 hello 伺服器**概觀**頁面。 請記下 hello**伺服器名稱**和**伺服器系統管理員登入名稱**。
  ![Azure Database for PostgreSQL - 伺服器管理員登入](./media/connect-php/1-connection-string.png)
-5. 如果您忘記伺服器登入資訊，請瀏覽至 [概觀] 頁面來檢視伺服器管理員登入名稱，並視需要重設密碼。
+5. 如果您忘記您的伺服器登入資訊，請瀏覽 toohello**概觀**頁面 tooview hello 伺服器系統管理員登入名稱，並視需要重設 hello 密碼。
 
 ## <a name="connect-and-create-a-table"></a>連線及建立資料表
-使用下列程式碼搭配 **CREATE TABLE** SQL 陳述式 (後面接著 **INSERT INTO** SQL 陳述式) 來連線和建立資料表，進而將資料列新增至資料表中。
+使用 hello 下列程式碼 tooconnect 並建立資料表，使用**CREATE TABLE** SQL 陳述式，後面接著**INSERT INTO** hello 資料表的 SQL 陳述式 tooadd 資料列。
 
-程式碼會呼叫 [pg_connect()](http://php.net/manual/en/function.pg-connect.php) 方法以連線至 Azure Database for PostgreSQL。 然後它會呼叫 [pg_query()](http://php.net/manual/en/function.pg-query.php) 方法數次來執行數個命令，以及呼叫 [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) 來檢查詳細資料，是否每次都會發生錯誤。 然後它會呼叫 [pg_close()](http://php.net/manual/en/function.pg-close.php) 方法來關閉連線。
+hello 的程式碼呼叫方法[pg_connect()](http://php.net/manual/en/function.pg-connect.php) tooconnect tooAzure PostgreSQL 資料庫。 然後它會呼叫方法[pg_query()](http://php.net/manual/en/function.pg-query.php)多次 toorun 數個命令，並[pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) toocheck hello 詳細說明，如果每次時發生錯誤。 然後它會呼叫方法[pg_close()](http://php.net/manual/en/function.pg-close.php) tooclose hello 連線。
 
-以您自己的值取代 `$host`、`$database`、`$user` 和 `$password` 參數。 
+取代 hello `$host`， `$database`， `$user`，和`$password`參數以您自己的值。 
 
 ```php
 <?php
@@ -71,8 +71,8 @@ ms.lasthandoff: 08/29/2017
 
     // Initialize connection object.
     $connection = pg_connect("host=$host dbname=$database user=$user password=$password") 
-        or die("Failed to create connection to database: ". pg_last_error(). "<br/>");
-    print "Successfully created connection to database.<br/>";
+        or die("Failed toocreate connection toodatabase: ". pg_last_error(). "<br/>");
+    print "Successfully created connection toodatabase.<br/>";
 
     // Drop previous table of same name if one exists.
     $query = "DROP TABLE IF EXISTS inventory;";
@@ -113,11 +113,11 @@ ms.lasthandoff: 08/29/2017
 ```
 
 ## <a name="read-data"></a>讀取資料
-使用下列程式碼搭配 **SELECT** SQL 陳述式來連線和讀取資料。 
+使用 hello 下列程式碼 tooconnect 並讀取 hello 資料使用**選取**SQL 陳述式。 
 
- 程式碼會呼叫 [pg_connect()](http://php.net/manual/en/function.pg-connect.php) 方法以連線至 Azure Database for PostgreSQL。 然後它會呼叫 [pg_query()](http://php.net/manual/en/function.pg-query.php) 方法來執行 SELECT 命令，並將結果保留在結果集中，以及呼叫 [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) 來檢查詳細資料，是否發生錯誤。  若要讀取結果集，則會在迴圈中呼叫 [pg_fetch_row()](http://php.net/manual/en/function.pg-fetch-row.php) 方法 (每列一次)，並在 `$row` 陣列中擷取資料列資料，而每個陣列位置中的每個資料行都有一個資料值。  若要釋出結果集，則會呼叫 [pg_free_result()](http://php.net/manual/en/function.pg-free-result.php)。 然後它會呼叫 [pg_close()](http://php.net/manual/en/function.pg-close.php) 方法來關閉連線。
+ hello 的程式碼呼叫方法[pg_connect()](http://php.net/manual/en/function.pg-connect.php) tooconnect tooAzure PostgreSQL 資料庫。 然後它會呼叫方法[pg_query()](http://php.net/manual/en/function.pg-query.php) toorun hello SELECT 命令，在結果集中，保留 hello 結果和[pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) toocheck hello 詳細說明，如果發生錯誤。  tooread hello 的結果集，方法[pg_fetch_row()](http://php.net/manual/en/function.pg-fetch-row.php)陣列中每個資料列和 hello 資料列擷取資料之後，在迴圈中，呼叫`$row`，且每個陣列的每個位置中的資料行的一個資料值。  toofree hello 的結果集，方法[pg_free_result()](http://php.net/manual/en/function.pg-free-result.php)呼叫。 然後它會呼叫方法[pg_close()](http://php.net/manual/en/function.pg-close.php) tooclose hello 連線。
 
-以您自己的值取代 `$host`、`$database`、`$user` 和 `$password` 參數。 
+取代 hello `$host`， `$database`， `$user`，和`$password`參數以您自己的值。 
 
 ```php
 <?php
@@ -129,11 +129,11 @@ ms.lasthandoff: 08/29/2017
     
     // Initialize connection object.
     $connection = pg_connect("host=$host dbname=$database user=$user password=$password")
-                or die("Failed to create connection to database: ". pg_last_error(). "<br/>");
+                or die("Failed toocreate connection toodatabase: ". pg_last_error(). "<br/>");
 
-    print "Successfully created connection to database. <br/>";
+    print "Successfully created connection toodatabase. <br/>";
 
-    // Perform some SQL queries over the connection.
+    // Perform some SQL queries over hello connection.
     $query = "SELECT * from inventory";
     $result_set = pg_query($connection, $query) 
         or die("Encountered an error when executing given sql statement: ". pg_last_error(). "<br/>");
@@ -151,11 +151,11 @@ ms.lasthandoff: 08/29/2017
 ```
 
 ## <a name="update-data"></a>更新資料
-使用下列程式碼搭配 **UPDATE** SQL 陳述式來連線和更新資料。
+使用 hello 下列程式碼 tooconnect 並更新 hello 資料使用**更新**SQL 陳述式。
 
-程式碼會呼叫 [pg_connect()](http://php.net/manual/en/function.pg-connect.php) 方法以連線至 Azure Database for PostgreSQL。 然後它會呼叫 [pg_query()](http://php.net/manual/en/function.pg-query.php) 方法來執行命令，以及呼叫 [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) 來檢查詳細資料，是否會發生錯誤。 然後它會呼叫 [pg_close()](http://php.net/manual/en/function.pg-close.php) 方法來關閉連線。
+hello 的程式碼呼叫方法[pg_connect()](http://php.net/manual/en/function.pg-connect.php) tooconnect tooAzure PostgreSQL 資料庫。 然後它會呼叫方法[pg_query()](http://php.net/manual/en/function.pg-query.php) toorun 命令和[pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) toocheck hello 詳細說明，如果發生錯誤。 然後它會呼叫方法[pg_close()](http://php.net/manual/en/function.pg-close.php) tooclose hello 連線。
 
-以您自己的值取代 `$host`、`$database`、`$user` 和 `$password` 參數。 
+取代 hello `$host`， `$database`， `$user`，和`$password`參數以您自己的值。 
 
 ```php
 <?php
@@ -167,9 +167,9 @@ ms.lasthandoff: 08/29/2017
 
     // Initialize connection object.
     $connection = pg_connect("host=$host dbname=$database user=$user password=$password")
-                or die("Failed to create connection to database: ". pg_last_error(). ".<br/>");
+                or die("Failed toocreate connection toodatabase: ". pg_last_error(). ".<br/>");
 
-    print "Successfully created connection to database. <br/>";
+    print "Successfully created connection toodatabase. <br/>";
 
     // Modify some data in table.
     $new_quantity = 200;
@@ -186,11 +186,11 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="delete-data"></a>刪除資料
-使用下列程式碼搭配 **DELETE** SQL 陳述式來連線和讀取資料。 
+使用 hello 下列程式碼 tooconnect 並讀取 hello 資料使用**刪除**SQL 陳述式。 
 
- 程式碼會呼叫 [pg_connect()](http://php.net/manual/en/function.pg-connect.php) 方法以連線至 Azure Database for PostgreSQL。 然後它會呼叫 [pg_query()](http://php.net/manual/en/function.pg-query.php) 方法來執行命令，以及呼叫 [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) 來檢查詳細資料，是否會發生錯誤。 然後它會呼叫 [pg_close()](http://php.net/manual/en/function.pg-close.php) 方法來關閉連線。
+ hello 的程式碼呼叫方法[pg_connect()](http://php.net/manual/en/function.pg-connect.php) tooconnect 太 Azure PostgreSQL 資料庫。 然後它會呼叫方法[pg_query()](http://php.net/manual/en/function.pg-query.php) toorun 命令和[pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) toocheck hello 詳細說明，如果發生錯誤。 然後它會呼叫方法[pg_close()](http://php.net/manual/en/function.pg-close.php) tooclose hello 連線。
 
-以您自己的值取代 `$host`、`$database`、`$user` 和 `$password` 參數。 
+取代 hello `$host`， `$database`， `$user`，和`$password`參數以您自己的值。 
 
 ```php
 <?php
@@ -202,9 +202,9 @@ ms.lasthandoff: 08/29/2017
 
     // Initialize connection object.
     $connection = pg_connect("host=$host dbname=$database user=$user password=$password")
-            or die("Failed to create connection to database: ". pg_last_error(). ". </br>");
+            or die("Failed toocreate connection toodatabase: ". pg_last_error(). ". </br>");
 
-    print "Successfully created connection to database. <br/>";
+    print "Successfully created connection toodatabase. <br/>";
 
     // Delete some data from table.
     $name = '\'orange\'';

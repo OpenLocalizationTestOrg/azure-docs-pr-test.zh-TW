@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning 批次執行服務作業的專用功能 | Microsoft Docs"
+title: "機器學習批次執行服務作業的容量 aaaDedicated |Microsoft 文件"
 description: "適用於 Machine Learning 作業的 Azure Batch 服務概觀。"
 services: machine-learning
 documentationcenter: 
@@ -13,44 +13,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: v-donglo
-ms.openlocfilehash: 3879eb3d0c6fa9d74fff01b07f5c07d3991dfbbd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bba7970bb31c50e5b0b9d5f4ff4f0d2dacf942e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-batch-service-for-machine-learning-jobs"></a>適用於 Machine Learning 作業的 Azure Batch 服務
 
-Machine Learning 批次集區處理提供客戶管理的 Azure Machine Learning 批次執行服務級別。 機器學習服務的傳統批次處理發生於多租用戶環境中，其限制您可以提交的並行作業數目，而且作業會以先進先出為原則排入佇列中。 這種不確定性，表示您無法準確地預測何時會執行您的作業。
+機器學習批次集區處理 hello Azure 機器學習批次執行服務可提供客戶管理的小數位數。 機器學習的傳統批次處理發生在多租用戶環境中，並行處理作業，您可以提交，且作業哪些限制 hello 數目會排入佇列以先進先出為基礎。 這種不確定性，表示您無法準確地預測何時會執行您的作業。
 
-批次集區處理可讓您建立集區，以便提交批次作業。 您可控制集區的大小，以及作業要提交至哪個集區。 BES 作業會在自己的處理空間中執行，以提供可預測的處理效能以及建立資源集區 (對應至您提交的處理負載) 的功能。
+批次集區處理可讓您 toocreate 集區，您可以提交批次作業。 控制 hello hello 集區的大小，而且 toowhich 集區 hello 作業傳送。 BES 工作會執行自己的處理空間提供可預測的處理效能和 hello 能力 toocreate 資源集區對應 toohello 您送出的處理負載。
 
-## <a name="how-to-use-batch-pool-processing"></a>如何使用批次集區處理
+## <a name="how-toouse-batch-pool-processing"></a>如何 toouse 批次集區處理
 
-您目前無法透過 Azure 入口網站設定批次集區處理。 若要使用批次集區處理，您必須：
+無法透過 hello Azure 入口網站目前可用的批次進行處理集區設定。 toouse 批次集區處理，您必須：
 
--   呼叫 CSS 以建立批次集區帳戶，並取得集區服務 URL 和授權金鑰
+-   呼叫 CSS toocreate 批次集區帳戶，並取得集區服務 URL 和授權金鑰
 -   建立新的 Resource Manager 型 Web 服務和計費方案
 
-若要建立帳戶，請連絡 Microsoft 客戶服務與支援中心 (CSS) 並提供您的訂用帳戶識別碼。 CSS 將與您一起決定您案例的適當容量。 CSS 會接著設定您的帳戶：您可以建立的集區數目上限，以及您可以放在每個集區中的虛擬機器 (VM) 數目上限。 設定您的帳戶後，您便會取得集區服務 URL 和授權金鑰。
+toocreate 您的帳戶，呼叫 Microsoft 客戶服務及支援 (CSS)，並提供您的訂用帳戶識別碼。 CSS 將適用於您 toodetermine hello 適當容量，以您的案例。 然後，CSS 會設定您的帳戶與 hello 集區，您可以建立並 hello 可以在每個集區的虛擬機器 (Vm) 的最大數目的數目上限。 設定您的帳戶後，您便會取得集區服務 URL 和授權金鑰。
 
-建立您的帳戶之後，您可使用集區服務 URL 和授權金鑰，在您的批次集區上執行集區管理作業。
+建立您的帳戶之後，您會使用 hello 集區服務 URL 和授權金鑰 tooperform 集區上的管理作業批次集區。
 
 ![批次集區服務架構。](media/machine-learning-dedicated-capacity-for-bes-jobs/pool-architecture.png)
 
-您可以在 CSS 提供給您的集區服務 URL 上呼叫「建立集區」作業，以建立集區。 當您建立集區時，請指定 VM 數目和全新 Resource Manager 型 Machine Learning Web 服務的 swagger.json URL。 此 Web 服務可供建立計費關聯。 批次集區服務會使用 swagger.json 將集區與計費方案建立關聯。 您可以執行您在集區上選擇的任何 BES Web 服務 (全新 Resource Manager 型和傳統)。
+您可以呼叫該 CSS 提供 tooyou hello hello 集區服務 URL 建立集區作業建立集區。 當您建立一個集區時，指定的 Vm 和 hello hello swagger.json 新資源管理員的 URL 的 hello 數目基礎的機器學習 web 服務。 此 web 服務提供 tooestablish hello 計費關聯。 hello 批次集區服務會使用計費的方案中的 hello swagger.json tooassociate hello 集區。 您可以執行任何 BES web 服務，這兩個新的資源管理員，以基礎而且傳統，您選擇 hello 集區上。
 
-您可以使用任何全新 Resource Manager 型 Web 服務，但請注意，作業是根據與該服務相關聯的計費方案收費。 您可以特別建立 Web 服務和新的計費方案，以便執行批次集區作業。
+您可以使用任何基礎的新資源管理員的 web 服務，但請留意 hello 計費 hello 工作負責針對 hello 與該服務相關聯的計費方案。 您可能想的 toocreate web 服務和新的計費計劃，專門用來執行批次集區工作。
 
 如需關於建立 Web 服務的詳細資訊，請參閱[部署 Azure Machine Learning Web 服務](machine-learning-publish-a-machine-learning-web-service.md)。
 
-建立集區後，您可使用 Web 服務的批次要求 URL 提交 BES 作業。 您可以選擇將它提交至集區或傳統批次處理。 若要將作業提交至批次集區處理，請將下列參數新增至作業提交要求本文︰
+當您建立集區之後時，您送出 hello BES hello web 服務工作使用 hello 批次要求的 URL。 您可以選擇 toosubmit 它 tooa 集區或 tooclassic 批次的處理。 toosubmit 作業 tooBatch 集區處理，您會加入下列參數 toohello 工作提交要求主體的 hello:
 
 "AzureBatchPoolId":"&lt;pool ID&gt;"
 
-如果您未新增此參數，則會在傳統批次處理環境中執行作業。 如果集區有可用的資源，則會立即開始執行作業。 如果集區沒有可用的資源，則作業會排入佇列，直到有可用的資源為止。
+如果您不需要新增 hello 參數，hello 作業會執行 hello 傳統的批次的處理序環境中。 如果 hello 集區有可用的資源，會啟動 hello 工作立即執行。 如果 hello 集區沒有可用的資源，您的工作會排入佇列，直到有可用的資源。
 
-如果您發現您定期達到集區的容量而且需要更高的容量，您可以連絡 CSS 並與支援代表一起增加您的配額。
+如果您發現，定期連線到您的集區的 hello 容量，您需要更高的容量，您可以連絡 CSS，並使用代表性 tooincrease 您的配額。
 
 範例要求︰
 
@@ -97,7 +97,7 @@ https://ussouthcentral.services.azureml.net/subscriptions/80c77c7674ba4c8c82294c
 
 ## <a name="considerations-when-using-batch-pool-processing"></a>使用批次集區處理時的考量
 
-批次集區處理是一項永遠開啟的計費服務，而且您必須將它與 Resource Manager 型計費方案建立關聯。 您只需支付集區執行的計算時數；不管該時間集區內執行的作業數目。 如果您建立集區，即使集區中沒有任何執行中的批次作業，您仍需支付集區中每部虛擬機器的計算時數，直到集區刪除為止。 虛擬機器會在完成佈建時開始計費，而在遭到刪除時停止計費。 您可以使用在 [Machine Learning 價格頁面](https://azure.microsoft.com/pricing/details/machine-learning/)找到的任何方案。
+批次進行處理集區是一直在計費服務，而且這需要您 tooassociate 它與資源管理員內以計費方案。 您僅支付 hello 時數計算 hello 集區正在執行;不論 hello 期間該階段集區執行的作業數目。 如果您建立一個集區，您所要支付 hello 運算時數的 hello 集區中每個虛擬機器直到刪除為止 hello 集區，即使 hello 集區中執行任何批次工作。 計費 hello 虛擬機器的佈建完成時啟動，並停止時已被刪除。 您可以使用任何 hello hello 上找不到方案[機器學習定價頁面](https://azure.microsoft.com/pricing/details/machine-learning/)。
 
 計費範例︰
 
@@ -105,9 +105,9 @@ https://ussouthcentral.services.azureml.net/subscriptions/80c77c7674ba4c8c82294c
 
 如果您建立包含 4 部虛擬機器的批次集區，並在 12 小時後將它刪除，您的計費方案也會借記 48 個計算小時。
 
-我們建議您輪詢作業狀態以判斷作業何時完成。 當所有作業完成執行時，請呼叫「調整集區大小」作業，將集區中的虛擬機器數目設定為零。 如果集區資源不足，而您需要建立新的集區 (例如根據不同計費方案進行計費)，您可以在所有作業都完成執行時刪除集區。
+我們建議您輪詢 hello 作業狀態 toodetermine，當工作完成。 當所有的作業完成執行時，呼叫 hello 調整集區大小作業 tooset hello 數目 hello 集區 toozero 中的虛擬機器。 如果您是簡短的資源集區，而且您需要 toocreate 新的集區，例如 toobill 針對不同的計費方案，您可以刪除 hello 集區改為所有的作業完成執行。
 
 
 | **使用批次集區處理的時機**    | **使用傳統批次處理的時機**  |
 |---|---|
-|您需要執行大量的作業<br>或<br/>您需要知道您的作業將立即執行<br/>或<br/>您需要保證的輸送量。 例如，您需要在指定的時間範圍內執行多項作業，而且想要相應放大計算資源以符合您的需求。    | 您正在執行一些作業<br/>和<br/> 您不需要立即執行作業 |
+|您需要 toorun 大量作業<br>或<br/>您需要您的作業會立即執行的 tooknow<br/>或<br/>您需要保證的輸送量。 例如，您需要 toorun 中指定的時間範圍內，作業數目，並想 tooscale 您計算資源 toomeet 出您的需求。    | 您正在執行一些作業<br/>和<br/> 您不立即需要 hello 作業 toorun |

@@ -6,9 +6,9 @@
 
 # 開始使用
 ## [訂用帳戶需求](subscription-requirements.md)
-## [開始使用入口網站](../active-directory-privileged-identity-management-getting-started.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json)
-## [安全性精靈](../active-directory-privileged-identity-management-security-wizard.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json)
-## [授與 PIM 存取](../active-directory-privileged-identity-management-how-to-give-access-to-pim.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json)
+## [開始在 hello 入口網站](../active-directory-privileged-identity-management-getting-started.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json)
+## [hello 安全性精靈](../active-directory-privileged-identity-management-security-wizard.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json)
+## [提供存取 tooPIM](../active-directory-privileged-identity-management-how-to-give-access-to-pim.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json)
 
 # 作法
 ## 使用 PIM
@@ -21,7 +21,7 @@
 ### [結束存取權檢閱](../active-directory-privileged-identity-management-how-to-complete-review.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json)
 ### [設定警示](../active-directory-privileged-identity-management-how-to-configure-security-alerts.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json)
 ### [必要 MFA](../active-directory-privileged-identity-management-how-to-require-mfa.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json)
-### [使用稽核記錄](../active-directory-privileged-identity-management-how-to-use-audit-log.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json)
+### [使用 hello 稽核記錄檔](../active-directory-privileged-identity-management-how-to-use-audit-log.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json)
 
 # 參考
 ## [程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=active-directory)

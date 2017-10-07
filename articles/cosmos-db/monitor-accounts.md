@@ -1,6 +1,6 @@
 ---
-title: "監視 Azure Cosmos DB 要求及儲存體 | Microsoft Docs"
-description: "了解如何監視 Azure Cosmos DB 帳戶的效能計量 (如要求和伺服器錯誤) 和使用量計量 (如儲存體耗用量)。"
+title: "aaaMonitor Azure Cosmos DB 要求和儲存體 |Microsoft 文件"
+description: "了解如何 toomonitor Azure Cosmos DB 說明效能度量，例如要求和伺服器錯誤以及使用量度量，例如存放裝置耗用量。"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -14,113 +14,113 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: mimig
-ms.openlocfilehash: 0ca652d31d6c50124f87916b4486d8279075f106
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aea029d10717236a573a080dab9d06d87f97f318
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-azure-cosmos-db-requests-usage-and-storage"></a>監視 Azure Cosmos DB 要求、使用量及儲存體
-您可以在 [Azure 入口網站](https://portal.azure.com/)中監視 Azure Cosmos DB 帳戶。 每一個 Azure Cosmos DB 帳戶都有效能計量 (例如要求和伺服器錯誤) 和使用量計量 (例如儲存體耗用量) 可供使用。
+您可以監視您 Azure Cosmos DB 中的帳戶 hello [Azure 入口網站](https://portal.azure.com/)。 每一個 Azure Cosmos DB 帳戶都有效能計量 (例如要求和伺服器錯誤) 和使用量計量 (例如儲存體耗用量) 可供使用。
 
-您可以在 [帳戶] 刀鋒視窗、新的 [度量] 刀鋒視窗、或 Azure 監視器中檢閱度量。
+Hello 帳戶 刀鋒視窗，hello 新度量刀鋒視窗中，或在 Azure 監視器，可以檢閱度量。
 
-## <a name="view-performance-metrics-on-the-metrics-blade"></a>在度量刀鋒視窗上檢視效能度量
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [更多服務]，捲動至 [資料庫]，按一下 [Azure Cosmos DB]，然後按一下您想要檢視其效能計量的 Azure Cosmos DB 帳戶名稱。
-2. 在資源功能表中，按一下 [監視] 下的 [度量]。
+## <a name="view-performance-metrics-on-hello-metrics-blade"></a>Hello 計量刀鋒視窗上檢視效能度量
+1. 在 hello [Azure 入口網站](https://portal.azure.com/)，按一下 **更服務**，太捲動**資料庫**，按一下**Azure Cosmos DB**，然後按一下hello hello 名稱Azure 的 Cosmos DB 帳戶，您想要 tooview 效能度量。
+2. 在 hello 資源功能表中，在**監視**，按一下 **度量**。
 
-[度量] 刀鋒視窗隨即開啟，您可以選取要檢閱的集合。 您可以檢閱「可用性」、「要求」、「輸送量」及「儲存體」計量，並將它們與 Azure Cosmos DB SLA 做比較。
+hello 計量刀鋒視窗隨即開啟，以及您可以選取 hello 集合 tooreview。 您可以檢閱可用性、 要求、 輸送量和儲存體度量，並比較 toohello Azure Cosmos DB Sla。
 
 ## <a name="view-performance-metrics-by-using-azure-monitoring"></a>使用 Azure 監視器檢視效能度量
-1. 在 [Azure 入口網站](https://portal.azure.com/)，按一下動態工具列中的 [NoSQL (DocumentDB)]。
-2. 在資源功能表中，按一下 [度量]。
-3. 在 [監視 - 計量] 視窗的 [資源群組] 下拉式功能表中，選取與您要監視的 Azure Cosmos DB 帳戶相關聯的資源群組。 
-4. 在 [資源] 下拉式功能表中，選取要監視的資料庫帳戶。
-5. 在 [可用的度量] 清單中，選取要顯示的度量。 使用 CTRL 按鈕同時選取多項。 
+1. 在 hello [Azure 入口網站](https://portal.azure.com/)，按一下 **監視器**hello Jumpbar 上。
+2. 在 hello 資源功能表上，按一下 **度量**。
+3. 在 hello**監視-度量**視窗中的，於 hello**資源群組**下拉式功能表，選取 hello 與您想要 toomonitor hello Azure Cosmos DB 帳戶相關聯的資源群組。 
+4. 在 hello**資源**下拉式功能表、 選取 hello 資料庫帳戶 toomonitor。
+5. 中的 hello 清單**可用的度量**，選取 hello 度量 toodisplay。 使用 hello CTRL 按鈕 toomulti select。 
 
-    您的度量會顯示在 [繪製] 視窗中。 
+    您的度量會顯示在 hello 中**繪製**視窗。 
 
-## <a name="view-performance-metrics-on-the-account-blade"></a>在帳戶刀鋒視窗上檢視效能度量
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [更多服務]，捲動至 [資料庫]，按一下 [Azure Cosmos DB]，然後按一下您想要檢視其效能計量的 Azure Cosmos DB 帳戶名稱。
-2. [監視]  功能濾鏡預設會顯示以下圖格：
+## <a name="view-performance-metrics-on-hello-account-blade"></a>檢視效能度量 hello 帳戶 刀鋒視窗
+1. 在 hello [Azure 入口網站](https://portal.azure.com/)，按一下 **更服務**，太捲動**資料庫**，按一下**Azure Cosmos DB**，然後按一下hello hello 名稱Azure 的 Cosmos DB 帳戶，您想要 tooview 效能度量。
+2. hello**監視**透鏡會顯示下列預設圖格的 hello:
    
-   * 當日的要求總數。
+   * Hello 當天的要求總數。
    * 已使用儲存體。
    
-   如果您的表格顯示 [沒有可用的資料]  ，但您認為資料庫中有資料，請參閱 [疑難排解](#troubleshooting) 一節。
+   如果您的資料表會顯示**沒有可用的資料**和您認為您的資料庫中沒有資料，請參閱 hello[疑難排解](#troubleshooting)> 一節。
    
-   ![[監視] 功能濾鏡的螢幕擷取畫面，可顯示要求和儲存體使用量](./media/monitor-accounts/documentdb-total-requests-and-usage.png)
-3. 按一下 [要求] 或 [使用配額] 圖格，即會開啟詳細的 [度量] 刀鋒視窗。
-4. [ **度量** ] 刀鋒視窗會顯示您已選取之度量的詳細資料。  刀鋒視窗上方是每小時繪製為圖表的要求圖形，而下方表格會顯示已節流處理的要求和要求總數的彙總值。  度量刀鋒視窗也會顯示已定義的警示清單，且依目前度量刀鋒視窗上出現的度量來篩選 (因此，如果您有許多警示，只會看到此處顯示相關的警示)。   
+   ![會顯示 hello 要求以及 hello 存放裝置使用量 hello 監視功能濾鏡的螢幕擷取畫面](./media/monitor-accounts/documentdb-total-requests-and-usage.png)
+3. 按一下 hello**要求**或**使用量配額**磚會開啟詳細**度量**刀鋒視窗。
+4. hello**度量**刀鋒視窗會顯示有關您已選取的 hello 度量的詳細資料。  Hello hello 刀鋒視窗的頂端是要求的圖形繪製每小時、 並在下方會顯示要求已節流和總計的彙總值的資料表。  hello 計量刀鋒伺服器也會顯示 hello 清單已定義的篩選 toohello 度量 hello 目前計量刀鋒伺服器上所顯示的警示 （如此一來，如果您有許多的警示，您只看到 hello 這裡所呈現的相關項目）。   
    
-   ![[度量] 刀鋒視窗的螢幕擷取畫面，其中包已節流處理的要求](./media/monitor-accounts/documentdb-metric-blade.png)
+   ![其中包括的 hello 計量刀鋒伺服器的螢幕擷取畫面節流處理要求](./media/monitor-accounts/documentdb-metric-blade.png)
 
-## <a name="customize-performance-metric-views-in-the-portal"></a>在入口網站中自訂效能度量檢視
-1. 若要自訂在特定圖表中顯示的度量，請按一下圖表以在 [度量] 刀鋒視窗中開啟該圖表，然後按一下 [編輯圖表]。  
-   ![[度量] 刀鋒視窗控制項的螢幕擷取畫面，其中已將 [編輯圖表] 反白顯示](./media/monitor-accounts/madocdb3.png)
-2. 在 [編輯圖表]  刀鋒視窗上，會提供選項來修改圖表中顯示的度量及其時間範圍。  
-   ![[編輯圖表] 刀鋒視窗的螢幕擷取畫面](./media/monitor-accounts/madocdb4.png)
-3. 若要變更組件中顯示的度量，只需選取或清除可用的效能度量，然後按一下刀鋒視窗底部的 [確定]  。  
-4. 若要變更時間範圍，請選擇不同的範圍 (例如 [自訂])，然後按一下刀鋒視窗底部的 [確定]。  
+## <a name="customize-performance-metric-views-in-hello-portal"></a>自訂 hello 入口網站中的效能計量檢視
+1. toocustomize hello 度量顯示在特定圖中，按一下 hello 圖表 tooopen 在 hello**度量**刀鋒視窗中，然後再按一下**編輯圖表**。  
+   ![使用反白顯示的編輯圖表的 hello 計量刀鋒伺服器控制項的螢幕擷取畫面](./media/monitor-accounts/madocdb3.png)
+2. 在 hello**編輯圖表**刀鋒視窗中，有顯示 hello 圖表，以及其時間範圍中的選項 toomodify hello 度量。  
+   ![Hello 編輯圖表 刀鋒視窗的螢幕擷取畫面](./media/monitor-accounts/madocdb4.png)
+3. toochange hello 度量顯示在 hello 部分中，只需選取或清除 hello 可用的效能度量，，然後按一下**確定**在 hello hello 刀鋒視窗的底部。  
+4. toochange hello 時間範圍中，選擇不同的範圍 (例如，**自訂**)，然後按一下 **[確定]**在 hello hello 刀鋒視窗的底部。  
    
-   ![[編輯圖表] 刀鋒視窗的 [時間範圍] 部分螢幕擷取畫面，顯示如何輸入自訂時間範圍](./media/monitor-accounts/madocdb5.png)
+   ![Hello 的時間範圍內屬於 hello 編輯圖表刀鋒視窗中顯示的螢幕擷取畫面如何 tooenter 自訂時間範圍內](./media/monitor-accounts/madocdb5.png)
 
-## <a name="create-side-by-side-charts-in-the-portal"></a>在入口網站中建立並排圖表
-Azure 入口網站可讓您建立並排度量圖表。  
+## <a name="create-side-by-side-charts-in-hello-portal"></a>Hello 入口網站中建立的並排圖表
+hello Azure 入口網站可讓您 toocreate 來並行度量圖表。  
 
-1. 首先，以滑鼠右鍵按一下要複製的圖表，然後選取 [自訂] 。
+1. 首先，以滑鼠右鍵按一下 hello 圖表 toocopy 再選取**自訂**。
    
-   ![包含反白顯示 [自訂] 選項的 [要求總數] 圖表螢幕擷取畫面](./media/monitor-accounts/madocdb6.png)
-2. 在功能表上按一下 [複製] 以複製組件，然後按一下 [自訂完成]。
+   ![Hello 與 hello 反白顯示的自訂選項的要求總數圖表的螢幕擷取畫面](./media/monitor-accounts/madocdb6.png)
+2. 按一下**複製**在 hello 功能表 toocopy hello 組件，然後按一下**完成自訂**。
    
-   ![包含反白顯示 [複製] 與 [自訂完成] 選項的 [要求總數] 圖表螢幕擷取畫面](./media/monitor-accounts/madocdb7.png)  
+   ![螢幕擷取畫面的 hello 與 hello 複製的要求總數圖表和完成反白顯示的自訂選項](./media/monitor-accounts/madocdb7.png)  
 
-現在，您可以將此組件視為其他任何度量組件，並自訂該組件中顯示的度量和時間範圍。  如此一來，您可以同時看到兩個不同的度量圖表並排出現。  
-    ![[要求總數] 圖表和全新 [要求總數] 前一個小時圖表的螢幕擷取畫面](./media/monitor-accounts/madocdb8.png)  
+您現在可能會將此組件視為度量的一部分，自訂顯示 hello 組件中的 hello 度量和時間範圍。  如此一來，您可以看到兩個不同度量圖表-並存 hello 在相同的時間。  
+    ![Hello 要求總數圖表的螢幕擷取畫面和 hello 過去小時圖表新要求的總數](./media/monitor-accounts/madocdb8.png)  
 
-## <a name="set-up-alerts-in-the-portal"></a>在入口網站中設定警示
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [更多服務]，按一下 [Azure Cosmos DB]，然後按一下您想要設定其效能計量警示的 Azure Cosmos DB 帳戶名稱。
-2. 在資源功能表中，按一下 [警示規則]  以開啟 [警示規則] 刀鋒視窗。  
-   ![已選取 [警示規則] 組件的螢幕擷取畫面](./media/monitor-accounts/madocdb10.5.png)
-3. 在 [警示規則] 刀鋒視窗中，按一下 [新增警示]。  
-   ![包含反白顯示 [新增警示] 按鈕的 [警示規則] 刀鋒視窗螢幕擷取畫面](./media/monitor-accounts/madocdb11.png)
-4. 在 [Add an alert rule]  刀鋒視窗中，指定：
+## <a name="set-up-alerts-in-hello-portal"></a>設定在 hello 入口網站中的警示
+1. 在 hello [Azure 入口網站](https://portal.azure.com/)，按一下**更服務**，按一下**Azure Cosmos DB**，然後按一下您想其 toosetup hello Azure Cosmos DB 帳戶 hello 名稱效能度量的警示。
+2. 在 hello 資源功能表上，按一下 **警示規則**tooopen hello 警示規則 刀鋒視窗。  
+   ![選取部分的螢幕擷取畫面的 hello 警示規則](./media/monitor-accounts/madocdb10.5.png)
+3. 在 hello**警示規則**刀鋒視窗中，按一下 **新增警示**。  
+   ![Hello 警示規則刀鋒視窗中，強調顯示 hello 新增警示 按鈕的螢幕擷取畫面](./media/monitor-accounts/madocdb11.png)
+4. 在 hello**加入警示規則**刀鋒視窗中，指定：
    
-   * 您設定之警示規則的名稱。
-   * 新警示規則的描述。
-   * 警示規則的度量。
-   * 決定警示何時啟動的條件、臨界值和期間。 例如，過去 15 分鐘伺服器錯誤計算大於 5。
-   * 警示引發時是否傳送電子郵件給服務管理員和共同管理員。
+   * hello hello 您要設定的警示規則名稱。
+   * Hello 新的警示規則的描述。
+   * hello hello 警示規則的計量。
+   * hello 條件、 臨界值，而且期間判斷 hello 警示就會啟動。 例如，伺服器錯誤 hello 過去 15 分鐘內透過計數大於 5。
+   * 是否 hello 服務管理員和 coadministrators 會以電子郵件傳送嗨警示觸發時。
    * 警示通知的其他電子郵件地址。  
-     ![[新增警示規則] 刀鋒視窗的螢幕擷取畫面](./media/monitor-accounts/madocdb12.png)
+     ![Hello 新增警示規則刀鋒視窗的螢幕擷取畫面](./media/monitor-accounts/madocdb12.png)
 
 ## <a name="monitor-azure-cosmos-db-programatically"></a>以程式設計方式監視 Azure Cosmos DB
-可在入口網站中取得的帳戶層級度量 (例如，帳戶儲存體使用量和要求總數) 無法透過 DocumentDB API 取得。 不過，您可以使用 DocumentDB API 來擷取集合層級的使用量資料。 若要擷取集合層級的資料，請執行下列動作：
+hello 帳戶 hello 入口網站中提供的層級度量，例如儲存體帳戶使用量和總計的要求，可透過 hello DocumentDB Api。 不過，您可以使用 hello DocumentDB Api 擷取 hello 集合層級的使用量資料。 tooretrieve 集合層級資料，請勿 hello 遵循：
 
-* 若要使用 REST API，請 [在集合上執行 GET](https://msdn.microsoft.com/library/mt489073.aspx)。 集合的配額和使用量資訊會在回應的 x-ms-resource-quota 和 x-ms-resource-usage 標頭中傳回。
-* 若要使用 .NET SDK，請使用 [DocumentClient.ReadDocumentCollectionAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.readdocumentcollectionasync.aspx) 方法，此方法會傳回包含 **CollectionSizeUsage**、**DatabaseUsage**、**DocumentUsage** 等幾個使用量屬性的 [ResourceResponse](https://msdn.microsoft.com/library/dn799209.aspx)。
+* toouse hello REST API [hello 集合上執行 GET](https://msdn.microsoft.com/library/mt489073.aspx)。 hello 集合的 hello 配額和使用量資訊會以 hello 回應 hello x ms-資源配額和 x ms-資源使用量標頭中傳回。
+* toouse hello.NET SDK 使用 hello [DocumentClient.ReadDocumentCollectionAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.readdocumentcollectionasync.aspx)方法，這個方法會傳回[ResourceResponse](https://msdn.microsoft.com/library/dn799209.aspx)所包含的數字的使用方式屬性，例如**CollectionSizeUsage**， **DatabaseUsage**， **DocumentUsage**，以及其他更多。
 
-若要存取其他度量，請使用 [Azure 監視器 SDK](https://www.nuget.org/packages/Microsoft.Azure.Insights)。 您可以呼叫下列程式碼來擷取可用的度量定義：
+tooaccess 其他度量，使用 hello [Azure 監視 SDK](https://www.nuget.org/packages/Microsoft.Azure.Insights)。 您可以呼叫下列程式碼來擷取可用的度量定義：
 
     https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroup}/providers/Microsoft.DocumentDb/databaseAccounts/{DocumentDBAccountName}/metricDefinitions?api-version=2015-04-08
 
-擷取個別度量的查詢會使用下列格式：
+遵循格式查詢 tooretrieve 個別度量使用 hello:
 
     https://management.azure.com/subscriptions/{SubecriptionId}/resourceGroups/{ResourceGroup}/providers/Microsoft.DocumentDb/databaseAccounts/{DocumentDBAccountName}/metrics?api-version=2015-04-08&$filter=%28name.value%20eq%20%27Total%20Requests%27%29%20and%20timeGrain%20eq%20duration%27PT5M%27%20and%20startTime%20eq%202016-06-03T03%3A26%3A00.0000000Z%20and%20endTime%20eq%202016-06-10T03%3A26%3A00.0000000Z
 
-如需詳細資訊，請參閱 [Retrieving Resource Metrics via the Azure Monitor REST API (透過 Azure 監視器 API 擷取資源度量)](https://blogs.msdn.microsoft.com/cloud_solution_architect/2016/02/23/retrieving-resource-metrics-via-the-azure-insights-api/)。 請注意，"Azure Inights" 已重新命名為「Azure 監視器」。  此部落格項目參考的是舊名稱。
+如需詳細資訊，請參閱[透過 hello Azure 監視 REST API 擷取資源度量](https://blogs.msdn.microsoft.com/cloud_solution_architect/2016/02/23/retrieving-resource-metrics-via-the-azure-insights-api/)。 請注意，"Azure Inights" 已重新命名為「Azure 監視器」。  此部落格文章參考 toohello 舊名稱。
 
 ## <a name="troubleshooting"></a>疑難排解
-如果您的監視圖格顯示 [沒有可用的資料]  訊息，而您最近曾提出要求或將資料新增到資料庫，您就能編輯圖格以反映最近的使用量。
+如果您的監視並排顯示 hello**沒有可用的資料**訊息，以及您最近提出要求，或加入資料 toohello 資料庫，您可以編輯 hello 磚 tooreflect hello 最近的使用量。
 
-### <a name="edit-a-tile-to-refresh-current-data"></a>編輯磚以重新整理目前的資料
-1. 若要自訂在特定組件中顯示的度量，請按一下圖表以開啟 [度量] 刀鋒視窗，然後按一下 [編輯圖表]。  
-   ![[度量] 刀鋒視窗控制項的螢幕擷取畫面，其中已將 [編輯圖表] 反白顯示](./media/monitor-accounts/madocdb3.png)
-2. 在 [編輯圖表] 刀鋒視窗的 [時間範圍] 區段中，按一下 [過去 1 小時]，然後按一下 [確定]。  
-   ![已選取過去 1 小時的 [編輯圖表] 刀鋒視窗螢幕擷取畫面](./media/monitor-accounts/documentdb-no-available-data-past-hour.png)
+### <a name="edit-a-tile-toorefresh-current-data"></a>編輯磚 toorefresh 目前資料
+1. toocustomize hello 度量顯示在特定部分中，按一下 hello 圖表 tooopen hello**度量**刀鋒視窗中，然後再按一下**編輯圖表**。  
+   ![使用反白顯示的編輯圖表的 hello 計量刀鋒伺服器控制項的螢幕擷取畫面](./media/monitor-accounts/madocdb3.png)
+2. Hello 上**編輯圖表**刀鋒視窗中的，在 hello**時間範圍**區段中，按一下**過去一小時**，然後按一下**確定**。  
+   ![Hello 與過去一小時，選取 [編輯圖表] 刀鋒視窗的螢幕擷取畫面](./media/monitor-accounts/documentdb-no-available-data-past-hour.png)
 3. 您的圖格現在應該會重新整理，以顯示您目前的資料和使用量。  
-   ![過去 1 小時已更新的要求總數磚的的螢幕擷取畫面](./media/monitor-accounts/documentdb-no-available-data-fixed.png)
+   ![Hello 更新的螢幕擷取畫面過去小時磚的要求總數](./media/monitor-accounts/documentdb-no-available-data-fixed.png)
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解 Azure Cosmos DB 容量規劃，請參閱 [Azure Cosmos DB 容量規劃工具計算機 (英文)](https://www.documentdb.com/capacityplanner)。
+toolearn 進一步了解 Azure Cosmos DB 容量計劃，請參閱 hello [Azure Cosmos DB 容量規劃計算機](https://www.documentdb.com/capacityplanner)。
 

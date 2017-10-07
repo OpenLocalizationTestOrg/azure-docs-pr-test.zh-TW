@@ -1,6 +1,6 @@
 ---
-title: "如何委派使用者註冊和產品訂閱"
-description: "了解如何在 Azure API Management 中將使用者註冊和產品訂閱委派給第三方。"
+title: "aaaHow toodelegate 使用者註冊和產品訂用帳戶"
+description: "了解如何 toodelegate 使用者註冊和產品訂用帳戶 tooa 協力廠商在 Azure API 管理。"
 services: api-management
 documentationcenter: 
 author: antonba
@@ -14,122 +14,122 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 2637ab6405f2d4ea1da84981295a144874dfa4f6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 406648db2d2f37c4dcda466294726d331cc0551b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-delegate-user-registration-and-product-subscription"></a>如何委派使用者註冊和產品訂閱
-委派可讓您使用現有的網站來處理開發人員登入/註冊和產品訂閱，而非使用開發人員入口網站中的內建功能。 這樣可讓您的網站擁有使用者資料，並以自訂方式來執行這些步驟的驗證。
+# <a name="how-toodelegate-user-registration-and-product-subscription"></a>如何 toodelegate 使用者註冊和產品訂用帳戶
+委派可讓您 toouse 處理做為開發人員登在 /-註冊和訂用帳戶 tooproducts 您現有的網站而非在 hello 開發人員入口網站中的 toousing hello 內建功能。 這可讓您網站 tooown hello 的使用者資料，並在自訂的方式執行這些步驟的 hello 驗證。
 
 ## <a name="delegate-signin-up"> </a>委派開發人員登入和註冊
-若要將開發人員登入和註冊委派給您現有的網站，您必須在網站上建立特殊的委派端點，作為從 API 管理開發人員入口網站起始的任何這類要求的進入點。
+toodelegate 開發人員登入並註冊 tooyour 現有網站做為 hello 從 hello API 管理開發人員入口網站起始任何這類要求的進入點的網站必須 toocreate 特殊委派端點。
 
-最終工作流程如下所示：
+hello 最後的工作流程會如下所示：
 
-1. 開發人員在 API 管理開發人員入口網站按一下登入或註冊連結
-2. 瀏覽器重新導向至委派端點
-3. 委派端點再轉而重新導向至或呈現 UI，要求使用者登入或註冊
-4. 成功時，將使用者重新導向回到他們所來自的 API 管理開發人員入口網站頁面
+1. 開發人員按一下 hello 登入或註冊連結在 hello API 管理開發人員入口網站
+2. 瀏覽器會重新導向的 toohello 委派端點
+3. 委派端點傳回 tooor 呈現 UI 詢問將使用者重新導向或註冊 toosign 中
+4. 成功時，hello 使用者已重新導向後 toohello API 管理開發人員入口網站頁面從它們啟動
 
-首先，請設定 API 管理透過委派端點來傳遞要求。 在 API 管理發佈者入口網站中，按一下 [安全性]，然後按一下 [委派] 索引標籤。 按一下核取方塊以啟用 [Delegate sign-in & sign-up]。
+toobegin，讓我們第一次設定 API 管理 tooroute 會要求透過您委派的端點。 在 [hello API 管理發行者入口網站，按一下**安全性**然後按一下hello**委派**] 索引標籤。按一下 [hello] 核取方塊 tooenable 'Delegate 登入 （& s) 註冊'。
 
 ![Delegation page][api-management-delegation-signin-up]
 
-* 決定特殊委派端點的 URL，並在 [ **Delegation endpoint URL** ] 欄位中輸入。 
-* 在 [ **Delegation authentication key** ] 欄位中輸入密碼，用來計算提供給您驗證的簽章，以確定要求確實來自 Azure API 管理。 您可以按一下 [ **產生** ] 按鈕，讓 API 管理為您隨機產生金鑰。
+* 決定哪些 hello 特殊委派端點 URL 會並進入 hello**委派端點 URL**欄位。 
+* 在 hello**委派驗證金鑰**欄位中，輸入將會使用的 toocompute hello 要求的驗證 tooensure 的簽章提供 tooyou 確實來自 Azure API 管理的密碼。 您可以按一下 hello**產生**按鈕 toohave API 積存，隨機產生金鑰。
 
-現在您需要建立「 **委派端點**」。 必須執行一些動作：
+現在您需要 toocreate hello**委派端點**。 它有 tooperform 數個動作：
 
-1. 接收下列形式的要求：
+1. 在下列形式的 hello 收到的要求：
    
    > http://www.yourwebsite.com/apimdelegation?operation=SignIn&returnUrl={URL of source page}&salt={string}&sig={string}
    > 
    > 
    
-    登入/註冊案例的查詢參數：
+    Hello 登入 / 註冊案例的查詢參數：
    
    * **operation**：識別委派要求的類型 - 在此案例中只能是 **SignIn**
-   * **returnUrl**：使用者按一下登入或註冊連結之頁面的 URL
+   * **returnUrl**: hello hello 使用者在登入或註冊連結的點選處的 hello 網頁的 URL
    * **salt**：特殊 salt 字串，用於計算安全性雜湊
-   * **sig**：已經過計算的安全性雜湊，用於和您已計算的雜湊進行比較
-2. 確認要求來自 Azure API 管理 (選擇性，但基於安全性理由，強烈建議這麼做)
+   * **sig**： 用於比較 tooyour 自己計算的安全性雜湊 toobe 計算雜湊
+2. 請確認該 hello 要求來自於 Azure API 管理 （選擇性，但強烈建議使用的安全性）
    
-   * 根據 **returnUrl** 和 **salt** 查詢參數，計算字串的 HMAC-SHA512 雜湊 ([以下提供範例程式碼])：
+   * 計算字串 hello 為基礎的 hmac-sha512 雜湊**returnUrl**和**salt**查詢參數 ([下面提供的範例程式碼]):
      
      > HMAC(**salt** + '\n' + **returnUrl**)
      > 
      > 
-   * 比較以上計算的雜湊和 **sig** 查詢參數的值。 如果兩個雜湊相符，則繼續下一步，否則拒絕要求。
-3. 確認您收到的是登入/註冊要求：**operation** 查詢參數會設為 "**SignIn**"。
-4. 顯示 UI 讓使用者登入或註冊
-5. 如果使用者要註冊，您必須在 API 管理中為他們建立對應的帳戶。 使用 API Management REST API [建立使用者]。 這樣做時，請確定您所設定的使用者識別碼與使用者存放區中的識別碼相同，或與您可追蹤的識別碼相同。
-6. 成功驗證使用者之後：
+   * 比較 hello hello 上面計算出雜湊 toohello 值**sig**查詢參數。 如果 hello 兩個雜湊相符，toohello 下一個步驟上移動，否則會拒絕 hello 要求。
+3. 確認您收到登輸入/符號上的要求： hello**作業**查詢參數會設定得 「**SignIn**"。
+4. 使用 UI 或註冊 toosign 中出現的 hello 使用者
+5. 如果 hello 使用者註冊您的 toocreate 對應帳戶它們在 API 管理。 [建立使用者]以 hello API 管理 REST API。 當此情況下，確定您設定 hello 使用者識別碼 toohello 您使用者存放區中相同或 tooan 識別碼，您可以追蹤。
+6. 當成功驗證 hello 使用者：
    
-   * [要求單一登入 (SSO) 權杖] 
-   * 將 returnUrl 查詢參數附加至您從上述 API 呼叫收到的 SSO URL：
+   * [要求的單一登入 (SSO) 權杖]透過 hello API 管理 REST API
+   * 附加 returnUrl 查詢參數 toohello SSO URL 收到來自上述的 hello API 呼叫：
      
      > 例如，https://customer.portal.azure-api.net/signin-sso?token&returnUrl=/return/url 
      > 
      > 
-   * 將使用者重新導向至以上產生的 URL
+   * 重新導向 hello 使用者 toohello 上面所產生的 URL
 
-除了 **SignIn** 作業之外，您也可以遵循上述步驟來執行帳戶管理，並使用以下其中一項作業。
+在加法 toohello **SignIn**作業，您也可以執行帳戶管理 hello 上一個步驟，並使用其中一個 hello 下列作業。
 
 * **ChangePassword**
 * **ChangeProfile**
 * **CloseAccount**
 
-您必須傳遞下列查詢參數，供帳戶管理作業使用。
+您必須傳遞下列帳戶管理作業的查詢參數的 hello。
 
 * **operation**：識別委派要求的類型 (ChangePassword、ChangeProfile 或 CloseAccount)
-* **userId**：要管理之帳戶的使用者 ID
+* **userId**: hello 帳戶 toomanage hello 使用者識別碼
 * **salt**：特殊 salt 字串，用於計算安全性雜湊
-* **sig**：已經過計算的安全性雜湊，用於和您已計算的雜湊進行比較
+* **sig**： 用於比較 tooyour 自己計算的安全性雜湊 toobe 計算雜湊
 
 ## <a name="delegate-product-subscription"> </a>委派產品訂閱
-委派產品訂閱的作法類似於委派使用者登入/註冊。 最終工作流程如下所示：
+委派產品訂用帳戶的運作方式類似 toodelegating 使用者登入/總。 hello 最後的工作流程應如下所示：
 
-1. 開發人員在 API 管理開發人員入口網站中選取產品，然後按一下 [訂閱] 按鈕
-2. 瀏覽器重新導向至委派端點
-3. 委派端點執行必要的產品訂閱步驟 - 這由您決定，可能需要重新導向至另一個頁面來要求帳單資訊、詢問其他問題，或只是儲存資訊而不要求任何使用者動作
+1. 開發人員在 hello API 管理開發人員入口網站中選取產品，然後按一下 hello 訂閱 」 按鈕
+2. 瀏覽器會重新導向的 toohello 委派端點
+3. 委派端點會執行必要的產品訂用帳戶的步驟-這是總 tooyou，而且可能需要重新導向 tooanother 頁面 toorequest 帳單資訊、 詢問其他問題，或只儲存 hello 資訊並不需要任何使用者動作
 
-若要啟用此功能，請在 [委派] 頁面按一下 [委派產品訂用帳戶]。
+hello 上的 tooenable hello 功能**委派**頁面上，按一下**委派產品訂閱**。
 
-然後，確定委派端點會執行下列動作：
+請確定 hello 委派端點執行下列動作的 hello:
 
-1. 接收下列形式的要求：
+1. 在下列形式的 hello 收到的要求：
    
-   > http://www.yourwebsite.com/apimdelegation?operation={operation}&productId={product to subscribe to}&userId={user making request}&salt={string}&sig={string}
+   > *http://www.yourwebsite.com/apimdelegation?operation= {作業} （& s) productId = {產品 toosubscribe 至} （& s) userId = {提出要求的 user} & salt = {string} （& s) sig = {string}*
    > 
    > 
    
-    產品訂閱案例的查詢參數：
+    Hello 產品訂閱案例的查詢參數：
    
-   * **operation**：識別委派要求的類型。 對於產品訂閱要求，有效的選項包括：
-     * "Subscribe"：為使用者訂閱具有提供之識別碼的 (請參閱下面) 指定產品的要求
-     * "Unsubscribe"：將為使用者取消訂閱產品的要求
-     * "Renew"：續約訂閱的要求 (例如，可能過期)
-   * **productId**：使用者要求訂閱之產品的識別碼
-   * **userId**：提出要求之使用者的識別碼
+   * **operation**：識別委派要求的類型。 產品訂用帳戶要求 hello 有效的選項為：
+     * 「 訂閱 」: 指定產品要求 toosubscribe hello 使用者 tooa 提供識別碼 （請參閱下文）
+     * 「 取消 」: 要求 toounsubscribe 產品中的使用者
+     * 「 更新 」: 要求的 toorenew 的訂用帳戶 （例如可能即將到期的時間）
+   * **productId**: hello 識別碼 hello 產品 hello 使用者要求來 toosubscribe
+   * **userId**: hello hello 使用者針對 hello 要求識別碼
    * **salt**：特殊 salt 字串，用於計算安全性雜湊
-   * **sig**：已經過計算的安全性雜湊，用於和您已計算的雜湊進行比較
-2. 確認要求來自 Azure API 管理 (選擇性，但基於安全性理由，強烈建議這麼做)
+   * **sig**： 用於比較 tooyour 自己計算的安全性雜湊 toobe 計算雜湊
+2. 請確認該 hello 要求來自於 Azure API 管理 （選擇性，但強烈建議使用的安全性）
    
-   * 根據 **productId**、**userId** 和 **salt** 查詢字串，計算字串的 HMAC-SHA512：
+   * 計算字串 hello 為基礎的 hmac-sha512 **productId**， **userId**和**salt**查詢參數：
      
      > HMAC(**salt** + '\n' + **productId** + '\n' + **userId**)
      > 
      > 
-   * 比較以上計算的雜湊和 **sig** 查詢參數的值。 如果兩個雜湊相符，則繼續下一步，否則拒絕要求。
-3. 根據 **operation** 中要求的操作類型 (例如帳單、進一步的問題等)，執行任何產品訂閱處理
-4. 當使用者在您這邊成功訂閱產品時， [呼叫 REST API 來訂閱產品]，讓使用者訂閱 API 管理產品。
+   * 比較 hello hello 上面計算出雜湊 toohello 值**sig**查詢參數。 如果 hello 兩個雜湊相符，toohello 下一個步驟上移動，否則會拒絕 hello 要求。
+3. 執行根據 hello 類型中所要求任何的作業產品訂用帳戶處理**作業**-例如計費，取得進一步的問題，依此類推。
+4. 在成功訂閱 hello 使用者 toohello 產品，在您身邊，訂閱 hello 使用者 toohello API 管理產品[呼叫 hello REST API 產品訂用帳戶]。
 
 ## <a name="delegate-example-code"> </a> 範例程式碼
-這些程式碼範例示範如何取得「委派驗證金鑰」 (在發行者入口網站的 [委派] 畫面中設定)，以建立隨後用於驗證簽章的 HMAC，藉此證明所傳遞之 returnUrl 的有效性。 相同的程式碼稍微修改一下後，也適用於 productId 和 userId。
+這些程式碼範例顯示如何 tootake hello*委派驗證金鑰*hello 委派 hello 發行者入口網站畫面中設定、 toocreate 的 HMAC，然後使用 toovalidate hello 簽章，證明 hello hello 有效性傳回傳入的 Url。 相同的程式碼適用於 hello productId 和稍微修改的使用者識別碼 hello。
 
-**產生 returnUrl 雜湊的 C# 程式碼**
+**C# 程式碼 toogenerate 的雜湊 returnUrl**
 
 ```c#
 using System.Security.Cryptography;
@@ -141,12 +141,12 @@ string signature;
 using (var encoder = new HMACSHA512(Convert.FromBase64String(key)))
 {
     signature = Convert.ToBase64String(encoder.ComputeHash(Encoding.UTF8.GetBytes(salt + "\n" + returnUrl)));
-    // change to (salt + "\n" + productId + "\n" + userId) when delegating product subscription
-    // compare signature to sig query parameter
+    // change too(salt + "\n" + productId + "\n" + userId) when delegating product subscription
+    // compare signature toosig query parameter
 }
 ```
 
-**產生 returnUrl 雜湊的 NodeJS 程式碼**
+**NodeJS 的 returnUrl toogenerate 雜湊程式碼**
 
 ```
 var crypto = require('crypto');
@@ -157,14 +157,14 @@ var salt = 'salt query parameter';
 
 var hmac = crypto.createHmac('sha512', new Buffer(key, 'base64'));
 var digest = hmac.update(salt + '\n' + returnUrl).digest();
-// change to (salt + "\n" + productId + "\n" + userId) when delegating product subscription
-// compare signature to sig query parameter
+// change too(salt + "\n" + productId + "\n" + userId) when delegating product subscription
+// compare signature toosig query parameter
 
 var signature = digest.toString('base64');
 ```
 
 ## <a name="next-steps"></a>後續步驟
-如需委派的詳細資訊，請觀看以下影片。
+如需委派的詳細資訊，請參閱下列視訊的 hello。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Delegating-User-Authentication-and-Product-Subscription-to-a-3rd-Party-Site/player]
 > 
@@ -172,10 +172,10 @@ var signature = digest.toString('base64');
 
 [Delegating developer sign-in and sign-up]: #delegate-signin-up
 [Delegating product subscription]: #delegate-product-subscription
-[要求單一登入 (SSO) 權杖]: http://go.microsoft.com/fwlink/?LinkId=507409
+[要求的單一登入 (SSO) 權杖]: http://go.microsoft.com/fwlink/?LinkId=507409
 [建立使用者]: http://go.microsoft.com/fwlink/?LinkId=507655#CreateUser
-[呼叫 REST API 來訂閱產品]: http://go.microsoft.com/fwlink/?LinkId=507655#SSO
+[呼叫 hello REST API 產品訂用帳戶]: http://go.microsoft.com/fwlink/?LinkId=507655#SSO
 [Next steps]: #next-steps
-[以下提供範例程式碼]: #delegate-example-code
+[下面提供的範例程式碼]: #delegate-example-code
 
 [api-management-delegation-signin-up]: ./media/api-management-howto-setup-delegation/api-management-delegation-signin-up.png 

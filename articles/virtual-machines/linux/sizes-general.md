@@ -1,6 +1,6 @@
 ---
-title: "Azure Linux VM 大小 - 一般用途 | Microsoft Docs"
-description: "列出 Azure 中可用的不同 Linux 虛擬機器一般用途大小。"
+title: "aaaAzure Linux VM 大小的一般用途 |Microsoft 文件"
+description: "列出可用的 Linux 虛擬機器，在 Azure 中的 hello 不同的一般用途大小。"
 services: virtual-machines-linux
 documentationcenter: 
 author: jonbeck7
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: e8bc7070d4b6ee198625ebc5de77d61ba31b4add
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b94680d416d4ca5c911937878c907a9ed4d1d37f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="general-purpose-linux-vm-sizes"></a>一般用途 Linux VM 大小
 

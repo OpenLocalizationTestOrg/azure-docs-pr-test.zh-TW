@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Machine Learning Studio 中建立文字分析模型 | Microsoft Docs"
-description: "如何在 Azure Machine Learning Studio 使用文字前置處理、N-Gram 或特徵雜湊來建立文字分析模型"
+title: "Azure Machine Learning Studio 中的 aaaCreate 文字分析模型 |Microsoft 文件"
+description: "在 Azure Machine Learning Studio 模組對文字的前置處理、 N 字母組或使用特徵雜湊 toocreate 文字分析模型的方式"
 services: machine-learning
 documentationcenter: 
 author: rastala
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/06/2016
 ms.author: roastala
-ms.openlocfilehash: 342e81e2497d292ca730bea59e03182d316ffec3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e3799f37ba54bb2ec8815ecf5ed34e145ffb20e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-text-analytics-models-in-azure-machine-learning-studio"></a>在 Azure Machine Learning Studio 中建立文字分析模型
-您可以使用 Azure Machine Learning 來建置和實行文字分析模型。 這些模型可協助您解決問題，例如，文件分類或情緒分析問題。
+您可以使用 Azure Machine Learning toobuild 並實施文字分析模型。 這些模型可協助您解決問題，例如，文件分類或情緒分析問題。
 
 在文字分析實驗中，您通常需要︰
 
 1. 清理和前置處理文字資料集
 2. 從已前置處理的文字擷取數值特徵向量
 3. 定型分類或迴歸模型
-4. 評分和驗證模型
-5. 模型部署到生產環境
+4. 計分，並驗證 hello 模型
+5. 部署 hello 模型 tooproduction
 
-在此教學課程中，當我們使用「Amazon 書籍評論」資料集逐步解說情緒分析模型時，您會學到這些步驟 (請參閱研究報告 “Biographies, Bollywood, Boom-boxes and Blenders: Domain Adaptation for Sentiment Classification”，作者：Association of Computational Linguistics (ACL) 的 John Blitzer、Mark Dredze 和 Fernando Pereira，2007 年)。此資料集是由評論分數 (1-2 或 4-5) 和自由格式文字所組成。 目標是要預測評論分數︰低 (1-2) 或高 (4-5)。
+在此教學課程中，當我們使用「Amazon 書籍評論」資料集逐步解說情緒分析模型時，您會學到這些步驟 (請參閱研究報告 “Biographies, Bollywood, Boom-boxes and Blenders: Domain Adaptation for Sentiment Classification”，作者：Association of Computational Linguistics (ACL) 的 John Blitzer、Mark Dredze 和 Fernando Pereira，2007 年)。此資料集是由評論分數 (1-2 或 4-5) 和自由格式文字所組成。 hello 的目標是 toopredict hello 檢閱分數： 低 (1-2） 或 high (4-5)。
 
 您可以在 Cortana Intelligence Gallery 找到本教學課程中涵蓋的實驗︰
 
@@ -40,49 +40,49 @@ ms.lasthandoff: 07/11/2017
 [預測書籍評論 - 預測性實驗](https://gallery.cortanaintelligence.com/Experiment/Predict-Book-Reviews-Predictive-Experiment-1)
 
 ## <a name="step-1-clean-and-preprocess-text-dataset"></a>步驟 1：清理和前置處理文字資料集
-一開始我們先將評論分數分為低與高兩類，以將問題公式化為雙類別分類。 我們使用[編輯中繼資料](https://msdn.microsoft.com/library/azure/dn905986.aspx)和[群組類別值](https://msdn.microsoft.com/library/azure/dn906014.aspx)模組。
+我們先 hello 實驗將 hello 檢閱分數分割成兩個類別分類的類別低和高的值區 tooformulate hello 問題。 我們使用[編輯中繼資料](https://msdn.microsoft.com/library/azure/dn905986.aspx)和[群組類別值](https://msdn.microsoft.com/library/azure/dn906014.aspx)模組。
 
 ![建立標籤](./media/machine-learning-text-analytics-module-tutorial/create-label.png)
 
-然後，我們使用 [前置處理文字](https://msdn.microsoft.com/library/azure/mt762915.aspx) 模組清除文字。 清除可減少資料集雜訊、協助您找出最重要的特徵，並改善最終模型的精確度。 我們會移除停用字詞 (例如 "the" 或 "a" 等常見單字)、數字、特殊字元、重複字元、電子郵件地址和 URL。 我們也將文字轉換成小寫、將單字按屈折變化形式歸類，並偵測句子界限，然後在預先處理的文字中以 "| | |" 符號表示這些界限。
+然後，我們可以清除 hello 文字使用[前置處理文字](https://msdn.microsoft.com/library/azure/mt762915.aspx)模組。 hello 清除可減少 hello 資料集中的 hello 雜訊，可協助您找出 hello 最重要的功能，並改善 hello hello 最終模型的精確度。 我們會移除停用字詞 (例如 "the" 或 "a" 等常見單字)、數字、特殊字元、重複字元、電子郵件地址和 URL。 我們也轉換 hello 文字 toolowercase、 lemmatize hello 文字的方式，以及偵測句子界限，然後以"| | |"符號，以預先處理過的文字。
 
 ![前置處理文字](./media/machine-learning-text-analytics-module-tutorial/preprocess-text.png)
 
-如果想使用自訂的停用字詞清單該怎麼做？ 您可以將它傳入做為選擇性的輸入。 您也可以使用自訂的 C# 語法規則運算式來取代子字串，並按詞性 (名詞、動詞或形容詞) 移除單字。
+如果您想 toouse 自訂停用字詞的清單？ 您可以將它傳入做為選擇性的輸入。 您也可以使用自訂 C# 語法規則運算式 tooreplace 子字串，並移除文字的一部份： 名詞、 動詞或形容詞。
 
-在前置處理完成之後，我們會將資料分成定型和測試集。
+Hello 前置處理完成之後，我們將 hello 資料分割成定型和測試集。
 
 ## <a name="step-2-extract-numeric-feature-vectors-from-pre-processed-text"></a>步驟 2：從已前置處理的文字擷取數值特徵向量
-若要建置文字資料的模型，您通常需要將自由格式的文字轉換成數值特徵向量。 在此範例中，我們使用 [從文字擷取 N-Gram 特徵](https://msdn.microsoft.com/library/azure/mt762916.aspx) 模組，將文字資料轉換為這種格式。 此模組會採用以空格分隔單字的資料行，並計算出現在您資料集中的單字字典或單字的 N-Gram。 然後，它會計算每個單字或 N-Gram 出現在每筆記錄的次數，並從這些計數建立特徵向量。 在本教學課程中，我們將 N-Gram 大小設為 2，因此我們的特徵向量包含一個單字和兩個後續單字的組合。
+toobuild 文字資料的模型，您通常有 tooconvert 自由格式文字插入數字特徵向量。 在此範例中，我們使用[從文字擷取 N 字母組功能](https://msdn.microsoft.com/library/azure/mt762916.aspx)模組 tootransform hello 文字資料 toosuch 格式。 此模組會採用以空格分隔單字的資料行，並計算出現在您資料集中的單字字典或單字的 N-Gram。 然後，它會計算每個單字或 N-Gram 出現在每筆記錄的次數，並從這些計數建立特徵向量。 在本教學課程中，我們會設定 N 字母組大小 too2，因此我們特徵向量包括單字和句子的兩個後續。
 
 ![擷取 N-Gram](./media/machine-learning-text-analytics-module-tutorial/extract-ngrams.png)
 
-我們會套用 TF*IDF (Term Frequency Inverse Document Frequency) 加權至 N-Gram 計數。 這個方法會增加經常出現在單一記錄、卻很少在整個資料集出現的單字的權數。 其他選項包括二進位、TF 及圖形加權。
+我們套用 TF * 加權 tooN 字母組 IDF （詞彙頻率反向文件頻率） 計算。 這種方式新增之單字的單一記錄中經常出現，但 hello 整個資料集很少的權重。 其他選項包括二進位、TF 及圖形加權。
 
-這類文字特徵通常具有高維度。 比方說，如果您的語言資料庫有 100,000 個唯一的單字，特徵空間會有 100,000 個維度，或使用更多的 N-Gram。 「擷取 N-Gram 特徵」模組提供一組減少維度的選項。 您可以選擇排除過短或過長的單字，或是太常見或太頻繁而有重要預測值的單字。 在本教學課程中，我們會排除出現在少於 5 筆記錄或超過 80% 的記錄的 N-Gram。
+這類文字特徵通常具有高維度。 比方說，如果您的語言資料庫有 100,000 個唯一的單字，特徵空間會有 100,000 個維度，或使用更多的 N-Gram。 hello 擷取 N 字母組功能模組會提供一組選項 tooreduce hello 維度性。 您可以選擇 tooexclude 字詞是短或長或太常見或太頻繁 toohave 重要的預測值。 在本教學課程中，我們會排除出現在少於 5 筆記錄或超過 80% 的記錄的 N-Gram。
 
-此外，使用特徵選取可以只選取與您的預測目標最相關的特徵。 我們使用 Chi-Squared 特徵選取來選取 1000 個特徵。 您可以按一下「擷取 N-Gram」模組右側的輸出，即可檢視所選單字或 N-Gram 的詞彙。
+此外，您可以使用相互關聯的 hello 最這些功能的功能選取項目 tooselect 預測目標。 我們使用卡方功能選取項目 tooselect 1000 功能。 您可以檢視所選的字詞或 N 字母組的 hello 詞彙擷取 N 字母組模組 hello 正確輸出，即可。
 
-另一個方法是使用「擷取 N-Gram 特徵」，您就可以使用「特徵雜湊」模組。 但請注意， [特徵雜湊](https://msdn.microsoft.com/library/azure/dn906018.aspx) 沒有內建的特徵選取功能或 TF*IDF 加權。
+替代方法 toousing 擷取 N 字母組功能，您可以使用特徵雜湊模組。 但請注意， [特徵雜湊](https://msdn.microsoft.com/library/azure/dn906018.aspx) 沒有內建的特徵選取功能或 TF*IDF 加權。
 
 ## <a name="step-3-train-classification-or-regression-model"></a>步驟 3：定型分類或迴歸模型
-現在文字已轉換為數值特徵資料行。 資料集仍包含上一階段中的字串資料行，因此我們使用「選取資料集中的資料行」來排除它們。
+現在的 hello 文字已轉換的 toonumeric 特徵資料行。 hello 資料集仍然包含字串資料行，從上一個階段，因此我們使用選取的資料行中資料集 tooexclude 它們。
 
-接著使用 [二元羅吉斯迴歸](https://msdn.microsoft.com/library/azure/dn905994.aspx) 預測我們的目標︰高或低的評論分數。 此時，文字分析問題已轉換成一般分類問題。 您可以使用 Azure Machine Learning 中可用的工具來改善模型。 例如，您可以試驗不同的分類器以了解它們所提供結果的精確度，或使用超參數調整改善精確度。
+然後使用[二級羅吉斯迴歸](https://msdn.microsoft.com/library/azure/dn905994.aspx)toopredict 我們的目標： 高或過低的檢閱分數。 此時，hello 文字分析問題已轉換成一般分類問題。 您可以使用 Azure Machine Learning tooimprove hello 模型中可用的 hello 工具。 比方說，您可以試驗不同的分類器 toofind 出如何精確的結果所提供，或使用 hyperparameter 微調 tooimprove hello 精確度。
 
 ![定型和評分](./media/machine-learning-text-analytics-module-tutorial/scoring-text.png)
 
-## <a name="step-4-score-and-validate-the-model"></a>步驟 4：評分和驗證模型
-如何驗證定型的模型？ 我們會對照測試資料集來評分，並評估精確度。 不過，此模型已從了解定型資料集學到 N-Gram 和其加權的詞彙。 因此，在從測試資料擷取特徵時，我們應該使用該詞彙和這些加權，而不是重新建立詞彙。 因此，我們在實驗評分分支加入「擷取 N-Gram 特徵」模組、從定型分支連接輸出詞彙，並將詞彙模式設定為唯讀。 我們也透過將最小值設為 1 個執行個體、最大值設為 100% 來停用依頻率篩選 N-Gram，並關閉特徵選取。
+## <a name="step-4-score-and-validate-hello-model"></a>步驟 4： 計分，並驗證 hello 模型
+如何驗證 hello 定型的模型？ 我們針對 hello 測試資料集評分它，並評估 hello 精確度。 不過，hello 模型學到 N 字母組和其加權 hello 定型資料集從 hello 的詞彙。 因此，我們應該使用該詞彙和這些加權時重新擷取功能，從 測試資料，做為相對於 toocreating hello 詞彙。 因此，我們加入擷取 N 字母組功能模組 toohello 計分實驗 hello 分支、 從定型分支連接 hello 輸出詞彙及 tooread 僅設定 hello 詞彙模式。 我們也會停用 hello 篩選 N 字母組頻率設定 hello too1 最小執行個體和最大 too100%並關閉 hello 特徵選取。
 
-在測試資料中的文字資料行轉換成數值特徵資料行之後，我們會排除先前階段 (例如在定型分支中) 中的字串資料行。 接著使用「評分模型」模組進行預測，並使用「評估模型」模組來評估精確度。
+Hello 資料已經過的測試中的文字資料行轉換 toonumeric 特徵資料行之後，我們會排除資料行，從上一個階段喜歡訓練分支中的 hello 字串。 然後我們使用分數模型模組 toomake 預測和評估模型模組 tooevaluate hello 精確度。
 
-## <a name="step-5-deploy-the-model-to-production"></a>步驟 5：將模型部署到生產環境
-模型已幾乎可立即部署到生產環境。 部署為 Web 服務時，它會採用自由格式的文字字串做為輸入，並傳回「高」或「低」的預測。 它會使用學習到的 N-Gram 詞彙將文字轉換成特徵，並使用定型的羅吉斯迴歸模型，從這些特徵進行預測。 
+## <a name="step-5-deploy-hello-model-tooproduction"></a>步驟 5： 部署的 hello 模型 tooproduction
+部署就緒 toobe tooproduction hello 模型。 部署為 Web 服務時，它會採用自由格式的文字字串做為輸入，並傳回「高」或「低」的預測。 它使用學到的 hello N 字母組詞彙 tootransform hello 文字 toofeatures，，並訓練羅吉斯迴歸模型 toomake 從這些功能的預測。 
 
-為設定預測性實驗，我們先儲存 N-Gram 詞彙做為資料集，並使用實驗的定型分支中的定型羅吉斯迴歸模型。 接著我們使用「另存新檔」儲存實驗，為預測性實驗建立實驗圖形。 我們從實驗中移除「分割資料」模組和定型分支。 我們再將先前儲存的 N-Gram 詞彙和模型分別連接到「擷取 N-Gram 特徵」和「評分模型」模組。 我們也會移除「評估模型」模組。
+tooset 向上 hello 預測實驗，我們先儲存 hello N 字母組詞彙做為資料集，並 hello 定型 hello 訓練分支的 hello 實驗羅吉斯迴歸模型。 然後，我們將儲存 hello 實驗使用 另存新檔 」 toocreate 預測實驗實驗圖形。 我們從 hello 實驗移除 hello 分割資料的模組和 hello 訓練分支。 我們再連接先前儲存的 hello N 字母組詞彙和模型 tooExtract N 字母組功能分數模型模組分別。 我們也會移除 hello 評估模型 」 模組。
 
-我們將「選取資料集中的資料行」模組插入「前置處理文字」模組之前以移除標籤資料行，並取消選取「評分模組」中的「 將評分資料行附加到資料集」選項。 這樣一來，Web 服務就不會要求它正嘗試預測的標籤，也不會對回應中的輸入特徵做回應。
+我們之前前置處理文字模組 tooremove hello 的標籤資料行的資料集模組中插入選取的資料行，並取消選取分數模組中的 「 附加分數資料行 toodataset 」 選項。 這樣一來，hello web 服務不要求它正嘗試 toopredict，並不回應 hello 輸入的功能，以回應 hello 標籤。
 
 ![預測性實驗](./media/machine-learning-text-analytics-module-tutorial/predictive-text.png)
 

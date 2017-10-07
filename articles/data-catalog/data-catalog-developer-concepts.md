@@ -1,6 +1,6 @@
 ---
-title: "資料目錄開發人員概念 | Microsoft Docs"
-description: "Azure 資料目錄概念模型的重要概念簡介，以透過目錄 REST API 的形式公開。"
+title: "aaaData 目錄開發人員概念 |Microsoft 文件"
+description: "透過在 Azure 資料目錄概念模型中，介紹 toohello 重要概念 hello 目錄 REST API。"
 services: data-catalog
 documentationcenter: 
 author: spelluru
@@ -15,79 +15,79 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/03/2017
 ms.author: spelluru
-ms.openlocfilehash: f48eb610b47820e6d7438520a00a5e6dfe879e01
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d0b1628ff6c31458cb650efef852244f0c139b1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-catalog-developer-concepts"></a>Azure 資料目錄開發人員概念
-Microsoft **Azure 資料目錄** 是全面管理的雲端服務，能夠進行資料來源探索，以及讓群眾外包資料來源中繼資料。 開發人員可以透過 REST API 來使用此服務。 開發人員必須了解服務中所實作的概念，才能成功地與 **Azure 資料目錄**整合。
+Microsoft **Azure 資料目錄** 是全面管理的雲端服務，能夠進行資料來源探索，以及讓群眾外包資料來源中繼資料。 開發人員可以使用透過其 REST Api 的 hello 服務。 了解 hello 概念 hello 服務中實作是很重要的開發人員 toosuccessfully 整合**Azure 資料目錄**。
 
 ## <a name="key-concepts"></a>重要概念
-**Azure 資料目錄**概念模型根據四個主要概念：**目錄**、**使用者**、**資產**和**註解**。
+hello **Azure 資料目錄**概念模型根據四個重要概念： hello**目錄**，**使用者**，**資產**，和**註解**。
 
 ![概念][1]
 
 *圖 1 - Azure 資料目錄簡易概念模型*
 
 ### <a name="catalog"></a>目錄
-**目錄** 是組織所儲存之所有中繼資料的最上層容器。 每個 Azure 帳戶只能一個 **目錄** 。 目錄與 Azure 訂用帳戶密切相關，即使一個帳戶可以有多個訂用帳戶，但任一特定 Azure 帳戶只能建立一個 **目錄** 。
+A**目錄**是 hello 最上層容器的所有 hello 組織所儲存的中繼資料。 每個 Azure 帳戶只能一個 **目錄** 。 類別目錄會繫結的 tooan Azure 訂用帳戶，但只有一個**目錄**可由任何給定的 Azure 帳戶，即使帳戶可以有多個訂用帳戶。
 
 目錄包含**使用者**和**資產**。
 
 ### <a name="users"></a>使用者
-使用者是有權在目錄中執行動作的安全性主體 (搜尋目錄、新增、編輯或移除項目等等)。
+使用者是有權限 tooperform 動作的安全性主體 （搜尋 hello 類別目錄、 新增、 編輯或移除項目等） hello 目錄中。
 
-一個使用者可能扮演多個不同的角色。 如需角色的相關資訊，請參閱＜角色和授權＞一節。
+一個使用者可能扮演多個不同的角色。 在角色上的資訊，請參閱 hello 區段角色和授權。
 
 可加入個別的使用者和安全性群組。
 
-Azure 資料目錄使用 Azure Active Directory 來管理身分識別和存取權。 每個目錄使用者必須是帳戶 Active Directory 的成員。
+Azure 資料目錄使用 Azure Active Directory 來管理身分識別和存取權。 每個類別目錄的使用者必須是 hello Active Directory hello 帳戶的成員。
 
-### <a name="assets"></a>資產
-**目錄** 包含資料資產。 **資產** 是由目錄管理的細微度單位。
+### <a name="assets"></a>Assets
+**目錄** 包含資料資產。 **資產**是 hello 單位受 hello 類別目錄的資料粒度。
 
-資產的細微度隨資料來源而異。 對於 SQL Server 或 Oracle 資料庫，資產可以是資料表或檢視。 對於 SQL Server Analysis Services，資產可以是量值、維度或關鍵效能指標 (KPI)。 對於 SQL Server Reporting Services，資產是報表。
+hello 資料粒度的資產會因資料來源。 對於 SQL Server 或 Oracle 資料庫，資產可以是資料表或檢視。 對於 SQL Server Analysis Services，資產可以是量值、維度或關鍵效能指標 (KPI)。 對於 SQL Server Reporting Services，資產是報表。
 
-**資產** 是您在目錄中加入或移除的項目。 它是您從 **搜尋**取回的結果單位。
+**資產**hello 事您新增或移除從類別目錄。 它是您從取回的結果的 hello 單位**搜尋**。
 
 **資產** 由其名稱、位置和類型，以及進一步描述它的註解所組成。
 
 ### <a name="annotations"></a>註解
 註解是代表資產中繼資料的項目。
 
-註解的範例為描述、標籤、結構描述、文件等等。＜資產物件模型＞一節中有資產類型和註解類型的完整清單。
+註解的範例為描述、標籤、結構描述、文件等等。Hello 資產型別和註解類型的完整清單位於 hello Asset 物件模型區段。
 
 ## <a name="crowdsourcing-annotations-and-user-perspective-multiplicity-of-opinion"></a>群眾外包註解和使用者觀點 (多樣性意見)
-Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼資料。 與 Wiki 的作法不同 – 其中只有一個意見，以最後一個寫入者為準 – Azure 資料目錄模型允許多種意見並存於系統中。
+Azure 資料目錄的重要層面是其支援的中繼資料的 hello crowdsourcing hello 系統中。 相對於的 tooa wiki 方法 – 其中只會有一個意見和 hello 最後寫入者獲勝，hello Azure 資料目錄模型可讓多個意見 toolive hello 系統中的並排顯示。
 
-這種作法反映出企業資料的真實情況，不同的使用者對特定的資產可以有不同的觀點：
+這個方法反映 hello 真實世界的企業資料的位置不同的使用者可以有不同的檢視方塊指定之資產：
 
-* 資料庫管理員可以提供服務等級協定或可用於處理大量 ETL 作業的時段的相關資訊
-* 資料負責人可以提供資產適用的商務程序或企業採用的分類辦法的相關資訊
-* 財務分析師可以提供期末報告工作期間如何使用資料的相關資訊
+* 資料庫管理員可能會提供大量 ETL 作業的服務等級合約或 hello 可用的處理 視窗的相關資訊
+* 資料管理人都可提供適用於 hello 商務程序 toowhich hello 資產的相關資訊，或 hello 商務的 hello 分類已套用 tooit
+* 財務分析師可能會提供結束期間的報告工作期間使用 hello 資料的相關資訊
 
-為了支援這個例子，每位使用者 (DBA、資料負責人和分析師) 可以將描述加入至目錄中已註冊的資料表。 所有描述會都保留在系統中，Azure 資料目錄入口網站會顯示所有的描述。
+toosupport 此範例中，– hello DBA、 hello 資料服務員和 hello 分析師 – 每個使用者可以加入描述 tooa 單一資料表 hello 目錄中已註冊。 所有描述會都維護 hello 系統中，而且在 hello Azure 資料目錄入口網站會顯示所有說明。
 
-此模式適用於物件模型中的大部分項目，因此您可能以為 JSON 承載中的物件類型只有一個屬性，但實際上經常有大量屬性。
+此模式是套用的 toomost hello 中的項目 hello 物件模型，因此 hello JSON 承載中的物件類型通常是屬性的陣列，您預期有單一值。
 
-例如，資產根目錄底下有大量的描述物件。 此陣列屬性稱為 “descriptions”。 描述物件有一個屬性，也就是描述。 模式是輸入描述的每個使用者都會取得針對使用者提供的值所建立的描述物件。
+例如下 hello 資產, 根是描述物件的陣列。 hello 陣列屬性是名為 「 描述 」。 描述物件有一個屬性，也就是描述。 hello 模式是每個型別描述取得描述物件的使用者建立 hello hello 使用者所提供的值。
 
-然後 UX 可以選擇如何顯示組合。 有三種不同的顯示模式。
+hello UX 就可以選擇如何 toodisplay hello 組合。 有三種不同的顯示模式。
 
-* 最簡單的模式為 [全部顯示]。 在此模式下，所有物件會以清單檢視來顯示。 Azure 資料目錄入口網站 UX 會對描述使用此模式。
-* 另一種模式是「合併」。 在此模式下，不同使用者提供的所有值會合併在一起，並移除重複項目。 Azure 資料目錄入口網站 UX 中的 tags 和 experts 屬性，即為此模式的例子。
-* 第三種模式為「最後寫入者為準」。 在此模式下，只會顯示最後輸入的值。 friendlyName 是這種模式的一個例子。
+* hello 最簡單的模式是 [全部顯示]。 在此模式中，所有 hello 物件會都顯示在清單檢視中。 hello Azure 資料目錄入口網站 UX 使用此模式的描述。
+* 另一種模式是「合併」。 在這種模式的 hello 不同使用者的所有 hello 值會都合併在一起，以移除重複項目。 在 hello Azure 資料目錄入口網站 UX 此模式的範例包括 hello 標記和專家屬性。
+* 第三種模式為「最後寫入者為準」。 在此模式中，只有 hello 最新輸入的顯示值。 friendlyName 是這種模式的一個例子。
 
 ## <a name="asset-object-model"></a>資產物件模型
-＜重要概念＞一節介紹的 **Azure 資料目錄** 物件模型所包含的項目，可以是資產或註解。 項目具有選用或必要的屬性。 某些屬性會套用至所有項目。 某些屬性會套用至所有資產。 某些屬性只套用至特定的資產類型。
+Hello 重要概念 > 一節中引入，hello **Azure 資料目錄**物件模型包括項目，這可以是資產或註解。 項目具有選用或必要的屬性。 某些屬性會套用 tooall 項目。 某些屬性會套用 tooall 資產。 某些屬性會套用 toospecific 資產類型。
 
 ### <a name="system-properties"></a>系統屬性
-<table><tr><td><b>屬性名稱</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr><tr><td>timestamp</td><td>DateTime</td><td>上次修改項目的時間。 伺服器會在插入項目時以及每次更新項目時產生此欄位。 此屬性值會在輸入發佈作業時遭到忽略。</td></tr><tr><td>id</td><td>Uri</td><td>項目的絕對 URL (唯讀)。 它是項目的唯一可定址 URI。  此屬性值會在輸入發佈作業時遭到忽略。</td></tr><tr><td>類型</td><td>String</td><td>資產的類型 (唯讀)。</td></tr><tr><td>etag</td><td>String</td><td>對應到項目版本的字串，在執行會更新目錄中項目的作業時可用於開放式並行存取控制。 "*" 可用來比對任何值。</td></tr></table>
+<table><tr><td><b>屬性名稱</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr><tr><td>timestamp</td><td>DateTime</td><td>hello 最後一個時間 hello 項目已修改。 這個欄位是 hello 伺服器所產生，在插入項目和每次更新項目。 hello 這個屬性的值會被忽略的輸入上的發行作業。</td></tr><tr><td>id</td><td>Uri</td><td>Hello 項目 （唯讀） 的絕對 url。 它是 hello hello 項目的唯一可定址 URI。  hello 這個屬性的值會被忽略的輸入上的發行作業。</td></tr><tr><td>類型</td><td>String</td><td>hello hello 資產 （唯讀） 類型。</td></tr><tr><td>etag</td><td>String</td><td>字串對應 toohello 版本時執行作業之更新 hello 目錄中的項目可以用於開放式並行存取控制的 hello 項目。 "*"可以是使用的 toomatch 任何值。</td></tr></table>
 
 ### <a name="common-properties"></a>通用屬性
-這些屬性套用至所有根資產類型和所有註解類型。
+這些屬性會套用 tooall 根資產型別及所有的註解型別。
 
 <table>
 <tr><td><b>屬性名稱</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr>
@@ -96,146 +96,146 @@ Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼�
 
 ### <a name="common-root-properties"></a>通用根屬性
 <p>
-這些屬性套用至所有根資產類型。
+這些屬性會套用 tooall 根資產型別。
 
-<table><tr><td><b>屬性名稱</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr><tr><td>名稱</td><td>String</td><td>衍生自資料來源位置資訊的名稱</td></tr><tr><td>dsl</td><td>DataSourceLocation</td><td>可唯一描述資料來源，為資產的其中一個識別碼 (請參閱＜雙重識別＞一節)。  dsl 的結構隨通訊協定和來源類型而異。</td></tr><tr><td>dataSource</td><td>DataSourceInfo</td><td>資產類型的詳細資料。</td></tr><tr><td>lastRegisteredBy</td><td>SecurityPrincipal</td><td>描述最近註冊此資產的使用者。  包含使用者的唯一識別碼 (upn) 和顯示名稱 (lastName 和 firstName)。</td></tr><tr><td>containerId</td><td>String</td><td>資料來源的容器資產識別碼。 容器類型不支援這個屬性。</td></tr></table>
+<table><tr><td><b>屬性名稱</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr><tr><td>名稱</td><td>String</td><td>名稱，衍生自 hello 資料來源位置資訊</td></tr><tr><td>dsl</td><td>DataSourceLocation</td><td>可唯一描述 hello 資料來源，而且是其中一個的 hello hello 資產識別碼。 (請參閱＜雙重識別＞一節)。  hello 結構的 hello dsl 因 hello 通訊協定和來源類型。</td></tr><tr><td>dataSource</td><td>DataSourceInfo</td><td>Hello 的資產類型的詳細資料。</td></tr><tr><td>lastRegisteredBy</td><td>SecurityPrincipal</td><td>描述 hello 最近已登錄使用者這項資產。  包含 hello hello 使用者 (hello upn) 的唯一識別碼和顯示名稱 （lastName 和 firstName）。</td></tr><tr><td>containerId</td><td>String</td><td>Hello 容器資產 hello 資料來源的識別碼。 Hello 容器型別不支援這個屬性。</td></tr></table>
 
 ### <a name="common-non-singleton-annotation-properties"></a>一般的非單一註解屬性
-這些屬性套用至所有非單一註解類型 (每個資產允許有多個的註解)。
+這些屬性會套用 tooall 非單一註解類型 (允許 toobe 註解每個資產的多個)。
 
 <table>
 <tr><td><b>屬性名稱</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr>
-<tr><td>key</td><td>String</td><td>可唯一識別目前集合中之註解的使用者指定索引鍵。 索引鍵長度不能超過 256 個字元。</td></tr>
+<tr><td>key</td><td>String</td><td>使用者指定之索引鍵可唯一識別在 hello 目前集合中的 hello 註解。 hello 金鑰長度不能超過 256 個字元。</td></tr>
 </table>
 
 ### <a name="root-asset-types"></a>根資產類型
-根資產類型所指的類型代表可以註冊在目錄中的各種資料資產。 每個根類型都有一個檢視，可描述檢視中包含的資產和註解。 使用 REST API 發佈資產時，檢視名稱應用於對應 {view_name} url 區段。
+根資產類型都是這些型別代表 hello 各種類型的資料可以在 hello 目錄中註冊的資產。 對於每個根型別中，沒有檢視，其中描述資產和 hello 檢視中包含的附註。 發行資產使用 REST API 時，檢視表名稱應使用在 hello 對應 {view_name} url 區段中。
 
-<table><tr><td><b>資產類型 (檢視名稱)</b></td><td><b>其他屬性</b></td><td><b>資料類型</b></td><td><b>允許的註解</b></td><td><b>註解</b></td></tr><tr><td>資料表 ("tables")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>結構描述<p>ColumnDescription<p>ColumnTag<p> 專家<p>預覽<p>AccessInstruction<p>TableDataProfile<p>ColumnDataProfile<p>ColumnDataClassification<p>文件<p></td><td>資料表代表任何表格式資料。  例如：SQL 資料表、SQL 檢視、Analysis Services 表格式資料表、Analysis Services 多維度的維度、Oracle 資料表等等。   </td></tr><tr><td>量值 ("measures")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件<p></td><td>此類型代表 Analysis Services 量值。</td></tr><tr><td></td><td>measure</td><td>資料欄</td><td></td><td>描述量值的中繼資料</td></tr><tr><td></td><td>isCalculated </td><td>Boolean</td><td></td><td>指定是否計算量值。</td></tr><tr><td></td><td>measureGroup</td><td>String</td><td></td><td>量值的實體容器</td></tr><td>KPI ("kpis")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件</td><td></td></tr><tr><td></td><td>measureGroup</td><td>String</td><td></td><td>量值的實體容器</td></tr><tr><td></td><td>goalExpression</td><td>String</td><td></td><td>會傳回 KPI 目標值的 MDX 數值運算式或計算。</td></tr><tr><td></td><td>valueExpression</td><td>String</td><td></td><td>會傳回 KPI 實際值的 MDX 數值運算式。</td></tr><tr><td></td><td>statusExpression</td><td>String</td><td></td><td>代表指定時間點之 KPI 狀態的 MDX 運算式。</td></tr><tr><td></td><td>trendExpression</td><td>String</td><td></td><td>評估一段時間的 KPI 值的 MDX 運算式。 趨勢可以是特定商務情況下適用的任何時間性準則。</td>
+<table><tr><td><b>資產類型 (檢視名稱)</b></td><td><b>其他屬性</b></td><td><b>資料類型</b></td><td><b>允許的註解</b></td><td><b>註解</b></td></tr><tr><td>資料表 ("tables")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>結構描述<p>ColumnDescription<p>ColumnTag<p> 專家<p>預覽<p>AccessInstruction<p>TableDataProfile<p>ColumnDataProfile<p>ColumnDataClassification<p>文件<p></td><td>資料表代表任何表格式資料。  例如：SQL 資料表、SQL 檢視、Analysis Services 表格式資料表、Analysis Services 多維度的維度、Oracle 資料表等等。   </td></tr><tr><td>量值 ("measures")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件<p></td><td>此類型代表 Analysis Services 量值。</td></tr><tr><td></td><td>measure</td><td>資料欄</td><td></td><td>中繼資料描述 hello 量值</td></tr><tr><td></td><td>isCalculated </td><td>Boolean</td><td></td><td>指定是否 hello 量值或未計算。</td></tr><tr><td></td><td>measureGroup</td><td>String</td><td></td><td>量值的實體容器</td></tr><td>KPI ("kpis")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件</td><td></td></tr><tr><td></td><td>measureGroup</td><td>String</td><td></td><td>量值的實體容器</td></tr><tr><td></td><td>goalExpression</td><td>String</td><td></td><td>MDX 數值運算式或傳回 hello hello KPI 目標值的計算。</td></tr><tr><td></td><td>valueExpression</td><td>String</td><td></td><td>傳回 hello KPI hello 實際值的 MDX 數值運算式。</td></tr><tr><td></td><td>statusExpression</td><td>String</td><td></td><td>表示時間的指定點的 hello KPI hello 狀態 MDX 運算式。</td></tr><tr><td></td><td>trendExpression</td><td>String</td><td></td><td>評估一段時間的 hello hello KPI 值的 MDX 運算式。 hello 趨勢可以是任何以時間為基礎的準則，可用於特定商務內容。</td>
 <tr><td>報表 ("reports")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件<p></td><td>此類型代表 SQL Server Reporting Services 報表 </td></tr><tr><td></td><td>assetCreatedDate</td><td>String</td><td></td><td></td></tr><tr><td></td><td>assetCreatedBy</td><td>String</td><td></td><td></td></tr><tr><td></td><td>assetModifiedDate</td><td>String</td><td></td><td></td></tr><tr><td></td><td>assetModifiedBy</td><td>String</td><td></td><td></td></tr><tr><td>容器 ("containers")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件<p></td><td>此類型代表其他資產 (例如 SQL database、Azure Blob 容器或 Analysis Services 模型) 的容器 。</td></tr></table>
 
 ### <a name="annotation-types"></a>註解類型
-註解類型代表可以指派給目錄內其他類型的中繼資料類型。
+註解型別代表類型的中繼資料可指派 tooother hello 目錄中的型別。
 
 <table>
 <tr><td><b>註解類型 (巢狀檢視名稱)</b></td><td><b>其他屬性</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr>
 
-<tr><td>描述 ("descriptions")</td><td></td><td></td><td>此屬性包含資產的描述。 系統的每個使用者可以加入自己的描述。  只有該使用者可以編輯 Description 物件  (系統管理員和資產擁有者可以刪除 Description 物件，但無法編輯它)。 系統會個別維護使用者的描述。  因此，每個資產上有一個描述陣列 (除了可能有一個描述包含衍生自資料來源的資訊，每一個已對資產貢獻知識的使用者都有一個描述)。</td></tr>
-<tr><td></td><td>說明</td><td>string</td><td>資產的簡短描述 (2-3 行)</td></tr>
+<tr><td>描述 ("descriptions")</td><td></td><td></td><td>此屬性包含資產的描述。 Hello 系統的每個使用者可以新增自己的描述。  只有該使用者可以編輯 hello 描述物件。  （系統管理員和資產擁有者可以刪除 hello 描述物件，但無法再進行編輯）。 hello 系統會分別維護使用者的描述。  因此是陣列的每個資產 （一個用於每個使用者具有提問加法 toopossibly 包含資訊的其中一個衍生自 hello 資料來源中的 hello 資產的相關知識） 上的描述。</td></tr>
+<tr><td></td><td>說明</td><td>字串</td><td>Hello 資產的簡短描述 （2-3 行）</td></tr>
 
-<tr><td>標籤 ("tags")</td><td></td><td></td><td>這個屬性會定義資產的標籤。 系統的每個使用者可以為資產新增多個標記。  只有建立 Tag 物件的使用者可以編輯它們。  (系統管理員和資產擁有者可以刪除 Tag 物件，但無法編輯它)。 系統會個別維護使用者的標籤。  因此每個資產上都會有 Tag 物件的陣列。</td></tr>
-<tr><td></td><td>tag</td><td>string</td><td>描述資產的標記。</td></tr>
+<tr><td>標籤 ("tags")</td><td></td><td></td><td>這個屬性會定義資產的標籤。 Hello 系統的每個使用者可以加入多個資產標記。  標記物件的建立者 hello 使用者可以編輯它們。  （系統管理員和資產擁有者可以刪除 hello 標記物件，但無法再進行編輯）。 hello 系統會分別維護使用者的標記。  因此每個資產上都會有 Tag 物件的陣列。</td></tr>
+<tr><td></td><td>tag</td><td>字串</td><td>標記描述 hello 資產。</td></tr>
 
-<tr><td>FriendlyName ("friendlyName")</td><td></td><td></td><td>此屬性包含資產的易記名稱。 FriendlyName 是單一註解 - 資產只能新增一個 FriendlyName。  只有建立 FriendlyName 物件的使用者可以編輯它。 (系統管理員和資產擁有者可以刪除 FriendlyName 物件，但無法編輯它)。 系統會個別維護使用者的易記名稱。</td></tr>
-<tr><td></td><td>friendlyName</td><td>string</td><td>資產的易記名稱。</td></tr>
+<tr><td>FriendlyName ("friendlyName")</td><td></td><td></td><td>此屬性包含資產的易記名稱。 FriendlyName 單一註解-只有一個 FriendlyName 可以加入 tooan 資產。  建立連 FriendlyName 物件 hello 使用者可以編輯它。 （系統管理員和資產擁有者可以刪除 hello FriendlyName 物件，但無法再進行編輯）。 hello 系統會分別維護使用者的易記名稱。</td></tr>
+<tr><td></td><td>friendlyName</td><td>字串</td><td>Hello 資產的好記的名稱。</td></tr>
 
-<tr><td>結構描述 ("schema")</td><td></td><td></td><td>Schema 描述資料的結構。  它會列出屬性 (資料行、屬性、欄位等等) 名稱、類型及其他中繼資料。  此資訊完全衍生自資料來源。  Schema 是單一註解 - 資產只能新增一個 Schema。</td></tr>
-<tr><td></td><td>columns</td><td>Column[]</td><td>資料行物件的陣列。 它們以衍生自資料來源的資訊來描述資料行。</td></tr>
+<tr><td>結構描述 ("schema")</td><td></td><td></td><td>hello 結構描述會描述 hello hello 資料結構。  它會列出 hello （資料行、 屬性、 欄位等） 的屬性名稱、 類型以及其他中繼資料。  所有衍生自 hello 資料來源這項資訊。  Schema 是單一註解 - 資產只能新增一個 Schema。</td></tr>
+<tr><td></td><td>columns</td><td>Column[]</td><td>資料行物件的陣列。 它們衍生自 hello 資料來源的資訊描述 hello 資料行。</td></tr>
 
-<tr><td>ColumnDescription ("columnDescriptions")</td><td></td><td></td><td>此屬性包含資料行的描述。  系統的每個使用者可以為多個資料行加入自己的描述 (每個資料行最多一個)。 只有建立 ColumnDescription 物件的使用者可以編輯它們。  (系統管理員和資產擁有者可以刪除 ColumnDescription 物件，但無法編輯它)。 系統會個別維護這些使用者的資料行描述。  因此，每個資產上有一個 ColumnDescription 物件陣列 (除了可能有一個描述包含衍生自資料來源的資訊，每一個已對資料行貢獻知識的使用者都會有一個資料行描述)。  ColumnDescription 與結構描述不緊密繫結，所以可能不會同步。ColumnDescription 描述的資料行可能已不存在於結構描述中。  由寫入者決定是否要讓描述和結構描述保持同步。資料來源也可能有資料行描述資訊，這些資料行是執行工具時建立的其他 ColumnDescription 物件。</td></tr>
-<tr><td></td><td>columnName</td><td>String</td><td>此描述所參考的資料行名稱。</td></tr>
-<tr><td></td><td>說明</td><td>String</td><td>資料行的簡短描述 (2-3 行)。</td></tr>
+<tr><td>ColumnDescription ("columnDescriptions")</td><td></td><td></td><td>此屬性包含資料行的描述。  Hello 系統的每個使用者可以加入自己的多個資料行 （最多每一個資料行） 的說明。 ColumnDescription 物件的建立者 hello 使用者可以編輯它們。  （系統管理員和資產擁有者可以刪除 hello ColumnDescription 物件，但無法再進行編輯）。 hello 系統會分別維護這些使用者的資料行描述。  因此會在每個資產上 ColumnDescription 物件的陣列 （其中每個資料行的每位使用者都有貢獻 hello 資料行的相關知識此外 toopossibly 包含資訊的其中一個衍生自 hello 資料來源）。  hello ColumnDescription 是鬆散結合的 toohello 結構描述，因此它可取得不同步。hello ColumnDescription 可能會描述不存在於 hello 結構描述中的資料行。  它是最多 toohello 寫入器 tookeep 描述和結構描述的同步。 hello 資料來源可能也會有資料行描述資訊以及執行 hello 工具時建立的其他 ColumnDescription 物件。</td></tr>
+<tr><td></td><td>columnName</td><td>String</td><td>hello hello 這項描述是指的資料行名稱。</td></tr>
+<tr><td></td><td>說明</td><td>String</td><td>簡短描述 （2-3 行） 的 hello 資料行。</td></tr>
 
-<tr><td>ColumnTag ("columnTags")</td><td></td><td></td><td>此屬性包含資料行的標籤。 系統的每個使用者可以為特定資料行新增多個標記，也可以為多個資料行新增標記。 只有建立 ColumnTag 物件的使用者可以編輯它們。 (系統管理員和資產擁有者可以刪除 ColumnTag 物件，但無法編輯它)。 系統會個別維護這些使用者的資料行標籤。  因此每個資產上都會有 ColumnTag 物件的陣列。  ColumnTag 與結構描述不緊密繫結，所以可能不會同步。ColumnTag 描述的資料行可能已不存在於結構描述中。  由寫入者決定是否要讓資料行標籤和結構描述保持同步。</td></tr>
-<tr><td></td><td>columnName</td><td>String</td><td>此標記所參考的資料行名稱。</td></tr>
-<tr><td></td><td>tag</td><td>String</td><td>描述資料行的標記。</td></tr>
+<tr><td>ColumnTag ("columnTags")</td><td></td><td></td><td>此屬性包含資料行的標籤。 Hello 系統的每個使用者可以新增特定資料行的多個標記，而且可以加入多個資料行的標記。 ColumnTag 物件的建立者 hello 使用者可以編輯它們。 （系統管理員和資產擁有者可以刪除 hello ColumnTag 物件，但無法再進行編輯）。 hello 系統會分別維護這些使用者的資料行標籤。  因此每個資產上都會有 ColumnTag 物件的陣列。  hello ColumnTag 是鬆散結合的 toohello 結構描述，因此可以取得不同步。hello ColumnTag 可能會描述不存在於 hello 結構描述中的資料行。  它是最多 toohello 寫入器 tookeep 資料行標籤和同步的結構描述。</td></tr>
+<tr><td></td><td>columnName</td><td>String</td><td>hello hello 此標記是指的資料行名稱。</td></tr>
+<tr><td></td><td>tag</td><td>String</td><td>標記描述 hello 資料行。</td></tr>
 
-<tr><td>專家 ("experts")</td><td></td><td></td><td>此屬性包含資料集內被視為專家的使用者。 列出描述時，專家意見 (描述) 會移至 UX 頂端。 每個使用者可以指定自己的專家。 只有該使用者可以編輯 Expert 物件 (系統管理員和資產擁有者可以刪除 Expert 物件，但無法編輯它)。</td></tr>
+<tr><td>專家 ("experts")</td><td></td><td></td><td>此屬性包含的使用者會被視為 hello 資料集中的專家。 hello 專家 opinions(descriptions) 泡泡 toohello 的頂端 hello UX 列出說明時。 每個使用者可以指定自己的專家。 只有該使用者可以編輯 hello 專家物件。 （系統管理員和資產擁有者可以刪除 hello 專家物件，但無法再進行編輯）。</td></tr>
 <tr><td></td><td>expert</td><td>SecurityPrincipal</td><td></td></tr>
 
-<tr><td>預覽 ("previews")</td><td></td><td></td><td>預覽包含資產的前 20 列資料的快照集。 預覽只對某些資產類型才有意義 (對資料表有意義，但對量值沒有意義)。</td></tr>
-<tr><td></td><td>preview</td><td>object[]</td><td>代表資料行的物件陣列。  每個物件都有屬性與資料行的對應，根據的是資料列在該資料行中的值。</td></tr>
+<tr><td>預覽 ("previews")</td><td></td><td></td><td>hello 預覽包含 hello 前 20 個資料列之資料的 hello 資產的快照集。 預覽只對某些資產類型才有意義 (對資料表有意義，但對量值沒有意義)。</td></tr>
+<tr><td></td><td>preview</td><td>object[]</td><td>代表資料行的物件陣列。  每個物件具有對應 tooa hello 資料列的資料行的值資料行的屬性。</td></tr>
 
 <tr><td>AccessInstruction ("accessInstructions")</td><td></td><td></td><td></td></tr>
-<tr><td></td><td>mimeType</td><td>string</td><td>內容的 mime 類型。</td></tr>
-<tr><td></td><td>內容</td><td>string</td><td>如何取得這項資料資產的指示。 內容可能是一個 URL、電子郵件地址或一組指示。</td></tr>
+<tr><td></td><td>mimeType</td><td>字串</td><td>hello hello 內容的 mime 類型。</td></tr>
+<tr><td></td><td>內容</td><td>字串</td><td>hello tooget toothis 資料資產的存取方式的指示。 hello 內容可能是 URL、 電子郵件地址或一組的指示。</td></tr>
 
 <tr><td>TableDataProfile ("tableDataProfiles")</td><td></td><td></td><td></td></tr>
-<tr><td></td><td>numberOfRows</td></td><td>int</td><td>在此資料集的資料列數目。</td></tr>
-<tr><td></td><td>size</td><td>long</td><td>以位元組為單位的資料集大小。  </td></tr>
-<tr><td></td><td>schemaModifiedTime</td><td>string</td><td>上次修改結構描述的時間。</td></tr>
-<tr><td></td><td>dataModifiedTime</td><td>string</td><td>上次修改此資料集 (新增、修改或刪除資料) 的時間</td></tr>
+<tr><td></td><td>numberOfRows</td></td><td>int</td><td>hello 資料集中的資料列的 hello 數目</td></tr>
+<tr><td></td><td>size</td><td>long</td><td>hello 大小，以位元組為單位的 hello 資料集。  </td></tr>
+<tr><td></td><td>schemaModifiedTime</td><td>字串</td><td>已修改 hello 最後一個階段 hello 結構描述</td></tr>
+<tr><td></td><td>dataModifiedTime</td><td>字串</td><td>已修改 hello 最後一個時間 hello 資料集 （資料已加入、 修改或刪除）</td></tr>
 
 <tr><td>ColumnsDataProfile ("columnsDataProfiles")</td><td></td><td></td><td></td></tr>
 <tr><td></td><td>columns</td></td><td>ColumnDataProfile[]</td><td>資料行資料設定檔的陣列。</td></tr>
 
 <tr><td>ColumnDataClassification ("columnDataClassifications")</td><td></td><td></td><td></td></tr>
-<tr><td></td><td>columnName</td><td>String</td><td>此分類所參考的資料行名稱。</td></tr>
-<tr><td></td><td>分類</td><td>String</td><td>此資料行中的資料分類。</td></tr>
+<tr><td></td><td>columnName</td><td>String</td><td>hello hello 這個分類是指的資料行名稱。</td></tr>
+<tr><td></td><td>分類</td><td>String</td><td>此資料行中的 hello 資料 hello 分類。</td></tr>
 
 <tr><td>文件 ("documentation")</td><td></td><td></td><td>指定的資產只能有一個相關聯的文件。</td></tr>
-<tr><td></td><td>mimeType</td><td>string</td><td>內容的 mime 類型。</td></tr>
-<tr><td></td><td>內容</td><td>string</td><td>文件內容。</td></tr>
+<tr><td></td><td>mimeType</td><td>字串</td><td>hello hello 內容的 mime 類型。</td></tr>
+<tr><td></td><td>內容</td><td>字串</td><td>hello 文件內容。</td></tr>
 
 </table>
 
 ### <a name="common-types"></a>常見的類型
-常見類型可作為屬性的類型，而不是項目的類型。
+一般類型可用來當作 hello 類型的屬性，但不是項目。
 
 <table>
 <tr><td><b>一般類型</b></td><td><b>屬性</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr>
 <tr><td>DataSourceInfo</td><td></td><td></td><td></td></tr>
-<tr><td></td><td>sourceType</td><td>string</td><td>描述資料來源的類型。  例如︰SQL Server、Oracle 資料庫等。  </td></tr>
-<tr><td></td><td>objectType</td><td>string</td><td>描述資料來源中的物件類型。 例如：SQL Server 的資料表、檢視。</td></tr>
+<tr><td></td><td>sourceType</td><td>字串</td><td>描述 hello 類型的資料來源。  例如︰SQL Server、Oracle 資料庫等。  </td></tr>
+<tr><td></td><td>objectType</td><td>字串</td><td>描述 hello hello 資料來源中的物件類型。 例如：SQL Server 的資料表、檢視。</td></tr>
 
 <tr><td>DataSourceLocation</td><td></td><td></td><td></td></tr>
-<tr><td></td><td>protocol</td><td>string</td><td>必要。 描述用來與資料來源進行通訊的通訊協定。 例如：適用於 SQl Server 的 "tds"、適用於 Oracle 的 "oracle" 等等。如需目前支援的通訊協定清單，請參閱[資料來源參考規格 - DSL 結構](data-catalog-dsr.md)。</td></tr>
-<tr><td></td><td>位址</td><td>字典<string, object></td><td>必要。 位址是一組專屬於通訊協定的資料，用來識別所參考的資料來源。 資料將範圍設定為特定通訊協定的位址，表示如果不知道通訊協定就沒有意義。</td></tr>
-<tr><td></td><td>驗證</td><td>string</td><td>選用。 用來與資料來源進行通訊的驗證配置。 例如：windows、oauth 等等。</td></tr>
-<tr><td></td><td>connectionProperties</td><td>字典<string, object></td><td>選用。 如何連接資料來源的其他資訊。</td></tr>
+<tr><td></td><td>protocol</td><td>string</td><td>必要。 描述與 hello 資料來源使用通訊協定 toocommunicate。 例如：適用於 SQl Server 的 "tds"、適用於 Oracle 的 "oracle" 等等。請參閱太[資料來源參考規格-DSL 結構](data-catalog-dsr.md)hello 目前支援的通訊協定的清單。</td></tr>
+<tr><td></td><td>位址</td><td>字典<string, object></td><td>必要。 位址是一組是使用的 tooidentify hello 資料來源所參考的資料特定 toohello 通訊協定。 hello 位址資料範圍 tooa 特定通訊協定，也就是說，它不需要知道 hello 通訊協定無意義。</td></tr>
+<tr><td></td><td>驗證</td><td>string</td><td>選用。 hello 驗證配置用於 toocommunicate hello 資料來源。 例如：windows、oauth 等等。</td></tr>
+<tr><td></td><td>connectionProperties</td><td>字典<string, object></td><td>選用。 其他資訊 tooconnect tooa 資料來源。</td></tr>
 
-<tr><td>SecurityPrincipal</td><td></td><td></td><td>後端不會在發佈期間對 AAD 驗證所提供的屬性。</td></tr>
-<tr><td></td><td>upn</td><td>string</td><td>使用者的唯一電子郵件地址。 如果未提供 objectId 或其位於 "lastRegisteredBy" 屬性的內容中則必須指定，否則為選擇性。</td></tr>
+<tr><td>SecurityPrincipal</td><td></td><td></td><td>hello 後端不會執行任何驗證的 AAD 針對提供的屬性在發行期間。</td></tr>
+<tr><td></td><td>upn</td><td>string</td><td>使用者的唯一電子郵件地址。 如果未提供 objectId 或 「 lastRegisteredBy"屬性，否則為選擇性的 hello 內容中，必須指定。</td></tr>
 <tr><td></td><td>objectId</td><td>Guid</td><td>使用者或安全性群組 AAD 身分識別。 選用。 如果未提供 upn 則必須指定，否則為選擇性。</td></tr>
-<tr><td></td><td>firstName</td><td>string</td><td>使用者的名字 (用於顯示)。 選用。 只有在位於 "lastRegisteredBy" 屬性的內容中時才有效。 在為 "roles"、"permissions" 和 "experts" 提供安全性主體時則不能指定。</td></tr>
-<tr><td></td><td>lastName</td><td>string</td><td>使用者的姓氏 (用於顯示)。 選用。 只有在位於 "lastRegisteredBy" 屬性的內容中時才有效。 在為 "roles"、"permissions" 和 "experts" 提供安全性主體時則不能指定。</td></tr>
+<tr><td></td><td>firstName</td><td>string</td><td>使用者的名字 (用於顯示)。 選用。 Hello"lastRegisteredBy"屬性內容中才有效。 在為 "roles"、"permissions" 和 "experts" 提供安全性主體時則不能指定。</td></tr>
+<tr><td></td><td>lastName</td><td>string</td><td>使用者的姓氏 (用於顯示)。 選用。 Hello"lastRegisteredBy"屬性內容中才有效。 在為 "roles"、"permissions" 和 "experts" 提供安全性主體時則不能指定。</td></tr>
 
 <tr><td>資料欄</td><td></td><td></td><td></td></tr>
-<tr><td></td><td>名稱</td><td>string</td><td>資料行或屬性的名稱。</td></tr>
-<tr><td></td><td>類型</td><td>string</td><td>資料行或屬性的資料類型。 允許的類型取決於資產的資料 sourceType。  僅支援一部分類型。</td></tr>
-<tr><td></td><td>maxLength</td><td>int</td><td>資料行或屬性允許的長度上限。 衍生自資料來源。 只適用於某些來源類型。</td></tr>
-<tr><td></td><td>precision</td><td>byte</td><td>資料行或屬性的精確度。 衍生自資料來源。 只適用於某些來源類型。</td></tr>
-<tr><td></td><td>isNullable</td><td>Boolean</td><td>是否允許資料行有 Null 值。 衍生自資料來源。 只適用於某些來源類型。</td></tr>
-<tr><td></td><td>expression</td><td>string</td><td>如果值是導出資料行，此欄位會包含表示此值的運算式。 衍生自資料來源。 只適用於某些來源類型。</td></tr>
+<tr><td></td><td>名稱</td><td>字串</td><td>Hello 資料行或屬性的名稱。</td></tr>
+<tr><td></td><td>類型</td><td>字串</td><td>hello 資料行或屬性的資料類型。 hello 可允許的類型取決於資料 sourceType 的 hello 資產。  僅支援一部分類型。</td></tr>
+<tr><td></td><td>maxLength</td><td>int</td><td>hello hello 資料行或屬性所允許的長度上限。 衍生自資料來源。 只適用於 toosome 來源類型。</td></tr>
+<tr><td></td><td>precision</td><td>byte</td><td>hello 資料行或屬性的 hello 有效位數。 衍生自資料來源。 只適用於 toosome 來源類型。</td></tr>
+<tr><td></td><td>isNullable</td><td>Boolean</td><td>Hello 資料行是否允許 toohave null 值。 衍生自資料來源。 只適用於 toosome 來源類型。</td></tr>
+<tr><td></td><td>expression</td><td>字串</td><td>如果 hello 值是導出資料行，此欄位會包含 hello 值的 hello 運算式。 衍生自資料來源。 只適用於 toosome 來源類型。</td></tr>
 
 <tr><td>ColumnDataProfile</td><td></td><td></td><td></td></tr>
-<tr><td></td><td>columnName </td><td>string</td><td>資料行的名稱。</td></tr>
-<tr><td></td><td>類型 </td><td>string</td><td>資料行的類型。</td></tr>
-<tr><td></td><td>min </td><td>string</td><td>在此資料集內的最小值。</td></tr>
-<tr><td></td><td>max </td><td>string</td><td>在此資料集內的最大值。</td></tr>
-<tr><td></td><td>avg </td><td>double</td><td>在此資料集內的平均值。</td></tr>
-<tr><td></td><td>stdev </td><td>double</td><td>此資料集的標準差。</td></tr>
-<tr><td></td><td>nullCount </td><td>int</td><td>在此資料集內 null 值的計數。</td></tr>
-<tr><td></td><td>distinctCount  </td><td>int</td><td>在此資料集內相異值的計數。</td></tr>
+<tr><td></td><td>columnName </td><td>字串</td><td>hello hello 資料行名稱</td></tr>
+<tr><td></td><td>類型 </td><td>字串</td><td>hello hello 資料行類型</td></tr>
+<tr><td></td><td>Min </td><td>字串</td><td>hello hello 資料集中的最小值</td></tr>
+<tr><td></td><td>max </td><td>字串</td><td>hello hello 資料集中的最大值</td></tr>
+<tr><td></td><td>avg </td><td>double</td><td>hello 資料集中的 hello 平均值</td></tr>
+<tr><td></td><td>stdev </td><td>double</td><td>hello hello 資料集的標準差</td></tr>
+<tr><td></td><td>nullCount </td><td>int</td><td>hello hello 資料集中的 null 值計數</td></tr>
+<tr><td></td><td>distinctCount  </td><td>int</td><td>hello hello 資料集中的相異值計數</td></tr>
 
 
 </table>
 
 ## <a name="asset-identity"></a>資產身分識別
-Azure 資料目錄使用來自 DataSourceLocation "dsl" 屬性之「位址」屬性包的「通訊協定」和身分識別屬性，產生用來處理目錄中資產的資產身分識別。
-例如，"tds" 通訊協定具有「伺服器」、「資料庫」、「結構描述」和「物件」等身分識別屬性。 通訊協定和身分識別屬性的組合可用來產生 SQL Server 資料表資產的身分識別。
+Azure 資料目錄使用 「 通訊協定 」，並從 hello DataSourceLocation"dsl"屬性 toogenerate 身分識別的 hello 資產，也就是使用的 tooaddress hello"address"屬性包的識別屬性 hello hello 目錄內的資產。
+例如，hello"tds 」 通訊協定具有識別屬性 「 伺服器 」，「 資料庫 」、 「 結構描述 」 和 「 物件 」。 hello 通訊協定和 hello 識別屬性的 hello 組合都使用的 toogenerate hello 身分識別的 hello SQL Server 資料表資產。
 Azure 資料目錄提供數個內建資料來源通訊協定，列在 [資料來源參考規格 - DSL 結構](data-catalog-dsr.md)中。
-支援的通訊協定集可以利用程式設計方式擴充 (請參閱資料目錄 REST API 參考)。 目錄的系統管理員可以註冊自訂資料來源通訊協定。 下表描述註冊自訂通訊協定所需的屬性。
+hello 一組支援的通訊協定可以擴充以程式設計方式 （請參閱 tooData 目錄 REST API 參考）。 Hello 類別目錄的系統管理員可以註冊自訂資料來源通訊協定。 hello 以下表格說明 hello 所需的內容 tooregister 自訂通訊協定。
 
 ### <a name="custom-data-source-protocol-specification"></a>自訂資料來源通訊協定規格
 <table>
 <tr><td><b>類型</b></td><td><b>屬性</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr>
 
 <tr><td>DataSourceProtocol</td><td></td><td></td><td></td></tr>
-<tr><td></td><td>namespace</td><td>string</td><td>通訊協定的命名空間。 命名空間長度必須介於 1 到 255 個字元，包含一或多個以點 (.) 分隔的非空白部分。 每個部分長度必須介於 1 到 255 個字元，以字母開頭並且只包含字母和數字。</td></tr>
-<tr><td></td><td>名稱</td><td>string</td><td>通訊協定的名稱。 名稱長度必須介於 1 到 255 個字元，以字母開頭並且只包含字母、數字和虛線 (-) 字元。</td></tr>
-<tr><td></td><td>identityProperties</td><td>DataSourceProtocolIdentityProperty[]</td><td>身分識別屬性清單必須包含至少一個，但不超過 20 個屬性。 例如：「伺服器」、「資料庫」、「結構描述」、「物件」是 "tds" 通訊協定的身分識別屬性。</td></tr>
+<tr><td></td><td>namespace</td><td>字串</td><td>hello 通訊協定的 hello 命名空間。 命名空間必須是從 1 too255 字元，包含以點 （.） 分隔的一個或多個非空白部分。 每個部分必須是從 1 too255 字元、 以字母開頭並只能包含字母和數字。</td></tr>
+<tr><td></td><td>名稱</td><td>字串</td><td>hello hello 通訊協定名稱。 名稱必須從 1 too255 個字元、 以字母開頭且只能包含字母、 數字與 hello 虛線 （-） 字元。</td></tr>
+<tr><td></td><td>identityProperties</td><td>DataSourceProtocolIdentityProperty[]</td><td>身分識別屬性清單必須包含至少一個，但不超過 20 個屬性。 例如: 「 伺服器 」、 「 資料庫 」、 「 結構描述 」、 「 物件 」 是 hello"tds 」 通訊協定的識別內容。</td></tr>
 <tr><td></td><td>identitySets</td><td>DataSourceProtocolIdentitySet[]</td><td>身分識別集合的清單。 定義代表有效資產身分識別的身分識別屬性集合。 必須包含至少一個，但不超過 20 個集合。 例如：{「伺服器」、「資料庫」、「結構描述」和「物件」} 是 "tds" 通訊協定的身分識別集合，它會定義 Sql Server 資料表資產的身分識別。</td></tr>
 
 <tr><td>DataSourceProtocolIdentityProperty</td><td></td><td></td><td></td></tr>
-<tr><td></td><td>名稱</td><td>string</td><td>屬性的名稱。 名稱長度必須介於 1 到 100 個字元，以字母開頭並且只能包含字母和數字。</td></tr>
-<tr><td></td><td>類型</td><td>string</td><td>屬性的類型。 支援的值："bool"、"boolean"、"byte"、"guid"、"int"、"integer"、"long"、"string"、"url"</td></tr>
+<tr><td></td><td>名稱</td><td>字串</td><td>hello hello 屬性名稱。 名稱必須介於 1 too100 字元之字母開頭，且只能包含字母和數字。</td></tr>
+<tr><td></td><td>類型</td><td>字串</td><td>hello hello 屬性類型。 支援的值："bool"、"boolean"、"byte"、"guid"、"int"、"integer"、"long"、"string"、"url"</td></tr>
 <tr><td></td><td>ignoreCase</td><td>布林</td><td>表示使用屬性的值時，是否應忽略大小寫。 只能對具有 "string" 類型的屬性指定。 預設值為 false。</td></tr>
-<tr><td></td><td>urlPathSegmentsIgnoreCase</td><td>bool[]</td><td>指出是否應忽略 url 路徑之每個區段的大小寫。 只能對具有 "url" 類型的屬性指定。 預設值為 [false]。</td></tr>
+<tr><td></td><td>urlPathSegmentsIgnoreCase</td><td>bool[]</td><td>指出是否應該忽略 hello url 路徑的每個區段的大小寫。 只能對具有 "url" 類型的屬性指定。 預設值為 [false]。</td></tr>
 
 <tr><td>DataSourceProtocolIdentitySet</td><td></td><td></td><td></td></tr>
-<tr><td></td><td>名稱</td><td>string</td><td>身分識別集合的名稱。</td></tr>
-<tr><td></td><td>properties</td><td>string[]</td><td>身分識別屬性清單包含在這個身分識別集合中。 它不能包含重複項目。 每個身分識別集合所參考的屬性必須在通訊協定的 "identityProperties" 清單中定義。</td></tr>
+<tr><td></td><td>名稱</td><td>字串</td><td>hello hello 識別集名稱。</td></tr>
+<tr><td></td><td>屬性</td><td>string[]</td><td>hello 的併入這個身分識別的身分識別屬性集清單。 它不能包含重複項目。 Hello"identityProperties"hello 通訊協定清單中，必須定義識別集所參考的每一個屬性。</td></tr>
 
 </table>
 
@@ -243,53 +243,53 @@ Azure 資料目錄提供數個內建資料來源通訊協定，列在 [資料來
 Microsoft Azure 資料目錄對資產和註解的 CRUD 作業提供授權功能。
 
 ## <a name="key-concepts"></a>重要概念
-Azure 資料目錄使用兩種授權機制：
+hello Azure 資料目錄會使用兩種授權機制：
 
 * 以角色為基礎的授權
 * 以權限為基礎的授權
 
 ### <a name="roles"></a>角色
-有 3 個角色：**系統管理員**、**擁有者**和**參與者**。  每個角色有其範圍和權限，於下表中摘要說明。
+有 3 個角色：**系統管理員**、**擁有者**和**參與者**。  每個角色都有其範圍和權限，在 hello 下表將摘要說明。
 
-<table><tr><td><b>角色</b></td><td><b>範圍</b></td><td><b>權限</b></td></tr><tr><td>系統管理員</td><td>目錄 (目錄中的所有資產/註解)</td><td>Read Delete ViewRoles
+<table><tr><td><b>角色</b></td><td><b>範圍</b></td><td><b>權限</b></td></tr><tr><td>系統管理員</td><td>類別目錄 （資產/中所有註解 hello 目錄）</td><td>Read Delete ViewRoles
 
 ChangeOwnership ChangeVisibility ViewPermissions</td></tr><tr><td>擁有者</td><td>每個資產 (根項目)</td><td>Read Delete ViewRoles
 
-ChangeOwnership ChangeVisibility ViewPermissions</td></tr><tr><td>參與者</td><td>每個個別的資產和註解</td><td>Read Update Delete ViewRoles 注意事項：如果撤銷 Contributor 在項目上的 Read 權限，則會撤鎖所有權限</td></tr></table>
+ChangeOwnership ChangeVisibility ViewPermissions</td></tr><tr><td>參與者</td><td>每個個別的資產和註解</td><td>讀取更新刪除 ViewRoles 附註： hello 著作權所有，並會撤銷如果 hello 權限讀取 hello 項目撤銷 hello 參與者</td></tr></table>
 
 > [!NOTE]
-> **Read**、**Update**、**Delete**、**ViewRoles** 權限適用於任何項目 (資產或註解)，而 **TakeOwnership**、**ChangeOwnership**、**ChangeVisibility**、**ViewPermissions** 只適用於根資產。
+> **讀取**，**更新**，**刪除**， **ViewRoles**權限，也適用 tooany 項目 （資產或註解） 時**: 0-請求**， **ChangeOwnership**， **ChangeVisibility**， **ViewPermissions**都適用 toohello 根資產。
 > 
-> **Delete** 權限適用於項目及其底下的任何子項目或單一項目。 例如，刪除資產時，也會刪除該資產的任何註解。
+> **刪除**tooan 項目，以及任何子項目和其下的單一項目，適用於權限。 例如，刪除資產時，也會刪除該資產的任何註解。
 > 
 > 
 
 ### <a name="permissions"></a>權限
-權限是存取控制項目的清單。 每個存取控制項目指派一組權限給安全性主體。 權限只能在資產 (也就是根項目) 上指定，可套用至資產和任何子項目。
+權限是存取控制項目的清單。 每個存取控制項目指派權限 tooa 安全性主體。 權限只能指定資產 （也就是根項目），並套用 toohello 資產和任何子項目。
 
-在 **Azure 資料目錄**預覽期間，僅支援權限清單中的 **Read** 權限，以便該情況下限制資產的可見性。
+Hello 期間**Azure 資料目錄**預覽，只**讀取**支援 hello 權限清單 tooenable 案例 toorestrict 可視性資產的權限。
 
-根據預設，任何已驗證的使用者對目錄中的任何項目都具有 **Read** 權限，除非權限中已限制只能看到某一組主體。
+任何已驗證的使用者具有預設**讀取**以滑鼠右鍵 hello 目錄中的任何項目的可見性會限制除非 toohello 組中 hello 權限的主體。
 
 ## <a name="rest-api"></a>REST API
-**PUT** 和 **POST** 檢視項目要求可用於控制角色和權限：除了項目承載，還可指定兩個系統屬性 **roles** 和 **permissions**。
+**PUT**和**POST**檢視項目會要求使用的 toocontrol 角色和權限可以是： 在加法 tooitem 承載中，您可以指定兩個系統屬性**角色**和**權限**。
 
 > [!NOTE]
-> **permissions** 僅適用於根項目。
+> **權限**只適用 tooa 根項目。
 > 
-> **擁有者** 角色僅適用於根項目。
+> **擁有者**角色僅適用於 tooa 根項目。
 > 
-> 根據預設，在目錄中建立項目時，其 **參與者** 會設定為目前已驗證的使用者。 如果每個人都能更新項目，則第一次發佈項目時，應該在 **roles** 屬性中，將**參與者**設定為 &lt;Everyone&gt; 特殊安全性主體 (請參閱下列範例)。 **參與者**無法變更，而且在項目存留期間都維持不變 (即使**系統管理員**或**擁有者**都沒有權限變更**參與者**)。 明確設定**參與者**時，唯一支援的值是 &lt;Everyone&gt;：**參與者**只能是建立項目的使用者，或是 &lt;Everyone&gt;。
+> 根據預設，當 hello 目錄中建立項目時其**參與者**設定 toohello 目前已驗證的使用者。 如果項目應該是可更新所有人，**參與者**應該設定太&lt;Everyone&gt;特殊的安全性主體在 hello**角色**屬性項目時第一次發行 （請參閱下列範例 toohello）。 **參與者**無法變更並保持 hello 相同期間的項目存留期間 (即使**管理員**或**擁有者**沒有 hello 右 toochange hello **參與者**)。 hello 的 hello hello 明確設定支援的值**參與者**是&lt;Everyone&gt;:**參與者**只能是使用者建立項目或&lt;Everyone&gt;。
 > 
 > 
 
 ### <a name="examples"></a>範例
-**發佈項目時將參與者設定為 &lt;Everyone&gt;。**
+**設定得參與者&lt;Everyone&gt;發佈項目時。**
 特殊安全性主體 &lt;Everyone&gt; 具有 objectId "00000000-0000-0000-0000-000000000201"。
   **POST** https://api.azuredatacatalog.com/catalogs/default/views/tables/?api-version=2016-03-30
 
 > [!NOTE]
-> 某些 HTTP 用戶端實作可能會自動重新發出要求，以從伺服器回應 302，但通常會從要求中刪除 Authorization 標頭。 因為需要有 Authorization 標頭才能對 Azure 資料目錄提出要求，所以您必須確定在對 Azure 資料目錄所指定的重新導向位置重新發出要求時，仍然會提供 Authorization 標頭。 下列範例程式碼使用 .NET HttpWebRequest 物件進行示範。
+> 某些 HTTP 用戶端實作可能會自動重新發出回應 tooa 302 從 hello 伺服器中的要求，但通常刪除從 hello 要求的授權標頭。 由於 hello 授權標頭是必要的 toomake 要求 tooAzure 資料目錄，您必須確定重新發出指定 Azure 資料目錄的要求 tooa 重新導向位置時，仍然會提供 hello 授權標頭。 hello 下列程式碼範例示範使用 hello.NET HttpWebRequest 物件。
 > 
 > 
 
@@ -353,7 +353,7 @@ ChangeOwnership ChangeVisibility ViewPermissions</td></tr><tr><td>參與者</td>
     }
 
 > [!NOTE]
-> 在 PUT 中，不需要在內文中指定項目裝載：PUT 可以用來直接更新角色和 (或) 權限。
+> PUT 中，您不需要 toospecify hello 主體中的項目裝載： PUT 可以是使用的 tooupdate 只是角色和/或權限。
 > 
 > 
 

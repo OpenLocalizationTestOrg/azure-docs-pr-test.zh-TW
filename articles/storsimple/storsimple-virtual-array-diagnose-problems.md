@@ -1,6 +1,6 @@
 ---
-title: "針對 StorSimple Virtual Array 進行疑難排解 | Microsoft Docs"
-description: "描述 StorSimple 裝置管理員診斷功能，並說明如何使用它來針對 StorSimple Virtual Array 進行疑難排解。"
+title: "aaaTroubleshoot StorSimple Virtual Array |Microsoft 文件"
+description: "描述的 hello StorSimple 裝置管理員的診斷功能，並說明如何 toouse 它 tootroubleshoot StorSimple 虛擬陣列。"
 services: storsimple
 documentationcenter: 
 author: manuaery
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
-ms.openlocfilehash: a75e68c84a50977b162ca4d3a4a02936ca78cb6b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5b8e05d5ce6000424830059db450a0e662d19238
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-troubleshoot-the-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員服務來針對 StorSimple Virtual Array 進行疑難排解
+# <a name="use-hello-storsimple-device-manager-service-tootroubleshoot-hello-storsimple-virtual-array"></a>使用 hello StorSimple 裝置管理員服務 tootroubleshoot hello StorSimple Virtual Array
 ## <a name="overview"></a>概觀
 
-StorSimple 裝置管理員在服務摘要刀鋒視窗內提供 [診斷並解決問題] 設定，並醒目提示虛擬陣列可能經常發生的一些問題，以及如何解決。 本教學課程介紹 StorSimple 裝置管理員服務內提供的自助式疑難排解功能。
+hello StorSimple 裝置管理員提供**診斷並解決問題**設定 hello 服務摘要 刀鋒視窗中，這會反白顯示的一些可能發生的虛擬陣列 hello 經常出現問題及如何 toosolve它們。 此教學課程介紹 hello 自助式疑難排解功能 hello StorSimple 裝置管理員服務內提供。
 
 ![診斷並解決問題](./media/storsimple-virtual-array-diagnose-problems/diagnose-problems-main.png)
 
 ## <a name="diagnose-and-solve-issues"></a>診斷並解決問題
 
-您可以檢視 StorSimple Virtual Array 的一些常見問題，並直接從 StorSimple 裝置管理員服務摘要刀鋒視窗中，檢閱這些問題的解決方案。
+您可以檢視一些 hello 以 hello StorSimple Virtual Array 常見的問題，並直接從您 StorSimple 裝置管理員服務摘要 刀鋒視窗中檢閱 hello 解決方案 toothose 問題。
 
-#### <a name="to-diagnose-an-issue-with-your-virtual-array"></a>若要診斷虛擬陣列的問題
+#### <a name="toodiagnose-an-issue-with-your-virtual-array"></a>toodiagnose 虛擬陣列的問題
 
-1. 在 StorSimple 裝置管理員服務摘要刀鋒視窗的左窗格中，按一下 [診斷並解決問題] 來檢視常見問題的清單。
+1. 按一下**診斷並解決問題**hello 中的設定左窗格中您 StorSimple 裝置管理員服務摘要 刀鋒視窗 tooview 的一般問題的清單。
 
-2. 對於您遇到的問題，**展開**症狀來檢閱 [建議步驟]，以協助您針對問題進行疑難排解。 想要的話，您也可以檢閱提供給您進一步參考的詳細文件連結。
+2. **展開**hello 的 hello 問題的徵兆上遇到 tooreview**建議步驟**tooaid 您疑難排解 hello 問題。 如果您希望，您也可以檢閱提供的進一步參考 hello 詳細文件連結。
    
     ![針對問題進行疑難排解](./media/storsimple-virtual-array-diagnose-problems/diagnose-problems-offline.png)
 
-3. 如果您無法找不到問題的參考，或無法解決問題，請連絡 Microsoft 支援服務以尋求進一步的協助。
+3. 如果您無法 toofind 參考 tooyour 問題或解決問題，請聯繫 tooMicrosoft 支援尋求進一步的協助。
 
 ## <a name="next-steps"></a>後續步驟
-了解如何[登錄支援票證](storsimple-virtual-array-log-support-ticket.md)
+了解如何太[記錄的支援票證](storsimple-virtual-array-log-support-ticket.md)
 

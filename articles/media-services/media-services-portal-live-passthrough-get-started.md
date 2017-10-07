@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 入口網站透過內部部署編碼器執行即時串流 | Microsoft Docs"
-description: "本教學課程將逐步引導您建立針對即時通行傳遞設定的通道。"
+title: "aaaLive 資料流，與在內部部署編碼器使用 hello Azure 入口網站 |Microsoft 文件"
+description: "本教學課程會引導您建立設定為傳遞的傳遞通道的 hello 步驟。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 6939e3b31c3c1b514df4c559c2d9408fce122a4e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1fb341e022f66f33903e13e07d3e84c0216cad77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-perform-live-streaming-with-on-premises-encoders-using-the-azure-portal"></a>如何使用 Azure 入口網站透過內部部署編碼器執行即時串流
+# <a name="how-tooperform-live-streaming-with-on-premises-encoders-using-hello-azure-portal"></a>如何 tooperform 即時資料流與內部部署編碼器使用 hello Azure 入口網站
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-live-passthrough-get-started.md)
 > * [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
@@ -28,123 +28,123 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-本教學課程將逐步引導您使用 Azure 入口網站建立針對即時通行傳遞設定的 **通道** 。 
+本教學課程中引導您使用 Azure 入口網站 toocreate hello 的 hello 步驟**通道**針對傳遞的傳遞設定。 
 
 ## <a name="prerequisites"></a>必要條件
-需要有下列項目，才能完成教學課程：
+hello 下面是必要的 toocomplete hello 教學課程：
 
 * 一個 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
-* 媒體服務帳戶。 若要建立媒體服務帳戶，請參閱[如何建立媒體服務帳戶](media-services-portal-create-account.md)。
+* 媒體服務帳戶。 toocreate Media Services 帳戶，請參閱[如何 tooCreate Media Services 帳戶](media-services-portal-create-account.md)。
 * 網路攝影機。 例如， [Telestream Wirecast 編碼器](http://www.telestream.net/wirecast/overview.htm)。
 
-強烈建議您先檢閱下列文章：
+強烈建議 tooreview hello 下列文章：
 
 * [Azure 媒體服務 RTMP 支援和即時編碼器](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)
 * [使用 Azure 媒體服務之即時串流的概觀](media-services-manage-channels-overview.md)
 * [使用會建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)
 
 ## <a id="scenario"></a>常見即時串流案例
-下列步驟描述當我們建立一般即時串流應用程式 (其使用針對即時通行傳遞設定的通道) 時，會涉及到的各種工作。 本教學課程示範如何建立及管理即時通行通道和即時事件。
+hello 下列步驟說明建立常見即時資料流使用的應用程式所設定的通道傳遞傳遞所涉及的工作。 本教學課程示範如何 toocreate 及管理通過通道和即時事件。
 
 >[!NOTE]
->確定您想要串流內容的串流端點已處於 [執行中] 狀態。 
+>請確定 hello 串流的端點要從中 toostream 內容處於 hello**執行**狀態。 
     
-1. 將攝影機連接到電腦。 啟動並設定內部部署即時編碼器，讓它輸出多位元速率 RTMP 或 Fragmented MP4 串流。 如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
+1. 視訊攝影機 tooa 電腦連線。 啟動並設定內部部署即時編碼器，讓它輸出多位元速率 RTMP 或 Fragmented MP4 串流。 如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
    
     此步驟也可以在您建立通道之後執行。
 2. 建立並啟動即時通行通道。
-3. 擷取通道內嵌 URL。 
+3. 擷取 hello 通道的內嵌 URL。 
    
-    內嵌 URL 可供即時編碼器用來傳送串流到通道。
-4. 擷取通道預覽 URL。 
+    hello 內嵌 URL 由 hello 即時編碼器 toosend hello 資料流 toohello 通道。
+4. 擷取 hello 通道預覽 URL。 
    
-    使用此 URL 來確認您的通道會正確接收即時串流。
+    使用您的通道可正常接收即時資料流 hello 這個 URL tooverify。
 5. 建立即時事件/程式。 
    
-    使用 Azure 入口網站時，建立即時事件也會建立資產。 
+    當使用 hello Azure 入口網站時，建立即時事件也會建立資產。 
 
-6. 當您準備好開始串流和封存時，請啟動事件/程式。
-7. 即時編碼器會收到啟動公告的信號 (選擇性)。 公告會插入輸出串流中。
-8. 每當您想要停止串流處理和封存事件時，請停止事件/程式。
-9. 刪除事件/程式 (並選擇性地刪除資產)。     
+6. 當您準備好 toostart 串流和封存時啟動 hello 事件/程式。
+7. （選擇性） hello 即時編碼器可以信號的 toostart 公告。 hello 公告 hello 輸出資料流中插入。
+8. 每當您想 toostop 串流並封存 hello 事件時，請停止 hello 事件/程式。
+9. 刪除 hello 事件/程式，並選擇性地刪除 hello 資產。     
 
 > [!IMPORTANT]
-> 請檢閱[使用會建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)，以了解具有內部部署編碼器和傳遞通道之即時串流的相關概念和考量。
+> 請檢閱[建立多位元速率串流的內部編碼器進行即時資料流處理](media-services-live-streaming-with-onprem-encoders.md)toolearn 概念和考量相關 toolive 內部編碼器和傳遞通道進行資料流處理。
 > 
 > 
 
-## <a name="to-view-notifications-and-errors"></a>檢視通知和錯誤
-如果您要檢視 Azure 入口網站所產生的通知和錯誤，請按一下 [通知] 圖示。
+## <a name="tooview-notifications-and-errors"></a>tooview 通知和錯誤
+如果您希望 tooview 通知錯誤所產生的 hello Azure 入口網站，請按一下 hello 通知圖示。
 
 ![通知](./media/media-services-portal-passthrough-get-started/media-services-notifications.png)
 
 ## <a name="create-and-start-pass-through-channels-and-events"></a>建立並啟動即時通行通道和事件
-通道是與事件/程式相關聯，而程式可讓您控制即時串流中區段的發佈和儲存。 通道會管理事件。 
+通道是 toocontrol hello 發行和即時串流片段的儲存體可讓您的事件/程式相關聯。 通道會管理事件。 
 
-設定 **封存時間範圍** 長度，即可指定您想要保留程式之錄製內容的時數。 此值可以設為最少 5 分鐘到最多 25 個小時。 封存時間範圍長度也會指出用戶端可以從目前即時位置及時往回搜尋的最大時間量。 事件在超過指定的時間量後還是可以執行，但是會持續捨棄落後時間範圍長度的內容。 此屬性的這個值也會決定用戶端資訊清單可以成長多長的時間。
+您可以指定您想要 tooretain hello 記錄內容 hello 程式設定 hello 的 hello 數**封存時間長度**長度。 這個值可以設定為 5 分鐘 tooa 最多 25 個小時的最小值。 封存時間長度也會規定 hello 最大用戶端可以從 hello 目前即時位置搜尋的時間量。 事件可以透過 hello 指定時間內，執行但落後 hello 時間長度的內容會持續遭到捨棄。 這個屬性的值也會決定資訊清單所能成長的時間長度 hello 用戶端。
 
-每個事件都是與資產相關聯。 若要發佈事件，您必須建立相關聯資產的 OnDemand 定位器。 擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
+每個事件都是與資產相關聯。 toopublish hello 事件，您必須建立 OnDemand 定位器 hello 相關聯的資產。 擁有這個定位器，可讓您 toobuild 您可以提供 tooyour 用戶端的串流 URL。
 
-通道支援最多三個同時執行的事件，因此您可以建立相同內送串流的多個封存。 這可讓您視需要發行和封存事件的不同部分。 例如，您的商務需求是封存 6 小時的程式，但只廣播最後 10 分鐘。 為了達成此目的，您必須建立兩個同時執行的程式。 其中一個程式設定為封存 6 小時的事件，但是未發行該程式。 另一個程式則設定為封存 10 分鐘，並發行程式。
+一個通道可支援同時執行的事件，因此您可以建立多個封存 hello toothree 註冊相同的傳入資料流。 這可讓您 toopublish 和封存的事件所需的不同部分。 例如，您的商務需求是 tooarchive 6 小時的程式，但 toobroadcast 最後的 10 分鐘。 tooaccomplish，您需要 toocreate 兩個同時執行的程式。 一個程式設 tooarchive 6 小時的 hello 事件，但 hello 程式不會發行。 hello 其他程式的組 tooarchive 為 10 分鐘並發佈此程式。
 
 您不應該重複使用現有的即時事件。 而是針對每個事件建立並啟動新事件。
 
-當您準備好開始串流和封存時，請啟動事件。 每當您想要停止串流處理和封存事件時，請停止程式。 
+啟動 hello 事件，當您準備好 toostart 串流和封存時。 每當您想 toostop 串流並封存 hello 事件時，請停止 hello 程式。 
 
-若要刪除封存的內容，請停止並刪除事件，然後刪除相關聯的資產。 如果事件使用資產，則無法刪除資產；必須先刪除事件。 
+toodelete 封存內容時，會停止和刪除 hello 事件，然後再刪除 hello 相關聯的資產。 無法刪除資產，如果它由事件。必須先刪除 hello 事件。 
 
-只要您未刪除資產，即使在停止並刪除事件之後，使用者還是可以視需求將封存的內容串流為視訊。
+即使您停止並刪除 hello 事件之後，hello 使用者是無法 toostream 封存的內容，視視訊，只要您不要刪除 hello 資產。
 
-如果想要保留封存的內容，但不要讓它可進行串流，請刪除串流定位器。
+若要封存的 tooretain hello 內容，而不是需要它提供給串流，刪除 hello 串流定位器。
 
-### <a name="to-use-the-portal-to-create-a-channel"></a>使用 Azure 入口網站來建立通道
-本節示範如何使用 [快速建立]  選項來建立即時通行通道。
+### <a name="toouse-hello-portal-toocreate-a-channel"></a>toouse hello 入口 toocreate 通道
+此區段會顯示如何 toouse hello**快速建立**選項 toocreate 通過通道。
 
 如需傳遞通道的詳細資訊，請參閱[使用會從建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，選取您的 Azure 媒體服務帳戶。
-2. 在 [設定] 視窗中，按一下 [即時視訊串流]。 
+1. 在 hello [Azure 入口網站](https://portal.azure.com/)，選取您的 Azure Media Services 帳戶。
+2. 在 hello**設定**視窗中，按一下 **即時資料流**。 
    
     ![開始使用](./media/media-services-portal-passthrough-get-started/media-services-getting-started.png)
    
-    [即時視訊串流]  視窗隨即出現。
-3. 按一下 [快速建立]  ，使用 RTMP 內嵌通訊協定建立即時通行通道。
+    hello**即時資料流** 視窗隨即出現。
+3. 按一下**快速建立**toocreate 通過通道以 hello RTMP 內嵌通訊協定。
    
-    [建立新的通道]  視窗隨即出現。
-4. 提供新通道的名稱，然後按一下 [建立] 。 
+    hello**建立新的通道** 視窗隨即出現。
+4. 提供 hello 新通道名稱，然後按一下 **建立**。 
    
-    這會使用 RTMP 內嵌通訊協定建立即時通行通道。
+    這會建立 hello 通過通道 RTMP 內嵌通訊協定。
 
 ## <a name="create-events"></a>建立事件
-1. 選取您要新增事件的通道。
+1. 選取您想要 tooadd 事件通道 toowhich。
 2. 按下 [即時事件]  按鈕。
 
 ![Event](./media/media-services-portal-passthrough-get-started/media-services-create-events.png)
 
 ## <a name="get-ingest-urls"></a>取得內嵌 URL
-建立通道之後，即可取得您提供給即時編碼器的內嵌 URL。 編碼器會使用這些 URL 來輸入即時串流。
+一旦建立 hello 通道之後，您可以取得內嵌您將會提供 toohello 即時編碼器的 Url。 hello 編碼器使用這些 Url tooinput 即時資料流。
 
 ![建立時間](./media/media-services-portal-passthrough-get-started/media-services-channel-created.png)
 
-## <a name="watch-the-event"></a>監看事件
-若要監看事件，請按一下 Azure 入口網站中的 [監看]  ，或複製串流 URL 並使用您選擇的播放程式。 
+## <a name="watch-hello-event"></a>監看式 hello 事件
+toowatch hello 事件中，按一下 **監看式**在 hello Azure 入口網站 或 複製 hello 串流 URL，並使用您選擇的播放程式。 
 
 ![建立時間](./media/media-services-portal-passthrough-get-started/media-services-default-event.png)
 
-即時事件會在停止時自動轉換為點播內容。
+實況事件時會自動取得轉換的 tooon 要求內容時停止。
 
 ## <a name="clean-up"></a>清除
 如需傳遞通道的詳細資訊，請參閱[使用會從建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。
 
-* 只有當通道上的所有事件/程式都已停止時，才能停止通道。  停止通道之後，就不會產生任何費用。 當您需要重新啟動它時，它會具有相同的內嵌 URL，因此您不需要重新設定編碼器。
-* 只有當通道上的所有事件都已刪除時，才能刪除通道。
+* 所有事件/程式 hello 通道上都已都停止時，才可都停止通道。  一旦停止 hello 通道時，它不會不會產生任何費用。 當您需要 toostart 同樣地，它會有 hello 相同內嵌 URL，您不需要 tooreconfigure 您的編碼器。
+* 已刪除 hello 通道上的所有即時事件時，才可以刪除通道。
 
 ## <a name="view-archived-content"></a>檢視封存的內容
-只要您未刪除資產，即使在停止並刪除事件之後，使用者還是可以視需求將封存的內容串流為視訊。 如果事件使用資產，則無法刪除資產；必須先刪除事件。 
+即使您停止並刪除 hello 事件之後，hello 使用者是無法 toostream 封存的內容，視視訊，只要您不要刪除 hello 資產。 無法刪除資產，如果它由事件。必須先刪除 hello 事件。 
 
-若要管理您的資產，請選取 [設定]，然後按一下 [資產]。
+您的資產，選取 toomanage**設定**按一下**資產**。
 
-![資產](./media/media-services-portal-passthrough-get-started/media-services-assets.png)
+![Assets](./media/media-services-portal-passthrough-get-started/media-services-assets.png)
 
 ## <a name="next-step"></a>後續步驟
 檢閱媒體服務學習路徑。

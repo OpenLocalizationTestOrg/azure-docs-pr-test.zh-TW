@@ -1,6 +1,6 @@
 ---
-title: "從 C# 連線到 Azure Database for MySQL | Microsoft Docs"
-description: "本快速入門提供 C# (.NET) 程式碼範例，您可用於從 Azure Database for MySQL 連線及查詢資料。"
+title: "用於從 C# 的 MySQL 連接 tooAzure 資料庫 |Microsoft 文件"
+description: "本快速入門提供的 C# (.NET) 的程式碼範例可以使用 tooconnect 並查詢資料從 Azure 資料庫的 MySQL。"
 services: MySQL
 author: seanli1988
 ms.author: seal
@@ -11,39 +11,39 @@ ms.custom: mvc
 ms.devlang: csharp
 ms.topic: hero-article
 ms.date: 07/10/2017
-ms.openlocfilehash: f1488f6b4a240165c71c95f759af73d6b9fd7bfe
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0dca98186199a40ef9cc592b93c3b2e815260273
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-mysql-use-net-c-to-connect-and-query-data"></a>Azure Database for MySQL︰使用 .NET (C#) 來連線及查詢資料
-本快速入門示範如何使用 C# 應用程式來連線到 Azure Database for MySQL。 它會顯示如何使用 SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。 本文中的步驟假設您已熟悉使用 C# 進行開發，但不熟悉 Azure Database for MySQL。
+# <a name="azure-database-for-mysql-use-net-c-tooconnect-and-query-data"></a>Azure 資料庫的 MySQL： 使用.NET (C#) tooconnect 和查詢資料
+本快速入門示範如何 tooconnect tooan Azure 資料庫的 MySQL 使用 C# 應用程式。 它會顯示 toouse SQL 陳述式 tooquery，如何插入、 更新和刪除 hello 資料庫中的資料。 hello 本文章中的步驟假設您已熟悉開發使用 C# 中，且新 tooworking 與 MySQL 的 Azure 資料庫。
 
 ## <a name="prerequisites"></a>必要條件
-本快速入門使用在以下任一指南中建立的資源作為起點︰
+本快速入門會使用 hello 資源建立在其中一個這些指南做為起點：
 - [使用 Azure 入口網站建立適用於 MySQL 的 Azure 資料庫伺服器](./quickstart-create-mysql-server-database-using-azure-portal.md)
 - [使用 Azure CLI 建立適用於 MySQL 的 Azure 資料庫伺服器](./quickstart-create-mysql-server-database-using-azure-cli.md)
 
 您也需要：
-- 安裝 [.NET](https://www.microsoft.com/net/download)。 請依照連結文章中的步驟，特別為您的平台 (Windows、Ubuntu Linux 或 macOS) 安裝 .NET。 
+- 安裝 [.NET](https://www.microsoft.com/net/download)。 請遵循 hello hello 連結文章 tooinstall.NET 特別為您的平台 （Windows、 Ubuntu Linux 或 macOS） 中的步驟。 
 - 安裝 [Visual Studio](https://www.visualstudio.com/downloads/)。
 - 安裝 [ODBC Driver for MySQL](https://dev.mysql.com/downloads/connector/odbc/)。
 
 ## <a name="get-connection-information"></a>取得連線資訊
-取得連線到 Azure Database for MySQL 所需的連線資訊。 您需要完整的伺服器名稱和登入認證。
+取得 MySQL hello 連線所需的資訊 tooconnect toohello Azure 資料庫。 您需要 hello 完整的伺服器名稱和登入認證。
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 從 Azure 入口網站的左側功能表中，按一下 [所有資源]，然後搜尋您所建立的伺服器，例如 **myserver4demo**。
-3. 按一下伺服器名稱。
-4. 選取伺服器的 [屬性] 頁面。 記下 [伺服器名稱] 和 [伺服器管理員登入名稱]。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com/)。
+2. 在 Azure 入口網站中的 hello 左側功能表中按一下**所有資源**，並搜尋您已經建立，例如 hello 伺服器**myserver4demo**。
+3. 按一下 hello 伺服器名稱。
+4. 選取 hello 伺服器**屬性**頁面。 請記下 hello**伺服器名稱**和**伺服器系統管理員登入名稱**。
  ![Azure Database for MySQL 伺服器名稱](./media/connect-csharp/1_server-properties-name-login.png)
-5. 如果您忘記伺服器登入資訊，請瀏覽至 [概觀] 頁面來檢視伺服器管理員登入名稱，並視需要重設密碼。
+5. 如果您忘記您的伺服器登入資訊，請瀏覽 toohello**概觀**頁面 tooview hello 伺服器系統管理員登入名稱，並視需要重設 hello 密碼。
 
 ## <a name="connect-create-table-and-insert-data"></a>連線、建立資料表及插入資料
-使用下列程式碼搭配 **CREATE TABLE** 和 **INSERT INTO** SQL 陳述式來連線和載入資料。 此程式碼使用 ODBC 類別搭配 [Open()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.open(v=vs.110).aspx) 方法來建立 MySQL 連線。 然後，程式碼會使用 [CreateCommand()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.createcommand(v=vs.110).aspx) 方法，設定 CommandText 屬性，並呼叫 [ExecuteNonQuery()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbccommand.executenonquery(v=vs.110).aspx) 方法來執行資料庫命令。 
+使用 hello 下列程式碼 tooconnect 並載入 hello 資料使用**CREATE TABLE**和**INSERT INTO** SQL 陳述式。 hello 程式碼會使用 ODBC 類別具有方法[open （)](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.open(v=vs.110).aspx) tooestablish 連接 tooMySQL。 然後，hello 程式碼會使用方法[CreateCommand()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.createcommand(v=vs.110).aspx)管理員、 設定 hello CommandText 屬性，並呼叫方法[executenonquery （)](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbccommand.executenonquery(v=vs.110).aspx) toorun hello 資料庫命令。 
 
-以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。 
+取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。 
 
 ```csharp
 using System;
@@ -91,7 +91,7 @@ namespace driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN to exit");
+            Console.WriteLine("Press RETURN tooexit");
             Console.ReadLine();
         }
 
@@ -102,9 +102,9 @@ namespace driver
 
 ## <a name="read-data"></a>讀取資料
 
-使用下列程式碼搭配 **SELECT** SQL 陳述式來連線和讀取資料。 此程式碼使用 ODBC 類別搭配 [Open()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.open(v=vs.110).aspx) 方法來建立 MySQL 連線。 然後，程式碼會使用 [CreateCommand()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.createcommand(v=vs.110).aspx) 和 [ExecuteReader()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbccommand.executereader(v=vs.110).aspx) 方法來執行資料庫命令。 接下來程式碼會使用 [Read()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcdatareader.read(v=vs.110).aspx) 前往結果中的記錄。 接下來程式碼會使用 GetInt32 和 GetString 來剖析記錄中的值。
+使用 hello 下列程式碼 tooconnect 並讀取 hello 資料使用**選取**SQL 陳述式。 hello 程式碼會使用 ODBC 類別具有方法[open （)](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.open(v=vs.110).aspx) tooestablish 連接 tooMySQL。 然後，hello 程式碼會使用方法[CreateCommand()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.createcommand(v=vs.110).aspx)和方法[executereader （)](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbccommand.executereader(v=vs.110).aspx) toorun hello 資料庫命令。 接下來 hello 程式碼使用[read](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcdatareader.read(v=vs.110).aspx) tooadvance toohello hello 結果記錄。 然後 hello 程式碼會使用 GetInt32 和 GetString tooparse hello 值 hello 記錄中。
 
-以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。 
+取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。 
 
 ```csharp
 using System;
@@ -148,7 +148,7 @@ namespace driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN to exit");
+            Console.WriteLine("Press RETURN tooexit");
             Console.ReadLine();
         }
     }
@@ -158,9 +158,9 @@ namespace driver
 ```
 
 ## <a name="update-data"></a>更新資料
-使用下列程式碼搭配 **UPDATE** SQL 陳述式來連線和讀取資料。 此程式碼使用 ODBC 類別搭配 [Open()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.open(v=vs.110).aspx) 方法來建立 MySQL 連線。 然後，程式碼會使用 [CreateCommand()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.createcommand(v=vs.110).aspx) 方法，設定 CommandText 屬性，並呼叫 [ExecuteNonQuery()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbccommand.executenonquery(v=vs.110).aspx) 方法來執行資料庫命令。
+使用 hello 下列程式碼 tooconnect 並讀取 hello 資料使用**更新**SQL 陳述式。 hello 程式碼會使用 ODBC 類別具有方法[open （)](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.open(v=vs.110).aspx) tooestablish 連接 tooMySQL。 然後，hello 程式碼會使用方法[CreateCommand()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.createcommand(v=vs.110).aspx)管理員、 設定 hello CommandText 屬性，並呼叫方法[executenonquery （)](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbccommand.executenonquery(v=vs.110).aspx) toorun hello 資料庫命令。
 
-以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。 
+取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。 
 
 ```csharp
 using System;
@@ -195,7 +195,7 @@ namespace driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN to exit");
+            Console.WriteLine("Press RETURN tooexit");
             Console.ReadLine();
         }
     }
@@ -207,11 +207,11 @@ namespace driver
 
 
 ## <a name="delete-data"></a>刪除資料
-使用下列程式碼搭配 **DELETE** SQL 陳述式來連線和刪除資料。 
+使用 hello 下列程式碼 tooconnect 並刪除 hello 資料使用**刪除**SQL 陳述式。 
 
-此程式碼使用 ODBC 類別搭配 [Open()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.open(v=vs.110).aspx) 方法來建立 MySQL 連線。 然後，程式碼會使用 [CreateCommand()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.createcommand(v=vs.110).aspx) 方法，設定 CommandText 屬性，並呼叫 [ExecuteNonQuery()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbccommand.executenonquery(v=vs.110).aspx) 方法來執行資料庫命令。
+hello 程式碼會使用 ODBC 類別具有方法[open （)](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.open(v=vs.110).aspx) tooestablish 連接 tooMySQL。 然後，hello 程式碼會使用方法[CreateCommand()](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcconnection.createcommand(v=vs.110).aspx)管理員、 設定 hello CommandText 屬性，並呼叫方法[executenonquery （)](https://msdn.microsoft.com/en-us/library/system.data.odbc.odbccommand.executenonquery(v=vs.110).aspx) toorun hello 資料庫命令。
 
-以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。 
+取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。 
 
 ```csharp
 using System;
@@ -243,7 +243,7 @@ namespace driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN to exit");
+            Console.WriteLine("Press RETURN tooexit");
             Console.ReadLine();
         }
     }
@@ -253,4 +253,4 @@ namespace driver
 
 ## <a name="next-steps"></a>後續步驟
 > [!div class="nextstepaction"]
-> [使用傾印和還原來將 MySQL 資料庫移轉至適用於 MySQL 的 Azure 資料庫](concepts-migrate-dump-restore.md)
+> [用於使用傾印和還原 MySQL 移轉您的 MySQL 資料庫 tooAzure 資料庫](concepts-migrate-dump-restore.md)

@@ -1,6 +1,6 @@
 ---
-title: "使用混合式連線從 Azure App Service 內的 Web 應用程式連線至內部部署 SQL Server"
-description: "在 Microsoft Azure 上建立 Web 應用程式，並將它連接到內部部署 SQL Server 資料庫"
+title: "aaaConnect tooon 內部部署 SQL Server，從使用混合式連線的 Azure App Service 中的 web 應用程式"
+description: "Microsoft Azure 上建立 web 應用程式並將它連接 tooan 在內部部署 SQL Server 資料庫"
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -14,255 +14,255 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2016
 ms.author: cephalin
-ms.openlocfilehash: 12456ef3e2aecfa7a03cca97de2ff6ffd9602357
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2e8f8f7e0b9733cfb0433697615faba4358c6023
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-on-premises-sql-server-from-a-web-app-in-azure-app-service-using-hybrid-connections"></a>使用混合式連線從 Azure App Service 內的 Web 應用程式連線至內部部署 SQL Server
-「混合式連線」可將 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web Apps 連接到使用靜態 TCP 連接埠的內部部署資源。 支援的資源包括 Microsoft SQL Server、MySQL、HTTP Web API、App Service 和大部分的自訂 Web 服務。
+# <a name="connect-tooon-premises-sql-server-from-a-web-app-in-azure-app-service-using-hybrid-connections"></a>從使用混合式連線的 Azure App Service 中的 web 應用程式連接 tooon 內部部署 SQL Server
+混合式連線可以連接[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web 應用程式使用靜態 TCP 連接埠的 tooon 內部部署資源。 支援的資源包括 Microsoft SQL Server、MySQL、HTTP Web API、App Service 和大部分的自訂 Web 服務。
 
-在本教學課程中，您將了解如何在 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)中建立 App Service Web 應用程式、使用新的「混合式連線」功能將 Web 應用程式連接到您的本機內部部署 SQL Server 資料庫、建立將使用混合式連線的簡易 ASP.NET 應用程式，以及將應用程式部署至 App Service Web 應用程式。 Azure 上已完成的 Web 應用程式會將使用者認證儲存在內部部署的成員資格資料庫中。 本教學課程假設您沒有使用 Azure 或 ASP.NET 的經驗。
+在本教學課程中，您將學習如何 toocreate App Service web 應用程式在 hello [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)連接 hello web 應用程式 tooyour 本機內部部署 SQL Server 資料庫使用 hello 新混合式連線功能，建立簡單的 ASP.NET將會使用 hello 混合式連接，並部署 hello 應用程式 toohello App Service web 應用程式的應用程式。 在 Azure 上的 hello 完成 web 應用程式是在內部部署的成員資格資料庫中儲存使用者認證。 hello 教學課程會假設沒有使用經驗，使用 Azure 或 ASP.NET。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想 tooget 之前註冊 Azure 帳戶與 Azure 應用程式服務啟動時，請移至太[再試一次應用程式服務](https://azure.microsoft.com/try/app-service/)，可以立即存留較短的入門的 web 應用程式中建立應用程式服務。 不需要信用卡；沒有承諾。
 > 
-> 「混合式連線」功能的 Web Apps 部分僅適用於 [Azure 入口網站](https://portal.azure.com)。 若要在 BizTalk 服務中建立連線，請參閱 [混合式連線](http://go.microsoft.com/fwlink/p/?LinkID=397274)。  
+> hello 混合式連線功能 hello Web 應用程式部分是只用於 hello [Azure 入口網站](https://portal.azure.com)。 請參閱 toocreate BizTalk 服務中的連接[混合式連線](http://go.microsoft.com/fwlink/p/?LinkID=397274)。  
 > 
 > 
 
 ## <a name="prerequisites"></a>必要條件
-若要完成本教學課程，您將需要下列產品。 所有產品都有免費版本可使用，因此您可以免費進行 Azure 相關開發。
+toocomplete 本教學課程中，您將需要下列產品的 hello。 所有產品都有免費版本可使用，因此您可以免費進行 Azure 相關開發。
 
 * **Azure 訂閱** - 如需免費訂閱，請參閱 [Azure 免費試用](/pricing/free-trial/)。
-* **Visual Studio 2013** - 若要下載 Visual Studio 2013 的免費試用版，請參閱 [Visual Studio 下載](http://www.visualstudio.com/downloads/download-visual-studio-vs)。 請先安裝此項目再繼續作業。
-* **Microsoft .NET Framework 3.5 Service Pack 1** - 如果您的作業系統是 Windows 8.1、Windows Server 2012 R2、Windows 8、Windows Server 2012、Windows 7 或 Windows Server 2008 R2，您可以在 [控制台] > [程式和功能] > [開啟或關閉 Windows 功能] 中啟用此項目。 否則，您可以從 [Microsoft 下載中心](http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=22)下載。
-* **SQL Server 2014 Express with Tools** - 請在 [Microsoft Web Platform Database 頁面](http://www.microsoft.com/web/platform/database.aspx)下載免費的 Microsoft SQL Server Express。 選擇 [Express]  \(非 LocalDB) 版本。 [Express with Tools]  版本包含您將在此教學課程中使用的 SQL Server Management Studio。
-* **SQL Server Management Studio Express** - 此項目隨附於前述的 SQL Server 2014 Express with Tools 下載中，但您必須個別加以安裝，您可以從 [SQL Server Express 下載頁面](http://www.microsoft.com/web/platform/database.aspx)加以下載並安裝。
+* **Visual Studio 2013** -toodownload 免費試用版的 Visual Studio 2013，請參閱[Visual Studio 下載](http://www.visualstudio.com/downloads/download-visual-studio-vs)。 請先安裝此項目再繼續作業。
+* **Microsoft .NET Framework 3.5 Service Pack 1** - 如果您的作業系統是 Windows 8.1、Windows Server 2012 R2、Windows 8、Windows Server 2012、Windows 7 或 Windows Server 2008 R2，您可以在 [控制台] > [程式和功能] > [開啟或關閉 Windows 功能] 中啟用此項目。 否則，您可以從下載 hello [Microsoft Download Center](http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=22)。
+* **SQL Server 2014 Express with Tools** -Microsoft SQL Server Express 免費下載在 hello [Microsoft Web 平台的資料庫頁面](http://www.microsoft.com/web/platform/database.aspx)。 選擇 hello **Express** (不是 LocalDB) 版本。 hello **Express with Tools**版本包含 SQL Server Management Studio，您將在本教學課程中使用。
+* **SQL Server Management Studio Express** -這是使用上面所提下載工具隨附於 SQL Server 2014 Express hello 但如果您需要 tooinstall 它分開，您可以下載並安裝從 hello [SQL Server Express下載頁面](http://www.microsoft.com/web/platform/database.aspx)。
 
-本教學課程假設您具有 Azure 訂閱、您已安裝 Visual Studio 2013，並且已安裝或啟用 .NET Framework 3.5。 本教學課程將說明如何在可與 Azure 混合式連線功能妥善搭配運作的組態中安裝 SQL Server 2014 Express (使用靜態 TCP 連接埠的預設執行個體)。 在開始本教學課程之前，如果您尚未安裝 SQL Server，請先從前述位置下載 SQL Server 2014 Express with Tools。
+hello 教學課程假設您有 Azure 訂閱，您已安裝 Visual Studio 2013，以及您已安裝或啟用.NET Framework 3.5。 hello 教學課程會示範 tooinstall SQL Server 2014 Express 中的設定，適用於 hello Azure 混合式連線功能 （使用靜態 TCP 連接埠的預設執行個體） 的方式。 開始之前 hello 教學課程，請從上面所述，如果您沒有安裝 SQL Server 的 hello 位置下載 SQL Server 2014 Express with Tools。
 
 ### <a name="notes"></a>注意事項
-若要透過混合式連線使用內部部署 SQL Server 或 SQL Server Express 資料庫，必須在靜態連接埠上啟用 TCP/IP。 SQL Server 上的預設執行個體會使用靜態連接埠 1433，但指定的執行個體則否。
+toouse 在內部部署 SQL Server 或 SQL Server Express 的混合式連接的資料庫，TCP/IP 需要 toobe 靜態連接埠上啟用。 SQL Server 上的預設執行個體會使用靜態連接埠 1433，但指定的執行個體則否。
 
-安裝內部部署混合式連線管理員代理程式的電腦：
+您安裝代理程式 」 在內部部署混合式連線管理員 hello hello 電腦：
 
-* 必須有透過下列連接埠的 Azure 輸出連線：
+* 必須在有傳出連線 tooAzure:
 
-| 連接埠 | 理由 |
+| Port | 理由 |
 | --- | --- |
 | 80 |**必要** 可供 HTTP 連接埠進行憑證驗證以及可供進行資料連線 (選用)。 |
-| 443 |**選用** 可供進行資料連線。 如果無法使用 443 的輸出連線，則使用 TCP 連接埠 80。 |
-| 5671 和 9352 |**建議** 但可供進行資料連線 (選用)。 請注意，此模式通常會產生較高的輸送量。 如果無法使用這些連接埠的輸出連線，則使用 TCP 連接埠 443。 |
+| 443 |**選用** 可供進行資料連線。 如果無法使用輸出連線 too443 時，會使用 TCP 連接埠 80。 |
+| 5671 和 9352 |**建議** 但可供進行資料連線 (選用)。 請注意，此模式通常會產生較高的輸送量。 如果無法使用輸出連線 toothese 連接埠，則會使用 TCP 連接埠 443。 |
 
-* 必須能夠連繫內部部署資源的 *hostname*上：*portnumber* 。
+* 必須是能夠 tooreach hello *hostname*:*portnumber*的內部部署資源。
 
-本文中的步驟假設您使用將主控內部部署混合式連線代理程式之電腦中的瀏覽器。
+本文章中的 hello 步驟假設您使用 hello 瀏覽器從 hello 主控 hello 在內部部署混合式連接的代理程式的電腦。
 
-如果您已在組態和符合前述條件的環境中安裝 SQL Server，您可以直接開始 [在內部部署中建立 SQL Server 資料庫](#CreateSQLDB)。
+如果您已符合上面所述的 hello 條件的環境和組態中安裝 SQL Server，您可以三級跳，而且開頭[建立 SQL Server 資料庫內部](#CreateSQLDB)。
 
 <a name="InstallSQL"></a>
 
 ## <a name="a-install-sql-server-express-enable-tcpip-and-create-a-sql-server-database-on-premises"></a>A. 在內部部署中安裝 SQL Server Express、啟用 TCP/IP 及建立 SQL Server 資料庫
-本節說明如何安裝 SQL Server Express、啟用 TCP/IP 及建立資料庫，讓您的 Web 應用程式可在 Azure 入口網站中運作。
+這個區段會顯示 SQL Server Express，tooinstall 如何啟用 TCP/IP，和建立資料庫，以便您的 web 應用程式會處理 hello Azure 入口網站。
 
 ### <a name="install-sql-server-express"></a>安裝 SQL Server Express
-1. 若要安裝 SQL Server Express，請執行您已下載的 **SQLEXPRWT_x64_ENU.exe** 或 **SQLEXPR_x86_ENU.exe** 檔案。 [SQL Server 安裝中心] 精靈會隨即出現。
+1. tooinstall SQL Server Express，執行 hello **SQLEXPRWT_x64_ENU.exe**或**SQLEXPR_x86_ENU.exe**您下載的檔案。 hello SQL Server 安裝中心精靈 隨即出現。
    
     ![SQL Server Install][SQLServerInstall]
-2. 選擇 [新的 SQL Server 獨立安裝或將功能加入到現有安裝] 。 遵循指示接受預設選項和設定，直到您進入 [執行個體組態]  頁面。
-3. 在 [執行個體組態] 頁面上，選擇 [預設執行個體]。
+2. 選擇**新的 SQL Server 獨立安裝或加入現有安裝的功能 tooan**。 Hello 的指示，直到取得 toohello 接受 hello 預設選項及設定，請依照下列**執行個體組態**頁面。
+3. 在 hello**執行個體組態**頁面上，選擇**預設執行個體**。
    
     ![Choose Default Instance][ChooseDefaultInstance]
    
-    根據預設，SQL Server 的預設執行個體會在靜態連接埠 1433 上接聽來自 SQL Server 用戶端的要求，而這正是混合式連線功能的需求。 指定的執行個體會使用動態連接埠和 UDP，而混合式連線並不加以支援。
-4. 接受 [伺服器組態]  頁面上的預設值。
-5. 在 [資料庫引擎組態] 頁面上的 [驗證模式] 下，選擇 [混合模式 (SQL Server 驗證和 Windows 驗證)]，並提供密碼。
+    根據預設，SQL Server hello 預設執行個體會靜態通訊埠 1433，SQL Server 用戶端要求是混合式連線功能需要什麼 hello。 指定的執行個體會使用動態連接埠和 UDP，而混合式連線並不加以支援。
+4. 接受 hello 預設值在 hello**伺服器組態**頁面。
+5. 在 hello**資料庫引擎組態**頁面的 **驗證模式**，選擇**混合模式 （SQL Server 驗證和 Windows 驗證）**，並提供密碼。
    
     ![Choose Mixed Mode][ChooseMixedMode]
    
-    在本教學課程中，您將使用 SQL Server 驗證。 請務必記住您提供的密碼，因為後續將會用到。
-6. 逐步完成精靈的其餘步驟，以完成安裝。
+    在本教學課程中，您將使用 SQL Server 驗證。 是您所提供，確定 tooremember hello 密碼，因為您稍後會需要。
+6. 逐步執行 hello 精靈 toocomplete hello 安裝 hello 其餘部分。
 
 ### <a name="enable-tcpip"></a>啟用 TCP/IP
-若要啟用 TCP/IP，您必須使用您在安裝 SQL Server Express 時所安裝的 SQL Server 組態管理員。 請先執行 [為 SQL Server 啟用 TCP/IP 網路通訊協定](http://technet.microsoft.com/library/hh231672%28v=sql.110%29.aspx) 中的步驟，再繼續作業。
+tooenable TCP/IP，您將使用 SQL Server 組態管理員，當您安裝 SQL Server Express 安裝。 中的 hello 步驟[啟用 TCP/IP 網路通訊協定的 SQL Server](http://technet.microsoft.com/library/hh231672%28v=sql.110%29.aspx)才能繼續。
 
 <a name="CreateSQLDB"></a>
 
 ### <a name="create-a-sql-server-database-on-premises"></a>在內部部署中建立 SQL Server 資料庫
-您的 Visual Studio Web 應用程式需要可由 Azure 存取的成員資格資料庫。 這必須要有 SQL Server 或 SQL Server Express 資料庫 (不是 MVC 範本依預設使用的 LocalDB 資料庫)，因此您接下來將會建立成員資格資料庫。
+您的 Visual Studio Web 應用程式需要可由 Azure 存取的成員資格資料庫。 這需要 SQL Server 或 SQL Server Express 資料庫 （不 hello LocalDB 資料庫 hello MVC 範本會依預設），讓您將接著建立 hello 成員資格資料庫。
 
-1. 在 SQL Server Management Studio 中，連接到您剛剛安裝的 SQL Server。 (如果 [連線到伺服器] 對話方塊未自動出現，請導覽至左窗格中的 [物件總管]，依序按一下 [連接] 和 [資料庫引擎]。)![連接到伺服器][SSMSConnectToServer]
+1. 在 SQL Server Management Studio 中，連接 toohello 您剛才安裝的 SQL Server。 (如果 hello**連接 tooServer**對話方塊不會不會自動出現，瀏覽過**物件總管] 中**hello 左窗格中，按一下 [**連接**，然後按一下 **Database Engine**。)![連接 tooServer][SSMSConnectToServer]
    
-    針對 [伺服器類型]，選擇 [資料庫引擎]。 對於 [伺服器名稱]，您可以使用 **localhost** 或您要使用之電腦的名稱。 選擇 [SQL Server 驗證]，然後以您先前建立的 sa 使用者名稱和密碼登入。
-2. 若要使用 SQL Server Management Studio 建立新資料庫，請在 [物件總管] 中以滑鼠右鍵按一下 [資料庫]，然後按一下 [新增資料庫]。
+    針對 [伺服器類型]，選擇 [資料庫引擎]。 如**伺服器名稱**，您可以使用**localhost**或 hello 您所使用的 hello 電腦名稱。 選擇**SQL Server 驗證**，然後 hello sa 使用者名稱和密碼登入 hello 您稍早建立的。
+2. toocreate 新的資料庫使用 SQL Server Management Studio，以滑鼠右鍵按一下**資料庫**在物件總管 中，，然後按一下**新資料庫**。
    
     ![Create new database][SSMScreateNewDB]
-3. 在 [新增資料庫] 對話方塊中，輸入 MembershipDB 做為資料庫名稱，然後按一下 [確定]。
+3. 在 hello**新資料庫** 對話方塊中，輸入 MembershipDB hello 資料庫名稱，然後按一下**確定**。
    
     ![Provide database name][SSMSprovideDBname]
    
-    請注意，到目前為止您並未對資料庫做任何變更。 成員資格資訊後續會在您執行 Web 應用程式時由該應用程式自動新增。
-4. 在 [物件總管] 中，如果您展開 [資料庫] ，您會發現成員資格資料庫已建立。
+    請注意，您不做任何變更 toohello 資料庫此時。 在執行時，則將 web 應用程式所自動更新版本加入 hello 成員資格資訊。
+4. 在 [物件總管] 中，如果您展開**資料庫**，您會看到已建立該 hello 成員資格資料庫。
    
     ![MembershipDB created][SSMSMembershipDBCreated]
 
 <a name="CreateSite"></a>
 
-## <a name="b-create-a-web-app-in-the-azure-portal"></a>B. 在 Azure 入口網站中建立 Web 應用程式
+## <a name="b-create-a-web-app-in-hello-azure-portal"></a>B. 在 hello Azure 入口網站中建立 web 應用程式
 > [!NOTE]
-> 如果您已在 Azure 入口網站中建立要用於此教學課程的 Web 應用程式，您可以直接跳到 [建立混合式連線和 BizTalk 服務](#CreateHC) 繼續作業。
+> 如果您已經在 hello 的 toouse 本教學課程中的 Azure 入口網站中建立 web 應用程式，您可以向前跳過[建立混合式連接和 BizTalk 服務](#CreateHC)並從該處繼續。
 > 
 > 
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [新增]  >  [Web + 行動]  >  [Web 應用程式]。
+1. 在 hello [Azure 入口網站](https://portal.azure.com)，按一下 **新增** > **Web + 行動** > **Web 應用程式**。
    
     ![New button][New]
-2. 設定您的 Web 應用程式，然後按一下 [建立] 。
+2. 設定您的 Web 應用程式，然後按一下建立 。
    
     ![Website name][WebsiteCreationBlade]
-3. 經過一段時間之後，Web 應用程式會建立，並顯示它的 Web 應用程式分頁。 此分頁是垂直捲動的儀表板，可供您管理 Web 應用程式。
+3. 在幾分鐘之後, 建立 hello web 應用程式和其 web 應用程式 刀鋒視窗隨即出現。 hello 刀鋒視窗中是可垂直捲動的儀表板可讓您管理您的 web 應用程式。
    
     ![Website running][WebSiteRunningBlade]
    
-    若要確認 Web 應用程式是否已上線啟用，您可以按一下 [瀏覽]  圖示以顯示預設頁面。
+    是即時的 tooverify hello web 應用程式，您可以按一下 hello**瀏覽**圖示 toodisplay hello 預設頁面。
 
-接著，您將為 Web 應用程式建立混合式連線和 BizTalk 服務。
+接下來，您將建立混合式連接和 hello web 應用程式的 BizTalk 服務。
 
 <a name="CreateHC"></a>
 
 ## <a name="c-create-a-hybrid-connection-and-a-biztalk-service"></a>C. 建立混合式連線和 BizTalk 服務
-1. 返回入口網站，移至設定並按一下 [網路]  >  [設定混合式連接端點]。
+1. 傳回在 hello 入口網站，請移 toosettings，然後按一下**網路** > **設定您的混合式連接端點**。
    
     ![混合式連線][CreateHCHCIcon]
-2. 在 [混合式連線] 分頁上，按一下 [新增]  >  [建立混合式連線]。
-3. 在 [建立混合式連線]  刀鋒視窗上：
+2. 在 hello 混合式連線刀鋒視窗中，按一下 **新增** > **新混合式連接**。
+3. 在 hello**建立混合式連接**刀鋒視窗中：
    
-   * 在 [名稱] 中，提供連線的名稱。
-   * 針對 [主機名稱] ，輸入您的 SQL Server 主機電腦的電腦名稱。
-   * 針對 [連接埠] ，輸入 1433 (SQL Server 的預設連接埠)。
-   * 按一下 [BizTalk 服務]  >  [新增 BizTalk 服務]，然後輸入 BizTalk 服務的名稱。
+   * 如**名稱**，提供 hello 連接的名稱。
+   * 如**Hostname**，輸入您的 SQL Server 主機電腦 hello 電腦名稱。
+   * 如**連接埠**，輸入 1433 (hello 預設 SQL Server 連接埠）。
+   * 按一下**BizTalk 服務** > **新的 BizTalk 服務**，然後輸入 hello BizTalk 服務的名稱。
      
      ![Create a hybrid connection][TwinCreateHCBlades]
 4. 按兩次 [確定]  。
    
-    程序完成時，[通知] 區域會閃爍綠色 [成功]，而且 [混合式連線] 刀鋒視窗會顯示新的混合式連線，且狀態為 [未連線]。
+    Hello 程序完成時，hello**通知**區域將會閃爍綠色**成功**和 hello**混合式連接**刀鋒視窗會顯示以 hello 新混合式連接hello 狀態為**未連接**。
    
     ![One hybrid connection created][CreateHCOneConnectionCreated]
 
-至此，您已完成雲端混合式連線基礎結構的重要部分。 接下來，您將建立對應的內部部署部分。
+此時，您已完成 hello 雲端混合式連接的基礎結構的重要部分。 接下來，您將建立對應的內部部署部分。
 
 <a name="InstallHCM"></a>
 
-## <a name="d-install-the-on-premises-hybrid-connection-manager-to-complete-the-connection"></a>D. 安裝內部部署混合式連線管理員以完成連線
+## <a name="d-install-hello-on-premises-hybrid-connection-manager-toocomplete-hello-connection"></a>D. 安裝 hello 在內部部署混合式連線管理員 toocomplete hello 連線
 [!INCLUDE [app-service-hybrid-connections-manager-install](../../includes/app-service-hybrid-connections-manager-install.md)]
 
-現在，混合式連線基礎結構已完成，您將建立使用此基礎結構的 Web 應用程式。
+現在該 hello 混合式連接基礎結構已完成，您將建立 web 應用程式使用它。
 
 <a name="CreateASPNET"></a>
 
-## <a name="e-create-a-basic-aspnet-web-project-edit-the-database-connection-string-and-run-the-project-locally"></a>E. 建立基本 ASP.NET Web 專案、編輯資料庫連接字串，和在本機執行專案
+## <a name="e-create-a-basic-aspnet-web-project-edit-hello-database-connection-string-and-run-hello-project-locally"></a>E. 建立基本的 ASP.NET web 專案、 編輯 hello 資料庫連接字串，並在本機執行 hello 專案
 ### <a name="create-a-basic-aspnet-project"></a>建立基本 ASP.NET 專案
-1. 在 Visual Studio 的 [檔案]  功能表上，建立新的專案：
+1. 在 Visual Studio 中的 hello**檔案**功能表上，建立新的專案：
    
     ![New Visual Studio project][HCVSNewProject]
-2. 在 [新增專案] 對話方塊的 [範本] 區段中選取 [Web]，再選擇 [ASP.NET Web 應用程式]，然後按一下 [確定]。
+2. 在 hello**範本**hello 區段**新專案**對話方塊中，選取**Web**選擇**ASP.NET Web 應用程式**，然後按一下 **確定**。
    
     ![Choose ASP.NET Web Application][HCVSChooseASPNET]
-3. 在 [新增 ASP.NET 專案] 對話方塊中，選擇 [MVC]，然後按一下 [確定]。
+3. 在 hello**新增 ASP.NET 專案** 對話方塊中，選擇**MVC**，然後按一下**確定**。
    
     ![Choose MVC][HCVSChooseMVC]
-4. 建立專案之後，會出現應用程式 Readme 頁面。 請還不要執行 Web 專案。
+4. Hello 專案建立後，會顯示 hello 應用程式讀我檔案頁面。 請勿執行 hello web 專案。
    
     ![Readme page][HCVSReadmePage]
 
-### <a name="edit-the-database-connection-string-for-the-application"></a>編輯應用程式的資料庫連接字串
-在此步驟中您會編輯連接字串，以指示應用程式應至何處尋找您的本機 SQL Server Express 資料庫。 連接字串位於應用程式的 Web.config 檔案中，其中包含應用程式的組態資訊。
+### <a name="edit-hello-database-connection-string-for-hello-application"></a>編輯 hello hello 應用程式的資料庫連接字串
+在此步驟中，您可以編輯 hello 會告訴您的應用程式的連接字串其中 toofind 本機的 SQL Server Express 資料庫。 hello 連接字串是 hello 應用程式的 Web.config 檔案，其中包含 hello 應用程式的組態資訊。
 
 > [!NOTE]
-> 為確保您的應用程式使用的是您在 SQL Server Express 中建立的資料庫，而不是 Visual Studio 的預設 LocalDB 中的資料庫，請務必先完成此步驟，再執行您的專案。
+> 應用程式使用您在 SQL Server Express，並不在 Visual Studio 的預設 LocalDB 一個 hello hello 資料庫的 tooensure，請務必執行您的專案之前完成此步驟。
 > 
 > 
 
-1. 在 [方案總管] 中，按兩下 Web.config 檔案。
+1. 在方案總管 中，按兩下 hello Web.config 檔案。
    
     ![Web.config][HCVSChooseWebConfig]
-2. 依照下列範例中的語法編輯 [connectionStrings]  區段，將 SQL Server 資料庫指向您的本機電腦：
+2. 編輯 hello **connectionStrings**區段 toopoint toohello SQL Server 資料庫在本機電腦，在下列範例中的 hello hello 語法如下：
    
-    ![Connection string][HCVSConnectionString]
+    ![連接字串][HCVSConnectionString]
    
-    編譯連接字串時，請留意下列事項：
+    當您在撰寫 hello 連接字串，請注意 hello 下列：
    
-   * 如果您要連接到指定的執行個體而非預設執行個體 (例如 YourServer\SQLEXPRESS)，您必須將 SQL Server 設定成使用靜態連接埠。 如需設定靜態連接埠的相關資訊，請參閱 [如何將 SQL Server 設定成在特定連接埠上接聽](http://support.microsoft.com/kb/823938)。 根據預設，指定的執行個體會使用 UDP 和動態連接埠，而混合式連線並不加以支援。
-   * 建議您在連接字串上指定連接埠 (依預設為 1433，如範例所示)，以確定您的本機 SQL Server 會啟用 TCP 並使用正確的連接埠。
-   * 請務必使用 SQL Server 驗證進行連接，以在您的連接字串中指定使用者識別碼和密碼。
-3. 在 Visual Studio 中按一下 [儲存]  ，以儲存 Web.config 檔案。
+   * 如果您要連接 tooa 具名執行個體，而不是預設執行個體 (例如，YourServer\SQLEXPRESS)，您必須設定您 SQL Server toouse 靜態連接埠。 如需設定靜態通訊埠資訊，請參閱[如何 tooconfigure 特定通訊埠上的 SQL Server toolisten](http://support.microsoft.com/kb/823938)。 根據預設，指定的執行個體會使用 UDP 和動態連接埠，而混合式連線並不加以支援。
+   * 建議您指定 hello hello 連接字串上連接埠 (1433 根據預設，在 hello 範例所示)，使您可以確定您的本機 SQL Server 具有 TCP 已啟用，並且正在使用 hello 正確連接埠。
+   * 請記住 toouse SQL Server 驗證 tooconnect，指定連接字串中的 hello 使用者識別碼和密碼。
+3. 按一下**儲存**Visual Studio toosave hello Web.config 檔案中。
 
-### <a name="run-the-project-locally-and-register-a-new-user"></a>在本機執行專案和註冊新使用者
-1. 現在，請按一下 [偵錯] 下的瀏覽按鈕，在本機執行您新的 Web 專案。 此範例使用 Internet Explorer。
+### <a name="run-hello-project-locally-and-register-a-new-user"></a>在本機執行 hello 專案，並註冊新的使用者
+1. 現在，按一下 hello 瀏覽 按鈕，在偵錯在本機執行新的 web 專案。 此範例使用 Internet Explorer。
    
     ![Run project][HCVSRunProject]
-2. 在預設網頁的右上方，選擇 [註冊]  以註冊新帳戶：
+2. 在 hello 右上方的 hello 預設網頁，選擇 **註冊**tooregister 新的帳戶：
    
     ![Register a new account][HCVSRegisterLocally]
 3. 輸入使用者名稱和密碼：
    
     ![Enter user name and password][HCVSCreateNewAccount]
    
-    這會在您的本機 SQL Server 上自動建立一個資料庫，存放您應用程式的成員資格資訊。 其中一個資料表 (**dbo.AspNetUsers**) 包含如同您剛剛輸入的 Web 應用程式使用者認證。 稍後在教學課程中會看見此資料表。
-4. 關閉預設網頁的瀏覽器視窗。 這會停止 Visual Studio 中的應用程式。
+    這樣會自動建立資料庫，您會保留您的應用程式的 hello 成員資格資訊的本機 SQL Server 上。 其中一個 hello 資料表 (**dbo。AspNetUsers**) 保留 web 應用程式像是 hello 您剛才輸入的使用者認證。 您會看到此資料表在 hello 教學課程後面。
+4. 關閉 hello 的 hello 預設網頁瀏覽器視窗。 這樣會阻止 Visual Studio 中的 hello 應用程式。
 
-現在您已可執行下一個步驟，也就是將應用程式發行至 Azure，並加以測試。
+您現在準備好進行 hello 下一個步驟，也就是 toopublish hello 應用程式 tooAzure 並進行測試。
 
 <a name="PubNTest"></a>
 
-## <a name="f-publish-the-web-application-to-azure-and-test-it"></a>F. 將 Web 應用程式發行至 Azure 並加以測試
-現在，您會將應用程式發行至您的 App Service Web 應用程式並加以測試，以確認您先前設定的混合式連線是否可用來將您的 Web 應用程式連接到本機電腦上的資料庫。
+## <a name="f-publish-hello-web-application-tooazure-and-test-it"></a>F. 發行 hello web 應用程式 tooAzure 並進行測試
+現在，您將會發行您的應用程式 tooyour App Service web 應用程式，然後 toosee hello 混合式連接您先前設定的方式在本機電腦上的 web 應用程式 toohello 資料庫正在使用的 tooconnect。
 
-### <a name="publish-the-web-application"></a>發行 Web 應用程式
-1. 您可以在 Azure 入口網站中下載 App Service Web 應用程式的發行設定檔。 在您 Web 應用程式的分頁上，按一下 [取得發行設定檔] ，然後將檔案儲存至您的電腦。
+### <a name="publish-hello-web-application"></a>發行 hello web 應用程式
+1. 您可以下載您的 hello hello Azure 入口網站中的 App Service web 應用程式的發行設定檔。 在 web 應用程式的 hello 刀鋒視窗，按一下 **取得發行設定檔**，然後儲存 hello 檔案 tooyour 電腦。
    
     ![Download publish profile][PortalDownloadPublishProfile]
    
     接著，您會將此檔案匯入 Visual Studio Web 應用程式中。
-2. 在 Visual Studio 的 [方案總管] 中，以滑鼠右鍵按一下專案名稱，並選取 [發行] 。
+2. 在 Visual Studio 中，以滑鼠右鍵按一下方案總管 中的 hello 專案名稱，然後選取**發行**。
    
     ![Select publish][HCVSRightClickProjectSelectPublish]
-3. 在 [發佈 Web] 對話方塊的 [設定檔] 索引標籤上，選擇 [匯入]。
+3. 在 [hello**發行 Web** hello] 對話方塊，**設定檔**索引標籤上，選擇**匯入**。
    
     ![Import][HCVSPublishWebDialogImport]
-4. 瀏覽至您已下載的發行設定檔並加以選取，然後按一下 [確定] 。
+4. 瀏覽 tooyour 下載發行設定檔，加以選取，然後按**確定**。
    
-    ![Browse to profile][HCVSBrowseToImportPubProfile]
-5. 您的發行資訊會匯入並顯示在對話方塊的 [連線]  索引標籤上。
+    ![瀏覽 tooprofile][HCVSBrowseToImportPubProfile]
+5. 您發行的資訊匯入，並顯示 hello 上**連接**hello 對話方塊 索引標籤。
    
     ![Click Publish][HCVSClickPublish]
    
     按一下 [發行] 。
    
-    發行完成後，瀏覽器將會啟動並顯示您熟悉的 ASP.NET 應用程式，差別在於網站現在已運作於 Azure 雲端中。
+    當發行完成時，您的瀏覽器將會啟動，並顯示現在熟悉的 ASP.NET 應用程式--，不同之處在於現在是即時 hello Azure 雲端中 ！
 
-接著，您將使用即時 Web 應用程式來檢視其運作中的混合式連線。
+接下來，您將使用您的即時 web 應用程式 toosee 混合式連線作用中。
 
-### <a name="test-the-completed-web-application-on-azure"></a>測試 Azure 上已完成的 Web 應用程式
-1. 在您位於 Azure 上的網頁中，從右上方選擇 [登入] 。
+### <a name="test-hello-completed-web-application-on-azure"></a>測試 hello 完成 Azure 上的 web 應用程式
+1. Hello 最上層顯示權限的 Azure 上您網頁上，選擇 **登入**。
    
     ![Test log in][HCTestLogIn]
-2. 您的 App Service Web 應用程式現在已連接到您本機電腦上的 Web 應用程式成員資格資料庫。 若要驗證這一點，請以您先前在本機資料庫中輸入的相同認證登入。
+2. Web 應用程式現在正在您的應用程式服務連接 tooyour web 應用程式的成員資格資料庫，在本機電腦上。 tooverify，登入相同的認證，您輸入 hello 本機資料庫先前的 hello。
    
     ![Hello greeting][HCTestHelloContoso]
-3. 若要進一步測試新的混合式連線，請登出您的 Azure Web 應用程式，再以另一名使用者的身分註冊。 提供新的使用者名稱和密碼，然後按一下 [註冊] 。
+3. toofurther 測試新的混合式連線，登出您的 Azure web 應用程式並註冊為另一位使用者。 提供新的使用者名稱和密碼，然後按一下註冊 。
    
     ![Test register another user][HCTestRegisterRelecloud]
-4. 若要驗證新使用者的認證已透過混合式連線儲存在您的本機資料庫中，請在本機電腦上開啟 SQL Management Studio。 在 [物件總管] 中展開 **MembershipDB** 資料庫，然後展開 [資料表]。 以滑鼠右鍵按一下 **dbo.AspNetUsers** 成員資格資料表，然後選擇 [選取前 1000 個資料列] 以檢視結果。
+4. tooverify hello 新使用者的認證，透過您的混合式連線，本機資料庫中已儲存在本機電腦上開啟 SQL Management Studio。 在 物件總管 中，展開 hello **MembershipDB**資料庫，然後再展開**資料表**。 以滑鼠右鍵按一下 hello **dbo。AspNetUsers**成員資格資料表，並選擇**選取前 1000 個資料列**tooview hello 結果。
    
-    ![View the results][HCTestSSMSTree]
-5. 您的本機成員資格資料表此時會將兩個帳戶都顯示出來 - 您在本機建立的帳戶，以及您在 Azure 雲端中建立的帳戶。 您在雲端中建立的帳戶已透過 Azure 的混合式連線功能儲存到您的內部部署資料庫。
+    ![檢視 hello 結果][HCTestSSMSTree]
+5. 本機成員資格資料表現在會顯示這兩個帳戶-您在本機建立的其中一個 hello 與 hello hello Azure 雲端中建立的其中一個。 您建立 hello 雲端中的 hello 已儲存 tooyour 在內部部署資料庫，透過 Azure 的混合式連接功能。
    
     ![Registered users in on-premises database][HCTestShowMemberDb]
 
-現在，您已在 Azure 雲端中的 Web 應用程式與內部部署 SQL Server 資料庫之間，建立並部署使用混合式連線的 ASP.NET Web 應用程式。 恭喜！
+您現在已建立並部署 ASP.NET web 應用程式使用 hello Azure 雲端中的 web 應用程式與內部部署 SQL Server 資料庫之間的混合式連接。 恭喜！
 
 ## <a name="see-also"></a>另請參閱
 [混合式連線概觀](http://go.microsoft.com/fwlink/p/?LinkID=397274)

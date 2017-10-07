@@ -1,6 +1,6 @@
 ---
-title: "使用負載平衡集將 MySQL 叢集化 | Microsoft Docs"
-description: "在 Azure 上安裝以傳統部署模型建立的負載平衡、高可用性 Linux MySQL 叢集"
+title: "使用負載平衡集 aaaClusterize MySQL |Microsoft 文件"
+description: "設定負載平衡、 高可用性與 hello 傳統部署模型，在 Azure 上建立 Linux MySQL 叢集"
 services: virtual-machines-linux
 documentationcenter: 
 author: bureado
@@ -15,34 +15,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/14/2015
 ms.author: jparrel
-ms.openlocfilehash: 4eaf86c9ac3e4dc2b51b88383626eda774cab0e9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1829fd877c4b0ed177b23a8e3404dbb3db746561
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-load-balanced-sets-to-clusterize-mysql-on-linux"></a>在 Linux 上使用負載平衡集合將 MySQL 叢集化
+# <a name="use-load-balanced-sets-tooclusterize-mysql-on-linux"></a>使用 Linux 上的負載平衡集 tooclusterize MySQL
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有兩種：[Azure Resource Manager](../../../resource-manager-deployment-model.md) 和傳統。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如果您需要部署 MySQL 叢集，則可取得 [Resource Manager 範本](https://azure.microsoft.com/documentation/templates/mysql-replication/)。
+> Azure 建立和處理資源的部署模型有兩種：[Azure Resource Manager](../../../resource-manager-deployment-model.md) 和傳統。 本文說明如何使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。 A [Resource Manager 範本](https://azure.microsoft.com/documentation/templates/mysql-replication/)時才能使用需要 toodeploy MySQL 叢集。
 
-本文探索與說明要在 Microsoft Azure 上部署高度可用 Linux 架構服務的其他可用方法，首先從 MySQL Server 高可用性開始。 您可在 [第 9 頻道](http://channel9.msdn.com/Blogs/Open/Load-balancing-highly-available-Linux-services-on-Windows-Azure-OpenLDAP-and-MySQL)(英文) 上找到說明此方法的影片。
+這篇文章探討，並說明 hello 不同的方法可用 toodeploy 高可用性以 Linux 為基礎的服務在 Microsoft Azure 中，瀏覽做為入門的 MySQL Server 高可用性。 您可在 [第 9 頻道](http://channel9.msdn.com/Blogs/Open/Load-balancing-highly-available-Linux-services-on-Windows-Azure-OpenLDAP-and-MySQL)(英文) 上找到說明此方法的影片。
 
-我們會依據 DRBD、Corosync 和 Pacemaker，說明無共用、兩個節點、單一主要的 MySQL 高可用性解決方案。 一次只會有一個節點執行 MySQL。 也限制一次只會有一個節點從 DRBD 資源讀取和寫入。
+我們會依據 DRBD、Corosync 和 Pacemaker，說明無共用、兩個節點、單一主要的 MySQL 高可用性解決方案。 一次只會有一個節點執行 MySQL。 讀取和寫入從 hello DRBD 資源也是有限的 tooonly 一個節點一次。
 
-因為您將使用 Microsoft Azure 中的負載平衡集合，來提供循環配置資源功能和 VIP 的端點偵測、移除及正常復原，所以不需要 VIP 解決方案 (如 LVS)。 VIP 是一個可全域路由的 IPv4 位址，會在您第一次建立雲端服務時由 Microsoft Azure 指定。
+沒有 LVS，像是 VIP 解決方案需要，因為您將使用在 Microsoft Azure tooprovide 循環配置資源的功能和端點偵測、 移除和依正常程序復原 hello VIP 的負載平衡集。 hello VIP 是指派的 Microsoft Azure，當您初次建立 hello 雲端服務的全域路由傳送 IPv4 位址。
 
-還有其他可能架構可供 MySQL 使用，包括 NBD 叢集、Percona、Galera 以及數種中繼軟體解決方案 (包括至少有一個可作為 [VM Depot](http://vmdepot.msopentech.com) 上的 VM)。 只要這些解決方案可以在單點傳送與多點傳送上複寫或廣播，且不仰賴共用儲存體或多個網路介面，那麼應不難在 Microsoft Azure 上部署這些案例。
+還有其他可能架構可供 MySQL 使用，包括 NBD 叢集、Percona、Galera 以及數種中繼軟體解決方案 (包括至少有一個可作為 [VM Depot](http://vmdepot.msopentech.com) 上的 VM)。 只要這些解決方案可以複寫在單點傳播與多點傳送或廣播，而不依賴共用存放裝置或多個網路介面，hello 案例應該在 Microsoft Azure 上的簡單 toodeploy。
 
-您可以將這些叢集架構以類似的方式延伸到其他產品，如 PostgreSQL 和 OpenLDAP。 例如，已透過多個主要 OpenLDAP 成功測試使用無共用的負載平衡程序，您可以在我們的第 9 頻道 (Channel 9) 部落格上觀看此測試。
+這些叢集架構可以延伸 tooother 產品，例如 PostgreSQL 和 OpenLDAP 不要以類似的方式。 例如，已透過多個主要 OpenLDAP 成功測試使用無共用的負載平衡程序，您可以在我們的第 9 頻道 (Channel 9) 部落格上觀看此測試。
 
 ## <a name="get-ready"></a>準備就緒
-您需要下列資源和功能：
+您需要 hello 下列資源與能力：
 
-  - 具備有效訂用帳戶的 Microsoft Azure 帳戶，能夠建立至少兩個 VM (在此範例中使用 XS)
+  - Microsoft Azure 帳戶與有效的訂閱，無法 toocreate 至少兩個 Vm （XS 已在此範例中使用）
   - 網路和子網路
   - 同質群組
   - 可用性設定組
-  - 能夠在與雲端服務相同的區域中建立 VHD，並將它們連接至 Linux VM
+  - hello 能力 toocreate Vhd 在 hello 與 hello 雲端服務相同的區域，並且將它們附加 toohello Linux Vm
 
 ### <a name="tested-environment"></a>測試環境
 * Ubuntu 13.10
@@ -51,36 +51,36 @@ ms.lasthandoff: 07/11/2017
   * Corosync 和 Pacemaker
 
 ### <a name="affinity-group"></a>同質群組
-建立解決方案的同質群組，方法是登入 Azure 傳統入口網站，選取 [設定]，然後建立同質群組。 並將稍後建立的配置資源指派給此同質群組。
+登入 toohello Azure 傳統入口網站建立同質群組 hello 解決方案選取**設定**，以及建立同質群組。 配置的資源建立稍後將會指派 toothis 同質群組。
 
 ### <a name="networks"></a>網路
-建立新網路，並在該網路內建立一個子網路。 此範例使用內部只有一個 /24 子網路的 10.10.10.0/24 網路。
+建立新的網路時，並在 hello 網路內建立子網路。 此範例使用內部只有一個 /24 子網路的 10.10.10.0/24 網路。
 
 ### <a name="virtual-machines"></a>虛擬機器
-使用經過背書的 Ubuntu 映像庫映像來建立第一個 Ubuntu 13.10 VM，並將它命名為 `hadb01`。 在此程序中會建立一個名為 hadb 的新雲端服務。 此名稱可說明新增更多資源時，服務將具備的共用、負載平衡性質。 已使用入口網站順利完成建立 `hadb01`。 系統會自動建立 SSH 的端點，並選取新的網路。 您可以為 VM 建立可用性設定組。
+第一個 Ubuntu 13.10 VM 建立使用 Endorsed Ubuntu 圖庫映像，並呼叫的 hello `hadb01`。 Hello 處理程序稱為 hadb 中建立新的雲端服務。 這個名稱會說明 hello 共用，請加入更多資源時，會有 hello 服務的負載平衡本質。 hello 建立`hadb01`使用 hello 入口網站是較為簡單和已完成。 SSH 的端點會自動建立，並已選取 hello 新網路。 現在您可以建立可用性設定組 hello Vm。
 
-建立第一個 VM 後 (從技術角度來看，也就是建立雲端服務時)，我們會建立第二個 VM `hadb02`。 在第二個 VM 中，透過入口網站使用資源庫中的 Ubuntu 13.10 VM，但使用現有的雲端服務 `hadb.cloudapp.net`，而非建立新的雲端服務。 系統應會自動選取網路和可用性設定組。 並建立 SSH 端點。
+Hello （技術上來說，建立 hello 雲端服務） 時，會建立第一個 VM 之後, 建立 hello 第二個 VM， `hadb02`。 Hello 第二個 VM、 hello 圖庫使用 Ubuntu 13.10 VM，請使用 hello 入口網站，但使用現有的雲端服務， `hadb.cloudapp.net`，而不是建立一個新。 應該會自動選取 hello 網路和可用性設定組。 並建立 SSH 端點。
 
-在建立這兩部 VM 之後，請記下 `hadb01` 的 SSH 連接埠 (TCP 22) 及 `hadb02` (由 Azure 自動指派)。
+建立兩個 Vm 之後，記下 hello SSH 連接埠`hadb01`(TCP 22) 和`hadb02`（自動由 Azure 指派）。
 
 ### <a name="attached-storage"></a>連接的儲存體
-將新磁碟連接至這兩部 VM，並在此程序中建立 5 GB 的磁碟。 這些磁碟將在 VHD 容器中託管，並供我們的主要作業系統磁碟使用。 在建立並連接磁碟後，我們不需要重新啟動 Linux，因為核心將會看到新裝置。 此裝置通常是 `/dev/sdc`。 檢查輸出的 `dmesg`。
+連接新的磁碟 tooboth Vm，然後在 hello 程序中建立 5 GB 的磁碟。 hello 磁碟會裝載於您的主要作業系統磁碟的使用中的 hello VHD 容器。 建立並附加磁碟之後，沒有任何需要 toorestart Linux 因為 hello 核心會看到 hello 新裝置。 此裝置通常是 `/dev/sdc`。 請檢查`dmesg`hello 輸出。
 
-在每個 VM 上，使用 `cfdisk` 建立磁碟分割 (主要是 Linux 磁碟分割)，並寫入新的磁碟分割資料表。 請勿在此磁碟分割上建立檔案系統。
+在每個 VM 上建立的分割區使用`cfdisk`（主要 Linux 磁碟分割） 和寫入 hello 新磁碟分割表格。 請勿在此磁碟分割上建立檔案系統。
 
-## <a name="set-up-the-cluster"></a>設定叢集
-在這兩部 Ubuntu VM 上使用 APT 來安裝 Corosync、Pacemaker 和 DRBD。 若要利用 `apt-get` 這麼做，請執行下列程式碼：
+## <a name="set-up-hello-cluster"></a>設定 hello 叢集
+在這兩個 Ubuntu Vm 上使用 APT tooinstall Corosync、 Pacemaker 和 DRBD。 toodo 因此與`apt-get`，請執行 hello 下列程式碼：
 
     sudo apt-get install corosync pacemaker drbd8-utils.
 
-此時請勿安裝 MySQL。 Debian 和 Ubuntu 安裝指令碼將會初始化 `/var/lib/mysql` 上的 MySQL 資料目錄，但因為 DRBD 檔案系統會取代此目錄，所以您必須稍後安裝 MySQL。
+此時請勿安裝 MySQL。 Debian 和 Ubuntu 安裝指令碼將會在初始化 MySQL 資料目錄`/var/lib/mysql`，但是因為 hello 目錄將會取代 DRBD 檔案系統中，您需要稍後 tooinstall MySQL。
 
-驗證 (使用 `/sbin/ifconfig`) 這兩部 VM 是否使用 10.10.10.0/24 子網路中的位址，以及它們是否可以根據名稱互相 Ping 到對方。 您也可以使用 `ssh-keygen` 和 `ssh-copy-id`，來確定這兩部 VM 無需密碼即可透過 SSH 彼此通訊。
+驗證 (使用`/sbin/ifconfig`)，這兩個 Vm 使用 hello 10.10.10.0/24 子網路中的位址，及它們可以依照名稱 ping 彼此。 您也可以使用`ssh-keygen`和`ssh-copy-id`toomake 確定這兩個 Vm 可透過 SSH 通訊而不需要密碼。
 
 ### <a name="set-up-drbd"></a>設定 DRBD
-建立使用基礎 `/dev/sdc1` 磁碟分割的 DRBD 資源，以產生能夠使用 ext3 進行格式化的 `/dev/drbd1` 資源，以供主要和次要節點使用。
+建立會使用基礎 hello DRBD 資源`/dev/sdc1`分割 tooproduce`/dev/drbd1`可以使用 ext3 格式化，並在主要和次要節點中使用的資源。
 
-1. 開啟 `/etc/drbd.d/r0.res` 並複製兩部 VM 上的下列資源定義：
+1. 開啟`/etc/drbd.d/r0.res`並複製 hello 遵循這兩個 Vm 上的資源定義：
 
         resource r0 {
           on `hadb01` {
@@ -97,70 +97,70 @@ ms.lasthandoff: 07/11/2017
           }
         }
 
-2. 在這兩部 VM 上使用 `drbdadm` 來初始化資源：
+2. 使用初始化 hello 資源`drbdadm`這兩個 Vm 上：
 
         sudo drbdadm -c /etc/drbd.conf role r0
         sudo drbdadm up r0
 
-3. 在主要 VM (`hadb01`) 上，強制執行 DRBD 資源的擁有權 (主要)：
+3. 在 hello 主要 VM (`hadb01`)，強制的 hello DRBD 資源的擁有權 （主要）：
 
         sudo drbdadm primary --force r0
 
-如果您在這兩個 VM 上檢查 /proc/drbd (`sudo cat /proc/drbd`) 的內容，應可在 `hadb01` 上看到 `Primary/Secondary` 且在 `hadb02` 上看到 `Secondary/Primary` (此時應與解決方案一致)。 客戶可免費透過 10.10.10.0/24 網路同步處理這個 5 GB 磁碟。
+如果您檢查/proc/drbd hello 內容 (`sudo cat /proc/drbd`) 在這兩個 Vm，您應該看到`Primary/Secondary`上`hadb01`和`Secondary/Primary`上`hadb02`、 與 hello 方案此時一致。 hello 5 GB 的磁碟會透過任何費用 toocustomers hello 10.10.10.0/24 網路同步處理。
 
-同步處理此磁碟後，您可以在 `hadb01` 上建立檔案系統。 基於測試目的，我們會使用 ext2，但下列程式碼將建立 ext3 檔案系統：
+同步處理 hello 磁碟之後，您可以建立 hello 檔案系統上`hadb01`。 為了測試用途，我們使用 ext2，但 hello 下列程式碼會建立 ext3 檔案系統：
 
     mkfs.ext3 /dev/drbd1
 
-### <a name="mount-the-drbd-resource"></a>掛接 DRBD 資源
-您現在即可在 `hadb01` 上掛接 DRBD 資源。 Debian 及其衍生版本會使用 `/var/lib/mysql` 做為 MySQL 的資料目錄。 因為您尚未安裝 MySQL，請建立此目錄並掛接 DRBD 資源。 若要執行此選項，請在 `hadb01` 上執行下列程式碼：
+### <a name="mount-hello-drbd-resource"></a>掛接 hello DRBD 資源
+您現在準備好 toomount hello DRBD 資源`hadb01`。 Debian 及其衍生版本會使用 `/var/lib/mysql` 做為 MySQL 的資料目錄。 因為您尚未安裝 MySQL，請建立 hello 目錄，並掛接 hello DRBD 資源。 tooperform 這個選項時，執行下列程式碼的 hello `hadb01`:
 
     sudo mkdir /var/lib/mysql
     sudo mount /dev/drbd1 /var/lib/mysql
 
 ## <a name="set-up-mysql"></a>設定 MySQL
-現在您可以開始在 `hadb01`上安裝 MySQL：
+現在您已準備好 tooinstall MySQL 上`hadb01`:
 
     sudo apt-get install mysql-server
 
-在 `hadb02`中，您有兩個選擇。 您可以安裝 mysql-server，這將會建立 /var/lib/mysql，並在其中填入新的資料目錄，然後移除內容。 若要執行此選項，請在 `hadb02` 上執行下列程式碼：
+在 `hadb02`中，您有兩個選擇。 您可以安裝 mysql 伺服器，這樣會建立 /var/lib/mysql，填入新的資料目錄，然後移除 hello 的內容。 tooperform 這個選項時，執行下列程式碼的 hello `hadb02`:
 
     sudo apt-get install mysql-server
     sudo service mysql stop
     sudo rm –rf /var/lib/mysql/*
 
-第二個選擇是容錯移轉至 `hadb02`，然後在那裡安裝 mysql-server。 安裝指令碼將會注意到現有安裝，且不會對它執行任何動作。
+hello 第二個選項太 toofailover`hadb02`並安裝 mysql 伺服器那里。 安裝指令碼將會注意到 hello 現有安裝，並不會修改它。
 
-在 `hadb01` 上執行下列程式碼：
+執行 hello 下列程式碼上`hadb01`:
 
     sudo drbdadm secondary –force r0
 
-在 `hadb02` 上執行下列程式碼：
+執行 hello 下列程式碼上`hadb02`:
 
     sudo drbdadm primary –force r0
     sudo apt-get install mysql-server
 
-如果您不打算現在容錯移轉 DRBD，雖然第一個選擇可以說是較為繁瑣，但相對是比較容易的。 安裝完成後，您可以開始使用 MySQL 資料庫。 在 `hadb02` (或對 DRBD 而言為作用中伺服器的任一部伺服器) 上執行下列程式碼：
+如果您現在不打算 toofailover DRBD，hello 第一個選項是雖然論證那麼漂亮更容易。 安裝完成後，您可以開始使用 MySQL 資料庫。 執行 hello 下列程式碼上`hadb02`（或任一個的 hello 伺服器是作用中，根據 tooDRBD）：
 
     mysql –u root –p
     CREATE DATABASE azureha;
     CREATE TABLE things ( id SERIAL, name VARCHAR(255) );
     INSERT INTO things VALUES (1, "Yet another entity");
-    GRANT ALL ON things.\* TO root;
+    GRANT ALL ON things.\* tooroot;
 
 > [!WARNING]
-> 最後一個陳述式會有效地停用此資料表中根使用者的驗證。 這應由您的生產等級 GRANT 陳述式取代，這裡僅是為了說明的目的才包括此陳述式。
+> 這個最後一個陳述式即可有效停用此資料表中的 hello 根使用者的驗證。 這應由您的生產等級 GRANT 陳述式取代，這裡僅是為了說明的目的才包括此陳述式。
 
-如果您想要在 VM 外進行查詢 (這是本指南的目的)，您還必須啟用 MySQL 的網路功能。 在兩部 VM 上，開啟 `/etc/mysql/my.cnf` 並移至 `bind-address`。 將位址從 127.0.0.1 變更為 0.0.0.0。 儲存檔案後，在您目前的主要 VM 上發佈 `sudo service mysql restart` 。
+如果您想從外部 hello Vm （這是本指南用途 hello） toomake 查詢時，您也需要 tooenable MySQL 的網路功能。 在這兩個 Vm 上開啟`/etc/mysql/my.cnf`並移過`bind-address`。 變更 hello 位址 127.0.0.1 從 too0.0.0.0。 在儲存 hello 檔案之後, 發出`sudo service mysql restart`您目前的主要伺服器上。
 
-### <a name="create-the-mysql-load-balanced-set"></a>建立 MySQL 負載平衡集
-回到入口網站，移至 `hadb01`，然後選擇 [端點]。 若要建立端點，從下拉式清單選擇 [MySQL (TCP 3306)]，然後選取 [建立新的負載平衡集]。 替負載平衡端點 `lb-mysql` 命名。 將 [時間] 設定為 5 秒 (最小值)。
+### <a name="create-hello-mysql-load-balanced-set"></a>建立 hello MySQL 負載平衡集
+返回 toohello 入口網站，請移過`hadb01`，然後選擇 **端點**。 toocreate 的端點，選擇 MySQL (TCP 3306) hello 下拉式清單並選取從**建立新的負載平衡集**。 名稱 hello 負載平衡的端點`lb-mysql`。 設定**時間**too5 秒，最小值。
 
-建立端點後，請移至 `hadb02`，選擇 [端點]，然後建立端點。 選擇 `lb-mysql`，然後從下拉式清單選取 MySQL。 在此步驟中，您也可以使用 Azure CLI。
+建立 hello 端點之後，請繼續太`hadb02`，選擇**端點**，並建立端點。 選擇`lb-mysql`，然後從 hello 下拉式清單中選取 MySQL。 您也可以使用 Azure CLI hello 這個步驟。
 
-您現在已具備手動叢集作業所需的一切。
+您現在可以 hello 叢集的手動作業所需的所有項目。
 
-### <a name="test-the-load-balanced-set"></a>設定負載平衡集
+### <a name="test-hello-load-balanced-set"></a>測試 hello 負載平衡集
 您可以使用任何 MySQL 用戶端，或使用特定應用程式 (例如以 Azure 網站身分執行的 phpMyAdmin)，從機器外部執行測試。 在此案例中，您在另一個 Linux 方塊上使用 MySQL 的命令列工具：
 
     mysql azureha –u root –h hadb.cloudapp.net –e "select * from things;"
@@ -168,7 +168,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="manually-failing-over"></a>手動容錯移轉
 您可以透過關閉 MySQL、切換 DRBD 的主要 VM，然後重新啟動 MySQL 來模擬容錯移轉。
 
-若要執行此工作，請在 hadb01 上執行下列程式碼：
+tooperform 這個工作中，執行下列程式碼上 hadb01 hello:
 
     service mysql stop && umount /var/lib/mysql ; drbdadm secondary r0
 
@@ -179,16 +179,16 @@ ms.lasthandoff: 07/11/2017
 手動容錯移轉後，您可以重複遠端查詢，它應可正常運作。
 
 ## <a name="set-up-corosync"></a>設定 Corosync
-Corosync 是需要 Pacemaker 才能運作的基礎叢集基礎結構。 若是 Heartbeat (及其他方法，如 Ultramonkey)，Corosync 是 CRM 功能的分割，而 Pacemaker 會維持類似 Hearbeat 的功能。
+Corosync 是所需的 Pacemaker toowork hello 基礎叢集基礎結構。 活動訊號 （和其他方法，例如 Ultramonkey） Corosync 對於分割的 hello CRM 功能，Pacemaker 仍比較類似 tooHeartbeat 功能時。
 
-Corosync 在 Azure 上的主要限制是，Corosync 偏好的通訊順序為多點傳送大於廣播大於單點傳送，但 Microsoft Azure 網路僅支援單點傳送。
+hello 主要條件約束 Corosync 在 Azure 上的是 Corosync 慣用透過廣播多點傳送透過單點傳播通訊，但 Microsoft Azure 網路只支援單點傳播。
 
-還好，Corosync 具備有效的單點傳送模式。 唯一的真正限制是，因為所有節點彼此之間不會神奇地自動 進行通訊，您必須在組態檔中定義節點，包括其 IP 位址。 我們可以使用 Corosync 範例檔案進行單點傳送和變更繫結位址、節點清單和記錄目錄 (Ubuntu 會使用 `/var/log/corosync`，而範例檔案會使用 `/var/log/cluster`)，以及啟用仲裁工具。
+還好，Corosync 具備有效的單點傳送模式。 hello 唯一實際的條件約束是，因為所有節點並未在彼此都通訊，您需要 toodefine hello 節點在您的組態檔，包括其 IP 位址。 單點傳播與變更繫結位址、 節點清單，以及記錄目錄，我們可以使用 hello Corosync 範例檔案 (使用 Ubuntu `/var/log/corosync` hello 範例檔案使用時`/var/log/cluster`)，並啟用仲裁工具。
 
 > [!NOTE]
-> 對兩個節點使用下列 `transport: udpu` 指示詞和手動定義的 IP 位址。
+> 使用下列 hello`transport: udpu`指示詞和 hello 手動定義兩個節點的 IP 位址。
 
-在 `/etc/corosync/corosync.conf` 上對兩個節點執行下列程式碼：
+執行 hello 下列程式碼上`/etc/corosync/corosync.conf`兩個節點：
 
     totem {
       version: 2
@@ -236,18 +236,18 @@ Corosync 在 Azure 上的主要限制是，Corosync 偏好的通訊順序為多�
 
     sudo service start corosync
 
-在啟動服務不久後，系統應會在目前環中建立叢集，並組成仲裁。 我們可以透過檢閱記錄檔或執行下列程式碼來檢查此功能：
+後，馬上開始 hello 服務，hello 叢集應該建立 hello 目前環形，而且應該 constituted 仲裁。 我們可以檢查這項功能，藉由檢閱記錄檔，或藉由執行下列程式碼的 hello:
 
     sudo corosync-quorumtool –l
 
-您將看到類似下圖的輸出：
+您會看到下列映像的輸出類似 toohello:
 
 ![corosync-quorumtool -l sample output](./media/mysql-cluster/image001.png)
 
 ## <a name="set-up-pacemaker"></a>設定 Pacemaker
-Pacemaker 會使用叢集來監視資源，定義在主要 VM 故障時將這些資源切換到次要 VM。 在所有其他選擇中，您可從一組可用指令碼或從 LSB (如 init) 指令碼來定義資源。
+Pacemaker 使用 hello 資源的叢集 toomonitor、 定義主要複本會跟著中斷，並切換這些資源 toosecondaries。 在所有其他選擇中，您可從一組可用指令碼或從 LSB (如 init) 指令碼來定義資源。
 
-我們要 Pacemaker「擁有」DRBD 資源、掛接點及 MySQL 服務。 如果 Pacemaker 可以在主要 VM 發生問題時，依正確順序來開啟與關閉 DRBD、掛接/取消掛接 DRBD，然後啟動和停止 MySQL，則安裝便已完成。
+我們想要 Pacemaker 太"自己的"hello DRBD 資源、 hello 掛接點，以及 hello MySQL 服務。 如果 Pacemaker 可以開啟和關閉 DRBD，掛接和卸載，並再啟動和停止 MySQL 中 hello 向右的順序不正確的項目時，即會發生以 hello 主要安裝程式完成。
 
 首次安裝 Pacemaker 時，您的組態應十分簡單，如下所示：
 
@@ -256,8 +256,8 @@ Pacemaker 會使用叢集來監視資源，定義在主要 VM 故障時將這些
     node $id="2" hadb02
       attributes standby="off"
 
-1. 執行 `sudo crm configure show` 以檢查組態。
-2. 然後使用下列資源來建立檔案 (如 `/tmp/cluster.conf`)：
+1. 執行檢查 hello 組態`sudo crm configure show`。
+2. 然後建立檔案 (例如`/tmp/cluster.conf`) 以 hello 下列資源：
 
         primitive drbd_mysql ocf:linbit:drbd \
               params drbd_resource="r0" \
@@ -287,7 +287,7 @@ Pacemaker 會使用叢集來監視資源，定義在主要 VM 故障時將這些
 
         property no-quorum-policy=ignore
 
-3. 將檔案載入組態中。 您只需要在一個節點做一次這個動作。
+3. Hello 檔案載入 hello 組態。 您只需要 toodo 這在一個節點。
 
         sudo crm configure
           load update /tmp/cluster.conf
@@ -298,9 +298,9 @@ Pacemaker 會使用叢集來監視資源，定義在主要 VM 故障時將這些
 
         sudo update-rc.d pacemaker defaults
 
-5. 使用 `sudo crm_mon –L`，驗證其中一個節點已成為叢集的主要節點，並且正在執行所有資源。 您可以使用掛接和 PS 來檢查資源是否正在執行。
+5. 使用`sudo crm_mon –L`，確認其中一個節點已經成為 hello hello 叢集主機，並正在 hello 的所有資源。 您可以使用裝載與 ps toocheck hello 資源正在執行。
 
-下列螢幕擷取畫面顯示 `crm_mon`，且其中一個節點已停止 (選取 Ctrl+C 以結束)：
+下列螢幕擷取畫面顯示 hello`crm_mon`具有一個節點停止 （藉由選取 Ctrl + C 結束）：
 
 ![crm_mon node stopped](./media/mysql-cluster/image002.png)
 
@@ -309,16 +309,16 @@ Pacemaker 會使用叢集來監視資源，定義在主要 VM 故障時將這些
 ![crm_mon operational master/slave](./media/mysql-cluster/image003.png)
 
 ## <a name="testing"></a>測試
-您已準備好開始自動容錯移轉模擬。 作法有二：軟式和硬式。
+您已準備好開始自動容錯移轉模擬。 有兩種方式 toodo 這： 彈性和固定。
 
-軟式方法使用叢集的關機功能：``crm_standby -U `uname -n` -v on``。 如果您在主要 VM 上使用此選項，從屬 VM 便會取代主要 VM。 記得將此選項設回 off。 如果不這麼做，crm_mon 會顯示一個待命中的節點。
+hello 彈性的方式使用 hello 叢集關機函式： ``crm_standby -U `uname -n` -v on``。 如果您使用 hello 主機上，hello 從屬會高於。 請記住 tooset 這個回復 toooff。 如果不這麼做，crm_mon 會顯示一個待命中的節點。
 
-硬式方法是透過入口網站將主要 VM (hadb01) 關機，或變更 VM 上的執行層級 (例如，終止、關機)。 這會藉由發出主要 VM 出現故障的訊號來協助 Corosync 和 Pacemaker。 您可以測試這個方法 (在維護期間非常有用)，但您也可以透過凍結 VM 來強制執行此案例。
+hello 不易正在關機而關閉 hello 主要 VM (hadb01) 透過 hello 入口網站，或變更 hello 層上 hello VM，也就是停止 (關機）。 這有助於 Corosync 和 Pacemaker 信號向該 hello 為主版頁面的進行。 您可以測試這種情況 （適用於維護期間），但您也可以強制 hello 案例凍結 hello VM。
 
 ## <a name="stonith"></a>STONITH
-它應該能透過 Azure CLI 發出 VM 關機命令，來代替可控制實體裝置的 STONITH 指令碼。 您可以使用 `/usr/lib/stonith/plugins/external/ssh` 做為基礎，並在叢集的組態中啟用 STONITH。 系統應會全域安裝 Azure CLI，並載入叢集使用者的發佈設定和設定檔。
+它應該是可能 tooissue hello Azure CLI 就不需 STONITH 指令碼可控制實體裝置透過 VM 關機。 您可以使用`/usr/lib/stonith/plugins/external/ssh`做為基底和啟用 STONITH hello 叢集組態中的。 Azure CLI 應該全域安裝，而且 hello 發行設定和設定檔應該要載入的 hello 叢集的使用者。
 
-您可在 [GitHub](https://github.com/bureado/aztonith) 上找到資源的範例程式碼。 變更叢集的組態，方法是將下列程式碼新增至 `sudo crm configure`：
+Hello 資源的範例程式碼位於[GitHub](https://github.com/bureado/aztonith)。 加入 hello 太之後變更 hello 叢集設定`sudo crm configure`:
 
     primitive st-azure stonith:external/azure \
       params hostlist="hadb01 hadb02" \
@@ -327,14 +327,14 @@ Pacemaker 會使用叢集來監視資源，定義在主要 VM 故障時將這些
       commit
 
 > [!NOTE]
-> 此指令碼不會執行使用/停用檢查。 原始的 SSH 資源會有 15 個 Ping 檢查，但 Azure VM 的復原時間可能會有較多的變數。
+> hello 指令碼不會執行向上/向下檢查。 hello 原始 SSH 資源 15 ping 檢查，但 Azure VM 的復原時間可能是多個變數。
 
 ## <a name="limitations"></a>限制
-套用下列限制：
+hello 下列限制適用於：
 
-* 在 Pacemaker 中，將 DRBD 當成資源進行管理的 Linbit DRBD 資源指令碼會在關閉節點時使用 `drbdadm down`，即使該節點只是進入待命中狀態也一樣。 因為主要 VM 在開始遭到寫入時，從屬 VM 並不會同步處理 DRBD 資源，所以這不是理想的作法。 如果主要 VM 不是順利關機，從屬 VM 會接收較舊的檔案系統狀態。 可能解決此問題的方法有兩種：
+* hello linbit DRBD 資源指令碼為 Pacemaker 使用中的資源管理 DRBD`drbdadm down`時關閉一個節點，即使 hello 節點就會處於待命狀態。 因為 hello 從屬不需要同步處理 hello DRBD 資源 hello master 取得寫入時，這並不理想。 如果 hello master 不 graciously 失敗，hello 從屬伺服器可以接管較舊的檔案系統狀態。 可能解決此問題的方法有兩種：
   * 在所有叢集節點中透過本機 (未叢集化) 看門狗強制執行 `drbdadm up r0`
-  * 在 `/usr/lib/ocf/resource.d/linbit/drbd` 中編輯 linbit DRBD 指令碼，以確保不會呼叫 `down`
-* 負載平衡器至少需要 5 秒的時間進行回應，因此應用程式應為叢集感知且應可容許逾時。 其他架構也可提供協助，例如應用程式內部佇列、查詢中繼軟體等。
-* 若要確保寫入作業會以可管理的步調結束，且會儘可能頻繁地將快取清除到磁碟以減少記憶體損失，MySQL 調整是有必要的。
-* VM 互連中的寫入效能將會取決於虛擬開關，因為虛擬開關是 DRBD 用來複寫裝置的機制。
+  * 編輯 hello linbit DRBD 指令碼，並確定`down`中不會呼叫`/usr/lib/ocf/resource.d/linbit/drbd`
+* hello 負載平衡器需要至少五秒 toorespond，讓應用程式應該是叢集感知，而且可以容許更多的逾時。 其他架構也可提供協助，例如應用程式內部佇列、查詢中繼軟體等。
+* MySQL 微調是寫入可管理的速度完成的必要 tooensure 而快取為可能 toominimize 記憶體遺失經常會排清的 toodisk。
+* 寫入效能是在 VM 中相依互連 hello 虛擬交換器，因為這是 hello DRBD tooreplicate hello 裝置使用的機制。

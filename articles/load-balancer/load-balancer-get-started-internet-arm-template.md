@@ -1,6 +1,6 @@
 ---
-title: "建立網際網路對向負載平衡器 - Azure 範本 | Microsoft Docs"
-description: "了解如何使用範本在資源管理員中建立網際網路面向的負載平衡器"
+title: "aaaCreate 網際網路對向負載平衡器-Azure 範本 |Microsoft 文件"
+description: "了解如何 toocreate 面對網際網路的負載平衡器資源管理員 中使用的範本"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: d829000e63515814b192f3f8256e3b8637bb3a34
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bce8cb87303838f3bc732d51228ab46d8015552
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="creating-an-internet-facing-load-balancer-using-a-template"></a>使用範本建立網際網路面向的負載平衡器
 
@@ -32,20 +32,20 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-本文涵蓋之內容包括資源管理員部署模型。 您也可以 [了解如何使用傳統部署模型建立網際網路面向的負載平衡器](load-balancer-get-started-internet-classic-portal.md)
+本文涵蓋 hello Resource Manager 部署模型。 您也可以[學習 toocreate 網際網路向負載平衡器使用傳統部署模型的方式](load-balancer-get-started-internet-classic-portal.md)
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
-## <a name="deploy-the-template-by-using-click-to-deploy"></a>使用按一下即部署來部署範本
+## <a name="deploy-hello-template-by-using-click-toodeploy"></a>使用部署 hello 範本按一下 toodeploy
 
-公用儲存機制中可用的範例範本會使用一個包含預設值的參數檔案，這些預設值可用來產生上述案例。 若要使用「按一下即部署」來部署此範本，請依循[此連結](http://go.microsoft.com/fwlink/?LinkId=544801)，按一下 [部署至 Azure]，視情況取代預設參數值，再依循入口網站中的指示。
+hello 範例範本可用 hello 公用儲存機制中的會使用包含 hello 預設值使用 toogenerate hello 案例上面所述的參數檔案。 toodeploy 此範本使用按一下 toodeploy，遵循[此連結](http://go.microsoft.com/fwlink/?LinkId=544801)，按一下 **部署 tooAzure**、 取代 hello 預設參數值，如有必要，並遵循 hello 入口網站中的 hello 指示。
 
-## <a name="deploy-the-template-by-using-powershell"></a>使用 PowerShell 部署範本
+## <a name="deploy-hello-template-by-using-powershell"></a>使用 PowerShell 來部署 hello 範本
 
-若要使用 PowerShell 部署您下載的範本，請依照下列步驟執行。
+您使用 PowerShell 下載 toodeploy hello 範本，請遵循下列 hello 步驟。
 
-1. 如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
-2. 執行 **New-AzureRmResourceGroupDeployment** Cmdlet 以使用範本建立資源群組。
+1. 如果您從未使用過 Azure PowerShell，請參閱[如何 tooInstall 和設定 Azure PowerShell](/powershell/azure/overview)並遵循 hello 指示所有 hello 方式 toohello 結束 toosign 至 Azure，然後選取您的訂用帳戶。
+2. 執行 hello**新增 AzureRmResourceGroupDeployment**資源群組使用的 cmdlet toocreate hello 範本。
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name TestRG -Location uswest `
@@ -53,23 +53,23 @@ ms.lasthandoff: 07/11/2017
         -TemplateParameterFile 'https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.parameters.json'
     ```
 
-## <a name="deploy-the-template-by-using-the-azure-cli"></a>使用 Azure CLI 部署範本
+## <a name="deploy-hello-template-by-using-hello-azure-cli"></a>使用 Azure CLI hello 部署 hello 範本
 
-若要使用 Azure CLI 部署範本，請依照下列步驟執行。
+使用 Azure CLI hello toodeploy hello 範本，請遵循下列 hello 步驟。
 
-1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
-2. 執行 **azure config mode** 命令，以切換為資源管理員模式，如下所示。
+1. 如果您從未使用過 Azure CLI，請參閱[安裝及設定 hello Azure CLI](../cli-install-nodejs.md)依照 hello 向上 toohello 點，選取您的 Azure 帳戶和訂用帳戶的指示進行。
+2. 執行 hello **azure 組態模式**命令 tooswitch tooResource 管理員模式，如下所示。
 
     ```azurecli
     azure config mode arm
     ```
 
-    此為上述命令的預期輸出內容：
+    以下是 hello 上述命令中的 hello 預期輸出：
 
         info:    New mode is arm
 
-3. 從您的瀏覽器，瀏覽至[快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-loadbalancer-lbrules)，複製 json 檔案的內容並貼上到您電腦中的新檔案。 在此案例中，您會將以下的值複製到名為 **c:\lb\azuredeploy.parameters.json** 的檔案。
-4. 執行 **azure group deployment create** Cmdlet，使用先前下載並修改的範本和參數檔案來部署新的負載平衡器。 輸出後顯示的清單可說明所使用的參數。
+3. 從瀏覽器中，瀏覽過[hello 快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-loadbalancer-lbrules)、 hello hello json 檔案的內容複製和貼入新檔案中，您的電腦。 此案例中，您會被複製 hello 值 tooa 檔案命名為之下**c:\lb\azuredeploy.parameters.json**。
+4. 執行 hello**建立 azure 群組部署**cmdlet toodeploy hello 新增負載平衡器使用 hello 範本和參數檔案，您可以下載並修改上方。 之後再 hello 輸出所示的 hello 清單說明使用 hello 參數。
 
     ```azurecli
     azure group create --name TestRG --location westus --template-file 'https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.json' --parameters-file 'c:\lb\azuredeploy.parameters.json'

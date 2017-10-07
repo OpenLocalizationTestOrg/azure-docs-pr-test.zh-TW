@@ -14,13 +14,13 @@
 ## [探索資料來源](data-catalog-how-to-discover.md)
 ## [註解資料來源](data-catalog-how-to-annotate.md)
 ## [記載資料來源](data-catalog-how-to-documentation.md)
-## [連接到資料來源](data-catalog-how-to-connect.md)
+## [連接 toodata 來源](data-catalog-how-to-connect.md)
 ## [使用巨量資料來源](data-catalog-how-to-big-data.md)
 ## [對資料來源進行資料分析](data-catalog-how-to-data-profile.md)
 ## [管理資料資產](data-catalog-how-to-manage.md)
 ## [儲存搜尋並釘選資料資產](data-catalog-how-to-save-pin.md)
-## [設定商務詞彙](data-catalog-how-to-business-glossary.md)
-## [安全存取資料目錄](data-catalog-how-to-secure-catalog.md)
+## [設定 hello 商務字彙](data-catalog-how-to-business-glossary.md)
+## [安全存取 toodata 類別目錄](data-catalog-how-to-secure-catalog.md)
 ## [檢視相關的資料資產](data-catalog-how-to-view-related-data-assets.md) 
 
 # 參考

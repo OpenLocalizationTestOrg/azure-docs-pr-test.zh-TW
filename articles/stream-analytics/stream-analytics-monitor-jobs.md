@@ -1,6 +1,6 @@
 ---
-title: "以程式設計方式監視串流分析的作業 | Microsoft Docs"
-description: "了解如何以程式設計方式監視透過 REST API、Azure SDK 或 PowerShell 建立的串流分析作業。"
+title: "在 Stream Analytics aaaProgrammatically 監控工作 |Microsoft 文件"
+description: "了解如何 tooprogrammatically 監視透過 REST Api、 Azure SDK 或 PowerShell 建立串流分析工作。"
 keywords: ".net 監視, 工作監視, 監視應用程式"
 services: stream-analytics
 documentationcenter: 
@@ -15,35 +15,35 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/20/2017
 ms.author: jeffstok
-ms.openlocfilehash: 0d39e77316a03a705586af3ba970a7be1208ec85
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 44a9c29c2161ee81ea76ece4646a8691bf5d5b48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="programmatically-create-a-stream-analytics-job-monitor"></a>以程式設計方式來建立串流分析工作監視
 
-本文示範如何為串流分析工作啟用監視。 透過 REST API、Azure SDK 或 PowerShell 建立的串流分析作業預設不會啟用監視。 您可以在 Azure 入口網站中前往該作業的 [監視] 頁面，然後按一下 [啟用] 按鈕來手動啟用，或是按照本文中的步驟執行，將此程序自動化。 串流分析工作的監視資料將會顯示在 Azure 入口網站的 [計量] 區域中。
+本文示範如何 tooenable 監視的資料流分析工作。 透過 REST API、Azure SDK 或 PowerShell 建立的串流分析作業預設不會啟用監視。 您可以手動方式啟用它 hello Azure 入口網站中移 toohello 工作監視頁面和按一下 hello 啟用按鈕，或您可以遵循本文章中的 hello 步驟自動化此程序。 hello 度量區域中的 hello 串流分析工作的 Azure 入口網站會顯示 hello 監視資料。
 
 ## <a name="prerequisites"></a>必要條件
 
-開始此程序之前，您必須有下列項目：
+在開始此程序之前，您必須擁有 hello 下列：
 
 * Visual Studio 2017 或 2015
 * 已下載並安裝 [Azure .NET SDK](https://azure.microsoft.com/downloads/)
-* 一項已啟用監視的現有串流分析作業
+* 現有的資料流分析作業需要啟用 toohave 監視
 
 ## <a name="create-a-project"></a>建立專案
 
 1. 建立 Visual Studio C# .NET 主控台應用程式。
-2. 在 Package Manager Console 中，執行下列命令以安裝 NuGet 封裝。 第一個是 Azure 串流分析管理 .NET SDK。 第二個是將用來啟用監視功能的 Azure 監視器 SDK。 最後一個是驗證要使用的 Azure Active Directory 用戶端。
+2. Hello Package Manager Console 中，執行的 hello 下列命令，tooinstall hello NuGet 封裝。 hello 第一次是 hello Azure Stream Analytics Management.NET SDK。 hello 第二個是 hello 將使用的 Azure 監視 SDK tooenable 監視。 hello 最後一個是 hello Azure Active Directory 用戶端將用來驗證。
    
    ```
    Install-Package Microsoft.Azure.Management.StreamAnalytics
    Install-Package Microsoft.Azure.Insights -Pre
    Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
    ```
-3. 將下列 appSettings 區段加入至 App.config 檔案。
+3. 新增下列 appSettings 區段 toohello App.config 檔的 hello。
    
    ```
    <appSettings>
@@ -60,12 +60,12 @@ ms.lasthandoff: 08/29/2017
      <add key="ActiveDirectoryTenantId" value="YOUR TENANT ID" />
    </appSettings>
    ```
-   以您的 Azure 訂用帳戶 ID 和租用戶識別碼取代 *SubscriptionId* 和 *ActiveDirectoryTenantId* 的值。 您可以藉由執行下列 PowerShell Cmdlet 來取得這些值：
+   以您的 Azure 訂用帳戶 ID 和租用戶識別碼取代 *SubscriptionId* 和 *ActiveDirectoryTenantId* 的值。 您可以藉由執行下列 PowerShell cmdlet 的 hello 取得這些值：
    
    ```
    Get-AzureAccount
    ```
-4. 將下列 using 陳述式加入至專案的原始程式檔 (Program.cs) 中。
+4. 新增 hello 下列使用陳述式 toohello 來源檔案 (Program.cs) hello 專案中的。
    
    ```
      using System;
@@ -114,12 +114,12 @@ ms.lasthandoff: 08/29/2017
                  return result.AccessToken;
              }
    
-             throw new InvalidOperationException("Failed to acquire token");
+             throw new InvalidOperationException("Failed tooacquire token");
      }
 
 ## <a name="create-management-clients"></a>建立管理用戶端
 
-下列程式碼將設定必要的變數與管理用戶端。
+hello 下列程式碼會設定 hello 必要變數和管理用戶端。
 
     string resourceGroupName = "<YOUR AZURE RESOURCE GROUP NAME>";
     string streamAnalyticsJobName = "<YOUR STREAM ANALYTICS JOB NAME>";
@@ -141,16 +141,16 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="enable-monitoring-for-an-existing-stream-analytics-job"></a>為現有串流分析作業啟用監視
 
-下列程式碼將為「現有」 串流分析作業啟用監視。 程式碼的第一部分會對串流分析服務執行 GET 要求，以擷取特定串流分析工作的相關資訊。 在程式碼的第二部分使用 *Id* 屬性 (擷取自 GET 要求) 當成 Put 方法的參數，將 PUT 要求傳送至 Insights 服務，來為串流分析作業啟用監視。
+hello 下列程式碼啟用監視**現有**資料流分析工作。 hello hello 程式碼的第一個部分會執行對 hello hello 特定資料流分析工作的相關資料流分析服務 tooretrieve 資訊的 GET 要求。 它會使用 hello*識別碼*hello hello 中的 Put 方法的參數屬性 （從 hello GET 要求擷取） 第二個部份 hello 程式碼，傳送 PUT 要求 toohello Insights 服務 tooenable 監視 hello 資料流分析作業。
 
 >[!WARNING]
->如果您先前已經為不同的串流分析作業啟用監視 (不論是透過 Azure 入口網站，還是以程式設計方式透過以下的程式碼)，**建議您提供先前啟用監視時所提供的相同儲存體帳戶名稱。**
+>如果您先前已啟用監視不同的資料流分析工作，透過 hello Azure 入口網站或以程式設計方式透過程式碼下, 面 hello**我們建議您提供 hello 時使用的相同儲存體帳戶名稱您先前已啟用監視。**
 > 
-> 儲存體帳戶會連結到您建立串流分析作業所在的區域，而不是明確地連結到作業本身。
+> 您在中，未特別 toohello 工作本身建立串流分析工作的連結的 toohello 區域 hello 儲存體帳戶。
 > 
-> 相同區域中的所有串流分析作業 (以及其他所有 Azure 資源) 都共用此儲存體帳戶儲存監視資料。 如果您提供不同的儲存體帳戶，可能會對其他串流分析作業或其他 Azure 資源的監視產生非預期的副作用。
+> 所有的資料流分析工作 （和所有其他 Azure 資源） 在該相同區域中共用這個儲存體帳戶 toostore 監視資料。 如果您提供不同的儲存體帳戶時，它可能會導致非預期的副作用 hello 監視其他的資料流分析工作或其他 Azure 資源。
 > 
-> 用來取代下方程式碼中 `<YOUR STORAGE ACCOUNT NAME>` 的儲存體帳戶名稱應該是與您為其啟用監視功能的「串流分析」作業屬於相同訂用帳戶的儲存體帳戶。
+> hello 儲存體帳戶名稱，而您使用 tooreplace `<YOUR STORAGE ACCOUNT NAME>` hello 下列程式碼中應該是儲存體帳戶中 hello hello 資料流分析工作，您要啟用監視相同訂用帳戶。
 > 
 > 
 
@@ -179,7 +179,7 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
+* [簡介 tooAzure 資料流分析](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)

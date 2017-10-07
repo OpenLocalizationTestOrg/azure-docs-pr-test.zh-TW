@@ -1,5 +1,5 @@
 ---
-title: "透過 Azure 內容傳遞網路的媒體串流處理最佳化"
+title: "aaaMedia 資料流最佳化透過 hello Azure 內容傳遞網路"
 description: "將串流媒體檔案最佳化以便傳遞順暢"
 services: cdn
 documentationcenter: 
@@ -14,50 +14,50 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: v-semcev
-ms.openlocfilehash: 1221f4f50b8b9c4b9f9f88be4d04a65375c36062
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a05a86204708c7ea7ef1f9be04323cdda6a2d403
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="media-streaming-optimization-via-the-azure-content-delivery-network"></a>透過 Azure 內容傳遞網路的媒體串流處理最佳化 
+# <a name="media-streaming-optimization-via-hello-azure-content-delivery-network"></a>媒體串流處理透過 hello Azure 內容傳遞網路最佳化 
  
-網際網路使用高畫質影片的日益頻繁，造成有效率傳遞大型檔案的困難。 客戶期待在世界各地的各種網路和用戶端上順暢播放點播視訊或即時影片資產。 快速且有效的媒體串流檔案傳遞機制，對於確保順暢且愉悅的取用者體驗極為重要。  
+使用高畫質視訊會增加在 hello 網際網路，這會建立有效率的傳遞大型檔案的問題。 客戶即時視訊資產上各種網路和用戶端擁有 hello world，或視需要順暢地播放的視訊。 媒體串流處理檔案快速又有效率的傳遞機制是重大 tooensure 平滑且更有趣的取用者經驗。  
 
-即時串流處理媒體特別難傳遞，因為有大量的並行檢視者取用大型檔案。 長時間延遲造成使用者出走。 因為即時串流無法預先進行快取，而且檢視者無法接受長時間延遲，因此必須及時傳遞影片片段。 
+即時串流處理媒體為特別地困難 toodeliver 因為 hello 大型大小和並行的檢視器的數目。 長時間延遲會導致使用者 tooleave。 由於無法事先快取即時資料流，而大型延遲不是可接受 tooviewers，必須及時傳遞視訊片段。 
 
-串流的要求模式也帶來一些新挑戰。 當熱門的即時串流，或點播視訊發佈新的片段時，同一時間可能有數千到數百萬個檢視者要求資料流。 在此情況下，智慧要求彙總極為重要，因為在尚未快取資產時，它不會讓原始伺服器超過負荷。
+資料流處理的 hello 要求模式也會提供一些新的挑戰。 當受歡迎的即時資料流或新的序列所發行的千分位隨選視訊 toomillions 一個檢視器可能會要求在 hello hello 資料流相同的時間。 在此情況下，整合是重要的 toonot 智慧要求時 hello 資產不會快取尚未不勝負荷 hello 原始伺服器。
  
-Akamai 的 Azure 內容傳遞網路現在提供一項功能，可將串流處理媒體資產有效傳遞給全球的使用者。 此功能會減少延遲，因為它可以降低來源伺服器上的負載。 使用標準 Akamai 定價層可取得這項功能。 
+hello Azure 內容傳遞網路從 Akamai 現在提供傳遞串流處理媒體資產有效率地 toousers 跨大規模 hello 地球的功能。 hello 功能可降低延遲，因為它可以減少 hello hello 來源伺服器上的負載。 這項功能可與 hello Akamai 標準定價層。 
 
-Verizon 的 Azure 內容傳遞網路會直接使用一般 Web 傳遞最佳化類型來傳遞串流處理媒體內容。
+hello Verizon 從 Azure 內容傳遞網路直接在 hello 一般 web 傳遞最佳化類型中提供串流媒體。
  
-## <a name="configure-an-endpoint-to-optimize-media-streaming-in-the-azure-content-delivery-network-from-akamai"></a>在 Akamai 的 Azure 內容傳遞網路中，設定端點以最佳化媒體串流處理。
+## <a name="configure-an-endpoint-toooptimize-media-streaming-in-hello-azure-content-delivery-network-from-akamai"></a>Hello Akamai 從 Azure 內容傳遞網路資料流端點 toooptimize 媒體設定
  
-您可以設定您的內容傳遞網路 (CDN) 端點，以最佳化透過 Azure 入口網站傳遞大型檔案。 若要這樣做，您也可以使用 REST API 或任何用戶端 SDK。 下列步驟示範透過 Azure 入口網站的程序：
+您可以設定您內容傳遞網路 (CDN) 端點的 toooptimize 傳遞透過 hello Azure 入口網站的大型檔案。 您也可以使用我們的 REST Api，或任何 hello 用戶端 Sdk toodo 這。 hello 下列步驟顯示 hello 程序，透過 hello Azure 入口網站：
 
-1. 若要新增新的端點，請在 [CDN 設定檔] 頁面上選取 [端點]。
+1. 新的端點，在 hello tooadd**的 CDN 設定檔**頁面上，選取**端點**。
   
     ![新增端點](./media/cdn-media-streaming-optimization/01_Adding.png)
 
-2. 在 [最佳化對象] 下拉式清單中，為點播視訊資產選取 [點播視訊媒體串流]。 如果您結合即時和點播視訊串流處理，請選取 [General media streaming] \(一般媒體串流處理)。
+2. 在 hello**適合**下拉式清單中，選取**要求媒體串流處理視訊**video-on-demand 資產。 如果您結合即時和點播視訊串流處理，請選取 [General media streaming] \(一般媒體串流處理)。
 
     ![選取的串流](./media/cdn-media-streaming-optimization/02_Creating.png) 
  
-建立端點後，最佳化就會套用到符合特定準則的所有檔案。 下一節會說明此程序。 
+建立 hello 端點之後，它適用於符合特定準則的所有檔案的 hello 最佳化。 hello 之後 > 一節說明此程序。 
  
-## <a name="media-streaming-optimizations-for-the-azure-content-delivery-network-from-akamai"></a>來自 Akamai 的 Azure 內容傳遞網路的媒體串流處理最佳化
+## <a name="media-streaming-optimizations-for-hello-azure-content-delivery-network-from-akamai"></a>媒體串流處理的 hello Akamai 從 Azure 內容傳遞網路最佳化
  
 來自 Akamai 的媒體串流處理最佳化，適合使用媒體片段傳遞處理即時或點播視訊串流的媒體。 此程序不同於透過漸進式下載或使用位元組範圍要求的單一大型資產傳輸。 如需該樣式的媒體傳遞相關資訊，請查看[大型檔案最佳化](cdn-large-file-optimization.md)。
 
 
-一般媒體傳遞或點播視訊媒體傳遞最佳化類型，會使用 CDN 與後端最佳化以更快傳遞媒體資產。 它們也會使用媒體資產組態，此組態是以經過一段時間學習的最佳作法為基礎。
+hello 一般媒體傳遞或 video-on-demand 媒體傳遞最佳化類型使用 CDN 與後端最佳化 toodeliver 媒體資產更快。 它們也會使用媒體資產組態，此組態是以經過一段時間學習的最佳作法為基礎。
 
 ### <a name="caching"></a>快取
 
-如果 Akamai 的 Azure 內容傳遞網路偵測到資產是串流資訊清單或片段，它會使用與一般 Web 傳遞不同的快取到期時間。 (請參閱下表中的完整清單。)如往常一樣接受從來源傳送的 cache-control 或 Expires 標頭。 如果資產不是媒體資產，就會使用一般 Web 傳遞的逾期時間快取。
+如果 hello Azure 內容傳遞網路從 Akamai 偵測到該 hello 資產是串流資訊清單或片段，它會使用不同的快取的逾期時間，從一般 web 傳遞。 （請參閱 hello hello 下表中的完整清單）。如往常，請接受 cache-control 或 Expires 標頭傳送 hello 原點。 如果 hello 資產不是媒體資產，它會使用一般 web 傳遞 hello 逾期時間快取。
 
-當許多使用者要求還不存在的片段時，短的負快取時間對來源卸載就很有用。 例如該秒無法從原始伺服器取得封包的即時串流。 較長的快取間隔也有助於卸載原始伺服器的要求，因為通常不會修改影片內容。
+許多使用者要求片段還不存在時，適用於來源卸載 hello 簡短負快取的時間。 範例是即時資料流，其中 hello 封包無法使用從 hello 原點的第二個。 hello 再快取的時間間隔也有助於卸載 hello 的原始要求，因為通常不修改視訊內容。
  
 
 |    | 一般<br> Web<br>偵錯 | 一般<br> 媒體<br> 串流 | 點播視訊 <br>媒體<br> 串流  
@@ -67,15 +67,15 @@ Verizon 的 Azure 內容傳遞網路會直接使用一般 Web 傳遞最佳化類
  
 ### <a name="deal-with-origin-failure"></a>處理原始伺服器失敗  
 
-一般媒體傳遞和點播視訊媒體傳遞也都有以典型要求模式的最佳做法為基礎的原始伺服器逾時和重試記錄。 例如，因為一般媒體傳遞適合即時和點播視訊媒體傳遞，所以會因為即時串流講求時效性而使用比較短的連線逾時。
+一般媒體傳遞和點播視訊媒體傳遞也都有以典型要求模式的最佳做法為基礎的原始伺服器逾時和重試記錄。 例如，因為一般媒體傳遞即時是的它會使用較短的連線逾時到期 toohello 時間緊迫性質 video-on-demand 媒體傳遞，即時資料流。
 
-當連線逾時，CDN 會先重試幾次，再向用戶端傳送「504 - 閘道逾時」錯誤。 
+當連線逾時時，hello CDN 重試數次傳送 「 504-閘道逾時 」 錯誤 toohello 用戶端之前。 
 
-當檔案符合檔案類型和大小條件清單，CDN 會使用媒體串流處理的行為。 否則，會使用一般 Web 傳遞。
+當檔案符合 hello 檔案類型和大小條件清單時，hello CDN 會使用媒體串流處理 hello 行為。 否則，會使用一般 Web 傳遞。
    
 ### <a name="conditions-for-media-streaming-optimization"></a>媒體串流最佳化的條件 
 
-下表列出媒體串流處理最佳化需要滿足的準則集合： 
+hello 下表列出用於媒體串流最佳化滿足的準則 toobe hello 組： 
  
 支援的串流類型 | 副檔名  
 --- | ---  
@@ -86,15 +86,15 @@ Smooth Streaming | /manifest/,/QualityLevels/Fragments/
   
 
  
-## <a name="media-streaming-optimizations-for-the-azure-content-delivery-network-from-verizon"></a>Verizon 的 Azure 內容傳遞網路的媒體串流處理最佳化
+## <a name="media-streaming-optimizations-for-hello-azure-content-delivery-network-from-verizon"></a>媒體串流處理的 hello Verizon 從 Azure 內容傳遞網路最佳化
 
-Verizon 的 Azure 內容傳遞網路會直接使用一般 Web 傳遞最佳化類型來傳遞串流處理媒體資產。 CDN 有一些功能預設可直接協助傳遞媒體資產。
+hello Azure 內容傳遞網路從 Verizon 傳遞串流處理媒體資產是直接使用 hello 一般 web 傳遞最佳化類型。 某些功能在 hello CDN 直接協助傳遞預設的媒體資產。
 
 ### <a name="partial-cache-sharing"></a>部分快取共用
 
-部分快取共用，可讓 CDN 向新要求提供部分的快取內容。 例如，如果對 CDN 的第一個要求導致快取遺漏，該要求即會傳送到原始伺服器。 雖然此不完整的內容會載入到 CDN 快取中，但是對 CDN 的其他要求可以開始取得此資料。 
+部分快取共用，可讓 hello CDN tooserve 部分快取內容的 toonew 要求。 例如，如果第一個要求 toohello hello CDN 導致快取遺漏，hello 要求會傳送 toohello 原點。 雖然此內容不完整載入 hello CDN 快取時，其他要求 toohello CDN 可以開始取得這項資料。 
 
 ### <a name="cache-fill-wait-time"></a>快取填滿等候時間
 
- 快取填滿等候時間功能會強迫邊緣伺服器保存相同資源的所有後續要求，直到原始伺服器的 HTTP 回應標頭送達為止。 如果原始伺服器的 HTTP 回應標頭在計時器終止前送達，則會在成長中快取之外為所有暫停的要求提供服務。 同時，快取會填入原始伺服器的資料。 根據預設，快取填滿等候時間會設定為 3,000 毫秒。 
+ hello 快取填滿的等候時間功能強制 hello edge server toohold 的任何後續要求 hello 直到 HTTP 回應標頭傳來 hello 來源伺服器相同的資源。 如果 HTTP 回應標頭從 hello 原點抵達 hello 計時器終止之前，所有已暫停要求是從 hello 成長快取。 在 hello 相同時間、 hello hello 的原始資料會填入快取。 根據預設，hello 快取填滿的等候時間會設定 too3，000 毫秒為單位。 
 

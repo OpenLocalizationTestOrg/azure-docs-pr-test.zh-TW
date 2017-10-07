@@ -1,6 +1,6 @@
 ---
-title: "關於連線到 Azure VPN 閘道的第三方 VPN 裝置組態 | Microsoft Docs"
-description: "本文提供連線到 Azure VPN 閘道之第三方 VPN 裝置組態的概觀。"
+title: "aaaAbout 第 3 個合作對象 VPN 裝置組態 tooconnect tooAzure VPN 閘道 |Microsoft 文件"
+description: "本文章提供連接 tooAzure VPN 閘道第 3 個合作對象 VPN 裝置組態的概觀。"
 services: vpn-gateway
 documentationcenter: na
 author: yushwang
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/20/2017
 ms.author: yushwang
-ms.openlocfilehash: 72dab85bb882b05d72cef26bef70437695b70416
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3bb4fc94bc625386c2d0a02e1dcbdeb38ee0665e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-3rd-party-vpn-device-configurations"></a>第三方 VPN 裝置組態的概觀
-本文提供連線到 Azure VPN 閘道之內部部署 VPN 裝置組態的概觀。 範例 Azure 虛擬網路和 VPN 閘道安裝程式將用來以相同參數連線到不同的內部部署 VPN 裝置。
+本文章提供連接 tooAzure VPN 閘道的內部部署 VPN 裝置組態的概觀。 hello 範例 Azure 虛擬網路和 VPN 閘道安裝程式將會使用的 tooconnect toodifferent 在內部部署 VPN 裝置以 hello 相同的參數。
 
 ## <a name="device-requirements"></a>裝置需求
-Azure VPN 閘道會針對 S2S VPN 通道使用標準的 IPsec/IKE 通訊協定組合。 請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)，以取得詳細的 IPsec/IKE 通訊協定參數，以及 Azure VPN 閘道的預設密碼編譯演算法。 您可以選擇性地針對特定連線指定密碼編譯演算法和金鑰長度的確切組合，如[關於密碼編譯需求](vpn-gateway-about-compliance-crypto.md)中所述。
+Azure VPN 閘道會針對 S2S VPN 通道使用標準的 IPsec/IKE 通訊協定組合。 請參閱太[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)hello 詳細的 IPsec/IKE 通訊協定參數和 Azure VPN 閘道的預設密碼編譯演算法。 中所述，您可以選擇指定的密碼編譯演算法和金鑰長度為特定連線的 hello 確切組合[有關密碼編譯需求](vpn-gateway-about-compliance-crypto.md)。
 
 ## <a name ="singletunnel"></a>單一 VPN 通道
-第一個拓撲是由 Azure VPN 閘道與您內部部署 VPN 裝置之間的單一 S2S VPN 通道所組成。 您可以選擇透過 VPN 通道設定 BGP。
+hello 第一個拓撲是由單一的 S2S VPN 通道，Azure VPN 閘道與內部部署 VPN 裝置之間所組成。 您可以選擇性地跨 hello VPN 通道設定 BGP。
 
 ![單一通道](./media/vpn-gateway-3rdparty-device-config-overview/singletunnel.png)
 
-請參閱[設定站對站連線](vpn-gateway-howto-site-to-site-resource-manager-portal.md)以取得詳細的逐步指引。 下列各節會列出參數，並提供可協助您開始的範例 PowerShell 指令碼。
+請參閱太[設定站對站連線](vpn-gateway-howto-site-to-site-resource-manager-portal.md)如需詳細的逐步指引。 hello 下列各節列出 hello 參數，並提供您快速入門範例 PowerShell 指令碼 toohelp。
 
 ### <a name="network-and-vpn-gateway-information"></a>網路和 VPN 閘道資訊
-本節會列出適用於上述範例的參數。
+本節列出 hello 參數，如上述的 hello 範例。
 
 | **參數**                | **值**                    |
 | ---                          | ---                          |
@@ -51,7 +51,7 @@ Azure VPN 閘道會針對 S2S VPN 通道使用標準的 IPsec/IKE 通訊協定�
 * (*) 僅適用於 BGP 的選擇性參數
 
 ### <a name="sample-powershell-script"></a>範例 PowerShell 指令碼
-[使用 PowerShell 建立 S2S VPN 連線](vpn-gateway-create-site-to-site-rm-powershell.md)會提供詳細的指示。 本節提供可協助您開始的範例指令碼。
+[建立 S2S VPN 連線使用 PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md) hello 詳細指示。 本節提供範例指令碼 tooget 您已啟動。
 
 ```powershell
 # Declare your variables
@@ -82,7 +82,7 @@ $LNGIP5        = "Your_VPN_Device_IP"
 $LNGASN5       = 65050
 $BGPPeerIP5    = "10.52.255.254"
 
-# Connect to your subscription and create a new resource group
+# Connect tooyour subscription and create a new resource group
 
 Login-AzureRmAccount
 Select-AzureRmSubscription -SubscriptionName $Sub1
@@ -108,7 +108,7 @@ New-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1 -Locatio
 
 New-AzureRmLocalNetworkGateway -Name $LNGName5 -ResourceGroupName $RG1 -Location $Location1 -GatewayIpAddress $LNGIP5 -AddressPrefix $LNGPrefix51,$LNGPrefix52 -Asn $LNGASN5 -BgpPeeringAddress $BGPPeerIP5
 
-# Create the S2S VPN connection
+# Create hello S2S VPN connection
 
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1  -ResourceGroupName $RG1
 $lng5gw  = Get-AzureRmLocalNetworkGateway -Name $LNGName5 -ResourceGroupName $RG1
@@ -117,16 +117,16 @@ New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupNam
 ```
 
 ### <a name ="policybased"></a> [選擇性] 搭配 "UsePolicyBasedTrafficSelectors" 使用自訂的 IPsec/IKE 原則
-如果您的 VPN 裝置不支援「任意-到-任意」的流量選取器 (路由式/VTI 式組態)，您必須建立自訂的 IPsec/IKE 原則並設定 "UsePolicyBasedTrafficSelectors" 選項，如[這篇文章](vpn-gateway-connect-multiple-policybased-rm-ps.md)所述。
+如果您的 VPN 裝置不支援 「 任何-到-any"流量選取器 （路由-基礎/VTI 為基礎的組態），您將需要 toocreate 自訂 IPsec/IKE 原則和設定 「 UsePolicyBasedTrafficSelectors"選項中所述[這篇文章](vpn-gateway-connect-multiple-policybased-rm-ps.md).
 
 > [!IMPORTANT]
-> 您需要建立 IPsec/IKE 原則，才能在連線上啟用 "UsePolicyBasedTrafficSelectors" 選項。
+> 您需要 toocreate 順序 tooenable"UsePolicyBasedTrafficSelectors"hello 連線選項中的 IPsec/IKE 原則。
 
-下列範例指令碼會使用下列演算法和參數來建立 IPsec/IKE 原則：
+下列的 hello 範例指令碼會建立 IPsec/IKE 原則以 hello 下列演算法和參數：
 * IKEv2：AES256、SHA384、DHGroup24
 * IPsec：AES256、SHA1、PFS24、SA 存留期 7200 秒和 20480000KB (20GB)
 
-接著套用原則，並在連線上啟用 "UesPolicyBasedTrafficSelectors"。
+然後 hello 原則套用，並且在 hello 連接上啟用 「 UesPolicyBasedTrafficSelectors"。
 
 ```powershell
 $ipsecpolicy5 = New-AzureRmIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup DHGroup24 -IpsecEncryption AES256 -IpsecIntegrity SHA1 -PfsGroup PFS24 -SALifeTimeSeconds 7200 -SADataSizeKilobytes 20480000
@@ -138,20 +138,20 @@ New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupNam
 ```
 
 ### <a name ="bgp"></a>[選擇性] 在 S2S VPN 連線使用 BGP
-您可以選擇性地在連線上使用 BGP。 請參閱[適用於 VPN 閘道的 BGP](vpn-gateway-bgp-resource-manager-ps.md)。 有兩個差異：
+您可以選擇性地在 hello 連接上使用 BGP。 請參閱[適用於 VPN 閘道的 BGP](vpn-gateway-bgp-resource-manager-ps.md)。 有兩個差異：
 
-內部部署位址首碼可以是單一主機位址，內部部署 BGP 對等 IP 位址：
+hello 在內部部署位址前置詞可以是單一主機位址、 hello 內部 BGP 對等體 IP 位址：
 
 ```powershell
 New-AzureRmLocalNetworkGateway -Name $LNGName5 -ResourceGroupName $RG1 -Location $Location1 -GatewayIpAddress $LNGIP5 -AddressPrefix $LNGPrefix50 -Asn $LNGASN5 -BgpPeeringAddress $BGPPeerIP5
 ```
 
-您必須在建立連線時，將 "-EnableBGP" 設為 $True：
+您必須設定 「-EnableBGP 」 太 $True 建立 hello 連接時：
 
 ```powershell
 New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng5gw -Location $Location1 -ConnectionType IPsec -SharedKey 'AzureA1b2C3' -EnableBGP $True
 ```
 
 ## <a name="next-steps"></a>後續步驟
-如需設定主動-主動跨單位和 VNet 對 VNet 連線的步驟，請參閱[設定跨單位和 VNet 對 VNet 連線的主動-主動 VPN 閘道](vpn-gateway-activeactive-rm-powershell.md)。
+請參閱[跨單位和 VNet 對 VNet 連線設定主動-主動 VPN 閘道](vpn-gateway-activeactive-rm-powershell.md)步驟 tooconfigure 主動-主動跨單位和 VNet 對 VNet 連線。
 

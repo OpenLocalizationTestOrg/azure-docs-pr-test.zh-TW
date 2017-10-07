@@ -1,6 +1,6 @@
 ---
-title: "Azure 診斷記錄支援的服務和結構描述 | Microsoft Docs"
-description: "了解 Azure 診斷記錄支援的服務和事件結構描述。"
+title: "aaaAzure 診斷記錄檔支援服務和結構描述 |Microsoft 文件"
+description: "了解 hello 支援的服務以及事件結構描述的 Azure 診斷記錄檔。"
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: johnkem
-ms.openlocfilehash: aa4fa6e0310b2725005dfa34e3225c89fb4282d6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a3cbf5267e1bd0dc257f4fb4f42c323644046a6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-services-schemas-and-categories-for-azure-diagnostic-logs"></a>Azure 診斷記錄支援的服務、結構描述和類別
 
-[Azure 資源診斷記錄](monitoring-overview-of-diagnostic-logs.md)是您 Azure 資源所發出的記錄，會描述該資源的作業。 這些是資源類型特定的記錄。 在本文中，我們概述一組支援的服務，和每一個服務所發出之事件的事件結構描述。 本文也包含每個資源類型的可用記錄類別完整清單。
+[Azure 資源的診斷記錄檔](monitoring-overview-of-diagnostic-logs.md)是由您的 Azure 資源，說明該資源的 hello 作業發出的記錄。 這些是資源類型特定的記錄。 在本文中，我們概述 hello 組支援 services 以及事件的結構描述的每一個服務所發出的事件。 本文也包含每個資源類型的可用記錄類別完整清單。
 
 ## <a name="supported-services-and-schemas-for-resource-diagnostic-logs"></a>資源診斷記錄的支援服務和結構描述
-資源診斷記錄的結構描述會根據資源和記錄類別而有所不同。   
+資源的診斷記錄檔的 hello 結構描述會根據 hello 資源和記錄類別目錄而有所不同。   
 
 | 服務 | 結構描述與文件 |
 | --- | --- |
@@ -52,12 +52,12 @@ ms.lasthandoff: 08/29/2017
 ## <a name="supported-log-categories-per-resource-type"></a>每個資源類型支援的記錄檔類別
 |資源類型|類別|類別顯示名稱|
 |---|---|---|
-|Microsoft.ApiManagement/service|GatewayLogs|ApiManagement 閘道的相關記錄檔|
+|Microsoft.ApiManagement/service|GatewayLogs|記錄檔相關 tooApiManagement 閘道|
 |Microsoft.Automation/automationAccounts|JobLogs|作業記錄檔|
 |Microsoft.Automation/automationAccounts|JobStreams|作業串流|
 |Microsoft.Automation/automationAccounts|DscNodeStatus|Dsc 節點狀態|
 |Microsoft.Batch/batchAccounts|ServiceLog|服務記錄檔|
-|Microsoft.Cdn/profiles/endpoints|CoreAnalytics|取得端點的計量，例如頻寬、輸出等資訊。|
+|Microsoft.Cdn/profiles/endpoints|CoreAnalytics|取得 hello 度量的 hello 端點，例如，頻寬、 輸出和其他內容。|
 |Microsoft.CustomerInsights/hubs|AuditEvents|AuditEvents|
 |Microsoft.DataLakeAnalytics/accounts|稽核|稽核記錄檔|
 |Microsoft.DataLakeAnalytics/accounts|要求|要求記錄檔|
@@ -89,6 +89,6 @@ ms.lasthandoff: 08/29/2017
 ## <a name="next-steps"></a>後續步驟
 
 * [深入了解診斷記錄](monitoring-overview-of-diagnostic-logs.md)
-* [將資源診斷記錄串流至**事件中樞**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
-* [使用 Azure 監視器 REST API 變更資源診斷設定](https://msdn.microsoft.com/library/azure/dn931931.aspx)
+* [串流處理資源的診斷記錄檔太**事件中心**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [變更資源使用 hello Azure 監視 REST API 的診斷設定](https://msdn.microsoft.com/library/azure/dn931931.aspx)
 * [使用 Log Analytics 分析來自 Azure 儲存體的記錄](../log-analytics/log-analytics-azure-storage.md)

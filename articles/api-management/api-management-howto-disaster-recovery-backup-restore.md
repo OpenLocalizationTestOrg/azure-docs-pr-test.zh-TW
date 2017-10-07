@@ -1,6 +1,6 @@
 ---
-title: "在 Azure API 管理中使用備份和還原實作災害復原 | Microsoft Docs"
-description: "了解如何在 Azure API 管理中使用備份和還原來執行災難復原。"
+title: "aaaImplement 災害復原使用備份與還原在 Azure API 管理 |Microsoft 文件"
+description: "深入了解如何 toouse 備份和還原 tooperform 嚴重損壞修復，在 Azure API 管理。"
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 07c0265490cfae733133b6e0c938f90f9b392da4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 058bfb579e3a3f51fb1dac8ea37eb4fdbc83a4ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-implement-disaster-recovery-using-service-backup-and-restore-in-azure-api-management"></a>如何在 Azure API 管理中使用服務備份和還原實作災害復原
-選擇透過 Azure API 管理來發佈及管理 API，您將能夠利用許多非 Azure API 管理使用者須另行設計、實作及管理的容錯和基礎結構功能。 Azure 平台可緩和絕大部分可能的失敗後果，且成本低廉。
+# <a name="how-tooimplement-disaster-recovery-using-service-backup-and-restore-in-azure-api-management"></a>如何 tooimplement 災害復原使用服務備份和還原在 Azure API 管理
+藉由選擇 toopublish 和管理您的應用程式開發介面透過 Azure API 管理，您就可以運用許多錯誤容錯和基礎結構功能，您原本必須另外 toodesign 實作和管理。 hello Azure 平台可降低在 hello 成本可能發生失敗的較大的分數。
 
-若要從影響範圍涵蓋 API 管理服務託管所在之區域的可用性問題復原，您應該要做好準備能隨時在其他區域重新建構服務。 由於可用性目標和復原時間目標不盡相同，您也許會想要在一或多個區域預留備份服務，並嘗試與作用中的服務維持組態和內容同步。 服務備份和還原功能可提供實作災害復原策略時所不可或缺的建置組塊。
+從可用性問題在影響其中是您的 API 管理服務的 hello 區域 toorecover 裝載您應該準備好 tooreconstitute 隨時都是您在不同的區域中的服務。 視您的可用性目標和復原時間目標，您可能會想 tooreserve 中一或多個區域的備份服務並再試一次 toomaintain 其設定及內容與 hello active service 不同步。 hello 服務備份和還原功能提供 hello 所需的建置組塊，實作嚴重損壞修復策略。
 
-本指南說明如何驗證 Azure Resource Manager 的要求，以及如何備份和還原您的 API 管理服務執行個體。
+本指南也說明如何 tooauthenticate Azure 資源管理員要求，以及如何 toobackup 和還原您的 API 管理服務執行個體。
 
 > [!NOTE]
-> 備份與還原嚴重損壞修復的 API 管理服務執行個體的程序，也可用於預備等案例，以複寫 API 管理服務執行個體。
+> 備份與還原 API 管理服務執行個體的災害復原的 hello 程序也可用來複寫案例，例如臨時的 API 管理服務執行個體。
 >
-> 請注意，每個備份在 30 天後到期。 如果您在過了 30 天的到期時間後嘗試還原備份，還原會失敗並傳回 `Cannot restore: backup expired` 訊息。
+> 請注意，每個備份在 30 天後到期。 如果您嘗試 toorestore 備份 hello 30 天的逾期期限過期之後，hello 還原會失敗並`Cannot restore: backup expired`訊息。
 >
 >
 
 ## <a name="authenticating-azure-resource-manager-requests"></a>驗證 Azure 資源管理員要求
 > [!IMPORTANT]
-> 備份和還原的 REST API 會使用 Azure 資源管理員，並有不同的驗證機制的 REST API 來管理您的 API 管理實體。 本節中的步驟描述如何驗證 Azure 資源管理員的要求。 如需詳細資訊，請參閱 [驗證 Azure Resource Manager 要求](http://msdn.microsoft.com/library/azure/dn790557.aspx)。
+> hello 備份和還原的 REST API 使用 Azure 資源管理員並具有不同的驗證機制比 hello REST Api 來管理您 API 管理的實體。 本節中的 hello 步驟說明如何 tooauthenticate Azure 資源管理員的要求。 如需詳細資訊，請參閱 [驗證 Azure Resource Manager 要求](http://msdn.microsoft.com/library/azure/dn790557.aspx)。
 >
 >
 
-所有您使用 Azure 資源管理員對資源所做的工作，必須透過 Azure Active Directory 使用以下步驟驗證。
+所有 hello 工作使用 hello Azure 資源管理員的資源上執行之必須使用 Azure Active Directory 使用下列步驟的 hello 進行驗證。
 
-* 新增應用程式到 Azure Active Directory 租用戶。
-* 設定您所新增之應用程式的權限。
-* 取得向 Azure 資源管理員驗證要求的權杖。
+* 新增應用程式 toohello Azure Active Directory 租用戶。
+* 設定您加入的 hello 應用程式的權限。
+* 取得 hello 權杖來驗證要求 tooAzure 資源管理員。
 
-第一個步驟是建立 Azure Active Directory 應用程式。 使用含 API 管理服務執行個體的訂用帳戶登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)，並瀏覽至預設 Azure Active Directory 的 [應用程式] 索引標籤。
+hello 第一個步驟是 toocreate Azure Active Directory 應用程式。 登入 hello [Azure 傳統入口網站](http://manage.windowsazure.com/)使用 hello 訂用帳戶包含您的 API 管理服務執行個體，並瀏覽 toohello**應用程式**預設 Azure Active Directory 索引標籤。
 
 > [!NOTE]
-> 如果您的帳戶看不到 Azure Active Directory 預設目錄，請連絡 Azure 訂用帳戶的系統管理員，以授與您的帳戶必要權限。
+> 如果 hello Azure Active Directory 預設目錄是不可見的 tooyour 帳戶，hello Azure 訂用帳戶 toogrant hello hello 連絡系統管理員所需的權限 tooyour 帳戶。
 
 ![建立 Azure Active Directory 應用程式][api-management-add-aad-application]
 
-按一下 [新增]，[新增我的組織正在開發的應用程式]，然後選擇 [原生用戶端應用程式]。 輸入描述性名稱，然後按一下下一步箭頭。 輸入 [重新導向 URI] 的預留位置 URL，例如 `http://resources`，因為它是必要的欄位，但稍後不會使用這個值。 按一下核取方塊以儲存應用程式。
+按一下 [新增]，[新增我的組織正在開發的應用程式]，然後選擇 [原生用戶端應用程式]。 輸入描述性名稱，然後按一下 hello 下一步箭頭。 輸入預留位置 URL，例如`http://resources`hello**重新導向 URI**，就如同它是必要的欄位，但不是會更新版本使用 hello 值。 按一下 [hello] 核取方塊 toosave hello 應用程式。
 
-儲存應用程式之後，按一下 [組態]，向下捲動至 [其他應用程式的權限] 區段，然後按一下 [新增應用程式]。
+Hello 應用程式儲存之後，按一下**設定**，捲動 toohello**權限 tooother 應用程式**區段，然後按一下 **新增應用程式**。
 
 ![新增權限][api-management-aad-permissions-add]
 
-選取 [Windows Azure 服務管理 API]，然後按一下核取方塊以新增應用程式。
+選取**Windows** **Azure 服務管理 API**按一下 hello 核取方塊 tooadd hello 應用程式。
 
 ![新增權限][api-management-aad-permissions]
 
-按一下新增的 [Windows Azure 服務管理 API] 應用程式旁邊的 [委派權限]，核取 [存取 Azure 服務管理 (預覽)]，然後按一下 [儲存]。
+按一下**委派的權限**旁邊新加入的 hello **Windows** **Azure 服務管理 API**應用程式中，核取方塊 hello**存取 Azure服務管理 （預覽）**，然後按一下**儲存**。
 
 ![新增權限][api-management-aad-delegated-permissions]
 
-在叫用產生備份並將其還原的 API 之前，必須先取得權杖。 以下範例會使用 [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory) NuGet 封裝來擷取權杖。
+先前 tooinvoking hello 產生的 Api hello 備份和還原它，就需要 tooget 語彙基元。 hello 下列範例會使用 hello [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory) nuget 封裝 tooretrieve hello 語彙基元。
 
 ```c#
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
@@ -83,7 +83,7 @@ namespace GetTokenResourceManagerRequests
             var result = authenticationContext.AcquireToken("https://management.azure.com/", {application id}, new Uri({redirect uri});
 
             if (result == null) {
-                throw new InvalidOperationException("Failed to obtain the JWT token");
+                throw new InvalidOperationException("Failed tooobtain hello JWT token");
             }
 
             Console.WriteLine(result.AccessToken);
@@ -94,105 +94,105 @@ namespace GetTokenResourceManagerRequests
 }
 ```
 
-使用下列指示取代 `{tentand id}`、`{application id}` 和 `{redirect uri}`。
+取代`{tentand id}`， `{application id}`，和`{redirect uri}`使用下列指示的 hello。
 
-使用剛才建立的 Azure Active Directory 應用程式的租用戶識別碼取代 `{tenant id}` 。 您可以按一下 [檢視端點] 來存取識別碼。
+取代`{tenant id}`hello 的 hello 您剛才建立的 Azure Active Directory 應用程式的租用戶識別碼。 您可以按一下來存取 hello 識別碼**檢視端點**。
 
 ![端點][api-management-aad-default-directory]
 
 ![端點][api-management-endpoint]
 
-使用 Azure Active Directory 應用程式的 [設定] 索引標籤中的 [用戶端識別碼] 和 [重新導向 URI] 區段中的 URL，取代 `{application id}` 和 `{redirect uri}`。
+取代`{application id}`和`{redirect uri}`使用 hello**用戶端識別碼**hello URL 從 hello 和**重新導向 Uri**來自 Azure Active Directory 應用程式的區段**設定**  索引標籤。
 
 ![資源][api-management-aad-resources]
 
-一旦指定了值，程式碼範例將傳回類似以下範例的權杖。
+一旦指定 hello 值，hello 程式碼範例將返回語彙基元的類似 toohello，下列範例。
 
 ![權杖][api-management-arm-token]
 
-呼叫下節描述的備份和還原作業之前，請先設定您 REST 呼叫的授權要求標頭。
+呼叫 hello 備份和還原 hello 下列各節中所述的作業之前，設定 REST 呼叫的 hello 授權要求標頭。
 
 ```c#
 request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
 ```
 
 ## <a name="step1"> </a>備份 API 管理服務
-若要備份 API 管理服務，請發出以下 HTTP 要求：
+下列 HTTP 要求的 API 管理服務問題 hello 向上 tooback:
 
 `POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/backup?api-version={api-version}`
 
 其中：
 
-* `subscriptionId` -  訂用帳戶的識別碼，此訂用帳戶含有您嘗試備份的 API 管理服務
-* `resourceGroupName` - 'Api-Default-{service-region}' 形式的字串；其中，`service-region` 可識別在其中裝載您嘗試備份之 API 管理服務的 Azure 區域 (例如 `North-Central-US`)
-* `serviceName` - 要備份之 API 管理服務的名稱，該名稱是在服務建立時所指定
+* `subscriptionId`-hello 訂用帳戶包含您正嘗試 toobackup hello API 管理服務識別碼
+* `resourceGroupName`-hello 'Api 表單的預設值-{服務區域}' 中的字串其中`service-region`識別 hello hello 想 toobackup API 管理服務的裝載位置的 Azure 區域，例如：`North-Central-US`
+* `serviceName`-hello hello 您要進行的備份在其建立 hello 時指定的 API 管理服務名稱
 * `api-version` - 取代為 `2014-02-14`
 
-在要求的本文中指定目標 Azure 儲存體帳戶名稱、存取金鑰、Blob 容器名稱和備份名稱：
+Hello hello 要求主體中指定 hello 目標 Azure 儲存體帳戶名稱、 存取金鑰、 blob 容器名稱，以及備份名稱：
 
 ```
 '{  
-    storageAccount : {storage account name for the backup},  
-    accessKey : {access key for the account},  
+    storageAccount : {storage account name for hello backup},  
+    accessKey : {access key for hello account},  
     containerName : {backup container name},  
     backupName : {backup blob name}  
 }'
 ```
 
-將 `Content-Type` 要求標頭的值設定為 `application/json`。
+設定 hello hello 值`Content-Type`要求標頭太`application/json`。
 
-備份作業的執行時間較長，因此可能需要幾分鐘的時間才能完成。  如果要求成功並已起始備份程序，則會收到含有 `Location` 標頭的 `202 Accepted` 回應狀態碼。  請向 `Location` 標頭中的 URL 發出 'GET' 要求，以查明作業的狀態。 當備份進行時，您會持續收到「202 已接受」狀態碼。 回應碼 `200 OK` 代表備份作業已成功完成。
+備份是一項長時間執行的作業，可能需要多個分鐘 toocomplete。  如果 hello 要求成功，並已起始 hello 備份程序將會收到`202 Accepted`回應狀態碼和`Location`標頭。  請 'GET' 要求在 hello toohello URL`Location`標頭 toofind 出 hello hello 作業狀態。 Hello 備份正在進行時，您將繼續 tooreceive '202 已接受' 的狀態碼。 回應碼`200 OK`會指出 hello 備份作業成功完成。
 
-進行備份的要求時，請注意下列條件約束。
+請注意下列條件約束進行的備份要求時的 hello。
 
-* 在要求本文中指定的**容器****必須存在**。
+* **容器**hello 要求主體中指定**必須存在於**。
 * 備份進行時，請「避免嘗試任何服務管理作業」  ，如提升或降低 SKU、變更網域名稱等。
-* 備份還原的**保證僅限建立後的 30 天內**。
-* 備份**不包含**用來建立分析報告的**使用量資料**。 請使用 [Azure API 管理 REST API][Azure API Management REST API] 來定期擷取分析報告，以利妥善保存。
-* 執行服務備份的頻率會影響您的復原點目標。 為了盡可能縮小，建議您實施定期備份，以及在針對 API 管理服務做出重要變更後執行隨選備份。
-* 在備份作業進行時針對服務組態 (如 API、原則、開發人員入口網站外觀) 所做的**變更****可能不會納入備份中，因此可能會遺失**。
+* 還原**備份只會保證 30 天**自其建立 hello 快照。
+* **使用量資料**用來建立分析報表**就不會包含**hello 備份中。 使用[Azure API 管理 REST API] [ Azure API Management REST API] tooperiodically 擷取分析報表，以妥善保存。
+* hello 與您執行服務備份的頻率會影響您的復原點目標。 toominimize 它建議實作定期備份，以及執行指定備份後進行重要變更 tooyour API 管理服務。
+* **變更**提出的 toohello 服務組態 （例如應用程式開發介面、 原則、 開發人員入口網站的外觀），備份作業正在進行**可能不會包含在 hello 備份，因此將會遺失**。
 
 ## <a name="step2"> </a>還原 API 管理服務
-若要從先前建立的備份還原 API 管理服務，請發出以下 HTTP 要求：
+toorestore API 管理服務從先前建立的備份進行下列 HTTP 要求的 hello:
 
 `POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/restore?api-version={api-version}`
 
 其中：
 
-* `subscriptionId` - 訂用帳戶的識別碼，此訂用帳戶含有您要還原備份的目標 API 管理服務
-* `resourceGroupName` - 'Api-Default-{service-region}' 形式的字串；其中，`service-region` 可識別在其中裝載您要還原備份之目標 API 管理服務的 Azure 區域 (例如 `North-Central-US`)
-* `serviceName` - 要還原之目標 API 管理服務的名稱，該名稱是在服務建立時所指定
+* `subscriptionId`-hello 訂用帳戶包含您要還原備份時的 hello API 管理服務識別碼
+* `resourceGroupName`-hello 'Api 表單的預設值-{服務區域}' 中的字串其中`service-region`識別 hello Azure 區域裝載 hello API 管理服務，您要還原至備份的位置，例如：`North-Central-US`
+* `serviceName`-hello hello API 管理 hello 其建立時指定還原到的服務名稱
 * `api-version` - 取代為 `2014-02-14`
 
-在要求的本文中指定備份檔案位置，即 Azure 儲存體帳戶名稱、存取金鑰、Blob 容器名稱和備份名稱：
+Hello hello 要求主體中指定 hello 備份檔案位置，也就是 Azure 儲存體帳戶名稱、 存取金鑰、 blob 容器名稱，以及備份名稱：
 
 ```
 '{  
-    storageAccount : {storage account name for the backup},  
-    accessKey : {access key for the account},  
+    storageAccount : {storage account name for hello backup},  
+    accessKey : {access key for hello account},  
     containerName : {backup container name},  
     backupName : {backup blob name}  
 }'
 ```
 
-將 `Content-Type` 要求標頭的值設定為 `application/json`。
+設定 hello hello 值`Content-Type`要求標頭太`application/json`。
 
-還原作業的執行時間較長，因此可能需要 30 分鐘以上的時間才能完成。  如果要求成功並已起始還原程序，則會收到含有 `Location` 標頭的 `202 Accepted` 回應狀態碼。  請向 `Location` 標頭中的 URL 發出 'GET' 要求，以查明作業的狀態。 當還原進行時，您會持續收到「202 已接受」狀態碼。 回應碼 `200 OK` 代表還原作業已成功完成。
+還原是長時間執行的作業，可能會佔用 too30 或多個分鐘 toocomplete。  如果 hello 要求成功，已起始 hello 還原程序，您會收到`202 Accepted`回應狀態碼和`Location`標頭。  請 'GET' 要求在 hello toohello URL`Location`標頭 toofind 出 hello hello 作業狀態。 Hello 還原正在進行時，您將繼續 tooreceive '202 已接受' 狀態碼。 回應碼`200 OK`會指出 hello 還原作業成功完成。
 
 > [!IMPORTANT]
-> 用於還原之目標服務的 **SKU****必須符合**即將還原之已備份服務的 SKU。
+> **hello SKU**的 hello 服務還原到**必須符合**hello hello 的 SKU 備份正在還原服務。
 >
-> 在還原作業進行時針對服務組態 (如 API、原則、開發人員入口網站外觀) 所做的**變更****可能會遭到覆寫**。
+> **變更**提出的 toohello 服務組態 （例如應用程式開發介面、 原則、 開發人員入口網站的外觀），還原作業正在進行中**可能會覆寫**。
 >
 >
 
 ## <a name="next-steps"></a>後續步驟
-請參閱下列 Microsoft 部落格中，兩個不同的備份/還原程序逐步解說。
+簽出 hello 遵循 hello 備份/還原程序的兩個不同的逐步解說的 Microsoft 部落格。
 
 * [複寫 Azure API 管理帳戶 (英文)](https://www.returngis.net/en/2015/06/replicate-azure-api-management-accounts/)
-  * 感謝 Gisela 提供此文章。
+  * 感謝您 tooGisela 她比重 toothis 發行項。
 * [Azure API 管理：備份和還原組態 (英文)](http://blogs.msdn.com/b/stuartleeks/archive/2015/04/29/azure-api-management-backing-up-and-restoring-configuration.aspx)
-  * Stuart 詳細說明的方法與正式指南不同，但非常有意思。
+  * 藉由 Stuart 詳細 hello 方法不符合 hello 正式的指導，但它是非常有趣。
 
 [Backup an API Management service]: #step1
 [Restore an API Management service]: #step2

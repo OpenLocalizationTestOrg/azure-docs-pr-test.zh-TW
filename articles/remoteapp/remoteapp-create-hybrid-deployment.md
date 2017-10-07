@@ -1,6 +1,6 @@
 ---
-title: "如何建立 Azure RemoteApp 的混合式收藏 | Microsoft Docs"
-description: "了解如何建立連接內部網路的 RemoteApp 部署。"
+title: "aaaHow toocreate Azure RemoteApp 的混合式集合 |Microsoft 文件"
+description: "深入了解如何 toocreate tooyour 內部網路連線的 RemoteApp 的部署。"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -14,126 +14,126 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 346a5fe3e4011985e4247ceef0d5ca858049fd28
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3fba29acc676e0af48e995da406f889c532c44c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-a-hybrid-collection-for-azure-remoteapp"></a>如何建立 Azure RemoteApp 的混合式收藏
+# <a name="how-toocreate-a-hybrid-collection-for-azure-remoteapp"></a>如何 toocreate Azure RemoteApp 的混合式集合
 > [!IMPORTANT]
-> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 讀取 hello[公告](https://go.microsoft.com/fwlink/?linkid=821148)如需詳細資訊。
 > 
 > 
 
 Azure RemoteApp 收藏分成兩種：
 
-* 雲端：完全位於 Azure 中。 您可以選擇在雲端儲存所有資料 (也就是僅限雲端的集合) 或將您的集合連線到 VNET，並於該處儲存資料。   
-* 混合式：包含可內部存取的虛擬網路，這需要使用 Azure AD 和內部部署的 Active Directory 環境。
+* 雲端：完全位於 Azure 中。 可以在 hello 雲端中選擇 toosave 所有資料 (因此僅限雲端的集合) 或 tooconnect 您集合 tooa VNET 及儲存那里資料。   
+* 混合式： 包含虛擬網路內部存取-對於這需要 hello 使用 Azure AD 和內部部署 Active Directory 環境。
 
 不知道您需要什麼嗎? 請查看 [Azure RemoteApp 需要何種集合](remoteapp-collections.md)。
 
-本教學課程將逐步引導您完成建立混合式收藏的程序。 有八個步驟：
+本教學課程會引導您建立混合式集合的 hello 程序。 有八個步驟：
 
-1. 決定您的集合所要使用的 [映像](remoteapp-imageoptions.md) 。 您可以建立自訂映像，或使用您的訂用帳戶隨附的其中一個 Microsoft 映像。
-2. 設定虛擬網路。 請參閱 [VNET 規劃](remoteapp-planvnet.md)和[大小](remoteapp-vnetsizing.md)資訊。
+1. 決定[映像](remoteapp-imageoptions.md)toouse 集合。 您可以建立自訂映像，或使用其中一個 hello Microsoft 映像包含您訂用帳戶。
+2. 設定虛擬網路。 簽出 hello [VNET 規劃](remoteapp-planvnet.md)和[sizing](remoteapp-vnetsizing.md)資訊。
 3. 建立收藏。
-4. 將您的集合加入本機網域。
-5. 將範本映像新增到您的收藏。
-6. 設定目錄同步處理。 RemoteApp 要求用下列方式與 Azure Active Directory 整合：1) 設定具有 [密碼同步] 選項的 Azure Active Directory 同步作業，或 2) 設定不具 [密碼同步] 選項的 Azure Active Directory 同步作業，但使用同盟至 AD FS 的網域。 查看 [Active Directory 搭配 RemoteApp 的組態資訊](remoteapp-ad.md)。
+4. 聯結集合 tooyour 本機網域。
+5. 加入範本映像 tooyour 集合。
+6. 設定目錄同步處理。 Azure RemoteApp 需要您與 Azure Active Directory 的其中一個 1） 設定 Azure Active Directory 同步作業以 hello 密碼同步處理選項或 2） 設定 Azure Active Directory 同步作業不含 hello 密碼同步處理選項，但使用的網域是整合同盟的 tooAD FS。 簽出 hello [Active Directory 與 RemoteApp 的組態資訊](remoteapp-ad.md)。
 7. 發佈 RemoteApp 應用程式。
 8. 設定使用者存取。
 
 **開始之前**
 
-在建立收藏之前，您必須執行下列作業：
+Toodo hello 下列建立 hello 集合之前，您需要：
 
 * [註冊](https://azure.microsoft.com/services/remoteapp/) Azure RemoteApp。
-* 在 Active Directory 中建立使用者帳戶，做為 Azure RemoteApp 服務的帳戶。 限制此帳戶的權限，使其只能將機器加入網域中。
+* 建立使用者帳戶在 Active Directory toouse，為 hello Azure RemoteApp 服務帳戶。 限制此帳戶的 「 hello 」 權限，讓它只會將機器 toohello 網域。
 * 收集內部部署網路的相關資訊：IP 位址資訊和 VPN 裝置詳細資料。
-* 安裝 [Azure PowerShell](/powershell/azure/overview) 模組。
-* 收集您想授與存取權之使用者的相關資訊。 您將需要每個使用者的 Azure Active Directory 使用者主體名稱 (例如，name@contoso.com)。 請確定 UPN 符合 Azure AD 和 Active Directory。
-* 選擇範本映像。 Azure RemoteApp 範本映像包含您要為使用者發佈的應用程式與程式。 如需詳細資訊，請參閱 [Azure RemoteApp 映像選項](remoteapp-imageoptions.md) 。
-* 想要使用 Office 365 ProPlus 的映像嗎？ 請在 [這裡](remoteapp-officesubscription.md)查看資訊。
+* 安裝 hello [Azure PowerShell](/powershell/azure/overview)模組。
+* 收集您想要 toogrant 存取的 hello 使用者的相關資訊。 您將需要 hello Azure Active Directory 使用者主體名稱 (例如， name@contoso.com) 為每個使用者。 請確定 Azure AD 之間的 UPN 是否符合該 hello 和 Active Directory。
+* 選擇範本映像。 Azure RemoteApp 範本映像包含 hello 應用程式和程式的 toopublish 為您的使用者。 如需詳細資訊，請參閱 [Azure RemoteApp 映像選項](remoteapp-imageoptions.md) 。
+* 需要 toouse hello Office 365 ProPlus 映像嗎？ 請在 [這裡](remoteapp-officesubscription.md)查看資訊。
 * [設定 RemoteApp 的 Azure Active Directory](remoteapp-ad.md)。
 
 ## <a name="step-1-set-up-your-virtual-network"></a>步驟 1：設定虛擬網路
-您可以部署使用現有 Azure 虛擬網路的混合式集合，也可以建立新的虛擬網路。 虛擬網路可讓您的使用者透過 RemoteApp 遠端資源存取您本機網路上的資料。 使用 Azure 虛擬網路可以讓您的收藏直接從網路存取其他 Azure 服務和部署到該虛擬網路的虛擬機器。
+您可以部署使用現有 Azure 虛擬網路的混合式集合，也可以建立新的虛擬網路。 虛擬網路可讓您的使用者透過 RemoteApp 遠端資源存取您本機網路上的資料。 使用 Azure 虛擬網路可讓您收集直接網路存取 tooother Azure 服務和虛擬機器部署 toothat 虛擬網路。
 
-請確定您在建立 VNET 之前，先檢閱過 [VNET 規劃](remoteapp-planvnet.md)和 [VNET 大小](remoteapp-vnetsizing.md)。
+請確定您檢閱 hello [VNET 規劃](remoteapp-planvnet.md)和[VNET 大小](remoteapp-vnetsizing.md)之前您建立 VNET 時的資訊。
 
-### <a name="create-an-azure-vnet-and-join-it-to-your-active-directory-deployment"></a>建立 Azure VNET 並將它加入您的 Active Directory 部署
-首先，建立 [虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。 您可以在 Azure 入口網站的 [網路]  索引標籤上進行。 您必須將虛擬網路連線到同步到您 Azure Active Directory 租用戶的 Active Directory 部署。
+### <a name="create-an-azure-vnet-and-join-it-tooyour-active-directory-deployment"></a>建立 Azure VNET，並將其加入 tooyour Active Directory 部署
+首先，建立 [虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。 這會對 hello**網路**hello Azure 入口網站中的索引標籤。 您需要 tooconnect 您虛擬網路 toohello 是已同步處理的 tooyour Azure Active Directory 租用戶的 Active Directory 部署。
 
-如需詳細資訊，請參閱 [使用 Azure 入口網站建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md) 。
+請參閱[建立虛擬網路使用 Azure 入口網站 hello](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)如需詳細資訊。
 
 ### <a name="make-sure-your-virtual-network-is-ready-for-azure-remoteapp"></a>確定您的虛擬網路已經為 Azure RemoteApp 準備就緒
-請在建立集合之前，先確定您的虛擬網路已準備就緒。 您可以執行下列動作來驗證：
+請在建立集合之前，先確定您的虛擬網路已準備就緒。 您可以執行下列 hello 來驗證：
 
-1. 在您剛才為 RemoteApp 建立的虛擬網路子網路內建立 Azure 虛擬機器。
-2. 使用遠端桌面連線到虛擬機器。 (按一下 [連線] )。
-3. 將虛擬機器加入您要用於 RemoteApp 的同一個 Active Directory 部署。
+1. 建立 Azure 虛擬機器內 hello hello 您剛建立 remoteapp 的虛擬網路子網路。
+2. 使用遠端桌面 tooconnect toohello 虛擬機器。 (按一下 [連線] )。
+3. 將其聯結 toohello toouse 需 RemoteApp 的相同 Active Directory 部署。
 
 有作用嗎？ 您的虛擬網路和子網路已針對 Azure RemoteApp 準備就緒！
 
-您可以在 [這裡](https://msdn.microsoft.com/library/azure/jj156003.aspx)找到有關建立 Azure 虛擬機器並將它們連線到 RemoteApp 的詳細資訊。
+您可以找到更多資訊建立 Azure 虛擬機器，並使用遠端桌面連接 toothem[這裡](https://msdn.microsoft.com/library/azure/jj156003.aspx)。
 
 ## <a name="step-2-create-an-azure-remoteapp-collection"></a>步驟 2：建立 Azure RemoteApp 集合
-1. 在 [Azure 入口網站](http://manage.windowsazure.com)中，前往 [Azure RemoteApp] 頁面。
+1. 在 hello [Azure 入口網站](http://manage.windowsazure.com)，移至 toohello Azure RemoteApp 頁面。
 2. 按一下 [新增] > [使用 VNET 建立]。
 3. 輸入收藏的名稱。
-4. 選擇您要使用的方案 - 標準或基本。
-5. 從下拉式清單中依序選擇您的 VNET 和子網路。
-6. 選擇加入至您的網域。
+4. 選擇您想 toouse-標準或基本 hello 計劃。
+5. 選擇您的 VNET 從 hello 下拉式清單，然後您的子網路。
+6. 選擇 toojoin 它 tooyour 網域。
 7. 按一下 [建立 RemoteApp 收藏] 。
 
-建立了 Azure RemoteApp 集合之後，請按兩下集合的名稱。 這時會顯示 [快速入門]  頁面，您可以在這裡完成設定集合。
+您的 Azure RemoteApp 集合建立後，按兩下 hello hello 集合名稱。 這會顯示 hello**快速入門**頁面-這是您完成設定 hello 集合。
 
-發生錯誤了嗎？ 查看 [混合式集合疑難排解資訊](remoteapp-hybridtrouble.md)。
+發生錯誤了嗎？ 簽出 hello[疑難排解資訊的混合式集合](remoteapp-hybridtrouble.md)。
 
-## <a name="step-3-link-your-collection-to-the-local-domain"></a>步驟 3：將您的集合連結到本機網域
-1. 在 [快速入門] 頁面上，按一下 [加入本機網域]。
-2. 將 Azure RemoteApp 服務帳戶新增至您的本機 Active Directory 網域。 您將需要網域名稱、組織單位、服務帳戶的使用者名稱和密碼。
+## <a name="step-3-link-your-collection-toohello-local-domain"></a>步驟 3： 連結集合 toohello 本機網域
+1. 在 hello**快速入門**頁面上，按一下**加入本機網域**。
+2. 新增 hello Azure RemoteApp 服務帳戶 tooyour 本機 Active Directory 網域。 您必須 hello 網域名稱、 組織單位、 服務帳戶使用者名稱和密碼。
    
-    這是您按照 [設定 Azure RemoteApp 的 Active Directory](remoteapp-ad.md)中的步驟所收集到的資訊。
+    這是 hello 您收集的資訊，如果您依照中的 hello 步驟[的 Azure RemoteApp 設定 Active Directory](remoteapp-ad.md)。
 
-## <a name="step-4-link-to-an-azure-remoteapp-image"></a>步驟 4：連結至 Azure RemoteApp 映像
-Asure RemoteApp 範本映像包含您要與使用者共用的程式。 您可以建立新的 [範本映像](remoteapp-imageoptions.md) ，或連結到現有的映像 (已匯入或上傳至 Azure RemoteApp 的映像)。 您也可以連結到包含 Office 365 或 Office 2013 (僅供試用) 程式的某一個 Azure RemoteApp [範本映像](remoteapp-images.md) 。
+## <a name="step-4-link-tooan-azure-remoteapp-image"></a>步驟 4： 連結 tooan Azure RemoteApp 映像
+Azure RemoteApp 範本映像包含您想要 tooshare 與使用者的 hello 程式。 您可以建立新[範本映像](remoteapp-imageoptions.md)或連結 tooan 現有映像 （其中一個已匯入或上傳 tooAzure RemoteApp）。 您也可以將連結的 hello Azure RemoteApp tooone[範本映像](remoteapp-images.md)包含 Office 365 或 Office 2013 （用於試用） 程式。
 
-如果您要上傳新映像，您必須輸入名稱，並選擇映像的位置。 在精靈的下一頁，您會看見一組 PowerShell Cmdlet - 從提高權限的 Windows PowerShell 提示複製並執行這些 Cmdlet，可上傳指定的映像。
+如果您要上傳 hello 新映像，您需要 tooenter hello 名稱，然後選擇 hello hello 映像的位置。 在 hello hello 精靈的下一個頁面上，將看到的 PowerShell cmdlet-複製組，並執行這些 cmdlet，從提升權限 Windows PowerShell 提示 tooupload hello 指定映像。
 
-如果您要連結至現有的範本映像，請直接指定映像名稱、位置和相關聯的 Azure 訂閱。
+如果您要連結 tooan 現有範本映像，則您只需要指定 hello 映像名稱、 位置及相關聯的 Azure 訂用帳戶。
 
 ## <a name="step-5-configure-active-directory-directory-synchronization"></a>步驟 5：設定 Active Directory 目錄同步處理
-RemoteApp 要求用下列方式與 Azure Active Directory 整合：1) 設定具有 [密碼同步] 選項的 Azure Active Directory 同步作業，或 2) 設定不具 [密碼同步] 選項的 Azure Active Directory 同步作業，但使用同盟至 AD FS 的網域。
+Azure RemoteApp 需要您與 Azure Active Directory 的其中一個 1） 設定 Azure Active Directory 同步作業以 hello 密碼同步處理選項或 2） 設定 Azure Active Directory 同步作業不含 hello 密碼同步處理選項，但使用的網域是整合同盟的 tooAD FS。
 
 請參閱 [AD Connect](https://blogs.technet.microsoft.com/enterprisemobility/2014/08/04/connecting-ad-and-azure-ad-only-4-clicks-with-azure-ad-connect/) - 本文會協助您以 4 個步驟設定目錄整合。
 
 如需規劃資訊和詳細步驟，請參閱 [目錄同步處理藍圖](http://msdn.microsoft.com//library/azure/hh967642.aspx) 。
 
 ## <a name="step-6-publish-apps"></a>步驟 6：發佈應用程式
-Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式。 此程式位於您為收藏上傳的範本映像中。 當使用者存取應用程式時，應用程式看似會在其本機環境中執行，但實際上是在 Azure 中執行。
+Hello 應用程式或程式 tooyour 使用者提供的 Azure RemoteApp 應用程式。 它位於您上傳 hello 集合 hello 範本映像。 當使用者存取應用程式時，它會出現在其本機環境中，toorun，但實際上在 Azure 中執行。
 
-您必須先發佈應用程式，您的使用者才能存取應用程式 – 發佈應用程式可讓您的使用者透過遠端桌面用戶端存取應用程式。
+您的使用者可以存取應用程式之前，您需要 toopublish 它們 – 這可讓使用者存取 hello 應用程式透過 hello 遠端桌面用戶端。
 
-您可以將多個應用程式發佈到自己的集合。 請在發佈頁面中按一下 [發佈]  來新增應用程式。 您可以從範本映像的 [開始]  功能表發佈，或藉由為 App 指定範本映像的路徑來發佈。 如果您選擇從 [開始]  功能表新增，請選擇要加入的程式。 如果您選擇提供應用程式的路徑，請提供應用程式的名稱，以及應用程式在範本映像上的安裝路徑。
+您可以發行多個應用程式 tooyour 集合。 從 hello 發行] 頁面上，按一下 [**發行**tooadd 應用程式。 您可以發行從 hello**啟動**功能表的 hello 範本映像，或藉由指定 hello 路徑 hello hello 應用程式的範本映像上。 如果您選擇 tooadd hello**啟動**功能表上，選擇 hello 程式 tooadd。 如果您選擇 tooprovide hello 路徑 toohello 應用程式，提供 hello 應用程式和 hello 路徑 toowhere 它安裝在 hello 範本映像的名稱。
 
 ## <a name="step-7-configure-user-access"></a>步驟 7：設定使用者存取
-您已經建立集合，現在您必須新增可使用您遠端資源的使用者。 您要給予存取權的使用者，必須存在於與您用來建立此 Azure RemoteApp 集合的訂用帳戶相關聯的 Active Directory 租用戶中。
+既然您已建立您的集合，您會需要您希望 toobe 無法 toouse 遠端資源 tooadd hello 使用者。 hello，提供存取 tooneed tooexist hello Active Directory 租用戶中的與訂閱相關聯 hello 您使用的使用者 toocreate 這個 Azure RemoteApp 集合。
 
-1. 在 [快速入門] 頁面上，按一下 [Configure user access] 。
-2. 輸入工作帳戶 (來自於 Active Directory)，或是您要為其授與存取權的 Microsoft 帳戶。
+1. 從 hello 快速入門] 頁面上，按一下 [**設定使用者存取**。
+2. 輸入 hello （從 Active Directory) 的工作帳戶或 Microsoft 帳戶，您想要針對 toogrant 存取。
    
    **注意：**
    
-   請確定您使用 *user@domain.com* 格式。
+   請確定您使用 hello  *user@domain.com* 格式。
    
-   如果您的收藏中使用 Office 365 ProPlus，您必須為使用者使用 Active Directory 身分識別。 這有助於驗證授權。
-3. 在驗證使用者之後，按一下 [儲存] 。
+   如果您使用 Office 365 ProPlus 集合中，您必須為您的使用者使用 hello Active Directory 身分識別。 這有助於驗證授權。
+3. 一旦 hello 使用者進行驗證，按一下 **儲存**。
 
 ## <a name="next-steps"></a>後續步驟
-您已經成功建立並部署了自己的 Azure RemoteApp 混合式集合。 下一個步驟是要讓使用者下載並安裝遠端桌面用戶端。 您可以在 Azure RemoteApp 的 [快速啟動] 頁面上找到用戶端的 URL。 接著，請讓使用者登入用戶端，並存取您所發佈的應用程式。
+您已經成功建立並部署了自己的 Azure RemoteApp 混合式集合。 hello 下一個步驟是的 toohave 使用者下載及安裝 hello 遠端桌面用戶端。 您可以在 hello Azure RemoteApp 快速入門 頁面上找到 hello 用戶端 hello URL。 然後，有使用者登入 hello 用戶端，並存取您發行的 hello 應用程式。
 
 ### <a name="help-us-help-you"></a>幫我們來協助您
-您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯]  以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
+您知道在加法 toorating 這份文件並進行註解下下方，讓您可以變更 toohello 文章本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動，然後按一下  **GitHub 上編輯**toomake 變更-這些是 toous 供檢閱，並接著，我們登入它們，就會看到您的變更與改進這裡。
 

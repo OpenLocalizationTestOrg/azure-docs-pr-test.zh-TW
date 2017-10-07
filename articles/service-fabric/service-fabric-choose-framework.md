@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric 程式撰寫模型概觀 | Microsoft Docs"
-description: "Service Fabric 提供兩種架構來建置服務：動作項目架構和服務架構。 它們在簡化與控制中提供不同的取捨。"
+title: "aaaService 網狀架構程式設計模型概觀 |Microsoft 文件"
+description: "Service Fabric 提供這兩個架構來建置服務： hello 動作項目架構並 hello 服務架構。 它們在簡化與控制中提供不同的取捨。"
 services: service-fabric
 documentationcenter: .net
 author: seanmck
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/02/2017
 ms.author: vturecek
-ms.openlocfilehash: ca36f42897cd44d6da1a3cb6db53f656cf6256ee
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b48af2a7b41935bdf0e4594c765f363e520c254e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-programming-model-overview"></a>Service Fabric 程式設計模型概觀
-Service Fabric 提供多種撰寫和管理服務的方式。 服務可選擇使用 Service Fabric API 以善加運用平台的功能和應用程式架構。 服務也可以是以任何語言撰寫的任何已編譯可執行程式，或是在 Service Fabric 叢集所裝載之容器中執行的程式碼。
+Service Fabric 提供多個方式 toowrite 並管理您的服務。 服務可選擇 toouse hello 服務網狀架構 Api tootake 充分善用 hello 平台的功能和應用程式架構。 服務也可以是以任何語言撰寫的任何已編譯可執行程式，或是在 Service Fabric 叢集所裝載之容器中執行的程式碼。
 
 ## <a name="guest-executables"></a>客體可執行檔
-[客體可執行檔](service-fabric-deploy-existing-app.md)是可在應用程式中作為服務執行的現有任意可執行檔 (以任何語言撰寫)。 客體可執行檔不直接呼叫 Service Fabric SDK API。 不過，它們仍然受惠於功能和平台提供項目，例如透過呼叫 Service Fabric 公開的 REST API 使用探索服務、自訂健康情況和負載報告。 它們也具備完整的應用程式生命週期支援。
+[客體可執行檔](service-fabric-deploy-existing-app.md)是可在應用程式中作為服務執行的現有任意可執行檔 (以任何語言撰寫)。 客體可執行檔不直接呼叫 hello Service Fabric SDK Api。 不過他們仍然可以享受功能 hello 平台提供，例如服務探索功能、 自訂健全狀況和報告藉由呼叫 REST Api 服務的網狀架構所公開的負載。 它們也具備完整的應用程式生命週期支援。
 
 部署您的第一個 [來賓可執行的應用程式](service-fabric-deploy-existing-app.md)，開始使用來賓可執行檔。
 
 ## <a name="containers"></a>容器
-根據預設，Service Fabric 會以處理程序形式部署和啟用這些服務。 Service Fabric 也可以在[容器](service-fabric-containers-overview.md)中部署服務。 Service Fabric 支援在 Windows Server 2016 上部署 Linux 容器和 Windows 容器。 可以從任何容器存放庫提取容器映像，並部署至機器。 您可以在容器中部署現有的應用程式成為客體可執行檔、Service Fabric 無狀態或具狀態 Reliable Services，或 Reliable Actors，並且可以在同一個應用程式中混合使用處理序中的服務和容器中的服務。
+根據預設，Service Fabric 會以處理程序形式部署和啟用這些服務。 Service Fabric 也可以在[容器](service-fabric-containers-overview.md)中部署服務。 Service Fabric 支援在 Windows Server 2016 上部署 Linux 容器和 Windows 容器。 可以從任何容器儲存機制提取並部署 toohello 機器容器映像。 您可以將現有的應用程式部署為來賓 exectuables，Service Fabric 無狀態或狀態可靠的服務或 Reliable Actors 的容器，以及您可以混合使用處理序中的服務和服務中的容器中的 hello 相同的應用程式。
 
 [深入了解如何在 Windows 或 Linux 中將服務容器化](service-fabric-deploy-container.md)
 
 ## <a name="reliable-services"></a>Reliable Services
-Reliable Services 是輕量級的服務撰寫架構，這些服務與 Service Fabric 平台整合，並得益於完整的平台功能。 Reliable Services 提供最基本的 API 集合，允許 Service Fabric 執行階段管理服務的生命週期，也允許服務與執行階段互動。 應用程式架構最為精簡，讓您完整掌控設計和實作選擇，而且可用來裝載任何其他應用程式架構，例如 ASP.NET Core。
+可靠的服務是輕量級架構的撰寫與 hello Service Fabric 平台整合，並受益於 hello 組完整的平台功能的服務。 可靠的服務提供最基本的應用程式開發介面可讓 hello Service Fabric 執行階段 toomanage hello 的生命週期服務，以及可讓您的服務 toointeract hello 執行階段。 是最小的 hello 應用程式架構，讓您完整控制設計和實作的選項，而且可以使用的 toohost 任何其他應用程式架構，例如 ASP.NET Core。
 
-Reliable Services 與大多數服務平台 (例如 Web 伺服器) 一樣，可以是無狀態的，其中每個服務執行個體都是以平等方式建立，並且狀態保存在外部解決方案中，例如 Azure DB 或「Azure 資料表儲存體」。
+可靠的服務可以是無狀態，類似 toomost 服務平台，例如 web 伺服器，在其中均等建立 hello 服務的每個執行個體和狀態會持續保留在外部的解決方案，例如 Azure DB 或 Azure 資料表儲存體。
 
-Reliable Services 也可以是具狀態且為 Service Fabric 專有，其狀態使用 Reliable Collections 直接保存在服務本身中。 狀態透過複寫變得高度可用，並透過資料分割散發，全由 Service Fabric 自動管理。
+可靠的服務也可以是可設定狀態、 獨佔 tooService 網狀架構，其中保存直接在 hello 服務本身使用可靠的集合中的狀態。 狀態透過複寫變得高度可用，並透過資料分割散發，全由 Service Fabric 自動管理。
 
 [深入了解 Reliable Services](service-fabric-reliable-services-introduction.md)或從[撰寫第一個 Reliable Services](service-fabric-reliable-services-quick-start.md) 開始。
 
 ## <a name="reliable-actors"></a>Reliable Actors
-Reliable Actor 架構是建置在 Reliable Services 最上層的應用程式架構，其根據動作項目設計模式來實作 Virtual Actor 模式。 Reliable Actor 架構使用獨立的計算單位，和以單一執行緒方式執行稱為動作項目的狀態。 Reliable Actor 架構提供動作項目的內建通訊和預先設定狀態持續性和相應放大組態。
+Hello Reliable Actor 架構之上可靠的服務，是一種應用程式架構，以實作 hello Virtual Actor 模式，根據 hello 執行者設計模式。 hello Reliable Actor framework 會使用稱為執行者的單一執行緒執行獨立的單位計算和狀態。 hello Reliable Actor 架構提供執行者與預先設定的狀態持續性和向外延展設定的內建的通訊。
 
-Reliable Actors 本身是建置在 Reliable Services 上的應用程式架構，與 Service Fabric 平台完全整合，得益於平台提供的完整功能集。
+Reliable Actors 本身是建置在可靠的服務應用程式架構，因為它會完全整合 hello Service Fabric 平台與 hello hello 平台所提供的功能的一組完整的利益。
 
 [深入了解 Reliable Actors](service-fabric-reliable-actors-introduction.md) 或從[撰寫第一項 Reliable Actor 服務](service-fabric-reliable-actors-get-started.md)開始
 

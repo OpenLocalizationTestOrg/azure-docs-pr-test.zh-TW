@@ -1,6 +1,6 @@
 ---
-title: "建立分割的 Azure 服務匯流排佇列和主題 | Microsoft Docs"
-description: "說明如何使用多個訊息代理程式分割服務匯流排佇列和主題。"
+title: "aaaCreate 分割 Azure 服務匯流排佇列和主題 |Microsoft 文件"
+description: "描述如何 toopartition Service Bus 佇列和主題，使用多個訊息仲介。"
 services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
@@ -14,46 +14,46 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: sethm;hillaryc
-ms.openlocfilehash: 5a4e69ea7e13cb017f8fb432c524c6a8ce9228a8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6d42556a0714d6a012dc319f662521c8b0bb958b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="partitioned-queues-and-topics"></a>分割的佇列和主題
-Azure 服務匯流排會採用多個訊息代理人來處理訊息，並採用多個訊息存放區來儲存訊息。 傳統的佇列或主題由單一訊息代理程式處理並儲存在一個訊息存放區中。 服務匯流排「分割區」可讓佇列和主題或「傳訊實體」分割到多個訊息代理程式及訊息存放區。 這表示分割實體的整體輸送量不會再受到單一訊息代理程式或訊息存放區的效能所限制。 此外，即使訊息存放區暫時中斷也不會讓分割的佇列或主題無法使用。 分割的佇列和主題可以包含所有進階的服務匯流排功能，例如支援交易和工作階段。
+Azure 的服務匯流排會運用多個訊息代理人 tooprocess 訊息和多個訊息存放 toostore 訊息。 傳統的佇列或主題由單一訊息代理程式處理並儲存在一個訊息存放區中。 服務匯流排*分割*啟用佇列和主題，或*傳訊實體*，toobe 分割到多個訊息代理程式和訊息存放區。 Hello 磁碟分割實體的整體輸送量這表示不再受限於單一訊息代理程式或訊息存放區的 hello 效能。 此外，即使訊息存放區暫時中斷也不會讓分割的佇列或主題無法使用。 分割的佇列和主題可以包含所有進階的服務匯流排功能，例如支援交易和工作階段。
 
-如需服務匯流排內部的資訊，請參閱[服務匯流排架構][Service Bus architecture]一文。
+如需服務匯流排內部項目資訊，請參閱 hello [Service Bus 架構][ Service Bus architecture]發行項。
 
 在標準和進階傳訊中，依預設，在所有佇列和主題上建立實體時會啟用分割。 您可以建立標準傳訊層實體而不要分割，但進階命名空間中的佇列和主題永遠會分割。無法停用此選項。 
 
-在標準或進階層中的現有佇列或主題上，無法變更分割選項，您只能在建立實體時設定此選項。
+不可能 toochange hello 資料分割上現有的佇列或主題 Standard 或 Premium 層中的選項，您可以只 hello 時設定選項建立 hello 實體。
 
 ## <a name="how-it-works"></a>運作方式
 
-每個分割的佇列或主題都包含多個片段。 每個片段儲存在不同的訊息存放區中，並由不同的訊息代理人處理。 當訊息傳送至分割的佇列或主題時，服務匯流排會指派訊息到其中一個片段。 選取作業由服務匯流排或使用傳送者可指定的分割索引鍵隨機進行。
+每個分割的佇列或主題都包含多個片段。 每個片段儲存在不同的訊息存放區中，並由不同的訊息代理人處理。 當訊息傳送 tooa 分割的佇列或主題時，服務匯流排會指派 hello 訊息 tooone 的 hello 片段。 hello 選取項目由隨機服務匯流排，或者可以指定使用 hello 寄件者資料分割索引鍵。
 
-當用戶端想要從分割的佇列或從分割主題的訂用帳戶接收訊息時，服務匯流排會查詢所有片段的訊息，然後將取自任何訊息存放區的第一個訊息傳回給接收者。 服務匯流排會快取其他訊息，然後在它收到其他接收要求時將其傳回。 接收的用戶端並不知道分割。分割佇列或主題的用戶端對向行為 (例如讀取、完成、延遲、無效化、預先擷取) 和一般實體的行為相同。
+當用戶端想 tooreceive 將訊息從資料分割的佇列或訂閱 tooa 分割主題，從服務匯流排查詢訊息的所有片段時，然後傳回 hello 取自任何 hello 訊息存放區 toohello 收件者的第一個訊息。 服務匯流排快取 hello 其他的訊息並傳回它們收到其他時接收要求。 接收用戶端並不知道 hello 資料分割;hello 面對用戶端行為的分割的佇列或主題 (例如 read、 complete、 defer、 deadletter、 預先提取) 是相同的 toohello 行為的一般實體。
 
 傳送訊息給分割的佇列或主題，或從該處接收訊息時，不需要額外成本。
 
 ## <a name="enable-partitioning"></a>啟用分割
 
-若要搭配 Azure 服務匯流排使用分割的佇列和主題，請使用 Azure SDK 2.2 版或更新版本，或在您的 HTTP 要求中指定 `api-version=2013-10`。
+toouse 分割佇列和主題與 Azure 服務匯流排，使用 hello Azure SDK 版本 2.2 或更新版本，或指定`api-version=2013-10`在您的 HTTP 要求。
 
 ### <a name="standard"></a>標準
 
-在標準傳訊層中，您可以建立 1、2、3、4 或 5 GB 大小的服務匯流排佇列和主題 (預設值為 1 GB)。 啟用分割時，服務匯流排會為您指定的每 GB 建立 16 個複本 (16 個資料分割)。 因此，如果您建立 5 GB 大小的佇列，每 GB 有 16 個資料分割，則佇列大小上限會變成 (5 \* 16) = 80 GB。 如果要查看分割佇列或主題的大小上限，您可以在 [Azure 入口網站][Azure portal]上，在該實體的 [概觀] 刀鋒視窗中檢視其項目。
+在 hello 標準通訊層，您可以建立服務匯流排佇列和主題 1、 2、 3、 4 或 5 GB 大小 （hello 預設為 1 GB）。 啟用分割，服務匯流排會建立您指定每個 GB 的 hello 實體 16 的複本 （16 個磁碟分割）。 因此，如果您建立大小為 5 GB 的佇列時，16 個磁碟分割與 hello 佇列大小上限會變成 (5 \* 16) = 80 GB。 您可以看到 hello 磁碟分割的佇列或主題的大小上限藉由查看其項目上 hello [Azure 入口網站][Azure portal]，在 hello**概觀**刀鋒視窗，該實體。
 
 ### <a name="premium"></a>進階
 
-在進階層命名空間中，您可以建立 1、2、3、4、5、10、20、40 或 80 GB 大小的服務匯流排佇列和主題 (預設值為 1 GB)。 由於依預設會啟用分割，服務匯流排會為每個實體建立兩個資料分割。 如果要查看分割佇列或主題的大小上限，您可以在 [Azure 入口網站][Azure portal]上，在該實體的 [概觀] 刀鋒視窗中檢視其項目。
+在 Premium 層命名空間中，您可以建立服務匯流排佇列和主題 1、 2、 3、 4、 5、 10、 20、 40、 80 GB 的大小 （hello 預設為 1 GB）。 由於依預設會啟用分割，服務匯流排會為每個實體建立兩個資料分割。 您可以看到 hello 磁碟分割的佇列或主題的大小上限藉由查看其項目上 hello [Azure 入口網站][Azure portal]，在 hello**概觀**刀鋒視窗，該實體。
 
-如需有關進階傳訊層中之分割的詳細資訊，請參閱[服務匯流排進階和標準傳訊層級](service-bus-premium-messaging.md)。 
+如需 hello Premium 傳訊層的資料分割的詳細資訊，請參閱[服務匯流排 Premium 和 Standard 傳訊層](service-bus-premium-messaging.md)。 
 
 ### <a name="create-a-partitioned-entity"></a>建立分割實體
 
-有多種方式可以建立分割的佇列或主題。 當您從應用程式建立佇列或主題時，您可以分別將 [QueueDescription.EnablePartitioning][QueueDescription.EnablePartitioning] 或 [TopicDescription.EnablePartitioning][TopicDescription.EnablePartitioning] 屬性設為 **true** 來啟用佇列或主題的分割。 這些屬性必須在建立佇列或主題時設定。 如先前所述，在現有的佇列或主題上無法變更這些屬性。 例如：
+有數種方式 toocreate 磁碟分割佇列或主題。 當您從應用程式建立 hello 佇列或主題時，您可以啟用依分別設定 hello hello 佇列或主題分割[QueueDescription.EnablePartitioning] [ QueueDescription.EnablePartitioning]或[TopicDescription.EnablePartitioning] [ TopicDescription.EnablePartitioning]屬性太**true**。 這些屬性必須設定在 hello hello 佇列的時間，或建立主題。 如先前所述，它是不可能 toochange 這些屬性上的現有的佇列或主題。 例如：
 
 ```csharp
 // Create partitioned topic
@@ -63,33 +63,33 @@ td.EnablePartitioning = true;
 ns.CreateTopic(td);
 ```
 
-或者，您可以在 [Azure 入口網站][Azure portal]或 Visual Studio 中建立分割的佇列或主題。 當您在入口網站建立佇列或主題時，依預設會勾選佇列或主題 [建立] 刀鋒視窗中的 [啟用分割] 選項。 您只能在標準層實體中停用此選項，在進階層中，永遠會啟用分割。 在 Visual Studio 中，按一下 [新增佇列] 或 [新增主題] 對話方塊中的 [啟用分割] 核取方塊。
+或者，您可以建立磁碟分割的佇列或主題在 hello [Azure 入口網站][ Azure portal]或 Visual Studio 中。 當您在 hello 入口網站中建立的佇列或主題時，hello**啟用資料分割**hello 佇列或主題中的選項**建立**預設會核取刀鋒視窗。 您可以只停用的標準層實體; 中的這個選項在 hello 永遠啟用 Premium 層資料分割。 在 Visual Studio 中，按一下 [hello**啟用分割**核取方塊在 hello**新佇列**或**新主題**] 對話方塊。
 
 ## <a name="use-of-partition-keys"></a>分割索引鍵的用途
-當訊息加入佇列至分割的佇列或主題時，服務匯流排會檢查分割區索引鍵是否存在。 如果找到，它會根據該索引鍵選取片段。 如果找不到分割索引鍵，它會根據內部演算法選取片段。
+當訊息列入分割的佇列或主題時，會檢查服務匯流排 hello 存在資料分割索引鍵。 如果找到，就會選取該索引鍵為基礎的 hello 片段。 如果找不到資料分割索引鍵，就會選取內部演算法為基礎的 hello 片段。
 
 ### <a name="using-a-partition-key"></a>使用分割區索引鍵
-某些案例，例如工作階段或交易，需要儲存在特定片段的訊息。 這些案例都需要使用分割區索引鍵。 使用相同分割索引鍵的所有訊息都會指派給相同的片段。 若片段暫時無法使用，服務匯流排會傳回錯誤。
+某些情況下，例如工作階段或交易，需要訊息 toobe 儲存在特定的片段中。 所有這些情況下需要 hello 使用資料分割索引鍵。 所有訊息相同的資料分割索引鍵會指派該使用 hello toohello 相同片段。 如果 hello 片段暫時無法使用時，服務匯流排會傳回錯誤。
 
-根據這個案例，會使用不同的訊息屬性做為分割索引鍵：
+根據 hello 的案例，不同的訊息屬性會用做資料分割索引鍵：
 
-**SessionId**：若訊息已設定 [BrokeredMessage.SessionId][BrokeredMessage.SessionId] 屬性，則服務匯流排會使用這個屬性做為分割區索引鍵。 如此一來，所有屬於相同工作階段的訊息都會由相同的訊息代理人處理。 這樣可讓服務匯流排保證訊息的排序以及工作階段狀態的一致性。
+**SessionId**： 若訊息已 hello [BrokeredMessage.SessionId] [ BrokeredMessage.SessionId]設定屬性，則服務匯流排會使用這個屬性為 hello 資料分割索引鍵。 如此一來，所有的訊息，toohello 屬於相同的工作階段由處理 hello 相同訊息代理程式。 這可讓服務匯流排 tooguarantee 訊息排序以及 hello 的工作階段狀態的一致性。
 
-**PartitionKey**：若訊息已設定 [BrokeredMessage.PartitionKey][BrokeredMessage.PartitionKey] 屬性而非 [BrokeredMessage.SessionId][BrokeredMessage.SessionId] 屬性，則服務匯流排會使用 [PartitionKey][PartitionKey] 屬性做為分割索引鍵。 如果訊息已設定 [SessionId][SessionId] 和 [PartitionKey][PartitionKey] 屬性，這兩個屬性必須相同。 如果 [PartitionKey][PartitionKey] 屬性設為和 [SessionId][SessionId] 屬性不同的值，服務匯流排會傳回無效作業例外狀況。 如果傳送者傳送非工作階段感知的交易訊息，應使用 [PartitionKey][PartitionKey] 屬性。 分割索引鍵可確保在交易內傳送的所有訊息都由相同的訊息代理人處理。
+**PartitionKey**： 若訊息已 hello [BrokeredMessage.PartitionKey] [ BrokeredMessage.PartitionKey]屬性，但不是 hello [BrokeredMessage.SessionId] [BrokeredMessage.SessionId]設定屬性，則服務匯流排也使用 hello [PartitionKey] [ PartitionKey] hello 資料分割索引鍵屬性。 如果 hello 訊息有兩個 hello [SessionId] [ SessionId]和 hello [PartitionKey] [ PartitionKey]屬性集，這兩個屬性必須相同。 如果 hello [PartitionKey] [ PartitionKey]屬性設定為比 hello tooa 不同值[SessionId] [ SessionId]屬性，服務匯流排會傳回不正確作業的例外狀況。 hello [PartitionKey] [ PartitionKey]應該使用屬性，如果傳送端傳送非工作階段感知的交易訊息。 hello 分割金鑰可確保，在交易內傳送的所有訊息都由 hello 相同訊息代理人。
 
-**MessageId**：如果佇列或主題已將 [QueueDescription.RequiresDuplicateDetection][QueueDescription.RequiresDuplicateDetection] 屬性設為 **true**，且未設定 [BrokeredMessage.SessionId][BrokeredMessage.SessionId] 或 [BrokeredMessage.PartitionKey][BrokeredMessage.PartitionKey] 屬性，則 [BrokeredMessage.MessageId][BrokeredMessage.MessageId] 屬性可做為分割索引鍵。 (請注意，如果傳送應用程式沒有指派訊息識別碼，Microsoft .NET 和 AMQP 程式庫會自動指派)。在此情況下，相同訊息的所有複本會由相同的訊息代理人處理。 這可讓服務匯流排偵測並排除重複的訊息。 如果 [QueueDescription.RequiresDuplicateDetection][QueueDescription.RequiresDuplicateDetection] 屬性未設為 **true**，服務匯流排不會將 [MessageId][MessageId] 屬性視為分割索引鍵。
+**MessageId**： 如果 hello 佇列或主題有 hello [QueueDescription.RequiresDuplicateDetection] [ QueueDescription.RequiresDuplicateDetection]屬性設定太**true**和 hello [BrokeredMessage.SessionId] [ BrokeredMessage.SessionId]或[BrokeredMessage.PartitionKey] [ BrokeredMessage.PartitionKey]屬性未設定，則 hello [BrokeredMessage.MessageId] [ BrokeredMessage.MessageId]屬性做為 hello 資料分割索引鍵。 （請注意，hello Microsoft.NET 和 AMQP 程式庫自動指派訊息識別碼 hello 傳送應用程式並不會）。在此情況下，所有副本都由相同訊息的都 hello 都 hello 相同訊息代理程式。 這可讓服務匯流排 toodetect，並排除重覆的訊息。 如果 hello [QueueDescription.RequiresDuplicateDetection] [ QueueDescription.RequiresDuplicateDetection]屬性未設定太**true**，Service Bus 不會考慮 hello [MessageId][ MessageId]做為資料分割索引鍵的屬性。
 
 ### <a name="not-using-a-partition-key"></a>不使用分割索引鍵
-沒有分割區索引鍵時，服務匯流排會以循環配置的方式將訊息分配到分割區佇列或主題的所有片段。 如果找不到所選的片段，服務匯流排會將訊息指派至不同的片段。 如此一來，儘管訊息存放區暫時無法使用，傳送作業仍會成功。 不過，您將無法達到分割區索引鍵所提供的保證排序。
+Hello 沒有資料分割索引鍵，在服務匯流排將發佈中的 hello 分割的佇列或主題的循環配置資源方式 tooall hello 片段的訊息。 如果選擇的 hello 片段無法使用，服務匯流排指派 hello 訊息 tooa 不同的片段。 如此一來，hello 訊息存放區暫時無法使用儘管成功 hello 傳送作業。 不過，您不會封存 hello 保證順序，會提供資料分割索引鍵。
 
-如需可用性 (無分割區索引鍵) 和一致性 (使用分割區索引鍵) 之間權衡取捨的深入討論，請參閱[這篇文章](../event-hubs/event-hubs-availability-and-consistency.md)。 此資訊同時適用於已分割的服務匯流排實體和事件中樞分割區。
+Hello 可用性 （沒有資料分割索引鍵） 與一致性 （使用資料分割索引鍵） 之間的權衡取捨的更深入討論，請參閱[本文](../event-hubs/event-hubs-availability-and-consistency.md)。 這項資訊同樣適用於 toopartitioned 服務匯流排實體和事件中心資料分割。
 
-若要讓服務匯流排有足夠的時間將訊息加入佇列的不同片段中，由傳送訊息之用戶端所指定的 [MessagingFactorySettings.OperationTimeout][MessagingFactorySettings.OperationTimeout] 值必須大於 15 秒。 建議將 [OperationTimeout][OperationTimeout] 屬性設為預設值 60 秒。
+toogive 服務匯流排足夠時間 tooenqueue hello 訊息至不同的片段，hello [MessagingFactorySettings.OperationTimeout] [ MessagingFactorySettings.OperationTimeout] hello 用戶端傳送 hello 訊息所指定的值必須大於 15 秒。 我們建議您設定 hello [OperationTimeout] [ OperationTimeout]屬性 toohello 預設值為 60 秒。
 
-請注意，分割索引鍵會將訊息「釘選」到指定的片段。 如果保留此片段的訊息存放區無法使用，服務匯流排會傳回錯誤。 沒有分割索引鍵時，服務匯流排可以選擇不同的片段，而作業就會成功。 因此，建議您若非必要請勿提供分割索引鍵。
+請注意，資料分割索引鍵"pin"訊息 tooa 特定片段。 如果保留此片段的 hello 訊息存放區無法使用時，服務匯流排會傳回錯誤。 在資料分割索引鍵 hello 不存在，服務匯流排可以選擇不同的片段，hello 作業成功。 因此，建議您若非必要請勿提供分割索引鍵。
 
 ## <a name="advanced-topics-use-transactions-with-partitioned-entities"></a>進階主題：搭配交易使用分割的實體
-傳送做為交易一部分的訊息必須指定資料分割索引鍵。 這可以是下列屬性之一：[BrokeredMessage.SessionId][BrokeredMessage.SessionId]、[BrokeredMessage.PartitionKey][BrokeredMessage.PartitionKey] 或 [BrokeredMessage.MessageId][BrokeredMessage.MessageId]。 傳送做為相同交易一部分的所有訊息必須指定相同的分割索引鍵。 如果您嘗試在交易內傳送沒有分割索引鍵的訊息，服務匯流排會傳回無效作業例外狀況。 如果您嘗試在相同交易內傳送多個具有不同分割索引鍵的訊息，服務匯流排會傳回無效作業例外狀況。 例如：
+傳送做為交易一部分的訊息必須指定資料分割索引鍵。 這可以是其中一個 hello 下列屬性： [BrokeredMessage.SessionId][BrokeredMessage.SessionId]， [BrokeredMessage.PartitionKey][BrokeredMessage.PartitionKey]，或[BrokeredMessage.MessageId][BrokeredMessage.MessageId]。 Hello 必須指定相同的交易中傳送的所有訊息都 hello 相同的資料分割索引鍵。 如果您嘗試 toosend 訊息，但在交易內的資料分割索引鍵，服務匯流排傳回無效的作業例外狀況。 如果您嘗試的 toosend 內的多個訊息 hello 相同的交易具有不同的資料分割索引鍵，服務匯流排傳回無效的作業例外狀況。 例如：
 
 ```csharp
 CommittableTransaction committableTransaction = new CommittableTransaction();
@@ -103,12 +103,12 @@ using (TransactionScope ts = new TransactionScope(committableTransaction))
 committableTransaction.Commit();
 ```
 
-如果設定任何做為分割索引鍵的屬性，服務匯流排會將訊息釘選到特定片段。 無論是否使用交易，都會發生這個行為。 建議您若非必要請勿指定分割索引鍵。
+如果設定了任何 hello 屬性做為資料分割索引鍵，服務匯流排 pin hello 訊息 tooa 特定片段。 無論是否使用交易，都會發生這個行為。 建議您若非必要請勿指定分割索引鍵。
 
 ## <a name="using-sessions-with-partitioned-entities"></a>搭配工作階段使用分割的實體
-若要將交易訊息傳送至工作階段感知的主題或佇列，該訊息必須設定 [BrokeredMessage.SessionId][BrokeredMessage.SessionId] 屬性。 如果也指定 [BrokeredMessage.PartitionKey][BrokeredMessage.PartitionKey] 屬性，它必須與 [SessionId][SessionId] 屬性相同。 如果兩者不同，服務匯流排會傳回無效作業例外狀況。
+hello 訊息 toosend 異動式訊息 tooa 工作階段感知主題或佇列，必須有 hello [BrokeredMessage.SessionId] [ BrokeredMessage.SessionId]屬性集。 如果 hello [BrokeredMessage.PartitionKey] [ BrokeredMessage.PartitionKey]也指定屬性，它必須是相同的 toohello [SessionId] [ SessionId]屬性。 如果兩者不同，服務匯流排會傳回無效作業例外狀況。
 
-不同於一般 (非分割) 的佇列或主題，無法使用單一交易將多則訊息傳送到不同的工作階段。 如果嘗試這樣做，服務匯流排會傳回無效作業例外狀況。 例如：
+不同於一般 （非資料分割） 的佇列或主題，它不可能 toouse 單一交易 toosend 多個訊息 toodifferent 工作階段。 如果嘗試這樣做，服務匯流排會傳回無效作業例外狀況。 例如：
 
 ```csharp
 CommittableTransaction committableTransaction = new CommittableTransaction();
@@ -123,27 +123,27 @@ committableTransaction.Commit();
 ```
 
 ## <a name="automatic-message-forwarding-with-partitioned-entities"></a>使用分割實體的自動訊息轉送
-服務匯流排支援往返於分割實體或在它們之間自動轉送訊息。 若要啟用自動訊息轉送，請在來源佇列或訂用帳戶上設定 [QueueDescription.ForwardTo][QueueDescription.ForwardTo] 屬性。 如果訊息指定分割索引鍵 ([SessionId][SessionId]、[PartitionKey][PartitionKey] 或 [MessageId][MessageId])，該分割索引鍵會用於目的地實體。
+服務匯流排支援往返於分割實體或在它們之間自動轉送訊息。 tooenable 自動訊息轉送、 設定 hello [QueueDescription.ForwardTo] [ QueueDescription.ForwardTo] hello 來源佇列或訂閱的屬性。 如果 hello 訊息指定資料分割索引鍵 ([SessionId][SessionId]， [PartitionKey][PartitionKey]，或[MessageId] [ MessageId])，該資料分割索引鍵用於 hello 目的地實體。
 
 ## <a name="considerations-and-guidelines"></a>考量和指導方針
-* **高度一致性功能**︰如果實體使用工作階段、重複偵測或明確控制資料分割區索引鍵等功能，則傳訊作業一定會路由至特定的片段。 如果任何片段遇到過高的流量，或基礎存放區的狀況不良，這些作業將會失敗，而且可用性會降低。 整體來說，一致性仍然遠高於非分割實體，只有一部分流量會遭遇問題，而不是所有的流量。 如需詳細資訊，請參閱這篇[針對可用性和一致性的討論](../event-hubs/event-hubs-availability-and-consistency.md)。
-* **管理**︰必須在實體的所有片段上執行建立、更新及刪除等作業。 如果任何片段的狀況不良，可能會造成這些作業失敗。 以「取得」作業來說，必須彙總來自所有片段的資訊，例如訊息計數。 如果任何片段的狀況不良，則實體可用性狀態會報告為受限制。
-* **少量訊息案例**︰對於這類案例，尤其是當使用 HTTP 通訊協定時，您可能必須執行多次接收作業，才能取得所有訊息。 對於接收要求，前端會在所有片段上執行接收，並快取所有收到的回應。 相同連接上的後續接收要求將受益於此快取，而且接收延遲將會縮短。 不過，如果您有多個連線或使用 HTTP，則會針對每個要求建立新的連接。 因此，不保證抵達相同的節點。 如果所有現有的訊息遭鎖定，而且在另一個前端中快取，接收作業會傳回 **null**。 訊息最後會到期，您可以再次接收它們。 建議使用 HTTP 持續作用。
-* **瀏覽/查看訊息**：[PeekBatch](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_PeekBatch_System_Int32_) 不一定會傳回 [MessageCount](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_MessageCount) 屬性中指定的訊息數目。 這有兩個常見的原因。 其中一個原因是訊息集合的彙總大小超過大小上限 256KB。 另一個原因是，如果佇列或主題的 [EnablePartitioning 屬性](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnablePartitioning)設為 **true**，分割區可能沒有足夠的訊息來完成所要求的訊息數目。 一般而言，如果應用程式想要接收一定數目的訊息，它應該重複呼叫 [PeekBatch](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_PeekBatch_System_Int32_)，直到取得該數目的訊息，或已沒有更多訊息可查看為止。 如需詳細資訊，包括程式碼範例，請參閱 [QueueClient.PeekBatch](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_PeekBatch_System_Int32_) 或 [SubscriptionClient.PeekBatch](/dotnet/api/microsoft.servicebus.messaging.subscriptionclient#Microsoft_ServiceBus_Messaging_SubscriptionClient_PeekBatch_System_Int32_)。
+* **高一致性功能**： 如果實體使用的功能，例如工作階段、 重複偵測或明確控制資料分割索引鍵，則 hello 訊息作業永遠是路由的 toospecific 片段。 如果任何 hello 片段遇到高流量或 hello 基礎存放區的狀況不良，這些作業失敗，且可用性會減少。 整體來說，hello 一致性高於仍然很多非資料分割的實體。相對於的 tooall hello 流量為發生問題，流量的子集合。 如需詳細資訊，請參閱這篇[針對可用性和一致性的討論](../event-hubs/event-hubs-availability-and-consistency.md)。
+* **管理**： 必須 hello 實體的所有 hello 片段上執行作業，例如 Create、 Update 和 Delete。 如果任何片段的狀況不良，可能會造成這些作業失敗。 Hello Get 作業，例如訊息計數必須彙總資訊來自所有片段。 如果任何片段會處於狀況不良，則會將 hello 實體可用性狀態報告為有限。
+* **低的大量訊息案例，**： 對於這類情況，尤其是使用 hello HTTP 通訊協定，您可能必須 tooperform 多個接收作業順序 tooobtain 中所有的 hello 訊息。 接收要求，hello 前端會接收對所有 hello 片段，並快取所有收到的 hello 回應。 在相同的連接會從這個快取中獲益並收到延遲的 hello 後續接收要求會比較低。 不過，如果您有多個連線或使用 HTTP，則會針對每個要求建立新的連接。 在這種情況，則它會登陸 hello 無法確保相同的節點。 如果所有現有的訊息會鎖定，快取中另一個前端 hello 接收作業會傳回**null**。 訊息最後會到期，您可以再次接收它們。 建議使用 HTTP 持續作用。
+* **瀏覽窺視訊息**: [PeekBatch](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_PeekBatch_System_Int32_)不一定會傳回所指定的 hello 訊息的 hello 數目[MessageCount](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_MessageCount)屬性。 這有兩個常見的原因。 其中一個原因是該 hello hello 訊息的集合彙總的大小超過 hello 256 KB 的大小上限。 另一個原因是如果 hello 佇列或主題有 hello [EnablePartitioning 屬性](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnablePartitioning)設定得**true**，資料分割可能沒有足夠的訊息 toocomplete hello 要求的訊息數目。 一般情況下，如果應用程式想 tooreceive 特定數目的訊息，它應該呼叫[PeekBatch](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_PeekBatch_System_Int32_)重複直到到達該數目的訊息，或有沒有更多的訊息 toopeek。 如需詳細資訊，包括程式碼範例，請參閱 [QueueClient.PeekBatch](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_PeekBatch_System_Int32_) 或 [SubscriptionClient.PeekBatch](/dotnet/api/microsoft.servicebus.messaging.subscriptionclient#Microsoft_ServiceBus_Messaging_SubscriptionClient_PeekBatch_System_Int32_)。
 
 ## <a name="latest-added-features"></a>最新加入的功能
 * 分割實體現在支援新增或移除規則。 不同於非分割實體，交易情況下不支援這些作業。 
-* AMQP 現在支援往返於分割實體傳送和接收訊息。
-* AMQP 現在支援下列作業：[批次傳送](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_SendBatch_System_Collections_Generic_IEnumerable_Microsoft_ServiceBus_Messaging_BrokeredMessage__)、[批次接收](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_ReceiveBatch_System_Int32_)、[依序號接收](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_Receive_System_Int64_)、[查看](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_Peek)、[更新鎖定](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_RenewMessageLock_System_Guid_)、[排定訊息](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_ScheduleMessageAsync_Microsoft_ServiceBus_Messaging_BrokeredMessage_System_DateTimeOffset_)、[取消排定的訊息](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_CancelScheduledMessageAsync_System_Int64_)、[新增規則](/dotnet/api/microsoft.servicebus.messaging.ruledescription)、[移除規則](/dotnet/api/microsoft.servicebus.messaging.ruledescription)、[工作階段更新鎖定](/dotnet/api/microsoft.servicebus.messaging.messagesession#Microsoft_ServiceBus_Messaging_MessageSession_RenewLock)、[設定工作階段狀態](/dotnet/api/microsoft.servicebus.messaging.messagesession#Microsoft_ServiceBus_Messaging_MessageSession_SetState_System_IO_Stream_)、[取得工作階段狀態](/dotnet/api/microsoft.servicebus.messaging.messagesession#Microsoft_ServiceBus_Messaging_MessageSession_GetState)和[列舉工作階段](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_GetMessageSessionsAsync)。
+* AMQP 現在支援傳送和接收訊息 tooand 從資料分割的實體。
+* AMQP 現在支援下列作業的 hello:[批次傳送](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_SendBatch_System_Collections_Generic_IEnumerable_Microsoft_ServiceBus_Messaging_BrokeredMessage__)，[批次接收](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_ReceiveBatch_System_Int32_)，[接收由序號](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_Receive_System_Int64_)，[查看](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_Peek)， [更新鎖定](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_RenewMessageLock_System_Guid_)，[排程訊息](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_ScheduleMessageAsync_Microsoft_ServiceBus_Messaging_BrokeredMessage_System_DateTimeOffset_)，[取消已排程的訊息](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_CancelScheduledMessageAsync_System_Int64_)，[新增規則](/dotnet/api/microsoft.servicebus.messaging.ruledescription)，[移除規則](/dotnet/api/microsoft.servicebus.messaging.ruledescription)，[工作階段更新鎖定](/dotnet/api/microsoft.servicebus.messaging.messagesession#Microsoft_ServiceBus_Messaging_MessageSession_RenewLock)，[設定工作階段狀態](/dotnet/api/microsoft.servicebus.messaging.messagesession#Microsoft_ServiceBus_Messaging_MessageSession_SetState_System_IO_Stream_)，[取得工作階段狀態](/dotnet/api/microsoft.servicebus.messaging.messagesession#Microsoft_ServiceBus_Messaging_MessageSession_GetState)，和[列舉工作階段](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_GetMessageSessionsAsync)。
 
 ## <a name="partitioned-entities-limitations"></a>分割實體限制
-目前服務匯流排會為分割的佇列和主題設定下列限制：
+目前服務匯流排會加諸下列限制分割的佇列和主題的 hello:
 
-* 分割的佇列及主題不支援在單一交易中傳送屬於不同工作階段的訊息。
-* 服務匯流排目前每個命名空間允許最多 100 個分割佇列或主題。 每個分割佇列或主題的配額計數為每個命名空間 10,000 個實體 (不適用於高階層)。
+* 資料分割的佇列和主題不支援所傳送的訊息屬於 toodifferent 在單一交易中的工作階段。
+* 服務匯流排目前允許 too100 分割佇列或主題，每個命名空間。 每個磁碟分割的佇列或主題會計入 hello 配額的 10,000 個實體，每個命名空間 （不適用 tooPremium 層）。
 
 ## <a name="next-steps"></a>後續步驟
-請參閱[適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援][AMQP 1.0 support for Service Bus partitioned queues and topics]，深入了解分割訊息實體。 
+請參閱 hello 討論[服務匯流排 AMQP 1.0 支援分割佇列和主題][ AMQP 1.0 support for Service Bus partitioned queues and topics] toolearn 更多關於資料分割訊息實體。 
 
 [Service Bus architecture]: service-bus-architecture.md
 [Azure portal]: https://portal.azure.com

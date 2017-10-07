@@ -1,12 +1,12 @@
 ---
-title: "使用 IoT 閘道將裝置連線到 Azure IoT 中樞 | Microsoft Docs"
-description: "了解如何使用 Intel NUC IoT 閘道連接 TI SensorTag 感應器，並將資料傳送至雲端的 Azure IoT 中樞。"
+title: "aaaUse IoT 閘道 tooconnect 裝置 tooAzure IoT 中樞 |Microsoft 文件"
+description: "了解 toouse 為 IoT 閘道 tooconnect TI SensorTag Intel NUC 和傳送感應器資料 tooAzure IoT 中樞 hello 中的雲端。"
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timlt
 tags: 
-keywords: "iot 閘道器將裝置連接至雲端"
+keywords: "iot 閘道連接裝置 toocloud"
 ms.assetid: cb851648-018c-4a7e-860f-b62ed3b493a5
 ms.service: iot-hub
 ms.devlang: c
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/25/2017
 ms.author: xshi
-ms.openlocfilehash: 4fb77ed0241d15338c2574fd22828507c3e40cb3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 418af34bf29992d46b76ae59ef548744808664c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-iot-gateway-to-connect-things-to-the-cloud---sensortag-to-azure-iot-hub"></a>使用 IoT 閘道將裝置連接到雲端 - 將 SensorTag 連接到 Azure IoT 中樞
+# <a name="use-iot-gateway-tooconnect-things-toohello-cloud---sensortag-tooazure-iot-hub"></a>使用 IoT 閘道 tooconnect 事項 toohello 雲端 SensorTag tooAzure IoT 中樞
 
 > [!NOTE]
-> 開始本教學課程之前，請確定您已完成[將 Intel NUC 設定為 IoT 閘道器](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)。 在[將 Intel NUC 設定為 IoT 閘道器](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)中，您會將 Intel NUC 裝置設定為 IoT 閘道器。
+> 開始本教學課程之前，請確定您已完成[將 Intel NUC 設定為 IoT 閘道器](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)。 在[設定為 IoT 閘道 Intel NUC](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)，您設定 hello Intel NUC 裝置與 IoT 閘道。
 
 ## <a name="what-you-will-learn"></a>學習目標
 
-您將學習如何使用 IoT 閘道器，將 Texas Instruments SensorTag (CC2650STK) 連接到 Azure IoT 中樞。 IoT 閘道會將從 SensorTag 收集的溫度和溼度資料傳送到 Azure IoT 中樞。
+您了解如何 toouse IoT 閘道 tooconnect 德州儀器 SensorTag (CC2650STK) tooAzure IoT 中樞。 hello IoT 閘道傳送溫度和溼度從收集的資料 hello SensorTag tooAzure IoT 中樞。
 
 ## <a name="what-you-will-do"></a>將執行的作業
 
 - 建立 IoT 中樞。
-- 在 SensorTag 的 IoT 中樞註冊裝置。
-- 啟用 IoT 閘道與 SensorTag 之間的連線。
-- 執行 BLE 應用程式，將 SensorTag 資料傳送至 IoT 中樞。
+- 在 hello SensorTag hello IoT 中樞註冊裝置。
+- 啟用 hello hello IoT 閘道與 hello SensorTag 之間的連線。
+- 執行 b 範例應用程式 toosend SensorTag 資料 tooyour IoT 中樞。
 
 ## <a name="what-you-need"></a>您需要什麼
 
 - 在[將 Intel NUC 設定為 IoT 閘道器](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)教學課程中，您已將 Intel NUC 設定為 IoT 閘道器。
 - * 有效的 Azure 訂用帳戶。 如果您沒有 Azure 帳戶，請花幾分鐘的時間建立[免費的 Azure 試用帳戶](https://azure.microsoft.com/free/)。
 - 在主機電腦上執行的 SSH 用戶端。 Windows 上建議使用 PuTTY。 Linux 和 macOS 已隨附 SSH 用戶端。
-- 從 SSH 用戶端存取閘道所用的 IP 位址和使用者名稱和密碼。
+- hello IP 位址和 hello 使用者名稱和密碼 tooaccess hello hello SSH 用戶端的閘道。
 - 網際網路連線。
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
@@ -50,38 +50,38 @@ ms.lasthandoff: 08/03/2017
 > [!NOTE]
 > 您將在這裡為 SensorTag 註冊這個新裝置
 
-## <a name="enable-the-connection-between-the-iot-gateway-and-the-sensortag"></a>啟用 IoT 閘道與 SensorTag 之間的連線
+## <a name="enable-hello-connection-between-hello-iot-gateway-and-hello-sensortag"></a>啟用 hello hello IoT 閘道與 hello SensorTag 之間的連線
 
-本節中，您將執行下列工作：
+在本節中，您可以執行下列工作的 hello:
 
-- 對於藍牙連線取得 SensorTag 的 MAC 位址。
-- 初始化從 IoT 閘道器到 SensorTag 的藍牙連線。
+- 取得藍芽連線 hello SensorTag hello MAC 位址。
+- 起始從 hello IoT 閘道 toohello SensorTag 藍芽連線。
 
-### <a name="get-the-mac-address-of-the-sensortag-for-bluetooth-connection"></a>對於藍牙連線取得 SensorTag 的 MAC 位址
+### <a name="get-hello-mac-address-of-hello-sensortag-for-bluetooth-connection"></a>取得藍芽連線 hello SensorTag hello MAC 位址
 
-1. 在主機電腦上執行 SSH 用戶端，並連接到 IoT 閘道器。
-1. 執行下列命令解除封鎖藍牙︰
+1. Hello 主機電腦上，執行 hello SSH 用戶端，並連接 toohello IoT 閘道。
+1. 解除封鎖藍芽，藉由執行下列命令的 hello:
 
    ```bash
    sudo rfkill unblock bluetooth
    ```
 
-1. 在 IoT 閘道上啟動藍牙服務，並執行下列命令進入藍牙介面設定藍牙︰
+1. Hello IoT 閘道上啟動 hello 藍芽服務，並輸入 藍芽殼層 tooconfigure 藍芽執行 hello 下列命令：
 
    ```bash
    sudo systemctl start bluetooth
    bluetoothctl
    ```
 
-1. 在藍牙介面執行下列命令，開啟藍牙控制器電源︰
+1. 藉由執行 hello 藍芽控制站上的電源 hello 下列在 hello 藍芽介面的命令：
 
    ```bash
    power on
    ```
 
-   ![使用 bluetoothctl 在 IoT 閘道器上開啟藍牙控制器電源](./media/iot-hub-iot-gateway-connect-device-to-cloud/8_power-on-bluetooth-controller-at-bluetooth-shell-bluetoothctl.png)
+   ![hello 與 bluetoothctl hello IoT 閘道上的藍芽控制站上的電源](./media/iot-hub-iot-gateway-connect-device-to-cloud/8_power-on-bluetooth-controller-at-bluetooth-shell-bluetoothctl.png)
 
-1. 執行下列命令，開始掃描附近的藍牙裝置︰
+1. 啟動掃描附近的藍芽裝置執行下列命令的 hello:
 
    ```bash
    scan on
@@ -89,9 +89,9 @@ ms.lasthandoff: 08/03/2017
 
    ![使用 bluetoothctl 掃描附近的藍牙裝置](./media/iot-hub-iot-gateway-connect-device-to-cloud/9_start-scan-nearby-bluetooth-devices-at-bluetooth-shell-bluetoothctl.png)
 
-1. 按下 SensorTag 上的配對按鈕。 SensorTag 上的綠色 LED 閃爍。
-1. 在藍牙介面中，您應該會看見找到 SensorTag。 記下 SensorTag 的 MAC 位址。 在此範例中，SensorTag 的 MAC 位址是 `24:71:89:C0:7F:82`。
-1. 執行下列命令以關閉掃描：
+1. 按 hello 配對 hello SensorTag 按鈕。 hello 綠色 LED 上 hello SensorTag 閃爍。
+1. 在 hello 藍芽介面，您應該會看到的 hello SensorTag 找到。 記下 hello hello SensorTag MAC 位址。 在此範例中，是 hello MAC 位址的 hello SensorTag `24:71:89:C0:7F:82`。
+1. 執行下列命令的 hello 關閉 hello 掃描：
 
    ```bash
    scan off
@@ -99,70 +99,70 @@ ms.lasthandoff: 08/03/2017
 
    ![使用 bluetoothctl 停止掃描附近的藍牙裝置](./media/iot-hub-iot-gateway-connect-device-to-cloud/10_stop-scanning-nearby-bluetooth-devices-at-bluetooth-shell-bluetoothctl.png)
 
-### <a name="initiate-a-bluetooth-connection-from-the-iot-gateway-to-the-sensortag"></a>初始化從 IoT 閘道器到 SensorTag 的藍牙連線
+### <a name="initiate-a-bluetooth-connection-from-hello-iot-gateway-toohello-sensortag"></a>起始從 hello IoT 閘道 toohello SensorTag 藍芽連線
 
-1. 執行下列命令來連線至 SensorTag：
+1. 執行下列命令的 hello 連線 toohello SensorTag:
 
    ```bash
    connect <MAC address>
    ```
 
-   ![使用 bluetoothctl 連接到 SensorTag](./media/iot-hub-iot-gateway-connect-device-to-cloud/11_connect-to-sensortag-at-bluetooth-shell-bluetoothctl.png)
+   ![連接 bluetoothctl toohello SensorTag](./media/iot-hub-iot-gateway-connect-device-to-cloud/11_connect-to-sensortag-at-bluetooth-shell-bluetoothctl.png)
 
-1. 執行下列命令，與 SensorTag 中斷連接並結束藍牙介面︰
+1. Hello SensorTag 從中斷連線並執行下列命令的 hello 結束 hello 藍芽介面：
 
    ```bash
    disconnect
    exit
    ```
 
-   ![使用 bluetoothctl 與 SensorTag 中斷連接](./media/iot-hub-iot-gateway-connect-device-to-cloud/12_disconnect-from-sensortag-at-bluetooth-shell-bluetoothctl.png)
+   ![中斷與 bluetoothctl hello SensorTag](./media/iot-hub-iot-gateway-connect-device-to-cloud/12_disconnect-from-sensortag-at-bluetooth-shell-bluetoothctl.png)
 
-此時即已成功啟用 SensorTag 與 IoT 閘道之間的連線。
+您已成功啟用 hello hello SensorTag 與 hello IoT 閘道之間的連線。
 
-## <a name="run-a-ble-sample-application-to-send-sensortag-data-to-your-iot-hub"></a>執行 BLE 應用程式，將 SensorTag 資料傳送至 IoT 中樞
+## <a name="run-a-ble-sample-application-toosend-sensortag-data-tooyour-iot-hub"></a>執行 b 範例應用程式 toosend SensorTag 資料 tooyour IoT 中樞
 
-Bluetooth Low Energy (BLE) 範例應用程式是由 Azure IoT Edge 提供。 範例應用程式會收集 BLE 連線的資料，並將資料傳送至 IoT 中樞。 若要執行範例應用程式，需要：
+hello 藍芽低能源 (B) 的範例應用程式會提供 Azure IoT 邊緣。 hello 範例應用程式會收集從 b 連接，並傳送嗨資料 tooyou IoT 中樞。 您需要 toorun hello 範例應用程式：
 
-1. 設定範例應用程式。
-1. 在 IoT 閘道器上執行範例應用程式。
+1. Hello 範例應用程式設定。
+1. Hello IoT 閘道上執行 hello 範例應用程式。
 
-### <a name="configure-the-sample-application"></a>設定範例應用程式
+### <a name="configure-hello-sample-application"></a>Hello 範例應用程式設定
 
-1. 執行下列命令，移至範例應用程式的資料夾：
+1. 藉由執行下列命令的 hello 移 toohello hello 範例應用程式的資料夾：
 
    ```bash
    cd /usr/share/azureiotgatewaysdk/samples/ble_gateway
    ```
 
-1. 執行下列命令來開啟組態檔：
+1. 執行下列命令的 hello 開啟 hello 設定檔：
 
    ```bash
    vi ble_gateway.json
    ```
 
-1. 在組態檔中，輸入下列值︰
+1. 在 hello 設定檔中，填入 hello 下列值：
 
-   **IoTHubName**：IoT 中樞的名稱。
+   **IoTHubName**: hello IoT 中樞名稱。
 
-   **IoTHubSuffix**︰從您記下的裝置連接字串主索引鍵，取得 IoTHubSuffix。 請確定您取得裝置連接字串的主索引鍵，而非 IoT 中樞連接字串的主索引鍵。 裝置連接字串的主索引鍵格式為 `HostName=IOTHUBNAME.IOTHUBSUFFIX;DeviceId=DEVICEID;SharedAccessKey=SHAREDACCESSKEY`。
+   **IoTHubSuffix**： 取得 IoTHubSuffix 從 hello 主索引鍵的 hello 裝置連接字串，您記下下。 請確定您取得 hello 裝置連接字串 hello 主索引鍵，且不 hello IoT 中樞連接字串的主索引鍵。 hello 主索引鍵的 hello 裝置連接字串的格式的 hello `HostName=IOTHUBNAME.IOTHUBSUFFIX;DeviceId=DEVICEID;SharedAccessKey=SHAREDACCESSKEY`。
 
-   **Transport**：預設值是 `amqp`。 這個值會顯示傳輸期間的通訊協定。 這可以是 `http`、`amqp` 或 `mqtt`。
+   **傳輸**: hello 預設值是`amqp`。 這個值會顯示 hello 通訊協定 transpotation 期間。 這可以是 `http`、`amqp` 或 `mqtt`。
 
-   **macAddress**：您對於 SensorTag 記下的 MAC 位址。
+   **macAddress**: hello hello SensorTag 您記下的 MAC 位址。
 
-   **deviceID**︰ 您建立 IoT 中樞建立的裝置本身的識別碼。
+   **deviceID**： 您建立 IoT 中樞中的 hello 裝置識別碼。
 
-   **deviceKey**：裝置連接字串的主索引鍵。
+   **deviceKey**: hello 裝置連接字串 hello 主索引鍵。
 
-   ![完成 BLE 範例應用程式的組態檔](./media/iot-hub-iot-gateway-connect-device-to-cloud/13_edit-config-file-of-ble-sample.png)
+   ![完整的 hello 的 hello b 範例應用程式的組態檔](./media/iot-hub-iot-gateway-connect-device-to-cloud/13_edit-config-file-of-ble-sample.png)
 
-1. 按下 `ESC` 並輸入 `:wq` 儲存檔案。
+1. 按`ESC`和型別`:wq`toosave hello 檔案。
 
-### <a name="run-the-sample-application"></a>執行範例應用程式
+### <a name="run-hello-sample-application"></a>執行 hello 範例應用程式
 
-1. 確定 SensorTag 已開啟。
-1. 執行以下命令：
+1. 請確定 hello SensorTag 電源已開啟。
+1. 執行下列命令的 hello:
 
    ```bash
    ./ble_gateway ble_gateway.json

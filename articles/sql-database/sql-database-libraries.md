@@ -1,6 +1,6 @@
 ---
-title: "SQL Database 的連接庫 | Microsoft Docs"
-description: "提供模組下載連結，這些模組可讓開發人員從各種用戶端程式設計語言連線到 SQL Server 與 SQL Database。 這些模組是由社群或 Microsoft 釋出。"
+title: "SQL Database 的 aaaConnection 程式庫 |Microsoft 文件"
+description: "提供的模組可讓連接 tooSQL 伺服器和 SQL 資料庫各式各樣的程式設計語言的用戶端下載的連結。 hello 社群或由 Microsoft 發行 hello 模組。"
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: genemi
-ms.openlocfilehash: 082abf57b139b9f7d44774dce3a80e20b97f0e3b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6ea77670276ad3304c7531f7ffd8f7dffd31af46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="connectivity-libraries-and-frameworks-for-microsoft-sql-server"></a>適用於 Microsoft SQL Server 的連線程式庫和架構
 
-請查看[快速入門教學課程](http://aka.ms/sqldev)，以快速開始使用 C#、Java、Node.js、PHP 及 Python 之類的程式語言，並在 Linux 或 Windows 上使用 SQL Server 或在 macOS 上使用 Docker 來建置應用程式。
+請查看我們[快速入門教學課程](http://aka.ms/sqldev)tooquickly 開始使用程式設計語言如 C#、 Java、 Node.js、 PHP 以及 Python 和建置在 Linux 或 Windows Docker macOS 上使用 SQL Server 的應用程式。
 
-下表列出的連線程式庫或「驅動程式」可供用戶端應用程式從各種不同的語言使用來連線，以及使用在內部部署或雲端中，或在 Linux、Windows 上執行的 Microsoft SQL Server 或使用 Docker，還可以用於 Azure SQL Database 和 Azure SQL 資料倉儲。 
+hello 下表列出的連接程式庫或*驅動程式*用戶端應用程式可以使用從各種不同的語言 tooconnect tooand 使用 Microsoft SQL Server 在內部部署執行或在 hello 雲端中，在 Linux、 Windows 或 Docker 和也 tooAzure SQL Database 和 Azure SQL 資料倉儲。 
 
 | 語言 | 平台 | 其他資源 | 下載 | 開始使用 |
 | :-- | :-- | :-- | :-- | :-- |
@@ -37,7 +37,7 @@ ms.lasthandoff: 08/03/2017
 | Ruby | Windows、Linux、macOS | [Ruby Driver for SQL Server](http://msdn.microsoft.com/library/mt691981.aspx) | [安裝](https://msdn.microsoft.com/library/mt711041.aspx) | [快速入門](https://www.microsoft.com/en-us/sql-server/developer-get-started/ruby/ubuntu)
 | C++ | Windows、Linux、macOS | [Microsoft ODBC Driver for SQL Server](https://msdn.microsoft.com/en-us/library/mt654048(v=sql.1).aspx) | [下載](https://msdn.microsoft.com/en-us/library/mt654048(v=sql.1).aspx) |  
 
-下表列出一些物件關聯式對應 (ORM) 架構和 Web 架構範例，可供用戶端應用程式搭配使用在內部部署或雲端中，或在 Linux、Windows 上執行的 Microsoft SQL Server 或搭配使用 Docker，還可以用於 Azure SQL Database 和 Azure SQL 資料倉儲。 
+hello 下表列出一些 hello 雲端，在 Linux、 Windows 或 Docker 以及 tooAzure SQL Database 中的 物件關聯式對應 (ORM) 架構和用戶端應用程式可以使用與 Microsoft SQL Server 在內部部署執行或的 web 架構的範例，Azure SQL 資料倉儲。 
 
 | 語言 | 平台 | ORM |
 | :-- | :-- | :-- |
@@ -50,9 +50,9 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="related-links"></a>相關連結
 - [SQL Server 驅動程式](http://msdn.microsoft.com/library/mt654049.aspx)，適用於從用戶端應用程式連接
-- [使用 .NET (C#) 連接到 SQL Database](sql-database-connect-query-dotnet.md)
-- [使用 PHP 連接到 SQL Database](sql-database-connect-query-php.md)
-- [使用 Node.js 連接到 SQL Database](sql-database-connect-query-nodejs.md)
-- [使用 Java 連接到 SQL Database](sql-database-connect-query-java.md)
-- [使用 Python 連接到 SQL Database](sql-database-connect-query-python.md)
-- [使用 Ruby 連接到 SQL Database](sql-database-connect-query-ruby.md)
+- [TooSQL 資料庫連接使用.NET (C#)](sql-database-connect-query-dotnet.md)
+- [使用 PHP 連接 tooSQL 資料庫](sql-database-connect-query-php.md)
+- [使用 Node.js 連線 tooSQL 資料庫](sql-database-connect-query-nodejs.md)
+- [使用 Java 連接 tooSQL 資料庫](sql-database-connect-query-java.md)
+- [TooSQL 資料庫連接使用 Python](sql-database-connect-query-python.md)
+- [利用 Ruby 連接 tooSQL 資料庫](sql-database-connect-query-ruby.md)

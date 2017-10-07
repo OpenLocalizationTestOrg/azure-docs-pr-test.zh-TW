@@ -1,6 +1,6 @@
 ---
-title: "Azure 客體 OS 可支援性和淘汰原則指南 | Microsoft Docs"
-description: "提供關於雲端服務使用之 Azure 客體作業系統的 Microsoft 支援事項資訊。"
+title: "Azure 客體作業系統的 aaaSupportability 和淘汰原則指南 |Microsoft 文件"
+description: "提供 Microsoft 將會支援 as regards toohello 雲端服務所使用的 Azure 客體作業系統的相關資訊。"
 services: cloud-services
 documentationcenter: na
 author: raiye
@@ -14,68 +14,68 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 5/26/2017
 ms.author: raiye
-ms.openlocfilehash: 488a6e144b16c57c137e60b918ee68c78db1a54f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a86c42ac95d12bbf116d900b7afb26fc3fe34e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-guest-os-supportability-and-retirement-policy"></a>Azure 客體作業系統可支援性和淘汰原則
-本頁面中的資訊涉及雲端服務背景工作和 Web 角色 (PaaS) 適用的 Azure 客體作業系統 ([客體 OS](cloud-services-guestos-update-matrix.md))。 這些資訊不適用於虛擬機器 (IaaS)。
+此頁面上的 hello 資訊與相關 toohello Azure 客體作業系統 ([客體 OS](cloud-services-guestos-update-matrix.md)) 的雲端服務背景工作角色和 web 角色 (PaaS)。 它不會套用 tooVirtual 機器 (IaaS)。
 
-Microsoft 已發佈 [客體 OS 支援原則](http://support.microsoft.com/gp/azure-cloud-lifecycle-faq)。 您正在閱讀的頁面描述原則的實施方式。
+Microsoft 有已發行[hello 客體作業系統的支援原則](http://support.microsoft.com/gp/azure-cloud-lifecycle-faq)。 您正在閱讀的 hello 頁面現在會描述 hello 原則的實作方式。
 
-原則包括
+hello 原則
 
-1. Microsoft 將支援至少兩個 **最新系列的客體 OS**。 當某個系列遭到淘汰時，客戶有 12 個月的時間 (從官方淘汰日期開始計算) 更新為較新的受支援客體作業系統系列。
-2. Microsoft 會支援**至少兩個最新版本的支援客體 OS系列**。
-3. Microsoft 會支援**至少兩個最新版本的 Azure SDK**。 當某個版本的 SDK 遭到淘汰時，客戶有 12 個月的時間 (從官方淘汰日期開始計算) 更新為較新版本。
+1. Microsoft 將會支援**至少 hello hello 客體作業系統的最新的兩個系列**。 當某個系列淘汰時，客戶會有 12 個月的 hello 正式淘汰日期 tooupdate tooa 較新且支援客體 OS 系列的時間。
+2. Microsoft 將會支援**至少 hello hello 支援客體 OS 系列的最新的兩個版本**。
+3. Microsoft 將會支援**至少 hello 的 hello Azure SDK 最新的兩個版本**。 當 hello 淘汰 SDK 的版本時，客戶將會有 12 個月的 hello 正式淘汰日期 tooupdate tooa 較新版本的時間。
 
-Microsoft 有時候會支援兩個以上的系列或版本。 正式的客體 OS 支援資訊會公告於「 [Azure 客體 OS 版本與 SDK 相容性比較表](cloud-services-guestos-update-matrix.md)」中。
+Microsoft 有時候會支援兩個以上的系列或版本。 正式客體 OS 支援資訊將會出現在 hello [Azure 客體 OS 版本與 SDK 相容性比較表](cloud-services-guestos-update-matrix.md)。
 
 ## <a name="when-a-guest-os-family-or-version-is-retired"></a>當客體作業系統系列或版本遭到淘汰時
-Microsoft 會在新的正式版本 Windows Server 作業系統發行後，擇日推出新的客體 OS **系列** 。 每當推出新客體作業系統時，Microsoft 都會淘汰最舊的客體作業系統系列。
+新的客體 OS**系列**一段時間以後 hello 官方新版 hello Windows 伺服器作業系統的版本。 每當引進新的客體作業系統系列，Microsoft 將會淘汰 hello 最舊的客體 OS 系列。
 
-Microsoft 大約會每月推出新的客體 OS **版本** ，以納入最新的 MSRC 更新。 因每月定期更新之故，每個客體作業系統版本通常會在發行的 60 天後遭到停用。 此活動會保持每個系列至少有兩個客體 OS 版本可供使用。
+新的客體 OS**版本**大約為每個月 tooincorporate hello 最新的 MSRC 更新引進。 Hello 每月定期更新，因為客體 OS 版本是通常停用其發行後的 60 天。 此活動會保持每個系列至少有兩個客體 OS 版本可供使用。
 
 ### <a name="process-during-a-guest-os-family-retirement"></a>客體作業系統系列淘汰期間的程序
-從 Microsoft 公佈淘汰資訊到正式移除服務中最舊的系列，客戶有 12 個月的「轉換」期。 Microsoft 會斟酌是否延長這段轉換時間。 更新資訊會張貼在「 [Azure 客體 OS 版本與 SDK 相容性比較表](cloud-services-guestos-update-matrix.md)」。
+一旦公告 hello 淘汰，客戶有 12 個月 「 過渡 」 期之前 hello 舊的系列正式從服務中移除。 此轉換的時間可能會擴充的 Microsoft hello 斟酌。 更新會公佈於 hello [Azure 客體 OS 版本與 SDK 相容性比較表](cloud-services-guestos-update-matrix.md)。
 
-漸進式淘汰程序將會在轉換期的六 (6) 個月前開始。 在這段時間：
+漸進的淘汰程序會將六個 （6） 個月開始到 hello 過渡期。 在這段時間：
 
-1. Microsoft 將通知客戶有關淘汰的資訊。
-2. 新版本的 Azure SDK 將不支援淘汰的客體作業系統系列。
-3. 淘汰的系列將不允許新部署和重新部署的雲端服務。
+1. Microsoft 將通知客戶 hello 淘汰。
+2. hello 較新版本的 hello Azure SDK 將不會支援 hello 淘汰客體 OS 系列。
+3. 新的部署和雲端服務的使用不允許 hello 淘汰的系列上
 
-Microsoft 將繼續推出併入最新 MSRC 更新的新客體作業系統版本，直到轉換期的最後一天為止 (稱為「到期日」)。 屆到期日時，Azure SLA 將不支援任何仍處於運作狀態的雲端服務。 Microsoft 可決定是否在該日期後強制升級、刪除或停止這些服務。
+Microsoft 將持續 toointroduce 新的客體 OS 版本之前 hello hello 過渡期，又稱為 hello 「 過期日 」 的最後一天中納入 hello 最新的 MSRC 更新。 上 hello 到期日，仍在執行的雲端服務，會依據 hello Azure SLA 不再受支援。 Microsoft 有 hello 自行斟酌 tooforce 升級、 刪除或停止這些服務在讓日期之後。
 
 ### <a name="process-during-a-guest-os-version-retirement"></a>客體作業系統版本淘汰期間的程序
-如果客戶將客體作業系統設定為自動更新，他們永遠不需要擔心該如何處置客體作業系統版本的問題。 他們一律能使用最新版本的客體作業系統。
+如果客戶設定其 tooautomatically 客體 OS 的更新，就不需要 tooworry 有關客體 OS 版本處理。 他們會一律使用最新客體 OS 版本 hello。
 
-Microsoft 會在每個月發行客體作業系統。 由於定期發行頻繁之故，每個版本都有固定的週期。
+Microsoft 會在每個月發行客體作業系統。 由於定期發行的 hello 頻率，每個版本都有固定的使用期限。
 
-到了週期的第 60 天，版本即會遭到「停用」。 「停用」表示會從入口網站移除該版本。 您也無法再從 CSCFG 組態檔設定該版本。 現有部署仍可繼續執行。 但新部署和現有部署的程式碼與設定更新將遭到禁止。
+版本是經過 hello 使用期限的 60 天，「*停用*"。 「 停用 」 表示該 hello 版本會移除從 hello 入口網站。 hello 版本不再可以設定從 hello CSCFG 組態檔中。 現有部署仍可繼續執行。 但是，新的部署和程式碼和組態的更新 tooexisting 部署將不允許。
 
-「停用」一段時間後，客體 OS 版本會「過期」，屆時所有仍執行該版本的安裝將受迫升級，以及設定為在未來自動更新客體 OS。 到期係以批次進行，因此從停用到到期之間的這段期間不盡相同。
+段時間後變得 「 停用 「 hello 客體 OS 版本 」*到期*"和仍在執行該版本的任何安裝都將遭到強制升級，並設定 hello 的 tooautomatically 更新 hello 客體作業系統未來。 到期日是所以批次中的停用 tooexpiration hello 期間可能會不同。
 
-Microsoft 可自行決定是否延長該期間，以緩和客戶轉換時的不便。 所有的更新資訊都會發佈於「 [Azure 客體 OS 版本與 SDK 相容性比較表](cloud-services-guestos-update-matrix.md)」。
+這些期間可能會進行長在 Microsoft 的自行斟酌 tooease 客戶轉換。 任何變更將會傳送 hello 上[Azure 客體 OS 版本與 SDK 相容性比較表](cloud-services-guestos-update-matrix.md)。
 
 ### <a name="notifications-during-retirement"></a>淘汰期間的通知
-* **系列淘汰** <br>Microsoft 會透過部落格文章和入口網站通知公告。 對於仍在使用遭淘汰之客體作業系統系列的客戶，Microsoft 會透過直接通訊 (電子郵件、入口網站訊息、撥打電話) 通知其指派的服務管理員。 所有變更資訊都將張貼在這個頁面和頁面開頭所列的 RSS 摘要。
-* **版本淘汰** <br>所有的變更資訊及發生日期都將張貼在此頁面和頁面開頭所列的 RSS 摘要中，包括版本、停用日及到期日。 如果遭停用的客體作業系統版本或系列之上仍有運作中的部署，服務管理員將會收到電子郵件。 這些電子郵件的發送時間不盡相同。 雖然發送電子郵件的時間不屬於官方 SLA，不過 Microsoft 通常會在停用之前至少一個月發出。
+* **系列淘汰** <br>Microsoft 會透過部落格文章和入口網站通知公告。 透過直接通訊 （電子郵件、 入口網站訊息、 撥打電話） tooassigned 服務系統管理員，系統會通知仍在使用已淘汰的客體 OS 系列的客戶。 所有變更都將都張貼 toothis 頁面和 hello RSS 摘要列於此頁面的 hello 開頭。
+* **版本淘汰** <br>所有變更與 hello 日期發生時將會都公佈 toothis 頁面和 hello RSS 摘要的這個頁面上，包括發行、 已停用和到期 hello 開頭所列出。 如果遭停用的客體作業系統版本或系列之上仍有運作中的部署，服務管理員將會收到電子郵件。 這些電子郵件的 hello 時間而有所不同。 雖然發送電子郵件的時間不屬於官方 SLA，不過 Microsoft 通常會在停用之前至少一個月發出。
 
 ## <a name="frequently-asked-questions"></a>常見問題集
-**如何降低移轉的影響？**
+**我要如何降低移轉的 hello 影響？**
 
 建議您使用最新的客體 OS 系列來設計雲端服務。
 
-1. 儘早規劃新系列的移轉。
-2. 設定暫時性的測試部署，以測試在新系列上運作的雲端服務。
-3. 將客體 OS 版本設為 **Automatic** ( [.CSCFG](cloud-services-model-and-package.md#cscfg) 檔案中的 osVersion=*)，新客體 OS 版本的移轉作業即能自動執行。
+1. 啟動及早規劃您移轉 tooa 較新的系列。
+2. 設定暫時測試部署 tootest hello 新的系列上執行的雲端服務。
+3. 設定您的客體 OS 版本太**自動**(osVersion = * 在 hello [.cscfg](cloud-services-model-and-package.md#cscfg)檔案) 讓 hello 移轉 toonew 客體 OS 版本會自動發生。
 
-**如果 Web 應用程式需要與 OS 更深入的整合，該怎麼辦？**
+**如果我的 web 應用程式需要與 hello OS 的更深入整合？**
 
-如果 Web 應用程式架構依賴作業系統的基礎功能，您可以使用[啟動工作](cloud-services-startup-tasks.md)之類的平台支援功能或其他擴充性機制。 您也可以使用 [Azure 虛擬機器](https://azure.microsoft.com/documentation/scenarios/virtual-machines/) (IaaS – 基礎結構即服務)，只不過您需要自行負責維護基礎作業系統。
+如果您的 web 應用程式架構相依於基礎 hello 作業系統功能，使用支援的平台功能例如[啟動工作](cloud-services-startup-tasks.md)或其他擴充性機制。 或者，您也可以使用[Azure 虛擬機器](https://azure.microsoft.com/documentation/scenarios/virtual-machines/)(IaaS-基礎結構即服務)，您必須負責維護基礎作業系統的 hello。
 
 ## <a name="next-steps"></a>後續步驟
-檢閱最新的 [客體作業系統版本](cloud-services-guestos-update-matrix.md)。
+最新檢閱 hello[客體 OS 版本](cloud-services-guestos-update-matrix.md)。

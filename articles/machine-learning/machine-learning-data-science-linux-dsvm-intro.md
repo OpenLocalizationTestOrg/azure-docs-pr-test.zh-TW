@@ -1,6 +1,6 @@
 ---
-title: "佈建 Linux 資料科學虛擬機器 | Microsoft Docs"
-description: "在 Azure 上設定和建立 Linux 資料科學虛擬機器以進行分析和機器學習服務。"
+title: "aaaProvision hello Linux Data Science 虛擬機器 |Microsoft 文件"
+description: "設定和建立 Linux Data Science 虛擬機器對 Azure toodo 分析和機器學習。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: bradsev
-ms.openlocfilehash: bc6f293db0d537990d7fb1238fe4a19c704f57a1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 81dfa90f6cd4b4f33535a20fb97442bf9152d829
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="provision-the-linux-data-science-virtual-machine"></a>佈建 Linux 資料科學虛擬機器
-Linux 資料科學虛擬機器是以 CentOS 為基礎的 Azure 虛擬機器，其中隨附預先安裝的工具集合。 這些工具通常用來執行資料分析和機器學習。 包含的重要軟體元件如下︰
+# <a name="provision-hello-linux-data-science-virtual-machine"></a>佈建 hello Linux Data Science 虛擬機器
+hello Linux Data Science 虛擬機器是 CentOS 型 Azure 虛擬機器所隨附預先安裝工具的集合。 這些工具通常用來執行資料分析和機器學習。 包含 hello 索引鍵的軟體元件如下：
 
 * 作業系統：Linux CentOS 散發套件。
 * Microsoft R Server Developer Edition
@@ -36,7 +36,7 @@ Linux 資料科學虛擬機器是以 CentOS 為基礎的 Azure 虛擬機器，�
   * [運算網路工具組 (CNTK)](https://github.com/Microsoft/CNTK)︰來自 Microsoft Research 的深層學習軟體工具組。
   * [Vowpal Wabbit](https://github.com/JohnLangford/vowpal_wabbit)︰快速的機器學習系統，支援像是線上、雜湊，allreduce、簡化、learning2search、主動和互動式學習的技術。
   * [XGBoost](https://xgboost.readthedocs.org/en/latest/)︰提供快速且正確的推進式決策樹實作的工具。
-  * [Rattle](http://rattle.togaware.com/) (R Analytical Tool To Learn Easily)︰此工具可讓您利用 GUI 型資料探索，輕鬆地使用 R 架構開始進行資料分析與機器學習，以及自動產生 R 程式碼來建立模型。
+  * [祕](http://rattle.togaware.com/)(輕鬆 hello R 分析工具 tooLearn): 一種工具，可讓您開始使用資料分析和機器學習中很容易，與以 GUI 為基礎的資料瀏覽、 R 和自動產生的 R 程式碼與模型化。
 * Java、Python、node.js、Ruby、PHP 中的 Azure SDK
 * R 和 Python 語言的程式庫，可用於 Azure Machine Learning 和其他 Azure 服務
 * 開發工具和編輯器 (RStudio、PyCharm、IntelliJ、Emacs、gedit、vi)
@@ -46,48 +46,48 @@ Linux 資料科學虛擬機器是以 CentOS 為基礎的 Azure 虛擬機器，�
 
 1. 尋找、載入和前置處理資料
 2. 建置和測試模型
-3. 部署要在智慧型應用程式中使用的模型
+3. 部署的智慧型應用程式中的耗用量的 hello 模型
 
-資料科學家使用各種工具來完成這些工作。 尋找適當版本的軟體然後下載、編譯並安裝這些版本是相當耗費時間的工作。
+資料科學家可以使用各種工具 toocomplete 這些工作。 它可以是相當耗時 toofind hello 適當 hello 軟體版本，然後並 toodownload，編譯時，安裝這些版本。
 
-Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。 使用它可以快速啟動分析專案。 它能讓您用各種語言處理工作，包含 R、Python、SQL、Java 與 C++。 Eclipse 提供整合式開發環境 (IDE) 以開發和測試易於使用的程式碼。 VM 中所含的 Azure SDK 可讓您使用適用於 Microsoft 雲端平台之 Linux 上的各種服務，來建置您的應用程式。 此外，您可以存取也已預先安裝的其他語言，例如 Ruby、Perl、PHP 和 node.js。
+hello Linux Data Science 虛擬機器可以大幅簡化此項負擔。 它使用 toojump 開始分析專案。 它可讓您 toowork 上不同的語言，包括 R、 Python、 SQL、 Java 和 c + + 中的工作。 Eclipse 提供 IDE toodevelop，並測試是方便 toouse 程式碼。 hello hello VM 中包含 Azure SDK 可讓您 toobuild hello Microsoft 雲端平台，在 Linux 上使用各種服務的應用程式。 此外，您有存取 tooother 語言，例如 Ruby、 Perl、 PHP 和 node.js，也會預先安裝。
 
-這個資料科學 VM 映像沒有任何軟體費用。 您僅需支付 Azure 硬體使用費，這是根據您使用 VM 映像所佈建的虛擬機器大小來評估。 如需計算費用的詳細資訊，請參閱 [Azure Marketplace 上的 VM 清單頁面](https://azure.microsoft.com/marketplace/partners/microsoft-ads/linux-data-science-vm/)。
+這個資料科學 VM 映像沒有任何軟體費用。 您必須支付 hello Azure 硬體使用量都會進行評估的費用是根據 hello hello 虛擬機器佈建 hello VM 映像大小。 詳細 hello 計算費用位於 hello [hello Azure Marketplace 上的 VM 清單頁面](https://azure.microsoft.com/marketplace/partners/microsoft-ads/linux-data-science-vm/)。
 
-## <a name="other-versions-of-the-data-science-virtual-machine"></a>其他版本的資料科學虛擬機器
-另提供 [Ubuntu](machine-learning-data-science-dsvm-ubuntu-intro.md) 映像，其中包含許多與 CentOS 映像相同的工具及深入學習架構。 亦提供 [Windows](machine-learning-data-science-provision-vm.md) 映像。
+## <a name="other-versions-of-hello-data-science-virtual-machine"></a>其他版本的 hello Data Science 虛擬機器
+[Ubuntu](machine-learning-data-science-dsvm-ubuntu-intro.md)影像也會提供、 與許多 hello 相同工具會以 hello CentOS 映像加上深入學習架構。 亦提供 [Windows](machine-learning-data-science-provision-vm.md) 映像。
 
 ## <a name="prerequisites"></a>必要條件
-您必須先具有下列項目，才可以建立 Linux 資料科學虛擬機器：
+您可以建立 Linux Data Science 虛擬機器之前，您必須擁有 hello 下列：
 
-* **Azure 訂用帳戶**：若要取得訂用帳戶，請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/free/)。
-* **Azure 儲存體帳戶**：若要建立帳戶，請參閱 [建立 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)。 或者，如果您不想使用現有的帳戶，可以在建立 VM 過程中建立儲存體帳戶。
+* **Azure 訂用帳戶**: tooobtain 一個，請參閱[取得 Azure 免費試用](https://azure.microsoft.com/free/)。
+* **Azure 儲存體帳戶**: toocreate 一個，請參閱[建立 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)。 或者，您可以建立 hello 儲存體帳戶 hello 程序建立 hello VM，如果您不想 toouse 現有帳戶的一部分。
 
 ## <a name="create-your-linux-data-science-virtual-machine"></a>建立 Linux 資料科學虛擬機器
-建立 Linux 資料科學虛擬機器執行個體的步驟如下：
+以下是 hello 步驟 toocreate hello Linux Data Science 虛擬機器的執行個體：
 
-1. 瀏覽至 [Azure 入口網站](https://portal.azure.com/#create/microsoft-ads.linux-data-science-vmlinuxdsvm)上的虛擬機器清單。
-2. 按一下底部的 [建立] 以進入 wizard.![configure-data-science-vm](./media/machine-learning-data-science-linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
-3. 下列各節提供精靈中每個步驟 (列舉於上圖的右邊) 的輸入，可用來建立 Microsoft 資料科學虛擬機器。 以下是設定每個步驟所需的輸入：
+1. 瀏覽 toohello 虛擬機器上 hello 列出[Azure 入口網站](https://portal.azure.com/#create/microsoft-ads.linux-data-science-vmlinuxdsvm)。
+2. 按一下**建立**（底部 hello） hello 精靈 toobring。![設定資料-科學-vm](./media/machine-learning-data-science-linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
+3. hello 下列各節提供使用 toocreate hello Microsoft Data Science 虛擬機器的每個 hello 步驟 hello 精靈 （列舉 hello 方 hello 前面圖） 中的 hello 輸入。 以下是 hello 所需的輸入 tooconfigure 每個步驟：
    
    a. **基本**：
    
    * **名稱**：您建立的資料科學伺服器名稱。
    * **使用者名稱**：第一個帳戶登入識別碼。
    * **密碼**︰第一個帳戶密碼 (您可以使用 SSH 公開金鑰來代替密碼)。
-   * **訂用帳戶**：如果您有多個訂用帳戶，請選取要用來建立機器和開立帳單的訂用帳戶。 您必須有此訂用帳戶的資源建立權限。
+   * **訂用帳戶**： 如果您有多個訂閱，選取 hello 上哪些 hello 機器是 toobe 建立，並計費。 您必須有此訂用帳戶的資源建立權限。
    * **資源群組**：您可以建立新群組或使用現有的群組。
-   * **位置**：選取最適合的資料中心。 它通常是擁有您大部分資料的資訊中心，或是最接近您實際位置可進行最快速網路存取的資料中心。
+   * **位置**: hello 選取最適合的資料中心。 通常它是 hello 資料中心有大部分的資料，或為最接近 tooyour 最快的網路存取的實體位置。
    
    b. ：
    
-   * 選取其中一個符合您的功能性需求和成本條件約束的伺服器類型。 選取 [檢視全部]  以查看更多 VM 大小的選項。
+   * 選取其中一個符合您的功能需求和成本條件約束的 hello 伺服器類型。 選取**檢視所有**toosee VM 大小的更多選擇。
    
    c. **設定**：
    
    * **磁碟類型**：如果您偏好固態硬碟 (SSD)，請選擇 [進階]， 否則請選擇 [標準]。
-   * **儲存體帳戶**：您可以在訂用帳戶中建立新的 Azure 儲存體帳戶，或使用在精靈的**基本**步驟上選擇的相同位置中的現有儲存體帳戶。
-   * **其他參數**：在大部分情況下只會使用預設值。 若考慮使用非預設值，可將滑鼠停留在特定欄位的資訊連結上以取得說明。
+   * **儲存體帳戶**： 您可以在您的訂閱中建立新的 Azure 儲存體帳戶，或使用現有 hello hello 選擇的相同位置**基本概念**hello 精靈的步驟。
+   * **其他參數**： 在大部分情況下，您只使用 hello 預設值。 hello 特定欄位的說明 tooconsider 非預設值，暫留在 hello 資訊連結。
    
    d. **摘要**：
    
@@ -95,94 +95,94 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。 使用它可�
    
    e. ：
    
-   * 若要開始佈建，按一下 [購買] 。 會提供一個交易條款的連結。 VM 除了計算您在 [大小]  步驟中所選擇的伺服器大小之外，不會收取任何其他費用。
+   * toostart hello 佈建中，按一下**購買**。 Toohello 使用條款 hello 交易時，會提供的連結。 hello VM 並沒有任何額外的費用，超出您選擇在 hello hello 伺服器大小的 hello 計算**大小**步驟。
 
-佈建大約 10-20 分鐘。 在 Azure 入口網站中會顯示佈建的狀態。
+hello 佈建時間約 10 20 分鐘。 hello 佈建的 hello 狀態會顯示在 hello Azure 入口網站。
 
-## <a name="how-to-access-the-linux-data-science-virtual-machine"></a>如何存取 Linux 資料科學虛擬機器
-建立 VM 之後，您就可以使用 SSH 登入。 針對文字殼層介面，使用您在步驟 3 的 **基本** 區段中建立的帳戶認證。 在 Windows 上，您可以下載 SSH 用戶端工具，例如 [Putty](http://www.putty.org)。 如果您偏好圖形化桌面 (X Windows 系統)，您可以在 Putty 上使用 X11 轉寄或安裝 X2Go 用戶端。
+## <a name="how-tooaccess-hello-linux-data-science-virtual-machine"></a>如何 tooaccess hello Linux Data Science 虛擬機器
+在建立 VM 的 hello 之後, 您可以使用 SSH 登入 tooit。 使用您在 hello hello 帳戶認證**基本概念**> 一節的步驟 3 的 hello 文字殼層介面。 在 Windows 上，您可以下載 SSH 用戶端工具，例如 [Putty](http://www.putty.org)。 如果您偏好的圖形化的桌面 （X Windows 系統），您可以使用 X11 轉寄 Putty 上或安裝 hello X2Go 用戶端。
 
 > [!NOTE]
-> 在測試中，X2Go 用戶端的效能明顯優於 X11 轉寄。 我們建議您使用 X2Go 用戶端作為圖形化桌面介面。
+> hello X2Go 用戶端執行會明顯優於 X11 轉寄測試。 我們建議使用 hello X2Go 用戶端桌面圖形化介面。
 > 
 > 
 
 ## <a name="installing-and-configuring-x2go-client"></a>安裝和設定 X2Go 用戶端
-Linux VM 已經佈建了 X2Go 伺服器，並準備接受用戶端連接。 若要連接到 Linux VM 圖形化桌面，請在用戶端上進行下列動作：
+hello Linux VM 已佈建 X2Go 伺服器與準備好 tooaccept 用戶端連線。 tooconnect toohello Linux VM 圖形化的桌面，請勿 hello 遵循您的用戶端上：
 
-1. 從 [X2Go](http://wiki.x2go.org/doku.php/doc:installation:x2goclient)下載並安裝您用戶端平台適用的 X2Go 用戶端。    
-2. 執行 X2Go 用戶端，然後選取 [新增工作階段] 。 會開啟具有多個索引標籤的組態視窗。 輸入下列組態參數︰
+1. 下載並安裝來自您用戶端的平台的 hello X2Go client [X2Go](http://wiki.x2go.org/doku.php/doc:installation:x2goclient)。    
+2. 執行 hello X2Go 用戶端，並選取**新的工作階段**。 會開啟具有多個索引標籤的組態視窗。 輸入下列設定參數的 hello:
    * **[工作階段] 索引標籤**：
-     * **主機**︰Linux 資料科學 VM 的主機名稱或 IP 位址。
-     * **登入**︰Linux VM 上的使用者名稱。
-     * **SSH 連接埠**︰保留預設值 22。
-     * **工作階段類型**︰將值變更為 XFCE。 Linux VM 目前僅支援 XFCE 桌面。
-   * **[媒體] 索引標籤**︰您可以關閉聲音支援和用戶端列印，如果不需要使用的話。
-   * **共用資料夾**︰如果您想要用戶端機器的目錄掛接在 Linux VM 上，請在此索引標籤上加入要與 VM 分享的目錄。
+     * **主機**: hello 主機名稱或 IP 位址，您的 Linux 資料科學 VM。
+     * **登入**: hello Linux VM 上的使用者名稱。
+     * **SSH 連接埠**： 保留 22，hello 預設值。
+     * **工作階段類型**： 變更 hello 值 tooXFCE。 Hello Linux VM 目前僅支援 XFCE 桌面。
+   * **媒體 索引標籤**： 您可以關閉聲音支援和用戶端列印，如果您不需要 toouse 它們。
+   * **共用資料夾**： 如果您想從您的用戶端機器 hello Linux VM 上裝載的目錄，新增您想使用此索引標籤上的 VM hello tooshare hello 用戶端機器目錄。
 
-當您透過 X2Go 用戶端使用 SSH 用戶端或 XFCE 圖形化桌面登入 VM 之後，便可開始使用已安裝並設定於 VM 上的工具。 在 XFCE 上，您可以看到許多工具的應用程式功能表捷徑和桌面圖示。
+您使用 hello SSH 用戶端或 XFCE hello X2Go 用戶端透過圖形化的桌面登入 toohello VM 之後，您就準備好 toostart 使用 hello 工具所安裝及設定 hello VM 上。 在 XFCE，您可以看到應用程式的捷徑功能表和桌面圖示的許多 hello 工具。
 
-## <a name="tools-installed-on-the-linux-data-science-virtual-machine"></a>Linux 資料科學虛擬機器上所安裝的工具
+## <a name="tools-installed-on-hello-linux-data-science-virtual-machine"></a>Hello Linux Data Science 虛擬機器上安裝工具
 ### <a name="microsoft-r-server"></a>Microsoft R 伺服器
-R 是其中一種最受歡迎的資料分析和機器學習語言。 如果您想要將 R 用於分析，VM 會具有 Microsoft R 伺服器 (MRS)，它具有 Microsoft R Open (MRO) 和數學核心程式庫 (MKL)。 MKL 會將分析演算法中常見的數學運算作業最佳化。 MRO 可與 CRAN-R 完全相容，CRAN 中發佈的任何 R 程式庫都可安裝在 MRO 上。 MRS 可讓您將 R 模型調整和實施到 Web 服務。 您可以在其中一個預設編輯器中編輯您的 R 程式，例如 RStudio、vi、Emacs 或 gedit。 如果您使用 Emacs 編輯器，請注意，已預先安裝 Emacs 封裝 ESS (Emacs Speaks Statistics)，它可簡化在 Emacs 編輯器內的 R 檔案處理。
+R 是其中一種 hello 進行資料分析和機器學習最受歡迎的語言。 如果您想要您的分析 toouse R，hello VM 會有 Microsoft R Server （女士） 以 hello Microsoft R Open (MRO) 和運算核心程式庫 (MKL)。 hello MKL 最佳化分析的演算法中常見的數學運算作業。 MRO 為 100%相容 CRAN R 和任何 hello R 文件庫中 CRAN 發行可以安裝在 hello MRO 上。 MRS 可讓您將 R 模型調整和實施到 Web 服務。 您可以編輯您的 R 程式中的 hello 預設編輯器，例如 RStudio、 vi、 Emacs 或 gedit 之一。 如果您使用 hello Emacs 編輯器 中，請注意該 hello Emacs 套件 ESS （Emacs 來說統計資料），這可簡化使用 R 檔案內 hello Emacs 編輯器 中，已預先安裝。
 
-若要啟動 R 主控台，您只需在殼層中輸入 **R**。 這會帶您前往互動式環境。 若要開發 R 程式，您通常會使用編輯器 (例如 Emacs、vi 或 gedit)，然後在 R 內執行指令碼。使用 RStudio，您就會有完整的圖形化 IDE 環境來開發 R 程式。
+toolaunch R 主控台中，您只需要輸入**R** hello shell 中。 這會帶您 tooan 互動式環境。 toodevelop R 程式，您通常會使用如 Emacs 或 vi 或 gedit，編輯器，然後執行 R 中的 hello 指令碼使用 RStudio、 您的完整圖形化的 IDE 環境 toodevelop R 程式。
 
-如果您想要的話，另外也會有 R 指令碼讓您安裝 [前 20 名 R 封裝](http://www.kdnuggets.com/2015/06/top-20-r-packages.html) 。 當您位於 R 互動式介面 (在殼層中輸入 **R** (如上所述)，即可進入) 時，就可以執行這個指令碼。  
+另外還有 tooinstall hello 的 R 指令碼[前 20 R 封裝](http://www.kdnuggets.com/2015/06/top-20-r-packages.html)如果您想要。 在 hello R 互動式介面，您可以輸入 （如所述） 之後，就可以執行這個指令碼**R** hello shell 中。  
 
 ### <a name="python"></a>Python
-為了能夠使用 Python 進行開發，我們已安裝了 Anaconda Python 散佈 2.7 與 3.5。 這個散發套件包含基本的 Python 以及大約 300 個最受歡迎的數學運算、工程設計和資料分析封裝。 您可以使用預設的文字編輯器。 此外，您也可以使用 Spyder，這是與 Anaconda Python 散發套件配套的 Python IDE。 Spyder 需要圖形化桌面或 X11 轉寄。 圖形化桌面中提供了 Spyder 的捷徑。
+為了能夠使用 Python 進行開發，我們已安裝了 Anaconda Python 散佈 2.7 與 3.5。 此分佈包含 hello 基底 Python 以及大約 300 個 hello 最受歡迎的數學、 工程團隊和資料分析封裝。 您可以使用 hello 預設文字編輯器。 此外，您也可以使用 Spyder，這是與 Anaconda Python 散發套件配套的 Python IDE。 Spyder 需要圖形化桌面或 X11 轉寄。 快顯 tooSpyder hello 圖形桌面中提供。
 
-由於我們有 Python 2.7 和 3.5，您必須明確啟動您想要在目前工作階段中使用的 Python 版本 (conda 環境)。 啟動程序會將 PATH 變數設定為所需的 Python 版本。
+由於我們有 Python 2.7 和 3.5，您需要 toospecifically 啟動您想在 hello 上的 toowork 目前工作階段所需的 hello Python 版本 （conda 環境）。 hello 啟動程序設定 Python 的 hello 路徑變數 toohello 所需的的版本。
 
-若要啟用 Python 2.7 conda 環境，從殼層執行下列命令：
+tooactivate hello Python 2.7 conda 環境中，從 hello 命令介面執行 hello 下列：
 
     source /anaconda/bin/activate root
 
 Python 2.7 安裝於「/anaconda/bin」 。
 
-若要啟用 Python 3.5 conda 環境，從殼層執行下列命令：
+tooactivate hello Python 3.5 conda 環境中，從 hello 命令介面執行 hello 下列：
 
     source /anaconda/bin/activate py35
 
 
 Python 3.5 安裝於 */anaconda/envs/py35/bin*上。
 
-若要叫用 Python 互動式工作階段，只需在殼層中輸入 **python** 。 如果您位於圖形化介面，或已設定 X11 轉寄，則可輸入 **pycharm** 來啟動 PyCharm Python IDE。
+tooinvoke Python 互動式工作階段，只要輸入**python** hello shell 中。 如果您在圖形化介面，或有 X11 轉寄集組成，您可以輸入**pycharm** toolaunch hello PyCharm Python IDE。
 
-若要安裝其他的 Python 程式庫，您需要在 sudo 底下執行 ```conda``` 或 ````pip```` 命令，並提供 Python 套件管理員的完整路徑 (conda 或 pip) 以安裝到正確的 Python 環境。 例如：
+tooinstall 額外的 Python 程式庫需要 toorun```conda```或````pip````sudo 下命令，並提供 hello Python 封裝管理員的完整路徑 （conda 或 pip） tooinstall toohello 正確 Python 環境。 例如：
 
     sudo /anaconda/bin/pip install <package> #for Python 2.7 environment
     sudo /anaconda/envs/py35/bin/pip install <package> # for Python 3.5 environment
 
 
 ### <a name="jupyter-notebook"></a>Jupyter 筆記本
-Jupyter Notebook 中也隨附 Anaconda 散發套件，這是一個共用程式碼與分析的環境。 Jupyter 筆記本是透過 JupyterHub 來存取。 您可以使用本機 Linux 使用者名稱和密碼來登入。
+hello Anaconda 發佈也隨附 Jupyter 筆記本、 環境 tooshare 程式碼和分析。 hello Jupyter 筆記本是透過 JupyterHub 存取。 您可以使用本機 Linux 使用者名稱和密碼來登入。
 
-Jupyter 筆記本伺服器已使用 Python 2、Python 3 及 R 核心進行預先設定。 有一個名為「Jupyter 筆記本」的桌面圖示可以啟動瀏覽器來存取 Notebook 伺服器。 如果您是透過 SSH 或 X2Go 用戶端進入 VM，您也可以造訪 [https://localhost:8000/](https://localhost:8000/) 來存取 Jupyter 筆記本伺服器。
+hello Jupyter 筆記本伺服器已預先設定 Python 2、 Python 3 與 R 核心。 沒有名為"Jupyter 筆記本"toolaunch hello 瀏覽器 tooaccess hello 筆記本伺服器桌面的圖示。 如果您是透過 SSH 或 X2Go 用戶端 hello VM 上，您也可以造訪[https://localhost:8000 /](https://localhost:8000/) tooaccess hello Jupyter 筆記本伺服器。
 
 > [!NOTE]
 > 如果您收到任何憑證警告，請繼續。
 > 
 > 
 
-您可以從任何主機存取 Jupyter Notebook 伺服器。 只要輸入 https://\<VM DNS 名稱或 IP 位址\>:8000/
+您可以從任何主機存取 hello Jupyter 筆記本伺服器。 只要輸入 https://\<VM DNS 名稱或 IP 位址\>:8000/
 
 > [!NOTE]
-> 在佈建 VM 時，防火牆預設會開啟連接埠 8000。
+> 連接埠 8000 預設會開啟在 hello 防火牆 hello VM 已佈建時。
 > 
 > 
 
-我們已封裝範例 Notebook - 一個用於 Python，另一個用於 R。 選取 [新增] 然後選取適當的語言核心，便可建立新的 Notebook。 如果您沒有看到 [新增] 按鈕，請按一下左上角的 **Jupyter** 圖示移至 Notebook 伺服器的首頁。
+我們有封裝範例筆記本-一個在 Python，一個在。之後您使用本機 Linux 使用者名稱和密碼驗證 toohello Jupyter 筆記本，您可以在 hello 筆記本首頁上看到 hello 連結 toohello 範例。 您可以選取來建立新的記事本**新增**，然後 hello 適當的語言的核心。 如果您沒有看見 hello**新增**按鈕，再按一下 hello **Jupyter**在 hello hello 筆記本伺服器的最上層左的 toogo toohello 首頁上的圖示。
 
 ### <a name="apache-spark-standalone"></a>獨立 Apache Spark 
-Apache Spark 的獨立執行個體已預先安裝在 Linux DSVM，可協助您在大型叢集上測試及部署之前，先在本機上開發 Spark 應用程式。 您可以透過 Jupyter 核心執行 PySpark 程式。 當您開啟 Jupyter 並按一下 [新增] 按鈕時，應該會看到可用核心清單。 "Spark - Python" 是 PySpark 核心，可讓您使用 Python 語言建置 Spark 應用程式。 您也可以使用像是 PyCharm 或 Spyder 的 Python IDE 來建置您的 Spark 程式。 因為這是獨立執行個體，Spark 堆疊會在呼叫用戶端程式中執行。 相較於在 Spark 叢集上進行開發，這樣可以更快速且輕鬆地針對問題進行疑難排解。 
+Apache Spark 的獨立執行個體是預先安裝在您開發在本機上的 Spark 應用程式第一次才能測試和部署大型叢集上的 Linux DSVM toohelp hello。 您可以透過 hello Jupyter 核心執行 PySpark 程式。 當您開啟 Jupyter 並按一下 [新增] 按鈕 hello，您應該會看到一份可用的核心。 hello"Spark-Python 」 是可讓您建立應用程式使用 Python 語言 Spark hello PySpark 核心。 您也可以使用類似您二手 PyCharm 或 Spyder toobuild Python IDE 程式。 因為這是獨立執行個體，hello 呼叫用戶端程式中執行的 hello Spark 堆疊。 如此便可更快速並輕鬆 tootroubleshoot 問題比較 toodeveloping 的 Spark 叢集。 
 
-範例 PySpark Notebook 在 Jupyter 上提供，您可以在 Jupyter 的主目錄 ($HOME/notebooks/SparkML/pySpark) 底下的 "SparkML" 目錄中找到。 
+您可以在 hello Jupyter ($HOME/筆記本/SparkML/pySpark) 主目錄下的 hello"SparkML"目錄中找到的 Jupyter 上提供範例 PySpark 筆記本。 
 
 如果您是針對 Spark 在 R 中進行程式設計，您可以使用 Microsoft R 伺服器、SparkR 或 sparklyr。 
 
-在 Microsoft R 伺服器中的 Spark 內容中執行之前，您必須執行一次性設定步驟，以啟用本機單一節點 Hadoop HDFS 和 Yarn 執行個體。 根據預設，Hadoop 服務已安裝但是在 DSVM 上已停用。 若要啟用它，您需要在第一次以 root 身分執行下列命令︰
+Microsoft R Server 中的 Spark 內容中執行，您必須之前 toodo 一次安裝程式步驟 tooenable 本機的單一節點 Hadoop HDFS 和 Yarn 執行個體。 根據預設，Hadoop 服務已安裝，但在 hello DSVM 上停用。 順序 tooenable 中，您需要 toorun hello 做為根 hello 第一次下列命令：
 
     echo -e 'y\n' | ssh-keygen -t rsa -P '' -f ~hadoop/.ssh/id_rsa
     cat ~hadoop/.ssh/id_rsa.pub >> ~hadoop/.ssh/authorized_keys
@@ -192,126 +192,126 @@ Apache Spark 的獨立執行個體已預先安裝在 Linux DSVM，可協助您�
     chown hadoop:hadoop ~hadoop/.ssh/authorized_keys
     systemctl start hadoop-namenode hadoop-datanode hadoop-yarn
 
-您可以在不需要它們時停止 Hadoop 相關服務，方法是執行 ````systemctl stop hadoop-namenode hadoop-datanode hadoop-yarn```` 示範如何在遠端 Spark 內容中開發和測試 MRS (這是 DSVM 上的獨立 Spark 執行個體) 的範例，以及 `/dsvm/samples/MRS` 目錄中的可用項目。 
+您可以停止 hello Hadoop 相關服務，您不需要它們執行時````systemctl stop hadoop-namenode hadoop-datanode hadoop-yarn````展示如何 toodevelop 和測試 MRS 遠端 Spark 內容 （即 hello 獨立 Spark 執行個體上 hello DSVM） 中的，而且提供 hello中可用的範例`/dsvm/samples/MRS`目錄。 
 
 ### <a name="ides-and-editors"></a>IDE 和編輯器
-您可以選擇數個程式碼編輯器。 這包括 vi/VIM、Emacs、gEdit、PyCharm、RStudio、Eclipse 和 IntelliJ。 gEdit、Eclipse、IntelliJ、RStudio 和 PyCharm 是圖形化編輯器，您需要登入圖形化桌面才能使用它們。 這些編輯器有桌面和應用程式功能表的捷徑可以啟動它們。
+您可以選擇數個程式碼編輯器。 這包括 vi/VIM、Emacs、gEdit、PyCharm、RStudio、Eclipse 和 IntelliJ。 gEdit Eclipse、 IntelliJ、 RStudio 和 PyCharm 圖形編輯器，而且需要您 toobe 登入 tooa 圖形桌面 toouse 它們。 這些編輯器有桌面和應用程式功能表快速鍵 toolaunch 它們。
 
-**VIM** 和 **Emacs** 是文字型編輯器。 在 Emacs 上，我們已安裝稱為 Emacs Speaks Statistics (ESS) 的附加元件封裝，它可以方便於在 Emacs 編輯器中使用 R。 如需詳細資訊，請參閱 [ESS](http://ess.r-project.org/)。
+**VIM** 和 **Emacs** 是文字型編輯器。 Emacs，我們已安裝附加套件呼叫 Emacs 來說統計資料 (ESS)，可使用 R hello Emacs 編輯器中更容易。 如需詳細資訊，請參閱 [ESS](http://ess.r-project.org/)。
 
-**Eclipse** 是可延伸的 IDE 開放原始碼，可支援多種語言。 Java 開發人員版本是安裝在 VM 上的執行個體。 有提供幾種熱門語言的外掛程式，您可以安裝它們以擴充環境。 我們也在 Eclipse 中安裝了一個外掛程式，稱為 **Azure Toolkit for Eclipse**。 它可讓您使用支援如 Java 等語言的 Eclipse 開發環境，建立、開發、測試和部署 Azure 應用程式。 另外還有 **Azure SDK for Java** ，它可讓您從 Java 環境中存取不同的 Azure 服務。 適用於 Eclipse 的 Azure 工具組的詳細資訊位於 [適用於 Eclipse 的 Azure 工具組](../azure-toolkit-for-eclipse.md)。
+**Eclipse** 是可延伸的 IDE 開放原始碼，可支援多種語言。 hello Java 開發人員版本為 hello hello VM 上安裝的執行個體。 沒有針對許多常用的語言可能是已安裝的 tooextend hello 環境可用的外掛程式。 我們也在 Eclipse 中安裝了一個外掛程式，稱為 **Azure Toolkit for Eclipse**。 它可讓您 toocreate、 開發、 測試和部署 Azure 應用程式使用 hello 支援語言，例如 Java 的 Eclipse 開發環境。 另外還有**Azure SDK for Java** ，允許存取 toodifferent 從 Java 環境內的 Azure 服務。 適用於 Eclipse 的 Azure 工具組的詳細資訊位於 [適用於 Eclipse 的 Azure 工具組](../azure-toolkit-for-eclipse.md)。
 
-**LaTex** 透過 texlive 封裝與 Emacs 附加元件 [auctex](https://www.gnu.org/software/auctex/manual/auctex/auctex.html) 封裝一起安裝，可簡化 Emacs 內的 LaTex 文件撰寫。  
+**LaTex**透過 hello texlive 封裝及 Emacs 附加元件安裝[auctex](https://www.gnu.org/software/auctex/manual/auctex/auctex.html)套件，可簡化撰寫內 Emacs LaTex 文件。  
 
 ### <a name="databases"></a>資料庫
 #### <a name="postgres"></a>Postgres
-開放原始碼資料庫 **Postgres** 可在 VM 上使用，且服務正在執行中，並已完成 initdb。 您仍需要建立資料庫和使用者。 如需詳細資訊，請參閱 [Postgres 文件](https://www.postgresql.org/docs/)。  
+hello 開放原始碼資料庫**Postgres** hello VM，initdb 已經完成執行的 hello 服務與功能。 您仍然需要 toocreate 資料庫和使用者。 如需詳細資訊，請參閱 hello [Postgres 文件](https://www.postgresql.org/docs/)。  
 
 #### <a name="graphical-sql-client"></a>圖形化 SQL 用戶端
-已提供圖形化 SQL 用戶端 **SQuirrel SQL** 來連接至不同的資料庫 (例如 Microsoft SQL Server、Postgres 及 MySQL)，並執行 SQL 查詢。 您可以從圖形化桌面工作階段 (例如使用 X2Go 用戶端) 執行它。 若要叫用 SQuirrel SQL，您可以從桌面上的圖示啟動，或是在殼層上執行下列命令。
+**松鼠 SQL**，圖形化的 SQL 用戶端已提供 tooconnect toodifferent 資料庫 （例如 Microsoft SQL Server、 Postgres 和 MySQL） 以及 toorun SQL 查詢。 您可以將它執行從圖形化的桌面工作階段 （例如使用 hello X2Go 用戶端）。 tooinvoke 松鼠 SQL，您可以啟動從 hello hello 桌面上的圖示，或執行 hello hello shell 之上，下列命令。
 
     /usr/local/squirrel-sql-3.7/squirrel-sql.sh
 
-第一次使用之前，請設定驅動程式和資料庫別名。 JDBC 驅動程式位於︰
+Hello 第一次使用之前，設定您的驅動程式和資料庫的別名。 hello JDBC 驅動程式會位於：
 
 */usr/share/java/jdbcdrivers*
 
 如需詳細資訊，請參閱 [SQuirrel SQL](http://squirrel-sql.sourceforge.net/index.php?page=screenshots)。
 
 #### <a name="command-line-tools-for-accessing-microsoft-sql-server"></a>存取 Microsoft SQL Server 用的命令列工具
-SQL Server 的 ODBC 驅動程式封裝也隨附兩個命令列工具：
+適用於 SQL Server 的 hello ODBC 驅動程式套件也會隨附兩個命令列工具：
 
-**bcp**：bcp 公用程式會在 Microsoft SQL Server 執行個體和使用者指定格式的資料檔之間大量複製資料。 bcp 公用程式可用來將大量新資料列匯入 SQL Server 資料表，或是將資料表的資料匯出成資料檔案。 若要將資料匯入資料表，您必須使用為該資料表建立的格式檔案，或是了解資料表的結構，以及適用於其資料行的資料類型。
+**bcp**: hello bcp 公用程式在大量複製的 Microsoft SQL Server 執行個體和資料檔案之間的資料以使用者指定的格式。 hello bcp 公用程式可以使用的 tooimport 大量新資料列到 SQL Server 資料表或資料表至資料檔案的 tooexport 資料。 tooimport 資料到資料表，您必須使用為該資料表中，建立格式檔案，或了解 hello 資料表結構的 hello hello 適用於其資料行的資料類型。
 
 如需詳細資訊，請參閱 [連接 bcp](https://msdn.microsoft.com/library/hh568446.aspx)。
 
-**sqlcmd**：您可以利用 sqlcmd 公用程式，在命令列提示字元中輸入 Transact-SQL 陳述式以及系統程序和指令碼檔案。 這個公用程式使用 ODBC 來執行 Transact-SQL 批次。
+**sqlcmd**： 您可以輸入與 hello sqlcmd 公用程式，以及系統程序的 TRANSACT-SQL 陳述式和指令碼在 hello 命令提示字元的檔案。 這個公用程式利用 ODBC tooexecute TRANSACT-SQL 批次。
 
 如需詳細資訊，請參閱 [使用 sqlcmd 連接](https://msdn.microsoft.com/library/hh568447.aspx)。
 
 > [!NOTE]
-> 此公用程式在 Linux 和 Windows 平台之間有一些差異。 如需詳細資訊，請參閱上述文件。
+> 此公用程式在 Linux 和 Windows 平台之間有一些差異。 請參閱 hello 文件，如需詳細資訊。
 > 
 > 
 
 #### <a name="database-access-libraries"></a>資料庫存取程式庫
-R 和 Python 中提供可用於存取資料庫的程式庫。
+沒有可使用 R，並將 Python tooaccess 資料庫中的媒體櫃。
 
-* 在 R 中，**RODBC** 套件或 **dplyr** 套件可讓您查詢資料庫伺服器或在其上執行 SQL 陳述式。
-* 在 Python 中， **pyodbc** 程式庫提供使用 ODBC 作為基礎層的資料庫存取。  
+* 在 R hello **RODBC**封裝或**dplyr**封裝可讓您 tooquery 或 hello 資料庫伺服器上執行 SQL 陳述式。
+* 以 Python，hello **pyodbc** hello 基礎層程式庫提供使用 ODBC 的資料庫存取權。  
 
-存取 **Postgres**：
+tooaccess **Postgres**:
 
-* 從 R︰使用 **RPostgreSQL**封裝。
-* 從 Python︰使用 **psycopg2** 程式庫。
+* 從 r 使用 hello 套件**RPostgreSQL**。
+* 來自 Python： 使用 hello **psycopg2**程式庫。
 
 ### <a name="azure-tools"></a>Azure 工具
-VM 上安裝了下列 Azure 工具：
+hello VM 上安裝下列 Azure tools 的 hello:
 
-* **Azure 命令列介面**：Azure CLI 可讓您透過殼層命令來建立和管理 Azure 資源。 若要叫用 Azure 工具，只需輸入 **azure help**。 如需詳細資訊，請參閱 [Azure CLI 文件頁面](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
-* **Microsoft Azure 儲存體總管**：Microsoft Azure 儲存體總管是一個圖形化工具，可用來瀏覽您在 Azure 儲存體帳戶中所儲存的物件，也可以上傳和下載 Azure Blob 的資料。 您可以從桌面捷徑圖示存取儲存體總管。 從殼層命令提示字元叫用它則是輸入 **StorageExplorer**。 您需要從 X2Go 用戶端登入，或是已設定 X11 轉寄。
-* **Azure 程式庫**：以下是一些預先安裝的程式庫。
+* **Azure 命令列介面**: hello Azure CLI toocreate 可讓您和管理 Azure 資源，透過殼層命令。 tooinvoke hello Azure tools，只要輸入**azure 說明**。 如需詳細資訊，請參閱 hello [Azure CLI 文件頁面](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
+* **Microsoft Azure 儲存體總管**: Microsoft Azure 儲存體總管是透過您儲存在 Azure 儲存體帳戶和 tooupload 和下載資料 tooand 從 Azure blob 中的 hello 物件使用的 toobrowse 圖形化工具。 您可以從 hello 桌面捷徑圖示來存取儲存體總管。 從殼層命令提示字元叫用它則是輸入 **StorageExplorer**。 您需要從 X2Go 用戶端登入 toobe 或者 X11 轉寄組上。
+* **Azure 程式庫**: hello 以下是一些 hello 預先安裝的程式庫。
   
-  * **Python**：Python 中已安裝的 Azure 相關程式庫為 **azure**、**azureml**、**pydocumentdb** 和 **pyodbc**。 透過前三個程式庫，您可以存取 Azure 儲存體服務、Azure Machine Learning 和 Azure Cosmos DB (Azure 上的 NoSQL 資料庫)。 第四個程式庫 pyodbc (以及 Microsoft ODBC Driver for SQL Server) 可讓您使用 ODBC 介面，從 Python 中存取 SQL Server、Azure SQL Database 和 Azure SQL 資料倉儲。 輸入 **pip list** 以查看所有列出的程式庫。 請務必在 Python 2.7 和 3.5 的環境中執行此命令。
-  * **R**：R 中已安裝的 Azure 相關程式庫為 **AzureML** 和 **RODBC**。
-  * **Java**︰Azure Java 程式庫清單位於 VM 上的 **/dsvm/sdk/AzureSDKJava** 目錄中。 關鍵的程式庫為 Azure 儲存體和管理 API、Azure Cosmos DB 和 JDBC Driver for SQL Server。  
+  * **Python**: hello Azure 相關程式庫中已安裝的 Python **azure**， **azureml**， **pydocumentdb**，和**pyodbc**. 與 hello 前三個程式庫，您可以存取 Azure 儲存體服務、 Azure 機器學習和 Azure Cosmos DB （在 Azure 上的 NoSQL 資料庫）。 hello 第四個程式庫，pyodbc （以及 hello Microsoft ODBC driver for SQL Server)，可讓存取 tooSQL 伺服器，Azure SQL Database 和 Azure SQL 資料倉儲來自 Python 使用 ODBC 介面。 輸入**pip 清單**toosee 所有 hello 列出文件庫。 此命令在兩個 hello Python 2.7 和 3.5 環境是確定 toorun。
+  * **R**: hello Azure 相關程式庫中 R 安裝**AzureML**和**RODBC**。
+  * **Java**: hello Azure Java 文件庫清單位於 hello 目錄**/dsvm/sdk/AzureSDKJava** hello VM 上。 hello 關鍵的程式庫是 Azure 儲存體和管理應用程式開發介面、 Azure Cosmos DB、 和 JDBC 驅動程式適用於 SQL Server。  
 
-您可以從預先安裝的 Firefox 瀏覽器存取 [Azure 入口網站](https://portal.azure.com) 。 在 Azure 入口網站中，您可以建立、管理和監視 Azure 資源。
+您可以存取 hello [Azure 入口網站](https://portal.azure.com)從 hello 預先安裝 Firefox 瀏覽器。 在 hello Azure 入口網站，您可以建立、 管理及監視 Azure 資源。
 
 ### <a name="azure-machine-learning"></a>Azure Machine Learning
-Azure Machine Learning 是完全受管理的雲端服務，讓您能夠建置、部署及共用預測性分析解決方案。 您可以從 Azure Machine Learning Studio 中建置實驗和模型。 其可從資料科學虛擬機器上的網頁瀏覽器中存取，請造訪 [Microsoft Azure Machine Learning](https://studio.azureml.net)。
+Azure Machine Learning 是完全受管理的雲端服務，可讓您 toobuild、 部署和共用的預測分析解決方案。 您可以從 Azure Machine Learning Studio 中建置實驗和模型。 可以從 hello data science 虛擬機器上的網頁瀏覽器中存取造訪[Microsoft Azure Machine Learning](https://studio.azureml.net)。
 
-當您登入 Azure Machine Learning Studio 之後，就能存取實驗畫布，您可以在這裡建置機器學習演算法的邏輯流程。 您也可以存取裝載於 Azure Machine Learning 的 Jupyter 筆記本，並且可以順暢地在 Machine Learning Studio 中使用實驗。 讓您建置的機器學習模型能夠運作，方法是將它們包裝在 Web 服務介面中。 這讓使用任何語言撰寫的用戶端可從機器學習模型中叫用預測。 如需詳細資訊，請參閱 [機器學習文件](https://azure.microsoft.com/documentation/services/machine-learning/)。
+TooAzure Machine Learning Studio 在您登入之後，您必須存取 tooan 實驗，您可以在其中建立 hello 機器學習演算法的邏輯流程的畫布。 您也必須裝載於 Azure Machine Learning 存取 tooa Jupyter 筆記本，並可以緊密地與 Machine Learning Studio 中的 hello 實驗。 實施 hello 機器學習模型，您已建立根據它們包裝在 web 服務介面。 這可讓從 hello 機器學習模型的任何語言 tooinvoke 預測中撰寫的用戶端。 如需詳細資訊，請參閱 hello[機器學習服務文件](https://azure.microsoft.com/documentation/services/machine-learning/)。
 
-您可以也在 VM 上，以 R 或 Python 建置模型，然後將它部署在 Azure Machine Learning 的生產環境中。 我們已安裝 R (**AzureML**) 和 Python (**azureml**) 的程式庫來啟用這項功能。
+您可以也 hello VM，在建置您的模型中 R 或 Python，然後再將它部署在 Azure Machine Learning 的生產環境中。 我們已經在 R 安裝程式庫 (**AzureML**)，並將 Python (**azureml**) tooenable 這項功能。
 
-如需如何將 R 和 Python 的模型部署到 Azure Machine Learning 的相關資訊，請參閱 [您可以在 Data Science Virtual Machine 上做的十件事](machine-learning-data-science-vm-do-ten-things.md) (特別是＜使用 R 或 Python 建置模型並且使用 Azure Machine Learning 實作＞一節)。
+如需在 R 和 Python toodeploy 模型 Azure 機器學習到如何資訊，請參閱[十個項目，您可以在 hello 資料科學虛擬機器執行](machine-learning-data-science-vm-do-ten-things.md)（特別是，hello > 一節 < 建置模型使用 R 或 Python 和實施這些使用 Azure Machine Learning"）。
 
 > [!NOTE]
-> 這些指示是針對資料科學 VM 的 Windows 版本所撰寫。 但所提供關於將模型部署到 Azure Machine Learning 的資訊也適用於 Linux VM。
+> 這些指示所撰寫的 hello 資料科學 VM hello Windows 版本。 但是有提供有關部署模型 tooAzure 機器學習的 hello 資訊適用 toohello Linux VM。
 > 
 > 
 
 ### <a name="machine-learning-tools"></a>機器學習工具
-VM 隨附一些已預先編譯且預先安裝在本機上的機器學習工具和演算法。 其中包含：
+hello VM 隨附幾個機器學習工具和預先編譯和預先安裝在本機的演算法。 其中包含：
 
 * **CNTK** (來自 Microsoft Research 的運算網路工具組)：深層學習工具組。
 * **Vowpal Wabbit**：快速線上學習演算法。
 * **xgboost**：提供最佳化推進式決策樹演算法的工具。
-* **Python**：Anaconda Python 會與含有像是 Scikit-learn 的程式庫的機器學習演算法進行配套。 您可以使用 `pip install` 程式庫。
-* **R**：有豐富的機器學習函式程式庫可供 R 使用。lm、glm、randomForest、rpart 是一些預先安裝的程式庫。 您可以執行下列命令來安裝其他程式庫：
+* **Python**：Anaconda Python 會與含有像是 Scikit-learn 的程式庫的機器學習演算法進行配套。 您可以安裝其他程式庫使用 hello`pip install`命令。
+* **R**： 豐富的機器學習服務函數可用於。部份 hello 預先安裝的程式庫將 lm、 glm、 randomForest、 rpart。 您可以執行下列命令來安裝其他程式庫：
   
         install.packages(<lib name>)
 
-以下是一些關於清單中前三個機器學習工具的其他資訊。
+以下是一些 hello 的其他資訊第一次三個機器學習工具 hello 清單中。
 
 #### <a name="cntk"></a>CNTK
-這是一個開放原始碼的深層學習工具組。 它是一種命令列工具 (cntk)，而且已經在 PATH 中。
+這是一個開放原始碼的深層學習工具組。 它是命令列工具 (cntk)，並已在 hello 路徑。
 
-若要執行基本範例，請在殼層中執行以下命令：
+toorun 基本範例中，執行下列命令在 hello 介面中的 hello:
 
     cd /home/[USERNAME]/notebooks/CNTK/HelloWorld-LogisticRegression
     cntk configFile=lr_bs.cntk makeMode=false command=Train
 
-如需詳細資訊，請參閱 [GitHub](https://github.com/Microsoft/CNTK) 上的 CNTK 章節，以及 [CNTK wiki](https://github.com/Microsoft/CNTK/wiki)。
+如需詳細資訊，請參閱 hello CNTK 區段[GitHub](https://github.com/Microsoft/CNTK)，和 hello [CNTK wiki](https://github.com/Microsoft/CNTK/wiki)。
 
 #### <a name="vowpal-wabbit"></a>Vowpal Wabbit
 Vowpal Wabbit 是一個機器學習系統，其會使用像是線上、雜湊，allreduce、簡化、learning2search、主動和互動式學習的技術。
 
-若要在非常基本的範例上執行此工具，請執行下列命令：
+toorun hello 工具上非常基本的範例中，請勿 hello 遵循：
 
     cp -r /dsvm/tools/VowpalWabbit/demo vwdemo
     cd vwdemo
     vw house_dataset
 
-該目錄中有其他更大的示範。 如需 VW 的詳細資訊，請參閱 [GitHub 的這一節](https://github.com/JohnLangford/vowpal_wabbit)，以及 [Vowpal Wabbit wiki](https://github.com/JohnLangford/vowpal_wabbit/wiki)。
+該目錄中有其他更大的示範。 如需有關 VW 的詳細資訊，請參閱[GitHub 的這一節](https://github.com/JohnLangford/vowpal_wabbit)，和 hello [Vowpal Wabbit wiki](https://github.com/JohnLangford/vowpal_wabbit/wiki)。
 
 #### <a name="xgboost"></a>XGBoost
-這是針對推進式決策 (樹) 演算法設計及最佳化的的程式庫。 此程式庫的目標是要將機器的運算限制推到所需的極致，以提供可調整、可攜且精確的大規模樹狀推進式決策。
+這是針對推進式決策 (樹) 演算法設計及最佳化的的程式庫。 此文件庫 hello 目標在於機器 toohello 極端 toopush hello 計算限制需要 tooprovide 大型的樹狀結構促進可擴充、 可攜，而且精確。
 
 它提供了命令列以及 R 程式庫。
 
-若要在 R 中使用此程式庫，您可以啟動互動式 R 工作階段 (只要在殼層中輸入 **R** ) 並載入程式庫。
+toouse 在 R 中的此程式庫，您可以啟動互動式的 R 工作階段 (只要輸入**R** hello shell 中)，以及負載 hello 程式庫。
 
 以下是簡單的範例，您可以在 R 提示字元中執行︰
 
@@ -325,51 +325,51 @@ Vowpal Wabbit 是一個機器學習系統，其會使用像是線上、雜湊，
                     eta = 1, nthread = 2, nround = 2, objective = "binary:logistic")
     pred <- predict(bst, test$data)
 
-若要執行 xgboost 命令列，以下是要在殼層中執行的命令︰
+toorun hello xgboost 命令列中，以下是在 hello 介面中的 hello 命令 tooexecute:
 
     cp -r /dsvm/tools/xgboost/demo/binary_classification/ xgboostdemo
     cd xgboostdemo
     xgboost mushroom.conf
 
 
-.model 檔案會寫入指定的目錄。 如需此示範範例的相關資訊，請參閱 [GitHub](https://github.com/dmlc/xgboost/tree/master/demo/binary_classification)。
+.Model 檔案會寫入指定的 toohello 目錄。 如需此示範範例的相關資訊，請參閱 [GitHub](https://github.com/dmlc/xgboost/tree/master/demo/binary_classification)。
 
-如需 xgboost 的詳細資訊，請參閱 [xgboost 文件頁面 (英文)](https://xgboost.readthedocs.org/en/latest/) 及其 [GitHub 存放庫 (英文)](https://github.com/dmlc/xgboost)。
+如需 xgboost 的詳細資訊，請參閱 hello [xgboost 文件頁面](https://xgboost.readthedocs.org/en/latest/)，且其[GitHub 儲存機制](https://github.com/dmlc/xgboost)。
 
 #### <a name="rattle"></a>Rattle
-Rattle (**R** **A**nalytical **T**ool **T**o **L**earn **E**asily) 會使用 GUI 型資料探索和模型化。 它會提供資料的統計和視覺化摘要、轉換已經可以輕易模型化的資料、從資料建置未經指導和經過指導的模型、以圖形方式呈現模型的效能，以及評分新的資料集。 它也會產生 R 程式碼，複寫 UI 中可以直接在 R 中執行的作業，或是作為進一步分析之起點的作業。
+祕 (hello **R** **A**nalytical **T**ool **T**o **L**贏得**E**asily) 會使用以 GUI 為基礎的資料探索和模型。 它會顯示統計和視覺化資料，可以輕易地建立模型的轉換資料的摘要，建置 hello 資料從受監督和不受監督模式，以圖形方式顯示 hello 的模型效能並分數新資料集。 它也會產生 R 程式碼中，複寫 hello UI 中的 hello 作業可以直接在 R 中執行，或做為起點來進行進一步分析。
 
-若要執行 Rattle，您必須位於圖形化桌面登入工作階段。 在終端機中，輸入 ```R``` 進入 R 環境。 在 R 提示字元中輸入下列命令：
+祕 toorun，您會需要 toobe 圖形桌面登入工作階段中。 在 hello 終端機中，輸入```R```tooenter hello R 環境。 在 hello R 提示字元中輸入下列命令的 hello:
 
     library(rattle)
     rattle()
 
-現在，將會開啟具有一組索引標籤的圖形化介面。 以下是在 Rattle 中使用範例天氣資料集和建立模型所需的快速入門步驟。 在下面的部分步驟中，會提示您自動安裝並載入一些系統上還沒有的必要 R 封裝。
+現在，將會開啟具有一組索引標籤的圖形化介面。 以下是的 hello 快速入門中祕需要 toouse 範例天氣資料集的步驟，並建立模型。 在某些 hello 執行下列步驟，您會提示的 tooautomatically 安裝，並載入 hello 系統還沒有某些必要的 R 封裝。
 
 > [!NOTE]
-> 如果您沒有存取系統目錄 (預設) 中封裝的存取權，可能會在 R 主控台視窗上看到提示，詢問是否將封裝安裝至您的個人程式庫。 如果您看到這些提示，請回答 「是」  。
+> 如果您沒有存取 tooinstall hello 套件 hello 系統目錄 （hello 預設值） 中，您可能會針對您 R 主控台視窗 tooinstall 封裝 tooyour 個人文件庫中看到的提示。 如果您看到這些提示，請回答 「是」  。
 > 
 > 
 
 1. 按一下 [Execute (執行)] 。
-2. 隨即會顯示對話方塊，詢問您是否要使用範例天氣資料集。 按一下 [是]  載入範例。
-3. 按一下 [模型]  索引標籤。
-4. 按一下 [執行]  建立決策樹。
-5. 按一下 [繪圖]  顯示決策樹。
-6. 按一下 [樹系] 選項按鈕，然後按一下 [執行] 建置隨機樹系。
-7. 按一下 [評估]  索引標籤。
-8. 按一下 [風險] 選項按鈕，然後按一下 [執行] 顯示兩個風險 (累積) 效能繪圖。
-9. 按一下 [記錄檔] 索引標籤，顯示針對先前作業產生的 R 程式碼。
-   (由於目 Rattle 版本中的錯誤，您必須在記錄檔的文字中，於 *Export this log ...* 前面插入 *#* 字元。)
-10. 按一下 [匯出] 按鈕，將名為 weather_script.R 的 R 指令碼檔案儲存到主資料夾。
+2. 對話方塊會出現，詢問您您 toouse hello 範例天氣資料集。 按一下**是**tooload hello 範例。
+3. 按一下 hello**模型** 索引標籤。
+4. 按一下**Execute** toobuild 決策樹。
+5. 按一下**繪製**toodisplay hello 決策樹。
+6. 按一下 hello**樹系**選項按鈕，然後按一下  **Execute** toobuild 隨機樹系。
+7. 按一下 hello**評估** 索引標籤。
+8. 按一下 hello**風險**選項按鈕，然後按一下  **Execute** toodisplay 兩風險 （累計） 效能繪圖。
+9. 按一下 hello**記錄** 索引標籤 tooshow hello 產生 hello 上述操作的 R 程式碼。
+   (由於 tooa bug 的祕 hello 目前版本中，您需要 tooinsert  *#* 字元前面*匯出此記錄檔...* hello 文字 hello 記錄檔中。)
+10. 按一下 hello**匯出**按鈕 toosave hello R 指令碼檔名為*weather_script。R* toohello 主資料夾。
 
-您可以結束 Rattle 和 R。現在您可以修改產生的 R 指令碼，或照原樣使用它，隨時執行，以便重複執行在 Rattle UI 中完成的所有動作。 這是特別適合 R 初學者的簡單方式，讓他們得以在簡單的圖形介面中快速進行分析和機器學習，同時自動產生 R 程式碼來修改及/或學習。
+您可以結束祕和。現在您可以修改產生的 hello R 指令碼，或使用它，因為它是 toorun 它隨時 toorepeat hello 祕 UI 中完成的所有項目。 特別為初學者所設計在 R 中，這是可以輕鬆地 tooquickly 執行分析和機器學習在簡單的圖形化介面中，自動產生程式碼中 R toomodify 時及/或深入了解。
 
 ## <a name="next-steps"></a>後續步驟
 以下是如何繼續進行學習和探索的方式：
 
-* [Data science on the Linux Data Science Virtual Machine (Linux 資料科學虛擬機器上的資料科學)](machine-learning-data-science-linux-dsvm-walkthrough.md) 逐步解說會示範如何使用此處佈建的 Linux 資料科學 VM 來執行數個常見的資料科學工作。 
-* 試試本文中所述的工具，在資料科學 VM 上探索各種資料科學工具。 您也可以在虛擬機器內的殼層上執行 *dsvm-more-info* ，以獲得關於 VM 上所安裝工具的基本簡介和詳細資訊的指標。  
-* 了解如何使用 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)，以系統化方式建置端對端分析方案。
-* 請造訪 [Cortana Analytics Gallery](http://gallery.cortanaanalytics.com) ，以取得使用 Cortana Analytics Suite 的機器學習和資料分析範例。
+* hello [hello Linux Data Science 虛擬機器上的資料科學](machine-learning-data-science-linux-dsvm-walkthrough.md)逐步解說將示範如何 tooperform 幾個常見的資料科學工作以 hello 這裡佈建的 Linux 資料科學 VM。 
+* 瀏覽的 hello 各種資料科學工具上的嘗試進行這篇文章中所述的 hello 工具 hello 資料科學 VM。 您也可以執行*dsvm 多資訊*hello shell 之上，如需 hello VM 上安裝的 hello 工具基本簡介和指標 toomore 資訊 hello 虛擬機器內。  
+* 了解如何使用有系統地 toobuild 端對端分析解決方案 hello[資料科學的小組流程](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)。
+* 請瀏覽 hello [Cortana 分析圖庫](http://gallery.cortanaanalytics.com)的機器學習服務與資料分析範例，使用 hello Cortana Analytics suite 這套。
 

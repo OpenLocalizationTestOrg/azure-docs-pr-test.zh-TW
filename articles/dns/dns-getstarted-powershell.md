@@ -1,6 +1,6 @@
 ---
-title: "利用 PowerShell 開始使用 Azure DNS | Microsoft Docs"
-description: "了解如何在 Azure DNS 中建立 DNS 區域和記錄。 這份逐步指南將引導您使用 PowerShell 建立和管理第一個 DNS 區域和記錄。"
+title: "開始使用 PowerShell 的 Azure DNS aaaGet |Microsoft 文件"
+description: "深入了解如何 toocreate DNS 區域與在 Azure DNS 記錄。 這是逐步指南 toocreate 和管理您的第一個 DNS 區域，使用 PowerShell 的記錄。"
 services: dns
 documentationcenter: na
 author: jtuliani
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: jonatul
-ms.openlocfilehash: 48f7ba325f61b4a91c0208b4c99058da801bee19
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0f9dead1e4b44fcc74c84a024c41cdfaeb02b5d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-dns-using-powershell"></a>利用 PowerShell 開始使用 Azure DNS
 
@@ -29,15 +29,15 @@ ms.lasthandoff: 07/11/2017
 > * [Azure CLI 1.0](dns-getstarted-cli-nodejs.md)
 > * [Azure CLI 2.0](dns-getstarted-cli.md)
 
-本文將逐步引導您使用 Azure PowerShell 建立第一個 DNS 區域和記錄。 您也可以使用 Azure 入口網站或跨平台 Azure CLI 執行這些步驟。
+本文將指導您完成 hello 步驟 toocreate 您的第一個 DNS 區域和使用 Azure PowerShell 的記錄。 您也可以使用 hello Azure 入口網站執行這些步驟，或 hello 跨平台 Azure CLI。
 
-DNS 區域用來裝載特定網域的 DNS 記錄。 若要開始將網域裝載到 Azure DNS 中，您必須建立該網域名稱的 DNS 區域。 接著在此 DNS 區域內，建立網域的每筆 DNS 記錄。 最後，若要將 DNS 區域發佈至網際網路，您需要設定網域的名稱伺服器。 以下說明上述各步驟。
+DNS 區域是使用的 toohost hello 針對特定網域的 DNS 記錄。 toostart 裝載您的網域在 Azure DNS 中，您需要該網域名稱 toocreate DNS 區域。 接著在此 DNS 區域內，建立網域的每筆 DNS 記錄。 最後，toopublish 您的 DNS 區域 toohello 網際網路，您需要 tooconfigure hello 名稱伺服器 hello 網域。 以下說明上述各步驟。
 
-這些指示假設您已經安裝並登入 Azure PowerShell。 如需說明，請參閱[如何使用 PowerShell 管理 DNS 區域](dns-operations-dnszones.md)。
+這些指示假設您已經安裝並登入 tooAzure PowerShell。 如需說明，請參閱[toomanage DNS 區域使用 PowerShell](dns-operations-dnszones.md)。
 
-## <a name="create-the-resource-group"></a>建立資源群組
+## <a name="create-hello-resource-group"></a>建立 hello 資源群組
 
-建立 DNS 區域之前，會建立資源群組以包含 DNS 區域。 以下顯示命令。
+建立 hello DNS 區域之前, 建立 toocontain hello DNS 區域資源群組。 hello 下列範例示範 hello 命令。
 
 ```powershell
 New-AzureRMResourceGroup -name MyResourceGroup -location "westus"
@@ -45,7 +45,7 @@ New-AzureRMResourceGroup -name MyResourceGroup -location "westus"
 
 ## <a name="create-a-dns-zone"></a>建立 DNS 區域
 
-使用 `New-AzureRmDnsZone` Cmdlet 建立 DNS 區域。 下列範例會在稱為 MyResourceGroup 的資源群組中建立稱為 contoso.com 的 DNS 區域。 使用範例來建立 DNS 區域，並將值替換為您自己的值。
+DNS 區域由使用 hello `New-AzureRmDnsZone` cmdlet。 hello 下列範例會建立 DNS 區域呼叫*contoso.com*呼叫 hello 資源群組中*MyResourceGroup*。 使用 hello 範例 toocreate DNS 區域時，取代為您自己的 hello 值。
 
 ```powershell
 New-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyResourceGroup
@@ -53,18 +53,18 @@ New-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyResourceGroup
 
 ## <a name="create-a-dns-record"></a>建立 DNS 記錄
 
-您可以使用 `New-AzureRmDnsRecordSet` Cmdlet 來建立記錄集。 下列範例會在資源群組 "MyResourceGroup" 中的 DNS 區域 "contoso.com" 中，建立具有相對名稱 "www" 的記錄。 記錄集的完整名稱是 "www.contoso.com"。 記錄類型為 'A'，IP 位址是 "1.2.3.4"，TTL 為 3600 秒。
+您可以建立資料錄集使用 hello `New-AzureRmDnsRecordSet` cmdlet。 hello 下列範例會建立一筆記錄 hello 相對名稱"www"hello"contoso.com"，"MyResourceGroup"的資源群組中的 DNS 區域中。 hello hello 資料錄集的完整名稱是"www.contoso.com"。 hello 記錄類型為"A"，使用 IP 位址"1.2.3.4"，而且 hello TTL 為 3600 秒。
 
 ```powershell
 New-AzureRmDnsRecordSet -Name www -RecordType A -ZoneName contoso.com -ResourceGroupName MyResourceGroup -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -IPv4Address "1.2.3.4")
 ```
 
-關於其他記錄類型、具有多個記錄的記錄集和修改現有的記錄，請參閱[使用 Azure PowerShell 管理 DNS 記錄和記錄集](dns-operations-recordsets.md)。 
+對於其他記錄類型，如記錄設定具有一個以上的記錄，以及 toomodify 現有的記錄，請參閱[管理 DNS 記錄和資料錄集，使用 Azure PowerShell](dns-operations-recordsets.md)。 
 
 
 ## <a name="view-records"></a>檢視記錄
 
-若要列出區域中的 DNS 記錄，請使用︰
+toolist hello DNS 記錄，在您的區域，使用：
 
 ```powershell
 Get-AzureRmDnsRecordSet -ZoneName contoso.com -ResourceGroupName MyResourceGroup
@@ -73,9 +73,9 @@ Get-AzureRmDnsRecordSet -ZoneName contoso.com -ResourceGroupName MyResourceGroup
 
 ## <a name="update-name-servers"></a>更新名稱伺服器
 
-當您滿意 DNS 區域且已正確設定記錄之後，您必須設定網域名稱來使用 Azure DNS 名稱伺服器。 這可讓網際網路上的其他使用者找到您的 DNS 記錄。
+您可以在該程式的 DNS 區域與記錄已設定正確，您需要 tooconfigure 滿足您的網域名稱 toouse hello Azure DNS 名稱伺服器。 這可讓其他使用者 hello 網際網路 toofind DNS 記錄。
 
-`Get-AzureRmDnsZone` Cmdlet 可顯示您的區域的名稱伺服器：
+hello 名稱伺服器，您的區域會提供 hello `Get-AzureRmDnsZone` cmdlet:
 
 ```powershell
 Get-AzureRmDnsZone -ZoneName contoso.com -ResourceGroupName MyResourceGroup
@@ -89,11 +89,11 @@ NumberOfRecordSets    : 3
 MaxNumberOfRecordSets : 5000
 ```
 
-這些名稱伺服器應該向網域名稱註冊機構 (您購買網域名稱的來源) 設定。 您的註冊機構會提供選項來設定網域的名稱伺服器。 如需詳細資訊，請參閱[將網域委派給 Azure DNS](dns-domain-delegation.md)。
+這些名稱伺服器應該設有 hello 網域名稱註冊機構 （您購買 hello 網域名稱）。 您的註冊機構會提供 hello 選項 tooset hello hello 網域名稱伺服器註冊。 如需詳細資訊，請參閱[委派您網域 tooAzure DNS](dns-domain-delegation.md)。
 
 ## <a name="delete-all-resources"></a>刪除所有資源
 
-若要刪除這篇文章中建立的所有資源，請採取下列步驟︰
+toodelete 本文採用 hello 下列步驟中建立的所有資源：
 
 ```powershell
 Remove-AzureRMResourceGroup -Name MyResourceGroup
@@ -101,9 +101,9 @@ Remove-AzureRMResourceGroup -Name MyResourceGroup
 
 ## <a name="next-steps"></a>後續步驟
 
-若要深入了解 Azure DNS，請參閱 [Azure DNS 概觀](dns-overview.md)。
+toolearn 進一步了解 Azure DNS，請參閱[Azure DNS 概觀](dns-overview.md)。
 
-若要深入了解在 Azure DNS 中管理 DNS 區域，請參閱[使用 PowerShell 在 Azure DNS 中管理 DNS 區域](dns-operations-dnszones.md)。
+進一步了解管理 Azure DNS 的 DNS 區域 toolearn 看到[Azure DNS 使用 PowerShell 管理 DNS 區域](dns-operations-dnszones.md)。
 
-若要深入了解在 Azure DNS 中管理 DNS 記錄，請參閱[使用 PowerShell 在 Azure DNS 中管理 DNS 記錄和記錄集](dns-operations-recordsets.md)。
+進一步了解管理 Azure DNS 的 DNS 記錄 toolearn 看到[管理 DNS 記錄和記錄設定中使用 PowerShell 的 Azure DNS](dns-operations-recordsets.md)。
 

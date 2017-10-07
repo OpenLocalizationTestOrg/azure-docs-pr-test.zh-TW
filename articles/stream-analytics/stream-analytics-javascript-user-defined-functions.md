@@ -1,5 +1,5 @@
 ---
-title: "Azure 串流分析 JavaScript 使用者定義函式 | Microsoft Docs"
+title: "使用者定義函數的資料流分析 JavaScript aaaAzure |Microsoft 文件"
 description: "使用 JavaScript 使用者定義函式來執行進階查詢技術"
 keywords: "javascript, 使用者定義函式, udf"
 services: stream-analytics
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: e4a9e6c7078031240c22a51378c0459426b7f626
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 28eeb8f6437c23989e8887687b950361fed4414c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-stream-analytics-javascript-user-defined-functions"></a>Azure 串流分析 JavaScript 使用者定義函式
-Azure 串流分析支援以 JavaScript 撰寫的使用者定義函式。 JavaScript 提供豐富的 **String**、**RegExp**、**Math**、**Array** 和 **Date** 方法，可讓使用串流分析作業建立複雜的資料轉換變得更容易。
+Azure 串流分析支援以 JavaScript 撰寫的使用者定義函式。 使用豐富的 hello**字串**， **RegExp**，**數學**，**陣列**，和**日期**方法，提供 JavaScript，複雜資料轉換與串流分析工作變得更容易 toocreate。
 
 ## <a name="javascript-user-defined-functions"></a>JavaScript 使用者定義函式
-JavaScript 使用者定義的函式支援無狀態且只做為計算用途的純量函式，而且不需要外部連線能力。 函數的傳回值只能是純量 (單一) 值。 將 JavaScript 使用者定義函式新增至作業之後，您可以在查詢中的任何位置使用函式，就像是內建的純量函式。
+JavaScript 使用者定義的函式支援無狀態且只做為計算用途的純量函式，而且不需要外部連線能力。 hello 傳回函式的值只能是純量 （單一） 值。 加入 JavaScript 使用者定義函數 tooa 作業之後，您可以在任何地方在 hello 查詢中，內建的純量函式中使用 hello 函式。
 
 從以下的一些案例可以看出 JavaScript 使用者定義函式很實用：
 * 剖析及操作具有規則運算式函式的字串，例如：**Regexp_Replace()** 和 **Regexp_Extract()**
@@ -37,31 +37,31 @@ JavaScript 使用者定義的函式支援無狀態且只做為計算用途的純
 * 對輸入/輸出執行自訂事件格式序列化或還原序列化
 * 建立自訂彙總
 
-雖然沒有在函式定義中封鎖 **Date.GetDate()** 或 **Math.random()** 等函式，您仍應避免使用它們。 這些函式**不會**在每次呼叫時都傳回同樣的結果，且「串流分析」服務不會記錄函式叫用和傳回值的日誌。 若函式針對同樣事件傳回不同的值，當您或串流分析重新啟動某作業之後，將不保證它具有可重覆性。
+雖然函式像**Date.GetDate()**或**Math.random()**不會封鎖在 hello 函式定義中，您應該避免使用它們。 這些函式**不**傳回 hello 相同結果每次您呼叫它們，並 hello Azure Stream Analytics 服務不會保留筆記本的函式引動過程，以及傳回結果。 如果函式會傳回不同的結果上 hello 相同的事件，您或 hello Stream Analytics 服務重新啟動作業時不保證重複性。
 
-## <a name="add-a-javascript-user-defined-function-in-the-azure-portal"></a>在 Azure 入口網站中新增 JavaScript 使用者定義函式
-若要在現有串流分析作業下建立簡單的 JavaScript 使用者定義函式，請執行下列步驟：
+## <a name="add-a-javascript-user-defined-function-in-hello-azure-portal"></a>在 hello Azure 入口網站中加入 JavaScript 使用者定義函式
+toocreate 的簡單 JavaScript 使用者定義函式在為現有的資料流分析工作，請執行下列步驟：
 
-1.  在 Azure 入口網站中，找出您的串流分析作業。
+1.  在 hello Azure 入口網站，尋找您的資料流分析工作。
 2.  在 [作業拓撲] 下，選取您的函式。 空白的函式清單隨即出現。
-3.  若要建立新的使用者定義函式，請選取 [新增]。
-4.  在 [新增函式] 刀鋒視窗中，針對 [函式類型]，選取 [JavaScript]。 預設的函式範本會出現在編輯器中。
-5.  針對 **UDF 別名**，輸入 **hex2Int**，並變更函式實作，如下所示：
+3.  選取新的使用者定義函數，toocreate**新增**。
+4.  在 hello**新函式**刀鋒視窗中，針對**函式類型**，選取**JavaScript**。 Hello 編輯器中會出現預設函式樣板。
+5.  Hello **UDF 別名**，輸入**hex2Int**，並變更 hello 函式實作，如下所示：
 
     ```
-    // Convert Hex value to integer.
+    // Convert Hex value toointeger.
     function main(hexValue) {
         return parseInt(hexValue, 16);
     }
     ```
 
-6.  選取 [ **儲存**]。 您的函式會出現在函式的清單中。
-7.  選取新的 **hex2Int** 函式，並檢查函式定義。 所有函式必須在函式別名前端新增 **UDF** 前置詞。 在串流分析查詢中呼叫函式時，您需要*包含前置詞*。 在此情況下，您會呼叫 **UDF.hex2Int**。
+6.  選取 [ **儲存**]。 您的函式會出現在 hello 函式清單。
+7.  選取新的 hello **hex2Int**函式，並檢查 hello 函式定義。 所有函式具有**UDF**前置詞加入的 toohello 函式的別名。 您需要*包含 hello 前置詞*當資料流分析查詢中呼叫 hello 函式。 在此情況下，您會呼叫 **UDF.hex2Int**。
 
 ## <a name="call-a-javascript-user-defined-function-in-a-query"></a>在查詢中呼叫 JavaScript 使用者定義函式
 
-1. 在查詢編輯器中，於 [作業拓撲] 下，選取 [查詢]。
-2.  編輯您的查詢，然後呼叫使用者定義函式，就像這樣：
+1. 在 [hello 查詢編輯器] 中，在**作業拓撲**，選取**查詢**。
+2.  編輯您的查詢，並接著呼叫 hello 使用者定義函數，就像這樣：
 
     ```
     SELECT
@@ -73,8 +73,8 @@ JavaScript 使用者定義的函式支援無狀態且只做為計算用途的純
         InputStream
     ```
 
-3.  若要上傳範例資料檔案，請以滑鼠右鍵按一下作業輸入。
-4.  若要測試您的查詢，請選取 [測試]。
+3.  tooupload hello 範例資料檔，以滑鼠右鍵按一下 hello 作業輸入。
+4.  tootest 您查詢中，選取**測試**。
 
 
 ## <a name="supported-javascript-objects"></a>支援的 JavaScript 物件
@@ -82,11 +82,11 @@ Azure 串流分析 JavaScript 使用者定義函式支援標準的內建 JavaScr
 
 ### <a name="stream-analytics-and-javascript-type-conversion"></a>串流分析與 JavaScript 類型轉換
 
-串流分析查詢語言與 JavaScript 支援的類型有一些差異。 此表列出兩者之間的轉換對應：
+有一些差異在 hello hello 串流分析查詢語言和 JavaScript 支援的型別中。 下表列出之間兩個 hello hello 轉換對應：
 
 串流分析 | JavaScript
 --- | ---
-bigint | Number (JavaScript 只能準確地表示最高到 2^53 的整數)
+bigint | 數字 (JavaScript 只能表示整數向上 tooprecisely 2 ^53)
 DateTime | Date (JavaScript 只支援毫秒)
 double | Number
 nvarchar(MAX) | String
@@ -100,8 +100,8 @@ NULL | Null
 
 JavaScript | 串流分析
 --- | ---
-數字 | Bigint (若數字為整數且介於 long.MinValue 和 long.MaxValue 之間，否則為 double)
-日期 | DateTime
+數字 | Bigint （如果 round 和長時間之間 hello 號碼。MinValue，長時間。MaxValue。否則，它是 double）
+Date | DateTime
 String | nvarchar(MAX)
 Object | Record
 陣列 | 陣列
@@ -109,13 +109,13 @@ Null、Undefined | NULL
 任何其他類型 (例如，函式或錯誤) | 不支援 (產生執行階段錯誤)
 
 ## <a name="troubleshooting"></a>疑難排解
-JavaScript 執行階段錯誤會被視為嚴重問題，並顯示在活動記錄。 若要擷取記錄檔，在 Azure 入口網站中，請移至您的作業並選取 [活動記錄]。
+JavaScript 執行階段錯誤會視為嚴重錯誤，並透過 hello 活動記錄檔便會顯示。 tooretrieve hello 記錄中 hello Azure 入口網站中，移 tooyour 作業並選取**活動記錄檔**。
 
 
 ## <a name="other-javascript-user-defined-function-patterns"></a>其他 JavaScript 使用者定義函式模式
 
-### <a name="write-nested-json-to-output"></a>將巢狀 JSON 寫入至輸出
-如果您的後續處理步驟使用串流分析作業輸出做為輸入，且其需要 JSON 格式，您可以將 JSON 字串寫入至輸出。 以下範例會呼叫 **JSON.stringify()** 函式以包裝所有輸入的名稱/值對，並將它們以單一字串值於輸出中寫入。
+### <a name="write-nested-json-toooutput"></a>撰寫巢狀的 JSON toooutput
+如果您使用做為輸入，輸出資料流分析工作的待處理的處理步驟，而且需要 JSON 格式，您可以撰寫 JSON 字串 toooutput。 hello 下一個範例會呼叫 hello **JSON.stringify()** toopack hello 的所有名稱/值組輸入，並再將它們寫入為單一字串中的值輸出函式。
 
 **JavaScript 使用者定義函式定義：**
 
@@ -142,7 +142,7 @@ FROM
 如需其他協助，請參閱我們的 [Azure 串流分析論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。
 
 ## <a name="next-steps"></a>後續步驟
-* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
+* [簡介 tooAzure 資料流分析](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure 串流分析查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)

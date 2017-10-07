@@ -1,5 +1,5 @@
 ---
-title: "使用 PowerShell 管理 Azure Analysis Services | Microsoft Docs"
+title: "使用 PowerShell 的 Azure Analysis Services aaaManage |Microsoft 文件"
 description: "使用 PowerShell 的 Azure Analysis Services 管理。"
 services: analysis-services
 documentationcenter: 
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: owend
-ms.openlocfilehash: 95593053950f96a83e093c29516e9f66ebad53bf
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bc4250bf77b5a0d86c1049ee57493bcf2a1f0c1b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-analysis-services-with-powershell"></a>使用 PowerShell 管理 Azure Analysis Services
 
-本文說明用來執行 Azure Analysis Services 伺服器和資料庫管理工作的 PowerShell Cmdlet。 
+本文說明的 PowerShell cmdlet 使用 tooperform Azure Analysis Services 伺服器和資料庫管理工作。 
 
-伺服器管理工作，例如建立或刪除伺服器、暫停或繼續伺服器作業，或是變更服務層級 (層級)，會使用 Azure Resource Manager (AzureRM) Cmdlet。 其他資料庫管理工作 (例如新增或移除角色成員、處理或資料分割) 會使用與 SQL Server Analysis Services 相同之 SqlServer 模組內含的 Cmdlet。
+伺服器管理工作，例如建立或刪除伺服器、 暫停或繼續伺服器作業，或變更 hello 服務層級 （層級） 會使用 Azure 資源管理員 (AzureRM) cmdlet。 管理資料庫，例如加入或移除角色成員、 處理或資料分割使用的 cmdlet 中包含的其他工作 hello 相同 SQL Server Analysis Services 的 SqlServer 模組。
 
 ## <a name="permissions"></a>權限
-大部分的 PowerShell 工作需要您在您管理的 Analysis Services 伺服器上具備系統管理員權限。 排定的 PowerShell 工作都是自動的作業。 執行排程器的帳戶必須具有 Analysis Services 伺服器上的管理員權限。 
+大部分的 PowerShell 工作需要您所管理的 hello Analysis Services 伺服器上具有管理員權限。 排定的 PowerShell 工作都是自動的作業。 hello Analysis Services 伺服器上，執行 hello 排程器的 hello 帳戶必須具有系統管理員權限。 
 
-針對使用 AzureRm Cmdlet 的伺服器作業，您的帳戶或執行排程器的帳戶也必須屬於 [Azure 角色型存取控制 (RBAC)](../active-directory/role-based-access-control-what-is.md) 中之資源的 Owner 角色。 
+伺服器作業使用 AzureRm cmdlet，為您的帳戶或執行排程器的 hello 帳戶也必須屬於 toohello 擁有者角色中的 hello 資源[所有存取控制 (RBAC)](../active-directory/role-based-access-control-what-is.md)。 
 
 ## <a name="server-operations"></a>伺服器作業 
-Azure Analysis Services Cmdlet 包含在 [AzureRM.AnalysisServices](https://www.powershellgallery.com/packages/AzureRM.AnalysisServices) 元件模組中。 若要安裝 AzureRM Cmdlet 模組，請參閱 PowerShell 資源庫中的 [Azure Resource Manager Cmdlet (英文)](/powershell/azure/overview)。
+Azure Analysis Services 指令程式會包含在 hello [AzureRM.AnalysisServices](https://www.powershellgallery.com/packages/AzureRM.AnalysisServices)元件的模組。 tooinstall AzureRM cmdlet 模組，請參閱[Azure 資源管理員 cmdlet](/powershell/azure/overview) hello PowerShell 資源庫中。
 
 |Cmdlet|說明| 
 |------------|-----------------| 
-|[Export-AzureAnalysisServicesInstance](/powershell/module/azurerm.analysisservices/export-azureanalysisservicesinstancelog)|將記錄匯出到檔案。| 
+|[Export-AzureAnalysisServicesInstance](/powershell/module/azurerm.analysisservices/export-azureanalysisservicesinstancelog)|匯出記錄 toofile。| 
 |[Get-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/get-azurermanalysisservicesserver)|取得伺服器執行個體的詳細資料。|  
 |[New-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/new-azurermanalysisservicesserver)|建立伺服器執行個體。|
 |[Remove-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/remove-azurermanalysisservicesserver)|移除伺服器執行個體。|  
 |[Suspend-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/suspend-azurermanalysisservicesserver)|暫停伺服器執行個體。| 
 |[Resume-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/resume-azurermanalysisservicesserver)|繼續伺服器執行個體。|  
 |[Set-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/set-azurermanalysisservicesserver)|修改伺服器執行個體。|   
-|[Test-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/test-azurermanalysisservicesserver)|測試伺服器執行個體的存在。| 
+|[Test-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/test-azurermanalysisservicesserver)|測試 hello 存在伺服器執行個體。| 
 
 ## <a name="database-operations"></a>資料庫作業
 
-Azure Analysis Services 資料庫作業會使用與 SQL Server Analysis Services 相同的 [SqlServer](https://www.powershellgallery.com/packages/SqlServer) 模組。 不過，Azure Analysis Services 並不支援所有的 Cmdlet。 
+Azure Analysis Services 資料庫作業使用 hello 相同[SqlServer](https://www.powershellgallery.com/packages/SqlServer) SQL Server Analysis Services 的模組。 不過，Azure Analysis Services 並不支援所有的 Cmdlet。 
 
-SqlServer 模組提供特定工作的資料庫管理 Cmdlet，以及接受「表格式模型指令碼語言」(TMSL) 查詢或指令碼的一般用途 Invoke-ASCmd Cmdlet。 Azure Analysis Services 支援 SqlServer 模組中的下列 Cmdlet。
+hello SqlServer 模組提供特定工作的資料庫管理指令程式以及 hello 一般用途 Invoke-ascmd 指令程式可接受表格式模型指令碼語言 」 (TMSL) 查詢或指令碼。 hello hello SqlServer 模組中的下列指令程式支援 Azure Analysis Services。
 
   
 |Cmdlet|說明|
 |------------|-----------------| 
-|[Add-RoleMember](https://msdn.microsoft.com/library/hh510167.aspx)|將成員新增到資料庫角色。| 
+|[Add-RoleMember](https://msdn.microsoft.com/library/hh510167.aspx)|加入成員 tooa 資料庫角色。| 
 |[Backup-ASDatabase](https://docs.microsoft.com/sql/analysis-services/powershell/backup-asdatabase-cmdlet)|備份 Analysis Services 資料庫。|  
 |[Remove-RoleMember](https://msdn.microsoft.com/library/hh510173.aspx)|從資料庫角色移除成員。|   
 |[Invoke-ASCmd](https://msdn.microsoft.com/library/hh479579.aspx)|執行 TMSL 指令碼。|

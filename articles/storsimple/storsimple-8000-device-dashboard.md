@@ -1,6 +1,6 @@
 ---
-title: "StorSimple 8000 系列裝置使用摘要 | Microsoft Docs"
-description: "描述 StorSimple 裝置管理員服務裝置摘要，以及如何用它來檢視儲存體計量和連線的啟動器，並尋找序號和 IQN。"
+title: "aaaUse StorSimple 8000 系列裝置摘要 |Microsoft 文件"
+description: "描述 hello StorSimple 裝置管理員服務裝置摘要以及 toouse 它 tooview 儲存體度量和連接的起始端和尋找 hello 序號和 IQN。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,85 +14,85 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 07/03/2017
 ms.author: alkohli
-ms.openlocfilehash: 784d3ce9d8f926b00ac1c6fbf48a05c0b04f900a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b45ffc6ec52ebb6549c25a00c68c62460b208b7a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-device-summary-in-storsimple-device-manager-service"></a>使用 StorSimple 裝置管理員服務中的裝置摘要
+# <a name="use-hello-device-summary-in-storsimple-device-manager-service"></a>使用摘要 StorSimple 裝置管理員服務中的 hello 裝置
 
 ## <a name="overview"></a>概觀
-StorSimple 裝置摘要刀鋒視窗可提供特定 StorSimple 裝置的資訊概觀；相對於服務摘要刀鋒視窗，其提供 Microsoft Azure StorSimple 解決方案中所有裝置的相關資訊。
+hello StorSimple 裝置摘要刀鋒視窗可讓您針對特定的 StorSimple 裝置的資訊概觀，相較之下 toohello 服務摘要刀鋒視窗中，它將提供所有包含在 Microsoft Azure StorSimple 解決方案中的 hello 裝置的相關資訊。
 
-對於已向給定 StorSimple 裝置管理員註冊的 StorSimple 8000 系列裝置，裝置摘要刀鋒視窗提供摘要檢視，並醒目提示需要系統管理員注意的裝置問題。 本教學課程介紹裝置摘要刀鋒視窗、說明內容和功能，並描述您可以從這個刀鋒視窗執行的工作。
+hello 裝置摘要刀鋒視窗會提供摘要檢視的 StorSimple 8000 系列裝置註冊與給定 StorSimple 裝置管理員 中，反白顯示需要系統管理員的注意這些裝置問題。 本教學課程介紹 hello 裝置摘要刀鋒視窗，說明 hello 內容和函式，並說明您可以從這個刀鋒視窗中執行的 hello 工作。
 
-裝置摘要刀鋒視窗會顯示以下資訊：
+hello 裝置摘要刀鋒視窗會顯示下列資訊的 hello:
 
 ![[裝置摘要] 刀鋒視窗](./media/storsimple-8000-device-dashboard/device-summary1.png)
 
 ## <a name="management-command-bar"></a>管理命令列
 
-在 StorSimple 裝置刀鋒視窗中，您會看到 StorSimple 裝置的管理選項。 您在刀鋒視窗的上方橫幅和左邊會看到管理命令。 請使用這些選項來新增共用或磁碟區，或是更新或容錯移轉您的裝置。
+在 hello StorSimple 裝置刀鋒視窗中，您會看到 hello 選項來管理您的 StorSimple 裝置。 您可以看到 hello 的上方 hello 刀鋒視窗和 hello 左邊 hello 管理命令。 使用這些選項 tooadd 共用或磁碟區，或更新，或容錯移轉您的裝置。
 
 ![管理命令列](./media/storsimple-8000-device-dashboard/device-summary2.png)
 
 ## <a name="essentials"></a>基本資訊
 
-基本資訊區域擷取一些重要屬性，例如狀態、型號、目標 IQN，以及軟體版本。 
+hello essentials 區域會擷取一些 hello 重要屬性，例如、 hello 狀態、 模型、 目標 IQN 和 hello 軟體版本。 
 
 ![裝置的基本資訊](./media/storsimple-8000-device-dashboard/device-summary3.png)
 
 ## <a name="monitoring"></a>監視
 
-* [警示] 圖格提供裝置之所有作用中警示的快照 (依警示嚴重性分組)。
+* hello**警示**磚提供了您的裝置，依警示嚴重性分組之所有 hello 作用中警示的快照集。
 
     ![警示圖格](./media/storsimple-8000-device-dashboard/device-summary4.png)
 
-    按一下此圖格來開啟 [警示] 刀鋒視窗，然後按一下個別警示來檢視該警示的其他詳細資料，包括任何建議的動作。 如果已解決問題，您也可以清除警示。
+    按一下 hello 磚 tooopen hello**警示**刀鋒視窗，然後按一下個別警示 tooview 其他詳細資料的警示，包括任何建議的動作。 如果 hello 問題已經解決，您也可以清除 hello 警示。
 
     ![按一下 [警示] 圖格](./media/storsimple-8000-device-dashboard/device-summary10.png)
 
-* [狀態與健康情況] 圖格可讓您深入了解裝置的硬體元件健康情況，包含裝置狀態。 裝置狀態可能是離線、線上、停用，或設定就緒。
+* hello**狀態和健全狀況**磚提供了深入了解 hello 硬體元件健全狀況之裝置，包括 hello 裝置狀態。 hello 裝置狀態可能是離線、 線上、 停用，或準備 tooset up。
 
     ![狀態與健康情況圖格](./media/storsimple-8000-device-dashboard/device-summary5.png)
 
-* [磁碟區] 圖格提供裝置中依狀態分組的磁碟區數目摘要。
+* hello**磁碟區**磚都可讓您依狀態分組的裝置中的磁碟區的 hello 數目的摘要。
 
     ![磁碟區圖格](./media/storsimple-8000-device-dashboard/device-summary6.png)
 
-    按一下此圖格來開啟 [磁碟區] 清單刀鋒視窗，然後按一下個別磁碟區來檢視或修改其屬性。
+    按一下 hello 磚 tooopen hello**磁碟區**清單刀鋒視窗中，然後按一下個別磁碟區 tooview 或修改其屬性。
     
     ![按一下 [磁碟區] 圖格](./media/storsimple-8000-device-dashboard/device-summary9.png)
     
-    如需詳細資訊，請參閱[如何管理磁碟區](storsimple-8000-manage-volumes-u2.md)。
+    如需詳細資訊，請參閱如何太[管理磁碟區](storsimple-8000-manage-volumes-u2.md)。
 
-* 在 [使用量] 圖表中，您可以檢視整個裝置已使用的主要儲存空間，以及過去 7 天 (預設期間) 耗用的雲端儲存空間。
+* 在 hello**使用量**圖表中，您可以檢視 hello 跨您的裝置，並耗用 hello 過去 7 天，hello 預設時間週期的 hello 雲端存放裝置使用的主要儲存體。
 
      ![使用量圖格](./media/storsimple-8000-device-dashboard/device-summary7.png)
     
-     若要選擇不同的時間間隔，請使用圖表右上角的 [編輯] 選項。
+     toochoose 不同的時間刻度，使用 hello**編輯**hello 右上角中的 hello 圖表的選項。
 
      ![編輯使用量圖表](./media/storsimple-8000-device-dashboard/device-summary12.png)
 
-     在此圖表中，您可以檢視主要儲存體總計 (主機寫入至您的裝置的資料數量) 和您的裝置一段時間內所使用的雲端儲存體總計的度量資訊。
+     在此圖中，您可以檢視度量 hello 總主要儲存體 （hello 由主機 tooyour 裝置寫入的資料量） 並 hello 總雲端經過一段時間的裝置所使用的存放裝置。
   
-     在此情況下，「主要儲存體」是指由主機寫入的資料總量，並可依磁碟區類型細分︰「主要階層式存放區」包含在本機儲存的資料和分層至雲端的資料。 「主要本機釘選儲存體」只包含在本機儲存的資料。 相反地，「雲端儲存體」是儲存在雲端中的資料總量測量。 此儲存體包括分層式資料和備份。 儲存在雲端中的資料會進行重複資料刪除和壓縮，而主要儲存體會指出進行重複資料刪除和壓縮之前已使用的儲存體數量。 (您可以比較這兩個數字以了解壓縮率)。對於主要和雲端儲存體，所顯示的數量會以您設定的追蹤頻率為基礎。 例如，如果您選擇一週頻率，則此圖表會顯示上週每一天的資料。
+     在此內容中*主要儲存體*參照 toohello 總量 hello 主機寫入的資料，並可依磁碟區類型細分：*主要的階層式儲存體*同時包含在本機儲存資料和資料階層式的 toohello 雲端。 「主要本機釘選儲存體」只包含在本機儲存的資料。 *雲端儲存體*，在 hello 相反，是 hello 的 hello 雲端中儲存的資料量總計的度量單位。 此儲存體包括分層式資料和備份。 hello hello 雲端中儲存的資料是重複資料刪除和壓縮，而主要儲存體指出 hello hello 資料重複資料刪除，且壓縮之前使用的儲存體的數量。 （您可以比較這些兩個數字 tooget hello 壓縮率的了解）。這兩個主要部署和雲端儲存體，hello 所示的金額為基礎 hello 追蹤您所設定的頻率。 例如，如果您選擇一週頻率，然後 hello 圖表可顯示資料中每一天 hello 前一週。
 
-     若要查看一段時間耗用的雲端儲存體數量，請選取 [ **使用的雲端儲存體** ] 選項。 若要查看主機所寫入的儲存體總量，請選取 [使用的主要分層式儲存體] 和 [使用的本機釘選儲存體] 選項。 
-     如需詳細資訊，請參閱[使用 StorSimple 裝置管理員服務監視 StorSimple 裝置](storsimple-monitor-device.md)。
+     一段時間，請選取 hello 耗用的雲端儲存體 toosee hello 數量**CLOUD STORAGE USED**選項。 toosee hello 總儲存體已寫入 hello 主機上，選取 hello **PRIMARY 分層 STORAGE USED**和**主要在本機固定的儲存體使用**選項。 
+     如需詳細資訊，請參閱[使用 hello StorSimple 裝置管理員服務 toomonitor StorSimple 裝置](storsimple-monitor-device.md)。
 
 
-* [容量] 圖格顯示裝置上相對於可用的總儲存空間而言，已佈建和剩餘的主要儲存空間。 [已佈建] 是指已備妥和配置供使用的儲存空間數量，[剩餘] 是指這個裝置上可佈建的剩餘容量。 
+* hello**容量**磚顯示 hello 主要儲存體佈建和跨 hello 裝置相對 toohello 可用總儲存體的剩餘 hello 相同。 **佈建**參考完成準備並配置供使用，儲存體的 toohello 數量**剩餘**參考 toohello 剩餘可以透過此裝置佈建的容量。 
 
     ![使用量圖格](./media/storsimple-8000-device-dashboard/device-summary8.png)
 
-    按一下此圖格以檢視如何在分層式磁碟區和固定在本機的磁碟區佈建容量。 [剩餘階層式] 容量是可供佈建的容量，包括雲端，而 [剩餘本機] 是連接至此裝置的磁碟上剩餘的容量。
+    按一下這個 hello 容量如何佈建階層式和本機固定磁碟區上的磚 tooview。 hello**剩餘分層**容量是 hello 可以包括雲端，同時 hello 佈建的可用容量**剩餘本機**是 hello 磁碟上剩餘的 hello 容量附加 toothis 裝置。
 
     ![按一下 [使用量] 圖表](./media/storsimple-8000-device-dashboard/device-summary13.png)
 
 
 ## <a name="next-steps"></a>後續步驟
-* 深入了解 [StorSimple 服務摘要刀鋒視窗](storsimple-8000-service-dashboard.md)。
-* 深入了解[使用 StorSimple 裝置管理員服務管理 StorSimple 裝置](storsimple-8000-manager-service-administration.md)。
+* 深入了解 hello [StorSimple 服務摘要 刀鋒視窗](storsimple-8000-service-dashboard.md)。
+* 深入了解[使用您的 StorSimple 裝置 hello StorSimple 裝置管理員服務 tooadminister](storsimple-8000-manager-service-administration.md)。
 

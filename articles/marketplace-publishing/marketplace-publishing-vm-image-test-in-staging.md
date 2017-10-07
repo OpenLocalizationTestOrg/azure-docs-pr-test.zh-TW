@@ -1,6 +1,6 @@
 ---
-title: "測試將發佈到 Marketplace 的 VM 供應項目 | Microsoft Docs"
-description: "了解如何測試您的 VM 供應項目在 Azure Marketplace 的表現。"
+title: "您的 VM 提供 hello Marketplace aaaTest |Microsoft 文件"
+description: "了解如何 tootest VM 的映像 hello Azure Marketplace。"
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,51 +14,51 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2016
 ms.author: hascipio
-ms.openlocfilehash: 26f856059b381be91b9cdd1f98a11dc90813c0c5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ab166d2c3c536810a3a8f48330f0482b9b4e58d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="test-your-vm-offer-for-the-azure-marketplace-in-staging"></a>在預備環境中測試您將發佈到 Azure Marketplace 的 VM 供應項目
-預備環境代表將您的 SKU 部署在私人的「沙箱」中，您可以在部署到 Marketplace 之前在沙箱中測試與驗證其功能。 SKU 會出現在預備環境中，就如同客戶已部署該項目一樣。 您的 VM 映像必須經過認證才能推送至預備環境。
+# <a name="test-your-vm-offer-for-hello-azure-marketplace-in-staging"></a>在預備環境中測試您的 VM 優惠 hello Azure Marketplace
+預備部署您的 「 沙箱 」 可測試及驗證其功能，再將其部署 toohello Marketplace 的私用的 SKU 的方式。 hello SKU 會出現在暫存就像是 tooa 客戶已經部署。 您的 VM 映像必須是推入的認證的 toobe toostaging。
 
-## <a name="step-1-push-your-offer-to-staging"></a>步驟 1：推送供應項目至預備環境
-1. 在 [發佈] 索引標籤上,按一下 [推送至預備環境]。
+## <a name="step-1-push-your-offer-toostaging"></a>步驟 1： 推入的供應項目 toostaging
+1. 在 hello**發行**索引標籤上，按一下 **推送 tooStaging**。
    
     ![繪圖](media/marketplace-publishing-vm-image-test-in-staging/vm-image-push-to-staging.png)
-2. 如果發佈入口網站通知您任何錯誤，修正它們。
-3. 在 [ **誰可以存取您預備的供應項目？** ] 對話方塊中，輸入您要用來在 [Azure Preview 入口網站](https://portal.azure.com)中預覽供應項目的 Azure 訂用帳戶清單。
+2. 如果 hello 發佈入口網站會通知您的任何錯誤，更正它們。
+3. 在 hello**誰可以存取您提供執行的服務？**對話方塊方塊中，輸入 Azure 訂用帳戶，您將使用 toopreview 您提供的服務中 hello hello 清單[Azure preview 入口網站](https://portal.azure.com)。
    
    > [!NOTE]
    > 如果是「虛擬機器」和「方案」範本，請 **不要** 將 CSP、DreamSpark 或 Azure in Open 類型的訂用帳戶加入允許清單。
    > 
    > 
 
-    > 如果是「虛擬機器」，當您按一下 [推送至預備環境] 按鈕時，會在場景後方執行下列步驟。 您可以在發佈入口網站的 [發佈] 索引標籤下檢視每個步驟的進度。 您必須定期查看此頁面是否有需要您更正的任何失敗資訊 (直到狀態顯示「已預備」為止) 。
+    > 發生虛擬機器，當您按一下 [hello] 5d; 按鈕**發送 tooSTAGING**，hello 步驟會執行背後 hello 場景。 您將會無法 tooview hello 進度 hello hello 發行 索引標籤底下的每個步驟的發佈入口網站。 您必須檢查這個頁面在定期間隔 （直到 hello 狀態顯示分段） 需要從您的 end 更正任何失敗資訊。
 
-    > - 一開始，您的預備環境要求會送到驗證 VHD 的憑證小組。 不過，如果您的要求只有行銷變更，則會略過憑證步驟。
-    > - 憑證完成後，就會開始跨所有 Azure 資料中心複寫供應項目。 複寫通常需要 24-48 小時才能完成，但依據 VHD 大小而定，最長可能需要一週的時間。 不過，如果您的要求只有行銷變更，複寫會更快速。
-    > - 當複寫完成後，供應項目就會在 [Azure 入口網站](http:/portal.azure.com)公開發行。 屆時在發佈入口網站中的狀態會變成「已預備」。 只有當您使用與預備供應項目所用的訂用帳戶相關的電子郵件識別碼時，才能在 [Azure 入口網站](http:/portal.azure.com) 中看到已預備的供應項目。
+    > - 一開始您執行的要求會驗證 hello vhd toohello 憑證小組。 不過，如果您的要求有只有行銷變更，然後 hello 憑證會略過步驟。
+    > - Hello 憑證完成之後，複寫的 hello 供應項目開始，所有 hello Azure 資料中心。 它通常會採用 24-48hours hello 複寫 toocomplete 的但可能佔用 tooa 週 hello hello vhd 大小而定。 不過，如果您的要求有只有行銷變更，hello 複寫會更快。
+    > - Hello 複寫完成時，則 hello 供應項目會提供在 hello [Azure 入口網站](http:/portal.azure.com)。 在該時間 hello 狀態變成暫置在 hello 中發佈入口網站。 階段式供應項目會顯示在 hello [Azure 入口網站](http:/portal.azure.com)只能使用 hello 與 hello 接移的 hello 與優惠的訂用帳戶相關聯的電子郵件識別碼。
 
-1. 使用上一個步驟中列出的其中一個 Azure 訂用帳戶登入 [Azure Preview 入口網站](https://portal.azure.com) 。
+1. 登入 toohello [Azure preview 入口網站](https://portal.azure.com)使用其中一種 hello Azure 訂用帳戶中所列 hello 上一個步驟。
 2. 尋找您的供應項目，並驗證您的 VM 映像點：
    
-   * 請確定該行銷內容可在 MarketPlace 中正確顯示。
-   * VM 映像的端對端部署
+   * 請確定在行銷內容可正確顯示 hello Marketplace 中。
+   * 端對端部署的 hello VM 映像。
      
       ![img-map-portal](media/marketplace-publishing-push-to-staging/pubportal-mapping-azure-portal.jpg)
 
 > [!IMPORTANT]
-> 您的供應項目將留在預備環境中，直到您透過發佈入口網站 ([發佈] 索引標籤 > 按一下 [要求核准以推送至生產環境] 按鈕) 通知 Microsoft 您已準備好推送至生產環境為止。 這是所有團隊成員為您即將列出的供應項目做好萬全準備並徹底檢查的最佳時機。
+> 您提供的服務將保留在暫存直到您通知 Microsoft hello 發佈入口網站透過 [**發行** 索引標籤 > hello 5d; 按鈕按一下**」 要求核准 tooPush tooProduction 」**] 您已準備好 toopushtooproduction。 這是小組的理想的時間 toohave，透過在您要列出的優惠準備的所有項目檢查您的所有成員。
 > 
-> 預備平台是為了讓發行者在預覽模式下測試供應項目所設計。 我們強烈建議您勿將此平台使用於商業用途。
+> hello 發行者在預覽模式中的測試 hello 供應項目的保護 hello 暫存平台。 我們強烈建議您勿將此平台使用於商業用途。
 > 
 > 
 
 ## <a name="next-steps"></a>後續步驟
-現在您的供應項目「預備」好了，您已經測試過它的功能和行銷內容，您可以繼續進行最終的發佈階段，即 **步驟 4**： [將您的供應項目部署至 Marketplace](marketplace-publishing-push-to-production.md)。
+既然您提供的服務 「 預備 」，且您已測試其功能與行銷內容，您可以繼續 toohello 最終發行階段中，**步驟 4**:[部署您的優惠 toohello Marketplace](marketplace-publishing-push-to-production.md)。
 
 ## <a name="see-also"></a>另請參閱
-* [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
+* [快速入門： 如何 toopublish 優惠 toohello Azure Marketplace](marketplace-publishing-getting-started.md)
 

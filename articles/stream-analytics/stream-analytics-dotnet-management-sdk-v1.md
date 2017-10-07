@@ -1,6 +1,6 @@
 ---
-title: "適用於 Azure 串流分析的管理 .NET SDK v1.x | Microsoft Docs"
-description: "Azure 串流分析管理 .NET SDK 入門。 了解如何設定及執行分析作業。 建立專案、輸入、輸出及轉換。"
+title: "Azure Stream Analytics 的 aaaManagement.NET SDK v1.x |Microsoft 文件"
+description: "Azure 串流分析管理 .NET SDK 入門。 深入了解如何 tooset 及執行分析工作。 建立專案、輸入、輸出及轉換。"
 keywords: ".net SDK, 分析 API"
 services: stream-analytics
 documentationcenter: 
@@ -15,53 +15,53 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/06/2017
 ms.author: jeffstok
-ms.openlocfilehash: c75322ba53a447b8529023482945051caaf61bb2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d205c388880e3d9c2ca5df218f4b68abac8c9780
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="management-net-sdk-v1x-set-up-and-run-analytics-jobs-using-the-azure-stream-analytics-api-for-net"></a>管理 .NET SDK 1.x：透過適用於 .NET 的 Azure 串流分析 API 來設定及執行分析作業
-了解如何使用管理 .NET SDK，透過適用於 .NET 的串流分析 API 來設定及執行分析作業。 設定專案，建立輸入與輸出來源、轉換，以及開始和停止工作。 對於您的分析工作，您可以從 Blob 儲存體或從事件中樞串流資料。
+# <a name="management-net-sdk-v1x-set-up-and-run-analytics-jobs-using-hello-azure-stream-analytics-api-for-net"></a>管理.NET SDK v1.x： 設定及執行的分析工作，會使用 hello 適用於.NET 的 Azure 資料流分析 API
+了解如何向上 tooset 和執行的分析工作，會使用資料流分析 API hello.NET 使用 hello 管理.NET SDK。 設定專案，建立輸入與輸出來源、轉換，以及開始和停止工作。 對於您的分析工作，您可以從 Blob 儲存體或從事件中樞串流資料。
 
-請參閱 [適用於 .NET 的串流分析 API 之管理參考文件](https://msdn.microsoft.com/library/azure/dn889315.aspx)。
+請參閱 hello[管理參考文件資料流分析 API hello.net](https://msdn.microsoft.com/library/azure/dn889315.aspx)。
 
-Azure 資料流分析是完全受管理的服務，可用來對雲端中的串流資料進行低延遲、高可用性、可延展的複雜事件處理。 串流分析可讓客戶設定串流工作以分析資料流，並可讓客戶以接近即時的方式進行分析。  
+Azure Stream Analytics 是完全受管理的服務，透過 hello 雲端中的資料流提供低延遲、 高可用性、 可調整且複雜事件處理。 串流分析可讓客戶 tooset 安裝作業 tooanalyze 資料流，資料流，並讓他們 toodrive 接近即時的分析。  
 
 > [!NOTE]
-> 本文中的範例程式碼仍使用舊版 (1.x) 的 Azure 串流分析管理 .NET SDK。 如需查看使用最新版 SDK 的範例程式碼，請參閱[使用適用於串流分析的管理 .NET SDK](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-dotnet-management-sdk)。
+> 本文中的範例程式碼仍使用舊版 (1.x) 的 Azure 串流分析管理 .NET SDK。 範例程式碼使用 hello 最新的 SDK 版本，請參閱[使用 hello Stream Analytics Management.NET SDK](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-dotnet-management-sdk)。
 
 ## <a name="prerequisites"></a>必要條件
-開始閱讀本文之前，您必須符合下列必要條件：
+在開始這份文件之前，您必須擁有 hello 下列：
 
 * 安裝 Visual Studio 2017 或 2015。
 * 下載並安裝 [Azure .NET SDK](https://azure.microsoft.com/downloads/)。
-* 在您的訂用帳戶中建立「Azure 資源群組」。 下列是 PowerShell 指令碼範例。 如需 Azure PowerShell 資訊，請參閱 [安裝並設定 Azure PowerShell](/powershell/azure/overview)。  
+* 在您的訂用帳戶中建立「Azure 資源群組」。 hello 以下是範例 Azure PowerShell 指令碼。 如需 Azure PowerShell 資訊，請參閱 [安裝並設定 Azure PowerShell](/powershell/azure/overview)。  
 
-        # Log in to your Azure account
+        # Log in tooyour Azure account
         Add-AzureAccount
 
-        # Select the Azure subscription you want to use to create the resource group
+        # Select hello Azure subscription you want toouse toocreate hello resource group
         Select-AzureSubscription -SubscriptionName <subscription name>
 
-            # If Stream Analytics has not been registered to the subscription, remove the remark symbol (#) to run the Register-AzureRMProvider cmdlet to register the provider namespace
+            # If Stream Analytics has not been registered toohello subscription, remove hello remark symbol (#) toorun hello Register-AzureRMProvider cmdlet tooregister hello provider namespace
             #Register-AzureRMProvider -Force -ProviderNamespace 'Microsoft.StreamAnalytics'
 
         # Create an Azure resource group
         New-AzureResourceGroup -Name <YOUR RESOURCE GROUP NAME> -Location <LOCATION>
 
 
-* 設定要使用的輸入來源和輸出目標。 如需進一步的指示，請參閱[新增輸入](stream-analytics-add-inputs.md)來設定範例輸入，以及[新增輸出](stream-analytics-add-outputs.md)來設定範例輸出。
+* 設定輸入來源，且輸出目標 toouse。 如進一步指示，請參閱[加入輸入](stream-analytics-add-inputs.md)tooset 向上範例輸入和[加入輸出](stream-analytics-add-outputs.md)tooset 組成的範例輸出。
 
 ## <a name="set-up-a-project"></a>設定專案
-您必須先設定自己的專案，才能透過適用於 .NET 的串流分析 API 來建立分析工作。
+toocreate 分析工作使用 hello 資料流分析 API 的.NET 中，第一次設定您的專案。
 
 1. 建立 Visual Studio C# .NET 主控台應用程式。
-2. 在 Package Manager Console 中，執行下列命令以安裝 NuGet 封裝。 第一個是 Azure 串流分析管理 .NET SDK。 第二個是驗證要使用的 Azure Active Directory 用戶端。
+2. Hello Package Manager Console 中，執行的 hello 下列命令，tooinstall hello NuGet 封裝。 hello 第一次是 hello Azure Stream Analytics Management.NET SDK。 hello 第二個是 hello Azure Active Directory 用戶端將用來驗證。
    
         Install-Package Microsoft.Azure.Management.StreamAnalytics -Version 1.8.3
         Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.28.4
-3. 將下列 **appSettings** 區段加入 App.config 檔案：
+3. 新增下列 hello **appSettings**節 toohello App.config 檔案：
    
         <appSettings>
           <!--CSM Prod related values-->
@@ -74,15 +74,15 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
           <add key="ActiveDirectoryTenantId" value="YOU TENANT ID" />
         </appSettings>
 
-    以您的 Azure 訂用帳戶 ID 和租用戶識別碼取代 **SubscriptionId** 和 **ActiveDirectoryTenantId** 的值。 您可以藉由執行下列 Azure PowerShell Cmdlet 來取得這些值：
+    以您的 Azure 訂用帳戶 ID 和租用戶識別碼取代 **SubscriptionId** 和 **ActiveDirectoryTenantId** 的值。 您可以藉由執行下列 Azure PowerShell cmdlet 的 hello 取得這些值：
 
         Get-AzureAccount
 
-4. 在您的 .csproj 檔案中新增下列參考：
+4. 加入下列參考.csproj 檔案中的 hello:
 
         <Reference Include="System.Configuration" />
 
-1. 將下列 **using** 陳述式加入專案的原始程式檔 (Program.cs) 中。
+1. 新增下列 hello**使用**陳述式 toohello 原始程式檔 (Program.cs) hello 專案中：
    
         using System;
         using System.Configuration;
@@ -110,14 +110,14 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
         if (result != null)
             return result.AccessToken;
 
-       throw new InvalidOperationException("Failed to acquire token");
+       throw new InvalidOperationException("Failed tooacquire token");
    }
    ```  
 
 ## <a name="create-a-stream-analytics-management-client"></a>建立資料流分析管理用戶端
-**StreamAnalyticsManagementClient** 物件可讓您管理工作和工作元件，例如輸入、輸出和轉換。
+A **StreamAnalyticsManagementClient**物件可讓您 toomanage hello 作業和 hello 的工作元件，例如輸入、 輸出和轉換。
 
-在 **Main** 方法的開頭加入下列程式碼：
+新增下列程式碼 toohello 開頭 hello hello **Main**方法：
 
     string resourceGroupName = "<YOUR AZURE RESOURCE GROUP NAME>";
     string streamAnalyticsJobName = "<YOUR STREAM ANALYTICS JOB NAME>";
@@ -133,14 +133,14 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
     // Create Stream Analytics management client
     StreamAnalyticsManagementClient client = new StreamAnalyticsManagementClient(aadTokenCredentials);
 
-**resourceGroupName** 變數的值應該會與您在先決條件步驟中建立或選取的資源群組名稱相同。
+hello **resourceGroupName**變數的值應為您建立或 hello 先決條件步驟中挑選群組 hello hello 資源名稱相同的 hello。
 
-若要自動化作業建立的認證提供層面，請參閱 [使用 Azure 資源管理員驗證服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
+tooautomate hello 認證簡報層面建立工作，請參閱太[驗證 Azure 資源管理員與服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
 
-本文的其餘章節會假設 **Main** 方法的開頭已有這段程式碼。
+hello 這篇文章的其餘章節假設此程式碼是在 hello hello 開頭**Main**方法。
 
-## <a name="create-a-stream-analytics-job"></a>建立串流分析作業
-下列程式碼會在您已定義的資源群組下方建立一個串流分析工作。 您稍後可以在工作中加入輸入、輸出和轉換。
+## <a name="create-a-stream-analytics-job"></a>建立串流分析工作
+hello 下列程式碼會建立在您已定義的 hello 資源群組下的資料流分析工作。 稍後您將加入的輸入、 輸出和轉換 toohello 作業。
 
     // Create a Stream Analytics job
     JobCreateOrUpdateParameters jobCreateParameters = new JobCreateOrUpdateParameters()
@@ -164,7 +164,7 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
 
 
 ## <a name="create-a-stream-analytics-input-source"></a>建立資料流分析輸入來源
-下列程式碼會使用 Blob 輸入來源類型和 CSV 序列化，來建立資料流分析輸入來源。 若要建立事件中心輸入來源，請使用 **EventHubStreamInputDataSource**，而不是 **BlobStreamInputDataSource**。 同樣地，您可以自訂輸入來源的序列化類型。
+hello 下列程式碼會建立資料流分析的輸入的來源具有 hello blob 輸入的來源類型和 CSV 序列化。 toocreate 事件中樞輸入來源，使用**EventHubStreamInputDataSource**而不是**BlobStreamInputDataSource**。 同樣地，您可以自訂 hello 輸入來源的 hello 序列化類型。
 
     // Create a Stream Analytics input source
     InputCreateOrUpdateParameters jobInputCreateParameters = new InputCreateOrUpdateParameters()
@@ -205,19 +205,19 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
     InputCreateOrUpdateResponse inputCreateResponse =
         client.Inputs.CreateOrUpdate(resourceGroupName, streamAnalyticsJobName, jobInputCreateParameters);
 
-輸入來源 (來自 Blob 儲存體或事件中樞) 受限於特定工作。 若要在不同的工作中使用相同的輸入來源，您必須重新呼叫此方法，並指定不同的工作名稱。
+輸入的來源，包括從 Blob 儲存體或事件中心，會繫結的 tooa 特定作業。 toouse hello 不同工作的相同輸入的來源，您必須再次呼叫 hello 方法並指定不同的作業名稱。
 
 ## <a name="test-a-stream-analytics-input-source"></a>測試資料流分析輸入來源
-**TestConnection** 方法可測試資料流分析作業是否能夠連接到輸入來源，以及測試輸入來源類型特定的其他層面。 例如，在您在先前步驟中建立的 Blob 輸入來源中，此方法會檢查可用來連接到儲存體帳戶的儲存體帳戶名稱和金鑰組，以及檢查指定的容器是否存在。
+hello **TestConnection** hello 資料流分析工作是否能 tooconnect toohello 輸入來源，以及其他方面的特定 toohello 方法測試輸入來源類型。 例如，在 hello blob 輸入來源您在前述步驟中建立，hello 方法會檢查，hello 儲存體帳戶名稱和金鑰組可以是使用的 tooconnect toohello 儲存體帳戶，以及檢查該 hello 指定的容器存在。
 
     // Test input source connection
     DataSourceTestConnectionResponse inputTestResponse =
         client.Inputs.TestConnection(resourceGroupName, streamAnalyticsJobName, streamAnalyticsInputName);
 
 ## <a name="create-a-stream-analytics-output-target"></a>建立資料流分析輸出目標
-建立輸出目標與建立資料流分析輸入來源非常類似。 和輸入來源一樣，輸出目標會繫結至特定工作。 若要在不同的工作中使用相同的輸出目標，您必須重新呼叫此方法，並指定不同的工作名稱。
+建立輸出目標是非常類似 toocreating 資料流分析的輸入來源。 輸入來源，例如輸出目標是繫結的 tooa 特定作業。 toouse hello 相同的輸出目標為不同的工作，您必須再次呼叫 hello 方法並指定不同的作業名稱。
 
-下列程式碼會建立輸出目標 (Azure SQL Database)。 您可以自訂輸出目標的資料類型和/或序列化類型。
+下列程式碼的 hello 建立的輸出目標 (Azure SQL database)。 您可以自訂 hello 輸出目標的資料類型及/或序列化的型別。
 
     // Create a Stream Analytics output target
     OutputCreateOrUpdateParameters jobOutputCreateParameters = new OutputCreateOrUpdateParameters()
@@ -246,14 +246,14 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
         client.Outputs.CreateOrUpdate(resourceGroupName, streamAnalyticsJobName, jobOutputCreateParameters);
 
 ## <a name="test-a-stream-analytics-output-target"></a>測試資料流分析輸出目標
-資料流分析輸出目標也有可測試連線的 **TestConnection** 方法。
+資料流分析輸出目標也有 hello **TestConnection**方法來測試連接。
 
     // Test output target connection
     DataSourceTestConnectionResponse outputTestResponse =
         client.Outputs.TestConnection(resourceGroupName, streamAnalyticsJobName, streamAnalyticsOutputName);
 
 ## <a name="create-a-stream-analytics-transformation"></a>建立資料流分析轉換
-下列程式碼會使用 "select * from Input" 查詢來建立串流分析轉換，並指定為串流分析工作配置一個串流單位。 如需有關如何調整資料流單位的詳細資訊，請參閱 [調整 Azure 資料流分析工作](stream-analytics-scale-jobs.md)。
+hello 下列程式碼會建立資料流分析轉換與 hello 查詢 」 選取 * 從輸入 」，並指定 tooallocate 一個資料流處理的單位 hello 資料流分析工作。 如需有關如何調整資料流單位的詳細資訊，請參閱 [調整 Azure 資料流分析工作](stream-analytics-scale-jobs.md)。
 
     // Create a Stream Analytics transformation
     TransformationCreateOrUpdateParameters transformationCreateParameters = new TransformationCreateOrUpdateParameters()
@@ -272,12 +272,12 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
     var transformationCreateResp =
         client.Transformations.CreateOrUpdate(resourceGroupName, streamAnalyticsJobName, transformationCreateParameters);
 
-如同輸入和輸出，轉換也繫結至建立該轉換時所在的特定串流分析作業。
+輸入和輸出，例如轉換也是繫結的 toohello 底下建立特定資料流分析工作。
 
 ## <a name="start-a-stream-analytics-job"></a>啟動資料流分析工作
-建立資料流分析工作及其輸入、輸出和轉換之後，您可以藉由呼叫 **Start** 方法來啟動工作。
+建立資料流分析工作的輸入、 輸出及轉換之後，您可以啟動 hello 作業呼叫 hello**啟動**方法。
 
-下列範例程式碼會啟動自訂輸出開始時間設為 2012 年 12 月 12 日 12:12:12 UTC 的資料流分析工作：
+下列範例程式碼的 hello 開頭自訂輸出開始時間組 tooDecember 12，2012，12:12:12 中的資料流分析工作 UTC:
 
     // Start a Stream Analytics job
     JobStartParameters jobStartParameters = new JobStartParameters
@@ -289,13 +289,13 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
     LongRunningOperationResponse jobStartResponse = client.StreamingJobs.Start(resourceGroupName, streamAnalyticsJobName, jobStartParameters);
 
 ## <a name="stop-a-stream-analytics-job"></a>停止資料流分析工作
-您可以藉由呼叫 **Stop** 方法來停止執行中的資料流分析工作。
+您可以停止執行中的資料流分析工作呼叫 hello**停止**方法。
 
     // Stop a Stream Analytics job
     LongRunningOperationResponse jobStopResponse = client.StreamingJobs.Stop(resourceGroupName, streamAnalyticsJobName);
 
 ## <a name="delete-a-stream-analytics-job"></a>刪除資料流分析工作
-**Delete** 方法將會刪除作業及其基礎子資源，包括輸入、輸出，以及轉換工作。
+hello**刪除**hello 作業，以及 hello 基礎子資源，包括輸入、 輸出，以及 hello 作業的轉換，將會刪除方法。
 
     // Delete a Stream Analytics job
     LongRunningOperationResponse jobDeleteResponse = client.StreamingJobs.Delete(resourceGroupName, streamAnalyticsJobName);
@@ -304,9 +304,9 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。
 
 ## <a name="next-steps"></a>後續步驟
-您已經學到使用 .NET SDK 建立及執行分析作業的基本知識。 若要深入了解，請參閱下列文章：
+您已了解使用.NET SDK toocreate hello 基本概念，並執行分析工作。 toolearn 詳細資訊，請參閱 hello 下列資訊：
 
-* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
+* [簡介 tooAzure 資料流分析](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure 串流分析管理 .NET SDK](https://msdn.microsoft.com/library/azure/dn889315.aspx)。

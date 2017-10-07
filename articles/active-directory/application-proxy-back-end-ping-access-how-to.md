@@ -1,6 +1,6 @@
 ---
-title: "如何設定應用程式 Proxy 應用程式以使用 PingAccess | Microsoft Docs"
-description: "了解如何使用 PingAccess 以利用標頭形式驗證，將應用程式 Proxy 的優點延伸到應用程式"
+title: "aaaHow tooconfigure 應用程式 Proxy 應用程式 toouse PingAccess |Microsoft 文件"
+description: "了解如何 toouse PingAccess tooextend hello 使用標頭驗證的應用程式 Proxy tooapplications 的優點"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: a9da67373465cebbdbecae5c8fb8bd0a0ee3c171
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fa4c9747b7bf5a135425be270e4f7eadf95248fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-an-application-proxy-application-to-use-pingaccess"></a>如何設定應用程式 Proxy 應用程式以使用 PingAccess
+# <a name="how-tooconfigure-an-application-proxy-application-toouse-pingaccess"></a>如何 tooconfigure 應用程式 Proxy 應用程式 toouse PingAccess
 
-我們與 PingAccess 的合作，使您現在可以使用標頭形式驗證，將應用程式 Proxy 的優點延伸到應用程式。 如果您的應用程式不使用標頭，請參閱我們的[單一登入文件](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd)以取得其他選項的詳細資料。
+我們合作 PingAccess 現在可讓您使用標頭驗證的應用程式 Proxy tooapplications tooextend hello 優點。 如果您的應用程式不使用標頭，請參閱我們的[單一登入文件](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd)以取得其他選項的詳細資料。
 
 ## <a name="overview-of-steps-and-recommended-documents"></a>步驟和建議文件的概觀
 
-若要搭配 PingAccess 設定應用程式，請執行四個步驟：
+tooconfigure PingAccess，與應用程式有四個步驟：
 
 1.  設定應用程式 Proxy 連接器
 

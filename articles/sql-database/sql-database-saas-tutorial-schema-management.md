@@ -1,5 +1,5 @@
 ---
-title: "在多租用戶應用程式中管理 Azure SQL Database 結構描述 | Microsoft Docs"
+title: "aaaManage Azure SQL Database 的結構描述中的多租用戶應用程式 |Microsoft 文件"
 description: "在使用 Azure SQL Database 的多租用戶應用程式中，管理多租用戶的結構描述"
 keywords: SQL Database Azure
 services: sql-database
@@ -16,19 +16,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/28/2017
 ms.author: billgib; sstein
-ms.openlocfilehash: 78d76efb88bf11fa18a416b59e6f881539141232
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ea946e556808dabd60dd39cb8173d0512d4bddec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-schema-for-multiple-tenants-in-the-wingtip-saas-application"></a>針對 Wingtip SaaS 應用程式中的多個租用戶管理結構描述
+# <a name="manage-schema-for-multiple-tenants-in-hello-wingtip-saas-application"></a>多個租用戶 hello Wingtip SaaS 應用程式中管理結構描述
 
-[第一個 Wingtip SaaS 教學課程](sql-database-saas-tutorial.md)說明應用程式如何佈建租用戶資料庫並在目錄中註冊它。 就像任何應用程式一樣，Wingtip SaaS 應用程式會隨著時間演進，而且有時候會需要變更資料庫。 變更可能包含新增或變更的結構描述、新增或變更的參考資料，以及例行性資料庫維護工作以確保最佳的應用程式效能。 有了 SaaS 應用程式，這些變更需要以經過協調的方式部署到可能非常大規模的租用戶資料庫群。 變更也需要整合到佈建程序中，以供未來在租用戶資料庫中使用。
+hello[第一個 Wingtip SaaS 教學課程](sql-database-saas-tutorial.md)顯示 hello 應用程式如何佈建租用戶資料庫和註冊 hello 目錄中。 就像任何應用程式，hello Wingtip SaaS 應用程式將持續改進，經過一段時間，與有時候會需要變更 toohello 資料庫。 變更可能包括新增或變更結構描述、 新增或變更的參考資料，以及例行的資料庫維護工作 tooensure 最佳應用程式效能。 與 SaaS 應用程式，這些變更需要 toobe 跨租用戶資料庫可能會大量以及部署中協調的方式。 這些變更 toobe 未來租用戶資料庫、 需要 toobe 併入 hello 佈建程序。
 
-本教學課程會探討兩種案例：為所有租用戶部署參考資料更新，以及針對包含參考資料的資料表重新調整索引。 [彈性作業](sql-database-elastic-jobs-overview.md)功能是用來跨所有租用戶執行這些作業，而「範本」租用戶資料庫則是用來作為新資料庫的範本。
+本教學課程會探討兩種案例-將參考資料更新部署的所有租用戶，並 retuning hello 上的索引，資料表包含 hello 參考資料。 hello[彈性作業](sql-database-elastic-jobs-overview.md)功能是使用的 tooexecute 這些作業的所有租用戶和 hello*黃金*新的資料庫做為範本使用的租用戶資料庫。
 
-在本教學課程中，您將了解如何：
+在本教學課程中，您了解如何：
 
 > [!div class="checklist"]
 
@@ -38,81 +38,81 @@ ms.lasthandoff: 08/03/2017
 > * 針對所有租用戶資料庫中的資料表建立索引
 
 
-若要完成本教學課程，請確定符合下列必要條件：
+toocomplete 符合本教學課程，請確定 hello 下列必要條件：
 
-* 已部署 Wingtip SaaS 應用程式。 若要在五分鐘內完成部署，請參閱[部署及探索 Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)
+* hello Wingtip SaaS 應用程式部署。 toodeploy 在五分鐘內，請參閱[部署及瀏覽 hello Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)
 * 已安裝 Azure PowerShell。 如需詳細資料，請參閱[開始使用 Azure PowerShell](https://docs.microsoft.com/powershell/azure/get-started-azureps)
-* 已安裝最新版的 SQL Server Management Studio (SSMS)。 [下載並安裝 SSMS](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)
+* 已安裝最新版本的 SQL Server Management Studio (SSMS) hello。 [下載並安裝 SSMS](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)
 
-*本教學課程使用的 SQL Database 服務功能處於有限預覽版狀態 (彈性資料庫作業)。如果想要進行本教學課程，請將您的訂用帳戶識別碼提供給 SaaSFeedback@microsoft.com，並使用主旨 Elastic Jobs Preview (彈性作業預覽)。在您收到訂用帳戶已啟用的確認之後，請[下載並安裝最新的發行前版本作業 Cmdlet (英文)](https://github.com/jaredmoo/azure-powershell/releases)。這是有限預覽版，如果有相關問題或需要支援，請連絡 SaaSFeedback@microsoft.com。*
+*本教學課程會使用有限的預覽 （彈性資料庫工作） 所 hello SQL Database 服務功能。如果您想 toodo 本教學課程，提供您的訂用帳戶 idtooSaaSFeedback@microsoft.com主旨 = 彈性作業預覽。您會收到確認訊息，已啟用您的訂用帳戶之後,[下載及安裝最新發行前版本工作 cmdlet hello](https://github.com/jaredmoo/azure-powershell/releases)。這是有限預覽版，如果有相關問題或需要支援，請連絡 SaaSFeedback@microsoft.com。*
 
 
-## <a name="introduction-to-saas-schema-management-patterns"></a>SaaS 結構描述管理模式的簡介
+## <a name="introduction-toosaas-schema-management-patterns"></a>簡介 tooSaaS 結構描述管理模式
 
-每個資料庫單一租用戶的 SaaS 模式可以達成資料隔離而獲得許多方面的好處，但同時也會造成維護及管理許多資料庫的額外複雜性。 [彈性作業](sql-database-elastic-jobs-overview.md)有助於 SQL 資料層的管理。 作業可讓您針對一組資料庫安全可靠地執行工作 (T-SQL 指令碼)，而不需要使用者互動或輸入。 這個方法可用來在應用程式中跨所有租用戶部署結構描述和一般參考資料變更。 彈性作業也可以用來維護建立新租用戶所使用的「範本」資料庫複本，確保它隨時具有最新的結構描述和參考資料。
+hello 每個資料庫的單一租用戶 SaaS 模式在許多方面與所產生，hello 資料隔離的優點，但在 hello 同時介紹 hello 維護和管理多個資料庫的額外的複雜性。 [彈性作業](sql-database-elastic-jobs-overview.md)有助於管理工作的 hello SQL 資料層。 作業 toosecurely 可讓您和可靠地執行工作 （T-SQL 指令碼） 獨立於使用者互動或輸入，對資料庫的群組。 這個方法也有應用程式中的所有租用戶使用的 toodeploy 結構描述和一般參考資料變更。 彈性的工作也可以使用的 toomaintain*黃金*hello 資料庫副本使用 toocreate 新租用戶，確保它必定 hello 最新的結構描述和參考資料。
 
 ![畫面](media/sql-database-saas-tutorial-schema-management/schema-management.png)
 
 
 ## <a name="elastic-jobs-limited-preview"></a>彈性作業有限預覽版
 
-新版本的「彈性作業」現在是 Azure SQL Database 的整合功能 (不需要額外的服務或元件)。 這個新的「彈性作業」版本目前處於有限預覽版狀態。 這個有限預覽版目前支援使用 PowerShell 建立作業帳戶，以及使用 T-SQL 建立及管理作業。
+新版本的「彈性作業」現在是 Azure SQL Database 的整合功能 (不需要額外的服務或元件)。 這個新的「彈性作業」版本目前處於有限預覽版狀態。 這個有限預覽版本目前支援 PowerShell toocreate 工作帳戶和 T-SQL toocreate 及管理工作。
 
 > [!NOTE]
-> *本教學課程使用的 SQL Database 服務功能處於有限預覽版狀態 (彈性資料庫作業)。如果想要進行本教學課程，請將您的訂用帳戶識別碼提供給 SaaSFeedback@microsoft.com，並使用主旨 Elastic Jobs Preview (彈性作業預覽)。在您收到訂用帳戶已啟用的確認之後，請[下載並安裝最新的發行前版本作業 Cmdlet (英文)](https://github.com/jaredmoo/azure-powershell/releases)。這是有限預覽版，如果有相關問題或需要支援，請連絡 SaaSFeedback@microsoft.com。*
+> *本教學課程會使用有限的預覽 （彈性資料庫工作） 所 hello SQL Database 服務功能。如果您想 toodo 本教學課程，提供您的訂用帳戶 idtooSaaSFeedback@microsoft.com主旨 = 彈性作業預覽。您會收到確認訊息，已啟用您的訂用帳戶之後,[下載及安裝最新發行前版本工作 cmdlet hello](https://github.com/jaredmoo/azure-powershell/releases)。這是有限預覽版，如果有相關問題或需要支援，請連絡 SaaSFeedback@microsoft.com。*
 
-## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
+## <a name="get-hello-wingtip-application-scripts"></a>取得 hello Wingtip 應用程式指令碼
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 [用於下載 Wingtip SaaS 指令碼的步驟](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts)。
+hello Wingtip SaaS 指令碼和應用程式的原始程式碼中可用 hello [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) github 儲存機制。 [步驟 toodownload hello Wingtip SaaS 指令碼](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts)。
 
 ## <a name="create-a-job-account-database-and-new-job-account"></a>建立作業帳戶資料庫和新的作業帳戶
 
-本教學課程要求您必須使用 PowerShell 建立作業帳戶資料庫和作業帳戶。 如同 MSDB 和 SQL Agent，「彈性作業」會使用 Azure SQL 資料庫來儲存作業定義、作業狀態和歷程記錄。 一旦建立作業帳戶，您就可以立即建立及監視作業。
+本教學課程要求您使用 PowerShell toocreate hello 工作帳戶資料庫與工作帳戶。 如同 MSDB 和 SQL 代理程式，彈性的工作會使用 Azure SQL 資料庫 toostore 工作定義、 工作狀態和歷程記錄。 一旦建立 hello 工作帳戶之後，您可以建立並立即監視作業。
 
-1. 在 [PowerShell ISE] 中開啟 …\\Learning Modules\\Schema Management\\*Demo-SchemaManagement.ps1*。
-1. 按 **F5** 以執行指令碼。
+1. 開啟...\\學習模組\\結構描述管理\\*示範 SchemaManagement.ps1*在 hello **PowerShell ISE**。
+1. 按**F5** toorun hello 指令碼。
 
-*Demo-SchemaManagement.ps1* 指令碼會呼叫 *Deploy-SchemaManagement.ps1* 指令碼，以在類別目錄伺服器上建立名為 **jobaccount** 的 *S2* 資料庫。 然後，它會建立作業帳戶，將 jobaccount 資料庫當成參數傳遞至作業帳戶建立呼叫。
+hello*示範 SchemaManagement.ps1*指令碼呼叫 hello*部署 SchemaManagement.ps1*指令碼 toocreate *S2*資料庫名為**jobaccount** hello 類別目錄伺服器上。 然後，它會建立 hello 工作帳戶，做為參數 toohello 工作帳戶建立呼叫傳遞 hello jobaccount 資料庫。
 
-## <a name="create-a-job-to-deploy-new-reference-data-to-all-tenants"></a>建立作業以將新的參考資料部署到所有租用戶
+## <a name="create-a-job-toodeploy-new-reference-data-tooall-tenants"></a>建立工作 toodeploy 新增參考資料 tooall 租用戶
 
-每個租用戶資料庫都包含一組場地類型，其中定義要在場地舉辦的活動種類。 在這個練習中，您要將更新部署到所有租用戶資料庫，以新增兩個額外的場地類型：*Motorcycle Racing* (機車賽) 和 *Swimming Club* (游泳俱樂部)。 這些場地類型會對應至您在租用戶活動應用程式中看到的背景影像。
+每個租用戶資料庫包含一組定義的事件裝載在法院 hello 種類的法院型別。 在此練習中，您會部署更新 tooall hello 租用戶資料庫 tooadd 兩個其他地點類型：*機車賽*和*游泳社團*。 這些地點的型別對應 toohello 看到 hello 租用戶事件應用程式中的背景影像。
 
-按一下 [Venue Type (場地類型)] 下拉式功能表，然後確認只有 10 個場地類型選項可用，特別是清單中不包含 [Motorcycle Racing (機車賽)] 和 [Swimming Club (游泳俱樂部)]。
+按一下 [hello 法院類型] 下拉式清單功能表上，驗證只限於 10 個地點類型選項可用，並特別該 '機車賽' 和 '游泳社團' 不包含 hello 清單中。
 
-現在讓我們建立作業以更新所有租用戶資料庫中的 *VenueTypes* 資料表，並新增新的場地類型。
+現在讓我們來建立工作 tooupdate hello *VenueTypes* hello 租用戶的所有資料庫中資料表，並新增 hello 法院類型。
 
-為了建立新的作業，我們會使用作業帳戶建立時，在 jobaccount 資料庫中建立的一組作業系統預存程序。
+toocreate 新的工作，我們會使用一組工作的系統預存程序建立 hello 工作帳戶時，在 hello jobaccount 資料庫中建立。
 
-1. 開啟 SSMS 並連線到類別目錄伺服器：catalog-\<user\>.database.windows.net server
-1. 另外也連線到租用戶伺服器：tenants1-\<user\>.database.windows.net
-1. 瀏覽至 *tenants1* 伺服器上的 *contosoconcerthall* 資料庫，並查詢 *VenueTypes* 資料表以確認 *Motorcycle Racing* (機車賽) 和 *Swimming Club* (游泳俱樂部) **不存在於**結果清單中。
-1. 開啟檔案 …\\Learning Modules\\Schema Management\\DeployReferenceData.sql
-1. 修改陳述式：SET @wtpUser = &lt;user&gt;，並使用您在部署 Wingtip 應用程式時使用的 User 值來取代
-1. 確定您已連線到 jobaccount 資料庫，然後按 **F5** 以執行指令碼
+1. 開啟 SSMS 並連接 toohello 類別目錄伺服器： 類別目錄-\<使用者\>。.database.windows.net 伺服器
+1. 也連接 toohello 租用戶伺服器： tenants1-\<使用者\>。.database.windows.net
+1. 瀏覽 toohello *contosoconcerthall* hello 上的資料庫*tenants1*伺服器和查詢 hello *VenueTypes*資料表 tooconfirm，*機車賽*和*游泳社團***不**hello [結果] 清單中。
+1. 開啟 hello 檔案...\\學習模組\\結構描述管理\\DeployReferenceData.sql
+1. 修改 hello 陳述式： 設定@wtpUser=&lt;使用者&gt;和取代部署 hello Wingtip 應用程式時使用的 hello 使用者值
+1. 確認您是連接的 toohello jobaccount 資料庫，然後按**F5**執行 hello 指令碼
 
-* **sp\_add\_target\_group** 會建立目標群組名稱 DemoServerGroup，我們現在需要新增目標成員。
-* **sp\_add\_target\_group\_member** 會新增「伺服器」目標成員類型，這會將該伺服器 (請注意，這是包含租用戶資料庫的 tenants1-&lt;User&gt; 伺服器) 中的所有資料庫視為作業執行時應包含在作業中的項目，其次是新增「資料庫」目標成員類型，具體而言是「範本」資料庫 (basetenantdb)，它位於 catalog-&lt;User&gt; 伺服器上，最後，另一個「資料庫」目標群組成員類型會包括稍後教學課程要使用的 adhocanalytics 資料庫。
+* **預存程序\_新增\_目標\_群組**建立 hello 目標群組名稱 DemoServerGroup，現在我們需要 tooadd 目標成員。
+* **預存程序\_新增\_目標\_群組\_成員**新增*伺服器*目標成員類型，認為該伺服器 （請注意這是 hello tenants1內的所有資料庫&lt;使用者&gt;包含 hello 租用戶資料庫伺服器) 在工作時間執行應該包含在 hello 工作第二個新增 hello*資料庫*目標成員類型，特別是 hello '黃金' 資料庫 (basetenantdb) 位於類別目錄-&lt;使用者&gt;伺服器，以及最後的另一個*資料庫*目標群組成員型別 tooinclude hello adhocanalytics 資料庫之後的教學課程中所使用。
 * **sp\_add\_job** 會建立稱為「參考資料部署」的作業
-* **sp\_add\_jobstep** 會建立作業步驟，包含更新參考資料表 VenueTypes 的 T-SQL 命令文字
-* 指令碼中的其餘檢視會顯示物件是否存在，以及監視作業執行。 使用這些查詢來檢閱 **lifecycle** 資料行中的值，以判斷作業在所有租用戶資料庫上，以及包含參考資料表的兩個額外資料庫上成功完成的時間。
+* **預存程序\_新增\_jobstep**會建立包含 T-SQL 命令文字 tooupdate hello 參考資料表中，VenueTypes hello 作業步驟
+* hello 指令碼中的 hello 剩餘檢視會顯示 hello hello 物件和執行監視作業存在。 在 hello 中使用這些查詢 tooreview hello 狀態值**生命週期**時 hello 工作已順利完成所有租用戶資料庫與 hello 兩個其他資料庫包含 hello 參考資料表上的資料行 toodetermine。
 
-1. 在 SSMS 中，瀏覽至 *tenants1* 伺服器上的 *contosoconcerthall* 資料庫，並查詢 *VenueTypes* 資料表以確認 *Motorcycle Racing* (機車賽) 和 *Swimming Club* (游泳俱樂部) 現在**存在於**結果清單中。
+1. 在 SSMS 中，瀏覽 toohello *contosoconcerthall* hello 上的資料庫*tenants1*伺服器和查詢 hello *VenueTypes*資料表 tooconfirm，*機車賽*和*游泳社團***是**現在 hello [結果] 清單中。
 
 
-## <a name="create-a-job-to-manage-the-reference-table-index"></a>建立作業以管理參考資料表索引
+## <a name="create-a-job-toomanage-hello-reference-table-index"></a>建立工作 toomanage hello 參考資料表索引
 
-類似於前一個練習，這個練習會建立作業以針對參考資料表的主索引鍵重建索引，這是將大量資料載入資料表後，系統管理員可能會執行的常見資料庫管理作業。
+類似 toohello 上一個練習中，這個練習作業 toorebuild hello 上建立索引 hello 參考資料表主索引鍵，在一般資料庫管理作業的系統管理員可能會執行大型資料載入之後，插入資料表。
 
-使用相同的作業「系統」預存程序建立作業。
+建立使用 hello 作業相同的作業 'system' 預存程序。
 
-1. 開啟 SSMS 並連線到 catalog-&lt;User&gt;.database.windows.net 伺服器
-1. 開啟檔案 …\\Learning Modules\\Schema Management\\OnlineReindex.sql
-1. 按一下滑鼠右鍵並選取 [連線]，然後連線到 catalog-&lt;User&gt;.database.windows.net 伺服器 (如果您尚未連線)
-1. 確定您已連線到 jobaccount 資料庫，然後按 F5 以執行指令碼
+1. 開啟 SSMS 並連接 toohello 目錄-&lt;使用者&gt;。.database.windows.net 伺服器
+1. 開啟 hello 檔案...\\學習模組\\結構描述管理\\OnlineReindex.sql
+1. 以滑鼠右鍵按一下、 選取連接，並連接 toohello 目錄-&lt;使用者&gt;。.database.windows.net 伺服器，如果尚未連接
+1. 請確定您已連線的 toohello jobaccount 資料庫，然後按 F5 toorun hello 指令碼
 
 * sp\_add\_job 會建立稱為「線上 PK 索引重建\_\_VenueTyp\_\_265E44FD7FD4C885」的新作業
-* sp\_add\_jobstep 會建立作業步驟，其中包含要更新索引的 T-SQL 命令文字
+* 預存程序\_新增\_作業步驟會建立包含 T-SQL 命令文字 tooupdate hello 索引的 hello 作業步驟
 
 
 
@@ -123,7 +123,7 @@ ms.lasthandoff: 08/03/2017
 
 > [!div class="checklist"]
 
-> * 建立作業帳戶以跨多個租用戶查詢
+> * 建立工作帳戶 tooquery 跨多個租用戶
 > * 更新所有租用戶資料庫中的資料
 > * 針對所有租用戶資料庫中的資料表建立索引
 
@@ -132,6 +132,6 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="additional-resources"></a>其他資源
 
-* 其他[以 Wingtip SaaS 應用程式部署為基礎的教學課程](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
+* [Hello Wingtip SaaS 應用程式部署為基礎的其他教學課程](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [管理相應放大的雲端資料庫](sql-database-elastic-jobs-overview.md)
 * [建立和管理相應放大的雲端資料庫](sql-database-elastic-jobs-create-and-manage.md)

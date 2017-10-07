@@ -1,6 +1,6 @@
 ---
-title: "查詢索引 (入口網站 - Azure 搜尋服務) | Microsoft Docs"
-description: "在 Azure 入口網站的搜尋總管中發出搜尋查詢。"
+title: "aaa\"查詢索引 （入口網站的 Azure 搜尋） |Microsoft 文件 」"
+description: "發出 hello Azure 入口網站的搜尋總管 中搜尋查詢。"
 services: search
 manager: jhubbard
 documentationcenter: 
@@ -13,13 +13,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 07/10/2017
 ms.author: ashmaka
-ms.openlocfilehash: dd68d8ed073bf7b8666ddef35a2f1f84df690b4b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 56bab3ef8a66eeb053fbbeb6d322acb6824fb34b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="query-an-azure-search-index-using-search-explorer-in-the-azure-portal"></a>在 Azure 入口網站中使用搜尋總管查詢 Azure 搜尋服務索引
+# <a name="query-an-azure-search-index-using-search-explorer-in-hello-azure-portal"></a>查詢 Azure 搜尋索引使用 hello Azure 入口網站中的搜尋總管
 > [!div class="op_single_selector"]
 > * [概觀](search-query-overview.md)
 > * [入口網站](search-explorer.md)
@@ -28,41 +28,41 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-本文說明如何在 Azure 入口網站中使用**搜尋總管**查詢 Azure 搜尋服務索引。 您可以使用搜尋總管，在您的服務中對於任何現有的索引送出簡單或完整的 Lucene 查詢字串。
+本文將告訴您如何 tooquery Azure 搜尋索引使用**搜尋總管**hello Azure 入口網站中。 在您的服務，您可以使用搜尋總管 toosubmit 簡單或完整 Lucene 查詢字串 tooany 現有的索引。
 
-## <a name="open-the-service-dashboard"></a>開啟服務儀表板
-1. 按一下 [Azure 入口網站](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)左側導向列中的 [所有資源]。
+## <a name="open-hello-service-dashboard"></a>開啟 hello 服務儀表板
+1. 按一下**所有資源**hello 跳躍列上的 hello 左方的 hello [Azure 入口網站](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)。
 2. 選取您的 Azure 搜尋服務。
 
 ## <a name="select-an-index"></a>選取索引
 
-選取您想要從 [索引] 圖格搜尋的索引。
+您想要從 hello toosearch 選取 hello 索引**索引**磚。
 
    ![](./media/search-explorer/pick-index.png)
 
 ## <a name="open-search-explorer"></a>開啟搜尋總管
 
-按一下 [搜尋總管] 圖格以滑動開啟搜尋列和結果窗格。
+按一下 hello 搜尋總管磚 tooslide 開啟 hello 搜尋列上的和 [結果] 窗格。
 
    ![](./media/search-explorer/search-explorer-tile.png)
 
 ## <a name="start-searching"></a>開始搜尋
 
-使用 [搜尋總管] 時可以指定任何 [查詢參數](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)以編寫查詢。
+當使用 hello 搜尋總管，您可以指定[查詢參數](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)tooformulate hello 查詢。
 
 1. 在 [查詢字串] 中輸入查詢，然後按 [搜尋]。 
 
-   查詢字串會自動剖析為適當的要求 URL，以便對 Azure 搜尋服務 REST API 提交 HTTP 要求。   
+   hello 查詢字串會自動剖析成 hello 適當要求 URL toosubmit hello Azure 搜尋 REST API 針對 HTTP 要求。   
    
-   您可以使用任何有效的簡單或完整 Lucene 查詢語法來建立要求。 `*` 字元就相當於不依特定順序傳回所有文件的空白或未指定搜尋。
+   您可以使用任何有效簡單或完整 Lucene 查詢語法 toocreate hello 的要求。 hello`*`字元是不依特定順序傳回所有文件的對等 tooan 空白或未指定搜尋。
 
-2. 在 [結果] 中，查詢結果會以未經處理的 JSON 呈現，與在以程式設計方式發出要求時，傳回 HTTP 回應主體的承載相同。
+2. 在**結果**，查詢結果會出現在未經處理的 JSON，以傳回相同 toohello 裝載時以程式設計方式發出要求的 HTTP 回應主體。
 
    ![](./media/search-explorer/search-bar.png)
 
 ## <a name="next-steps"></a>後續步驟
 
-下列資源提供其他的查詢語法資訊和範例。
+hello 下列資源提供其他的查詢語法資訊和範例。
 
  + [簡單查詢語法](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search) 
  + [Lucene 查詢語法](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search) 

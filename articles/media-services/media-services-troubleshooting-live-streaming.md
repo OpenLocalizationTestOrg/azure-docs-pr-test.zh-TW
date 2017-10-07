@@ -1,6 +1,6 @@
 ---
-title: "為即時串流而設的疑難排解指南 | Microsoft Docs"
-description: "本主題提供有關如何疑難排解即時資料流問題的建議。"
+title: "即時資料流 aaaTroubleshooting 指南 |Microsoft 文件"
+description: "本主題提供如何 tootroubleshoot 即時串流處理問題的建議。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,56 +14,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: fa91baf7c494941fccf0e6ca38b930f3c2a521ce
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8549bae947ff3b225ce624220d1e48b63f90208c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-guide-for-live-streaming"></a>為即時串流而設的疑難排解指南
-本主題提供有關如何疑難排解某些即時資料流問題的建議。
+本主題提供如何建議 tootroubleshoot 一些即時串流處理的問題。
 
-## <a name="issues-related-to-on-premises-encoders"></a>內部部署編碼器的相關問題
-本節提供如何疑難排解內部部署編碼器相關問題的建議，而編碼器的設定是傳送單一位元速率資料流到啟用即時編碼的 AMS 通道。
+## <a name="issues-related-tooon-premises-encoders"></a>問題相關的 tooon 內部編碼器
+本節提供如何 tootroubleshoot 問題相關的 tooon 內部編碼器，會設定 toosend 的建議為即時編碼啟用單一位元速率串流 tooAMS 通道。
 
-### <a name="problem-would-like-to-see-logs"></a>問題：想要查看記錄檔
+### <a name="problem-would-like-toosee-logs"></a>問題： 希望 toosee 記錄檔
 * 潛在問題：找不到可能有助於偵錯問題的編碼器記錄檔。
   
   * **Telestream Wirecas**：您通常可以在 C:\Users\{使用者名稱}\AppData\Roaming\Wirecast\ 下找到記錄檔 
-  * ︰您可在管理入口網站上找到記錄檔連結。 依序按一下 [統計] 及 [記錄檔]。 在 [記錄檔]  頁面上，您會看到一份所有 LiveEvent 項目的記錄檔清單，請選取符合您目前工作階段的項目。 
-  * **Flash Media Live Encoder**︰瀏覽至 [編碼記錄檔] 索引標籤即可找到 [記錄檔目錄...]。
+  * **元素 Live**： 您可以尋找已連結 toologs hello 管理入口網站上。 依序按一下 [統計] 及 [記錄檔]。 在 [hello**記錄檔**] 頁面上，您會看到所有的記錄檔清單 hello LiveEvent 項目時，請選擇其中一個比對您目前的工作階段的 hello。 
+  * **快閃媒體即時編碼程式**： 您可以找到 hello**記錄檔目錄...**瀏覽 toohello**編碼方式記錄** 索引標籤。
 
 ### <a name="problem-there-is-no-option-for-outputting-a-progressive-stream"></a>問題：沒有輸出漸進式資料流的選項
-* **可能的問題**：使用的編碼器不會自動進行非交錯處理。 
+* **可能的問題**: hello 編碼器正在使用不會自動非交錯。 
   
-    **疑難排解步驟**：尋找編碼器介面中的非交錯處理選項。 一旦啟用非交錯處理，請再次檢查漸進式的輸出設定。 
+    **疑難排解步驟**： 尋找 hello 編碼器介面中的取消交錯式選項。 一旦啟用非交錯處理，請再次檢查漸進式的輸出設定。 
 
-### <a name="problem-tried-several-encoder-output-settings-and-still-unable-to-connect"></a>問題：已嘗試數種編碼器輸出設定，但仍然無法連線。
+### <a name="problem-tried-several-encoder-output-settings-and-still-unable-tooconnect"></a>問題： 嘗試幾個編碼器輸出設定，並將仍然無法 tooconnect。
 * **可能的問題**：未正確重設 Azure 編碼通道。 
   
-    **疑難排解步驟**：確定編碼器不再推播至 AMS，停止並重設通道。 再次執行後，請嘗試使用新的設定連線至您的編碼器。 有時候，通道在經過幾次失敗的嘗試後可能會損毀，如果這樣仍無法更正問題，請嘗試建立新通道。  
-* **可能的問題**：GOP 大小或主要畫面設定不佳。 
+    **疑難排解步驟**： 請確定 hello 編碼器不會再推入 tooAMS、 停止及重設 hello 通道。 執行一次之後, 再試一次您的編碼器連接的 hello 新設定。 如果這仍無法更正 hello 問題，請嘗試完全建立新的通道，有時數次嘗試失敗之後通道可能會損毀。  
+* **可能的問題**: hello GOP 大小或主要畫面格設定不佳。 
   
-    **疑難排解步驟**：建議的 GOP 大小或主要畫面間隔為 2 秒。 某些編碼器以畫面數目計算此設定，某些則使用秒。 例如：輸出 30fps 時，GOP 大小會是 60 個畫面，相當於 2 秒。  
-* **可能的問題**：關閉的連接埠封鎖資料流。 
+    **疑難排解步驟**：建議的 GOP 大小或主要畫面間隔為 2 秒。 某些編碼器以畫面數目計算此設定，某些則使用秒。 例如： 輸出 30fps 時, hello GOP 大小會是 60 框架，這是對等 too2 秒。  
+* **可能的問題**： 封鎖 hello 資料流已關閉的連接埠。 
   
-    **疑難排解步驟**：透過 RTMP 串流處理時，請檢查防火牆和/或 Proxy 設定，確認輸出連接埠 1935 和 1936 已開啟。 使用 RTP 資料流時，請確認輸出連接埠 2010 已開啟。 
+    **疑難排解步驟**： 當 RTMP 透過串流處理，請檢查防火牆和/或 proxy 設定 tooconfirm 1935 和 1936年的輸出連接埠已開啟。 使用 RTP 資料流時，請確認輸出連接埠 2010 已開啟。 
 
-### <a name="problem-when-configuring-the-encoder-to-stream-with-the-rtp-protocol-there-is-no-place-to-enter-a-host-name"></a>問題：設定編碼器使用 RTP 通訊協定串流處理時，沒有輸入主機名稱的位置。
-* **可能的問題**：許多 RTP 編碼器未考慮到主機名稱，必須取得 IP 位址。  
+### <a name="problem-when-configuring-hello-encoder-toostream-with-hello-rtp-protocol-there-is-no-place-tooenter-a-host-name"></a>問題： 在設定 hello 編碼器 toostream 以 hello RTP 通訊協定時，沒有無處 tooenter 主機名稱。
+* **可能的問題**： 許多 RTP 編碼器不允許的主機名稱和 IP 位址必須 toobe 取得。  
   
-    **疑難排解步驟**：若要尋找 IP 位址，請在任一電腦上開啟命令提示字元。 若要在 Windows 中執行此操作，請開啟「執行」啟動程式 (WIN + R) 並輸入 "cmd" 來開啟。  
+    **疑難排解步驟**: toofind hello IP 位址，請開啟命令提示字元的任何電腦上。 這在 Windows 中，開啟 toodo hello 執行啟動器 （WIN + R），並輸入"cmd"tooopen。  
   
-    命令提示字元開啟後，輸入 "Ping [AMS 主機名稱]"。 
+    一旦開啟 hello 命令提示字元，輸入 「 Ping [AMS 主機名稱]"。 
   
-    藉由省略 Azure 內嵌 URL 中的連接埠號碼，即可衍生主機名稱，如以下範例中反白的部分所示： 
+    可以藉由略過從 hello Azure 內嵌 URL 以反白顯示 hello 下列範例中的 hello 連接埠號碼衍生 hello 主機名稱： 
   
     rtp://test2-amstest009.rtp.channel.mediaservices.windows.net:2010/ 
   
-    ![fmle](./media/media-services-fmle-live-encoder/media-services-fmle10.png)
+    ![FMLE](./media/media-services-fmle-live-encoder/media-services-fmle10.png)
 
 > [!NOTE]
-> 如果依循下列疑難排解步驟後仍無法順利串流處理，請使用 Azure 入口網站提交支援票證。
+> 如果後您仍無法成功地串流處理 hello 疑難排解步驟，提交支援票證使用 hello Azure 入口網站。
 > 
 > 
 

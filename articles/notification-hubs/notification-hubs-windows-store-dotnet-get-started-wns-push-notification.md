@@ -1,6 +1,6 @@
 ---
-title: "開始使用適用於 Windows 通用平台應用程式的 Azure 通知中樞 | Microsoft Docs"
-description: "在本教學課程中，您將了解如何使用 Azure 通知中樞，將通知推播至 Windows 通用平台應用程式。"
+title: "開始使用 Azure 通知中樞為 Windows 通用平台應用程式的 aaaGet |Microsoft 文件"
+description: "在此教學課程中，您學會如何 toouse Azure 通知中樞 toopush 通知 tooa Windows 通用平台應用程式。"
 services: notification-hubs
 documentationcenter: windows
 author: ysxu
@@ -14,27 +14,27 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 9b50f1cca81348b69f7ff2d702c6c72871afe0a0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 11056842d205522ed493dc61c76ecf78ebb5a363
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-notification-hubs-for-windows-universal-platform-apps"></a>開始使用適用於 Windows 通用平台應用程式的通知中樞
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
 ## <a name="overview"></a>概觀
-本教學課程將說明如何使用 Azure 通知中樞將推播通知傳送至 Windows 通用平台 (UWP) 應用程式。
+本教學課程會示範如何 toouse Azure 通知中樞 toosend 推播通知 tooa 通用 Windows 平台 (UWP) 應用程式。
 
-在本教學課程中，您將使用 Windows 推播通知服務 (WNS)，建立可接收推播通知的空白 Windows 市集應用程式。 完成時，您便能夠使用通知中樞，將推播通知廣播到所有執行您 app 的裝置。
+在本教學課程中，您可以建立空白的 Windows 市集應用程式透過使用 Windows 推播通知服務 (WNS) hello 接收推播通知。 完成之後，您應該能夠 toouse 您的通知中樞 toobroadcast 推播通知 tooall hello 裝置執行您的應用程式。
 
 ## <a name="before-you-begin"></a>開始之前
 [!INCLUDE [notification-hubs-hero-slug](../../includes/notification-hubs-hero-slug.md)]
 
-您可以在 [此處](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/GetStartedWindowsUniversal)的 GitHub 上找到本教學課程的完整程式碼。
+hello 完成本教學課程中的程式碼可以在 GitHub 上找到[這裡](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/GetStartedWindowsUniversal)。
 
-## <a name="prerequisites"></a>先決條件
-本教學課程需要下列各項：
+## <a name="prerequisites"></a>必要條件
+本教學課程必須 hello 下列需求：
 
 * [Microsoft Visual Studio Community 2015](https://www.visualstudio.com/products/visual-studio-community-vs) 或更新版本
 * [已安裝通用 Windows 應用程式開發工具](https://msdn.microsoft.com/windows/uwp/get-started/get-set-up)
@@ -43,65 +43,65 @@ ms.lasthandoff: 08/03/2017
 
 完成本教學課程是 Windows 通用平台應用程式所有其他通知中樞教學課程的先決條件。
 
-## <a name="register-your-app-for-the-windows-store"></a>向 Windows 市集註冊應用程式
-若要傳送推播通知給 Windows UWP 應用程式，您必須將您的應用程式與 Windows 市集產生關聯。 接著您必須設定您的通知中心，以便與 WNS 進行整合。
+## <a name="register-your-app-for-hello-windows-store"></a>註冊 hello Windows 市集應用程式
+toosend 推播通知 tooUWP 應用程式，您必須使您的應用程式 toohello Windows 市集。 接著，您必須設定您的通知中樞 toointegrate 搭配 WNS。
 
-1. 如果您尚未註冊您的應用程式，請瀏覽至 [Windows 開發人員中心](https://dev.windows.com/overview)，並使用 Microsoft 帳戶登入，然後按一下 [建立新的應用程式]。
+1. 如果您沒有註冊您的應用程式，請瀏覽 toohello [Windows 開發人員中心](https://dev.windows.com/overview)，使用您的 Microsoft 帳戶登入，然後按一下**建立新的應用程式**。
 
 2. 輸入您的 App 名稱，然後按一下 [保留應用程式名稱] 。 這會為您的應用程式建立新的 Windows 市集註冊。
 
-3. 在 Visual Studio 中，使用 Windows 通用 [空白應用程式] 範本來建立新的 Visual C# 市集應用程式專案，然後按一下 [確定]。
+3. 在 Visual Studio 中，建立新的 Visual C# 市集應用程式專案使用 Windows 通用 hello**空白應用程式**範本，然後按一下**確定**。
 
-4. 接受目標和最小平台版本的預設值。
+4. 接受 hello hello 目標與最低平台版本的預設值。
 
-5. 在 [方案總管] 中，以滑鼠右鍵按一下 Windows 市集應用程式專案，然後依序按一下 [市集] 和 [將應用程式與市集建立關聯...]。 隨即顯示 [將您的應用程式與 Windows 市集建立關聯]  精靈。
+5. 在 [方案總管] 中，以滑鼠右鍵按一下 hello Windows 市集應用程式專案中，按一下 [**存放區**，然後按一下**將應用程式建立關聯以 hello 存放區...**。 hello**您應用程式建立關聯以 hello Windows 市集**精靈] 隨即出現。
 
-6. 在此精靈中，使用您的 Microsoft 帳戶登入。
+6. 在 hello 精靈中，使用登入您的 Microsoft 帳戶。
 
-7. 按一下您在步驟 2 中註冊的應用程式，並按 [下一步]，然後按一下 [關聯]。 這會將所需的 Windows 市集註冊資訊新增至應用程式資訊清單。
+7. 按一下 註冊，讓您在步驟 2 中的 hello 應用程式中，按一下**下一步**，然後按一下**關聯**。 這會將所需的 hello Windows 市集註冊資訊 toohello 應用程式資訊清單。
 
-8. 回到新應用程式的 [Windows 開發人員中心](http://dev.windows.com/overview)頁面，並依序按一下 [服務] 和 [推播通知]，然後按一下 [WNS/MPNS]。
+8. 在 hello [Windows 開發人員中心](http://dev.windows.com/overview)新應用程式頁面上，按一下**服務**，按一下 **推播通知**，然後按一下**WNS/MPNS**。
 
 9. 按一下 [新增通知]。
 
-10. 按一下 [空白 (快顯)] 範本，然後按一下 [確定]。
+10. 按一下 空白 (快顯) 範本，然後按一下確定。
 
 11. 輸入通知 [名稱] 和視覺化 [內容] 訊息。 然後按一下 [儲存為草稿]。
 
-12. 瀏覽至[應用程式註冊入口網站](http://apps.dev.microsoft.com)並登入。
+12. 瀏覽 toohello[應用程式註冊入口網站](http://apps.dev.microsoft.com)並登入。
 
-13. 按一下您的應用程式名稱。 記下位於 [Windows 市集] 平台設定中的 [應用程式祕密] 和 [套件安全性識別碼 (SID)]。
+13. 按一下您的應用程式名稱。 請記下 hello**應用程式密碼**密碼和 hello**封裝安全性識別碼 (SID)**位於 hello **Windows 市集**平台設定。
 
      > [AZURE.WARNING]
-    應用程式密碼與封裝 SID 是重要的安全性認證。 請勿與任何人共用這些值，或與您的應用程式一起散發密碼。
+    hello 應用程式密碼和封裝 SID 是重要的安全性認證。 請勿與任何人共用這些值，或與您的應用程式一起散發密碼。
 
 ## <a name="configure-your-notification-hub"></a>設定您的通知中樞
 [!INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
 <ol start="6">
-<li><p>選取 [通知服務]<b></b> 選項和 [Windows (WNS)]<b></b> 選項。 然後在 [安全性金鑰]<b></b> 欄位中輸入<b>應用程式密碼</b>。 輸入您在上一節中從 WNS 取得的 [套件 SID]<b></b> 值，然後按一下 [儲存]<b></b>。</p>
+<li><p>選取 hello <b>Notification Services</b>選項和 hello <b>Windows (WNS)</b>選項。 然後輸入 hello<b>應用程式密碼</b>密碼 hello<b>安全性金鑰</b>欄位。 輸入您<b>封裝 SID</b>值取自 WNS hello 前一節中，然後再按一下<b>儲存</b>。</p>
 </li>
 </ol>
 
 &emsp;&emsp;![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-configure-wns.png)
 
-現在已將您的通知中心設定成使用 WNS，而且您已擁有可用來註冊應用程式和傳送通知的連接字串。
+您的通知中樞現在是設定的 toowork 搭配 WNS，而且您擁有 hello 連接字串 tooregister 您的應用程式，並將傳送通知。
 
-## <a name="connect-your-app-to-the-notification-hub"></a>將您的應用程式連接到通知中樞
-1. 在 Visual Studio 中，以滑鼠右鍵按一下方案，然後按一下 [管理 NuGet 封裝] 。
+## <a name="connect-your-app-toohello-notification-hub"></a>連接您的應用程式 toohello 通知中樞
+1. 在 Visual Studio 中，hello 方案上按一下滑鼠右鍵，然後按一下**管理 NuGet 封裝**。
    
-    此時會顯示 [管理 NuGet 封裝]  對話方塊。
-2. 搜尋 `WindowsAzure.Messaging.Managed` ，然後按一下 [ **安裝**] 並接受使用條款。
+    這會顯示 hello**管理 NuGet 封裝** 對話方塊。
+2. 搜尋`WindowsAzure.Messaging.Managed`按一下**安裝**，並接受使用規定 hello。
    
     ![][20]
    
-    這會使用 <a href="http://nuget.org/packages/WindowsAzure.Messaging.Managed/">WindowsAzure.Messaging.Managed NuGet 封裝</a>來下載、安裝並新增適用於 Windows 的 Azure 傳訊程式庫參考。
-3. 開啟 App.xaml.cs 專案檔案，並新增下列 `using` 陳述式。 
+    這會下載、 安裝，並將適用於 Windows 的參考 toohello Azure 訊息文件庫，使用 hello <a href="http://nuget.org/packages/WindowsAzure.Messaging.Managed/">WindowsAzure.Messaging.Managed NuGet 封裝</a>。
+3. 開啟 hello App.xaml.cs 專案檔，然後加入下列 hello`using`陳述式。 
    
         using Windows.Networking.PushNotifications;
         using Microsoft.WindowsAzure.Messaging;
         using Windows.UI.Popups;
-4. 接著，在 App.xaml.cs 中，將下列 **InitNotificationsAsync** 方法定義新增至 **App** 類別：
+4. 也在 App.xaml.cs，加入 hello 下列**InitNotificationsAsync**方法定義 toohello**應用程式**類別：
    
         private async void InitNotificationsAsync()
         {
@@ -110,7 +110,7 @@ ms.lasthandoff: 08/03/2017
             var hub = new NotificationHub("< your hub name>", "<Your DefaultListenSharedAccessSignature connection string>");
             var result = await hub.RegisterNativeAsync(channel.Uri);
    
-            // Displays the registration ID so you know it was successful
+            // Displays hello registration ID so you know it was successful
             if (result.RegistrationId != null)
             {
                 var dialog = new MessageDialog("Registration successful: " + result.RegistrationId);
@@ -120,57 +120,57 @@ ms.lasthandoff: 08/03/2017
    
         }
    
-    此程式碼會從 WNS 中擷取應用程式的通道 URI，然後向您的通知中樞註冊該通道 URI。
+    這個程式碼 hello 應用程式的 hello 通道 URI 擷取 WNS，並使用通知中樞，然後註冊該通道 URI。
    
    > [!NOTE]
-   > 請務必使用出現在 Azure 入口網站中的通知中樞名稱，取代 "your hub name" 預留位置。 此外，使用您在上一節中從通知中樞的 [存取原則] 頁面取得的 **DefaultListenSharedAccessSignature** 連接字串，取代連接字串預留位置。
+   > 請確定 tooreplace hello hello 名稱出現在 hello Azure 入口網站中的 hello 通知中樞的 「 中樞名稱 」 預留位置。 也將 hello 連接字串預留位置取代 hello **DefaultListenSharedAccessSignature**連接字串，您取得的 hello**存取原則**通知中樞 頁面上一節。
    > 
    > 
-5. 在 App.xaml.cs 的 **OnLaunched** 事件處理常式頂端，將下列呼叫新增至新 **InitNotificationsAsync** 方法：
+5. 頂端的 hello hello **OnLaunched** App.xaml.cs，事件處理常式新增下列新的呼叫 toohello hello **InitNotificationsAsync**方法：
    
         InitNotificationsAsync();
    
-    這會保證每次啟動應用程式時，通道 URI 便會在通知中樞中註冊。
-6. 按 **F5** 鍵以執行應用程式。 包含註冊金鑰的快顯對話方塊隨即顯示。
+    這可確保該 hello 通道，在您每次 hello 應用程式啟動的通知中樞已註冊的 URI。
+6. 按 hello **F5**金鑰 toorun hello 應用程式。 會顯示快顯的對話方塊，其中包含 hello 登錄機碼。
 
-您的應用程式現在已能夠接收快顯通知。
+您的應用程式現在已準備好 tooreceive 快顯通知。
 
 ## <a name="send-notifications"></a>傳送通知
-在 [Azure 入口網站](https://portal.azure.com/)中使用通知中樞上的 [測試傳送] 案例 (如下列螢幕畫面所示) 來傳送通知，即可在應用程式中快速測試通知的接收。
+您可以快速測試您的應用程式中接收通知，傳送通知給 hello 以[Azure 入口網站](https://portal.azure.com/)使用 hello**測試傳送**按鈕在 hello 通知中樞內，囉 」 畫面下方所示。
 
 ![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-test-send-wns.png)
 
-推播通知通常會以後端服務傳送，例如行動服務或使用相容程式庫的 ASP.NET。 如果程式庫不適用於您的後端，也可以直接使用 REST API 來傳送通知訊息。 
+推播通知通常會以後端服務傳送，例如行動服務或使用相容程式庫的 ASP.NET。 您也可以使用 hello REST API 直接 toosend 通知訊息，如果文件庫不適用於您的後端。 
 
-在本教學課程中，為了簡單起見，我們只會在主控台應用程式 (而非後端服務) 中使用適用於通知中樞的 .NET SDK 傳送通知，示範如何測試您的用戶端應用程式。 我們建議以 [使用通知中樞將通知推播給使用者] 教學課程做為下一個步驟，以便從 ASP.NET 後端傳送通知。 不過，下列方法可用來傳送通知：
+在本教學課程中，我們將保持簡單，並只示範測試用戶端應用程式透過傳送 hello.NET SDK 使用通知中心，而不是後端服務的主控台應用程式的通知。 我們建議 hello[使用通知中樞 toopush 通知 toousers]教學課程為 hello 下一個步驟，從 ASP.NET 後端傳送通知。 不過，hello 下列方法可用來傳送通知：
 
-* **REST 介面**：您可以在使用 [REST 介面](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx)的任何後端平台上支援通知。
-* **Microsoft Azure 通知中樞 .NET SDK**︰在適用於 Visual Studio 的 NuGet 封裝管理員中，執行 [Install-Package Microsoft.Azure.NotificationHubs](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)。
-* **Node.js** ： [如何從 Node.js 使用通知中樞](notification-hubs-nodejs-push-notification-tutorial.md)。
-* **Azure Mobile Apps**：如需如何從已與通知中樞整合的 Azure Mobile App 傳送通知的範例，請參閱 [新增 Mobile Apps 的推播通知](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md)。
-* **Java/PHP**︰如需使用 REST API 傳送通知的範例，請參閱＜如何從 Java/PHP 使用通知中樞＞([Java](notification-hubs-java-push-notification-tutorial.md) | [PHP](notification-hubs-php-push-notification-tutorial.md))。
+* **REST 介面**： 您可以使用 hello 任何後端平台上支援通知[REST 介面](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx)。
+* **Microsoft Azure 通知中樞.NET SDK**: hello for Visual Studio 的 Nuget 封裝管理員，在執行[Install-package Microsoft.Azure.NotificationHubs](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)。
+* **Node.js** :[如何 toouse 通知中樞，從 Node.js](notification-hubs-nodejs-push-notification-tutorial.md)。
+* **Azure 行動應用程式**： 如需如何 toosend 通知從 Azure 行動應用程式與通知中樞整合，請參閱[行動應用程式的新增推播通知](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md)。
+* **Java / PHP**： 如需如何使用 toosend 通知 hello REST Api 的範例，請參閱 「 如何 toouse 來自 Java/PHP 的通知中心 」 ([Java](notification-hubs-java-push-notification-tutorial.md) | [PHP](notification-hubs-php-push-notification-tutorial.md))。
 
 ## <a name="optional-send-notifications-from-a-console-app"></a>(選擇性) 從主控台應用程式傳送通知
-若要使用 .NET 主控台應用程式來傳送通知，請遵循下列步驟。 
+使用.NET 主控台應用程式的 toosend 通知，請遵循下列步驟。 
 
-1. 以滑鼠右鍵按一下方案，並選取 [新增] 和 [新增專案...]，然後按一下 [Visual C#] 底下的 [Windows] 和 [主控台應用程式]，再按一下 [確定]。
+1. 以滑鼠右鍵按一下 hello 方案中，選取**新增**和**新的專案...**，，然後在**Visual C#**，按一下  **Windows**和**主控台應用程式**，然後按一下**確定**。
    
-    即會將新的 Visual C# 主控台應用程式新增到方案中。 您也可以在個別方案中進行此項作業。
+    這會將新 Visual C# 主控台應用程式 toohello 方案。 您也可以在個別方案中進行此項作業。
 
 2. 在 Visual Studio 中，依序按一下 [工具]、[NuGet 封裝管理員] 和 [封裝管理員主控台]。
    
-    這會在 Visual Studio 中顯示 [封裝管理員主控台]。
-3. 在 [封裝管理員主控台] 視窗中，將 [預設專案]  設為新的主控台應用程式專案，然後在主控台視窗中執行下列命令：
+    這是 Visual Studio 中顯示 hello Package Manager Console。
+3. 在 [hello 封裝管理員主控台] 視窗中，設定 hello**預設專案**tooyour 新主控台應用程式專案，然後在 hello 主控台視窗中，執行下列命令的 hello:
    
         Install-Package Microsoft.Azure.NotificationHubs
    
-    這會使用 <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification Hubs NuGet 封裝</a>加入對 Azure 通知中樞 SDK 的參考。
+    這會將參考 toohello Azure 通知中樞 SDK 使用 hello <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification 集線器 NuGet 封裝</a>。
    
     ![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-package-manager.png)
-4. 開啟 Program.cs 檔案，並新增下列 `using` 陳述式：
+4. 開啟 hello Program.cs 檔案並加入下列 hello`using`陳述式：
    
         using Microsoft.Azure.NotificationHubs;
-5. 在 **Program** 類別中，新增下列方法：
+5. 在 hello**程式**類別中，新增下列方法 hello:
    
         private static async void SendNotificationAsync()
         {
@@ -180,28 +180,28 @@ ms.lasthandoff: 08/03/2017
             await hub.SendWindowsNativeNotificationAsync(toast);
         }
    
-       Make sure to replace the "hub name" placeholder with the name of the notification hub that as it appears in the Azure Portal. Also, replace the connection string placeholder with the **DefaultFullSharedAccessSignature** connection string that you obtained from the **Access Policies** page of your Notification Hub in the section called "Configure your notification hub."
+       Make sure tooreplace hello "hub name" placeholder with hello name of hello notification hub that as it appears in hello Azure Portal. Also, replace hello connection string placeholder with hello **DefaultFullSharedAccessSignature** connection string that you obtained from hello **Access Policies** page of your Notification Hub in hello section called "Configure your notification hub."
    
    > [!NOTE]
-   > 請確定您使用的連接字串具有 [完整] 存取權，而非 [接聽] 存取權。 接聽存取權的字串沒有傳送通知的權限。
+   > 請確定您使用 hello 連接字串具有**完整**不存取**接聽**存取。 hello 接聽存取字串不具有權限 toosend 通知。
    > 
    > 
-6. 在 **[主要]** 方法中新增下列命令列。
+6. 加入下列行 hello hello **Main**方法：
    
          SendNotificationAsync();
          Console.ReadLine();
-7. 在 Visual Studio 中，以滑鼠右鍵按一下主控台應用程式專案，然後按一下 [設定為啟始專案]，將它設為啟始專案。 然後按 **F5** 鍵執行應用程式。
+7. 在 Visual Studio 中的 hello 主控台應用程式專案上按一下滑鼠右鍵，然後按一下**設定為啟始專案**tooset 它為 hello 啟始專案。 然後按 hello **F5**金鑰 toorun hello 應用程式。
    
-    您將會在所有註冊裝置上收到快顯通知。 按一下或點選快顯橫幅即會載入應用程式。
+    您將會在所有註冊裝置上收到快顯通知。 按一下或點選 hello 快顯通知橫幅載入 hello 應用程式。
 
-您可以在 MSDN 上的[快顯目錄]、[圖格目錄]和[徽章概觀]主題中找到所有支援的承載。
+您可以在 hello 找到所有支援的 hello 裝載[快顯通知目錄]，[磚目錄]，和[徽章概觀]MSDN 上的主題。
 
 ## <a name="next-steps"></a>後續步驟
-在此簡單範例中，您會使用入口網站或主控台應用程式，將廣播通知傳送到您的所有 Windows 裝置。 我們建議以 [使用通知中樞將通知推播給使用者] 教學課程做為下一個步驟。 它會示範如何使用標記以特定使用者為目標，從 ASP.NET 後端傳送通知。
+在這個簡單的範例中，您傳送廣播的通知 tooall hello 入口網站或主控台應用程式使用 Windows 裝置。 我們建議 hello[使用通知中樞 toopush 通知 toousers] hello 下一個步驟的教學課程。 它會顯示如何從 ASP.NET 後端使用 toosend 通知標記 tootarget 特定使用者。
 
-如果您想要按興趣群組分隔使用者，請參閱 [使用通知中心傳送即時新聞]。 
+如果您希望 toosegment 使用者感興趣的群組，請參閱[使用通知中樞 toosend 最新消息]。 
 
-若要深入了解通知中樞的一般資訊，請參閱 [通知中樞指引](notification-hubs-push-notification-overview.md)。
+toolearn 通知中樞的相關詳細資訊，請參閱[通知中樞指引](notification-hubs-push-notification-overview.md)。
 
 <!-- Images. -->
 [13]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-create-console-app.png
@@ -211,9 +211,9 @@ ms.lasthandoff: 08/03/2017
 
 <!-- URLs. -->
 
-[使用通知中樞將通知推播給使用者]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
-[使用通知中心傳送即時新聞]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
+[使用通知中樞 toopush 通知 toousers]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
+[使用通知中樞 toosend 最新消息]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
 
-[快顯目錄]: http://msdn.microsoft.com/library/windows/apps/hh761494.aspx
-[圖格目錄]: http://msdn.microsoft.com/library/windows/apps/hh761491.aspx
+[快顯通知目錄]: http://msdn.microsoft.com/library/windows/apps/hh761494.aspx
+[磚目錄]: http://msdn.microsoft.com/library/windows/apps/hh761491.aspx
 [徽章概觀]: http://msdn.microsoft.com/library/windows/apps/hh779719.aspx

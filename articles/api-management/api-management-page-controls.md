@@ -1,6 +1,6 @@
 ---
-title: "Azure API 管理的頁面控制項 | Microsoft Docs"
-description: "了解在 Azure API 管理的開發人員入口網站範本中可使用的頁面控制項。"
+title: "aaaAzure API 管理頁面控制項 |Microsoft 文件"
+description: "深入了解適用於在 Azure API 管理開發人員入口網站範本中所使用的 hello 頁面控制項。"
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 1ce0657aebe34d093ae94281de208c929067742a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1a16a6fce197c0a2e14807ac21e81a9a73b515b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-api-management-page-controls"></a>Azure API 管理的頁面控制項
-Azure API 管理提供下列可在開發人員入口網站範本中使用的控制項。  
+Azure API 管理提供 hello hello 開發人員入口網站範本中所使用的控制項。  
   
- 若要使用控制項，請將它放在開發人員入口網站範本中所要的位置。 某些控制項 (例如 [app-actions](#app-actions) 控制項) 具有參數，如下列範例所示。  
+ toouse 控制項，將它放在預期的 hello 位置 hello 開發人員入口網站範本中。 某些控制項，例如 hello[應用程式動作](#app-actions)控制項，具有參數，hello 下列範例所示。  
   
 ```xml  
 <app-actions params="{ appId: '{{app.id}}' }"></app-actions>  
 ```  
   
- 參數的值會以範本資料模型組件的形式來傳入。 大部分情況下，您只要在針對每個控制項所提供的範例中貼上，即可讓其正確運作。 如需參數值的詳細資訊，請參閱控制項可能使用所在之各個範本的資料模型區段。  
+ hello hello 參數值傳入 hello 範本的 hello 資料模型的一部分。 在大部分情況下，您可以只要貼在 hello 範例的每個控制項為它提供 toowork 正確。 如需有關 hello 參數值的詳細資訊，您可以看到每個範本可能可使用之控制項的 hello 資料模型區段。  
   
- 如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。  
+ 如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。  
   
 ## <a name="developer-portal-template-page-controls"></a>開發人員入口網站範本頁面控制項  
   
@@ -52,7 +52,7 @@ Azure API 管理提供下列可在開發人員入口網站範本中使用的控�
 -   [subscription-cancel](#subscription-cancel)  
   
 ##  <a name="app-actions"></a>app-actions  
- `app-actions` 控制項會提供使用者介面，以便與開發人員入口網站中 [使用者設定檔] 頁面上的應用程式互動。  
+ hello`app-actions`控制項可提供使用者介面與 hello 開發人員入口網站中的 hello 使用者設定檔頁面上的應用程式互動。  
   
  ![app&#45;actions 控制項](./media/api-management-page-controls/APIM-app-actions-control.png "APIM app-actions 控制項")  
   
@@ -66,15 +66,15 @@ Azure API 管理提供下列可在開發人員入口網站範本中使用的控�
   
 |參數|說明|  
 |---------------|-----------------|  
-|appId|應用程式的識別碼。|  
+|appId|hello hello 應用程式識別碼。|  
   
 ### <a name="developer-portal-templates"></a>開發人員入口網站範本  
- `app-actions` 控制項可用於下列開發人員入口網站範本。  
+ hello `app-actions` hello 遵循開發人員入口網站的範本可用來控制。  
   
 -   [應用程式](api-management-user-profile-templates.md#Applications)  
   
 ##  <a name="basic-signin"></a>basic-signin  
- `basic-signin` 控制項會提供用來在開發人員入口網站的登入頁面中收集使用者登入資訊的控制項。  
+ hello`basic-signin`控制項提供的控制項，如收集的使用者登入資訊在 hello 登入 hello 開發人員入口網站中的頁面。  
   
  ![basic&#45;signin 控制項](./media/api-management-page-controls/APIM-basic-signin-control.png "APIM basic-signin 控制項")  
   
@@ -88,12 +88,12 @@ Azure API 管理提供下列可在開發人員入口網站範本中使用的控�
  無。  
   
 ### <a name="developer-portal-templates"></a>開發人員入口網站範本  
- `basic-signin` 控制項可用於下列開發人員入口網站範本。  
+ hello `basic-signin` hello 遵循開發人員入口網站的範本可用來控制。  
   
 -   [登入](api-management-page-templates.md#SignIn)  
   
 ##  <a name="paging-control"></a>paging-control  
- `paging-control` 會在顯示項目清單的開發人員入口網站頁面上提供分頁功能。  
+ hello`paging-control`提供開發人員入口網站頁面顯示項目清單的分頁功能。  
   
  ![分頁控制項](./media/api-management-page-controls/APIM-paging-control.png "APIM 分頁控制項")  
   
@@ -107,7 +107,7 @@ Azure API 管理提供下列可在開發人員入口網站範本中使用的控�
  無。  
   
 ### <a name="developer-portal-templates"></a>開發人員入口網站範本  
- `paging-control` 控制項可用於下列開發人員入口網站範本。  
+ hello `paging-control` hello 遵循開發人員入口網站的範本可用來控制。  
   
 -   [API 清單](api-management-api-templates.md#APIList)  
   
@@ -116,7 +116,7 @@ Azure API 管理提供下列可在開發人員入口網站範本中使用的控�
 -   [產品清單](api-management-product-templates.md#ProductList)  
   
 ##  <a name="providers"></a>providers  
- `providers` 控制項會提供用來在開發人員入口網站的登入頁面中選取驗證提供者的控制項。  
+ hello`providers`控制項提供的驗證提供者在 hello 登入 hello 開發人員入口網站中的頁面中選取的控制項。  
   
  ![提供者控制項](./media/api-management-page-controls/APIM-providers-control.png "APIM 提供者控制項")  
   
@@ -130,12 +130,12 @@ Azure API 管理提供下列可在開發人員入口網站範本中使用的控�
  無。  
   
 ### <a name="developer-portal-templates"></a>開發人員入口網站範本  
- `providers` 控制項可用於下列開發人員入口網站範本。  
+ hello `providers` hello 遵循開發人員入口網站的範本可用來控制。  
   
 -   [登入](api-management-page-templates.md#SignIn)  
   
 ##  <a name="search-control"></a>search-control  
- `search-control` 會在顯示項目清單的開發人員入口網站頁面上提供搜尋功能。  
+ hello`search-control`提供開發人員入口網站頁面顯示項目清單的搜尋功能。  
   
  ![搜尋控制項](./media/api-management-page-controls/APIM-search-control.png "APIM 搜尋控制項")  
   
@@ -149,14 +149,14 @@ Azure API 管理提供下列可在開發人員入口網站範本中使用的控�
  無。  
   
 ### <a name="developer-portal-templates"></a>開發人員入口網站範本  
- `search-control` 控制項可用於下列開發人員入口網站範本。  
+ hello `search-control` hello 遵循開發人員入口網站的範本可用來控制。  
   
 -   [API 清單](api-management-api-templates.md#APIList)  
   
 -   [產品清單](api-management-product-templates.md#ProductList)  
   
 ##  <a name="sign-up"></a>sign-up  
- `sign-up` 控制項會提供用來在開發人員入口網站的註冊頁面中收集使用者設定檔資訊的控制項。  
+ hello`sign-up`控制項提供控制項，以收集 hello 註冊 頁面中 hello 開發人員入口網站中的使用者設定檔資訊。  
   
  ![註冊控制項](./media/api-management-page-controls/APIM-sign-up-control.png "APIM 註冊控制項")  
   
@@ -170,12 +170,12 @@ Azure API 管理提供下列可在開發人員入口網站範本中使用的控�
  無。  
   
 ### <a name="developer-portal-templates"></a>開發人員入口網站範本  
- `sign-up` 控制項可用於下列開發人員入口網站範本。  
+ hello `sign-up` hello 遵循開發人員入口網站的範本可用來控制。  
   
 -   [註冊](api-management-page-templates.md#SignUp)  
   
 ##  <a name="subscribe-button"></a>subscribe-button  
- `subscribe-button` 會提供用來為使用者訂閱產品的控制項。  
+ hello`subscribe-button`訂閱使用者 tooa 產品提供的控制項。  
   
  ![subscribe&#45;button 控制項](./media/api-management-page-controls/APIM-subscribe-button-control.png "APIM subscribe-button 控制項")  
   
@@ -189,12 +189,12 @@ Azure API 管理提供下列可在開發人員入口網站範本中使用的控�
  無。  
   
 ### <a name="developer-portal-templates"></a>開發人員入口網站範本  
- `subscribe-button` 控制項可用於下列開發人員入口網站範本。  
+ hello `subscribe-button` hello 遵循開發人員入口網站的範本可用來控制。  
   
 -   [產品](api-management-product-templates.md#Product)  
   
 ##  <a name="subscription-cancel"></a>subscription-cancel  
- `subscription-cancel` 控制項會提供可在開發人員入口網站的 [使用者設定檔] 頁面中取消產品訂閱的控制項。  
+ hello`subscription-cancel`控制項取消訂閱 tooa 產品 hello 開發人員入口網站中的 hello 使用者設定檔頁面中提供的控制項。  
   
  ![subscription&#45;cancel 控制項](./media/api-management-page-controls/APIM-subscription-cancel-control.png "APIM subscription-cancel 控制項")  
   
@@ -210,13 +210,13 @@ Azure API 管理提供下列可在開發人員入口網站範本中使用的控�
   
 |參數|說明|  
 |---------------|-----------------|  
-|subscriptionId|要取消之訂用帳戶的識別碼。|  
-|cancelUrl|訂用帳戶取消 URL。|  
+|subscriptionId|hello 訂用帳戶 toocancel hello 識別碼。|  
+|cancelUrl|hello 訂用帳戶取消 URL。|  
   
 ### <a name="developer-portal-templates"></a>開發人員入口網站範本  
- `subscription-cancel` 控制項可用於下列開發人員入口網站範本。  
+ hello `subscription-cancel` hello 遵循開發人員入口網站的範本可用來控制。  
   
 -   [產品](api-management-product-templates.md#Product)
 
 ## <a name="next-steps"></a>後續步驟
-如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](api-management-developer-portal-templates.md)。
+如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](api-management-developer-portal-templates.md)。

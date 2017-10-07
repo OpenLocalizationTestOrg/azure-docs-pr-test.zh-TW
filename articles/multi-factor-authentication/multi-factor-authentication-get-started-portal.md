@@ -1,6 +1,6 @@
 ---
-title: "Azure MFA Server 使用者入口網站 | Microsoft Docs"
-description: "這是說明如何開始使用 Azure MFA 和使用者入口網站的 Azure Multi-Factor Authentication 頁面。"
+title: "Azure MFA server aaaUser 入口網站 |Microsoft 文件"
+description: "這是描述 tooget 如何開始使用 Azure MFA 和 hello 使用者入口網站的 hello Azure 多因素驗證頁面。"
 services: multi-factor-authentication
 documentationcenter: 
 author: MicrosoftGuyJFlo
@@ -15,170 +15,170 @@ ms.date: 08/23/2017
 ms.author: joflore
 ms.reviewer: alexwe
 ms.custom: it-pro
-ms.openlocfilehash: a4eb403d3d21b7dbe63c2645b488a7bddb6d39fd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0e36644c3d780249fb98d5da654e9d267c63561a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="user-portal-for-the-azure-multi-factor-authentication-server"></a>Azure Multi-Factor Authentication Server 的使用者入口網站
+# <a name="user-portal-for-hello-azure-multi-factor-authentication-server"></a>Hello Azure Multi-factor Authentication Server 使用者入口網站
 
-使用者入口網站是一個 IIS 網站，可讓使用者註冊 Azure Multi-Factor Authentication (MFA) 及維護自己的帳戶。 使用者可以變更電話號碼、變更 PIN，或選擇在下次登入時略過雙步驟驗證。
+hello 使用者入口網站是一個 IIS 網站，允許使用者 tooenroll Azure Multi-factor Authentication (MFA)，並維護自己的帳戶。 使用者可能會變更其電話號碼、 變更 PIN，或選擇 toobypass 他們下一步的登入期間的雙步驟驗證。
 
-使用者可以使用一般的使用者名稱和密碼登入使用者入口網站，然後完成雙步驟驗證通話或回答安全性問題，以完成驗證。 如果允許使用者註冊，使用者可以在第一次登入使用者入口網站時設定電話號碼和 PIN。
+使用者登入 toohello 一般的使用者名稱與密碼的使用者入口網站，然後完成兩步驟驗證通話或回答安全性問題 toocomplete 驗證。 如果允許使用者註冊，使用者設定其電話號碼和 PIN hello 第一次登入時 toohello 使用者入口網站中。
 
-您可以設定使用者入口網站管理員，並授與新增使用者及更新現有使用者的權限。
+使用者入口網站管理員可以設定，並授與權限 tooadd 新的使用者及更新現有使用者。
 
-視您的環境而定，建議您在與 Azure Multi-factor Authentication Server 相同的伺服器，或在另一個網際網路對向的伺服器上部署使用者入口網站。
+根據您的環境中，您可以在 hello toodeploy hello 使用者入口網站相同的伺服器以 Azure Multi-factor Authentication Server 或在另一個網際網路對向伺服器上。
 
 ![MFA 使用者入口網站](./media/multi-factor-authentication-get-started-portal/portal.png)
 
 > [!NOTE]
-> 使用者入口網站只適用於 Multi-Factor Authentication Server。 如果您在雲端中使用 Multi-Factor Authentication，請讓使用者參閱[設定您的帳戶進行雙步驟驗證](./end-user/multi-factor-authentication-end-user-first-time.md)或[管理您的設定進行雙步驟驗證](./end-user/multi-factor-authentication-end-user-manage-settings.md)。
+> hello 使用者入口網站才可使用 Multi-factor Authentication Server。 如果您使用多重要素驗證 hello 雲端中，請參閱使用者 toohello[安裝您的帳戶進行兩步驟驗證](./end-user/multi-factor-authentication-end-user-first-time.md)或[管理您的設定進行兩步驟驗證](./end-user/multi-factor-authentication-end-user-manage-settings.md)。
 
-## <a name="install-the-web-service-sdk"></a>安裝 Web 服務 SDK
+## <a name="install-hello-web-service-sdk"></a>安裝 hello web 服務 SDK
 
-在任一案例中，如果 Azure Multi-Factor Authentication (MFA) Server 上尚**未**安裝 Azure Multi-Factor Authentication Web 服務 SDK，請完成後續步驟。
+在任一案例中，如果 hello Azure Multi-factor Authentication Web 服務 SDK 是**不**hello Azure Multi-factor Authentication (MFA) 伺服器上已安裝，完成 hello 步驟後面。
 
-1. 開啟 Multi-Factor Authentication Server 主控台。
-2. 移至 [Web 服務 SDK] 並選取 [安裝 Web 服務 SDK]。
-3. 除非基於某種原因而需要變更預設值，否則使用預設值來完成安裝。
-4. 將 SSL 憑證繫結至 IIS 中的網站。
+1. 開啟 hello Multi-factor Authentication Server 主控台。
+2. 移 toohello **Web 服務 SDK**選取**安裝 Web 服務 SDK**。
+3. 使用 hello 預設值，除非您需要 toochange 完成 hello 安裝它們，因為某些原因。
+4. 繫結在 IIS 中的 SSL 憑證 toohello 站台。
 
-如果您有關於在 IIS 伺服器上設定 SSL 憑證的問題，請參閱[如何在 IIS 上設定 SSL](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis) 一文。
+如果您有關於 IIS 伺服器上設定 SSL 憑證問題，請參閱 hello 文章[如何 tooSet 上 IIS 的 SSL](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)。
 
-Web 服務 SDK 必須受到 SSL 憑證保護。 自我簽署憑證適用於這項用途。 請將此憑證匯入到「使用者入口網站」Web 伺服器上 [本機電腦] 帳戶的 [受信任的根憑證授權單位] 存放區中，這樣它才會在起始 SSL 連線時信任該憑證。
+hello Web 服務 SDK 必須使用 SSL 憑證保護。 自我簽署憑證適用於這項用途。 憑證匯入 hello hello hello hello 使用者入口網站網頁伺服器上的本機電腦帳戶的 「 信任的根憑證授權單位 存放區，以便起始 hello SSL 連線時信任該憑證。
 
 ![MFA Server 組態設定 Web 服務 SDK](./media/multi-factor-authentication-get-started-portal/sdk.png)
 
-## <a name="deploy-the-user-portal-on-the-same-server-as-the-azure-multi-factor-authentication-server"></a>在與 Azure Multi-Factor Authentication Server 相同的伺服器上部署使用者入口網站
+## <a name="deploy-hello-user-portal-on-hello-same-server-as-hello-azure-multi-factor-authentication-server"></a>部署在 hello hello 使用者入口網站相同的 hello Azure Multi-factor Authentication Server 伺服器
 
-若要在與 Azure Multi-Factor Authentication Server **相同的伺服器**上安裝使用者入口網站，您必須滿足以下必要條件：
+hello 下列必要條件是必要的 tooinstall hello 使用者入口網站上 hello**相同伺服器**hello Azure Multi-factor Authentication Server 如下：
 
 * IIS，包括 ASP.NET 及 IIS 6 metabase 相容性 (適用於 IIS 7 或更高版本)
-* 具有電腦和網域系統管理員權限的帳戶 (如果適用)。 帳戶需有建立 Active Directory 安全性群組的權限。
-* 使用 SSL 憑證保護使用者入口網站。
-* 使用 SSL 憑證保護 Azure Multi-Factor Authentication Web 服務 SDK。
+* 具有 hello 電腦及網域，如果有適用的系統管理員權限的帳戶。 hello 帳戶需要權限 toocreate Active Directory 安全性群組。
+* 安全 hello 使用者入口網站的 SSL 憑證。
+* 使用 SSL 憑證的安全 hello Azure Multi-factor Authentication Web 服務 SDK。
 
-若要部署使用者入口網站，請依照下列步驟執行︰
+toodeploy hello 使用者入口網站中，依照下列步驟：
 
-1. 開啟 Azure Multi-Factor Authentication Server 主控台，按一下左側功能表中的 [使用者入口網站] 圖示，然後按一下 [安裝使用者入口網站]。
-2. 除非基於某種原因而需要變更預設值，否則使用預設值來完成安裝。
-3. 將 SSL 憑證繫結至 IIS 中的網站
+1. 開啟 hello Azure Multi-factor Authentication Server 主控台中，按一下 hello**使用者入口網站**圖示 hello 保留功能表，然後按一下 **安裝使用者入口網站**。
+2. 使用 hello 預設值，除非您需要 toochange 完成 hello 安裝它們，因為某些原因。
+3. 在 IIS 中的 SSL 憑證 toohello 站台繫結
 
    > [!NOTE]
    > 此 SSL 憑證通常是公開簽署的 SSL 憑證。
 
-4. 從任何電腦開啟網頁瀏覽器，並瀏覽至安裝使用者入口網站的 URL (例如：https://mfa.contoso.com/MultiFactorAuth)。 確定未出現任何憑證警告或錯誤。
+4. 從任何電腦開啟網頁瀏覽器並瀏覽 toohello 安裝 hello 使用者入口網站的 URL (範例： https://mfa.contoso.com/MultiFactorAuth)。 確定未出現任何憑證警告或錯誤。
 
 ![MFA Server 使用者入口網站安裝](./media/multi-factor-authentication-get-started-portal/install.png)
 
-如果您有關於在 IIS 伺服器上設定 SSL 憑證的問題，請參閱[如何在 IIS 上設定 SSL](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis) 一文。
+如果您有關於 IIS 伺服器上設定 SSL 憑證問題，請參閱 hello 文章[如何 tooSet 上 IIS 的 SSL](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)。
 
-## <a name="deploy-the-user-portal-on-a-separate-server"></a>在個別的伺服器上部署使用者入口網站
+## <a name="deploy-hello-user-portal-on-a-separate-server"></a>部署一部伺服器上的 hello 使用者入口網站
 
-如果 Azure Multi-Factor Authentication Server 執行所在的伺服器不是網際網路對向，您應該在**個別的網際網路對向伺服器**上安裝使用者入口網站。
+如果正在 Azure Multi-factor Authentication Server 的 hello 伺服器不是網際網路對向，您應該安裝 hello 使用者入口網站上**個別的網際網路對向伺服器**。
 
-如果您的組織使用 Microsoft Authenticator 應用程式作為其中一種驗證方法，並想要在自己的伺服器上部署使用者入口網站，請完成下列需求︰
+如果組織所使用 hello Microsoft Authenticator 應用程式做為其中一個 hello 驗證方法，並在它自己的伺服器上的 toodeploy hello 使用者入口網站，請完成下列需求的 hello:
 
-* 使用 Azure Multi-Factor Authentication Server v6.0 或更高版本。
-* 在執行 Microsoft Internet Information Services (IIS) 6.x 或更高版本的網際網路對向網頁伺服器上安裝使用者入口網站。
-* 在使用 IIS 6.x 時，請確定 ASP.NET v2.0.50727 已安裝、註冊並設定為 [已允許]。
+* 使用 6.0 版或更高版本的 hello Azure Multi-factor Authentication Server。
+* 安裝 hello 使用者入口網站上的網際網路對向網頁伺服器執行 Microsoft internet Information Services (IIS) 6.x 或更高版本。
+* 當使用 IIS 6.x 時，請確定 ASP.NET 2.0.50727 版已安裝、 登錄，並設定太**允許**。
 * 使用 IIS 7.x 或更高版本時，包括基本驗證、ASP.NET 和 IIS 6 Metabase 相容性。
-* 使用 SSL 憑證保護使用者入口網站。
-* 使用 SSL 憑證保護 Azure Multi-Factor Authentication Web 服務 SDK。
-* 確保使用者入口網站可以透過 SSL 連線至 Azure Multi-Factor Authentication Web 服務 SDK。
-* 確保使用者入口網站可以使用 "PhoneFactor Admins" 安全性群組中服務帳戶的認證來驗證 Azure Multi-Factor Authentication Web 服務 SDK。 如果 Azure Multi-Factor Authentication Server 在加入網域的伺服器上執行，此服務帳戶和群組應存在於 Active Directory 中。 如果伺服器未加入網域，此服務帳戶和群組會存在於 Azure Multi-Factor Authentication Server 本機。
+* 安全 hello 使用者入口網站的 SSL 憑證。
+* 使用 SSL 憑證的安全 hello Azure Multi-factor Authentication Web 服務 SDK。
+* 確定該 hello 使用者入口網站可透過 SSL 連線 toohello Azure Multi-factor Authentication Web 服務 SDK。
+* 請確定該 hello 使用者入口網站可以驗證 toohello Azure Multi-factor Authentication Web 服務 SDK 使用 hello"PhoneFactor Admins"安全性群組中的 hello 的服務帳戶的認證。 此服務帳戶和群組應該存在於 Active Directory 如果 hello Azure Multi-factor Authentication Server 在已加入網域的伺服器上執行。 此服務帳戶和群組存在於本機 hello Azure Multi-factor Authentication Server 上如果不是聯結的 tooa 網域。
 
-若要將使用者入口網站安裝在 Azure Multi-Factor Authentication Server 以外的伺服器上，必須進行下列步驟：
+Hello Azure Multi-factor Authentication Server 以外的伺服器上安裝 hello 使用者入口網站需要 hello 下列步驟：
 
-1. **在 MFA Server 上**，瀏覽至安裝路徑 (例如：C:\Program Files\Multi-Factor Authentication Server)，然後將 **MultiFactorAuthenticationUserPortalSetup64** 檔案複製到您要安裝它的網際網路對向伺服器可以存取的位置。
-2. **在網際網路對向網頁伺服器上**，以系統管理員身分執行 MultiFactorAuthenticationUserPortalSetup64 安裝檔案、視需要變更網站，以及將虛擬目錄變更為簡短名稱 (如果您想要)。
-3. 將 SSL 憑證繫結至 IIS 中的網站。
+1. **在 hello MFA Server**，瀏覽 toohello 安裝路徑 (範例： C:\Program files\multi-factor Authentication Server)，並複製 hello 檔案**MultiFactorAuthenticationUserPortalSetup64** tooa 位置您要安裝它的可存取 toohello 網際網路對向伺服器。
+2. **Hello 網際網路對向網頁伺服器上**、 系統管理員身分執行 hello MultiFactorAuthenticationUserPortalSetup64 安裝檔案，如有需要，變更 hello 站台和如果您想要變更 hello 虛擬目錄 tooa 簡短名稱。
+3. 繫結在 IIS 中的 SSL 憑證 toohello 站台。
 
    > [!NOTE]
    > 此 SSL 憑證通常是公開簽署的 SSL 憑證。
 
-4. 瀏覽至 **C:\inetpub\wwwroot\MultiFactorAuth**
-5. 在 [記事本] 中編輯 Web.Config 檔案
+4. 瀏覽過**C:\inetpub\wwwroot\MultiFactorAuth**
+5. 編輯 [記事本] 中的 hello Web.Config 檔案
 
-    * 找出 **"USE_WEB_SERVICE_SDK"** 機碼並將 **value="false"** 變更為 **value="true"**
-    * 找出 **"WEB_SERVICE_SDK_AUTHENTICATION_USERNAME"** 機碼並將 **value=""** 變更為 **value="DOMAIN\User"**，其中的 DOMAIN\User 是屬於 "PhoneFactor Admins" 群組的服務帳戶。
-    * 找出 **"WEB_SERVICE_SDK_AUTHENTICATION_PASSWORD"** 機碼並將 **value=""** 變更為 **value="Password"**，其中的 Password 是在前一行中輸入之服務帳戶的密碼。
-    * 找出 **https://www.contoso.com/MultiFactorAuthWebServiceSdk/PfWsSdk.asmx** 值並將此預留位置 URL 變更為我們在步驟 2 中安裝的 Web 服務 SDK URL。
-    * 儲存 Web.Config 檔案並關閉 [記事本]。
+    * 尋找 hello 金鑰**"USE_WEB_SERVICE_SDK"**並變更**值 ="false"**太**值 ="true"**
+    * 尋找 hello 金鑰**"WEB_SERVICE_SDK_AUTHENTICATION_USERNAME"**並變更**值 =""**太**值 = 「 網域 \ 使用者 」**其中網域 \ 使用者是屬於的服務帳戶「 PhoneFactor 系統管理員 」 群組。
+    * 尋找 hello 金鑰**"WEB_SERVICE_SDK_AUTHENTICATION_PASSWORD"**並變更**值 =""**太**值 ="Password"**密碼所在 hello 服務的 hello 密碼在 hello 前一行中輸入的帳戶。
+    * 找出 hello 值**https://www.contoso.com/MultiFactorAuthWebServiceSdk/PfWsSdk.asmx**及變更此預留位置 URL toohello 我們在步驟 2 中安裝 Web 服務 SDK URL。
+    * 儲存 hello Web.Config 檔案並關閉 [記事本]。
 
-6. 從任何電腦開啟網頁瀏覽器，並瀏覽至安裝使用者入口網站的 URL (例如：https://mfa.contoso.com/MultiFactorAuth)。 確定未出現任何憑證警告或錯誤。
+6. 從任何電腦開啟網頁瀏覽器並瀏覽 toohello 安裝 hello 使用者入口網站的 URL (範例： https://mfa.contoso.com/MultiFactorAuth)。 確定未出現任何憑證警告或錯誤。
 
-如果您有關於在 IIS 伺服器上設定 SSL 憑證的問題，請參閱[如何在 IIS 上設定 SSL](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis) 一文。
+如果您有關於 IIS 伺服器上設定 SSL 憑證問題，請參閱 hello 文章[如何 tooSet 上 IIS 的 SSL](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)。
 
-## <a name="configure-user-portal-settings-in-the-azure-multi-factor-authentication-server"></a>在 Azure Multi-Factor Authentication Server 中進行使用者入口網站設定
+## <a name="configure-user-portal-settings-in-hello-azure-multi-factor-authentication-server"></a>在 hello Azure Multi-factor Authentication Server 中設定使用者入口網站設定
 
-既然使用者入口網站已安裝完成，您需要設定 Azure Multi-Factor Authentication Server，使其與入口網站搭配運作。
+現在已安裝該 hello 使用者入口網站，您會需要 tooconfigure hello Azure Multi-factor Authentication Server toowork hello 入口網站。
 
-1. 在 Azure Multi-Factor Authentication Server 主控台中，按一下 [使用者入口網站] 圖示。 在 [設定] 索引標籤上，於 [使用者入口網站 URL] 文字方塊中輸入使用者入口網站的 URL。 如果電子郵件功能已啟用，將使用者匯入 Azure Multi-Factor Authentication Server 時，系統會將此 URL 包含在傳送給使用者的電子郵件中。
-2. 選擇要在使用者入口網站中使用的設定。 例如，如果您允許使用者選擇其驗證方法，請確認 [允許使用者選取方法] 連同他們可以選擇的方法已核取。
-3. 在 [系統管理員] 索引標籤上定義誰應該是系統管理員。您可以使用 [新增]/[編輯] 方塊中的核取方塊和下拉式清單，建立細微的系統管理權限。
+1. 在 hello Azure Multi-factor Authentication Server 主控台的 hello**使用者入口網站**圖示。 Hello 設定 索引標籤中，輸入 hello URL toohello 使用者入口網站中 hello**使用者入口網站 URL**文字方塊。 如果已啟用電子郵件功能，此 URL 隨附於匯入 hello Azure Multi-factor Authentication Server 時，所傳送 toousers hello 電子郵件。
+2. 選擇 hello 設定您想 toouse hello 使用者入口網站中的。 例如，如果允許使用者 toochoose 其驗證方法，請確定所**tooselect 方法可讓使用者**勾選，以及他們可以選擇從 hello 方法。
+3. 定義誰應該是系統管理員在 hello**管理員** 索引標籤。您可以建立更細微的系統管理權限，使用 hello 新增/編輯方塊中的 hello 核取方塊和下拉式清單。
 
 選用組態：
-- **安全性問題** - 定義您的環境核准的安全性問題及其顯示語言。
+- **安全性問題**-定義核准的安全性問題，它們會出現在您的環境和 hello 的語言。
 - **通過的工作階段** - 使用 MFA，設定使用者入口網站與表單架構網站的整合。
-- **受信任的 IP** - 允許使用者從受信任的 IP 清單或範圍驗證時，略過 MFA。
+- **可信任 Ip** -允許使用者 tooskip MFA，從清單中的驗證信任的 Ip 或範圍時。
 
 ![MFA Server 使用者入口網站組態](./media/multi-factor-authentication-get-started-portal/config.png)
 
-Azure Multi-Factor Authentication 伺服器為使用者入口網站提供數個選項。 下表提供這些選項及其用途說明的清單。
+Azure Multi-factor Authentication server 會提供幾個選項用於 hello 使用者入口網站。 hello 下表提供一份這些選項的說明來進行。
 
 | 使用者入口網站設定 | 說明 |
 |:--- |:--- |
-| 使用者入口網站 URL | 輸入裝載入口網站的 URL。 |
-| 主要驗證 | 指定登入入口網站時所使用的驗證類型。 Windows、Radius 或 LDAP 驗證。 |
-| 允許使用者登入 | 可讓使用者在使用者入口網站的登入頁面輸入使用者名稱和密碼。 如果未選取此選項，則方塊會呈現灰色。 |
-| 允許使用者註冊 | 在設定畫面中提示使用者輸入其他資訊，例如電話號碼，以允許使用者註冊 Multi-Factor Authentication。 [提示輸入備用電話] 可讓使用者指定次要電話號碼。 [提示輸入協力廠商 OATH 權杖] 可讓使用者指定協力廠商 OATH 權杖。 |
-| 允許使用者起始單次許可 | 允許使用者起始單次許可。 如果使用者設定此選項，則會在使用者下次登入時生效。 [提示輸入許可秒數] 提供方塊讓使用者變更預設的 300 秒。 否則 300 秒就很適合單次許可。 |
-| 允許使用者選取方法 | 可讓使用者指定其主要連絡方法。 此方法可以是通話、簡訊、行動裝置應用程式或 OATH 權杖。 |
-| 允許使用者選取語言 | 允許使用者變更用於通話、簡訊、行動應用程式或 OATH 權杖的語言。 |
-| 允許使用者啟用行動應用程式 | 可讓使用者產生啟用代碼，以完成伺服器使用的行動應用程式啟動程序。  您也可以設定允許使用者在其中啟動應用程式的裝置數目 (1 到 10)。 |
-| 使用遞補用的安全性問題 | 允許在雙步驟驗證失敗時使用安全性問題。 您可以指定必須正確回答的安全性問題數目。 |
-| 允許使用者關聯協力廠商 OATH 權杖 | 可讓使用者指定協力廠商 OATH 權杖。 |
-| 使用遞補用的 OATH 權杖 | 允許在雙步驟驗證失敗時使用 OATH 權杖。 您也可以指定工作階段逾時 (以分鐘為單位)。 |
-| 啟用記錄 | 在使用者入口網站啟用記錄。 記錄檔位於：C:\Program Files\Multi-Factor Authentication Server\Logs。 |
+| 使用者入口網站 URL | 輸入 hello URL 裝載 hello 入口網站位置。 |
+| 主要驗證 | 登入 toohello 入口網站時，請指定驗證 toouse hello 類型。 Windows、Radius 或 LDAP 驗證。 |
+| 允許在使用者 toolog | Hello 登入頁面上 hello 使用者入口網站允許使用者 tooenter 使用者名稱和密碼。 如果未選取此選項，hello 方塊呈現灰色。 |
+| 允許使用者註冊 | 允許在 Multi-factor Authentication 使用者 tooenroll 加以採用 tooa 安裝畫面提示他們輸入其他資訊，例如電話號碼。 提示輸入備用電話，可讓使用者 toospecify 次要的電話號碼。 提示輸入協力廠商 OATH 權杖，允許使用者 toospecify 協力廠商 OATH 權杖。 |
+| 允許使用者 tooinitiate 單次許可 | 允許使用者 tooinitiate 單次許可。 如果使用者設定這個選項，它會影響 hello hello 使用者登入的下一次。 提示輸入許可秒 hello 使用者提供的方塊，讓他們可以變更 hello 預設值是 300 秒。 否則，hello 單次許可只會為 300 秒。 |
+| 允許使用者 tooselect 方法 | 允許使用者 toospecify 其主要連絡方法。 此方法可以是通話、簡訊、行動裝置應用程式或 OATH 權杖。 |
+| 允許使用者 tooselect 語言 | 允許使用者使用 hello 通話、 簡訊、 行動裝置的應用程式或 OATH 權杖的 toochange hello 語言。 |
+| 允許使用者 tooactivate 行動裝置應用程式 | 讓使用者 toogenerate 啟用程式碼 toocomplete hello 行動裝置應用程式啟用程序與 hello 伺服器搭配使用。  您也可以設定的裝置啟用的 hello 數目 hello 應用程式上、 介於 1 到 10 之間。 |
+| 使用遞補用的安全性問題 | 允許在雙步驟驗證失敗時使用安全性問題。 您可以指定 hello，必須成功回答安全性問題數目。 |
+| 允許使用者 tooassociate 協力廠商 OATH 權杖 | 允許使用者 toospecify 協力廠商 OATH 權杖。 |
+| 使用遞補用的 OATH 權杖 | 萬一兩步驟驗證不成功，請允許 hello 使用 OATH 權杖。 您也可以指定以分鐘為單位的 hello 工作階段逾時。 |
+| 啟用記錄 | 啟用 hello 使用者入口網站的記錄。 hello 記錄檔位於： C:\Program files\multi-factor Authentication Server\Logs。 |
 
-這些設定啟用之後，當使用者登入使用者入口網站時，就能在入口網站中看到這些設定。
+一旦啟用，而且它們也都會簽署 toohello 使用者入口網站中，這些設定會變成可見 toohello hello 入口網站中的使用者。
 
 ![使用者入口網站設定](./media/multi-factor-authentication-get-started-portal/portalsettings.png)
 
 ### <a name="self-service-user-enrollment"></a>自助式使用者註冊
 
-如果要讓使用者登入並註冊，您必須選取 [設定] 索引標籤底下的 [允許使用者登入] 和 [允許使用者註冊] 選項。請記住，您選取的設定會影響使用者的登入體驗。
+如果您想要使用者 toosign 並註冊，您必須選取 hello**允許在使用者 toolog**和**允許使用者註冊**hello 設定 索引標籤下的選項。請記住，您所選擇的 hello 設定會影響 hello 使用者登入體驗。
 
-例如，當使用者首次登入使用者入口網站時，便會進入 [Azure Multi-Factor Authentication 使用者設定] 頁面。 根據您如何設定 Azure Multi-Factor Authentication，使用者也許能夠選取驗證方法。
+例如，當使用者登入時 hello toohello 使用者入口網站第一次，便會進入 toohello Azure Multi-factor Authentication 使用者設定 頁面。 根據您設定的方式 Azure Multi-factor Authentication，hello 使用者可能會無法 tooselect 其驗證方法。
 
-如果他們選取 [語音通話] 驗證方法，或已預先設定為使用該方法，此頁面會提示使用者輸入主要電話號碼和分機 (如果有的話)。 他們也可以輸入備用電話號碼。
+如果它們選取 hello 語音通話驗證方法，或已預先設定的 toouse 該方法，hello 頁面會提示 hello 使用者 tooenter，其主要電話號碼和延伸模組，如果適用的話。 也可能會允許 tooenter 備用電話號碼。
 
 ![註冊主要和備份電話號碼](./media/multi-factor-authentication-get-started-portal/backupphone.png)
 
-如果使用者驗證時需要使用 PIN，此頁面會提示他們建立 PIN。 使用者輸入電話號碼和 PIN (如果需要的話) 之後，接著按一下 [立即撥打電話給我以進行驗證] 按鈕。 Azure Multi-Factor Authentication 會撥打到使用者的主要電話號碼執行通話驗證。 使用者必須接聽電話並輸入 PIN (如果需要的話)，然後按下 #，以進入自助式註冊程序的下一個步驟。
+如果 hello 使用者需要的 toouse PIN 驗證時，hello 頁面會提示他們 toocreate PIN。 輸入電話號碼和 PIN （如果適用） 之後, hello 使用者按一下 hello**現在呼叫我 tooAuthenticate**  按鈕。 Azure Multi-factor Authentication 會執行通話驗證 toohello 使用者的主要電話號碼。 hello 使用者必須回答 hello 電話輸入 PIN （如果適用） 並按 # toomove 上 toohello hello 自我註冊程序的下一個步驟。
 
-如果使用者選取 [簡訊] 驗證方法，或已預先設定為使用該方法，此頁面會提示使用者輸入行動電話號碼。 如果使用者驗證時需要使用 PIN，此頁面也會提示他們輸入 PIN。  使用者輸入電話號碼和 PIN (如果需要的話) 之後，接著按一下 [立即傳簡訊給我以進行驗證] 按鈕。 Azure Multi-Factor Authentication 會向使用者的行動電話發送簡訊驗證。 使用者會收到附有一次性密碼 (OTP) 的簡訊，然後以該 OTP 和其 PIN (如果適用) 回覆訊息。
+如果 hello 使用者選取 hello 簡訊驗證方法，或是已預先設定的 toouse 該方法，hello 頁面會提示他們的行動電話號碼的 hello 使用者。 如果 hello 使用者需要的 toouse PIN 驗證時，hello 頁面也會提示他們 tooenter PIN。  請輸入其電話號碼和 PIN （如果適用） 之後, hello 使用者按一下 hello**文字現在我 tooAuthenticate**  按鈕。 Azure Multi-factor Authentication 會執行 SMS 驗證 toohello 使用者的行動電話。 hello 使用者會收到 hello 文字訊息，其中之一-單次密碼 (OTP)，然後以該 OTP 加上 PIN （如果適用） 回覆 toohello 訊息。
 
 ![使用者入口網站簡訊](./media/multi-factor-authentication-get-started-portal/text.png)
 
-如果使用者選取 [行動裝置應用程式] 驗證方法，此頁面會提示使用者在其裝置上安裝 Microsoft 驗證器應用程式，並產生啟用代碼。 使用者安裝應用程式之後，接著按一下 [產生啟用代碼] 按鈕。
+如果 hello 使用者選取 hello 行動裝置應用程式的驗證方法，hello 頁面會提示 hello 使用者 tooinstall hello Microsoft 驗證器應用程式在其裝置上的，並產生啟用代碼。 在安裝之後 hello 應用程式，hello 使用者會按一下 hello 產生啟用代碼 按鈕。
 
 > [!NOTE]
-> 若要使用 Microsoft 驗證器應用程式，使用者必須啟用其裝置的推播通知。
+> toouse hello Microsoft 驗證器應用程式，hello 使用者必須啟用其裝置的推播通知。
 
-此頁面接著會顯示啟用代碼和 URL，以及條碼圖片。 如果使用者驗證時需要使用 PIN，此頁面也會提示他們輸入 PIN。 使用者在 Microsoft 驗證器應用程式中輸入啟用代碼和 URL，或使用條碼掃描器來掃描條碼圖片，並按一下 [啟用] 按鈕。
+啟用代碼和 URL，以及一個條碼圖片，接著會顯示 hello 頁面。 如果 hello 使用者需要的 toouse PIN 驗證時，hello 頁面此外提示他們輸入 tooenter PIN。 hello 使用者 hello 啟用代碼和 URL 輸入 hello Microsoft 驗證器應用程式或使用 hello 條碼掃描器 tooscan hello 條碼圖，然後按一下 hello [啟用] 按鈕。
 
-啟用完成之後，使用者按一下 [立即驗證我的身分] 按鈕。 Azure Multi-Factor Authentication 會對使用者的行動裝置應用程式執行驗證。 使用者必須輸入 PIN (如果需要的話)，並在其行動應用程式中按下 [驗證] 按鈕，以進入自助式註冊程序的下一個步驟。
+Hello 使用者 hello 啟用完成後，請按一下 hello**立即驗證我** 按鈕。 Azure Multi-factor Authentication 會執行驗證 toohello 使用者的行動裝置應用程式。 hello 使用者必須輸入 PIN （如果適用），並在其行動裝置應用程式 toomove 按 hello [驗證] 按鈕上 toohello hello 自我註冊程序的下一個步驟。
 
-如果系統管理員已設定 Azure Multi-Factor Authentication Server 來收集安全性問題和答案，則使用者會進入 [安全性問題] 頁面。 使用者必須選取四個安全性問題，並回答所選取的問題。
+如果 hello 系統管理員已設定 hello Azure Multi-factor Authentication Server toocollect 安全性問題和答案，hello 使用者便會進入 toohello 安全性問題 頁面。 hello 使用者必須選取四個安全性問題，並提供 tootheir 選取問題的答案。
 
 ![使用者入口網站安全性問題](./media/multi-factor-authentication-get-started-portal/secq.png)
 
-使用者自助式註冊現已完成，使用者也已登入使用者入口網站。 只要系統管理員允許變更方法，使用者以後可隨時重新登入使用者入口網站來變更電話號碼、PIN、驗證方法和安全性問題。
+hello 使用者自助式註冊現已完成和 hello 使用者登入 toohello 使用者入口網站。 使用者可登入 toohello 使用者入口網站中上一步中 hello 未來 toochange 隨時其電話號碼、 Pin、 驗證方法和安全性問題系統管理員可以變更它們的方法。
 
 ## <a name="next-steps"></a>後續步驟
 
-- [部署 Azure Multi-Factor Authentication Server 行動裝置應用程式 Web 服務](multi-factor-authentication-get-started-server-webservice.md)
+- [部署 hello Azure Multi-factor Authentication 伺服器行動應用程式 Web 服務](multi-factor-authentication-get-started-server-webservice.md)

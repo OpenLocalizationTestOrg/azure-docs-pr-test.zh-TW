@@ -1,6 +1,6 @@
 ---
-title: "開始使用 U-SQL 目錄 | Microsoft Docs"
-description: "了解如何使用 U-SQL 目錄來共用程式碼和資料。"
+title: "開始使用 hello U-SQL 目錄 |Microsoft 文件"
+description: "了解如何 toouse hello U-SQL 目錄 tooshare 程式碼和資料。"
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/09/2017
 ms.author: edmaca
-ms.openlocfilehash: 08364c6c7bea53807844e3b1cc327dc3742e0487
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 559bb7a3879031eb290a3e82946d7bf42ac9f553
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-u-sql-catalog"></a>開始使用 U-SQL 目錄
+# <a name="get-started-with-hello-u-sql-catalog"></a>開始使用 hello U-SQL 類別目錄
 
 ## <a name="create-a-tvf"></a>建立 TVF
 
-在先前的 U-SQL 指令碼中，您重複使用 EXTRACT 來從相同原始程式檔進行讀取。 使用 U-SQL 資料表值函式 (TVF)，您就可以封裝資料以供日後重複使用。  
+Hello 先前的 U-SQL 指令碼中重複出現的擷取 tooread 從 hello hello 使用相同原始程式檔。 與 hello U SQL 資料表值函式 (TVF)，您可以將封裝 hello 資料供日後使用。  
 
-下列指令碼會在預設的資料庫和結構描述中建立名為 `Searchlog()` 的 TVF：
+hello 下列指令碼會建立稱為 TVF `Searchlog()` hello 預設資料庫和結構描述中：
 
 ```
 DROP FUNCTION IF EXISTS Searchlog;
@@ -57,7 +57,7 @@ RETURN;
 END;
 ```
 
-下列指令碼會示範如何使用先前的指令碼中定義的 TVF：
+hello 下列指令碼會示範如何 toouse hello TVF hello 至上一個指令碼中所定義：
 
 ```
 @res =
@@ -69,16 +69,16 @@ GROUP BY Region
 HAVING SUM(Duration) > 200;
 
 OUTPUT @res
-    TO "/output/SerachLog-use-tvf.csv"
+    too"/output/SerachLog-use-tvf.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
 ## <a name="create-views"></a>建立檢視
 
-如果您有單一查詢運算式，則您可以不使用 TVF，而是使用「U-SQL 檢視」來封裝該運算式。
+如果您有單一查詢運算式，而不是 TVF 您可以使用 U-SQL 檢視 tooencapsulate 該運算式。
 
-下列指令碼會在預設的資料庫和結構描述中建立名為 `SearchlogView` 的 視：
+hello 下列指令碼會建立一個名為檢視`SearchlogView`hello 預設資料庫和結構描述中：
 
 ```
 DROP VIEW IF EXISTS SearchlogView;
@@ -95,7 +95,7 @@ CREATE VIEW SearchlogView AS
 USING Extractors.Tsv();
 ```
 
-下列指令碼示範如何使用定義的檢視：
+下列指令碼的 hello 示範 hello 使用 hello 定義檢視表：
 
 ```
 @res =
@@ -107,15 +107,15 @@ GROUP BY Region
 HAVING SUM(Duration) > 200;
 
 OUTPUT @res
-    TO "/output/Searchlog-use-view.csv"
+    too"/output/Searchlog-use-view.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
 ## <a name="create-tables"></a>建立資料表
-和關聯式資料庫資料表一樣，使用 U-SQL 可讓您使用預先定義的結構描述建立資料表，或建立資料表以從填入資料表的查詢推斷結構描述 (也就是 CREATE TABLE AS SELECT 或 CTAS)。
+在關聯式資料庫資料表，用 U-SQL 您可以使用預先定義的結構描述建立資料表或資料表建立 hello 從推斷結構描述填入 hello 資料表 （也稱為 CREATE TABLE AS SELECT 或 CTAS） hello 查詢。
 
-使用下列指令碼建立一個資料庫和兩個資料表：
+使用下列指令碼的 hello 建立的資料庫和兩個資料表：
 
 ```
 DROP DATABASE IF EXISTS SearchLogDb;
@@ -147,9 +147,9 @@ CREATE TABLE SearchLog2(
 ```
 
 ## <a name="query-tables"></a>查詢資料表
-您可以運用和查詢資料檔案一樣的方式來查詢資料表 (例如，上一個指令碼所建立的資料表)。 您現在可以直接參考資料表名稱，而不必使用 EXTRACT 建立資料列集。
+您可以查詢資料表，例如建立 hello 先前的指令碼中，在 hello 您查詢 hello 資料檔案的方式相同。 而不是建立使用擷取的資料列集，您現在可以參考 toohello 資料表名稱。
 
-若要從資料表進行讀取，請修改您先前使用的轉換指令碼：
+從 hello 資料表 tooread 修改您先前用過的 hello 轉換指令碼：
 
 ```
 @rs1 =
@@ -166,13 +166,13 @@ GROUP BY Region;
     FETCH 5 ROWS;
 
 OUTPUT @res
-    TO "/output/Searchlog-query-table.csv"
+    too"/output/Searchlog-query-table.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
  >[!NOTE]
- >您目前無法在用來建立資料表的相同指令碼中，對該資料表執行 SELECT。
+ >目前，您無法執行 SELECT 在 hello 相同指令碼以 hello 其中一個資料表上建立 hello 資料表的位置。
 
 ## <a name="next-steps"></a>後續步驟
 * [Microsoft Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)

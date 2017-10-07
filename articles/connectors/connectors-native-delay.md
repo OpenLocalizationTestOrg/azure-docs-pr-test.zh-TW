@@ -1,6 +1,6 @@
 ---
-title: "在邏輯應用程式中新增延遲 | Microsoft Docs"
-description: "延遲和延遲直到動作的概觀，以及如何搭配 Azure 邏輯應用程式使用它們。"
+title: "邏輯應用程式中的延遲 aaaAdd |Microsoft 文件"
+description: "Hello 概觀延遲和延遲的動作，直到以及如何 toouse 其與 Azure 邏輯應用程式。"
 services: 
 documentationcenter: 
 author: jeffhollan
@@ -15,62 +15,62 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan
-ms.openlocfilehash: 5f4f7052d48b4ca4ed91212d970551141e78e852
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e5bc9d639adbddc01ee0f6a4c68716f586d4344a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-delay-and-delay-until-actions"></a>開始使用延遲和延遲直到動作
-透過延遲和「延遲直到」動作，您可以完成工作流程案例。
+# <a name="get-started-with-hello-delay-and-delay-until-actions"></a>開始使用 hello 延遲，並且延遲-直到動作
+使用 hello 延遲和 「 延遲-直到 」 動作，您可以完成的工作流程案例。
 
 例如，您可以：
 
-* 等到工作日再透過電子郵件傳送狀態更新。
-* 延遲工作流程，直到 HTTP 呼叫有時間來完成，才繼續進行並擷取結果。
+* 請等到工作日 toosend 狀態更新透過電子郵件。
+* HTTP 呼叫的延遲 hello 工作流程有時間 toofinish 之前繼續並擷取 hello 結果。
 
-若要開始在邏輯應用程式中使用延遲動作，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
+請參閱 < 開始使用邏輯應用程式中的 hello 動作延遲 tooget[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
-## <a name="use-the-delay-actions"></a>使用延遲動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](connectors-overview.md)。
+## <a name="use-hello-delay-actions"></a>使用 hello 延遲的動作
+動作是由定義在邏輯應用程式中的 hello 工作流程執行的作業。 [深入了解動作](connectors-overview.md)。
 
-以下是如何在邏輯應用程式中使用延遲步驟的範例順序︰
+以下是如何 toouse 延遲步驟在邏輯應用程式中的範例順序：
 
-1. 在新增觸發程序之後，按一下 [新增步驟]  以新增動作。
-2. 搜尋「延遲」  以顯示延遲動作。 在此範例中，我們將會選取 [延遲] 。
+1. 新增觸發程序後, 按一下**新步驟**tooadd 動作。
+2. 搜尋**延遲**toobring 向上 hello 延遲的動作。 在此範例中，我們將會選取 [延遲] 。
    
     ![延遲動作](./media/connectors-native-delay/using-action-1.png)
-3. 完成任何動作屬性以設定延遲。
+3. 完成所有 hello 動作屬性 tooconfigure hello 延遲。
    
     ![延遲設定](./media/connectors-native-delay/using-action-2.png)
-4. 按一下 [儲存]  來發佈及啟動邏輯應用程式。
+4. 按一下**儲存**toopublish 並啟用 hello 邏輯應用程式。
 
 ## <a name="action-details"></a>動作詳細資料
-循環觸發程序具有下列可設定的屬性。
+hello 循環觸發程序有下列屬性可設定的 hello。
 
 ### <a name="delay-action"></a>延遲動作
-此動作會讓執行延遲一段時間間隔。
+針對一段時間間隔執行此動作的延遲 hello。
 標示 * 代表必要欄位。
 
 | 顯示名稱 | 屬性名稱 | 說明 |
 | --- | --- | --- |
-| 計數 * |count |要延遲的時間單位數 |
-| 單位 * |unit |時間單位：`Second`、`Minute`、`Hour` 或 `Day` |
+| 計數 * |計數 |時間單位 toodelay 的 hello 數目 |
+| 單位 * |unit |時間單位 hello: `Second`， `Minute`， `Hour`，或`Day` |
 
 <br>
 
 ### <a name="delay-until-action"></a>延遲直到動作
-此動作會讓執行延遲到指定的日期/時間。
+這個動作會延遲到指定的日期/時間執行的 hello。
 標示 * 代表必要欄位。
 
 | 顯示名稱 | 屬性名稱 | 說明 |
 | --- | --- | --- |
-| 年 * |timestamp |要延遲到的年度 (GMT) |
-| 月 * |timestamp |要延遲到的月份 (GMT) |
-| 日 * |timestamp |要延遲到的日期 (GMT) |
+| 年 * |timestamp |(GMT) 直到 hello 年 toodelay |
+| 月 * |timestamp |(GMT) 直到 hello 月份 toodelay |
+| 日 * |timestamp |(GMT) 直到 hello 天 toodelay |
 
 <br>
 
 ## <a name="next-steps"></a>後續步驟
-立即試用平台和 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
+現在，試用 hello 平台和[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 您可以瀏覽 hello 邏輯應用程式中其他可用的連接器，藉由查看我們[Api 清單](apis-list.md)。
 

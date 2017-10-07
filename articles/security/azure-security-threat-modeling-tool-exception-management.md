@@ -1,6 +1,6 @@
 ---
-title: "例外狀況管理 - Microsoft 威脅模型化工具 - Azure | Microsoft Docs"
-description: "降低威脅模型化工具所暴露的威脅"
+title: "Azure 管理-Microsoft 威脅模型化工具-aaaException |Microsoft 文件"
+description: "hello 威脅模型化工具中公開的威脅防護功能"
 services: security
 documentationcenter: na
 author: RodSan
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: rodsan
-ms.openlocfilehash: bbf357b902474a1812eb7a5a2c914d0c8b91934b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 247096c10deeca94ebb9b19df7ba60e442ca1e4d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="security-frame-exception-management--mitigations"></a>安全性架構︰例外狀況管理 | 風險降低 
 | 產品/服務 | 文章 |
 | --------------- | ------- |
 | **WCF** | <ul><li>[WCF - 請勿在組態檔中包含 serviceDebug 節點](#servicedebug)</li><li>[WCF - 請勿在組態檔中包含 serviceMetadata 節點](#servicemetadata)</li></ul> |
 | **Web API** | <ul><li>[確定有在 ASP.NET Web API 中正確處理例外狀況](#exception)</li></ul> |
-| **Web 應用程式** | <ul><li>[請勿在錯誤訊息中公開安全性詳細資料](#messages)</li><li>[實作預設的錯誤處理頁面](#default)</li><li>[設定要在 IIS 中零售的部署方法](#deployment)</li><li>[例外狀況應安全地失敗](#fail)</li></ul> |
+| **Web 應用程式** | <ul><li>[請勿在錯誤訊息中公開安全性詳細資料](#messages)</li><li>[實作預設的錯誤處理頁面](#default)</li><li>[在 IIS 中設定的部署方法 tooRetail](#deployment)</li><li>[例外狀況應安全地失敗](#fail)</li></ul> |
 
 ## <a id="servicedebug"></a>WCF - 請勿在組態檔中包含 serviceDebug 節點
 
@@ -36,10 +36,10 @@ ms.lasthandoff: 08/29/2017
 | **適用的技術** | 泛型、NET Framework 3 |
 | **屬性**              | N/A  |
 | **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **步驟** | Windows Communication Framework (WCF) 服務可以設定為公開偵錯資訊。 偵錯資訊不應用於生產環境。 `<serviceDebug>` 標籤可定義是否啟用 WCF 服務的偵錯資訊功能。 如果屬性 includeExceptionDetailInFaults 設為 true，來自應用程式的例外狀況資訊會傳回給用戶端。 攻擊者可以利用他們從偵錯輸出取得的其他資訊，裝載以架構、資料庫或應用程式所用其他資源做為目標的攻擊。 |
+| **步驟** | Windows Communication Framework (WCF) 服務可以設定的 tooexpose 偵錯資訊。 偵錯資訊不應用於生產環境。 hello`<serviceDebug>`標記定義 hello 偵錯資訊的功能是否已啟用 WCF 服務。 如果 hello 屬性 includeExceptionDetailInFaults 設定 tootrue，例外狀況資訊從 hello 應用程式將會傳回 tooclients。 攻擊者可以利用 hello 他們會取得從偵錯輸出 toomount 攻擊目標 hello framework、 資料庫或 hello 應用程式所使用的其他資源的其他資訊。 |
 
 ### <a name="example"></a>範例
-下列組態檔包含 `<serviceDebug>` 標籤︰ 
+hello 下列組態檔包含 hello`<serviceDebug>`標記： 
 ```
 <configuration> 
 <system.serviceModel> 
@@ -49,7 +49,7 @@ ms.lasthandoff: 08/29/2017
 <serviceDebug includeExceptionDetailInFaults=""True"" httpHelpPageEnabled=""True""/> 
 ... 
 ```
-停用服務中的偵錯資訊。 這可藉由從應用程式組態檔移除 `<serviceDebug>` 標籤來完成。 
+停用偵錯資訊置於 hello 服務。 這可藉由移除 hello`<serviceDebug>`從您的應用程式組態檔的標記。 
 
 ## <a id="servicemetadata"></a>WCF - 請勿在組態檔中包含 serviceMetadata 節點
 
@@ -60,7 +60,7 @@ ms.lasthandoff: 08/29/2017
 | **適用的技術** | 泛型 |
 | **屬性**              | 泛型、NET Framework 3 |
 | **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **步驟** | 對外公開的服務相關資訊可提供重要見解給攻擊者，讓其了解如何利用服務。 `<serviceMetadata>` 標籤會啟用中繼資料發佈功能。 服務中繼資料可能包含不應開放存取的敏感性資訊。 至少，請只允許受信任使用者存取中繼資料，並確定不會公開不必要的資訊。 最好是完全停用發佈中繼資料的功能。 安全的 WCF 組態不會包含 `<serviceMetadata>` 標籤。 |
+| **步驟** | 公開服務的相關資訊，可提供與重要深入了解它們如何利用 hello 服務的攻擊者。 hello`<serviceMetadata>`標記啟用 hello 中繼資料發行功能。 服務中繼資料可能包含不應開放存取的敏感性資訊。 最小值，只允許 tooaccess hello 中繼資料，並確認不必要的資訊不會公開受信任的使用者。 更棒的是，完全停用 hello 能力 toopublish 中繼資料。 安全的 WCF 組態將不會包含 hello`<serviceMetadata>`標記。 |
 
 ## <a id="exception"></a>確定有在 ASP.NET Web API 中正確處理例外狀況
 
@@ -74,7 +74,7 @@ ms.lasthandoff: 08/29/2017
 | **步驟** | 根據預設，ASP.NET Web API 中大多數未攔截到的例外狀況會轉譯成狀態碼為 `500, Internal Server Error` 的 HTTP 回應|
 
 ### <a name="example"></a>範例
-若要控制 API 傳回的狀態碼，可如下所示使用 `HttpResponseException`︰ 
+hello API，所傳回的 toocontrol hello 狀態碼`HttpResponseException`可以使用如下所示： 
 ```C#
 public Product GetProduct(int id)
 {
@@ -88,7 +88,7 @@ public Product GetProduct(int id)
 ```
 
 ### <a name="example"></a>範例
-若要進一步控制例外狀況回應，可如下所示使用 `HttpResponseMessage` 類別︰ 
+進一步控制 hello 例外狀況的回應，hello`HttpResponseMessage`可以使用類別，如下所示： 
 ```C#
 public Product GetProduct(int id)
 {
@@ -105,7 +105,7 @@ public Product GetProduct(int id)
     return item;
 }
 ```
-若要攔截類型不是 `HttpResponseException` 的未處理例外狀況，可使用例外狀況篩選。 例外狀況篩選會實作 `System.Web.Http.Filters.IExceptionFilter` 介面。 撰寫例外狀況篩選的最簡單方式是從 `System.Web.Http.Filters.ExceptionFilterAttribute` 類別衍生並覆寫 OnException 方法。 
+toocatch 未處理的例外狀況，不是 hello 型別`HttpResponseException`，可以使用例外狀況篩選條件。 例外狀況篩選條件實作 hello`System.Web.Http.Filters.IExceptionFilter`介面。 最簡單方式 toowrite hello 例外狀況篩選條件是從 hello tooderive`System.Web.Http.Filters.ExceptionFilterAttribute`類別並覆寫 hello OnException 方法。 
 
 ### <a name="example"></a>範例
 以下是會將 `NotImplementedException` 例外狀況轉換成 HTTP 狀態碼 `501, Not Implemented` 的篩選： 
@@ -130,13 +130,13 @@ namespace ProductStore.Filters
 }
 ```
 
-有數種方式可以註冊 Web API 例外狀況篩選︰
+有數種方式 tooregister Web API 的例外狀況篩選條件：
 - 透過動作
 - 透過控制器
 - 全域
 
 ### <a name="example"></a>範例
-若要將篩選套用至特定動作，請在動作中新增篩選來做為屬性︰ 
+tooapply hello 篩選 tooa 特定動作，為屬性 toohello 動作加入 hello 篩選： 
 ```C#
 public class ProductsController : ApiController
 {
@@ -148,7 +148,7 @@ public class ProductsController : ApiController
 }
 ```
 ### <a name="example"></a>範例
-若要將篩選套用至 `controller` 上的所有動作，請在 `controller` 類別中新增篩選來做為屬性︰ 
+hello 上之動作的 tooapply hello 篩選 tooall `controller`，做為屬性 toohello 加入 hello 篩選`controller`類別： 
 
 ```C#
 [NotImplExceptionFilter]
@@ -159,14 +159,14 @@ public class ProductsController : ApiController
 ```
 
 ### <a name="example"></a>範例
-若要將篩選全域套用至所有 Web API 控制器，請在 `GlobalConfiguration.Configuration.Filters` 集合中新增篩選執行個體。 此集合中的例外狀況篩選會套用至任何 Web API 控制器動作。 
+tooapply hello 全域篩選 tooall Web API 控制器，將執行個體的 hello 篩選 toohello`GlobalConfiguration.Configuration.Filters`集合。 在此集合中的例外狀況篩選條件套用 tooany Web API 控制器動作。 
 ```C#
 GlobalConfiguration.Configuration.Filters.Add(
     new ProductStore.NotImplExceptionFilterAttribute());
 ```
 
 ### <a name="example"></a>範例
-若要驗證模型，可將模型狀態傳遞至 CreateErrorResponse 方法，如下所示︰ 
+模型驗證 hello 模型狀態可以傳遞 tooCreateErrorResponse 方法如下所示： 
 ```C#
 public HttpResponseMessage PostProduct(Product item)
 {
@@ -178,7 +178,7 @@ public HttpResponseMessage PostProduct(Product item)
 }
 ```
 
-請參閱 [參考] 區段中的連結，以取得在 ASP.Net Web API 中處理例外狀況和驗證模型的其他詳細資料 
+如需詳細資訊，關於例外狀況處理 hello 參考一節中的 hello 連結和 ASP.Net Web API 中的模型驗證檢查 
 
 ## <a id="messages"></a>請勿在錯誤訊息中公開安全性詳細資料
 
@@ -189,7 +189,7 @@ public HttpResponseMessage PostProduct(Product item)
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
-| **步驟** | <p>泛型錯誤訊息會直接提供給使用者，但不會包含敏感性應用程式資料。 敏感性資料的範例包括︰</p><ul><li>伺服器名稱</li><li>連接字串</li><li>使用者名稱</li><li>密碼</li><li>SQL 程序</li><li>動態 SQL 失敗的詳細資料</li><li>堆疊追蹤和程式碼行</li><li>儲存在記憶體中的變數</li><li>磁碟機和資料夾的位置</li><li>應用程式的安裝點</li><li>主機組態設定</li><li>其他內部應用程式詳細資料</li></ul><p>捕捉應用程式中的所有錯誤並提供泛型錯誤訊息，以及啟用 IIS 中的自訂錯誤，將有助於避免資訊外洩。 除了錯誤處理架構外，SQL Server 資料庫和 .NET 例外狀況處理尤其詳盡，非常適合用於在應用程式中剖析惡意使用者。 請勿直接顯示衍生自 .NET 例外狀況類別的類別內容，並確定您有適當的例外狀況處理手段，以便不會直接對使用者意外產生非預期的例外狀況。</p><ul><li>直接提供泛型錯誤訊息給使用者，此訊息是從直接在例外狀況/錯誤訊息中找到的特定詳細資料所抽離出來</li><li>請勿直接向使用者顯示 .NET 例外狀況類別的內容</li><li>捕捉所有錯誤訊息，並在情況允許時，透過傳送至應用程式用戶端的泛型錯誤訊息通知使用者</li><li>請勿直接對使用者顯示例外狀況類別的內容，特別是來自 `.ToString()` 的傳回值，或是 Message 或 StackTrace 屬性的值。 安全地記錄這項資訊，並向使用者顯示較無害的訊息</li></ul>|
+| **步驟** | <p>一般錯誤訊息會提供直接 toohello 使用者但不包含機密的應用程式資料。 敏感性資料的範例包括︰</p><ul><li>伺服器名稱</li><li>連接字串</li><li>使用者名稱</li><li>密碼</li><li>SQL 程序</li><li>動態 SQL 失敗的詳細資料</li><li>堆疊追蹤和程式碼行</li><li>儲存在記憶體中的變數</li><li>磁碟機和資料夾的位置</li><li>應用程式的安裝點</li><li>主機組態設定</li><li>其他內部應用程式詳細資料</li></ul><p>捕捉應用程式中的所有錯誤並提供泛型錯誤訊息，以及啟用 IIS 中的自訂錯誤，將有助於避免資訊外洩。 SQL Server 資料庫和.NET 例外狀況處理、 在其他錯誤處理架構，會特別的詳細資訊，非常有用的 tooa 惡意使用者程式碼剖析應用程式。 無法直接顯示 hello 的類別內容衍生自 hello.NET 例外狀況類別，並確定您有適當的例外狀況處理，好讓不小心未預期的例外狀況直接引發 toohello 使用者執行。</p><ul><li>提供一般錯誤訊息直接 toohello 取出離開直接在 hello 例外狀況/錯誤訊息中找到的特定詳細資料的使用者</li><li>不顯示 hello 內容.NET 例外狀況類別直接 toohello 使用者嗎</li><li>設陷所有錯誤訊息，並視通知 hello 使用者透過一般錯誤訊息傳送的 toohello 應用程式用戶端</li><li>不會公開 hello 內容 hello 例外狀況類別直接 toohello 使用者特別 hello 傳回的值從`.ToString()`，或 hello hello 訊息或 StackTrace 屬性值。 安全地記錄此資訊並顯示更無害的訊息 toohello 使用者</li></ul>|
 
 ## <a id="default"></a>實作預設的錯誤處理頁面
 
@@ -200,9 +200,9 @@ public HttpResponseMessage PostProduct(Product item)
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [編輯 ASP.NET 錯誤頁面設定對話方塊](https://technet.microsoft.com/library/dd569096(WS.10).aspx) |
-| **步驟** | <p>當 ASP.NET 應用程式失敗並造成 HTTP/1.x 500 內部伺服器錯誤時，或當功能組態 (例如要求篩選) 避免顯示頁面時，就會產生錯誤訊息。 系統管理員可以選擇應用程式應該對用戶端顯示容易理解的訊息、對用戶端顯示詳細的錯誤訊息，或只對本機主機顯示詳細的錯誤訊息。 web.config 中的 <customErrors> 標籤有三種模式︰</p><ul><li>**開啟︰**指定要啟用自訂錯誤。 如果未指定任何 defaultRedirect 屬性，則使用者會看到泛型錯誤。 自訂錯誤會顯示給遠端用戶端和本機主機</li><li>**關閉︰**指定要停用自訂錯誤。 詳細的 ASP.NET 錯誤會顯示給遠端用戶端和本機主機</li><li>**RemoteOnly：**指定自訂錯誤只顯示給遠端用戶端，而將 ASP.NET 錯誤顯示給本機主機。 這是預設值</li></ul><p>開啟應用程式/網站的 `web.config` 檔案，並確定標籤已定義 `<customErrors mode="RemoteOnly" />` 或 `<customErrors mode="On" />`。</p>|
+| **步驟** | <p>當 ASP.NET 應用程式失敗並造成 HTTP/1.x 500 內部伺服器錯誤時，或當功能組態 (例如要求篩選) 避免顯示頁面時，就會產生錯誤訊息。 系統管理員可以選擇 hello 應用程式應該會顯示易記訊息 toohello 用戶端、 詳細的錯誤訊息 toohello 用戶端或詳細的錯誤訊息 toolocalhost 只。 hello <customErrors> hello web.config 中的標記具有三種模式：</p><ul><li>**開啟︰**指定要啟用自訂錯誤。 如果未指定任何 defaultRedirect 屬性，則使用者會看到泛型錯誤。 hello 自訂錯誤會顯示 toohello 遠端用戶端和 toohello 本機主機</li><li>**關閉︰**指定要停用自訂錯誤。 hello 詳細的 ASP.NET 錯誤會顯示 toohello 遠端用戶端和 toohello 本機主機</li><li>**RemoteOnly:**指定自訂的錯誤會顯示只有 toohello 遠端用戶端，以及 ASP.NET 錯誤會顯示 toohello 本機主機。 這是 hello 預設值</li></ul><p>開啟 hello `web.config` hello 應用程式/網站的檔案，並確定 hello 標記有 `<customErrors mode="RemoteOnly" />`或`<customErrors mode="On" />`定義。</p>|
 
-## <a id="deployment"></a>設定要在 IIS 中零售的部署方法
+## <a id="deployment"></a>在 IIS 中設定的部署方法 tooRetail
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -211,7 +211,7 @@ public HttpResponseMessage PostProduct(Product item)
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [部署元素 (ASP.NET 設定結構描述)](https://msdn.microsoft.com/library/ms228298(VS.80).aspx) |
-| **步驟** | <p>`<deployment retail>` 參數是要供生產 IIS 伺服器使用。 這個參數可用來協助應用程式以最佳效能和最低安全性資訊外洩可能性來執行，方法是停用應用程式對頁面產生追蹤輸出的能力、停用對使用者顯示詳細錯誤訊息的能力，以及停用偵錯參數。</p><p>在開發期間，經常會啟用專供開發人員使用的參數和選項，例如失敗要求追蹤和偵錯。 建議您將任何生產伺服器上的部署方法設為零售。 開啟 machine.config 檔，並確定 `<deployment retail="true" />` 維持設定為 true。</p>|
+| **步驟** | <p>hello`<deployment retail>`交換器適用於實際執行的 IIS 伺服器。 這個參數是使用的 toohelp 應用程式執行與 hello 最佳效能，並停用 leakages hello 在頁面上，停用 hello 能力 toodisplay 應用程式的能力 toogenerate 追蹤輸出的最少安全性資訊詳細錯誤訊息 tooend 使用者，並停用 hello 偵錯參數。</p><p>在開發期間，經常會啟用專供開發人員使用的參數和選項，例如失敗要求追蹤和偵錯。 建議您在任何實際執行伺服器上的 hello 部署方法，設定 tooretail。 開啟 hello machine.config 檔案，並確定`<deployment retail="true" />`會設定 tootrue。</p>|
 
 ## <a id="fail"></a>例外狀況應安全地失敗
 
@@ -222,7 +222,7 @@ public HttpResponseMessage PostProduct(Product item)
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [安全地失敗](https://www.owasp.org/index.php/Fail_securely) |
-| **步驟** | 應用程式應安全地失敗。 任何會傳回布林值的方法 (根據所做出的特定決策) 皆應小心地建立例外狀況區塊。 若草率撰寫例外狀況區塊，會因為不知不覺潛入的安全性問題而產生許多邏輯錯誤。|
+| **步驟** | 應用程式應安全地失敗。 任何會傳回布林值的方法 (根據所做出的特定決策) 皆應小心地建立例外狀況區塊。 有許多到期，請在 hello 例外狀況區塊會寫入時後果 toowhich 安全性問題蔓延的邏輯錯誤。|
 
 ### <a name="example"></a>範例
 ```C#
@@ -238,7 +238,7 @@ public HttpResponseMessage PostProduct(Product item)
 
                     if (string.Compare(domain, replyDomain, StringComparison.OrdinalIgnoreCase) != 0)
                     {
-                        //// Adding additional check to enable CMS urls if they are not hosted on same domain.
+                        //// Adding additional check tooenable CMS urls if they are not hosted on same domain.
                         if (!string.IsNullOrWhiteSpace(Utilities.CmsBase))
                         {
                             var cmsDomain = RetrieveDomain(new Uri(Utilities.Base.Trim()));
@@ -265,4 +265,4 @@ public HttpResponseMessage PostProduct(Product item)
             }
         }
 ```
-如果發生某些例外狀況，上述方法一律會傳回 True。 如果使用者提供格式不正確的 URL，瀏覽器加以採用但 `Uri()` 建構函式未採用，就會擲回例外狀況，並將受害者導向有效但格式不正確的 URL。 
+方法的上方 hello 一定會傳回 True，如果某些例外狀況。 如果 hello 終端使用者提供的格式不正確的 URL，hello 瀏覽器方面，但 hello`Uri()`建構函式不會這將會擲回例外狀況，以及應採取 hello 犧牲者 toohello 有效但格式不正確的 URL。 

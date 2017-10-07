@@ -1,6 +1,6 @@
 ---
-title: "如何使用 REST 取得媒體處理器執行個體 | Microsoft Docs"
-description: "了解如何建立媒體處理器元件，為 Azure 媒體服務的媒體內容進行編碼、格式轉換、加密或解密。"
+title: "aaa tooget 媒體處理器執行個體使用 REST 的方式 |Microsoft 文件"
+description: "了解 toocreate 媒體處理器元件 tooencode 」，將格式轉換、 加密或解密媒體內容，Azure 媒體服務的方式。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: 4ad90ad979c5bd74fc55155098c88d5c13cb12e2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9f423648ab73c90405c64895ce0f5b6a457862e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-a-media-processor-instance"></a>如何取得媒體處理器執行個體
+# <a name="how-tooget-a-media-processor-instance"></a>如何 tooget 媒體處理器執行個體
 > [!div class="op_single_selector"]
 > * [.NET](media-services-get-media-processor.md)
 > * [REST](media-services-rest-get-media-processor.md)
@@ -28,11 +28,11 @@ ms.lasthandoff: 08/29/2017
 > 
 
 ## <a name="overview"></a>Overview
-在媒體服務中，媒體處理器是可處理特定處理工作的元件，例如編碼、格式轉換、加密或解密媒體內容。 您通常會在建立媒體內容的編碼、加密或格式轉換工作時建立媒體處理器。
+在媒體服務中，媒體處理器是可處理特定處理工作的元件，例如編碼、格式轉換、加密或解密媒體內容。 通常當您建立工作 tooencode 建立媒體處理器、 加密，或將媒體內容的 hello 格式轉換。
 
 ## <a name="azure-media-processors"></a>Azure 媒體處理器 
 
-下列主題提供媒體處理器的清單：
+hello 下列主題提供媒體處理器的清單：
 
 * [編碼媒體處理器](scenarios-and-availability.md#encoding-media-processors)
 * [分析媒體處理器](scenarios-and-availability.md#analytics-media-processors)
@@ -40,16 +40,16 @@ ms.lasthandoff: 08/29/2017
 >[!NOTE]
 >在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 
-## <a name="connect-to-media-services"></a>連線到媒體服務
+## <a name="connect-toomedia-services"></a>TooMedia 服務連接
 
-如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。 
+如需有關如何 tooconnect toohello AMS API，請參閱詳細[存取 hello Azure 媒體服務 API 與 Azure AD 驗證](media-services-use-aad-auth-to-access-ams-api.md)。 
 
 >[!NOTE]
->順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。
+>已成功連接之後 toohttps://media.windows.net，您會收到指定另一個媒體服務 URI 的 301 重新導向。 您必須進行的後續呼叫 toohello 新的 URI。
 
 ## <a name="get-a-media-processor"></a>取得媒體處理器
 
-下列 REST 呼叫示範如何依名稱取得媒體處理器執行個體 (在此案例中，是**媒體編碼器標準**)。 
+下列 REST 呼叫的 hello 顯示 tooget 媒體處理器執行個體之名稱的方式 (在此情況下，**媒體編碼器標準**)。 
 
 要求：
 
@@ -89,5 +89,5 @@ ms.lasthandoff: 08/29/2017
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>後續步驟
-既然您已了解如何取得媒體處理器執行個體，請移至 [如何為資產編碼](media-services-rest-get-started.md) 主題，以了解如何使用媒體編碼器標準將資產編碼。
+您現在知道如何 tooget 媒體處理器執行個體中，移 toohello[如何 tooEncode 資產](media-services-rest-get-started.md)這會顯示如何 toouse 會 hello 媒體編碼器標準 tooencode 資產的主題。
 

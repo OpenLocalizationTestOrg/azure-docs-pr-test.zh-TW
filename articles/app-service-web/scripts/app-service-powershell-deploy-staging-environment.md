@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 建立 Web 應用程式並將程式碼部署至預備環境 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 建立 Web 應用程式並將程式碼部署至預備環境"
+title: "aaaAzure PowerShell 指令碼範例-建立 web 應用程式和部署程式碼 tooa 預備環境 |Microsoft 文件"
+description: "Azure PowerShell 指令碼範例-建立 web 應用程式和部署程式碼 tooa 預備環境"
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -15,25 +15,25 @@ ms.topic: sample
 ms.date: 03/20/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 55adc13350eb0f4711efa3c901f6e4e7755dfb27
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5c74b962955770637173f1fd4f49342fec54ae3b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-web-app-and-deploy-code-to-a-staging-environment"></a>建立 Web 應用程式並將程式碼部署至預備環境
+# <a name="create-a-web-app-and-deploy-code-tooa-staging-environment"></a>建立 web 應用程式和部署程式碼 tooa 預備環境
 
-此範例指令碼會在 App Service 中建立 Web 應用程式以及稱為「預備」的其他部署位置，然後將範例應用程式部署至「預備」位置。
+這個範例指令碼應用程式服務中建立 web 應用程式呼叫 「 預備 」，其他的部署位置與，然後部署範例應用程式 toohello 「 預備 」 位置。
 
-您可以視需要使用 [Azure PowerShell 指南 (英文)](/powershell/azure/overview) 中的指示來安裝 Azure PowerShell，然後執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。
+如有需要安裝 Azure PowerShell 中使用 hello 指令位於 hello hello [Azure PowerShell 指南](/powershell/azure/overview)，然後執行`Login-AzureRmAccount`toocreate 與 Azure 的連線。
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[主要](../../../powershell_scripts/app-service/deploy-deployment-slot/deploy-deployment-slot.ps1?highlight=1 "建立 Web 應用程式並將程式碼部署至預備環境")]
+[!code-powershell[main](../../../powershell_scripts/app-service/deploy-deployment-slot/deploy-deployment-slot.ps1?highlight=1 "Create a web app and deploy code tooa staging environment")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、Web 應用程式和所有相關資源。
+Hello 指令碼範例執行後，下列命令的 hello 可以使用的 tooremove hello 資源群組、 web 應用程式和所有相關的資源。
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup -Force
@@ -41,20 +41,20 @@ Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼會使用下列命令。 下表中的每個命令都會連結至命令特定的文件。
+此指令碼會使用下列命令的 hello。 Hello 資料表連結 toocommand 特定文件中的每個命令。
 
 | 命令 | 注意事項 |
 |---|---|
 | [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) | 建立用來存放所有資源的資源群組。 |
 | [New-AzureRmAppServicePlan](/powershell/module/azurerm.websites/new-azurermappserviceplan) | 建立 App Service 方案。 |
 | [New-AzureRmWebApp](/powershell/module/azurerm.websites/new-azurermwebapp) | 建立 Web 應用程式。 |
-| [Set-AzureRmAppServicePlan](/powershell/module/azurerm.websites/set-azurermappserviceplan) | 修改 App Service 方案來變更其定價層。 |
+| [Set-AzureRmAppServicePlan](/powershell/module/azurerm.websites/set-azurermappserviceplan) | 修改應用程式服務計劃 toochange 其定價層。 |
 | [New-AzureRmWebAppSlot](/powershell/module/azurerm.websites/new-azurermwebappslot) | 建立 Web 應用程式的部署位置。 |
 | [Set-AzureRmResource](/powershell/module/azurerm.resources/set-azurermresource) | 修改資源群組中的資源。 |
 | [Swap-AzureRmWebAppSlot](/powershell/module/azurerm.websites/swap-azurermwebappslot) | 將 Web 應用程式的部署位置切換到生產環境。 |
 
 ## <a name="next-steps"></a>後續步驟
 
-如需有關 Azure PowerShell 模組的詳細資訊，請參閱 [Azure PowerShell 文件](/powershell/azure/overview)。
+如需有關 hello Azure PowerShell 模組的詳細資訊，請參閱[Azure PowerShell 文件](/powershell/azure/overview)。
 
-您可以在 [Azure PowerShell 範例](../app-service-powershell-samples.md)中找到適用於 App Service Web Apps 的其他 Azure PowerShell 範例。
+Azure App Service Web 應用程式的其他 Azure Powershell 範例可以在 hello [Azure PowerShell 範例](../app-service-powershell-samples.md)。

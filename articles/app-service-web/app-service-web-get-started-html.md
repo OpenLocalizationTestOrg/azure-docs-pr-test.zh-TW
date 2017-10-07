@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中建立靜態 HTML Web 應用程式 | Microsoft Docs"
-description: "藉由部署靜態 HTML 範例應用程式，了解如何在 Azure App Service 中執行 Web 應用程式。"
+title: "在 Azure 中的靜態 HTML aaaCreate web 應用程式 |Microsoft 文件"
+description: "了解如何 toorun web 應用程式在 Azure App Service 中的部署靜態 HTML 的範例應用程式。"
 services: app-service\web
 documentationcenter: 
 author: rick-anderson
@@ -15,48 +15,48 @@ ms.topic: quickstart
 ms.date: 05/26/2017
 ms.author: riande
 ms.custom: mvc
-ms.openlocfilehash: 42af5b08b8d2ff0c75fd73dcfa61c861647fd2c9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: efd8c8189a3aa1ac35602b688eeb31bff6f5a373
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-static-html-web-app-in-azure"></a>在 Azure 中建立靜態 HTML Web 應用程式
 
-[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) 提供可高度擴充、自我修復的 Web 主機服務。  本快速入門顯示如何將基本 HTML+CSS 網站部署至 Azure Web Apps。 您可使用 [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)建立 Web 應用程式，而且使用 Git 將範例 HTML 內容部署至 Web 應用程式。
+[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) 提供可高度擴充、自我修復的 Web 主機服務。  本快速入門示範如何 toodeploy 基本 HTML + CSS 站台 tooAzure Web 應用程式。 建立 hello web 應用程式使用 hello [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)，而且您使用 Git toodeploy 範例 HTML 內容 toohello web 應用程式。
 
 ![範例應用程式首頁](media/app-service-web-get-started-html/hello-world-in-browser-az.png)
 
-您可以使用 Mac、Windows 或 Linux 電腦，依照下面步驟操作。 安裝先決條件後，大約需要 5 分鐘才能完成這些步驟。
+您可以依照下列使用 Mac、 Windows 或 Linux 電腦的 hello 步驟。 一旦安裝 hello 必要條件，花費大約五分鐘 toocomplete hello 步驟。
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本快速入門：
+toocomplete 本快速入門：
 
 - [安裝 Git](https://git-scm.com/)
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇 tooinstall，並在本機上使用 hello CLI，本主題會需要您執行 hello Azure CLI 版本 2.0 或更新版本。 執行`az --version`toofind hello 版本。 如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
-## <a name="download-the-sample"></a>下載範例
+## <a name="download-hello-sample"></a>下載 hello 範例
 
-在終端機視窗中執行下列命令，將範例應用程式存放庫複製到本機電腦。
+在終端機視窗中，執行下列命令 tooclone hello 範例應用程式儲存機制 tooyour 本機電腦的 hello。
 
 ```bash
 git clone https://github.com/Azure-Samples/html-docs-hello-world.git
 ```
 
-您可使用這個終端機視窗來執行本快速入門中的所有命令。
+您使用這個終端機視窗 toorun 所有 hello 命令本快速入門。
 
-## <a name="view-the-html"></a>HTML 檢視
+## <a name="view-hello-html"></a>檢視 hello HTML
 
-瀏覽至包含範例 HTML 的目錄。 在瀏覽器中開啟 *index.html* 檔案。
+瀏覽包含 hello 範例 HTML toohello 目錄。 開啟 hello *index.html*瀏覽器中的檔案。
 
 ![範例應用程式首頁](media/app-service-web-get-started-html/hello-world-in-browser.png)
 
-[!INCLUDE [Log in to Azure](../../includes/login-to-azure.md)] 
+[!INCLUDE [Log in tooAzure](../../includes/login-to-azure.md)] 
 
 [!INCLUDE [Configure deployment user](../../includes/configure-deployment-user.md)] 
 
@@ -72,11 +72,11 @@ git clone https://github.com/Azure-Samples/html-docs-hello-world.git
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git.md)] 
 
-[!INCLUDE [Push to Azure](../../includes/app-service-web-git-push-to-azure.md)] 
+[!INCLUDE [Push tooAzure](../../includes/app-service-web-git-push-to-azure.md)] 
 
 ```bash
 Counting objects: 13, done.
-Delta compression using up to 4 threads.
+Delta compression using up too4 threads.
 Compressing objects: 100% (11/11), done.
 Writing objects: 100% (13/13), 2.07 KiB | 0 bytes/s, done.
 Total 13 (delta 2), reused 0 (delta 0)
@@ -96,52 +96,52 @@ remote: Copying file: 'README.md'
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net/<app_name>.git
+toohttps://<app_name>.scm.azurewebsites.net/<app_name>.git
  * [new branch]      master -> master
 ```
 
-## <a name="browse-to-the-app"></a>瀏覽至應用程式
+## <a name="browse-toohello-app"></a>瀏覽 toohello 應用程式
 
-在瀏覽器中，移至 Azure Web 應用程式 URL：
+在瀏覽器，移 toohello Azure web 應用程式 URL:
 
 ```
 http://<app_name>.azurewebsites.net
 ```
 
-此頁面目前作為 Azure App Service Web 應用程式執行。
+hello 頁面 Azure App Service web 應用程式形式執行。
 
 ![範例應用程式首頁](media/app-service-web-get-started-html/hello-world-in-browser-az.png)
 
-**恭喜！** 您已將第一個 HTML 應用程式部署至 App Service。
+**恭喜！** 您已部署您第一次的 HTML 應用程式 tooApp 服務。
 
-## <a name="update-and-redeploy-the-app"></a>更新和重新部署應用程式
+## <a name="update-and-redeploy-hello-app"></a>更新和重新部署 hello 應用程式
 
-在文字編輯器中開啟 *index.html* 檔案，並對標記進行變更。 例如，將 H1 標題從「Azure App Service - 範例靜態 HTML 網站」變更為只剩下「Azure App Service」。
+開啟 hello *index.html*檔案在文字編輯器中，並製作變更 toohello 標記。 例如，變更 「 Azure 應用程式服務-範例靜態 HTML 網站 」 toojust hello H1 標題 「 Azure App Service'。
 
-在 Git 中認可您的變更，然後將程式碼變更推送至 Azure。
+認可您在 Git 中的變更，並接著推送 hello 程式碼變更 tooAzure。
 
 ```bash
 git commit -am "updated HTML"
 git push azure master
 ```
 
-完成部署後，重新整理瀏覽器以查看變更。
+部署完成後，請重新整理瀏覽器 toosee hello 做的變更。
 
 ![已更新的範例應用程式首頁](media/app-service-web-get-started-html/hello-azure-in-browser-az.png)
 
 ## <a name="manage-your-new-azure-web-app"></a>管理新的 Azure Web 應用程式
 
-請移至 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>，以管理您所建立的 Web 應用程式。
+移 toohello <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>toomanage hello web 應用程式所建立。
 
-按一下左側功能表中的 [應用程式服務]，然後按一下 Azure Web 應用程式的名稱。
+從 hello 左窗格中，按一下 **應用程式服務**，然後按一下hello Azure web 應用程式名稱。
 
-![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-get-started-html/portal1.png)
+![入口網站瀏覽 tooAzure web 應用程式](./media/app-service-web-get-started-html/portal1.png)
 
 您會看到 Web 應用程式的 [概觀] 頁面。 您可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 
 
 ![Azure 入口網站中的 App Service 刀鋒視窗](./media/app-service-web-get-started-html/portal2.png)
 
-左側功能表提供不同的頁面來設定您的應用程式。 
+hello 左側的功能表提供不同頁面設定您的應用程式。 
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 

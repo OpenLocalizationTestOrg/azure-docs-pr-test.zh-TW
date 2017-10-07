@@ -1,6 +1,6 @@
 ---
-title: "什麼是 Azure 的自助式註冊？ | Microsoft Docs"
-description: "Azure 的自助式註冊、如何管理註冊程序及如何接管 DNS 網域名稱的概觀。"
+title: "aaaWhat 是 Azure 的自助註冊？ | Microsoft Docs"
+description: "概觀自助式註冊 azure，toomanage hello 註冊程序，以及如何 tootake 透過 DNS 網域名稱。"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,132 +14,132 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/08/2017
 ms.author: curtand
-ms.openlocfilehash: de8b55516ae7e19f2b42466fa4dc387b82495a5b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dbf3b59e3807e98f7bf39f3d5591fcde01667323
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-self-service-signup-for-azure"></a>什麼是 Azure 的自助式註冊？
-本主題說明自助式註冊程序及如何接管 DNS 網域名稱。  
+本主題說明 hello 自助式註冊程序和如何 tootake 透過 DNS 網域名稱。  
 
 ## <a name="why-use-self-service-signup"></a>為何使用自助式註冊？
-* 讓客戶更快取得他們想要的服務。
+* 取得客戶 tooservices 他們想要更快。
 * 建立服務的電子郵件型供應項目。
-* 建立以電子郵件為基礎的註冊流程，讓使用者使用其易記的工作電子郵件別名快速地建立身分識別。
+* 建立快速允許使用者使用其容易記住的工作電子郵件別名的 toocreate 身分識別的電子郵件型註冊流程。
 * 未受管理的 Azure 目錄後來可以轉換成受管理的目錄，並重複用於其他服務。
 
 ## <a name="terms-and-definitions"></a>詞彙和定義
-* **自助式註冊**：這是使用者用以註冊雲端服務的方法，系統會根據其電子郵件網域在 Azure Active Directory (Azure AD) 中自動建立身分識別。
-* **未受管理的 Azure 目錄**：這是建立身分識別的目錄。 未受管理的目錄是沒有全域管理員的目錄。
+* **自助式註冊**： 這是程式的使用者註冊的雲端服務，並將具有 Azure Active Directory (Azure AD) 中自動建立它們的身分識別根據他們的電子郵件網域的 hello 方法。
+* **未受管理的 Azure 目錄**： 這是該身分識別建立所在的 hello 目錄。 未受管理的目錄是沒有全域管理員的目錄。
 * **電子郵件驗證的使用者**：這是 Azure AD 中的使用者帳戶類型。 在註冊自助式供應項目後自動建立身分識別的使用者，就是所謂的電子郵件驗證的使用者。 電子郵件驗證的使用者是加上 creationmethod=EmailVerified 標記之目錄的一般成員。
 
 ## <a name="user-experience"></a>使用者體驗
-例如，假設電子郵件為 Dan@BellowsCollege.com 的使用者會透過電子郵件接收機密檔案。 檔案已受 Azure 版權管理 (Azure RMS) 保護。 但是 Dan 的組織 (Bellows College) 尚未註冊 Azure RMS，也未部署 Active Directory RMS。 在此情況下，Dan 可以註冊個人版 RMS 的免費訂閱，以便讀取受保護的檔案。
+例如，假設電子郵件為 Dan@BellowsCollege.com 的使用者會透過電子郵件接收機密檔案。 hello 檔案已受 Azure Rights Management (Azure RMS)。 但是 Dan 的組織 (Bellows College) 尚未註冊 Azure RMS，也未部署 Active Directory RMS。 在此情況下，Dan 可以申請免費訂用帳戶 tooRMS 順序 tooread hello 受保護的檔案中的個人。
 
-如果 Dan 是第一個使用 BellowsCollege.com 的電子郵件地址註冊此自助式供應項目的使用者，則 Azure AD 中會針對 BellowsCollege.com 建立未受管理的目錄。 如果來自 BellowsCollege.com 網域的其他使用者註冊此供應項目或類似的自助式供應項目，則在 Azure 中相同的未受管理目錄中，也會為他們建立經過電子郵件驗證的使用者帳戶。
+如果 Dan hello 第一位使用者與此供應項目的自助註冊 BellowsCollege.com toosign 從電子郵件地址，然後未受管理的目錄將會建立 BellowsCollege.com 在 Azure AD 中。 如果來自 hello BellowsCollege.com 網域的其他使用者註冊此供應項目或類似的自助服務供應項目，它們也會具有電子郵件驗證建立的使用者帳戶在 hello 相同 unmanaged 在 Azure 中的目錄。
 
 ## <a name="admin-experience"></a>管理員體驗
-擁有未受管理 Azure 目錄之 DNS 網域名稱的管理員，可以在證明擁有權後接管或合併目錄。 下一節會更詳細地說明管理員體驗，但其摘要如下：
+擁有 hello DNS 網域名稱未受管理的 Azure 目錄的系統管理員可以接管或合併 hello 目錄之後證明擁有權。 hello 以下幾節說明 hello 系統管理員體驗的詳細資料，但是摘要如下：
 
-* 當您接管未受管理的 Azure 目錄時，您就直接變成未受管理目錄的全域管理員。 這有時候稱為內部接管。
-* 當您合併未受管理的 Azure 目錄時，您會將未受管理目錄的 DNS 網域名稱新增至受管理的 Azure 目錄，而且系統會建立使用者與資源的對應，以便使用者繼續存取服務而不中斷。 這有時候稱為外部接管。
+* 當您接管的未受管理的 Azure 目錄時，您只需變得 hello hello unmanaged 目錄全域管理員。 這有時候稱為內部接管。
+* 當合併未受管理的 Azure 目錄，您將 hello unmanaged 的目錄 tooyour managed Azure 目錄的 hello DNS 網域名稱和使用者資源的對應會建立讓使用者可以繼續 tooaccess 服務不中斷。 這有時候稱為外部接管。
 
 ## <a name="what-gets-created-in-azure-active-directory"></a>Azure Active Directory 中建立的項目為何？
 #### <a name="directory"></a>目錄
-* 建立網域的 Azure Active Directory 目錄 (每個網域一個目錄)。
-* Azure AD 目錄沒有全域管理員。
+* Hello 網域的 Azure Active Directory 目錄會建立一個目錄，每個網域。
+* hello Azure AD 目錄中有任何全域管理員。
 
 #### <a name="users"></a>使用者
-* 針對註冊的每位使用者，Azure AD 目錄中會建立使用者物件。
+* 每個使用者註冊，使用者物件建立 hello Azure AD 目錄中。
 * 每個使用者物件都標示為外部。
-* 每位使用者都獲權存取他們註冊的服務。
+* 每個使用者可以註冊這些簽署存取 toohello 服務。
 
 ### <a name="how-do-i-claim-a-self-service-azure-ad-directory-for-a-domain-i-own"></a>如何針對我擁有的網域宣告自助式 Azure AD 目錄？
-您可以執行網域驗證來宣告自助式 Azure AD 目錄。 網域驗證會藉由建立 DNS 記錄來證明您擁有該網域。
+您可以執行網域驗證來宣告自助式 Azure AD 目錄。 網域驗證證明您自己的 hello 網域建立 DNS 記錄。
 
-有兩種方式可進行 Azure AD 目錄的 DNS 接管：
+有兩種方式 toodo DNS 接管的 Azure AD 目錄：
 
-* 內部接管 (管理員會探索未受管理的 Azure 目錄，並且想要轉換成受管理的目錄)
-* 外部接管 (管理員會嘗試將新的網域新增至他們管理的 Azure 目錄)
+* 內部接管 （管理探索未受管理的 Azure 目錄，以及想 tooturn 到受管理的目錄）
+* 外部接管 （系統管理員會嘗試 tooadd 到新網域 tootheir 受管理的 Azure 目錄）
 
-如果您在使用者執行自助式註冊後接管未受管理的目錄，或正在將新網域加入至現有的受管理目錄，您可能會想要驗證您擁有網域。 例如，您擁有名為 contoso.com 的網域，而您想要加入名為 contoso.co.uk 或 contoso.uk 的新網域。
+您可能會想要驗證您擁有網域，因為在使用者執行自助式註冊，或您可能會加入新網域 tooan 現有受管理的目錄之後，您就可以透過未受管理的目錄。 例如，您有名稱為 contoso.com 的網域，而且您想 tooadd contoso.co.uk 或 contoso.uk 命名新的網域。
 
 ## <a name="what-is-domain-takeover"></a>什麼是網域接管？
-本節說明如何驗證您擁有的網域。
+本章節涵蓋如何您擁有網域 toovalidate
 
 ### <a name="what-is-domain-validation-and-why-is-it-used"></a>什麼是網域驗證，以及為何使用？
-為了在目錄上執行作業，Azure AD 會要求您驗證 DNS 網域的擁有權。  網域驗證可讓您宣告目錄，並且將自助式目錄提升為受管理的目錄，或將自助式目錄合併到現有的受管理目錄。
+在訂單 tooperform 作業在目錄中，Azure AD 會要求您驗證 hello DNS 網域的擁有權。  Hello 網域的驗證可讓您 tooclaim hello 目錄，然後升級 hello 自助目錄 tooa 管理的目錄，或合併 hello 自助服務目錄中的現有受管理的目錄。
 
 ## <a name="examples-of-domain-validation"></a>網域驗證範例
-有兩種方式可進行目錄的 DNS 接管：
+有兩種方式 toodo DNS 接管的目錄：
 
-* 內部接管 (例如，系統管理員會探索未受管理的自助式目錄，並且想要轉換成受管理的目錄)
-* 外部接管 (例如，管理員會嘗試將新的網域新增至受管理的目錄)
+* 內部接管 （例如，可探索自助服務、 未受管理的目錄，而且想 tooturn 到受管理的目錄系統管理員）
+* 外部接管 （例如，系統管理員會嘗試 tooadd 新網域 tooa 受管理的目錄）
 
-### <a name="internal-takeover---promote-a-self-service-unmanaged-directory-to-be-a-managed-directory"></a>內部接管 - 將未受管理的自助式目錄提升為受管理的目錄
-當您執行內部接管時，目錄會從未受管理的目錄轉換為受管理的目錄。 您需要完成 DNS 網域名稱驗證，驗證時您會在 DNS 區域中建立 MX 記錄或 TXT 記錄。 該動作：
+### <a name="internal-takeover---promote-a-self-service-unmanaged-directory-toobe-a-managed-directory"></a>內部接管-升級自助服務、 未受管理的目錄 toobe 受管理的目錄
+當您進行內部接管時，取得會從 unmanaged 的目錄 tooa 管理目錄轉換 hello 目錄。 您需要 toocomplete DNS 網域名稱驗證，其中 hello DNS 區域中建立 MX 記錄或 TXT 記錄。 該動作：
 
-* 驗證您是否擁有此網域
-* 將目錄變成受管理
-* 讓您成為目錄的全域管理員
+* 驗證您擁有 hello 網域
+* 可讓受管理的 hello 目錄
+* 可讓您 hello hello 目錄的全域管理員
 
-假設 Bellows College 的 IT 管理員發現學校的使用者已註冊自助式供應項目。 身為 DNS 名稱 BellowsCollege.com 的註冊擁有者，IT 管理員可以在 Azure 中驗證 DNS 名稱的擁有權，然後接管未受管理的目錄。 目錄接著會變成受管理的目錄，而 IT 管理員會被指派 BellowsCollege.com 目錄的全域管理員角色。
+讓我們假設您的 IT 系統管理員身分從波紋管大學探索 hello 學校的使用者已註冊為自助服務供應項目。 Hello 註冊 hello DNS 的擁有者名稱 BellowsCollege.com、 hello IT 系統管理員可以驗證在 Azure 中的 hello DNS 名稱的擁有權，並再 hello 未受管理的目錄。 hello 目錄就會變成受管理的目錄，而且 hello IT 系統管理員指派 hello hello BellowsCollege.com 目錄的全域管理員角色。
 
 ### <a name="external-takeover---merge-a-self-service-directory-into-an-existing-managed-directory"></a>外部接管 - 將自助式目錄合併到現有的受管理目錄
-在外部接管中，您已有受管理的目錄，而您希望來自未受管理目錄的所有使用者和群組都加入該受管理的目錄，而非擁有兩個不同的目錄。
+在外部的接管您已經有受管理的目錄和您想要所有使用者和群組從受管理的目錄中，未受管理的目錄 toojoin 而自己的兩個不同的目錄。
 
-身為受管理目錄的管理員，您新增網域，而該網域剛好有一個相關聯的未受管理目錄。
+身為系統管理員的受管理的目錄中，您將加入網域，而且該網域剛好 toohave unmanaged 與它相關聯的目錄。
 
-例如，假設您是 IT 管理員，而且已有 Contoso.com (您的組織註冊的網域名稱) 的受管理目錄。 您會發現貴組織的使用者已使用電子郵件網域名稱 user@contoso.co.uk (這是貴組織擁有的另一個網域名稱) 以自助方式註冊產品方案。 這些使用者目前在 contoso.co.uk 的未受管理目錄中有帳戶。
+例如，假設您是 IT 系統管理員，而且您已經擁有的受管理的目錄，對 Contoso.com 是已註冊的 tooyour 組織的網域名稱。 您會發現貴組織的使用者已使用電子郵件網域名稱 user@contoso.co.uk (這是貴組織擁有的另一個網域名稱) 以自助方式註冊產品方案。 這些使用者目前在 contoso.co.uk 的未受管理目錄中有帳戶。
 
-您不想管理兩個不同的目錄，所以將 contoso.co.uk 的未受管理目錄合併到 contoso.com 的現有 IT 受管理目錄。
+您不想 toomanage 兩個個別目錄，因此 contoso.co.uk hello unmanaged 的目錄合併到現有的受管理的 IT 目錄 contoso.com。
 
-外部接管會遵循與內部接管相同的 DNS 驗證程序。  差異是：使用者和服務會重新對應至 IT 受管理的目錄。
+外部接管如下所示 hello 相同內部接管的 DNS 驗證程序。  正在執行的差異： 使用者和服務會重新對應的 toohello IT 管理的目錄。
 
-#### <a name="whats-the-impact-of-performing-an-external-takeover"></a>執行外部接管的影響為何？
-外部接管時會建立使用者與資源的對應，以便使用者繼續存取服務而不中斷。 許多應用程式 (包括個人的 RMS) 會妥善處理使用者與資源的對應，而使用者不需變更即可繼續存取這些服務。 如果應用程式未有效地處理使用者與資源的對應，外部接管可能會明確遭到封鎖，以免使用者發生不佳的體驗。
+#### <a name="whats-hello-impact-of-performing-an-external-takeover"></a>執行外部接管 hello 影響為何？
+透過外部的接管使用者為資源的對應會建立讓使用者可以繼續 tooaccess 服務不中斷。 許多應用程式，包括個人版，RMS，處理 hello 對應使用者的資源，而且使用者可以繼續 tooaccess 而不需要變更這些服務。 如果應用程式不會有效地處理 hello 對應的使用者-資源、 外部接管可能會明確封鎖的 tooprevent 使用者不佳的體驗。
 
 #### <a name="directory-takeover-support-by-service"></a>服務支援的目錄接管
-目前下列服務支援接管：
+目前 hello 下列服務支援接管：
 
 * RMS
 
-下列服務很快就會支援接管：
+下列服務的 hello 將很快就會支援接管：
 
 * PowerBI
 
-在外部接管之後，下列項目不需要管理員採取行動來移轉使用者資料。
+hello 下列外部接管之後需要額外的管理動作 toomigrate 使用者資料，並不相符。
 
 * SharePoint/OneDrive
 
-## <a name="how-to-perform-a-dns-domain-name-takeover"></a>如何執行 DNS 網域名稱接管
-您有幾個選項可用來執行網域驗證 (如果您想要，可執行接管)：
+## <a name="how-tooperform-a-dns-domain-name-takeover"></a>如何 tooperform DNS 網域名稱接管
+您有幾個選項，供 tooperform 網域驗證 （和執行接管，如果您想）：
 
 1. Azure 管理入口網站
 
-   接管是由執行網域新增所觸發。  如果網域已有目錄，您將可選擇執行外部接管。
+   接管是由執行網域新增所觸發。  如果目錄已經存在 hello 網域，您將有 hello 選項 tooperform 外部接管。
 
-   使用您的認證登入 Azure 入口網站。  瀏覽至現有的目錄，再瀏覽至 [加入網域] 。
+   登入 toohello Azure 入口網站使用您的認證。  瀏覽 tooyour 現有目錄，然後太**新增網域**。
 2. Office 365
 
-   您可以在 Office 365 中使用 [管理網域](https://support.office.com/article/Navigate-to-the-Office-365-Manage-domains-page-026af1f2-0e6d-4f2d-9b33-fd147420fac2/) 頁面上的選項來處理您的網域和 DNS 記錄。 請參閱 [在 Office 365 中驗證您的網域](https://support.office.com/article/Verify-your-domain-in-Office-365-6383f56d-3d09-4dcb-9b41-b5f5a5efd611/)。
+   您可以使用 hello hello 選項[管理網域](https://support.office.com/article/Navigate-to-the-Office-365-Manage-domains-page-026af1f2-0e6d-4f2d-9b33-fd147420fac2/)Office 365 toowork 與您的網域和 DNS 記錄中的頁面。 請參閱 [在 Office 365 中驗證您的網域](https://support.office.com/article/Verify-your-domain-in-Office-365-6383f56d-3d09-4dcb-9b41-b5f5a5efd611/)。
 3. Windows PowerShell
 
-   下列步驟是使用 Windows PowerShell 執行驗證的必要步驟。
+   hello 步驟是必要的 tooperform 驗證，使用 Windows PowerShell。
 
-   | 步驟 | 要使用的 Cmdlet |
+   | 步驟 | Cmdlet toouse |
    | --- | --- |
    | 建立認證物件 |Get-Credential |
-   | 連接至 Azure AD |Connect-MsolService |
+   | 連接 tooAzure AD |Connect-MsolService |
    | 取得網域清單 |Get-MsolDomain |
    | 建立挑戰 |Get-MsolDomainVerificationDns |
    | 建立 DNS 記錄 |在您的 DNS 伺服器上執行這項操作 |
-   | 驗證挑戰 |Confirm-MsolEmailVerifiedDomain |
+   | 確認 hello 挑戰 |Confirm-MsolEmailVerifiedDomain |
 
 例如：
 
-1. 使用用來回應自助式產品方案的認證來連接至 Azure AD：
+1. 連接 tooAzure AD 使用 hello 認證所使用的 toorespond toohello 自助服務供應項目：
 
         import-module MSOnline
         $msolcred = get-credential
@@ -147,22 +147,22 @@ ms.lasthandoff: 07/11/2017
 2. 取得網域清單：
 
     Get-MsolDomain
-3. 然後執行 Get-MsolDomainVerificationDns Cmdlet 來建立挑戰：
+3. 然後執行 hello Get-msoldomainverificationdns cmdlet toocreate 一項挑戰：
 
     Get-MsolDomainVerificationDns –DomainName *your_domain_name* –Mode DnsTxtRecord
 
     例如：
 
     Get-MsolDomainVerificationDns –DomainName contoso.com –Mode DnsTxtRecord
-4. 複製從此命令傳回的值 (挑戰)。
+4. 複製此命令會傳回 hello 值 （hello 挑戰）。
 
     例如：
 
     MS=32DD01B82C05D27151EA9AE93C5890787F0E65D9
-5. 在公用 DNS 命名空間中，建立 DNS txt 記錄，其中包含您在上一個步驟中複製的值。
+5. 在公用 DNS 命名空間，建立 DNS txt 記錄，其中包含您在 hello 上一個步驟中複製的 hello 值。
 
-    此記錄的名稱是父系網域的名稱，所以如果您使用 Windows Server 的 DNS 角色建立此資源記錄，請將記錄名稱空白，只要將此值貼入文字方塊即可。
-6. 執行 onfirm-MsolDomain Cmdlet 來驗證挑戰：
+    這個記錄的 hello 名稱是 hello hello 父系網域的名稱，因此如果您使用 Windows 伺服器 hello DNS 角色建立此資源記錄，將 hello 記錄名稱保留空白，而且只要 hello 值貼到 [hello] 文字方塊中
+6. 執行 hello Confirm-msoldomain cmdlet tooverify hello 挑戰：
 
     Confirm-MsolEmailVerifiedDomain -DomainName *your_domain_name*
 
@@ -170,33 +170,33 @@ ms.lasthandoff: 07/11/2017
 
     Confirm-MsolEmailVerifiedDomain -DomainName contoso.com
 
-成功挑戰會讓您回到提示，但不會產生錯誤。
+成功挑戰會傳回 toohello 提示字元，且未產生錯誤。
 
 ## <a name="how-do-i-control-self-service-settings"></a>如何控制自助式設定？
 系統管理員目前有兩個自助式控制項。 可以控制：
 
-* 使用者是否可以透過電子郵件加入目錄。
+* 是否使用者可以加入 hello 目錄，透過電子郵件。
 * 使用者是否可以自行授權應用程式和服務。
 
 ### <a name="how-can-i-control-these-capabilities"></a>如何控制這些功能？
 系統管理員可以使用下列 Azure AD Cmdlet Set-MsolCompanySettings 參數設定這些功能：
 
-* **AllowEmailVerifiedUsers** 控制使用者是否可以建立或加入未受管理的目錄。 如果您將該參數設定為 $false，則經過電子郵件驗證的使用者都無法加入目錄。
-* **AllowAdHocSubscriptions** 控制使用者執行自助式註冊的能力。 如果您將該參數為 $false，則沒有任何使用者可以執行自助式註冊。
+* **AllowEmailVerifiedUsers** 控制使用者是否可以建立或加入未受管理的目錄。 如果您將該參數太 $false，則沒有電子郵件驗證的使用者可以加入 hello 目錄。
+* **AllowAdHocSubscriptions**控制 hello tooperform 自助登入使用者的能力。 如果您將該參數太 $false，沒有任何使用者可以執行自助式註冊。
 
-### <a name="how-do-the-controls-work-together"></a>這些控制項如何一起運作？
-這兩個參數可合併使用，以定義更精確的自助式註冊控制項。 例如，下列命令可讓使用者執行自助式註冊，但僅限於在 Azure AD 中已有帳戶的使用者 (換句話說，需要建立電子郵件驗證帳戶的使用者無法執行自助式註冊)：
+### <a name="how-do-hello-controls-work-together"></a>Hello 控制項如何一起？
+這兩個參數可以用於搭配 toodefine 更精確地控制自助登入。 比方說，下列命令的 hello 可讓使用者 tooperform 自助式註冊，但僅限於如果這些使用者已經有 Azure AD 的帳戶 （亦即，使用者必須建立電子郵件驗證帳戶 toobe 無法將自助登執行向上）：
 
     Set-MsolCompanySettings -AllowEmailVerifiedUsers $false -AllowAdHocSubscriptions $true
 
-下列流程圖說明這些參數的所有不同組合，以及針對目錄和自助式註冊造成的情況。
+hello 以下流程圖說明對這些參數的 hello 不同組合與 hello 產生條件 hello 目錄和自助式註冊。
 
 ![][1]
 
-如需如何使用這些參數的詳細資訊和相關範，請參閱 [Set-MsolCompanySettings](/powershell/module/msonline/set-msolcompanysettings?view=azureadps-1.0)。
+如需詳細資訊和範例的方式 toouse 這些參數，請參閱[Set-msolcompanysettings](/powershell/module/msonline/set-msolcompanysettings?view=azureadps-1.0)。
 
 ## <a name="see-also"></a>另請參閱
-* [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)
+* [如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)
 * [Azure PowerShell](/powershell/azure/overview)
 * [Azure Cmdlet 參考](/powershell/azure/get-started-azureps)
 * [Set-MsolCompanySettings](/powershell/module/msonline/set-msolcompanysettings?view=azureadps-1.0)

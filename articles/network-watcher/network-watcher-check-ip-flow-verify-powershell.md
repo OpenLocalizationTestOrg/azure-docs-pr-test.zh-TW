@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員 IP 流程驗證來驗證流量 - PowerShell | Microsoft Docs"
-description: "本文說明如何使用 PowerShell 檢查虛擬機器中的流入或流出流量是被允許或拒絕"
+title: "驗證與 Azure 網路監看員 IP 流量 aaaverify 流量-PowerShell |Microsoft 文件"
+description: "本文說明如何 toocheck 如果從虛擬機器的流量 tooor 允許或拒絕使用 PowerShell"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: bf0c01a9af0e28647d11ad89a9d164716d5c8312
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 924da1de1bd554e15816886f8e51d7f170f0e7ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-if-traffic-is-allowed-or-denied-to-or-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>使用 Azure 網路監看員的 IP 流程驗證元件來檢查流入或流出 VM 的流量是被允許或拒絕
+# <a name="check-if-traffic-is-allowed-or-denied-tooor-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>如果允許或拒絕 VM 與 IP 流量 tooor 流量檢查，請確定 Azure 網路監看員的元件
 
 > [!div class="op_single_selector"]
 > - [Azure 入口網站](network-watcher-check-ip-flow-verify-portal.md)
@@ -30,19 +30,19 @@ ms.lasthandoff: 07/11/2017
 > - [Azure REST API](network-watcher-check-ip-flow-verify-rest.md)
 
 
-IP 流量驗證是網路監看員的一項功能，可讓您驗證虛擬機器中的流入或流出流量是否被允許。 此案例可用於取得虛擬機器的目前狀態，以了解其是否可以和外部資源或後端通訊。 IP 流量驗證可用來驗證是否已正確設定網路安全性群組 (NSG) 規則，並針對 NSG 規則所封鎖的流量進行疑難排解。 使用 IP 流量驗證的另一個原因是可以確保 NSG 會正確封鎖您想要封鎖的流量。
+IP 流量驗證是一項功能可讓您 tooverify 如果允許 tooor 從虛擬機器的流量的網路監看員。 這個案例中很有用 tooget 的虛擬機器是否可以彼此通訊 tooan 外部資源或後端的目前狀態。 IP 流量確認是否可使用的 tooverify，是否您的網路安全性群組 (NSG) 規則都已正確設定及疑難排解 NSG 規則而遭到封鎖的流量。 另一個原因需要使用 IP 流程可讓您確認是否想要封鎖 tooensure 流量正在封鎖正確 hello NSG。
 
 ## <a name="before-you-begin"></a>開始之前
 
-此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員，或您擁有現有的網路監看員執行個體。 此案例也假設已有具有有效虛擬機器的資源群組可供使用。
+此案例假設您已依照中的 hello 步驟[建立網路監看員](network-watcher-create.md)toocreate 網路監看員或具有網路監看員的現有執行個體。 hello 案例也會假設具有有效的虛擬機器的資源群組存在 toobe 使用。
 
 ## <a name="scenario"></a>案例
 
-此案例使用 IP 流程驗證來確認虛擬機器是否可以與已知的 Bing IP 位址進行通訊。 如果流量被拒絕，它會傳回拒絕該流量的安全性規則。 若要深入了解 IP 流程驗證，請瀏覽 [IP 流程驗證概觀 (英文)](network-watcher-ip-flow-verify-overview.md)
+這個案例使用 IP 流量，如果虛擬機器可以彼此 tooa 通訊已知驗證 tooverify Bing IP 位址。 如果 hello 流量遭到拒絕，它會傳回 hello 安全性規則，拒絕的流量。 更多關於 IP 流程驗證，請造訪 toolearn [IP 流量確認概觀](network-watcher-ip-flow-verify-overview.md)
 
 ## <a name="retrieve-network-watcher"></a>擷取網路監看員
 
-第一步是擷取網路監看員執行個體。 `$networkWatcher` 變數會傳遞至 IP 流量驗證 Cmdlet。
+hello 第一個步驟是 tooretrieve hello 網路監看員執行個體。 hello`$networkWatcher`變數傳遞 toohello IP 流量驗證指令程式。
 
 ```powershell
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" } 
@@ -51,15 +51,15 @@ $networkWatcher = Get-AzureRmNetworkWatcher -Name $nw.Name -ResourceGroupName $n
 
 ## <a name="get-a-vm"></a>取得 VM
 
-IP 流量驗證會測試虛擬機器上的 IP 位址流向遠端目的地的流量，反之亦然。 Cmdlet 需要虛擬機器的識別碼。 如果您已經知道要使用的虛擬機器識別碼，您可以略過此步驟。
+IP 流量，請確認測試流量 tooor 從虛擬機器 tooor 從遠端目的地上的 IP 位址。 Hello cmdlet 需要虛擬機器的識別碼。 如果您已經知道 hello 虛擬機器 toouse hello 識別碼，您可以略過此步驟。
 
 ```powershell
 $VM = Get-AzurermVM -ResourceGroupName "testrg" -Name "testvm1"
 ```
 
-## <a name="get-the-nics"></a>取得 NICS
+## <a name="get-hello-nics"></a>取得 hello NIC
 
-您需要虛擬機器上 NIC 的 IP 位址，在此範例中，我們會擷取虛擬機器上的 NIC。 如果您已經知道您想要在虛擬機器上測試的 IP 位址，您可以略過此步驟。
+需要 hello 的 hello 虛擬機器上的 NIC 的 IP 位址，在此範例中我們擷取 hello Nic 的虛擬機器上。 如果您已經知道 hello IP 位址，您會想 tootest hello 虛擬機器上，您可以略過此步驟。
 
 ```powershell
 $Nics = Get-AzureRmNetworkInterface | Where {$_.Id -eq $vm.NetworkProfile.NetworkInterfaces.Id.ForEach({$_})}
@@ -67,7 +67,7 @@ $Nics = Get-AzureRmNetworkInterface | Where {$_.Id -eq $vm.NetworkProfile.Networ
 
 ## <a name="run-ip-flow-verify"></a>執行 IP 流量驗證
 
-既然我們已經擁有了執行 Cmdlet 所需的資訊，我們可以執行 `Test-AzureRmNetworkWatcherIPFlow` Cmdlet 來測試流量。 在此範例中，我們會使用第一個 NIC 上的第一個 IP 位址。
+現在，我們已經 hello 資訊所需 toorun hello 指令程式，我們會執行 hello `Test-AzureRmNetworkWatcherIPFlow` cmdlet tootest hello 流量。 在此範例中，我們會使用第一個 IP 位址 hello hello 第一個 NIC 上
 
 ```powershell
 Test-AzureRmNetworkWatcherIPFlow -NetworkWatcher $networkWatcher -TargetVirtualMachineId $VM.Id `
@@ -76,11 +76,11 @@ Test-AzureRmNetworkWatcherIPFlow -NetworkWatcher $networkWatcher -TargetVirtualM
 ```
 
 > [!NOTE]
-> IP 流程驗證需要配置 VM 資源才能執行。
+> IP 流量確認需要 hello VM 資源配置 toorun。
 
 ## <a name="review-results"></a>檢閱結果
 
-`Test-AzureRmNetworkWatcherIPFlow` 執行後會傳回結果，下列範例就是上一個步驟所傳回的結果。
+執行之後`Test-AzureRmNetworkWatcherIPFlow`hello 結果、 hello 下列範例是 hello hello 前面步驟所傳回的結果。
 
 ```
 Access RuleName                                  
@@ -90,7 +90,7 @@ Allow  defaultSecurityRules/AllowInternetOutBound
 
 ## <a name="next-steps"></a>後續步驟
 
-如果流量遭到封鎖，但不應如此，請參閱[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)以追蹤網路安全性群組和所定義的安全性規則。
+如果正在封鎖流量，不應該看到[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)tootrack hello 網路安全性群組和安全性規則所定義的關閉。
 
 [1]: ./media/network-watcher-check-ip-flow-verify-portal/figure1.png
 [2]: ./media/network-watcher-check-ip-flow-verify-portal/figure2.png

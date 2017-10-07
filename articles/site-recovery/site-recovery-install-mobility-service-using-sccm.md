@@ -1,5 +1,5 @@
 ---
-title: "使用軟體部署工具將適用於 Azure Site Recovery 的行動服務安裝進行自動化 | Microsoft Docs"
+title: "使用軟體部署工具的行動服務安裝 Azure Site recovery aaaAutomate |Microsoft 文件"
 description: "本文協助您使用 System Center Configuration Manager 之類的軟體部署工具，將行動服務安裝進行自動化。"
 services: site-recovery
 documentationcenter: 
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: anoopkv
-ms.openlocfilehash: 49b72cd306aa91f114af7688f02d95db6f6eca05
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c883c6d5308dcec6e0628b0c2196b3a12e08ebe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automate-mobility-service-installation-by-using-software-deployment-tools"></a>使用軟體部署工具將行動服務安裝進行自動化
 
 >[!IMPORTANT]
 本文件假設您是使用 **9.9.4510.1** 版或更新版本。
 
-本文提供範例說明如何使用 System Center Configuration Manager，將 Azure Site Recovery 行動服務部署在資料中心。 使用 Configuration Manager 之類的軟體部署工具有下列優點：
+這篇文章會提供如何使用 System Center Configuration Manager toodeploy hello Azure Site Recovery Mobility 服務，以及在資料中心中的範例。 使用像 Configuration Manager 的軟體部署工具有下列優點 hello:
 * 在您規劃的軟體更新維護期間，排程全新安裝和升級的部署
-* 同時大規模部署至數百個伺服器
+* 同時調整伺服器部署的 toohundreds
 
 
 > [!NOTE]
-> 本文使用 System Center Configuration Manager 2012 R2 示範部署活動。 您也可以使用 [Azure 自動化和期望的狀態設定](site-recovery-automate-mobility-service-install.md)，將行動服務安裝進行自動化。
+> 本文使用 System Center Configuration Manager 2012 R2 toodemonstrate hello 部署活動。 您也可以使用 [Azure 自動化和期望的狀態設定](site-recovery-automate-mobility-service-install.md)，將行動服務安裝進行自動化。
 
 ## <a name="prerequisites"></a>必要條件
 1. 環境中已部署的軟體部署工具，例如 Configuration Manager。
-  建立兩個[裝置集合](https://technet.microsoft.com/library/gg682169.aspx)，一個用於所有 **Windows 伺服器**，另一個用於所有 **Linux 伺服器** (都是您想要使用 Site Recovery 保護的伺服器)。
+  建立兩個[裝置集合](https://technet.microsoft.com/library/gg682169.aspx)，一個用於所有**Windows 伺服器**，而另一個用於所有**Linux 伺服器**，要 tooprotect 使用站台復原。
 3. 已向 Site Recovery 註冊的設定伺服器。
-4. Configuration Manager 伺服器可存取的安全網路檔案共用 (伺服器訊息區共用)。
+4. 安全的網路檔案共用 （伺服器訊息區共用） hello Configuration Manager 伺服器可存取。
 
 ## <a name="deploy-mobility-service-on-computers-running-windows"></a>在執行 Windows 的電腦上部署行動服務
 > [!NOTE]
-> 本文假設設定伺服器的 IP 位址為 192.168.3.121，且安全網路檔案共用是 \\\ContosoSecureFS\MobilityServiceInstallers。
+> 本文章假設 hello hello 組態伺服器 IP 位址是 192.168.3.121，而且 hello 安全的網路檔案共用，且\\\ContosoSecureFS\MobilityServiceInstallers。
 
 ### <a name="step-1-prepare-for-deployment"></a>步驟 1︰準備部署
-1. 在網路共用上建立資料夾，並命名為 **MobSvcWindows**。
-2. 登入設定伺服器，然後將系統管理命令提示字元開啟。
-3. 執行下列命令來產生複雜密碼檔案：
+1. Hello 網路共用上建立資料夾並將其命名**MobSvcWindows**。
+2. 登入 tooyour 組態伺服器上，開啟 系統管理命令提示字元。
+3. 執行下列命令 toogenerate 複雜密碼檔案的 hello:
 
     `cd %ProgramData%\ASR\home\svsystems\bin`
 
     `genpassphrase.exe -v > MobSvc.passphrase`
-4. 將 **MobSvc.passphrase** 檔案複製到網路共用上的 **MobSvcWindows** 資料夾。
-5. 執行下列命令，以瀏覽至設定伺服器上的安裝程式存放庫：
+4. 複製 hello **MobSvc.passphrase**檔案 hello **MobSvcWindows**網路共用上的資料夾。
+5. 瀏覽 toohello hello 組態伺服器上的安裝程式儲存機制，藉由執行下列命令的 hello:
 
    `cd %ProgramData%\ASR\home\svsystems\puhsinstallsvc\repository`
 
-6. 將 **Microsoft-ASR\_UA\_*version*\_Windows\_GA\_*date*\_Release.exe** 複製到網路共用上的 **MobSvcWindows** 資料夾。
-7. 複製下列程式碼，儲存為 **install.bat** 放在 **MobSvcWindows** 資料夾中。
+6. 複製 hello  **Microsoft ASR\_UA\_*版本*\_Windows\_GA\_*日期*\_Release.exe** toohello **MobSvcWindows**網路共用上的資料夾。
+7. 複製 hello 下列程式碼，並將它儲存成**install.bat**到 hello **MobSvcWindows**資料夾。
 
    > [!NOTE]
-   > 將此指令碼中的 [CSIP] 預留位置取代為設定伺服器 IP 位址的實際值。
+   > 此指令碼中的 hello [CSIP] 預留位置取代為 hello hello IP 位址的組態伺服器的實際值。
 
 ```DOS
 Time /t >> C:\Temp\logfile.log
 REM ==================================================
-REM ==== Clean up the folders ========================
+REM ==== Clean up hello folders ========================
 RMDIR /S /q %temp%\MobSvc
 MKDIR %Temp%\MobSvc
 MKDIR C:\Temp
@@ -77,9 +77,9 @@ CD %Temp%\MobSvc
 REN Micro*.exe MobSvcInstaller.exe
 REM ==================================================
 
-REM ==== Extract the installer =======================
+REM ==== Extract hello installer =======================
 MobSvcInstaller.exe /q /x:%Temp%\MobSvc\Extracted
-REM ==== Wait 10s for extraction to complete =========
+REM ==== Wait 10s for extraction toocomplete =========
 TIMEOUT /t 10
 REM =================================================
 
@@ -161,20 +161,20 @@ IF NOT %ERRORLEVEL% EQU 0 (
 
 ### <a name="step-2-create-a-package"></a>步驟 2：建立套件
 
-1. 登入您的 Configuration Manager 主控台。
-2. 瀏覽至 [軟體程式庫] > [應用程式管理] > [套件]。
+1. 登入 tooyour Configuration Manager 主控台。
+2. 瀏覽過**軟體程式庫** > **應用程式管理** > **封裝**。
 3. 以滑鼠右鍵按一下 [套件]，然後選取 [建立套件]。
-4. 提供 [名稱]、[描述]、[製造商]、[語言] 和 [版本] 的值。
-5. 選取 [此套件包含來源檔案] 核取方塊。
-6. 按一下 [瀏覽]，選取儲存安裝程式的網路共用 (\\\ContosoSecureFS\MobilityServiceInstaller\MobSvcWindows)。
+4. 提供的 hello 名稱、 描述、 製造商、 語言和版本值。
+5. 選取 hello**此套件包含來源檔案**核取方塊。
+6. 按一下**瀏覽**，並選取 hello hello 安裝程式所在的網路共用 (\\\ContosoSecureFS\MobilityServiceInstaller\MobSvcWindows)。
 
   ![建立套件和程式精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/create_sccm_package.png)
 
-7. 在 [選擇您要建立的程式類型] 頁面上，選取 [標準程式]，然後按 [下一步]。
+7. 在 hello**選擇 hello 程式類型，而您想 toocreate**頁面上，選取**標準程式**，然後按一下**下一步**。
 
   ![建立套件和程式精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm-standard-program.png)
 
-8. 在 [指定此標準程式的相關資訊] 頁面上，提供下列輸入，然後按 [下一步]。 (其他輸入可以使用其預設值。)
+8. 在 hello**指定此標準程式的相關資訊**頁面上，提供 hello 遵循輸入，然後按一下**下一步**。 （hello 其他輸入可以使用其預設值）。
 
   | **參數名稱** | **值** |
   |--|--|
@@ -184,60 +184,60 @@ IF NOT %ERRORLEVEL% EQU 0 (
 
   ![建立套件和程式精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm-program-properties.png)
 
-9. 在下一頁，選取目標作業系統。 行動服務可以安裝在 Windows Server 2012 R2、Windows Server 2012 和 Windows Server 2008 R2。
+9. 在 hello 下一個頁面上，選取目標作業系統 hello。 行動服務可以安裝在 Windows Server 2012 R2、Windows Server 2012 和 Windows Server 2008 R2。
 
   ![建立套件和程式精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm-program-properties-page2.png)
 
-10. 按兩次 [下一步] 以完成精靈。
+10. toocomplete hello 精靈] 中，按一下 [**下一步**兩次。
 
 
 > [!NOTE]
-> 指令碼支援全新安裝行動服務代理程式，以及升級至已安裝的代理程式。
+> hello 指令碼支援的行動服務代理程式的這兩個新安裝，並更新已安裝的 tooagents。
 
-### <a name="step-3-deploy-the-package"></a>步驟 3︰部署套件
-1. 在 Configuration Manager 主控台，以滑鼠右鍵按一下套件，然後選取 [發佈內容]。
+### <a name="step-3-deploy-hello-package"></a>步驟 3： 部署的 hello 封裝
+1. 在 hello Configuration Manager 主控台中，以滑鼠右鍵按一下您的封裝，然後選取**發佈內容**。
   ![Configuration Manager 主控台的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm_distribute.png)
-2. 選取應該將套件複製過去的**[發佈點](https://technet.microsoft.com/library/gg712321.aspx#BKMK_PlanForDistributionPoints)**。
-3. 完成精靈。 套件便會開始複寫至指定的發佈點。
-4. 完成套件發佈後，以滑鼠右鍵按一下套件，然後選取 [部署]。
+2. 選取 hello **[發佈點](https://technet.microsoft.com/library/gg712321.aspx#BKMK_PlanForDistributionPoints)** hello 套件應該複製 toowhich 上。
+3. Hello 完成精靈。 hello 封裝，然後啟動複寫 toohello 指定發佈點。
+4. 完成 hello 選套件發佈之後，hello 套件上按一下滑鼠右鍵，然後選取**部署**。
   ![Configuration Manager 主控台的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm_deploy.png)
-5. 選取您在必要條件一節所建立的 Windows Server 裝置集合，作為部署的目標集合。
+5. 選取您要建立 hello 必要條件 > 一節中為部署的 hello 目標集合 hello Windows Server 裝置集合。
 
   ![部署軟體精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm-select-target-collection.png)
 
-6. 在 [指定內容目的地] 頁面上，選取您的**發佈點**。
-7. 在 [指定控制此軟體部署方式的設定] 頁面上，確定目的為**必要**。
+6. 在 hello**指定 hello 內容目的地**頁面上，選取您**發佈點**。
+7. 在 hello**部署此軟體的方式指定設定 toocontrol**頁面上，確定 hello 用途是**需要**。
 
   ![部署軟體精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm-deploy-select-purpose.png)
 
-8. 在 [指定此部署的排程] 頁面上指定排程。 如需詳細資訊，請參閱 [排程套件](https://technet.microsoft.com/library/gg682178.aspx)。
-9. 根據資料中心的需求，在 [發佈點] 頁面上設定屬性。 然後完成精靈。
+8. 在 hello**指定此部署的 hello 排程**頁面上，指定的排程。 如需詳細資訊，請參閱 [排程套件](https://technet.microsoft.com/library/gg682178.aspx)。
+9. 在 hello**發佈點**頁面上，設定 hello 屬性，根據您的資料中心 toohello 需求。 然後完成 hello 精靈。
 
 > [!TIP]
-> 為了避免不必要的重新開機，請排定在每月維護期間或軟體更新期間安裝套件。
+> tooavoid 不需要重新開機期間您的每月維護期間或軟體更新期間的排程 hello 套件安裝。
 
-您可以使用 Configuration Manager 主控台來監視部署進度。 移至 [監視] > [部署] > *[套件名稱]*。
+您可以使用 hello Configuration Manager 主控台監視 hello 部署進度。 跳過**監視** > **部署** > *[封裝名稱]*。
 
-  ![監視部署的 Configuration Manager 選項螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/report.PNG)
+  ![Configuration Manager 的螢幕擷取畫面選項 toomonitor 部署](./media/site-recovery-install-mobility-service-using-sccm/report.PNG)
 
 ## <a name="deploy-mobility-service-on-computers-running-linux"></a>在執行 Linux 的電腦上部署行動服務
 > [!NOTE]
-> 本文假設設定伺服器的 IP 位址為 192.168.3.121，且安全網路檔案共用是 \\\ContosoSecureFS\MobilityServiceInstallers。
+> 本文章假設 hello hello 組態伺服器 IP 位址是 192.168.3.121，而且 hello 安全的網路檔案共用，且\\\ContosoSecureFS\MobilityServiceInstallers。
 
 ### <a name="step-1-prepare-for-deployment"></a>步驟 1︰準備部署
-1. 在網路共用上建立資料夾，並命名為 **MobSvcLinux**。
-2. 登入設定伺服器，然後將系統管理命令提示字元開啟。
-3. 執行下列命令來產生複雜密碼檔案：
+1. Hello 網路共用上建立資料夾並將它做為命名**MobSvcLinux**。
+2. 登入 tooyour 組態伺服器上，開啟 系統管理命令提示字元。
+3. 執行下列命令 toogenerate 複雜密碼檔案的 hello:
 
     `cd %ProgramData%\ASR\home\svsystems\bin`
 
     `genpassphrase.exe -v > MobSvc.passphrase`
-4. 將 **MobSvc.passphrase** 檔案複製到網路共用上的 **MobSvcLinux** 資料夾。
-5. 執行命令以瀏覽至設定伺服器上的安裝程式存放庫：
+4. 複製 hello **MobSvc.passphrase**檔案 hello **MobSvcLinux**網路共用上的資料夾。
+5. 瀏覽 toohello hello 組態伺服器上的安裝程式儲存機制，藉由執行 hello 命令：
 
    `cd %ProgramData%\ASR\home\svsystems\puhsinstallsvc\repository`
 
-6. 將下列檔案複製到網路共用上的 **MobSvcLinux** 資料夾：
+6. 複製 hello 下列檔案 toohello **MobSvcLinux**網路共用上的資料夾：
    * Microsoft-ASR\_UA\*RHEL6-64*release.tar.gz
    * Microsoft-ASR\_UA\*RHEL7-64\*release.tar.gz
    * Microsoft-ASR\_UA\*SLES11-SP3-64\*release.tar.gz
@@ -246,9 +246,9 @@ IF NOT %ERRORLEVEL% EQU 0 (
    * Microsoft-ASR\_UA\*UBUNTU-14.04-64\*release.tar.gz
 
 
-7. 複製下列程式碼，儲存為 **install_linux.sh** 放在 **MobSvcLinux** 資料夾中。
+7. 複製 hello 下列程式碼，並將它儲存成**install_linux.sh**到 hello **MobSvcLinux**資料夾。
    > [!NOTE]
-   > 將此指令碼中的 [CSIP] 預留位置取代為設定伺服器 IP 位址的實際值。
+   > 此指令碼中的 hello [CSIP] 預留位置取代為 hello hello IP 位址的組態伺服器的實際值。
 
 ```Bash
 #!/usr/bin/env bash
@@ -324,7 +324,7 @@ Install()
     RET_VAL=$?
     echo "Installation Returncode: $RET_VAL" >> /tmp/MobSvc/sccm.log
     if [ $RET_VAL -eq 0 ]; then
-        echo "Installation has succeeded. Proceed to configuration." >> /tmp/MobSvc/sccm.log
+        echo "Installation has succeeded. Proceed tooconfiguration." >> /tmp/MobSvc/sccm.log
         Configure
     else
         echo "Installation has failed." >> /tmp/MobSvc/sccm.log
@@ -370,10 +370,10 @@ if [ -e ${VX_VERSION_FILE} ]; then
     agent_configuration=$(grep ^AGENT_CONFIGURATION_STATUS "${VX_VERSION_FILE}" | cut -d"=" -f2 | tr -d " ")
     echo "agent_configuration=$agent_configuration" >> /tmp/MobSvc/sccm.log
      if [ "$agent_configuration" == "Succeeded" ]; then
-        echo "Agent is already configured. Proceed to Upgrade." >> /tmp/MobSvc/sccm.log
+        echo "Agent is already configured. Proceed tooUpgrade." >> /tmp/MobSvc/sccm.log
         Upgrade
     else
-        echo "Agent is not configured. Proceed to Configure." >> /tmp/MobSvc/sccm.log
+        echo "Agent is not configured. Proceed tooConfigure." >> /tmp/MobSvc/sccm.log
         Configure
     fi
 else
@@ -386,20 +386,20 @@ cd /tmp
 
 ### <a name="step-2-create-a-package"></a>步驟 2：建立套件
 
-1. 登入您的 Configuration Manager 主控台。
-2. 瀏覽至 [軟體程式庫] > [應用程式管理] > [套件]。
+1. 登入 tooyour Configuration Manager 主控台。
+2. 瀏覽過**軟體程式庫** > **應用程式管理** > **封裝**。
 3. 以滑鼠右鍵按一下 [套件]，然後選取 [建立套件]。
-4. 提供 [名稱]、[描述]、[製造商]、[語言] 和 [版本] 的值。
-5. 選取 [此套件包含來源檔案] 核取方塊。
-6. 按一下 [瀏覽]，選取儲存安裝程式的網路共用 (\\\ContosoSecureFS\MobilityServiceInstaller\MobSvcLinux)。
+4. 提供的 hello 名稱、 描述、 製造商、 語言和版本值。
+5. 選取 hello**此套件包含來源檔案**核取方塊。
+6. 按一下**瀏覽**，並選取 hello hello 安裝程式所在的網路共用 (\\\ContosoSecureFS\MobilityServiceInstaller\MobSvcLinux)。
 
   ![建立套件和程式精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/create_sccm_package-linux.png)
 
-7. 在 [選擇您要建立的程式類型] 頁面上，選取 [標準程式]，然後按 [下一步]。
+7. 在 hello**選擇 hello 程式類型，而您想 toocreate**頁面上，選取**標準程式**，然後按一下**下一步**。
 
   ![建立套件和程式精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm-standard-program.png)
 
-8. 在 [指定此標準程式的相關資訊] 頁面上，提供下列輸入，然後按 [下一步]。 (其他輸入可以使用其預設值。)
+8. 在 hello**指定此標準程式的相關資訊**頁面上，提供 hello 遵循輸入，然後按一下**下一步**。 （hello 其他輸入可以使用其預設值）。
 
     | **參數名稱** | **值** |
   |--|--|
@@ -409,36 +409,36 @@ cd /tmp
 
   ![建立套件和程式精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm-program-properties-linux.png)
 
-9. 在下一個頁面上，選取 [可在任何平台上執行這個程式]。
+9. 在 hello 下一個頁面上，選取**此程式可以在任何平台上執行**。
   ![建立套件和程式精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm-program-properties-page2-linux.png)
 
-10. 按兩次 [下一步] 以完成精靈。
+10. toocomplete hello 精靈] 中，按一下 [**下一步**兩次。
 
 > [!NOTE]
-> 指令碼支援全新安裝行動服務代理程式，以及升級至已安裝的代理程式。
+> hello 指令碼支援的行動服務代理程式的這兩個新安裝，並更新已安裝的 tooagents。
 
-### <a name="step-3-deploy-the-package"></a>步驟 3︰部署套件
-1. 在 Configuration Manager 主控台，以滑鼠右鍵按一下套件，然後選取 [發佈內容]。
+### <a name="step-3-deploy-hello-package"></a>步驟 3： 部署的 hello 封裝
+1. 在 hello Configuration Manager 主控台中，以滑鼠右鍵按一下您的封裝，然後選取**發佈內容**。
   ![Configuration Manager 主控台的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm_distribute.png)
-2. 選取應該將套件複製過去的**[發佈點](https://technet.microsoft.com/library/gg712321.aspx#BKMK_PlanForDistributionPoints)**。
-3. 完成精靈。 套件便會開始複寫至指定的發佈點。
-4. 完成套件發佈後，以滑鼠右鍵按一下套件，然後選取 [部署]。
+2. 選取 hello **[發佈點](https://technet.microsoft.com/library/gg712321.aspx#BKMK_PlanForDistributionPoints)** hello 套件應該複製 toowhich 上。
+3. Hello 完成精靈。 hello 封裝，然後啟動複寫 toohello 指定發佈點。
+4. 完成 hello 選套件發佈之後，hello 套件上按一下滑鼠右鍵，然後選取**部署**。
   ![Configuration Manager 主控台的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm_deploy.png)
-5. 選取您在必要條件一節所建立的 Linux 伺服器裝置集合，作為部署的目標集合。
+5. 選取 hello Linux 伺服器裝置集合，您在 hello 必要條件 > 一節中建立為部署的 hello 目標集合。
 
   ![部署軟體精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm-select-target-collection-linux.png)
 
-6. 在 [指定內容目的地] 頁面上，選取您的**發佈點**。
-7. 在 [指定控制此軟體部署方式的設定] 頁面上，確定目的為**必要**。
+6. 在 hello**指定 hello 內容目的地**頁面上，選取您**發佈點**。
+7. 在 hello**部署此軟體的方式指定設定 toocontrol**頁面上，確定 hello 用途是**需要**。
 
   ![部署軟體精靈的螢幕擷取畫面](./media/site-recovery-install-mobility-service-using-sccm/sccm-deploy-select-purpose.png)
 
-8. 在 [指定此部署的排程] 頁面上指定排程。 如需詳細資訊，請參閱 [排程套件](https://technet.microsoft.com/library/gg682178.aspx)。
-9. 根據資料中心的需求，在 [發佈點] 頁面上設定屬性。 然後完成精靈。
+8. 在 hello**指定此部署的 hello 排程**頁面上，指定的排程。 如需詳細資訊，請參閱 [排程套件](https://technet.microsoft.com/library/gg682178.aspx)。
+9. 在 hello**發佈點**頁面上，設定 hello 屬性，根據您的資料中心 toohello 需求。 然後完成 hello 精靈。
 
-行動服務會根據您設定的排程，安裝在 Linux 伺服器裝置集合上。
+取得在 hello Linux 伺服器的裝置集合，根據您所設定的 toohello 排程上安裝行動服務。
 
-## <a name="other-methods-to-install-mobility-service"></a>安裝行動服務的其他方法
+## <a name="other-methods-tooinstall-mobility-service"></a>其他方法 tooinstall 行動服務
 以下是一些安裝行動服務的其他選項︰
 * [使用 GUI 手動安裝](http://aka.ms/mobsvcmanualinstall)
 * [使用命令列手動安裝](http://aka.ms/mobsvcmanualinstallcli)
@@ -446,7 +446,7 @@ cd /tmp
 * [使用 Azure 自動化和期望的狀態設定來自動化安裝](http://aka.ms/mobsvcdscinstall)
 
 ## <a name="uninstall-mobility-service"></a>將行動服務解除安裝
-您可以建立 Configuration Manager 套件，將行動服務解除安裝。 若要這樣做，請使用下列指令碼︰
+您可以建立 Configuration Manager 封裝 toouninstall 行動服務。 使用下列指令碼 toodo 因此 hello:
 
 ```
 Time /t >> C:\logfile.log
@@ -470,4 +470,4 @@ IF  %ERRORLEVEL% EQU 1 (GOTO :INSTALL) ELSE GOTO :UNINSTALL
 ```
 
 ## <a name="next-steps"></a>後續步驟
-您現在可以對虛擬機器[啟用保護](https://docs.microsoft.com/en-us/azure/site-recovery/site-recovery-vmware-to-azure#step-6-replicate-applications)。
+現在您已經準備就緒太[啟用保護](https://docs.microsoft.com/en-us/azure/site-recovery/site-recovery-vmware-to-azure#step-6-replicate-applications)您的虛擬機器。

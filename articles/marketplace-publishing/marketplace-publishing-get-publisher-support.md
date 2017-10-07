@@ -1,6 +1,6 @@
 ---
-title: "存取 Azure Marketplace 的發佈者支援 | Microsoft Docs"
-description: "如何存取並提交 Azure Marketplace 的發佈者支援要求"
+title: "aaaAccessing 發行者支援人員 hello Azure Marketplace |Microsoft 文件"
+description: "如何 tooaccess 並送出 hello Azure Marketplace 的 「 發行者 」 支援要求"
 services: marketplace-publishing
 documentationcenter: na
 author: v-jeana
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: v-jeana; hascipio; v-dabosl
-ms.openlocfilehash: 4bf5b2c53b91199e446836e76cefee6cd2878e25
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3b3bead42fccafba77b4a187432ad268319b2a81
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="accessing-publisher-support-for-the-azure-marketplace"></a>存取 Azure Marketplace 的發佈者支援
-Microsoft 提供各式各樣的產品和服務支援。 務必讓您的查詢能找到正確的支援團隊，對確保適當且及時的回應很重要。 請考慮下列案例，這些案例應有助於將您的查詢傳送給適當的團隊。
+# <a name="accessing-publisher-support-for-hello-azure-marketplace"></a>存取 hello Azure Marketplace 發行者支援人員
+Microsoft 提供各式各樣的產品和服務支援。 確定您的查詢會尋找 hello 右支援小組是重要 tooensure 適當且即時的回應。 請考慮下列案例，可幫助您傳送查詢 toohello 適當小組 hello:
 
-* 如果您是 Azure Marketplace 中的發佈者且仍在開發您的 VM，您應該與您的 Microsoft 上線或計算團隊交流。
-* 如果您是 Marketplace 中的發佈者並有來自客戶的問題，請告訴您的客戶透過支援連結 (https://portal.azure.com/) 要求支援。
-* 如果您是 Marketplace 中的發佈者並有與您的應用程式或服務相關的問題，請繼續閱讀以下內容。
+* 如果您是 hello Azure Marketplace 中的發行者，而且仍在開發您的 VM，您應該洽詢您的 Microsoft 上架，或計算團隊。
+* 如果您是 hello Marketplace 中的發行者，而且有客戶的問題，請向您的客戶 toorequest 支援透過 hello 支援連結在 https://portal.azure.com/。
+* 如果您是 hello Marketplace 中的發行者，而且有 tooyour 應用程式或服務相關的問題，請繼續閱讀下面的。
 
 此文將示範如何：
 
-* 登入您的 Microsoft 帳戶。
-* 瀏覽至發佈者支援頁面。
-* 選取問題類型和類別。
+* Microsoft 帳戶登入 tooyour。
+* 瀏覽 toohello 發行者支援頁面。
+* 選取 hello 問題類型和類別目錄。
 * 要求支援。
 * 提供連絡資訊。
-* 描述問題。
+* 描述 hello 的問題。
 
-## <a name="1-sign-in-to-your-microsoft-account"></a>1.登入您的 Microsoft 帳戶
-瀏覽至 https://publish.windowsazure.com/，並使用您的 Microsoft 帳戶認證登入。
+## <a name="1-sign-in-tooyour-microsoft-account"></a>1.Microsoft 帳戶登入 tooyour
+瀏覽 toohttps://publish.windowsazure.com/，並使用您的 Microsoft 帳戶認證登入。
 
   ![登入畫面][1]
 
-## <a name="2-navigate-to-the-publisher-support-pages"></a>2.瀏覽至發佈者支援頁面
-從右上方的功能表中選取 [取得支援] 。
+## <a name="2-navigate-toohello-publisher-support-pages"></a>2.瀏覽 toohello 發行者支援頁面
+從 hello 右上方功能表中，選取**取得支援**。
 
   ![取得支援][2]
 
-## <a name="3-select-the-problem-type-and-category"></a>3.選取問題類型和類別
+## <a name="3-select-hello-problem-type-and-category"></a>3.選取 hello 問題類型和類別目錄
 ![問題類型類別][3]
 
 可用的問題類型如下：
@@ -61,25 +61,25 @@ Microsoft 提供各式各樣的產品和服務支援。 務必讓您的查詢能
 * **其他**
 
 ## <a name="4-request-support"></a>4.要求支援
-選取問題類型和類別之後，按一下 [提出要求]  按鈕。
+您選取 hello 問題類型和類別目錄之後，請按一下 hello**啟動要求** 按鈕。
 
 ![啟動支援][4]
 
-## <a name="5-provide-contact-information-and-describe-the-problem"></a>5.提供連絡資訊並描述問題
-儘可能完整地描述問題，並提供任何可能有助於解決問題的檔案 (螢幕擷取畫面、網路追蹤等)。
+## <a name="5-provide-contact-information-and-describe-hello-problem"></a>5.提供連絡資訊，並且描述 hello 問題
+描述 hello 問題，因為完整，就可以，或提供的任何檔案 （螢幕擷取畫面、 網路追蹤等），可能有助於解決您的問題。
 
 ![描述問題][5]
 
 ## <a name="6-submission-confirmation"></a>6.提交確認
-一旦您提交問題後，我們將在 24 小時內確認接收，並指派問題的優先順序和嚴重性。 我們專屬的支援工程師團隊會根據我們的服務層級協定回應時間，協助解決問題。
+一旦您提交問題後，我們將在 24 小時內確認接收，並指派問題的優先順序和嚴重性。 我們的技術支援工程師專門的小組，可協助其解決方式根據 tooour 服務等級協定的回應時間。
 
 ![確認][6]
 
-* 如果您需要與我們談談您的問題，請在所有的通信聯繫中包括該確認號碼。
+* 如果您需要 tootalk toous 有關您的問題，請使用 hello 確認編號中所有的對應關係。
 * 您可以隨時檢視您的問題進度。
 
 ## <a name="next-steps"></a>後續步驟
-若要了解如何解決特定的支援問題，請參閱 [疑難排解 Azure Marketplace 的常見問題](marketplace-publishing-support-common-issues.md)。
+如何 tooresolve 特定的支援問題，請參閱的 toolearn [hello Azure Marketplace 上的一般問題的疑難排解](marketplace-publishing-support-common-issues.md)。
 
 [1]: ./media/marketplace-publishing-get-publisher-support/step1.png
 [2]: ./media/marketplace-publishing-get-publisher-support/step2.png

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Machine Learning Web 服務入口網站 | Microsoft Docs"
-description: "管理 Azure 機器學習工作區的存取權，並部署和管理 ML API Web 服務"
+title: "aaaUse hello Azure 機器學習 Web 服務入口網站 |Microsoft 文件"
+description: "管理存取 tooAzure 機器學習服務工作區，並將部署和管理 ML API web 服務"
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,177 +14,177 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/28/2017
 ms.author: v-donglo
-ms.openlocfilehash: ad1314aa4b504bd2cb3285789073d4f1de1f545d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 04b49027fc0ab227382b320310088bb66aafacc6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-a-web-service-using-the-azure-machine-learning-web-services-portal"></a>使用 Azure Machine Learning Web 服務入口網站管理 Web 服務
-您可以使用 Microsoft Azure Machine Learning Web 服務入口網站，管理 Machine Learning 新式和傳統 Web 服務。 因為傳統 Web 服務和新式 Web 服務是根據不同的基礎技術，所以各有稍微不同的管理功能。
+# <a name="manage-a-web-service-using-hello-azure-machine-learning-web-services-portal"></a>管理 Web 服務使用 hello Azure 機器學習 Web 服務入口網站
+您可以管理您使用 hello Microsoft Azure 機器學習 Web 服務入口網站的機器學習新的和傳統的 Web 服務。 因為傳統 Web 服務和新式 Web 服務是根據不同的基礎技術，所以各有稍微不同的管理功能。
 
-在 Machine Learning Web 服務入口網站中，您可以︰
+在 hello 機器學習 Web 服務入口網站中，您可以：
 
-* 監視 Web 服務的使用方式。
-* 設定描述、更新 Web 服務的金鑰 (僅限新式)、更新您的儲存體帳戶金鑰 (僅限新式)、啟用記錄，以及啟用或停用範例資料。
-* 刪除 Web 服務。
+* 監視 hello web 服務的使用方式。
+* 設定 hello 描述，請更新 hello 金鑰 hello web 服務 （僅新）、 更新金鑰 （新增只），啟用記錄，您儲存體帳戶和啟用或停用的範例資料。
+* 刪除 hello web 服務。
 * 建立、刪除或更新計費方案 (僅限新式)。
 * 新增和刪除端點 (僅限傳統)
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="permissions-to-manage-new-resources-manager-based-web-services"></a>管理以資源管理員為基礎的新 Web 服務的權限
+## <a name="permissions-toomanage-new-resources-manager-based-web-services"></a>新的資源管理員的權限 toomanage 為基礎的 web 服務
 
-新的 Web 服務會部署為 Azure 資源。 因此，您必須具備正確權限，才能部署和管理新的 Web 服務。  若要部署或管理新的 Web 服務，您必須獲得下列角色的指派：要部署 Web 服務之訂用帳戶上的參與者或管理員角色。 如果您邀請另一位使用者到 Machine Learning 工作區，就必須為他們指派訂用帳戶上的參與者或管理員角色，然後他們才能部署或管理 Web 服務。 
+新的 Web 服務會部署為 Azure 資源。 因此，您必須擁有 hello 正確的權限 toodeploy 和管理新的 web 服務。  toodeploy 或管理您的參與者必須被指派新的 web 服務或部署 hello 訂用帳戶 toowhich hello web 服務上的系統管理員角色。 您可以邀請其他使用者 tooa 機器學習服務工作區，您必須指派它們 tooa 參與者或系統管理員角色，hello 訂用帳戶才能部署或管理 web 服務。 
 
-如果使用者沒有正確權限來存取 Azure Machine Learning Web 服務入口網站中的資源，他們將會在嘗試部署 Web 服務時，收到下列錯誤：
+若 hello 使用者沒有正確權限 tooaccess 資源 hello Azure 機器學習 Web 服務入口網站中的 hello，就會收到下列錯誤，當嘗試 toodeploy web 服務的 hello:
 
-*Web 服務部署工作失敗。此帳戶沒有足夠權限來存取包含該工作區的 Azure 訂用帳戶。若要將 Web 服務部署到 Azure，必須邀請同一個帳戶到該工作區，並為該帳戶授予包含該工作區之 Azure 訂用帳戶的存取權。*
+*Web 服務部署工作失敗。此帳戶沒有足夠的存取 toohello 包含 hello 工作區的 Azure 訂用帳戶。順序 toodeploy Web 服務 tooAzure，hello 相同的帳戶必須是受邀 toohello 工作區，並可指定的存取 toohello Azure 訂用帳戶包含 hello 工作區。*
 
 如需建立工作區的詳細資訊，請參閱[建立和共用 Azure Machine Learning 工作區](machine-learning-create-workspace.md)。
 
-如需設定存取權限的詳細資訊，請參閱[在 Azure 入口網站 - 公開預覽中檢視存取使用者和群組的工作分派](../active-directory/role-based-access-control-manage-assignments.md)。
+如需設定存取權限的詳細資訊，請參閱[hello Azure 入口網站-公開預覽中的使用者及群組的檢視存取工作分派](../active-directory/role-based-access-control-manage-assignments.md)。
 
 
 ## <a name="manage-new-web-services"></a>管理新式 Web 服務
-管理新式 Web 服務：
+toomanage 至新的 Web 服務：
 
-1. 使用您的 Microsoft Azure 帳戶登入 [Microsoft Azure Machine Learning Web 服務入口網站](https://services.azureml.net/quickstart) - 使用與 Azure 訂用帳戶相關聯的帳戶。
-2. 在功能表上，按一下 [Web 服務] 。
+1. 登入 toohello [Microsoft Azure 機器學習 Web 服務](https://services.azureml.net/quickstart)入口網站使用您的 Microsoft Azure 帳戶-使用 hello 帳戶相關聯 hello Azure 訂用帳戶。
+2. 在 [hello] 功能表上按一下**Web 服務**。
 
 這會針對您的訂用帳戶顯示一份已部署的 Web 服務清單。 
 
-若要管理 Web 服務，請按一下 [Web 服務]。 您可以從 [Web 服務] 頁面上︰
+toomanage Web 服務，按一下 Web 服務。 您可以從 hello Web 服務 頁面上：
 
-* 按一下 Web 服務進行管理。
-* 按一下 Web 服務的 [計費方案] 進行更新。
+* 按一下 hello web 服務 toomanage 它。
+* 按一下 hello 計費計劃的 hello web 服務 tooupdate 它。
 * 刪除 Web 服務。
-* 複製 Web 服務並將它部署到另一個區域。
+* 複製 web 服務，並將它部署 tooanother 區域。
 
-當您按一下某個 Web 服務時，Web 服務的 [快速入門] 頁面就會開啟。 Web 服務 [快速入門] 頁面有兩個功能表選項可讓您管理您的 Web 服務︰
+當您按一下 web 服務時，hello web 服務快速入門 頁面隨即開啟。 hello web 服務快速入門頁面有兩個功能表選項，可讓您 toomanage web 服務：
 
-* **儀表板** -可讓您檢視 Web 服務使用量。
-* **設定** -可讓您新增描述性文字、更新與 Web 服務相關聯的儲存體帳戶金鑰，以及啟用和停用範例資料。
+* **儀表板**-可讓您 tooview Web 服務使用。
+* **設定**-允許您 tooadd 描述性文字，更新 hello 機碼 hello 儲存體帳戶與相關聯的 hello Web 服務和啟用或停用的範例資料。
 
-### <a name="monitoring-how-the-web-service-is-being-used"></a>監視 Web 服務的使用方式
-按一下 [ **儀表板** ] 索引標籤。
+### <a name="monitoring-how-hello-web-service-is-being-used"></a>監視 hello web 服務的使用方式
+按一下 hello**儀表板** 索引標籤。
 
-您可以從儀表板中檢視您的 Web 服務經過一段時間的整體使用量。 您可以從使用量圖表右上角的 [期間] 下拉式功能表中選取要檢視的期間。 儀表板會顯示下列資訊：
+從 hello 儀表板，您可以檢視您的 Web 服務的整體使用狀況經過一段時間。 您可以選取 hello 期間 tooview 從 hello 週期 下拉式功能表中的 hello 使用量圖表的 hello 右上方。 hello 儀表板會顯示下列資訊的 hello:
 
-* **一段時間的要求數** 顯示選取的一段時間內，要求數目的步階圖形。 它可以協助識別您所遇到的使用量尖峰。
-* **要求-回應要求數** 顯示服務在選取的一段時間內收到的要求-回應呼叫總數，以及失敗的數目。
-* **平均要求-回應計算時間** 顯示執行收到的要求所需的平均時間。
-* **批次要求數** 顯示服務在選取的一段時間內收到的批次要求總數，以及失敗的數目。
-* **平均作業延遲** 顯示執行收到的要求所需的平均時間。
-* **錯誤數**顯示呼叫 Web 服務時所發生的錯誤彙總數目。
-* **服務成本** 顯示與服務相關聯的計費方案費用。
+* **要求一段時間**會顯示選取的時間週期的 hello 步驟圖形 hello 要求數目。 它可以協助識別您所遇到的使用量尖峰。
+* **要求-回應要求**顯示 hello 的 hello 服務已收到 hello 選的時段和多少個失敗的要求-回應呼叫次數總計。
+* **平均要求回應計算時間**顯示 hello 時間的平均值的所需 tooexecute hello 收到要求。
+* **批次要求**顯示 hello 總數批次要求 hello 服務已收到透過選取的時間週期的 hello，且其中多少失敗。
+* **平均工作延遲**顯示 hello 時間的平均值的所需 tooexecute hello 收到要求。
+* **錯誤**呼叫 toohello web 服務上顯示 hello 彙總數目所發生的錯誤。
+* **服務成本**顯示 hello 費用 hello 與 hello 服務相關聯的計費方案。
 
-### <a name="configuring-the-web-service"></a>設定 Web 服務
-按一下 [設定]  功能表選項。
+### <a name="configuring-hello-web-service"></a>設定 hello web 服務
+按一下 hello**設定**功能表選項。
 
-您可以更新下列屬性：
+您可以更新下列屬性的 hello:
 
-* [描述] 可讓您輸入 Web 服務的描述。
-* **標題**可讓您輸入 Web 服務的標題。
-* **金鑰** 可讓您交換您的主要和次要 API 金鑰。
-* **儲存體帳戶金鑰**可讓您為與 Web 服務變更相關聯的儲存體帳戶更新金鑰。 
-* [啟用範例資料] 可讓您提供範例資料，用來測試要求-回應服務。 如果您是在 Machine Learning Studio 中建立 Web 服務，範例資料會取自您用來訓練模型的資料。 如果您是以程式設計方式建立服務，資料會取自您提供做為 JSON 套件一部分的範例資料。
+* **描述**可讓您 tooenter hello Web 服務的描述。
+* **標題**可讓您 tooenter hello Web 服務的標題
+* **索引鍵**可讓您 toorotate 您主要和次要的 API 金鑰。
+* **儲存體帳戶金鑰**可讓您 tooupdate hello hello hello Web 服務的變更與相關聯的儲存體帳戶金鑰。 
+* **啟用範例資料**tooprovide 範例資料，您可以使用 tootest hello 要求-回應服務可讓您。 如果您在 Machine Learning Studio 中建立 hello web 服務，hello 範例資料取自 hello 資料您使用的 tootrain 您的模型。 如果您以程式設計方式建立 hello 服務，hello 資料取自 hello 範例資料，您提供為 hello JSON 封裝的一部分。
 
 ### <a name="managing-billing-plans"></a>管理計費方案
-從 Web 服務 [快速入門] 頁面按一下 [方案]  功能表選項。 您也可以按一下與特定 Web 服務相關聯的方案來管理該方案。
+按一下 hello**計劃**從 hello web 服務快速入門 頁面上的功能表選項。 您也可以按一下特定的 Web 服務 toomanage 計劃相關聯的 hello 計劃。
 
-* **新增** 可讓您建立新的方案。
-* **新增/移除方案執行個體** 可讓您「相應放大」現有的方案以增加容量。
-* **升級/降級** 可讓您「相應增加」現有的方案以增加容量。
-* **刪除** 可讓您刪除方案。
+* **新**可讓您 toocreate 新計劃。
+* **新增/移除計劃的執行個體**可讓您太 「 向外延展 」 的現有的計劃 tooadd 容量。
+* **升級/降級**可讓您太 「 向上延展 」 的現有的計劃 tooadd 容量。
+* **刪除**可讓您 toodelete 計劃。
 
-按一下方案可檢視其儀表板。 儀表板可提供所選一段時間的快照或方案使用量。 若要選取時間期間來檢視，請按一下儀表板右上角的 [期間] 下拉式清單。 
+按一下計劃 tooview 其儀表板。 hello 儀表板可讓您使用快照式或計劃在選取的一段時間。 tooselect hello 時間週期 tooview 中，按一下 hello**期間**在儀表板的 hello 右上方的下拉式清單。 
 
-方案儀表板會提供下列資訊：
+hello 方案儀表板提供下列資訊的 hello:
 
-* **方案描述** 顯示成本相關資訊和與方案相關聯的容量。
-* **方案使用量** 顯示交易數目和已依方案計費的計算時數。
-* **Web 服務數**顯示使用此方案的 Web 服務數目。
-* **依呼叫數的前幾名 Web 服務**顯示依方案計費進行呼叫的前四個 Web 服務。
-* **依計算時數的前幾名 Web 服務**顯示依方案計費使用計算資源的前四個 Web 服務。
+* **計劃描述**顯示 hello 成本和 hello 計劃相關聯的容量資訊。
+* **規劃使用**顯示 hello 的交易和已付費 hello 計劃的計算時數的數字。
+* **Web 服務**顯示使用此計劃的 Web 服務的 hello 數目。
+* **排名最前面的 Web 服務所呼叫**顯示 hello 前四個 Web 服務，都需支付 hello 計劃的呼叫。
+* **Web 服務前所計算的小時**顯示 hello 前四個 Web 服務使用 hello 計劃需支付的運算資源。
 
 ## <a name="manage-classic-web-services"></a>管理傳統 Web 服務
 > [!NOTE]
-> 本節的程序是關於透過 Azure Machine Learning Web 服務入口網站來管理傳統 Web 服務。 如需透過 Machine Learning Studio 和 Azure 傳統入口網站管理傳統 Web 服務的相關資訊，請參閱[管理 Azure Machine Learning 工作區](machine-learning-manage-workspace.md)。
+> 本節中的 hello 程序是透過 hello Azure 機器學習 Web 服務入口網站的相關 toomanaging 傳統 web 服務。 如需管理傳統 Web 服務透過 hello Machine Learning Studio 和 hello Azure 傳統入口網站，請參閱[管理 Azure Machine Learning 工作區](machine-learning-manage-workspace.md)。
 > 
 > 
 
-管理傳統 Web 服務：
+toomanage 傳統 Web 服務：
 
-1. 使用您的 Microsoft Azure 帳戶登入 [Microsoft Azure Machine Learning Web 服務入口網站](https://services.azureml.net/quickstart) - 使用與 Azure 訂用帳戶相關聯的帳戶。
-2. 在功能表上，按一下 [傳統 Web 服務]。
+1. 登入 toohello [Microsoft Azure 機器學習 Web 服務](https://services.azureml.net/quickstart)入口網站使用您的 Microsoft Azure 帳戶-使用 hello 帳戶相關聯 hello Azure 訂用帳戶。
+2. 在 [hello] 功能表上按一下**傳統 Web 服務**。
 
-若要管理傳統 Web 服務，請按一下 [傳統 Web 服務]。 您可以從 [傳統 Web 服務] 頁面上︰
+toomanage 傳統的 Web 服務，按一下**傳統 Web 服務**。 您可以從 hello 傳統 Web 服務 頁面上：
 
-* 按一下 Web 服務以檢視相關聯的端點。
+* 按一下 hello web 服務 tooview 相關聯的 hello 端點。
 * 刪除 Web 服務。
 
-管理傳統 Web 服務時是個別管理每個端點。 當您按一下 [Web 服務] 頁面中的 Web 服務時，將會開啟與服務相關聯的端點清單。 
+當您管理的傳統 Web 服務時，您每個 hello 端點分開管理。 當您按一下 hello Web 服務 頁面中的 web 服務時，會開啟 hello 與 hello 服務相關聯的端點清單。 
 
-在 [傳統 Web 服務端點] 頁面上，您可以新增和刪除服務的端點。 如需有關新增端點的詳細資訊，請參閱 [建立端點](machine-learning-create-endpoint.md)。
+在 hello 傳統 Web 服務端點 頁面上，您可以加入及刪除 hello 服務上的端點。 如需有關新增端點的詳細資訊，請參閱 [建立端點](machine-learning-create-endpoint.md)。
 
-按一下其中一個端點，以開啟 Web 服務 [快速入門] 頁面。 [快速入門] 頁面有兩個功能表選項可讓您管理 Web 服務︰
+按一下其中一個 hello 端點 tooopen hello web 服務快速入門頁面。 在 hello 快速入門 頁面上，有兩個功能表選項，可讓您 toomanage web 服務：
 
-* **儀表板** -可讓您檢視 Web 服務使用量。
-* **設定** -可讓您新增描述性文字、開啟和關閉錯誤記錄、更新與 Web 服務相關聯的儲存體帳戶金鑰，以及啟用和停用範例資料。
+* **儀表板**-可讓您 tooview Web 服務使用。
+* **設定**-tooadd 描述性文字，可讓您開啟錯誤記錄開啟或關閉更新 hello 機 hello 儲存體帳戶與相關聯的 hello Web 服務，以及啟用和停用的範例資料。
 
-### <a name="monitoring-how-the-web-service-is-being-used"></a>監視 Web 服務的使用方式
-按一下 [ **儀表板** ] 索引標籤。
+### <a name="monitoring-how-hello-web-service-is-being-used"></a>監視 hello web 服務的使用方式
+按一下 hello**儀表板** 索引標籤。
 
-您可以從儀表板中檢視您的 Web 服務經過一段時間的整體使用量。 您可以從使用量圖表右上角的 [期間] 下拉式功能表中選取要檢視的期間。 儀表板會顯示下列資訊：
+從 hello 儀表板，您可以檢視您的 Web 服務的整體使用狀況經過一段時間。 您可以選取 hello 期間 tooview 從 hello 週期 下拉式功能表中的 hello 使用量圖表的 hello 右上方。 hello 儀表板會顯示下列資訊的 hello:
 
-* **一段時間的要求數** 顯示選取的一段時間內，要求數目的步階圖形。 它可以協助識別您所遇到的使用量尖峰。
-* **要求-回應要求數** 顯示服務在選取的一段時間內收到的要求-回應呼叫總數，以及失敗的數目。
-* **平均要求-回應計算時間** 顯示執行收到的要求所需的平均時間。
-* **批次要求數** 顯示服務在選取的一段時間內收到的批次要求總數，以及失敗的數目。
-* **平均作業延遲** 顯示執行收到的要求所需的平均時間。
-* **錯誤數**顯示呼叫 Web 服務時所發生的錯誤彙總數目。
-* **服務成本** 顯示與服務相關聯的計費方案費用。
+* **要求一段時間**會顯示選取的時間週期的 hello 步驟圖形 hello 要求數目。 它可以協助識別您所遇到的使用量尖峰。
+* **要求-回應要求**顯示 hello 的 hello 服務已收到 hello 選的時段和多少個失敗的要求-回應呼叫次數總計。
+* **平均要求回應計算時間**顯示 hello 時間的平均值的所需 tooexecute hello 收到要求。
+* **批次要求**顯示 hello 總數批次要求 hello 服務已收到透過選取的時間週期的 hello，且其中多少失敗。
+* **平均工作延遲**顯示 hello 時間的平均值的所需 tooexecute hello 收到要求。
+* **錯誤**呼叫 toohello web 服務上顯示 hello 彙總數目所發生的錯誤。
+* **服務成本**顯示 hello 費用 hello 與 hello 服務相關聯的計費方案。
 
-### <a name="configuring-the-web-service"></a>設定 Web 服務
-按一下 [設定]  功能表選項。
+### <a name="configuring-hello-web-service"></a>設定 hello web 服務
+按一下 hello**設定**功能表選項。
 
-您可以更新下列屬性：
+您可以更新下列屬性的 hello:
 
-* [描述] 可讓您輸入 Web 服務的描述。 [描述] 必要欄位。
-* [記錄] 可讓您啟用或停用端點上的錯誤記錄。 如需有關記錄的詳細資訊，請參閱[為 Machine Learning Web 服務啟用記錄](machine-learning-web-services-logging.md)。
-* [啟用範例資料] 可讓您提供範例資料，用來測試要求-回應服務。 如果您是在 Machine Learning Studio 中建立 Web 服務，範例資料會取自您用來訓練模型的資料。 如果您是以程式設計方式建立服務，資料會取自您提供做為 JSON 套件一部分的範例資料。
+* **描述**可讓您 tooenter hello Web 服務的描述。 [描述] 必要欄位。
+* **記錄**可讓您登入 hello 端點 tooenable 或停用錯誤。 如需有關記錄的詳細資訊，請參閱[為 Machine Learning Web 服務啟用記錄](machine-learning-web-services-logging.md)。
+* **啟用範例資料**tooprovide 範例資料，您可以使用 tootest hello 要求-回應服務可讓您。 如果您在 Machine Learning Studio 中建立 hello web 服務，hello 範例資料取自 hello 資料您使用的 tootrain 您的模型。 如果您以程式設計方式建立 hello 服務，hello 資料取自 hello 範例資料，您提供為 hello JSON 封裝的一部分。
 
-## <a name="grant-or-suspend-access-to-web-services-for-users-in-the-portal"></a>在入口網站中授與或暫停使用者對 Web 服務的存取
-您可以使用 Azure 傳統入口網站來允許或拒絕特定使用者的存取。
+## <a name="grant-or-suspend-access-tooweb-services-for-users-in-hello-portal"></a>授予或暫止 hello 入口網站中的使用者的存取 tooWeb 服務
+您可以使用 hello Azure 傳統入口網站，允許或拒絕存取 toospecific 使用者。
 
 ### <a name="access-for-users-of-new-web-services"></a>新式 Web 服務的使用者存取
-若要讓其他使用者在 Azure Machine Learning Web 服務入口網站中使用您的 Web 服務，您必須將他們新增為 Azure 訂用帳戶的共同管理員。
+tooenable hello Azure 機器學習 Web 服務入口網站中的 Web 服務與其他使用者 toowork，就必須加入為共同管理員 Azure 訂用帳戶。
 
-使用您的 Microsoft Azure 帳戶登入 [Azure 傳統入口網站](https://manage.windowsazure.com/) - 使用與 Azure 訂用帳戶相關聯的帳戶。
+登入 toohello [Azure 傳統入口網站](https://manage.windowsazure.com/)使用 Microsoft Azure 帳戶-請使用 hello 與 hello Azure 訂用帳戶相關聯的帳戶。
 
-1. 在導覽窗格中按一下 [設定]，然後按一下 [系統管理員]。
-2. 在視窗底部按一下 [新增]。 
-3. 在 [新增共同管理員] 對話方塊中，輸入您想新增為共同管理員之人員的電子郵件地址，然後選取您想讓共同管理員存取的訂用帳戶。
+1. Hello 瀏覽窗格中，按一下**設定**，然後按一下 **管理員**。
+2. 在 hello hello 視窗底部，按一下 **新增**。 
+3. 在 hello 新增的共同管理員 對話方塊中，輸入您要 tooadd 做為共同管理員及您想 hello 共同管理員 tooaccess 然後選取 hello 訂閱 hello 人員 hello 電子郵件地址。
 4. 按一下 [儲存] 。
 
 ### <a name="access-for-users-of-classic-web-services"></a>傳統 Web 服務的使用者存取
-若要管理工作區：
+toomanage 工作區：
 
-使用您的 Microsoft Azure 帳戶登入 [Azure 傳統入口網站](https://manage.windowsazure.com/) - 使用與 Azure 訂用帳戶相關聯的帳戶。
+登入 toohello [Azure 傳統入口網站](https://manage.windowsazure.com/)使用 Microsoft Azure 帳戶-請使用 hello 與 hello Azure 訂用帳戶相關聯的帳戶。
 
-1. 在 Microsoft Azure 服務面板中，按一下 [機器學習] 。
-2. 按一下您想要管理的工作區。
-3. 按一下 [設定]  索引標籤。
+1. 在 hello Microsoft Azure 服務面板中，按一下  **MACHINE LEARNING**。
+2. 按一下您想要 toomanage hello 工作區。
+3. 按一下 hello**設定** 索引標籤。
 
-從 [設定] 索引標籤中，您可以按一下 [拒絕] 來擱置對 Machine Learning 工作區的存取。 使用者將不再能在 Machine Learning Studio 中開啟工作區。 若要還原存取，請按一下 [允許]。
+Hello 組態 索引標籤，您可以暫停存取 toohello Machine Learning 工作區依序按一下**拒絕**。 使用者將不再能夠 tooopen Machine Learning Studio 中的 hello 工作區。 toorestore 存取按一下**允許**。
 
-特定的使用者︰
+toospecific 使用者：
 
-若要管理可以存取 Machine Learning Studio 中工作區的其他帳戶，請按一下 [儀表板] 索引標籤中的 [登入 ML Studio]。 這會在 Machine Learning Studio 中開啟工作區。 從這裡按一下 [設定] 索引標籤，然後按一下 [使用者]。 您可以按一下 [邀請使用者]，讓使用者存取工作區，或選取使用者，並按一下 [移除]。
+toomanage 其他帳戶擁有存取 toohello 工作區，在機器學習 Studio 中，按一下**登入 tooML Studio**在 hello**儀表板** 索引標籤。這會開啟 Machine Learning Studio hello 工作區。 從這裡按一下 hello**設定** 索引標籤，然後**使用者**。 您可以按一下**更邀請使用者**toogive 使用者存取 toohello 工作區中，或選取的使用者，然後按一下**移除**。
 
 > [!NOTE]
-> [ **登入 ML Studio** ] 連結會使用目前登入的 Microsoft 帳戶來開啟 Machine Learning Studio。 您用來登入 Azure 傳統入口網站以建立工作區的 Microsoft 帳戶，不會自動具備開啟該工作區的權限。 若要開啟工作區，您必須使用定義為工作區擁有者的 Microsoft 帳戶登入，或者您需要收到來自擁有者的邀請，才能加入工作區。
+> hello**登入 tooML Studio**連結會開啟 Machine Learning Studio 使用 hello 目前登入的 Microsoft 帳戶。 hello toosign 用於 toohello Azure 傳統入口網站 toocreate 工作區的 Microsoft 帳戶不會自動具備權限 tooopen 該工作區。 tooopen 工作區中，您必須登入 toohello 已定義為 hello hello 工作區中，擁有者的 Microsoft 帳戶或您需要 tooreceive 從 hello 擁有者 toojoin hello 工作區的邀請。
 > 
 > 
 

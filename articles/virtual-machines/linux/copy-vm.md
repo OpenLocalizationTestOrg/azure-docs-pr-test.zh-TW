@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 2.0 來複製 Linux VM | Microsoft Docs"
-description: "了解如何使用 Azure CLI 2.0 和受控磁碟來建立 Azure Linux VM 的複本。"
+title: "aaaCopy Linux VM，使用 Azure CLI 2.0 |Microsoft 文件"
+description: "深入了解如何 toocreate Azure Linux VM 使用 Azure CLI 2.0 和管理磁碟的複本。"
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -14,16 +14,16 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 03/10/2017
 ms.author: cynthn
-ms.openlocfilehash: 7983061a933370803669480296d7625106e1360c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ee34a4259dd0c1e7bf49312fe3fe3ba809bf69e5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-copy-of-a-linux-vm-by-using-azure-cli-20-and-managed-disks"></a>使用 Azure CLI 2.0 和受控磁碟來建立 Azure Linux VM 的複本
 
 
-本文說明如何使用 Azure CLI 2.0 和 Azure Resource Manager 部署模型，建立執行 Linux 之 Azure 虛擬機器 (VM) 的複本。 您也可以使用 [Azure CLI 1.0](copy-vm-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。
+本文章將示範如何 toocreate 一份您執行 Azure 虛擬機器 (VM) 使用 Linux hello Azure CLI 2.0 和 hello Azure Resource Manager 部署模型。 您也可以執行下列步驟以 hello [Azure CLI 1.0](copy-vm-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 您也可以[上傳 VHD 並從中建立 VM](upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
@@ -32,34 +32,34 @@ ms.lasthandoff: 08/29/2017
 
 -   安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)
 
--   使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
+-   使用的 Azure 帳戶登入 tooan [az 登入](/cli/azure/#login)。
 
--   讓 Azure VM 做為複製的來源。
+-   有 Azure VM toouse 為 hello 您複製的來源。
 
-## <a name="step-1-stop-the-source-vm"></a>步驟 1︰停止來源 VM
+## <a name="step-1-stop-hello-source-vm"></a>步驟 1： 停止 hello 來源 VM
 
 
-使用 [az vm deallocate](/cli/azure/vm#deallocate) 解除配置來源 VM。
-下列範例會解除配置 **myResourceGroup** 資源群組中名為 **myVM** 的 VM：
+Deallocate hello 來源 VM 使用[az vm 解除配置](/cli/azure/vm#deallocate)。
+hello 下列範例會取消配置 hello 名為 VM **myVM** hello 資源群組中**myResourceGroup**:
 
 ```azurecli
 az vm deallocate --resource-group myResourceGroup --name myVM
 ```
 
-## <a name="step-2-copy-the-source-vm"></a>步驟 2︰複製來源 VM
+## <a name="step-2-copy-hello-source-vm"></a>步驟 2： 複製 hello 來源 VM
 
 
-若要複製 VM，您可建立基礎虛擬硬碟的複本。 此程序會建立特製化 VHD 做為受控磁碟，其包含與來源 VM 相同的組態和設定。
+toocopy VM，您會建立一份 hello 基礎虛擬硬碟。 此程序會建立特殊的 VHD 做為受管理的磁碟包含 hello 來源 VM 相同的組態和 hello 的設定。
 
 如需 Azure 受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../windows/managed-disks-overview.md)。 
 
-1.  使用 [az vm list](/cli/azure/vm#list) 列出每部 VM 及其 OS 磁碟的名稱。 下列範例會列出名為 **myResourceGroup** 的資源群組中的所有 VM：
+1.  列出每個 VM 和 hello 名稱含有其 OS 磁碟[az vm 清單](/cli/azure/vm#list)。 hello 下列範例會列出名為的資源群組中所有 Vm **myResourceGroup**:
     
     ```azurecli
     az vm list -g myTestRG --query '[].{Name:name,DiskName:storageProfile.osDisk.name}' --output table
     ```
 
-    輸出類似於下列範例：
+    hello 輸出是 toohello 類似下列範例程式碼：
 
     ```azurecli
     Name    DiskName
@@ -67,46 +67,46 @@ az vm deallocate --resource-group myResourceGroup --name myVM
     myVM    myDisk
     ```
 
-1.  使用 [az disk create](/cli/azure/disk#create) 建立新的受控磁碟，進而複製磁碟。 下列範例會從名為 **myDisk** 的受控磁碟建立名為 **myCopiedDisk** 的磁碟：
+1.  使用磁碟管理來建立新的複製 hello 磁碟[az 磁碟建立](/cli/azure/disk#create)。 hello 下列範例會建立名為的磁碟**myCopiedDisk** hello 從受管理磁碟名為**myDisk**:
 
     ```azurecli
     az disk create --resource-group myResourceGroup --name myCopiedDisk --source myDisk
     ``` 
 
-1.  使用 [az disk list](/cli/azure/disk#list) 來確認此受控磁碟現在位於您的資源群組中。 下列範例會列出名為 **myResourceGroup** 的資源群組中的受控磁碟：
+1.  使用確認正在資源群組中的受管理的 hello 磁碟[az 磁碟清單](/cli/azure/disk#list)。 hello 下列範例會列出名為 「 hello 資源群組中的受管理的 hello 磁碟**myResourceGroup**:
 
     ```azurecli
     az disk list --resource-group myResourceGroup --output table
     ```
 
-1.  跳至[步驟 3︰設定虛擬網路](#step-3-set-up-a-virtual-network)。
+1.  略過太[「 步驟 3： 設定虛擬網路 」](#step-3-set-up-a-virtual-network)。
 
 
 ## <a name="step-3-set-up-a-virtual-network"></a>步驟 3︰設定虛擬網路
 
 
-下列選擇性步驟會建立新的虛擬網路、子網路、公用 IP 位址和虛擬網路介面卡 (NIC)。
+hello 下列選擇性步驟建立新的虛擬網路、 子網路、 公用 IP 位址，與虛擬網路介面卡 (NIC)。
 
-如果您為了進行疑難排解或其他部署而複製 VM，您可能不想使用現有虛擬網路中的 VM。
+如果您複製 VM 疑難排解用途或其他部署，您可能不想 toouse 中現有的虛擬網路的 VM。
 
-如果您想為所複製的 VM 建立虛擬網路基礎結構，請遵循接下來的幾個步驟。 如果不想建立虛擬網路，請跳至[步驟 4：建立 VM](#step-4-create-a-vm)。
+如果您想要複製 Vm toocreate 虛擬網路基礎結構，後續 hello 接下來的幾個步驟。 如果您不想 toocreate 虛擬網路，請略過太[步驟 4： 建立 VM](#step-4-create-a-vm)。
 
-1.  使用 [az network vnet create](/cli/azure/network/vnet#create) 建立虛擬網路。 下列範例會建立名為 **myVnet** 的虛擬網路和名為 **mySubnet** 的子網路：
+1.  使用建立虛擬網路的 hello [az 網路 vnet 建立](/cli/azure/network/vnet#create)。 hello 下列範例會建立虛擬網路，名為**myVnet**和名為的子網路**mySubnet**:
 
     ```azurecli
     az network vnet create --resource-group myResourceGroup --location westus --name myVnet \
         --address-prefix 192.168.0.0/16 --subnet-name mySubnet --subnet-prefix 192.168.1.0/24
     ```
 
-1.  使用 [az network public-ip create](/cli/azure/network/public-ip#create) 建立公用 IP。 下列範例會建立名為 **myPublicIP** 的公用 IP，其 DNS 名稱為 **mypublicdns**。 (DNS 名稱必須是唯一的，因此請提供唯一的名稱。)
+1.  使用 [az network public-ip create](/cli/azure/network/public-ip#create) 建立公用 IP。 hello 下列範例會建立名為公用 IP **myPublicIP** hello DNS 名稱是**mypublicdns**。 （hello DNS 名稱必須是唯一的因此提供唯一的名稱。)
 
     ```azurecli
     az network public-ip create --resource-group myResourceGroup --location westus \
         --name myPublicIP --dns-name mypublicdns --allocation-method static --idle-timeout 4
     ```
 
-1.  使用 [az network nic create](/cli/azure/network/nic#create) 來建立 NIC。
-    下列範例會建立連結至 **mySubnet** 子網路且名為 **myNic** 的 NIC：
+1.  建立 hello NIC 使用[az 網路 nic 建立](/cli/azure/network/nic#create)。
+    hello 下列範例會建立名為的 NIC **myNic**的附加的 toothe **mySubnet**子網路：
 
     ```azurecli
     az network nic create --resource-group myResourceGroup --location westus --name myNic \
@@ -117,7 +117,7 @@ az vm deallocate --resource-group myResourceGroup --name myVM
 
 您現在可以使用 [az vm create](/cli/azure/vm#create) 建立 VM。
 
-指定要做為 OS 磁碟的所複製受控磁碟 (--attach-os-disk)，如下所示︰
+指定 hello 複製為 hello OS 磁碟的受管理的磁碟 toouse (-附加 os 磁碟)，如下：
 
 ```azurecli
 az vm create --resource-group myResourceGroup --name myCopiedVM \
@@ -128,4 +128,4 @@ az vm create --resource-group myResourceGroup --name myCopiedVM \
 
 ## <a name="next-steps"></a>後續步驟
 
-若要了解如何使用 Azure CLI 來管理新的 VM，請參閱 [Azure Resource Manager 的 Azure CLI 命令](../azure-cli-arm-commands.md)。
+toolearn 如何 toouse Azure CLI toomanage 新的 VM，請參閱[hello Azure 資源管理員的 Azure CLI 命令](../azure-cli-arm-commands.md)。

@@ -1,6 +1,6 @@
 ---
-title: "Azure CosmosDB 圖形 API .NET SDK 和資源 | Microsoft Docs"
-description: "了解 Azure CosmosDB 圖形 API，包括發行日期、停用日期，以及每個版本之間的變更。"
+title: "aaaAzure CosmosDB Graph API 的.NET SDK 與資源 |Microsoft 文件"
+description: "深入了解 hello Azure CosmosDB Graph API，包括發行日期、 停用日期，以及每個版本之間所做的變更。"
 services: cosmos-db
 documentationcenter: .net
 author: rnagpal
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 27e24d7a58a7fd9af7a9298d8a7770e80f9b3233
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c6abcb6dfdff3d6e011542ee952868a93056888b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-graph-net-api-download-and-release-notes"></a>Azure Cosmos DB Graph .NET API：下載和版本資訊
 
@@ -26,8 +26,8 @@ ms.lasthandoff: 07/11/2017
 |---|---|
 |**SDK 下載**|[NuGet](https://aka.ms/acdbgraphnuget)|
 |**API 文件**|[.NET API 參考文件](https://aka.ms/acdbgraphapiref)|
-|**快速入門**|[Azure Cosmos DB︰使用 .NET 和圖形 API 建立圖表應用程式](create-graph-dotnet.md)|
-|**教學課程**|[Azure CosmosDB：使用圖形 API 建立容器](tutorial-develop-graph-dotnet.md)|
+|**快速入門**|[Azure Cosmos DB： 建立使用.NET 的圖形應用程式和 hello Graph API](create-graph-dotnet.md)|
+|**教學課程**|[Azure CosmosDB: Hello Graph API 建立容器](tutorial-develop-graph-dotnet.md)|
 |**目前支援的架構**|[Microsoft .NET Framework 4.5](https://www.microsoft.com/download/details.aspx?id=30653)|
 
 ## <a name="release-notes"></a>版本資訊
@@ -35,11 +35,11 @@ ms.lasthandoff: 07/11/2017
 * 初始預覽版本。
 
 ## <a name="release--retirement-dates"></a>發行和停用日期
-Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供順利轉換至較新/支援的版本。
+Microsoft 提供通知的最少**12 個月**之前淘汰順序 toosmooth hello 轉換 tooa 較新/支援版本的 SDK。
 
-新的功能與最佳化項目只會新增至目前的 SDK，因此建議您一律盡早升級至最新的 SDK 版本。 
+新功能和功能與最佳化僅加入 toohello 目前 SDK，因此建議您，您一律升級 toohello 最新版本 SDK 盡早。 
 
-服務將會拒絕使用已停用 SDK 的任何 Azure Cosmos DB 要求。
+Hello 服務，將會拒絕任何要求 tooAzure Cosmos DB 使用已淘汰的 SDK。
 
 ## <a name="see-also"></a>另請參閱
-若要深入了解 Azure Cosmos DB 圖形 API，請參閱 [Azure Cosmos DB：圖形 API 簡介](graph-introduction.md)。 
+toolearn 深入了解 hello Azure Cosmos DB Graph API，請參閱[簡介 tooAzure Cosmos DB: Graph API](graph-introduction.md)。 

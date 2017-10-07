@@ -1,6 +1,6 @@
 ---
-title: "從 Azure CLI 建立您的第一個函式 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 來建立您的第一個 Azure 函式以進行無伺服器執行。"
+title: "您的第一個函式從 hello Azure CLI aaaCreate |Microsoft 文件"
+description: "深入了解如何使用無伺服器執行的函式的第一個 Azure toocreate hello Azure CLI。"
 services: functions
 keywords: 
 author: ggailey777
@@ -12,21 +12,21 @@ ms.service: functions
 ms.custom: mvc
 ms.devlang: azure-cli
 manager: erikre
-ms.openlocfilehash: 8bd3e4bb7423db44c48b04f25edcf1074e6ea0bd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5feed0045d4998b88b0e1bb50996cb7bb42b0822
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-your-first-function-using-the-azure-cli"></a>在 Azure CLI 建立您的第一個函式
+# <a name="create-your-first-function-using-hello-azure-cli"></a>建立您使用 Azure CLI hello 的第一個函式
 
-本快速入門教學課程會逐步解說如何使用 Azure Functions 來建立您的第一個函式。 您會使用 Azure CLI 來建立函式應用程式，此應用程式是主控函式的無伺服器基礎結構。 函式程式碼本身是從 GitHub 的範例存放庫部署而來的。    
+本快速入門教學課程將逐步引導 toouse Azure 函式 toocreate 您的第一個函式。 您使用 hello Azure CLI toocreate 函式應用程式，也就是裝載您的函式的 hello 無伺服器基礎結構。 從 GitHub 範例儲存機制部署 hello 函式程式碼本身。    
 
-您可以使用 Mac、Windows 或 Linux 電腦，依照下面步驟操作。 
+您可以依照下列使用 Mac、 Windows 或 Linux 電腦的 hello 步驟。 
 
 ## <a name="prerequisites"></a>必要條件 
 
-在執行此範例之前，您必須具備下列項目︰
+執行此範例之前，您必須擁有 hello 下列：
 
 + 作用中的 [GitHub](https://github.com) 帳戶。 
 + 有效的 Azure 訂用帳戶。
@@ -35,14 +35,14 @@ ms.lasthandoff: 08/29/2017
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇 tooinstall，並在本機上使用 hello CLI，本主題會需要您執行 hello Azure CLI 版本 2.0 或更新版本。 執行`az --version`toofind hello 版本。 如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 
-使用 [az group create](/cli/azure/group#create) 來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源 (如函式應用程式、資料庫和儲存體帳戶) 的邏輯容器。
+建立資源群組以 hello [az 群組建立](/cli/azure/group#create)。 Azure 資源群組是在其中部署與管理 Azure 資源 (如函式應用程式、資料庫和儲存體帳戶) 的邏輯容器。
 
-下列範例會建立名為 `myResourceGroup` 的資源群組。  
+hello 下列範例會建立名為的資源群組`myResourceGroup`。  
 如果您未使用 Cloud Shell，您必須先使用 `az login` 登入。
 
 ```azurecli-interactive
@@ -52,15 +52,15 @@ az group create --name myResourceGroup --location westeurope
 
 ## <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶
 
-函式會使用 Azure 儲存體帳戶來維護函式的狀態和其他資訊。 在使用 [az storage account create](/cli/azure/storage/account#create) 命令所建立的資源群組中建立儲存體帳戶。
+函式會使用 Azure 儲存體帳戶 toomaintain 狀態和您的函式的其他資訊。 在您建立使用 hello hello 資源群組中建立儲存體帳戶[az 儲存體帳戶建立](/cli/azure/storage/account#create)命令。
 
-在下列命令中，使用您自己的全域唯一儲存體帳戶名稱來替代您看見 `<storage_name>` 預留位置的地方。 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。
+在 hello 下列命令，以取代您自己了解 hello 的全域唯一的儲存體帳戶名稱`<storage_name>`預留位置。 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。
 
 ```azurecli-interactive
 az storage account create --name <storage_name> --location westeurope --resource-group myResourceGroup --sku Standard_LRS
 ```
 
-建立儲存體帳戶後，Azure CLI 會顯示類似下列範例的資訊：
+建立 hello 儲存體帳戶之後，hello Azure CLI 顯示資訊的類似 toohello 下列範例：
 
 ```json
 {
@@ -82,17 +82,17 @@ az storage account create --name <storage_name> --location westeurope --resource
 
 ## <a name="create-a-function-app"></a>建立函數應用程式
 
-您必須擁有函式應用程式以便主控函式的執行。 函式應用程式會提供環境來讓您的函式程式碼進行無伺服器執行。 它可讓您將多個函式群組為邏輯單位，以方便您管理、部署和共用資源。 使用 [az functionapp create](/cli/azure/functionapp#create) 命令來建立函式應用程式。 
+您必須擁有您的函式的函式應用程式 toohost hello 執行。 hello 函式應用程式提供無伺服器程式碼執行的函式的環境。 它可讓您將多個函式群組為邏輯單位，以方便您管理、部署和共用資源。 建立函式的應用程式使用 hello [az functionapp 建立](/cli/azure/functionapp#create)命令。 
 
-在下列命令中，使用您自己的唯一函式應用程式名稱來替代您看見 `<app_name>` 預留位置的地方，並使用儲存體帳戶名稱來替代 `<storage_name>`。 `<app_name>` 會作為函式應用程式的預設 DNS 網域，所以此名稱在 Azure 的所有應用程式中都必須是唯一的名稱。 
+Hello 中下列命令，將替換成您自己唯一函式應用程式名稱看 hello`<app_name>`預留位置和 hello 儲存體帳戶名稱`<storage_name>`。 hello `<app_name>` hello 預設 DNS 網域 hello 函式應用程式，並因此 hello 名稱需要 toobe 唯一跨所有應用程式在 Azure 中作為。 
 
 ```azurecli-interactive
 az functionapp create --name <app_name> --storage-account  <storage_name>  --resource-group myResourceGroup \
 --consumption-plan-location westeurope
 ```
-根據預設，所建立的函式應用程式會使用「取用」主控方案，也就是說，您的函式會根據需要來動態新增資源，並且只有在函式執行時才會產生費用。 如需詳細資訊，請參閱[選擇正確的主控方案](functions-scale.md)。 
+根據預設，函式應用程式會建立與 hello 耗用量主控方案，這表示動態所需的函式加入資源，而且您只需要執行函式時。 如需詳細資訊，請參閱[選擇 hello 正確主控方案](functions-scale.md)。 
 
-建立函式應用程式後，Azure CLI 會顯示類似下列範例的資訊：
+建立 hello 函式應用程式之後，hello Azure CLI 顯示資訊的類似 toohello 下列範例：
 
 ```json
 {
@@ -112,18 +112,18 @@ az functionapp create --name <app_name> --storage-account  <storage_name>  --res
 }
 ```
 
-您已經擁有函式應用程式，接下來您可以從 GitHub 的範例存放庫來部署實際的函式程式碼。
+有函式應用程式之後，您可以部署 hello GitHub 範例儲存機制中的 hello 實際函式程式碼。
 
 ## <a name="deploy-your-function-code"></a>部署函式程式碼  
 
-有多種方式可以在新的函式應用程式中建立函式程式碼。 本主題連結到 GitHub 中的範例存放庫。 和先前一樣，請在下列程式碼中將 `<app_name>` 預留位置改為您所建立之函式應用程式的名稱。 
+有數種方式 toocreate 函式的程式碼在應用程式的新函式中。 本主題會連接 tooa GitHub 中的範例儲存機制。 如往常一般，在 hello 下列程式碼取代 hello `<app_name>` hello 您所建立的 hello 函式應用程式名稱的預留位置。 
 
 ```azurecli-interactive
 az functionapp deployment source config --name <app_name> --resource-group myResourceGroup --branch master \
 --repo-url https://github.com/Azure-Samples/functions-quickstart \
 --manual-integration 
 ```
-設定部署來源後，Azure CLI 會顯示類似下列範例的資訊 (已移除 Null 值以方便閱讀)︰
+Hello 部署來源設定之後，Azure CLI 顯示下列範例 （針對可讀性移除 null 值） 的資訊類似 toohello hello:
 
 ```json
 {
@@ -140,9 +140,9 @@ az functionapp deployment source config --name <app_name> --resource-group myRes
 }
 ```
 
-## <a name="test-the-function"></a>測試函式
+## <a name="test-hello-function"></a>測試 hello 函式
 
-在 Mac 或 Linux 電腦上使用 cURL 來測試已部署的函式，在 Windows 上則請使用 Bash。 執行下列 cURL 命令時，但請將其中的 `<app_name>` 預留位置改為函式應用程式的名稱。 將查詢字串 `&name=<yourname>` 附加至 URL。
+在 Mac 或 Linux 電腦或 Windows 上使用 Bash 使用 cURL tootest 部署的 hello 函式。 執行下列 cURL 命令，取代 hello hello `<app_name>` hello 函式應用程式名稱的預留位置。 附加 hello 查詢字串`&name=<yourname>`toohello URL。
 
 ```bash
 curl http://<app_name>.azurewebsites.net/api/HttpTriggerJS1?name=<yourname>
@@ -150,7 +150,7 @@ curl http://<app_name>.azurewebsites.net/api/HttpTriggerJS1?name=<yourname>
 
 ![瀏覽器顯示的函式回應。](./media/functions-create-first-azure-function-azure-cli/functions-azure-cli-function-test-curl.png)  
 
-如果您的命令列無法使用 cURL，在網頁瀏覽器的位址中輸入相同 URL 即可。 同樣地，請將 `<app_name>` 預留位置改為函式應用程式的名稱，然後對 URL 附加查詢字串 `&name=<yourname>` 並執行要求。 
+如果您沒有 cURL 可用命令列中，輸入 hello hello 位址在網頁瀏覽器中相同的 URL。 同樣地，取代 hello`<app_name>`預留位置 hello 應用程式名稱函式，並附加 hello 查詢字串`&name=<yourname>`toohello URL，然後執行 hello 要求。 
 
     http://<app_name>.azurewebsites.net/api/HttpTriggerJS1?name=<yourname>
    
@@ -158,7 +158,7 @@ curl http://<app_name>.azurewebsites.net/api/HttpTriggerJS1?name=<yourname>
 
 ## <a name="clean-up-resources"></a>清除資源
 
-此集合中的其他快速入門會以本快速入門為基礎。 如果您打算繼續進行後續的快速入門或教學課程，請勿清除在此快速入門中建立的資源。 如果您不打算繼續，請使用下列命令來刪除本快速入門建立的所有資源：
+此集合中的其他快速入門會以本快速入門為基礎。 如果您計劃 toocontinue toowork 與後續的快速入門或 hello 教學課程，請執行不會清除建立本快速入門的 hello 資源。 如果您不打算 toocontinue，使用下列命令 toodelete hello 本快速入門所建立的所有資源：
 
 ```azurecli-interactive
 az group delete --name myResourceGroup

@@ -1,6 +1,6 @@
 ---
-title: "利用 PowerShell 管理 Azure Media Services 帳戶"
-description: "瞭解如何管理 PowerShell cmdlet 與 Azure Media Services 帳戶。"
+title: "aaaManage 使用 PowerShell 的 Azure 媒體服務帳戶"
+description: "了解如何 toomanage Azure Media Services 帳戶的 PowerShell cmdlet。"
 author: Juliako
 manager: erikre
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: juliako
-ms.openlocfilehash: 3d999d9e27844bc0164cc3572522b9ec022118a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e8f97bb2393343e45fabf9c437b4fc09f2525dc2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-media-services-accounts-with-powershell"></a>利用 PowerShell 管理 Azure Media Services 帳戶
 > [!div class="op_single_selector"]
@@ -27,12 +27,12 @@ ms.lasthandoff: 07/11/2017
 > * [REST](https://docs.microsoft.com/rest/api/media/mediaservice)
 > 
 > [!NOTE]
-> 若要建立 Azure 媒體服務帳戶，您必須擁有 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 <a href="http://www.windowsazure.com/pricing/free-trial/?WT.mc_id=A8A8397B5" target="_blank">Azure 免費試用</a>。
+> toobe 無法 toocreate Azure Media Services 帳戶，您必須有 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 <a href="http://www.windowsazure.com/pricing/free-trial/?WT.mc_id=A8A8397B5" target="_blank">Azure 免費試用</a>。
 > 
 > 
 
-## <a name="overview"></a>Overview
-本文列出 Azure 媒體服務 (AMS) 在 Azure Resource Manager 架構中的 Azure PowerShell Cmdlet。 Cmdlet 存在於 **Microsoft.Azure.Commands.Media** 命名空間。
+## <a name="overview"></a>概觀
+本文列出 hello Azure PowerShell cmdlet 的 Azure 媒體服務 (AMS) hello Azure Resource Manager 架構中。 hello cmdlet 存在於 hello **Microsoft.Azure.Commands.Media**命名空間。
 
 ## <a name="versions"></a>版本
 **ApiVersion**："2015-10-01"
@@ -52,7 +52,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="parameters"></a>參數
 **-ResourceGroupName &lt;String&gt;**
 
-指定此媒體服務所屬資源群組的名稱。
+指定此媒體服務所屬的 hello 資源群組 toowhich hello 名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -64,7 +64,7 @@ ms.lasthandoff: 07/11/2017
 
 **-AccountName &lt;String&gt;**
 
-指定媒體服務的名稱。
+指定 hello hello 媒體服務名稱。
 
 | 別名 | Name |
 | --- | --- |
@@ -76,7 +76,7 @@ ms.lasthandoff: 07/11/2017
 
 **-Location &lt;String&gt;**
 
-指定媒體服務的資源位置。
+指定 hello 媒體服務的 hello 資源的位置。
 
 | 別名 | 無 |
 | --- | --- |
@@ -88,10 +88,10 @@ ms.lasthandoff: 07/11/2017
 
 **-StorageAccountId &lt;String&gt;**
 
-指定與媒體服務相關聯的主要儲存體帳戶。
+指定與 hello 媒體服務相關聯的主要儲存體帳戶。
 
-* 只支援新的儲存體帳戶 (使用 Resource Manager API 所建立)。
-* 儲存體帳戶必須存在，而且具有與媒體服務相同的位置。
+* 新建立儲存體帳戶 （以 hello 資源管理員 API） 才支援。
+* hello 儲存體帳戶必須存在，且具有 hello 與 hello 媒體服務的相同位置。
 
 | 別名 | 無 |
 | --- | --- |
@@ -104,10 +104,10 @@ ms.lasthandoff: 07/11/2017
 
 **-StorageAccounts &lt;PSStorageAccount\[\]&gt;**
 
-指定與媒體服務相關聯的儲存體帳戶。
+指定與 hello 媒體服務相關聯的儲存體帳戶。
 
-* 只支援新的儲存體帳戶 (使用 Resource Manager API 所建立)。
-* 儲存體帳戶必須存在，而且具有與媒體服務相同的位置。
+* 新建立儲存體帳戶 （以 hello 資源管理員 API） 才支援。
+* hello 儲存體帳戶必須存在，且具有 hello 與 hello 媒體服務的相同位置。
 * 只可以指定一個主要儲存體帳戶。
 
 | 別名 | 無 |
@@ -121,7 +121,7 @@ ms.lasthandoff: 07/11/2017
 
 **-Tags &lt;Hashtable&gt;**
 
-指定與媒體服務相關聯之標記的雜湊表。
+指定雜湊表的 hello 與 hello 媒體服務相關聯的標記。
 
 * 範例: @{"標籤 1"="value1";"標籤 2 」 =: value2"}
 
@@ -135,13 +135,13 @@ ms.lasthandoff: 07/11/2017
 
 **&lt;CommandParameters&gt;**
 
-這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+這個 cmdlet 支援 hello 一般參數:-偵錯、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 以及-WarningVariable。
 
 ### <a name="inputs"></a>輸入
-輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+hello 輸入型別是 hello hello 型別物件，您可以使用管線傳送 toohello cmdlet。
 
 ### <a name="outputs"></a>輸出
-輸出類型是 Cmdlet 所發出的物件類型。
+hello 輸出類型是 hello hello cmdlet 的 hello 物件型別會發出。
 
 ## <a name="set-azurermmediaservice"></a>Set-AzureRmMediaService
 更新媒體服務。
@@ -152,7 +152,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="parameters"></a>參數
 **-ResourceGroupName &lt;String&gt;**
 
-指定此媒體服務所屬資源群組的名稱。
+指定此媒體服務所屬的 hello 資源群組 toowhich hello 名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -164,7 +164,7 @@ ms.lasthandoff: 07/11/2017
 
 **-AccountName &lt;String&gt;**
 
-指定媒體服務的名稱。
+指定 hello hello 媒體服務名稱。
 
 | 別名 | Name |
 | --- | --- |
@@ -176,10 +176,10 @@ ms.lasthandoff: 07/11/2017
 
 **-StorageAccounts &lt;PSStorageAccount\[\]&gt;**
 
-指定與媒體服務相關聯的儲存體帳戶。
+指定與 hello 媒體服務相關聯的儲存體帳戶。
 
-* 只支援新的儲存體帳戶 (使用 Resource Manager API 所建立)。
-* 儲存體帳戶必須存在，而且具有與媒體服務相同的位置。
+* 新建立儲存體帳戶 （以 hello 資源管理員 API） 才支援。
+* hello 儲存體帳戶必須存在，且具有 hello 與 hello 媒體服務的相同位置。
 * 只可以指定一個主要儲存體帳戶。
 
 | 別名 | 無 |
@@ -193,9 +193,9 @@ ms.lasthandoff: 07/11/2017
 
 **-Tags &lt;Hashtable&gt;**
 
-指定與此媒體服務相關聯之標記的雜湊表。
+指定雜湊表的 hello 與此媒體服務相關聯的標記。
 
-* 與媒體服務相關聯的標記會取代為客戶指定的值。
+* hello 媒體服務相關聯的 hello 標記會取代 hello 客戶所指定的值。
 
 | 別名 | 無 |
 | --- | --- |
@@ -207,13 +207,13 @@ ms.lasthandoff: 07/11/2017
 
 **&lt;CommandParameters&gt;**
 
-這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+這個 cmdlet 支援 hello 一般參數:-偵錯、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 以及-WarningVariable。
 
 ### <a name="inputs"></a>輸入
-輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+hello 輸入型別是 hello hello 型別物件，您可以使用管線傳送 toohello cmdlet。
 
 ### <a name="outputs"></a>輸出
-輸出類型是 Cmdlet 所發出的物件類型。
+hello 輸出類型是 hello hello cmdlet 的 hello 物件型別會發出。
 
 ## <a name="remove-azurermmediaservice"></a>Remove-AzureRmMediaService
 移除媒體服務。
@@ -224,7 +224,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="parameters"></a>參數
 **-ResourceGroupName &lt;String&gt;**
 
-指定此媒體服務所屬資源群組的名稱。
+指定此媒體服務所屬的 hello 資源群組 toowhich hello 名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -236,7 +236,7 @@ ms.lasthandoff: 07/11/2017
 
 **-AccountName &lt;String&gt;**
 
-指定媒體服務的名稱。
+指定 hello hello 媒體服務名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -248,13 +248,13 @@ ms.lasthandoff: 07/11/2017
 
 **&lt;CommandParameters&gt;**
 
-這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+這個 cmdlet 支援 hello 一般參數:-偵錯、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 以及-WarningVariable。
 
 ### <a name="inputs"></a>輸入
-輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+hello 輸入型別是 hello hello 型別物件，您可以使用管線傳送 toohello cmdlet。
 
 ### <a name="outputs"></a>輸出
-輸出類型是 Cmdlet 所發出的物件類型。
+hello 輸出類型是 hello hello cmdlet 的 hello 物件型別會發出。
 
 ## <a name="get-azurermmediaservice"></a>Get-AzureRmMediaService
 取得資源群組中的所有媒體服務或取得指定名稱的媒體服務。
@@ -271,7 +271,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="parameters"></a>參數
 **-ResourceGroupName &lt;String&gt;**
 
-指定此媒體服務所屬資源群組的名稱。
+指定此媒體服務所屬的 hello 資源群組 toowhich hello 名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -285,7 +285,7 @@ ms.lasthandoff: 07/11/2017
 
 **-AccountName &lt;String&gt;**
 
-指定媒體服務的名稱。
+指定 hello hello 媒體服務名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -298,13 +298,13 @@ ms.lasthandoff: 07/11/2017
 
 **&lt;CommandParameters&gt;**
 
-這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+這個 cmdlet 支援 hello 一般參數:-偵錯、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 以及-WarningVariable。
 
 ### <a name="inputs"></a>輸入
-輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+hello 輸入型別是 hello hello 型別物件，您可以使用管線傳送 toohello cmdlet。
 
 ### <a name="outputs"></a>輸出
-輸出類型是 Cmdlet 所發出的物件類型。
+hello 輸出類型是 hello hello cmdlet 的 hello 物件型別會發出。
 
 ## <a name="get-azurermmediaservicekeys"></a>Get-AzureRmMediaServiceKeys
 取得媒體服務的金鑰。
@@ -315,7 +315,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="parameters"></a>參數
 **-ResourceGroupName &lt;String&gt;**
 
-指定此媒體服務所屬資源群組的名稱。
+指定此媒體服務所屬的 hello 資源群組 toowhich hello 名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -327,7 +327,7 @@ ms.lasthandoff: 07/11/2017
 
 **-AccountName &lt;String&gt;**
 
-指定媒體服務的名稱。
+指定 hello hello 媒體服務名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -339,13 +339,13 @@ ms.lasthandoff: 07/11/2017
 
 **&lt;CommandParameters&gt;**
 
-這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+這個 cmdlet 支援 hello 一般參數:-偵錯、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 以及-WarningVariable。
 
 ### <a name="inputs"></a>輸入
-輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+hello 輸入型別是 hello hello 型別物件，您可以使用管線傳送 toohello cmdlet。
 
 ### <a name="outputs"></a>輸出
-輸出類型是 Cmdlet 所發出的物件類型。
+hello 輸出類型是 hello hello cmdlet 的 hello 物件型別會發出。
 
 ## <a name="set-azurermmediaservicekey"></a>Set-AzureRmMediaServiceKey
 重新產生媒體服務的主要或次要金鑰。
@@ -356,7 +356,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="parameters"></a>參數
 **-ResourceGroupName &lt;String&gt;**
 
-指定此媒體服務所屬資源群組的名稱。
+指定此媒體服務所屬的 hello 資源群組 toowhich hello 名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -368,7 +368,7 @@ ms.lasthandoff: 07/11/2017
 
 **-AccountName &lt;String&gt;**
 
-指定媒體服務的名稱。
+指定 hello hello 媒體服務名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -380,7 +380,7 @@ ms.lasthandoff: 07/11/2017
 
 **-KeyType &lt;KeyType&gt;**
 
-指定媒體服務的金鑰類型。
+指定 hello hello 媒體服務金鑰類型。
 
 * 主要或次要
 
@@ -394,16 +394,16 @@ ms.lasthandoff: 07/11/2017
 
 **&lt;CommandParameters&gt;**
 
-這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+這個 cmdlet 支援 hello 一般參數:-偵錯、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 以及-WarningVariable。
 
 ### <a name="inputs"></a>輸入
-輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+hello 輸入型別是 hello hello 型別物件，您可以使用管線傳送 toothe cmdlet。
 
 ### <a name="outputs"></a>輸出
-輸出類型是 Cmdlet 所發出的物件類型。
+hello 輸出類型是 hello hello cmdlet 的 hello 物件型別會發出。
 
 ## <a name="sync-azurermmediaservicestoragekeys"></a>Sync-AzureRmMediaServiceStorageKeys
-同步處理與媒體服務相關聯之儲存體帳戶的儲存體帳戶金鑰。
+同步處理與 hello 媒體服務相關聯的儲存體帳戶的儲存體帳戶金鑰。
 
 ### <a name="syntax"></a>語法
     Sync-AzureRmMediaServiceStorageKeys [-ResourceGroupName] <string> [-MediaServiceAccountName] <string>    [-StorageAccountId] <string>  [<CommonParameters>]
@@ -411,7 +411,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="parameters"></a>參數
 **-ResourceGroupName &lt;String&gt;**
 
-指定此媒體服務所屬資源群組的名稱。
+指定此媒體服務所屬的 hello 資源群組 toowhich hello 名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -423,7 +423,7 @@ ms.lasthandoff: 07/11/2017
 
 **-AccountName &lt;String&gt;**
 
-指定媒體服務的名稱。
+指定 hello hello 媒體服務名稱。
 
 | 別名 | 無 |
 | --- | --- |
@@ -435,7 +435,7 @@ ms.lasthandoff: 07/11/2017
 
 **-StorageAccountId &lt;String&gt;**
 
-指定與媒體服務相關聯的儲存體帳戶。
+指定 hello 與 hello 媒體服務相關聯的儲存體帳戶。
 
 | 別名 | 識別碼 |
 | --- | --- |
@@ -447,13 +447,13 @@ ms.lasthandoff: 07/11/2017
 
 **&lt;CommandParameters&gt;**
 
-這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+這個 cmdlet 支援 hello 一般參數:-偵錯、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 以及-WarningVariable。
 
 ### <a name="inputs"></a>輸入
-輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+hello 輸入型別是 hello hello 型別物件，您可以使用管線傳送 toohello cmdlet。
 
 ### <a name="outputs"></a>輸出
-輸出類型是 Cmdlet 所發出的物件類型。
+hello 輸出類型是 hello hello cmdlet 的 hello 物件型別會發出。
 
 ## <a name="next-step"></a>後續步驟
 查看媒體服務學習途徑。

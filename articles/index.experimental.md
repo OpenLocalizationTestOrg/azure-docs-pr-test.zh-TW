@@ -1,13 +1,13 @@
 ---
 layout: HubPage
 hide_bc: True
-title: "Microsoft Azure 文件"
-description: "了解如何使用 Microsoft Azure 雲端服務建置和管理功能強大的應用程式。 取得文件、程式碼範例、教學課程等資訊。"
-ms.openlocfilehash: 282e1da4a5ec8ccb3c6119c6de6fd37b83bbb71e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+title: "aaaMicrosoft Azure 文件"
+description: "深入了解如何 toobuild 和管理功能強大的應用程式使用 Microsoft Azure 雲端服務。 取得文件、程式碼範例、教學課程等資訊。"
+ms.openlocfilehash: a844a7c29be3e0f61c50eb0e89b8677029ee97dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 <div id="main" class="v2">
     <div class="container">
@@ -1081,7 +1081,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>虛擬機器擴展集</h3>
-                                                    <p>管理及調整 10 個到 1000 個 Linux 和 Windows 虛擬機器</p>
+                                                    <p>管理及調整 10s too1000s 的 Linux 和 Windows 虛擬機器</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1218,7 +1218,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>網路概觀</h3>
-                                                    <p>對 Azure 中網路服務的整合檢視</p>
+                                                    <p>網路服務在 Azure 中的 hello 整合式檢視</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1237,7 +1237,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>虛擬網路</h3>
-                                                    <p>佈建私人網路，可選擇性地連線至內部部署資料中心</p>
+                                                    <p>佈建私人網路，您可以選擇連接 tooon 內部部署資料中心</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1256,7 +1256,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>負載平衡器</h3>
-                                                    <p>為您的應用程式提供高可用性和網路效能</p>
+                                                    <p>提供高可用性和網路效能 tooyour 應用程式</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1332,7 +1332,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>CDN</h3>
-                                                    <p>透過全球資料中心的強大網路，將內容傳送給使用者 </p>
+                                                    <p>透過強固的全球資料中心網路的內容 tooend 使用者提供 </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1370,7 +1370,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>ExpressRoute</h3>
-                                                    <p>Azure 的專用私人光纖網路連線</p>
+                                                    <p>專用的私人網路的光纖連線 tooAzure</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1470,7 +1470,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>備份</h3>
-                                                    <p>簡單、可靠的伺服器備份到雲端</p>
+                                                    <p>簡單又可靠的伺服器備份 toohello 雲端</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1488,7 +1488,7 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Site Recovery</h3>
+                                                    <h3>站台復原</h3>
                                                     <p>協調對私人雲端的保護與復原</p>
                                                 </div>
                                             </div>
@@ -1532,7 +1532,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Mobile Apps</h3>
-                                                    <p>為任何行動應用程式建置及託管後端</p>
+                                                    <p>建置和裝載 hello 後端的任何行動裝置應用程式</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1550,7 +1550,7 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>API Apps</h3>
+                                                    <h3>API 應用程式</h3>
                                                     <p>輕鬆建置和取用雲端 API</p>
                                                 </div>
                                             </div>
@@ -1570,7 +1570,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Logic Apps</h3>
-                                                    <p>無需撰寫程式碼，就能跨雲端自動存取並使用資料</p>
+                                                    <p>跨雲端自動化 hello 存取和使用的資料，而不需要撰寫程式碼</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1589,7 +1589,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>CDN</h3>
-                                                    <p>透過全球資料中心的強大網路，將內容傳送給使用者 </p>
+                                                    <p>透過強固的全球資料中心網路的內容 tooend 使用者提供 </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1827,7 +1827,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>SQL Server Stretch Database</h3>
-                                                    <p>以動態方式將內部部署 SQL Server 資料庫延展到 Azure</p>
+                                                    <p>動態延伸內部部署 SQL Server 資料庫 tooAzure</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1903,7 +1903,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Redis 快取</h3>
-                                                    <p>高輸送量、低延遲資料存取，可讓您建置快速、可擴充的應用程式</p>
+                                                    <p>高輸送量、 低度延遲的資料存取 toobuild 快速/可擴充的應用程式</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1984,7 +1984,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Bing Web 搜尋</h3>
-                                                    <p>將功能強大的 Web 搜尋與您的應用程式結合</p>
+                                                    <p>功能強大的 web 搜尋 tooyour 應用程式連接</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2022,7 +2022,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>自訂辨識服務</h3>
-                                                    <p>自訂的 Web 服務，可學習辨識圖像中的特定內容</p>
+                                                    <p>學習 toorecognize 圖像中特定的內容可自訂的 web 服務</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2060,7 +2060,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Language Understanding Intelligent Services (LUIS)</h3>
-                                                    <p>教導您的應用程式理解使用者發出的命令</p>
+                                                    <p>教導您的應用程式從您的使用者 toounderstand 命令</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2079,7 +2079,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Bing 自訂搜尋</h3>
-                                                    <p>建置您想要的搜尋結果</p>
+                                                    <p>建置您想要尋求 hello 搜尋結果</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2121,8 +2121,8 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Machine Learning</h3>
-                                                    <p>功能強大的雲端架構預測性分析工具，可用來提供預測性維護</p>
+                                                    <h3>機器學習服務</h3>
+                                                    <p>功能強大的以雲端為基礎的預測性分析工具 tooenable 預測性維護</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2160,7 +2160,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>資料目錄</h3>
-                                                    <p>實現全企業自助式資料來源探索</p>
+                                                    <p>Hello 企業啟用自助式資料來源探索</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2255,7 +2255,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Analysis Services</h3>
-                                                    <p>雲端中企業級資料模型化</p>
+                                                    <p>企業級資料模型化 hello 雲端中</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2336,7 +2336,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure IoT 套件</h3>
-                                                    <p>擷取並分析未開發的資料來改善商務結果</p>
+                                                    <p>擷取及分析尚未發掘的資料 tooimprove 商務結果</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2392,8 +2392,8 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Machine Learning</h3>
-                                                    <p>功能強大的雲端架構預測性分析工具，可用來提供預測性維護</p>
+                                                    <h3>機器學習服務</h3>
+                                                    <p>功能強大的以雲端為基礎的預測性分析工具 tooenable 預測性維護</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2455,7 +2455,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Logic Apps</h3>
-                                                    <p>無需撰寫程式碼，就能跨雲端自動存取並使用資料</p>
+                                                    <p>跨雲端自動化 hello 存取和使用的資料，而不需要撰寫程式碼</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2493,7 +2493,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>API 管理</h3>
-                                                    <p>透過安全且大規模的方式將 API 發佈給開發人員、合作夥伴和員工</p>
+                                                    <p>發行應用程式開發介面 toodevelopers、 合作夥伴和員工安全且依比例</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2531,7 +2531,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>SQL Server Stretch Database</h3>
-                                                    <p>以動態方式將內部部署 SQL Server 資料庫延展到 Azure</p>
+                                                    <p>動態延伸內部部署 SQL Server 資料庫 tooAzure</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2569,7 +2569,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>BizTalk 服務</h3>
-                                                    <p>完美整合企業與雲端</p>
+                                                    <p>順暢地整合 hello 企業版和 hello 雲端</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2593,7 +2593,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>資訊安全中心</h3>
-                                                    <p>透過增加的可見度來預防、偵測威脅，並做出回應</p>
+                                                    <p>防止、 偵測，而且 toothreats 以回應增加的可見性</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2612,7 +2612,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>金鑰保存庫</h3>
-                                                    <p>了解如何管理密碼編譯金鑰和密碼</p>
+                                                    <p>深入了解如何 toomanage 密碼編譯金鑰和密碼</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2650,7 +2650,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure Active Directory B2C</h3>
-                                                    <p>在雲端中管理消費者身分識別及存取</p>
+                                                    <p>Hello 雲端中的消費者身分識別和存取管理</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2669,7 +2669,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Active Directory Domain Services</h3>
-                                                    <p>將 Azure 虛擬機器加入沒有網域控制站的網域中</p>
+                                                    <p>加入 Azure 虛擬機器 tooa 網域沒有網域控制站</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2688,7 +2688,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Multi-Factor Authentication</h3>
-                                                    <p>透過額外的驗證層級以安全存取您的資料和應用程式</p>
+                                                    <p>保護存取 tooyour 資料和應用程式與額外的驗證等級</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2707,7 +2707,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>安全性資訊</h3>
-                                                    <p>了解 Azure 如何提供安全的基礎結構以建置雲端解決方案</p>
+                                                    <p>了解如何 Azure 會提供安全的基礎結構 toobuild 雲端解決方案</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2731,7 +2731,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Visual Studio Team Services</h3>
-                                                    <p>供團隊分享程式碼、追蹤工作及送出軟體的服務</p>
+                                                    <p>小組 tooshare 程式碼中，服務追蹤工作，以及軟體</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2788,7 +2788,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>API 管理</h3>
-                                                    <p>透過安全且大規模的方式將 API 發佈給開發人員、合作夥伴和員工</p>
+                                                    <p>發行應用程式開發介面 toodevelopers、 合作夥伴和員工安全且依比例</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2850,7 +2850,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Log Analytics</h3>
-                                                    <p>了解如何將機器資料轉換為作業智慧</p>
+                                                    <p>了解 tootransform 成營運情報機器資料的方式</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2888,7 +2888,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>備份</h3>
-                                                    <p>簡單、可靠的伺服器備份到雲端</p>
+                                                    <p>簡單又可靠的伺服器備份 toohello 雲端</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2906,7 +2906,7 @@ ms.lasthandoff: 08/03/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Site Recovery</h3>
+                                                    <h3>站台復原</h3>
                                                     <p>協調對私人雲端的保護與復原</p>
                                                 </div>
                                             </div>
@@ -2964,7 +2964,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>計費</h3>
-                                                    <p>了解如何閱讀/了解 Azure 訂用帳戶的使用情形和帳單</p>
+                                                    <p>了解如何了解 tooread/hello 使用量和 Azure 訂用帳戶的帳單</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2983,7 +2983,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure 建議程式</h3>
-                                                    <p>改善您 Azure 資源的成本效益、效能、高可用性和安全性</p>
+                                                    <p>改善 hello 成本效益、 效能、 高可用性和您的 Azure 資源的安全性</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3116,7 +3116,7 @@ ms.lasthandoff: 08/03/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/dotnet/azure/dotnet-sdk-azure-install">取得適用於 .NET 的 Azure 程式庫</a>
+                                                    <a href="/dotnet/azure/dotnet-sdk-azure-install">取得 hello Azure libraries for.NET</a>
                                                 </h3>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/develop/net/">開始使用</a>
@@ -3140,7 +3140,7 @@ ms.lasthandoff: 08/03/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://pypi.python.org/pypi/azure">取得 Python SDK</a>
+                                                    <a href="https://pypi.python.org/pypi/azure">取得 hello Python SDK</a>
                                                 </h3>
                                                 <p>
                                                     <a href="http://azure-sdk-for-python.readthedocs.io/en/latest/">開始使用</a>
@@ -3170,7 +3170,7 @@ ms.lasthandoff: 08/03/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://www.npmjs.com/package/azure">取得 the Node.js SDK</a>
+                                                    <a href="https://www.npmjs.com/package/azure">取得 hello Node.js SDK</a>
                                                 </h3>
                                                 <p>
                                                     <a href="http://azure.github.io/azure-sdk-for-node/">開始使用</a>
@@ -3200,7 +3200,7 @@ ms.lasthandoff: 08/03/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/java/azure/java-sdk-azure-install">取得適用於 Java 的 Azure 程式庫</a>
+                                                    <a href="/java/azure/java-sdk-azure-install">取得 hello Azure libraries for Java</a>
                                                 </h3>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/develop/java/">開始使用</a>
@@ -3224,7 +3224,7 @@ ms.lasthandoff: 08/03/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://rubygems.org/gems/azure">取得 Ruby SDK</a>
+                                                    <a href="https://rubygems.org/gems/azure">取得 hello Ruby SDK</a>
                                                 </h3>
                                                 <p>
                                                     <a href="https://github.com/Azure/azure-sdk-for-ruby/blob/master/README.md">開始使用</a>
@@ -3496,7 +3496,7 @@ ms.lasthandoff: 08/03/2017
                         <ul id="architecture1" class="cardsC">
                             <li>
                                 <div class="container intro">
-                                    <p>一組適用於雲端應用程式的建議架構。 每個架構都包含建議的作法、規定步驟，以及讓建議具體化的可執行元件。</p>
+                                    <p>一組適用於雲端應用程式的建議架構。 每個架構包含建議的做法，精準步驟和具 hello 建議的可執行檔元件。</p>
                                 </div>
                             </li>
                             <li>
@@ -3511,7 +3511,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>雲端基本概念</h3>
-                                                    <p>在雲端獲致成功的基本知識。 如果您不熟悉雲端或 Azure，請從這裡著手。</p>
+                                                    <p>基本知識 toobe 成功 hello 雲端中。 如果您是新 toohello 雲端或新 tooAzure，從這裡開始。</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3530,7 +3530,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>參考架構</h3>
-                                                    <p>一組適用於雲端的建議架構。 每個架構都包含最佳做法、規定步驟，以及可部署的解決方案。</p>
+                                                    <p>一組建議 hello 雲端架構。 每個架構都包含最佳做法、規定步驟，以及可部署的解決方案。</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3549,7 +3549,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>雲端設計模式</h3>
-                                                    <p>雲端的設計模式。 每個模式都會說明一個問題、可處理此問題的模式，以及以 Azure 為基礎的範例。</p>
+                                                    <p>設計模式 hello 雲端。 每個模式描述的問題，位址 hello 的問題和 Azure 為基礎的範例的模式。</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3587,7 +3587,7 @@ ms.lasthandoff: 08/03/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Scenario Guides</h3>
-                                                    <p>Guidance for various end-to-end application scenarios in the cloud. Includes
+                                                    <p>Guidance for various end-to-end application scenarios in hello cloud. Includes
                                                         written guidance and reference implementations.</p>
                                                 </div>
                                             </div>

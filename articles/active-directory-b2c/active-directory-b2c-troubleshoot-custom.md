@@ -1,6 +1,6 @@
 ---
-title: "用以針對自訂原則進行疑難排解的 Application Insights - Azure AD B2C | Microsoft Docs"
-description: "如何設定 Application Insights 以追蹤自訂原則的執行"
+title: "應用程式 Insights tootroubleshoot 自訂原則的 Azure AD B2C |Microsoft 文件"
+description: "如何 toosetup Application Insights tootrace hello 執行的自訂原則"
 services: active-directory-b2c
 documentationcenter: 
 author: saeedakhter-msft
@@ -14,54 +14,54 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: saeda
-ms.openlocfilehash: 8c79df33cd5f04f490e2cc6372f7e8ac1c4d9bbe
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c02d7178512c7f9e022385371c3effd4f8cb7726
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-collecting-logs"></a>Azure Active Directory B2C︰收集記錄
 
 本文提供從 Azure AD B2C 收集記錄的步驟，讓您可以診斷自訂原則的問題。
 
 >[!NOTE]
->目前，此處所述的詳細活動記錄**僅**針對協助開發自訂原則所設計。 請勿在生產環境中使用開發模式。  記錄會收集往返識別提供者在開發期間所傳送的所有宣告。  如果在生產環境中使用，開發人員會負責他們自己的 App Insights 記錄中收集的 PII (私人識別資訊)。  只有當原則位於**開發模式**時，才會收集這些詳細的記錄。
+>目前，hello 此處所述的詳細的活動記錄檔設計**只**tooaid 中開發的自訂原則。 請勿在生產環境中使用開發模式。  記錄檔收集 tooand 寄 hello 身分識別提供者，在開發期間的所有宣告。  如果在生產環境中使用，hello 開發人員負責 PII （私下識別資訊） 他們自己的 hello App Insights 記錄中收集。  這些詳細的記錄檔只會收集當 hello 原則放置在**開發模式**。
 
 
 ## <a name="use-application-insights"></a>使用 Application Insights
 
-Azure AD B2C 支援將資料傳送至 Application Insights 的功能。  Application Insights 提供方法來診斷例外狀況和將應用程式效能問題視覺化。
+Azure AD B2C 傳送資料 tooApplication Insights 支援的功能。  Application Insights 提供方式 toodiagnose 例外狀況，並以視覺化方式檢視應用程式效能問題。
 
 ### <a name="setup-application-insights"></a>設定 Application Insights
 
-1. 移至 [Azure 入口網站](https://portal.azure.com)。 確定您所在的租用戶具有您的 Azure 訂用帳戶 (不是 Azure AD B2C 租用戶)。
-1. 在左側導覽功能表中按一下 [+新增]。
+1. 移 toohello [Azure 入口網站](https://portal.azure.com)。 請確定您是在 hello 租用戶與 Azure 訂用帳戶 （不您 Azure AD B2C 租用戶）。
+1. 按一下**+ 新增**hello 左側瀏覽功能表中。
 1. 搜尋並選取 [Application Insights]，然後按一下 [建立]。
-1. 完成表單，然後按一下 [建立]。 在 [應用程式類型] 中，選取 [一般]。
-1. 建立資源後，開啟 Application Insights 資源。
-1. 在左邊功能表中尋找 [屬性]並按一下它。
-1. 複製 [檢測金鑰]，將它儲存起來供下一節使用。
+1. 完成 hello 表單，然後按一下**建立**。 選取**一般**hello**應用程式類型**。
+1. 一旦建立 hello 資源之後，開啟 hello Application Insights 資源。
+1. 尋找**屬性**在 hello 左邊功能表上，並加以點選。
+1. 複製 hello**檢測金鑰**並儲存起來供 hello 下一節。
 
-### <a name="set-up-the-custom-policy"></a>設定自訂原則
+### <a name="set-up-hello-custom-policy"></a>Hello 自訂原則設定
 
-1. 開啟 RP 檔案 (例如 SignUpOrSignin.xml)。
-1. 將下列屬性新增至 `<TrustFrameworkPolicy>` 元素：
+1. 開啟 hello RP 檔案 (例如，SignUpOrSignin.xml)。
+1. 新增下列屬性 toohello hello`<TrustFrameworkPolicy>`項目：
 
   ```XML
   DeploymentMode="Development"
   UserJourneyRecorderEndpoint="urn:journeyrecorder:applicationinsights"
   ```
 
-1. 將子節點 `<UserJourneyBehaviors>` (如果尚未存在) 新增至 `<RelyingParty>` 節點。 它必須緊接在 `<DefaultUserJourney ReferenceId="YourPolicyName" />` 之後
-2. 新增下列節點作為 `<UserJourneyBehaviors>` 元素的子節點。 務必以您在上一節中從 Application Insights 取得的 [檢測金鑰] 取代 `{Your Application Insights Key}`。
+1. 如果它已不存在，將子節點加入`<UserJourneyBehaviors>`toohello`<RelyingParty>`節點。 它必須位於後面 hello`<DefaultUserJourney ReferenceId="YourPolicyName" />`
+2. 新增做為 hello 的子節點的後 hello`<UserJourneyBehaviors>`項目。 請確定 tooreplace`{Your Application Insights Key}`以 hello**檢測金鑰**您從 hello 前一節中的 Application Insights 取得。
 
   ```XML
   <JourneyInsights TelemetryEngine="ApplicationInsights" InstrumentationKey="{Your Application Insights Key}" DeveloperMode="true" ClientEnabled="false" ServerEnabled="true" TelemetryVersion="1.0.0" />
   ```
 
-  * `DeveloperMode="true"` 會指示 ApplicationInsights 透過處理管線加速遙測，雖然有助於開發，但數量龐大時會受限。
-  * `ClientEnabled="true"` 會將用戶端指令碼傳送至 ApplicationInsights，以追蹤頁面檢視和用戶端錯誤 (不需要)。
-  * `ServerEnabled="true"` 會將現有的 UserJourneyRecorder JSON 當作自訂事件傳送至 Application Insights。
+  * `DeveloperMode="true"`良好告知 ApplicationInsights tooexpedite hello 遙測經由 hello 處理管線，開發項目，但在高的磁碟區的 受條件約束。
+  * `ClientEnabled="true"`會傳送 hello ApplicationInsights 用戶端指令碼追蹤頁面檢視和用戶端錯誤 （不需要）。
+  * `ServerEnabled="true"`傳送 hello 現有 UserJourneyRecorder JSON 做為自訂事件 tooApplication 深入資訊。
 範例：
 
   ```XML
@@ -82,32 +82,32 @@ Azure AD B2C 支援將資料傳送至 Application Insights 的功能。  Applica
   </TrustFrameworkPolicy>
   ```
 
-3. 上傳原則。
+3. 上傳 hello 原則。
 
-### <a name="see-the-logs-in-application-insights"></a>查看 Application Insights 中的記錄
+### <a name="see-hello-logs-in-application-insights"></a>請參閱 Application Insights 中的 hello 記錄
 
 >[!NOTE]
 > 短暫延遲之後 (五分鐘之內)，您在 Application Insights 中才會看到新的記錄。
 
-1. 開啟您在 [Azure 入口網站](https://portal.azure.com)中建立的 Application Insights 資源。
-1. 在 [概觀] 功能表中，按一下 [分析]。
+1. 開啟您在 hello hello Application Insights 資源[Azure 入口網站](https://portal.azure.com)。
+1. 在 hello**概觀**功能表，然後按一下**分析**。
 1. 在 Application Insights 入口網站中開啟新的索引標籤。
-1. 以下是您可以用來檢視記錄的查詢清單
+1. 以下是您可以使用 toosee hello 記錄的查詢清單
 
 | 查詢 | 說明 |
 |---------------------|--------------------|
-traces | 查看 Azure AD B2C 產生的所有記錄 |
-traces \| where timestamp > ago(1d) | 查看 Azure AD B2C 在最後一天產生的所有記錄
+traces | 查看所有 Azure AD B2C 所產生的 hello 記錄檔 |
+traces \| where timestamp > ago(1d) | 查看所有 hello 為產生的 Azure AD B2C hello 最後一天的記錄檔
 
-此項目可能很長。  請將它匯出至 CSV 以仔細查看。
+hello 項目可能會很長。  深入解說的匯出 tooCSV。
 
-您可以在[這裡](https://docs.microsoft.com/azure/application-insights/app-insights-analytics)深入了解分析工具。
-
->[!NOTE]
->該社群已開發了使用者旅程圖檢視器，可協助身分識別開發人員。  此檢視器不受 Microsoft 支援，僅依原狀提供使用。  它會讀取您的 Application Insights 執行個體，並提供結構良好的使用者旅程圖事件檢視。  請取得原始碼，並將它部署在您自己的解決方案中。
+您可以進一步了解 hello 分析工具[這裡](https://docs.microsoft.com/azure/application-insights/app-insights-analytics)。
 
 >[!NOTE]
->目前，此處所述的詳細活動記錄**僅**針對協助開發自訂原則所設計。 請勿在生產環境中使用開發模式。  記錄會收集往返識別提供者在開發期間所傳送的所有宣告。  如果在生產環境中使用，開發人員會負責他們自己的 App Insights 記錄中收集的 PII (私人識別資訊)。  只有當原則位於**開發模式**時，才會收集這些詳細的記錄。
+>使用者之旅檢視器 toohelp 身分識別開發人員開發了 hello 社群。  此檢視器不受 Microsoft 支援，僅依原狀提供使用。  它會從您的 Application Insights 執行個體讀取，並提供 hello 使用者之旅事件的格式結構檢視。  您取得 hello 原始程式碼，並將它部署在您自己的解決方案。
+
+>[!NOTE]
+>目前，hello 此處所述的詳細的活動記錄檔設計**只**tooaid 中開發的自訂原則。 請勿在生產環境中使用開發模式。  記錄檔收集 tooand 寄 hello 身分識別提供者，在開發期間的所有宣告。  如果在生產環境中使用，hello 開發人員負責 PII （私下識別資訊） 他們自己的 hello App Insights 記錄中收集。  這些詳細的記錄檔只會收集當 hello 原則放置在**開發模式**。
 
 [Github 用來存放不受支援之自訂原則範例和相關工具的存放庫](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies)
 
@@ -115,4 +115,4 @@ traces \| where timestamp > ago(1d) | 查看 Azure AD B2C 在最後一天產生�
 
 ## <a name="next-steps"></a>後續步驟
 
-瀏覽 Application Insights 中的資料，可協助您了解身分識別體驗架構基礎 B2C 的運作方式，從而傳遞您自己的身分識別體驗。
+瀏覽在您了解 Application Insights toohelp hello 資料如何 hello 基礎 B2C 運作的 toodeliver 發生您自己的身分識別的身分識別體驗架構。

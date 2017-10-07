@@ -1,6 +1,6 @@
 ---
-title: "從 Azure Blob 載入至 Azure 資料倉儲 | Microsoft Docs"
-description: "了解如何此用 PolyBase 從 Azure Blob 儲存體將資料載入 SQL 資料倉儲。 從公用資料將幾個資料表載入 Contoso 零售資料倉儲結構描述。"
+title: "從 Azure blob tooAzure 資料倉儲 aaaLoad |Microsoft 文件"
+description: "了解如何 toouse PolyBase tooload 資料從 Azure 到 SQL 資料倉儲的 blob 儲存體。 從公用資料載入 hello Contoso 零售資料倉儲結構描述的一些資料表。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 2859c1144f72fd685af89f83024df1409902ab0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b4978ccefa4d55ff5c89fba84c5e705422ddbb7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-data-from-azure-blob-storage-into-sql-data-warehouse-polybase"></a>從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)
 > [!div class="op_single_selector"]
@@ -28,37 +28,37 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-使用 PolyBase 和 T-SQL 命令來從 Azure Blob 儲存體將資料載入 Azure SQL 資料倉儲。 
+使用 PolyBase 與 T-SQL 命令 tooload 資料從 Azure blob 儲存體到 Azure SQL 資料倉儲。 
 
-為了簡單起見，本教學課程會從公用 Azure 儲存體 Blob 將兩個資料表載入 Contoso 零售資料倉儲結構描述。 若要載入完整的資料集，請從 Microsoft SQL Server 範例儲存機制執行[載入完整 Contoso 零售資料倉儲][Load the full Contoso Retail Data Warehouse]範例。
+tookeep 它簡單，本教學課程中的載入兩個資料表公開的 Azure 儲存體 Blob hello Contoso 零售資料倉儲結構描述。 tooload hello 完整資料集，執行 hello 範例[負載 hello Contoso 完整的零售資料倉儲][ Load hello full Contoso Retail Data Warehouse] hello Microsoft SQL Server 範例儲存機制中。
 
 在本教學課程中，您將：
 
-1. 設定 PolyBase 以從 Azure Blob 儲存體載入
+1. 設定 PolyBase tooload 從 Azure blob 儲存體
 2. 將公用資料載入您的資料庫
-3. 在完成載入後執行最佳化。
+3. Hello 載入完成之後，請執行最佳化。
 
 ## <a name="before-you-begin"></a>開始之前
-若要執行本教學課程，您需要已經擁有 SQL 資料倉儲資料庫的 Azure 帳戶。 如果您尚未擁有此資料庫，請參閱[建立 SQL 資料倉儲][Create a SQL Data Warehouse]。
+toorun 本教學課程中，您必須已有 SQL 資料倉儲資料庫的 Azure 帳戶。 如果您尚未擁有此資料庫，請參閱[建立 SQL 資料倉儲][Create a SQL Data Warehouse]。
 
-## <a name="1-configure-the-data-source"></a>1.設定資料來源
-PolyBase 使用 T-SQL 外部物件以定義外部資料的位置和屬性。 外部物件定義會儲存在 SQL 資料倉儲中。 資料本身則會儲存在外部。
+## <a name="1-configure-hello-data-source"></a>1.Hello 資料來源設定
+PolyBase 會使用 T-SQL 外部物件 toodefine hello 位置及 hello 外部資料的屬性。 hello 外部物件的定義會儲存在 SQL 資料倉儲。 hello 資料本身儲存在外部。
 
 ### <a name="11-create-a-credential"></a>1.1. 建立認證
-**略過此步驟** 。 您並不需要安全地存取公用資料，因為該資料已經可供所有人存取。
+**略過此步驟**如果您載入 hello Contoso 公開資料。 您不需要安全存取 toohello 公用資料，因為它已經是可存取 tooanyone。
 
-**不要略過此步驟** 。 若要透過認證存取資料，請使用下列指令碼來建立資料庫範圍的認證，然後在定義資料來源的位置時使用它。
+**不要略過此步驟** 。 透過認證時，使用下列的 hello tooaccess 資料 toocreate 資料庫範圍認證的指令碼，然後再使用它，定義 hello hello 資料來源位置時。
 
 ```sql
 -- A: Create a master key.
 -- Only necessary if one does not already exist.
--- Required to encrypt the credential secret in the next step.
+-- Required tooencrypt hello credential secret in hello next step.
 
 CREATE MASTER KEY;
 
 
 -- B: Create a database scoped credential
--- IDENTITY: Provide any string, it is not used for authentication to Azure storage.
+-- IDENTITY: Provide any string, it is not used for authentication tooAzure storage.
 -- SECRET: Provide your Azure storage account key.
 
 
@@ -70,9 +70,9 @@ WITH
 
 
 -- C: Create an external data source
--- TYPE: HADOOP - PolyBase uses Hadoop APIs to access data in Azure blob storage.
+-- TYPE: HADOOP - PolyBase uses Hadoop APIs tooaccess data in Azure blob storage.
 -- LOCATION: Provide Azure storage account name and blob container name.
--- CREDENTIAL: Provide the credential created in the previous step.
+-- CREDENTIAL: Provide hello credential created in hello previous step.
 
 CREATE EXTERNAL DATA SOURCE AzureStorage
 WITH (
@@ -82,10 +82,10 @@ WITH (
 );
 ```
 
-跳到步驟 2。
+略過 toostep 2。
 
-### <a name="12-create-the-external-data-source"></a>1.2. 建立外部資料來源
-使用此 [CREATE EXTERNAL DATA SOURCE][CREATE EXTERNAL DATA SOURCE] 命令以儲存資料的位置及類型。 
+### <a name="12-create-hello-external-data-source"></a>1.2. 建立 hello 外部資料來源
+使用此[CREATE EXTERNAL DATA SOURCE] [ CREATE EXTERNAL DATA SOURCE]命令 toostore hello 位置 hello 資料和 hello 的資料類型。 
 
 ```sql
 CREATE EXTERNAL DATA SOURCE AzureStorage_west_public
@@ -97,12 +97,12 @@ WITH
 ```
 
 > [!IMPORTANT]
-> 如果您選擇將 Azure Blob 儲存體容器設為公用，請記住，當資料離開資料中心時，您身為資料擁有者將必須支付資料流出費用。 
+> 如果您選擇 toomake azure blob 儲存體容器公開，請記住，hello 資料擁有者為您將支付資料輸出費用資料離開 hello 資料中心時。 
 > 
 > 
 
 ## <a name="2-configure-data-format"></a>2.設定資料格式
-資料將會以文字檔儲存在 Azure Blob 儲存體中，每個欄位都會以分隔符號分隔。 執行此 [CREATE EXTERNAL FILE FORMAT][CREATE EXTERNAL FILE FORMAT] 命令以指定文字檔中資料的格式。 Contoso 資料為未壓縮且以直立線符號分隔。
+hello 資料會儲存在 Azure blob 儲存體中的文字檔案中，每個欄位以分隔符號分隔。 執行此程序[CREATE EXTERNAL FILE FORMAT] [ CREATE EXTERNAL FILE FORMAT] hello 文字檔案中的 hello 資料命令 toospecify hello 格式。 hello Contoso 資料未壓縮和管道分隔。
 
 ```sql
 CREATE EXTERNAL FILE FORMAT TextFileFormat 
@@ -116,21 +116,21 @@ WITH
 );
 ``` 
 
-## <a name="3-create-the-external-tables"></a>3.建立外部資料表
-您在指定資料來源和檔案格式之後，便可以開始建立外部資料表。 
+## <a name="3-create-hello-external-tables"></a>3.建立 hello 外部資料表
+現在您已經指定 hello 資料來源和檔案格式，您就準備好 toocreate hello 外部資料表。 
 
-### <a name="31-create-a-schema-for-the-data"></a>3.1. 建立資料的結構描述。
-若要在您的資料庫中建立儲存 Contoso 資料的位置，請建立結構描述。
+### <a name="31-create-a-schema-for-hello-data"></a>3.1. 建立 hello 資料的結構描述。
+toocreate 位置 toostore hello Contoso 資料在資料庫中，建立結構描述。
 
 ```sql
 CREATE SCHEMA [asb]
 GO
 ```
 
-### <a name="32-create-the-external-tables"></a>3.2. 建立外部資料表。
-執行此指令碼來建立 DimProduct 和 FactOnlineSales 外部資料表。 我們在這邊只需要定義資料行名稱和資料類型，並將它們繫結至 Azure Blob 儲存體檔案的位置及格式。 定義會儲存在 SQL 資料倉儲中，而資料則仍然儲存在 Azure 儲存體 Blob 中。
+### <a name="32-create-hello-external-tables"></a>3.2. 建立 hello 外部資料表。
+執行這個指令碼 toocreate hello DimProduct 和 FactOnlineSales 外部資料表。 這裡，我們所做為資料行名稱和資料類型定義，並加以繫結 toohello 位置與 hello Azure blob 儲存體檔案格式。 hello 定義會儲存在 SQL 資料倉儲和 hello 資料仍在 hello Azure 儲存體 Blob 中。
 
-**LOCATION** 參數為 Azure 儲存體 Blob 中根目錄下方的資料夾。 每個資料表都位於不同的資料夾中。
+hello**位置**參數是 hello hello hello Azure 儲存體 Blob 中的根資料夾下的資料夾。 每個資料表都位於不同的資料夾中。
 
 ```sql
 
@@ -215,23 +215,23 @@ WITH
 ;
 ```
 
-## <a name="4-load-the-data"></a>4.載入資料
-存取外部資料有很多不同的方式。  您可以直接從外部資料表查詢資料、將資料載入新的資料庫資料表，或將外部資料新增到現有資料庫資料表。  
+## <a name="4-load-hello-data"></a>4.將資料載入 hello
+沒有多種 tooaccess 外部資料。  您可以查詢直接從 hello 外部資料表的資料、 hello 資料載入至新的資料庫資料表，或新增外部 tooexisting 資料庫資料表。  
 
 ### <a name="41-create-a-new-schema"></a>4.1. 建立新的結構描述
-CTAS 會建立包含資料的新資料表。  首先，請建立 Contoso 資料的結構描述。
+CTAS 會建立包含資料的新資料表。  首先，建立 hello contoso 資料的結構描述。
 
 ```sql
 CREATE SCHEMA [cso]
 GO
 ```
 
-### <a name="42-load-the-data-into-new-tables"></a>4.2. 將資料載入新資料表
-若要從 Azure Blob 儲存體載入資料，並將它儲存在資料庫內的資料表中，請使用 [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] 陳述式。 以 CTAS 載入將能利用您剛剛建立的強型別外部資料表。針對每個資料表，請使用一個 [CTAS][CTAS] 陳述式。 
+### <a name="42-load-hello-data-into-new-tables"></a>4.2. Hello 資料載入至新的資料表
+tooload 資料從 Azure blob 儲存體，並儲存在資料庫內資料表中，使用 hello [CREATE TABLE AS SELECT (TRANSACT-SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)]陳述式。 載入 CTAS 搭配利用 hello 強型別有只 created.tooload hello 資料加入新資料表的外部資料表，請使用其中一個[CTAS] [ CTAS]每個資料表的陳述式。 
  
-CTAS 建立新的資料表，並將選取陳述式的結果填入該資料表。 CTAS 定義新資料表，以使它擁有和選取陳述式之結果相同的資料行和資料類型。 如果您選取外部資料表上的所有資料行，則新資料表將會是外部資料表中資料行和資料類型的複本。
+CTAS 建立新的資料表，並填入 hello select 陳述式的結果。 CTAS 定義新資料表 toohave hello hello 相同資料行和資料類型，如 hello hello 結果 select 陳述式。 如果您從外部資料表選取 hello 的所有資料行，hello 新資料表會處於 hello 外部資料表的 hello 資料行和資料類型的複本。
 
-在此範例中，我們同時將維度和事實資料表建立為雜湊分散式資料表。 
+在此範例中，我們建立 hello 維度和 hello 事實資料表做為雜湊分散式的資料表。 
 
 ```sql
 SELECT GETDATE();
@@ -241,20 +241,20 @@ CREATE TABLE [cso].[DimProduct]            WITH (DISTRIBUTION = HASH([ProductKey
 CREATE TABLE [cso].[FactOnlineSales]       WITH (DISTRIBUTION = HASH([ProductKey]  ) ) AS SELECT * FROM [asb].[FactOnlineSales]        OPTION (LABEL = 'CTAS : Load [cso].[FactOnlineSales]        ');
 ```
 
-### <a name="43-track-the-load-progress"></a>4.3 追蹤載入進度
-您可以使用動態管理檢視 (DMV) 來追蹤載入進度。 
+### <a name="43-track-hello-load-progress"></a>4.3 追蹤 hello 負載進度
+您可以追蹤您使用動態管理檢視 (Dmv) 的負載 hello 進度。 
 
 ```sql
--- To see all requests
+-- toosee all requests
 SELECT * FROM sys.dm_pdw_exec_requests;
 
--- To see a particular request identified by its label
+-- toosee a particular request identified by its label
 SELECT * FROM sys.dm_pdw_exec_requests as r
 WHERE r.[label] = 'CTAS : Load [cso].[DimProduct]             '
       OR r.[label] = 'CTAS : Load [cso].[FactOnlineSales]        '
 ;
 
--- To track bytes and files
+-- tootrack bytes and files
 SELECT
     r.command,
     s.request_id,
@@ -278,9 +278,9 @@ ORDER BY
 ```
 
 ## <a name="5-optimize-columnstore-compression"></a>5.最佳化資料行存放區壓縮
-根據預設，SQL 資料倉儲會將資料表儲存為叢集資料行存放區索引。 載入完成後，某些資料列可能不會被壓縮為資料行存放區。  有許多原因會導致發生此情況。 若要深入了解，請參閱[管理資料行存放區索引][manage columnstore indexes]。
+根據預設，SQL 資料倉儲會儲存 hello 資料表作為叢集資料行存放區索引。 載入完成後，部分 hello 資料的資料列可能會不壓縮成 hello 資料行存放區。  有許多原因會導致發生此情況。 詳細資訊，請參閱 toolearn[管理資料行存放區索引][manage columnstore indexes]。
 
-若要最佳化載入後的查詢效能和資料行存放區壓縮，請重建資料表以強制資料行存放區索引對所有資料列進行壓縮。 
+toooptimize 查詢效能和負載之後, 的資料行存放區壓縮重建 hello 資料表 tooforce hello 資料行存放區索引 toocompress hello 的所有資料列。 
 
 ```sql
 SELECT GETDATE();
@@ -290,14 +290,14 @@ ALTER INDEX ALL ON [cso].[DimProduct]               REBUILD;
 ALTER INDEX ALL ON [cso].[FactOnlineSales]          REBUILD;
 ```
 
-如需維護資料行存放區索引的詳細資訊，請參閱[管理資料行存放區索引][manage columnstore indexes]一文。
+如需維護資料行存放區索引的詳細資訊，請參閱 hello[管理資料行存放區索引][ manage columnstore indexes]發行項。
 
 ## <a name="6-optimize-statistics"></a>6.最佳化統計資料
-您最好在載入後立刻建立單一資料行統計資料。 針對統計資料，您將會有一些選項。 例如，如果您在每個資料行上建立單一資料行統計資料，可能會需要很長的時間才能重建所有統計資料。 如果您知道某些資料行不會被包含在查詢述詞中，您可以略過為那些資料行建立統計資料。
+載入之後立即是最佳的 toocreate 單一資料行統計資料。 針對統計資料，您將會有一些選項。 例如，如果您在每個資料行上建立單一資料行統計資料可能需要很長的時間 toorebuild hello 的所有統計資料。 如果您知道特定資料行不會成為 toobe 查詢述詞中的，您可以跳建立統計資料，這些資料行。
 
-如果您決定要在每個資料表的每個資料行上建立單一資料行統計資料，您可以使用[統計資料][statistics]一文中的預存程序程式碼範例 `prc_sqldw_create_stats`。
+如果您決定 toocreate 每個資料表的每個資料行的單一資料行統計資料，您可以使用 hello 預存程序程式碼範例`prc_sqldw_create_stats`在 hello[統計資料][ statistics]發行項。
 
-下列範例為建立統計資料的好起點。 它會在維度資料表中的每個資料行上，以及在事實資料表中的每個聯結資料行上建立單一資料行統計資料。 您之後隨時可以將單一或多個資料行統計資料新增到其他事實資料表資料行上。
+下列範例中的 hello 是很好的起點建立統計資料。 在 hello 維度資料表中，每個資料行和 hello 事實資料表中每個聯結資料行，它會建立單一資料行統計資料。 您可以在稍後新增單一或多個資料行統計資料 tooother 事實資料表資料行。
 
 ```sql
 CREATE STATISTICS [stat_cso_DimProduct_AvailableForSaleDate] ON [cso].[DimProduct]([AvailableForSaleDate]);
@@ -344,7 +344,7 @@ CREATE STATISTICS [stat_cso_FactOnlineSales_StoreKey] ON [cso].[FactOnlineSales]
 ## <a name="achievement-unlocked"></a>成就解鎖！
 您已成功將公用資料載入 Azure SQL 資料倉儲。 太棒了！
 
-您現在可以使用與下面類似的查詢來開始查詢資料表︰
+您現在可以開始查詢 hello 資料表使用類似 hello 下列查詢：
 
 ```sql
 SELECT  SUM(f.[SalesAmount]) AS [sales_by_brand_amount]
@@ -355,7 +355,7 @@ GROUP BY p.[BrandName]
 ```
 
 ## <a name="next-steps"></a>後續步驟
-若要載入完整的 Contoso 零售資料倉儲資料，請使用指令碼。如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL Data Warehouse development overview]。
+tooload hello 完整 Contoso 零售資料倉儲的資料，使用中的 hello 指令碼，如需開發秘訣，請參閱[SQL 資料倉儲開發概觀][SQL Data Warehouse development overview]。
 
 <!--Image references-->
 
@@ -377,4 +377,4 @@ GROUP BY p.[BrandName]
 
 <!--Other Web references-->
 [Microsoft Download Center]: http://www.microsoft.com/download/details.aspx?id=36433
-[Load the full Contoso Retail Data Warehouse]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md
+[Load hello full Contoso Retail Data Warehouse]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md

@@ -1,5 +1,5 @@
 ---
-title: "工作流程動作和觸發程序 - Azure Logic Apps | Microsoft Docs"
+title: "aaaWorkflow 動作和觸發程序-Azure 邏輯應用程式 |Microsoft 文件"
 description: 
 services: logic-apps
 author: MandiOhlinger
@@ -14,25 +14,25 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 11/17/2016
 ms.author: LADocs; mandia
-ms.openlocfilehash: bd3f1d225b974ebde889738bb435825658d1e1e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 857927b7d7df3fc9cdc4931ffdb613efde0db9f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="workflow-actions-and-triggers-for-azure-logic-apps"></a>Azure Logic Apps 的工作流程動作和觸發程序
 
-邏輯應用程式是由觸發程序和動作所組成。 觸發程序有六種類型。 每種類型各有不同的介面和行為。 透過查看[工作流程定義語言](logic-apps-workflow-definition-language.md)的詳細資料，您還可以深入了解其他詳細資料。  
+邏輯應用程式是由觸發程序和動作所組成。 觸發程序有六種類型。 每種類型各有不同的介面和行為。 您也可以了解其他詳細資料藉由查看 hello 詳細資料的 hello[工作流程定義語言](logic-apps-workflow-definition-language.md)。  
   
-請繼續閱讀以深入了解觸發程序和動作，以及如何使用它們來建置邏輯應用程式，以改善商務程序和工作流程。  
+深入了解觸發程序和動作和您如何使用它們 toobuild 邏輯應用程式 tooimprove toolearn 上讀取，您的商務程序和工作流程。  
   
 ### <a name="triggers"></a>觸發程序  
 
-觸發程序會指定可起始邏輯應用程式工作流程執行的呼叫。 以下是兩種可起始工作流程執行的不同方式︰  
+觸發程序指定 hello 呼叫可以起始邏輯應用程式工作流程的執行。 以下是 hello 兩種不同方式 tooinitiate 執行的工作流程：  
   
 -   輪詢觸發程序  
 
--   推送觸發程序 - 藉由呼叫[工作流程服務 REST API](https://docs.microsoft.com/rest/api/logic/workflows)  
+-   推入觸發程序的呼叫 hello[工作流程服務 REST API](https://docs.microsoft.com/rest/api/logic/workflows)  
   
 所有觸發程序都包含下列最上層元素︰  
   
@@ -45,8 +45,8 @@ ms.lasthandoff: 07/11/2017
         "interval": "<recurrence interval in units of frequency>"
     },
     "conditions": [ <array-of-required-conditions > ],
-    "splitOn" : "<property to create runs for>",
-    "operationOptions": "<operation options on the trigger>"
+    "splitOn" : "<property toocreate runs for>",
+    "operationOptions": "<operation options on hello trigger>"
 }
 ```
 
@@ -54,22 +54,22 @@ ms.lasthandoff: 07/11/2017
 
 您可以使用下列類型的觸發程序︰
   
--   **要求** \- 讓邏輯應用程式成為可供您呼叫的端點  
+-   **要求**\-您 toocall 的端點可讓 hello 邏輯應用程式  
   
 -   **循環** \- 根據定義的排程來引發  
   
--   **HTTP** \- 輪詢 HTTP Web 端點。 HTTP 端點必須符合特定觸發合約 \- 不論是藉由使用 202\-非同步模式或藉由傳回陣列  
+-   **HTTP** \- 輪詢 HTTP Web 端點。 hello HTTP 結束點必須符合 tooa 特定觸發合約\-使用 202\-非同步模式，或藉由傳回陣列  
   
--   **ApiConnection** \- 如同 HTTP 觸發程序一般地輪詢，不過，它會利用 [Microsoft 管理的 API](https://docs.microsoft.com/azure/connectors/apis-list)  
+-   **ApiConnection** \-像 hello HTTP 輪詢觸發，不過，它會利用 hello [Microsoft 管理 Api](https://docs.microsoft.com/azure/connectors/apis-list)  
   
--   **HTTPWebhook** \- 如同手動觸發程序一般地開啟端點，不過，它也會對指定的 URL 進行呼叫以便註冊和取消註冊  
+-   **HTTPWebhook** \-會開啟一個端點，類似 toohello 手動觸發程序，不過，它也會呼叫 tooa 出指定 URL tooregister 和取消註冊  
   
--   **ApiConnectionWebhook** \- 藉由利用 Microsoft 管理的 API 以如同 HTTPWebhook 觸發程序的方式運作       
+-   **ApiConnectionWebhook** \-運作一樣 hello HTTPWebhook 觸發程序，利用 hello Microsoft 管理 Api       
     每種觸發程序類型都會有一組不同的行為定義**輸入**。  
   
 ## <a name="request-trigger"></a>要求觸發程序  
 
-此觸發程序可做為端點，供您透過 HTTP 要求進行呼叫，以叫用邏輯應用程式。 要求觸發程序看起來就像下面這個範例︰  
+這個觸發程序做為端點，透過 HTTP 要求 tooinvoke 呼叫應用程式邏輯。 要求觸發程序看起來就像下面這個範例︰  
   
 ```json
 "<name-of-the-trigger>" : {
@@ -92,9 +92,9 @@ ms.lasthandoff: 07/11/2017
   
 |元素名稱|必要|說明|  
 |----------------|------------|---------------|  
-|結構描述|否|會驗證連入要求的 JSON 結構描述。 適用於協助後續工作流程步驟了解要參考哪些屬性。|
+|結構描述|否|JSON 結構描述驗證 hello 連入要求。 很有用，可幫助知道哪些屬性 tooreference 後續的工作流程步驟。|
 
-若要叫用此端點，您必須呼叫 listCallbackUrl API。 請參閱[工作流程服務 REST API](https://docs.microsoft.com/rest/api/logic/workflows)。  
+tooinvoke 此端點，您需要 toocall hello *listCallbackUrl*應用程式開發介面。 請參閱[工作流程服務 REST API](https://docs.microsoft.com/rest/api/logic/workflows)。  
   
 ## <a name="recurrence-trigger"></a>循環觸發程序  
 
@@ -110,16 +110,16 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-如您所見，這是很簡單的工作流程執行方式。  
+如您所見，它是簡單的方式 toorun 工作流程。  
   
 |元素名稱|必要|說明|  
 |----------------|------------|---------------|  
-|frequency|是|觸發程序的執行頻率。 只能使用下列其中一個可能值︰秒、分鐘、小時、天、週、月或年|  
-|interval|是|給定循環頻率的間隔|  
+|frequency|是|頻率 hello 執行觸發程序。 只能使用下列其中一個可能值︰秒、分鐘、小時、天、週、月或年|  
+|interval|是|Hello 給 hello 循環頻率間隔|  
 |startTime|否|如果提供 startTime 時未指定 UTC 時差，則會使用此 timeZone。|  
 |timeZone|no|如果提供 startTime 時未指定 UTC 時差，則會使用此 timeZone。|  
   
-您也可以將觸發程序排程在未來某個時間點開始執行。 例如，如果您想要在每週一啟動每週報告，則可以藉由建立下列觸發程序將邏輯應用程式排程在每週一啟動︰  
+您也可以排定觸發程序 toostart 執行在 hello 未來在某個時間點。 例如，如果您想要每週會報告每週的星期一 toostart 您可以排定 hello 邏輯應用程式 toostart 每星期一藉由建立 hello 下列觸發程序：  
 
 ```json
 "dailyReport" : {
@@ -134,46 +134,46 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="http-trigger"></a>HTTP 觸發程序  
 
-HTTP 觸發程序會輪詢指定端點，然後檢查回應以判斷是否應執行工作流程。 輸入物件會採用一組建構 HTTP 呼叫時所需的參數︰  
+HTTP 觸發程序輪詢指定的端點，並檢查 hello 回應 toodetermine，是否應該要執行 hello 工作流程。 hello 輸入物件會使用參數需要 tooconstruct HTTP 呼叫 hello 組：  
   
 |元素名稱|必要|說明|類型|  
 |----------------|------------|---------------|--------|  
-|method|yes|可以是下列其中一種 HTTP 方法︰GET、POST、PUT、DELETE、PATCH 或 HEAD|String|  
-|uri|yes|所呼叫的 http 或 https 端點。 最大值為 2 KB。|String|  
-|查詢|否|物件，代表要新增至 URL 的查詢參數。 例如，`"queries" : { "api-version": "2015-02-01" }` 會將 `?api-version=2015-02-01` 新增至 URL。|Object|  
-|headers|否|物件，代表傳送至要求的每個標頭。 例如，若要對要求設定語言和類型︰`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|Object|  
-|body|否|物件，代表傳送至端點的承載。|Object|  
-|RetryPolicy|否|物件，可讓您自訂 4xx 或 5xx 錯誤的重試行為。|Object|  
-|驗證|否|代表應該用來驗證要求的方法。 如需此物件的詳細資訊，請參閱[排程器輸出驗證](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)。 除了排程器外，還有一個支援的屬性︰`authority`。根據預設，在未指定時這個值會是 `https://login.windows.net`，但您可以使用不同的受眾，例如 `https://login.windows\-ppe.net`|Object|  
+|method|yes|可以是其中一個 hello 遵循 HTTP 方法： GET、 POST、 PUT、 DELETE、 修補程式或標頭|String|  
+|uri|yes|hello http 或 https 端點時所呼叫。 最大值為 2 KB。|String|  
+|查詢|否|物件，代表 hello 查詢參數 tooadd toohello URL。 例如，`"queries" : { "api-version": "2015-02-01" }`新增`?api-version=2015-02-01`toohello URL。|Object|  
+|headers|否|物件，表示每個 toohello 要求會傳送 hello 標頭。 例如，tooset hello 語言和類型的要求：`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|Object|  
+|body|否|物件，表示傳送 toohello 端點的 hello 裝載。|Object|  
+|RetryPolicy|否|物件，可讓您自訂 hello 重試行 4xx 或 5xx 錯誤。|Object|  
+|驗證|否|代表 hello 要求的 hello 方法應該進行驗證。 如需此物件的詳細資訊，請參閱[排程器輸出驗證](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)。 除了排程器外，還有一個支援的屬性︰`authority`。根據預設，在未指定時這個值會是 `https://login.windows.net`，但您可以使用不同的受眾，例如 `https://login.windows\-ppe.net`|Object|  
   
-HTTP 觸發程序要求 HTTP API 必須符合特定模式，才能與邏輯應用程式良好搭配運作。 它需要下列欄位：  
+hello HTTP 觸發程序需要使用與邏輯應用程式特定的模式 toowork hello HTTP API tooconform。 它需要 hello 下列欄位：  
   
 |Response|說明|  
 |------------|---------------|  
-|狀態碼|狀態碼 200 \(確定\) 會導致執行。 其他任何狀態碼則不會導致執行。|  
-|Retry\-after 標頭|邏輯應用程式再次輪詢端點前所需經過的秒數。|  
-|位置標頭|在下一個輪詢間隔時所要呼叫的 URL。 如果未指定，則會使用原本的 URL。|  
+|狀態碼|狀態碼 200\(確定\)toocause 執行。 其他任何狀態碼則不會導致執行。|  
+|Retry\-after 標頭|Hello 邏輯應用程式會再次輪詢 hello 端點之前的秒數。|  
+|位置標頭|hello URL toocall hello 下一次輪詢間隔。 如果未指定，會使用 hello 原始 URL。|  
   
 以下是不同要求類型所具有之不同行為的一些範例︰  
   
 |Response code|Retry\-After|行為|  
 |-----------------|----------------|------------|  
-|200|無\(\)|非有效觸發程序，必須有 Retry\-After，否則引擎永遠不會輪詢下一個要求。|  
-|202|60|不會觸發工作流程。 會在一分鐘內開始下一次嘗試。|  
-|200|10|執行工作流程，並在 10 秒後再次檢查是否有其他內容。|  
-|400|無\(\)|不正確的要求，不會執行工作流程。 如果未定義任何**重試原則**，則會使用預設原則。 在達到重試次數後，觸發程序就會失效。|  
-|500|無\(\)|伺服器錯誤，不會執行工作流程。  如果未定義任何**重試原則**，則會使用預設原則。 在達到重試次數後，觸發程序就會失效。|  
+|200|無\(\)|不是有效觸發，重試\-之後輪詢 hello 下一個要求永遠不會是必要項目，或其他 hello 引擎。|  
+|202|60|不會觸發 hello 工作流程。 hello 下一次嘗試就會發生在一分鐘內。|  
+|200|10|執行 hello 流程時，並在 10 秒後再次檢查詳細內容。|  
+|400|無\(\)|不正確的要求，不會執行 hello 工作流程。 如果沒有任何**重試原則**定義，則會使用 hello 預設原則。 已達到重試的 hello 次數之後，hello 觸發程序都不再有效。|  
+|500|無\(\)|伺服器錯誤時，不會執行 hello 工作流程。  如果沒有任何**重試原則**定義，則會使用 hello 預設原則。 已達到重試的 hello 次數之後，hello 觸發程序都不再有效。|  
   
-HTTP 觸發程序的輸出看起來就像下面這個範例︰  
+hello HTTP 觸發程序的輸出類似下列範例：  
   
 |元素名稱|說明|類型|  
 |----------------|---------------|--------|  
-|headers|http 回應的標頭。|Object|  
-|body|http 回應的主體。|Object|  
+|headers|hello http 回應的 hello 標頭。|Object|  
+|body|hello hello http 回應主體。|Object|  
   
 ## <a name="api-connection-trigger"></a>API 連線觸發程序  
 
-API 連線觸發程序和 HTTP 觸發程序的相似之處在於其基本功能。 然而，用於識別動作的參數卻不相同。 下列是一個範例：  
+hello API 連線觸發程序是在其基本功能類似 toohello 的 HTTP 觸發程序。 不過，hello 參數識別 hello 動作是不同的。 下列是一個範例：  
   
 ```json
 "dailyReport" : {
@@ -197,31 +197,31 @@ API 連線觸發程序和 HTTP 觸發程序的相似之處在於其基本功能�
 
 |元素名稱|必要|類型|說明|  
 |----------------|------------|--------|---------------|  
-|主機|是||ApiApp 所裝載的閘道和識別碼。|  
-|method|是|String|可以是下列其中一種 HTTP 方法︰**GET**、**POST**、**PUT**、**DELETE**、**PATCH** 或 **HEAD**|  
-|查詢|否|Object|代表要新增至 URL 的查詢參數。 例如，`"queries" : { "api-version": "2015-02-01" }` 會將 `?api-version=2015-02-01` 新增至 URL。|  
-|headers|否|Object|代表傳送至要求的每個標頭。 例如，若要對要求設定語言和類型︰`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
-|body|否|Object|代表傳送至端點的承載。|  
-|RetryPolicy|否|Object|可讓您自訂 4xx 或 5xx 錯誤的重試行為。|  
-|驗證|否|Object|代表應該用來驗證要求的方法。 如需此物件的詳細資訊，請參閱[排程器輸出驗證](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)|  
+|主機|是||hello ApiApp 裝載閘道和識別碼。|  
+|method|是|String|可以是其中一個 hello 遵循 HTTP 方法：**取得**， **POST**，**放**，**刪除**，**修補**，或**標頭**|  
+|查詢|否|Object|代表 hello 查詢參數 toobe 加入 toohello URL。 例如，`"queries" : { "api-version": "2015-02-01" }`新增`?api-version=2015-02-01`toohello URL。|  
+|headers|否|Object|代表每個 toohello 要求會傳送 hello 標頭。 例如，tooset hello 語言和類型的要求：`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
+|body|否|Object|表示傳送 toohello 端點的 hello 裝載。|  
+|RetryPolicy|否|Object|可讓您 toocustomize hello 重試行 4xx 或 5xx 錯誤。|  
+|驗證|否|Object|代表 hello 要求的 hello 方法應該進行驗證。 如需此物件的詳細資訊，請參閱[排程器輸出驗證](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)|  
   
-主機的屬性如下︰  
+主機的 hello 屬性包括：  
   
 |元素名稱|必要|說明|  
 |----------------|------------|---------------|  
-|api runtimeUrl|是|Managed API 的端點。|  
-|連線名稱||必須是名為 `$connection` 之參數的參考，並且是工作流程所使用之 Managed API 連線的名稱。|
+|api runtimeUrl|是|hello 端點 hello 的受管理應用程式開發介面。|  
+|連線名稱||必須參考 tooa 參數呼叫`$connection`和 hello hello 工作流程使用的受管理的 hello API 連線名稱。|
   
-API 連線觸發程序的輸出如下︰
+hello API 連線觸發程序的輸出如下：
   
 |元素名稱|類型|說明|  
 |----------------|--------|---------------|  
-|headers|Object|http 回應的標頭。|  
-|body|Object|http 回應的主體。|  
+|headers|Object|hello http 回應的 hello 標頭。|  
+|body|Object|hello hello http 回應主體。|  
   
 ## <a name="httpwebhook-trigger"></a>HTTPWebhook 觸發程序  
 
-HTTPWebhook 觸發程序會如同手動觸發程序一般地開啟端點，不過，HTTPWebhook 觸發程序還會對指定的 URL 進行呼叫以便註冊和取消註冊。 HTTPWebhook 觸發程序看起來可能就像下面這個範例︰  
+hello HTTPWebhook 觸發程序會開啟端點，類似 toohello 手動觸發程序，但 hello HTTPWebhook 觸發程序也會呼叫 tooa 出指定 URL tooregister 及取消註冊。 HTTPWebhook 觸發程序看起來可能就像下面這個範例︰  
 
 ```json
 "myappspottrigger": {
@@ -254,41 +254,41 @@ HTTPWebhook 觸發程序會如同手動觸發程序一般地開啟端點，不�
     }
 ```
 
-這些區段之中有許多是選擇性的，而且 Webhook 的行為取決於提供或省略了哪些區段。  
-Webhook 的屬性如下所示︰  
+許多這些區段是選擇性的並且 hello Webhook hello 行為取決於哪些區段會提供或省略。  
+Webhook hello 屬性如下所示：  
   
 |元素名稱|必要|說明|  
 |----------------|------------|---------------|  
-|訂閱|否|在觸發程序建立並執行初始註冊時，所呼叫的連出要求。|  
-|取消訂閱|否|刪除觸發程序時的連出要求。|  
+|訂閱|否|hello 傳出 hello 觸發程序會建立並執行 hello 初始註冊時所呼叫的要求。|  
+|取消訂閱|否|hello 刪除 hello 觸發程序時，連出要求。|  
   
--   **訂閱**是為了開始接聽事件所產生的連出呼叫。 此呼叫會使用一般 HTTP 動作所使用的同一組參數來啟動。 工作流程在任何時候以任何方式進行變更 (例如，每當認證輪替時)，或觸發程序的輸入參數變更時，就會產生連出呼叫。
+-   **訂閱**hello 連出 toostart 接聽 tooevents 所做的呼叫。 此呼叫會啟動以 hello 執行相同的 hello 標準 HTTP 動作的參數集合。 進行任何時間 hello 這個傳出呼叫工作流程以任何方式，例如，每當 hello 認證會復原變更，或 hello 觸發程序的輸入參數的變更。
   
-    為了支援這個呼叫，所以有了一個新函式︰`@listCallbackUrl()`。 這個函式會針對此工作流程中的這個特定觸發程序傳回唯一 URL。 它代表使用服務 REST 之端點的唯一識別碼。  
+    此呼叫 toosupport，有一個新的函式： `@listCallbackUrl()`。 這個函式會針對此工作流程中的這個特定觸發程序傳回唯一 URL。 它代表 hello 使用 hello REST 服務的 hello 端點的唯一識別碼。  
   
 -   **取消訂閱**受到呼叫的時機是當作業將此觸發程序轉譯為無效時，包括︰  
   
-    -   刪除或停用觸發程序  
+    -   刪除或停用 hello 觸發程序  
   
-    -   刪除或停用工作流程  
+    -   刪除或停用 hello 工作流程  
   
-    -   刪除或停用訂用帳戶  
+    -   刪除或停用 hello 訂用帳戶  
   
-    邏輯應用程式會自動呼叫取消訂閱動作。 此函式的參數和 HTTP 觸發程序的相同。  
+    hello 邏輯應用程式會自動呼叫 hello 取消動作。 hello 參數 toothis 函式會將相同 hello 為 hello HTTP 觸發程序。  
   
-    HTTPWebhook 觸發程序的輸出是連入要求的內容︰  
+    hello hello HTTPWebhook 觸發程序的輸出是 hello hello 連入要求內容：  
   
 |元素名稱|類型|說明|  
 |-----------------|--------|---------------|  
-|headers|Object|http 要求的標頭。|  
-|body|Object|http 要求的主體。|  
+|headers|Object|hello http 要求的 hello 標頭。|  
+|body|Object|hello hello http 要求主體。|  
 
-對於 Webhook 動作的限制可透過和 [HTTP 非同步限制](#asynchronous-limits)相同的方式來指定。
+Webhook 動作的限制可以在 hello 中指定相同的方式[HTTP 非同步限制](#asynchronous-limits)。
   
 
 ## <a name="conditions"></a>條件  
 
-對於任何觸發程序，您都可以使用一或多個條件來判斷是否應該執行工作流程。 例如：  
+任何觸發程序，您可以使用一或多個條件 toodetermine 是否 hello 工作流程應執行或未執行。 例如：  
 
 ```json
 "dailyReport" : {
@@ -303,7 +303,7 @@ Webhook 的屬性如下所示︰
 }
 ```
 
-在此案例中，報告只會在工作流程的 `sendReports` 參數設定為 true 時觸發。 最後，條件可能會參考觸發程序的狀態碼。 例如，您只能在網站傳回狀態碼 500 時啟動工作流程，如下所示︰
+在此情況下，hello 報表時 hello 工作流程的唯一觸發程序`sendReports`參數設定 tootrue。 最後，條件可能會參考 hello hello 觸發程序的狀態碼。 例如，您只能在網站傳回狀態碼 500 時啟動工作流程，如下所示︰
   
 ```  
 "conditions": [  
@@ -314,13 +314,13 @@ Webhook 的屬性如下所示︰
 ```  
   
 > [!NOTE]  
-> 若有任何運算式 \(以任何方式\) 參考觸發程序的狀態碼，預設行為 \(只在 200 \(確定\) 時觸發\) 會遭到取代。 例如，如果您想要同時對狀態碼 200 和狀態碼 201 觸發，則需要納入 `@or(equals(triggers().code, 200),equals(triggers().code,201))` 作為條件。  
+> 當任何運算式參考 hello hello 觸發程序的狀態碼\(以任何方式\)，hello 預設行為\(觸發程序只能在 200\(確定\)\)取代。 例如，如果您想 tootrigger 狀態碼 200 和狀態碼 「 201 上的，您有 tooinclude:`@or(equals(triggers().code, 200),equals(triggers().code,201))`做為您的條件。  
   
 ## <a name="start-multiple-runs-for-a-request"></a>為要求啟動多個執行
 
-若要為單一要求啟動多個執行，`splitOn` 會適用於，例如，當您想要輪詢的端點可在輪詢間隔之間具有多個新項目時。
+針對單一要求中，多個回合關閉 tookick`splitOn`非常有用，例如，當您想 toopoll 可以有多個新項目，輪詢間隔之間的端點。
   
-透過 `splitOn`，您可在包含項目陣列 (您想要使用其中各項來啟動觸發程序的執行) 的回應承載內指定屬性。 例如，假設您有一個會傳回下列回應的 API︰  
+與`splitOn`，指定 hello 屬性內包含的項目，其中每個您想要的 hello 陣列的 hello 回應裝載 toouse toostart hello 觸發程序執行。 例如，假設您有應用程式開發介面會傳回下列回應 hello:  
   
 ```json
 {
@@ -338,7 +338,7 @@ Webhook 的屬性如下所示︰
 }
 ```
   
-您的邏輯應用程式只需要資料列內容，因此您可以如下列範例這樣建構觸發程序︰  
+邏輯應用程式只需要 hello 資料列內容，因此您可以建構在觸發程序，如下列範例：  
   
 ```json
 "mysplitter" : {
@@ -355,7 +355,7 @@ Webhook 的屬性如下所示︰
 }
 ```
   
-然後，在工作流程定義中，`@triggerBody().name` 會針對第一個執行傳回 `mycoolrow`，並針對第二個執行傳回 `another row`。 觸發程序的輸出看起來就像下面這個範例︰  
+然後，在 hello 工作流程定義、`@triggerBody().name`傳回`mycoolrow`hello 第一次執行，並`another row`hello 第二個執行。 hello 觸發程序的輸出看起來像此範例中：  
   
 ```json
 {
@@ -366,16 +366,16 @@ Webhook 的屬性如下所示︰
 }
 ```
 
-因此，如果您使用 `SplitOn`，就無法取得陣列 (在此案例中是指 `Status` 欄位) 外部的屬性。  
+因此，如果您使用`SplitOn`，您無法取得 hello 內容以外的 hello 陣列在此情況下，hello`Status`欄位。  
   
 > [!NOTE]  
-> 在此範例中，我們使用 `?` 運算子，以便可以在 `Rows` 屬性不存在時避免失敗。 
+> 在此範例中，我們使用 hello`?`運算子 toobe 無法 tooavoid 失敗如果 hello`Rows`屬性不存在。 
   
 ## <a name="single-run-instance"></a>單一執行的執行個體
 
-您可以將擁有循環屬性的觸發程序，設定為只在所有作用中執行皆已完成的情況下引發。 如果在仍有進行中執行時發生了排程的循環，觸發程序將會略過並等待，直到下一個排程的循環間隔時才再次檢查。
+您可以設定具有循環屬性 tooonly 火災，如果已完成所有作用中執行的觸發程序。 如果正在執行時，就會發生排程的循環，hello 觸發程序會略過，並等待，直到 hello 下一個排程的循環間隔 toocheck 一次。
 
-您可以透過作業選項進行此設定︰
+您可以設定此設定，透過 hello 作業選項：
 
 ```json
 "triggers": {
@@ -396,9 +396,9 @@ Webhook 的屬性如下所示︰
 
 -   **HTTP** 這個動作會呼叫 HTTP Web 端點。  
   
--   **ApiConnection** \- 這個動作的行為就像 HTTP 動作，但會使用 Microsoft 管理的 API。  
+-   **ApiConnection** \-此動作的行為方式與 hello HTTP 動作，但使用 hello Microsoft 管理的 Api。  
   
--   **ApiConnectionWebhook** \- 像 HTTPWebhook，但使用 Microsoft 管理的 API。  
+-   **ApiConnectionWebhook** \-像 HTTPWebhook，但使用 hello Microsoft 管理的 Api。  
   
 -   **回應** \- 這個動作會定義連入呼叫的回應。  
   
@@ -412,30 +412,30 @@ Webhook 的屬性如下所示︰
 
 -   **範圍** \- 這個動作是其他動作的邏輯群組。
 
--   **條件** \- 這個動作會評估運算式，並執行對應的結果分支。
+-   **條件**\-這個動作會評估運算式，並執行 hello 對應的結果分支。
 
 -   **ForEach** \- 這個迴圈動作會逐一查看陣列並對每個項目執行內部動作。
 
--   **直到** \- 這個迴圈動作會執行內部動作，直到有條件的結果為 true。
+-   **直到**\-此迴圈的動作會執行內部的動作，直到條件結果 tootrue。
   
 每種動作類型都有一組可定義動作行為的不同**輸入**。  
   
 ## <a name="http-action"></a>HTTP 動作  
 
-HTTP 動作會呼叫指定端點，然後檢查回應以判斷是否應執行工作流程。 **輸入**物件會採用一組建構 HTTP 呼叫時所需的參數︰  
+HTTP 動作呼叫指定的端點，並檢查 hello 回應 toodetermine，是否應該執行 hello 工作流程。 hello**輸入**物件會使用參數需要的 tooconstruct hello HTTP 呼叫 hello 組：  
   
 |元素名稱|必要|類型|說明|  
 |----------------|------------|--------|---------------|  
-|method|是|String|可以是下列其中一種 HTTP 方法︰**GET**、**POST**、**PUT**、**DELETE**、**PATCH** 或 **HEAD**|  
-|uri|是|String|所呼叫的 http 或 https 端點。 最大長度為 2 KB。|  
-|查詢|否|Object|代表要新增至 URL 的查詢參數。 例如，`"queries" : { "api-version": "2015-02-01" }` 會將 `?api-version=2015-02-01` 新增至 URL。|  
-|headers|否|Object|代表傳送至要求的每個標頭。 例如，若要對要求設定語言和類型︰`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
-|body|否|Object|代表傳送至端點的承載。|  
-|RetryPolicy|否|Object|可讓您自訂 4xx 或 5xx 錯誤的重試行為。|  
-|operationsOptions|否|String|定義一組要覆寫的特殊行為。|  
-|驗證|否|Object|代表應該用來驗證要求的方法。 如需此物件的詳細資訊，請參閱[排程器輸出驗證](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)。 除了排程器外，還有一個支援的屬性︰`authority`。 根據預設，在未指定時這會是 `https://login.windows.net`，但您可以使用不同的受眾，例如 `https://login.windows\-ppe.net`|  
+|method|是|String|可以是其中一個 hello 遵循 HTTP 方法：**取得**， **POST**，**放**，**刪除**，**修補**，或**標頭**|  
+|uri|是|String|hello http 或 https 端點時所呼叫。 最大長度為 2 KB。|  
+|查詢|否|Object|代表 hello 查詢參數 tooadd toohello URL。 例如，`"queries" : { "api-version": "2015-02-01" }`新增`?api-version=2015-02-01`toohello URL。|  
+|headers|否|Object|代表每個 toohello 要求會傳送 hello 標頭。 例如，tooset hello 語言和類型的要求：`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
+|body|否|Object|表示傳送 toohello 端點的 hello 裝載。|  
+|RetryPolicy|否|Object|可讓您自訂 hello 重試行 4xx 或 5xx 錯誤。|  
+|operationsOptions|否|String|定義特殊的行為 toooverride hello 組。|  
+|驗證|否|Object|代表 hello 要求的 hello 方法應該進行驗證。 如需此物件的詳細資訊，請參閱[排程器輸出驗證](https://docs.microsoft.com/azure/scheduler/scheduler-outbound-authentication)。 除了排程器外，還有一個支援的屬性︰`authority`。 根據預設，在未指定時這會是 `https://login.windows.net`，但您可以使用不同的受眾，例如 `https://login.windows\-ppe.net`|  
   
-HTTP 動作 \(和 API 連線\) 動作支援重試原則。 重試原則適用於間歇性失敗，其典型是 HTTP 狀態碼 408、429 與 5xx，以及任何連線例外狀況。 此原則使用所定義的 *retryPolicy* 物件來進行描述，如下所示︰
+HTTP 動作 \(和 API 連線\) 動作支援重試原則。 重試原則會套用 toointermittent 失敗，是做為特性與 HTTP 狀態碼 408、 429 和 5xx，加法 tooany 連線例外狀況。 說明此原則使用 hello *retryPolicy*物件定義如下所示：
   
 ```json
 "retryPolicy" : {
@@ -445,9 +445,9 @@ HTTP 動作 \(和 API 連線\) 動作支援重試原則。 重試原則適用於
 }
 ```
   
-重試間隔是以 ISO 8601 格式來指定。 此間隔的最小值 (也是預設值) 為 20 秒，最大值為 1 小時。 最大重試計數 (也是預設值) 為 4 小時。 如果未指定重試原則定義，則會使用 `fixed` 策略與預設重試計數和間隔值。 若要停用重試原則，請將其類型設定為 `None`。  
+hello ISO 8601 格式指定 hello 重試間隔。 在此時間間隔具有預設的 20 秒，最小值，而 hello 最大值為一小時。 hello 預設值和最大重試計數為四個小時。 如果未指定 hello 重試原則定義，`fixed`策略會搭配預設重試計數和間隔值。 toodisable hello 重試原則，將其類型設定太`None`。  
   
-例如，下列動作會在有間歇性失敗時重試擷取最新消息兩次，總共會執行三次，每次嘗試之間會延遲 30 秒︰  
+例如，hello 下列動作重試擷取 hello 最新消息兩次，如果有斷斷續續地發生失敗，總共有三個執行中，每個嘗試之間會有 30 秒延遲：  
   
 ```json
 "latestNews" : {
@@ -465,9 +465,9 @@ HTTP 動作 \(和 API 連線\) 動作支援重試原則。 重試原則適用於
 ```
 ### <a name="asynchronous-patterns"></a>非同步模式
 
-根據預設，所有 HTTP 型動作皆支援標準的非同步作業模式。 因此，如果遠端伺服器指出已接受處理要求，並產生 202 \(已接受\) 回應，Logic Apps 引擎會持續輪詢回應之 location 標頭中指定的 URL，直到到達終止狀態 \(非\-202 回應\)。  
+根據預設，所有以 HTTP 為基礎的動作支援 hello 標準的非同步作業模式。 因此如果 hello 遠端伺服器指出該 hello 要求已接受以進行處理，202 的\(接受\)回應 hello Logic Apps 引擎會持續輪詢 hello 直到到達終端機 hello 回應的位置標頭中指定的 URL狀態\(非\-202 回應\)。  
   
-若要停用先前所述的非同步行為，請在動作輸入中設定 `DisableAsyncPattern` 選項。 在此案例中，動作的輸出是根據伺服器所傳來的初始 202 回應。  
+toodisable hello 非同步行為先前所述，設定`DisableAsyncPattern`hello 動作輸入中的選項。 在此情況下，hello 動作的 hello 輸出根據 hello 初始 202 回應 hello 伺服器。  
   
 ```json
 "invokeLongRunningOperation" : {
@@ -482,7 +482,7 @@ HTTP 動作 \(和 API 連線\) 動作支援重試原則。 重試原則適用於
 
 #### <a name="asynchronous-limits"></a>非同步限制
 
-非同步模式可限制在其持續時間內，也可以限制在特定時間間隔內。  如果在時間間隔經過後仍未到達終止狀態，動作的狀態會標示為 `Cancelled`，而狀態碼為 `ActionTimedOut`。  限制逾時是以 ISO 8601 格式來指定。  使用下列語法即可指定限制︰
+非同步模式可限制其持續時間 tooa 特定時間間隔中。  如果 hello 時間間隔超過期限而未到達終止狀態，將會標示 hello hello 動作狀態`Cancelled`的代碼`ActionTimedOut`。  採用 ISO 8601 格式指定 hello 限制逾時。  限制可以指定以 hello，請使用下列語法：
 
 ``` json
 "<action-name>": {
@@ -497,18 +497,18 @@ HTTP 動作 \(和 API 連線\) 動作支援重試原則。 重試原則適用於
 ## <a name="api-connection"></a>API 連線  
 
 API 連線是參考 Microsoft 管理之連接器的動作。
-這個動作需要有效連線的參考，以及關於所需 API 及參數的資訊。
+這個動作需要參考 tooa 有效連接，以及有關 hello API 和所需的參數。
 
 |元素名稱|必要|類型|說明|  
 |----------------|------------|--------|---------------|  
-|主機|是|Object|代表連接器資訊，例如 runtimeUrl 和連線物件的參考|
-|method|是|String|可以是下列其中一種 HTTP 方法︰**GET**、**POST**、**PUT**、**DELETE**、**PATCH** 或 **HEAD**|  
-|路徑|是|String|API 作業的路徑。|  
-|查詢|否|Object|代表要新增至 URL 的查詢參數。 例如，`"queries" : { "api-version": "2015-02-01" }` 會將 `?api-version=2015-02-01` 新增至 URL。|  
-|headers|否|Object|代表傳送至要求的每個標頭。 例如，若要對要求設定語言和類型︰`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
-|body|否|Object|代表傳送至端點的承載。|  
-|RetryPolicy|否|Object|可讓您自訂 4xx 或 5xx 錯誤的重試行為。|  
-|operationsOptions|否|String|定義一組要覆寫的特殊行為。|  
+|主機|是|Object|表示 hello 連接器資訊，例如 hello runtimeUrl 和參考 toohello 連接物件|
+|method|是|String|可以是其中一個 hello 遵循 HTTP 方法：**取得**， **POST**，**放**，**刪除**，**修補**，或**標頭**|  
+|路徑|是|String|hello 應用程式開發介面作業的 hello 路徑。|  
+|查詢|否|Object|代表 hello 查詢參數 tooadd toohello URL。 例如，`"queries" : { "api-version": "2015-02-01" }`新增`?api-version=2015-02-01`toohello URL。|  
+|headers|否|Object|代表每個 toohello 要求會傳送 hello 標頭。 例如，tooset hello 語言和類型的要求：`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
+|body|否|Object|表示傳送 toohello 端點的 hello 裝載。|  
+|RetryPolicy|否|Object|可讓您自訂 hello 重試行 4xx 或 5xx 錯誤。|  
+|operationsOptions|否|String|定義特殊的行為 toooverride hello 組。|  
 
 ```json
 "Send_Email": {
@@ -563,11 +563,11 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 }
 ```
 
-對於 Webhook 動作的限制可透過和 [HTTP 非同步限制](#asynchronous-limits)相同的方式來指定。
+Webhook 動作的限制可以在 hello 中指定相同的方式[HTTP 非同步限制](#asynchronous-limits)。
   
 ## <a name="response-action"></a>回應動作  
 
-這個動作類型包含來自 HTTP 要求的整個回應承載，並納入 statusCode、主體和標頭︰  
+此動作的類型包含從 HTTP 要求的 hello 整個回應內容，並包含 statusCode、 本文和標頭：  
   
 ```json
 "myresponse" : {
@@ -587,17 +587,17 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 }
 ```
   
-回應動作有其他動作所不適用的特殊限制。 具體而言：  
+hello 回應動作有特殊限制不適用 tooother 動作。 具體而言：  
   
--   定義中不能有平行的回應動作，因為連入要求必須有確定性回應。  
+-   回應動作無法平行定義中，因為具決定性的回應 toohello 連入要求為必要項。  
   
--   如果連入要求在收到回應後觸達回應動作，系統會將動作視為失敗 \(衝突\)，因此，執行會是 `Failed`。  
+-   如果收到回應 hello 連入要求之後，將到達回應動作，hello 動作會被視為失敗\(衝突\)，且如此一來，執行 hello `Failed`。  
   
--   具有回應動作的工作流程在其觸發程序中不能有 `splitOn`，因為一個呼叫就會導致許多個執行。 因此，當流程是 PUT 且造成不正確的要求時，便應就此進行驗證。  
+-   具有回應動作的工作流程在其觸發程序中不能有 `splitOn`，因為一個呼叫就會導致許多個執行。 如此一來，這應該驗證 hello 資料流程時 PUT 和不正確的要求可能的原因。  
   
 ## <a name="wait-action"></a>等候動作  
 
-`wait` 動作會在一段指定間隔內暫停工作流程的執行。 例如，若要等候 15 分鐘，您可以使用此程式碼片段︰  
+hello`wait`動作暫止工作流程執行 hello 指定時間間隔。 例如，toowait 15 分鐘，您可以使用此程式碼片段：  
   
 ```json
 "waitForFifteenMinutes" : {
@@ -611,7 +611,7 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 }
 ```  
   
-或者，若要等候直到特定時間點，您可以使用此範例︰  
+或者，toowait 特定時間點，直到您可以使用此範例：  
   
 ```json
 "waitUntilOctober" : {
@@ -625,19 +625,19 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 ```
   
 > [!NOTE]  
-> 等候持續時間可使用**間隔**物件或**直到**物件 (但不可同時使用兩者) 來指定。  
+> hello 等候持續時間可能是使用可以指定 hello**間隔**物件或 hello**直到**物件，但非兩者。  
   
 |名稱|必要|類型|說明|  
 |--------|------------|--------|---------------|  
-|interval|否|Object|以時間量為基礎的等候持續時間。|  
+|interval|否|Object|hello 等候一段時間為基礎的持續時間。|  
 |間隔單位|是|String|下列其中一個間隔︰秒、分鐘、小時、天、週、月、年。|  
-|間隔計數|是|String|以指定內部單位為基礎的持續時間。|  
-|直到|否|Object|以時間點為基礎的等候持續時間。|  
-|直到時間戳記|是|String|字串 | 等候到期時的 UTC 時間點。|  
+|間隔計數|是|String|根據給定內部單位 hello 持續時間。|  
+|直到|否|Object|hello 等候以時間為基礎的點上的持續時間。|  
+|直到時間戳記|是|String|字串 &#124; hello hello 等候到期時的 UTC 時間點。|  
 
 ## <a name="query-action"></a>查詢動作
 
-`query` 動作可讓您根據條件來篩選陣列。 例如，若要選取大於 2 的數字，您可以使用︰
+hello`query`動作可讓您篩選條件所根據的陣列。 例如，tooselect 數字大於 2，您可以使用：
 
 ```json
 "FilterNumbers" : {
@@ -649,20 +649,20 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 }
 ```
 
-`query` 動作的輸出是一個陣列，其中具有輸入陣列中符合條件的元素。
+hello 輸出 hello`query`動作是陣列，其中具有 hello 輸入陣列中滿足 hello 條件的項目。
 
 > [!NOTE]
-> 如果沒有任何值符合 `where` 條件，則結果為空白陣列。
+> 如果沒有任何值滿足 hello`where`條件，hello 結果為空陣列。
 
 |名稱|必要|類型|說明|
 |--------|------------|--------|---------------|
-|from|是|陣列|來源陣列。|
-|其中|是|String|要套用到來源陣列各個元素的條件。|
+|from|是|陣列|hello 來源陣列。|
+|其中|是|String|hello 條件 tooapply tooeach hello 來源陣列元素。|
 
 ## <a name="select-action"></a>選取動作
 
-`select` 動作可讓您將陣列的每個元素預測為新的值。
-例如，若要將數字的陣列轉換為物件的陣列，您可以使用︰
+hello`select`動作可讓您在規劃新的值陣列的每個項目。
+例如，tooconvert 的數字讀入陣列物件的陣列，您可以使用：
 
 ```json
 "SelectNumbers" : {
@@ -674,16 +674,16 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 }
 ```
 
-`select` 動作的輸出是基數為與輸入陣列相同的陣列，其中每個轉換的元素均由 `select` 屬性定義。 如果輸入是空的陣列，則輸出也是空的陣列。
+hello 的 hello 輸出`select`動作是陣列，其中具有 hello 由相同的基數為 hello 輸入的陣列，其中每個元素轉換成定義的 hello`select`屬性。 Hello 輸入是空的陣列，如果 hello 輸出也會為空陣列。
 
 |名稱|必要|類型|說明|
 |--------|------------|--------|---------------|
-|from|是|陣列|來源陣列。|
-|選取|是|任意|要套用到來源陣列各個元素的預測。|
+|from|是|陣列|hello 來源陣列。|
+|選取|是|任意|hello 投影 tooapply tooeach hello 來源陣列元素。|
 
 ## <a name="terminate-action"></a>終止動作
 
-終止動作會停止執行工作流程、中止任何進行中的動作，並略過任何剩餘的動作。 例如，若要終止狀態為**失敗**的執行，您可以使用下列程式碼片段︰
+hello 終止動作停止執行 hello 工作流程執行時，中止執行中的任何動作，並略過任何其餘的動作。 比方說，tooterminate 狀態執行**失敗**，您可以使用下列程式碼片段的 hello:
 
 ```json
 "HandleUnexpectedResponse" : {
@@ -699,18 +699,18 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 ```
 
 > [!NOTE]
-> 已完成的動作不受終止動作所影響。
+> 已完成的動作不會受到 hello 終止動作。
 
 |名稱|必要|類型|說明|
 |--------|------------|--------|---------------|
-|runStatus|是|String|目標執行狀態。 **失敗**或**取消**。|
-|runError|否|Object|錯誤詳細資料。 在 **runStatus** 設為**失敗**時才支援。|
-|runError 代碼|否|String|執行錯誤碼。|
-|runError 訊息|否|String|執行錯誤訊息。|
+|runStatus|是|String|hello 目標執行狀態。 **失敗**或**取消**。|
+|runError|否|Object|hello 錯誤詳細資料。 只支援當**runStatus**設定得**失敗**。|
+|runError 代碼|否|String|hello 執行錯誤的程式碼。|
+|runError 訊息|否|String|hello 執行錯誤訊息。|
 
 ## <a name="compose-action"></a>撰寫動作
 
-撰寫動作可讓您建構任意物件。 撰寫動作的輸出是其輸入的評估結果。 例如，您可以使用撰寫動作合併多個動作的輸出︰
+hello 撰寫動作可讓您建構任意的物件。 hello hello 輸出撰寫動作是 hello 結果評估其輸入。 例如，您可以使用 hello 撰寫多個動作的動作 toomerge 輸出：
 
 ```json
 "composeUserRecord" : {
@@ -725,11 +725,11 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 ```
 
 > [!NOTE]
-> **撰寫**動作可用來建構任何輸出，包括物件、陣列以及邏輯應用程式原生支援的其他任何類型，例如 XML 和二進位檔。
+> hello**撰寫**動作可以使用的 tooconstruct 任何輸出，包括物件、 陣列和任何其他原生支援的邏輯應用程式，例如 XML 和二進位的型別。
 
 ## <a name="table-action"></a>資料表動作
 
-`table` 可讓您將項目的陣列轉換為 **CSV** 或 **HTML** 資料表。
+hello`table`可讓您的項目插入陣列 tooconvert **CSV**或**HTML**資料表。
 
 假設 @triggerBody() 是
 
@@ -743,7 +743,7 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 }]
 ```
 
-並且讓動作定義為
+並讓 hello 動作定義為
 
 ```json
 "ConvertToTable" : {
@@ -755,11 +755,11 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 }
 ```
 
-以上會產生
+會產生上述 hello
 
 <table><thead><tr><th>id</th><th>名稱</th></tr></thead><tbody><tr><td>0</td><td>apples</td></tr><tr><td>1</td><td>oranges</td></tr></tbody></table>"
 
-為了自訂資料表，您可以明確指定資料行。 例如：
+在順序 toocustomize hello 資料表中，您可以明確地指定 hello 資料行。 例如：
 
 ```json
 "ConvertToTable" : {
@@ -778,29 +778,29 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 }
 ```
 
-以上會產生
+會產生上述 hello
 
 <table><thead><tr><th>產生識別碼</th><th>說明</th></tr></thead><tbody><tr><td>0</td><td>fresh apples</td></tr><tr><td>1</td><td>fresh oranges</td></tr></tbody></table>"
 
-如果 `from` 屬性值為空的陣列，則輸出為空的資料表。
+如果 hello`from`屬性值為空陣列，hello 輸出，則為空的資料表。
 
 |名稱|必要|類型|說明|
 |--------|------------|--------|---------------|
-|from|是|陣列|來源陣列。|
-|format|是|String|格式，**CSV** 或 **HTML**。|
-|columns|否|陣列|資料行。 允許覆寫資料表的預設圖形。|
-|資料行標頭|否|String|資料行的標頭。|
-|資料行值|是|String|資料行的值。|
+|from|是|陣列|hello 來源陣列。|
+|format|是|String|hello 格式，或是**CSV**或**HTML**。|
+|columns|否|陣列|hello 資料行。 允許 hello 資料表 toooverride hello 預設的圖形。|
+|資料行標頭|否|String|hello 資料行標頭的 hello。|
+|資料行值|是|String|hello hello 資料行值。|
 
 ## <a name="workflow-action"></a>工作流程動作   
 
 |名稱|必要|類型|說明|  
 |--------|------------|--------|---------------|  
-|主機識別碼|是|String|您想要呼叫之工作流程的資源識別碼。|  
-|主機 triggerName|是|String|您想要叫用之觸發程序的名稱。|  
-|查詢|否|Object|代表要新增至 URL 的查詢參數。 例如，`"queries" : { "api-version": "2015-02-01" }` 會將 `?api-version=2015-02-01` 新增至 URL。|  
-|headers|否|Object|代表傳送至要求的每個標頭。 例如，若要對要求設定語言和類型︰`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
-|body|否|Object|代表傳送至端點的承載。|  
+|主機識別碼|是|String|您想 toocall hello 工作流程 hello 資源 ID。|  
+|主機 triggerName|是|String|hello 想 tooinvoke hello 觸發程序名稱。|  
+|查詢|否|Object|代表 hello 查詢參數 tooadd toohello URL。 例如，`"queries" : { "api-version": "2015-02-01" }`新增`?api-version=2015-02-01`toohello URL。|  
+|headers|否|Object|代表每個 toohello 要求會傳送 hello 標頭。 例如，tooset hello 語言和類型的要求：`"headers" : { "Accept-Language": "en-us",  "Content-Type": "application/json" }`|  
+|body|否|Object|表示傳送 toohello 端點 hello 裝載。|  
   
 ```json
 "mynestedwf" : {
@@ -826,19 +826,19 @@ API 連線是參考 Microsoft 管理之連接器的動作。
     }
 ```
   
-系統會檢查工作流程 \(更具體地說是觸發程序\) 的存取權，也就是說，您需要工作流程的存取權。  
+Hello 工作流程上進行存取檢查\(更具體來說，hello 觸發程序\)，表示您需要存取 toohello 工作流程。  
   
-`workflow` 動作的輸出是根據您在子工作流程之 `response` 動作中所做的定義。 如果您尚未定義任何 `response` 動作，輸出會是空的。  
+hello 輸出從 hello`workflow`動作根據您定義在 hello `response` hello 子工作流程中的動作。 如果未定義任何`response`動作，然後 hello 輸出是空的。  
 
 ## <a name="function-action"></a>函式動作   
 
 |名稱|必要|類型|說明|  
 |--------|------------|--------|---------------|  
-|函式識別碼|是|String|您想要叫用之函式的資源識別碼。|  
-|method|否|String|用來叫用函式的 HTTP 方法。 若未指定，則其預設值為 `POST`。|  
-|查詢|否|Object|代表要新增至 URL 的查詢參數。 例如，`"queries" : { "api-version": "2015-02-01" }` 會將 `?api-version=2015-02-01` 新增至 URL。|  
-|headers|否|Object|代表傳送至要求的每個標頭。 例如，若要對要求設定語言和類型︰`"headers" : { "Accept-Language": "en-us" }`。|  
-|body|否|Object|代表傳送至端點的承載。|  
+|函式識別碼|是|String|您想 tooinvoke 的 hello 函式 hello 資源 ID。|  
+|method|否|String|hello HTTP 方法使用 tooinvoke hello 函式。 若未指定，則其預設值為 `POST`。|  
+|查詢|否|Object|代表 hello 查詢參數 tooadd toohello URL。 例如，`"queries" : { "api-version": "2015-02-01" }`新增`?api-version=2015-02-01`toohello URL。|  
+|headers|否|Object|代表每個 toohello 要求會傳送 hello 標頭。 例如，tooset hello 語言和類型的要求： `"headers" : { "Accept-Language": "en-us" }`。|  
+|body|否|Object|表示傳送 toohello 端點 hello 裝載。|  
 
 ```json
 "myfunc" : {
@@ -863,25 +863,25 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 }
 ```
 
-當您儲存邏輯應用程式時，我們會對所參考的函式執行某些檢查︰
--   您必須具有該函式的存取權。
+當您儲存 hello 邏輯應用程式時，我們會執行某些檢查參考的 hello 函式：
+-   您需要 toohave access toohello 函式。
 -   僅允許使用標準 HTTP 觸發程序或一般 JSON Webhook 觸發程序。
 -   它不應定義任何路由。
 -   只允許使用「函式」和「匿名」授權層級。
 
-系統會在執行階段擷取、快取及使用觸發程序 URL。 因此，若有任何作業讓快取的 URL 失效，動作就會在執行階段失敗。 若要解決這個問題，請再次儲存邏輯應用程式，這會讓邏輯應用程式再次擷取及快取觸發程序 URL。
+擷取、 快取，且在執行階段使用 hello 觸發程序 URL。 因此如果任何作業會導致快取的 hello URL 無效，hello 動作便會在執行階段。 此 toowork 儲存 hello 邏輯應用程式，這將導致邏輯應用程式 tooretrieve 並再次快取 hello 觸發程序的 URL。
 
 ## <a name="collection-actions-scopes-and-loops"></a>集合動作 (範圍和迴圈)
 
-某些動作類型可以在自身當中包含動作。 集合內的參考動作可直接在集合外部參考。 如果您在某個範圍中定義了 `http`，`@body('http')` 仍會在工作流程中的任何位置保持有效。 集合內的動作只能對相同集合內的其他動作執行 `runAfter`。
+某些動作類型可以在自身當中包含動作。 在集合中的參考動作，可直接之外 hello 集合參考。 如果您在某個範圍中定義了 `http`，`@body('http')` 仍會在工作流程中的任何位置保持有效。 在集合中的動作可以`runAfter`內其他動作 hello 相同的集合。
 
 ## <a name="scope-action"></a>範圍動作
 
-`scope` 動作可讓您以邏輯方式將工作流程中的動作群組起來。
+hello`scope`動作可讓您以邏輯方式群組動作工作流程中的。
 
 |名稱|必要|類型|說明|  
 |--------|------------|--------|---------------|  
-|動作|是|Object|要在範圍內執行的內部動作|
+|動作|是|Object|內部動作 tooexecute hello 範圍內|
 
 ```json
 {
@@ -901,13 +901,13 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 
 ## <a name="foreach-action"></a>ForEach 動作
 
-這個迴圈動作會逐一查看陣列並對每個項目執行內部動作。 根據預設，foreach 迴圈會以平行方式執行 (一次 20 個平行執行)。 您可以使用 `operationOptions` 參數設定執行規則。
+這個迴圈動作會逐一查看陣列並對每個項目執行內部動作。 根據預設，平行 （20 執行以平行方式一次） 執行 hello foreach 迴圈 」。 您可以設定執行規則使用 hello`operationOptions`參數。
 
 |名稱|必要|類型|說明|  
 |--------|------------|--------|---------------|  
-|動作|是|Object|要在迴圈內執行的內部動作|
-|foreach|是|字串|要逐一查看的陣列|
-|operationOptions|no|string|行為的任何作業選項。 目前僅支援 `sequential` 來循序執行反覆運算 (預設行為是平行)|
+|動作|是|Object|Hello 迴圈內的內部動作 tooexecute|
+|foreach|是|字串|透過 hello 陣列 tooiterate|
+|operationOptions|no|string|行為的任何作業選項。 目前只支援`sequential`tooexecute 反覆項目以循序方式 （預設行為是平行）|
 
 ```json
 "forEach_email": {
@@ -938,15 +938,15 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 
 ## <a name="until-action"></a>直到動作
 
-這個迴圈動作會執行內部動作，直到有條件的結果為 true。
+此迴圈的動作會執行內部的動作，直到條件結果 tootrue 為止。
 
 |名稱|必要|類型|說明|  
 |--------|------------|--------|---------------|  
-|動作|是|Object|要在迴圈內執行的內部動作|
-|expression|是|string|要在每次反覆運算之後評估的運算式|
-|limit|yes|Object|迴圈的限制 - 必須定義至少一項限制|
-|計數|no|int|可執行之反覆運算次數的限制|
-|timeout|no|字串|此動作應執行迴圈多久的逾時值。  ISO 8601 格式|
+|動作|是|Object|Hello 迴圈內的內部動作 tooexecute|
+|expression|是|字串|每個反覆項目之後的 hello 運算式 tooevaluate|
+|limit|yes|Object|必須定義 hello 迴圈-至少一個限制的 hello 限制|
+|計數|no|int|hello toohello 數目限制可以執行的反覆項目|
+|timeout|no|字串|hello 多久它應該循環逾時。  ISO 8601 格式|
 
 
 ```json
@@ -973,13 +973,13 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 
 ## <a name="conditions---if-action"></a>條件 - If 動作
 
-`If` 動作可讓您評估條件，並根據運算式是否評估為 `true` 來執行分支。
+hello`If`動作可讓您評估條件，以及執行分支，根據是否 hello 運算式評估太`true`。
 
 |名稱|必要|類型|說明|  
 |--------|------------|--------|---------------|  
-|動作|是|Object|運算式評估為 `true` 時要執行的內部動作|
-|expression|是|字串|要評估的運算式|
-|else|no|Object|運算式評估為 `false` 時要執行的內部動作|
+|動作|是|Object|當運算式評估過的內部動作 tooexecute`true`|
+|expression|是|字串|hello 運算式 tooevaluate|
+|else|no|Object|當運算式評估過的內部動作 tooexecute`false`|
   
 ```json
 "My_condition": {
@@ -1011,17 +1011,17 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 }
 ```  
   
-下表說明條件如何在動作中使用運算式的範例︰  
+hello 下表顯示條件如何在動作中使用運算式的範例：  
   
 |JSON 值|結果|  
 |--------------|----------|  
-|`"expression": "@parameters('hasSpecialAction')"`|會評估為 true 的任何值都會導致此條件成立。 僅支援布林運算式。 若要將其他類型轉換成布林值，請使用函式 `empty`、`equals`。|  
-|`"expression": "@greater(actions('act1').output.value, parameters('threshold'))"`|支援比較函式。 對於這裡的範例，只有當 act1 的輸出大於閾值時，才會執行動作。|  
-|`"expression": "@or(greater(actions('act1').output.value, parameters('threshold')), less(actions('act1').output.value, 100))"`|邏輯函式也支援建立巢狀布林運算式。 在此案例中，當 act1 的輸出高於閾值或低於 100 時，便會執行動作。|  
-|`"expression": "@equals(length(actions('act1').outputs.errors), 0))"`|您可以使用陣列函式來檢查陣列是否有任何項目。 在此案例中，當錯誤陣列空白時，便會執行動作。| 
+|`"expression": "@parameters('hasSpecialAction')"`|會評估 tootrue 任何值會導致此狀況 toopass。 僅支援布林運算式。 其他 tooconvert 類型 tooBoolean，使用函數`empty`， `equals`。|  
+|`"expression": "@greater(actions('act1').output.value, parameters('threshold'))"`|支援比較函式。 如 hello 範例，hello 動作時才執行 act1 hello 輸出大於 hello 臨界值。|  
+|`"expression": "@or(greater(actions('act1').output.value, parameters('threshold')), less(actions('act1').output.value, 100))"`|邏輯函數也會支援的 toocreate 巢狀布林運算式。 在此情況下，hello 動作執行 hello 臨界值高於或低於 100 的 act1 hello 輸出時。|  
+|`"expression": "@equals(length(actions('act1').outputs.errors), 0))"`|如果陣列沒有任何項目，您可以使用陣列函式 toocheck。 在此情況下，hello 動作執行時 hello 錯誤陣列是空的。| 
 |`"expression": "parameters('hasSpecialAction')"`|錯誤 - 不是有效條件，因為條件必須有 @。|  
   
-如果條件評估成功，條件會標示為 `Succeeded`。 `actions` 或 `else` 物件內的動作在執行並成功後會評估為 `Succeeded`，執行但失敗後會評估為 `Failed`，當該分支未執行時會評估為 `Skipped`。
+如果條件評估成功，hello 條件標示為`Succeeded`。 動作內任一 hello`actions`或`else`物件的評估太`Succeeded`時執行，且成功，`Failed`時執行，且失敗，或`Skipped`時不會執行該分支。
 
 ## <a name="next-steps"></a>後續步驟
 

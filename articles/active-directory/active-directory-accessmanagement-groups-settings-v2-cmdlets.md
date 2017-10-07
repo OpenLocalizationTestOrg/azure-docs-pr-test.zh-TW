@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Active Directory 中管理群組的 PowerShell 範例 | Microsoft Docs"
-description: "此頁面會提供 PowerShell 範例以協助您管理 Azure Active Directory 中的群組"
+title: "管理 Azure Active Directory 中的群組的範例 aaaPowerShell |Microsoft 文件"
+description: "本頁面提供的 PowerShell 範例 toohelp 您管理 Azure Active Directory 中的群組"
 keywords: "Azure AD, Azure Active Directory, PowerShell, 群組, 群組管理"
 services: active-directory
 documentationcenter: 
@@ -16,11 +16,11 @@ ms.topic: article
 ms.date: 08/09/2017
 ms.author: curtand
 ms.reviewer: rodejo
-ms.openlocfilehash: a81820bc778c26f6e8051e2817ebd2b9c24b697a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ba049babc436e99a290f20899b3a87bcfa811d9e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-version-2-cmdlets-for-group-management"></a>適用於群組管理的 Azure Active Directory 第 2 版 Cmdlet
 > [!div class="op_single_selector"]
@@ -30,14 +30,14 @@ ms.lasthandoff: 08/18/2017
 >
 >
 
-本文包含的範例，會說明如何使用 PowerShell 管理 Azure Active Directory (Azure AD) 中的群組。  其中也會說明如何使用 Azure AD PowerShell 模組來完成設定。 首先，您必須 [下載 Azure AD PowerShell 模組](https://www.powershellgallery.com/packages/AzureAD/)。
+本文章包含的範例 toouse PowerShell toomanage 您 Azure Active Directory (Azure AD) 中的群組。  它也會告訴您如何 tooget 設定與 hello Azure AD PowerShell 模組。 首先，您必須[下載 hello Azure AD PowerShell 模組](https://www.powershellgallery.com/packages/AzureAD/)。
 
-## <a name="installing-the-azure-ad-powershell-module"></a>安裝 Azure AD PowerShell 模組
-若要安裝 AzureAD PowerShell 模組，請使用下列命令︰
+## <a name="installing-hello-azure-ad-powershell-module"></a>正在安裝 hello Azure AD PowerShell 模組
+tooinstall hello Azure AD PowerShell 模組，使用下列命令的 hello:
 
     PS C:\Windows\system32> install-module azuread
 
-若要確認已安裝此模組，請使用下列命令︰
+hello 模組的 tooverify 已安裝，請使用下列命令的 hello:
 
     PS C:\Windows\system32> get-module azuread
 
@@ -45,33 +45,33 @@ ms.lasthandoff: 08/18/2017
     ---------- ---------    ----                                ----------------
     Binary     2.0.0.115    azuread                      {Add-AzureADAdministrati...}
 
-現在您可以開始在模組中使用 Cmdlet。 如需有關 Azure AD 模組中各式 Cmdlet 的完整描述，請參閱 [Azure Active Directory PowerShell 第 2 版](/powershell/azure/install-adv2?view=azureadps-2.0)的線上參考文件。
+現在您可以開始使用 hello 模組中的 hello cmdlet。 Hello Azure AD 模組中的 hello cmdlet 的完整說明，請參閱 toohello 線上參考文件[Azure Active Directory PowerShell 版本 2](/powershell/azure/install-adv2?view=azureadps-2.0)。
 
-## <a name="connecting-to-the-directory"></a>連線到目錄
-使用 Azure AD PowerShell Cmdlet 開始管理群組之前，您必須先將 PowerShell 工作階段連線至想要管理的目錄。 使用下列命令：
+## <a name="connecting-toohello-directory"></a>連接 toohello 目錄
+您可以開始管理群組使用 Azure AD PowerShell cmdlet 之前，您必須連接您想 toomanage 的 PowerShell 工作階段 toohello 目錄。 使用下列命令的 hello:
 
     PS C:\Windows\system32> Connect-AzureAD
 
-Cmdlet 會提示您輸入需要用來存取目錄的認證。 在此範例中，我們會使用 karen@drumkit.onmicrosoft.com 存取示範目錄。 Cmdlet 將會傳回確認，表示工作階段已成功連線到目錄︰
+hello cmdlet 會提示您如 hello 認證新增您想 toouse tooaccess 您的目錄。 在此範例中，我們會使用karen@drumkit.onmicrosoft.comtooaccess hello 示範目錄。 hello cmdlet 會傳回已成功連接確認 tooshow hello 工作階段 tooyour 目錄：
 
     Account                       Environment Tenant
     -------                       ----------- ------
     Karen@drumkit.onmicrosoft.com AzureCloud  85b5ff1e-0402-400c-9e3c-0f…
 
-現在您可以開始使用 AzureAD Cmdlet 來管理您目錄中的群組。
+現在您可以開始使用您的目錄中的 hello azure Ad cmdlet toomanage 群組。
 
 ## <a name="retrieving-groups"></a>擷取群組
-若要從目錄中擷取現有的群組，您可以使用 Get-AzureADGroups Cmdlet。 若要擷取目錄中的所有群組，請在使用 Cmdlet 時不要使用參數：
+您可以使用您目錄 tooretrieve 現有群組 hello Get AzureADGroups cmdlet。 所有 tooretrieve 都群組在 hello 目錄中，使用不含參數的 hello 指令程式：
 
     PS C:\Windows\system32> get-azureadgroup
 
-Cmdlet 將會傳回所連線目錄中的所有群組。
+hello cmdlet 會傳回 hello 連接的目錄中的所有群組。
 
-您可以使用 -objectID 參數來擷取您指定其群組 objectID 的特定群組：
+您可以使用 hello-objectID 參數 tooretrieve 特定群組，您可以為其指定 hello 群組的 objectID:
 
     PS C:\Windows\system32> get-azureadgroup -ObjectId e29bae11-4ac0-450c-bc37-6dae8f3da61b
 
-現在，Cmdlet 將傳回 objectID 與您所輸入之參數值相符的群組︰
+hello cmdlet 現在會傳回其 objectID 符合您輸入的 hello 參數 hello 值 hello 群組：
 
     DeletionTimeStamp            :
     ObjectId                     : e29bae11-4ac0-450c-bc37-6dae8f3da61b
@@ -88,7 +88,7 @@ Cmdlet 將會傳回所連線目錄中的所有群組。
     ProxyAddresses               : {}
     SecurityEnabled              : True
 
-您可以使用 -filter 參數搜尋特定群組。 此參數採用 ODATA 篩選子句，並傳回和篩選條件相符的所有群組，如下列範例所示︰
+您可以搜尋特定群組使用 hello-filter 參數。 此參數採用的 ODATA 篩選器子句，並傳回所有的群組符合 hello 篩選條件，如 hello 下列範例所示：
 
     PS C:\Windows\system32> Get-AzureADGroup -Filter "DisplayName eq 'Intune Administrators'"
 
@@ -109,15 +109,15 @@ Cmdlet 將會傳回所連線目錄中的所有群組。
     SecurityEnabled              : True
 
 > [!NOTE] 
-> AzureAD PowerShell Cmdlet 實作 OData 查詢標準。 如需詳細資訊，請參閱[使用 OData 端點的 OData 系統查詢選項](https://msdn.microsoft.com/library/gg309461.aspx#BKMK_filter)中的 **$filter**。
+> hello azure Ad PowerShell cmdlet 實作 hello 標準 OData 查詢。 如需詳細資訊，請參閱**$filter**中[OData 系統查詢選項使用 hello OData 端點](https://msdn.microsoft.com/library/gg309461.aspx#BKMK_filter)。
 
 ## <a name="creating-groups"></a>建立群組
-若要在目錄中建立新群組，請使用 New-AzureADGroup Cmdlet。 這個 Cmdlet 會建立名為 “Marketing" 的新安全性群組︰
+toocreate 中您目錄中，使用 hello 新增 AzureADGroup 指令程式的新群組。 這個 Cmdlet 會建立名為 “Marketing" 的新安全性群組︰
 
     PS C:\Windows\system32> New-AzureADGroup -Description "Marketing" -DisplayName "Marketing" -MailEnabled $false -SecurityEnabled $true -MailNickName "Marketing"
 
 ## <a name="updating-groups"></a>更新群組
-若要更新現有的群組，請使用 Set-AzureADGroup Cmdlet。 在這個範例中，我們要變更 “Intune Administrators” 群組的 DisplayName 屬性。 首先，我們使用 Get-AzureADGroup Cmdlet 找到該群組，然後使用 DisplayName 屬性進行篩選︰
+tooupdate 現有的群組，使用 hello 組 AzureADGroup 指令程式。 在此範例中，我們要變更 hello DisplayName 屬性的 hello 群組 「 Intune 系統管理員。 」 首先，我們發現 hello 群組 hello Get AzureADGroup cmdlet，並使用 hello DisplayName 屬性篩選中使用：
 
     PS C:\Windows\system32> Get-AzureADGroup -Filter "DisplayName eq 'Intune Administrators'"
 
@@ -137,11 +137,11 @@ Cmdlet 將會傳回所連線目錄中的所有群組。
     ProxyAddresses               : {}
     SecurityEnabled              : True
 
-接下來，我們要將 Description 屬性變更為新值 “Intune Device Administrators”︰
+接下來，我們要變更 hello 描述屬性 toohello 新值 「 Intune 裝置系統管理員 」:
 
     PS C:\Windows\system32> Set-AzureADGroup -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -Description "Intune Device Administrators"
 
-現在如果我們再次尋找該群組，就會看到 Description 屬性已經更新，以反映新的值︰
+現在如果我們仍會尋找 hello 群組，我們會看到 hello Description 屬性更新的 tooreflect 是 hello 新值：
 
     PS C:\Windows\system32> Get-AzureADGroup -Filter "DisplayName eq 'Intune Administrators'"
 
@@ -162,18 +162,18 @@ Cmdlet 將會傳回所連線目錄中的所有群組。
     SecurityEnabled              : True
 
 ## <a name="deleting-groups"></a>刪除群組
-若要從目錄中刪除群組，請使用 Remove-AzureADGroup Cmdlet，如下所示︰
+從您的目錄，toodelete 群組，如下所示使用 hello 移除 AzureADGroup cmdlet:
 
     PS C:\Windows\system32> Remove-AzureADGroup -ObjectId b11ca53e-07cc-455d-9a89-1fe3ab24566b
 
 ## <a name="managing-members-of-groups"></a>管理群組成員
-如果您需要將新成員新增至群組，請使用Add-AzureADGroupMember Cmdlet。 此命令會將成員新增至上述範例中所使用的 Intune Administrators 群組︰
+如果您需要 tooadd 新成員 tooa 群組，請使用 hello 新增 AzureADGroupMember cmdlet。 此命令會新增 hello 前一個範例中我們使用的是成員 toohello Intune 系統管理員群組：
 
     PS C:\Windows\system32> Add-AzureADGroupMember -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -RefObjectId 72cd4bbd-2594-40a2-935c-016f3cfeeeea
 
-我們想要新增成員的群組，其 ObjectID 就是 -ObjectId 參數，而我們想要新增為群組成員的使用者，其 ObjectID 為 -RefObjectId。
+hello-ObjectId 參數為 hello ObjectID 的 hello 群組 toowhich 我們想 tooadd 成員，而且 hello-RefObjectId hello ObjectID 我們想要的 hello 使用者 tooadd 做為成員 toohello 群組。
 
-若要取得群組的現有成員，請使用 Get-AzureADGroupMember Cmdlet，如此範例所示︰
+tooget hello 現有群組的成員，使用 hello Get AzureADGroupMember 指令程式，如此範例所示：
 
     PS C:\Windows\system32> Get-AzureADGroupMember -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df
 
@@ -182,19 +182,19 @@ Cmdlet 將會傳回所連線目錄中的所有群組。
                           72cd4bbd-2594-40a2-935c-016f3cfeeeea User
                           8120cc36-64b4-4080-a9e8-23aa98e8b34f User
 
-若要移除先前加入群組的成員，請使用Remove-AzureADGroupMember Cmdlet，如此處所示︰
+tooremove hello 成員我們先前加入 toohello 群組中，使用 hello 移除 AzureADGroupMember 指令程式，如此處所示：
 
     PS C:\Windows\system32> Remove-AzureADGroupMember -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -MemberId 72cd4bbd-2594-40a2-935c-016f3cfeeeea
 
-若要驗證使用者的群組成員資格，請使用 Select-AzureADGroupIdsUserIsMemberOf Cmdlet。 這個 Cmdlet 會將要檢查群組成員資格的使用者，其 ObjectId 以及一份要檢查成員資格的群組清單做為參數。 務必要以 “Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck” 複雜變數類型的形式提供群組清單，因此我們必須先使用該類型建立一個變數：
+tooverify hello 群組成員資格的使用者，使用 hello 選取 AzureADGroupIdsUserIsMemberOf 指令程式。 此 cmdlet 會將當做它的參數 hello hello 哪些 toocheck hello 群組成員資格使用者的 ObjectId 和哪些 toocheck hello 成員資格的群組清單。 群組 hello 清單必須是提供的複雜類型之變數的"Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck"hello 形式，因此我們必須先建立一個變數與這個類型：
 
     PS C:\Windows\system32> $g = new-object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
 
-接下來，我們提供 groupIds 的值，以簽入此複雜變數的 "GroupIds" 屬性︰
+接下來，我們提供 hello groupIds toocheck hello 屬性 」 GroupIds 」 這個複雜變數的值：
 
     PS C:\Windows\system32> $g.GroupIds = "b11ca53e-07cc-455d-9a89-1fe3ab24566b", "31f1ff6c-d48c-4f8a-b2e1-abca7fd399df"
 
-現在，如果我們想要檢查 ObjectID 為 72cd4bbd-2594-40a2-935c-016f3cfeeeea 的使用者，是否具有 $g 中任何群組的群組成員資格，我們應該使用︰
+現在，如果我們想 toocheck hello 群組成員資格，ObjectID 72cd4bbd-2594-40a2-935c-016f3cfeeeea 針對 $g 中的 hello 群組的使用者，我們應該使用：
 
     PS C:\Windows\system32> Select-AzureADGroupIdsUserIsMemberOf -ObjectId 72cd4bbd-2594-40a2-935c-016f3cfeeeea -GroupIdsForMembershipCheck $g
 
@@ -203,31 +203,31 @@ Cmdlet 將會傳回所連線目錄中的所有群組。
     https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collection(Edm.String)             {31f1ff6c-d48c-4f8a-b2e1-abca7fd399df}
 
 
-傳回的值就是成員中有這位使用者的群組清單。 您也可以使用 Select-AzureADGroupIdsContactIsMemberOf、Select-AzureADGroupIdsGroupIsMemberOf 或 Select-AzureADGroupIdsServicePrincipalIsMemberOf，在檢查特定群組清單中的連絡人、群組或服務主體成員資格時，採用這個方法
+傳回的 hello 值是一份這位使用者為成員的群組。 您也可以套用這個方法 toocheck 連絡人、 群組或服務主體在指定的清單，使用選取 AzureADGroupIdsContactIsMemberOf，選取 AzureADGroupIdsGroupIsMemberOf 群組的成員資格或選取 AzureADGroupIdsServicePrincipalIsMemberOf
 
 ## <a name="managing-owners-of-groups"></a>管理群組擁有者
-若要將擁有者新增到群組，請使用 Add-AzureADGroupOwner Cmdlet︰
+tooadd owners tooa 群組、 使用 hello 新增 AzureADGroupOwner 指令程式：
 
     PS C:\Windows\system32> Add-AzureADGroupOwner -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -RefObjectId 72cd4bbd-2594-40a2-935c-016f3cfeeeea
 
-我們想要加入擁有者的群組，其 ObjectID 就是 -ObjectId 參數，而我們想要新增為群組擁有者的使用者，其 ObjectID 為 -RefObjectId。
+hello-ObjectId 參數為 hello ObjectID 的 hello 群組 toowhich 我們想 tooadd 擁有者，而且 hello-RefObjectId hello ObjectID 的 hello 使用者想 tooadd 以 hello 群組的擁有者。
 
-若要擷取群組的擁有者，請使用 Get AzureADGroupOwner Cmdlet：
+tooretrieve hello 的擁有者的群組，使用 hello Get AzureADGroupOwner cmdlet:
 
     PS C:\Windows\system32> Get-AzureADGroupOwner -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df
 
-Cmdlet 會傳回所指定群組的擁有者清單︰
+hello cmdlet 會傳回 hello hello 指定群組的擁有者清單：
 
     DeletionTimeStamp ObjectId                             ObjectType
     ----------------- --------                             ----------
                           e831b3fd-77c9-49c7-9fca-de43e109ef67 User
 
-如果您需要從群組中移除擁有者，請使用 Remove-AzureADGroupOwner Cmdlet：
+如果您想 tooremove 從群組的擁有者，請使用 hello 移除 AzureADGroupOwner cmdlet:
 
     PS C:\Windows\system32> remove-AzureADGroupOwner -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -OwnerId e831b3fd-77c9-49c7-9fca-de43e109ef67
 
 ## <a name="reserved-aliases"></a>保留的別名 
-當群組建立時，某些端點允許終端使用者指定 mailNickname 或別名，以作為群組電子郵件地址的一部分。 以下的電子郵件別名具有高度權限，只有 Azure AD 全域管理員才能建立使用這些別名的群組。 
+建立群組時，特定端點允許 hello 終端使用者 toospecify mailNickname 或別名 toobe hello 電子郵件地址 hello 群組的一部分。 Azure AD 全域管理員可以只建立群組以 hello 遵循高特殊權限的電子郵件別名。 
   
 * abuse 
 * admin 
@@ -244,5 +244,5 @@ Cmdlet 會傳回所指定群組的擁有者清單︰
 ## <a name="next-steps"></a>後續步驟
 您可以在 [Azure Active Directory Cmdlet](/powershell/azure/install-adv2?view=azureadps-2.0)中找到更多 Azure Active Directory PowerShell 文件。
 
-* [使用 Azure Active Directory 群組來管理資源的存取權](active-directory-manage-groups.md)
+* [使用 Azure Active Directory 群組來管理存取 tooresources](active-directory-manage-groups.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)

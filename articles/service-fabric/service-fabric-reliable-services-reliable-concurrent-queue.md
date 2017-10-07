@@ -1,5 +1,5 @@
 ---
-title: "Azure Service Fabric 中的 ReliableConcurrentQueue"
+title: "在 Azure Service Fabric aaaReliableConcurrentQueue"
 description: "ReliableConcurrentQueue 是高輸送量佇列，可進行平行加入佇列以及清除佇列。"
 services: service-fabric
 documentationcenter: .net
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/1/2017
 ms.author: sangarg
-ms.openlocfilehash: 122cb48149477f295a65b8ee623c647b6db10a86
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 78a9905996b9ab265c1288d2b49753638d7bc445
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-reliableconcurrentqueue-in-azure-service-fabric"></a>Azure Service Fabric 中的 ReliableConcurrentQueue 簡介
-可靠的並行佇列是非同步、交易式和複寫的佇列，特徵是加入佇列與清除佇列作業的高並行存取。 它旨在提供高輸送量和低延遲，方法是將[可靠的佇列](https://msdn.microsoft.com/library/azure/dn971527.aspx)所提供的嚴格 FIFO 順序放寬，並改為提供最佳的順序。
+# <a name="introduction-tooreliableconcurrentqueue-in-azure-service-fabric"></a>在 Azure Service Fabric 簡介 tooReliableConcurrentQueue
+可靠的並行佇列是非同步、交易式和複寫的佇列，特徵是加入佇列與清除佇列作業的高並行存取。 它是設計的 toodeliver 高輸送量和低延遲的放鬆 hello 嚴格 FIFO 順序提供[可靠的佇列](https://msdn.microsoft.com/library/azure/dn971527.aspx)並改為提供最佳順序。
 
 ## <a name="apis"></a>API
 
@@ -33,20 +33,20 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="comparison-with-reliable-queuehttpsmsdnmicrosoftcomlibraryazuredn971527aspx"></a>與[可靠的佇列](https://msdn.microsoft.com/library/azure/dn971527.aspx)進行比較
 
-可靠的並行佇列會以[可靠的佇列](https://msdn.microsoft.com/library/azure/dn971527.aspx)替代形式提供。 它應用於不需要嚴格 FIFO 順序的情況，因為保證 FIFO 使用並行存取時需要有所取捨。  [可靠的佇列](https://msdn.microsoft.com/library/azure/dn971527.aspx)會使用鎖定來強制使用 FIFO 順序，並且一次最多允許一個交易加入佇列，以及一次最多允許一個交易清除佇列。 相較之下，可靠的並行佇列會放寬排序條件約束，並允許任何數目的並行交易可交錯其加入佇列及清除佇列作業。 會提供最佳順序，不過，一律無法保證可靠並行佇列中兩個值的相對順序。
+太可靠的並行佇列提供替代[可靠的佇列](https://msdn.microsoft.com/library/azure/dn971527.aspx)。 它應用於不需要嚴格 FIFO 順序的情況，因為保證 FIFO 使用並行存取時需要有所取捨。  [可靠的佇列](https://msdn.microsoft.com/library/azure/dn971527.aspx)使用鎖定 tooenforce FIFO 順序，最多允許 tooenqueue 一個交易與在大部分的允許 toodequeue 一次一筆交易。 相較之下，可靠的並行佇列會放寬 hello 排序條件約束可讓任何數字的並行交易 toointerleave 其 enqueue 和清除佇列作業。 最佳順序為提供，不過 hello 相對順序的可靠的並行佇列中的兩個值不可以保證。
 
 每當多個並行交易執行加入佇列或清除佇列時，可靠的並行佇列會提供比[可靠的佇列](https://msdn.microsoft.com/library/azure/dn971527.aspx)更高的輸送量和更低的延遲。
 
-ReliableConcurrentQueue 的範例使用情況為[訊息佇列](https://en.wikipedia.org/wiki/Message_queue)案例。 在此案例中，一個或多個訊息生產者會建立項目並加以新增至佇列，而一個或多個訊息取用者則會從佇列中提取訊息並加以處理。 多個產生者和取用者可以獨立運作，使用並行交易以處理佇列。
+範例使用案例 hello ReliableConcurrentQueue 是 hello[訊息佇列](https://en.wikipedia.org/wiki/Message_queue)案例。 在此案例中，一或多個訊息產生者建立和加入項目 toohello 佇列，和一或多個訊息取用者提取從 hello 佇列的訊息，並進行處理。 多個產生者和消費者可以獨立工作，使用並行的交易順序 tooprocess hello 佇列中。
 
 ## <a name="usage-guidelines"></a>使用方針
-* 佇列會預期佇列中的項目具有低保留期限。 也就是項目在佇列中不會長時間停留。
-* 佇列並不保證嚴格的 FIFO 順序。
-* 佇列不會閱讀它自己的寫入。 如果項目在交易內加入佇列，則同一個交易內的清除佇列者將看不到它。
-* 清除佇列不會彼此互相隔離。 如果已在交易 txnA 中將項目 A 清除佇列，則即使 txnA 不認可，並行交易 txnB 也看不到項目 A。  如果 txnA 中止，txnB 就可立即看到 A。
-* 可將 TryPeekAsync 行為加以實作，方法是使用 TryDequeueAsync，然後中止交易。 程式設計模式一節中可以找到這個範例。
-* 計數為非交易式。 它可用來了解佇列中元素的數目，但會以時間點表示且無法依賴。
-* 交易使用中時，不應在清除佇列的項目上執行昂貴的處理，以避免長時間執行交易可能會對系統造成的效能影響。
+* hello 佇列預期 hello hello 佇列中的項目具有較低的保留期間。 也就是 hello 項目不願意 hello 佇列中時間太長。
+* hello 佇列不保證有嚴格的 FIFO 順序。
+* hello 佇列不會讀取其本身的寫入。 如果項目是在交易內加入佇列，不會顯示 tooa dequeuer hello 內相同的交易。
+* 清除佇列不會彼此互相隔離。 如果項目*A*在交易中從佇列中清除*txnA*，即使*txnA*未認可，項目*A*並不會顯示 tooa 並行交易*txnB*。  如果*txnA*中止， *A*將變成可見太*txnB*立即。
+* *TryPeekAsync*行為可以透過使用實作*TryDequeueAsync* ，然後中止 hello 交易。 這個範例，請參閱 hello 程式設計模式 > 一節中。
+* 計數為非交易式。 它可以是使用的 tooget hello hello 佇列中的元素數目的了解代表的時間點，但無法依賴。
+* 昂貴處理 hello 從佇列中清除項目不應執行 hello 異動處於作用中時 tooavoid 長時間執行的交易可能會有 hello 系統上的效能造成影響。
 
 ## <a name="code-snippets"></a>程式碼片段
 讓我們看看幾個程式碼片段，和其預期的輸出。 本節中會忽略例外狀況處理。
@@ -66,7 +66,7 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-假設已順利完成工作，且沒有修改佇列的並行交易。 使用者可以預期佇列會以下列任何一個順序來包含項目︰
+假設 hello 工作已順利完成，而且會有沒有並行交易修改 hello 佇列。 hello 使用者可以在任何下列訂單的 hello 預期 hello 佇列 toocontain hello 項目：
 
 > 10, 20
 
@@ -95,11 +95,11 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-假設已順利完成工作、工作以平行方式執行，且沒有其他修改佇列的並行交易。 無法推斷佇列中的項目順序。 此程式碼片段中，項目會以下列 4 個之一出現！ 可能的排序。  佇列會嘗試以原始順序保留項目 (佇列)，但可能會因並行作業或錯誤而強制將它們重新排序。
+假設 hello 工作成功完成 hello 工作已執行，以平行方式，和已修改 hello 佇列沒有其他並行交易。 沒有推斷可 hello 順序 hello 佇列中的項目有關。 此程式碼片段，如 hello 項目可能會出現在任何 hello 4 ！ 可能的排序。  hello 佇列會嘗試 tookeep hello 項目順序 hello 原始 （佇列），但可能會強制的 tooreorder 它們到期 tooconcurrent 作業或錯誤。
 
 
 ### <a name="dequeueasync"></a>DequeueAsync
-以下是使用 TryDequeueAsync 的幾個程式碼片段，隨後是預期的輸出。 假設已將佇列中的下列項目填入佇列︰
+以下是幾個程式碼片段使用 TryDequeueAsync 後面接著 hello 預期輸出。 假設該 hello 佇列已經填入下列項目 hello 佇列中的 hello:
 > 10, 20, 30, 40, 50, 60
 
 - 案例 1︰單一清除佇列工作
@@ -115,7 +115,7 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-假設已順利完成工作，且沒有修改佇列的並行交易。 由於無法推斷佇列中的項目順序，任何三個項目都可能會以任何順序加以清除佇列。 佇列會嘗試以原始順序保留項目 (佇列)，但可能會因並行作業或錯誤而強制將它們重新排序。  
+假設 hello 工作已順利完成，而且會有沒有並行交易修改 hello 佇列。 關於 hello 順序的 hello hello 佇列中的項目成為沒有推斷，因為任何三個 hello 項目可能是佇列中清除，以任何順序。 hello 佇列會嘗試 tookeep hello 項目順序 hello 原始 （佇列），但可能會強制的 tooreorder 它們到期 tooconcurrent 作業或錯誤。  
 
 - 案例 2︰平行清除佇列工作
 
@@ -141,13 +141,13 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-假設已順利完成工作、工作以平行方式執行，且沒有其他修改佇列的並行交易。 由於無法推斷佇列中的項目順序，dequeue1 和 dequeue2 都會以任何順序包含任何兩個項目。
+假設 hello 工作成功完成 hello 工作已執行，以平行方式，和已修改 hello 佇列沒有其他並行交易。 關於 hello 順序的 hello hello 佇列中的項目成為沒有推斷，因為 hello 清單*dequeue1*和*dequeue2*將每個包含任何兩個項目，依任何順序。
 
-相同項目不會同時出現在兩份清單中。 因此，如果 dequeue1 包含 10、*30*，dequeue2 就會包含 *20*、*40*。
+相同的項目將的 hello*不*出現在這兩個清單中。 因此，如果 dequeue1 包含 10、*30*，dequeue2 就會包含 *20*、*40*。
 
 - 案例 3︰使用交易中止來清除佇列排序
 
-使用執行中的清除佇列將交易中止，會將項目放回佇列的前端。 無法保證將項目放回佇列前端的順序。 我們來看看下面的程式碼：
+中止的交易進行中，從佇列取出的將 hello 項目回復 hello 佇列的 hello 最上層節點。 不保證在其中 hello 項目會放回 hello 佇列 hello 開頭的 hello 順序。 讓我們看看下列程式碼的 hello:
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -155,25 +155,25 @@ using (var txn = this.StateManager.CreateTransaction())
     await this.Queue.TryDequeueAsync(txn, cancellationToken);
     await this.Queue.TryDequeueAsync(txn, cancellationToken);
 
-    // Abort the transaction
+    // Abort hello transaction
     await txn.AbortAsync();
 }
 ```
-假設已依下列順序將項目清除佇列︰
+假設 hello 項目已從佇列清除 hello 順序中：
 > 10, 20
 
-當我們將交易中止時，會依下列任何一個順序將項目新增回佇列的前端︰
+當我們中止 hello 交易時，hello 項目中要新增後 toohello head hello 佇列的任何下列訂單 hello:
 > 10, 20
 
 > 20, 10
 
-這也適用於交易未成功認可的所有情況。
+hello 也適用於所有情況下，其中 hello 交易未成功*已認可*。
 
 ## <a name="programming-patterns"></a>程式設計模式
 在本節中，我們來看看幾個可能有助於使用 ReliableConcurrentQueue 的程式設計模式。
 
 ### <a name="batch-dequeues"></a>批次清除佇列
-建議的程式設計模式是使取用者工作以批次方式清除佇列，而不是一次執行一個清除佇列。 使用者可以選擇節流處理每個批次或批次大小之間的延遲。 下列程式碼片段會示範此程式設計模型。  請注意，在此範例中，交易認可後即完成處理，因此如果在處理時發生錯誤，未處理的項目就會遺失而未經處理。  或者，可以在交易的範圍內完成處理，不過，這可能會對效能造成負面影響，而且需要處理已經處理的項目。
+建議的程式設計模式是針對 hello 取用者工作 toobatch 其佇列中清除，而不是執行一個清除佇列一次。 hello 使用者可以選擇每個批次或 hello 批次大小之間 toothrottle 延遲。 hello 下列程式碼片段示範這個程式設計模型。  請注意，在此範例中，hello 處理已完成之後 hello 交易被認可，, 因此如果錯誤處理 toooccur，hello 未處理的項目將會遺失而不需經過處理。  或者，可以完成 hello 處理 hello 交易在範圍內，不過這可能會對效能造成負面影響，而且需要已處理的 hello 項目處理。
 
 ```
 int batchSize = 5;
@@ -194,12 +194,12 @@ while(!cancellationToken.IsCancellationRequested)
 
             if (ret.HasValue)
             {
-                // If an item was dequeued, add to the buffer for processing
+                // If an item was dequeued, add toohello buffer for processing
                 processItems.Add(ret.Value);
             }
             else
             {
-                // else break the for loop
+                // else break hello for loop
                 break;
             }
         }
@@ -207,7 +207,7 @@ while(!cancellationToken.IsCancellationRequested)
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -219,7 +219,7 @@ while(!cancellationToken.IsCancellationRequested)
 ```
 
 ### <a name="best-effort-notification-based-processing"></a>以通知作為基礎的最佳處理
-另一個有趣的程式設計模式是使用計數 API。 在這裡，我們可以針對佇列實作以通知作為基礎的最佳處理。 佇列計數可以用來將加入佇列或清除佇列工作進行節流處理。  請注意，如同先前的範例，因為處理發生於交易外部，如果在處理期間發生錯誤，未處理的項目可能就會遺失。
+另一個有趣的程式設計模式會使用 hello 計數 API。 在這裡，我們可以實作最佳通知型處理 hello 佇列。 hello 佇列計數可以是使用的 toothrottle 的加入佇列或清除佇列工作。  請注意，如同 hello 先前的範例，由於 hello 處理 hello 交易之外，就會發生未處理的項目可能會遺失是否在處理期間發生錯誤。
 
 ```
 int threshold = 5;
@@ -231,11 +231,11 @@ while(!cancellationToken.IsCancellationRequested)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        // If the queue does not have the threshold number of items, delay the task and check again
+        // If hello queue does not have hello threshold number of items, delay hello task and check again
         await Task.Delay(TimeSpan.FromMilliseconds(delayMs), cancellationToken);
     }
 
-    // If there are approximately threshold number of items, try and process the queue
+    // If there are approximately threshold number of items, try and process hello queue
 
     // Buffer for dequeued items
     List<int> processItems = new List<int>();
@@ -250,7 +250,7 @@ while(!cancellationToken.IsCancellationRequested)
 
             if (ret.HasValue)
             {
-                // If an item was dequeued, add to the buffer for processing
+                // If an item was dequeued, add toohello buffer for processing
                 processItems.Add(ret.Value);
             }
         } while (processItems.Count < threshold && ret.HasValue);
@@ -258,7 +258,7 @@ while(!cancellationToken.IsCancellationRequested)
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -267,9 +267,9 @@ while(!cancellationToken.IsCancellationRequested)
 ```
 
 ### <a name="best-effort-drain"></a>盡可能清空
-由於資料結構的並行本質，無法保證可將佇列清空。  即使在佇列上沒有進行中的使用者作業，特定的 TryDequeueAsync 呼叫可能不會傳回先前已加入佇列並且受到認可的項目。  清除佇列最終保證可看到加入佇列的項目，不過，沒有超出訊號範圍通訊機制的獨立取用者，無法得知佇列已觸達穩定狀態，即使已將所有的產生者停止，且不允許任何新的加入佇列作業亦然。 因此，已盡可能清空作業，實作如下。
+由於 toohello hello 資料結構的並行處理的本質，無法保證 hello 佇列可清空。  它是可能的即使 hello 佇列上的沒有使用者作業進行中，特定呼叫 tooTryDequeueAsync 可能不會傳回一個項目先前已加入佇列，並被認可。  hello 加入佇列的項目太保證*最終*變成可見 toodequeue，不過沒有的頻外通訊機制，獨立的取用者不知道該 hello 佇列已達到穩定狀態，即使所有產生者已停止，並不允許任何新的佇列作業。 因此，hello 清空作業是最佳方式下實作。
 
-使用者應該將所有進一步的生產者和取用者工作停止，並在嘗試清空佇列之前，等待任何進行中的交易加以認可或中止。  如果使用者知道佇列中預期的項目數目，就可以設定通知，發出所有項目皆已清除佇列的訊號。
+hello 使用者應該停止所有進一步的生產者和取用者工作，並等候任何進行中的交易 toocommit 」 或 「 中止 」，然後再嘗試 toodrain hello 佇列。  Hello 使用者知道預期的 hello hello 佇列中的項目數目，如果它們可以表示所有項目已清除佇列的通知設定。
 
 ```
 int numItemsDequeued;
@@ -289,7 +289,7 @@ do
 
             if(ret.HasValue)
             {
-                // Buffer the dequeues
+                // Buffer hello dequeues
                 processItems.Add(ret.Value);
             }
         } while (ret.HasValue && processItems.Count < batchSize);
@@ -297,7 +297,7 @@ do
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -306,7 +306,7 @@ do
 ```
 
 ### <a name="peek"></a>預覽
-ReliableConcurrentQueue 不會提供 TryPeekAsync API。 使用者可以預覽語意，方法是使用 TryDequeueAsync 然後將交易中止。 在此範例中，僅在項目大於 10 時，才會處理清除佇列。
+ReliableConcurrentQueue 不提供 hello *TryPeekAsync*應用程式開發介面。 使用者可以取得 hello 查看語意*TryDequeueAsync* ，然後中止 hello 交易。 在此範例中，從佇列取出 hello 項目的值大於 1 時，才會處理*10*。
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -318,7 +318,7 @@ using (var txn = this.StateManager.CreateTransaction())
     {
         if (ret.Value > 10)
         {
-            // Process the item
+            // Process hello item
             Console.WriteLine("Value : " + ret.Value);
             valueProcessed = true;
         }
@@ -342,5 +342,5 @@ using (var txn = this.StateManager.CreateTransaction())
 * [備份與還原 Reliable Services (災害復原)](service-fabric-reliable-services-backup-restore.md)
 * [Reliable State Manager 設定](service-fabric-reliable-services-configuration.md)
 * [開始使用 Service Fabric Web API 服務](service-fabric-reliable-services-communication-webapi.md)
-* [Reliable Services 程式設計模型的進階用法](service-fabric-reliable-services-advanced-usage.md)
+* [Hello 可靠的服務程式設計模型的進階的用法](service-fabric-reliable-services-advanced-usage.md)
 * [可靠集合的開發人員參考資料](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)

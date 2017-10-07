@@ -1,5 +1,5 @@
 ---
-title: "Azure Machine Learning 文件 - 教學課程和 API 參考 | Microsoft Docs"
+title: "aaaAzure 機器學習文件-教學課程中，API 參考 |Microsoft 文件"
 description: "Machine Learning 的文件、影片和範例模型，專為那些在應用程式中使用預測性分析的資料科學家和開發人員所設計的雲端服務。"
 services: machine-learning
 author: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 241cf0904f1c410575017f586c65f41ee3efc753
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7307d83a6c8059e581a37910d3af5a66fc502d0b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="azure-machine-learning-documentation"></a>Azure Machine Learning 文件
 
-了解資料科學家和開發人員如何使用 Machine Learning 將預測性分析內嵌到應用程式中。 教學課程、影片和模型範例會示範如何建置和部署機器學習模型。
+了解資料科學家和開發人員使用機器學習 tooembed 預測分析應用程式。 教學課程、 影片和範例模型顯示您如何 toobuild 和部署的機器學習模型。
 
 <ul class="panelContent cardsFTitle">
     <li>

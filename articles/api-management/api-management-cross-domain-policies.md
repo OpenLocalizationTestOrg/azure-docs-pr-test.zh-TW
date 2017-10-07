@@ -1,6 +1,6 @@
 ---
-title: "Azure API 管理跨網域原則 | Microsoft Docs"
-description: "了解可在 Azure API 管理中使用的跨網域原則。"
+title: "aaaAzure API 管理跨網域原則 |Microsoft 文件"
+description: "深入了解 hello 跨網域原則可在 Azure API 管理中使用。"
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: ddca9e35b44a21294abbb5eaa4418bcdb85494cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dd5ebfd65b92ebd0c1f589a2bac669a3928d40b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-cross-domain-policies"></a>API 管理跨網域原則
-本主題提供下列 API 管理原則的參考。 如需有關新增和設定原則的資訊，請參閱 [API 管理中的原則](http://go.microsoft.com/fwlink/?LinkID=398186)。  
+本主題提供下列 API 管理原則的 hello 的參考。 如需有關新增和設定原則的資訊，請參閱 [API 管理中的原則](http://go.microsoft.com/fwlink/?LinkID=398186)。  
   
 ##  <a name="CrossDomainPolicies"></a>跨網域原則  
   
--   [允許跨網域呼叫](api-management-cross-domain-policies.md#AllowCrossDomainCalls) - 將 API 設為可供 Adobe Flash 和 Microsoft Silverlight 瀏覽器型用戶端存取。  
+-   [允許跨網域呼叫](api-management-cross-domain-policies.md#AllowCrossDomainCalls)-從 Adobe Flash 和 Microsoft Silverlight 的瀏覽器型用戶端，讓 hello API 存取。  
   
--   [CORS](api-management-cross-domain-policies.md#CORS) - 將跨原始來源資源分享 (CORS) 支援加入至操作或 API，以允許來自瀏覽器型用戶端的跨網域呼叫。  
+-   [CORS](api-management-cross-domain-policies.md#CORS) -將跨原始資源共用 (CORS) 支援 tooan 作業或 API tooallow 跨網域呼叫從瀏覽器型用戶端。  
   
--   [JSONP](api-management-cross-domain-policies.md#JSONP) - 將 JSON 與補充的 (JSONP) 支援加入至操作或 API，以允許來自 JavaScript 瀏覽器型用戶端的跨網域呼叫。  
+-   [JSONP](api-management-cross-domain-policies.md#JSONP) -將 JSON padding (JSONP) 支援 tooan 作業，或從 JavaScript 瀏覽器為基礎的用戶端的應用程式開發介面 tooallow 跨網域呼叫。  
   
 ##  <a name="AllowCrossDomainCalls"></a>允許跨網域呼叫  
- 使用 `cross-domain` 原則以將 API 設為可供 Adobe Flash 和 Microsoft Silverlight 瀏覽器型用戶端存取。  
+ 使用 hello`cross-domain`原則 toomake hello 從 Adobe Flash 和 Microsoft Silverlight 的瀏覽器型用戶端可存取的 API。  
   
 ### <a name="policy-statement"></a>原則陳述式  
   
 ```xml  
 <cross-domain>  
-   <!-Policy configuration is in the Adobe cross-domain policy file format,   
+   <!-Policy configuration is in hello Adobe cross-domain policy file format,   
       see http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html-->  
 </cross-domain>  
 ```  
@@ -57,19 +57,19 @@ ms.lasthandoff: 07/11/2017
   
 |名稱|說明|必要|  
 |----------|-----------------|--------------|  
-|cross-domain|根元素。 子元素必須符合 [Adobe 跨網域原則檔案規格](http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html)。|是|  
+|cross-domain|根元素。 子元素必須符合 toohello [Adobe 跨網域原則檔案規格](http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html)。|是|  
   
 ### <a name="usage"></a>使用量  
- 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+ 此原則可用於下列原則 hello[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
 -   **原則區段︰**輸入  
   
 -   **原則範圍︰**全域  
   
 ##  <a name="CORS"></a>CORS  
- `cors` 原則會將跨原始來源資源分享 (CORS) 支援加入至操作或 API，以允許來自瀏覽器型用戶端的跨網域呼叫。  
+ hello`cors`原則新增跨原始資源共用 (CORS) 支援 tooan 作業或 API tooallow 跨網域呼叫從瀏覽器型用戶端。  
   
- CORS 可讓瀏覽器和伺服器互動，以決定是否允許特定的跨原始來源要求 (例如，從網頁上的 JavaScript 對其他網域提出的 XMLHttpRequests 呼叫)。 這比只允許相同原始來源的要求更有彈性，也比允許所有跨原始來源的要求更安全。  
+ CORS 允許瀏覽器和伺服器 toointeract，並判斷 tooallow 特定的跨原始要求 （亦即 XMLHttpRequests 呼叫從網頁 tooother 網域上的 JavaScript 進行）。 這比只允許相同原始來源的要求更有彈性，也比允許所有跨原始來源的要求更安全。  
   
 ### <a name="policy-statement"></a>原則陳述式  
   
@@ -91,7 +91,7 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ### <a name="example"></a>範例  
- 此範例示範如何支援事前要求，例如具有自訂標頭或 GET 和 POST 以外方法的要求。 若要支援自訂標頭和其他 HTTP 動詞命令，請使用 `allowed-methods` 和 `allowed-headers` 區段，如下列範例所示。  
+ 此範例示範如何 toosupport 事前要求，例如含有自訂標頭或 GET 和 POST 以外的方法。 toosupport 自訂標頭和其他 HTTP 動詞命令，使用 hello`allowed-methods`和`allowed-headers`區段 hello 下列範例所示。  
   
 ```xml  
 <cors allow-credentials="true">  
@@ -128,30 +128,30 @@ ms.lasthandoff: 07/11/2017
 |名稱|說明|必要|預設值|  
 |----------|-----------------|--------------|-------------|  
 |cors|根元素。|是|N/A|  
-|allowed-origins|包含可說明跨網域要求之允許來源的 `origin` 元素。 `allowed-origins` 可包含指定了 `*` 以允許任何來源的單一 `origin` 元素，或一或多個包含 URI 的 `origin` 元素。|是|N/A|  
-|來源|值可以是 `*` 以允許所有來源，或是 URI 以指定單一來源。 URI 必須包含配置、主機和連接埠。|是|如果 URI 中省略了連接埠，則會將連接埠 80 用於 HTTP，將連接埠 443 用於 HTTPS。|  
-|allowed-methods|如果允許 GET 或 POST 以外的方法，則需要此元素。 包含指定了所支援 HTTP 動詞命令的 `method` 元素。|否|如果這個區段不存在，則會支援 GET 和 POST。|  
-|method|指定 HTTP 動詞命令。|如果 `allowed-methods` 區段存在，則需要至少一個 `method` 元素。|N/A|  
-|allowed-headers|此元素包含指定了可包含在要求中之標頭名稱的 `header` 元素。|否|N/A|  
-|expose-headers|此元素包含指定了可供用戶端存取之標頭名稱的 `header` 元素。|否|N/A|  
-|頁首|指定標頭名稱。|如果 `allowed-headers` 或 `expose-headers` 區段存在，則該區段中需要至少一個 `header` 元素。|N/A|  
+|allowed-origins|包含`origin`描述 hello 允許出處跨網域要求的項目。 `allowed-origins`可以包含單一`origin`項目，指定`*`tooallow 任何來源，或者一個或多個`origin`包含 URI 的項目。|是|N/A|  
+|來源|hello 值可以是`*`tooallow 所有來源或指定單一來源的 URI。 hello URI 必須包含配置、 主機和連接埠。|是|如果 URI 中省略 hello 連接埠，則連接埠 80 用於 HTTP 和 HTTPS 使用連接埠 443。|  
+|allowed-methods|如果允許 GET 或 POST 以外的方法，則需要此元素。 包含`method`指定 hello 支援 HTTP 指令動詞的項目。|否|如果這個區段不存在，則會支援 GET 和 POST。|  
+|method|指定 HTTP 動詞命令。|至少一個`method`項目是必要的如果 hello`allowed-methods`區段已存在。|N/A|  
+|allowed-headers|這個項目包含`header`元素，指定可以在 hello 要求中包含的 hello 標頭的名稱。|否|N/A|  
+|expose-headers|這個項目包含`header`元素，指定可供存取 hello 用戶端 hello 標頭的名稱。|否|N/A|  
+|頁首|指定標頭名稱。|至少一個`header`項目所需要的是`allowed-headers`或`expose-headers`如果 hello 區段存在。|N/A|  
   
 ### <a name="attributes"></a>屬性  
   
 |名稱|說明|必要|預設值|  
 |----------|-----------------|--------------|-------------|  
-|allow-credentials|事前回應中的 `Access-Control-Allow-Credentials` 標頭會設定為這個屬性的值，並影響用戶端是否能夠在跨網域要求中提交認證。|否|false|  
-|preflight-result-max-age|事前回應中的 `Access-Control-Max-Age` 標頭會設定為這個屬性的值，並影響使用者代理程式是否能夠快取事前回應。|否|0|  
+|allow-credentials|hello `Access-Control-Allow-Credentials` hello 預檢回應的標頭會設定 toohello 值，這個屬性，並影響中跨網域要求的用戶端 hello 能力 toosubmit 認證。|否|false|  
+|preflight-result-max-age|hello `Access-Control-Max-Age` hello 預檢回應的標頭會設定 toohello 值，這個屬性，並會影響 hello 使用者代理程式的能力 toocache 事前回應。|否|0|  
   
 ### <a name="usage"></a>使用量  
- 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+ 此原則可用於下列原則 hello[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
 -   **原則區段︰**輸入  
   
 -   **原則範圍︰**API、作業  
   
 ##  <a name="JSONP"></a>JSONP  
- `jsonp` 原則會將 JSON 與補充的 (JSONP) 支援加入至作業或 API，以允許來自 JavaScript 瀏覽器型用戶端的跨網域呼叫。 JSONP 是 JavaScript 程式中使用的方法，可從位於不同網域的伺服器要求資料。 JSONP 會略過大多數網頁瀏覽器中規定必須在相同網域內才能存取網頁的限制。  
+ hello`jsonp`原則新增 JSON 搭配填補 (JSONP) 支援 tooan 操作或從 JavaScript 瀏覽器為基礎的用戶端應用程式開發介面 tooallow 跨網域呼叫。 JSONP 是 JavaScript 程式 toorequest 資料位於不同的網域中，從伺服器中使用的方法。 JSONP 不強制執行大部分的網頁瀏覽器位置存取 tooweb 網頁必須在 hello hello 限制相同的網域。  
   
 ### <a name="policy-statement"></a>原則陳述式  
   
@@ -165,9 +165,9 @@ ms.lasthandoff: 07/11/2017
 <jsonp callback-parameter-name="cb" />  
 ```  
   
- 如果呼叫方法時未指定回呼參數 ?cb=XXX，則會傳回一般 JSON (沒有函式呼叫包裝函式)。  
+ 如果您呼叫 hello 方法沒有 hello 回呼參數？ cb = XXX，則會傳回單純 JSON （無函數呼叫包裝函式）。  
   
- 如果加上回呼參數 `?cb=XXX`，則會傳回 JSONP 結果，在回呼函數旁邊包裝原始的 JSON 結果，例如 `XYZ('<json result goes here>');`  
+ 如果您將加入 hello 回呼參數`?cb=XXX`則會傳回 JSONP 結果，包裝 hello 原始 JSON 結果周圍像 hello 回呼函式`XYZ('<json result goes here>');`  
   
 ### <a name="elements"></a>元素  
   
@@ -179,10 +179,10 @@ ms.lasthandoff: 07/11/2017
   
 |名稱|說明|必要|預設值|  
 |----------|-----------------|--------------|-------------|  
-|callback-parameter-name|跨網域 JavaScript 函數呼叫，開頭加上函數所在的完整網域名稱。|是|N/A|  
+|callback-parameter-name|hello 跨網域 JavaScript 函式呼叫前面加上 hello hello 函式所在位置的完整的網域名稱。|是|N/A|  
   
 ### <a name="usage"></a>使用量  
- 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+ 此原則可用於下列原則 hello[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
 -   **原則區段︰**輸出  
   

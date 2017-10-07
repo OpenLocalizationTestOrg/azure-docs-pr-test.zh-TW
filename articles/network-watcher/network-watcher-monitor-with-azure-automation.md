@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 網路監看員疑難排解來監視 VPN 閘道 | Microsoft Docs"
+title: "aaaMonitor VPN 閘道與 Azure 網路監看員疑難排解 |Microsoft 文件"
 description: "本文說明如何使用 Azure 自動化和網路監看員診斷內部部署連線"
 services: network-watcher
 documentationcenter: na
@@ -13,81 +13,81 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 55ec52dd0d94a0347cc67a8785b89611da955111
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a607d0c862ea1be63c687717f0c5dc137db58a43
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-vpn-gateways-with-network-watcher-troubleshooting"></a>使用網路監看員疑難排解來監視 VPN 閘道
 
-深入了解網路效能對於為客戶提供可靠的服務相當重要。 因此務必快速偵測網路中斷狀況，並採取更正動作以降低中斷條件。 Azure 自動化可讓您實作，並透過 runbook 以程式設計方式執行工作。 使用 Azure 自動化會建立一個完美的配方，讓您執行連續且主動的網路監視和警示。
+取得對網路效能的深入分析是重大 tooprovide 可靠服務 toocustomers。 它是關鍵 toodetect 網路中斷狀況快速而採取矯正措施 toomitigate hello 中斷情況。 Azure 自動化可讓您 tooimplement，並透過 runbook，以程式設計的方式執行工作。 使用 Azure 自動化會建立一個完美的配方，讓您執行連續且主動的網路監視和警示。
 
 ## <a name="scenario"></a>案例
 
-下圖中的案例是多層式應用程式，並具有使用 VPN 閘道與通道建立的內部部署連線。 確保 VPN 閘道已啟動且執行對於應用程式效能很重要。
+hello 下列映像中的 hello 案例位於多層式應用程式中，以建立使用 VPN 閘道和通道的內部部署連線。 確保的 hello VPN 閘道已啟動及執行 」 是重大 toohello 應用程式效能。
 
-Runbook 會使用資源疑難排解 API 檢查連線狀態，利用指令碼檢查 VPN 通道連線狀態來建立。 如果狀態不是狀況良好，會傳送電子郵件觸發程序給系統管理員。
+Hello VPN 通道，使用 hello 資源疑難排解 API toocheck 的連線通道狀態的連接狀態的指令碼 toocheck 建立 runbook。 Tooadministrators 如果 hello 狀態狀況不良，傳送電子郵件觸發程序。
 
 ![案例範例][scenario]
 
 此案例將會：
 
-- 建立 runbook 呼叫 `Start-AzureRmNetworkWatcherResourceTroubleshooting` cmdlet 來疑難排解連線狀態
-- 將排程連結至 runbook
+- 建立 runbook 呼叫 hello `Start-AzureRmNetworkWatcherResourceTroubleshooting` cmdlet tootroubleshoot 連線狀態
+- 排程 toohello runbook 連結
 
 ## <a name="before-you-begin"></a>開始之前
 
-開始進行本案例之前，您必須具備下列條件：
+在開始這個案例之前，您必須擁有 hello 下列先決條件：
 
-- 在 Azure 中使用 Azure 自動化帳戶。 確認自動化帳戶有最新模組，並且也有 AzureRM.Network 模組。 如果您需要將 AzureRM.Network 模組新增至自動化帳戶，可從模組庫取得。
+- 在 Azure 中使用 Azure 自動化帳戶。 請確認 hello 自動化帳戶有 hello 最新的模組，然後也有 hello AzureRM.Network 模組。 hello AzureRM.Network 模組位於 hello 模組資源庫如果您需要 tooadd 它 tooyour 自動化帳戶。
 - 您必須在 Azure 自動化中設定一組認證。 在 [Azure 自動化安全性](../automation/automation-security-overview.md)深入了解
 - 有效的 SMTP 伺服器 (Office 365、您的內部部署電子郵件或其他) 和 Azure 自動化中定義的認證
 - 在 Azure 中已設定的虛擬網路閘道。
-- 具有現有容器的儲存體帳戶，用於儲存記錄。
+- 現有的容器 toostore hello 的現有儲存體帳戶記錄中。
 
 > [!NOTE]
-> 上圖所示的基礎結構供說明用途，並不會使用本文中所包含的步驟建立。
+> hello 前面影像所示的 hello 基礎結構供說明用途並不會建立 hello 本文中所包含的步驟。
 
-### <a name="create-the-runbook"></a>建立 runbook
+### <a name="create-hello-runbook"></a>建立 hello runbook
 
-設定範例的第一個步驟是建立 runbook。 這個範例會使用「執行身分」帳戶。 若要深入了解執行身分帳戶，請造訪[使用 Azure 執行身分帳戶驗證 Runbook](../automation/automation-sec-configure-azure-runas-account.md)
+hello 第一個步驟 tooconfiguring hello 範例是 toocreate hello runbook。 這個範例會使用「執行身分」帳戶。 toolearn 需執行身分帳戶，請瀏覽[驗證 Runbook 與 Azure 執行身分帳戶](../automation/automation-sec-configure-azure-runas-account.md)
 
 ### <a name="step-1"></a>步驟 1
 
-在 [Azure 入口網站](https://portal.azure.com)中瀏覽至 Azure 自動化中並按一下 **Runbook**
+瀏覽 tooAzure 自動化在 hello [Azure 入口網站](https://portal.azure.com)按一下**Runbook**
 
 ![自動化帳戶概觀][1]
 
 ### <a name="step-2"></a>步驟 2
 
-按一下 [新增 runbook] 來啟動 runbook 的建立程序。
+按一下**新增 runbook** toostart hello runbook 的 hello 建立程序。
 
 ![runbook 刀鋒視窗][2]
 
 ### <a name="step-3"></a>步驟 3
 
-在 [快速建立] 下，按一下 [建立新的 runbook] 來建立 runbook。
+在下**快速建立**，按一下 **建立新的 runbook** toocreate hello runbook。
 
 ![新增 runbook 刀鋒視窗][3]
 
 ### <a name="step-4"></a>步驟 4
 
-在此步驟中，我們為 runbook 命名，在範例中它稱為 **Get-VPNGatewayStatus**。 為 runbook 提供描述性的名稱很重要，且建議以遵循標準 PowerShell 命名標準來命名。 此範例中的 runbook 類型是 **PowerShell**，其他選項包括圖形、PowerShell 工作流程和圖形化的 PowerShell 工作流程。
+在此步驟中，我們為 hello runbook 的名稱，在 hello 範例中呼叫它**Get VPNGatewayStatus**。 它是重要的 toogive hello runbook 的描述性的名稱，並建議以遵循標準 PowerShell 命名標準的名稱。 此範例中的 hello runbook 類型為**PowerShell**，hello 其他選項包括圖形，PowerShell 工作流程，以及圖形化 PowerShell 工作流程。
 
 ![runbook 刀鋒視窗][4]
 
 ### <a name="step-5"></a>步驟 5
 
-runbook 會在此步驟中建立，下列程式碼範例會提供範例所需的所有程式碼。 在程式碼中包含\<值\>的項目必須換成您訂用帳戶中的值。
+在此步驟中 hello 建立 runbook、 hello 下列程式碼範例提供所有 hello hello 範例所需的程式碼。 hello hello 程式碼中包含的項目\<值\>需要 toobe hello 從您的訂用帳戶的值取代。
 
-按一下 [儲存] 使用下列程式碼
+使用 hello 下列程式碼為按一下**儲存**
 
 ```PowerShell
-# Set these variables to the proper values for your environment
+# Set these variables toohello proper values for your environment
 $o365AutomationCredential = "<Office 365 account>"
 $fromEmail = "<from email address>"
-$toEmail = "<to email address>"
+$toEmail = "<tooemail address>"
 $smtpServer = "<smtp.office365.com>"
 $smtpPort = 587
 $runAsConnectionName = "<AzureRunAsConnection>"
@@ -102,16 +102,16 @@ $storageAccountContainer = "<container name>"
 # Get credentials for Office 365 account
 $cred = Get-AutomationPSCredential -Name $o365AutomationCredential
 
-# Get the connection "AzureRunAsConnection "
+# Get hello connection "AzureRunAsConnection "
 $servicePrincipalConnection=Get-AutomationConnection -Name $runAsConnectionName
 
-"Logging in to Azure..."
+"Logging in tooAzure..."
 Add-AzureRmAccount `
     -ServicePrincipal `
     -TenantId $servicePrincipalConnection.TenantId `
     -ApplicationId $servicePrincipalConnection.ApplicationId `
     -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint
-"Setting context to a specific subscription"
+"Setting context tooa specific subscription"
 Set-AzureRmContext -SubscriptionId $subscriptionId
 
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq $region }
@@ -123,11 +123,11 @@ $result = Start-AzureRmNetworkWatcherResourceTroubleshooting -NetworkWatcher $ne
 
 if($result.code -ne "Healthy")
     {
-        $body = "Connection for $($connection.name) is: $($result.code) `n$($result.results[0].summary) `nView the logs at $($storagePath) to learn more."
+        $body = "Connection for $($connection.name) is: $($result.code) `n$($result.results[0].summary) `nView hello logs at $($storagePath) toolearn more."
         Write-Output $body
         $subject = "$($connection.name) Status"
         Send-MailMessage `
-        -To $toEmail `
+        -too$toEmail `
         -Subject $subject `
         -Body $body `
         -UseSsl `
@@ -145,47 +145,47 @@ else
 
 ### <a name="step-6"></a>步驟 6
 
-儲存 runbook 後，排程必須連結到它以自動啟動 runbook。 若要啟動處理程序，請按一下 [排程]。
+排程 hello runbook 儲存之後，必須是連結的 hello runbook tooit tooautomate hello 開頭。 toostart hello 程序中，按一下 **排程**。
 
 ![步驟 6][6]
 
-## <a name="link-a-schedule-to-the-runbook"></a>將排程連結至 runbook
+## <a name="link-a-schedule-toohello-runbook"></a>排程 toohello runbook 連結
 
-您必須建立新的排程。 按一下 [將排程連結至您的 runbook]。
+您必須建立新的排程。 按一下**排程 tooyour runbook 連結**。
 
 ![步驟 7][7]
 
 ### <a name="step-1"></a>步驟 1
 
-在 [排程] 刀鋒視窗中，按一下 [建立新的排程]
+在 hello**排程**刀鋒視窗中，按一下 **建立新的排程**
 
 ![步驟 8][8]
 
 ### <a name="step-2"></a>步驟 2
 
-在 [新增排程] 刀鋒視窗中填寫排程資訊。 下列清單中，是可以設定的值︰
+在 hello**新排程**刀鋒視窗填滿 hello 排程資訊。 您可以將的 hello 值為 hello 下列清單中：
 
-- **名稱** - 排程的易記名稱。
-- **說明** - 排程的說明。
-- **啟動** - 這個值是組成排程所觸發之時間的日期、時間和時區的組合。
-- **循環** - 這個值會決定排程重複。  有效值為 [一次] 或 [重複]。
-- **重複頻率** - 小時、天、週或月的排程循環間隔。
-- **設定到期日** - 值會決定排程是否應過期。 可以設定為 [是] 或 [否]。 如果選擇 [是]，則會提供有效的日期和時間。
+- **名稱**-hello hello 排程的好記的名稱。
+- **描述**-hello 排程的描述。
+- **啟動**-這個值是日期、 時間和時區 hello 時間 hello 排程觸發程序所構成的組合。
+- **循環**-這個值會決定 hello 排程重複。  有效值為 [一次] 或 [重複]。
+- **循環每**-小時、 天、 週或月中的 hello 排程 hello 循環間隔。
+- **設定到期日**-hello 值會決定 hello 排程是否應過期。 您可以將太**是**或**否**。 有效的日期和時間是 toobe 提供如果選擇 [是]。
 
 > [!NOTE]
-> 如果您需要一個 runbook 的執行頻率超過一小時，必須在不同的時間間隔建立多個排程 (也就是在每小時後 15、 30、45 分鐘)
+> 如果您需要 toohave 頻率超過每個小時以上執行 runbook 時，必須在不同的時間間隔 （也就是 15、 30-45 分鐘內，在 hello 小時後） 建立多個排程
 
 ![步驟 9][9]
 
 ### <a name="step-3"></a>步驟 3
 
-按一下 [儲存] 以將排程儲存至 runbook。
+按一下 儲存 toosave hello 排程 toohello runbook。
 
 ![步驟 10][10]
 
 ## <a name="next-steps"></a>後續步驟
 
-現在您已了解如何將網路監看員疑難排解與 Azure 自動化整合，請造訪[使用 Azure 網路監看員建立觸發封包擷取的警示](network-watcher-alert-triggered-packet-capture.md)，了解如何在 VM 警示上觸發封包擷取。
+既然您已了解如何 toointegrate 網路監看員疑難排解 Azure 自動化中，以了解如何 tootrigger 擷取封包 VM 警示造訪[與 Azure 網路監看員建立警示觸發的封包擷取](network-watcher-alert-triggered-packet-capture.md).
 
 <!-- images -->
 [scenario]: ./media/network-watcher-monitor-with-azure-automation/scenario.png

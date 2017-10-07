@@ -1,6 +1,6 @@
 ---
-title: "將 Android WebView 與原生 Mobile Engagement Andoird SDK 橋接"
-description: "說明如何在執行 Javascript 的 WebView 與原生的 Mobile Engagement Android SDK 之間建立橋接器"
+title: "aaaBridge Android WebView 與原生 Mobile Engagement Android SDK"
+description: "描述如何 toocreate WebView 之間的橋樑執行 Javascript 以及 hello 原生 Mobile Engagement Android SDK"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: f4fc7b3c81747ec80974a99084eeb1acc311f11f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a7a09bcc156490fe69ad29a67809745dcfc22da6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="bridge-android-webview-with-native-mobile-engagement-android-sdk"></a>將 Android WebView 與原生 Mobile Engagement Andoird SDK 橋接
 > [!div class="op_single_selector"]
@@ -27,9 +27,9 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-某些行動應用程式設計為混合式應用程式，其中應用程式本身使用原生 Android 開發方式開發，但部份或甚至所有的畫面是在 Android WebView 中轉譯。 您仍然可以在這類應用程式中使用 Mobile Engagement Android SDK，而本教學課程將說明做法。 下列的範例程式碼是以 [這裡](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript)的 Android 文件為基礎。 它說明此記載的方法如何用於實作同樣的 Mobile Engagement Android SDK 常用方法，例如混合式應用程式的 Webview 同時可以初始化要求以追蹤事件、工作、錯誤、應用程式資訊，並同時透過我們的 Android SDK 傳遞它們。 
+某些行動裝置應用程式被設計為混合式應用程式本身 hello 應用程式開發時使用原生 Android 開發，但是部分或甚至全部 hello 螢幕 Android 的網頁檢視中轉譯。 您仍然可以在這類應用程式內使用 Mobile Engagement Android SDK，並在本教學課程說明如何 toogo 如何進行此作業。 下列的 hello 範例程式碼根據 hello Android 文件[這裡](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript)。 它會描述如何記錄，此方法無法用於 tooimplement hello 相同，對於 Mobile Engagement Android SDK 的常用方法，從混合式應用程式的網頁檢視也可以起始要求 tootrack 事件、 工作、 錯誤、 應用程式資訊時使用它們透過管線傳送我們的 Android SDK。 
 
-1. 首先，您必須確定您已經完成我們的 [快速入門教學課程](mobile-engagement-android-get-started.md) 以在您的混合式應用程式中整合 Mobile Engagement Android SDK。 這麼做之後，您的 `OnCreate` 方法會看起來如下。  
+1. 首先，您必須已經完成的 tooensure 我們[快速入門教學課程](mobile-engagement-android-get-started.md)toointegrate hello Mobile Engagement Android SDK 混合式應用程式中的。 一旦您這樣做，請您`OnCreate`方法看起來像下列 hello。  
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ ms.lasthandoff: 07/11/2017
             engagementConfiguration.setConnectionString("<Mobile Engagement Conn String>");
             EngagementAgent.getInstance(this).init(engagementConfiguration);
         }
-2. 現在請確定您的混合式應用程式上有使用 WebView 的畫面。 它的程式碼看起來會如下，我們會在您畫面中 `onCreate` 方法的 WebView 中載入本機 HTML 檔案 **Sample.html**。 
+2. 現在請確定您的混合式應用程式上有使用 WebView 的畫面。 hello 的程式碼，將類似 toohello 以下我們會在此載入本機的 HTML 檔**Sample.html**在 hello Webview 中 hello`onCreate`螢幕的方法。 
    
         private void SetWebView() {
             WebView myWebView = (WebView) findViewById(R.id.webview);
@@ -52,7 +52,7 @@ ms.lasthandoff: 07/11/2017
             ...
             SetWebView();
         }
-3. 現在建立名為 **WebAppInterface** 的橋接器檔案，它會利用 [Android 文件](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript)中描述的 `@JavascriptInterface` 方法，透過一些常用的 Mobile Engagement Android SDK 方法來建立包裝函式：
+3. 現在，建立名為的橋接器檔案**WebAppInterface**的包裝函式會透過建立一些經常使用 Mobile Engagement Android SDK 方法使用 hello `@JavascriptInterface` hello 中所述的方法[Android 文件](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript):
    
         import android.content.Context;
         import android.os.Bundle;
@@ -67,7 +67,7 @@ ms.lasthandoff: 07/11/2017
         public class WebAppInterface {
             Context mContext;
    
-            /** Instantiate the interface and set the context */
+            /** Instantiate hello interface and set hello context */
             WebAppInterface(Context c) {
                 mContext = c;
             }
@@ -110,7 +110,7 @@ ms.lasthandoff: 07/11/2017
                 return extras;
             }
         }  
-4. 當我們建立了上述的橋接器檔案後，必須確定它與我們的 WebView 相關聯。 為了達成此目的，您必須編輯 `SetWebview` 方法，使它看起來如下：
+4. 當我們建立 hello 上方橋接器檔之後時，我們需要 tooensure 是我們 Webview 相關聯。 此 toohappen，您需要 tooedit 您`SetWebview`方法，使其看起來像下列 hello:
    
         private void SetWebView() {
             WebView myWebView = (WebView) findViewById(R.id.webview);
@@ -119,8 +119,8 @@ ms.lasthandoff: 07/11/2017
             webSettings.setJavaScriptEnabled(true);
             myWebView.addJavascriptInterface(new WebAppInterface(this), "EngagementJs");
         }
-5. 在上述的程式碼片段中，我們呼叫 `addJavascriptInterface` 以將我們的橋接類別與 WebView 關聯，並同時建立名為 **EngagementJs** 的控制代碼，以從橋接器檔案呼叫方法。 
-6. 現在，在您專案中名為 **assets** 的資料夾內建立名為 **Sample.html** 的下列檔案，它會載入到 WebView 中，我們也將會在其中從橋接器檔案呼叫方法。
+5. 上述程式碼片段的 hello，稱為`addJavascriptInterface`tooassociate 我們橋接器我們 Webview 類別，也可以建立控制代碼呼叫**EngagementJs** toocall hello 方法從 hello 橋接器檔案。 
+6. 現在，建立下列檔名的 hello **Sample.html**在資料夾中的專案中呼叫**資產**hello Webview 到載入的我們會在其中呼叫 hello 橋接器檔從 hello 方法。
    
         <!doctype html>
         <html>
@@ -144,7 +144,7 @@ ms.lasthandoff: 07/11/2017
                         if(input)
                         {
                             var value = input.value;
-                            // Example of how extras info can be passed with the Engagement logs
+                            // Example of how extras info can be passed with hello Engagement logs
                             var extras = '{"CustomerId":"MS290011"}';
    
                             if(value && value.length > 0)
@@ -197,16 +197,16 @@ ms.lasthandoff: 07/11/2017
                 </div>
             </body>
         </html>
-7. 請注意有關上述 HTML 檔案的重點：
+7. 請注意 hello 下列點有關上述的 hello HTML 檔案：
    
-   * 它包含一組輸入方塊，您可以在當中提供資料，用來做為事件、工作、錯誤，應用程式資訊的名稱。 當您按一下它旁邊的按鈕，便會向 Javascript 進行呼叫，這通常會從橋接器檔案中呼叫方法，以將此呼叫傳遞到 Mobile Engagement Android SDK。 
-   * 我們將一些額外的資訊標記到事件、工作，甚至是錯誤，來示範這是如何完成的。 此額外資訊會以 JSON 字串傳送，它 (如果您查看 `WebAppInterface` 檔案) 可被解析並放入 Android `Bundle` 中，並隨傳送的事件、工作、錯誤傳遞。 
-   * Mobile Engagement 工作會以您在輸入方塊中指定的名稱開始工作，執行 10 秒鐘之後關閉。 
-   * Mobile Engagement 應用程式資訊或標記會以 'customer_name' 傳遞作為靜態索引鍵，且您在輸入方塊輸入的值會作為此標記的值。 
-8. 執行應用程式，然後您會看到下列畫面。 現在為測試事件提供一些名稱，如下所示，然後按一下它下方的 [傳送]  。 
+   * 它包含一組的輸入方塊，您可以在其中提供資料 toobe 做為事件、 工作、 錯誤、 應用程式資訊的名稱。 當您按一下 hello 按鈕的下一個 tooit 時，進行呼叫，toohello Javascript 最後呼叫 hello 方法從 hello 橋接器檔案 toopass 此呼叫 toohello Mobile Engagement Android SDK。 
+   * 我們會標記上一些額外的靜態資訊 toohello 事件、 工作以及甚至錯誤 toodemonstrate 如何這無法完成。 此額外資訊則會傳送 JSON 字串，若您查看 hello`WebAppInterface`檔案，會剖析並放在 Android`Bundle`並傳送錯誤事件，工作，以及傳遞。 
+   * Mobile Engagement 工作會開始使用您指定在 hello 輸入方塊中，執行 10 秒，並關閉 hello 名稱。 
+   * Mobile Engagement 應用程式資訊或標籤與一起傳遞 'customer_name' hello 靜態金鑰以及 hello 值中輸入的 hello 輸入 hello 值為 hello 標記。 
+8. 執行的 hello 應用程式，您會看到下列 hello。 現在提供一些類似下列的 hello 測試事件的名稱，然後按一下 **傳送**其下。 
    
     ![][1]
-9. 現在，如果您移至應用程式的 [監視] 索引標籤，並查看 [事件] -> [詳細資料] 底下，您會看到此事件與我們傳送的靜態應用程式資訊一起顯示。 
+9. 現在，如果您移 toohello**監視器**] 索引標籤的 [應用程式，並查看**事件詳細資料]-> [**，您會看到顯示以及 hello 靜態應用程式的資訊，我們會傳送此事件。 
    
    ![][2]
 

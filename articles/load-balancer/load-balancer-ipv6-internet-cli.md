@@ -1,6 +1,6 @@
 ---
-title: "建立配置有 IPv6 的網際網路對向負載平衡器 - Azure CLI | Microsoft Docs"
-description: "了解如何使用 Azure CLI 在 Azure Resource Manager 中建立配置有 IPv6 的網際網路面向負載平衡器"
+title: "IPv6-Azure CLI aaaCreate 網際網路對向負載平衡器 |Microsoft 文件"
+description: "了解如何 toocreate 網際網路對向負載平衡器 IPv6 的 Azure 資源管理員使用中的 hello Azure CLI"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,55 +15,55 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: efb4771800c42df544c3cc37d1d164045fdcaf3e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7ff75ac90d74a74e3d0c27672b36fbd955a086a3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-internet-facing-load-balancer-with-ipv6-in-azure-resource-manager-using-the-azure-cli"></a>使用 Azure CLI 在 Azure Resource Manager 中建立配置有 IPv6 的網際網路面向負載平衡器
+# <a name="create-an-internet-facing-load-balancer-with-ipv6-in-azure-resource-manager-using-hello-azure-cli"></a>建立網際網路對向 IPv6 Azure 資源管理員中使用 Azure CLI hello 的負載平衡器
 
 > [!div class="op_single_selector"]
 > * [PowerShell](load-balancer-ipv6-internet-ps.md)
 > * [Azure CLI](load-balancer-ipv6-internet-cli.md)
 > * [範本](load-balancer-ipv6-internet-template.md)
 
-Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡器可藉由在負載平衡器集合中，將連入流量分散於雲端服務或虛擬機器中狀況良好的服務執行個體之間，來提供高可用性。 Azure Load Balancer 也會在多個連接埠、多個 IP 位址或兩者上顯示這些服務。
+Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 hello 負載平衡器連入流量的各項雲端服務中的狀況良好的服務執行個體或虛擬機器中負載平衡器集可提供高可用性。 Azure Load Balancer 也會在多個連接埠、多個 IP 位址或兩者上顯示這些服務。
 
 ## <a name="example-deployment-scenario"></a>範例部署案例
 
-下圖說明使用本文所述範例範本部署的負載平衡解決方案。
+hello 下列圖表說明 hello 負載平衡解決方案使用本文中所述的 hello 範例範本部署。
 
 ![負載平衡器案例](./media/load-balancer-ipv6-internet-cli/lb-ipv6-scenario-cli.png)
 
-在此案例中，您將建立下列 Azure 資源：
+在此案例中，您將建立下列 Azure 資源的 hello:
 
 * 兩部虛擬機器 (VM)
 * 虛擬網路介面，用於每個已指派 IPv4 和 IPv6 位址的 VM
 * 配置有 IPv4 和 IPv6 公用 IP 位址的網際網路面向負載平衡器
-* 包含兩個 VM 的可用性設定組
-* 兩個負載平衡規則，用以對應公用 VIP 至私人端點
+* 可用性設定組的 toothat 包含 hello 兩個 Vm
+* 兩個負載平衡規則 toomap hello 公用 Vip toohello 私用端點
 
-## <a name="deploying-the-solution-using-the-azure-cli"></a>使用 Azure CLI 來部署方案
+## <a name="deploying-hello-solution-using-hello-azure-cli"></a>使用 Azure CLI hello hello 方案部署
 
-下列步驟說明如何搭配 CLI 使用 Azure Resource Manager，來建立網際網路對向負載平衡器。 使用 Azure Resource Manager 時，會個別建立並設定每項資源，然後放在一起來建立一項資源。
+下列步驟的 hello 顯示 toocreate 網際網路向負載平衡器使用 CLI 的 Azure 資源管理員的方式。 使用 Azure 資源管理員中，每個資源建立個別的設定，然後放在一起 toocreate 資源。
 
-若要部署負載平衡器，請建立並設定下列物件：
+toodeploy 負載平衡器，建立並設定 hello 下列物件：
 
 * 前端 IP 組態 - 包含傳入網路流量的公用 IP 位址。
-* 後端位址集區 - 包含虛擬機器的網路介面 (NIC)，可從負載平衡器接收網路流量。
-* 負載平衡規則 - 包含將負載平衡器上的公用連接埠對應至後端位址集區中連接埠的規則。
-* 輸入 NAT 規則 - 包含將負載平衡器上的公用連接埠對應至後端位址集區中特定虛擬機器之連接埠的規則。
-* 探查 - 包含用來檢查後端位址集區中虛擬機器執行個體可用性的健全狀態探查。
+* 後端位址集區-包含 hello 虛擬機器 tooreceive 從 hello 負載平衡器的網路流量的網路介面 (Nic)。
+* 負載平衡規則-包含對應 hello 負載平衡器 tooport hello 後端位址集區中的公用連接埠的規則。
+* 輸入 NAT 規則-包含 hello 負載平衡器 tooa 通訊埠上的特定虛擬機器 hello 後端位址集區中的公用通訊埠對應規則。
+* 探查-包含 hello 後端位址集區中的虛擬機器執行個體的健全狀況探查使用 toocheck 可用性。
 
 如需詳細資料，請參閱 [Azure Resource Manager 的負載平衡器支援](load-balancer-arm.md)。
 
-## <a name="set-up-your-cli-environment-to-use-azure-resource-manager"></a>設定 CLI 環境為使用 Azure Resource Manager
+## <a name="set-up-your-cli-environment-toouse-azure-resource-manager"></a>設定您的 CLI 環境 toouse Azure 資源管理員
 
-在此範例中，我們會在 PowerShell 命令視窗中執行 CLI 工具。 我們沒有使用 Azure PowerShell Cmdlet，但使用 PowerShell 的指令碼處理功能來改善可讀性與重複使用。
+針對此範例中，目前我們正在執行 PowerShell 命令視窗中的 hello CLI 工具。 我們不使用 hello Azure PowerShell cmdlet，但我們會使用 PowerShell 的指令碼功能 tooimprove 可讀性並重複使用。
 
-1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
-2. 執行 **azure config mode** 命令切換為 Resource Manager 模式。
+1. 如果您從未使用過 Azure CLI，請參閱[安裝及設定 hello Azure CLI](../cli-install-nodejs.md)依照 hello 向上 toohello 點，選取您的 Azure 帳戶和訂用帳戶的指示進行。
+2. 執行 hello **azure 組態模式**命令 tooswitch tooResource 管理員模式。
 
     ```azurecli
     azure config mode arm
@@ -73,7 +73,7 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
 
         info:    New mode is arm
 
-3. 登入 Azure，並取得您的訂用帳戶清單。
+3. 登入 tooAzure，並取得訂閱的清單。
 
     ```azurecli
     azure login
@@ -85,9 +85,9 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     azure account list
     ```
 
-    選出您想要使用的訂用帳戶。 記下訂用帳戶識別碼在下一步驟使用。
+    Toouse 挑選您想要的 hello 訂用帳戶。 請記下一個步驟的 hello hello 訂用帳戶 Id。
 
-4. 設定 PowerShell 變數以搭配使用 CLI 命令。
+4. 設定用於 hello CLI 命令的 PowerShell 變數。
 
     ```powershell
     $subscriptionid = "########-####-####-####-############"  # enter subscription id
@@ -130,16 +130,16 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     $subnet2 = azure network vnet subnet create --resource-group $rgname --name $subnet2Name --address-prefix $subnet2Prefix --vnet-name $vnetName
     ```
 
-## <a name="create-public-ip-addresses-for-the-front-end-pool"></a>建立前端集區的公用 IP 位址
+## <a name="create-public-ip-addresses-for-hello-front-end-pool"></a>建立 hello 前端集區的公用 IP 位址
 
-1. 設定 PowerShell 變數
+1. Hello PowerShell 變數設定
 
     ```powershell
     $publicIpv4Name = "myIPv4Vip"
     $publicIpv6Name = "myIPv6Vip"
     ```
 
-2. 建立前端集區的公用 IP 位址。
+2. 建立公用 IP 位址 hello 前端 IP 集區。
 
     ```azurecli
     $publicipV4 = azure network public-ip create --resource-group $rgname --name $publicIpv4Name --location $location --ip-version IPv4 --allocation-method Dynamic --domain-name-label $dnsLabel
@@ -147,14 +147,14 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     ```
 
     > [!IMPORTANT]
-    > 負載平衡器會使用公用 IP 的網域標籤作為其 FQDN。 這是一項來自傳統部署的變更，該部署使用雲端服務名稱作為負載平衡器 FQDN。
-    > 在此範例中，FQDN 是 *contoso09152016.southcentralus.cloudapp.azure.com*。
+    > hello 負載平衡器會使用 hello 公用 IP 的 hello 網域標籤做為其 FQDN。 此的傳統部署，會使用 hello 雲端服務名稱，如 hello 負載平衡器 FQDN 已變更。
+    > 此範例中的 hello FQDN 是*contoso09152016.southcentralus.cloudapp.azure.com*。
 
 ## <a name="create-front-end-and-back-end-pools"></a>建立前端和後端集區
 
-此範例會建立前端 IP 集區來接收負載平衡器上的傳入網路流量，以及建立後端 IP 集區，供前端集區傳送已負載平衡的網路流量。
+這個範例會建立 hello 前端的 IP 集區收到 hello 負載平衡器上的 hello 連入網路流量和 hello 前端集區讓傳送嗨負載平衡網路流量的 hello 後端 IP 集區。
 
-1. 設定 PowerShell 變數
+1. Hello PowerShell 變數設定
 
     ```powershell
     $frontendV4Name = "FrontendVipIPv4"
@@ -163,7 +163,7 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     $backendAddressPoolV6Name = "BackendPoolIPv6"
     ```
 
-2. 建立將在上個步驟中建立的公用 IP 與負載平衡器關聯的前端 IP 集區。
+2. 建立 hello hello 上一個步驟和 hello 負載平衡器中建立的公用 IP 建立關聯的前端 IP 集區。
 
     ```azurecli
     $frontendV4 = azure network lb frontend-ip create --resource-group $rgname --name $frontendV4Name --public-ip-name $publicIpv4Name --lb-name $lbName
@@ -172,18 +172,18 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     $backendAddressPoolV6 = azure network lb address-pool create --resource-group $rgname --name $backendAddressPoolV6Name --lb-name $lbName
     ```
 
-## <a name="create-the-probe-nat-rules-and-lb-rules"></a>建立探查、NAT 規則和 LB 規則
+## <a name="create-hello-probe-nat-rules-and-lb-rules"></a>建立 hello 探查、 NAT 規則和 LB 規則
 
-此範例會建立下列項目：
+這個範例會建立下列項目 hello:
 
-* 探查規則，用以檢查連到 TCP 連接埠 80 的連線
-* NAT 規則，用以將連接埠 3389 上的所有傳入流量轉譯為 RDP 的連接埠 3389<sup>1</sup>
-* NAT 規則，用以將連接埠 3391 上的所有傳入流量轉譯為 RDP 的連接埠 3389<sup>1</sup>
-* 一個可將連接埠 80 上所有傳入流量負載平衡至後端集區中位址上連接埠 80 的負載平衡器規則。
+* 探查規則 toocheck 連線 tooTCP 連接埠 80
+* NAT 規則 tootranslate 所有連入流量連接埠 3389 tooport 3389 rdp<sup>1</sup>
+* NAT 規則 tootranslate 所有連入流量連接埠 3391 tooport 3389 rdp<sup>1</sup>
+* 負載平衡器規則 toobalance hello 連接埠 80 tooport 80 上的所有連入流量 hello 後端集區中的位址。
 
-<sup>1</sup> NAT 規則會關聯到負載平衡器後方的特定虛擬機器執行個體。 系統會將抵達連接埠 3389 的網路流量傳送給特定虛擬機器和與 NAT 規則關聯的連接埠 3389。 您必須為 NAT 規則指定通訊協定 (UDP 或 TCP)。 無法將兩種通訊協定指派到相同的連接埠。
+<sup>1</sup> NAT 規則是相關聯的 tooa hello 負載平衡器後方的特定虛擬機器執行個體。 toohello 特定虛擬機器和與 hello NAT 規則相關聯的連接埠，則傳送嗨網路流量到達連接埠 3389。 您必須為 NAT 規則指定通訊協定 (UDP 或 TCP)。 這兩種通訊協定不能指定 toohello 相同連接埠。
 
-1. 設定 PowerShell 變數
+1. Hello PowerShell 變數設定
 
     ```powershell
     $probeV4V6Name = "ProbeForIPv4AndIPv6"
@@ -193,22 +193,22 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     $lbRule1V6Name = "LBRuleForIPv6-Port80"
     ```
 
-2. 建立探查
+2. 建立 hello 探查
 
-    下列範例會建立 TCP 探查，它每隔 15 秒會檢查與後端 TCP 連接埠 80 的連線。 連續兩次失敗後，它會標記無法使用的後端資源。
+    hello 下列範例會建立一個 TCP 探查，檢查連線 tooback 端 TCP 通訊埠 80 每 15 秒。 它會將標記 hello 後端資源無法使用在兩個連續的失敗之後。
 
     ```azurecli
     $probeV4V6 = azure network lb probe create --resource-group $rgname --name $probeV4V6Name --protocol tcp --port 80 --interval 15 --count 2 --lb-name $lbName
     ```
 
-3. 建立輸入 NAT 規則，允許 RDP 連線到後端資源
+3. 建立允許 RDP 連線 toohello 後端資源的輸入的 NAT 規則
 
     ```azurecli
     $inboundNatRuleRdp1 = azure network lb inbound-nat-rule create --resource-group $rgname --name $natRule1V4Name --frontend-ip-name $frontendV4Name --protocol Tcp --frontend-port 3389 --backend-port 3389 --lb-name $lbName
     $inboundNatRuleRdp2 = azure network lb inbound-nat-rule create --resource-group $rgname --name $natRule2V4Name --frontend-ip-name $frontendV4Name --protocol Tcp --frontend-port 3391 --backend-port 3389 --lb-name $lbName
     ```
 
-4. 建立負載平衡器規則，依據接收要求的前端將流量傳送到不同後端連接埠
+4. 建立負載平衡器的前端收到 hello 要求根據 toodifferent 後端連接埠傳送流量的規則
 
     ```azurecli
     $lbruleIPv4 = azure network lb rule create --resource-group $rgname --name $lbRule1V4Name --frontend-ip-name $frontendV4Name --backend-address-pool-name $backendAddressPoolV4Name --probe-name $probeV4V6Name --protocol Tcp --frontend-port 80 --backend-port 80 --lb-name $lbName
@@ -224,7 +224,7 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     預期的輸出：
 
         info:    Executing command network lb show
-        info:    Looking up the load balancer "myIPv4IPv6Lb"
+        info:    Looking up hello load balancer "myIPv4IPv6Lb"
         data:    Id                              : /subscriptions/########-####-####-####-############/resourceGroups/pscontosorg1southctrlus09152016/providers/Microsoft.Network/loadBalancers/myIPv4IPv6Lb
         data:    Name                            : myIPv4IPv6Lb
         data:    Type                            : Microsoft.Network/loadBalancers
@@ -263,9 +263,9 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
 
 ## <a name="create-nics"></a>建立 NIC
 
-建立 NIC，並將它們關聯至 NAT 規則、負載平衡器規則和探查。
+建立 Nic，並將其關聯 tooNAT 規則、 負載平衡器規則和探查。
 
-1. 設定 PowerShell 變數
+1. Hello PowerShell 變數設定
 
     ```powershell
     $nic1Name = "myIPv4IPv6Nic1"
@@ -288,11 +288,11 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     $nic2IPv6 = azure network nic ip-config create --resource-group $rgname --name "IPv6IPConfig" --private-ip-version "IPv6" --lb-address-pool-ids $backendAddressPoolV6Id --nic-name $nic2Name
     ```
 
-## <a name="create-the-back-end-vm-resources-and-attach-each-nic"></a>建立後端 VM 資源並連接每個 NIC
+## <a name="create-hello-back-end-vm-resources-and-attach-each-nic"></a>建立 hello 後端 VM 資源，並附加每個 NIC
 
-若要建立 VM，您必須有儲存體帳戶。 為了負載平衡，VM 必須是可用性設定組的成員。 如需建立 VM 的詳細資訊，請參閱 [使用 PowerShell 建立 Azure VM](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json)
+toocreate Vm，您必須儲存體帳戶。 對於負載平衡，hello Vm 需要 toobe 成員的可用性設定組。 如需建立 VM 的詳細資訊，請參閱 [使用 PowerShell 建立 Azure VM](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json)
 
-1. 設定 PowerShell 變數
+1. Hello PowerShell 變數設定
 
     ```powershell
     $storageAccountName = "ps08092016v6sa0"
@@ -311,23 +311,23 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     ```
 
     > [!WARNING]
-    > 此範例使用純文字的 VM 使用者名稱和密碼。 使用純文字的認證時，請務必謹慎。 如需在 PowerShell 中更安全處理認證的做法，請參閱 [Get-Credential](https://technet.microsoft.com/library/hh849815.aspx) Cmdlet。
+    > 此範例會使用 hello 使用者名稱和密碼以純文字的 hello vm。 清除使用認證 hello 時，務必謹慎。 處理認證在 PowerShell 中的更安全的方法，請參閱 hello [Get-credential](https://technet.microsoft.com/library/hh849815.aspx) cmdlet。
 
-2. 建立儲存體帳戶杏可用性設定組
+2. 建立 hello 儲存體帳戶和可用性設定組
 
-    建立 VM時，可以使用現有的儲存體帳戶。 下列命令會建立新的儲存體帳戶。
+    當您建立 hello Vm 時，您可能會使用現有的儲存體帳戶。 hello，下列命令會建立新的儲存體帳戶。
 
     ```azurecli
     $storageAcc = azure storage account create $storageAccountName --resource-group $rgName --location $location --sku-name "LRS" --kind "Storage"
     ```
 
-    接下，建立可用性設定組。
+    接下來，建立 hello 可用性設定組。
 
     ```azurecli
     $availabilitySet = azure availset create --name $availabilitySetName --resource-group $rgName --location $location
     ```
 
-3. 建立與 NIC 關聯的虛擬機器
+3. 建立具有相關聯的 hello Nic hello 虛擬機器
 
     ```azurecli
     $vm1 = azure vm create --resource-group $rgname --location $location --availset-name $availabilitySetName --name $vm1Name --nic-id $nic1Id --os-disk-vhd $osDisk1Uri --os-type "Windows" --admin-username $vmUserName --admin-password $mySecurePassword --vm-size "Standard_A1" --image-urn $imageurn --storage-account-name $storageAccountName --disable-bginfo-extension

@@ -1,6 +1,6 @@
 ---
-title: "Power BI Embedded 新功能"
-description: "取得 Power BI Embedded 新功能的最新資訊"
+title: "aaaWhat 的新 Power BI Embedded"
+description: "取得 hello 的新功能 Power BI Embedded 的最新資訊"
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: 07c53a5d6b1881a4c207a2aefed9fcede0fa069e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 859fa57eda4311b17a0098d0e5cb7fa4f969b534
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="whats-new-in-power-bi-embedded"></a>Power BI Embedded 新功能
 
-**Power BI Embedded** 的更新會定期發行。 但是，並非所有發行版本都會包含供使用者使用的新功能，某些版本著重在後端服務功能。 我們將會在這裡反白顯示對於使用者的功能。 請務必經常回來查看。
+也會更新**Power BI Embedded**會定期發行。 但是，並非所有發行版本都會包含供使用者使用的新功能，某些版本著重在後端服務功能。 我們將會在這裡反白顯示對於使用者的功能。 通常是確定 toocheck 上一步。
 
 ## <a name="march-2017"></a>2017 年 3 月
 
@@ -44,7 +44,7 @@ ms.lasthandoff: 07/11/2017
 **管理 API**
 
 * 複製報告和資料集
-* 將報告繫結至不同資料集
+* 繫結報表 tooa 不同資料集
 
 **範例**
 
@@ -62,18 +62,18 @@ ms.lasthandoff: 07/11/2017
 這個版本中包含︰
 
 * 支援 [進階篩選和頁面瀏覽](power-bi-embedded-interact-with-reports.md)的全新 JavaScript SDK。
-* 「加拿大中部」資料中心內現已支援 Power BI Embedded。 查看 [資料中心狀態](https://azure.microsoft.com/status/)。
+* Power BI Embedded 現在支援 hello 加拿大中央資料中心內。 查看 [資料中心狀態](https://azure.microsoft.com/status/)。
 
 ## <a name="july-11th-2016"></a>2016 年 7 月 11 日
 這個版本中包含︰
 
-* **好消息！** Power BI Embedded service 不再是預覽 - 現在已 GA (正式推出)。  
-* 所有 REST API 已從 **/beta** 移至 **/v1.0**。
+* **好消息！** hello Power BI Embedded 服務不再處於預覽狀態-現在為 GA （正式推出）。  
+* 已從所有 REST Api **/beta**太**/v1.0**。
 * .NET 和 JavaScript SDK 已針對 **v1.0**更新。
-* 現在可以直接使用 API 金鑰來驗證 power BI API 呼叫。 只有內嵌需要應用程式權杖。 在這個過程中，佈建和開發權杖已在 v1.0 API 中被取代，但是它們會繼續在 Beta 版中運作，直到 12/30/2016 為止。 若要深入了解，請參閱 [使用 Power BI Embedded 驗證和授權](power-bi-embedded-app-token-flow.md)。
-* 應用程式權杖和內嵌報告的資料列層級安全性 (RLS) 支援。 若要深入了解，請參閱 [Power BI Embedded 的資料列層級安全性](power-bi-embedded-rls.md)。
+* 現在可以直接使用 API 金鑰來驗證 power BI API 呼叫。 只有內嵌需要應用程式權杖。 這個過程，v1.0 Api 中，佈建和開發人員語彙基元已被取代，但它們將會在 hello beta 版中繼續 toowork，直到 2016 年 12 月 30。 詳細資訊，請參閱 toolearn[驗證和授權使用 Power BI Embedded](power-bi-embedded-app-token-flow.md)。
+* 應用程式權杖和內嵌報告的資料列層級安全性 (RLS) 支援。 詳細資訊，請參閱 toolearn[資料列層級安全性與 Power BI Embedded](power-bi-embedded-rls.md)。
 * 已針對所有 **v1.0** API 呼叫，更新範例應用程式。
 * Azure SDK、PowerShell 和 CLI 的 Power BI Embedded 支援。
-* 使用者可以將視覺效果資料匯出到 **.csv**。
-* Power BI Embedded 現在受到與 Microsoft Azure 相同的所有語言/地區設定的支援。 若要深入了解，請參閱 [Azure - 語言](http://social.technet.microsoft.com/wiki/contents/articles/4234.windows-azure-extent-of-localization.aspx)。
+* 使用者可以匯出視覺效果資料 tooa **.csv**。
+* Power BI Embedded 現可支援所有 hello 為 Microsoft Azure 相同語言/地區設定。 詳細資訊，請參閱 toolearn [Azure-語言](http://social.technet.microsoft.com/wiki/contents/articles/4234.windows-azure-extent-of-localization.aspx)。
 

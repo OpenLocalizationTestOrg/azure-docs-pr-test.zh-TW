@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 1.0 建立傳統 Linux VM | Microsoft Docs"
-description: "了解如何使用傳統部署模型搭配 Azure CLI 1.0 建立 Linux 虛擬機器"
+title: "傳統 Linux VM，使用 aaaCreate hello Azure CLI 1.0 |Microsoft 文件"
+description: "了解如何 toocreate Linux 虛擬機器使用 Azure CLI 1.0 hello hello 傳統部署模型"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,28 +15,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2017
 ms.author: iainfou
-ms.openlocfilehash: 8ddbacbbb70c0cf1a2537fab4d981a316610a4d7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c3c54e5d1444a79e8e609c76d04a3a621c8d03f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-a-classic-linux-vm-with-the-azure-cli-10"></a>如何使用 Azure CLI 1.0 建立傳統 Linux VM
+# <a name="how-toocreate-a-classic-linux-vm-with-hello-azure-cli-10"></a>與傳統 Linux VM 的 tooCreate hello Azure CLI 1.0 的方式
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [Resource Manager 和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需 Resource Manager 版本，請參閱[這裡](../create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文件涵蓋使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。 Hello 資源管理員版本，請參閱[這裡](../create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-本主題說明如何使用傳統部署模型，以 Azure CLI 1.0 建立 Linux 虛擬機器 (VM)。 我們將使用 Azure 上可用「映像」  中的 Linux 映像。 Azure CLI 1.0 命令提供下列組態選項：
+本主題描述如何 toocreate Linux 虛擬機器 (VM) 與使用 Azure CLI 1.0 hello hello 傳統部署模型。 我們使用 Linux 映像，從可用的 hello**映像**在 Azure 上。 hello Azure CLI 1.0，提供下列設定選項，和其他項目 hello:
 
-* 將 VM 連線到虛擬網路
-* 將 VM 加入現有的雲端服務
-* 將 VM 加入現有的儲存體帳戶
-* 將 VM 加入可用性集合或位置
+* Hello VM tooa 虛擬網路連線
+* 加入 hello VM tooan 現有雲端服務
+* 新增 hello VM tooan 現有儲存體帳戶
+* 新增 hello VM tooan 可用性設定組或位置
 
 > [!IMPORTANT]
-> 如果要讓 VM 器使用虛擬網路，以便依主機名稱來連接虛擬機器，或設定跨單位連線，則必須在建立 VM 時指定虛擬網路。 只有在建立 VM 時，才能將 VM 設定為加入虛擬網路。 如需虛擬網路的詳細資訊，請參閱 [Azure 虛擬網路概觀](http://go.microsoft.com/fwlink/p/?LinkID=294063)。
+> 如果您希望您 VM toouse 虛擬網路，讓您能連接 tooit 直接以主機名稱或設定跨單位連線，請確定您在建立 hello VM 時指定 hello 虛擬網路。 只有在您建立 hello VM 時，VM 可能會設定的 toojoin 虛擬網路。 如需虛擬網路的詳細資訊，請參閱 [Azure 虛擬網路概觀](http://go.microsoft.com/fwlink/p/?LinkID=294063)。
 > 
 > 
 
-## <a name="how-to-create-a-linux-vm-using-the-classic-deployment-model"></a>如何使用傳統的部署模型建立 Linux VM
+## <a name="how-toocreate-a-linux-vm-using-hello-classic-deployment-model"></a>如何使用 Linux VM 的 toocreate hello 傳統部署模型
 [!INCLUDE [virtual-machines-create-LinuxVM](../../../../includes/virtual-machines-create-linuxvm.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "邏輯應用程式的限制和設定 | Microsoft Docs"
-description: "適用於 Logic Apps 之服務限制和設定值的概觀。"
+title: "aaaLogic 應用程式限制以及設定 |Microsoft 文件"
+description: "Hello 服務限制，而且適用於邏輯應用程式的組態值的概觀。"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: LADocs; jehollan
-ms.openlocfilehash: da23bd9fe71a0c41bc236b55bc9f56e123a9d77a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 739509afe5c9a7b7e946ba3571951264127e5297
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="logic-app-limits-and-configuration"></a>邏輯應用程式的限制和設定
 
-以下是 Azure Logic Apps 目前的限制和設定詳細資料的相關資訊。
+以下是有關 hello 目前限制和設定詳細資料的 Azure 邏輯應用程式的資訊。
 
 ## <a name="limits"></a>限制
 
@@ -47,22 +47,22 @@ ms.lasthandoff: 08/29/2017
 
 |Name|限制|注意事項|
 |----|----|----|
-|重試次數|10| 預設值為 4。 可以使用[重試原則參數](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)進行設定|
-|重試延遲上限|1 小時|可以使用[重試原則參數](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)進行設定|
-|重試延遲下限|5 秒|可以使用[重試原則參數](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)進行設定|
+|重試次數|10| 預設值為 4。 可以設定以 hello[重試原則參數](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|重試延遲上限|1 小時|可以設定以 hello[重試原則參數](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|重試延遲下限|5 秒|可以設定以 hello[重試原則參數](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
 
 ### <a name="run-duration-and-retention"></a>執行持續時間和保留期
 
-以下是單一邏輯應用程式的執行限制。
+以下是單一邏輯應用程式中執行的 hello 限制。
 
 |名稱|限制|注意事項|
 |----|----|----|
 |執行持續時間|90 天||
-|儲存體保留期|90 天|從執行開始時間算起|
+|儲存體保留期|90 天|從執行開始時間的 hello|
 |最小循環間隔|1 秒|| 搭配 App Service 方案的邏輯應用程式 15 秒
 |最大循環間隔|500 天||
 
-如果您預期在正常處理流程期間會超過執行持續時間或儲存體保留期限制，請[與我們連絡](mailto://logicappsemail@microsoft.com)，讓我們可以協助達成您的需求。
+如果您預期在正常處理流程中，執行持續時間或儲存體的保留限制 tooexceed[與我們連絡](mailto://logicappsemail@microsoft.com)，以便我們可以協助您的需求。
 
 
 ### <a name="looping-and-debatching-limits"></a>迴圈和解除批次處理限制
@@ -71,10 +71,10 @@ ms.lasthandoff: 08/29/2017
 
 |名稱|限制|注意事項|
 |----|----|----|
-|ForEach 項目|100,000|您可以視需要使用 [查詢動作](../connectors/connectors-native-query.md) 篩選較大的陣列|
+|ForEach 項目|100,000|您可以使用 hello[查詢動作](../connectors/connectors-native-query.md)視 toofilter 大型陣列|
 |反覆運算之前|5,000||
 |SplitOn 項目|100,000||
-|ForEach 平行處理原則|50| 預設值為 20。 您可以藉由使用 `runtimeConfiguration` 將 `"operationOptions": "Sequential"` 新增至 `foreach` 動作或平行處理的特定層級，來設定為循序的 foreach|
+|ForEach 平行處理原則|50| 預設值為 20。 您可以藉由新增設定 tooa 循序 foreach `"operationOptions": "Sequential"` toohello`foreach`動作或特定層級的平行處理原則使用`runtimeConfiguration`|
 
 
 ### <a name="throughput-limits"></a>輸送量限制
@@ -84,12 +84,12 @@ ms.lasthandoff: 08/29/2017
 |名稱|限制|注意事項|
 |----|----|----|
 |每 5 分鐘的動作執行 |100,000|可以視需要將工作負載分散在多個應用程式|
-|動作並行撥出電話 |~2,500|視需要減少並行要求的數目或降低持續時間|
-|執行階段端點並行撥入電話 |~1,000|視需要減少並行要求的數目或降低持續時間|
+|動作並行撥出電話 |~2,500|減少 hello 持續時間，視需要或降低的並行要求數目|
+|執行階段端點並行撥入電話 |~1,000|減少 hello 持續時間，視需要或降低的並行要求數目|
 |執行階段端點每 5 分鐘讀取呼叫 |60,000|可以視需要將工作負載分散在多個應用程式|
 |執行階段端點每 5 分鐘叫用呼叫 |45,000|可以視需要將工作負載分散在多個應用程式|
 
-如果您預期在正常處理時會超過此限制，或者想要執行可能超過此限制的負載測試一段時間，請[與我們連絡](mailto://logicappsemail@microsoft.com)，讓我們可以協助您的需求。
+如果您預期 tooexceed 正常處理，或想 toorun 負載測試中，可能會超過此限制的一段時間，此限制[與我們連絡](mailto://logicappsemail@microsoft.com)，以便我們可以協助您的需求。
 
 ### <a name="definition-limits"></a>定義限制
 
@@ -97,8 +97,8 @@ ms.lasthandoff: 08/29/2017
 
 |名稱|限制|注意事項|
 |----|----|----|
-|每個工作流程的動作數目|500|您可以視需要新增巢狀工作流程以擴充此限制|
-|允許的動作巢狀深度|8|您可以視需要新增巢狀工作流程以擴充此限制|
+|每個工作流程的動作數目|500|您可以加入巢狀工作流程 tooextend 視此限制|
+|允許的動作巢狀深度|8|您可以加入巢狀工作流程 tooextend 視此限制|
 |每個訂用帳戶每個區域的工作流程數目|1000||
 |每個工作流程的觸發程序數目|10||
 |參數範圍案例限制|25||
@@ -112,26 +112,26 @@ ms.lasthandoff: 08/29/2017
 
 ### <a name="integration-account-limits"></a>整合帳戶限制
 
-以下是針對新增至整合帳戶的構件所規定的限制
+以下是限制的成品加入 toointegration 帳戶
 
 |名稱|限制|注意事項|
 |----|----|----|
-|結構描述|8 MB|您可以使用 [blob URI](logic-apps-enterprise-integration-schemas.md) 上傳超過 2 MB 的檔案 |
+|結構描述|8 MB|您可以使用[blob URI](logic-apps-enterprise-integration-schemas.md) tooupload 檔案超過 2 MB |
 |對應 (XSLT 檔案)|2 MB| |
 |執行階段端點每 5 分鐘讀取呼叫 |60,000|可以視需要將工作負載分散在多個帳戶|
 |執行階段端點每 5 分鐘叫用呼叫 |45,000|可以視需要將工作負載分散在多個帳戶|
 |執行階段端點每 5 分鐘追蹤呼叫 |45,000|可以視需要將工作負載分散在多個帳戶|
-|封鎖並行呼叫的執行階段端點 |~1,000|視需要減少並行要求的數目或降低持續時間|
+|封鎖並行呼叫的執行階段端點 |~1,000|減少 hello 持續時間，視需要或降低的並行要求數目|
 
 ### <a name="b2b-protocols-as2-x12-edifact-message-size"></a>B2B 通訊協定 (AS2、X12、EDIFACT) 訊息大小
 
-以下是針對 B2B 通訊協定的限制
+以下是 hello B2B 通訊協定的限制
 
 |名稱|限制|注意事項|
 |----|----|----|
-|AS2|50 MB|適用於解碼和編碼|
-|X12|50 MB|適用於解碼和編碼|
-|EDIFACT|50 MB|適用於解碼和編碼|
+|AS2|50 MB|適用於 toodecode，並將編碼|
+|X12|50 MB|適用於 toodecode，並將編碼|
+|EDIFACT|50 MB|適用於 toodecode，並將編碼|
 
 ## <a name="configuration"></a>組態
 
@@ -139,7 +139,7 @@ ms.lasthandoff: 08/29/2017
 
 #### <a name="logic-app-service"></a>邏輯應用程式服務
 
-直接從邏輯應用程式 (也就是透過 [HTTP](../connectors/connectors-native-http.md) 或 [HTTP + Swagger](../connectors/connectors-native-http-swagger.md)) 或其他 HTTP 要求所進行的呼叫，將會來自下列清單指定的 IP 位址：
+直接從邏輯應用程式進行呼叫 (也就是透過[HTTP](../connectors/connectors-native-http.md)或[HTTP + Swagger](../connectors/connectors-native-http-swagger.md)) 或其他 HTTP 要求，來自 hello hello 下列清單中指定的 IP 位址：
 
 |邏輯應用程式區域|輸出 IP|
 |-----|----|
@@ -168,7 +168,7 @@ ms.lasthandoff: 08/29/2017
 
 #### <a name="connectors"></a>連接器
 
-來自[連接器](../connectors/apis-list.md)的呼叫，將會來自下列清單指定的 IP 位址：
+發出的呼叫[連接器](../connectors/apis-list.md)來自 hello hello 下列清單中指定的 IP 位址：
 
 |邏輯應用程式區域|輸出 IP|
 |-----|----|
@@ -198,7 +198,7 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="next-steps"></a>後續步驟  
 
-- 若要開始使用 Logic Apps，請遵循[建立 Logic Apps](../logic-apps/logic-apps-create-a-logic-app.md) 教學課程。  
+- 開始使用 Logic Apps tooget 遵循 hello[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)教學課程。  
 - [檢視常見的範例和案例](../logic-apps/logic-apps-examples-and-scenarios.md)
 - [您可以使用 Logic Apps 自動化商務程序](http://channel9.msdn.com/Events/Build/2016/T694) 
-- [了解如何整合您的系統與 Logic Apps](http://channel9.msdn.com/Events/Build/2016/P462)
+- [深入了解如何 tooIntegrate 邏輯應用程式與系統](http://channel9.msdn.com/Events/Build/2016/P462)

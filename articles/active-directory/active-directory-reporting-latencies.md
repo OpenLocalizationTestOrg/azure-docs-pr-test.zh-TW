@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 報告延遲 | Microsoft Docs"
-description: "在您的 Azure Active Directory 中針對顯示報告事件所花費的時間長度"
+title: "Active Directory 報告延遲 aaaAzure |Microsoft 文件"
+description: "在您的 Azure Active Directory 報告事件 tooshow 所花費的時間量"
 services: active-directory
 documentationcenter: 
 author: dhanyahk
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/04/2017
 ms.author: dhanyahk;markvi
-ms.openlocfilehash: 9443a00232420d58dea52ed01f31a4ef964a1620
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 14367d21dfb28359f991037cc924d416420be456
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-report-latencies"></a>Azure Active Directory 報告延遲
-*這份文件是 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)的一部分。*
+*這份文件屬於 hello [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。*
 
 | 報告 | 最小值 | 平均值 | 最大值 |
 | --- | --- | --- | --- |

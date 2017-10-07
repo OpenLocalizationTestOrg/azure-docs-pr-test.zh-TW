@@ -1,6 +1,6 @@
 ---
-title: "Azure AD Node.js 入門 | Microsoft Docs"
-description: "如何建立可整合 Azure AD 以進行驗證的 Node.js REST Web API。"
+title: "開始使用 AD Node.js aaaAzure |Microsoft 文件"
+description: "如何 toobuild Node.js REST web API，與整合 Azure AD 進行驗證。"
 services: active-directory
 documentationcenter: nodejs
 author: navyasric
@@ -15,98 +15,98 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 4f58177f540c14172d7ece8b4bc8c8a2b9787f8f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 512ae6de9acfde8b58c0447ab4a6b573fb6407c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-web-apis-for-nodejs"></a>開始使用適用於 Node.js 的 Web API
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-*Passport* 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且模組化的 Passport 放入任何 Express 架構或 Restify Web 應用程式。 一組完整的策略可支援使用使用者名稱和密碼、Facebook、Twitter 及其他等驗證。 我們已為 Microsoft Azure Active Directory (Azure AD) 開發一項策略。 我們將安裝此模組，然後加入 Microsoft Azure Active Directory `passport-azure-ad` 外掛程式。
+*Passport* 是 Node.js 的驗證中介軟體。 彈性和模組化，在 tooany 暗中卸除 Passport Express 為基礎或 Restify web 應用程式。 一組完整的策略可支援使用使用者名稱和密碼、Facebook、Twitter 及其他等驗證。 我們已為 Microsoft Azure Active Directory (Azure AD) 開發一項策略。 我們安裝此模組，然後新增 Microsoft Azure Active Directory hello`passport-azure-ad`外掛程式。
 
-若要這樣做，您需要：
+toodo，您需要：
 
 1. 向 Azure AD 註冊應用程式。
-2. 設定您的應用程式來使用 Passport 的 `passport-azure-ad` 外掛程式。
-3. 設定用戶端應用程式呼叫待辦事項清單 Web API。
+2. 設定您的應用程式 toouse Passport 的`passport-azure-ad`外掛程式。
+3. 設定用戶端應用程式 toocall hello tooDo 清單 web API。
 
-本教學課程的程式碼保留在 [GitHub](https://github.com/Azure-Samples/active-directory-node-webapi)。
+此教學課程中的 hello 程式碼會維護[GitHub 上](https://github.com/Azure-Samples/active-directory-node-webapi)。
 
 > [!NOTE]
-> 本文不涵蓋如何使用 Azure AD B2C 實作登入、註冊或管理設定檔。 而會著重在如何在使用者已通過驗證後呼叫 Web API。  我們建議您從[如何與 Azure Active Directory 整合文件](active-directory-how-to-integrate.md)著手，以了解 Azure Active Directory 的基本概念。
+> 本文並未列舉如何 tooimplement 登入、 註冊，或使用 Azure AD B2C 管理設定檔。 它著重在呼叫 web Api 之後 hello 使用者已經過驗證。  我們建議您開始[如何與 Azure Active Directory 文件 toointegrate](active-directory-how-to-integrate.md) toolearn 需 hello Azure Active directory 的基本概念。
 >
 >
 
-我們已在 MIT 授權底下的 GitHub 中發行這個執行範例的所有原始程式碼，因此您可以隨意複製 (或更棒的是您可以分散出去) 和提供意見反應及提取要求。
+我們已經發行所有 hello 的原始程式碼執行本例 GitHub 中 MIT 授權，所以您可以免費 tooclone （或更好的是，「 分叉 」），並提供意見反應，提取要求。
 
 ## <a name="about-nodejs-modules"></a>關於 Node.js 模組
-我們會在本逐步解說中使用 Node.js 模組。 模組是指可載入的 JavaScript 封裝，可為您的應用程式提供特定功能。 您通常可以使用 NPM 安裝目錄中的 Node.js NPM 命令列工具來安裝模組。 但是，核心 Node.js 封裝中已包含一些模組 (例如 HTTP 模組)。
+我們會在本逐步解說中使用 Node.js 模組。 模組是指可載入的 JavaScript 封裝，可為您的應用程式提供特定功能。 您通常使用 hello NPM 安裝目錄中的 hello Node.js 的 NPM 命令列工具安裝模組。 不過，某些模組，例如 hello HTTP 模組，都包含在 hello 核心 Node.js 套件。
 
-已安裝的模組會儲存在 Node.js 安裝目錄的根目錄下的 **node_modules** 目錄。 **node_modules** 目錄下的每個模組都會維護它自己的 **node_modules** 目錄，其中包含它所依賴的任何模組。 此外，每個必要模組都有**node_modules** 目錄。 這個遞迴目錄結構表示相依性鏈結。
+已安裝的模組會儲存在 hello **node_modules** hello 根 Node.js 安裝目錄的目錄。 每個模組中 hello **node_modules**目錄維護自己**node_modules**包含它所依存的任何模組的目錄。 此外，每個必要模組都有**node_modules** 目錄。 這個遞迴目錄結構代表 hello 相依性鏈結。
 
-此相依性鏈結結構會導致較高的應用程式使用量。 但它也會保證已符合所有相依性，而且用於開發的模組版本也會用於生產環境中。 這可讓實際執行的應用程式行為更容易預測，並防止可能會影響使用者的版本控制問題。
+此相依性鏈結結構會導致較高的應用程式使用量。 但是，它也可保證確認符合所有的相依性，然後在生產環境中也使用的 hello 模組 hello 版開發中使用。 這讓 hello 實際應用程式的行為更容易預測，並防止可能會影響使用者的版本控制問題。
 
 ## <a name="step-1-register-an-azure-ad-tenant"></a>步驟 1：註冊 Azure AD 租用戶
-若要使用這個範例，您需要 Azure Active Directory 租用戶。 如果您不確定什麼是租用戶或如何取得租用戶，請參閱[如何取得 Azure AD 租用戶](active-directory-howto-tenant.md)。
+這個範例 toouse，您需要 Azure Active Directory 租用戶。 如果您不確定哪個租用戶，或如何 tooget 其中一個，請參閱[tooget 的 Azure AD 的租用戶](active-directory-howto-tenant.md)。
 
 ## <a name="step-2-create-an-application"></a>步驟 2：建立應用程式
-接下來，在您的目錄中建立應用程式，以提供必要資訊給 Azure AD，讓它與應用程式安全地通訊。  在此案例中，因為用戶端應用程式和 Web API 會組成一個邏輯應用程式，所以由單一**應用程式識別碼**表示。  如果要建立應用程式，請遵循 [這些指示](active-directory-how-applications-are-added.md)。 如果您要建置企業營運應用程式，[這些額外的指示可能很實用](../active-directory-applications-guiding-developers-for-lob-applications.md)。
+接下來您需要 toosecurely 讓 Azure AD 資訊與您的應用程式的目錄中建立應用程式。  Hello 用戶端應用程式和 web API 由單一**應用程式識別碼**在此情況下，因為它們組成一個邏輯應用程式。  toocreate 的應用程式，請遵循[這些指示](active-directory-how-applications-are-added.md)。 如果您要建置企業營運應用程式，[這些額外的指示可能很實用](../active-directory-applications-guiding-developers-for-lob-applications.md)。
 
-若要建立應用程式：
+toocreate 應用程式：
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
 
-2. 在頂端功能表上，選取您的帳戶。 然後，在 [目錄] 清單下，選擇您要註冊應用程式的 Active Directory 租用戶。
+2. 在 hello 上方功能表中，選取您的帳戶。 然後，在 hello**目錄**清單中，選擇您想要 tooregister hello Active Directory 租用戶應用程式。
 
-3. 在左側功能表中選取 [更多服務]，然後選取 [Azure Active Directory]。
+3. 在左側 hello hello 功能表中選取**更服務**，然後選取**Azure Active Directory**。
 
 4. 選取 [應用程式註冊]，然後選取 [新增]。
 
-5. 遵照提示建立 **Web 應用程式和/或 Web API**。
+5. 請遵循 hello 提示 toocreate **Web 應用程式和/或 WebAPI**。
 
-      * 應用程式的 [名稱] 對使用者說明您的應用程式。
+      * hello**名稱**hello 的應用程式描述您的應用程式 tooend 使用者。
 
-      * [ **登入 URL** ] 是指應用程式的基底 URL。  範例程式碼的預設 URL 是 `https://localhost:8080`。
+      * hello**登入 URL**是 hello 基底 URL 的應用程式。  hello hello 範例程式碼的 URL 是的預設`https://localhost:8080`。
 
-6. 註冊之後，Azure AD 會指派唯一的應用程式識別碼給您的應用程式。 您會在後續章節中用到這個值，所以請從應用程式頁面中複製此值。
+6. 註冊之後，Azure AD 會指派唯一的應用程式識別碼給您的應用程式。 您需要這個值在 hello 下一步 區段中，因此將它複製從 hello 應用程式頁面。
 
-7. 從應用程式的 [設定]  ->  [屬性] 頁面，更新應用程式識別碼 URI。 [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。 慣例是使用 `https://<tenant-domain>/<app-name>`，例如：`https://contoso.onmicrosoft.com/my-first-aad-app`。
+7. 從 hello**設定** -> **屬性**應用程式頁面上，更新 hello 應用程式識別碼 URI。 hello**應用程式識別碼 URI**是您的應用程式的唯一識別碼。 hello 慣例是 toouse `https://<tenant-domain>/<app-name>`，例如： `https://contoso.onmicrosoft.com/my-first-aad-app`。
 
-8. 從 [設定] 頁面建立應用程式的 [金鑰]，然後複製在某處。 稍後您將會用到此資訊。
+8. 建立**金鑰**應用程式從 hello**設定**頁面，然後再將它複製某處。 稍後您將會用到此資訊。
 
 ## <a name="step-3-download-nodejs-for-your-platform"></a>步驟 3：下載您的平台適用的 Node.js
-若要成功使用此範例，您必須具備已成功安裝的 Node.js。
+toosuccessfully 使用這個範例中，您必須擁有使用中的 Node.js 的安裝。
 
 從 [http://nodejs.org](http://nodejs.org)安裝 Node.js。
 
 ## <a name="step-4-install-mongodb-on-your-platform"></a>步驟 4：在您的平台上安裝 MongoDB
-若要成功使用此範例，您必須具備已成功安裝的 MongoDB。 您可使用 MongoDB，讓 REST API 得以在不同伺服器執行個體之間持續使用。
+toosuccessfully 使用這個範例中，您必須擁有使用中的 MongoDB 的安裝。 您可以使用 MongoDB toomake hello 永續性的 REST API 在伺服器執行個體。
 
 從 [http://mongodb.org](http://www.mongodb.org)安裝 MongoDB。
 
 > [!NOTE]
-> 本逐步解說假設您會使用 MongoDB 的預設安裝和伺服器端點，在撰寫本文時為 mongodb://localhost。
+> 本逐步解說假設您 hello 預設安裝和伺服器端點針對使用 MongoDB，這在撰寫本文 hello 階段是 mongodb://localhost。
 >
 >
 
-## <a name="step-5-install-the-restify-modules-in-your-web-api"></a>步驟 5：在您的 Web API 中安裝 Restify 模組
-我們會使用 Resitfy 來建置 REST API。 Restify 是衍生自 Express 的最小且具彈性的 Node.js 應用程式架構。 它有一組強大的功能，可在 Connect 之上建置 REST API。
+## <a name="step-5-install-hello-restify-modules-in-your-web-api"></a>步驟 5: Hello Restify 模組安裝在您的 web 應用程式開發介面
+我們使用 Restify toobuild REST API。 Restify 是衍生自 Express 的最小且具彈性的 Node.js 應用程式架構。 它有一組強大的功能，可在 Connect 之上建置 REST API。
 
 ### <a name="install-restify"></a>安裝 Restify
-1. 從命令列將目錄變更至 **azuread** 目錄。 如果 **azuread** 目錄不存在，請予以建立。
+1. 從 hello 命令列，變更目錄 toohello **azure ad**目錄。 如果 hello **azure ad**目錄不存在，建立它。
 
         `cd azuread - or- mkdir azuread; cd azuread`
 
-2. 輸入以下命令：
+2. 輸入下列命令的 hello:
 
     `npm install restify`
 
     此命令會安裝 Restify。
 
 #### <a name="did-you-get-an-error"></a>您有收到錯誤訊息嗎？
-當您在某些作業系統上使用 NPM 時，可能會收到以下錯誤：**Error: EPERM, chmod '/usr/local/bin/..'** ，且建議您嘗試以管理員身分執行該帳戶。 若發生這個情況，使用 sudo 命令以更高的權限層級執行 NPM。
+當您在某些作業系統上使用 NPM 時，可能會收到以下錯誤：**Error: EPERM, chmod '/usr/local/bin/..'** 與您嘗試以系統管理員身分執行 hello 帳戶的建議。 如果發生這種情況，請使用 hello sudo 命令 toorun NPM 較高的權限層級。
 
 #### <a name="did-you-get-an-error-regarding-dtrace"></a>您有收到有關 DTRACE 的錯誤訊息嗎？
 安裝 Restify 時，您可能會看到如下的錯誤：
@@ -129,7 +129,7 @@ npm WARN optional dep failed, continuing dtrace-provider@0.2.8
 ```
 Restify 提供強大機制來使用 DTrace 追蹤 REST 呼叫。 不過，許多作業系統沒有 DTrace。 您可以放心地忽略這些錯誤。
 
-此命令的輸出應類似下列輸出：
+hello 這個命令的輸出應該看起來類似 toohello 下列輸出：
 
     restify@2.6.1 node_modules/restify
     ├── assert-plus@0.1.4
@@ -154,17 +154,17 @@ Restify 提供強大機制來使用 DTrace 追蹤 REST 呼叫。 不過，許多
 
 
 ## <a name="step-6-install-passportjs-in-your-web-api"></a>步驟 6：在您的 Web API 中安裝 Passport.js
-[Passport](http://passportjs.org/) 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且模組化的 Passport 放入任何 Express 架構或 Restify Web 應用程式。 一組完整的策略可支援使用使用者名稱和密碼、Facebook、Twitter 及其他等驗證。
+[Passport](http://passportjs.org/) 是 Node.js 的驗證中介軟體。 彈性和模組化，在 tooany 暗中卸除 Passport Express 為基礎或 Restify web 應用程式。 一組完整的策略可支援使用使用者名稱和密碼、Facebook、Twitter 及其他等驗證。
 
-我們已為 Azure Active Directory 開發一個策略。 我們會安裝此模組，然後加入 Azure Active Directory 的策略外掛程式。
+我們已為 Azure Active Directory 開發一個策略。 我們會安裝此模組，然後再新增外掛程式的 hello Azure Active Directory 策略。
 
-1. 從命令列將目錄變更至 **azuread** 目錄。
+1. 從 hello 命令列，變更目錄 toohello **azure ad**目錄。
 
-2. 若要安裝 passport.js，請輸入以下命令：
+2. tooinstall passport.js 輸入 hello 下列命令：
 
     `npm install passport`
 
-    此命令的輸出應類似這樣：
+    hello hello 命令輸出應該看起來類似 toohello 下列：
 
 ``
         passport@0.1.17 node_modules\passport
@@ -172,21 +172,21 @@ Restify 提供強大機制來使用 DTrace 追蹤 REST 呼叫。 不過，許多
         └── pkginfo@0.2.3
 ``
 
-## <a name="step-7-add-passport-azure-ad-to-your-web-api"></a>步驟 7：將 Passport-Azure-AD 新增至您的 Web API
-接下來，我們會使用 `passport-azure-ad` 來新增 OAuth 策略，這是一套將 Azure Active Directory 連線到 Passport 的策略。 在這個 Rest API 範例中，我們會對持有人權杖使用此策略。
+## <a name="step-7-add-passport-azure-ad-tooyour-web-api"></a>步驟 7： 加入 Azure AD Passport tooyour web API
+接下來我們加入 hello OAuth 策略使用`passport-azure-ad`，一套連接 Azure Active Directory tooPassport 的策略。 在這個 Rest API 範例中，我們會對持有人權杖使用此策略。
 
 > [!NOTE]
-> 雖然 OAuth2 提供可發行任何已知權杖類型的架構，但只有某些權杖類型經常使用。 持有人權杖是最常用於保護端點的權杖。 這是 OAuth2 中最普遍發行的權杖類型。 許多實作假設持有人權杖是唯一發行的權杖類型。
+> 雖然 OAuth2 提供可發行任何已知權杖類型的架構，但只有某些權杖類型經常使用。 承載權杖是用於保護端點 hello 最常使用的權杖。 它們是在 OAuth2 權杖的 hello 最廣泛發出型別。 許多實作假設持有者權杖是 hello 的核發權杖的唯一類型。
 >
 >
 
-從命令列將目錄變更至 **azuread** 目錄。
+從 hello 命令列，變更目錄 toohello **azure ad**目錄。
 
-輸入下列命令以安裝 Passport.js `passport-azure-ad module`：
+型別 hello 下列命令 tooinstall hello Passport.js `passport-azure-ad module`:
 
 `npm install passport-azure-ad`
 
-此命令的輸出應類似下列輸出：
+hello hello 命令輸出應該看起來類似 toohello 下列輸出：
 
 
     passport-azure-ad@1.0.0 node_modules/passport-azure-ad
@@ -204,32 +204,32 @@ Restify 提供強大機制來使用 DTrace 追蹤 REST 呼叫。 不過，許多
 
 
 
-## <a name="step-8-add-mongodb-modules-to-your-web-api"></a>步驟 8：將 MongoDB 模組新增至 Web API
-我們使用 MongoDB 做為資料存放區。 基於這個理由，我們必須安裝廣泛使用的外掛程式 Mongoose 來管理模型與結構描述。 我們也必須安裝 MongoDB 的資料庫驅動程式 (同樣也稱為 MongoDB)。
+## <a name="step-8-add-mongodb-modules-tooyour-web-api"></a>步驟 8： 加入 MongoDB 模組 tooyour web API
+我們使用 MongoDB 做為資料存放區。 因此，我們需要 tooinstall hello，廣泛使用的外掛程式被呼叫的 1 toomanage 模型和結構描述。 我們也 for MongoDB。 （這也稱為 MongoDB） 需要 tooinstall hello 資料庫驅動程式。
 
  `npm install mongoose`
 
 ## <a name="step-9-install-additional-modules"></a>步驟 9：安裝其他模組
-接下來，我們會安裝其餘所需的模組。
+接下來，我們會安裝其餘的必要的模組的 hello。
 
-1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
+1. 從 hello 命令列，變更目錄 toohello **azure ad**資料夾，如果您已經不存在。
 
     `cd azuread`
 
-2. 輸入下列命令，在您的 **node_modules** 目錄中安裝下列模組：
+2. 這些模組中的輸入下列命令 tooinstall hello 您**node_modules**目錄：
 
     * `npm install assert-plus`
     * `npm install bunyan`
     * `npm update`
 
 ## <a name="step-10-create-a-serverjs-with-your-dependencies"></a>步驟 10：使用您的相依性建立 server.js
-server.js 檔案會提供 Web API 伺服器的大部分功能。 我們會將大部分的程式碼新增至此檔案。 基於生產目的，我們建議您將功能重整成較小的檔案，例如單獨分開的路由和控制器。 在此示範中，我們會在這項功能中使用 server.js。
+hello 立即轉譯 server.js 檔案提供我們的 web API 伺服器的大部分的 hello 功能。 我們加入大部分我們的程式碼 toothis 檔案。 生產環境中使用，我們建議您重構 hello 成較小的檔案，例如個別的路由和控制站的功能。 在此示範中，我們會在這項功能中使用 server.js。
 
-1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
+1. 從 hello 命令列，變更目錄 toohello **azure ad**資料夾，如果您已經不存在。
 
     `cd azuread`
 
-2. 在喜愛的編輯器中建立 `server.js` 檔案，然後新增下列資訊：
+2. 建立`server.js`檔案您最愛的編輯器中，然後再加入 hello 下列資訊：
 
     ```Javascript
         'use strict';
@@ -250,50 +250,50 @@ server.js 檔案會提供 Web API 伺服器的大部分功能。 我們會將大
       var BearerStrategy = require('passport-azure-ad').BearerStrategy;
     ```
 
-3. 儲存檔案。 我們稍後會再回到此檔案。
+3. 儲存 hello 檔案。 我們將儘速傳回 tooit。
 
-## <a name="step-11-create-a-config-file-to-store-your-azure-ad-settings"></a>步驟 11：建立可儲存您的 Azure AD 設定的組態檔
-這個程式碼檔會將設定參數從您的 Azure Active Directory 入口網站傳遞到 Passport.js。 您會在將 Web API 新增至入口網站 (本逐步解說的第一個部分) 時建立這些設定值。 在您複製程式碼之後，我們會說明要放入這些參數值的內容。
+## <a name="step-11-create-a-config-file-toostore-your-azure-ad-settings"></a>步驟 11： 建立組態檔 toostore 您 Azure AD 的設定
+這個程式碼檔會從您的 Azure Active Directory 入口網站 tooPassport.js 傳遞 hello 組態參數。 當您新增 hello hello 逐步解說的第一個組件中的 hello web API toohello 入口網站時，您會建立這些組態值。 在複製 hello 程式碼之後，我們會說明哪些 tooput hello 這些參數值。
 
-1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
+1. 從 hello 命令列，變更目錄 toohello **azure ad**資料夾，如果您已經不存在。
 
     `cd azuread`
 
-2. 在喜愛的編輯器中建立 `config.js` 檔案，然後新增下列資訊：
+2. 建立`config.js`檔案您最愛的編輯器中，然後再加入 hello 下列資訊：
 
     ```Javascript
          exports.creds = {
              mongoose_auth_local: 'mongodb://localhost/tasklist', // Your mongo auth uri goes here
              clientID: 'your client ID',
              audience: 'your application URL',
-            // you cannot have users from multiple tenants sign in to your server unless you use the common endpoint
+            // you cannot have users from multiple tenants sign in tooyour server unless you use hello common endpoint
           // example: https://login.microsoftonline.com/common/.well-known/openid-configuration
              identityMetadata: 'https://login.microsoftonline.com/<your tenant id>/.well-known/openid-configuration',
-             validateIssuer: true, // if you have validation on, you cannot have users from multiple tenants sign in to your server
+             validateIssuer: true, // if you have validation on, you cannot have users from multiple tenants sign in tooyour server
              passReqToCallback: false,
-             loggingLevel: 'info' // valid are 'info', 'warn', 'error'. Error always goes to stderr in Unix.
+             loggingLevel: 'info' // valid are 'info', 'warn', 'error'. Error always goes toostderr in Unix.
 
          };
     ```
-3. 儲存檔案。
+3. 儲存 hello 檔案。
 
-## <a name="step-12-add-configuration-values-to-your-serverjs-file"></a>步驟 12：將組態值新增至 server.js 檔案
-我們必須從您跨應用程式建立的 .config 檔案中讀取這些值。 若要這樣做，我們會將 .config 檔案新增為我們的應用程式中的必要資源。 然後，我們會設定全域變數，以符合 config.js 文件中的變數。
+## <a name="step-12-add-configuration-values-tooyour-serverjs-file"></a>步驟 12： 加入組態值 tooyour 立即轉譯 server.js 檔
+我們需要 tooread hello.config 檔案，您建立這些值在我們的應用程式。 toodo，我們在我們的應用程式新增為所需的資源 hello.config 檔案。 然後我們會在 hello config.js 文件中設定 hello 全域變數 toomatch hello 變數。
 
-1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
+1. 從 hello 命令列，變更目錄 toohello **azure ad**資料夾，如果您已經不存在。
 
     `cd azuread`
 
-2. 在喜愛的編輯器中開啟 `server.js` 檔案，然後新增下列資訊：
+2. 開啟您`server.js`檔案您最愛的編輯器中，然後再加入 hello 下列資訊：
 
     ```Javascript
     var config = require('./config');
     ```
-3. 然後，使用下列程式碼在 `server.js` 中加入新的區段：
+3. 然後加入新的區段太`server.js`以下列程式碼的 hello:
 
     ```Javascript
     var options = {
-        // The URL of the metadata document for your app. We will put the keys for token validation from the URL found in the jwks_uri tag of the in the metadata.
+        // hello URL of hello metadata document for your app. We will put hello keys for token validation from hello URL found in hello jwks_uri tag of hello in hello metadata.
         identityMetadata: config.creds.identityMetadata,
         clientID: config.creds.clientID,
         validateIssuer: config.creds.validateIssuer,
@@ -303,7 +303,7 @@ server.js 檔案會提供 Web API 伺服器的大部分功能。 我們會將大
 
     };
 
-    // Array to hold logged in users and the current logged in user (owner).
+    // Array toohold logged in users and hello current logged in user (owner).
     var users = [];
     var owner = null;
 
@@ -323,7 +323,7 @@ server.js 檔案會提供 Web API 伺服器的大部分功能。 我們會將大
             }, ]
     });
 
-      // If the logging level is specified, switch to it.
+      // If hello logging level is specified, switch tooit.
       if (config.creds.loggingLevel) { log.levels("console", config.creds.loggingLevel); }
 
     // MongoDB setup.
@@ -332,42 +332,42 @@ server.js 檔案會提供 Web API 伺服器的大部分功能。 我們會將大
     var serverURI = (process.env.PORT) ? config.creds.mongoose_auth_mongohq : config.creds.mongoose_auth_local;
     ```
 
-4. 儲存檔案。
+4. 儲存 hello 檔案。
 
-## <a name="step-13-add-the-mongodb-model-and-schema-information-by-using-mongoose"></a>步驟 13：使用 Moongoose 新增 MongoDB 模型和結構描述資訊
-現在，當我們將這三個檔案組合成 REST API 服務時，您便會開始看到所有準備工作的成效。
+## <a name="step-13-add-hello-mongodb-model-and-schema-information-by-using-mongoose"></a>步驟 13： 使用 1 新增 hello MongoDB 模型和結構描述資訊
+此項準備現在 toostart 付清我們將這三個檔案合併成 REST API 服務。
 
-在此逐步解說中，我們使用 MongoDB 來儲存工作，如步驟 4 所述。
+這個逐步解說中，我們使用 MongoDB toostore 我們在步驟 4 中所述的工作。
 
-在步驟 11 中建立的 `config.js` 檔案中，我們會呼叫資料庫 **，因為那是我們放在 `tasklist`mogoose_auth_local** 連線 URL 結尾處的內容。 您不需要在 MongoDB 中事先建立此資料庫。 相反地，MongoDB 會在第一次執行我們的伺服器應用程式時為我們建立此資料庫 (假設此資料庫尚未存在)。
+在 hello`config.js`檔案，我們建立步驟 11 中，我們打給我們的資料庫`tasklist`，因為這是我們放在 hello 結尾我們**mogoose_auth_local**連接 URL。 您不需要 toocreate MongoDB 事先的這個資料庫。 相反地，MongoDB 這我們上建立 hello 第一次執行的伺服器應用程式 （假設該 hello 資料庫不存在）。
 
-既然我們已經告訴伺服器想要使用哪個 MongoDB 資料庫，我們必須撰寫一些額外程式碼，以建立伺服器工作的模型和結構描述。
+既然我們已告知 hello 伺服器 MongoDB 資料庫，我們都希望 toouse，我們需要 toowrite 一些額外的程式碼 toocreate hello 模型和結構描述我們的伺服器工作。
 
-### <a name="discussion-of-the-model"></a>模型的討論
+### <a name="discussion-of-hello-model"></a>Hello 模型的討論
 我們的結構描述模型很簡單。 您可視需要加以擴充。
 
-名稱：指派給工作的人員名稱。 **字串**。
+名稱： hello 分派 toohello 工作的 hello 人員名稱。 **字串**。
 
-工作：工作本身。 **字串**。
+工作： hello 工作本身。 **字串**。
 
-日期：工作到期的日期。 **DATETIME**。
+日期： hello 日期該 hello 工作會到期。 **DATETIME**。
 
-已完成：工作是否已完成。 **布林值**。
+完成： Hello 工作是否已完成。 **布林值**。
 
-### <a name="creating-the-schema-in-the-code"></a>在程式碼中建立結構描述
-1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
+### <a name="creating-hello-schema-in-hello-code"></a>在 hello 程式碼中建立 hello 結構描述
+1. 從 hello 命令列，變更目錄 toohello **azure ad**資料夾，如果您已經不存在。
 
     `cd azuread`
 
-2. 在喜愛的編輯器中開啟 `server.js` 檔案，然後在組態項目下方新增下列資訊：
+2. 開啟您`server.js`檔案您最愛的編輯器中，然後再加入 hello 下列 hello 組態項目下方的資訊：
 
     ```Javascript
-    // Connect to MongoDB.
+    // Connect tooMongoDB.
     global.db = mongoose.connect(serverURI);
     var Schema = mongoose.Schema;
     log.info('MongoDB Schema loaded');
 
-    // Here we create a schema to store our tasks and users. It's a fairly simple schema for now.
+    // Here we create a schema toostore our tasks and users. It's a fairly simple schema for now.
     var TaskSchema = new Schema({
         owner: String,
         task: String,
@@ -375,17 +375,17 @@ server.js 檔案會提供 Web API 伺服器的大部分功能。 我們會將大
         date: Date
     });
 
-    // Use the schema to register a model.
+    // Use hello schema tooregister a model.
     mongoose.model('Task', TaskSchema);
     var Task = mongoose.model('Task');
     ```
-您可以從程式碼得知，我們先建立我們的結構描述。 然後我們會建立模型物件，以在定義**路由**時用來儲存整個程式碼中的資料。
+如您所見從 hello 程式碼，我們建立結構描述第一次。 然後我們建立的 toostore hello 整個資料程式碼，因此我們定義時，我們使用的模型物件我們**路由**。
 
 ## <a name="step-14-add-our-routes-for-our-task-rest-api-server"></a>步驟 14：新增工作 REST API 伺服器的路由
-既然我們已經擁有可以使用的資料庫模型，讓我們新增即將用於 REST API 伺服器的路由。
+現在，我們已經使用資料庫模型 toowork，讓我們加入 hello 路由，我們會持續使用我們的 REST API 伺服器。
 
 ### <a name="about-routes-in-restify"></a>關於 Restify 中的路由
-Restify 與 Express 堆疊中的路由運作方式完全相同。 您可以使用您預期用戶端應用程式呼叫的 URI 來定義路由。 通常，您會在個別的檔案中定義您的路由。 基於本文的目的，我們會將路由放在 server.js 檔案中。 在生產環境中，建議您將這些路由分散到其各自的檔案。
+路由在 Restify hello 相同他們沒有在 hello Express 堆疊的方式。 您可以使用 hello 您預期 hello 用戶端應用程式 toocall 的 URI，以定義路由。 通常，您會在個別的檔案中定義您的路由。 基於我們的目的，我們會將我們的路線 hello 立即轉譯 server.js 檔案中。 在生產環境中，建議您將這些路由分散到其各自的檔案。
 
 Restify 路由的典型模式如下：
 
@@ -398,7 +398,7 @@ function createObject(req, res, next) {
 
  ///...
 
-return next(); // Keep the server going.
+return next(); // Keep hello server going.
 }
 
 ....
@@ -408,16 +408,16 @@ server.post('/service/:add/:object', createObject); // Calls createObject on rou
 ```
 
 
-這是最基本層級的模式。 Resitfy (及 Express) 可提供更深入的功能，例如定義應用程式類型和提供不同端點之間的複雜路由。 基於本文的目的，我們會讓這些路由保持簡單。
+這是在其最基本的層級的 hello 模式。 Resitfy (及 Express) 可提供更深入的功能，例如定義應用程式類型和提供不同端點之間的複雜路由。 基於本文的目的，我們會讓這些路由保持簡單。
 
-### <a name="add-default-routes-to-our-server"></a>將預設路由加入伺服器
-我們現在會新增建立、擷取、更新和刪除的基本 CRUD 路由。
+### <a name="add-default-routes-tooour-server"></a>新增預設路由 tooour 伺服器
+我們現在將 hello 基本 CRUD 路由的建立、 擷取、 更新和刪除。
 
-1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)：
+1. 從 hello 命令列，變更目錄 toohello **azure ad**資料夾，如果您已經不存在：
 
     `cd azuread`
 
-2. 在喜愛的編輯器中開啟 `server.js` 檔案，然後在您先前製作的資料庫項目底下新增下列資訊：
+2. 開啟 hello`server.js`檔案在您最愛的編輯器中，然後再新增 hello 遵循 hello 先前資料庫的項目所做的下列資訊：
 
 ```Javascript
 
@@ -430,13 +430,13 @@ server.post('/service/:add/:object', createObject); // Calls createObject on rou
 
 function createTask(req, res, next) {
 
-    // Restify currently has a bug which doesn't allow you to set default headers.
-    // These headers comply with CORS and allow us to mongodbServer our response to any origin.
+    // Restify currently has a bug which doesn't allow you tooset default headers.
+    // These headers comply with CORS and allow us toomongodbServer our response tooany origin.
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-    // Create a new task model, fill it, and save it to Mongodb.
+    // Create a new task model, fill it, and save it tooMongodb.
     var _task = new Task();
 
     if (!req.params.task) {
@@ -451,7 +451,7 @@ function createTask(req, res, next) {
 
     _task.save(function(err) {
         if (err) {
-            req.log.warn(err, 'createTask: unable to save');
+            req.log.warn(err, 'createTask: unable toosave');
             next(err);
         } else {
             res.send(201, _task);
@@ -474,7 +474,7 @@ function removeTask(req, res, next) {
     }, function(err) {
         if (err) {
             req.log.warn(err,
-                'removeTask: unable to delete %s',
+                'removeTask: unable toodelete %s',
                 req.params.task);
             next(err);
         } else {
@@ -503,7 +503,7 @@ function getTask(req, res, next) {
         owner: owner
     }, function(err, data) {
         if (err) {
-            req.log.warn(err, 'get: unable to read %s', owner);
+            req.log.warn(err, 'get: unable tooread %s', owner);
             next(err);
             return;
         }
@@ -514,11 +514,11 @@ function getTask(req, res, next) {
     return next();
 }
 
-/// Simple returns the list of TODOs that were loaded.
+/// Simple returns hello list of TODOs that were loaded.
 
 function listTasks(req, res, next) {
-    // Restify currently has a bug which doesn't allow you to set default headers.
-    // These headers comply with CORS and allow us to mongodbServer our response to any origin.
+    // Restify currently has a bug which doesn't allow you tooset default headers.
+    // These headers comply with CORS and allow us toomongodbServer our response tooany origin.
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -538,7 +538,7 @@ function listTasks(req, res, next) {
         }
 
         if (!data.length) {
-            log.warn(err, "There is no tasks in the database. Did you initialize the database as stated in the README?");
+            log.warn(err, "There is no tasks in hello database. Did you initialize hello database as stated in hello README?");
         }
 
         if (!owner) {
@@ -558,7 +558,7 @@ function listTasks(req, res, next) {
 ### <a name="add-error-handling-in-our-apis"></a>在我們的 API 中新增錯誤處理
 ```
 
-///--- Errors for communicating something interesting back to the client.
+///--- Errors for communicating something interesting back toohello client.
 
 function MissingTaskError() {
     restify.RestError.call(this, {
@@ -606,9 +606,9 @@ util.inherits(TaskNotFoundError, restify.RestError);
 
 
 ## <a name="step-15-create-your-server"></a>步驟 15：建立伺服器
-我們已定義資料庫並已備妥路由。 最後一件事是新增伺服器執行個體，以管理我們的呼叫。
+我們已定義資料庫並已備妥路由。 最後一件事 toodo hello 會新增管理我們呼叫 hello 伺服器執行個體。
 
-在 Restify (及 Express) 中，您可以為 REST API 伺服器進行多項自訂，但再重申一次，基於本文的目的，我們即將使用最基本的設定。
+在 Restify （和 Express） 中，您可以執行的自訂作業的 REST API 伺服器，但我們還是 toouse hello 最基本的安裝程式基於我們的目的。
 
 ```Javascript
 /**
@@ -633,32 +633,32 @@ server.pre(restify.pre.userAgentConnection());
 // Set a per request bunyan logger (with requestid filled in).
 server.use(restify.requestLogger());
 
-// Allow five requests per second by IP, and burst to 10.
+// Allow five requests per second by IP, and burst too10.
 server.use(restify.throttle({
     burst: 10,
     rate: 5,
     ip: true,
 }));
 
-// Use the common stuff you probably want.
+// Use hello common stuff you probably want.
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.dateParser());
 server.use(restify.queryParser());
 server.use(restify.gzipResponse());
 server.use(restify.bodyParser({
     mapParams: true
-})); // Allow for JSON mapping to REST.
+})); // Allow for JSON mapping tooREST.
 ```
 
-## <a name="step-16-add-the-routes-to-the-server-without-authentication-for-now"></a>步驟 16：將路由新增至伺服器 (目前不需驗證)
+## <a name="step-16-add-hello-routes-toohello-server-without-authentication-for-now"></a>步驟 16： 新增 hello 路由 toohello 伺服器 （不含現在驗證）
 ```Javascript
-/// Now the real handlers. Here we just CRUD.
+/// Now hello real handlers. Here we just CRUD.
 /**
 /*
 /* Each of these handlers is protected by our OIDCBearerStrategy by invoking 'oidc-bearer'.
-/* In the pasport.authenticate() method. We set 'session: false' because REST is stateless and
-/* we don't need to maintain session state. You can experiment with removing API protection
-/* by removing the passport.authenticate() method as follows:
+/* In hello pasport.authenticate() method. We set 'session: false' because REST is stateless and
+/* we don't need toomaintain session state. You can experiment with removing API protection
+/* by removing hello passport.authenticate() method as follows:
 /*
 /* server.get('/tasks', listTasks);
 /*
@@ -694,29 +694,29 @@ server.listen(serverPort, function() {
 var consoleMessage = '\n Microsoft Azure Active Directory Tutorial';
 consoleMessage += '\n +++++++++++++++++++++++++++++++++++++++++++++++++++++';
 consoleMessage += '\n %s server is listening at %s';
-consoleMessage += '\n Open your browser to %s/tasks\n';
+consoleMessage += '\n Open your browser too%s/tasks\n';
 consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n';
-consoleMessage += '\n !!! why not try a $curl -isS %s | json to get some ideas? \n';
+consoleMessage += '\n !!! why not try a $curl -isS %s | json tooget some ideas? \n';
 consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
 });
 ```
 
-## <a name="step-17-run-the-server-before-adding-oauth-support"></a>步驟 17：執行伺服器 (在新增 OAuth 支援之前)
+## <a name="step-17-run-hello-server-before-adding-oauth-support"></a>步驟 17： 執行 hello 伺服器 （如果您之前新增 OAuth 支援）
 新增驗證之前，請先測試您的伺服器。
 
-測試伺服器的最簡單方式是在命令列中使用 curl。 在執行此動作之前，我們需要一個可讓我們將輸出剖析為 JSON 的公用程式。
+最簡單方式 tootest hello 您的伺服器是使用 curl 命令列中。 這樣做之前，我們需要公用程式，讓我們 tooparse 輸出為 JSON。
 
-1. 安裝下列 JSON 工具 (下列所有範例都會使用此工具)︰
+1. 安裝下列 JSON 工具 （所有 hello 遵循範例會都使用此工具） 的 hello:
 
     `$npm install -g jsontool`
 
-    這會全域安裝 JSON 工具。 現在已完成此動作，讓我們開始使用伺服器：
+    這會安裝 hello JSON 工具全域。 既然我們已經完成動作，讓我們來播放與 hello 伺服器：
 
 2. 首先，確定您的 MongoDB 執行個體正在執行：
 
     `$sudo mongod`
 
-3. 然後，變更目錄並啟動 curling：
+3. 然後，變更 toohello 目錄，並啟動捲曲：
 
     `$ cd azuread` `$ node server.js`
 
@@ -743,7 +743,7 @@ consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
 
     `$ curl -isS -X POST http://127.0.0.1:8080/tasks/brandon/Hello`
 
-    回應應為：
+    應該 hello 回應：
 
         ```Shell
         HTTP/1.1 201 Created
@@ -759,21 +759,21 @@ consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
 
         `$ curl -isS http://127.0.0.1:8080/tasks/brandon/`
 
-如果都沒問題，我們便可以開始將 OAuth 新增至 REST API 伺服器。
+如果所有可以運作，我們準備 tooadd OAuth toohello REST API 伺服器。
 
 您必須將 REST API 伺服器搭配 MongoDB 使用！
 
-## <a name="step-18-add-authentication-to-our-rest-api-server"></a>步驟 18：將驗證新增至 REST API 伺服器
+## <a name="step-18-add-authentication-tooour-rest-api-server"></a>步驟 18： 加入驗證 tooour REST API 伺服器
 既然我們已有執行中的 REST API，我們就可以讓它在 Azure AD 中發揮其價值。
 
-從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
+從 hello 命令列，變更目錄 toohello **azure ad**資料夾，如果您已經不存在。
 
 `cd azuread`
 
-### <a name="use-the-oidcbearerstrategy-that-is-included-with-passport-azure-ad"></a>使用 passport-azure-ad 隨附的 OIDCBearerStrategy
+### <a name="use-hello-oidcbearerstrategy-that-is-included-with-passport-azure-ad"></a>使用 hello OIDCBearerStrategy 所包含的 passport azure ad
 到目前為止，我們已經建置典型的 REST TODO 伺服器，且其中不含任何授權種類。 這是我們將其結合在一起的起點。
 
-1. 首先，需指出要使用 Passport。 在其他伺服器設定之後緊接著執行此動作：
+1. 首先，我們需要 tooindicate 我們想要 toouse Passport。 在其他伺服器設定之後緊接著執行此動作：
 
     ```Javascript
             // Let's start using Passport.js.
@@ -782,19 +782,19 @@ consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
             server.use(passport.session()); // Provides session support.
     ```
     > [!TIP]
-    > 撰寫 API 時，我們建議您一律將資料連結到使用者無法欺騙之權杖中唯一的項目。 此伺服器儲存 TODO 項目時，會根據我們放在 [擁有者] 欄位的權杖 (透過 token.sub 呼叫) 中使用者的物件識別碼來儲存這些項目。 這可確保只有該使用者可以存取自己的 TODO。 不會在「擁有者」API 中公開，因此，外部使用者可以要求其他人的 TODO，即使它們已經過驗證也一樣。                    
+    > 當您撰寫應用程式開發介面，我們建議您一律連結 hello 資料 toosomething 唯一從 hello 使用者的 hello 權杖無法偽造。 當這個伺服器儲存 TODO 項目時，它會儲存根據 hello hello 語彙基元 （透過 token.oid 稱為） 中的 hello 使用者我們放在 hello 「 擁有者 」 欄位中物件識別碼。 這可確保只有該使用者可以存取自己的 TODO。 讓外部使用者可以要求 hello TODOs 的其他人，即使它們驗證 「 擁有者 」 的 hello 應用程式開發介面中沒有任何風險。                    
 
-2. 接下來，使用 `passport-azure-ad` 隨附的持有人策略。 目前查看一下此程式碼，我們很快就會說明其他部分。 將這段程式碼放在您上面所貼內容的後面：
+2. 下一步我們將使用隨附的 hello 承載策略`passport-azure-ad`。 現在看看 hello 程式碼，我們將稍後說明 hello rest。 將這段程式碼放在您上面所貼內容的後面：
 
 ```Javascript
     /**
     /*
-    /* Calling the OIDCBearerStrategy and managing users.
+    /* Calling hello OIDCBearerStrategy and managing users.
     /*
-    /* Passport pattern provides the need to manage users and info tokens
-    /* with a FindorCreate() method that must be provided by the implementor.
+    /* Passport pattern provides hello need toomanage users and info tokens
+    /* with a FindorCreate() method that must be provided by hello implementor.
     /* Here we just auto-register any user and implement a FindById().
-    /* You'll want to do something smarter.
+    /* You'll want toodo something smarter.
     **/
 
     var findById = function(id, fn) {
@@ -811,8 +811,8 @@ consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
 
     var bearerStrategy = new BearerStrategy(options,
         function(token, done) {
-            log.info('verifying the user');
-            log.info(token, 'was the token retreived');
+            log.info('verifying hello user');
+            log.info(token, 'was hello token retreived');
             findById(token.sub, function(err, user) {
                 if (err) {
                     return done(err);
@@ -833,17 +833,17 @@ consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
     passport.use(bearerStrategy);
 ```
 
-Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有策略寫入器都依循的類似模式。 查看此策略，您會看見我們將它當成函式來傳遞，其有一個 token 和一個 done 做為參數。 策略完成所有工作之後會回到我們這邊。 當它完成之後，我們會儲存使用者並存放權杖，因此不需要再次要求它。
+Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有策略寫入器都依循的類似模式。 查看 hello 策略，您會看到我們做為 hello 參數傳遞它具有語彙基元和完成的函式。 其功能之後，來自回 toous hello 策略。 它之後，我們 hello 使用者和儲存存放 hello 語彙基元，我們就不需要為其 tooask 一次。
 
 > [!IMPORTANT]
-> 先前程式碼會讓所有使用者經歷伺服器的驗證。 這就是所謂的自動註冊。 在生產伺服器中，我們建議您要讓所有人都必須先經歷您所決定的註冊過程。 這通常是您在取用者應用程式中看到的模式，可讓您向 Facebook 註冊，但接著會要求您填寫其他資訊。 如果這不是命令列程式，我們可以從傳回的權杖物件中擷取電子郵件，然後要求使用者填寫其他資訊。 由於這是測試伺服器，因此，我們直接將它們加入記憶體中的資料庫。
+> hello 先前的程式碼會發生 tooauthenticate tooour 伺服器的任何使用者。 這就是所謂的自動註冊。 在生產伺服器中，我們建議您要讓所有人都必須先經歷您所決定的註冊過程。 這通常是您在取用者應用程式，這可讓您與 Facebook tooregister 但然後要求 toofill 出額外的資訊，請參閱 hello 模式。 如果這不是命令列程式，我們無法從傳回並再要求其他資訊的 hello 使用者 toofill hello token 物件擷取已 hello 電子郵件。 因為這是在測試伺服器，我們直接將它們 toohello 記憶體中資料庫。
 >
 >
 
 ### <a name="protect-some-endpoints"></a>保護某些端點
-透過您想要使用的通訊協定來指定 `passport.authenticate()` 呼叫，即可保護端點。
+您藉由指定 hello 保護端點`passport.authenticate()`想 toouse hello 通訊協定呼叫。
 
-若要讓我們的伺服器程式碼執行更有趣的作業，請編輯路由。
+toomake 我們伺服端程式碼進行了多個有趣，讓我們來編輯 hello 路由。
 
 ```Javascript
 server.get('/tasks', passport.authenticate('oauth-bearer', {
@@ -882,13 +882,13 @@ next();
 ```
 
 ## <a name="step-19-run-your-server-application-again-and-ensure-it-rejects-you"></a>步驟 19：再次執行應用程式伺服器，並確保它會拒絕您的要求
-讓我們再次使用 `curl`，以查看我們現在是否有針對端點的 OAuth2 保護。 我們會在對此端點執行任何用戶端 SDK 之前，執行此動作。 傳回的標頭應該足以說明我們朝著正確的路徑前進。
+讓我們使用`curl`再次 toosee 如果我們現在有 OAuth2 保護對我們的端點。 我們會在對此端點執行任何用戶端 SDK 之前，執行此動作。 hello 所傳回的標頭應為足夠 tootell 我們如果我們要向 hello 正確的路徑。
 
 1. 首先，確定您的 MongoDB 執行個體正在執行：
 
     `$sudo mongod`
 
-2. 然後，變更目錄並啟動 curling。
+2. 然後，變更 toohello 目錄，並啟動捲曲。
 
       `$ cd azuread` `$ node server.js`
 
@@ -904,16 +904,16 @@ next();
     Transfer-Encoding: chunked
     ```
 
-此時 401 是您期待的回應。 此回應指出 Passport 層正嘗試重新導向至已授權的端點，這正是您想要的結果。
+401 是您所需這裡的 hello 回應。 此回應指出 hello Passport 該層正嘗試 tooredirect toohello 授權端點，而這正是您想要。
 
 ## <a name="next-steps"></a>後續步驟
-在未使用 OAuth2 相容用戶端的情況下，您已經儘可能地使用此伺服器的所有功能。 您還必須完成其他逐步解說。
+在未使用 OAuth2 相容用戶端的情況下，您已經儘可能地使用此伺服器的所有功能。 您必須透過其他的逐步解說 toogo。
 
-您現在已了解如何使用 Restify 和 OAuth2 實作 REST API。 您也已經有足夠的程式碼可以繼續開發服務，並學習如何以此範例為基礎進行建置。
+您現在已經學會如何 tooimplement 使用 REST API Restify 和 OAuth2。 您也可以開發您的服務，並學習更多程式碼 tookeep 如何 toobuild 在此範例。
 
-如果您對執行 ADAL 的後續步驟感興趣，以下是一些我們建議的支援 ADAL 用戶端，可供您繼續使用。
+如果您想要在下一個步驟中 hello ADAL 旅程中，以下是我們建議您將使用的一些支援的 ADAL 用戶端。
 
-複製到您的開發人員機器，並如本逐步解說所述進行設定即可。
+複製下 tooyour 開發人員電腦，並設定 hello 逐步解說中所述。
 
 [ADAL for iOS](https://github.com/MSOpenTech/azure-activedirectory-library-for-ios)
 

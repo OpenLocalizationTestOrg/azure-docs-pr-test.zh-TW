@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory B2C︰參考︰使用自訂原則來自訂使用者旅程的 UI | Microsoft Docs"
+title: "Azure Active Directory B2C： 參考： 自訂 hello 與自訂原則的使用者之旅 UI |Microsoft 文件"
 description: "Azure Active Directory B2C 自訂原則的主題"
 services: active-directory-b2c
 documentationcenter: 
@@ -14,39 +14,39 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/25/2017
 ms.author: joroja
-ms.openlocfilehash: 68f40aa638a687398512278a0b77d1ba392859cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 11f2a7575b95a186399d83266850fe44d650371b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="customize-the-ui-of-a-user-journey-with-custom-policies"></a>使用自訂原則來自訂使用者旅程的 UI
+# <a name="customize-hello-ui-of-a-user-journey-with-custom-policies"></a>自訂 hello 與自訂原則的使用者之旅 UI
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
 > [!NOTE]
-> 本文會進一步說明如何自訂 UI，以及如何使用身分識別體驗架構來對 B2C 自訂原則啟用 UI 自訂功能
+> 本文是自訂 UI 的運作方式以及如何 tooenable B2C 自訂原則，使用與 hello 身分識別體驗架構的進階的描述
 
 
-順暢的使用者體驗是任何「企業對客戶」解決方案的成功關鍵。 所謂順暢的使用者體驗，不論是在裝置或瀏覽器上，都是指使用者在使用我們的服務時所經歷的旅程，和其使用客戶服務時的旅程沒有差異。
+順暢的使用者體驗是任何「企業對客戶」解決方案的成功關鍵。 流暢的使用者體驗，是指體驗，不論是否在裝置或瀏覽器，其中無法透過我們的服務的使用者之旅辨別 hello 客戶服務，他們使用的。
 
-## <a name="understand-the-cors-way-for-ui-customization"></a>了解以 CORS 來自訂 UI 的方法
+## <a name="understand-hello-cors-way-for-ui-customization"></a>了解自訂 UI 的 hello CORS 方法
 
-Azure AD B2C 可讓您在各種頁面上自訂使用者體驗 (UX) 的外觀與風格，並可能由 Azure AD B2C 透過您的自訂原則來提供和顯示這些自訂。
+Azure AD B2C 可讓您 toocustomize hello 的外觀及操作的使用者經驗 (UX) 上 hello 可以潛在服務和 Azure AD B2C 顯示透過您的自訂原則的各個頁面。
 
-為了達成該目的，Azure AD B2C 會在取用者的瀏覽器中執行程式碼，並使用現代且標準的方法 ([跨原始資源共用 (CORS)](http://www.w3.org/TR/cors/)) 來載入自訂內容，內容來源則是您在自訂原則中指定為指向 HTML5/CSS 範本的特定 URL。 CORS 機制可讓您從網頁上受限制資源 (如字型) 來源網域以外的其他網域，對該項資源提出要求。
+基於這個目的，Azure AD B2C，請執行您的消費者瀏覽器中的程式碼，並使用 hello 現代的標準方法[跨原始資源共用 (CORS)](http://www.w3.org/TR/cors/) tooload 自訂內容與您在自訂原則中指定的特定 URLtoopoint tooyour HTML5/CSS 範本。 CORS 是像網頁 toobe 要求從起始 hello 資源 hello 網域之外的另一個定義域上的字型，可讓受限制的資源的機制。
 
-而在傳統的舊式方法中，範本頁面是由解決方案擁有、您只提供有限的文字和影像、版面配置與風格只提供有限的控制能力，因此會導致更多問題而難以實現順暢體驗，相較之下，CORS 方法則支援 HTML5 及 CSS，因此可讓您︰
+比較 toohello 舊傳統方式，由 hello 方案，其中提供有限的文字和影像，其中配置和風格的有限的控制項提供前置 toomore 比困難 tooachieve 順暢的體驗，hello CORS 所擁有範本頁面方法支援 HTML5 和 CSS，並可讓您：
 
-- 裝載內容，解決方案則會使用用戶端指令碼來插入其控制項。
+- 裝載 hello 內容和 hello 方案會將其控制項使用用戶端指令碼。
 - 完整控制版面配置與風格的每個像素。
 
 您可以適當地製作 HTML5/CSS 檔案來提供任意數量的內容頁面。
 
 > [!NOTE]
-> 為確保安全，系統目前禁止使用 JavaScript 來進行自訂。 若要將 JavaScript 的此一禁制取消，則需要為 Azure AD B2C 租用戶使用自訂的網域名稱。
+> 基於安全性理由，JavaScript hello 使用目前被封鎖進行自訂。 需要 toounblock JavaScript 中，使用 Azure AD B2C 租用戶的自訂網域名稱。
 
-在每個 HTML5/CSS 範本中，您都需要提供「錨點」元素，以便對應至 HTML 或內容頁面中所需的 `<div id=”api”>` 元素，如以下所述。 Azure AD B2C 要求所有內容頁面都必須有這個特定 div。
+在每個您 HTML5/CSS 的範本，您可以提供*錨點*元素，其對應所需的 toohello `<div id=”api”>` hello HTML 或 hello 內容頁面中做為以下說明的項目。 Azure AD B2C 要求所有內容頁面都必須有這個特定 div。
 
 ```
 <!DOCTYPE html>
@@ -60,11 +60,11 @@ Azure AD B2C 可讓您在各種頁面上自訂使用者體驗 (UX) 的外觀與�
 </html>
 ```
 
-頁面的 Azure AD B2C 相關內容會插入這個 div 中，頁面的其餘部分則由您控制。 Azure AD B2C 的 JavaScript 程式碼會提取您的內容，並將我們的 HTML 插入到這個特定的 div 元素。 Azure AD B2C 會適當插入下列控制項︰帳戶選擇器控制項、登入控制項、多因素 (目前為電話式) 控制項和屬性集合控制項。 Azure AD B2C 可確保所有控制項都符合 HTML5 規範且可供存取、所有控制項都可完全自訂樣式，且控制項版本不會倒退。
+Azure AD B2C 相關內容的 hello 頁面將會插入到這個 div，hello hello 頁面其餘部分時，係 toocontrol。 hello Azure AD B2C 的 JavaScript 程式碼在您的內容中提取，並將 HTML 插入至這個特定的 div 項目。 Azure AD B2C 會插入下列控制項做為適當的 hello： 帳戶選擇器控制項、 登入控制項、 多因素 （目前電話型） 控制項和屬性集合控制項。 Azure AD B2C 可確保並確認所有 hello 控制項 HTML5 相容且可存取，而且所有 hello 控制項可以完全都樣式，將無法回復控制版本。
 
-合併的內容最終會以動態文件的形式向取用者顯示。
+hello 合併的內容最後會顯示為 hello 動態文件 tooyour 取用者。
 
-若要確保上述各項正常運作，您必須︰
+hello 上述的 tooensure 如預期般運作，您必須：
 
 - 確保內容符合 HTML5 規範且可供存取
 - 確保內容伺服器已啟用 CORS。
@@ -72,74 +72,74 @@ Azure AD B2C 可讓您在各種頁面上自訂使用者體驗 (UX) 的外觀與�
 - 對所有連結和 CSS 內容使用絕對 URL，例如 https://yourdomain/content。
 
 > [!TIP]
-> 若要確認您要用來裝載內容的網站已啟用 CORS 並測試 CORS 要求，您可以使用 http://test-cors.org/ 網站。 由於有此網站，您可以直接將 CORS 要求傳送到遠端伺服器 (以進行測試，前提是該伺服器支援 CORS)，或將 CORS 要求傳送至測試伺服器 (以瀏覽 CORS 的某些功能)。
+> hello 您正在裝載您的內容的站台的 tooverify 啟用 CORS，而且測試 CORS 要求時，您可以使用 hello 網站 http://test-cors.org/。 感謝您 toothis 站台，您可以直接傳送嗨 CORS 要求 tooa 遠端伺服器 (tootest 支援 CORS，則為)，或傳送嗨 CORS 要求 tooa 測試伺服器 (tooexplore CORS 的某些功能)。
 
 > [!TIP]
-> http://enable-cors.org/ 網站也會在 CORS 上構成更有用的資源。
+> hello 網站 http://enable-cors.org/ 也構成超過 CORS 上實用的資源。
 
-由於有此 CORS 式方法，使用者之後會在您的應用程式與 Azure AD B2C 所提供的頁面之間獲得一致的體驗。
+這 toothis CORS 為基礎的方法，hello 使用者後來會有應用程式和由 Azure AD B2C hello 頁面之間的一致體驗。
 
 ## <a name="create-a-storage-account"></a>建立儲存體帳戶
 
-先決條件是，您必須建立儲存體帳戶。 您需要有  Azure 訂用帳戶才能建立 Azure Blob 儲存體帳戶。 您可以在 [Azure 網站](https://azure.microsoft.com/en-us/pricing/free-trial/)上註冊免費試用版。
+做為必要條件，您需要 toocreate 儲存體帳戶。 您將需要 Azure 訂用帳戶 toocreate Azure Blob 儲存體帳戶。 您可以註冊免費的試用版，在 hello [Azure 網站](https://azure.microsoft.com/en-us/pricing/free-trial/)。
 
-1. 開啟瀏覽工作階段並瀏覽至 [Azure 入口網站](https://portal.azure.com)。
+1. 開啟瀏覽工作階段並瀏覽 toohello [Azure 入口網站](https://portal.azure.com)。
 2. 使用您的系統管理認證來登入。
 3. 按一下 [新增] > [資料 + 儲存體] > [儲存體帳戶]。  此時會開啟 [建立儲存體帳戶] 刀鋒視窗。
-4. 在 [名稱] 中，提供儲存體帳戶的名稱，例如 contoso369b2c。 此值稍後會指稱為 storageAccountName。
-5. 選擇適當的定價層、資源群組和訂用帳戶。 確定您已核取 [釘選到「開始面板」]  選項。 按一下 [建立] 。
-6. 回到「開始面板」，然後按一下您剛建立的儲存體帳戶。
-7. 在 [服務] 區段中，按一下 [Blob]。 [Blob 服務] 刀鋒視窗隨即開啟。
+4. 在**名稱**，提供 hello 儲存體帳戶名稱，例如*contoso369b2c*。 這個值會稍後稱為太*storageAccountName*。
+5. 挑選 hello 適當的選擇定價層、 hello 資源群組和 hello 訂閱 hello。 請確定您擁有 hello **Pin tooStartboard**選項處於選取狀態。 按一下 [建立] 。
+6. 返回 toohello 開始面板，然後按一下您剛才建立的 hello 儲存體帳戶。
+7. 在 hello**服務**區段中，按一下**Blob**。 [Blob 服務] 刀鋒視窗隨即開啟。
 8. 按一下 [+容器]。
-9. 在 [名稱] 中提供容器的名稱，例如 b2c。 此值稍後會指稱為 containerName。
-9. 選取 [Blob] 來作為 [存取類型]。 按一下 [建立] 。
-10. 您建立的容器將會出現在 [Blob 服務] 刀鋒視窗的清單中。
-11. 關閉 [Blob]  刀鋒視窗。
-12. 在 [儲存體帳戶] 刀鋒視窗上，按一下 [金鑰] 圖示。 [存取金鑰] 刀鋒視窗隨即開啟。  
-13. 記下 **key1** 的值。 此值稍後會指稱為 key1。
+9. 在**名稱**，提供 hello 容器的名稱，例如*b2c*。 這個值會是稍後參考的 tooas *containerName*。
+9. 選取**Blob**為 hello**存取類型**。 按一下 [建立] 。
+10. 您所建立的 hello 容器會出現在 hello 清單上 hello **Blob 服務刀鋒視窗**。
+11. 關閉 hello **Blob**刀鋒視窗。
+12. 在 [hello**儲存體帳戶] 刀鋒視窗**，按一下 hello**金鑰**圖示。 [存取金鑰] 刀鋒視窗隨即開啟。  
+13. 請記下的 hello 值**key1**。 此值稍後會指稱為 key1。
 
-## <a name="downloading-the-helper-tool"></a>下載協助程式工具
+## <a name="downloading-hello-helper-tool"></a>下載 hello helper 工具
 
-1.  從 [GitHub](https://github.com/azureadquickstarts/b2c-azureblobstorage-client/archive/master.zip) 下載協助程式工具。
-2.  將 B2C-AzureBlobStorage-Client-master.zip 檔案儲存在本機電腦上。
-3.  在本機磁碟上解壓縮 B2C-AzureBlobStorage-Client-master.zip 檔案的內容，例如在 **UI-Customization-Pack** 資料夾下解壓縮。 這會在其底下建立 B2C-AzureBlobStorage-Client-master 資料夾。
-4.  開啟該資料夾，並在其中解壓縮 B2CAzureStorageClient.zip 封存檔的內容。
+1.  下載 hello helper 工具，從[GitHub](https://github.com/azureadquickstarts/b2c-azureblobstorage-client/archive/master.zip)。
+2.  儲存 hello *B2C AzureBlobStorage-用戶端 master.zip*在本機電腦上的檔案。
+3.  擷取的 hello B2C AzureBlobStorage-用戶端 master.zip 檔案在本機磁碟，例如在 hello hello 內容**UI 自訂套件**資料夾。 這會在其底下建立 B2C-AzureBlobStorage-Client-master 資料夾。
+4.  開啟該資料夾，並以擷取 hello 封存檔 hello 內容*B2CAzureStorageClient.zip*內。
 
-## <a name="upload-the-ui-customization-pack-sample-files"></a>上傳 UI-Customization-Pack 範例檔
+## <a name="upload-hello-ui-customization-pack-sample-files"></a>上傳 hello UI 自訂套件的範例檔案
 
-1.  使用 Windows 檔案總管，瀏覽至上一節所建立之 UI-Customization-Pack 資料夾底下的 B2C-AzureBlobStorage-Client-master 資料夾。
-2.  執行 B2CAzureStorageClient.exe 檔案。 這個程式只會將您指定目錄中的所有檔案上傳至您的儲存體帳戶，並允許 CORS 存取這些檔案。
-3.  請在提示出現時指定︰a.  您儲存體帳戶 storageAccountName 的名稱，例如 contoso369b2c。
-    b.  您的 Azure Blob 儲存體 key1 的主要存取金鑰，例如 contoso369b2c。
-    c.  您的儲存體 Blob 儲存體容器 containerName 的名稱，例如 b2c。
-    d.  Starter-Pack 範例檔的路徑，例如 ..\B2CTemplates\wingtiptoys。
+1.  使用 Windows 檔案總管，瀏覽 toohello 資料夾*B2C AzureBlobStorage-用戶端主要*位於 hello *UI 自訂套件*hello 前一節中建立資料夾。
+2.  執行 hello *B2CAzureStorageClient.exe*檔案。 這個程式只需將上傳您指定 tooyour 儲存體帳戶，並啟用 CORS 存取這些檔案的 hello 目錄中的所有 hello 檔案。
+3.  請在提示出現時指定︰a.  hello 您的儲存體帳戶名稱， *storageAccountName*，例如*contoso369b2c*。
+    b.  hello 主要存取金鑰，您的 azure blob 儲存體， *key1*，例如*contoso369b2c*。
+    c.  hello 您的儲存體 blob 儲存體容器名稱， *containerName*，例如*b2c*。
+    d.  hello hello 路徑*入門套件*例如範例檔案， *...\B2CTemplates\wingtiptoys*。
 
-如果您遵循上述步驟，虛構公司 **wingtiptoys** 之 UI-Customization-Pack 的 HTML5 和 CSS 檔案現在會指向您的儲存體帳戶。  您可以在 Azure 入口網站中開啟相關的容器刀鋒視窗，以確認該內容已正確上傳。 或者，您也可以從瀏覽器存取頁面來確認該內容已正確上傳。 如需詳細資訊，請參閱 [Azure Active Directory B2C︰用來示範頁面使用者介面 (UI) 自訂功能的協助程式工具](active-directory-b2c-reference-ui-customization-helper-tool.md)。
+如果您遵循上述步驟 hello，hello HTML5 和 CSS 檔案的 hello *UI 自訂套件*hello 虛構公司**wingtiptoys**現在會指向 tooyour 儲存體帳戶。  您可以確認 hello 內容具有已正確地上載的 hello Azure 入口網站中開啟 hello 相關的容器刀鋒視窗。 或者，您可以確認 hello 內容具有已上傳的正確存取 hello 頁面從瀏覽器。 如需詳細資訊，請參閱[Azure Active Directory B2C： 協助程式工具使用 toodemonstrate hello 頁面使用者介面 (UI) 的自訂功能](active-directory-b2c-reference-ui-customization-helper-tool.md)。
 
-## <a name="ensure-the-storage-account-has-cors-enabled"></a>確定儲存體帳戶已啟用 CORS
+## <a name="ensure-hello-storage-account-has-cors-enabled"></a>請確定 hello 儲存體帳戶已啟用的 CORS
 
-您的端點必須啟用 CORS (跨原始資源共用)，Azure AD B2C 進階版才能載入您的內容。 這是因為您的內容裝載所在的網域，與 Azure AD B2C 進階版用來從中提供頁面的網域不同。
+是 CORS （跨原始資源共用） 必須在您的 Azure AD B2C Premium tooload 端點上啟用您的內容。 這是因為比 hello 網域 Azure AD B2C Premium 服務 hello 頁面上，從您的內容裝載在不同的網域。
 
-若要確認您要用來裝載內容的儲存體已啟用 CORS，請進行下列步驟︰
+hello 存放您要裝載您的內容已啟用，CORS 的 tooverify 繼續執行步驟的 hello:
 
-1. 開啟瀏覽工作階段，並使用 unified.html 頁面在儲存體帳戶中所在位置的完整 URL `https://<storageAccountName>.blob.core.windows.net/<containerName>/unified.html` 來瀏覽至該頁面。 例如，https://contoso369b2c.blob.core.windows.net/b2c/unified.html。
-2. 瀏覽至 http://test-cors.org。 這個網站可讓您確認您要使用的頁面已啟用 CORS。  
+1. 開啟瀏覽工作階段並瀏覽 toohello 頁面*unified.html*使用 hello 的儲存體帳戶中，其位置的完整 URL `https://<storageAccountName>.blob.core.windows.net/<containerName>/unified.html`。 例如，https://contoso369b2c.blob.core.windows.net/b2c/unified.html。
+2. 瀏覽 toohttp://test-cors.org。這個網站可讓您 tooverify hello 您要的使用的已啟用 CORS。  
 <!--
 ![test-cors.org](../../media/active-directory-b2c-customize-ui-of-a-user-journey/test-cors.png)
 -->
 
-3. 在 [遠端 URL] 中，輸入 unified.html 內容的完整 URL，然後按一下 [傳送要求]。
-4. 確認 [結果] 區段中的輸出包含「XHR status: 200」。 這表示 CORS 已啟用。
+3. 在**遠端 URL**，適用於您 unified.html 內容中，輸入 hello 完整的 URL，然後按一下**傳送要求**。
+4. 請確認該 hello 中的輸出 hello**結果**區段包含*XHR 狀態： 200*。 這表示 CORS 已啟用。
 <!--
 ![CORS enabled](../../media/active-directory-b2c-customize-ui-of-a-user-journey/cors-enabled.png)
 -->
-儲存體帳戶現在應該包含我們的示例中名為 b2c 的 Blob 容器，其中並包含下列來自 Starter-Pack 的 wingtiptoys 範本。
+hello 儲存體帳戶現在應該會包含名為的 blob 容器*b2c*在我們的圖例中，其中包含 hello hello 中的下列 wingtiptoys 範本*入門套件*。
 
 <!--
 ![Correctly configured storage account](../../articles/active-directory-b2c/media/active-directory-b2c-reference-customize-ui-custom/storage-account-final.png)
 -->
 
-下表說明上述 HTML5 網頁的目的。
+hello 下表描述 HTML5 頁面上方的 hello hello 用途。
 
 | HTML5 範本 | 說明 |
 |----------------|-------------|
@@ -149,26 +149,26 @@ Azure AD B2C 可讓您在各種頁面上自訂使用者體驗 (UX) 的外觀與�
 | unified.html | 此頁面可作為統一之註冊或登入頁面的範本。 |
 | updateprofile.html | 此頁面可作為設定檔更新頁面的範本。 |
 
-## <a name="add-a-link-to-your-html5css-templates-to-your-user-journey"></a>將 HTML5/CSS 範本的連結新增至使用者旅程
+## <a name="add-a-link-tooyour-html5css-templates-tooyour-user-journey"></a>新增連結 tooyour HTML5/CSS 範本 tooyour 使用者旅程
 
-您可以藉由直接編輯自訂原則，將 HTML5/CSS 範本的連結新增至使用者旅程。
+您可以藉由直接編輯自訂原則中加入連結 tooyour HTML5/CSS 範本 tooyour 使用者之旅。
 
-要在使用者旅程中使用的自訂 HTML5/CSS 範本，必須在可用於這些使用者旅程的內容定義清單加以指定。 為此，您必須在自訂原則 XML 檔的 <BuildingBlocks> 區段下，宣告選擇性的 <ContentDefinitions> XML 元素。
+hello 自訂 HTML5/CSS 範本 toouse 使用者旅程中的有 toobe 可用於這些使用者皆的內容定義的清單中指定。 基於這個目的，選擇性 *<ContentDefinitions>*  XML 項目必須宣告在 hello  *<BuildingBlocks>* 自訂原則 XML 檔的區段。
 
-下表說明 Azure AD B2C 身分識別體驗引擎所能辨識之內容定義識別碼的集合，以及與這些識別碼有關的頁面類型。
+hello 以下表格說明 hello 組 hello Azure AD B2C 識別經驗引擎和 hello 型的頁數相關 toothem 所辨識的內容定義識別碼。
 
 | 內容定義識別碼 | 說明 |
 |-----------------------|-------------|
 | api.error | **錯誤頁面**。 在發生例外狀況或錯誤時，系統會顯示此頁面。 |
-| api.idpselections | **識別提供者選取頁面**。 此頁面包含使用者可以在登入期間選擇的識別提供者清單。 這些提供者是企業識別提供者、社交識別提供者 (如 Facebook 和 Google+) 或本機帳戶 (以電子郵件地址或使用者名稱為基礎)。 |
-| api.idpselections.signup | **用於註冊的識別提供者選取**。 此頁面包含使用者可以在註冊期間選擇的識別提供者清單。 這些提供者是企業識別提供者、社交識別提供者 (如 Facebook 和 Google+) 或本機帳戶 (以電子郵件地址或使用者名稱為基礎)。 |
-| api.localaccountpasswordreset | **忘記密碼頁面**。 此頁面包含表單，使用者必須填寫此表單才能重設其密碼。  |
-| api.localaccountsignin | **本機帳戶登入頁面**。 此頁面包含登入表單，使用者必須填寫此表單才能使用以電子郵件地址或使用者名稱為基礎的本機帳戶進行登入。 此表單可以包含文字輸入方塊和密碼輸入方塊。 |
-| api.localaccountsignup | **本機帳戶註冊頁面**。 此頁面包含使用者在使用以電子郵件地址或使用者名稱為基礎的本機帳戶註冊時所需填寫的註冊表單。 此表單可以包含不同的輸入控制項，例如文字輸入方塊、密碼輸入方塊、選項按鈕、單選下拉式清單方塊和多選核取方塊。 |
+| api.idpselections | **識別提供者選取頁面**。 此頁面包含一份 hello 使用者的提供者在登入時，可以選擇從身分識別。 這些提供者是企業識別提供者、社交識別提供者 (如 Facebook 和 Google+) 或本機帳戶 (以電子郵件地址或使用者名稱為基礎)。 |
+| api.idpselections.signup | **用於註冊的識別提供者選取**。 此頁面包含身分識別提供者，hello 使用者可以選擇在註冊期間的清單。 這些提供者是企業識別提供者、社交識別提供者 (如 Facebook 和 Google+) 或本機帳戶 (以電子郵件地址或使用者名稱為基礎)。 |
+| api.localaccountpasswordreset | **忘記密碼頁面**。 此頁面包含表單 hello 使用者具有 toofill tooinitiate 重設其密碼。  |
+| api.localaccountsignin | **本機帳戶登入頁面**。 此頁面包含登入表單 hello 使用者 toofill 時有本機帳戶為基礎的電子郵件地址或使用者名稱登入。 hello 表單可以包含文字輸入的方塊和密碼項目 方塊中。 |
+| api.localaccountsignup | **本機帳戶註冊頁面**。 此頁面包含註冊表單 hello 使用者 toofill 中有註冊的電子郵件地址或使用者名稱為基礎的本機帳戶時。 hello 表單可以包含不同的輸入的控制項，例如文字輸入的方塊、 密碼輸入方塊、 選項按鈕、 單一選取下拉式清單方塊中和多重選取的核取方塊。 |
 | api.phonefactor | **Multi-Factor Authentication 頁面**。 在此頁面上，使用者可以在註冊或登入期間驗證其電話號碼 (使用文字或語音)。 |
-| api.selfasserted | **社交帳戶註冊頁面**。 此頁面包含使用者在使用社交識別提供者 (例如 Facebook 或 Google+) 的現有帳戶註冊時所需填寫的註冊表單。 此頁面類似於上述的社交帳戶註冊頁面，但密碼輸入欄位除外。 |
-| api.selfasserted.profileupdate | **設定檔更新頁面**。 此頁面包含表單，以供使用者用來更新其設定檔。 此頁面類似於上述的社交帳戶註冊頁面，但密碼輸入欄位除外。 |
+| api.selfasserted | **社交帳戶註冊頁面**。 此頁面包含註冊表單 hello 使用者具有 toofill 中從社交身分識別提供者，例如 Facebook 或 Google + 時使用的現有登入帳戶。 此頁面是類似 toohello 社交帳戶註冊頁面與 hello 例外狀況的 hello 密碼項目欄位上方。 |
+| api.selfasserted.profileupdate | **設定檔更新頁面**。 此頁面包含表單 hello 則該使用者可以使用 tooupdate 其設定檔。 此頁面是類似 toohello 社交帳戶註冊頁面與 hello 例外狀況的 hello 密碼項目欄位上方。 |
 | api.signuporsignin | **統一的註冊或登入頁面**。  此頁面可處理使用者的註冊和登入，這些使用者可使用企業識別提供者、社交識別提供者 (例如 Facebook 或 Google+) 或本機帳戶。
 
 ## <a name="next-steps"></a>後續步驟
-[參考︰了解自訂原則如何在 B2C 中使用身分識別體驗架構](active-directory-b2c-reference-custom-policies-understanding-contents.md)
+[參考： 了解如何自訂原則以 hello 身分識別體驗架構 B2C 中工作](active-directory-b2c-reference-custom-policies-understanding-contents.md)

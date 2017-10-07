@@ -1,5 +1,5 @@
 ---
-title: "Azure CLI 指令碼範例 - 建立 ACS Windows Kubernetes 叢集 | Microsoft Docs"
+title: "aaaAzure CLI 指令碼範例-建立 ACS Windows Kubernetes 叢集 |Microsoft 文件"
 description: "Azure CLI 指令碼範例 - 建立 ACS Windows Kubernetes 叢集"
 services: container-service
 documentationcenter: 
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: nepeters
-ms.openlocfilehash: 3cba915e3cf3aaaeb3faf14c2000ca94f61d28a5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ace2f7a6dcd3ab02b61217766f4774cddbe8828b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-container-service-kubernetes-windows-cluster"></a>建立 Azure Container Service Kubernetes Windows 叢集
 
@@ -47,7 +47,7 @@ az acs create \
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-執行下列命令來移除資源群組、VM 和所有相關資源。
+執行下列命令 tooremove hello 資源群組、 VM 和所有相關的資源的 hello。
 
 ```azurecli
 az group delete --name myResourceGroup
@@ -55,7 +55,7 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼會使用下列命令來建立部署。 下表中的每個項目都會連結至命令特定的文件。
+此指令碼會使用下列命令 toocreate hello 部署的 hello。 Hello 資料表中的每個項目連結 toocommand 特定文件。
 
 | 命令 | 注意事項 |
 |---|---|
@@ -64,6 +64,6 @@ az group delete --name myResourceGroup
 
 ## <a name="next-steps"></a>後續步驟
 
-如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
+如需有關 Azure CLI hello 的詳細資訊，請參閱[Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 
-您可以在 [Azure Container Service 文件](../cli-samples.md)中找到其他的 Azure Container Service CLI 指令碼範例。
+其他 Azure 容器服務 CLI 指令碼範例可以在 hello [Azure 容器服務文件](../cli-samples.md)。

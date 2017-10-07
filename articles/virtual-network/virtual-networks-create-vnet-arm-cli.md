@@ -1,6 +1,6 @@
 ---
-title: "建立虛擬網路 - Azure CLI 2.0 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 2.0 建立虛擬網路。"
+title: "虛擬網路-Azure CLI 2.0 aaaCreate |Microsoft 文件"
+description: "了解如何使用虛擬網路的 toocreate hello Azure CLI 2.0。"
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -16,25 +16,25 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c7d7b3543f488aedff1ea2c68a2b497e0ca744af
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e79b7fe780fc81f4866f810d830824e43a5a43b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-virtual-network-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立虛擬網路
+# <a name="create-a-virtual-network-using-hello-azure-cli-20"></a>建立虛擬網路使用 Azure CLI 2.0 hello
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
-Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建議透過 Resource Manager 部署模型建立資源。 若要深入了解兩個模型的差異，請閱讀[了解 Azure 部署模型](../azure-resource-manager/resource-manager-deployment-model.md)。
+Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建議您建立透過 hello Resource Manager 部署模型的資源。 深入了解 toolearn hello hello 兩個模型之間的差異讀取 hello[了解 Azure 部署模型](../azure-resource-manager/resource-manager-deployment-model.md)發行項。
 
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
-您可以使用下列其中一個 CLI 版本來完成工作︰
+## <a name="cli-versions-toocomplete-hello-task"></a>CLI 版本 toocomplete hello 工作
+您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：
 
-- [Azure CLI 1.0](virtual-networks-create-vnet-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI
-- [Azure CLI 2.0](#create-a-virtual-network) - 適用於資源管理部署模型的新一代 CLI (本文章)
+- [Azure CLI 1.0](virtual-networks-create-vnet-cli-nodejs.md) – 我們 CLI hello 傳統和資源管理部署模型
+- [Azure CLI 2.0](#create-a-virtual-network) -hello 資源管理部署模型 （即本文） 我們下一個層代 CLI'
  
-    您也可以使用其他工具透過 Resource Manager 建立 VNet，或從下列清單中選取不同選項以透過傳統部署模型建立 VNet︰
+    您也可以建立 VNet 資源管理員 」 透過使用其他工具，或從 hello 下列清單中選取不同的選項來建立 VNet 透過 hello 傳統部署模型：
 
 > [!div class="op_single_selector"]
 > * [入口網站](virtual-networks-create-vnet-arm-pportal.md)
@@ -50,11 +50,11 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
 ## <a name="create-a-virtual-network"></a>建立虛擬網路
 
-若要使用 Azure CLI 2.0 來建立虛擬網路，請完成下列步驟︰
+虛擬網路使用 toocreate hello Azure CLI 2.0 中，完成下列步驟的 hello:
 
-1. 安裝及設定最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
+1. 安裝及最新設定 hello [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure 帳戶使用登入和[az 登入](/cli/azure/#login)。
 
-2. 使用 [az group create](/cli/azure/group#create) 命令搭配 `--name` 和 `--location` 引數來為您的 VNet 建立資源群組：
+2. 建立資源群組的 VNet 使用 hello [az 群組建立](/cli/azure/group#create)命令與 hello`--name`和`--location`引數：
 
     ```azurecli
     az group create --name TestRG --location centralus
@@ -105,20 +105,20 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
     使用的參數：
 
-    - `--name TestVNet`：要建立的 VNet 名稱。
-    - `--resource-group TestRG`：控制資源的資源群組名稱。 
-    - `--location centralus`：要在其中進行部署的位置。
-    - `--address-prefix 192.168.0.0/16`：位址首碼和區塊。  
-    - `--subnet-name FrontEnd`：子網路的名稱。
-    - `--subnet-prefix 192.168.1.0/24`：位址首碼和區塊。
+    - `--name TestVNet`： 建立 hello VNet toobe 名稱。
+    - `--resource-group TestRG`: # hello 資源群組名稱控制 hello 資源。 
+    - `--location centralus`: hello 哪些 toodeploy 位置。
+    - `--address-prefix 192.168.0.0/16`: hello 位址前置詞和區塊。  
+    - `--subnet-name FrontEnd`: hello hello 子網路名稱。
+    - `--subnet-prefix 192.168.1.0/24`: hello 位址前置詞和區塊。
 
-    若要列出要在下一個命令中使用的基本資訊，您可以使用[查詢篩選](/cli/azure/query-az-cli2)來查詢 VNet：
+    在 hello toolist hello 的基本資訊 toouse 接下來命令時，您可以查詢 hello VNet 使用[查詢篩選器](/cli/azure/query-az-cli2):
 
     ```azurecli
     az network vnet list --query '[?name==`TestVNet`].{Where:location,Name:name,Group:resourceGroup}' -o table
     ```
 
-    這會產生下列輸出：
+    這會產生下列輸出的 hello:
 
         Where      Name      Group
 
@@ -154,11 +154,11 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
     使用的參數：
 
     - `--address-prefix 192.168.2.0/24`：子網路 CIDR 區塊。
-    - `--name BackEnd`：新子網路的名稱。
-    - `--resource-group TestRG`：資源群組。
-    - `--vnet-name TestVNet`：上層 VNet 的名稱。
+    - `--name BackEnd`: Hello 新的子網路的名稱。
+    - `--resource-group TestRG`: hello 資源群組。
+    - `--vnet-name TestVNet`: hello hello 擁有 VNet 名稱。
 
-5. 查詢新 VNet 的屬性：
+5. 查詢 hello 屬性的 hello 新的 VNet:
 
     ```azurecli
     az network vnet show \
@@ -174,7 +174,7 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
         TestVNet  centralus  TestRG   Succeeded              2
 
-6. 查詢子網路的屬性：
+6. 查詢 hello 子網路的 hello 的屬性：
 
     ```azurecli
     az network vnet subnet list \
@@ -193,8 +193,8 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
 ## <a name="next-steps"></a>後續步驟
 
-了解如何連接︰
+深入了解如何 tooconnect:
 
-- 虛擬機器 (VM) 至虛擬網路；請閱讀[建立 Linux VM](../virtual-machines/linux/quick-create-cli.md)。 但不是如文章中的步驟建立 VNet 和子網路，而是選取現有的 VNet 和子網路來連接 VM。
-- 虛擬網路至其他虛擬網路；請閱讀[連接 VNet](../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)。
-- 虛擬網路至內部部署網路；使用網站對網站虛擬私人網路 (VPN) 或 ExpressRoute 線路。 如需了解做法，請閱讀[使用站台對站台 VPN 將 VNet 連接到內部部署網路](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)和[將 VNet 連結至 ExpressRoute 線路](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md)。
+- 藉由讀取 hello 的虛擬機器 (VM) tooa 虛擬網路[建立 Linux VM](../virtual-machines/linux/quick-create-cli.md)發行項。 而不是在 hello 步驟中的 hello 文件建立 VNet 和子網路，您可以選取的 VM 的現有 VNet 和子網路 tooconnect。
+- 藉由讀取 hello hello 虛擬網路的虛擬網路 tooother[連接 Vnet](../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)發行項。
+- 使用站對站虛擬私人網路 (VPN) 或 ExpressRoute 電路 hello 虛擬網路 tooan 在內部部署網路。 深入了解如何藉由讀取 hello [VNet tooan 在內部部署網路使用站對站 VPN 連線](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)和[連結 VNet tooan ExpressRoute 電路](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md)。

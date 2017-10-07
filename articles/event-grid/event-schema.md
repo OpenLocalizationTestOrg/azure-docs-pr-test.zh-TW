@@ -1,6 +1,6 @@
 ---
-title: "Azure Event Grid 事件結構描述"
-description: "描述 Azure Event Grid 中事件提供的屬性。"
+title: "aaaAzure 事件方格事件結構描述"
+description: "描述可供事件的 Azure 事件方格的 hello 屬性。"
 services: event-grid
 author: banisadr
 manager: timlt
@@ -8,34 +8,34 @@ ms.service: event-grid
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: babanisa
-ms.openlocfilehash: 9e3c7b31ef23b29827d7184dc033227685ed92f8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 37178a5650b93fd9072d9cff3333aae14b2a2ba7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-grid-event-schema"></a>Event Grid 事件結構描述
 
-本文提供事件之屬性與結構描述。 事件包含一組五個必要字串屬性和一個必要**資料**物件。 這些屬性通用於任何發行者的所有事件。 **資料**物件含有各發行者特有的屬性。 系統主題下的屬性專屬於資源提供者，像是儲存體或事件中樞。
+這篇文章提供 hello 屬性和結構描述的事件。 事件包含一組五個必要字串屬性和一個必要**資料**物件。 hello 屬性都是常見的 tooall 事件，從任何發行者。 hello**資料**物件包含特定 tooeach 發行者的屬性。 如需系統主題，這些屬性是特定 toohello 資源提供者，例如儲存體或事件中心。
 
-事件會以陣列型態傳送至 Azure Event Grid，陣列中可包含多個事件物件。 如果陣列中只有一個事件，則陣列長度為 1。 
+事件可以包含多個事件物件的陣列中傳送 tooAzure 事件方格。 如果沒有單一事件，hello 陣列長度為 1。 
  
 ## <a name="event-properties"></a>事件屬性
 
-所有事件皆包含下列最高層級資料。
+所有事件都將都包含 hello 下列最上層資料相同。
 
 | 屬性 | 類型 | 說明 |
 | -------- | ---- | ----------- |
-| 主題 | 字串 | 事件來源的完整資源路徑。 此欄位不可寫入。 |
-| 主旨 | 字串 | 發行者定義事件主體的路徑。 |
-| eventType | 字串 | 此事件來源已註冊的事件類型之一。 |
-| eventTime | 字串 | 事件產生的時間，以提供者之 UTC 時間為準。 |
-| id | 字串 | 事件的唯一識別碼。 |
-| data | 物件 | 資源提供者特有的事件資料。 |
+| 主題 | 字串 | 完整資源路徑 toohello 事件來源。 此欄位不可寫入。 |
+| 主旨 | 字串 | 發行者端定義的路徑 toohello 事件主體。 |
+| eventType | 字串 | 其中一個 hello 註冊事件來源的事件類型。 |
+| eventTime | 字串 | hello 時間 hello 事件會產生 hello 提供者的 UTC 時間為基礎。 |
+| id | 字串 | Hello 事件的唯一識別碼。 |
+| data | 物件 | 事件資料特定 toohello 資源提供者。 |
 
 ## <a name="available-event-sources"></a>可用的事件來源
 
-下列事件來源透過 Event Grid 來發佈事件：
+下列事件來源的 hello 發行事件方格透過取用的事件：
 
 * 資源群組 (管理作業)
 * Azure 訂用帳戶 (管理作業)
@@ -126,7 +126,7 @@ Azure 訂用帳戶現在可從 Azure Resource Manager 發出管理事件，像�
 
 ## <a name="event-hubs"></a>事件中樞
 
-事件中樞事件目前只有在使用擷取功能自動傳送檔案至儲存體時發出。
+事件中心事件正在 toostorage 使用 hello 擷取功能會自動傳送檔案時，才發出。
 
 ### <a name="available-event-types"></a>可用的事件類型
 
@@ -134,7 +134,7 @@ Azure 訂用帳戶現在可從 Azure Resource Manager 發出管理事件，像�
 
 ### <a name="example-event"></a>事件範例
 
-此範例顯示在擷取功能儲存檔案時引發之事件中樞事件的結構描述。 
+此範例事件顯示 hello 擷取儲存檔案時引發的事件中樞事件的結構描述。 
 
 ```json
 [
@@ -173,7 +173,7 @@ Azure Blob 儲存體目前提供私人預覽，註冊後可與 Event Grid 整合
 
 ### <a name="example-event"></a>事件範例
 
-此事件範例顯示建立 blob 時引發之儲存體事件的結構描述。 
+此範例事件顯示 hello 結構描述建立 blob 時引發的儲存體事件。 
 
 ```json
 [
@@ -206,11 +206,11 @@ Azure Blob 儲存體目前提供私人預覽，註冊後可與 Event Grid 整合
 
 ## <a name="custom-topics"></a>自訂主題
 
-您自訂事件的資料承載由您定義，可用任何格式正確的 JSON 來進行。 最高層級的資料應包含與標準資源定義事件相同的欄位。 在發佈事件至自訂主題時，您應考慮以幫助路由與篩選為目標建立事件的主體。
+您的自訂事件的 hello 資料裝載由您所定義，而且可以是任何也格式的 JSON。 hello 上方層級的資料應包含相同欄位所定義的標準資源事件 hello。 發行事件 toocustom 主題時，您應該考慮模型中路由與篩選您的事件 tooaid hello 主體。
 
 ### <a name="example-event"></a>事件範例
 
-以下範例為自訂主題的事件：
+hello 下列範例顯示事件，以供自訂主題：
 ````json
 [
   {
@@ -230,5 +230,5 @@ Azure Blob 儲存體目前提供私人預覽，註冊後可與 Event Grid 整合
 
 ## <a name="next-steps"></a>後續步驟
 
-* 若要初步了解事件格線，請參閱[什麼是事件格線？](overview.md)
-* 若要了解 Event Grid 訂用帳戶的建立，請參閱 [Event Grid 訂用帳戶結構描述](subscription-creation-schema.md)。
+* 如簡介 tooEvent 格線，請參閱[事件方格是什麼？](overview.md)
+* toolearn 有關建立事件方格訂用帳戶，請參閱[事件方格訂用帳戶的結構描述](subscription-creation-schema.md)。

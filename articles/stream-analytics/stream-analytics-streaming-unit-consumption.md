@@ -1,5 +1,5 @@
 ---
-title: "Azure 串流分析︰最佳化您的作業以有效率地使用串流單位 |Microsoft Docs"
+title: "Azure Stream Analytics： 有效率地最佳化您的工作 toouse 串流單位 |Microsoft 文件"
 description: "查詢 Azure 串流分析中關於規模與效能的最佳做法。"
 keywords: "串流單位、查詢效能"
 services: stream-analytics
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/20/2017
 ms.author: jeffstok
-ms.openlocfilehash: 1441a5df4fd92abf85763ca9a1512503b1a0da56
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5ad98b34d625190a879260f54c9eff0294e230cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="optimize-your-job-to-use-streaming-units-efficiently"></a>最佳化您的作業以有效率地使用串流單位
+# <a name="optimize-your-job-toouse-streaming-units-efficiently"></a>有效率地最佳化您的工作 toouse 串流單位
 
-Azure 串流分析會將執行一個作業的效能「權重」彙總為串流單位 (SU)。 SU 代表用在執行作業的計算資源。 SU 會根據 CPU、記憶體，以及讀寫率的混合量值，提供一個方式來描述相關的事件處理容量。 此功能可讓您專注在查詢邏輯上，您不必知道儲存層的效能考量、不用手動配置您的作業，以及估計需要多少 CPU 核心計數來及時執行您的作業。
+Azure Stream Analytics 彙總 hello 效能"weight"的資料流處理單位 (SUs) 到執行作業。 SUs 代表 hello 運算資源的取用的 tooexecute 作業。 SUs 提供方式 toodescribe hello 相對事件處理為基礎的混合測量結果的 CPU、 記憶體容量和讀寫率。 這個容量可讓您專注於 hello 查詢邏輯並移除您就不需要 tooknow 儲存層的效能考量，以手動方式，您的工作配置記憶體並及時近似 hello CPU core-所需的計數 toorun 您的工作。
 
 ## <a name="how-many-sus-are-required-for-a-job"></a>一個作業需要多少 SU？
 
-選擇特定作業所需的 SU 數量取決於輸入的磁碟分割組態以及作業內定義的查詢。 [規模] 刀鋒視窗可讓您設定正確的 SU 數目。 最好作法是配置比所需數目還多的 SU。 串流處理引擎會不惜分派額外的記憶體，針對延遲和輸送量進行最佳化。
+選擇的特定作業的必要 SUs 的 hello 數目取決於 hello hello 輸入和 hello 工作內所定義的 hello 查詢的資料分割組態。 hello**標尺**刀鋒視窗可讓您 tooset hello SUs 的權限數目。 它會是最佳作法 tooallocate 比所需的多個 SUs。 延遲及輸送量 hello 成本的配置額外的記憶體最佳化 hello Stream Analytics 處理引擎。
 
-一般情況下，最佳的作法是對不是使用 *PARTITION BY* 的查詢使用 6 個 SU 開始。 然後使用反覆嘗試的方法來決定最佳配置，這方法就是您可以在傳送代表的資料總數後修改 SU 數目，並且檢查 SU 的 %Utilization 計量。
+Hello 最佳作法一般是未使用之查詢的 6 sus toostart *PARTITION BY*。 使用您在其中修改 hello SUs 數目後代表性的資料量並檢查 hello SU %使用量度量的試驗方法，然後判斷 hello 成問題。
 
-在 Azure 串流分析開始任何處理作業前，Azure 串流分析會先將事件保留於「重新排序緩衝區」視窗中。 事件會依時間順序排列於重新排序視窗中，並會依事件的暫時排序執行後續作業。 依時間時重新排列事件可確保運算子會在設定的時間範圍內顯示在所有事件中。 這也可讓運算子執行必要處理程序和產生輸出。 這項機制的副作用是，處理作業會因重新排列視窗的持續時間而導致延遲。 該作業的記憶體使用量 (將影響 SU 耗用量) 即是此重新排列視窗的函數大小，以及其中所包含的事件數目。
+Azure Stream Analytics 中保留事件視窗中啟動任何處理之前，先呼叫 hello"重新排序緩衝區 」。 事件會依照 hello 重新排列視窗內的時間，和後續作業 hello 暫時排序事件。 依時間排列的事件可確保該 hello 運算子具有入所有資料行的可見性 hello 事件 hello 中的約定的時間範圍內。 它也可讓 hello 運算子執行 hello 必要的處理，以及產生的輸出。 這項機制的副作用是 hello hello 重新排列視窗持續時間會因為延遲處理。 hello hello 作業 （影響 SU 耗用量） 的記憶體耗用量是大小的 hello 數目這個重新排列視窗和 hello 事件包含在它的函式。
 
 > [!NOTE]
-> 如果在作業升級期間變更讀取器數量，暫時性警告會寫入稽核記錄中。 串流分析作業會從這些暫時性問題中自動復原。
+> 讀取器的 hello 數目變更時升級作業期間，暫時性的警告會寫入 tooaudit 記錄檔。 串流分析作業會從這些暫時性問題中自動復原。
 
 ## <a name="common-high-memory-causes-for-high-su-usage-for-running-jobs"></a>常見的高效能記憶體會需要高 SU 使用率來執行作業
 
 ### <a name="high-cardinality-for-group-by"></a>分組依據的高基數
 
-傳入事件的基數指定了工作的記憶體使用量。
+內送事件的 hello 基數規定 hello 作業的記憶體使用量。
 
-例如，在 `SELECT count(*) from input group by clustered, tumblingwindow (minutes, 5)`，與**叢集**相關的數字是查詢基數。
+例如，在`SELECT count(*) from input group by clustered, tumblingwindow (minutes, 5)`，hello 與相關聯的數字**叢集**是 hello 查詢的 hello 基數。
 
-若要減少高基數造成的問題，須使用 **PARTITION BY** 來增加分割區以擴展查詢。
+toomitigate 問題所造成的高基數，藉由增加使用的資料分割延展 hello 查詢**PARTITION BY**。
 
 ```
 Select count(*) from input
@@ -52,35 +52,35 @@ Partition By clusterid
 GROUP BY clustered tumblingwindow (minutes, 5)
 ```
 
-*叢集*數目在這裡是 GROUP BY 的基數。
+hello 數目*叢集*是 hello 的基數 GROUP BY 這裡。
 
-查詢分割後，便會分散到多個節點。 如此一來，進入到每個節點的事件數目便會降低，因此也降低了重新排列緩衝區的大小。 您也應該依據 partitionid 分割事件中樞的分割區。
+分割 hello 查詢之後，它是分散在多個節點。 如此一來，hello 進入到每個節點中的事件數目會降低，這又可以降低 hello hello 重新排序緩衝區大小。 您也應該依據 partitionid 分割事件中樞的分割區。
 
 ### <a name="high-unmatched-event-count-for-join"></a>JOIN 的高量不相符事件計數
 
-在 JOIN 中有高量不相符的事件數目，會影響查詢的記憶體使用率。 例如，有個查詢是要找出產生點擊數的廣告曝光數：
+不相符的事件聯結中的 hello 數目會影響 hello 查詢 hello 記憶體使用量。 例如，採用正在尋找的廣告效果 toofind hello 數目，會產生按下的查詢：
 
 ```
 SELECT id from clicks INNER JOIN,
 impressions on impressions.id = clicks.id AND DATEDIFF(hour, impressions, clicks) between 0 AND 10
 ```
 
-在此案例中，很可能會顯示許多廣告，但只產生少數點擊數。 這類的結果就需要可將所有事件保留在同個時間範圍的作業。 範圍大小和事件出現率與記憶體耗用量成正比。 
+在此案例中，很可能會顯示許多廣告，但只產生少數點擊數。 這類結果需要 hello 作業 tookeep hello 的時間間隔內的所有 hello 事件。 hello 耗用數量是記憶體的成比例 toohello 視窗大小和事件速率。 
 
-若要減少這種情況下，須使用「PARTITION BY」來增加分割區以擴展查詢。 
+toomitigate 此情況下，向外延展藉由增加 hello 查詢分割分割區藉由使用。 
 
-查詢分割後，便會分散到多個處理節點。 如此一來，進入到每個節點的事件數目便會降低，因此也降低了重新排列緩衝區的大小。
+分割 hello 查詢之後，它是分散在多個處理節點。 如此一來，hello 進入到每個節點中的事件數目會降低，這又可以降低 hello hello 重新排序緩衝區大小。
 
 ### <a name="large-number-of-out-of-order-events"></a>大量的順序錯亂事件 
 
-在大型時間範圍內的大量順序錯亂事件會導致「重新排序」規模變得更大。 若要減少這種情況下，須使用「PARTITION BY」來增加分割區以調整查詢規模。 查詢分割後，便會分散到多個節點。 如此一來，進入到每個節點的事件數目便會降低，因此也降低了重新排列緩衝區的大小。 
+大量的大型的時間間隔內的失序的事件會造成較大 hello"重新排序緩衝區"toobe hello 大小。 toomitigate 此情況下，藉由增加小數位數 hello 查詢分割分割區藉由使用。 分割 hello 查詢之後，它是分散在多個節點。 如此一來，hello 進入到每個節點中的事件數目會降低，這又可以降低 hello hello 重新排序緩衝區大小。 
 
 
 ## <a name="get-help"></a>取得說明
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。
 
 ## <a name="next-steps"></a>後續步驟
-* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
+* [簡介 tooAzure 資料流分析](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure 串流分析查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)

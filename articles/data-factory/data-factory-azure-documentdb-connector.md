@@ -1,5 +1,5 @@
 ---
-title: "從 Azure Cosmos DB 來回移動資料 | Microsoft Docs"
+title: "aaaMove 資料從 Azure Cosmos DB / |Microsoft 文件"
 description: "了解如何使用 Azure Data Factory 從 Azure Cosmos DB 集合來回移動資料"
 services: data-factory, cosmosdb
 documentationcenter: 
@@ -14,46 +14,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: 7a11c6ade0325b08ad520448bbf82d64a0a555f3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bd23ce4e004a972ce6f3e4165cfdea4f0c18fecc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-data-to-and-from-azure-cosmos-db-using-azure-data-factory"></a>使用 Azure Data Factory 從 Azure Cosmos DB 來回移動資料
-本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出 Azure Cosmos DB (DocumentDB API)。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。 
+# <a name="move-data-tooand-from-azure-cosmos-db-using-azure-data-factory"></a>從使用 Azure Data Factory 的 Azure Cosmos DB 移動資料 tooand
+本文說明如何 toouse hello Azure Data Factory toomove 資料從 Azure Cosmos DB (DocumentDB API) 中的複製活動。 它是在 hello 基礎[資料移動活動](data-factory-data-movement-activities.md)文件： hello 複製活動會提供資料移動的一般概觀。 
 
-您可以將資料從任何支援的來源資料存放區複製到 Azure Cosmos DB，或從 Azure Cosmos DB 複製到任何支援的接收資料存放區。 如需複製活動所支援作為來源或接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。 
+您可以從任何支援的來源資料儲存 tooAzure Cosmos DB，或從 Azure Cosmos DB tooany 支援接收資料存放區來複製資料。 如需支援做為來源或接收器 hello 複製活動的資料存放區的清單，請參閱 hello[支援資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)資料表。 
 
 > [!IMPORTANT]
 > Azure Cosmos DB 連接器只支援 DocumentDB API。
 
-若要將資料依原樣複製到 JSON 檔案或另一個 Cosmos DB 集合，或從這些檔案或集合依原樣複製資料，請參閱[匯入/匯出 JSON 文件](#importexport-json-documents)。
+toocopy 資料當做-是要從/JSON 檔案或另一個 Cosmos DB 集合，請參閱[匯入/匯出 JSON 文件](#importexport-json-documents)。
 
 ## <a name="getting-started"></a>開始使用
 您可以藉由使用不同的工具/API，建立內含複製活動的管線，以將資料移進/移出 Azure Cosmos DB。
 
-建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
+最簡單方式 toocreate hello 管線為 toouse hello**複製精靈**。 請參閱[教學課程： 建立管線，使用複製精靈](data-factory-copy-data-wizard-tutorial.md)快速逐步解說中建立管線中使用 hello 複製資料精靈 」。
 
-您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API** 及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
+您也可以使用下列工具 toocreate 管線 hello: **Azure 入口網站**， **Visual Studio**， **Azure PowerShell**， **Azure Resource Manager 範本**， **.NET API**，和**REST API**。 請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)的逐步指示 toocreate 具有複製活動的管線。 
 
-不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線： 
+無論您是使用 hello 工具或 Api，會執行下列步驟 toocreate 移動來源資料中的資料存放區 tooa 接收資料存放區的管線的 hello: 
 
-1. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。
-2. 建立**資料集**，代表複製作業的輸入和輸出資料。 
+1. 建立**連結的服務**toolink 輸入和輸出資料存放區 tooyour 資料 factory。
+2. 建立**資料集**toorepresent 輸入和輸出 hello 的資料複製作業。 
 3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
 
-使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到 Cosmos DB (或從 Cosmos DB 複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples)一節。 
+當您使用 hello 精靈時，會自動為您建立這些 Data Factory 實體 （連結的服務、 資料集和 hello 管線） 的 JSON 定義。 當您使用 工具/Api （除了.NET 應用程式開發介面） 時，您會定義這些 Data Factory 實體使用 hello JSON 格式。  如需使用的 toocopy 資料，從 Cosmos DB 的 Data Factory 實體的 JSON 定義的範例，請參閱[JSON 範例](#json-examples)本文一節。 
 
-下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 Cosmos DB 特定的 Data Factory 實體： 
+hello 下列各節提供有關使用的 toodefine Data Factory 實體特定 tooCosmos DB 的 JSON 屬性的詳細資料： 
 
 ## <a name="linked-service-properties"></a>連結服務屬性
-下表提供 Azure Cosmos DB 連結服務專屬 JSON 元素的描述。
+下表中的 hello 提供 JSON 項目特定 tooAzure Cosmos 資料庫連結服務的描述。
 
 | **屬性** | **說明** | **必要** |
 | --- | --- | --- |
-| 類型 |類型屬性必須設為： **DocumentDb** |是 |
-| connectionString |指定連接到 Azure Cosmos DB 資料庫所需的資訊。 |是 |
+| 類型 |hello 類型屬性必須設定為： **DocumentDb** |是 |
+| connectionString |指定所需 tooconnect tooAzure Cosmos DB 資料庫的資訊。 |是 |
 
 範例：
 
@@ -70,13 +70,13 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="dataset-properties"></a>資料集屬性
-如需可用來定義資料集的完整區段和屬性清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
+如需區段和屬性可用來定義資料集的完整清單，請參閱 toohello[建立資料集](data-factory-create-datasets.md)發行項。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
 
-每個資料集類型的 typeProperties 區段都不同，可提供資料存放區中資料的位置相關資訊。 **DocumentDbCollection** 類型資料集的 typeProperties 區段具有下列屬性。
+hello typeProperties 章節是不同的資料集的每個型別，並提供 hello hello 資料存放區中的 hello 資料位置的相關資訊。 hello typeProperties 區段 hello 資料集型別的**DocumentDbCollection**具有下列屬性的 hello。
 
 | **屬性** | **說明** | **必要** |
 | --- | --- | --- |
-| collectionName |Cosmos DB 文件集合的名稱。 |是 |
+| collectionName |Hello Cosmos DB 文件集合的名稱。 |是 |
 
 範例：
 
@@ -98,35 +98,35 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 ### <a name="schema-by-data-factory"></a>Data factory 的結構描述
-針對無結構描述的資料存放區 (如 Azure Cosmos DB)，Data Factory 服務會以下列一種方式推斷結構描述：  
+針對無結構描述的資料存放區，例如 Azure Cosmos DB，hello Data Factory 服務會推斷 hello 結構描述 hello 下列方式之一：  
 
-1. 如果您是使用資料集定義中的 **structure** 屬性來定義結構，Data Factory 服務會將此結構接受為結構描述。 在此情況下，如果資料列不包含資料行的值，則會使用 null 值。
-2. 如果您不是使用資料集定義中的 **structure** 屬性來指定結構，Data Factory 服務會使用資料的第一列來推斷結構描述。 在此情況下，如果第一個資料列不包含完整的結構描述，某些資料行會因複製作業而遺失。
+1. 如果您指定資料的 hello 結構使用 hello**結構**hello 資料集定義，hello Data Factory 服務中的屬性會接受此結構做為 hello 結構描述。 在此情況下，如果資料列不包含資料行的值，則會使用 null 值。
+2. 如果您未指定資料 hello 結構使用 hello**結構**hello 資料集定義，hello Data Factory 服務中的屬性會推斷 hello 結構描述使用 hello 資料中的 hello 第一個資料列。 在此情況下，如果 hello 第一個資料列不包含 hello 完整結構描述，某些資料行將會遺失在 hello 的複製作業的結果。
 
-因此，對於無結構描述的資料來源來說，最佳作法是使用 **structure** 屬性來指定資料結構。
+因此，對於無結構描述的資料來源，hello 最佳作法是使用 hello 資料 toospecify hello 結構**結構**屬性。
 
 ## <a name="copy-activity-properties"></a>複製活動屬性
-如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
+如需區段和屬性可用來定義活動的完整清單，請參閱 toohello[建立管線](data-factory-create-pipelines.md)發行項。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
 > [!NOTE]
-> 複製活動只會採用一個輸入，而且只產生一個輸出。
+> hello 複製活動會採用只有 1 個輸入，並產生一個輸出。
 
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
+屬性中的 hello hello 活動 hello typeProperties 區段可用另一方面改變與每個活動類型與它們的來源與接收的 hello 類型而異的複製活動發生。
 
-在複製活動的案例中，如果來源類型為 **DocumentDbCollectionSource**，則 **typeProperties** 區段可使用下列屬性：
-
-| **屬性** | **說明** | **允許的值** | **必要** |
-| --- | --- | --- | --- |
-| query |指定查詢來讀取資料。 |Azure Cosmos DB 所支援的查詢字串。 <br/><br/>範例： `SELECT c.BusinessEntityID, c.PersonType, c.NameStyle, c.Title, c.Name.First AS FirstName, c.Name.Last AS LastName, c.Suffix, c.EmailPromotion FROM c WHERE c.ModifiedDate > \"2009-01-01T00:00:00\"` |否 <br/><br/>如果未指定，執行的 SQL 陳述式：`select <columns defined in structure> from mycollection` |
-| nestingSeparator |用來表示文件為巢狀文件的特殊字元 |任何字元。 <br/><br/>Azure Cosmos DB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure Data Factory 可讓使用者透過 nestingSeparator (也就是上述範例中的 “.”) 表示階層 。 使用分隔符號，複製活動將會根據資料表定義中的 “Name.First”、“Name.Middle” 和 “Name.Last”，產生含有三個子元素 (First、Middle 和 Last) 的 "Name" 物件。 |否 |
-
-**DocumentDbCollectionSink** 支援下列屬性：
+當來源的類型時，複製活動發生**DocumentDbCollectionSource** hello 下列屬性可用於**typeProperties** > 一節：
 
 | **屬性** | **說明** | **允許的值** | **必要** |
 | --- | --- | --- | --- |
-| nestingSeparator |來源資料行名稱中用來表示需要巢狀文件的特殊字元。 <br/><br/>就上述範例而言：輸出資料表中的 `Name.First` 會在 Cosmos DB 文件中產生下列 JSON 結構：<br/><br/>"Name": {<br/>    "First": "John"<br/>}, |用來分隔巢狀層級的字元。<br/><br/>預設值為 `.` (點)。 |用來分隔巢狀層級的字元。 <br/><br/>預設值為 `.` (點)。 |
-| writeBatchSize |為了建立文件而傳送到 Azure Cosmos DB 服務的平行要求數目。<br/><br/>使用這個屬性從 Cosmos DB 來回複製資料時，可以微調效能。 增加 writeBatchSize 時，您可預期有更好的效能，因為對 Cosmos DB 傳送了更多的平行要求。 不過，您必須避免可能擲回錯誤訊息的節流：「要求速率很高」。<br/><br/>節流是由許多因素所決定，包括文件大小、文件中的詞彙數目、目標集合的檢索原則等。對於複製作業，您可以使用更好的集合 (例如 S3) 以取得最多可用輸送量 (2,500 要求單位/秒)。 |Integer |否 (預設值：5) |
-| writeBatchTimeout |在逾時前等待作業完成的時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
+| query |指定 hello 查詢 tooread 資料。 |Azure Cosmos DB 所支援的查詢字串。 <br/><br/>範例： `SELECT c.BusinessEntityID, c.PersonType, c.NameStyle, c.Title, c.Name.First AS FirstName, c.Name.Last AS LastName, c.Suffix, c.EmailPromotion FROM c WHERE c.ModifiedDate > \"2009-01-01T00:00:00\"` |否 <br/><br/>如果未指定，hello 執行的 SQL 陳述式：`select <columns defined in structure> from mycollection` |
+| nestingSeparator |巢狀 hello 文件的特殊字元 tooindicate |任何字元。 <br/><br/>Azure Cosmos DB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure Data Factory 可讓使用者 toodenote 階層 nestingSeparator，也就是透過 「。 」 在上述範例 hello。 Hello 分隔符號 hello 複製活動會產生三個子系的元素與 hello"Name"物件第一個中間和最後一個、 相應 too"Name.First"，"Name.Middle"和"Name.Last"hello 在資料表定義。 |否 |
+
+**DocumentDbCollectionSink**支援 hello 下列屬性：
+
+| **屬性** | **說明** | **允許的值** | **必要** |
+| --- | --- | --- | --- |
+| nestingSeparator |需要 hello 來源資料行名稱 tooindicate 巢狀文件中的特殊字元。 <br/><br/>例如上述： `Name.First` hello 輸出資料表會產生下列 JSON 結構 hello Cosmos DB 文件中的 hello:<br/><br/>"Name": {<br/>    "First": "John"<br/>}, |為使用的 tooseparate 巢狀層級的字元。<br/><br/>預設值為 `.` (點)。 |為使用的 tooseparate 巢狀層級的字元。 <br/><br/>預設值為 `.` (點)。 |
+| writeBatchSize |並行要求數目 tooAzure Cosmos DB 服務 toocreate 文件。<br/><br/>使用這個屬性來複製從 Cosmos DB 的資料時，您可以微調 hello 效能。 當您增加叫用 writeBatchSize，因為會傳送多個平行要求 tooCosmos DB 時，您可以預期更佳的效能。 不過，您必須先 tooavoid 節流，可擲回 hello 錯誤訊息: 「 要求率非常大 」。<br/><br/>節流是由許多因素所決定，包括文件大小、文件中的詞彙數目、目標集合的檢索原則等。複製作業，您可以使用較佳的集合 (例如 S3) toohave hello 大部分可用的輸送量 （2500 的要求單位/秒）。 |Integer |否 (預設值：5) |
+| writeBatchTimeout |在逾時之前，請等待 hello 作業 toocomplete 時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
 
 ## <a name="importexport-json-documents"></a>匯入/匯出 JSON 文件
 使用此 Cosmos DB 連接器，您可以輕鬆地
@@ -135,15 +135,15 @@ ms.lasthandoff: 07/11/2017
 * 將 JSON 文件從 Cosmos DB 集合匯出至各種檔案型存放區。
 * 在兩個 Cosmos DB 集合之間依原樣移轉資料。
 
-達成這種無從驗證結構描述的複製 
-* 使用複製精靈時，核取 [依原樣匯出到 JSON 檔案或 Cosmos DB 集合] 選項。
-* 使用 JSON 編輯時，請勿在 Cosmos DB 資料集中指定 "structure" 區段，也不要在複製活動的 Cosmos DB 來源/接收器上指定 "nestingSeparator" 屬性。 若要從 JSON 檔案匯入或匯出到這些檔案，請在檔案存放區資料集內，將格式類型指定為 "JsonFormat"、設定 "filePattern"，然後略過其餘格式設定，如需詳細資料，請參閱 [JSON 格式](data-factory-supported-file-and-compression-formats.md#json-format)一節。
+tooachieve 複製這類結構描述無關， 
+* 複製精靈時，請檢查 hello **」 匯出為-tooJSON 檔案或 Cosmos DB 集合"**選項。
+* 當使用 JSON 編輯，請不要指定 hello 「 結構 」 一節中的 Cosmos DB 的資料集，也不 Cosmos DB 上的 「 nestingSeparator"屬性來源/接收器複製活動中。 從 tooimport / 匯出 tooJSON 檔案，資料集中 hello 檔案存放區格式類型指定為"JsonFormat，「 組態 」 filePattern 」 並略過 hello rest 格式設定，請參閱[JSON 格式](data-factory-supported-file-and-compression-formats.md#json-format)詳細資料 區段。
 
 ## <a name="json-examples"></a>JSON 範例
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們示範如何將資料複製到 Azure Cosmos DB 和 Azure Blob 儲存體，以及從中複製資料。 不過，您可以使用 Azure Data Factory 中的「複製活動」，將資料從任何來源「直接」複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats)所述的任何接收器。
+hello 下列範例會提供範例 JSON 定義您可以藉由使用 toocreate 管線[Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)或[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)或[Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)。 它們會顯示如何從 Azure Cosmos DB 和 Azure Blob 儲存體 toocopy 資料 tooand。 不過，資料可以複製**直接**從任何 hello 接收所述的 hello 來源 tooany[這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats)使用 hello Azure Data Factory 中的複製活動。
 
-## <a name="example-copy-data-from-azure-cosmos-db-to-azure-blob"></a>範例：將資料從 Azure Cosmos DB 複製到 Azure Blob
-下列範例顯示：
+## <a name="example-copy-data-from-azure-cosmos-db-tooazure-blob"></a>範例： 將資料從 Azure Cosmos DB tooAzure Blob 複製
+顯示 hello 以下的範例：
 
 1. [DocumentDb](#linked-service-properties)類型的連結服務。
 2. [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)類型的連結服務。
@@ -151,7 +151,7 @@ ms.lasthandoff: 07/11/2017
 4. [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 5. 具有使用 [DocumentDbCollectionSource](#copy-activity-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-此範例會將 Azure Cosmos DB 中的資料複製到 Azure Blob。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
+hello 範例會在 Azure Cosmos DB tooAzure Blob 複製資料。 這些範例中使用的 hello JSON 內容所述後面 hello 範例的章節。
 
 **Azure Cosmos DB 連結服務︰**
 
@@ -181,9 +181,9 @@ ms.lasthandoff: 07/11/2017
 ```
 **Azure DocumentDB 輸入資料集：**
 
-此範例假設您在 Azure Cosmos DB 資料庫中擁有名為 Person 的集合。
+hello 範例假設您擁有名為的集合**人員**Azure Cosmos DB 資料庫中。
 
-設定 “external”: ”true” 和指定 externalData 原則即可通知 Data Factory 服務：這是 Azure Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。
+設定"external":"true"，並指定 externalData hello Azure Data Factory 服務該 hello 資料表的原則資訊是外部 toohello 資料處理站，而不產生 hello data factory 中的活動時。
 
 ```JSON
 {
@@ -205,7 +205,7 @@ ms.lasthandoff: 07/11/2017
 
 **Azure Blob 輸出資料集：**
 
-資料會每小時利用可反映特定日期時間及小時資料粒度的 Blob 路徑，複製到新的 Blob。
+資料會複製的 tooa 新 blob hello 路徑 hello blob 反映 hello 特定的日期時間的小時資料粒度的每個小時。
 
 ```JSON
 {
@@ -228,7 +228,7 @@ ms.lasthandoff: 07/11/2017
   }
 }
 ```
-Cosmos DB 資料庫中 Person 集合中的範例 JSON 文件：
+範例 hello Cosmos DB 資料庫中的人員集合中的 JSON 文件：
 
 ```JSON
 {
@@ -248,7 +248,7 @@ Cosmos DB 支援在階層式 JSON 文件上使用類似 SQL 的語法來查詢�
 SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as MiddleName, Person.Name.Last AS LastName FROM Person
 ```
 
-下列管線會將資料從 Azure Cosmos DB 資料庫中的 Person 集合複製到 Azure Blob。 複製活動中已指定為輸入和輸出資料集。  
+hello 下列管線將資料從 hello hello Azure Cosmos DB 資料庫 tooan Azure blob 中的使用者集合。 Hello 複製活動 hello 一部分已指定輸入和輸出資料集。  
 
 ```JSON
 {
@@ -291,8 +291,8 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
   }
 }
 ```
-## <a name="example-copy-data-from-azure-blob-to-azure-cosmos-db"></a>範例：將資料從 Azure Blob 複製到 Azure Cosmos DB 
-下列範例顯示：
+## <a name="example-copy-data-from-azure-blob-tooazure-cosmos-db"></a>範例： 將資料從 Azure Blob tooAzure Cosmos DB 複製 
+顯示 hello 以下的範例：
 
 1. [DocumentDb](#azure-documentdb-linked-service-properties)類型的連結服務。
 2. [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)類型的連結服務。
@@ -300,7 +300,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
 4. [DocumentDbCollection](#azure-documentdb-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 5. 具有使用 [BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties) 和 [DocumentDbCollectionSink](#azure-documentdb-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-此範例將資料從 Azure Blob 複製到 Azure Cosmos DB。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
+hello 範例會將資料從 Azure blob tooAzure Cosmos DB。 這些範例中使用的 hello JSON 內容所述後面 hello 範例的章節。
 
 **Azure Blob 儲存體連結服務：**
 
@@ -373,7 +373,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
 ```
 **Azure Cosmos DB 輸出資料集︰**
 
-此範例會將資料複製到名為 "Person" 的集合。
+hello 範例會從名為"Person"的資料 tooa 集合複製。
 
 ```JSON
 {
@@ -409,7 +409,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
   }
 }
 ```
-下列管線會將資料從 Azure Blob 複製到 Cosmos DB 資料庫中的 Person 集合。 複製活動中已指定為輸入和輸出資料集。
+hello 下列管線將資料從 Azure Blob toohello hello Cosmos DB 中的使用者集合。 Hello 複製活動 hello 一部分已指定輸入和輸出資料集。
 
 ```JSON
 {
@@ -430,7 +430,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
           }
           "translator": {
               "type": "TabularTranslator",
-              "ColumnMappings": "FirstName: Name.First, MiddleName: Name.Middle, LastName: Name.Last, BusinessEntityID: BusinessEntityID, PersonType: PersonType, NameStyle: NameStyle, Title: Title, Suffix: Suffix, EmailPromotion: EmailPromotion, rowguid: rowguid, ModifiedDate: ModifiedDate"
+              "ColumnMappings": "FirstName: Name.First, MiddleName: Name.Middle, LastName: Name.Last, BusinessEntityID: BusinessEntityID, PersonType: PersonType, NameStyle: NameStyle, title: aaaTitle, Suffix: Suffix, EmailPromotion: EmailPromotion, rowguid: rowguid, ModifiedDate: ModifiedDate"
           }
         },
         "inputs": [
@@ -454,12 +454,12 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
   }
 }
 ```
-如果範例 Blob 輸入為
+如果輸入 hello 範例 blob 做
 
 ```
 1,John,,Doe
 ```
-則 Cosmos DB 中的輸出 JSON 會是：
+然後 hello 的輸出就會在 Cosmos DB 中的 JSON:
 
 ```JSON
 {
@@ -472,21 +472,21 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
   "id": "a5e8595c-62ec-4554-a118-3940f4ff70b6"
 }
 ```
-Azure Cosmos DB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure Data Factory 可讓使用者透過 **nestingSeparator** (也就是此範例中的 “.”) 表示階層 。 使用分隔符號，複製活動將會根據資料表定義中的 “Name.First”、“Name.Middle” 和 “Name.Last”，產生含有三個子元素 (First、Middle 和 Last) 的 "Name" 物件。
+Azure Cosmos DB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure Data Factory 可讓使用者透過的 toodenote 階層**nestingSeparator**，也就是"。" 。 Hello 分隔符號 hello 複製活動會產生三個子系的元素與 hello"Name"物件第一個中間和最後一個、 相應 too"Name.First"，"Name.Middle"和"Name.Last"hello 在資料表定義。
 
 ## <a name="appendix"></a>附錄
-1. **問：** 複製活動支援現有記錄的更新嗎？
+1. **問題：**沒有 hello 複製活動支援更新現有的記錄嗎？
 
     **答：** 否。
-2. **問題：**的運作方式的複製到 Azure Cosmos DB 處理重試已複製的記錄嗎？
+2. **問題：**的運作方式的複製 tooAzure Cosmos DB 處理重試已複製的記錄嗎？
 
-    **回：** 如果記錄有 [識別碼] 欄位，而複製作業嘗試插入具有相同識別碼的記錄，則複製作業會擲回錯誤。  
-3. **問題：** Data Factory 支援[範圍或雜湊為基礎的資料分割](../documentdb/documentdb-partition-data.md)嗎？
+    **回答：**如果記錄具有 「 識別碼 」 欄位，而且 hello 複製作業會嘗試 tooinsert hello 的記錄相同識別碼 hello 複製作業會擲回錯誤。  
+3. **問：**Data Factory 支援[範圍或雜湊式資料分割](../documentdb/documentdb-partition-data.md)嗎？
 
     **答：** 否。
-4. **問題：**我可以指定資料表的多個 Azure Cosmos DB 集合嗎？
+4. **問：**我可以為資料表指定多個 Azure Cosmos DB 集合嗎？
 
     **答：** 否。 目前只能指定一個集合。
 
 ## <a name="performance-and-tuning"></a>效能和微調
-請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+請參閱[複製活動效能與調整指南](data-factory-copy-activity-performance.md)toolearn 金鑰的相關因素影響效能的資料移動 （複製活動） 在 Azure Data Factory 和各種方式 toooptimize 它。

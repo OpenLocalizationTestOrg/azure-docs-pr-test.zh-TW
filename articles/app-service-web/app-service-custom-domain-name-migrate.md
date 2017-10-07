@@ -1,6 +1,6 @@
 ---
-title: "將作用中的 DNS 名稱移轉至 Azure App Service | Microsoft Docs"
-description: "了解如何在完全不停機的情況下，將已指派給即時網站的自訂 DNS 網域名稱移轉至 Azure App Service。"
+title: "aaaMigrate 作用中的 DNS 名稱 tooAzure 應用程式服務 |Microsoft 文件"
+description: "了解如何自訂的 DNS 網域名稱已指派 tooa toomigrate 即時網站 tooAzure 應用程式服務不需任何停機。"
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -15,42 +15,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: cephalin
-ms.openlocfilehash: 89308c1c684a639950467b72d26703cc07c50c14
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fbc4cc30dcb87efb2e867cb65c5404b667661e62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-an-active-dns-name-to-azure-app-service"></a>將作用中的 DNS 名稱移轉至 Azure App Service
+# <a name="migrate-an-active-dns-name-tooazure-app-service"></a>移轉作用中的 DNS 名稱 tooAzure 應用程式服務
 
-本文示範如何在完全不停機的情況下，將作用中的 DNS 名稱移轉至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。
+本文將告訴您如何 toomigrate 作用中的 DNS 名稱太[Azure App Service](../app-service/app-service-value-prop-what-is.md)完全不需要停機。
 
-當您將即時網站及其 DNS 網域名稱移轉至 App Service 時，該 DNS 名稱已對即時流量提供服務。 您可以先將作用中的 DNS 名稱繫結至 App Service 應用程式，以避免 DNS 解析在移轉期間發生停機。
+當您移轉即時網站和其 DNS 網域名稱 tooApp 服務時，該 DNS 名稱已提供服務的即時流量。 您可以事先繫結使用 DNS 名稱 tooyour hello App Service 應用程式，在 hello 移轉期間避免 DNS 解析中的停機時間。
 
-如果您不擔心 DNS 解析發生停機，請參閱[將現有的自訂 DNS 名稱對應至 Azure Web Apps](app-service-web-tutorial-custom-domain.md)。
+如果您不擔心 DNS 解析中的停機時間，請參閱[對應現有自訂 DNS 名稱 tooAzure Web 應用程式](app-service-web-tutorial-custom-domain.md)。
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本操作說明：
+toocomplete 此使用方法：
 
 - [確定您的 App Service 應用程式不是位於免費層](app-service-web-tutorial-custom-domain.md#checkpricing)。
 
-## <a name="bind-the-domain-name-preemptively"></a>事先繫結網域名稱
+## <a name="bind-hello-domain-name-preemptively"></a>事先繫結 hello 網域名稱
 
-當您事先繫結自訂網域時，要完成下列兩項之後才能對 DNS 記錄進行任何變更︰
+當事先繫結的自訂網域時，您完成這兩個變更 DNS 記錄之前的 hello 下列：
 
 - 確認網域擁有權
-- 為您的應用程式啟用網域名稱
+- 啟用您的應用程式的 hello 網域名稱
 
-當您最後將自訂 DNS 名稱從舊網站移轉至 App Service 應用程式時，DNS 解析不會發生停機。
+當您最後會從舊網站 toohello hello App Service 應用程式移轉您自訂的 DNS 名稱時，DNS 解析中會有任何停機時間。
 
 [!INCLUDE [Access DNS records with domain provider](../../includes/app-service-web-access-dns-records.md)]
 
 ### <a name="create-domain-verification-record"></a>建立網域驗證記錄
 
-若要確認網域擁有權，請新增 TXT 記錄。 TXT 記錄會從 _awverify.&lt;子網域>_ 對應至 _&lt;應用程式名稱>.azurewebsites.net_。 
+tooverify 網域擁有權，新增 TXT 記錄。 從對應的 hello TXT 記錄_awverify。&lt;子網域 >_ too_&lt;應用程式名稱 >。 azurewebsites.net_。 
 
-您需要的 TXT 記錄取決於您要移轉的 DNS 記錄。 如需範例，請參閱下表 (`@` 通常代表根網域)：  
+hello TXT 記錄，您需要取決於 hello 想 toomigrate 的 DNS 記錄。 如需範例，請參閱下表中的 hello (`@`通常代表 hello 根網域):  
 
 | DNS 記錄範例 | TXT 主機 | TXT 值 |
 | - | - | - |
@@ -58,73 +58,73 @@ ms.lasthandoff: 08/03/2017
 | www (子網域) | _awverify.www_ | _&lt;應用程式名稱>.azurewebsites.net_ |
 | \* (萬用字元) | _awverify.\*_ | _&lt;應用程式名稱>.azurewebsites.net_ |
 
-在您的 DNS 記錄頁面中，記下您要移轉之 DNS 名稱的記錄類型。 App Service 支援 CNAME 與 A 記錄之間的對應。
+在您 DNS 記錄 頁面中，記下 hello 記錄類型的 hello 想 toomigrate 的 DNS 名稱。 App Service 支援 CNAME 與 A 記錄之間的對應。
 
-### <a name="enable-the-domain-for-your-app"></a>為您的應用程式啟用網域
+### <a name="enable-hello-domain-for-your-app"></a>啟用您的應用程式的 hello 網域
 
-在 [Azure 入口網站](https://portal.azure.com)之應用程式頁面的左側導覽中，選取 [自訂網域]。 
+在 hello [Azure 入口網站](https://portal.azure.com)，在 hello hello 應用程式頁面的左導覽列中選取**自訂網域**。 
 
 ![[自訂網域] 功能表](./media/app-service-web-tutorial-custom-domain/custom-domain-menu.png)
 
-在 [自訂網域] 頁面中，選取 [新增主機名稱] 旁的 **+** 圖示。
+在 [hello**自訂網域**頁面上，選取 hello  **+** 圖示下一步] 太**新增主機名稱**。
 
 ![新增主機名稱](./media/app-service-web-tutorial-custom-domain/add-host-name-cname.png)
 
-鍵入您新增 TXT 記錄的完整網域名稱，例如 `www.contoso.com`。 針對萬用字元網域 (例如 \*.contoso.com)，您可以使用符合萬用字元網域的任何 DNS 名稱。 
+型別 hello 完整的網域名稱新增 hello TXT 記錄，例如`www.contoso.com`。 萬用字元網域 (像是\*。 contoso.com)，您可以使用任何符合 hello 萬用字元網域的 DNS 名稱。 
 
 選取 [驗證]。
 
-[新增主機名稱] 按鈕會啟用。 
+hello**新增 hostname**按鈕就會啟用。 
 
-確定將 [主機名稱記錄類型] 設定為您要移轉的 DNS 記錄類型。
+請確定**主機名稱記錄類型**設定您想要 toomigrate toohello DNS 記錄類型。
 
 選取 [新增主機名稱]。
 
-![將 DNS 名稱新增至應用程式](./media/app-service-web-tutorial-custom-domain/validate-domain-name-cname.png)
+![新增 DNS 名稱 toohello 應用程式](./media/app-service-web-tutorial-custom-domain/validate-domain-name-cname.png)
 
-可能需要一些時間，新的主機名稱才會反映在應用程式的 [自訂網域] 分頁中。 嘗試重新整理瀏覽器以更新資料。
+它可能需要一些時間 hello 反映在 hello 應用程式的新主機名稱 toobe**自訂網域**頁面。 請嘗試重新整理 hello 瀏覽器 tooupdate hello 資料。
 
 ![CNAME 記錄已新增](./media/app-service-web-tutorial-custom-domain/cname-record-added.png)
 
 您的 DNS 名稱現已在您的 Azure 應用程式中啟用。 
 
-## <a name="remap-the-active-dns-name"></a>重新對應作用中的 DNS 名稱
+## <a name="remap-hello-active-dns-name"></a>重新對應 hello 作用中的 DNS 名稱
 
-唯一剩下的工作是重新對應作用中的 DNS 記錄，以指向 App Service。 目前，它仍指向舊網站。
+hello 事左的 toodo 會重新對應您使用中的 DNS 記錄 toopoint tooApp 服務。 右現在，它仍然指向 tooyour 舊的站台。
 
 <a name="info"></a>
 
-### <a name="copy-the-apps-ip-address-a-record-only"></a>複製應用程式的 IP 位址 (僅限 A 記錄)
+### <a name="copy-hello-apps-ip-address-a-record-only"></a>複製 hello 應用程式的 IP 位址 （只記錄）
 
 如果您重新對應的是 CNAME 記錄，請略過本節。 
 
-若要重新對應 A 記錄，您需要 App Service 應用程式的外部 IP 位址，如 [自訂網域] 頁面中所示。
+tooremap A 記錄，您需要 hello App Service 應用程式的外部 IP 位址，如下所示 hello**自訂網域**頁面。
 
-選取右上角的 **X** 關閉 [新增主機名稱] 頁面。 
+關閉 hello**新增 hostname**頁面中的選取**X** hello 右上角。 
 
-在 [自訂網域] 頁面中，複製應用程式的 IP 位址。
+在 hello**自訂網域**頁面上，複製 hello 應用程式的 IP 位址。
 
-![入口網站瀏覽至 Azure 應用程式](./media/app-service-web-tutorial-custom-domain/mapping-information.png)
+![入口網站瀏覽 tooAzure 應用程式](./media/app-service-web-tutorial-custom-domain/mapping-information.png)
 
-### <a name="update-the-dns-record"></a>更新 DNS 記錄
+### <a name="update-hello-dns-record"></a>更新 hello DNS 記錄
 
-回到您網域提供者的 DNS 記錄頁面，選取要重新對應的 DNS 記錄。
+在 hello 網域提供者的 DNS 記錄頁面上，選取 hello DNS 記錄 tooremap。
 
-在 `contoso.com` 根網域範例中，重新對應 A 或 CNAME 記錄，如下表中的範例所示： 
+Hello`contoso.com`根網域的範例中，重新對應 hello A 或 CNAME 記錄，例如 hello 下表中的 hello 範例： 
 
 | FQDN 範例 | 記錄類型 | Host | 值 |
 | - | - | - | - |
-| contoso.com (根網域) | 具有使用  | `@` | 來自[複製應用程式的 IP 位址](#info)的 IP 位址 |
+| contoso.com (根網域) | A | `@` | 從 IP 位址[複製 hello 應用程式的 IP 位址](#info) |
 | www.contoso.com (子網域) | CNAME | `www` | _&lt;應用程式名稱>.azurewebsites.net_ |
 | \*.contoso.com (萬用字元) | CNAME | _\*_ | _&lt;應用程式名稱>.azurewebsites.net_ |
 
 儲存您的設定。
 
-DNS 查詢應該會在 DNS 散佈發生後立即開始解析為 App Service 應用程式。
+DNS 查詢應該只有在 DNS 傳播會發生之後，立即解決 tooyour App Service 應用程式會啟動。
 
 ## <a name="next-steps"></a>後續步驟
 
-了解如何將自訂 SSL 憑證繫結至 App Service。
+了解如何 toobind 自訂 SSL 憑證 tooApp 服務。
 
 > [!div class="nextstepaction"]
-> [將現有的自訂 SSL 憑證繫結至 Azure Web Apps](app-service-web-tutorial-custom-ssl.md)
+> [繫結現有自訂 SSL 憑證 tooAzure Web 應用程式](app-service-web-tutorial-custom-ssl.md)

@@ -1,5 +1,5 @@
 ---
-title: "建置和最佳化資料表，以便快速地將資料平行匯入到 Azure VM 上的 SQL Server | Microsoft Docs"
+title: "aaaBuild 並最佳化資料表，以便快速平行資料匯入到 Azure VM 上的 SQL Server |Microsoft 文件"
 description: "使用 SQL 資料分割資料表平行處理大量資料匯入"
 services: machine-learning
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: aae4e4f59e76bf48b00a2ee92aedd7d5643ba91a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ab748c47348ec6ca3b98ba39e27181bba5d36fc0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="parallel-bulk-data-import-using-sql-partition-tables"></a>使用 SQL 資料分割資料表平行處理大量資料匯入
-本文件說明如何建置資料分割資料表，以快速的平行處理方式將大量資料匯入 SQL Server 資料庫。 若要將巨量資料載入/傳輸至 SQL Database，可使用*資料分割資料表和檢視*，來改善將資料匯入 SQL DB 和後續查詢的效能。 
+本文件說明如何 toobuild 資料分割進行快速平行大量匯入資料 tooa SQL Server 資料庫的資料表。 巨量資料載入/transfer tooa SQL database 匯入資料 toohello SQL DB 和後續查詢，可以使用來改善*分割資料表和檢視表*。 
 
 ## <a name="create-a-new-database-and-a-set-of-filegroups"></a>建立新的資料庫和一組檔案群組
 * [建立新的資料庫](https://technet.microsoft.com/library/ms176061.aspx) (如果尚不存在)。
-* 將資料庫檔案群組新增至將用來保留資料分割實體檔案的資料庫。這可以透過 [CREATE DATABASE](https://technet.microsoft.com/library/ms176061.aspx) (如果是新的資料庫) 或 [ALTER DATABASE](https://msdn.microsoft.com/library/bb522682.aspx) (如果資料庫已存在) 來完成。
-* 將一或多個檔案 (視需要) 新增至每個資料庫檔案群組。
+* 將資料庫檔案群組 toohello 資料庫會保留資料分割的 hello 實體檔案。這可以透過[CREATE DATABASE](https://technet.microsoft.com/library/ms176061.aspx)如果是新或[ALTER DATABASE](https://msdn.microsoft.com/library/bb522682.aspx)如果 hello 資料庫已經存在。
+* 新增一或多個檔案 （如有需要） tooeach 資料庫檔案群組。
   
   > [!NOTE]
-  > 指定將保留這個資料分割之資料的目標檔案群組，以及將儲存檔案群組資料的實體資料庫檔案名稱。
+  > 指定 hello 目標檔案群組，其中包含此資料分割和 hello 實體資料庫檔案名稱的資料儲存 hello 檔案群組資料。
   > 
   > 
 
-下列範例會建立含有三個檔案群組的新資料庫，這三個檔案群組不包括主要和記錄群組，且每個檔案群組中都會包含一個實體檔案。 資料庫檔案建立於預設的 SQL Server [資料] 資料夾中，如 SQL Server 執行個體中所設定。 如需關於預設檔案位置的詳細資訊，請參閱 [SQL Server 的預設和具名執行個體的檔案位置](https://msdn.microsoft.com/library/ms143547.aspx)。
+hello 下列範例會建立新的資料庫具有三個主要的 hello 和包含在每一個實體檔案的記錄檔群組以外的檔案群組。 hello 資料庫檔案建立在 hello 預設 SQL Server Data 資料夾中，為 hello SQL Server 執行個體中設定。 如需 hello 預設檔案位置的詳細資訊，請參閱[檔案位置的預設和具名執行個體的 SQL Server](https://msdn.microsoft.com/library/ms143547.aspx)。
 
     DECLARE @data_path nvarchar(256);
     SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)
@@ -55,26 +55,26 @@ ms.lasthandoff: 07/11/2017
     ')
 
 ## <a name="create-a-partitioned-table"></a>建立資料分割資料表
-根據資料結構描述來建立資料分割資料表，其會對應到上一個步驟中建立的資料庫檔案群組。 將資料大量匯入資料分割資料表時，記錄將根據資料分割配置分佈於檔案群組中，如下所述。
+建立根據 toohello 資料結構描述、 對應的 toohello hello 先前步驟中建立的資料庫檔案群組的資料分割的資料表。 大量匯入資料時 toohello 分割資料表，記錄會分配給 hello 根據 tooa 分割區配置的檔案群組，如下所述。
 
-**若要建立資料分割資料表，您需要：**
+**toocreate 磁碟分割表格，您要：**
 
-* [建立資料分割函數](https://msdn.microsoft.com/library/ms187802.aspx)，以定義要在每個個別資料分割資料表中包含的值/界限範圍，例如，若要依 2013 年的月份來限制資料分割 (some\_datetime\_field)：
+* [建立資料分割函數](https://msdn.microsoft.com/library/ms187802.aspx)其定義的界限值/toobe hello 範圍包含在每個個別資料分割資料表，例如 toolimit 依月份的資料分割 (某些\_datetime\_欄位) hello 年 2013年:
   
         CREATE PARTITION FUNCTION <DatetimeFieldPFN>(<datetime_field>)  
         AS RANGE RIGHT FOR VALUES (
             '20130201', '20130301', '20130401',
             '20130501', '20130601', '20130701', '20130801',
             '20130901', '20131001', '20131101', '20131201' )
-* [建立資料分割配置](https://msdn.microsoft.com/library/ms179854.aspx) ，將資料分割函數中的每個資料分割範圍對應至實體檔案群組，例如：
+* [建立資料分割配置](https://msdn.microsoft.com/library/ms179854.aspx)例如對應 hello 資料分割函數 tooa 實體檔案群組中，每個資料分割範圍：
   
         CREATE PARTITION SCHEME <DatetimeFieldPScheme> AS  
-        PARTITION <DatetimeFieldPFN> TO (
+        PARTITION <DatetimeFieldPFN> too(
         <filegroup_1>, <filegroup_2>, <filegroup_3>, <filegroup_4>,
         <filegroup_5>, <filegroup_6>, <filegroup_7>, <filegroup_8>,
         <filegroup_9>, <filegroup_10>, <filegroup_11>, <filegroup_12> )
   
-  若要根據函式/配置確認範圍會在每個資料分割中生效，請執行下列查詢：
+  tooverify hello 範圍，實際上是在每個資料分割相應 toohello 函式/配置，請執行下列查詢的 hello:
   
         SELECT psch.name as PartitionScheme,
             prng.value AS ParitionValue,
@@ -83,26 +83,26 @@ ms.lasthandoff: 07/11/2017
         INNER JOIN sys.partition_schemes psch ON pfun.function_id = psch.function_id
         INNER JOIN sys.partition_range_values prng ON prng.function_id=pfun.function_id
         WHERE pfun.name = <DatetimeFieldPFN>
-* 根據您的資料結構描述來[建立資料分割資料表](https://msdn.microsoft.com/library/ms174979.aspx)，並指定用來為資料表進行資料分割的資料分割配置和條件約束欄位，例如：
+* [建立分割區的資料表](https://msdn.microsoft.com/library/ms174979.aspx)(s)，根據 tooyour 資料結構描述，並指定 hello 磁碟分割配置和條件約束欄位使用 toopartition hello 資料表，例如：
   
         CREATE TABLE <table_name> ( [include schema definition here] )
         ON <TablePScheme>(<partition_field>)
 
 如需詳細資訊，請參閱 [建立分割區資料表及索引](https://msdn.microsoft.com/library/ms188730.aspx)。
 
-## <a name="bulk-import-the-data-for-each-individual-partition-table"></a>大量匯入每個個別資料分割資料表的資料
-* 您可以使用 BCP、BULK INSERT 或其他方法，例如 [SQL Server 移轉精靈](http://sqlazuremw.codeplex.com/)。 所提供的範例會使用 BCP 方法。
-* [改變資料庫](https://msdn.microsoft.com/library/bb522682.aspx)，將交易記錄配置變更為 BULK_LOGGED，以便將記錄額外負荷降到最低，例如：
+## <a name="bulk-import-hello-data-for-each-individual-partition-table"></a>針對每個個別資料分割資料表的大量匯入 hello 資料
+* 您可以使用 BCP、BULK INSERT 或其他方法，例如 [SQL Server 移轉精靈](http://sqlazuremw.codeplex.com/)。 所提供的 hello 範例會使用 hello BCP 方法。
+* [Alter hello database](https://msdn.microsoft.com/library/bb522682.aspx) toochange 交易記錄的記錄，例如配置 tooBULK_LOGGED toominimize 負擔：
   
         ALTER DATABASE <database_name> SET RECOVERY BULK_LOGGED
-* 若要加速資料載入，可以平行方式啟動大量匯入作業。 如需加速將巨量資料大量匯入 SQL Server 資料庫的提示，請參閱 [載入 1 TB 的時間少於 1 小時](http://blogs.msdn.com/b/sqlcat/archive/2006/05/19/602142.aspx)(英文)。
+* tooexpedite 資料載入，啟動 hello 大量匯入作業，以平行方式。 如需加速將巨量資料大量匯入 SQL Server 資料庫的提示，請參閱 [載入 1 TB 的時間少於 1 小時](http://blogs.msdn.com/b/sqlcat/archive/2006/05/19/602142.aspx)(英文)。
 
-下列 PowerShell 指令碼是使用 BCP 平行載入資料的範例。
+hello 下列 PowerShell 指令碼是載入使用 BCP 的平行處理資料的範例。
 
     # Set database name, input data directory, and output log directory
     # This example loads comma-separated input data files
-    # The example assumes the partitioned data files are named as <base_file_name>_<partition_number>.csv
-    # Assumes the input data files include a header line. Loading starts at line number 2.
+    # hello example assumes hello partitioned data files are named as <base_file_name>_<partition_number>.csv
+    # Assumes hello input data files include a header line. Loading starts at line number 2.
 
     $dbname = "<database_name>"
     $indir  = "<path_to_data_files>"
@@ -111,15 +111,15 @@ ms.lasthandoff: 07/11/2017
     # Select authentication mode
     $sqlauth = 0
 
-    # For SQL authentication, set the server and user credentials
+    # For SQL authentication, set hello server and user credentials
     $sqlusr = "<user@server>"
     $server = "<tcp:serverdns>"
     $pass   = "<password>"
 
-    # Set number of partitions per table - Should match the number of input data files per table
+    # Set number of partitions per table - Should match hello number of input data files per table
     $numofparts = <number_of_partitions>
 
-    # Set table name to be loaded, basename of input data files, input format file, and number of partitions
+    # Set table name toobe loaded, basename of input data files, input format file, and number of partitions
     $tbname = "<table_name>"
     $basename = "<base_input_data_filename_no_extension>"
     $fmtfile = "<full_path_to_format_file>"
@@ -161,9 +161,9 @@ ms.lasthandoff: 07/11/2017
     date
 
 
-## <a name="create-indexes-to-optimize-joins-and-query-performance"></a>建立索引以將聯結和查詢效能最佳化
-* 如果您會從多個資料表擷取資料來進行模型化，請在聯結索引鍵上建立索引來提升聯結效能。
-* [建立索引](https://technet.microsoft.com/library/ms188783.aspx) (叢集或非叢集) 會將每個資料分割的目標設定為相同的檔案群組，例如：
+## <a name="create-indexes-toooptimize-joins-and-query-performance"></a>建立索引 toooptimize 聯結和查詢效能
+* 如果您將會從多個資料表來擷取模型的資料，建立索引 hello 聯結索引鍵上 tooimprove hello 聯結的效能。
+* [建立索引](https://technet.microsoft.com/library/ms188783.aspx)（叢集或非叢集） 目標 hello 相同的檔案群組，每個分割區，例如：
   
         CREATE CLUSTERED INDEX <table_idx> ON <table_name>( [include index columns here] )
         ON <TablePScheme>(<partition)field>)
@@ -173,10 +173,10 @@ ms.lasthandoff: 07/11/2017
         ON <TablePScheme>(<partition)field>)
   
   > [!NOTE]
-  > 您可以選擇在大量匯入資料之前建立索引。 在大量匯入之前建立索引，將讓資料載入速度變慢。
+  > 您可以選擇 toocreate hello hello 資料大量匯入之前的索引。 大量匯入之前的索引建立將會變慢 hello 資料載入。
   > 
   > 
 
 ## <a name="advanced-analytics-process-and-technology-in-action-example"></a>進階分析程序和技術實務範例
-如需使用公用資料集進行 Cortana 分析程序的端對端逐步解說範例，請參閱 [Cortana 分析程序實務範例：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)。
+如需與公用的資料集使用 hello Cortana 分析程序的端對端逐步解說範例，請參閱[動作中的 Cortana 分析程序： 使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)。
 

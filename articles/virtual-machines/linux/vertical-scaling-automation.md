@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 自動化垂直調整 Azure 虛擬機器大小 | Microsoft Docs"
-description: "如何垂直調整 Linux 虛擬機器大小以回應 Azure 自動化的監視警示"
+title: "aaaVertically 小數位數與 Azure 自動化的 Azure 虛擬機器 |Microsoft 文件"
+description: "如何 toovertically 調整回應 toomonitoring 警示與 Azure 自動化中的 Linux 虛擬機器"
 services: virtual-machines-linux
 documentationcenter: 
 author: singhkays
@@ -16,27 +16,27 @@ ms.topic: article
 ms.date: 03/29/2016
 ms.author: singhkay
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 1ffcecf1e61fc0cd9ee668514fbb913dafe39bd8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ee4c1c33a588bd907d107f1828380a8afdaa725e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="vertically-scale-azure-linux-virtual-machine-with-azure-automation"></a>使用 Azure 自動化來垂直調整 Azure Linux 虛擬機器
-垂直調整大小是指為回應工作負載而增加或減少電腦資源的程序。 在 Azure 中，可以透過變更虛擬機器的大小來完成。 在下列情況中這種方式很有幫助
+垂直延展是增加或減少回應 toohello 工作負載中電腦的 hello 資源 hello 程序。 在 Azure 中達成這點可以藉由變更 hello hello 虛擬機器大小。 這可協助在下列案例的 hello
 
-* 如果不常使用虛擬機器，可以將其調整成較小的規模，以降低每月成本
-* 如果虛擬機器預期會有尖峰負載，可以將其調整成較大的規模，以增加其容量
+* 如果未使用經常 hello 虛擬機器，可以調整 tooa 較小的大小 tooreduce 向您的每月成本
+* 如果 hello 虛擬機器會看見尖峰負載，它可以是調整過大小的 tooa 較大的大小 tooincrease 其容量
 
-完成此作業的步驟大致如下
+這是與 hello 步驟 tooaccomplish 的 hello 大綱下方
 
-1. 將 Azure 自動化設定為可存取您的虛擬機器
-2. 將 Azure 自動化垂直調整大小 Runbook 匯入訂用帳戶
-3. 將 Webhook 加入您的 Runbook 中
-4. 將警示加入虛擬機器中
+1. 設定 Azure 自動化 tooaccess 虛擬機器
+2. Hello 垂直延展的 Azure 自動化 runbook 匯入您的訂用帳戶
+3. 加入 webhook tooyour runbook
+4. 新增警示 tooyour 虛擬機器
 
 > [!NOTE]
-> 因為這是第一部虛擬機器大小的緣故，所以它可以調整的大小，會受限於目前虛擬機器部署所在之叢集中是否可使用其他大小。 本文所用的已發佈自動化 Runbook 中，已考量了這個情況，只會於下列成對的 VM 大小內調整大小。 這表示 Standard_D1v2 虛擬機器不會突然相應增加為 Standard_G5 或相應減少為 Basic_A0。
+> 因為 hello hello 大小而第一個虛擬機器，它可以調整，以 hello 大小可能會有所限制到期的 hello toohello 可用性 hello 叢集中其他大小目前部署虛擬機器中。 在 hello 發行我們處理此情況下，只調整 VM 大小組下方 hello 內這篇文章中使用自動化 runbook。 這表示不突然將 tooStandard_G5 來擴充或縮小 tooBasic_A0 Standard_D1v2 虛擬機器。
 > 
 > | 成對的調整 VM 大小 |  |
 > | --- | --- |
@@ -56,38 +56,38 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-## <a name="setup-azure-automation-to-access-your-virtual-machines"></a>將 Azure 自動化設定為可存取您的虛擬機器
-您需要做的第一件事是建立將裝載 Runbook 的 Azure 自動化帳戶，而 Runbook 用來調整 VM 調整集執行個體。 最近，自動化服務引進「執行身分帳戶」功能，極輕鬆即可代表使用者設定服務主體來自動執行 Runbook。 您可以在下文中閱讀更多相關資訊：
+## <a name="setup-azure-automation-tooaccess-your-virtual-machines"></a>設定 Azure 自動化 tooaccess 虛擬機器
+您需要 toodo hello 第一件事是建立 Azure 自動化帳戶將裝載 hello runbook 使用 tooscale hello VM 規模調整集合執行個體。 最近 hello 自動化服務導入了 hello 「 執行身分帳戶 」 功能會自動執行 hello runbook 代表 hello 使用者很容易讓 hello 服務主體的設定。 閱讀更多關於此 hello 的下列文件中：
 
 * [使用 Azure 執行身分帳戶驗證 Runbook](../../automation/automation-sec-configure-azure-runas-account.md)
 
-## <a name="import-the-azure-automation-vertical-scale-runbooks-into-your-subscription"></a>將 Azure 自動化垂直調整大小 Runbook 匯入訂用帳戶
-Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小所需之 Runbook。 您必須將其匯入您的訂用帳戶。 您可以閱讀下列文章，了解如何匯入 Runbook。
+## <a name="import-hello-azure-automation-vertical-scale-runbooks-into-your-subscription"></a>Hello 垂直延展的 Azure 自動化 runbook 匯入您的訂用帳戶
+所需的垂直調整您的虛擬機器已經發行 hello Azure 自動化 Runbook 資源庫中的 hello runbook。 您將需要 tooimport 為您的訂用帳戶。 您可以了解如何藉由讀取 tooimport runbook hello 下列文章。
 
 * [Azure 自動化的 Runbook 和模組資源庫](../../automation/automation-runbook-gallery.md)
 
-需要如下圖所示匯入 Runbook
+需要 toobe 匯入的 hello runbook 所示 hello 圖
 
 ![匯入 Runbook](./media/vertical-scaling-automation/scale-runbooks.png)
 
-## <a name="add-a-webhook-to-your-runbook"></a>將 Webhook 加入您的 Runbook 中
-匯入 Runbook 之後，需要將 Webhook 加入 Runbook 中，如此即可從虛擬機器發出的警示加以觸發。 如需為 Runbook 建立 Webhook 的詳細資訊，請參閱
+## <a name="add-a-webhook-tooyour-runbook"></a>加入 webhook tooyour runbook
+您已匯入 hello runbook 之後您將需要 tooadd webhook toohello runbook，如此可藉由從虛擬機器警示。 為您的 Runbook 建立 webhook hello 詳細資料可以在這裡
 
 * [Azure 自動化 Webhook](../../automation/automation-webhooks.md)
 
-關閉 Webhook 對話方塊之前，請務必複製 Webhook，因為在下一節中將需要此 Webhook。
+請確定您複製 hello webhook 之後才關閉 hello webhook 對話方塊，將會需要這個 hello 下一節。
 
-## <a name="add-an-alert-to-your-virtual-machine"></a>將警示加入虛擬機器中
+## <a name="add-an-alert-tooyour-virtual-machine"></a>新增警示 tooyour 虛擬機器
 1. 選取虛擬機器設定
 2. 選取 [警示規則]
 3. 選取 [加入警示]
-4. 選取要引發警示的衡量標準
-5. 選取要符合才會引發警示的條件
-6. 針對步驟 5 的條件選取臨界值。 要符合的
-7. 選取監視服務將檢查步驟 5 和 6 之條件和臨界值的期間
-8. 貼上從上一節複製的 Webhook。
+4. 在選取度量 toofire hello 警示
+5. 選取條件，當完成將導致 hello 警示 toofire
+6. 選取在步驟 5 中的 hello 條件的臨界值。 toobe 完成
+7. 在步驟 5 和 6 選取的期間透過哪一個 hello 監視服務會檢查 hello 條件和臨界值
+8. 貼上您複製 hello 前一節的 hello webhook。
 
-![將警示加入虛擬機器 1 中](./media/vertical-scaling-automation/add-alert-webhook-1.png)
+![新增警示 tooVirtual 機器 1](./media/vertical-scaling-automation/add-alert-webhook-1.png)
 
-![將警示加入虛擬機器 2 中](./media/vertical-scaling-automation/add-alert-webhook-2.png)
+![新增警示 tooVirtual 機器 2](./media/vertical-scaling-automation/add-alert-webhook-2.png)
 

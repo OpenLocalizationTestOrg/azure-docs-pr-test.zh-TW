@@ -1,5 +1,5 @@
 ---
-title: "Linux 的背書散發套件 | Microsoft Docs"
+title: "Linux 散發 aaaEndorsed |Microsoft 文件"
 description: "了解在 Azure 背書散發套件上的 Linux，包括 Ubuntu、CentOS、Oracle 和 SUSE 的準則。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 39cb2464eb593a29c4436afb5c14419b704ebff4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f006972d4611434c62b72a1d8df60caf753e15f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="linux-on-distributions-endorsed-by-azure"></a>經 Azure 背書的 Linux 發佈
-合作夥伴會在 Azure Marketplace 中提供 Linux 映像。 我們與各個 Linux 社群合作，以便為經背書的發佈清單新增更多版本選項。 在此同時，針對 Marketplace 未提供的發佈，您一律可以將自己的 Linux 帶入，方法是遵循[建立和上傳包含 Linux 作業系統的虛擬硬碟](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)中的指導方針。
+合作夥伴提供 hello Azure Marketplace 中的 Linux 映像。 我們使用的各種 Linux 社群 tooadd 更多類別 toohello 背書通訊群組清單。 在 hello 同時，不是發佈可從 hello Marketplace，您可以一律會將您自己的 Linux 按照 hello 指導方針，在[建立和上傳的虛擬硬碟包含 hello Linux operating system](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
 
 ## <a name="supported-distributions-and-versions"></a>支援的發佈和版本
-下表列出 Azure 上支援的 Linux 散發套件和版本。 如需詳細資訊，請參閱 [Microsoft Azure 中的 Linux 映像支援](https://support.microsoft.com/en-us/kb/2941892)。
+hello 下表列出 hello Linux 散發套件和支援 Azure 的版本。 請參閱太[支援適用於 Linux 映像在 Microsoft Azure 中](https://support.microsoft.com/en-us/kb/2941892)如需詳細資訊。
 
-適用於 Hyper-V 和 Azure 的 Linux Integration Services (LIS) 驅動程式是核心模組，Microsoft 會直接提供給上游 Linux Kernel。  根據預設，有些 LIS 驅動程式會建置到發佈的核心。 以 Red Hat Enterprise (RHEL)/CentOS 作為基礎的較舊分佈可用在[適用於 Hyper-V 的 Linux 整合服務 4.1 版](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409)作為個別下載。 如需關於 LIS 驅動程式的詳細資訊，請參閱 [Linux 核心需求](create-upload-generic.md#linux-kernel-requirements)。
+HYPER-V 和 Azure 的 hello Linux Integration Services (LIS) 驅動程式是 Microsoft 提供直接 toohello 上游 Linux 核心的核心模組。  根據預設，有些 LIS 驅動程式會建置到 hello 散發的核心。 以 Red Hat Enterprise (RHEL)/CentOS 作為基礎的較舊分佈可用在[適用於 Hyper-V 的 Linux 整合服務 4.1 版](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409)作為個別下載。 請參閱[Linux 核心需求](create-upload-generic.md#linux-kernel-requirements)hello LIS 驅動程式的相關詳細資訊。
 
-Azure Linux 代理程式已預先安裝於 Azure Marketplace 映像上，而且通常可透過發佈的套件存放庫來取得。 您可以在 [GitHub](https://github.com/azure/walinuxagent)上找到原始程式碼。
+hello Azure Linux 代理程式上 hello Azure Marketplace 映像已預先安裝，而且通常可從 hello 發佈封裝儲存機制。 您可以在 [GitHub](https://github.com/azure/walinuxagent)上找到原始程式碼。
 
 | 配送映像 | 版本 | 驅動程式 | 代理程式 |
 | --- | --- | --- | --- |
@@ -47,33 +47,33 @@ Azure Linux 代理程式已預先安裝於 Azure Marketplace 映像上，而且�
 ### <a name="coreos"></a>CoreOS
 [https://coreos.com/docs/running-coreos/cloud-providers/azure/](https://coreos.com/docs/running-coreos/cloud-providers/azure/)
 
-從 CoreOS 網站：
+從 hello CoreOS 網站：
 
-*CoreOS 是專為安全性、一致性和可靠性所設計。CoreOS 不會透過 yum 或 apt 安裝封裝，而是在較高層級的抽象概念中，使用 Linux 容器來管理您的服務。單一服務的程式碼和所有相依性都封裝於容器內，可在一或多部 CoreOS 機器上執行。*
+*CoreOS 是專為安全性、一致性和可靠性所設計。而不是安裝封裝，透過 yum 或 apt，CoreOS Linux 容器 toomanage 您的服務會在使用較高的層級的抽象概念。單一服務的程式碼和所有相依性都封裝於容器內，可在一或多部 CoreOS 機器上執行。*
 
 ### <a name="credativ"></a>Credativ
 [http://www.credativ.co.uk/credativ-blog/debian-images-microsoft-azure](http://www.credativ.co.uk/credativ-blog/debian-images-microsoft-azure)
 
-Credativ 是一家獨立的顧問暨服務公司，專長為使用免費的軟體來開發和實作專業解決方案。 作為業界領先的開放原始碼專家，Credativ 的支援受到許多 IT 部門所採用，從而在國際上享有認可。 Credativ 目前與 Microsoft 合作，正準備適用於 Debian 8 (Jessie) 與 7 之前的 Debian (Wheezy) 的 Debian 映像。 這兩個映像都是專為在 Azure 上執行並可透過平台輕鬆管理所設計。 Credativ 也透過其開放原始碼支援中心，長期支援維護與更新適用於 Azure 的 Debian 映像。
+Credativ 是獨立諮詢和服務公司，專門用來 hello 開發和實作的專業解決方案使用免費軟體。 作為業界領先的開放原始碼專家，Credativ 的支援受到許多 IT 部門所採用，從而在國際上享有認可。 Credativ 目前與 Microsoft 合作，正準備適用於 Debian 8 (Jessie) 與 7 之前的 Debian (Wheezy) 的 Debian 映像。 這兩個影像都是在 Azure 上的特殊設計的 toorun，而且可以輕鬆管理透過 hello 平台。 Credativ hello 長期維護和更新的 hello Debian 映像透過其開啟來源支援中心的 azure 也支援。
 
 ### <a name="oracle"></a>Oracle
 [http://www.oracle.com/technetwork/topics/cloud/faq-1963009.html](http://www.oracle.com/technetwork/topics/cloud/faq-1963009.html)
 
-Oracle 的策略是為公用和私人雲端提供廣泛的解決方案組合。 策略可讓客戶在 Oracle 雲端和其他雲端中部署 Oracle 軟體時能有所選擇且更有彈性。 Oracle 與 Microsoft 的合作，讓客戶能夠在安心知道已經過認證和會受到 Oracle 支援的情況下，於 Microsoft 公用與私人雲端中部署 Oracle 軟體。  Oracle 對 Oracle 公用與私人雲端解決方案的承諾與投資沒有改變。
+Oracle 的策略是 toooffer 廣泛的公用和私人雲端的解決方案組合。 選擇與如何部署 Oracle 雲端中的 Oracle 軟體和其他雲端的彈性，hello 策略可讓客戶。 Microsoft 與 oracle 的合作關係，讓 hello 信賴度的認證，並從 Oracle 支援客戶 toodeploy Oracle 軟體，Microsoft 公用和私人雲端中。  Oracle 對 Oracle 公用與私人雲端解決方案的承諾與投資沒有改變。
 
 ### <a name="red-hat"></a>Red Hat
 [http://www.redhat.com/en/partners/strategic-alliance/microsoft](http://www.redhat.com/en/partners/strategic-alliance/microsoft)
 
-Red Hat 是開放原始碼解決方案的全球領導提供者，協助超過 90% 的 Fortune 500 大企業解決業務挑戰、調整其 IT 和商務策略，並做好技術的準備。 Red Hat 藉由透過開放的商務模型及可預測且價格實惠的訂閱模型，提供安全的解決方案來做到這點。
+hello 世界前置提供者的開放原始碼解決方案、 Red Hat 有助於超過 90%的全球 500 強公司解決的商業挑戰、 對齊其 IT 和商務策略，並做好準備 hello 未來的技術。 Red Hat 藉由透過開放的商務模型及可預測且價格實惠的訂閱模型，提供安全的解決方案來做到這點。
 
 ### <a name="suse"></a>SUSE
 [http://www.suse.com/suse-linux-enterprise-server-on-azure](http://www.suse.com/suse-linux-enterprise-server-on-azure)
 
-Azure 上的 SUSE Linux Enterprise Server 是一個經證實可為雲端運算提供優異可靠性與安全性的平台。 SUSE 彈性的 Linux 平台可與 Azure 雲端服務緊密整合，提供容易管理的雲端環境。 隨著 SUSE Linux Enterprise Server 有超過 1,800 家獨立軟體廠商提供 9,200 多個認證應用程式，SUSE 可確保資料中心內所執行受支援的工作負載可以安心部署於 Azure 上。
+Azure 上的 SUSE Linux Enterprise Server 是一個經證實可為雲端運算提供優異可靠性與安全性的平台。 多用途的 SUSE Linux 平台緊密整合，使用 Azure 雲端服務 toodeliver 可輕鬆地管理雲端環境。 藉由多個 9,200 認證的應用程式的 SUSE Linux Enterprise Server 超過 1,800 個獨立軟體廠商，SUSE 可確保 hello 資料中心內執行支援的工作負載可以有信心地部署在 Azure 上。
 
 ### <a name="canonical"></a>Canonical
 [http://www.ubuntu.com/cloud/azure](http://www.ubuntu.com/cloud/azure)
 
-Canonical 對工程與開放社群的治理，促使 Ubuntu 在用戶端、伺服器和雲端運算 (包括消費者的個人雲端服務) 方面獲致成功。 Canonical 的願景是在 Ubuntu 中從手機到雲端的統一、可用平台，能提供電話、平板電腦、電視和桌上型電腦的一致介面系列。 這個願景使得 Ubuntu 成為從公用雲端提供者到消費性電子產品製造商等各大機構的優先選擇，並且是個別技術專家的最愛。
+Canonical 對工程與開放社群的治理，促使 Ubuntu 在用戶端、伺服器和雲端運算 (包括消費者的個人雲端服務) 方面獲致成功。 統一且可用平台的 Ubuntu，從電話 toocloud Canonical 的願景提供一系列的一致介面 hello 電話、 平板電腦、 電視或桌面。 這個願景可讓各種機構從公用雲端提供者 toohello 決策者的消費性電子產品的 Ubuntu hello 第一個選擇，而且在個別的措辭之間的我的最愛。
 
-Canonical 在全球各地皆有開發人員和工程中心，此獨特的地位使其能與硬體製造商、內容供應商和軟體開發商合作，將 Ubuntu 解決方案引進電腦、伺服器到掌上型裝置等市場。
+與開發人員和 hello 世界各地的工程中心，Canonical 是唯一定位的 toopartner 硬體製造商、 內容提供者，與軟體開發人員 toobring Ubuntu 解決方案 toomarket 電腦、 伺服器及手持式裝置。

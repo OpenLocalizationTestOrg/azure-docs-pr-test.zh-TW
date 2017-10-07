@@ -1,6 +1,6 @@
 ---
-title: "使用 Log Analytics 搭配 SQL Database 多租用戶應用程式 | Microsoft Docs"
-description: "設定及使用 Log Analytics (OMS) 搭配 Azure SQL Database 範例 Wingtip SaaS 應用程式"
+title: "使用 SQL 資料庫的多租用戶應用程式的記錄分析 aaaUse |Microsoft 文件"
+description: "設定並使用與 hello Azure SQL Database 範例 Wingtip SaaS 應用程式的記錄分析 (OMS)"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
@@ -16,108 +16,108 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: billgib; sstein
-ms.openlocfilehash: 26f6f519ecb3abf6343dc2776aa141dff99ced15
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fa9085ce3462939e66853faa2a3cd71e0f6c2581
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="setup-and-use-log-analytics-oms-with-the-wingtip-saas-app"></a>設定及使用 Log Analytics (OMS) 搭配 Wingtip SaaS 應用程式
+# <a name="setup-and-use-log-analytics-oms-with-hello-wingtip-saas-app"></a>設定並使用與 hello Wingtip SaaS 應用程式的記錄分析 (OMS)
 
-在本教學課程中，您會設定及使用 *Log Analytics([OMS](https://www.microsoft.com/cloud-platform/operations-management-suite))*，以便監視彈性集區和資料庫。 它是以[效能監視與管理教學課程](sql-database-saas-tutorial-performance-monitoring.md)為基礎，並示範如何使用 *Log Analytics*，以增強 Azure 入口網站中提供的監視和警示功能。 Log Analytics 特別適合用於大規模監視和警示，因為它可支援數百個集區和數十萬個資料庫。 它也提供單一監視解決方案，可以跨多個 Azure 訂用帳戶，整合不同應用程式和 Azure 服務的監視。
+在本教學課程中，您會設定及使用 *Log Analytics([OMS](https://www.microsoft.com/cloud-platform/operations-management-suite))*，以便監視彈性集區和資料庫。 它是在 hello 基礎[效能監視與管理教學課程](sql-database-saas-tutorial-performance-monitoring.md)，並示範如何 toouse*記錄分析*hello Azure 入口網站中提供的 tooaugment hello 監視和警示。 Log Analytics 特別適合用於大規模監視和警示，因為它可支援數百個集區和數十萬個資料庫。 它也提供單一監視解決方案，可以跨多個 Azure 訂用帳戶，整合不同應用程式和 Azure 服務的監視。
 
 在本教學課程中，您了解如何：
 
 > [!div class="checklist"]
 > * 安裝及設定 Log Analytics (OMS)
-> * 使用 Log Analytics 來監視集區和資料庫
+> * 使用記錄分析 toomonitor 集區和資料庫
 
-若要完成本教學課程，請確定已完成下列必要條件：
+toocomplete 完成本教學課程，請確定 hello 下列必要條件：
 
-* 已部署 Wingtip SaaS 應用程式。 若要在五分鐘內完成部署，請參閱[部署及探索 Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)
+* hello Wingtip SaaS 應用程式部署。 toodeploy 在五分鐘內，請參閱[部署及瀏覽 hello Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)
 * 已安裝 Azure PowerShell。 如需詳細資料，請參閱[開始使用 Azure PowerShell](https://docs.microsoft.com/powershell/azure/get-started-azureps)
 
-請參閱[效能監視與管理教學課程](sql-database-saas-tutorial-performance-monitoring.md)，以取得 SaaS 案例和模式的討論區，及其對於監視解決方案需求的影響。
+請參閱 hello[效能監視與管理教學課程](sql-database-saas-tutorial-performance-monitoring.md)hello SaaS 案例和模式，以及它們如何影響 hello 需求上監控解決方案的討論。
 
 ## <a name="monitoring-and-managing-performance-with-log-analytics-oms"></a>使用 Log Analytics (OMS) 監視和管理效能
 
-針對 SQL Database，可使用資料庫和集區監視與警示功能。 此內建監視與警示為資源特定功能且便於處理少量資源，但比較不適合監視大型安裝，或提供橫跨不同資源和訂用帳戶的統一檢視。
+針對 SQL Database，可使用資料庫和集區監視與警示功能。 監視和警示，此內建特定資源且方便的數量不多的資源，但較不適合的 toomonitoring 大型的安裝或在不同的資源和訂用帳戶提供統一的檢視。
 
-對於高容量的情況，可以使用 Log Analytics。 這是個別的 Azure 服務，可針對發出的診斷紀錄和 Log Analytics 工作區中蒐集的遙測提供分析，這可以收集來自許多服務的遙測並用來查詢和設定警示。 Log Analytics 可提供內建的查詢語言和資料視覺化工具，以便進行操作資料分析和視覺化。 SQL 分析解決方案提供了數個預先定義的彈性集區及資料庫監視與警示檢視和查詢，讓您新增自己的臨機操作查詢並視需要加以儲存。 OMS 也提供自訂檢視設計工具。
+對於高容量的情況，可以使用 Log Analytics。 這是不同的 Azure 服務，以提供分析發出診斷記錄檔，可以從許多收集遙測記錄分析工作區中收集的遙測服務與要使用的 tooquery，設定警示。 Log Analytics 可提供內建的查詢語言和資料視覺化工具，以便進行操作資料分析和視覺化。 hello SQL 分析解決方案提供了許多預先定義的彈性集區和資料庫的監視和警示檢視和查詢，並可讓您新增您自己的臨機操作查詢，並視需要儲存這些。 OMS 也提供自訂檢視設計工具。
 
-您可以在 Azure 入口網站和 OMS 中開啟 Log Analytics 工作區和分析解決方案。 Azure 入口網站是較新的存取點，但在某些區域可能位於 OMS 入口網站的後面。
+Hello Azure 入口網站中，在 OMS 中，您可以開啟記錄分析工作區和分析解決方案。 hello Azure 入口網站是 hello 較新存取點，但動作可能落後 hello OMS 入口網站上某些區域中。
 
-### <a name="start-the-load-generator-to-create-data-to-analyze"></a>啟動負載產生器來建立要分析的資料
+### <a name="start-hello-load-generator-toocreate-data-tooanalyze"></a>啟動 hello 負載產生器 toocreate 資料 tooanalyze
 
-1. 在 **PowerShell ISE** 中開啟 **Demo-PerformanceMonitoringAndManagement.ps1**。 讓此指令碼保持開啟，因為您會在本教學課程期間執行數個負載產生案例。
-1. 如果您擁有少於五個租用戶，請佈建一批租用戶以提供更有趣的監視內容︰
+1. 開啟**示範 PerformanceMonitoringAndManagement.ps1**在 hello **PowerShell ISE**。 保持此指令碼開啟您可能會想 toorun 幾個 hello 負載產生案例在本教學課程。
+1. 如果您有不超過五個租用戶，佈建租用戶 tooprovide 更有趣的監視內容的批次：
    1. 設定 **$DemoScenario = 1**，**佈建一批租用戶**
-   1. 按 **F5** 以執行指令碼。
+   1. 按**F5** toorun hello 指令碼。
 
 1. 設定 **$DemoScenario** = 2，**產生一般強度負載 (約為 40 DTU)**。
-1. 按 **F5** 以執行指令碼。
+1. 按**F5** toorun hello 指令碼。
 
-## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
+## <a name="get-hello-wingtip-application-scripts"></a>取得 hello Wingtip 應用程式指令碼
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 **Learning Modules** 資料夾下載到您的本機電腦，並維持其資料夾結構。
+hello Wingtip 票證指令碼和應用程式的原始程式碼中可用 hello [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) github 儲存機制。 指令碼檔位於 hello[學習模組資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)。 下載 hello**學習模組**資料夾 tooyour 本機電腦，維護它的資料夾結構。
 
-## <a name="installing-and-configuring-log-analytics-and-the-azure-sql-analytics-solution"></a>安裝及設定 Log Analytics 和 Azure SQL 分析解決方案
+## <a name="installing-and-configuring-log-analytics-and-hello-azure-sql-analytics-solution"></a>安裝和設定記錄分析 hello Azure SQL 分析解決方案
 
-Log Analytics 是需要設定的個別服務。 Log Analytics 會收集 Log Analytics 工作區中的記錄資料和遙測以及計量。 就像 Azure 中的其他資源一樣，工作區是必須建立的資源。 雖然工作區不一定要建立在與其監視之應用程式相同的資源群組中，但這麼做通常最有意義。 在 Wingtip SaaS 應用程式的情況下，這可讓工作區輕鬆地與應用程式一起刪除，只要刪除資源群組即可。
+記錄分析是個別的服務需要 toobe 設定。 Log Analytics 會收集 Log Analytics 工作區中的記錄資料和遙測以及計量。 就像 Azure 中的其他資源一樣，工作區是必須建立的資源。 雖然 hello 工作區不需要 toobe hello 中建立相同的資源群組作為其監視的 hello 應用程式，這通常最有意義 hello。 在 hello 案例中的 hello Wingtip SaaS 應用程式，這可讓 hello 工作區 toobe 輕易刪除與 hello 應用程式只要刪除 hello 資源群組。
 
-1. 在 **PowerShell ISE** 中開啟 ...\\Learning Modules\\Performance Monitoring and Management\\Log Analytics\\*Demo-LogAnalytics.ps1*。
-1. 按 **F5** 以執行指令碼。
+1. 開啟...\\學習模組\\效能監視與管理\\記錄分析\\*示範 LogAnalytics.ps1*在 hello **PowerShell ISE**。
+1. 按**F5** toorun hello 指令碼。
 
-此時，您應可在 Azure 入口網站 (或 OMS 入口網站) 中開啟 Log Analytics。 需要花幾分鐘的時間才能在 Log Analytics 工作區中收集遙測並顯示出來。 您讓系統蒐集資料的時間越長，體驗將會更有趣。 現在是放鬆一下的好時機 - 只要確定負載產生器仍在執行中！
-
-
-## <a name="use-log-analytics-and-the-sql-analytics-solution-to-monitor-pools-and-databases"></a>使用 Log Analytics 和 SQL 分析解決方案來監視集區和資料庫
+此時您應該可以開啟的記錄分析 hello Azure 入口網站 （或 hello OMS 入口網站） 中。 需要幾分鐘，讓 hello 記錄分析工作區和 toobecome 可見中收集的遙測 toobe。 將會是較長保留 hello 系統收集資料 hello 更有趣的 hello 經驗 hello。 現在是 toograb 飲料-只是確定 hello 負載產生器仍在執行的好時機 ！
 
 
-在此練習中，開啟 Log Analytics 和 OMS 入口網站以查看針對資料庫和集區蒐集的遙測資料。
+## <a name="use-log-analytics-and-hello-sql-analytics-solution-toomonitor-pools-and-databases"></a>使用記錄分析和 hello SQL 分析方案 toomonitor 集區和資料庫
 
-1. 瀏覽至 [Azure 入口網站](https://portal.azure.com)，按一下 [更多服務] 以開啟 Log Analytics，然後搜尋 Log Analytics︰
+
+在此練習中，開啟 記錄分析和 hello OMS 入口網站 toolook 在 hello hello 資料庫和集區所收集的遙測。
+
+1. 瀏覽 toohello [Azure 入口網站](https://portal.azure.com)然後按一下 更多服務，以開啟記錄分析記錄分析搜尋：
 
    ![開啟 Log Analytics](media/sql-database-saas-tutorial-log-analytics/log-analytics-open.png)
 
-1. 選取名為 wtploganalytics-&lt;USER&gt; 的工作區。
+1. 選取名為 hello 工作區*wtploganalytics-&lt;使用者&gt;*。
 
-1. 選取 [概觀] 以在 Azure 入口網站中開啟 Log Analytics 解決方案。
+1. 選取**概觀**tooopen hello hello Azure 入口網站中的記錄分析解決方案。
    ![overview-link](media/sql-database-saas-tutorial-log-analytics/click-overview.png)
 
-    **重要**︰解決方案可能需要幾分鐘的時間才能變成作用中。 請耐心等候！
+    **重要**： 可能需要幾分鐘的時間才能 hello 方案為作用中。 請耐心等候！
 
-1. 按一下 [Azure SQL 分析] 圖格加以開啟。
+1. 按一下 hello Azure SQL 分析磚 tooopen 它。
 
     ![概觀](media/sql-database-saas-tutorial-log-analytics/overview.png)
 
     ![分析](media/sql-database-saas-tutorial-log-analytics/analytics.png)
 
-1. 解決方案刀鋒視窗中的檢視會橫向捲動，其在底部有自己的捲軸列 (視需要重新整理刀鋒視窗)。
+1. hello hello 方案刀鋒視窗中捲動兩側中的檢視與它自己的捲軸在 hello 下方 （重新整理 hello 刀鋒視窗中如有需要）。
 
-1. 若要探索各種檢視，請按一下檢視或個別資源來開啟向下鑽研總管，您可以在其中使用左上方的時間滑桿或按一下垂直列，將焦點放在較小的時間配量。 在這個檢視中，您可以選取個別的資料庫或集區，將焦點放在特定的資源︰
+1. Hello，即可在它們或個別資源 tooopen 上向下鑽研總管 中，您可以在其中使用中 hello hello 時間滑動軸的各種檢視排名最前面的左邊，或按一下瀏覽垂直列中的 toofocus 上較窄的時間配量。 與此檢視中，您可以選取個別的資料庫或集區 toofocus 特定資源上：
 
     ![圖表](media/sql-database-saas-tutorial-log-analytics/chart.png)
 
-1. 回到解決方案刀鋒視窗，如果您捲動到最右邊，您會看到一些已儲存的查詢，按一下即可開啟及探索這些查詢。 您可以試著修改這些查詢，然後儲存您產生的任何有趣查詢，之後您可重新開啟查詢並使用於其他資源。
+1. 在 hello 方案刀鋒視窗中，當您捲動 toohello 最右側您會看到一些儲存的查詢，您可以按一下 tooopen，然後瀏覽。 您可以試著修改這些查詢，然後儲存您產生的任何有趣查詢，之後您可重新開啟查詢並使用於其他資源。
 
-1. 回到 Log Analytics 工作區刀鋒視窗，選取 OMS 入口網站以開啟解決方案。
+1. 在 hello 記錄分析工作區刀鋒視窗中，選取 OMS 入口網站 tooopen hello 方案那里。
 
     ![oms](media/sql-database-saas-tutorial-log-analytics/oms.png)
 
-1. 您可以在 OMS 入口網站中設定警示。 按一下資料庫 DTU 檢視的警示部分。
+1. 在 hello OMS 入口網站，您可以設定警示。 按一下 hello 的 hello 資料庫 DTU 檢視警示的部分。
 
-1. 在顯示的 [記錄搜尋] 檢視中，您會看到所表示計量的長條圖。
+1. 在 hello 記錄搜尋出現您的檢視，會看到 hello 度量所表示的橫條圖。
 
     ![log search](media/sql-database-saas-tutorial-log-analytics/log-search.png)
 
-1. 如果您按一下工具列中的 [警示]，您將能夠看到警示組態並可加以變更。
+1. 如果您在 [hello] 工具列中按一下警示您將會無法 toosee hello 警示設定，而且可以變更它。
 
     ![新增警示規則](media/sql-database-saas-tutorial-log-analytics/add-alert.png)
 
-在 Log Analytics 和 OMS 中監視和警示是以工作區中的資料查詢為基礎，不同於每個資源刀鋒視窗上的資源特定警示。 因此，您可以定義可查看所有資料庫的警示，而不是為每個資料庫定義一個警示。 或是撰寫可使用多種資源類型之複合查詢的警示。 查詢只會受限於工作區中可用的資料。
+監視和警示記錄分析和 OMS 中的 hello 根據查詢中，透過 hello hello 的工作區中，不同於 hello 每個資源刀鋒視窗中，也就是資源特定的警示。 因此，您可以定義可查看所有資料庫的警示，而不是為每個資料庫定義一個警示。 或是撰寫可使用多種資源類型之複合查詢的警示。 查詢只會受到 hello hello 工作區中可用的資料。
 
-SQL Database 的 Log Analytics 需根據工作區中的資料量付費。 在本教學課程中，您建立了一個免費工作區，其每天的限制為 500MB。 一旦達到該限制，工作區就不會再新增資料。
+記錄分析的 SQL 資料庫的計費根據 hello hello 工作區中的資料磁碟區。 在此教學課程中，您建立可用的工作區中，這是每日限制的 too500MB。 一旦達到該限制的資料不會再加入 toohello 工作區。
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -126,12 +126,12 @@ SQL Database 的 Log Analytics 需根據工作區中的資料量付費。 在本
 
 > [!div class="checklist"]
 > * 安裝及設定 Log Analytics (OMS)
-> * 使用 Log Analytics 來監視集區和資料庫
+> * 使用記錄分析 toomonitor 集區和資料庫
 
 [租用戶分析教學課程](sql-database-saas-tutorial-tenant-analytics.md)
 
 ## <a name="additional-resources"></a>其他資源
 
-* [以初始 Wingtip SaaS 應用程式部署為基礎的其他教學課程](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
+* [Hello 初始 Wingtip SaaS 應用程式部署為基礎的其他教學課程](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [Azure Log Analytics](../log-analytics/log-analytics-azure-sql.md)
 * [OMS](https://blogs.technet.microsoft.com/msoms/2017/02/21/azure-sql-analytics-solution-public-preview/)

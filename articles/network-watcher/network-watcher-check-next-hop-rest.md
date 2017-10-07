@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員下一個躍點來尋找下一個躍點 - REST | Microsoft Docs"
-description: "本文會說明如何使用 Azure REST API，利用下一個躍點功能來得知下一個躍點類型和 IP 位址"
+title: "與 Azure 網路監看員下個躍點-REST 下個躍點 aaaFind |Microsoft 文件"
+description: "本文將說明如何尋找哪些 hello 下個躍點類型，且使用下一個躍點使用的 ip 位址 hello Azure REST API"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 644713d365191bf5e51517d0cc565efbc2abc144
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a2b61b355aae8ae513ebd44837184fbc6cfd668c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="find-out-what-the-next-hop-type-is-using-the-next-hop-capability-in-aure-network-watcher-using-azure-rest-api"></a>使用 Azure REST API，利用 Azure 網路監看員的下一個躍點功能找出下一個躍點類型
+# <a name="find-out-what-hello-next-hop-type-is-using-hello-next-hop-capability-in-aure-network-watcher-using-azure-rest-api"></a>找出 hello 下一個躍點類型會使用 Aure 網路監看員使用 Azure REST API 中的 hello 下一個躍點功能
 
 > [!div class="op_single_selector"]
 > - [Azure 入口網站](network-watcher-check-next-hop-portal.md)
@@ -29,25 +29,25 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-check-next-hop-cli.md)
 > - [Azure REST API](network-watcher-check-next-hop-rest.md)
 
-下一個躍點是網路監看員的一項功能，可根據指定的虛擬機器取得下一個躍點類型和 IP 位址。 這項功能可用於判斷離開虛擬機器的流量是否會周遊閘道、網際網路或虛擬網路，以抵達其目的地。
+下一個躍點是網路監看員提供 hello 功能的一項功能取得下一個躍點類型 hello 和根據指定的虛擬機器的 IP 位址。 這項功能可用於判斷如果離開虛擬機器的流量會周遊閘道、 網際網路或虛擬網路 tooget tooits 目的地。
 
 ## <a name="before-you-begin"></a>開始之前
 
-使用 ARMclient 透過 PowerShell 呼叫 REST API。 您可以在 chocolatey 的 [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) 上找到 ARMClient
+ARMclient 是使用 PowerShell 的使用的 toocall hello REST API。 您可以在 chocolatey 的 [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) 上找到 ARMClient
 
-此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。
+此案例假設您已依照中的 hello 步驟[建立網路監看員](network-watcher-create.md)toocreate 網路監看員。
 
 ## <a name="scenario"></a>案例
 
-本文涵蓋的案例會使用網路監看員的下一個躍點功能，以找出資源的下一個躍點類型和 IP 位址。 若要深入了解下一個躍點，請造訪[下一個躍點概觀](network-watcher-next-hop-overview.md)。
+在此文章所涵蓋的 hello 案例使用下一個躍點，會找出 hello 下一個躍點類型和資源的 IP 位址的網路監看員的一項功能。 toolearn 深入了解下個躍點，請瀏覽[下一個躍點概觀](network-watcher-next-hop-overview.md)。
 
 在此案例中，您將會：
 
-* 擷取虛擬機器的下一個躍點。
+* 擷取虛擬機器的 hello 下一個躍點。
 
 ## <a name="log-in-with-armclient"></a>使用 ARMClient 登入
 
-使用 Azure 認證登入 Armclient。
+登入 tooarmclient 與您的 Azure 認證。
 
 ```PowerShell
 armclient login
@@ -55,12 +55,12 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>擷取虛擬機器
 
-執行下列指令碼，以傳回虛擬機器。 執行下一個躍點需要這項資訊。
+執行下列指令碼 tooreturn hello 虛擬機器。 執行下一個躍點需要這項資訊。
 
-下列程式碼需要下列變數的值︰
+下列程式碼的 hello hello 下列變數需要值：
 
-- **subscriptionId** - 要使用的訂用帳戶識別碼。
-- **resourceGroupName** - 包含虛擬機器的資源群組名稱。
+- **subscriptionId** -hello 訂用帳戶 Id toouse。
+- **resourceGroupName** -hello 包含虛擬機器的資源群組的名稱。
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -69,7 +69,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-從下列的輸出，會在下列範例中使用虛擬機器的識別碼︰
+從 hello 下列輸出，hello hello 虛擬機器識別碼 hello 下列範例中使用：
 
 ```json
 ...
@@ -86,10 +86,10 @@ armclient get https://management.azure.com/subscriptions/${subscriptionId}/Resou
 
 ## <a name="get-next-hop"></a>取得下一個躍點
 
-一旦建立授權標頭後，就可以從虛擬機器擷取下一個躍點。 必須取代下列程式碼範例的值才可運作。
+一旦建立 hello 授權標頭，就可以擷取 hello 從虛擬機器的下一個躍點。 hello 下列的值必須取代的 hello 程式碼範例 toowork。
 
 > [!Important]
-> 針對網路監看員 REST API 呼叫，要求 URI 中的資源群組名稱是包含網路監看員的資源群組，而非您要執行診斷動作的資源。
+> 網路監看員 REST api 呼叫 hello hello 要求 URI 是 hello 包含 hello 網路監看員，您執行的 hello 診斷動作不 hello 資源的資源群組中的資源群組名稱。
 
 ```powershell
 $sourceIP = "10.0.0.4"
@@ -108,17 +108,17 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 ```
 
 > [!NOTE]
-> 下一個躍點需要配置 VM 資源以供執行。
+> 下一個躍點需要 hello VM 資源配置 toorun。
 
 ## <a name="results"></a>結果
 
-以下程式碼片段是所接收輸出的範例。 結果包含下列值：
+hello 下列程式碼片段是收到 hello 輸出的範例。 hello 結果包含下列值的 hello:
 
-* **nextHopType** - 這個值可以是下列值之一︰Internet、VirtualAppliance、VirtualNetworkGateway、VnetLocal、HyperNetGateway 或 None。
-* **nextHopIpAddress** - 下一個躍點的 IP 位址。
-* **routeTableId** - 值是與路由相關聯的路由資料表的 URI，或者如果沒有定義使用者定義的路由，會傳回系統路由的值。
+* **nextHopType** -這個值可以是下列值的 hello 的其中一個： 網際網路、 VirtualAppliance、 VirtualNetworkGateway、 VnetLocal、 HyperNetGateway，或 None。
+* **nextHopIpAddress** -hello hello 下一個躍點 IP 位址。
+* **routeTableId** -hello 值為 hello 與 hello 路由相關聯的路由表的 uri，或如果不是使用者定義路由是定義的 hello 值*系統路由*傳回。
 
-以下是 json 格式的結果。
+hello 以下是 json 格式的 hello 結果。
 
 ```json
 {
@@ -129,7 +129,7 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 
 ## <a name="next-steps"></a>後續步驟
 
-一旦您已能夠找出虛擬機器的下一個躍點，就可以檢視您網路資源的安全性，請造訪[安全性檢視概觀](network-watcher-security-group-view-overview.md)
+後無法 toofind 出 hello 虛擬機器的下一個躍點後，您可以檢視您的網路資源的 hello 安全性造訪[安全性檢視概觀](network-watcher-security-group-view-overview.md)
 
 
 

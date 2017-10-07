@@ -1,6 +1,6 @@
 ---
-title: "將您的供應項目部署至 Azure Marketplace | Microsoft Docs"
-description: "了解並逐步依照指示執行，將您的供應項目 (虛擬機器映像、開發人員服務、資料服務等) 部署至 Azure Marketplace。"
+title: "aaaDeploy 您優惠 toohello Azure Marketplace |Microsoft 文件"
+description: "了解，然後逐步解說 hello 指示 toodeploy 優惠-虛擬機器映像、 開發人員服務、 資料服務等-toohello Azure Marketplace。"
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/02/2016
 ms.author: hascipio
-ms.openlocfilehash: 12dc81642905cd9449a1032c7ab57298e6b69ba8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ab0bb7c78020187505c2d5f09c4de246987ecd97
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-your-offer-to-the-azure-marketplace"></a>將您的供應項目部署至 Azure Marketplace
-當您對供應項目感到滿意 (意即經過測試的客戶案例、行銷內容等) 並準備推出時，請在 [發佈] 索引標籤中要求 [推送至生產環境]。  
+# <a name="deploy-your-offer-toohello-azure-marketplace"></a>部署您的優惠 toohello Azure Marketplace
+當您滿意您的優惠 （也就是您已經測試過的客戶案例行銷內容等），而且您準備好 toolaunch，要求**推送 tooproduction**上 hello**發行** 索引標籤。  
 
-1. 發佈入口網站的 [逐步解說] 頁面中的四個步驟應是完成和綠色的狀態。 對於虛擬機器供應項目，請務必遵循下列指導方針。
+1. hello 逐步解說頁面下方的 hello 四個步驟在 hello 發佈入口網站應該已完成和綠色。 適用於虛擬機器提供，請遵循下列指導方針的 hello。
    
     ![繪圖][img-pubportal-walkthru-checked]
-2. 從左側清單中選取 [ **發佈** ] 索引標籤。
+2. 選取 hello**發行**索引標籤上從左邊的 hello hello 清單。
    
     ![繪圖][img-pubportal-menu-publish]
-3. 按一下 [要求核准推送到生產環境] 按鈕。 提出要求後，核准小組會執行最後檢閱，然後您的供應項目即可在 Azure Marketplace 中公開發行。
+3. 按一下 [hello] 按鈕**要求核准 toopush tooproduction**。 建立 hello 要求之後，hello 核准小組會執行最後的檢閱，和則會在 hello Azure Marketplace 中提供您的優惠。
    
     ![繪圖][img-pubportal-publish-pushproduction]
 
 > [!IMPORTANT]
-> 如果是「虛擬機器」，當您按一下 [要求核准推送到生產環境] 按鈕時，會在場景後方執行下列步驟。 您可以在發佈入口網站的 [發佈] 索引標籤下檢視每個步驟的進度。 您必須定期查看此頁面是否有需要您更正的任何失敗資訊 (直到狀態顯示「已列出」為止) 。
+> 發生虛擬機器，當您按一下 hello 按鈕要求核准 toopush tooproduction，hello 步驟會執行背後 hello 場景。 您將會無法 tooview hello 進度 hello hello 發行 索引標籤底下的每個步驟的發佈入口網站。 您必須檢查這個頁面在定期間隔 （直到 hello 狀態顯示 「 列出 」） 需要從您的 end 更正任何失敗資訊。
 > 
-> * 一開始，您的生產環境要求會送到驗證 VHD 的憑證小組。 不過，如果您是要更新已列出的供應項目或您的要求只有行銷變更，則會略過憑證步驟。
-> * 在下一個步驟中，要求會送交驗證供應項目行銷內容的內容驗證小組。
-> * 如果上述步驟都成功，便核准供應項目進入生產環境。 此時在發佈入口網站中的狀態會變成「已列出」。 不過，這個「已列出」狀態不代表程序已完成。 在可於 Azure Marketplace 公開發行供應項目之前，必須先完成下列步驟。
-> * 一旦供應項目於上述步驟中經核准進入生產環境，就會開始跨所有 Azure 資料中心複寫供應項目。 複寫通常需要 24-48 小時才能完成，但依據 VHD 大小而定，最長可能需要一週的時間。 不過，如果您是要更新已列出的供應項目或您的要求只有行銷變更，則複寫會更快速。
-> * 當複寫完成後，供應項目就會在 Azure Marketplace 公開發行。
+> * 一開始您實際執行的要求會驗證 hello vhd toohello 憑證小組。 不過，如果您要更新您的已列出的優惠 hello 要求有只有行銷變更，然後 hello 憑證會略過步驟。
+> * Hello 下一個步驟中，在 hello 要求來自 toohello 內容驗證的團隊進行確認 hello 行銷 hello 提供項目的內容。
+> * 如果上述步驟 hello 都成功，在生產環境中已核准 hello 供應項目。 在這個階段中，hello 狀態變成 「 列出"hello 發佈入口網站中。 不過，此 「 列出 」 狀態不代表 hello 程序已完成。 hello Azure Marketplace 提供 hello 遵循步驟需要 toobe hello 優惠之前完成。
+> * 一旦核准之後 hello 優惠 hello 上述步驟中的生產環境中，複寫的 hello 供應項目開始，所有 hello Azure 資料中心。 它通常會採用 24-48hours hello 複寫 toocomplete 的但可能佔用 tooa 週 hello hello vhd 大小而定。 不過，如果您要更新您的已列出的優惠，其中有只有行銷變更 hello 複寫是更快。
+> * Hello 複寫完成時，則 hello 供應項目會提供在 hello Azure Marketplace。
 > 
-> 當供應項目的狀態為 [草稿] 時 (也就是永遠不會 [推送至預備環境] 或 [推送至生產環境])，您可隨時將其刪除。 在 [歷程記錄] 索引標籤中，按一下頁面底部的 [捨棄草稿] 按鈕以刪除草稿。
+> 您隨時都可以刪除 hello 供應項目處於**草稿**狀態 (亦即，永遠不會**推送 toostaging**或**推送 tooproduction**)。 在 hello**歷程記錄**索引標籤上，按一下 hello**捨棄草稿**按鈕在 hello 底部 hello 頁面 toodelete 草稿。
 > 
 > 
 
 ## <a name="production-checklist-for-all-virtual-machine-offers"></a>適用於所有虛擬機器供應項目的生產環境檢查清單
 * 請確定您是 Microsoft Azure 認證合作夥伴
-* 在 [SKU] 索引標籤下，只有當 SKU 是方案範本的一部分時，[從 Marketplace 隱藏此 SKU，因為應該永遠透過方案範本購買它] 選項才應該標示為 [是]。 否則，這個選項應該永遠標示為 [否]。
-* 請記住︰您不應在 SKU 列出後變更 SKU 可見性設定。 我們不支援這項功能。
-* 請確定標誌遵循以下的 Azure Marketplace 標誌指導方針。
+* Hello Sku 索引標籤下 hello 選項 「 隱藏 hello Marketplace 從這個 SKU 因為永遠應該購買透過方案範本 」 標示為 「 只是 hello SKU 是否方案範本的一部分。 在所有 hello 其他情況下，這個選項應該會被標示為 [否]。
+* 請記住： 您不應該變更 hello SKU 可見性設定一旦列為 hello SKU。 我們不支援這項功能。
+* 請 hello 標誌遵守 toohello Azure Marketplace 商標指導方針如下所示。
 * 供應項目和 SKU 描述不應相同。
 * SKU 的標題和供應項目完整摘要不應相同。
 * SKU 標題和供應項目摘要不應相同。
@@ -58,29 +58,29 @@ ms.lasthandoff: 07/11/2017
 
 **Azure Marketplace 標誌指導方針**
 
-* Azure 設計具有簡單的調色盤。 請保持標誌上具有最少的主要和次要色彩數目。
-* Azure 入口網站的佈景主題色彩是白色與黑色。 因此請避免使用這些色彩做為您標誌的背景色彩。 請使用會讓您的標誌在 Azure 入口網站顯得突出的某些色彩。 建議您使用簡單的主要色彩。 如果您使用透明背景，請確定標誌/文字不是白色或黑色。
-* 請不要在標誌上使用漸層背景。
-* 避免在標誌上放置文字 (甚至是公司或品牌名稱)。
-* 您標誌的外觀與風格應該是「一般」，而且應該避免漸層。
-* 標誌不應該自動進行縮放。
+* hello Azure 設計具有簡單的調色盤。 Hello 數目主要和次要色彩上保持您的標誌低。
+* hello 的 hello Azure 入口網站的佈景主題色彩是白色與黑色。 因此請避免使用這些色彩做為您的標誌的 hello 背景色彩。 使用會讓您的標誌 hello Azure 入口網站中的某些色彩。 建議您使用簡單的主要色彩。 如果您使用透明背景，然後確定該 hello 標誌/文字不是白色或黑色。
+* 請勿在 hello 標誌上使用背景漸層。
+* 避免將文字，即使您的公司或品牌名稱放置在 hello 標誌上。
+* hello 的外觀與您的標誌應該是 '一般'，而且應該避免漸層。
+* hello 標誌不可延伸。
 
-**主圖標誌的其他指導方針：**
+**Hello 英雄標誌額外的指導方針：**
 
-* 主圖標誌為選用項。 發行者可以選擇不上傳主圖標誌。 **但主圖圖示一旦上傳，即無法從發佈入口網站中刪除。屆時合作夥伴必須遵循主圖圖示的 Azure Marketplace 指導方針，否則供應項目將無法核准進入生產環境。**
-* 發行者顯示名稱、SKU 標題和供應項目完整細摘要會以白色字型色彩顯示。 因此，您應避免在主圖圖示的背景使用淺色系。 主圖圖示不允許使用黑色、白色和透明背景。
-* 供應項目列出之後，會以程式設計方式將發行者顯示名稱、SKU 標題、供應項目完整摘要和 [建立] 按鈕內嵌在主圖標誌內。 因此您在設計主圖標誌時不應輸入任何文字。 您只需在右邊留下空白空間，因為我們會以程式設計方式於該處內嵌文字 (也就是 發行者顯示名稱、SKU 標題、供應項目完整摘要)。 文字右側的空白空間應為 415 x 100 (從左邊開始位移 370px)。
+* hello 英雄標誌是選擇性的。 hello 發行者可以選擇不 tooupload 英雄標誌。 **但是一次上傳的 hello 英雄圖示無法刪除從 hello 發佈入口網站。在這段時間，hello 夥伴必須遵循 hello Azure Marketplace 的指導方針英雄圖示 else hello 供應項目不會核准的 tooproduction。**
+* 發行者顯示名稱、 SKU 標題和 hello hello 提供長的摘要會顯示在白色字型色彩。 因此，您應該避免保留中的 hello 英雄圖示的 hello 背景的任何淺色。 主圖圖示不允許使用黑色、白色和透明背景。
+* hello 發行者顯示名稱、 SKU 標題、 完整摘要 hello 優惠和 hello 建立按鈕會內嵌以程式設計方式在 hello 英雄標誌一旦 hello 供應項目會列出。 因此您不應該輸入任何文字，在設計 hello 英雄標誌。 因為 hello 文字 （也就是發行者顯示名稱、 SKU 標題、 hello 供應項目完整摘要） 將會包含以程式設計方式由我們有 hello 右邊留空的空間。 hello 空白空間的 hello 文字應該是 415 x 100 上 hello 右 （和 370px 從 hello 左位移）。
 
 ## <a name="additional-production-checklist-for-already-listed-virtual-machine-offers"></a>適用於已列出的虛擬機器供應項目的其他生產環境檢查清單
-* 請檢查是否已經有任何供應項目包含您公司所提供的同一供應項目。 如果有，您應在現有的供應項目加入新版 SKU，而不是新建重複的供應項目。
-* 請勿變更同一個 SKU 的兩個版本之間的資料磁碟。
-* Azure Marketplace 不支援變更已列出 SKU 的價格，因為它會影響現有客戶的帳單。 請務必不要變更 SKU 公開發行區域已列出的 SKU 價格。 但是您可以在現有的 SKU 中加入新的 SKU 或新區域。
+* 檢查相同是否已經有的提供項目以 hello 提供名稱，從您的公司。 如果是，您應該在 hello 現有的優惠，而不是建立新的重複提供項目中加入 hello SKU 的新版本。
+* 資料磁碟不應該變更兩個版本之間的 hello 相同 SKU。
+* hello Azure Marketplace 不支援定價的 hello 變更列為 SKU 可能 hello 計費 hello 現有客戶的影響。 請確定您不要變更 hello 定價的 hello hello SKU 所在的區域中所列的 hello Sku。 不過，您可以新增新的 Sku 或加入新的區域 tooan 現有 SKU。
 
 ## <a name="next-steps"></a>後續步驟
-一旦供應項目上線，請測試客戶案例，如同在預備環境中進行測試和驗證一樣，驗證在生產環境中的所有合約和功能都運作正常。
+一旦 hello 優惠上線，測試所有 hello 合約和功能都運作的 hello 客戶案例 toovalidate 正確 hello 實際執行環境中做為測試和驗證中的 hello 預備環境。
 
 ## <a name="see-also"></a>另請參閱
-* [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
+* [快速入門： 如何 toopublish 優惠 toohello Azure Marketplace](marketplace-publishing-getting-started.md)
 
 [img-pubportal-walkthru-checked]:media/marketplace-publishing-push-to-production/pubportal-walkthru-checked.png
 [img-pubportal-menu-publish]:media/marketplace-publishing-push-to-production/pubportal-menu-publish.png

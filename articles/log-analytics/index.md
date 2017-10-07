@@ -1,6 +1,6 @@
 ---
-title: "Azure Log Analytics 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用 Log Analytics 來收集和分析雲端和內部部署環境 (不論實體位置為何) 中的資源所產生的資料。"
+title: "aaaAzure 記錄分析文件-教學課程中，API 參考 |Microsoft 文件"
+description: "深入了解如何 toouse 記錄分析 toocollect 及分析您的雲端和內部部署環境，無論實體位置中的資源所產生的資料。"
 services: log-analytics
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 9d5d1ada86a2cb1b6f6f70d9c662708f81b5bcc6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48b3c1b28d9e3a9eaed34201d6bae2a6fdea90fd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-documentation"></a>Log Analytics 文件
 
-了解如何使用 Operations Management Suite 中的 Log Analytics，收集和分析雲端和內部部署環境中的資源所產生的資料。 教學課程和其他文件會示範如何即時深入了解您的工作負載和伺服器 (不論實體位置為何)。
+深入了解如何 toouse 記錄分析在 hello Operations Management Suite toocollect 及分析您的雲端和內部部署環境中的資源所產生的資料。 教學課程和其他文件告訴您如何 tooget 程式工作負載和伺服器，不論實體位置之間的即時深入資訊。
 
 <ul class="panelContent cardsFTitle">
     <li>

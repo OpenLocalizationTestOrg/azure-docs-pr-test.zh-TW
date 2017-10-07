@@ -1,5 +1,5 @@
 ---
-title: "Azure 隨選媒體編碼器的概觀和比較 | Microsoft Docs"
+title: "aaaOverview 與 Azure 上比較要求的媒體編碼器 |Microsoft 文件"
 description: "本主題概要說明並比較 Azure 隨選媒體編碼器。"
 services: media-services
 documentationcenter: 
@@ -14,74 +14,74 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/10/2017
 ms.author: juliako
-ms.openlocfilehash: 538a6ab60168735c2626a93cdeedd8d4999a6efc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 24a3e0a16162b1bebfcde290b6baf2dd8dbfff17
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-and-comparison-of-azure-on-demand-media-encoders"></a>Azure 隨選媒體編碼器的概觀和比較
 ## <a name="encoding-overview"></a>編碼概觀
-Azure 媒體服務提供多個用於將雲端中之媒體編碼的選項。
+Azure Media Services 提供多個 hello 編碼媒體 hello 雲端中的選項。
 
-開始使用媒體服務時，請務必了解轉碼器和檔案格式之間的差異。
-轉碼器是實作壓縮/解壓縮演算法的軟體，而檔案格式是保存已壓縮視訊的容器。
+開始使用 Media Services，很重要的 toounderstand hello 差異轉碼器與檔案格式。
+轉碼器是實作 hello 壓縮/解壓縮演算法，而檔案格式是保留 hello 壓縮視訊的容器的 hello 軟體。
 
-「媒體服務」提供動態封裝，這可讓您以「媒體服務」支援的串流格式 (MPEG DASH、HLS、Smooth Streaming) 提供調適性位元速率 MP4 或 Smooth Streaming 編碼內容，而不必重新封裝成這些串流格式。
+Media Services 提供動態封裝可讓您 toodeliver MP4 或 Smooth Streaming 您彈性位元速率編碼格式 （MPEG DASH、 HLS、 Smooth Streaming） 的 Media Services 支援的資料流處理中的內容，而不必 toore 封裝至您串流格式。
 
 >[!NOTE]
->建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。 若要利用 [動態封裝](media-services-dynamic-packaging-overview.md)，您需要執行下列動作：
+>AMS 帳戶建立時**預設**串流端點就會加入 tooyour 帳戶 hello**已停止**狀態。 串流處理您的內容，並採取利用動態封裝和動態加密，toostart hello 串流端點，您想要從中 toostream 內容已經在 hello toobe**執行**狀態。 tootake 利用[動態封裝](media-services-dynamic-packaging-overview.md)，您需要 toodo hello 下列：
 >
->此外，請將您的來源檔案編碼成一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案 (本教學課程稍後會示範編碼步驟)。
+>此外，編碼為一組彈性位元速率 MP4 檔案或彈性位元速率 Smooth Streaming 檔案 （hello 編碼步驟示範稍後在本教學課程） 的原始程式檔。
 
-媒體服務支援本文中所描述的下列隨選編碼器：
+Media Services 支援 hello 下列上這篇文章所述的需求編碼器：
 
 * [Media Encoder Standard](media-services-encode-asset.md#media-encoder-standard)
-* [Media Encoder Premium Workflow](media-services-encode-asset.md#media-encoder-premium-workflow)
+* [媒體編碼器高階工作流程](media-services-encode-asset.md#media-encoder-premium-workflow)
 
-本文概略敘述隨選媒體編碼器，並提供文章連結以提供更詳細資訊。 本主題也提供各種編碼器的比較。
+本文簡短介紹的隨選媒體編碼器，並提供連結 tooarticles，提供更詳細的資訊。 hello 主題也提供 hello 編碼器的比較。
 
 >[!NOTE]
->依預設，每個媒體服務帳戶一次可以有一個進行中的編碼工作。 您可以保留編碼單位，這樣就可以同時執行多個編碼工作，其中一個用於您購買的每一個編碼保留單位。 如需相關資訊，請參閱 [調整編碼單位](media-services-scale-media-processing-overview.md)。
+>依預設，每個媒體服務帳戶一次可以有一個進行中的編碼工作。 您可以保留編碼單元可讓您 toohave 同時執行，一個用於每個您所購買的編碼保留單元的多個編碼工作。 如需相關資訊，請參閱 [調整編碼單位](media-services-scale-media-processing-overview.md)。
 
 ## <a name="media-encoder-standard"></a>Media Encoder Standard
-### <a name="how-to-use"></a>使用方式
-[如何使用 Media Encoder Standard 進行編碼](media-services-dotnet-encode-with-media-encoder-standard.md)
+### <a name="how-toouse"></a>如何 toouse
+[如何與媒體編碼器標準 tooencode](media-services-dotnet-encode-with-media-encoder-standard.md)
 
 ### <a name="formats"></a>格式
 [格式和轉碼器](media-services-media-encoder-standard-formats.md)
 
 ### <a name="presets"></a>預設值
-Media Encoder Standard 使用 [這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)描述的其中一個編碼器預設值進行設定。
+媒體編碼器標準設定時，使用其中一個所述的 hello 編碼器預設[這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)。
 
 ### <a name="input-and-output-metadata"></a>輸入和輸出中繼資料
-[這裡](media-services-input-metadata-schema.md)說明編碼器輸入中繼資料。
+hello 編碼器輸入中繼資料描述[這裡](media-services-input-metadata-schema.md)。
 
-[這裡](media-services-output-metadata-schema.md)說明編碼器輸出中繼資料。
+hello 編碼器輸出中繼資料描述[這裡](media-services-output-metadata-schema.md)。
 
 ### <a name="generate-thumbnails"></a>產生縮圖
-如需相關資訊，請參閱 [如何使用媒體編碼器標準產生縮圖](media-services-advanced-encoding-with-mes.md#thumbnails)。
+如需資訊，請參閱[如何使用媒體編碼器標準 toogenerate 縮圖](media-services-advanced-encoding-with-mes.md#thumbnails)。
 
 ### <a name="trim-videos-clipping"></a>修剪視訊 (裁剪)
-如需相關資訊，請參閱 [如何使用媒體編碼器標準修剪視訊](media-services-advanced-encoding-with-mes.md#trim_video)。
+資訊，請參閱[如何使用媒體編碼器標準 tootrim 視訊](media-services-advanced-encoding-with-mes.md#trim_video)。
 
 ### <a name="create-overlays"></a>建立疊加層
-如需相關資訊，請參閱 [如何使用媒體編碼器標準建立覆疊](media-services-advanced-encoding-with-mes.md#overlay)。
+資訊，請參閱[如何使用媒體編碼器標準 toocreate 覆疊](media-services-advanced-encoding-with-mes.md#overlay)。
 
 ### <a name="see-also"></a>另請參閱
-[媒體服務部落格](https://azure.microsoft.com/blog/2015/07/16/announcing-the-general-availability-of-media-encoder-standard/)
+[hello 媒體服務部落格](https://azure.microsoft.com/blog/2015/07/16/announcing-the-general-availability-of-media-encoder-standard/)
 
-## <a name="media-encoder-premium-workflow"></a>Media Encoder Premium Workflow
+## <a name="media-encoder-premium-workflow"></a>媒體編碼器高階工作流程
 ### <a name="overview"></a>Overview
 [介紹 Azure 媒體服務中的 Premium 編碼](https://azure.microsoft.com/blog/2015/03/05/introducing-premium-encoding-in-azure-media-services/)
 
-### <a name="how-to-use"></a>使用方式
-Media Encoder Premium Workflow 使用複雜的工作流程設定。 您可以使用 [工作流程設計工具](media-services-workflow-designer.md) 建立和更新工作流程檔案。
+### <a name="how-toouse"></a>如何 toouse
+Media Encoder Premium Workflow 使用複雜的工作流程設定。 無法建立工作流程檔案，並使用 hello 更新[工作流程設計工具](media-services-workflow-designer.md)工具。
 
-[如何使用 Azure 媒體服務中的 Premium 編碼](https://azure.microsoft.com/blog/2015/03/06/how-to-use-premium-encoding-in-azure-media-services/)
+[如何在 Azure Media Services 編碼 Premium tooUse](https://azure.microsoft.com/blog/2015/03/06/how-to-use-premium-encoding-in-azure-media-services/)
 
 ### <a name="known-issues"></a>已知問題
-如果您的輸入視訊不包含隱藏式字幕，輸出資產仍然會包含空白 TTML 檔案。
+如果您輸入的視訊不包含字幕，hello 輸出資產仍然會包含空白的 TTML 檔案。
 
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑

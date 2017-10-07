@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Resource Manager 範本中使用受控磁碟 | Microsoft Docs"
-description: "如何在 Azure Resource Manager 範本中使用受控磁碟的詳細資料"
+title: "aaaUsing 管理的 Azure Resource Manager 範本中的磁碟 |Microsoft 文件"
+description: "Toouse misks Azure Resource Manager 範本中的管理方式的詳細資料"
 services: storage
 documentationcenter: 
 author: jboeshart
@@ -12,19 +12,19 @@ ms.tgt_pltfrm: na
 ms.workload: storage
 ms.date: 06/01/2017
 ms.author: jaboes
-ms.openlocfilehash: 4c502784a57850d6f11200e95f7432d2206e920a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ea83f4ed11acfd8f642dbc8331fa8cf077ef577c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-managed-disks-in-azure-resource-manager-templates"></a>在 Azure Resource Manager 範本中使用受控磁碟
 
-本文逐步解說當使用 Azure Resource Manager 範本佈建虛擬機器時，受控與非受控磁碟之間的差異。 這有助於您將使用非受控磁碟的現有範本更新為使用受控磁碟。 如需參考，我們會使用 [101-vm-simple-windows](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows) \(英文\) 範本作為指南。 如果您想要直接進行比較，您可以看到使用[受控磁碟](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows/azuredeploy.json) \(英文\) 的範本以及使用[非受控磁碟](https://github.com/Azure/azure-quickstart-templates/tree/93b5f72a9857ea9ea43e87d2373bf1b4f724c6aa/101-vm-simple-windows/azuredeploy.json) \(英文\) 的先前版本。
+本文件逐步 hello managed 和 unmanaged 磁碟時使用 Azure Resource Manager 範本 tooprovision 虛擬機器之間的差異。 這將協助您使用未受管理的磁碟 toomanaged 磁碟 tooupdate 現有範本。 如需參考，我們使用 hello [101 vm-簡單 windows](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows)範本做為指南。 您可以看到同時使用 hello 範本[管理磁碟](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows/azuredeploy.json)和先前版本使用[unmanaged 磁碟](https://github.com/Azure/azure-quickstart-templates/tree/93b5f72a9857ea9ea43e87d2373bf1b4f724c6aa/101-vm-simple-windows/azuredeploy.json)如果您想要 toodirectly 加以比較。
 
 ## <a name="unmanaged-disks-template-formatting"></a>非受控磁碟範本格式
 
-一開始，我們先看一下如何部署非受控磁碟。 建立非受控磁碟時，您需要有一個儲存體帳戶來保存 VHD 檔案。 您可以建立新儲存體帳戶，或使用現有儲存體帳戶。 此文章將說明如何建立新儲存體帳戶。 若要執行此動作，您需要在資源區塊中有一個儲存體帳戶資源，如下所示。
+toobegin，我們看看如何 unmanaged 磁碟在部署。 在建立時未受管理的磁碟，您需要儲存體帳戶 toohold hello VHD 檔案。 您可以建立新儲存體帳戶，或使用現有儲存體帳戶。 這篇文章將示範如何 toocreate 新的儲存體帳戶。 tooaccomplish，您需要在 hello 資源區塊中的儲存體帳戶資源，如下所示。
 
 ```
 {
@@ -40,7 +40,7 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-在虛擬機器物件中，我們需要依賴儲存體帳戶，以確保它在虛擬機器之前建立。 然後，在 `storageProfile` 區段中，我們會指定 VHD 位置的完整 URI，它會參照儲存體帳戶，而且 OS 磁碟與所有資料磁碟都需要它。 
+在 hello 虛擬機器物件中，我們需要 hello hello 的虛擬機器先建立儲存體帳戶 tooensure 的相依性。 在 hello`storageProfile`區段，然後指定 hello hello VHD 的位置，其參考 hello 儲存體帳戶，以及 hello OS 磁碟和任何資料磁碟所需的完整 URI。 
 
 ```
 {
@@ -90,16 +90,16 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="managed-disks-template-formatting"></a>受控磁碟範本格式
 
-有了 Azure 受控磁碟，磁碟會變成最上層資源，且不再需要使用者建立儲存體帳戶。 受控磁碟是在 `2016-04-30-preview` API 版本中首次公開，在後續的 API 版本中皆可取得，而且現在它們是預設的磁碟類型。 以下幾節會逐步解說預設設定，並詳細說明如何進一步自訂您的磁碟。
+Azure 受管理磁碟 hello 磁碟會成為最上層資源與 hello 使用者建立的儲存體帳戶 toobe 已不再需要。 受管理的磁碟第一次會暴露在 hello `2016-04-30-preview` API 版本，它們適用於所有後續的 API 版本，而現在 hello 預設磁碟類型。 hello 下列各節逐一查核 hello 預設設定，並詳細說明如何 toofurther 自訂您的磁碟。
 
 > [!NOTE]
-> 建議使用 `2016-04-30-preview` 以後的 API 版本，因為 `2016-04-30-preview` 和 `2017-03-30` 之間有重大變更。
+> 建議 toouse 應用程式開發介面版本晚於`2016-04-30-preview`之間的重大變更與`2016-04-30-preview`和`2017-03-30`。
 >
 >
 
 ### <a name="default-managed-disk-settings"></a>預設的受控磁碟設定
 
-若要建立使用受控磁碟的 VM，您不再需要建立儲存體帳戶資源，而且可以更新虛擬機器資源，如下所示。 請特別注意，`apiVersion` 會反映出 `2017-03-30` 和 `osDisk` 和 `dataDisks` 不再參照 VHD 的特定 URI。 若部署而不指定其他屬性，磁碟將會使用 [標準 LRS 儲存體](storage-redundancy.md) 。 若未指定名稱，它的 OS 磁碟格式為 `<VMName>_OsDisk_1_<randomstring>`，而每個資料磁碟的格式為 `<VMName>_disk<#>_<randomstring>`。 預設已停用 Azure 磁碟加密；OS 磁碟的快取為 [讀取/寫入]，資料磁碟的快取則為 [無]。 您可能會注意到，在下列範例中仍有儲存體帳戶相依性，但這只適用於儲存體的診斷，而且磁碟儲存體並不需要相依性。
+toocreate VM 使用受管理磁碟時，您不再需要 toocreate hello 儲存體帳戶資源，而且可以更新您的虛擬機器的資源，如下所示。 特別注意該 hello`apiVersion`反映`2017-03-30`和 hello`osDisk`和`dataDisks`不再參考 tooa 特定 hello VHD URI。 當部署但不指定其他屬性，將會使用 hello 磁碟[標準 LRS 儲存體](storage-redundancy.md)。 如果未指定名稱，它可接受的 hello 格式`<VMName>_OsDisk_1_<randomstring>`hello OS 磁碟和`<VMName>_disk<#>_<randomstring>`每個資料磁碟。 根據預設，Azure 磁碟加密已停用;快取是 hello OS 磁碟和任何資料磁碟的讀取/寫入。 您可能會注意到在 hello 面範例中仍有儲存體帳戶的相依性，這只適用於診斷的存放裝置，而且不需要使用磁碟儲存體也一樣。
 
 ```
 {
@@ -140,7 +140,7 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="using-a-top-level-managed-disk-resource"></a>使用最上層受控磁碟資源
 
-作為在虛擬機器物件中指定磁碟組態的替代方式，您可以建立最上層磁碟資源，並在建立虛擬機器時連結它。 例如，我們可以建立如下所示的磁碟資源，來作為資料磁碟使用。
+當做 hello 虛擬機器物件中的替代 toospecifying hello 磁碟設定，您可以建立最上層的磁碟資源，並附加做為建立 hello 虛擬機器的一部分。 例如，我們可以建立，如下所示 toouse 當做資料磁碟的磁碟資源。
 
 ```
 {
@@ -160,7 +160,7 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-然後，在 VM 物件中，我們可以參照這個要連結的磁碟物件。 指定我們在 `managedDisk` 屬性中建立之受控磁碟的資源識別碼，可允許在建立 VM 時連結磁碟。 請注意，VM 資源的 `apiVersion` 是設定成 `2017-03-30`。 也請注意，我們在磁碟資源上建立了相依性，以確保它在建立 VM 之前成功建立。 
+在 hello VM 物件中，我們就可以參考此連接的磁碟物件 toobe。 指定 hello 資源識別碼 hello 管理我們在 hello 建立的磁碟`managedDisk`屬性允許在建立 VM 的 hello hello 磁碟的 hello 附件。 請注意該 hello `apiVersion` hello VM 資源設定太`2017-03-30`。 也請注意我們已在建立 VM 之前已成功建立 hello 磁碟資源 tooensure 建立相依性。 
 
 ```
 {
@@ -205,7 +205,7 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="create-managed-availability-sets-with-vms-using-managed-disks"></a>為使用受控磁碟的 VM 建立受控可用性設定組
 
-若要為使用受控磁碟的 VM 建立受控可用性設定組，請將 `sku` 物件新增至可用性設定組資源，並將 `name` 屬性設定為 `Aligned`。 這可確保每個 VM 的磁碟彼此之間都充分隔離，以避免發生單一失敗點。 另請注意，可用性設定組資源的 `apiVersion` 是設定成 `2017-03-30`。
+toocreate 管理可用性集合若具有 Vm 使用受管理的磁碟，新增 hello`sku`物件 toohello 可用性設定資源，並設定 hello`name`屬性太`Aligned`。 這可確保每個 VM 的 hello 磁碟與彼此 tooavoid 單一失敗點完全隔離。 也請注意該 hello `apiVersion` hello 可用性集資源設定得`2017-03-30`。
 
 ```
 {
@@ -225,15 +225,15 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="additional-scenarios-and-customizations"></a>其他案例和自訂
 
-若要尋找有關 REST API 規格的完整資訊，請檢閱[建立受控磁碟 REST API 文件](/rest/api/manageddisks/disks/disks-create-or-update)。 您會找到其他案例，以及可透過範本部署提交至 API 之預設及可接受的值。 
+toofind hello 的 REST API 規格的完整資訊，請檢閱 hello[建立受管理的磁碟 REST API 文件](/rest/api/manageddisks/disks/disks-create-or-update)。 您會發現其他案例，以及預設值與可接受的值可以是送出的 toohello API，透過範本部署。 
 
 ## <a name="next-steps"></a>後續步驟
 
-* 如需使用受控磁碟的完整範本，請瀏覽下列「Azure 快速入門存放庫」連結。
+* 如需完整的範本使用受管理的磁碟，請造訪 hello 下列 Azure 快速入門儲存機制的連結。
     * [使用受控磁碟的 Windows VM](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows) \(英文\)
     * [使用受控磁碟的 Linux VM](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-linux) \(英文\)
     * [受控磁碟範本的完整清單](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md) \(英文\)
-* 瀏覽 [Azure 受控磁碟概觀](storage-managed-disks-overview.md)文件，深入了解受控磁碟。
-* 瀏覽 [Microsoft.Compute/virtualMachines 範本參考](/templates/microsoft.compute/virtualmachines)文件，檢閱虛擬機器資源的範本參考文件。
-* 瀏覽 [Microsoft.Compute/disks 範本參考](/templates/microsoft.compute/disks)文件，檢閱磁碟資源的範本參考文件。
+* 請瀏覽 hello [Azure 受管理的磁碟概觀](storage-managed-disks-overview.md)深入了解文件 toolearn 管理的磁碟。
+* 檢閱虛擬機器資源的 hello 範本參考文件瀏覽 hello [Microsoft.Compute/virtualMachines 範本參考](/templates/microsoft.compute/virtualmachines)文件。
+* 檢閱磁碟資源的 hello 範本參考文件瀏覽 hello [Microsoft.Compute/disks 範本參考](/templates/microsoft.compute/disks)文件。
  

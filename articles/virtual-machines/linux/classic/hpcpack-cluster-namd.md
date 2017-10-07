@@ -1,5 +1,5 @@
 ---
-title: "Linux VM 上的 NAMD 與 Microsoft HPC Pack | Microsoft Docs"
+title: "使用 Linux Vm 上的 Microsoft HPC Pack aaaNAMD |Microsoft 文件"
 description: "在 Azure 上部署 Microsoft HPC Pack 叢集，並執行在多個 Linux 運算節點上具有 charmrun 的 NAMD 模擬"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,86 +15,86 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: big-compute
 ms.date: 10/13/2016
 ms.author: danlep
-ms.openlocfilehash: e31845f3d7aa08357b0e8a1b3b77d97302442ac3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 90c722f66b494335a62c0613079366ae99002076
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-namd-with-microsoft-hpc-pack-on-linux-compute-nodes-in-azure"></a>在 Azure 中的 Linux 運算節點以 Microsoft HPC Pack 執行 NAMD
-本文將說明在 Azure 虛擬機器上執行 Linux 高效能運算 (HPC) 工作負載的方法。 在這裡，您會在 Azure 上使用多個 Linux 計算節點設定 [Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029) 叢集以及執行 [NAMD](http://www.ks.uiuc.edu/Research/namd/) 模擬，以計算和視覺化大型生物分子系統的結構。  
+本文章將示範其中一種方式 toorun Linux 高效能運算 (HPC) 工作負載在 Azure 虛擬機器上。 在這裡，您將設定[Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029)叢集在 Azure 上使用 Linux 計算節點，並執行[NAMD](http://www.ks.uiuc.edu/Research/namd/)模擬 toocalculate 和視覺化大型 biomolecular 系統 hello 結構。  
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-both-include.md)]
 
-* **NAMD** (適用於奈米分子動力程式) 是專為高效能模擬大型生物分子系統而設計的平行分子動力套件，包含多達數百萬個原子。 這些系統的範例包括病毒、儲存格結構和大型蛋白質。 NAMD 會針對典型模擬縮放到數百個核心，以及針對最大型的模擬縮放至超過 500,000 個核心。
-* **Microsoft HPC Pack** 提供在內部部署電腦或 Azure 虛擬機器的叢集中執行大規模 HPC 和平行應用程式 (包括的 MPI 應用程式) 的功能。 HPC Pack 的開發前身為 Windows HPC 工作負載的解決方案，其現已支援於部署在 HPC Pack 叢集中的 Linux 計算節點 VM 上，執行 Linux HPC 應用程式。 如需簡介，請參閱 [在 Azure 的 HPC Pack 叢集中開始使用 Linux 運算節點](hpcpack-cluster.md) 。
+* **NAMD** （適用於 Nanoscale 屬於分子 Dynamics 程式） 專為高效能模擬大型 biomolecular 系統的設計平行屬於分子 dynamics 封裝包含的原子 toomillions 組成。 這些系統的範例包括病毒、儲存格結構和大型蛋白質。 NAMD 縮放 toohundreds 的典型的模擬和 toomore 比的 hello 最大模擬 500,000 個核心的核心。
+* **Microsoft HPC Pack**提供功能 toorun 大規模 HPC 和內部部署電腦或 Azure 虛擬機器在叢集中的平行應用程式。 HPC Pack 的開發前身為 Windows HPC 工作負載的解決方案，其現已支援於部署在 HPC Pack 叢集中的 Linux 計算節點 VM 上，執行 Linux HPC 應用程式。 如需簡介，請參閱 [在 Azure 的 HPC Pack 叢集中開始使用 Linux 運算節點](hpcpack-cluster.md) 。
 
-如需在 Azure 上執行 HPC 和批次工作負載的其他選項，請參閱[批次和高效能運算的技術資源](../../../batch/batch-hpc-solutions.md)。
+針對其他選項 toorun Linux HPC 工作負載在 Azure 中，請參閱[技術資源，批次和高效能運算](../../../batch/batch-hpc-solutions.md)。
 
 ## <a name="prerequisites"></a>必要條件
-* **具備 Linux 計算節點的 HPC Pack 叢集** - 使用 [Azure Resource Manager 範本](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/)或 [Azure PowerShell 指令碼](hpcpack-cluster-powershell-script.md)，在 Azure 上部署具備 Linux 計算節點的 HPC Pack 叢集。 如需了解任一選項的必要條件與步驟，請參閱 [開始使用 Azure 中 HPC Pack 叢集內的 Linux 計算節點](hpcpack-cluster.md) 。 如果您選擇 PowerShell 指令碼部署選項，請參閱本文結尾範例檔案中的範例組態檔。 此檔案會設定 Windows Server 2012 R2 的前端節點和四個大型 CentOS 6.6 計算節點組成之以 Azure 為基礎的 HPC Pack 叢集。 請視環境需要自訂此檔案。
-* **NAMD 軟體與教學課程檔案** - 從 [NAMD](http://www.ks.uiuc.edu/Research/namd/) 網站下載 Linux 的 NAMD 軟體 (需要註冊)。 本文是以 NAMD 2.10 版為基礎，並使用 [Linux-x86_64 (64 位元 Intel/AMD 乙太網路)](http://www.ks.uiuc.edu/Development/Download/download.cgi?UserID=&AccessCode=&ArchiveID=1310) 封存。 另請下載 [NAMD 教學課程檔案](http://www.ks.uiuc.edu/Training/Tutorials/#namd)。 下載的是 .tar 檔案，而您需要 Windows 工具以解壓縮叢集前端節點上的檔案。 若要解壓縮檔案，請遵循本文稍後的指示。 
-* **VMD** (選擇性) - 若要查看 NAMD 工作的結果，請在您選擇的電腦上，下載和安裝分子視覺化程式 [VMD](http://www.ks.uiuc.edu/Research/vmd/) 。 目前版本為 1.9.2。 請參閱 VMD 下載網站以開始作業。  
+* **具備 Linux 計算節點的 HPC Pack 叢集** - 使用 [Azure Resource Manager 範本](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/)或 [Azure PowerShell 指令碼](hpcpack-cluster-powershell-script.md)，在 Azure 上部署具備 Linux 計算節點的 HPC Pack 叢集。 請參閱[開始使用 Linux 在 Azure 中部署 HPC Pack 叢集中的運算節點](hpcpack-cluster.md)hello 必要條件和步驟，針對任何一個選項。 如果您選擇 hello PowerShell 指令碼部署選項，請參閱這篇文章 hello 結尾 hello 範例檔案中的 hello 範例組態檔。 此檔案會設定 Windows Server 2012 R2 的前端節點和四個大型 CentOS 6.6 計算節點組成之以 Azure 為基礎的 HPC Pack 叢集。 請視環境需要自訂此檔案。
+* **NAMD 軟體和教學課程檔案**-適用於 Linux 下載 NAMD 軟體 hello [NAMD](http://www.ks.uiuc.edu/Research/namd/)站台 （需要註冊）。 這篇文章根據 NAMD 版本 2.10，並使用 hello [Linux x86_64 (64 位元 Intel/AMD 使用乙太網路)](http://www.ks.uiuc.edu/Development/Download/download.cgi?UserID=&AccessCode=&ArchiveID=1310)封存。 也下載 hello [NAMD 教學課程檔案](http://www.ks.uiuc.edu/Training/Tutorials/#namd)。 hello 下載包括.tar 檔案，而您需要在 hello 叢集前端節點上的 Windows 工具 tooextract hello 檔案。 tooextract hello 檔案，請遵循本文中稍後的 hello 指示。 
+* **VMD** （選用）-toosee hello 結果 NAMD 工作，下載並安裝 hello 屬於分子視覺效果程式[VMD](http://www.ks.uiuc.edu/Research/vmd/)您選擇的電腦上。 hello 目前版本是 1.9.2。 請參閱的 hello VMD 下載網站 tooget 啟動。  
 
 ## <a name="set-up-mutual-trust-between-compute-nodes"></a>設定運算節點之間的相互信任
-在多個 Linux 節點上執行跨節點作業，需要節點相互信任 (藉由 **rsh** 或 **ssh**)。 當您使用 Microsoft HPC Pack IaaS 部署指令碼建立 HPC Pack 叢集時，指令碼會自動為您指定的系統管理員帳戶設定永久相互信任。 針對您在叢集的網域中建立的非系統管理員使用者，您必須在將工作配置給他們時，設定節點間的暫時相互信任。 然後，在工作完成之後終結關聯性。 若要為每個使用者執行此動作，提供 HPC Pack 用來建立信任關係的 RSA 金鑰組給叢集。 指示如下。
+多個 Linux 節點上執行跨節點的作業需要 hello 節點 tootrust 彼此 (由**rsh**或**ssh**)。 當您建立 hello HPC Pack 叢集以 hello Microsoft HPC Pack IaaS 部署指令碼時，hello 指令碼會自動設定您指定的 hello 系統管理員帳戶的永久相互信任。 Hello 叢集的網域中建立的非管理員使用者，您必須 tooset 暫存 hello 節點間的相互信任工作配置 toothem 時。 Hello 作業完成之後，然後摧毀 hello 關聯性。 toodo 這每位使用者提供的 RSA 金鑰組 toohello 叢集的 HPC Pack 會使用 tooestablish hello 信任關係。 指示如下。
 
 ### <a name="generate-an-rsa-key-pair"></a>產生 RSA 金鑰組
-產生 RSA 金鑰組很容易，其中包含公開金鑰和私密金鑰，方法是執行 Linux **ssh-keygen** 命令。
+這是簡單 toogenerate RSA 金鑰組，其中包含公開金鑰和私密金鑰，藉由執行 hello Linux**透過像是**命令。
 
-1. 登入 Linux 電腦。
-2. 執行以下命令：
+1. 登入 tooa Linux 電腦。
+2. 執行下列命令的 hello:
    
    ```bash
    ssh-keygen -t rsa
    ```
    
    > [!NOTE]
-   > 按 **Enter** 以使用預設設定，直到完成命令。 請勿在這裡輸入複雜密碼；當系統提示您輸入密碼時，只要按 **Enter**鍵。
+   > 按**Enter** hello 命令完成之前 toouse hello 預設設定。 請勿在這裡輸入複雜密碼；當系統提示您輸入密碼時，只要按 **Enter**鍵。
    > 
    > 
    
    ![產生 RSA 金鑰組][keygen]
-3. 將目錄變更為 ~/.ssh 目錄。 私密金鑰會儲存在 id_rsa，而公開金鑰會儲存在 id_rsa.pub。
+3. 變更目錄 toohello ~/.ssh 目錄。 hello 私密金鑰會儲存在 id_rsa 和 hello id_rsa.pub 中的公用金鑰。
    
    ![私密和公開金鑰][keys]
 
-### <a name="add-the-key-pair-to-the-hpc-pack-cluster"></a>將金鑰組新增至 HPC Pack 叢集
-1. 請使用您部署叢集時所提供的網域認證 (例如，hpc\clusteradmin) [由遠端桌面連線](../../windows/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)到前端節點 VM。 您可以從前端節點管理叢集。
-2. 您可以使用標準的 Windows Server 程序在叢集的 Active Directory 網域中建立網域使用者帳戶。 例如，在前端節點上使用 Active Directory 使用者和電腦工具。 本文中的範例假設您在 hpclab 網域中建立名為 hpcuser 的網域使用者 (hpclab\hpcuser)。
-3. 將網域使用者以叢集使用者身分加入 HPC Pack 叢集中。 如需指示，請參閱 [(Add or Remove Cluster Users) 新增或移除叢集使用者](https://technet.microsoft.com/library/ff919330.aspx)。
-4. 建立名為 C:\cred.xml 的檔案，並且將 RSA 金鑰資料複製到其中。 您可以在本文結尾處的範例檔案中找到範例。
+### <a name="add-hello-key-pair-toohello-hpc-pack-cluster"></a>新增 hello 金鑰組 toohello HPC Pack 叢集
+1. [遠端桌面連線](../../windows/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)toohello 前端節點 VM 使用 hello 時部署 hello 叢集 (例如，hpc\clusteradmin) 所提供的網域認證。 您可以管理 hello 叢集從 hello 前端節點。
+2. Hello 叢集的 Active Directory 網域中使用標準的 Windows Server 程序 toocreate 網域使用者帳戶。 例如，使用 hello Active Directory 使用者和電腦 工具 hello 前端節點上。 本文中的 hello 範例假設您建立名為 hpcuser hello hpclab 網域 (hpclab\hpcuser) 中的網域使用者。
+3. 將 hello 網域使用者 toohello HPC Pack 叢集新增為叢集使用者。 如需指示，請參閱 [(Add or Remove Cluster Users) 新增或移除叢集使用者](https://technet.microsoft.com/library/ff919330.aspx)。
+4. 建立具名 C:\cred.xml 和複製 hello RSA 索引鍵資料的檔案。 您可以找到範例在 hello hello 本文結尾處的範例檔案。
    
    ```
    <ExtendedData>
-     <PrivateKey>Copy the contents of private key here</PrivateKey>
-     <PublicKey>Copy the contents of public key here</PublicKey>
+     <PrivateKey>Copy hello contents of private key here</PrivateKey>
+     <PublicKey>Copy hello contents of public key here</PublicKey>
    </ExtendedData>
    ```
-5. 開啟命令提示字元並輸入下列命令，以設定 hpclab\hpcuser 帳戶的認證資料。 您使用 **extendeddata** 參數來傳遞您針對金鑰資料建立的 C:\cred.xml 檔案名稱。
+5. 開啟命令提示字元並輸入下列命令 tooset hello 認證 hello hpclab\hpcuser 帳戶資料的 hello。 使用 hello **x**參數 toopass hello hello C:\cred.xml 檔案名稱建立 hello 索引鍵的資料。
    
    ```command
    hpccred setcreds /extendeddata:c:\cred.xml /user:hpclab\hpcuser /password:<UserPassword>
    ```
    
-   這個命令會成功完成而沒有輸出。 為您執行工作所需的使用者帳戶設定認證之後，將 cred.xml 檔案儲存在安全的位置，或將它刪除。
-6. 如果您在其中一個 Linux 節點上產生 RSA 金鑰組，請記得在您完成使用後刪除金鑰。 如果 HPC Pack 找到現有的 id_rsa 檔案或 id_rsa.pub 檔案，則它不會設定相互信任。
+   這個命令會成功完成而沒有輸出。 設定 hello hello 需要 toorun 作業的使用者帳戶的認證之後, hello cred.xml 檔儲存在安全的位置，或將它刪除。
+6. 如果您在其中 Linux 節點上產生 hello RSA 金鑰組，請記得 toodelete hello 索引鍵使用它們完畢之後。 如果 HPC Pack 找到現有的 id_rsa 檔案或 id_rsa.pub 檔案，則它不會設定相互信任。
 
 > [!IMPORTANT]
-> 我們不建議以共用叢集上的叢集系統管理員身分執行 Linux 工作，因為系統管理員提交的工作會在 Linux 節點上的根帳戶底下執行。 非系統管理員使用者所提交的作業會在具有與作業使用者相同名稱的本機 Linux 使用者帳戶下執行。 在此情況下，HPC Pack 會在配置給該作業的所有節點上，為此 Linux 使用者設定相互信任。 您可以在執行工作之前，手動在 Linux 節點上設定 Linux 使用者，否則 HPC Pack 會在工作提交時自動建立使用者。 如果 HPC Pack 建立使用者，HPC Pack 會在工作完成之後刪除它。 若要降低安全性威脅，金鑰會在工作完成之後於節點上移除。
+> 我們不建議叢集系統管理員身分執行 Linux 作業上共用的叢集，因為系統管理員所提交的工作是 hello 根帳號底下執行 hello Linux 節點上。 非系統管理員使用者所提交的工作會以 hello 作業的使用者名稱相同的 hello 與執行本機 Linux 使用者帳戶。 在此情況下，HPC Pack 會相互信任此 Linux 使用者的所有 hello 節點配置 toohello 作業。 您可以設定 hello Linux 使用者 hello Linux 節點上手動執行 hello 作業之前或 HPC Pack hello 使用者會自動建立時送出 hello 作業。 如果 HPC Pack 建立 hello 使用者，HPC Pack hello 作業完成之後刪除它。 hello hello 節點上的 hello 作業完成之後，會移除金鑰 tooreduce 安全性威脅。
 > 
 > 
 
 ## <a name="set-up-a-file-share-for-linux-nodes"></a>為 Linux 節點設定檔案共用
-現在請設定 SMB 檔案共用，並在所有 Linux 節點上裝載共用資料夾，允許 Linux 節點存取具有共用路徑的 NAMD 檔案。 以下是在前端節點上裝載共用資料夾的步驟。 建議共用分配，例如目前不支援 Azure 檔案服務的 CentOS 6.6。 如果您的 Linux 節點支援 Azure 檔案共用，請參閱[如何搭配使用 Azure 檔案儲存體與 Linux](../../../storage/files/storage-how-to-use-files-linux.md)。 如需 HPC Pack 的其他檔案共用選項，請參閱 [開始在 Azure 中的 HPC Pack 叢集使用 Linux 運算節點](hpcpack-cluster.md)。
+現在設定 SMB 檔案共用，然後掛接 hello 的所有 Linux 節點 tooallow hello Linux 節點 tooaccess NAMD 檔案的一般路徑上的共用的資料夾。 以下是步驟 toomount hello 前端節點上的共用資料夾。 共用目前不支援 hello Azure 檔案服務，例如 CentOS 6.6 分佈的建議。 如果您的 Linux 節點支援的 Azure 檔案共用，請參閱[如何 toouse Linux 的 Azure 檔案儲存體](../../../storage/files/storage-how-to-use-files-linux.md)。 如需 HPC Pack 的其他檔案共用選項，請參閱 [開始在 Azure 中的 HPC Pack 叢集使用 Linux 運算節點](hpcpack-cluster.md)。
 
-1. 在前端節點上建立資料夾，並藉由設定讀取/寫入權限與每個人共用。 在此範例中，\\\\CentOS66HN\Namd 是資料夾的名稱，其中CentOS66HN 是前端節點的主機名稱。
-2. 在共用資料夾中建立名為 namd2 的子資料夾。 在 namd2 中，建立另一個名為 namdsample 的子資料夾。
-3. 在資料夾中解壓縮 NAMD 檔案，方法是使用 Windows 的 **tar** 版本，或其他可以操作 .tar 封存的 Windows 公用程式。 
+1. Hello 前端節點上建立資料夾，並共用它 tooEveryone 藉由設定 讀取/寫入權限。 在此範例中， \\ \\CentOS66HN\Namd 是 hello CentOS66HN 所在 hello 的 hello 前端節點的主機名稱的 hello 資料夾名稱。
+2. 建立名為 namd2 hello 共用資料夾中的子資料夾。 在 namd2 中，建立另一個名為 namdsample 的子資料夾。
+3. 使用的 Windows 版本來擷取 hello 資料夾中的 hello NAMD 檔案**tar 檔案解壓縮**或其他.tar 保存檔運作的 Windows 公用程式。 
    
-   * 將 NAMD tar 封存解壓縮到 \\\\CentOS66HN\Namd\namd2。
-   * 解壓縮 \\\\CentOS66HN\Namd\namd2\namdsample 之下的教學課程檔案。
-4. 開啟 Windows PowerShell 視窗並執行下列命令來將共用資料夾裝載在 Linux 節點上。
+   * 太解壓縮 hello NAMD tar 檔案解壓縮的封存\\\\CentOS66HN\Namd\namd2。
+   * 擷取下的 hello 教學課程檔案\\ \\CentOS66HN\Namd\namd2\namdsample。
+4. 開啟 Windows PowerShell 視窗並執行下列命令 toomount hello hello Linux 節點上的共用的資料夾的 hello。
    
     ```command
     clusrun /nodegroup:LinuxNodes mkdir -p /namd2
@@ -102,20 +102,20 @@ ms.lasthandoff: 08/29/2017
     clusrun /nodegroup:LinuxNodes mount -t cifs //CentOS66HN/Namd/namd2 /namd2 -o vers=2.1`,username=<username>`,password='<password>'`,dir_mode=0777`,file_mode=0777
     ```
 
-第一個命令會在 LinuxNodes 群組中的所有節點上建立名為 /namd2 的資料夾。 第二個命令會將共用資料夾 //CentOS66HN/Namd/namd2 掛接至此資料夾，其 dir_mode 和 file_mode 位元設為 777。 命令中的 *username* 和 *password* 應為前端節點上使用者的認證。
+hello 第一個命令會建立名為 /namd2 hello LinuxNodes 群組中的所有節點上的資料夾。 hello 第二個命令會掛接到 dir_mode 和 file_mode 位元組 too777 hello 資料夾 hello 共用資料夾 //CentOS66HN/Namd/namd2。 hello *username*和*密碼*hello 命令應該 hello hello 前端節點上的使用者認證。
 
 > [!NOTE]
-> 第二個命令中的 “\`” 符號是 PowerShell 的逸出符號。 “\`,” 表示 “,” (逗號) 是命令的一部分。
+> hello"\`"hello 第二個命令中的符號是 PowerShell 的逸出符號。 「\`，"表示 hello"，"（逗號字元） 是 hello 命令的一部分。
 > 
 > 
 
-## <a name="create-a-bash-script-to-run-a-namd-job"></a>建立執行 NAMD 作業的 Bash 指令碼
-您的 NAMD 作業需要 *nodelist* 檔案，如此 **charmrun** 才可決定啟動 NAMD 程序時要使用的節點數目。 您會使用 Bash 指令碼，產生 nodelist 檔案，並在執行 **charmrun** 搭配此 nodelist 檔案。 然後您就可以在會呼叫此指令碼的 HPC 叢集管理員中提交 NAMD 工作。
+## <a name="create-a-bash-script-toorun-a-namd-job"></a>建立 Bash 指令碼 toorun NAMD 作業
+NAMD 作業需要*nodelist*檔，以取得**charmrun**啟動 NAMD 處理程序時，節點 toouse toodetermine hello 數目。 使用 Bash 指令碼會產生 hello nodelist 檔案，並執行**charmrun**與此節點清單檔案。 然後您就可以在會呼叫此指令碼的 HPC 叢集管理員中提交 NAMD 工作。
 
-使用您選擇的文字編輯器，在包含 NAMD 程式檔案的 /namd2 資料夾中建立 Bash 指令碼，並將它命名為 hpccharmrun.sh。如需快速概念證明，請複製本文結尾所提供的範例 hpccharmrun.sh 指令碼並移至[提交 NAMD 工作](#submit-a-namd-job)。
+使用您選擇的文字編輯器，在包含 hello NAMD 程式檔案的 hello /namd2 資料夾中建立 Bash 指令碼，並命名 hpccharmrun.sh。快速概念證明，將在本文的 hello 結尾處提供的 hello 範例 hpccharmrun.sh 指令碼複製並移過[提交 NAMD 工作](#submit-a-namd-job)。
 
 > [!TIP]
-> 將您的指令碼儲存為具有 Linux 行尾結束符號 (只有 LF，不是 CR LF) 的文字檔案。 這可確保它在 Linux 節點上正常運作。
+> 將您的指令碼儲存為具有 Linux 行尾結束符號 (只有 LF，不是 CR LF) 的文字檔案。 這可確保正常 hello Linux 節點上。
 > 
 > 
 
@@ -126,7 +126,7 @@ ms.lasthandoff: 08/29/2017
    ```bash
    #!/bin/bash
    
-   # The path of this script
+   # hello path of this script
    SCRIPT_PATH="$( dirname "${BASH_SOURCE[0]}" )"
    # Charmrun command
    CHARMRUN=${SCRIPT_PATH}/charmrun
@@ -135,26 +135,26 @@ ms.lasthandoff: 08/29/2017
    # Argument of ++p
    NUMPROCESS="+p"
    ```
-2. 從環境變數取得節點資訊。 $NODESCORES 會儲存來自 $CCP_NODES_CORES 的分割單字清單。 $COUNT 是 $NODESCORES 的大小。
+2. 收到 hello 環境變數中的節點資訊。 $NODESCORES 會儲存來自 $CCP_NODES_CORES 的分割單字清單。 $COUNT 是 $NODESCORES hello 大小。
    
    ```
-   # Get node information from the environment variables
+   # Get node information from hello environment variables
    NODESCORES=(${CCP_NODES_CORES})
    COUNT=${#NODESCORES[@]}
    ```    
    
-   $CCP_NODES_CORES 變數的格式如下所示：
+   hello hello $CCP_NODES_CORES 變數的格式如下所示：
    
    ```
    <Number of nodes> <Name of node1> <Cores of node1> <Name of node2> <Cores of node2>…
    ```
    
-   此變數會列出節點總數、節點名稱和配置給工作之每個節點上的核心數目。 例如，如果工作需要 10 個核心以執行，$CCP_NODES_CORES 的值會類似：
+   這個變數會列出節點、 節點名稱，以及每個節點上配置 toohello 作業的核心數目的 hello 總數。 例如，如果 hello 作業需要 10 個核心 toorun，$CCP_NODES_CORES 的 hello 值就會類似：
    
    ```
    3 CENTOS66LN-00 4 CENTOS66LN-01 4 CENTOS66LN-03 2
    ```
-3. 如果未設定 $CCP_NODES_CORES 變數，請直接啟動 **charmrun**。 (這應該只有當您在 Linux 節點上直接執行這個指令碼時才會發生。)
+3. 如果未設定 hello $CCP_NODES_CORES 變數，啟動**charmrun**直接。 (這應該只有當您在 Linux 節點上直接執行這個指令碼時才會發生。)
    
    ```
    if [ ${COUNT} -eq 0 ]
@@ -167,13 +167,13 @@ ms.lasthandoff: 08/29/2017
    
    ```
    else
-     # Create the nodelist file
+     # Create hello nodelist file
      NODELIST_PATH=${SCRIPT_PATH}/nodelist_$$
    
-     # Write the head line
+     # Write hello head line
      echo "group main" > ${NODELIST_PATH}
    
-     # Get every node name and number of cores and write into the nodelist file
+     # Get every node name and number of cores and write into hello nodelist file
      I=1
      while [ ${I} -lt ${COUNT} ]
      do
@@ -181,9 +181,9 @@ ms.lasthandoff: 08/29/2017
          let "I=${I}+2"
      done
    ```
-5. 搭配節點清單檔案執行 **charmrun** ，取得其傳回狀態，並且在結束時移除節點清單檔案。
+5. 執行**charmrun** hello nodelist 檔案後，收到其傳回的狀態，並移除 hello 結尾 hello nodelist 檔案。
    
-   ${CCP_NUMCPUS} 是 HPC Pack 前端節點所設定的另一個環境變數。 它會儲存配置給這項工作的總核心數目。 我們可以用它來為 charmrun 指定處理序數目。
+   ${CCP_NUMCPUS} 是 hello HPC Pack 前端節點所設定的另一個環境變數。 它會儲存 hello 總配置 toothis 作業的核心數目。 我們將它的處理序 toospecify hello 數目用於 charmrun。
    
    ```
    # Run charmrun with nodelist arg
@@ -195,13 +195,13 @@ ms.lasthandoff: 08/29/2017
    fi
    
    ```
-6. 當 **charmrun** 傳回狀態時結束。
+6. 以 hello 結束**charmrun**傳回狀態。
    
    ```
    exit ${RTNSTS}
    ```
 
-以下是指令碼產生的節點清單檔案中的資訊：
+以下是在 hello nodelist 檔案中，哪些 hello 指令碼會產生 hello 資訊：
 
 ```
 group main
@@ -220,25 +220,25 @@ host CENTOS66LN-03 ++cpus 2
 ```
 
 ## <a name="submit-a-namd-job"></a>提交 NAMD 作業
-現在您已準備就緒在 HPC 叢集管理員中提交 NAMD 工作。
+現在您已準備好 toosubmit NAMD 作業 HPC 叢集管理員中。
 
-1. 連接至您的叢集前端節點並且啟動 HPC 叢集管理員。
-2. 在 [Resource Management] 中，確定 Linux 計算節點處於 [線上] 狀態。 如果不是，請選取這些節點，然後按一下 [ **上線**]。
+1. 連接 tooyour 叢集前端節點，並啟動 HPC 叢集管理員。
+2. 在**資源管理**，確保 hello Linux 計算節點處於 hello**線上**狀態。 如果不是，請選取這些節點，然後按一下 [ **上線**]。
 3. 在 [工作管理] 中，按一下 [新增工作]。
 4. 輸入工作的名稱，例如 *hpccharmrun*。
    
    ![新的 HPC 工作][namd_job]
-5. 在 [工作詳細資料] 頁面的 [工作資源] 底下，選取 [節點] 做為資源類型，並且將 [最小值] 設為 3。 ，我們在三個 Linux 節點上執行工作，且每個節點都有四個核心。
+5. Hello 上**工作詳細資料**頁面的 **作業資源**，選取資源類型 hello**節點**組 hello 和**最小值**too3。 我們在三個 Linux 節點上執行 hello 工作和每個節點都有四個核心。
    
    ![工作資源][job_resources]
-6. 按一下左導覽窗格中的 [編輯工作]，然後按一下 [加入] 來將工作加入到作業中。    
-7. 在 [工作詳細資料和 I/O 重新導向] 頁面上，設定下列值：
+6. 按一下**編輯工作**在 hello 左側的瀏覽，然後按一下**新增**tooadd 工作 toohello 作業。    
+7. 在 hello**工作詳細資料和 I/O 重新導向**頁面上，設定下列值的 hello:
    
    * **命令列** -
      `/namd2/hpccharmrun.sh ++remote-shell ssh /namd2/namd2 /namd2/namdsample/1-2-sphere/ubq_ws_eq.conf > /namd2/namd2_hpccharmrun.log`
      
      > [!TIP]
-     > 前面的命令列是不含分行符號的單一命令。 它會換行以出現在**命令列**的數行之下。
+     > hello 上述命令列是單一命令，但不含分行符號。 在下方的數行包裝 tooappear**命令列**。
      > 
      > 
    * **工作目錄** - /namd2
@@ -247,23 +247,23 @@ host CENTOS66LN-03 ++cpus 2
      ![作業詳細資料][task_details]
      
      > [!NOTE]
-     > 您在這裡設定工作目錄，因為 **charmrun** 嘗試瀏覽至每個節點上相同的工作目錄。 如果未設定工作目錄，HPC Pack 會在其中一個 Linux 節點上建立的隨機命名資料夾中啟動命令。 這會在其他節點上導致下列錯誤：`/bin/bash: line 37: cd: /tmp/nodemanager_task_94_0.mFlQSN: No such file or directory.` 若要避免這個問題，指定所有節點可存取為工作目錄的資料夾路徑。
+     > Hello 工作目錄在這裡設定因為**charmrun** toonavigate toohello 會嘗試每個節點上相同的工作目錄。 如果您未設定 hello 工作目錄，HPC Pack 會建立在其中 hello Linux 節點上的隨機命名資料夾中啟動 hello 命令。 這會導致下列錯誤上 hello hello 其他節點： `/bin/bash: line 37: cd: /tmp/nodemanager_task_94_0.mFlQSN: No such file or directory.` tooavoid 這個問題，請指定可以存取的所有節點，為 hello 工作目錄的資料夾路徑。
      > 
      > 
-8. 按一下 [確定]，然後按一下 [提交] 以執行此作業。
+8. 按一下**確定**，然後按一下**送出**toorun 這項作業。
    
-   根據預設，HPC Pack 會以您目前登入的使用者帳戶提交工作。 對話方塊可能會在您按一下 [提交] 之後提示您輸入使用者名稱和密碼。
+   根據預設，HPC Pack 送出 hello 與您目前的登入的使用者帳戶的作業。 對話方塊可能會提示您 tooenter hello 使用者名稱和密碼之後，您按一下**送出**。
    
    ![工作認證][creds]
    
-   在某些情況下，HPC Pack 會記住您以前輸入的使用者資訊，而不會顯示此對話方塊。 若要讓 HPC Pack 再次顯示此對話方塊，請在命令提示字元中輸入下列命令，然後提交作業。
+   在某些情況下 HPC Pack 會記住您之前輸入，而不會顯示此對話方塊中的 hello 使用者資訊。 toomake HPC Pack 會使它再次顯示中，輸入下列命令，在命令提示字元中的 hello，再提交 hello 作業。
    
    ```command
    hpccred delcreds
    ```
-9. 工作需要數分鐘的時間才能完成。
-10. 在 \\<headnodeName>\Namd\namd2\namd2_hpccharmrun.log 中尋找工作記錄檔，在 \\<headnodeName>\Namd\namd2\namdsample\1-2-sphere\. 中尋找輸出檔案
-11. 選擇性啟動 VMD 以檢視您的工作結果。 用來視覺化 NAMD 輸出檔案 (在此案例中，水圈中的泛素蛋白質分子) 的步驟已超出本文的範圍。 如需詳細資訊，請參閱 [NAMD 教學課程](http://www.life.illinois.edu/emad/biop590c/namd-tutorial-unix-590C.pdf) 。
+9. hello 作業已執行幾分鐘的時間 toofinish。
+10. 尋找在 hello 作業記錄\\ <headnodeName>\Namd\namd2\namd2_hpccharmrun.log 和 hello 輸出中的檔案\\ <headnodeName>\Namd\namd2\namdsample\1-2-sphere\.
+11. （選擇性） 啟動 VMD tooview 工作結果。 hello 步驟視覺化 hello NAMD 輸出檔 （在此情況下，在水球體 ubiquitin 蛋白質分子） 已超出本文的 hello 範圍。 如需詳細資訊，請參閱 [NAMD 教學課程](http://www.life.illinois.edu/emad/biop590c/namd-tutorial-unix-590C.pdf) 。
     
     ![工作結果][vmd_view]
 
@@ -343,7 +343,7 @@ a8lxTKnZCsRXU1HexqZs+DSc+30tz50bNqLdido/l5B4EJnQP03ciO0=
 ```
 #!/bin/bash
 
-# The path of this script
+# hello path of this script
 SCRIPT_PATH="$( dirname "${BASH_SOURCE[0]}" )"
 # Charmrun command
 CHARMRUN=${SCRIPT_PATH}/charmrun
@@ -359,17 +359,17 @@ COUNT=${#NODESCORES[@]}
 
 if [ ${COUNT} -eq 0 ]
 then
-    # If CCP_NODES_CORES is not found or is empty, just run the charmrun without nodelist arg.
+    # If CCP_NODES_CORES is not found or is empty, just run hello charmrun without nodelist arg.
     #echo ${CHARMRUN} $*
     ${CHARMRUN} $*
 else
-    # Create the nodelist file
+    # Create hello nodelist file
     NODELIST_PATH=${SCRIPT_PATH}/nodelist_$$
 
-    # Write the head line
+    # Write hello head line
     echo "group main" > ${NODELIST_PATH}
 
-    # Get every node name & cores and write into the nodelist file
+    # Get every node name & cores and write into hello nodelist file
     I=1
     while [ ${I} -lt ${COUNT} ]
     do
@@ -377,7 +377,7 @@ else
         let "I=${I}+2"
     done
 
-    # Run the charmrun with nodelist arg
+    # Run hello charmrun with nodelist arg
     #echo ${CHARMRUN} ${NUMPROCESS}${CCP_NUMCPUS} ${NODELIST_OPT} ${NODELIST_PATH} $*
     ${CHARMRUN} ${NUMPROCESS}${CCP_NUMCPUS} ${NODELIST_OPT} ${NODELIST_PATH} $*
 

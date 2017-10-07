@@ -1,6 +1,6 @@
 ---
-title: "Azure 安全性概觀 | Microsoft Docs"
-description: "Azure.com 上的 Microsoft Azure 安全性資訊網站是您 Azure 安全性問題的技術答案的位置。"
+title: "aaaAzure 安全性概觀 |Microsoft 文件"
+description: "hello Azure.com 上的 Microsoft Azure 安全性資訊站台是您技術答案 tooyour Azure 的安全性問題的位置。"
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: terrylan
-ms.openlocfilehash: 1303815755584e912891d501018b257b96e5f063
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bee676068a84cf8af03910aa5fcb047723ebce6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-security-overview"></a>Azure 安全性概觀
-Azure.com 上的 Microsoft Azure 安全性資訊網站是您 Azure 安全性問題的技術答案的位置。 如果您對 Azure 法規遵循以及 Azure 如何保護其專屬基礎結構感興趣，請瀏覽 [Microsoft 信任中心](https://www.microsoft.com/TrustCenter/default.aspx)。
+hello Azure.com 上的 Microsoft Azure 安全性資訊站台是您技術答案 tooyour Azure 的安全性問題的位置。 如果您想要在 Azure 的符合性與 Azure 保護本身的基礎結構的方式，請瀏覽 hello [Microsoft 信任中心](https://www.microsoft.com/TrustCenter/default.aspx)。
 
-我們知道安全性是雲端中的首要工作和其重要性，因為您可在其中找到精確且及時的 Azure 安全性資訊。 針對您的應用程式和服務使用 Azure 的其中一個最佳原因是可以利用各種可用的安全性工具和功能。 這些工具和功能可協助您在安全的 Azure 平台上建立安全的解決方案。
+我們知道安全性是 hello 定域機組中的其中一個工作，而且重要，您會看到 Azure 安全性的精確且即時資訊。 Hello 最佳原因 toouse Azure 應用程式與服務的其中一個是 tootake hello 各式各樣的安全性工具和功能的優點。 這些工具和功能協助您更 hello 安全 Azure 平台上可能 toocreate 安全解決方案。
 
-此頁面與此網站會隨著新的 Azure 服務上線以及現有服務更新而演化。 我們的安全性產品會不斷地改善，並在這裡分享這些增強功能的技術詳細資料。 建議您定期回到這個網站，並查看最新消息！
+此頁面與此網站會隨著新的 Azure 服務上線以及現有服務更新而演化。 持續改善我們的安全性功能，我們會共用 hello 這些強化功能的技術詳細資料。 我們建議您定期傳回 toothis 站台，並查看最新消息 ！
 
-## <a name="using-the-azure-security-information-site"></a>使用 Azure 安全性資訊網站
-當您查看頁面左邊時，會看到安全性主題類別集合。 按一下或點選主題，以查看我們擁有的該類別的文章。
+## <a name="using-hello-azure-security-information-site"></a>使用 hello Azure 安全性資訊站台
+當您查看左邊 hello hello 頁面時中您會看到安全性主題的分類的集合。 按一下或點選 hello 主題 toosee hello 發行項可以用於該類別目錄。
 
-每個類別都有一篇＜概觀＞文章。 ＜概觀＞文章的目標是提供 Azure 必須針對該類別安全性所提供的摘要。 ＜概觀＞文章可協助您了解 Azure 中可用來增強部署安全性的產品、服務和功能。 這些＜概觀＞文章包含數個技術內容連結，讓您可以深入了解這些主題和其實作方式。
+每個類別都有一篇＜概觀＞文章。 hello 概觀文章 hello 目標是 azure 的您摘要具有該類別目錄的安全性方面的 toooffer tooprovide。 hello 概觀文件可協助您了解 hello 產品、 服務和 Azure，您可以使用您的部署 tooenhance hello 安全性中可用的功能。 這些概觀文件包含許多連結 tootechnical 內容，以便您可以進一步了解 hello 主題，以及如何 tooimplement 它們。
 
-Azure 安全性資訊網站目前處理下列類別︰
+hello Azure 安全性資訊站台目前位址 hello 下列類別：
 
 * 資源
 * 網路安全性
@@ -46,8 +46,8 @@ Azure 安全性資訊網站目前處理下列類別︰
 * 架構
 
 > [!NOTE]
-> 我們在 Azure 安全性資訊網站中的所有文章都會出現在這個頁面左側的導覽中。 如果您想要查看所有文章，請按一下或點選 [類別] 清單底部的 [更多資訊]  。
+> 我們有 hello Azure 安全性資訊站台中的所有 hello 發行項會都出現在 hello hello 頁面 hello 左側導覽列中。 如果您想 toosee hello 的所有發行項時，按一下或點選**更看到**hello hello 類別清單底端。
 >
 >
 
-我們希望您的輸入！ 如果有您想要新增的類別，請讓我們知道！ 如果有您想要新增至現有類別的文章，也請讓我們知道！ 您可以使用下面的 [註解] 區段，或寫信給我們： [azsecinfosite@microsoft.com](mailto:azsecinfosite@microsoft.com) ，我們會將您的建議加入我們的計畫中。
+我們希望您的輸入！ 如果有您想要新增的類別，請讓我們知道！ 如果您想要加入 tooan 現有類別的文件，讓我們知道的過 ！ 您可以使用 hello 註解區段下方，或寫入在 toous [ azsecinfosite@microsoft.com ](mailto:azsecinfosite@microsoft.com) ，我們會將您的建議合併到我們計劃。

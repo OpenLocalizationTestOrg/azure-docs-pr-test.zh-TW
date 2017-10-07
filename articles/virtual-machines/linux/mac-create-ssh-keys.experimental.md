@@ -1,5 +1,5 @@
 ---
-title: "在 Azure 上建立 Linux VM 的 SSH 金鑰組 | Microsoft Docs"
+title: "aaaCreate SSH 金鑰組，適用於 Linux Vm 在 Azure 上 |Microsoft 文件"
 description: "安全地建立 Azure Linux VM 的 SSH 公開和私密金鑰組。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,53 +15,53 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/08/2017
 ms.author: rasquill
-ms.openlocfilehash: 19acd4efca7ef043f31b436b96f9129caee9591b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c4c7cec77c9b48295f2a28c8179b30a4dc38a555
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-ssh-public-and-private-key-pair-for-linux-vms"></a>建立 Linux VM 的 SSH 公用和私用金鑰組
 
-本文說明如何產生可與 Linux VM 搭配使用的 SSH 通訊協定第 2 版 RSA 公開和私密金鑰檔案組。  您可以利用 SSH 金鑰組，在預設使用 SSH 金鑰進行驗證的 Azure 上建立虛擬機器，進而免除登入密碼的需求。  密碼有可能被猜到，讓您的 VM 遭到持續不斷的暴力密碼破解嘗試來猜測您的密碼。 使用 Azure 範本或 `azure-cli` 建立的 VM 可以將 SSH 公開金鑰納入部署中，進而免於對 SSH 停用密碼登入進行後置部署設定。
+本文章將示範如何 toogenerate SSH 通訊協定第 2 版 RSA 公用和私用金鑰檔案對 toouse 使用 Linux Vm。  SSH 金鑰組，您可以預設 toousing SSH 金鑰進行驗證，免除對密碼 toolog 中的 hello 需要的 Azure 上建立虛擬機器。  密碼可以猜到，並開啟 Vm toorelentless 暴力嘗試 tooguess 註冊您的密碼。 建立與 Azure 範本或 hello Vm`azure-cli`可以包含 SSH 公開金鑰，做為 hello 部署中，移除停用 SSH 密碼登入的 post 部署組態步驟的一部分。
 
 ## <a name="quick-commands"></a>快速命令
 
-透過 Bash 殼層執行下列命令中，以您自己的選項取代範例。
+執行 hello Bash 殼層中的下列命令，以自己選擇取代 hello 範例。
 
-SSH 公開金鑰檔預設會建立在 `~/.ssh/id_rsa.pub`。 使用下列命令時若出現提示，您應該建立「複雜密碼」來保護您的私密金鑰  (此複雜密碼是用來加密私密金鑰的密碼)。
+SSH 公開金鑰檔預設會建立在 `~/.ssh/id_rsa.pub`。 當系統提示您使用下列命令的 hello，您應該建立 「 複雜密碼 」 toosecure 您的私密金鑰。 （hello 複雜密碼是使用密碼 tooencrypt 您的私密金鑰）。
 
 ```bash
 ssh-keygen -t rsa -b 2048 
 ```
 
-將新建立的索引鍵新增至 `ssh-agent`：
+加入新建立的 hello 金鑰太`ssh-agent`:
 
 ```bash
 ssh-add ~/.ssh/id_rsa
 ```
 
 > [!IMPORTANT] 
-> 上述命令可在幾乎所有發行版本的 Linux 作業系統上運作，但不一定可在容器中運作，因為環境可能徹底受限。 
+> hello Linux 作業系統的幾乎所有的發佈，在上述命令但不是一定能在容器中，做為 hello 環境可以徹底條件約束。 
 
 ## <a name="detailed-walkthrough"></a>詳細的逐步解說
 
-想要登入 Linux 伺服器，最簡單的方式是使用 SSH 公開和私密金鑰。 [公開金鑰密碼編譯](https://en.wikipedia.org/wiki/Public-key_cryptography) 會安全得多，因為密碼非常容易遭到暴力破解。
+使用 SSH 公開金鑰和私密金鑰的金鑰是 hello 最簡單方式 toolog tooyour Linux 伺服器中。 [公開金鑰加密](https://en.wikipedia.org/wiki/Public-key_cryptography)比密碼，可以是暴力密碼破解強制更輕鬆地提供更安全的方式 toolog tooyour Linux 中或在 Azure 中的 BSD VM。
 
 > [!IMPORTANT]
-> 公開金鑰可以與任何人共用；但只有您 (或您的本機安全性基礎結構) 會擁有私密金鑰。  SSH 私密金鑰應該有[非常安全的密碼](https://www.xkcd.com/936/) (來源︰[xkcd.com](https://xkcd.com)) 來保護它。  此密碼只能用於存取 SSH 私密金鑰，而 **不是** 使用者帳戶密碼。  當您將密碼新增至 SSH 金鑰時，便會使用 128位元的 AES 來加密私密金鑰，而未利用密碼解密的私密金鑰沒有用處。  如果攻擊者竊取您的私密金鑰，而且該金鑰沒有密碼，他們就能使用該私密金鑰來登入有對應公開金鑰的伺服器。  如果私密金鑰受密碼保護，攻擊者就無法使用該金鑰，進而為您在 Azure 上的基礎結構提供額外的安全性。
+> 公開金鑰可以與任何人共用；但只有您 (或您的本機安全性基礎結構) 會擁有私密金鑰。  hello SSH 私密金鑰應有[非常安全的密碼](https://www.xkcd.com/936/)(來源：[xkcd.com](https://xkcd.com)) toosafeguard 它。  此密碼是只 tooaccess hello SSH 私密金鑰和**不**hello 使用者帳戶密碼。  當您新增密碼 tooyour SSH 金鑰時，它 hello 私密金鑰加密使用 128 位元 AES 使 hello 私用金鑰變成毫無用處，而不 hello 密碼 toodecrypt 它。  如果攻擊者偷走了您的私密金鑰，且索引鍵沒有密碼，其方式是根據可以 toouse，私用金鑰 toolog tooany 伺服器具有 hello 對應的公開金鑰。  如果私密金鑰受密碼保護，攻擊者就無法使用該金鑰，進而為您在 Azure 上的基礎結構提供額外的安全性。
 
-本文會建立 SSH 通訊協定第 2 版 RSA 公開和私密金鑰檔案，這些檔案建議用於 Resource Manager 上的部署。  ssh-rsa  金鑰是在[入口網站](https://portal.azure.com)上進行傳統部署和 Resource Manager 部署時的必要項目。
+這篇文章建立 SSH 通訊協定版本 2 RSA 公用和私密金鑰檔案，這建議的作法 hello 資源管理員的部署。  *ssh rsa* hello 上需要索引鍵[入口網站](https://portal.azure.com)傳統和資源管理員部署。
 
 ## <a name="disable-ssh-passwords-by-using-ssh-keys"></a>藉由設定 SSH 金鑰來停用 SSH 密碼
 
-Azure 需要至少 2048 位元的 ssh-rsa 格式公開和私密金鑰。 若要建立金鑰，請使用 `ssh-keygen`，在詢問一系列問題後，它便會編寫私密金鑰和對應的公開金鑰。 建立 Azure VM 時，公開金鑰會複製到 `~/.ssh/authorized_keys`。  `~/.ssh/authorized_keys` 中的 SSH 金鑰用於挑戰用戶端，以符合 SSH 登入連線上的對應私密金鑰。  使用用於驗證的 SSH 金鑰進行建立 Azure Linux VM 時，Azure 會將 SSHD 伺服器設定為不允許密碼登入，僅允許以 SSH 金鑰登入。  因此，建立具 SSH 金鑰的 Azure Linux VM，即可協助保護 VM 部署的安全，並免除在 sshd_config 組態檔中停用密碼的標準部署後設定步驟。
+Azure 需要至少 2048 位元的 ssh-rsa 格式公開和私密金鑰。 toocreate hello 索引鍵使用`ssh-keygen`，這會要求一系列的問題，並再將私用金鑰和對應的公開金鑰。 建立 Azure VM 時，會太複製 hello 公開金鑰`~/.ssh/authorized_keys`。  SSH 金鑰在`~/.ssh/authorized_keys`會使用的 toochallenge hello 用戶端 toomatch hello 對應的私密金鑰上 SSH 登入連線。  Azure Linux VM 建立時使用 SSH 金鑰進行驗證，Azure 會設定 hello SSHD 伺服器 toonot 允許密碼登入，則只有 SSH 金鑰。  因此，您可以藉由使用 SSH 金鑰建立 Azure Linux Vm，協助安全 hello VM 部署及儲存自行停用密碼 hello sshd_config 組態檔中的 hello 一般的部署後設定步驟。
 
 ## <a name="using-ssh-keygen"></a>使用 ssh-keygen
 
-此命令會使用 2048 位元 RSA 建立密碼保護 (加密) 的 SSH 金鑰組，並為其加上註解以供輕鬆識別。  
+此命令會建立保護 （加密） 使用 2048年位元 RSA 的 SSH 金鑰組的密碼，而且它會取消註 tooeasily 識別它。  
 
-依預設，SSH 金鑰會保留在 `~/.ssh` 目錄中。  如果您沒有 `~/.ssh` 目錄，`ssh-keygen` 命令會使用正確的權限為您建立。
+SSH 金鑰依預設，會保留在 hello`~/.ssh`目錄。  如果您不需要`~/.ssh`目錄、 hello`ssh-keygen`命令就會為您建立以 hello 正確的權限。
 
 ```bash
 ssh-keygen \
@@ -71,18 +71,18 @@ ssh-keygen \
 
 *命令的說明*
 
-`ssh-keygen` = 用來建立金鑰的程式
+`ssh-keygen`= hello 用程式 toocreate hello 金鑰
 
-`-t rsa` = 要建立的金鑰類型，也就是 RSA 格式 [wikipedia](https://en.wikipedia.org/wiki/RSA_(cryptosystem)
+`-t rsa`= 索引鍵 toocreate hello RSA 格式的類型 [維基百科](https://en.wikipedia.org/wiki/RSA_(cryptosystem)
 
-`-b 2048` = 金鑰的位元
+`-b 2048`= 位元的 hello 金鑰
 
 
 ## <a name="classic-portal-and-x509-certs"></a>傳統入口網站和 X.509 憑證
 
-如果您使用 Azure [傳統入口網站](https://manage.windowsazure.com/)，則需要適用於 SSH 金鑰的 X.509 憑證。  不允許任何其他類型的 SSH 公開金鑰，而「必須」是 X.509 憑證。
+如果您使用 hello Azure[傳統入口網站](https://manage.windowsazure.com/)，hello SSH 金鑰需要 X.509 憑證。  不允許任何其他類型的 SSH 公開金鑰，而「必須」是 X.509 憑證。
 
-若要從現有的 SSH-RSA 私密金鑰建立 X.509 憑證︰
+toocreate 從您現有的 SSH RSA 私密金鑰的 X.509 憑證：
 
 ```bash
 openssl req -x509 \
@@ -95,9 +95,9 @@ openssl req -x509 \
 
 ## <a name="classic-deploy-using-asm"></a>使用 `asm` 進行傳統部署
 
-如果您使用傳統部署模型 (Azure 服務管理 CLI `asm`)，您可以在 **.pem** 容器中使用 SSH-RSA 公開金鑰或 RFC4716 格式化的金鑰。  SSH-RSA 公開金鑰是稍早在本文中使用 `ssh-keygen` 建立的金鑰。
+如果您使用 hello 傳統部署模型 (Azure 服務管理 CLI `asm`)，您可以使用 SSH RSA 公開金鑰或 RFC4716 格式中的索引鍵**.pem**容器。  hello SSH RSA 公開金鑰是稍早在此發行項使用中已建立的內容`ssh-keygen`。
 
-若要從現有的 SSH 公開金鑰建立 RFC4716 格式的金鑰︰
+toocreate RFC4716 格式化從現有的 SSH 公開金鑰的金鑰：
 
 ```bash
 ssh-keygen \
@@ -111,14 +111,14 @@ ssh-keygen \
 ```bash
 ssh-keygen -t rsa -b 2048 -C "ahmet@myserver"
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/ahmet/.ssh/id_rsa): 
+Enter file in which toosave hello key (/home/ahmet/.ssh/id_rsa): 
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 Your identification has been saved in /home/ahmet/.ssh/id_rsa.
 Your public key has been saved in /home/ahmet/.ssh/id_rsa.pub.
-The key fingerprint is:
+hello key fingerprint is:
 14:a3:cb:3e:78:ad:25:cc:55:e9:0c:08:e5:d1:a9:08 ahmet@myserver
-The keys randomart image is:
+hello keys randomart image is:
 +--[ RSA 2048]----+
 |        o o. .   |
 |      E. = .o    |
@@ -134,11 +134,11 @@ The keys randomart image is:
 
 已儲存金鑰檔案：
 
-`Enter file in which to save the key (/home/ahmet/.ssh/id_rsa): ~/.ssh/id_rsa`
+`Enter file in which toosave hello key (/home/ahmet/.ssh/id_rsa): ~/.ssh/id_rsa`
 
-本文中的金鑰組名稱。  預設會有名為 **id_rsa** 的金鑰組，而且有些工具可能會預期私密金鑰的檔案名稱為 **id_rsa**，所以最好有此金鑰組。 `~/.ssh/` 目錄是 SSH 金鑰組和 SSH 組態檔的預設位置。  如果未指定完整路徑，則 `ssh-keygen` 會在目前的工作目錄 (而不是預設 `~/.ssh`) 中建立金鑰。
+這個發行項的 hello 金鑰組名稱。  具有名為的金鑰組**id_rsa**是 hello 預設值，而且某些工具可能預期 hello **id_rsa**私密金鑰檔案名稱，因此保留其中一個是個不錯的主意。 hello 目錄`~/.ssh/`是 hello SSH 金鑰組和 hello SSH 組態檔的預設位置。  如果未指定具有完整路徑，`ssh-keygen`將 hello 目前工作目錄中建立 hello 金鑰、 不 hello 預設`~/.ssh`。
 
-`~/.ssh` 。
+Hello 清單`~/.ssh`目錄。
 
 ```bash
 ls -al ~/.ssh
@@ -150,28 +150,28 @@ ls -al ~/.ssh
 
 `Enter passphrase (empty for no passphrase):`
 
-`ssh-keygen` 將用來加密私密金鑰的密碼稱為「複雜密碼」。  「強烈」建議為金鑰組加上複雜密碼。 若沒有使用複雜密碼來保護私密金鑰，任何人只要擁有該金鑰檔案，就可以用它登入具有對應公開金鑰的任何伺服器。 新增複雜密碼可提升防護能力，以防有人能夠取得您的私密金鑰檔案，讓您有時間變更用來對您進行驗證的金鑰。
+`ssh-keygen`參考 tooa 用密碼 tooencrypt hello 私用金鑰做為 「 複雜密碼。 」  它是*強*建議 tooadd 複雜密碼 tooyour 金鑰組。 不需要複雜密碼保護 hello 私用金鑰，與 hello 金鑰檔案的任何人都可以使用它 toolog tooany server 中具有 hello 對應的公開金鑰。 加入複雜密碼提供更多的保護，以防其他人可以 toogain 存取 tooyour 私密金鑰檔案，讓您時間 toochange hello 索引鍵用於 tooauthenticate 您。
 
-## <a name="using-ssh-agent-to-store-your-private-key-password"></a>使用 ssh-agent 來儲存您的私密金鑰密碼
+## <a name="using-ssh-agent-toostore-your-private-key-password"></a>使用 ssh 代理 toostore 私用金鑰密碼
 
-若要避免在每次 SSH 登入時輸入私密金鑰檔案複雜密碼，您可以使用 `ssh-agent` 來快取您的私密金鑰檔案密碼。 如果您使用 Mac，則 OSX 金鑰鏈會在您叫用 `ssh-agent`時安全地儲存私密金鑰密碼。
+tooavoid 輸入您的私密金鑰檔案的複雜密碼與每個 SSH 登入，您可以使用`ssh-agent`toocache 您私密金鑰檔案的密碼。 如果您使用的 Mac，hello OSX Keychain 會安全地儲存 hello 私用金鑰的密碼當您叫用`ssh-agent`。
 
-確認並使用 `ssh-agent` 和 `ssh-add` 將金鑰檔案通知 SSH 系統，才不需要以互動方式使用複雜密碼。
+驗證並使用`ssh-agent`和`ssh-add`tooinform hello SSH hello 金鑰檔案的相關的系統，以便 hello 複雜密碼不需要以互動方式使用 toobe。
 
 ```bash
 eval "$(ssh-agent -s)"
 ```
 
-現在使用 `ssh-add` 命令將私密金鑰加入至 `ssh-agent`。
+現在，加入 hello 私密金鑰太`ssh-agent`使用 hello 命令`ssh-add`。
 
 ```bash
 ssh-add ~/.ssh/id_rsa
 ```
 
-私密金鑰密碼現已儲存在 `ssh-agent` 中。
+hello 私密金鑰密碼現在儲存在`ssh-agent`。
 
-## <a name="using-ssh-copy-id-to-install-the-new-key"></a>使用 `ssh-copy-id` 安裝新的金鑰
-如果您已建立 VM，您可以使用下列命令並以您自己的值取代 VM 使用者名稱和伺服器位址，來將新的 SSH 公開金鑰安裝至 Linux VM︰
+## <a name="using-ssh-copy-id-tooinstall-hello-new-key"></a>使用`ssh-copy-id`tooinstall hello 新金鑰
+如果您已經建立 VM 您可以使用下列命令，以您自己的值取代 hello VM 使用者名稱和 hello 伺服器位址的 hello 安裝 hello 新 SSH 公用金鑰 tooyour Linux VM:
 
 ```bash
 ssh-copy-id -i ~/.ssh/id_rsa.pub ahmet@myserver
@@ -179,17 +179,17 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub ahmet@myserver
 
 ## <a name="create-and-configure-an-ssh-config-file"></a>建立和設定 SSH 組態檔
 
-最佳做法是建立及設定 `~/.ssh/config` 檔案來加速登入，並且最佳化您的 SSH 用戶端行為。
+它是最佳的作法 toocreate 及設定`~/.ssh/config`向上檔案 toospeed 登入並最佳化您的 SSH 用戶端行為。
 
-下列範例將示範標準組態。
+下列範例中的 hello 顯示標準的設定。
 
-### <a name="create-the-file"></a>建立檔案
+### <a name="create-hello-file"></a>建立 hello 檔案
 
 ```bash
 touch ~/.ssh/config
 ```
 
-### <a name="edit-the-file-to-add-the-new-ssh-configuration"></a>編輯檔案以加入新的 SSH 組態：
+### <a name="edit-hello-file-tooadd-hello-new-ssh-configuration"></a>編輯 hello 檔案 tooadd hello 新 SSH 組態：
 
 ```bash
 vim ~/.ssh/config
@@ -215,23 +215,23 @@ Host *
   IdentityFile ~/.ssh/id_rsa
 ```
 
-此 SSH 組態可讓您將各個伺服器分段，讓它們各自擁有專用的金鑰組。 預設設定 (`Host *`) 適用於不符合組態檔中任何提升之特定主機的任何主機。
+這的 SSH 組態讓您區段的每個伺服器 tooenable 每個 toohave 自己專用的金鑰組。 hello 預設設定 (`Host *`)，適用於不符合任何 hello 特定主機的高的層級 hello 設定檔中的任何主機。
 
 ### <a name="config-file-explained"></a>組態檔的說明
 
-`Host` = 在終端機上所呼叫的主機名稱。  `ssh fedora22` 會指示 `SSH` 使用設定區塊中標示為 `Host fedora22` 的值。注意︰這可以是符合您用途的任何標籤，並不代表任何伺服器的實際主機名稱。
+`Host`= hello hello 主機上呼叫 hello 終端機名稱。  `ssh fedora22`會告知`SSH`toouse 標示為 hello settings 區塊中的 hello 值`Host fedora22`附註： 主機可供您使用的邏輯，且不代表 hello 的任何伺服器的實際主機名稱的任何標籤。
 
-`Hostname 102.160.203.241` = 所存取伺服器的 IP 位址或 DNS 名稱。
+`Hostname 102.160.203.241`= hello IP 位址或 DNS 名稱而存取的 hello 伺服器。
 
-`User ahmet` = 登入伺服器時要使用的遠端使用者帳戶。
+`User ahmet`登入時 toohello server = hello 遠端使用者帳戶 toouse。
 
-`PubKeyAuthentication yes` = 向 SSH 指出您想要使用 SSH 金鑰來登入。
+`PubKeyAuthentication yes`= 告訴 SSH 想 toouse SSH 金鑰 toolog 中。
 
-`IdentityFile /home/ahmet/.ssh/id_id_rsa` = 要用於驗證的 SSH 私密金鑰和對應公開金鑰。
+`IdentityFile /home/ahmet/.ssh/id_id_rsa`= hello SSH 私密金鑰與對應公用金鑰 toouse 進行驗證。
 
 ## <a name="ssh-into-linux-without-a-password"></a>使用 SSH 登入 Linux 而不提供密碼
 
-您現在已擁有 SSH 金鑰組和設定好的 SSH 組態檔，因此能夠快速且安全地登入 Linux VM。 第一次使用 SSH 金鑰登入伺服器時，命令會提示您輸入該金鑰檔案的複雜密碼。
+現在您擁有的 SSH 金鑰組與設定的 SSH 組態檔，您就可以 toolog tooyour Linux VM 中的快速且安全的方式。 hello 第一次登入使用 SSH 金鑰 hello 命令提示字元 tooa 伺服器您 hello 複雜密碼，該金鑰的檔案。
 
 ```bash
 ssh fedora22
@@ -239,12 +239,12 @@ ssh fedora22
 
 ### <a name="command-explained"></a>命令的說明
 
-在執行 `ssh fedora22` 後，SSH 會先從 `Host fedora22` 區塊中找出所有設定並加以載入，再從最後一個區塊 `Host *` 中載入所有其餘設定。
+當`ssh fedora22`執行 SSH 先找出並載入任何設定，從 hello`Host fedora22`區塊，然後按一下 所有 hello 剩餘 hello 最後一個區塊中，從設定載入`Host *`。
 
 ## <a name="next-steps"></a>後續步驟
 
-接下來是使用新的 SSH 公開金鑰建立 Azure Linux VM。  相較於以預設登入方法密碼建立的 VM，以 SSH 公開金鑰作為登入所建立的 Azure VM 比較安全。  使用 SSH 金鑰建立的 Azure VM 預設會設定為停用密碼，避免遭到暴力猜測嘗試。 如果您需要更多關於建立 SSH 金鑰組的協助，或需要其他憑證，例如以便用於傳統入口網站，請參閱[建立 SSH 金鑰組和憑證的詳細步驟](create-ssh-keys-detailed.md)。
+接下來向上 toocreate Azure Linux Vm 使用 hello 新 SSH 公開金鑰。  SSH 公開金鑰為 hello 登入，以建立 azure Vm 是比較安全比 hello 預設登入方法，密碼建立的 Vm。  使用 SSH 金鑰建立的 Azure VM 預設會設定為停用密碼，避免遭到暴力猜測嘗試。 如果您需要更多協助建立您的 SSH 金鑰組，或需要其他憑證，例如，針對搭配 hello 傳統入口網站，請參閱[詳細步驟 toocreate SSH 金鑰組和憑證](create-ssh-keys-detailed.md)。
 
 * [使用 Azure 範本建立安全的 Linux VM](create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [使用 Azure 入口網站建立安全的 Linux VM](quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [使用 Azure CLI 建立安全的 Linux VM](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [建立安全的 Linux VM，使用 hello Azure 入口網站](quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [建立安全的 Linux VM，使用 Azure CLI hello](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

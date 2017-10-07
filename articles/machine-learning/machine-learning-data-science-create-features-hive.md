@@ -1,5 +1,5 @@
 ---
-title: "針對使用 Hive 查詢之 Hadoop 叢集中的資料建立特性 | Microsoft Docs"
+title: "使用 Hive 查詢 Hadoop 叢集中的資料 aaaCreate 功能 |Microsoft 文件"
 description: "Hive 查詢的範例，產生儲存在 Azure HDInsight Hadoop 叢集中之資料中的特性。"
 services: machine-learning
 documentationcenter: 
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: hangzh;bradsev
-ms.openlocfilehash: e027a6ffcb63868be13432870e484c5cbf2eef4b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 686282bf0fb84ea82758d3c5b7de2bd90f0cf159
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-features-for-data-in-an-hadoop-cluster-using-hive-queries"></a>針對使用 Hive 查詢之 Hadoop 叢集中的資料建立特性
-本文件說明如何使用 Hive 查詢，針對儲存在 Azure HDInsight Hadoop 叢集中的資料建立特徵。 這些 Hive 查詢會使用針對其提供指令碼的內嵌 Hive 使用者定義函式 (UDF)。
+本文件示範 toocreate 功能資料儲存在 Azure HDInsight Hadoop 叢集中使用 Hive 查詢的方式。 這些 Hive 查詢使用內嵌 hive 控制檔的使用者定義函數 (Udf)，提供其 hello 指令碼。
 
-建立特徵所需的作業可能耗用大量記憶體。 在此情況下，Hive 查詢的效能會變得十分重要，可微調某些參數來改善。 最後一節討論如何微調這些參數。
+hello 作業所需 toocreate 功能可以是需要大量的記憶體。 hello 的 Hive 查詢的效能變得十分重要，在此情況下，來調整特定參數便可改善。 hello 微調這些參數的 hello 最後一節中討論。
 
-[GitHub 存放庫](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts)中也會提供 [NYC 計程車車程資料](http://chriswhong.com/open-data/foil_nyc_taxi/)案例特定的查詢範例。 這些查詢已經具備指定的資料結構描述，且準備好進行提交來執行。 最後一節也會討論使用者可以微調的參數，以改善 Hive 查詢的效能。
+顯示 hello 查詢的範例包括特定 toohello [NYC 計程車路線資料](http://chriswhong.com/open-data/foil_nyc_taxi/)案例也會提供在[GitHub 儲存機制](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts)。 這些查詢已經有指定的資料結構描述，而且準備好 toobe 提交 toorun。 在 hello 最後一節中也會討論參數，可讓使用者可以調整，以便可以改善 hello 的 Hive 查詢的效能。
 
 [!INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
 
-這個 **功能表** 所連結的主題會說明如何在各種環境中建立資料的特徵。 此工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)中的一個步驟。
+這**功能表**連結 tootopics 描述 toocreate 各種環境中的資料的功能。 這項工作是在 hello 步驟[小組資料科學程序 (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)。
 
 ## <a name="prerequisites"></a>必要條件
 本文假設您已經：
 
 * 建立 Azure 儲存體帳戶。 如需指示，請參閱[建立 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)
-* 佈建含有 HDInsight 服務的自訂 Hadoop 叢集。  如需指示，請參閱 [自訂適用於進階分析的 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md)。
-* 已將資料上傳至 Azure HDInsight Hadoop 叢集中的 Hive 資料表。 如果沒有，請遵循 [建立資料並載入 Hive 資料表](machine-learning-data-science-move-hive-tables.md) ，先將資料上傳至 Hive 資料表。
-* 啟用叢集的遠端存取。 如需指示，請參閱 [存取 Hadoop 叢集的前端節點](machine-learning-data-science-customize-hadoop-cluster.md#headnode)。
+* 自訂的 Hadoop 叢集以 hello HDInsight 服務使用者佈建。  如需指示，請參閱 [自訂適用於進階分析的 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md)。
+* hello 資料已上傳的 tooHive Azure HDInsight Hadoop 叢集中的資料表。 如果沒有，請依照[建立和載入資料 tooHive 資料表](machine-learning-data-science-move-hive-tables.md)tooupload 資料 tooHive 資料表第一次。
+* 啟用遠端存取 toohello 叢集。 如果您需要的指示，請參閱[存取 hello 的 Hadoop 叢集前端節點](machine-learning-data-science-customize-hadoop-cluster.md#headnode)。
 
 ## <a name="hive-featureengineering"></a>功能產生
-在本節中，說明可以使用 Hive 查詢特性之數個方式的範例。 一旦產生額外功能之後，就可以將它們當成資料行新增至現有的資料表，或是建立具有其他功能和主索引鍵的新資料表 (然後與原始資料表聯結)。 以下是顯示的範例：
+在本節中描述的 hello 方法中的功能可以會產生使用 Hive 查詢的數個範例。 一旦您已經產生額外的功能，您可以將活動當做資料行 toohello 現有的資料表加入或建立新的資料表與 hello 額外的功能和主索引鍵，然後可以與 hello 原始資料表聯結。 以下是顯示 hello 範例：
 
 1. [以頻率為基礎的功能產生](#hive-frequencyfeature)
 2. [二進位分類中類別變數的風險](#hive-riskfeature)
@@ -49,7 +49,7 @@ ms.lasthandoff: 08/29/2017
 5. [計算 GPS 座標間的距離](#hive-gpsdistance)
 
 ### <a name="hive-frequencyfeature"></a>以頻率為基礎的功能產生
-計算類別變數層級的頻率，或是來自多個類別變數之特定層級組合的頻率，通常很實用。 使用者可以使用下列指令碼來計算這些頻率：
+通常會很有用的 toocalculate hello 頻率的 hello 層級的類別變數或從多個類別變數的層級的特定組合 hello 頻率。 使用者可以使用下列指令碼 toocalculate hello 這些頻率：
 
         select
             a.<column_name1>, a.<column_name2>, a.sub_count/sum(a.sub_count) over () as frequency
@@ -63,7 +63,7 @@ ms.lasthandoff: 08/29/2017
 
 
 ### <a name="hive-riskfeature"></a>二進位分類中類別變數的風險
-在二進位分類中，若使用的模型只會採用數值功能，我們就需要將非數值類別變數轉換成數值功能。 您可以使用數值風險來取代每個非數值層級，藉以完成這個動作。 在本節中，我們將說明一些計算類別變數風險值 (記錄機率) 的泛型 Hive 查詢。
+在二進位分類中，我們需要類別變數則 tooconvert 非數值成數值特徵時只使用 hello 模型需要數值特徵。 您可以使用數值風險來取代每個非數值層級，藉以完成這個動作。 在本節中，我們會示範計算的類別變數的 hello 風險值 （對數勝算的特徵） 某些泛型 Hive 查詢。
 
         set smooth_param1=1;
         set smooth_param2=20;
@@ -83,40 +83,40 @@ ms.lasthandoff: 08/29/2017
             group by <column_name1>, <column_name2>
             )b
 
-這個範例會設定變數 `smooth_param1` 和 `smooth_param2`，以減緩從資料計算得來的風險值。 風險範圍介於-Inf 和 Inf 之間。 風險 > 0 表示目標等於 1 的機率大於 0.5。
+在此範例中，變數`smooth_param1`和`smooth_param2`設定 toosmooth hello 風險值計算從 hello 資料。 風險範圍介於-Inf 和 Inf 之間。 風險 > 0 表示該 hello 目標是相等的 too1 hello 機率大於 0.5。
 
-計算出風險資料表之後，使用者就可以藉由將資料表聯結至風險資料表，來將風險值指派給該資料表。 Hive 聯結查詢已在上一節中提供。
+計算 hello 風險資料表之後，使用者可以指派風險值 tooa 資料表聯結與 hello 風險資料表。 上一節中提供 hello Hive 聯結查詢。
 
 ### <a name="hive-datefeatures"></a>從日期時間欄位擷取功能
-Hive 會和一組 UDF 一起出現，用來處理日期時間欄位。 在 Hive 中，預設的日期時間格式是 'yyyy-MM-dd 00:00:00' (例如 '1970-01-01 12:21:32')。 本節會顯示擷取月份日期和來自日期時間欄位的月份範例，以及其他可將預設格式以外格式的日期時間字串轉換為預設格式的日期時間字串範例。
+Hive 會和一組 UDF 一起出現，用來處理日期時間欄位。 在 Hive hello 預設日期時間格式是 'yyyy MM dd 00:00:00' (' 1970年-01-01 12:21:32 ' 例如)。 在本節中，我們會示範擷取 hello 月份、 日期時間欄位中，從 hello 月份天數的範例和以外 hello 預設格式 tooa datetime 字串的預設格式轉換的日期時間格式字串的其他範例。
 
         select day(<datetime field>), month(<datetime field>)
         from <databasename>.<tablename>;
 
-這個 Hive 查詢假設 *&#60;datetime field>* 是預設的日期時間格式。
+此登錄區查詢假設該 hello *&#60; 日期時間欄位 >* hello 預設日期時間格式。
 
-如果日期時間欄位不是預設格式，您需要先將日期時間欄位轉換為 Unix 時間戳記，然後將 Unix 時間戳記轉換為預設格式的日期時間字串。 將日期時間為預設格式之後，使用者就可以套用內嵌的日期時間 UDF 來擷取功能。
+如果 datetime 欄位不是 hello 預設格式，您需要 tooconvert hello datetime 欄位 Unix 時間戳記至第一次，而且轉換 hello 的 Unix 時間戳記 tooa datetime 的字串，則是位在 hello 預設格式。 當 hello datetime 的預設格式，使用者可以套用 hello 內嵌 datetime Udf tooextract 功能。
 
-        select from_unixtime(unix_timestamp(<datetime field>,'<pattern of the datetime field>'))
+        select from_unixtime(unix_timestamp(<datetime field>,'<pattern of hello datetime field>'))
         from <databasename>.<tablename>;
 
-在這個查詢中，如果 *&#60;datetime field>* 具有類似 *03/26/2015 12:04:39* 的模式，則 *'&#60;pattern of the datetime field>'* 應該是 `'MM/dd/yyyy HH:mm:ss'`。 若要進行測試，使用者可以執行
+在此查詢中，如果 hello *（& s) #60; 日期時間欄位 >*具有類似的 hello 模式*03/26/2015年 12:04:39*，hello *' （& s) #60; hello 日期時間欄位的模式 >'*應該是`'MM/dd/yyyy HH:mm:ss'`. tootest 使用者可以執行它，
 
         select from_unixtime(unix_timestamp('05/15/2015 09:32:10','MM/dd/yyyy HH:mm:ss'))
         from hivesampletable limit 1;
 
-佈建叢集時，這個查詢中的 *hivesampletable* 預設會預先安裝於所有 Azure HDInsight Hadoop 叢集中。
+hello *hivesampletable*這個查詢中都是在預先安裝在所有 Azure HDInsight Hadoop 叢集上預設時 hello 叢集佈建。
 
 ### <a name="hive-textfeatures"></a>從文字欄位擷取功能
-當 Hive 資料表具有一個文字欄位且其中包含以空格分隔的文字字串時，下列查詢便會擷取字串長度，以及字串中的字數。
+當 hello Hive 資料表具有包含的以空格分隔的文字字串的文字欄位時，hello 下列查詢會擷取 hello hello 字串和文字在 hello 字串中的 hello 數目的長度。
 
         select length(<text field>) as str_len, size(split(<text field>,' ')) as word_num
         from <databasename>.<tablename>;
 
 ### <a name="hive-gpsdistance"></a>計算 GPS 座標組之間的距離
-本節中提供的查詢可直接套用至「NYC 計程車車程資料」。 此查詢的目的是示範如何在 Hive 中套用內嵌的數學函式來產生功能。
+本節中的 hello 查詢可以是直接套用的 toohello NYC 計程車路線資料。 hello 用途，此查詢的方式是 tooshow tooapply 內嵌的 Hive toogenerate 功能中的數學函式。
 
-這個查詢中所使用的欄位是上車與下車位置的 GPS 座標，其名稱為 *pickup\_longitude*、*pickup\_latitude*、*dropoff\_longitude* 和 *dropoff\_latitude*。 計算上車與下車座標間直線距離的查詢如下：
+hello 這個查詢中使用的欄位會收取和 dropoff 位置，名為 hello GPS 座標*收取\_經度*，*收取\_緯度*， *dropoff\_經度*，和*dropoff\_緯度*。 計算 hello hello 收取和 dropoff 座標之間的直接距離的 hello 查詢是：
 
         set R=3959;
         set pi=radians(180);
@@ -134,34 +134,34 @@ Hive 會和一組 UDF 一起出現，用來處理日期時間欄位。 在 Hive 
         and dropoff_latitude between 30 and 90
         limit 10;
 
-您可以在<a href="http://www.movable-type.co.uk/scripts/latlong.html" target="_blank">可移動的類型指令碼</a>網站 (作者為 Peter Lapisu) 上找到計算兩個 GPS 座標間之距離的數學方程式。 在他的 Javascript 中，函式 `toRad()` 只是 *lat_or_lon*pi/180*，可將角度轉換為弧度。 此處的 *lat_or_lon* 為緯度或經度。 由於 Hive 不提供函式 `atan2`，但提供函式 `atan`，因此 `atan2` 函式是由上述 Hive 查詢中的 `atan` 函式以 <a href="http://en.wikipedia.org/wiki/Atan2" target="_blank">Wikipedia</a> 中提供的定義來實作。
+計算兩個 GPS 座標之間的 hello 距離 hello 數學方程式可以找到上 hello<a href="http://www.movable-type.co.uk/scripts/latlong.html" target="_blank">可移動類型指令碼</a>Peter Lapisu 所撰寫的網站。 在 Javascript 中，hello 函式`toRad()`只是*lat_or_lon*pi/180 *，可將轉換度 tooradians。 在這裡， *lat_or_lon* hello 經度或緯度。 因為登錄區不提供 hello 函式`atan2`，但提供 hello 函式`atan`，hello`atan2`函式由實作`atan`函式中使用 hello 定義中所提供的 Hive 查詢上述 hello <a href="http://en.wikipedia.org/wiki/Atan2" target="_blank">維基百科</a>。
 
 ![建立工作區](./media/machine-learning-data-science-create-features-hive/atan2new.png)
 
-您可以在 <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-MathematicalFunctions" target="_blank">Apache Hive wiki</a> 上的**內建函式**一節中找到 Hive 內嵌 UDF 的完整清單。  
+內嵌的 Udf 可以在 hello 的登錄區的完整清單**內建函數**區段 hello <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-MathematicalFunctions" target="_blank">Apache Hive wiki</a>)。  
 
-## <a name="tuning"></a> 進階主題：微調 Hive 參數以提升查詢速度
-Hive 叢集的預設參數設定可能不適合 Hive 查詢以及查詢正在處理的資料。 本節將討論一些使用者可以微調的參數，來提升 Hive 查詢的效能。 使用者需要在處理資料的查詢之前新增參數微調查詢。
+## <a name="tuning"></a>進階主題： 微調 Hive 參數 tooImprove 查詢速度
+hello Hive 叢集設定可能不適合 hello Hive 查詢和處理 hello 查詢 hello 資料的預設參數。 在本節中，我們會討論一些參數，可讓使用者可以調整改善 hello 的 Hive 查詢的效能。 使用者需要 tooadd hello 參數微調之前 hello 查詢的處理資料的查詢。
 
-1. **Java 堆積空間**：對於涉及聯結大型資料集或處理長記錄的查詢，常見的一項錯誤是**堆積空間不足**。 這可藉由將參數 *mapreduce.map.java.opts* 和 *mapreduce.task.io.sort.mb* 設定為所需的值來進行微調。 下列是一個範例：
+1. **Java 堆積空間**： 查詢包含聯結大型資料集，或處理長的記錄，**堆積空間用盡**是其中一個 hello 常見的錯誤。 這可以藉由設定參數微調*mapreduce.map.java.opts*和*mapreduce.task.io.sort.mb* toodesired 值。 下列是一個範例：
    
         set mapreduce.map.java.opts=-Xmx4096m;
         set mapreduce.task.io.sort.mb=-Xmx1024m;
 
-    這個參數會配置 4 GB 記憶體給 Java 堆積空間，也會藉由配置更多記憶體來使排序更有效率。 如果發生任何與堆積空間相關的工作失敗錯誤，那麼使用這些配置會是個好主意。
+    配置 4 GB 記憶體 tooJava 堆積空間，也可讓排序更有效率地配置更多的記憶體，這個參數。 如果有任何作業失敗錯誤的相關的 tooheap 空間，它是個不錯的主意 tooplay 與這些配置。
 
-1. **DFS 區塊大小** ：這個參數會設定檔案系統所儲存的最小資料單位。 例如，如果 DFS 區塊大小為 128 MB，則任何大小小於等於 128 MB 的資料都會儲存於單一區塊中，而大於 128 MB 的資料則會配置額外的區塊。 選擇非常小的區塊大小會在 Hadoop 中造成極大的負荷，因為名稱節點必須處理更多要求，以尋找與檔案有關的相關區塊。 在處理 GB (或更大型) 資料時，建議的設定如下：
+1. **DFS 區塊大小**： 這個參數會設定 hello 最小單位 hello 檔案系統存放區的資料。 為例，如果 hello DFS 區塊大小為 128 MB，然後大小的任何資料小於和向上 too128MB 儲存在單一區塊中，大於 128 MB 所配置額外的區塊的資料時。 選擇非常小的區塊的大小上限會導致大型負擔 Hadoop 因為 hello 名稱節點有 tooprocess 許多更多要求 toofind hello 相關區塊相關 toohello 檔案。 在處理 GB (或更大型) 資料時，建議的設定如下：
    
         set dfs.block.size=128m;
-2. **將 Hive 中的聯結作業最佳化** ：儘管 Map/Reduce 架構中的聯結作業通常是在縮減階段執行，但有時可藉由在對應階段中排程聯結 (亦稱為 "mapjoin") 來得到大量的收穫。 若要在適當時機引導 Hive 執行這個動作，我們可以設定：
+2. **最佳化登錄區中的聯結作業**: hello 對應/減少 framework 中的聯結作業通常發生在 hello 減少階段中，有時候，龐大提升可藉由排程聯結在 hello 對應階段中 （也稱為 「 mapjoins"）。 toodirect Hive toodo 這可能的話，我們可以設定：
    
         set hive.auto.convert.join=true;
-3. **指定 Hive 的對應程式數目** ：儘管 Hadoop 允許使用者設定縮減程式的數目，但使用者通常不會設定對應程式的數目。 允許對這個數目進行某種程度控制的技巧是選擇 Hadoop 變數 *mapred.min.split.size* 和*mapred.max.split.size*，因為每個對應工作的大小由下列決定：
+3. **指定 hello 數目自行 tooHive** ： 時 Hadoop 允許 hello 使用者 tooset hello 次數 reducers，對應工具中的 hello 數目通常是由 hello 使用者設定。 可讓某種程度的控制這個數字的那一墩是 toochoose hello Hadoop 變數， *mapred.min.split.size*和*mapred.max.split.size*與 hello 大小，每個對應的工作取決於：
    
         num_maps = max(mapred.min.split.size, min(mapred.max.split.size, dfs.block.size))
    
-    一般而言，*mapred.min.split.size* 的預設值為 0，*mapred.max.split.size* 的預設值是 **Long.MAX**，而 *dfs.block.size* 的預設值則是 64 MB。 誠如所見，若指定了資料大小，則藉由「設定」這些參數來微調它們，讓我們能夠微調所使用的對應程式數目。
-4. 以下將提及最佳化 Hive 效能的其他數個更 **進階選項** 。 這些選項讓您能夠設定配置的記憶體來對應和縮減工作，而且在調整效能時非常實用。 請記住， *mapreduce.reduce.memory.mb* 不能大於 Hadoop 叢集中每個背景工作角色節點的實際記憶體大小。
+    一般而言，hello 預設值是*mapred.min.split.size*為 0，屬於*mapred.max.split.size*是**Long.MAX**與*dfs.block.size*是 64 MB。 我們可以看到，給定的 hello 資料大小，調整這些參數的 「 設定 」 它們可讓我們 tootune hello 數目對應工具中使用。
+4. 以下將提及最佳化 Hive 效能的其他數個更 **進階選項** 。 這些 tooset hello 配置記憶體 toomap 可讓您和減少工作，並可用於微調效能。 請記住該 hello *mapreduce.reduce.memory.mb*不能大於 hello 的 hello Hadoop 叢集中的每個背景工作節點的實體記憶體大小。
    
         set mapreduce.map.memory.mb = 2048;
         set mapreduce.reduce.memory.mb=6144;

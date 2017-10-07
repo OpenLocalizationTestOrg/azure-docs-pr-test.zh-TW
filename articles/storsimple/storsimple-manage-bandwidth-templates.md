@@ -1,6 +1,6 @@
 ---
-title: "管理您的 StorSimple 頻寬範本 | Microsoft Docs"
-description: "描述如何管理可讓您控制頻寬耗用量的 StorSimple 頻寬範本。"
+title: "aaaManage StorSimple 頻寬範本 |Microsoft 文件"
+description: "描述如何 toomanage StorSimple 頻寬範本，可讓您 toocontrol 頻寬耗用量。"
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,146 +14,146 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/16/2016
 ms.author: alkohli
-ms.openlocfilehash: df3ae8bf775370432b3648459a7c942afe69fb17
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3f767e985667121e977106e7a1f8e5a3ad25f022
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-manager-service-to-manage-storsimple-bandwidth-templates"></a>使用 StorSimple Manager 服務管理 StorSimple 頻寬範本
-## <a name="overview"></a>Overview
-頻寬範本可讓您設定多個日期時間排程的網路頻寬使用量，以將 StorSimple 裝置的資料分層至雲端。
+# <a name="use-hello-storsimple-manager-service-toomanage-storsimple-bandwidth-templates"></a>使用 hello StorSimple Manager 服務 toomanage StorSimple 頻寬範本
+## <a name="overview"></a>概觀
+頻寬範本可讓您 tooconfigure 網路頻寬使用跨多個日期時間排程 tootier hello 資料從 hello StorSimple 裝置 toohello 雲端。
 
 利用頻寬節流排程，您可以：
 
-* 根據工作負載網路使用情況，指定自訂的頻寬排程。
-* 集中管理，並且以簡單且順暢的方式跨多個裝置重複使用排程。
+* 指定自訂的頻寬排程視 hello 工作負載的網路使用方式而定。
+* 集中管理，並重複跨多個裝置的 hello 排程使用簡便而順暢的方式。
 
 > [!NOTE]
 > 這項功能只可供 StorSimple 實體裝置使用，不能用於虛擬裝置。
 > 
 > 
 
-服務的所有頻寬範本會以表格格式顯示，並包含下列資訊：
+所有的 hello 頻寬範本，為您的服務會顯示在以表格式，並包含下列資訊的 hello:
 
-* **名稱** – 在建立頻寬範本時，指派給頻寬範本的唯一名稱。
-* **排程** – 包含在給定頻寬範本中的排程數目。
-* **使用者** – 使用頻寬範本的磁碟區數目。
+* **名稱**– 指派唯一名稱 toohello 頻寬範本建立時。
+* **排程**– hello 給定的頻寬範本中包含的排程數目。
+* **使用**– hello 使用 hello 頻寬範本的磁碟區數目。
 
-您使用 Azure 傳統入口網站中的 StorSimple Manager 服務 [設定]  頁面管理頻寬範本。
+使用 hello StorSimple Manager 服務**設定**hello Azure 傳統入口網站 toomanage 頻寬範本中的頁面。
 
-您也可以在下方找到協助設定頻寬範本的其他資訊：
+您也可以找到其他資訊 toohelp 設定頻寬範本中：
 
 * 頻寬範本的相關問與答
 * 頻寬範本的最佳作法
 
 ## <a name="add-a-bandwidth-template"></a>新增頻寬範本
-執行下列步驟來建立新的頻寬範本。
+執行下列步驟 toocreate 新的頻寬範本的 hello。
 
-#### <a name="to-add-a-bandwidth-template"></a>新增頻寬範本
-1. 在 StorSimple Manager 服務的 [設定] 頁面上，按一下 [加入/編輯頻寬範本]。
-2. 在 [ **新增/編輯頻寬範本** ] 對話方塊中：
+#### <a name="tooadd-a-bandwidth-template"></a>tooadd 頻寬範本
+1. 在 hello StorSimple Manager 服務**設定**頁面上，按一下**新增/編輯頻寬範本**。
+2. 在 hello**新增/編輯頻寬範本**對話方塊：
    
-   1. 從 [範本] 下拉式清單中，選取 [建立新的] 以新增頻寬範本。
+   1. 從 hello**範本**下拉式清單中，選取**建立新**tooadd 新的頻寬範本。
    2. 為頻寬範本指定唯一的名稱。
-3. 定義 **頻寬排程**。 建立排程：
+3. 定義 **頻寬排程**。 toocreate 排程：
    
-   1. 從下拉式清單中，選擇排程要設定為該週的哪幾天。 您可以選取位於清單中個別天之前的核取方塊，以選取多天。
-   2. 如果排程會強制執行全天，請選取 [ **整天** ] 選項。 核取此選項時，您無法再指定 [開始時間] 或 [結束時間]。 排程執行時間從 12:00 AM 到 11:59 PM。
-   3. 從下拉式清單中，選取 [ **開始時間**]。 這就是排程開始的時間。
-   4. 從下拉式清單中，選取 [ **結束時間**]。 這就是排程結束的時間。
+   1. 從 hello 下拉式清單中，選擇設定 hello hello 週 hello 排程的天數。 您可以選取多天 hello hello 清單中的 hello 各日期前面的核取方塊。
+   2. 選取 hello**全天**hello 排程是否僅限於 hello 整天選項。 核取此選項時，您無法再指定 [開始時間] 或 [結束時間]。 hello 排程執行從 12:00 AM too11: 59 PM。
+   3. 從 hello 下拉式清單中，選取 **開始時間**。 這是當 hello 排程就會開始。
+   4. 從 hello 下拉式清單中，選取 **結束時間**。 這是 hello 排程將會停止。
       
       > [!NOTE]
-      > 不允許重疊的排程。 如果開始和結束時間會產生重疊排程，您會看到錯誤訊息。
+      > 不允許重疊的排程。 如果 hello 開始和結束時間會產生重疊的排程，您會看到錯誤訊息 toothat 效果。
       > 
       > 
-   5. 指定 **頻寬速率**。 這是以 MB / 秒 (Mbps) 為單位的頻寬，由包含雲端之作業中 (上傳與下載) 的 StorSimple 裝置所使用。 提供一個介於 1 到 1000 之間的數目給此欄位。
-   6. 按一下核取圖示 ![核取圖示](./media/storsimple-manage-bandwidth-templates/HCS_CheckIcon.png)。 您已建立的範本會新增至服務 **設定** 頁面上的頻寬範本清單。
+   5. 指定 hello**頻寬速率**。 這是以 mb / 秒 (Mbps 牽涉 hello 雲端 （上傳和下載） 的作業在 StorSimple 裝置所使用) 的 hello 頻寬。 提供一個介於 1 到 1000 之間的數目給此欄位。
+   6. 按一下核取圖示，hello![核取圖示](./media/storsimple-manage-bandwidth-templates/HCS_CheckIcon.png)。 您已建立的 hello 範本將會新增頻寬範本清單 toohello hello 服務上**設定**頁面。
       
       ![建立新的頻寬範本](./media/storsimple-manage-bandwidth-templates/HCS_CreateNewBT1.png)
-4. 在頁面底部按一下 [儲存]，然後在收到確認提示時按一下 [是]。 這樣會儲存您所做的組態變更。
+4. 按一下**儲存**在 hello hello 頁面，然後按一下底部**是**出現確認提示時。 這樣會儲存您所做的 hello 組態變更。
 
 ## <a name="edit-a-bandwidth-template"></a>編輯頻寬範本
-執行下列步驟來編輯頻寬範本。
+執行下列步驟 tooedit 頻寬範本的 hello。
 
-### <a name="to-edit-a-bandwidth-template"></a>編輯頻寬範本
+### <a name="tooedit-a-bandwidth-template"></a>tooedit 頻寬範本
 1. 按一下 [ **新增/編輯頻寬範本**]。
-2. 在 [ **新增/編輯頻寬範本** ] 對話方塊中：
+2. 在 hello**新增/編輯頻寬範本**對話方塊：
    
-   1. 從 [ **範本** ] 下拉式清單中，選擇您想要修改的現有頻寬範本。
-   2. 完成您的變更。 (您可以修改任何現有的設定。)
-   3. 按一下核取圖示  ![核取圖示](./media/storsimple-manage-bandwidth-templates/HCS_CheckIcon.png)。 在服務設定頁面上，您會在頻寬範本清單中看到已修改的範本。
-3. 若要儲存變更，請按一下頁面底部的 [ **儲存** ]。 在頁面底部按一下 [ **是** ]。
+   1. 從 hello**範本**下拉式清單中，選擇現有的頻寬範本的 toomodify。
+   2. 完成您的變更。 （您可以修改任何 hello 現有設定。）
+   3. 按一下 [hello] 核取圖示 ![核取圖示](./media/storsimple-manage-bandwidth-templates/HCS_CheckIcon.png). Hello 服務設定 頁面上，您會看到在 hello 頻寬範本清單中的 hello 已修改的範本。
+3. 您的變更，按一下 toosave**儲存**hello hello 頁底端。 在頁面底部按一下 [ **是** ]。
 
 > [!NOTE]
-> 如果已編輯的排程和您要修改的頻寬範本中現有的排程重疊，您就不能儲存變更。
+> 您不會允許您的變更，如果與現有的 hello 已編輯的排程重疊排程 hello 頻寬範本中您要修改的 toosave。
 > 
 > 
 
 ## <a name="delete-a-bandwidth-template"></a>刪除頻寬範本
-執行下列步驟來刪除頻寬範本。
+執行下列步驟 toodelete 頻寬範本的 hello。
 
-#### <a name="to-delete-a-bandwidth-template"></a>刪除頻寬範本
-1. 在服務的頻寬範本表格式清單中，選取您想要刪除的範本。 刪除圖示 (**x**) 會出現在已選取範本的最右邊。 按一下 **x** 圖示以刪除範本。
-2. 系統將提示您進行確認。 按一下 [ **確定** ] 以繼續進行。
+#### <a name="toodelete-a-bandwidth-template"></a>toodelete 頻寬範本
+1. 在您的服務的 hello 頻寬範本表格式清單中 hello，選取您想 toodelete hello 範本。 刪除圖示 (**x**) 會出現 toohello 最右側的 hello 選取的範本。 按一下 hello **x**圖示 toodelete hello 範本。
+2. 系統將提示您進行確認。 按一下**確定**tooproceed。
 
-如果有任何磁碟區正在使用範本，您就無法將它刪除。 您會看到錯誤訊息，指出此範本正在使用中。 錯誤訊息對話方塊會隨即出現，建議您移除範本的所有參考。
+如果任何磁碟區的使用中 hello 範本，您不能 toodelete 它。 您會看到錯誤訊息，指出正在使用該 hello 範本。 錯誤訊息對話方塊會通知您，應該移除所有 hello 參考 toohello 範本。
 
-您可以藉由存取 [ **磁碟區容器** ] 頁面和修改使用此範本的磁碟區容器，以刪除該範本的所有參考，讓它們使用另一個範本，或使用自訂或無限制頻寬設定。 移除所有參考時，您就可以刪除範本。
+您可以藉由存取 hello 刪除所有的 hello 參考 toohello 範本**磁碟區容器**頁面上，並修改使用此範本，讓它們使用另一個範本，或使用自訂或無限制頻寬的 hello 磁碟區容器設定。 當所有 hello 參考已都移除之後時，您可以刪除 hello 範本。
 
 ## <a name="use-a-default-bandwidth-template"></a>使用預設頻寬範本
-預設的頻寬範本可由磁碟區容器提供及使用，根據預設，可在存取雲端時強制執行頻寬控制。 預設範本也可讓建立自己範本的使用者當做準備參考。 這個預設範本的詳細資料如下：
+預設頻寬範本提供，並可供磁碟區容器依預設 tooenforce 頻寬控制存取 hello 雲端。 hello 預設範本也可做為現成的參考的使用者建立其自己的範本。 此預設範本的 hello 詳細資料如下：
 
 * **名稱** – 不限制夜間和週末
-* **排程** – 從星期一至星期五的單一排程，在 8 AM 和 5 PM 的裝置時間之間套用 1 Mbps 的頻寬速率。 一週中的其餘部分之頻寬設定為無限制。
+* **排程**– 從星期一 tooFriday 適用於上午 8 點和下午 5 點裝置時間之間的 1 Mbps 的頻寬速率的單一排程。 hello 頻寬設定 tooUnlimited hello 週 hello 其餘部分。
 
-預設範本可供編輯。 追蹤此範本 (包括編輯的版本) 的使用方式。
+可以編輯 hello 預設範本。 hello 使用量 （包括已編輯的版本） 這個範本會追蹤。
 
 ## <a name="create-an-all-day-bandwidth-template-that-starts-at-a-specified-time"></a>建立在指定時間啟動的全天頻寬範本
-請遵循此程序來建立可在指定時間啟動並執行全天的排程。 在此範例中，排程從早上 9 AM 開始，並執行到隔天早上的 9 AM。 請務必注意，給定排程的開始和結束時間都必須包含在相同的 24 小時排程，且不能跨越多天。 如果您必須設定跨越多天的頻寬範本，您必須使用多個排程 (如範例所示)。
+請遵循此程序 toocreate 在指定時間啟動並執行所有日期的排程。 在 hello 範例中，hello 排程 hello 早上 9 點開始，直到上午 9 點 hello 隔天早上執行。 很重要的 toonote hello 開始，並指定排程的結束時間都必須包含在 hello 相同 24 小時排程，且不能跨越多天。 如果您需要 tooset 向上跨多天的頻寬範本，您將需要 toouse 多個排程 （如 hello 範例所示）。
 
-#### <a name="to-create-an-all-day-bandwidth-template"></a>建立全天頻寬範本
-1. 建立從 9 AM 開始並執行到午夜的排程。
-2. 新增另一個排程。 設定第二個排程從午夜執行到早上 9 AM。
-3. 儲存頻寬範本
+#### <a name="toocreate-an-all-day-bandwidth-template"></a>toocreate 全天頻寬範本
+1. 建立在 hello 早上 9 點啟動並執行到午夜的排程。
+2. 新增另一個排程。 設定從午夜 hello 第二個排程 toorun hello 早上 9 點。
+3. 儲存 hello 頻寬範本。
 
-複合排程會從您選擇的時間開始並且全天執行。
+接著在您選擇的時間啟動並全天執行 hello 複合排程。
 
 ## <a name="questions-and-answers-about-bandwidth-templates"></a>頻寬範本的相關問與答
-**問：** 當您在排程之間時，頻寬控制會發生什麼事？ (一個排程已結束而另一個排程尚未開始)。
+**問：** 發生什麼事 toobandwidth 控制項 hello 排程之間會？ (一個排程已結束而另一個排程尚未開始)。
 
-**答：** 在這種情況下，不會採用任何頻寬控制。 這表示將資料分層至雲端時，裝置可以使用無限制的頻寬。
+**答：** 在這種情況下，不會採用任何頻寬控制。 這表示該 hello 裝置分層資料 toohello 雲端時，可以使用無限制的頻寬。
 
 **問：** 您是否可以修改離線裝置上的頻寬範本？
 
-**答：** 如果對應的裝置已離線，您無法修改磁碟區容器上的頻寬範本。
+**答：** 如果 hello 對應的裝置已離線，您將無法能 toomodify 磁碟區容器上的頻寬範本。
 
-**問：** 您是否可以在相關聯的磁碟區離線時，編輯和磁碟區容器相關聯的頻寬範本？
+**問：** 您可以編輯 hello 相關聯的磁碟區離線時，與磁碟區容器相關聯的頻寬範本嗎？
 
-**答：** 您可以修改和磁碟區已離線之磁碟區容器相關聯的頻寬範本。 請注意，當磁碟區離線時，沒有資料會從裝置分層至雲端。
+**答：** 您可以修改和磁碟區已離線之磁碟區容器相關聯的頻寬範本。 請注意，當磁碟區離線，任何資料會分層從 hello 裝置 toohello 雲端。
 
 **問：** 您是否可以刪除預設範本？
 
-**答：** 雖然您可以刪除預設範本，但這並不是個好主意。 已追蹤此預設範本 (包括已編輯版本) 的使用方式。 追蹤資料已進行分析，並在時間過程中用來改善預設範本。
+**答：** 雖然您可以刪除預設範本，但它並不建議 toodo。 hello 使用量的預設範本，包括已編輯的版本中，系統會追蹤。 hello 追蹤資料分析，並透過 hello 課程中的時間，是使用的 tooimprove hello 預設範本。
 
-**問：** 如何判斷頻寬範本必須修改？
+**問：** 如何判斷頻寬範本需要 toobe 修改？
 
-**答：** 您必須修改頻寬範本的其中一個徵兆是您會開始看到網路變慢，或在一天中多次停擺。 如果發生這種情況，請查看 I/O 效能及網路輸送量圖表來監視儲存體和使用方式的網路。
+**答：** 一開始時，您需要 toomodify hello 頻寬範本的徵兆的 hello 看見 hello 網路變慢或在一天多次阻礙。 如果發生這種情況，請查看 hello I/O 效能及網路輸送量圖表監視 hello 儲存體和使用網路。
 
-從網路輸送量資料，找出發生網路瓶頸的日期時間與磁碟區容器。 如果在資料分層至雲端時發生這種情況 (可由裝置至雲端的所有磁碟區容器之 I/O 效能取得此資訊)，您必須修改和磁碟區容器相關聯的頻寬範本。
+從 hello 網路輸送量資料中，找出 hello 一天的時間並 hello 中的 hello 網路瓶頸後，就會發生的磁碟區容器。 如果發生這種情況時資料分層式的 toohello 雲端 （取得這項資訊的所有磁碟區容器從 I/O 效能裝置 toocloud），則需要 toomodify hello 頻寬範本與磁碟區容器相關聯。
 
-開始使用已修改的範本之後，您必須再次監視網路是否有顯著的延遲。 如果仍然存在延遲，您必須返回頻寬範本。
+Hello 修改後範本正在使用中，您必須 toomonitor hello 網路一次無顯著的延遲。 如果這些狀況仍存在，則您需要 toorevisit 頻寬範本。
 
-**問：** 要是裝置上多個磁碟區容器的排程重疊，但是每個排程都套用不同的限制會發生什麼事？
+**問：** 萬一我的裝置上的多個磁碟區容器有重疊的排程，但不同限制套用 tooeach 嗎？
 
-**答：** 假設您的裝置有 3 個磁碟區容器。 與這些容器相關聯的排程完全重疊。 針對每個容器，分別使用 5、10 和 15 Mbps 的頻寬限制。 當所有容器都同時出現 I/O 時，可能會套用 3 個頻寬限制中的最小值：5 Mbps，因為在此情況下，這些傳出 I/O 要求會共用相同的佇列。
+**答：** 假設您的裝置有 3 個磁碟區容器。 hello 完全與這些容器相關聯的排程重疊。 針對每個容器，使用 hello 頻寬限制分別 5、 10 和 15 Mbps。 當 I/o 所發生的所有可能套用相同的時間，hello 最小值為 hello 3 頻寬限制的 hello 在這些容器： 在此情況下，因此這些傳出 I/O 要求共用為 5 Mbps hello 相同的佇列。
 
 ## <a name="best-practices-for-bandwidth-templates"></a>頻寬範本的最佳作法
 請遵循 StorSimple 裝置的最佳作法：
 
-* 在裝置上設定頻寬範本，以根據裝置在一天中的不同時間，啟用網路傳輸量的變數節流。 這些頻寬範本和備份排程搭配使用時，可以在離峰時段期間有效利用雲端作業的其他網路頻寬。
-* 根據部署的大小和所需的復原時間目標 (RTO)，計算特定部署所需的實際頻寬。
+* 設定您裝置 tooenable 變數節流的 hello 網路輸送量 hello 裝置在 hello 每天不同時間的頻寬範本。 這些頻寬範本和備份排程搭配使用時，可以在離峰時段期間有效利用雲端作業的其他網路頻寬。
+* 計算所需的基礎 hello 大小 hello 部署與 hello 所需的復原時間目標 (RTO) 的特定部署的 hello 實際頻寬。
 
 ## <a name="next-steps"></a>後續步驟
-深入了解 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
+深入了解[使用您的 StorSimple 裝置 hello StorSimple Manager 服務 tooadminister](storsimple-manager-service-administration.md)。
 

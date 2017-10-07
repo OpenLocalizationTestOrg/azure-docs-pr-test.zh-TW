@@ -1,6 +1,6 @@
 ---
-title: "將登入功能新增至 Azure B2C 的 Node.js Web 應用程式 | Microsoft Docs"
-description: "如何建置使用 B2C 租用戶登入使用者的 Node.js Web 應用程式。"
+title: "aaaAdd 登入 tooa Node.js web 應用程式的 Azure B2C |Microsoft 文件"
+description: "如何 toobuild Node.js web 應用程式的登入的使用者使用 B2C 租用戶。"
 services: active-directory-b2c
 documentationcenter: 
 author: dstrockis
@@ -14,30 +14,30 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.date: 03/10/2017
 ms.author: xerners
-ms.openlocfilehash: c85b8f8434d1e837ac96ac63b9b37f990677ed6e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b4c334b1f7a0669df2d0864140603dc55bbb5408
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-b2c-add-sign-in-to-a-nodejs-web-app"></a>Azure AD B2C：將登入功能加入至 Node.js Web 應用程式
+# <a name="azure-ad-b2c-add-sign-in-tooa-nodejs-web-app"></a>Azure AD B2C： 新增登入 tooa Node.js web 應用程式
 
 **Passport** 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且模組化的 Passport 安裝在任何 Express 或 Resitify Web 應用程式中。 有一套完整的策略支援以使用者名稱和密碼、Facebook、Twitter 等來進行驗證。
 
-我們已為 Azure Active Directory (Azure AD) 開發一套策略。 您將會安裝此模組，然後加入 Azure AD `passport-azure-ad` 外掛程式。
+我們已為 Azure Active Directory (Azure AD) 開發一套策略。 您將會安裝此模組，然後再新增 hello Azure AD`passport-azure-ad`外掛程式。
 
-若要這樣做，您需要：
+toodo，您需要：
 
 1. 使用 Azure AD 註冊應用程式。
-2. 設定應用程式以使用 `passport-azure-ad` 外掛程式。
-3. 使用 Passport，向 Azure AD 發出登入和登出要求。
+2. 設定您的應用程式 toouse hello`passport-azure-ad`外掛程式。
+3. 使用 Passport tooissue 登入和登出要求 tooAzure AD。
 4. 列印使用者資料。
 
-本教學課程的程式碼保留在 [GitHub](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS)。 若要跟著做，您可以[下載應用程式基本架構的 .zip 檔](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/skeleton.zip)。 您也可以複製基本架構：
+hello 本教學課程中的程式碼[維護 GitHub 上](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS)。 您可以沿著 toofollow，[下載為.zip 檔案的 hello 應用程式的基本架構](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/skeleton.zip)。 您也可以複製 hello 基本架構：
 
 ```git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS.git```
 
-本教學課程最後會提供完整的應用程式。
+hello 完成應用程式會在本教學課程中的 hello 結尾處提供。
 
 ## <a name="get-an-azure-ad-b2c-directory"></a>取得 Azure AD B2C 目錄
 
@@ -45,32 +45,32 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="create-an-application"></a>建立應用程式
 
-接著，您必須在 B2C 目錄中建立應用程式。 這會提供必要資訊給 Azure AD，讓它與應用程式安全地通訊。 因為用戶端應用程式和 Web API 會組成一個邏輯應用程式，所以將由單一**應用程式識別碼**表示。 如果要建立應用程式，請遵循 [這些指示](active-directory-b2c-app-registration.md)。 請務必：
+接下來，您需要 toocreate 應用程式中 B2C 目錄。 提供 Azure AD 需要 toocommunicate 安全地與您的應用程式的資訊。 同時 hello 用戶端應用程式和 web 應用程式開發介面會由單一**應用程式識別碼**，因為它們組成一個邏輯應用程式。 toocreate 的應用程式，請遵循[這些指示](active-directory-b2c-app-registration.md)。 請務必：
 
-- 在應用程式中納入 **Web 應用程式**/**Web API**。
-- 在 [回覆 URL] 中輸入 `http://localhost:3000/auth/openid/return`。 這是此程式碼範例的預設 URL。
-- 為您的應用程式建立 [應用程式密碼]  ，然後複製該密碼。 稍後您將會用到此資訊。 請注意，在您使用這個值之前，必須先讓該值經過 [XML 逸出](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape) 。
-- 複製指派給您的應用程式的 **應用程式識別碼** 。 稍後您也會需要此資訊。
+- 包含**web 應用程式**/**web API** hello 應用程式中。
+- 在 [回覆 URL] 中輸入 `http://localhost:3000/auth/openid/return`。 它是 hello 預設 URL，此程式碼範例。
+- 為您的應用程式建立 [應用程式密碼]  ，然後複製該密碼。 稍後您將會用到此資訊。 請注意，這個值需要 toobe [XML 逸出](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape)然後才能使用它。
+- 複製 hello**應用程式識別碼**也就是指派的 tooyour 應用程式。 稍後您也會需要此資訊。
 
 [!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## <a name="create-your-policies"></a>建立您的原則
 
-在 Azure AD B2C 中，每個使用者經驗皆由 [原則](active-directory-b2c-reference-policies.md)所定義。 此應用程式包含三種身分識別體驗：註冊、登入，以及使用 Facebook 登入。 您必須為每個類型建立此原則，如 [原則參考文章](active-directory-b2c-reference-policies.md#create-a-sign-up-policy)所述。 建立您的三個原則時，請務必：
+在 Azure AD B2C 中，每個使用者經驗皆由 [原則](active-directory-b2c-reference-policies.md)所定義。 此應用程式包含三種身分識別體驗：註冊、登入，以及使用 Facebook 登入。 您將 toocreate 需要每個型別，此原則，如中所述[原則參考文件](active-directory-b2c-reference-policies.md#create-a-sign-up-policy)。 建立您的三個原則時，請務必：
 
-- 在註冊原則中，選擇 [顯示名稱]  和其他註冊屬性。
-- 在每個原則中，選擇 [顯示名稱] 和 [物件識別碼] 應用程式宣告。 您也可以選擇其他宣告。
-- 在您建立每個原則之後，請複製原則的 [名稱]  。 其前置詞應該為 `b2c_1_`。  稍後您將需要這些原則名稱。
+- 選擇 hello**顯示名稱**與其他註冊的屬性，在您註冊的原則。
+- 選擇 hello**顯示名稱**和**物件識別碼**中每個原則的應用程式宣告。 您也可以選擇其他宣告。
+- 複製 hello**名稱**的每個原則建立之後。 就不應有 hello 前置詞`b2c_1_`。  稍後您將需要這些原則名稱。
 
 [!INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
-建立您的三個原則後，就可以開始建置您的應用程式。
+建立三個原則之後，您便準備好 toobuild 您的應用程式。
 
-請注意，本文不會說明如何使用您剛才建立的原則。 如需了解 Azure AD B2C 中原則的運作方式，請從 [.NET Web 應用程式快速入門教學課程](active-directory-b2c-devquickstarts-web-dotnet.md)開始。
+請注意本文未涵蓋 toouse hello 原則您剛才建立的方式。 toolearn 有關原則的運作方式在 Azure AD B2C，啟動以 hello [.NET web 應用程式快速入門教學課程](active-directory-b2c-devquickstarts-web-dotnet.md)。
 
-## <a name="add-prerequisites-to-your-directory"></a>在目錄中新增必要條件
+## <a name="add-prerequisites-tooyour-directory"></a>加入必要條件 tooyour 目錄
 
-從命令列將目錄變更至根資料夾 (如果您尚未在此目錄下)。 執行以下命令：
+從 hello 命令列，變更目錄 tooyour 根資料夾中，如果您已經不存在。 執行下列命令的 hello:
 
 - `npm install express`
 - `npm install ejs`
@@ -85,23 +85,23 @@ ms.lasthandoff: 07/11/2017
 - `npm install express-session`
 - `npm install cookie-parser`
 
-此外，我們在快速入門的基本架構中為預覽功能使用 `passport-azure-ad`。
+此外，我們使用`passport-azure-ad`我們 preview 中的 hello 快速入門的 hello 基本架構。
 
 - `npm install passport-azure-ad`
 
-這會安裝 `passport-azure-ad` 所仰賴的程式庫。
+這將會安裝 hello 程式庫，`passport-azure-ad`而定。
 
-## <a name="set-up-your-app-to-use-the-passport-nodejs-strategy"></a>設定您的應用程式以使用 Passport-Node.js 策略
-設定 Express 中介軟體以使用 OpenID Connect 驗證通訊協定。 Passport 會用來發出登入和登出要求、管理使用者工作階段，以及取得使用者相關資訊等其他動作。
+## <a name="set-up-your-app-toouse-hello-passport-nodejs-strategy"></a>設定您的應用程式 toouse hello Passport Node.js 策略
+設定 hello Express 中介軟體 toouse hello OpenID Connect 的驗證通訊協定。 Passport 將會使用的 tooissue 登入和登出要求、 管理使用者工作階段，以及取得有關使用者，以及其他動作的資訊。
 
-開啟專案根目錄中的 `config.js` 檔案，並在 `exports.creds` 區段中輸入應用程式的組態值。
-- `clientID`：在註冊入口網站中指派給應用程式的**應用程式識別碼**。
-- `returnURL`：在入口網站中輸入的**重新導向 URI**。
-- `tenantName`：應用程式的租用戶名稱，例如 **contoso.onmicrosoft.com**。
+開啟 hello `config.js` hello hello 專案根目錄中的檔案，並在 hello 中輸入您的應用程式組態值`exports.creds`> 一節。
+- `clientID`: hello**應用程式識別碼**指派 tooyour hello 註冊入口網站中的應用程式。
+- `returnURL`: hello**重新導向 URI** hello 入口網站中輸入。
+- `tenantName`: hello 租用戶應用程式名稱，例如**contoso.onmicrosoft.com**。
 
 [!INCLUDE [active-directory-b2c-devquickstarts-tenant-name](../../includes/active-directory-b2c-devquickstarts-tenant-name.md)]
 
-開啟專案根目錄中的 `app.js` 檔案。 新增下列呼叫來叫用 `passport-azure-ad`隨附的 `OIDCStrategy` 策略。
+開啟 hello `app.js` hello hello 專案根目錄中的檔案。 新增下列呼叫 tooinvoke hello hello`OIDCStrategy`隨附的策略`passport-azure-ad`。
 
 
 ```JavaScript
@@ -113,10 +113,10 @@ var log = bunyan.createLogger({
 });
 ```
 
-使用剛剛參考的策略來處理登入要求。
+使用您剛才參考 toohandle 登入要求的 hello 策略。
 
 ```JavaScript
-// Use the OIDCStrategy in Passport (Section 2).
+// Use hello OIDCStrategy in Passport (Section 2).
 //
 //   Strategies in Passport require a "validate" function that accepts
 //   credentials (in this case, an OpenID identifier), and invokes a callback
@@ -151,21 +151,21 @@ passport.use(new OIDCStrategy({
   }
 ));
 ```
-Passport 會對其所有策略 (包括 Twitter 和 Facebook) 所有類似的模式。 所有策略寫入器均遵守此模式。 當您查看策略時，您會發現您對其傳遞了以權杖和 `done` 做為參數的 `function()`。 策略在完成所有工作之後會回到您這邊。 請儲存使用者並隱藏權杖，這樣一來，您就不必再次索取。
+Passport 會對其所有策略 (包括 Twitter 和 Facebook) 所有類似的模式。 所有的策略寫入器會遵守 toothis 模式。 當您查看 hello 策略時，您可以看到您傳遞`function()`具有語彙基元和`done`做為 hello 參數。 hello 策略恢復 tooyou 它所有的工作完成後。 儲存 hello 使用者，使您不需要為其 tooask 再次隱藏 hello 語彙基元。
 
 > [!IMPORTANT]
-上述程式碼會取得伺服器驗證的所有使用者。 這是自動註冊程序。 當您使用實際執行伺服器時，您只會想讓已經完成您所設定之註冊程序的使用者進入。 供消費者使用的應用程式經常會看見這種模式。 這些應用程式可讓您使用 Facebook 進行註冊，但是接著會要求您填寫其他資訊。 如果我們的應用程式不是範例應用程式，我們可以從傳回的權杖物件中擷取電子郵件地址，然後要求使用者填寫其他資訊。 由於這是測試伺服器，因此我們只會將使用者加入記憶體中的資料庫。
+hello 上述程式碼會 hello 伺服器會驗證所有使用者。 這是自動註冊程序。 當您使用實際執行伺服器時，您不想 toolet 中使用者，除非它們已經完成註冊程序，您已設定。 供消費者使用的應用程式經常會看見這種模式。 這些可讓您 tooregister 使用 Facebook、 但然後人員要求您 toofill 出額外的資訊。 如果我們的應用程式無法範例，我們無法擷取 hello 會傳回的權杖物件的電子郵件地址，然後要求 hello 使用者 toofill 出額外的資訊。 因為這是在測試伺服器，我們只要加入使用者 toohello 記憶體中資料庫。
 
-新增方法以讓您可以按照 Passport 所要求地追蹤已登入的使用者。 這包括將使用者資訊序列化和還原序列化：
+新增 hello 方法可讓您的使用者登入，tookeep 追蹤依 Passport。 這包括將使用者資訊序列化和還原序列化：
 
 ```JavaScript
 
 // Passport session setup. (Section 2)
 
-//   To support persistent sign-in sessions, Passport needs to be able to
+//   toosupport persistent sign-in sessions, Passport needs toobe able to
 //   serialize users into and deserialize users out of sessions. Typically,
-//   this is as simple as storing the user ID when Passport serializes a user
-//   and finding the user by ID when Passport deserializes that user.
+//   this is as simple as storing hello user ID when Passport serializes a user
+//   and finding hello user by ID when Passport deserializes that user.
 passport.serializeUser(function(user, done) {
   done(null, user.email);
 });
@@ -176,7 +176,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-// Array to hold users who have signed in
+// Array toohold users who have signed in
 var users = [];
 
 var findByEmail = function(email, fn) {
@@ -192,7 +192,7 @@ var findByEmail = function(email, fn) {
 
 ```
 
-加入可載入 Express 引擎的程式碼。 您可以在下列命令中看到，我們使用 Express 提供的預設 `/views` 和 `/routes` 模式。
+新增 hello 程式碼 tooload hello Express 引擎。 在 hello 下列程式碼，您可以看到，我們會使用預設 hello`/views`和`/routes`提供快速的模式。
 
 ```JavaScript
 
@@ -209,7 +209,7 @@ app.configure(function() {
   app.use(cookieParser());
   app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: false }));
   app.use(bodyParser.urlencoded({ extended : true }));
-  // Initialize Passport!  Also use passport.session() middleware to support
+  // Initialize Passport!  Also use passport.session() middleware toosupport
   // persistent sign-in sessions (recommended).
   app.use(passport.initialize());
   app.use(passport.session());
@@ -219,31 +219,31 @@ app.configure(function() {
 
 ```
 
-新增 `POST` 路由以將實際的登入要求遞交給 `passport-azure-ad` 引擎：
+新增 hello`POST`遞交的路由 hello 實際的登入要求 toohello`passport-azure-ad`引擎：
 
 ```JavaScript
 
 // Our Auth routes (Section 3)
 
 // GET /auth/openid
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. The first step in OpenID authentication involves redirecting
-//   the user to an OpenID provider. After the user is authenticated,
-//   the OpenID provider redirects the user back to this application at
+//   Use passport.authenticate() as route middleware tooauthenticate the
+//   request. hello first step in OpenID authentication involves redirecting
+//   hello user tooan OpenID provider. After hello user is authenticated,
+//   hello OpenID provider redirects hello user back toothis application at
 //   /auth/openid/return
 
 app.get('/auth/openid',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
   function(req, res) {
-    log.info('Authentication was called in the Sample');
+    log.info('Authentication was called in hello Sample');
     res.redirect('/');
   });
 
 // GET /auth/openid/return
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. If authentication fails, the user will be redirected back to the
-//   sign-in page. Otherwise, the primary route function will be called.
-//   In this example, it redirects the user to the home page.
+//   Use passport.authenticate() as route middleware tooauthenticate the
+//   request. If authentication fails, hello user will be redirected back toothe
+//   sign-in page. Otherwise, hello primary route function will be called.
+//   In this example, it redirects hello user toohello home page.
 app.get('/auth/openid/return',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
   function(req, res) {
@@ -252,10 +252,10 @@ app.get('/auth/openid/return',
   });
 
 // POST /auth/openid/return
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. If authentication fails, the user will be redirected back to the
-//   sign-in page. Otherwise, the primary route function will be called.
-//   In this example, it will redirect the user to the home page.
+//   Use passport.authenticate() as route middleware tooauthenticate the
+//   request. If authentication fails, hello user will be redirected back toothe
+//   sign-in page. Otherwise, hello primary route function will be called.
+//   In this example, it will redirect hello user toohello home page.
 
 app.post('/auth/openid/return',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
@@ -265,11 +265,11 @@ app.post('/auth/openid/return',
   });
 ```
 
-## <a name="use-passport-to-issue-sign-in-and-sign-out-requests-to-azure-ad"></a>使用 Passport，向 Azure AD 發出登入和登出要求
+## <a name="use-passport-tooissue-sign-in-and-sign-out-requests-tooazure-ad"></a>使用 Passport tooissue 登入和登出要求 tooAzure AD
 
-您的應用程式現在已正確設定，將使用 OpenID Connect 驗證通訊協定與 v2.0 端點通訊。 `passport-azure-ad` 已經處理有關製作驗證訊息、驗證 Azure AD 的權杖和維護使用者工作階段的細節。 剩下的工作就是讓使用者有辦法登入和登出，以及收集關於已登入使用者的其他資訊。
+您的應用程式是現在已正確設定的 toocommunicate 與 hello v2.0 端點使用 hello OpenID Connect 的驗證通訊協定。 `passport-azure-ad`已處理 hello 製作驗證訊息、 驗證 Azure ad 的權杖和維護使用者工作階段的詳細資料。 所有會維持為您的使用者是 toogive 方式 toosign 中的並登入 out、 以及 toogather 其他有關已登入的使用者。
 
-首先，在 `app.js` 檔案中加入預設、登入、帳戶和登出方法：
+首先，新增 hello 預設、 登入、 帳戶和登出方法 tooyour`app.js`檔案：
 
 ```JavaScript
 
@@ -286,7 +286,7 @@ app.get('/account', ensureAuthenticated, function(req, res){
 app.get('/login',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
   function(req, res) {
-    log.info('Login was called in the Sample');
+    log.info('Login was called in hello Sample');
     res.redirect('/');
 });
 
@@ -297,22 +297,22 @@ app.get('/logout', function(req, res){
 
 ```
 
-若要詳細檢閱這些方法：
-- `/` 會在要求中傳遞使用者 (若有的話) 以將重新導向路由至 `index.ejs` 檢視。
-- `/account` 路由會先確認您已通過驗證 (下面有這個程序的實作)。 然後在要求中傳遞使用者，以讓您取得使用者的其他資訊。
-- `/login` 會從 `passport-azure-ad` 將呼叫路由到 `azuread-openidconnect` 驗證器。 如果沒有成功，路由便會將使用者重新導向回 `/login`。
-- `/logout` 只會呼叫 `logout.ejs` (和其路由)。 這會清除 Cookie，然後讓使用者回到 `index.ejs`。
+tooreview 這些方法的詳細資料：
+- hello`/`路由重新導向 toohello`index.ejs`檢視藉由傳遞 hello 要求中的 hello 使用者 （如果有的話）。
+- hello`/account`路由會先確認您已驗證 (這是下面 hello 實作)。 接著，將 hello 使用者 hello 要求中，讓您可取得 hello 使用者的其他資訊。
+- hello`/login`路由呼叫 hello`azuread-openidconnect`驗證器，從`passport-azure-ad`。 如果不成功，hello 路由 hello 將使用者重新導向回太`/login`。
+- `/logout` 只會呼叫 `logout.ejs` (和其路由)。 這會清除 cookie，然後傳回 hello 回到使用者太`index.ejs`。
 
 
-`app.js` 的最後一個部分是新增 `/account` 路由中使用的 `EnsureAuthenticated` 方法。
+Hello 最後一個部分`app.js`，新增 hello`EnsureAuthenticated`方法用於 hello`/account`路由。
 
 ```JavaScript
 
-// Simple route middleware to ensure that the user is authenticated. (Section 4)
+// Simple route middleware tooensure that hello user is authenticated. (Section 4)
 
-//   Use this route middleware on any resource that needs to be protected. If
-//   the request is authenticated (typically via a persistent sign-in session),
-//   then the request will proceed. Otherwise, the user will be redirected to the
+//   Use this route middleware on any resource that needs toobe protected. If
+//   hello request is authenticated (typically via a persistent sign-in session),
+//   then hello request will proceed. Otherwise, hello user will be redirected toothe
 //   sign-in page.
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
@@ -321,7 +321,7 @@ function ensureAuthenticated(req, res, next) {
 
 ```
 
-最後，在 `app.js` 中建立伺服器本身。
+最後，建立 hello 伺服器本身在`app.js`。
 
 ```JavaScript
 
@@ -330,11 +330,11 @@ app.listen(3000);
 ```
 
 
-## <a name="create-the-views-and-routes-in-express-to-call-your-policies"></a>在 Express 中建立檢視和路由以呼叫原則
+## <a name="create-hello-views-and-routes-in-express-toocall-your-policies"></a>建立 hello 檢視，並將您的原則路由 Express toocall 中
 
-`app.js` 現已完成。 您只需要加入路由和檢視以讓您呼叫登入和註冊原則。 這些項目也會處理您所建立的 `/logout` 和 `/login` 路由。
+`app.js` 現已完成。 您只需要 tooadd hello 路由和 toocall hello 登入並註冊原則可讓您的檢視。 這些也處理 hello`/logout`和`/login`您所建立的路由。
 
-在根目錄下方建立 `/routes/index.js` 路由。
+建立 hello `/routes/index.js` hello 根目錄下的路由。
 
 ```JavaScript
 
@@ -347,7 +347,7 @@ exports.index = function(req, res){
 };
 ```
 
-在根目錄下方建立 `/routes/user.js` 路由。
+建立 hello `/routes/user.js` hello 根目錄下的路由。
 
 ```JavaScript
 
@@ -360,9 +360,9 @@ exports.list = function(req, res){
 };
 ```
 
-這些簡單的路由會傳遞要求到您的檢視。 要求中包含使用者 (如果有的話)。
+這些簡單的路由可傳遞要求 tooyour 檢視。 如果有的話，它們就會包含 hello 使用者。
 
-在根目錄底下建立 `/views/index.ejs` 檢視。 這是呼叫登入和登出原則的簡單網頁。 您也可以用它來擷取帳戶資訊。 請注意，因為會在要求中傳遞使用者以提供使用者已登入的證明，因此您可以使用條件式 `if (!user)`。
+建立 hello `/views/index.ejs` hello 根目錄下的檢視。 這是呼叫登入和登出原則的簡單網頁。您也可以使用它 toograb 帳戶資訊。 請注意，您可以使用條件式 hello `if (!user)` hello 使用者透過傳入的 hello 要求 tooprovide 證據 hello 使用者已登入。
 
 ```JavaScript
 <% if (!user) { %>
@@ -377,7 +377,7 @@ exports.list = function(req, res){
 <% } %>
 ```
 
-在根目錄下方建立 `/views/account.ejs` 檢視，如此即可檢視 `passport-azure-ad` 放置於使用者要求的其他資訊。
+建立 hello`/views/account.ejs`檢視 hello 根目錄下，讓您可以檢視其他資訊的`passport-azure-ad`置於 hello 使用者要求。
 
 ```Javascript
 <% if (!user) { %>
@@ -398,28 +398,28 @@ exports.list = function(req, res){
 
 現在您可以建立並執行您的應用程式。
 
-執行 `node app.js` 並瀏覽至 `http://localhost:3000`
+執行`node app.js`並瀏覽過`http://localhost:3000`
 
 
-使用電子郵件或 Facebook 註冊或登入應用程式。 登出後，再以不同使用者身分重新登入。
+註冊或使用電子郵件或 Facebook 登入 toohello 應用程式。 登出後，再以不同使用者身分重新登入。
 
 ##<a name="next-steps"></a>後續步驟
 
-[這裡以 .zip 檔案提供](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/complete.zip)完整範例 (不含您的設定值) 供您參考。 您也可以從 Github 複製它：
+如需參考，hello 完成 （不含您的組態值） 的範例[提供成.zip 檔案](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/complete.zip)。 您也可以從 Github 複製它：
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-nodejs.git```
 
-您現在可以繼續前進到更進階的主題。 您可以嘗試：
+您現在可以繼續 toomore 進階主題。 您可以嘗試：
 
-[使用 Node.js 中的 B2C 模型保護 Web API 安全](active-directory-b2c-devquickstarts-api-node.md)
+[使用 Node.js 中 hello B2C 模型來保護 web API](active-directory-b2c-devquickstarts-api-node.md)
 
 <!--
 
 For additional resources, check out:
-You can now move on to more advanced B2C topics. You might try:
+You can now move on toomore advanced B2C topics. You might try:
 
 [Call a Node.js web API from a Node.js web app]()
 
-[Customizing the your B2C App's UX >>]()
+[Customizing hello your B2C App's UX >>]()
 
 -->

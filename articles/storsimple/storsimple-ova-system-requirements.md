@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Azure StorSimple Virtual Array 系統需求| Microsoft Docs"
-description: "了解 StorSimple Virtual Array 的軟體和網路功能需求"
+title: "aaaMicrosoft Azure StorSimple Virtual Array 系統需求 |Microsoft 文件"
+description: "深入了解您的 StorSimple Virtual Array 的 hello 軟體和網路需求"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/17/2017
 ms.author: alkohli
-ms.openlocfilehash: 4a2c86cee40dbd1dc2c37d58e69bdf35b0046c4d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7a124873fdd806d409c7279851456e6347e7ec0a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="storsimple-virtual-array-system-requirements"></a>StorSimple Virtual Array 系統需求
 ## <a name="overview"></a>概觀
-本文章說明 Microsoft Azure StorSimple Virtual Array 以及針對儲存體用戶端存取陣列的重要系統需求。 建議您先仔細檢閱資訊，再部署 StorSimple 系統，然後在部署和後續作業期間，必要時回顧參考。
+本文將告訴您 Microsoft Azure StorSimple Virtual Array 及 hello 存取 hello 陣列的儲存體用戶端 hello 重要的系統需求。 我們建議您先仔細檢閱 hello 資訊之前您部署您的 StorSimple 系統，然後再參閱回 tooit 視部署和後續作業期間。
 
-系統需求包括：
+hello 系統需求包括：
 
-* **儲存體用戶端的軟體需求** - 描述支援的虛擬化平台、網頁瀏覽器、iSCSI 啟動器、SMB 用戶端、基本虛擬裝置需求和那些作業系統的任何額外需求。
-* **StorSimple 裝置的網路需求** - 提供需要在防火牆中開啟以允許 iSCSI、雲端或管理流量的連接埠相關資訊。
+* **儲存體用戶端的軟體需求**-描述 hello 支援虛擬化平台、 網頁瀏覽器，iSCSI 啟動器，SMB 用戶端、 最低虛擬裝置需求，以及這些作業系統的任何其他需求。
+* **Hello StorSimple 裝置的網路需求**-iSCSI、 雲端或管理流量的防火牆 tooallow 中開啟該需要 toobe 提供 hello 連接埠相關資訊。
 
-這篇文章中的 StorSimple 系統需求資訊，僅適用於 StorSimple Virtual Array。
+這篇文章中發行資訊 hello StorSimple 系統需求適用於僅 tooStorSimple 虛擬陣列。
 
-* 針對 8000 系列裝置，請移至 [StorSimple 8000 系列裝置的系統需求](storsimple-system-requirements.md)。
-* 針對 7000 系列裝置，請移至 [System requirements for your StorSimple 5000-7000 series device (StorSimple 5000-7000 系列裝置的系統需求)](http://onlinehelp.storsimple.com/1_StorSimple_System_Requirements)。
+* 適用於 8000 系列裝置跳過[StorSimple 8000 系列裝置的系統需求](storsimple-system-requirements.md)。
+* 7000 系列裝置跳過[StorSimple 5000 7000 系列裝置的系統需求](http://onlinehelp.storsimple.com/1_StorSimple_System_Requirements)。
 
 ## <a name="software-requirements"></a>軟體需求
-軟體需求包括支援的網頁瀏覽器、SMB 版本、虛擬化平台和最低虛擬裝置需求的資訊。
+hello 軟體需求包括 hello 有關 hello 支援網頁瀏覽器、 SMB 版本、 虛擬化平台和 hello 最低虛擬裝置需求。
 
 ### <a name="supported-virtualization-platforms"></a>支援的虛擬化平台
 | **Hypervisor** | **版本** |
@@ -48,13 +48,13 @@ ms.lasthandoff: 07/11/2017
 | --- | --- |
 | 虛擬處理器 (核心) 的最小數目 |4 |
 | 最小記憶體 (RAM) |8 GB <br> 對於檔案伺服器，8 GB 適用於 2 百萬個以下的檔案，而 16 GB 則適用於 2 - 4 百萬個檔案|
-| 磁碟空間<sup>1</sup> |OS 磁碟 - 80 GB  <br></br>資料磁碟 - 500 GB 到 8 TB |
+| 磁碟空間<sup>1</sup> |OS 磁碟 - 80 GB  <br></br>資料磁碟-500 GB too8 TB |
 | 最小網路介面數目 |1 |
 | 最小網際網路頻寬<sup>2</sup> |5 Mbps |
 
 <sup>1</sup> - 精簡佈建
 
-<sup>2</sup> - 網路需求可能會依據每日資料變更率而有所不同。 例如，如果裝置一天需要備份 10 GB 或更多的變更，則透過 5 Mbps 連線的每日備份最多可能需要 4.25 小時 (如果資料無法壓縮或刪除重複資料)。
+<sup>2</sup> -網路需求會根據每日資料變更速率 hello 而有所不同。 例如，如果裝置在一天期間的需求 tooback 10 GB 或更多的變更，然後 hello 透過 5 Mbps 連線的每日備份最多可能需要 too4.25 小時 （如果 hello 資料無法壓縮或重複資料刪除）。
 
 ### <a name="supported-web-browsers"></a>支援的網頁瀏覽器
 | **元件** | **版本** | **其他需求/注意事項** |
@@ -64,13 +64,13 @@ ms.lasthandoff: 07/11/2017
 | Google Chrome |最新版本 |通過 Chrome 46 測試 |
 
 ### <a name="supported-storage-clients"></a>支援的儲存體用戶端
-下列軟體需求適用於存取 StorSimple Virtual Array (已設定為 iSCSI 伺服器) 的 iSCSI 啟動器。
+下列軟體需求的 hello 對於 hello iSCSI 啟動器存取您 StorSimple Virtual Array （設定為 iSCSI 伺服器）。
 
 | **受支援的作業系統** | **必要版本** | **其他需求/注意事項** |
 | --- | --- | --- |
 | Windows Server |2008R2 SP1、2012、2012R2 |StorSimple 可以建立精簡佈建和完整佈建的磁碟區。 它無法建立部分佈建的磁碟區。 StorSimple iSCSI 磁碟區只支援︰ <ul><li>Windows 基本磁碟上的簡單磁碟區。</li><li>Windows NTFS 以進行磁碟區格式化。</li> |
 
-下列軟體需求適用於存取 StorSimple Virtual Array (已設定為檔案伺服器) 的 SMB 用戶端。
+下列軟體需求的 hello 是 hello 存取您 StorSimple Virtual Array （設定為檔案伺服器） 的 SMB 用戶端。
 
 | **SMB 版本** |
 | --- |
@@ -79,41 +79,41 @@ ms.lasthandoff: 07/11/2017
 | SMB 3.02 |
 
 > [!IMPORTANT]
-> 請勿將 Windows 加密檔案系統 (EFS) 保護的檔案複製或儲存到 StorSimple 虛擬陣列檔案伺服器；這會導致不支援的組態。 
+> 不要複製或儲存檔案受到 Windows 加密檔案系統 (EFS) toohello StorSimple Virtual Array 檔案伺服器。這會導致不支援的組態。 
 > 
 
 ### <a name="supported-storage-format"></a>支援的儲存體格式
-僅支援 Azure 區塊 Blob 儲存體。 不支援分頁 Blob。 關於[區塊 Blob 和分頁 Blob](https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs) 的其他資訊。
+支援 hello Azure 區塊 blob 儲存體。 不支援分頁 Blob。 關於[區塊 Blob 和分頁 Blob](https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs) 的其他資訊。
 
 ## <a name="networking-requirements"></a>網路需求
-下表列出必須在您的防火牆中開啟的連接埠，以允許 iSCSI、SMB、雲端或管理流量。 在這個資料表中，*in* 或 *inbound* 指的是輸入用戶端要求存取裝置的方向。 *Out* 或 *outbound* 指的是 StorSimple 裝置於外部傳送資料至部署之上的方向：例如，輸出到網際網路。
+hello 下表列出必須在您的 iSCSI、 SMB、 雲端或管理流量的防火牆 tooallow 中開啟 toobe hello 連接埠。 下表中*中*或*輸入*參考 toohello 方向從中送用戶端要求存取您的裝置。 *Out*或*輸出*是指您的 StorSimple 裝置中 hello 部署以外傳送資料，toohello 方向： 例如，傳出 toohello 網際網路。
 
 | **連接埠號碼<sup>1</sup>** | **內或外** | **連接埠範圍** | **必要** | **注意事項** |
 | --- | --- | --- | --- | --- |
-| TCP 80 (HTTP) |外 |WAN |否 |輸出連接埠用於網際網路存取以擷取更新。 <br></br>輸出 Web Proxy 可由使用者設定。 |
-| TCP 443 (HTTPS) |外 |WAN |是 |輸出連接埠用來存取雲端中的資料。 <br></br>輸出 Web Proxy 可由使用者設定。 |
+| TCP 80 (HTTP) |外 |WAN |否 |輸出連接埠用於網際網路存取 tooretrieve 更新。 <br></br>hello 傳出的 web proxy 是可由使用者設定。 |
+| TCP 443 (HTTPS) |外 |WAN |是 |輸出連接埠用於存取 hello 雲端中的資料。 <br></br>hello 傳出的 web proxy 是可由使用者設定。 |
 | UDP 53 (DNS) |外 |WAN |在某些情況下，請參閱附註。 |只有當您使用網際網路 DNS 伺服器時，才需要此連接埠。 <br></br> 注意，如果部署的是檔案伺服器，建議使用本機 DNS 伺服器。 |
 | UDP 123 (NTP) |外 |WAN |在某些情況下，請參閱附註。 |只有當您使用網際網路 NTP 伺服器時，才需要此連接埠。<br></br> 注意，如果部署的是檔案伺服器，建議將時間與您的 Active Directory 網域控制站同步。 |
-| TCP 80 (HTTP) |在 |LAN |是 |這是 StorSimple 裝置上用於本機管理的本機 UI 的輸入連接埠。 <br></br> 注意，透過 HTTP 存取本機 UI 會自動重新導向至 HTTPS。 |
-| TCP 443 (HTTPS) |在 |LAN |是 |這是 StorSimple 裝置上用於本機管理的本機 UI 的輸入連接埠。 |
-| TCP 3260 (iSCSI) |在 |LAN |否 |此連接埠用來透過 iSCSI 存取資料。 |
+| TCP 80 (HTTP) |在 |LAN |是 |這是本機管理的 hello StorSimple 裝置上的本機 UI hello 輸入連接埠。 <br></br> 請注意，存取 hello 透過 HTTP 的本機 UI 會自動重新導向 tooHTTPS。 |
+| TCP 443 (HTTPS) |在 |LAN |是 |這是本機管理的 hello StorSimple 裝置上的本機 UI hello 輸入連接埠。 |
+| TCP 3260 (iSCSI) |在 |LAN |否 |此連接埠是使用的 tooaccess 資料透過 iSCSI。 |
 
-<sup>1</sup> 公用網際網路上沒有必須開啟的輸入連接埠。
+<sup>1</sup>輸入連接埠需要 toobe 上開啟 hello 公用網際網路。
 
 > [!IMPORTANT]
-> 請確定防火牆不會修改或解密 StorSimple 裝置和 Azure 之間的任何 SSL 流量。
+> 請確定該 hello 防火牆不會修改或解密 hello StorSimple 裝置與 Azure 之間的任何 SSL 流量。
 > 
 > 
 
 ### <a name="url-patterns-for-firewall-rules"></a>防火牆規則的 URL 模式
-網路系統管理員通常可以根據 URL 模式設定進階防火牆規則，來篩選輸入和輸出流量。 您的虛擬陣列和 StorSimple 裝置管理員服務依賴於其他 Microsoft 應用程式，例如 Azure 服務匯流排、Azure Active Directory 存取控制、儲存體帳戶和 Microsoft Update 伺服器。 與這些應用程式相關聯的 URL 模式可以用來設定防火牆規則。 請務必了解與這些應用程式相關聯的 URL 模式可以變更。 接著，您將需要網路系統管理員監控 StorSimple 的防火牆規則，並在需要時更新。 
+網路系統管理員通常可以設定進階的防火牆規則根據 hello URL 模式 toofilter hello 輸入與 hello 輸出流量。 您的虛擬陣列和 hello StorSimple 裝置管理員服務相依於其他 Microsoft 應用程式，例如 Azure 服務匯流排、 Azure Active Directory 存取控制、 儲存體帳戶和 Microsoft Update servers。 hello 與這些應用程式相關聯的 URL 模式可以是使用的 tooconfigure 防火牆規則。 重要 toounderstand hello 與這些應用程式相關聯的 URL 模式可以變更它。 這又需要 hello 網路系統管理員 toomonitor 及更新您的 StorSimple，做為和所需的防火牆規則。 
 
-我們建議您，在大部分情況下，根據固定 IP 位址為輸出流量設定防火牆規則。 不過，您可以使用下列資訊設定建立安全環境所需的進階防火牆規則。
+我們建議您，在大部分情況下，根據固定 IP 位址為輸出流量設定防火牆規則。 不過，您可以使用下列 tooset 進階防火牆規則，需要的 toocreate 安全環境的 hello 資訊。
 
 > [!NOTE]
 > 
-> * 裝置 (來源) IP 應該一律設定為所有啟用雲端功能的網路介面。 
-> * 目的地 IP 應該設為 [Azure 資料中心 IP 範圍](https://www.microsoft.com/en-us/download/confirmation.aspx?id=41653)。
+> * hello 裝置 （來源） Ip 應一律設 tooall hello 具備雲端功能的網路介面。 
+> * hello 目的地 Ip 應該設定太[Azure 資料中心 IP 範圍](https://www.microsoft.com/en-us/download/confirmation.aspx?id=41653)。
 > 
 > 
 
@@ -126,8 +126,8 @@ ms.lasthandoff: 07/11/2017
 | `http://*.windowsupdate.microsoft.com`<br>`https://*.windowsupdate.microsoft.com`<br>`http://*.update.microsoft.com`<br> `https://*.update.microsoft.com`<br>`http://*.windowsupdate.com`<br>`http://download.microsoft.com`<br>`http://wustat.windows.com`<br>`http://ntservicepack.microsoft.com` |Microsoft Update 伺服器<br> |
 | `http://*.deploy.akamaitechnologies.com` |Akamai CDN |
 | `https://*.partners.extranet.microsoft.com/*` |支援封裝 |
-| `http://*.data.microsoft.com ` |Windows 中的遙測服務，請參閱[客戶經驗和診斷遙測的更新](https://support.microsoft.com/en-us/kb/3068708) |
+| `http://*.data.microsoft.com ` |遙測服務在 Windows 中，請參閱 hello[更新客戶經驗和診斷遙測](https://support.microsoft.com/en-us/kb/3068708) |
 
 ## <a name="next-step"></a>後續步驟
-* [準備入口網站以部署 StorSimple Virtual Array](storsimple-virtual-array-deploy1-portal-prep.md)
+* [準備您的 StorSimple Virtual Array hello 入口 toodeploy](storsimple-virtual-array-deploy1-portal-prep.md)
 

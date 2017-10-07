@@ -1,6 +1,6 @@
 ---
-title: "Azure 基礎結構命名指導方針 - Linux | Microsoft Docs"
-description: "了解適合用來在 Azure 基礎結構服務中進行命名的關鍵設計和實作指導方針。"
+title: "命名方針-Linux aaaAzure 基礎結構 |Microsoft 文件"
+description: "深入了解 hello 金鑰設計和實作命名指導方針 Azure 基礎結構服務中。"
 documentationcenter: 
 services: virtual-machines-linux
 author: iainfoulds
@@ -16,17 +16,17 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 1b086f0972c02d569a7219820a3d596960b6014b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 333146e7b2071e43527a5d7dc2ec02ebfb316eb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-infrastructure-naming-guidelines-for-linux-vms"></a>適用於 Linux VM 的 Azure 基礎結構命名指導方針 
 
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
-本文著重於了解各種 Azure 資源的命名慣例做法，以在整個環境中建置一組具邏輯性且可輕鬆識別的資源集合。
+本文著重在了解如何針對所有的邏輯和容易識別您各種 Azure 資源 toobuild tooapproach 命名慣例設定的資源整個環境。
 
 ## <a name="implementation-guidelines-for-naming-conventions"></a>命名慣例的實作指導方針
 决策：
@@ -35,45 +35,45 @@ ms.lasthandoff: 07/11/2017
 
 工作：
 
-* 定義在資源間使用以維護一致性的詞綴。
-* 定義必須是全域唯一的儲存體帳戶名稱。
-* 記錄要使用並散發給所有相關合作對象的命名慣例，以確保部屬之間的一致性。
+* 定義您的資源 toomaintain 一致性 hello affixes toouse。
+* 定義指定名稱 hello 需求它們 toobe 全域唯一的儲存體帳戶。
+* 文件 hello 命名慣例 toobe 使用，而且將 tooall 合作對象所涉及的 tooensure 一致性分散到部署。
 
 ## <a name="naming-conventions"></a>命名慣例
-在 Azure 中建立任何項目之前，應先建立良好的命名慣例。 命名慣例可確保所有資源都擁有可預測的名稱，有助於降低與這些資源管理相關聯的系統管理負擔。
+在 Azure 中建立任何項目之前，應先建立良好的命名慣例。 命名慣例可確保所有的 hello 資源都有一個可預測的名稱，可協助降低與管理這些資源相關聯的 hello 系統管理負擔。
 
-您可以選擇遵循為整個組織所定義的一組特定命名慣例，或適用於特定 Azure 訂用帳戶或帳戶的命名慣例。 儘管對組織內的個人來說，在使用 Azure 資源時建立隱含規則非常容易，但對於在 Azure 一起工作的小組而言，您需要能夠彈性地調整。
+您可以選擇 toofollow 一組特定的命名慣例定義整個組織或是特定的 Azure 訂用帳戶或帳戶。 雖然使用 Azure 資源時，它很容易組織 tooestablish 隱含規則內的個人版，您需要 toobe 無法 tooscale 一起工作，在 Azure 中的小組。
 
 預先針對命名慣例組合取得一致的意見。 有些關於命名慣例的考量會牽涉到規則組合。
 
 ## <a name="affixes"></a>詞綴
-當您在定義命名慣例時，其中一個決定便是詞綴要位於：
+當您檢查 toodefine 命名慣例，一個決策是 hello label 上是否：
 
-* 名稱開頭 (前置)
-* 名稱結尾 (後置)
+* hello 名稱 （前置詞） 的 hello 開頭
+* hello hello 名稱 （尾碼） 的結尾
 
-例如，針對使用 `rg` 詞綴的資源群組，以下是兩個可能的名稱：
+比方說，以下是兩個可能的名稱，資源群組使用 hello`rg`附加：
 
 * Rg-WebApp (前置)
 * WebApp-Rg (後置)
 
-詞綴指的是可說明特定資源的各個層面。 下列表格顯示一些常用範例。
+Affixes 可以參考描述 hello 特定資源的 toodifferent 層面。 hello 下表顯示一些常用的範例。
 
 | 層面 | 範例 | 注意事項 |
 |:--- |:--- |:--- |
-| Environment |dev、stg、prod |取決於每個環境的用途與名稱。 |
-| 位置 |usw (West US)、use (East US 2) |取決於資料中心的區域或組織的區域。 |
-| Azure 元件、服務或產品 |Rg (適用於資源群組)、VNet (適用於虛擬網路) |取決於資源提供支援的產品。 |
-| 角色 |db、app、web |取決於虛擬機器的角色。 |
+| Environment |dev、stg、prod |根據 hello 用途和每個環境的名稱。 |
+| 位置 |usw (West US)、use (East US 2) |根據 hello hello 資料中心或 hello hello 組織區域的區域。 |
+| Azure 元件、服務或產品 |Rg (適用於資源群組)、VNet (適用於虛擬網路) |根據資源會提供哪些 hello 產品支援。 |
+| 角色 |db、app、web |根據 hello hello 虛擬機器角色。 |
 | 執行個體 |01、02 和 03 等 |適用於有一個以上執行個體的資源。 例如，雲端服務中負載平衡的 Web 伺服器。 |
 
-建立命名慣例時，請確定它們會清楚描述要針對每個資源類型使用哪些詞綴，以及使用的位置 (前置或後置)。
+在建立您的命名慣例，請確定，它們清楚的 affixes toouse 每種類型的資源，並在哪個位置 （前置詞與尾碼）。
 
 ## <a name="dates"></a>日期
-從資源名稱來判斷建立日期通常非常重要。 我們建議使用 YYYYMMDD 日期格式。 此格式可確保不僅會記錄完整的日期，而且這兩個名稱只有日期不同的資源會以依字母順序和依時間先後順序的方式來排序。
+它通常是從 hello 名稱建立一個資源重要 toodetermine hello 日期。 我們建議 hello YYYYMMDD 日期格式。 此格式可確保不只是 hello 完整記錄日期，但是該兩個名稱只有在 hello 日期不同的資源也會先依字母順序、 依時間先後順序排序。
 
 ## <a name="naming-resources"></a>命名資源
-在命名慣例中定義每個資源類型，慣例中應包含規則來定義為每個所建立資源指派名稱的方式。 這些規則應套用到所有資源類型，例如：
+每種類型的資源定義中 hello 命名慣例，其中應該有定義如何 tooassign 名稱 tooeach 資源的規則建立。 這些規則應該套用 tooall 類型的資源，例如：
 
 * 訂用帳戶
 * 帳戶
@@ -87,17 +87,17 @@ ms.lasthandoff: 07/11/2017
 * 網路安全性群組
 * 角色
 
-若要確保名稱可提供足夠的資訊來判斷其指稱的是哪一個資源，您應使用描述性名稱。
+hello 名稱的 tooensure 提供它所參考的足夠資訊 toodetermine toowhich 資源，您應該使用描述性的名稱。
 
 ## <a name="computer-names"></a>電腦名稱
-當您建立虛擬機器 (VM) 時，Azure 會要求一個由最多 64 個字元組成的 VM 名稱，這會用來做為資源名稱。 Azure 會針對安裝在 VM 中的作業系統使用相同的名稱。 但是，這些名稱不一定相同。
+當您建立虛擬機器 (VM) 時，Azure 需要有 VM 名稱的總 too64 字元用於 hello 資源名稱。 Azure 會使用 hello hello 安裝的作業系統 hello VM 在相同的名稱。 不過，這些名稱可能不一定是 hello 相同。
 
-若 VM 是從已經包含作業系統的 .vhd 映像檔所建立，Azure 中的 VM 名稱可能會與 VM 的作業系統電腦名稱不同。 這種情況可能會增加 VM 管理的困難度，因此我們不建議使用。 將 Azure VM 資源的名稱指派為該 VM 作業系統上所指派的相同電腦名稱。
+如果 VM 從已包含作業系統的.vhd 映像檔建立的在 Azure 中的 hello VM 名稱可能不同於 hello VM 的作業系統的電腦名稱。 這種情況下可以加入某種程度的困難 tooVM 管理，因此不建議。 指派 hello Azure VM 資源 hello 相同的名稱，做為您指派該 VM toohello 作業系統 hello 電腦名稱。
 
-我們建議讓 Azure VM 名稱與基礎作業系統電腦名稱相同。
+我們建議 hello Azure VM 名稱是 hello 與 hello 基礎作業系統的電腦名稱相同。
 
 ## <a name="storage-account-names"></a>儲存體帳戶名稱
-本節不適用 [Azure 受控磁碟](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，因為您不會建立個別的儲存體帳戶。 對於非受控磁碟，儲存體帳戶具備負責管理其名稱的特殊規則。 您只能使用小寫字母和數字。 如需詳細資訊，請參閱[建立儲存體帳戶](../../storage/storage-create-storage-account.md#create-a-storage-account)。 此外，儲存體帳戶名稱 (含 core.windows.net) 應是全域有效的唯一 DNS 名稱。 例如，如果儲存體帳戶名稱為 mystorageaccount，則以下產生的 DNS 名稱應該是唯一的：
+本節不適太[Azure 受管理磁碟](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，因為您不會建立個別的儲存體帳戶。 對於非受控磁碟，儲存體帳戶具備負責管理其名稱的特殊規則。 您只能使用小寫字母和數字。 如需詳細資訊，請參閱[建立儲存體帳戶](../../storage/storage-create-storage-account.md#create-a-storage-account)。 此外，hello 儲存體帳戶名稱，與 core.windows.net，應該是全域有效且唯一的 DNS 名稱。 比方說，如果 hello 儲存體帳戶呼叫 mystorageaccount，hello 下列產生的 DNS 名稱應該是唯一：
 
 * mystorageaccount.blob.core.windows.net
 * mystorageaccount.table.core.windows.net

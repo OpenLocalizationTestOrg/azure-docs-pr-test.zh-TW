@@ -1,6 +1,6 @@
 ---
-title: "使用 REST 管理媒體服務實體 | Microsoft Docs"
-description: "深入了解如何使用 REST API 管理媒體服務實體。"
+title: "aaaManaging 媒體服務實體與 REST |Microsoft 文件"
+description: "了解如何 toomanage 媒體服務 REST API 的實體。"
 author: juliako
 manager: cfowler
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: a336907b605da962f835b8057ac6071f480cd85e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: bcdc5288e422ebc4e6f682a97da4e925ce237a79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-media-services-entities-with-rest"></a>使用 REST 管理媒體服務實體 
 > [!div class="op_single_selector"]
@@ -27,28 +27,28 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 上。 您可以使用與任何其他 OData 服務上的相同方式，新增、查詢、更新和刪除實體。 在適用時會呼叫例外狀況。 如需 OData 的詳細資訊，請參閱 [開放式資料通訊協定文件](http://www.odata.org/documentation/)。
+Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 上。 您可以新增、 查詢、 更新和刪除實體 hello 相同方式與您可以在任何其他 OData 服務。 在適用時會呼叫例外狀況。 如需 OData 的詳細資訊，請參閱 [開放式資料通訊協定文件](http://www.odata.org/documentation/)。
 
-本主題說明如何使用 REST 管理 Azure 媒體服務實體。
+本主題說明如何與其他 toomanage Azure 媒體服務實體。
 
 >[!NOTE]
-> 從 2017 年 4 月 1 日起，您的帳戶中任何超過 90 天的作業記錄以及其相關工作記錄都會自動刪除，即使記錄總數低於配額上限亦然。 例如，在 2017 年 4 月 1 日，您帳戶中任何在 2016 年 12 月 31 日以前的作業記錄將會自動刪除。 如果您需要封存作業/工作資訊，您可以使用本主題中所述的程式碼。
+> 啟動年 4 月 1，2017，超過 90 天您帳戶中的任何工作記錄將會自動刪除，以及其相關聯的工作記錄，即使 hello 的總記錄數低於 hello 配額上限。 例如，在 2017 年 4 月 1 日，您帳戶中任何在 2016 年 12 月 31 日以前的作業記錄將會自動刪除。 如果您需要 tooarchive hello 作業/工作資訊時，您可以使用本主題中所述的 hello 程式碼。
 
 ## <a name="considerations"></a>考量  
 
 在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 
-## <a name="connect-to-media-services"></a>連線到媒體服務
+## <a name="connect-toomedia-services"></a>TooMedia 服務連接
 
-如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。 
+如需有關如何 tooconnect toohello AMS API，請參閱詳細[存取 hello Azure 媒體服務 API 與 Azure AD 驗證](media-services-use-aad-auth-to-access-ams-api.md)。 
 
 >[!NOTE]
->順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。
+>已成功連接之後 toohttps://media.windows.net，您會收到指定另一個媒體服務 URI 的 301 重新導向。 您必須進行的後續呼叫 toohello 新的 URI。
 
 ## <a name="adding-entities"></a>加入實體
-媒體服務中的每個實體會透過 POST HTTP 要求加入至實體集 (例如資產)。
+在 Media Services 中的每個實體會加入 tooan 實體集的資產，例如透過 POST HTTP 要求。
 
-下列範例示範如何建立 AccessPolicy。
+下列範例會示範如何 hello toocreate AccessPolicy。
 
     POST https://media.windows.net/API/AccessPolicies HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -65,7 +65,7 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
 
 ## <a name="querying-entities"></a>查詢實體
 查詢及列出實體很簡單，只牽涉到 GET HTTP 要求與選用 OData 作業。
-下列範例會擷取所有 MediaProcessor 實體的清單。
+hello 下列範例會擷取所有 MediaProcessor 實體的清單。
 
     GET https://media.windows.net/API/MediaProcessors HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -76,7 +76,7 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1337078831&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=suFkxhvPWxQVMjOYelOJfYEWkyTWJCBc02pF0N7NghI%3d
     Host: media.windows.net
 
-您也可以擷取特定實體或與特定實體相關聯的所有實體集，如下列範例所示：
+您也可以擷取特定的實體或相關聯的特定實體，例如 hello 遵循範例中的所有實體集：
 
     GET https://media.windows.net/API/JobTemplates('nb:jtid:UUID:e81192f5-576f-b247-b781-70a790c20e7c') HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -96,7 +96,7 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1336907474&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=OpuY0CeTylqFFcFaP4pKUVGesT4PGx4CP55zDf2zXnc%3d
     Host: media.windows.net
 
-下列範例僅會傳回所有工作的狀態屬性。
+hello 下列範例會傳回只 hello 狀態屬性的所有工作。
 
     GET https://media.windows.net/API/Jobs?$select=State HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -107,7 +107,7 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1337078831&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=suFkxhvPWxQVMjOYelOJfYEWkyTWJCBc02pF0N7NghI%3d
     Host: media.windows.net
 
-以下範例會傳回名為 "SampleTemplate" 的所有 JobTemplates。
+hello 下列範例會傳回所有 Jobtemplate hello 名為 「 SampleTemplate。 」
 
     GET https://media.windows.net/API/JobTemplates?$filter=startswith(Name,%20'SampleTemplate') HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -119,14 +119,14 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
     Host: media.windows.net
 
 > [!NOTE]
-> 媒體服務中不支援 $Expand 作業，以及 LINQ 考量 (WCF 資料服務) 中所述之不支援的 LINQ 方法。
+> hello $expand 作業中不支援媒體服務以及 hello 不支援的 LINQ 的考量 (WCF Data Services) 中所述的 LINQ 方法。
 > 
 > 
 
 ## <a name="enumerating-through-large-collections-of-entities"></a>透過實體的大型集合列舉
-查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。 使用 **skip** 和 **top** 來透過實體的大型集合列舉。 
+當查詢實體，就會限制為 1000年因為公用 REST v2 限制查詢結果 too1000 結果一次傳回的實體。 使用**略過**和**頂端**tooenumerate 透過 hello 大量實體的集合。 
 
-以下範例說明如何使用 **skip** 和 **top** 來略過最前面 2000 項作業並取得接下來的 1000 項作業。  
+下列範例會示範如何 hello toouse**略過**和**頂端**tooskip hello 2000 第一次作業和 get hello 接下來 1000 個工作。  
 
     GET https://media.windows.net/api/Jobs()?$skip=2000&$top=1000 HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -138,9 +138,9 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
     Host: media.windows.net
 
 ## <a name="updating-entities"></a>更新實體
-根據實體類型及其所處狀態，您可以透過 PATCH、PUT 或 MERGE HTTP 要求，更新該實體的屬性。 如需這些作業的詳細資訊，請參閱 [PATCH/PUT/MERGE](https://msdn.microsoft.com/library/dd541276.aspx)。
+根據 hello 實體類型和 hello 狀態中，您可以更新屬性對該實體修補程式時，透過 PUT 或 MERGE HTTP 要求。 如需這些作業的詳細資訊，請參閱 [PATCH/PUT/MERGE](https://msdn.microsoft.com/library/dd541276.aspx)。
 
-下列程式碼範例示範如何更新資產實體上的 [名稱] 屬性。
+hello，下列程式碼範例示範如何 tooupdate hello Asset 實體上的 [名稱] 屬性。
 
     MERGE https://media.windows.net/API/Assets('nb:cid:UUID:80782407-3f87-4e60-a43e-5e4454232f60') HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -156,9 +156,9 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
     {"Name" : "NewName" }
 
 ## <a name="deleting-entities"></a>刪除實體
-可以使用 DELETE HTTP 要求，在媒體服務中刪除實體。 根據實體，您刪除實體的順序可能很重要。 例如，資產等實體需要您撤銷 (或刪除) 參考該特定資產的所有定位器，然後再刪除資產。
+可以使用 DELETE HTTP 要求，在媒體服務中刪除實體。 根據 hello 實體，您可以在其中刪除實體的 hello 順序可能很重要。 例如，Asset 等實體，需要您撤銷 （或刪除） 然後再刪除 hello 資產參考該特定 Asset 的所有定位器。
 
-下列範例示範如何刪除用於將檔案上傳至 Blob 儲存體的定位器。
+下列範例會示範如何 hello toodelete 已使用的 tooupload 檔案到 blob 儲存體的定位器。
 
     DELETE https://media.windows.net/API/Locators('nb:lid:UUID:76dcc8e8-4230-463d-97b0-ce25c41b5c8d') HTTP/1.1
     Content-Type: application/json;odata=verbose

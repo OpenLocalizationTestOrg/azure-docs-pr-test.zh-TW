@@ -1,5 +1,5 @@
 ---
-title: "最佳化 SQL 資料倉儲的交易 | Microsoft Docs"
+title: "SQL 資料倉儲的 aaaOptimizing 交易 |Microsoft 文件"
 description: "在 Azure SQL 資料倉儲中撰寫有效率交易更新的最佳作法指引"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,36 +15,36 @@ ms.workload: data-services
 ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: f9f19d75a37351b3562ce8c2f3629df14c5437c6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1a821161711db9460b7e10d3cf7ba498d711448b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="optimizing-transactions-for-sql-data-warehouse"></a>最佳化 SQL 資料倉儲的交易
-本文說明如何將您的交易程式碼效能最佳化，同時將長時間回復的風險降至最低。
+本文說明如何 toooptimize hello 的交易式的程式碼的效能，同時長回復的風險降到最低。
 
 ## <a name="transactions-and-logging"></a>交易和記錄
-交易是關聯式資料庫引擎的重要元件。 SQL 資料倉儲會在資料修改期間使用交易。 這些交易可以是明確或隱含的。 單一 `INSERT`、`UPDATE` 和 `DELETE` 陳述式都是隱含交易的範例。 明確交易由使用 `BEGIN TRAN`、`COMMIT TRAN` 或 `ROLLBACK TRAN` 的開發人員明確撰寫，且通常用於多個修改陳述式必須一起連結為單一不可部分完成單位的時候。 
+交易是關聯式資料庫引擎的重要元件。 SQL 資料倉儲會在資料修改期間使用交易。 這些交易可以是明確或隱含的。 單一 `INSERT`、`UPDATE` 和 `DELETE` 陳述式都是隱含交易的範例。 外顯交易由開發人員使用明確撰寫`BEGIN TRAN`，`COMMIT TRAN`或`ROLLBACK TRAN`和通常用在多個修改陳述式需要 toobe 中單一不可部分完成單位連結在一起。 
 
-Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。 每個散發套件都有自己的交易記錄檔。 交易記錄檔寫入是自動的。 不需要任何組態。 不過，儘管這個程序可保證寫入，但是它會在系統中引進額外負荷。 您可以藉由撰寫交易式的有效程式碼，將影響降到最低。 交易式的有效程式碼大致分為兩個類別。
+Azure SQL 資料倉儲認可使用交易記錄的變更 toohello 資料庫。 每個散發套件都有自己的交易記錄檔。 交易記錄檔寫入是自動的。 不需要任何組態。 不過，儘管這個程序可確保 hello 寫入它會導致額外負荷 hello 系統中。 您可以藉由撰寫交易式的有效程式碼，將影響降到最低。 交易式的有效程式碼大致分為兩個類別。
 
 * 盡可能使用最低限度的記錄建構
-* 使用已設定範圍的批次處理資料，以避免單數的長時間執行交易
-* 採用分割切換模式進行指定分割的大規模修改
+* 使用已設定領域的批次 tooavoid 單數長時間執行交易處理資料
+* 採用的資料分割切換的大型修改 tooa 給定資料分割模式
 
 ## <a name="minimal-vs-full-logging"></a>最低限度 vs. 完整記錄
-完整記錄作業使用交易記錄檔追蹤每個資料列的變更，最低限度記錄作業不一樣，它只會追蹤程度配置與中繼資料變更。 因此，最低限度記錄只會記錄在失敗事件或明確要求 (`ROLLBACK TRAN`) 中回復交易所需的資訊。 因為在交易記錄檔中追蹤較少的資訊，最低限度記錄作業的執行效果優於大小類似的完整記錄作業。 此外，因為交易記錄檔中較少寫入，所以產生更少量的記錄檔資料，因此有更多有效的 I/O。
+與完整記錄作業，使用 hello 交易記錄檔 tookeep 追蹤的每個資料列變更，不同的是最低限度記錄的作業追蹤的範圍配置與僅限中繼資料變更。 因此，最低限度記錄包含僅記錄 hello 資訊是 hello 事件中發生失敗或明確要求的必要的 toorollback hello 交易 (`ROLLBACK TRAN`)。 因為較 hello 交易記錄中追蹤資訊，最低限度記錄的作業執行效能高於大小類似的完整記錄作業。 此外，因為較少寫入 hello 交易記錄檔，就會產生較少的記錄資料，因此多個 I/O 有效率。
 
-交易安全限制僅適用於完整記錄的作業。
+hello 交易安全限制僅適用於 toofully 記錄作業。
 
 > [!NOTE]
-> 最低限度記錄作業可以加入明確交易。 配置結構中的所有變更都會受到追蹤，就可以回復最低限度記錄作業。 請務必了解變更為「最低限度」記錄，而不是未記錄。
+> 最低限度記錄作業可以加入明確交易。 追蹤配置結構中的所有變更，則它是可能 tooroll 後使用最低限度記錄的作業。 很重要的 hello 變更 「 最低限度"toounderstand 記錄它不是未記錄。
 > 
 > 
 
 ## <a name="minimally-logged-operations"></a>最低限度記錄作業
-下列作業也能以最低限度記錄︰
+hello 下列作業都能使用最低限度記錄：
 
 * CREATE TABLE AS SELECT ([CTAS][CTAS])
 * INSERT..SELECT
@@ -62,12 +62,12 @@ Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。 每個
 -->
 
 > [!NOTE]
-> 內部資料移動作業 (例如 `BROADCAST` 和 `SHUFFLE`) 不受交易安全限制影響。
+> 內部資料移動作業 (例如`BROADCAST`和`SHUFFLE`) 不會受到 hello 交易安全性限制。
 > 
 > 
 
 ## <a name="minimal-logging-with-bulk-load"></a>大量載入的最低限度記錄
-`CTAS` 和 `INSERT...SELECT` 都是大量載入作業。 不過，兩者都會受到目標資料表定義的影響，取決於載入案例。 以下是說明大量作業是否為完全或最低限度記錄的資料表︰  
+`CTAS` 和 `INSERT...SELECT` 都是大量載入作業。 不過，會同時受到 hello 目標資料表定義與 hello 負載案例而定。 以下是說明大量作業是否為完全或最低限度記錄的資料表︰  
 
 | 主要索引 | 載入案例 | 記錄模式 |
 | --- | --- | --- |
@@ -78,22 +78,22 @@ Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。 每個
 | 叢集資料行存放區索引 |每個與分割對齊的散發套件之批次大小 >= 102,400 |**最低限度** |
 | 叢集資料行存放區索引 |批次大小 < 每個與分割對齊的散發套件 102,400 |完整 |
 
-值得注意的是任何更新次要或非叢集索引的寫入一定是完整記錄作業。
+值得注意的是任何寫入 tooupdate 次要或非叢集索引一律會完整記錄作業。
 
 > [!IMPORTANT]
-> SQL 資料倉儲有 60 個散發套件。 因此，假設所有資料列平均散發，並位於單一分割中，您的批次必須包含 6,144,000 個資料列或更大刑，才能在寫入叢集資料行存放區索引時進行最低限度記錄。 如果資料表已分割，且插入的資料列跨越分割界限，每個假設平均資料散發的分割界限將需要 6,144,000 個資料列。 每個散發套件中的每個分割必須獨立超過 102,400 的資料列臨界值，才能讓插入以最低限度記錄在散發套件中。
+> SQL 資料倉儲有 60 個散發套件。 因此，假設所有資料列平均分配，登陸在單一磁碟分割，您的批次必須 toocontain 6,144,000 資料列或更大的 toobe 最低限度記錄的寫入 tooa 叢集資料行存放區索引時。 Hello 資料表已分割，而且正在插入資料列的 hello 跨越資料分割界限，如果您將需要每個資料分割界限假設平均資料散發 6,144,000 資料列。 每個發佈中的每個資料分割必須獨立超過 hello 102,400 資料列臨界值 hello 插入 toobe hello 發佈到使用最低限度記錄。
 > 
 > 
 
-利用叢集索引將資料載入非空白資料表中，通常會混合包含完整記錄和最低限度記錄資料列。 叢集索引是頁面的平衡樹狀結構 (b 型樹狀目錄)。 如果寫入的頁面中已包含另一個交易的資料列，則這些寫入將會完整記錄。 不過，如果頁面是空的，則該頁面的寫入將會以最低限度記錄。
+利用叢集索引將資料載入非空白資料表中，通常會混合包含完整記錄和最低限度記錄資料列。 叢集索引是頁面的平衡樹狀結構 (b 型樹狀目錄)。 如果 hello 頁面寫入 tooalready 包含另一個交易的資料列，然後這些寫入將會完整記錄。 不過，如果是空的 hello 頁面然後 hello 寫入 toothat 頁面將會進行最低限度記錄。
 
 ## <a name="optimizing-deletes"></a>最佳化刪除
-`DELETE` 是完整記錄的作業。  如果您需要刪除資料表或分割中的大量資料，比較理想的做法通常是 `SELECT` 您想要保留的資料，這可以最低限度記錄作業來執行。  若要達成此目的，請使用 [CTAS][CTAS] 建立新的資料表。  建立之後，請使用 [RENAME][RENAME] 來交換您的舊資料表與新建立的資料表。
+`DELETE` 是完整記錄的作業。  如果您需要 toodelete 大量資料表或資料分割中的資料時，通常會比較合理太`SELECT`hello 資料想 tookeep，可以執行以最低限度記錄作業。  tooaccomplish，建立新的資料表與[CTAS][CTAS]。  建立之後，使用[重新命名][ RENAME] tooswap 移出您舊的資料表與 hello 新建立的資料表。
 
 ```sql
 -- Delete all sales transactions for Promotions except PromotionKey 2.
 
---Step 01. Create a new table select only the records we want to kep (PromotionKey 2)
+--Step 01. Create a new table select only hello records we want tookep (PromotionKey 2)
 CREATE TABLE [dbo].[FactInternetSales_d]
 WITH
 (    CLUSTERED COLUMNSTORE INDEX
@@ -113,20 +113,20 @@ WHERE    [PromotionKey] = 2
 OPTION (LABEL = 'CTAS : Delete')
 ;
 
---Step 02. Rename the Tables to replace the 
-RENAME OBJECT [dbo].[FactInternetSales]   TO [FactInternetSales_old];
-RENAME OBJECT [dbo].[FactInternetSales_d] TO [FactInternetSales];
+--Step 02. Rename hello Tables tooreplace hello 
+RENAME OBJECT [dbo].[FactInternetSales]   too[FactInternetSales_old];
+RENAME OBJECT [dbo].[FactInternetSales_d] too[FactInternetSales];
 ```
 
 ## <a name="optimizing-updates"></a>最佳化更新
-`UPDATE` 是完整記錄的作業。  如果您需要更新資料表或分割中的大量資料列，通常更有效率的方法是使用最低限度記錄作業 (例如 [CTAS][CTAS]) 來達成此目的。
+`UPDATE` 是完整記錄的作業。  如果您需要 tooupdate 大量的資料表中的資料列或資料分割通常很效率 toouse 最低限度記錄的作業，例如[CTAS] [ CTAS] toodo 如此。
 
-在下列範例中，完整的資料表更新已轉換成 `CTAS` ，以便進行最低限度記錄。
+在 hello 下例完整資料表更新已經過轉換的 tooa `CTAS` ，方便您最低限度記錄。
 
-在此情況下，我們反而要將折扣金額新增到資料表中的銷售額︰
+在此情況下我們 retrospectively 新增折扣量 toohello 銷售 hello 資料表中：
 
 ```sql
---Step 01. Create a new table containing the "Update". 
+--Step 01. Create a new table containing hello "Update". 
 CREATE TABLE [dbo].[FactInternetSales_u]
 WITH
 (    CLUSTERED INDEX
@@ -171,31 +171,31 @@ FROM    [dbo].[FactInternetSales]
 OPTION (LABEL = 'CTAS : Update')
 ;
 
---Step 02. Rename the tables
-RENAME OBJECT [dbo].[FactInternetSales]   TO [FactInternetSales_old];
-RENAME OBJECT [dbo].[FactInternetSales_u] TO [FactInternetSales];
+--Step 02. Rename hello tables
+RENAME OBJECT [dbo].[FactInternetSales]   too[FactInternetSales_old];
+RENAME OBJECT [dbo].[FactInternetSales_u] too[FactInternetSales];
 
---Step 03. Drop the old table
+--Step 03. Drop hello old table
 DROP TABLE [dbo].[FactInternetSales_old]
 ```
 
 > [!NOTE]
-> 使用 SQL 資料倉儲工作負載管理功能有助於重新建立大型資料表。 如需詳細資料，請參閱[並行][concurrency]一文中的工作負載管理一節。
+> 使用 SQL 資料倉儲工作負載管理功能有助於重新建立大型資料表。 如需詳細資訊，請參閱 toohello 工作負載管理 > 一節中 hello[並行][ concurrency]發行項。
 > 
 > 
 
 ## <a name="optimizing-with-partition-switching"></a>利用分割切換進行最佳化
-面臨[資料表分割][table partition]內部的大規模修改時，分割切換模式相當實用。 如果大量修改資料而且跨越多個分割，則只逐一查看分割也可達到相同的結果。
+面臨[資料表分割][table partition]內部的大規模修改時，分割切換模式相當實用。 如果 hello 資料修改會很可觀，而且跨越多個資料分割，然後只需反覆 hello 分割區會達到 hello 相同的結果。
 
-執行分割切換的步驟如下︰
+hello 步驟 tooperform 分割區切換如下所示：
 
 1. 建立空白分割
-2. 執行「更新」做為 CTAS
-3. 將現有資料切換出至外資料表
-4. 切換入新資料
-5. 清除資料
+2. 執行 CTAS hello 'update'
+3. 切換移出 hello 現有資料 toohello 移出資料表
+4. 切換移入 hello 新的資料
+5. Hello 資料進行清除
 
-不過，若要協助識別要切換的分割，我們必須先建置如下的協助程式程序。 
+不過，toohelp 識別 hello 分割 tooswitch 我們首先需要 toobuild 的協助程式程序，例如其中一個 hello 下方。 
 
 ```sql
 CREATE PROCEDURE dbo.partition_data_get
@@ -241,12 +241,12 @@ OPTION (LABEL = 'dbo.partition_data_get : CTAS : #ptn_data')
 GO
 ```
 
-此程序會將程式碼的重複使用最大化，並讓分割切換範例更加精簡。
+此程序最大化程式碼重複使用，並保留 hello 資料分割切換更精簡的範例。
 
-下列程式碼示範上述達到完整分割切換例行工作的五個步驟。
+hello 的下列程式碼會示範 hello 五個步驟上述 tooachieve 完整的資料分割切換的常式。
 
 ```sql
---Create a partitioned aligned empty table to switch out the data 
+--Create a partitioned aligned empty table tooswitch out hello data 
 IF OBJECT_ID('[dbo].[FactInternetSales_out]') IS NOT NULL
 BEGIN
     DROP TABLE [dbo].[FactInternetSales_out]
@@ -268,7 +268,7 @@ WHERE 1=2
 OPTION (LABEL = 'CTAS : Partition Switch IN : UPDATE')
 ;
 
---Create a partitioned aligned table and update the data in the select portion of the CTAS
+--Create a partitioned aligned table and update hello data in hello select portion of hello CTAS
 IF OBJECT_ID('[dbo].[FactInternetSales_in]') IS NOT NULL
 BEGIN
     DROP TABLE [dbo].[FactInternetSales_in]
@@ -315,29 +315,29 @@ WHERE    OrderDateKey BETWEEN 20020101 AND 20021231
 OPTION (LABEL = 'CTAS : Partition Switch IN : UPDATE')
 ;
 
---Use the helper procedure to identify the partitions
---The source table
+--Use hello helper procedure tooidentify hello partitions
+--hello source table
 EXEC dbo.partition_data_get 'dbo','FactInternetSales',20030101
 DECLARE @ptn_nmbr_src INT = (SELECT ptn_nmbr FROM #ptn_data)
 SELECT @ptn_nmbr_src
 
---The "in" table
+--hello "in" table
 EXEC dbo.partition_data_get 'dbo','FactInternetSales_in',20030101
 DECLARE @ptn_nmbr_in INT = (SELECT ptn_nmbr FROM #ptn_data)
 SELECT @ptn_nmbr_in
 
---The "out" table
+--hello "out" table
 EXEC dbo.partition_data_get 'dbo','FactInternetSales_out',20030101
 DECLARE @ptn_nmbr_out INT = (SELECT ptn_nmbr FROM #ptn_data)
 SELECT @ptn_nmbr_out
 
---Switch the partitions over
+--Switch hello partitions over
 DECLARE @SQL NVARCHAR(4000) = '
-ALTER TABLE [dbo].[FactInternetSales]    SWITCH PARTITION '+CAST(@ptn_nmbr_src AS VARCHAR(20))    +' TO [dbo].[FactInternetSales_out] PARTITION '    +CAST(@ptn_nmbr_out AS VARCHAR(20))+';
-ALTER TABLE [dbo].[FactInternetSales_in] SWITCH PARTITION '+CAST(@ptn_nmbr_in AS VARCHAR(20))    +' TO [dbo].[FactInternetSales] PARTITION '        +CAST(@ptn_nmbr_src AS VARCHAR(20))+';'
+ALTER TABLE [dbo].[FactInternetSales]    SWITCH PARTITION '+CAST(@ptn_nmbr_src AS VARCHAR(20))    +' too[dbo].[FactInternetSales_out] PARTITION '    +CAST(@ptn_nmbr_out AS VARCHAR(20))+';
+ALTER TABLE [dbo].[FactInternetSales_in] SWITCH PARTITION '+CAST(@ptn_nmbr_in AS VARCHAR(20))    +' too[dbo].[FactInternetSales] PARTITION '        +CAST(@ptn_nmbr_src AS VARCHAR(20))+';'
 EXEC sp_executesql @SQL
 
---Perform the clean-up
+--Perform hello clean-up
 TRUNCATE TABLE dbo.FactInternetSales_out;
 TRUNCATE TABLE dbo.FactInternetSales_in;
 
@@ -347,9 +347,9 @@ DROP TABLE #ptn_data
 ```
 
 ## <a name="minimize-logging-with-small-batches"></a>小型批次的最低限度記錄
-針對大型資料修改作業，適合將作業分成區塊或批次來指定工作單位的範圍。
+對於大型資料修改作業，可能更有意義 toodivide hello 作業成區塊或批次 tooscope hello 單位的工作。
 
-以下提供實用的範例。 批次大小設為簡單數字來醒目提示此技術。 事實上，批次大小明顯大很多。 
+以下提供實用的範例。 已設定 tooa 一般數字 toohighlight hello 技術 hello 批次大小。 事實上 hello 批次大小會變得很大。 
 
 ```sql
 SET NO_COUNT ON;
@@ -408,20 +408,20 @@ END
 ```
 
 ## <a name="pause-and-scaling-guidance"></a>暫停和調整指引
-Azure SQL 資料倉儲可讓您暫停、繼續及調整需要的資料倉儲。 當您暫停或調整您的 SQL 資料倉儲，請務必了解任何進行中的交易都會立即終止；導致所有開放的交易都會回復。 如果您的工作負載在暫停或調整作業之前發出長時間執行且不完整的資料修改，則這項工作必須復原。 這可能會影響暫停或調整 Azure SQL 資料倉儲資料庫的時間。 
+Azure SQL 資料倉儲可讓您暫停、繼續及調整需要的資料倉儲。 您暫停或調整您的 SQL 資料倉儲時，任何進行中的交易都會立即; 終止的重要 toounderstand造成任何開啟的交易 toobe 回復。 如果您的工作負載已發行的長時間執行和不完整的資料修改先前 toohello 暫停或調整規模作業，則這項工作需要 toobe 復原。 這可能會影響 hello toopause 所花費的時間，或調整 Azure SQL 資料倉儲資料庫。 
 
 > [!IMPORTANT]
 > `UPDATE` 和 `DELETE` 都是完整記錄作業，因此這些復原/重做作業花費的時間可能會比對等的最低限度記錄作業長很多。 
 > 
 > 
 
-最佳案例是在暫停或調整 SQL 資料倉儲之前，讓進行中的資料修改交易完成。 但是，這不一定都可行。 若要降低長時間回復的風險，請考慮下列其中一個選項：
+hello 最佳的案例是 toolet 飛行資料修改交易完成之前 toopausing 或調整 SQL 資料倉儲中。 但是，這不一定都可行。 toomitigate hello 風險長復原，請考慮下列選項的 hello 的其中一個：
 
 * 使用 [CTAS][CTAS] 重新撰寫長時間執行的作業
-* 將作業分成多個區塊；在資料列子集上運作
+* Hello 作業細分成多個區塊。在 hello 資料列的子集上操作
 
 ## <a name="next-steps"></a>後續步驟
-若要進一步了解隔離等級和交易限制，請參閱 [SQL 資料倉儲中的交易][Transactions in SQL Data Warehouse]。  如需其他最佳做法的概觀，請參閱 [SQL 資料倉儲最佳做法][SQL Data Warehouse Best Practices]。
+請參閱[SQL 資料倉儲中的交易][ Transactions in SQL Data Warehouse] toolearn 更多關於隔離等級和交易式的限制。  如需其他最佳做法的概觀，請參閱 [SQL 資料倉儲最佳做法][SQL Data Warehouse Best Practices]。
 
 <!--Image references-->
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure WCF 轉送混合式內部部署/雲端應用程式 (.NET) | Microsoft Docs"
-description: "了解如何建立使用 Azure WCF 轉送的 .NET 內部部署/雲端混合式應用程式。"
+title: "aaaAzure WCF 轉送混合式雲端上的內部部署/應用程式 (.NET) |Microsoft 文件"
+description: "深入了解如何使用 Azure 的 WCF 轉送 toocreate.NET 雲端上的內部部署/混合式應用程式。"
 services: service-bus-relay
 documentationcenter: .net
 author: sethmanheim
@@ -14,78 +14,78 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 06/14/2017
 ms.author: sethm
-ms.openlocfilehash: 366922a083b9d18ef50e04eb8b459d2725315e1e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aab8b1dbdc85c4edf7b0ccef0921b69524b2d306
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="net-on-premisescloud-hybrid-application-using-azure-wcf-relay"></a>使用 Azure WCF 轉送的 .NET 內部部署/雲端混合式應用程式
 ## <a name="introduction"></a>簡介
 
-本文示範如何使用 Microsoft Azure 和 Visual Studio 建置混合式雲端應用程式。 本教學課程假設您先前沒有使用 Azure 的經驗。 不用 30 分鐘，您就會獲得一個使用多個 Azure 資源，於雲端上啟動並執行的應用程式。
+本文將說明如何 toobuild 混合式雲端使用 Microsoft Azure 和 Visual Studio 的應用程式。 hello 教學課程假設您有使用 Azure 沒有先前的經驗。 在 30 分鐘內，您必須使用多個 Azure 資源上的應用程式和 hello 雲端中執行。
 
 您將了解：
 
-* 如何建立 Web 服務或調整現有的 Web 服務，以供 Web 方案使用。
-* 如何使用 Azure WCF 轉送服務，在 Azure 應用程式與在其他位置裝載的 Web 服務之間共用資料。
+* 如何 toocreate 或調整現有的 web 服務取用 web 解決方案。
+* 如何 toouse hello Azure 的 WCF 轉送服務 tooshare 資料之間的 Azure 應用程式和 web 服務裝載其他位置。
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
 ## <a name="how-azure-relay-helps-with-hybrid-solutions"></a>Azure 轉送如何透過混合式解決方案提供協助
 
-商業方案通常由下列項目組成：為了應付全新的獨特商業需求而撰寫的自訂程式碼，以及既有方案和系統提供的現有功能。
+商務解決方案通常被組成的自訂程式碼撰寫新 tootackle 唯一的商務需求和現有方案和已備妥的系統提供的功能組合。
 
-眾多方案架構爭相開始使用雲端，以期能夠更輕鬆地處理擴充需求並降低操作成本。 在這麼做之後，它們發現想要運用做為其方案建置組塊的現有服務資產是在公司防火牆內，無法供雲端方案輕易存取。 許多內部服務並不是以可輕易在公司網路邊緣公開的方式建置或主控。
+解決方案架構設計人員開始 toouse hello 雲端的小數位數的需求和較低的營運成本更容易處理。 在此情況下，而是尋找他們想 tooleverage 為其方案的建置組塊為 hello 公司防火牆內，和從簡單的現有服務資產到達存取 hello 雲端解決方案。 許多內部服務未建立或裝載就可以輕鬆地公開在 hello 公司網路邊緣的方式。
 
-[Azure 轉送](https://azure.microsoft.com/services/service-bus/)是針對採取現有 Windows Communication Foundation (WCF) Web 服務，並使那些服務可供公司周邊外之解決方案安全存取的使用案例而設計，不需要進行會干擾公司網路基礎結構的變更。 此類轉送服務仍然裝載在其現有環境，但它們會將接聽連入工作階段和要求的工作委派給雲端裝載的轉送服務。 Azure 轉送也可使用[共用存取簽章 (SAS)](../service-bus-messaging/service-bus-sas.md) 驗證，保護那些服務免受未經授權的存取。
+[Azure 轉送](https://azure.microsoft.com/services/service-bus/)適合 hello 採取之現有的 Windows Communication Foundation (WCF) web 服務的使用案例，並讓這些服務，而不需要位於 hello 公司外安全地存取 toosolutions具侵入性變更 toohello 公司網路基礎結構。 這類的轉送服務仍會裝載於其現有的環境，但它們委派接聽內送工作階段與要求 toohello 雲端裝載的轉送服務。 Azure 轉送也可使用[共用存取簽章 (SAS)](../service-bus-messaging/service-bus-sas.md) 驗證，保護那些服務免受未經授權的存取。
 
 ## <a name="solution-scenario"></a>解決方案案例
-在本教學課程中，您將建立 ASP.NET 網站，讓您可在產品庫存頁面上看到產品清單。
+在本教學課程中，您將建立 ASP.NET 網站，可讓您 toosee hello 產品詳細目錄 頁面上的產品清單。
 
 ![][0]
 
-此教學課程假設您有現有內部部署系統中的產品資訊，並使用 Azure 轉送來連接該系統。 這項模擬是由簡單主控台應用程式中執行的 Web 服務來進行，並由記憶體內的產品集支援。 您將能夠在自己的電腦上執行這個主控台應用程式，並將 Web 角色部署至 Azure。 在這麼做之後，您將看到在 Azure 資料中心執行的 Web 角色將確實呼叫至電腦，即使電腦幾乎確定會位於至少一個防火牆和網路位址轉譯 (NAT) 層後面也一樣。
+hello 教學課程假設您有現有的內部部署系統中的產品資訊，以及該系統會使用 Azure 轉送 tooreach。 這項模擬是由簡單主控台應用程式中執行的 Web 服務來進行，並由記憶體內的產品集支援。 將您自己電腦上會無法 toorun 此主控台應用程式，並部署至 Azure 的 hello web 角色。 如此一來，您會看到如何 hello hello Azure 資料中心中執行的 web 角色會確實呼叫您的電腦，即使您的電腦將會幾乎都位於後面至少一個防火牆和網路位址轉譯 (NAT) 層級。
 
-## <a name="set-up-the-development-environment"></a>設定開發環境
+## <a name="set-up-hello-development-environment"></a>設定 hello 開發環境
 
-開始開發 Azure 應用程式之前，請先下載工具並設定開發環境：
+您可以開始開發 Azure 應用程式之前，下載 hello 工具，並設定您的開發環境：
 
-1. 從 SDK [下載頁面](https://azure.microsoft.com/downloads/)安裝 Azure SDK for .NET。
-2. 在 **.NET** 資料行中，按一下您所使用的 [Visual Studio](http://www.visualstudio.com) 版本。 本教學課程中的步驟使用 Visual Studio 2015，但也可使用 Visual Studio 2017。
-3. 當系統提示您執行或儲存安裝程式時，按一下 [執行]。
-4. 在 **Web Platform Installer** 中，按一下 [安裝] 並繼續進行安裝。
-5. 完成安裝後，您將具有開始進行開發所需的一切。 SDK 包含可讓您在 Visual Studio 輕易開發 Azure 應用程式的工具。
+1. 安裝 hello Azure SDK for.NET，從 hello SDK[下載頁面](https://azure.microsoft.com/downloads/)。
+2. 在 hello **.NET**資料行中，按一下 hello 版本[Visual Studio](http://www.visualstudio.com)您使用。 hello 步驟在此教學課程使用 Visual Studio 2015，但也可使用 Visual Studio 2017。
+3. 當系統提示 toorun 或儲存 hello 安裝程式時，按一下**執行**。
+4. 在 hello **Web Platform Installer**，按一下 **安裝**並繼續進行 hello 安裝。
+5. Hello 安裝完成之後，您將會擁有一切所需的 toostart toodevelop hello 應用程式。 hello SDK 包含工具，讓您輕鬆地開發 Visual Studio 中的 Azure 應用程式。
 
 ## <a name="create-a-namespace"></a>建立命名空間
 
-若要開始在 Azure 中使用轉送功能，首先必須建立服務命名空間。 命名空間提供範圍容器，可在應用程式內進行 Azure 資源定址。 請依照[此處的指示](relay-create-namespace-portal.md)來建立轉送命名空間。
+使用 toobegin hello 轉送功能，在 Azure 中的，您必須先建立服務命名空間。 命名空間提供範圍容器，可在應用程式內進行 Azure 資源定址。 請遵循 hello[這裡的指示](relay-create-namespace-portal.md)toocreate 轉送命名空間。
 
 ## <a name="create-an-on-premises-server"></a>建立內部部署伺服器
 
-首先，您將建置 (模擬) 內部部署產品目錄系統。 此作業相當簡單；您可將它看成是呈現實際內部部署產品目錄系統，此系統具有我們正在嘗試整合的完整服務面。
+首先，您將建置 (模擬) 內部部署產品目錄系統。 將會相當簡單。您可以查看這表示我們想 toointegrate 完整服務介面與實際的內部部署產品目錄系統。
 
-此專案是 Visual Studio 主控台應用程式，會使用 [Azure 服務匯流排 NuGet 套件](https://www.nuget.org/packages/WindowsAzure.ServiceBus/)來納入服務匯流排程式庫和組態設定。
+這個專案是 Visual Studio 主控台應用程式，並使用 hello [Azure 服務匯流排 NuGet 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus/)tooinclude hello 服務匯流排程式庫和組態設定。
 
-### <a name="create-the-project"></a>建立專案
+### <a name="create-hello-project"></a>建立 hello 專案
 
-1. 使用系統管理員權限，啟動 Microsoft Visual Studio。 若要這樣做，請以滑鼠右鍵按一下 Visual Studio 程式圖示，然後按一下 [以系統管理員身分執行]。
-2. 在 Visual Studio 的 [檔案] 功能表，按一下 [新增]，然後按一下 [專案]。
-3. 從 [已安裝的範本] 的 [Visual C#] 下，按一下 [主控台應用程式 (.NET Framework]。 在 [名稱] 方塊中，鍵入名稱 **ProductsServer**：
+1. 使用系統管理員權限，啟動 Microsoft Visual Studio。 toodo，hello Visual Studio 程式圖示，以滑鼠右鍵按一下，然後按一下**系統管理員身分執行**。
+2. 在 Visual Studio 中的 hello**檔案**功能表上，按一下 **新增**，然後按一下**專案**。
+3. 從 [已安裝的範本] 的 [Visual C#] 下，按一下 [主控台應用程式 (.NET Framework]。 在 [hello**名稱**] 方塊中，輸入 hello 名稱**ProductsServer**:
 
    ![][11]
-4. 按一下 [確定] 以建立 **ProductsServer** 專案。
-5. 如果已安裝 Visual Studio 的 NuGet 套件管理員，請跳至下一個步驟。 否則，請造訪 [NuGet][NuGet]，然後按一下[安裝 NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)。 按照提示安裝 NuGet 套件管理員，然後重新啟動 Visual Studio。
-6. 在 [方案總管] 中，以滑鼠右鍵按一下 **ProductsServer** 專案，然後按一下 [管理 NuGet 套件]。
-7. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。 選取 [WindowsAzure.ServiceBus] 套件。
-8. 按一下 [安裝] 並接受使用條款。
+4. 按一下**確定**toocreate hello **ProductsServer**專案。
+5. 如果您已安裝 Visual Studio 的 hello NuGet 封裝管理員，請略過 toohello 下一個步驟。 否則，請造訪 [NuGet][NuGet]，然後按一下[安裝 NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)。 請遵循 hello 提示 tooinstall hello NuGet 封裝管理員，然後重新啟動 Visual Studio。
+6. 在 方案總管 中，以滑鼠右鍵按一下 hello **ProductsServer**專案，然後按一下 **管理 NuGet 封裝**。
+7. 按一下 hello**瀏覽**索引標籤，然後搜尋`Microsoft Azure Service Bus`。 選取 hello **WindowsAzure.ServiceBus**封裝。
+8. 按一下**安裝**，並接受使用規定 hello。
 
    ![][13]
 
-   請注意，現在會參考必要的用戶端組件。
-8. 新增產品連絡人的新類別。 在 [方案總管] 的 **ProductsServer** 專案上按一下滑鼠右鍵、按一下 [新增]，然後按一下 [類別]。
-9. 在 [名稱] 方塊中，鍵入名稱 **ProductsContract.cs**。 然後按一下 [ **新增**]。
-10. 在 **ProductsContract.cs** 中，將命名空間定義取代為下列程式碼，以定義服務的連絡人。
+   請注意該 hello 需要用戶端組件現在會參考。
+8. 新增產品連絡人的新類別。 在 [方案總管] 中，以滑鼠右鍵按一下 hello **ProductsServer**專案，然後按一下**新增**，然後按一下**類別**。
+9. 在 [hello**名稱**] 方塊中，輸入 hello 名稱**ProductsContract.cs**。 然後按一下 [ **新增**]。
+10. 在**ProductsContract.cs**，取代下列程式碼，其定義 hello 服務合約的 hello hello hello 命名空間定義。
 
     ```csharp
     namespace ProductsServer
@@ -94,9 +94,9 @@ ms.lasthandoff: 07/11/2017
         using System.Runtime.Serialization;
         using System.ServiceModel;
 
-        // Define the data contract for the service
+        // Define hello data contract for hello service
         [DataContract]
-        // Declare the serializable properties.
+        // Declare hello serializable properties.
         public class ProductData
         {
             [DataMember]
@@ -107,7 +107,7 @@ ms.lasthandoff: 07/11/2017
             public string Quantity { get; set; }
         }
 
-        // Define the service contract.
+        // Define hello service contract.
         [ServiceContract]
         interface IProducts
         {
@@ -121,7 +121,7 @@ ms.lasthandoff: 07/11/2017
         }
     }
     ```
-11. 在 Program.cs 中，將命名空間定義取代為下列程式碼，為它新增設定檔服務和主機。
+11. 在 Program.cs 中，請使用下列程式碼中，這會將 hello 設定檔服務和它的 hello 主機 hello 取代 hello 命名空間定義。
 
     ```csharp
     namespace ProductsServer
@@ -131,7 +131,7 @@ ms.lasthandoff: 07/11/2017
         using System.Collections.Generic;
         using System.ServiceModel;
 
-        // Implement the IProducts interface.
+        // Implement hello IProducts interface.
         class ProductsService : IProducts
         {
 
@@ -149,8 +149,8 @@ ms.lasthandoff: 07/11/2017
                                          Quantity = "2500"},
                     };
 
-            // Display a message in the service console application
-            // when the list of products is retrieved.
+            // Display a message in hello service console application
+            // when hello list of products is retrieved.
             public IList<ProductData> GetProducts()
             {
                 Console.WriteLine("GetProducts called.");
@@ -161,13 +161,13 @@ ms.lasthandoff: 07/11/2017
 
         class Program
         {
-            // Define the Main() function in the service application.
+            // Define hello Main() function in hello service application.
             static void Main(string[] args)
             {
                 var sh = new ServiceHost(typeof(ProductsService));
                 sh.Open();
 
-                Console.WriteLine("Press ENTER to close");
+                Console.WriteLine("Press ENTER tooclose");
                 Console.ReadLine();
 
                 sh.Close();
@@ -175,7 +175,7 @@ ms.lasthandoff: 07/11/2017
         }
     }
     ```
-12. 在 [方案總管] 中，按兩下 **App.config** 檔案，以在 Visual Studio 編輯器中開啟它。 在 `<system.ServiceModel>` 元素底部 (但仍在 `<system.ServiceModel>` 內)，新增以下 XML 程式碼。 請務必以您的命名空間名稱取代 yourServiceNamespace，並以您先前從入口網站擷取到的 SAS 金鑰取代 yourKey：
+12. 在 方案總管 中，按兩下 hello **App.config**檔案 tooopen hello Visual Studio 編輯器中。 在 hello 底部 hello`<system.ServiceModel>`項目 (但仍在`<system.ServiceModel>`)，加入下列 XML 程式碼的 hello。 要確定 tooreplace *yourServiceNamespace* hello 名稱，為您的命名空間和*yourKey*與 hello hello 入口網站從先前擷取的 SAS 金鑰：
 
     ```xml
     <system.serviceModel>
@@ -198,7 +198,7 @@ ms.lasthandoff: 07/11/2017
       </behaviors>
     </system.serviceModel>
     ```
-13. 仍是在 App.config 中，請以您先前從入口網站取得的連接字串來取代 `<appSettings>` 元素中的連接字串值。
+13. 仍在 App.config 中，在 hello`<appSettings>`項目，取代 hello 連接與您先前取得的 hello 入口網站的 hello 連接字串的字串值。
 
     ```xml
     <appSettings>
@@ -207,40 +207,40 @@ ms.lasthandoff: 07/11/2017
            value="Endpoint=sb://yourNamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yourKey"/>
     </appSettings>
     ```
-14. 按 **Ctrl+Shift+B**，或從 [建置] 功能表中按一下 [建置方案] 來建置應用程式並驗證您的工作到目前為止是否正確無誤。
+14. 按**Ctrl + Shift + B**或從 hello**建置**功能表上，按一下 **建置方案**toobuild hello 應用程式，並確認工作的 hello 準確性為止。
 
 ## <a name="create-an-aspnet-application"></a>建立 ASP.NET 應用程式
 
 在本節中，您將建置簡單的 ASP.NET 應用程式，來顯示從產品服務擷取的資料。
 
-### <a name="create-the-project"></a>建立專案
+### <a name="create-hello-project"></a>建立 hello 專案
 
 1. 確定 Visual Studio 是以系統管理員權限來執行。
-2. 在 Visual Studio 的 [檔案] 功能表，按一下 [新增]，然後按一下 [專案]。
-3. 從 [已安裝的範本] 的 [Visual C#] 下，按一下 [ASP.NET Web 應用程式 (.NET Framework)]。 將專案命名為 **ProductsPortal**。 然後按一下 [確定] 。
+2. 在 Visual Studio 中的 hello**檔案**功能表上，按一下 **新增**，然後按一下**專案**。
+3. 從 [已安裝的範本] 的 [Visual C#] 下，按一下 [ASP.NET Web 應用程式 (.NET Framework)]。 名稱 hello 專案**ProductsPortal**。 然後按一下 [確定] 。
 
    ![][15]
 
-4. 在 [新增 ASP.NET Web 應用程式] 對話方塊的 [ASP.NET 範本] 清單中，按一下 [MVC]。
+4. 從 hello **ASP.NET 範本**列入 hello**新的 ASP.NET Web 應用程式**] 對話方塊中，按一下 [ **MVC**。
 
    ![][16]
 
-6. 按一下 [變更驗證] 按鈕。 在 [變更驗證] 對話方塊中，確定已選取 [不需要驗證]，然後按一下 [確定]。 在本教學課程中，您會部署不需要使用者登入的應用程式。
+6. 按一下 hello**變更驗證** 按鈕。 在 hello**變更驗證**對話方塊方塊中，確定**非驗證**已選取，然後按一下**確定**。 在本教學課程中，您會部署不需要使用者登入的應用程式。
 
     ![][18]
 
-7. 回到 [新增 ASP.NET Web 應用程式] 對話方塊，按一下 [確定] 以建立 MVC 應用程式。
-8. 您現在必須設定新 Web 應用程式的 Azure 資源。 完成[本文的「發佈至 Azure」一節](../app-service-web/app-service-web-get-started-dotnet.md)中的步驟。 然後，回到本教學課程並繼續進行下一個步驟。
-10. 在 [方案總管] 中，於 [模型] 上按一下滑鼠右鍵、按一下 [新增]，再按一下 [類別]。 在 [名稱] 方塊中，鍵入名稱 **Product.cs**。 然後按一下 [ **新增**]。
+7. 在 hello**新的 ASP.NET Web 應用程式** 對話方塊中，按一下 **確定**toocreate hello MVC 應用程式。
+8. 您現在必須設定新 Web 應用程式的 Azure 資源。 Hello 中的 hello 步驟[發行本文 tooAzure 節](../app-service-web/app-service-web-get-started-dotnet.md)。 然後，傳回 toothis 教學課程，並繼續進行 toohello 下一個步驟。
+10. 在 [方案總管] 中，於 [模型] 上按一下滑鼠右鍵、按一下 [新增]，再按一下 [類別]。 在 [hello**名稱**] 方塊中，輸入 hello 名稱**Product.cs**。 然後按一下 [ **新增**]。
 
     ![][17]
 
-### <a name="modify-the-web-application"></a>修改 Web 應用程式
+### <a name="modify-hello-web-application"></a>修改 hello web 應用程式
 
-1. 在 Visual Studio 的 Product.cs 檔案中，將現有的命名空間定義取代為下列程式碼。
+1. 在 Visual Studio 中的 hello Product.cs 檔案，取代 hello 下列程式碼中的 hello 現有命名空間定義。
 
    ```csharp
-    // Declare properties for the products inventory.
+    // Declare properties for hello products inventory.
     namespace ProductsWeb.Models
     {
        public class Product
@@ -251,8 +251,8 @@ ms.lasthandoff: 07/11/2017
        }
     }
     ```
-2. 在 [方案總管] 中展開 **Controllers** 資料夾，然後按兩下 **HomeController.cs** 檔案以在 Visual Studio 中開啟。
-3. 在 **HomeController.cs** 檔案中，以下列程式碼取代現有的命名空間定義。
+2. 在 方案總管 中，展開 hello**控制器**資料夾，然後按兩下 hello **HomeController.cs**檔案 tooopen 在 Visual Studio。
+3. 在**HomeController.cs**，取代下列程式碼的 hello hello 現有命名空間定義。
 
     ```csharp
     namespace ProductsWeb.Controllers
@@ -263,7 +263,7 @@ ms.lasthandoff: 07/11/2017
 
         public class HomeController : Controller
         {
-            // Return a view of the products inventory.
+            // Return a view of hello products inventory.
             public ActionResult Index(string Identifier, string ProductName)
             {
                 var products = new List<Product>
@@ -273,13 +273,13 @@ ms.lasthandoff: 07/11/2017
          }
     }
     ```
-4. 在 [方案總管] 中，展開 Views\Shared 資料夾，然後按兩下 **_Layout.cshtml** 檔案以在 Visual Studio 編輯器中開啟。
-5. 將所有出現的 **My ASP.NET Application** 變更為 **LITWARE's Products**。
-6. 移除 [首頁]、[關於] 和 [連絡人] 連結。 在下列範例中，刪除反白顯示的程式碼。
+4. 在方案總管 中，依序展開 hello Views\Shared 資料夾中按兩下**_Layout.cshtml** tooopen hello Visual Studio 編輯器中。
+5. 將所有**我的 ASP.NET 應用程式**太**LITWARE 的產品**。
+6. 移除 hello**首頁**，**有關**，和**連絡人**連結。 在下列範例的 hello，刪除 hello 反白顯示程式碼。
 
     ![][41]
 
-7. 在 [方案總管] 中，展開 Views\Home 資料夾，然後按兩下 **Index.cshtml** 以在 Visual Studio 編輯器中開啟。 將檔案的整個內容取代為下列程式碼。
+7. 在方案總管 中，依序展開 hello Views\Home 資料夾中按兩下**Index.cshtml** tooopen hello Visual Studio 編輯器中。 取代下列程式碼的 hello hello 整個 hello 檔案的內容。
 
    ```html
    @model IEnumerable<ProductsWeb.Models.Product>
@@ -314,31 +314,31 @@ ms.lasthandoff: 07/11/2017
 
    </table>
    ```
-8. 若要驗證您的工作到目前為止是否正確無誤，您可以按 **Ctrl+Shift+B** 來建置專案。
+8. 工作的 tooverify hello 準確性為止，您可以按**Ctrl + Shift + B** toobuild hello 專案。
 
-### <a name="run-the-app-locally"></a>在本機執行應用程式
+### <a name="run-hello-app-locally"></a>在本機執行 hello 應用程式
 
-執行應用程式以驗證它是否能正常運作。
+執行 hello 應用程式 tooverify 正常運作。
 
-1. 確定 **ProductsPortal** 為作用中專案。 在 [方案總管] 的專案名稱上按一下滑鼠右鍵，然後選取 [設定為啟始專案]。
+1. 請確認**ProductsPortal**是 hello 現用專案。 以滑鼠右鍵按一下方案總管 中的 hello 專案名稱，然後選取**設定為啟始專案**。
 2. 在 Visual Studio 中按 **F5**。
 3. 您的應用程式應該就會出現在瀏覽器中並正在執行。
 
    ![][21]
 
-## <a name="put-the-pieces-together"></a>組合在一起
+## <a name="put-hello-pieces-together"></a>Hello 片段放在一起
 
-下一步是利用 ASP.NET 應用程式連接內部部署產品伺服器。
+hello 下一個步驟是 toohook hello 在內部部署產品的伺服器以 hello ASP.NET 應用程式。
 
-1. 請在 Visual Studio 重新開啟您在[建立 ASP.NET 應用程式](#create-an-aspnet-application)一節中建立的 **ProductsPortal** 專案 (如果尚未開啟)。
-2. 類似於＜建立內部部署伺服器＞一節中的步驟，將 NuGet 套件新增至專案參考。 在 [方案總管] 中，以滑鼠右鍵按一下 **ProductsPortal** 專案，然後按一下 [管理 NuGet 套件]。
-3. 搜尋「服務匯流排」並選取 [WindowsAzure.ServiceBus] 項目。 然後完成安裝並關閉此對話方塊。
-4. 在 [方案總管] 的 **ProductsPortal** 專案上按一下滑鼠右鍵，再按一下 [新增]，然後按一下 [現有項目]。
-5. 從 **ProductsServer** 主控台專案導覽至 **ProductsContract.cs** 檔案。 按一下以反白顯示 ProductsContract.cs。 按一下 [新增] 旁邊的向下箭頭，然後按一下 [新增做為連結]。
+1. 如果它尚未開啟，Visual Studio 中重新開啟 hello **ProductsPortal** hello 中建立的專案[建立 ASP.NET 應用程式](#create-an-aspnet-application)> 一節。
+2. 類似 toohello 步驟在 hello 「 建立為內部伺服器 」 區段中，加入 hello NuGet 封裝 toohello 專案參考。 在 方案總管 中，以滑鼠右鍵按一下 hello **ProductsPortal**專案，然後按一下 **管理 NuGet 封裝**。
+3. 搜尋 「 Service Bus 」 和選取 hello **WindowsAzure.ServiceBus**項目。 然後完成 hello 安裝並關閉此對話方塊。
+4. 在 方案總管 中，以滑鼠右鍵按一下 hello **ProductsPortal**專案，然後按一下 **新增**，然後**現有項目**。
+5. 瀏覽 toohello **ProductsContract.cs**檔案從 hello **ProductsServer**主控台專案。 按一下 toohighlight ProductsContract.cs。 按一下向下箭號 hello 下一步太**新增**，然後按一下 **加入做為連結**。
 
    ![][24]
 
-6. 現在會在 Visual Studio 編輯器中開啟 **HomeController.cs** 檔案，並將命名空間定義取代為下列程式碼。 請務必以服務命名空間名稱取代 *yourServiceNamespace*，並以 SAS 金鑰取代 *yourKey*。 這可讓用戶端呼叫內部部署服務，並傳回呼叫結果。
+6. 現在開啟 hello **HomeController.cs**檔案 hello Visual Studio 編輯器中，然後以下列程式碼的 hello 取代 hello 命名空間定義。 要確定 tooreplace *yourServiceNamespace* hello 名稱，為您的服務命名空間和*yourKey*附有 SAS 金鑰。 這會讓 hello client toocall hello 在內部部署服務，傳回 hello 呼叫 hello 結果。
 
    ```csharp
    namespace ProductsWeb.Controllers
@@ -352,7 +352,7 @@ ms.lasthandoff: 07/11/2017
 
        public class HomeController : Controller
        {
-           // Declare the channel factory.
+           // Declare hello channel factory.
            static ChannelFactory<IProductsChannel> channelFactory;
 
            static HomeController()
@@ -369,7 +369,7 @@ ms.lasthandoff: 07/11/2017
            {
                using (IProductsChannel channel = channelFactory.CreateChannel())
                {
-                   // Return a view of the products inventory.
+                   // Return a view of hello products inventory.
                    return this.View(from prod in channel.GetProducts()
                                     select
                                         new Product { Id = prod.Id, Name = prod.Name,
@@ -379,83 +379,83 @@ ms.lasthandoff: 07/11/2017
        }
    }
    ```
-7. 在 [方案總管] 中，以滑鼠右鍵按一下 **ProductsPortal** 方案 (務必以滑鼠右鍵按一下方案，而非專案)。 按一下 [新增]，然後按一下 [現有專案]。
-8. 導覽至 **ProductsServer** 專案，然後按兩下 **ProductsServer.csproj** 方案檔來新增它。
-9. **ProductsServer** 必須在執行中，才能在 **ProductsPortal** 上顯示資料。 在 [方案總管] 的 **ProductsPortal** 方案上按一下滑鼠右鍵，然後按一下 [屬性]。 [屬性頁面] 對話方塊隨即出現。
-10. 在左側，按一下 [啟始專案]。 在右側，按一下 [多個啟始專案]。 確定 **ProductsServer** 和 **ProductsPortal** 依序出現，且 [啟動] 設為兩者的動作。
+7. 在 [方案總管] 中，以滑鼠右鍵按一下 hello **ProductsPortal**方案 （請確定 tooright 按一下 hello 解決方案，不 hello 專案）。 按一下 [新增]，然後按一下 [現有專案]。
+8. 瀏覽 toohello **ProductsServer**專案，然後按兩下 hello **ProductsServer.csproj**方案檔案 tooadd 它。
+9. **ProductsServer**必須以執行順序 toodisplay hello 資料**ProductsPortal**。 在 [方案總管] 中，以滑鼠右鍵按一下 hello **ProductsPortal**方案，然後按一下**屬性**。 hello**屬性頁**對話方塊隨即出現。
+10. 在 hello 左側，按一下**啟始專案**。 在 hello 右邊，按一下 **多個啟始專案**。 請確認**ProductsServer**和**ProductsPortal**出現，請使用**啟動**設為兩個 hello 動作。
 
       ![][25]
 
-11. 仍是在 [屬性] 對話方塊中，按一下左側的 [專案相依性]。
-12. 在 [專案] 清單中，按一下 **ProductsServer**。 確定未選取 [ProductsPortal]。
-13. 在 [專案] 清單中，按一下 **ProductsPortal**。 確定已選取 [ProductsServer]。
+11. 仍在 hello**屬性**對話方塊中，按一下 **專案相依性**hello 左側上。
+12. 在 hello**專案**清單中，按一下**ProductsServer**。 確定未選取 [ProductsPortal]。
+13. 在 hello**專案**清單中，按一下**ProductsPortal**。 確定已選取 [ProductsServer]。
 
     ![][26]
 
-14. 按一下 [屬性頁面] 對話方塊中的 [確定]。
+14. 按一下**確定**在 hello**屬性頁** 對話方塊。
 
-## <a name="run-the-project-locally"></a>在本機執行專案
+## <a name="run-hello-project-locally"></a>在本機執行 hello 專案
 
-若要在本機測試應用程式，請在 Visual Studio 中按 **F5**。 內部部署伺服器 (**ProductsServer**) 應該會先啟動，然後 **ProductsPortal** 應用程式應在瀏覽器視窗中啟動。 此時，您將看到從產品服務內部部署系統擷取的產品庫存清單資料。
+在本機，tootest hello 應用程式 Visual Studio 中的按**F5**。 hello 在內部部署伺服器 (**ProductsServer**) 應該開始第一次，然後在 hello **ProductsPortal**應用程式應該啟動瀏覽器視窗中。 此時，您會看到該 hello 產品存貨列出從 hello 產品服務在內部部署系統擷取資料。
 
 ![][10]
 
-按 **ProductsPortal** 頁面上的 [重新整理]。 每次重新整理頁面時，您會看到伺服器應用程式在呼叫來自 **ProductsServer** 的 `GetProducts()` 時顯示一則訊息。
+按**重新整理**上 hello **ProductsPortal**頁面。 每次您重新整理 hello 頁面時，您會看到顯示訊息的 hello 伺服器應用程式時`GetProducts()`從**ProductsServer**呼叫。
 
-先關閉這兩個應用程式，才能繼續下一個步驟。
+關閉這兩個應用程式，然後再繼續 toohello 下一個步驟。
 
-## <a name="deploy-the-productsportal-project-to-an-azure-web-app"></a>將 ProductsPortal 專案部署至 Azure Web 應用程式
+## <a name="deploy-hello-productsportal-project-tooan-azure-web-app"></a>部署 hello ProductsPortal 專案 tooan Azure web 應用程式
 
-下一個步驟是重新發佈 Azure Web 應用程式 **ProductsPortal** 前端。 執行下列動作：
+hello 下一個步驟是 toorepublish hello Azure Web 應用程式**ProductsPortal**前端。 請勿 hello 遵循：
 
-1. 在 [方案總管] 中，於 **ProductsPortal** 專案上按一下滑鼠右鍵，然後按一下 [發佈]。 然後，按一下 [發佈] 頁面上的 [發佈]。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 hello **ProductsPortal**專案，然後按一下**發行**。 然後，按一下 **發行**上 hello**發行**頁面。
 
   > [!NOTE]
-  > 在部署後自動啟動 **ProductsPortal** Web 專案時，您可在瀏覽器視窗中看到錯誤訊息。 這是預期的，且因為 **ProductsServer** 應用程式尚未執行而出現。
+  > 您可能會看到錯誤訊息中的 hello 瀏覽器視窗時 hello **ProductsPortal** hello 部署之後自動啟動 web 專案。 這預期，就會發生 hello **ProductsServer**應用程式不尚未執行。
 >
 >
 
-2. 請複製已部署 Web 應用程式的 URL，印為您在下一個步驟中需要用到 URL。 您也可以從 Visual Studio 中的 [Azure App Service 活動] 視窗中取得此 URL：
+2. 複製 hello URL 的 hello 部署 web 應用程式，將會需要 hello 下一個步驟中的 hello URL。 您也可以從 Visual Studio 中的 hello Azure 應用程式服務活動視窗取得此 URL:
 
   ![][9]
 
-3. 關閉瀏覽器視窗以停止執行中的應用程式。
+3. 關閉 hello 瀏覽器視窗 toostop hello 執行應用程式。
 
 ### <a name="set-productsportal-as-web-app"></a>將 ProductsPortal 設定為 Web 應用程式
 
-在雲端執行此應用程式之前，您必須確定 **ProductsPortal** 是從 Visual Studio 內以 Web 應用程式的形式啟動。
+之前執行 hello hello 雲端中應用程式，您必須確定**ProductsPortal**從 web 應用程式的 Visual Studio 中啟動。
 
-1. 在 Visual Studio 中，以滑鼠右鍵按一下 **ProductsPortal** 專案，然後按一下 [屬性]。
-2. 在左側欄中，按一下 [Web]。
-3. 在 [起始動作] 區段中，按一下 [起始 URL] 按鈕，然後在文字方塊中輸入您先前部署的 Web 應用程式的 URL，例如 `http://productsportal1234567890.azurewebsites.net/`。
+1. 在 Visual Studio 中，以滑鼠右鍵按一下 hello **ProductsPortal**專案，然後按一下**屬性**。
+2. 在 hello 左側資料行中，按一下  **Web**。
+3. 在 [hello**起始動作**區段中，按一下 hello**起始 URL**按鈕，並在 hello] 文字方塊中輸入您先前已部署的 web 應用程式; hello URL，例如`http://productsportal1234567890.azurewebsites.net/`。
 
     ![][27]
 
-4. 從 Visual Studio 的 [檔案] 功能表中，按一下 [全部儲存]。
-5. 在 Visual Studio 的 [建置] 功能表中，按一下 [重建方案]。
+4. 從 hello**檔案**功能表在 Visual Studio 中，按一下**全部儲存**。
+5. 從 Visual Studio 中的 hello 建置] 功能表，按一下 [**重建方案**。
 
-## <a name="run-the-application"></a>執行應用程式
+## <a name="run-hello-application"></a>執行 hello 應用程式
 
-1. 按 F5 以建置並執行應用程式。 內部部署伺服器 (**ProductsServer** 主控台應用程式) 應該會第一個啟動，然後 **ProductsPortal** 應用程式應該會在瀏覽器視窗中啟動，如下面的螢幕擷取畫面所示。 再次注意，產品庫存清單會列出從產品服務內部部署系統擷取的資料，並在 Web 應用程式中顯示該資訊。 檢查 URL，確定 **ProductsPortal** 正在雲端中以 Azure Web 應用程式的形式執行。
+1. 按 F5 toobuild，並執行 hello 應用程式。 hello 在內部部署伺服器 (hello **ProductsServer**主控台應用程式) 應該開始第一次，然後在 hello **ProductsPortal** hello 遵循畫面所示，在瀏覽器視窗中，應該啟動應用程式擷取畫面。 再次請注意該 hello 產品存貨列出從 hello 產品服務在內部部署系統擷取資料並顯示 hello web 應用程式中的該資料。 檢查確定 hello URL toomake， **ProductsPortal** hello 雲端，為 Azure web 應用程式中執行。
 
    ![][1]
 
    > [!IMPORTANT]
-   > **ProductsServer** 主控台應用程式必須正在執行中，而且能夠提供資料給 **ProductsPortal** 應用程式。 如果瀏覽器顯示錯誤，請等候幾秒，讓 **ProductsServer** 載入並顯示下列訊息。 然後按瀏覽器中的 [重新整理]。
+   > hello **ProductsServer**主控台應用程式必須執行，而且要能 tooserve hello 資料 toohello **ProductsPortal**應用程式。 如果 hello 瀏覽器會顯示錯誤，請等候幾秒，讓**ProductsServer** tooload 和下列顯示 hello 訊息。 然後按下**重新整理**hello 瀏覽器中。
    >
    >
 
    ![][37]
-2. 回到瀏覽器中，按 **ProductsPortal** 頁面上的 [重新整理]。 每次重新整理頁面時，您會看到伺服器應用程式在呼叫來自 **ProductsServer** 的 `GetProducts()` 時顯示一則訊息。
+2. 在 hello 瀏覽器按**重新整理**上 hello **ProductsPortal**頁面。 每次您重新整理 hello 頁面時，您會看到顯示訊息的 hello 伺服器應用程式時`GetProducts()`從**ProductsServer**呼叫。
 
     ![][38]
 
 ## <a name="next-steps"></a>後續步驟
 
-若要深入了解 Azure 轉送，請參閱下列資源︰  
+toolearn 深入了解 Azure 轉送，請參閱下列資源的 hello:  
 
 * [什麼是 Azure 轉送？](relay-what-is-it.md)  
-* [如何使用轉送](service-bus-dotnet-how-to-use-relay.md)  
+* [如何 toouse 轉送](service-bus-dotnet-how-to-use-relay.md)  
 
 [0]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hybrid.png
 [1]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/App2.png

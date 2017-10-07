@@ -1,5 +1,5 @@
 ---
-title: "Linux VM 的計算基準測試分數 | Microsoft Docs"
+title: "適用於 Linux Vm 的 aaaCompute 基準分數 |Microsoft 文件"
 description: "比較執行 Linux 之 Azure VM 的 CoreMark 計算基準測試分數"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: cynthn
-ms.openlocfilehash: 382c21343f1a41438277dc288dcdf136e4e1437e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2c1ca5fbd80cea030ac2cc22156c4e9444c6726
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compute-benchmark-scores-for-linux-vms"></a>Linux VM 的計算基準測試分數
-下列 CoreMark 基準測試分數顯示執行 Ubuntu 的 Azure 高效能 VM 產品陣容的計算效能。 也有 [Windows VM](../windows/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)的計算基準測試分數。
+遵循 CoreMark 基準分數顯示 hello 計算執行 Ubuntu 的 Azure 的高效能 VM lineup 的效能。 也有 [Windows VM](../windows/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)的計算基準測試分數。
 
 ## <a name="a-series---compute-intensive"></a>A 系列 - 計算密集型
 | 大小 | vCPU | NUMA 節點 | CPU | 執行 | 反覆運算/秒 | 標準差 |
@@ -84,9 +84,9 @@ ms.lasthandoff: 07/11/2017
 | Standard_H16mr |16 |2 |Intel Xeon E5-2667 v3 @ 3.2 GHz |28 |274,523 |5,698 |
 
 ## <a name="about-coremark"></a>關於 CoreMark
-Linux 數字是藉由在 Ubuntu 上執行 [CoreMark](http://www.eembc.org/coremark/faq.php) 來計算出。 在 CoreMark 的設定中，執行緒的數目是設定為虛擬 CPU 的數目，而並行處理則是設定為 PThreads。 目標反覆運算次數已根據預期的效能進行調整，以提供一個至少 20 秒 (通常會更長) 的執行階段。 最終分數代表的是已完成的反覆運算次數除以執行測試所花費秒數後得出的值。 每個測試在每個 VM 上至少執行了七次。 測試 (H 系列除外) 執行時間是在 2015 年 10 月，於測試執行當天支援 VM 的每個 Azure 公用區域中的多個 VM 上執行。
+Linux 數字是藉由在 Ubuntu 上執行 [CoreMark](http://www.eembc.org/coremark/faq.php) 來計算出。 CoreMark hello 數目的執行緒集 toohello 虛擬 Cpu 數目，以設定和並行處理設定 tooPThreads。 hello 目標數目的反覆項目已根據預期的效能 tooprovide 至少 20 秒 （通常更長時間） 的執行階段而調整大小。 hello 最終的分數代表 hello 除以 hello toorun hello 測試所花費的秒數的完成反覆項目數目。 每個測試在每個 VM 上至少執行了七次。 測試 （除非 H series_ 已在 2015 年 10 月執行中 VM 執行的 hello 日期支援在每個 Azure 公用區域 hello 的多個 Vm 上。
 
 ## <a name="next-steps"></a>後續步驟
 * 如需了解儲存體容量、磁碟詳細資料及其他選擇 VM 大小的考量，請參閱 [虛擬機器的大小](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-* 若要在 Linux VM 上執行 CoreMark 指令碼，請下載 [CoreMark 指令碼套件](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip)。
+* 在 Linux Vm 上的 toorun hello CoreMark 指令碼下載中心 hello [CoreMark 指令碼組件](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip)。
 

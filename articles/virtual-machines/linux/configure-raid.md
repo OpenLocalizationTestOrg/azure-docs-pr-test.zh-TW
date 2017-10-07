@@ -1,6 +1,6 @@
 ---
-title: "在執行 Linux 的虛擬機器上設定軟體 RAID | Microsoft Docs"
-description: "了解如何使用 mdadm，在 Azure 的 Linux 上設定 RAID。"
+title: "aaaConfigure 軟體上執行 Linux 的虛擬機器的 RAID |Microsoft 文件"
+description: "了解 toouse mdadm tooconfigure RAID 在 Azure 中 Linux 上的方式。"
 services: virtual-machines-linux
 documentationcenter: na
 author: rickstercdn
@@ -15,19 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: rclaus
-ms.openlocfilehash: 12f540a700fbf85e579e8aadc9f6def039299ff7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f06e2679d953faf88ffee9991226cdb3cc1cbdb0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-software-raid-on-linux"></a>在 Linux 上設定軟體 RAID
-在 Azure 的 Linux 虛擬機器上使用軟體 RAID，以單一 RAID 裝置的形式顯示多個連接的資料磁碟，這種案例很常遇到。 相較於只使用單一磁碟，這通常可用來提高效能並允許增加輸送量。
+常見的案例 toouse 軟體 RAID Linux 虛擬機器上處於 Azure toopresent 多個連接的資料磁碟做為單一的 RAID 裝置。 通常這可以使用的 tooimprove 效能，以及允許針對改善輸送量比較 toousing 只有單一磁碟。
 
 ## <a name="attaching-data-disks"></a>連接資料磁碟
-設定 RAID 裝置需要兩個以上的空白資料磁碟。  建立 RAID 裝置的主要原因是要提升磁碟 IO 效能。  根據 IO 需求，您可以選擇連接儲存在標準儲存體且一個磁碟最多具有 500 IO/ps 的磁碟，或進階儲存體且一個磁碟最多具有 5000 IO/ps 的磁碟。 本文不會詳細說明如何佈建資料磁碟以及將其連接至 Linux 虛擬機器。  請參閱 Microsoft Azure 文章[連接磁碟](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，取得如何在 Azure 上將空白資料磁碟連接至 Linux 虛擬機器的詳細指示。
+兩個或多個空的資料磁碟都需要的 tooconfigure RAID 裝置。  hello 建立 RAID 裝置的主要原因是磁碟的 tooimprove 效能 IO。  根據您的 IO 需求，您可以選擇儲存在我們的標準儲存體，與總 too500 IO/每個磁碟或使用向上 too5000 IO/每個磁碟 ps 我們高階儲存體 ps tooattach 磁碟。 這篇文章不會深入說明如何 tooprovision 和附加資料磁碟 tooa Linux 虛擬機器。  請參閱 hello Microsoft Azure 文件[連接磁碟](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)如需有關如何 tooattach 空的資料磁碟在 Azure 上 tooa Linux 虛擬機器的詳細指示。
 
-## <a name="install-the-mdadm-utility"></a>安裝 mdadm 公用程式
+## <a name="install-hello-mdadm-utility"></a>安裝 hello mdadm 公用程式
 * **Ubuntu**
 ```bash
 sudo apt-get update
@@ -44,30 +44,30 @@ sudo yum install mdadm
 zypper install mdadm
 ```
 
-## <a name="create-the-disk-partitions"></a>建立磁碟分割
-在本範例中，我們會在 /dev/sdc 上建立單一磁碟分割。 新磁碟分割的名稱會是 /dev/sdc1。
+## <a name="create-hello-disk-partitions"></a>建立 hello 磁碟分割
+在本範例中，我們會在 /dev/sdc 上建立單一磁碟分割。 會呼叫 /dev/sdc1 hello 新磁碟分割。
 
-1. 啟動 `fdisk` 開始建立磁碟分割
+1. 啟動`fdisk`toobegin 建立資料分割
 
     ```bash
     sudo fdisk /dev/sdc
     Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
     Building a new DOS disklabel with disk identifier 0xa34cb70c.
-    Changes will remain in memory only, until you decide to write them.
-    After that, of course, the previous content won't be recoverable.
+    Changes will remain in memory only, until you decide toowrite them.
+    After that, of course, hello previous content won't be recoverable.
 
     WARNING: DOS-compatible mode is deprecated. It's strongly recommended to
-                    switch off the mode (command 'c') and change display units to
+                    switch off hello mode (command 'c') and change display units to
                     sectors (command 'u').
     ```
 
-2. 按下 'n' 個提示字元來建立在 **n**新增磁碟分割：
+2. 按下 'n' 個在 hello 提示 toocreate  **n**新增磁碟分割：
 
     ```bash
     Command (m for help): n
     ```
 
-3. 接著，請按 'p' 以建立 **主要**磁碟分割：
+3. 接下來，請按 'p' toocreate **p**主要磁碟分割：
 
     ```bash 
     Command action
@@ -75,50 +75,50 @@ zypper install mdadm
             p   primary partition (1-4)
     ```
 
-4. 按 '1' 以選取磁碟分割編號 1：
+4. 按下 '1' tooselect 資料分割編號 1:
 
     ```bash
     Partition number (1-4): 1
     ```
 
-5. 選取新磁碟分割的起始點，或按 `<enter>` 接受預設值，將磁碟分割置於磁碟機上可用空間的開始位置：
+5. 選取 hello 起點 hello 新磁碟分割或按`<enter>`tooaccept hello 預設 tooplace hello 資料分割的 hello hello 磁碟機上的可用空間 hello 開頭：
 
     ```bash   
     First cylinder (1-1305, default 1):
     Using default value 1
     ```
 
-6. 選取磁碟分割的大小，例如，輸入 '+10G' 以建立 10 GB 的磁碟分割。 或者，按 `<enter>` 建立跨越整個磁碟機的單一磁碟分割：
+6. 選取 hello hello 分割區，例如型別 '+10G' toocreate 10 gb 的磁碟分割大小。 或者，按下`<enter>`建立單一磁碟分割跨越 hello 整個磁碟機的：
 
     ```bash   
     Last cylinder, +cylinders or +size{K,M,G} (1-1305, default 1305): 
     Using default value 1305
     ```
 
-7. 接著，將磁碟分割的 ID 和類型 ( **t**) 從預設的 ID '83' (Linux) 變更為 ID 'fd' (Linux raid auto)：
+7. 接下來，變更 hello 識別碼和**t**hello hello 預設值的資料分割的類型識別碼 '83' (Linux) tooID 'fd' （Linux raid 自動）：
 
     ```bash  
     Command (m for help): t
     Selected partition 1
-    Hex code (type L to list codes): fd
+    Hex code (type L toolist codes): fd
     ```
 
-8. 最後，將磁碟分割資料表寫入磁碟機並結束 fdisk：
+8. 最後，撰寫 hello 資料分割資料表 toohello 磁碟機，並結束 fdisk:
 
     ```bash   
     Command (m for help): w
-    The partition table has been altered!
+    hello partition table has been altered!
     ```
 
-## <a name="create-the-raid-array"></a>建立 RAID 陣列
-1. 下列範例將「分割」(RAID 層級 0) 位於三個不同資料磁碟 (sdc1、sdd1、sde1) 的三個磁碟分割。  執行此命令之後，即會建立一個名為 **/dev/md127** 的新 RAID 裝置。 同時請注意，如果這些資料磁碟先前是另一個無用 RAID 陣列的一部分，則您可能需要在 `mdadm` 命令中加上 `--force` 參數：
+## <a name="create-hello-raid-array"></a>建立 hello RAID 陣列
+1. 下列範例將"等量磁碟區 」 （RAID 層級 0） 三個資料分割位於三個不同的資料磁碟 （sdc1、 sdd1、 sde1） hello。  執行此命令之後，即會建立一個名為 **/dev/md127** 的新 RAID 裝置。 也請注意，是否這些資料磁碟我們先前屬於另一個無用的 RAID 陣列可能需要 tooadd hello`--force`參數 toohello`mdadm`命令：
 
     ```bash  
     sudo mdadm --create /dev/md127 --level 0 --raid-devices 3 \
         /dev/sdc1 /dev/sdd1 /dev/sde1
     ```
 
-2. 在新的 RAID 裝置上建立檔案系統
+2. 在 hello 新 RAID 裝置上建立 hello 檔案系統
    
     a. **CentOS、Oracle Linux、SLES 12、openSUSE 和 Ubuntu**
 
@@ -144,16 +144,16 @@ zypper install mdadm
    > 
    > 
 
-## <a name="add-the-new-file-system-to-etcfstab"></a>將新的檔案系統新增至 /etc/fstab
+## <a name="add-hello-new-file-system-tooetcfstab"></a>新增 hello 新檔案系統太/等/fstab
 > [!IMPORTANT]
-> 不當編輯 /etc/fstab 檔案會導致系統無法開機。 如果不確定，請參閱散發套件的文件，以取得如何適當編輯此檔案的相關資訊。 在編輯之前，也建議先備份 /etc/fstab 檔案。
+> 不當編輯 hello /etc/fstab 檔案可能會導致系統無法重新啟動。 如果不確定，請參閱 toohello 發佈文件，以取得 tooproperly 如何編輯此檔案的詳細資訊。 也建議在編輯之前建立的 hello /etc/fstab 檔案的備份。
 
-1. 建立新檔案系統所需的掛接點，例如：
+1. 建立新的檔案系統，所需的 hello 掛接點，例如：
 
     ```bash
     sudo mkdir /data
     ```
-2. 編輯 /etc/fstab 時，應使用 **UUID** (而非使用裝置名稱) 來參考檔案系統。  使用 `blkid` 公用程式來決定新檔案系統的 UUID：
+2. 當編輯 /etc/fstab，hello **UUID**應使用的 tooreference hello 檔案系統，而不是 hello 裝置名稱。  使用 hello `blkid` hello 新的檔案系統的公用程式 toodetermine hello UUID:
 
     ```bash   
     sudo /sbin/blkid
@@ -161,7 +161,7 @@ zypper install mdadm
     /dev/md127: UUID="aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" TYPE="ext4"
     ```
 
-3. 在文字編輯器中開啟 /etc/fstab，並為新檔案系統新增項目，例如：
+3. 在文字編輯器中開啟 /etc/fstab 並新增 hello 新的檔案系統的項目，例如：
 
     ```bash   
     UUID=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee  /data  ext4  defaults  0  2
@@ -175,15 +175,15 @@ zypper install mdadm
    
     接著，儲存並關閉 /etc/fstab。
 
-4. 測試 /etc/fstab 項目是否正確：
+4. 測試該 hello /etc/fstab 輸入正確：
 
     ```bash  
     sudo mount -a
     ```
 
-    如果此命令會產生錯誤訊息，請檢查 /etc/fstab 檔案中的語法。
+    如果此命令會產生錯誤訊息中，請檢查 hello /etc/fstab 檔案中的 hello 語法。
    
-    接下來，執行 `mount` 命令，以確保已掛接檔案系統：
+    接下來執行 hello`mount`命令 tooensure hello 檔案系統已裝載：
 
     ```bash   
     mount
@@ -195,7 +195,7 @@ zypper install mdadm
    
     **fstab 組態**
    
-    許多散發套件包含 `nobootwait` 或 `nofail` 掛接參數，可加入至 /etc/fstab 檔案。 這些參數容許發生掛接特定檔案系統失敗，並容許 Linux 系統繼續開機，即使它無法正確地掛接 RAID 檔案系統。 請參閱散發套件的文件，以取得這些參數的相關資訊。
+    許多發行包含任一 hello`nobootwait`或`nofail`掛接參數可能會加入 toohello /etc/hosts fstab 檔案。 這些參數時掛接特定檔案系統允許的失敗，並允許 hello Linux 系統 toocontinue tooboot，即使它是無法 tooproperly 掛接 hello RAID 檔案系統。 如需這些參數的詳細資訊，請參閱 tooyour 發佈文件。
    
     範例 (Ubuntu)：
 
@@ -205,26 +205,26 @@ zypper install mdadm
 
     **Linux 開機參數**
    
-    除了上述參數之外，即使 RAID 看起來已損壞或效能不佳，核心參數 "`bootdegraded=true`" 仍可讓系統開機，例如，將資料磁碟機從虛擬機器中不當移除。 依預設，這也會造成無法開機的系統。
+    加法 toohello 上述參數，在 hello 核心參數 」`bootdegraded=true`」 可以讓 hello 系統 tooboot，即使 hello RAID 會被視為已損毀，或降級，例如，如果不小心從 hello 虛擬機器移除資料磁碟機。 依預設，這也會造成無法開機的系統。
    
-    請參閱散發套件的文件，以取得如何正確編輯核心參數的相關資訊。 例如，在許多散發套件 (CentOS、Oracle Linux、SLES 11) 中，可手動將這些參數加入至 "`/boot/grub/menu.lst`" 檔案。  在 Ubuntu 上，可將此參數加入至 "/etc/default/grub" 上的 `GRUB_CMDLINE_LINUX_DEFAULT` 變數。
+    請參閱上 tooproperly 如何編輯核心參數 tooyour 發佈文件。 比方說，在 CentOS、 Oracle Linux （SLES 11） 的許多發行這些參數可能加入手動 toohello"`/boot/grub/menu.lst`"檔案。  在 Ubuntu 上這個參數可以加入 toohello`GRUB_CMDLINE_LINUX_DEFAULT`變數上"/ 等/預設/幼蟲"。
 
 
 ## <a name="trimunmap-support"></a>TRIM/UNMAP 支援
-有些 Linux 核心會支援 TRIM/UNMAP 作業以捨棄磁碟上未使用的區塊。 這些作業主要是在標準儲存體中相當實用，可用來通知 Azure 已刪除的頁面已不再有效而可予以捨棄。 如果您建立大型檔案，然後再將它們刪除，捨棄頁面可以節省成本。
+某些 Linux 核心支援 TRIM/UNMAP 作業 toodiscard hello 磁碟上未使用的區塊。 這些運算全都是主要適用於標準儲存體 tooinform 刪除頁面的 Azure 不再有效，以及可以捨棄。 如果您建立大型檔案，然後再將它們刪除，捨棄頁面可以節省成本。
 
 > [!NOTE]
-> 如果陣列的區塊大小設定為小於預設值 (512KB)，則 RAID 可能不會發出捨棄命令。 這是因為主機上的 unmap 細微度也是 512KB。 如果您透過 mdadm 的 `--chunk=` 參數修改陣列的區塊大小，則核心可能會忽略 TRIM/unmap 要求。
+> 如果 hello 陣列 hello 區塊大小設定 tooless hello 預設 (512 KB) 比 RAID 可能不會發出捨棄命令。 這是因為 hello 取消對應 hello 主機上的資料粒度也是 512 KB。 如果您修改透過 mdadm 的 hello 陣列的區塊大小`--chunk=`hello 核心，則可能會忽略參數，則 TRIM/取消要求。
 
-有兩種方式可在 Linux VM 中啟用 TRIM 支援。 像往常一樣，請參閱您的散發套件以了解建議的方法︰
+有兩種 tooenable TRIM 支援在 Linux VM 中。 像往常一樣，參閱您的發佈 hello 建議的方法包括：
 
-- 在 `/etc/fstab` 中使用 `discard` 掛接選項，例如：
+- 使用 hello`discard`掛接中的選項`/etc/fstab`，例如：
 
     ```bash
     UUID=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee  /data  ext4  defaults,discard  0  2
     ```
 
-- 在某些情況下，`discard` 選項可能會影響效能。 或者，您也可以從命令列手動執行 `fstrim` 命令，或將它新增到 crontab 來定期執行︰
+- 在某些情況下 hello`discard`選項可能會影響效能。 或者，您可以在其中執行 hello`fstrim`命令手動從 hello 命令列，或將它加入 tooyour crontab toorun 定期：
 
     **Ubuntu**
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB .NET Core API、SDK 和資源 | Microsoft Docs"
-description: "全面了解 .NET Core API 和 SDK，包括發行日期、停用日期及 Azure Cosmos DB .NET Core SDK 每個版本之間的變更。"
+title: "aaaAzure Cosmos DB.NET Core API SDK 與資源 |Microsoft 文件"
+description: ".NET Core API 和 SDK 包括發行日期、 停用日期和 hello Azure Cosmos DB.NET Core SDK 的每個版本之間所做的變更，深入了解 hello。"
 services: cosmos-db
 documentationcenter: .net
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 08/11/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a7ce4d771e9c655687f72f4b46c7405cf64aeb74
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1269cafe0ea1caaa871404d507b12632dbb3ed82
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-net-core-sdk-release-notes-and-resources"></a>Azure Cosmos DB .NET Core SDK︰版本資訊與資源
 > [!div class="op_single_selector"]
@@ -43,7 +43,7 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**範例**</td><td>[.NET 程式碼範例](documentdb-dotnet-samples.md)</td></tr>
 
-<tr><td>**開始使用**</td><td>[開始使用 Azure Cosmos DB .NET Core SDK 教學課程](documentdb-dotnetcore-get-started.md)</td></tr>
+<tr><td>**快速入門**</td><td>[開始使用 hello Azure Cosmos DB.NET Core SDK](documentdb-dotnetcore-get-started.md)</td></tr>
 
 <tr><td>**Web 應用程式教學課程**</td><td>[使用 Azure Cosmos DB 進行 Web 應用程式開發](documentdb-dotnet-application.md)</td></tr>
 
@@ -52,19 +52,19 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="release-notes"></a>版本資訊
 
-Azure Cosmos DB .NET Core SDK 有與最新版 [Azure Cosmos DB .NET SDK](documentdb-sdk-dotnet.md) 類似的功能。
+hello Azure Cosmos DB.NET Core SDK 已與 hello hello 最新版本的功能同位檢查[Cosmos DB AZURE.NET SDK](documentdb-sdk-dotnet.md)。
 
 > [!NOTE] 
-> Azure Cosmos DB .NET Core SDK 與「通用 Windows 平台」(UWP) 應用程式尚未相容。 如果您有興趣了解可支援 UWP 應用程式的 .NET Core SDK，請傳送電子郵件至 [askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)。
+> hello Azure Cosmos DB.NET Core SDK 不尚未與通用 Windows 平台 (UWP) 應用程式相容。 如果您有興趣 hello.NET Core SDK 支援 UWP 應用程式，請傳送電子郵件太[askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)。
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0 
 
-* 已新增將 PartitionKeyRangeId 做為 FeedOption 的支援，以供對特定分割區索引鍵範圍值限制查詢結果範圍。 
-* 已新增將 StartTime 做為 ChangeFeedOption 的支援，以開始尋找該時間之後的變更。 
+* PartitionKeyRangeId FeedOption 的查詢結果 tooa 特定的資料分割索引鍵的範圍值的範圍設定為已加入的支援。 
+* StartTime 為 ChangeFeedOption toostart hello 變更尋找該時間之後所新增的支援。 
 
 ### <a name="a-name141141"></a><a name="1.4.1"/>1.4.1
 
-*   修正 JsonSerializable 類別中可能會造成堆疊溢位例外狀況的問題。
+*   Hello JsonSerializable 類別可能會造成堆疊溢位例外狀況中修正的問題。
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
 
@@ -72,7 +72,7 @@ Azure Cosmos DB .NET Core SDK 有與最新版 [Azure Cosmos DB .NET SDK](documen
 
 ### <a name="a-name132132"></a><a name="1.3.2"/>1.3.2
 
-*   支援 .NET Standard 1.5 作為其中一個目標架構。
+*   支援的.NET 標準 1.5 做為其中一個 hello 目標架構。
 
 ### <a name="a-name131131"></a><a name="1.3.1"/>1.3.1
 
@@ -82,55 +82,55 @@ Azure Cosmos DB .NET Core SDK 有與最新版 [Azure Cosmos DB .NET SDK](documen
 
 *   已新增對新一致性層級 ConsistentPrefix 的支援。
 *   已新增對個別資料分割之查詢計量的支援。
-*   已新增對限制查詢之接續權杖大小的支援。
+*   限制查詢的 hello 接續 token 的 hello 大小新增的支援。
 *   已新增對失敗要求進行更詳細追蹤的支援。
-*   SDK 中已有一些效能改進。
+*   Hello SDK 中進行一些效能改進。
 
 ### <a name="a-name122122"></a><a name="1.2.2"/>1.2.2
 
-* 修正將在彙總查詢之 FeedOptions 中提供的 PartitionKey 值忽略的問題。
+* 修正忽略 hello PartitionKey 值的彙總查詢 FeedOptions 中提供的問題。
 * 修正在執行移動途中跨資料分割 Order By 查詢期間，進行資料分割管理的透明處理時發生的問題。
 
 ### <a name="a-name121121"></a><a name="1.2.1"/>1.2.1
 
-* 已修正在 ASP.NET 內容內部使用時會在某些非同步 API 中造成死結的問題。
+* 修正造成死結的某些資料 hello 非同步 Api ASP.NET 內容中使用時的問題。
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 
-* 修正來讓 SDK 在某些情況下能夠更有彈性地進行自動容錯移轉。
+* 修正 toomake SDK 更多彈性 tooautomatic 容錯移轉，在某些情況下的。
 
 ### <a name="a-name112112"></a><a name="1.1.2"/>1.1.2
 
-* 修正偶爾會造成「WebException: 無法解析遠端名稱」的錯誤。
-* 透過針對 ReadDocumentAsync API 新增多載，以新增直接讀取具類型文件的支援。
+* 偶爾會造成 WebException 可解決問題的修正： 無法解析 hello 遠端名稱。
+* 加入的 hello 支援直接讀取藉由新增新的多載 tooReadDocumentAsync API 的具類型的文件。
 
 ### <a name="a-name111111"></a><a name="1.1.1"/>1.1.1
 
 * 新增彙總查詢的 LINQ 支援 (COUNT、MIN、MAX、SUM 和 AVG)。
-* 針對使用事件處理常式所造成的 ConnectionPolicy 物件，修正記憶體流失問題。
+* 為記憶體流失問題的事件處理常式的 hello 使用所造成的 hello ConnectionPolicy 物件解決問題。
 * 修正使用 ETag 時 UpsertAttachmentAsync 無法運作的問題。
 * 修正根據字串欄位排序時交叉資料分割排序依據查詢接續無法運作的問題。
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 
 * 新增彙總查詢的支援 (COUNT、MIN、MAX、SUM 和 AVG)。 請參閱[彙總支援](documentdb-sql-query.md#Aggregates)。
-* 已將分割區集合的最小輸送量從 10,100 RU/s 降低為 2500 RU/s。
+* 降低從 10,100 RU/秒 too2500 RU/秒的分割區集合最小的輸送量。
 
 ### <a name="a-name100100"></a><a name="1.0.0"/>1.0.0
 
-Azure Cosmos DB .NET Core SDK 可讓您建置快速、跨平台的 [ASP.NET Core](https://www.asp.net/core) 和 [.NET Core](https://www.microsoft.com/net/core#windows) 應用程式，以在 Windows、Mac 和 Linux 上執行。 最新版 Azure Cosmos DB .NET Core SDK 與 [Xamarin](https://www.xamarin.com) 完全相容，可用來建置以 iOS、Android 及 Mono (Linux) 為目標的應用程式。  
+hello Azure Cosmos DB.NET Core SDK 可讓您 toobuild 快，跨平台[ASP.NET Core](https://www.asp.net/core)和[.NET Core](https://www.microsoft.com/net/core#windows) Windows、 Mac 和 Linux 上的應用程式 toorun。 hello 最新版本的 hello Azure Cosmos DB.NET Core SDK 是完全[Xamarin](https://www.xamarin.com)相容，而且是使用的 toobuild 目標應用程式的 iOS、 Android 和單聲道 (Linux)。  
 
 ### <a name="a-name010-preview010-preview"></a><a name="0.1.0-preview"/>0.1.0-preview
 
-Azure Cosmos DB .NET Core Preview SDK 可讓您建置快速、跨平台的 [ASP.NET Core](https://www.asp.net/core) 和 [.NET Core](https://www.microsoft.com/net/core#windows) 應用程式，以在 Windows、Mac 和 Linux 上執行。
+hello Azure Cosmos DB.NET Core 預覽 SDK 可讓您 toobuild 快，跨平台[ASP.NET Core](https://www.asp.net/core)和[.NET Core](https://www.microsoft.com/net/core#windows) Windows、 Mac 和 Linux 上的應用程式 toorun。
 
-Azure Cosmos DB .NET Core Preview SDK 有與最新版本 [Azure Cosmos DB .NET SDK](documentdb-sdk-dotnet.md) 的功能類似的功能，並且支援下列項目︰
+hello Azure Cosmos DB.NET Core 預覽 SDK 已與 hello hello 最新版本的功能同位檢查[Cosmos DB AZURE.NET SDK](documentdb-sdk-dotnet.md)並支援下列 hello:
 * 所有[連接模式](performance-tips.md#networking)︰閘道器模式、直接 TCP 和 Direct HTTPs。 
 * 所有[一致性層級](consistency-levels.md)︰強式、工作階段、限定過期和最終。
 * [資料分割的集合](partition-data.md)。 
 * [多重區域資料庫帳戶和異地複寫](distribute-data-globally.md)。
 
-如果您有與此 SDK 相關的問題，請張貼至 [StackOverflow](http://stackoverflow.com/questions/tagged/azure-documentdb)，或是在 [Github 儲存機制](https://github.com/Azure/azure-documentdb-dotnet/issues)中提出問題。 
+如果您有問題相關的 toothis SDK，張貼太[StackOverflow](http://stackoverflow.com/questions/tagged/azure-documentdb)，hello 中提出問題或[github 儲存機制](https://github.com/Azure/azure-documentdb-dotnet/issues)。 
 
 ## <a name="release--retirement-dates"></a>發行和停用日期
 
@@ -152,5 +152,5 @@ Azure Cosmos DB .NET Core Preview SDK 有與最新版本 [Azure Cosmos DB .NET S
 | [0.1.0-preview](#0.1.0-preview) |2016 年 11 月 15 日 |2016 年 12 月 31 日 |
 
 ## <a name="see-also"></a>另請參閱
-若要深入了解 Cosmos DB，請參閱 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 服務頁面。 
+請參閱深入了解 Cosmos DB toolearn [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)服務頁面。 
 

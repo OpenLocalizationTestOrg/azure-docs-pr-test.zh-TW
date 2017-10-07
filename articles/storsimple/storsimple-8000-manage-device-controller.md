@@ -1,6 +1,6 @@
 ---
-title: "管理 StorSimple 8000 系列裝置控制器 | Microsoft Docs"
-description: "了解如何停止、重新啟動、關閉或重設您的 StorSimple 裝置控制器。"
+title: "aaaManage StorSimple 8000 系列裝置控制器 |Microsoft 文件"
+description: "了解 toostop，重新啟動、 關機或重設您的 StorSimple 裝置控制站的方式。"
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,130 +14,130 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/19/2017
 ms.author: alkohli
-ms.openlocfilehash: 75c1bdb570967b6d1902697597f0b5bf3f4ffb7c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c59582b7ccf7cfeae9e7efbd0e4df9dc1d3871c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-your-storsimple-device-controllers"></a>管理 StorSimple 裝置控制器
 
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 
-本教學課程描述可在 StorSimple 裝置控制器上執行的不同作業。 StorSimple 裝置中的控制器在主動-被動組態中是備援 (對等) 控制器。 在指定的時間中，只能有一個控制器在主動模式，並處理所有磁碟和網路作業。 另一個控制器處於被動模式。 如果主動控制器故障，被動控制器會自動變成主動。
+本教學課程描述 hello 可在您的 StorSimple 裝置控制站執行的不同作業。 您的 StorSimple 裝置中的 hello 控制站會在主動-被動組態的備援 （對等） 控制器。 在指定的時間，只能有一個控制器為作用中，並處理所有的 hello 磁碟和網路作業。 hello 另一個控制器處於被動模式。 Hello 主動控制器失效，如果 hello 被動控制器會自動變成使用中。
 
-本教學課程包含使用下列內容管理裝置控制器的逐步指示：
+本教學課程使用包含 toomanage hello 裝置控制站的逐步指示:
 
-* StorSimple 裝置管理員服務中，裝置的 [控制器] 刀鋒視窗。
+* **控制站**hello StorSimple 裝置管理員服務在裝置的刀鋒視窗。
 * Windows PowerShell for StorSimple
 
-我們建議您透過 StorSimple 裝置管理員服務管理裝置控制器。 如果動作只能使用 Windows PowerShell for StorSimple 執行，本教學課程會記錄下來。
+我們建議您管理透過 hello StorSimple 裝置管理員服務的 hello 裝置控制器。 如果只可以使用 Windows PowerShell for StorSimple 執行某個動作，hello 教學課程還會記錄下來。
 
 閱讀本教學課程之後，您將能夠：
 
 * 重新啟動或關閉 StorSimple 裝置控制器
 * 關閉 StorSimple 裝置
-* 將 StorSimple 裝置重設為原廠預設值
+* 重設您的 StorSimple 裝置 toofactory 預設值
 
 ## <a name="restart-or-shut-down-a-single-controller"></a>重新啟動或關閉單一控制器
-一般系統作業並不需要重新啟動或關閉控制器。 只有在故障的裝置硬體元件需要更換時，才會常常使用單一裝置控制器的關閉作業。 只有在記憶體過度使用或控制器故障影響效能時，才會需要重新啟動控制器。 成功更換控制器之後，如果您想要啟用並測試更換的控制器，也可能需要重新啟動控制器。
+一般系統作業並不需要重新啟動或關閉控制器。 只有在故障的裝置硬體元件需要更換時，才會常常使用單一裝置控制器的關閉作業。 只有在記憶體過度使用或控制器故障影響效能時，才會需要重新啟動控制器。 您也可能需要 toorestart 控制站之後在成功更換控制器，如果您希望 tooenable 測試 hello 取代控制器。
 
-假設被動控制器可用，重新啟動裝置並不會干擾連線的啟動器。 如果被動控制器不可用或已關閉，重新啟動主動控制器可能會導致服務中斷和停機。
+重新啟動的裝置不干擾 tooconnected 啟動器，假設 hello 被動控制站可用。 如果是被動控制器無法使用或已關閉，然後重新啟動 hello active 控制器可能會導致 hello 服務中斷和停機時間。
 
 > [!IMPORTANT]
 > * **執行中的控制器應該永遠不會實際移除，因為這會導致失去備援並增加停機的風險。**
-> * 下列程序只適用於 StorSimple 實體裝置。 如需有關如何啟動、停止和重新啟動 StorSimple 雲端設備的資訊，請參閱[使用雲端設備](storsimple-8000-cloud-appliance-u2.md##work-with-the-storsimple-cloud-appliance)。
+> * hello 下列程序適用於僅 toohello StorSimple 實體裝置。 如需有關如何 toostart、 停止及重新啟動 hello StorSimple 雲端應用裝置，請參閱資訊[搭配 hello 雲端應用裝置](storsimple-8000-cloud-appliance-u2.md##work-with-the-storsimple-cloud-appliance)。
 
-您可以使用 StorSimple 裝置管理員服務或適用於 StorSimple 的 Windows PowerShell 的 Azure 入口網站重新啟動或關閉單一裝置控制器。
+您可以重新啟動或關閉透過 hello hello StorSimple 裝置管理員服務或 Windows PowerShell 的 Azure 入口網站的單一裝置控制站 for StorSimple。
 
-若要從 Azure 入口網站管理您的裝置控制器，請執行下列步驟。
+toomanage hello Azure 入口網站，從您的裝置控制站執行下列步驟 hello。
 
-#### <a name="to-restart-or-shut-down-a-controller-in-azure-portal"></a>若要在 Azure 入口網站中重新啟動或關閉控制器
-1. 請在 StorSimple 裝置管理員服務中，按一下 [裝置]。 從裝置清單中選取您的裝置。 
+#### <a name="toorestart-or-shut-down-a-controller-in-azure-portal"></a>toorestart 或 Azure 入口網站中的控制站關機
+1. 在您的 StorSimple 裝置管理員服務移過**裝置**。 從裝置 hello 清單中選取您的裝置。 
 
     ![選擇裝置](./media/storsimple-8000-manage-device-controller/manage-controller1.png)
 
-2. 移至 [設定] > [控制器]。
+2. 跳過**設定 > 控制站**。
    
     ![確認 StorSimple 裝置控制器的狀況良好](./media/storsimple-8000-manage-device-controller/manage-controller2.png)
-3. 在 [控制器] 刀鋒視窗中，確認裝置上的兩個控制器狀態為 [狀況良好]。 選取控制器，以滑鼠右鍵按一下，然後選取 [重新啟動] 或 [關閉]。
+3. 在 hello**控制器**刀鋒視窗中，確認您的裝置上的兩個 hello 控制器的 hello 狀態為**狀況良好**。 選取控制器，以滑鼠右鍵按一下，然後選取 [重新啟動] 或 [關閉]。
 
     ![選擇重新啟動或關閉 StorSimple 裝置控制器](./media/storsimple-8000-manage-device-controller/manage-controller3.png)
 
-4. 隨即會建立作業，以重新啟動或關閉控制器，若有適用的警告，也會於此顯示。 若要監視重新啟動或關閉的情況，請移至 [服務] > [活動記錄]，然後根據服務專用的參數進行篩選。 如果控制器已關閉，您必須按下電源開關將控制器開啟。
+4. 工作建立 toorestart 或關閉 hello 控制器，您會有適用於警告，如果有的話。 toomonitor hello 重新啟動或關機，跳過**服務 > 活動記錄**然後篩選參數特定 tooyour 服務。 如果控制器已關閉，則您必須在 hello 控制器 tooturn toopush hello 電源按鈕 tooturn 其上。
 
-#### <a name="to-restart-or-shut-down-a-controller-in-windows-powershell-for-storsimple"></a>重新啟動或關閉 Windows PowerShell for StorSimple 中的控制器
-執行下列步驟，以從適用於 StorSimple 的 Windows PowerShell 關閉或重新啟動 StorSimple 裝置上的單一控制器。
+#### <a name="toorestart-or-shut-down-a-controller-in-windows-powershell-for-storsimple"></a>toorestart 或關機的控制站，在 Windows PowerShell for StorSimple
+StorSimple 的重新啟動 StorSimple 裝置 hello Windows PowerShell 從單一控制器或執行向下遵循步驟 tooshut hello。
 
-1. 透過序列主控台或 telnet 工作階段，從遠端電腦存取裝置。 遵循[使用 PuTTY 連接到裝置序列主控台](storsimple-8000-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console)中的步驟，連接到控制器 0 或控制器 1。
-2. 在序列主控台功能表中，選擇選項 1 [使用完整存取權登入] 。
-3. 在橫幅訊息中，記下您已連接的控制器 (控制器 0 或控制器 1) 以及它是主動或被動 (待命) 控制器。
+1. 存取 hello hello 序列主控台或 telnet 工作階段從遠端電腦的裝置。 tooconnect tooController 0 或控制器 1，請依照下列中的 hello 步驟[使用 PuTTY tooconnect toohello 裝置序列主控台](storsimple-8000-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console)。
+2. 在 hello 序列主控台功能表中，選擇選項 1，**登入的完整存取**。
+3. 在 hello 橫幅訊息中，記下過，您所連接的 hello 控制器 （控制器 0 或控制器 1），以及是否使用中的 hello 被動 （待命） 控制站。
    
-   * 若要關閉單一控制器，請在提示中輸入：
+   * tooshut 關閉單一控制器，在 hello 提示字元，輸入：
      
        `Stop-HcsController`
      
-       這會關閉您所連接的控制器。 如果停止了主動控制器，則此裝置會容錯移轉至被動控制器。
+       這會關閉您所連接的 hello 控制站。 如果您停止 hello 作用中控制器，hello 裝置容錯移轉 toohello 被動控制器。
 
-   * 若要重新啟動控制器，請在提示中輸入：
+   * toorestart 控制站，在 hello 提示字元中輸入：
      
        `Restart-HcsController`
      
-       這會重新啟動您所連接的控制器。 如果您重新啟動主動控制器，它會在重新啟動之前容錯移轉到被動控制器。
+       這會重新啟動您所連接的 hello 控制站。 如果您重新啟動 hello 作用中控制器，它會容錯移轉 toohello 被動控制站之前 hello 重新啟動。
 
 ## <a name="shut-down-a-storsimple-device"></a>關閉 StorSimple 裝置
 
-本節說明如何從遠端電腦關閉執行中或失敗的 StorSimple 裝置。 裝置會在關閉兩個裝置控制器之後關閉。 當裝置正在實際移動，或被帶離服務時，則已經完成裝置關閉。
+本章節將說明如何 tooshut 關閉執行中或失敗的 StorSimple 裝置，從遠端電腦。 兩個 hello 裝置控制器都關閉之後，裝置已關閉。 Hello 裝置實際移動，或帶離服務時，是完成裝置關機。
 
 > [!IMPORTANT]
-> 關閉裝置之前，請檢查裝置元件的健全狀態。 瀏覽至您的裝置，然後按一下 [設定] > [硬體健康狀態]。 在 [狀態與硬體健康狀態] 刀鋒視窗中，確認所有元件的 LED 狀態皆為綠色。 只有狀況良好的裝置才會有綠色的狀態。 如果您的裝置正在關閉以更換故障的元件，您會看到個別元件的失敗 (紅色) 或降級 (黃色) 狀態。
+> 您關閉 hello 裝置之前，請檢查 hello hello 裝置元件健全狀況。 導覽 tooyour 裝置，然後按一下**設定 > 硬體健全狀況**。 在 hello**狀態和硬體的健全狀況**刀鋒視窗中，確認所有 hello 元件 hello LED 狀態為綠色。 只有狀況良好的裝置才會有綠色的狀態。 如果您的裝置關機 tooreplace 的故障元件時，您會看到故障 （紅色） 或降級 （黃色） 狀態 hello 個別元件。
 
 
-#### <a name="to-shut-down-a-storsimple-device"></a>關閉 StorSimple 裝置
+#### <a name="tooshut-down-a-storsimple-device"></a>tooshut StorSimple 裝置
 
-1. 透過 [重新啟動或關閉控制器](#restart-or-shut-down-a-single-controller) 程序，識別和關閉裝置上的被動控制器。 您可以在 Azure 入口網站或適用於 StorSimple 的 Windows PowerShell 中執行這項作業。
-2. 重複上述步驟來關閉主動控制器。
-3. 您現在必須查看裝置的背板。 完全關閉兩個控制器之後，兩個控制器上的狀態 Led 應該為閃爍的紅色。 如果您需要在此時將裝置完全關閉，請將電源和冷卻模組 (PCM) 上的電源開關切換為 OFF 的位置。 這樣可以關閉裝置。
+1. 使用 hello[重新啟動或關閉控制器](#restart-or-shut-down-a-single-controller)程序 tooidentify 並關機 hello 裝置上的被動控制器。 您可以針對 StorSimple hello Azure 入口網站或 Windows PowerShell 中執行這項作業。
+2. 重複上述步驟 tooshut 向 hello 作用中控制器的 hello。
+3. 您必須立即查看 hello 回 hello 裝置面板。 Hello 兩個控制器都關閉之後，hello 兩個 hello 控制器狀態 Led 應閃爍紅燈。 如果您完全在這個階段需要關閉裝置 hello tooturn 上電源和冷卻模組 (Pcm), 翻轉 hello 電源開關 toohello OFF 位置。 這應該關閉 hello 裝置。
 
-## <a name="reset-the-device-to-factory-default-settings"></a>將裝置重設為出廠預設設定。
+## <a name="reset-hello-device-toofactory-default-settings"></a>重設 hello 裝置 toofactory 預設值
 
 > [!IMPORTANT]
-> 如果您需要將裝置重設為原廠預設設定，請聯絡 Microsoft 支援服務。 以下所述的程序，應只用於搭配 Microsoft 支援服務時使用。
+> 如果您需要 tooreset 裝置 toofactory 預設設定，請連絡 Microsoft 支援服務。 hello 如下所述的程序只應該用於搭配 Microsoft 支援服務。
 
-此程序描述如何將 Microsoft Azure StorSimple 裝置重設為使用 Windows PowerShell for StorSimple 的出廠預設設定。
-根據預設，重設裝置會從整個叢集移除所有資料和設定。
+此程序描述如何 tooreset 您 Microsoft Azure StorSimple 裝置 toofactory 的預設設定使用 Windows PowerShell for StorSimple。
+重設裝置移除所有資料和設定預設的 hello 整個叢集。
 
-執行下列步驟來將 Microsoft Azure StorSimple 裝置重設為出廠預設設定：
+您的 Microsoft Azure StorSimple 裝置 toofactory 預設設定執行下列步驟 tooreset hello:
 
-### <a name="to-reset-the-device-to-default-settings-in-windows-powershell-for-storsimple"></a>將裝置重設為 Windows PowerShell for StorSimple 中的預設設定
-1. 透過裝置的序列主控台存取裝置。 檢查橫幅訊息以確保您已連接到**主動**控制器。
-2. 在序列主控台功能表中，選擇選項 1 [使用完整存取權登入] 。
-3. 在提示中，輸入下列命令來重設整個叢集，移除所有資料、中繼資料和控制器設定︰
+### <a name="tooreset-hello-device-toodefault-settings-in-windows-powershell-for-storsimple"></a>tooreset hello toodefault 的裝置設定 Windows PowerShell for StorSimple
+1. 透過序列主控台存取 hello 裝置。 請檢查您所連接的 toohello hello 橫幅訊息 tooensure **Active**控制站。
+2. 在 hello 序列主控台功能表中，選擇選項 1，**登入的完整存取**。
+3. 在 hello 提示中輸入下列命令 tooreset hello 整個叢集，移除所有的資料、 中繼資料及控制器設定 hello:
    
     `Reset-HcsFactoryDefault`
    
-    若要改為重設單一控制站，請使用 [Reset-HcsFactoryDefault`-scope` Cmdlet 搭配 ](http://technet.microsoft.com/library/dn688132.aspx) 參數。)
+    tooinstead 重設一個控制器，請使用 hello [Reset-hcsfactorydefault](http://technet.microsoft.com/library/dn688132.aspx) cmdlet 搭配 hello`-scope`參數。)
    
-    系統會重新啟動多次。 重設成功完成時，系統將會通知您。 根據系統模型，8100 裝置可能需要 45-60 分鐘來完成此程序，而 8600 需要 60-90 分鐘。
+    hello 系統將會重新啟動多次。 Hello 重設已順利完成時，系統會通知您。 根據 hello 系統模型，它可能需要 45-60 分鐘 8100 裝置和 60-90 分鐘的 8600 toofinish 此程序。
    
 ## <a name="questions-and-answers-about-managing-device-controllers"></a>有關管理裝置控制器的問題與解答
-在本節中，我們摘要說明一些有關管理 StorSimple 裝置控制器的常見問題。
+在本節中，我們有摘要一些 hello 常見問題集有關管理 StorSimple 裝置控制站。
 
-**問：** 如果裝置上的兩個控制器都狀況良好且已開啟，而我重新啟動或關閉主動控制器，會發生什麼事？
+**問：** 如果兩者 hello 我的裝置上控制站，會發生什麼情況都是狀況良好並已在與我重新啟動或關閉 hello 主動控制器？
 
-**答：** 如果裝置上的兩個控制器皆狀況良好且已開啟，您會收到確認提示。 您可以選擇：
+**答：** 如果您的裝置上的兩個 hello 控制器皆狀況良好並已 on 時，系統會提示您確認。 您可以選擇：
 
-* **重新啟動主動控制器** – 您會收到通知，告知您重新啟動主動控制器將使裝置容錯移轉到被動控制器。 控制器會重新啟動。
-* **關閉主動控制器** – 您會收到通知，告知您關閉主動控制器將導致停機。 您也必須按下裝置上的電源開關，以開啟控制器。
+* **重新啟動主動控制器的 hello** – 您會收到通知，重新啟動主動控制器造成 hello 裝置 toofail 透過 toohello 被動控制站。 hello 控制器會重新啟動。
+* **關閉主動控制器** – 您會收到通知，告知您關閉主動控制器將導致停機。 您也需要 hello hello 控制站上的裝置 tooturn toopush hello 電源按鈕。
 
-**問：** 如果裝置上的被動控制器無法使用或已關閉，而我重新啟動或關閉主動控制器，會發生什麼事？
+**問：** 如果我的裝置上的 hello 被動控制器無法使用或已關閉，因此我重新啟動或關閉 hello 主動控制器，則會發生什麼事？
 
-**答：** 如果裝置上的被動控制器無法使用或已關閉，而您選擇：
+**答：** 如果您的裝置上的 hello 被動控制器無法使用或已關閉，而且您選擇：
 
-* **重新啟動主動控制器** – 您會收到通知，告知您繼續執行作業會導致服務暫時中斷，而且您會收到確認提示。
-* **關閉主動控制器** – 您會收到通知，告知您繼續作業將導致停機。 您也必須按下一個或兩個控制器的電源開關，以開啟裝置。 系統會提示您進行確認。
+* **重新啟動主動控制器的 hello** – 繼續 hello 作業將會導致 hello 服務暫時中斷，系統會提示您確認您會收到通知。
+* **關閉主動控制器**– 就會通知您繼續 hello 作業會導致停機時間。 您也需要 hello 裝置上的一個或兩個控制器 tooturn toopush hello 電源按鈕。 系統會提示您進行確認。
 
-**問：** 何時控制器重新啟動或關機會無法進行？
+**問：** 何時沒有 hello 控制器重新啟動或關機失敗 tooprogress？
 
 **答：** 重新啟動或關閉控制器可能會在下列情況下失敗：
 
@@ -147,17 +147,17 @@ ms.lasthandoff: 07/11/2017
 
 **問：** 您如何判斷控制器已重新啟動或關閉？
 
-**答：** 您可以在 [控制器] 刀鋒視窗上檢查控制器狀態。 控制器狀態會指出控制器是否正在重新啟動或關閉。 此外，如果控制器已重新啟動或關閉，[警示] 刀鋒視窗會包含資訊警示。 控制器重新啟動和關閉作業也會記錄在活動記錄中。 如需有關活動記錄的詳細資訊，請移至[檢視活動記錄](storsimple-8000-service-dashboard.md#view-the-activity-logs)。
+**答：** 您可以檢查 hello 控制器刀鋒視窗上的控制器狀態。 hello 控制器狀態會指出控制器是否在重新啟動或關閉 hello 程序。 此外，hello**警示**刀鋒視窗包含資訊警示，如果 hello 控制站重新啟動或關機。 hello 控制器重新啟動及關閉作業也會記錄在 hello 活動記錄檔。 如需活動記錄檔的詳細資訊，請移至太[檢視 hello 活動記錄檔](storsimple-8000-service-dashboard.md#view-the-activity-logs)。
 
-**問：** 控制器容錯移轉會不會對 I/O 造成任何影響？
+**問：** 是否有任何影響 toohello I/O 控制器容錯移轉後？
 
-**答：** 啟動器和主動控制器之間的 TCP 連接將會因為控制器容錯移轉而重設，但會在被動控制器繼續作業時重新建立。 在這項作業的過程中，啟動器與裝置之間的 I/O 活動中可能會有暫時的 (少於 30 秒) 暫停。
+**答：** 由於控制器容錯移轉，將會重設 hello 啟動器與主動控制站之間的 TCP 連線，但 hello 被動控制器繼續作業時就會重新建立。 Hello 課程的這項作業期間可能會暫時 （少於 30 秒） 暫停啟動器與 hello 裝置之間的 I/O 活動。
 
-**問：** 如何在控制器關閉並遭移除後，將控制器傳回給服務？
+**問：** 如何關閉和移除之後傳回我控制器 tooservice？
 
-**答：** 若要將控制器傳回給服務，您必須依照 [更換 StorSimple 裝置上的控制器模組](storsimple-8000-controller-replacement.md)。
+**答：** tooreturn 控制器 tooservice，您必須將它插入 hello 底座中所述[取代您的 StorSimple 裝置上的控制器模組](storsimple-8000-controller-replacement.md)。
 
 ## <a name="next-steps"></a>後續步驟
-* 如果發生任何無法使用本教學課程中所列之程序解決的 StorSimple 裝置控制器相關問題，請 [連絡 Microsoft 支援服務](storsimple-8000-contact-microsoft-support.md)。
-* 若要深入了解使用 StorSimple 裝置管理員服務的方式，請移至[使用 StorSimple 裝置管理員服務管理 StorSimple 裝置](storsimple-8000-manager-service-administration.md)。
+* 如果您遇到任何問題，您無法使用此教學課程中所列的 hello 程序來解決您 StorSimple 裝置控制站與[連絡 Microsoft 支援服務](storsimple-8000-contact-microsoft-support.md)。
+* toolearn 進一步了解使用 hello StorSimple 裝置管理員服務，請跳過[使用 hello StorSimple 裝置管理員服務 tooadminister StorSimple 裝置](storsimple-8000-manager-service-administration.md)。
 

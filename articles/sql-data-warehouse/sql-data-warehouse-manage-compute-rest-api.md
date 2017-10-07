@@ -1,5 +1,5 @@
 ---
-title: "在 Azure SQL 資料倉儲中暫停、繼續、使用 REST 調整 | Microsoft Docs"
+title: "aaaPause，繼續，請調整與 Azure SQL 資料倉儲中的其餘部分 |Microsoft 文件"
 description: "透過 REST、T-SQL 和 PowerShell 管理 SQL 資料倉儲中的運算能力。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 07/25/2017
 ms.author: elbutter
-ms.openlocfilehash: 24e43205c0c562fca9b1c2c0e5eed4da54e17ed7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fc867febb118fb5c86c2637a41b232076021b95d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-rest"></a>管理 Azure SQL 資料倉儲中的計算能力 (REST)
 > [!div class="op_single_selector"]
@@ -37,7 +37,7 @@ ms.lasthandoff: 08/03/2017
 ## <a name="scale-compute-power"></a>調整計算能力
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-若要變更 DWU，請使用[建立或更新資料庫][Create or Update Database] REST API。 下例會將裝載在 MyServer 伺服器上的資料庫 MySQLDW 的服務等級目標設定為 DW1000。 此伺服器位於 ResourceGroup1 這個 Azure 資源群組。
+toochange hello Dwu，使用 hello[建立或更新資料庫][ Create or Update Database] REST API。 hello 下列範例會設定 hello 服務等級目標 tooDW1000 hello 資料庫裝載 MySQLDW MyServer 伺服器上。 hello 伺服器中的 Azure 資源群組的名稱為 ResourceGroup1。
 
 ```
 PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}?api-version=2014-04-01-preview HTTP/1.1
@@ -55,7 +55,7 @@ Content-Type: application/json; charset=UTF-8
 ## <a name="pause-compute"></a>暫停計算
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-若要暫停資料庫，請使用[暫停資料庫][Pause Database] REST API。 下例會暫停裝載在 Server01 伺服器上的 Database02 資料庫。 此伺服器位於 ResourceGroup1 這個 Azure 資源群組。
+toopause 資料庫中，使用 hello[暫停資料庫][ Pause Database] REST API。 hello 下列範例會暫停名為 Database02 裝載於名為 Server01 的伺服器上的資料庫。 hello 伺服器中的 Azure 資源群組的名稱為 ResourceGroup1。
 
 ```
 POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}/pause?api-version=2014-04-01-preview HTTP/1.1
@@ -66,7 +66,7 @@ POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups
 ## <a name="resume-compute"></a>繼續計算
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-若要啟動資料庫，請使用[繼續資料庫][Resume Database] REST API。 下例會啟動裝載在 Server01 伺服器上的 Database02 資料庫。 此伺服器位於 ResourceGroup1 這個 Azure 資源群組。 
+toostart 資料庫中，使用 hello[繼續資料庫][ Resume Database] REST API。 hello 下列範例會啟動名為 Database02 裝載於名為 Server01 的伺服器上的資料庫。 hello 伺服器中的 Azure 資源群組的名稱為 ResourceGroup1。 
 
 ```
 POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}/resume?api-version=2014-04-01-preview HTTP/1.1

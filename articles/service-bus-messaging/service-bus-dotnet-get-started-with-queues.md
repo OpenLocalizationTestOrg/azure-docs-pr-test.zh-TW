@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Azure 服務匯流排佇列 | Microsoft Docs"
+title: "開始使用 Azure Service Bus 佇列的 aaaGet |Microsoft 文件"
 description: "撰寫使用服務匯流排傳訊佇列的 C# 主控台應用程式。"
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 06/26/2017
 ms.author: sethm
-ms.openlocfilehash: 99a377db6341d90d263b98e14227db61dd9beabd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: eaa362ab0eabd2427977398c1deab5dc00105ae9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-service-bus-queues"></a>開始使用服務匯流排佇列
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
 ## <a name="what-will-be-accomplished"></a>將會完成的工作
-本教學課程涵蓋下列步驟：
+本教學課程涵蓋 hello 下列步驟：
 
-1. 使用 Azure 入口網站建立服務匯流排命名空間。
-2. 使用 Azure 入口網站建立服務匯流排佇列。
-3. 撰寫主控台應用程式來傳送訊息。
-4. 撰寫主控台應用程式以接收上一個步驟中傳送的訊息。
+1. 建立服務匯流排命名空間，使用 hello Azure 入口網站。
+2. 建立服務匯流排佇列，使用 hello Azure 入口網站。
+3. 訊息寫入主控台應用程式 toosend。
+4. 撰寫主控台應用程式 tooreceive hello hello 上一個步驟中傳送的訊息。
 
 ## <a name="prerequisites"></a>必要條件
-1. [Visual Studio 2015 或更新版本](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2017。
+1. [Visual Studio 2015 或更新版本](http://www.visualstudio.com)。 在此教學課程中的 hello 範例會使用 Visual Studio 2017。
 2. Azure 訂用帳戶。
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="1-create-a-namespace-using-the-azure-portal"></a>1.使用 Azure 入口網站建立命名空間
-如果您已建立服務匯流排傳訊命名空間，請跳至[使用 Azure 入口網站建立佇列](#2-create-a-queue-using-the-azure-portal)一節。
+## <a name="1-create-a-namespace-using-hello-azure-portal"></a>1.建立命名空間使用 hello Azure 入口網站
+如果您已經建立 Service Bus 訊息的命名空間，跳 toohello[建立佇列，使用 Azure 入口網站 hello](#2-create-a-queue-using-the-azure-portal) > 一節。
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="2-create-a-queue-using-the-azure-portal"></a>2.使用 Azure 入口網站建立佇列
-如果您已經建立服務匯流排佇列，請跳至[將訊息傳送至佇列](#3-send-messages-to-the-queue)一節。
+## <a name="2-create-a-queue-using-hello-azure-portal"></a>2.建立佇列，使用 hello Azure 入口網站
+如果您已經建立 Service Bus 佇列，跳 toohello[傳送訊息 toohello 佇列](#3-send-messages-to-the-queue)> 一節。
 
 [!INCLUDE [service-bus-create-queue-portal](../../includes/service-bus-create-queue-portal.md)]
 
-## <a name="3-send-messages-to-the-queue"></a>3.將訊息傳送到佇列
-為了將訊息傳送到佇列，我們使用 Visual Studio 撰寫 C# 主控台應用程式。
+## <a name="3-send-messages-toohello-queue"></a>3.傳送訊息 toohello 佇列
+toosend 訊息 toohello 佇列中，我們會撰寫 C# 主控台應用程式使用 Visual Studio。
 
 ### <a name="create-a-console-application"></a>建立主控台應用程式
 
 啟動 Visual Studio，並建立新的**主控台應用程式 (.NET Framework)** 專案。
 
-### <a name="add-the-service-bus-nuget-package"></a>新增服務匯流排 NuGet 封裝
-1. 以滑鼠右鍵按一下新建立的專案，然後選取 [管理 NuGet 套件]。
-2. 按一下 [瀏覽] 索引標籤，搜尋 [Microsoft Azure 服務匯流排]，然後選取 [WindowsAzure.ServiceBus] 項目。 按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。
+### <a name="add-hello-service-bus-nuget-package"></a>加入 hello 服務匯流排 NuGet 封裝
+1. Hello 新建立的專案上按一下滑鼠右鍵，然後選取**管理 NuGet 封裝**。
+2. 按一下 hello**瀏覽**索引標籤上，搜尋**Microsoft Azure 服務匯流排**，然後選取 hello **WindowsAzure.ServiceBus**項目。 按一下**安裝**toocomplete hello 安裝，然後關閉此對話方塊。
    
     ![選取 NuGet 封裝][nuget-pkg]
 
-### <a name="write-some-code-to-send-a-message-to-the-queue"></a>撰寫一些程式碼來將訊息傳送到佇列
-1. 在 Program.cs 檔案開頭處新增以下 `using` 陳述式。
+### <a name="write-some-code-toosend-a-message-toohello-queue"></a>撰寫一些程式碼 toosend 訊息 toohello 佇列
+1. 新增下列 hello `using` hello Program.cs 檔案的陳述式 toohello 頂端。
    
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
-2. 將下列程式碼新增至 `Main` 方法。 將 `connectionString` 變數設定為建立命名空間時取得的連接字串，並將 `queueName` 設定為建立佇列時使用的佇列名稱。
+2. 新增下列程式碼 toohello hello`Main`方法。 設定 hello`connectionString`變數 toohello 連接字串時建立 hello 命名空間中，取得及設定`queueName`toohello 建立 hello 佇列時所使用的佇列名稱。
    
     ```csharp
     var connectionString = "<your connection string>";
@@ -79,7 +79,7 @@ ms.lasthandoff: 08/18/2017
 
     client.Send(message);
 
-    Console.WriteLine("Message successfully sent! Press ENTER to exit program");
+    Console.WriteLine("Message successfully sent! Press ENTER tooexit program");
     Console.ReadLine();
     ```
    
@@ -109,25 +109,25 @@ ms.lasthandoff: 08/18/2017
 
                 client.Send(message);
 
-                Console.WriteLine("Message successfully sent! Press ENTER to exit program");
+                Console.WriteLine("Message successfully sent! Press ENTER tooexit program");
                 Console.ReadLine();
             }
         }
     }
     ```
-3. 執行程式，並檢查 Azure 入口網站：按一下命名空間 [概觀] 刀鋒視窗中的佇列名稱。 佇列 [Essentials] 刀鋒視窗即會顯示。 請注意，**使用中訊息計數**值現在應該是 1。 每次執行傳送者應用程式而未擷取訊息時，這個值就會增加 1。 也請注意，每當應用程式在佇列中新增訊息時，佇列目前的大小就會增加。
+3. 執行 hello 程式並檢查 hello Azure 入口網站： 按一下您的佇列 hello 命名空間中的 hello 名稱**概觀**刀鋒視窗。 hello 佇列**Essentials**刀鋒視窗會顯示。 請注意該 hello**作用中的訊息計數**值現在應該是 1。 每的次您執行 hello 寄件者應用程式而不擷取 hello 訊息，這個值會增加 1。 也請注意 hello hello 佇列的目前的大小遞增每個時間 hello 應用程式會加入訊息 toohello 佇列。
    
       ![訊息大小][queue-message]
 
-## <a name="4-receive-messages-from-the-queue"></a>4.從佇列接收訊息
+## <a name="4-receive-messages-from-hello-queue"></a>4.從 hello 佇列接收訊息
 
-1. 若要接收您剛傳送的訊息，請建立新的主控台應用程式，並和上面的傳送者應用程式類似，新增服務匯流排 NuGet 套件的參考。
-2. 在 Program.cs 檔案開頭處新增以下 `using` 陳述式。
+1. 只傳送 tooreceive hello 訊息建立新的主控台應用程式，並加入參考 toohello 服務匯流排 NuGet 封裝，類似 toohello 先前寄件者應用程式。
+2. 新增下列 hello `using` hello Program.cs 檔案的陳述式 toohello 頂端。
    
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
-3. 將下列程式碼新增至 `Main` 方法。 將 `connectionString` 變數設定為建立命名空間時取得的連接字串，並將 `queueName` 設定為建立佇列時使用的佇列名稱。
+3. 新增下列程式碼 toohello hello`Main`方法。 設定 hello`connectionString`變數 toohello 連接字串時建立 hello 命名空間、 取得和設定`queueName`toohello 建立 hello 佇列時所使用的佇列名稱。
    
     ```csharp
     var connectionString = "<your connection string>";
@@ -141,7 +141,7 @@ ms.lasthandoff: 08/18/2017
       Console.WriteLine(String.Format("Message id: {0}", message.MessageId));
     });
    
-    Console.WriteLine("Press ENTER to exit program");
+    Console.WriteLine("Press ENTER tooexit program");
     Console.ReadLine();
     ```
    
@@ -168,13 +168,13 @@ ms.lasthandoff: 08/18/2017
             Console.WriteLine(String.Format("Message id: {0}", message.MessageId));
           });
 
-          Console.WriteLine("Press ENTER to exit program");   
+          Console.WriteLine("Press ENTER tooexit program");   
           Console.ReadLine();
         }
       }
     }
     ```
-4. 執行程式，並再次檢查入口網站。 請注意，**使用中訊息計數**和**目前**值現在是 0。
+4. 執行 hello 程式並再次檢查 hello 入口網站。 請注意該 hello**作用中的訊息計數**和**目前**值現在是 0。
    
     ![佇列長度][queue-message-receive]
 
@@ -182,7 +182,7 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-查看 [GitHub 存放庫以及範例](https://github.com/Azure/azure-service-bus/tree/master/samples)，其中會展示一些更進階的服務匯流排傳訊功能。
+請查看我們[範例 GitHub 儲存機制](https://github.com/Azure/azure-service-bus/tree/master/samples)，示範一些更進階的功能的服務匯流排傳訊的 hello。
 
 <!--Image references-->
 

@@ -1,5 +1,5 @@
 ---
-title: "適用於 Azure Cosmos DB 的 DocumentDB API Python 範例 | Microsoft Docs"
+title: "Azure Cosmos DB aaaDocumentDB API Python 範例 |Microsoft 文件"
 description: "在 GitHub 上找到適用於 Azure Cosmos DB 中一般工作 (包括 CRUD 作業) 的 Python 範例。"
 keywords: "Python 範例"
 services: cosmos-db
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/24/2016
 ms.author: moderakh
-ms.openlocfilehash: d1577eeeb8fe8007394431ce70a1c7a6ee61776b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d8f240782b0997f2d32b68d310dc6f4ff6cb36d0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-python-examples"></a>Azure Cosmos DB Python 範例
 > [!div class="op_single_selector"]
@@ -30,25 +30,25 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-[azure-documentdb-python](https://github.com/Azure/azure-documentdb-python/tree/master/samples) GitHub 存放庫中包含可對 Azure Cosmos DB 資源執行 CRUD 作業和其他常見作業的範例解決方案。 本文提供：
+執行 CRUD 作業及其他 Azure Cosmos DB 資源上的一般作業的範例方案隨附的 hello [azure-documentdb-python](https://github.com/Azure/azure-documentdb-python/tree/master/samples) GitHub 儲存機制。 本文提供：
 
-* 每個 Python 範例專案檔中各項工作的連結。 
-* 相關 API 參考內容的連結。
+* 在 hello Python 範例專案檔中的連結 toohello 工作。 
+* 連結 toohello 相關的應用程式開發介面參考內容。
 
 **必要條件**
 
-1. 您必須要有 Azure 帳戶才能使用這些 Python 範例：
-   * 您可以 [免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)- 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。 除非您明確變更您的設定且同意付費，否則我們將不會從您的信用卡收取任何費用。
+1. 您需要 Azure 帳戶 toouse 這些 Python 範例：
+   * 您可以[開啟免費的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)： 取得信用額度您可以使用 tootry 出支付 Azure 服務，而且即使他們用於之後您可以在最多保留 hello 帳戶，並使用免費的 Azure 服務，例如網站。 永遠不會將向您的信用卡，除非您明確地變更您的設定，並詢問 toobe 收費。
      * 您可以 [啟用 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)：您的 Visual Studio 訂用帳戶每個月都會提供額度，供您用在 Azure 付費服務。
-2. 您也需要 [Python SDK](documentdb-sdk-python.md)。 
+2. 您也需要 hello [Python SDK](documentdb-sdk-python.md)。 
    
    > [!NOTE]
-   > 每個範例都各自獨立，自己設定，並自行清理。 據此，這些範例對 [document_client.CreateCollection](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html) 發出多個呼叫。 每當執行此動作時，即會根據所建立之集合的效能層，對您的訂用帳戶計入一小時的使用量費用。 
+   > 每個範例都各自獨立，自己設定，並自行清理。 因此，hello 範例發出多個呼叫太[document_client。CreateCollection](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html)。 這是您的訂用帳戶每次需要支付 1 小時內的每個 hello 效能層 hello 集合正在建立的使用量。 
    > 
    > 
 
 ## <a name="database-examples"></a>資料庫範例
-[DatabaseManagement](https://github.com/Azure/azure-documentdb-python/tree/master/samples/DatabaseManagement) 專案的 [Program.py](https://github.com/Azure/azure-documentdb-python/tree/master/samples/DatabaseManagement/Program.py) 檔案說明如何執行下列工作。
+hello [Program.py](https://github.com/Azure/azure-documentdb-python/tree/master/samples/DatabaseManagement/Program.py)檔案的 hello [DatabaseManagement](https://github.com/Azure/azure-documentdb-python/tree/master/samples/DatabaseManagement)專案顯示影響 tooperform hello 下列工作。
 
 | Task | API 參考資料 |
 | --- | --- |
@@ -59,7 +59,7 @@ ms.lasthandoff: 07/11/2017
 | [刪除資料庫](https://github.com/Azure/azure-documentdb-python/blob/d78170214467e3ab71ace1a7400f5a7fa5a7b5b0/samples/DatabaseManagement/Program.py#L113-L126) |[document_client.DeleteDatabase](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html) |
 
 ## <a name="collection-examples"></a>集合範例
-[CollectionManagement](https://github.com/Azure/azure-documentdb-python/tree/master/samples/CollectionManagement) 專案的 [Program.py](https://github.com/Azure/azure-documentdb-python/tree/master/samples/CollectionManagement/Program.py) 檔案說明如何執行下列工作。
+hello [Program.py](https://github.com/Azure/azure-documentdb-python/tree/master/samples/CollectionManagement/Program.py)檔案的 hello [CollectionManagement](https://github.com/Azure/azure-documentdb-python/tree/master/samples/CollectionManagement)專案顯示影響 tooperform hello 下列工作。
 
 | Task | API 參考資料 |
 | --- | --- |

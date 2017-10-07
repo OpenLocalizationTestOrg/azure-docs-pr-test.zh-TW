@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 的自助式應用程式存取和委派管理 | Microsoft Docs"
-description: "本文說明如何啟用 Azure Active Directory 的自助式應用程式存取和委派管理"
+title: "aaaSelf 服務應用程式存取和使用 Azure Active Directory 委派的管理 |Microsoft 文件"
+description: "本文說明 tooenable 自助應用程式如何存取和使用 Azure Active Directory 委派的管理。"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,90 +16,90 @@ ms.date: 07/26/2017
 ms.author: curtand
 ms.reviewer: asmalser
 ms.custom: oldportal;it-pro;
-ms.openlocfilehash: 7872d5229cdc053bfb9dc8ddba01785b0f8e5a9a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 90bec3bd71796f22a782929b028db0d18c3aa1c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="self-service-application-access-and-delegated-management-with-azure-active-directory"></a>Azure Active Directory 的自助式應用程式存取和委派管理
-為使用者啟用自助式功能是常見的企業 IT 案例。 許多使用者、許多應用程式，以及最有把握做出存取權授與決策的人員可能都不是目錄管理員。 通常決定誰可以存取應用程式的最佳人選是小組負責人或其他委派的系統管理員。 但是，這就是使用應用程式的使用者，而使用者知道他們需要什麼才能進行其作業。
+為使用者啟用自助式功能是常見的企業 IT 案例。 許多應用程式和 hello 人員 best-informed toomake 存取大量的使用者授與的決策可能不是 hello 目錄管理員。 小組負責人或其他委派的系統管理員通常 hello 最佳人員 toodecide 可以存取應用程式。 不過，它是 hello 使用者使用 hello 應用程式，以及 hello 使用者知道他們需要 toobe 無法 toodo 他們的工作。
 
 > [!IMPORTANT]
-> Microsoft 建議您使用 Azure 入口網站中的 [Azure AD 系統管理中心](https://aad.portal.azure.com)來管理 Azure AD，而不要使用本文所提及的 Azure 傳統入口網站。 
+> Microsoft 建議您管理 Azure AD 使用 hello [Azure AD 系統管理中心](https://aad.portal.azure.com)hello 在 Azure 入口網站，而不是使用 hello 這個文件中參考的 Azure 傳統入口網站。 
 
 自助式應用程式存取是 [Azure Active Directory Premium](https://azure.microsoft.com/trial/get-started-active-directory/) P1 和 P2 授權的一項功能，可讓目錄管理員：
 
-* 允許使用者使用 [Azure AD 存取面板](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)中的 [取得更多應用程式] 圖格來要求應用程式的存取權
+* 讓使用者 toorequest 存取 tooapplications 使用 [取得更多應用程式] 磚中 hello [Azure AD 存取面板](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)
 * 設定使用者可以要求存取哪些應用程式
-* 設定使用者是否需要竟過核准，才能夠自我分派應用程式的存取權
-* 設定誰應該核准要求及管理每個應用程式的存取權
+* 設定可為使用者 toobe 無法 tooself 指派存取 tooan 應用程式需要核准
+* 應該核准 hello 要求及管理每個應用程式的存取設定
 
-目前在 [Azure Active Directory 應用程式庫](https://azure.microsoft.com/marketplace/active-directory/all/)中支援同盟或密碼型單一登入的所有預先整合和自訂應用程式都支援這項功能，包括 Salesforce、Dropbox、Google Apps 等等。
+這項功能現在支援所有預先整合和自訂應用程式，以支援同盟或密碼單一登入 hello [Azure Active Directory 應用程式庫](https://azure.microsoft.com/marketplace/active-directory/all/)，包括 Salesforce、 Dropbox 等應用程式Google Apps 等等。
 這篇文章說明如何：
 
 * 設定一般使用者的自助式應用程式存取權，包括設定選擇性核准工作流程 
-* 將特定應用程式的存取管理委派給您組織中最適當的人員，讓他們能使用 Azure AD 存取面板來核准存取要求，直接將存取權指派給選取的使用者，或者 (選擇性) 在設定密碼型單一登入時設定應用程式存取的認證
+* 委派存取管理的特定應用程式 toohello 最適合組織中的人員，並讓它們 toouse hello Azure AD 存取面板 tooapprove 存取要求、 直接指派存取 tooselected 使用者，或者 （選擇性） 設定設定密碼單一登入的應用程式存取的認證
 
 ## <a name="configuring-self-service-application-access"></a>設定自助式應用程式存取權
-若要啟用自助式應用程式存取權，以及設定一般使用者可以新增或要求哪些應用程式，請遵循這些指示。
+tooenable 自助式應用程式存取和設定的應用程式可以加入或要求您的使用者，請遵循這些指示。
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。
+1. 登入 hello [Azure 傳統入口網站](https://manage.windowsazure.com/)。
 
-2.   在 [Active Directory] 區段下選取您的目錄，然後選取 [應用程式] 索引標籤。 
+2.   在 [hello **Active Directory**區段中，選取您的目錄，然後選取 hello**應用程式**] 索引標籤。 
 
-3. 選取 [新增] 按鈕，並使用資源庫選項來選取和新增應用程式。
+3. 選取 hello**新增**按鈕，並使用 hello 圖庫選項 tooselect 新增應用程式。
 
-4. 新增應用程式之後，您將取得 [快速啟動] 頁面。 按一下 [設定單一登入] 、選取所需的單一登入模式，然後儲存設定。 
+4. 加入您的應用程式之後，您會收到 hello 應用程式的 [快速入門] 頁面。 按一下**設定單一登入**、 選取 hello 需單一登入模式，並儲存 hello 設定。 
 
-5. 接下來，選取 [設定] 索引標籤。 若要讓使用者要求從 Azure AD 存取面板存取此應用程式，請將 [允許自助式應用程式存取] 設定為 [是]。
+5. 接下來，選取 [hello**設定**] 索引標籤 tooenable 使用者 toorequest access toothis 應用程式從 hello Azure AD 存取面板中，設定**允許自助應用程式存取**太**是**.
   
   ![][1]
 
-6. 若要選擇性設定存取要求的核准工作流程，請將 [授與存取權前需要核准] 設定為 [是]。 然後可以使用 [核准者]  按鈕來選取一或多個核准者。
+6. toooptionally 設定的存取要求的核准工作流程設定**授與存取權之前需要核准**太**是**。 然後可以選取一個或多個核准者，使用 hello**核准者** 按鈕。
 
-  核准者可以是組織中具有 Azure AD 帳戶的任何使用者，而且可能負責帳戶佈建、授權或您的組織在授與應用程式存取權前所需的任何其他商務程序。 核准者甚至可以是一個或多個共用帳戶群組的群組擁有者，而且可以將使用者指派給其中一個群組，讓它們能透過共用帳戶進行存取。 
+  核准者可以是 Azure AD 帳戶，hello 組織中的任何使用者，而且可能會負責帳戶佈建、 授權，或任何其他商務程序需要授與存取 tooan 應用程式之前的組織。 hello 群組擁有者的一或多個共用帳戶群組，以便將指派的共用帳戶透過這些使用者存取這些群組 toogive hello 使用者 tooone，甚至可能是 hello 核准者。 
 
-  如果不需要核准，則使用者會立即將應用程式新增至其 Azure AD 存取面板。 如果應用程式已設定[自動使用者佈建](active-directory-saas-app-provisioning.md)，或已設定[「使用者管理的」密碼 SSO 模式](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)，使用者應該已有使用者帳戶並知道密碼。
+  如果沒有核准，然後使用者立即取得 hello 應用程式加入的 tootheir Azure AD 存取面板。 如果已設定 hello 應用程式註冊[自動使用者佈建](active-directory-saas-app-provisioning.md)，或已設定[[使用者管理] 的密碼 SSO 模式](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)，hello 使用者應該已經有使用者帳戶，並知道 hello 密碼。
 
-7. 如果應用程式已設定為使用密碼型單一登入，則也會提供允許核准者代表每個使用者設定 SSO 認證的選項。 如需詳細資訊，請參閱[委派存取管理](#delegated-application-access-management)一節。
+7. 如果 hello 應用程式已設定的 toouse 密碼型單一登入，然後允許 hello 核准者代表每個使用者 tooset hello 登入認證的選項也會提供。 如需詳細資訊，請參閱 hello 一節[委派存取管理](#delegated-application-access-management)。
 
-8. 最後，[自我指派的使用者群組] 顯示的群組名稱將用來儲存被授與或指派應用程式存取權的使用者。 存取核准者會成為此群組的擁有者。 如果顯示的群組名稱不存在，系統就會自動建立。 可選擇性將此群組名稱設定為現有群組的名稱。
+8. 最後，hello **Self-Assigned 使用者群組**顯示 hello hello 群組是使用的 toostore hello 使用者被授與或指派存取 toohello 應用程式的名稱。 hello 存取核准者會成為此群組的 hello 擁有者。 如果顯示 hello 群組名稱不存在，它會自動建立。 選擇性地 hello 群組名稱也可以設定 toohello 現有的群組名稱。
 
-9. 若要儲存設定，請按一下畫面底部的 [儲存]。 現在使用者就能夠從存取面板要求存取此應用程式。
+9. toosave hello 組態中，按一下 **儲存**在 hello 囉 」 畫面底部。 現在使用者可以從 hello 存取面板 toorequest access toothis 應用程式。
 
-10. 若要嘗試使用者體驗，請在 https://myapps.microsoft.com 登入您組織的 Azure AD 存取面板，最好使用其他不是應用程式核准者的帳戶。 
+10. tootry hello 終端使用者體驗，登入貴組織的 Azure AD 存取面板 https://myapps.microsoft.com，最好使用不同的帳戶不是應用程式核准者。 
 
-11. 在 [應用程式] 索引標籤之下，按一下 [取得更多應用程式] 圖格。 此圖格會顯示目錄中所有已啟用自助式應用程式存取的應用程式庫，並可依左邊的應用程式類別進行搜尋和篩選。 
+11. 在 hello**應用程式**索引標籤上，按一下 hello**取得更多應用程式**磚。 這個磚會顯示所有已啟用自助式應用程式存取與 hello 能力 toosearch hello 左側的應用程式類別目錄篩選條件的 hello 目錄中的 hello 應用程式庫。 
 
-12. 按一下應用程式可啟動要求程序。 如果需要核准程序，則應用程式會在簡短確認之後，立即新增在 [應用程式]  索引標籤之下。 如果需要核准，則您會看到一個對話方塊如此表示，而且會傳送電子郵件給核准者。 您必須以非核准者身分登入存取面板，才能查看此要求程序。
+12. 按一下 應用程式就會啟動 hello 要求程序。 如果沒有核准程序是必要項目，則 hello 應用程式會立即加入之下 hello**應用程式**簡短確認結束之後的索引標籤。 如果需要核准，然後您會看到對話方塊，指出此項目，並傳送 toohello 核准者的電子郵件。 您必須登入 hello 存取面板為非核准者 toosee 此要求程序。
 
-13. 電子郵件會指示核准者登入 Azure AD 存取面板並核准要求。 一旦核准要求 (並由核准者執行您定義的任何特殊程序)，使用者會看到應用程式出現在其可登入的 [應用程式] 索引標籤之下。
+13. hello 電子郵件將 hello 核准者 toosign 導向到 hello Azure AD 存取面板中，並核准 hello 要求。 一旦 hello 要求獲得核准後 （且已執行任何特殊的處理序，您定義的 hello 核准者），hello 使用者會看見 hello 應用程式會出現在其**應用程式**，他們可以登入，到其中的索引標籤。
 
 ## <a name="delegated-application-access-management"></a>委派的應用程式存取管理
-應用程式存取核准者可以是您組織中最適合核准或拒絕存取有問題的應用程式的任何使用者。 此核准者可能負責帳戶佈建、授權或您的組織在授與應用程式存取權前所需的任何其他商務程序。
+應用程式存取核准者可以是最適當人員 tooapprove hello 組織中的任何使用者或拒絕存取 toohello 應用程式有問題。 這位使用者可能會負責將帳戶佈建、 授權，或任何其他商務程序授與存取 tooan 應用程式之前需要您的組織。
 
-設定上述的自助式應用程式存取時，所有被指派的應用程式核准者都會在 Azure AD 存取面板中看見額外的 [管理應用程式] 圖格，其中顯示他們身為存取管理員的應用程式。 按一下某個應用程式會顯示包含數個選項的畫面。
+當設定上面所述的自助式應用程式存取，任何指派給核准者看到的應用程式額外**管理應用程式**hello Azure AD 存取面板，其顯示它們的應用程式中的磚hello 存取系統管理員。 按一下某個應用程式會顯示包含數個選項的畫面。
 
 ![][2]
 
 ### <a name="approve-requests"></a>核准要求
-[核准要求]  磚可讓核准者看到該應用程式特有的擱置核准，並重新導向至可確認或拒絕要求的 [核准] 索引標籤。 核准者也會在建立要求時收到自動化電子郵件，指示他們該怎麼做。
+hello**核准要求**磚允許核准者 toosee 任何暫止核准特定 toothat 應用程式和重新導向 toohello 核准即 hello 要求的 索引標籤可以確認或拒絕。 每次要求建立時，指示哪些 toodo hello 核准者也會收到自動化電子郵件。
 
 ### <a name="add-users"></a>新增使用者
-[新增使用者]  磚可讓核准者直接將應用程式的存取權授予選取的使用者。 按一下此磚時，核准者會看到一個對話方塊，可供檢視與搜尋其目錄中的使用者。 新增使用者會導致應用程式顯示在這些使用者的 Azure AD 存取面板或 Office 365 中。 如果在使用者能夠登入之前，需要在應用程式進行任何手動使用者佈建程序，則核准者應在指派存取權之前執行此程序。  
+hello**新增使用者**磚允許核准者 toodirectly 選取授與使用者存取 toohello 應用程式。 按一下此磚後, hello 核准者會看到對話方塊可讓它們 tooview 並搜尋使用者在他們的目錄。 這些使用者的 Azure AD 存取面板或 Office 365 中的 hello 應用程式中加入使用者結果。 是否需要任何手動佈建程序的使用者在 hello hello 使用者之前的應用程式中，可以 toosign 然後 hello 核准者應該指派存取權之前執行此程序。  
 
 ### <a name="manage-users"></a>管理使用者
-[管理使用者]  磚可讓核准者直接更新或移除哪些使用者可存取應用程式。 
+hello**管理使用者**磚允許核准者 toodirectly 更新或移除哪些使用者可以存取 toohello 應用程式。 
 
 ### <a name="configure-password-sso-credentials-if-applicable"></a>設定密碼 SSO 認證 (如果適用)
-只有在 IT 系統管理員將應用程式設定為使用密碼型單一登入，且系統管理員授與核准者設定密碼 SSO 認證的功能 (如先前所述) 後，才會顯示 [設定] 圖格。 選取後，核准者會看見幾個選項，可供選取如何將認證散佈給指派的使用者：
+hello**設定**磚僅會顯示是否由 IT 系統管理員 toouse 密碼型單一登入，hello hello 應用程式設定和 hello 系統管理員授與 hello 核准者 hello 能力 tooset 密碼 SSO 認證如先前所述。 選取時，hello 核准者會看見數個選項 hello 認證的傳播的 tooassigned 使用者的方式：
 
 ![][3]
 
-* **使用者使用自己的密碼登入** – 在此模式中，指派的使用者知道其用於應用程式的使用者名稱和密碼，而且系統會提示他們在第一次登入應用程式時輸入這些資訊。 此案例對應於[使用者管理認證](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)的密碼 SSO 案例。
-* **使用者使用我管理的各個帳戶自動登入** – 在此模式中，指派的使用者在登入應用程式時，不需要輸入或知道其應用程式特定的認證。 相反地，核准者會在使用 [新增使用者]  磚指派存取權之後，為每個使用者設定認證。 當使用者按一下其存取面板或 Office 365 中的應用程式時，系統會使用核准者所設定的認證將他們自動登入。 此案例對應於[系統管理員管理認證](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)的密碼 SSO 案例。
-* **使用者使用我管理的單一帳戶自動登入** - 這是特殊案例，適用於當所有指派的使用者必須獲得使用單一共用帳戶的權限時。 此功能的最常見使用案例就是社交媒體應用程式，案例中的組織有單一「公司」帳戶，而多個使用者必須對該帳戶進行更新。 此案例也對應於[系統管理員管理認證](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)的密碼 SSO 案例。 不過，選取此選項之後，系統會提示核准者輸入單一共用帳戶的使用者名稱和密碼。 完成後，所有指派的使用者會在按一下 Azure AD 存取面板或 Office 365 中的應用程式時，使用此帳戶登入。
+* **使用者以自己的密碼登入**– 在此模式中，hello 分派使用者了解使用者名稱及密碼 hello 應用程式，則與會提示的 tooenter 它們在其第一個登入 toohello 應用程式時。 hello 案例對應 toohello 密碼 SSO 案例在 hello[使用者管理認證](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)。
+* **使用者會自動登入使用我管理的個別帳戶**– 在此模式中，指派的 hello 不必要的 tooenter 或使用者知道他們的應用程式特定的認證登入 hello 應用程式時。 相反地，hello 核准者設定為每個使用者指派使用 hello 存取之後 hello 認證**新增使用者**磚。 Hello 使用者按一下時其存取面板或 Office 365 中的 hello 應用程式，它們會使用自動登入 hello hello 核准者設定的認證。 hello 案例對應 toohello 密碼 SSO 案例在 hello[系統管理員管理認證](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)。
+* **使用者會自動登入使用我管理的單一帳戶**-特殊案例中，這種情況時，才能適當 toouse 所有指派的使用者需要 toobe 授與使用單一的共用的帳戶的存取權。 這項功能 hello 最常見使用案例是使用社交媒體應用程式，其中組織具有單一 「 公司 」 帳戶，而且多個使用者需要 toomake 更新 toothat 帳戶。 hello 案例也對應 toohello 密碼 SSO 案例在 hello[系統管理員管理認證](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)。 不過，選取此選項之後，hello 核准者將會提示的 tooenter hello 使用者名稱和 hello 單一的共用帳戶的密碼。 完成後，所有指派的使用者會登入其 Azure AD 存取面板或 Office 365 中的 hello 應用程式上按一下時，請使用此帳戶。
 
 ## <a name="additional-resources"></a>其他資源
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)

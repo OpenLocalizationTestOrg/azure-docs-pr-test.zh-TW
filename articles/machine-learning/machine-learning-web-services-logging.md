@@ -1,6 +1,6 @@
 ---
-title: "Machine Learning Web 服務的記錄 | Microsoft Docs"
-description: "了解如何為 Machine Learning Web 服務啟用記錄。 記錄提供可協助疑難排解 API 的其他資訊。"
+title: "Machine Learning web 服務的 aaaLogging |Microsoft 文件"
+description: "深入了解如何 tooenable 記錄機器學習 web 服務。 記錄提供 toohelp 疑難排解 hello 應用程式開發介面的其他資訊。"
 services: machine-learning
 documentationcenter: 
 author: raymondlaghaeian
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/15/2017
 ms.author: raymondl;garye
-ms.openlocfilehash: 7d0b2db01427430d6b0a317cdfefc265dd4b06e2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ed23933d52d2151af658af2307d7df8743071f65
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-logging-for-machine-learning-web-services"></a>為 Machine Learning Web 服務啟用記錄
-本文件提供 Machine Learning Web 服務記錄功能的相關資訊。 記錄會提供其他資訊，而不只是錯誤碼和訊息而已，可協助您針對 Machine Learning API 的呼叫進行疑難排解。  
+本文件提供記錄功能的機器學習 web 服務的 hello 資訊。 記錄提供只錯誤號碼和訊息，可以幫助您疑難排解您呼叫 toohello 機器學習 Api 之外的其他資訊。  
 
-## <a name="how-to-enable-logging-for-a-web-service"></a>如何為 Web 服務啟用記錄
+## <a name="how-tooenable-logging-for-a-web-service"></a>如何 tooenable 記錄 Web 服務
 
-從 [Azure Machine Learning Web 服務](https://services.azureml.net)入口網站啟用記錄。 
+啟用記錄從 hello [Azure 機器學習 Web 服務](https://services.azureml.net)入口網站。 
 
-1. 登入 Azure Machine Learning Web 服務入口網站 [https://services.azureml.net](https://services.azureml.net)。 對於傳統 Web 服務，您也可以在 Machine Learning Studio 中的 Machine Learning Web 服務頁面上按一下 [新的 Web 服務體驗]，以進入入口網站。
+1. 登入 toohello Azure 機器學習 Web 服務的入口網站位於[https://services.azureml.net](https://services.azureml.net)。 傳統 web 服務，您也可以取得 toohello 入口網站按一下**新的 Web 服務體驗**hello Machine Learning Studio 中的機器學習 Web 服務頁面上。
 
    ![新的 Web 服務體驗連結](media/machine-learning-web-services-logging/new-web-services-experience-link.png)
 
-2. 在頂端的功能表列上，按一下 [Web 服務] 以取得新的 Web 服務，或按一下 [傳統 Web 服務] 以取得傳統 Web 服務。
+2. Hello 頂端功能表列上，按一下**Web 服務**新的 web 服務，或按一下**傳統 Web 服務**的傳統 web 服務。
 
    ![選取新的或傳統 Web 服務](media/machine-learning-web-services-logging/select-web-service.png)
 
-3. 對於新的 Web 服務，按一下 Web 服務名稱。 對於傳統 Web 服務，按一下 Web 服務名稱，然後在下一個頁面中按一下適當的端點。
+3. 新的 web 服務，按一下 hello web 服務名稱。 傳統 web 服務中，按一下 hello web 服務名稱，然後在 hello 下一步 頁面上按一下 hello 適當的端點。
 
-4. 按一下頂端功能表列上的 [設定]。
+4. Hello 頂端功能表列上，按一下**設定**。
 
-5. 將 **[啟用記錄]** 選項設定為 *[錯誤]* \(僅記錄錯誤) 或 *[所有]* \(適用於完整記錄)。
+5. 設定 hello **Enable Logging**太選項*錯誤*（toolog 唯一錯誤） 或*所有*（適用於完整記錄）。
 
    ![選取記錄等級](media/machine-learning-web-services-logging/enable-logging.png)
 
 6. 按一下 [儲存] 。
 
-7. 對於傳統 Web 服務，請建立 **ml-診斷**容器。
+7. 傳統 web 服務，建立 hello **ml 診斷**容器。
 
-   所有的 Web 服務記錄會保存在與 Web 服務相關聯的儲存體帳戶中名為 **ml-診斷**的 blob 容器中。 對於新的 Web 服務，此容器會在您第一次存取 Web 服務時建立。 對於傳統 Web 服務，如果容器不存在，則您需要建立容器。 
+   所有的 web 服務記錄檔會保留在 blob 容器，名為**ml 診斷**hello 與 hello web 服務相關聯的儲存體帳戶中。 為新的 web 服務，此容器會建立 hello 存取 hello web 服務的第一次。 傳統 web 服務，則需要 toocreate hello 容器不存在。 
 
-   1. 在 [Azure 入口網站](https://portal.azure.com)中，移至與 Web 服務相關聯的儲存體帳戶。
+   1. 在 hello [Azure 入口網站](https://portal.azure.com)，移至 toohello hello web 服務相關聯的儲存體帳戶。
 
    2. 在 [Blob 服務] 下，按一下 [容器]。
 
-   3. 如果容器 **ml-診斷**不存在，按一下 [+ 容器]，將容器命名為「ml-診斷」，[存取型別] 選取「Blob」。 按一下 [確定] 。
+   3. 如果 hello 容器**ml 診斷**不存在，請按一下**+ 容器**，授與 hello 容器 hello 名稱"ml-diagnostics"，然後選取 hello**存取類型**為"Blob"。 按一下 [確定] 。
 
       ![選取記錄等級](media/machine-learning-web-services-logging/create-ml-diagnostics-container.png)
 
 > [!TIP]
 >
-> 對於傳統 Web 服務，Machine Learning Studio 中的 Web 服務儀表板也有啟用記錄的參數。 不過，由於記錄現在是透過 Web 服務入口網站所管理，您需要透過入口網站來啟用記錄，如本文所述。 如果您已在 Studio 中啟用記錄，請在 Web 服務入口網站中停用記錄，然後再次啟用。
+> 傳統 web 服務，hello Machine Learning Studio 中的 Web 服務儀表板也會有交換器 tooenable 記錄。 不過，記錄現在透過 hello Web Services 入口網站管理，因為您會需要 tooenable 記錄透過 hello 入口網站中這篇文章所述。 如果您已啟用登入 Studio，然後在 hello 服務入口網站，停用記錄，然後再次啟用。
 
 
-## <a name="the-effects-of-enabling-logging"></a>啟用記錄的效果
-記錄啟用時，診斷和錯誤都會從 Web 服務端點記錄到與使用者工作區連結的 Azure 儲存體帳戶之 **ml-診斷** blob 容器中。 這個容器針對所有與此儲存體帳戶相關聯的工作區，存放所有 Web 服務端點的診斷資訊。
+## <a name="hello-effects-of-enabling-logging"></a>啟用記錄功能的 hello 效果
+啟用記錄時，會將 hello 診斷和 hello web 服務端點中的錯誤記錄在 hello **ml 診斷**與 hello 使用者的工作區連結 hello Azure 儲存體帳戶中的 blob 容器。 此容器保留與這個儲存體帳戶相關聯的所有 hello 工作區的所有 hello web 服務端點的所有 hello 診斷資訊。
 
-記錄可使用任何可用於探索 Azure 儲存體帳戶的多種工具來檢視。 最簡單的方法就是瀏覽至 Azure 入口網站中的儲存體帳戶，按一下 [容器]，然後按一下 [ml-診斷] 容器。  
+使用任何 hello 數個工具可用 tooexplore Azure 儲存體帳戶即可檢視 hello 記錄。 最簡單的 hello 可能是 hello Azure 入口網站中的 toonavigate toohello 儲存體帳戶中，按一下**容器**，然後按一下hello 容器**ml 診斷**。  
 
 ## <a name="log-blob-detail-information"></a>記錄檔 blob 詳細資訊
-在容器中的每個 blob，只會存放下列其中一項動作的診斷資訊：
+Hello 容器中的每個 blob 會保存 hello 的診斷資訊，正好有一個 hello 下列動作：
 
-* 批次執行方法的執行  
-* 要求-回應方法的執行  
+* 執行 hello 批次執行方法  
+* 執行要求-回應 hello 方法  
 * 要求-回應容器的初始化
 
-每個 blob 的名稱具有下列形式的前置詞︰ 
+hello 的每個 blob 的名稱具有下列形式的 hello 的前置詞： 
 
 
 `{Workspace Id}-{Web service Id}-{Endpoint Id}/{Log type}`
 
 
-其中的_記錄型別_是下列其中一個值：  
+其中_記錄類型_是 hello 下列值之一：  
 
 * 批次  
 * 分數/要求  

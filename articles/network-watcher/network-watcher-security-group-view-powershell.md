@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員安全性群組檢視分析網路安全性 - PowerShell | Microsoft Docs"
-description: "本文會說明如何使用 PowerShell，利用安全性群組檢視分析虛擬機器的安全性。"
+title: "與 Azure 網路監看員安全性群組檢視 PowerShell aaaAnalyze 網路安全性 |Microsoft 文件"
+description: "本文將說明如何 toouse PowerShell tooanalyze 的虛擬機器安全性與安全性的群組檢視。"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 363fdd9f1de933bb4050f91e1e111aaf3e419058
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5e1990d97899bd8585025ec13dd556ab2e034c3b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-your-virtual-machine-security-with-security-group-view-using-powershell"></a>使用 PowerShell，利用安全性群組檢視分析虛擬機器的安全性
 
@@ -28,21 +28,21 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-security-group-view-cli.md)
 > - [REST API](network-watcher-security-group-view-rest.md)
 
-安全性群組檢視會傳回套用至虛擬機器之已設定且有效的網路安全性規則。 這項功能可用來稽核及診斷 VM 所設定的網路安全性群組和規則，以確保會正確允許或拒絕流量。 在本文中，我們會說明如何使用 PowerShell 來擷取虛擬機器所設定且有效的安全性規則
+安全性的群組檢視會傳回已設定且有效的網路安全性規則所套用的 tooa 虛擬機器。 這項功能會很有用的 tooaudit 及診斷網路安全性群組和 VM tooensure 流量所設定的規則已正確地允許或拒絕。 在本文中，我們會示範如何設定 tooretrieve hello 和有效的安全性規則 tooa 虛擬機器使用 PowerShell
 
 ## <a name="before-you-begin"></a>開始之前
 
-在此案例中，您會執行 `Get-AzureRmNetworkWatcherSecurityGroupView` Cmdlet 來擷取安全性規則資訊。
+在此案例中，您會執行 hello `Get-AzureRmNetworkWatcherSecurityGroupView` cmdlet tooretrieve hello 安全性規則資訊。
 
-此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。
+此案例假設您已依照中的 hello 步驟[建立網路監看員](network-watcher-create.md)toocreate 網路監看員。
 
 ## <a name="scenario"></a>案例
 
-本文涵蓋的案例會擷取指定虛擬機器之已設定且有效的安全性規則。
+hello 案例涵蓋在本文中擷取設定的 hello 和指定的虛擬機器的有效的安全性規則。
 
 ## <a name="retrieve-network-watcher"></a>擷取網路監看員
 
-第一步是擷取網路監看員執行個體。 此變數會傳遞至 `Get-AzureRmNetworkWatcherSecurityGroupView` Cmdlet。
+hello 第一個步驟是 tooretrieve hello 網路監看員執行個體。 這個變數會傳遞 toohello `Get-AzureRmNetworkWatcherSecurityGroupView` cmdlet。
 
 ```powershell
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" }
@@ -51,7 +51,7 @@ $networkWatcher = Get-AzureRmNetworkWatcher -Name $nw.Name -ResourceGroupName $n
 
 ## <a name="get-a-vm"></a>取得 VM
 
-必須有虛擬機器才能執行 `Get-AzureRmNetworkWatcherSecurityGroupView` Cmdlet。 下列範例會取得 VM 物件。
+虛擬機器為必要的 toorun hello`Get-AzureRmNetworkWatcherSecurityGroupView`針對 cmdlet。 下列範例中的 hello 取得 VM 物件。
 
 ```powershell
 $VM = Get-AzurermVM -ResourceGroupName testrg -Name testvm1
@@ -59,15 +59,15 @@ $VM = Get-AzurermVM -ResourceGroupName testrg -Name testvm1
 
 ## <a name="retrieve-security-group-view"></a>擷取安全性群組檢視
 
-下一步是擷取安全性群組檢視的結果。
+hello 下一個步驟是 tooretrieve hello 安全性的群組檢視結果。
 
 ```powershell
 $secgroup = Get-AzureRmNetworkWatcherSecurityGroupView -NetworkWatcher $networkWatcher -TargetVirtualMachineId $VM.Id
 ```
 
-## <a name="viewing-the-results"></a>檢視結果
+## <a name="viewing-hello-results"></a>檢視 hello 結果
 
-下列範例是所傳回結果的縮短回應。 結果顯示虛擬機器上所有有效且套用的安全性規則，並細分為 **NetworkInterfaceSecurityRules**、**DefaultSecurityRules**和 **EffectiveSecurityRules** 群組。
+hello 下列範例是縮短的回應 hello 傳回的結果。 hello 結果會顯示所有 hello 有效且套用安全性規則 hello 細分的群組中的虛擬機器上**NetworkInterfaceSecurityRules**， **DefaultSecurityRules**，和**EffectiveSecurityRules**。
 
 ```
 NetworkInterfaces : [
@@ -128,6 +128,6 @@ NetworkInterfaces : [
 
 ## <a name="next-steps"></a>後續步驟
 
-請瀏覽[使用網路監看員稽核網路安全性群組 (NSG)](network-watcher-nsg-auditing-powershell.md) 以了解如何自動驗證網路安全性群組。
+請瀏覽[稽核網路安全性群組群組 (NSG) 與網路監看員](network-watcher-nsg-auditing-powershell.md)toolearn 如何 tooautomate 驗證的網路安全性群組。
 
 

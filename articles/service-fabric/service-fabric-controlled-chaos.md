@@ -1,6 +1,6 @@
 ---
-title: "在 Service Fabric 叢集中引發混亂 | Microsoft Docs"
-description: "使用錯誤注射與叢集分析服務的 API 來管理叢集中的混亂。"
+title: "aaaInduce 混亂中 Service Fabric 叢集 |Microsoft 文件"
+description: "使用錯誤資料隱碼以及叢集分析服務 Api toomanage Chaos hello 叢集中。"
 services: service-fabric
 documentationcenter: .net
 author: motanv
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/09/2017
 ms.author: motanv
-ms.openlocfilehash: 3b3b93bc9ec5ecdcfc289e5b62e84de6aa4172ed
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7e87cae22645fc4ba52e258471d8f3a4ffdb1cce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="induce-controlled-chaos-in-service-fabric-clusters"></a>在 Service Fabric 叢集中引發受控制的混亂
-雲端基礎結構之類的大型分散式系統本身並不可靠。 Azure Service Fabric 可讓開發人員在不可靠的基礎結構之上撰寫可靠的分散式服務。 若要在不可靠的基礎結構之上撰寫健全的分散式服務，開發人員需要能夠測試其服務的穩定性，同時不可靠的基礎結構會因錯誤而經歷複雜的狀態轉換。
+雲端基礎結構之類的大型分散式系統本身並不可靠。 Azure Service Fabric 可讓開發人員 toowrite 可靠分散式的服務不可靠的基礎結構之上。 toowrite 健全的分散式的服務不可靠的基礎結構之上，開發人員需要其服務 toobe 無法 tootest hello 穩定性 hello 基礎不可靠的基礎結構正在進行複雜的狀態轉換時到期 toofaults。
 
-[錯誤插入與叢集分析服務](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview) (亦稱為「錯誤分析服務」) 讓開發人員能夠引發錯誤來測試其服務。 這些針對性模擬錯誤，例如[重新啟動分割區](https://docs.microsoft.com/en-us/powershell/module/servicefabric/start-servicefabricpartitionrestart?view=azureservicefabricps)，可幫助您練習最常見的狀態轉換。 但針對性模擬錯誤會因為定義而有偏差，因此可能會遺漏只會出現在難以預測、冗長且複雜的狀態轉換順序中的問題。 如需無偏差測試，您可以使用混亂。
+hello[錯誤插入和叢集分析服務](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview)(也稱為 hello 錯誤 Analysis Service) 可讓開發人員 hello tooinduce 錯誤 tootest 其服務。 這些目標模擬錯誤，例如[重新啟動資料分割](https://docs.microsoft.com/en-us/powershell/module/servicefabric/start-servicefabricpartitionrestart?view=azureservicefabricps)，可協助執行 hello 最常見的狀態轉換。 但針對性模擬錯誤會因為定義而有偏差，因此可能會遺漏只會出現在難以預測、冗長且複雜的狀態轉換順序中的問題。 如需無偏差測試，您可以使用混亂。
 
-混亂會以很長的時間在整個叢集上模擬定期、交錯的錯誤 (包括非失誤性和失誤性錯誤)。 設定混亂的比率和錯誤類型後，即可透過 C# 或 Powershell API 啟動混亂，以開始在叢集和您的服務中產生錯誤。 您可以設定混亂會執行一段指定的時間 (例如 1 小時)、在哪個混亂自動停止後執行，或隨時呼叫 StopChaos API (C# 或 Powershell) 來停止它。
+Chaos 模擬交錯，按定期錯誤 （依正常程序和不正常） hello 叢集在一段很長的時間。 一旦設定 Chaos hello 速率與 hello 類錯誤，您可以透過產生錯誤 hello 叢集中，並在您服務中的 C# 或 Powershell API toostart 啟動混亂。 您可以設定 Chaos toorun 之後 Chaos 會自動停止，在指定的時間範圍 （例如，對於一小時後），或您可以呼叫 StopChaos API （C# 或 Powershell） toostop 它在任何時間。
 
 > [!NOTE]
-> 目前來說，混亂只會引發安全的錯誤，這表示如果沒有外部錯誤，絕不會發生仲裁遺失或資料遺失。
+> 其目前的格式，Chaos 產生唯一安全的錯誤，這表示，hello 沒有的外部錯誤的情況下遺失仲裁、 或資料遺失絕不會發生。
 >
 
-混亂執行時，會產生不同事件來擷取目前執行的狀態。 例如，ExecutingFaultsEvent 包含混亂已決定正在該反覆運算中執行的所有錯誤。 ValidationFailedEvent 包含在驗證叢集期間所發現驗證失敗 (健康情況或穩定性問題) 的詳細資料。 您可以叫用 GetChaosReport API (C# 或 Powershell) 以取得混亂執行的報告。 這些事件保存在[可靠的字典](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections)中，其中有由兩個組態決定的截斷原則：MaxStoredChaosEventCount (預設值為 25000) 及 StoredActionCleanupIntervalInSeconds (預設值為 3600)。 每個 StoredActionCleanupIntervalInSeconds 混亂檢查及最新 MaxStoredChaosEventCount 事件以外的所有事件皆會自可靠字典中清除。
+Chaos 執行時，它會產生不同的事件擷取 hello hello hello 當時執行狀態。 例如，ExecutingFaultsEvent 包含所有 Chaos 決定 tooexecute 該反覆項目中的 hello 錯誤。 ValidationFailedEvent 包含 hello hello 叢集驗證期間找不到驗證失敗 （健康情況或穩定性問題） 的 hello 詳細資料。 您可以叫用混亂回合 hello GetChaosReport API （C# 或 Powershell） tooget hello 的報表。 這些事件保存在[可靠的字典](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections)中，其中有由兩個組態決定的截斷原則：MaxStoredChaosEventCount (預設值為 25000) 及 StoredActionCleanupIntervalInSeconds (預設值為 3600)。 每個*StoredActionCleanupIntervalInSeconds* Chaos 檢查和所有但 hello 最近*MaxStoredChaosEventCount*事件，會清除從 hello 可靠的字典。
 
 ## <a name="faults-induced-in-chaos"></a>混亂中引發的錯誤
-混亂會在整個 Service Fabric 叢集中產生錯誤，並將在幾個月或幾年內看到的錯誤壓縮成幾小時。 交錯錯誤和高錯誤率的組合，會尋找可能會在其他情形下遺漏的極端狀況。 這個混亂練習可以大幅提升服務的程式碼品質。
+Chaos 跨 hello 整個 Service Fabric 叢集會產生錯誤，並將壓縮會出現在月或年，到幾個小時的錯誤。 hello 組合的交錯錯誤與 hello 高錯誤的速率尋找極端案例，否則可能會遺漏。 此練習中混亂的引導 tooa 顯著改進的 hello 服務的 hello 程式碼品質。
 
-混亂會引發下列類別的錯誤︰
+Chaos 引發錯誤從 hello 下列類別：
 
 * 重新啟動節點
 * 重新啟動已部署的程式碼封裝
@@ -45,31 +45,31 @@ ms.lasthandoff: 08/18/2017
 * 移動主要複本 (可設定)
 * 移動次要複本 (可設定)
 
-混亂會多次反覆執行。 每次反覆運算都包含指定期間的錯誤和叢集驗證。 您可以設定讓叢集穩定和驗證成功的所需時間。 如果在叢集驗證中發現失敗，則混亂會產生並保留一個 ValidationFailedEvent，包含 UTC 時間戳記與失敗詳細資料。 例如，考慮一個設為執行 1 小時且最多有 3 個並行錯誤的混亂執行個體。 混亂會引發三個錯誤，然後驗證叢集健康狀態。 它會重複執行上一個步驟，直到透過 StopChaosAsync API 或經過一小時後就會明確停止。 如果任何反覆運算中的叢集變成健康情況不佳 (也就是在傳入的 MaxClusterStabilizationTimeout 內不穩定)，則混亂會產生 ValidationFailedEvent。 此事件表示發生了錯誤，且可能需要進一步調查。
+混亂會多次反覆執行。 每個反覆項目包含錯誤，而 hello 的叢集驗證指定的期間。 您可以設定 hello hello 叢集 toostabilize 和驗證 toosucceed 所花費的時間。 如果失敗位於叢集驗證，Chaos 產生，並保存 ValidationFailedEvent hello UTC 時間戳記與 hello 失敗詳細資料。 例如，請考慮設定 toorun 的三個並行錯誤最多一個小時的混亂的執行個體。 Chaos 產生三個錯誤，並接著會驗證 hello 叢集健全狀況。 它會逐一 hello 上一個步驟，直到它已明確地停止透過 hello StopChaosAsync API 或一小時會傳遞。 如果 hello 叢集會變為狀況不良任何反覆項目中 （也就是它不會不穩定內傳入 MaxClusterStabilizationTimeout hello）、 Chaos 產生 ValidationFailedEvent。 此事件表示發生了錯誤，且可能需要進一步調查。
 
-若要取得混亂引發的錯誤，您可以使用 GetChaosReport API (powershell 或 C#)。 API 會根據傳入接續權杖或傳入的時間範圍取得混亂報告的下個區段。 您可以指定 ContinuationToken 取得混亂報告的下個區段，或者您可以透過 StartTimeUtc 與 EndTimeUtc 指定時間範圍，但您無法在同一個呼叫中同時指定 ContinuationToken 與時間範圍。 當混亂事件超過 100 個時，系統會分區段傳回混亂報告，每個區段中包含的混亂事件不超過 100 個。
+發生錯誤導致混亂 tooget，您可以使用 GetChaosReport API （powershell 或 C#）。 hello API 取得 hello 的 hello 傳入的接續 token 或 hello 傳入的時間範圍為基礎的 hello Chaos 報表的下一個區段。 您可以指定 hello ContinuationToken tooget hello 下一個區段的 hello Chaos 報表或您可以指定 hello 時間範圍透過 StartTimeUtc 和 EndTimeUtc，但是您無法同時指定 hello ContinuationToken 和 hello 時間範圍中 hello 相同的呼叫。 超過 100 個 Chaos 事件時，hello Chaos 報表就會傳回區段其中一個區段包含不超過 100 個 Chaos 事件。
 
 ## <a name="important-configuration-options"></a>重要的組態選項
-* **TimeToRun**：混亂在成功完成前的總執行時間。 您可以在混亂執行 TimeToRun 這段時間之前透過 StopChaos API 停止混亂。
+* **TimeToRun**：混亂在成功完成前的總執行時間。 它已透過 hello StopChaos API 執行 hello TimeToRun 期間之前，您可以停止混亂。
 
-* **MaxClusterStabilizationTimeout**：在產生 ValidationFailedEvent 前等候叢集健康情況變為良好的時間上限。 這段等候時間是為了減少叢集在復原時所承擔的負載。 執行的檢查為：
-  * 叢集健康狀態是否正常
-  * 服務健康狀態是否正常
-  * 服務分割區是否達到目標複本集大小
+* **MaxClusterStabilizationTimeout**: hello hello 叢集 toobecome 才會產生 ValidationFailedEvent 狀況良好的時間 toowait 數量上限。 它會復原時，這項等候是 tooreduce hello 負載 hello 叢集上。 執行 hello 檢查包括：
+  * 如果 hello 叢集健全狀況正常
+  * 如果 hello 服務健全狀況正常
+  * 如果 hello 目標複本集大小為止 hello 服務磁碟分割
   * 沒有 InBuild 複本存在
-* **MaxConcurrentFaults**：每個反覆運算中引發的最大並行錯誤數。 數字愈大，混亂愈積極，叢集經歷的容錯移轉與狀態轉換也更複雜。 
+* **MaxConcurrentFaults**: hello 的並行會導致每個反覆項目中的錯誤數目上限。 hello hello 編號，更積極混亂且 hello hello 和容錯移轉狀態轉換組合 hello 叢集經歷也是更複雜的 hello。 
 
 > [!NOTE]
-> 無論 *MaxConcurrentFaults* 值多大，混亂都能保證在缺少外部錯誤的狀況下，不會有仲裁遺失或資料遺失。
+> 無論高值*MaxConcurrentFaults*有，Chaos 可保證-hello 沒有的外部錯誤-沒有任何仲裁遺失或資料遺失。
 >
 
-* **EnableMoveReplicaFaults**：啟用或停用造成主要或次要複本移動的錯誤。 預設會停用這些錯誤。
-* **WaitTimeBetweenIterations**︰反覆運算之間要等候的時間量。 亦即，在已執行一輪的錯誤且已完成對應的叢集健康情況驗證後，混亂將暫停的時間。 值愈大，平均錯誤插入率愈低。
-* **WaitTimeBetweenFaults**︰單一反覆運算中兩個連續錯誤之間的等候時間長度。 值愈大，錯誤的並行程度 (或錯誤之間的重疊度) 愈低。
-* **ClusterHealthPolicy**︰叢集健康情況原則用於驗證混亂反覆運算之間的叢集健康情況。 如果叢集健康情況發生錯誤，或如果在錯誤執行期間發生未預期的例外狀況，則混亂會先等待 30 分鐘，再執行下一個健康情況檢查，讓叢集有時間復原。
-* **內容**：(string, string) 類型索引鍵-值組的集合。 此對應可用於記錄混亂執行的相關資訊。 此類組合不能超過 100 個，且每個字串 (索引鍵或值) 最多為 4095 個字元長。 此對應由混亂執行的起始者設定，以選擇性地儲存特定執行的相關內容。
+* **EnableMoveReplicaFaults**： 啟用或停用造成 hello 主要或次要複本 toomove hello 錯誤。 預設會停用這些錯誤。
+* **WaitTimeBetweenIterations**: hello 反覆項目之間的時間 toowait 數量。 也就是說，hello Chaos 會暫停，需要執行的錯誤和具有完成 hello 對應 hello hello 叢集健全狀況驗證一輪之後的時間量。 hello hello 值越高，較低的 hello 是 hello 平均錯誤資料隱碼的速率。
+* **WaitTimeBetweenFaults**: hello 單一的反覆項目中的兩個連續錯誤之間的時間 toowait 數量。 hello hello 值越高，、 hello 的較低的 hello 並行 （或 hello 之間重疊） 錯誤。
+* **ClusterHealthPolicy**： 叢集健全狀況原則是使用的 toovalidate hello Chaos 反覆項目之間的 hello 叢集健全狀況。 如果發生錯誤 hello 叢集健全狀況，或發生未預期的例外狀況錯誤執行期間，Chaos 會等待 30 分鐘，再 hello 下一個健全狀況檢查的某些時間 toorecuperate tooprovide hello 叢集。
+* **內容**：(string, string) 類型索引鍵-值組的集合。 hello 對應可使用的 toorecord hello Chaos 執行資訊。 此類組合不能超過 100 個，且每個字串 (索引鍵或值) 最多為 4095 個字元長。 此對應是由 hello 入門 hello Chaos 執行 toooptionally 存放區 hello 內容的 hello 特定執行的相關設定。
 
-## <a name="how-to-run-chaos"></a>如何執行混亂
+## <a name="how-toorun-chaos"></a>如何 toorun Chaos
 
 ```csharp
 using System;
@@ -117,7 +117,7 @@ class Program
             }
             catch (FabricChaosAlreadyRunningException)
             {
-                Console.WriteLine("An instance of Chaos is already running in the cluster.");
+                Console.WriteLine("An instance of Chaos is already running in hello cluster.");
             }
 
             var filter = new ChaosReportFilter(startTimeUtc, DateTime.MaxValue);
@@ -137,7 +137,7 @@ class Program
                 }
 
                 // When Chaos stops, a StoppedEvent is created.
-                // If a StoppedEvent is found, exit the loop.
+                // If a StoppedEvent is found, exit hello loop.
                 var lastEvent = report.History.LastOrDefault();
 
                 if (lastEvent is StoppedEvent)

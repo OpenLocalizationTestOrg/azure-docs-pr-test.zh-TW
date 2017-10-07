@@ -1,5 +1,5 @@
 ---
-title: "SQL 資料倉儲下層用戶端對資料稽核的支援 | Microsoft Docs"
+title: "aaaSQL 資料倉儲下層用戶端支援針對資料稽核 |Microsoft 文件"
 description: "了解 SQL 資料倉儲下層用戶端對資料稽核的支援"
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,29 +15,29 @@ ms.topic: article
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: a7ea6141285a0098339f1e071af2592dd4535c12
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 377488680eb297c3e9b1dc754c003c5b19b47996
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-data-warehouse----downlevel-clients-support-for-auditing-and-dynamic-data-masking"></a>SQL 資料倉儲 -  下層用戶端對稽核和動態資料遮罩的支援
 [稽核](sql-data-warehouse-auditing-overview.md) 可與支援 TDS 重新導向的 SQL 用戶端搭配使用。
 
-實作 TDS 7.4 的任何用戶端應該也支援重新導向。 例外包括其中未完全支援重新導向功能的 JDBC 4.0，和其中未實作重新導向的 Tedious for Node.JS。
+實作 TDS 7.4 的任何用戶端應該也支援重新導向。 例外狀況 toothis 納入 JDBC 4.0 的 hello 重新導向功能不完全支援和 Tedious for Node.JS 不會實作重新導向時。
 
-對於「舊版用戶端」，也就是支援 TDS 7.3 版和以下版本 - 應該修改連接字串中的伺服器 FQDN：
+「 下層用戶端 」，也就是它支援 TDS 版本 7.3，且以下-hello hello 連接字串中的伺服器 FQDN 應修改：
 
-連接字串中的原始伺服器 FQDN：<*伺服器名稱*>.database.windows.net
+原始伺服器 FQDN hello 連接字串中： <*伺服器名稱*>。.database.windows.net
 
-連接字串中已修改的伺服器 FQDN：<*伺服器名稱*>.database.**secure**.windows.net
+已修改的伺服器 FQDN hello 連接字串中： <*伺服器名稱*>.database。**安全**。 windows.net
 
 「舊版用戶端」的部分清單包括：
 
 * .NET 4.0 和以下版本，
 * ODBC 10.0 和以下版本。
-* JDBC (雖然 JDBC 支援 TDS 7.4，但並未完整支援 TDS 重新導向功能)
+* JDBC （雖然 JDBC 可支援 TDS 7.4，hello TDS 重新導向功能不完全支援）
 * Tedious (適用於 Node.JS)
 
-**備註：** 上述伺服器 FDQN 修改可能會對於套用 SQL Server 層級稽核原則有所助益，不需要每個資料庫中的組態步驟 (暫存緩和)。     
+**備註：** hello 上述伺服器 FDQN 修改可能會有所助益也沒有需要的設定步驟 （暫存緩和） 每個資料庫中套用 SQL Server 層級稽核原則。     
 

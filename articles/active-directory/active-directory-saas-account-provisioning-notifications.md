@@ -1,6 +1,6 @@
 ---
-title: "帳戶佈建通知 | Microsoft Docs"
-description: "藉由啟用帳戶佈建通知，了解如何確保您會收到與使用者佈建相關問題的通知要您特別注意。"
+title: "佈建通知 aaaAccount |Microsoft 文件"
+description: "了解如何 tooensure 的問題時通知您相關 toouser 佈建啟用帳戶佈建通知，需要注意。"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -13,39 +13,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
-ms.openlocfilehash: b99037fc28eca1a3ebffefb9e99991e74f52c9a5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e33d1dd806fff43fc96f843a9dcddd7375d2e3c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="account-provisioning-notifications"></a>帳戶佈建通知
-透過使用者佈建，您可以自動化在協力廠商 SaaS 應用程式中管理使用者的程序。 <br>
-雖然這是自動化的程序，但是您還是不時需要與此程序互動。 <br>
-例如以下這個範例，當您設定與協力廠商 SaaS 應用程式交換資料的帳戶密碼已經到期。 
+透過使用者佈建，您可以自動化管理第三方 SaaS 應用程式中的使用者的 hello 程序。 <br>
+雖然這是自動化程序，此程序與您互動是從所需的時間 tootime。 <br>
+這是，例如 hello 的情況下，當 hello 密碼 hello 帳戶 tooexchange 資料設定與第三方的 SaaS 應用程式已過期。 
 
-藉由啟用帳戶佈建通知，您就可以確保您會收到與使用者佈建相關問題的通知要您特別注意。
+啟用帳戶佈建通知，您可以確保您會收到通知的相關的 toouser 提供需要注意的問題。
 
 您在為協力廠商 SaaS 應用程式設定使用者佈建時，就可以啟用或停用帳戶佈建通知。
 
 ![使用者佈建][1] 
 
-若要啟用帳戶佈建通知，請在 [確認]  對話方塊頁面上選取相關的核取方塊，然後輸入收件者的電子郵件別名。
+tooactivate 帳戶佈建通知，請選取 hello 相關的核取方塊上 hello**確認**對話方塊頁面上，然後再 hello 收件者的型別 hello 電子郵件別名。
 
 ![帳戶佈建通知][2]
 
-您可以輸入通訊群組清單做為收件者。不過請務必注意，通知電子郵件所包含的報表連結，只能由 Azure AD 系統管理員存取。
+您可以輸入通訊群組清單作為收件者。不過，它是重要 toonote hello 通知電子郵件包含連結 tooreports 才 hello Azure AD 系統管理員可以存取的。
 
-如果您啟用了帳戶佈建通知，您將會收到電子郵件，通知您與使用者佈建相關的重大問題。 不過為了避免電子郵件多載，對於已啟用電子郵件通知的每個 SaaS 應用程式，您每天只會收到一封通知電子郵件。
+如果您有帳戶佈建通知啟用時，您會收到電子郵件相關的 toouser 佈建的重要問題。 不過，tooavoid 電子郵件多載，您只會收到一封通知電子郵件，每天每個 saas 應用程式 hello 通知電子郵件已啟用。
 
 ## <a name="related-articles"></a>相關文章
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-* [自動化 SaaS 應用程式使用者佈建/解除佈建](active-directory-saas-app-provisioning.md)
+* [自動化使用者佈建/取消佈建 tooSaaS 應用程式](active-directory-saas-app-provisioning.md)
 * [自訂使用者佈建的屬性對應](active-directory-saas-customizing-attribute-mappings.md)
 * [撰寫屬性對應的運算式](active-directory-saas-writing-expressions-for-attribute-mappings.md)
 * [適用於使用者佈建的範圍篩選器](active-directory-saas-scoping-filters.md)
-* [使用 SCIM 以啟用從 Azure Active Directory 到應用程式的使用者和群組自動佈建](active-directory-scim-provisioning.md)
-* [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [使用 SCIM tooenable 自動佈建的 Azure Active Directory tooapplications 來自使用者和群組](active-directory-scim-provisioning.md)
+* [如何教學課程清單 tooIntegrate SaaS 應用程式](active-directory-saas-tutorial-list.md)
 
 <!--Image references-->
 [1]: ./media/active-directory-saas-account-provisioning-notifications/ic766307.png

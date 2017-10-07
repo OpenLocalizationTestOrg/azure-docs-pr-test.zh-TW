@@ -1,6 +1,6 @@
 ---
-title: "實作 Spark 建置機器學習模型 | Microsoft Docs"
-description: "如何使用 Python 載入及評分儲存在 Azure Blob 儲存體 (WASB) 中的學習模型。"
+title: "aaaOperationalize Spark 建立機器學習模型 |Microsoft 文件"
+description: "如何 tooload 和分數學習模型儲存在 Azure Blob 儲存體 (WASB) 使用 Python。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/15/2017
 ms.author: deguhath;bradsev;gokuma
-ms.openlocfilehash: 00fec675bed0137473f7e3c5ddfe9c3c0e8344c6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c5fadcb13257b94dcb28a522be454f6e03dfa991
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="operationalize-spark-built-machine-learning-models"></a>實作 Spark 建置機器學習模型
 [!INCLUDE [machine-learning-spark-modeling](../../includes/machine-learning-spark-modeling.md)]
 
-本主題說明如何使用 HDInsight Spark 叢集上的 Python 實作已儲存的機器學習模型 (ML)。 它說明如何載入已使用 Spark MLlib 建立並儲存於 Azure Blob 儲存體 (WASB) 的機器學習服務模型，以及如何使用已儲存在 WASB 的資料集加以評分。 它會顯示如何前置處理輸入資料、使用 MLlib 工具組中的索引和編碼函式來轉換功能，以及如何建立可做為輸入的標示點資料物件，以便使用 ML 模型加以評分。 用於評分的模型包含線性迴歸、羅吉斯迴歸、隨機樹系模型和漸層停駐提升樹狀結構模型。
+本主題說明如何 toooperationalize HDInsight Spark 上使用 Python 的已儲存的機器學習模型 (ML) 叢集。 它說明如何 tooload 機器學習模型，可使用 Spark MLlib 建置並儲存在 Azure Blob 儲存體 (WASB)，以及如何 tooscore 它們也已儲存在 WASB 的資料集。 它會顯示 hello 輸入的資料時，如何 toopre 程序，使用轉換功能 hello hello MLlib 工具組，以及如何 toocreate 加上標籤的點資料物件，可用來當做輸入計分 hello ML 模型中的索引和編碼方式函式。 用於計分的 hello 模型包含線性迴歸、 羅吉斯迴歸、 隨機樹系模型和梯度促進式樹狀模型。
 
 ## <a name="spark-clusters-and-jupyter-notebooks"></a>Spark 叢集和 Jupyter Notebook
-在本逐步解說中提供實作 ML 模型的設定步驟和程式碼，供您使用 HDInsight Spark 1.6 叢集以及 Spark 2.0 叢集。 Jupyter notebook 中也會提供這些程序的程式碼。
+安裝程式步驟和 hello 程式碼 toooperationalize ML 模型在本逐步解說提供使用 HDInsight Spark 1.6 叢集，以及 Spark 2.0 叢集的動作。 Jupyter 筆記本中，也會提供這些程序的 hello 程式碼。
 
 ### <a name="notebook-for-spark-16"></a>Notebook for Spark 1.6
-[pySpark-machine-learning-data-science-spark-model-consumption.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb) Jupyter Notebook 示範如何在 HDInsight 叢集上，使用 Python 讓儲存的模型能夠運作。 
+hello [pySpark-machine-learning-data-science-spark-model-consumption.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb) Jupyter 筆記本會顯示如何 toooperationalize 已儲存的模型使用 Python HDInsight 上的叢集。 
 
 ### <a name="notebook-for-spark-20"></a>Notebook for Spark 2.0
-若要修改此 Jupyter Notebook for Spark 1.6 來與 HDInsight Spark 2.0 叢集搭配使用，請使用[這個檔案](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Python/Spark2.0_ConsumeRFCV_NYCReg.py)來取代 Python 程式碼檔案。 此程式碼示範如何使用 Spark 2.0 中所建立的模型。
+HDInsight Spark 2.0 叢集後，Spark 1.6 toouse toomodify hello Jupyter 筆記本取代 hello Python 程式碼包含檔案[這個檔案](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Python/Spark2.0_ConsumeRFCV_NYCReg.py)。 此程式碼會顯示如何在 Spark 2.0 建立 tooconsume hello 模型。
 
 
 ## <a name="prerequisites"></a>必要條件
 
-1. 您需要 Azure 帳戶和 Spark 1.6 (或 Spark 2.0) HDInsight 叢集，才能完成此逐步解說。 請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)以取得這些需求。 此主題也包括這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。 
-2. 您也必須針對 Spark 1.6 叢集或 Spark 2.0 Notebook，透過[使用 Spark 資料探索和模型化](machine-learning-data-science-spark-data-exploration-modeling.md)主題運作，在這裡建立要評分的機器學習服務模型。 
-3. Spark 2.0 Notebook 會針對分類工作使用額外的資料集，即 2011 年和 2012 年知名航空公司準時起飛的資料集。 Notebook 的描述及它們的連結已在包含它們的 GitHub 儲存機制的 [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) 中提供。 此外，此處及連結的 Notebook 內的程式碼皆屬泛型程式碼，而且應該能在任何 Spark 叢集上運作。 若您不是使用 HDInsight Spark，叢集設定和管理步驟可能與這裡顯示的稍有不同。 
+1. 您需要 Azure 帳戶和 Spark 1.6 （或 Spark 2.0） HDInsight 叢集 toocomplete 本逐步解說。 請參閱 hello[概觀的資料科學使用 Azure HDInsight 上的 Spark](machine-learning-data-science-spark-overview.md)如需有關指示 toosatisfy 這些需求。 該主題也包含描述 hello NYC 2013 計程車這裡使用的資料以及 tooexecute 來自 Jupyter 筆記本 hello Spark 叢集上的程式碼的相關指示。 
+2. 您也必須建立 hello 機器學習模型 toobe 這裡計分工作透過 hello[資料探索和模型使用 Spark](machine-learning-data-science-spark-data-exploration-modeling.md) hello Spark 1.6 叢集或 hello Spark 2.0 筆記型電腦 」 主題。 
+3. hello Spark 2.0 筆記本 hello 分類工作 hello 已知 Airline 準時出發，資料集從 2011年和 2012年的使用額外的資料集。 Hello 中提供的 hello 筆記本與連結 toothem 描述[Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) hello GitHub 儲存機制包含它們。 此外，hello 程式碼及連結的 hello 筆記本為泛型，應該在任何 Spark 叢集上運作。 如果您未使用 HDInsight Spark，hello 叢集中設定和管理步驟可能稍有不同於這裡所顯示。 
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-## <a name="setup-storage-locations-libraries-and-the-preset-spark-context"></a>安裝程式︰儲存體位置、程式庫和預設 Spark 內容
-Spark 也可以讀取和寫入 Azure 儲存體 Blob (WASB)。 如此可使用 Spark 處理該處儲存的任何現有資料，並在 WASB 中再次儲存結果。
+## <a name="setup-storage-locations-libraries-and-hello-preset-spark-context"></a>安裝程式： 儲存位置、 程式庫，與 hello 預設 Spark 內容
+Spark 是無法 tooread 」 和 「 寫入 tooan Azure 儲存體 Blob (WASB)。 因此，任何現有的資料儲存於該處可處理使用的 Spark，hello 結果儲存一次在 WASB。
 
-若要在 WASB 中儲存模型或檔案，必須正確指定路徑。 可以使用以「wasb//」 開頭的路徑，參考連接到 Spark 叢集的預設容器。 下列程式碼範例會指定要讀取資料的位置，和將儲存模型輸出的模型儲存體目錄的路徑。 
+hello 路徑需要正確地指定 toobe toosave 模型或 WASB 中的檔案。 hello 預設容器附加 toohello Spark 叢集，可以使用來參考路徑，開頭： *"wasb / /"*。 hello 下列程式碼範例指定 hello 位置 hello 資料 toobe 讀取，並儲存 hello hello 模型儲存體目錄 toowhich hello 模型輸出路徑。 
 
 ### <a name="set-directory-paths-for-storage-locations-in-wasb"></a>在 WASB 中設定儲存位置的目錄路徑
 模型會儲存在：「wasb:///user/remoteuser/NYCTaxi/Models」。 如果未正確設定此路徑，不會載入模型進行評分。
 
-評分的結果儲存在：「wasb:///user/remoteuser/NYCTaxi/ScoredResults」。 如果資料夾的路徑不正確，不會將結果儲存在該資料夾中。   
+hello 計分的結果儲存在:"wasb: / 使用者/remoteuser/NYCTaxi/ScoredResults"。 如果 hello 路徑 toofolder 不正確，並不會將結果儲存在該資料夾中。   
 
 > [!NOTE]
-> 可從 **machine-learning-data-science-spark-data-exploration-modeling.ipynb** notebook 的最後一個儲存格的輸出，將檔案路徑位置複製並貼至此程式碼的預留位置。   
+> hello 檔案路徑位置可以複製及貼上這段程式碼從 hello hello 最後一個儲存格的 hello 輸出中的 hello 預留位置**machine-learning-data-science-spark-data-exploration-modeling.ipynb**筆記型電腦。   
 > 
 > 
 
-以下是設定目錄路徑的程式碼： 
+以下是 hello 程式碼 tooset 目錄路徑： 
 
-    # LOCATION OF DATA TO BE SCORED (TEST DATA)
+    # LOCATION OF DATA tooBE SCORED (TEST DATA)
     taxi_test_file_loc = "wasb://mllibwalkthroughs@cdspsparksamples.blob.core.windows.net/Data/NYCTaxi/JoinedTaxiTripFare.Point1Pct.Test.tsv";
 
-    # SET THE MODEL STORAGE DIRECTORY PATH 
-    # NOTE THE LAST BACKSLASH IN THIS PATH IS NEEDED
+    # SET hello MODEL STORAGE DIRECTORY PATH 
+    # NOTE hello LAST BACKSLASH IN THIS PATH IS NEEDED
     modelDir = "wasb:///user/remoteuser/NYCTaxi/Models/" 
 
     # SET SCORDED RESULT DIRECTORY PATH
-    # NOTE THE LAST BACKSLASH IN THIS PATH IS NEEDED
+    # NOTE hello LAST BACKSLASH IN THIS PATH IS NEEDED
     scoredResultDir = "wasb:///user/remoteuser/NYCTaxi/ScoredResults/"; 
 
-    # FILE LOCATIONS FOR THE MODELS TO BE SCORED
+    # FILE LOCATIONS FOR hello MODELS tooBE SCORED
     logisticRegFileLoc = modelDir + "LogisticRegressionWithLBFGS_2016-04-1817_40_35.796789"
     linearRegFileLoc = modelDir + "LinearRegressionWithSGD_2016-04-1817_44_00.993832"
     randomForestClassificationFileLoc = modelDir + "RandomForestClassification_2016-04-1817_42_58.899412"
@@ -88,7 +88,7 @@ Spark 也可以讀取和寫入 Azure 儲存體 Blob (WASB)。 如此可使用 Sp
 datetime.datetime(2016, 4, 25, 23, 56, 19, 229403)
 
 ### <a name="import-libraries"></a>匯入程式庫
-使用下列程式碼設定 Spark 內容並匯入必要的程式庫
+設定 spark 內容，並以下列程式碼的 hello 匯入必要的程式庫
 
     #IMPORT LIBRARIES
     import pyspark
@@ -107,23 +107,23 @@ datetime.datetime(2016, 4, 25, 23, 56, 19, 229403)
 
 
 ### <a name="preset-spark-context-and-pyspark-magics"></a>預設 Spark 內容及 PySpark magic
-Jupyter Notebook 所提供的 PySpark 核心有預設的內容。 因此您不必明確設定 Spark 或 Hive 內容，就能開始使用您所開發的應用程式。 依預設會將這些內容提供給您使用。 這些內容包括：
+所提供的 Jupyter 筆記本 hello PySpark 核心有預設的內容。 因此您不需要 tooset hello Spark 或登錄區內容明確之前您開始使用您所開發的 hello 應用程式。 依預設會將這些內容提供給您使用。 這些內容包括：
 
 * sc - 代表 Spark 
 * sqlContext - 代表 Hive
 
-PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 呼叫的特殊命令。 在這些程式碼範例中，就使用了兩個此類型的命令。
+hello PySpark 核心提供一些預先定義 「 我們"，這是特殊的命令，您可以呼叫具有 %%。 在這些程式碼範例中，就使用了兩個此類型的命令。
 
-* **%%local** 指定後續行所列的程式碼要在本機執行。 程式碼必須是有效的 Python 程式碼。
+* **%%本機**指定 hello 下來幾行中的程式碼在本機執行。 程式碼必須是有效的 Python 程式碼。
 * **%%sql -o <variable name>** 
-* 針對 sqlContext 執行 Hive 查詢。 如果傳遞 -o 參數，則查詢的結果會當做 Pandas 資料框架，保存在 %%local Python 內容中。
+* 執行 Hive 查詢針對 hello sqlContext。 如果傳遞 hello-o 參數，則 hello hello 查詢結果會持續保留在 hello %%熊資料框架的本機 Python 環境。
 
-如需關於 Jupyter Notebook 核心，以及其所提供的預先定義 "magics" 的詳細資訊，請參閱 [HDInsight 上的 HDInsight Spark Linux 叢集可供 Jupyter Notebook 使用的核心](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md)。
+針對 Jupyter 筆記本和預先定義的 hello hello 核心上的詳細資訊 」 magics 」，它們提供，請參閱[HDInsight 上的叢集與 HDInsight Spark Linux Jupyter 筆記本的可用的核心](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md)。
 
 ## <a name="ingest-data-and-create-a-cleaned-data-frame"></a>擷取資料並建立已清除的資料框架
-本節包含一系列工作的程式碼，為擷取要評分的資料所必需。 在聯結的 0.1% 取樣的計程車車程和費用檔案中讀取 (儲存為 .tsv 檔案)、格式化資料，然後建立清空的資料框架。
+本節包含一系列的工作需要的 tooingest hello 資料 toobe 計分的 hello 程式碼。 閱讀聯結 0.1 %hello 計程車行程及價位檔範例 （儲存為.tsv 檔案），將資料格式化 hello，並接著會建立全新的資料框架。
 
-已根據 [Team Data Science Process 實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md) 主題提供的程序來聯結計程車車程和費用檔案。
+hello 計程車行程及價位檔案中提供的 hello 程序上聯結基礎: [hello 動作中的資料科學的小組流程： 使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)主題。
 
     # INGEST DATA AND CREATE A CLEANED DATA FRAME
 
@@ -133,7 +133,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     # IMPORT FILE FROM PUBLIC BLOB
     taxi_test_file = sc.textFile(taxi_test_file_loc)
 
-    # GET SCHEMA OF THE FILE FROM HEADER
+    # GET SCHEMA OF hello FILE FROM HEADER
     taxi_header = taxi_test_file.filter(lambda l: "medallion" in l)
 
     # PARSE FIELDS AND CONVERT DATA TYPE FOR SOME FIELDS
@@ -142,7 +142,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
                             float(p[11]),float(p[12]),p[13],p[14],p[15],p[16],p[17],p[18],float(p[19]),
                             float(p[20]),float(p[21]),float(p[22]),float(p[23]),float(p[24]),int(p[25]),int(p[26])))
 
-    # GET SCHEMA OF THE FILE FROM HEADER
+    # GET SCHEMA OF hello FILE FROM HEADER
     schema_string = taxi_test_file.first()
     fields = [StructField(field_name, StringType(), True) for field_name in schema_string.split('\t')]
     fields[7].dataType = IntegerType() #Pickup hour
@@ -178,24 +178,24 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     # REGISTER DATA-FRAME AS A TEMP-TABLE IN SQL-CONTEXT
     taxi_df_test_cleaned.registerTempTable("taxi_test")
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰46.37 秒
+時間 tooexecute 儲存格上方： 46.37 秒
 
 ## <a name="prepare-data-for-scoring-in-spark"></a>準備資料在 Spark 中評分
-本節說明如何索引、編碼及調整分類功能，準備將它們用於分類和迴歸的 MLlib 監督式學習演算法中。
+本節說明如何 tooindex，編碼，及縮放的用於分類和迴歸 MLlib 監督式學習演算法的類別特徵 tooprepare。
 
 ### <a name="feature-transformation-index-and-encode-categorical-features-for-input-into-models-for-scoring"></a>功能轉換：索引並編碼分類功能以輸入至模型進行評分。
-本節說明如何使用 `StringIndexer` 來為分類資料編製索引，並利用 `OneHotEncoder` 輸入將特徵編碼至模組中。
+此區段會顯示如何 tooindex 類別資料使用`StringIndexer`，並將編碼的功能`OneHotEncoder`輸入 hello 模型。
 
-[StringIndexer](http://spark.apache.org/docs/latest/ml-features.html#stringindexer) 會將標籤的字串資料行編碼至標籤索引的資料行。 索引是按標籤頻率排序。 
+hello [StringIndexer](http://spark.apache.org/docs/latest/ml-features.html#stringindexer)編碼字串資料行標籤 tooa 資料行的索引標籤。 hello 索引標籤的頻率會依據排序。 
 
-[OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) 會將標籤索引資料行對應到二元向量資料行 (最多有一個單一值)。 這種編碼方式允許將預期連續值功能的演算法 (例如羅吉斯迴歸) 套用至分類功能。
+hello [OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder)標籤索引 tooa 資料行的二進位的向量，使用最多為單一其中一個值的資料行對應。 這種編碼方式可讓演算法所預期的連續值的功能，例如羅吉斯迴歸，套用 toobe toocategorical 功能。
 
     #INDEX AND ONE-HOT ENCODE CATEGORICAL FEATURES
 
@@ -224,7 +224,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
     # INDEX AND ONE-HOT ENCODING
     stringIndexer = StringIndexer(inputCol="vendor_id", outputCol="vendorIndex")
-    model = stringIndexer.fit(taxi_df_test_with_newFeatures) # Input data-frame is the cleaned one from above
+    model = stringIndexer.fit(taxi_df_test_with_newFeatures) # Input data-frame is hello cleaned one from above
     indexed = model.transform(taxi_df_test_with_newFeatures)
     encoder = OneHotEncoder(dropLast=False, inputCol="vendorIndex", outputCol="vendorVec")
     encoded1 = encoder.transform(indexed)
@@ -250,19 +250,19 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     encoder = OneHotEncoder(dropLast=False, inputCol="TrafficTimeBinsIndex", outputCol="TrafficTimeBinsVec")
     encodedFinal = encoder.transform(indexed)
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰5.37 秒
+時間 tooexecute 儲存格上方： 5.37 秒
 
 ### <a name="create-rdd-objects-with-feature-arrays-for-input-into-models"></a>使用功能陣列建立 RDD 物件以輸入至模型
-本節包含程式碼，示範如何將分類的文字資料索引為 RDD 物件並加以單次編碼，以用來訓練及測試 MLlib 羅吉斯迴歸和樹狀結構型模型。 已編製索引的資料是儲存在 [彈性分散式資料集 (RDD)](http://spark.apache.org/docs/latest/api/java/org/apache/spark/rdd/RDD.html) 物件中。 這些是 Spark 中的基本抽象概念。 RDD 物件代表不可變、資料分割、可與 Spark 平行操作的元素集合。
+本章節包含程式碼，說明如何為 RDD tooindex 類別的文字資料物件和一個熱它進行編碼，以便能夠使用的 tootrain 和測試 MLlib 羅吉斯迴歸和樹狀結構為基礎的模型。 hello 索引的資料會儲存在[彈性分散式資料集 (RDD)](http://spark.apache.org/docs/latest/api/java/org/apache/spark/rdd/RDD.html)物件。 這些是 hello Spark 中的基本抽象概念。 RDD 物件代表不可變、資料分割、可與 Spark 平行操作的元素集合。
 
-它也包含程式碼，顯示如何使用 MLlib 提供的 `StandardScalar` 來調整資料，用於使用隨機梯度下降法 (SGD) 的線性迴歸，此為訓練廣泛的機器學習服務模型的常用演算法。 [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) 是用來調整單位變異數的特徵。 調整功能，也稱為資料正規化，以確保具廣泛分散值的功能在目標函式中沒有過多權重。 
+它也包含程式碼，示範如何使用 tooscale 資料 hello `StandardScalar` MLlib 所提供用於線性迴歸與隨機梯度下降 (SGD)，常用的演算法來定型各種不同的機器學習模型。 hello [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler)是使用的 tooscale hello 功能 toounit 變異數。 調整功能，也稱為資料正規化，以確保，功能與廣泛分散的值未授與過多權衡 hello 目標函式。 
 
     # CREATE RDD OBJECTS WITH FEATURE ARRAYS FOR INPUT INTO MODELS
 
@@ -324,17 +324,17 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     oneHotTESTreg.cache();
     oneHotTESTregScaled.cache();
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰11.72 秒
+時間 tooexecute 儲存格上方： 11.72 秒
 
-## <a name="score-with-the-logistic-regression-model-and-save-output-to-blob"></a>使用羅吉斯迴歸模型進行評分，並將輸出儲存至 blob
-本節的程式碼示範如何載入 Azure Blob 儲存體中已儲存的羅吉斯迴歸模型，並使用它來預測是否支付計程車車程的小費、使用標準分類度量評分，然後儲存結果並將其繪製至 Blob 儲存體。 評分的結果會儲存在 RDD 物件。 
+## <a name="score-with-hello-logistic-regression-model-and-save-output-tooblob"></a>計分以 hello 羅吉斯迴歸模型，並儲存輸出 tooblob
+本節中的 hello 程式碼顯示如何 tooload 羅吉斯迴歸模型，就已經儲存在 Azure blob 儲存體及在趕赴路線上使用的 toopredict 提示須付費，分數的標準分類度量，然後儲存並繪製 hello 結果 tooblob儲存體。 hello 計分結果會儲存在 RDD 物件。 
 
     # SCORE AND EVALUATE LOGISTIC REGRESSION MODEL
 
@@ -348,26 +348,26 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     savedModel = LogisticRegressionModel.load(sc, logisticRegFileLoc)
     predictions = oneHotTESTbinary.map(lambda features: (float(savedModel.predict(features))))
 
-    ## SAVE SCORED RESULTS (RDD) TO BLOB
+    ## SAVE SCORED RESULTS (RDD) tooBLOB
     datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
     logisticregressionfilename = "LogisticRegressionWithLBFGS_" + datestamp + ".txt";
     dirfilename = scoredResultDir + logisticregressionfilename;
     predictions.saveAsTextFile(dirfilename)
 
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds";
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds";
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰19.22 秒
+時間 tooexecute 儲存格上方： 19.22 秒
 
 ## <a name="score-a-linear-regression-model"></a>評分線性迴歸模型
-我們搭配使用 [LinearRegressionWithSGD](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD) 與隨機梯度下降法 (SGD) 來訓練線性迴歸模型，以最佳化的方式預測支付的小費金額。 
+我們使用[LinearRegressionWithSGD](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD) tootrain 線性迴歸模型使用隨機梯度下降 (SGD) 的最佳化 toopredict hello 提示數量付費。 
 
-本節的程式碼示範如何從 Azure blob 儲存體載入線性迴歸模型、使用調整變數評分，然後將結果存回 blob。
+本節中的 hello 程式碼會示範 tooload 從 Azure blob 儲存體，線性迴歸模型評分使用縮放的變數，然後將儲存 hello 結果後 toohello blob 的方式。
 
     #SCORE LINEAR REGRESSION MODEL
 
@@ -387,20 +387,20 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     dirfilename = scoredResultDir + linearregressionfilename;
     predictions.saveAsTextFile(dirfilename)
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰16.63 秒
+時間 tooexecute 儲存格上方： 16.63 秒
 
 ## <a name="score-classification-and-regression-random-forest-models"></a>評分分類和迴歸的隨機樹系模型
-本節的程式碼示範如何載入已儲存的分類和迴歸的隨機樹系模型 (儲存在 Azure blob 儲存體)、使用標準分類器和迴歸措施來評分其效能，然後將結果存回 blob 儲存體。
+本節中的 hello 程式碼會示範如何 tooload hello 儲存分類和迴歸會儲存 Azure blob 儲存體，隨機樹系模型評分標準的分類和迴歸量值中，其效能，然後將儲存 hello 結果後 tooblob 儲存體。
 
-[隨機樹系](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests) 是整體的決策樹。  隨機樹系結合許多決策樹來降低風險過度膨脹。 隨機樹系可處理分類功能、擴充至多類別分類設定、不需要調整功能，而且能夠擷取非線性和功能互動。 隨機樹系是其中一個最成功的分類和迴歸的機器學習模型。
+[隨機樹系](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests) 是整體的決策樹。  結合許多決策樹 tooreduce hello 的風險過度配適。 隨機樹系可以處理類別的功能，擴充 toohello 多級分類設定、 是否需要調整功能，以及可以 toocapture 非線性互動的功能。 隨機樹系是其中一種 hello 可以最順利機器學習的分類和迴歸模型。
 
 [spark.mllib](http://spark.apache.org/mllib/) 使用連續和分類特徵來支援二元和多元分類和迴歸的隨機樹系。 
 
@@ -413,7 +413,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     from pyspark.mllib.tree import RandomForest, RandomForestModel
 
 
-    # CLASSIFICATION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+    # CLASSIFICATION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK tooBLOB
     savedModel = RandomForestModel.load(sc, randomForestClassificationFileLoc)
     predictions = savedModel.predict(indexedTESTbinary)
 
@@ -424,7 +424,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     predictions.saveAsTextFile(dirfilename)
 
 
-    # REGRESSION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+    # REGRESSION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK tooBLOB
     savedModel = RandomForestModel.load(sc, randomForestRegFileLoc)
     predictions = savedModel.predict(indexedTESTreg)
 
@@ -434,21 +434,21 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     dirfilename = scoredResultDir + rfregressionfilename;
     predictions.saveAsTextFile(dirfilename)
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds";
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds";
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰31.07 秒
+時間 tooexecute 儲存格上方： 31.07 秒
 
 ## <a name="score-classification-and-regression-gradient-boosting-tree-models"></a>評分分類和迴歸的漸層停駐提升樹狀結構模型
-本節的程式碼示範如何從 Azure blob 儲存體載入分類和迴歸的漸層停駐提升樹狀結構模型、使用標準分類器和迴歸措施來評分其效能，然後將結果存回 blob 儲存體。 
+本節中的 hello 程式碼顯示如何 tooload 分類和迴歸梯度促進式樹狀模型從 Azure blob 儲存體，評分標準的分類和迴歸量值中，其效能，然後儲存 hello 結果後 tooblob 儲存體。 
 
 **spark.mllib** 使用連續和分類特徵來支援二元分類和迴歸的 GBT。 
 
-[漸層停駐提升樹狀結構](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) 是整體的決策樹。 GBT 反覆地訓練決策樹以盡可能降低遺失函式。 GBT 可處理分類功能、不需要調整功能，而且能夠擷取非線性和功能互動。 它們也可用於多類別分類設定。
+[漸層停駐提升樹狀結構](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) 是整體的決策樹。 GBTs 定型決策樹反覆 toominimize 損失函數。 GBTs 可以處理類別特徵，不需要調整功能，而且可以 toocapture 非線性互動的功能。 它們也可用於多類別分類設定。
 
     # SCORE GRADIENT BOOSTING TREE MODELS FOR CLASSIFICATION AND REGRESSION
 
@@ -458,9 +458,9 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     #IMPORT MLLIB LIBRARIES
     from pyspark.mllib.tree import GradientBoostedTrees, GradientBoostedTreesModel
 
-    # CLASSIFICATION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+    # CLASSIFICATION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK tooBLOB
 
-    #LOAD AND SCORE THE MODEL
+    #LOAD AND SCORE hello MODEL
     savedModel = GradientBoostedTreesModel.load(sc, BoostedTreeClassificationFileLoc)
     predictions = savedModel.predict(indexedTESTbinary)
 
@@ -471,7 +471,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     predictions.saveAsTextFile(dirfilename)
 
 
-    # REGRESSION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+    # REGRESSION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK tooBLOB
 
     # LOAD AND SCORE MODEL 
     savedModel = GradientBoostedTreesModel.load(sc, BoostedTreeRegressionFileLoc)
@@ -484,14 +484,14 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     predictions.saveAsTextFile(dirfilename)
 
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰14.6 秒
+時間 tooexecute 儲存格上方： 14.6 秒
 
 ## <a name="clean-up-objects-from-memory-and-print-scored-file-locations"></a>從記憶體清除物件並列印計分的檔案位置
     # UNPERSIST OBJECTS CACHED IN MEMORY
@@ -503,7 +503,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     oneHotTESTregScaled.unpersist();
 
 
-    # PRINT OUT PATH TO SCORED OUTPUT FILES
+    # PRINT OUT PATH tooSCORED OUTPUT FILES
     print "logisticRegFileLoc: " + logisticregressionfilename;
     print "linearRegFileLoc: " + linearregressionfilename;
     print "randomForestClassificationFileLoc: " + rfclassificationfilename;
@@ -527,38 +527,38 @@ BoostedTreeClassificationFileLoc: GradientBoostingTreeClassification_2016-05-031
 BoostedTreeRegressionFileLoc: GradientBoostingTreeRegression_2016-05-0317_23_56.860740.txt
 
 ## <a name="consume-spark-models-through-a-web-interface"></a>透過 Web 介面使用 Spark 模型
-Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從遠端提交批次工作或互動式查詢。 Livy 預設在 HDInsight Spark 叢集上啟用。 如需 Livy 的詳細資訊，請參閱 [使用 Livy 遠端提交 Spark 作業](../hdinsight/hdinsight-apache-spark-livy-rest-interface.md)。 
+Spark 提供一個機制，tooremotely 提交批次作業或執行其餘的互動式查詢介面具有名為晚總的元件。 Livy 預設在 HDInsight Spark 叢集上啟用。 如需 Livy 的詳細資訊，請參閱 [使用 Livy 遠端提交 Spark 作業](../hdinsight/hdinsight-apache-spark-livy-rest-interface.md)。 
 
-您可以使用 Livy 從遠端提交作業，其批次批分儲存在 Azure blob 中的檔案，然後將結果寫入另一個 blob。 若要這樣做，需要將 Python 指令碼從   
-[GitHub](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/Spark/Python/ConsumeGBNYCReg.py) 上傳至 Spark 叢集的 blob。 您可以使用類似 **Microsoft Azure 儲存體總管**或 **AzCopy** 的工具，將指令碼複製到叢集 blob。 在本例中，我們將指令碼上傳至 wasb:///example/python/ConsumeGBNYCReg.py。   
+您可以使用晚總 tooremotely 提交的批次分數的工作檔案儲存在 Azure blob，然後將 hello 結果 tooanother blob。 toodo，您上傳從 hello Python 指令碼  
+[GitHub](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/Spark/Python/ConsumeGBNYCReg.py) toohello blob 的 hello Spark 叢集。 您可以使用這類工具**Microsoft Azure 儲存體總管**或**AzCopy** toocopy hello 指令碼 toohello 叢集 blob。 在我們的案例我們上傳 hello 指令碼太***wasb:///example/python/ConsumeGBNYCReg.py***。   
 
 > [!NOTE]
-> 您可在入口網站上，為 Spark 叢集關聯的儲存體帳戶尋找需要的存取金鑰。 
+> hello 您需要可以找到 hello 與 hello Spark 叢集相關聯的儲存體帳戶的 hello 入口網站的存取金鑰。 
 > 
 > 
 
-一旦上傳至這個位置，此指令碼會在分散式內容的 Spark 叢集內執行。 它會載入模型，並根據模型對輸入檔執行預測。  
+一旦上傳 toothis 位置，則會在分散式的內容中的 hello Spark 叢集內執行這個指令碼。 它會載入 hello 模型，並輸入 hello 模型為基礎的檔案上執行預測。  
 
-您可以在 Livy 上進行簡單的 HTTPS/REST 要求，從遠端叫用此指令碼。  以下是 curl 命令，可建構 HTTP 要求以遠端叫用 Python 指令碼。 將 CLUSTERLOGIN、CLUSTERPASSWORD、CLUSTERNAME 取代為 Spark 叢集的適當值。
+您可以在 Livy 上進行簡單的 HTTPS/REST 要求，從遠端叫用此指令碼。  以下是從遠端 curl 命令 tooconstruct hello HTTP 要求 tooinvoke hello Python 指令碼。 CLUSTERLOGIN、 CLUSTERPASSWORD、 CLUSTERNAME 取代 hello 適當的值，為您的 Spark 叢集。
 
-    # CURL COMMAND TO INVOKE PYTHON SCRIPT WITH HTTP REQUEST
+    # CURL COMMAND tooINVOKE PYTHON SCRIPT WITH HTTP REQUEST
 
     curl -k --user "CLUSTERLOGIN:CLUSTERPASSWORD" -X POST --data "{\"file\": \"wasb:///example/python/ConsumeGBNYCReg.py\"}" -H "Content-Type: application/json" https://CLUSTERNAME.azurehdinsight.net/livy/batches
 
-您可以藉由基本驗證來進行簡單 HTTPS 呼叫，使用遠端系統上的任何語言來叫用 Spark 作業。   
+您可以使用 hello 遠端系統 tooinvoke hello Spark 作業透過晚總上的任何語言進行簡單的 HTTPS 呼叫以基本驗證。   
 
 > [!NOTE]
-> 進行此 HTTP 呼叫時可方便地使用 Python 要求程式庫，但目前預設不會在 Azure Functions 中安裝此程式庫。 因此會改用較舊的 HTTP 程式庫。   
+> 很方便 toouse hello Python 要求程式庫時進行這個 HTTP 呼叫，但是它目前未安裝預設會在 Azure 函式。 因此會改用較舊的 HTTP 程式庫。   
 > 
 > 
 
-以下是 HTTP 呼叫的 Python 程式碼 ︰
+Hello HTTP 呼叫的 hello Python 程式碼如下：
 
     #MAKE AN HTTPS CALL ON LIVY. 
 
     import os
 
-    # OLDER HTTP LIBRARIES USED HERE INSTEAD OF THE REQUEST LIBRARY AS THEY ARE AVAILBLE BY DEFAULT
+    # OLDER HTTP LIBRARIES USED HERE INSTEAD OF hello REQUEST LIBRARY AS THEY ARE AVAILBLE BY DEFAULT
     import httplib, urllib, base64
 
     # REPLACE VALUE WITH ONES FOR YOUR SPARK CLUSTER
@@ -571,21 +571,21 @@ Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從�
     auth = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
     headers = {'Content-Type': 'application/json', 'Authorization': 'Basic %s' % auth}
 
-    # SPECIFY THE PYTHON SCRIPT TO RUN ON THE SPARK CLUSTER
-    # IN THE FILE PARAMETER OF THE JSON POST REQUEST BODY
+    # SPECIFY hello PYTHON SCRIPT tooRUN ON hello SPARK CLUSTER
+    # IN hello FILE PARAMETER OF hello JSON POST REQUEST BODY
     r=conn.request("POST", '/livy/batches', '{"file": "wasb:///example/python/ConsumeGBNYCReg.py"}', headers )
     response = conn.getresponse().read()
     print(response)
     conn.close()
 
 
-您也可以將此 Python 程式碼新增至 [Azure Functions](https://azure.microsoft.com/documentation/services/functions/) 以觸發 Spark 作業提交，以根據各種事件 (像是計時器、建立或更新 blob) 來評分 blob。 
+您也可以過加入此 Python 程式碼[Azure 函式](https://azure.microsoft.com/documentation/services/functions/)tootrigger 分數 blob Spark 工作提交根據各種事件，像是計時器、 建立或更新的 blob。 
 
-如果您偏好程式碼可用的用戶端體驗，請使用 [Azure Logic Apps](https://azure.microsoft.com/documentation/services/app-service/logic/) 來叫用 Spark 批次評分，方法是在 **Logic Apps Designer** 上定義 HTTP 動作並設定它的參數。 
+如果您偏好的程式碼可用的用戶端體驗，請使用 hello [Azure 邏輯應用程式](https://azure.microsoft.com/documentation/services/app-service/logic/)tooinvoke hello Spark 批次計分藉由定義 HTTP 動作上 hello**邏輯應用程式設計師**並設定它的參數。 
 
 * 在 Azure 入口網站中，選取 [+ 新增]  ->  [Web + 行動 ]  ->  [邏輯應用程式] 來建立新的邏輯應用程式。 
-* 若要引進 **Logic Apps Designer**，請輸入邏輯應用程式和 App Service 方案的名稱。
-* 選取 HTTP 動作，然後輸入下圖顯示的參數︰
+* 向上 hello toobring**邏輯應用程式設計師**，輸入 hello hello 邏輯應用程式名稱和應用程式服務方案。
+* 選取 HTTP 動作，然後輸入 hello 參數 hello 遵循圖所示：
 
 ![Logic Apps 設計工具](./media/machine-learning-data-science-spark-model-consumption/spark-logica-app-client.png)
 

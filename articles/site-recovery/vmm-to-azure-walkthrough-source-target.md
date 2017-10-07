@@ -1,6 +1,6 @@
 ---
-title: "設定使用 Azure Site Recovery 將 Hyper-V (含 System Center VMM) 複寫至 Azure 時的來源和目標 | Microsoft Docs"
-description: "摘要說明使用 Azure Site Recovery 將 VMM 雲端中的 Hyper-V VM 複寫至 Azure 儲存體時，設定來源和目標設定時所需的步驟"
+title: "hello 來源和目標 （使用 System Center VMM) 」 與 Azure Site Recovery 中的 HYPER-V 複寫 tooAzure aaaSet |Microsoft 文件"
+description: "摘要說明 hello 步驟 tooset 與 Azure Site Recovery 的 VMM 雲端 tooAzure 儲存體中的 HYPER-V Vm 複寫的來源和目標設定"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,96 +14,96 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/25/2017
 ms.author: raynew
-ms.openlocfilehash: c72f839d0a1288dccb7deb3e44fc2b20d64818f0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3f8c5386cb64527c775aef636980bac098ee9905
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-8-set-up-the-source-and-target-for-hyper-v-with-vmm-replication-to-azure"></a>步驟 8：設定將 Hyper-V (含 VMM) 複寫至 Azure 時的來源與目標
+# <a name="step-8-set-up-hello-source-and-target-for-hyper-v-with-vmm-replication-tooazure"></a>步驟 8: Hello 來源和目標 （使用 VMM) 的 HYPER-V 複寫 tooAzure 設定
 
-[建立保存庫](vmm-to-azure-walkthrough-create-vault.md)和指定複寫的目標後，請使用本文來設定來源和目標設定，以在使用 Azure 入口網站中的 [Azure Site Recovery](site-recovery-overview.md) 服務將 System Center Virtual Machine Manager (VMM) 雲端中的內部部署 Hyper-V 虛擬機器複寫至 Azure 時套用。
+之後[建立保存庫](vmm-to-azure-walkthrough-create-vault.md)並指定您想 tooreplicate、 使用此發行項 tooconfigure 來源和目標設定，當複寫在內部部署 HYPER-V 虛擬機器在 System Center Virtual Machine Manager (VMM)雲端 tooAzure，使用 hello [Azure Site Recovery](site-recovery-overview.md) hello Azure 入口網站中的服務。
 
-請在本文下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)上張貼意見或問題。
+在本文中，或在 hello hello 下方張貼意見或疑問[Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
 
-## <a name="set-up-the-source-environment"></a>設定來源環境
+## <a name="set-up-hello-source-environment"></a>設定 hello 來源環境
 
 S1. 按一下 [準備基礎結構]  >  [來源]。
 
     ![Set up source](./media/vmm-to-azure-walkthrough-source-target/set-source1.png)
 
-2. 在 [準備來源] 中，按一下 [+ VMM] 以新增 VMM 伺服器。
+2. 在**準備來源**，按一下  **+ VMM** tooadd VMM 伺服器。
 
     ![設定來源](./media/vmm-to-azure-walkthrough-source-target/set-source2.png)
 
-3. 在 [新增伺服器] 中，檢查 [System Center VMM 伺服器] 是否出現在 [伺服器類型] 中，以及 VMM 伺服器是否符合[必要條件和 URL 需求](#prerequisites)。
-4. 下載 Azure Site Recovery Provider 安裝檔案。
-5. 下載註冊金鑰。 您會在執行安裝程式時用到此金鑰。 該金鑰在產生後會維持 5 天有效。
+3. 在**新增伺服器**，請檢查**System Center VMM 伺服器**會出現在**伺服器類型**和該 hello VMM 伺服器符合 hello[必要條件和 URL需求](#prerequisites)。
+4. 下載 hello Azure Site Recovery Provider 安裝檔案。
+5. 下載 hello 登錄機碼。 您會在執行安裝程式時用到此金鑰。 hello 金鑰有效期為您產生它之後的五天。
 
     ![設定來源](./media/vmm-to-azure-walkthrough-source-target/set-source3.png)
 
-## <a name="install-the-provider-on-the-vmm-server"></a>在 VMM 伺服器上將提供者解除安裝
+## <a name="install-hello-provider-on-hello-vmm-server"></a>Hello VMM 伺服器上安裝提供者 hello
 
-1. 在 VMM 伺服器上執行 Provider 安裝檔案。
+1. 執行 hello VMM 伺服器上的 hello 提供者設定檔。
 2. 在 [Microsoft Update] 中，您可以選擇進行更新，以便根據您的 Microsoft Update 原則安裝 Provider 更新。
-3. 在 [安裝] 中接受或修改預設 Provider 安裝位置，然後按一下 [安裝]。
+3. 在**安裝**、 接受或修改 hello 預設提供者安裝位置並按一下**安裝**。
 
     ![安裝位置](./media/vmm-to-azure-walkthrough-source-target/provider2.png)
-4. 安裝完成時，請按一下 [註冊] 以在保存庫中註冊 VMM 伺服器。
-5. 在 [保存庫設定] 頁面中，按一下 [瀏覽] 來選取保存庫金鑰檔案。 指定 Azure Site Recovery 訂用帳戶和保存庫名稱。
+4. 安裝完成後，按一下**註冊**tooregister hello VMM 伺服器 hello 保存庫中的。
+5. 在 hello**保存庫設定**頁面上，按一下**瀏覽**tooselect hello 保存庫金鑰檔。 指定 hello Azure Site Recovery 訂用帳戶和 hello 保存庫名稱。
 
     ![伺服器註冊](./media/vmm-to-azure-walkthrough-source-target/provider10.png)
-6. 在 [網際網路連線] 中，指定在 VMM 伺服器上執行的 Provider 透過網際網路連接到 Site Recovery 的方式。
+6. 在**網際網路連線**，指定如何 hello hello VMM 伺服器上執行的提供者會透過連線 tooSite 復原 hello 網際網路。
 
-   * 如果您想要讓 Provider 直接連線，請選取 [不使用 Proxy 直接連接至 Azure Site Recovery]。
-   * 如果您現有的 Proxy 需要驗證，或您想要使用自訂 Proxy，請選取 [使用 Proxy 伺服器連接至 Azure Site Recovery]。
-   * 如果您使用自訂 proxy，請指定位址、連接埠以及認證
-   * 如果您使用 Proxy，您應該已經允許[必要條件](#on-premises-prerequisites)中所述的 URL。
-   * 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。 設定 proxy 伺服器，讓此帳戶可以成功進行驗證。 在 VMM 主控台中，可以修改 VMM RunAs 帳戶設定。 在 [設定] 中，展開 [安全性] > [執行身分帳戶]，然後修改 DRAProxyAccount 的密碼。 您必須重新啟動 VMM 服務，這項設定才會生效。
+   * 若要直接 hello 提供者 tooconnect，選取**直接連接不使用 proxy 的站台復原 tooAzure**。
+   * 如果您現有的 proxy 需要驗證，或您想要 toouse 自訂 proxy，選取**連線使用 proxy 伺服器的站台復原 tooAzure**。
+   * 如果您使用自訂 proxy，請指定 hello 位址、 連接埠，以及認證。
+   * 如果您使用 proxy，您應該已經允許 hello Url 中所述[必要條件](#on-premises-prerequisites)。
+   * 如果您使用自訂 proxy，將會使用指定的 hello，自動建立 VMM RunAs 帳戶 (DRAProxyAccount) proxy 認證。 設定 hello proxy 伺服器，讓此帳戶可成功進行驗證。 hello VMM 主控台中，可以修改 hello VMM RunAs 帳戶的設定。 在**設定**，依序展開**安全性** > **執行身分帳戶**，然後修改 draproxyaccount 的 hello 密碼。 您將需要 toorestart hello VMM 服務，讓這項設定會生效。
 
      ![網際網路](./media/vmm-to-azure-walkthrough-source-target/provider13.png)
-7. 接受或修改自動為資料加密產生的 SSL 憑證位置。 如果您在 Azure 站台復原入口網站中為 Azure 所保護的雲端啟用資料加密，則會使用此憑證。 請保護此憑證的安全。 當您執行容錯移轉至 Azure 時，如果已啟用資料加密，您需要使用它來解密。
-8. 在 [伺服器名稱] 中，指定保存庫中 VMM 伺服器的易記識別名稱。 在叢集設定中，指定 VMM 叢集角色名稱。
-9. 如果您想要將 VMM 伺服器上所有雲端的中繼資料與保存庫進行同步，請啟用 [同步處理雲端中繼資料]。 這個動作只需要在每個伺服器上進行一次。 如果不要同步所有雲端，您可以取消核取這項設定，再於 VMM 主控台的雲端屬性中個別同步每個雲端。 按一下 [註冊]  完成此程序。
+7. 接受或修改 hello 位置之資料加密時，會自動產生 SSL 憑證。 如果您啟用資料加密受 Azure 保護的 hello Azure Site Recovery 入口網站雲端，則會使用此憑證。 請保護此憑證的安全。 當您執行容錯移轉 tooAzure 您將需要它 toodecrypt，如果已啟用資料加密。
+8. 在**伺服器名稱**，指定在 hello 保存庫中的易記名稱 tooidentify hello 的 VMM 伺服器。 在叢集組態中，指定 hello VMM 叢集角色名稱。
+9. 啟用**同步處理雲端中繼資料**，如果您想 toosynchronize 中繼資料的 hello 與 hello 保存庫的 VMM 伺服器上的所有雲端。 這個動作只需要 toohappen 每部伺服器上一次。 如果您不想 toosynchronize 所有雲端，您可以不勾選此設定，並個別同步處理每個雲端 hello VMM 主控台中的 hello 雲端內容。 按一下**註冊**toocomplete hello 程序。
 
     ![伺服器註冊](./media/vmm-to-azure-walkthrough-source-target/provider16.png)
-10. 註冊作業隨即開始。 註冊完成後，伺服器會顯示在 [Site Recovery 基礎結構]  >  [VMM 伺服器] 中。
+10. 註冊作業隨即開始。 註冊完成之後，在中，會顯示 hello 伺服器**Site Recovery 基礎結構** > **VMM 伺服器**。
 
 
-## <a name="install-the-azure-recovery-services-agent-on-hyper-v-hosts"></a>在 Hyper-V 主機上安裝 Azure 復原服務代理程式
+## <a name="install-hello-azure-recovery-services-agent-on-hyper-v-hosts"></a>HYPER-V 主機上安裝 hello Azure 復原服務代理程式
 
-1. 設定 Provider 之後，您需要下載 Azure 復原服務代理程式的安裝檔案。 在 VMM 雲端中的每部 Hyper-V 伺服器上執行安裝程式。
+1. 當您設定 hello 提供者之後，您需要 toodownload hello 安裝檔案 hello Azure 復原服務代理程式。 Hello VMM 雲端中的每個 HYPER-V 伺服器上執行安裝程式。
 
     ![Hyper-V 網站](./media/vmm-to-azure-walkthrough-source-target/hyperv-agent1.png)
 2. 在 [檢查先決條件] 中，按 [下一步]。 將自動安裝任何缺少的必要元件。
 
     ![Prerequisites Recovery Services Agent](./media/vmm-to-azure-walkthrough-source-target/hyperv-agent2.png)
-3. 在 [安裝設定] 中，接受或修改安裝位置和快取位置。 您可以在至少有 5 GB 可用儲存體的磁碟機上設定快取，但我們建議快取磁碟機有 600 GB 或更多可用空間。 然後按一下 [安裝] 。
-4. 安裝完成後，按一下 [關閉]  即可完成。
+3. 在**安裝設定**，接受或修改 hello 安裝位置，與 hello 快取位置。 您可以設定 hello 快取有至少 5 GB 的可用儲存體的磁碟機上，但我們建議 600 GB 或更多的可用空間的快取磁碟機。 然後按一下 [安裝] 。
+4. 安裝已完成之後，請按一下**關閉**toofinish。
 
     ![註冊 MARS 代理程式](./media/vmm-to-azure-walkthrough-source-target/hyperv-agent3.png)
 
 ### <a name="command-line-installation"></a>命令列安裝
-您可以使用下列命令，從命令列安裝 Microsoft Azure 復原服務代理程式：
+您可以從命令列使用下列命令的 hello 安裝 Microsoft Azure Recovery Services Agent hello:
 
      marsagentinstaller.exe /q /nu
 
-### <a name="set-up-internet-proxy-access-to-site-recovery-from-hyper-v-hosts"></a>設定從 Hyper-V 主機對 Site Recovery 的網際網路 Proxy 存取
+### <a name="set-up-internet-proxy-access-toosite-recovery-from-hyper-v-hosts"></a>設定網際網路的 proxy 存取 tooSite 復原，從 HYPER-V 主機
 
-在 Hyper-V 主機上執行的復原服務代理程式需要 Azure 的網際網路存取權才能進行 VM 複寫。 如果您透過 Proxy 存取網際網路，請如下所示設定它︰
+HYPER-V 主機上執行的 hello 復原服務代理程式需要網際網路存取 tooAzure VM 複寫。 如果您正在存取 hello 網際網路透過 proxy、 設定它，如下所示：
 
-1. 在 Hyper-V 主機上開啟 Microsoft Azure 備份 MMC 嵌入式管理單元。 根據預設，Microsoft Azure 備份的捷徑位於桌面上或在 C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin 中。
-2. 在嵌入式管理單元中，按一下 [變更屬性]。
-3. 在 [Proxy 設定]  索引標籤上指定 Proxy 伺服器資訊。
+1. 開啟 hello Microsoft Azure 備份 MMC 嵌入式管理單元 hello HYPER-V 主機上。 根據預設，Microsoft Azure 備份的捷徑使用。 在 hello 桌面上或 C:\Program Files\Microsoft Azure 復原服務 Agent\bin\wabadmin
+2. 在 hello 嵌入式管理單元，按一下 **變更屬性**。
+3. 在 hello **Proxy 組態**索引標籤上，指定 proxy 伺服器資訊。
 
     ![註冊 MARS 代理程式](./media/vmm-to-azure-walkthrough-source-target/mars-proxy.png)
-4. 確定代理程式可以連到[必要條件](#on-premises-prerequisites)中所述的 URL。
+4. 檢查該 hello 代理程式是否可送達 hello 中所述的 hello Url[必要條件](#on-premises-prerequisites)。
 
-## <a name="set-up-the-target-environment"></a>設定目標環境
-指定要用於複寫的 Azure 儲存體帳戶，以及 Azure VM 在容錯移轉後會連接的 Azure 網路。
+## <a name="set-up-hello-target-environment"></a>Hello 目標環境設定
+指定用於複寫，hello Azure 儲存體帳戶 toobe 和容錯移轉後連線 hello Azure 網路 toowhich Azure Vm。
 
-1. 按一下 [準備基礎結構] > [目標]，選取您想要在其中建立容錯移轉虛擬機器的訂用帳戶和資源群組。 選擇您想要在 Azure (傳統或資源管理) 中，針對容錯移轉虛擬機器使用的部署模型。
+1. 按一下**準備基礎結構** > **目標**選取 hello 訂用帳戶，hello 想 toocreate hello 容錯移轉虛擬機器的資源群組。 選擇要容錯移轉虛擬機器的 hello toouse Azure （classic 或資源管理） 中的 hello 部署模型。
 
     ![儲存體](./media/vmm-to-azure-walkthrough-source-target/enablerep3.png)
 
@@ -111,18 +111,18 @@ S1. 按一下 [準備基礎結構]  >  [來源]。
 
     ![儲存體](./media/vmm-to-azure-walkthrough-source-target/compatible-storage.png)
 
-3. 如果您尚未建立儲存體帳戶而想要使用 Resource Manager 建立一個帳戶，請按一下 [+儲存體帳戶] 以內嵌方式執行該作業。  在 [建立儲存體帳戶]  刀鋒視窗中，指定帳戶名稱、類型、訂用帳戶和位置。 此帳戶應位於與復原服務保存庫相同的位置。
+3. 如果您尚未建立儲存體帳戶，而且您想 toocreate 其中一個使用資源管理員，按一下**+ 儲存體帳戶**toodo 該內嵌。  在 hello**建立儲存體帳戶**刀鋒視窗中指定帳戶名稱、 類型、 訂閱與位置。 hello 帳戶應該位於 hello hello 與相同的位置復原服務保存庫。
 
    ![儲存體](./media/vmm-to-azure-walkthrough-source-target/gs-createstorage.png)
 
 
-   * 如果您想要使用傳統模型建立儲存體帳戶，請在 Azure 入口網站中執行該作業。 [深入了解](../storage/common/storage-create-storage-account.md)
-   * 如果您將進階儲存體帳戶使用於複寫的資料，則須設定其他標準儲存體帳戶來儲存複寫記錄檔，而這類記錄檔會擷取內部部署資料的進行中變更。
-5. 如果您尚未建立 Azure 網路，而且想要使用 Resource Manager 建立一個，請按一下 [+網路] 以內嵌方式執行該作業。 在 [建立虛擬網路]  刀鋒視窗上，指定網路名稱、位址範圍、子網路詳細資料、訂用帳戶和位置。 此網路應位於與復原服務保存庫相同的位置。
+   * 如果您想 toocreate 使用 hello 傳統模型的儲存體帳戶，請在 hello Azure 入口網站中。 [深入了解](../storage/common/storage-create-storage-account.md)
+   * 如果您使用進階儲存體帳戶複寫資料，設定額外標準儲存體帳戶，擷取進行中的變更 tooon 內部部署資料的 toostore 複寫記錄檔。
+5. 如果您尚未建立 Azure 網路，而且您想 toocreate 其中一個使用資源管理員，按一下**+ 網路**toodo 該內嵌。 在 hello**建立虛擬網路**刀鋒視窗中指定的網路名稱、 位址範圍、 子網路詳細資料、 訂閱與位置。 hello 網路應位於 hello hello 與相同的位置復原服務保存庫。
 
    ![網路](./media/vmm-to-azure-walkthrough-source-target/gs-createnetwork.png)
 
-   如果您想要使用傳統模型建立網路，請在 Azure 入口網站中執行該作業。 [深入了解](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)。
+   如果您想 toocreate 網路使用 hello 傳統模式，請 hello Azure 入口網站中。 [深入了解](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)。
 
 
 
@@ -130,4 +130,4 @@ S1. 按一下 [準備基礎結構]  >  [來源]。
 
 ## <a name="next-steps"></a>後續步驟
 
-移至[步驟 9：設定網路對應](vmm-to-azure-walkthrough-network-mapping.md)
+跳過[步驟 9： 設定網路對應](vmm-to-azure-walkthrough-network-mapping.md)

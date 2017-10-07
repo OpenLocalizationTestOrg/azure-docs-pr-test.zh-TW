@@ -1,6 +1,6 @@
 ---
-title: "在第一個 Windows VM 上安裝 IIS | Microsoft Docs"
-description: "藉由安裝 IIS 並使用 Azure 入口網站來開啟連接埠 80，試驗您的第一個 Windows 虛擬機器。"
+title: "第一個 Windows VM 上的 IIS aaaInstall |Microsoft 文件"
+description: "試驗您第一次安裝 IIS，並開啟連接埠 80 使用的 Windows 虛擬機器 hello Azure 入口網站。"
 keywords: 
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,94 +16,94 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: cynthn
-ms.openlocfilehash: b11ce1eab0c26a802c31bc418cdf725cbc4fba30
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7cfed6197df058c4569d111ee88961da7c6fe0b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="experiment-with-installing-a-role-on-your-windows-vm"></a>試驗在 Windows VM 上安裝角色
-在讓您的第一部虛擬機器 (VM) 啟動並正常執行之後，您可以接著安裝軟體和服務。 針對本教學課程，我們將使用 Windows Server VM 上的「伺服器管理員」來安裝 IIS。 接著，我們將使用 Azure 入口網站對 IIS 流量開啟連接埠 80 來建立「網路安全性群組」(NSG)。 
+一旦第一個虛擬機器 (VM) 設定和執行，您可以移動 tooinstalling 的軟體和服務。 此教學課程中，我們 toouse 伺服器管理員在 hello Windows Server VM tooinstall IIS。 然後，我們會建立網路安全性群組 (NSG) 使用 hello Azure 入口網站 tooopen 連接埠 80 tooIIS 流量。 
 
-如果您尚未建立第一個 VM，您應該先返回 [在 Azure 入口網站中建立第一個 Windows 虛擬機器](../virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，然後再繼續此教學課程。
+如果您尚未建立您的第一個 VM，您應該移回太[hello Azure 入口網站中建立第一個 Windows 虛擬機器](../virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)再繼續進行本教學課程。
 
-## <a name="make-sure-the-vm-is-running"></a>確認 VM 正在執行
-1. 開啟 [Azure 入口網站](https://portal.azure.com)。
-2. 在 [中樞] 功能表上，按一下 [虛擬機器] 。 然後從清單中選取虛擬機器。
-3. 如果狀態為 [已停止 (已解除配置)]，請按一下 VM [基本資訊] 刀鋒視窗上的 [啟動] 按鈕。 如果狀態為 [正在執行] ，則您可以移至下一個步驟。
+## <a name="make-sure-hello-vm-is-running"></a>請確認 VM 正在執行中的 hello
+1. 開啟 hello [Azure 入口網站](https://portal.azure.com)。
+2. 在 hello 中樞功能表中，按一下 **虛擬機器**。 從 [hello] 清單中選取 hello 虛擬機器。
+3. 如果 hello 狀態是**已停止 （取消配置）**，按一下 hello**啟動**按鈕 hello **Essentials**刀鋒視窗中的 hello VM。 如果 hello 狀態是**執行**，您可以移 toohello 下一個步驟。
 
-## <a name="connect-to-the-virtual-machine-and-sign-in"></a>連線至虛擬機器並登入
-1. 在 [中樞] 功能表上，按一下 [虛擬機器] 。 然後從清單中選取虛擬機器。
-2. 在虛擬機器的刀鋒視窗中，按一下 [ **連線**]。 這會建立並下載遠端桌面通訊協定檔案 (.rdp 檔案)，該檔案就像是用來連接到您的電腦的捷徑。 您可能想要將此檔案儲存至桌面，以便存取。 **開啟** 此檔案以連接到您的 VM。
+## <a name="connect-toohello-virtual-machine-and-sign-in"></a>連接 toohello 虛擬機器並登入
+1. 在 hello 中樞功能表中，按一下 **虛擬機器**。 從 [hello] 清單中選取 hello 虛擬機器。
+2. 在 hello 刀鋒視窗中的 hello 虛擬機器，按一下 **連接**。 這會建立並下載遠端桌面通訊協定檔案 （.rdp 檔案），就像是快顯 tooconnect tooyour 機器。 您可能想 toosave hello 檔案 tooyour 桌面，以方便存取。 **開啟**此檔案 tooconnect tooyour VM。
    
-    ![顯示如何連接至 VM 的 Azure 入口網站螢幕擷取畫面](./media/hero-role/connect.png)
-3. 您會收到警告，表示 .rdp 來自未知的發行者。 這是正常現象。 在 [遠端桌面] 視窗中按一下 [連接]  以繼續。
+    ![螢幕擷取畫面的 hello Azure 入口網站的顯示方式 tooconnect tooyour VM](./media/hero-role/connect.png)
+3. 您會收到警告該 hello.rdp 取自未知的發行者。 這是正常現象。 在 hello 遠端桌面視窗中，按一下 **連接**toocontinue。
    
     ![未知發行者相關警告的螢幕擷取畫面](./media/hero-role/rdp-warn.png)
-4. 在 [Windows 安全性] 視窗中，針對您建立 VM 時所建立的本機帳戶，輸入使用者名稱和密碼。 使用者名稱會輸入為 vmname&#92;username，然後按一下 [確定]。
+4. 在 [hello Windows 安全性] 視窗中，型別 hello 使用者名稱和密碼 hello 建立時，您所建立的本機帳戶的 hello VM。 hello 使用者名稱輸入為*vmname*&#92;*使用者名稱*，然後按一下 **確定**。
    
-    ![輸入 VM 名稱、使用者名稱及密碼時的螢幕擷取畫面](./media/hero-role/credentials.png)
-5. 您會收到一個指出無法驗證憑證的警告。 這是正常現象。 按一下 [是]  來確認虛擬機器的身分識別，並完成登入。
+    ![輸入 hello VM 名稱、 使用者名稱和密碼的螢幕擷取畫面](./media/hero-role/credentials.png)
+5. 您會收到警告無法驗證該 hello 憑證。 這是正常現象。 按一下**是**tooverify hello hello 虛擬機器的身分識別，並完成登入。
    
-   ![顯示驗證 VM 身分識別相關訊息的螢幕擷取畫面](./media/hero-role/cert-warning.png)
+   ![螢幕擷取畫面顯示一則訊息 trap 驗證 hello 識別 hello VM](./media/hero-role/cert-warning.png)
 
-如果嘗試連線時遇到問題，請參閱 [針對執行 Windows 之 Azure 虛擬機器的遠端桌面連線進行疑難排解](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+如果您在執行 tootrouble tooconnect 再試一次時，請參閱[疑難排解遠端桌面連線 tooa windows Azure 虛擬機器](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ## <a name="install-iis-on-your-vm"></a>在您的 VM 上安裝 IIS
-您現在已登入 VM，我們將安裝一個伺服器角色，以便您進行更多試驗。
+既然您已登入 toohello VM，我們會安裝伺服器角色，以便您可以試驗更多。
 
-1. 開啟 [伺服器管理員]  \(如果尚未開啟)。 按一下 [啟動] 功能表，然後按一下 [伺服器管理員]。
-2. 在 [伺服器管理員] 中，選取左窗格中的 [本機伺服器]。 
-3. 在功能表中，選取 [管理] > [新增角色及功能]。
-4. 在「新增角色及功能精靈」的 [安裝類型] 頁面上，選擇 [角色型或功能型安裝]，然後按 [下一步]。
+1. 開啟 [伺服器管理員]  \(如果尚未開啟)。 按一下 hello**啟動**功能表，然後再按一下**伺服器管理員**。
+2. 在**伺服器管理員**，選取**本機伺服器**hello 左窗格中。 
+3. 在 hello 功能表中，選取 **管理** > **新增角色及功能**。
+4. 在 [hello 新增角色及功能精靈] 的 hello**安裝類型**頁面上，選擇**角色型或功能型安裝**，然後按一下**下一步**。
    
-    ![顯示 [安裝類型] 的 [新增角色及功能精靈] 索引標籤的螢幕擷取畫面](./media/hero-role/role-wizard.png)
-5. 從伺服器集區中選取 VM，然後按 [下一步] 。
-6. 在 [伺服器角色] 頁面上，選取 [Web 伺服器 (IIS)]。
+    ![螢幕擷取畫面顯示 hello 新增角色及功能精靈] 索引標籤的 [安裝類型](./media/hero-role/role-wizard.png)
+5. 選取 hello VM 從 hello 伺服器集區，然後按一下**下一步**。
+6. 在 hello**伺服器角色**頁面上，選取**網頁伺服器 (IIS)**。
    
-    ![顯示 [伺服器角色] 的 [新增角色及功能精靈] 索引標籤的螢幕擷取畫面](./media/hero-role/add-iis.png)
-7. 在新增 IIS 所需功能的相關快顯視窗中，確定已選取 [包含管理工具]，然後按一下 [新增功能]。 當快顯視窗關閉時，請在精靈中按 [下一步]  。
+    ![螢幕擷取畫面顯示 hello 新增角色及功能精靈] 索引標籤的 [伺服器角色](./media/hero-role/add-iis.png)
+7. 在 新增所需的 IIS 功能的相關快顯 hello，請確定**包含管理工具**已選取，然後按一下**新增功能**。 當快顯 hello 關閉時，按一下**下一步**hello 精靈中。
    
-    ![顯示用以確認新增 IIS 角色之快顯視窗的螢幕擷取畫面](./media/hero-role/confirm-add-feature.png)
-8. 在功能頁面上，按 [下一步] 。
-9. 在 [Web 伺服器角色 (IIS)] 頁面上，按 [下一步]。 
-10. 在 [角色服務] 頁面上，按 [下一步]。 
-11. 在 [確認] 頁面中上，按一下 [安裝]。 
-12. 安裝完成時，按一下精靈上的 [關閉]  。
+    ![顯示快顯 tooconfirm 新增 hello IIS 角色螢幕擷取畫面](./media/hero-role/confirm-add-feature.png)
+8. 在 hello 功能頁面上，按一下 **下一步**。
+9. 在 hello**網頁伺服器 (IIS)**頁面上，按一下**下一步**。 
+10. 在 hello**角色服務**頁面上，按一下**下一步**。 
+11. 在 hello**確認**頁面上，按一下**安裝**。 
+12. Hello 安裝完成時，按一下**關閉**hello 精靈。
 
 ## <a name="open-port-80"></a>開啟連接埠 80
-為了讓您的 VM 透過連接埠 80 接收輸入流量，您必須將輸入規則新增至網路安全性群組。 
+為了讓 VM tooaccept 輸入流量透過連接埠 80，您需要 tooadd 輸入的規則 toohello 網路安全性群組。 
 
-1. 開啟 [Azure 入口網站](https://portal.azure.com)。
-2. 在 [虛擬機器]  中，選取您所建立的 VM。
-3. 在虛擬機器設定中，選取 [網路介面]  ，然後選取現有的網路介面。
+1. 開啟 hello [Azure 入口網站](https://portal.azure.com)。
+2. 在**虛擬機器**選取 hello 您所建立的 VM。
+3. 在 hello 虛擬機器設定中，選取**網路介面**，然後選取 hello 現有網路介面。
    
-    ![顯示網路介面的虛擬機器設定的螢幕擷取畫面](./media/hero-role/network-interface.png)
-4. 在網路介面的 [基本資訊] 中，按一下 [網路安全性群組]。
+    ![顯示 hello 的 hello 虛擬機器設定網路介面螢幕擷取畫面](./media/hero-role/network-interface.png)
+4. 在**Essentials** hello 網路介面，按一下 hello**網路安全性群組**。
    
-    ![顯示網路介面的 [基本資訊] 區段的螢幕擷取畫面](./media/hero-role/select-nsg.png)
-5. 在 NSG 的 [基本資訊] 刀鋒視窗中，您應該會有一個 **default-allow-rdp** 的現有預設輸入規則可讓您登入 VM。 您將加入另一個允許 IIS 流量的輸入規則。 按一下 [輸入安全性規則] 。
+    ![顯示 hello Essentials > 一節 hello 網路介面的螢幕擷取畫面](./media/hero-role/select-nsg.png)
+5. 在 hello **Essentials** hello NSG 刀鋒視窗中的，您應該有一個現有的預設輸入規則**預設允許 rdp**它可讓您 toolog toohello VM 中。 您會加入另一個輸入的規則 tooallow IIS 流量。 按一下 [輸入安全性規則] 。
    
-    ![顯示 NSG 的 [基本資訊] 區段的螢幕擷取畫面](./media/hero-role/inbound.png)
+    ![顯示 hello hello NSG 的 Essentials > 一節螢幕擷取畫面](./media/hero-role/inbound.png)
 6. 在 [輸入安全性規則] 中，按一下 [新增]。
    
-    ![顯示用以新增安全性規則之按鈕的螢幕擷取畫面](./media/hero-role/add-rule.png)
-7. 在 [輸入安全性規則] 中，按一下 [新增]。 在連接埠範圍中輸入 **80**，請確定已選取 [允許]。 完成時按一下 [確定]。
+    ![安全性規則顯示 hello 按鈕 tooadd 螢幕擷取畫面](./media/hero-role/add-rule.png)
+7. 在 [輸入安全性規則] 中，按一下 [新增]。 型別**80**在 hello 連接埠範圍，並確定**允許**已選取。 完成時按一下 [確定]。
    
-    ![顯示用以新增安全性規則之按鈕的螢幕擷取畫面](./media/hero-role/port-80.png)
+    ![安全性規則顯示 hello 按鈕 tooadd 螢幕擷取畫面](./media/hero-role/port-80.png)
 
-如需 NSG、輸入和輸出規則的詳細資訊，請參閱 [允許使用 Azure 入口網站從外部存取您的 VM](nsg-quickstart-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+如需有關 Nsg，輸入和輸出規則，請參閱[允許外部存取 tooyour VM 使用 hello Azure 入口網站](nsg-quickstart-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-## <a name="connect-to-the-default-iis-website"></a>連接到預設 IIS 網站
-1. 在 Azure 入口網站中，按一下 [虛擬機器]  ，然後選取您的 VM。
-2. 在 [基本資訊] 刀鋒視窗中，複製您的 [公用 IP 位址]。
+## <a name="connect-toohello-default-iis-website"></a>連接 toohello 預設 IIS 網站
+1. 在 hello Azure 入口網站，按一下 **虛擬機器**，然後選取您的 VM。
+2. 在 hello **Essentials**刀鋒視窗，複製您**公用 IP 位址**。
    
-    ![顯示何處尋找 VM 公用 IP 位址的螢幕擷取畫面](./media/hero-role/ipaddress.png)
-3. 開啟瀏覽器並在網址列中，輸入您的公用 IP 位址︰http://<publicIPaddress>，然後按一下 **Enter** 前往該位址。
-4. 您的瀏覽器應該會開啟預設的 IIS 網頁。 它看起來會像這樣：
+    ![螢幕擷取畫面顯示其中 toofind hello VM 的公用 IP 位址](./media/hero-role/ipaddress.png)
+3. 開啟瀏覽器，並在 hello 網址列中輸入公用 IP 位址如下： http://<publicIPaddress>按一下**Enter** toogo toothat 位址。
+4. 您的瀏覽器應該開啟 hello 預設 IIS web 網頁。 它看起來會像這樣：
    
-    ![顯示預設 IIS 頁面在瀏覽器中樣貌的螢幕擷取畫面](./media/hero-role/iis-default.png)
+    ![在瀏覽器中顯示哪些 hello 預設 IIS 頁面螢幕擷取畫面看起來像](./media/hero-role/iis-default.png)
 
 ## <a name="next-steps"></a>後續步驟
-* 您也可以體驗 [附加資料磁碟](attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 至虛擬機器。 資料磁碟可為虛擬機器提供更多的儲存空間。
+* 您也可以試驗[連接資料磁碟](attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)tooyour 虛擬機器。 資料磁碟可為虛擬機器提供更多的儲存空間。
 

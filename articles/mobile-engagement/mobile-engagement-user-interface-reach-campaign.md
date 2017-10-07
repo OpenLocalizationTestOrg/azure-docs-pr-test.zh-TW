@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement 使用者介面 - 觸達活動"
-description: "了解如何使用 Azure Mobile Engagement 建立和管理推播通知活動。"
+title: "aaaAzure Mobile Engagement 使用者介面為連線到活動"
+description: "Laern 如何 toocreate 和管理使用 Azure Mobile Engagement 的推送通知活動"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: fc88db8db11d1ed12fa95c2087c9a32b21bf4de5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 825e550ace63a34d1a90b10fa976a61eb15a6d04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-and-manage-push-notification-campaigns"></a>如何建立和管理推播通知活動。
-您可以使用 UI 的 [觸達] 區段，提供傳送推播通知所需的所有資訊，建立具有複雜公式的新推播活動。 觸達活動的選項根據四種活動類型而有所不同：通知、投票、資料推送和磚 (僅 Windows Phone)。
+# <a name="how-toocreate-and-manage-push-notification-campaigns"></a>如何 toocreate 和管理推送通知活動
+您可以使用包含複雜公式的 hello hello UI toocreate 新的推播宣傳活動觸達一節提供您需要 toosend 推播通知的所有 hello 資訊。 hello 選項的推播宣傳活動會稍微不同視 hello 四個活動類型而定： 宣告、 投票、 資料推入和磚 (僅限 Windows Phone)。
 
 ### <a name="option-applies-to"></a>選項適用範圍：
 * 語言：全部 (通知、投票、資料推送、圖格)
@@ -35,18 +35,18 @@ ms.lasthandoff: 07/11/2017
 ![Reach-Campaign1][20]
 
 ## <a name="languages"></a>語言
-您可以使用 [語言] 下拉式功能表，將不同版本的推播傳送至設定使用不同語言的裝置。 無論裝置設定使用的語言為何，所有裝置預設都會收到相同的推播。 將裝置設定使用不同語言的使用者會收到預設語言版本的推播。 大部分的推播活動選項都可讓您針對每個額外選取的其他語言，來指定不同的內容。 
+您可以使用 hello 語言下拉式清單功能表 toosend 設定 toouse 不同語言程式推入 toodevices 的不同版本。 根據預設，所有的裝置將會收到的 hello 相同不論何種語言設定 toouse 推入。 使用其裝置設定 tooa 不同語言的使用者會收到 hello hello 推入預設語言版本。 Hello 推送活動選項中有許多可讓您 toospecify 替代內容為每個您所選取的 hello 其他語言。 
 
 ![Reach-Campaign2][21]
 
 ### <a name="language-differences-apply-to"></a>語言差異適用範圍：
-* 語言：除了預設語言之外，還可以選取其他指定的的語言
+* 語言： 可能在加法 toohello 預設語言中選取唯一的語言
 * 活動：所有語言都相同
-* 通知：不只預設語言，可針對個別語言來指定
-* 內容：不只預設語言，可針對個別語言來指定
+* 通知： 唯一的每一種語言此外 toohello 預設語言
+* 內容： 唯一的每一種語言此外 toohello 預設語言
 * 對象：可根據個別的語言準則來篩選
 * 時間範圍：所有語言都相同
-* 測試：一次可以傳送給一種語言
+* 測試： 可能會傳送 tooeach 語言一次
 
 ### <a name="supported-languages"></a>支援的語言：
 * 阿拉伯文 (ar) 
@@ -89,27 +89,27 @@ ms.lasthandoff: 07/11/2017
 * 越南文 (vi) 
 
 ## <a name="campaign"></a>活動
-您可以使用 [活動] 區段設定活動的名稱和類別，如果您計劃忽略推播活動的對象區段，並改為透過觸達 API (以及使用低階推播 API 的部份元素) 傳送此活動，也可以這麼做。 類別可以搭配自訂的通知範本一起使用，以便根據預先定義的設定控制應用程式內通知。 您可以透過觸達 API 取得一份您現有的「類別」清單。
+您可以使用 hello 活動區段 tooset hello 名稱，以及您的活動的類別以及您計劃的推播宣傳活動 tooignore hello 觀眾區段，並改為傳送 hello 觸達 API 透過此活動 （和 hello 低層級推送 API 的某些項目）。 類別可用於根據預先定義的設定自訂的通知範本 toocontrol 應用程式內通知。 您可以取得一份您現有 「 類別 」 透過 hello 觸達 API。
 
 > [!WARNING]
-> 如果您在觸達活動的 [活動] 區段中使用 [略過對象，推送將透過 API 傳送給使用者] 選項，活動將不會自動傳送，您必須以手動方式透過「觸達 API」傳送活動。
+> 如果您使用 hello"忽略受眾，推入將會傳送 hello 應用程式開發介面透過 toousers 」 選項 hello 「 活動 」 一節中的觸達活動，不會自動傳送 hello 行銷活動，您需要 toosend 它以手動方式透過 hello 觸達 API。
 
 ![Reach-Campaign3][22]
 
 ### <a name="option-applies-to"></a>選項適用範圍：
 * 名稱：全部
 * 類別：通知、投票
-* 略過對象，推播將透過 API 傳送給使用者：全部
+* 忽略受眾，推入將會傳送 hello 應用程式開發介面透過 toousers： 所有
 
 ## <a name="notification"></a>通知
-您可以使用 [通知] 區段設定推播的基本設定，包括：推送的標題、訊息、應用程式內影像，或者它是否可關閉。 許多通知設定都和您使用的裝置平台有關。 您可以選取要在「應用程式內」或「應用程式外」或兩者傳送您的推播。 (請留意，對於「應用程式外」的推播，使用者可以在裝置的作業系統層級「選擇加入」或「選擇退出」，Azure Mobile Engagement 無法覆寫這項設定。 另請留意，觸達 API 可處理「應用程式內」和「應用程式外」推播。 推播 API 也可用來處理「應用程式外」推播)。推播可使用圖片或 HTML 內容加以自訂，包括連結到您應用程式之外，或連結到您應用程式內其他位置的深層連結 (需要 Android SDK 2.1.0 或更新版本的類別)。 您可以變更圖示或 iOS 徽章，並傳送文字或 Web 內容 (有 html 內容和 URL 連結的快顯，可連結到應用程式內部或外部的其他位置)。 您也可以使用推播讓 Android 裝置響鈴或震動。 (請留意，您需要在 Android 資訊清單檔案中有正確的 SDK 權限，才能讓裝置響鈴或震動)。Android 的「大型圖片」尺寸目前沒有任何業界標準，因為每個裝置使用不同的螢幕尺寸，不過 400x100 的圖片幾乎可在所有的螢幕尺寸上運作。
+您可以使用 hello 通知區段 tooset 基本設定，您的推播包括： hello 標題的 hello 推入，hello 訊息，在應用程式映像，或者如果它是可解除。 通知的許多設定都是裝置的特定 toohello 平台，您。 您可以選取要在「應用程式內」或「應用程式外」或兩者傳送您的推播。 (請記住，使用者就可以 「 選擇加入 」 或 「 退出 」 的 「 從應用程式 」 在 hello 作業系統層級將推入至他們的裝置，而且 Azure Mobile Engagement 不會是能 toooverride 這項設定。 也請記住，hello 觸達 API 「 以應用程式 「 處理 」 應用程式超出"推播通知。 hello 推送 API 可以是使用的 toohandle 太推入 」 的應用程式超出"）。使用圖片或 HTML 內容，包括深層連結來連結您的應用程式或 tooanother 位置，在您的應用程式 （Android SDK 2.1.0 或更新版本所需的意圖類別） 之外，您可以自訂推播通知。 您可以變更 hello 圖示或 iOS 徽章和文字或 web 內容 （html 內容，URL 連結 tooanother 位置 hello 應用程式內外的快顯） 傳送。 您也可以使 Android 裝置響鈴或震動以 hello 推入。 （請記住，您將需要 hello 正確 Android SDK 權限資訊清單檔案 tooring 或震動裝置）。Android 的「大型圖片」尺寸目前沒有任何業界標準，因為每個裝置使用不同的螢幕尺寸，不過 400x100 的圖片幾乎可在所有的螢幕尺寸上運作。
 
 ### <a name="delivery-types"></a>傳遞類型：
-* 僅限應用程式外：當使用者不使用應用程式時，就會傳遞通知。
-* 僅限應用程式外的通知需要來自 Apple 或 Google 的憑證 (APN 或 GCM 憑證)。
-* 僅限應用程式內：通知只會在應用程式執行時顯示。
-* 通知使用 Capptain 傳遞系統觸達使用者。 您可以完全自訂推播的版面配置/顯示方式。
-* 任何時間：無論應用程式是否執行，此選項可確保您傳送通知。
+* 不在應用程式只： hello 使用者不使用 hello 應用程式時，就會傳送 hello 通知。
+* 從應用程式僅通知的 hello 需要從 Apple 或 Google （APNS 或 GCM 憑證） 的憑證。
+* 在應用程式只： 只有在執行 hello 應用程式時才出現 hello 通知。
+* hello 通知使用 hello Capptain 傳送系統 tooreach hello 使用者。 您可以完全自訂 hello 配置/的視覺顯示發送。
+* 任何時間： 此選項可確保您傳送的通知，或未執行其中一個 hello 應用程式。
 
 ![Reach-Campaign4][23]
 
@@ -117,23 +117,23 @@ ms.lasthandoff: 07/11/2017
 * 通知：通知、投票
 
 ## <a name="content"></a>內容
-您可以使用 [內容] 區段修改通知、投票、資料推送和磚 (僅限 Windows Phone) 的內容。 推播活動的 [內容] 設定與活動類型有關。 
+您可以使用 hello 內容區段 toomodify hello 內容的宣告、 投票、 資料推播通知，以及磚 (僅限 Windows Phone)。 hello 內容設定的推送活動的是特定 toohello 活動類型。 
 
 ### <a name="see-also"></a>另請參閱
 * [UI 文件 - 觸達 - 推送內容][Link 29]
 
 ![Reach-Campaign5][24]
 
-## <a name="audience"></a>觀眾
-您可以使用 [對象] 區段定義標準的項目清單，或者根據自訂的準則，對活動設定限制。 限制對象的標準選項設定，可讓您只發送給新的或舊的使用者，或者只給原生的推播使用者。 您也可以設定配額，限制接收推播的使用者數目。 您可以手動編輯運算式，如何篩選您的活動以包含一或多個選取使用者的準則。 您可以手動輸入對象運算式。 這類運算式必須明確定義準則之間的關係。 描述準則的識別項必須以大寫字母開頭，而且不能包含空格。 準則之間的關係可以使用 and、or、not 等運算子，以及「(」、「)」 來描述。 範例："Criterion1 or (Criterion1 and not Criterion2)"。
+## <a name="audience"></a>對象
+您的行銷活動根據自訂準則的限制，您可以使用 hello 觀眾區段 toodefine 標準的項目 toolimit 清單。 hello 組標準的選項 tooLimit 觀眾可讓您 toopush tooeither 新或舊的使用者或僅限原生推送使用者。 您也可以設定使用者接收 hello 推播配額 toolimit hello 數字。 您可以手動編輯 hello 運算式活動的方式篩選的 tooinclude 一或多個準則 tootarget 使用者。 您可以手動輸入對象運算式。 這類運算式必須明確地定義 hello 準則之間的關聯性。 描述準則的識別項必須以大寫字母開頭，而且不能包含空格。 可以使用描述 hello hello 準則之間的關聯性 'and'、 'or'、 'not' 運算子以及 '（'，'）'。 範例："Criterion1 or (Criterion1 and not Criterion2)"。
 
 > [!NOTE]
-> 如果活動的對象很多，尤其是當您嘗試同時啟動多個活動時，伺服器端的目標掃描可能會變慢。
+> 大型的對象，包含在活動中，與 hello 伺服器端為目標的掃描可能會降低，特別是當您嘗試 toostart 多個活動在 hello 相同的時間。
 
 * 可能的話，一次只啟動一個活動。
-* 一次最多只啟動四個活動。
-* 只推送給作用中使用者 (核取 [只吸引可使用原生推送觸達的使用者] 和 [只吸引作用中使用者] 方塊)，就只會掃描仍然安裝應用程式且使用它的使用者。
-  一旦定義您的對象之後，就可以使用模擬按鈕找出會收到此推播的使用者數目。 這會計算此對象可能選出的已知使用者數目 (根據使用者的隨機取樣估計)。 請注意，已解除安裝應用程式的使用者也屬於這類對象，但無法觸達。
+* 在 hello 最多只能啟動四個活動一次。
+* 推播 tooyour 作用中使用者 (核取方塊 」 僅連絡使用者可以使用原生推送連 」 和 「 僅連絡作用中的使用者 」)，因此只有您的使用者仍 hello 安裝的應用程式，並用它將需要 toobe 掃描。
+  一旦您的對象定義之後，您可以使用 hello 模擬按鈕 toofind 出多少使用者會收到此 Push。 這會計算 hello 可能目標 （這是根據使用者隨機取樣估計） 此對象的已知使用者數。 請注意，已解除安裝 hello 應用程式的使用者也是算是此受眾的一部分，但無法觸達。
 
 ### <a name="see-also"></a>另請參閱
 * [UI 文件 - 觸達 - 新增推播準則][Link 28]
@@ -152,10 +152,10 @@ ms.lasthandoff: 07/11/2017
 * 只吸引可使用原生推送觸達的使用者：宣告、投票
 
 ## <a name="time-frame"></a>時間範圍
-您可以使用 [時間範圍] 區段設定推播傳送的時間，或者可以將時間範圍留空以便立即啟動活動。 請留意，使用使用者的時區來啟動活動，對於亞洲的使用者可能會比您預期的時間還早一天，因此請在世界上所有的時區都符合活動的時間範圍時，才一次傳送小型批次的推播。 使用使用者的時區也可能會造成活動延遲，因為必須先從使用者的電話取得時間才能啟動推送。
+將傳送嗨推入，或您可以立即讓 hello 時段空白 toostart hello 活動時，您可以使用 hello 時段區段 tooset。 請記住，使用 hello 一向 time zone 可能 hello 活動一天開始早於您預期使用者在亞洲和傳送的推播通知一次 hello world 相符 hello 時間範圍內的時區設定您的活動時，才小批次。 使用 hello 畷樾簅 time zone 也可能導致延遲活動中因為它有 toorequest hello 時間，從 hello 電話才開始 hello 推入。
 
 > [!NOTE]
-> 沒有結束日期的活動可能會在本機快取推送，甚至在您手動完成活動之後，仍然繼續顯示推送。 若要避免發生這個狀況，請為活動設定確切的結束時間。
+> 沒有結束日期的活動可能會在本機快取推送，甚至在您手動完成活動之後，仍然繼續顯示推送。 tooavoid 此行為的特定活動結束時間。
 
 ### <a name="see-also"></a>另請參閱
 * [觸達 - 作法 – 排程][Link 3] 
@@ -166,10 +166,10 @@ ms.lasthandoff: 07/11/2017
 * 時間範圍：通知、投票、圖格
 
 ## <a name="test"></a>測試
-儲存活動之前，您可以使用 [測試] 區段將此推播傳送到您自己的測試裝置。 如果您為此活動設定任何自訂語言，可以使用每個語言測試推播。 您可以從 [我的帳戶] 設定測試裝置。
+您可以使用 hello 測試區段 toosend 此 push tooyour 自己的測試裝置，才能儲存 hello 行銷活動。 如果您已設定任何自訂的支援語言的這個活動，您可以在每個語言中測試 hello 推入。 您可以從 [我的帳戶] 設定測試裝置。
 
 > [!NOTE]
-> 當您使用按鈕來「測試」推送時，不會記錄任何伺服器端的資料，只會記錄實際推送活動的資料。
+> 當您使用 hello 按鈕時，會記錄資料的任何伺服器端太"test"推播通知，針對實際的推送活動只會記錄資料。
 
 ### <a name="see-also"></a>另請參閱
 * [UI 文件 - 我的帳戶][Link 14]

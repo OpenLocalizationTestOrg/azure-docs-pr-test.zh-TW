@@ -1,6 +1,6 @@
 ---
-title: "在 StorSimple 裝置上安裝 Update 2 | Microsoft Docs"
-description: "說明如何在您的 StorSimple 8000 系列裝置上安裝 StorSimple 8000 系列 Update 2。"
+title: "在您的 StorSimple 裝置上的 Update 2 aaaInstall |Microsoft 文件"
+description: "說明如何在您的 StorSimple 8000 系列裝置 tooinstall StorSimple 8000 系列 Update 2。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 09/21/2016
 ms.author: alkohli
-ms.openlocfilehash: e788439608b7122f2bca6b99b832baa5258e472d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 33a0bea4358c944644563192f686af332d2ad7bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-update-2-on-your-storsimple-device"></a>在 StorSimple 裝置上安裝 Update 2
-## <a name="overview"></a>Overview
-本教學課程說明如何透過 Azure 傳統入口網站，在執行舊版軟體的 StorSimple 裝置上安裝 Update 2。 本教學課程也涵蓋了當閘道器設定於 StorSimple 裝置之 DATA 0 以外的網路介面上，而您嘗試從 Update 1 以前的軟體版本更新時所需的步驟。
+## <a name="overview"></a>概觀
+本教學課程說明如何 tooinstall 更新 2 透過 hello Azure 傳統入口網站中執行較早的版本的 StorSimple 裝置上。 hello 教學課程也涵蓋 hello 閘道設定成以外的 hello StorSimple 裝置的 DATA 0 網路介面上，且您嘗試更新前 1 軟體版本從 tooupdate hello 更新所需的步驟。
 
-Update 2 包括裝置軟體更新、LSI 驅動程式更新和磁碟韌體更新。 此裝置軟體和 LSI 更新為非干擾性更新，且可透過 Azure 傳統入口網站套用。 磁碟韌體更新為干擾性更新，且只能透過裝置的 Windows PowerShell 介面套用。
+Update 2 包括裝置軟體更新、LSI 驅動程式更新和磁碟韌體更新。 hello 裝置軟體和 LSI 更新非干擾性更新，並透過 hello Azure 傳統入口網站，可以套用。 hello 磁碟韌體更新更新具有干擾性，並只能透過 hello 裝置 hello Windows PowerShell 介面套用。
 
 > [!IMPORTANT]
-> * 您可能不會立即看到 Update 2，因為我們會分階段推出更新。 請在數天內再次掃描更新，因為很快就會提供 Update。
-> * 安裝前會執行一組手動和自動預先檢查，以根據硬體狀態和網路連線來判斷裝置健全狀況。 這些預先檢查只會在您從 Azure 傳統入口網站套用更新時執行。
-> * 建議您透過 Azure 傳統入口網站安裝軟體和驅動程式更新。 如果入口網站中的更新前閘道器檢查失敗，請移至裝置的 Windows PowerShell 介面安裝更新 (勿透過其他方式)。 更新可能需要 4-7 小時才能安裝 (包括 Windows Updates)。 維護模式更新必須透過裝置的 Windows PowerShell 介面安裝。 由於維護模式更新是干擾性更新，它們將會導致裝置的停機時間。
-> * 如果執行選擇性的 StorSimple Snapshot Manager，更新裝置之前，請先將您的 Snapshot Manager 版本升級至 Update 2。
+> * 您可能不會看到更新 2 立即，因為我們會執行 hello 更新分階段導入。 請在數天內再次掃描更新，因為很快就會提供 Update。
+> * 一組預先手動與自動檢查已完成先前 toohello 安裝 toodetermine hello 裝置健全狀況方面硬體狀態和網路連線。 只有當您從 Azure 傳統入口網站 hello 套用 hello 更新時，才執行這些前置檢查。
+> * 我們建議您安裝 hello 軟體，並透過的驅動程式更新 hello Azure 傳統入口網站。 如果 hello 入口網站中的 hello 更新前閘道檢查失敗，應該只會順著 hello 裝置 （tooinstall 更新） toohello Windows PowerShell 介面。 hello 更新可能需要 4-7 小時 tooinstall （包括 hello Windows 更新）。 hello 維護模式更新必須透過 hello 裝置 hello Windows PowerShell 介面安裝。 由於維護模式更新是干擾性更新，它們將會導致裝置的停機時間。
+> * 如果執行 hello 選擇性 StorSimple Snapshot Manager，請確定您已升級 Snapshot Manager 版本 tooUpdate 2 先前 tooupdating hello 裝置。
 > 
 > 
 
 [!INCLUDE [storsimple-preparing-for-update](../../includes/storsimple-preparing-for-updates.md)]
 
-## <a name="install-update-2-via-the-azure-classic-portal"></a>透過 Azure 傳統入口網站安裝 Update 2
-請執行下列步驟，以將您的裝置更新至 [Update 2](storsimple-update2-release-notes.md)。
+## <a name="install-update-2-via-hello-azure-classic-portal"></a>透過 hello Azure 傳統入口網站安裝 Update 2
+執行下列步驟 tooupdate hello 裝置太[Update 2](storsimple-update2-release-notes.md)。
 
 > [!NOTE]
-> Update 2 讓 Microsoft 從裝置提取其他診斷資訊。 因此，當我們的作業小組識別有問題的裝置時，我們更有能力從裝置收集資訊並診斷問題。 接受 Update 2，表示您允許我們提供此主動支援。
+> Update 2 讓 Microsoft toopull 其他診斷資訊從裝置 hello。 如此一來，當我們作業小組會識別發生問題的裝置，我們會更好的配備的 toocollect 資訊從裝置 hello 和診斷問題。 接受 Update 2 中，您允許我們 tooprovide 主動式這項支援。
 > 
 > 
 
 [!INCLUDE [storsimple-install-update2-via-portal](../../includes/storsimple-install-update2-via-portal.md)]
 
-1. 驗證您的裝置正在執行 **StorSimple 8000 系列 Update 2 (6.3.9600.17673)**。 [ **上次更新日期** ] 應該也已修改。 您也會看到有可用的維護模式更新 (此訊息可能會在您安裝更新之後繼續顯示長達 24 小時)。
+1. 驗證您的裝置正在執行 **StorSimple 8000 系列 Update 2 (6.3.9600.17673)**。 hello**上次更新日期**也應修改。 您也會看到維護模式更新可供使用 （此訊息可能會繼續顯示總 too24 安裝之後的小時 hello 更新 toobe）。
    
-   維護模式更新為干擾性更新，會導致裝置產生停機時間，且只能透過您裝置的 Windows PowerShell 介面加以套用。 在某些情況下，當您執行 Update 1.2 時，磁碟韌體可能已經是最新狀態，這種情況下，您不需要安裝任何維護模式更新。
-2. 使用 [下載 Hotfix](#to-download-hotfixes) 中列出的步驟，下載維護模式更新，以搜尋和下載 KB3121899，它會安裝磁碟韌體更新 (現在其他更新應該已安裝)。
-3. 請遵循 [安裝及驗證維護模式 Hotfix](#to-install-and-verify-maintenance-mode-hotfixes) 中列出的步驟安裝維護模式更新。
+   維護模式更新會導致裝置停機時間，且只能透過您的裝置 hello Windows PowerShell 介面套用干擾性更新。 在某些情況下當您執行更新 1.2、 磁碟韌體可能已經是最新狀態，在此情況下，您不需要 tooinstall 任何維護模式更新。
+2. 使用 hello 中所列的步驟來下載 hello 維護模式更新[toodownload hotfix](#to-download-hotfixes)如 toosearch 並下載 KB3121899，這會安裝磁碟韌體更新 （hello 其他更新應該已經安裝到目前為止）。
+3. 中所列步驟 hello[安裝，並確認 維護模式 hotfix](#to-install-and-verify-maintenance-mode-hotfixes) tooinstall hello 維護模式更新。
 
 ## <a name="install-update-2-as-a-hotfix"></a>以 Hotfix 的方式安裝 Update 2
-請在嘗試透過 Azure 傳統入口網站安裝更新，而無法通過閘道器檢查時執行此程序。 當您指派閘道器給非 DATA 0 網路介面且您的裝置正在執行早於 Update 1 的軟體版本時，檢查才會失敗。
+如果您無法 hello 閘道核取時，嘗試透過 hello Azure 傳統入口網站的 tooinstall hello 更新，請使用此程序。 hello 檢查失敗，因為您已指派 tooa 非 DATA 0 網路介面閘道和您的裝置正在執行軟體版本先前 tooUpdate 1。
 
-可以使用 Hotfix 方法升級的軟體版本為 Update 0.1、Update 0.2、Update 0.3、Update 1、Update 1.1 及 Update 1.2。 Hotfix 方法涉及下列三個步驟：
+hello 軟體版本，可以使用 hello hotfix 方法來升級為更新 0.1、 更新 0.2，和 Update 0.3、 更新 1、 更新 1.1 和更新 1.2。 hello hotfix 方法牽涉到下列三個步驟的 hello:
 
-* 從 Microsoft Update Catalog 下載 Hotfix。
-* 安裝及驗證定期模式 Hotfix。
-* 安裝及驗證維護模式 Hotfix。
+* 從 Microsoft Update 類別目錄 hello 下載 hello hotfix。
+* 安裝並確認 hello 一般模式 hotfix。
+* 安裝並確認 hello 維護模式 hotfix。
 
-若要將 Update 2 安裝為 Hotfix，您必須下載並安裝下列 Hotfix：
+tooinstall Update 2，以 hotfix 的形式，您必須下載並安裝下列 hotfix hello:
 
 | 順序 | KB | 說明 | 更新類型 |
 | --- | --- | --- | --- |
@@ -69,22 +69,22 @@ Update 2 包括裝置軟體更新、LSI 驅動程式更新和磁碟韌體更新�
 | 2 |KB3121900 |LSI 驅動程式 |定期 |
 | 3 |KB3080728 |Storport 修正程式  </br> Windows Server 2012 R2 |定期 |
 | 4 |KB3090322 |Spaceport 修正程式  </br> Windows Server 2012 R2 |定期 |
-| 5 |KB3121899 |磁碟韌體 |維護 |
+| 5 |KB3121899 |磁碟韌體 |維護  |
 
 > [!IMPORTANT]
-> * 如果您的裝置正在執行 Release (GA) 版本，請連絡 [Microsoft 支援服務](storsimple-contact-microsoft-support.md) 以協助您進行更新。
-> * 此程序僅需要執行一次，即可套用 Update 2。 您可以使用 Azure 傳統入口網站套用後續的更新。
-> * 每個 Hotfix 安裝可能需要約 20 分鐘才能完成。 總計的安裝時間接近 2 小時。
-> * 使用此程序套用更新之前，請確定兩個裝置控制器都在線上，而且所有硬體元件的狀況良好。
+> * 如果您的裝置正在執行版本 (GA) 版本，請連絡[Microsoft 支援服務](storsimple-contact-microsoft-support.md)tooassist hello 與更新。
+> * 此程序需求 toobe 只能執行一次 tooapply Update 2。 您可以使用 hello Azure 傳統入口網站 tooapply 後續更新。
+> * 每個的 hotfix 安裝可能需要約 20 分鐘 toocomplete。 總計的安裝時間是關閉 too2 小時。
+> * 使用此程序 tooapply hello 前更新，請確定兩個裝置控制器都在線上，而且所有 hello 硬體元件都均狀況良好。
 > 
 > 
 
-執行下列步驟，以 Hotfix 方式套用此更新。
+執行下列步驟 tooapply hello 這個更新以 hotfix 的形式。
 
 [!INCLUDE [storsimple-install-update2-hotfix](../../includes/storsimple-install-update2-hotfix.md)]
 
 [!INCLUDE [storsimple-install-troubleshooting](../../includes/storsimple-install-troubleshooting.md)]
 
 ## <a name="next-steps"></a>後續步驟
-深入了解 [Update 2 版](storsimple-update2-release-notes.md)。
+深入了解 hello [Update 2 版本](storsimple-update2-release-notes.md)。
 

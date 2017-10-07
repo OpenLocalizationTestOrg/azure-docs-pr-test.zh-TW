@@ -1,6 +1,6 @@
 ---
-title: "使用作業圖表對 Azure 串流分析進行資料導向偵錯 | Microsoft Docs"
-description: "使用作業圖表和計量對串流分析作業進行移難排解。"
+title: "aaa Azure Stream Analytics 資料導向使用偵錯 hello 工作圖表 |Microsoft 文件"
+description: "疑難排解使用 hello 工作圖表和度量的串流分析工作。"
 keywords: 
 documentationcenter: 
 services: stream-analytics
@@ -15,60 +15,60 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 05/01/2017
 ms.author: jeffstok
-ms.openlocfilehash: 4e5949232e8377b7697eaebf96eacdc31c4f5422
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1af884d485bebb06b034da01a13f7f8240516571
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="data-driven-debugging-by-using-the-job-diagram"></a>使用作業圖表進行資料導向偵錯
+# <a name="data-driven-debugging-by-using-hello-job-diagram"></a>資料驅動的偵錯使用 hello 工作圖表
 
-在 Azure 入口網站中，[監視] 刀鋒視窗上的作業圖表可協助您將作業流程視覺化。 圖表會顯示輸入、輸出和查詢步驟。 您可以使用作業圖表來檢查每個步驟的計量，以便在進行移難排解時更快速地找出問題來源。
+hello 工作圖表上 hello**監視**hello Azure 入口網站中的刀鋒視窗可協助您以視覺化方式檢視您工作的管線。 圖表會顯示輸入、輸出和查詢步驟。 您可以針對每個步驟使用 hello 工作圖表 tooexamine hello 度量，toomore 迅速隔離 hello 問題來源，當您疑難排解問題。
 
-## <a name="using-the-job-diagram"></a>使用作業圖表
+## <a name="using-hello-job-diagram"></a>您可以使用 hello 工作圖表
 
-當串流作業執行時，在 Azure 入口網站中的 [支援+疑難排解] 下選取 [作業圖表]：
+在 hello Azure 入口網站中的資料流分析工作，而下**支援 + 疑難排解**，選取**工作圖表**:
 
 ![作業圖表與計量 - 位置](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-1.png)
 
-選取每個查詢步驟，可在查詢編輯窗格中看到對應的區段。 步驟的計量圖表會顯示在頁面上的下方窗格中。
+在查詢編輯窗格中選取每個查詢步驟 toosee hello 對應的章節。 Hello 步驟的度量圖表會顯示在 hello 頁面的下方窗格中。
 
 ![作業圖表與計量 - 基本作業](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-2.png)
 
-若要查看 Azure 事件中樞的分割區，請選取 **. . .** 操作功能表隨即出現。 您也可以看到輸入的合併。
+toosee hello 資料分割的 hello Azure 事件中樞輸入，選取**...** 操作功能表隨即出現。 您也可以看到 hello 輸入的合併。
 
 ![作業圖表與計量 - 展開分割區](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-3.png)
 
-若只要查看單一分割區的計量圖表，請選取分割區節點。 計量資訊會顯示在頁面底部。
+toosee hello 度量圖表只單一分割區，選取 hello 分割節點。 hello 度量資訊會顯示在 hello hello 頁面底部。
 
 ![作業圖表與計量 - 其他計量](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-4.png)
 
-若要查看合併的計量圖表，請選取合併節點。 下列圖表顯示沒有任何事件遭到捨棄或調整。
+toosee hello 合併時，選取 hello 合併節點的度量圖表。 hello 下列圖表顯示任何事件已捨棄或調整。
 
 ![作業圖表與計量 - 格線](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-5.png)
 
-若要查看的計量值和時間的詳細資訊，請指向圖表。
+hello 公制值和時間，點 toohello 圖表 toosee hello 詳細資料。
 
 ![作業圖表與計量 - 暫留](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-6.png)
 
 ## <a name="troubleshoot-by-using-metrics"></a>使用計量進行疑難排解
 
-**QueryLastProcessedTime** 計量表示特定步驟收到資料的時間。 藉由觀看拓撲，您可以從輸出處理器回溯的工作看出哪個階段沒有接收資料。 如果步驟沒有取得資料，請移至該步驟之前的查詢步驟。 檢查先前查詢步驟中是否有時間範圍，以及時間分配是否足夠讓其輸出資料。 (請注意，時間範圍會以小時分配。)
+hello **QueryLastProcessedTime**公制表示特定的步驟時收到的資料。 藉由查看 hello 拓撲，您可以向後從工作 hello 輸出處理器 toosee 哪些步驟並未收到的資料。 如果步驟沒有取得資料，請移 toohello 它之前的查詢步驟。 檢查是否 hello 上述查詢步驟都有時間視窗中，而且如果它有充裕的時間 toooutput 資料。 （請注意，時間視窗包括 貼齊的 toohello 小時。）
  
-若前一個查步驟為輸入處理器，使用輸入計量可協助回答下列預定問題。 這可協助您判斷作業是否正在從輸入來源取得資料。 如果查詢已分割，則檢查每個資料分割。
+如果 hello 上述的查詢步驟輸入的處理器，請使用下列目標的問題 hello 輸入的度量 toohelp 回應 hello。 這可協助您判斷作業是否正在從輸入來源取得資料。 如果已分割 hello 查詢，檢查每個資料分割。
  
 ### <a name="how-much-data-is-being-read"></a>已讀取多少資料？
 
-*   **InputEventsSourcesTotal** 是讀取的資料單位數目。 例如，Blob 的數目。
-*   **InputEventsTotal** 是讀取的事件數目。 此度量適用於每個資料分割。
-*   **InputEventsTotal** 是讀取的位元組數目。
+*   **InputEventsSourcesTotal**是 hello 數目讀取資料單元。 例如，hello blob 的數目。
+*   **InputEventsTotal**是 hello 讀取的事件數目。 此度量適用於每個資料分割。
+*   **InputEventsInBytesTotal**是 hello 讀取的位元組數目。
 *   **InputEventsLastArrivalTime** 會更新每個收到事件的加入佇列時間。
  
 ### <a name="is-time-moving-forward-if-actual-events-are-read-punctuation-might-not-be-issued"></a>時間是否正在前進？ 若實際事件已讀取，則可能無需加上標點符號。
 
-*   **InputEventsLastPunctuationTime** 指出何時加上了標點符號，使時間能繼續前進。 若未加上標點符號，可能使資料流程遭到封鎖。
+*   **InputEventsLastPunctuationTime**表示當標點符號已發出 tookeep 時間移動向前復原。 若未加上標點符號，可能使資料流程遭到封鎖。
  
-### <a name="are-there-any-errors-in-the-input"></a>在輸入中是否有任何錯誤？
+### <a name="are-there-any-errors-in-hello-input"></a>Hello 輸入中是否有任何錯誤？
 
 *   **InputEventsEventDataNullTotal** 是具有 Null 資料的事件計數。
 *   **InputEventsSerializerErrorsTotal** 是無法正確還原序列化的事件計數。
@@ -76,20 +76,20 @@ ms.lasthandoff: 08/29/2017
  
 ### <a name="are-events-being-dropped-or-adjusted"></a>事件遭到捨棄或調整？
 
-*   **InputEventsEarlyTotal** 是在高水位線之前，具有應用程式時間戳記的事件數目。
-*   **InputEventsLateTotal** 是在高水位線之後，具有應用程式時間戳記的事件數目。
-*   **InputEventsDroppedBeforeApplicationStartTimeTotal** 是在作業開始時間之前已捨棄的事件數目。
+*   **InputEventsEarlyTotal**是 hello 具有應用程式之前的時間戳記 hello 高水位線的事件數目。
+*   **InputEventsLateTotal**是 hello hello 高水位線之後，擁有應用程式時間戳記的事件數目。
+*   **InputEventsDroppedBeforeApplicationStartTimeTotal**是 hello 的事件數 hello 工作開始時間之前卸除。
  
 ### <a name="are-we-falling-behind-in-reading-data"></a>讀取資料的速度太慢了嗎？
 
-*   **InputEventsSourcesBackloggedTotal** 會告訴您事件中樞及 Azure IoT 中樞輸入還需要讀取多少訊息數量。
+*   **InputEventsSourcesBackloggedTotal**告訴您需要更多的訊息數量的 toobe 事件中樞與 Azure IoT 中樞的輸入中讀取。
 
 
 ## <a name="get-help"></a>取得說明
 如需其他協助，請參閱我們的 [Azure 串流分析論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。
 
 ## <a name="next-steps"></a>後續步驟
-* [串流分析介紹](stream-analytics-introduction.md)
+* [簡介 tooStream 分析](stream-analytics-introduction.md)
 * [開始使用串流分析](stream-analytics-real-time-fraud-detection.md)
 * [調整串流分析作業](stream-analytics-scale-jobs.md)
 * [串流分析查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)

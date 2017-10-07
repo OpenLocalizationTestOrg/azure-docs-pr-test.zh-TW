@@ -1,6 +1,6 @@
 ---
-title: "使用雙步驟驗證的 Azure MFA 登入 | Microsoft Docs"
-description: "本頁面將指引您移至何處才能看到 Azure MFA 可用的各種登入方法。"
+title: "aaaAzure MFA 登入具有雙步驟驗證 |Microsoft 文件"
+description: "此頁面將提供您指引 toogo toosee hello 各種登入方法可使用 Azure MFA 的位置。"
 keywords: "使用者驗證, 登入經驗, 使用行動電話登入, 使用辦公室電話登入"
 services: multi-factor-authentication
 documentationcenter: 
@@ -16,68 +16,68 @@ ms.date: 04/02/2017
 ms.author: kgremban
 ms.reviewer: librown
 ms.custom: end-user
-ms.openlocfilehash: d12115be61ca00dfb86dd822ccae9f9096fa796a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: fcd5eb5e8426eda537db9e099bf247bde29c195b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="the-sign-in-experience-with-azure-multi-factor-authentication"></a>Azure Multi-Factor Authentication 的登入體驗
+# <a name="hello-sign-in-experience-with-azure-multi-factor-authentication"></a>hello 登入體驗與 Azure Multi-factor Authentication
 > [!NOTE]
-> 本文的目的逐步解說典型的登入體驗。 如需登入的說明或疑難排解問題，請參閱 [使用 Azure Multi-Factor Authentication 時碰到困難](multi-factor-authentication-end-user-troubleshoot.md)。
+> hello 本文的目的是 toowalk 透過典型的登入體驗。 登入，或 tootroubleshoot 問題的說明，請參閱[遇到 Azure Multi-factor Authentication](multi-factor-authentication-end-user-troubleshoot.md)。
 
 ## <a name="what-will-your-sign-in-experience-be"></a>您的登入體驗將會如何？
-您的登入體驗會根據您選擇來做為第二個要素的項目而不同︰撥打電話、驗證應用程式或簡訊。 選擇最符合您的情況的一個選項：
+根據您選擇的 toouse 做為您的第二個因素與您登入體驗： 電話、 驗證應用程式或文字。 選擇最能描述您進行的 hello 選項：
 
 | 您要如何登入？ | 
 | --- |
-| [透過電話撥打我的行動或辦公室電話](#signing-in-with-a-phone-call) |
-| [傳送簡訊到我的行動電話號碼](#signing-in-with-a-text-message)
-| [從 Microsoft 驗證器應用程式使用通知](#signing-in-with-the-microsoft-authenticator-app-using-notification) |
-| [從 Microsoft 驗證器應用程式使用驗證碼](#signing-in-with-the-microsoft-authenticator-app-using-verification-code) |
+| [使用電話 toomy 行動電話或辦公室電話](#signing-in-with-a-phone-call) |
+| [與文字 toomy 行動電話](#signing-in-with-a-text-message)
+| [來自 hello Microsoft 驗證器應用程式通知](#signing-in-with-the-microsoft-authenticator-app-using-notification) |
+| [與從 hello Microsoft 驗證器應用程式的驗證碼](#signing-in-with-the-microsoft-authenticator-app-using-verification-code) |
 | [使用替代方法，因為現在無法使用我慣用的方法](#signing-in-with-an-alternate-method) |
 
 ## <a name="signing-in-with-a-phone-call"></a>透過撥打電話來登入
-下列資訊將說明透過撥打您的行動或辦公室電話來進行雙步驟驗證體驗。
+hello 下列資訊描述 hello 雙步驟驗證經驗與呼叫 tooyour 行動或辦公室電話。
 
-1. 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。  
+1. 登入 tooan 應用程式或服務，例如 Office 365 使用您的使用者名稱和密碼。  
 2. Microsoft 打電話給您。  
-3. 請接聽電話並按 # 鍵。  
+3. 接聽 hello 電話並按 hello # 鍵。  
 
 ## <a name="signing-in-with-a-text-message"></a>透過簡訊登入
-下列資訊將說明透過傳送簡訊到您的行動電話來進行雙步驟驗證體驗：
+hello 下列資訊描述 hello 雙步驟驗證經驗，只要使用文字訊息 tooyour 行動電話：
 
-1. 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。 
+1. 登入 tooan 應用程式或服務，例如 Office 365 使用您的使用者名稱和密碼。 
 2. Microsoft 會傳送包含數字代碼的簡訊給您。 
-3. 請在登入頁面上提供的方塊中輸入此代碼。 
+3. Hello 登入頁面上提供的 hello 方塊中輸入 hello 程式碼。 
 
-## <a name="signing-in-with-the-microsoft-authenticator-app"></a>使用 Microsoft 驗證器應用程式登入 
-下列資訊將說明使用 Microsoft Authenticator 應用程式進行雙步驟驗證的體驗。 應用程式有兩種不同的使用方式。 您可以在裝置上接收推送通知，或是開啟應用程式以取得驗證碼。
+## <a name="signing-in-with-hello-microsoft-authenticator-app"></a>登入 hello Microsoft 驗證器應用程式 
+hello 下列資訊描述 hello 體驗 hello Microsoft 驗證器應用程式使用的兩步驟驗證。 有兩個不同的方式 toouse hello 應用程式。 您可以在您的裝置上接收推播通知，或者您可以開啟 hello 應用程式 tooget 驗證碼。
 
-### <a name="to-sign-in-with-a-notification-from-the-microsoft-authenticator-app"></a>從 Microsoft 驗證器應用程式使用通知登入
-1. 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。
-2. Microsoft 會將通知傳送到您裝置上的 Microsoft 驗證器應用程式。
+### <a name="toosign-in-with-a-notification-from-hello-microsoft-authenticator-app"></a>toosign 入是來自 hello Microsoft 驗證器應用程式通知
+1. 登入 tooan 應用程式或服務，例如 Office 365 使用您的使用者名稱和密碼。
+2. Microsoft 會傳送通知 toohello Microsoft Authenticator 應用程式在裝置上。
 
   ![Microsoft 傳送通知](./media/multi-factor-authentication-end-user-signin/notify.png)
 
-3. 在電話上開啟通知，然後選取 [驗證] 鍵。 如果貴公司要求 PIN，在此處輸入。
+3. 在您的電話和選取 hello 開啟 hello 通知**確認**索引鍵。 如果貴公司要求 PIN，在此處輸入。
 4. 您現在應已登入。
 
-### <a name="to-sign-in-using-a-verification-code-with-the-microsoft-authenticator-app"></a>使用驗證碼登入 Microsoft 驗證器應用程式
+### <a name="toosign-in-using-a-verification-code-with-hello-microsoft-authenticator-app"></a>toosign 在 hello Microsoft Authenticator 應用程式中使用驗證碼
 
-如果您使用 Microsoft Authenticator 應用程式取得驗證碼，則當您開啟應用程式時，會在您的帳戶名稱下面看到一個數字。 這個數字每 30 秒會變更一次，所以您不會使用相同的數字兩次。 當系統要求您輸入驗證碼時，開啟應用程式並使用當下所顯示的任何數字。 
+如果您使用 hello Microsoft 驗證器應用程式 tooget 驗證碼，然後當您開啟 hello 應用程式時您看到一些在您的帳戶名稱。 這個數字變更每隔 30 秒，讓您不使用的 hello 兩次相同數字。 當詢問驗證程式碼時，開啟 hello 應用程式，並使用目前顯示的任何數字。 
 
-1. 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。
+1. 登入 tooan 應用程式或服務，例如 Office 365 使用您的使用者名稱和密碼。
 2. Microsoft 提示您輸入驗證碼。
 
   ![輸入驗證碼](./media/multi-factor-authentication-end-user-signin/verify3.png)
 
-3. 在電話上開啟 Microsoft 驗證器應用程式，並在登入的方塊中輸入驗證碼。
+3. 開啟 hello 手機上的 Microsoft 驗證器應用程式，並在您要登入的 hello 方塊中輸入 hello 程式碼。
 
 ## <a name="signing-in-with-an-alternate-method"></a>使用替代方法登入
-有時候您設定做為慣用驗證方法的電話或裝置不在手邊。 這種情況就是為什麼我們建議您為帳戶設定備份方法。 下一節示範當主要方法無法使用時，如何使用替代方法進行登入。
+有時候，您不需要 hello 電話或裝置，您將設定為慣用的驗證方法。 這種情況就是為什麼我們建議您為帳戶設定備份方法。 hello 下節將說明如何 toosign 使用替代方法時可能無法使用主要方法。
 
-1. 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。
+1. 登入 tooan 應用程式或服務，例如 Office 365 使用您的使用者名稱和密碼。
 2. 選取 [使用不同的驗證選項]。 根據您已設定的驗證選項數量而定，您會看到不同的驗證選項。
 3. 選擇替代方法並且登入。
 
@@ -87,6 +87,6 @@ ms.lasthandoff: 08/18/2017
 
 如果您碰到雙步驟驗證登入的問題，可從[使用 Azure Multi-Factor Authentication 時碰到困難](multi-factor-authentication-end-user-troubleshoot.md)獲得詳細資訊。
 
-了解如何[管理雙步驟驗證設定](multi-factor-authentication-end-user-manage-settings.md)。
+了解如何太[管理兩步驟驗證設定](multi-factor-authentication-end-user-manage-settings.md)。
 
-了解如何[開始使用 Microsoft 驗證器應用程式](microsoft-authenticator-app-how-to.md)，如此一來，因此您可以使用通知登入，而不是經由文字訊息和來電。 
+了解如何太[hello Microsoft 驗證器應用程式使用者入門](microsoft-authenticator-app-how-to.md)，讓您可以使用通知 toosign 中，而不是文字和撥打電話。 

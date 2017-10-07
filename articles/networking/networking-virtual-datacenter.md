@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Azure 虛擬資料中心 | Microsoft Docs"
-description: "了解如何在 Azure 中建置虛擬資料中心"
+title: "Azure 虛擬資料中心 aaaMicrosoft |Microsoft 文件"
+description: "了解如何 toobuild 虛擬資料中心在 Azure 中"
 services: networking
 author: tracsman
 manager: rossort
@@ -11,197 +11,197 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/26/2017
 ms.author: jonor
-ms.openlocfilehash: 487c2dc22acc5194ef103ebef01c62c887580335
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 84f77b16edaece202a6a94b6107f1c9585ec7f38
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoft-azure-virtual-data-center"></a>Microsoft Azure 虛擬資料中心
 **Microsoft Azure**：移動更為快速、節省成本、在內部部署環境整合應用程式和資料
 
 ## <a name="overview"></a>概觀
-將內部部署應用程式移轉至 Azure，甚至不需要任何大量變更 (稱為「隨即轉移」的方法)，即可將安全且具成本效益的基礎結構的優點提供給組織。 不過，若要讓雲端運算具有最大靈活度，企業應該持續改進其架構，以充分利用 Azure 功能。 Microsoft Azure 提供超大規模的服務和基礎結構、企業級功能和可靠性，以及許多混合式連線選項。 客戶可以選擇透過網際網路或透過 Azure ExpressRoute (提供私人網路連線) 存取這些雲端服務。 Microsoft Azure 平台可讓客戶順暢地將基礎結構延伸至雲端並建置多層式架構。 此外，Microsoft 夥伴提供增強的功能，方法是提供最適合在 Azure 中執行的安全性服務和虛擬設備。
+移轉內部部署應用程式 tooAzure，即使沒有任何重大變更 （稱為 「 提起和 shift 」 方法），提供組織 hello 優點安全和成本效益的基礎結構。 不過，toomake hello 最的 hello 靈活度採用雲端運算，企業應發展其架構 tootake 利用 Azure 的功能。 Microsoft Azure 提供超大規模的服務和基礎結構、企業級功能和可靠性，以及許多混合式連線選項。 客戶可以選擇這些雲端服務透過 tooaccess hello 網際網路或透過 Azure ExpressRoute，這樣會提供私人網路連線。 hello Microsoft Azure 平台可讓的客戶將他們的基礎結構延伸至雲端 hello tooseamlessly，並建置多層式架構。 此外，Microsoft 夥伴藉由提供安全性服務提供增強的功能和虛擬裝置而言，是最佳化 toorun 在 Azure 中。
 
-本文概述可用來解決許多客戶在考慮移至雲端時所面臨之架構規模、效能和安全性問題的模式和設計。 討論如何將不同組織 IT 角色放入系統的管理和控管，並強調安全性需求和成本最佳化。
+這篇文章提供模式的概觀，並可使用的 toosolve 設計 hello 架構時考慮一併移動 toohello 雲端，許多客戶面臨的小數位數、 效能和安全性問題。 如何 toofit 不同組織 IT 角色加入 hello 管理和控管的 hello 系統也會探討，以強調 toosecurity 需求和成本最佳化的概觀。
 
 ## <a name="what-is-a-virtual-data-center"></a>什麼是虛擬資料中心？
-在早期，雲端解決方案設計成在公用頻譜中裝載相對隔離的單一應用程式。 這種方法已良好運作多年。 不過，雲端解決方案的優點變得明顯，並且雲端上裝載多個大規模工作負載，而在雲端服務的整個生命週期，處理一或多個區域中的安全性、可靠性、效能和部署成本考量變得十分重要。
+在 hello 早期雲端解決方案設計的 toohost 單一且相對較隔離的應用程式，已在 hello 公用頻譜。 這種方法已良好運作多年。 不過，hello 雲端優點為解決方案變得很明顯和大規模的多個工作負載已裝載於 hello 雲端定址安全性、 可靠性、 效能和成本考量的其中一個部署或更多區域變得重要整個 hellohello 雲端服務的生命週期。
 
-下列雲端部署圖所說明的範例是有關安全性漏洞 (紅色方塊) 以及跨工作負載的最佳化網路虛擬設備的空間 (黃色方塊)。
+hello 雲端部署圖說明的安全性漏洞 （紅色方塊） 及最佳化網路虛擬裝置的聊天室的一些範例整個工作負載 （黃色方塊）。
 
 [![0]][0]
 
-虛擬資料中心 (vDC) 的產生是基於調整以支援企業工作負載的這項必要性，以及需要處理在公用雲端中支援大規模應用程式時所產生的問題。
+調整 toosupport 企業工作負載，這需要從出生 hello 虛擬資料中心 (vDC) 而且 hello 需要 toodeal hello hello 公用雲端中支援大規模的應用程式時導入的問題。
 
-vDC 不只是雲端中的應用程式工作負載，也是網路、安全性、管理和基礎結構 (例如，DNS 和目錄服務)。 它通常也會將私人連線提供回內部部署網路或資料中心。 越來越多的工作負載移到 Azure 時，請務必考慮支援基礎結構以及這些工作負載所在的物件。 謹慎考量資源建構方式可以避免激增數百個「工作負載島」，而工作負載島必須使用獨立資料流程、安全性模型和相容性挑戰進行分開管理。
+VDC 不只 hello 應用程式中的工作負載 hello 雲端，但也 hello 網路、 安全性、 管理和基礎結構 （例如，DNS 與目錄服務）。 它通常也會提供私人連線後 tooan 內部網路或資料中心。 越來越多的工作負載移動 tooAzure，它是 hello 支援基礎結構與物件相關的重要 toothink 放置在這些工作負載。 請仔細考慮資源的結構方式可以避免 hello 激增數百個 「 工作負載島 」 必須獨立的資料流程、 安全性模型與相容性挑戰分開管理。
 
-虛擬資料中心本質上是不同但相關實體的集合，而實體具有一般支援功能和基礎結構。 透過將工作負載檢視為整合式 vDC，您可以了解規模經濟的成本降低、透過元件和資料流程集中化的最佳安全性，以及更容易操作、管理和相容性稽核。
+虛擬資料中心本質上是不同但相關實體的集合，而實體具有一般支援功能和基礎結構。 透過整合式的 vDC 為檢視您的工作負載，您可以了解降低的成本，因為標尺，透過元件和資料最佳化安全性 tooeconomies 流程集中化，以及更容易操作、 管理和相容性稽核。
 
 > [!NOTE]
-> 請務必了解 vDC **不**是離散 Azure 產品，但各種功能的組合符合您的實際需求。 vDC 是考慮工作負載和 Azure 使用量以最佳化您雲端中資源和能力的方式。 因此，虛擬 DC 是在考慮組織角色和責任的情況，如何在 Azure 中建置 IT 服務的模組化方法。
+> 這是很重要的 hello vDC toounderstand**不**離散的 Azure 產品，但的各種特性與功能的 hello 組合太符合您實際需求。 vDC 是一種您的資源和 hello 雲端中的能力，考慮您的工作負載和 Azure 使用量 toomaximize。 hello 虛擬 DC 會因此模組化的方法，如何 toobuild 在 hello Azure，又能顧及對於組織的角色和責任的 IT 服務。
 
-vDC 可協助企業在下列情況下，將工作負載和應用程式放入 Azure：
+hello vDC 可協助企業工作負載和應用程式至 Azure 中取得 hello 下列案例：
 
 -   裝載多個相關工作負載
--   將工作負載從內部部署環境移轉至 Azure
+-   從內部部署環境 tooAzure 移轉工作負載
 -   實作工作負載之間的共用或集中式安全性和存取需求
 -   適當地針對大型企業混合使用 DevOps 和集中式 IT
 
-解除鎖定 vDC 優點的重點是混合使用 Azure 功能的集中式拓撲 (中樞和支點)：[Azure VNet][VNet]、[NSG][NSG]、[VNet 對等][VNetPeering]、[使用者定義路由 (UDR)][UDR]，以及含[角色型存取控制 (RBAC)][RBAC] 的 Azure 身分識別。
+hello vDC 金鑰 toounlock hello 優點，是混合的 Azure 功能的集中式的拓撲 （中樞和支點）： [Azure VNet][VNet]， [Nsg] [ NSG]，[對等互連的 VNet][VNetPeering]，[使用者定義的路由 (UDR)][UDR]，和 Azure 身分識別與[角色基底存取控制 (RBAC)][RBAC]。
 
 ## <a name="who-needs-a-virtual-data-center"></a>誰需要虛擬資料中心？
-任何需要將更多工作負載移至 Azure 的 Azure 客戶，都可以受益於考慮使用常用資源。 根據範圍，甚至單一應用程式也可以受益於使用用來建置 vDC 的模式和元件。
+任何需要 toomove 以上的數個工作負載至 Azure 的 Azure 客戶可以受益思考使用常用的資源。 根據 hello 範圍內，即使單一應用程式可以受益於使用 hello 模式，並使用 toobuild vDC 元件。
 
-如果您的組織具有集中式 IT、網路、安全性和 (或) 相容性小組/部門，則 vDC 有助於強制執行原則點、職責區隔，並確保基礎一般元件的一致性，同時讓應用程式小組適當地具有與您需求一樣多的自由和控制。
+如果您的組織有集中化的 IT 消費化、 網路、 安全性，和 （或) 相容性小組/部門 vDC 有助於強制執行原則點、 隔離的工作，並確保一致的 hello 基礎同時程度會提供應用程式小組的一般元件自由和控制項，因為是適合您的需求。
 
-正在嘗試 DevOps 的組織可以利用 vDC 概念來提供數個授權部分的 Azure 資源，並確保它們擁有該群組內的整體控制 (一般訂用帳戶中的訂用帳戶或資源群組)，但網路和安全性界限會保持相容，如中樞 VNet 和資源群組中的集中式原則所定義。
+要尋找 tooDevOps 的組織可以利用 hello vDC 概念 tooprovide 授權口袋的 Azure 資源，並確定它們有 （訂用帳戶或資源群組中常見的訂用帳戶），該群組內的總控制項，但 hello 網路和安全性界限維持相容所定義中樞 VNet 與資源群組中的集中原則。
 
 ## <a name="considerations-on-implementing-a-virtual-data-center"></a>實作虛擬資料中心的考量
-設計 vDC 時，有數個關鍵問題需要考量：
+當設計 vDC，有數個關鍵問題 tooconsider:
 
 -   身分識別和目錄服務
 -   安全性基礎結構
--   雲端的連線
--   雲端內的連線
+-   連線 toohello 雲端
+-   Hello 雲端內的連線
 
 ##### <a name="identity-and-directory-service"></a>*身分識別和目錄服務*
-身分識別和目錄服務是內部部署和雲端中所有資料中心的一個關鍵層面。 身分識別是與 vDC 內服務存取和授權的所有層面有關。 為了協助確保只有授權使用者和處理序才能存取您的 Azure 帳戶和資源，Azure 會使用數種類型的認證進行驗證。 其中包括密碼以存取 Azure 帳戶、密碼編譯金鑰、數位簽章和憑證。 [*Azure Multi-Factor Authentication* (MFA)][MFA] 是存取 Azure 服務的額外安全層。 Azure MFA 透過多種簡易的驗證選項提供強大的驗證，包括電話、簡訊或行動應用程式通知，讓客戶選擇自己喜歡的方式。
+身分識別和目錄服務是一個關鍵層面的所有資料中心，這兩個內部部署和 hello 雲端中。 身分識別不相關的 tooall hello vDC 內存取和授權 tooservices 層面。 toohelp 會確保只有授權的使用者和處理程序存取您的 Azure 帳戶和資源，Azure 會使用幾種類型的認證進行驗證。 這些包括 (tooaccess hello Azure 帳戶) 的密碼、 密碼編譯金鑰、 數位簽章和憑證。 [*Azure Multi-Factor Authentication* (MFA)][MFA] 是存取 Azure 服務的額外安全層。 Azure MFA 提供增強式驗證與一系列簡單的驗證選項 — 通話、 簡訊或行動裝置應用程式通知，並讓客戶其偏好的 toochoose hello 方法。
 
-任何大型企業都需要定義身分識別管理程序，以描述 vDC 內或跨 vDC 之個別身分識別、其驗證、授權、角色和權限的管理。 此程序的目標應該是提高安全性與生產力，同時降低成本、停機時間和重複性手動工作。
+任何大型企業需要 toodefine 描述 hello 管理個別的身分識別、 其驗證、 授權、 角色和權限或跨 hello vDC 身分識別管理程序。 此程序的 hello 目標應該是 tooincrease 安全性和產能，降低成本、 停機時間和重複的手動工作。
 
-企業/組織可能需要依需求混合使用不同企業營運 (LOB) 的服務，而且員工通常在涉及不同專案時會有不同角色。 vDC 需要不同小組之間的良好合作以取得在良好控管下執行的系統，而每個小組各具有特定角色定義。 責任、存取權和權限的矩陣可能會非常複雜。 vDC 中的身分識別管理是透過 [*Azure Active Directory* (AAD)][AAD] 和角色型存取控制 (RBAC) 進行實作。
+企業/組織可能需要依需求混合使用不同企業營運 (LOB) 的服務，而且員工通常在涉及不同專案時會有不同角色。 VDC 需要不同的小組，分別各具特定角色定義，良好的控管的 tooget 系統之間的良好合作。 hello 矩陣的責任、 存取和權限可以是非常複雜。 vDC 中的身分識別管理是透過 [*Azure Active Directory* (AAD)][AAD] 和角色型存取控制 (RBAC) 進行實作。
 
-目錄服務是一種共用資訊基礎結構，用於尋找、管理和組織日常項目和網路資源。 這些資源可能包含磁碟區、資料夾、檔案、印表機、使用者、群組、裝置和其他物件。 目錄伺服器會將網路上的每個資源都視為物件。 資源的相關資訊會儲存為與該資源或物件建立關聯的屬性集合。
+目錄服務是一種共用資訊基礎結構，用於尋找、管理和組織日常項目和網路資源。 這些資源可能包含磁碟區、資料夾、檔案、印表機、使用者、群組、裝置和其他物件。 Hello 網路上的每個資源視為 hello 目錄伺服器物件。 資源的相關資訊會儲存為與該資源或物件建立關聯的屬性集合。
 
-所有 Microsoft 線上商務服務都依賴 Azure Active Directory (AAD) 來進行登入和其他身分識別需求。 Azure Active Directory 是全方位、高可用性的身分識別和存取管理的雲端解決方案，它結合了核心目錄服務、進階身分識別管制及應用程式存取管理。 AAD 可以與內部部署 Active Directory 整合，以啟用所有雲端式和本機託管 (內部部署) 應用程式的單一登入。 內部部署 Active Directory 的使用者屬性可以自動同步至 AAD。
+所有 Microsoft 線上商務服務都依賴 Azure Active Directory (AAD) 來進行登入和其他身分識別需求。 Azure Active Directory 是全方位、高可用性的身分識別和存取管理的雲端解決方案，它結合了核心目錄服務、進階身分識別管制及應用程式存取管理。 AAD 可以與內部部署 Active Directory tooenable 單一登入的所有以雲端為基礎，並在本機裝載 （內部） 應用程式整合。 可以自動同步處理的 tooAAD hello 使用者屬性在內部部署 Active directory。
 
-不需要單一全域系統管理員，即可指派 vDC 中的所有權限。 相反地，每個特定部門 (或目錄服務中的使用者或服務群組) 都可以有管理其在 vDC 內專屬資源所需的權限。 建構權限需要平衡。 權限太多可能會阻礙效能效率，而權限太少或鬆散可能會增加安全性風險。 Azure 角色型存取控制 (RBAC) 可以為 vDC 資源提供更細緻的存取管理來協助解決這個問題。
+一位全域系統管理員是不必要的 tooassign vDC 中的所有權限。 改為每個特定部門 （或使用者或服務在 hello 目錄服務中的群組） 可以有 hello 權限需要的 toomanage 自己 vDC 內的資源。 建構權限需要平衡。 權限太多可能會阻礙效能效率，而權限太少或鬆散可能會增加安全性風險。 Azure 角色型存取控制 (RBAC) 的精細存取管理 vDC 資源的供應項目，這個問題，請將有助於 tooaddress。
 
 ##### <a name="security-infrastructure"></a>*安全性基礎結構*
-vDC 內容中的安全性基礎結構主要有關 vDC 特定虛擬網路區段中的流量區隔，以及如何控制整個 vDC 的輸入和輸出流程。 Azure 是根據多租用戶架構，可使用虛擬網路 (VNet) 隔離、存取控制清單 (ACL)、負載平衡器和 IP 篩選以及流量流程原則來防止部署之間的未經授權和意外流量。 網路位址轉譯 (NAT) 會區隔內部網路流量與外部流量。
+VDC，hello 內容中的安全性基礎結構，是流量的主要相關的 toohello 隔離的 hello vDC 特定虛擬網路區段和 toocontrol ingress 和 egress 如何整個 hello vDC 流動。 Azure 是根據多租用戶架構，可使用虛擬網路 (VNet) 隔離、存取控制清單 (ACL)、負載平衡器和 IP 篩選以及流量流程原則來防止部署之間的未經授權和意外流量。 網路位址轉譯 (NAT) 會區隔內部網路流量與外部流量。
 
-Azure 網狀架構會將基礎結構資源分配給租用戶工作負載，並管理與虛擬機器 (VM) 之間的通訊。 Azure Hypervisor 會強制執行 VM 之間的記憶體和處理序區隔，並安全地將網路流量路由傳送至客體 OS 租用戶。
+hello Azure 網狀架構基礎結構資源配置 tootenant 工作負載和管理行動裝置管理通訊 tooand 虛擬機器 (Vm)。 hello Azure hypervisor 會強制執行記憶體和處理序隔離的 Vm 與之間安全地路由網路流量 tooguest OS 租用戶。
 
-##### <a name="connectivity-to-the-cloud"></a>*雲端的連線*
-vDC 需要與外部網路的連線，才能將服務提供給客戶、合作夥伴和 (或) 內部使用者。 這通常表示不只連線到網際網路，也會連線至內部部署網路和資料中心。
+##### <a name="connectivity-toohello-cloud"></a>*連線 toohello 雲端*
+hello vDC 必須與外部網路 toooffer 服務 toocustomers、 協力廠商及/或內部使用者的連線。 這通常表示連線不僅 toohello 網際網路，而且還 tooon 內部部署網路與資料中心。
 
-客戶可以建置其安全性原則，來控制可以使用網路虛擬設備從網際網路存取哪些特定 vDC 託管服務和其存取方式 (使用篩選和流量檢查)，以及自訂路由原則和網路篩選 (使用者定義路由和網路安全性群組)。
+客戶可以建置其安全性原則 toocontrol 什麼及如何特定 vDC 裝載服務都可存取，或從 hello 網際網路使用網路虛擬裝置 （使用篩選和資料傳輸檢查） 和網路篩選 （自訂路由原則使用者定義的路由和網路安全性群組）。
 
-企業通常需要將 vDC 連接至內部部署資料中心或其他資源。 因此，設計有效架構時，Azure 與內部部署網路之間的連線是重要層面。 企業有兩種不同的方式可在 Azure 中建立 vDC 與內部部署之間的互相連線：透過網際網路和 (或) 私人直接連線的傳輸。
+企業通常需要 tooconnect Vdc tooon 內部部署資料中心或其他資源。 Azure 和內部部署網路之間的 hello 連線時，因此的重要層面設計有效的架構。 企業兩個不同的方式 toocreate vDC 與內部部署之間互相連線在 Azure 中設有： 透過 hello 網際網路及/或私人的直接連線的傳輸。
 
-[**Azure 站對站 VPN**][VPN] 是內部部署網路與 vDC 之間透過網際網路的互相連線服務，並透過安全加密連線 (IPsec/IKE 通道) 所建立。 Azure 站對站連線具彈性且更快速建立，而且不需要任何進一步採購，因為所有連線都是透過網際網路連線。
+[ **Azure 站台對站 VPN** ] [ VPN]互連服務透過內部部署網路之間的 hello 網際網路且 hello vDC，透過安全建立加密連接 （IPsec/IKE 通道）。 Azure 站台對站連接是具彈性且更快速 toocreate，而且不需要任何進一步的採購，因為所有連線透過都連接 hello 網際網路。
 
-[**ExpressRoute**][ExR] 是一種 Azure 連線服務，可讓您在 vDC 與內部部署網路之間建立私人連線。 ExpressRoute 連線不會經過公用網際網路，而且會提供更高的安全性、可靠性、速度 (最高 10 Gbps)，以及一致的延遲。 ExpressRoute 十分適合 vDC，因為 ExpressRoute 客戶可以獲得與私人連線建立關聯之相容性規則的優點。
+[**ExpressRoute** ] [ ExR]是一種 Azure 連線的服務，可讓您建立私人連線 vDC 與 hello 之間在內部部署網路。 ExpressRoute 連線不會超過 hello 公用網際網路，並提供較高的安全性、 可靠性和高加速 （too10 Gbps) 以及一致的延遲。 為客戶可以獲得私人連線相關聯的相容性規則的 hello 優勢的 ExpressRoute ExpressRoute 是 Vdc，非常有用。
 
-部署 ExpressRoute 連線包含加入 ExpressRoute 服務提供者。 針對需要快速啟動的客戶，一開始通常會使用站對站 VPN 建立 vDC 與內部部署資源之間的連線，然後移轉至 ExpressRoute 連線。
+部署 ExpressRoute 連線包含加入 ExpressRoute 服務提供者。 需要 toostart 快速的客戶，它會是 tooinitially 常用 hello vDC 和內部部署資源之間的站對站 VPN tooestablish 連線，然後再移轉 tooExpressRoute 連線。
 
-##### <a name="connectivity-within-the-cloud"></a>*雲端內的連線*
-[VNet][VNet] 和 [VNet 對等][VNetPeering]是 vDC 內的基本網路連線服務。 VNet 保證 vDC 資源的自然隔離界限，而且 VNet 對等允許相同 Azure 區域內不同 VNet 之間的互相連線。 VNet 內與 VNet 之間的流量控制需要符合透過存取控制清單 ([網路安全性群組][NSG])、[網路虛擬設備][NVA]和自訂路由表 ([UDR][UDR]) 指定的一組安全性規則。
+##### <a name="connectivity-within-hello-cloud"></a>*Hello 雲端內的連線*
+[Vnet] [ VNet]和[對等互連的 VNet] [ VNetPeering] hello 基本網路連線服務 vDC 內。 對等互連的 VNet 可讓不同的 Vnet 內 hello 之間互相通訊與 VNet 保證隔離 vDC 資源自然界限相同 Azure 區域。 內部 VNet 和 Vnet 之間的流量控制需要的 toomatch 安全性規則指定透過存取控制清單 ([網路安全性群組][NSG])，[網路虛擬裝置] [ NVA]，和自訂路由表 ([UDR][UDR])。
 
 ## <a name="virtual-data-center-overview"></a>虛擬資料中心概觀
 
 ### <a name="topology"></a>拓撲
-中樞和支點模型已延伸單一 Azure 區域內的虛擬資料中心
+中樞和支點模型內單一 Azure 區域的擴充的 hello 虛擬資料中心
 
 [![1]][1]
 
-中樞是中央區域，可控制和檢查不同區域之間的輸入和 (或) 輸出流量：網際網路、內部部署和支點。 中樞和支點拓撲提供有效的方式可讓 IT 部門在中央位置強制執行安全性原則，同時減少設定錯誤和暴露的可能性。
+hello 集線器是控制，並檢查不同的區域之間的輸入和 （或） 輸出流量的 hello 中央區域： 網際網路、 內部部署和 hello 支點。 hello 中樞和支點拓撲提供同時減少 hello 可能設定錯誤以及如何將風險 hello IT 部門在集中位置，有效地 tooenforce 安全性原則。
 
-中樞包含支點所使用的一般服務元件。 以下是一些典型常用中央服務範例：
+hello 中樞會包含 hello 供 hello 支點一般服務元件。 以下是一些典型常用中央服務範例：
 
--   取得支點中工作負載的存取之前，不受信任網路中第三方存取的使用者驗證所需的 Windows Active Directory 基礎結構 (具有相關 ADFS 服務)。
--   解決支點中工作負載命名的 DNS 服務，以存取內部部署和網際網路上的資源。
--   PKI 基礎結構，可對工作負載實作單一登入
--   支點與網際網路之間的流量控制 (TCP/UDP)
--   支點與內部部署之間的流量控制
+-   hello Windows Active Directory 基礎結構 （hello 與相關的 ADFS 服務） 所需的使用者驗證的第三方之前取得存取 toohello 工作負載中的 hello 支點來自不受信任的網路存取
+-   DNS 服務的 hello 工作負載在 hello 支點 tooaccess 資源內部部署和 hello 網際網路命名 tooresolve
+-   PKI 基礎結構，tooimplement 單一登入工作負載
+-   Hello 支點與網際網路之間的流量控制 (TCP/UDP)
+-   Hello 支點與內部部署之間的流量控制
 -   如有需要，為兩個支點之間的流量控制
 
-vDC 透過在多個支點之間使用共用中樞基礎結構，以減少整體成本。
+hello vDC 使用多個支點之間 hello 共用的中樞基礎結構，以減少整體成本。
 
-每個支點的角色都可以裝載不同類型的工作負載。 支點也可以提供相同工作負載之可重複部署的模組化方法 (例如，開發和測試、使用者驗收測試、進入生產階段前和生產)。 支點也可以用來區隔並啟用組織 (例如，DevOps 群組) 內的不同群組。 在支點內部，可以使用各層之間的流量控制來部署基本工作負載或複雜多層工作負載。
+每個支點 hello 角色可以是 toohost 不同類型的工作負載。 hello 支點也可以提供模組化的方法可重複的部署 (例如，開發和測試中，使用者接受度測試進入生產階段前和生產) 的 hello 相同的工作負載。 hello 支點也可以是使用的 toosegregate 並啟用您的組織 （例如，DevOps 群組） 內的不同群組。 內部支點，很可能 toodeploy hello 各層之間的基本的工作負載或複雜的多層式工作負載的流量控制。
 
 ##### <a name="subscription-limits-and-multiple-hubs"></a>訂用帳戶限制和多個中樞
-在 Azure 中，每個任何類型的元件都會部署在 Azure 訂用帳戶中。 不同 Azure 訂用帳戶中的 Azure 元件隔離可以滿足不同 LOB 的需求，例如設定不同層級的存取和授權。
+在 Azure 中，每個元件，無論 hello 型別，被部署在 Azure 訂用帳戶。 Azure 中的元件不同的 Azure 訂用帳戶的 hello 隔離，能滿足 hello 需求的不同 Lob，例如設定層級的存取和授權。
 
-單一 vDC 可以向上延展到大量支點；但是，與每個 IT 系統相同，會有平台限制。 中樞部署會繫結至具有限制的特定 Azure 訂用帳戶 (例如，VNet 對等數目上限 - 如需詳細資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與限制][Limits])。 如果限制可能會產生問題，則將模型從單一中樞支點延伸到中樞和支點叢集，即可進一步向上延展架構。 一或多個 Azure 區域中的多個中樞可以使用 Express Route 或站對站 VPN 互相連接。
+單一 vDC 雖然如同每個 IT 系統，沒有平台限制就能相應 toolarge 支點數目。 hello 中樞部署是繫結的 tooa 特定 Azure 訂用帳戶，具有限制和限制 (例如，請參閱 VNet 對等互連的最大數目[Azure 訂用帳戶和服務限制、 配額和條件約束][ Limits]如需詳細資訊)。 在位置限制可能會產生問題的情況下，可以調整 hello 架構最多進一步藉由從單一中樞-支點 tooa 叢集中的中樞和支點擴充 hello 模型。 一或多個 Azure 區域中的多個中樞可以使用 Express Route 或站對站 VPN 互相連接。
 
 [![2]][2]
 
-引進多個中樞會增加系統的成本和管理工作，並且只會根據延展性進行調整 (範例：系統限制或備援) 和地區複寫 (範例：終端使用者效能或災害復原)。 在需要多個中樞的案例中，所有中樞都應該致力於提供一組相同的易操作服務。
+hello 導入多個集線器會增加 hello hello 系統的成本和管理工作並只會由延展性對齊 (範例： 系統限制或備援) 和地區的複寫 (範例： 使用者效能或災害復原)。 在需要多個集線器的情況下，所有的 hello 中樞應盡可能相同設定的服務作業以便 toooffer hello。
 
 ##### <a name="interconnection-between-spokes"></a>支點之間的互相連線
-在單一支點內，可能會實作複雜多層工作負載。 可以在相同的 VNet 中使用子網路 (一層一個) 實作多層設定，以及使用 NSG 篩選流程。
+在單一支點，很可能 tooimplement 複雜的多層工作負載。 可以使用子網路 （一個用於每個層） 相同的 VNet 和篩選 hello 流向使用 Nsg hello 中實作多層式組態。
 
-另一方面，架構設計人員可能想要跨多個 VNet 部署多層工作負載。 使用 VNet 對等，支點可以連接到相同中樞或不同中樞中的其他支點。 此案例的一般範例是應用程式處理伺服器位於一個支點 (VNet)，而資料庫部署於多個支點 (VNet). 在此情況下，很容易將支點與 VNet 對等互相連接，進而避免透過中樞傳送。 應該仔細檢閱架構和安全性，確保略過中樞不會略過可能只存在於中樞中的重要安全性或稽核點。
+在 hello 另一方面，架構設計人員可能會想 toodeploy 多層式工作負載，跨多個 Vnet。 使用對等互連的 VNet，支點可以連線 tooother 支點 hello 中的相同的中樞或不同的中心。 此案例中的典型範例是 hello 案例，其中應用程式處理伺服器位於一個支點 (VNet)，而 hello 資料庫部署在不同的支點 (VNet)。 在此情況下，它是簡單 toointerconnect hello 支點與 VNet 對等互連，並藉此避免發生透過 hello 中樞傳送。 詳細的架構與安全性檢閱應該執行的 tooensure hello 中樞略過重要的安全性或稽核可能只存在於 hello 中樞的點不會略過。
 
 [![3]][3]
 
-支點也可以與作為中樞的支點互相連接。 這種方法會建立雙層階層：較高層級的支點 (層級 0) 會變成階層中較低支點 (層級 1) 的中樞。 VDC 的支點需要將流量轉送到中央中樞，以連接到內部部署網路或網際網路。 具有雙層中樞的架構引進複雜路由，以移除簡單中樞支點關聯性的優點。
+支點也可以做為中樞的互連的 tooa 支點。 這個方法會建立兩層式階層： hello 支點 hello 較高的層級 （層級 0） 中會變成 hello 中樞的 hello 階層的較低的支點 （層級 1）。 vDC 的 hello 支點需要 tooforward hello 流量 toohello hub tooreach toohello 與內部網路或網際網路。 具有兩個層級的中樞架構導入了複雜路由，以便移除 hello 簡單中樞-支點關聯性的優點。
 
-雖然 Azure 允許複雜拓撲，但是 vDC 概念的其中一個核心準則是重複性和簡單性。 若要將管理投入時間降到最低，簡單中樞點設計是建議的 vDC 參考架構。
+雖然 Azure 可讓複雜的拓撲，其中一個 hello vDC 概念的 hello 核心原則是重複性和簡單性。 toominimize 管理投入時間，hello 簡單中樞-支點設計為建議 vDC 參考架構的 hello。
 
 ### <a name="components"></a>元件
 虛擬資料中心是由四種基本元件類型所構成：[基礎結構]、[周邊網路]、[工作負載] 和 [監視]。
 
-每種元件類型都是由各種 Azure 功能和資源所組成。 vDC 是由多種元件類型以及相同元件類型之多個變化的執行個體所構成。 例如，您可能有代表不同應用程式之許多不同邏輯分隔的工作負載執行個體。 您可以使用這些不同的元件類型和執行個體來最後建置 vDC。
+每種元件類型都是由各種 Azure 功能和資源所組成。 您 vDC 所組成的多個元件的類型和多個變化的 hello 的執行個體相同元件類型。 例如，您可能有代表不同應用程式之許多不同邏輯分隔的工作負載執行個體。 您可以使用這些不同元件類型，並執行個體 tooultimately 建立 hello vDC。
 
 [![4]][4]
 
-VDC 的上述高階架構顯示中樞支點拓撲之不同區域中所使用的不同元件類型。 此圖顯示架構各種組件中的基礎結構元件。
+hello vDC 上述高階架構顯示 hello 中樞-支點拓撲的不同區域使用不同的元件類型。 hello 圖表顯示 hello 架構的各種組件中的基礎結構元件。
 
-不錯的做法 (適用於內部部署 DC 或 vDC) 是存取權利和權限應該是以群組為基礎。 處理群組，而不是個別使用者協助一致地維護跨小組的存取原則，以及協助將設定錯誤降至最低。 在適當群組中指派和移除使用者有助於保持特定使用者權限的最新狀態。
+不錯的做法 (適用於內部部署 DC 或 vDC) 是存取權利和權限應該是以群組為基礎。 處理群組，而不是個別使用者協助一致地維護跨小組的存取原則，以及協助將設定錯誤降至最低。 指派及移除使用者 tooand 從適當的群組可協助保持最新狀態 hello 特定使用者權限。
 
-每個角色群組的名稱都應該有唯一的前置詞，才能輕鬆地識別哪個群組與哪個工作負載建立關聯。 例如，裝載驗證服務的工作負載可能會名為 AuthServiceNetOps、AuthServiceSecOps、AuthServiceDevOps 和 AuthServiceInfraOps 的群組。 與集中式角色或未與特定服務相關的角色類似，前面可能會加上 "Corp"，例如：*CorpNetOps*。
+每個角色群組只能有唯一的前置詞讓您輕鬆 tooidentify 哪些群組是相關聯的工作負載的名稱。 例如，裝載驗證服務的工作負載可能會名為 AuthServiceNetOps、AuthServiceSecOps、AuthServiceDevOps 和 AuthServiceInfraOps 的群組。 同樣的集中式角色不相關 tooa 特定服務，無法做為 「 Corp 」，開頭*CorpNetOps*例如。
 
-許多組織都會使用下列群組的一種變化，以提供角色的主要分析：
+許多組織使用下列群組 tooprovide 主要角色的細目 hello 的變化：
 
--   「中央 IT 群組 (Corp)」具有控制基礎結構 (例如網路和安全性) 元件的擁有權權限，因此必須要有訂用帳戶的參與者角色 (並具有中樞的控制權) 以及支點中的網路參與者權限。 大型組織經常會在多個小組之間分割這些責任，例如網路作業 (CorpNetOps) 群組 (具有網路的獨佔焦點) 和資料安全性作業 (CorpSecOps) 群組 (負責防火牆和安全性原則)。 在這種特定情況下，需要建立兩個不同的群組，才能指派這些自訂角色。
--   「開發和測試 (AppDevOps) 群組」負責部署工作負載 (應用程式或服務)。 此群組扮演虛擬機器參與者角色來進行 IaaS 部署，以及 (或) 一或多個 PaaS 參與者的角色 (請參閱 [ Azure 角色型存取控制的內建角色][Roles])。 (選擇性) 開發與測試小組可能需要有中樞或特定支點內安全性原則 (NSG) 和路由原則 (UDR) 的可見性。 因此，除了工作負載參與者角色之外，此群組也需要網路讀取者角色。
--   「作業和維護群組 (CorpInfraOps 或 AppInfraOps)」負責管理生產環境中的工作負載。 此群組必須是任何生產訂用帳戶中工作負載的訂用帳戶參與者。 某些組織可能也會評估它們是否需要具有生產環境和中央中樞訂用帳戶中訂用帳戶參與者角色的額外擴大支援小組群組，才能修正生產環境中的潛在設定問題。
+-   hello*中央 IT 群組 (Corp)*有 hello 擁有權權限 toocontrol 基礎結構 （例如網路和安全性） 元件，因此需要 toohave hello hello 訂用帳戶上的參與者角色 （和擁有的控制權hello 集線器） 和網路 hello 支點中的參與者權限。 大型組織經常會在多個小組之間分割這些責任，例如網路作業 (CorpNetOps) 群組 (具有網路的獨佔焦點) 和資料安全性作業 (CorpSecOps) 群組 (負責防火牆和安全性原則)。 這種情況下，兩個不同群組需要 toobe 建立這些自訂的角色指派。
+-   hello*開發人員 （& a) 測試 (AppDevOps) 群組*具有 hello 責任 toodeploy 工作負載 （應用程式或服務）。 這個群組會 hello 角色的虛擬機器參與者 IaaS 部署和/或一個或多個 PaaS 參與者角色 (請參閱[所有存取控制的內建角色][Roles])。 選擇性地 hello 開發與測試小組可能需要在安全性原則 (Nsg) 和 hello 中樞內的路由原則 (UDR) 或特定支點 toohave 可見性。 因此，在加法 toohello 角色中的參與者的工作負載，此群組還需要 hello 網路讀取器角色。
+-   hello*操作和維護的群組 （CorpInfraOps 或 AppInfraOps）* hello 負責管理生產環境中的工作負載。 此群組需要 toobe 訂用帳戶上的 contributor 任何生產訂用帳戶中的工作負載。 如果需要其他擴大支援小組群組與 hello 角色的訂用帳戶參與者在生產環境中與 hello hub 訂用帳戶中，在訂單 toofix 潛在設定問題 hello 生產環境中，某些組織可能會也評估環境。
 
-vDC 具結構性，因此，針對管理中樞的中央 IT 群組所建立的群組具有工作負載層級的對應群組。 除了管理中樞資源之外，只有中央 IT 群組才能夠控制外部存取，以及訂用帳戶的最上層權限。 不過，工作負載群組能夠單獨控制其在中央 IT 上之 VNet 的資源和權限。
+VDC 具結構性，以建立 hello 管理 hello 中樞中央 IT 群組的群組具有對應群組 hello 工作負載層級。 此外 toomanaging 中樞資源唯一 hello 中央 IT 群組會是能 toocontrol 外部存取和 hello 訂用帳戶的最上層權限。 不過，工作負載群組會是能 toocontrol 資源和其 VNet 中央 IT 上獨立的權限。
 
-需要分割 vDC，才能安全地裝載跨不同企業營運 (LOB) 的多個專案。 所有專案則都需要不同的隔離環境 (開發、UAT、生產)。 其中每個環境的不同 Azure 訂用帳戶都會提供自然隔離。
+hello vDC 需求 toobe 分割到不同列的-商務 (Lob) toosecurely 主機多個專案。 所有專案則都需要不同的隔離環境 (開發、UAT、生產)。 其中每個環境的不同 Azure 訂用帳戶都會提供自然隔離。
 
 [![5]][5]
 
-上圖顯示組織的專案、使用者、群組與 Azure 元件部署所在環境之間的關聯性。
+hello 上圖顯示 hello 組織的專案、 使用者、 群組和其中 hello Azure 元件部署的 hello 環境之間的關聯性。
 
-通常，在 IT 中，環境 (或層) 是部署和執行多個應用程式的系統。 大型企業使用開發環境 (一開始進行和測試變更的位置) 和生產環境 (使用者所使用的環境)。 這些環境之間通常都會分隔成數個預備環境，以允許分階段部署 (推出)、測試以及在發生問題時復原。 部署架構極大，但通常仍會遵循開始開發環境 (DEV) 和結束生產環境 (PROD) 的基本程序。
+通常，在 IT 中，環境 (或層) 是部署和執行多個應用程式的系統。 大型企業使用開發環境 (一開始進行和測試變更的位置) 和生產環境 (使用者所使用的環境)。 這些環境，通常以分隔數個預備環境，兩者中間 tooallow 階段部署 （首展）、 測試和復原發生問題。 部署架構甚大，但通常仍然跟在開發階段 (DEV) 開始和結束點實際執行環境 （生產環境） 的 hello 基本程序。
 
-這些多層環境類型的常見架構包含 DevOps (開發和測試)、UAT (預備) 和生產環境。 組織可以利用單一或多個 Azure AD 租用戶，來定義對這些環境的存取權和權限。 上圖顯示使用兩個不同 Azure AD 租用戶的情況：一個適用於 DevOps 和 UAT，另一個則專用於生產環境。
+這些多層環境類型的常見架構包含 DevOps (開發和測試)、UAT (預備) 和生產環境。 組織可以利用單一或多個 Azure AD 租用戶 toodefine toothese 環境存取與權限。 hello 上圖將顯示兩個不同 Azure AD 租用戶所使用： 一個適用於 DevOps 和使用者接受度測試，而其他專用的實際執行 hello。
 
-具有不同的 Azure AD 租用戶會強制執行環境之間的區隔。 相同的使用者群組 (例如，中央 IT) 需要使用不同的 URI 憑證存取不同的 AD 租用戶進行驗證，以修改專案之 DevOps 或生產環境的角色或權限。 具有存取不同環境的不同使用者驗證可降低可能的中斷以及人為錯誤所導致的其他問題。
+hello 存在不同的 Azure AD 的租用戶會強制執行環境的 hello 區隔。 hello 相同的使用者群組 （例如，中央 IT） 需要使用不同的 URI tooaccess 不同的 AD 租用戶 tooauthenticate 修改 hello 角色或權限是 hello DevOps 或實際執行環境中的專案。 不同的使用者驗證 tooaccess 不同環境的 hello 與否會減少可能中斷和其他人為錯誤所造成的問題。
 
 #### <a name="component-type-infrastructure"></a>元件類型：基礎結構
-此元件類型是大部分支援基礎結構所在的位置。 它也是集中式 IT、安全性和 (或) 相容性小組花費最多時間的位置。
+此元件的類型是 hello 的大部分支援基礎結構所在的位置。 它也是集中式 IT、安全性和 (或) 相容性小組花費最多時間的位置。
 
 [![6]][6]
 
-基礎結構元件提供不同 vDC 元件之間的互相連線，並且存在於中樞和支點中。 管理和維護基礎結構元件的責任通常會指派給中央 IT 和 (或) 安全性小組。
+基礎結構元件提供 hello vDC，不同元件之間互相連線，並會在 hello 中樞和支點 hello。 hello 負責管理和維護 hello 基礎結構元件通常會指派 toohello 中央 IT 和/或安全性團隊。
 
-IT 基礎結構小組的其中一個主要工作是確保整個企業的 IP 位址結構描述一致性。 指派給 vDC 的私人 IP 位址空間需要一致，而且不會與內部部署網路上指派的私人 IP 位址重疊。
+其中一個 hello 主要工作 IT 基礎結構團隊 hello 企業是 hello 的 tooguarantee hello 一致性的 IP 位址結構描述。 hello 私用 IP 位址空間指派 toohello vDC 需要 toobe 一致和不與內部部署網路上指派的私人 IP 位址重疊。
 
-雖然內部部署邊際路由器或 Azure 環境中的 NAT 可以避免 IP 位址衝突，但是會增加基礎結構元件的複雜性。 管理簡化是 vDC 的其中一個關鍵目標，因此使用 NAT 處理 IP 考量不是建議的解決方案。
+雖然 hello NAT 內部邊際路由器或在 Azure 中的環境可以避免發生 IP 位址衝突，它會加入複雜性 tooyour 基礎結構元件。 簡化是管理的 hello 做為關鍵目標的 vDC，因此使用 NAT toohandle IP 考量不建議的解決方案。
 
-基礎結構元件包含下列功能：
+基礎結構元件包含下列功能的 hello:
 
--   [**身分識別和目錄服務**][AAD]. Azure 中每種資源類型的存取權都是受控於目錄服務中所儲存的身分識別。 目錄服務不只會儲存使用者清單，也會儲存對特定 Azure 訂用帳戶中資源的存取權。 這些服務只能存在於雲端，或與 Active Directory 中所儲存的內部部署身分識別同步。
--   [**虛擬網路**][VPN]。 虛擬網路是 vDC 的其中一個主要元件，並可讓您定義 Azure 平台的流量隔離界限。 虛擬網路是由單一或多個虛擬網路區段所組成，而每個區段都有特定 IP 網路前置詞 (子網路)。 虛擬網路定義 IaaS 虛擬機器和 PaaS 服務可建立私人通訊的內部周邊區域。 在相同的訂用帳戶下，一個虛擬網路中的 VM (和 PaaS 服務) 無法與不同虛擬網路中的 VM (和 PaaS 服務) 直接通訊，即使兩個虛擬網路都是由同一位客戶所建立也是一樣。 隔離是很重要的屬性，可確保客戶 VM 和通訊仍然隱蔽於虛擬網路內。
--   [**UDR**][UDR]。 預設會根據系統路由表來路由傳送虛擬網路中的流量。 使用者定義路由是網路系統管理員可建立與一或多個子網路關聯的自訂路由表，可覆寫系統路由表的行為，以及定義虛擬網路內的通訊路徑。 UDR 的存在保證來自支點的輸出流量會傳輸到存在於中樞和支點中的特定自訂 VM 以及 (或) 網路虛擬設備和負載平衡器。
--   [**NSG**][NSG]. 網路安全性群組是安全性規則清單，而安全性規則是作為 IP 來源、IP 目的地、通訊協定、IP 來源連接埠和 IP 目的地連接埠的流量篩選。 NSG 可以套用至子網路、與 Azure VM 建立關聯的虛擬 NIC 卡，或兩者。 若要實作中樞和支點中的正確流量控制，NSG 不可或缺。 NSG 所提供的安全性層級是您所開啟之連接埠和用途的功能。 客戶應該套用具有主機型防火牆 (例如 IPtables 或 Windows 防火牆) 的其他個別 VM 篩選。
--   **DNS**。 vDC 之 VNet 中資源的名稱解析是透過 DNS 所提供。 預設 DNS 的名稱解析範圍僅限於 VNet。 通常，自訂 DNS 服務需要在作為通用服務時部署在中樞中，但 DNS 服務的主要取用者位於支點中。 如有必要，客戶可以建立將 DNS 區域委派給支點的階層式 DNS 結構。
--   [**訂用帳戶][SubMgmt]和[資源群組管理][RGMgmt]**。 訂用帳戶定義自然界限，以在 Azure 中建立多個資源群組。 在名為「資源群組」的邏輯容器中，會將訂用帳戶中的資源組合在一起。 資源群組代表可組織 vDC 資源的邏輯群組。
--   [**RBAC**][RBAC]。 透過 RBAC，可以對應組織角色以及存取特定 Azure 資源的權利，讓您限制使用者只能使用特定子集的動作。 使用 RBAC，您可以將適當的角色指派給相關範圍內的使用者、群組和應用程式，來授與存取權。 角色指派的範圍可以是 Azure 訂用帳戶、資源群組或單一資源。 RBAC 允許繼承權限。 在父範圍指派的角色也會授與其內含子系的存取權。 RBAC 可讓您區隔職責，而僅授與使用者執行工作所需的存取權。 例如，使用 RBAC 讓一位員工管理某個訂用帳戶中的虛擬機器，而讓另一位員工管理相同訂用帳戶內的 SQL DB。
--   [**VNet 對等**][VNetPeering]。 用來建立 vDC 基礎結構的基礎功能是 VNet 對等，而 VNet 對等是透過 Azure 資料中心網路連接相同區域中的兩個虛擬網路 (VNet) 的機制。
+-   [**身分識別和目錄服務**][AAD]. 在 Azure 中的存取 tooevery 資源類型會控制儲存在目錄服務中的身分識別。 hello 目錄服務會儲存不只 hello 使用者清單，但也 hello 中特定的 Azure 訂用帳戶的存取權限 tooresources。 這些服務只能存在於雲端，或與 Active Directory 中所儲存的內部部署身分識別同步。
+-   [**虛擬網路**][VPN]。 虛擬網路是其中一種 vDC，主要元件，並啟用 toocreate hello Azure 平台上的流量隔離界限。 虛擬網路是由單一或多個虛擬網路區段所組成，而每個區段都有特定 IP 網路前置詞 (子網路)。 hello 虛擬網路定義 IaaS 虛擬機器和 PaaS 服務可以建立私用通訊的內部周邊區域。 Vm （和 PaaS 服務） 在虛擬網路無法通訊，直接 tooVMs （和 PaaS 服務） 在不同的虛擬網路中，即使這兩個虛擬網路建立的 hello 同一位客戶下, 一個 hello 相同訂用帳戶。 隔離是很重要的屬性，可確保客戶 VM 和通訊仍然隱蔽於虛擬網路內。
+-   [**UDR**][UDR]。 在虛擬網路的流量路由傳送 hello 系統路由表為基礎的預設值。 使用者定義的路由，是自訂路由表，網路系統管理員可以將 tooone 或更多的子網路 toooverwrite hello 行為 hello 系統路由表產生關聯，並定義虛擬網路內的通訊路徑。 hello 與否 UDRs 保證該輸出流量從透過特定的自訂 Vm 和/或網路虛擬裝置與負載平衡器在 hello 中樞和支點 hello 出現的 hello 支點傳輸資料。
+-   [**NSG**][NSG]. 網路安全性群組是安全性規則清單，而安全性規則是作為 IP 來源、IP 目的地、通訊協定、IP 來源連接埠和 IP 目的地連接埠的流量篩選。 hello NSG 可以套用的 tooa 子網路，Azure VM，或兩者與相關聯的虛擬 NIC 卡。 hello Nsg 是不可或缺的 tooimplement hello 中樞和支點 hello 中正確的流量控制。 hello hello NSG 所提供的安全性層級為您開啟時，哪些連接埠，用於何種用途的函式。 客戶應該套用每個 VM 的其他篩選搭配主機型防火牆，例如 IPtables 或 hello Windows 防火牆。
+-   **DNS**。 透過 DNS 提供 hello hello vDC 的 Vnet 中的資源的名稱解析。 hello hello 預設 DNS 名稱解析範圍會限制的 toohello VNet。 通常，自訂的 DNS 服務需要 toobe hello 中樞中部署為通用服務的一部分，但是 hello 的 DNS 服務的主要取用者位於 hello 支點。 如有必要，客戶可以使用委派的 DNS 區域 toohello 支點建立階層式 DNS 結構。
+-   [**訂用帳戶][SubMgmt]和[資源群組管理][RGMgmt]**。 訂閱定義自然界限 toocreate 多個資源群組在 Azure 中。 在名為「資源群組」的邏輯容器中，會將訂用帳戶中的資源組合在一起。 hello 資源群組代表 vDC 邏輯群組 tooorganize hello 資源。
+-   [**RBAC**][RBAC]。 透過 RBAC，很可能 toomap 組織角色的權限 tooaccess 特定 Azure 資源，可讓您 toorestrict 使用者 tooonly 動作子集。 使用 RBAC，您可以藉由指派 hello 適當的角色 toousers、 群組和 hello 相關的範圍內的應用程式授與存取。 hello 的角色指派的範圍可以是 Azure 訂用帳戶、 資源群組或單一資源。 RBAC 允許繼承權限。 在父範圍中指派的角色也會授與存取內含 toohello 子系。 使用 RBAC 時，您就可以分隔責任，並授與僅 hello 數量存取 toousers 他們需要 tooperform 他們的工作。 例如，使用 RBAC toolet 一位員工中管理虛擬機器的訂用帳戶，而另一個是可以在 hello 管理 SQL 資料庫使用相同的訂用帳戶。
+-   [**VNet 對等**][VNetPeering]。 hello 使用的基本功能的 vDC toocreate hello 基礎結構是 VNet 對等互連，一種機制，在 hello 連接兩個虛擬網路 (Vnet) 透過 hello hello Azure 資料中心網路的同一個地區。
 
 #### <a name="component-type-perimeter-networks"></a>元件類型：周邊網路
-[周邊網路][DMZ]元件 (也稱為 DMZ 網路) 可讓您提供與內部部署或實體資料中心網路的網路連線，以及與網際網路之間的任何連線。 它也是您網路和安全性小組可能花費最多時間的位置。
+[周邊網路][ DMZ]元件 （也稱為 DMZ 網路） 可讓您與您的內部部署或實體的資料中心網路，以及 hello 網際網路從任何連線 tooand tooprovide 網路連線。 它也是您網路和安全性小組可能花費最多時間的位置。
 
-連入封包應該先流經中樞內的安全性設備，如防火牆、IDS 和 IPS 等，才會到達支點中的後端伺服器。 來自工作負載的網際網路繫結封包應該也會流經周邊網路中的安全性設備，經過原則強制執行、檢查和稽核之後，才會離開網路。
+連入封包應該流經 hello 的安全性設備卻在 hello 中樞中，例如 hello 防火牆、 識別碼和 IP 時，才會到達 hello 支點 hello 後端伺服器。 網際網路繫結的封包從 hello 工作負載也應該流經 hello 的安全性設備卻 hello 周邊網路中強制執行原則、 檢查，和稽核時，才退出 hello 網路。
 
-周邊網路元件提供下列功能：
+周邊網路元件提供下列功能的 hello:
 
 -   [虛擬網路][VNet]、[UDR][UDR]、[NSG][NSG]
 -   [網路虛擬設備][NVA]
@@ -209,123 +209,123 @@ IT 基礎結構小組的其中一個主要工作是確保整個企業的 IP 位�
 -   [應用程式閘道][AppGW] / [WAF][WAF]
 -   [公用 IP][PIP]
 
-通常，中央 IT 和安全性小組會負責周邊網路的需求定義和作業。
+通常，hello 中央 IT 和安全性的小組可以使用需求定義和操作的 hello 周邊網路的責任。
 
 [![7]][7]
 
-上圖顯示如何強制執行兩個具有網際網路存取的周邊網路以及一個內部部署網路，而這些都位在中樞中。 在單一中樞中，連線至網際網路的周邊網路可以使用 Web 應用程式防火牆 (WAF) 和 (或) 防火牆的多個伺服器陣列進行向上延展，以支援大量 LOB。
+hello 上圖顯示 hello 強制執行的兩個具有存取 toohello 周邊網際網路和內部網路，同時位於 hello 中樞。 在單一的中樞，hello 周邊網路 toointernet 就能相應 toosupport 大量的 Lob，使用多個伺服器陣列的 Web 應用程式防火牆 (WAFs) 及/或防火牆。
 
-[**虛擬網路**][VNet]：中樞一般是建置於具有多個子網路的 VNet，以裝載不同類型的服務，其透過 NVA、WAF 和 Azure 應用程式閘道篩選和檢查送至或來自網際網路的流量。
+[**虛擬網路**] [ VNet] hello 集線器通常建立在多重子網路 toohost hello 不同的服務類型的 VNet 上篩選和檢查從流量 tooor hello NVAs，WAFs，透過網際網路和 Azure 應用程式閘道。
 
-[**UDR**][UDR]：使用 UDR，客戶可以部署防火牆、IDS/IPS 和其他虛擬設備，並透過這些安全性設備來路由傳送網路流量，以強制執行安全性界限原則、稽核和檢查。 UDR 可以建立於中樞和支點中，保證流量傳輸到 vDC 所使用的特定自訂 VM、網路虛擬設備和負載平衡器。 若要保證支點所在 VM 產生的流量會傳輸到正確的虛擬設備，UDR 需要設定在支點的子網路中，方法是將內部負載平衡器的前端 IP 位址設定為下一個躍點。 內部負載平衡器會將內部流量分散到虛擬設備 (負載平衡器後端集區)。
+[**UDR**][UDR]：使用 UDR，客戶可以部署防火牆、IDS/IPS 和其他虛擬設備，並透過這些安全性設備來路由傳送網路流量，以強制執行安全性界限原則、稽核和檢查。 在這兩個 hello 中樞和 hello 支點 tooguarantee 流量日透過 hello 特定自訂的 Vm 網路的虛擬應用裝置，hello vDC 所使用的負載平衡器，可以建立 UDRs。 tooguarantee 流量，產生 hello 支點傳輸 toohello 正確虛擬應用裝置中的 Vm 所傳來，UDR 需要 toobe hello 前端 IP 位址的 hello 內部負載平衡器設定為 hello 下個躍點中的 hello 支點 hello 子網路中設定。 hello 內部負載平衡器會將 hello 內部流量 toohello 虛擬應用裝置 （負載平衡器後端集區）。
 
 [![8]][8]
 
-[**網路虛擬設備**][NVA]：在中樞中，具有網際網路存取的周邊網路通常是透過防火牆和 (或) Web 應用程式防火牆 (WAF) 的伺服器陣列進行管理。
+[**網路虛擬裝置**] [ NVA] hello 中樞中的 hello 與透過防火牆和/或 Web 應用程式防火牆 (WAFs) 的伺服器陣列通常管理網際網路存取 toohello 周邊網路。
 
-不同的 LOB 通常會使用許多 Web 應用程式，而且這些應用程式通常很容易受到各種弱點和潛在攻擊的攻擊。 Web 應用程式防火牆是一種特殊類型的產品，用來偵測對 Web 應用程式的攻擊 (HTTP/HTTPS)，而其深入程度高於一般防火牆。 相較於傳統防火牆技術，WAF 有一組特定功能可保護內部網頁伺服器不受威脅。
+不同 Lob 通常會使用許多 web 應用程式，而且這些應用程式通常 toosuffer 不同的弱點可能會和潛在的弱點。 Web 應用程式防火牆是產品特殊品種比一般防火牆的更深入地使用 toodetect 攻擊，對 web 應用程式 (HTTP/HTTPS)。 相較於傳統技術防火牆，WAFs 有一組特定的功能 tooprotect 內部 web 伺服器免受威脅。
 
-防火牆伺服器陣列是一組在相同一般管理下串聯運作的防火牆，並具有一組安全性規則來保護支點中所裝載的工作負載，以及控制對內部部署網路的存取。 防火牆伺服器陣列具有比 WAF 還不特殊的軟體，但具有廣泛應用程式範圍可篩選和檢查任何類型的輸出和輸入流量。 防火牆伺服器陣列通常是透過可在 Azure 市集中取得的網路虛擬設備 (NVA) 在 Azure 中實作。
+防火牆伺服陣列是在安全性規則 tooprotect hello 工作負載的一組相同的一般管理裝載 hello 支點和控制存取 tooon 內部部署網路中的 hello 一起運作的防火牆的群組。 防火牆伺服陣列有小於專屬軟體相較於 WAF，但有廣泛的應用程式範圍 toofilter，並查看任何類型的輸出和輸入流量。 防火牆的伺服器陣列通常是透過網路虛擬裝置 (NVAs)，hello Azure marketplace 中可用的實作在 Azure 中。
 
-建議將一組 NVA 用於來自網際網路的流量，並將另一組用於來自內部部署的流量。 對兩者僅使用一組 NVA 會造成安全性風險，因為它未提供兩組網路流量之間的安全性範疇。 使用個別 NVA 可降低檢查安全性規則的複雜度，並清楚哪些規則對應到哪個傳入網路要求。
+建議 toouse 一整組 NVAs 來自 hello 網際網路的流量，另一個用於流量來自內部部署。 僅使用一組 NVAs 的兩個會造成安全性風險，因為它所提供的網路流量的 hello 兩組之間沒有安全性範疇。 使用個別 NVAs 可降低 hello 複雜性檢查安全性規則，並清楚哪些規則對應 toowhich 傳入的網路要求。
 
-大部分大型企業都會管理多個網域。 Azure DNS 可以用來裝載特定網域的 DNS 記錄。 例如，Azure 外部負載平衡器 (或 WAF) 的虛擬 IP 位址 (VIP) 可以註冊於 Azure DNS 記錄的 A 記錄中。
+大部分大型企業都會管理多個網域。 Azure DNS 可以針對特定網域使用的 toohost hello DNS 記錄。 舉一例，可以在 hello A 記錄的 Azure DNS 記錄中註冊 hello hello Azure 外部負載平衡器 （或 hello WAFs） 的虛擬 IP 位址 (VIP)。
 
-[**Azure Load Balancer**][ALB]：Azure Load Balancer 提供高可用性層級 4 (TCP、UDP) 服務，可將連入流量分散到負載平衡組中所定義的服務執行個體。 不論有沒有位址轉譯，從前端端點 (公用 IP 端點或私用 IP 端點) 傳送給負載平衡器的流量都會重新分散到一組後端 IP 位址集區 (範例為網路虛擬設備或 VM)。
+[**Azure Load Balancer**][ALB]：Azure Load Balancer 提供高可用性層級 4 (TCP、UDP) 服務，可將連入流量分散到負載平衡組中所定義的服務執行個體。 可轉散發 toohello 負載平衡器前端的端點 （公用 IP 端點或私用 IP 端點），不論後端 IP 位址集區 （範例正在; 位址轉譯 tooa 集傳送流量網路虛擬裝置或 Vm）。
 
-Azure Load Balancer 也可以探查各種伺服器執行個體的健康狀態，以及在探查無法回應負載平衡器時，停止將流量傳送至狀況不良的執行個體。 在 vDC 中，我們將外部負載平衡器放在中樞 (例如，將流量平衡到 NVA) 和支點 (執行工作，例如平衡多層應用程式的不同 VM 之間的流量) 中。
+Azure 負載平衡器可以探查 hello 健全狀況的 hello 不同伺服器執行個體，和探查失敗 toorespond hello 負載平衡器會停止傳送流量 toohello 狀況不良的執行個體時。 VDC，在有外部負載平衡器的 hello 與否 hello 中樞 (比方說，平衡 hello 流量 tooNVAs)，在和中 hello 支點 （tooperform 工作類似平衡的多層式應用程式的不同 Vm 之間的流量）。
 
-[**應用程式閘道**][AppGW]：Microsoft Azure 應用程式閘道是專用的虛擬設備，會以服務形式提供應用程式傳遞控制器 (ADC)，為您的應用程式提供各種第 7 層負載平衡功能。 它會將 CPU 密集 SSL 終止卸載至應用程式閘道，讓您最佳化 Web 伺服器陣列的產能。 它也提供其他第 7 層路由功能，包括循環配置連入流量、以 Cookie 為基礎的工作階段同質、URL 路徑型路由，以及在單一應用程式閘道背後代管多個網站的能力。 Web 應用程式防火牆 (WAF) 也是提供為應用程式閘道 WAF SKU 的一部分。 此 SKU 會保護 Web 應用程式免於遭遇常見的 Web 弱點和攻擊。 應用程式閘道可以設定為面向網際網路的閘道、內部專用閘道或兩者混合。 
+[**應用程式閘道**][AppGW]：Microsoft Azure 應用程式閘道是專用的虛擬設備，會以服務形式提供應用程式傳遞控制器 (ADC)，為您的應用程式提供各種第 7 層負載平衡功能。 它可讓您 toooptimize web 伺服陣列產能卸載 CPU 密集 SSL 終止 toohello 應用程式閘道。 它也提供其他層 7 路由功能，包括循環配置資源發佈的連入流量，cookie 為基礎的工作階段親和性，路徑為基礎的路由 URL，和 hello 能力 toohost 單一應用程式閘道背後的多個網站。 Web 應用程式的防火牆 (WAF) 也會提供 hello 應用程式閘道 WAF SKU 的一部分。 此 SKU 提供保護 tooweb 應用程式，從一般 web 弱點和破解。 應用程式閘道可以設定為面向網際網路的閘道、內部專用閘道或兩者混合。 
 
-[**公用 IP**][PIP]：某些 Azure 功能可讓您建立服務端點與公用 IP 位址的關聯，而公用 IP 位址允許從網際網路存取資源。 此端點使用網路位址轉譯 (NAT) 將流量路由傳送至 Azure 虛擬網路的內部位址和連接埠。 這個路徑是外部流量進入虛擬網路的主要方式。 公用 IP 位址可以設定成判斷要傳入的流量，以及該流量在虛擬網路上如何轉譯及轉譯至何處。
+[**公用 Ip** ] [ PIP]某些 Azure 功能啟用從存取您 tooassociate 服務端點 tooa 公用 IP 位址，可讓 tooyour 資源 toobe hello 網際網路。 此端點使用 hello Azure 虛擬網路上的網路位址轉譯 (NAT) tooroute 流量 toohello 內部位址和連接埠。 這個路徑是在 hello 的虛擬網路的外部流量 toopass hello 主要方式。 hello 公用 IP 位址可以是設定的 toodetermine 傳入的流量，及如何及在何處轉譯 toohello 虛擬網路上。
 
 #### <a name="component-type-monitoring"></a>元件類型：監視
-監視元件提供來自所有其他元件類型的可見性和警示。 所有小組應該都可以存取他們可存取之元件和服務的監視。 如果您有集中式支援人員或作業小組，則他們需要具有這些元件所提供資料的整合式存取權。
+監視的元件提供可見性，以及從所有警示 hello 其他元件類型。 所有的小組應該具有存取 toomonitoring hello 元件，而且他們擁有存取權的服務。 如果您有中央的說明服務人員或作業小組，他們需要這些元件所提供的整合 toohave 存取 toohello 資料。
 
-Azure 提供不同類型的記錄和監視服務，以追蹤 Azure 託管資源的行為。 Azure 中的工作負載控管和控制不只根據收集記錄資料，也會根據依特定報告事件觸發動作的能力。
+Azure 提供不同類型的記錄和監視服務 tootrack hello 行為的 Azure 裝載的資源。 控管和工作負載在 Azure 中的控制項是根據不只收集記錄資料，但也 hello 能力 tootrigger 動作根據特定的報告事件。
 
 Azure 中有兩種主要類型的記錄：
 
--   [**活動記錄**][ActLog] (也稱為「作業記錄」) 可讓您了解對 Azure 訂用帳戶中資源所執行的作業。 這些記錄會報告訂用帳戶的控制程度事件。 每個 Azure 資源都會產生稽核記錄。
+-   [**活動記錄**] [ ActLog] （又稱為同時也是 「 操作記錄檔 」） 提供深入了解 hello hello Azure 訂用帳戶中的資源執行的作業。 這些記錄檔回報 hello 訂用帳戶的控制平面事件。 每個 Azure 資源都會產生稽核記錄。
 
--   [**Azure 診斷記錄**][DiagLog]是由資源所產生的記錄，提供有關該資源之作業的豐富經常性資料。 這些記錄的內容會依資源類型而有所不同。
+-   [**Azure 診斷的記錄檔**] [ DiagLog]是資源所產生的記錄，提供豐富、 且經常 hello 該資源的作業有關的資料。 這些記錄檔的 hello 內容會因資源類型。
 
 [![9]][9]
 
-在 vDC 中，最為重要的是追蹤 NSGs 記錄，特別是下列資訊：
+在 vDC，它可以是極為重要 tootrack hello Nsg 記錄檔，特別是這項資訊：
 
--   [**事件記錄檔**][NSGLog]︰提供哪些 NSG 規則套用到以 MAC 位址為基礎的 VM 和執行個體角色的相關資訊。
--   [**計數器記錄**][NSGLog]：追蹤執行每個 NSG 規則以拒絕或允許流量的次數。
+-   [**事件記錄檔**][NSGLog]： 提供哪些 NSG 規則會套用的 tooVMs 和 MAC 位址為基礎的執行個體角色的相關資訊。
+-   [**計數器記錄檔**][NSGLog]： 追蹤多少次，每個 NSG 規則已執行的 toodeny 或允許流量。
 
-所有記錄都可以儲存在 Azure 儲存體帳戶中，以進行稽核、靜態分析或備份。 將記錄儲存在 Azure 儲存體帳戶中時，客戶就可以使用不同類型的架構來擷取、準備、分析並以視覺化方式檢視這項資料，以報告雲端資源的狀態和健康狀態。
+所有記錄都可以儲存在 Azure 儲存體帳戶中，以進行稽核、靜態分析或備份。 當 hello 記錄檔儲存在 Azure 儲存體帳戶時，客戶可以使用不同類型的架構 tooretrieve 準備、 分析和視覺化這個資料 tooreport hello 狀態和雲端資源的健全狀況。
 
-大型企業應該已取得用來監視內部部署系統的標準架構，以及可以延伸該架構以整合雲端部署所產生的記錄。 針對想要在雲端保留所有記錄的組織，[Microsoft Operations Management Suite (OMS)][OMS] 是不錯的選擇。 因為 OMS 實作為雲端型服務，所以您對基礎結構服務進行最小的投資就可以快速啟動並執行它。 OMS 也可以整合 System Center 元件 (例如 System Center Operations Manager)，以將現有管理投資擴充到雲端。
+大型企業應該已有取得的標準架構監視在內部部署系統，可以擴充架構 toointegrate 記錄產生的雲端部署。 適用於想的 tookeep 所有 hello hello 雲端中記錄的組織[Microsoft Operations Management Suite (OMS)] [ OMS]是絕佳的選擇。 因為 OMS 實作為雲端型服務，所以您對基礎結構服務進行最小的投資就可以快速啟動並執行它。 OMS 也可以整合 System Center 元件，例如 System Center Operations Manager tooextend 與現有的管理投資到 hello 的雲端。
 
-OMS 記錄分析是 OMS 架構的元件，可協助收集、相互關聯、搜尋和處理作業系統、應用程式、基礎結構雲端元件所產生的記錄和效能資料。 它可將使用整合式搜尋和自訂儀表板的即時操作深入資訊提供給客戶，以分析 vDC 中所有工作負載的所有記錄。
+OMS 記錄分析是收集的 hello OMS 架構 toohelp 元件、 建立相互關聯、 搜尋和記錄檔和效能資料的動作所產生的作業系統、 應用程式、 雲端基礎結構元件。 它可讓客戶使用整合的搜尋和自訂儀表板 tooanalyze hello 的所有記錄在所有您 vDC 中的工作負載間即時的 operational insights。
 
 #### <a name="component-type-workloads"></a>元件類型：工作負載
 工作負載元件是實際應用程式和服務所在的位置。 它也是在應用程式開發小組花費最多時間的位置。
 
-工作負載可能性真的無止盡。 以下只是一些可能的工作負載類型：
+hello 工作負載可能是真的無止盡的。 hello 以下是幾個 hello 可能工作負載類型：
 
 **內部 LOB 應用程式**
 
-企業營運應用程式是對企業之進行中作業而言的重要電腦應用程式。 LOB 應用程式具有一些共同特性：
+特定業務應用程式是企業的電腦的應用程式關鍵 toohello 進行中作業。 LOB 應用程式具有一些共同特性：
 
 -   **互動式**。 LOB 應用程式皆為互動式本質：輸入資料，並傳回結果/報表。
--   **資料驅動**。 LOB 應用程式具資料密集性，其會頻繁存取資料庫或其他儲存體。
--   **整合式**。 LOB 應用程式可與組織內部或外部的其他系統整合。
+-   **資料驅動**。 LOB 應用程式是經常存取 toohello 資料庫或其他存放裝置需要大量資料。
+-   **整合式**。 LOB 應用程式與其他系統內或 hello 組織外部的供應項目整合。
 
-**客戶對應網站 (網際網路對應或內部對應)**：與網際網路互動的大部分應用程式都是網站。 Azure 提供在 IaaS VM 上或從 [Azure Web Apps][WebApps] 站台 (PaaS) 執行網站的功能。 Azure Web Apps 支援整合允許將 Web Apps 部署在 vDC 支點中的 VNet。 使用 VNET 整合，您不需要公開您應用程式的網際網路端點，但可以改用來自私人 VNet 的資源私人非網際網路可路由傳送位址。
+**客戶對向的網站 （網際網路或內部面對）**大部分與 hello 網際網路互動的應用程式是網站。 Azure 提供的 hello 功能 toorun IaaS VM 上，或從網站[Azure Web Apps] [ WebApps]站台 (PaaS)。 Azure Web 應用程式支援允許 hello 部署的 hello Web 應用程式中的 vDC hello 支點的 Vnet 與整合。 Hello VNET 整合，您不需要 tooexpose 網際網路端點，您的應用程式，但可以改用 hello 資源私用非網際網路可路由傳送地址從您的私人 VNet。
 
-**巨量資料/分析**：資料需要向上延展至極大型磁碟區時，資料庫可能無法適當地向上延展。 Hadoop 技術可讓系統對大量節點平行執行分散式查詢。 客戶可以選擇在 IaaS VM 或 PaaS ([HDInsight][HDI]) 中執行資料工作負載。 HDInsight 支援部署到位置型 VNet、可以部署到 vDC 支點中的叢集。
+**大型的資料分析**當資料需要 tooscale tooa 的非常大型磁碟區時，資料庫可能無法適當縮放。 Hadoop 技術提供系統 toorun 分散式查詢，以平行方式大量的節點上。 客戶有 hello 選項 toorun 資料中的工作負載 IaaS Vm 或 PaaS ([HDInsight][HDI])。 HDInsight 支援部署到以位置為基礎的 VNet，可以是中的 hello vDC 支點部署的 tooa 叢集。
 
 **事件和傳訊**
-[Azure 事件中樞][EventHubs]是大規模的遙測擷取服務，能夠收集、轉換和儲存數百萬個事件。 這個分散式串流平台提供低延遲和可設定的保留期，讓您能夠將大量遙測資料輸入 Azure，並從多個應用程式讀取該資料。 使用事件中樞，單一串流就可以同時支援即時和批次型管線。
+[Azure 事件中樞][EventHubs]是大規模的遙測擷取服務，能夠收集、轉換和儲存數百萬個事件。 做為分散式的資料流平台，它會提供低延遲及可設定的時間保留，讓您 tooingest 大量的遙測資料至 Azure，並從多個應用程式讀取該資料。 使用事件中樞，單一串流就可以同時支援即時和批次型管線。
 
 應用程式與服務之間的高可靠雲端傳訊服務可以透過 [Azure 服務匯流排][ServiceBus]進行實作，而 Azure 服務匯流排提供用戶端與伺服器之間的非同步代理傳訊，以及結構化先進先出 (FIFO) 傳訊和發佈/訂閱功能。
 
 [![10]][10]
 
 ### <a name="multiple-vdc"></a>多重 vDC
-目前為止，本文的重點在於單一 vDC，並描述構成復原 vDC 的基本元件和架構。 Azure 負載平衡器這類 Azure 功能、NVA、可用性設定組、擴展集以及其他機制提供給可讓您將穩固的 SLA 層級建置到生產服務的系統。
+目前為止，本文的重點單一 vDC，描述 hello 基本元件，並參與 tooa 彈性 vDC 的架構。 Azure 功能，例如 Azure 負載平衡器，NVAs，可用性設定組，小數位數的集合，以及其他機制參與 tooa 系統可讓您 toobuild 實心 SLA 層級到實際執行服務。
 
-不過，單一 vDC 裝載於單一區域內，而且很容易發生可能影響該整個區域的主要服務中斷。 想要達到高 SLA 的客戶必須透過在不同區域的兩個 (或以上) vDC 中部署相同專案來保護服務。
+不過，單一 vDC 裝載在單一區域中，而且很容易遭受 toomajor 中斷可能會影響該整個區域。 客戶想 tooachieve 高 Sla 需要透過部署的相同專案中兩個 （或以上） Vdc，放在不同的區域中的 hello tooprotect hello 服務。
 
-除了 SLA 考量，有數種部署多個 vDC 的有意義常見案例：
+在加法 tooSLA 考量，有數種常見的案例，其中部署多個 Vdc 意義：
 
 -   地區/全球支援
 -   災害復原
--   在 DC 之間轉向流量的機制
+-   DC 之間的機制 toodivert 流量
 
 #### <a name="regionalglobal-presence"></a>地區/全球支援
-Azure 資料中心位在全球的許多區域。 選取多個 Azure 資料中心時，客戶需要考慮兩個相關因素：地理距離和延遲。 客戶必須評估 vDC 之間的地理距離，以及 vDC 與終端使用者之間的距離，以提供最佳使用者體驗。
+Azure 資料中心位在全球的許多區域。 當選取多個 Azure 資料中心，客戶需要 tooconsider 兩個相關的因素： 地理位置和延遲。 客戶必須 tooevaluate hello 地理距離 hello Vdc 和 hello 距離 hello vDC hello 一般使用者、 toooffer hello 最佳使用者體驗。
 
-vDC 裝載所在的 Azure 區域也需要符合您組織運作所在之任何法律轄區所建立的法規需求。
+hello Vdc 的裝載位置的 Azure 區域也會需要 tooconform 法規需求，您的組織運作所在的任何法律管轄區來建立。
 
 #### <a name="disaster-recovery"></a>災害復原
-災害復原計劃的實作是與相關的工作負載類型強烈相關，以及同步不同 vDC 之間的工作負載狀態的功能。 在理想情況下，大部分客戶都想要同步兩個不同 vDC 中執行之部署間的應用程式資料，以實作快速容錯移轉機制。 大部分的應用程式都很容易延遲，因而導致潛在的資料同步逾時和延遲。
+工作負載的相關處理，強烈相關的 toohello 類型而 hello 能力 toosynchronize hello 工作負載之間的狀態不同 Vdc hello 實作嚴重損壞復原計畫。 在理想情況下，大部分的客戶想要 toosynchronize 之間執行兩個不同的 Vdc tooimplement 快速的容錯移轉機制中的部署的應用程式資料。 大部分的應用程式機密 toolatency，而且，可能會造成潛在的逾時和延遲的資料同步處理。
 
 不同 vDC 中應用程式的同步或活動訊號監視需要其間的通訊。 不同區域中的兩個 vDC 可以透過進行連線：
 
--   vDC 中樞連接到相同 ExpressRoute 電路時的 ExpressRoute 私人對等
--   透過公司骨幹所連線的多個 ExpressRoute 電路以及連線至 ExpressRoute 電路的 vDC 網格
+-   當 hello vDC 集線器連接的 toohello ExpressRoute 私人互連相同 ExpressRoute 電路
+-   透過您公司的中樞和 vDC 網狀結構連接多個 ExpressRoute 電路連接的 toohello ExpressRoute 電路
 -   每個 Azure 區域中 vDC 中樞之間的站對站 VPN 連線
 
-通常，因為透過 Microsoft 骨幹傳輸時的較高頻寬和一致延遲，所以 ExpressRoute 連線是偏好的機制。
+通常 hello ExpressRoute 連線時，慣用的 hello 機制，因為較高的頻寬和一致延遲傳送 hello Microsoft 骨幹透過。
 
-沒有任何魔法可以驗證分散於不同區域中兩個 (以上) 不同 vDC 之間的應用程式。 客戶應該執行網路資格測試來驗證連線延遲和頻寬，並設定同步還是非同步資料複寫適合，以及您工作負載的最佳復原時間目標 (RTO)。
+沒有任何 magic 配方 toovalidate 位於不同的區域中的兩個 （或以上） 不同的 Vdc 間發佈的應用程式。 客戶應該在執行網路限定性條件測試 tooverify hello 延遲和頻寬的 hello 連線和目標資料同步或非同步複寫是否適當，以及哪些 hello 最佳復原時間目標 (RTO) 可以是適用於您工作負載。
 
-#### <a name="mechanism-to-divert-traffic-between-dc"></a>在 DC 之間轉向流量的機制
-將來自某個 DC 的流量轉向到另一個 DC 的一個有效技術是以 DNS 為基礎。 [Azure 流量管理員][TM]使用網域名稱系統 (DNS) 機制，以將終端使用者導向特定 vDC 中的最適合公用端點。 透過探查，流量管理員會定期檢查不同 vDC 中公用端點的服務健康狀態，如果這些端點失敗，則會自動路由傳送至次要 vDC。
+#### <a name="mechanism-toodivert-traffic-between-dc"></a>DC 之間的機制 toodivert 流量
+一個有效的技術 toodivert hello 流量傳入一個 DC tooanother 中是以 DNS 為基礎。 [Azure Traffic Manager] [ TM]使用 hello 網域名稱系統 (DNS) 機制 toodirect hello 使用者流量 toohello 最適合公用端點中特定 vDC。 透過探查，Traffic Manager 會定期檢查的公用端點，在不同的 Vdc hello 服務健全狀況和失敗時的這些端點，它會路由傳送自動 toohello 次要 vDC。
 
-流量管理員作用於 Azure 公用端點上，例如，可以用來控制流量/將流量轉向到適當 vDC 中的 Azure VM 和 Web Apps。 流量管理員即使在整個 Azure 區域失敗還是可以恢復，而且可以根據數個準則來控制不同 vDC 中服務端點的使用者流量分配 (例如，特定 vDC 中服務的失敗，或選取具有用戶端最低網路延遲的 vDC)。
+Traffic Manager 適用於 Azure 的公用端點，而且可以使用，例如 toocontrol/轉向流量 tooAzure Vm 和 hello Web 應用程式適當的 vDC。 Traffic Manager 後的恢復，即使在整個 Azure 地區執行失敗的 hello 字體，並可以控制 hello 的使用者流量分配不同 Vdc 根據準則中的服務端點 (例如，在特定的 vDC，服務失敗或選取hello vDC hello 網路延遲最小 hello 用戶端使用)。
 
 ### <a name="conclusion"></a>結論
-虛擬資料中心是將資料中心移轉至雲端的方法，而此雲端合併使用在 Azure 中建立可擴充架構的特色和功能，以最大化雲端資源使用、降低成本，並簡化系統控管。 vDC 概念是以中樞支點拓撲為基礎，並提供中樞中的一般共用服務，以及允許支點中的特定應用程式/工作負載。 vDC 符合公司角色的結構，其中，不同部門 (中央 IT、DevOps、作業和維護) 會一起工作，而且每個部門都會有特定角色和職責清單。 vDC 滿足「隨即轉移」移轉的需求，但也提供原生雲端部署的許多優點。
+hello 虛擬資料中心是到且可擴充的架構，在 Azure 中以充分發揮雲端資源使用時，降低成本並簡化系統使用的特色與功能 toocreate 組合的 hello 雲端方法 toodata center 移轉控管。 hello vDC 概念為基礎的中樞-支點拓撲，提供一般 hello 中樞中的共用的服務和 hello 支點中允許特定應用程式/工作負載。 VDC 與 hello 結構公司角色，其中不同部門 （中央 IT、 DevOps、 作業和維護） 搭配使用，每個都有特定的角色和責任清單相符。 VDC 滿足 hello"提起和 Shift 」 移轉需求，但也會提供許多優點 toonative 雲端部署。
 
 ## <a name="references"></a>參考
-本文件已討論下列功能。 請按一下連結以深入了解。
+下列功能的 hello 我們已經討論過此文件中。 按一下 更多的 hello 連結 toolearn。
 
 | | | |
 |-|-|-|
@@ -339,16 +339,16 @@ vDC 裝載所在的 Azure 區域也需要符合您組織運作所在之任何法
 
 
 ## <a name="next-steps"></a>後續步驟
- - 探索 [VNet 對等][VNetPeering]，其為 vDC 中樞和支點設計的支持技術。
- - 實作 [AAD][AAD]，以開始使用 [RBAC][RBAC] 探索。
- - 開發訂用帳戶和資源管理模型與 RBAC 模型，以符合組織的結構、需求和原則。 正在規劃最重要的活動。 請盡快規劃重組、合併、新的產品線等。
+ - 瀏覽[對等互連的 VNet][VNetPeering]、 hello 支柱技術 vDC 中樞和支點設計
+ - 實作[AAD] [ AAD] tooget 入門[RBAC] [ RBAC]瀏覽
+ - 開發訂用帳戶和資源的管理模型和 RBAC toomeet hello 架構需求，模型和您的組織原則。 規劃 hello 最重要活動。 請盡快規劃重組、合併、新的產品線等。
 
 <!--Image References-->
 [0]: ./media/networking-virtual-datacenter/redundant-equipment.png "元件重疊範例" 
 [1]: ./media/networking-virtual-datacenter/vdc-high-level.png "高階中樞和支點 vDC 範例"
 [2]: ./media/networking-virtual-datacenter/hub-spokes-cluster.png "中樞和支點叢集"
 [3]: ./media/networking-virtual-datacenter/spoke-to-spoke.png "支點對支點"
-[4]: ./media/networking-virtual-datacenter/vdc-block-level-diagram.png "vDC 的區塊層級圖"
+[4]: ./media/networking-virtual-datacenter/vdc-block-level-diagram.png "Hello vDC 的區塊層級圖表"
 [5]: ./media/networking-virtual-datacenter/users-groups-subsciptions.png "使用者、群組、訂用帳戶和專案"
 [6]: ./media/networking-virtual-datacenter/infrastructure-high-level.png "高階基礎結構圖"
 [7]: ./media/networking-virtual-datacenter/highlevel-perimeter-networks.png "高階基礎結構圖"

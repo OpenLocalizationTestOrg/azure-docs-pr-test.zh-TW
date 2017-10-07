@@ -1,6 +1,6 @@
 ---
-title: "使用系統健康狀態報告進行疑難排解 | Microsoft 疑難排解"
-description: "描述針對 Azure Service Fabric 元件及其使用量所傳送的健康狀態報告，以便對叢集或應用程式問題進行疑難排解。"
+title: "系統健康情況報告與 aaaTroubleshoot |Microsoft 文件"
+description: "描述 Azure Service Fabric 元件和其使用方式所傳送的疑難排解叢集或應用程式問題的 hello 健康情況報告。"
 services: service-fabric
 documentationcenter: .net
 author: oanapl
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: oanapl
-ms.openlocfilehash: 54e20146b2f1e0ca6153b66319be70c6f7c2fb59
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c77a6cdd0440ce5d354cd8760f40151f674a3529
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-system-health-reports-to-troubleshoot"></a>使用系統健康狀態報告進行疑難排解
-Azure Service Fabric 元件會針對叢集中的所有實體提供現成的報告。 [健康狀態資料存放區](service-fabric-health-introduction.md#health-store) 會根據系統報告來建立和刪除實體。 它也會將這些實體組織為階層以擷取實體的互動。
+# <a name="use-system-health-reports-tootroubleshoot"></a>使用系統健全狀況報表 tootroubleshoot
+Azure Service Fabric 元件報表 hello 現成 hello 叢集中的所有實體。 hello[健全狀況存放區](service-fabric-health-introduction.md#health-store)會建立和刪除 hello 系統報表基礎的實體。 它也會將這些實體組織為階層以擷取實體的互動。
 
 > [!NOTE]
-> 若要了解健康狀態相關概念，請詳細閱讀 [Service Fabric 健康狀態模型](service-fabric-health-introduction.md)。
+> toounderstand 健全狀況相關的概念，深入了解在[服務網狀架構健全狀況模型](service-fabric-health-introduction.md)。
 > 
 > 
 
-系統健康狀態報告可讓您全盤掌握叢集和應用程式功能，並透過健康狀態標記問題。 系統健康狀態報告會針對應用程式和服務來確認實體是否已實作，以及從 Service Fabric 的角度來確認其是行為是否正確。 報告並不會監控任何服務商務邏輯的健康情況，也不會偵測是否有無回應的處理程序。 使用者服務可使用其邏輯的特定資訊讓健康情況資料更豐富。
-
-> [!NOTE]
-> 監視程式健康狀態報告只有在系統元件建立實體「之後」才會顯示。 刪除實體時，健康狀態資料存放區會自動刪除所有與其相關聯的健康狀態報告。 建立實體之新執行個體時的處理方式也一樣 (例如，建立新的具狀態持續性服務複本執行個體)。 所有與舊執行個體相關聯的報告都會從存放區刪除及清除。
-> 
-> 
-
-系統元件報告將由來源識別，它會以 **System.** 前置詞做為開頭 。 看門狗不能對來源使用相同的前置詞，因為含有無效參數的報告會遭到拒絕。
-讓我們來看看部分系統報告，了解何者觸發了它們，以及如何修正它們所代表的可能問題。
+系統健康狀態報告可讓您全盤掌握叢集和應用程式功能，並透過健康狀態標記問題。 應用程式和服務，實體實作，且從 hello Service Fabric 觀點來看運作正確，請確認系統健康情況報告。 hello 報表沒有提供任何顯示的 hello 服務 hello 商務邏輯和偵測無回應的處理程序的健全狀況監視。 使用者服務可以擴充資訊特定 tootheir 邏輯與 hello 健全狀況資料。
 
 > [!NOTE]
-> Service Fabric 會繼續以感興趣的條件來新增報告，藉此改善叢集和應用程式中狀況的可見性。 更多詳細資料也可以增強現有的報告，有助於更快排解疑難問題。
+> 只會顯示 watchdogs 健康情況報告*之後*hello 系統元件建立實體。 刪除實體時，hello 健全狀況存放區會自動刪除所有與其相關聯的健康情況報告。 hello 也是如此建立 hello 實體的新執行個體時 （例如，建立新的可設定狀態的持續性的服務複本執行個體）。 刪除或清除從 hello 存放區與 hello 舊的執行個體相關聯的所有報表。
+> 
+> 
+
+hello 系統元件報告，藉以 hello 來源，以 hello 開頭"**系統。**" 。 Watchdogs 無法使用相同的前置詞及其來源，hello，因為報表內含無效的參數會遭到拒絕。
+讓我們來看一些系統回報 toounderstand 觸發它們，並它們代表如何 toocorrect hello 可能的問題。
+
+> [!NOTE]
+> Service Fabric 會繼續 tooadd 報表感興趣的改善掌握 hello 叢集和應用程式中發生的狀況。 也可以增強現有的報表含有詳細 toohelp hello 對問題進行疑難排解更快。
 > 
 > 
 
 ## <a name="cluster-system-health-reports"></a>叢集系統健康狀態報告
-健康狀態資料存放區中會自動建立叢集健康狀態實體。 如果一切正常運作，則不會有系統報告。
+hello health store 中自動建立 hello 叢集健全狀況的實體。 如果一切正常運作，則不會有系統報告。
 
 ### <a name="neighborhood-loss"></a>網路上的芳鄰遺失
-**System.Federation** 偵測到網路上的芳鄰遺失時，即會回報錯誤。 報告來自各別的節點，且節點識別碼會包含於屬性名稱中。 如果整個 Service Fabric 環形中有一個網路上的芳鄰遺失，您通常可預期會產生兩個事件 (間距的兩端都會報告)。 如果有多個網路上的芳鄰遺失，將會產生更多的事件。
+**System.Federation** 偵測到網路上的芳鄰遺失時，即會回報錯誤。 hello 報表會從個別節點，而且 hello 節點識別碼會包含在 hello 屬性名稱。 如果 hello 整個 Service Fabric 環形將會遺失一個上的芳鄰，您通常可以預期兩個事件 （兩端 hello 間距報表）。 如果有多個網路上的芳鄰遺失，將會產生更多的事件。
 
-報告會將全域租用逾時指定為存留時間。 只要條件仍在作用中，就會在每半個 TTL 期間重新傳送一次報告。 事件到期時會自動移除。 到期時移除的行為可確保正確地從健康狀態資料存放區清除報告，即使報告節點已關閉也不例外。
+hello 報表指定 hello 時間 toolive hello 全域租用逾時。 hello 報表重新傳送 hello TTL 持續時間的每個半只要 hello 條件維持使用中。 到期時，會自動移除 hello 事件。 卸除過期的行為可確保，hello 報表是從 hello health store 正確地清除，即使 hello reporting 節點已關閉。
 
 * **SourceId**：System.Federation
 * **Property**：以 **Neighborhood** 為開頭且包含節點資訊
-* **後續步驟**：調查網路上的芳鄰遺失的原因 (例如，檢查叢集節點之間的通訊)。
+* **後續步驟**： 調查 hello 上的芳鄰 為何遺失 （例如，叢集節點之間的核取 hello 通訊）。
 
 ## <a name="node-system-health-reports"></a>節點系統健康狀態報告
-**System.FM**(代表容錯移轉管理員服務) 是管理叢集節點相關資訊的授權單位。 每個節點都應該有一份來自 System.FM 的報告，以顯示其狀態。 移除節點狀態時會移除節點實體 (請參閱 [RemoveNodeStateAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.clustermanagementclient.removenodestateasync))。
+**System.FM**，這代表 hello Failover Manager service、 管理叢集節點的相關資訊的 hello 授權單位。 每個節點都應該有一份來自 System.FM 的報告，以顯示其狀態。 移除 hello 節點狀態時，會移除 hello 節點實體 (請參閱[RemoveNodeStateAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.clustermanagementclient.removenodestateasync))。
 
 ### <a name="node-updown"></a>節點運作中/關閉
-當節點加入環形時，System.FM 會回報為 OK (節點已啟動且正在運作中)。 當節點離開環形時，則會回報錯誤 (節點已關閉進行升級，或只是發生故障)。 由健康狀態資料存放區建置的健康狀態階層會根據 System.FM 節點報告，對部署的實體採取行動。 它會將節點視為所有已部署實體的虛擬父系。 如果 System.FM 回報指出該節點已啟動，且其執行個體與實體相關聯的執行個體相同，則該節點上已部署的實體將會透過查詢公開。 當 System.FM 回報節點已關閉或重新啟動 (新執行個體) 時，健康狀態資料存放區會自動清除僅能存在於已關閉節點或先前的節點執行個體上的已部署實體。
+Hello 節點加入 hello 信號 （已啟動並執行） 時，System.FM 會回報為 [確定]。 Hello 節點貨車 hello 信號時，它會報告錯誤 (已關閉，請升級或只是因為它失敗)。 部署中的實體與 System.FM 節點報告相互關聯 hello 健全狀況存放區所建立的 hello 健全狀況階層會採取的動作。 它會考慮 hello 節點虛擬已部署的所有實體的父系。 如果 hello 節點報告為向上 System.FM，hello 與相同執行個體與 hello 與 hello 實體相關聯的執行個體，該節點上部署的 hello 實體會公開透過查詢。 當 System.FM 報告該 hello 節點已關閉或重新啟動 （的新執行個體） 時，hello 健全狀況存放區會自動清除在於只有 hello 節點關閉或 hello hello 節點的上一個執行個體上部署的 hello 實體。
 
 * **SourceId**：System.FM
 * **Property**：State
-* **後續步驟**：如果節點已關閉來進行升級，應該會在升級後重新啟動。 在這種情況下，健康情況應切換回 OK。 如果節點沒有重新啟動或故障，就需要進一步調查問題。
+* **後續步驟**： 如果 hello 節點已關閉升級，它應該恢復一旦已升級。 在此情況下，hello 健全狀況狀態應該切換後 tooOK。 如果 hello 節點不會再次發生，否則便會失敗，hello 問題，需要較多調查。
 
-以下範例說明帶有 OK (代表節點已啟動) 健全狀況狀態的 System.FM 事件：
+hello 下例健全狀況狀態為 [確定] 節點的 hello System.FM 事件一同顯示：
 
 ```powershell
 PS C:\> Get-ServiceFabricNodeHealth  _Node_0
@@ -88,30 +88,30 @@ HealthEvents          :
 
 
 ### <a name="certificate-expiration"></a>憑證到期
-**System.FabricNode** 會回報警告。 每個節點有三個憑證：**Certificate_cluster**、**Certificate_server** 及 **Certificate_default_client**。 如果過期時間至少超過兩週，報告健康狀態就是 OK。 如果過期時間是在兩週內，則報告類型會是 Warning。 這些事件的 TTL 是無限制的，只有節點離開叢集時才會被移除。
+**System.FabricNode** hello 節點所使用的憑證即將到期時，回報警告。 每個節點有三個憑證：**Certificate_cluster**、**Certificate_server** 及 **Certificate_default_client**。 至少兩週後 hello 到期時，hello 報表健全狀況狀態是 [確定]。 在兩週內 hello 到期時，hello 報表類型是一個警告。 這些事件的 TTL 是無限的以及當節點離開叢集 hello 中予以移除。
 
 * **SourceId**：System.FabricNode
-* **Property**：以 **Certificate** 為開頭，且包含關於憑證類型的詳細資訊
-* **後續步驟**：如果憑證即將到期，請更新憑證。
+* **屬性**： 開頭**憑證**和包含 hello 憑證類型的詳細資訊
+* **後續步驟**： 更新 hello 憑證是否即將到期。
 
 ### <a name="load-capacity-violation"></a>負載容量違規
-當 Service Fabric Load Balancer 偵測到節點容量違規時，就會回報警告。
+hello Service Fabric 負載平衡器會回報警告。 當它偵測到節點容量違規。
 
 * **SourceId**：System.PLB
 * **Property**：以 **Capacity** 為開頭
-* **後續步驟**：檢查提供的計量，並在節點上檢視目前容量。
+* **後續步驟**: hello 節點上檢查所提供的度量和檢視 hello 目前容量。
 
 ## <a name="application-system-health-reports"></a>應用程式系統健康狀態報告
-**System.CM**(代表叢集管理員服務) 是管理應用程式相關資訊的授權單位。
+**System.CM**，這代表 hello 叢集管理員服務，是 hello 授權管理應用程式的相關資訊。
 
 ### <a name="state"></a>State
-已建立或更新應用程式時，System.CM 會回報為 OK。 已刪除應用程式時，它會通知健康狀態資料存放區，以便從存放區將它移除。
+System.CM 報告為 [確定] 時已建立或更新 hello 應用程式。 它會通知 hello 健全狀況存放區刪除 hello 應用程式後，使它可以從存放區中移除。
 
 * **SourceId**：System.CM
 * **Property**：State
-* **後續步驟**：如果已建立或更新應用程式，它就應該包含叢集管理員健康情況報告。 否則，請發出查詢 (例如 PowerShell Cmdlet **Get-ServiceFabricApplication -ApplicationName *applicationName***) 以檢查應用程式狀態。
+* **後續步驟**： 如果已建立或更新 hello 應用程式，它應該包含 hello 叢集管理員健康情況報告。 否則，請檢查 hello hello 應用程式狀態，藉由發出查詢 (例如，hello PowerShell cmdlet **Get ServiceFabricApplication ApplicationName *applicationName***)。
 
-以下範例說明 **fabric:/WordCount** 應用程式上的狀態事件：
+hello 下列範例示範 hello 狀態事件在 hello **fabric: / WordCount**應用程式：
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationHealth fabric:/WordCount -ServicesFilter None -DeployedApplicationsFilter None -ExcludeHealthStatistics
@@ -135,15 +135,15 @@ HealthEvents                    :
 ```
 
 ## <a name="service-system-health-reports"></a>服務系統健康狀態報告
-**System.FM**(代表容錯移轉管理員服務) 是管理服務相關資訊的授權單位。
+**System.FM**，這代表 hello Failover Manager service、 管理服務的相關資訊的 hello 授權單位。
 
 ### <a name="state"></a>State
-已建立服務時，System.FM 會回報為 OK。 已刪除服務時，它會從健康狀態資料存放區刪除實體。
+System.FM 做為 [確定] 時，回報 hello 服務已經建立完成。 Hello 服務已被刪除時，從 hello health store 刪除 hello 實體。
 
 * **SourceId**：System.FM
 * **Property**：State
 
-以下範例說明 **fabric:/WordCount/WordCountWebService** 服務上的狀態事件：
+hello 下列範例示範 hello 狀態事件在 hello 服務**fabric: / WordCount/WordCountWebService**:
 
 ```powershell
 PS C:\> Get-ServiceFabricServiceHealth fabric:/WordCount/WordCountWebService -ExcludeHealthStatistics
@@ -170,27 +170,27 @@ HealthEvents          :
 ```
 
 ### <a name="service-correlation-error"></a>服務相互關聯錯誤
-**System.PLB** 會在偵測到更新要與其他服務相互關聯的服務建立同質鏈結時，就會回報錯誤。 更新成功時，就會清除報告。
+**System.PLB**偵測到更新服務 toobe 相互關聯的另一個服務會建立同質鏈結時報告錯誤。 當成功更新時，會清除 hello 報表。
 
 * **SourceId**：System.PLB
 * **屬性**︰ServiceDescription
-* **後續步驟**：檢查相互關聯的服務說明。
+* **後續步驟**： 核取 hello 相互關聯的服務描述。
 
 ## <a name="partition-system-health-reports"></a>分割區系統健康狀態報告
-**System.FM**(代表容錯移轉管理員服務) 是管理服務分割區相關資訊的授權單位。
+**System.FM**，這代表 hello Failover Manager service、 管理的服務資料分割的相關資訊的 hello 授權單位。
 
 ### <a name="state"></a>State
-已建立分割區且其狀況良好時，System.FM 會回報為 OK。 刪除分割區時，它會從健康狀態資料存放區刪除實體。
+System.FM 報告為 [確定] 時已建立 hello 磁碟分割，且狀況良好。 Hello 資料分割會刪除時，從 hello health store 刪除 hello 實體。
 
-如果分割區低於最小複本計數，它會回報錯誤。 如果分割區高於最小複本計數，但低於目標複本計數，則會回報警告。 如果分割區處於仲裁遺失狀態，System.FM 會回報錯誤。
+如果 hello 分割低於 hello 最小複本計數，它會報告錯誤。 如果 hello 分割不低於 hello 最小複本計數，但它低於 hello 目標複本計數，它會回報警告。 如果 hello 磁碟分割在仲裁遺失，System.FM 報告錯誤。
 
-其他重要事件包括：當重新設定花費的時間比預期長，或者建置的時間比預期長，則會回報警告。 建置和重新設定的預計時間可根據服務案來例設定。 例如，如果服務擁有 1 TB 的狀態 (例如 SQL Database)，則建置的時間會比只有少量狀態的服務更長。
+Hello 重新設定所花費的時間超出預期，以及當 hello 組建所花費的時間比預期時，其他重要事件會包含警告。 hello 組建及重新設定的 hello 預期時間皆可設定依據服務案例。 例如，如果服務的狀態，例如 SQL Database tb hello 建置時間長於只需要編寫小量狀態的服務。
 
 * **SourceId**：System.FM
 * **Property**：State
-* **後續步驟**：如果健康狀態不是 OK，有可能是因為部分複本並沒有正確建立、開啟、提升為主要或次要的複本。 在許多情況下，根本原因是在開啟或變更角色實作時發生服務錯誤。
+* **後續步驟**： 如果 hello 健全狀況狀態不是 [確定]，則可能的一些複本尚未建立、 開啟，或升級 tooprimary 或次要資料庫正確。 在許多情況下，hello 根本原因是服務中的錯誤 hello 開啟或變更角色實作。
 
-以下範例顯示狀況良好的分割區：
+下列範例中的 hello 顯示狀況良好的磁碟分割：
 
 ```powershell
 PS C:\> Get-ServiceFabricPartition fabric:/WordCount/WordCountWebService | Get-ServiceFabricPartitionHealth -ExcludeHealthStatistics -ReplicasFilter None
@@ -212,7 +212,7 @@ HealthEvents          :
                         Transitions           : Error->Ok = 7/13/2017 5:57:18 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
-以下範例顯示分割區的健全狀況低於目標複本計數。 後續步驟是取得分割區說明，它將說明設定方式：**MinReplicaSetSize** 為三，**TargetReplicaSetSize** 為七。 接著取得叢集中的節點數：五。 因此，在此情況下，無法放置兩個複本，因為複本的目標數目大於可用節點的數目。
+hello 下列範例顯示 hello 低於目標複本計數的資料分割的健全狀況。 hello 下一個步驟是 tooget hello 資料分割說明，其中顯示設定的方式： **MinReplicaSetSize**是三個和**TargetReplicaSetSize**為 7 個。 然後取得 hello 叢集中的節點數目 hello： 五個。 因此在此情況下，兩個複本不能放因為複本的 hello 目標數目高於 hello 可用的節點數目。
 
 ```powershell
 PS C:\> Get-ServiceFabricPartition fabric:/WordCount/WordCountService | Get-ServiceFabricPartitionHealth -ReplicasFilter None -ExcludeHealthStatistics
@@ -252,8 +252,8 @@ HealthEvents          :
                         SentAt                : 7/14/2017 4:58:13 PM
                         ReceivedAt            : 7/14/2017 4:58:14 PM
                         TTL                   : 00:01:05
-                        Description           : The Load Balancer was unable to find a placement for one or more of the Service's Replicas:
-                        Secondary replica could not be placed due to the following constraints and properties:  
+                        Description           : hello Load Balancer was unable toofind a placement for one or more of hello Service's Replicas:
+                        Secondary replica could not be placed due toohello following constraints and properties:  
                         TargetReplicaSetSize: 7
                         Placement Constraint: N/A
                         Parent Service: N/A
@@ -291,21 +291,21 @@ PS C:\> @(Get-ServiceFabricNode).Count
 ```
 
 ### <a name="replica-constraint-violation"></a>複本條件約束違規
-**System.PLB** 偵測到複本條件約束違規，且無法安置所有磁碟分割複本時，就會回報警告。 報告詳細資料會顯示哪些條件約束和屬性導致無法安置複本。
+**System.PLB** 偵測到複本條件約束違規，且無法安置所有磁碟分割複本時，就會回報警告。 hello 報表詳細資料會顯示哪些條件約束，且屬性防止 hello 複本位置。
 
 * **SourceId**：System.PLB
 * **Property**：以 **ReplicaConstraintViolation** 為開頭
 
 ## <a name="replica-system-health-reports"></a>複本系統健康狀態報告
-**System.RA**(代表重新設定代理程式元件) 是複本狀態的授權單位。
+**System.RA**，代表 hello 重新設定代理程式元件，為 hello 進行授權 hello 複本狀態。
 
 ### <a name="state"></a>State
-**System.RA** 會在複本建立後回報 OK。
+**System.RA** hello 複本建立後會報告 [確定]。
 
 * **SourceId**：System.RA
 * **Property**：State
 
-以下範例顯示狀況良好的複本：
+下列範例中的 hello 顯示狀況良好的複本：
 
 ```powershell
 PS C:\> Get-ServiceFabricPartition fabric:/WordCount/WordCountService | Get-ServiceFabricReplica | where {$_.ReplicaRole -eq "Primary"} | Get-ServiceFabricReplicaHealth
@@ -328,22 +328,22 @@ HealthEvents          :
 ```
 
 ### <a name="replica-open-status"></a>複本開啟狀態
-叫用 API 呼叫時，此健康情況報告的說明會包含開始時間 (國際標準時間)。
+hello API 呼叫叫用時，此健全狀況報告 hello 描述包含 hello 開始時間 （國際標準時間）。
 
-**System.RA** 會回報警告。 如果 API 影響服務可用性，則報告發出速度就會快上許多 (可設定的間隔，預設值 30 秒)。 測量的時間包含複寫器開啟及服務開啟所花費的時間。 如果開啟完成，則屬性會變更為 OK。
+**System.RA**會回報警告。 如果開啟的 hello 複本所花費的時間比設定的 hello 期間 (預設： 30 分鐘)。 如果 hello API，將會影響服務可用性，hello 報表就會發出速度 （可設定的間隔，預設值是 30 秒為單位）。 hello 測量的時間會包含 hello hello 複寫器開啟與 hello 服務開啟花費的時間。 如果開啟 hello hello 屬性變更 tooOK 完成。
 
 * **SourceId**：System.RA
 * **Property**服務上的狀態事件： **ReplicaOpenStatus**
-* **後續步驟**：如果健康狀態不是 OK，請調查複本開啟所花費的時間超過預期的原因。
+* **後續步驟**： 如果 hello 健全狀況狀態不確定，請調查為何開啟 hello 複本所花費的時間超出預期。
 
 ### <a name="slow-service-api-call"></a>緩慢服務 API 呼叫
-如果呼叫使用者服務程式碼所花費的時間超過設定的時間，**System.RAP** 和 **System.Replicator** 就會回報警告。 當呼叫完成時，警告就會被清除。
+**System.RAP**和**System.Replicator**如果呼叫 toohello 使用者服務程式碼所花費的時間比設定的 hello 時間會報告警告。 hello 呼叫完成時，會清除 hello 警告。
 
 * **SourceId**：System.RAP 或 System.Replicator
-* **Property**：緩慢 API 的名稱。 該說明會提供有關 API 擱置時間的詳細資訊。
-* **後續步驟**：調查呼叫所花費時間超過預期的原因。
+* **屬性**: hello hello 緩慢 API 名稱。 hello 描述可提供更多詳細 hello 時間 hello 應用程式開發介面已暫止。
+* **後續步驟**： 調查為何 hello 呼叫所花費的時間超出預期。
 
-下列範例說明處於仲裁遺失狀態的分割區，以及調查原因時需進行的步驟。 若其中一個複本的健康狀態為 Warning，您就會取得其健康狀態。 它會顯示服務作業所花費的時間超過預期 (由 System.RAP 回報的事件)。 接收到此資訊之後，下一個步驟就是查看服務程式碼並詳加調查。 在此情況下，具狀態服務的 **RunAsync** 實作會擲回未處理的例外狀況。 因為複本會進行回收，所以您可能不會看到任何處於警告狀態的複本。 您可以嘗試重新取得健康狀態，然後查看複本識別碼中是否有任何差異。 在某些情況下，重試可讓您得到一些線索。
+hello 下列範例會顯示資料分割在仲裁遺失和 hello 調查步驟完成 toofigure 找出原因。 其中一個 hello 複本有警告健全狀況狀態，因此您會取得其健全狀況。 它會顯示 hello 服務作業所花費的時間超出預期，System.RAP 所報告的事件。 收到這項資訊之後，hello 下一個步驟是 toolook hello 服務程式碼，並那里調查。 此案例中，hello **RunAsync** hello 具狀態服務實作會擲回未處理的例外狀況。 回收處理 hello 複本，因此您可能不會看見 hello 警告狀態中的任何複本。 您可以再試一次取得 hello 健全狀況狀態，並尋找任何差異 hello 複本識別碼。 在某些情況下，hello 重試次數可讓您找出線索。
 
 ```powershell
 PS C:\> Get-ServiceFabricPartition fabric:/HelloWorldStatefulApplication/HelloWorldStateful | Get-ServiceFabricPartitionHealth -ExcludeHealthStatistics
@@ -437,7 +437,7 @@ HealthEvents          :
                         Transitions           : ->Warning = 4/24/2015 7:00:59 PM
 ```
 
-當您在偵錯工具中啟動錯誤的應用程式時，[診斷事件] 視窗會顯示從 RunAsync 所擲回的例外狀況：
+當您啟動 hello 偵錯工具之下 hello 錯誤的應用程式時，hello 診斷事件視窗會顯示 hello RunAsync 從擲回的例外狀況：
 
 ![Visual Studio 2015 診斷事件：RunAsync 在 fabric:/HelloWorldStatefulApplication 中失敗。][1]
 
@@ -447,26 +447,26 @@ Visual Studio 2015 診斷事件：RunAsync 在 **fabric:/HelloWorldStatefulAppli
 
 
 ### <a name="replication-queue-full"></a>複寫佇列已滿
-**System.Replicator** 會在複寫佇列已滿時回報警告。 在主要資料庫上，複寫佇列通常會因為一或多個次要複本太慢認可作業而排滿。 在次要複本上，這通常是因為服務緩慢而無法套用作業所造成。 當佇列有空間時，警告就會被清除。
+**System.Replicator** hello 複寫佇列已滿時，回報警告。 在主要 hello 複寫佇列通常會變成完整因為一或多個次要複本緩慢 tooacknowledge 作業。 在次要 hello，這通常發生於 hello 服務會緩慢 tooapply hello 作業。 無法再完整 hello 佇列時，會清除 hello 警告。
 
 * **SourceId**：System.Replicator
-* **Property**：**PrimaryReplicationQueueStatus** 或 **SecondaryReplicationQueueStatus** (根據複本角色而定)
+* **屬性**: **PrimaryReplicationQueueStatus**或**SecondaryReplicationQueueStatus**，端視 hello 複本角色
 
 ### <a name="slow-naming-operations"></a>緩慢的命名作業
 **System.NamingService** 會報告其主要複本的健全狀況。 命名作業的範例為 [CreateServiceAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient.createserviceasync) 或 [DeleteServiceAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient.deleteserviceasync)。 在 FabricClient 下可以找到更多方法，例如在[服務管理方法](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient)或[屬性管理方法](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.propertymanagementclient)底下。
 
 > [!NOTE]
-> 命名服務會將服務名稱解析至叢集中的位置，並可讓使用者能夠管理服務名稱和屬性。 它是 Service Fabric 資料分割保存的服務。 其中一個分割區代表「授權擁有者」，內含所有 Service Fabric 名稱和服務的中繼資料。 Service Fabric 名稱會對應至不同的資料分割 (稱為「名稱擁有者資料分割」)，讓服務可以擴充。 深入了解 [命名服務](service-fabric-architecture.md)。
+> hello 命名服務解析 hello 叢集中的服務名稱 tooa 位置，並可讓使用者 toomanage 服務名稱和屬性。 它是 Service Fabric 資料分割保存的服務。 Hello 分割區之一代表 hello 授權擁有者，其中包含所有服務網狀架構名稱和服務的相關中繼資料。 hello Service Fabric 名稱不對應的 toodifferent 資料分割，稱為名稱的擁有者資料分割，因此 hello 服務是可延伸。 深入了解 [命名服務](service-fabric-architecture.md)。
 > 
 > 
 
-命名作業所花費的時間超出預期，在 *負責處理該作業的命名服務資料分割的主要複本*上，該作業會標幟警告報表。 如果作業順利完成，就會清除警告。 如果作業完成但發生錯誤，健全狀況報告會包含錯誤的詳細資訊。
+當命名作業花費的時間超出預期時，hello 作業都將標示 hello 警告報告*hello 命名服務資料分割的主要複本做 hello 作業*。 如果 hello 作業順利完成，hello 警告會清除。 Hello 作業完成，發生錯誤時，如果 hello 健康情況報告包含關於 hello 錯誤詳細資料。
 
 * **SourceId**：System.NamingService
-* **Property**：以 **Duration_** 前置詞開始，識別緩慢作業和套用該作業的 Service Fabric 名稱。 例如，如果在名稱網狀架構建立 /MyApp/MyService 服務花太多時間，其 Property 就是 Duration_AOCreateService.fabric:/MyApp/MyService。 AO 指向這個名稱和作業的命名資料分割的角色。
-* **後續步驟**︰檢查命名作業失敗的原因。 每個作業都可能有不同的根本原因。 例如，由於服務程式碼中的使用者錯誤造成節點上的應用程式主機持續當機，使刪除服務會卡在節點上。
+* **屬性**： 以字首開始**Duration_**並識別 hello 很慢的作業和作業套用在哪一個 hello hello 服務網狀架構名稱。 例如，如果在名稱網狀架構建立服務: / MyApp/MyService 費時過久，hello 屬性是 Duration_AOCreateService.fabric:/MyApp/MyService。 AO 點 toohello hello 命名資料分割，這個名稱和作業的角色。
+* **後續步驟**： 核取 hello 命名作業失敗的原因。 每個作業都可能有不同的根本原因。 例如，刪除服務可能會卡在節點上，因為 hello 應用程式主機會保留因 tooa 使用者 bug hello 服務程式碼中的節點上損毀。
 
-以下範例顯示一個建立服務作業。 作業所花費的時間超過設定的期間。 AO 重試，並將工作傳送到 NO。 NO 逾時完成最後一個作業。 在此情況中，AO 和 NO 角色有相同的主要複本。
+hello 下列範例會示範建立服務作業。 hello 作業花費的時間超過設定的 hello 持續時間。 AO 重試，並將傳送工作 tooNO。 逾時沒有完成的 hello 最後一個作業。 在此情況下，hello 相同的複本是主要 hello AO 和任何角色。
 
 ```powershell
 PartitionId           : 00000000-0000-0000-0000-000000001000
@@ -495,7 +495,7 @@ HealthEvents          :
                         SentAt                : 4/29/2016 8:39:12 PM
                         ReceivedAt            : 4/29/2016 8:39:38 PM
                         TTL                   : 00:05:00
-                        Description           : The AOCreateService started at 2016-04-29 20:39:08.677 is taking longer than 30.000.
+                        Description           : hello AOCreateService started at 2016-04-29 20:39:08.677 is taking longer than 30.000.
                         RemoveWhenExpired     : True
                         IsExpired             : False
                         Transitions           : Error->Warning = 4/29/2016 8:39:38 PM, LastOk = 1/1/0001 12:00:00 AM
@@ -507,23 +507,23 @@ HealthEvents          :
                         SentAt                : 4/29/2016 8:41:05 PM
                         ReceivedAt            : 4/29/2016 8:41:08 PM
                         TTL                   : 00:00:15
-                        Description           : The NOCreateService started at 2016-04-29 20:39:08.689 completed with FABRIC_E_TIMEOUT in more than 30.000.
+                        Description           : hello NOCreateService started at 2016-04-29 20:39:08.689 completed with FABRIC_E_TIMEOUT in more than 30.000.
                         RemoveWhenExpired     : True
                         IsExpired             : False
                         Transitions           : Error->Warning = 4/29/2016 8:39:38 PM, LastOk = 1/1/0001 12:00:00 AM
 ```
 
 ## <a name="deployedapplication-system-health-reports"></a>DeployedApplication 系統健康狀態報告
-**System.Hosting** 是已部署實體的授權單位。
+**System.Hosting** hello 授權單位上已部署的實體。
 
 ### <a name="activation"></a>啟用
-當應用程式在節點上成功啟用時，System.Hosting 會回報為 OK。 否則，它會報告錯誤。
+System.Hosting 做為 [確定] 時，回報應用程式已成功啟動 hello 節點上。 否則，它會報告錯誤。
 
 * **SourceId**：System.Hosting
-* **Property**：Activation，包括首度發行版本
-* **後續步驟**：如果應用程式的狀況不佳，請調查啟用失敗的原因。
+* **屬性**： 啟動過程中，包括 hello 首度發行版本
+* **後續步驟**: hello 應用程式是否處於狀況不良，調查 hello 啟動失敗的原因。
 
-以下範例顯示成功啟用的情況：
+hello 下列範例顯示成功的啟用：
 
 ```powershell
 PS C:\> Get-ServiceFabricDeployedApplicationHealth -NodeName _Node_1 -ApplicationName fabric:/WordCount -ExcludeHealthStatistics
@@ -545,42 +545,42 @@ HealthEvents                       :
                                      SentAt                : 7/14/2017 4:55:08 PM
                                      ReceivedAt            : 7/14/2017 4:55:14 PM
                                      TTL                   : Infinite
-                                     Description           : The application was activated successfully.
+                                     Description           : hello application was activated successfully.
                                      RemoveWhenExpired     : False
                                      IsExpired             : False
                                      Transitions           : Error->Ok = 7/14/2017 4:55:14 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
 ### <a name="download"></a>下載
-**System.Hosting** 會回報錯誤。
+**System.Hosting**報告錯誤，如 hello 應用程式套件下載失敗。
 
 * **SourceId**：System.Hosting
 * **Property**：**Download:*RolloutVersion***
-* **後續步驟**：調查節點上下載失敗的原因。
+* **後續步驟**： 調查 hello 下載 hello 節點上失敗的原因。
 
 ## <a name="deployedservicepackage-system-health-reports"></a>DeployedServicePackage 系統健康狀態報告
-**System.Hosting** 是已部署實體的授權單位。
+**System.Hosting** hello 授權單位上已部署的實體。
 
 ### <a name="service-package-activation"></a>服務封裝啟用
-如果節點上的服務封裝成功啟用，System.Hosting 會回報為 OK。 否則，它會報告錯誤。
+System.Hosting 報告為 [確定] hello 節點上的 hello 服務封裝啟用是否成功。 否則，它會報告錯誤。
 
 * **SourceId**：System.Hosting
 * **Property**：Activation
-* **後續步驟**：調查啟用失敗的原因。
+* **後續步驟**： 調查 hello 啟動失敗的原因。
 
 ### <a name="code-package-activation"></a>程式碼封裝啟用
-**System.Hosting** 會針對每個程式碼封裝回報 OK。 如果啟用失敗，它會依設定回報警告。 如果 **CodePackage** 無法啟用，或者因為錯誤數超過 **CodePackageHealthErrorThreshold** 的設定而結束，則 Hosting 會回報錯誤。 如果服務封裝包含多個程式碼封裝，就會針對每個封裝產生啟用報告。
+**System.Hosting** hello 啟用成功時的每個程式碼封裝報告為 [確定]。 如果 hello 啟用失敗，它會報告警告設定。 如果**CodePackage**失敗 tooactivate 或終止時發生大於設定的 hello **CodePackageHealthErrorThreshold**，裝載報告錯誤。 如果服務封裝包含多個程式碼封裝，就會針對每個封裝產生啟用報告。
 
 * **SourceId**：System.Hosting
-* **Property**：使用前置詞 **CodePackageActivation**，並以 **CodePackageActivation:*CodePackageName*:*SetupEntryPoint/EntryPoint*** 形式 (例如 **CodePackageActivation:Code:SetupEntryPoint**) 包含程式碼封裝的名稱和進入點
+* **屬性**： 使用 hello 前置詞**CodePackageActivation**和包含 hello 名稱 hello 程式碼封裝以及 hello 進入點為 **CodePackageActivation:*CodePackageName*:*SetupEntryPoint/EntryPoint** * (例如， **CodePackageActivation:Code:SetupEntryPoint**)
 
 ### <a name="service-type-registration"></a>服務類型註冊
-**System.Hosting** 會回報為 OK。 如果註冊未及時完成 (使用 **ServiceTypeRegistrationTimeout**來設定)，則會回報錯誤。 如果執行階段已關閉，則會從節點取消註冊服務類型，且主機會回報警告。
+**System.Hosting**回報為 [確定]，如果已成功登錄 hello 服務類型。 它會報告錯誤，如果 hello 註冊未完成的時間 (依使用的設定**ServiceTypeRegistrationTimeout**)。 如果 hello 執行階段已關閉，hello 服務類型是 hello 節點從取消註冊，並裝載會回報警告。
 
 * **SourceId**：System.Hosting
-* **Property**：使用前置詞 **ServiceTypeRegistration**，並包含服務類型名稱 (例如，**ServiceTypeRegistration:FileStoreServiceType**)
+* **屬性**： 使用 hello 前置詞**ServiceTypeRegistration**和包含 hello 服務型別名稱 (例如， **ServiceTypeRegistration:FileStoreServiceType**)
 
-以下顯示顯示狀況良好的已部署服務封裝：
+下列範例中的 hello 顯示狀況良好的已部署的服務封裝：
 
 ```powershell
 PS C:\> Get-ServiceFabricDeployedServicePackageHealth -NodeName _Node_1 -ApplicationName fabric:/WordCount -ServiceManifestName WordCountServicePkg
@@ -599,7 +599,7 @@ HealthEvents               :
                              SentAt                : 7/14/2017 4:55:08 PM
                              ReceivedAt            : 7/14/2017 4:55:14 PM
                              TTL                   : Infinite
-                             Description           : The ServicePackage was activated successfully.
+                             Description           : hello ServicePackage was activated successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/14/2017 4:55:14 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -611,7 +611,7 @@ HealthEvents               :
                              SentAt                : 7/14/2017 4:55:08 PM
                              ReceivedAt            : 7/14/2017 4:55:14 PM
                              TTL                   : Infinite
-                             Description           : The CodePackage was activated successfully.
+                             Description           : hello CodePackage was activated successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/14/2017 4:55:14 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -623,30 +623,30 @@ HealthEvents               :
                              SentAt                : 7/14/2017 4:55:08 PM
                              ReceivedAt            : 7/14/2017 4:55:14 PM
                              TTL                   : Infinite
-                             Description           : The ServiceType was registered successfully.
+                             Description           : hello ServiceType was registered successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/14/2017 4:55:14 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
 ### <a name="download"></a>下載
-**System.Hosting** 會回報錯誤。
+**System.Hosting**報告錯誤，如 hello 服務封裝下載失敗。
 
 * **SourceId**：System.Hosting
 * **Property**：**Download:*RolloutVersion***
-* **後續步驟**：調查節點上下載失敗的原因。
+* **後續步驟**： 調查 hello 下載 hello 節點上失敗的原因。
 
 ### <a name="upgrade-validation"></a>升級驗證
-**System.Hosting** 會回報錯誤。
+**System.Hosting**報告錯誤，如果 hello 升級期間執行的驗證失敗，或如果 hello hello 節點上升級會失敗。
 
 * **SourceId**：System.Hosting
-* **Property**：使用 **FabricUpgradeValidation** 前置詞，並包含升級版本
-* **Description**：指出發生的錯誤
+* **屬性**： 使用 hello 前置詞**FabricUpgradeValidation**且包含 hello 升級版本
+* **描述**： 點 toohello 發生的錯誤
 
 ## <a name="next-steps"></a>後續步驟
 [檢視 Service Fabric 健康狀態報告](service-fabric-view-entities-aggregated-health.md)
 
-[如何回報和檢查服務健全狀況](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
+[Tooreport 並檢查服務健全狀況](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
 
 [在本機上監視及診斷服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 

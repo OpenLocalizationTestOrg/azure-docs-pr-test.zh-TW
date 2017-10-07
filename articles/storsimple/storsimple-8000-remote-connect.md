@@ -1,6 +1,6 @@
 ---
-title: "遠端連線至 StorSimple 裝置 | Microsoft Docs"
-description: "說明如何設定您的裝置以進行遠端管理，以及如何透過 HTTP 或 HTTPS 連線到 Windows PowerShell for StorSimple。"
+title: "aaaConnect 遠端 tooyour StorSimple 裝置 |Microsoft 文件"
+description: "說明如何 tooconfigure 進行遠端管理裝置以及如何 tooconnect tooWindows PowerShell for StorSimple 透過 HTTP 或 HTTPS。"
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -15,139 +15,139 @@ ms.workload: NA
 ms.date: 04/07/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ff76884f020a0fb8a1b48bd371c419bd65e85fd3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 38b6a6350891b9f6f8fdfc55880b2f47105d947c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-remotely-to-your-storsimple-8000-series-device"></a>遠端連線至 StorSimple 8000 系列裝置
+# <a name="connect-remotely-tooyour-storsimple-8000-series-device"></a>從遠端連線 tooyour StorSimple 8000 系列裝置
 
 ## <a name="overview"></a>概觀
 
-您可以透過 Windows PowerShell，從遠端連線到您的裝置。 當您以這種方式連線時，不會看到功能表。 (只有當您使用裝置上的序列主控台進行連線時，才會看到功能表)。使用 Windows PowerShell 遠端連線到特定的 Runspace。 您也可以指定顯示語言。
+您可以從遠端連接 tooyour 裝置透過 Windows PowerShell。 當您以這種方式連線時，不會看到功能表。 （您看到功能表只有當您使用 hello 序列主控台上 hello 裝置 tooconnect。）使用 Windows PowerShell 遠端功能，您可以連接 tooa 特定 runspace。 您也可以指定 hello 顯示語言。
 
-如需有關如何使用 Windows PowerShell 遠端來管理裝置的詳細資訊，請移至 [使用 Windows PowerShell for StorSimple 管理您的 StorSimple 裝置](storsimple-8000-windows-powershell-administration.md)。
+如需有關如何使用 Windows PowerShell 遠端執行功能 toomanage 裝置的詳細資訊，請移至太[使用 Windows PowerShell for StorSimple tooadminister StorSimple 裝置](storsimple-8000-windows-powershell-administration.md)。
 
-本教學課程說明如何設定您的裝置以進行遠端管理，以及如何連線到 Windows PowerShell for StorSimple。 您可以透過 Windows PowerShell 使用 HTTP 或 HTTPS 從遠端連線。 不過，當您決定如何連線到適用於 StorSimple 的 Windows PowerShell 時，請考慮下列資訊：
+本教學課程說明如何 tooconfigure 您的裝置進行遠端管理，然後如何 tooconnect tooWindows PowerShell for StorSimple。 您可以使用 HTTP 或 HTTPS tooremotely 透過 Windows PowerShell 連線。 不過，當您在決定如何 tooconnect tooWindows PowerShell for StorSimple，請考量下列資訊的 hello:
 
-* 直接連線至裝置序列主控台是安全的，但透過網路交換器連線至序列主控台則否。 透過網路交換器連線至裝置序列主控台時，請務必注意安全性風險。
-* 透過 HTTP 工作階段連線的安全性，比在網路上透過序列主控台連線更高。 雖然這不是最安全的方法，但在受信任的網路上是可接受的做法。
-* 透過 HTTP 工作階段連線並使用自我簽署憑證，是最安全且建議的選項。
+* 直接連接 toohello 裝置序列主控台安全，但不是透過網路交換器連接 toohello 序列主控台。 請小心 hello 安全性風險的 toohello 裝置序列主控台連接的網路交換器上時。
+* 透過 HTTP 工作階段連線，可能會提供更高的安全性，比起透過序列主控台的 hello hello 網路上。 雖然這不是 hello 最安全的方法，它是受信任的網路接受。
+* 透過使用自我簽署憑證的 HTTPS 工作階段連接是最安全的 hello 與 hello 建議的選項。
 
-您可以從遠端連線至 Windows PowerShell 介面。 不過，透過 Windows PowerShell 介面遠端存取您的 StorSimple 裝置依預設不會啟用。 您必須先在裝置上啟用遠端管理，然後在要用來存取裝置的用戶端上啟用。
+您可以從遠端連線 toohello Windows PowerShell 介面。 不過，預設不會啟用透過 hello Windows PowerShell 介面的遠端存取 tooyour StorSimple 裝置。 您必須首先，啟用 hello 裝置上的啟用遠端管理，並接著在 hello 用戶端，其使用的 tooaccess 您的裝置。
 
-本文章中所述的步驟是在執行 Windows Server 2012 R2 的主機系統上執行。
+這篇文章中所述的 hello 步驟未執行 Windows Server 2012 R2 的主機系統上執行。
 
 ## <a name="connect-through-http"></a>透過 HTTP 連線
 
-透過 HTTP 工作階段連線至 Windows PowerShell for StorSimple 的安全性，比透過 StorSimple 裝置的序列主控台連線更高。 雖然這不是最安全的方法，但在受信任的網路上是可接受的做法。
+透過 HTTP 工作階段已連線的 tooWindows PowerShell for StorSimple 提供更高的安全性，比起透過 hello StorSimple 裝置序列主控台。 雖然這不是 hello 最安全的方法，它是受信任的網路接受。
 
-您可以使用 Azure 入口網站或序列主控台來設定遠端管理。 選擇下列程序之一：
+您可以使用任一 hello Azure 入口網站或 hello 序列主控台 tooconfigure 遠端管理。 選取從下列程序的 hello:
 
-* [使用 Azure 入口網站來啟用透過 HTTP 的遠端管理](#use-the-azure-classic-portal-to-enable-remote-management-over-http)
-* [使用序列主控台啟用透過 HTTP 的遠端管理](#use-the-serial-console-to-enable-remote-management-over-http)
+* [透過 HTTP 使用 hello Azure 入口網站 tooenable 遠端管理](#use-the-azure-classic-portal-to-enable-remote-management-over-http)
+* [透過 HTTP 使用 hello 序列主控台 tooenable 遠端管理](#use-the-serial-console-to-enable-remote-management-over-http)
 
-啟用遠端管理後，使用下列程序準備遠端連線的用戶端。
+啟用遠端管理之後，使用下列程序的遠端連線 tooprepare hello 用戶端 hello。
 
-* [準備遠端連線的用戶端](#prepare-the-client-for-remote-connection)
+* [準備 hello 用戶端的遠端連線](#prepare-the-client-for-remote-connection)
 
-### <a name="use-the-azure-portal-to-enable-remote-management-over-http"></a>使用 Azure 入口網站來啟用透過 HTTP 的遠端管理
+### <a name="use-hello-azure-portal-tooenable-remote-management-over-http"></a>透過 HTTP 使用 hello Azure 入口網站 tooenable 遠端管理
 
-在 Azure 入口網站中執行下列步驟以啟用透過 HTTP 的遠端管理。
+執行下列步驟在 hello Azure 入口網站 tooenable 遠端管理透過 HTTP 的 hello。
 
-#### <a name="to-enable-remote-management-through-the-azure-portal"></a>透過 Azure 入口網站啟用遠端管理
+#### <a name="tooenable-remote-management-through-hello-azure-portal"></a>透過 Azure 入口網站 hello tooenable 遠端管理
 
-1. 移至您的 StorSimple 裝置管理員服務。 選取 [裝置]，然後選取並按一下您想要設定遠端管理的裝置。 移至 [裝置設定] > [安全性]。
-2. 在 [安全性設定] 刀鋒視窗中，按一下 [遠端管理]。
-3. 在 [遠端管理] 刀鋒視窗中，將 [啟用遠端管理] 設定為 [是]。
-4. 您現在可以選擇使用 HTTP 來連接。 (預設是透過 HTTPS 來連線。)請確定已選取 HTTP。
+1. 移 tooyour StorSimple 裝置管理員服務。 選取**裝置**然後選取並按一下您想要遠端管理 tooconfigure hello 裝置。 跳過**裝置設定 > 安全性**。
+2. 在 hello**安全性設定**刀鋒視窗中，按一下 **遠端管理**。
+3. 在 hello**遠端管理**刀鋒視窗中，設定**啟用遠端管理**太**是**。
+4. 您現在可以選擇使用 HTTP tooconnect。 （hello 預設會為 tooconnect over HTTPS）。請確定已選取 HTTP。
    
    > [!NOTE]
    > 只有受信任的網路上才接受透過 HTTP 來連接。
    
 5. 按一下 [儲存]，系統提示您進行確認時，選取 [是]。
 
-### <a name="use-the-serial-console-to-enable-remote-management-over-http"></a>使用序列主控台啟用透過 HTTP 的遠端管理
-在裝置的序列主控台上執行下列步驟以啟用遠端管理。
+### <a name="use-hello-serial-console-tooenable-remote-management-over-http"></a>透過 HTTP 使用 hello 序列主控台 tooenable 遠端管理
+執行下列步驟 hello 裝置序列主控台 tooenable 遠端管理的 hello。
 
-#### <a name="to-enable-remote-management-through-the-device-serial-console"></a>使用裝置序列主控台啟用遠端管理
-1. 在序列主控台的功能表中，選取選項 1。 如需有關如何使用裝置序列主控台的詳細資訊，請移至[透過裝置序列主控台連線到 Windows PowerShell for StorSimple](storsimple-8000-windows-powershell-administration.md#connect-to-windows-powershell-for-storsimple-via-the-device-serial-console)。
-2. 在出現提示時輸入： `Enable-HcsRemoteManagement –AllowHttp`
-3. 您會看到使用 HTTP 來連線至裝置的安全性漏洞的相關通知。 出現提示時，輸入 **Y**確認。
+#### <a name="tooenable-remote-management-through-hello-device-serial-console"></a>透過裝置序列主控台時，hello tooenable 遠端管理
+1. 在 hello 序列主控台功能表中，選取選項 1。 如需 hello 裝置上使用 hello 序列主控台的詳細資訊，請移太[tooWindows PowerShell for StorSimple 透過裝置序列主控台](storsimple-8000-windows-powershell-administration.md#connect-to-windows-powershell-for-storsimple-via-the-device-serial-console)。
+2. 在 hello 提示字元中，輸入：`Enable-HcsRemoteManagement –AllowHttp`
+3. Hello 安全性弱點，使用 HTTP tooconnect toohello 裝置的相關資訊，會通知您。 出現提示時，輸入 **Y**確認。
 4. 確認 HTTP 已啟用，做法是輸入: `Get-HcsSystem`
-5. 確認 [RemoteManagementMode] 欄位顯示 **HttpsAndHttpEnabled**。下圖顯示 PuTTY 中的這些設定。
+5. 請確認該 hello **RemoteManagementMode**  欄位會顯示**HttpsAndHttpEnabled**.hello 下列圖例會在 PuTTY 中顯示這些設定。
    
      ![序列 HTTPS 和 HTTP 已啟用](./media/storsimple-remote-connect/HCS_SerialHttpsAndHttpEnabled.png)
 
-### <a name="prepare-the-client-for-remote-connection"></a>準備遠端連線的用戶端
-在用戶端上執行下列步驟以啟用遠端管理。
+### <a name="prepare-hello-client-for-remote-connection"></a>準備 hello 用戶端的遠端連線
+執行下列步驟在 hello 的用戶端 tooenable 遠端管理的 hello。
 
-#### <a name="to-prepare-the-client-for-remote-connection"></a>準備遠端連線的用戶端
+#### <a name="tooprepare-hello-client-for-remote-connection"></a>tooprepare hello 用戶端的遠端連線
 1. 以系統管理員的身分開啟 Windows PowerShell工作階段。
-2. 輸入下列命令將 StorSimple 裝置的 IP 位址加入用戶端的信任的主機清單：
+2. 輸入下列命令 tooadd hello 的 hello StorSimple 裝置 toohello 用戶端的信任的主機清單的 IP 位址的 hello:
    
      `Set-Item wsman:\localhost\Client\TrustedHosts <device_ip> -Concatenate -Force`
    
-     以您的裝置的 IP 位址取代其中的 <device_ip>，例如： 
+     取代 <*device_ip*> hello IP 位址，為您的裝置; 例如： 
    
      `Set-Item wsman:\localhost\Client\TrustedHosts 10.126.173.90 -Concatenate -Force`
-3. 輸入下列命令將裝置認證儲存在變數中： 
+3. 輸入下列命令 toosave hello 裝置認證的變數中的 hello: 
    
     ```
     $cred = Get-Credential
     ```
     
-4. 在出現的對話方塊中：
+4. 在 [hello] 對話方塊中，會出現：
    
-   1. 以此格式輸入使用者名稱：device_ip\SSAdmin。
-   2. 輸入以安裝精靈設定裝置時設定的裝置管理員密碼。 預設密碼為 *Password1*。
-5. 輸入以下命令在裝置上啟動 Windows PowerShell 工作階段：
+   1. 輸入 hello 的使用者名稱格式如下： *device_ip\SSAdmin*。
+   2. 輸入 hello 裝置系統管理員密碼設定 hello 安裝精靈中的 hello 裝置時所設定。 hello 預設密碼為*Password1*。
+5. 啟動 Windows PowerShell 工作階段 hello 裝置上，輸入下列命令：
    
      `Enter-PSSession -Credential $cred -ConfigurationName SSAdminConsole -ComputerName <device_ip>`
    
    > [!NOTE]
-   > 若要建立與 StorSimple 虛擬裝置搭配使用的 Windows PowerShell 工作階段，請附加 `–Port` 參數，並指定您在 StorSimple 虛擬設備遠端處理中設定的公用連接埠。
+   > hello StorSimple 虛擬裝置搭配使用的 Windows PowerShell 工作階段的 toocreate 附加 hello`–Port`參數並指定您要設定遠端處理中 StorSimple 虛擬應用裝置 hello 公用連接埠。
    
    
-此時，您應該有個連線到裝置的使用中遠端 Windows PowerShell 工作階段。
+此時，您應該有作用中遠端 Windows PowerShell 工作階段 toohello 裝置。
    
 ![使用 HTTPS 進行 PowerShell 遠端處理](./media/storsimple-remote-connect/HCS_PSRemotingUsingHTTP.png)
 
 ## <a name="connect-through-https"></a>透過 HTTP 連線
 
-透過 HTTPS 工作階段連線到 Windows PowerShell for StorSimple，是從遠端連線至 Microsoft Azure StorSimple 裝置最安全且建議的方法。 下列程序說明如何設定序列主控台和用戶端電腦，讓您可以使用 HTTPS 連線到 Windows PowerShell for StorSimple。
+連接 tooWindows PowerShell for StorSimple，透過 HTTPS 工作階段是 hello 最安全且為建議的遠端連線 tooyour Microsoft Azure StorSimple 裝置的方法。 hello 下列程序說明如何設定 tooset hello 序列主控台及用戶端電腦以便您可以使用 HTTPS tooconnect tooWindows PowerShell for StorSimple。
 
-您可以使用 Azure 入口網站或序列主控台來設定遠端管理。 選擇下列程序之一：
+您可以使用任一 hello Azure 入口網站或 hello 序列主控台 tooconfigure 遠端管理。 選取從下列程序的 hello:
 
-* [使用 Azure 入口網站來啟用透過 HTTPS 的遠端管理](#use-the-azure-classic-portal-to-enable-remote-management-over-https)
-* [使用序列主控台啟用透過 HTTPS 的遠端管理](#use-the-serial-console-to-enable-remote-management-over-https)
+* [使用透過 HTTPS 的 hello Azure 入口網站 tooenable 遠端管理](#use-the-azure-classic-portal-to-enable-remote-management-over-https)
+* [使用透過 HTTPS 的 hello 序列主控台 tooenable 遠端管理](#use-the-serial-console-to-enable-remote-management-over-https)
 
-啟用遠端管理後，使用下列程序準備遠端管理的主機，並從該遠端主機連線至裝置。
+啟用遠端管理之後，請使用下列程序 tooprepare hello 主機遠端管理的 hello，並從 hello 遠端主機連接 toohello 裝置。
 
-* [準備遠端管理的主機](#prepare-the-host-for-remote-management)
-* [從遠端主機連線至裝置](#connect-to-the-device-from-the-remote-host)
+* [準備 hello 主機遠端管理](#prepare-the-host-for-remote-management)
+* [從 hello 遠端主機連接 toohello 裝置](#connect-to-the-device-from-the-remote-host)
 
-### <a name="use-the-azure-portal-to-enable-remote-management-over-https"></a>使用 Azure 入口網站來啟用透過 HTTPS 的遠端管理
+### <a name="use-hello-azure-portal-tooenable-remote-management-over-https"></a>使用透過 HTTPS 的 hello Azure 入口網站 tooenable 遠端管理
 
-在 Azure 入口網站中執行下列步驟以啟用透過 HTTPS 的遠端管理。
+執行下列步驟在 hello Azure 入口網站 tooenable 遠端管理透過 HTTPS 的 hello。
 
-#### <a name="to-enable-remote-management-over-https-from-the-azure-portal"></a>從 Azure 入口網站來啟用透過 HTTPS 的遠端管理
+#### <a name="tooenable-remote-management-over-https-from-hello-azure-portal"></a>tooenable 從遠端管理透過 HTTPS hello Azure 入口網站
 
-1. 移至您的 StorSimple 裝置管理員服務。 選取 [裝置]，然後選取並按一下您想要設定遠端管理的裝置。 移至 [裝置設定] > [安全性]。
-2. 在 [安全性設定] 刀鋒視窗中，按一下 [遠端管理]。
-3. 將 [啟用遠端管理] 設為 [是]。
-4. 您現在可以選擇使用 HTTPS 來連線。 (預設是透過 HTTPS 來連線。)請確定已選取 HTTPS。
-5. 按一下 [...]，然後按一下 [下載遠端管理憑證]。 指定要儲存此檔案的位置。 您必須將此憑證安裝在將用來連線到裝置的用戶端或主機電腦上。
+1. 移 tooyour StorSimple 裝置管理員服務。 選取**裝置**然後選取並按一下您想要遠端管理 tooconfigure hello 裝置。 跳過**裝置設定 > 安全性**。
+2. 在 hello**安全性設定**刀鋒視窗中，按一下 **遠端管理**。
+3. 設定**啟用遠端管理**太**是**。
+4. 您現在可以選擇 tooconnect 使用 HTTPS。 （hello 預設會為 tooconnect over HTTPS）。請確定已選取 HTTPS。
+5. 按一下 ...，然後按一下下載遠端管理憑證。 指定位置 toosave 這個檔案。 您需要 tooinstall hello 用戶端或主機電腦上的，您將使用 tooconnect toohello 裝置此憑證。
 6. 按一下 [儲存]，系統提示您進行確認時，按一下 [是]。
 
-### <a name="use-the-serial-console-to-enable-remote-management-over-https"></a>使用序列主控台啟用透過 HTTPS 的遠端管理
+### <a name="use-hello-serial-console-tooenable-remote-management-over-https"></a>使用透過 HTTPS 的 hello 序列主控台 tooenable 遠端管理
 
-在裝置的序列主控台上執行下列步驟以啟用遠端管理。
+執行下列步驟 hello 裝置序列主控台 tooenable 遠端管理的 hello。
 
-#### <a name="to-enable-remote-management-through-the-device-serial-console"></a>使用裝置序列主控台啟用遠端管理
-1. 在序列主控台的功能表中，選取選項 1。 如需有關如何使用裝置序列主控台的詳細資訊，請移至[透過裝置序列主控台連線到 Windows PowerShell for StorSimple](storsimple-8000-windows-powershell-administration.md#connect-to-windows-powershell-for-storsimple-via-the-device-serial-console)。
-2. 在出現提示時輸入：
+#### <a name="tooenable-remote-management-through-hello-device-serial-console"></a>透過裝置序列主控台時，hello tooenable 遠端管理
+1. 在 hello 序列主控台功能表中，選取選項 1。 如需 hello 裝置上使用 hello 序列主控台的詳細資訊，請移太[tooWindows PowerShell for StorSimple 透過裝置序列主控台](storsimple-8000-windows-powershell-administration.md#connect-to-windows-powershell-for-storsimple-via-the-device-serial-console)。
+2. 在 hello 提示字元中，輸入：
    
      `Enable-HcsRemoteManagement`
    
@@ -156,89 +156,89 @@ ms.lasthandoff: 07/11/2017
    
      `Get-HcsSystem`
    
-    確定 [RemoteManagementMode] 欄位顯示 **HttpsEnabled**。下圖顯示 PuTTY 中的這些設定。
+    請確定該 hello **RemoteManagementMode**  欄位會顯示**HttpsEnabled**.hello 下列圖例會在 PuTTY 中顯示這些設定。
    
      ![序列 HTTPS 已啟用](./media/storsimple-remote-connect/HCS_SerialHttpsEnabled.png)
-4. 從 `Get-HcsSystem`的輸出，複製裝置的序號，並儲存供稍後使用。
+4. 從 hello 輸出`Get-HcsSystem`、 複製 hello 裝置 hello 序號，並將它儲存供稍後使用。
    
    > [!NOTE]
-   > 序號對應至憑證中的 CN 名稱。
+   > hello 數列數字對應 toohello hello 憑證中的 CN 名稱。
    
 5. 取得遠端管理憑證，做法是輸入： 
    
      `Get-HcsRemoteManagementCert`
    
-    將出現類似以下的憑證。
+    會出現類似 toohello 後的憑證。
    
     ![取得遠端管理憑證](./media/storsimple-remote-connect/HCS_GetRemoteManagementCertificate.png)
-6. 複製憑證中從 **-----BEGIN CERTIFICATE-----** 到 **-----END CERTIFICATE-----** 的資訊到文字編輯器，如 [記事本]，然後將它儲存為 .cer 檔案。 (在您準備主機時，要將這個檔案複製到您的遠端主機)。
+6. 從 hello 憑證中複製 hello 資訊**---BEGIN CERTIFICATE---**太**---憑證結尾---**到文字編輯器例如記事本，並將它儲存為.cer 檔案。 （您將可以複製此檔案 tooyour 遠端主機當您準備 hello 主機）。
    
    > [!NOTE]
-   > 若要產生新的憑證，使用 `Set-HcsRemoteManagementCert` Cmdlet。
+   > toogenerate 新憑證時，使用 hello `Set-HcsRemoteManagementCert` cmdlet。
    
-### <a name="prepare-the-host-for-remote-management"></a>準備遠端管理的主機
+### <a name="prepare-hello-host-for-remote-management"></a>準備 hello 主機遠端管理
 
-若要準備使用 HTTPS 工作階段進行遠端連線的主機電腦，請執行下列程序：
+tooprepare hello 主機電腦的遠端連線使用 HTTPS 工作階段，執行下列程序的 hello:
 
-* [將 .cer 檔案匯入至用戶端或遠端主機的根存放區](#to-import-the-certificate-on-the-remote-host)。
-* [將裝置序號新增至遠端主機上的主機檔案](#to-add-device-serial-numbers-to-the-remote-host)。
+* [匯入 hello.cer 檔案的 hello 用戶端或遠端主機的 hello 根存放區](#to-import-the-certificate-on-the-remote-host)。
+* [Hello 裝置序號 toohello 主機將檔案加入您的遠端主機上](#to-add-device-serial-numbers-to-the-remote-host)。
 
-以下說明上述各程序。
+每個 hello 前面程序，如下所述。
 
-#### <a name="to-import-the-certificate-on-the-remote-host"></a>匯入遠端主機上的憑證
-1. 以滑鼠右鍵按一下.cer 檔案，選取 [ **安裝憑證**]。 這會啟動 [憑證匯入精靈]。
+#### <a name="tooimport-hello-certificate-on-hello-remote-host"></a>hello 遠端主機上的 tooimport hello 憑證
+1. Hello.cer 檔案上按一下滑鼠右鍵，然後選取**安裝憑證**。 這樣會啟動 hello 憑證匯入精靈。
    
     ![憑證匯入精靈 1](./media/storsimple-remote-connect/HCS_CertificateImportWizard1.png)
-2. [存放區位置] 請選取 [本機電腦]，然後按一下 [下一步]。
-3. 選取 [將所有憑證放入以下的存放區]，然後按一下 [瀏覽]。 導覽至遠端主機的根存放區，然後按一下 [ **下一步**]。
+2. 存放區位置 請選取 本機電腦，然後按一下下一步。
+3. 選取**將所有憑證都放入下列存放區的 hello**，然後按一下**瀏覽**。 巡覽至遠端主機，toohello 根存放區，然後按一下**下一步**。
    
     ![憑證匯入精靈  2](./media/storsimple-remote-connect/HCS_CertificateImportWizard2.png)
-4. 按一下 [完成] 。 會出現訊息告訴您匯入成功。
+4. 按一下 [完成] 。 出現訊息，告訴您 hello 匯入成功。
    
     ![憑證匯入精靈  3](./media/storsimple-remote-connect/HCS_CertificateImportWizard3.png)
 
-#### <a name="to-add-device-serial-numbers-to-the-remote-host"></a>將裝置序號新增至遠端主機
-1. 以管理員的身分啟動 [記事本]，然後開啟位於 \Windows\System32\Drivers\etc 的主機檔案。
-2. 將下列三個項目新增至主機檔案：**DATA 0 IP 位址**、**控制器 0 固定 IP 位址**、**控制器 1 固定 IP 位址**。
-3. 輸入您稍早儲存的裝置序號。 對應至 IP 位址，如下圖所示。 對於控制器 0 及控制器 1，在序號 (CN 名稱) 結尾後附加 **Controller0** 和 **Controller1**。
+#### <a name="tooadd-device-serial-numbers-toohello-remote-host"></a>tooadd 裝置序號 toohello 遠端主機
+1. 身為管理員，啟動 [記事本]，然後開啟位於 \Windows\System32\Drivers\etc 的 hello 主機檔案。
+2. 新增下列三個項目 tooyour 主機檔 hello: **DATA 0 IP 位址**，**控制器 0 固定 IP 位址**，和**控制器 1 固定 IP 位址**。
+3. 輸入您稍早儲存的 hello 裝置序列值。 將這個 toohello IP 位址 hello 下列影像所示。 針對控制器 0 及控制器 1，請附加**Controller0**和**Controller1**結尾 hello hello 序號 （CN 名稱）。
    
-    ![將 CN 名稱加入至主機檔案](./media/storsimple-remote-connect/HCS_AddingCNNameToHostsFile.png)
-4. 儲存主機檔案。
+    ![正在將 CN 名稱 toohosts 檔案](./media/storsimple-remote-connect/HCS_AddingCNNameToHostsFile.png)
+4. 儲存 hello 主機檔案。
 
-### <a name="connect-to-the-device-from-the-remote-host"></a>從遠端主機連線至裝置
+### <a name="connect-toohello-device-from-hello-remote-host"></a>從 hello 遠端主機連接 toohello 裝置
 
-使用 Windows PowerShell 和 SSL從遠端主機或用戶端進入您的裝置上的 SSAdmin 工作階段。 SSAdmin 工作階段會對應至裝置的[序列主控台](storsimple-8000-windows-powershell-administration.md#connect-to-windows-powershell-for-storsimple-via-the-device-serial-console)功能表中的選項 1。
+使用 Windows PowerShell 及 SSL tooenter 從遠端主機或用戶端裝置上的 SSAdmin 工作階段。 hello SSAdmin 工作階段對應 toooption 1 在 hello[序列主控台](storsimple-8000-windows-powershell-administration.md#connect-to-windows-powershell-for-storsimple-via-the-device-serial-console)功能表上，您的裝置。
 
-從您要建立遠端 Windows PowerShell 連線的電腦上執行下列程序。
+執行下列程序 hello 要從中 toomake hello 遠端 Windows PowerShell 連線的電腦上的 hello。
 
-#### <a name="to-enter-an-ssadmin-session-on-the-device-by-using-windows-powershell-and-ssl"></a>使用 Windows PowerShell 和 SSL進入 SSAdmin 工作階段
+#### <a name="tooenter-an-ssadmin-session-on-hello-device-by-using-windows-powershell-and-ssl"></a>使用 Windows PowerShell 及 SSL hello 裝置上的 SSAdmin 工作階段的 tooenter
 1. 以系統管理員的身分開啟 Windows PowerShell工作階段。
-2. 將裝置的 IP 位址新增至用戶端信任的主機，做法是輸入：
+2. 輸入以新增 hello 裝置 IP 位址 toohello 用戶端的受信任的主機：
    
      `Set-Item wsman:\localhost\Client\TrustedHosts <device_ip> -Concatenate -Force`
    
-    其中 <device_ip> 是您的裝置的 IP 位址，例如： 
+    其中 <*device_ip*> 是您的裝置 hello IP 位址。 例如： 
    
      `Set-Item wsman:\localhost\Client\TrustedHosts 10.126.173.90 -Concatenate -Force`
-3. 若要建立新認證，請輸入：
+3. toocreate 新的認證類型：
    
      `$cred = New-Object pscredential @("<IP of target device>\SSAdmin", (ConvertTo-SecureString -Force -AsPlainText "<Device Administrator Password>"))`
    
-    其中 <目標裝置的 IP> 是您的裝置的 DATA 0 的 IP 位址，例如之前影像中的主機檔案的 **10.126.173.90**。 此外，提供您的裝置的管理員密碼。
+    其中 <*目標裝置的 IP*> 是的 DATA 0 為您的裝置; hello IP 位址，例如**10.126.173.90** hello 前面 hello 主機檔案的映像中所示。 此外，提供您的裝置 hello 系統管理員密碼。
 4. 建立工作階段，做法是輸入：
    
      `$session = New-PSSession -UseSSL -ComputerName <Serial number of target device> -Credential $cred -ConfigurationName "SSAdminConsole"`
    
-    請為 Cmdlet 中的 -ComputerName 參數提供 <目標裝置的序號>。 此序號已對應至您的遠端主機上主機檔案中 DATA 0 的 IP 位址，如下圖所示的 **SHX0991003G44MT** 。
+    Hello 指令程式中的 hello-ComputerName 參數，提供 hello <*的目標裝置的序號*>。 這個序號對應 toohello hello 遠端主機; 上的 hosts 檔案中的 DATA 0 的 IP 位址例如， **SHX0991003G44MT** hello 下列影像所示。
 5. 輸入：
    
      `Enter-PSSession $session`
-6. 您必須等候幾分鐘，接著便會透過 SSL 經由 HTTPS 連線到您的裝置。 您會看到訊息，指出您已連線到裝置。
+6. 您將需要 toowait 幾分鐘的時間，就能透過 SSL 透過 HTTPS 連線的 tooyour 裝置。 您看到訊息，指出已連線的 tooyour 裝置。
    
     ![使用 HTTPS 和 SSL 進行 PowerShell 遠端處理](./media/storsimple-remote-connect/HCS_PSRemotingUsingHTTPSAndSSL.png)
 
 ## <a name="next-steps"></a>後續步驟
 
-* 深入了解 [使用 Windows PowerShell 來管理您的 StorSimple 裝置](storsimple-8000-windows-powershell-administration.md)。
-* 深入了解[使用 StorSimple 裝置管理員服務管理 StorSimple 裝置](storsimple-8000-manager-service-administration.md)。
+* 深入了解[使用您的 StorSimple 裝置的 Windows PowerShell tooadminister](storsimple-8000-windows-powershell-administration.md)。
+* 深入了解[使用您的 StorSimple 裝置 hello StorSimple 裝置管理員服務 tooadminister](storsimple-8000-manager-service-administration.md)。
 

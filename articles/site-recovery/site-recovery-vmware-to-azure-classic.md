@@ -1,6 +1,6 @@
 ---
-title: "在傳統入口網站中，將 VMware VM 與實體伺服器複寫到 Azure | Microsoft Docs"
-description: "本文描述如何部署 Azure Site Recovery，以協調內部部署 VMware 虛擬機器或 Windows/Linux 實體伺服器至 Azure 的複寫、容錯移轉和復原。"
+title: "aaaReplicate VMware Vm 和中的實體伺服器 tooAzure hello 傳統入口網站 |Microsoft 文件"
+description: "本文說明如何 toodeploy Azure Site Recovery tooorchestrate 複寫、 容錯移轉和復原的內部部署 VMware 虛擬機器和 Windows/Linux 實體伺服器 tooAzure。"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -16,55 +16,55 @@ ms.date: 06/23/2017
 ms.author: raynew
 ROBOTS: NOINDEX, NOFOLLOW
 redirect_url: site-recovery-vmware-to-azure
-ms.openlocfilehash: 73c3fb5cf4056ddb9554f598ec7f173d81802f17
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f85e4139ad45552ce963072e14d71d279bb7dac9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replicate-vmware-virtual-machines-and-physical-servers-to-azure-with-azure-site-recovery"></a>使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure
+# <a name="replicate-vmware-virtual-machines-and-physical-servers-tooazure-with-azure-site-recovery"></a>VMware 虛擬機器和實體伺服器與 Azure Site Recovery 的 tooAzure 複寫
 > [!div class="op_single_selector"]
-> * [Azure 入口網站](site-recovery-vmware-to-azure.md)
-> * [傳統入口網站](site-recovery-vmware-to-azure-classic.md)
-> * [傳統入口網站 (舊版)](site-recovery-vmware-to-azure-classic-legacy.md)
+> * [hello Azure 入口網站](site-recovery-vmware-to-azure.md)
+> * [hello 傳統入口網站](site-recovery-vmware-to-azure-classic.md)
+> * [hello 傳統入口網站 （舊版）](site-recovery-vmware-to-azure-classic-legacy.md)
 >
 >
 
-Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫、容錯移轉及復原 (BCDR) 策略，為您的商務持續性與災害復原做出貢獻。 機器可以複寫至 Azure，或次要的內部部署資料中心。 如需快速概觀，請參閱[什麼是 Azure Site Recovery？](site-recovery-overview.md)。
+hello Azure Site Recovery 服務是由協調複寫、 容錯移轉和復原的虛擬機器和實體伺服器提供 tooyour 業務續航力和災害復原 (BCDR) 策略。 電腦可以是複寫的 tooAzure 或 tooa 次要內部部署資料中心。 如需快速概觀，請參閱[什麼是 Azure Site Recovery？](site-recovery-overview.md)。
 
 ## <a name="overview"></a>概觀
 這篇文章說明如何：
 
-* **將 VMware 虛擬機器複寫至 Azure**：部署 Site Recovery 以協調內部部署 VMware 虛擬機器對 Azure 儲存體的複寫、容錯移轉和復原。
-* **將實體伺服器複寫至 Azure**：部署 Azure Site Recovery 以協調內部部署實體 Windows 和 Linux 伺服器至 Azure 的複寫、容錯移轉和復原。
+* **複製 VMware 虛擬機器 tooAzure**： 部署站台復原 toocoordinate 複寫、 容錯移轉和復原的內部部署 VMware 虛擬機器 tooAzure 存放裝置。
+* **複寫實體伺服器 tooAzure**： 部署 Azure Site Recovery toocoordinate 複寫、 容錯移轉和復原的內部部署實體 Windows 和 Linux 伺服器 tooAzure。
 
 > [!NOTE]
-> 本文說明如何複寫至 Azure。 如果您想要將 VMware VM 或 Windows/Linux 實體伺服器複寫至次要資料中心，請參閱 [Site Recovery VMware 至 VMware](site-recovery-vmware-to-vmware.md)。
+> 本文說明如何 tooreplicate tooAzure。 如果您想 tooreplicate VMware Vm 或 Windows/Linux 實體伺服器 tooa 次要資料中心，請參閱[站台復原 VMware tooVMware](site-recovery-vmware-to-vmware.md)。
 >
 >
 
-在這篇文章下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)中張貼意見或問題。
+將任何註解或問題張貼底部 hello 這份文件或在 hello [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
 ## <a name="enhanced-deployment"></a>增強部署
-本文包含 Azure 傳統入口網站中增強部署的指示。 建議您對所有新的部署使用這個版本。 如果您已經使用舊版來部署，建議您移轉到新的版本。 如需移轉的詳細資訊，請參閱 [Site Recovery VMware 至 Azure 的傳統舊版](site-recovery-vmware-to-azure-classic-legacy.md#migrate-to-the-enhanced-deployment)。
+本文會包含增強的部署指示 hello Azure 傳統入口網站中。 建議您對所有新的部署使用這個版本。 如果您已部署所使用 hello 舊版舊版，我們建議您將移轉 toohello 新版本。 如需有關移轉的詳細資訊，請參閱[舊版的站台復原 VMware tooAzure 傳統](site-recovery-vmware-to-azure-classic-legacy.md#migrate-to-the-enhanced-deployment)。
 
-增強部署是一項重大更新。 以下是我們所做的改良功能的摘要：
+增強的 hello 部署是一項重大更新。 以下是我們所做的 hello 加強功能摘要：
 
-* **Azure 中沒有基礎結構 VM**：資料會直接複寫到 Azure 儲存體帳戶。 此外，不必為複寫和容錯移轉來設定任何基礎結構 VM (例如組態伺服器或主要目標伺服器)，只有在舊版部署中才需要這樣做。  
+* **在 Azure 中的 Vm 沒有基礎結構**： 資料會直接複寫 tooan Azure 儲存體帳戶。 此外，沒有任何基礎結構的 Vm （例如設定伺服器或主要目標伺服器） 需要 tooset 適用於複寫和容錯移轉已 hello 舊版部署中需要。  
 * **整合安裝**：單一安裝可提供內部部署元件的簡單設定及延展性。
 * **安全部署**：所有流量都會加密，且複寫管理通訊會透過 HTTPS 443 傳送。
 * **復原點**：支援 Windows 和 Linux 環境中的當機和應用程式一致復原點，並同時支援單一 VM 和多個 VM 一致組態。
-* **測試容錯移轉**：支援非干擾性測試容錯移轉至 Azure，而不會影響實際執行或暫停複寫。
-* **非計劃性容錯移轉**：使用增強選項，在容錯移轉之前自動關閉 VM，支援非計劃性容錯移轉至 Azure。
-* **容錯回復**：整合式容錯回復，僅將有差異的變更複寫回內部部署網站。
+* **測試容錯移轉**： 支援非干擾性測試容錯移轉 tooAzure，而不會影響生產環境或暫停複寫。
+* **未規劃的容錯移轉**： 支援未規劃的容錯移轉 tooAzure 增強的選項 tooautomatically 與容錯移轉之前，關閉 Vm。
+* **容錯回復**： 整合式容錯回復複寫差異變更回 toohello 僅內部部署站台。
 * **vSphere 6.0**：有限制支援 VMware vSphere 6.0 部署。
 
 ## <a name="how-does-site-recovery-help-protect-virtual-machines-and-physical-servers"></a>Site Recovery 如何協助保護虛擬機器與實體伺服器？
-* VMware 系統管理員可以設定異地保護，保護 Azure 不受 VMware 虛擬機器上執行的商務工作負載和應用程式所影響。 伺服器管理員可以將實體內部部署 Windows 和 Linux 伺服器複寫至 Azure。
-* Azure Site Recovery 主控台提供單一位置以進行簡單的設定和複寫管理、容錯移轉及復原程序。
-* 如果複寫由 vCenter 伺服器管理的 VMware 虛擬機器，Site Recovery 就可以自動探索這些 VM。 如果機器位於 ESXi 主機，Site Recovery 會探索主機上的 VM。
-* 如果您執行從內部部署基礎結構至 Azure 的簡單容錯移轉，則可以從 Azure 容錯回復 (還原) 至內部部署網站中的 VMware VM 伺服器。
-* 您可以設定復原方案，將分散於多部機器上的應用程式工作負載聚集起來。 如果您容錯移轉這些方案，Site Recovery 提供多 VM 一致性，以便執行相同工作負載的機器可以同時復原到一致的資料點。
+* VMware 系統管理員可以設定異地保護措施 tooprotect Azure 從商業工作負載和 VMware 虛擬機器上執行的應用程式。 伺服器管理員可以將內部實體 Windows 和 Linux 伺服器 tooAzure 複寫。
+* hello Azure Site Recovery 主控台提供簡易的安裝和管理複寫、 容錯移轉和復原程序的單一位置。
+* 如果複寫由 vCenter 伺服器管理的 VMware 虛擬機器，Site Recovery 就可以自動探索這些 VM。 如果機器 ESXi 主機上，站台復原會探索 hello 主機上的 Vm。
+* 如果您是從您的內部部署基礎結構 tooAzure 執行簡單的容錯移轉，您無法從 Azure tooVMware VM hello 在內部部署站台伺服器備份 （還原）。
+* 您可以設定復原方案，將分散於多部機器上的應用程式工作負載聚集起來。 如果您容錯移轉的方案時，站台復原，讓執行可以是相同的工作負載的 hello 機器一起復原 tooa 一致的資料點，就會提供多重 VM 一致性。
 
 ## <a name="supported-operating-systems"></a>受支援的作業系統
 ### <a name="windows-64-bit-only"></a>Windows (僅 64 位元)
@@ -75,67 +75,67 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 ### <a name="linux-64-bit-only"></a>Linux (僅 64 位元)
 * Red Hat Enterprise Linux 6.7、7.1 和 7.2
 * CentOS 6.5、6.6、6.7、7.0、7.1 和 7.2
-* Oracle Enterprise Linux 6.4 和 6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3)
+* Oracle 6.4 和 6.5 執行任一 hello Red Hat Enterprise Linux 相容核心或以企業核心的第 3 版 (UEK3)
 * SUSE Linux Enterprise Server 11 SP3
 
 ## <a name="scenario-architecture"></a>案例架構
 案例元件：
 
-* **內部部署管理伺服器**：管理伺服器會執行 Site Recovery 元件：
+* **在內部部署管理伺服器**: hello 管理伺服器執行復原站台元件：
   * **組態伺服器**：協調通訊和管理資料複寫與復原程序。
-  * **處理序伺服器**：作為複寫閘道器。 從受保護的來源機器接收資料、以快取最佳化、壓縮和加密，以及將複寫資料傳送至 Azure 儲存體。 它還會處理用來保護機器的行動服務的推入安裝，並執行 VMWare VM 的自動探索。
+  * **處理序伺服器**：作為複寫閘道器。 從受保護的來源機器; 接收資料最佳化與快取、 壓縮和加密;和傳送複寫資料 tooAzure 存放區。 也會處理推入安裝的行動服務 tooprotected 機器，並執行的 VMware Vm 的自動探索。
   * **主要目標伺服器**：在從 Azure 容錯回復期間，處理複寫資料。
-    您也可以部署管理伺服器，僅做為處理序伺服器，以調整您的部署。
-* **行動服務**：此元件會部署在您想要複寫至 Azure 的每部機器上 (VMware VM 或實體伺服器)。 它會擷取在電腦上寫入的資料，並將它們轉送到處理序伺服器。
-* **Azure**：您不需要建立任何 Azure VM 來處理複寫及容錯移轉。 Site Recovery 服務會處理資料管理，且資料會直接複寫至 Azure 儲存體。 複寫的 Azure VM 只會在容錯移轉至 Azure 時自動啟動。 不過，如果您想要從 Azure 容錯回復至內部部署網站，您必須設定 Azure VM 做為處理序伺服器。
+    您也可以部署僅作為處理序伺服器 tooscale 部署管理伺服器。
+* **hello 行動服務**： 此元件部署在您想 tooreplicate tooAzure 每部電腦 （VMware VM 或實體伺服器） 上。 它會擷取 hello 機器上的資料寫入，並將它們轉送 toohello 處理序伺服器。
+* **Azure**： 您不需要 toocreate，任何 Azure Vm toohandle 複寫和容錯移轉。 hello Site Recovery 服務處理資料管理，而資料會直接複寫 tooAzure 儲存體。 複寫的 Azure Vm 會調整大小會自動只 tooAzure 容錯移轉發生時。 不過，如果您想 toofail 從 Azure toohello 在內部部署站台，您必須設定 Azure VM tooact tooset 的處理序伺服器。
 
-下列圖表 (由 Henry Robalino 建立) 顯示這些元件的互動情形︰
+hello 遵循 （Henry Robalino 所建立） 的圖形會顯示這些元件之間的互動：
 
 ![元件架構](./media/site-recovery-vmware-to-azure/v2a-architecture-henry.png)
 
 ## <a name="capacity-planning"></a>容量規劃
-當您規劃容量時，以下是需要考慮的項目：
+在您規劃容量時，以下是您需要 toothink 有關：
 
-* **來源環境**：容量規劃或 VMware 基礎結構和來源機器需求。
-* **管理伺服器**：針對執行 Site Recovery 元件的內部部署管理伺服器做規劃。
-* **從來源到目標的網路頻寬**：針對來源與 Azure 之間複寫所需的網路頻寬做規劃
+* **hello 來源環境**： 容量規劃或 hello VMware 基礎結構和來源電腦的要求。
+* **hello 管理伺服器**： 規劃 hello 內部部署站台復原 」 元件執行的管理伺服器。
+* **從來源 tootarget 的網路頻寬**： 規劃的 hello 來源與 Azure 之間的複寫所需的網路頻寬。
 
 ### <a name="source-environment-considerations"></a>來源環境考量
-* **每日變更率上限**︰受保護的機器只能使用一個處理序伺服器。 單一處理序伺服器每天最多可處理 2 TB 的資料變更。 因此，2 TB 是針對受保護機器支援的每日資料變更率上限。
-* **最大輸送量**：複寫的機器可以屬於 Azure 中的一個儲存體帳戶。 標準儲存體帳戶每秒可處理最多 20000 個要求，建議您將來源機器的 IOPS 數保持為 20000。 例如，如果您有一部具備 5 個磁碟的來源機器，並且在來源上的每個磁碟會產生 120 個 IOP (8 KB 大小)，則它會在 Azure 每個磁碟 IOPS 限制 500 之內。 儲存體帳戶所需的數目 = 來源 IOP 總計/20,000。
+* **每日變更率上限**︰受保護的機器只能使用一個處理序伺服器。 單一處理序伺服器可以處理的 too2 TB 的資料變更每日總。 因此，2 TB 為 hello 最大的每日資料變更率支援的受保護的機器。
+* **最大輸送量**： 複寫的機器可以隸屬 tooone 在 Azure 中的儲存體帳戶。 標準儲存體帳戶可以處理最多 20,000 每秒的要求，並建議您保留 hello IOPS 數目在來源機器 too20 000。 例如，如果您有 5 磁碟的來源電腦，而且每個磁碟會產生 hello 來源上的 120 IOPS （8 KB 的大小），它會在每個磁碟的 IOPS 限制為 500 hello Azure 內。 hello 所需的儲存體帳戶數目 = 總來源 IOPs/20，000。
 
 ### <a name="management-server-considerations"></a>管理伺服器考量
-管理伺服器會執行 Site Recovery 元件，這些元件會處理資料最佳化、複寫及管理。 它應該能夠處理受保護機器上執行的所有工作負載的每日變更率容量，並且有足夠頻寬可以持續將資料複寫到 Azure 儲存體。 具體而言：
+hello 管理伺服器會執行處理資料最佳化、 複寫和管理的站台復原元件。 它應該跨所有受保護的機器上執行的工作負載無法 toohandle hello 每日變更速率容量，而且它有足夠的頻寬 toocontinuously 備援儲存體，tooAzure 資料。 具體而言：
 
-* 處理序伺服器會從受保護的機器接收複寫資料，以快取最佳化、壓縮，並且在傳送至 Azure 之前加密。 管理伺服器應該有足夠的資源來執行這些工作。
-* 處理伺服器使用磁碟快取。 我們建議每個快取磁碟有 600 GB 以上的空間，以處理發生網路瓶頸或中斷時儲存的資料變更。 在部署期間，您可以在具有至少 5 GB 的可用儲存體的任何磁碟機上設定快取，但是 600 GB 是最低的建議。
-* 我們建議的最佳做法是管理伺服器位於與您想要保護的機器的相同網路與 LAN 區段上。 它可以位於不同的網路，但是您想要保護的機器應該具有 L3 網路可見性。
+* hello 處理序伺服器接收複寫資料從受保護的機器，並將它與快取、 壓縮和加密，再將它傳送 tooAzure 中調整。 hello 管理伺服器應該有足夠的資源 tooperform 這些工作。
+* hello 處理序伺服器會使用以磁碟為基礎的快取。 我們建議 600 GB 或更多的 toohandle 資料變更，儲存在網路瓶頸後或中斷 hello 事件不同的快取的磁碟。 在部署期間，您可以設定 hello 快取有至少 5 GB 的可用儲存空間，任何磁碟機上，而 600 GB hello 最小的建議。
+* 最佳做法，我們建議該 hello 管理伺服器位於 hello 相同網路和區域網路區段，做為 hello 想 tooprotect 機器。 它可以位於不同的網路，但您想 tooprotect 應有 L3 網路可見性 tooit 機器上。
 
-下表摘要說明管理伺服器的大小建議：
+下表中的 hello 摘要 hello 管理伺服器的大小建議：
 
 | **管理伺服器 CPU** | **記憶體** | **快取磁碟大小** | **資料變更率** | **受保護的機器** |
 | --- | --- | --- | --- | --- |
-| 8 個 vCPU (2 個插槽 * 4 核心 @ 2.5GHz) |16 GB |300 GB |500 GB 或更少 |以這些設定部署管理伺服器，以複寫少於 100 部的機器。 |
-| 12 個 vCPU (2 個插槽 * 6 核心 @ 2.5GHz) |18 GB |600 GB |500 GB 至 1 TB |以這些設定部署管理伺服器，以複寫少於 100-150 部的機器。 |
-| 16 個 vCPU (2 個插槽 * 8 核心 @ 2.5GHz) |32 GB |1 TB |1 TB 至 2 TB |以這些設定部署管理伺服器，以複寫少於 150-200 部的機器。 |
-| 部署另一個處理序伺服器 | | |> 2 TB |如果您要複寫 200 部以上的機器，或如果每日資料變更率超過 2 TB，部署額外的處理序伺服器。 |
+| 8 個 vCPU (2 個插槽 * 4 核心 @ 2.5GHz) |16 GB |300 GB |500 GB 或更少 |將管理伺服器使用這些設定 tooreplicate 少於 100 個機器的部署。 |
+| 12 個 vCPU (2 個插槽 * 6 核心 @ 2.5GHz) |18 GB |600 GB |500 GB too1 TB |使用這些設定 tooreplicate 100-150 機器中部署管理伺服器。 |
+| 16 個 vCPU (2 個插槽 * 8 核心 @ 2.5GHz) |32 GB |1 TB |1 TB too2 TB |使用這些設定 tooreplicate 150-200 機器中部署管理伺服器。 |
+| 部署另一個處理序伺服器 | | |> 2 TB |如果您要複寫 200 個以上的機器，或如果 hello 每日資料變更速率超過 2TB，請部署額外的處理序伺服器。 |
 
 其中：
 
 * 每個來源機器已設定各 100 GB 的 3 個磁碟。
 * 我們使用具有 RAID 10 的 8 個 10,000 RPM 的 SAS 磁碟機的效能評定儲存體以進行快取磁碟度量。
 
-### <a name="network-bandwidth-from-source-to-target"></a>從來源到目標的網路頻寬
-請確定您是使用[容量規劃工具](site-recovery-capacity-planner.md)來計算初始複寫和差異複寫所需的頻寬。
+### <a name="network-bandwidth-from-source-tootarget"></a>從來源 tootarget 的網路頻寬
+請確定您計算 hello 頻寬是必要的初始複寫和差異複寫使用 hello[產能規劃工具](site-recovery-capacity-planner.md)。
 
 #### <a name="throttling-bandwidth-used-for-replication"></a>用於複寫的節流頻寬
-複寫到 Azure 的 VMware 流量會通過特定的處理序伺服器。 您可以節流可用於該伺服器上 Site Recovery 複寫的頻寬，如下所示：
+VMware 複寫流量 tooAzure 會經過特定處理序伺服器。 您可以節流處理 hello 頻寬可供該伺服器上的站台復原複寫，如下所示：
 
-1. 開啟主要管理伺服器上或執行其他佈建處理序伺服器的管理伺服器上的 Microsoft Azure 備份 MMC 嵌入式管理單元。 根據預設，桌面上會建立 Microsoft Azure 備份的捷徑。 您也可以在 C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin 中找到它。
-2. 在嵌入式管理單元中，按一下 [變更屬性]。
+1. 開啟 Microsoft Azure 備份 MMC 嵌入式管理單元的 hello hello 主要管理伺服器上，或管理伺服器上執行其他佈建程序伺服器。 根據預設，hello 桌面上建立捷徑的 Microsoft Azure 備份。 您也可以在 C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin 中找到它。
+2. 在 hello 嵌入式管理單元，按一下 **變更屬性**。
 
     ![節流頻寬變更屬性](./media/site-recovery-vmware-to-azure-classic/throttle1.png)
-3. 在 [節流] 索引標籤中，指定可用於 Site Recovery 複寫的頻寬，以及適用的排程。
+3. 在 hello**節流**索引標籤上，指定可用於站台復原的複寫和 hello 適用排程的 hello 頻寬。
 
     ![節流頻寬複寫](./media/site-recovery-vmware-to-azure-classic/throttle2.png)
 
@@ -144,100 +144,100 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
     Set-OBMachineSetting -WorkDay $mon, $tue -StartWorkHour "9:00:00" -EndWorkHour "18:00:00" -WorkHourBandwidth (512*1024) -NonWorkHourBandwidth (2048*1024)
 
 #### <a name="maximizing-bandwidth-usage"></a>最大化頻寬使用量
-若要增加用於 Azure Site Recovery 複寫的頻寬，您必須變更登錄機碼。
+Azure Site Recovery 所使用的複寫 tooincrease hello 頻寬，您需要 toochange 登錄機碼。
 
-下列機碼可控制複寫時每個複寫磁碟使用的執行緒數目：
+hello 下列索引鍵的控制項 hello 每個磁碟的複寫，複寫時所使用的執行緒數目：
 
     HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Replication\UploadThreadsPerVM
 
- 在過度佈建的網路中，必須變更此登錄機碼的預設值。 我們支援最多 32 個。  
+ 在超量佈建的網路中，此登錄機碼必須 toobe 從其預設值變更。 我們支援最多 32 個。  
 
 如需容量規劃的詳細資訊，請參閱 [Site Recovery Capacity Planner](site-recovery-capacity-planner.md)。
 
 ### <a name="additional-process-servers"></a>額外處理序伺服器
-如果您要保護超過 200 部機器，或每日變更率大於 2 TB，您可以新增額外的伺服器以處理負載。 若要擴充，您可以：
+如果您需要 tooprotect 200 個以上的電腦或每日的變更率大於 2 TB，您可以新增其他伺服器 toohandle hello 負載。 tooscale 外的，您可以：
 
-* 增加管理伺服器的數目。 例如，您可以使用兩個管理伺服器保護最多 400 部機器。
-* 新增額外的處理序伺服器和使用這些項目來處理流量，而不是管理伺服器。
+* 增加 hello 管理伺服器的數目。 例如，您可以保護 too400 兩部管理伺服器的電腦。
+* 新增額外的處理序伺服器，然後使用這些 toohandle 流量，而不是 （或其他） hello 的管理伺服器。
 
 下表描述案例，其中：
 
-* 您設定原始管理伺服器僅做為組態伺服器。
+* 您為設定伺服器設定 hello 原始的管理伺服器 toouse。
 * 您設定額外的處理序伺服器。
-* 您設定受保護的虛擬機器以使用額外的處理序伺服器。
+* 設定受保護的虛擬機器 toouse hello 額外的處理序伺服器。
 * 每個受保護的來源機器已設定各 100 GB 的 3 個磁碟。
 
 | **原始管理伺服器**<br/><br/>(組態伺服器) | **額外處理序伺服器** | **快取磁碟大小** | **資料變更率** | **受保護的機器** |
 | --- | --- | --- | --- | --- |
 | 8 個 vCPU (2 個插槽 * 4 核心 @ 2.5GHz)，16 GB RAM |4 個 vCPU (2 個插槽 * 2 核心 @ 2.5GHz)，8 GB RAM |300 GB |250 GB 或更少 |您可以複寫 85 部或更少的機器。 |
-| 8 個 vCPU (2 個插槽 * 4 核心 @ 2.5GHz)，16 GB RAM |8 個 vCPU (2 個插槽 * 4 核心 @ 2.5GHz)，12 GB RAM |600 GB |250 GB 至 1 TB |您可以複寫 85-150 部機器。 |
-| 12 個 vCPU (2 個插槽 * 6 核心 @ 2.5GHz)，18 GB RAM |12 個 vCPU (2 個插槽 * 6 核心 @ 2.5GHz)，24 GB RAM |1 TB |1 TB 至 2 TB |您可以複寫 150-225 部機器。 |
+| 8 個 vCPU (2 個插槽 * 4 核心 @ 2.5GHz)，16 GB RAM |8 個 vCPU (2 個插槽 * 4 核心 @ 2.5GHz)，12 GB RAM |600 GB |250 GB too1 TB |您可以複寫 85-150 部機器。 |
+| 12 個 vCPU (2 個插槽 * 6 核心 @ 2.5GHz)，18 GB RAM |12 個 vCPU (2 個插槽 * 6 核心 @ 2.5GHz)，24 GB RAM |1 TB |1 TB too2 TB |您可以複寫 150-225 部機器。 |
 
-如何調整伺服器取決於相應增加或相應放大模型的喜好設定。 您部署幾個高階管理和處理序伺服器以相應增加，或使用較少的資源部署更多伺服器以相應放大。 例如，如果您需要保護 220 部機器，您可以執行下列任一項：
+如何調整伺服器取決於相應增加或相應放大模型的喜好設定。 您部署幾個高階管理和處理序伺服器以相應增加，或使用較少的資源部署更多伺服器以相應放大。 例如： 如果您需要 tooprotect 220 機器，您可以執行 hello 下列其中一項：
 
-* 設定具有 12 個 vCPU 和 18 GB RAM 的原始管理伺服器。 設定具有 12 個 vCPU 和 24 GB RAM 的額外處理序伺服器。 將受保護機器設定為只使用額外的處理序伺服器。
-* 設定兩部管理伺服器 (2 x 8 個 vCPU，16 GB RAM) 和兩個部額外的處理序伺服器 (1 x 8 個 vCPU 和 4vCPUs x 1，以處理 135 + 85 (220) 部機器)。 將受保護機器設定為只使用額外的處理序伺服器。
+* Hello 原始的管理伺服器設定與 12 Vcpu 18 GB 的 RAM。 設定具有 12 個 vCPU 和 24 GB RAM 的額外處理序伺服器。 設定受保護的機器 toouse 唯一 hello 額外的處理序伺服器。
+* 設定兩部管理伺服器 （2 x 8 Vcpu、 16 GB 的 RAM） 和兩個額外的處理序伺服器 （1 x 8 Vcpu、 4vCPUs x 1 toohandle 135 + 85 (220) 機器）。 設定受保護的機器 toouse 只有 hello 額外的處理序伺服器。
 
-依照[部署額外處理序伺服器](#deploy-additional-process-servers)中的指示，設定額外的處理序伺服器。
+請依照下列中的 hello 指示[部署額外的處理序伺服器](#deploy-additional-process-servers)tooset 額外的處理序伺服器。
 
 ## <a name="before-you-start-deployment"></a>開始部署之前
-下列資料表摘要說明部署此案例的必要條件。
+hello 表摘要說明在 hello 部署這個案例的必要條件。
 
 ### <a name="azure-prerequisites"></a>Azure 必要條件
 | **必要條件** | **詳細資料** |
 | --- | --- |
 | **Azure 帳戶** |您需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。 您可以從 [免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。 如需 Site Recovery 價格的詳細資訊，請參閱 [Site Recovery](https://azure.microsoft.com/pricing/details/site-recovery/)。 |
-| **Azure 儲存體** |您需要 Azure 儲存體帳戶來儲存複寫的資料。 複寫的資料會儲存在 Azure 儲存體，容錯移轉時會啟動 Azure VM。 <br/><br/>您需要一個[標準異地備援儲存體帳戶](../storage/storage-redundancy.md#geo-redundant-storage)。 此帳戶應與 Site Recovery 服務位於相同的區域，且與相同的訂用帳戶相關聯。 目前不支援複寫到進階儲存體帳戶，請勿使用。<br/><br/>我們不支援在資源群組之間移動使用 [Azure 入口網站](../storage/storage-create-storage-account.md)所建立的儲存體帳戶。 如需詳細資訊，請參閱 [Microsoft Azure 儲存體簡介](../storage/storage-introduction.md)。<br/><br/> |
-| **Azure 網路** |容錯移轉發生時，您需要 Azure VM 會連線的 Azure 虛擬網路。 Azure 虛擬網路必須位於與 Site Recovery 保存庫相同的區域中。<br/><br/>若要在容錯移轉之後容錯回復至 Azure，您需要設定從 Azure 網路到內部部署網站的 VPN 連線 (或 Azure ExpressRoute)。 |
+| **Azure 儲存體** |您需要 Azure 儲存體帳戶 toostore 複寫資料。 複寫的資料會儲存在 Azure 儲存體，容錯移轉時會啟動 Azure VM。 <br/><br/>您需要一個[標準異地備援儲存體帳戶](../storage/storage-redundancy.md#geo-redundant-storage)。 hello 與 hello Site Recovery 服務相同的區域並 hello 與相關聯 hello 帳戶必須屬於相同訂用帳戶。 複寫 toopremium 儲存體帳戶目前不支援和不應使用。<br/><br/>我們不支援移動使用 hello 所建立的儲存體帳戶[Azure 入口網站](../storage/storage-create-storage-account.md)跨越資源群組。 如需詳細資訊，請參閱[簡介 tooMicrosoft Azure 儲存體](../storage/storage-introduction.md)。<br/><br/> |
+| **Azure 網路** |您需要將連接 Azure Vm 的 Azure 虛擬網路 toowhen 容錯移轉，就會發生。 hello Azure 虛擬網路必須在 hello 與 hello Site Recovery 保存庫相同的區域。<br/><br/>toofail tooAzure 容錯移轉之後，您需要 VPN 連線 （或 Azure ExpressRoute） 設定從 hello Azure 網路 toohello 在內部部署站台。 |
 
 ### <a name="on-premises-prerequisites"></a>內部部署必要條件
 | **必要條件** | **詳細資料** |
 | --- | --- |
-| **管理伺服器** |您需要在虛擬機器或實體伺服器上執行的內部部署 Windows 2012 R2 伺服器。 所有的內部部署 Site Recovery 元件都會安裝在此管理伺服器上。<br/><br/> 我們建議您將伺服器部署為高可用的 VMware VM。 從 Azure 容錯回復到內部部署網站時一律是容錯回復到 VMware VM，無論您是容錯移轉 VM 還是實體伺服器。 如果您不將管理伺服器設定為 VMware VM，則必須設定個別的主要目標伺服器來做為 VMware VM，以接收容錯回復流量。<br/><br/>該伺服器不能是網域控制站。<br/><br/>該伺服器必須具有靜態 IP 位址。<br/><br/>伺服器的主機名稱必須少於或等於 15 個字元。<br/><br/>作業系統地區設定只能是英文版。<br/><br/>管理伺服器需要網際網路存取。<br/><br/>您需要下列來自伺服器的輸出存取：於 Site Recovery 元件設定期間需要在 HTTP 80 上取得暫時存取 (以下載 MySQL)、需要在 HTTPS 443 上針對複寫管理取得持續的輸出存取、需要在 HTTPS 9443 上針對複寫流量取得持續的輸出存取 (可修改此連接埠)。<br/><br/> 確定可以從管理伺服器存取這些 URL： <br/>- \*.hypervrecoverymanager.windowsazure.com<br/>- \*.accesscontrol.windows.net<br/>- \*.backup.windowsazure.com<br/>- \*.blob.core.windows.net<br/>- \*.store.core.windows.net<br/>- https://www.msftncsi.com/ncsi.txt<br/>- [ https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi](https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi " https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi")<br/><br/>如果您在伺服器上有以 IP 位址為基礎的防火牆規則，請檢查這些規則以允許對 Azure 的通訊。 您需要允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)和 HTTPS (443) 連接埠。 您也必須將訂用帳戶的 Azure 區域和美國西部的 IP 位址範圍列於允許清單。 [https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi](https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi " https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi") 是用來下載 MySQL 的 URL。 |
-| **VMware vCenter/ESXi 主機** |您需要一或多個 VMware vSphere ESX/ESXi Hypervisor 來管理您 VMware 虛擬機器，這些 Hypervisor 需執行具有最新更新項目的 6.0、5.5 或 5.1 版 ESX/ESXi。<br/><br/> 建議您部署 VMware vCenter 伺服器來管理您的 ESXi 主機。 它應該執行 vCenter 6.0 或 5.5 版 (含最新更新)。<br/><br/>請注意，Site Recovery 不支援新的 vCenter 和 vSphere 6.0 功能，例如跨 vCenter vMotion、虛擬磁碟區和儲存體 DRS。 Site Recovery 支援僅限於 5.5 版中可用的功能。 |
-| **受保護的機器** |**Azure**<br/><br/>您想要保護的機器應該要符合建立 Azure VM 的 [Azure 必要條件](site-recovery-prereq.md)。<br><br/>如果您想要在容錯移轉之後連線至 Azure VM，您必須在本機防火牆上啟用遠端桌面連線。<br/><br/>受保護機器上的個別磁碟容量不可超過 1023 GB。 VM 可以有多達 64 個磁碟 (因此多達 64 TB)。 如果您有容量大於 1 TB 的磁碟，請考慮使用資料庫複寫，例如 SQL Server Always On 或 Oracle Data Guard。<br/><br/>安裝磁碟機上必須至少有 2 GB 的可用空間來進行元件安裝。<br/><br/>不支援共用磁碟客體叢集。 如果您有叢集部署，請考慮使用資料庫複寫，例如 SQL Server Always On 或 Oracle Data Guard。<br/><br/>不支援整合可延伸韌體介面 (UEFI)/可延伸韌體介面 (EFI) 開機。<br/><br/>機器名稱應包含介於 1 到 63 個字元 (字母、數字和連字號)。 名稱必須以字母或數字開頭，並以字母或數字結尾。 機器受到保護之後，您可以修改 Azure 的名稱。<br/><br/>**VMware VM**<br/><br>您需要安裝 VMware vSphere PowerCLI 6.0。 管理伺服器上 (組態伺服器)。<br/><br/>您想要保護的 VMware VM 應該安裝並執行 VMware 工具。<br/><br/>如果來源 VM 具有 NIC 小組，它將會在容錯移轉至 Azure 後轉換成單一 NIC。<br/><br/>如果受保護的 VM 具有 iSCSI 磁碟，Site Recovery 會在 VM 容錯移轉至 Azure 後將受保護的 VM iSCSI 磁碟轉換成 VHD 檔案。 如果 Azure VM 可以觸達 iSCSI 目標，則它會連線到 iSCSI 目標，並且基本上查看兩個磁碟 – Azure VM 上的 VHD 磁碟和來源 iSCSI 磁碟。 在此情況下，您必須將出現在容錯移轉的 Azure VM 上的 iSCSI 目標中斷連線。<br/><br/>如需 Site Recovery 需要的 VMware 使用者權限的詳細資訊，請參閱 [vCenter 存取的 VMware 權限](#vmware-permissions-for-vcenter-access)。<br/><br/> **Windows Server 機器 (位於 VMware VM 或實體伺服器上)**<br/><br/>伺服器應該執行受支援的 64 位元作業系統：Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2 (至少為 SP1)。<br/><br/>作業系統應安裝在 C 磁碟機上，OS 磁碟應該是 Windows 基本磁碟  (OS 應該安裝在 Windows 動態磁碟上)。<br/><br/>針對 Windows Server 2008 R2 機器，您需要安裝 .NET Framework 3.5.1。<br/><br/>您必須提供系統管理員帳戶 (必須是 Windows 機器上的本機系統管理員)，以在 Windows 伺服器上推入安裝行動服務。 如果提供的帳戶是非網域帳戶，您必須停用本機電腦上的遠端使用者存取控制。 如需詳細資訊，請參閱[使用推入安裝來安裝行動服務](#install-the-mobility-service-with-push-installation)。<br/><br/>Site Recovery 支援具有 RDM 磁碟的 VM。 在容錯回復期間，如果原始來源 VM 和 RDM 磁碟可用，則 Site Recovery 會重複使用 RDM 磁碟。 如果它們都無法使用，在容錯回復期間，Site Recovery 會為每個磁碟建立新的 VMDK 檔案。<br/><br/>**Linux 機器**<br/><br/>您需要受支援的 64 位元作業系統：Red Hat Enterprise Linux 6.7；Centos 6.5、6.6 或 6.7；Oracle Enterprise Linux 6.4 或 6.5 (執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3))；SUSE Linux Enterprise Server 11 SP3。<br/><br/>受保護機器上的 /etc/hosts 檔案應該包含將本機主機名稱對應到所有網路介面卡相關聯之 IP 位址的項目。 <br/><br/>如果您想要在容錯轉移之後使用安全殼層用戶端 (ssh) 連線到執行 Linux 的 Azure 虛擬機器，請確認受保護機器上的安全殼層服務已設為在系統開機時自動啟動，且防火牆規則允許 ssh 與其連線。<br/><br/>保護只會針對具有下列儲存體的 Linux 機器啟用：檔案系統 (EXT3、ETX4、ReiserFS、XFS)；多重路徑軟體裝置對應工具 (多重路徑)；磁碟區管理員：(LVM2)。 不支援使用 HP CCISS 控制站儲存體的實體伺服器。 只有在 SUSE Linux Enterprise Server 11 SP3 上才支援 ReiserFS 檔案系統。<br/><br/>Site Recovery 支援具有 RDM 磁碟的 VM。 在 Linux 的容錯回復期間，Site Recovery 不會重複使用 RDM 磁碟。 而是會針對每個對應的 RDM 磁碟建立新的 VMDK 檔案。 |
+| **管理伺服器** |您需要在虛擬機器或實體伺服器上執行的內部部署 Windows 2012 R2 伺服器。 所有 hello 在內部部署站台復原元件會安裝此管理伺服器上。<br/><br/> 我們建議您部署高可用性的 VMware VM 的 hello 伺服器。 從 Azure 容錯回復 toohello 在內部部署站台一律是不論是否容錯 Vm 或實體伺服器 tooVMware Vm。 如果您未設定 hello 管理伺服器作為 VMware VM，您需要有個別的主要目標伺服器 tooset 作為 VMware VM tooreceive 容錯回復流量。<br/><br/>hello 伺服器不能在網域控制站。<br/><br/>hello 伺服器應該具有靜態 IP 位址。<br/><br/>hello hello 伺服器主機名稱應該是 15 個字元或更少。<br/><br/>應該只有英文 hello 作業系統地區設定。<br/><br/>hello 管理伺服器需要網際網路存取。<br/><br/>您需要從 hello 伺服器對外存取，如下所示： hello Site Recovery 元件 (toodownload MySQL); 在安裝期間在 HTTP 80 上的暫時存取權持續對外存取 HTTPS 443 上進行複寫管理;持續對外存取 HTTPS 9443 上 （可以修改此連接埠） 的複寫流量。<br/><br/> 請確定這些 Url 已從 hello 管理伺服器存取： <br/>- \*.hypervrecoverymanager.windowsazure.com<br/>- \*.accesscontrol.windows.net<br/>- \*.backup.windowsazure.com<br/>- \*.blob.core.windows.net<br/>- \*.store.core.windows.net<br/>- https://www.msftncsi.com/ncsi.txt<br/>- [https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi] (https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi " https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi")<br/><br/>如果您有 hello 伺服器上的 IP 位址為基礎的防火牆規則，請檢查 hello 規則允許通訊 tooAzure。 您需要 tooallow hello [Azure Datacenter IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)和 hello HTTPS (443) 連接埠。 您也需要 toowhitelist IP 位址範圍 hello Azure 區域，您的訂用帳戶，以及美國西部。 hello URL [https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi] (https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi " https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi")是下載 MySQL。 |
+| **VMware vCenter/ESXi 主機** |您需要一或多個 VMware vSphere ESX/ESXi hypervisor 管理 VMware 虛擬機器執行 ESX/ESXi 6.0、 5.5、 或 5.1 版與 hello 最新的更新。<br/><br/> 我們建議您部署 VMware vCenter server toomanage ESXi 主機。 它應執行 vCenter 版本 6.0 或 5.5 與 hello 最新的更新。<br/><br/>請注意，Site Recovery 不支援新的 vCenter 和 vSphere 6.0 功能，例如跨 vCenter vMotion、虛擬磁碟區和儲存體 DRS。 也是 5.5 版中可用的有限的 toofeatures 站台復原支援。 |
+| **受保護的機器** |**Azure**<br/><br/>您要讓 tooprotect 都應該符合機器[Azure 的必要條件](site-recovery-prereq.md)建立 Azure Vm。<br><br/>如果您想 tooconnect toohello Azure Vm 容錯移轉之後，您會需要 tooenable hello 本機防火牆上的遠端桌面連線。<br/><br/>受保護機器上的個別磁碟容量不可超過 1023 GB。 VM 可以有向上 too64 磁碟 （因此向上 too64 TB)。 如果您有容量大於 1 TB 的磁碟，請考慮使用資料庫複寫，例如 SQL Server Always On 或 Oracle Data Guard。<br/><br/>Hello 元件安裝的安裝磁碟機上的可用空間的最少 2 GB。<br/><br/>不支援共用磁碟客體叢集。 如果您有叢集部署，請考慮使用資料庫複寫，例如 SQL Server Always On 或 Oracle Data Guard。<br/><br/>不支援整合可延伸韌體介面 (UEFI)/可延伸韌體介面 (EFI) 開機。<br/><br/>機器名稱應包含介於 1 到 63 個字元 (字母、數字和連字號)。 hello 名稱必須以字母或數字開頭，並以字母或數字結尾。 受保護電腦之後，您可以修改 hello Azure 的名稱。<br/><br/>**VMware VM**<br/><br>您需要 tooinstall VMware vSphere PowerCLI 6.0。 hello 管理伺服器 （組態伺服器）。<br/><br/>VMware Vm 想 tooprotect 應該已安裝並執行的 VMware 工具。<br/><br/>如果 NIC 小組 hello 來源 VM，則會轉換 tooa tooAzure 容錯移轉之後的單一 NIC。<br/><br/>如果受保護的 Vm 有 iSCSI 磁碟時，站台復原轉換 hello 受保護 VM 的 iSCSI 磁碟到 VHD 檔案 hello VM 容錯移轉 tooAzure 時。 如果 iSCSI 目標可到達的 hello Azure VM，它將連接 tooiSCSI 目標和基本上查看兩個磁碟： hello hello Azure VM，hello 來源 iSCSI 磁碟上的 VHD 磁碟。 在此情況下，您需要 toodisconnect hello iSCSI 目標出現在 hello 上容錯移轉 Azure VM。<br/><br/>如需有關 hello VMware 使用者權限的站台復原需要請參閱[VMware vCenter 的存取權限](#vmware-permissions-for-vcenter-access)。<br/><br/> **Windows Server 機器 (位於 VMware VM 或實體伺服器上)**<br/><br/>hello 伺服器應執行支援的 64 位元作業系統： Windows Server 2012 R2、 Windows Server 2012 或 Windows Server 2008 R2 在最低 SP1。<br/><br/>hello 作業系統應該安裝在 C 磁碟機，和 hello OS 磁碟應該是 Windows 基本磁碟。 （hello OS 不應該安裝在 Windows 動態磁碟上）。<br/><br/>針對 Windows Server 2008 R2 機器，您需要 toohave.NET Framework 3.5.1 安裝。<br/><br/>您需要 tooprovide 系統管理員帳戶 （必須是 hello Windows 電腦上的本機系統管理員） hello 推入安裝 hello 行動服務在 Windows 伺服器上。 如果 hello 提供帳戶是在非網域帳戶，您會需要 toodisable hello 本機電腦上的遠端使用者存取控制。 如需詳細資訊，請參閱[安裝 hello 行動服務推入安裝](#install-the-mobility-service-with-push-installation)。<br/><br/>Site Recovery 支援具有 RDM 磁碟的 VM。 在容錯回復，Site Recovery 會重複使用 hello RDM 磁碟，如果原始來源 VM hello 和 RDM 磁碟可供使用。 如果它們都無法使用，在容錯回復期間，Site Recovery 會為每個磁碟建立新的 VMDK 檔案。<br/><br/>**Linux 機器**<br/><br/>您需要支援的 64 位元作業系統： Red Hat Enterprise Linux 6.7;Centos 6.5、 6.6 或 6.7;6.4 或 6.5 hello Red Hat 相容核心或以企業核心的第 3 版 (UEK3); 執行 oracle Enterprise LinuxSUSE Linux Enterprise Server 11 SP3。<br/><br/>受保護的機器上的 /etc/hosts 檔案應該包含所有網路介面卡相關都聯的 hello 本機主機名稱 tooIP 位址對應的項目。 <br/><br/>如果您想 tooconnect tooan Azure 虛擬機器執行 Linux 使用安全殼層用戶端 (ssh)，容錯移轉之後請 hello 受保護的電腦上的 hello Secure Shell 服務設定在系統開機時自動 toostart 和防火牆規則允許 ssh連接 tooit。<br/><br/>可以只啟用保護 Linux 機器 hello 下列儲存體： 檔案系統 （EXT3、 ETX4、 ReiserFS、 XFS）;多重路徑軟體裝置對應程式 （多重路徑）。大量管理員 (LVM2)。 不支援使用 HP CCISS 控制站儲存體的實體伺服器。 只有在 SUSE Linux Enterprise Server 11 SP3 上支援 hello ReiserFS 檔案系統。<br/><br/>Site Recovery 支援具有 RDM 磁碟的 VM。 適用於 Linux 的容錯回復，在站台復原不會重複使用 hello RDM 磁碟。 而是會針對每個對應的 RDM 磁碟建立新的 VMDK 檔案。 |
 
-僅適用於 Linux VM：確定您在 VMware 中將 VM 的組態參數設定設為 disk.enableUUID=true。 如果該資料列不存在，請新增一個。 這樣才能提供一致的 UUID 給 VMDK，使其可正確掛接。 如果沒有此設定，即使 VM 位於內部部署，容錯回復仍會造成完整的下載。 新增此設定會確保只有差異變更才會在容錯回復期間傳送回來。
+僅適用於 Linux VM： 確定您已設定 hello disk.enableUUID=true 設定在 hello hello VMware 中的 VM 組態參數。 如果此列不存在，請新增它。 這是必要的 tooprovide 一致的 UUID toohello VMDK，讓它正確掛載。 如果沒有此設定，即使 hello VM 內部容錯回復時，會導致完整下載。 新增此設定會確保只有差異變更才會在容錯回復期間傳送回來。
 
 ## <a name="step-1-create-a-vault"></a>步驟 1：建立保存庫
-1. 登入 [Azure 入口網站](https://manage.windowsazure.com/)。
+1. 登入 toohello [Azure 入口網站](https://manage.windowsazure.com/)。
 2. 展開 [資料服務]  >  [復原服務]，然後按一下 [Site Recovery 保存庫]。
 3. 按一下 [新建]  >  [快速建立]。
-4. 在 [ **名稱**] 中，輸入保存庫的易記識別名稱。
-5. 在 [地區] 中，選取保存庫的地理區域。 若要查看支援的地區，請參閱 [Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/)。
+4. 在**名稱**，輸入好記名稱 tooidentify hello 保存庫。
+5. 在**區域**，選取 hello hello 保存庫的地理區域。 支援的 toocheck 區域，請參閱[Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/)。
 6. 按一下 [建立保存庫] 。
     ![建立保存庫](./media/site-recovery-vmware-to-azure-classic/quick-start-create-vault.png)
 
-檢查狀態列，以確認是否順利建立保存庫。 保存庫在主要 [復原服務] 頁面上會列為 [使用中]。
+請檢查已成功建立 hello 保存庫的 hello 狀態列 tooconfirm。 hello 保存庫會列為**Active**上主要的 hello**復原服務**頁面。
 
 ## <a name="step-2-set-up-an-azure-network"></a>步驟 2：設定 Azure 網路
-設定 Azure 網路，讓 Azure VM 在容錯移轉之後連接到網路，以便容錯回復到內部部署網站可以正常運作。
+設定 Azure 網路，讓 Azure Vm 將會連接的 tooa 網路容錯移轉之後，並使錯誤後回復 toohello 內部部署站台可以如預期般運作。
 
-1. 在 Azure 入口網站中，選取 [建立虛擬網路]，並指定網路名稱、IP 位址範圍和子網路名稱。
-2. 如果您需要進行容錯回復，請將 VPN/ExpressRoute 新增至網路。 即使在容錯移轉之後，VPN/ExpressRoute 也可以新增至網路。
+1. 在 hello Azure 入口網站，選取 **建立虛擬網路**並指定 hello 網路名稱、 IP 位址範圍，以及子網路名稱。
+2. 如果您需要 toodo 容錯回復，新增 VPN/ExpressRoute toohello 網路。 VPN/ExpressRoute 可以加入容錯移轉之後，即使 toohello 網路。
 
 如需 Azure 網路的詳細資訊，請參閱[虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
 > [!NOTE]
-> 對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶[移轉網路](../azure-resource-manager/resource-group-move-resources.md)。
+> [移轉網路](../azure-resource-manager/resource-group-move-resources.md)跨越資源群組內 hello 相同訂用帳戶或訂用帳戶之間不支援的網路用來部署站台復原。
 >
 >
 
-## <a name="step-3-install-the-vmware-components"></a>步驟 3：安裝 VMware 元件
-如果您想要複寫 VMware 虛擬機器，請在管理伺服器上遵循下列步驟：
+## <a name="step-3-install-hello-vmware-components"></a>步驟 3： 安裝 hello VMware 元件
+如果您想 tooreplicate VMware 虛擬機器，請遵循下列步驟 hello 管理伺服器上：
 
 1. [下載](https://my.vmware.com/web/vmware/details?productId=491&downloadGroup=PCLI600R1) 並安裝 VMware vSphere PowerCLI 6.0。
-2. 重新啟動伺服器。
+2. 重新啟動伺服器 hello。
 
 ## <a name="step-4-download-a-vault-registration-key"></a>步驟 4：下載保存庫註冊金鑰
-1. 從管理伺服器，在 Azure 中開啟 Site Recovery 主控台。 在 [復原服務] 頁面中，按一下保存庫以開啟 [快速啟動] 頁面。 您也可以隨時可以按一下此圖示，開啟 [快速啟動] 頁面。
+1. 從 hello 管理伺服器上，開啟 hello Site Recovery 主控台在 Azure 中。 在 hello**復原服務**頁面上，按一下 hello 保存庫 tooopen hello**快速入門**頁面。 您也可以開啟 hello**快速入門**hello 圖示，即可隨時頁面。
 
     ![快速啟動圖示](./media/site-recovery-vmware-to-azure-classic/quick-start-icon.png)
-2. 在 [快速啟動] 頁面中，按一下 [準備目標資源]  > [下載註冊金鑰]。 註冊檔案會隨即自動產生。 該金鑰在產生後會維持五天有效。
+2. 在 hello**快速入門**頁面上，按一下**準備目標資源** > **下載註冊金鑰**。 hello 註冊檔會自動產生。 該金鑰在產生後會維持五天有效。
 
-## <a name="step-5-install-the-management-server"></a>步驟 5：安裝管理伺服器
+## <a name="step-5-install-hello-management-server"></a>步驟 5： 安裝 hello 管理伺服器
 > [!TIP]
-> 確定可以從管理伺服器存取這些 URL：
+> 請確定這些 Url 已從 hello 管理伺服器存取：
 >
 > * *.hypervrecoverymanager.windowsazure.com
 > * *.accesscontrol.windows.net
@@ -255,24 +255,24 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 
 
-1. 在 [快速啟動] 頁面中，將整合安裝檔案下載至伺服器。
-2. 執行安裝檔案以在 **Site Recovery 整合安裝**精靈啟動安裝程式。
-3. 在 [開始之前] 選取 [安裝組態伺服器和處理序伺服器]。
+1. 在 hello**快速入門**頁面上，下載 hello 一致的安裝檔案 toohello 伺服器。
+2. 執行 hello 安裝檔案 toostart 安裝程式在 hello **Site Recovery 整合安裝程式**精靈。
+3. 在**開始之前**，選取**hello 組態伺服器與處理序伺服器安裝**。
 
    ![開始之前](./media/site-recovery-vmware-to-azure-classic/combined-wiz1.png)
-4. 在 [協力廠商軟體授權] 中，按一下 [我接受] 來下載並安裝 MySQL。
+4. 在**第三方軟體授權**，按一下 **我接受**toodownload 並安裝 MySQL。
 
     ![協力廠商軟體](./media/site-recovery-vmware-to-azure-classic/combined-wiz105.PNG)
-5. 在 [註冊] 中，瀏覽並選取您從保存庫下載的註冊金鑰。
+5. 在**註冊**，瀏覽並選取您下載 hello 保存庫中的 hello 註冊金鑰。
 
     ![註冊](./media/site-recovery-vmware-to-azure-classic/combined-wiz3.png)
-6. 在 [網際網路設定] 中，指定在組態伺服器上執行的 Provider 將如何透過網際網路連線到 Azure Site Recovery。
+6. 在**網際網路設定**，指定如何 hello hello 組態伺服器上執行的提供者會連線透過網際網路 hello tooAzure 站台復原。
 
-   * 如果您想要使用機器上目前設定的 Proxy 來連線，請選取 [以現有的 Proxy 設定連線]。
-   * 如果您想要讓提供者直接連線，請選取 [不使用 Proxy 直接連線]。
-   * 如果現有的 Proxy 需要驗證，或是您想要讓提供者使用自訂 Proxy 來連線，請選取 [以自訂 Proxy 設定連線]。
-     * 如果您使用自訂 proxy，您必須指定位址、連接埠以及認證。
-     * 如果您使用 Proxy，您應該已經允許下列 URL：
+   * 如果您想 tooconnect 要與目前在 hello 機器設定的 hello proxy 時，選取**利用現有的 proxy 設定連線**。
+   * 若要直接 hello 提供者 tooconnect，選取**不使用 proxy 直接連線**。
+   * 如果 hello 現有 proxy 需要驗證，或是您想要 hello 提供者連接 toouse 自訂 proxy，請選取**使用自訂 proxy 設定連線**。
+     * 如果您使用自訂 proxy，您必須 toospecify hello 位址、 連接埠，以及認證。
+     * 如果您使用 proxy，您應該已經允許下列 Url 的 hello:
        * *.hypervrecoverymanager.windowsazure.com    
        * *.accesscontrol.windows.net
        * *.backup.windowsazure.com
@@ -281,37 +281,37 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
     ![防火牆](./media/site-recovery-vmware-to-azure-classic/combined-wiz4.png)
 
-1. 在 [必要條件檢查] 中，安裝程式會執行檢查來確定可以執行安裝。
+1. 在**必要條件檢查**，安裝程式會執行檢查 toomake 確定 hello 安裝可以執行。
 
     ![必要條件](./media/site-recovery-vmware-to-azure-classic/combined-wiz5.png)
 
-     如果出現有關「通用時間同步處理檢查」的警告，請確認系統時鐘上的時間 ([日期和時間] 設定) 與時區相同。
+     如果出現有關 hello 警告**通用時間同步處理檢查**，驗證 hello 系統時鐘的 hello 時間 (**日期和時間**設定) hello 相同與 hello 時區。
 
      ![時間同步問題](./media/site-recovery-vmware-to-azure-classic/time-sync-issue.png)
 
-1. 在 [MySQL 組態] 中，建立認證來登入將要安裝的 MySQL 伺服器執行個體。
+1. 在**MySQL 組態**，建立認證登入 toohello MySQL 伺服器執行個體將會安裝。
 
     ![MySQL](./media/site-recovery-vmware-to-azure-classic/combined-wiz6.png)
-2. 在 [環境詳細資料] 中，選取您是否要複寫 VMware VM。 如果是的話，安裝程式會檢查是否已安裝 PowerCLI 6.0。
+2. 在**環境詳細資料**，選取是否要 tooreplicate VMware Vm。 如果是的話，安裝程式會檢查是否已安裝 PowerCLI 6.0。
 
     ![MySQL](./media/site-recovery-vmware-to-azure-classic/combined-wiz7.png)
-3. 在 [安裝位置] 中，選取您要安裝二進位檔及儲存快取的位置。 您可以選取至少有 5 GB 可用磁碟空間的磁碟機，但我們建議快取磁碟機至少有 600 GB 的可用空間。
+3. 在**安裝位置**，選取您想 tooinstall hello 二進位檔和 hello 快取儲存。 您可以選取至少有 5 GB 可用磁碟空間的磁碟機，但我們建議快取磁碟機至少有 600 GB 的可用空間。
 
    ![安裝位置](./media/site-recovery-vmware-to-azure-classic/combined-wiz8.png)
-4. 在 [網路選取] 中，指定組態伺服器將用來傳送和接收複寫資料的接聽程式 (網路介面卡和 SSL 連接埠)。 您可以修改預設連接埠 (9443)。 除了此連接埠之外，網頁伺服器將會使用連接埠 443 來協調複寫作業。 請勿使用 443 來接收複寫流量。
+4. 在**網路選取項目**，指定 hello 接聽程式 （網路介面卡和 SSL 連接埠） 的 hello 組態伺服器可以傳送和接收複寫資料。 您可以修改 hello 預設連接埠 (9443)。 在加法 toothis 連接埠，會由協調複寫作業的網頁伺服器使用連接埠 443。 請勿使用 443 來接收複寫流量。
 
     ![網路選擇](./media/site-recovery-vmware-to-azure-classic/combined-wiz9.png)
 
 
 
-1. 在 [摘要] 中檢閱資訊，然後按一下 [安裝]。 安裝完成時，會產生複雜密碼。 在您啟用複寫時會需要它，所以請將它複製並保存在安全的位置。
+1. 在**摘要**，檢閱 hello 資訊，然後按一下**安裝**。 安裝完成時，會產生複雜密碼。 在您啟用複寫時會需要它，所以請將它複製並保存在安全的位置。
 
    ![摘要](./media/site-recovery-vmware-to-azure-classic/combined-wiz10.png)
 
 
 > [!WARNING]
-> 必須安裝 Microsoft Azure 復原服務代理程式 Proxy。
-> 安裝完成之後，從 Windows [開始] 功能表啟動 Microsoft Azure 復原服務殼層。 在開啟的命令視窗中，執行下列命令組來設定 Proxy 伺服器設定。
+> 必須設定 hello Microsoft Azure 復原服務代理程式 proxy。
+> Hello 安裝完成之後，請從 hello Windows [開始] 功能表中啟動 hello Microsoft Azure 復原服務介面。 在 hello 命令視窗中開啟，執行下列命令 tooset hello 的 proxy 伺服器設定組的 hello。
 >
 >
     $pwd = ConvertTo-SecureString -String ProxyUserPassword
@@ -321,62 +321,62 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 >
 
 
-### <a name="run-setup-from-the-command-line"></a>從命令列執行安裝程式
-您也可以從命令列執行整合精靈，如下所示：
+### <a name="run-setup-from-hello-command-line"></a>從 hello 命令列執行安裝程式
+您也可以執行 hello 統一的精靈從 hello 命令列，如下所示：
 
-    UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <IP address to be used for data transfer] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]
+    UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <IP address toobe used for data transfer] [/CSIP <IP address of CS toobe registered with>] [/PassphraseFilePath <Passphrase file path>]
 
 其中：
 
-* / ServerMode：必要。 指定安裝是否應該安裝組態和處理序伺服器或僅安裝處理序伺服器 (用來安裝額外的處理序伺服器)。 輸入值：CS、PS
-* InstallDrive：必要。 指定要安裝元件的資料夾。
-* /MySQLCredFilePath。 必要。 指定儲存 MySQL 伺服器認證的檔案的路徑。 取得範本以建立檔案。
-* /VaultCredFilePath。 必要。 保存庫認證檔的位置。
+* / ServerMode：必要。 指定 hello 安裝是否應該安裝 hello 組態和處理序伺服器或 hello 程序僅限伺服器 （使用的 tooinstall 額外的處理序伺服器）。 輸入值：CS、PS
+* InstallDrive：必要。 指定要安裝 hello 元件 hello 資料夾。
+* /MySQLCredFilePath。 必要。 指定 hello 路徑 tooa 檔案 hello MySQL 伺服器認證的儲存位置。 收到 hello 範本 toocreate hello 檔案。
+* /VaultCredFilePath。 必要。 Hello 保存庫認證檔案的位置。
 * /EnvType。 必要。 安裝類型。 值：VMware、NonVMware。
-* /PSIP 和 /CSIP。 必要。 處理序伺服器和組態伺服器 IP 位址。
-* /PassphraseFilePath。 必要。 複雜密碼檔案的位置。
-* /ByPassProxy。 選用。 指定不使用 Proxy 而連線至 Azure 的管理伺服器。
-* /ProxySettingsFilePath。 選用。 指定自訂 Proxy 的設定 (伺服器上需要驗證的預設 Proxy，或是自訂的 Proxy)。
+* /PSIP 和 /CSIP。 必要。 Hello 處理序伺服器和組態伺服器 IP 位址。
+* /PassphraseFilePath。 必要。 Hello 複雜密碼檔案的位置。
+* /ByPassProxy。 選用。 指定連接不使用 proxy tooAzure hello 管理伺服器。
+* /ProxySettingsFilePath。 選用。 指定自訂的 proxy (預設 proxy 需要驗證，hello 伺服器上) 或是自訂 proxy 設定。
 
-## <a name="step-6-set-up-credentials-for-the-vcenter-server"></a>步驟 6：設定 vCenter 伺服器的認證
+## <a name="step-6-set-up-credentials-for-hello-vcenter-server"></a>步驟 6： 設定 hello vCenter 伺服器的認證
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Enhanced-VMware-to-Azure-Discovery/player]
 >
 >
 
-處理序伺服器可以自動探索 vCenter 伺服器所管理的 VMware VM。 對於自動探索，Site Recovery 需要可以存取 vCenter 伺服器的帳戶和認證。 如果您只是複寫實體伺服器，則這無關緊要。
+hello 處理序伺服器可以自動探索 vCenter server 所管理的 VMware Vm。 自動探索，站台復原需求的帳戶和認證可存取 hello vCenter 伺服器。 如果您只是複寫實體伺服器，則這無關緊要。
 
-若要設定帳戶和認證︰
+tooset hello 帳戶和認證：
 
-1. 在 vCenter 伺服器上，建立擁有[必要權限](#vmware-permissions-for-vcenter-access)的 vCenter 層級角色 (**Azure_Site_Recovery**)。
-2. 將 **Azure_Site_Recovery** 角色指派給 vCenter 使用者。
+1. 在 hello vCenter 伺服器上，建立角色 (**Azure_Site_Recovery**) 層級 hello vCenter 以 hello[必要的權限](#vmware-permissions-for-vcenter-access)。
+2. 指派 hello **Azure_Site_Recovery**角色 tooa vCenter 使用者。
 
    > [!NOTE]
-   > VCenter 使用者帳戶具有唯讀角色，可以執行容錯移轉，而不需要關閉受保護的來源機器。 如果您想要關閉這些機器，您需要 Azure_Site_Recovery 角色。 如果您只是從 VMware 將 VM 移轉至 Azure，且不需要容錯回復，則唯讀角色已足夠。
+   > VCenter 使用者帳戶具有 hello 唯讀角色可以執行容錯移轉，而不會關閉受保護的來源機器。 如果您想 tooshut 關閉這些機器，您將需要 hello Azure_Site_Recovery 角色。 如果您只從 VMware tooAzure 移轉 Vm，不需要回 toofail hello 唯讀角色便已足夠。
    >
    >
-3. 若要新增帳戶，請開啟 **cspsconfigtool**。 它會在桌面上的捷徑，位於 [安裝位置]\home\svsystems\bin 資料夾。
-4. 在 [管理帳戶] 索引標籤中，按一下 [新增帳戶]。
+3. tooadd hello 帳戶，開啟**cspsconfigtool**。 它會充當 hello 桌面上的捷徑，位在 hello [安裝位置] \home\svsystems\bin 資料夾時。
+4. 在 hello**管理帳戶**索引標籤上，按一下 **新增帳戶**。
 
     ![新增帳戶](./media/site-recovery-vmware-to-azure-classic/credentials1.png)
-5. 在 [帳戶詳細資料] 中，新增可用來存取 vCenter 伺服器的認證。 可能要超過 15 分鐘，帳戶名稱才會出現在入口網站。 若要立即更新，請按一下 [組態伺服器] 索引標籤上的 [重新整理]。
+5. 在**帳戶詳細資料**，新增認證可以使用的 tooaccess hello vCenter 伺服器。 可能需要超過 15 分鐘的 hello 帳戶名稱 tooappear hello 入口網站中。 立即按一下 tooupdate**重新整理**上 hello**設定伺服器** 索引標籤。
 
     ![詳細資料](./media/site-recovery-vmware-to-azure-classic/credentials2.png)
 
 ## <a name="step-7-add-vcenter-servers-and-esxi-hosts"></a>步驟 7：新增 vCenter 伺服器和 ESXi 主機
-如果您是複寫 VMware VM，則需要新增 vCenter 伺服器 (或 ESXi 主機)。
+如果您要複寫 VMware Vm，您需要 tooadd vCenter 伺服器 （或 ESXi 主機）。
 
-1. 在 [伺服器] > [組態伺服器] 索引標籤上，選取 [新增 vCenter 伺服器]。
+1. 在 hello**伺服器** > **設定伺服器**索引標籤上，選取**新增 vCenter server**。
 
     ![vCenter](./media/site-recovery-vmware-to-azure-classic/add-vcenter1.png)
-2. 新增 vCenter 伺服器或 ESXi 主機詳細資料、您在上一個步驟中指定來存取 vCenter 伺服器的帳戶的名稱，以及將用來探索由 vCenter 伺服器管理的 VMware VM 的處理序伺服器。 vCenter 伺服器或 ESXi 主機應位於與安裝處理序伺服器所在的伺服器相同的網路中。
+2. 加入 hello vCenter server 或 ESXi 主機詳細資料，您指定 tooaccess hello vCenter 伺服器在 hello 先前步驟中，並將使用的 toodiscover hello vCenter server 所管理的 VMware Vm 的 hello 處理序伺服器 hello 帳戶 hello 名稱。 hello vCenter server 或 ESXi 主機應位於相同網路與 hello 伺服器處理序伺服器已安裝在哪些 hello hello。
 
    > [!NOTE]
-   > 如果您要以沒有 vCenter 或主機伺服器的系統管理員權限的帳戶新增 vCenter 伺服器或 ESXi 主機，請確認 vCenter 或 ESXi 帳戶已啟用這些權限：資料中心、資料存放區、資料夾、Jost、網路、資源、虛擬機器，vSphere 分散式切換。 vCenter 伺服器需要已啟用儲存體檢視權限。
+   > 如果您要加入 hello vCenter server 或帳戶 hello vCenter 或主機伺服器上沒有系統管理員權限的 ESXi 主機，請確定 hello vCenter 或 ESXi 帳戶已啟用這些權限： 資料中心、 資料存放區、 資料夾、 Jost，網路資源、 虛擬機器，以及 vSphere 分散式交換器。 hello vCenter server 必須啟用權限的 hello 儲存檢視表。
    >
    >
 
     ![新增 vCenter 伺服器](./media/site-recovery-vmware-to-azure-classic/add-vcenter2.png)
-3. 探索完成之後，vCenter 伺服器將會列在 [組態伺服器] 索引標籤上。
+3. 完成探索之後，hello vCenter 伺服器就會列在 hello**設定伺服器** 索引標籤。
 
     ![vCenter](./media/site-recovery-vmware-to-azure-classic/add-vcenter3.png)
 
@@ -385,73 +385,73 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 >
 >
 
-保護群組是虛擬機器或實體伺服器的邏輯群組，您想要使用相同的保護設定來保護這類群組。 您只要將保護設定套用至保護群組，這些設定就會套用至您新增至該群組中的所有機器 (虛擬或實體)。
+保護群組的虛擬機器邏輯群組或實體伺服器，您想要 tooprotect hello 相同保護設定。 套用保護設定 tooa 保護群組中，而這些設定套用的 tooall 機器 （虛擬或實體） 您新增 toohello 群組。
 
-1. 移至 [受保護的項目] > [保護群組]，然後按一下圖示以新增保護群組。
+1. 跳過**受保護項目** > **保護群組**按一下 hello 圖示 tooadd 保護群組。
 
     ![建立保護群組](./media/site-recovery-vmware-to-azure-classic/protection-groups1.png)
-2. 在 [指定保護群組設定] 頁面上，指定群組的名稱。 在 [從] 下拉式清單中，選取您要建立群組的組態伺服器。 [目標] 是 Microsoft Azure。
+2. 在 hello**指定保護群組設定**頁面上，指定 hello 群組的名稱。 在 hello**從**下拉式清單中，選取 hello 想 toocreate hello 群組的組態伺服器。 [目標] 是 Microsoft Azure。
 
     ![保護群組設定](./media/site-recovery-vmware-to-azure-classic/protection-groups2.png)
-3. 在 [指定複寫設定] 頁面上，設定將用於群組中所有機器的複寫設定。
+3. 在 hello**指定複寫設定**頁面上，設定將用於所有 hello 機器 hello 群組中的 hello 複寫設定。
 
     ![保護群組複寫](./media/site-recovery-vmware-to-azure-classic/protection-groups3.png)
 
-   * **多部 VM 一致性**：如果您開啟這項功能，則會在保護群組中的機器之間，建立共用的應用程式一致復原點。 當保護群組中的所有機器都執行相同的工作負載時，這項設定就可以發揮最高的重要性。 所有機器都將復原到相同的資料點。 無論您是複寫 VMware VM 或實體伺服器 (Windows/Linux)，這都可以使用。
-   * **RPO 臨界值**：設定 RPO。 當連續資料保護複寫超過設定的 RPO 臨界值時，就會產生警示。
-   * **復原點保留期**：指定保留週期。 受保護的機器可以復原到這個週期內的任意點。
+   * **多重 VM 一致性**： 如果您開啟此選項，它會 hello 保護群組中的 hello 電腦上建立共用的應用程式一致復原點。 當 hello 保護群組中的所有電腦都在都執行這項設定就非常重要 hello 相同的工作負載。 所有機器將都會復原的 toohello 相同的資料點。 無論您是複寫 VMware VM 或實體伺服器 (Windows/Linux)，這都可以使用。
+   * **RPO 臨界值**： 集 hello RPO。 Hello 持續資料保護複寫超過 hello 設定 RPO 臨界值時，會產生警示。
+   * **復原點保留**： 指定 hello 保留視窗。 受保護的電腦可以是復原 tooany 這個視窗內的點。
    * **應用程式一致的快照頻率**：指定每隔多久建立包含應用程式一致快照集的復原點。
 
-選取此核取記號會以您指定的名稱建立保護群組。 此外，會以名稱 *protection-group-name*-Failback 建立第二個保護群組。 如果您在容錯移轉至 Azure 之後容錯回復到內部部署網站，會使用此保護群組。 您可以監視保護群組，因為它們是在 [受保護的項目]  頁面上建立的。
+當您選取 hello 核取記號時，您指定的 hello 名稱建立保護群組。 此外，第二個保護群組建立 hello 名稱*保護群組名稱*-容錯回復。 如果您無法回復 toohello 在內部部署站台容錯移轉 tooAzure 之後，會使用此保護群組。 您可以監視 hello 保護群組建立在 hello**受保護項目**頁面。
 
-## <a name="step-9-install-the-mobility-service"></a>步驟 9：安裝行動服務
-啟用虛擬機器和實體伺服器保護的第一個步驟是安裝行動服務。 您可以使用兩種方式執行此動作：
+## <a name="step-9-install-hello-mobility-service"></a>步驟 9： 安裝 hello 行動服務
+hello 中啟用保護的虛擬機器和實體伺服器的第一個步驟是 tooinstall hello 行動服務。 您可以使用兩種方式執行此動作：
 
-* 從處理序伺服器自動推入並在每一部機器上安裝服務。 當您將機器新增至已在執行適當版本行動服務的保護群組時，就不會發生推入安裝。 您也可以使用企業推入方法，例如 WSUS 或 System Center Configuration Manager，以自動安裝服務。 請確定您在執行這項操作之前已設定管理伺服器。
-* 在您想要保護的每部機器上手動安裝服務。 請確定您在執行這項操作之前已設定管理伺服器。
+* 自動推入，並從 hello 處理序伺服器的每部機器上安裝 hello 服務。 當您新增機器 tooa 保護群組，且它們已在執行適當版本的 hello 行動服務時，將不會發生推入安裝。 您可以使用您的企業發送方法，例如 WSUS 或 System Center Configuration Manager，也會自動安裝 hello 服務。 請確定您已設定 hello 管理伺服器之前執行這項操作。
+* 您想 tooprotect 每部機器上手動安裝 hello 服務。 請確定您已設定 hello 管理伺服器之前執行這項操作。
 
-### <a name="install-the-mobility-service-with-push-installation"></a>使用推入安裝來安裝行動服務
-當您將機器加入保護群組時，行動服務會自動由處理序伺服器推入並安裝於每部機器上。
+### <a name="install-hello-mobility-service-with-push-installation"></a>安裝 hello 行動服務推入安裝
+當您新增機器 tooa 保護群組時，hello 行動服務會自動推入，並且由 hello 處理序伺服器安裝在每部電腦上。
 
 #### <a name="prepare-for-automatic-push-on-windows-machines"></a>準備在 Windows 機器上自動推入
-準備 Windows 機器，讓處理序伺服器可以自動安裝行動服務：
+hello 處理序伺服器可以自動安裝 tooprepare Windows 電腦，因此，hello 行動服務：
 
-1. 建立可供處理序伺服器存取機器的帳戶。 帳戶應該具有系統管理員權限 (本機或網域)。 這些認證只用於行動服務的推入安裝。
+1. 建立該 hello 處理序伺服器可以使用 tooaccess hello 機器帳戶。 hello 帳戶應擁有系統管理員權限 （本機或網域）。 這些認證只用於 hello 行動服務推入安裝。
 
    > [!NOTE]
-   > 如果您未使用網域帳戶，您必須停用本機電腦上的遠端使用者存取控制。 若要執行此動作，請在登錄的 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System 下，新增 DWORD 登錄 LocalAccountTokenFilterPolicy，值為 1 以下。 若要透過 CLI 開啟命令或使用 PowerShell 來新增登錄項目，請輸入 **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`**。
+   > 如果您不使用網域帳戶，您必須 toodisable hello 本機電腦上的遠端使用者存取控制。 toodo，hello HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System，底下的登錄中新增 hello DWORD 項目 LocalAccountTokenFilterPolicy 的值是 1 下。 開啟命令 tooadd hello 登錄項目從 CLI，或使用 PowerShell，輸入 **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`** 。
    >
    >
-2. 對於您想要保護之機器的 Windows 防火牆，選取 [允許應用程式或功能通過防火牆]，並啟用 [檔案及印表機共用] 和 [Windows Management Instrumentation]。 針對隸屬於網域中的機器，您可以利用 GPO 設定防火牆原則。
+2. 您想 tooprotect hello 機器上的 Windows 防火牆，請選取**允許的應用程式或功能通過防火牆**，並啟用**檔案及印表機共用**和**Windows 管理檢測**。 針對屬於 tooa 網域的機器，您可以設定 hello 防火牆原則的 GPO。
 
    ![防火牆設定](./media/site-recovery-vmware-to-azure-classic/mobility1.png)
-3. 新增您所建立的帳戶：
+3. 加入您所建立的 hello 帳戶：
 
-   * 開啟 **cspsconfigtool**。 它會在桌面上的捷徑，位於 [安裝位置]\home\svsystems\bin 資料夾。
-   * 在 [管理帳戶] 索引標籤中，按一下 [新增帳戶]。
-   * 新增您所建立的帳戶。 新增帳戶之後，當您將機器加入保護群組時，您必須提供這些認證。
+   * 開啟 **cspsconfigtool**。 它會充當 hello 桌面上的捷徑，位在 hello [安裝位置] \home\svsystems\bin 資料夾時。
+   * 在 hello**管理帳戶**索引標籤上，按一下 **新增帳戶**。
+   * 新增您所建立的 hello 帳戶。 您將加入 hello 帳戶之後，您將需要 tooprovide hello 認證新增機器 tooa 保護群組。
 
 #### <a name="prepare-for-automatic-push-on-linux-servers"></a>準備在 Linux 伺服器上自動推入
-1. 確定您要保護的 Linux 機器受到支援，如 [內部部署必要條件](#on-premises-prerequisites)中所述。 請確保您想要保護的電腦與執行處理序伺服器的管理伺服器之間的網路連線能力。
-2. 建立可供處理序伺服器存取機器的帳戶。 帳戶應該是來源 Linux 伺服器上的根使用者。 這些認證只用於行動服務的推入安裝。
+1. 請確定您想要支援 tooprotect 中所述的 hello Linux 機器[在內部部署必要條件](#on-premises-prerequisites)。 請確認有網路連線之間 hello 機器想 tooprotect 和 hello 執行 hello 處理序伺服器的管理伺服器。
+2. 建立該 hello 處理序伺服器可以使用 tooaccess hello 機器帳戶。 hello 帳戶應為 hello 來源 Linux 伺服器上的根使用者。 這些認證只用於 hello 行動服務推入安裝。
 
-   * 開啟 **cspsconfigtool**。 它會在桌面上的捷徑，位於 [安裝位置]\home\svsystems\bin 資料夾。
-   * 在 [管理帳戶] 索引標籤中，按一下 [新增帳戶]。
-   * 新增您所建立的帳戶。 新增帳戶之後，當您將機器加入保護群組時，您必須提供這些認證。
-3. 檢查來源 Linux 伺服器上的 /etc/hosts 檔案包含將本機主機名稱對應到所有網路介面卡相關聯之 IP 位址的項目。
-4. 在您想要保護的電腦上安裝最新的 openssh、openssh-server、openssl 套件。
+   * 開啟 **cspsconfigtool**。 它會充當 hello 桌面上的捷徑，位在 hello [安裝位置] \home\svsystems\bin 資料夾時。
+   * 在 hello**管理帳戶**索引標籤上，按一下 **新增帳戶**。
+   * 新增您所建立的 hello 帳戶。 您將加入 hello 帳戶之後，您將需要 tooprovide hello 認證新增機器 tooa 保護群組。
+3. 請檢查該 hello /etc/hosts 檔案 hello 來源 Linux 伺服器包含 hello 與所有網路介面卡相關聯的本機主機名稱 tooIP 位址對應的項目上。
+4. 您想 tooprotect hello 機器上安裝 hello 最新的 openssh、 openssh 伺服器和 openssl 封裝。
 5. 請確定 SSH 已啟用且正在連接埠 22 上執行。
-6. 在 sshd_config 檔案中啟用 SFTP 子系統與密碼驗證，如下所示：
+6. 啟用 hello sshd_config 檔案中的 SFTP 子系統和密碼驗證，如下所示：
 
    * 以 root 的身分登入。
-   * 在 /etc/ssh/sshd_config 檔案中，尋找以 PasswordAuthentication 開頭的行。
-   * 取消該行的註解並將值從 **no** 變更為 **yes**。
-   * 尋找以 **Subsystem** 為開頭的行並取消其註解。
+   * 在 hello /etc/ssh/sshd_config 檔案中，尋找開頭為 PasswordAuthentication hello 列。
+   * Hello 行取消註解，並將變更從 hello 值**沒有**太**是**。
+   * 尋找 hello 行開頭為**子系統**和 hello 行取消註解。
 
      ![沒有子系統的 Linux 覆寫預設值](./media/site-recovery-vmware-to-azure-classic/mobility2.png)
 
-### <a name="install-the-mobility-service-manually"></a>手動安裝行動服務
-安裝程式位於 C:\Program Files (x86)\Microsoft Azure Site Recovery\home\svsystems\pushinstallsvc\repository。
+### <a name="install-hello-mobility-service-manually"></a>手動安裝 hello 行動服務
+C:\Program Files (x86) \Microsoft Azure Site Recovery\home\svsystems\pushinstallsvc\repository hello 安裝程式可用。
 
 | 來源作業系統 | 行動服務安裝檔案 |
 | --- | --- |
@@ -460,268 +460,268 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 | SUSE Linux Enterprise Server 11 SP3 (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_SLES11-SP3-64_*release.tar.gz |
 | Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_OL6-64_*release.tar.gz |
 
-#### <a name="install-the-mobility-service-manually-on-a-windows-server"></a>在 Windows 伺服器上手動安裝行動服務
-1. 下載並執行相關安裝程式。
+#### <a name="install-hello-mobility-service-manually-on-a-windows-server"></a>Windows server 上手動安裝 hello 行動服務
+1. 下載並執行 hello 相關的安裝程式。
 2. 在 [開始之前] 中，選取 [行動服務]。
 
     ![行動服務安裝](./media/site-recovery-vmware-to-azure-classic/mobility3.png)
-3. 在 [組態伺服器詳細資料] 中，指定管理伺服器的 IP 位址，以及您安裝管理伺服器元件時所產生的複雜密碼。 您可以在管理伺服器上執行 **<SiteRecoveryInstallationFolder>\home\sysystems\bin\genpassphrase.exe –n**，以取得複雜密碼。
+3. 在**組態伺服器詳細資料**、 指定 hello hello 管理伺服器的 IP 位址和 hello 安裝 hello 管理伺服器元件時所產生的複雜密碼。 您可以藉由執行擷取 hello 複雜密碼 **<SiteRecoveryInstallationFolder>\home\sysystems\bin\genpassphrase.exe – n** hello 管理伺服器上。
 
     ![行動服務](./media/site-recovery-vmware-to-azure-classic/mobility6.png)
-4. 在 [安裝位置] 中，保留預設位置，然後按 [下一步] 開始安裝。
-5. 在 [安裝進度] 中檢查安裝，並在系統提示時重新啟動機器。
+4. 在**安裝位置**、 保留 hello 預設位置，然後按一下 **下一步**toobegin 安裝。
+5. 在**安裝進度**，請檢查安裝並重新啟動 hello 機器，如果出現提示。
 
-您也可以在命令列輸入下列文字來安裝︰
+您也可以輸入下列文字 hello 命令列的 hello 安裝：
 
-    UnifiedAgent.exe [/Role <Agent/MasterTarget>] [/InstallLocation <Installation Directory>] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>] [/LogFilePath <Log File Path>]
+    UnifiedAgent.exe [/Role <Agent/MasterTarget>] [/InstallLocation <Installation Directory>] [/CSIP <IP address of CS toobe registered with>] [/PassphraseFilePath <Passphrase file path>] [/LogFilePath <Log File Path>]
 
-在上述命令中︰
+在上述命令 hello:
 
-* /Role：必要。 指定是否應該要安裝行動服務。
-* /InstallLocation：必要。 指定安裝服務的位置。
-* /PassphraseFilePath：必要。 指定組態伺服器複雜密碼。
-* /LogFilePath：必要。 指定記錄安裝檔案位置。
+* /Role：必要。 指定是否要安裝 hello 行動服務。
+* /InstallLocation：必要。 指定 tooinstall hello 服務的位置。
+* /PassphraseFilePath：必要。 指定 hello 組態伺服器的複雜密碼。
+* /LogFilePath：必要。 指定 hello 記錄檔安裝程式檔案位置。
 
-#### <a name="uninstall-the-mobility-service-manually"></a>手動解除安裝行動服務
-您可以使用控制台的 [解除安裝或變更程式]，或使用命令列，以解除安裝行動服務。
+#### <a name="uninstall-hello-mobility-service-manually"></a>手動解除安裝 hello 行動服務
+您可以使用解除安裝 hello 行動服務**解除安裝或變更程式**在控制台中，或使用 hello 命令列。
 
-使用命令列解除安裝行動服務的命令是：
+hello 命令 toouninstall 行動服務使用 hello 命令列是：
 
     MsiExec.exe /qn /x {275197FC-14FD-4560-A5EB-38217F80CBD1}
 
-#### <a name="change-the-ip-address-of-the-management-server"></a>變更管理伺服器的 IP 位址
-在執行精靈之後，您可以變更管理伺服器的 IP 位址，如下所示：
+#### <a name="change-hello-ip-address-of-hello-management-server"></a>變更 hello hello 管理伺服器的 IP 位址
+執行 hello 精靈之後，您可以變更 hello hello 管理伺服器的 IP 位址，如下所示：
 
-1. 開啟檔案 hostconfig.exe (位於桌面上)。
-2. 在 [全域] 索引標籤中，您可以變更管理伺服器的 IP 位址。
+1. 開啟 hello 檔案 hostconfig.exe （位於 hello 桌面）。
+2. 在 hello **Global**索引標籤上，變更 hello hello 管理伺服器的 IP 位址。
 
    > [!NOTE]
-   > 只變更管理伺服器的 IP 位址。 管理伺服器通訊的連接埠號碼必須是 443，且 [使用 HTTPS] 必須保持啟用。 請勿變更複雜密碼。
+   > 只有 hello IP 位址變更 hello 管理伺服器。 管理伺服器通訊的 hello 連接埠號碼必須是 443，及**使用 HTTPS**必須左啟用。 請勿變更 hello 複雜密碼。
    >
    >
 
     ![管理伺服器 IP 位址](./media/site-recovery-vmware-to-azure-classic/host-config.png)
 
-#### <a name="install-the-mobility-service-manually-on-a-linux-server"></a>在 Linux 伺服器上手動安裝行動服務
-1. 將適當的 tar 封存檔複製到您要保護的 Linux 機器。 請參閱[手動安裝行動服務](#install-the-mobility-service-manually)下的資料表，以決定應該使用的 tar 封存檔。
-2. 執行下列命令來開啟殼層程式，並將壓縮的 tar 封存檔解壓縮到本機路徑： `tar -xvzf Microsoft-ASR_UA_8.5.0.0*`
-3. 在您解壓縮 tar 封存檔內容的本機目錄中，建立名為 passphrase.txt 的檔案。 若要執行這項操作，請在管理伺服器上從 C:\ProgramData\Microsoft Azure Site Recovery\private\connection.passphrase 複製複雜密碼，然後在殼層中執行 *`echo <passphrase> >passphrase.txt`*，將它儲存在 passphrase.txt 中。
-4. 輸入下列命令來安裝行動服務：*`sudo ./install -t both -a host -R Agent -d /usr/local/ASR -i <IP address> -p <port> -s y -c https -P passphrase.txt`*
-5. 指定管理伺服器的內部 IP 位址，並確定已選取連接埠 443。
+#### <a name="install-hello-mobility-service-manually-on-a-linux-server"></a>在 Linux 伺服器上手動安裝 hello 行動服務
+1. 複製 hello 適當 tar 檔案解壓縮封存 toohello Linux 機器，您會想 tooprotect。 請參閱底下的 hello 表格[手動安裝 hello 行動服務](#install-the-mobility-service-manually)toodetermine 哪些 tar 檔案解壓縮封存您應該使用。
+2. 開啟殼層程式，並執行擷取 hello 壓縮的 tar 封存 tooa 本機路徑：`tar -xvzf Microsoft-ASR_UA_8.5.0.0*`
+3. 建立名為 passphrase.txt hello 本機目錄 toowhich 解壓縮 hello hello tar 檔案解壓縮的封存內容。 toodo，複製 hello 複雜密碼 C:\ProgramData\Microsoft Azure 站台 Recovery\private\connection.passphrase hello 管理伺服器上，並將它儲存在 passphrase.txt 執行 *`echo <passphrase> >passphrase.txt`*  hello shell 中。
+4. 輸入下列命令的 hello 安裝 hello 行動服務：*`sudo ./install -t both -a host -R Agent -d /usr/local/ASR -i <IP address> -p <port> -s y -c https -P passphrase.txt`*
+5. 指定 hello 內部 IP 位址的 hello 管理伺服器，並確定已選取連接埠 443。
 
-#### <a name="install-the-mobility-service-from-the-command-line"></a>從命令列安裝行動服務
+#### <a name="install-hello-mobility-service-from-hello-command-line"></a>從 hello 命令列安裝 hello 行動服務
 
-在管理伺服器上從 C:\Program Files (x86)\InMage Systems\private\connectio 複製複雜密碼，並且在管理伺服器上將它儲存為 "passphrase.txt"。 然後執行下列命令。 在我們的範例中，管理伺服器的 IP 位址是 104.40.75.37，HTTPS 連接埠是 443：
+Hello 複雜密碼複製 hello 管理伺服器上的 C:\Program Files (x86) \InMage Systems\private\connection 並將它儲存為"passphrase.txt"hello 管理伺服器上。 然後，執行下列命令的 hello。 在本例中，hello 管理伺服器的 IP 位址為 104.40.75.37 且 hello HTTPS 連接埠為 443:
 
-若要在實際執行伺服器上安裝：
+tooinstall 實際執行伺服器上：
 
     ./install -t both -a host -R Agent -d /usr/local/ASR -i 104.40.75.37 -p 443 -s y -c https -P passphrase.txt
 
-若要在主要目標伺服器上安裝：
+tooinstall hello 主要目標伺服器上：
 
     ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i 104.40.75.37 -p 443 -s y -c https -P passphrase.txt
 
 
 ## <a name="step-10-enable-protection-for-a-machine"></a>步驟 10：對機器啟用保護
-若要啟用保護，請將虛擬機器和實體伺服器新增至保護群組。 在開始之前，如果您要保護 VMware 虛擬機器，請注意下列事項：
+tooenable 保護，將虛擬機器和實體伺服器 tooa 保護群組。 開始之前，請注意 hello 下列，如果您要保護 VMware 虛擬機器：
 
-* 系統會每隔 15 分鐘探索 VMware VM 一次，而且在探索之後，可能需要 15 分鐘以上，VMware VM 才會出現在 Site Recovery 入口網站中。
-* 虛擬機器上的環境變更 (例如 VMware 工具安裝) 也可能需要超過 15 分鐘的時間，才能在 Site Recovery 中更新。
-* 您可以在 [組態伺服器] 索引標籤上 vCenter 伺服器/ESXi 主機的 [上次連絡時間] 欄位中，查看 VMware VM 的上次探索時間。
-* 如果您在建立保護群組之後新增 vCenter 伺服器或 ESXi 主機，可能需要 15 分鐘以上，Azure Site Recovery 入口網站才會重新整理，[將機器新增至保護群組] 對話方塊中也才會列出虛擬機器。
-* 如果您想要立即繼續將機器新增至保護群組，而不想等候排程的探索，請醒目提示組態伺服器 (不要按它)，然後按一下 [重新整理]。
+* VMware Vm 會探索每隔 15 分鐘，而且可能需要超過 15 分鐘，tooappear hello Site Recovery 入口網站中探索之後。
+* Hello （例如 VMware 工具安裝） 的虛擬機器上的環境變更也可能需要超過 15 分鐘 toobe 更新 Site Recovery 中。
+* 您可以檢查 hello 上次探索時間 VMware vm 在 hello**上次連絡時間**欄位 hello vCenter server/ESXi 主機上 hello**設定伺服器** 索引標籤。
+* 如果您加入 vCenter Server 或 ESXi 主機在建立保護群組之後，可能需要超過 15 分鐘 hello Azure Site Recovery 入口網站 toorefresh 和 hello 中所列的虛擬機器 toobe**加入機器 tooa 保護群組** 對話方塊。
+* 如果您想要立即 tooproceed 並加入機器 tooa 保護群組，而不需等待 hello 已排程的探索，反白顯示 hello 組態伺服器 （但不要按），按一下 **重新整理**。
 
 此外：
 
-* 建議您架構保護群組，使其反映您的工作負載。 例如，將執行特定應用程式的機器新增至相同群組。
-* 當您將機器加入至保護群組時，如果尚未安裝行動服務，則處理序伺服器會自動推入並安裝行動服務。 您必須備妥上一個步驟中所述的推入機制。
+* 建議您架構保護群組，使其反映您的工作負載。 例如，加入執行特定應用程式 toohello 機器相同的群組。
+* 當您新增機器 tooa 保護群組時，hello 處理序伺服器會自動將推入，並安裝 hello 行動服務，如果尚未安裝。 您必須備妥 hello 上一個步驟中所述的 toohave hello 推入機制。
 
-### <a name="add-machines-to-a-protection-group"></a>將機器加入保護群組
+### <a name="add-machines-tooa-protection-group"></a>新增機器 tooa 保護群組
 
-1. 移至 [受保護的項目] > [保護群組]  > [機器] > [新增機器]。
-2. 如果您要保護 VMware 虛擬機器，請在 [選取虛擬機器] 中，選取負責管理虛擬機器的 vCenter 伺服器 (或執行這些機器的 EXSi 主機)，然後選取機器。
+1. 跳過**受保護項目** > **保護群組** > **機器** > **加入機器**.
+2. 如果您要保護 VMware 虛擬機器中**選取虛擬機器**，選取您的虛擬機器 （或 hello EXSi 主機正在執行），來管理的 vCenter 伺服器，然後選取 hello 機器。
 
     ![對虛擬機器啟用保護](./media/site-recovery-vmware-to-azure-classic/enable-protection2.png)
-3. 如果您要保護實體伺服器，請在 [選取虛擬機器] 中，開啟 [新增實體機器] 精靈，並提供 IP 位址和易記名稱。 然後選取作業系統系列。
+3. 如果您要保護實體伺服器，在**選取虛擬機器**，開啟 hello**加入實體機器**精靈並提供 hello IP 位址及易記的名稱。 然後，選取 hello 作業系統系列。
 
    ![啟用保護實體伺服器](./media/site-recovery-vmware-to-azure-classic/enable-protection1.png)
-4. 在 [指定目標資源] 中，選取要用於複寫的儲存體帳戶，並選取是否應將設定用於所有工作負載。 目前不支援進階儲存體帳戶。
+4. 在**指定目標資源**，選取您所使用的複寫的 hello 儲存體帳戶，然後選取是否 hello 設定適用於所有工作負載。 目前不支援進階儲存體帳戶。
 
    > [!NOTE]
-   > 我們不支援在資源群組之間移動使用 [Azure 入口網站](../storage/storage-create-storage-account.md)所建立的儲存體帳戶。                           
-   > 對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶[移轉儲存體帳戶](../azure-resource-manager/resource-group-move-resources.md)。
+   > 我們不支援移動使用 hello 所建立的儲存體帳戶[Azure 入口網站](../storage/storage-create-storage-account.md)跨越資源群組。                           
+   > [移轉儲存體帳戶](../azure-resource-manager/resource-group-move-resources.md)跨越資源群組內 hello 相同訂用帳戶，或跨訂用帳戶不支援用來部署站台復原的儲存體帳戶。
    >
    >
 
     ![進行目標設定](./media/site-recovery-vmware-to-azure-classic/enable-protection3.png)
-5. 在 [指定帳戶] 中，選取您[已設定](#install-the-mobility-service-with-push-installation)用來自動安裝行動服務的帳戶。
+5. 在**指定帳戶**，選取 hello 帳戶[設定](#install-the-mobility-service-with-push-installation)toouse hello 行動服務的自動安裝。
 
     ![指定帳戶](./media/site-recovery-vmware-to-azure-classic/enable-protection4.png)
-6. 按一下核取記號，以完成將機器加入保護群組，並啟動每部機器的初始複寫。
+6. 按一下 hello 核取記號 toofinish 加入機器 toohello 保護群組和 toostart 初始複寫的每一部機器。
 
    > [!NOTE]
-   > 如果已備妥推入安裝，則行動服務會在機器加入至保護群組時自動安裝在沒有該服務的機器上。 服務安裝之後，保護作業會開始，並且會失敗。 在失敗之後，您必須手動重新啟動已安裝行動服務的每一部機器。 重新啟動之後，保護作業再次開始，並且會發生初始複寫。
+   > 如果已備妥推入安裝，hello 行動服務會自動安裝不需要它時它們加入 toohello 保護群組的電腦上。 Hello 服務安裝後，保護工作會啟動，而且會失敗。 Hello 失敗之後，您將需要 toomanually 何時在每一部機器 hello 安裝行動服務的重新啟動。 Hello 重新啟動之後，hello 保護工作會重新開始計算，以及發生初始複寫。
    >
    >
 
-您可以在 [工作]  頁面上監視狀態。
+您可以監視狀態 hello**作業**頁面。
 
-![在 [作業] 頁面上監視狀態](./media/site-recovery-vmware-to-azure-classic/enable-protection5.png)
+![在 [hello 作業] 頁面上的監視狀態](./media/site-recovery-vmware-to-azure-classic/enable-protection5.png)
 
-您也可以在 [受保護的項目] > 「保護群組名稱」 > [虛擬機器] 中監視保護狀態。 初始複寫完成並且同步處理資料之後，機器狀態就會變更為 [受保護]。
+您也可以在 [受保護的項目] > 「保護群組名稱」 > [虛擬機器] 中監視保護狀態。 初始複寫完成，而且資料已同步處理之後，電腦狀態變更太**保護**。
 
 ![在 [受保護的項目] 中監視狀態](./media/site-recovery-vmware-to-azure-classic/enable-protection6.png)
 
 ## <a name="step-11-set-protected-machine-properties"></a>步驟 11：設定受保護機器屬性
-1. 在機器進入 [受保護] 狀態之後，您可以設定其容錯移轉屬性。 在保護群組詳細資料中，選取機器並開啟 [設定] 索引標籤。
-2. Site Recovery 會自動建議 Azure VM 的屬性，並偵測內部部署網路設定。
+1. 在機器進入 [受保護] 狀態之後，您可以設定其容錯移轉屬性。 Hello 保護群組詳細資料中，選取 hello 電腦及開啟 hello**設定** 索引標籤。
+2. Site Recovery 會自動建議 hello Azure VM 的屬性，並偵測到 hello 內部網路設定。
 
     ![設定虛擬機器屬性](./media/site-recovery-vmware-to-azure-classic/vm-properties1.png)
 3. 您可以變更這些設定：
 
-   * **Azure VM 名稱**：這是將在容錯移轉之後提供給 Azure 中機器的名稱。 名稱必須符合 Azure 需求。
-   * **Azure VM 大小**：網路介面卡的數目取決於您為目標虛擬機器指定的大小。 如需大小和介面卡的詳細資訊，請參閱[大小資料表](../virtual-machines/linux/sizes.md)。 請注意：
+   * **Azure VM 名稱**： 這是會獲得 toohello 機器在 Azure 中容錯移轉之後的 hello 名稱。 hello 名稱必須符合 Azure 需求。
+   * **Azure VM 大小**: hello 網路介面卡的數目取決於 hello 大小由您指定的 hello 目標虛擬機器。 如需有關大小和配接器的詳細資訊，請參閱 hello[大小資料表](../virtual-machines/linux/sizes.md)。 請注意：
 
-     * 在您修改虛擬機器的大小並儲存設定之後，下次您開啟 [設定] 索引標籤時，網路介面卡的數目將會改變。 目標虛擬機器上的網路介面卡最小數目，等於來源虛擬機器上的網路介面卡最小數目。 網路介面卡的最大數目取決於虛擬機器的大小。
-       * 如果來源電腦上的網路介面卡數目小於或等於針對目標機器大小所允許的介面卡數目，則目標將具備與來源相同的介面卡數目。
-       * 如果來源虛擬機器的介面卡數目超過針對目標大小所允許的數目，則將使用目標大小的最大值。
-        例如，如果來源機器具有兩張網路介面卡，而目標機器大小支援四張，則目標機器將會有兩張介面卡。 如果來源機器具有兩張介面卡，但支援的目標大小僅支援一張介面卡，則目標機器將只會有一張介面卡。
-     * 如果虛擬機器具有多張網路介面卡，則所有的介面卡都應該連線到同一個 Azure 網路。
-   * **Azure 網路**：您必須指定 Azure VM 在容錯移轉之後將會連接的 Azure 網路。 如果您未指定一個網路，則 Azure VM 不會連線到任何網路。 此外，如果您想要從 Azure 容錯回復至內部部署網站，您必須指定 Azure 網路。 容錯回復需要 Azure 網路與內部部署網路之間的 VPN 連線。
-   * **Azure IP 位址/子網路**：針對每個網路介面卡，選取 Azure VM 應該連線的子網路。 請注意，如果來源機器的網路介面卡設定為使用靜態 IP 位址，您可以為 Azure VM 指定靜態 IP 位址。 如果您未指定靜態 IP 位址，則會配置任何可用的 IP 位址。 如果已指定目標 IP 位址，但是已由 Azure 中的另一個 VM 使用，容錯移轉將會失敗。 如果來源機器的網路介面卡設定為使用 DHCP，則您將具有 DHCP 做為 Azure 的設定。      
+     * 當開啟 hello，當您修改 hello 大小的虛擬機器，並儲存 hello 設定時，將會變更 hello 網路介面卡數目**設定** 索引標籤 hello 下一次。 hello 的目標虛擬機器上的網路介面卡的最小數目為等於 toohello 的來源虛擬機器上的網路介面卡的最小數目。 hello 的網路介面卡數目上限取決於 hello hello 虛擬機器大小。
+       * Hello 來源電腦上的網路介面卡的 hello 數目是否小於或等於 toohello 數目的介面卡允許 hello 目標機器的大小，會有 hello 目標 hello 做 hello 來源的相同數目的介面卡。
+       * 如果 hello hello 來源虛擬機器介面卡的數目超過 hello hello 目標大小所允許的數目，將會使用 hello 目標大小最大值。
+        例如，如果來源機器有兩個網路介面卡，hello 目標機器大小支援四個 hello 目標電腦會有兩張介面卡。 如果 hello 來源機器有兩張介面卡，但支援 hello 目標大小僅支援一個，hello 目標機器必須只有一個介面卡。
+     * 如果 hello 虛擬機器有多張網路介面卡，為所有配接器應該連接的 toohello 相同的 Azure 網路。
+   * **Azure 網路**： 您必須指定 Azure Vm 將會連接的 tooafter 容錯移轉的 Azure 網路。 如果您未指定其中一個，hello Azure Vm 不是連接的 tooany 網路。 此外，如果您想要從 Azure toohello 在內部部署站台 toofailback 需要 toospecify Azure 網路。 容錯回復需要 Azure 網路與內部部署網路之間的 VPN 連線。
+   * **Azure IP 位址/子網路**： 每個網路介面卡，選取 hello 子網路 toowhich hello Azure VM 應該連接。 請注意，是否 hello hello 來源機器的網路介面卡設定的 toouse 靜態 IP 位址，您可以指定 hello Azure VM 的靜態 IP 位址。 如果您未指定靜態 IP 位址，則會配置任何可用的 IP 位址。 如果指定 hello 目標 IP 位址，但它已在使用 Azure 中的其他 vm，容錯移轉將會失敗。 如果已設定的 toouse DHCP hello hello 來源機器的網路介面卡，您必須 DHCP 做為 Azure 的 hello 設定。      
 
 ## <a name="step-12-create-a-recovery-plan-and-run-a-failover"></a>步驟 12：建立復原計畫並執行容錯移轉
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Enhanced-VMware-to-Azure-Failover/player]
 >
 >
 
-您可以執行單一機器的容錯移轉，或容錯移轉執行相同工作或執行相同工作負載的多部虛擬機器。 若要同時容錯移轉多部機器，將它們新增至復原方案。
+您可以執行單一電腦的容錯移轉，或者您可以容錯移轉執行相同工作或執行 hello hello 的多部虛擬機器相同的工作負載。 透過多個 toofail 機器 hello 在相同時間，將其加入 tooa 復原計劃。
 
-建立復原方案：
+toocreate 復原計劃：
 
-1. 在 [復原方案] 頁面上，按一下 [新增復原方案] 並新增復原方案。 指定計畫的詳細資料並選取 **Azure** 做為目標。
+1. 在 hello**復原計劃**頁面上，按一下**加入復原方案**並加入復原方案。 指定 hello 計劃的詳細資料，然後選取**Azure**為 hello 目標。
 
  ![設定復原計畫](./media/site-recovery-vmware-to-azure-classic/recovery-plan1.png)
-2. 在 [選取虛擬機器] 中，選取保護群組，然後在群組中選取要新增至復原方案的機器。
+2. 在**選取虛擬機器**，選取保護群組，然後選取 hello 群組 tooadd toohello 復原計劃中的 機器。
 
  ![新增虛擬機器](./media/site-recovery-vmware-to-azure-classic/recovery-plan2.png)
 
-您可以自訂計畫以建立群組並決定機器在復原計劃中容錯移轉的順序。 您也可以加入進行手動動作的指令碼和提示。 您可以手動建立指令碼，或使用 [Azure 自動化 Runbook](site-recovery-runbook-automation.md) 來建立指令碼。 如需有關自訂復原方案的詳細資訊，請參閱[建立復原方案](site-recovery-create-recovery-plans.md)。
+您可以自訂 hello 計劃 toocreate 群組與機器 hello 復原計劃中的容錯移轉順序 hello 順序。 您也可以加入進行手動動作的指令碼和提示。 您可以手動建立指令碼，或使用 [Azure 自動化 Runbook](site-recovery-runbook-automation.md) 來建立指令碼。 如需有關自訂復原方案的詳細資訊，請參閱[建立復原方案](site-recovery-create-recovery-plans.md)。
 
 ## <a name="run-a-failover"></a>執行容錯移轉
 在執行容錯移轉之前：
 
-* 請確定管理伺服器正在執行並且可以使用。 否則容錯移轉會失敗。
+* 請確定該 hello 管理伺服器正在執行，而且可用。 否則容錯移轉會失敗。
 * 如果執行非計劃性容錯移轉：
 
-  * 如果可能的話，您應該在執行非計劃性容錯移轉之前關閉主要機器。 這可確保您不需要同時執行來源和複本機器。 如果您是複寫 VMware VM，則當您執行非計劃性容錯移轉時，您可以指定 Site Recovery 應該嘗試關閉來源機器。 這是否有作用，取決於主要網站的狀態。 如果您是複寫實體伺服器，則 Site Recovery 不提供此選項。
+  * 如果可能的話，您應該在執行非計劃性容錯移轉之前關閉主要機器。 這可確保您不需要在 hello 執行這兩個 hello 來源與複本機器相同的時間。 如果您要複寫 VMware Vm，當您執行非計劃性容錯移轉時，您可以指定站台復原應該嘗試 tooshut hello 來源機器關閉。 根據 hello hello 主要站台狀態，這可能會或可能無法運作。 如果您是複寫實體伺服器，則 Site Recovery 不提供此選項。
   * 非計劃性容錯移轉會停止從主要機器的資料複寫，讓任何資料差異不會在開始非計劃性容錯移轉之後傳送。
-  * 如果您要在容錯移轉之後連線到 Azure 中的複本虛擬機器，請先在來源機器上啟用遠端桌面連線，再執行測試容錯移轉。 然後允許 RDP 連線通過防火牆。 您也需要在容錯移轉之後，在 Azure 虛擬機器的公用端點上允許 RDP。 請依照[最佳作法](http://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)進行，以確保 RDP 在容錯移轉之後能夠運作。
+  * 如果您想在 Azure 中 tooconnect toohello 複本虛擬機器在容錯移轉之後，啟用遠端桌面連線 hello 來源電腦上執行 hello 容錯移轉之前。 然後允許通過防火牆 hello 的 RDP 連線。 您還需要在容錯移轉之後 tooallow RDP hello 公用端點的 hello Azure 虛擬機器上。 請遵循[最佳做法](http://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)RDP 的運作方式在容錯移轉之後的 tooensure。
 
 > [!NOTE]
-> 若要在執行容錯移轉至 Azure 時獲得最佳效能，請確保您已經在受保護的機器上安裝 Azure 代理程式。 這有助於加速電腦開機，也有助於診斷問題。 Azure 代理程式有 [Linux](https://github.com/Azure/WALinuxAgent) 和 [Windows](http://go.microsoft.com/fwlink/?LinkID=394789) 版本。
+> tooget hello 達到最佳效能時執行的容錯移轉 tooAzure，請確定您已在 hello 受保護的電腦上安裝 hello Azure 代理程式。 這有助於更快的 hello 電腦開機，以及可協助診斷問題。 hello Azure 代理程式是供[Linux](https://github.com/Azure/WALinuxAgent)和[Windows](http://go.microsoft.com/fwlink/?LinkID=394789)。
 >
 >
 
 ### <a name="run-a-test-failover"></a>執行測試容錯移轉
-執行測試容錯移轉，以在不會影響生產環境的隔離網路中模擬您的容錯移轉和復原程序，並讓一般複寫如往常繼續。 測試容錯移轉會在來源上啟動，您可以用數種方式執行：
+執行測試容錯移轉 toosimulate 您容錯移轉和復原處理程序在隔離網路，並不會影響您的生產環境，並可讓一般複寫中繼續正常。 測試容錯移轉是 initiatd hello 來源上的，您可以透過幾種方式中執行它：
 
-* **不指定 Azure 網路**：如果您在沒有網路的情況下執行測試容錯移轉，該測試將會檢查虛擬機器是否啟動，以及是否在 Azure 中正確顯示。 在容錯移轉之後，虛擬機器不會連線到 Azure 網路。
-* **指定 Azure 網路**：這種類型的容錯移轉會檢查整個複寫環境是否如預期般運作，以及 Azure 虛擬機器是否連線到指定的網路。
+* **未指定 Azure 網路**： 虛擬機器啟動，並正確地顯示在 Azure 中，如果您執行測試容錯移轉不使用網路時，會檢查 hello 測試。 虛擬機器無法容錯移轉之後連接的 tooan Azure 網路。
+* **指定 Azure 網路**: hello 整體複寫環境如預期般出現，以及 Azure 虛擬機器會連接的 toohello 指定網路，這種類型的容錯移轉會檢查。
 
-若要執行測試容錯移轉：
+toorun 測試容錯移轉：
 
-1. 在 [復原方案] 頁面中，選取方案並按一下 [測試容錯移轉]。
+1. 在 hello**復原計劃**頁面上，選取 hello 計劃，並按一下**測試容錯移轉**。
 
- ![選取方案](./media/site-recovery-vmware-to-azure-classic/test-failover1.png)
-2. 在 [確認測試容錯移轉] 中，選取 [無]，以表示您不想要使用 Azure 網路來進行測試容錯移轉，或選取測試 VM 在容錯移轉之後將連線的網路。 按一下核取記號以啟動容錯移轉。
+ ![選取 hello 計劃](./media/site-recovery-vmware-to-azure-classic/test-failover1.png)
+2. 在**確認測試容錯移轉**，選取**無**tooindicate hello 測試容錯移轉，不要 toouse Azure 網路，或選取 hello 網路 toowhich hello 測試 Vm 將會容錯移轉之後連接。 按一下 hello 核取記號 toostart hello 容錯移轉。
 
  ![選取](./media/site-recovery-vmware-to-azure-classic/test-failover2.png)
-3. 在 [作業]  索引標籤上監視容錯移轉進度。
+3. 監視 hello 容錯移轉進度**作業** 索引標籤。
 
  ![監視進度](./media/site-recovery-vmware-to-azure-classic/test-failover3.png)
-4. 容錯移轉完成之後，您應該也會看到複本 Azure 機器出現在 Azure 入口網站的 [虛擬機器] 中。 如果您想要起始 RDP 連線至 Azure VM，您必須在 VM 端點上開啟連接埠 3389。
-5. 完成之後，在容錯移轉到達**完成**測試階段時，請按一下 [完成測試] 來完成。 在 [記事] 中，記錄並儲存關於測試容錯移轉的任何觀察。
-6. 按一下 [測試容錯移轉已完成]  ，即可自動清除測試環境。 此動作完成之後，測試容錯移轉將會顯示 [完成] 狀態。 任何在測試容錯移轉期間自動建立的元素或 VM 都將刪除。 如果測試容錯移轉持續兩週以上，則會被強制完成。
+4. Hello 容錯移轉完成之後，您也應該可以 toosee hello 複本 Azure 的機器會出現在**虛擬機器**hello Azure 入口網站中。 如果您想 tooinitiate RDP 連線 toohello Azure VM，您將需要 tooopen 連接埠 3389 hello VM 端點上。
+5. 之後完成之後，當容錯移轉到達 hello**完成**測試階段中，按一下**完成測試**toofinish。 在**備忘稿**、 記錄及儲存與 hello 測試容錯移轉相關聯的任何觀察。
+6. 按一下**hello 測試容錯移轉已完成**tooautomatically 清理 hello 測試環境。 這個動作完成之後，將會顯示 hello 測試容錯移轉**完成**狀態。 會刪除任何項目或 hello 測試容錯移轉期間自動建立的 Vm。 如果測試容錯移轉的持續時間超過兩週，它會被強制 toofinish。
 
 ### <a name="run-an-unplanned-failover"></a>執行非計劃性容錯移轉
-非計劃性容錯移轉是從 Azure 起始，即使主要網站無法使用也可以執行。
+未規劃的容錯移轉從 Azure 起始，並可以執行，即使 hello 主要站台無法使用。
 
-1. 在 [復原方案] 頁面上，選取方案並按一下 [容錯移轉] > [非計劃性容錯移轉]。
+1. 在 hello**復原計劃**頁面上，選取 hello 計劃，並按一下**容錯移轉** > **規劃的容錯移轉**。
 
- ![選取方案](./media/site-recovery-vmware-to-azure-classic/unplanned-failover1.png)
-2. 如果您是複寫 VMware 虛擬機器，您可以嘗試關閉內部部署 VM。 這已是最好的行動，無論成功與否，容錯移轉都會繼續。 如果不成功，[作業] 索引標籤的 [非計劃性容錯移轉作業] 下會顯示錯誤詳細資料。
+ ![選取 hello 計劃](./media/site-recovery-vmware-to-azure-classic/unplanned-failover1.png)
+2. 如果您要複寫的 VMware 虛擬機器，您可以嘗試 tooshut 向內部部署 Vm。 這是最佳的動作，並容錯移轉可讓您繼續 hello 工作成功與否。 如果不成功，錯誤詳細資料會出現在 hello**作業**索引標籤底下**未規劃的容錯移轉工作**。
 
  ![內部部署 VM 的關閉選項](./media/site-recovery-vmware-to-azure-classic/unplanned-failover2.png)
 
  > [!NOTE]
- > 如果您是複寫實體伺服器，則這個選項無法使用。 您必須盡可能嘗試手動關閉。
+ > 如果您是複寫實體伺服器，則這個選項無法使用。 您將需要 tootry tooshut 的向下手動的話。
  >
  >
 
-3. 在 [確認容錯移轉] 中，確認容錯移轉方向 (至 Azure)，然後選取您要用於容錯移轉的復原點。 如果您啟用多個 VM，您在設定複寫屬性時可以復原到最新的應用程式或當機時保持一致復原點。 您也可以選取 [自訂復原點]  來復原至較早的時間點。 按一下核取記號以啟動容錯移轉。
+3. 在**確認容錯移轉**，確認 hello 容錯移轉方向 (tooAzure)，然後選取您想 toouse hello 容錯移轉的 hello 復原點。 如果您在設定複寫屬性時，您可以啟用多部 VM，您可以復原 toohello 最新應用程式或損毀一致的復原點。 您也可以選取**自訂復原點**toorecover tooan 稍早的時間點。 按一下 hello 核取記號 toostart hello 容錯移轉。
 
  ![確認容錯移轉方向](./media/site-recovery-vmware-to-azure-classic/unplanned-failover3.png)
-4. 等候非計劃性容錯移轉作業完成。 您可以在 [作業]  索引標籤上監視容錯移轉進度。 即使在非計劃性容錯移轉期間發生錯誤，復原方案還是會執行到完成為止。 您也應該會可以看到複本 Azure 機器出現在 Azure 入口網站的 [虛擬機器] 中。
+4. 等候 hello 規劃的容錯移轉作業 toofinish。 您可以監視 hello 容錯移轉進度**作業** 索引標籤。即使未規劃的容錯移轉期間發生錯誤，hello 復原方案執行，直到完成為止。 您也應該可以 toosee hello 複本 Azure 的機器會出現在**虛擬機器**hello Azure 入口網站中。
 
-### <a name="connect-to-replicated-azure-virtual-machines-after-failover"></a>在容錯移轉之後連接到複寫的 Azure 虛擬機器
-若要在容錯移轉之後連線至 Azure 中複寫的虛擬機器，您需要：
+### <a name="connect-tooreplicated-azure-virtual-machines-after-failover"></a>連接 tooreplicated Azure 虛擬機器在容錯移轉之後
+tooconnect tooreplicated 在 Azure 虛擬機器在容錯移轉之後，您需要：
 
-- 在主要機器上啟用遠端桌面連線。
-- 主要機器上的 Windows 防火牆設為允許 RDP。
-- 將 RDP 新增至 Azure 虛擬機器的公用端點。
+- Hello 主要電腦上啟用遠端桌面連線。
+- Hello 主要機器上的 Windows 防火牆設定 tooallow RDP。
+- RDP 加入 toohello hello Azure 虛擬機器的公用端點。
 
 如需此設定的相關資訊，請參閱[使用 ASR 容錯移轉之後針對遠端桌面連線進行疑難排解](http://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)。
 
 ## <a name="deploy-additional-process-servers"></a>部署額外處理序伺服器
-如果您必須相應放大您的部署超過 200 部來源機器，或每日變換率總計超過 2 TB，您將需要額外的處理序伺服器來處理流量。 若要設定額外處理序伺服器，請查看[額外處理序伺服器](#additional-process-servers)中的需求，然後依照下列指示來設定處理序伺服器。 設定伺服器之後，您可以設定來源機器來使用它。
+如果您必須部署向外延展您超過 200 的來源機器，或總每日的變換率超過 2 TB，您將需要額外的處理序伺服器 toohandle hello 流量磁碟區。 安裝額外的處理序伺服器中的核取 hello 需求 tooset[額外的處理序伺服器](#additional-process-servers)，並根據 toohello hello 處理序伺服器然後設定遵循指示進行。 您設定好 hello 伺服器之後，您可以設定來源機器 toouse 它。
 
 ### <a name="set-up-an-additional-process-server"></a>設定額外處理序伺服器
 設定額外處理序伺服器，如下所示：
 
-* 執行整合精靈，設定管理伺服器僅做為處理序伺服器。
-* 如果您想要僅使用新的處理序伺服器來管理資料複寫，您必須移轉受保護的機器。
+* 處理序伺服器只能執行 hello 整合精靈 tooconfigure 管理伺服器。
+* 如果您想要 toomanage 資料複寫只 hello 新處理序伺服器，您需要 toomigrate 受保護的機器。
 
-### <a name="install-the-process-server"></a>安裝處理序伺服器
-1. 在 [快速啟動] 頁面，下載整合安裝檔案以進行 Site Recovery 元件安裝。 執行安裝程式。
-2. 在 [開始之前] 中，選取 [新增額外處理序伺服器以相應放大部署]。
+### <a name="install-hello-process-server"></a>安裝 hello 處理序伺服器
+1. 在 hello**快速入門**頁面上，下載 hello Site Recovery 之元件安裝的 hello 一致的安裝檔案。 執行安裝程式。
+2. 在**開始之前**，選取**新增額外的處理序伺服器 tooscale 出部署**。
 
  ![新增處理序伺服器](./media/site-recovery-vmware-to-azure-classic/add-ps1.png)
-3. 就像在[設定](#step-5-install-the-management-server)第一部管理伺服器時一樣，完成精靈。
-4. 在 [組態伺服器詳細資料] 中，輸入您安裝組態伺服器之原始管理伺服器的 IP 位址，然後指定複雜密碼。 如果您沒有複雜密碼，請在原始管理伺服器上執行 **<SiteRecoveryInstallationFolder>\home\sysystems\bin\genpassphrase.exe –n**，以擷取複雜密碼。
+3. 完成 hello 精靈，您可以如同時您[設定](#step-5-install-the-management-server)hello 第一部管理伺服器。
+4. 在**組態伺服器詳細資料**輸入 hello hello 安裝 hello 組態伺服器上原始管理伺服器的 IP 位址，然後輸入 hello 複雜密碼。 如果您沒有 hello 複雜密碼，執行 **<SiteRecoveryInstallationFolder>\home\sysystems\bin\genpassphrase.exe – n** hello 原始的管理伺服器 tooretrieve 上它。
 
  ![組態伺服器詳細資料](./media/site-recovery-vmware-to-azure-classic/add-ps2.png)
 
-### <a name="migrate-machines-to-use-the-new-process-server"></a>移轉機器以使用新的處理序伺服器
-1. 開啟 [組態伺服器] > [伺服器] > 「原始管理伺服器的名稱」 > [伺服器詳細資料]。
+### <a name="migrate-machines-toouse-hello-new-process-server"></a>移轉機器 toouse hello 新處理序伺服器
+1. 開啟**設定伺服器** > **伺服器** > *hello 原始的管理伺服器的名稱* >  **伺服器的詳細資料**。
 
  ![伺服器詳細資料](./media/site-recovery-vmware-to-azure-classic/update-process-server1.png)
-2. 在 [處理序伺服器] 清單中，在您要修改的伺服器旁邊選取 [變更處理序伺服器]。
+2. 在 hello**處理序伺服器**清單中，選取**變更處理序伺服器**想 toochange 的下一個 toohello 伺服器。
 
- ![更新處理序伺服器](./media/site-recovery-vmware-to-azure-classic/update-process-server2.png)
-3. 依序選取 [變更處理序伺服器]、[目標處理序伺服器] 和新的管理伺服器。 然後，選取新的處理序伺服器會處理的虛擬機器。 按一下資訊圖示以取得伺服器的相關資訊。 隨即顯示將每個選取的虛擬機器複寫到新的處理序伺服器所需的平均空間，協助您進行負載的判斷。 按一下核取記號以開始複寫到新處理序伺服器。
+ ![更新 hello 處理序伺服器](./media/site-recovery-vmware-to-azure-classic/update-process-server2.png)
+3. 選取**變更處理序伺服器**，選取**目標處理序伺服器**，，然後選取 hello 新的管理伺服器。 然後就會處理選取的 hello hello 新處理序伺服器的虛擬機器。 按一下 hello 資訊圖示 tooget hello 伺服器資訊。 hello 平均每個選取的虛擬機器 toohello 新處理序伺服器是您進行載入決策顯示的 toohelp tooreplicate 所需的空間。 按一下 hello 核取記號 toostart 複寫 toohello 新處理序伺服器。
 
- ![變更處理序伺服器](./media/site-recovery-vmware-to-azure-classic/update-process-server3.png)
+ ![變更 hello 處理序伺服器](./media/site-recovery-vmware-to-azure-classic/update-process-server3.png)
 
 ## <a name="vmware-permissions-for-vcenter-access"></a>vCenter 存取的 VMware 權限
-處理序伺服器可以自動探索 vCenter 伺服器上的 VM。 若要執行自動探索，您必須在 vCenter 層級定義角色 (Azure_Site_Recovery)，以允許 Site Recovery 存取 vCenter 伺服器。 如果您只需要將 VMware 機器移轉至 Azure，而不需要從 Azure 容錯回復，您可以定義唯讀角色，這個角色已足夠。 設定權限，如[步驟 6︰設定 vCenter 伺服器的認證](#step-6-set-up-credentials-for-the-vcenter-server)中所述。 下表摘要說明角色權限：
+hello 處理序伺服器可以自動探索 Vm vCenter server 上。 tooperform 自動探索，您會需要 toodefine 角色 (Azure_Site_Recovery) 在 hello vCenter 層級 tooallow Site Recovery tooaccess hello vCenter 伺服器。 如果您只需要 toomigrate VMware 機器 tooAzure，而且不需要從 Azure toofailback，您可以定義唯讀的角色具有足夠。 中所述設定 hello 權限[步驟 6： 設定 hello vCenter 伺服器的認證](#step-6-set-up-credentials-for-the-vcenter-server)。 下表中的 hello 摘要 hello 角色權限：
 
 | **角色** | **詳細資料** | **權限** |
 | --- | --- | --- |
-| Azure_Site_Recovery 角色 |VMware VM 探索 |針對 v-Center 伺服器指派這些權限：<br/><br/>資料存放區：配置空間、瀏覽資料存放區、低階檔案作業、移除檔案、更新虛擬機器檔案<br/><br/>網路：網路指派<br/><br/>資源：指派虛擬機器至資源集區、移轉已關閉的虛擬機器、移轉已啟動的虛擬機器<br/><br/>工作：建立工作、更新工作<br/><br/>虛擬機器  > 組態<br/><br/>虛擬機器 > 互動 > 回答問題、裝置連接、設定 CD 媒體、設定磁碟片媒體、關閉電源、開啟電源、VMware 工具安裝<br/><br/>虛擬機器 > 清查 > 建立、註冊、取消註冊<br/><br/>虛擬機器 > 佈建 > 允許虛擬機器下載、允許虛擬機器檔案上傳<br/><br/>虛擬機器 > 快照集 > 移除快照集 |
-| vCenter 使用者角色 |VMware VM 探索/容錯移轉而不關閉來源 VM |針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 > 傳播至子物件、role=Read-only <br/><br/>由於是在資料中心層級指派使用者，因此使用者能夠存取資料中心內的所有物件。 如果您想要限制存取權，請將具備 [傳播至子物件] 權限的 [沒有存取權] 角色指派給子物件 (ESX 主機、資料存放區、VM 及網路)。 |
-| vCenter 使用者角色 |容錯移轉和容錯回復 |針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、role=Azure_Site_Recovery<br/><br/>由於是在資料中心層級指派使用者，因此使用者能夠存取資料中心內的所有物件。  如果您想要限制存取權，請將具備 [傳播至子物件] 權限的 [沒有存取權]**** 角色指派給子物件 (ESX 主機、資料存放區、VM 及網路)。 |
+| Azure_Site_Recovery 角色 |VMware VM 探索 |指派 hello v Center 伺服器的這些權限：<br/><br/>資料存放區：配置空間、瀏覽資料存放區、低階檔案作業、移除檔案、更新虛擬機器檔案<br/><br/>網路：網路指派<br/><br/>資源： 指派虛擬機器 tooresource 集區、 移轉電源已關閉虛擬機器、 移轉開機的虛擬機器<br/><br/>工作：建立工作、更新工作<br/><br/>虛擬機器  > 組態<br/><br/>虛擬機器 > 互動 > 回答問題、裝置連接、設定 CD 媒體、設定磁碟片媒體、關閉電源、開啟電源、VMware 工具安裝<br/><br/>虛擬機器 > 清查 > 建立、註冊、取消註冊<br/><br/>虛擬機器 > 佈建 > 允許虛擬機器下載、允許虛擬機器檔案上傳<br/><br/>虛擬機器 > 快照集 > 移除快照集 |
+| vCenter 使用者角色 |VMware VM 探索/容錯移轉而不關閉來源 VM |指派 hello v Center 伺服器的這些權限：<br/><br/>資料中心物件 > 傳播 tooChild 物件，角色 = 唯讀 <br/><br/>hello 使用者指派 hello 資料中心層級，因此具有存取 tooall hello 物件中的 hello 資料中心。 如果您想要 toorestrict hello 存取時，指派 hello**沒有存取**角色以 hello**傳播 toochild** toohello 子物件 （ESX 主機、 datastores、 Vm 及網路） 的物件。 |
+| vCenter 使用者角色 |容錯移轉和容錯回復 |指派 hello v Center 伺服器的這些權限：<br/><br/>資料中心物件-傳播 toochild 物件，角色 = Azure_Site_Recovery<br/><br/>hello 使用者會在資料中心層級指派，因此具有存取 tooall hello 物件中的 hello 資料中心。  如果您想要 toorestrict hello 存取時，指派 hello * * 不允許存取 * * 角色以 hello**傳播 toochild 物件**toohello 子物件 （ESX 主機、 datastores、 Vm 及網路）。 |
 
 ## <a name="third-party-software-notices-and-information"></a>第三方廠商軟體注意事項和資訊
 <!--Do Not Translate or Localize-->
 
-The software and firmware running in the Microsoft product or service is based on or incorporates material from the projects listed below (collectively, “Third Party Code”).  Microsoft is the not original author of the Third Party Code.  The original copyright notice and license, under which Microsoft received such Third Party Code, are set forth below.
+hello 軟體和韌體中執行 hello Microsoft 產品或服務為基礎，或納入 hello 從資料列下方 （以下合稱 「 第三方程式碼 」） 的專案。  Microsoft 為 hello 不原始作者的 hello 協力廠商程式碼。  hello 原始著作權聲明與授權，在其下 Microsoft 接收這類協力廠商程式碼，會設定制定下方。
 
-The information in Section A is regarding Third Party Code components from the projects listed below. Such licenses and information are provided for informational purposes only.  This Third Party Code is being relicensed to you by Microsoft under Microsoft's software licensing terms for the Microsoft product or service.  
+區段 A 中的 hello 資訊關於元件 hello 專案從下面所列的第三方廠商程式碼。 Such licenses and information are provided for informational purposes only.  此第三方廠商程式碼正在 relicensed 的 tooyou microsoft 在 Microsoft 軟體授權條款的 hello Microsoft 產品或服務。  
 
-The information in Section B is regarding Third Party Code components that are being made available to you by Microsoft under the original licensing terms.
+節 B 中的 hello 資訊有關第三方廠商程式碼元件所進行可用 tooyou microsoft hello 原始授權條款。
 
-The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428). Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
+hello 完整的檔案可能位於 hello [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428)。 Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
 ## <a name="next-steps"></a>後續步驟
-[深入了解容錯回復](site-recovery-failback-azure-to-vmware-classic.md)，以便將在 Azure 中容錯移轉的機器回復到您的內部部署環境。
+[深入了解錯誤後回復](site-recovery-failback-azure-to-vmware-classic.md)toobring 您在 Azure 中執行的容錯移轉機器回 tooyour 在內部部署環境。

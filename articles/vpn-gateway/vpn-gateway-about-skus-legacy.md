@@ -1,5 +1,5 @@
 ---
-title: "傳統 Azure 虛擬網路閘道 SKU | Microsoft Docs"
+title: "aaaLegacy Azure 虛擬網路閘道 Sku |Microsoft 文件"
 description: "舊式虛擬網路閘道 SKU。"
 services: vpn-gateway
 documentationcenter: na
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/01/2017
 ms.author: cherylmc
-ms.openlocfilehash: 3b2126b1ecd1613950bbf311ae08fafd4af0d51f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 710417581423d2fbc62827cab7949f2e137c5996
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="working-with-virtual-network-gateway-skus-legacy-skus"></a>使用虛擬網路閘道 SKU (舊版 SKU)
 
-此文章包含舊版虛擬網路閘道 SKU 的相關資訊。 舊版 SKU 仍然可以在針對 VPN 閘道建立的兩個部署模型中運作。 傳統 VPN 閘道仍繼續針對現有閘道以及新閘道使用舊版 SKU。 在建立新的資源管理員 VPN 閘道時，請使用新的閘道 SKU。 如需最新 SKU 的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。
+本文章包含 hello 舊版 （舊） 虛擬網路閘道 Sku 的相關資訊。 hello 舊版部署模型已經建立的 VPN 閘道中仍可運作的 Sku。 傳統 VPN 閘道繼續 toouse hello 舊版 Sku，現有的閘道，以及新的閘道。 在建立新的資源管理員 VPN 閘道時，使用 hello 新的閘道 Sku。 如需 hello 新 Sku，請參閱[有關 VPN 閘道](vpn-gateway-about-vpngateways.md)。
 
 ## <a name="gwsku"></a>閘道 SKU
 
@@ -39,29 +39,29 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="resize"></a>調整閘道的大小 (變更閘道 SKU)
 
-您可以調整相同 SKU 系列內的閘道 SKU 大小。 例如，如果您有標準 SKU，則可以調整為高效能 SKU。 您無法調整舊 SKU 與新 SKU 系列之間的 VPN 閘道大小。 例如，您不能從標準 SKU 變成 VpnGw2 SKU。 
+您可以調整大小 hello 內的閘道 SKU 相同 SKU 系列。 例如，如果您有標準 SKU，您可以調整 tooa HighPerformance SKU。 您不可以調整您的 VPN 閘道之間 hello 舊的 Sku 和 hello 新 SKU 系列。 例如，您無法從標準 SKU tooa VpnGw2 SKU 移。 
 
-若要調整傳統部署模型的閘道 SKU 大小，請使用下列命令：
+tooresize hello 傳統部署模型，下列命令使用 hello 閘道 SKU:
 
 ```powershell
 Resize-AzureVirtualNetworkGateway -GatewayId <Gateway ID> -GatewaySKU HighPerformance
 ```
 
-若要調整資源管理員部署模型的閘道 SKU 大小，請使用下列命令：
+tooresize 閘道 SKU hello Resource Manager 部署模型，使用下列命令的 hello:
 
 ```powershell
 $gw = Get-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg
 Resize-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw -GatewaySku HighPerformance
 ```
 
-## <a name="migrate"></a>移轉到新的閘道 SKU
+## <a name="migrate"></a>移轉 toohello 新的閘道 Sku
 
-如果您使用的是資源管理員部署模型，則可以移轉到新的閘道 SKU。 如果您使用的是傳統部署模型，則無法移轉到新的 SKU，而必須改為繼續使用舊版 SKU。
+如果您正在使用 hello Resource Manager 部署模型，您可以移轉 toohello 新的閘道 SKU。 如果您正在使用 hello 傳統部署模型，您無法移轉 toohello 新 Sku 和必須改為繼續 toouse hello 舊版 Sku。
 
 [!INCLUDE [Migrate SKU](../../includes/vpn-gateway-migrate-legacy-sku-include.md)]
 
 ## <a name="next-steps"></a>後續步驟
 
-如需新式閘道 SKU 的相關資訊，請參閱[閘道 SKU](vpn-gateway-about-vpngateways.md#gwsku)。
+如需有關 hello 新的閘道 Sku，請參閱[閘道 Sku](vpn-gateway-about-vpngateways.md#gwsku)。
 
 如需組態設定的詳細資訊，請參閱[關於 VPN 閘道組態設定](vpn-gateway-about-vpn-gateway-settings.md)。

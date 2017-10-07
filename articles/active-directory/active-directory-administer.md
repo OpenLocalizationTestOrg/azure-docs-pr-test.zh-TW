@@ -1,6 +1,6 @@
 ---
-title: "如何使用 Azure Active Directory 租用戶目錄概觀 | Microsoft Docs"
-description: "說明 Azure AD 租用戶是什麼，以及如何使用 Azure Active Directory 管理 Azure"
+title: "aaaHow toouse Azure Active Direcory 租用戶目錄概觀 |Microsoft 文件"
+description: "說明什麼是 Azure AD 租用戶，以及如何 toomanage Azure 中使用 Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,21 +15,21 @@ ms.date: 08/23/2017
 ms.author: curtand
 ms.reviewer: jeffsta
 ms.custom: it-pro;oldportal
-ms.openlocfilehash: b1390ba45f52473129dce6b904690b040af8f7e2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ddb16d89bf06a3753ed5106bd95162130ad51b08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-your-azure-ad-directory"></a>管理 Azure AD 目錄
 
 ## <a name="what-is-an-azure-ad-tenant"></a>什麼是 Azure AD 租用戶？
-在 Azure Active Directory (Azure AD) 中，租用戶是您組織在註冊 Microsoft 雲端服務 (例如 Azure 或 Office 365) 時所收到的專屬 Azure AD 目錄執行個體。 每個 Azure AD 目錄都不同，並與其他 Azure AD 目錄分開。 就像公司辦公大樓是您組織特有的安全資產，Azure AD 目錄也是設計成僅供您組織使用的安全資產。 Azure AD 架構會隔離客戶資料和身分識別資訊，某個 Azure AD 目錄的使用者和系統管理員便無法意外或惡意存取另一個目錄中的資料。
+在 Azure Active Directory (Azure AD) 中，租用戶是您組織在註冊 Microsoft 雲端服務 (例如 Azure 或 Office 365) 時所收到的專屬 Azure AD 目錄執行個體。 每個 Azure AD 目錄都不同，並與其他 Azure AD 目錄分開。 如同公司辦公大樓是安全資產的特定 tooonly 您的組織，Azure AD 目錄也已設計的 toobe 由您的組織使用的安全資產。 hello Azure AD 架構隔離客戶資料和識別資訊，讓使用者和一個 Azure AD 目錄的系統管理員無法意外或惡意存取其它目錄中的資料。
 
 ![管理 Azure Active Directory](./media/active-directory-administer/aad_portals.png)
 
 ## <a name="how-can-i-get-an-azure-ad-directory"></a>如何取得 Azure AD 目錄？
-Azure AD 提供大部分 Microsoft 雲端服務的核心目錄和身分識別管理功能，包括：
+Azure AD 提供 hello 核心目錄和身分識別管理功能的支援大部分的 Microsoft 雲端服務，包括：
 
 * Azure
 * Microsoft Office 365
@@ -38,38 +38,38 @@ Azure AD 提供大部分 Microsoft 雲端服務的核心目錄和身分識別管
 
 註冊上述任何 Microsoft 雲端服務時，會收到 Azure AD 目錄。 您可以視需要建立額外的目錄。 例如，您可能會將第一個目錄維護為生產目錄，然後建立另一個目錄來進行測試或預備。
 
-### <a name="using-the-azure-ad-directory-that-comes-with-a-new-azure-subscription"></a>使用新 Azure 訂用帳戶隨附的 Azure AD 目錄
+### <a name="using-hello-azure-ad-directory-that-comes-with-a-new-azure-subscription"></a>使用新的 Azure 訂用帳戶隨附 hello Azure AD 目錄
 
-建議您在註冊其他 Microsoft 服務時使用您用於第一項服務的系統管理員帳戶。 您第一次註冊 Microsoft 服務時提供的資訊於為您的組織建立新的 Azure AD 目錄執行個體。 如果您在訂閱其他 Microsoft 服務時使用該目錄來驗證登入嘗試，這些服務可以使用您在預設目錄中設定的現有使用者帳戶、原則、設定或內部部署目錄整合。
+我們建議您使用 hello 時所使用的第一個服務註冊其他 Microsoft 服務的系統管理員帳戶。 歡迎您提供的資訊 hello 第一次您登入 Microsoft 服務是使用的 toocreate 新的 Azure AD 目錄執行個體，為您的組織。 如果您使用該目錄 tooauthenticate 登入嘗試訂閱 tooother Microsoft 服務時，他們可以使用現有的使用者帳戶、 原則、 設定或內部部署目錄整合，您的預設目錄中的 hello。
 
-例如，如果您註冊 Microsoft Intune 訂用帳戶，然後進一步同步處理內部部署 Active Directory 與 Azure AD 目錄，則可以註冊另一項 Microsoft 服務 (例如 Office 365) 並輕鬆達成與 Microsoft Intune 相同的目錄整合優勢。
+比方說，如果您簽署的 Microsoft Intune 訂閱，然後進一步同步處理您在內部部署 Active Directory 與 Azure AD 目錄，您可以註冊另一個 Microsoft 服務，例如 Office 365 並輕易地達成 hello 相同的目錄您必須使用 Microsoft Intune 的整合優點。
 
 如需整合內部部署目錄與 Azure AD 的詳細資訊，請參閱[透過 Azure AD Connect 進行目錄整合](active-directory-aadconnect.md)。
 
 ### <a name="associate-an-existing-azure-ad-directory-with-a-new-azure-subscription"></a>關聯現有的 Azure AD 目錄與新的 Azure 訂用帳戶
-您可以關聯新的 Azure 訂用帳戶與驗證現有 Office 365 或 Microsoft Intune 訂用帳戶登入的相同目錄。 如需該案例的詳細資訊，請參閱[將 Azure 訂用帳戶的擁有權轉移給另一個帳戶](../billing/billing-subscription-transfer.md)
+您可以將新的 Azure 訂用帳戶與 hello 驗證現有 Office 365 或 Microsoft Intune 訂用帳戶的登入的相同目錄。 如需有關該狀況的詳細資訊，請參閱[的 Azure 訂用帳戶 tooanother 帳戶的擁有權轉移](../billing/billing-subscription-transfer.md)
 
 ### <a name="create-an-azure-ad-directory-by-signing-up-for-a-microsoft-cloud-service-as-an-organization"></a>以組織身分註冊 Microsoft 雲端服務來建立 Azure AD 目錄
-如果您還沒有 Microsoft 雲端服務的訂用帳戶，您可使用下列其中一個連結進行註冊。 註冊第一項服務可自動建立 Azure AD 目錄。
+如果您還沒有訂用帳戶 tooa Microsoft 雲端服務，您可以使用下列連結 toosign hello 的其中一個。 註冊第一項服務可自動建立 Azure AD 目錄。
 
 * [Microsoft Azure](https://account.azure.com/organization)
 * [Office 365](http://products.office.com/business/compare-office-365-for-business-plans/)
 * [Microsoft Intune](https://portal.office.com/Signup/Signup.aspx?OfferId=40BE278A-DFD1-470a-9EF7-9F2596EA7FF9&dl=INTUNE_A&ali=1#0%20)
 
-### <a name="how-to-change-the-default-directory-for-a-subscription"></a>如何變更訂用帳戶的預設目錄
+### <a name="how-toochange-hello-default-directory-for-a-subscription"></a>如何 toochange hello 訂用帳戶的預設目錄
 
-1. 以訂用帳戶之帳戶管理員的帳戶登入 [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)，以便移轉訂用帳戶擁有權。
-2. 確定您希望成為訂用帳戶擁有者的使用者位於目標目錄中。
+1. 登入 toohello [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)為 hello hello 訂閱 tootransfer 訂用帳戶擁有權的帳戶管理員的帳戶。
+2. 請確定您想 toobe hello 訂用帳戶擁有者為目標的 hello 目錄中的 hello 使用者。
 3. 按一下 [移轉訂用帳戶]。
-4. 指定接受者。 接受者會自動收到含有接受連結的電子郵件。
-5. 接受者按一下連結並遵循指示進行，包括輸入他們的付款資訊。 當接受者成功時，訂用帳戶就轉移完成。 
-6. 若訂用帳戶擁有權移轉成功，則訂用帳戶的預設目錄會變更為使用者所在的目錄。
+4. 指定 hello 收件者。 hello 收件者自動取得含有接受連結的電子郵件。
+5. hello 收件者按一下 hello 連結，並遵循 hello 指示，包括輸入其付款資訊。 Hello 收件者成功時，會傳送 hello 訂用帳戶。 
+6. hello hello 訂用帳戶的預設目錄變更 toohello hello 使用者的目錄是在 hello 訂用帳戶擁有權轉移是否成功。
 
-### <a name="manage-the-default-directory-in-azure"></a>管理 Azure 中的預設目錄
-當您註冊 Azure 時，預設 Azure AD 目錄會與您的訂用帳戶相關聯。 使用 Azure AD 不需要成本，而您的目錄為免費資源。 付費 Azure AD 服務會分開授權並提供其他功能 (例如登入時的公司商標和自助式密碼重設)。 您也可以使用您擁有的 DNS 名稱建立自訂網域，而非使用預設 *.onmicrosoft.com 網域。
+### <a name="manage-hello-default-directory-in-azure"></a>管理在 Azure 中的 hello 預設目錄
+當您註冊 Azure 時，預設 Azure AD 目錄會與您的訂用帳戶相關聯。 使用 Azure AD 不需要成本，而您的目錄為免費資源。 付費 Azure AD 服務會分開授權並提供其他功能 (例如登入時的公司商標和自助式密碼重設)。 您也可以建立自訂網域使用您自己的 DNS 名稱而非 hello 預設 *。 onmicrosoft.com 網域。
 
 ## <a name="how-can-i-manage-directory-data"></a>如何管理目錄資料？
-若要管理一或多個 Microsoft 雲端服務訂用帳戶，您可以使用 [Azure AD 系統管理中心](https://aad.portal.azure.com)、Microsoft Intune 帳戶入口網站或 [Office 365 系統管理中心](https://portal.office.com/)來管理組織的目錄資料。 您也可以使用 [Azure Active Directory PowerShell Cmdlet](https://docs.microsoft.com/powershell/azure/active-directory)，協助您管理 Azure AD 中所儲存的資料。
+tooadminister 其中一個或多個 Microsoft 雲端服務訂閱，您可以使用 hello [Azure AD 系統管理中心](https://aad.portal.azure.com)、 hello Microsoft Intune 帳戶入口網站，或 hello [Office 365 系統管理中心](https://portal.office.com/)toomanage 您組織的目錄資料。 您也可以使用[Azure Active Directory PowerShell cmdlet](https://docs.microsoft.com/powershell/azure/active-directory) toohelp 管理儲存在 Azure AD 中的資料。
 
 從上述其中一個入口網站 (或 Cmdlet)，您可以：
 
@@ -77,41 +77,41 @@ Azure AD 提供大部分 Microsoft 雲端服務的核心目錄和身分識別管
 * 管理您組織之訂用帳戶的相關雲端服務
 * 設定與 Azure AD 身分識別和驗證服務的內部部署整合
 
-Azure AD 系統管理中心、Office 365 系統管理中心、Microsoft Intune 帳戶入口網站和 Azure AD Cmdlet 都會讀取和寫入與您組織的目錄相關聯的單一 Azure AD 共用執行個體。 上述每個工具可做為提取或變更目錄資料的前端介面。
+hello Azure AD 系統管理中心、 Office 365 系統管理中心、 Microsoft Intune 帳戶入口網站和 Azure AD cmdlet hello 所有從讀寫 tooa 單一共用執行個體與貴組織的目錄相關聯的 Azure AD。 上述每個工具可做為提取或變更目錄資料的前端介面。
 
-如果利用其中一個服務身分登入時使用任何入口網站或 Cmdlet 來變更組織的資料，則變更也會在您下次登入時顯示在其他入口網站中。 這項資料會在您所訂閱的 Microsoft 雲端服務之間共用。
+當您變更使用任一 hello 入口網站或 cmdlet 時的其中一個服務的 hello 內容下登入貴組織的資料時，hello 變更也會在顯示 hello 其他入口網站 hello 的下次您登入。 此資料是您訂閱 hello Microsoft 雲端服務 toowhich 之間共用的。
 
-例如，如果您使用 Office 365 系統管理中心封鎖使用者登入，該動作會封鎖使用者登入您組織目前所訂閱的任何其他服務。 如果您在 Microsoft Intune 帳戶入口網站檢視相同的使用者帳戶，您也會看到該使用者遭到封鎖。
+例如，如果您使用 hello Office 365 系統管理中心 tooblock 登入，將使用者的動作區塊 hello 使用者登入 tooany 其他服務 toowhich 貴組織目前訂閱。 如果您檢視 hello hello Microsoft Intune 帳戶入口網站中的相同使用者帳戶，您也會看到該 hello 使用者遭到封鎖。
 
 ## <a name="how-can-i-add-and-manage-multiple-directories"></a>如何新增和管理多個目錄？
-您可以在 [Azure 入口網站中新增 Azure AD 目錄](https://portal.azure.com/#create/Microsoft.AzureActiveDirectory)。 填妥資訊並選取 [建立]。
+您可以[hello Azure 入口網站中加入 Azure AD 目錄](https://portal.azure.com/#create/Microsoft.AzureActiveDirectory)。 填寫 hello 資訊，然後選取**建立**。
 
 您可以管理每個目錄當做完全獨立的資源：每個目錄都是對等、全功能且邏輯上與您所管理的其他目錄無關；目錄之間沒有任何父子關聯性。 目錄之間的這項獨立性包括資源獨立性、系統管理獨立性和同步處理獨立性。
 
-* **資源獨立性**。 如果您在某個目錄中建立或刪除資源，則不會影響另一個目錄中的任何資源 (但外部使用者有部分例外狀況)。 如果您搭配使用自訂網域 'contoso.com' 與某個目錄，則它不能與任何其他目錄搭配使用。
+* **資源獨立性**。 如果您建立或刪除一個目錄中的資源，它會在另一個目錄中，與 hello 外部使用者的部分例外狀況的任何資源沒有任何影響。 如果您搭配使用自訂網域 'contoso.com' 與某個目錄，則它不能與任何其他目錄搭配使用。
 * **系統管理獨立性**。  如果不是 'Contoso' 目錄之系統管理員的使用者建立 'Test' 測試目錄，則：
   
-  * 'Contoso' 目錄的系統管理員沒有 'Test' 目錄的直接系統管理權限，除非 'Test' 的系統管理員特別將這些權限授與他們。 'Contoso' 的系統管理員憑藉著其對已建立 'Test' 之使用者帳戶的控制，可以控制 'Test' 目錄的存取權。
+  * hello 的 'Contoso' 目錄的系統管理員有沒有直接的系統管理權限 toodirectory 'Test'，除非 'Test' 的系統管理員特別授與這些權限。 'Contoso' 的系統管理員可以控制存取 toodirectory 'Test' 能藉由控制 hello 使用者帳戶的建立 'Test'。
     
-  * 如果您指派或移除某個目錄中使用者的系統管理員角色，則變更不會影響另一個目錄中該使用者可能有的任何系統管理員角色。
-* **同步處理獨立性**。 您可以單獨設定每個 Azure AD 租用戶，以從 Azure AD Connect 目錄同步工具的單一執行個體同步處理資料。
+  * 如果您指派或移除在一個目錄中，hello 變更使用者的系統管理員角色不會影響任何系統管理員角色的使用者有另一個目錄中。
+* **同步處理獨立性**。 您可以設定每個 Azure AD 租用獨立 tooget 資料單一執行個體 hello Azure AD Connect 目錄同步作業工具從同步處理。
 
-與其他 Azure 資源不同，您的目錄不是 Azure 訂用帳戶的子資源。 因此，如果您取消或允許 Azure 訂用帳戶到期，則還是可以使用 Azure AD PowerShell、Azure Graph API 或其他介面 (例如 Office 365 系統管理中心) 存取目錄資料。 您也可以關聯另一個訂用帳戶與目錄。
+與其他 Azure 資源不同，您的目錄不是 Azure 訂用帳戶的子資源。 因此如果您取消，或允許您的 Azure 訂用帳戶 tooexpire，您仍然可以存取目錄資料，可使用 Azure AD PowerShell、 hello Azure Graph API 或其他介面，例如 hello Office 365 系統管理中心。 您也可以將其他訂用帳戶與 hello 目錄產生關聯。
 
-## <a name="how-to-prepare-to-delete-an-azure-ad-directory"></a>如何準備刪除 Azure AD 目錄
-全域管理員可以從入口網站刪除 Azure AD 目錄。 刪除目錄時，也會一併刪除目錄中內含的所有資源。 確認您不需要該目錄之後，再予以刪除。
+## <a name="how-tooprepare-toodelete-an-azure-ad-directory"></a>如何 tooprepare toodelete Azure AD 目錄
+全域管理員可以從 hello 入口網站刪除 Azure AD 目錄。 刪除目錄時，會一併刪除 hello 目錄中所包含的所有資源。 請確認，您不需要 hello 目錄然後再刪除它。
 
 > [!NOTE]
-> 如果使用者以工作或學校帳戶登入，則使用者不得嘗試刪除其主目錄。 例如，如果使用者以 joe@contoso.onmicrosoft.com 身分登入，則該使用者無法刪除預設網域為 contoso.onmicrosoft.com 的目錄。
+> 如果 hello 使用者登入工作或學校帳戶，hello 使用者必須不嘗試 toodelete 其主目錄。 例如，如果 hello 使用者登入為joe@contoso.onmicrosoft.com，該使用者無法刪除具有預設網域為 contoso.onmicrosoft.com 的 hello 目錄。
 
-Azure AD 需要符合特定條件才能刪除目錄。 這可降低刪除目錄對使用者或應用程式造成負面影響的風險 (例如使用者登入 Office 365 或存取 Azure 中資源的能力)。 例如，如果不小心刪除訂用帳戶的目錄，則使用者無法存取該訂用帳戶的 Azure 資源。
+Azure AD 需要某些條件是符合的 toodelete 目錄。 這樣可降低刪除目錄產生負面影響的使用者或應用程式，例如使用者 toosign 中 tooOffice 365 或 Azure 中的存取資源的 hello 能力的風險。 比方說，如果不小心刪除訂用帳戶的目錄，則使用者無法存取 hello 該訂用帳戶的 Azure 資源。
 
-會檢查下列條件：
+會檢查下列條件的 hello:
 
-* 目錄中的唯一使用者應該是將要刪除目錄的全域管理員。 必須先刪除任何其他使用者，才能刪除目錄。 如果使用者是從內部部署進行同步處理，則必須關閉同步處理，而且必須使用 Azure 入口網站或 Azure PowerShell Cmdlet 來刪除雲端目錄中的使用者。 不需要刪除群組或連絡人 (例如從 Office 365 系統管理中心新增的連絡人)。
-* 目錄中可能沒有任何應用程式。 必須先刪除任何應用程式，才能刪除目錄。
-* 任何 Multi-Factor Authentication 提供者都無法連線至目錄。
-* 任何 Microsoft Online Service 都沒有任何訂用帳戶 (例如與目錄相關聯 Microsoft Azure、Office 365 或 Azure AD Premium)。 例如，在 Azure 中建立預設目錄時，如果您的 Azure 訂用帳戶仍然依賴此目錄來進行驗證，則無法刪除此目錄。 同樣地，如果另一位使用者擁有與目錄相關聯的訂用帳戶，您無法刪除目錄。 
+* hello 只有 hello 目錄中的使用者應該是 toodelete hello 目錄 hello 全域系統管理員。 必須先刪除任何其他使用者，才能刪除 hello 目錄。 如果同步處理使用者從內部部署，則同步處理，必須關閉，而且必須使用 hello 雲端目錄中刪除 hello 使用者 hello Azure 入口網站或 Azure PowerShell cmdlet。 沒有任何需求 toodelete 群組或連絡人，例如從 hello Office 365 系統管理中心新增連絡人。
+* 可以在 hello 目錄中的任何應用程式。 必須先刪除任何應用程式，才能刪除 hello 目錄。
+* 任何多因素驗證提供者可以不是連結的 toohello 目錄。
+* 可以是任何訂用帳戶的任何 Microsoft 線上服務，例如 Microsoft Azure、 Office 365 或 Azure AD Premium 與 hello 目錄相關聯。 例如，在 Azure 中建立預設目錄時，如果您的 Azure 訂用帳戶仍然依賴此目錄來進行驗證，則無法刪除此目錄。 同樣地，如果另一位使用者擁有與目錄相關聯的訂用帳戶，您無法刪除目錄。 
 
 
 ## <a name="next-steps"></a>後續步驟
