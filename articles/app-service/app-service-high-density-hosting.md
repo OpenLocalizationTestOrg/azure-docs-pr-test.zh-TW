@@ -1,5 +1,5 @@
 ---
-title: "Azure App Service 上的高密度裝載 | Microsoft Docs"
+title: "Azure App Service 上裝載的 aaaHigh 密度 |Microsoft 文件"
 description: "Azure App Service 上的高密度託管"
 author: btardif
 manager: erikre
@@ -14,36 +14,36 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 06/12/2017
 ms.author: byvinyal
-ms.openlocfilehash: 459a310a719695f6366470976d857ec2f9d6f4a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a10cb81ace13ba6992b572a44361061ecf72b266
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="high-density-hosting-on-azure-app-service"></a><span data-ttu-id="98fe5-103">Azure App Service 上的高密度託管</span><span class="sxs-lookup"><span data-stu-id="98fe5-103">High density hosting on Azure App Service</span></span>
-<span data-ttu-id="98fe5-104">在使用 App Service 時，應用程式會經由兩種概念與其所配置的容量分離：</span><span class="sxs-lookup"><span data-stu-id="98fe5-104">When using App Service, your application is decoupled from the capacity allocated to it by two concepts:</span></span>
+# <a name="high-density-hosting-on-azure-app-service"></a><span data-ttu-id="c005d-103">Azure App Service 上的高密度託管</span><span class="sxs-lookup"><span data-stu-id="c005d-103">High density hosting on Azure App Service</span></span>
+<span data-ttu-id="c005d-104">使用應用程式服務時，您的應用程式就可以分隔由兩個概念配置 tooit hello 容量：</span><span class="sxs-lookup"><span data-stu-id="c005d-104">When using App Service, your application is decoupled from hello capacity allocated tooit by two concepts:</span></span>
 
-* <span data-ttu-id="98fe5-105">**應用程式︰** 代表應用程式和其執行階段組態。</span><span class="sxs-lookup"><span data-stu-id="98fe5-105">**The Application:** Represents the app and its runtime configuration.</span></span> <span data-ttu-id="98fe5-106">例如，它包含執行階段應載入的 .NET 版本、應用程式設定。</span><span class="sxs-lookup"><span data-stu-id="98fe5-106">For example, it includes the version of .NET that the runtime should load, the app settings.</span></span>
-* <span data-ttu-id="98fe5-107">**App Service 方案︰** 定義容量、可用功能集和應用程式位置的特性。</span><span class="sxs-lookup"><span data-stu-id="98fe5-107">**The App Service Plan:** Defines the characteristics of the capacity, available feature set, and locality of the application.</span></span> <span data-ttu-id="98fe5-108">例如，特性可能是大型 (四個核心) 機器、四個執行個體、美國東部的進階功能。</span><span class="sxs-lookup"><span data-stu-id="98fe5-108">For example, characteristics might be large (four cores) machine, four instances, Premium features in East US.</span></span>
+* <span data-ttu-id="c005d-105">**hello 應用程式：**代表 hello 應用程式和其執行階段組態。</span><span class="sxs-lookup"><span data-stu-id="c005d-105">**hello Application:** Represents hello app and its runtime configuration.</span></span> <span data-ttu-id="c005d-106">例如，它包含 hello hello 執行階段的.NET 版本應該載入，hello 應用程式設定。</span><span class="sxs-lookup"><span data-stu-id="c005d-106">For example, it includes hello version of .NET that hello runtime should load, hello app settings.</span></span>
+* <span data-ttu-id="c005d-107">**App Service 方案的 hello:**定義 hello 特性 hello 容量、 可用的功能集和位置的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="c005d-107">**hello App Service Plan:** Defines hello characteristics of hello capacity, available feature set, and locality of hello application.</span></span> <span data-ttu-id="c005d-108">例如，特性可能是大型 (四個核心) 機器、四個執行個體、美國東部的進階功能。</span><span class="sxs-lookup"><span data-stu-id="c005d-108">For example, characteristics might be large (four cores) machine, four instances, Premium features in East US.</span></span>
 
-<span data-ttu-id="98fe5-109">應用程式一律會連結至 App Service 方案，但 App Service 方案可以提供容量給一或多個應用程式。</span><span class="sxs-lookup"><span data-stu-id="98fe5-109">An app is always linked to an App Service plan, but an App Service plan can provide capacity to one or more apps.</span></span>
+<span data-ttu-id="c005d-109">應用程式連結的 tooan App Service 方案，但是 App Service 方案可以提供容量 tooone 或更多應用程式。</span><span class="sxs-lookup"><span data-stu-id="c005d-109">An app is always linked tooan App Service plan, but an App Service plan can provide capacity tooone or more apps.</span></span>
 
-<span data-ttu-id="98fe5-110">因此，平台可提供隔離單一應用程式的彈性，或透過共用 App Service 方案而讓多個應用程式共用資源。</span><span class="sxs-lookup"><span data-stu-id="98fe5-110">As a result, the platform provides the flexibility to isolate a single app or have multiple apps share resources by sharing an App Service plan.</span></span>
+<span data-ttu-id="c005d-110">如此一來，hello 平台提供 hello 彈性 tooisolate 單一應用程式，或有多個共用資源的共用 App Service 方案的應用程式。</span><span class="sxs-lookup"><span data-stu-id="c005d-110">As a result, hello platform provides hello flexibility tooisolate a single app or have multiple apps share resources by sharing an App Service plan.</span></span>
 
-<span data-ttu-id="98fe5-111">不過，當多個應用程式共用 App Service 方案時，該 App Service 方案的每個執行個體上便會執行該應用程式的執行個體。</span><span class="sxs-lookup"><span data-stu-id="98fe5-111">However, when multiple apps share an App Service plan, an instance of that app runs on every instance of that App Service plan.</span></span>
+<span data-ttu-id="c005d-111">不過，當多個應用程式共用 App Service 方案時，該 App Service 方案的每個執行個體上便會執行該應用程式的執行個體。</span><span class="sxs-lookup"><span data-stu-id="c005d-111">However, when multiple apps share an App Service plan, an instance of that app runs on every instance of that App Service plan.</span></span>
 
-## <a name="per-app-scaling"></a><span data-ttu-id="98fe5-112">每一應用程式調整</span><span class="sxs-lookup"><span data-stu-id="98fe5-112">Per app scaling</span></span>
-<span data-ttu-id="98fe5-113">*每一應用程式調整* 是可在 App Service 方案層級啟用，然後以每一應用程式為基礎來使用的功能。</span><span class="sxs-lookup"><span data-stu-id="98fe5-113">*Per app scaling* is a feature that can be enabled at the App Service plan level and then used per application.</span></span>
+## <a name="per-app-scaling"></a><span data-ttu-id="c005d-112">每一應用程式調整</span><span class="sxs-lookup"><span data-stu-id="c005d-112">Per app scaling</span></span>
+<span data-ttu-id="c005d-113">*每一應用程式調整* 是可在 App Service 方案層級啟用，然後以每一應用程式為基礎來使用的功能。</span><span class="sxs-lookup"><span data-stu-id="c005d-113">*Per app scaling* is a feature that can be enabled at the App Service plan level and then used per application.</span></span>
 
-<span data-ttu-id="98fe5-114">每一應用程式調整會獨立縮放應用程式，不受裝載它的 App Service 方案所影響。</span><span class="sxs-lookup"><span data-stu-id="98fe5-114">Per app scaling scales an app independently from the App Service plan that hosts it.</span></span> <span data-ttu-id="98fe5-115">如此一來，App Service 方案可以調整為 10 個執行個體，但是應用程式可以設定為僅使用五個。</span><span class="sxs-lookup"><span data-stu-id="98fe5-115">This way, an App Service plan can be scaled to 10 instances, but an app can be set to use only five.</span></span>
+<span data-ttu-id="c005d-114">每一應用程式調整會獨立縮放應用程式，不受裝載它的 App Service 方案所影響。</span><span class="sxs-lookup"><span data-stu-id="c005d-114">Per app scaling scales an app independently from the App Service plan that hosts it.</span></span> <span data-ttu-id="c005d-115">如此一來，應用程式服務計劃可以縮放 too10 執行個體，但應用程式可以設定 toouse 只有五個。</span><span class="sxs-lookup"><span data-stu-id="c005d-115">This way, an App Service plan can be scaled too10 instances, but an app can be set toouse only five.</span></span>
 
    >[!NOTE]
-   ><span data-ttu-id="98fe5-116">只有「進階」SKU App Service 方案才能使用個別應用程式調整</span><span class="sxs-lookup"><span data-stu-id="98fe5-116">Per app scaling is available only for **Premium** SKU App Service plans</span></span>
+   ><span data-ttu-id="c005d-116">只有「進階」SKU App Service 方案才能使用個別應用程式調整</span><span class="sxs-lookup"><span data-stu-id="c005d-116">Per app scaling is available only for **Premium** SKU App Service plans</span></span>
    >
 
-### <a name="per-app-scaling-using-powershell"></a><span data-ttu-id="98fe5-117">使用 PowerShell 進行個別應用程式調整</span><span class="sxs-lookup"><span data-stu-id="98fe5-117">Per app scaling using PowerShell</span></span>
+### <a name="per-app-scaling-using-powershell"></a><span data-ttu-id="c005d-117">使用 PowerShell 進行個別應用程式調整</span><span class="sxs-lookup"><span data-stu-id="c005d-117">Per app scaling using PowerShell</span></span>
 
-<span data-ttu-id="98fe5-118">您可以透過將 ```-perSiteScaling $true``` 屬性傳遞給 ```New-AzureRmAppServicePlan``` Commandlet，建立一個設定為「個別應用程式調整」方案的方案</span><span class="sxs-lookup"><span data-stu-id="98fe5-118">You can create a plan configured as a *Per app scaling* plan by passing in the ```-perSiteScaling $true``` attribute to the ```New-AzureRmAppServicePlan``` commandlet</span></span>
+<span data-ttu-id="c005d-118">您可以建立計劃設定為*每個應用程式調整*計劃，透過傳入 hello```-perSiteScaling $true```屬性 toohello ```New-AzureRmAppServicePlan``` commandlet</span><span class="sxs-lookup"><span data-stu-id="c005d-118">You can create a plan configured as a *Per app scaling* plan by passing in hello ```-perSiteScaling $true``` attribute toohello ```New-AzureRmAppServicePlan``` commandlet</span></span>
 
 ```
 New-AzureRmAppServicePlan -ResourceGroupName $ResourceGroup -Name $AppServicePlan `
@@ -52,51 +52,51 @@ New-AzureRmAppServicePlan -ResourceGroupName $ResourceGroup -Name $AppServicePla
                             -NumberofWorkers 5 -PerSiteScaling $true
 ```
 
-<span data-ttu-id="98fe5-119">如果您想要將現有的 App Service 方案更新成使用此功能：</span><span class="sxs-lookup"><span data-stu-id="98fe5-119">If you want to update an existing App Service plan to use this feature:</span></span> 
+<span data-ttu-id="c005d-119">如果您想 tooupdate 現有的應用程式服務計劃 toouse 這項功能：</span><span class="sxs-lookup"><span data-stu-id="c005d-119">If you want tooupdate an existing App Service plan toouse this feature:</span></span> 
 
-- <span data-ttu-id="98fe5-120">取得目標方案 ```Get-AzureRmAppServicePlan```</span><span class="sxs-lookup"><span data-stu-id="98fe5-120">get the target plan ```Get-AzureRmAppServicePlan```</span></span>
-- <span data-ttu-id="98fe5-121">在本機修改屬性 ```$newASP.PerSiteScaling = $true```</span><span class="sxs-lookup"><span data-stu-id="98fe5-121">modifying the property locally ```$newASP.PerSiteScaling = $true```</span></span>
-- <span data-ttu-id="98fe5-122">將您的變更張貼回 Azure ```Set-AzureRmAppServicePlan```</span><span class="sxs-lookup"><span data-stu-id="98fe5-122">posting your changes back to azure ```Set-AzureRmAppServicePlan```</span></span> 
+- <span data-ttu-id="c005d-120">取得 hello 目標計劃```Get-AzureRmAppServicePlan```</span><span class="sxs-lookup"><span data-stu-id="c005d-120">get hello target plan ```Get-AzureRmAppServicePlan```</span></span>
+- <span data-ttu-id="c005d-121">修改本機 hello 屬性```$newASP.PerSiteScaling = $true```</span><span class="sxs-lookup"><span data-stu-id="c005d-121">modifying hello property locally ```$newASP.PerSiteScaling = $true```</span></span>
+- <span data-ttu-id="c005d-122">張貼您的變更回復 tooazure```Set-AzureRmAppServicePlan```</span><span class="sxs-lookup"><span data-stu-id="c005d-122">posting your changes back tooazure ```Set-AzureRmAppServicePlan```</span></span> 
 
 ```
-# Get the new App Service Plan and modify the "PerSiteScaling" property.
+# Get hello new App Service Plan and modify hello "PerSiteScaling" property.
 $newASP = Get-AzureRmAppServicePlan -ResourceGroupName $ResourceGroup -Name $AppServicePlan
 $newASP
 
-#Modify the local copy to use "PerSiteScaling" property.
+#Modify hello local copy toouse "PerSiteScaling" property.
 $newASP.PerSiteScaling = $true
 $newASP
     
-#Post updated app service plan back to azure
+#Post updated app service plan back tooazure
 Set-AzureRmAppServicePlan $newASP
 ```
 
-<span data-ttu-id="98fe5-123">在應用程式層級，我們需要設定應用程式在 App Service 方案中可以使用的執行個體數目。</span><span class="sxs-lookup"><span data-stu-id="98fe5-123">At the app level, we need to configure the number of instances the app can use in the app service plan.</span></span>
+<span data-ttu-id="c005d-123">在 hello 應用程式層級中，我們需要 tooconfigure hello 數目 hello 應用程式可以在 hello 應用程式服務方案中使用的執行個體。</span><span class="sxs-lookup"><span data-stu-id="c005d-123">At hello app level, we need tooconfigure hello number of instances hello app can use in hello app service plan.</span></span>
 
-<span data-ttu-id="98fe5-124">在以下範例中，應用程式限制為 2 個執行個體，不論其基礎 App Service 方案的規模相應放大到多少個執行個體。</span><span class="sxs-lookup"><span data-stu-id="98fe5-124">In the example below, the app is limited to two instances regardless of how many instances the underlying app service plan scales out to.</span></span>
+<span data-ttu-id="c005d-124">在下面 hello 範例中，hello 應用程式會是有限的 tootwo 不論多少個執行個體的執行個體 hello 基礎應用程式服務方案的規模出。</span><span class="sxs-lookup"><span data-stu-id="c005d-124">In hello example below, hello app is limited tootwo instances regardless of how many instances hello underlying app service plan scales out to.</span></span>
 
 ```
-# Get the app we want to configure to use "PerSiteScaling"
+# Get hello app we want tooconfigure toouse "PerSiteScaling"
 $newapp = Get-AzureRmWebApp -ResourceGroupName $ResourceGroup -Name $webapp
     
-# Modify the NumberOfWorkers setting to the desired value.
+# Modify hello NumberOfWorkers setting toohello desired value.
 $newapp.SiteConfig.NumberOfWorkers = 2
     
-# Post updated app back to azure
+# Post updated app back tooazure
 Set-AzureRmWebApp $newapp
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="98fe5-125">$newapp.SiteConfig.NumberOfWorkers 不同於 $newapp.MaxNumberOfWorkers。</span><span class="sxs-lookup"><span data-stu-id="98fe5-125">$newapp.SiteConfig.NumberOfWorkers is different form $newapp.MaxNumberOfWorkers.</span></span> <span data-ttu-id="98fe5-126">每個應用程式調整會使用 $newapp.SiteConfig.NumberOfWorkers 來決定應用程式的調整特性。</span><span class="sxs-lookup"><span data-stu-id="98fe5-126">Per app scaling uses $newapp.SiteConfig.NumberOfWorkers to determine the scale characteristics of the app.</span></span>
+> <span data-ttu-id="c005d-125">$newapp.SiteConfig.NumberOfWorkers 不同於 $newapp.MaxNumberOfWorkers。</span><span class="sxs-lookup"><span data-stu-id="c005d-125">$newapp.SiteConfig.NumberOfWorkers is different form $newapp.MaxNumberOfWorkers.</span></span> <span data-ttu-id="c005d-126">每個應用程式擴充會使用 $newapp。SiteConfig.NumberOfWorkers toodetermine hello 小數位數的特性 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="c005d-126">Per app scaling uses $newapp.SiteConfig.NumberOfWorkers toodetermine hello scale characteristics of hello app.</span></span>
 
-### <a name="per-app-scaling-using-azure-resource-manager"></a><span data-ttu-id="98fe5-127">使用 Azure Resource Manager 進行個別應用程式調整</span><span class="sxs-lookup"><span data-stu-id="98fe5-127">Per app scaling using Azure Resource Manager</span></span>
+### <a name="per-app-scaling-using-azure-resource-manager"></a><span data-ttu-id="c005d-127">使用 Azure Resource Manager 進行個別應用程式調整</span><span class="sxs-lookup"><span data-stu-id="c005d-127">Per app scaling using Azure Resource Manager</span></span>
 
-<span data-ttu-id="98fe5-128">下列「Azure Resource Manager 範本」會建立：</span><span class="sxs-lookup"><span data-stu-id="98fe5-128">The following *Azure Resource Manager template* creates:</span></span>
+<span data-ttu-id="c005d-128">hello 下列*Azure Resource Manager 範本*建立：</span><span class="sxs-lookup"><span data-stu-id="c005d-128">hello following *Azure Resource Manager template* creates:</span></span>
 
-- <span data-ttu-id="98fe5-129">規模相應放大到 10 個執行個體的 App Service 方案</span><span class="sxs-lookup"><span data-stu-id="98fe5-129">An App Service plan that's scaled out to 10 instances</span></span>
-- <span data-ttu-id="98fe5-130">已設定為將上限調整成 5 個執行個體的應用程式。</span><span class="sxs-lookup"><span data-stu-id="98fe5-130">an app that's configured to scale to a max of five instances.</span></span>
+- <span data-ttu-id="c005d-129">向外延展 too10 執行個體的應用程式服務方案</span><span class="sxs-lookup"><span data-stu-id="c005d-129">An App Service plan that's scaled out too10 instances</span></span>
+- <span data-ttu-id="c005d-130">應用程式設定 tooscale tooa 最大的五個執行個體。</span><span class="sxs-lookup"><span data-stu-id="c005d-130">an app that's configured tooscale tooa max of five instances.</span></span>
 
-<span data-ttu-id="98fe5-131">App Service 方案會將 **PerSiteScaling** 屬性設為 true (```"perSiteScaling": true```)。</span><span class="sxs-lookup"><span data-stu-id="98fe5-131">The App Service plan is setting the **PerSiteScaling** property to true ```"perSiteScaling": true```.</span></span> <span data-ttu-id="98fe5-132">應用程式會將要使用的「背景工作角色數目」設定為 5 (```"properties": { "numberOfWorkers": "5" }```)。</span><span class="sxs-lookup"><span data-stu-id="98fe5-132">The app is setting the **number of workers** to use to 5 ```"properties": { "numberOfWorkers": "5" }```.</span></span>
+<span data-ttu-id="c005d-131">hello 應用程式服務方案設定 hello **PerSiteScaling**屬性 tootrue ```"perSiteScaling": true```。</span><span class="sxs-lookup"><span data-stu-id="c005d-131">hello App Service plan is setting hello **PerSiteScaling** property tootrue ```"perSiteScaling": true```.</span></span> <span data-ttu-id="c005d-132">hello 應用程式正在設定 hello**數目的工作者**toouse too5 ```"properties": { "numberOfWorkers": "5" }```。</span><span class="sxs-lookup"><span data-stu-id="c005d-132">hello app is setting hello **number of workers** toouse too5 ```"properties": { "numberOfWorkers": "5" }```.</span></span>
 
 ```
 {
@@ -145,20 +145,20 @@ Set-AzureRmWebApp $newapp
 }
 ```
 
-## <a name="recommended-configuration-for-high-density-hosting"></a><span data-ttu-id="98fe5-133">高密度裝載的建議組態</span><span class="sxs-lookup"><span data-stu-id="98fe5-133">Recommended configuration for high density hosting</span></span>
-<span data-ttu-id="98fe5-134">每個應用程式調整是全域 Azure 區域和 App Service Environment 中啟用的功能。</span><span class="sxs-lookup"><span data-stu-id="98fe5-134">Per app scaling is a feature that is enabled in both global Azure regions and App Service Environments.</span></span> <span data-ttu-id="98fe5-135">不過，建議策略是使用 App Service 環境，以利用其進階功能和較大的容量集區。</span><span class="sxs-lookup"><span data-stu-id="98fe5-135">However, the recommended strategy is to use App Service Environments to take advantage of their advanced features and the larger pools of capacity.</span></span>  
+## <a name="recommended-configuration-for-high-density-hosting"></a><span data-ttu-id="c005d-133">高密度裝載的建議組態</span><span class="sxs-lookup"><span data-stu-id="c005d-133">Recommended configuration for high density hosting</span></span>
+<span data-ttu-id="c005d-134">每個應用程式調整是全域 Azure 區域和 App Service Environment 中啟用的功能。</span><span class="sxs-lookup"><span data-stu-id="c005d-134">Per app scaling is a feature that is enabled in both global Azure regions and App Service Environments.</span></span> <span data-ttu-id="c005d-135">不過，hello 建議策略是使用應用程式服務環境 tootake 利用進階的功能和容量的 hello 較大的集區。</span><span class="sxs-lookup"><span data-stu-id="c005d-135">However, hello recommended strategy is to use App Service Environments tootake advantage of their advanced features and hello larger pools of capacity.</span></span>  
 
-<span data-ttu-id="98fe5-136">請遵循下列步驟來設定應用程式的高密度裝載：</span><span class="sxs-lookup"><span data-stu-id="98fe5-136">Follow these steps to configure high density hosting for your apps:</span></span>
+<span data-ttu-id="c005d-136">請遵循這些步驟 tooconfigure 高密度裝載您的應用程式：</span><span class="sxs-lookup"><span data-stu-id="c005d-136">Follow these steps tooconfigure high density hosting for your apps:</span></span>
 
-1. <span data-ttu-id="98fe5-137">設定 App Service 環境，並選擇專用於高密度裝載案例的背景工作角色集區。</span><span class="sxs-lookup"><span data-stu-id="98fe5-137">Configure the App Service Environment and choose a worker pool that is dedicated to the high density hosting scenario.</span></span>
-1. <span data-ttu-id="98fe5-138">建立單一 App Service 方案，並將其調整為使用背景工作角色集區上所有可用的容量。</span><span class="sxs-lookup"><span data-stu-id="98fe5-138">Create a single App Service plan, and scale it to use all the available capacity on the worker pool.</span></span>
-1. <span data-ttu-id="98fe5-139">在 App Service 方案上將 PerSiteScaling 旗標設定為 true。</span><span class="sxs-lookup"><span data-stu-id="98fe5-139">Set the PerSiteScaling flag to true on the App Service plan.</span></span>
-1. <span data-ttu-id="98fe5-140">新應用程式會建立並指派給該 App Service 方案，其中 **numberOfWorkers** 屬性會設定為 **1**。</span><span class="sxs-lookup"><span data-stu-id="98fe5-140">New apps are created and assigned to that App Service plan with the **numberOfWorkers** property set to **1**.</span></span> <span data-ttu-id="98fe5-141">使用此設定會產生此背景工作角色集區上所能允許的最高密度。</span><span class="sxs-lookup"><span data-stu-id="98fe5-141">Using this configuration yields the highest density possible on this worker pool.</span></span>
-1. <span data-ttu-id="98fe5-142">背景工作角色數目可依每個應用程式單獨設定，以視需要授與額外資源。</span><span class="sxs-lookup"><span data-stu-id="98fe5-142">The number of workers can be configured independently per app to grant additional resources as needed.</span></span> <span data-ttu-id="98fe5-143">例如：</span><span class="sxs-lookup"><span data-stu-id="98fe5-143">For example:</span></span>
-    - <span data-ttu-id="98fe5-144">高用量應用程式可以將 **numberOfWorkers** 設定為 **3**，讓該應用程式具有更多的處理容量。</span><span class="sxs-lookup"><span data-stu-id="98fe5-144">A high-use app can set **numberOfWorkers** to **3** to have more processing capacity for that app.</span></span> 
-    - <span data-ttu-id="98fe5-145">低用量應用程式會將 **numberOfWorkers** 設定為 **1**。</span><span class="sxs-lookup"><span data-stu-id="98fe5-145">Low-use apps would set **numberOfWorkers** to **1**.</span></span>
+1. <span data-ttu-id="c005d-137">設定 App Service 環境的 hello 和選擇是專用的 toohello 較高的密度，裝載案例的背景工作集區。</span><span class="sxs-lookup"><span data-stu-id="c005d-137">Configure hello App Service Environment and choose a worker pool that is dedicated toohello high density hosting scenario.</span></span>
+1. <span data-ttu-id="c005d-138">建立單一的應用程式服務方案，並調整它 toouse 所有 hello hello 背景工作集區上的可用容量。</span><span class="sxs-lookup"><span data-stu-id="c005d-138">Create a single App Service plan, and scale it toouse all hello available capacity on hello worker pool.</span></span>
+1. <span data-ttu-id="c005d-139">設定 hello PerSiteScaling 旗標 tootrue hello 應用程式服務方案。</span><span class="sxs-lookup"><span data-stu-id="c005d-139">Set hello PerSiteScaling flag tootrue on hello App Service plan.</span></span>
+1. <span data-ttu-id="c005d-140">新的應用程式會建立並指派 toothat 應用程式服務計劃與**numberOfWorkers**屬性設定太**1**。</span><span class="sxs-lookup"><span data-stu-id="c005d-140">New apps are created and assigned toothat App Service plan with the **numberOfWorkers** property set too**1**.</span></span> <span data-ttu-id="c005d-141">使用此設定會產生 hello 最高密度可能此背景工作集區上。</span><span class="sxs-lookup"><span data-stu-id="c005d-141">Using this configuration yields hello highest density possible on this worker pool.</span></span>
+1. <span data-ttu-id="c005d-142">hello 背景工作數目可以視需要設定獨立每個應用程式 toogrant 其他資源。</span><span class="sxs-lookup"><span data-stu-id="c005d-142">hello number of workers can be configured independently per app toogrant additional resources as needed.</span></span> <span data-ttu-id="c005d-143">例如：</span><span class="sxs-lookup"><span data-stu-id="c005d-143">For example:</span></span>
+    - <span data-ttu-id="c005d-144">高用量應用程式可以設定**numberOfWorkers**太**3** toohave 多個處理針對該應用程式的容量。</span><span class="sxs-lookup"><span data-stu-id="c005d-144">A high-use app can set **numberOfWorkers** too**3** toohave more processing capacity for that app.</span></span> 
+    - <span data-ttu-id="c005d-145">低使用率的應用程式會設定**numberOfWorkers**太**1**。</span><span class="sxs-lookup"><span data-stu-id="c005d-145">Low-use apps would set **numberOfWorkers** too**1**.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="98fe5-146">後續步驟</span><span class="sxs-lookup"><span data-stu-id="98fe5-146">Next Steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="c005d-146">後續步驟</span><span class="sxs-lookup"><span data-stu-id="c005d-146">Next Steps</span></span>
 
-- [<span data-ttu-id="98fe5-147">Azure App Service 方案深入概觀</span><span class="sxs-lookup"><span data-stu-id="98fe5-147">Azure App Service plans in-depth overview</span></span>](azure-web-sites-web-hosting-plans-in-depth-overview.md)
-- [<span data-ttu-id="98fe5-148">App Service 環境簡介</span><span class="sxs-lookup"><span data-stu-id="98fe5-148">Introduction to App Service Environment</span></span>](../app-service-web/app-service-app-service-environment-intro.md)
+- [<span data-ttu-id="c005d-147">Azure App Service 方案深入概觀</span><span class="sxs-lookup"><span data-stu-id="c005d-147">Azure App Service plans in-depth overview</span></span>](azure-web-sites-web-hosting-plans-in-depth-overview.md)
+- [<span data-ttu-id="c005d-148">簡介 tooApp Service 環境</span><span class="sxs-lookup"><span data-stu-id="c005d-148">Introduction tooApp Service Environment</span></span>](../app-service-web/app-service-app-service-environment-intro.md)

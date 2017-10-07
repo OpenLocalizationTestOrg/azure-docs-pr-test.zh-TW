@@ -1,6 +1,6 @@
 ---
-title: "與 DMZ 搭配使用的 Azure 範例應用程式 | Microsoft Docs"
-description: "在建立 DMZ 來測試流量案例後部署這個簡單的 Web 應用程式"
+title: "搭配 Dmz aaaAzure 範例應用程式 |Microsoft 文件"
+description: "部署之後建立 DMZ tootest 流量流程案例這個簡單的 web 應用程式"
 services: virtual-network
 documentationcenter: na
 author: tracsman
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/03/2017
 ms.author: jonor
-ms.openlocfilehash: 8506238e41c5d9dac8d76d729d4919b30a0528b9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e0d9cf14590f75b50c64b677efce2c5425b83ec6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sample-application-for-use-with-dmzs"></a><span data-ttu-id="349ee-103">與 DMZ 搭配使用的範例應用程式</span><span class="sxs-lookup"><span data-stu-id="349ee-103">Sample application for use with DMZs</span></span>
-<span data-ttu-id="349ee-104">[返回 [安全性界限最佳作法] 頁面][HOME]</span><span class="sxs-lookup"><span data-stu-id="349ee-104">[Return to the Security Boundary Best Practices Page][HOME]</span></span>
+# <a name="sample-application-for-use-with-dmzs"></a><span data-ttu-id="b782f-103">與 DMZ 搭配使用的範例應用程式</span><span class="sxs-lookup"><span data-stu-id="b782f-103">Sample application for use with DMZs</span></span>
+<span data-ttu-id="b782f-104">[傳回 toohello 安全性界限最佳作法頁面][HOME]</span><span class="sxs-lookup"><span data-stu-id="b782f-104">[Return toohello Security Boundary Best Practices Page][HOME]</span></span>
 
-<span data-ttu-id="349ee-105">這些 PowerShell 指令碼可在 IIS01 和 AppVM01 伺服器本機上執行，用來安裝和設定一個簡單的 Web 應用程式，以顯示一個來自前端 IIS01 伺服器而內容來自後端 AppVM01 的 html 頁面。</span><span class="sxs-lookup"><span data-stu-id="349ee-105">These PowerShell scripts can be run locally on the IIS01 and AppVM01 servers to install and set up a simple web application that displays an html page from the front-end IIS01 server with content from the back-end AppVM01 server.</span></span>
+<span data-ttu-id="b782f-105">這些 PowerShell 指令碼可以在 hello IIS01 和 AppVM01 伺服器 tooinstall 本機執行和設定會顯示從前端 IIS01 伺服器 hello 的 html 頁面的 hello 後端 AppVM01 伺服器內容的簡單 web 應用程式。</span><span class="sxs-lookup"><span data-stu-id="b782f-105">These PowerShell scripts can be run locally on hello IIS01 and AppVM01 servers tooinstall and set up a simple web application that displays an html page from hello front-end IIS01 server with content from hello back-end AppVM01 server.</span></span>
 
-<span data-ttu-id="349ee-106">此應用程式提供簡單的測試環境，可測試許多 DMZ 範例，以及端點、NSG、UDR 及防火牆規則的變更對流量的影響。</span><span class="sxs-lookup"><span data-stu-id="349ee-106">This application provides a simple testing environment for many of the DMZ Examples and how changes on the Endpoints, NSGs, UDR, and Firewall rules can affect traffic flows.</span></span>
+<span data-ttu-id="b782f-106">此應用程式提供簡單的測試環境的 hello DMZ 範例及如何變更 hello 端點、 Nsg、 UDR，許多與防火牆規則可能會影響流量。</span><span class="sxs-lookup"><span data-stu-id="b782f-106">This application provides a simple testing environment for many of hello DMZ Examples and how changes on hello Endpoints, NSGs, UDR, and Firewall rules can affect traffic flows.</span></span>
 
-## <a name="firewall-rule-to-allow-icmp"></a><span data-ttu-id="349ee-107">允許 ICMP 的防火牆規則</span><span class="sxs-lookup"><span data-stu-id="349ee-107">Firewall rule to allow ICMP</span></span>
-<span data-ttu-id="349ee-108">這個簡單的 PowerShell 陳述式可以在任何 Windows VM 上執行，以允許 ICMP (Ping) 流量。</span><span class="sxs-lookup"><span data-stu-id="349ee-108">This simple PowerShell statement can be run on any Windows VM to allow ICMP (Ping) traffic.</span></span> <span data-ttu-id="349ee-109">此防火牆更新藉由允許 ping 通訊協定通過 Windows 防火牆，讓您能夠更輕鬆進行測試和疑難排解 (ICMP 在大多數 Linux 散發版本上預設為開啟)。</span><span class="sxs-lookup"><span data-stu-id="349ee-109">This firewall update allows for easier testing and troubleshooting by allowing the ping protocol to pass through the windows firewall (for most Linux distros ICMP is on by default).</span></span>
+## <a name="firewall-rule-tooallow-icmp"></a><span data-ttu-id="b782f-107">防火牆規則 tooallow ICMP</span><span class="sxs-lookup"><span data-stu-id="b782f-107">Firewall rule tooallow ICMP</span></span>
+<span data-ttu-id="b782f-108">這個簡單的 PowerShell 陳述式可以執行任何 Windows VM tooallow ICMP (Ping) 流量。</span><span class="sxs-lookup"><span data-stu-id="b782f-108">This simple PowerShell statement can be run on any Windows VM tooallow ICMP (Ping) traffic.</span></span> <span data-ttu-id="b782f-109">此防火牆的更新可讓您更輕鬆測試及疑難排解藉由使用 hello ping 通訊協定 toopass 通過 hello （適用於大部分 ICMP 預設為開啟的 Linux 散發版本） 的 windows 防火牆。</span><span class="sxs-lookup"><span data-stu-id="b782f-109">This firewall update allows for easier testing and troubleshooting by allowing hello ping protocol toopass through hello windows firewall (for most Linux distros ICMP is on by default).</span></span>
 
 ```PowerShell
 # Turn On ICMPv4
@@ -36,25 +36,25 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
     -Protocol ICMPv4 -Enabled True -Profile Any -Action Allow
 ```
 
-<span data-ttu-id="349ee-110">如果您使用下列指令碼，則這個新增的防火牆規則是第一個陳述式。</span><span class="sxs-lookup"><span data-stu-id="349ee-110">If you use the following scripts, this firewall rule addition is the first statement.</span></span>
+<span data-ttu-id="b782f-110">如果您使用下列指令碼的 hello，此防火牆規則加入動作 hello 第一個陳述式。</span><span class="sxs-lookup"><span data-stu-id="b782f-110">If you use hello following scripts, this firewall rule addition is hello first statement.</span></span>
 
-## <a name="iis01---web-application-installation-script"></a><span data-ttu-id="349ee-111">IIS01 - Web 應用程式安裝指令碼</span><span class="sxs-lookup"><span data-stu-id="349ee-111">IIS01 - Web application installation script</span></span>
-<span data-ttu-id="349ee-112">此指令碼會：</span><span class="sxs-lookup"><span data-stu-id="349ee-112">This script will:</span></span>
+## <a name="iis01---web-application-installation-script"></a><span data-ttu-id="b782f-111">IIS01 - Web 應用程式安裝指令碼</span><span class="sxs-lookup"><span data-stu-id="b782f-111">IIS01 - Web application installation script</span></span>
+<span data-ttu-id="b782f-112">此指令碼會：</span><span class="sxs-lookup"><span data-stu-id="b782f-112">This script will:</span></span>
 
-1. <span data-ttu-id="349ee-113">在本機伺服器 Windows 防火牆開啟 IMCPv4 (Ping) 以方便測試</span><span class="sxs-lookup"><span data-stu-id="349ee-113">Open IMCPv4 (Ping) on the local server windows firewall for easier testing</span></span>
-2. <span data-ttu-id="349ee-114">安裝 IIS 和 .Net Framework v4.5</span><span class="sxs-lookup"><span data-stu-id="349ee-114">Install IIS and the .Net Framework v4.5</span></span>
-3. <span data-ttu-id="349ee-115">建立 ASP.NET 網頁和 Web.config 檔案</span><span class="sxs-lookup"><span data-stu-id="349ee-115">Create an ASP.NET web page and a Web.config file</span></span>
-4. <span data-ttu-id="349ee-116">變更預設應用程式集區以方便存取檔案</span><span class="sxs-lookup"><span data-stu-id="349ee-116">Change the Default application pool to make file access easier</span></span>
-5. <span data-ttu-id="349ee-117">將匿名使用者設定為您的系統管理員帳戶和密碼</span><span class="sxs-lookup"><span data-stu-id="349ee-117">Set the Anonymous user to your admin account and password</span></span>
+1. <span data-ttu-id="b782f-113">開啟 IMCPv4 (Ping) 您更輕鬆測試 hello 本機伺服器 windows 防火牆</span><span class="sxs-lookup"><span data-stu-id="b782f-113">Open IMCPv4 (Ping) on hello local server windows firewall for easier testing</span></span>
+2. <span data-ttu-id="b782f-114">安裝 IIS 和 hello.Net Framework 4.5 版</span><span class="sxs-lookup"><span data-stu-id="b782f-114">Install IIS and hello .Net Framework v4.5</span></span>
+3. <span data-ttu-id="b782f-115">建立 ASP.NET 網頁和 Web.config 檔案</span><span class="sxs-lookup"><span data-stu-id="b782f-115">Create an ASP.NET web page and a Web.config file</span></span>
+4. <span data-ttu-id="b782f-116">變更 hello 預設應用程式集區 toomake 檔案存取更容易</span><span class="sxs-lookup"><span data-stu-id="b782f-116">Change hello Default application pool toomake file access easier</span></span>
+5. <span data-ttu-id="b782f-117">設定 hello 匿名使用者 tooyour 系統管理員帳戶和密碼</span><span class="sxs-lookup"><span data-stu-id="b782f-117">Set hello Anonymous user tooyour admin account and password</span></span>
 
-<span data-ttu-id="349ee-118">在透過遠端桌面 (RDP) 存取 IIS01 時，這個 PowerShell 指令碼應該會在本機執行。</span><span class="sxs-lookup"><span data-stu-id="349ee-118">This PowerShell script should be run locally while RDP’d into IIS01.</span></span>
+<span data-ttu-id="b782f-118">在透過遠端桌面 (RDP) 存取 IIS01 時，這個 PowerShell 指令碼應該會在本機執行。</span><span class="sxs-lookup"><span data-stu-id="b782f-118">This PowerShell script should be run locally while RDP’d into IIS01.</span></span>
 
 ```PowerShell
 # IIS Server Post Build Config Script
 # Get Admin Account and Password
-    Write-Host "Please enter the admin account information used to create this VM:" -ForegroundColor Cyan
-    $theAdmin = Read-Host -Prompt "The Admin Account Name (no domain or machine name)"
-    $thePassword = Read-Host -Prompt "The Admin Password"
+    Write-Host "Please enter hello admin account information used toocreate this VM:" -ForegroundColor Cyan
+    $theAdmin = Read-Host -Prompt "hello Admin Account Name (no domain or machine name)"
+    $thePassword = Read-Host -Prompt "hello Admin Password"
 
 # Turn On ICMPv4
     Write-Host "Creating ICMP Rule in Windows Firewall" -ForegroundColor Cyan
@@ -89,21 +89,21 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
       <form id="frmMain" runat="server">
         <div>
           <h1>Looks like you made it!</h1>
-          This is a page from the inside (a web server on a private network),<br />
-          and it is making its way to the outside! (If you are viewing this from the internet)<br />
+          This is a page from hello inside (a web server on a private network),<br />
+          and it is making its way toohello outside! (If you are viewing this from hello internet)<br />
           <br />
-          The following sections show:
+          hello following sections show:
           <ul style="margin-top: 0px;">
             <li> Local Server Time - Shows if this page is or isnt cached anywhere</li>
-            <li> File Output - Shows that the web server is reaching AppVM01 on the backend subnet and successfully returning content</li>
-            <li> Image from the Internet - Doesnt really show anything, but it made me happy to see this when the app worked</li>
+            <li> File Output - Shows that hello web server is reaching AppVM01 on hello backend subnet and successfully returning content</li>
+            <li> Image from hello Internet - Doesnt really show anything, but it made me happy toosee this when hello app worked</li>
           </ul>
           <div style="border: 2px solid #8AC007; border-radius: 25px; padding: 20px; margin: 10px; width: 650px;">
             <b>Local Web Server Time</b>: <asp:Label runat="server" ID="lblTime" /></div>
           <div style="border: 2px solid #8AC007; border-radius: 25px; padding: 20px; margin: 10px; width: 650px;">
             <b>File Output from AppVM01</b>: <asp:Label runat="server" ID="lblOutput" /></div>
           <div style="border: 2px solid #8AC007; border-radius: 25px; padding: 20px; margin: 10px; width: 650px;">
-            <b>Image File Linked from the Internet</b>:<br />
+            <b>Image File Linked from hello Internet</b>:<br />
             <br />
             <img src="http://sd.keepcalm-o-matic.co.uk/i/keep-calm-you-made-it-7.png" alt="You made it!" width="150" length="175"/></div>
         </div>
@@ -131,13 +131,13 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
     $MainPage | Out-File -FilePath "C:\inetpub\wwwroot\Home.aspx" -Encoding ascii
     $WebConfig | Out-File -FilePath "C:\inetpub\wwwroot\Web.config" -Encoding ascii
 
-# Set App Pool to Clasic Pipeline to remote file access will work easier
+# Set App Pool tooClasic Pipeline tooremote file access will work easier
     Write-Host "Updaing IIS Settings" -ForegroundColor Cyan
     c:\windows\system32\inetsrv\appcmd.exe set app "Default Web Site/" /applicationPool:".NET v4.5 Classic"
     c:\windows\system32\inetsrv\appcmd.exe set config "Default Web Site/" /section:system.webServer/security/authentication/anonymousAuthentication /userName:$theAdmin /password:$thePassword /commit:apphost
 
-# Make sure the IIS settings take
-    Write-Host "Restarting the W3SVC" -ForegroundColor Cyan
+# Make sure hello IIS settings take
+    Write-Host "Restarting hello W3SVC" -ForegroundColor Cyan
     Restart-Service -Name W3SVC
 
     Write-Host
@@ -145,25 +145,25 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
     Write-Host
 ```
 
-## <a name="appvm01---file-server-installation-script"></a><span data-ttu-id="349ee-119">AppVM01 - 檔案伺服器安裝指令碼</span><span class="sxs-lookup"><span data-stu-id="349ee-119">AppVM01 - File server installation script</span></span>
-<span data-ttu-id="349ee-120">此指令碼會設定這個簡單應用程式的後端。</span><span class="sxs-lookup"><span data-stu-id="349ee-120">This script sets up the back-end for this simple application.</span></span> <span data-ttu-id="349ee-121">此指令碼會：</span><span class="sxs-lookup"><span data-stu-id="349ee-121">This script will:</span></span>
+## <a name="appvm01---file-server-installation-script"></a><span data-ttu-id="b782f-119">AppVM01 - 檔案伺服器安裝指令碼</span><span class="sxs-lookup"><span data-stu-id="b782f-119">AppVM01 - File server installation script</span></span>
+<span data-ttu-id="b782f-120">此指令碼設定 hello 後端的這個簡單的應用程式。</span><span class="sxs-lookup"><span data-stu-id="b782f-120">This script sets up hello back-end for this simple application.</span></span> <span data-ttu-id="b782f-121">此指令碼會：</span><span class="sxs-lookup"><span data-stu-id="b782f-121">This script will:</span></span>
 
-1. <span data-ttu-id="349ee-122">在防火牆開啟 IMCPv4 (Ping) 以方便測試</span><span class="sxs-lookup"><span data-stu-id="349ee-122">Open IMCPv4 (Ping) on the firewall for easier testing</span></span>
-2. <span data-ttu-id="349ee-123">建立網站的目錄</span><span class="sxs-lookup"><span data-stu-id="349ee-123">Create a directory for the web site</span></span>
-3. <span data-ttu-id="349ee-124">建立網頁所要遠端存取的文字檔</span><span class="sxs-lookup"><span data-stu-id="349ee-124">Create a text file to be remotely access by the web page</span></span>
-4. <span data-ttu-id="349ee-125">將目錄和檔案的權限設為匿名以允許存取</span><span class="sxs-lookup"><span data-stu-id="349ee-125">Set permissions on the directory and file to Anonymous to allow access</span></span>
-5. <span data-ttu-id="349ee-126">關閉 IE 增強式安全性以允許更輕鬆地從這部伺服器瀏覽</span><span class="sxs-lookup"><span data-stu-id="349ee-126">Turn off IE Enhanced Security to allow easier browsing from this server</span></span> 
+1. <span data-ttu-id="b782f-122">開啟 IMCPv4 (Ping) 您更輕鬆測試 hello 防火牆上</span><span class="sxs-lookup"><span data-stu-id="b782f-122">Open IMCPv4 (Ping) on hello firewall for easier testing</span></span>
+2. <span data-ttu-id="b782f-123">建立 hello 網站的目錄</span><span class="sxs-lookup"><span data-stu-id="b782f-123">Create a directory for hello web site</span></span>
+3. <span data-ttu-id="b782f-124">遠端建立文字檔案 toobe hello 網頁存取</span><span class="sxs-lookup"><span data-stu-id="b782f-124">Create a text file toobe remotely access by hello web page</span></span>
+4. <span data-ttu-id="b782f-125">設定權限 hello 目錄和檔案 tooAnonymous tooallow 存取</span><span class="sxs-lookup"><span data-stu-id="b782f-125">Set permissions on hello directory and file tooAnonymous tooallow access</span></span>
+5. <span data-ttu-id="b782f-126">關閉 IE 增強式安全性 tooallow 更容易從這部伺服器瀏覽</span><span class="sxs-lookup"><span data-stu-id="b782f-126">Turn off IE Enhanced Security tooallow easier browsing from this server</span></span> 
 
 > [!IMPORTANT]
-> <span data-ttu-id="349ee-127">**最佳做法**：永遠不要關閉實際執行伺服器上的「IE 增強式安全性」，而且從實際執行伺服器上網通常不是個好主意。</span><span class="sxs-lookup"><span data-stu-id="349ee-127">**Best Practice**: Never turn off IE Enhanced Security on a production server, plus it's generally a bad idea to surf the web from a production server.</span></span> <span data-ttu-id="349ee-128">此外，最好不要開啟檔案共用來供匿名存取，這裡這樣做是為了簡單起見。</span><span class="sxs-lookup"><span data-stu-id="349ee-128">Also, opening up file shares for anonymous access is a bad idea, but done here for simplicity.</span></span>
+> <span data-ttu-id="b782f-127">**最佳作法**： 永遠不會關閉 IE 增強式安全性，在實際執行伺服器上，再加上通常是不好的主意 toosurf hello web 從實際執行伺服器。</span><span class="sxs-lookup"><span data-stu-id="b782f-127">**Best Practice**: Never turn off IE Enhanced Security on a production server, plus it's generally a bad idea toosurf hello web from a production server.</span></span> <span data-ttu-id="b782f-128">此外，最好不要開啟檔案共用來供匿名存取，這裡這樣做是為了簡單起見。</span><span class="sxs-lookup"><span data-stu-id="b782f-128">Also, opening up file shares for anonymous access is a bad idea, but done here for simplicity.</span></span>
 > 
 > 
 
-<span data-ttu-id="349ee-129">在透過遠端桌面 (RDP) 存取 AppVM01 時，這個 PowerShell 指令碼應該會在本機執行。</span><span class="sxs-lookup"><span data-stu-id="349ee-129">This PowerShell script should be run locally while RDP’d into AppVM01.</span></span> <span data-ttu-id="349ee-130">PowerShell 必須以系統管理員身分執行，才能成功執行。</span><span class="sxs-lookup"><span data-stu-id="349ee-130">PowerShell is required to be run as Administrator to ensure successful execution.</span></span>
+<span data-ttu-id="b782f-129">在透過遠端桌面 (RDP) 存取 AppVM01 時，這個 PowerShell 指令碼應該會在本機執行。</span><span class="sxs-lookup"><span data-stu-id="b782f-129">This PowerShell script should be run locally while RDP’d into AppVM01.</span></span> <span data-ttu-id="b782f-130">PowerShell 是必要的 toobe tooensure 成功執行時，系統管理員身分執行。</span><span class="sxs-lookup"><span data-stu-id="b782f-130">PowerShell is required toobe run as Administrator tooensure successful execution.</span></span>
 
 ```PowerShell
 # AppVM01 Server Post Build Config Script
-# PowerShell must be run as Administrator for Net Share commands to work
+# PowerShell must be run as Administrator for Net Share commands toowork
 
 # Turn On ICMPv4
     New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" -Protocol ICMPv4 -Enabled True -Profile Any -Action Allow
@@ -172,7 +172,7 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
     New-Item "C:\WebShare" -ItemType Directory
 
 # Write out Rand.txt
-    $FileContent = "Hello, I'm the contents of a remote file on AppVM01."
+    $FileContent = "Hello, I'm hello contents of a remote file on AppVM01."
     $FileContent | Out-File -FilePath "C:\WebShare\Rand.txt" -Encoding ascii
 
 # Set Permissions on share
@@ -192,13 +192,13 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
     Write-Host
 ```
 
-## <a name="dns01---dns-server-installation-script"></a><span data-ttu-id="349ee-131">DNS01 - DNS 伺服器安裝指令碼</span><span class="sxs-lookup"><span data-stu-id="349ee-131">DNS01 - DNS server installation script</span></span>
-<span data-ttu-id="349ee-132">此範例應用程式中未包含任何要設定 DNS 伺服器的指令碼。</span><span class="sxs-lookup"><span data-stu-id="349ee-132">There is no script included in this sample application to set up the DNS server.</span></span> <span data-ttu-id="349ee-133">如果防火牆規則、NSG 或 UDR 的測試需要包含 DNS 流量，就必須手動安裝 DNS01 伺服器。</span><span class="sxs-lookup"><span data-stu-id="349ee-133">If testing of the firewall rules, NSG, or UDR needs to include DNS traffic, the DNS01 server needs to be set up manually.</span></span> <span data-ttu-id="349ee-134">這兩個範例的「網路組態」XML 檔案和「Resource Manager 範本」都包含 DNS01 作為主要 DNS 伺服器，而由「層級 3」裝載的公用 DNS 伺服器則作為備份 DNS 伺服器。</span><span class="sxs-lookup"><span data-stu-id="349ee-134">The Network Configuration xml file and Resource Manager Template for both examples includes DNS01 as the primary DNS server and the public DNS server hosted by Level 3 as the backup DNS server.</span></span> <span data-ttu-id="349ee-135">「層級 3」DNS 伺服器會是非本機流量所使用的實際 DNS 伺服器，而如果未安裝 DNS01，則不會發生區域網路 DNS。</span><span class="sxs-lookup"><span data-stu-id="349ee-135">The Level 3 DNS server would be the actual DNS server used for non-local traffic, and with DNS01 not setup, no local network DNS would occur.</span></span>
+## <a name="dns01---dns-server-installation-script"></a><span data-ttu-id="b782f-131">DNS01 - DNS 伺服器安裝指令碼</span><span class="sxs-lookup"><span data-stu-id="b782f-131">DNS01 - DNS server installation script</span></span>
+<span data-ttu-id="b782f-132">沒有任何指令碼包含在此範例應用程式 tooset，hello DNS 伺服器。</span><span class="sxs-lookup"><span data-stu-id="b782f-132">There is no script included in this sample application tooset up hello DNS server.</span></span> <span data-ttu-id="b782f-133">如果測試 hello 防火牆規則、 NSG，或 UDR 需要 tooinclude DNS 流量，hello DNS01 伺服器需要 toobe 手動設定。</span><span class="sxs-lookup"><span data-stu-id="b782f-133">If testing of hello firewall rules, NSG, or UDR needs tooinclude DNS traffic, hello DNS01 server needs toobe set up manually.</span></span> <span data-ttu-id="b782f-134">hello 網路組態 xml 檔案，以及這兩個範例為 Resource Manager 範本包括 DNS01 為 hello 主要 DNS 伺服器及 hello 裝載為 hello 備份的 DNS 伺服器層級 3 的公用 DNS 伺服器。</span><span class="sxs-lookup"><span data-stu-id="b782f-134">hello Network Configuration xml file and Resource Manager Template for both examples includes DNS01 as hello primary DNS server and hello public DNS server hosted by Level 3 as hello backup DNS server.</span></span> <span data-ttu-id="b782f-135">hello 層級 3 DNS 伺服器會 hello 非本機流量使用實際 DNS 伺服器，而且與 DNS01 不安裝程式中，DNS 會發生任何區域網路。</span><span class="sxs-lookup"><span data-stu-id="b782f-135">hello Level 3 DNS server would be hello actual DNS server used for non-local traffic, and with DNS01 not setup, no local network DNS would occur.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="349ee-136">後續步驟</span><span class="sxs-lookup"><span data-stu-id="349ee-136">Next steps</span></span>
-* <span data-ttu-id="349ee-137">在 IIS 伺服器上執行 IIS01 指令碼</span><span class="sxs-lookup"><span data-stu-id="349ee-137">Run the IIS01 script on an IIS server</span></span>
-* <span data-ttu-id="349ee-138">在 AppVM01 上執行檔案伺服器指令碼</span><span class="sxs-lookup"><span data-stu-id="349ee-138">Run File Server script on AppVM01</span></span>
-* <span data-ttu-id="349ee-139">瀏覽至 IIS01 上的公用 IP 以驗證您的組建</span><span class="sxs-lookup"><span data-stu-id="349ee-139">Browse to the Public IP on IIS01 to validate your build</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b782f-136">後續步驟</span><span class="sxs-lookup"><span data-stu-id="b782f-136">Next steps</span></span>
+* <span data-ttu-id="b782f-137">在 IIS 伺服器上執行 hello IIS01 指令碼</span><span class="sxs-lookup"><span data-stu-id="b782f-137">Run hello IIS01 script on an IIS server</span></span>
+* <span data-ttu-id="b782f-138">在 AppVM01 上執行檔案伺服器指令碼</span><span class="sxs-lookup"><span data-stu-id="b782f-138">Run File Server script on AppVM01</span></span>
+* <span data-ttu-id="b782f-139">瀏覽 toohello 公用 IP 上 IIS01 toovalidate 組建</span><span class="sxs-lookup"><span data-stu-id="b782f-139">Browse toohello Public IP on IIS01 toovalidate your build</span></span>
 
 <!--Link References-->
 [HOME]: ../best-practices-network-security.md

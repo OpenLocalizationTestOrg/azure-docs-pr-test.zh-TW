@@ -1,6 +1,6 @@
 ---
-title: "Azure AD SAML 通訊協定參考 | Microsoft Docs"
-description: "這篇文章提供 Azure Active Directory 中單一登入和單一登出 SAML 設定檔的概觀。"
+title: "aaaAzure AD SAML 通訊協定參考 |Microsoft 文件"
+description: "本文章提供在 Azure Active Directory hello 單一登入和單一登出 SAML 設定檔的概觀。"
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: priyamo
-ms.openlocfilehash: 7361d05850cf3ae997c0c186bf9a674c139f1f9e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d540b8cd9352e3196a0f4a40f0070d0e61127bee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# Azure Active Directory 使用 SAML 通訊協定的方式
-Azure Active Directory (Azure AD) 會使用 SAML 2.0 通訊協定，讓應用程式能為其使用者提供單一登入體驗。 Azure AD 的[單一登入](active-directory-single-sign-on-protocol-reference.md)和[單一登出](active-directory-single-sign-out-protocol-reference.md) SAML 設定檔會說明在識別提供者服務中如何使用 SAML 判斷提示、通訊協定和繫結。
+# Azure Active Directory 的 hello SAML 通訊協定的使用方式
+Azure Active Directory (Azure AD) 採用 hello SAML 2.0 通訊協定 tooenable 應用程式單一登入 tooprovide 經驗 tootheir 使用者。 hello[單一登入](active-directory-single-sign-on-protocol-reference.md)和[單一登出](active-directory-single-sign-out-protocol-reference.md)SAML 設定檔的 Azure AD 說明如何在 hello 身分識別提供者服務中使用 SAML 判斷提示、 通訊協定和繫結。
 
-SAML 通訊協定需要識別提供者 (Azure AD) 和服務提供者 (應用程式)，才能交換本身的相關資訊。
+SAML 通訊協定需要 hello 身分識別提供者 (Azure AD) 和 hello 服務提供者 （hello 應用程式） tooexchange 本身的資訊。
 
-向 Azure AD 註冊應用程式時，應用程式開發人員會向 Azure AD 註冊同盟的相關資訊。 這包括應用程式的**重新導向 URI**。
+當應用程式已向 Azure AD 時，hello 應用程式開發人員會註冊與同盟相關的資訊與 Azure AD。 這包括 hello**重新導向 URI** hello 應用程式。
 
-Azure Active Directory 會公開租用戶專屬和一般 (租用戶獨立) 單一登入和單一登出端點。 這些 URL 代表可定址的位置 -- 它們不只是識別碼 -- 因此您可以前往端點來讀取中繼資料。
+Azure Active Directory 會公開租用戶專屬和一般 (租用戶獨立) 單一登入和單一登出端點。 這些 Url 代表可定址的位置--它們不只是識別碼-讓您可以移 toohello 端點 tooread hello 中繼資料。
 
-* 租用戶專屬端點位於 `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`。  <TenantDomainName> 預留位置代表已註冊的網域名稱或 Azure AD 租用戶的 TenantID GUID。 例如，contoso.com 租用戶的同盟中繼資料位於：https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
+* hello 租用戶專用端點位於`https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`。  hello<TenantDomainName>預留位置代表註冊的網域名稱或 Azure AD 租用戶的 TenantID GUID。 比方說，hello hello contoso.com 租用戶同盟中繼資料位於： https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
 
-* 租用戶獨立端點位於 `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`。在此端點位址中，會出現 **common**，而不是租用戶網域名稱或識別碼。
+* hello 租用戶獨立端點位於`https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`。在此端點位址、**常見**隨即出現，而不是租用戶網域名稱或識別碼。
 
-如需 Azure AD 發佈的同盟中繼資料文件的相關資訊，請參閱 [同盟中繼資料](active-directory-federation-metadata.md)。
+Azure AD 會發行的 hello 同盟中繼資料文件的相關資訊，請參閱[同盟中繼資料](active-directory-federation-metadata.md)。

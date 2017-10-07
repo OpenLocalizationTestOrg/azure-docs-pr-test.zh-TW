@@ -1,5 +1,5 @@
 ---
-title: "Azure 轉送混合式連線通訊協定指南 | Microsoft Docs"
+title: "aaaAzure 轉送混合式連線通訊協定指南 |Microsoft 文件"
 description: "Azure 轉送混合式連線通訊協定指南。"
 services: service-bus-relay
 documentationcenter: na
@@ -14,109 +14,109 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: sethm;clemensv
-ms.openlocfilehash: 6b76403ba5fc4d00a625057549c85db59a473898
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2d145d919d606ae4722b063e1baf39fb845a600a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # Azure 轉送混合式連線通訊協定
-Azure 轉送是 Azure 服務匯流排平台的重要功能支柱。 轉送的新「混合式連線」功能是以 HTTP 和 Websocket 為基礎的安全、開放式通訊協定演化。 它會取代其前身，也就是建置在專屬通訊協定基礎上、名為「BizTalk 服務」的功能。 整合到 Azure 應用程式服務的混合式連線會繼續如往常般運作。
+Azure 的轉送是 hello hello Azure 服務匯流排平台的金鑰功能支柱的其中一個。 新的 hello*混合式連線*轉送的功能是根據 HTTP 和 WebSockets 了安全、 開放通訊協定的演變。 它會取代 hello 前者，同樣名為*BizTalk 服務*專屬通訊協定為基礎所建置的功能。 hello 整合混合式連接到 Azure 應用程式服務將會繼續為 toofunction-是。
 
-「混合式連線」可在網路上的兩個應用程式之間，建立雙向的二進位串流通訊，藉此讓其中一方或雙方都能位在 NAT 或防火牆之後。 本文說明用戶端為了與擔任接聽程式和傳送者角色的用戶端連線而與混合式連線轉送進行的互動，以及接聽程式如何接受新的連線。
+「混合式連線」可在網路上的兩個應用程式之間，建立雙向的二進位串流通訊，藉此讓其中一方或雙方都能位在 NAT 或防火牆之後。 本文說明 hello 與 hello 混合式連線轉送接聽程式和傳送者角色，以及如何接聽程式接受新的連接中的用戶端連接的用戶端互動。
 
 ## 互動模型
-混合式連線轉送會藉由在雙方均可探索到，並可由自己的網路觀點連線到的 Azure 雲端提供會合點，來讓雙方連線。 在本文件和其他文件、在 API 以及在 Azure 入口網站中，該會合點稱為「混合式連線」。 本文其餘地方將混合式連線服務端點稱為「服務」。 互動模型仰賴其他許多網路 API 所建立的專門用語。
+hello 混合式連線轉送會提供 rendezvous 中的點 hello Azure 的雲端，這兩個合作對象可以探索並連線 toofrom 自己網路的觀點而言，連接兩個合作對象。 該 rendezvous 點稱為 「 混合式連線 」，在此範例與其他文件，在 hello 應用程式開發介面，還有 hello Azure 入口網站中。 hello 混合式連線的服務端點被指 tooas hello 「 服務 」 的 hello 本文其餘部分。 hello 互動模型會依賴其他許多網路 Api 所建立的 hello 命名法。
 
-有接聽程式會先指出已準備好可以處理連入連線，接著在連線抵達時予以接受。 而在另一端，則有連線用戶端會連線到接聽程式，並預期該連線會被接受，以便能夠建立雙向通訊路徑。
-您可在大部分通訊端 API 中發現「連線」、「接聽」、「接受」等同義詞彙。
+沒有先指出整備 toohandle 連入連線，且後續在到達時接受，它們的接聽程式。 在 hello 另一端，連線的用戶端 hello 接聽程式，必須是已接受以進行建立的雙向通訊路徑的連線 toobe 優先連接。
+「 連接 」 的 「 接聽 」 和 「 接受 」 是 hello 相同條款您尋找在大部分的通訊端應用程式開發介面。
 
-任何轉送的通訊模型皆會讓任一方對服務端點建立輸出連線，在口語上，這會讓「接聽程式」也變成「用戶端」，並可能造成術語承載其他意義。 因此，我們對混合式連線所下的精確術語如下︰
+任何轉送的通訊模型有任一方進行優先的服務端點 hello 「 接聽程式 」 也 「 用戶端 」 以 colloquial 使用，並也可能會導致其他術語多載的傳出連接。 我們因此用於混合式連線的 hello 精確術語如下所示：
 
-連線兩端的程式稱為「用戶端」，因為兩者皆為服務的用戶端。 等候並接受連線的用戶端為「接聽程式」，或稱為擔任「接聽程式角色」。 透過服務對接聽程式起始新連線的用戶端則稱為「傳送者」或擔任「傳送者角色」。
+連線兩端的 hello 程式稱為 「 用戶端 」，因為它們是用戶端 toohello 服務。 hello 用戶端會等候及接受連線是 「 接聽程式 」，或者是說 toobe 在 hello 「 接聽程式角色。 」 啟動新的連接，透過 hello 服務的接聽程式優先 hello 用戶端或呼叫 hello 「 寄件者 」 中 「 寄件者角色 」。
 
 ### 接聽程式互動
-接聽程式會與服務進行四種互動；本文稍後的參考資料章節會詳述所有連線細節。
+hello 接聽程式有四個互動 hello 服務;所有網路詳細資料稍後所都述 hello 參考章節中的這篇文章。
 
 #### 接聽
-為了讓服務知道接聽程式已準備好接受連線，它會建立輸出 WebSocket 連線。 連線交握會攜帶轉送命名空間中所設定的混合式連線名稱，以及對該名稱授予「接聽」權限的安全性權杖。
-服務接受 WebSocket 時，註冊便已完成，所建立的 Web WebSocket 會保持運作以作為用來啟用所有後續互動的「控制通道」。 在混合式連線中，服務最多允許 25 個並行接聽程式。 如果有 2 個以上的作用中接聽程式，則會將連入連線隨機平衡分配給這些接聽程式；但不保證會公平分配。
+接聽程式是準備 tooaccept 連線 tooindicate 整備 toohello 服務，它會建立輸出的 WebSocket 連線。 hello 連接交握帶有 hello hello 轉送命名空間，與安全性權杖的權限會授與 hello 「 接聽 」 該名稱上，設定混合式連接名稱。
+Hello 服務接受 hello WebSocket，則當 hello 註冊已完成，而且 hello 建立的 web WebSocket 就會保持運作以 hello 控制通道 」 來啟用所有後續的互動。 hello 服務可讓向上 too25 混合式連接上的並行接聽程式。 如果有 2 個以上的作用中接聽程式，則會將連入連線隨機平衡分配給這些接聽程式；但不保證會公平分配。
 
 #### Accept
-當傳送者在服務上開啟新的連線時，服務就會選擇並通知混合式連線中的其中一個作用中接聽程式。 此通知會以 JSON 訊息的形式，透過開啟的控制通道傳送給接聽程式，在該訊息中，則含有接聽程式為了接受連線所必須連線到之 WebSocket 端點的 URL。
+當寄件者開啟新的連線 hello 服務上，選擇 hello 服務，並通知 hello hello 混合式連接上的作用中接聽程式的其中一個。 此通知會透過 hello 控制開啟通道傳送 toohello 接聽程式為 hello 接聽程式的 hello WebSocket 端點包含 hello URL 必須連接接受 hello 連接 toofor JSON 訊息。
 
-此 URL 可以且必須由接聽程式直接使用，不得再行加工。
-編碼資訊的有效期間很短，基本上就是傳送者願意等待兩端建立連線的時間，但上限為 30 秒。 URL 只能用於進行一次成功的連線嘗試。 一旦建立了具有會合 URL 的 WebSocket 連線，此 WebSocket 上的所有後續活動就會在傳送者來回轉送，服務不必再介入或解譯。
+hello URL 可以和 hello 接聽程式，而無需任何額外的工作必須直接使用。
+hello 編碼資訊只適用於一段時間，基本上只要為 hello 寄件者是願意 toowait hello 連接 toobe 建立端對端，但總 tooa 最大值為 30 秒。 hello URL 只能用於一次連線嘗試成功。 只要 hello 與 hello rendezvous 建立 URL 時，所有的其他活動的這個 WebSocket 連線是否從要轉送的 WebSocket 和 toohello 寄件者，而不需要任何介入的情況下或 hello 服務所解譯。
 
 #### 續訂
-必須用來註冊接聽程式和維護控制通道的安全性權杖，可能會在接聽程式作用期間過期。 權杖過期不會影響進行中的連線，但會導致服務在權杖過期當下或隨後立即捨棄控制通道。 「更新」作業是一則 JSON 訊息，接聽程式傳送此訊息以取代與控制通道相關聯的權杖，讓控制通道可以延長維持運作時間。
+hello 安全性權杖必須使用的 tooregister hello 接聽程式和維護 hello 接聽程式時，控制通道可能會過期。 hello 權杖到期不會影響進行中的連接，但可能會 hello 控制通道 toobe hello 服務或到期 hello 快照之後，即卸除。 hello 「 更新 」 作業是 hello 接聽程式的 JSON 訊息可以傳送 hello 控制通道，與相關聯的 tooreplace hello 權杖，以便 hello 控制通道可以維持長時間。
 
 #### Ping
-如果控制通道長時間閒置，途中的媒介 (例如負載平衡器或 NAT) 可能會捨棄 TCP 連線。 「Ping」作業可避免該現象，其憑藉方法為在通道上傳送少量資料，提醒網路路由上的所有人此連線是為了讓通道保持運作，並同時測試接聽程式是否仍作用中。 如果 ping 失敗，則應將控制通道視為無法使用，接聽程式應重新連線。
+如果 hello 控制通道處於閒置一段時間，媒介 hello 方式，例如負載平衡器或 Nat 可以卸除 hello TCP 連線。 hello"的 ping"作業可避免的 hello 連線傳送 hello 通道可提醒 hello 網路路由的所有成員上少量資料的目的在於 toobe 運作，，並也可做為 「 即時 」 測試 hello 接聽程式。 Hello ping 失敗時，如果 hello 控制通道應該被視為無法使用，而且 hello 接聽程式應重新連接。
 
 ### 傳送者互動
-傳送者只會與服務進行一項互動：就是連線。
+hello 寄件者只需要單一 hello 服務互動： 連接。
 
 #### 連線
-「連線」作業會在服務上開啟 WebSocket，提供混合式連線名稱和 (選擇性，但預設為必要) 會在查詢字串中授予「傳送」權限的安全性權杖。 服務接著會以先前所述方式和接聽程式互動，並讓接聽程式建立會與此 WebSocket 一起加入的會合連線。 WebSocket 獲得接受後，將會與已連線的接聽程式進行所有後續互動。
+hello 「 連接 」 作業會開啟 hello 服務，提供 hello 名稱，hello 混合式連接及 （選擇性，但需要依預設） 上的 WebSocket 開會 hello 查詢字串中的 「 傳送 」 權限的安全性權杖。 hello 服務然後互動方式，與先前說明的 hello hello 接聽程式，並 hello 接聽程式建立和此 WebSocket 會合連線。 已接受 hello WebSocket 之後，該 WebSocket 上的所有進一步互動都有使用已連線的接聽程式。
 
 ### 互動摘要
-此互動模型的結果是傳送者用戶端會產生具有「乾淨」WebSocket 的交握，該通訊端連線到接聽程式，並且不需要再進行前序編碼或準備。 實際上，這可讓任何現有 WebSocket 用戶端實作輕易利用混合式連線服務，只需要對其 WebSocket 用戶端層提供正確建構的 URL。
+此互動模型 hello 結果會是該 hello 寄件者用戶端來自與 「 乾淨的 」 WebSocket，也就是連接的 tooa 接聽程式，並且需要任何進一步 preambles 或準備的信號交換。 此模型會讓幾乎任何現有 WebSocket 用戶端實作 tooreadily 利用 hello 混合式連線服務到其 WebSocket 用戶端層提供正確建構的 URL。
 
-接聽程式透過接受互動所取得的會合連線 WebSocket 也是乾淨的，您只需要另外進行點擷取動作即可遞交給任何現有 WebSocket 伺服器實作，此動作是為了區分其架構之區域網路接聽程式上的「接受」作業與混合式連線的遠端「接受」作業。
+hello 接聽程式的 WebSocket 取得透過接受互動 hello 會合連線也是乾淨的而且可以要傳 tooany 現有 WebSocket 伺服器實作與一些區分 「 接受 」 的最小額外抽象概念其架構的區域網路接聽程式和混合式連線遠端上的作業 [接受] 作業。
 
 ## 通訊協定參考資料
 
-本節描述上述通訊協定互動的詳細資料。
+本章節描述先前所述的 hello 通訊協定互動的 hello 詳細資料。
 
 所有 WebSocket 連線都是在連接埠 443 上進行以作為從 HTTPS 1.1 (經常遭到某些 WebSocket 架構或 API 擷取) 開始的升級。 此處的描述不偏袒任何實作，不會建議您採用特定架構。
 
 ### 接聽程式通訊協定
-接聽程式通訊協定是由兩個連線舉動和三項訊息作業所組成。
+hello 接聽程式通訊協定是由兩個連接筆勢和三個訊息作業所組成。
 
 #### 接聽程式控制通道連線
-控制通道開啟時，會對下列位置建立 WebSocket 連線︰
+hello 控制通道是以建立 WebSocket 連接開啟：
 
 ```
 wss://{namespace-address}/$hc/{path}?sb-hc-action=...[&sb-hc-id=...]&sb-hc-token=...
 ```
 
-`namespace-address` 是裝載混合式連線之 Azure 轉送命名空間的完整網域名稱，其格式通常為 `{myname}.servicebus.windows.net`。
+hello`namespace-address`是 hello 主機 hello 混合式連接，通常是 hello 表單 hello Azure 轉送命名空間的完整的網域名稱`{myname}.servicebus.windows.net`。
 
-查詢字串參數選項如下。
+hello 查詢字串參數選項，如下所示。
 
 | 參數 | 必要 | 說明 |
 | --- | --- | --- |
-| `sb-hc-action` |是 |接聽程式角色的參數必須是 **sb-hc-action=listen** |
-| `{path}` |是 |用來註冊此接聽程式之預先設定混合式連線的 URL 編碼命名空間路徑。 此運算式會附加至固定的 `$hc/` 路徑部分。 |
-| `sb-hc-token` |是\* |針對授予**接聽**權限的命名空間或混合式連線，接聽程式必須提供有效且以 URL 編碼的服務匯流排共用存取權杖。 |
+| `sb-hc-action` |是 |參數必須是 hello 接聽程式的角色 hello **sb hc 動作 = 接聽** |
+| `{path}` |是 |hello URL 編碼的命名空間路徑的 hello 預先設定的混合式連接 tooregister 此接聽程式上。 此運算式是固定的附加的 toohello`$hc/`路徑部分。 |
+| `sb-hc-token` |是\* |hello 接聽程式必須提供有效且以 URL 編碼服務匯流排共用存取權杖 hello 命名空間或授與 hello 的混合式連接**接聽**右。 |
 | `sb-hc-id` |否 |用戶端提供的這個選擇性識別碼可讓您進行端對端診斷追蹤。 |
 
-如果因為混合式連線路徑未註冊、權杖無效或遺失或是其他某些錯誤，導致 WebSocket 連線失敗，將使用一般的 HTTP 1.1 狀態回饋模型提供錯誤回饋。 狀態描述會包含錯誤追蹤識別碼，以供您告知 Azure 支援人員︰
+如果因為 toohello 混合式連線路徑未註冊，或無效或遺漏語彙基元或其他一些錯誤而失敗 hello WebSocket 連線，使用 hello 一般 HTTP 1.1 狀態的意見反應模型提供 hello 錯誤回應。 狀態描述會包含錯誤追蹤識別碼，以供您告知 Azure 支援人員︰
 
 | 代碼 | 錯誤 | 說明 |
 | --- | --- | --- |
-| 404 |找不到 |混合式連線路徑無效或基底 URL 的格式不正確。 |
-| 401 |未經授權 |安全性權杖遺失、格式不正確或無效。 |
-| 403 |禁止 |對於此動作來說，此路徑的安全性權杖無效。 |
-| 500 |內部錯誤 |服務發生錯誤。 |
+| 404 |找不到 |hello 混合式連接的路徑不正確或 hello 基底 URL 的格式不正確。 |
+| 401 |未經授權 |hello 安全性權杖是遺漏或格式不正確或無效。 |
+| 403 |禁止 |此路徑，此動作無效 hello 安全性權杖。 |
+| 500 |內部錯誤 |發生錯誤 hello 服務中。 |
 
-如果 WebSocket 連線在最初設定過後遭到服務刻意關閉，服務會使用適當的 WebSocket 通訊協定錯誤碼以及同時含有追蹤識別碼的錯誤描述訊息告知您這麼做的原因。 服務不會沒發生錯誤狀況就關閉控制通道。 至於正常關機則為用戶端所為。
+如果 hello WebSocket 連接刻意 hello 服務之後關閉它一開始設定，這樣使用適當 WebSocket 通訊協定錯誤的程式碼也包含追蹤的描述性的錯誤訊息以及通訊的 hello 原因識別碼。 控制通道不會關閉 hello 服務而不會發生錯誤狀況。 至於正常關機則為用戶端所為。
 
 | WS 狀態 | 說明 |
 | --- | --- |
-| 1001 |混合式連線路徑已遭到刪除或停用。 |
-| 1008 |安全性權杖已過期，因此違反授權原則。 |
-| 1011 |服務發生錯誤。 |
+| 1001 |已刪除或停用 hello 混合式連線路徑。 |
+| 1008 |hello 安全性權杖已過期，因此違反 hello 授權原則。 |
+| 1011 |發生錯誤 hello 服務中。 |
 
 ### 接受交握
-服務會透過先前建立的控制通道，在 WebSocket 文字框中以 JSON 訊息的形式對接聽程式傳送「accept」通知。 此訊息沒有任何回覆。
+hello [接受] 會傳送通知 hello 服務 toohello 接聽程式的先前建立的控制通道透過 WebSocket 文字框架中的 JSON 訊息。 沒有任何回覆 toothis 訊息。
 
-訊息中包含名為「accept」的 JSON 物件，其在此階段會定義下列屬性︰
+hello 訊息包含 JSON 物件名為 [接受]，它會定義下列屬性，此時 hello:
 
-* **位址** – 用來對服務建立 WebSocket 以接受連入連線的 URL 字串。
-* **識別碼** – 此連線的唯一識別碼。 如果識別碼為傳送者用戶端所提供，則為傳送者提供的值，否則會是系統產生的值。
-* **connectHeaders** – 傳送者已提供給轉送端點的所有 HTTP 標頭，其中也包括 Sec-WebSocket-Protocol 和 Sec-WebSocket-Extensions 標頭。
+* **位址**– hello URL 字串 toobe 用來建立 hello WebSocket toothe 服務 tooaccept 連入連線。
+* **識別碼**– hello 這個連線的唯一識別碼。 Hello 識別碼 hello 寄件者用戶端所提供的則 hello 寄件者提供值，否則就是系統產生值。
+* **connectHeaders** – 所有的 HTTP 標頭已提供 hello 寄件者，也包含 hello 秒 WebSocket 通訊協定和延伸 WebSocket 秒模組標頭所 toohello 轉送端點。
 
 #### 接受訊息
 
@@ -134,70 +134,70 @@ wss://{namespace-address}/$hc/{path}?sb-hc-action=...[&sb-hc-id=...]&sb-hc-token
 }
 ```
 
-接聽程式會使用 JSON 訊息中提供的位址 URL 來建立 WebSocket，以接受或拒絕傳送者通訊端。
+hello 位址 URL 提供在 hello JSON 訊息會由 hello 接聽程式建立 hello WebSocket 接受或拒絕 hello 寄件者通訊端。
 
-#### 接受通訊端
-為了接受，接聽程式會對提供的位址建立 WebSocket 連線。
+#### 接受的 hello 通訊端
+tooaccept，hello 接聽程式會建立 WebSocket 連接 toohello 提供位址。
 
-如果「accept」訊息執行 `Sec-WebSocket-Protocol` 標題，則接聽程式只接受支援該通訊協定的 WebSocket。 此外，會在建立 WebSocket 時設定標題。
+如果 hello [接受] 訊息執行`Sec-WebSocket-Protocol`標頭，預期該 hello 接聽程式只接受 hello WebSocket，如果支援該通訊協定。 此外，它將 hello 標頭設定為建立 WebSocket hello。
 
-對 `Sec-WebSocket-Extensions` 標題同樣適用。 如果架構支援擴充功能，其應將標題設定為擴充功能所需 `Sec-WebSocket-Extensions` 交握的伺服器端回覆。
+hello 同樣適用 toohello`Sec-WebSocket-Extensions`標頭。 如果 hello framework 支援擴充功能，它應該設定 hello hello 所需的標頭 toohello 伺服器端回覆`Sec-WebSocket-Extensions`hello 延伸模組的交握。
 
-URL 必須保持原樣以用來建立接受通訊端，但要包含下列參數︰
+必須當做 hello URL-建立 hello 是接受通訊端，但包含下列參數：
 
 | 參數 | 必要 | 說明 |
 | --- | --- | --- |
-| `sb-hc-action` |是 |若要接受通訊端，參數必須是 `sb-hc-action=accept` |
-| `{path}` |是 |(請參閱下列段落) |
+| `sb-hc-action` |是 |Hello 參數必須是接受通訊端`sb-hc-action=accept` |
+| `{path}` |是 |（請參閱下列段落的 hello） |
 | `sb-hc-id` |否 |請參閱先前的**識別碼**描述。 |
 
-`{path}` 是用來註冊此接聽程式之預先設定混合式連線的 URL 編碼命名空間路徑。 此運算式會附加至固定的 `$hc/` 路徑部分。 
+`{path}`是 hello URL 編碼的命名空間路徑預先設定混合式連接的 tooregister 上此接聽程式。 此運算式是固定的附加的 toothe`$hc/`路徑部分。 
 
-`path` 運算式可能會使用後置字元與接在分隔斜線後之已登錄名稱的查詢字串運算式進行擴充。 這可讓寄件者用戶端在不可能包括 HTTP 標題時，將分派引數傳遞至接受接聽程式。 預期為接聽程式架構會剖析固定的路徑部分和路徑中的已註冊名稱，並提供其餘部分，可能是不含前置詞為 `sb-` 的任何查詢字串引數，可供應用程式決定是否要接受連線。
+hello`path`運算式可能會擴充與後置字元分隔的斜線之後會遵循 hello 註冊的名稱的查詢字串運算式。 這可讓 hello 寄件者用戶端 toopass 分派引數 toohello 接受接聽程式時，就會可能 tooinclude HTTP 標頭。 hello 預期的情況下則該 hello 接聽項架構剖析出 hello 固定的路徑部分和路徑中的 hello 註冊的名稱也會讓 hello 其餘部分，可能是不含前面加上任何查詢字串引數`sb-`，可用 toohello 應用程式制定 tooaccept 是否 hello 連線。
 
-如需詳細資訊，請參閱「寄件者通訊協定」一節。
+如需詳細資訊，請參閱下列 「 寄件者通訊協定 」 一節的 hello。
 
-如果發生錯誤，服務會有如下回覆︰
+如果沒有發生錯誤，hello 服務可用來回覆，如下所示：
 
 | 代碼 | 錯誤 | 說明 |
 | --- | --- | --- |
-| 403 |禁止 |URL 無效。 |
-| 500 |內部錯誤 |服務發生錯誤 |
+| 403 |禁止 |hello URL 不是有效的。 |
+| 500 |內部錯誤 |發生錯誤 hello 服務中 |
 
-連線建立後，伺服器會在傳送者 WebSocket 關閉時，或是具有下列狀態時關閉 WebSocket：
+在建立 hello 連線之後，hello 伺服器關閉 hello WebSocket hello 寄件者 WebSocket 關閉，或是以 hello 下列狀態：
 
 | WS 狀態 | 說明 |
 | --- | --- |
-| 1001 |傳送者用戶端關閉連線。 |
-| 1001 |混合式連線路徑已遭到刪除或停用。 |
-| 1008 |安全性權杖已過期，因此違反授權原則。 |
-| 1011 |服務發生錯誤。 |
+| 1001 |hello 寄件者用戶端 hello 連接會關閉。 |
+| 1001 |已刪除或停用 hello 混合式連線路徑。 |
+| 1008 |hello 安全性權杖已過期，因此違反 hello 授權原則。 |
+| 1011 |發生錯誤 hello 服務中。 |
 
-#### 拒絕通訊端
-在檢查「accept」訊息之後拒絕通訊端需要類似的交握，因此會對傳送者回傳可告知拒絕原因的狀態碼和狀態描述。
+#### 拒絕 hello 通訊端
+檢查 hello 「 接受 」 訊息以便 hello 狀態碼和狀態描述通訊 hello 拒絕的原因可以傳送回 toohello 寄件者不需要類似的交握之後，請拒絕 hello 通訊端。
 
-在這裡，通訊協定的設計選擇是使用 WebSocket 交握 (其設計是要以定義的錯誤狀態來結束)，以便讓接聽程式用戶端實作可以繼續依賴 WebSocket 用戶端，而不必另外運用裸機 HTTP 用戶端。
+hello 通訊協定的設計選擇這裡是 toouse WebSocket 交握 （亦即設計的 tooend 中定義的錯誤狀態），因此接聽程式的用戶端實作可以繼續 toorely WebSocket 用戶端上，而不需要採用額外、 祼 HTTP 用戶端。
 
-若要拒絕通訊端，用戶端會從「accept」訊息取得位址 URI，並對其附加兩個查詢字串參數，如下所示︰
+tooreject hello 通訊端，hello 用戶端會採用 hello 位址 URI 從 hello 「 接受 」 訊息與附加兩個的查詢字串參數 tooit，，如下所示：
 
 | 參數 | 必要 | 說明 |
 | --- | --- | --- |
 | StatusCode |是 |數字型 HTTP 狀態碼。 |
-| statusDescription |是 |使用者可以看懂的拒絕原因。 |
+| statusDescription |是 |Hello 拒絕人類可讀取的原因。 |
 
-接著會使用產生的 URI 來建立 WebSocket 連線。
+hello 產生 URI，就會使用 tooestablish WebSocket 連接。
 
-當正確完成時，因為尚未建立任何 WebSocket，此交握會刻意失敗，而其 HTTP 錯誤碼為 410。 如果發生錯誤，下列程式碼會描述錯誤：
+當正確完成時，因為尚未建立任何 WebSocket，此交握會刻意失敗，而其 HTTP 錯誤碼為 410。 如果發生錯誤，下列程式碼的 hello 描述 hello 錯誤：
 
 | 代碼 | 錯誤 | 說明 |
 | --- | --- | --- |
-| 403 |禁止 |URL 無效。 |
-| 500 |內部錯誤 |服務發生錯誤。 |
+| 403 |禁止 |hello URL 不是有效的。 |
+| 500 |內部錯誤 |發生錯誤 hello 服務中。 |
 
 ### 接聽程式權杖更新
-接聽程式權杖即將到期時，透過所建立的控制通道對服務傳送文字框訊息即可加以取代。 訊息中包含名為 `renewToken` 的 JSON 物件，其在此階段會定義下列屬性︰
+關於 tooexpire hello 接聽程式的權杖時，它可以傳送 hello 建立控制通道透過文字框架訊息 toohello 服務來取代。 訊息包含稱為 JSON 物件`renewToken`，而後者可定義下列屬性，此時 hello:
 
-* **權杖** – 針對授予**接聽**權限的命名空間或混合式連線，有效且以 URL 編碼的服務匯流排共用存取權杖。
+* **語彙基元**– 有效且以 URL 編碼的服務匯流排共用存取 token，為命名空間或授與 hello 的混合式連接**接聽**右。
 
 #### renewToken 訊息
 
@@ -209,58 +209,58 @@ URL 必須保持原樣以用來建立接受通訊端，但要包含下列參數�
 }
 ```
 
-如果權杖驗證失敗，存取會遭到拒絕，而且雲端服務會關閉控制通道 Websocket 並產生錯誤。 否則不會有回覆。
+如果 hello 權杖驗證失敗，存取被拒，和 hello 雲端服務關閉並出現錯誤的 hello 控制通道 WebSocket。 否則不會有回覆。
 
 | WS 狀態 | 說明 |
 | --- | --- |
-| 1008 |安全性權杖已過期，因此違反授權原則。 |
+| 1008 |hello 安全性權杖已過期，因此違反 hello 授權原則。 |
 
 ## 傳送者通訊協定
-傳送者通訊協定的效果等同於接聽程式的建立方式。
-其目標是讓端對端 WebSocket 擁有最大透明度。 要連線到的位址與接聽程式的情況相同，但其「動作」不同，而且權杖需要不同的權限︰
+建立接聽程式的有效相同 toohello 方式 hello 寄件者通訊協定。
+hello 的目標是的 hello 端對端的最大透明度 WebSocket。 連線 toois hello 一樣 hello 接聽程式，但 hello 「 動作 」 不同，且此語彙基元的 hello 位址需要不同的權限：
 
 ```
 wss://{namespace-address}/$hc/{path}?sb-hc-action=...&sb-hc-id=...&sbc-hc-token=...
 ```
 
-*namespace-address* 是裝載混合式連線之 Azure 轉送命名空間的完整網域名稱，其格式通常為 `{myname}.servicebus.windows.net`。
+hello*命名空間位址*是 hello 主機 hello 混合式連接，通常是 hello 表單 hello Azure 轉送命名空間的完整的網域名稱`{myname}.servicebus.windows.net`。
 
-要求會包含任意的額外 HTTP 標題，包括應用程式所定義的標題。 提供的所有標題都會流向接聽程式，而且可以在 **accept** 控制訊息的 `connectHeader` 物件中找到。
+hello 要求可以包含任意額外 HTTP 標頭，包括應用程式定義的。 所有提供標頭流程 toohello 接聽程式，且可以找到上 hello`connectHeader`物件 hello**接受**控制 」 訊息。
 
-查詢字串參數選項如下：
+hello 查詢字串參數選項，如下所示：
 
 | 參數 | 必要？ | 說明 |
 | --- | --- | --- |
-| `sb-hc-action` |是 |傳送者角色的參數必須是 `action=connect`。 |
-| `{path}` |是 |(請參閱下列段落) |
-| `sb-hc-token` |是\* |針對授予**傳送**權限的命名空間或混合式連線，接聽程式必須提供有效且以 URL 編碼的服務匯流排共用存取權杖。 |
-| `sb-hc-id` |否 |選擇性的識別碼，允許進行端對端診斷追蹤，並可供接聽程式在接受交握期間使用。 |
+| `sb-hc-action` |是 |Hello 參數必須是 hello 寄件者角色， `action=connect`。 |
+| `{path}` |是 |（請參閱下列段落的 hello） |
+| `sb-hc-token` |是\* |hello 接聽程式必須提供有效且以 URL 編碼服務匯流排共用存取權杖 hello 命名空間或授與 hello 的混合式連接**傳送**右。 |
+| `sb-hc-id` |否 |選擇性的識別碼，可讓端對端診斷追蹤，而且 hello 期間所使用的 toohello 接聽程式接受交握。 |
 
-`{path}` 是用來註冊此接聽程式之預先設定混合式連線的 URL 編碼命名空間路徑。 `path` 運算式會使用後置字元和查詢字串運算式進一步通訊來進行擴充。 如果混合式連線在路徑 `hyco` 下註冊，則 `path` 運算式可能是 `hyco/suffix?param=value&...`，後接此處定義的查詢字串參數。 完整運算式則可能如下所示︰
+hello`{path}`是 hello URL 編碼的命名空間路徑的 hello 預先設定混合式連接的 tooregister 上此接聽程式。 hello`path`運算式可以使用後置字元和查詢字串運算式 toocommunicate 進一步擴充。 如果 hello 混合式連接已註冊 hello 路徑下`hyco`，hello`path`運算式可以是`hyco/suffix?param=value&...`後面接著 hello 此處定義的查詢字串參數。 完整運算式則可能如下所示︰
 
 ```
 wss://{namespace-address}/$hc/hyco/suffix?param=value&sb-hc-action=...[&sb-hc-id=...&]sbc-hc-token=...
 ```
 
-`path` 運算式會傳遞至「accept」控制訊息所包含之位址 URI 中的接聽程式。
+hello`path`運算式就會傳遞 toohello hello 位址 hello [接受] 控制訊息中所包含的 URI 中的接聽程式。
 
-如果因為混合式連線路徑未註冊、權杖無效或遺失或是其他某些錯誤，導致 WebSocket 連線失敗，將使用一般的 HTTP 1.1 狀態回饋模型提供錯誤回饋。 狀態描述會包含錯誤追蹤識別碼，以供您告知 Azure 支援人員︰
+如果因為 toohello 混合式連接的路徑未註冊、 無效或遺漏語彙基元或其他一些錯誤而失敗 hello WebSocket 連線，使用 hello 一般 HTTP 1.1 狀態的意見反應模型提供 hello 錯誤回應。 狀態描述會包含錯誤追蹤識別碼，以供您告知 Azure 支援人員︰
 
 | 代碼 | 錯誤 | 說明 |
 | --- | --- | --- |
-| 404 |找不到 |混合式連線路徑無效或基底 URL 的格式不正確。 |
-| 401 |未經授權 |安全性權杖遺失、格式不正確或無效。 |
-| 403 |禁止 |對於此動作來說，此路徑的安全性權杖無效。 |
-| 500 |內部錯誤 |服務發生錯誤。 |
+| 404 |找不到 |hello 混合式連接的路徑不正確或 hello 基底 URL 的格式不正確。 |
+| 401 |未經授權 |hello 安全性權杖是遺漏或格式不正確或無效。 |
+| 403 |禁止 |此路徑，此動作，hello 安全性權杖無效。 |
+| 500 |內部錯誤 |發生錯誤 hello 服務中。 |
 
-如果 WebSocket 連線在最初設定過後遭到服務刻意關閉，服務會使用適當的 WebSocket 通訊協定錯誤碼以及同時含有追蹤識別碼的錯誤描述訊息告知您這麼做的原因。
+Hello WebSocket 連接刻意關閉 hello 服務，它有初始設定之後，如果這樣做的 hello 原因所以通訊使用適當 WebSocket 通訊協定錯誤的程式碼以及同時也包含一個描述性的錯誤訊息追蹤識別碼。
 
 | WS 狀態 | 說明 |
 | --- | --- |
-| 1000 |接聽程式關閉通訊端。 |
-| 1001 |混合式連線路徑已遭到刪除或停用。 |
-| 1008 |安全性權杖已過期，因此違反授權原則。 |
-| 1011 |服務發生錯誤。 |
+| 1000 |hello 通訊端關閉 hello 接聽程式。 |
+| 1001 |已刪除或停用 hello 混合式連線路徑。 |
+| 1008 |hello 安全性權杖已過期，因此違反 hello 授權原則。 |
+| 1011 |發生錯誤 hello 服務中。 |
 
 ## 後續步驟
 * [轉送常見問題集](relay-faq.md)

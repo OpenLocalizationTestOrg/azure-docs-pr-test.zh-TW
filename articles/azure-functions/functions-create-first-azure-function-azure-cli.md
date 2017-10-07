@@ -1,6 +1,6 @@
 ---
-title: "從 Azure CLI 建立您的第一個函式 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 來建立您的第一個 Azure 函式以進行無伺服器執行。"
+title: "您的第一個函式從 hello Azure CLI aaaCreate |Microsoft 文件"
+description: "深入了解如何使用無伺服器執行的函式的第一個 Azure toocreate hello Azure CLI。"
 services: functions
 keywords: 
 author: ggailey777
@@ -12,55 +12,55 @@ ms.service: functions
 ms.custom: mvc
 ms.devlang: azure-cli
 manager: erikre
-ms.openlocfilehash: 8bd3e4bb7423db44c48b04f25edcf1074e6ea0bd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5feed0045d4998b88b0e1bb50996cb7bb42b0822
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-your-first-function-using-the-azure-cli"></a><span data-ttu-id="7ba7d-103">在 Azure CLI 建立您的第一個函式</span><span class="sxs-lookup"><span data-stu-id="7ba7d-103">Create your first function using the Azure CLI</span></span>
+# <a name="create-your-first-function-using-hello-azure-cli"></a><span data-ttu-id="df10a-103">建立您使用 Azure CLI hello 的第一個函式</span><span class="sxs-lookup"><span data-stu-id="df10a-103">Create your first function using hello Azure CLI</span></span>
 
-<span data-ttu-id="7ba7d-104">本快速入門教學課程會逐步解說如何使用 Azure Functions 來建立您的第一個函式。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-104">This quickstart tutorial walks through how to use Azure Functions to create your first function.</span></span> <span data-ttu-id="7ba7d-105">您會使用 Azure CLI 來建立函式應用程式，此應用程式是主控函式的無伺服器基礎結構。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-105">You use the Azure CLI to create a function app, which is the serverless infrastructure that hosts your function.</span></span> <span data-ttu-id="7ba7d-106">函式程式碼本身是從 GitHub 的範例存放庫部署而來的。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-106">The function code itself is deployed from a GitHub sample repository.</span></span>    
+<span data-ttu-id="df10a-104">本快速入門教學課程將逐步引導 toouse Azure 函式 toocreate 您的第一個函式。</span><span class="sxs-lookup"><span data-stu-id="df10a-104">This quickstart tutorial walks through how toouse Azure Functions toocreate your first function.</span></span> <span data-ttu-id="df10a-105">您使用 hello Azure CLI toocreate 函式應用程式，也就是裝載您的函式的 hello 無伺服器基礎結構。</span><span class="sxs-lookup"><span data-stu-id="df10a-105">You use hello Azure CLI toocreate a function app, which is hello serverless infrastructure that hosts your function.</span></span> <span data-ttu-id="df10a-106">從 GitHub 範例儲存機制部署 hello 函式程式碼本身。</span><span class="sxs-lookup"><span data-stu-id="df10a-106">hello function code itself is deployed from a GitHub sample repository.</span></span>    
 
-<span data-ttu-id="7ba7d-107">您可以使用 Mac、Windows 或 Linux 電腦，依照下面步驟操作。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-107">You can follow the steps below using a Mac, Windows, or Linux computer.</span></span> 
+<span data-ttu-id="df10a-107">您可以依照下列使用 Mac、 Windows 或 Linux 電腦的 hello 步驟。</span><span class="sxs-lookup"><span data-stu-id="df10a-107">You can follow hello steps below using a Mac, Windows, or Linux computer.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="7ba7d-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="7ba7d-108">Prerequisites</span></span> 
+## <a name="prerequisites"></a><span data-ttu-id="df10a-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="df10a-108">Prerequisites</span></span> 
 
-<span data-ttu-id="7ba7d-109">在執行此範例之前，您必須具備下列項目︰</span><span class="sxs-lookup"><span data-stu-id="7ba7d-109">Before running this sample, you must have the following:</span></span>
+<span data-ttu-id="df10a-109">執行此範例之前，您必須擁有 hello 下列：</span><span class="sxs-lookup"><span data-stu-id="df10a-109">Before running this sample, you must have hello following:</span></span>
 
-+ <span data-ttu-id="7ba7d-110">作用中的 [GitHub](https://github.com) 帳戶。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-110">An active [GitHub](https://github.com) account.</span></span> 
-+ <span data-ttu-id="7ba7d-111">有效的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-111">An active Azure subscription.</span></span>
++ <span data-ttu-id="df10a-110">作用中的 [GitHub](https://github.com) 帳戶。</span><span class="sxs-lookup"><span data-stu-id="df10a-110">An active [GitHub](https://github.com) account.</span></span> 
++ <span data-ttu-id="df10a-111">有效的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="df10a-111">An active Azure subscription.</span></span>
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="7ba7d-112">如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-112">If you choose to install and use the CLI locally, this topic requires that you are running the Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="7ba7d-113">執行 `az --version` 以尋找版本。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-113">Run `az --version` to find the version.</span></span> <span data-ttu-id="7ba7d-114">如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-114">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
+<span data-ttu-id="df10a-112">如果您選擇 tooinstall，並在本機上使用 hello CLI，本主題會需要您執行 hello Azure CLI 版本 2.0 或更新版本。</span><span class="sxs-lookup"><span data-stu-id="df10a-112">If you choose tooinstall and use hello CLI locally, this topic requires that you are running hello Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="df10a-113">執行`az --version`toofind hello 版本。</span><span class="sxs-lookup"><span data-stu-id="df10a-113">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="df10a-114">如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。</span><span class="sxs-lookup"><span data-stu-id="df10a-114">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
 
 
-## <a name="create-a-resource-group"></a><span data-ttu-id="7ba7d-115">建立資源群組</span><span class="sxs-lookup"><span data-stu-id="7ba7d-115">Create a resource group</span></span>
+## <a name="create-a-resource-group"></a><span data-ttu-id="df10a-115">建立資源群組</span><span class="sxs-lookup"><span data-stu-id="df10a-115">Create a resource group</span></span>
 
-<span data-ttu-id="7ba7d-116">使用 [az group create](/cli/azure/group#create) 來建立資源群組。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-116">Create a resource group with the [az group create](/cli/azure/group#create).</span></span> <span data-ttu-id="7ba7d-117">Azure 資源群組是在其中部署與管理 Azure 資源 (如函式應用程式、資料庫和儲存體帳戶) 的邏輯容器。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-117">An Azure resource group is a logical container into which Azure resources like function apps, databases, and storage accounts are deployed and managed.</span></span>
+<span data-ttu-id="df10a-116">建立資源群組以 hello [az 群組建立](/cli/azure/group#create)。</span><span class="sxs-lookup"><span data-stu-id="df10a-116">Create a resource group with hello [az group create](/cli/azure/group#create).</span></span> <span data-ttu-id="df10a-117">Azure 資源群組是在其中部署與管理 Azure 資源 (如函式應用程式、資料庫和儲存體帳戶) 的邏輯容器。</span><span class="sxs-lookup"><span data-stu-id="df10a-117">An Azure resource group is a logical container into which Azure resources like function apps, databases, and storage accounts are deployed and managed.</span></span>
 
-<span data-ttu-id="7ba7d-118">下列範例會建立名為 `myResourceGroup` 的資源群組。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-118">The following example creates a resource group named `myResourceGroup`.</span></span>  
-<span data-ttu-id="7ba7d-119">如果您未使用 Cloud Shell，您必須先使用 `az login` 登入。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-119">If you are not using Cloud Shell, you must first sign in using `az login`.</span></span>
+<span data-ttu-id="df10a-118">hello 下列範例會建立名為的資源群組`myResourceGroup`。</span><span class="sxs-lookup"><span data-stu-id="df10a-118">hello following example creates a resource group named `myResourceGroup`.</span></span>  
+<span data-ttu-id="df10a-119">如果您未使用 Cloud Shell，您必須先使用 `az login` 登入。</span><span class="sxs-lookup"><span data-stu-id="df10a-119">If you are not using Cloud Shell, you must first sign in using `az login`.</span></span>
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location westeurope
 ```
 
 
-## <a name="create-an-azure-storage-account"></a><span data-ttu-id="7ba7d-120">建立 Azure 儲存體帳戶</span><span class="sxs-lookup"><span data-stu-id="7ba7d-120">Create an Azure Storage account</span></span>
+## <a name="create-an-azure-storage-account"></a><span data-ttu-id="df10a-120">建立 Azure 儲存體帳戶</span><span class="sxs-lookup"><span data-stu-id="df10a-120">Create an Azure Storage account</span></span>
 
-<span data-ttu-id="7ba7d-121">函式會使用 Azure 儲存體帳戶來維護函式的狀態和其他資訊。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-121">Functions uses an Azure Storage account to maintain state and other information about your functions.</span></span> <span data-ttu-id="7ba7d-122">在使用 [az storage account create](/cli/azure/storage/account#create) 命令所建立的資源群組中建立儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-122">Create a storage account in the resource group you created by using the [az storage account create](/cli/azure/storage/account#create) command.</span></span>
+<span data-ttu-id="df10a-121">函式會使用 Azure 儲存體帳戶 toomaintain 狀態和您的函式的其他資訊。</span><span class="sxs-lookup"><span data-stu-id="df10a-121">Functions uses an Azure Storage account toomaintain state and other information about your functions.</span></span> <span data-ttu-id="df10a-122">在您建立使用 hello hello 資源群組中建立儲存體帳戶[az 儲存體帳戶建立](/cli/azure/storage/account#create)命令。</span><span class="sxs-lookup"><span data-stu-id="df10a-122">Create a storage account in hello resource group you created by using hello [az storage account create](/cli/azure/storage/account#create) command.</span></span>
 
-<span data-ttu-id="7ba7d-123">在下列命令中，使用您自己的全域唯一儲存體帳戶名稱來替代您看見 `<storage_name>` 預留位置的地方。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-123">In the following command, substitute your own globally unique storage account name where you see the `<storage_name>` placeholder.</span></span> <span data-ttu-id="7ba7d-124">儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-124">Storage account names must be between 3 and 24 characters in length and may contain numbers and lowercase letters only.</span></span>
+<span data-ttu-id="df10a-123">在 hello 下列命令，以取代您自己了解 hello 的全域唯一的儲存體帳戶名稱`<storage_name>`預留位置。</span><span class="sxs-lookup"><span data-stu-id="df10a-123">In hello following command, substitute your own globally unique storage account name where you see hello `<storage_name>` placeholder.</span></span> <span data-ttu-id="df10a-124">儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。</span><span class="sxs-lookup"><span data-stu-id="df10a-124">Storage account names must be between 3 and 24 characters in length and may contain numbers and lowercase letters only.</span></span>
 
 ```azurecli-interactive
 az storage account create --name <storage_name> --location westeurope --resource-group myResourceGroup --sku Standard_LRS
 ```
 
-<span data-ttu-id="7ba7d-125">建立儲存體帳戶後，Azure CLI 會顯示類似下列範例的資訊：</span><span class="sxs-lookup"><span data-stu-id="7ba7d-125">After the storage account has been created, the Azure CLI shows information similar to the following example:</span></span>
+<span data-ttu-id="df10a-125">建立 hello 儲存體帳戶之後，hello Azure CLI 顯示資訊的類似 toohello 下列範例：</span><span class="sxs-lookup"><span data-stu-id="df10a-125">After hello storage account has been created, hello Azure CLI shows information similar toohello following example:</span></span>
 
 ```json
 {
@@ -80,19 +80,19 @@ az storage account create --name <storage_name> --location westeurope --resource
 }
 ```
 
-## <a name="create-a-function-app"></a><span data-ttu-id="7ba7d-126">建立函數應用程式</span><span class="sxs-lookup"><span data-stu-id="7ba7d-126">Create a function app</span></span>
+## <a name="create-a-function-app"></a><span data-ttu-id="df10a-126">建立函數應用程式</span><span class="sxs-lookup"><span data-stu-id="df10a-126">Create a function app</span></span>
 
-<span data-ttu-id="7ba7d-127">您必須擁有函式應用程式以便主控函式的執行。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-127">You must have a function app to host the execution of your functions.</span></span> <span data-ttu-id="7ba7d-128">函式應用程式會提供環境來讓您的函式程式碼進行無伺服器執行。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-128">The function app provides an environment for serverless execution of your function code.</span></span> <span data-ttu-id="7ba7d-129">它可讓您將多個函式群組為邏輯單位，以方便您管理、部署和共用資源。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-129">It lets you group functions as a logic unit for easier management, deployment, and sharing of resources.</span></span> <span data-ttu-id="7ba7d-130">使用 [az functionapp create](/cli/azure/functionapp#create) 命令來建立函式應用程式。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-130">Create a function app by using the [az functionapp create](/cli/azure/functionapp#create) command.</span></span> 
+<span data-ttu-id="df10a-127">您必須擁有您的函式的函式應用程式 toohost hello 執行。</span><span class="sxs-lookup"><span data-stu-id="df10a-127">You must have a function app toohost hello execution of your functions.</span></span> <span data-ttu-id="df10a-128">hello 函式應用程式提供無伺服器程式碼執行的函式的環境。</span><span class="sxs-lookup"><span data-stu-id="df10a-128">hello function app provides an environment for serverless execution of your function code.</span></span> <span data-ttu-id="df10a-129">它可讓您將多個函式群組為邏輯單位，以方便您管理、部署和共用資源。</span><span class="sxs-lookup"><span data-stu-id="df10a-129">It lets you group functions as a logic unit for easier management, deployment, and sharing of resources.</span></span> <span data-ttu-id="df10a-130">建立函式的應用程式使用 hello [az functionapp 建立](/cli/azure/functionapp#create)命令。</span><span class="sxs-lookup"><span data-stu-id="df10a-130">Create a function app by using hello [az functionapp create](/cli/azure/functionapp#create) command.</span></span> 
 
-<span data-ttu-id="7ba7d-131">在下列命令中，使用您自己的唯一函式應用程式名稱來替代您看見 `<app_name>` 預留位置的地方，並使用儲存體帳戶名稱來替代 `<storage_name>`。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-131">In the following command, substitute your own unique function app name where you see the `<app_name>` placeholder and the storage account name for  `<storage_name>`.</span></span> <span data-ttu-id="7ba7d-132">`<app_name>` 會作為函式應用程式的預設 DNS 網域，所以此名稱在 Azure 的所有應用程式中都必須是唯一的名稱。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-132">The `<app_name>` is used as the default DNS domain for the function app, and so the name needs to be unique across all apps in Azure.</span></span> 
+<span data-ttu-id="df10a-131">Hello 中下列命令，將替換成您自己唯一函式應用程式名稱看 hello`<app_name>`預留位置和 hello 儲存體帳戶名稱`<storage_name>`。</span><span class="sxs-lookup"><span data-stu-id="df10a-131">In hello following command, substitute your own unique function app name where you see hello `<app_name>` placeholder and hello storage account name for  `<storage_name>`.</span></span> <span data-ttu-id="df10a-132">hello `<app_name>` hello 預設 DNS 網域 hello 函式應用程式，並因此 hello 名稱需要 toobe 唯一跨所有應用程式在 Azure 中作為。</span><span class="sxs-lookup"><span data-stu-id="df10a-132">hello `<app_name>` is used as hello default DNS domain for hello function app, and so hello name needs toobe unique across all apps in Azure.</span></span> 
 
 ```azurecli-interactive
 az functionapp create --name <app_name> --storage-account  <storage_name>  --resource-group myResourceGroup \
 --consumption-plan-location westeurope
 ```
-<span data-ttu-id="7ba7d-133">根據預設，所建立的函式應用程式會使用「取用」主控方案，也就是說，您的函式會根據需要來動態新增資源，並且只有在函式執行時才會產生費用。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-133">By default, a function app is created with the Consumption hosting plan, which means that resources are added dynamically as required by your functions and you only pay when functions are running.</span></span> <span data-ttu-id="7ba7d-134">如需詳細資訊，請參閱[選擇正確的主控方案](functions-scale.md)。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-134">For more information, see [Choose the correct hosting plan](functions-scale.md).</span></span> 
+<span data-ttu-id="df10a-133">根據預設，函式應用程式會建立與 hello 耗用量主控方案，這表示動態所需的函式加入資源，而且您只需要執行函式時。</span><span class="sxs-lookup"><span data-stu-id="df10a-133">By default, a function app is created with hello Consumption hosting plan, which means that resources are added dynamically as required by your functions and you only pay when functions are running.</span></span> <span data-ttu-id="df10a-134">如需詳細資訊，請參閱[選擇 hello 正確主控方案](functions-scale.md)。</span><span class="sxs-lookup"><span data-stu-id="df10a-134">For more information, see [Choose hello correct hosting plan](functions-scale.md).</span></span> 
 
-<span data-ttu-id="7ba7d-135">建立函式應用程式後，Azure CLI 會顯示類似下列範例的資訊：</span><span class="sxs-lookup"><span data-stu-id="7ba7d-135">After the function app has been created, the Azure CLI shows information similar to the following example:</span></span>
+<span data-ttu-id="df10a-135">建立 hello 函式應用程式之後，hello Azure CLI 顯示資訊的類似 toohello 下列範例：</span><span class="sxs-lookup"><span data-stu-id="df10a-135">After hello function app has been created, hello Azure CLI shows information similar toohello following example:</span></span>
 
 ```json
 {
@@ -112,18 +112,18 @@ az functionapp create --name <app_name> --storage-account  <storage_name>  --res
 }
 ```
 
-<span data-ttu-id="7ba7d-136">您已經擁有函式應用程式，接下來您可以從 GitHub 的範例存放庫來部署實際的函式程式碼。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-136">Now that you have a function app, you can deploy the actual function code from the GitHub sample repository.</span></span>
+<span data-ttu-id="df10a-136">有函式應用程式之後，您可以部署 hello GitHub 範例儲存機制中的 hello 實際函式程式碼。</span><span class="sxs-lookup"><span data-stu-id="df10a-136">Now that you have a function app, you can deploy hello actual function code from hello GitHub sample repository.</span></span>
 
-## <a name="deploy-your-function-code"></a><span data-ttu-id="7ba7d-137">部署函式程式碼</span><span class="sxs-lookup"><span data-stu-id="7ba7d-137">Deploy your function code</span></span>  
+## <a name="deploy-your-function-code"></a><span data-ttu-id="df10a-137">部署函式程式碼</span><span class="sxs-lookup"><span data-stu-id="df10a-137">Deploy your function code</span></span>  
 
-<span data-ttu-id="7ba7d-138">有多種方式可以在新的函式應用程式中建立函式程式碼。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-138">There are several ways to create your function code in your new function app.</span></span> <span data-ttu-id="7ba7d-139">本主題連結到 GitHub 中的範例存放庫。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-139">This topic connects to a sample repository in GitHub.</span></span> <span data-ttu-id="7ba7d-140">和先前一樣，請在下列程式碼中將 `<app_name>` 預留位置改為您所建立之函式應用程式的名稱。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-140">As before, in the following code replace the `<app_name>` placeholder with the name of the function app you created.</span></span> 
+<span data-ttu-id="df10a-138">有數種方式 toocreate 函式的程式碼在應用程式的新函式中。</span><span class="sxs-lookup"><span data-stu-id="df10a-138">There are several ways toocreate your function code in your new function app.</span></span> <span data-ttu-id="df10a-139">本主題會連接 tooa GitHub 中的範例儲存機制。</span><span class="sxs-lookup"><span data-stu-id="df10a-139">This topic connects tooa sample repository in GitHub.</span></span> <span data-ttu-id="df10a-140">如往常一般，在 hello 下列程式碼取代 hello `<app_name>` hello 您所建立的 hello 函式應用程式名稱的預留位置。</span><span class="sxs-lookup"><span data-stu-id="df10a-140">As before, in hello following code replace hello `<app_name>` placeholder with hello name of hello function app you created.</span></span> 
 
 ```azurecli-interactive
 az functionapp deployment source config --name <app_name> --resource-group myResourceGroup --branch master \
 --repo-url https://github.com/Azure-Samples/functions-quickstart \
 --manual-integration 
 ```
-<span data-ttu-id="7ba7d-141">設定部署來源後，Azure CLI 會顯示類似下列範例的資訊 (已移除 Null 值以方便閱讀)︰</span><span class="sxs-lookup"><span data-stu-id="7ba7d-141">After the deployment source been set, the Azure CLI shows information similar to the following example (null values removed for readability):</span></span>
+<span data-ttu-id="df10a-141">Hello 部署來源設定之後，Azure CLI 顯示下列範例 （針對可讀性移除 null 值） 的資訊類似 toohello hello:</span><span class="sxs-lookup"><span data-stu-id="df10a-141">After hello deployment source been set, hello Azure CLI shows information similar toohello following example (null values removed for readability):</span></span>
 
 ```json
 {
@@ -140,9 +140,9 @@ az functionapp deployment source config --name <app_name> --resource-group myRes
 }
 ```
 
-## <a name="test-the-function"></a><span data-ttu-id="7ba7d-142">測試函式</span><span class="sxs-lookup"><span data-stu-id="7ba7d-142">Test the function</span></span>
+## <a name="test-hello-function"></a><span data-ttu-id="df10a-142">測試 hello 函式</span><span class="sxs-lookup"><span data-stu-id="df10a-142">Test hello function</span></span>
 
-<span data-ttu-id="7ba7d-143">在 Mac 或 Linux 電腦上使用 cURL 來測試已部署的函式，在 Windows 上則請使用 Bash。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-143">Use cURL to test the deployed function on a Mac or Linux computer or using Bash on Windows.</span></span> <span data-ttu-id="7ba7d-144">執行下列 cURL 命令時，但請將其中的 `<app_name>` 預留位置改為函式應用程式的名稱。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-144">Execute the following cURL command, replacing the `<app_name>` placeholder with the name of your function app.</span></span> <span data-ttu-id="7ba7d-145">將查詢字串 `&name=<yourname>` 附加至 URL。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-145">Append the query string `&name=<yourname>` to the URL.</span></span>
+<span data-ttu-id="df10a-143">在 Mac 或 Linux 電腦或 Windows 上使用 Bash 使用 cURL tootest 部署的 hello 函式。</span><span class="sxs-lookup"><span data-stu-id="df10a-143">Use cURL tootest hello deployed function on a Mac or Linux computer or using Bash on Windows.</span></span> <span data-ttu-id="df10a-144">執行下列 cURL 命令，取代 hello hello `<app_name>` hello 函式應用程式名稱的預留位置。</span><span class="sxs-lookup"><span data-stu-id="df10a-144">Execute hello following cURL command, replacing hello `<app_name>` placeholder with hello name of your function app.</span></span> <span data-ttu-id="df10a-145">附加 hello 查詢字串`&name=<yourname>`toohello URL。</span><span class="sxs-lookup"><span data-stu-id="df10a-145">Append hello query string `&name=<yourname>` toohello URL.</span></span>
 
 ```bash
 curl http://<app_name>.azurewebsites.net/api/HttpTriggerJS1?name=<yourname>
@@ -150,21 +150,21 @@ curl http://<app_name>.azurewebsites.net/api/HttpTriggerJS1?name=<yourname>
 
 ![瀏覽器顯示的函式回應。](./media/functions-create-first-azure-function-azure-cli/functions-azure-cli-function-test-curl.png)  
 
-<span data-ttu-id="7ba7d-147">如果您的命令列無法使用 cURL，在網頁瀏覽器的位址中輸入相同 URL 即可。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-147">If you don't have cURL available in your command line, enter the same URL in the address of your web browser.</span></span> <span data-ttu-id="7ba7d-148">同樣地，請將 `<app_name>` 預留位置改為函式應用程式的名稱，然後對 URL 附加查詢字串 `&name=<yourname>` 並執行要求。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-148">Again, replace the `<app_name>` placeholder with the name of your function app, and append the query string `&name=<yourname>` to the URL and execute the request.</span></span> 
+<span data-ttu-id="df10a-147">如果您沒有 cURL 可用命令列中，輸入 hello hello 位址在網頁瀏覽器中相同的 URL。</span><span class="sxs-lookup"><span data-stu-id="df10a-147">If you don't have cURL available in your command line, enter hello same URL in hello address of your web browser.</span></span> <span data-ttu-id="df10a-148">同樣地，取代 hello`<app_name>`預留位置 hello 應用程式名稱函式，並附加 hello 查詢字串`&name=<yourname>`toohello URL，然後執行 hello 要求。</span><span class="sxs-lookup"><span data-stu-id="df10a-148">Again, replace hello `<app_name>` placeholder with hello name of your function app, and append hello query string `&name=<yourname>` toohello URL and execute hello request.</span></span> 
 
     http://<app_name>.azurewebsites.net/api/HttpTriggerJS1?name=<yourname>
    
 ![瀏覽器顯示的函式回應。](./media/functions-create-first-azure-function-azure-cli/functions-azure-cli-function-test-browser.png)  
 
-## <a name="clean-up-resources"></a><span data-ttu-id="7ba7d-150">清除資源</span><span class="sxs-lookup"><span data-stu-id="7ba7d-150">Clean up resources</span></span>
+## <a name="clean-up-resources"></a><span data-ttu-id="df10a-150">清除資源</span><span class="sxs-lookup"><span data-stu-id="df10a-150">Clean up resources</span></span>
 
-<span data-ttu-id="7ba7d-151">此集合中的其他快速入門會以本快速入門為基礎。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-151">Other quickstarts in this collection build upon this quickstart.</span></span> <span data-ttu-id="7ba7d-152">如果您打算繼續進行後續的快速入門或教學課程，請勿清除在此快速入門中建立的資源。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-152">If you plan to continue on to work with subsequent quickstarts or with the tutorials, do not clean up the resources created in this quickstart.</span></span> <span data-ttu-id="7ba7d-153">如果您不打算繼續，請使用下列命令來刪除本快速入門建立的所有資源：</span><span class="sxs-lookup"><span data-stu-id="7ba7d-153">If you do not plan to continue, use the following command to delete all resources created by this quickstart:</span></span>
+<span data-ttu-id="df10a-151">此集合中的其他快速入門會以本快速入門為基礎。</span><span class="sxs-lookup"><span data-stu-id="df10a-151">Other quickstarts in this collection build upon this quickstart.</span></span> <span data-ttu-id="df10a-152">如果您計劃 toocontinue toowork 與後續的快速入門或 hello 教學課程，請執行不會清除建立本快速入門的 hello 資源。</span><span class="sxs-lookup"><span data-stu-id="df10a-152">If you plan toocontinue on toowork with subsequent quickstarts or with hello tutorials, do not clean up hello resources created in this quickstart.</span></span> <span data-ttu-id="df10a-153">如果您不打算 toocontinue，使用下列命令 toodelete hello 本快速入門所建立的所有資源：</span><span class="sxs-lookup"><span data-stu-id="df10a-153">If you do not plan toocontinue, use hello following command toodelete all resources created by this quickstart:</span></span>
 
 ```azurecli-interactive
 az group delete --name myResourceGroup
 ```
-<span data-ttu-id="7ba7d-154">在出現提示時輸入 `y`。</span><span class="sxs-lookup"><span data-stu-id="7ba7d-154">Type `y` when prompted.</span></span>
+<span data-ttu-id="df10a-154">在出現提示時輸入 `y`。</span><span class="sxs-lookup"><span data-stu-id="df10a-154">Type `y` when prompted.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="7ba7d-155">後續步驟</span><span class="sxs-lookup"><span data-stu-id="7ba7d-155">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="df10a-155">後續步驟</span><span class="sxs-lookup"><span data-stu-id="df10a-155">Next steps</span></span>
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]

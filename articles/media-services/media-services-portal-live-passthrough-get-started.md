@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 入口網站透過內部部署編碼器執行即時串流 | Microsoft Docs"
-description: "本教學課程將逐步引導您建立針對即時通行傳遞設定的通道。"
+title: "aaaLive 資料流，與在內部部署編碼器使用 hello Azure 入口網站 |Microsoft 文件"
+description: "本教學課程會引導您建立設定為傳遞的傳遞通道的 hello 步驟。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,143 +14,143 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 6939e3b31c3c1b514df4c559c2d9408fce122a4e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1fb341e022f66f33903e13e07d3e84c0216cad77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-perform-live-streaming-with-on-premises-encoders-using-the-azure-portal"></a><span data-ttu-id="13970-103">如何使用 Azure 入口網站透過內部部署編碼器執行即時串流</span><span class="sxs-lookup"><span data-stu-id="13970-103">How to perform live streaming with on-premises encoders using the Azure portal</span></span>
+# <a name="how-tooperform-live-streaming-with-on-premises-encoders-using-hello-azure-portal"></a><span data-ttu-id="ed468-103">如何 tooperform 即時資料流與內部部署編碼器使用 hello Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="ed468-103">How tooperform live streaming with on-premises encoders using hello Azure portal</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="13970-104">入口網站</span><span class="sxs-lookup"><span data-stu-id="13970-104">Portal</span></span>](media-services-portal-live-passthrough-get-started.md)
-> * [<span data-ttu-id="13970-105">.NET</span><span class="sxs-lookup"><span data-stu-id="13970-105">.NET</span></span>](media-services-dotnet-live-encode-with-onpremises-encoders.md)
-> * [<span data-ttu-id="13970-106">REST</span><span class="sxs-lookup"><span data-stu-id="13970-106">REST</span></span>](https://docs.microsoft.com/rest/api/media/operations/channel)
+> * [<span data-ttu-id="ed468-104">入口網站</span><span class="sxs-lookup"><span data-stu-id="ed468-104">Portal</span></span>](media-services-portal-live-passthrough-get-started.md)
+> * [<span data-ttu-id="ed468-105">.NET</span><span class="sxs-lookup"><span data-stu-id="ed468-105">.NET</span></span>](media-services-dotnet-live-encode-with-onpremises-encoders.md)
+> * [<span data-ttu-id="ed468-106">REST</span><span class="sxs-lookup"><span data-stu-id="ed468-106">REST</span></span>](https://docs.microsoft.com/rest/api/media/operations/channel)
 > 
 > 
 
-<span data-ttu-id="13970-107">本教學課程將逐步引導您使用 Azure 入口網站建立針對即時通行傳遞設定的 **通道** 。</span><span class="sxs-lookup"><span data-stu-id="13970-107">This tutorial walks you through the steps of using the Azure portal to create a **Channel** that is configured for a pass-through delivery.</span></span> 
+<span data-ttu-id="ed468-107">本教學課程中引導您使用 Azure 入口網站 toocreate hello 的 hello 步驟**通道**針對傳遞的傳遞設定。</span><span class="sxs-lookup"><span data-stu-id="ed468-107">This tutorial walks you through hello steps of using hello Azure portal toocreate a **Channel** that is configured for a pass-through delivery.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="13970-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="13970-108">Prerequisites</span></span>
-<span data-ttu-id="13970-109">需要有下列項目，才能完成教學課程：</span><span class="sxs-lookup"><span data-stu-id="13970-109">The following are required to complete the tutorial:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="ed468-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="ed468-108">Prerequisites</span></span>
+<span data-ttu-id="ed468-109">hello 下面是必要的 toocomplete hello 教學課程：</span><span class="sxs-lookup"><span data-stu-id="ed468-109">hello following are required toocomplete hello tutorial:</span></span>
 
-* <span data-ttu-id="13970-110">一個 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="13970-110">An Azure account.</span></span> <span data-ttu-id="13970-111">如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。</span><span class="sxs-lookup"><span data-stu-id="13970-111">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).</span></span> 
-* <span data-ttu-id="13970-112">媒體服務帳戶。</span><span class="sxs-lookup"><span data-stu-id="13970-112">A Media Services account.</span></span> <span data-ttu-id="13970-113">若要建立媒體服務帳戶，請參閱[如何建立媒體服務帳戶](media-services-portal-create-account.md)。</span><span class="sxs-lookup"><span data-stu-id="13970-113">To create a Media Services account, see [How to Create a Media Services Account](media-services-portal-create-account.md).</span></span>
-* <span data-ttu-id="13970-114">網路攝影機。</span><span class="sxs-lookup"><span data-stu-id="13970-114">A webcam.</span></span> <span data-ttu-id="13970-115">例如， [Telestream Wirecast 編碼器](http://www.telestream.net/wirecast/overview.htm)。</span><span class="sxs-lookup"><span data-stu-id="13970-115">For example, [Telestream Wirecast encoder](http://www.telestream.net/wirecast/overview.htm).</span></span>
+* <span data-ttu-id="ed468-110">一個 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="ed468-110">An Azure account.</span></span> <span data-ttu-id="ed468-111">如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。</span><span class="sxs-lookup"><span data-stu-id="ed468-111">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).</span></span> 
+* <span data-ttu-id="ed468-112">媒體服務帳戶。</span><span class="sxs-lookup"><span data-stu-id="ed468-112">A Media Services account.</span></span> <span data-ttu-id="ed468-113">toocreate Media Services 帳戶，請參閱[如何 tooCreate Media Services 帳戶](media-services-portal-create-account.md)。</span><span class="sxs-lookup"><span data-stu-id="ed468-113">toocreate a Media Services account, see [How tooCreate a Media Services Account](media-services-portal-create-account.md).</span></span>
+* <span data-ttu-id="ed468-114">網路攝影機。</span><span class="sxs-lookup"><span data-stu-id="ed468-114">A webcam.</span></span> <span data-ttu-id="ed468-115">例如， [Telestream Wirecast 編碼器](http://www.telestream.net/wirecast/overview.htm)。</span><span class="sxs-lookup"><span data-stu-id="ed468-115">For example, [Telestream Wirecast encoder](http://www.telestream.net/wirecast/overview.htm).</span></span>
 
-<span data-ttu-id="13970-116">強烈建議您先檢閱下列文章：</span><span class="sxs-lookup"><span data-stu-id="13970-116">It is highly recommended to review the following articles:</span></span>
+<span data-ttu-id="ed468-116">強烈建議 tooreview hello 下列文章：</span><span class="sxs-lookup"><span data-stu-id="ed468-116">It is highly recommended tooreview hello following articles:</span></span>
 
-* [<span data-ttu-id="13970-117">Azure 媒體服務 RTMP 支援和即時編碼器</span><span class="sxs-lookup"><span data-stu-id="13970-117">Azure Media Services RTMP Support and Live Encoders</span></span>](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)
-* [<span data-ttu-id="13970-118">使用 Azure 媒體服務之即時串流的概觀</span><span class="sxs-lookup"><span data-stu-id="13970-118">Overview of Live Steaming using Azure Media Services</span></span>](media-services-manage-channels-overview.md)
-* [<span data-ttu-id="13970-119">使用會建立多位元速率串流的內部部署編碼器執行即時串流</span><span class="sxs-lookup"><span data-stu-id="13970-119">Live streaming with on-premises encoders that create multi-bitrate streams</span></span>](media-services-live-streaming-with-onprem-encoders.md)
+* [<span data-ttu-id="ed468-117">Azure 媒體服務 RTMP 支援和即時編碼器</span><span class="sxs-lookup"><span data-stu-id="ed468-117">Azure Media Services RTMP Support and Live Encoders</span></span>](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)
+* [<span data-ttu-id="ed468-118">使用 Azure 媒體服務之即時串流的概觀</span><span class="sxs-lookup"><span data-stu-id="ed468-118">Overview of Live Steaming using Azure Media Services</span></span>](media-services-manage-channels-overview.md)
+* [<span data-ttu-id="ed468-119">使用會建立多位元速率串流的內部部署編碼器執行即時串流</span><span class="sxs-lookup"><span data-stu-id="ed468-119">Live streaming with on-premises encoders that create multi-bitrate streams</span></span>](media-services-live-streaming-with-onprem-encoders.md)
 
-## <span data-ttu-id="13970-120"><a id="scenario"></a>常見即時串流案例</span><span class="sxs-lookup"><span data-stu-id="13970-120"><a id="scenario"></a>Common live streaming scenario</span></span>
-<span data-ttu-id="13970-121">下列步驟描述當我們建立一般即時串流應用程式 (其使用針對即時通行傳遞設定的通道) 時，會涉及到的各種工作。</span><span class="sxs-lookup"><span data-stu-id="13970-121">The following steps describe tasks involved in creating common live streaming applications that use channels that are configured for pass-through delivery.</span></span> <span data-ttu-id="13970-122">本教學課程示範如何建立及管理即時通行通道和即時事件。</span><span class="sxs-lookup"><span data-stu-id="13970-122">This tutorial shows how to create and manage a pass-through channel and live events.</span></span>
+## <span data-ttu-id="ed468-120"><a id="scenario"></a>常見即時串流案例</span><span class="sxs-lookup"><span data-stu-id="ed468-120"><a id="scenario"></a>Common live streaming scenario</span></span>
+<span data-ttu-id="ed468-121">hello 下列步驟說明建立常見即時資料流使用的應用程式所設定的通道傳遞傳遞所涉及的工作。</span><span class="sxs-lookup"><span data-stu-id="ed468-121">hello following steps describe tasks involved in creating common live streaming applications that use channels that are configured for pass-through delivery.</span></span> <span data-ttu-id="ed468-122">本教學課程示範如何 toocreate 及管理通過通道和即時事件。</span><span class="sxs-lookup"><span data-stu-id="ed468-122">This tutorial shows how toocreate and manage a pass-through channel and live events.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="13970-123">確定您想要串流內容的串流端點已處於 [執行中] 狀態。</span><span class="sxs-lookup"><span data-stu-id="13970-123">Make sure the streaming endpoint from which you want to stream content is in the **Running** state.</span></span> 
+><span data-ttu-id="ed468-123">請確定 hello 串流的端點要從中 toostream 內容處於 hello**執行**狀態。</span><span class="sxs-lookup"><span data-stu-id="ed468-123">Make sure hello streaming endpoint from which you want toostream content is in hello **Running** state.</span></span> 
     
-1. <span data-ttu-id="13970-124">將攝影機連接到電腦。</span><span class="sxs-lookup"><span data-stu-id="13970-124">Connect a video camera to a computer.</span></span> <span data-ttu-id="13970-125">啟動並設定內部部署即時編碼器，讓它輸出多位元速率 RTMP 或 Fragmented MP4 串流。</span><span class="sxs-lookup"><span data-stu-id="13970-125">Launch and configure an on-premises live encoder that outputs a multi-bitrate RTMP or Fragmented MP4 stream.</span></span> <span data-ttu-id="13970-126">如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。</span><span class="sxs-lookup"><span data-stu-id="13970-126">For more information, see [Azure Media Services RTMP Support and Live Encoders](http://go.microsoft.com/fwlink/?LinkId=532824).</span></span>
+1. <span data-ttu-id="ed468-124">視訊攝影機 tooa 電腦連線。</span><span class="sxs-lookup"><span data-stu-id="ed468-124">Connect a video camera tooa computer.</span></span> <span data-ttu-id="ed468-125">啟動並設定內部部署即時編碼器，讓它輸出多位元速率 RTMP 或 Fragmented MP4 串流。</span><span class="sxs-lookup"><span data-stu-id="ed468-125">Launch and configure an on-premises live encoder that outputs a multi-bitrate RTMP or Fragmented MP4 stream.</span></span> <span data-ttu-id="ed468-126">如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。</span><span class="sxs-lookup"><span data-stu-id="ed468-126">For more information, see [Azure Media Services RTMP Support and Live Encoders](http://go.microsoft.com/fwlink/?LinkId=532824).</span></span>
    
-    <span data-ttu-id="13970-127">此步驟也可以在您建立通道之後執行。</span><span class="sxs-lookup"><span data-stu-id="13970-127">This step could also be performed after you create your Channel.</span></span>
-2. <span data-ttu-id="13970-128">建立並啟動即時通行通道。</span><span class="sxs-lookup"><span data-stu-id="13970-128">Create and start a pass-through Channel.</span></span>
-3. <span data-ttu-id="13970-129">擷取通道內嵌 URL。</span><span class="sxs-lookup"><span data-stu-id="13970-129">Retrieve the Channel ingest URL.</span></span> 
+    <span data-ttu-id="ed468-127">此步驟也可以在您建立通道之後執行。</span><span class="sxs-lookup"><span data-stu-id="ed468-127">This step could also be performed after you create your Channel.</span></span>
+2. <span data-ttu-id="ed468-128">建立並啟動即時通行通道。</span><span class="sxs-lookup"><span data-stu-id="ed468-128">Create and start a pass-through Channel.</span></span>
+3. <span data-ttu-id="ed468-129">擷取 hello 通道的內嵌 URL。</span><span class="sxs-lookup"><span data-stu-id="ed468-129">Retrieve hello Channel ingest URL.</span></span> 
    
-    <span data-ttu-id="13970-130">內嵌 URL 可供即時編碼器用來傳送串流到通道。</span><span class="sxs-lookup"><span data-stu-id="13970-130">The ingest URL is used by the live encoder to send the stream to the Channel.</span></span>
-4. <span data-ttu-id="13970-131">擷取通道預覽 URL。</span><span class="sxs-lookup"><span data-stu-id="13970-131">Retrieve the Channel preview URL.</span></span> 
+    <span data-ttu-id="ed468-130">hello 內嵌 URL 由 hello 即時編碼器 toosend hello 資料流 toohello 通道。</span><span class="sxs-lookup"><span data-stu-id="ed468-130">hello ingest URL is used by hello live encoder toosend hello stream toohello Channel.</span></span>
+4. <span data-ttu-id="ed468-131">擷取 hello 通道預覽 URL。</span><span class="sxs-lookup"><span data-stu-id="ed468-131">Retrieve hello Channel preview URL.</span></span> 
    
-    <span data-ttu-id="13970-132">使用此 URL 來確認您的通道會正確接收即時串流。</span><span class="sxs-lookup"><span data-stu-id="13970-132">Use this URL to verify that your channel is properly receiving the live stream.</span></span>
-5. <span data-ttu-id="13970-133">建立即時事件/程式。</span><span class="sxs-lookup"><span data-stu-id="13970-133">Create a live event/program.</span></span> 
+    <span data-ttu-id="ed468-132">使用您的通道可正常接收即時資料流 hello 這個 URL tooverify。</span><span class="sxs-lookup"><span data-stu-id="ed468-132">Use this URL tooverify that your channel is properly receiving hello live stream.</span></span>
+5. <span data-ttu-id="ed468-133">建立即時事件/程式。</span><span class="sxs-lookup"><span data-stu-id="ed468-133">Create a live event/program.</span></span> 
    
-    <span data-ttu-id="13970-134">使用 Azure 入口網站時，建立即時事件也會建立資產。</span><span class="sxs-lookup"><span data-stu-id="13970-134">When using the Azure portal, creating a live event also creates an asset.</span></span> 
+    <span data-ttu-id="ed468-134">當使用 hello Azure 入口網站時，建立即時事件也會建立資產。</span><span class="sxs-lookup"><span data-stu-id="ed468-134">When using hello Azure portal, creating a live event also creates an asset.</span></span> 
 
-6. <span data-ttu-id="13970-135">當您準備好開始串流和封存時，請啟動事件/程式。</span><span class="sxs-lookup"><span data-stu-id="13970-135">Start the event/program when you are ready to start streaming and archiving.</span></span>
-7. <span data-ttu-id="13970-136">即時編碼器會收到啟動公告的信號 (選擇性)。</span><span class="sxs-lookup"><span data-stu-id="13970-136">Optionally, the live encoder can be signaled to start an advertisement.</span></span> <span data-ttu-id="13970-137">公告會插入輸出串流中。</span><span class="sxs-lookup"><span data-stu-id="13970-137">The advertisement is inserted in the output stream.</span></span>
-8. <span data-ttu-id="13970-138">每當您想要停止串流處理和封存事件時，請停止事件/程式。</span><span class="sxs-lookup"><span data-stu-id="13970-138">Stop the event/program whenever you want to stop streaming and archiving the event.</span></span>
-9. <span data-ttu-id="13970-139">刪除事件/程式 (並選擇性地刪除資產)。</span><span class="sxs-lookup"><span data-stu-id="13970-139">Delete the event/program (and optionally delete the asset).</span></span>     
+6. <span data-ttu-id="ed468-135">當您準備好 toostart 串流和封存時啟動 hello 事件/程式。</span><span class="sxs-lookup"><span data-stu-id="ed468-135">Start hello event/program when you are ready toostart streaming and archiving.</span></span>
+7. <span data-ttu-id="ed468-136">（選擇性） hello 即時編碼器可以信號的 toostart 公告。</span><span class="sxs-lookup"><span data-stu-id="ed468-136">Optionally, hello live encoder can be signaled toostart an advertisement.</span></span> <span data-ttu-id="ed468-137">hello 公告 hello 輸出資料流中插入。</span><span class="sxs-lookup"><span data-stu-id="ed468-137">hello advertisement is inserted in hello output stream.</span></span>
+8. <span data-ttu-id="ed468-138">每當您想 toostop 串流並封存 hello 事件時，請停止 hello 事件/程式。</span><span class="sxs-lookup"><span data-stu-id="ed468-138">Stop hello event/program whenever you want toostop streaming and archiving hello event.</span></span>
+9. <span data-ttu-id="ed468-139">刪除 hello 事件/程式，並選擇性地刪除 hello 資產。</span><span class="sxs-lookup"><span data-stu-id="ed468-139">Delete hello event/program (and optionally delete hello asset).</span></span>     
 
 > [!IMPORTANT]
-> <span data-ttu-id="13970-140">請檢閱[使用會建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)，以了解具有內部部署編碼器和傳遞通道之即時串流的相關概念和考量。</span><span class="sxs-lookup"><span data-stu-id="13970-140">Please review [Live streaming with on-premises encoders that create multi-bitrate streams](media-services-live-streaming-with-onprem-encoders.md) to learn about concepts and considerations related to live streaming with on-premises encoders and pass-through channels.</span></span>
+> <span data-ttu-id="ed468-140">請檢閱[建立多位元速率串流的內部編碼器進行即時資料流處理](media-services-live-streaming-with-onprem-encoders.md)toolearn 概念和考量相關 toolive 內部編碼器和傳遞通道進行資料流處理。</span><span class="sxs-lookup"><span data-stu-id="ed468-140">Please review [Live streaming with on-premises encoders that create multi-bitrate streams](media-services-live-streaming-with-onprem-encoders.md) toolearn about concepts and considerations related toolive streaming with on-premises encoders and pass-through channels.</span></span>
 > 
 > 
 
-## <a name="to-view-notifications-and-errors"></a><span data-ttu-id="13970-141">檢視通知和錯誤</span><span class="sxs-lookup"><span data-stu-id="13970-141">To view notifications and errors</span></span>
-<span data-ttu-id="13970-142">如果您要檢視 Azure 入口網站所產生的通知和錯誤，請按一下 [通知] 圖示。</span><span class="sxs-lookup"><span data-stu-id="13970-142">If you want to view notifications and errors produced by the Azure portal, click on the Notification icon.</span></span>
+## <a name="tooview-notifications-and-errors"></a><span data-ttu-id="ed468-141">tooview 通知和錯誤</span><span class="sxs-lookup"><span data-stu-id="ed468-141">tooview notifications and errors</span></span>
+<span data-ttu-id="ed468-142">如果您希望 tooview 通知錯誤所產生的 hello Azure 入口網站，請按一下 hello 通知圖示。</span><span class="sxs-lookup"><span data-stu-id="ed468-142">If you want tooview notifications and errors produced by hello Azure portal, click on hello Notification icon.</span></span>
 
 ![通知](./media/media-services-portal-passthrough-get-started/media-services-notifications.png)
 
-## <a name="create-and-start-pass-through-channels-and-events"></a><span data-ttu-id="13970-144">建立並啟動即時通行通道和事件</span><span class="sxs-lookup"><span data-stu-id="13970-144">Create and start pass-through channels and events</span></span>
-<span data-ttu-id="13970-145">通道是與事件/程式相關聯，而程式可讓您控制即時串流中區段的發佈和儲存。</span><span class="sxs-lookup"><span data-stu-id="13970-145">A channel is associated with events/programs that enable you to control the publishing and storage of segments in a live stream.</span></span> <span data-ttu-id="13970-146">通道會管理事件。</span><span class="sxs-lookup"><span data-stu-id="13970-146">Channels manage events.</span></span> 
+## <a name="create-and-start-pass-through-channels-and-events"></a><span data-ttu-id="ed468-144">建立並啟動即時通行通道和事件</span><span class="sxs-lookup"><span data-stu-id="ed468-144">Create and start pass-through channels and events</span></span>
+<span data-ttu-id="ed468-145">通道是 toocontrol hello 發行和即時串流片段的儲存體可讓您的事件/程式相關聯。</span><span class="sxs-lookup"><span data-stu-id="ed468-145">A channel is associated with events/programs that enable you toocontrol hello publishing and storage of segments in a live stream.</span></span> <span data-ttu-id="ed468-146">通道會管理事件。</span><span class="sxs-lookup"><span data-stu-id="ed468-146">Channels manage events.</span></span> 
 
-<span data-ttu-id="13970-147">設定 **封存時間範圍** 長度，即可指定您想要保留程式之錄製內容的時數。</span><span class="sxs-lookup"><span data-stu-id="13970-147">You can specify the number of hours you want to retain the recorded content for the program by setting the **Archive Window** length.</span></span> <span data-ttu-id="13970-148">此值可以設為最少 5 分鐘到最多 25 個小時。</span><span class="sxs-lookup"><span data-stu-id="13970-148">This value can be set from a minimum of 5 minutes to a maximum of 25 hours.</span></span> <span data-ttu-id="13970-149">封存時間範圍長度也會指出用戶端可以從目前即時位置及時往回搜尋的最大時間量。</span><span class="sxs-lookup"><span data-stu-id="13970-149">Archive window length also dictates the maximum amount of time clients can seek back in time from the current live position.</span></span> <span data-ttu-id="13970-150">事件在超過指定的時間量後還是可以執行，但是會持續捨棄落後時間範圍長度的內容。</span><span class="sxs-lookup"><span data-stu-id="13970-150">Events can run over the specified amount of time, but content that falls behind the window length is continuously discarded.</span></span> <span data-ttu-id="13970-151">此屬性的這個值也會決定用戶端資訊清單可以成長多長的時間。</span><span class="sxs-lookup"><span data-stu-id="13970-151">This value of this property also determines how long the client manifests can grow.</span></span>
+<span data-ttu-id="ed468-147">您可以指定您想要 tooretain hello 記錄內容 hello 程式設定 hello 的 hello 數**封存時間長度**長度。</span><span class="sxs-lookup"><span data-stu-id="ed468-147">You can specify hello number of hours you want tooretain hello recorded content for hello program by setting hello **Archive Window** length.</span></span> <span data-ttu-id="ed468-148">這個值可以設定為 5 分鐘 tooa 最多 25 個小時的最小值。</span><span class="sxs-lookup"><span data-stu-id="ed468-148">This value can be set from a minimum of 5 minutes tooa maximum of 25 hours.</span></span> <span data-ttu-id="ed468-149">封存時間長度也會規定 hello 最大用戶端可以從 hello 目前即時位置搜尋的時間量。</span><span class="sxs-lookup"><span data-stu-id="ed468-149">Archive window length also dictates hello maximum amount of time clients can seek back in time from hello current live position.</span></span> <span data-ttu-id="ed468-150">事件可以透過 hello 指定時間內，執行但落後 hello 時間長度的內容會持續遭到捨棄。</span><span class="sxs-lookup"><span data-stu-id="ed468-150">Events can run over hello specified amount of time, but content that falls behind hello window length is continuously discarded.</span></span> <span data-ttu-id="ed468-151">這個屬性的值也會決定資訊清單所能成長的時間長度 hello 用戶端。</span><span class="sxs-lookup"><span data-stu-id="ed468-151">This value of this property also determines how long hello client manifests can grow.</span></span>
 
-<span data-ttu-id="13970-152">每個事件都是與資產相關聯。</span><span class="sxs-lookup"><span data-stu-id="13970-152">Each event is associated with an asset.</span></span> <span data-ttu-id="13970-153">若要發佈事件，您必須建立相關聯資產的 OnDemand 定位器。</span><span class="sxs-lookup"><span data-stu-id="13970-153">To publish the event, you must create an OnDemand locator for the associated asset.</span></span> <span data-ttu-id="13970-154">擁有此定位器，可讓您建置可提供給用戶端的串流 URL。</span><span class="sxs-lookup"><span data-stu-id="13970-154">Having this locator enables you to build a streaming URL that you can provide to your clients.</span></span>
+<span data-ttu-id="ed468-152">每個事件都是與資產相關聯。</span><span class="sxs-lookup"><span data-stu-id="ed468-152">Each event is associated with an asset.</span></span> <span data-ttu-id="ed468-153">toopublish hello 事件，您必須建立 OnDemand 定位器 hello 相關聯的資產。</span><span class="sxs-lookup"><span data-stu-id="ed468-153">toopublish hello event, you must create an OnDemand locator for hello associated asset.</span></span> <span data-ttu-id="ed468-154">擁有這個定位器，可讓您 toobuild 您可以提供 tooyour 用戶端的串流 URL。</span><span class="sxs-lookup"><span data-stu-id="ed468-154">Having this locator enables you toobuild a streaming URL that you can provide tooyour clients.</span></span>
 
-<span data-ttu-id="13970-155">通道支援最多三個同時執行的事件，因此您可以建立相同內送串流的多個封存。</span><span class="sxs-lookup"><span data-stu-id="13970-155">A channel supports up to three concurrently running events so you can create multiple archives of the same incoming stream.</span></span> <span data-ttu-id="13970-156">這可讓您視需要發行和封存事件的不同部分。</span><span class="sxs-lookup"><span data-stu-id="13970-156">This allows you to publish and archive different parts of an event as needed.</span></span> <span data-ttu-id="13970-157">例如，您的商務需求是封存 6 小時的程式，但只廣播最後 10 分鐘。</span><span class="sxs-lookup"><span data-stu-id="13970-157">For example, your business requirement is to archive 6 hours of a program, but to broadcast only last 10 minutes.</span></span> <span data-ttu-id="13970-158">為了達成此目的，您必須建立兩個同時執行的程式。</span><span class="sxs-lookup"><span data-stu-id="13970-158">To accomplish this, you need to create two concurrently running programs.</span></span> <span data-ttu-id="13970-159">其中一個程式設定為封存 6 小時的事件，但是未發行該程式。</span><span class="sxs-lookup"><span data-stu-id="13970-159">One program is set to archive 6 hours of the event but the program is not published.</span></span> <span data-ttu-id="13970-160">另一個程式則設定為封存 10 分鐘，並發行程式。</span><span class="sxs-lookup"><span data-stu-id="13970-160">The other program is set to archive for 10 minutes and this program is published.</span></span>
+<span data-ttu-id="ed468-155">一個通道可支援同時執行的事件，因此您可以建立多個封存 hello toothree 註冊相同的傳入資料流。</span><span class="sxs-lookup"><span data-stu-id="ed468-155">A channel supports up toothree concurrently running events so you can create multiple archives of hello same incoming stream.</span></span> <span data-ttu-id="ed468-156">這可讓您 toopublish 和封存的事件所需的不同部分。</span><span class="sxs-lookup"><span data-stu-id="ed468-156">This allows you toopublish and archive different parts of an event as needed.</span></span> <span data-ttu-id="ed468-157">例如，您的商務需求是 tooarchive 6 小時的程式，但 toobroadcast 最後的 10 分鐘。</span><span class="sxs-lookup"><span data-stu-id="ed468-157">For example, your business requirement is tooarchive 6 hours of a program, but toobroadcast only last 10 minutes.</span></span> <span data-ttu-id="ed468-158">tooaccomplish，您需要 toocreate 兩個同時執行的程式。</span><span class="sxs-lookup"><span data-stu-id="ed468-158">tooaccomplish this, you need toocreate two concurrently running programs.</span></span> <span data-ttu-id="ed468-159">一個程式設 tooarchive 6 小時的 hello 事件，但 hello 程式不會發行。</span><span class="sxs-lookup"><span data-stu-id="ed468-159">One program is set tooarchive 6 hours of hello event but hello program is not published.</span></span> <span data-ttu-id="ed468-160">hello 其他程式的組 tooarchive 為 10 分鐘並發佈此程式。</span><span class="sxs-lookup"><span data-stu-id="ed468-160">hello other program is set tooarchive for 10 minutes and this program is published.</span></span>
 
-<span data-ttu-id="13970-161">您不應該重複使用現有的即時事件。</span><span class="sxs-lookup"><span data-stu-id="13970-161">You should not reuse existing live events.</span></span> <span data-ttu-id="13970-162">而是針對每個事件建立並啟動新事件。</span><span class="sxs-lookup"><span data-stu-id="13970-162">Instead, create and start a new event for each event.</span></span>
+<span data-ttu-id="ed468-161">您不應該重複使用現有的即時事件。</span><span class="sxs-lookup"><span data-stu-id="ed468-161">You should not reuse existing live events.</span></span> <span data-ttu-id="ed468-162">而是針對每個事件建立並啟動新事件。</span><span class="sxs-lookup"><span data-stu-id="ed468-162">Instead, create and start a new event for each event.</span></span>
 
-<span data-ttu-id="13970-163">當您準備好開始串流和封存時，請啟動事件。</span><span class="sxs-lookup"><span data-stu-id="13970-163">Start the event when you are ready to start streaming and archiving.</span></span> <span data-ttu-id="13970-164">每當您想要停止串流處理和封存事件時，請停止程式。</span><span class="sxs-lookup"><span data-stu-id="13970-164">Stop the program whenever you want to stop streaming and archiving the event.</span></span> 
+<span data-ttu-id="ed468-163">啟動 hello 事件，當您準備好 toostart 串流和封存時。</span><span class="sxs-lookup"><span data-stu-id="ed468-163">Start hello event when you are ready toostart streaming and archiving.</span></span> <span data-ttu-id="ed468-164">每當您想 toostop 串流並封存 hello 事件時，請停止 hello 程式。</span><span class="sxs-lookup"><span data-stu-id="ed468-164">Stop hello program whenever you want toostop streaming and archiving hello event.</span></span> 
 
-<span data-ttu-id="13970-165">若要刪除封存的內容，請停止並刪除事件，然後刪除相關聯的資產。</span><span class="sxs-lookup"><span data-stu-id="13970-165">To delete archived content, stop and delete the event and then delete the associated asset.</span></span> <span data-ttu-id="13970-166">如果事件使用資產，則無法刪除資產；必須先刪除事件。</span><span class="sxs-lookup"><span data-stu-id="13970-166">An asset cannot be deleted if it is used by an event; the event must be deleted first.</span></span> 
+<span data-ttu-id="ed468-165">toodelete 封存內容時，會停止和刪除 hello 事件，然後再刪除 hello 相關聯的資產。</span><span class="sxs-lookup"><span data-stu-id="ed468-165">toodelete archived content, stop and delete hello event and then delete hello associated asset.</span></span> <span data-ttu-id="ed468-166">無法刪除資產，如果它由事件。必須先刪除 hello 事件。</span><span class="sxs-lookup"><span data-stu-id="ed468-166">An asset cannot be deleted if it is used by an event; hello event must be deleted first.</span></span> 
 
-<span data-ttu-id="13970-167">只要您未刪除資產，即使在停止並刪除事件之後，使用者還是可以視需求將封存的內容串流為視訊。</span><span class="sxs-lookup"><span data-stu-id="13970-167">Even after you stop and delete the event, the users would be able to stream your archived content as a video on demand, for as long as you do not delete the asset.</span></span>
+<span data-ttu-id="ed468-167">即使您停止並刪除 hello 事件之後，hello 使用者是無法 toostream 封存的內容，視視訊，只要您不要刪除 hello 資產。</span><span class="sxs-lookup"><span data-stu-id="ed468-167">Even after you stop and delete hello event, hello users would be able toostream your archived content as a video on demand, for as long as you do not delete hello asset.</span></span>
 
-<span data-ttu-id="13970-168">如果想要保留封存的內容，但不要讓它可進行串流，請刪除串流定位器。</span><span class="sxs-lookup"><span data-stu-id="13970-168">If you do want to retain the archived content, but not have it available for streaming, delete the streaming locator.</span></span>
+<span data-ttu-id="ed468-168">若要封存的 tooretain hello 內容，而不是需要它提供給串流，刪除 hello 串流定位器。</span><span class="sxs-lookup"><span data-stu-id="ed468-168">If you do want tooretain hello archived content, but not have it available for streaming, delete hello streaming locator.</span></span>
 
-### <a name="to-use-the-portal-to-create-a-channel"></a><span data-ttu-id="13970-169">使用 Azure 入口網站來建立通道</span><span class="sxs-lookup"><span data-stu-id="13970-169">To use the portal to create a channel</span></span>
-<span data-ttu-id="13970-170">本節示範如何使用 [快速建立]  選項來建立即時通行通道。</span><span class="sxs-lookup"><span data-stu-id="13970-170">This section shows how to use the **Quick Create** option to create a pass-through channel.</span></span>
+### <a name="toouse-hello-portal-toocreate-a-channel"></a><span data-ttu-id="ed468-169">toouse hello 入口 toocreate 通道</span><span class="sxs-lookup"><span data-stu-id="ed468-169">toouse hello portal toocreate a channel</span></span>
+<span data-ttu-id="ed468-170">此區段會顯示如何 toouse hello**快速建立**選項 toocreate 通過通道。</span><span class="sxs-lookup"><span data-stu-id="ed468-170">This section shows how toouse hello **Quick Create** option toocreate a pass-through channel.</span></span>
 
-<span data-ttu-id="13970-171">如需傳遞通道的詳細資訊，請參閱[使用會從建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。</span><span class="sxs-lookup"><span data-stu-id="13970-171">For more details about pass-through channels, see [Live streaming with on-premises encoders that create multi-bitrate streams](media-services-live-streaming-with-onprem-encoders.md).</span></span>
+<span data-ttu-id="ed468-171">如需傳遞通道的詳細資訊，請參閱[使用會從建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。</span><span class="sxs-lookup"><span data-stu-id="ed468-171">For more details about pass-through channels, see [Live streaming with on-premises encoders that create multi-bitrate streams](media-services-live-streaming-with-onprem-encoders.md).</span></span>
 
-1. <span data-ttu-id="13970-172">在 [Azure 入口網站](https://portal.azure.com/)中，選取您的 Azure 媒體服務帳戶。</span><span class="sxs-lookup"><span data-stu-id="13970-172">In the [Azure portal](https://portal.azure.com/), select your Azure Media Services account.</span></span>
-2. <span data-ttu-id="13970-173">在 [設定] 視窗中，按一下 [即時視訊串流]。</span><span class="sxs-lookup"><span data-stu-id="13970-173">In the **Settings** window, click **Live streaming**.</span></span> 
+1. <span data-ttu-id="ed468-172">在 hello [Azure 入口網站](https://portal.azure.com/)，選取您的 Azure Media Services 帳戶。</span><span class="sxs-lookup"><span data-stu-id="ed468-172">In hello [Azure portal](https://portal.azure.com/), select your Azure Media Services account.</span></span>
+2. <span data-ttu-id="ed468-173">在 hello**設定**視窗中，按一下 **即時資料流**。</span><span class="sxs-lookup"><span data-stu-id="ed468-173">In hello **Settings** window, click **Live streaming**.</span></span> 
    
     ![開始使用](./media/media-services-portal-passthrough-get-started/media-services-getting-started.png)
    
-    <span data-ttu-id="13970-175">[即時視訊串流]  視窗隨即出現。</span><span class="sxs-lookup"><span data-stu-id="13970-175">The **Live streaming** window appears.</span></span>
-3. <span data-ttu-id="13970-176">按一下 [快速建立]  ，使用 RTMP 內嵌通訊協定建立即時通行通道。</span><span class="sxs-lookup"><span data-stu-id="13970-176">Click **Quick Create** to create a pass-through channel with the RTMP ingest protocol.</span></span>
+    <span data-ttu-id="ed468-175">hello**即時資料流** 視窗隨即出現。</span><span class="sxs-lookup"><span data-stu-id="ed468-175">hello **Live streaming** window appears.</span></span>
+3. <span data-ttu-id="ed468-176">按一下**快速建立**toocreate 通過通道以 hello RTMP 內嵌通訊協定。</span><span class="sxs-lookup"><span data-stu-id="ed468-176">Click **Quick Create** toocreate a pass-through channel with hello RTMP ingest protocol.</span></span>
    
-    <span data-ttu-id="13970-177">[建立新的通道]  視窗隨即出現。</span><span class="sxs-lookup"><span data-stu-id="13970-177">The **CREATE A NEW CHANNEL** window appears.</span></span>
-4. <span data-ttu-id="13970-178">提供新通道的名稱，然後按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="13970-178">Give the new channel a name and click **Create**.</span></span> 
+    <span data-ttu-id="ed468-177">hello**建立新的通道** 視窗隨即出現。</span><span class="sxs-lookup"><span data-stu-id="ed468-177">hello **CREATE A NEW CHANNEL** window appears.</span></span>
+4. <span data-ttu-id="ed468-178">提供 hello 新通道名稱，然後按一下 **建立**。</span><span class="sxs-lookup"><span data-stu-id="ed468-178">Give hello new channel a name and click **Create**.</span></span> 
    
-    <span data-ttu-id="13970-179">這會使用 RTMP 內嵌通訊協定建立即時通行通道。</span><span class="sxs-lookup"><span data-stu-id="13970-179">This creates a pass-through channel with the RTMP ingest protocol.</span></span>
+    <span data-ttu-id="ed468-179">這會建立 hello 通過通道 RTMP 內嵌通訊協定。</span><span class="sxs-lookup"><span data-stu-id="ed468-179">This creates a pass-through channel with hello RTMP ingest protocol.</span></span>
 
-## <a name="create-events"></a><span data-ttu-id="13970-180">建立事件</span><span class="sxs-lookup"><span data-stu-id="13970-180">Create events</span></span>
-1. <span data-ttu-id="13970-181">選取您要新增事件的通道。</span><span class="sxs-lookup"><span data-stu-id="13970-181">Select a channel to which you want to add an event.</span></span>
-2. <span data-ttu-id="13970-182">按下 [即時事件]  按鈕。</span><span class="sxs-lookup"><span data-stu-id="13970-182">Press **Live Event** button.</span></span>
+## <a name="create-events"></a><span data-ttu-id="ed468-180">建立事件</span><span class="sxs-lookup"><span data-stu-id="ed468-180">Create events</span></span>
+1. <span data-ttu-id="ed468-181">選取您想要 tooadd 事件通道 toowhich。</span><span class="sxs-lookup"><span data-stu-id="ed468-181">Select a channel toowhich you want tooadd an event.</span></span>
+2. <span data-ttu-id="ed468-182">按下 [即時事件]  按鈕。</span><span class="sxs-lookup"><span data-stu-id="ed468-182">Press **Live Event** button.</span></span>
 
 ![Event](./media/media-services-portal-passthrough-get-started/media-services-create-events.png)
 
-## <a name="get-ingest-urls"></a><span data-ttu-id="13970-184">取得內嵌 URL</span><span class="sxs-lookup"><span data-stu-id="13970-184">Get ingest URLs</span></span>
-<span data-ttu-id="13970-185">建立通道之後，即可取得您提供給即時編碼器的內嵌 URL。</span><span class="sxs-lookup"><span data-stu-id="13970-185">Once the channel is created, you can get ingest URLs that you will provide to the live encoder.</span></span> <span data-ttu-id="13970-186">編碼器會使用這些 URL 來輸入即時串流。</span><span class="sxs-lookup"><span data-stu-id="13970-186">The encoder uses these URLs to input a live stream.</span></span>
+## <a name="get-ingest-urls"></a><span data-ttu-id="ed468-184">取得內嵌 URL</span><span class="sxs-lookup"><span data-stu-id="ed468-184">Get ingest URLs</span></span>
+<span data-ttu-id="ed468-185">一旦建立 hello 通道之後，您可以取得內嵌您將會提供 toohello 即時編碼器的 Url。</span><span class="sxs-lookup"><span data-stu-id="ed468-185">Once hello channel is created, you can get ingest URLs that you will provide toohello live encoder.</span></span> <span data-ttu-id="ed468-186">hello 編碼器使用這些 Url tooinput 即時資料流。</span><span class="sxs-lookup"><span data-stu-id="ed468-186">hello encoder uses these URLs tooinput a live stream.</span></span>
 
 ![建立時間](./media/media-services-portal-passthrough-get-started/media-services-channel-created.png)
 
-## <a name="watch-the-event"></a><span data-ttu-id="13970-188">監看事件</span><span class="sxs-lookup"><span data-stu-id="13970-188">Watch the event</span></span>
-<span data-ttu-id="13970-189">若要監看事件，請按一下 Azure 入口網站中的 [監看]  ，或複製串流 URL 並使用您選擇的播放程式。</span><span class="sxs-lookup"><span data-stu-id="13970-189">To watch the event, click **Watch** in the Azure portal or copy the streaming URL and use a player of your choice.</span></span> 
+## <a name="watch-hello-event"></a><span data-ttu-id="ed468-188">監看式 hello 事件</span><span class="sxs-lookup"><span data-stu-id="ed468-188">Watch hello event</span></span>
+<span data-ttu-id="ed468-189">toowatch hello 事件中，按一下 **監看式**在 hello Azure 入口網站 或 複製 hello 串流 URL，並使用您選擇的播放程式。</span><span class="sxs-lookup"><span data-stu-id="ed468-189">toowatch hello event, click **Watch** in hello Azure portal or copy hello streaming URL and use a player of your choice.</span></span> 
 
 ![建立時間](./media/media-services-portal-passthrough-get-started/media-services-default-event.png)
 
-<span data-ttu-id="13970-191">即時事件會在停止時自動轉換為點播內容。</span><span class="sxs-lookup"><span data-stu-id="13970-191">Live event automatically get converted to on-demand content when stopped.</span></span>
+<span data-ttu-id="ed468-191">實況事件時會自動取得轉換的 tooon 要求內容時停止。</span><span class="sxs-lookup"><span data-stu-id="ed468-191">Live event automatically get converted tooon-demand content when stopped.</span></span>
 
-## <a name="clean-up"></a><span data-ttu-id="13970-192">清除</span><span class="sxs-lookup"><span data-stu-id="13970-192">Clean up</span></span>
-<span data-ttu-id="13970-193">如需傳遞通道的詳細資訊，請參閱[使用會從建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。</span><span class="sxs-lookup"><span data-stu-id="13970-193">For more details about pass-through channels, see [Live streaming with on-premises encoders that create multi-bitrate streams](media-services-live-streaming-with-onprem-encoders.md).</span></span>
+## <a name="clean-up"></a><span data-ttu-id="ed468-192">清除</span><span class="sxs-lookup"><span data-stu-id="ed468-192">Clean up</span></span>
+<span data-ttu-id="ed468-193">如需傳遞通道的詳細資訊，請參閱[使用會從建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。</span><span class="sxs-lookup"><span data-stu-id="ed468-193">For more details about pass-through channels, see [Live streaming with on-premises encoders that create multi-bitrate streams](media-services-live-streaming-with-onprem-encoders.md).</span></span>
 
-* <span data-ttu-id="13970-194">只有當通道上的所有事件/程式都已停止時，才能停止通道。</span><span class="sxs-lookup"><span data-stu-id="13970-194">A channel can be stopped only when all events/programs on the channel have been stopped.</span></span>  <span data-ttu-id="13970-195">停止通道之後，就不會產生任何費用。</span><span class="sxs-lookup"><span data-stu-id="13970-195">Once the Channel is stopped, it does not incur any charges.</span></span> <span data-ttu-id="13970-196">當您需要重新啟動它時，它會具有相同的內嵌 URL，因此您不需要重新設定編碼器。</span><span class="sxs-lookup"><span data-stu-id="13970-196">When you need to start it again, it will have the same ingest URL so you won't need to reconfigure your encoder.</span></span>
-* <span data-ttu-id="13970-197">只有當通道上的所有事件都已刪除時，才能刪除通道。</span><span class="sxs-lookup"><span data-stu-id="13970-197">A channel can be deleted only when all live events on the channel have been deleted.</span></span>
+* <span data-ttu-id="ed468-194">所有事件/程式 hello 通道上都已都停止時，才可都停止通道。</span><span class="sxs-lookup"><span data-stu-id="ed468-194">A channel can be stopped only when all events/programs on hello channel have been stopped.</span></span>  <span data-ttu-id="ed468-195">一旦停止 hello 通道時，它不會不會產生任何費用。</span><span class="sxs-lookup"><span data-stu-id="ed468-195">Once hello Channel is stopped, it does not incur any charges.</span></span> <span data-ttu-id="ed468-196">當您需要 toostart 同樣地，它會有 hello 相同內嵌 URL，您不需要 tooreconfigure 您的編碼器。</span><span class="sxs-lookup"><span data-stu-id="ed468-196">When you need toostart it again, it will have hello same ingest URL so you won't need tooreconfigure your encoder.</span></span>
+* <span data-ttu-id="ed468-197">已刪除 hello 通道上的所有即時事件時，才可以刪除通道。</span><span class="sxs-lookup"><span data-stu-id="ed468-197">A channel can be deleted only when all live events on hello channel have been deleted.</span></span>
 
-## <a name="view-archived-content"></a><span data-ttu-id="13970-198">檢視封存的內容</span><span class="sxs-lookup"><span data-stu-id="13970-198">View archived content</span></span>
-<span data-ttu-id="13970-199">只要您未刪除資產，即使在停止並刪除事件之後，使用者還是可以視需求將封存的內容串流為視訊。</span><span class="sxs-lookup"><span data-stu-id="13970-199">Even after you stop and delete the event, the users would be able to stream your archived content as a video on demand, for as long as you do not delete the asset.</span></span> <span data-ttu-id="13970-200">如果事件使用資產，則無法刪除資產；必須先刪除事件。</span><span class="sxs-lookup"><span data-stu-id="13970-200">An asset cannot be deleted if it is used by an event; the event must be deleted first.</span></span> 
+## <a name="view-archived-content"></a><span data-ttu-id="ed468-198">檢視封存的內容</span><span class="sxs-lookup"><span data-stu-id="ed468-198">View archived content</span></span>
+<span data-ttu-id="ed468-199">即使您停止並刪除 hello 事件之後，hello 使用者是無法 toostream 封存的內容，視視訊，只要您不要刪除 hello 資產。</span><span class="sxs-lookup"><span data-stu-id="ed468-199">Even after you stop and delete hello event, hello users would be able toostream your archived content as a video on demand, for as long as you do not delete hello asset.</span></span> <span data-ttu-id="ed468-200">無法刪除資產，如果它由事件。必須先刪除 hello 事件。</span><span class="sxs-lookup"><span data-stu-id="ed468-200">An asset cannot be deleted if it is used by an event; hello event must be deleted first.</span></span> 
 
-<span data-ttu-id="13970-201">若要管理您的資產，請選取 [設定]，然後按一下 [資產]。</span><span class="sxs-lookup"><span data-stu-id="13970-201">To manage your assets, select **Setting** and click **Assets**.</span></span>
+<span data-ttu-id="ed468-201">您的資產，選取 toomanage**設定**按一下**資產**。</span><span class="sxs-lookup"><span data-stu-id="ed468-201">toomanage your assets, select **Setting** and click **Assets**.</span></span>
 
-![資產](./media/media-services-portal-passthrough-get-started/media-services-assets.png)
+![Assets](./media/media-services-portal-passthrough-get-started/media-services-assets.png)
 
-## <a name="next-step"></a><span data-ttu-id="13970-203">後續步驟</span><span class="sxs-lookup"><span data-stu-id="13970-203">Next step</span></span>
-<span data-ttu-id="13970-204">檢閱媒體服務學習路徑。</span><span class="sxs-lookup"><span data-stu-id="13970-204">Review Media Services learning paths.</span></span>
+## <a name="next-step"></a><span data-ttu-id="ed468-203">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ed468-203">Next step</span></span>
+<span data-ttu-id="ed468-204">檢閱媒體服務學習路徑。</span><span class="sxs-lookup"><span data-stu-id="ed468-204">Review Media Services learning paths.</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="13970-205">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="13970-205">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="ed468-205">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="ed468-205">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

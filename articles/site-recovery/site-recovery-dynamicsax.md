@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Site Recovery 複寫多層式 Dynamics AX 部署 | Microsoft Docs"
-description: "本文說明如何使用 Azure Site Recovery 複寫和保護 Dynamics AX"
+title: "使用 Azure Site Recovery 的多層式 Dynamics AX 部署 aaaReplicate |Microsoft 文件"
+description: "本文說明如何 tooreplicate 及保護 Dynamics AX 使用 Azure Site Recovery"
 services: site-recovery
 documentationcenter: 
 author: asgang
@@ -14,177 +14,177 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/24/2017
 ms.author: asgang
-ms.openlocfilehash: 03127c8f4841b67436c4819628319705af0b2cd5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b974315ec50ab2ec43846b3d3f95c7de88b72fc3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replicate-a-multi-tier-dynamics-ax-application-using-azure-site-recovery"></a><span data-ttu-id="81b0f-103">使用 Azure Site Recovery 複寫多層式 Dynamics AX 應用程式</span><span class="sxs-lookup"><span data-stu-id="81b0f-103">Replicate a multi-tier Dynamics AX application using Azure Site Recovery</span></span>
+# <a name="replicate-a-multi-tier-dynamics-ax-application-using-azure-site-recovery"></a><span data-ttu-id="4520a-103">使用 Azure Site Recovery 複寫多層式 Dynamics AX 應用程式</span><span class="sxs-lookup"><span data-stu-id="4520a-103">Replicate a multi-tier Dynamics AX application using Azure Site Recovery</span></span>
 
-## <a name="overview"></a><span data-ttu-id="81b0f-104">概觀</span><span class="sxs-lookup"><span data-stu-id="81b0f-104">Overview</span></span>
-
-
-<span data-ttu-id="81b0f-105">Microsoft Dynamics AX 是企業間受歡迎的 ERP 解決方案之一，可橫跨位置將程序標準化、管理資源及簡化合規性。</span><span class="sxs-lookup"><span data-stu-id="81b0f-105">Microsoft Dynamics AX is one of the most popular ERP solution among enterprises to standardized process across locations, manage resources and simplifying compliance.</span></span> <span data-ttu-id="81b0f-106">考量應用程式攸關組織的業務運作，請務必確定在發生任何災害時，應用程式都能在最短的時間內啟動並執行。</span><span class="sxs-lookup"><span data-stu-id="81b0f-106">Considering the application is business critical to an organization it is very important to be sure that if any disaster, application should be up and running in minimum time.</span></span>
-
-<span data-ttu-id="81b0f-107">現今，Microsoft Dynamics AX 並未提供任何現成的災害復原功能。</span><span class="sxs-lookup"><span data-stu-id="81b0f-107">Today, Microsoft Dynamics AX  does not provide any out-of-the-box disaster recovery capabilities.</span></span> <span data-ttu-id="81b0f-108">Microsoft Dynamics AX 包含許多伺服器元件，例如 Application Object Server、Active Directory (AD)、SQL Database Server、SharePoint Server、Reporting Server 等。手動管理上述每個元件的災害復原，不僅代價昂貴，而且也容易發生錯誤。</span><span class="sxs-lookup"><span data-stu-id="81b0f-108">Microsoft Dynamics AX consists of many server components like Application Object Server, Active Directory (AD), SQL Database Server, SharePoint Server, Reporting Server etc. To manage the disaster recovery of each of these components manually is not only expensive but also error-prone.</span></span>
-
-<span data-ttu-id="81b0f-109">本文詳細說明有關如何使用 [Azure Site Recovery](site-recovery-overview.md) 為 Dynamics AX 應用程式建立災害復原解決方案。</span><span class="sxs-lookup"><span data-stu-id="81b0f-109">This article explains in detail about how you can create a disaster recovery solution for your Dynamics AX application using [Azure Site Recovery](site-recovery-overview.md).</span></span> <span data-ttu-id="81b0f-110">也會探討使用單鍵復原方案、支援的組態和必要條件的計劃性/非計劃性/測試容錯移轉。</span><span class="sxs-lookup"><span data-stu-id="81b0f-110">It also covers planned/unplanned/test failovers using one-click recovery plan, supported configurations, and prerequisites.</span></span>
-<span data-ttu-id="81b0f-111">以 Azure Site Recovery 為基礎的災害復原解決方案已經過完整測試、認證並由 Microsoft Dynamics AX 建議。</span><span class="sxs-lookup"><span data-stu-id="81b0f-111">Azure Site Recovery based disaster recovery solution is fully tested, certified, and recommended by Microsoft Dynamics AX.</span></span>
+## <a name="overview"></a><span data-ttu-id="4520a-104">概觀</span><span class="sxs-lookup"><span data-stu-id="4520a-104">Overview</span></span>
 
 
+<span data-ttu-id="4520a-105">Microsoft Dynamics AX hello 熱門 ERP 方案之間的企業 toostandardized 程序的其中一個位置，管理資源和簡化相容性。</span><span class="sxs-lookup"><span data-stu-id="4520a-105">Microsoft Dynamics AX is one of hello most popular ERP solution among enterprises toostandardized process across locations, manage resources and simplifying compliance.</span></span> <span data-ttu-id="4520a-106">Hello 應用程式是商務關鍵 tooan 組織考量是確定非常重要 toobe，如果任何損毀時，應用程式應該啟動且正在執行中的最小時間。</span><span class="sxs-lookup"><span data-stu-id="4520a-106">Considering hello application is business critical tooan organization it is very important toobe sure that if any disaster, application should be up and running in minimum time.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="81b0f-112">必要條件</span><span class="sxs-lookup"><span data-stu-id="81b0f-112">Prerequisites</span></span>
+<span data-ttu-id="4520a-107">現今，Microsoft Dynamics AX 並未提供任何現成的災害復原功能。</span><span class="sxs-lookup"><span data-stu-id="4520a-107">Today, Microsoft Dynamics AX  does not provide any out-of-the-box disaster recovery capabilities.</span></span> <span data-ttu-id="4520a-108">Microsoft Dynamics AX 包含許多伺服器元件，例如應用程式物件的伺服器、 Active Directory (AD)、 SQL 資料庫伺服器，SharePoint 伺服器，以手動方式是 Reporting Server 等 toomanage hello 嚴重損壞修復的每個元件不只若高度耗費資源，但也容易發生錯誤。</span><span class="sxs-lookup"><span data-stu-id="4520a-108">Microsoft Dynamics AX consists of many server components like Application Object Server, Active Directory (AD), SQL Database Server, SharePoint Server, Reporting Server etc. toomanage hello disaster recovery of each of these components manually is not only expensive but also error-prone.</span></span>
 
-<span data-ttu-id="81b0f-113">您需要完成下列必要條件，才能使用 Azure Site Recovery 實作 Dynamics AX 應用程式的災害復原。</span><span class="sxs-lookup"><span data-stu-id="81b0f-113">Implementing disaster recovery for Dynamics AX application using Azure Site Recovery requires the following pre-requisites completed.</span></span>
-
-<span data-ttu-id="81b0f-114">•   已設定內部部署 Dynamics AX 部署</span><span class="sxs-lookup"><span data-stu-id="81b0f-114">•   An on-premises Dynamics AX deployment has been set up</span></span>
-
-<span data-ttu-id="81b0f-115">•   已在 Microsoft Azure 訂用帳戶中建立 Azure Site Recovery 服務保存庫</span><span class="sxs-lookup"><span data-stu-id="81b0f-115">•   Azure Site Recovery Services vault has been created in Microsoft Azure subscription</span></span>
-
-<span data-ttu-id="81b0f-116">•   如果 Azure 是您的復原網站，請在 VM 上執行 Azure 虛擬機器整備評估工具，以確保相容於 Azure VM 與 Azure Site Recovery 服務</span><span class="sxs-lookup"><span data-stu-id="81b0f-116">•   If Azure is your recovery site, run the Azure Virtual Machine Readiness Assessment tool  on VMs to ensure that they are compatible with Azure VMs and Azure Site Recovery Services</span></span>
+<span data-ttu-id="4520a-109">本文詳細說明有關如何使用 [Azure Site Recovery](site-recovery-overview.md) 為 Dynamics AX 應用程式建立災害復原解決方案。</span><span class="sxs-lookup"><span data-stu-id="4520a-109">This article explains in detail about how you can create a disaster recovery solution for your Dynamics AX application using [Azure Site Recovery](site-recovery-overview.md).</span></span> <span data-ttu-id="4520a-110">也會探討使用單鍵復原方案、支援的組態和必要條件的計劃性/非計劃性/測試容錯移轉。</span><span class="sxs-lookup"><span data-stu-id="4520a-110">It also covers planned/unplanned/test failovers using one-click recovery plan, supported configurations, and prerequisites.</span></span>
+<span data-ttu-id="4520a-111">以 Azure Site Recovery 為基礎的災害復原解決方案已經過完整測試、認證並由 Microsoft Dynamics AX 建議。</span><span class="sxs-lookup"><span data-stu-id="4520a-111">Azure Site Recovery based disaster recovery solution is fully tested, certified, and recommended by Microsoft Dynamics AX.</span></span>
 
 
-## <a name="site-recovery-support"></a><span data-ttu-id="81b0f-117">Site Recovery 支援</span><span class="sxs-lookup"><span data-stu-id="81b0f-117">Site Recovery support</span></span>
 
-<span data-ttu-id="81b0f-118">為建立這篇文章，會使用 Windows Server 2012 R2 Enterprise 上的 VMware 虛擬機器與 Dynamics AX 2012R3。</span><span class="sxs-lookup"><span data-stu-id="81b0f-118">For the purpose of creating this article, VMware virtual machines with Dynamics AX  2012R3 on Windows Server 2012 R2 Enterprise were used.</span></span> <span data-ttu-id="81b0f-119">因為站台復原複寫應用程式無從驗證，此處提供的建議也都必須保留下列案例。</span><span class="sxs-lookup"><span data-stu-id="81b0f-119">As site recovery replication is application agnostic, the recommendations provided here are expected to hold on following scenarios as well.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="4520a-112">必要條件</span><span class="sxs-lookup"><span data-stu-id="4520a-112">Prerequisites</span></span>
 
-### <a name="source-and-target"></a><span data-ttu-id="81b0f-120">來源與目標</span><span class="sxs-lookup"><span data-stu-id="81b0f-120">Source and target</span></span>
+<span data-ttu-id="4520a-113">實作災害復原使用 Azure Site Recovery 的 Dynamics AX 應用程式需要 hello 之後完成的必要元件。</span><span class="sxs-lookup"><span data-stu-id="4520a-113">Implementing disaster recovery for Dynamics AX application using Azure Site Recovery requires hello following pre-requisites completed.</span></span>
 
-<span data-ttu-id="81b0f-121">**案例**</span><span class="sxs-lookup"><span data-stu-id="81b0f-121">**Scenario**</span></span> | <span data-ttu-id="81b0f-122">**至次要網站**</span><span class="sxs-lookup"><span data-stu-id="81b0f-122">**To a secondary site**</span></span> | <span data-ttu-id="81b0f-123">**至 Azure**</span><span class="sxs-lookup"><span data-stu-id="81b0f-123">**To Azure**</span></span>
+<span data-ttu-id="4520a-114">•   已設定內部部署 Dynamics AX 部署</span><span class="sxs-lookup"><span data-stu-id="4520a-114">•   An on-premises Dynamics AX deployment has been set up</span></span>
+
+<span data-ttu-id="4520a-115">•   已在 Microsoft Azure 訂用帳戶中建立 Azure Site Recovery 服務保存庫</span><span class="sxs-lookup"><span data-stu-id="4520a-115">•   Azure Site Recovery Services vault has been created in Microsoft Azure subscription</span></span>
+
+<span data-ttu-id="4520a-116">• 如果 Azure 為您的復原網站 hello Azure 虛擬機器整備評估工具上執行的 Vm tooensure 它們相容的 Azure Vm 與 Azure Site Recovery Services</span><span class="sxs-lookup"><span data-stu-id="4520a-116">•   If Azure is your recovery site, run hello Azure Virtual Machine Readiness Assessment tool  on VMs tooensure that they are compatible with Azure VMs and Azure Site Recovery Services</span></span>
+
+
+## <a name="site-recovery-support"></a><span data-ttu-id="4520a-117">Site Recovery 支援</span><span class="sxs-lookup"><span data-stu-id="4520a-117">Site Recovery support</span></span>
+
+<span data-ttu-id="4520a-118">Hello 目的是要建立此發行項時，會使用與 Windows Server 2012 R2 Enterprise 上 Dynamics AX 2012R3 VMware 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="4520a-118">For hello purpose of creating this article, VMware virtual machines with Dynamics AX  2012R3 on Windows Server 2012 R2 Enterprise were used.</span></span> <span data-ttu-id="4520a-119">站台復原複寫與應用程式無關，hello 建議提供以下是預期的 toohold 以及下列案例。</span><span class="sxs-lookup"><span data-stu-id="4520a-119">As site recovery replication is application agnostic, hello recommendations provided here are expected toohold on following scenarios as well.</span></span>
+
+### <a name="source-and-target"></a><span data-ttu-id="4520a-120">來源與目標</span><span class="sxs-lookup"><span data-stu-id="4520a-120">Source and target</span></span>
+
+<span data-ttu-id="4520a-121">**案例**</span><span class="sxs-lookup"><span data-stu-id="4520a-121">**Scenario**</span></span> | <span data-ttu-id="4520a-122">**tooa 次要站台**</span><span class="sxs-lookup"><span data-stu-id="4520a-122">**tooa secondary site**</span></span> | <span data-ttu-id="4520a-123">**tooAzure**</span><span class="sxs-lookup"><span data-stu-id="4520a-123">**tooAzure**</span></span>
 --- | --- | ---
-<span data-ttu-id="81b0f-124">**Hyper-V**</span><span class="sxs-lookup"><span data-stu-id="81b0f-124">**Hyper-V**</span></span> | <span data-ttu-id="81b0f-125">是</span><span class="sxs-lookup"><span data-stu-id="81b0f-125">Yes</span></span> | <span data-ttu-id="81b0f-126">是</span><span class="sxs-lookup"><span data-stu-id="81b0f-126">Yes</span></span>
-<span data-ttu-id="81b0f-127">**VMware**</span><span class="sxs-lookup"><span data-stu-id="81b0f-127">**VMware**</span></span> | <span data-ttu-id="81b0f-128">是</span><span class="sxs-lookup"><span data-stu-id="81b0f-128">Yes</span></span> | <span data-ttu-id="81b0f-129">是</span><span class="sxs-lookup"><span data-stu-id="81b0f-129">Yes</span></span>
-<span data-ttu-id="81b0f-130">**實體伺服器**</span><span class="sxs-lookup"><span data-stu-id="81b0f-130">**Physical server**</span></span> | <span data-ttu-id="81b0f-131">是</span><span class="sxs-lookup"><span data-stu-id="81b0f-131">Yes</span></span> | <span data-ttu-id="81b0f-132">是</span><span class="sxs-lookup"><span data-stu-id="81b0f-132">Yes</span></span>
+<span data-ttu-id="4520a-124">**Hyper-V**</span><span class="sxs-lookup"><span data-stu-id="4520a-124">**Hyper-V**</span></span> | <span data-ttu-id="4520a-125">是</span><span class="sxs-lookup"><span data-stu-id="4520a-125">Yes</span></span> | <span data-ttu-id="4520a-126">是</span><span class="sxs-lookup"><span data-stu-id="4520a-126">Yes</span></span>
+<span data-ttu-id="4520a-127">**VMware**</span><span class="sxs-lookup"><span data-stu-id="4520a-127">**VMware**</span></span> | <span data-ttu-id="4520a-128">是</span><span class="sxs-lookup"><span data-stu-id="4520a-128">Yes</span></span> | <span data-ttu-id="4520a-129">是</span><span class="sxs-lookup"><span data-stu-id="4520a-129">Yes</span></span>
+<span data-ttu-id="4520a-130">**實體伺服器**</span><span class="sxs-lookup"><span data-stu-id="4520a-130">**Physical server**</span></span> | <span data-ttu-id="4520a-131">是</span><span class="sxs-lookup"><span data-stu-id="4520a-131">Yes</span></span> | <span data-ttu-id="4520a-132">是</span><span class="sxs-lookup"><span data-stu-id="4520a-132">Yes</span></span>
 
-## <a name="enable-dr-of-dynamics-ax-application-using-azure-site-recovery"></a><span data-ttu-id="81b0f-133">使用 Azure Site Recovery 啟用 Dynamics AX 應用程式的 DR</span><span class="sxs-lookup"><span data-stu-id="81b0f-133">Enable DR of Dynamics AX application using Azure Site Recovery</span></span>
-### <a name="protect-your-dynamics-ax-application"></a><span data-ttu-id="81b0f-134">保護 Dynamics AX 應用程式</span><span class="sxs-lookup"><span data-stu-id="81b0f-134">Protect your Dynamics AX application</span></span>
-<span data-ttu-id="81b0f-135">Dynamics AX 的每個元件都需要受到保護，才能做到完整的應用程式複寫與復原。</span><span class="sxs-lookup"><span data-stu-id="81b0f-135">Each component of the Dynamics AX needs to be protected to enable the complete application replication and recovery.</span></span> <span data-ttu-id="81b0f-136">本節涵蓋︰</span><span class="sxs-lookup"><span data-stu-id="81b0f-136">This section covers:</span></span>
+## <a name="enable-dr-of-dynamics-ax-application-using-azure-site-recovery"></a><span data-ttu-id="4520a-133">使用 Azure Site Recovery 啟用 Dynamics AX 應用程式的 DR</span><span class="sxs-lookup"><span data-stu-id="4520a-133">Enable DR of Dynamics AX application using Azure Site Recovery</span></span>
+### <a name="protect-your-dynamics-ax-application"></a><span data-ttu-id="4520a-134">保護 Dynamics AX 應用程式</span><span class="sxs-lookup"><span data-stu-id="4520a-134">Protect your Dynamics AX application</span></span>
+<span data-ttu-id="4520a-135">每個元件的 hello Dynamics AX 需求 toobe 保護 tooenable hello 完整的應用程式的複寫和復原。</span><span class="sxs-lookup"><span data-stu-id="4520a-135">Each component of hello Dynamics AX needs toobe protected tooenable hello complete application replication and recovery.</span></span> <span data-ttu-id="4520a-136">本節涵蓋︰</span><span class="sxs-lookup"><span data-stu-id="4520a-136">This section covers:</span></span>
 
-<span data-ttu-id="81b0f-137">**1.Active Directory 的保護**</span><span class="sxs-lookup"><span data-stu-id="81b0f-137">**1. Protection of Active Directory**</span></span>
+<span data-ttu-id="4520a-137">**1.Active Directory 的保護**</span><span class="sxs-lookup"><span data-stu-id="4520a-137">**1. Protection of Active Directory**</span></span>
 
-<span data-ttu-id="81b0f-138">**2.SQL 層的保護**</span><span class="sxs-lookup"><span data-stu-id="81b0f-138">**2. Protection of SQL Tier**</span></span>
+<span data-ttu-id="4520a-138">**2.SQL 層的保護**</span><span class="sxs-lookup"><span data-stu-id="4520a-138">**2. Protection of SQL Tier**</span></span>
 
-<span data-ttu-id="81b0f-139">**3.應用程式和 Web 層的保護**</span><span class="sxs-lookup"><span data-stu-id="81b0f-139">**3. Protection of App and Web Tiers**</span></span>
+<span data-ttu-id="4520a-139">**3.應用程式和 Web 層的保護**</span><span class="sxs-lookup"><span data-stu-id="4520a-139">**3. Protection of App and Web Tiers**</span></span>
 
-<span data-ttu-id="81b0f-140">**4.網路設定**</span><span class="sxs-lookup"><span data-stu-id="81b0f-140">**4. Networking configuration**</span></span>
+<span data-ttu-id="4520a-140">**4.網路設定**</span><span class="sxs-lookup"><span data-stu-id="4520a-140">**4. Networking configuration**</span></span>
 
-<span data-ttu-id="81b0f-141">**5.復原方案**</span><span class="sxs-lookup"><span data-stu-id="81b0f-141">**5. Recovery Plan**</span></span>
+<span data-ttu-id="4520a-141">**5.復原方案**</span><span class="sxs-lookup"><span data-stu-id="4520a-141">**5. Recovery Plan**</span></span>
 
-### <a name="1-setup-ad-and-dns-replication"></a><span data-ttu-id="81b0f-142">1.安裝 AD 和 DNS 複寫</span><span class="sxs-lookup"><span data-stu-id="81b0f-142">1. Setup AD and DNS replication</span></span>
+### <a name="1-setup-ad-and-dns-replication"></a><span data-ttu-id="4520a-142">1.安裝 AD 和 DNS 複寫</span><span class="sxs-lookup"><span data-stu-id="4520a-142">1. Setup AD and DNS replication</span></span>
 
-<span data-ttu-id="81b0f-143">DR 網站上需要有 Active Directory，Dynamics AX 應用程式才能運作。</span><span class="sxs-lookup"><span data-stu-id="81b0f-143">Active Directory is required on the DR site for Dynamics AX application to function.</span></span> <span data-ttu-id="81b0f-144">根據客戶內部部署環境的複雜度而定，有兩個建議的選擇。</span><span class="sxs-lookup"><span data-stu-id="81b0f-144">There are two recommended choices based on the complexity of the customer’s on-premises environment.</span></span>
+<span data-ttu-id="4520a-143">Active Directory 需要 Dynamics AX 應用程式 toofunction 的 hello DR 網站。</span><span class="sxs-lookup"><span data-stu-id="4520a-143">Active Directory is required on hello DR site for Dynamics AX application toofunction.</span></span> <span data-ttu-id="4520a-144">有兩個建議的選擇依據 hello 客戶的內部部署環境的 hello 複雜性。</span><span class="sxs-lookup"><span data-stu-id="4520a-144">There are two recommended choices based on hello complexity of hello customer’s on-premises environment.</span></span>
 
-<span data-ttu-id="81b0f-145">**選項 1**</span><span class="sxs-lookup"><span data-stu-id="81b0f-145">**Option 1**</span></span>
+<span data-ttu-id="4520a-145">**選項 1**</span><span class="sxs-lookup"><span data-stu-id="4520a-145">**Option 1**</span></span>
 
-<span data-ttu-id="81b0f-146">如果客戶的整個內部部署網站有少數的應用程式和單一網域控制站，而且將會一起容錯移轉整個網站，則我們建議使用 ASR 複寫將 DC 電腦複寫至次要網站 (適用於網站對網站和網站對 Azure)。</span><span class="sxs-lookup"><span data-stu-id="81b0f-146">If the customer has a small number of applications and a single domain controller for his entire on-premises site and will be failing over the entire site together, then we recommend using ASR-Replication to replicate the DC machine to secondary site (applicable for both Site to Site and Site to Azure).</span></span>
+<span data-ttu-id="4520a-146">如果 hello 客戶都有少量應用程式和其整個的單一網域控制站在內部部署站台和將會容錯移轉 hello 整個站台在一起，則我們建議使用 ASR 複寫 tooreplicate hello DC 機器 toosecondary 站台 （適用於站台 tooSite 和站台 tooAzure）。</span><span class="sxs-lookup"><span data-stu-id="4520a-146">If hello customer has a small number of applications and a single domain controller for his entire on-premises site and will be failing over hello entire site together, then we recommend using ASR-Replication tooreplicate hello DC machine toosecondary site (applicable for both Site tooSite and Site tooAzure).</span></span>
 
-<span data-ttu-id="81b0f-147">**選項 2**</span><span class="sxs-lookup"><span data-stu-id="81b0f-147">**Option 2**</span></span>
+<span data-ttu-id="4520a-147">**選項 2**</span><span class="sxs-lookup"><span data-stu-id="4520a-147">**Option 2**</span></span>
 
-<span data-ttu-id="81b0f-148">如果客戶有大量應用程式、正在執行 Active Directory 樹系，並將一次容錯移轉少數應用程式，則我們建議在 DR 網站 (次要網站或 Azure 中) 另外設定一個網域控制站。</span><span class="sxs-lookup"><span data-stu-id="81b0f-148">If the customer has a large number of applications and is running an Active Directory forest and will fail-over few applications at a time, then we recommend setting up an additional domain controller on the DR site (secondary site or in Azure).</span></span>
+<span data-ttu-id="4520a-148">如果 hello 客戶具有大量的應用程式和執行 Active Directory 樹系，而且將容錯移轉少數應用程式一次，則我們建議您設定 hello DR 網站上的其他網域控制站 (次要站台或 Azure 中)。</span><span class="sxs-lookup"><span data-stu-id="4520a-148">If hello customer has a large number of applications and is running an Active Directory forest and will fail-over few applications at a time, then we recommend setting up an additional domain controller on hello DR site (secondary site or in Azure).</span></span>
 
-<span data-ttu-id="81b0f-149">請參閱[在 DR 網站上提供網域控制站的附屬指南](site-recovery-active-directory.md)。</span><span class="sxs-lookup"><span data-stu-id="81b0f-149">Please refer to [companion guide on making a domain controller available on DR site](site-recovery-active-directory.md).</span></span> <span data-ttu-id="81b0f-150">對於本文件的其餘部分，我們會假設 DR 網站上有 DC 可用。</span><span class="sxs-lookup"><span data-stu-id="81b0f-150">For remainder of this document we will assume a DC is available on DR site.</span></span>
+<span data-ttu-id="4520a-149">請參閱太[上提供可用的網域控制站在 DR 網站上的附屬指南](site-recovery-active-directory.md)。</span><span class="sxs-lookup"><span data-stu-id="4520a-149">Please refer too[companion guide on making a domain controller available on DR site](site-recovery-active-directory.md).</span></span> <span data-ttu-id="4520a-150">對於本文件的其餘部分，我們會假設 DR 網站上有 DC 可用。</span><span class="sxs-lookup"><span data-stu-id="4520a-150">For remainder of this document we will assume a DC is available on DR site.</span></span>
 
-### <a name="2-setup-sql-server-replication"></a><span data-ttu-id="81b0f-151">2.設定 SQL Server 複寫</span><span class="sxs-lookup"><span data-stu-id="81b0f-151">2. Setup SQL Server replication</span></span>
-<span data-ttu-id="81b0f-152">請參閱附屬指南，以取得建議用於保護 [SQL 層](site-recovery-sql.md)之選項的詳細技術指引。</span><span class="sxs-lookup"><span data-stu-id="81b0f-152">Please refer to companion guide  for detailed technical guidance on the recommended option for protecting [SQL tier](site-recovery-sql.md).</span></span>
+### <a name="2-setup-sql-server-replication"></a><span data-ttu-id="4520a-151">2.設定 SQL Server 複寫</span><span class="sxs-lookup"><span data-stu-id="4520a-151">2. Setup SQL Server replication</span></span>
+<span data-ttu-id="4520a-152">如需詳細指引技術 hello 建議保護選項，請參閱 toocompanion 指南[SQL 層](site-recovery-sql.md)。</span><span class="sxs-lookup"><span data-stu-id="4520a-152">Please refer toocompanion guide  for detailed technical guidance on hello recommended option for protecting [SQL tier](site-recovery-sql.md).</span></span>
 
-### <a name="3-enable-protection-for-dynamics-ax-client-and-aos-vms"></a><span data-ttu-id="81b0f-153">3.啟用 Dynamics AX 用戶端和 AOS VM 的保護</span><span class="sxs-lookup"><span data-stu-id="81b0f-153">3. Enable protection for Dynamics AX client and AOS VMs</span></span>
-<span data-ttu-id="81b0f-154">根據 VM 是部署於 [Hyper-V](site-recovery-hyper-v-site-to-azure.md) 還是 [VMware](site-recovery-vmware-to-azure.md)，執行相關的 Azure Site Recovery 設定。</span><span class="sxs-lookup"><span data-stu-id="81b0f-154">Perform relevant Azure Site Recovery configuration based on whether the VMs are deployed on [Hyper-V](site-recovery-hyper-v-site-to-azure.md) or on [VMware](site-recovery-vmware-to-azure.md).</span></span>
+### <a name="3-enable-protection-for-dynamics-ax-client-and-aos-vms"></a><span data-ttu-id="4520a-153">3.啟用 Dynamics AX 用戶端和 AOS VM 的保護</span><span class="sxs-lookup"><span data-stu-id="4520a-153">3. Enable protection for Dynamics AX client and AOS VMs</span></span>
+<span data-ttu-id="4520a-154">執行相關的 Azure Site Recovery 設定，根據 hello Vm 是否部署於[HYPER-V](site-recovery-hyper-v-site-to-azure.md)或在[VMware](site-recovery-vmware-to-azure.md)。</span><span class="sxs-lookup"><span data-stu-id="4520a-154">Perform relevant Azure Site Recovery configuration based on whether hello VMs are deployed on [Hyper-V](site-recovery-hyper-v-site-to-azure.md) or on [VMware](site-recovery-vmware-to-azure.md).</span></span>
 
 > [!TIP]
-> <span data-ttu-id="81b0f-155">要設定為 15 分鐘的建議損毀一致頻率。</span><span class="sxs-lookup"><span data-stu-id="81b0f-155">Recommended Crash consistent frequency to configure is 15 minutes.</span></span>
+> <span data-ttu-id="4520a-155">建議的損毀一致的頻率 tooconfigure 是 15 分鐘。</span><span class="sxs-lookup"><span data-stu-id="4520a-155">Recommended Crash consistent frequency tooconfigure is 15 minutes.</span></span>
 >
 
-<span data-ttu-id="81b0f-156">下列快照集顯示 Dynamics 元件 VM 在「從 VMware 站台到 Azure」保護案例中的保護狀態。</span><span class="sxs-lookup"><span data-stu-id="81b0f-156">The below snapshot shows the protection status of Dynamics component VMs in ‘VMware site to Azure’ protection scenario.</span></span>
-<span data-ttu-id="81b0f-157">![受保護的項目](./media/site-recovery-dynamics-ax/protecteditems.png)</span><span class="sxs-lookup"><span data-stu-id="81b0f-157">![Protected items ](./media/site-recovery-dynamics-ax/protecteditems.png)</span></span>
+<span data-ttu-id="4520a-156">hello 快照下方會顯示 'VMware 站台 tooAzure' 保護案例中的 hello 的 Dynamics 元件 Vm 的保護狀態。</span><span class="sxs-lookup"><span data-stu-id="4520a-156">hello below snapshot shows hello protection status of Dynamics component VMs in ‘VMware site tooAzure’ protection scenario.</span></span>
+<span data-ttu-id="4520a-157">![受保護的項目](./media/site-recovery-dynamics-ax/protecteditems.png)</span><span class="sxs-lookup"><span data-stu-id="4520a-157">![Protected items ](./media/site-recovery-dynamics-ax/protecteditems.png)</span></span>
 
-### <a name="4-configure-networking"></a><span data-ttu-id="81b0f-158">4.設定網路功能</span><span class="sxs-lookup"><span data-stu-id="81b0f-158">4. Configure Networking</span></span>
-<span data-ttu-id="81b0f-159">設定 VM 計算和網路設定</span><span class="sxs-lookup"><span data-stu-id="81b0f-159">Configure VM Compute and Network Settings</span></span>
+### <a name="4-configure-networking"></a><span data-ttu-id="4520a-158">4.設定網路功能</span><span class="sxs-lookup"><span data-stu-id="4520a-158">4. Configure Networking</span></span>
+<span data-ttu-id="4520a-159">設定 VM 計算和網路設定</span><span class="sxs-lookup"><span data-stu-id="4520a-159">Configure VM Compute and Network Settings</span></span>
 
-<span data-ttu-id="81b0f-160">對於 AX 用戶端和 AOS VM，設定 Azure Site Recovery 中的網路設定，讓 VM 網路能在容錯移轉之後連結到正確的 DR 網路。</span><span class="sxs-lookup"><span data-stu-id="81b0f-160">For the AX client and AOS VMs configure network settings in Azure Site Recovery so that the VM networks get attached to the right DR network after failover.</span></span> <span data-ttu-id="81b0f-161">確保這些層的 DR 網路可路由傳送到 SQL 層。</span><span class="sxs-lookup"><span data-stu-id="81b0f-161">Ensure the DR network for these tiers is routable to the SQL tier.</span></span>
+<span data-ttu-id="4520a-160">Hello AX 用戶端和 AOS Vm，讓 hello VM 網路中取得附加的 toohello 正確 DR 網路容錯移轉之後，Azure Site Recovery 中設定網路設定。</span><span class="sxs-lookup"><span data-stu-id="4520a-160">For hello AX client and AOS VMs configure network settings in Azure Site Recovery so that hello VM networks get attached toohello right DR network after failover.</span></span> <span data-ttu-id="4520a-161">請確定這些層的 hello DR 網路路由傳送 toohello SQL 層。</span><span class="sxs-lookup"><span data-stu-id="4520a-161">Ensure hello DR network for these tiers is routable toohello SQL tier.</span></span>
 
-<span data-ttu-id="81b0f-162">您可以在複寫的項目中選取 VM 來進行網路設定，如以下快照集所示。</span><span class="sxs-lookup"><span data-stu-id="81b0f-162">You can select the VM in the replicated items to configure the network settings as shown in the snapshot below.</span></span>
+<span data-ttu-id="4520a-162">您可以選取在 hello hello VM 複寫項目 tooconfigure hello 網路設定，下列 hello 快照中所示。</span><span class="sxs-lookup"><span data-stu-id="4520a-162">You can select hello VM in hello replicated items tooconfigure hello network settings as shown in hello snapshot below.</span></span>
 
-* <span data-ttu-id="81b0f-163">對於 AOS 伺服器，選取正確的可用性設定組。</span><span class="sxs-lookup"><span data-stu-id="81b0f-163">For AOS servers select the correct availability set.</span></span>
+* <span data-ttu-id="4520a-163">AOS 伺服器選取 hello 正確的可用性設定組。</span><span class="sxs-lookup"><span data-stu-id="4520a-163">For AOS servers select hello correct availability set.</span></span>
 
-* <span data-ttu-id="81b0f-164">如果您是使用靜態 IP 位址，請在![網路設定](./media/site-recovery-dynamics-ax/vmpropertiesaos1.png)的 [目標 IP] 欄位中指定您想要虛擬機器採用的 IP。</span><span class="sxs-lookup"><span data-stu-id="81b0f-164">If you are using a static IP then specify the IP that you want the virtual machine to take in the **Target IP** field ![Network Settings ](./media/site-recovery-dynamics-ax/vmpropertiesaos1.png)</span></span>
+* <span data-ttu-id="4520a-164">如果您使用靜態 ip 位址，則指定您想 hello hello 中的虛擬機器 tootake hello IP**目標 IP**欄位![網路設定](./media/site-recovery-dynamics-ax/vmpropertiesaos1.png)</span><span class="sxs-lookup"><span data-stu-id="4520a-164">If you are using a static IP then specify hello IP that you want hello virtual machine tootake in hello **Target IP** field ![Network Settings ](./media/site-recovery-dynamics-ax/vmpropertiesaos1.png)</span></span>
 
 
 
-### <a name="5-creating-a-recovery-plan"></a><span data-ttu-id="81b0f-165">5.建立復原計劃</span><span class="sxs-lookup"><span data-stu-id="81b0f-165">5. Creating a recovery plan</span></span>
+### <a name="5-creating-a-recovery-plan"></a><span data-ttu-id="4520a-165">5.建立復原計劃</span><span class="sxs-lookup"><span data-stu-id="4520a-165">5. Creating a recovery plan</span></span>
 
-<span data-ttu-id="81b0f-166">您可以在 Azure Site Recovery 中建立復原方案，將容錯移轉程序自動化。</span><span class="sxs-lookup"><span data-stu-id="81b0f-166">You can create a recovery plan in Azure Site Recovery to automate the failover process.</span></span> <span data-ttu-id="81b0f-167">在復原方案中新增應用程式層和 Web 層。</span><span class="sxs-lookup"><span data-stu-id="81b0f-167">Add app tier and web tier in the Recovery Plan.</span></span> <span data-ttu-id="81b0f-168">在不同群組中將它們排序，讓前端關機出現在應用程式層之前。</span><span class="sxs-lookup"><span data-stu-id="81b0f-168">Order them in different groups so that the front-end shutdown before app tier.</span></span>
+<span data-ttu-id="4520a-166">您可以在 Azure Site Recovery tooautomate hello 容錯移轉程序中建立的復原計劃。</span><span class="sxs-lookup"><span data-stu-id="4520a-166">You can create a recovery plan in Azure Site Recovery tooautomate hello failover process.</span></span> <span data-ttu-id="4520a-167">Hello 復原計劃中加入應用程式層和 web 層。</span><span class="sxs-lookup"><span data-stu-id="4520a-167">Add app tier and web tier in hello Recovery Plan.</span></span> <span data-ttu-id="4520a-168">排列這些資料行中不同的群組讓的 hello 前端應用程式層之前關閉。</span><span class="sxs-lookup"><span data-stu-id="4520a-168">Order them in different groups so that hello front-end shutdown before app tier.</span></span>
 
-1)  <span data-ttu-id="81b0f-169">在您的訂用帳戶中選取 Azure Site Recovery 保存庫，然後按一下 [復原方案] 圖格。</span><span class="sxs-lookup"><span data-stu-id="81b0f-169">Select the Azure Site Recovery vault in your subscription and click on ‘Recovery Plans’ tile.</span></span>
+1)  <span data-ttu-id="4520a-169">選取您的訂用帳戶中的 hello Azure Site Recovery 保存庫，並按一下 '復原計畫' 的磚。</span><span class="sxs-lookup"><span data-stu-id="4520a-169">Select hello Azure Site Recovery vault in your subscription and click on ‘Recovery Plans’ tile.</span></span>
 
-2)  <span data-ttu-id="81b0f-170">按一下 [+ 復原方案] 並指定名稱。</span><span class="sxs-lookup"><span data-stu-id="81b0f-170">Click on ‘+ Recovery plan and specify a name.</span></span>
+2)  <span data-ttu-id="4520a-170">按一下 [+ 復原方案] 並指定名稱。</span><span class="sxs-lookup"><span data-stu-id="4520a-170">Click on ‘+ Recovery plan and specify a name.</span></span>
 
-3)  <span data-ttu-id="81b0f-171">選取 [來源] 和 [目標]。</span><span class="sxs-lookup"><span data-stu-id="81b0f-171">Select the ‘Source’ and ‘Target’.</span></span> <span data-ttu-id="81b0f-172">目標可以是 Azure 或次要網站。</span><span class="sxs-lookup"><span data-stu-id="81b0f-172">The target can be Azure or secondary site.</span></span> <span data-ttu-id="81b0f-173">如果您選擇 Azure，則必須指定部署模型</span><span class="sxs-lookup"><span data-stu-id="81b0f-173">In case you choose Azure, you must specify the deployment model</span></span>
+3)  <span data-ttu-id="4520a-171">選取 hello 'Source' 和 'Target'。</span><span class="sxs-lookup"><span data-stu-id="4520a-171">Select hello ‘Source’ and ‘Target’.</span></span> <span data-ttu-id="4520a-172">hello 目標可以是 Azure 或次要站台。</span><span class="sxs-lookup"><span data-stu-id="4520a-172">hello target can be Azure or secondary site.</span></span> <span data-ttu-id="4520a-173">如果您選擇 Azure，您必須指定 hello 部署模型</span><span class="sxs-lookup"><span data-stu-id="4520a-173">In case you choose Azure, you must specify hello deployment model</span></span>
 
 ![建立復原方案](./media/site-recovery-dynamics-ax/recoveryplancreation1.png)
 
-4)  <span data-ttu-id="81b0f-175">選取復原方案的 AOS 和用戶端 VM，然後按一下 ✓。</span><span class="sxs-lookup"><span data-stu-id="81b0f-175">Select the AOS and client VMs to the recovery plan and click ✓.</span></span>
-<span data-ttu-id="81b0f-176">![建立復原方案](./media/site-recovery-dynamics-ax/selectvms.png)</span><span class="sxs-lookup"><span data-stu-id="81b0f-176">![Create Recovery Plan](./media/site-recovery-dynamics-ax/selectvms.png)</span></span>
+4)  <span data-ttu-id="4520a-175">選取 hello AOS 與用戶端 Vm toohello 復原計劃，然後按一下 ✓。</span><span class="sxs-lookup"><span data-stu-id="4520a-175">Select hello AOS and client VMs toohello recovery plan and click ✓.</span></span>
+<span data-ttu-id="4520a-176">![建立復原方案](./media/site-recovery-dynamics-ax/selectvms.png)</span><span class="sxs-lookup"><span data-stu-id="4520a-176">![Create Recovery Plan](./media/site-recovery-dynamics-ax/selectvms.png)</span></span>
 
 
 ![復原方案](./media/site-recovery-dynamics-ax/recoveryplan.png)
 
-<span data-ttu-id="81b0f-178">新增如下所述的各種步驟，即可自訂 Dynamics AX 應用程式的復原方案。</span><span class="sxs-lookup"><span data-stu-id="81b0f-178">You can customize the recovery plan for Dynamics AX application by adding various steps as detailed below.</span></span> <span data-ttu-id="81b0f-179">以上的快照集顯示新增所有步驟之後的完整復原方案。</span><span class="sxs-lookup"><span data-stu-id="81b0f-179">The above snapshot shows the complete recovery plan after adding all the steps.</span></span>
+<span data-ttu-id="4520a-178">您可以藉由新增不同的步驟如下所述自訂 hello Dynamics AX 應用程式的復原計劃。</span><span class="sxs-lookup"><span data-stu-id="4520a-178">You can customize hello recovery plan for Dynamics AX application by adding various steps as detailed below.</span></span> <span data-ttu-id="4520a-179">hello 快照集上方顯示 hello 完整的復原方案之後加入所有 hello 步驟。</span><span class="sxs-lookup"><span data-stu-id="4520a-179">hello above snapshot shows hello complete recovery plan after adding all hello steps.</span></span>
 
-<span data-ttu-id="81b0f-180">*步驟：*</span><span class="sxs-lookup"><span data-stu-id="81b0f-180">*Steps:*</span></span>
+<span data-ttu-id="4520a-180">*步驟：*</span><span class="sxs-lookup"><span data-stu-id="4520a-180">*Steps:*</span></span>
 
-<span data-ttu-id="81b0f-181">*1.SQL Server 容錯移轉步驟*</span><span class="sxs-lookup"><span data-stu-id="81b0f-181">*1. SQL Server fail over steps*</span></span>
+<span data-ttu-id="4520a-181">*1.SQL Server 容錯移轉步驟*</span><span class="sxs-lookup"><span data-stu-id="4520a-181">*1. SQL Server fail over steps*</span></span>
 
-<span data-ttu-id="81b0f-182">請參閱 [SQL Server DR 解決方案](site-recovery-sql.md)附屬指南，以了解 SQL Server 在容錯回復期間的特定考量。</span><span class="sxs-lookup"><span data-stu-id="81b0f-182">Refer to [‘SQL Server DR Solution’](site-recovery-sql.md) companion guide  for details about recovery steps specific to SQL server.</span></span>
+<span data-ttu-id="4520a-182">參照太['SQL Server DR 解決方案'](site-recovery-sql.md)附屬指南，如需復原步驟特定 tooSQL 伺服器詳細資料。</span><span class="sxs-lookup"><span data-stu-id="4520a-182">Refer too[‘SQL Server DR Solution’](site-recovery-sql.md) companion guide  for details about recovery steps specific tooSQL server.</span></span>
 
-<span data-ttu-id="81b0f-183">*2.容錯移轉群組 1︰容錯移轉 AOS VM*</span><span class="sxs-lookup"><span data-stu-id="81b0f-183">*2. Failover Group 1: Fail over the AOS VMs*</span></span>
+<span data-ttu-id="4520a-183">*2.容錯移轉群組 1： 容錯移轉 hello AOS Vm*</span><span class="sxs-lookup"><span data-stu-id="4520a-183">*2. Failover Group 1: Fail over hello AOS VMs*</span></span>
 
-<span data-ttu-id="81b0f-184">確定所選取的復原點儘可能接近資料庫 PIT，但不為繼續進行。</span><span class="sxs-lookup"><span data-stu-id="81b0f-184">Make sure that the recovery point selected is as close as possible to the database PIT but not ahead.</span></span>
+<span data-ttu-id="4520a-184">請確定選取的復原點 hello 做為可能 toohello 資料庫 PIT 關閉但不是會繼續。</span><span class="sxs-lookup"><span data-stu-id="4520a-184">Make sure that hello recovery point selected is as close as possible toohello database PIT but not ahead.</span></span>
 
-<span data-ttu-id="81b0f-185">*3.指令碼︰新增負載平衡器 (僅限E-A)* 在 AOS VM 群組開始新增負載平衡器之後，新增指令碼 (透過 Azure 自動化)。</span><span class="sxs-lookup"><span data-stu-id="81b0f-185">*3. Script: Add load balancer (Only E-A)* Add a script (via Azure automation) after AOS VM group comes up to add a load balancer to it.</span></span> <span data-ttu-id="81b0f-186">您可以使用指令碼來執行此工作。</span><span class="sxs-lookup"><span data-stu-id="81b0f-186">You can use a script to do this task.</span></span> <span data-ttu-id="81b0f-187">請參閱[如何為多層式應用程式 DR 新增負載平衡器](https://azure.microsoft.com/blog/cloud-migration-and-disaster-recovery-of-load-balanced-multi-tier-applications-using-azure-site-recovery/)</span><span class="sxs-lookup"><span data-stu-id="81b0f-187">Refer article [how to add load balancer for multi-tier application DR](https://azure.microsoft.com/blog/cloud-migration-and-disaster-recovery-of-load-balanced-multi-tier-applications-using-azure-site-recovery/)</span></span>
+<span data-ttu-id="4520a-185">*3.指令碼： 新增負載平衡器 (僅 E-A)*出現 tooadd 負載平衡器 tooit AOS VM 群組之後加入指令碼 （透過 Azure 自動化）。</span><span class="sxs-lookup"><span data-stu-id="4520a-185">*3. Script: Add load balancer (Only E-A)* Add a script (via Azure automation) after AOS VM group comes up tooadd a load balancer tooit.</span></span> <span data-ttu-id="4520a-186">您可以使用指令碼 toodo 這項工作。</span><span class="sxs-lookup"><span data-stu-id="4520a-186">You can use a script toodo this task.</span></span> <span data-ttu-id="4520a-187">發行項，請參閱[如何 tooadd 用於負載平衡器多層式應用程式 DR](https://azure.microsoft.com/blog/cloud-migration-and-disaster-recovery-of-load-balanced-multi-tier-applications-using-azure-site-recovery/)</span><span class="sxs-lookup"><span data-stu-id="4520a-187">Refer article [how tooadd load balancer for multi-tier application DR](https://azure.microsoft.com/blog/cloud-migration-and-disaster-recovery-of-load-balanced-multi-tier-applications-using-azure-site-recovery/)</span></span>
 
-<span data-ttu-id="81b0f-188">*4.容錯移轉群組 2︰容錯移轉 AX 用戶端 VM。*</span><span class="sxs-lookup"><span data-stu-id="81b0f-188">*4. Failover Group 2: Fail over the AX client VMs.*</span></span>
-<span data-ttu-id="81b0f-189">容錯移轉 Web 層 VM 作為復原方案的一部份。</span><span class="sxs-lookup"><span data-stu-id="81b0f-189">Fail over the web tier VMs as part of the recovery plan.</span></span>
-
-
-### <a name="doing-a-test-failover"></a><span data-ttu-id="81b0f-190">執行測試容錯移轉</span><span class="sxs-lookup"><span data-stu-id="81b0f-190">Doing a test failover</span></span>
-
-<span data-ttu-id="81b0f-191">請參閱「AD DR 解決方案」和「SQL Server DR 解決方案」附屬指南，以了解 AD 和 SQL Server 在容錯回復期間各自的特定考量。</span><span class="sxs-lookup"><span data-stu-id="81b0f-191">Refer to ‘AD DR Solution ’ and ‘SQL Server DR solution ’ companion guides for considerations specific to AD and SQL server respectively during Test Failover.</span></span>
-
-1.  <span data-ttu-id="81b0f-192">移至 Azure 入口網站並選取您的 Site Recovery 保存庫。</span><span class="sxs-lookup"><span data-stu-id="81b0f-192">Go to Azure  portal and select your Site Recovery vault.</span></span>
-2.  <span data-ttu-id="81b0f-193">按一下為 Dynamics AX 建立的復原方案。</span><span class="sxs-lookup"><span data-stu-id="81b0f-193">Click on the recovery plan created for Dynamics AX.</span></span>
-3.  <span data-ttu-id="81b0f-194">按一下 [測試容錯移轉]。</span><span class="sxs-lookup"><span data-stu-id="81b0f-194">Click on ‘Test Failover’.</span></span>
-4.  <span data-ttu-id="81b0f-195">選取虛擬網路來開始測試容錯移轉程序。</span><span class="sxs-lookup"><span data-stu-id="81b0f-195">Select the virtual network to start the test fail-over process.</span></span>
-5.  <span data-ttu-id="81b0f-196">次要環境啟動後，您就可以執行您的驗證。</span><span class="sxs-lookup"><span data-stu-id="81b0f-196">Once the secondary environment is up, you can perform your validations.</span></span>
-6.  <span data-ttu-id="81b0f-197">驗證完成後，您可以選取 [完成驗證]，並會清除測試容錯移轉環境。</span><span class="sxs-lookup"><span data-stu-id="81b0f-197">Once the validations are complete, you can select ‘Validations complete’ and the test failover environment will be cleaned.</span></span>
-
-<span data-ttu-id="81b0f-198">請依照[本指引](site-recovery-test-failover-to-azure.md)來執行測試容錯移轉。</span><span class="sxs-lookup"><span data-stu-id="81b0f-198">Follow [this guidance](site-recovery-test-failover-to-azure.md) to do a test failover.</span></span>
-
-### <a name="doing-a-failover"></a><span data-ttu-id="81b0f-199">執行容錯移轉</span><span class="sxs-lookup"><span data-stu-id="81b0f-199">Doing a failover</span></span>
-
-1.  <span data-ttu-id="81b0f-200">移至 Azure 入口網站並選取您的 Site Recovery 保存庫。</span><span class="sxs-lookup"><span data-stu-id="81b0f-200">Go to Azure  portal and select your Site Recovery vault.</span></span>
-2.  <span data-ttu-id="81b0f-201">按一下為 Dynamics AX 建立的復原方案。</span><span class="sxs-lookup"><span data-stu-id="81b0f-201">Click on the recovery plan created for Dynamics AX.</span></span>
-3.  <span data-ttu-id="81b0f-202">按一下 [容錯移轉]，然後選取 [容錯移轉]。</span><span class="sxs-lookup"><span data-stu-id="81b0f-202">Click on ‘Failover’ and select ‘ Failover’.</span></span>
-4.  <span data-ttu-id="81b0f-203">選取目標網路，然後按一下 ✓ 啟動容錯移轉程序。</span><span class="sxs-lookup"><span data-stu-id="81b0f-203">Select the target network and click ✓ to start the failover process.</span></span>
-
-<span data-ttu-id="81b0f-204">當您在進行容錯移轉時，請依照[本指引](site-recovery-failover.md)。</span><span class="sxs-lookup"><span data-stu-id="81b0f-204">Follow [this guidance](site-recovery-failover.md) when you are doing a failover.</span></span>
-
-### <a name="perform-a-failback"></a><span data-ttu-id="81b0f-205">執行容錯回復</span><span class="sxs-lookup"><span data-stu-id="81b0f-205">Perform a Failback</span></span>
-
-<span data-ttu-id="81b0f-206">請參閱「SQL Server DR 解決方案」附屬指南，以了解 SQL Server 在容錯回復期間的特定考量。</span><span class="sxs-lookup"><span data-stu-id="81b0f-206">Refer to ‘SQL Server DR Solution ’ companion guide for considerations specific to SQL server during Failback.</span></span>
-
-1.  <span data-ttu-id="81b0f-207">移至 Azure 入口網站並選取您的 Site Recovery 保存庫。</span><span class="sxs-lookup"><span data-stu-id="81b0f-207">Go to Azure  portal and select your Site Recovery vault.</span></span>
-2.  <span data-ttu-id="81b0f-208">按一下為 Dynamics AX 建立的復原方案。</span><span class="sxs-lookup"><span data-stu-id="81b0f-208">Click on the recovery plan created for Dynamics AX.</span></span>
-3.  <span data-ttu-id="81b0f-209">按一下 [容錯移轉]，然後選取 [容錯移轉]。</span><span class="sxs-lookup"><span data-stu-id="81b0f-209">Click on ‘Failover’ and select failover.</span></span>
-4.  <span data-ttu-id="81b0f-210">按一下 [變更方向]。</span><span class="sxs-lookup"><span data-stu-id="81b0f-210">Click on ‘Change Direction’.</span></span>
-5.  <span data-ttu-id="81b0f-211">選取適當的選項 - 資料同步處理和 VM 建立選項</span><span class="sxs-lookup"><span data-stu-id="81b0f-211">Select the appropriate options - data synchronization and VM creation options</span></span>
-6.  <span data-ttu-id="81b0f-212">按一下 ✓ 啟動 [容錯回復] 程序。</span><span class="sxs-lookup"><span data-stu-id="81b0f-212">Click ✓ to start the ‘Failback’ process.</span></span>
+<span data-ttu-id="4520a-188">*4.容錯移轉群組 2： 容錯移轉 hello AX 用戶端 Vm。*</span><span class="sxs-lookup"><span data-stu-id="4520a-188">*4. Failover Group 2: Fail over hello AX client VMs.*</span></span>
+<span data-ttu-id="4520a-189">容錯移轉的 hello 復原方案一部分的 hello web 層 Vm。</span><span class="sxs-lookup"><span data-stu-id="4520a-189">Fail over hello web tier VMs as part of hello recovery plan.</span></span>
 
 
-<span data-ttu-id="81b0f-213">當您在進行容錯回復時，請依照[本指引](site-recovery-failback-azure-to-vmware.md)。</span><span class="sxs-lookup"><span data-stu-id="81b0f-213">Follow [this guidance](site-recovery-failback-azure-to-vmware.md) when you are doing a failback.</span></span>
+### <a name="doing-a-test-failover"></a><span data-ttu-id="4520a-190">執行測試容錯移轉</span><span class="sxs-lookup"><span data-stu-id="4520a-190">Doing a test failover</span></span>
 
-##<a name="summary"></a><span data-ttu-id="81b0f-214">摘要</span><span class="sxs-lookup"><span data-stu-id="81b0f-214">Summary</span></span>
-<span data-ttu-id="81b0f-215">使用 Azure Site Recovery，您可以為 Dynamics AX 應用程式建立一個完整的自動化災害復原方案。</span><span class="sxs-lookup"><span data-stu-id="81b0f-215">Using Azure Site Recovery, you can create a complete automated disaster recovery plan for your Dynamics AX application.</span></span> <span data-ttu-id="81b0f-216">當發生中斷時，您可以在幾秒鐘內從任何地方起始容錯移轉，並且在數分鐘內啟動並執行應用程式。</span><span class="sxs-lookup"><span data-stu-id="81b0f-216">You can initiate the failover within seconds from anywhere in the event of a disruption and get the application up and running in minutes.</span></span>
+<span data-ttu-id="4520a-191">Too'AD DR 解決方案，請參閱 ' 與 'SQL Server DR 解決方案' 附屬指南考量特定 tooAD 和分別測試容錯移轉期間的 SQL server。</span><span class="sxs-lookup"><span data-stu-id="4520a-191">Refer too‘AD DR Solution ’ and ‘SQL Server DR solution ’ companion guides for considerations specific tooAD and SQL server respectively during Test Failover.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="81b0f-217">後續步驟</span><span class="sxs-lookup"><span data-stu-id="81b0f-217">Next steps</span></span>
-<span data-ttu-id="81b0f-218">閱讀[我可以保護哪些工作負載?](site-recovery-workload.md)，深入了解如何以 Azure Site Recovery 保護企業工作負載。</span><span class="sxs-lookup"><span data-stu-id="81b0f-218">Read [What workloads can I protect?](site-recovery-workload.md) to learn more about protecting enterprise workloads with Azure Site Recovery.</span></span>
+1.  <span data-ttu-id="4520a-192">移 tooAzure 入口網站，然後選取您的站台復原保存庫。</span><span class="sxs-lookup"><span data-stu-id="4520a-192">Go tooAzure  portal and select your Site Recovery vault.</span></span>
+2.  <span data-ttu-id="4520a-193">按一下建立的 Dynamics AX hello 復原計劃。</span><span class="sxs-lookup"><span data-stu-id="4520a-193">Click on hello recovery plan created for Dynamics AX.</span></span>
+3.  <span data-ttu-id="4520a-194">按一下 [測試容錯移轉]。</span><span class="sxs-lookup"><span data-stu-id="4520a-194">Click on ‘Test Failover’.</span></span>
+4.  <span data-ttu-id="4520a-195">選取 hello 虛擬網路 toostart hello 測試容錯移轉程序。</span><span class="sxs-lookup"><span data-stu-id="4520a-195">Select hello virtual network toostart hello test fail-over process.</span></span>
+5.  <span data-ttu-id="4520a-196">一旦 hello 次要環境已啟動，您可以執行您的驗證。</span><span class="sxs-lookup"><span data-stu-id="4520a-196">Once hello secondary environment is up, you can perform your validations.</span></span>
+6.  <span data-ttu-id="4520a-197">Hello 驗證完成後，您可以選取 '完成驗證'，並將清除 hello 測試容錯移轉環境。</span><span class="sxs-lookup"><span data-stu-id="4520a-197">Once hello validations are complete, you can select ‘Validations complete’ and hello test failover environment will be cleaned.</span></span>
+
+<span data-ttu-id="4520a-198">請遵循[本指南](site-recovery-test-failover-to-azure.md)toodo 測試容錯移轉。</span><span class="sxs-lookup"><span data-stu-id="4520a-198">Follow [this guidance](site-recovery-test-failover-to-azure.md) toodo a test failover.</span></span>
+
+### <a name="doing-a-failover"></a><span data-ttu-id="4520a-199">執行容錯移轉</span><span class="sxs-lookup"><span data-stu-id="4520a-199">Doing a failover</span></span>
+
+1.  <span data-ttu-id="4520a-200">移 tooAzure 入口網站，然後選取您的站台復原保存庫。</span><span class="sxs-lookup"><span data-stu-id="4520a-200">Go tooAzure  portal and select your Site Recovery vault.</span></span>
+2.  <span data-ttu-id="4520a-201">按一下建立的 Dynamics AX hello 復原計劃。</span><span class="sxs-lookup"><span data-stu-id="4520a-201">Click on hello recovery plan created for Dynamics AX.</span></span>
+3.  <span data-ttu-id="4520a-202">按一下 [容錯移轉]，然後選取 [容錯移轉]。</span><span class="sxs-lookup"><span data-stu-id="4520a-202">Click on ‘Failover’ and select ‘ Failover’.</span></span>
+4.  <span data-ttu-id="4520a-203">選取 hello 目標網路，然後按一下 ✓ toostart hello 容錯移轉程序。</span><span class="sxs-lookup"><span data-stu-id="4520a-203">Select hello target network and click ✓ toostart hello failover process.</span></span>
+
+<span data-ttu-id="4520a-204">當您在進行容錯移轉時，請依照[本指引](site-recovery-failover.md)。</span><span class="sxs-lookup"><span data-stu-id="4520a-204">Follow [this guidance](site-recovery-failover.md) when you are doing a failover.</span></span>
+
+### <a name="perform-a-failback"></a><span data-ttu-id="4520a-205">執行容錯回復</span><span class="sxs-lookup"><span data-stu-id="4520a-205">Perform a Failback</span></span>
+
+<span data-ttu-id="4520a-206">Too'SQL 伺服器 DR 解決方案，請參閱 ' 考量特定 tooSQL 伺服器在容錯回復期間的附屬指南。</span><span class="sxs-lookup"><span data-stu-id="4520a-206">Refer too‘SQL Server DR Solution ’ companion guide for considerations specific tooSQL server during Failback.</span></span>
+
+1.  <span data-ttu-id="4520a-207">移 tooAzure 入口網站，然後選取您的站台復原保存庫。</span><span class="sxs-lookup"><span data-stu-id="4520a-207">Go tooAzure  portal and select your Site Recovery vault.</span></span>
+2.  <span data-ttu-id="4520a-208">按一下建立的 Dynamics AX hello 復原計劃。</span><span class="sxs-lookup"><span data-stu-id="4520a-208">Click on hello recovery plan created for Dynamics AX.</span></span>
+3.  <span data-ttu-id="4520a-209">按一下 [容錯移轉]，然後選取 [容錯移轉]。</span><span class="sxs-lookup"><span data-stu-id="4520a-209">Click on ‘Failover’ and select failover.</span></span>
+4.  <span data-ttu-id="4520a-210">按一下 [變更方向]。</span><span class="sxs-lookup"><span data-stu-id="4520a-210">Click on ‘Change Direction’.</span></span>
+5.  <span data-ttu-id="4520a-211">選取 hello 適當的選項為 VM 建立選項與資料同步處理</span><span class="sxs-lookup"><span data-stu-id="4520a-211">Select hello appropriate options - data synchronization and VM creation options</span></span>
+6.  <span data-ttu-id="4520a-212">按一下 ✓ toostart hello '容錯回復' 處理序。</span><span class="sxs-lookup"><span data-stu-id="4520a-212">Click ✓ toostart hello ‘Failback’ process.</span></span>
+
+
+<span data-ttu-id="4520a-213">當您在進行容錯回復時，請依照[本指引](site-recovery-failback-azure-to-vmware.md)。</span><span class="sxs-lookup"><span data-stu-id="4520a-213">Follow [this guidance](site-recovery-failback-azure-to-vmware.md) when you are doing a failback.</span></span>
+
+##<a name="summary"></a><span data-ttu-id="4520a-214">摘要</span><span class="sxs-lookup"><span data-stu-id="4520a-214">Summary</span></span>
+<span data-ttu-id="4520a-215">使用 Azure Site Recovery，您可以為 Dynamics AX 應用程式建立一個完整的自動化災害復原方案。</span><span class="sxs-lookup"><span data-stu-id="4520a-215">Using Azure Site Recovery, you can create a complete automated disaster recovery plan for your Dynamics AX application.</span></span> <span data-ttu-id="4520a-216">您可以從任何地方秒內起始 hello 容錯移轉在 hello 中斷的事件，並取得 hello 應用程式啟動並執行以分鐘為單位。</span><span class="sxs-lookup"><span data-stu-id="4520a-216">You can initiate hello failover within seconds from anywhere in hello event of a disruption and get hello application up and running in minutes.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="4520a-217">後續步驟</span><span class="sxs-lookup"><span data-stu-id="4520a-217">Next steps</span></span>
+<span data-ttu-id="4520a-218">讀取[可以保護哪些工作負載？](site-recovery-workload.md) toolearn 深入了解保護與 Azure Site Recovery 的企業工作負載。</span><span class="sxs-lookup"><span data-stu-id="4520a-218">Read [What workloads can I protect?](site-recovery-workload.md) toolearn more about protecting enterprise workloads with Azure Site Recovery.</span></span>

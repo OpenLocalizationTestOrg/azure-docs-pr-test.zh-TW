@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: aabe845e806eb99176f89695751023bb57353d41
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 61617ca49685f294c2aaa58e2334c3ec0dfbb42f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-domain-services---supported-regions"></a><span data-ttu-id="ddade-103">Azure AD 網域服務 - 支援的區域</span><span class="sxs-lookup"><span data-stu-id="ddade-103">Azure AD Domain Services - Supported regions</span></span>
-<span data-ttu-id="ddade-104">若要了解可以使用 Azure AD 網預服務的區域，請參閱 [依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services/)。</span><span class="sxs-lookup"><span data-stu-id="ddade-104">To learn where Azure AD Domain Services is available, see [Azure Services by region](https://azure.microsoft.com/regions/#services/).</span></span>
+# <a name="azure-ad-domain-services---supported-regions"></a><span data-ttu-id="542c6-103">Azure AD 網域服務 - 支援的區域</span><span class="sxs-lookup"><span data-stu-id="542c6-103">Azure AD Domain Services - Supported regions</span></span>
+<span data-ttu-id="542c6-104">toolearn 所在的 Azure AD 網域服務可供使用，請參閱[依地區的 Azure 服務](https://azure.microsoft.com/regions/#services/)。</span><span class="sxs-lookup"><span data-stu-id="542c6-104">toolearn where Azure AD Domain Services is available, see [Azure Services by region](https://azure.microsoft.com/regions/#services/).</span></span>

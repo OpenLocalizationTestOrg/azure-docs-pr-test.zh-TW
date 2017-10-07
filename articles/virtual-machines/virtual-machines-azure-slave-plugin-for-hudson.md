@@ -1,6 +1,6 @@
 ---
-title: "如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合 | Microsoft Docs"
-description: "說明如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合。"
+title: "aaaHow toouse hello Azure 從屬外掛程式與 Hudson 連續整合 |Microsoft 文件"
+description: "描述如何 toouse hello Azure 從屬外掛程式與 Hudson 連續整合。"
 services: virtual-machines-linux
 documentationcenter: 
 author: rmcmurray
@@ -14,35 +14,35 @@ ms.devlang: java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: c11b59f8ea432075b147a391de4b7bd3331e639e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cd6e67ad71c208aa56746aa8b70ba507da20bee9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-azure-slave-plug-in-with-hudson-continuous-integration"></a><span data-ttu-id="cdcfe-103">如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合</span><span class="sxs-lookup"><span data-stu-id="cdcfe-103">How to use the Azure slave plug-in with Hudson Continuous Integration</span></span>
-<span data-ttu-id="cdcfe-104">適用於 Hudson 的 Azure 從屬外掛程式可讓您在執行分散式組建時在 Azure 上佈建從屬節點。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-104">The Azure slave plug-in for Hudson enables you to provision slave nodes on Azure when running distributed builds.</span></span>
+# <a name="how-toouse-hello-azure-slave-plug-in-with-hudson-continuous-integration"></a><span data-ttu-id="daeb6-103">如何 toouse hello Azure 從屬外掛程式與 Hudson 連續整合</span><span class="sxs-lookup"><span data-stu-id="daeb6-103">How toouse hello Azure slave plug-in with Hudson Continuous Integration</span></span>
+<span data-ttu-id="daeb6-104">hello Azure 從屬 Hudson 外掛程式可讓您在 Azure 上的 tooprovision 從屬節點時執行分散式組建。</span><span class="sxs-lookup"><span data-stu-id="daeb6-104">hello Azure slave plug-in for Hudson enables you tooprovision slave nodes on Azure when running distributed builds.</span></span>
 
-## <a name="install-the-azure-slave-plug-in"></a><span data-ttu-id="cdcfe-105">安裝 Azure 從屬外掛程式</span><span class="sxs-lookup"><span data-stu-id="cdcfe-105">Install the Azure Slave plug-in</span></span>
-1. <span data-ttu-id="cdcfe-106">在 Hudson 儀表板中，按一下 [ **管理 Hudson**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-106">In the Hudson dashboard, click **Manage Hudson**.</span></span>
-2. <span data-ttu-id="cdcfe-107">在 [管理 Hudson] 頁面中，按一下 [管理外掛程式]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-107">In the **Manage Hudson** page, click on **Manage Plugins**.</span></span>
-3. <span data-ttu-id="cdcfe-108">按一下 [Available]  索引標籤。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-108">Click the **Available** tab.</span></span>
-4. <span data-ttu-id="cdcfe-109">按一下 [搜尋] 並輸入 **Azure**，讓清單只顯示相關外掛程式。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-109">Click **Search** and type **Azure** to limit the list to relevant plug-ins.</span></span>
+## <a name="install-hello-azure-slave-plug-in"></a><span data-ttu-id="daeb6-105">安裝 hello Azure 從屬外掛程式</span><span class="sxs-lookup"><span data-stu-id="daeb6-105">Install hello Azure Slave plug-in</span></span>
+1. <span data-ttu-id="daeb6-106">在 hello Hudson 儀表板，按一下 **管理 Hudson**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-106">In hello Hudson dashboard, click **Manage Hudson**.</span></span>
+2. <span data-ttu-id="daeb6-107">在 hello**管理 Hudson**頁面上，按一下**管理外掛程式**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-107">In hello **Manage Hudson** page, click on **Manage Plugins**.</span></span>
+3. <span data-ttu-id="daeb6-108">按一下 hello**可用** 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="daeb6-108">Click hello **Available** tab.</span></span>
+4. <span data-ttu-id="daeb6-109">按一下**搜尋**和型別**Azure** toolimit hello 清單 toorelevant 外掛程式。</span><span class="sxs-lookup"><span data-stu-id="daeb6-109">Click **Search** and type **Azure** toolimit hello list toorelevant plug-ins.</span></span>
    
-    <span data-ttu-id="cdcfe-110">如果您選擇透過捲動來查看可用的外掛程式清單，您會在 [其他] 索引標籤的 [叢集管理和分散式組建] 區段下找到 Azure 從屬外掛程式。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-110">If you opt to scroll through the list of available plug-ins, you will find the Azure slave plug-in under the **Cluster Management and Distributed Build** section in the **Others** tab.</span></span>
-5. <span data-ttu-id="cdcfe-111">選取 [ **Azure 從屬外掛程式**] 的核取方塊。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-111">Select the checkbox for **Azure Slave Plugin**.</span></span>
-6. <span data-ttu-id="cdcfe-112">按一下 [Install] 。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-112">Click **Install**.</span></span>
-7. <span data-ttu-id="cdcfe-113">重新啟動 Hudson。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-113">Restart Hudson.</span></span>
+    <span data-ttu-id="daeb6-110">如果您選擇 tooscroll 透過 hello 可用的外掛程式清單，您會發現 hello Azure 從屬外掛程式在 hello**叢集管理和散佈建置**> 一節中 hello**其他** 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="daeb6-110">If you opt tooscroll through hello list of available plug-ins, you will find hello Azure slave plug-in under hello **Cluster Management and Distributed Build** section in hello **Others** tab.</span></span>
+5. <span data-ttu-id="daeb6-111">選取 hello 核取方塊**Azure 從屬 Plugin**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-111">Select hello checkbox for **Azure Slave Plugin**.</span></span>
+6. <span data-ttu-id="daeb6-112">按一下 [Install] 。</span><span class="sxs-lookup"><span data-stu-id="daeb6-112">Click **Install**.</span></span>
+7. <span data-ttu-id="daeb6-113">重新啟動 Hudson。</span><span class="sxs-lookup"><span data-stu-id="daeb6-113">Restart Hudson.</span></span>
 
-<span data-ttu-id="cdcfe-114">現在外掛程式已安裝完畢，接下來的步驟是使用您的 Azure 訂用帳戶設定檔來設定外掛程式，以及建立為從屬節點建立 VM 時將使用的範本。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-114">Now that the plug-in is installed, the next steps would be to configure the plug-in with your Azure subscription profile and to create a template that will be used in creating the VM for the slave node.</span></span>
+<span data-ttu-id="daeb6-114">現在已安裝該外掛程式的 hello，hello 下一個步驟是 tooconfigure hello 與您的 Azure 訂用帳戶設定檔的範本，可用於建立 hello 從屬節點的 VM hello toocreate 外掛程式。</span><span class="sxs-lookup"><span data-stu-id="daeb6-114">Now that hello plug-in is installed, hello next steps would be tooconfigure hello plug-in with your Azure subscription profile and toocreate a template that will be used in creating hello VM for hello slave node.</span></span>
 
-## <a name="configure-the-azure-slave-plug-in-with-your-subscription-profile"></a><span data-ttu-id="cdcfe-115">使用您的訂用帳戶設定檔來設定 Azure 從屬外掛程式</span><span class="sxs-lookup"><span data-stu-id="cdcfe-115">Configure the Azure Slave plug-in with your subscription profile</span></span>
-<span data-ttu-id="cdcfe-116">訂用帳戶設定檔也稱為發佈設定，它是一個 XML 檔案，內含要與開發環境中的 Azure 搭配運作時所需的安全認證和一些額外資訊。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-116">A subscription profile, also referred to as publish settings, is an XML file that contains secure credentials and some additional information you'll need to work with Azure in your development environment.</span></span> <span data-ttu-id="cdcfe-117">若要設定 Azure 從屬外掛程式，您需要：</span><span class="sxs-lookup"><span data-stu-id="cdcfe-117">To configure the Azure slave plug-in, you need:</span></span>
+## <a name="configure-hello-azure-slave-plug-in-with-your-subscription-profile"></a><span data-ttu-id="daeb6-115">使用您的訂用帳戶設定檔設定 hello Azure 從屬外掛程式</span><span class="sxs-lookup"><span data-stu-id="daeb6-115">Configure hello Azure Slave plug-in with your subscription profile</span></span>
+<span data-ttu-id="daeb6-116">訂用帳戶設定檔，也參考的 tooas 發行設定，是包含安全認證，以及一些額外的資訊，您將需要使用 Azure toowork 開發環境中的 XML 檔案。</span><span class="sxs-lookup"><span data-stu-id="daeb6-116">A subscription profile, also referred tooas publish settings, is an XML file that contains secure credentials and some additional information you'll need toowork with Azure in your development environment.</span></span> <span data-ttu-id="daeb6-117">tooconfigure hello Azure 從屬外掛程式，您需要：</span><span class="sxs-lookup"><span data-stu-id="daeb6-117">tooconfigure hello Azure slave plug-in, you need:</span></span>
 
-* <span data-ttu-id="cdcfe-118">訂用帳戶 ID</span><span class="sxs-lookup"><span data-stu-id="cdcfe-118">Your subscription id</span></span>
-* <span data-ttu-id="cdcfe-119">訂用帳戶的管理憑證</span><span class="sxs-lookup"><span data-stu-id="cdcfe-119">A management certificate for your subscription</span></span>
+* <span data-ttu-id="daeb6-118">訂用帳戶 ID</span><span class="sxs-lookup"><span data-stu-id="daeb6-118">Your subscription id</span></span>
+* <span data-ttu-id="daeb6-119">訂用帳戶的管理憑證</span><span class="sxs-lookup"><span data-stu-id="daeb6-119">A management certificate for your subscription</span></span>
 
-<span data-ttu-id="cdcfe-120">您可以在 [訂用帳戶設定檔]中找到這些資訊。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-120">These can be found in your [subscription profile].</span></span> <span data-ttu-id="cdcfe-121">以下是訂用帳戶設定檔的範例。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-121">Below is an example of a subscription profile.</span></span>
+<span data-ttu-id="daeb6-120">您可以在 [訂用帳戶設定檔]中找到這些資訊。</span><span class="sxs-lookup"><span data-stu-id="daeb6-120">These can be found in your [subscription profile].</span></span> <span data-ttu-id="daeb6-121">以下是訂用帳戶設定檔的範例。</span><span class="sxs-lookup"><span data-stu-id="daeb6-121">Below is an example of a subscription profile.</span></span>
 
     <?xml version="1.0" encoding="utf-8"?>
 
@@ -63,56 +63,56 @@ ms.lasthandoff: 07/11/2017
 
     </PublishData>
 
-<span data-ttu-id="cdcfe-122">有了訂用帳戶設定檔後，請依照下列步驟來設定 Azure 從屬外掛程式。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-122">Once you have your subscription profile, follow these steps to configure the Azure slave plug-in.</span></span>
+<span data-ttu-id="daeb6-122">您的訂用帳戶設定檔之後，請遵循這些步驟 tooconfigure hello Azure 從屬外掛程式。</span><span class="sxs-lookup"><span data-stu-id="daeb6-122">Once you have your subscription profile, follow these steps tooconfigure hello Azure slave plug-in.</span></span>
 
-1. <span data-ttu-id="cdcfe-123">在 Hudson 儀表板中，按一下 [ **管理 Hudson**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-123">In the Hudson dashboard, click **Manage Hudson**.</span></span>
-2. <span data-ttu-id="cdcfe-124">按一下 [ **設定系統**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-124">Click **Configure System**.</span></span>
-3. <span data-ttu-id="cdcfe-125">向下捲動頁面來找出 [ **雲端** ] 區段。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-125">Scroll down the page to find the **Cloud** section.</span></span>
-4. <span data-ttu-id="cdcfe-126">按一下 [新增雲端 > Microsoft Azure]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-126">Click **Add new cloud > Microsoft Azure**.</span></span>
+1. <span data-ttu-id="daeb6-123">在 hello Hudson 儀表板，按一下 **管理 Hudson**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-123">In hello Hudson dashboard, click **Manage Hudson**.</span></span>
+2. <span data-ttu-id="daeb6-124">按一下 [ **設定系統**]。</span><span class="sxs-lookup"><span data-stu-id="daeb6-124">Click **Configure System**.</span></span>
+3. <span data-ttu-id="daeb6-125">捲動 hello 頁面 toofind hello**雲端**> 一節。</span><span class="sxs-lookup"><span data-stu-id="daeb6-125">Scroll down hello page toofind hello **Cloud** section.</span></span>
+4. <span data-ttu-id="daeb6-126">按一下 [新增雲端 > Microsoft Azure]。</span><span class="sxs-lookup"><span data-stu-id="daeb6-126">Click **Add new cloud > Microsoft Azure**.</span></span>
    
     ![新增雲端][add new cloud]
    
-    <span data-ttu-id="cdcfe-128">這會顯示一些欄位，您必須在其中輸入訂用帳戶的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-128">This will show the fields where you need to enter your subscription details.</span></span>
+    <span data-ttu-id="daeb6-128">這會顯示您的訂用帳戶詳細資料，您需要 tooenter hello 欄位。</span><span class="sxs-lookup"><span data-stu-id="daeb6-128">This will show hello fields where you need tooenter your subscription details.</span></span>
    
     ![設定設定檔][configure profile]
-5. <span data-ttu-id="cdcfe-130">從訂用帳戶設定檔中複製訂用帳戶 ID 和管理憑證，然後貼到適當的欄位。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-130">Copy the subscription id and management certificate from your subscription profile and paste them in the appropriate fields.</span></span>
+5. <span data-ttu-id="daeb6-130">複製您的訂用帳戶設定檔中的 hello 訂用帳戶識別碼和管理憑證，並將它們貼 hello 適當的欄位。</span><span class="sxs-lookup"><span data-stu-id="daeb6-130">Copy hello subscription id and management certificate from your subscription profile and paste them in hello appropriate fields.</span></span>
    
-    <span data-ttu-id="cdcfe-131">複製訂用帳戶 ID 和管理憑證時，請「勿」  將括住值的引號也包括進來。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-131">When copying the subscription id and management certificate, **do not** include the quotes that enclose the values.</span></span>
-6. <span data-ttu-id="cdcfe-132">按一下 [ **驗證組態**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-132">Click on **Verify configuration**.</span></span>
-7. <span data-ttu-id="cdcfe-133">成功驗證組態後，按一下 [ **儲存**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-133">When the configuration is verified successfully, click **Save**.</span></span>
+    <span data-ttu-id="daeb6-131">當複製 hello 訂用帳戶識別碼和管理憑證，**不**包含 hello 引號括住 hello 值。</span><span class="sxs-lookup"><span data-stu-id="daeb6-131">When copying hello subscription id and management certificate, **do not** include hello quotes that enclose hello values.</span></span>
+6. <span data-ttu-id="daeb6-132">按一下 [ **驗證組態**]。</span><span class="sxs-lookup"><span data-stu-id="daeb6-132">Click on **Verify configuration**.</span></span>
+7. <span data-ttu-id="daeb6-133">當成功驗證 hello 的設定時，按一下 **儲存**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-133">When hello configuration is verified successfully, click **Save**.</span></span>
 
-## <a name="set-up-a-virtual-machine-template-for-the-azure-slave-plug-in"></a><span data-ttu-id="cdcfe-134">設定 Azure 從屬外掛程式的虛擬機器範本</span><span class="sxs-lookup"><span data-stu-id="cdcfe-134">Set up a virtual machine template for the Azure Slave plug-in</span></span>
-<span data-ttu-id="cdcfe-135">虛擬機器範本會定義外掛程式用來在 Azure 上建立從屬節點的參數。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-135">A virtual machine template defines the parameters the plug-in will use to create a slave node on Azure.</span></span> <span data-ttu-id="cdcfe-136">在下列步驟中，我們將會建立 Ubuntu VM 的範本。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-136">In the following steps we'll be creating template for an Ubuntu VM.</span></span>
+## <a name="set-up-a-virtual-machine-template-for-hello-azure-slave-plug-in"></a><span data-ttu-id="daeb6-134">設定虛擬機器範本的 hello Azure 從屬外掛程式</span><span class="sxs-lookup"><span data-stu-id="daeb6-134">Set up a virtual machine template for hello Azure Slave plug-in</span></span>
+<span data-ttu-id="daeb6-135">虛擬機器範本可定義 hello 參數 hello 外掛程式會在 Azure 上使用 toocreate 從屬節點。</span><span class="sxs-lookup"><span data-stu-id="daeb6-135">A virtual machine template defines hello parameters hello plug-in will use toocreate a slave node on Azure.</span></span> <span data-ttu-id="daeb6-136">在下列步驟的 hello 我們將建立範本的 Ubuntu vm。</span><span class="sxs-lookup"><span data-stu-id="daeb6-136">In hello following steps we'll be creating template for an Ubuntu VM.</span></span>
 
-1. <span data-ttu-id="cdcfe-137">在 Hudson 儀表板中，按一下 [ **管理 Hudson**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-137">In the Hudson dashboard, click **Manage Hudson**.</span></span>
-2. <span data-ttu-id="cdcfe-138">按一下 [ **設定系統**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-138">Click on **Configure System**.</span></span>
-3. <span data-ttu-id="cdcfe-139">向下捲動頁面來找出 [ **雲端** ] 區段。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-139">Scroll down the page to find the **Cloud** section.</span></span>
-4. <span data-ttu-id="cdcfe-140">在 [雲端] 區段內，找到 [新增 Azure 虛擬機器範本]，然後按一下 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-140">Within the **Cloud** section, find **Add Azure Virtual Machine Template** and click the **Add** button.</span></span>
+1. <span data-ttu-id="daeb6-137">在 hello Hudson 儀表板，按一下 **管理 Hudson**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-137">In hello Hudson dashboard, click **Manage Hudson**.</span></span>
+2. <span data-ttu-id="daeb6-138">按一下 [ **設定系統**]。</span><span class="sxs-lookup"><span data-stu-id="daeb6-138">Click on **Configure System**.</span></span>
+3. <span data-ttu-id="daeb6-139">捲動 hello 頁面 toofind hello**雲端**> 一節。</span><span class="sxs-lookup"><span data-stu-id="daeb6-139">Scroll down hello page toofind hello **Cloud** section.</span></span>
+4. <span data-ttu-id="daeb6-140">Hello 內**雲端**區段中，尋找**加入 Azure 虛擬機器範本**按一下 hello**新增** 按鈕。</span><span class="sxs-lookup"><span data-stu-id="daeb6-140">Within hello **Cloud** section, find **Add Azure Virtual Machine Template** and click hello **Add** button.</span></span>
    
     ![新增 VM 範本][add vm template]
-5. <span data-ttu-id="cdcfe-142">在 [ **名稱** ] 欄位中，指定雲端服務名稱。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-142">Specify a cloud service name in the **Name** field.</span></span> <span data-ttu-id="cdcfe-143">如果您指定的名稱參照現有雲端服務，便會在該服務中佈建 VM。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-143">If the name you specify refers to an existing cloud service, the VM will be provisioned in that service.</span></span> <span data-ttu-id="cdcfe-144">否則，Azure 會建立一個新的。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-144">Otherwise, Azure will create a new one.</span></span>
-6. <span data-ttu-id="cdcfe-145">在 [ **說明** ] 欄位中，輸入您要建立之範本的說明文字。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-145">In the **Description** field, enter text that describes the template you are creating.</span></span> <span data-ttu-id="cdcfe-146">此資訊僅供記錄之用，並不會用於佈建 VM。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-146">This information is only for documentary purposes and is not used in provisioning a VM.</span></span>
-7. <span data-ttu-id="cdcfe-147">在 [標籤] 欄位中，輸入 **linux**。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-147">In the **Labels** field, enter **linux**.</span></span> <span data-ttu-id="cdcfe-148">此標籤可用來識別您要建立的範本，而且後續會用來在建立 Hudson 工作時參照範本。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-148">This label is used to identify the template you are creating and is subsequently used to reference the template when creating a Hudson job.</span></span>
-8. <span data-ttu-id="cdcfe-149">選取將要建立 VM 的區域。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-149">Select a region where the VM will be created.</span></span>
-9. <span data-ttu-id="cdcfe-150">選取適當的 VM 大小。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-150">Select the appropriate VM size.</span></span>
-10. <span data-ttu-id="cdcfe-151">指定將要建立 VM 的儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-151">Specify a storage account where the VM will be created.</span></span> <span data-ttu-id="cdcfe-152">請確定它與您將要使用的雲端服務位在相同的區域中。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-152">Make sure that it is in the same region as the cloud service you'll be using.</span></span> <span data-ttu-id="cdcfe-153">如果您想要建立新的儲存體，可以將此欄位保留空白。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-153">If you want new storage to be created, you can leave this field blank.</span></span>
-11. <span data-ttu-id="cdcfe-154">保留時間會指定 Hudson 要等待幾分鐘的時間才將閒置的從屬節點刪除。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-154">Retention time specifies the number of minutes before Hudson deletes an idle slave.</span></span> <span data-ttu-id="cdcfe-155">請讓此欄位保持使用預設值 60。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-155">Leave this at the default value of 60.</span></span>
-12. <span data-ttu-id="cdcfe-156">在 [ **使用量**] 中，選取將會使用此從屬節點的適當條件。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-156">In **Usage**, select the appropriate condition when this slave node will be used.</span></span> <span data-ttu-id="cdcfe-157">就目前的情況，請選取 [ **盡可能利用此節點**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-157">For now, select **Utilize this node as much as possible**.</span></span>
+5. <span data-ttu-id="daeb6-142">指定雲端服務名稱在 hello**名稱**欄位。</span><span class="sxs-lookup"><span data-stu-id="daeb6-142">Specify a cloud service name in hello **Name** field.</span></span> <span data-ttu-id="daeb6-143">如果您指定的 hello 名稱參考 tooan 現有雲端服務，hello VM 將會佈建該服務中。</span><span class="sxs-lookup"><span data-stu-id="daeb6-143">If hello name you specify refers tooan existing cloud service, hello VM will be provisioned in that service.</span></span> <span data-ttu-id="daeb6-144">否則，Azure 會建立一個新的。</span><span class="sxs-lookup"><span data-stu-id="daeb6-144">Otherwise, Azure will create a new one.</span></span>
+6. <span data-ttu-id="daeb6-145">在 hello**描述**欄位中，輸入您要建立 hello 範本的描述文字。</span><span class="sxs-lookup"><span data-stu-id="daeb6-145">In hello **Description** field, enter text that describes hello template you are creating.</span></span> <span data-ttu-id="daeb6-146">此資訊僅供記錄之用，並不會用於佈建 VM。</span><span class="sxs-lookup"><span data-stu-id="daeb6-146">This information is only for documentary purposes and is not used in provisioning a VM.</span></span>
+7. <span data-ttu-id="daeb6-147">在 hello**標籤**欄位中，輸入**linux**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-147">In hello **Labels** field, enter **linux**.</span></span> <span data-ttu-id="daeb6-148">此標籤是您要建立使用的 tooidentify hello 範本時，則後續使用的 tooreference hello 範本建立 Hudson 作業。</span><span class="sxs-lookup"><span data-stu-id="daeb6-148">This label is used tooidentify hello template you are creating and is subsequently used tooreference hello template when creating a Hudson job.</span></span>
+8. <span data-ttu-id="daeb6-149">選取建立 hello VM 所在的區域。</span><span class="sxs-lookup"><span data-stu-id="daeb6-149">Select a region where hello VM will be created.</span></span>
+9. <span data-ttu-id="daeb6-150">選取 hello 適當的 VM 大小。</span><span class="sxs-lookup"><span data-stu-id="daeb6-150">Select hello appropriate VM size.</span></span>
+10. <span data-ttu-id="daeb6-151">指定 hello VM 將會建立儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="daeb6-151">Specify a storage account where hello VM will be created.</span></span> <span data-ttu-id="daeb6-152">請確定它是在 hello 與 hello 雲端服務，您將使用相同的區域。</span><span class="sxs-lookup"><span data-stu-id="daeb6-152">Make sure that it is in hello same region as hello cloud service you'll be using.</span></span> <span data-ttu-id="daeb6-153">如果您想建立新的儲存體 toobe，您可以將此欄位保留空白。</span><span class="sxs-lookup"><span data-stu-id="daeb6-153">If you want new storage toobe created, you can leave this field blank.</span></span>
+11. <span data-ttu-id="daeb6-154">保留時間指定 hello Hudson 刪除閒置的從屬版本之前的分鐘數。</span><span class="sxs-lookup"><span data-stu-id="daeb6-154">Retention time specifies hello number of minutes before Hudson deletes an idle slave.</span></span> <span data-ttu-id="daeb6-155">將此設定保留 hello 預設值為 60。</span><span class="sxs-lookup"><span data-stu-id="daeb6-155">Leave this at hello default value of 60.</span></span>
+12. <span data-ttu-id="daeb6-156">在**使用量**，將會使用這個從屬節點時，選取 hello 適當的條件。</span><span class="sxs-lookup"><span data-stu-id="daeb6-156">In **Usage**, select hello appropriate condition when this slave node will be used.</span></span> <span data-ttu-id="daeb6-157">就目前的情況，請選取 [ **盡可能利用此節點**]。</span><span class="sxs-lookup"><span data-stu-id="daeb6-157">For now, select **Utilize this node as much as possible**.</span></span>
     
-     <span data-ttu-id="cdcfe-158">到目前為止，您的表單應該會與下圖類似：</span><span class="sxs-lookup"><span data-stu-id="cdcfe-158">At this point, your form would look somewhat similar to this:</span></span>
+     <span data-ttu-id="daeb6-158">此時，您的表單看起來可能有點像 toothis:</span><span class="sxs-lookup"><span data-stu-id="daeb6-158">At this point, your form would look somewhat similar toothis:</span></span>
     
      ![範本設定][template config]
-13. <span data-ttu-id="cdcfe-160">在 [ **映像系列或識別碼** ] 中，您必須指定要在您的 VM 上安裝的系統映像。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-160">In **Image Family or Id** you have to specify what system image will be installed on your VM.</span></span> <span data-ttu-id="cdcfe-161">您可以從映像系列清單中進行選取，或指定自訂映像。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-161">You can either select from a list of image families or specify a custom image.</span></span>
+13. <span data-ttu-id="daeb6-160">在**映像系列或識別碼**您有 toospecify 哪些系統映像將會安裝在您的 VM。</span><span class="sxs-lookup"><span data-stu-id="daeb6-160">In **Image Family or Id** you have toospecify what system image will be installed on your VM.</span></span> <span data-ttu-id="daeb6-161">您可以從映像系列清單中進行選取，或指定自訂映像。</span><span class="sxs-lookup"><span data-stu-id="daeb6-161">You can either select from a list of image families or specify a custom image.</span></span>
     
-     <span data-ttu-id="cdcfe-162">如果您想從映像系列清單中進行選取，請輸入映像系列名稱的第一個字元 (需區分大小寫)。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-162">If you want to select from a list of image families, enter the first character (case-sensitive) of the image family name.</span></span> <span data-ttu-id="cdcfe-163">例如，輸入 **U** 將會顯示 Ubuntu Server 系列的清單。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-163">For instance, typing **U** will bring up a list of Ubuntu Server families.</span></span> <span data-ttu-id="cdcfe-164">在從清單中進行選取後，Jenkins 將會在佈建 VM 時使用該系列的該系統映像的最新版本。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-164">Once you select from the list, Jenkins will use the latest version of that system image from that family when provisioning your VM.</span></span>
+     <span data-ttu-id="daeb6-162">如果您想 tooselect 從映像系列的清單，請輸入 hello 第一個字元 （區分大小寫） 的 hello 映像系列名稱。</span><span class="sxs-lookup"><span data-stu-id="daeb6-162">If you want tooselect from a list of image families, enter hello first character (case-sensitive) of hello image family name.</span></span> <span data-ttu-id="daeb6-163">例如，輸入 **U** 將會顯示 Ubuntu Server 系列的清單。</span><span class="sxs-lookup"><span data-stu-id="daeb6-163">For instance, typing **U** will bring up a list of Ubuntu Server families.</span></span> <span data-ttu-id="daeb6-164">一旦您選取從 hello 清單，Jenkins 將會使用該系統映像，從該系列 hello 最新版本，佈建 VM 時。</span><span class="sxs-lookup"><span data-stu-id="daeb6-164">Once you select from hello list, Jenkins will use hello latest version of that system image from that family when provisioning your VM.</span></span>
     
      ![作業系統系列清單][OS family list]
     
-     <span data-ttu-id="cdcfe-166">如果您想要改用自訂映像，請輸入該自訂映像的名稱。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-166">If you have a custom image that you want to use instead, enter the name of that custom image.</span></span> <span data-ttu-id="cdcfe-167">清單中不會顯示自訂映像名稱，因此您必須確實輸入正確的名稱。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-167">Custom image names are not shown in a list so you have to ensure that the name is entered correctly.</span></span>    
+     <span data-ttu-id="daeb6-166">如果您想 toouse 改用自訂影像，請輸入 hello 該自訂映像名稱。</span><span class="sxs-lookup"><span data-stu-id="daeb6-166">If you have a custom image that you want toouse instead, enter hello name of that custom image.</span></span> <span data-ttu-id="daeb6-167">自訂映像名稱不會顯示在清單中讓您擁有 hello 名稱的 tooensure 輸入正確。</span><span class="sxs-lookup"><span data-stu-id="daeb6-167">Custom image names are not shown in a list so you have tooensure that hello name is entered correctly.</span></span>    
     
-     <span data-ttu-id="cdcfe-168">針對此教學課程，請輸入 **U** 來顯示 Ubuntu 映像的\`清單，並選取 [Ubuntu Server 14.04 LTS]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-168">For this tutorial, type **U** to bring up a list of Ubuntu images and select **Ubuntu Server 14.04 LTS**.</span></span>
-14. <span data-ttu-id="cdcfe-169">在 [啟動方法] 中，選取 [SSH]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-169">For **Launch method**, select **SSH**.</span></span>
-15. <span data-ttu-id="cdcfe-170">複製下列指令碼並貼到 [ **Init 指令碼** ] 欄位。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-170">Copy the script below and paste in the **Init script** field.</span></span>
+     <span data-ttu-id="daeb6-168">此教學課程中，輸入**U** Ubuntu 映像，然後選取清單 toobring **Ubuntu Server 14.04 LTS**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-168">For this tutorial, type **U** toobring up a list of Ubuntu images and select **Ubuntu Server 14.04 LTS**.</span></span>
+14. <span data-ttu-id="daeb6-169">在 [啟動方法] 中，選取 [SSH]。</span><span class="sxs-lookup"><span data-stu-id="daeb6-169">For **Launch method**, select **SSH**.</span></span>
+15. <span data-ttu-id="daeb6-170">複製下列 hello 指令碼並貼上 hello**初始化指令碼**欄位。</span><span class="sxs-lookup"><span data-stu-id="daeb6-170">Copy hello script below and paste in hello **Init script** field.</span></span>
     
          # Install Java
     
@@ -136,22 +136,22 @@ ms.lasthandoff: 07/11/2017
     
          sudo apt-get install -y ant
     
-     <span data-ttu-id="cdcfe-171">[ **Init 指令碼** ] 就會在 VM 建立好之後執行。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-171">The **Init script** will be executed after the VM is created.</span></span> <span data-ttu-id="cdcfe-172">在此範例中，指令碼會安裝 Java、git 和 ant。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-172">In this example, the script installs Java, git, and ant.</span></span>
-16. <span data-ttu-id="cdcfe-173">在 [使用者名稱] 和 [密碼] 欄位中，針對將在 VM 上建立的系統管理員帳戶輸入偏好使用的值。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-173">In the **Username** and **Password** fields, enter your preferred values for the administrator account that will be created on your VM.</span></span>
-17. <span data-ttu-id="cdcfe-174">按一下 [ **驗證範本** ] 以檢查所指定的參數是否有效。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-174">Click on **Verify Template** to check if the parameters you specified are valid.</span></span>
-18. <span data-ttu-id="cdcfe-175">按一下 [ **儲存**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-175">Click on **Save**.</span></span>
+     <span data-ttu-id="daeb6-171">hello**初始化指令碼**hello 建立 VM 之後將會執行。</span><span class="sxs-lookup"><span data-stu-id="daeb6-171">hello **Init script** will be executed after hello VM is created.</span></span> <span data-ttu-id="daeb6-172">在此範例中，hello 指令碼安裝 Java、 git、 以及 ant。</span><span class="sxs-lookup"><span data-stu-id="daeb6-172">In this example, hello script installs Java, git, and ant.</span></span>
+16. <span data-ttu-id="daeb6-173">在 hello **Username**和**密碼**欄位中，輸入您慣用的值會在您的 VM 中建立的 hello 系統管理員帳戶。</span><span class="sxs-lookup"><span data-stu-id="daeb6-173">In hello **Username** and **Password** fields, enter your preferred values for hello administrator account that will be created on your VM.</span></span>
+17. <span data-ttu-id="daeb6-174">按一下**驗證範本**toocheck，如果您指定的 hello 參數都有效。</span><span class="sxs-lookup"><span data-stu-id="daeb6-174">Click on **Verify Template** toocheck if hello parameters you specified are valid.</span></span>
+18. <span data-ttu-id="daeb6-175">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="daeb6-175">Click on **Save**.</span></span>
 
-## <a name="create-a-hudson-job-that-runs-on-a-slave-node-on-azure"></a><span data-ttu-id="cdcfe-176">建立在 Azure 的從屬節點上執行的 Hudson 工作</span><span class="sxs-lookup"><span data-stu-id="cdcfe-176">Create a Hudson job that runs on a slave node on Azure</span></span>
-<span data-ttu-id="cdcfe-177">在本節中，您將建立在 Azure 的從屬節點上執行的 Hudson 工作。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-177">In this section, you'll be creating a Hudson task that will run on a slave node on Azure.</span></span>
+## <a name="create-a-hudson-job-that-runs-on-a-slave-node-on-azure"></a><span data-ttu-id="daeb6-176">建立在 Azure 的從屬節點上執行的 Hudson 工作</span><span class="sxs-lookup"><span data-stu-id="daeb6-176">Create a Hudson job that runs on a slave node on Azure</span></span>
+<span data-ttu-id="daeb6-177">在本節中，您將建立在 Azure 的從屬節點上執行的 Hudson 工作。</span><span class="sxs-lookup"><span data-stu-id="daeb6-177">In this section, you'll be creating a Hudson task that will run on a slave node on Azure.</span></span>
 
-1. <span data-ttu-id="cdcfe-178">在 Hudson 儀表板中，按一下 [ **新增工作**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-178">In the Hudson dashboard, click **New Job**.</span></span>
-2. <span data-ttu-id="cdcfe-179">輸入要建立之工作的名稱。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-179">Enter a name for the job you are creating.</span></span>
-3. <span data-ttu-id="cdcfe-180">針對工作類型選取 [ **建置自由樣式的軟體作業**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-180">For the job type, select **Build a free-style software job**.</span></span>
-4. <span data-ttu-id="cdcfe-181">按一下 [確定] 。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-181">Click **OK**.</span></span>
-5. <span data-ttu-id="cdcfe-182">在工作組態頁面中，選取 [ **限制可以執行這個專案的位置**]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-182">In the job configuration page, select **Restrict where this project can be run**.</span></span>
-6. <span data-ttu-id="cdcfe-183">選取 [節點和標籤功能表]，然後選取 [linux]\(上一節在建立虛擬機器範本時，我們指定了這個標籤)。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-183">Select **Node and label menu** and select **linux** (we specified this label when creating the virtual machine template in the previous section).</span></span>
-7. <span data-ttu-id="cdcfe-184">在 [組件] 區段中，按一下 [新增組件步驟]，然後選取 [執行殼層]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-184">In the **Build** section, click **Add build step** and select **Execute shell**.</span></span>
-8. <span data-ttu-id="cdcfe-185">編輯下列指令碼，將 **GitHub 帳戶名稱}**、**{專案名稱}** 和 **{專案目錄}** 替換為適當值，並在出現的文字區域中貼上編輯過的指令碼。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-185">Edit the following script, replacing **{your github account name}**, **{your project name}**, and **{your project directory}** with appropriate values, and paste the edited script in the text area that appears.</span></span>
+1. <span data-ttu-id="daeb6-178">在 hello Hudson 儀表板，按一下 **新工作**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-178">In hello Hudson dashboard, click **New Job**.</span></span>
+2. <span data-ttu-id="daeb6-179">輸入您要建立 hello 工作的名稱。</span><span class="sxs-lookup"><span data-stu-id="daeb6-179">Enter a name for hello job you are creating.</span></span>
+3. <span data-ttu-id="daeb6-180">Hello 作業類型 選取**組建可用樣式軟體工作**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-180">For hello job type, select **Build a free-style software job**.</span></span>
+4. <span data-ttu-id="daeb6-181">按一下 [確定] 。</span><span class="sxs-lookup"><span data-stu-id="daeb6-181">Click **OK**.</span></span>
+5. <span data-ttu-id="daeb6-182">在 hello 工作組態頁面上，選取 **限制可以執行這個專案**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-182">In hello job configuration page, select **Restrict where this project can be run**.</span></span>
+6. <span data-ttu-id="daeb6-183">選取**節點和標籤功能表**選取**linux** （hello 上一節中建立 hello 虛擬機器範本時，我們指定此標籤）。</span><span class="sxs-lookup"><span data-stu-id="daeb6-183">Select **Node and label menu** and select **linux** (we specified this label when creating hello virtual machine template in hello previous section).</span></span>
+7. <span data-ttu-id="daeb6-184">在 hello**建置**區段中，按一下**加入建置步驟**選取**執行殼層**。</span><span class="sxs-lookup"><span data-stu-id="daeb6-184">In hello **Build** section, click **Add build step** and select **Execute shell**.</span></span>
+8. <span data-ttu-id="daeb6-185">編輯下列指令碼、 取代 hello **{您 github 帳戶名稱}**， **{project name}**，和**{您的專案目錄}**與適當的值，並貼上 hello編輯指令碼中出現的 hello 文字區域。</span><span class="sxs-lookup"><span data-stu-id="daeb6-185">Edit hello following script, replacing **{your github account name}**, **{your project name}**, and **{your project directory}** with appropriate values, and paste hello edited script in hello text area that appears.</span></span>
    
         # Clone from git repo
    
@@ -169,25 +169,25 @@ ms.lasthandoff: 07/11/2017
    
         fi
    
-        # change directory to project
+        # change directory tooproject
    
         cd $currentDir/{your project directory}
    
         #Execute build task
    
         ant
-9. <span data-ttu-id="cdcfe-186">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-186">Click on **Save**.</span></span>
-10. <span data-ttu-id="cdcfe-187">在 Hudson 儀表板中，找到您剛才建立的工作，然後按一下 [ **排程組建** ] 圖示。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-187">In the Hudson dashboard, find the job you just created and click on the **Schedule a build** icon.</span></span>
+9. <span data-ttu-id="daeb6-186">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="daeb6-186">Click on **Save**.</span></span>
+10. <span data-ttu-id="daeb6-187">在 hello Hudson 儀表板，找出您剛才建立的 hello 作業，然後按一下 hello**排程組建**圖示。</span><span class="sxs-lookup"><span data-stu-id="daeb6-187">In hello Hudson dashboard, find hello job you just created and click on hello **Schedule a build** icon.</span></span>
 
-<span data-ttu-id="cdcfe-188">Hudson 就會使用上一節建立的範本建立從屬節點，並執行您針對這項工作指定於組建步驟中的指令碼。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-188">Hudson will then create a slave node using the template created in the previous section and execute the script you specified in the build step for this task.</span></span>
+<span data-ttu-id="daeb6-188">Hudson 接著會建立使用 hello 範本建立 hello 前一節中的從屬節點，並執行這項工作中的 hello 建置步驟中所指定的 hello 指令碼。</span><span class="sxs-lookup"><span data-stu-id="daeb6-188">Hudson will then create a slave node using hello template created in hello previous section and execute hello script you specified in hello build step for this task.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="cdcfe-189">後續步驟</span><span class="sxs-lookup"><span data-stu-id="cdcfe-189">Next Steps</span></span>
-<span data-ttu-id="cdcfe-190">如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。</span><span class="sxs-lookup"><span data-stu-id="cdcfe-190">For more information about using Azure with Java, see the [Azure Java Developer Center].</span></span>
+## <a name="next-steps"></a><span data-ttu-id="daeb6-189">後續步驟</span><span class="sxs-lookup"><span data-stu-id="daeb6-189">Next Steps</span></span>
+<span data-ttu-id="daeb6-190">如需有關使用 Azure 與 Java 的詳細資訊，請參閱 hello [Azure Java 開發人員中心]。</span><span class="sxs-lookup"><span data-stu-id="daeb6-190">For more information about using Azure with Java, see hello [Azure Java Developer Center].</span></span>
 
 <!-- URL List -->
 
-<span data-ttu-id="cdcfe-191">[Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/</span><span class="sxs-lookup"><span data-stu-id="cdcfe-191">[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/</span></span>
-<span data-ttu-id="cdcfe-192">[訂用帳戶設定檔]: http://go.microsoft.com/fwlink/?LinkID=396395</span><span class="sxs-lookup"><span data-stu-id="cdcfe-192">[subscription profile]: http://go.microsoft.com/fwlink/?LinkID=396395</span></span>
+[Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
+[訂用帳戶設定檔]: http://go.microsoft.com/fwlink/?LinkID=396395
 
 <!-- IMG List -->
 

@@ -1,6 +1,6 @@
 ---
-title: "如何檢視及變更雲端解決方案提供者的轉售商獎勵 | Microsoft Docs"
-description: "如何檢視及變更您的 CSP 轉銷商獎勵選擇"
+title: "aaaHow tooview 和變更 hello 雲端方案提供者的轉銷商 Incentive |Microsoft 文件"
+description: "如何 tooview 並變更您對 CSP 轉售商 Incentive 的選項"
 services: marketplace-publishing
 documentationcenter: na
 author: DavidBosland
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: DavidBosland
-ms.openlocfilehash: d6e6e13f352dea5c27939c39ecb8be97bf6990ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4702d0167c38d100755a872f9b23e49cc7a46ba2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="view-and-change-your-cloud-solution-provider-reseller-incentive-in-the-azure-marketplace"></a><span data-ttu-id="dc54a-103">在 Azure Marketplace 中檢視及變更雲端方案提供者「轉售商獎勵」</span><span class="sxs-lookup"><span data-stu-id="dc54a-103">View and change your Cloud Solution Provider "Reseller Incentive" in the Azure Marketplace</span></span>
-<span data-ttu-id="dc54a-104">2016 年 3 月 15 日，我們將提供雲端方案提供者 (CSP)「轉售商獎勵」給 Marketplace 發行者。</span><span class="sxs-lookup"><span data-stu-id="dc54a-104">On March 15, 2016 we'll make the Cloud Solution Providers (CSPs) “Reseller Incentive” available to Marketplace publishers.</span></span>  <span data-ttu-id="dc54a-105">這個獎勵值的預設設定為「是」 。</span><span class="sxs-lookup"><span data-stu-id="dc54a-105">The default setting for this incentive value is **Yes**.</span></span>  <span data-ttu-id="dc54a-106">身為發行者的您可以決定退出獎勵計畫。</span><span class="sxs-lookup"><span data-stu-id="dc54a-106">As a publisher you can decide to opt-out of the incentive program.</span></span>  <span data-ttu-id="dc54a-107">本文說明如何變更發行者設定檔中的設定來選擇退出。</span><span class="sxs-lookup"><span data-stu-id="dc54a-107">This article shows how to change the setting in your publisher profile so you can opt-out.</span></span>
+# <a name="view-and-change-your-cloud-solution-provider-reseller-incentive-in-hello-azure-marketplace"></a><span data-ttu-id="32f13-103">檢視及變更雲端方案提供者在 hello Azure Marketplace 中的 「 轉售商 Incentive"</span><span class="sxs-lookup"><span data-stu-id="32f13-103">View and change your Cloud Solution Provider "Reseller Incentive" in hello Azure Marketplace</span></span>
+<span data-ttu-id="32f13-104">我們將於 2016 年 3 月 15 日設 hello 雲端方案提供者 (Csp) 「 轉售商 Incentive"可用 tooMarketplace 發行者。</span><span class="sxs-lookup"><span data-stu-id="32f13-104">On March 15, 2016 we'll make hello Cloud Solution Providers (CSPs) “Reseller Incentive” available tooMarketplace publishers.</span></span>  <span data-ttu-id="32f13-105">hello 預設設定這個 incentive 值**是**。</span><span class="sxs-lookup"><span data-stu-id="32f13-105">hello default setting for this incentive value is **Yes**.</span></span>  <span data-ttu-id="32f13-106">為 「 發行者 」，您可以決定 tooopt 出 hello incentive 的程式。</span><span class="sxs-lookup"><span data-stu-id="32f13-106">As a publisher you can decide tooopt-out of hello incentive program.</span></span>  <span data-ttu-id="32f13-107">本文將說明在您的發行者 toochange hello 設定設定檔讓您可以退出。</span><span class="sxs-lookup"><span data-stu-id="32f13-107">This article shows how toochange hello setting in your publisher profile so you can opt-out.</span></span>
 
-<span data-ttu-id="dc54a-108">若要檢視或變更您的「轉售商獎勵」，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="dc54a-108">To view or change your “Reseller Incentive” status, follow these steps:</span></span>
+<span data-ttu-id="32f13-108">tooview 或變更您的 「 轉售商 Incentive 」 狀態，請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="32f13-108">tooview or change your “Reseller Incentive” status, follow these steps:</span></span>
 
-1. <span data-ttu-id="dc54a-109">登入您的 [Microsoft Azure 發佈帳戶](https://publish.windowsazure.com/workspace)</span><span class="sxs-lookup"><span data-stu-id="dc54a-109">Log in to your [Microsoft Azure Publishing account](https://publish.windowsazure.com/workspace)</span></span>
+1. <span data-ttu-id="32f13-109">登入 tooyour[發佈 Microsoft Azure 帳戶](https://publish.windowsazure.com/workspace)</span><span class="sxs-lookup"><span data-stu-id="32f13-109">Log in tooyour [Microsoft Azure Publishing account](https://publish.windowsazure.com/workspace)</span></span>
 
    ![設定檔登陸畫面][1]
-2. <span data-ttu-id="dc54a-111">按一下 [發行者] </span><span class="sxs-lookup"><span data-stu-id="dc54a-111">Click **Publishers**</span></span>
+2. <span data-ttu-id="32f13-111">按一下 [發行者] </span><span class="sxs-lookup"><span data-stu-id="32f13-111">Click **Publishers**</span></span>
 
    ![設定檔登陸畫面 - 發行者連結][2]
-3. <span data-ttu-id="dc54a-113">請注意設定檔中的 CSP 相關資訊。</span><span class="sxs-lookup"><span data-stu-id="dc54a-113">Notice the information in your profile about CSPs.</span></span>  <span data-ttu-id="dc54a-114">可以對「轉售商獎勵」 **表達是或否** - 預設狀態為「是」。</span><span class="sxs-lookup"><span data-stu-id="dc54a-114">There is a **switch to say yes or no** to the "Reseller Incentive" - the default status is “Yes.”</span></span>
+3. <span data-ttu-id="32f13-113">請注意 hello 資訊在您的設定檔中的 Csp。</span><span class="sxs-lookup"><span data-stu-id="32f13-113">Notice hello information in your profile about CSPs.</span></span>  <span data-ttu-id="32f13-114">沒有**切換 toosay yes 或 no** toohello 「 轉售商 Incentive"-hello 預設狀態為 [是]。</span><span class="sxs-lookup"><span data-stu-id="32f13-114">There is a **switch toosay yes or no** toohello "Reseller Incentive" - hello default status is “Yes.”</span></span>
 
    ![設定檔 - 發行者][3]
-4. <span data-ttu-id="dc54a-116">若要變更「轉售商獎勵」狀態，請存取您的發行者設定檔，然後選取並儲存您的選擇：</span><span class="sxs-lookup"><span data-stu-id="dc54a-116">To change your "Reseller Incentive" status access your Publisher Profile then select and save your choice:</span></span>
+4. <span data-ttu-id="32f13-116">toochange 「 轉售商 Incentive 」 狀態存取您的發行者設定檔，然後選取，並儲存您的選擇：</span><span class="sxs-lookup"><span data-stu-id="32f13-116">toochange your "Reseller Incentive" status access your Publisher Profile then select and save your choice:</span></span>
 
-   * <span data-ttu-id="dc54a-117">選取 [是]  表示對於轉售您在 Azure Marketplace 中陳列的應用程式和服務的 CSP，提供八折優惠。</span><span class="sxs-lookup"><span data-stu-id="dc54a-117">Select **Yes** to choose to provide the 20 percent discount to the CSPs who are reselling the applications and services you have listed in the Azure Marketplace.</span></span>  <span data-ttu-id="dc54a-118">或選取 [否]  退出此獎勵計畫。</span><span class="sxs-lookup"><span data-stu-id="dc54a-118">Or select **No** to opt out of this incentive program.</span></span>  <span data-ttu-id="dc54a-119">在任一種情況下，發行者都會收到相同的支付額。</span><span class="sxs-lookup"><span data-stu-id="dc54a-119">In either case the publisher receives the same payout.</span></span>
-   * <span data-ttu-id="dc54a-120">選擇之前，請記得按一下右上角的 [儲存]  。</span><span class="sxs-lookup"><span data-stu-id="dc54a-120">After you make a selection make sure you click **Save** in the upper right hand corner.</span></span>
+   * <span data-ttu-id="32f13-117">選取**是**toochoose tooprovide hello 20%折扣 toohello 充任 hello 應用程式和服務已列出 hello Azure Marketplace 中的 Csp。</span><span class="sxs-lookup"><span data-stu-id="32f13-117">Select **Yes** toochoose tooprovide hello 20 percent discount toohello CSPs who are reselling hello applications and services you have listed in hello Azure Marketplace.</span></span>  <span data-ttu-id="32f13-118">或選取**否**tooopt 此獎勵計畫。</span><span class="sxs-lookup"><span data-stu-id="32f13-118">Or select **No** tooopt out of this incentive program.</span></span>  <span data-ttu-id="32f13-119">在任一案例 hello 發行者接收 hello 相同支付額。</span><span class="sxs-lookup"><span data-stu-id="32f13-119">In either case hello publisher receives hello same payout.</span></span>
+   * <span data-ttu-id="32f13-120">之後您做選擇，請確定您按一下**儲存**hello 右上角。</span><span class="sxs-lookup"><span data-stu-id="32f13-120">After you make a selection make sure you click **Save** in hello upper right hand corner.</span></span>
 
    ![設定檔 - 發行者 - 變更方塊][4]
 

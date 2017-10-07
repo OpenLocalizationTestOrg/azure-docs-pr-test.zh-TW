@@ -1,6 +1,6 @@
 ---
 title: "教學課程：Azure Active Directory 與 Litmos 整合 | Microsoft Docs"
-description: "了解如何設定 Azure Active Directory 與 Litmos 之間的單一登入。"
+description: "了解 tooconfigure 的單一登入 Azure Active Directory 與 Litmos 之間。"
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,265 +14,265 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jeedes
-ms.openlocfilehash: ef1b5860ba0a406022bbd11afb366d14bee2c57d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 026fd10058760f2d63d185ef4aa9d7de3b82525e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-litmos"></a><span data-ttu-id="5214f-103">教學課程：Azure Active Directory 與 Litmos 整合</span><span class="sxs-lookup"><span data-stu-id="5214f-103">Tutorial: Azure Active Directory integration with Litmos</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-litmos"></a><span data-ttu-id="a1a26-103">教學課程：Azure Active Directory 與 Litmos 整合</span><span class="sxs-lookup"><span data-stu-id="a1a26-103">Tutorial: Azure Active Directory integration with Litmos</span></span>
 
-<span data-ttu-id="5214f-104">在本教學課程中，您會了解如何整合 Litmos 與 Azure Active Directory (Azure AD)。</span><span class="sxs-lookup"><span data-stu-id="5214f-104">In this tutorial, you learn how to integrate Litmos with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="a1a26-104">在此教學課程中，您學會如何 toointegrate Litmos 與 Azure Active Directory (Azure AD)。</span><span class="sxs-lookup"><span data-stu-id="a1a26-104">In this tutorial, you learn how toointegrate Litmos with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="5214f-105">將 Litmos 與 Azure AD 整合可提供下列優點：</span><span class="sxs-lookup"><span data-stu-id="5214f-105">Integrating Litmos with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="a1a26-105">與 Azure AD 整合 Litmos 可以提供下列優點 hello:</span><span class="sxs-lookup"><span data-stu-id="a1a26-105">Integrating Litmos with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="5214f-106">您可以在 Azure AD 中控制可存取 Litmos 的人員。</span><span class="sxs-lookup"><span data-stu-id="5214f-106">You can control in Azure AD who has access to Litmos.</span></span>
-- <span data-ttu-id="5214f-107">您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Litmos (單一登入)。</span><span class="sxs-lookup"><span data-stu-id="5214f-107">You can enable your users to automatically get signed-on to Litmos (Single Sign-On) with their Azure AD accounts.</span></span>
-- <span data-ttu-id="5214f-108">您可以在 Azure 入口網站中集中管理您的帳戶。</span><span class="sxs-lookup"><span data-stu-id="5214f-108">You can manage your accounts in one central location - the Azure portal.</span></span>
+- <span data-ttu-id="a1a26-106">您可以控制存取 tooLitmos Azure AD 中。</span><span class="sxs-lookup"><span data-stu-id="a1a26-106">You can control in Azure AD who has access tooLitmos.</span></span>
+- <span data-ttu-id="a1a26-107">您可以啟用您的使用者 tooautomatically get 登入 tooLitmos （單一登入） 具有其 Azure AD 帳戶。</span><span class="sxs-lookup"><span data-stu-id="a1a26-107">You can enable your users tooautomatically get signed-on tooLitmos (Single Sign-On) with their Azure AD accounts.</span></span>
+- <span data-ttu-id="a1a26-108">您可以管理您的帳戶，在單一中央位置-hello Azure 入口網站。</span><span class="sxs-lookup"><span data-stu-id="a1a26-108">You can manage your accounts in one central location - hello Azure portal.</span></span>
 
-<span data-ttu-id="5214f-109">如果您想要了解有關 SaaS 應用程式與 Azure AD 之整合的更多詳細資料，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。</span><span class="sxs-lookup"><span data-stu-id="5214f-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="a1a26-109">如果您想 tooknow 詳細與 Azure AD SaaS 應用程式整合，請參閱[什麼是應用程式存取和單一登入與 Azure Active Directory](active-directory-appssoaccess-whatis.md)。</span><span class="sxs-lookup"><span data-stu-id="a1a26-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="5214f-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="5214f-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="a1a26-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="a1a26-110">Prerequisites</span></span>
 
-<span data-ttu-id="5214f-111">若要設定 Azure AD 與 Litmos 整合，您需要下列項目：</span><span class="sxs-lookup"><span data-stu-id="5214f-111">To configure Azure AD integration with Litmos, you need the following items:</span></span>
+<span data-ttu-id="a1a26-111">tooconfigure Litmos 與 Azure AD 整合，您需要下列項目 hello:</span><span class="sxs-lookup"><span data-stu-id="a1a26-111">tooconfigure Azure AD integration with Litmos, you need hello following items:</span></span>
 
-- <span data-ttu-id="5214f-112">Azure AD 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="5214f-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="5214f-113">啟用 Litmos 單一登入的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="5214f-113">A Litmos single sign-on enabled subscription</span></span>
+- <span data-ttu-id="a1a26-112">Azure AD 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="a1a26-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="a1a26-113">啟用 Litmos 單一登入的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="a1a26-113">A Litmos single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="5214f-114">若要測試本教學課程中的步驟，我們不建議使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="5214f-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="a1a26-114">本教學課程中的步驟 tootest hello，不建議使用實際執行環境。</span><span class="sxs-lookup"><span data-stu-id="a1a26-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="5214f-115">若要測試本教學課程中的步驟，您應該遵循這些建議：</span><span class="sxs-lookup"><span data-stu-id="5214f-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="a1a26-115">在本教學課程 tootest hello 步驟，您應該遵循這些建議：</span><span class="sxs-lookup"><span data-stu-id="a1a26-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="5214f-116">除非必要，否則請勿使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="5214f-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="5214f-117">如果您沒有 Azure AD 試用環境，您可以[取得一個月試用](https://azure.microsoft.com/pricing/free-trial/)。</span><span class="sxs-lookup"><span data-stu-id="5214f-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="a1a26-116">除非必要，否則請勿使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="a1a26-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="a1a26-117">如果您沒有 Azure AD 試用環境，您可以[取得一個月試用](https://azure.microsoft.com/pricing/free-trial/)。</span><span class="sxs-lookup"><span data-stu-id="a1a26-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="5214f-118">案例描述</span><span class="sxs-lookup"><span data-stu-id="5214f-118">Scenario description</span></span>
-<span data-ttu-id="5214f-119">在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="5214f-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="5214f-120">本教學課程中說明的案例由二個主要建置組塊組成：</span><span class="sxs-lookup"><span data-stu-id="5214f-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="a1a26-118">案例描述</span><span class="sxs-lookup"><span data-stu-id="a1a26-118">Scenario description</span></span>
+<span data-ttu-id="a1a26-119">在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="a1a26-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="a1a26-120">本教學課程所述的 hello 案例包含兩個主要建置組塊：</span><span class="sxs-lookup"><span data-stu-id="a1a26-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="5214f-121">從資源庫加入 Litmos</span><span class="sxs-lookup"><span data-stu-id="5214f-121">Adding Litmos from the gallery</span></span>
-2. <span data-ttu-id="5214f-122">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="5214f-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="a1a26-121">從 hello 圖庫加入 Litmos</span><span class="sxs-lookup"><span data-stu-id="a1a26-121">Adding Litmos from hello gallery</span></span>
+2. <span data-ttu-id="a1a26-122">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="a1a26-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-litmos-from-the-gallery"></a><span data-ttu-id="5214f-123">從資源庫加入 Litmos</span><span class="sxs-lookup"><span data-stu-id="5214f-123">Adding Litmos from the gallery</span></span>
-<span data-ttu-id="5214f-124">若要設定將 Litmos 整合到 Azure AD 中，您需要從資源庫將 Litmos 新增到受管理的 SaaS 應用程式清單。</span><span class="sxs-lookup"><span data-stu-id="5214f-124">To configure the integration of Litmos into Azure AD, you need to add Litmos from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-litmos-from-hello-gallery"></a><span data-ttu-id="a1a26-123">從 hello 圖庫加入 Litmos</span><span class="sxs-lookup"><span data-stu-id="a1a26-123">Adding Litmos from hello gallery</span></span>
+<span data-ttu-id="a1a26-124">tooconfigure hello 整合 Litmos 到 Azure AD，您需要 tooadd Litmos hello 圖庫 tooyour 清單中的受管理的 SaaS 應用程式。</span><span class="sxs-lookup"><span data-stu-id="a1a26-124">tooconfigure hello integration of Litmos into Azure AD, you need tooadd Litmos from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="5214f-125">**若要從資源庫新增 Litmos，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="5214f-125">**To add Litmos from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="a1a26-125">**tooadd Litmos 從 hello 組件庫中，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="a1a26-125">**tooadd Litmos from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="5214f-126">在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。</span><span class="sxs-lookup"><span data-stu-id="5214f-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="a1a26-126">在 hello  **[Azure 入口網站](https://portal.azure.com)**，請在 hello 左邊的導覽面板中按一下**Azure Active Directory**圖示。</span><span class="sxs-lookup"><span data-stu-id="a1a26-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
-    ![Azure Active Directory 按鈕][1]
+    ![hello Azure Active Directory 按鈕][1]
 
-2. <span data-ttu-id="5214f-128">瀏覽至 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="5214f-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="5214f-129">然後移至 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="5214f-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="a1a26-128">瀏覽過**企業應用程式**。</span><span class="sxs-lookup"><span data-stu-id="a1a26-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="a1a26-129">然後跳過**所有應用程式**。</span><span class="sxs-lookup"><span data-stu-id="a1a26-129">Then go too**All applications**.</span></span>
 
-    ![企業應用程式刀鋒視窗][2]
+    ![hello 企業應用程式 刀鋒視窗][2]
     
-3. <span data-ttu-id="5214f-131">若要新增新的應用程式，請按一下對話方塊頂端的 [新增應用程式] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="5214f-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="a1a26-131">tooadd 新應用程式中，按一下 **新的應用程式**上 hello 對話方塊上方的按鈕。</span><span class="sxs-lookup"><span data-stu-id="a1a26-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
-    ![新增應用程式按鈕][3]
+    ![hello 新應用程式按鈕][3]
 
-4. <span data-ttu-id="5214f-133">在搜尋方塊中，輸入 **Litmos**，從結果面板中選取 [Litmos]，然後按一下 [新增] 按鈕以新增應用程式。</span><span class="sxs-lookup"><span data-stu-id="5214f-133">In the search box, type **Litmos**, select **Litmos** from result panel then click **Add** button to add the application.</span></span>
+4. <span data-ttu-id="a1a26-133">在 hello 搜尋方塊中，輸入**Litmos**，選取**Litmos**然後按一下 從結果面板**新增**按鈕 tooadd hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="a1a26-133">In hello search box, type **Litmos**, select **Litmos** from result panel then click **Add** button tooadd hello application.</span></span>
 
-    ![結果清單中的 Litmos](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_addfromgallery.png)
+    ![Litmos hello [結果] 清單中](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_addfromgallery.png)
 
-## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="5214f-135">設定和測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="5214f-135">Configure and test Azure AD single sign-on</span></span>
+## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="a1a26-135">設定和測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="a1a26-135">Configure and test Azure AD single sign-on</span></span>
 
-<span data-ttu-id="5214f-136">在本節中，您會以名為 "Britta Simon" 的測試使用者身分，設定及測試與 Litmos 搭配運作的 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="5214f-136">In this section, you configure and test Azure AD single sign-on with Litmos based on a test user called "Britta Simon".</span></span>
+<span data-ttu-id="a1a26-136">在本節中，您會以名為 "Britta Simon" 的測試使用者身分，設定及測試與 Litmos 搭配運作的 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="a1a26-136">In this section, you configure and test Azure AD single sign-on with Litmos based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="5214f-137">若要讓單一登入運作，Azure AD 必須知道 Litmos 與 Azure AD 中互相對應的使用者。</span><span class="sxs-lookup"><span data-stu-id="5214f-137">For single sign-on to work, Azure AD needs to know what the counterpart user in Litmos is to a user in Azure AD.</span></span> <span data-ttu-id="5214f-138">換句話說，必須在 Azure AD 使用者與 Litmos 中的相關使用者之間，建立連結關聯性。</span><span class="sxs-lookup"><span data-stu-id="5214f-138">In other words, a link relationship between an Azure AD user and the related user in Litmos needs to be established.</span></span>
+<span data-ttu-id="a1a26-137">單一登入 toowork，Azure AD 需要 tooknow hello 的對等項目的使用者中 Litmos 是 tooa 使用者在 Azure AD 中。</span><span class="sxs-lookup"><span data-stu-id="a1a26-137">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Litmos is tooa user in Azure AD.</span></span> <span data-ttu-id="a1a26-138">換句話說，Azure AD 使用者與 hello Litmos 中相關的使用者之間的連結關聯性需要 toobe 建立。</span><span class="sxs-lookup"><span data-stu-id="a1a26-138">In other words, a link relationship between an Azure AD user and hello related user in Litmos needs toobe established.</span></span>
 
-<span data-ttu-id="5214f-139">在 Litmos 中，將 Azure AD 中**使用者名稱**的值指派為 **Username** 的值，以建立連結關聯性。</span><span class="sxs-lookup"><span data-stu-id="5214f-139">In Litmos, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="a1a26-139">Litmos 中, 指派的 hello hello 值**使用者名**做為 hello hello 值的 Azure AD 中**Username** tooestablish hello 連結關聯性。</span><span class="sxs-lookup"><span data-stu-id="a1a26-139">In Litmos, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="5214f-140">若要設定及測試與 Litmos 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：</span><span class="sxs-lookup"><span data-stu-id="5214f-140">To configure and test Azure AD single sign-on with Litmos, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="a1a26-140">tooconfigure 及 Litmos 與 Azure AD 單一登入的測試，您必須遵循的建置組塊 toocomplete hello:</span><span class="sxs-lookup"><span data-stu-id="a1a26-140">tooconfigure and test Azure AD single sign-on with Litmos, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="5214f-141">**[設定 Azure AD 單一登入](#configure-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。</span><span class="sxs-lookup"><span data-stu-id="5214f-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="5214f-142">**[建立 Azure AD 測試使用者](#create-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="5214f-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="5214f-143">**[建立 Litmos 測試使用者](#create-a-litmos-test-user)** - 使 Litmos 中對應的 Britta Simon 連結到該使用者在 Azure AD 中的代表項目。</span><span class="sxs-lookup"><span data-stu-id="5214f-143">**[Create a Litmos test user](#create-a-litmos-test-user)** - to have a counterpart of Britta Simon in Litmos that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="5214f-144">**[指派 Azure AD 測試使用者](#assign-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="5214f-144">**[Assign the Azure AD test user](#assign-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="5214f-145">**[測試單一登入](#test-single-sign-on)**，驗證組態是否能運作。</span><span class="sxs-lookup"><span data-stu-id="5214f-145">**[Test single sign-on](#test-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="a1a26-141">**[設定 Azure AD 單一登入](#configure-azure-ad-single-sign-on)** -tooenable 使用者 toouse 這項功能。</span><span class="sxs-lookup"><span data-stu-id="a1a26-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="a1a26-142">**[建立 Azure AD 的測試使用者](#create-an-azure-ad-test-user)** -tootest Azure AD 單一登入與許 Simon。</span><span class="sxs-lookup"><span data-stu-id="a1a26-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="a1a26-143">**[建立測試使用者 Litmos](#create-a-litmos-test-user)**  -toohave 許 Simon Litmos 所連結的 toohello Azure AD 使用者表示法中對應項目。</span><span class="sxs-lookup"><span data-stu-id="a1a26-143">**[Create a Litmos test user](#create-a-litmos-test-user)** - toohave a counterpart of Britta Simon in Litmos that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="a1a26-144">**[指派給 Azure AD hello 測試使用者](#assign-the-azure-ad-test-user)** -tooenable 許 Simon toouse Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="a1a26-144">**[Assign hello Azure AD test user](#assign-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="a1a26-145">**[測試單一登入](#test-single-sign-on)** -tooverify 是否 hello 組態工作。</span><span class="sxs-lookup"><span data-stu-id="a1a26-145">**[Test single sign-on](#test-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="5214f-146">設定 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="5214f-146">Configure Azure AD single sign-on</span></span>
+### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="a1a26-146">設定 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="a1a26-146">Configure Azure AD single sign-on</span></span>
 
-<span data-ttu-id="5214f-147">在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，並在您的 Litmos 應用程式中設定單一登入。</span><span class="sxs-lookup"><span data-stu-id="5214f-147">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Litmos application.</span></span>
+<span data-ttu-id="a1a26-147">在本節中，您可以啟用 Azure AD 單一登入 hello Azure 入口網站中，並 Litmos 應用程式中設定單一登入。</span><span class="sxs-lookup"><span data-stu-id="a1a26-147">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Litmos application.</span></span>
 
-<span data-ttu-id="5214f-148">**若要設定與 Litmos 搭配運作的 Azure AD 單一登入，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="5214f-148">**To configure Azure AD single sign-on with Litmos, perform the following steps:**</span></span>
+<span data-ttu-id="a1a26-148">**tooconfigure Azure AD 單一登入與 Litmos，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="a1a26-148">**tooconfigure Azure AD single sign-on with Litmos, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="5214f-149">在 Azure 入口網站的 [Litmos] 應用程式整合頁面上，按一下 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="5214f-149">In the Azure portal, on the **Litmos** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="a1a26-149">在 Azure 入口網站上 hello hello **Litmos**應用程式整合頁面上，按一下 **單一登入**。</span><span class="sxs-lookup"><span data-stu-id="a1a26-149">In hello Azure portal, on hello **Litmos** application integration page, click **Single sign-on**.</span></span>
 
     ![設定單一登入連結][4]
 
-2. <span data-ttu-id="5214f-151">在 [單一登入] 對話方塊上，於 [模式] 選取 [SAML 登入]，以啟用單一登入。</span><span class="sxs-lookup"><span data-stu-id="5214f-151">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="a1a26-151">在 hello**單一登入**對話方塊中，選取**模式**為**SAML 型登入**tooenable 單一登入。</span><span class="sxs-lookup"><span data-stu-id="a1a26-151">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![單一登入對話方塊](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_samlbase.png)
 
-3. <span data-ttu-id="5214f-153">在 [Litmos 網域及 URL] 區段中，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="5214f-153">On the **Litmos Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="a1a26-153">在 hello **Litmos 網域和 Url**區段中，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="a1a26-153">On hello **Litmos Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Litmos 網域及 URL 單一登入資訊](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_url.png)
 
-    <span data-ttu-id="5214f-155">a.</span><span class="sxs-lookup"><span data-stu-id="5214f-155">a.</span></span> <span data-ttu-id="5214f-156">在 [識別碼] 文字方塊中，使用下列模式輸入 URL：`https://<companyname>.litmos.com/account/Login`</span><span class="sxs-lookup"><span data-stu-id="5214f-156">In the **Identifier** textbox, type a URL using the following pattern: `https://<companyname>.litmos.com/account/Login`</span></span>
+    <span data-ttu-id="a1a26-155">a.</span><span class="sxs-lookup"><span data-stu-id="a1a26-155">a.</span></span> <span data-ttu-id="a1a26-156">在 hello**識別碼**文字方塊中，輸入 URL，使用下列模式的 hello:`https://<companyname>.litmos.com/account/Login`</span><span class="sxs-lookup"><span data-stu-id="a1a26-156">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<companyname>.litmos.com/account/Login`</span></span>
 
-    <span data-ttu-id="5214f-157">b.</span><span class="sxs-lookup"><span data-stu-id="5214f-157">b.</span></span> <span data-ttu-id="5214f-158">在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<companyname>.litmos.com/integration/samllogin`</span><span class="sxs-lookup"><span data-stu-id="5214f-158">In the **Reply URL** textbox, type a URL using the following pattern: `https://<companyname>.litmos.com/integration/samllogin`</span></span>
+    <span data-ttu-id="a1a26-157">b.</span><span class="sxs-lookup"><span data-stu-id="a1a26-157">b.</span></span> <span data-ttu-id="a1a26-158">在 hello**回覆 URL**文字方塊中，輸入 URL，使用下列模式的 hello:`https://<companyname>.litmos.com/integration/samllogin`</span><span class="sxs-lookup"><span data-stu-id="a1a26-158">In hello **Reply URL** textbox, type a URL using hello following pattern: `https://<companyname>.litmos.com/integration/samllogin`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="5214f-159">這些都不是真正的值。</span><span class="sxs-lookup"><span data-stu-id="5214f-159">These values are not real.</span></span> <span data-ttu-id="5214f-160">請使用實際的「識別碼」及「回覆 URL」來更新這些值 (本教學課程稍後會說明)，或連絡 [Litmos 支援小組](https://www.litmos.com/contact-us/)以取得這些值。</span><span class="sxs-lookup"><span data-stu-id="5214f-160">Update these values with the actual Identifier and Reply URL, which are explained later in tutorial or contact [Litmos support team](https://www.litmos.com/contact-us/) to get these values.</span></span>
+    > <span data-ttu-id="a1a26-159">這些都不是真正的值。</span><span class="sxs-lookup"><span data-stu-id="a1a26-159">These values are not real.</span></span> <span data-ttu-id="a1a26-160">這些值以 hello 實際識別項和回覆 URL 更新，稍後在教學課程中或連絡說明[Litmos 支援小組](https://www.litmos.com/contact-us/)tooget 這些值。</span><span class="sxs-lookup"><span data-stu-id="a1a26-160">Update these values with hello actual Identifier and Reply URL, which are explained later in tutorial or contact [Litmos support team](https://www.litmos.com/contact-us/) tooget these values.</span></span>
 
-4. <span data-ttu-id="5214f-161">在 [SAML 簽署憑證] 區段上，按一下 [憑證 (Base64)]，然後將憑證檔案儲存在您的電腦上。</span><span class="sxs-lookup"><span data-stu-id="5214f-161">On the **SAML Signing Certificate** section, click **Certificate(Base64)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="a1a26-161">在 hello **SAML 簽章憑證**區段中，按一下**Certificate(Base64)**然後儲存您的電腦上的 hello 憑證檔案。</span><span class="sxs-lookup"><span data-stu-id="a1a26-161">On hello **SAML Signing Certificate** section, click **Certificate(Base64)** and then save hello certificate file on your computer.</span></span>
 
-    ![憑證下載連結](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_certificate.png)
+    ![hello 憑證下載連結](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_certificate.png)
 
-5. <span data-ttu-id="5214f-163">進行設定時，您需要為 Litmos 應用程式自訂 [SAML Token 屬性]  。</span><span class="sxs-lookup"><span data-stu-id="5214f-163">As part of the configuration, you need to customize the **SAML Token Attributes** for your Litmos application.</span></span>
+5. <span data-ttu-id="a1a26-163">Hello 組態的一部分，您需要 toocustomize hello **SAML 權杖屬性**Litmos 應用程式。</span><span class="sxs-lookup"><span data-stu-id="a1a26-163">As part of hello configuration, you need toocustomize hello **SAML Token Attributes** for your Litmos application.</span></span>
 
     ![屬性區段](./media/active-directory-saas-litmos-tutorial/tutorial_attribute.png)
            
-    | <span data-ttu-id="5214f-165">屬性名稱</span><span class="sxs-lookup"><span data-stu-id="5214f-165">Attribute Name</span></span>   | <span data-ttu-id="5214f-166">屬性值</span><span class="sxs-lookup"><span data-stu-id="5214f-166">Attribute Value</span></span> |   
+    | <span data-ttu-id="a1a26-165">屬性名稱</span><span class="sxs-lookup"><span data-stu-id="a1a26-165">Attribute Name</span></span>   | <span data-ttu-id="a1a26-166">屬性值</span><span class="sxs-lookup"><span data-stu-id="a1a26-166">Attribute Value</span></span> |   
     | ---------------  | ----------------|
-    | <span data-ttu-id="5214f-167">名字</span><span class="sxs-lookup"><span data-stu-id="5214f-167">FirstName</span></span> |<span data-ttu-id="5214f-168">user.givenname</span><span class="sxs-lookup"><span data-stu-id="5214f-168">user.givenname</span></span> |
-    | <span data-ttu-id="5214f-169">姓氏</span><span class="sxs-lookup"><span data-stu-id="5214f-169">LastName</span></span>  |<span data-ttu-id="5214f-170">user.surname</span><span class="sxs-lookup"><span data-stu-id="5214f-170">user.surname</span></span> |
-    | <span data-ttu-id="5214f-171">電子郵件</span><span class="sxs-lookup"><span data-stu-id="5214f-171">Email</span></span> |<span data-ttu-id="5214f-172">user.mail</span><span class="sxs-lookup"><span data-stu-id="5214f-172">user.mail</span></span> |
+    | <span data-ttu-id="a1a26-167">名字</span><span class="sxs-lookup"><span data-stu-id="a1a26-167">FirstName</span></span> |<span data-ttu-id="a1a26-168">user.givenname</span><span class="sxs-lookup"><span data-stu-id="a1a26-168">user.givenname</span></span> |
+    | <span data-ttu-id="a1a26-169">姓氏</span><span class="sxs-lookup"><span data-stu-id="a1a26-169">LastName</span></span>  |<span data-ttu-id="a1a26-170">user.surname</span><span class="sxs-lookup"><span data-stu-id="a1a26-170">user.surname</span></span> |
+    | <span data-ttu-id="a1a26-171">電子郵件</span><span class="sxs-lookup"><span data-stu-id="a1a26-171">Email</span></span> |<span data-ttu-id="a1a26-172">user.mail</span><span class="sxs-lookup"><span data-stu-id="a1a26-172">user.mail</span></span> |
 
-    <span data-ttu-id="5214f-173">a.</span><span class="sxs-lookup"><span data-stu-id="5214f-173">a.</span></span> <span data-ttu-id="5214f-174">按一下 [新增屬性] 來開啟 [新增屬性] 對話方塊。</span><span class="sxs-lookup"><span data-stu-id="5214f-174">Click **Add attribute** to open the **Add Attribute** dialog.</span></span>
+    <span data-ttu-id="a1a26-173">a.</span><span class="sxs-lookup"><span data-stu-id="a1a26-173">a.</span></span> <span data-ttu-id="a1a26-174">按一下**加入屬性**tooopen hello**加入屬性**對話方塊。</span><span class="sxs-lookup"><span data-stu-id="a1a26-174">Click **Add attribute** tooopen hello **Add Attribute** dialog.</span></span>
 
     ![新增屬性](./media/active-directory-saas-litmos-tutorial/tutorial_attribute_04.png)
 
     ![新增屬性對話方塊](./media/active-directory-saas-litmos-tutorial/tutorial_attribute_05.png)
 
-    <span data-ttu-id="5214f-177">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="5214f-177">b.</span></span> <span data-ttu-id="5214f-178">在 [名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。</span><span class="sxs-lookup"><span data-stu-id="5214f-178">In the **Name** textbox, type the attribute name shown for that row.</span></span>
+    <span data-ttu-id="a1a26-177">b.</span><span class="sxs-lookup"><span data-stu-id="a1a26-177">b.</span></span> <span data-ttu-id="a1a26-178">在 hello**名稱**文字方塊中，該資料列所顯示的型別 hello 屬性名稱。</span><span class="sxs-lookup"><span data-stu-id="a1a26-178">In hello **Name** textbox, type hello attribute name shown for that row.</span></span>
 
-    <span data-ttu-id="5214f-179">c.</span><span class="sxs-lookup"><span data-stu-id="5214f-179">c.</span></span> <span data-ttu-id="5214f-180">在 [值] 清單中，選取該列所顯示的值。</span><span class="sxs-lookup"><span data-stu-id="5214f-180">From the **Value** list, type the attribute value shown for that row.</span></span>
+    <span data-ttu-id="a1a26-179">c.</span><span class="sxs-lookup"><span data-stu-id="a1a26-179">c.</span></span> <span data-ttu-id="a1a26-180">從 hello**值**清單，顯示該資料列的型別 hello 屬性值。</span><span class="sxs-lookup"><span data-stu-id="a1a26-180">From hello **Value** list, type hello attribute value shown for that row.</span></span>
     
-    <span data-ttu-id="5214f-181">d.</span><span class="sxs-lookup"><span data-stu-id="5214f-181">d.</span></span> <span data-ttu-id="5214f-182">按一下 [確定] 。</span><span class="sxs-lookup"><span data-stu-id="5214f-182">Click **Ok**.</span></span>     
+    <span data-ttu-id="a1a26-181">d.</span><span class="sxs-lookup"><span data-stu-id="a1a26-181">d.</span></span> <span data-ttu-id="a1a26-182">按一下 [確定] 。</span><span class="sxs-lookup"><span data-stu-id="a1a26-182">Click **Ok**.</span></span>     
 
-6. <span data-ttu-id="5214f-183">按一下 [儲存]  按鈕。</span><span class="sxs-lookup"><span data-stu-id="5214f-183">Click **Save** button.</span></span>
+6. <span data-ttu-id="a1a26-183">按一下 [儲存]  按鈕。</span><span class="sxs-lookup"><span data-stu-id="a1a26-183">Click **Save** button.</span></span>
 
     ![設定單一登入儲存按鈕](./media/active-directory-saas-litmos-tutorial/tutorial_general_400.png)
 
-7. <span data-ttu-id="5214f-185">在不同的瀏覽器視窗中，以系統管理員身分登入您的 Litmos 公司網站。</span><span class="sxs-lookup"><span data-stu-id="5214f-185">In a different browser window, sign-on to your Litmos company site as administrator.</span></span>
+7. <span data-ttu-id="a1a26-185">在不同的瀏覽器視窗中，以系統管理員身分登入 tooyour Litmos 公司網站。</span><span class="sxs-lookup"><span data-stu-id="a1a26-185">In a different browser window, sign-on tooyour Litmos company site as administrator.</span></span>
 
-8. <span data-ttu-id="5214f-186">在左側導覽列中，按一下 [帳戶] 。</span><span class="sxs-lookup"><span data-stu-id="5214f-186">In the navigation bar on the left side, click **Accounts**.</span></span>
+8. <span data-ttu-id="a1a26-186">在 hello hello 左側導覽列中按一下**帳戶**。</span><span class="sxs-lookup"><span data-stu-id="a1a26-186">In hello navigation bar on hello left side, click **Accounts**.</span></span>
    
     ![應用程式端的帳戶區段][22] 
 
-9. <span data-ttu-id="5214f-188">按一下 [整合]  索引標籤。</span><span class="sxs-lookup"><span data-stu-id="5214f-188">Click the **Integrations** tab.</span></span>
+9. <span data-ttu-id="a1a26-188">按一下 hello**整合** 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="a1a26-188">Click hello **Integrations** tab.</span></span>
    
     ![整合索引標籤][23] 
 
-10. <span data-ttu-id="5214f-190">在 [整合] 索引標籤上，向下捲動至 [協力廠商整合]，然後按一下 [SAML 2.0] 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="5214f-190">On the **Integrations** tab, scroll down to **3rd Party Integrations**, and then click **SAML 2.0** tab.</span></span>
+10. <span data-ttu-id="a1a26-190">在 hello**整合**索引標籤上，向下捲動太**第 3 個合作對象整合**，然後按一下 **SAML 2.0**  索引標籤。</span><span class="sxs-lookup"><span data-stu-id="a1a26-190">On hello **Integrations** tab, scroll down too**3rd Party Integrations**, and then click **SAML 2.0** tab.</span></span>
    
     ![SAML 2.0 區段][24] 
 
-11. <span data-ttu-id="5214f-192">複製 [litmos 的 SAML 端點是:] 下的值，然後貼到 Azure 入口網站中 [Litmos 網域及 URL] 區段的 [回覆 URL] 文字方塊中。</span><span class="sxs-lookup"><span data-stu-id="5214f-192">Copy the value under **The SAML endpoint for litmos is:** and paste it into the **Reply URL** textbox in the **Litmos Domain and URLs** section in Azure portal.</span></span> 
+11. <span data-ttu-id="a1a26-192">複製下的 hello 值**litmos 是 hello SAML 端點：**並將它貼到 hello**回覆 URL**  文字方塊中 hello **Litmos 網域和 Url** Azure 入口網站中的區段。</span><span class="sxs-lookup"><span data-stu-id="a1a26-192">Copy hello value under **hello SAML endpoint for litmos is:** and paste it into hello **Reply URL** textbox in hello **Litmos Domain and URLs** section in Azure portal.</span></span> 
    
     ![SAML 端點][26] 
 
-12. <span data-ttu-id="5214f-194">在您的 **Litmos** 應用程式中，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="5214f-194">In your **Litmos** application, perform the following steps:</span></span>
+12. <span data-ttu-id="a1a26-194">在您**Litmos**應用程式中，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="a1a26-194">In your **Litmos** application, perform hello following steps:</span></span>
     
      ![Litmos 應用程式][25] 
      
-     <span data-ttu-id="5214f-196">a.</span><span class="sxs-lookup"><span data-stu-id="5214f-196">a.</span></span> <span data-ttu-id="5214f-197">按一下 [啟用 SAML] 。</span><span class="sxs-lookup"><span data-stu-id="5214f-197">Click **Enable SAML**.</span></span>
+     <span data-ttu-id="a1a26-196">a.</span><span class="sxs-lookup"><span data-stu-id="a1a26-196">a.</span></span> <span data-ttu-id="a1a26-197">按一下 [啟用 SAML] 。</span><span class="sxs-lookup"><span data-stu-id="a1a26-197">Click **Enable SAML**.</span></span>
     
-     <span data-ttu-id="5214f-198">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="5214f-198">b.</span></span> <span data-ttu-id="5214f-199">在記事本中開啟您的 Base-64 編碼憑證、將其內容複製到剪貼簿，然後將它貼到 [SAML X.509 憑證] 文字方塊中。</span><span class="sxs-lookup"><span data-stu-id="5214f-199">Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste it to the **SAML X.509 Certificate** textbox.</span></span>
+     <span data-ttu-id="a1a26-198">b.</span><span class="sxs-lookup"><span data-stu-id="a1a26-198">b.</span></span> <span data-ttu-id="a1a26-199">在記事本中，複製到剪貼簿，其內容的 hello 中開啟 base-64 編碼的憑證，然後將它貼入 toohello **SAML X.509 憑證**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="a1a26-199">Open your base-64 encoded certificate in notepad, copy hello content of it into your clipboard, and then paste it toohello **SAML X.509 Certificate** textbox.</span></span>
      
-     <span data-ttu-id="5214f-200">c.</span><span class="sxs-lookup"><span data-stu-id="5214f-200">c.</span></span> <span data-ttu-id="5214f-201">按一下 [儲存變更] 。</span><span class="sxs-lookup"><span data-stu-id="5214f-201">Click **Save Changes**.</span></span>
+     <span data-ttu-id="a1a26-200">c.</span><span class="sxs-lookup"><span data-stu-id="a1a26-200">c.</span></span> <span data-ttu-id="a1a26-201">按一下 [儲存變更] 。</span><span class="sxs-lookup"><span data-stu-id="a1a26-201">Click **Save Changes**.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="5214f-202">現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！</span><span class="sxs-lookup"><span data-stu-id="5214f-202">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="5214f-203">從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。</span><span class="sxs-lookup"><span data-stu-id="5214f-203">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="5214f-204">您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="5214f-204">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="a1a26-202">您現在可以讀取這些指示在 hello 的精簡版本[Azure 入口網站](https://portal.azure.com)，而您要設定 hello 應用程式 ！</span><span class="sxs-lookup"><span data-stu-id="a1a26-202">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="a1a26-203">加入此應用程式從 hello 之後**Active Directory > 企業應用程式**區段中，只要按一下 hello**單一登入** 索引標籤和存取 hello 內嵌文件，透過 hello **組態**hello 底部的區段。</span><span class="sxs-lookup"><span data-stu-id="a1a26-203">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="a1a26-204">閱讀更多有關 hello embedded 文件功能： [Azure AD 的內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="a1a26-204">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="5214f-205">建立 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="5214f-205">Create an Azure AD test user</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="a1a26-205">建立 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="a1a26-205">Create an Azure AD test user</span></span>
 
-<span data-ttu-id="5214f-206">本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。</span><span class="sxs-lookup"><span data-stu-id="5214f-206">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+<span data-ttu-id="a1a26-206">hello 本節目標在於 toocreate hello 呼叫許 Simon 的 Azure 入口網站中的測試使用者。</span><span class="sxs-lookup"><span data-stu-id="a1a26-206">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
    ![建立 Azure AD 測試使用者][100]
 
-<span data-ttu-id="5214f-208">**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="5214f-208">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="a1a26-208">**toocreate 測試使用者在 Azure AD 中，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="a1a26-208">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="5214f-209">在 Azure 入口網站的左窗格中，按一下 [Azure Active Directory] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="5214f-209">In the Azure portal, in the left pane, click the **Azure Active Directory** button.</span></span>
+1. <span data-ttu-id="a1a26-209">在 hello Azure 入口網站，hello 左窗格中，按一下 hello **Azure Active Directory**  按鈕。</span><span class="sxs-lookup"><span data-stu-id="a1a26-209">In hello Azure portal, in hello left pane, click hello **Azure Active Directory** button.</span></span>
 
-    ![Azure Active Directory 按鈕](./media/active-directory-saas-litmos-tutorial/create_aaduser_01.png)
+    ![hello Azure Active Directory 按鈕](./media/active-directory-saas-litmos-tutorial/create_aaduser_01.png)
 
-2. <span data-ttu-id="5214f-211">若要顯示使用者清單，請移至 [使用者和群組]，然後按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="5214f-211">To display the list of users, go to **Users and groups**, and then click **All users**.</span></span>
+2. <span data-ttu-id="a1a26-211">toodisplay hello 使用者清單，請移過**使用者和群組**，然後按一下**所有使用者**。</span><span class="sxs-lookup"><span data-stu-id="a1a26-211">toodisplay hello list of users, go too**Users and groups**, and then click **All users**.</span></span>
 
-    ![[使用者和群組] 與 [所有使用者] 連結](./media/active-directory-saas-litmos-tutorial/create_aaduser_02.png)
+    ![hello 「 使用者和群組 」 和 「 所有使用者 」 連結](./media/active-directory-saas-litmos-tutorial/create_aaduser_02.png)
 
-3. <span data-ttu-id="5214f-213">若要開啟 [使用者] 對話方塊，按一下 [所有使用者] 對話方塊頂端的 [新增]。</span><span class="sxs-lookup"><span data-stu-id="5214f-213">To open the **User** dialog box, click **Add** at the top of the **All Users** dialog box.</span></span>
+3. <span data-ttu-id="a1a26-213">tooopen hello**使用者**對話方塊中，按一下 [**新增**頂端的 hello hello**所有使用者**] 對話方塊。</span><span class="sxs-lookup"><span data-stu-id="a1a26-213">tooopen hello **User** dialog box, click **Add** at hello top of hello **All Users** dialog box.</span></span>
 
-    ![[新增] 按鈕](./media/active-directory-saas-litmos-tutorial/create_aaduser_03.png)
+    ![hello [新增] 按鈕](./media/active-directory-saas-litmos-tutorial/create_aaduser_03.png)
 
-4. <span data-ttu-id="5214f-215">在 [使用者] 對話方塊中，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="5214f-215">In the **User** dialog box, perform the following steps:</span></span>
+4. <span data-ttu-id="a1a26-215">在 hello**使用者**對話方塊方塊中，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="a1a26-215">In hello **User** dialog box, perform hello following steps:</span></span>
 
-    ![[使用者] 對話方塊](./media/active-directory-saas-litmos-tutorial/create_aaduser_04.png)
+    ![hello [使用者] 對話方塊](./media/active-directory-saas-litmos-tutorial/create_aaduser_04.png)
 
-    <span data-ttu-id="5214f-217">a.</span><span class="sxs-lookup"><span data-stu-id="5214f-217">a.</span></span> <span data-ttu-id="5214f-218">在 [名稱] 方塊中，輸入 **BrittaSimon**。</span><span class="sxs-lookup"><span data-stu-id="5214f-218">In the **Name** box, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="a1a26-217">a.</span><span class="sxs-lookup"><span data-stu-id="a1a26-217">a.</span></span> <span data-ttu-id="a1a26-218">在 hello**名稱**方塊中，輸入**BrittaSimon**。</span><span class="sxs-lookup"><span data-stu-id="a1a26-218">In hello **Name** box, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="5214f-219">b.</span><span class="sxs-lookup"><span data-stu-id="5214f-219">b.</span></span> <span data-ttu-id="5214f-220">在 [使用者名稱] 方塊中，輸入使用者 Britta Simon 的電子郵件地址。</span><span class="sxs-lookup"><span data-stu-id="5214f-220">In the **User name** box, type the email address of user Britta Simon.</span></span>
+    <span data-ttu-id="a1a26-219">b.</span><span class="sxs-lookup"><span data-stu-id="a1a26-219">b.</span></span> <span data-ttu-id="a1a26-220">在 hello**使用者名**方塊中，使用者許 Simon 類型 hello 電子郵件地址。</span><span class="sxs-lookup"><span data-stu-id="a1a26-220">In hello **User name** box, type hello email address of user Britta Simon.</span></span>
 
-    <span data-ttu-id="5214f-221">c.</span><span class="sxs-lookup"><span data-stu-id="5214f-221">c.</span></span> <span data-ttu-id="5214f-222">選取 [顯示密碼] 核取方塊，然後記下 [密碼] 方塊中顯示的值。</span><span class="sxs-lookup"><span data-stu-id="5214f-222">Select the **Show Password** check box, and then write down the value that's displayed in the **Password** box.</span></span>
+    <span data-ttu-id="a1a26-221">c.</span><span class="sxs-lookup"><span data-stu-id="a1a26-221">c.</span></span> <span data-ttu-id="a1a26-222">選取 hello**顯示密碼**核取方塊，並寫下 hello 值，會顯示在 hello**密碼**方塊。</span><span class="sxs-lookup"><span data-stu-id="a1a26-222">Select hello **Show Password** check box, and then write down hello value that's displayed in hello **Password** box.</span></span>
 
-    <span data-ttu-id="5214f-223">d.</span><span class="sxs-lookup"><span data-stu-id="5214f-223">d.</span></span> <span data-ttu-id="5214f-224">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="5214f-224">Click **Create**.</span></span>
+    <span data-ttu-id="a1a26-223">d.</span><span class="sxs-lookup"><span data-stu-id="a1a26-223">d.</span></span> <span data-ttu-id="a1a26-224">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="a1a26-224">Click **Create**.</span></span>
   
-### <a name="create-a-litmos-test-user"></a><span data-ttu-id="5214f-225">建立 Litmos 測試使用者</span><span class="sxs-lookup"><span data-stu-id="5214f-225">Create a Litmos test user</span></span>
+### <a name="create-a-litmos-test-user"></a><span data-ttu-id="a1a26-225">建立 Litmos 測試使用者</span><span class="sxs-lookup"><span data-stu-id="a1a26-225">Create a Litmos test user</span></span>
 
-<span data-ttu-id="5214f-226">本節的目標是要在 Litmos 中建立名為 Britta Simon 的使用者。</span><span class="sxs-lookup"><span data-stu-id="5214f-226">The objective of this section is to create a user called Britta Simon in Litmos.</span></span>  
-<span data-ttu-id="5214f-227">Litmos 應用程式支援 Just-in-Time 佈建。</span><span class="sxs-lookup"><span data-stu-id="5214f-227">The Litmos application supports Just-in-Time provisioning.</span></span> <span data-ttu-id="5214f-228">這表示，在使用存取面板嘗試存取應用程式期間，必要時會自動建立使用者帳戶。</span><span class="sxs-lookup"><span data-stu-id="5214f-228">This means, a user account is automatically created if necessary during an attempt to access the application using the Access Panel.</span></span>
+<span data-ttu-id="a1a26-226">hello 本節目標在於 toocreate Litmos 中呼叫許 Simon 的使用者。</span><span class="sxs-lookup"><span data-stu-id="a1a26-226">hello objective of this section is toocreate a user called Britta Simon in Litmos.</span></span>  
+<span data-ttu-id="a1a26-227">hello Litmos 應用程式支援恰好在時間佈建。</span><span class="sxs-lookup"><span data-stu-id="a1a26-227">hello Litmos application supports Just-in-Time provisioning.</span></span> <span data-ttu-id="a1a26-228">這表示，使用者帳戶會自動建立必要期間嘗試 tooaccess hello 應用程式使用存取面板 hello。</span><span class="sxs-lookup"><span data-stu-id="a1a26-228">This means, a user account is automatically created if necessary during an attempt tooaccess hello application using hello Access Panel.</span></span>
 
-<span data-ttu-id="5214f-229">**若要在 Litmos 中建立名為 Britta Simon 的使用者，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="5214f-229">**To create a user called Britta Simon in Litmos, perform the following steps:**</span></span>
+<span data-ttu-id="a1a26-229">**toocreate 呼叫許 Simon Litmos，在使用者執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="a1a26-229">**toocreate a user called Britta Simon in Litmos, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="5214f-230">在不同的瀏覽器視窗中，以系統管理員身分登入您的 Litmos 公司網站。</span><span class="sxs-lookup"><span data-stu-id="5214f-230">In a different browser window, sign-on to your Litmos company site as administrator.</span></span>
+1. <span data-ttu-id="a1a26-230">在不同的瀏覽器視窗中，以系統管理員身分登入 tooyour Litmos 公司網站。</span><span class="sxs-lookup"><span data-stu-id="a1a26-230">In a different browser window, sign-on tooyour Litmos company site as administrator.</span></span>
 
-2. <span data-ttu-id="5214f-231">在左側導覽列中，按一下 [帳戶] 。</span><span class="sxs-lookup"><span data-stu-id="5214f-231">In the navigation bar on the left side, click **Accounts**.</span></span>
+2. <span data-ttu-id="a1a26-231">在 hello hello 左側導覽列中按一下**帳戶**。</span><span class="sxs-lookup"><span data-stu-id="a1a26-231">In hello navigation bar on hello left side, click **Accounts**.</span></span>
    
     ![應用程式端的帳戶區段][22] 
 
-3. <span data-ttu-id="5214f-233">按一下 [整合]  索引標籤。</span><span class="sxs-lookup"><span data-stu-id="5214f-233">Click the **Integrations** tab.</span></span>
+3. <span data-ttu-id="a1a26-233">按一下 hello**整合** 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="a1a26-233">Click hello **Integrations** tab.</span></span>
    
     ![整合索引標籤][23] 
 
-4. <span data-ttu-id="5214f-235">在 [整合] 索引標籤上，向下捲動至 [協力廠商整合]，然後按一下 [SAML 2.0] 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="5214f-235">On the **Integrations** tab, scroll down to **3rd Party Integrations**, and then click **SAML 2.0** tab.</span></span>
+4. <span data-ttu-id="a1a26-235">在 hello**整合**索引標籤上，向下捲動太**第 3 個合作對象整合**，然後按一下 **SAML 2.0**  索引標籤。</span><span class="sxs-lookup"><span data-stu-id="a1a26-235">On hello **Integrations** tab, scroll down too**3rd Party Integrations**, and then click **SAML 2.0** tab.</span></span>
    
     ![SAML 2.0][24] 
     
-5. <span data-ttu-id="5214f-237">選取 [自動產生使用者]</span><span class="sxs-lookup"><span data-stu-id="5214f-237">Select **Autogenerate Users**</span></span>
+5. <span data-ttu-id="a1a26-237">選取 [自動產生使用者]</span><span class="sxs-lookup"><span data-stu-id="a1a26-237">Select **Autogenerate Users**</span></span>
    
     ![自動產生使用者][27] 
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="5214f-239">指派 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="5214f-239">Assign the Azure AD test user</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="a1a26-239">指派給 Azure AD hello 測試使用者</span><span class="sxs-lookup"><span data-stu-id="a1a26-239">Assign hello Azure AD test user</span></span>
 
-<span data-ttu-id="5214f-240">在本節中，您會將 Litmos 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。</span><span class="sxs-lookup"><span data-stu-id="5214f-240">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Litmos.</span></span>
+<span data-ttu-id="a1a26-240">在本節中，您可以授與存取 tooLitmos 啟用許 Simon toouse Azure 單一登入。</span><span class="sxs-lookup"><span data-stu-id="a1a26-240">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooLitmos.</span></span>
 
-![指派使用者角色][200] 
+![指派 hello 使用者角色][200] 
 
-<span data-ttu-id="5214f-242">**若要將 Britta Simon 指派給 Litmos，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="5214f-242">**To assign Britta Simon to Litmos, perform the following steps:**</span></span>
+<span data-ttu-id="a1a26-242">**tooassign 許 Simon tooLitmos，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="a1a26-242">**tooassign Britta Simon tooLitmos, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="5214f-243">在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="5214f-243">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="a1a26-243">在 hello Azure 入口網站，開啟 hello 應用程式檢視，然後導覽 toohello 目錄檢視，並跳過**企業應用程式**然後按一下 **所有應用程式**。</span><span class="sxs-lookup"><span data-stu-id="a1a26-243">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![指派使用者][201] 
 
-2. <span data-ttu-id="5214f-245">在應用程式清單中，選取 [Litmos] 。</span><span class="sxs-lookup"><span data-stu-id="5214f-245">In the applications list, select **Litmos**.</span></span>
+2. <span data-ttu-id="a1a26-245">在 [hello] 應用程式清單中，選取**Litmos**。</span><span class="sxs-lookup"><span data-stu-id="a1a26-245">In hello applications list, select **Litmos**.</span></span>
 
-    ![應用程式清單中的 Litmos 連結](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_app.png)  
+    ![hello 應用程式清單中的 hello Litmos 連結](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_app.png)  
 
-3. <span data-ttu-id="5214f-247">在左側功能表中，按一下 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="5214f-247">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="a1a26-247">在左側 hello hello 功能表上，按一下**使用者和群組**。</span><span class="sxs-lookup"><span data-stu-id="a1a26-247">In hello menu on hello left, click **Users and groups**.</span></span>
 
-    ![[使用者和群組] 連結][202]
+    ![hello 「 使用者和群組 」 的連結][202]
 
-4. <span data-ttu-id="5214f-249">按一下 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="5214f-249">Click **Add** button.</span></span> <span data-ttu-id="5214f-250">然後選取 [新增指派] 對話方塊上的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="5214f-250">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="a1a26-249">按一下 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="a1a26-249">Click **Add** button.</span></span> <span data-ttu-id="a1a26-250">然後選取 [新增指派] 對話方塊上的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="a1a26-250">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
-    ![[新增指派] 窗格][203]
+    ![hello 將作業加入窗格][203]
 
-5. <span data-ttu-id="5214f-252">在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。</span><span class="sxs-lookup"><span data-stu-id="5214f-252">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="a1a26-252">在**使用者和群組**對話方塊中，選取**許 Simon** hello 使用者 清單中。</span><span class="sxs-lookup"><span data-stu-id="a1a26-252">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="5214f-253">按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="5214f-253">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="a1a26-253">按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="a1a26-253">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="5214f-254">按一下 [新增指派] 對話方塊上的 [指派] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="5214f-254">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="a1a26-254">按一下 [新增指派] 對話方塊上的 [指派] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="a1a26-254">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="test-single-sign-on"></a><span data-ttu-id="5214f-255">測試單一登入</span><span class="sxs-lookup"><span data-stu-id="5214f-255">Test single sign-on</span></span>
+### <a name="test-single-sign-on"></a><span data-ttu-id="a1a26-255">測試單一登入</span><span class="sxs-lookup"><span data-stu-id="a1a26-255">Test single sign-on</span></span>
 
-<span data-ttu-id="5214f-256">本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。</span><span class="sxs-lookup"><span data-stu-id="5214f-256">The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.</span></span>  
+<span data-ttu-id="a1a26-256">hello 本節目標在於 tootest 您 Azure AD 單一登入組態使用 hello 存取面板。</span><span class="sxs-lookup"><span data-stu-id="a1a26-256">hello objective of this section is tootest your Azure AD single sign-on configuration using hello Access Panel.</span></span>  
 
-<span data-ttu-id="5214f-257">當您在「存取面板」中按一下 [Litmos] 磚時，應該會自動登入您的 [Litmos] 應用程式。</span><span class="sxs-lookup"><span data-stu-id="5214f-257">When you click the Litmos tile in the Access Panel, you should get automatically signed-on to your Litmos application.</span></span> 
+<span data-ttu-id="a1a26-257">當您按一下的 hello Litmos 磚 hello 存取面板中時，您應該取得自動登入 tooyour Litmos 應用程式。</span><span class="sxs-lookup"><span data-stu-id="a1a26-257">When you click hello Litmos tile in hello Access Panel, you should get automatically signed-on tooyour Litmos application.</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="5214f-258">其他資源</span><span class="sxs-lookup"><span data-stu-id="5214f-258">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="a1a26-258">其他資源</span><span class="sxs-lookup"><span data-stu-id="a1a26-258">Additional resources</span></span>
 
-* [<span data-ttu-id="5214f-259">如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單</span><span class="sxs-lookup"><span data-stu-id="5214f-259">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="5214f-260">什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？</span><span class="sxs-lookup"><span data-stu-id="5214f-260">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="a1a26-259">如何教學課程清單 tooIntegrate SaaS 應用程式與 Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="a1a26-259">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="a1a26-260">什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？</span><span class="sxs-lookup"><span data-stu-id="a1a26-260">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

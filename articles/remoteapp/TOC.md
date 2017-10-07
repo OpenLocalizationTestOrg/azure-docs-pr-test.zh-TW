@@ -25,15 +25,15 @@
 # 作法
 
 ## [從 Azure RemoteApp 移轉使用者資料](remoteapp-migrate.md)
-## [移轉至 MyCloudIT](remoteapp-migrate-mycloudit.md)
-## [移轉至 Citrix XenApp Essentials](remoteapp-migrate-citrix.md)
+## [移轉 tooMyCloudIT](remoteapp-migrate-mycloudit.md)
+## [移轉 tooCitrix XenApp Essentials](remoteapp-migrate-citrix.md)
 ## 建立 RemoteApp 集合
 ### [您需要哪一種收藏？](remoteapp-collections.md)
 ### [建立雲端收藏](remoteapp-create-cloud-deployment.md)
 ### [建立混合式收藏](remoteapp-create-hybrid-deployment.md)
 ### [更新您的收藏](remoteapp-update.md)
 ### [建立 RemoteApp 映像](remoteapp-imageoptions.md)
-### [範本映像中有什麼？](remoteapp-images.md)
+### [什麼是在 hello 範本映像？](remoteapp-images.md)
 ### [影像需求](remoteapp-imagereqs.md)
 ### [上傳影像](remoteapp-uploadimage.md)
 ### [從 Azure VM 建立影像](remoteapp-image-on-azurevm.md)
@@ -41,13 +41,13 @@
 ### [規劃您的 VNET](remoteapp-planvnet.md)
 ### [連接埠和 URL 資訊](remoteapp-ports.md)
 ### [驗證您的 VNET](remoteapp-vnet.md)
-### [移轉至 Azure VNET](remoteapp-migratevnet.md)
+### [移轉 tooan Azure VNET](remoteapp-migratevnet.md)
 ## 發佈應用程式
-### [如何發佈應用程式](remoteapp-publish.md)
+### [如何 toopublish 應用程式](remoteapp-publish.md)
 ## 管理使用者
-### [如何新增使用者](remoteapp-user.md)
+### [如何 tooadd 使用者](remoteapp-user.md)
 ### [設定 Active Directory](remoteapp-ad.md)
-### [變更 Azure AD 租用戶](remoteapp-changetenant.md)
+### [變更 hello Azure AD 租用戶](remoteapp-changetenant.md)
 ### [Office 365 使用者帳戶](remoteapp-o365user.md)
 ### [保護資料](remoteapp-secureaccess.md)
 ### [使用者資料](remoteapp-upd.md)

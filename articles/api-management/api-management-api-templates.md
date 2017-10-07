@@ -1,6 +1,6 @@
 ---
-title: "Azure API 管理中的 API 範本 | Microsoft Docs"
-description: "了解如何在「Azure API 管理」中自訂開發人員入口網站中的 API 頁面內容。"
+title: "在 Azure API 管理 aaaAPI 範本 |Microsoft 文件"
+description: "了解如何 toocustomize hello hello 開發人員入口網站在 Azure API 管理中的 hello API 頁面的內容。"
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 3802868470f0f74cd1f895a00195259861ea16f8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fdfa76167cfaf3b23b22d6321904f34da077fecb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="api-templates-in-azure-api-management"></a><span data-ttu-id="ee2c5-103">Azure API 管理中的 API 範本</span><span class="sxs-lookup"><span data-stu-id="ee2c5-103">API templates in Azure API Management</span></span>
-<span data-ttu-id="ee2c5-104">「Azure API 管理」可讓您使用一組可設定開發人員入口網站頁面內容的範本，來自訂那些頁面的內容。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-104">Azure API Management provides you the ability to customize the content of developer portal pages using a set of templates that configure their content.</span></span> <span data-ttu-id="ee2c5-105">使用這些範本時，您可以運用 [DotLiquid](http://dotliquidmarkup.org/) 語法和您選擇的編輯器 (例如 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers))，以及一組提供的當地語系化[字串資源](api-management-template-resources.md#strings)、[字符資源](api-management-template-resources.md#glyphs)和[頁面控制項](api-management-page-controls.md)，依照您的想法自由靈活地設定頁面內容。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-105">Using [DotLiquid](http://dotliquidmarkup.org/) syntax and the editor of your choice, such as [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), and a provided set of localized [String resources](api-management-template-resources.md#strings), [Glyph resources](api-management-template-resources.md#glyphs), and [Page controls](api-management-page-controls.md), you have great flexibility to configure the content of the pages as you see fit using these templates.</span></span>  
+# <a name="api-templates-in-azure-api-management"></a><span data-ttu-id="ed44c-103">Azure API 管理中的 API 範本</span><span class="sxs-lookup"><span data-stu-id="ed44c-103">API templates in Azure API Management</span></span>
+<span data-ttu-id="ed44c-104">Azure API 管理提供 hello 能力 toocustomize hello 網頁內容的開發人員入口網站使用的一組設定其內容的範本。</span><span class="sxs-lookup"><span data-stu-id="ed44c-104">Azure API Management provides you hello ability toocustomize hello content of developer portal pages using a set of templates that configure their content.</span></span> <span data-ttu-id="ed44c-105">使用[DotLiquid](http://dotliquidmarkup.org/)語法和 hello 您選擇的編輯器例如[針對設計人員 DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers)，和一組提供的當地語系化[字串資源](api-management-template-resources.md#strings)， [字符資源](api-management-template-resources.md#glyphs)，和[頁面控制項](api-management-page-controls.md)，視使用這些範本，您會有很大的彈性 tooconfigure hello 網頁內容的 hello。</span><span class="sxs-lookup"><span data-stu-id="ed44c-105">Using [DotLiquid](http://dotliquidmarkup.org/) syntax and hello editor of your choice, such as [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), and a provided set of localized [String resources](api-management-template-resources.md#strings), [Glyph resources](api-management-template-resources.md#glyphs), and [Page controls](api-management-page-controls.md), you have great flexibility tooconfigure hello content of hello pages as you see fit using these templates.</span></span>  
   
- <span data-ttu-id="ee2c5-106">本節的範本可讓您自訂開發人員入口網站中 API 頁面的內容。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-106">The templates in this section allow you to customize the content of the API pages in the developer portal.</span></span>  
+ <span data-ttu-id="ed44c-106">本節中的 hello 範本允許您 toocustomize hello 網頁內容的 hello API hello 開發人員入口網站中。</span><span class="sxs-lookup"><span data-stu-id="ed44c-106">hello templates in this section allow you toocustomize hello content of hello API pages in hello developer portal.</span></span>  
   
--   [<span data-ttu-id="ee2c5-107">API 清單</span><span class="sxs-lookup"><span data-stu-id="ee2c5-107">API list</span></span>](#APIList)  
--   [<span data-ttu-id="ee2c5-108">作業</span><span class="sxs-lookup"><span data-stu-id="ee2c5-108">Operation</span></span>](#Product)  
--   [<span data-ttu-id="ee2c5-109">程式碼範例</span><span class="sxs-lookup"><span data-stu-id="ee2c5-109">Code samples</span></span>](#CodeSamples)  
-    -   [<span data-ttu-id="ee2c5-110">Curl</span><span class="sxs-lookup"><span data-stu-id="ee2c5-110">Curl</span></span>](#Curl)  
-    -   [<span data-ttu-id="ee2c5-111">C#</span><span class="sxs-lookup"><span data-stu-id="ee2c5-111">C#</span></span>](#CSharp)  
-    -   [<span data-ttu-id="ee2c5-112">Java</span><span class="sxs-lookup"><span data-stu-id="ee2c5-112">Java</span></span>](#Stub)  
-    -   [<span data-ttu-id="ee2c5-113">JavaScript</span><span class="sxs-lookup"><span data-stu-id="ee2c5-113">JavaScript</span></span>](#JavaScript)  
-    -   [<span data-ttu-id="ee2c5-114">Objective C</span><span class="sxs-lookup"><span data-stu-id="ee2c5-114">Objective C</span></span>](#ObjectiveC)  
-    -   [<span data-ttu-id="ee2c5-115">PHP</span><span class="sxs-lookup"><span data-stu-id="ee2c5-115">PHP</span></span>](#PHP)  
-    -   [<span data-ttu-id="ee2c5-116">Python</span><span class="sxs-lookup"><span data-stu-id="ee2c5-116">Python</span></span>](#Python)  
-    -   [<span data-ttu-id="ee2c5-117">Ruby</span><span class="sxs-lookup"><span data-stu-id="ee2c5-117">Ruby</span></span>](#Ruby)  
+-   [<span data-ttu-id="ed44c-107">API 清單</span><span class="sxs-lookup"><span data-stu-id="ed44c-107">API list</span></span>](#APIList)  
+-   [<span data-ttu-id="ed44c-108">作業</span><span class="sxs-lookup"><span data-stu-id="ed44c-108">Operation</span></span>](#Product)  
+-   [<span data-ttu-id="ed44c-109">程式碼範例</span><span class="sxs-lookup"><span data-stu-id="ed44c-109">Code samples</span></span>](#CodeSamples)  
+    -   [<span data-ttu-id="ed44c-110">Curl</span><span class="sxs-lookup"><span data-stu-id="ed44c-110">Curl</span></span>](#Curl)  
+    -   [<span data-ttu-id="ed44c-111">C#</span><span class="sxs-lookup"><span data-stu-id="ed44c-111">C#</span></span>](#CSharp)  
+    -   [<span data-ttu-id="ed44c-112">Java</span><span class="sxs-lookup"><span data-stu-id="ed44c-112">Java</span></span>](#Stub)  
+    -   [<span data-ttu-id="ed44c-113">JavaScript</span><span class="sxs-lookup"><span data-stu-id="ed44c-113">JavaScript</span></span>](#JavaScript)  
+    -   [<span data-ttu-id="ed44c-114">Objective C</span><span class="sxs-lookup"><span data-stu-id="ed44c-114">Objective C</span></span>](#ObjectiveC)  
+    -   [<span data-ttu-id="ed44c-115">PHP</span><span class="sxs-lookup"><span data-stu-id="ed44c-115">PHP</span></span>](#PHP)  
+    -   [<span data-ttu-id="ed44c-116">Python</span><span class="sxs-lookup"><span data-stu-id="ed44c-116">Python</span></span>](#Python)  
+    -   [<span data-ttu-id="ed44c-117">Ruby</span><span class="sxs-lookup"><span data-stu-id="ed44c-117">Ruby</span></span>](#Ruby)  
 
 > [!NOTE]
->  <span data-ttu-id="ee2c5-118">下列文件中包含範例預設範本，但範本可能會因持續進行的改善而有變更。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-118">Sample default templates are included in the following documentation, but are subject to change due to continuous improvements.</span></span> <span data-ttu-id="ee2c5-119">您可以瀏覽至想要的個別範本，來檢視開發人員入口網站中的即時預設範本。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-119">You can view the live default templates in the developer portal by navigating to the desired individual templates.</span></span> <span data-ttu-id="ee2c5-120">如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-120">For more information about working with templates, see [How to customize the API Management developer portal using templates](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).</span></span>  
+>  <span data-ttu-id="ed44c-118">預設範本範例隨附的 hello 下列文件，但主旨 toochange 到期 toocontinuous 增強功能。</span><span class="sxs-lookup"><span data-stu-id="ed44c-118">Sample default templates are included in hello following documentation, but are subject toochange due toocontinuous improvements.</span></span> <span data-ttu-id="ed44c-119">您可以檢視 hello 開發人員入口網站中的 hello 即時預設範本，藉由瀏覽 toohello 需要個別的範本。</span><span class="sxs-lookup"><span data-stu-id="ed44c-119">You can view hello live default templates in hello developer portal by navigating toohello desired individual templates.</span></span> <span data-ttu-id="ed44c-120">如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-120">For more information about working with templates, see [How toocustomize hello API Management developer portal using templates](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).</span></span>  
   
-##  <span data-ttu-id="ee2c5-121"><a name="APIList"></a>API 清單</span><span class="sxs-lookup"><span data-stu-id="ee2c5-121"><a name="APIList"></a> API list</span></span>  
- <span data-ttu-id="ee2c5-122">**API 清單**範本可讓您自訂開發人員入口網站中 API 清單頁面的主體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-122">The **API list** template allows you to customize the body of the API list page in the developer portal.</span></span>  
+##  <span data-ttu-id="ed44c-121"><a name="APIList"></a>API 清單</span><span class="sxs-lookup"><span data-stu-id="ed44c-121"><a name="APIList"></a> API list</span></span>  
+ <span data-ttu-id="ed44c-122">hello **API 清單**範本可讓您 toocustomize hello 主體 hello API 清單頁面 hello 開發人員入口網站中。</span><span class="sxs-lookup"><span data-stu-id="ed44c-122">hello **API list** template allows you toocustomize hello body of hello API list page in hello developer portal.</span></span>  
   
- <span data-ttu-id="ee2c5-123">![開發人員入口網站 API 清單](./media/api-management-api-templates/APIM-Developer-Portal-Templates-API-List.png "APIM 開發人員入口網站範本 API 清單")</span><span class="sxs-lookup"><span data-stu-id="ee2c5-123">![Developer Portal API List](./media/api-management-api-templates/APIM-Developer-Portal-Templates-API-List.png "APIM Developer Portal Templates API List")</span></span>  
+ <span data-ttu-id="ed44c-123">![開發人員入口網站 API 清單](./media/api-management-api-templates/APIM-Developer-Portal-Templates-API-List.png "APIM 開發人員入口網站範本 API 清單")</span><span class="sxs-lookup"><span data-stu-id="ed44c-123">![Developer Portal API List](./media/api-management-api-templates/APIM-Developer-Portal-Templates-API-List.png "APIM Developer Portal Templates API List")</span></span>  
   
-### <a name="default-template"></a><span data-ttu-id="ee2c5-124">預設範本</span><span class="sxs-lookup"><span data-stu-id="ee2c5-124">Default template</span></span>  
+### <a name="default-template"></a><span data-ttu-id="ed44c-124">預設範本</span><span class="sxs-lookup"><span data-stu-id="ed44c-124">Default template</span></span>  
   
 ```xml  
 <search-control></search-control>  
@@ -75,20 +75,20 @@ ms.lasthandoff: 07/11/2017
 </div>  
 ```  
   
-### <a name="controls"></a><span data-ttu-id="ee2c5-125">控制</span><span class="sxs-lookup"><span data-stu-id="ee2c5-125">Controls</span></span>  
- <span data-ttu-id="ee2c5-126">`API list` 範本可能會使用下列[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-126">The `API list` template may use the following [page controls](api-management-page-controls.md).</span></span>  
+### <a name="controls"></a><span data-ttu-id="ed44c-125">控制</span><span class="sxs-lookup"><span data-stu-id="ed44c-125">Controls</span></span>  
+ <span data-ttu-id="ed44c-126">hello`API list`範本可能使用 hello 下列[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-126">hello `API list` template may use hello following [page controls](api-management-page-controls.md).</span></span>  
   
--   [<span data-ttu-id="ee2c5-127">paging-control</span><span class="sxs-lookup"><span data-stu-id="ee2c5-127">paging-control</span></span>](api-management-page-controls.md#paging-control)  
+-   [<span data-ttu-id="ed44c-127">paging-control</span><span class="sxs-lookup"><span data-stu-id="ed44c-127">paging-control</span></span>](api-management-page-controls.md#paging-control)  
   
--   [<span data-ttu-id="ee2c5-128">search-control</span><span class="sxs-lookup"><span data-stu-id="ee2c5-128">search-control</span></span>](api-management-page-controls.md#search-control)  
+-   [<span data-ttu-id="ed44c-128">search-control</span><span class="sxs-lookup"><span data-stu-id="ed44c-128">search-control</span></span>](api-management-page-controls.md#search-control)  
   
-### <a name="data-model"></a><span data-ttu-id="ee2c5-129">資料模型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-129">Data model</span></span>  
+### <a name="data-model"></a><span data-ttu-id="ed44c-129">資料模型</span><span class="sxs-lookup"><span data-stu-id="ed44c-129">Data model</span></span>  
   
-|<span data-ttu-id="ee2c5-130">屬性</span><span class="sxs-lookup"><span data-stu-id="ee2c5-130">Property</span></span>|<span data-ttu-id="ee2c5-131">類型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-131">Type</span></span>|<span data-ttu-id="ee2c5-132">說明</span><span class="sxs-lookup"><span data-stu-id="ee2c5-132">Description</span></span>|  
+|<span data-ttu-id="ed44c-130">屬性</span><span class="sxs-lookup"><span data-stu-id="ed44c-130">Property</span></span>|<span data-ttu-id="ed44c-131">類型</span><span class="sxs-lookup"><span data-stu-id="ed44c-131">Type</span></span>|<span data-ttu-id="ed44c-132">說明</span><span class="sxs-lookup"><span data-stu-id="ed44c-132">Description</span></span>|  
 |--------------|----------|-----------------|  
-|<span data-ttu-id="ee2c5-133">apis</span><span class="sxs-lookup"><span data-stu-id="ee2c5-133">apis</span></span>|<span data-ttu-id="ee2c5-134">[API 摘要](api-management-template-data-model-reference.md#APISummary)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-134">Collection of [API summary](api-management-template-data-model-reference.md#APISummary) entities.</span></span>|<span data-ttu-id="ee2c5-135">目前使用者可看見的 API。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-135">The APIs visible to the current user.</span></span>|  
+|<span data-ttu-id="ed44c-133">apis</span><span class="sxs-lookup"><span data-stu-id="ed44c-133">apis</span></span>|<span data-ttu-id="ed44c-134">[API 摘要](api-management-template-data-model-reference.md#APISummary)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="ed44c-134">Collection of [API summary](api-management-template-data-model-reference.md#APISummary) entities.</span></span>|<span data-ttu-id="ed44c-135">hello Api 可見 toohello 目前的使用者。</span><span class="sxs-lookup"><span data-stu-id="ed44c-135">hello APIs visible toohello current user.</span></span>|  
   
-### <a name="sample-template-data"></a><span data-ttu-id="ee2c5-136">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ee2c5-136">Sample template data</span></span>  
+### <a name="sample-template-data"></a><span data-ttu-id="ed44c-136">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ed44c-136">Sample template data</span></span>  
   
 ```json  
 {  
@@ -108,12 +108,12 @@ ms.lasthandoff: 07/11/2017
 }  
 ```  
   
-##  <span data-ttu-id="ee2c5-137"><a name="Product"></a>作業</span><span class="sxs-lookup"><span data-stu-id="ee2c5-137"><a name="Product"></a> Operation</span></span>  
- <span data-ttu-id="ee2c5-138">**作業**範本可讓您自訂開發人員入口網站中作業頁面的主體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-138">The **Operation** template allows you to customize the body of the operation page in the developer portal.</span></span>  
+##  <span data-ttu-id="ed44c-137"><a name="Product"></a>作業</span><span class="sxs-lookup"><span data-stu-id="ed44c-137"><a name="Product"></a> Operation</span></span>  
+ <span data-ttu-id="ed44c-138">hello**作業**範本可讓您 toocustomize hello 主體 hello 作業 頁面的 hello 開發人員入口網站中。</span><span class="sxs-lookup"><span data-stu-id="ed44c-138">hello **Operation** template allows you toocustomize hello body of hello operation page in hello developer portal.</span></span>  
   
- <span data-ttu-id="ee2c5-139">![開發人員入口網站作業頁面](./media/api-management-api-templates/APIM-Developer-Portal-templates-Operation-page.png "APIM 開發人員入口網站範本作業頁面")</span><span class="sxs-lookup"><span data-stu-id="ee2c5-139">![Developer Portal Operation page](./media/api-management-api-templates/APIM-Developer-Portal-templates-Operation-page.png "APIM Developer Portal templates Operation page")</span></span>  
+ <span data-ttu-id="ed44c-139">![開發人員入口網站作業頁面](./media/api-management-api-templates/APIM-Developer-Portal-templates-Operation-page.png "APIM 開發人員入口網站範本作業頁面")</span><span class="sxs-lookup"><span data-stu-id="ed44c-139">![Developer Portal Operation page](./media/api-management-api-templates/APIM-Developer-Portal-templates-Operation-page.png "APIM Developer Portal templates Operation page")</span></span>  
   
-### <a name="default-template"></a><span data-ttu-id="ee2c5-140">預設範本</span><span class="sxs-lookup"><span data-stu-id="ee2c5-140">Default template</span></span>  
+### <a name="default-template"></a><span data-ttu-id="ed44c-140">預設範本</span><span class="sxs-lookup"><span data-stu-id="ed44c-140">Default template</span></span>  
   
 ```xml  
 <h2>{{api.name}}</h2>  
@@ -334,24 +334,24 @@ ms.lasthandoff: 07/11/2017
 </div>  
 ```  
   
-### <a name="controls"></a><span data-ttu-id="ee2c5-141">控制</span><span class="sxs-lookup"><span data-stu-id="ee2c5-141">Controls</span></span>  
- <span data-ttu-id="ee2c5-142">`Operation` 範本不允許使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-142">The `Operation` template does not allow the use of any [page controls](api-management-page-controls.md).</span></span>  
+### <a name="controls"></a><span data-ttu-id="ed44c-141">控制</span><span class="sxs-lookup"><span data-stu-id="ed44c-141">Controls</span></span>  
+ <span data-ttu-id="ed44c-142">hello`Operation`範本不允許任何 hello 使用[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-142">hello `Operation` template does not allow hello use of any [page controls](api-management-page-controls.md).</span></span>  
   
-### <a name="data-model"></a><span data-ttu-id="ee2c5-143">資料模型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-143">Data model</span></span>  
+### <a name="data-model"></a><span data-ttu-id="ed44c-143">資料模型</span><span class="sxs-lookup"><span data-stu-id="ed44c-143">Data model</span></span>  
   
-|<span data-ttu-id="ee2c5-144">屬性</span><span class="sxs-lookup"><span data-stu-id="ee2c5-144">Property</span></span>|<span data-ttu-id="ee2c5-145">類型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-145">Type</span></span>|<span data-ttu-id="ee2c5-146">說明</span><span class="sxs-lookup"><span data-stu-id="ee2c5-146">Description</span></span>|  
+|<span data-ttu-id="ed44c-144">屬性</span><span class="sxs-lookup"><span data-stu-id="ed44c-144">Property</span></span>|<span data-ttu-id="ed44c-145">類型</span><span class="sxs-lookup"><span data-stu-id="ed44c-145">Type</span></span>|<span data-ttu-id="ed44c-146">說明</span><span class="sxs-lookup"><span data-stu-id="ed44c-146">Description</span></span>|  
 |--------------|----------|-----------------|  
-|<span data-ttu-id="ee2c5-147">apiId</span><span class="sxs-lookup"><span data-stu-id="ee2c5-147">apiId</span></span>|<span data-ttu-id="ee2c5-148">字串</span><span class="sxs-lookup"><span data-stu-id="ee2c5-148">string</span></span>|<span data-ttu-id="ee2c5-149">目前 API 的識別碼。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-149">The id of the current API.</span></span>|  
-|<span data-ttu-id="ee2c5-150">apiName</span><span class="sxs-lookup"><span data-stu-id="ee2c5-150">apiName</span></span>|<span data-ttu-id="ee2c5-151">字串</span><span class="sxs-lookup"><span data-stu-id="ee2c5-151">string</span></span>|<span data-ttu-id="ee2c5-152">API 的名稱。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-152">The name of the API.</span></span>|  
-|<span data-ttu-id="ee2c5-153">apiDescription</span><span class="sxs-lookup"><span data-stu-id="ee2c5-153">apiDescription</span></span>|<span data-ttu-id="ee2c5-154">字串</span><span class="sxs-lookup"><span data-stu-id="ee2c5-154">string</span></span>|<span data-ttu-id="ee2c5-155">API 的描述。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-155">A description of the API.</span></span>|  
-|<span data-ttu-id="ee2c5-156">api</span><span class="sxs-lookup"><span data-stu-id="ee2c5-156">api</span></span>|<span data-ttu-id="ee2c5-157">[API 摘要](api-management-template-data-model-reference.md#APISummary)實體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-157">[API summary](api-management-template-data-model-reference.md#APISummary) entity.</span></span>|<span data-ttu-id="ee2c5-158">目前的 API。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-158">The current API.</span></span>|  
-|<span data-ttu-id="ee2c5-159">operation</span><span class="sxs-lookup"><span data-stu-id="ee2c5-159">operation</span></span>|[<span data-ttu-id="ee2c5-160">作業</span><span class="sxs-lookup"><span data-stu-id="ee2c5-160">Operation</span></span>](api-management-template-data-model-reference.md#Operation)|<span data-ttu-id="ee2c5-161">目前顯示的作業。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-161">The currently displayed operation.</span></span>|  
-|<span data-ttu-id="ee2c5-162">sampleUrl</span><span class="sxs-lookup"><span data-stu-id="ee2c5-162">sampleUrl</span></span>|<span data-ttu-id="ee2c5-163">字串</span><span class="sxs-lookup"><span data-stu-id="ee2c5-163">string</span></span>|<span data-ttu-id="ee2c5-164">目前作業的 URL。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-164">The URL for the current operation.</span></span>|  
-|<span data-ttu-id="ee2c5-165">operationMenu</span><span class="sxs-lookup"><span data-stu-id="ee2c5-165">operationMenu</span></span>|[<span data-ttu-id="ee2c5-166">作業功能表</span><span class="sxs-lookup"><span data-stu-id="ee2c5-166">Operation menu</span></span>](api-management-template-data-model-reference.md#Menu)|<span data-ttu-id="ee2c5-167">此 API 的作業功能表。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-167">A menu of operations for this API.</span></span>|  
-|<span data-ttu-id="ee2c5-168">consoleUrl</span><span class="sxs-lookup"><span data-stu-id="ee2c5-168">consoleUrl</span></span>|<span data-ttu-id="ee2c5-169">URI</span><span class="sxs-lookup"><span data-stu-id="ee2c5-169">URI</span></span>|<span data-ttu-id="ee2c5-170">[試用] 按鈕的 URI。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-170">The URI for the **Try it** button.</span></span>|  
-|<span data-ttu-id="ee2c5-171">範例</span><span class="sxs-lookup"><span data-stu-id="ee2c5-171">samples</span></span>|<span data-ttu-id="ee2c5-172">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-172">Collection of [Code sample](api-management-template-data-model-reference.md#Sample) entities.</span></span>|<span data-ttu-id="ee2c5-173">目前作業的程式碼範例。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-173">The code samples for the current operation..</span></span>|  
+|<span data-ttu-id="ed44c-147">apiId</span><span class="sxs-lookup"><span data-stu-id="ed44c-147">apiId</span></span>|<span data-ttu-id="ed44c-148">字串</span><span class="sxs-lookup"><span data-stu-id="ed44c-148">string</span></span>|<span data-ttu-id="ed44c-149">hello 識別碼 hello 目前的 API。</span><span class="sxs-lookup"><span data-stu-id="ed44c-149">hello id of hello current API.</span></span>|  
+|<span data-ttu-id="ed44c-150">apiName</span><span class="sxs-lookup"><span data-stu-id="ed44c-150">apiName</span></span>|<span data-ttu-id="ed44c-151">字串</span><span class="sxs-lookup"><span data-stu-id="ed44c-151">string</span></span>|<span data-ttu-id="ed44c-152">hello hello 應用程式開發介面名稱。</span><span class="sxs-lookup"><span data-stu-id="ed44c-152">hello name of hello API.</span></span>|  
+|<span data-ttu-id="ed44c-153">apiDescription</span><span class="sxs-lookup"><span data-stu-id="ed44c-153">apiDescription</span></span>|<span data-ttu-id="ed44c-154">字串</span><span class="sxs-lookup"><span data-stu-id="ed44c-154">string</span></span>|<span data-ttu-id="ed44c-155">Hello 應用程式開發介面的描述。</span><span class="sxs-lookup"><span data-stu-id="ed44c-155">A description of hello API.</span></span>|  
+|<span data-ttu-id="ed44c-156">api</span><span class="sxs-lookup"><span data-stu-id="ed44c-156">api</span></span>|<span data-ttu-id="ed44c-157">[API 摘要](api-management-template-data-model-reference.md#APISummary)實體。</span><span class="sxs-lookup"><span data-stu-id="ed44c-157">[API summary](api-management-template-data-model-reference.md#APISummary) entity.</span></span>|<span data-ttu-id="ed44c-158">hello 目前應用程式開發介面。</span><span class="sxs-lookup"><span data-stu-id="ed44c-158">hello current API.</span></span>|  
+|<span data-ttu-id="ed44c-159">operation</span><span class="sxs-lookup"><span data-stu-id="ed44c-159">operation</span></span>|[<span data-ttu-id="ed44c-160">作業</span><span class="sxs-lookup"><span data-stu-id="ed44c-160">Operation</span></span>](api-management-template-data-model-reference.md#Operation)|<span data-ttu-id="ed44c-161">目前顯示的 hello 作業。</span><span class="sxs-lookup"><span data-stu-id="ed44c-161">hello currently displayed operation.</span></span>|  
+|<span data-ttu-id="ed44c-162">sampleUrl</span><span class="sxs-lookup"><span data-stu-id="ed44c-162">sampleUrl</span></span>|<span data-ttu-id="ed44c-163">字串</span><span class="sxs-lookup"><span data-stu-id="ed44c-163">string</span></span>|<span data-ttu-id="ed44c-164">hello hello 目前作業的 URL。</span><span class="sxs-lookup"><span data-stu-id="ed44c-164">hello URL for hello current operation.</span></span>|  
+|<span data-ttu-id="ed44c-165">operationMenu</span><span class="sxs-lookup"><span data-stu-id="ed44c-165">operationMenu</span></span>|[<span data-ttu-id="ed44c-166">作業功能表</span><span class="sxs-lookup"><span data-stu-id="ed44c-166">Operation menu</span></span>](api-management-template-data-model-reference.md#Menu)|<span data-ttu-id="ed44c-167">此 API 的作業功能表。</span><span class="sxs-lookup"><span data-stu-id="ed44c-167">A menu of operations for this API.</span></span>|  
+|<span data-ttu-id="ed44c-168">consoleUrl</span><span class="sxs-lookup"><span data-stu-id="ed44c-168">consoleUrl</span></span>|<span data-ttu-id="ed44c-169">URI</span><span class="sxs-lookup"><span data-stu-id="ed44c-169">URI</span></span>|<span data-ttu-id="ed44c-170">hello URI hello**試試** 按鈕。</span><span class="sxs-lookup"><span data-stu-id="ed44c-170">hello URI for hello **Try it** button.</span></span>|  
+|<span data-ttu-id="ed44c-171">範例</span><span class="sxs-lookup"><span data-stu-id="ed44c-171">samples</span></span>|<span data-ttu-id="ed44c-172">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="ed44c-172">Collection of [Code sample](api-management-template-data-model-reference.md#Sample) entities.</span></span>|<span data-ttu-id="ed44c-173">hello hello 目前作業的程式碼範例...</span><span class="sxs-lookup"><span data-stu-id="ed44c-173">hello code samples for hello current operation..</span></span>|  
   
-### <a name="sample-template-data"></a><span data-ttu-id="ee2c5-174">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ee2c5-174">Sample template data</span></span>  
+### <a name="sample-template-data"></a><span data-ttu-id="ed44c-174">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ed44c-174">Sample template data</span></span>  
   
 ```json  
 {  
@@ -376,7 +376,7 @@ ms.lasthandoff: 07/11/2017
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -456,7 +456,7 @@ ms.lasthandoff: 07/11/2017
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -480,7 +480,7 @@ ms.lasthandoff: 07/11/2017
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -504,7 +504,7 @@ ms.lasthandoff: 07/11/2017
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -528,7 +528,7 @@ ms.lasthandoff: 07/11/2017
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -552,7 +552,7 @@ ms.lasthandoff: 07/11/2017
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -576,7 +576,7 @@ ms.lasthandoff: 07/11/2017
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -600,7 +600,7 @@ ms.lasthandoff: 07/11/2017
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -624,7 +624,7 @@ ms.lasthandoff: 07/11/2017
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -638,31 +638,31 @@ ms.lasthandoff: 07/11/2017
 }  
 ```  
   
-##  <span data-ttu-id="ee2c5-175"><a name="CodeSamples"></a> 程式碼範例</span><span class="sxs-lookup"><span data-stu-id="ee2c5-175"><a name="CodeSamples"></a> Code samples</span></span>  
- <span data-ttu-id="ee2c5-176">下列範本可讓您自訂作業頁面上個別程式碼範例的主體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-176">The following templates allow you to customize the body of the individual code samples on the operation page.</span></span>  
+##  <span data-ttu-id="ed44c-175"><a name="CodeSamples"></a> 程式碼範例</span><span class="sxs-lookup"><span data-stu-id="ed44c-175"><a name="CodeSamples"></a> Code samples</span></span>  
+ <span data-ttu-id="ed44c-176">hello 下列範本可讓您的 hello 個別的程式碼範例 toocustomize hello 主體 hello 作業 頁面上。</span><span class="sxs-lookup"><span data-stu-id="ed44c-176">hello following templates allow you toocustomize hello body of hello individual code samples on hello operation page.</span></span>  
   
- <span data-ttu-id="ee2c5-177">![開發人員入口網站範本程式碼範例](./media/api-management-api-templates/APIM-Developer-Portal-Templates-Code-samples.png "APIM 開發人員入口網站範本程式碼範例")</span><span class="sxs-lookup"><span data-stu-id="ee2c5-177">![Developer Portal Templates Code samples](./media/api-management-api-templates/APIM-Developer-Portal-Templates-Code-samples.png "APIM Developer Portal Templates Code samples")</span></span>  
+ <span data-ttu-id="ed44c-177">![開發人員入口網站範本程式碼範例](./media/api-management-api-templates/APIM-Developer-Portal-Templates-Code-samples.png "APIM 開發人員入口網站範本程式碼範例")</span><span class="sxs-lookup"><span data-stu-id="ed44c-177">![Developer Portal Templates Code samples](./media/api-management-api-templates/APIM-Developer-Portal-Templates-Code-samples.png "APIM Developer Portal Templates Code samples")</span></span>  
   
--   [<span data-ttu-id="ee2c5-178">Curl</span><span class="sxs-lookup"><span data-stu-id="ee2c5-178">Curl</span></span>](#Curl)  
+-   [<span data-ttu-id="ed44c-178">Curl</span><span class="sxs-lookup"><span data-stu-id="ed44c-178">Curl</span></span>](#Curl)  
   
--   [<span data-ttu-id="ee2c5-179">C#</span><span class="sxs-lookup"><span data-stu-id="ee2c5-179">C#</span></span>](#CSharp)  
+-   [<span data-ttu-id="ed44c-179">C#</span><span class="sxs-lookup"><span data-stu-id="ed44c-179">C#</span></span>](#CSharp)  
   
--   [<span data-ttu-id="ee2c5-180">Java</span><span class="sxs-lookup"><span data-stu-id="ee2c5-180">Java</span></span>](#Stub)  
+-   [<span data-ttu-id="ed44c-180">Java</span><span class="sxs-lookup"><span data-stu-id="ed44c-180">Java</span></span>](#Stub)  
   
--   [<span data-ttu-id="ee2c5-181">JavaScript</span><span class="sxs-lookup"><span data-stu-id="ee2c5-181">JavaScript</span></span>](#JavaScript)  
+-   [<span data-ttu-id="ed44c-181">JavaScript</span><span class="sxs-lookup"><span data-stu-id="ed44c-181">JavaScript</span></span>](#JavaScript)  
   
--   [<span data-ttu-id="ee2c5-182">Objective C</span><span class="sxs-lookup"><span data-stu-id="ee2c5-182">Objective C</span></span>](#ObjectiveC)  
+-   [<span data-ttu-id="ed44c-182">Objective C</span><span class="sxs-lookup"><span data-stu-id="ed44c-182">Objective C</span></span>](#ObjectiveC)  
   
--   [<span data-ttu-id="ee2c5-183">PHP</span><span class="sxs-lookup"><span data-stu-id="ee2c5-183">PHP</span></span>](#PHP)  
+-   [<span data-ttu-id="ed44c-183">PHP</span><span class="sxs-lookup"><span data-stu-id="ed44c-183">PHP</span></span>](#PHP)  
   
--   [<span data-ttu-id="ee2c5-184">Python</span><span class="sxs-lookup"><span data-stu-id="ee2c5-184">Python</span></span>](#Python)  
+-   [<span data-ttu-id="ed44c-184">Python</span><span class="sxs-lookup"><span data-stu-id="ed44c-184">Python</span></span>](#Python)  
   
--   [<span data-ttu-id="ee2c5-185">Ruby</span><span class="sxs-lookup"><span data-stu-id="ee2c5-185">Ruby</span></span>](#Ruby)  
+-   [<span data-ttu-id="ed44c-185">Ruby</span><span class="sxs-lookup"><span data-stu-id="ed44c-185">Ruby</span></span>](#Ruby)  
   
-###  <span data-ttu-id="ee2c5-186"><a name="Curl"></a>Curl</span><span class="sxs-lookup"><span data-stu-id="ee2c5-186"><a name="Curl"></a> Curl</span></span>  
- <span data-ttu-id="ee2c5-187">**DocumentationSamplesCurl** 範本可讓您在作業頁面的程式碼範例區段中自訂該程式碼範例。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-187">The **DocumentationSamplesCurl** template allows you to customize that code sample in the code samples section of the operation page.</span></span>  
+###  <span data-ttu-id="ed44c-186"><a name="Curl"></a>Curl</span><span class="sxs-lookup"><span data-stu-id="ed44c-186"><a name="Curl"></a> Curl</span></span>  
+ <span data-ttu-id="ed44c-187">hello **DocumentationSamplesCurl**範本可讓您 toocustomize hello hello 作業 頁面的程式碼範例一節中範例程式碼。</span><span class="sxs-lookup"><span data-stu-id="ed44c-187">hello **DocumentationSamplesCurl** template allows you toocustomize that code sample in hello code samples section of hello operation page.</span></span>  
   
-#### <a name="default-template"></a><span data-ttu-id="ee2c5-188">預設範本</span><span class="sxs-lookup"><span data-stu-id="ee2c5-188">Default template</span></span>  
+#### <a name="default-template"></a><span data-ttu-id="ed44c-188">預設範本</span><span class="sxs-lookup"><span data-stu-id="ed44c-188">Default template</span></span>  
   
 ```xml  
 @ECHO OFF  
@@ -677,13 +677,13 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
   
 ```  
   
-#### <a name="controls"></a><span data-ttu-id="ee2c5-189">控制</span><span class="sxs-lookup"><span data-stu-id="ee2c5-189">Controls</span></span>  
- <span data-ttu-id="ee2c5-190">程式碼範例範本不允許使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-190">The code sample templates do not allow the use of any [page controls](api-management-page-controls.md).</span></span>  
+#### <a name="controls"></a><span data-ttu-id="ed44c-189">控制</span><span class="sxs-lookup"><span data-stu-id="ed44c-189">Controls</span></span>  
+ <span data-ttu-id="ed44c-190">hello 範本程式碼範例不允許任何 hello 使用[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-190">hello code sample templates do not allow hello use of any [page controls](api-management-page-controls.md).</span></span>  
   
-#### <a name="data-model"></a><span data-ttu-id="ee2c5-191">資料模型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-191">Data model</span></span>  
- <span data-ttu-id="ee2c5-192">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-192">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
+#### <a name="data-model"></a><span data-ttu-id="ed44c-191">資料模型</span><span class="sxs-lookup"><span data-stu-id="ed44c-191">Data model</span></span>  
+ <span data-ttu-id="ed44c-192">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ed44c-192">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
   
-#### <a name="sample-template-data"></a><span data-ttu-id="ee2c5-193">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ee2c5-193">Sample template data</span></span>  
+#### <a name="sample-template-data"></a><span data-ttu-id="ed44c-193">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ed44c-193">Sample template data</span></span>  
   
 ```json  
 {  
@@ -700,7 +700,7 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -712,10 +712,10 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
 }  
 ```  
   
-###  <span data-ttu-id="ee2c5-194"><a name="CSharp"></a> C#</span><span class="sxs-lookup"><span data-stu-id="ee2c5-194"><a name="CSharp"></a> C#</span></span>  
- <span data-ttu-id="ee2c5-195">**DocumentationSamplesCsharp** 範本可讓您在作業頁面的程式碼範例區段中自訂該程式碼範例。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-195">The **DocumentationSamplesCsharp** template allows you to customize that code sample in the code samples section of the operation page.</span></span>  
+###  <span data-ttu-id="ed44c-194"><a name="CSharp"></a> C#</span><span class="sxs-lookup"><span data-stu-id="ed44c-194"><a name="CSharp"></a> C#</span></span>  
+ <span data-ttu-id="ed44c-195">hello **DocumentationSamplesCsharp**範本可讓您 toocustomize hello hello 作業 頁面的程式碼範例一節中範例程式碼。</span><span class="sxs-lookup"><span data-stu-id="ed44c-195">hello **DocumentationSamplesCsharp** template allows you toocustomize that code sample in hello code samples section of hello operation page.</span></span>  
   
-#### <a name="default-template"></a><span data-ttu-id="ee2c5-196">預設範本</span><span class="sxs-lookup"><span data-stu-id="ee2c5-196">Default template</span></span>  
+#### <a name="default-template"></a><span data-ttu-id="ed44c-196">預設範本</span><span class="sxs-lookup"><span data-stu-id="ed44c-196">Default template</span></span>  
   
 ```xml  
 using System;  
@@ -731,7 +731,7 @@ namespace CSHttpClientSample
         static void Main()  
         {  
             MakeRequest();  
-            Console.WriteLine("Hit ENTER to exit...");  
+            Console.WriteLine("Hit ENTER tooexit...");  
             Console.ReadLine();  
         }  
   
@@ -856,13 +856,13 @@ namespace CSHttpClientSample
 }     
 ```  
   
-#### <a name="controls"></a><span data-ttu-id="ee2c5-197">控制</span><span class="sxs-lookup"><span data-stu-id="ee2c5-197">Controls</span></span>  
- <span data-ttu-id="ee2c5-198">程式碼範例範本不允許使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-198">The code sample templates do not allow the use of any [page controls](api-management-page-controls.md).</span></span>  
+#### <a name="controls"></a><span data-ttu-id="ed44c-197">控制</span><span class="sxs-lookup"><span data-stu-id="ed44c-197">Controls</span></span>  
+ <span data-ttu-id="ed44c-198">hello 範本程式碼範例不允許任何 hello 使用[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-198">hello code sample templates do not allow hello use of any [page controls](api-management-page-controls.md).</span></span>  
   
-#### <a name="data-model"></a><span data-ttu-id="ee2c5-199">資料模型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-199">Data model</span></span>  
- <span data-ttu-id="ee2c5-200">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-200">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
+#### <a name="data-model"></a><span data-ttu-id="ed44c-199">資料模型</span><span class="sxs-lookup"><span data-stu-id="ed44c-199">Data model</span></span>  
+ <span data-ttu-id="ed44c-200">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ed44c-200">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
   
-#### <a name="sample-template-data"></a><span data-ttu-id="ee2c5-201">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ee2c5-201">Sample template data</span></span>  
+#### <a name="sample-template-data"></a><span data-ttu-id="ed44c-201">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ed44c-201">Sample template data</span></span>  
   
 ```json  
 {  
@@ -879,7 +879,7 @@ namespace CSHttpClientSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -891,13 +891,13 @@ namespace CSHttpClientSample
 }  
 ```  
   
-###  <span data-ttu-id="ee2c5-202"><a name="Stub"></a>Java</span><span class="sxs-lookup"><span data-stu-id="ee2c5-202"><a name="Stub"></a> Java</span></span>  
- <span data-ttu-id="ee2c5-203">**DocumentationSamplesJava** 範本可讓您在作業頁面的程式碼範例區段中自訂該程式碼範例。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-203">The **DocumentationSamplesJava** template allows you to customize that code sample in the code samples section of the operation page.</span></span>  
+###  <span data-ttu-id="ed44c-202"><a name="Stub"></a>Java</span><span class="sxs-lookup"><span data-stu-id="ed44c-202"><a name="Stub"></a> Java</span></span>  
+ <span data-ttu-id="ed44c-203">hello **DocumentationSamplesJava**範本可讓您 toocustomize hello hello 作業 頁面的程式碼範例一節中範例程式碼。</span><span class="sxs-lookup"><span data-stu-id="ed44c-203">hello **DocumentationSamplesJava** template allows you toocustomize that code sample in hello code samples section of hello operation page.</span></span>  
   
-#### <a name="default-template"></a><span data-ttu-id="ee2c5-204">預設範本</span><span class="sxs-lookup"><span data-stu-id="ee2c5-204">Default template</span></span>  
+#### <a name="default-template"></a><span data-ttu-id="ed44c-204">預設範本</span><span class="sxs-lookup"><span data-stu-id="ed44c-204">Default template</span></span>  
   
 ```xml  
-// // This sample uses the Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
+// // This sample uses hello Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
 import java.net.URI;  
 import org.apache.http.HttpEntity;  
 import org.apache.http.HttpResponse;  
@@ -952,13 +952,13 @@ public class JavaSample
   
 ```  
   
-#### <a name="controls"></a><span data-ttu-id="ee2c5-205">控制</span><span class="sxs-lookup"><span data-stu-id="ee2c5-205">Controls</span></span>  
- <span data-ttu-id="ee2c5-206">程式碼範例範本不允許使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-206">The code sample templates do not allow the use of any [page controls](api-management-page-controls.md).</span></span>  
+#### <a name="controls"></a><span data-ttu-id="ed44c-205">控制</span><span class="sxs-lookup"><span data-stu-id="ed44c-205">Controls</span></span>  
+ <span data-ttu-id="ed44c-206">hello 範本程式碼範例不允許任何 hello 使用[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-206">hello code sample templates do not allow hello use of any [page controls](api-management-page-controls.md).</span></span>  
   
-#### <a name="data-model"></a><span data-ttu-id="ee2c5-207">資料模型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-207">Data model</span></span>  
- <span data-ttu-id="ee2c5-208">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-208">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
+#### <a name="data-model"></a><span data-ttu-id="ed44c-207">資料模型</span><span class="sxs-lookup"><span data-stu-id="ed44c-207">Data model</span></span>  
+ <span data-ttu-id="ed44c-208">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ed44c-208">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
   
-#### <a name="sample-template-data"></a><span data-ttu-id="ee2c5-209">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ee2c5-209">Sample template data</span></span>  
+#### <a name="sample-template-data"></a><span data-ttu-id="ed44c-209">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ed44c-209">Sample template data</span></span>  
   
 ```json  
 {  
@@ -975,7 +975,7 @@ public class JavaSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -987,10 +987,10 @@ public class JavaSample
 }  
 ```  
   
-###  <span data-ttu-id="ee2c5-210"><a name="JavaScript"></a>JavaScript</span><span class="sxs-lookup"><span data-stu-id="ee2c5-210"><a name="JavaScript"></a> JavaScript</span></span>  
- <span data-ttu-id="ee2c5-211">**DocumentationSamplesJs** 範本可讓您在作業頁面的程式碼範例區段中自訂該程式碼範例。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-211">The **DocumentationSamplesJs** template allows you to customize that code sample in the code samples section of the operation page.</span></span>  
+###  <span data-ttu-id="ed44c-210"><a name="JavaScript"></a>JavaScript</span><span class="sxs-lookup"><span data-stu-id="ed44c-210"><a name="JavaScript"></a> JavaScript</span></span>  
+ <span data-ttu-id="ed44c-211">hello **DocumentationSamplesJs**範本可讓您 toocustomize hello hello 作業 頁面的程式碼範例一節中範例程式碼。</span><span class="sxs-lookup"><span data-stu-id="ed44c-211">hello **DocumentationSamplesJs** template allows you toocustomize that code sample in hello code samples section of hello operation page.</span></span>  
   
-#### <a name="default-template"></a><span data-ttu-id="ee2c5-212">預設範本</span><span class="sxs-lookup"><span data-stu-id="ee2c5-212">Default template</span></span>  
+#### <a name="default-template"></a><span data-ttu-id="ed44c-212">預設範本</span><span class="sxs-lookup"><span data-stu-id="ed44c-212">Default template</span></span>  
   
 ```xml  
 <!DOCTYPE html>  
@@ -1041,13 +1041,13 @@ public class JavaSample
   
 ```  
   
-#### <a name="controls"></a><span data-ttu-id="ee2c5-213">控制</span><span class="sxs-lookup"><span data-stu-id="ee2c5-213">Controls</span></span>  
- <span data-ttu-id="ee2c5-214">程式碼範例範本不允許使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-214">The code sample templates do not allow the use of any [page controls](api-management-page-controls.md).</span></span>  
+#### <a name="controls"></a><span data-ttu-id="ed44c-213">控制</span><span class="sxs-lookup"><span data-stu-id="ed44c-213">Controls</span></span>  
+ <span data-ttu-id="ed44c-214">hello 範本程式碼範例不允許任何 hello 使用[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-214">hello code sample templates do not allow hello use of any [page controls](api-management-page-controls.md).</span></span>  
   
-#### <a name="data-model"></a><span data-ttu-id="ee2c5-215">資料模型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-215">Data model</span></span>  
- <span data-ttu-id="ee2c5-216">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-216">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
+#### <a name="data-model"></a><span data-ttu-id="ed44c-215">資料模型</span><span class="sxs-lookup"><span data-stu-id="ed44c-215">Data model</span></span>  
+ <span data-ttu-id="ed44c-216">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ed44c-216">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
   
-#### <a name="sample-template-data"></a><span data-ttu-id="ee2c5-217">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ee2c5-217">Sample template data</span></span>  
+#### <a name="sample-template-data"></a><span data-ttu-id="ed44c-217">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ed44c-217">Sample template data</span></span>  
   
 ```json  
 {  
@@ -1064,7 +1064,7 @@ public class JavaSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1076,10 +1076,10 @@ public class JavaSample
 }  
 ```  
   
-###  <span data-ttu-id="ee2c5-218"><a name="ObjectiveC"></a>Objective C</span><span class="sxs-lookup"><span data-stu-id="ee2c5-218"><a name="ObjectiveC"></a> Objective C</span></span>  
- <span data-ttu-id="ee2c5-219">**DocumentationSamplesObjc** 範本可讓您在作業頁面的程式碼範例區段中自訂該程式碼範例。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-219">The **DocumentationSamplesObjc** template allows you to customize that code sample in the code samples section of the operation page.</span></span>  
+###  <span data-ttu-id="ed44c-218"><a name="ObjectiveC"></a>Objective C</span><span class="sxs-lookup"><span data-stu-id="ed44c-218"><a name="ObjectiveC"></a> Objective C</span></span>  
+ <span data-ttu-id="ed44c-219">hello **DocumentationSamplesObjc**範本可讓您 toocustomize hello hello 作業 頁面的程式碼範例一節中範例程式碼。</span><span class="sxs-lookup"><span data-stu-id="ed44c-219">hello **DocumentationSamplesObjc** template allows you toocustomize that code sample in hello code samples section of hello operation page.</span></span>  
   
-#### <a name="default-template"></a><span data-ttu-id="ee2c5-220">預設範本</span><span class="sxs-lookup"><span data-stu-id="ee2c5-220">Default template</span></span>  
+#### <a name="default-template"></a><span data-ttu-id="ed44c-220">預設範本</span><span class="sxs-lookup"><span data-stu-id="ed44c-220">Default template</span></span>  
   
 ```xml  
 #import <Foundation/Foundation.h>  
@@ -1153,13 +1153,13 @@ int main(int argc, const char * argv[])
   
 ```  
   
-#### <a name="controls"></a><span data-ttu-id="ee2c5-221">控制</span><span class="sxs-lookup"><span data-stu-id="ee2c5-221">Controls</span></span>  
- <span data-ttu-id="ee2c5-222">程式碼範例範本不允許使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-222">The code sample templates do not allow the use of any [page controls](api-management-page-controls.md).</span></span>  
+#### <a name="controls"></a><span data-ttu-id="ed44c-221">控制</span><span class="sxs-lookup"><span data-stu-id="ed44c-221">Controls</span></span>  
+ <span data-ttu-id="ed44c-222">hello 範本程式碼範例不允許任何 hello 使用[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-222">hello code sample templates do not allow hello use of any [page controls](api-management-page-controls.md).</span></span>  
   
-#### <a name="data-model"></a><span data-ttu-id="ee2c5-223">資料模型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-223">Data model</span></span>  
- <span data-ttu-id="ee2c5-224">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-224">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
+#### <a name="data-model"></a><span data-ttu-id="ed44c-223">資料模型</span><span class="sxs-lookup"><span data-stu-id="ed44c-223">Data model</span></span>  
+ <span data-ttu-id="ed44c-224">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ed44c-224">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
   
-#### <a name="sample-template-data"></a><span data-ttu-id="ee2c5-225">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ee2c5-225">Sample template data</span></span>  
+#### <a name="sample-template-data"></a><span data-ttu-id="ed44c-225">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ed44c-225">Sample template data</span></span>  
   
 ```json  
 {  
@@ -1176,7 +1176,7 @@ int main(int argc, const char * argv[])
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1188,14 +1188,14 @@ int main(int argc, const char * argv[])
 }  
 ```  
   
-###  <span data-ttu-id="ee2c5-226"><a name="PHP"></a>PHP</span><span class="sxs-lookup"><span data-stu-id="ee2c5-226"><a name="PHP"></a> PHP</span></span>  
- <span data-ttu-id="ee2c5-227">**DocumentationSamplesPhp** 範本可讓您在作業頁面的程式碼範例區段中自訂該程式碼範例。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-227">The **DocumentationSamplesPhp** template allows you to customize that code sample in the code samples section of the operation page.</span></span>  
+###  <span data-ttu-id="ed44c-226"><a name="PHP"></a>PHP</span><span class="sxs-lookup"><span data-stu-id="ed44c-226"><a name="PHP"></a> PHP</span></span>  
+ <span data-ttu-id="ed44c-227">hello **DocumentationSamplesPhp**範本可讓您 toocustomize hello hello 作業 頁面的程式碼範例一節中範例程式碼。</span><span class="sxs-lookup"><span data-stu-id="ed44c-227">hello **DocumentationSamplesPhp** template allows you toocustomize that code sample in hello code samples section of hello operation page.</span></span>  
   
-#### <a name="default-template"></a><span data-ttu-id="ee2c5-228">預設範本</span><span class="sxs-lookup"><span data-stu-id="ee2c5-228">Default template</span></span>  
+#### <a name="default-template"></a><span data-ttu-id="ed44c-228">預設範本</span><span class="sxs-lookup"><span data-stu-id="ed44c-228">Default template</span></span>  
   
 ```xml  
 <?php  
-// This sample uses the Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
+// This sample uses hello Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
 require_once 'HTTP/Request2.php';  
   
 $request = new Http_Request2('{{scheme}}://{{host}}{{path}}');  
@@ -1243,13 +1243,13 @@ catch (HttpException $ex)
 ?>  
 ```  
   
-#### <a name="controls"></a><span data-ttu-id="ee2c5-229">控制</span><span class="sxs-lookup"><span data-stu-id="ee2c5-229">Controls</span></span>  
- <span data-ttu-id="ee2c5-230">程式碼範例範本不允許使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-230">The code sample templates do not allow the use of any [page controls](api-management-page-controls.md).</span></span>  
+#### <a name="controls"></a><span data-ttu-id="ed44c-229">控制</span><span class="sxs-lookup"><span data-stu-id="ed44c-229">Controls</span></span>  
+ <span data-ttu-id="ed44c-230">hello 範本程式碼範例不允許任何 hello 使用[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-230">hello code sample templates do not allow hello use of any [page controls](api-management-page-controls.md).</span></span>  
   
-#### <a name="data-model"></a><span data-ttu-id="ee2c5-231">資料模型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-231">Data model</span></span>  
- <span data-ttu-id="ee2c5-232">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-232">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
+#### <a name="data-model"></a><span data-ttu-id="ed44c-231">資料模型</span><span class="sxs-lookup"><span data-stu-id="ed44c-231">Data model</span></span>  
+ <span data-ttu-id="ed44c-232">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ed44c-232">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
   
-#### <a name="sample-template-data"></a><span data-ttu-id="ee2c5-233">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ee2c5-233">Sample template data</span></span>  
+#### <a name="sample-template-data"></a><span data-ttu-id="ed44c-233">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ed44c-233">Sample template data</span></span>  
   
 ```json  
 {  
@@ -1266,7 +1266,7 @@ catch (HttpException $ex)
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1278,10 +1278,10 @@ catch (HttpException $ex)
 }  
 ```  
   
-###  <span data-ttu-id="ee2c5-234"><a name="Python"></a>Python</span><span class="sxs-lookup"><span data-stu-id="ee2c5-234"><a name="Python"></a> Python</span></span>  
- <span data-ttu-id="ee2c5-235">**DocumentationSamplesPython** 範本可讓您在作業頁面的程式碼範例區段中自訂該程式碼範例。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-235">The **DocumentationSamplesPython** template allows you to customize that code sample in the code samples section of the operation page.</span></span>  
+###  <span data-ttu-id="ed44c-234"><a name="Python"></a>Python</span><span class="sxs-lookup"><span data-stu-id="ed44c-234"><a name="Python"></a> Python</span></span>  
+ <span data-ttu-id="ed44c-235">hello **DocumentationSamplesPython**範本可讓您 toocustomize hello hello 作業 頁面的程式碼範例一節中範例程式碼。</span><span class="sxs-lookup"><span data-stu-id="ed44c-235">hello **DocumentationSamplesPython** template allows you toocustomize that code sample in hello code samples section of hello operation page.</span></span>  
   
-#### <a name="default-template"></a><span data-ttu-id="ee2c5-236">預設範本</span><span class="sxs-lookup"><span data-stu-id="ee2c5-236">Default template</span></span>  
+#### <a name="default-template"></a><span data-ttu-id="ed44c-236">預設範本</span><span class="sxs-lookup"><span data-stu-id="ed44c-236">Default template</span></span>  
   
 ```xml  
 ########### Python 2.7 #############  
@@ -1361,13 +1361,13 @@ except Exception as e:
 ####################################  
 ```  
   
-#### <a name="controls"></a><span data-ttu-id="ee2c5-237">控制</span><span class="sxs-lookup"><span data-stu-id="ee2c5-237">Controls</span></span>  
- <span data-ttu-id="ee2c5-238">程式碼範例範本不允許使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-238">The code sample templates do not allow the use of any [page controls](api-management-page-controls.md).</span></span>  
+#### <a name="controls"></a><span data-ttu-id="ed44c-237">控制</span><span class="sxs-lookup"><span data-stu-id="ed44c-237">Controls</span></span>  
+ <span data-ttu-id="ed44c-238">hello 範本程式碼範例不允許任何 hello 使用[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-238">hello code sample templates do not allow hello use of any [page controls](api-management-page-controls.md).</span></span>  
   
-#### <a name="data-model"></a><span data-ttu-id="ee2c5-239">資料模型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-239">Data model</span></span>  
- <span data-ttu-id="ee2c5-240">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-240">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
+#### <a name="data-model"></a><span data-ttu-id="ed44c-239">資料模型</span><span class="sxs-lookup"><span data-stu-id="ed44c-239">Data model</span></span>  
+ <span data-ttu-id="ed44c-240">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ed44c-240">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
   
-#### <a name="sample-template-data"></a><span data-ttu-id="ee2c5-241">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ee2c5-241">Sample template data</span></span>  
+#### <a name="sample-template-data"></a><span data-ttu-id="ed44c-241">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ed44c-241">Sample template data</span></span>  
   
 ```json  
 {  
@@ -1384,7 +1384,7 @@ except Exception as e:
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1396,10 +1396,10 @@ except Exception as e:
 }  
 ```  
   
-###  <span data-ttu-id="ee2c5-242"><a name="Ruby"></a>Ruby</span><span class="sxs-lookup"><span data-stu-id="ee2c5-242"><a name="Ruby"></a> Ruby</span></span>  
- <span data-ttu-id="ee2c5-243">**DocumentationSamplesRuby** 範本可讓您在作業頁面的程式碼範例區段中自訂該程式碼範例。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-243">The **DocumentationSamplesRuby** template allows you to customize that code sample in the code samples section of the operation page.</span></span>  
+###  <span data-ttu-id="ed44c-242"><a name="Ruby"></a>Ruby</span><span class="sxs-lookup"><span data-stu-id="ed44c-242"><a name="Ruby"></a> Ruby</span></span>  
+ <span data-ttu-id="ed44c-243">hello **DocumentationSamplesRuby**範本可讓您 toocustomize hello hello 作業 頁面的程式碼範例一節中範例程式碼。</span><span class="sxs-lookup"><span data-stu-id="ed44c-243">hello **DocumentationSamplesRuby** template allows you toocustomize that code sample in hello code samples section of hello operation page.</span></span>  
   
-#### <a name="default-template"></a><span data-ttu-id="ee2c5-244">預設範本</span><span class="sxs-lookup"><span data-stu-id="ee2c5-244">Default template</span></span>  
+#### <a name="default-template"></a><span data-ttu-id="ed44c-244">預設範本</span><span class="sxs-lookup"><span data-stu-id="ed44c-244">Default template</span></span>  
   
 ```xml  
 require 'net/http'  
@@ -1432,13 +1432,13 @@ puts response.body
   
 ```  
   
-#### <a name="controls"></a><span data-ttu-id="ee2c5-245">控制</span><span class="sxs-lookup"><span data-stu-id="ee2c5-245">Controls</span></span>  
- <span data-ttu-id="ee2c5-246">程式碼範例範本不允許使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-246">The code sample templates do not allow the use of any [page controls](api-management-page-controls.md).</span></span>  
+#### <a name="controls"></a><span data-ttu-id="ed44c-245">控制</span><span class="sxs-lookup"><span data-stu-id="ed44c-245">Controls</span></span>  
+ <span data-ttu-id="ed44c-246">hello 範本程式碼範例不允許任何 hello 使用[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-246">hello code sample templates do not allow hello use of any [page controls](api-management-page-controls.md).</span></span>  
   
-#### <a name="data-model"></a><span data-ttu-id="ee2c5-247">資料模型</span><span class="sxs-lookup"><span data-stu-id="ee2c5-247">Data model</span></span>  
- <span data-ttu-id="ee2c5-248">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-248">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
+#### <a name="data-model"></a><span data-ttu-id="ed44c-247">資料模型</span><span class="sxs-lookup"><span data-stu-id="ed44c-247">Data model</span></span>  
+ <span data-ttu-id="ed44c-248">[程式碼範例](api-management-template-data-model-reference.md#Sample)實體。</span><span class="sxs-lookup"><span data-stu-id="ed44c-248">[Code sample](api-management-template-data-model-reference.md#Sample) entity.</span></span>  
   
-#### <a name="sample-template-data"></a><span data-ttu-id="ee2c5-249">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ee2c5-249">Sample template data</span></span>  
+#### <a name="sample-template-data"></a><span data-ttu-id="ed44c-249">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="ed44c-249">Sample template data</span></span>  
   
 ```json  
 {  
@@ -1455,7 +1455,7 @@ puts response.body
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1467,5 +1467,5 @@ puts response.body
 }  
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="ee2c5-250">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ee2c5-250">Next steps</span></span>
-<span data-ttu-id="ee2c5-251">如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](api-management-developer-portal-templates.md)。</span><span class="sxs-lookup"><span data-stu-id="ee2c5-251">For more information about working with templates, see [How to customize the API Management developer portal using templates](api-management-developer-portal-templates.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ed44c-250">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ed44c-250">Next steps</span></span>
+<span data-ttu-id="ed44c-251">如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](api-management-developer-portal-templates.md)。</span><span class="sxs-lookup"><span data-stu-id="ed44c-251">For more information about working with templates, see [How toocustomize hello API Management developer portal using templates](api-management-developer-portal-templates.md).</span></span>

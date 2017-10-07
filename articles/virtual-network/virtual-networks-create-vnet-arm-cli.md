@@ -1,6 +1,6 @@
 ---
-title: "建立虛擬網路 - Azure CLI 2.0 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 2.0 建立虛擬網路。"
+title: "虛擬網路-Azure CLI 2.0 aaaCreate |Microsoft 文件"
+description: "了解如何使用虛擬網路的 toocreate hello Azure CLI 2.0。"
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -16,51 +16,51 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c7d7b3543f488aedff1ea2c68a2b497e0ca744af
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e79b7fe780fc81f4866f810d830824e43a5a43b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-virtual-network-using-the-azure-cli-20"></a><span data-ttu-id="65661-103">使用 Azure CLI 2.0 建立虛擬網路</span><span class="sxs-lookup"><span data-stu-id="65661-103">Create a virtual network using the Azure CLI 2.0</span></span>
+# <a name="create-a-virtual-network-using-hello-azure-cli-20"></a><span data-ttu-id="1483c-103">建立虛擬網路使用 Azure CLI 2.0 hello</span><span class="sxs-lookup"><span data-stu-id="1483c-103">Create a virtual network using hello Azure CLI 2.0</span></span>
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
-<span data-ttu-id="65661-104">Azure 有兩個部署模型：Azure Resource Manager 和傳統。</span><span class="sxs-lookup"><span data-stu-id="65661-104">Azure has two deployment models: Azure Resource Manager and classic.</span></span> <span data-ttu-id="65661-105">Microsoft 建議透過 Resource Manager 部署模型建立資源。</span><span class="sxs-lookup"><span data-stu-id="65661-105">Microsoft recommends creating resources through the Resource Manager deployment model.</span></span> <span data-ttu-id="65661-106">若要深入了解兩個模型的差異，請閱讀[了解 Azure 部署模型](../azure-resource-manager/resource-manager-deployment-model.md)。</span><span class="sxs-lookup"><span data-stu-id="65661-106">To learn more about the differences between the two models, read the [Understand Azure deployment models](../azure-resource-manager/resource-manager-deployment-model.md) article.</span></span>
+<span data-ttu-id="1483c-104">Azure 有兩個部署模型：Azure Resource Manager 和傳統。</span><span class="sxs-lookup"><span data-stu-id="1483c-104">Azure has two deployment models: Azure Resource Manager and classic.</span></span> <span data-ttu-id="1483c-105">Microsoft 建議您建立透過 hello Resource Manager 部署模型的資源。</span><span class="sxs-lookup"><span data-stu-id="1483c-105">Microsoft recommends creating resources through hello Resource Manager deployment model.</span></span> <span data-ttu-id="1483c-106">深入了解 toolearn hello hello 兩個模型之間的差異讀取 hello[了解 Azure 部署模型](../azure-resource-manager/resource-manager-deployment-model.md)發行項。</span><span class="sxs-lookup"><span data-stu-id="1483c-106">toolearn more about hello differences between hello two models, read hello [Understand Azure deployment models](../azure-resource-manager/resource-manager-deployment-model.md) article.</span></span>
 
-## <a name="cli-versions-to-complete-the-task"></a><span data-ttu-id="65661-107">用以完成工作的 CLI 版本</span><span class="sxs-lookup"><span data-stu-id="65661-107">CLI versions to complete the task</span></span>
-<span data-ttu-id="65661-108">您可以使用下列其中一個 CLI 版本來完成工作︰</span><span class="sxs-lookup"><span data-stu-id="65661-108">You can complete the task using one of the following CLI versions:</span></span>
+## <a name="cli-versions-toocomplete-hello-task"></a><span data-ttu-id="1483c-107">CLI 版本 toocomplete hello 工作</span><span class="sxs-lookup"><span data-stu-id="1483c-107">CLI versions toocomplete hello task</span></span>
+<span data-ttu-id="1483c-108">您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：</span><span class="sxs-lookup"><span data-stu-id="1483c-108">You can complete hello task using one of hello following CLI versions:</span></span>
 
-- <span data-ttu-id="65661-109">[Azure CLI 1.0](virtual-networks-create-vnet-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI</span><span class="sxs-lookup"><span data-stu-id="65661-109">[Azure CLI 1.0](virtual-networks-create-vnet-cli-nodejs.md) – our CLI for the classic and resource management deployment models</span></span>
-- <span data-ttu-id="65661-110">[Azure CLI 2.0](#create-a-virtual-network) - 適用於資源管理部署模型的新一代 CLI (本文章)</span><span class="sxs-lookup"><span data-stu-id="65661-110">[Azure CLI 2.0](#create-a-virtual-network) - our next generation CLI for the resource management deployment model (this article)\`</span></span>
+- <span data-ttu-id="1483c-109">[Azure CLI 1.0](virtual-networks-create-vnet-cli-nodejs.md) – 我們 CLI hello 傳統和資源管理部署模型</span><span class="sxs-lookup"><span data-stu-id="1483c-109">[Azure CLI 1.0](virtual-networks-create-vnet-cli-nodejs.md) – our CLI for hello classic and resource management deployment models</span></span>
+- <span data-ttu-id="1483c-110">[Azure CLI 2.0](#create-a-virtual-network) -hello 資源管理部署模型 （即本文） 我們下一個層代 CLI'</span><span class="sxs-lookup"><span data-stu-id="1483c-110">[Azure CLI 2.0](#create-a-virtual-network) - our next generation CLI for hello resource management deployment model (this article)\`</span></span>
  
-    <span data-ttu-id="65661-111">您也可以使用其他工具透過 Resource Manager 建立 VNet，或從下列清單中選取不同選項以透過傳統部署模型建立 VNet︰</span><span class="sxs-lookup"><span data-stu-id="65661-111">You can also create a VNet through Resource Manager using other tools or create a VNet through the classic deployment model by selecting a different option from the following list:</span></span>
+    <span data-ttu-id="1483c-111">您也可以建立 VNet 資源管理員 」 透過使用其他工具，或從 hello 下列清單中選取不同的選項來建立 VNet 透過 hello 傳統部署模型：</span><span class="sxs-lookup"><span data-stu-id="1483c-111">You can also create a VNet through Resource Manager using other tools or create a VNet through hello classic deployment model by selecting a different option from hello following list:</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="65661-112">入口網站</span><span class="sxs-lookup"><span data-stu-id="65661-112">Portal</span></span>](virtual-networks-create-vnet-arm-pportal.md)
-> * [<span data-ttu-id="65661-113">PowerShell</span><span class="sxs-lookup"><span data-stu-id="65661-113">PowerShell</span></span>](virtual-networks-create-vnet-arm-ps.md)
-> * [<span data-ttu-id="65661-114">CLI</span><span class="sxs-lookup"><span data-stu-id="65661-114">CLI</span></span>](virtual-networks-create-vnet-arm-cli.md)
-> * [<span data-ttu-id="65661-115">範本</span><span class="sxs-lookup"><span data-stu-id="65661-115">Template</span></span>](virtual-networks-create-vnet-arm-template-click.md)
-> * [<span data-ttu-id="65661-116">入口網站 (傳統)</span><span class="sxs-lookup"><span data-stu-id="65661-116">Portal (Classic)</span></span>](virtual-networks-create-vnet-classic-pportal.md)
-> * [<span data-ttu-id="65661-117">PowerShell (傳統)</span><span class="sxs-lookup"><span data-stu-id="65661-117">PowerShell (Classic)</span></span>](virtual-networks-create-vnet-classic-netcfg-ps.md)
-> * [<span data-ttu-id="65661-118">CLI (傳統)</span><span class="sxs-lookup"><span data-stu-id="65661-118">CLI (Classic)</span></span>](virtual-networks-create-vnet-classic-cli.md)
+> * [<span data-ttu-id="1483c-112">入口網站</span><span class="sxs-lookup"><span data-stu-id="1483c-112">Portal</span></span>](virtual-networks-create-vnet-arm-pportal.md)
+> * [<span data-ttu-id="1483c-113">PowerShell</span><span class="sxs-lookup"><span data-stu-id="1483c-113">PowerShell</span></span>](virtual-networks-create-vnet-arm-ps.md)
+> * [<span data-ttu-id="1483c-114">CLI</span><span class="sxs-lookup"><span data-stu-id="1483c-114">CLI</span></span>](virtual-networks-create-vnet-arm-cli.md)
+> * [<span data-ttu-id="1483c-115">範本</span><span class="sxs-lookup"><span data-stu-id="1483c-115">Template</span></span>](virtual-networks-create-vnet-arm-template-click.md)
+> * [<span data-ttu-id="1483c-116">入口網站 (傳統)</span><span class="sxs-lookup"><span data-stu-id="1483c-116">Portal (Classic)</span></span>](virtual-networks-create-vnet-classic-pportal.md)
+> * [<span data-ttu-id="1483c-117">PowerShell (傳統)</span><span class="sxs-lookup"><span data-stu-id="1483c-117">PowerShell (Classic)</span></span>](virtual-networks-create-vnet-classic-netcfg-ps.md)
+> * [<span data-ttu-id="1483c-118">CLI (傳統)</span><span class="sxs-lookup"><span data-stu-id="1483c-118">CLI (Classic)</span></span>](virtual-networks-create-vnet-classic-cli.md)
 
 [!INCLUDE [virtual-networks-create-vnet-scenario-include](../../includes/virtual-networks-create-vnet-scenario-include.md)]
 
 
-## <a name="create-a-virtual-network"></a><span data-ttu-id="65661-119">建立虛擬網路</span><span class="sxs-lookup"><span data-stu-id="65661-119">Create a virtual network</span></span>
+## <a name="create-a-virtual-network"></a><span data-ttu-id="1483c-119">建立虛擬網路</span><span class="sxs-lookup"><span data-stu-id="1483c-119">Create a virtual network</span></span>
 
-<span data-ttu-id="65661-120">若要使用 Azure CLI 2.0 來建立虛擬網路，請完成下列步驟︰</span><span class="sxs-lookup"><span data-stu-id="65661-120">To create a virtual network using the Azure CLI 2.0, complete the following steps:</span></span>
+<span data-ttu-id="1483c-120">虛擬網路使用 toocreate hello Azure CLI 2.0 中，完成下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="1483c-120">toocreate a virtual network using hello Azure CLI 2.0, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="65661-121">安裝及設定最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="65661-121">Install and configure the latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and log in to an Azure account using [az login](/cli/azure/#login).</span></span>
+1. <span data-ttu-id="1483c-121">安裝及最新設定 hello [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure 帳戶使用登入和[az 登入](/cli/azure/#login)。</span><span class="sxs-lookup"><span data-stu-id="1483c-121">Install and configure hello latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and log in tooan Azure account using [az login](/cli/azure/#login).</span></span>
 
-2. <span data-ttu-id="65661-122">使用 [az group create](/cli/azure/group#create) 命令搭配 `--name` 和 `--location` 引數來為您的 VNet 建立資源群組：</span><span class="sxs-lookup"><span data-stu-id="65661-122">Create a resource group for your VNet using the [az group create](/cli/azure/group#create) command with the `--name` and `--location` arguments:</span></span>
+2. <span data-ttu-id="1483c-122">建立資源群組的 VNet 使用 hello [az 群組建立](/cli/azure/group#create)命令與 hello`--name`和`--location`引數：</span><span class="sxs-lookup"><span data-stu-id="1483c-122">Create a resource group for your VNet using hello [az group create](/cli/azure/group#create) command with hello `--name` and `--location` arguments:</span></span>
 
     ```azurecli
     az group create --name TestRG --location centralus
     ```
 
-3. <span data-ttu-id="65661-123">建立 VNet 和子網路：</span><span class="sxs-lookup"><span data-stu-id="65661-123">Create a VNet and a subnet:</span></span>
+3. <span data-ttu-id="1483c-123">建立 VNet 和子網路：</span><span class="sxs-lookup"><span data-stu-id="1483c-123">Create a VNet and a subnet:</span></span>
 
     ```azurecli
     az network vnet create \
@@ -72,7 +72,7 @@ ms.lasthandoff: 07/11/2017
     --subnet-prefix 192.168.1.0/24
     ```
 
-    <span data-ttu-id="65661-124">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="65661-124">Expected output:</span></span>
+    <span data-ttu-id="1483c-124">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="1483c-124">Expected output:</span></span>
     
     ```json
     {
@@ -103,28 +103,28 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-    <span data-ttu-id="65661-125">使用的參數：</span><span class="sxs-lookup"><span data-stu-id="65661-125">Parameters used:</span></span>
+    <span data-ttu-id="1483c-125">使用的參數：</span><span class="sxs-lookup"><span data-stu-id="1483c-125">Parameters used:</span></span>
 
-    - <span data-ttu-id="65661-126">`--name TestVNet`：要建立的 VNet 名稱。</span><span class="sxs-lookup"><span data-stu-id="65661-126">`--name TestVNet`: Name of the VNet to be created.</span></span>
-    - <span data-ttu-id="65661-127">`--resource-group TestRG`：控制資源的資源群組名稱。</span><span class="sxs-lookup"><span data-stu-id="65661-127">`--resource-group TestRG`: # The resource group name that controls the resource.</span></span> 
-    - <span data-ttu-id="65661-128">`--location centralus`：要在其中進行部署的位置。</span><span class="sxs-lookup"><span data-stu-id="65661-128">`--location centralus`: The location into which to deploy.</span></span>
-    - <span data-ttu-id="65661-129">`--address-prefix 192.168.0.0/16`：位址首碼和區塊。</span><span class="sxs-lookup"><span data-stu-id="65661-129">`--address-prefix 192.168.0.0/16`: The address prefix and block.</span></span>  
-    - <span data-ttu-id="65661-130">`--subnet-name FrontEnd`：子網路的名稱。</span><span class="sxs-lookup"><span data-stu-id="65661-130">`--subnet-name FrontEnd`: The name of the subnet.</span></span>
-    - <span data-ttu-id="65661-131">`--subnet-prefix 192.168.1.0/24`：位址首碼和區塊。</span><span class="sxs-lookup"><span data-stu-id="65661-131">`--subnet-prefix 192.168.1.0/24`: The address prefix and block.</span></span>
+    - <span data-ttu-id="1483c-126">`--name TestVNet`： 建立 hello VNet toobe 名稱。</span><span class="sxs-lookup"><span data-stu-id="1483c-126">`--name TestVNet`: Name of hello VNet toobe created.</span></span>
+    - <span data-ttu-id="1483c-127">`--resource-group TestRG`: # hello 資源群組名稱控制 hello 資源。</span><span class="sxs-lookup"><span data-stu-id="1483c-127">`--resource-group TestRG`: # hello resource group name that controls hello resource.</span></span> 
+    - <span data-ttu-id="1483c-128">`--location centralus`: hello 哪些 toodeploy 位置。</span><span class="sxs-lookup"><span data-stu-id="1483c-128">`--location centralus`: hello location into which toodeploy.</span></span>
+    - <span data-ttu-id="1483c-129">`--address-prefix 192.168.0.0/16`: hello 位址前置詞和區塊。</span><span class="sxs-lookup"><span data-stu-id="1483c-129">`--address-prefix 192.168.0.0/16`: hello address prefix and block.</span></span>  
+    - <span data-ttu-id="1483c-130">`--subnet-name FrontEnd`: hello hello 子網路名稱。</span><span class="sxs-lookup"><span data-stu-id="1483c-130">`--subnet-name FrontEnd`: hello name of hello subnet.</span></span>
+    - <span data-ttu-id="1483c-131">`--subnet-prefix 192.168.1.0/24`: hello 位址前置詞和區塊。</span><span class="sxs-lookup"><span data-stu-id="1483c-131">`--subnet-prefix 192.168.1.0/24`: hello address prefix and block.</span></span>
 
-    <span data-ttu-id="65661-132">若要列出要在下一個命令中使用的基本資訊，您可以使用[查詢篩選](/cli/azure/query-az-cli2)來查詢 VNet：</span><span class="sxs-lookup"><span data-stu-id="65661-132">To list the basic information to use in the next command, you can query the VNet using a [query filter](/cli/azure/query-az-cli2):</span></span>
+    <span data-ttu-id="1483c-132">在 hello toolist hello 的基本資訊 toouse 接下來命令時，您可以查詢 hello VNet 使用[查詢篩選器](/cli/azure/query-az-cli2):</span><span class="sxs-lookup"><span data-stu-id="1483c-132">toolist hello basic information toouse in hello next command, you can query hello VNet using a [query filter](/cli/azure/query-az-cli2):</span></span>
 
     ```azurecli
     az network vnet list --query '[?name==`TestVNet`].{Where:location,Name:name,Group:resourceGroup}' -o table
     ```
 
-    <span data-ttu-id="65661-133">這會產生下列輸出：</span><span class="sxs-lookup"><span data-stu-id="65661-133">Which produces the following output:</span></span>
+    <span data-ttu-id="1483c-133">這會產生下列輸出的 hello:</span><span class="sxs-lookup"><span data-stu-id="1483c-133">Which produces hello following output:</span></span>
 
         Where      Name      Group
 
         centralus  TestVNet  TestRG
 
-4. <span data-ttu-id="65661-134">建立子網路：</span><span class="sxs-lookup"><span data-stu-id="65661-134">Create a subnet:</span></span>
+4. <span data-ttu-id="1483c-134">建立子網路：</span><span class="sxs-lookup"><span data-stu-id="1483c-134">Create a subnet:</span></span>
 
     ```azurecli
     az network vnet subnet create \
@@ -134,7 +134,7 @@ ms.lasthandoff: 07/11/2017
     --vnet-name TestVNet
     ```
 
-    <span data-ttu-id="65661-135">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="65661-135">Expected output:</span></span>
+    <span data-ttu-id="1483c-135">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="1483c-135">Expected output:</span></span>
 
     ```json
     {
@@ -151,14 +151,14 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-    <span data-ttu-id="65661-136">使用的參數：</span><span class="sxs-lookup"><span data-stu-id="65661-136">Parameters used:</span></span>
+    <span data-ttu-id="1483c-136">使用的參數：</span><span class="sxs-lookup"><span data-stu-id="1483c-136">Parameters used:</span></span>
 
-    - <span data-ttu-id="65661-137">`--address-prefix 192.168.2.0/24`：子網路 CIDR 區塊。</span><span class="sxs-lookup"><span data-stu-id="65661-137">`--address-prefix 192.168.2.0/24`: Subnet CIDR block.</span></span>
-    - <span data-ttu-id="65661-138">`--name BackEnd`：新子網路的名稱。</span><span class="sxs-lookup"><span data-stu-id="65661-138">`--name BackEnd`: Name of the new subnet.</span></span>
-    - <span data-ttu-id="65661-139">`--resource-group TestRG`：資源群組。</span><span class="sxs-lookup"><span data-stu-id="65661-139">`--resource-group TestRG`: The resource group.</span></span>
-    - <span data-ttu-id="65661-140">`--vnet-name TestVNet`：上層 VNet 的名稱。</span><span class="sxs-lookup"><span data-stu-id="65661-140">`--vnet-name TestVNet`: The name of the owning VNet.</span></span>
+    - <span data-ttu-id="1483c-137">`--address-prefix 192.168.2.0/24`：子網路 CIDR 區塊。</span><span class="sxs-lookup"><span data-stu-id="1483c-137">`--address-prefix 192.168.2.0/24`: Subnet CIDR block.</span></span>
+    - <span data-ttu-id="1483c-138">`--name BackEnd`: Hello 新的子網路的名稱。</span><span class="sxs-lookup"><span data-stu-id="1483c-138">`--name BackEnd`: Name of hello new subnet.</span></span>
+    - <span data-ttu-id="1483c-139">`--resource-group TestRG`: hello 資源群組。</span><span class="sxs-lookup"><span data-stu-id="1483c-139">`--resource-group TestRG`: hello resource group.</span></span>
+    - <span data-ttu-id="1483c-140">`--vnet-name TestVNet`: hello hello 擁有 VNet 名稱。</span><span class="sxs-lookup"><span data-stu-id="1483c-140">`--vnet-name TestVNet`: hello name of hello owning VNet.</span></span>
 
-5. <span data-ttu-id="65661-141">查詢新 VNet 的屬性：</span><span class="sxs-lookup"><span data-stu-id="65661-141">Query the properties of the new VNet:</span></span>
+5. <span data-ttu-id="1483c-141">查詢 hello 屬性的 hello 新的 VNet:</span><span class="sxs-lookup"><span data-stu-id="1483c-141">Query hello properties of hello new VNet:</span></span>
 
     ```azurecli
     az network vnet show \
@@ -168,13 +168,13 @@ ms.lasthandoff: 07/11/2017
     -o table
     ```
 
-    <span data-ttu-id="65661-142">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="65661-142">Expected output:</span></span>
+    <span data-ttu-id="1483c-142">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="1483c-142">Expected output:</span></span>
 
         Name      Where      Group    Status       SubnetCount
 
         TestVNet  centralus  TestRG   Succeeded              2
 
-6. <span data-ttu-id="65661-143">查詢子網路的屬性：</span><span class="sxs-lookup"><span data-stu-id="65661-143">Query the properties of the subnets:</span></span>
+6. <span data-ttu-id="1483c-143">查詢 hello 子網路的 hello 的屬性：</span><span class="sxs-lookup"><span data-stu-id="1483c-143">Query hello properties of hello subnets:</span></span>
 
     ```azurecli
     az network vnet subnet list \
@@ -184,17 +184,17 @@ ms.lasthandoff: 07/11/2017
     -o table
     ```
 
-    <span data-ttu-id="65661-144">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="65661-144">Expected output:</span></span>
+    <span data-ttu-id="1483c-144">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="1483c-144">Expected output:</span></span>
 
         Name      CIDR            Status
 
         FrontEnd  192.168.1.0/24  Succeeded
         BackEnd   192.168.2.0/24  Succeeded
 
-## <a name="next-steps"></a><span data-ttu-id="65661-145">後續步驟</span><span class="sxs-lookup"><span data-stu-id="65661-145">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="1483c-145">後續步驟</span><span class="sxs-lookup"><span data-stu-id="1483c-145">Next steps</span></span>
 
-<span data-ttu-id="65661-146">了解如何連接︰</span><span class="sxs-lookup"><span data-stu-id="65661-146">Learn how to connect:</span></span>
+<span data-ttu-id="1483c-146">深入了解如何 tooconnect:</span><span class="sxs-lookup"><span data-stu-id="1483c-146">Learn how tooconnect:</span></span>
 
-- <span data-ttu-id="65661-147">虛擬機器 (VM) 至虛擬網路；請閱讀[建立 Linux VM](../virtual-machines/linux/quick-create-cli.md)。</span><span class="sxs-lookup"><span data-stu-id="65661-147">A virtual machine (VM) to a virtual network by reading the [Create a Linux VM](../virtual-machines/linux/quick-create-cli.md) article.</span></span> <span data-ttu-id="65661-148">但不是如文章中的步驟建立 VNet 和子網路，而是選取現有的 VNet 和子網路來連接 VM。</span><span class="sxs-lookup"><span data-stu-id="65661-148">Instead of creating a VNet and subnet in the steps of the articles, you can select an existing VNet and subnet to connect a VM to.</span></span>
-- <span data-ttu-id="65661-149">虛擬網路至其他虛擬網路；請閱讀[連接 VNet](../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="65661-149">The virtual network to other virtual networks by reading the [Connect VNets](../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md) article.</span></span>
-- <span data-ttu-id="65661-150">虛擬網路至內部部署網路；使用網站對網站虛擬私人網路 (VPN) 或 ExpressRoute 線路。</span><span class="sxs-lookup"><span data-stu-id="65661-150">The virtual network to an on-premises network using a site-to-site virtual private network (VPN) or ExpressRoute circuit.</span></span> <span data-ttu-id="65661-151">如需了解做法，請閱讀[使用站台對站台 VPN 將 VNet 連接到內部部署網路](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)和[將 VNet 連結至 ExpressRoute 線路](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md)。</span><span class="sxs-lookup"><span data-stu-id="65661-151">Learn how by reading the [Connect a VNet to an on-premises network using a site-to-site VPN](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md) and [Link a VNet to an ExpressRoute circuit](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md).</span></span>
+- <span data-ttu-id="1483c-147">藉由讀取 hello 的虛擬機器 (VM) tooa 虛擬網路[建立 Linux VM](../virtual-machines/linux/quick-create-cli.md)發行項。</span><span class="sxs-lookup"><span data-stu-id="1483c-147">A virtual machine (VM) tooa virtual network by reading hello [Create a Linux VM](../virtual-machines/linux/quick-create-cli.md) article.</span></span> <span data-ttu-id="1483c-148">而不是在 hello 步驟中的 hello 文件建立 VNet 和子網路，您可以選取的 VM 的現有 VNet 和子網路 tooconnect。</span><span class="sxs-lookup"><span data-stu-id="1483c-148">Instead of creating a VNet and subnet in hello steps of hello articles, you can select an existing VNet and subnet tooconnect a VM to.</span></span>
+- <span data-ttu-id="1483c-149">藉由讀取 hello hello 虛擬網路的虛擬網路 tooother[連接 Vnet](../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)發行項。</span><span class="sxs-lookup"><span data-stu-id="1483c-149">hello virtual network tooother virtual networks by reading hello [Connect VNets](../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md) article.</span></span>
+- <span data-ttu-id="1483c-150">使用站對站虛擬私人網路 (VPN) 或 ExpressRoute 電路 hello 虛擬網路 tooan 在內部部署網路。</span><span class="sxs-lookup"><span data-stu-id="1483c-150">hello virtual network tooan on-premises network using a site-to-site virtual private network (VPN) or ExpressRoute circuit.</span></span> <span data-ttu-id="1483c-151">深入了解如何藉由讀取 hello [VNet tooan 在內部部署網路使用站對站 VPN 連線](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)和[連結 VNet tooan ExpressRoute 電路](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md)。</span><span class="sxs-lookup"><span data-stu-id="1483c-151">Learn how by reading hello [Connect a VNet tooan on-premises network using a site-to-site VPN](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md) and [Link a VNet tooan ExpressRoute circuit](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md).</span></span>

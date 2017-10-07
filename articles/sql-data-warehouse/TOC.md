@@ -89,7 +89,7 @@
 ### 教學課程
 #### [PolyBase](sql-data-warehouse-get-started-load-with-polybase.md)
 
-### 使用說明指南
+### 如何 tooguides
 #### [範例資料](sql-data-warehouse-load-sample-databases.md)
 #### [Azure Data Lake Store](sql-data-warehouse-load-from-azure-data-lake-store.md)
 #### [BCP](sql-data-warehouse-load-with-bcp.md)
@@ -106,7 +106,7 @@
 ### [移轉結構描述](sql-data-warehouse-migrate-schema.md)
 ### [移轉程式碼](sql-data-warehouse-migrate-code.md)
 ### [移轉資料](sql-data-warehouse-migrate-data.md)
-### [移轉至進階儲存體](sql-data-warehouse-migrate-to-premium-storage.md)
+### [將 toopremium 存放裝置移轉](sql-data-warehouse-migrate-to-premium-storage.md)
 
 ## 管理計算
 

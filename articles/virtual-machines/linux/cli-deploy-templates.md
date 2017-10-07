@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 範本部署 Linux VM | Microsoft Docs"
-description: "使用 Azure 資源管理員範本和 Azure CLI 部署和管理 Azure 虛擬機器最常用的設定。"
+title: "aaaDeploy Linux Vm 與 Azure 範本 |Microsoft 文件"
+description: "部署和管理 hello 最常見的使用資源管理員範本和 Azure CLI 的 Azure 虛擬機器的設定。"
 services: virtual-machines-linux
 documentationcenter: 
 author: squillace
@@ -15,14 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2016
 ms.author: rasquill
-ms.openlocfilehash: 415be559a8e0d1940a6a3da4f44ebd26b750fab0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 087b21504adc7e5f462530a748d26f0c1a1c99a5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-and-manage-virtual-machines-by-using-azure-resource-manager-templates-and-the-azure-cli"></a><span data-ttu-id="b6400-103">使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器</span><span class="sxs-lookup"><span data-stu-id="b6400-103">Deploy and manage virtual machines by using Azure Resource Manager templates and the Azure CLI</span></span>
-<span data-ttu-id="b6400-104">本文會為您示範如何使用 Azure 資源管理員範本和 Azure CLI，執行下列部署和管理 Azure 虛擬機器的常見工作。</span><span class="sxs-lookup"><span data-stu-id="b6400-104">This article shows you how to use Azure Resource Manager templates and the Azure CLI to do the following common tasks for deploying and managing Azure virtual machines.</span></span> <span data-ttu-id="b6400-105">如需您可以使用的其他範本，請參閱[Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)和[使用範本的應用程式架構](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="b6400-105">For more templates you can use, see [Azure Quickstart templates](https://azure.microsoft.com/documentation/templates/) and [Application frameworks using templates](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+# <a name="deploy-and-manage-virtual-machines-by-using-azure-resource-manager-templates-and-hello-azure-cli"></a><span data-ttu-id="d4b40-103">部署及管理虛擬機器使用的 Azure 資源管理員範本和 hello Azure CLI</span><span class="sxs-lookup"><span data-stu-id="d4b40-103">Deploy and manage virtual machines by using Azure Resource Manager templates and hello Azure CLI</span></span>
+<span data-ttu-id="d4b40-104">本文章將示範如何 toouse Azure Resource Manager 範本與 hello Azure CLI toodo hello 下列部署和管理 Azure 虛擬機器的一般工作。</span><span class="sxs-lookup"><span data-stu-id="d4b40-104">This article shows you how toouse Azure Resource Manager templates and hello Azure CLI toodo hello following common tasks for deploying and managing Azure virtual machines.</span></span> <span data-ttu-id="d4b40-105">如需您可以使用的其他範本，請參閱[Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)和[使用範本的應用程式架構](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="d4b40-105">For more templates you can use, see [Azure Quickstart templates](https://azure.microsoft.com/documentation/templates/) and [Application frameworks using templates](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
 [!INCLUDE [virtual-machines-common-cli-deploy-templates](../../../includes/virtual-machines-common-cli-deploy-templates.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "使用媒體服務 .NET SDK 設定內容金鑰授權原則 | Microsoft Docs"
-description: "了解如何使用媒體服務 .NET SDK 設定內容金鑰的授權原則。"
+title: "使用 Media Services.NET SDK aaaConfigure 內容金鑰授權原則 |Microsoft 文件"
+description: "深入了解如何 tooconfigure 使用 Media Services.NET SDK 的內容金鑰授權原則。"
 services: media-services
 documentationcenter: 
 author: Mingfeiy
@@ -14,50 +14,50 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako;mingfeiy
-ms.openlocfilehash: 75dd9107dca215a0b31db3d44bada69210fe9ac6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cfcbc5da9819bcec8b163fef183988a8beff9ed2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="dynamic-encryption-configure-content-key-authorization-policy"></a><span data-ttu-id="944fb-103">動態加密：設定內容金鑰授權原則</span><span class="sxs-lookup"><span data-stu-id="944fb-103">Dynamic encryption: configure content key authorization policy</span></span>
+# <a name="dynamic-encryption-configure-content-key-authorization-policy"></a><span data-ttu-id="57ba5-103">動態加密：設定內容金鑰授權原則</span><span class="sxs-lookup"><span data-stu-id="57ba5-103">Dynamic encryption: configure content key authorization policy</span></span>
 [!INCLUDE [media-services-selector-content-key-auth-policy](../../includes/media-services-selector-content-key-auth-policy.md)]
 
-## <a name="overview"></a><span data-ttu-id="944fb-104">概觀</span><span class="sxs-lookup"><span data-stu-id="944fb-104">Overview</span></span>
-<span data-ttu-id="944fb-105">Microsoft Azure 媒體服務可讓您傳遞受到進階加密標準 (AES) (使用 128 位元加密金鑰) 或 [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/)保護的 MPEG DASH、Smooth Streaming 和 HTTP Live Streaming (HLS) 串流。</span><span class="sxs-lookup"><span data-stu-id="944fb-105">Microsoft Azure Media Services enables you to deliver MPEG-DASH, Smooth Streaming, and HTTP-Live-Streaming (HLS) streams protected with Advanced Encryption Standard (AES) (using 128-bit encryption keys) or [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/).</span></span> <span data-ttu-id="944fb-106">AMS 也可讓您傳遞使用 Widevine DRM 加密的 DASH 串流。</span><span class="sxs-lookup"><span data-stu-id="944fb-106">AMS also enables you to deliver DASH streams encrypted with Widevine DRM.</span></span> <span data-ttu-id="944fb-107">PlayReady 和 Widevine 是依照 Common Encryption (ISO/IEC 23001-7 CENC) 規格加密。</span><span class="sxs-lookup"><span data-stu-id="944fb-107">Both PlayReady and Widevine are encrypted per the Common Encryption (ISO/IEC 23001-7 CENC) specification.</span></span>
+## <a name="overview"></a><span data-ttu-id="57ba5-104">概觀</span><span class="sxs-lookup"><span data-stu-id="57ba5-104">Overview</span></span>
+<span data-ttu-id="57ba5-105">Microsoft Azure Media Services 可讓您 toodeliver MPEG DASH、 Smooth Streaming 和受保護的進階加密標準 (AES) （使用 128 位元加密金鑰） 的 HTTP Live Streaming (HLS) 資料流或[Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/).</span><span class="sxs-lookup"><span data-stu-id="57ba5-105">Microsoft Azure Media Services enables you toodeliver MPEG-DASH, Smooth Streaming, and HTTP-Live-Streaming (HLS) streams protected with Advanced Encryption Standard (AES) (using 128-bit encryption keys) or [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/).</span></span> <span data-ttu-id="57ba5-106">AMS 也可讓您 toodeliver DASH 串流加密使用 Widevine DRM。</span><span class="sxs-lookup"><span data-stu-id="57ba5-106">AMS also enables you toodeliver DASH streams encrypted with Widevine DRM.</span></span> <span data-ttu-id="57ba5-107">PlayReady 和 Widevine 加密 hello 一般加密 (ISO/IEC 23001-7 CENC) 規格。</span><span class="sxs-lookup"><span data-stu-id="57ba5-107">Both PlayReady and Widevine are encrypted per hello Common Encryption (ISO/IEC 23001-7 CENC) specification.</span></span>
 
-<span data-ttu-id="944fb-108">媒體服務也提供 **金鑰/授權傳遞服務** ，用戶端可以從該處取得 AES 金鑰或 PlayReady/Widevine 授權，以便播放加密的內容。</span><span class="sxs-lookup"><span data-stu-id="944fb-108">Media Services also provides a **Key/License Delivery Service** from which clients can obtain AES keys or PlayReady/Widevine licenses to play the encrypted content.</span></span>
+<span data-ttu-id="57ba5-108">Media Services 也提供**金鑰/授權傳遞服務**從用戶端可以取得 AES 金鑰或 PlayReady/Widevine 授權 tooplay hello 加密的內容。</span><span class="sxs-lookup"><span data-stu-id="57ba5-108">Media Services also provides a **Key/License Delivery Service** from which clients can obtain AES keys or PlayReady/Widevine licenses tooplay hello encrypted content.</span></span>
 
-<span data-ttu-id="944fb-109">如果您想要媒體服務加密資產，您需要建立加密金鑰 (**CommonEncryption** 或 **EnvelopeEncryption**) 與資產 (如[這裡](media-services-dotnet-create-contentkey.md)所述) 的，並且設定金鑰的授權原則 (如本文中所述)。</span><span class="sxs-lookup"><span data-stu-id="944fb-109">If you want for Media Services to encrypt an asset, you need to associate an encryption key (**CommonEncryption** or **EnvelopeEncryption**) with the asset (as described [here](media-services-dotnet-create-contentkey.md)) and also configure authorization policies for the key (as described in this article).</span></span>
+<span data-ttu-id="57ba5-109">如果想要讓 Media Services tooencrypt 資產，您需要 tooassociate 加密金鑰 (**CommonEncryption**或**EnvelopeEncryption**) 與 hello 資產 (如所述[這裡](media-services-dotnet-create-contentkey.md))此外，也可以設定授權原則 hello 索引鍵 （如本文所述）。</span><span class="sxs-lookup"><span data-stu-id="57ba5-109">If you want for Media Services tooencrypt an asset, you need tooassociate an encryption key (**CommonEncryption** or **EnvelopeEncryption**) with hello asset (as described [here](media-services-dotnet-create-contentkey.md)) and also configure authorization policies for hello key (as described in this article).</span></span>
 
-<span data-ttu-id="944fb-110">播放程式要求串流時，媒體服務便會使用 AES 或 DRM 加密，使用指定的金鑰動態加密您的內容。</span><span class="sxs-lookup"><span data-stu-id="944fb-110">When a stream is requested by a player, Media Services uses the specified key to dynamically encrypt your content using AES or DRM encryption.</span></span> <span data-ttu-id="944fb-111">為了將串流解密，播放程式將從金鑰傳遞服務要求金鑰。</span><span class="sxs-lookup"><span data-stu-id="944fb-111">To decrypt the stream, the player will request the key from the key delivery service.</span></span> <span data-ttu-id="944fb-112">為了決定使用者是否有權取得金鑰，服務會評估為金鑰指定的授權原則。</span><span class="sxs-lookup"><span data-stu-id="944fb-112">To decide whether or not the user is authorized to get the key, the service evaluates the authorization policies that you specified for the key.</span></span>
+<span data-ttu-id="57ba5-110">Media Services 時，播放程式要求串流時，使用指定的 hello 金鑰 toodynamically 加密使用 AES 或 DRM 加密的內容。</span><span class="sxs-lookup"><span data-stu-id="57ba5-110">When a stream is requested by a player, Media Services uses hello specified key toodynamically encrypt your content using AES or DRM encryption.</span></span> <span data-ttu-id="57ba5-111">toodecrypt hello 資料流，hello 播放程式會要求 hello 金鑰從 hello 金鑰傳遞服務。</span><span class="sxs-lookup"><span data-stu-id="57ba5-111">toodecrypt hello stream, hello player will request hello key from hello key delivery service.</span></span> <span data-ttu-id="57ba5-112">toodecide hello 使用者獲授權 tooget hello 索引鍵，hello 服務會評估您指定 hello 索引鍵的 hello 授權原則。</span><span class="sxs-lookup"><span data-stu-id="57ba5-112">toodecide whether or not hello user is authorized tooget hello key, hello service evaluates hello authorization policies that you specified for hello key.</span></span>
 
-<span data-ttu-id="944fb-113">媒體服務支援多種方式來驗證提出金鑰要求的使用者。</span><span class="sxs-lookup"><span data-stu-id="944fb-113">Media Services supports multiple ways of authenticating users who make key requests.</span></span> <span data-ttu-id="944fb-114">內容金鑰授權原則可能會有一個或多個授權限制：**open** 或 **token** 限制。</span><span class="sxs-lookup"><span data-stu-id="944fb-114">The content key authorization policy could have one or more authorization restrictions: **open** or **token** restriction.</span></span> <span data-ttu-id="944fb-115">權杖限制原則必須伴隨著安全權杖服務 (STS) 所發出的權杖。</span><span class="sxs-lookup"><span data-stu-id="944fb-115">The token restricted policy must be accompanied by a token issued by a Secure Token Service (STS).</span></span> <span data-ttu-id="944fb-116">媒體服務支援**簡單 Web 權杖** ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) 格式和 **JSON Web 權杖** ([JWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3)) 格式的權杖。</span><span class="sxs-lookup"><span data-stu-id="944fb-116">Media Services supports tokens in the **Simple Web Tokens** ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) format and **JSON Web Token** ([JWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3)) format.</span></span>
+<span data-ttu-id="57ba5-113">媒體服務支援多種方式來驗證提出金鑰要求的使用者。</span><span class="sxs-lookup"><span data-stu-id="57ba5-113">Media Services supports multiple ways of authenticating users who make key requests.</span></span> <span data-ttu-id="57ba5-114">hello 內容金鑰授權原則可能會有一或多個授權限制：**開啟**或**語彙基元**限制。</span><span class="sxs-lookup"><span data-stu-id="57ba5-114">hello content key authorization policy could have one or more authorization restrictions: **open** or **token** restriction.</span></span> <span data-ttu-id="57ba5-115">hello 權杖限制的原則必須隨附由安全權杖服務 (STS) 發行的權杖。</span><span class="sxs-lookup"><span data-stu-id="57ba5-115">hello token restricted policy must be accompanied by a token issued by a Secure Token Service (STS).</span></span> <span data-ttu-id="57ba5-116">Media Services 支援語彙基元中 hello**簡單 Web 權杖**([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) 格式和**JSON Web 權杖**([JWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3)) 格式。</span><span class="sxs-lookup"><span data-stu-id="57ba5-116">Media Services supports tokens in hello **Simple Web Tokens** ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) format and **JSON Web Token** ([JWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3)) format.</span></span>
 
-<span data-ttu-id="944fb-117">媒體服務不提供安全權杖服務。</span><span class="sxs-lookup"><span data-stu-id="944fb-117">Media Services does not provide Secure Token Services.</span></span> <span data-ttu-id="944fb-118">您可以建立自訂 STS，或利用 Microsoft Azure ACS 來發行權杖。</span><span class="sxs-lookup"><span data-stu-id="944fb-118">You can create a custom STS or leverage Microsoft Azure ACS to issue tokens.</span></span> <span data-ttu-id="944fb-119">STS 必須設定為建立使用指定金鑰簽署的權杖，並發行在權杖限制組態中指定的宣告 (如本文中所述)。</span><span class="sxs-lookup"><span data-stu-id="944fb-119">The STS must be configured to create a token signed with the specified key and issue claims that you specified in the token restriction configuration (as described in this article).</span></span> <span data-ttu-id="944fb-120">如果權杖有效，且權杖中的宣告符合為內容金鑰設定的宣告，媒體服務金鑰傳遞服務會將加密金鑰傳回給用戶端。</span><span class="sxs-lookup"><span data-stu-id="944fb-120">The Media Services key delivery service will return the encryption key to the client if the token is valid and the claims in the token match those configured for the content key.</span></span>
+<span data-ttu-id="57ba5-117">媒體服務不提供安全權杖服務。</span><span class="sxs-lookup"><span data-stu-id="57ba5-117">Media Services does not provide Secure Token Services.</span></span> <span data-ttu-id="57ba5-118">您可以建立自訂的 STS，或利用 Microsoft Azure ACS tooissue 語彙基元。</span><span class="sxs-lookup"><span data-stu-id="57ba5-118">You can create a custom STS or leverage Microsoft Azure ACS tooissue tokens.</span></span> <span data-ttu-id="57ba5-119">hello STS 必須設定的 toocreate hello 指定金鑰簽署權杖和宣告 （如本文所述），指定在 hello 權杖限制組態中的發行。</span><span class="sxs-lookup"><span data-stu-id="57ba5-119">hello STS must be configured toocreate a token signed with hello specified key and issue claims that you specified in hello token restriction configuration (as described in this article).</span></span> <span data-ttu-id="57ba5-120">hello Media Services 金鑰傳遞服務會傳回 hello 加密金鑰 toohello 用戶端 hello 語彙基元有效且 hello hello 權杖中的宣告符合為 hello 內容金鑰設定。</span><span class="sxs-lookup"><span data-stu-id="57ba5-120">hello Media Services key delivery service will return hello encryption key toohello client if hello token is valid and hello claims in hello token match those configured for hello content key.</span></span>
 
-<span data-ttu-id="944fb-121">如需詳細資訊，請參閱</span><span class="sxs-lookup"><span data-stu-id="944fb-121">For more information, see</span></span>
+<span data-ttu-id="57ba5-121">如需詳細資訊，請參閱</span><span class="sxs-lookup"><span data-stu-id="57ba5-121">For more information, see</span></span>
 
-[<span data-ttu-id="944fb-122">JWT 權杖驗證</span><span class="sxs-lookup"><span data-stu-id="944fb-122">JWT token authentication</span></span>](http://www.gtrifonov.com/2015/01/03/jwt-token-authentication-in-azure-media-services-and-dynamic-encryption/)
+[<span data-ttu-id="57ba5-122">JWT 權杖驗證</span><span class="sxs-lookup"><span data-stu-id="57ba5-122">JWT token authentication</span></span>](http://www.gtrifonov.com/2015/01/03/jwt-token-authentication-in-azure-media-services-and-dynamic-encryption/)
 
-<span data-ttu-id="944fb-123">[整合 Azure 媒體服務 OWIN MVC 型應用程式與 Azure Active Directory 並根據 JWT 宣告限制內容金鑰傳遞](http://www.gtrifonov.com/2015/01/24/mvc-owin-azure-media-services-ad-integration/)。</span><span class="sxs-lookup"><span data-stu-id="944fb-123">[Integrate Azure Media Services OWIN MVC based app with Azure Active Directory and restrict content key delivery based on JWT claims](http://www.gtrifonov.com/2015/01/24/mvc-owin-azure-media-services-ad-integration/).</span></span>
+<span data-ttu-id="57ba5-123">[整合 Azure 媒體服務 OWIN MVC 型應用程式與 Azure Active Directory 並根據 JWT 宣告限制內容金鑰傳遞](http://www.gtrifonov.com/2015/01/24/mvc-owin-azure-media-services-ad-integration/)。</span><span class="sxs-lookup"><span data-stu-id="57ba5-123">[Integrate Azure Media Services OWIN MVC based app with Azure Active Directory and restrict content key delivery based on JWT claims](http://www.gtrifonov.com/2015/01/24/mvc-owin-azure-media-services-ad-integration/).</span></span>
 
-<span data-ttu-id="944fb-124">[使用 Azure ACS 發行權杖](http://mingfeiy.com/acs-with-key-services)。</span><span class="sxs-lookup"><span data-stu-id="944fb-124">[Use Azure ACS to issue tokens](http://mingfeiy.com/acs-with-key-services).</span></span>
+<span data-ttu-id="57ba5-124">[使用 Azure ACS tooissue 語彙基元](http://mingfeiy.com/acs-with-key-services)。</span><span class="sxs-lookup"><span data-stu-id="57ba5-124">[Use Azure ACS tooissue tokens](http://mingfeiy.com/acs-with-key-services).</span></span>
 
-### <a name="some-considerations-apply"></a><span data-ttu-id="944fb-125">適用一些考量事項：</span><span class="sxs-lookup"><span data-stu-id="944fb-125">Some considerations apply:</span></span>
-* <span data-ttu-id="944fb-126">當建立您的 AMS 帳戶時，系統會新增一個狀態為 [已停止] 的「預設」串流端點到您的帳戶。</span><span class="sxs-lookup"><span data-stu-id="944fb-126">When your AMS account is created a **default** streaming endpoint is added  to your account in the **Stopped** state.</span></span> <span data-ttu-id="944fb-127">若要開始串流處理您的內容並利用動態封裝和動態加密功能，您的串流端點必須處於 [執行中] 狀態。</span><span class="sxs-lookup"><span data-stu-id="944fb-127">To start streaming your content and take advantage of dynamic packaging and dynamic encryption, your streaming endpoint has to be in the **Running** state.</span></span> 
-* <span data-ttu-id="944fb-128">您的資產必須包含一組調適性位元速率 MP4 或調適性位元速率 Smooth Streaming 檔案。</span><span class="sxs-lookup"><span data-stu-id="944fb-128">Your asset must contain a set of adaptive bitrate MP4s or  adaptive bitrate Smooth Streaming files.</span></span> <span data-ttu-id="944fb-129">如需詳細資訊，請參閱 [為資產編碼](media-services-encode-asset.md)。</span><span class="sxs-lookup"><span data-stu-id="944fb-129">For more information, see [Encode an asset](media-services-encode-asset.md).</span></span>
-* <span data-ttu-id="944fb-130">使用 **AssetCreationOptions.StorageEncrypted** 選項，上傳資產並為其編碼。</span><span class="sxs-lookup"><span data-stu-id="944fb-130">Upload and encode your assets using **AssetCreationOptions.StorageEncrypted** option.</span></span>
-* <span data-ttu-id="944fb-131">如果您計劃有多個內容金鑰需要相同的原則組態，強烈建議建立一個授權原則，並針對多個內容金鑰重複使用。</span><span class="sxs-lookup"><span data-stu-id="944fb-131">If you plan to have multiple content keys that require the same policy configuration, it is strongly recommended to create a single authorization policy and reuse it with multiple content keys.</span></span>
-* <span data-ttu-id="944fb-132">金鑰傳遞服務會快取 ContentKeyAuthorizationPolicy 和其相關物件 (原則選項和限制) 15 分鐘。</span><span class="sxs-lookup"><span data-stu-id="944fb-132">The Key Delivery service caches ContentKeyAuthorizationPolicy and its related objects (policy options and restrictions) for 15 minutes.</span></span>  <span data-ttu-id="944fb-133">如果您建立 ContentKeyAuthorizationPolicy，並指定要使用 "Token" 的限制，那麼便測試它，然後將原則更新為"Open" 限制，將需要大約 15 分鐘，原則才會切換為 "Open" 版本的原則。</span><span class="sxs-lookup"><span data-stu-id="944fb-133">If you create a ContentKeyAuthorizationPolicy and specify to use a “Token” restriction, then test it, and then update the policy to “Open” restriction, it will take roughly 15 minutes before the policy switches to the “Open” version of the policy.</span></span>
-* <span data-ttu-id="944fb-134">如果您加入或更新您的資產傳遞原則，您必須刪除現有的定位程式 (如果有的話)，並建立新的定位器。</span><span class="sxs-lookup"><span data-stu-id="944fb-134">If you add or update your asset’s delivery policy, you must delete an existing locator (if any) and create a new locator.</span></span>
-* <span data-ttu-id="944fb-135">您目前無法加密漸進式下載。</span><span class="sxs-lookup"><span data-stu-id="944fb-135">Currently, you cannot encrypt progressive downloads.</span></span>
+### <a name="some-considerations-apply"></a><span data-ttu-id="57ba5-125">適用一些考量事項：</span><span class="sxs-lookup"><span data-stu-id="57ba5-125">Some considerations apply:</span></span>
+* <span data-ttu-id="57ba5-126">AMS 帳戶建立時**預設**串流端點就會加入 tooyour 帳戶 hello**已停止**狀態。</span><span class="sxs-lookup"><span data-stu-id="57ba5-126">When your AMS account is created a **default** streaming endpoint is added  tooyour account in hello **Stopped** state.</span></span> <span data-ttu-id="57ba5-127">串流處理您的內容，並採取利用動態封裝和動態加密，您的串流端點 toostart hello 中有 toobe**執行**狀態。</span><span class="sxs-lookup"><span data-stu-id="57ba5-127">toostart streaming your content and take advantage of dynamic packaging and dynamic encryption, your streaming endpoint has toobe in hello **Running** state.</span></span> 
+* <span data-ttu-id="57ba5-128">您的資產必須包含一組調適性位元速率 MP4 或調適性位元速率 Smooth Streaming 檔案。</span><span class="sxs-lookup"><span data-stu-id="57ba5-128">Your asset must contain a set of adaptive bitrate MP4s or  adaptive bitrate Smooth Streaming files.</span></span> <span data-ttu-id="57ba5-129">如需詳細資訊，請參閱 [為資產編碼](media-services-encode-asset.md)。</span><span class="sxs-lookup"><span data-stu-id="57ba5-129">For more information, see [Encode an asset](media-services-encode-asset.md).</span></span>
+* <span data-ttu-id="57ba5-130">使用 **AssetCreationOptions.StorageEncrypted** 選項，上傳資產並為其編碼。</span><span class="sxs-lookup"><span data-stu-id="57ba5-130">Upload and encode your assets using **AssetCreationOptions.StorageEncrypted** option.</span></span>
+* <span data-ttu-id="57ba5-131">如果您計劃 toohave 需要的多個內容金鑰 hello 相同原則設定，強烈建議 toocreate 單一授權原則和其重複使用於多個內容的索引鍵。</span><span class="sxs-lookup"><span data-stu-id="57ba5-131">If you plan toohave multiple content keys that require hello same policy configuration, it is strongly recommended toocreate a single authorization policy and reuse it with multiple content keys.</span></span>
+* <span data-ttu-id="57ba5-132">hello 金鑰傳遞服務會在快取 ContentKeyAuthorizationPolicy 及其相關的物件 （原則選項和限制） 15 分鐘。</span><span class="sxs-lookup"><span data-stu-id="57ba5-132">hello Key Delivery service caches ContentKeyAuthorizationPolicy and its related objects (policy options and restrictions) for 15 minutes.</span></span>  <span data-ttu-id="57ba5-133">如果您建立 ContentKeyAuthorizationPolicy toouse 「 Token 」 限制，則加以測試，並指定然後 hello 原則更新太 「 開啟 」 限制，需要大約 15 分鐘的時間之前 hello 原則參數 toohello 「 開放 」 版本的 hello 原則。</span><span class="sxs-lookup"><span data-stu-id="57ba5-133">If you create a ContentKeyAuthorizationPolicy and specify toouse a “Token” restriction, then test it, and then update hello policy too“Open” restriction, it will take roughly 15 minutes before hello policy switches toohello “Open” version of hello policy.</span></span>
+* <span data-ttu-id="57ba5-134">如果您加入或更新您的資產傳遞原則，您必須刪除現有的定位程式 (如果有的話)，並建立新的定位器。</span><span class="sxs-lookup"><span data-stu-id="57ba5-134">If you add or update your asset’s delivery policy, you must delete an existing locator (if any) and create a new locator.</span></span>
+* <span data-ttu-id="57ba5-135">您目前無法加密漸進式下載。</span><span class="sxs-lookup"><span data-stu-id="57ba5-135">Currently, you cannot encrypt progressive downloads.</span></span>
 
-## <a name="aes-128-dynamic-encryption"></a><span data-ttu-id="944fb-136">AES-128 動態加密</span><span class="sxs-lookup"><span data-stu-id="944fb-136">AES-128 Dynamic Encryption</span></span>
-### <a name="open-restriction"></a><span data-ttu-id="944fb-137">Open 限制</span><span class="sxs-lookup"><span data-stu-id="944fb-137">Open Restriction</span></span>
-<span data-ttu-id="944fb-138">Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。</span><span class="sxs-lookup"><span data-stu-id="944fb-138">Open restriction means the system will deliver the key to anyone who makes a key request.</span></span> <span data-ttu-id="944fb-139">這項限制可用於測試用途。</span><span class="sxs-lookup"><span data-stu-id="944fb-139">This restriction might be useful for testing purposes.</span></span>
+## <a name="aes-128-dynamic-encryption"></a><span data-ttu-id="57ba5-136">AES-128 動態加密</span><span class="sxs-lookup"><span data-stu-id="57ba5-136">AES-128 Dynamic Encryption</span></span>
+### <a name="open-restriction"></a><span data-ttu-id="57ba5-137">Open 限制</span><span class="sxs-lookup"><span data-stu-id="57ba5-137">Open Restriction</span></span>
+<span data-ttu-id="57ba5-138">開放限制表示 hello 系統將會傳送 hello 金鑰 tooanyone 人員提出金鑰要求。</span><span class="sxs-lookup"><span data-stu-id="57ba5-138">Open restriction means hello system will deliver hello key tooanyone who makes a key request.</span></span> <span data-ttu-id="57ba5-139">這項限制可用於測試用途。</span><span class="sxs-lookup"><span data-stu-id="57ba5-139">This restriction might be useful for testing purposes.</span></span>
 
-<span data-ttu-id="944fb-140">下列範例會建立 open 授權原則，並將它加入至內容金鑰。</span><span class="sxs-lookup"><span data-stu-id="944fb-140">The following example creates an open authorization policy and adds it to the content key.</span></span>
+<span data-ttu-id="57ba5-140">hello 下列範例會建立開放授權原則，並將它加入 toohello 內容金鑰。</span><span class="sxs-lookup"><span data-stu-id="57ba5-140">hello following example creates an open authorization policy and adds it toohello content key.</span></span>
 
     static public void AddOpenAuthorizationPolicy(IContentKey contentKey)
     {
@@ -89,19 +89,19 @@ ms.lasthandoff: 08/29/2017
 
         policy.Options.Add(policyOption);
 
-        // Add ContentKeyAutorizationPolicy to ContentKey
+        // Add ContentKeyAutorizationPolicy tooContentKey
         contentKey.AuthorizationPolicyId = policy.Id;
         IContentKey updatedKey = contentKey.UpdateAsync().Result;
-        Console.WriteLine("Adding Key to Asset: Key ID is " + updatedKey.Id);
+        Console.WriteLine("Adding Key tooAsset: Key ID is " + updatedKey.Id);
     }
 
 
-### <a name="token-restriction"></a><span data-ttu-id="944fb-141">Token 限制</span><span class="sxs-lookup"><span data-stu-id="944fb-141">Token Restriction</span></span>
-<span data-ttu-id="944fb-142">本節描述如何建立內容金鑰授權原則，然後建立它與內容金鑰的關聯。</span><span class="sxs-lookup"><span data-stu-id="944fb-142">This section describes how to create a content key authorization policy and associate it with the content key.</span></span> <span data-ttu-id="944fb-143">授權原則描述必須符合哪些授權需求，以判斷使用者是否有權接收金鑰 (例如，「驗證金鑰」清單是否包含簽署權杖用的金鑰)。</span><span class="sxs-lookup"><span data-stu-id="944fb-143">The authorization policy describes what authorization requirements must be met to determine if the user is authorized to receive the key (for example, does the “verification key” list contain the key that the token was signed with).</span></span>
+### <a name="token-restriction"></a><span data-ttu-id="57ba5-141">Token 限制</span><span class="sxs-lookup"><span data-stu-id="57ba5-141">Token Restriction</span></span>
+<span data-ttu-id="57ba5-142">本章節描述如何 toocreate 內容金鑰授權原則及關聯 hello 內容金鑰。</span><span class="sxs-lookup"><span data-stu-id="57ba5-142">This section describes how toocreate a content key authorization policy and associate it with hello content key.</span></span> <span data-ttu-id="57ba5-143">hello 授權原則說明哪些授權需求必須符合的 toodetermine，如果 hello 使用者是授權的 tooreceive hello 索引鍵 (hello 「 驗證金鑰 」 清單，例如包含 hello 金鑰簽署該 hello 語彙基元)。</span><span class="sxs-lookup"><span data-stu-id="57ba5-143">hello authorization policy describes what authorization requirements must be met toodetermine if hello user is authorized tooreceive hello key (for example, does hello “verification key” list contain hello key that hello token was signed with).</span></span>
 
-<span data-ttu-id="944fb-144">若要設定 token 限制選項，您需要使用 XML 來描述權杖的授權需求。</span><span class="sxs-lookup"><span data-stu-id="944fb-144">To configure the token restriction option, you need to use an XML to describe the token’s authorization requirements.</span></span> <span data-ttu-id="944fb-145">token 限制組態 XML 必須符合下列 XML 結構描述。</span><span class="sxs-lookup"><span data-stu-id="944fb-145">The token restriction configuration XML must conform to the following XML schema.</span></span>
+<span data-ttu-id="57ba5-144">tooconfigure hello 權杖限制選項，就需要 toouse XML toodescribe hello 權杖的授權需求。</span><span class="sxs-lookup"><span data-stu-id="57ba5-144">tooconfigure hello token restriction option, you need toouse an XML toodescribe hello token’s authorization requirements.</span></span> <span data-ttu-id="57ba5-145">hello 權杖限制組態 XML 必須符合 toohello 下列 XML 結構描述。</span><span class="sxs-lookup"><span data-stu-id="57ba5-145">hello token restriction configuration XML must conform toohello following XML schema.</span></span>
 
-#### <span data-ttu-id="944fb-146"><a id="schema"></a>Token 限制結構描述</span><span class="sxs-lookup"><span data-stu-id="944fb-146"><a id="schema"></a>Token restriction schema</span></span>
+#### <span data-ttu-id="57ba5-146"><a id="schema"></a>Token 限制結構描述</span><span class="sxs-lookup"><span data-stu-id="57ba5-146"><a id="schema"></a>Token restriction schema</span></span>
     <?xml version="1.0" encoding="utf-8"?>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/TokenRestrictionTemplate/v1" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/TokenRestrictionTemplate/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:complexType name="TokenClaim">
@@ -149,10 +149,10 @@ ms.lasthandoff: 08/29/2017
       <xs:element name="SymmetricVerificationKey" nillable="true" type="tns:SymmetricVerificationKey" />
     </xs:schema>
 
-<span data-ttu-id="944fb-147">設定 **token** 限制原則時，您必須指定主要**驗證金鑰**、**簽發者**和**對象**參數。</span><span class="sxs-lookup"><span data-stu-id="944fb-147">When configuring the **token** restricted policy, you must specify the primary** verification key**, **issuer** and **audience** parameters.</span></span> <span data-ttu-id="944fb-148">**主要驗證金鑰**包含簽署權杖使用的金鑰，**簽發者**是發行權杖的安全性權杖服務。</span><span class="sxs-lookup"><span data-stu-id="944fb-148">The **primary verification key **contains the key that the token was signed with, **issuer** is the secure token service that issues the token.</span></span> <span data-ttu-id="944fb-149">**對象** (有時稱為**範圍**) 描述權杖或權杖獲授權存取之資源的用途。</span><span class="sxs-lookup"><span data-stu-id="944fb-149">The **audience** (sometimes called **scope**) describes the intent of the token or the resource the token authorizes access to.</span></span> <span data-ttu-id="944fb-150">媒體服務金鑰傳遞服務會驗證權杖中的這些值符合在範本中的值。</span><span class="sxs-lookup"><span data-stu-id="944fb-150">The Media Services key delivery service validates that these values in the token match the values in the template.</span></span> 
+<span data-ttu-id="57ba5-147">當設定 hello**語彙基元**限制原則，您必須指定 hello 主要 * * 驗證金鑰 * *，**簽發者**和**觀眾**參數。</span><span class="sxs-lookup"><span data-stu-id="57ba5-147">When configuring hello **token** restricted policy, you must specify hello primary** verification key**, **issuer** and **audience** parameters.</span></span> <span data-ttu-id="57ba5-148">hello * * 主要驗證金鑰 * * 包含 hello 語彙基元的 hello 金鑰簽署，**簽發者**是 hello 安全權杖服務的問題 hello 語彙基元。</span><span class="sxs-lookup"><span data-stu-id="57ba5-148">hello **primary verification key **contains hello key that hello token was signed with, **issuer** is hello secure token service that issues hello token.</span></span> <span data-ttu-id="57ba5-149">hello**觀眾**(有時稱為**範圍**) 描述 hello 意圖 hello token 或 hello 資源的 hello 權杖授與存取權。</span><span class="sxs-lookup"><span data-stu-id="57ba5-149">hello **audience** (sometimes called **scope**) describes hello intent of hello token or hello resource hello token authorizes access to.</span></span> <span data-ttu-id="57ba5-150">hello Media Services 金鑰傳遞服務會驗證這些 hello 權杖中的值符合 hello 範本中的 hello 值。</span><span class="sxs-lookup"><span data-stu-id="57ba5-150">hello Media Services key delivery service validates that these values in hello token match hello values in hello template.</span></span> 
 
-<span data-ttu-id="944fb-151">使用 **Media Services SDK for .NET** 時，您可以使用 **TokenRestrictionTemplate** 類別來產生限制權杖。</span><span class="sxs-lookup"><span data-stu-id="944fb-151">When using **Media Services SDK for .NET**, you can use the **TokenRestrictionTemplate** class to generate the restriction token.</span></span>
-<span data-ttu-id="944fb-152">下列範例會建立具有 token 限制的授權原則。</span><span class="sxs-lookup"><span data-stu-id="944fb-152">The following example creates an authorization policy with a token restriction.</span></span> <span data-ttu-id="944fb-153">在此範例中，用戶端必須提出權杖，權杖中包含簽署金鑰 (VerificationKey)、權杖簽發者和必要的宣告。</span><span class="sxs-lookup"><span data-stu-id="944fb-153">In this example, the client would have to present a token that contains: signing key (VerificationKey), a token issuer, and required claims.</span></span>
+<span data-ttu-id="57ba5-151">當使用**Media Services SDK for.NET**，您可以使用 hello **TokenRestrictionTemplate**類別 toogenerate hello 限制語彙基元。</span><span class="sxs-lookup"><span data-stu-id="57ba5-151">When using **Media Services SDK for .NET**, you can use hello **TokenRestrictionTemplate** class toogenerate hello restriction token.</span></span>
+<span data-ttu-id="57ba5-152">hello 下列範例會建立包含權杖限制授權原則。</span><span class="sxs-lookup"><span data-stu-id="57ba5-152">hello following example creates an authorization policy with a token restriction.</span></span> <span data-ttu-id="57ba5-153">在此範例中，hello 用戶端必須 toopresent 包含的語彙基元： 簽署金鑰 (VerificationKey)、 權杖簽發者和必要的宣告。</span><span class="sxs-lookup"><span data-stu-id="57ba5-153">In this example, hello client would have toopresent a token that contains: signing key (VerificationKey), a token issuer, and required claims.</span></span>
 
     public static string AddTokenRestrictedAuthorizationPolicy(IContentKey contentKey)
     {
@@ -186,10 +186,10 @@ ms.lasthandoff: 08/29/2017
 
         policy.Options.Add(policyOption);
 
-        // Add ContentKeyAutorizationPolicy to ContentKey
+        // Add ContentKeyAutorizationPolicy tooContentKey
         contentKey.AuthorizationPolicyId = policy.Id;
         IContentKey updatedKey = contentKey.UpdateAsync().Result;
-        Console.WriteLine("Adding Key to Asset: Key ID is " + updatedKey.Id);
+        Console.WriteLine("Adding Key tooAsset: Key ID is " + updatedKey.Id);
 
         return tokenTemplateString;
     }
@@ -208,37 +208,37 @@ ms.lasthandoff: 08/29/2017
         return TokenRestrictionTemplateSerializer.Serialize(template);
     }
 
-#### <span data-ttu-id="944fb-154"><a id="test"></a>測試權杖</span><span class="sxs-lookup"><span data-stu-id="944fb-154"><a id="test"></a>Test token</span></span>
-<span data-ttu-id="944fb-155">若要取得根據用於金鑰授權原則之權杖限制的測試權杖，請執行下列動作。</span><span class="sxs-lookup"><span data-stu-id="944fb-155">To get a test token based on the token restriction that was used for the key authorization policy, do the following.</span></span>
+#### <span data-ttu-id="57ba5-154"><a id="test"></a>測試權杖</span><span class="sxs-lookup"><span data-stu-id="57ba5-154"><a id="test"></a>Test token</span></span>
+<span data-ttu-id="57ba5-155">tooget 測試語彙基元的 hello 用於 hello 金鑰授權原則的權杖限制，請不要遵循 hello。</span><span class="sxs-lookup"><span data-stu-id="57ba5-155">tooget a test token based on hello token restriction that was used for hello key authorization policy, do hello following.</span></span>
 
     // Deserializes a string containing an Xml representation of a TokenRestrictionTemplate
     // back into a TokenRestrictionTemplate class instance.
     TokenRestrictionTemplate tokenTemplate =
         TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-    // Generate a test token based on the the data in the given TokenRestrictionTemplate.
-    // Note, you need to pass the key id Guid because we specified 
-    // TokenClaim.ContentKeyIdentifierClaim in during the creation of TokenRestrictionTemplate.
+    // Generate a test token based on hello hello data in hello given TokenRestrictionTemplate.
+    // Note, you need toopass hello key id Guid because we specified 
+    // TokenClaim.ContentKeyIdentifierClaim in during hello creation of TokenRestrictionTemplate.
     Guid rawkey = EncryptionUtils.GetKeyIdAsGuid(key.Id);
 
-    //The GenerateTestToken method returns the token without the word “Bearer” in front
-    //so you have to add it in front of the token string. 
+    //hello GenerateTestToken method returns hello token without hello word “Bearer” in front
+    //so you have tooadd it in front of hello token string. 
     string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate, null, rawkey);
-    Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+    Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
     Console.WriteLine();
 
 
-## <a name="playready-dynamic-encryption"></a><span data-ttu-id="944fb-156">PlayReady 動態加密</span><span class="sxs-lookup"><span data-stu-id="944fb-156">PlayReady Dynamic Encryption</span></span>
-<span data-ttu-id="944fb-157">媒體服務可讓您設定您要 PlayReady DRM 執行階段在使用者嘗試播放受保護內容時強制執行的權限和限制。</span><span class="sxs-lookup"><span data-stu-id="944fb-157">Media Services enables you to configure the rights and restrictions that you want for the PlayReady DRM runtime to enforce when a user is trying to play back protected content.</span></span> 
+## <a name="playready-dynamic-encryption"></a><span data-ttu-id="57ba5-156">PlayReady 動態加密</span><span class="sxs-lookup"><span data-stu-id="57ba5-156">PlayReady Dynamic Encryption</span></span>
+<span data-ttu-id="57ba5-157">Media Services 可讓您 tooconfigure hello 權限和限制您想要 hello PlayReady DRM 執行階段 tooenforce 當使用者想 tooplay 回受保護的內容。</span><span class="sxs-lookup"><span data-stu-id="57ba5-157">Media Services enables you tooconfigure hello rights and restrictions that you want for hello PlayReady DRM runtime tooenforce when a user is trying tooplay back protected content.</span></span> 
 
-<span data-ttu-id="944fb-158">使用 PlayReady 保護內容時，您需要在驗證原則中指定的其中一件事是定義 [PlayReady 授權範本](media-services-playready-license-template-overview.md)的 XML 字串。</span><span class="sxs-lookup"><span data-stu-id="944fb-158">When protecting your content with PlayReady, one of the things you need to specify in your authorization policy is an XML string that defines the [PlayReady license template](media-services-playready-license-template-overview.md).</span></span> <span data-ttu-id="944fb-159">在 Media Services SDK for .NET 中，**PlayReadyLicenseResponseTemplate** 和 **PlayReadyLicenseTemplate** 類別將協助您定義 PlayReady 授權範本。</span><span class="sxs-lookup"><span data-stu-id="944fb-159">In Media Services SDK for .NET, the **PlayReadyLicenseResponseTemplate** and **PlayReadyLicenseTemplate** classes will help you define the PlayReady License Template.</span></span>
+<span data-ttu-id="57ba5-158">當保護使用 PlayReady，其中一項 hello 您需要在您的授權原則 toospecify 是 XML 字串，定義 hello [PlayReady 授權範本](media-services-playready-license-template-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="57ba5-158">When protecting your content with PlayReady, one of hello things you need toospecify in your authorization policy is an XML string that defines hello [PlayReady license template](media-services-playready-license-template-overview.md).</span></span> <span data-ttu-id="57ba5-159">在 Media Services SDK for.NET，hello **PlayReadyLicenseResponseTemplate**和**PlayReadyLicenseTemplate**類別可協助您定義 hello PlayReady 授權範本。</span><span class="sxs-lookup"><span data-stu-id="57ba5-159">In Media Services SDK for .NET, hello **PlayReadyLicenseResponseTemplate** and **PlayReadyLicenseTemplate** classes will help you define hello PlayReady License Template.</span></span>
 
-<span data-ttu-id="944fb-160">[本主題](media-services-protect-with-drm.md)示範如何使用 **PlayReady** 和 **Widevine** 加密內容。</span><span class="sxs-lookup"><span data-stu-id="944fb-160">[This topic](media-services-protect-with-drm.md) shows how to encrypt your content with **PlayReady** and **Widevine**.</span></span>
+<span data-ttu-id="57ba5-160">[本主題](media-services-protect-with-drm.md)示範如何 tooencrypt 內容**PlayReady**和**Widevine**。</span><span class="sxs-lookup"><span data-stu-id="57ba5-160">[This topic](media-services-protect-with-drm.md) shows how tooencrypt your content with **PlayReady** and **Widevine**.</span></span>
 
-### <a name="open-restriction"></a><span data-ttu-id="944fb-161">Open 限制</span><span class="sxs-lookup"><span data-stu-id="944fb-161">Open Restriction</span></span>
-<span data-ttu-id="944fb-162">Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。</span><span class="sxs-lookup"><span data-stu-id="944fb-162">Open restriction means the system will deliver the key to anyone who makes a key request.</span></span> <span data-ttu-id="944fb-163">這項限制可用於測試用途。</span><span class="sxs-lookup"><span data-stu-id="944fb-163">This restriction might be useful for testing purposes.</span></span>
+### <a name="open-restriction"></a><span data-ttu-id="57ba5-161">Open 限制</span><span class="sxs-lookup"><span data-stu-id="57ba5-161">Open Restriction</span></span>
+<span data-ttu-id="57ba5-162">開放限制表示 hello 系統將會傳送 hello 金鑰 tooanyone 人員提出金鑰要求。</span><span class="sxs-lookup"><span data-stu-id="57ba5-162">Open restriction means hello system will deliver hello key tooanyone who makes a key request.</span></span> <span data-ttu-id="57ba5-163">這項限制可用於測試用途。</span><span class="sxs-lookup"><span data-stu-id="57ba5-163">This restriction might be useful for testing purposes.</span></span>
 
-<span data-ttu-id="944fb-164">下列範例會建立 open 授權原則，並將它加入至內容金鑰。</span><span class="sxs-lookup"><span data-stu-id="944fb-164">The following example creates an open authorization policy and adds it to the content key.</span></span>
+<span data-ttu-id="57ba5-164">hello 下列範例會建立開放授權原則，並將它加入 toohello 內容金鑰。</span><span class="sxs-lookup"><span data-stu-id="57ba5-164">hello following example creates an open authorization policy and adds it toohello content key.</span></span>
 
     static public void AddOpenAuthorizationPolicy(IContentKey contentKey)
     {
@@ -272,13 +272,13 @@ ms.lasthandoff: 08/29/2017
 
         contentKeyAuthorizationPolicy.Options.Add(policyOption);
 
-        // Associate the content key authorization policy with the content key.
+        // Associate hello content key authorization policy with hello content key.
         contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
         contentKey = contentKey.UpdateAsync().Result;
     }
 
-### <a name="token-restriction"></a><span data-ttu-id="944fb-165">Token 限制</span><span class="sxs-lookup"><span data-stu-id="944fb-165">Token Restriction</span></span>
-<span data-ttu-id="944fb-166">若要設定 token 限制選項，您需要使用 XML 來描述權杖的授權需求。</span><span class="sxs-lookup"><span data-stu-id="944fb-166">To configure the token restriction option, you need to use an XML to describe the token’s authorization requirements.</span></span> <span data-ttu-id="944fb-167">Token 限制組態 XML 必須符合 [此](#schema) 節。</span><span class="sxs-lookup"><span data-stu-id="944fb-167">The token restriction configuration XML must conform to the XML schema shown in [this](#schema) section.</span></span>
+### <a name="token-restriction"></a><span data-ttu-id="57ba5-165">Token 限制</span><span class="sxs-lookup"><span data-stu-id="57ba5-165">Token Restriction</span></span>
+<span data-ttu-id="57ba5-166">tooconfigure hello 權杖限制選項，就需要 toouse XML toodescribe hello 權杖的授權需求。</span><span class="sxs-lookup"><span data-stu-id="57ba5-166">tooconfigure hello token restriction option, you need toouse an XML toodescribe hello token’s authorization requirements.</span></span> <span data-ttu-id="57ba5-167">hello 權杖限制組態 XML 必須符合 toohello XML 結構描述所示[這](#schema)> 一節。</span><span class="sxs-lookup"><span data-stu-id="57ba5-167">hello token restriction configuration XML must conform toohello XML schema shown in [this](#schema) section.</span></span>
 
     public static string AddTokenRestrictedAuthorizationPolicy(IContentKey contentKey)
     {
@@ -313,10 +313,10 @@ ms.lasthandoff: 08/29/2017
 
         policy.Options.Add(policyOption);
 
-        // Add ContentKeyAutorizationPolicy to ContentKey
+        // Add ContentKeyAutorizationPolicy tooContentKey
         contentKeyAuthorizationPolicy.Options.Add(policyOption);
 
-        // Associate the content key authorization policy with the content key
+        // Associate hello content key authorization policy with hello content key
         contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
         contentKey = contentKey.UpdateAsync().Result;
 
@@ -341,42 +341,42 @@ ms.lasthandoff: 08/29/2017
 
     static private string ConfigurePlayReadyLicenseTemplate()
     {
-        // The following code configures PlayReady License Template using .NET classes
-        // and returns the XML string.
+        // hello following code configures PlayReady License Template using .NET classes
+        // and returns hello XML string.
 
-        //The PlayReadyLicenseResponseTemplate class represents the template for the response sent back to the end user. 
-        //It contains a field for a custom data string between the license server and the application 
+        //hello PlayReadyLicenseResponseTemplate class represents hello template for hello response sent back toohello end user. 
+        //It contains a field for a custom data string between hello license server and hello application 
         //(may be useful for custom app logic) as well as a list of one or more license templates.
         PlayReadyLicenseResponseTemplate responseTemplate = new PlayReadyLicenseResponseTemplate();
 
-        // The PlayReadyLicenseTemplate class represents a license template for creating PlayReady licenses
-        // to be returned to the end users. 
-        //It contains the data on the content key in the license and any rights or restrictions to be 
-        //enforced by the PlayReady DRM runtime when using the content key.
+        // hello PlayReadyLicenseTemplate class represents a license template for creating PlayReady licenses
+        // toobe returned toohello end users. 
+        //It contains hello data on hello content key in hello license and any rights or restrictions toobe 
+        //enforced by hello PlayReady DRM runtime when using hello content key.
         PlayReadyLicenseTemplate licenseTemplate = new PlayReadyLicenseTemplate();
-        //Configure whether the license is persistent (saved in persistent storage on the client) 
-        //or non-persistent (only held in memory while the player is using the license).  
+        //Configure whether hello license is persistent (saved in persistent storage on hello client) 
+        //or non-persistent (only held in memory while hello player is using hello license).  
         licenseTemplate.LicenseType = PlayReadyLicenseType.Nonpersistent;
 
-        // AllowTestDevices controls whether test devices can use the license or not.  
-        // If true, the MinimumSecurityLevel property of the license
-        // is set to 150.  If false (the default), the MinimumSecurityLevel property of the license is set to 2000.
+        // AllowTestDevices controls whether test devices can use hello license or not.  
+        // If true, hello MinimumSecurityLevel property of hello license
+        // is set too150.  If false (hello default), hello MinimumSecurityLevel property of hello license is set too2000.
         licenseTemplate.AllowTestDevices = true;
 
 
-        // You can also configure the Play Right in the PlayReady license by using the PlayReadyPlayRight class. 
-        // It grants the user the ability to playback the content subject to the zero or more restrictions 
-        // configured in the license and on the PlayRight itself (for playback specific policy). 
-        // Much of the policy on the PlayRight has to do with output restrictions 
-        // which control the types of outputs that the content can be played over and 
+        // You can also configure hello Play Right in hello PlayReady license by using hello PlayReadyPlayRight class. 
+        // It grants hello user hello ability tooplayback hello content subject toohello zero or more restrictions 
+        // configured in hello license and on hello PlayRight itself (for playback specific policy). 
+        // Much of hello policy on hello PlayRight has toodo with output restrictions 
+        // which control hello types of outputs that hello content can be played over and 
         // any restrictions that must be put in place when using a given output.
-        // For example, if the DigitalVideoOnlyContentRestriction is enabled, 
-        //then the DRM runtime will only allow the video to be displayed over digital outputs 
-        //(analog video outputs won’t be allowed to pass the content).
+        // For example, if hello DigitalVideoOnlyContentRestriction is enabled, 
+        //then hello DRM runtime will only allow hello video toobe displayed over digital outputs 
+        //(analog video outputs won’t be allowed toopass hello content).
 
-        //IMPORTANT: These types of restrictions can be very powerful but can also affect the consumer experience. 
-        // If the output protections are configured too restrictive, 
-        // the content might be unplayable on some clients. For more information, see the PlayReady Compliance Rules document.
+        //IMPORTANT: These types of restrictions can be very powerful but can also affect hello consumer experience. 
+        // If hello output protections are configured too restrictive, 
+        // hello content might be unplayable on some clients. For more information, see hello PlayReady Compliance Rules document.
 
         // For example:
         //licenseTemplate.PlayRight.AgcAndColorStripeRestriction = new AgcAndColorStripeRestriction(1);
@@ -387,10 +387,10 @@ ms.lasthandoff: 08/29/2017
     }
 
 
-<span data-ttu-id="944fb-168">若要取得根據用於金鑰授權原則之權杖限制的測試權杖，請參閱 [此](#test) 節。</span><span class="sxs-lookup"><span data-stu-id="944fb-168">To get a test token based on the token restriction that was used for the key authorization policy see [this](#test) section.</span></span> 
+<span data-ttu-id="57ba5-168">測試語彙基元根據 hello 權杖限制用於 hello 金鑰授權原則，請參閱 tooget[這](#test)> 一節。</span><span class="sxs-lookup"><span data-stu-id="57ba5-168">tooget a test token based on hello token restriction that was used for hello key authorization policy see [this](#test) section.</span></span> 
 
-## <span data-ttu-id="944fb-169"><a id="types"></a>定義 ContentKeyAuthorizationPolicy 時使用的類型</span><span class="sxs-lookup"><span data-stu-id="944fb-169"><a id="types"></a>Types used when defining ContentKeyAuthorizationPolicy</span></span>
-### <span data-ttu-id="944fb-170"><a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType</span><span class="sxs-lookup"><span data-stu-id="944fb-170"><a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType</span></span>
+## <span data-ttu-id="57ba5-169"><a id="types"></a>定義 ContentKeyAuthorizationPolicy 時使用的類型</span><span class="sxs-lookup"><span data-stu-id="57ba5-169"><a id="types"></a>Types used when defining ContentKeyAuthorizationPolicy</span></span>
+### <span data-ttu-id="57ba5-170"><a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType</span><span class="sxs-lookup"><span data-stu-id="57ba5-170"><a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType</span></span>
     public enum ContentKeyRestrictionType
     {
         Open = 0,
@@ -398,7 +398,7 @@ ms.lasthandoff: 08/29/2017
         IPRestricted = 2,
     }
 
-### <span data-ttu-id="944fb-171"><a id="ContentKeyDeliveryType"></a>ContentKeyDeliveryType</span><span class="sxs-lookup"><span data-stu-id="944fb-171"><a id="ContentKeyDeliveryType"></a>ContentKeyDeliveryType</span></span>
+### <span data-ttu-id="57ba5-171"><a id="ContentKeyDeliveryType"></a>ContentKeyDeliveryType</span><span class="sxs-lookup"><span data-stu-id="57ba5-171"><a id="ContentKeyDeliveryType"></a>ContentKeyDeliveryType</span></span>
     public enum ContentKeyDeliveryType
     {
       None = 0,
@@ -407,7 +407,7 @@ ms.lasthandoff: 08/29/2017
       Widevine = 3
     }
 
-### <span data-ttu-id="944fb-172"><a id="TokenType"></a>TokenType</span><span class="sxs-lookup"><span data-stu-id="944fb-172"><a id="TokenType"></a>TokenType</span></span>
+### <span data-ttu-id="57ba5-172"><a id="TokenType"></a>TokenType</span><span class="sxs-lookup"><span data-stu-id="57ba5-172"><a id="TokenType"></a>TokenType</span></span>
     public enum TokenType
     {
         Undefined = 0,
@@ -417,12 +417,12 @@ ms.lasthandoff: 08/29/2017
 
 
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="944fb-173">媒體服務學習路徑</span><span class="sxs-lookup"><span data-stu-id="944fb-173">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="57ba5-173">媒體服務學習路徑</span><span class="sxs-lookup"><span data-stu-id="57ba5-173">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="944fb-174">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="944fb-174">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="57ba5-174">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="57ba5-174">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## <a name="next-step"></a><span data-ttu-id="944fb-175">後續步驟</span><span class="sxs-lookup"><span data-stu-id="944fb-175">Next step</span></span>
-<span data-ttu-id="944fb-176">現在，您已設定內容金鑰授權原則，請移至 [如何設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md) 主題。</span><span class="sxs-lookup"><span data-stu-id="944fb-176">Now that you have configured content key's authorization policy, go to the [How to configure asset delivery policy](media-services-dotnet-configure-asset-delivery-policy.md) topic.</span></span>
+## <a name="next-step"></a><span data-ttu-id="57ba5-175">後續步驟</span><span class="sxs-lookup"><span data-stu-id="57ba5-175">Next step</span></span>
+<span data-ttu-id="57ba5-176">既然您已設定內容金鑰授權原則，請移 toohello[如何 tooconfigure 資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)主題。</span><span class="sxs-lookup"><span data-stu-id="57ba5-176">Now that you have configured content key's authorization policy, go toohello [How tooconfigure asset delivery policy](media-services-dotnet-configure-asset-delivery-policy.md) topic.</span></span>
 

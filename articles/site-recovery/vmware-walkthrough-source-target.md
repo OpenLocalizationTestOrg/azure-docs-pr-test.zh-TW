@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Site Recovery 針對 VMware 到 Azure 的複寫設定來源和目標 | Microsoft Docs"
-description: "摘要說明使用 Azure Site Recovery 針對將 VMware VM 複寫至 Azure 儲存體設定來源和目標設定時所需的步驟"
+title: "hello 來源和目標與 Azure Site Recovery 的 VMware 複寫 tooAzure aaaSet |Microsoft 文件"
+description: "摘要說明 hello 步驟 tooset VMware Vm tooAzure 儲存體與 Azure Site Recovery 的複寫的來源和目標設定"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: 94b629a62c3a54eee69ee397b2f27e3f20b753d5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ef33a44bc5da17afb0442be63f576925f5b9a8b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-8-set-up-the-source-and-target-for-vmware-replication-to-azure"></a><span data-ttu-id="a7ac8-103">步驟 8：針對 VMware 到 Azure 的複寫設定來源和目標</span><span class="sxs-lookup"><span data-stu-id="a7ac8-103">Step 8: Set up the source and target for VMware replication to Azure</span></span>
+# <a name="step-8-set-up-hello-source-and-target-for-vmware-replication-tooazure"></a><span data-ttu-id="5b437-103">步驟 8: Hello 來源和目標 VMware 複寫 tooAzure 設定</span><span class="sxs-lookup"><span data-stu-id="5b437-103">Step 8: Set up hello source and target for VMware replication tooAzure</span></span>
 
-<span data-ttu-id="a7ac8-104">本文說明在 Azure 入口網站中使用 [Azure Site Recovery](site-recovery-overview.md) 服務將內部部署 VMware 虛擬機器複寫至 Azure 時，如何設定來源和目標設定。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-104">This article describes how to configure source and target settings when replicating on-premises VMware virtual machines to Azure, using the [Azure Site Recovery](site-recovery-overview.md) service in the Azure portal.</span></span>
+<span data-ttu-id="5b437-104">本文說明如何 tooconfigure 來源和目標設定複寫時 VMware 虛擬機器 tooAzure，使用內部 hello [Azure Site Recovery](site-recovery-overview.md) hello Azure 入口網站中的服務。</span><span class="sxs-lookup"><span data-stu-id="5b437-104">This article describes how tooconfigure source and target settings when replicating on-premises VMware virtual machines tooAzure, using hello [Azure Site Recovery](site-recovery-overview.md) service in hello Azure portal.</span></span>
 
-<span data-ttu-id="a7ac8-105">請在本文下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)上張貼意見或問題。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-105">Post comments and questions at the bottom of this article, or on the [Azure Recovery Services Forum](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).</span></span>
+<span data-ttu-id="5b437-105">在本文中，或在 hello hello 下方張貼意見或疑問[Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。</span><span class="sxs-lookup"><span data-stu-id="5b437-105">Post comments and questions at hello bottom of this article, or on hello [Azure Recovery Services Forum](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).</span></span>
 
 
-## <a name="set-up-the-source-environment"></a><span data-ttu-id="a7ac8-106">設定來源環境</span><span class="sxs-lookup"><span data-stu-id="a7ac8-106">Set up the source environment</span></span>
+## <a name="set-up-hello-source-environment"></a><span data-ttu-id="5b437-106">設定 hello 來源環境</span><span class="sxs-lookup"><span data-stu-id="5b437-106">Set up hello source environment</span></span>
 
-<span data-ttu-id="a7ac8-107">安裝設定伺服器、註冊在保存庫及探索 VM。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-107">Set up the configuration server, register it in the vault, and discover VMs.</span></span>
+<span data-ttu-id="5b437-107">設定 hello 組態伺服器、 其註冊 hello 保存庫，以及探索 Vm。</span><span class="sxs-lookup"><span data-stu-id="5b437-107">Set up hello configuration server, register it in hello vault, and discover VMs.</span></span>
 
-1. <span data-ttu-id="a7ac8-108">按一下 [Site Recovery] > [步驟 1: 準備基礎結構] > [來源]。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-108">Click **Site Recovery** > **Step 1: Prepare Infrastructure** > **Source**.</span></span>
-2. <span data-ttu-id="a7ac8-109">如果您沒有設定伺服器，請按一下 [+設定伺服器]。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-109">If you don’t have a configuration server, click **+Configuration server**.</span></span>
-3. <span data-ttu-id="a7ac8-110">在 [新增伺服器] 中，檢查 [設定伺服器] 是否出現在 [伺服器類型] 中。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-110">In **Add Server**, check that **Configuration Server** appears in **Server type**.</span></span>
-4. <span data-ttu-id="a7ac8-111">下載 Site Recovery 統一安裝的安裝檔案。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-111">Download the Site Recovery Unified Setup installation file.</span></span>
-5. <span data-ttu-id="a7ac8-112">下載保存庫註冊金鑰。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-112">Download the vault registration key.</span></span> <span data-ttu-id="a7ac8-113">您會在執行統一安裝時用到此金鑰。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-113">You need this when you run Unified Setup.</span></span> <span data-ttu-id="a7ac8-114">該金鑰在產生後會維持 5 天有效。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-114">The key is valid for five days after you generate it.</span></span>
+1. <span data-ttu-id="5b437-108">按一下 [Site Recovery] > [步驟 1: 準備基礎結構] > [來源]。</span><span class="sxs-lookup"><span data-stu-id="5b437-108">Click **Site Recovery** > **Step 1: Prepare Infrastructure** > **Source**.</span></span>
+2. <span data-ttu-id="5b437-109">如果您沒有設定伺服器，請按一下 [+設定伺服器]。</span><span class="sxs-lookup"><span data-stu-id="5b437-109">If you don’t have a configuration server, click **+Configuration server**.</span></span>
+3. <span data-ttu-id="5b437-110">在 [新增伺服器] 中，檢查 [設定伺服器] 是否出現在 [伺服器類型] 中。</span><span class="sxs-lookup"><span data-stu-id="5b437-110">In **Add Server**, check that **Configuration Server** appears in **Server type**.</span></span>
+4. <span data-ttu-id="5b437-111">下載 hello Site Recovery 整合安裝程式安裝檔案。</span><span class="sxs-lookup"><span data-stu-id="5b437-111">Download hello Site Recovery Unified Setup installation file.</span></span>
+5. <span data-ttu-id="5b437-112">下載 hello 保存庫註冊金鑰。</span><span class="sxs-lookup"><span data-stu-id="5b437-112">Download hello vault registration key.</span></span> <span data-ttu-id="5b437-113">您會在執行統一安裝時用到此金鑰。</span><span class="sxs-lookup"><span data-stu-id="5b437-113">You need this when you run Unified Setup.</span></span> <span data-ttu-id="5b437-114">hello 金鑰有效期為您產生它之後的五天。</span><span class="sxs-lookup"><span data-stu-id="5b437-114">hello key is valid for five days after you generate it.</span></span>
 
    ![設定來源](./media/vmware-walkthrough-source-target/set-source2.png)
 
 
-## <a name="register-the-configuration-server-in-the-vault"></a><span data-ttu-id="a7ac8-116">在保存庫中註冊設定伺服器</span><span class="sxs-lookup"><span data-stu-id="a7ac8-116">Register the configuration server in the vault</span></span>
+## <a name="register-hello-configuration-server-in-hello-vault"></a><span data-ttu-id="5b437-116">Hello 保存庫中註冊伺服器 hello 組態</span><span class="sxs-lookup"><span data-stu-id="5b437-116">Register hello configuration server in hello vault</span></span>
 
-<span data-ttu-id="a7ac8-117">開始之前請先執行下列作業，然後執行統一安裝以安裝組態伺服器、處理序伺服器與主要目標伺服器。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-117">Do the following before you start, then run Unified Setup to install the configuration server, the process server, and the master target server.</span></span>
-    - <span data-ttu-id="a7ac8-118">透過影片快速建立概念</span><span class="sxs-lookup"><span data-stu-id="a7ac8-118">Get a quick video overview</span></span>
+<span data-ttu-id="5b437-117">請勿 hello 下列之前啟動，然後執行整合安裝 tooinstall hello 組態伺服器、 hello 處理序伺服器，以及 hello 主要目標伺服器。</span><span class="sxs-lookup"><span data-stu-id="5b437-117">Do hello following before you start, then run Unified Setup tooinstall hello configuration server, hello process server, and hello master target server.</span></span>
+    - <span data-ttu-id="5b437-118">透過影片快速建立概念</span><span class="sxs-lookup"><span data-stu-id="5b437-118">Get a quick video overview</span></span>
 
         > [!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video1-Source-Infrastructure-Setup/player]
 
-    - <span data-ttu-id="a7ac8-119">在組態伺服器 VM 上，確定系統時鐘與[時間伺服器](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service)同步。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-119">On the configuration server VM, make sure that the system clock is synchronized with a [Time Server](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service).</span></span> <span data-ttu-id="a7ac8-120">應該相符。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-120">It should match.</span></span> <span data-ttu-id="a7ac8-121">如果快慢誤差 15 分鐘，安裝可能會失敗。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-121">If it's 15 minutes in front or behind, setup might fail.</span></span>
-    - <span data-ttu-id="a7ac8-122">在設定伺服器 VM 上以本機系統管理員身分執行安裝程式。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-122">Run setup as a Local Administrator on the configuration server VM.</span></span>
-    - <span data-ttu-id="a7ac8-123">確定 VM 上已啟用 TLS 1.0</span><span class="sxs-lookup"><span data-stu-id="a7ac8-123">Make sure TLS 1.0 is enabled on the VM.</span></span>
+    - <span data-ttu-id="5b437-119">在 hello 組態伺服器 VM，請確定該 hello 系統時鐘與同步[時間伺服器](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service)。</span><span class="sxs-lookup"><span data-stu-id="5b437-119">On hello configuration server VM, make sure that hello system clock is synchronized with a [Time Server](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service).</span></span> <span data-ttu-id="5b437-120">應該相符。</span><span class="sxs-lookup"><span data-stu-id="5b437-120">It should match.</span></span> <span data-ttu-id="5b437-121">如果快慢誤差 15 分鐘，安裝可能會失敗。</span><span class="sxs-lookup"><span data-stu-id="5b437-121">If it's 15 minutes in front or behind, setup might fail.</span></span>
+    - <span data-ttu-id="5b437-122">以本機系統管理員身分 hello 組態伺服器 VM 上執行安裝程式。</span><span class="sxs-lookup"><span data-stu-id="5b437-122">Run setup as a Local Administrator on hello configuration server VM.</span></span>
+    - <span data-ttu-id="5b437-123">請確定 hello VM 上啟用 TLS 1.0。</span><span class="sxs-lookup"><span data-stu-id="5b437-123">Make sure TLS 1.0 is enabled on hello VM.</span></span>
 
 
 [!INCLUDE [site-recovery-add-configuration-server](../../includes/site-recovery-add-configuration-server.md)]
 
 > [!NOTE]
-> <span data-ttu-id="a7ac8-124">您也可以[從命令列](http://aka.ms/installconfigsrv)安裝組態伺服器。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-124">The configuration server can also be installed [from the command line](http://aka.ms/installconfigsrv).</span></span>
+> <span data-ttu-id="5b437-124">也可以安裝 hello 組態伺服器[hello 命令列從](http://aka.ms/installconfigsrv)。</span><span class="sxs-lookup"><span data-stu-id="5b437-124">hello configuration server can also be installed [from hello command line](http://aka.ms/installconfigsrv).</span></span>
 
 
 
-## <a name="connect-to-vmware-servers"></a><span data-ttu-id="a7ac8-125">連接至 VMware 伺服器</span><span class="sxs-lookup"><span data-stu-id="a7ac8-125">Connect to VMware servers</span></span>
+## <a name="connect-toovmware-servers"></a><span data-ttu-id="5b437-125">TooVMware 伺服器連線</span><span class="sxs-lookup"><span data-stu-id="5b437-125">Connect tooVMware servers</span></span>
 
-<span data-ttu-id="a7ac8-126">若要允許 Azure Site Recovery 探索在您內部部署環境中執行的虛擬機器，您必須將 VMware vCenter Server 或 vSphere ESXi 主機與 Site Recovery 連接。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-126">To allow Azure Site Recovery to discover virtual machines running in your on-premises environment, you need to connect your VMware vCenter Server or vSphere ESXi hosts with Site Recovery.</span></span> <span data-ttu-id="a7ac8-127">開始之前，請注意下列事項：</span><span class="sxs-lookup"><span data-stu-id="a7ac8-127">Note the following before you start:</span></span>
+<span data-ttu-id="5b437-126">在內部部署環境中執行 tooallow Azure Site Recovery toodiscover 虛擬機器，您需要 tooconnect，您的 VMware vCenter Server 或 vSphere ESXi 主機與 Site Recovery。</span><span class="sxs-lookup"><span data-stu-id="5b437-126">tooallow Azure Site Recovery toodiscover virtual machines running in your on-premises environment, you need tooconnect your VMware vCenter Server or vSphere ESXi hosts with Site Recovery.</span></span> <span data-ttu-id="5b437-127">在開始之前，請注意下列 hello:</span><span class="sxs-lookup"><span data-stu-id="5b437-127">Note hello following before you start:</span></span>
 
-- <span data-ttu-id="a7ac8-128">如果您使用在伺服器上沒有系統管理員權限的帳戶將 vCenter 伺服器或 vSphere 主機新增到 Site Recovery，則該帳戶必須啟用下列權限︰</span><span class="sxs-lookup"><span data-stu-id="a7ac8-128">If you add the vCenter server or vSphere hosts to Site Recovery with an account without administrator privileges on the server, the account needs these privileges enabled:</span></span>
-    - <span data-ttu-id="a7ac8-129">資料中心、資料存放區、資料夾、主機、網路、資源、虛擬機器、vSphere 分散式交換器。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-129">Datacenter, Datastore, Folder, Host, Network, Resource, Virtual machine, vSphere Distributed Switch.</span></span>
-    - <span data-ttu-id="a7ac8-130">vCenter 伺服器需要儲存體檢視權限。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-130">The vCenter server needs Storage views permissions.</span></span>
-- <span data-ttu-id="a7ac8-131">將 VMware 伺服器新增到 Site Recovery 時，可能需要 15 分鐘或更久，它們才會出現在入口網站中。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-131">When you add VMware servers to Site Recovery, it can take 15 minutes or longer for them to appear in the portal.</span></span>
+- <span data-ttu-id="5b437-128">如果您新增 hello vCenter server 或不具有系統管理員權限的帳戶的 vSphere 主機 tooSite 復原 hello 伺服器上，hello 帳戶必須啟用這些權限：</span><span class="sxs-lookup"><span data-stu-id="5b437-128">If you add hello vCenter server or vSphere hosts tooSite Recovery with an account without administrator privileges on hello server, hello account needs these privileges enabled:</span></span>
+    - <span data-ttu-id="5b437-129">資料中心、資料存放區、資料夾、主機、網路、資源、虛擬機器、vSphere 分散式交換器。</span><span class="sxs-lookup"><span data-stu-id="5b437-129">Datacenter, Datastore, Folder, Host, Network, Resource, Virtual machine, vSphere Distributed Switch.</span></span>
+    - <span data-ttu-id="5b437-130">hello vCenter server 必須儲存檢視的權限。</span><span class="sxs-lookup"><span data-stu-id="5b437-130">hello vCenter server needs Storage views permissions.</span></span>
+- <span data-ttu-id="5b437-131">當您新增 VMware 伺服器 tooSite 復原時，可能需要 15 分鐘或更長，tooappear hello 入口網站中的。</span><span class="sxs-lookup"><span data-stu-id="5b437-131">When you add VMware servers tooSite Recovery, it can take 15 minutes or longer for them tooappear in hello portal.</span></span>
 
-### <a name="add-the-account-for-automatic-discovery"></a><span data-ttu-id="a7ac8-132">新增用於自動探索的帳戶</span><span class="sxs-lookup"><span data-stu-id="a7ac8-132">Add the account for automatic discovery</span></span>
+### <a name="add-hello-account-for-automatic-discovery"></a><span data-ttu-id="5b437-132">新增自動探索的 hello 帳戶</span><span class="sxs-lookup"><span data-stu-id="5b437-132">Add hello account for automatic discovery</span></span>
 
 [!INCLUDE [site-recovery-add-vcenter-account](../../includes/site-recovery-add-vcenter-account.md)]
 
-### <a name="set-up-a-connection"></a><span data-ttu-id="a7ac8-133">設定連線</span><span class="sxs-lookup"><span data-stu-id="a7ac8-133">Set up a connection</span></span>
+### <a name="set-up-a-connection"></a><span data-ttu-id="5b437-133">設定連線</span><span class="sxs-lookup"><span data-stu-id="5b437-133">Set up a connection</span></span>
 
-<span data-ttu-id="a7ac8-134">請依照下列方式連線到伺服器：</span><span class="sxs-lookup"><span data-stu-id="a7ac8-134">Connect to servers as follows:</span></span>
+<span data-ttu-id="5b437-134">連接 tooservers，如下所示：</span><span class="sxs-lookup"><span data-stu-id="5b437-134">Connect tooservers as follows:</span></span>
 
-1. <span data-ttu-id="a7ac8-135">選取 [+vCenter] 來開始連接 VMware vCenter Server 或 VMware vSphere ESXi 主機。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-135">Select **+vCenter** to start connecting a VMware vCenter server or a VMware vSphere ESXi host.</span></span>
-2. <span data-ttu-id="a7ac8-136">在 [新增 vCenter] 中，指定 vSphere 主機或 vCenter 伺服器的易記名稱，然後指定伺服器的 IP 位址或 FQDN。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-136">In **Add vCenter**, specify a friendly name for the vSphere host or vCenter server, and then specify the IP address or FQDN of the server.</span></span>
-3. <span data-ttu-id="a7ac8-137">保留連接埠為 443，除非您的 VMware 伺服器設定為在不同連接埠上接聽要求。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-137">Leave the port as 443 unless your VMware servers are configured to listen for requests on a different port.</span></span> <span data-ttu-id="a7ac8-138">選取將用於連接至 VMware vCenter 或 vSphere ESXi 伺服器的帳戶。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-138">Select the account that is to connect to the VMware vCenter or vSphere ESXi server.</span></span> <span data-ttu-id="a7ac8-139">按一下 [確定] 。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-139">Click **OK**.</span></span>
-4. <span data-ttu-id="a7ac8-140">Site Recovery 會使用指定的設定連接至 VMware 伺服器並探索 VM。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-140">Site Recovery connects to VMware servers using the specified settings, and discovers VMs.</span></span>
+1. <span data-ttu-id="5b437-135">選取**+ vCenter** toostart VMware vCenter server 或 VMware vSphere ESXi 主機連接。</span><span class="sxs-lookup"><span data-stu-id="5b437-135">Select **+vCenter** toostart connecting a VMware vCenter server or a VMware vSphere ESXi host.</span></span>
+2. <span data-ttu-id="5b437-136">在**新增 vCenter**指定 hello vSphere 主機或 vCenter 伺服器，好記名稱，然後指定 hello IP 位址或 hello 伺服器的 FQDN。</span><span class="sxs-lookup"><span data-stu-id="5b437-136">In **Add vCenter**, specify a friendly name for hello vSphere host or vCenter server, and then specify hello IP address or FQDN of hello server.</span></span>
+3. <span data-ttu-id="5b437-137">除非您的 VMware 伺服器在不同的通訊埠上的要求設定的 toolisten 保留 hello 連接埠 443。</span><span class="sxs-lookup"><span data-stu-id="5b437-137">Leave hello port as 443 unless your VMware servers are configured toolisten for requests on a different port.</span></span> <span data-ttu-id="5b437-138">選取 tooconnect toohello VMware vCenter 或 vSphere ESXi 伺服器 hello 帳戶。</span><span class="sxs-lookup"><span data-stu-id="5b437-138">Select hello account that is tooconnect toohello VMware vCenter or vSphere ESXi server.</span></span> <span data-ttu-id="5b437-139">按一下 [確定] 。</span><span class="sxs-lookup"><span data-stu-id="5b437-139">Click **OK**.</span></span>
+4. <span data-ttu-id="5b437-140">站台復原連接 tooVMware 伺服器使用 hello 指定設定，並探索 Vm。</span><span class="sxs-lookup"><span data-stu-id="5b437-140">Site Recovery connects tooVMware servers using hello specified settings, and discovers VMs.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="a7ac8-141">如果您要使用在 vCenter 或主機伺服器上沒有系統管理員權限的帳戶來新增伺服器或主機，請確定該帳戶已啟用下列權限：資料中心、資料存放區、資料夾、主機、網路、資源、虛擬機器，以及 vSphere 分散式交換器。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-141">If you're adding a server or host with an account that doesn't have administrator privileges on the vCenter or host server, make sure that the account has these privileges enabled: Datacenter, Datastore, Folder, Host, Network, Resource, Virtual machine, and vSphere Distributed Switch.</span></span> <span data-ttu-id="a7ac8-142">此外，VMware vCenter 伺服器還需要啟用「儲存體檢視」權限。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-142">In addition, the VMware vCenter server needs the Storage Views privilege enabled.</span></span>
+> <span data-ttu-id="5b437-141">如果您要加入的伺服器或主控件以 hello vCenter 或主機伺服器沒有系統管理員權限的帳戶，請確定 hello 帳戶已啟用這些權限： 資料中心、 資料存放區、 資料夾、 主機、 網路、 虛擬機器的資源，並vSphere 分散式交換器。</span><span class="sxs-lookup"><span data-stu-id="5b437-141">If you're adding a server or host with an account that doesn't have administrator privileges on hello vCenter or host server, make sure that hello account has these privileges enabled: Datacenter, Datastore, Folder, Host, Network, Resource, Virtual machine, and vSphere Distributed Switch.</span></span> <span data-ttu-id="5b437-142">此外，hello VMware vCenter server 必須啟用權限的 hello 儲存檢視表。</span><span class="sxs-lookup"><span data-stu-id="5b437-142">In addition, hello VMware vCenter server needs hello Storage Views privilege enabled.</span></span>
 
 
-## <a name="set-up-the-target-environment"></a><span data-ttu-id="a7ac8-143">設定目標環境</span><span class="sxs-lookup"><span data-stu-id="a7ac8-143">Set up the target environment</span></span>
+## <a name="set-up-hello-target-environment"></a><span data-ttu-id="5b437-143">Hello 目標環境設定</span><span class="sxs-lookup"><span data-stu-id="5b437-143">Set up hello target environment</span></span>
 
-<span data-ttu-id="a7ac8-144">設定目標環境之前，請確定您已備妥 Azure 儲存體帳戶和虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-144">Before you set up the target environment, make sure you have an Azure storage account and virtual network set up.</span></span>
+<span data-ttu-id="5b437-144">您設定 hello 目標環境之前，請確定您有 Azure 儲存體帳戶和虛擬網路設定。</span><span class="sxs-lookup"><span data-stu-id="5b437-144">Before you set up hello target environment, make sure you have an Azure storage account and virtual network set up.</span></span>
 
-1. <span data-ttu-id="a7ac8-145">按一下 [準備基礎結構] > [目標]，然後選取您要使用的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-145">Click **Prepare infrastructure** > **Target**, and select the Azure subscription you want to use.</span></span>
-2. <span data-ttu-id="a7ac8-146">指定目標部署模型是以 Resource Manager 為基礎或傳統。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-146">Specify whether your target deployment model is Resource Manager-based, or classic.</span></span>
-3. <span data-ttu-id="a7ac8-147">Site Recovery 會檢查您是否有一或多個相容的 Azure 儲存體帳戶和網路。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-147">Site Recovery checks that you have one or more compatible Azure storage accounts and networks.</span></span>
+1. <span data-ttu-id="5b437-145">按一下**準備基礎結構** > **目標**，並選取 hello 想 toouse 的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="5b437-145">Click **Prepare infrastructure** > **Target**, and select hello Azure subscription you want toouse.</span></span>
+2. <span data-ttu-id="5b437-146">指定目標部署模型是以 Resource Manager 為基礎或傳統。</span><span class="sxs-lookup"><span data-stu-id="5b437-146">Specify whether your target deployment model is Resource Manager-based, or classic.</span></span>
+3. <span data-ttu-id="5b437-147">Site Recovery 會檢查您是否有一或多個相容的 Azure 儲存體帳戶和網路。</span><span class="sxs-lookup"><span data-stu-id="5b437-147">Site Recovery checks that you have one or more compatible Azure storage accounts and networks.</span></span>
 
    ![目標](./media/vmware-walkthrough-source-target/gs-target.png)
-4. <span data-ttu-id="a7ac8-149">如果您尚未建立儲存體帳戶或網路，請按一下 [+儲存體帳戶] 或[+網路]，以建立 Resource Manager 帳戶或網路內嵌。</span><span class="sxs-lookup"><span data-stu-id="a7ac8-149">If you haven't created a storage account or network, click **+Storage account** or **+Network**, to create a Resource Manager account or network inline.</span></span>
+4. <span data-ttu-id="5b437-149">如果您尚未建立儲存體帳戶或網路，按一下**+ 儲存體帳戶**或**+ 網路**，toocreate 資源管理員帳戶或網路內嵌。</span><span class="sxs-lookup"><span data-stu-id="5b437-149">If you haven't created a storage account or network, click **+Storage account** or **+Network**, toocreate a Resource Manager account or network inline.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="a7ac8-150">後續步驟</span><span class="sxs-lookup"><span data-stu-id="a7ac8-150">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="5b437-150">後續步驟</span><span class="sxs-lookup"><span data-stu-id="5b437-150">Next steps</span></span>
 
-<span data-ttu-id="a7ac8-151">移至[步驟 9：設定複寫原則](vmware-walkthrough-replication.md)</span><span class="sxs-lookup"><span data-stu-id="a7ac8-151">Go to [Step 9: Set up a replication policy](vmware-walkthrough-replication.md)</span></span>
+<span data-ttu-id="5b437-151">跳過[步驟 9： 設定複寫原則](vmware-walkthrough-replication.md)</span><span class="sxs-lookup"><span data-stu-id="5b437-151">Go too[Step 9: Set up a replication policy](vmware-walkthrough-replication.md)</span></span>

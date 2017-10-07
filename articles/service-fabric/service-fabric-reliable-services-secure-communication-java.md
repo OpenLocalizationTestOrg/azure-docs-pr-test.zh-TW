@@ -1,6 +1,6 @@
 ---
-title: "協助保護 Azure Service Fabric 中服務的通訊安全 | Microsoft Docs"
-description: "如何協助保護於 Azure Service Fabric 叢集中所執行之可靠服務的通訊安全概觀。"
+title: "aaaHelp 中 Azure Service Fabric 服務的安全通訊 |Microsoft 文件"
+description: "Azure Service Fabric 叢集中執行的方式 toohelp 安全可靠的服務通訊的概觀。"
 services: service-fabric
 documentationcenter: java
 author: PavanKunapareddyMSFT
@@ -13,23 +13,23 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 06/30/2017
 ms.author: pakunapa
-ms.openlocfilehash: c4634e3d8efb1745fffcfe3e647e43d867038716
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 14db54d50c35478c1f2c156de0dba36f1427c8cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="help-secure-communication-for-services-in-azure-service-fabric"></a><span data-ttu-id="3e669-103">協助保護 Azure Service Fabric 中服務的通訊安全</span><span class="sxs-lookup"><span data-stu-id="3e669-103">Help secure communication for services in Azure Service Fabric</span></span>
+# <a name="help-secure-communication-for-services-in-azure-service-fabric"></a><span data-ttu-id="f80fd-103">協助保護 Azure Service Fabric 中服務的通訊安全</span><span class="sxs-lookup"><span data-stu-id="f80fd-103">Help secure communication for services in Azure Service Fabric</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="3e669-104">Windows 上的 C# </span><span class="sxs-lookup"><span data-stu-id="3e669-104">C# on Windows</span></span>](service-fabric-reliable-services-secure-communication.md)
-> * [<span data-ttu-id="3e669-105">在 Linux 上使用 Java</span><span class="sxs-lookup"><span data-stu-id="3e669-105">Java on Linux</span></span>](service-fabric-reliable-services-secure-communication-java.md)
+> * [<span data-ttu-id="f80fd-104">Windows 上的 C# </span><span class="sxs-lookup"><span data-stu-id="f80fd-104">C# on Windows</span></span>](service-fabric-reliable-services-secure-communication.md)
+> * [<span data-ttu-id="f80fd-105">在 Linux 上使用 Java</span><span class="sxs-lookup"><span data-stu-id="f80fd-105">Java on Linux</span></span>](service-fabric-reliable-services-secure-communication-java.md)
 >
 >
 
-## <a name="help-secure-a-service-when-youre-using-service-remoting"></a><span data-ttu-id="3e669-106">協助保護使用服務遠端處理時的服務安全</span><span class="sxs-lookup"><span data-stu-id="3e669-106">Help secure a service when you're using service remoting</span></span>
-<span data-ttu-id="3e669-107">我們將使用現有 [範例](service-fabric-reliable-services-communication-remoting-java.md) 以說明如何設定可靠服務的遠端處理功能。</span><span class="sxs-lookup"><span data-stu-id="3e669-107">We'll be using an existing [example](service-fabric-reliable-services-communication-remoting-java.md) that explains how to set up remoting for reliable services.</span></span> <span data-ttu-id="3e669-108">若要協助保護使用服務遠端處理時的服務安全，請遵循下列步驟︰</span><span class="sxs-lookup"><span data-stu-id="3e669-108">To help secure a service when you're using service remoting, follow these steps:</span></span>
+## <a name="help-secure-a-service-when-youre-using-service-remoting"></a><span data-ttu-id="f80fd-106">協助保護使用服務遠端處理時的服務安全</span><span class="sxs-lookup"><span data-stu-id="f80fd-106">Help secure a service when you're using service remoting</span></span>
+<span data-ttu-id="f80fd-107">我們將使用的現有[範例](service-fabric-reliable-services-communication-remoting-java.md)，說明如何 tooset 向上可靠的服務的遠端處理功能。</span><span class="sxs-lookup"><span data-stu-id="f80fd-107">We'll be using an existing [example](service-fabric-reliable-services-communication-remoting-java.md) that explains how tooset up remoting for reliable services.</span></span> <span data-ttu-id="f80fd-108">toohelp 保護服務，而您使用服務遠端處理時，請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="f80fd-108">toohelp secure a service when you're using service remoting, follow these steps:</span></span>
 
-1. <span data-ttu-id="3e669-109">建立 `HelloWorldStateless`介面，這個介面會定義將在您的服務上用於遠端程序呼叫的方法。</span><span class="sxs-lookup"><span data-stu-id="3e669-109">Create an interface, `HelloWorldStateless`, that defines the methods that will be available for a remote procedure call on your service.</span></span> <span data-ttu-id="3e669-110">您的服務將使用在 `microsoft.serviceFabric.services.remoting.fabricTransport.runtime` 封裝中宣告的 `FabricTransportServiceRemotingListener`。</span><span class="sxs-lookup"><span data-stu-id="3e669-110">Your service will use `FabricTransportServiceRemotingListener`, which is declared in the `microsoft.serviceFabric.services.remoting.fabricTransport.runtime` package.</span></span> <span data-ttu-id="3e669-111">這是提供遠端功能的 `CommunicationListener` 實作。</span><span class="sxs-lookup"><span data-stu-id="3e669-111">This is an `CommunicationListener` implementation that provides remoting capabilities.</span></span>
+1. <span data-ttu-id="f80fd-109">建立介面， `HelloWorldStateless`，定義可供您服務上的遠端程序呼叫的 hello 方法。</span><span class="sxs-lookup"><span data-stu-id="f80fd-109">Create an interface, `HelloWorldStateless`, that defines hello methods that will be available for a remote procedure call on your service.</span></span> <span data-ttu-id="f80fd-110">您的服務會使用`FabricTransportServiceRemotingListener`，宣告於 hello`microsoft.serviceFabric.services.remoting.fabricTransport.runtime`封裝。</span><span class="sxs-lookup"><span data-stu-id="f80fd-110">Your service will use `FabricTransportServiceRemotingListener`, which is declared in hello `microsoft.serviceFabric.services.remoting.fabricTransport.runtime` package.</span></span> <span data-ttu-id="f80fd-111">這是提供遠端功能的 `CommunicationListener` 實作。</span><span class="sxs-lookup"><span data-stu-id="f80fd-111">This is an `CommunicationListener` implementation that provides remoting capabilities.</span></span>
 
     ```java
     public interface HelloWorldStateless extends Service {
@@ -51,13 +51,13 @@ ms.lasthandoff: 07/11/2017
         }
     }
     ```
-2. <span data-ttu-id="3e669-112">新增接聽程式設定和安全性認證。</span><span class="sxs-lookup"><span data-stu-id="3e669-112">Add listener settings and security credentials.</span></span>
+2. <span data-ttu-id="f80fd-112">新增接聽程式設定和安全性認證。</span><span class="sxs-lookup"><span data-stu-id="f80fd-112">Add listener settings and security credentials.</span></span>
 
-    <span data-ttu-id="3e669-113">確定您想要用來協助保護服務通訊安全的憑證已安裝在叢集的所有節點上。</span><span class="sxs-lookup"><span data-stu-id="3e669-113">Make sure that the certificate that you want to use to help secure your service communication is installed on all the nodes in the cluster.</span></span> <span data-ttu-id="3e669-114">有兩種方式可提供接聽程式設定和安全性認證：</span><span class="sxs-lookup"><span data-stu-id="3e669-114">There are two ways that you can provide listener settings and security credentials:</span></span>
+    <span data-ttu-id="f80fd-113">請確定您想要 toouse toohelp 安全 hello 叢集中的所有 hello 節點已安裝的服務通訊的 hello 憑證。</span><span class="sxs-lookup"><span data-stu-id="f80fd-113">Make sure that hello certificate that you want toouse toohelp secure your service communication is installed on all hello nodes in hello cluster.</span></span> <span data-ttu-id="f80fd-114">有兩種方式可提供接聽程式設定和安全性認證：</span><span class="sxs-lookup"><span data-stu-id="f80fd-114">There are two ways that you can provide listener settings and security credentials:</span></span>
 
-   1. <span data-ttu-id="3e669-115">使用 [組態封裝](service-fabric-application-model.md)提供它們：</span><span class="sxs-lookup"><span data-stu-id="3e669-115">Provide them by using a [config package](service-fabric-application-model.md):</span></span>
+   1. <span data-ttu-id="f80fd-115">使用 [組態封裝](service-fabric-application-model.md)提供它們：</span><span class="sxs-lookup"><span data-stu-id="f80fd-115">Provide them by using a [config package](service-fabric-application-model.md):</span></span>
 
-       <span data-ttu-id="3e669-116">在 settings.xml 檔案中新增 `TransportSettings` 區段。</span><span class="sxs-lookup"><span data-stu-id="3e669-116">Add a `TransportSettings` section in the settings.xml file.</span></span>
+       <span data-ttu-id="f80fd-116">新增`TransportSettings`hello settings.xml 檔案中的區段。</span><span class="sxs-lookup"><span data-stu-id="f80fd-116">Add a `TransportSettings` section in hello settings.xml file.</span></span>
 
        ```xml
        <!--Section name should always end with "TransportSettings".-->
@@ -72,7 +72,7 @@ ms.lasthandoff: 07/11/2017
 
        ```
 
-       <span data-ttu-id="3e669-117">在此情況下， `createServiceInstanceListeners` 方法看起來像這樣：</span><span class="sxs-lookup"><span data-stu-id="3e669-117">In this case, the `createServiceInstanceListeners` method will look like this:</span></span>
+       <span data-ttu-id="f80fd-117">在此情況下，hello`createServiceInstanceListeners`方法看起來像這樣：</span><span class="sxs-lookup"><span data-stu-id="f80fd-117">In this case, hello `createServiceInstanceListeners` method will look like this:</span></span>
 
        ```java
         protected List<ServiceInstanceListener> createServiceInstanceListeners() {
@@ -84,7 +84,7 @@ ms.lasthandoff: 07/11/2017
         }
        ```
 
-        <span data-ttu-id="3e669-118">如果您在 settings.xml 檔案中新增 `TransportSettings` 區段，而沒有任何前置詞，則 `FabricTransportListenerSettings` 預設會載入此區段中的所有設定。</span><span class="sxs-lookup"><span data-stu-id="3e669-118">If you add a `TransportSettings` section in the settings.xml file without any prefix, `FabricTransportListenerSettings` will load all the settings from this section by default.</span></span>
+        <span data-ttu-id="f80fd-118">如果您將加入`TransportSettings`沒有任何前置詞，hello settings.xml 檔案中的區段`FabricTransportListenerSettings`會從本節載入所有 hello 設定預設。</span><span class="sxs-lookup"><span data-stu-id="f80fd-118">If you add a `TransportSettings` section in hello settings.xml file without any prefix, `FabricTransportListenerSettings` will load all hello settings from this section by default.</span></span>
 
         ```xml
         <!--"TransportSettings" section without any prefix.-->
@@ -92,7 +92,7 @@ ms.lasthandoff: 07/11/2017
             ...
         </Section>
         ```
-        <span data-ttu-id="3e669-119">在此情況下， `CreateServiceInstanceListeners` 方法看起來像這樣：</span><span class="sxs-lookup"><span data-stu-id="3e669-119">In this case, the `CreateServiceInstanceListeners` method will look like this:</span></span>
+        <span data-ttu-id="f80fd-119">在此情況下，hello`CreateServiceInstanceListeners`方法看起來像這樣：</span><span class="sxs-lookup"><span data-stu-id="f80fd-119">In this case, hello `CreateServiceInstanceListeners` method will look like this:</span></span>
 
         ```java
         protected List<ServiceInstanceListener> createServiceInstanceListeners() {
@@ -103,9 +103,9 @@ ms.lasthandoff: 07/11/2017
             return listeners;
         }
        ```
-3. <span data-ttu-id="3e669-120">如果在安全服務上使用遠端堆疊來呼叫方法，而不是使用 `microsoft.serviceFabric.services.remoting.client.ServiceProxyBase` 類別來建立服務 Proxy，請使用 `microsoft.serviceFabric.services.remoting.client.FabricServiceProxyFactory`。</span><span class="sxs-lookup"><span data-stu-id="3e669-120">When you call methods on a secured service by using the remoting stack, instead of using the `microsoft.serviceFabric.services.remoting.client.ServiceProxyBase` class to create a service proxy, use `microsoft.serviceFabric.services.remoting.client.FabricServiceProxyFactory`.</span></span>
+3. <span data-ttu-id="f80fd-120">當您呼叫方法的安全服務上使用 hello 遠端處理堆疊，而不是使用 hello`microsoft.serviceFabric.services.remoting.client.ServiceProxyBase`類別 toocreate 服務 proxy，使用`microsoft.serviceFabric.services.remoting.client.FabricServiceProxyFactory`。</span><span class="sxs-lookup"><span data-stu-id="f80fd-120">When you call methods on a secured service by using hello remoting stack, instead of using hello `microsoft.serviceFabric.services.remoting.client.ServiceProxyBase` class toocreate a service proxy, use `microsoft.serviceFabric.services.remoting.client.FabricServiceProxyFactory`.</span></span>
 
-    <span data-ttu-id="3e669-121">如果用戶端程式碼正在當作服務一部分執行，則可以從 settings.xml 檔案中載入 `FabricTransportSettings` 。</span><span class="sxs-lookup"><span data-stu-id="3e669-121">If the client code is running as part of a service, you can load `FabricTransportSettings` from the settings.xml file.</span></span> <span data-ttu-id="3e669-122">建立與服務程式碼類似的 TransportSettings 區段，如前所示。</span><span class="sxs-lookup"><span data-stu-id="3e669-122">Create a TransportSettings section that is similar to the service code, as shown earlier.</span></span> <span data-ttu-id="3e669-123">對用戶端程式碼進行下列變更：</span><span class="sxs-lookup"><span data-stu-id="3e669-123">Make the following changes to the client code:</span></span>
+    <span data-ttu-id="f80fd-121">如果 hello 用戶端程式碼做為服務一部分執行，您可以載入`FabricTransportSettings`hello settings.xml 檔案中。</span><span class="sxs-lookup"><span data-stu-id="f80fd-121">If hello client code is running as part of a service, you can load `FabricTransportSettings` from hello settings.xml file.</span></span> <span data-ttu-id="f80fd-122">建立 TransportSettings 區段是類似的 toohello 服務程式碼，如先前所示。</span><span class="sxs-lookup"><span data-stu-id="f80fd-122">Create a TransportSettings section that is similar toohello service code, as shown earlier.</span></span> <span data-ttu-id="f80fd-123">進行下列變更 toohello 用戶端程式碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="f80fd-123">Make hello following changes toohello client code:</span></span>
 
     ```java
 

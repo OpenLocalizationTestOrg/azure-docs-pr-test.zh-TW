@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用 Service Fabric 中介軟體平台來封裝和部署雲端等級應用程式的微服務。 教學課程、API 參考和程式碼範例。"
+title: "aaaAzure 服務網狀架構文件-教學課程中，API 參考 |Microsoft 文件"
+description: "深入了解如何 toouse Service Fabric 中介軟體平台 toopackage 和部署 microservices 雲端規模應用程式。 教學課程、API 參考和程式碼範例。"
 services: service-fabric
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 95499b3ca42e17a6586f97ca3e28919d2fc64a80
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0758059e7f8604fc2fe9cff4acb826204ff8d686
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="service-fabric-documentation"></a>Service Fabric 文件
 
-如何使用 Service Fabric 來封裝、部署及管理可調整和可信賴的微服務。 教學課程、API 參考和程式碼範例會示範如何使用此中介軟體平台來建置和管理雲端等級應用程式。
+了解 toouse Service Fabric toopackage，部署及管理可擴充且可靠的 microservices 的方式。 教學課程、 應用程式開發介面參考和程式碼範例顯示如何 toouse 此中介軟體平台 toobuild 和管理雲端規模應用程式。
 
 <ul class="panelContent cardsFTitle">
     <li>

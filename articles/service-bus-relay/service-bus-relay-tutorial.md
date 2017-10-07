@@ -1,5 +1,5 @@
 ---
-title: "Azure 服務匯流排 WCF 轉送教學課程 | Microsoft Docs"
+title: "教學課程中的服務匯流排的 WCF 轉送 aaaAzure |Microsoft 文件"
 description: "使用 WCF 轉送來建置服務匯流排用戶端應用程式與服務。"
 services: service-bus-relay
 documentationcenter: na
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/02/2017
 ms.author: sethm
-ms.openlocfilehash: 5347bf85cad32b59677369d51a1f36529aef6662
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 78cd52ef51e9fcfcda2f13ec54bde3af50d76476
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-wcf-relay-tutorial"></a><span data-ttu-id="2b99e-103">Azure WCF 轉送教學課程</span><span class="sxs-lookup"><span data-stu-id="2b99e-103">Azure WCF Relay tutorial</span></span>
+# <a name="azure-wcf-relay-tutorial"></a><span data-ttu-id="d71fa-103">Azure WCF 轉送教學課程</span><span class="sxs-lookup"><span data-stu-id="d71fa-103">Azure WCF Relay tutorial</span></span>
 
-<span data-ttu-id="2b99e-104">本教學課程說明如何使用 Azure 轉送，來建置簡單的 WCF 轉送用戶端應用程式和服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-104">This tutorial describes how to build a simple WCF Relay client application and service using Azure Relay.</span></span> <span data-ttu-id="2b99e-105">如需使用[服務匯流排通訊](../service-bus-messaging/service-bus-messaging-overview.md#brokered-messaging)的類似教學課程，請參閱[開始使用服務匯流排佇列](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-105">For a similar tutorial that uses [Service Bus Messaging](../service-bus-messaging/service-bus-messaging-overview.md#brokered-messaging), see [Get started with Service Bus queues](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md).</span></span>
+<span data-ttu-id="d71fa-104">本教學課程將告訴您如何 toobuild 簡單的 WCF 轉送用戶端應用程式和使用 Azure 轉送服務。</span><span class="sxs-lookup"><span data-stu-id="d71fa-104">This tutorial describes how toobuild a simple WCF Relay client application and service using Azure Relay.</span></span> <span data-ttu-id="d71fa-105">如需使用[服務匯流排通訊](../service-bus-messaging/service-bus-messaging-overview.md#brokered-messaging)的類似教學課程，請參閱[開始使用服務匯流排佇列](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md)。</span><span class="sxs-lookup"><span data-stu-id="d71fa-105">For a similar tutorial that uses [Service Bus Messaging](../service-bus-messaging/service-bus-messaging-overview.md#brokered-messaging), see [Get started with Service Bus queues](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md).</span></span>
 
-<span data-ttu-id="2b99e-106">循序完成本教學課程，可讓您了解建立 WCF 轉送用戶端和服務應用程式所需的步驟。</span><span class="sxs-lookup"><span data-stu-id="2b99e-106">Working through this tutorial gives you an understanding of the steps that are required to create a WCF Relay client and service application.</span></span> <span data-ttu-id="2b99e-107">如同他們原始的 WCF 對應項目，服務是可公開一或多個端點的結構，而每個端點都會公開一或多個服務作業。</span><span class="sxs-lookup"><span data-stu-id="2b99e-107">Like their original WCF counterparts, a service is a construct that exposes one or more endpoints, each of which exposes one or more service operations.</span></span> <span data-ttu-id="2b99e-108">服務的端點指定可找到服務的位址、內含用戶端與服務通訊所需資訊的繫結，以及可定義服務提供給其用戶端之功能的合約。</span><span class="sxs-lookup"><span data-stu-id="2b99e-108">The endpoint of a service specifies an address where the service can be found, a binding that contains the information that a client must communicate with the service, and a contract that defines the functionality provided by the service to its clients.</span></span> <span data-ttu-id="2b99e-109">WCF 與 WCF 轉送的主要差異在於端點是在雲端公開，而不是在您的電腦本機上公開。</span><span class="sxs-lookup"><span data-stu-id="2b99e-109">The main difference between WCF and WCF Relay is that the endpoint is exposed in the cloud instead of locally on your computer.</span></span>
+<span data-ttu-id="d71fa-106">在本教學課程的工作可讓您了解必要的 toocreate 的 WCF 轉送的用戶端和服務應用程式的 hello 步驟。</span><span class="sxs-lookup"><span data-stu-id="d71fa-106">Working through this tutorial gives you an understanding of hello steps that are required toocreate a WCF Relay client and service application.</span></span> <span data-ttu-id="d71fa-107">如同他們原始的 WCF 對應項目，服務是可公開一或多個端點的結構，而每個端點都會公開一或多個服務作業。</span><span class="sxs-lookup"><span data-stu-id="d71fa-107">Like their original WCF counterparts, a service is a construct that exposes one or more endpoints, each of which exposes one or more service operations.</span></span> <span data-ttu-id="d71fa-108">hello 的服務端點指定 hello 服務可以找到的位址的繫結，其中包含用戶端必須與 hello 服務，以及定義 hello 服務 tooits 用戶端所提供的 hello 功能的合約進行通訊的 hello 資訊。</span><span class="sxs-lookup"><span data-stu-id="d71fa-108">hello endpoint of a service specifies an address where hello service can be found, a binding that contains hello information that a client must communicate with hello service, and a contract that defines hello functionality provided by hello service tooits clients.</span></span> <span data-ttu-id="d71fa-109">hello WCF 和 WCF 轉送之間的主要差異在於該 hello 端點會公開 hello 定域機組中而不是在本機電腦上。</span><span class="sxs-lookup"><span data-stu-id="d71fa-109">hello main difference between WCF and WCF Relay is that hello endpoint is exposed in hello cloud instead of locally on your computer.</span></span>
 
-<span data-ttu-id="2b99e-110">在您逐步完成本教學課程中的各個主題後，您會有一項執行中的服務，以及可叫用服務作業的用戶端。</span><span class="sxs-lookup"><span data-stu-id="2b99e-110">After you work through the sequence of topics in this tutorial, you will have a running service, and a client that can invoke the operations of the service.</span></span> <span data-ttu-id="2b99e-111">第一個主題說明如何設定帳戶。</span><span class="sxs-lookup"><span data-stu-id="2b99e-111">The first topic describes how to set up an account.</span></span> <span data-ttu-id="2b99e-112">後續步驟說明如何定義使用合約的服務、如何實作服務，以及如何在程式碼中設定服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-112">The next steps describe how to define a service that uses a contract, how to implement the service, and how to configure the service in code.</span></span> <span data-ttu-id="2b99e-113">此外，也會說明如何主控和執行服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-113">They also describe how to host and run the service.</span></span> <span data-ttu-id="2b99e-114">建立的服務會自我裝載，而用戶端和服務會在相同的電腦上執行。</span><span class="sxs-lookup"><span data-stu-id="2b99e-114">The service that is created is self-hosted and the client and service run on the same computer.</span></span> <span data-ttu-id="2b99e-115">您可以使用程式碼或組態檔來設定服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-115">You can configure the service by using either code or a configuration file.</span></span>
+<span data-ttu-id="d71fa-110">Hello 系列主題逐步在本教學課程之後，您必須執行中的服務和用戶端可叫用 hello hello 服務作業。</span><span class="sxs-lookup"><span data-stu-id="d71fa-110">After you work through hello sequence of topics in this tutorial, you will have a running service, and a client that can invoke hello operations of hello service.</span></span> <span data-ttu-id="d71fa-111">hello 第一個主題說明如何設定帳戶 tooset。</span><span class="sxs-lookup"><span data-stu-id="d71fa-111">hello first topic describes how tooset up an account.</span></span> <span data-ttu-id="d71fa-112">hello 接下來的步驟說明如何 toodefine 服務使用的合約、 如何 tooimplement hello 服務，以及如何 tooconfigure hello 程式碼中的服務。</span><span class="sxs-lookup"><span data-stu-id="d71fa-112">hello next steps describe how toodefine a service that uses a contract, how tooimplement hello service, and how tooconfigure hello service in code.</span></span> <span data-ttu-id="d71fa-113">這些主題亦說明如何 toohost 和執行 hello 服務。</span><span class="sxs-lookup"><span data-stu-id="d71fa-113">They also describe how toohost and run hello service.</span></span> <span data-ttu-id="d71fa-114">hello 建立的服務是自我裝載且 hello 用戶端和服務上執行 hello 同一部電腦。</span><span class="sxs-lookup"><span data-stu-id="d71fa-114">hello service that is created is self-hosted and hello client and service run on hello same computer.</span></span> <span data-ttu-id="d71fa-115">您可以使用程式碼或組態檔設定 hello 服務。</span><span class="sxs-lookup"><span data-stu-id="d71fa-115">You can configure hello service by using either code or a configuration file.</span></span>
 
-<span data-ttu-id="2b99e-116">最後三個步驟描述如何建立用戶端應用程式、設定用戶端應用程式，以及建立和使用可存取主機功能的用戶端。</span><span class="sxs-lookup"><span data-stu-id="2b99e-116">The final three steps describe how to create a client application, configure the client application, and create and use a client that can access the functionality of the host.</span></span>
+<span data-ttu-id="d71fa-116">hello 最後三個步驟說明 toocreate 用戶端應用程式中，設定 hello 用戶端應用程式，並建立和使用用戶端可以存取的 hello 主機 hello 功能的方式。</span><span class="sxs-lookup"><span data-stu-id="d71fa-116">hello final three steps describe how toocreate a client application, configure hello client application, and create and use a client that can access hello functionality of hello host.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="2b99e-117">必要條件</span><span class="sxs-lookup"><span data-stu-id="2b99e-117">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="d71fa-117">必要條件</span><span class="sxs-lookup"><span data-stu-id="d71fa-117">Prerequisites</span></span>
 
-<span data-ttu-id="2b99e-118">若要完成此教學課程，您需要下列項目：</span><span class="sxs-lookup"><span data-stu-id="2b99e-118">To complete this tutorial, you'll need the following:</span></span>
+<span data-ttu-id="d71fa-118">toocomplete 本教學課程中，您必須遵循的 hello:</span><span class="sxs-lookup"><span data-stu-id="d71fa-118">toocomplete this tutorial, you'll need hello following:</span></span>
 
-* <span data-ttu-id="2b99e-119">[Microsoft Visual Studio 2015 或更高版本](http://visualstudio.com)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-119">[Microsoft Visual Studio 2015 or higher](http://visualstudio.com).</span></span> <span data-ttu-id="2b99e-120">本教學課程使用 Visual Studio 2017。</span><span class="sxs-lookup"><span data-stu-id="2b99e-120">This tutorial uses Visual Studio 2017.</span></span>
-* <span data-ttu-id="2b99e-121">使用中的 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="2b99e-121">An active Azure account.</span></span> <span data-ttu-id="2b99e-122">如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。</span><span class="sxs-lookup"><span data-stu-id="2b99e-122">If you don't have one, you can create a free account in just a couple of minutes.</span></span> <span data-ttu-id="2b99e-123">如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/free/)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-123">For details, see [Azure Free Trial](https://azure.microsoft.com/free/).</span></span>
+* <span data-ttu-id="d71fa-119">[Microsoft Visual Studio 2015 或更高版本](http://visualstudio.com)。</span><span class="sxs-lookup"><span data-stu-id="d71fa-119">[Microsoft Visual Studio 2015 or higher](http://visualstudio.com).</span></span> <span data-ttu-id="d71fa-120">本教學課程使用 Visual Studio 2017。</span><span class="sxs-lookup"><span data-stu-id="d71fa-120">This tutorial uses Visual Studio 2017.</span></span>
+* <span data-ttu-id="d71fa-121">使用中的 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="d71fa-121">An active Azure account.</span></span> <span data-ttu-id="d71fa-122">如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。</span><span class="sxs-lookup"><span data-stu-id="d71fa-122">If you don't have one, you can create a free account in just a couple of minutes.</span></span> <span data-ttu-id="d71fa-123">如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/free/)。</span><span class="sxs-lookup"><span data-stu-id="d71fa-123">For details, see [Azure Free Trial](https://azure.microsoft.com/free/).</span></span>
 
-## <a name="create-a-service-namespace"></a><span data-ttu-id="2b99e-124">建立服務命名空間</span><span class="sxs-lookup"><span data-stu-id="2b99e-124">Create a service namespace</span></span>
+## <a name="create-a-service-namespace"></a><span data-ttu-id="d71fa-124">建立服務命名空間</span><span class="sxs-lookup"><span data-stu-id="d71fa-124">Create a service namespace</span></span>
 
-<span data-ttu-id="2b99e-125">第一個步驟是建立命名空間，並取得[共用存取簽章 (SAS)](../service-bus-messaging/service-bus-sas.md) 金鑰。</span><span class="sxs-lookup"><span data-stu-id="2b99e-125">The first step is to create a namespace, and to obtain a [Shared Access Signature (SAS)](../service-bus-messaging/service-bus-sas.md) key.</span></span> <span data-ttu-id="2b99e-126">命名空間會為每個透過轉送服務公開的應用程式提供應用程式界限。</span><span class="sxs-lookup"><span data-stu-id="2b99e-126">A namespace provides an application boundary for each application exposed through the relay service.</span></span> <span data-ttu-id="2b99e-127">建立服務命名空間時，系統會自動產生 SAS 金鑰。</span><span class="sxs-lookup"><span data-stu-id="2b99e-127">A SAS key is automatically generated by the system when a service namespace is created.</span></span> <span data-ttu-id="2b99e-128">服務命名空間與 SAS 金鑰的組合會提供一個認證，供 Azure 用來驗證對應用程式的存取權。</span><span class="sxs-lookup"><span data-stu-id="2b99e-128">The combination of service namespace and SAS key provides the credentials for Azure to authenticate access to an application.</span></span> <span data-ttu-id="2b99e-129">請依照[這裡的指示](relay-create-namespace-portal.md)來建立轉送命名空間。</span><span class="sxs-lookup"><span data-stu-id="2b99e-129">Follow the [instructions here](relay-create-namespace-portal.md) to create a Relay namespace.</span></span>
+<span data-ttu-id="d71fa-125">hello 第一個步驟是 toocreate 命名空間和 tooobtain[共用存取簽章 (SAS)](../service-bus-messaging/service-bus-sas.md)索引鍵。</span><span class="sxs-lookup"><span data-stu-id="d71fa-125">hello first step is toocreate a namespace, and tooobtain a [Shared Access Signature (SAS)](../service-bus-messaging/service-bus-sas.md) key.</span></span> <span data-ttu-id="d71fa-126">命名空間提供透過 hello 轉送服務公開的每個應用程式的應用程式界限。</span><span class="sxs-lookup"><span data-stu-id="d71fa-126">A namespace provides an application boundary for each application exposed through hello relay service.</span></span> <span data-ttu-id="d71fa-127">當建立服務命名空間 SAS 金鑰會自動產生 hello 系統。</span><span class="sxs-lookup"><span data-stu-id="d71fa-127">A SAS key is automatically generated by hello system when a service namespace is created.</span></span> <span data-ttu-id="d71fa-128">服務命名空間和 SAS 金鑰 hello 結合 Azure tooauthenticate 存取 tooan 應用程式提供 hello 認證。</span><span class="sxs-lookup"><span data-stu-id="d71fa-128">hello combination of service namespace and SAS key provides hello credentials for Azure tooauthenticate access tooan application.</span></span> <span data-ttu-id="d71fa-129">請遵循 hello[這裡的指示](relay-create-namespace-portal.md)toocreate 轉送命名空間。</span><span class="sxs-lookup"><span data-stu-id="d71fa-129">Follow hello [instructions here](relay-create-namespace-portal.md) toocreate a Relay namespace.</span></span>
 
-## <a name="define-a-wcf-service-contract"></a><span data-ttu-id="2b99e-130">定義 WCF 服務合約</span><span class="sxs-lookup"><span data-stu-id="2b99e-130">Define a WCF service contract</span></span>
+## <a name="define-a-wcf-service-contract"></a><span data-ttu-id="d71fa-130">定義 WCF 服務合約</span><span class="sxs-lookup"><span data-stu-id="d71fa-130">Define a WCF service contract</span></span>
 
-<span data-ttu-id="2b99e-131">服務合約會指定服務可支援哪些作業 (方法或函式的 Web 服務術語)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-131">The service contract specifies what operations (the web service terminology for methods or functions) the service supports.</span></span> <span data-ttu-id="2b99e-132">合約可以透過定義 C++、C# 或 Visual Basic 介面建立。</span><span class="sxs-lookup"><span data-stu-id="2b99e-132">Contracts are created by defining a C++, C#, or Visual Basic interface.</span></span> <span data-ttu-id="2b99e-133">介面中的每個方法會對應一個特定服務作業。</span><span class="sxs-lookup"><span data-stu-id="2b99e-133">Each method in the interface corresponds to a specific service operation.</span></span> <span data-ttu-id="2b99e-134">每個介面都必須已套用 [ServiceContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicecontractattribute.aspx) 屬性，而且每個作業都必須已套用 [OperationContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.operationcontractattribute.aspx) 屬性。</span><span class="sxs-lookup"><span data-stu-id="2b99e-134">Each interface must have the [ServiceContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicecontractattribute.aspx) attribute applied to it, and each operation must have the [OperationContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.operationcontractattribute.aspx) attribute applied to it.</span></span> <span data-ttu-id="2b99e-135">如果介面中的方法有 [ServiceContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicecontractattribute.aspx) 屬性，但沒有 [OperationContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.operationcontractattribute.aspx) 屬性，則不會公開該方法。</span><span class="sxs-lookup"><span data-stu-id="2b99e-135">If a method in an interface that has the [ServiceContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicecontractattribute.aspx) attribute does not have the [OperationContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.operationcontractattribute.aspx) attribute, that method is not exposed.</span></span> <span data-ttu-id="2b99e-136">程序後面的範例會提供這些工作的程式碼。</span><span class="sxs-lookup"><span data-stu-id="2b99e-136">The code for these tasks is provided in the example following the procedure.</span></span> <span data-ttu-id="2b99e-137">如需合約與服務的詳細討論，請參閱 WCF 文件中的[設計和實作服務](https://msdn.microsoft.com/library/ms729746.aspx)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-137">For a larger discussion of contracts and services, see [Designing and Implementing Services](https://msdn.microsoft.com/library/ms729746.aspx) in the WCF documentation.</span></span>
+<span data-ttu-id="d71fa-131">hello 服務合約會指定哪些作業 （hello web 服務術語方法或函式） hello 服務支援。</span><span class="sxs-lookup"><span data-stu-id="d71fa-131">hello service contract specifies what operations (hello web service terminology for methods or functions) hello service supports.</span></span> <span data-ttu-id="d71fa-132">合約可以透過定義 C++、C# 或 Visual Basic 介面建立。</span><span class="sxs-lookup"><span data-stu-id="d71fa-132">Contracts are created by defining a C++, C#, or Visual Basic interface.</span></span> <span data-ttu-id="d71fa-133">Hello 介面中的每個方法對應 tooa 特定服務作業。</span><span class="sxs-lookup"><span data-stu-id="d71fa-133">Each method in hello interface corresponds tooa specific service operation.</span></span> <span data-ttu-id="d71fa-134">每個介面必須有 hello [ServiceContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicecontractattribute.aspx)屬性套用 tooit，而且每個作業都必須有 hello [OperationContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.operationcontractattribute.aspx) tooit 套用的屬性。</span><span class="sxs-lookup"><span data-stu-id="d71fa-134">Each interface must have hello [ServiceContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicecontractattribute.aspx) attribute applied tooit, and each operation must have hello [OperationContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.operationcontractattribute.aspx) attribute applied tooit.</span></span> <span data-ttu-id="d71fa-135">如果其中有 hello 的介面中的方法[ServiceContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicecontractattribute.aspx)屬性並沒有 hello [OperationContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.operationcontractattribute.aspx)屬性未公開該方法。</span><span class="sxs-lookup"><span data-stu-id="d71fa-135">If a method in an interface that has hello [ServiceContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicecontractattribute.aspx) attribute does not have hello [OperationContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.operationcontractattribute.aspx) attribute, that method is not exposed.</span></span> <span data-ttu-id="d71fa-136">hello 範例 hello 程序中提供這些工作的 「 hello 」 程式碼。</span><span class="sxs-lookup"><span data-stu-id="d71fa-136">hello code for these tasks is provided in hello example following hello procedure.</span></span> <span data-ttu-id="d71fa-137">較大的合約和服務討論，請參閱[設計與實作服務](https://msdn.microsoft.com/library/ms729746.aspx)hello WCF 文件中。</span><span class="sxs-lookup"><span data-stu-id="d71fa-137">For a larger discussion of contracts and services, see [Designing and Implementing Services](https://msdn.microsoft.com/library/ms729746.aspx) in hello WCF documentation.</span></span>
 
-### <a name="create-a-relay-contract-with-an-interface"></a><span data-ttu-id="2b99e-138">使用介面建立轉送合約</span><span class="sxs-lookup"><span data-stu-id="2b99e-138">Create a relay contract with an interface</span></span>
+### <a name="create-a-relay-contract-with-an-interface"></a><span data-ttu-id="d71fa-138">使用介面建立轉送合約</span><span class="sxs-lookup"><span data-stu-id="d71fa-138">Create a relay contract with an interface</span></span>
 
-1. <span data-ttu-id="2b99e-139">以系統管理員身分開啟 Visual Studio：以滑鼠右鍵按一下 [開始] 功能表中的程式，然後選取 [以系統管理員身分執行]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-139">Open Visual Studio as an administrator by right-clicking the program in the **Start** menu and selecting **Run as administrator**.</span></span>
-2. <span data-ttu-id="2b99e-140">這會建立新的主控台應用程式專案。</span><span class="sxs-lookup"><span data-stu-id="2b99e-140">Create a new console application project.</span></span> <span data-ttu-id="2b99e-141">按一下 [檔案] 功能表，選取 [新增]，然後按一下 [專案]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-141">Click the **File** menu and select **New**, then click **Project**.</span></span> <span data-ttu-id="2b99e-142">在 [新增專案] 對話方塊中，按一下 **Visual C#** (如果 **Visual C#** 未出現，請查看 [其他語言] 下方)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-142">In the **New Project** dialog, click **Visual C#** (if **Visual C#** does not appear, look under **Other Languages**).</span></span> <span data-ttu-id="2b99e-143">按一下 [主控台應用程式 (.NET Framework)] 範本，並將它命名為 **EchoService**。</span><span class="sxs-lookup"><span data-stu-id="2b99e-143">Click the **Console App (.NET Framework)** template, and name it **EchoService**.</span></span> <span data-ttu-id="2b99e-144">按一下 [確定]  以建立專案。</span><span class="sxs-lookup"><span data-stu-id="2b99e-144">Click **OK** to create the project.</span></span>
+1. <span data-ttu-id="d71fa-139">系統管理員身分開啟 Visual Studio，以滑鼠右鍵按一下 [hello] 瀅蒰 hello**啟動**功能表，然後選取**系統管理員身分執行**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-139">Open Visual Studio as an administrator by right-clicking hello program in hello **Start** menu and selecting **Run as administrator**.</span></span>
+2. <span data-ttu-id="d71fa-140">這會建立新的主控台應用程式專案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-140">Create a new console application project.</span></span> <span data-ttu-id="d71fa-141">按一下 hello**檔案**功能表，然後選取**新增**，然後按一下**專案**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-141">Click hello **File** menu and select **New**, then click **Project**.</span></span> <span data-ttu-id="d71fa-142">在 hello**新專案** 對話方塊中，按一下  **Visual C#** (如果**Visual C#**未出現，請查看 **其他語言**)。</span><span class="sxs-lookup"><span data-stu-id="d71fa-142">In hello **New Project** dialog, click **Visual C#** (if **Visual C#** does not appear, look under **Other Languages**).</span></span> <span data-ttu-id="d71fa-143">按一下 hello**主控台應用程式 (.NET Framework)**範本，並將其命名**EchoService**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-143">Click hello **Console App (.NET Framework)** template, and name it **EchoService**.</span></span> <span data-ttu-id="d71fa-144">按一下**確定**toocreate hello 專案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-144">Click **OK** toocreate hello project.</span></span>
 
     ![][2]
 
-3. <span data-ttu-id="2b99e-145">安裝服務匯流排 NuGet 套件。</span><span class="sxs-lookup"><span data-stu-id="2b99e-145">Install the Service Bus NuGet package.</span></span> <span data-ttu-id="2b99e-146">此套件會自動新增服務匯流排程式庫及 WCF **System.ServiceModel** 的參考。</span><span class="sxs-lookup"><span data-stu-id="2b99e-146">This package automatically adds references to the Service Bus libraries, as well as the WCF **System.ServiceModel**.</span></span> <span data-ttu-id="2b99e-147">[System.ServiceModel](https://msdn.microsoft.com/library/system.servicemodel.aspx) 是可讓您以程式設計方式存取 WCF 基本功能的命名空間。</span><span class="sxs-lookup"><span data-stu-id="2b99e-147">[System.ServiceModel](https://msdn.microsoft.com/library/system.servicemodel.aspx) is the namespace that enables you to programmatically access the basic features of WCF.</span></span> <span data-ttu-id="2b99e-148">服務匯流排會使用 WCF 的許多物件和屬性來定義服務合約。</span><span class="sxs-lookup"><span data-stu-id="2b99e-148">Service Bus uses many of the objects and attributes of WCF to define service contracts.</span></span>
+3. <span data-ttu-id="d71fa-145">安裝 hello 服務匯流排 NuGet 封裝。</span><span class="sxs-lookup"><span data-stu-id="d71fa-145">Install hello Service Bus NuGet package.</span></span> <span data-ttu-id="d71fa-146">此套件會自動將參考 toohello 服務匯流排程式庫，以及 hello WCF **System.ServiceModel**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-146">This package automatically adds references toohello Service Bus libraries, as well as hello WCF **System.ServiceModel**.</span></span> <span data-ttu-id="d71fa-147">[System.ServiceModel](https://msdn.microsoft.com/library/system.servicemodel.aspx)是 hello 命名空間，可讓您的 WCF 的 tooprogrammatically 存取 hello 基本功能。</span><span class="sxs-lookup"><span data-stu-id="d71fa-147">[System.ServiceModel](https://msdn.microsoft.com/library/system.servicemodel.aspx) is hello namespace that enables you tooprogrammatically access hello basic features of WCF.</span></span> <span data-ttu-id="d71fa-148">服務匯流排會使用許多 hello 物件和屬性的 toodefine WCF 服務合約。</span><span class="sxs-lookup"><span data-stu-id="d71fa-148">Service Bus uses many of hello objects and attributes of WCF toodefine service contracts.</span></span>
 
-    <span data-ttu-id="2b99e-149">在 [方案總管] 中，以滑鼠右鍵按一下專案，然後按一下 [管理 NuGet 套件]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-149">In Solution Explorer, right-click the project, and then click **Manage NuGet Packages...**.</span></span> <span data-ttu-id="2b99e-150">按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。</span><span class="sxs-lookup"><span data-stu-id="2b99e-150">Click the **Browse** tab, then search for `Microsoft Azure Service Bus`.</span></span> <span data-ttu-id="2b99e-151">確定已在 [版本] 方塊中選取此專案名稱。</span><span class="sxs-lookup"><span data-stu-id="2b99e-151">Ensure that the project name is selected in the **Version(s)** box.</span></span> <span data-ttu-id="2b99e-152">按一下 [安裝] 並接受使用條款。</span><span class="sxs-lookup"><span data-stu-id="2b99e-152">Click **Install**, and accept the terms of use.</span></span>
+    <span data-ttu-id="d71fa-149">在 方案總管 hello 專案上按一下滑鼠右鍵，然後按一下**管理 NuGet 封裝...**.按一下 hello**瀏覽**索引標籤，然後搜尋`Microsoft Azure Service Bus`。</span><span class="sxs-lookup"><span data-stu-id="d71fa-149">In Solution Explorer, right-click hello project, and then click **Manage NuGet Packages...**. Click hello **Browse** tab, then search for `Microsoft Azure Service Bus`.</span></span> <span data-ttu-id="d71fa-150">確定該 hello 專案名稱已在 hello 選取**版本**方塊。</span><span class="sxs-lookup"><span data-stu-id="d71fa-150">Ensure that hello project name is selected in hello **Version(s)** box.</span></span> <span data-ttu-id="d71fa-151">按一下**安裝**，並接受使用規定 hello。</span><span class="sxs-lookup"><span data-stu-id="d71fa-151">Click **Install**, and accept hello terms of use.</span></span>
 
     ![][3]
-4. <span data-ttu-id="2b99e-153">在 [方案總管] 中，按兩下 Program.cs 檔案，以在編輯器中開啟它 (如果尚未開啟的話)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-153">In Solution Explorer, double-click the Program.cs file to open it in the editor, if it is not already open.</span></span>
-5. <span data-ttu-id="2b99e-154">在檔案頂端加入下列 using 陳述式：</span><span class="sxs-lookup"><span data-stu-id="2b99e-154">Add the following using statements at the top of the file:</span></span>
+4. <span data-ttu-id="d71fa-152">在 [方案總管] 中，按兩下 hello Program.cs 檔案 tooopen 它在 hello 編輯器中，如果它尚未開啟。</span><span class="sxs-lookup"><span data-stu-id="d71fa-152">In Solution Explorer, double-click hello Program.cs file tooopen it in hello editor, if it is not already open.</span></span>
+5. <span data-ttu-id="d71fa-153">新增 hello 下列 using 陳述式在 hello hello 檔案最上方：</span><span class="sxs-lookup"><span data-stu-id="d71fa-153">Add hello following using statements at hello top of hello file:</span></span>
 
     ```csharp
     using System.ServiceModel;
     using Microsoft.ServiceBus;
     ```
-6. <span data-ttu-id="2b99e-155">將命名空間名稱從 **EchoService** 的預設名稱變更為 **Microsoft.ServiceBus.Samples**。</span><span class="sxs-lookup"><span data-stu-id="2b99e-155">Change the namespace name from its default name of **EchoService** to **Microsoft.ServiceBus.Samples**.</span></span>
+6. <span data-ttu-id="d71fa-154">中的預設名稱變更 hello 命名空間名稱**EchoService**太**Microsoft.ServiceBus.Samples**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-154">Change hello namespace name from its default name of **EchoService** too**Microsoft.ServiceBus.Samples**.</span></span>
 
    > [!IMPORTANT]
-   > <span data-ttu-id="2b99e-156">本教學課程使用 C# 命名空間 **Microsoft.ServiceBus.Samples**，也就是在[設定 WCF 用戶端](#configure-the-wcf-client)步驟的設定檔中所使用合約型 Managed 型別的命名空間。</span><span class="sxs-lookup"><span data-stu-id="2b99e-156">This tutorial uses the C# namespace **Microsoft.ServiceBus.Samples**, which is the namespace of the contract-based managed type that is used in the configuration file in the [Configure the WCF client](#configure-the-wcf-client) step.</span></span> <span data-ttu-id="2b99e-157">您可以在建置此範例時指定您要的任何命名空間；不過，除非您後來在應用程式組態檔中相應地修改合約的命名空和服務，否則本教學課程將無法運作。</span><span class="sxs-lookup"><span data-stu-id="2b99e-157">You can specify any namespace you want when you build this sample; however, the tutorial will not work unless you then modify the namespaces of the contract and service accordingly, in the application configuration file.</span></span> <span data-ttu-id="2b99e-158">在 App.config 檔案中指定的命名空間必須與在 C# 檔案中指定的命名空間相同。</span><span class="sxs-lookup"><span data-stu-id="2b99e-158">The namespace specified in the App.config file must be the same as the namespace specified in your C# files.</span></span>
+   > <span data-ttu-id="d71fa-155">本教學課程使用 hello C# 命名空間**Microsoft.ServiceBus.Samples**，這是 hello 命名空間的合約為基礎的 hello managed hello 中的 hello 設定檔中所使用的型別[設定 hello WCF 用戶端](#configure-the-wcf-client)步驟。</span><span class="sxs-lookup"><span data-stu-id="d71fa-155">This tutorial uses hello C# namespace **Microsoft.ServiceBus.Samples**, which is hello namespace of hello contract-based managed type that is used in hello configuration file in hello [Configure hello WCF client](#configure-the-wcf-client) step.</span></span> <span data-ttu-id="d71fa-156">您可以指定當您建置這個範例中，任何命名的空間不過，hello 教學課程將無法運作，除非您修改 hello hello 合約和服務的命名空間，hello 應用程式組態檔中。</span><span class="sxs-lookup"><span data-stu-id="d71fa-156">You can specify any namespace you want when you build this sample; however, hello tutorial will not work unless you then modify hello namespaces of hello contract and service accordingly, in hello application configuration file.</span></span> <span data-ttu-id="d71fa-157">hello 命名空間中 hello App.config 檔案必須指定 hello 相同 hello C# 檔案中指定的命名空間。</span><span class="sxs-lookup"><span data-stu-id="d71fa-157">hello namespace specified in hello App.config file must be hello same as hello namespace specified in your C# files.</span></span>
    >
    >
-7. <span data-ttu-id="2b99e-159">緊接在 `Microsoft.ServiceBus.Samples` 命名空間宣告後面 (但在命名空間內)，定義名為 `IEchoContract` 的新介面，並將 `ServiceContractAttribute` 屬性套用至命名空間值為 `http://samples.microsoft.com/ServiceModel/Relay/` 的介面。</span><span class="sxs-lookup"><span data-stu-id="2b99e-159">Directly after the `Microsoft.ServiceBus.Samples` namespace declaration, but within the namespace, define a new interface named `IEchoContract` and apply the `ServiceContractAttribute` attribute to the interface with a namespace value of `http://samples.microsoft.com/ServiceModel/Relay/`.</span></span> <span data-ttu-id="2b99e-160">命名空間值與您的整個程式碼範圍中使用的命名空間不同。</span><span class="sxs-lookup"><span data-stu-id="2b99e-160">The namespace value differs from the namespace that you use throughout the scope of your code.</span></span> <span data-ttu-id="2b99e-161">然而，命名空間值會作為此合約的唯一識別碼。</span><span class="sxs-lookup"><span data-stu-id="2b99e-161">Instead, the namespace value is used as a unique identifier for this contract.</span></span> <span data-ttu-id="2b99e-162">明確指定命名空間可避免將預設命名空間值新增至合約名稱。</span><span class="sxs-lookup"><span data-stu-id="2b99e-162">Specifying the namespace explicitly prevents the default namespace value from being added to the contract name.</span></span> <span data-ttu-id="2b99e-163">將下列程式碼貼上到命名空間宣告之後：</span><span class="sxs-lookup"><span data-stu-id="2b99e-163">Paste the following code after the namespace declaration:</span></span>
+7. <span data-ttu-id="d71fa-158">直接在 hello 之後`Microsoft.ServiceBus.Samples`命名空間宣告，但 hello 命名空間中定義名為的新介面`IEchoContract`並套用 hello`ServiceContractAttribute`屬性 toohello 介面的命名空間值`http://samples.microsoft.com/ServiceModel/Relay/`。</span><span class="sxs-lookup"><span data-stu-id="d71fa-158">Directly after hello `Microsoft.ServiceBus.Samples` namespace declaration, but within hello namespace, define a new interface named `IEchoContract` and apply hello `ServiceContractAttribute` attribute toohello interface with a namespace value of `http://samples.microsoft.com/ServiceModel/Relay/`.</span></span> <span data-ttu-id="d71fa-159">hello 命名空間值不同於您在整個 hello 程式碼範圍內使用的 hello 命名空間。</span><span class="sxs-lookup"><span data-stu-id="d71fa-159">hello namespace value differs from hello namespace that you use throughout hello scope of your code.</span></span> <span data-ttu-id="d71fa-160">相反地，hello 命名空間值會當做此合約唯一識別項。</span><span class="sxs-lookup"><span data-stu-id="d71fa-160">Instead, hello namespace value is used as a unique identifier for this contract.</span></span> <span data-ttu-id="d71fa-161">明確指定 hello 命名空間，可防止 hello 預設命名空間值加入 toohello 合約名稱。</span><span class="sxs-lookup"><span data-stu-id="d71fa-161">Specifying hello namespace explicitly prevents hello default namespace value from being added toohello contract name.</span></span> <span data-ttu-id="d71fa-162">貼上下列程式碼 hello 命名空間宣告之後的 hello:</span><span class="sxs-lookup"><span data-stu-id="d71fa-162">Paste hello following code after hello namespace declaration:</span></span>
 
     ```csharp
     [ServiceContract(Name = "IEchoContract", Namespace = "http://samples.microsoft.com/ServiceModel/Relay/")]
@@ -80,27 +80,27 @@ ms.lasthandoff: 07/11/2017
     ```
 
    > [!NOTE]
-   > <span data-ttu-id="2b99e-164">一般而言，服務合約命名空間包含命名配置 (其中包含版本資訊)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-164">Typically, the service contract namespace contains a naming scheme that includes version information.</span></span> <span data-ttu-id="2b99e-165">在服務合約命名空間中包含版本資訊，可讓服務定義具有新命名空間的新服務合約並在新的端點上公開它，藉此區隔重大變更。</span><span class="sxs-lookup"><span data-stu-id="2b99e-165">Including version information in the service contract namespace enables services to isolate major changes by defining a new service contract with a new namespace and exposing it on a new endpoint.</span></span> <span data-ttu-id="2b99e-166">如此一來，用戶端可以繼續使用舊服務合約，而不需要更新。</span><span class="sxs-lookup"><span data-stu-id="2b99e-166">In this manner, clients can continue to use the old service contract without having to be updated.</span></span> <span data-ttu-id="2b99e-167">版本資訊可以包含日期或組建編號。</span><span class="sxs-lookup"><span data-stu-id="2b99e-167">Version information can consist of a date or a build number.</span></span> <span data-ttu-id="2b99e-168">如需詳細資訊，請參閱[服務版本設定](http://go.microsoft.com/fwlink/?LinkID=180498)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-168">For more information, see [Service Versioning](http://go.microsoft.com/fwlink/?LinkID=180498).</span></span> <span data-ttu-id="2b99e-169">基於本教學課程的目的，服務合約命名空間的命名配置不包含版本資訊。</span><span class="sxs-lookup"><span data-stu-id="2b99e-169">For the purposes of this tutorial, the naming scheme of the service contract namespace does not contain version information.</span></span>
+   > <span data-ttu-id="d71fa-163">一般而言，hello 服務合約命名空間包含的命名配置，包括版本資訊。</span><span class="sxs-lookup"><span data-stu-id="d71fa-163">Typically, hello service contract namespace contains a naming scheme that includes version information.</span></span> <span data-ttu-id="d71fa-164">Hello 服務合約命名空間中包括版本資訊可以定義新的服務合約與新的命名空間，並將新的端點上公開的服務 tooisolate 主要變更。</span><span class="sxs-lookup"><span data-stu-id="d71fa-164">Including version information in hello service contract namespace enables services tooisolate major changes by defining a new service contract with a new namespace and exposing it on a new endpoint.</span></span> <span data-ttu-id="d71fa-165">這種方式，用戶端可以繼續 toouse hello 舊服務合約，而不需要 toobe 更新。</span><span class="sxs-lookup"><span data-stu-id="d71fa-165">In this manner, clients can continue toouse hello old service contract without having toobe updated.</span></span> <span data-ttu-id="d71fa-166">版本資訊可以包含日期或組建編號。</span><span class="sxs-lookup"><span data-stu-id="d71fa-166">Version information can consist of a date or a build number.</span></span> <span data-ttu-id="d71fa-167">如需詳細資訊，請參閱[服務版本設定](http://go.microsoft.com/fwlink/?LinkID=180498)。</span><span class="sxs-lookup"><span data-stu-id="d71fa-167">For more information, see [Service Versioning](http://go.microsoft.com/fwlink/?LinkID=180498).</span></span> <span data-ttu-id="d71fa-168">基於 hello 本教學課程，hello 命名 hello 服務合約命名空間的結構描述不包含版本資訊。</span><span class="sxs-lookup"><span data-stu-id="d71fa-168">For hello purposes of this tutorial, hello naming scheme of hello service contract namespace does not contain version information.</span></span>
    >
    >
-8. <span data-ttu-id="2b99e-170">在 `IEchoContract` 介面中，針對 `IEchoContract` 合約在介面中公開的單一作業宣告方法，並將 `OperationContractAttribute` 屬性套用至您想要公開為公用 WCF 轉送合約一部分的方法，如下所示：</span><span class="sxs-lookup"><span data-stu-id="2b99e-170">Within the `IEchoContract` interface, declare a method for the single operation the `IEchoContract` contract exposes in the interface and apply the `OperationContractAttribute` attribute to the method that you want to expose as part of the public WCF Relay contract, as follows:</span></span>
+8. <span data-ttu-id="d71fa-169">Hello 內`IEchoContract`介面，請宣告 hello 單一作業 hello 方法`IEchoContract`hello 中的合約公開介面，並套用 hello`OperationContractAttribute`屬性 toohello 方法要做為一部分 tooexpose hello 公開的 WCF 轉送合約，如下所示：</span><span class="sxs-lookup"><span data-stu-id="d71fa-169">Within hello `IEchoContract` interface, declare a method for hello single operation hello `IEchoContract` contract exposes in hello interface and apply hello `OperationContractAttribute` attribute toohello method that you want tooexpose as part of hello public WCF Relay contract, as follows:</span></span>
 
     ```csharp
     [OperationContract]
     string Echo(string text);
     ```
-9. <span data-ttu-id="2b99e-171">直接在 `IEchoContract` 介面定義之後，宣告同時繼承自 `IEchoContract` 與 `IClientChannel` 介面的通道，如下所示：</span><span class="sxs-lookup"><span data-stu-id="2b99e-171">Directly after the `IEchoContract` interface definition, declare a channel that inherits from both `IEchoContract` and also to the `IClientChannel` interface, as shown here:</span></span>
+9. <span data-ttu-id="d71fa-170">直接在 hello 之後`IEchoContract`介面定義中，宣告同時繼承自通道`IEchoContract`和也 toohello`IClientChannel`介面，如下所示：</span><span class="sxs-lookup"><span data-stu-id="d71fa-170">Directly after hello `IEchoContract` interface definition, declare a channel that inherits from both `IEchoContract` and also toohello `IClientChannel` interface, as shown here:</span></span>
 
     ```csharp
     public interface IEchoChannel : IEchoContract, IClientChannel { }
     ```
 
-    <span data-ttu-id="2b99e-172">通道是 WCF 物件，主機和用戶端可透過它彼此傳遞資訊。</span><span class="sxs-lookup"><span data-stu-id="2b99e-172">A channel is the WCF object through which the host and client pass information to each other.</span></span> <span data-ttu-id="2b99e-173">稍後，您將對此通道撰寫程式碼，以回應兩個應用程式之間的資訊。</span><span class="sxs-lookup"><span data-stu-id="2b99e-173">Later, you will write code against the channel to echo information between the two applications.</span></span>
-10. <span data-ttu-id="2b99e-174">從 [建置] 功能表中，按一下 [建置方案] 或按 **Ctrl+Shift+B**，確認到目前為止您的工作正確無誤。</span><span class="sxs-lookup"><span data-stu-id="2b99e-174">From the **Build** menu, click **Build Solution** or press **Ctrl+Shift+B** to confirm the accuracy of your work so far.</span></span>
+    <span data-ttu-id="d71fa-171">通道是 hello 主機和用戶端用來傳遞資訊 tooeach 其他 hello WCF 物件。</span><span class="sxs-lookup"><span data-stu-id="d71fa-171">A channel is hello WCF object through which hello host and client pass information tooeach other.</span></span> <span data-ttu-id="d71fa-172">稍後，您將撰寫 hello 通道 tooecho 資訊 hello 兩個應用程式之間的程式碼。</span><span class="sxs-lookup"><span data-stu-id="d71fa-172">Later, you will write code against hello channel tooecho information between hello two applications.</span></span>
+10. <span data-ttu-id="d71fa-173">從 hello**建置**功能表上，按一下 **建置方案**或按**Ctrl + Shift + B** tooconfirm hello 精確度的工作為止。</span><span class="sxs-lookup"><span data-stu-id="d71fa-173">From hello **Build** menu, click **Build Solution** or press **Ctrl+Shift+B** tooconfirm hello accuracy of your work so far.</span></span>
 
-### <a name="example"></a><span data-ttu-id="2b99e-175">範例</span><span class="sxs-lookup"><span data-stu-id="2b99e-175">Example</span></span>
+### <a name="example"></a><span data-ttu-id="d71fa-174">範例</span><span class="sxs-lookup"><span data-stu-id="d71fa-174">Example</span></span>
 
-<span data-ttu-id="2b99e-176">下列程式碼示範定義 WCF 轉送合約的基本介面。</span><span class="sxs-lookup"><span data-stu-id="2b99e-176">The following code shows a basic interface that defines a WCF Relay contract.</span></span>
+<span data-ttu-id="d71fa-175">下列程式碼的 hello 顯示定義的 WCF 轉送合約的基本介面。</span><span class="sxs-lookup"><span data-stu-id="d71fa-175">hello following code shows a basic interface that defines a WCF Relay contract.</span></span>
 
 ```csharp
 using System;
@@ -126,13 +126,13 @@ namespace Microsoft.ServiceBus.Samples
 }
 ```
 
-<span data-ttu-id="2b99e-177">現在已建立介面，您可以實作此介面。</span><span class="sxs-lookup"><span data-stu-id="2b99e-177">Now that the interface is created, you can implement the interface.</span></span>
+<span data-ttu-id="d71fa-176">Hello 已建立介面，您可以實作 hello 介面。</span><span class="sxs-lookup"><span data-stu-id="d71fa-176">Now that hello interface is created, you can implement hello interface.</span></span>
 
-## <a name="implement-the-wcf-contract"></a><span data-ttu-id="2b99e-178">實作 WCF 合約</span><span class="sxs-lookup"><span data-stu-id="2b99e-178">Implement the WCF contract</span></span>
+## <a name="implement-hello-wcf-contract"></a><span data-ttu-id="d71fa-177">實作 hello WCF 合約</span><span class="sxs-lookup"><span data-stu-id="d71fa-177">Implement hello WCF contract</span></span>
 
-<span data-ttu-id="2b99e-179">建立 Azure 轉送需要先建立合約，您可使用介面定義該合約。</span><span class="sxs-lookup"><span data-stu-id="2b99e-179">Creating an Azure relay requires that you first create the contract, which is defined by using an interface.</span></span> <span data-ttu-id="2b99e-180">如需建立介面的詳細資訊，請參閱上一個步驟。</span><span class="sxs-lookup"><span data-stu-id="2b99e-180">For more information about creating the interface, see the previous step.</span></span> <span data-ttu-id="2b99e-181">下一步是實作介面。</span><span class="sxs-lookup"><span data-stu-id="2b99e-181">The next step is to implement the interface.</span></span> <span data-ttu-id="2b99e-182">這牽涉到建立名為 `EchoService` 的類別，該類別會實作使用者定義的 `IEchoContract` 介面。</span><span class="sxs-lookup"><span data-stu-id="2b99e-182">This involves creating a class named `EchoService` that implements the user-defined `IEchoContract` interface.</span></span> <span data-ttu-id="2b99e-183">實作合約後，接著可使用 App.config 組態檔設定介面。</span><span class="sxs-lookup"><span data-stu-id="2b99e-183">After you implement the interface, you then configure the interface using an App.config configuration file.</span></span> <span data-ttu-id="2b99e-184">組態檔包含應用程式的必要資訊，例如服務名稱、合約名稱，以及用來與轉送服務通訊的通訊協定類型。</span><span class="sxs-lookup"><span data-stu-id="2b99e-184">The configuration file contains necessary information for the application, such as the name of the service, the name of the contract, and the type of protocol that is used to communicate with the relay service.</span></span> <span data-ttu-id="2b99e-185">程序後面的範例提供用來執行這些工作的程式碼。</span><span class="sxs-lookup"><span data-stu-id="2b99e-185">The code used for these tasks is provided in the example following the procedure.</span></span> <span data-ttu-id="2b99e-186">如需如何實作服務合約的一般討論，請參閱 WCF 文件中的[實作服務合約](https://msdn.microsoft.com/library/ms733764.aspx)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-186">For a more general discussion about how to implement a service contract, see [Implementing Service Contracts](https://msdn.microsoft.com/library/ms733764.aspx) in the WCF documentation.</span></span>
+<span data-ttu-id="d71fa-178">建立 Azure 的轉送，您必須先建立 hello 合約，它使用介面所定義。</span><span class="sxs-lookup"><span data-stu-id="d71fa-178">Creating an Azure relay requires that you first create hello contract, which is defined by using an interface.</span></span> <span data-ttu-id="d71fa-179">如需有關建立 hello 介面的詳細資訊，請參閱 hello 上一個步驟。</span><span class="sxs-lookup"><span data-stu-id="d71fa-179">For more information about creating hello interface, see hello previous step.</span></span> <span data-ttu-id="d71fa-180">hello 下一個步驟是 tooimplement hello 介面。</span><span class="sxs-lookup"><span data-stu-id="d71fa-180">hello next step is tooimplement hello interface.</span></span> <span data-ttu-id="d71fa-181">這項作業包括建立類別，名為`EchoService`實作使用者定義的 hello`IEchoContract`介面。</span><span class="sxs-lookup"><span data-stu-id="d71fa-181">This involves creating a class named `EchoService` that implements hello user-defined `IEchoContract` interface.</span></span> <span data-ttu-id="d71fa-182">實作 hello 介面之後，接著您設定 hello 介面使用 App.config 組態檔。</span><span class="sxs-lookup"><span data-stu-id="d71fa-182">After you implement hello interface, you then configure hello interface using an App.config configuration file.</span></span> <span data-ttu-id="d71fa-183">hello 設定檔包含 hello 應用程式，例如 hello hello 服務名稱、 hello 名稱 hello 合約和通訊協定都使用的 toocommunicate 與 hello 轉送服務的 hello 類型的必要資訊。</span><span class="sxs-lookup"><span data-stu-id="d71fa-183">hello configuration file contains necessary information for hello application, such as hello name of hello service, hello name of hello contract, and hello type of protocol that is used toocommunicate with hello relay service.</span></span> <span data-ttu-id="d71fa-184">hello 範例 hello 程序中，會提供用於這些工作的 hello 程式碼。</span><span class="sxs-lookup"><span data-stu-id="d71fa-184">hello code used for these tasks is provided in hello example following hello procedure.</span></span> <span data-ttu-id="d71fa-185">如需如何 tooimplement 服務合約的一般討論，請參閱[實作服務合約](https://msdn.microsoft.com/library/ms733764.aspx)hello WCF 文件中。</span><span class="sxs-lookup"><span data-stu-id="d71fa-185">For a more general discussion about how tooimplement a service contract, see [Implementing Service Contracts](https://msdn.microsoft.com/library/ms733764.aspx) in hello WCF documentation.</span></span>
 
-1. <span data-ttu-id="2b99e-187">緊接在 `IEchoContract` 介面的定義之後，建立名為 `EchoService` 的新類別。</span><span class="sxs-lookup"><span data-stu-id="2b99e-187">Create a new class named `EchoService` directly after the definition of the `IEchoContract` interface.</span></span> <span data-ttu-id="2b99e-188">`EchoService` 類別會實作 `IEchoContract` 介面。</span><span class="sxs-lookup"><span data-stu-id="2b99e-188">The `EchoService` class implements the `IEchoContract` interface.</span></span>
+1. <span data-ttu-id="d71fa-186">建立新的類別，名為`EchoService`的 hello 的 hello 定義之後，直接`IEchoContract`介面。</span><span class="sxs-lookup"><span data-stu-id="d71fa-186">Create a new class named `EchoService` directly after hello definition of hello `IEchoContract` interface.</span></span> <span data-ttu-id="d71fa-187">hello`EchoService`類別會實作 hello`IEchoContract`介面。</span><span class="sxs-lookup"><span data-stu-id="d71fa-187">hello `EchoService` class implements hello `IEchoContract` interface.</span></span>
 
     ```csharp
     class EchoService : IEchoContract
@@ -140,8 +140,8 @@ namespace Microsoft.ServiceBus.Samples
     }
     ```
 
-    <span data-ttu-id="2b99e-189">類似於其他介面實作，您可以在不同的檔案中實作定義。</span><span class="sxs-lookup"><span data-stu-id="2b99e-189">Similar to other interface implementations, you can implement the definition in a different file.</span></span> <span data-ttu-id="2b99e-190">不過，在此教學課程中，實作會位於與介面定義和 `Main` 方法相同的檔案中。</span><span class="sxs-lookup"><span data-stu-id="2b99e-190">However, for this tutorial, the implementation is located in the same file as the interface definition and the `Main` method.</span></span>
-2. <span data-ttu-id="2b99e-191">將 [ServiceBehaviorAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicebehaviorattribute.aspx) 屬性套用至 `IEchoContract` 介面。</span><span class="sxs-lookup"><span data-stu-id="2b99e-191">Apply the [ServiceBehaviorAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicebehaviorattribute.aspx) attribute to the `IEchoContract` interface.</span></span> <span data-ttu-id="2b99e-192">此屬性會指定服務名稱和命名空間。</span><span class="sxs-lookup"><span data-stu-id="2b99e-192">The attribute specifies the service name and namespace.</span></span> <span data-ttu-id="2b99e-193">這麼做之後，`EchoService` 類別會如下所示︰</span><span class="sxs-lookup"><span data-stu-id="2b99e-193">After doing so, the `EchoService` class appears as follows:</span></span>
+    <span data-ttu-id="d71fa-188">類似 tooother 介面實作，您可以實作 hello 定義不同的檔案中。</span><span class="sxs-lookup"><span data-stu-id="d71fa-188">Similar tooother interface implementations, you can implement hello definition in a different file.</span></span> <span data-ttu-id="d71fa-189">不過，本教學課程，hello 實作位於相同檔案做為 hello 介面定義，hello hello`Main`方法。</span><span class="sxs-lookup"><span data-stu-id="d71fa-189">However, for this tutorial, hello implementation is located in hello same file as hello interface definition and hello `Main` method.</span></span>
+2. <span data-ttu-id="d71fa-190">套用 hello [ServiceBehaviorAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicebehaviorattribute.aspx)屬性 toohello`IEchoContract`介面。</span><span class="sxs-lookup"><span data-stu-id="d71fa-190">Apply hello [ServiceBehaviorAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicebehaviorattribute.aspx) attribute toohello `IEchoContract` interface.</span></span> <span data-ttu-id="d71fa-191">hello 屬性會指定 hello 服務名稱和命名空間。</span><span class="sxs-lookup"><span data-stu-id="d71fa-191">hello attribute specifies hello service name and namespace.</span></span> <span data-ttu-id="d71fa-192">之後，請 hello`EchoService`類別會出現，如下所示：</span><span class="sxs-lookup"><span data-stu-id="d71fa-192">After doing so, hello `EchoService` class appears as follows:</span></span>
 
     ```csharp
     [ServiceBehavior(Name = "EchoService", Namespace = "http://samples.microsoft.com/ServiceModel/Relay/")]
@@ -149,7 +149,7 @@ namespace Microsoft.ServiceBus.Samples
     {
     }
     ```
-3. <span data-ttu-id="2b99e-194">實作在 `EchoService` 類別的 `IEchoContract` 介面中定義的 `Echo` 方法。</span><span class="sxs-lookup"><span data-stu-id="2b99e-194">Implement the `Echo` method defined in the `IEchoContract` interface in the `EchoService` class.</span></span>
+3. <span data-ttu-id="d71fa-193">實作 hello`Echo`方法定義於 hello`IEchoContract`介面中 hello`EchoService`類別。</span><span class="sxs-lookup"><span data-stu-id="d71fa-193">Implement hello `Echo` method defined in hello `IEchoContract` interface in hello `EchoService` class.</span></span>
 
     ```csharp
     public string Echo(string text)
@@ -158,14 +158,14 @@ namespace Microsoft.ServiceBus.Samples
         return text;
     }
     ```
-4. <span data-ttu-id="2b99e-195">按一下 [建置]，然後按一下 [建置方案]，確認您的工作正確無誤。</span><span class="sxs-lookup"><span data-stu-id="2b99e-195">Click **Build**, then click **Build Solution** to confirm the accuracy of your work.</span></span>
+4. <span data-ttu-id="d71fa-194">按一下**建置**，然後按一下 **建置方案**tooconfirm hello 精確度的工作。</span><span class="sxs-lookup"><span data-stu-id="d71fa-194">Click **Build**, then click **Build Solution** tooconfirm hello accuracy of your work.</span></span>
 
-### <a name="define-the-configuration-for-the-service-host"></a><span data-ttu-id="2b99e-196">定義服務主機的設定</span><span class="sxs-lookup"><span data-stu-id="2b99e-196">Define the configuration for the service host</span></span>
+### <a name="define-hello-configuration-for-hello-service-host"></a><span data-ttu-id="d71fa-195">定義 hello hello 服務主機的組態</span><span class="sxs-lookup"><span data-stu-id="d71fa-195">Define hello configuration for hello service host</span></span>
 
-1. <span data-ttu-id="2b99e-197">此組態檔非常類似於 WCF 組態檔。</span><span class="sxs-lookup"><span data-stu-id="2b99e-197">The configuration file is very similar to a WCF configuration file.</span></span> <span data-ttu-id="2b99e-198">其中包含服務名稱、端點 (也就是 Azure 轉送公開的位置，讓用戶端與主機能夠彼此通訊) 和繫結 (用於通訊的通訊協定類型)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-198">It includes the service name, endpoint (that is, the location that Azure Relay exposes for clients and hosts to communicate with each other), and the binding (the type of protocol that is used to communicate).</span></span> <span data-ttu-id="2b99e-199">主要差異在於這個已設定的服務端點會參考不屬於 .NET Framework 的 [NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding) 繫結。</span><span class="sxs-lookup"><span data-stu-id="2b99e-199">The main difference is that this configured service endpoint refers to a [NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding) binding, which is not part of the .NET Framework.</span></span> <span data-ttu-id="2b99e-200">[NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding) 是服務所定義的其中一個繫結。</span><span class="sxs-lookup"><span data-stu-id="2b99e-200">[NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding) is one of the bindings defined by the service.</span></span>
-2. <span data-ttu-id="2b99e-201">在 [方案總管] 中，按兩下 App.config 檔案，以在 Visual Studio 編輯器中開啟它。</span><span class="sxs-lookup"><span data-stu-id="2b99e-201">In **Solution Explorer**, double-click the App.config file to open it in the Visual Studio editor.</span></span>
-3. <span data-ttu-id="2b99e-202">在 `<appSettings>` 元素中，以您的服務命名空間名稱以及您在先前步驟中複製的 SAS 金鑰取代預留位置。</span><span class="sxs-lookup"><span data-stu-id="2b99e-202">In the `<appSettings>` element, replace the placeholders with the name of your service namespace, and the SAS key that you copied in an earlier step.</span></span>
-4. <span data-ttu-id="2b99e-203">在 `<system.serviceModel>` 標記內，加入 `<services>` 元素。</span><span class="sxs-lookup"><span data-stu-id="2b99e-203">Within the `<system.serviceModel>` tags, add a `<services>` element.</span></span> <span data-ttu-id="2b99e-204">您可以在單一組態檔中定義多個轉送應用程式。</span><span class="sxs-lookup"><span data-stu-id="2b99e-204">You can define multiple relay applications in a single configuration file.</span></span> <span data-ttu-id="2b99e-205">不過，本教學課程只會定義一個。</span><span class="sxs-lookup"><span data-stu-id="2b99e-205">However, this tutorial defines only one.</span></span>
+1. <span data-ttu-id="d71fa-196">hello 組態檔是非常類似 tooa WCF 組態檔。</span><span class="sxs-lookup"><span data-stu-id="d71fa-196">hello configuration file is very similar tooa WCF configuration file.</span></span> <span data-ttu-id="d71fa-197">它包含 hello 服務名稱、 端點 （也就是 hello 位置 Azure 轉送會公開為用戶端和主機彼此 toocommunicate），並 hello 繫結 （通訊協定都使用的 toocommunicate hello 類型）。</span><span class="sxs-lookup"><span data-stu-id="d71fa-197">It includes hello service name, endpoint (that is, hello location that Azure Relay exposes for clients and hosts toocommunicate with each other), and hello binding (hello type of protocol that is used toocommunicate).</span></span> <span data-ttu-id="d71fa-198">hello 主要差異在於此設定的服務端點會參考 tooa [NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding)繫結，這不是 hello.NET Framework 的一部分。</span><span class="sxs-lookup"><span data-stu-id="d71fa-198">hello main difference is that this configured service endpoint refers tooa [NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding) binding, which is not part of hello .NET Framework.</span></span> <span data-ttu-id="d71fa-199">[NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding)是其中一個 hello hello 服務所定義的繫結。</span><span class="sxs-lookup"><span data-stu-id="d71fa-199">[NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding) is one of hello bindings defined by hello service.</span></span>
+2. <span data-ttu-id="d71fa-200">在**方案總管 中**，按兩下 hello App.config 檔案 tooopen hello Visual Studio 編輯器中。</span><span class="sxs-lookup"><span data-stu-id="d71fa-200">In **Solution Explorer**, double-click hello App.config file tooopen it in hello Visual Studio editor.</span></span>
+3. <span data-ttu-id="d71fa-201">在 hello `<appSettings>` hello 預留位置取代為您的服務命名空間中的 hello 名稱項目，和 hello 您在前述步驟中複製的 SAS 金鑰。</span><span class="sxs-lookup"><span data-stu-id="d71fa-201">In hello `<appSettings>` element, replace hello placeholders with hello name of your service namespace, and hello SAS key that you copied in an earlier step.</span></span>
+4. <span data-ttu-id="d71fa-202">Hello 內`<system.serviceModel>`標記，加入`<services>`項目。</span><span class="sxs-lookup"><span data-stu-id="d71fa-202">Within hello `<system.serviceModel>` tags, add a `<services>` element.</span></span> <span data-ttu-id="d71fa-203">您可以在單一組態檔中定義多個轉送應用程式。</span><span class="sxs-lookup"><span data-stu-id="d71fa-203">You can define multiple relay applications in a single configuration file.</span></span> <span data-ttu-id="d71fa-204">不過，本教學課程只會定義一個。</span><span class="sxs-lookup"><span data-stu-id="d71fa-204">However, this tutorial defines only one.</span></span>
 
     ```xml
     <?xmlversion="1.0"encoding="utf-8"?>
@@ -177,24 +177,24 @@ namespace Microsoft.ServiceBus.Samples
       </system.serviceModel>
     </configuration>
     ```
-5. <span data-ttu-id="2b99e-206">在 `<services>` 元素內，加入 `<service>` 元素以定義服務的名稱。</span><span class="sxs-lookup"><span data-stu-id="2b99e-206">Within the `<services>` element, add a `<service>` element to define the name of the service.</span></span>
+5. <span data-ttu-id="d71fa-205">在 hello`<services>`項目，加入`<service>`hello 服務項目 toodefine hello 名稱。</span><span class="sxs-lookup"><span data-stu-id="d71fa-205">Within hello `<services>` element, add a `<service>` element toodefine hello name of hello service.</span></span>
 
     ```xml
     <service name="Microsoft.ServiceBus.Samples.EchoService">
     </service>
     ```
-6. <span data-ttu-id="2b99e-207">在 `<service>` 元素內，定義端點合約的位置，以及端點的繫結類型。</span><span class="sxs-lookup"><span data-stu-id="2b99e-207">Within the `<service>` element, define the location of the endpoint contract, and also the type of binding for the endpoint.</span></span>
+6. <span data-ttu-id="d71fa-206">在 hello`<service>`項目，定義 hello 位置 hello 端點合約，並也 hello hello 端點的繫結型別。</span><span class="sxs-lookup"><span data-stu-id="d71fa-206">Within hello `<service>` element, define hello location of hello endpoint contract, and also hello type of binding for hello endpoint.</span></span>
 
     ```xml
     <endpoint contract="Microsoft.ServiceBus.Samples.IEchoContract" binding="netTcpRelayBinding"/>
     ```
 
-    <span data-ttu-id="2b99e-208">端點會定義用戶端將在何處尋找主應用程式。</span><span class="sxs-lookup"><span data-stu-id="2b99e-208">The endpoint defines where the client will look for the host application.</span></span> <span data-ttu-id="2b99e-209">稍後，本教學課程會使用此步驟來建立 URI，以透過 Azure 轉送完全公開主機。</span><span class="sxs-lookup"><span data-stu-id="2b99e-209">Later, the tutorial uses this step to create a URI that fully exposes the host through Azure Relay.</span></span> <span data-ttu-id="2b99e-210">繫結會宣告我們使用 TCP 作為與轉送服務通訊的通訊協定。</span><span class="sxs-lookup"><span data-stu-id="2b99e-210">The binding declares that we are using TCP as the protocol to communicate with the relay service.</span></span>
-7. <span data-ttu-id="2b99e-211">從 [建置] 功能表中，按一下 [建置方案]，確認您的工作正確無誤。</span><span class="sxs-lookup"><span data-stu-id="2b99e-211">From the **Build** menu, click **Build Solution** to confirm the accuracy of your work.</span></span>
+    <span data-ttu-id="d71fa-207">hello 端點定義 hello 用戶端將在其中尋找 hello 主應用程式。</span><span class="sxs-lookup"><span data-stu-id="d71fa-207">hello endpoint defines where hello client will look for hello host application.</span></span> <span data-ttu-id="d71fa-208">稍後，hello 教學課程會使用此步驟 toocreate 完全公開透過 Azure 轉送 hello 主機的 URI。</span><span class="sxs-lookup"><span data-stu-id="d71fa-208">Later, hello tutorial uses this step toocreate a URI that fully exposes hello host through Azure Relay.</span></span> <span data-ttu-id="d71fa-209">hello 繫結宣告我們使用 TCP hello 與 hello 轉送服務的通訊協定 toocommunicate 如下。</span><span class="sxs-lookup"><span data-stu-id="d71fa-209">hello binding declares that we are using TCP as hello protocol toocommunicate with hello relay service.</span></span>
+7. <span data-ttu-id="d71fa-210">從 hello**建置**功能表上，按一下 **建置方案**tooconfirm hello 精確度的工作。</span><span class="sxs-lookup"><span data-stu-id="d71fa-210">From hello **Build** menu, click **Build Solution** tooconfirm hello accuracy of your work.</span></span>
 
-### <a name="example"></a><span data-ttu-id="2b99e-212">範例</span><span class="sxs-lookup"><span data-stu-id="2b99e-212">Example</span></span>
+### <a name="example"></a><span data-ttu-id="d71fa-211">範例</span><span class="sxs-lookup"><span data-stu-id="d71fa-211">Example</span></span>
 
-<span data-ttu-id="2b99e-213">下列程式碼示範服務合約的實作。</span><span class="sxs-lookup"><span data-stu-id="2b99e-213">The following code shows the implementation of the service contract.</span></span>
+<span data-ttu-id="d71fa-212">hello 下列程式碼顯示 hello hello 服務合約實作。</span><span class="sxs-lookup"><span data-stu-id="d71fa-212">hello following code shows hello implementation of hello service contract.</span></span>
 
 ```csharp
 [ServiceBehavior(Name = "EchoService", Namespace = "http://samples.microsoft.com/ServiceModel/Relay/")]
@@ -209,7 +209,7 @@ namespace Microsoft.ServiceBus.Samples
     }
 ```
 
-<span data-ttu-id="2b99e-214">下列程式碼顯示與服務相關聯之 App.config 檔案的基本格式。</span><span class="sxs-lookup"><span data-stu-id="2b99e-214">The following code shows the basic format of the App.config file associated with the service host.</span></span>
+<span data-ttu-id="d71fa-213">hello 下列程式碼顯示 hello hello 與 hello 服務主機相關聯的 App.config 檔案的基本格式。</span><span class="sxs-lookup"><span data-stu-id="d71fa-213">hello following code shows hello basic format of hello App.config file associated with hello service host.</span></span>
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -230,13 +230,13 @@ namespace Microsoft.ServiceBus.Samples
 </configuration>
 ```
 
-## <a name="host-and-run-a-basic-web-service-to-register-with-the-relay-service"></a><span data-ttu-id="2b99e-215">裝載並執行基本 Web 服務以向轉送服務登錄</span><span class="sxs-lookup"><span data-stu-id="2b99e-215">Host and run a basic web service to register with the relay service</span></span>
+## <a name="host-and-run-a-basic-web-service-tooregister-with-hello-relay-service"></a><span data-ttu-id="d71fa-214">裝載和執行基本 web 服務 tooregister 與 hello 轉送服務</span><span class="sxs-lookup"><span data-stu-id="d71fa-214">Host and run a basic web service tooregister with hello relay service</span></span>
 
-<span data-ttu-id="2b99e-216">此步驟描述如何執行 Azure 轉送服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-216">This step describes how to run an Azure Relay service.</span></span>
+<span data-ttu-id="d71fa-215">此步驟說明如何 toorun Azure 轉送服務。</span><span class="sxs-lookup"><span data-stu-id="d71fa-215">This step describes how toorun an Azure Relay service.</span></span>
 
-### <a name="create-the-relay-credentials"></a><span data-ttu-id="2b99e-217">建立轉送認證</span><span class="sxs-lookup"><span data-stu-id="2b99e-217">Create the relay credentials</span></span>
+### <a name="create-hello-relay-credentials"></a><span data-ttu-id="d71fa-216">建立 hello 轉送認證</span><span class="sxs-lookup"><span data-stu-id="d71fa-216">Create hello relay credentials</span></span>
 
-1. <span data-ttu-id="2b99e-218">在 `Main()` 中，建立兩個變數，以儲存命名空間以及從主控台視窗讀取的 SAS 金鑰。</span><span class="sxs-lookup"><span data-stu-id="2b99e-218">In `Main()`, create two variables in which to store the namespace and the SAS key that are read from the console window.</span></span>
+1. <span data-ttu-id="d71fa-217">在`Main()`、 哪些 toostore hello 命名空間中建立兩個變數和 hello 從 hello 主控台視窗讀取的 SAS 金鑰。</span><span class="sxs-lookup"><span data-stu-id="d71fa-217">In `Main()`, create two variables in which toostore hello namespace and hello SAS key that are read from hello console window.</span></span>
 
     ```csharp
     Console.Write("Your Service Namespace: ");
@@ -245,56 +245,56 @@ namespace Microsoft.ServiceBus.Samples
     string sasKey = Console.ReadLine();
     ```
 
-    <span data-ttu-id="2b99e-219">SAS 金鑰稍後將用來存取您的專案。</span><span class="sxs-lookup"><span data-stu-id="2b99e-219">The SAS key will be used later to access your project.</span></span> <span data-ttu-id="2b99e-220">命名空間會當做參數傳遞至 `CreateServiceUri` 以建立服務 URI。</span><span class="sxs-lookup"><span data-stu-id="2b99e-220">The namespace is passed as a parameter to `CreateServiceUri` to create a service URI.</span></span>
-2. <span data-ttu-id="2b99e-221">使用 [TransportClientEndpointBehavior](/dotnet/api/microsoft.servicebus.transportclientendpointbehavior) 物件，宣告您將使用 SAS 金鑰作為認證類型。</span><span class="sxs-lookup"><span data-stu-id="2b99e-221">Using a [TransportClientEndpointBehavior](/dotnet/api/microsoft.servicebus.transportclientendpointbehavior) object, declare that you will be using a SAS key as the credential type.</span></span> <span data-ttu-id="2b99e-222">將下列程式碼直接加在最後一個步驟中新增的程式碼之後。</span><span class="sxs-lookup"><span data-stu-id="2b99e-222">Add the following code directly after the code added in the last step.</span></span>
+    <span data-ttu-id="d71fa-218">hello SAS 金鑰將會使用更新版本的 tooaccess 您的專案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-218">hello SAS key will be used later tooaccess your project.</span></span> <span data-ttu-id="d71fa-219">hello 命名空間會當做參數傳遞太`CreateServiceUri`toocreate 服務 URI。</span><span class="sxs-lookup"><span data-stu-id="d71fa-219">hello namespace is passed as a parameter too`CreateServiceUri` toocreate a service URI.</span></span>
+2. <span data-ttu-id="d71fa-220">使用[TransportClientEndpointBehavior](/dotnet/api/microsoft.servicebus.transportclientendpointbehavior)物件，宣告您將使用 SAS 金鑰作為 hello 認證類型。</span><span class="sxs-lookup"><span data-stu-id="d71fa-220">Using a [TransportClientEndpointBehavior](/dotnet/api/microsoft.servicebus.transportclientendpointbehavior) object, declare that you will be using a SAS key as hello credential type.</span></span> <span data-ttu-id="d71fa-221">新增下列程式碼直接在 hello hello 最後一個步驟中加入的程式碼之後的 hello。</span><span class="sxs-lookup"><span data-stu-id="d71fa-221">Add hello following code directly after hello code added in hello last step.</span></span>
 
     ```csharp
     TransportClientEndpointBehavior sasCredential = new TransportClientEndpointBehavior();
     sasCredential.TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey", sasKey);
     ```
 
-### <a name="create-a-base-address-for-the-service"></a><span data-ttu-id="2b99e-223">建立服務的基底位址</span><span class="sxs-lookup"><span data-stu-id="2b99e-223">Create a base address for the service</span></span>
+### <a name="create-a-base-address-for-hello-service"></a><span data-ttu-id="d71fa-222">建立 hello 服務的基底地址</span><span class="sxs-lookup"><span data-stu-id="d71fa-222">Create a base address for hello service</span></span>
 
-<span data-ttu-id="2b99e-224">在最後一個步驟中加入的程式碼後面，建立服務基底位址的 `Uri` 執行個體。</span><span class="sxs-lookup"><span data-stu-id="2b99e-224">After the code you added in the last step, create a `Uri` instance for the base address of the service.</span></span> <span data-ttu-id="2b99e-225">此 URI 會指定服務匯流排配置、命名空間和服務介面的路徑。</span><span class="sxs-lookup"><span data-stu-id="2b99e-225">This URI specifies the Service Bus scheme, the namespace, and the path of the service interface.</span></span>
+<span data-ttu-id="d71fa-223">Hello hello 最後一個步驟中加入程式碼之後, 建立`Uri`hello 基底地址的 hello 服務的執行個體。</span><span class="sxs-lookup"><span data-stu-id="d71fa-223">After hello code you added in hello last step, create a `Uri` instance for hello base address of hello service.</span></span> <span data-ttu-id="d71fa-224">此 URI 指定 hello Service Bus 配置、 hello 命名空間及 hello 路徑 hello 服務介面。</span><span class="sxs-lookup"><span data-stu-id="d71fa-224">This URI specifies hello Service Bus scheme, hello namespace, and hello path of hello service interface.</span></span>
 
 ```csharp
 Uri address = ServiceBusEnvironment.CreateServiceUri("sb", serviceNamespace, "EchoService");
 ```
 
-<span data-ttu-id="2b99e-226">"sb" 是服務匯流排配置的縮寫，並指出我們使用 TCP 作為通訊協定。</span><span class="sxs-lookup"><span data-stu-id="2b99e-226">"sb" is an abbreviation for the Service Bus scheme, and indicates that we are using TCP as the protocol.</span></span> <span data-ttu-id="2b99e-227">當 [NetTcpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.nettcprelaybinding.aspx) 被指定為繫結時，先前也已在組態檔中指出此項。</span><span class="sxs-lookup"><span data-stu-id="2b99e-227">This was also previously indicated in the configuration file, when [NetTcpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.nettcprelaybinding.aspx) was specified as the binding.</span></span>
+<span data-ttu-id="d71fa-225">「 sb 」 hello Service Bus 配置的縮寫，表示我們使用 TCP 做為 hello 通訊協定。</span><span class="sxs-lookup"><span data-stu-id="d71fa-225">"sb" is an abbreviation for hello Service Bus scheme, and indicates that we are using TCP as hello protocol.</span></span> <span data-ttu-id="d71fa-226">這也先前已指出 hello 組態檔中，當[NetTcpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.nettcprelaybinding.aspx)被指定為 hello 繫結。</span><span class="sxs-lookup"><span data-stu-id="d71fa-226">This was also previously indicated in hello configuration file, when [NetTcpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.nettcprelaybinding.aspx) was specified as hello binding.</span></span>
 
-<span data-ttu-id="2b99e-228">在本教學課程中，URI 為 `sb://putServiceNamespaceHere.windows.net/EchoService`。</span><span class="sxs-lookup"><span data-stu-id="2b99e-228">For this tutorial, the URI is `sb://putServiceNamespaceHere.windows.net/EchoService`.</span></span>
+<span data-ttu-id="d71fa-227">此教學課程，hello URI 是`sb://putServiceNamespaceHere.windows.net/EchoService`。</span><span class="sxs-lookup"><span data-stu-id="d71fa-227">For this tutorial, hello URI is `sb://putServiceNamespaceHere.windows.net/EchoService`.</span></span>
 
-### <a name="create-and-configure-the-service-host"></a><span data-ttu-id="2b99e-229">建立並設定服務主機</span><span class="sxs-lookup"><span data-stu-id="2b99e-229">Create and configure the service host</span></span>
+### <a name="create-and-configure-hello-service-host"></a><span data-ttu-id="d71fa-228">建立及設定 hello 服務主機</span><span class="sxs-lookup"><span data-stu-id="d71fa-228">Create and configure hello service host</span></span>
 
-1. <span data-ttu-id="2b99e-230">將連線模式設定為 `AutoDetect`。</span><span class="sxs-lookup"><span data-stu-id="2b99e-230">Set the connectivity mode to `AutoDetect`.</span></span>
+1. <span data-ttu-id="d71fa-229">Hello 連線模式設定太`AutoDetect`。</span><span class="sxs-lookup"><span data-stu-id="d71fa-229">Set hello connectivity mode too`AutoDetect`.</span></span>
 
     ```csharp
     ServiceBusEnvironment.SystemConnectivity.Mode = ConnectivityMode.AutoDetect;
     ```
 
-    <span data-ttu-id="2b99e-231">連線模式可描述服務用來與轉送服務通訊的通訊協定 (HTTP 或 TCP)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-231">The connectivity mode describes the protocol the service uses to communicate with the relay service; either HTTP or TCP.</span></span> <span data-ttu-id="2b99e-232">使用預設設定 `AutoDetect`，服務會嘗試透過 TCP 連接至 Azure 轉送，如果無法使用 TCP，則會透過 HTTP 連接。</span><span class="sxs-lookup"><span data-stu-id="2b99e-232">Using the default setting `AutoDetect`, the service attempts to connect to Azure Relay over TCP if it is available, and HTTP if TCP is not available.</span></span> <span data-ttu-id="2b99e-233">請注意，這有別於服務針對用戶端通訊指定的通訊協定。</span><span class="sxs-lookup"><span data-stu-id="2b99e-233">Note that this differs from the protocol the service specifies for client communication.</span></span> <span data-ttu-id="2b99e-234">該通訊協定取決於使用的繫結。</span><span class="sxs-lookup"><span data-stu-id="2b99e-234">That protocol is determined by the binding used.</span></span> <span data-ttu-id="2b99e-235">例如，服務可以使用 [BasicHttpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.basichttprelaybinding.aspx) 繫結，指定它的端點會透過 HTTP 來與用戶端通訊。</span><span class="sxs-lookup"><span data-stu-id="2b99e-235">For example, a service can use the [BasicHttpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.basichttprelaybinding.aspx) binding, which specifies that its endpoint communicates with clients over HTTP.</span></span> <span data-ttu-id="2b99e-236">該相同服務可以指定 **ConnectivityMode.AutoDetect**，讓服務能夠透過 TCP 來與 Azure 轉送通訊。</span><span class="sxs-lookup"><span data-stu-id="2b99e-236">That same service could specify **ConnectivityMode.AutoDetect** so that the service communicates with Azure Relay over TCP.</span></span>
-2. <span data-ttu-id="2b99e-237">使用本節稍早建立的 URI，建立服務主機。</span><span class="sxs-lookup"><span data-stu-id="2b99e-237">Create the service host, using the URI created earlier in this section.</span></span>
+    <span data-ttu-id="d71fa-230">hello 連線模式可描述 hello 通訊協定 hello 服務會使用 toocommunicate 與 hello 轉送服務。HTTP 或 TCP。</span><span class="sxs-lookup"><span data-stu-id="d71fa-230">hello connectivity mode describes hello protocol hello service uses toocommunicate with hello relay service; either HTTP or TCP.</span></span> <span data-ttu-id="d71fa-231">使用 hello 預設設定`AutoDetect`，hello 服務會嘗試透過 TCP，如果有的話和 HTTP tooconnect tooAzure 轉送如果無法使用 TCP。</span><span class="sxs-lookup"><span data-stu-id="d71fa-231">Using hello default setting `AutoDetect`, hello service attempts tooconnect tooAzure Relay over TCP if it is available, and HTTP if TCP is not available.</span></span> <span data-ttu-id="d71fa-232">請注意，這不同於 hello 通訊協定 hello 服務指定用戶端通訊。</span><span class="sxs-lookup"><span data-stu-id="d71fa-232">Note that this differs from hello protocol hello service specifies for client communication.</span></span> <span data-ttu-id="d71fa-233">使用 hello 繫結會判斷該通訊協定。</span><span class="sxs-lookup"><span data-stu-id="d71fa-233">That protocol is determined by hello binding used.</span></span> <span data-ttu-id="d71fa-234">例如，服務可以使用 hello [BasicHttpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.basichttprelaybinding.aspx)繫結，這會指定，其端點與用戶端透過 HTTP 進行通訊。</span><span class="sxs-lookup"><span data-stu-id="d71fa-234">For example, a service can use hello [BasicHttpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.basichttprelaybinding.aspx) binding, which specifies that its endpoint communicates with clients over HTTP.</span></span> <span data-ttu-id="d71fa-235">相同服務可以指定**ConnectivityMode.AutoDetect**以便 hello 服務與 Azure 轉送透過 TCP 通訊。</span><span class="sxs-lookup"><span data-stu-id="d71fa-235">That same service could specify **ConnectivityMode.AutoDetect** so that hello service communicates with Azure Relay over TCP.</span></span>
+2. <span data-ttu-id="d71fa-236">建立 hello 服務主機，請使用本節稍早建立 URI 的 hello。</span><span class="sxs-lookup"><span data-stu-id="d71fa-236">Create hello service host, using hello URI created earlier in this section.</span></span>
 
     ```csharp
     ServiceHost host = new ServiceHost(typeof(EchoService), address);
     ```
 
-    <span data-ttu-id="2b99e-238">服務主機是將服務具現化的 WCF 物件。</span><span class="sxs-lookup"><span data-stu-id="2b99e-238">The service host is the WCF object that instantiates the service.</span></span> <span data-ttu-id="2b99e-239">在此，您會將您要建立的服務類型 (`EchoService` 類型)，以及您要公開服務的位址傳給它。</span><span class="sxs-lookup"><span data-stu-id="2b99e-239">Here, you pass it the type of service you want to create (an `EchoService` type), and also to the address at which you want to expose the service.</span></span>
-3. <span data-ttu-id="2b99e-240">在 Program.cs 檔案頂端，加入 [System.ServiceModel.Description](https://msdn.microsoft.com/library/system.servicemodel.description.aspx) 和 [Microsoft.ServiceBus.Description](/dotnet/api/microsoft.servicebus.description) 的參考。</span><span class="sxs-lookup"><span data-stu-id="2b99e-240">At the top of the Program.cs file, add references to [System.ServiceModel.Description](https://msdn.microsoft.com/library/system.servicemodel.description.aspx) and [Microsoft.ServiceBus.Description](/dotnet/api/microsoft.servicebus.description).</span></span>
+    <span data-ttu-id="d71fa-237">具現化 hello 服務的 hello WCF 物件 hello 服務主機。</span><span class="sxs-lookup"><span data-stu-id="d71fa-237">hello service host is hello WCF object that instantiates hello service.</span></span> <span data-ttu-id="d71fa-238">在這裡，您將它傳遞 hello 類型的服務，您想 toocreate (`EchoService`類型)，和也想 tooexpose hello 服務 toohello 位址。</span><span class="sxs-lookup"><span data-stu-id="d71fa-238">Here, you pass it hello type of service you want toocreate (an `EchoService` type), and also toohello address at which you want tooexpose hello service.</span></span>
+3. <span data-ttu-id="d71fa-239">在 hello hello Program.cs 檔案頂端，加入參考太[System.ServiceModel.Description](https://msdn.microsoft.com/library/system.servicemodel.description.aspx)和[Microsoft.ServiceBus.Description](/dotnet/api/microsoft.servicebus.description)。</span><span class="sxs-lookup"><span data-stu-id="d71fa-239">At hello top of hello Program.cs file, add references too[System.ServiceModel.Description](https://msdn.microsoft.com/library/system.servicemodel.description.aspx) and [Microsoft.ServiceBus.Description](/dotnet/api/microsoft.servicebus.description).</span></span>
 
     ```csharp
     using System.ServiceModel.Description;
     using Microsoft.ServiceBus.Description;
     ```
-4. <span data-ttu-id="2b99e-241">回到 `Main()`，設定要啟用公開存取的端點。</span><span class="sxs-lookup"><span data-stu-id="2b99e-241">Back in `Main()`, configure the endpoint to enable public access.</span></span>
+4. <span data-ttu-id="d71fa-240">回到`Main()`，設定 hello 端點 tooenable 公用存取。</span><span class="sxs-lookup"><span data-stu-id="d71fa-240">Back in `Main()`, configure hello endpoint tooenable public access.</span></span>
 
     ```csharp
     IEndpointBehavior serviceRegistrySettings = new ServiceRegistrySettings(DiscoveryType.Public);
     ```
 
-    <span data-ttu-id="2b99e-242">此步驟會通知轉送服務，藉由檢查專案的 ATOM 摘要，公開找到您的應用程式。</span><span class="sxs-lookup"><span data-stu-id="2b99e-242">This step informs the relay service that your application can be found publicly by examining the ATOM feed for your project.</span></span> <span data-ttu-id="2b99e-243">如果您將 **DiscoveryType** 設定為 [私人]，用戶端仍可存取服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-243">If you set **DiscoveryType** to **private**, a client would still be able to access the service.</span></span> <span data-ttu-id="2b99e-244">不過，服務在搜尋轉送命名空間時並不會出現。</span><span class="sxs-lookup"><span data-stu-id="2b99e-244">However, the service would not appear when it searches the Relay namespace.</span></span> <span data-ttu-id="2b99e-245">相反地，用戶端必須事先知道端點路徑。</span><span class="sxs-lookup"><span data-stu-id="2b99e-245">Instead, the client would have to know the endpoint path beforehand.</span></span>
-5. <span data-ttu-id="2b99e-246">將服務認證套用至在 App.config 檔案中定義的服務端點︰</span><span class="sxs-lookup"><span data-stu-id="2b99e-246">Apply the service credentials to the service endpoints defined in the App.config file:</span></span>
+    <span data-ttu-id="d71fa-241">此步驟會通知 hello 轉送服務，您的應用程式即可公開找到藉由檢查專案的 hello ATOM 摘要。</span><span class="sxs-lookup"><span data-stu-id="d71fa-241">This step informs hello relay service that your application can be found publicly by examining hello ATOM feed for your project.</span></span> <span data-ttu-id="d71fa-242">如果您設定**DiscoveryType**太**私人**，用戶端仍將是無法 tooaccess hello 服務。</span><span class="sxs-lookup"><span data-stu-id="d71fa-242">If you set **DiscoveryType** too**private**, a client would still be able tooaccess hello service.</span></span> <span data-ttu-id="d71fa-243">不過，hello 服務不會出現搜尋 hello 轉送命名空間時。</span><span class="sxs-lookup"><span data-stu-id="d71fa-243">However, hello service would not appear when it searches hello Relay namespace.</span></span> <span data-ttu-id="d71fa-244">相反地，hello 用戶端會事先有 tooknow hello 端點路徑。</span><span class="sxs-lookup"><span data-stu-id="d71fa-244">Instead, hello client would have tooknow hello endpoint path beforehand.</span></span>
+5. <span data-ttu-id="d71fa-245">套用 hello 服務認證 toohello hello App.config 檔案中定義的服務端點：</span><span class="sxs-lookup"><span data-stu-id="d71fa-245">Apply hello service credentials toohello service endpoints defined in hello App.config file:</span></span>
 
     ```csharp
     foreach (ServiceEndpoint endpoint in host.Description.Endpoints)
@@ -304,32 +304,32 @@ Uri address = ServiceBusEnvironment.CreateServiceUri("sb", serviceNamespace, "Ec
     }
     ```
 
-    <span data-ttu-id="2b99e-247">如上一個步驟所述，您可能已在組態檔中宣告多個服務和端點。</span><span class="sxs-lookup"><span data-stu-id="2b99e-247">As stated in the previous step, you could have declared multiple services and endpoints in the configuration file.</span></span> <span data-ttu-id="2b99e-248">若是如此，此程式碼會周遊組態檔及搜尋每個應套用您的認證的端點。</span><span class="sxs-lookup"><span data-stu-id="2b99e-248">If you had, this code would traverse the configuration file and search for every endpoint to which it should apply your credentials.</span></span> <span data-ttu-id="2b99e-249">不過，在本教學課程中，組態檔只有一個端點。</span><span class="sxs-lookup"><span data-stu-id="2b99e-249">However, for this tutorial, the configuration file has only one endpoint.</span></span>
+    <span data-ttu-id="d71fa-246">Hello 上一個步驟所述，您無法宣告多個服務和 hello 組態檔中的端點。</span><span class="sxs-lookup"><span data-stu-id="d71fa-246">As stated in hello previous step, you could have declared multiple services and endpoints in hello configuration file.</span></span> <span data-ttu-id="d71fa-247">如果您在這段程式碼會周遊 hello 組態檔案，並搜尋針對每個端點 toowhich 應套用您的認證。</span><span class="sxs-lookup"><span data-stu-id="d71fa-247">If you had, this code would traverse hello configuration file and search for every endpoint toowhich it should apply your credentials.</span></span> <span data-ttu-id="d71fa-248">不過，本教學課程，hello 設定檔有只有一個端點。</span><span class="sxs-lookup"><span data-stu-id="d71fa-248">However, for this tutorial, hello configuration file has only one endpoint.</span></span>
 
-### <a name="open-the-service-host"></a><span data-ttu-id="2b99e-250">開啟服務主機</span><span class="sxs-lookup"><span data-stu-id="2b99e-250">Open the service host</span></span>
+### <a name="open-hello-service-host"></a><span data-ttu-id="d71fa-249">開啟 hello 服務主機</span><span class="sxs-lookup"><span data-stu-id="d71fa-249">Open hello service host</span></span>
 
-1. <span data-ttu-id="2b99e-251">開啟服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-251">Open the service.</span></span>
+1. <span data-ttu-id="d71fa-250">開啟 hello 服務。</span><span class="sxs-lookup"><span data-stu-id="d71fa-250">Open hello service.</span></span>
 
     ```csharp
     host.Open();
     ```
-2. <span data-ttu-id="2b99e-252">通知使用者此服務正在執行，以及說明如何關閉服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-252">Inform the user that the service is running, and explain how to shut down the service.</span></span>
+2. <span data-ttu-id="d71fa-251">通知 hello 服務的 hello 使用者執行，並且說明如何關閉 hello 服務 tooshut。</span><span class="sxs-lookup"><span data-stu-id="d71fa-251">Inform hello user that hello service is running, and explain how tooshut down hello service.</span></span>
 
     ```csharp
     Console.WriteLine("Service address: " + address);
-    Console.WriteLine("Press [Enter] to exit");
+    Console.WriteLine("Press [Enter] tooexit");
     Console.ReadLine();
     ```
-3. <span data-ttu-id="2b99e-253">完成時，關閉服務主機。</span><span class="sxs-lookup"><span data-stu-id="2b99e-253">When finished, close the service host.</span></span>
+3. <span data-ttu-id="d71fa-252">完成後，關閉 hello 服務主機。</span><span class="sxs-lookup"><span data-stu-id="d71fa-252">When finished, close hello service host.</span></span>
 
     ```csharp
     host.Close();
     ```
-4. <span data-ttu-id="2b99e-254">按 **Ctrl+Shift+B** 建置專案。</span><span class="sxs-lookup"><span data-stu-id="2b99e-254">Press **Ctrl+Shift+B** to build the project.</span></span>
+4. <span data-ttu-id="d71fa-253">按**Ctrl + Shift + B** toobuild hello 專案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-253">Press **Ctrl+Shift+B** toobuild hello project.</span></span>
 
-### <a name="example"></a><span data-ttu-id="2b99e-255">範例</span><span class="sxs-lookup"><span data-stu-id="2b99e-255">Example</span></span>
+### <a name="example"></a><span data-ttu-id="d71fa-254">範例</span><span class="sxs-lookup"><span data-stu-id="d71fa-254">Example</span></span>
 
-<span data-ttu-id="2b99e-256">完整的服務程式碼應如下所示。</span><span class="sxs-lookup"><span data-stu-id="2b99e-256">Your completed service code should appear as follows.</span></span> <span data-ttu-id="2b99e-257">程式碼包括教學課程先前步驟的服務合約和實作，並在主控台應用程式中裝載服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-257">The code includes the service contract and implementation from previous steps in the tutorial, and hosts the service in a console application.</span></span>
+<span data-ttu-id="d71fa-255">完整的服務程式碼應如下所示。</span><span class="sxs-lookup"><span data-stu-id="d71fa-255">Your completed service code should appear as follows.</span></span> <span data-ttu-id="d71fa-256">hello 程式碼包含 hello 服務合約和實作，從上一個步驟中 hello 教學課程中，並裝載 hello 主控台應用程式中的服務。</span><span class="sxs-lookup"><span data-stu-id="d71fa-256">hello code includes hello service contract and implementation from previous steps in hello tutorial, and hosts hello service in a console application.</span></span>
 
 ```csharp
 using System;
@@ -371,61 +371,61 @@ namespace Microsoft.ServiceBus.Samples
             Console.Write("Your SAS key: ");
             string sasKey = Console.ReadLine();
 
-           // Create the credentials object for the endpoint.
+           // Create hello credentials object for hello endpoint.
             TransportClientEndpointBehavior sasCredential = new TransportClientEndpointBehavior();
             sasCredential.TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey", sasKey);
 
-            // Create the service URI based on the service namespace.
+            // Create hello service URI based on hello service namespace.
             Uri address = ServiceBusEnvironment.CreateServiceUri("sb", serviceNamespace, "EchoService");
 
-            // Create the service host reading the configuration.
+            // Create hello service host reading hello configuration.
             ServiceHost host = new ServiceHost(typeof(EchoService), address);
 
-            // Create the ServiceRegistrySettings behavior for the endpoint.
+            // Create hello ServiceRegistrySettings behavior for hello endpoint.
             IEndpointBehavior serviceRegistrySettings = new ServiceRegistrySettings(DiscoveryType.Public);
 
-            // Add the Relay credentials to all endpoints specified in configuration.
+            // Add hello Relay credentials tooall endpoints specified in configuration.
             foreach (ServiceEndpoint endpoint in host.Description.Endpoints)
             {
                 endpoint.Behaviors.Add(serviceRegistrySettings);
                 endpoint.Behaviors.Add(sasCredential);
             }
 
-            // Open the service.
+            // Open hello service.
             host.Open();
 
             Console.WriteLine("Service address: " + address);
-            Console.WriteLine("Press [Enter] to exit");
+            Console.WriteLine("Press [Enter] tooexit");
             Console.ReadLine();
 
-            // Close the service.
+            // Close hello service.
             host.Close();
         }
     }
 }
 ```
 
-## <a name="create-a-wcf-client-for-the-service-contract"></a><span data-ttu-id="2b99e-258">建立服務合約的 WCF 用戶端</span><span class="sxs-lookup"><span data-stu-id="2b99e-258">Create a WCF client for the service contract</span></span>
+## <a name="create-a-wcf-client-for-hello-service-contract"></a><span data-ttu-id="d71fa-257">建立 hello 服務合約的 WCF 用戶端</span><span class="sxs-lookup"><span data-stu-id="d71fa-257">Create a WCF client for hello service contract</span></span>
 
-<span data-ttu-id="2b99e-259">下一個步驟是建立用戶端應用程式，並定義您將在後續步驟中實作的服務合約。</span><span class="sxs-lookup"><span data-stu-id="2b99e-259">The next step is to create a client application and define the service contract you will implement in later steps.</span></span> <span data-ttu-id="2b99e-260">請注意，這其中有許多步驟類似於用來建立服務的步驟︰定義合約、編輯 App.config 檔案、使用認證來連接至轉送服務等等。</span><span class="sxs-lookup"><span data-stu-id="2b99e-260">Note that many of these steps resemble the steps used to create a service: defining a contract, editing an App.config file, using credentials to connect to the relay service, and so on.</span></span> <span data-ttu-id="2b99e-261">程序後面的範例提供用來執行這些工作的程式碼。</span><span class="sxs-lookup"><span data-stu-id="2b99e-261">The code used for these tasks is provided in the example following the procedure.</span></span>
+<span data-ttu-id="d71fa-258">hello 下一個步驟是 toocreate 用戶端應用程式，並定義 hello 服務合約，您將在稍後步驟中實作。</span><span class="sxs-lookup"><span data-stu-id="d71fa-258">hello next step is toocreate a client application and define hello service contract you will implement in later steps.</span></span> <span data-ttu-id="d71fa-259">請注意，其中許多步驟類似於 hello 步驟使用 toocreate 服務： 定義合約、 編輯 App.config 檔案，使用認證 tooconnect toohello 轉送服務，以此類推。</span><span class="sxs-lookup"><span data-stu-id="d71fa-259">Note that many of these steps resemble hello steps used toocreate a service: defining a contract, editing an App.config file, using credentials tooconnect toohello relay service, and so on.</span></span> <span data-ttu-id="d71fa-260">hello 範例 hello 程序中，會提供用於這些工作的 hello 程式碼。</span><span class="sxs-lookup"><span data-stu-id="d71fa-260">hello code used for these tasks is provided in hello example following hello procedure.</span></span>
 
-1. <span data-ttu-id="2b99e-262">若要在目前的 Visual Studio 方案中為用戶端建立新專案，請執行下列作業︰</span><span class="sxs-lookup"><span data-stu-id="2b99e-262">Create a new project in the current Visual Studio solution for the client by doing the following:</span></span>
+1. <span data-ttu-id="d71fa-261">執行下列 hello hello 用戶端 hello 目前 Visual Studio 方案中建立新的專案：</span><span class="sxs-lookup"><span data-stu-id="d71fa-261">Create a new project in hello current Visual Studio solution for hello client by doing hello following:</span></span>
 
-   1. <span data-ttu-id="2b99e-263">在方案總管中含有服務的相同方案中，以滑鼠右鍵按一下目前的方案 (而非專案)，然後按一下 [加入]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-263">In Solution Explorer, in the same solution that contains the service, right-click the current solution (not the project), and click **Add**.</span></span> <span data-ttu-id="2b99e-264">然後按一下 [新增專案]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-264">Then click **New Project**.</span></span>
-   2. <span data-ttu-id="2b99e-265">在 [新增專案] 對話方塊中，按一下 [Visual C#] \(如果 **Visual C#** 未出現，請在 [其他語言] 下尋找)，選取 [主控台應用程式 (.NET Framework)] 範本，並將它命名為 **EchoClient**。</span><span class="sxs-lookup"><span data-stu-id="2b99e-265">In the **Add New Project** dialog box, click **Visual C#** (if **Visual C#** does not appear, look under **Other Languages**), select the **Console App (.NET Framework)** template, and name it **EchoClient**.</span></span>
-   3. <span data-ttu-id="2b99e-266">按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-266">Click **OK**.</span></span>
+   1. <span data-ttu-id="d71fa-262">在 方案總管在 hello 相同的方案，其中包含 hello 服務，hello 目前的方案 （不 hello 專案），以滑鼠右鍵按一下，按一下 **新增**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-262">In Solution Explorer, in hello same solution that contains hello service, right-click hello current solution (not hello project), and click **Add**.</span></span> <span data-ttu-id="d71fa-263">然後按一下新增專案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-263">Then click **New Project**.</span></span>
+   2. <span data-ttu-id="d71fa-264">在 hello**加入新的專案**對話方塊中，按一下  **Visual C#** (如果**Visual C#**未出現，請查看 **其他語言**)，請選取 hello**主控台應用程式 (.NET Framework)**範本，並將其命名**EchoClient**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-264">In hello **Add New Project** dialog box, click **Visual C#** (if **Visual C#** does not appear, look under **Other Languages**), select hello **Console App (.NET Framework)** template, and name it **EchoClient**.</span></span>
+   3. <span data-ttu-id="d71fa-265">按一下 [確定] 。</span><span class="sxs-lookup"><span data-stu-id="d71fa-265">Click **OK**.</span></span>
       <br />
-2. <span data-ttu-id="2b99e-267">在 [方案總管] 中，按兩下 **EchoClient** 專案中的 Program.cs 檔案，以在編輯器中開啟它 (如果尚未開啟的話)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-267">In Solution Explorer, double-click the Program.cs file in the **EchoClient** project to open it in the editor, if it is not already open.</span></span>
-3. <span data-ttu-id="2b99e-268">將命名空間名稱從 `EchoClient` 的預設名稱變更為 `Microsoft.ServiceBus.Samples`。</span><span class="sxs-lookup"><span data-stu-id="2b99e-268">Change the namespace name from its default name of `EchoClient` to `Microsoft.ServiceBus.Samples`.</span></span>
-4. <span data-ttu-id="2b99e-269">安裝[服務匯流排 NuGet 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus)：在 [方案總管] 中，以滑鼠右鍵按一下 **EchoClient** 專案，然後按一下 [管理 NuGet 封裝]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-269">Install the [Service Bus NuGet package](https://www.nuget.org/packages/WindowsAzure.ServiceBus): in Solution Explorer, right-click the **EchoClient** project, and then click **Manage NuGet Packages**.</span></span> <span data-ttu-id="2b99e-270">按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。</span><span class="sxs-lookup"><span data-stu-id="2b99e-270">Click the **Browse** tab, then search for `Microsoft Azure Service Bus`.</span></span> <span data-ttu-id="2b99e-271">按一下 [安裝] 並接受使用條款。</span><span class="sxs-lookup"><span data-stu-id="2b99e-271">Click **Install**, and accept the terms of use.</span></span>
+2. <span data-ttu-id="d71fa-266">在 [方案總管] 中，按兩下 hello Program.cs 檔案中 hello **EchoClient** tooopen 它在 hello 編輯器中，如果還沒有開啟的專案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-266">In Solution Explorer, double-click hello Program.cs file in hello **EchoClient** project tooopen it in hello editor, if it is not already open.</span></span>
+3. <span data-ttu-id="d71fa-267">中的預設名稱變更 hello 命名空間名稱`EchoClient`太`Microsoft.ServiceBus.Samples`。</span><span class="sxs-lookup"><span data-stu-id="d71fa-267">Change hello namespace name from its default name of `EchoClient` too`Microsoft.ServiceBus.Samples`.</span></span>
+4. <span data-ttu-id="d71fa-268">安裝 hello[服務匯流排 NuGet 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus)： 在方案總管 中，以滑鼠右鍵按一下 hello **EchoClient**專案，然後再按一下**管理 NuGet 封裝**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-268">Install hello [Service Bus NuGet package](https://www.nuget.org/packages/WindowsAzure.ServiceBus): in Solution Explorer, right-click hello **EchoClient** project, and then click **Manage NuGet Packages**.</span></span> <span data-ttu-id="d71fa-269">按一下 hello**瀏覽**索引標籤，然後搜尋`Microsoft Azure Service Bus`。</span><span class="sxs-lookup"><span data-stu-id="d71fa-269">Click hello **Browse** tab, then search for `Microsoft Azure Service Bus`.</span></span> <span data-ttu-id="d71fa-270">按一下**安裝**，並接受使用規定 hello。</span><span class="sxs-lookup"><span data-stu-id="d71fa-270">Click **Install**, and accept hello terms of use.</span></span>
 
     ![][3]
-5. <span data-ttu-id="2b99e-272">在 Program.cs 檔案中加入 [System.ServiceModel](https://msdn.microsoft.com/library/system.servicemodel.aspx) 命名空間的 `using` 陳述式。</span><span class="sxs-lookup"><span data-stu-id="2b99e-272">Add a `using` statement for the [System.ServiceModel](https://msdn.microsoft.com/library/system.servicemodel.aspx) namespace in the Program.cs file.</span></span>
+5. <span data-ttu-id="d71fa-271">新增`using`hello 陳述式[System.ServiceModel](https://msdn.microsoft.com/library/system.servicemodel.aspx) hello Program.cs 檔案中的命名空間。</span><span class="sxs-lookup"><span data-stu-id="d71fa-271">Add a `using` statement for hello [System.ServiceModel](https://msdn.microsoft.com/library/system.servicemodel.aspx) namespace in hello Program.cs file.</span></span>
 
     ```csharp
     using System.ServiceModel;
     ```
-6. <span data-ttu-id="2b99e-273">下列範例所示，將服務合約定義新增至命名空間。</span><span class="sxs-lookup"><span data-stu-id="2b99e-273">Add the service contract definition to the namespace, as shown in the following example.</span></span> <span data-ttu-id="2b99e-274">請注意，此定義與 [服務] 專案中使用的定義相同。</span><span class="sxs-lookup"><span data-stu-id="2b99e-274">Note that this definition is identical to the definition used in the **Service** project.</span></span> <span data-ttu-id="2b99e-275">您應該在 `Microsoft.ServiceBus.Samples` 命名空間的頂端加入此程式碼。</span><span class="sxs-lookup"><span data-stu-id="2b99e-275">You should add this code at the top of the `Microsoft.ServiceBus.Samples` namespace.</span></span>
+6. <span data-ttu-id="d71fa-272">加入 hello 服務合約定義 toohello 命名空間，hello 下列範例所示。</span><span class="sxs-lookup"><span data-stu-id="d71fa-272">Add hello service contract definition toohello namespace, as shown in hello following example.</span></span> <span data-ttu-id="d71fa-273">請注意，這個定義是相同的 toohello 定義用於 hello**服務**專案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-273">Note that this definition is identical toohello definition used in hello **Service** project.</span></span> <span data-ttu-id="d71fa-274">您應該在 hello hello 最上方加入下列程式碼`Microsoft.ServiceBus.Samples`命名空間。</span><span class="sxs-lookup"><span data-stu-id="d71fa-274">You should add this code at hello top of hello `Microsoft.ServiceBus.Samples` namespace.</span></span>
 
     ```csharp
     [ServiceContract(Name = "IEchoContract", Namespace = "http://samples.microsoft.com/ServiceModel/Relay/")]
@@ -437,11 +437,11 @@ namespace Microsoft.ServiceBus.Samples
 
     public interface IEchoChannel : IEchoContract, IClientChannel { }
     ```
-7. <span data-ttu-id="2b99e-276">按 **Ctrl+Shift+B** 建置用戶端。</span><span class="sxs-lookup"><span data-stu-id="2b99e-276">Press **Ctrl+Shift+B** to build the client.</span></span>
+7. <span data-ttu-id="d71fa-275">按**Ctrl + Shift + B** toobuild hello 用戶端。</span><span class="sxs-lookup"><span data-stu-id="d71fa-275">Press **Ctrl+Shift+B** toobuild hello client.</span></span>
 
-### <a name="example"></a><span data-ttu-id="2b99e-277">範例</span><span class="sxs-lookup"><span data-stu-id="2b99e-277">Example</span></span>
+### <a name="example"></a><span data-ttu-id="d71fa-276">範例</span><span class="sxs-lookup"><span data-stu-id="d71fa-276">Example</span></span>
 
-<span data-ttu-id="2b99e-278">下列程式碼顯示 **EchoClient** 專案中 Program.cs 檔案的目前狀態。</span><span class="sxs-lookup"><span data-stu-id="2b99e-278">The following code shows the current status of the Program.cs file in the **EchoClient** project.</span></span>
+<span data-ttu-id="d71fa-277">hello 下列程式碼顯示 hello 目前狀態的 hello Program.cs 檔案中 hello **EchoClient**專案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-277">hello following code shows hello current status of hello Program.cs file in hello **EchoClient** project.</span></span>
 
 ```csharp
 using System;
@@ -470,13 +470,13 @@ namespace Microsoft.ServiceBus.Samples
 }
 ```
 
-## <a name="configure-the-wcf-client"></a><span data-ttu-id="2b99e-279">設定 WCF 用戶端</span><span class="sxs-lookup"><span data-stu-id="2b99e-279">Configure the WCF client</span></span>
+## <a name="configure-hello-wcf-client"></a><span data-ttu-id="d71fa-278">Hello WCF 用戶端設定</span><span class="sxs-lookup"><span data-stu-id="d71fa-278">Configure hello WCF client</span></span>
 
-<span data-ttu-id="2b99e-280">在此步驟中，您可為基本用戶端應用程式建立 App.config 檔案，以存取先前在本教學課程中建立的服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-280">In this step, you create an App.config file for a basic client application that accesses the service created previously in this tutorial.</span></span> <span data-ttu-id="2b99e-281">此 App.config 檔案定義端點的合約、繫結和名稱。</span><span class="sxs-lookup"><span data-stu-id="2b99e-281">This App.config file defines the contract, binding, and name of the endpoint.</span></span> <span data-ttu-id="2b99e-282">程序後面的範例提供用來執行這些工作的程式碼。</span><span class="sxs-lookup"><span data-stu-id="2b99e-282">The code used for these tasks is provided in the example following the procedure.</span></span>
+<span data-ttu-id="d71fa-279">在此步驟中，您可以建立的 App.config 檔案，存取先前在本教學課程中建立的 hello 服務的基本用戶端應用程式。</span><span class="sxs-lookup"><span data-stu-id="d71fa-279">In this step, you create an App.config file for a basic client application that accesses hello service created previously in this tutorial.</span></span> <span data-ttu-id="d71fa-280">此 App.config 檔案定義 hello 合約、 繫結和 hello 端點的名稱。</span><span class="sxs-lookup"><span data-stu-id="d71fa-280">This App.config file defines hello contract, binding, and name of hello endpoint.</span></span> <span data-ttu-id="d71fa-281">hello 範例 hello 程序中，會提供用於這些工作的 hello 程式碼。</span><span class="sxs-lookup"><span data-stu-id="d71fa-281">hello code used for these tasks is provided in hello example following hello procedure.</span></span>
 
-1. <span data-ttu-id="2b99e-283">在 [方案總管] 的 **EchoClient** 專案中，按兩下 **App.config**，在 Visual Studio 編輯器中開啟該檔案。</span><span class="sxs-lookup"><span data-stu-id="2b99e-283">In Solution Explorer, in the **EchoClient** project, double-click **App.config** to open the file in the Visual Studio editor.</span></span>
-2. <span data-ttu-id="2b99e-284">在 `<appSettings>` 元素中，以您的服務命名空間名稱以及您在先前步驟中複製的 SAS 金鑰取代預留位置。</span><span class="sxs-lookup"><span data-stu-id="2b99e-284">In the `<appSettings>` element, replace the placeholders with the name of your service namespace, and the SAS key that you copied in an earlier step.</span></span>
-3. <span data-ttu-id="2b99e-285">在 system.serviceModel 元素中加入 `<client>` 元素。</span><span class="sxs-lookup"><span data-stu-id="2b99e-285">Within the system.serviceModel element, add a `<client>` element.</span></span>
+1. <span data-ttu-id="d71fa-282">在 方案總管中 hello **EchoClient**專案中，按兩下**App.config** tooopen hello Visual Studio 編輯器中的 hello 檔案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-282">In Solution Explorer, in hello **EchoClient** project, double-click **App.config** tooopen hello file in hello Visual Studio editor.</span></span>
+2. <span data-ttu-id="d71fa-283">在 hello `<appSettings>` hello 預留位置取代為您的服務命名空間中的 hello 名稱項目，和 hello 您在前述步驟中複製的 SAS 金鑰。</span><span class="sxs-lookup"><span data-stu-id="d71fa-283">In hello `<appSettings>` element, replace hello placeholders with hello name of your service namespace, and hello SAS key that you copied in an earlier step.</span></span>
+3. <span data-ttu-id="d71fa-284">在 hello system.serviceModel 項目，將新增`<client>`項目。</span><span class="sxs-lookup"><span data-stu-id="d71fa-284">Within hello system.serviceModel element, add a `<client>` element.</span></span>
 
     ```xml
     <?xmlversion="1.0"encoding="utf-8"?>
@@ -488,8 +488,8 @@ namespace Microsoft.ServiceBus.Samples
     </configuration>
     ```
 
-    <span data-ttu-id="2b99e-286">此步驟宣告您正在定義 WCF 樣式的用戶端應用程式。</span><span class="sxs-lookup"><span data-stu-id="2b99e-286">This step declares that you are defining a WCF-style client application.</span></span>
-4. <span data-ttu-id="2b99e-287">在 `client` 元素內，定義端點的名稱、合約和繫結類型。</span><span class="sxs-lookup"><span data-stu-id="2b99e-287">Within the `client` element, define the name, contract, and binding type for the endpoint.</span></span>
+    <span data-ttu-id="d71fa-285">此步驟宣告您正在定義 WCF 樣式的用戶端應用程式。</span><span class="sxs-lookup"><span data-stu-id="d71fa-285">This step declares that you are defining a WCF-style client application.</span></span>
+4. <span data-ttu-id="d71fa-286">在 hello`client`項目，定義 hello 名稱、 合約和 hello 端點的繫結型別。</span><span class="sxs-lookup"><span data-stu-id="d71fa-286">Within hello `client` element, define hello name, contract, and binding type for hello endpoint.</span></span>
 
     ```xml
     <endpoint name="RelayEndpoint"
@@ -497,12 +497,12 @@ namespace Microsoft.ServiceBus.Samples
                     binding="netTcpRelayBinding"/>
     ```
 
-    <span data-ttu-id="2b99e-288">此步驟會定義端點的名稱、服務中定義的合約，以及用戶端應用程式使用 TCP 來與 Azure 轉送通訊的細節。</span><span class="sxs-lookup"><span data-stu-id="2b99e-288">This step defines the name of the endpoint, the contract defined in the service, and the fact that the client application uses TCP to communicate with Azure Relay.</span></span> <span data-ttu-id="2b99e-289">端點名稱在下一步中用來連結此端點組態與服務 URI。</span><span class="sxs-lookup"><span data-stu-id="2b99e-289">The endpoint name is used in the next step to link this endpoint configuration with the service URI.</span></span>
-5. <span data-ttu-id="2b99e-290">按一下 [檔案]，然後按一下 [全部儲存]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-290">Click **File**, then click **Save All**.</span></span>
+    <span data-ttu-id="d71fa-287">此步驟定義 hello hello 端點，且定義為 hello 服務和 hello 事實 hello 用戶端應用程式會使用與 Azure 轉送 TCP toocommunicate hello 合約名稱。</span><span class="sxs-lookup"><span data-stu-id="d71fa-287">This step defines hello name of hello endpoint, hello contract defined in hello service, and hello fact that hello client application uses TCP toocommunicate with Azure Relay.</span></span> <span data-ttu-id="d71fa-288">hello 端點的名稱會在 hello 下一步 toolink hello 服務 URI 與此端點組態。</span><span class="sxs-lookup"><span data-stu-id="d71fa-288">hello endpoint name is used in hello next step toolink this endpoint configuration with hello service URI.</span></span>
+5. <span data-ttu-id="d71fa-289">按一下 [檔案]，然後按一下 [全部儲存]。</span><span class="sxs-lookup"><span data-stu-id="d71fa-289">Click **File**, then click **Save All**.</span></span>
 
-## <a name="example"></a><span data-ttu-id="2b99e-291">範例</span><span class="sxs-lookup"><span data-stu-id="2b99e-291">Example</span></span>
+## <a name="example"></a><span data-ttu-id="d71fa-290">範例</span><span class="sxs-lookup"><span data-stu-id="d71fa-290">Example</span></span>
 
-<span data-ttu-id="2b99e-292">下列程式碼會顯示 Echo 用戶端的 App.config 檔案。</span><span class="sxs-lookup"><span data-stu-id="2b99e-292">The following code shows the App.config file for the Echo client.</span></span>
+<span data-ttu-id="d71fa-291">hello 下列程式碼顯示 hello hello Echo 用戶端的 App.config 檔案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-291">hello following code shows hello App.config file for hello Echo client.</span></span>
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -523,26 +523,26 @@ namespace Microsoft.ServiceBus.Samples
 </configuration>
 ```
 
-## <a name="implement-the-wcf-client"></a><span data-ttu-id="2b99e-293">實作 WCF 用戶端</span><span class="sxs-lookup"><span data-stu-id="2b99e-293">Implement the WCF client</span></span>
-<span data-ttu-id="2b99e-294">在此步驟中，您可實作基本用戶端應用程式，以存取您先前在本教學課程中建立的服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-294">In this step, you implement a basic client application that accesses the service you created previously in this tutorial.</span></span> <span data-ttu-id="2b99e-295">與此服務類似，用戶端會執行許多相同的作業來存取 Azure 轉送：</span><span class="sxs-lookup"><span data-stu-id="2b99e-295">Similar to the service, the client performs many of the same operations to access Azure Relay:</span></span>
+## <a name="implement-hello-wcf-client"></a><span data-ttu-id="d71fa-292">實作 hello WCF 用戶端</span><span class="sxs-lookup"><span data-stu-id="d71fa-292">Implement hello WCF client</span></span>
+<span data-ttu-id="d71fa-293">在此步驟中，您可以實作基本用戶端應用程式存取您先前在本教學課程中建立的 hello 服務。</span><span class="sxs-lookup"><span data-stu-id="d71fa-293">In this step, you implement a basic client application that accesses hello service you created previously in this tutorial.</span></span> <span data-ttu-id="d71fa-294">Hello 用戶端執行許多 hello 類似 toohello 服務時，相同作業 tooaccess Azure 轉送：</span><span class="sxs-lookup"><span data-stu-id="d71fa-294">Similar toohello service, hello client performs many of hello same operations tooaccess Azure Relay:</span></span>
 
-1. <span data-ttu-id="2b99e-296">設定連線模式。</span><span class="sxs-lookup"><span data-stu-id="2b99e-296">Sets the connectivity mode.</span></span>
-2. <span data-ttu-id="2b99e-297">建立可找出主機服務的 URI。</span><span class="sxs-lookup"><span data-stu-id="2b99e-297">Creates the URI that locates the host service.</span></span>
-3. <span data-ttu-id="2b99e-298">定義安全性認證。</span><span class="sxs-lookup"><span data-stu-id="2b99e-298">Defines the security credentials.</span></span>
-4. <span data-ttu-id="2b99e-299">將認證套用至連線。</span><span class="sxs-lookup"><span data-stu-id="2b99e-299">Applies the credentials to the connection.</span></span>
-5. <span data-ttu-id="2b99e-300">開啟連線。</span><span class="sxs-lookup"><span data-stu-id="2b99e-300">Opens the connection.</span></span>
-6. <span data-ttu-id="2b99e-301">執行應用程式特定的工作。</span><span class="sxs-lookup"><span data-stu-id="2b99e-301">Performs the application-specific tasks.</span></span>
-7. <span data-ttu-id="2b99e-302">關閉連線。</span><span class="sxs-lookup"><span data-stu-id="2b99e-302">Closes the connection.</span></span>
+1. <span data-ttu-id="d71fa-295">設定 hello 連線模式。</span><span class="sxs-lookup"><span data-stu-id="d71fa-295">Sets hello connectivity mode.</span></span>
+2. <span data-ttu-id="d71fa-296">建立 hello 找出 hello 主機服務的 URI。</span><span class="sxs-lookup"><span data-stu-id="d71fa-296">Creates hello URI that locates hello host service.</span></span>
+3. <span data-ttu-id="d71fa-297">定義 hello 安全性認證。</span><span class="sxs-lookup"><span data-stu-id="d71fa-297">Defines hello security credentials.</span></span>
+4. <span data-ttu-id="d71fa-298">適用於 hello 認證 toohello 連接。</span><span class="sxs-lookup"><span data-stu-id="d71fa-298">Applies hello credentials toohello connection.</span></span>
+5. <span data-ttu-id="d71fa-299">開啟 hello 連線。</span><span class="sxs-lookup"><span data-stu-id="d71fa-299">Opens hello connection.</span></span>
+6. <span data-ttu-id="d71fa-300">執行 hello 應用程式特定的工作。</span><span class="sxs-lookup"><span data-stu-id="d71fa-300">Performs hello application-specific tasks.</span></span>
+7. <span data-ttu-id="d71fa-301">關閉 hello 連接。</span><span class="sxs-lookup"><span data-stu-id="d71fa-301">Closes hello connection.</span></span>
 
-<span data-ttu-id="2b99e-303">不過，其中一個主要差異在於用戶端應用程式會使用通道來連接至轉送服務，而此服務會使用對 **ServiceHost** 的呼叫。</span><span class="sxs-lookup"><span data-stu-id="2b99e-303">However, one of the main differences is that the client application uses a channel to connect to the relay service, whereas the service uses a call to **ServiceHost**.</span></span> <span data-ttu-id="2b99e-304">程序後面的範例提供用來執行這些工作的程式碼。</span><span class="sxs-lookup"><span data-stu-id="2b99e-304">The code used for these tasks is provided in the example following the procedure.</span></span>
+<span data-ttu-id="d71fa-302">不過，其中一個 hello 主要差異是 hello 用戶端應用程式會使用通道 tooconnect toohello 轉送服務，而 hello 服務會使用呼叫太**ServiceHost**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-302">However, one of hello main differences is that hello client application uses a channel tooconnect toohello relay service, whereas hello service uses a call too**ServiceHost**.</span></span> <span data-ttu-id="d71fa-303">hello 範例 hello 程序中，會提供用於這些工作的 hello 程式碼。</span><span class="sxs-lookup"><span data-stu-id="d71fa-303">hello code used for these tasks is provided in hello example following hello procedure.</span></span>
 
-### <a name="implement-a-client-application"></a><span data-ttu-id="2b99e-305">實作用戶端應用程式</span><span class="sxs-lookup"><span data-stu-id="2b99e-305">Implement a client application</span></span>
-1. <span data-ttu-id="2b99e-306">將連線模式設定為 [自動偵測]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-306">Set the connectivity mode to **AutoDetect**.</span></span> <span data-ttu-id="2b99e-307">在 **EchoClient** 應用程式的 `Main()` 方法中新增下列程式碼。</span><span class="sxs-lookup"><span data-stu-id="2b99e-307">Add the following code inside the `Main()` method of the **EchoClient** application.</span></span>
+### <a name="implement-a-client-application"></a><span data-ttu-id="d71fa-304">實作用戶端應用程式</span><span class="sxs-lookup"><span data-stu-id="d71fa-304">Implement a client application</span></span>
+1. <span data-ttu-id="d71fa-305">Hello 連線模式設定太**自動偵測**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-305">Set hello connectivity mode too**AutoDetect**.</span></span> <span data-ttu-id="d71fa-306">新增下列程式碼內 hello hello`Main()`方法 hello **EchoClient**應用程式。</span><span class="sxs-lookup"><span data-stu-id="d71fa-306">Add hello following code inside hello `Main()` method of hello **EchoClient** application.</span></span>
 
     ```csharp
     ServiceBusEnvironment.SystemConnectivity.Mode = ConnectivityMode.AutoDetect;
     ```
-2. <span data-ttu-id="2b99e-308">定義變數，以保留服務命名空間以及從主控台讀取之 SAS 金鑰的值。</span><span class="sxs-lookup"><span data-stu-id="2b99e-308">Define variables to hold the values for the service namespace, and SAS key that are read from the console.</span></span>
+2. <span data-ttu-id="d71fa-307">定義變數 toohold hello hello 服務命名空間，以及 SAS 金鑰的值從 hello 主控台讀取的。</span><span class="sxs-lookup"><span data-stu-id="d71fa-307">Define variables toohold hello values for hello service namespace, and SAS key that are read from hello console.</span></span>
 
     ```csharp
     Console.Write("Your Service Namespace: ");
@@ -550,39 +550,39 @@ namespace Microsoft.ServiceBus.Samples
     Console.Write("Your SAS Key: ");
     string sasKey = Console.ReadLine();
     ```
-3. <span data-ttu-id="2b99e-309">建立可定義轉送專案中主機位置的 URI。</span><span class="sxs-lookup"><span data-stu-id="2b99e-309">Create the URI that defines the location of the host in your Relay project.</span></span>
+3. <span data-ttu-id="d71fa-308">建立 hello 轉送專案中定義的 hello 主機的 hello 位置的 URI。</span><span class="sxs-lookup"><span data-stu-id="d71fa-308">Create hello URI that defines hello location of hello host in your Relay project.</span></span>
 
     ```csharp
     Uri serviceUri = ServiceBusEnvironment.CreateServiceUri("sb", serviceNamespace, "EchoService");
     ```
-4. <span data-ttu-id="2b99e-310">建立服務命名空間端點的認證物件。</span><span class="sxs-lookup"><span data-stu-id="2b99e-310">Create the credential object for your service namespace endpoint.</span></span>
+4. <span data-ttu-id="d71fa-309">建立服務命名空間端點 hello 認證物件。</span><span class="sxs-lookup"><span data-stu-id="d71fa-309">Create hello credential object for your service namespace endpoint.</span></span>
 
     ```csharp
     TransportClientEndpointBehavior sasCredential = new TransportClientEndpointBehavior();
     sasCredential.TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey", sasKey);
     ```
-5. <span data-ttu-id="2b99e-311">建立通道工廠，以載入 App.config 檔案中所述的組態。</span><span class="sxs-lookup"><span data-stu-id="2b99e-311">Create the channel factory that loads the configuration described in the App.config file.</span></span>
+5. <span data-ttu-id="d71fa-310">建立 hello 通道處理站載入 hello hello App.config 檔案中所述的組態。</span><span class="sxs-lookup"><span data-stu-id="d71fa-310">Create hello channel factory that loads hello configuration described in hello App.config file.</span></span>
 
     ```csharp
     ChannelFactory<IEchoChannel> channelFactory = new ChannelFactory<IEchoChannel>("RelayEndpoint", new EndpointAddress(serviceUri));
     ```
 
-    <span data-ttu-id="2b99e-312">通道工廠是一個 WCF 物件，可建立通道以供服務與用戶端應用程式進行通訊。</span><span class="sxs-lookup"><span data-stu-id="2b99e-312">A channel factory is a WCF object that creates a channel through which the service and client applications communicate.</span></span>
-6. <span data-ttu-id="2b99e-313">套用認證。</span><span class="sxs-lookup"><span data-stu-id="2b99e-313">Apply the credentials.</span></span>
+    <span data-ttu-id="d71fa-311">通道處理站會建立的通道，透過此 hello 服務與用戶端應用程式進行通訊的 WCF 物件。</span><span class="sxs-lookup"><span data-stu-id="d71fa-311">A channel factory is a WCF object that creates a channel through which hello service and client applications communicate.</span></span>
+6. <span data-ttu-id="d71fa-312">套用 hello 認證。</span><span class="sxs-lookup"><span data-stu-id="d71fa-312">Apply hello credentials.</span></span>
 
     ```csharp
     channelFactory.Endpoint.Behaviors.Add(sasCredential);
     ```
-7. <span data-ttu-id="2b99e-314">建立並開啟服務的通道。</span><span class="sxs-lookup"><span data-stu-id="2b99e-314">Create and open the channel to the service.</span></span>
+7. <span data-ttu-id="d71fa-313">建立並開啟 hello 通道 toohello 服務。</span><span class="sxs-lookup"><span data-stu-id="d71fa-313">Create and open hello channel toohello service.</span></span>
 
     ```csharp
     IEchoChannel channel = channelFactory.CreateChannel();
     channel.Open();
     ```
-8. <span data-ttu-id="2b99e-315">撰寫 Echo 的基本使用者介面和功能。</span><span class="sxs-lookup"><span data-stu-id="2b99e-315">Write the basic user interface and functionality for the echo.</span></span>
+8. <span data-ttu-id="d71fa-314">撰寫 hello 基本使用者介面與 hello 回應的功能。</span><span class="sxs-lookup"><span data-stu-id="d71fa-314">Write hello basic user interface and functionality for hello echo.</span></span>
 
     ```csharp
-    Console.WriteLine("Enter text to echo (or [Enter] to exit):");
+    Console.WriteLine("Enter text tooecho (or [Enter] tooexit):");
     string input = Console.ReadLine();
     while (input != String.Empty)
     {
@@ -598,17 +598,17 @@ namespace Microsoft.ServiceBus.Samples
     }
     ```
 
-    <span data-ttu-id="2b99e-316">請注意，程式碼會使用通道物件的執行個體作為服務的 Proxy。</span><span class="sxs-lookup"><span data-stu-id="2b99e-316">Note that the code uses the instance of the channel object as a proxy for the service.</span></span>
-9. <span data-ttu-id="2b99e-317">關閉通道，並關閉工廠。</span><span class="sxs-lookup"><span data-stu-id="2b99e-317">Close the channel, and close the factory.</span></span>
+    <span data-ttu-id="d71fa-315">請注意，hello 程式碼使用 hello hello 通道物件執行個體做為 proxy hello 服務。</span><span class="sxs-lookup"><span data-stu-id="d71fa-315">Note that hello code uses hello instance of hello channel object as a proxy for hello service.</span></span>
+9. <span data-ttu-id="d71fa-316">關閉 hello 通道和關閉 hello factory。</span><span class="sxs-lookup"><span data-stu-id="d71fa-316">Close hello channel, and close hello factory.</span></span>
 
     ```csharp
     channel.Close();
     channelFactory.Close();
     ```
 
-## <a name="example"></a><span data-ttu-id="2b99e-318">範例</span><span class="sxs-lookup"><span data-stu-id="2b99e-318">Example</span></span>
+## <a name="example"></a><span data-ttu-id="d71fa-317">範例</span><span class="sxs-lookup"><span data-stu-id="d71fa-317">Example</span></span>
 
-<span data-ttu-id="2b99e-319">完整的程式碼應如下所示，顯示如何建立用戶端應用程式、如何呼叫服務的作業，以及如何在完成作業呼叫之後關閉用戶端。</span><span class="sxs-lookup"><span data-stu-id="2b99e-319">Your completed code should appear as follows, showing how to create a client application, how to call the operations of the service, and how to close the client after the operation call is finished.</span></span>
+<span data-ttu-id="d71fa-318">您已完成的程式碼應該會出現，如下所示，顯示如何 toocreate 用戶端應用程式、 toocall hello hello 服務作業的方式和 tooclose hello 作業之後所 hello 的用戶端呼叫已完成。</span><span class="sxs-lookup"><span data-stu-id="d71fa-318">Your completed code should appear as follows, showing how toocreate a client application, how toocall hello operations of hello service, and how tooclose hello client after hello operation call is finished.</span></span>
 
 ```csharp
 using System;
@@ -652,7 +652,7 @@ namespace Microsoft.ServiceBus.Samples
             IEchoChannel channel = channelFactory.CreateChannel();
             channel.Open();
 
-            Console.WriteLine("Enter text to echo (or [Enter] to exit):");
+            Console.WriteLine("Enter text tooecho (or [Enter] tooexit):");
             string input = Console.ReadLine();
             while (input != String.Empty)
             {
@@ -675,52 +675,52 @@ namespace Microsoft.ServiceBus.Samples
 }
 ```
 
-## <a name="run-the-applications"></a><span data-ttu-id="2b99e-320">執行應用程式</span><span class="sxs-lookup"><span data-stu-id="2b99e-320">Run the applications</span></span>
+## <a name="run-hello-applications"></a><span data-ttu-id="d71fa-319">執行 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="d71fa-319">Run hello applications</span></span>
 
-1. <span data-ttu-id="2b99e-321">按 **Ctrl+Shift+B** 以建置方案。</span><span class="sxs-lookup"><span data-stu-id="2b99e-321">Press **Ctrl+Shift+B** to build the solution.</span></span> <span data-ttu-id="2b99e-322">這會建置您在先前步驟中建立的用戶端專案和服務專案。</span><span class="sxs-lookup"><span data-stu-id="2b99e-322">This builds both the client project and the service project that you created in the previous steps.</span></span>
-2. <span data-ttu-id="2b99e-323">執行用戶端應用程式之前，您必須確定服務應用程式正在執行。</span><span class="sxs-lookup"><span data-stu-id="2b99e-323">Before running the client application, you must make sure that the service application is running.</span></span> <span data-ttu-id="2b99e-324">在 Visual Studio 的 [方案總管] 中，以滑鼠右鍵按一下 **EchoService** 方案，然後按一下 [屬性]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-324">In Solution Explorer in Visual Studio, right-click the **EchoService** solution, then click **Properties**.</span></span>
-3. <span data-ttu-id="2b99e-325">在 [方案屬性] 對話方塊中，按一下 [啟始專案]，然後按一下 [多個啟始專案] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="2b99e-325">In the solution properties dialog box, click **Startup Project**, then click the **Multiple startup projects** button.</span></span> <span data-ttu-id="2b99e-326">確定 **EchoService** 顯示在清單中的最前面。</span><span class="sxs-lookup"><span data-stu-id="2b99e-326">Make sure **EchoService** appears first in the list.</span></span>
-4. <span data-ttu-id="2b99e-327">將 **EchoService** 和 **EchoClient** 專案的 [動作] 方塊設定為 [啟動]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-327">Set the **Action** box for both the **EchoService** and **EchoClient** projects to **Start**.</span></span>
+1. <span data-ttu-id="d71fa-320">按**Ctrl + Shift + B** toobuild hello 方案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-320">Press **Ctrl+Shift+B** toobuild hello solution.</span></span> <span data-ttu-id="d71fa-321">這會建置 hello 用戶端專案和 hello hello 先前步驟中建立的服務專案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-321">This builds both hello client project and hello service project that you created in hello previous steps.</span></span>
+2. <span data-ttu-id="d71fa-322">之前執行的 hello 用戶端應用程式，您必須確定 hello 服務應用程式正在執行。</span><span class="sxs-lookup"><span data-stu-id="d71fa-322">Before running hello client application, you must make sure that hello service application is running.</span></span> <span data-ttu-id="d71fa-323">在 Visual Studio 中的方案總管] 中以滑鼠右鍵按一下 hello **EchoService**方案，然後按一下 [**屬性**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-323">In Solution Explorer in Visual Studio, right-click hello **EchoService** solution, then click **Properties**.</span></span>
+3. <span data-ttu-id="d71fa-324">在 [hello 方案內容] 對話方塊中按一下**啟始專案**，然後按一下 [hello**多個啟始專案**] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="d71fa-324">In hello solution properties dialog box, click **Startup Project**, then click hello **Multiple startup projects** button.</span></span> <span data-ttu-id="d71fa-325">請確定**EchoService** hello 清單中第一個出現。</span><span class="sxs-lookup"><span data-stu-id="d71fa-325">Make sure **EchoService** appears first in hello list.</span></span>
+4. <span data-ttu-id="d71fa-326">設定 hello**動作**方塊這兩個 hello **EchoService**和**EchoClient**太專案**啟動**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-326">Set hello **Action** box for both hello **EchoService** and **EchoClient** projects too**Start**.</span></span>
 
     ![][5]
-5. <span data-ttu-id="2b99e-328">按一下 [專案相依性]。</span><span class="sxs-lookup"><span data-stu-id="2b99e-328">Click **Project Dependencies**.</span></span> <span data-ttu-id="2b99e-329">在 [專案] 方塊中，選取 **EchoClient**。</span><span class="sxs-lookup"><span data-stu-id="2b99e-329">In the **Projects** box, select **EchoClient**.</span></span> <span data-ttu-id="2b99e-330">在 [取決於] 方塊中，確定已核取 **EchoService**。</span><span class="sxs-lookup"><span data-stu-id="2b99e-330">In the **Depends on** box, make sure **EchoService** is checked.</span></span>
+5. <span data-ttu-id="d71fa-327">按一下 [專案相依性]。</span><span class="sxs-lookup"><span data-stu-id="d71fa-327">Click **Project Dependencies**.</span></span> <span data-ttu-id="d71fa-328">在 hello**專案**方塊中，選取**EchoClient**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-328">In hello **Projects** box, select **EchoClient**.</span></span> <span data-ttu-id="d71fa-329">在 hello**取決於**方塊中，請確定**EchoService**已核取。</span><span class="sxs-lookup"><span data-stu-id="d71fa-329">In hello **Depends on** box, make sure **EchoService** is checked.</span></span>
 
     ![][6]
-6. <span data-ttu-id="2b99e-331">按一下 [確定] 以關閉 [屬性] 對話方塊。</span><span class="sxs-lookup"><span data-stu-id="2b99e-331">Click **OK** to dismiss the **Properties** dialog.</span></span>
-7. <span data-ttu-id="2b99e-332">按 **F5** 執行這兩個專案。</span><span class="sxs-lookup"><span data-stu-id="2b99e-332">Press **F5** to run both projects.</span></span>
-8. <span data-ttu-id="2b99e-333">兩個主控台視窗隨即開啟並提示您輸入命名空間名稱。</span><span class="sxs-lookup"><span data-stu-id="2b99e-333">Both console windows open and prompt you for the namespace name.</span></span> <span data-ttu-id="2b99e-334">必須先執行服務，因此在 **EchoService** 主控台視窗中輸入命名空間，然後按 **Enter**。</span><span class="sxs-lookup"><span data-stu-id="2b99e-334">The service must run first, so in the **EchoService** console window, enter the namespace and then press **Enter**.</span></span>
-9. <span data-ttu-id="2b99e-335">接下來，系統會提示您輸入 SAS 金鑰。</span><span class="sxs-lookup"><span data-stu-id="2b99e-335">Next, you are prompted for your SAS key.</span></span> <span data-ttu-id="2b99e-336">輸入 SAS 金鑰並按 ENTER 鍵。</span><span class="sxs-lookup"><span data-stu-id="2b99e-336">Enter the SAS key and press ENTER.</span></span>
+6. <span data-ttu-id="d71fa-330">按一下**確定**toodismiss hello**屬性**對話方塊。</span><span class="sxs-lookup"><span data-stu-id="d71fa-330">Click **OK** toodismiss hello **Properties** dialog.</span></span>
+7. <span data-ttu-id="d71fa-331">按**F5** toorun 這兩個專案。</span><span class="sxs-lookup"><span data-stu-id="d71fa-331">Press **F5** toorun both projects.</span></span>
+8. <span data-ttu-id="d71fa-332">兩個主控台視窗開啟，並提示您輸入 hello 命名空間名稱。</span><span class="sxs-lookup"><span data-stu-id="d71fa-332">Both console windows open and prompt you for hello namespace name.</span></span> <span data-ttu-id="d71fa-333">hello 服務必須先執行，所以在 hello **EchoService**主控台視窗中，輸入 hello 命名空間，然後按**Enter**。</span><span class="sxs-lookup"><span data-stu-id="d71fa-333">hello service must run first, so in hello **EchoService** console window, enter hello namespace and then press **Enter**.</span></span>
+9. <span data-ttu-id="d71fa-334">接下來，系統會提示您輸入 SAS 金鑰。</span><span class="sxs-lookup"><span data-stu-id="d71fa-334">Next, you are prompted for your SAS key.</span></span> <span data-ttu-id="d71fa-335">輸入 hello SAS 金鑰，然後按 ENTER。</span><span class="sxs-lookup"><span data-stu-id="d71fa-335">Enter hello SAS key and press ENTER.</span></span>
 
-    <span data-ttu-id="2b99e-337">以下是主控台視窗的範例輸出。</span><span class="sxs-lookup"><span data-stu-id="2b99e-337">Here is example output from the console window.</span></span> <span data-ttu-id="2b99e-338">請注意，此處提供的值僅適用於範例。</span><span class="sxs-lookup"><span data-stu-id="2b99e-338">Note that the values provided here are for example purposes only.</span></span>
+    <span data-ttu-id="d71fa-336">以下是 hello 主控台視窗的輸出範例。</span><span class="sxs-lookup"><span data-stu-id="d71fa-336">Here is example output from hello console window.</span></span> <span data-ttu-id="d71fa-337">請注意以下是僅限用途，例如提供 hello 值。</span><span class="sxs-lookup"><span data-stu-id="d71fa-337">Note that hello values provided here are for example purposes only.</span></span>
 
-    <span data-ttu-id="2b99e-339">`Your Service Namespace: myNamespace` `Your SAS Key: <SAS key value>`</span><span class="sxs-lookup"><span data-stu-id="2b99e-339">`Your Service Namespace: myNamespace` `Your SAS Key: <SAS key value>`</span></span>
+    <span data-ttu-id="d71fa-338">`Your Service Namespace: myNamespace` `Your SAS Key: <SAS key value>`</span><span class="sxs-lookup"><span data-stu-id="d71fa-338">`Your Service Namespace: myNamespace` `Your SAS Key: <SAS key value>`</span></span>
 
-    <span data-ttu-id="2b99e-340">服務應用程式會將它所接聽的位址列印到主控台視窗，如下列範例所示。</span><span class="sxs-lookup"><span data-stu-id="2b99e-340">The service application prints to the console window the address on which it's listening, as seen in the following example.</span></span>
+    <span data-ttu-id="d71fa-339">hello 服務應用程式列印 toohello 主控台視窗 hello 它會接聽的位址，如 hello 下列範例所示。</span><span class="sxs-lookup"><span data-stu-id="d71fa-339">hello service application prints toohello console window hello address on which it's listening, as seen in hello following example.</span></span>
 
-    <span data-ttu-id="2b99e-341">`Service address: sb://mynamespace.servicebus.windows.net/EchoService/` `Press [Enter] to exit`</span><span class="sxs-lookup"><span data-stu-id="2b99e-341">`Service address: sb://mynamespace.servicebus.windows.net/EchoService/` `Press [Enter] to exit`</span></span>
-10. <span data-ttu-id="2b99e-342">在 **EchoClient** 主控台視窗中，輸入您先前針對此服務應用程式輸入的相同資訊。</span><span class="sxs-lookup"><span data-stu-id="2b99e-342">In the **EchoClient** console window, enter the same information that you entered previously for the service application.</span></span> <span data-ttu-id="2b99e-343">遵循上述步驟，為此用戶端應用程式輸入相同的服務命名空間和 SAS 金鑰值。</span><span class="sxs-lookup"><span data-stu-id="2b99e-343">Follow the previous steps to enter the same service namespace and SAS key values for the client application.</span></span>
-11. <span data-ttu-id="2b99e-344">輸入這些值後，用戶端就會開啟服務通道，並提示您輸入一些文字，如下列主控台輸出範例所示。</span><span class="sxs-lookup"><span data-stu-id="2b99e-344">After entering these values, the client opens a channel to the service and prompts you to enter some text as seen in the following console output example.</span></span>
+    <span data-ttu-id="d71fa-340">`Service address: sb://mynamespace.servicebus.windows.net/EchoService/` `Press [Enter] tooexit`</span><span class="sxs-lookup"><span data-stu-id="d71fa-340">`Service address: sb://mynamespace.servicebus.windows.net/EchoService/` `Press [Enter] tooexit`</span></span>
+10. <span data-ttu-id="d71fa-341">在 hello **EchoClient**主控台視窗中，輸入 hello hello 服務應用程式先前輸入的相同資訊。</span><span class="sxs-lookup"><span data-stu-id="d71fa-341">In hello **EchoClient** console window, enter hello same information that you entered previously for hello service application.</span></span> <span data-ttu-id="d71fa-342">請依照上一個步驟 tooenter hello hello 相同的服務命名空間和 SAS 金鑰 hello 用戶端應用程式的值。</span><span class="sxs-lookup"><span data-stu-id="d71fa-342">Follow hello previous steps tooenter hello same service namespace and SAS key values for hello client application.</span></span>
+11. <span data-ttu-id="d71fa-343">輸入這些值之後, hello 用戶端通道 toohello 服務就會開啟，並提示您 tooenter 一些文字，如 hello 下列主控台輸出範例所示。</span><span class="sxs-lookup"><span data-stu-id="d71fa-343">After entering these values, hello client opens a channel toohello service and prompts you tooenter some text as seen in hello following console output example.</span></span>
 
-    `Enter text to echo (or [Enter] to exit):`
+    `Enter text tooecho (or [Enter] tooexit):`
 
-    <span data-ttu-id="2b99e-345">輸入一些文字以傳送至服務應用程式並按 Enter 鍵。</span><span class="sxs-lookup"><span data-stu-id="2b99e-345">Enter some text to send to the service application and press Enter.</span></span> <span data-ttu-id="2b99e-346">這段文字會透過 Echo 服務作業傳送至服務，並如下列範例輸出所示出現在服務主控台視窗。</span><span class="sxs-lookup"><span data-stu-id="2b99e-346">This text is sent to the service through the Echo service operation and appears in the service console window as in the following example output.</span></span>
+    <span data-ttu-id="d71fa-344">輸入一些文字 toosend toohello 服務應用程式，然後按 Enter。</span><span class="sxs-lookup"><span data-stu-id="d71fa-344">Enter some text toosend toohello service application and press Enter.</span></span> <span data-ttu-id="d71fa-345">此文字會傳送 toohello 服務透過 hello Echo 服務作業，並會出現在 hello 服務主控台視窗，如下列範例輸出的 hello 所示。</span><span class="sxs-lookup"><span data-stu-id="d71fa-345">This text is sent toohello service through hello Echo service operation and appears in hello service console window as in hello following example output.</span></span>
 
     `Echoing: My sample text`
 
-    <span data-ttu-id="2b99e-347">用戶端應用程式會接收 `Echo` 作業的傳回值 (此值是原始文字)，並將它列印至主控台視窗。</span><span class="sxs-lookup"><span data-stu-id="2b99e-347">The client application receives the return value of the `Echo` operation, which is the original text, and prints it to its console window.</span></span> <span data-ttu-id="2b99e-348">以下是用戶端主控台視窗的範例輸出。</span><span class="sxs-lookup"><span data-stu-id="2b99e-348">The following is example output from the client console window.</span></span>
+    <span data-ttu-id="d71fa-346">hello 用戶端應用程式收到 hello 傳回值的 hello`Echo`作業，因為它是原始的 hello 文字，並將它列印 tooits 主控台視窗。</span><span class="sxs-lookup"><span data-stu-id="d71fa-346">hello client application receives hello return value of hello `Echo` operation, which is hello original text, and prints it tooits console window.</span></span> <span data-ttu-id="d71fa-347">hello 以下是 hello 用戶端主控台視窗的輸出範例。</span><span class="sxs-lookup"><span data-stu-id="d71fa-347">hello following is example output from hello client console window.</span></span>
 
     `Server echoed: My sample text`
-12. <span data-ttu-id="2b99e-349">您可以繼續以這種方式將文字訊息從用戶端傳送至服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-349">You can continue sending text messages from the client to the service in this manner.</span></span> <span data-ttu-id="2b99e-350">完成後，在用戶端和服務主控台視窗中按 Enter 鍵以結束這兩個應用程式。</span><span class="sxs-lookup"><span data-stu-id="2b99e-350">When you are finished, press Enter in the client and service console windows to end both applications.</span></span>
+12. <span data-ttu-id="d71fa-348">您可以繼續從這種方式中的 hello 用戶端 toohello 服務傳送文字訊息。</span><span class="sxs-lookup"><span data-stu-id="d71fa-348">You can continue sending text messages from hello client toohello service in this manner.</span></span> <span data-ttu-id="d71fa-349">當您完成時，按 Enter 鍵 hello 用戶端和服務主控台視窗 tooend 中兩個應用程式。</span><span class="sxs-lookup"><span data-stu-id="d71fa-349">When you are finished, press Enter in hello client and service console windows tooend both applications.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="2b99e-351">後續步驟</span><span class="sxs-lookup"><span data-stu-id="2b99e-351">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d71fa-350">後續步驟</span><span class="sxs-lookup"><span data-stu-id="d71fa-350">Next steps</span></span>
 
-<span data-ttu-id="2b99e-352">本教學課程示範了如何使用服務匯流排的 WCF 轉送功能，來建置 Azure 轉送用戶端應用程式和服務。</span><span class="sxs-lookup"><span data-stu-id="2b99e-352">This tutorial showed how to build an Azure Relay client application and service using the WCF Relay capabilities of Service Bus.</span></span> <span data-ttu-id="2b99e-353">如需使用[服務匯流排通訊](../service-bus-messaging/service-bus-messaging-overview.md#brokered-messaging)的類似教學課程，請參閱[開始使用服務匯流排佇列](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md)。</span><span class="sxs-lookup"><span data-stu-id="2b99e-353">For a similar tutorial that uses [Service Bus Messaging](../service-bus-messaging/service-bus-messaging-overview.md#brokered-messaging), see [Get started with Service Bus queues](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md).</span></span>
+<span data-ttu-id="d71fa-351">本教學課程示範了如何 toobuild Azure 轉接用戶端應用程式和服務使用 hello 的服務匯流排的 WCF 轉送功能。</span><span class="sxs-lookup"><span data-stu-id="d71fa-351">This tutorial showed how toobuild an Azure Relay client application and service using hello WCF Relay capabilities of Service Bus.</span></span> <span data-ttu-id="d71fa-352">如需使用[服務匯流排通訊](../service-bus-messaging/service-bus-messaging-overview.md#brokered-messaging)的類似教學課程，請參閱[開始使用服務匯流排佇列](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md)。</span><span class="sxs-lookup"><span data-stu-id="d71fa-352">For a similar tutorial that uses [Service Bus Messaging](../service-bus-messaging/service-bus-messaging-overview.md#brokered-messaging), see [Get started with Service Bus queues](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md).</span></span>
 
-<span data-ttu-id="2b99e-354">若要深入了解 Azure 轉送，請參閱下列主題。</span><span class="sxs-lookup"><span data-stu-id="2b99e-354">To learn more about Azure Relay, see the following topics.</span></span>
+<span data-ttu-id="d71fa-353">toolearn 深入了解 Azure 轉送，請參閱下列主題中的 hello。</span><span class="sxs-lookup"><span data-stu-id="d71fa-353">toolearn more about Azure Relay, see hello following topics.</span></span>
 
-* [<span data-ttu-id="2b99e-355">Azure 服務匯流排架構概觀</span><span class="sxs-lookup"><span data-stu-id="2b99e-355">Azure Service Bus architectural overview</span></span>](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md#relays)
-* [<span data-ttu-id="2b99e-356">Azure 轉送概觀</span><span class="sxs-lookup"><span data-stu-id="2b99e-356">Azure Relay overview</span></span>](relay-what-is-it.md)
-* [<span data-ttu-id="2b99e-357">如何使用 WCF 轉送服務搭配 .NET</span><span class="sxs-lookup"><span data-stu-id="2b99e-357">How to use the WCF relay service with .NET</span></span>](relay-wcf-dotnet-get-started.md)
+* [<span data-ttu-id="d71fa-354">Azure 服務匯流排架構概觀</span><span class="sxs-lookup"><span data-stu-id="d71fa-354">Azure Service Bus architectural overview</span></span>](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md#relays)
+* [<span data-ttu-id="d71fa-355">Azure 轉送概觀</span><span class="sxs-lookup"><span data-stu-id="d71fa-355">Azure Relay overview</span></span>](relay-what-is-it.md)
+* [<span data-ttu-id="d71fa-356">如何 toouse hello WCF 轉送服務的.NET</span><span class="sxs-lookup"><span data-stu-id="d71fa-356">How toouse hello WCF relay service with .NET</span></span>](relay-wcf-dotnet-get-started.md)
 
 [Azure classic portal]: http://manage.windowsazure.com
 

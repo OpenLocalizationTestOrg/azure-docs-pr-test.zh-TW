@@ -1,6 +1,6 @@
 ---
-title: "Azure 通知中心安全推播"
-description: "了解如何從 Azure 將安全的推播通知傳送至 iOS 應用程式。 程式碼範例是以 Objective-C 及 C# 撰寫。"
+title: "aaaAzure 集線器安全推播通知"
+description: "了解如何安全 toosend 推播通知 tooan iOS 應用程式從 Azure。 程式碼範例是以 Objective-C 及 C# 撰寫。"
 documentationcenter: ios
 author: ysxu
 manager: erikre
@@ -14,59 +14,59 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: e5f09fb3716303bb21fe7442aa6fa8832174838e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 86dd8d7042e5b9e55d2d7ff41cb42f23831fc575
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-notification-hubs-secure-push"></a><span data-ttu-id="61483-104">Azure 通知中心安全推播</span><span class="sxs-lookup"><span data-stu-id="61483-104">Azure Notification Hubs Secure Push</span></span>
+# <a name="azure-notification-hubs-secure-push"></a><span data-ttu-id="1fc7a-104">Azure 通知中心安全推播</span><span class="sxs-lookup"><span data-stu-id="1fc7a-104">Azure Notification Hubs Secure Push</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="61483-105">Windows Universal</span><span class="sxs-lookup"><span data-stu-id="61483-105">Windows Universal</span></span>](notification-hubs-aspnet-backend-windows-dotnet-wns-secure-push-notification.md)
-> * [<span data-ttu-id="61483-106">iOS</span><span class="sxs-lookup"><span data-stu-id="61483-106">iOS</span></span>](notification-hubs-aspnet-backend-ios-push-apple-apns-secure-notification.md)
-> * [<span data-ttu-id="61483-107">Android</span><span class="sxs-lookup"><span data-stu-id="61483-107">Android</span></span>](notification-hubs-aspnet-backend-android-secure-google-gcm-push-notification.md)
+> * [<span data-ttu-id="1fc7a-105">Windows Universal</span><span class="sxs-lookup"><span data-stu-id="1fc7a-105">Windows Universal</span></span>](notification-hubs-aspnet-backend-windows-dotnet-wns-secure-push-notification.md)
+> * [<span data-ttu-id="1fc7a-106">iOS</span><span class="sxs-lookup"><span data-stu-id="1fc7a-106">iOS</span></span>](notification-hubs-aspnet-backend-ios-push-apple-apns-secure-notification.md)
+> * [<span data-ttu-id="1fc7a-107">Android</span><span class="sxs-lookup"><span data-stu-id="1fc7a-107">Android</span></span>](notification-hubs-aspnet-backend-android-secure-google-gcm-push-notification.md)
 > 
 > 
 
-## <a name="overview"></a><span data-ttu-id="61483-108">Overview</span><span class="sxs-lookup"><span data-stu-id="61483-108">Overview</span></span>
-<span data-ttu-id="61483-109">Microsoft Azure 中的推播通知支援可讓您存取易於使用、多重平台的大規模推播基礎結構，因而可大幅簡化消費者和企業應用程式在行動平台上的推播通知實作。</span><span class="sxs-lookup"><span data-stu-id="61483-109">Push notification support in Microsoft Azure enables you to access an easy-to-use, multiplatform, scaled-out push infrastructure, which greatly simplifies the implementation of push notifications for both consumer and enterprise applications for mobile platforms.</span></span>
+## <a name="overview"></a><span data-ttu-id="1fc7a-108">概觀</span><span class="sxs-lookup"><span data-stu-id="1fc7a-108">Overview</span></span>
+<span data-ttu-id="1fc7a-109">在 Microsoft Azure 推播通知支援可讓您 tooaccess 方便使用、 多平台、 向外延展的推播基礎結構，可大幅簡化 hello 實作消費者和企業行動應用程式的應用程式的推播通知平台。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-109">Push notification support in Microsoft Azure enables you tooaccess an easy-to-use, multiplatform, scaled-out push infrastructure, which greatly simplifies hello implementation of push notifications for both consumer and enterprise applications for mobile platforms.</span></span>
 
-<span data-ttu-id="61483-110">基於法規或安全性限制，應用程式有時會想要在通知中加入無法透過標準推播通知基礎結構傳送的內容。</span><span class="sxs-lookup"><span data-stu-id="61483-110">Due to regulatory or security constraints, sometimes an application might want to include something in the notification that cannot be transmitted through the standard push notification infrastructure.</span></span> <span data-ttu-id="61483-111">本教學課程說明如何透過用戶端裝置和應用程式後端之間的安全、已驗證連線來傳送敏感資訊，以達到相同體驗。</span><span class="sxs-lookup"><span data-stu-id="61483-111">This tutorial describes how to achieve the same experience by sending sensitive information through a secure, authenticated connection between the client device and the app backend.</span></span>
+<span data-ttu-id="1fc7a-110">有時候 tooregulatory 或安全性條件約束，因為應用程式可能會想 tooinclude 中無法透過 hello 標準的推播通知基礎結構傳送的 hello 通知。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-110">Due tooregulatory or security constraints, sometimes an application might want tooinclude something in hello notification that cannot be transmitted through hello standard push notification infrastructure.</span></span> <span data-ttu-id="1fc7a-111">本教學課程描述 tooachieve 如何透過 hello 用戶端裝置與 hello 應用程式後端之間的安全、 已驗證連線的機密資訊傳送 hello 相同的體驗。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-111">This tutorial describes how tooachieve hello same experience by sending sensitive information through a secure, authenticated connection between hello client device and hello app backend.</span></span>
 
-<span data-ttu-id="61483-112">概括而言，流程如下所示：</span><span class="sxs-lookup"><span data-stu-id="61483-112">At a high level, the flow is as follows:</span></span>
+<span data-ttu-id="1fc7a-112">在高層級，hello 流程如下所示：</span><span class="sxs-lookup"><span data-stu-id="1fc7a-112">At a high level, hello flow is as follows:</span></span>
 
-1. <span data-ttu-id="61483-113">應用程式後端：</span><span class="sxs-lookup"><span data-stu-id="61483-113">The app back-end:</span></span>
-   * <span data-ttu-id="61483-114">在後端資料庫中儲存安全裝載。</span><span class="sxs-lookup"><span data-stu-id="61483-114">Stores secure payload in back-end database.</span></span>
-   * <span data-ttu-id="61483-115">將此通知的識別碼傳送至裝置 (不會傳送安全資訊)。</span><span class="sxs-lookup"><span data-stu-id="61483-115">Sends the ID of this notification to the device (no secure information is sent).</span></span>
-2. <span data-ttu-id="61483-116">收到通知時，裝置上的應用程式會執行下列動作：</span><span class="sxs-lookup"><span data-stu-id="61483-116">The app on the device, when receiving the notification:</span></span>
-   * <span data-ttu-id="61483-117">裝置會連絡後端並要求安全裝載。</span><span class="sxs-lookup"><span data-stu-id="61483-117">The device contacts the back-end requesting the secure payload.</span></span>
-   * <span data-ttu-id="61483-118">應用程式會以通知的形式在裝置上顯示裝載。</span><span class="sxs-lookup"><span data-stu-id="61483-118">The app can show the payload as a notification on the device.</span></span>
+1. <span data-ttu-id="1fc7a-113">hello 應用程式後端：</span><span class="sxs-lookup"><span data-stu-id="1fc7a-113">hello app back-end:</span></span>
+   * <span data-ttu-id="1fc7a-114">在後端資料庫中儲存安全裝載。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-114">Stores secure payload in back-end database.</span></span>
+   * <span data-ttu-id="1fc7a-115">會傳送 hello （傳送不安全的資訊） 此通知 toohello 裝置識別碼。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-115">Sends hello ID of this notification toohello device (no secure information is sent).</span></span>
+2. <span data-ttu-id="1fc7a-116">hello 在裝置上，當收到 hello 通知 hello 應用程式：</span><span class="sxs-lookup"><span data-stu-id="1fc7a-116">hello app on hello device, when receiving hello notification:</span></span>
+   * <span data-ttu-id="1fc7a-117">hello 裝置會連絡 hello 後端要求 hello 安全內容。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-117">hello device contacts hello back-end requesting hello secure payload.</span></span>
+   * <span data-ttu-id="1fc7a-118">hello 應用程式可以顯示 hello 裝載為 hello 裝置上的通知。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-118">hello app can show hello payload as a notification on hello device.</span></span>
 
-<span data-ttu-id="61483-119">請務必注意在上述流程 (與本教學課程) 中，我們假設使用者登入後，裝置會將驗證權杖儲存在本機儲存體中。</span><span class="sxs-lookup"><span data-stu-id="61483-119">It is important to note that in the preceding flow (and in this tutorial), we assume that the device stores an authentication token in local storage, after the user logs in.</span></span> <span data-ttu-id="61483-120">由於裝置可使用此權杖擷取通知的安全裝載，因此可保證完全順暢的體驗。</span><span class="sxs-lookup"><span data-stu-id="61483-120">This guarantees a completely seamless experience, as the device can retrieve the notification’s secure payload using this token.</span></span> <span data-ttu-id="61483-121">如果您的應用程式沒有將驗證權杖儲存在裝置上，或如果這些權杖可能會過期，裝置應用程式應在收到通知時顯示一般通知，以提示使用者啟動應用程式。</span><span class="sxs-lookup"><span data-stu-id="61483-121">If your application does not store authentication tokens on the device, or if these tokens can be expired, the device app, upon receiving the notification should display a generic notification prompting the user to launch the app.</span></span> <span data-ttu-id="61483-122">應用程式會接著驗證使用者，並顯示通知裝載。</span><span class="sxs-lookup"><span data-stu-id="61483-122">The app then authenticates the user and shows the notification payload.</span></span>
+<span data-ttu-id="1fc7a-119">請務必 toonote hello 上述流程中 （並在本教學課程），我們會假設該 hello 裝置會儲存在本機儲存體，驗證語彙基元之後 hello 使用者登入。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-119">It is important toonote that in hello preceding flow (and in this tutorial), we assume that hello device stores an authentication token in local storage, after hello user logs in.</span></span> <span data-ttu-id="1fc7a-120">這樣可保證完全完美無瑕的體驗，如 hello 裝置可以擷取 hello 通知安全裝載使用這個語彙基元。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-120">This guarantees a completely seamless experience, as hello device can retrieve hello notification’s secure payload using this token.</span></span> <span data-ttu-id="1fc7a-121">如果您的應用程式不會儲存驗證語彙基元 hello 在裝置上，或可以過期這些語彙基元，hello 裝置的應用程式，並收到 hello 通知應該會顯示提示 hello 使用者 toolaunch hello 應用程式的一般通知。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-121">If your application does not store authentication tokens on hello device, or if these tokens can be expired, hello device app, upon receiving hello notification should display a generic notification prompting hello user toolaunch hello app.</span></span> <span data-ttu-id="1fc7a-122">hello 應用程式然後驗證 hello 使用者，並顯示 hello 通知裝載。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-122">hello app then authenticates hello user and shows hello notification payload.</span></span>
 
-<span data-ttu-id="61483-123">本安全推播教學課程說明如何以安全的方式傳送推播通知。</span><span class="sxs-lookup"><span data-stu-id="61483-123">This Secure Push tutorial shows how to send a push notification securely.</span></span> <span data-ttu-id="61483-124">本教學課程會以 [通知使用者](notification-hubs-aspnet-backend-ios-apple-apns-notification.md) 教學課程為基礎，因此您應先完成該教學課程中的步驟。</span><span class="sxs-lookup"><span data-stu-id="61483-124">The tutorial builds on the [Notify Users](notification-hubs-aspnet-backend-ios-apple-apns-notification.md) tutorial, so you should complete the steps in that tutorial first.</span></span>
+<span data-ttu-id="1fc7a-123">此安全發送教學課程會示範如何 toosend 推播通知安全的方式。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-123">This Secure Push tutorial shows how toosend a push notification securely.</span></span> <span data-ttu-id="1fc7a-124">hello 教學課程是 hello[通知使用者](notification-hubs-aspnet-backend-ios-apple-apns-notification.md)教學課程中，因此，您應該完成 hello 步驟在該教學課程中第一次。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-124">hello tutorial builds on hello [Notify Users](notification-hubs-aspnet-backend-ios-apple-apns-notification.md) tutorial, so you should complete hello steps in that tutorial first.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="61483-125">本教學課程假設您已建立並設定通知中樞，如 [開始使用通知中樞 (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md)中所述。</span><span class="sxs-lookup"><span data-stu-id="61483-125">This tutorial assumes that you have created and configured your notification hub as described in [Getting Started with Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md).</span></span>
+> <span data-ttu-id="1fc7a-125">本教學課程假設您已建立並設定通知中樞，如 [開始使用通知中樞 (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md)中所述。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-125">This tutorial assumes that you have created and configured your notification hub as described in [Getting Started with Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md).</span></span>
 > 
 > 
 
 [!INCLUDE [notification-hubs-aspnet-backend-securepush](../../includes/notification-hubs-aspnet-backend-securepush.md)]
 
-## <a name="modify-the-ios-project"></a><span data-ttu-id="61483-126">修改 iOS 專案</span><span class="sxs-lookup"><span data-stu-id="61483-126">Modify the iOS project</span></span>
-<span data-ttu-id="61483-127">現在，您已修改應用程式後端將只傳送通知的 *id* ，您必須變更 iOS 應用程式來處理該通知，並回呼後端以擷取要顯示的安全訊息。</span><span class="sxs-lookup"><span data-stu-id="61483-127">Now that you modified your app back-end to send just the *id* of a notification, you have to change your iOS app to handle that notification and call back your back-end to retrieve the secure message to be displayed.</span></span>
+## <a name="modify-hello-ios-project"></a><span data-ttu-id="1fc7a-126">修改 hello iOS 專案</span><span class="sxs-lookup"><span data-stu-id="1fc7a-126">Modify hello iOS project</span></span>
+<span data-ttu-id="1fc7a-127">既然您已修改您應用程式後端 toosend 只 hello*識別碼*的通知，您有 toochange 通知和回撥後端 tooretrieve hello 安全訊息 toobe 顯示您 iOS 應用程式 toohandle。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-127">Now that you modified your app back-end toosend just hello *id* of a notification, you have toochange your iOS app toohandle that notification and call back your back-end tooretrieve hello secure message toobe displayed.</span></span>
 
-<span data-ttu-id="61483-128">若要達到此目標，我們必須撰寫可從應用程式後端擷取安全內容的邏輯。</span><span class="sxs-lookup"><span data-stu-id="61483-128">To achieve this goal, we have to write the logic to retrieve the secure content from the app back-end.</span></span>
+<span data-ttu-id="1fc7a-128">tooachieve 此目標中，我們有 toowrite hello 邏輯 tooretrieve hello 安全內容從 hello 應用程式後端。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-128">tooachieve this goal, we have toowrite hello logic tooretrieve hello secure content from hello app back-end.</span></span>
 
-1. <span data-ttu-id="61483-129">在 **AppDelegate.m**中，請確定應用程式已註冊無訊息通知，以便處理從後端傳送出來的通知識別碼。</span><span class="sxs-lookup"><span data-stu-id="61483-129">In **AppDelegate.m**, make sure the app registers for silent notifications so it processes the notification id sent from the backend.</span></span> <span data-ttu-id="61483-130">在 didFinishLaunchingWithOptions 中新增 **UIRemoteNotificationTypeNewsstandContentAvailability** 選項：</span><span class="sxs-lookup"><span data-stu-id="61483-130">Add the **UIRemoteNotificationTypeNewsstandContentAvailability** option in didFinishLaunchingWithOptions:</span></span>
+1. <span data-ttu-id="1fc7a-129">在**d**，請確定 hello 應用程式暫存器，無訊息的通知，以便在處理傳送嗨後端的通知識別碼 hello。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-129">In **AppDelegate.m**, make sure hello app registers for silent notifications so it processes hello notification id sent from hello backend.</span></span> <span data-ttu-id="1fc7a-130">新增 hello **UIRemoteNotificationTypeNewsstandContentAvailability** didFinishLaunchingWithOptions 中的選項：</span><span class="sxs-lookup"><span data-stu-id="1fc7a-130">Add hello **UIRemoteNotificationTypeNewsstandContentAvailability** option in didFinishLaunchingWithOptions:</span></span>
    
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeNewsstandContentAvailability];
-2. <span data-ttu-id="61483-131">在 **AppDelegate.m** 的開頭處，新增包含下列宣告的實作區段：</span><span class="sxs-lookup"><span data-stu-id="61483-131">In your **AppDelegate.m** add an implementation section at the top with the following declaration:</span></span>
+2. <span data-ttu-id="1fc7a-131">在您**d** hello 頂端新增實作區段，以宣告之後的 hello:</span><span class="sxs-lookup"><span data-stu-id="1fc7a-131">In your **AppDelegate.m** add an implementation section at hello top with hello following declaration:</span></span>
    
         @interface AppDelegate ()
         - (void) retrieveSecurePayloadWithId:(int)payloadId completion: (void(^)(NSString*, NSError*)) completion;
         @end
-3. <span data-ttu-id="61483-132">然後在實作區段中新增下列程式碼，並以先前為後端取得的端點取代預留位置 `{back-end endpoint}` ：</span><span class="sxs-lookup"><span data-stu-id="61483-132">Then add in the implementation section the following code, substituting the placeholder `{back-end endpoint}` with the endpoint for your back-end obtained previously:</span></span>
+3. <span data-ttu-id="1fc7a-132">然後，加入下列程式碼，以取代 hello 預留位置 hello 實作區段 hello`{back-end endpoint}`與後端先前取得的 hello 端點：</span><span class="sxs-lookup"><span data-stu-id="1fc7a-132">Then add in hello implementation section hello following code, substituting hello placeholder `{back-end endpoint}` with hello endpoint for your back-end obtained previously:</span></span>
 
 ```
         NSString *const GetNotificationEndpoint = @"{back-end endpoint}/api/notifications";
@@ -115,13 +115,13 @@ ms.lasthandoff: 07/11/2017
         }
 ```
 
-    This method calls your app back-end to retrieve the notification content using the credentials stored in the shared preferences.
+    This method calls your app back-end tooretrieve hello notification content using hello credentials stored in hello shared preferences.
 
-1. <span data-ttu-id="61483-133">現在，我們必須處理內送通知，並使用上述方法擷取要顯示的內容。</span><span class="sxs-lookup"><span data-stu-id="61483-133">Now we have to handle the incoming notification and use the method above to retrieve the content to display.</span></span> <span data-ttu-id="61483-134">首先，我們必須啟用您的 iOS 應用程式，可在接收推播通知時於背景中執行。</span><span class="sxs-lookup"><span data-stu-id="61483-134">First, we have to enable your iOS app to run in the background when receiving a push notification.</span></span> <span data-ttu-id="61483-135">在 **XCode** 中，在左側面板中選取您的應用程式專案，然後在中央窗格的 [目標] 區段中，按一下您的主要應用程式目標。</span><span class="sxs-lookup"><span data-stu-id="61483-135">In **XCode**, select your app project on the left panel, then click your main app target in the **Targets** section from the central pane.</span></span>
-2. <span data-ttu-id="61483-136">接著按一下中央窗格頂端的 [功能] 索引標籤，並核取 [遠端通知] 核取方塊。</span><span class="sxs-lookup"><span data-stu-id="61483-136">Then click your **Capabilities** tab at the top of your central pane, and check the **Remote Notifications** checkbox.</span></span>
+1. <span data-ttu-id="1fc7a-133">現在我們有 toohandle hello 內送通知，並利用上述 tooretrieve hello 內容 toodisplay hello 方法。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-133">Now we have toohandle hello incoming notification and use hello method above tooretrieve hello content toodisplay.</span></span> <span data-ttu-id="1fc7a-134">首先，我們有 tooenable 您的 iOS 應用程式 toorun hello 背景中接收推播通知時。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-134">First, we have tooenable your iOS app toorun in hello background when receiving a push notification.</span></span> <span data-ttu-id="1fc7a-135">在**XCode**，選取應用程式專案 hello 左面板中，然後按一下您主要的應用程式中的目標 hello**目標**hello 中央窗格中的區段。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-135">In **XCode**, select your app project on hello left panel, then click your main app target in hello **Targets** section from hello central pane.</span></span>
+2. <span data-ttu-id="1fc7a-136">然後按一下您**功能**hello 頂端中央窗格中，在索引標籤，並檢查 hello**遠端通知**核取方塊。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-136">Then click your **Capabilities** tab at hello top of your central pane, and check hello **Remote Notifications** checkbox.</span></span>
    
     ![][IOS1]
-3. <span data-ttu-id="61483-137">在 **AppDelegate.m** 中，新增下列可處理推播通知的方法：</span><span class="sxs-lookup"><span data-stu-id="61483-137">In **AppDelegate.m** add the following method to handle push notifications:</span></span>
+3. <span data-ttu-id="1fc7a-137">在**d**新增下列方法 toohandle 推播通知的 hello:</span><span class="sxs-lookup"><span data-stu-id="1fc7a-137">In **AppDelegate.m** add hello following method toohandle push notifications:</span></span>
    
         -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
         {
@@ -144,13 +144,13 @@ ms.lasthandoff: 07/11/2017
    
         }
    
-    <span data-ttu-id="61483-138">請注意，比較理想的案例是處理遺失驗證標頭屬性或遭到後端拒絕的情況。</span><span class="sxs-lookup"><span data-stu-id="61483-138">Note that it is preferable to handle the cases of missing authentication header property or rejection by the back-end.</span></span> <span data-ttu-id="61483-139">這些案例的特定處理絕大部分會依您的目標使用者經驗而定。</span><span class="sxs-lookup"><span data-stu-id="61483-139">The specific handling of these cases depend mostly on your target user experience.</span></span> <span data-ttu-id="61483-140">其中一個選項就是透過一般提示顯示通知，方便使用者進行驗證並擷取實際通知。</span><span class="sxs-lookup"><span data-stu-id="61483-140">One option is to display a notification with a generic prompt for the user to authenticate to retrieve the actual notification.</span></span>
+    <span data-ttu-id="1fc7a-138">請注意，它比 toohandle hello 情況下，缺少驗證標頭屬性或 hello 後端拒絕動作。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-138">Note that it is preferable toohandle hello cases of missing authentication header property or rejection by hello back-end.</span></span> <span data-ttu-id="1fc7a-139">hello 特定處理這些情況通常取決於您目標的使用者經驗。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-139">hello specific handling of these cases depend mostly on your target user experience.</span></span> <span data-ttu-id="1fc7a-140">其中一個選項是 toodisplay hello 使用者 tooauthenticate tooretrieve hello 實際通知的一般提示字元之下一則通知。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-140">One option is toodisplay a notification with a generic prompt for hello user tooauthenticate tooretrieve hello actual notification.</span></span>
 
-## <a name="run-the-application"></a><span data-ttu-id="61483-141">執行應用程式</span><span class="sxs-lookup"><span data-stu-id="61483-141">Run the Application</span></span>
-<span data-ttu-id="61483-142">若要執行應用程式，請執行下列動作：</span><span class="sxs-lookup"><span data-stu-id="61483-142">To run the application, do the following:</span></span>
+## <a name="run-hello-application"></a><span data-ttu-id="1fc7a-141">執行 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="1fc7a-141">Run hello Application</span></span>
+<span data-ttu-id="1fc7a-142">toorun hello 應用程式中，執行下列 hello:</span><span class="sxs-lookup"><span data-stu-id="1fc7a-142">toorun hello application, do hello following:</span></span>
 
-1. <span data-ttu-id="61483-143">在 XCode 中，在實體 iOS 裝置上執行應用程式 (推播通知無法在模擬器中運作)。</span><span class="sxs-lookup"><span data-stu-id="61483-143">In XCode, run the app on a physical iOS device (push notifications will not work in the simulator).</span></span>
-2. <span data-ttu-id="61483-144">在 iOS 應用程式 UI 中，輸入使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="61483-144">In the iOS app UI, enter a username and password.</span></span> <span data-ttu-id="61483-145">這些可以是任何字串，但必須是相同值。</span><span class="sxs-lookup"><span data-stu-id="61483-145">These can be any string, but they must be the same value.</span></span>
-3. <span data-ttu-id="61483-146">在 iOS 應用程式 UI 中，按一下 [登入] 。</span><span class="sxs-lookup"><span data-stu-id="61483-146">In the iOS app UI, click **Log in**.</span></span> <span data-ttu-id="61483-147">然後按一下 [傳送推播] 。</span><span class="sxs-lookup"><span data-stu-id="61483-147">Then click **Send push**.</span></span> <span data-ttu-id="61483-148">您應該會在您的通知中心內看見安全通知。</span><span class="sxs-lookup"><span data-stu-id="61483-148">You should see the secure notification being displayed in your notification center.</span></span>
+1. <span data-ttu-id="1fc7a-143">在 XCode 中，hello 應用程式實體 iOS 裝置上執行 (push 通知將無法運作 hello 模擬器中)。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-143">In XCode, run hello app on a physical iOS device (push notifications will not work in hello simulator).</span></span>
+2. <span data-ttu-id="1fc7a-144">在 hello iOS 應用程式 UI 中輸入使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-144">In hello iOS app UI, enter a username and password.</span></span> <span data-ttu-id="1fc7a-145">這些可以是任何字串，但它們必須 hello 相同的值。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-145">These can be any string, but they must be hello same value.</span></span>
+3. <span data-ttu-id="1fc7a-146">在 hello iOS 應用程式 UI 中按一下**登入**。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-146">In hello iOS app UI, click **Log in**.</span></span> <span data-ttu-id="1fc7a-147">然後按一下 [傳送推播] 。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-147">Then click **Send push**.</span></span> <span data-ttu-id="1fc7a-148">您應該會看到顯示在通知中心中的 hello 安全通知。</span><span class="sxs-lookup"><span data-stu-id="1fc7a-148">You should see hello secure notification being displayed in your notification center.</span></span>
 
 [IOS1]: ./media/notification-hubs-aspnet-backend-ios-secure-push/secure-push-ios-1.png

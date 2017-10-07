@@ -17,7 +17,7 @@
 ### [取得 Azure ML](http://aka.ms/datascienceprocess)
 
 ## Machine Learning Studio
-### [Studio 是什麼？](machine-learning-what-is-ml-studio.md)
+### [什麼是 hello Studio？](machine-learning-what-is-ml-studio.md)
 ### [Studio 容量](machine-learning-studio-overview-diagram.md)
 ### [資訊圖：ML 基本知識](machine-learning-basics-infographic-with-algorithm-examples.md)
 
@@ -40,7 +40,7 @@
 ## 適用於初學者的資料科學
 ### [1：五個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)
 ### [2：您的資料已經準備就緒了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md)
-### [3：詢問正確問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)
+### [3： 提出 hello 右](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)
 ### [4：預測解答](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md)
 ### [5：複製其他人的工作](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md)
 
@@ -54,8 +54,8 @@
 ### [自訂 Hadoop](machine-learning-data-science-customize-hadoop-cluster.md)
 ### 設定虛擬機器
 #### [DS VM 概觀](machine-learning-data-science-virtual-machine-overview.md)
-#### [如何使用 DS VM](machine-learning-data-science-vm-do-ten-things.md)
-#### [佈建 DS VM](machine-learning-data-science-provision-vm.md)
+#### [如何 toouse hello DS VM](machine-learning-data-science-vm-do-ten-things.md)
+#### [佈建 hello DS VM](machine-learning-data-science-provision-vm.md)
 #### [定 Azure VM](machine-learning-data-science-setup-virtual-machine.md)
 #### [定 SQL VM](machine-learning-data-science-setup-sql-server-virtual-machine.md)
 #### [佈建 Linux VM](machine-learning-data-science-linux-dsvm-intro.md)
@@ -79,8 +79,8 @@
 #### [使用 AzCopy](machine-learning-data-science-move-data-to-azure-blob-using-azcopy.md)
 #### [使用 Python](machine-learning-data-science-move-data-to-azure-blob-using-python.md)
 #### [使用 SSIS](machine-learning-data-science-move-data-to-azure-blob-using-ssis.md)
-#### [移至 VM](machine-learning-data-science-move-sql-server-virtual-machine.md)
-#### [移至 SQL Database](machine-learning-data-science-move-sql-azure.md)
+#### [移動 tooa VM](machine-learning-data-science-move-sql-server-virtual-machine.md)
+#### [移動 tooSQL 資料庫](machine-learning-data-science-move-sql-azure.md)
 #### [載入 Hive 資料表](machine-learning-data-science-move-hive-tables.md)
 #### [從內部部署 SQL 載入](machine-learning-data-science-move-sql-azure-adf.md)
 #### [載入 fromSQL 分割資料表](machine-learning-data-science-parallel-load-sql-partitioned-tables.md)
@@ -119,7 +119,7 @@
 ### 建立模型並加以定型
 #### [實驗生命週期管理](machine-learning-version-control.md)
 #### [管理反覆運算次數](machine-learning-manage-experiment-iterations.md)
-#### [使用 PowerShell 建立模型](machine-learning-create-models-and-endpoints-with-powershell.md)
+#### [使用 PowerShell toocreate 模型](machine-learning-create-models-and-endpoints-with-powershell.md)
 #### 選取演算法
 ##### [選擇演算法](machine-learning-algorithm-choice.md)
 ##### [演算法功能提要](machine-learning-algorithm-cheat-sheet.md)

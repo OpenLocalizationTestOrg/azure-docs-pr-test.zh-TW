@@ -1,6 +1,6 @@
 ---
-title: "連接到Azure Container Service 叢集 | Microsoft Docs"
-description: "從遠端電腦連接到 Azure Container Service 中的 Kubernetes、DC/OS 或 Docker Swarm 叢集"
+title: "aaaConnect tooan Azure 容器服務叢集 |Microsoft 文件"
+description: "在 Azure 容器服務中的 tooa Kubernetes、 DC/作業系統，或 Docker Swarm 叢集連線從遠端電腦"
 services: container-service
 documentationcenter: 
 author: dlepow
@@ -17,10 +17,10 @@ ms.workload: na
 ms.date: 03/01/2017
 ms.author: rogardle
 ms.custom: H1Hack27Feb2017, mvc
-ms.openlocfilehash: b741e4919ce7d5bf20d82c366a92be1cf1b8599f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b39c908832dd440774e8a33f7051b6bfe0fc5956
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [container-service-connect.md](../../../includes/container-service-connect.md)]

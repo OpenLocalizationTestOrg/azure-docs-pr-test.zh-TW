@@ -1,0 +1,80 @@
+---
+title: "Azure Service Fabric 可靠的服務的 hello 生命週期的 aaaOverview |Microsoft 文件"
+description: "深入了解 Service Fabric 可靠的服務中的 hello 不同的生命週期事件"
+services: Service-Fabric
+documentationcenter: java
+author: PavanKunapareddyMSFT
+manager: timlt
+ms.assetid: 
+ms.service: Service-Fabric
+ms.devlang: java
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 06/30/2017
+ms.author: pakunapa;
+ms.openlocfilehash: 6d48c217d12bc5248c2da57b544aac747cecd872
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/06/2017
+---
+# <a name="reliable-services-lifecycle-overview"></a><span data-ttu-id="94f42-103">Reliable Services 生命週期概觀</span><span class="sxs-lookup"><span data-stu-id="94f42-103">Reliable services lifecycle overview</span></span>
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="94f42-104">Windows 上的 C# </span><span class="sxs-lookup"><span data-stu-id="94f42-104">C# on Windows</span></span>](service-fabric-reliable-services-lifecycle.md)
+> * [<span data-ttu-id="94f42-105">在 Linux 上使用 Java</span><span class="sxs-lookup"><span data-stu-id="94f42-105">Java on Linux</span></span>](service-fabric-reliable-services-lifecycle-java.md)
+>
+>
+
+<span data-ttu-id="94f42-106">在思考 hello 生命週期的可靠的服務，hello 生命週期的 hello 基本概念是最重要的 hello。</span><span class="sxs-lookup"><span data-stu-id="94f42-106">When thinking about hello lifecycles of Reliable Services, hello basics of hello lifecycle are hello most important.</span></span> <span data-ttu-id="94f42-107">一般而言：</span><span class="sxs-lookup"><span data-stu-id="94f42-107">In general:</span></span>
+
+* <span data-ttu-id="94f42-108">在啟動期間</span><span class="sxs-lookup"><span data-stu-id="94f42-108">During Startup</span></span>
+  * <span data-ttu-id="94f42-109">建構服務</span><span class="sxs-lookup"><span data-stu-id="94f42-109">Services are constructed</span></span>
+  * <span data-ttu-id="94f42-110">它們有機會 tooconstruct 與傳回零個或多個接聽程式</span><span class="sxs-lookup"><span data-stu-id="94f42-110">They have an opportunity tooconstruct and return zero or more listeners</span></span>
+  * <span data-ttu-id="94f42-111">任何傳回的接聽程式會開啟，可讓與 hello 服務的通訊</span><span class="sxs-lookup"><span data-stu-id="94f42-111">Any returned listeners are opened, allowing communication with hello service</span></span>
+  * <span data-ttu-id="94f42-112">呼叫 hello 服務 runAsync 方法，允許 hello 長時間執行的服務 toodo 或背景工作</span><span class="sxs-lookup"><span data-stu-id="94f42-112">hello Service's runAsync method is called, allowing hello service toodo long running or background work</span></span>
+* <span data-ttu-id="94f42-113">在關閉期間</span><span class="sxs-lookup"><span data-stu-id="94f42-113">During shutdown</span></span>
+  * <span data-ttu-id="94f42-114">hello 取消語彙基元傳遞的 toorunAsync 會取消，且會關閉 hello 接聽程式</span><span class="sxs-lookup"><span data-stu-id="94f42-114">hello cancellation token passed toorunAsync is canceled, and hello listeners are closed</span></span>
+  * <span data-ttu-id="94f42-115">完成後，hello 服務物件本身解構</span><span class="sxs-lookup"><span data-stu-id="94f42-115">Once that is complete, hello service object itself is destructed</span></span>
+
+<span data-ttu-id="94f42-116">沒有確切的這些事件排序的 hello 周圍的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="94f42-116">There are details around hello exact ordering of these events.</span></span> <span data-ttu-id="94f42-117">特別是，事件 hello 順序有可能變更根據 hello 可靠的服務是無狀態或可設定狀態。</span><span class="sxs-lookup"><span data-stu-id="94f42-117">In particular, hello order of events may change slightly depending on whether hello Reliable Service is Stateless or Stateful.</span></span> <span data-ttu-id="94f42-118">此外，可設定狀態服務，我們有 toodeal hello 主要交換案例。</span><span class="sxs-lookup"><span data-stu-id="94f42-118">In addition, for stateful services, we have toodeal with hello Primary swap scenario.</span></span> <span data-ttu-id="94f42-119">在此順序，hello 主要角色是傳送的 tooanother 複本 （或恢復） 沒有 hello 服務正在關閉。</span><span class="sxs-lookup"><span data-stu-id="94f42-119">During this sequence, hello role of Primary is transferred tooanother replica (or comes back) without hello service shutting down.</span></span> <span data-ttu-id="94f42-120">最後，我們有 toothink 相關錯誤或失敗的狀況。</span><span class="sxs-lookup"><span data-stu-id="94f42-120">Finally, we have toothink about error or failure conditions.</span></span>
+
+## <a name="stateless-service-startup"></a><span data-ttu-id="94f42-121">無狀態服務啟動</span><span class="sxs-lookup"><span data-stu-id="94f42-121">Stateless service startup</span></span>
+<span data-ttu-id="94f42-122">無狀態服務的 hello 生命週期是相當簡單。</span><span class="sxs-lookup"><span data-stu-id="94f42-122">hello lifecycle of a stateless service is fairly straightforward.</span></span> <span data-ttu-id="94f42-123">以下是 hello 的事件順序：</span><span class="sxs-lookup"><span data-stu-id="94f42-123">Here's hello order of events:</span></span>
+
+1. <span data-ttu-id="94f42-124">hello 服務建構期間</span><span class="sxs-lookup"><span data-stu-id="94f42-124">hello Service is constructed</span></span>
+2. <span data-ttu-id="94f42-125">接著，兩件事平行發生︰</span><span class="sxs-lookup"><span data-stu-id="94f42-125">Then, in parallel two things happen:</span></span>
+    - <span data-ttu-id="94f42-126">叫用 `StatelessService.createServiceInstanceListeners()`，並「開啟」任何傳回的接聽程式 (在每個接聽程式上呼叫 `CommunicationListener.openAsync()`)</span><span class="sxs-lookup"><span data-stu-id="94f42-126">`StatelessService.createServiceInstanceListeners()` is invoked and any returned listeners are Opened (`CommunicationListener.openAsync()` is called on each listener)</span></span>
+    - <span data-ttu-id="94f42-127">hello 服務的 runAsync 方法 (`StatelessService.runAsync()`) 呼叫</span><span class="sxs-lookup"><span data-stu-id="94f42-127">hello service's runAsync method (`StatelessService.runAsync()`) is called</span></span>
+3. <span data-ttu-id="94f42-128">如果存在，會呼叫 hello 服務本身 onOpenAsync 方法 (特別是，`StatelessService.onOpenAsync()`呼叫。</span><span class="sxs-lookup"><span data-stu-id="94f42-128">If present, hello service's own onOpenAsync method is called (Specifically, `StatelessService.onOpenAsync()` is called.</span></span> <span data-ttu-id="94f42-129">這是不常用的覆寫，但可用)。</span><span class="sxs-lookup"><span data-stu-id="94f42-129">This is an uncommon override but it is available).</span></span>
+
+<span data-ttu-id="94f42-130">很重要的 toonote 沒有 hello 呼叫 toocreate 與開啟的 hello 接聽程式和 runAsync 之間沒有順序。</span><span class="sxs-lookup"><span data-stu-id="94f42-130">It is important toonote that there is no ordering between hello calls toocreate and open hello listeners and runAsync.</span></span> <span data-ttu-id="94f42-131">runAsync 啟動之前，可能會開啟 hello 接聽程式。</span><span class="sxs-lookup"><span data-stu-id="94f42-131">hello listeners may open before runAsync is started.</span></span> <span data-ttu-id="94f42-132">同樣地，runAsync 最後可能之前已開啟 hello 通訊接聽程式，或甚至建構叫用。</span><span class="sxs-lookup"><span data-stu-id="94f42-132">Similarly, runAsync may end up invoked before hello communication listeners are open or have even been constructed.</span></span> <span data-ttu-id="94f42-133">如果任何同步處理，它會保持為練習 toohello 實作者。</span><span class="sxs-lookup"><span data-stu-id="94f42-133">If any synchronization is required, it is left as an exercise toohello implementer.</span></span> <span data-ttu-id="94f42-134">常見的解決方案︰</span><span class="sxs-lookup"><span data-stu-id="94f42-134">Common solutions:</span></span>
+
+* <span data-ttu-id="94f42-135">有時，必須等到建立其他一些資訊或完成工作後，接聽程式才能運作。</span><span class="sxs-lookup"><span data-stu-id="94f42-135">Sometimes listeners can't function until some other information is created or work done.</span></span> <span data-ttu-id="94f42-136">工作通常可依 hello 服務的建構函式，在 hello 期間的無狀態服務`createServiceInstanceListeners()`呼叫，或 hello 建構 hello 接聽程式本身的一部分。</span><span class="sxs-lookup"><span data-stu-id="94f42-136">For stateless services that work can usually be done in hello service's constructor, during hello `createServiceInstanceListeners()` call, or as a part of hello construction of hello listener itself.</span></span>
+* <span data-ttu-id="94f42-137">有時 hello runAsync 中的程式碼不想 toostart 直到 hello 接聽程式會開啟。</span><span class="sxs-lookup"><span data-stu-id="94f42-137">Sometimes hello code in runAsync does not want toostart until hello listeners are open.</span></span> <span data-ttu-id="94f42-138">在此情況下，額外的協調有必要。</span><span class="sxs-lookup"><span data-stu-id="94f42-138">In this case additional coordination is necessary.</span></span> <span data-ttu-id="94f42-139">一個常見的解決方案是某些旗標，指出它們都完成時，它才能繼續 tooactual 工作簽入 runAsync hello 接聽程式內。</span><span class="sxs-lookup"><span data-stu-id="94f42-139">One common solution is some flag within hello listeners indicating when they have completed, which is checked in runAsync before continuing tooactual work.</span></span>
+
+## <a name="stateless-service-shutdown"></a><span data-ttu-id="94f42-140">無狀態服務關閉</span><span class="sxs-lookup"><span data-stu-id="94f42-140">Stateless service shutdown</span></span>
+<span data-ttu-id="94f42-141">當您關閉無狀態服務，遵循相同的模式，只是在反向 hello:</span><span class="sxs-lookup"><span data-stu-id="94f42-141">When shutting down a stateless service, hello same pattern is followed, just in reverse:</span></span>
+
+1. <span data-ttu-id="94f42-142">平行</span><span class="sxs-lookup"><span data-stu-id="94f42-142">In parallel</span></span>
+    - <span data-ttu-id="94f42-143">「關閉」任何開啟的接聽程式 (在每個接聽程式上呼叫 `CommunicationListener.closeAsync()`)</span><span class="sxs-lookup"><span data-stu-id="94f42-143">Any open listeners are Closed (`CommunicationListener.closeAsync()` is called on each listener)</span></span>
+    - <span data-ttu-id="94f42-144">hello 取消語彙基元傳遞太`runAsync()`取消 (檢查 hello 取消語彙基元的`isCancelled`屬性會傳回 true，如果呼叫 hello 語彙基元和`throwIfCancellationRequested`方法會擲回`CancellationException`)</span><span class="sxs-lookup"><span data-stu-id="94f42-144">hello cancellation token passed too`runAsync()` is canceled (checking hello cancellation token's `isCancelled` property returns true, and if called hello token's `throwIfCancellationRequested` method throws a `CancellationException`)</span></span>
+2. <span data-ttu-id="94f42-145">一次`closeAsync()`完成每個接聽程式和`runAsync()`也完成 hello 服務`StatelessService.onCloseAsync()`呼叫方法時，如果存在的話 （一次這是不常見的覆寫）。</span><span class="sxs-lookup"><span data-stu-id="94f42-145">Once `closeAsync()` completes on each listener and `runAsync()` also completes, hello service's `StatelessService.onCloseAsync()` method is called, if present (again this is an uncommon override).</span></span>
+3. <span data-ttu-id="94f42-146">之後`StatelessService.onCloseAsync()`完成時，解構 hello 服務物件</span><span class="sxs-lookup"><span data-stu-id="94f42-146">After `StatelessService.onCloseAsync()` completes, hello service object is destructed</span></span>
+
+## <a name="notes-on-service-lifecycle"></a><span data-ttu-id="94f42-147">服務生命週期的注意事項</span><span class="sxs-lookup"><span data-stu-id="94f42-147">Notes on service lifecycle</span></span>
+* <span data-ttu-id="94f42-148">這兩個 hello`runAsync()`方法和 hello`createServiceInstanceListeners`呼叫是選擇性的。</span><span class="sxs-lookup"><span data-stu-id="94f42-148">Both hello `runAsync()` method and hello `createServiceInstanceListeners` calls are optional.</span></span> <span data-ttu-id="94f42-149">一個服務可能具有其中一個、兩者或都沒有。</span><span class="sxs-lookup"><span data-stu-id="94f42-149">A service may have one of them, both, or neither.</span></span> <span data-ttu-id="94f42-150">例如，hello 服務沒有回應 toouser 呼叫其工作，是否有不需要 tooimplement `runAsync()`。</span><span class="sxs-lookup"><span data-stu-id="94f42-150">For example, if hello service does all its work in response toouser calls, there is no need for it tooimplement `runAsync()`.</span></span> <span data-ttu-id="94f42-151">只有 hello 通訊接聽程式和其相關聯的程式碼是必要的。</span><span class="sxs-lookup"><span data-stu-id="94f42-151">Only hello communication listeners and their associated code are necessary.</span></span> <span data-ttu-id="94f42-152">同樣地，建立和傳回通訊接聽程式是選擇性的因為 hello 服務可能會有背景工作 toodo，並因此只需要 tooimplement`runAsync()`</span><span class="sxs-lookup"><span data-stu-id="94f42-152">Similarly, creating and returning communication listeners is optional, as hello service may have only background work toodo, and so only needs tooimplement `runAsync()`</span></span>
+* <span data-ttu-id="94f42-153">是有效的服務 toocomplete`runAsync()`已成功從它傳回。</span><span class="sxs-lookup"><span data-stu-id="94f42-153">It is valid for a service toocomplete `runAsync()` successfully and return from it.</span></span> <span data-ttu-id="94f42-154">這不是失敗狀況，並會表示 hello 服務完成的 hello 背景工作。</span><span class="sxs-lookup"><span data-stu-id="94f42-154">This is not considered a failure condition and would represent hello background work of hello service completing.</span></span> <span data-ttu-id="94f42-155">可設定狀態的可靠服務`runAsync()`如果 hello 服務都已從主要降級，且再升級後 tooprimary 會再次呼叫。</span><span class="sxs-lookup"><span data-stu-id="94f42-155">For stateful reliable services `runAsync()` would be called again if hello service were demoted from primary and then promoted back tooprimary.</span></span>
+* <span data-ttu-id="94f42-156">如果服務結束`runAsync()`擲回某些非預期的例外狀況，這是失敗和 hello 服務物件會關閉並回報健全狀況錯誤。</span><span class="sxs-lookup"><span data-stu-id="94f42-156">If a service exits from `runAsync()` by throwing some unexpected exception, this is a failure and hello service object is shut down and a health error reported.</span></span>
+* <span data-ttu-id="94f42-157">雖然在這些方法在傳回沒有沒有時間限制，您會立即失去 hello 能力 toowrite，因此無法完成任何實際工作。</span><span class="sxs-lookup"><span data-stu-id="94f42-157">While there is no time limit on returning from these methods, you immediately lose hello ability toowrite and therefore cannot complete any real work.</span></span> <span data-ttu-id="94f42-158">建議您傳回為儘速收到 hello 取消要求。</span><span class="sxs-lookup"><span data-stu-id="94f42-158">It is recommended that you return as quickly as possible upon receiving hello cancellation request.</span></span> <span data-ttu-id="94f42-159">如果您的服務沒有回應 toothese API 呼叫，在合理的時間服務網狀架構可能會強制終止您的服務。</span><span class="sxs-lookup"><span data-stu-id="94f42-159">If your service does not respond toothese API calls in a reasonable amount of time Service Fabric may forcibly terminate your service.</span></span> <span data-ttu-id="94f42-160">這通常只發生在應用程式升級期間或刪除服務時。</span><span class="sxs-lookup"><span data-stu-id="94f42-160">Usually this only happens during application upgrades or when a service is being deleted.</span></span> <span data-ttu-id="94f42-161">此逾時預設為 15 分鐘。</span><span class="sxs-lookup"><span data-stu-id="94f42-161">This timeout is 15 minutes by default.</span></span>
+* <span data-ttu-id="94f42-162">Hello 失敗`onCloseAsync()`path 結果中的`onAbort()`被呼叫的是最後一個機會最佳效能的機會 hello 註冊服務 tooclean 和釋放它們宣告任何資源。</span><span class="sxs-lookup"><span data-stu-id="94f42-162">Failures in hello `onCloseAsync()` path result in `onAbort()` being called which is a last-chance best-effort opportunity for hello service tooclean up and release any resources that they have claimed.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="94f42-163">Java 中尚未支援具狀態 Reliable Services。</span><span class="sxs-lookup"><span data-stu-id="94f42-163">Stateful reliable services are not supported in java yet.</span></span>
+>
+>
+
+## <a name="next-steps"></a><span data-ttu-id="94f42-164">後續步驟</span><span class="sxs-lookup"><span data-stu-id="94f42-164">Next steps</span></span>
+* [<span data-ttu-id="94f42-165">簡介 tooReliable 服務</span><span class="sxs-lookup"><span data-stu-id="94f42-165">Introduction tooReliable Services</span></span>](service-fabric-reliable-services-introduction.md)
+* [<span data-ttu-id="94f42-166">Reliable Services 快速入門</span><span class="sxs-lookup"><span data-stu-id="94f42-166">Reliable Services quick start</span></span>](service-fabric-reliable-services-quick-start.md)
+* [<span data-ttu-id="94f42-167">Reliable Services 的進階用法</span><span class="sxs-lookup"><span data-stu-id="94f42-167">Reliable Services advanced usage</span></span>](service-fabric-reliable-services-advanced-usage.md)

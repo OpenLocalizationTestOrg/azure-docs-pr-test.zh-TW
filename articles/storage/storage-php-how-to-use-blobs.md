@@ -1,6 +1,6 @@
 ---
-title: "如何使用 PHP 的 Blob 儲存體 (物件儲存體) | Microsoft Docs"
-description: "使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
+title: "aaaHow toouse blob 儲存體 （物件儲存體） 從 PHP |Microsoft 文件"
+description: "使用 Azure Blob 儲存體 （物件儲存體） 的 hello 雲端中儲存非結構化的資料。"
 documentationcenter: php
 services: storage
 author: mmacy
@@ -14,44 +14,44 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: 2c356d7faafa8ef4591087b5b1f949b9374732be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 331405e583c17c4f71acacdc0078b2bc71efbef0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-php"></a><span data-ttu-id="3ee53-103">如何使用 PHP 的 Blob 儲存體</span><span class="sxs-lookup"><span data-stu-id="3ee53-103">How to use blob storage from PHP</span></span>
+# <a name="how-toouse-blob-storage-from-php"></a><span data-ttu-id="b18bd-103">如何 toouse blob 來自 PHP 的儲存體</span><span class="sxs-lookup"><span data-stu-id="b18bd-103">How toouse blob storage from PHP</span></span>
 [!INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-blobs.md)]
 
-## <a name="overview"></a><span data-ttu-id="3ee53-104">Overview</span><span class="sxs-lookup"><span data-stu-id="3ee53-104">Overview</span></span>
-<span data-ttu-id="3ee53-105">Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/blob 的服務。</span><span class="sxs-lookup"><span data-stu-id="3ee53-105">Azure Blob storage is a service that stores unstructured data in the cloud as objects/blobs.</span></span> <span data-ttu-id="3ee53-106">Blob 儲存體可以儲存任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。</span><span class="sxs-lookup"><span data-stu-id="3ee53-106">Blob storage can store any type of text or binary data, such as a document, media file, or application installer.</span></span> <span data-ttu-id="3ee53-107">Blob 儲存體也稱為物件儲存體。</span><span class="sxs-lookup"><span data-stu-id="3ee53-107">Blob storage is also referred to as object storage.</span></span>
+## <a name="overview"></a><span data-ttu-id="b18bd-104">概觀</span><span class="sxs-lookup"><span data-stu-id="b18bd-104">Overview</span></span>
+<span data-ttu-id="b18bd-105">Azure Blob 儲存體是 hello 雲端中儲存非結構化的資料，做為物件/blob 服務。</span><span class="sxs-lookup"><span data-stu-id="b18bd-105">Azure Blob storage is a service that stores unstructured data in hello cloud as objects/blobs.</span></span> <span data-ttu-id="b18bd-106">Blob 儲存體可以儲存任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。</span><span class="sxs-lookup"><span data-stu-id="b18bd-106">Blob storage can store any type of text or binary data, such as a document, media file, or application installer.</span></span> <span data-ttu-id="b18bd-107">Blob 儲存體也是參考的 tooas 物件儲存體。</span><span class="sxs-lookup"><span data-stu-id="b18bd-107">Blob storage is also referred tooas object storage.</span></span>
 
-<span data-ttu-id="3ee53-108">本指南會示範如何使用 Azure Blob 服務執行一般案例。</span><span class="sxs-lookup"><span data-stu-id="3ee53-108">This guide shows you how to perform common scenarios using the Azure blob service.</span></span> <span data-ttu-id="3ee53-109">這些範例均是以 PHP 撰寫，並使用 [Azure SDK for PHP][download]。</span><span class="sxs-lookup"><span data-stu-id="3ee53-109">The samples are written in PHP and use the [Azure SDK for PHP][download].</span></span> <span data-ttu-id="3ee53-110">所涵蓋的案例包括**上傳**、**列出**、**下載**及**刪除** Blob。</span><span class="sxs-lookup"><span data-stu-id="3ee53-110">The scenarios covered include **uploading**, **listing**, **downloading**, and **deleting** blobs.</span></span> <span data-ttu-id="3ee53-111">如需 Blob 的詳細資訊，請參閱 [後續步驟](#next-steps) 一節。</span><span class="sxs-lookup"><span data-stu-id="3ee53-111">For more information on blobs, see the [Next steps](#next-steps) section.</span></span>
+<span data-ttu-id="b18bd-108">本指南也說明如何 tooperform 常見的案例，使用 hello Azure blob 服務。</span><span class="sxs-lookup"><span data-stu-id="b18bd-108">This guide shows you how tooperform common scenarios using hello Azure blob service.</span></span> <span data-ttu-id="b18bd-109">hello 範例以 PHP 撰寫和使用 hello [Azure SDK for PHP][download]。</span><span class="sxs-lookup"><span data-stu-id="b18bd-109">hello samples are written in PHP and use hello [Azure SDK for PHP][download].</span></span> <span data-ttu-id="b18bd-110">hello 涵蓋案例包括**上載**，**列出**，**下載**，和**刪除**blob。</span><span class="sxs-lookup"><span data-stu-id="b18bd-110">hello scenarios covered include **uploading**, **listing**, **downloading**, and **deleting** blobs.</span></span> <span data-ttu-id="b18bd-111">如需有關 blob 的詳細資訊，請參閱 hello[後續步驟](#next-steps)> 一節。</span><span class="sxs-lookup"><span data-stu-id="b18bd-111">For more information on blobs, see hello [Next steps](#next-steps) section.</span></span>
 
 [!INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-## <a name="create-a-php-application"></a><span data-ttu-id="3ee53-112">建立 PHP 應用程式</span><span class="sxs-lookup"><span data-stu-id="3ee53-112">Create a PHP application</span></span>
-<span data-ttu-id="3ee53-113">若要建立 PHP 應用程式並使其存取 Azure Blob 服務，唯一要求就是在您的程式碼中參考 Azure SDK for PHP 中的類別。</span><span class="sxs-lookup"><span data-stu-id="3ee53-113">The only requirement for creating a PHP application that accesses the Azure blob service is the referencing of classes in the Azure SDK for PHP from within your code.</span></span> <span data-ttu-id="3ee53-114">您可以使用任何開發工具來建立應用程式 (包括 [記事本])。</span><span class="sxs-lookup"><span data-stu-id="3ee53-114">You can use any development tools to create your application, including Notepad.</span></span>
+## <a name="create-a-php-application"></a><span data-ttu-id="b18bd-112">建立 PHP 應用程式</span><span class="sxs-lookup"><span data-stu-id="b18bd-112">Create a PHP application</span></span>
+<span data-ttu-id="b18bd-113">只有建立 PHP 應用程式存取 hello Azure blob 服務的需求為 hello hello 參考 hello Azure SDK 中的類別從 PHP 的程式碼內。</span><span class="sxs-lookup"><span data-stu-id="b18bd-113">hello only requirement for creating a PHP application that accesses hello Azure blob service is hello referencing of classes in hello Azure SDK for PHP from within your code.</span></span> <span data-ttu-id="b18bd-114">您可以使用任何開發工具 toocreate 您的應用程式，包括 [記事本]。</span><span class="sxs-lookup"><span data-stu-id="b18bd-114">You can use any development tools toocreate your application, including Notepad.</span></span>
 
-<span data-ttu-id="3ee53-115">在本指南中，您會使用可從 PHP 應用程式內本機呼叫的服務功能，或可在 Azure Web 角色、背景工作角色或網站內執行的程式碼中呼叫的服務功能。</span><span class="sxs-lookup"><span data-stu-id="3ee53-115">In this guide, you use service features, which can be called within a PHP application locally or in code running within an Azure web role, worker role, or website.</span></span>
+<span data-ttu-id="b18bd-115">在本指南中，您會使用可從 PHP 應用程式內本機呼叫的服務功能，或可在 Azure Web 角色、背景工作角色或網站內執行的程式碼中呼叫的服務功能。</span><span class="sxs-lookup"><span data-stu-id="b18bd-115">In this guide, you use service features, which can be called within a PHP application locally or in code running within an Azure web role, worker role, or website.</span></span>
 
-## <a name="get-the-azure-client-libraries"></a><span data-ttu-id="3ee53-116">取得 Azure 用戶端程式庫</span><span class="sxs-lookup"><span data-stu-id="3ee53-116">Get the Azure Client Libraries</span></span>
+## <a name="get-hello-azure-client-libraries"></a><span data-ttu-id="b18bd-116">取得 hello Azure 用戶端程式庫</span><span class="sxs-lookup"><span data-stu-id="b18bd-116">Get hello Azure Client Libraries</span></span>
 [!INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
 
-## <a name="configure-your-application-to-access-the-blob-service"></a><span data-ttu-id="3ee53-117">設定您的應用程式以存取 Blob 服務</span><span class="sxs-lookup"><span data-stu-id="3ee53-117">Configure your application to access the blob service</span></span>
-<span data-ttu-id="3ee53-118">若要使用 Azure Blob 服務 API，您必須：</span><span class="sxs-lookup"><span data-stu-id="3ee53-118">To use the Azure blob service APIs, you need to:</span></span>
+## <a name="configure-your-application-tooaccess-hello-blob-service"></a><span data-ttu-id="b18bd-117">設定您的應用程式 tooaccess hello 的 blob 服務</span><span class="sxs-lookup"><span data-stu-id="b18bd-117">Configure your application tooaccess hello blob service</span></span>
+<span data-ttu-id="b18bd-118">您需要 toouse hello Azure blob 服務 Api:</span><span class="sxs-lookup"><span data-stu-id="b18bd-118">toouse hello Azure blob service APIs, you need to:</span></span>
 
-1. <span data-ttu-id="3ee53-119">參考使用 [require_once] 陳述式的自動載入器檔案，以及</span><span class="sxs-lookup"><span data-stu-id="3ee53-119">Reference the autoloader file using the [require_once] statement, and</span></span>
-2. <span data-ttu-id="3ee53-120">參考任何您可能使用的類別。</span><span class="sxs-lookup"><span data-stu-id="3ee53-120">Reference any classes you might use.</span></span>
+1. <span data-ttu-id="b18bd-119">參考 hello 自動換片器檔案使用 hello [require_once]陳述式，並</span><span class="sxs-lookup"><span data-stu-id="b18bd-119">Reference hello autoloader file using hello [require_once] statement, and</span></span>
+2. <span data-ttu-id="b18bd-120">參考任何您可能使用的類別。</span><span class="sxs-lookup"><span data-stu-id="b18bd-120">Reference any classes you might use.</span></span>
 
-<span data-ttu-id="3ee53-121">下列範例顯示如何納入自動載入器檔案及參考 **ServicesBuilder** 類別。</span><span class="sxs-lookup"><span data-stu-id="3ee53-121">The following example shows how to include the autoloader file and reference the **ServicesBuilder** class.</span></span>
+<span data-ttu-id="b18bd-121">hello 下列範例示範如何 tooinclude hello 自動換片器檔案和參考 hello **ServicesBuilder**類別。</span><span class="sxs-lookup"><span data-stu-id="b18bd-121">hello following example shows how tooinclude hello autoloader file and reference hello **ServicesBuilder** class.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="3ee53-122">本文中的範例假設您已透過 Composer 安裝 PHP Client Libraries for Azure。</span><span class="sxs-lookup"><span data-stu-id="3ee53-122">The examples in this article assume you have installed the PHP Client Libraries for Azure via Composer.</span></span> <span data-ttu-id="3ee53-123">如果您是以手動方式安裝程式庫，則必須參考 `WindowsAzure.php` 自動載入器檔案。</span><span class="sxs-lookup"><span data-stu-id="3ee53-123">If you installed the libraries manually, you need to reference the `WindowsAzure.php` autoloader file.</span></span>
+> <span data-ttu-id="b18bd-122">本文中的 hello 範例假設您已安裝 hello Azure 透過編輯器的 PHP 用戶端程式庫。</span><span class="sxs-lookup"><span data-stu-id="b18bd-122">hello examples in this article assume you have installed hello PHP Client Libraries for Azure via Composer.</span></span> <span data-ttu-id="b18bd-123">如果您手動安裝 hello 程式庫，您需要 tooreference hello`WindowsAzure.php`自動換片器檔案。</span><span class="sxs-lookup"><span data-stu-id="b18bd-123">If you installed hello libraries manually, you need tooreference hello `WindowsAzure.php` autoloader file.</span></span>
 >
 >
 
@@ -60,31 +60,31 @@ require_once 'vendor/autoload.php';
 use WindowsAzure\Common\ServicesBuilder;
 ```
 
-<span data-ttu-id="3ee53-124">在下列各範例中，一律會顯示 `require_once` 陳述式，但只會參考要執行之範例所需的類別。</span><span class="sxs-lookup"><span data-stu-id="3ee53-124">In the examples below, the `require_once` statement will be shown always, but only the classes necessary for the example to execute are referenced.</span></span>
+<span data-ttu-id="b18bd-124">在以下範例 hello，hello`require_once`陳述式會一律，不會顯示，但所需的 hello 範例 tooexecute 只有 hello 類別所參考。</span><span class="sxs-lookup"><span data-stu-id="b18bd-124">In hello examples below, hello `require_once` statement will be shown always, but only hello classes necessary for hello example tooexecute are referenced.</span></span>
 
-## <a name="set-up-an-azure-storage-connection"></a><span data-ttu-id="3ee53-125">設定 Azure 儲存體連接</span><span class="sxs-lookup"><span data-stu-id="3ee53-125">Set up an Azure storage connection</span></span>
-<span data-ttu-id="3ee53-126">若要具現化 Azure Blob 服務用戶端，您必須具備有效的連接字串。</span><span class="sxs-lookup"><span data-stu-id="3ee53-126">To instantiate an Azure blob service client, you must first have a valid connection string.</span></span> <span data-ttu-id="3ee53-127">Blob 服務的連接字串格式為：</span><span class="sxs-lookup"><span data-stu-id="3ee53-127">The format for the blob service connection string is:</span></span>
+## <a name="set-up-an-azure-storage-connection"></a><span data-ttu-id="b18bd-125">設定 Azure 儲存體連接</span><span class="sxs-lookup"><span data-stu-id="b18bd-125">Set up an Azure storage connection</span></span>
+<span data-ttu-id="b18bd-126">tooinstantiate Azure blob 服務用戶端，您必須先取得有效的連接字串。</span><span class="sxs-lookup"><span data-stu-id="b18bd-126">tooinstantiate an Azure blob service client, you must first have a valid connection string.</span></span> <span data-ttu-id="b18bd-127">hello hello blob 服務的連接字串的格式如下：</span><span class="sxs-lookup"><span data-stu-id="b18bd-127">hello format for hello blob service connection string is:</span></span>
 
-<span data-ttu-id="3ee53-128">用於存取即時服務：</span><span class="sxs-lookup"><span data-stu-id="3ee53-128">For accessing a live service:</span></span>
+<span data-ttu-id="b18bd-128">用於存取即時服務：</span><span class="sxs-lookup"><span data-stu-id="b18bd-128">For accessing a live service:</span></span>
 
 ```php
 DefaultEndpointsProtocol=[http|https];AccountName=[yourAccount];AccountKey=[yourKey]
 ```
 
-<span data-ttu-id="3ee53-129">用於存取儲存體模擬器：</span><span class="sxs-lookup"><span data-stu-id="3ee53-129">For accessing the storage emulator:</span></span>
+<span data-ttu-id="b18bd-129">用於存取 hello 儲存體模擬器：</span><span class="sxs-lookup"><span data-stu-id="b18bd-129">For accessing hello storage emulator:</span></span>
 
 ```php
 UseDevelopmentStorage=true
 ```
 
-<span data-ttu-id="3ee53-130">若要建立任何 Azure 服務用戶端，您必須使用 **ServicesBuilder** 類別。</span><span class="sxs-lookup"><span data-stu-id="3ee53-130">To create any Azure service client, you need to use the **ServicesBuilder** class.</span></span> <span data-ttu-id="3ee53-131">您可以：</span><span class="sxs-lookup"><span data-stu-id="3ee53-131">You can:</span></span>
+<span data-ttu-id="b18bd-130">toocreate 任何 Azure 服務用戶端，您需要 toouse hello **ServicesBuilder**類別。</span><span class="sxs-lookup"><span data-stu-id="b18bd-130">toocreate any Azure service client, you need toouse hello **ServicesBuilder** class.</span></span> <span data-ttu-id="b18bd-131">您可以：</span><span class="sxs-lookup"><span data-stu-id="b18bd-131">You can:</span></span>
 
-* <span data-ttu-id="3ee53-132">直接將連接字串傳遞給它，或</span><span class="sxs-lookup"><span data-stu-id="3ee53-132">Pass the connection string directly to it or</span></span>
-* <span data-ttu-id="3ee53-133">使用 **CloudConfigurationManager (CCM)** 到多種外部來源檢查連接字串：</span><span class="sxs-lookup"><span data-stu-id="3ee53-133">Use the **CloudConfigurationManager (CCM)** to check multiple external sources for the connection string:</span></span>
-  * <span data-ttu-id="3ee53-134">預設已支援一種外部來源，即環境變數</span><span class="sxs-lookup"><span data-stu-id="3ee53-134">By default, it comes with support for one external source - environmental variables.</span></span>
-  * <span data-ttu-id="3ee53-135">您可以擴充 **ConnectionStringSource** 類別以加入新來源。</span><span class="sxs-lookup"><span data-stu-id="3ee53-135">You can add new sources by extending the **ConnectionStringSource** class.</span></span>
+* <span data-ttu-id="b18bd-132">傳送嗨連接字串直接 tooit 或</span><span class="sxs-lookup"><span data-stu-id="b18bd-132">Pass hello connection string directly tooit or</span></span>
+* <span data-ttu-id="b18bd-133">使用 hello **CloudConfigurationManager (CCM)** toocheck hello 連接字串的多個外部來源：</span><span class="sxs-lookup"><span data-stu-id="b18bd-133">Use hello **CloudConfigurationManager (CCM)** toocheck multiple external sources for hello connection string:</span></span>
+  * <span data-ttu-id="b18bd-134">預設已支援一種外部來源，即環境變數</span><span class="sxs-lookup"><span data-stu-id="b18bd-134">By default, it comes with support for one external source - environmental variables.</span></span>
+  * <span data-ttu-id="b18bd-135">您可以新增新的來源延伸 hello **ConnectionStringSource**類別。</span><span class="sxs-lookup"><span data-stu-id="b18bd-135">You can add new sources by extending hello **ConnectionStringSource** class.</span></span>
 
-<span data-ttu-id="3ee53-136">在本文的各範例中，將會直接傳遞連接字串。</span><span class="sxs-lookup"><span data-stu-id="3ee53-136">For the examples outlined here, the connection string will be passed directly.</span></span>
+<span data-ttu-id="b18bd-136">如需此處所述的 hello 範例，將直接傳遞 hello 連接字串。</span><span class="sxs-lookup"><span data-stu-id="b18bd-136">For hello examples outlined here, hello connection string will be passed directly.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -94,10 +94,10 @@ use WindowsAzure\Common\ServicesBuilder;
 $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
 ```
 
-## <a name="create-a-container"></a><span data-ttu-id="3ee53-137">建立容器</span><span class="sxs-lookup"><span data-stu-id="3ee53-137">Create a container</span></span>
+## <a name="create-a-container"></a><span data-ttu-id="b18bd-137">建立容器</span><span class="sxs-lookup"><span data-stu-id="b18bd-137">Create a container</span></span>
 [!INCLUDE [storage-container-naming-rules-include](../../includes/storage-container-naming-rules-include.md)]
 
-<span data-ttu-id="3ee53-138">**BlobRestProxy** 物件可讓您使用 **createContainer** 方法建立 Blob 容器。</span><span class="sxs-lookup"><span data-stu-id="3ee53-138">A **BlobRestProxy** object lets you create a blob container with the **createContainer** method.</span></span> <span data-ttu-id="3ee53-139">建立容器時，您可以在容器上設定選項，但這並非必要動作。</span><span class="sxs-lookup"><span data-stu-id="3ee53-139">When creating a container, you can set options on the container, but doing so is not required.</span></span> <span data-ttu-id="3ee53-140">(下列範例顯示如何設定容器存取控制清單 (ACL) 和容器中繼資料)。</span><span class="sxs-lookup"><span data-stu-id="3ee53-140">(The example below shows how to set the container access control list (ACL) and container metadata.)</span></span>
+<span data-ttu-id="b18bd-138">A **BlobRestProxy**物件可讓您建立 blob 容器以 hello **createContainer**方法。</span><span class="sxs-lookup"><span data-stu-id="b18bd-138">A **BlobRestProxy** object lets you create a blob container with hello **createContainer** method.</span></span> <span data-ttu-id="b18bd-139">建立容器時，您可以設定 hello 容器上的選項，但這麼做是不需要。</span><span class="sxs-lookup"><span data-stu-id="b18bd-139">When creating a container, you can set options on hello container, but doing so is not required.</span></span> <span data-ttu-id="b18bd-140">（hello 下面範例示範如何 tooset hello 容器存取控制清單 (ACL) 和容器中繼資料）。</span><span class="sxs-lookup"><span data-stu-id="b18bd-140">(hello example below shows how tooset hello container access control list (ACL) and container metadata.)</span></span>
 
 ```php
 require_once 'vendor\autoload.php';
@@ -119,16 +119,16 @@ $createContainerOptions = new CreateContainerOptions();
 // PublicAccessType::CONTAINER_AND_BLOBS and PublicAccessType::BLOBS_ONLY.
 // CONTAINER_AND_BLOBS:
 // Specifies full public read access for container and blob data.
-// proxys can enumerate blobs within the container via anonymous
-// request, but cannot enumerate containers within the storage account.
+// proxys can enumerate blobs within hello container via anonymous
+// request, but cannot enumerate containers within hello storage account.
 //
 // BLOBS_ONLY:
 // Specifies public read access for blobs. Blob data within this
 // container can be read via anonymous request, but container data is not
-// available. proxys cannot enumerate blobs within the container via
+// available. proxys cannot enumerate blobs within hello container via
 // anonymous request.
-// If this value is not specified in the request, container data is
-// private to the account owner.
+// If this value is not specified in hello request, container data is
+// private toohello account owner.
 $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
 
 // Set container metadata.
@@ -149,12 +149,12 @@ catch(ServiceException $e){
 }
 ```
 
-<span data-ttu-id="3ee53-141">呼叫 **setPublicAccess(PublicAccessType::CONTAINER\_AND\_BLOBS)** 可讓容器和 Blob 資料開放透過匿名要求來存取。</span><span class="sxs-lookup"><span data-stu-id="3ee53-141">Calling **setPublicAccess(PublicAccessType::CONTAINER\_AND\_BLOBS)** makes the container and blob data accessible via anonymous requests.</span></span> <span data-ttu-id="3ee53-142">呼叫 **setPublicAccess(PublicAccessType::BLOBS_ONLY)** 可讓 Blob 資料開放透過匿名要求來存取。</span><span class="sxs-lookup"><span data-stu-id="3ee53-142">Calling **setPublicAccess(PublicAccessType::BLOBS_ONLY)** makes only blob data accessible via anonymous requests.</span></span> <span data-ttu-id="3ee53-143">如需容器 ACL 的詳細資訊，請參閱[設定容器 ACL (REST API)][container-acl]。</span><span class="sxs-lookup"><span data-stu-id="3ee53-143">For more information about container ACLs, see [Set container ACL (REST API)][container-acl].</span></span>
+<span data-ttu-id="b18bd-141">呼叫**setPublicAccess (PublicAccessType::CONTAINER\_AND\_BLOB)**讓 hello 可透過匿名要求存取的容器和 blob 資料。</span><span class="sxs-lookup"><span data-stu-id="b18bd-141">Calling **setPublicAccess(PublicAccessType::CONTAINER\_AND\_BLOBS)** makes hello container and blob data accessible via anonymous requests.</span></span> <span data-ttu-id="b18bd-142">呼叫 **setPublicAccess(PublicAccessType::BLOBS_ONLY)** 可讓 Blob 資料開放透過匿名要求來存取。</span><span class="sxs-lookup"><span data-stu-id="b18bd-142">Calling **setPublicAccess(PublicAccessType::BLOBS_ONLY)** makes only blob data accessible via anonymous requests.</span></span> <span data-ttu-id="b18bd-143">如需容器 ACL 的詳細資訊，請參閱[設定容器 ACL (REST API)][container-acl]。</span><span class="sxs-lookup"><span data-stu-id="b18bd-143">For more information about container ACLs, see [Set container ACL (REST API)][container-acl].</span></span>
 
-<span data-ttu-id="3ee53-144">如需 Blob 服務錯誤碼的詳細資訊，請參閱 [Blob 服務錯誤碼][error-codes]。</span><span class="sxs-lookup"><span data-stu-id="3ee53-144">For more information about Blob service error codes, see [Blob Service Error Codes][error-codes].</span></span>
+<span data-ttu-id="b18bd-144">如需 Blob 服務錯誤碼的詳細資訊，請參閱 [Blob 服務錯誤碼][error-codes]。</span><span class="sxs-lookup"><span data-stu-id="b18bd-144">For more information about Blob service error codes, see [Blob Service Error Codes][error-codes].</span></span>
 
-## <a name="upload-a-blob-into-a-container"></a><span data-ttu-id="3ee53-145">將 Blob 上傳至容器</span><span class="sxs-lookup"><span data-stu-id="3ee53-145">Upload a blob into a container</span></span>
-<span data-ttu-id="3ee53-146">若要將檔案當作 Blob 上傳，請使用 **BlobRestProxy->createBlockBlob** 方法。</span><span class="sxs-lookup"><span data-stu-id="3ee53-146">To upload a file as a blob, use the **BlobRestProxy->createBlockBlob** method.</span></span> <span data-ttu-id="3ee53-147">如果 Blob 不存在，此作業會予以建立，若已存在，則予以覆寫。</span><span class="sxs-lookup"><span data-stu-id="3ee53-147">This operation creates the blob if it doesn't exist, or overwrites it if it does.</span></span> <span data-ttu-id="3ee53-148">下列程式碼範例假設已建立容器，並使用 [fopen][fopen] 將檔案當作串流開啟。</span><span class="sxs-lookup"><span data-stu-id="3ee53-148">The code example below assumes that the container has already been created and uses [fopen][fopen] to open the file as a stream.</span></span>
+## <a name="upload-a-blob-into-a-container"></a><span data-ttu-id="b18bd-145">將 Blob 上傳至容器</span><span class="sxs-lookup"><span data-stu-id="b18bd-145">Upload a blob into a container</span></span>
+<span data-ttu-id="b18bd-146">將檔案當做 blob 時，使用 hello tooupload **BlobRestProxy]-> [createBlockBlob**方法。</span><span class="sxs-lookup"><span data-stu-id="b18bd-146">tooupload a file as a blob, use hello **BlobRestProxy->createBlockBlob** method.</span></span> <span data-ttu-id="b18bd-147">如果它不存在，或覆寫它，如果是的話，這項作業會建立 hello blob。</span><span class="sxs-lookup"><span data-stu-id="b18bd-147">This operation creates hello blob if it doesn't exist, or overwrites it if it does.</span></span> <span data-ttu-id="b18bd-148">hello 下列程式碼範例假設已經建立，並使用該 hello 容器[fopen] [ fopen] tooopen hello 檔案資料流的形式。</span><span class="sxs-lookup"><span data-stu-id="b18bd-148">hello code example below assumes that hello container has already been created and uses [fopen][fopen] tooopen hello file as a stream.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -183,10 +183,10 @@ catch(ServiceException $e){
 }
 ```
 
-<span data-ttu-id="3ee53-149">請注意，前述範例會以串流方式上傳 Blob。</span><span class="sxs-lookup"><span data-stu-id="3ee53-149">Note that the previous sample uploads a blob as a stream.</span></span> <span data-ttu-id="3ee53-150">不過，也可以使用 [file\_get\_contents][file_get_contents] 之類的函式將 Blob 當作字串上傳。</span><span class="sxs-lookup"><span data-stu-id="3ee53-150">However, a blob can also be uploaded as a string using, for example, the [file\_get\_contents][file_get_contents] function.</span></span> <span data-ttu-id="3ee53-151">若要使用前述範例執行這項操作，請將 `$content = fopen("c:\myfile.txt", "r");` 變更為 `$content = file_get_contents("c:\myfile.txt");`。</span><span class="sxs-lookup"><span data-stu-id="3ee53-151">To do this using the previous sample, change `$content = fopen("c:\myfile.txt", "r");` to `$content = file_get_contents("c:\myfile.txt");`.</span></span>
+<span data-ttu-id="b18bd-149">請注意，hello 前一個範例會將 blob 上傳做為資料流。</span><span class="sxs-lookup"><span data-stu-id="b18bd-149">Note that hello previous sample uploads a blob as a stream.</span></span> <span data-ttu-id="b18bd-150">不過，blob 可以也可上傳為字串，例如，使用 hello[檔案\_取得\_內容][ file_get_contents]函式。</span><span class="sxs-lookup"><span data-stu-id="b18bd-150">However, a blob can also be uploaded as a string using, for example, hello [file\_get\_contents][file_get_contents] function.</span></span> <span data-ttu-id="b18bd-151">toodo 此使用 hello 先前的範例，變更`$content = fopen("c:\myfile.txt", "r");`太`$content = file_get_contents("c:\myfile.txt");`。</span><span class="sxs-lookup"><span data-stu-id="b18bd-151">toodo this using hello previous sample, change `$content = fopen("c:\myfile.txt", "r");` too`$content = file_get_contents("c:\myfile.txt");`.</span></span>
 
-## <a name="list-the-blobs-in-a-container"></a><span data-ttu-id="3ee53-152">列出容器中的 Blob</span><span class="sxs-lookup"><span data-stu-id="3ee53-152">List the blobs in a container</span></span>
-<span data-ttu-id="3ee53-153">若要列出容器中的 Blob，請搭配使用 **BlobRestProxy->listBlobs** 方法與 **foreach** 迴圈，對結果進行迴圈。</span><span class="sxs-lookup"><span data-stu-id="3ee53-153">To list the blobs in a container, use the **BlobRestProxy->listBlobs** method with a **foreach** loop to loop through the result.</span></span> <span data-ttu-id="3ee53-154">下列程式碼會將容器中每個 Blob 的名稱作為輸出顯示，並將 URI 顯示於瀏覽器。</span><span class="sxs-lookup"><span data-stu-id="3ee53-154">The following code displays the name of each blob as output in a container and displays its URI to the browser.</span></span>
+## <a name="list-hello-blobs-in-a-container"></a><span data-ttu-id="b18bd-152">列出容器中的 hello blob</span><span class="sxs-lookup"><span data-stu-id="b18bd-152">List hello blobs in a container</span></span>
+<span data-ttu-id="b18bd-153">toolist hello blob 容器中的使用 hello **BlobRestProxy]-> [listBlobs**方法**foreach**迴圈 tooloop 透過 hello 結果。</span><span class="sxs-lookup"><span data-stu-id="b18bd-153">toolist hello blobs in a container, use hello **BlobRestProxy->listBlobs** method with a **foreach** loop tooloop through hello result.</span></span> <span data-ttu-id="b18bd-154">hello 下列程式碼顯示的每個 blob 的 hello 名稱做為容器中的輸出並顯示其 URI toohello 瀏覽器。</span><span class="sxs-lookup"><span data-stu-id="b18bd-154">hello following code displays hello name of each blob as output in a container and displays its URI toohello browser.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -218,8 +218,8 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="download-a-blob"></a><span data-ttu-id="3ee53-155">下載 Blob</span><span class="sxs-lookup"><span data-stu-id="3ee53-155">Download a blob</span></span>
-<span data-ttu-id="3ee53-156">若要下載 Blob，請呼叫 **BlobRestProxy->getBlob** 方法，然後在結果產生的 **GetBlobResult** 物件上呼叫 **getContentStream** 方法。</span><span class="sxs-lookup"><span data-stu-id="3ee53-156">To download a blob, call the **BlobRestProxy->getBlob** method, then call the **getContentStream** method on the resulting **GetBlobResult** object.</span></span>
+## <a name="download-a-blob"></a><span data-ttu-id="b18bd-155">下載 Blob</span><span class="sxs-lookup"><span data-stu-id="b18bd-155">Download a blob</span></span>
+<span data-ttu-id="b18bd-156">toodownload blob，呼叫 hello **BlobRestProxy]-> [getBlob**方法，則呼叫 hello **getContentStream**方法 hello 產生**GetBlobResult**物件。</span><span class="sxs-lookup"><span data-stu-id="b18bd-156">toodownload a blob, call hello **BlobRestProxy->getBlob** method, then call hello **getContentStream** method on hello resulting **GetBlobResult** object.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -246,10 +246,10 @@ catch(ServiceException $e){
 }
 ```
 
-<span data-ttu-id="3ee53-157">請注意，以上範例會以串流資源形式 (預設行為) 取得 Blob。</span><span class="sxs-lookup"><span data-stu-id="3ee53-157">Note that the example above gets a blob as a stream resource (the default behavior).</span></span> <span data-ttu-id="3ee53-158">不過，您可以使用 [stream\_get\_contents][stream-get-contents] 函式將傳回的串流轉換成字串。</span><span class="sxs-lookup"><span data-stu-id="3ee53-158">However, you can use the [stream\_get\_contents][stream-get-contents] function to convert the returned stream to a string.</span></span>
+<span data-ttu-id="b18bd-157">請注意，上述的 hello 範例取得 blob 做為資料流資源 （hello 預設行為）。</span><span class="sxs-lookup"><span data-stu-id="b18bd-157">Note that hello example above gets a blob as a stream resource (hello default behavior).</span></span> <span data-ttu-id="b18bd-158">不過，您可以使用 hello[資料流\_取得\_內容][ stream-get-contents]函式 tooconvert hello 傳回資料流 tooa 字串。</span><span class="sxs-lookup"><span data-stu-id="b18bd-158">However, you can use hello [stream\_get\_contents][stream-get-contents] function tooconvert hello returned stream tooa string.</span></span>
 
-## <a name="delete-a-blob"></a><span data-ttu-id="3ee53-159">刪除 Blob</span><span class="sxs-lookup"><span data-stu-id="3ee53-159">Delete a blob</span></span>
-<span data-ttu-id="3ee53-160">若要刪除 Blob，請將容器名稱和 Blob 名稱傳遞至 **BlobRestProxy->deleteBlob**。</span><span class="sxs-lookup"><span data-stu-id="3ee53-160">To delete a blob, pass the container name and blob name to **BlobRestProxy->deleteBlob**.</span></span>
+## <a name="delete-a-blob"></a><span data-ttu-id="b18bd-159">刪除 Blob</span><span class="sxs-lookup"><span data-stu-id="b18bd-159">Delete a blob</span></span>
+<span data-ttu-id="b18bd-160">toodelete blob，可傳遞 hello 容器名稱和 blob 名稱太**BlobRestProxy]-> [deleteBlob**。</span><span class="sxs-lookup"><span data-stu-id="b18bd-160">toodelete a blob, pass hello container name and blob name too**BlobRestProxy->deleteBlob**.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -275,8 +275,8 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="delete-a-blob-container"></a><span data-ttu-id="3ee53-161">刪除 Blob 容器</span><span class="sxs-lookup"><span data-stu-id="3ee53-161">Delete a blob container</span></span>
-<span data-ttu-id="3ee53-162">最後，若要刪除 Blob 容器，請將容器名稱傳遞至 **BlobRestProxy->deleteContainer**。</span><span class="sxs-lookup"><span data-stu-id="3ee53-162">Finally, to delete a blob container, pass the container name to **BlobRestProxy->deleteContainer**.</span></span>
+## <a name="delete-a-blob-container"></a><span data-ttu-id="b18bd-161">刪除 Blob 容器</span><span class="sxs-lookup"><span data-stu-id="b18bd-161">Delete a blob container</span></span>
+<span data-ttu-id="b18bd-162">最後，toodelete blob 容器、 傳遞 hello 容器名稱太**BlobRestProxy]-> [deleteContainer**。</span><span class="sxs-lookup"><span data-stu-id="b18bd-162">Finally, toodelete a blob container, pass hello container name too**BlobRestProxy->deleteContainer**.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -301,20 +301,20 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="3ee53-163">後續步驟</span><span class="sxs-lookup"><span data-stu-id="3ee53-163">Next steps</span></span>
-<span data-ttu-id="3ee53-164">了解 Azure Blob 服務的基礎概念之後，請參考下列連結以深入了解更複雜的儲存工作。</span><span class="sxs-lookup"><span data-stu-id="3ee53-164">Now that you've learned the basics of the Azure blob service, follow these links to learn about more complex storage tasks.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b18bd-163">後續步驟</span><span class="sxs-lookup"><span data-stu-id="b18bd-163">Next steps</span></span>
+<span data-ttu-id="b18bd-164">既然您已經學會 hello 的 hello Azure blob 服務的基本概念，請遵循這些連結 toolearn，更複雜的存放工作相關。</span><span class="sxs-lookup"><span data-stu-id="b18bd-164">Now that you've learned hello basics of hello Azure blob service, follow these links toolearn about more complex storage tasks.</span></span>
 
-* <span data-ttu-id="3ee53-165">造訪 [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)</span><span class="sxs-lookup"><span data-stu-id="3ee53-165">Visit the [Azure Storage team blog](http://blogs.msdn.com/b/windowsazurestorage/)</span></span>
-* <span data-ttu-id="3ee53-166">請參閱 [PHP 區塊 Blob 範例](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/BlockBlobExample.php)。</span><span class="sxs-lookup"><span data-stu-id="3ee53-166">See the [PHP block blob example](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/BlockBlobExample.php).</span></span>
-* <span data-ttu-id="3ee53-167">請參閱 [PHP 分頁 Blob 範例](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/PageBlobExample.php)。</span><span class="sxs-lookup"><span data-stu-id="3ee53-167">See the [PHP page blob example](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/PageBlobExample.php).</span></span>
-* [<span data-ttu-id="3ee53-168">使用 AzCopy 命令列公用程式傳輸資料</span><span class="sxs-lookup"><span data-stu-id="3ee53-168">Transfer data with the AzCopy Command-Line Utility</span></span>](storage-use-azcopy.md)
+* <span data-ttu-id="b18bd-165">請瀏覽 hello [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)</span><span class="sxs-lookup"><span data-stu-id="b18bd-165">Visit hello [Azure Storage team blog](http://blogs.msdn.com/b/windowsazurestorage/)</span></span>
+* <span data-ttu-id="b18bd-166">請參閱 hello [PHP 區塊 blob 範例](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/BlockBlobExample.php)。</span><span class="sxs-lookup"><span data-stu-id="b18bd-166">See hello [PHP block blob example](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/BlockBlobExample.php).</span></span>
+* <span data-ttu-id="b18bd-167">請參閱 hello [PHP 頁面 blob 範例](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/PageBlobExample.php)。</span><span class="sxs-lookup"><span data-stu-id="b18bd-167">See hello [PHP page blob example](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/PageBlobExample.php).</span></span>
+* [<span data-ttu-id="b18bd-168">使用 AzCopy 命令列公用程式的 hello 傳輸資料</span><span class="sxs-lookup"><span data-stu-id="b18bd-168">Transfer data with hello AzCopy Command-Line Utility</span></span>](storage-use-azcopy.md)
 
-<span data-ttu-id="3ee53-169">如需詳細資訊，另請參閱 [PHP 開發人員中心](/develop/php/)。</span><span class="sxs-lookup"><span data-stu-id="3ee53-169">For more information, see also the [PHP Developer Center](/develop/php/).</span></span>
+<span data-ttu-id="b18bd-169">如需詳細資訊，請參閱 hello [PHP 開發人員中心](/develop/php/)。</span><span class="sxs-lookup"><span data-stu-id="b18bd-169">For more information, see also hello [PHP Developer Center](/develop/php/).</span></span>
 
 [download]: http://go.microsoft.com/fwlink/?LinkID=252473
 [container-acl]: http://msdn.microsoft.com/library/azure/dd179391.aspx
 [error-codes]: http://msdn.microsoft.com/library/azure/dd179439.aspx
 [file_get_contents]: http://php.net/file_get_contents
-<span data-ttu-id="3ee53-170">[require_once]: http://php.net/require_once</span><span class="sxs-lookup"><span data-stu-id="3ee53-170">[require_once]: http://php.net/require_once</span></span>
+[require_once]: http://php.net/require_once
 [fopen]: http://www.php.net/fopen
 [stream-get-contents]: http://www.php.net/stream_get_contents

@@ -1,6 +1,6 @@
 ---
-title: "設定 Azure 匯入/匯出工具 v1 | Microsoft Docs"
-description: "了解如何設定 Azure 匯入/匯出服務的磁碟機準備及修復工具。 這是指 v1 的匯入/匯出工具。"
+title: "向上 hello Azure 匯入/匯出工具 v1 aaaSetting |Microsoft 文件"
+description: "了解組成 hello tooset 磁碟機準備及修復工具 hello Azure 匯入/匯出服務。 這是指 toov1 的 hello 匯入/匯出工具。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,72 +14,72 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 39d7e9a71a290ace6f6f4caf48f1ec5e46fe9a48
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4a737f2d2d0b1d00057e7fed6f9cf7b58e555b23
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="setting-up-the-azure-importexport-tool"></a><span data-ttu-id="f1aba-104">設定 Azure 匯入/匯出工具</span><span class="sxs-lookup"><span data-stu-id="f1aba-104">Setting up the Azure Import/Export Tool</span></span>
-<span data-ttu-id="f1aba-105">Microsoft Azure 匯入/匯出工具是磁碟機準備及修復工具，可搭配 Microsoft Azure 匯入/匯出服務使用。</span><span class="sxs-lookup"><span data-stu-id="f1aba-105">The Microsoft Azure Import/Export Tool is the drive preparation and repair tool that you can use with the Microsoft Azure Import/Export service.</span></span> <span data-ttu-id="f1aba-106">您可以使用此工具來執行下列功能︰</span><span class="sxs-lookup"><span data-stu-id="f1aba-106">You can use the tool for the following functions:</span></span>  
+# <a name="setting-up-hello-azure-importexport-tool"></a><span data-ttu-id="40fc7-104">設定 hello Azure 匯入/匯出工具</span><span class="sxs-lookup"><span data-stu-id="40fc7-104">Setting up hello Azure Import/Export Tool</span></span>
+<span data-ttu-id="40fc7-105">hello Microsoft Azure 匯入/匯出工具是 hello 磁碟機準備及修復工具可讓您以 hello Microsoft Azure 匯入/匯出服務。</span><span class="sxs-lookup"><span data-stu-id="40fc7-105">hello Microsoft Azure Import/Export Tool is hello drive preparation and repair tool that you can use with hello Microsoft Azure Import/Export service.</span></span> <span data-ttu-id="40fc7-106">您可以使用下列函式的 hello hello 工具：</span><span class="sxs-lookup"><span data-stu-id="40fc7-106">You can use hello tool for hello following functions:</span></span>  
   
--   <span data-ttu-id="f1aba-107">在建立匯入工作之前，您可以使用此工具，將資料複製到要寄送至 Windows Azure 資料中心的硬碟。</span><span class="sxs-lookup"><span data-stu-id="f1aba-107">Before creating an import job, you can use this tool to copy data to the hard drives you are going to ship to a Windows Azure data center.</span></span>  
+-   <span data-ttu-id="40fc7-107">在建立匯入工作之前，您可以使用此工具 toocopy 資料 toohello 硬碟要 tooship tooa Windows Azure 資料中心。</span><span class="sxs-lookup"><span data-stu-id="40fc7-107">Before creating an import job, you can use this tool toocopy data toohello hard drives you are going tooship tooa Windows Azure data center.</span></span>  
   
--   <span data-ttu-id="f1aba-108">匯入工作完成後，您可以使用此工具來修復損毀、遺漏或與其他 Blob 衝突的任何 Blob。</span><span class="sxs-lookup"><span data-stu-id="f1aba-108">After an import job has completed, you can use this tool to repair any blobs that were corrupted, were missing, or conflicted with other blobs.</span></span>  
+-   <span data-ttu-id="40fc7-108">匯入工作完成後，您可以使用此工具 toorepair 損毀、 遺漏或衝突的任何 blob 與其他 blob。</span><span class="sxs-lookup"><span data-stu-id="40fc7-108">After an import job has completed, you can use this tool toorepair any blobs that were corrupted, were missing, or conflicted with other blobs.</span></span>  
   
--   <span data-ttu-id="f1aba-109">當您收到已完成的匯出工作中的磁碟機後，您可以使用此工具來修復磁碟機上損毀或遺漏的任何檔案。</span><span class="sxs-lookup"><span data-stu-id="f1aba-109">After you receive the drives from a completed export job, you can use this tool to repair any files that were corrupted or missing on the drives.</span></span>  
+-   <span data-ttu-id="40fc7-109">您已完成的匯出工作收到 hello 磁碟機之後，您可以使用此工具 toorepair 任何檔案已損毀或遺失 hello 磁碟機上。</span><span class="sxs-lookup"><span data-stu-id="40fc7-109">After you receive hello drives from a completed export job, you can use this tool toorepair any files that were corrupted or missing on hello drives.</span></span>  
   
-## <a name="prerequisites"></a><span data-ttu-id="f1aba-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="f1aba-110">Prerequisites</span></span>  
-<span data-ttu-id="f1aba-111">如果您要準備匯入作業的磁碟機，您必須符合下列必要條件︰</span><span class="sxs-lookup"><span data-stu-id="f1aba-111">If you are preparing drives for an import job, you will need to meet the following prerequisites:</span></span>  
+## <a name="prerequisites"></a><span data-ttu-id="40fc7-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="40fc7-110">Prerequisites</span></span>  
+<span data-ttu-id="40fc7-111">如果您正在匯入工作準備磁碟機，您需要下列必要條件 toomeet hello:</span><span class="sxs-lookup"><span data-stu-id="40fc7-111">If you are preparing drives for an import job, you will need toomeet hello following prerequisites:</span></span>  
   
--   <span data-ttu-id="f1aba-112">您必須擁有有效的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="f1aba-112">You must have an active Azure subscription.</span></span>  
+-   <span data-ttu-id="40fc7-112">您必須擁有有效的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="40fc7-112">You must have an active Azure subscription.</span></span>  
   
--   <span data-ttu-id="f1aba-113">您的訂用帳戶必須包含可用空間足夠儲存您要匯入之檔案的儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="f1aba-113">Your subscription must include a storage account with enough available space to store the files you are going to import.</span></span>  
+-   <span data-ttu-id="40fc7-113">您的訂閱必須包含儲存體帳戶具有足夠的可用空間 toostore hello 檔案要 tooimport。</span><span class="sxs-lookup"><span data-stu-id="40fc7-113">Your subscription must include a storage account with enough available space toostore hello files you are going tooimport.</span></span>  
   
--   <span data-ttu-id="f1aba-114">您需要至少一個儲存體帳戶的帳戶金鑰。</span><span class="sxs-lookup"><span data-stu-id="f1aba-114">You need at least one of the account keys for the storage account.</span></span>  
+-   <span data-ttu-id="40fc7-114">您至少需要一個 hello 帳戶金鑰的 hello 儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="40fc7-114">You need at least one of hello account keys for hello storage account.</span></span>  
   
--   <span data-ttu-id="f1aba-115">您需要安裝 Windows 7、Windows Server 2008 R2 或更新版本 Windows 作業系統的電腦 (「複製電腦」)。</span><span class="sxs-lookup"><span data-stu-id="f1aba-115">You need a computer (the "copy machine") with Windows 7, Windows Server 2008 R2, or a newer Windows operating system installed.</span></span>  
+-   <span data-ttu-id="40fc7-115">您需要 Windows 7、 Windows Server 2008 R2 或更新版本安裝 Windows 作業系統的電腦 (hello 「 複製電腦 」)。</span><span class="sxs-lookup"><span data-stu-id="40fc7-115">You need a computer (hello "copy machine") with Windows 7, Windows Server 2008 R2, or a newer Windows operating system installed.</span></span>  
   
--   <span data-ttu-id="f1aba-116">複製電腦上必須安裝 .NET Framework 4。</span><span class="sxs-lookup"><span data-stu-id="f1aba-116">The .NET Framework 4 must be installed on the copy machine.</span></span>  
+-   <span data-ttu-id="40fc7-116">hello 複製電腦上必須安裝.NET Framework 4 hello。</span><span class="sxs-lookup"><span data-stu-id="40fc7-116">hello .NET Framework 4 must be installed on hello copy machine.</span></span>  
   
--   <span data-ttu-id="f1aba-117">複製電腦上必須啟用 BitLocker。</span><span class="sxs-lookup"><span data-stu-id="f1aba-117">BitLocker must be enabled on the copy machine.</span></span>  
+-   <span data-ttu-id="40fc7-117">必須在 hello 複製電腦上啟用 BitLocker。</span><span class="sxs-lookup"><span data-stu-id="40fc7-117">BitLocker must be enabled on hello copy machine.</span></span>  
   
--   <span data-ttu-id="f1aba-118">您將需要一個或多個包含要匯入資料的磁碟機，或連接至複製電腦的空白 3.5 吋 SATA 硬碟。</span><span class="sxs-lookup"><span data-stu-id="f1aba-118">You will need one or more drives that contains data to be imported or empty 3.5-inch SATA hard drives connected to the copy machine.</span></span>  
+-   <span data-ttu-id="40fc7-118">您必須包含資料 toobe 匯入的一或多個磁碟機，或空的 3.5 英寸 SATA 硬碟機連線 toohello 複製電腦。</span><span class="sxs-lookup"><span data-stu-id="40fc7-118">You will need one or more drives that contains data toobe imported or empty 3.5-inch SATA hard drives connected toohello copy machine.</span></span>  
   
--   <span data-ttu-id="f1aba-119">您想匯入的檔案必須可從複製機器上存取，無論它們是在網路共用或本機硬碟上。</span><span class="sxs-lookup"><span data-stu-id="f1aba-119">The files you plan to import must be accessible from the copy machine, whether they are on a network share or a local hard drive.</span></span> 
+-   <span data-ttu-id="40fc7-119">您計劃 tooimport hello 檔案必須能夠從 hello 複製電腦，存取，不論它們在網路共用或本機硬碟上。</span><span class="sxs-lookup"><span data-stu-id="40fc7-119">hello files you plan tooimport must be accessible from hello copy machine, whether they are on a network share or a local hard drive.</span></span> 
   
-<span data-ttu-id="f1aba-120">如果您嘗試修復已部分失敗的匯入，您將需要︰</span><span class="sxs-lookup"><span data-stu-id="f1aba-120">If you are attempting to repair an import that has partially failed, you will need:</span></span>  
+<span data-ttu-id="40fc7-120">如果您正嘗試 toorepair 匯入已有部分失敗，您需要：</span><span class="sxs-lookup"><span data-stu-id="40fc7-120">If you are attempting toorepair an import that has partially failed, you will need:</span></span>  
   
--   <span data-ttu-id="f1aba-121">複製記錄檔</span><span class="sxs-lookup"><span data-stu-id="f1aba-121">The copy log files</span></span>  
+-   <span data-ttu-id="40fc7-121">hello 複製記錄檔</span><span class="sxs-lookup"><span data-stu-id="40fc7-121">hello copy log files</span></span>  
   
--   <span data-ttu-id="f1aba-122">儲存體帳戶金鑰。</span><span class="sxs-lookup"><span data-stu-id="f1aba-122">The storage account key</span></span>  
+-   <span data-ttu-id="40fc7-122">hello 儲存體帳戶金鑰</span><span class="sxs-lookup"><span data-stu-id="40fc7-122">hello storage account key</span></span>  
   
-  <span data-ttu-id="f1aba-123">如果您嘗試修復已部分失敗的匯出，您將需要︰</span><span class="sxs-lookup"><span data-stu-id="f1aba-123">If you are attempting to repair an export that has partially failed, you will need:</span></span>  
+  <span data-ttu-id="40fc7-123">如果您正嘗試 toorepair 已有部分失敗的匯出，您需要：</span><span class="sxs-lookup"><span data-stu-id="40fc7-123">If you are attempting toorepair an export that has partially failed, you will need:</span></span>  
   
--   <span data-ttu-id="f1aba-124">複製記錄檔</span><span class="sxs-lookup"><span data-stu-id="f1aba-124">The copy log files</span></span>  
+-   <span data-ttu-id="40fc7-124">hello 複製記錄檔</span><span class="sxs-lookup"><span data-stu-id="40fc7-124">hello copy log files</span></span>  
   
--   <span data-ttu-id="f1aba-125">資訊清單檔案 (選擇性)</span><span class="sxs-lookup"><span data-stu-id="f1aba-125">The manifest files (optional)</span></span>  
+-   <span data-ttu-id="40fc7-125">hello 資訊清單檔案 （選擇性）</span><span class="sxs-lookup"><span data-stu-id="40fc7-125">hello manifest files (optional)</span></span>  
   
--   <span data-ttu-id="f1aba-126">儲存體帳戶金鑰。</span><span class="sxs-lookup"><span data-stu-id="f1aba-126">The storage account key</span></span>  
+-   <span data-ttu-id="40fc7-126">hello 儲存體帳戶金鑰</span><span class="sxs-lookup"><span data-stu-id="40fc7-126">hello storage account key</span></span>  
   
-## <a name="installing-the-azure-importexport-tool"></a><span data-ttu-id="f1aba-127">安裝 Azure 匯入/匯出工具</span><span class="sxs-lookup"><span data-stu-id="f1aba-127">Installing the Azure Import/Export Tool</span></span>  
- <span data-ttu-id="f1aba-128">Azure 匯入/匯出工具包含下列檔案：</span><span class="sxs-lookup"><span data-stu-id="f1aba-128">The Azure Import/Export Tool consists of the following files:</span></span>  
+## <a name="installing-hello-azure-importexport-tool"></a><span data-ttu-id="40fc7-127">安裝 hello Azure 匯入/匯出工具</span><span class="sxs-lookup"><span data-stu-id="40fc7-127">Installing hello Azure Import/Export Tool</span></span>  
+ <span data-ttu-id="40fc7-128">hello Azure 匯入/匯出工具包含下列檔案的 hello:</span><span class="sxs-lookup"><span data-stu-id="40fc7-128">hello Azure Import/Export Tool consists of hello following files:</span></span>  
   
--   <span data-ttu-id="f1aba-129">WAImportExport.exe</span><span class="sxs-lookup"><span data-stu-id="f1aba-129">WAImportExport.exe</span></span>  
+-   <span data-ttu-id="40fc7-129">WAImportExport.exe</span><span class="sxs-lookup"><span data-stu-id="40fc7-129">WAImportExport.exe</span></span>  
   
--   <span data-ttu-id="f1aba-130">WAImportExport.exe.config</span><span class="sxs-lookup"><span data-stu-id="f1aba-130">WAImportExport.exe.config</span></span>  
+-   <span data-ttu-id="40fc7-130">WAImportExport.exe.config</span><span class="sxs-lookup"><span data-stu-id="40fc7-130">WAImportExport.exe.config</span></span>  
   
--   <span data-ttu-id="f1aba-131">WAImportExportCore.dll</span><span class="sxs-lookup"><span data-stu-id="f1aba-131">WAImportExportCore.dll</span></span>  
+-   <span data-ttu-id="40fc7-131">WAImportExportCore.dll</span><span class="sxs-lookup"><span data-stu-id="40fc7-131">WAImportExportCore.dll</span></span>  
   
--   <span data-ttu-id="f1aba-132">WAImportExportRepair.dll</span><span class="sxs-lookup"><span data-stu-id="f1aba-132">WAImportExportRepair.dll</span></span>  
+-   <span data-ttu-id="40fc7-132">WAImportExportRepair.dll</span><span class="sxs-lookup"><span data-stu-id="40fc7-132">WAImportExportRepair.dll</span></span>  
   
--   <span data-ttu-id="f1aba-133">Microsoft.WindowsAzure.Storage.dll</span><span class="sxs-lookup"><span data-stu-id="f1aba-133">Microsoft.WindowsAzure.Storage.dll</span></span>  
+-   <span data-ttu-id="40fc7-133">Microsoft.WindowsAzure.Storage.dll</span><span class="sxs-lookup"><span data-stu-id="40fc7-133">Microsoft.WindowsAzure.Storage.dll</span></span>  
   
--   <span data-ttu-id="f1aba-134">Hddid.dll</span><span class="sxs-lookup"><span data-stu-id="f1aba-134">Hddid.dll</span></span>  
+-   <span data-ttu-id="40fc7-134">Hddid.dll</span><span class="sxs-lookup"><span data-stu-id="40fc7-134">Hddid.dll</span></span>  
   
- <span data-ttu-id="f1aba-135">將這些檔案複製到工作目錄，例如，`c:\WAImportExport`。</span><span class="sxs-lookup"><span data-stu-id="f1aba-135">Copy these files to a working directory, for example, `c:\WAImportExport`.</span></span> <span data-ttu-id="f1aba-136">接下來，在系統管理員模式中開啟命令列視窗，並將上述目錄設為目前的目錄。</span><span class="sxs-lookup"><span data-stu-id="f1aba-136">Next, open a command line window in Administrator mode, and set the above directory as current directory.</span></span>  
+ <span data-ttu-id="40fc7-135">複製這些檔案 tooa 工作目錄，例如`c:\WAImportExport`。</span><span class="sxs-lookup"><span data-stu-id="40fc7-135">Copy these files tooa working directory, for example, `c:\WAImportExport`.</span></span> <span data-ttu-id="40fc7-136">接下來，以系統管理員模式開啟命令列視窗中，並將 hello 上述目錄設為目前的目錄。</span><span class="sxs-lookup"><span data-stu-id="40fc7-136">Next, open a command line window in Administrator mode, and set hello above directory as current directory.</span></span>  
   
- <span data-ttu-id="f1aba-137">若要輸出命令的說明，執行此工具而不包含參數︰</span><span class="sxs-lookup"><span data-stu-id="f1aba-137">To output help for the command, run the tool without parameters:</span></span>  
+ <span data-ttu-id="40fc7-137">hello 命令，執行不含參數的 hello 工具 toooutput 說明：</span><span class="sxs-lookup"><span data-stu-id="40fc7-137">toooutput help for hello command, run hello tool without parameters:</span></span>  
   
 ```  
 WAImportExport, a client tool for Microsoft Azure Import/Export service. Microsoft (c) 2013, 2014  
@@ -119,117 +119,117 @@ Preview an Export Job:
 Parameters:  
   
     /j:<JournalFile>  
-        - Required. Path to the journal file. Each drive must have one and only one  
-          journal file. The journal file corresponding to the target drive must always  
+        - Required. Path toohello journal file. Each drive must have one and only one  
+          journal file. hello journal file corresponding toohello target drive must always  
           be specified.  
     /logdir:<LogDirectory>  
-        - Optional. The log directory. Verbose log files as well as some temporary  
-          files will be written to this directory. If not specified, current directory  
-          will be used as the log directory.  
+        - Optional. hello log directory. Verbose log files as well as some temporary  
+          files will be written toothis directory. If not specified, current directory  
+          will be used as hello log directory.  
     /id:<SessionId>  
-        - Required. The session Id is used to identify a copy session. It is used to  
+        - Required. hello session Id is used tooidentify a copy session. It is used too 
           ensure accurate recovery of an interrupted copy session. In addition, files  
-          that are copied in a copy session are stored in a directory named after the  
-          session Id on the target drive.  
+          that are copied in a copy session are stored in a directory named after hello  
+          session Id on hello target drive.  
     /resumesession  
-        - Optional. If the last copy session was terminated abnormally, this parameter  
-          can be specified to resume the session.  
+        - Optional. If hello last copy session was terminated abnormally, this parameter  
+          can be specified tooresume hello session.  
     /abortsession  
-        - Optional. If the last copy session was terminated abnormally, this parameter  
-          can be specified to abort the session.  
+        - Optional. If hello last copy session was terminated abnormally, this parameter  
+          can be specified tooabort hello session.  
     /sn:<StorageAccountName>  
-        - Required. Only applicable for RepairImport and RepairExport. The name of  
-          the storage account.  
+        - Required. Only applicable for RepairImport and RepairExport. hello name of  
+          hello storage account.  
     /sk:<StorageAccountKey>  
-        - Optional. The key of the storage account. One of /sk: and /csas: must be  
+        - Optional. hello key of hello storage account. One of /sk: and /csas: must be  
           specified.  
     /csas:<ContainerSas>  
-        - Optional. A container SAS, in format of <ContainerName>?<SasString>, to be  
-          used for import the data. One of /sk: and /csas: must be specified.  
+        - Optional. A container SAS, in format of <ContainerName>?<SasString>, toobe  
+          used for import hello data. One of /sk: and /csas: must be specified.  
     /t:<TargetDriveLetter>  
-        - Required. Drive letter of the target drive.  
+        - Required. Drive letter of hello target drive.  
     /r:<RepairFile>  
         - Required. Only applicable for RepairImport and RepairExport.  
-          Path to the file for tracking repair progress. Each drive must have one  
+          Path toohello file for tracking repair progress. Each drive must have one  
           and only one repair file.  
     /d:<TargetDirectories>  
         - Required. Only applicable for RepairImport and RepairExport.  
-          For RepairImport, one or more semicolon-separated directories to repair;  
-          For RepairExport, one directory to repair, e.g. root directory of the drive.  
+          For RepairImport, one or more semicolon-separated directories toorepair;  
+          For RepairExport, one directory toorepair, e.g. root directory of hello drive.  
     /format  
-        - Optional. If specified, the target drive will be formatted. DO NOT specify  
-          this parameter if you do not want to format the drive.  
+        - Optional. If specified, hello target drive will be formatted. DO NOT specify  
+          this parameter if you do not want tooformat hello drive.  
     /silentmode  
-        - Optional. If not specified, the /format parameter will require a confirmation  
-          from console before the tool formats the drive. If this parameter is specified,  
-          not confirmation will be given for formatting the drive.  
+        - Optional. If not specified, hello /format parameter will require a confirmation  
+          from console before hello tool formats hello drive. If this parameter is specified,  
+          not confirmation will be given for formatting hello drive.  
     /encrypt  
-        - Optional. If specified, the target drive will be encrypted with BitLocker.  
-          If the drive has already been encrypted with BitLocker, do not specify this  
-          parameter and instead specify the BitLocker key using the "/k" parameter.  
+        - Optional. If specified, hello target drive will be encrypted with BitLocker.  
+          If hello drive has already been encrypted with BitLocker, do not specify this  
+          parameter and instead specify hello BitLocker key using hello "/k" parameter.  
     /bk:<BitLockerKey>  
-        - Optional. The current BitLocker key if the drive has already been encrypted  
+        - Optional. hello current BitLocker key if hello drive has already been encrypted  
           with BitLocker.  
     /Disposition:<Disposition>  
-        - Optional. Specifies the behavior when a blob with the same path as the one  
+        - Optional. Specifies hello behavior when a blob with hello same path as hello one  
           being imported already exists. Valid values are: rename, no-overwrite and  
-          overwrite (case-sensitive). If not specified, "rename" will be used as the  
+          overwrite (case-sensitive). If not specified, "rename" will be used as hello  
           default value.  
     /BlobType:<BlobType>  
-        - Optional. The blob type for the imported blob(s). Valid values are BlockBlob  
-          and PageBlob. If not specified, BlockBlob will be used as the default value.  
+        - Optional. hello blob type for hello imported blob(s). Valid values are BlockBlob  
+          and PageBlob. If not specified, BlockBlob will be used as hello default value.  
     /PropertyFile:<PropertyFile>  
-        - Optional. Path to the property file for the file(s) to be imported.  
+        - Optional. Path toohello property file for hello file(s) toobe imported.  
     /MetadataFile:<MetadataFile>  
-        - Optional. Path to the metadata file for the file(s) to be imported.  
+        - Optional. Path toohello metadata file for hello file(s) toobe imported.  
     /CopyLogFile:<DriveCopyLogFile>  
-        - Required. Only applicable for RepairImport and RepairExport. Path to the  
+        - Required. Only applicable for RepairImport and RepairExport. Path toohello  
           drive copy log file (verbose or error).  
     /ManifestFile:<DriveManifestFile>  
-        - Required. Only applicable for RepairExport. Path to the drive manifest file.  
+        - Required. Only applicable for RepairExport. Path toohello drive manifest file.  
     /PathMapFile:<DrivePathMapFile>  
-        - Optional. Only applicable for RepairImport. Path to the file containing  
-          mappings of file paths relative to the drive root to locations of actual files  
+        - Optional. Only applicable for RepairImport. Path toohello file containing  
+          mappings of file paths relative toohello drive root toolocations of actual files  
           (tab-delimited). When first specified, it will be populated with file paths  
           with empty targets, which means either they are not found in TargetDirectories,  
-          access denied, with invalid name, or they exist in multiple directories. The  
-          path map file can be manually edited to include the correct target paths and  
-          specified again for the tool to resolve the file paths correctly.  
+          access denied, with invalid name, or they exist in multiple directories. hello  
+          path map file can be manually edited tooinclude hello correct target paths and  
+          specified again for hello tool tooresolve hello file paths correctly.  
     /ExportBlobListFile:<ExportBlobListFile>  
-        - Required. Path to the XML file containing list of blob paths or blob path  
-          prefixes for the blobs to be exported. The file format is the same as the  
-          blob list blob format in the Put Job operation of the Import/Export service  
+        - Required. Path toohello XML file containing list of blob paths or blob path  
+          prefixes for hello blobs toobe exported. hello file format is hello same as hello  
+          blob list blob format in hello Put Job operation of hello Import/Export service  
           REST API.  
     /DriveSize:<DriveSize>  
-        - Required. Size of drives to be used for export. For example, 500GB, 1.5TB.  
+        - Required. Size of drives toobe used for export. For example, 500GB, 1.5TB.  
           Note: 1 GB = 1,000,000,000 bytes  
                 1 TB = 1,000,000,000,000 bytes  
     /srcdir:<SourceDirectory>  
-        - Required. Source directory that contains files to be copied to the  
+        - Required. Source directory that contains files toobe copied toohello  
           target drives.  
     /dstdir:<DestinationBlobVirtualDirectory>  
-        - Required. Destination blob virtual directory to which the files will  
+        - Required. Destination blob virtual directory toowhich hello files will  
           be imported.  
     /srcfile:<SourceFilePath>  
-        - Required. Path to the source file to be imported.  
+        - Required. Path toohello source file toobe imported.  
     /dstblob:<DestinationBlobPath>  
-        - Required. Destination blob path for the file to be imported.  
+        - Required. Destination blob path for hello file toobe imported.  
     /skipwrite
-        - Optional. To skip write process. Used for inplace data drive preparation.
-          Be sure to reserve enough space (3 GB per 7TB) for drive manifest file!
+        - Optional. tooskip write process. Used for inplace data drive preparation.
+          Be sure tooreserve enough space (3 GB per 7TB) for drive manifest file!
 Examples:  
   
-    Copy a source directory to a drive:  
+    Copy a source directory tooa drive:  
     WAImportExport.exe PrepImport  
         /j:9WM35C2V.jrn /id:session#1 /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GEL  
         xmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /t:x /format /encrypt /srcdir:d:\movi  
         es\drama /dstdir:movies/drama/  
   
-    Copy another directory to the same drive following the above command:  
+    Copy another directory toohello same drive following hello above command:  
     WAImportExport.exe PrepImport  
         /j:9WM35C2V.jrn /id:session#2 /srcdir:d:\movies\action /dstdir:movies/action/  
   
-    Copy another file to the same drive following the above commands:  
+    Copy another file toohello same drive following hello above commands:  
     WAImportExport.exe PrepImport  
         /j:9WM35C2V.jrn /id:session#3 /srcfile:d:\movies\dvd.vhd /dstblob:movies/dvd.vhd /BlobType:PageBlob  
   
@@ -252,11 +252,11 @@ Examples:
         es\drama /dstdir:movies/drama/ /skipwrite
 ```  
   
-## <a name="next-steps"></a><span data-ttu-id="f1aba-138">後續步驟</span><span class="sxs-lookup"><span data-stu-id="f1aba-138">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="40fc7-138">後續步驟</span><span class="sxs-lookup"><span data-stu-id="40fc7-138">Next steps</span></span>
 
-* [<span data-ttu-id="f1aba-139">針對匯入作業準備硬碟</span><span class="sxs-lookup"><span data-stu-id="f1aba-139">Preparing hard drives for an import job</span></span>](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
-* [<span data-ttu-id="f1aba-140">預覽匯出作業的磁碟機使用量</span><span class="sxs-lookup"><span data-stu-id="f1aba-140">Previewing Drive usage for an export job</span></span>](storage-import-export-tool-previewing-drive-usage-export-v1.md)   
-* [<span data-ttu-id="f1aba-141">利用複製記錄檔檢閱作業狀態</span><span class="sxs-lookup"><span data-stu-id="f1aba-141">Reviewing job status with copy log files</span></span>](storage-import-export-tool-reviewing-job-status-v1.md)   
-* [<span data-ttu-id="f1aba-142">修復匯入作業</span><span class="sxs-lookup"><span data-stu-id="f1aba-142">Repairing an import job</span></span>](storage-import-export-tool-repairing-an-import-job-v1.md)   
-* [<span data-ttu-id="f1aba-143">修復匯出作業</span><span class="sxs-lookup"><span data-stu-id="f1aba-143">Repairing an export job</span></span>](storage-import-export-tool-repairing-an-export-job-v1.md)   
-* [<span data-ttu-id="f1aba-144">針對 Azure 匯入/匯出工具進行疑難排解</span><span class="sxs-lookup"><span data-stu-id="f1aba-144">Troubleshooting the Azure Import/Export Tool</span></span>](storage-import-export-tool-troubleshooting-v1.md)
+* [<span data-ttu-id="40fc7-139">針對匯入作業準備硬碟</span><span class="sxs-lookup"><span data-stu-id="40fc7-139">Preparing hard drives for an import job</span></span>](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
+* [<span data-ttu-id="40fc7-140">預覽匯出作業的磁碟機使用量</span><span class="sxs-lookup"><span data-stu-id="40fc7-140">Previewing Drive usage for an export job</span></span>](storage-import-export-tool-previewing-drive-usage-export-v1.md)   
+* [<span data-ttu-id="40fc7-141">利用複製記錄檔檢閱作業狀態</span><span class="sxs-lookup"><span data-stu-id="40fc7-141">Reviewing job status with copy log files</span></span>](storage-import-export-tool-reviewing-job-status-v1.md)   
+* [<span data-ttu-id="40fc7-142">修復匯入作業</span><span class="sxs-lookup"><span data-stu-id="40fc7-142">Repairing an import job</span></span>](storage-import-export-tool-repairing-an-import-job-v1.md)   
+* [<span data-ttu-id="40fc7-143">修復匯出作業</span><span class="sxs-lookup"><span data-stu-id="40fc7-143">Repairing an export job</span></span>](storage-import-export-tool-repairing-an-export-job-v1.md)   
+* [<span data-ttu-id="40fc7-144">疑難排解 hello Azure 匯入/匯出工具</span><span class="sxs-lookup"><span data-stu-id="40fc7-144">Troubleshooting hello Azure Import/Export Tool</span></span>](storage-import-export-tool-troubleshooting-v1.md)

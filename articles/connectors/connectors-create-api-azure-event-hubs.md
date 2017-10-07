@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 事件中樞為 Azure Logic Apps 設定事件監視器 | Microsoft Docs"
-description: "使用 Azure 事件中樞來監視資料流，為 Azure Logic Apps 接收事件和傳送事件"
+title: "總為 Azure 邏輯應用程式的 Azure 事件中心的事件監視 aaaSet |Microsoft 文件"
+description: "監視資料的資料流 tooreceive 事件和事件傳送為 Azure 事件中心的 Azure 邏輯應用程式"
 services: logic-apps
 keywords: "資料流、事件監視器、事件中樞"
 author: ecfan
@@ -16,121 +16,121 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/31/2017
 ms.author: estfan; LADocs
-ms.openlocfilehash: 2ca27fb8269d1796fb1181fc4d0a8744a592d548
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4aad2c2ac1134b4d4d440019b4773559e49be122
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-receive-and-send-events-with-the-event-hubs-connector"></a><span data-ttu-id="eddc9-104">使用事件中樞連接器來監視、接收及傳送事件</span><span class="sxs-lookup"><span data-stu-id="eddc9-104">Monitor, receive, and send events with the Event Hubs connector</span></span>
+# <a name="monitor-receive-and-send-events-with-hello-event-hubs-connector"></a><span data-ttu-id="7a6f1-104">監視、 接收和傳送與 hello 事件中心連接器事件</span><span class="sxs-lookup"><span data-stu-id="7a6f1-104">Monitor, receive, and send events with hello Event Hubs connector</span></span>
 
-<span data-ttu-id="eddc9-105">若要設定事件監視器，以便邏輯應用程式偵測事件、接收事件和傳送事件，請從您的邏輯應用程式連線到 [Azure 事件中樞](https://azure.microsoft.com/services/event-hubs)。</span><span class="sxs-lookup"><span data-stu-id="eddc9-105">To set up an event monitor so that your logic app can detect events, receive events, and send events, connect to an [Azure Event Hub](https://azure.microsoft.com/services/event-hubs) from your logic app.</span></span> <span data-ttu-id="eddc9-106">深入了解 [Azure 事件中樞](../event-hubs/event-hubs-what-is-event-hubs.md)。</span><span class="sxs-lookup"><span data-stu-id="eddc9-106">Learn more about [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md).</span></span>
+<span data-ttu-id="7a6f1-105">tooset 總事件監視，因此邏輯應用程式可以偵測事件，會接收事件，且事件，傳送連接 tooan [Azure 事件中心](https://azure.microsoft.com/services/event-hubs)從邏輯應用程式。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-105">tooset up an event monitor so that your logic app can detect events, receive events, and send events, connect tooan [Azure Event Hub](https://azure.microsoft.com/services/event-hubs) from your logic app.</span></span> <span data-ttu-id="7a6f1-106">深入了解 [Azure 事件中樞](../event-hubs/event-hubs-what-is-event-hubs.md)。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-106">Learn more about [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md).</span></span>
 
-## <a name="requirements"></a><span data-ttu-id="eddc9-107">需求</span><span class="sxs-lookup"><span data-stu-id="eddc9-107">Requirements</span></span>
+## <a name="requirements"></a><span data-ttu-id="7a6f1-107">需求</span><span class="sxs-lookup"><span data-stu-id="7a6f1-107">Requirements</span></span>
 
-* <span data-ttu-id="eddc9-108">您在 Azure 中必須有[事件中樞命名空間和事件中樞](../event-hubs/event-hubs-create.md)。</span><span class="sxs-lookup"><span data-stu-id="eddc9-108">You have to have an [Event Hubs namespace and Event Hub](../event-hubs/event-hubs-create.md) in Azure.</span></span> <span data-ttu-id="eddc9-109">了解[如何建立事件中樞命名空間和事件中樞](../event-hubs/event-hubs-create.md)。</span><span class="sxs-lookup"><span data-stu-id="eddc9-109">Learn [how to create an Event Hubs namespace and Event Hub](../event-hubs/event-hubs-create.md).</span></span> 
+* <span data-ttu-id="7a6f1-108">您有 toohave[事件中樞命名空間和事件中心](../event-hubs/event-hubs-create.md)在 Azure 中。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-108">You have toohave an [Event Hubs namespace and Event Hub](../event-hubs/event-hubs-create.md) in Azure.</span></span> <span data-ttu-id="7a6f1-109">深入了解[如何 toocreate 事件中樞命名空間和事件中心](../event-hubs/event-hubs-create.md)。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-109">Learn [how toocreate an Event Hubs namespace and Event Hub](../event-hubs/event-hubs-create.md).</span></span> 
 
-* <span data-ttu-id="eddc9-110">若要在邏輯應用程式中使用[任何連接器](https://docs.microsoft.com/azure/connectors/apis-list)，您必須先建立邏輯應用程式。</span><span class="sxs-lookup"><span data-stu-id="eddc9-110">To use [any connector](https://docs.microsoft.com/azure/connectors/apis-list) in your logic app, you have to create a logic app first.</span></span> <span data-ttu-id="eddc9-111">了解[如何建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。</span><span class="sxs-lookup"><span data-stu-id="eddc9-111">Learn [how to create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
+* <span data-ttu-id="7a6f1-110">toouse[任何連接器](https://docs.microsoft.com/azure/connectors/apis-list)在邏輯應用程式，您必須 toocreate 邏輯應用程式第一次。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-110">toouse [any connector](https://docs.microsoft.com/azure/connectors/apis-list) in your logic app, you have toocreate a logic app first.</span></span> <span data-ttu-id="7a6f1-111">深入了解[如何 toocreate 邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-111">Learn [how toocreate a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
 
 <a name="permissions-connection-string"></a>
-## <a name="check-event-hubs-namespace-permissions-and-find-the-connection-string"></a><span data-ttu-id="eddc9-112">檢查事件中樞命名空間權限並尋找連接字串</span><span class="sxs-lookup"><span data-stu-id="eddc9-112">Check Event Hubs namespace permissions and find the connection string</span></span>
+## <a name="check-event-hubs-namespace-permissions-and-find-hello-connection-string"></a><span data-ttu-id="7a6f1-112">檢查事件中樞命名空間的權限，並尋找 hello 連接字串</span><span class="sxs-lookup"><span data-stu-id="7a6f1-112">Check Event Hubs namespace permissions and find hello connection string</span></span>
 
-<span data-ttu-id="eddc9-113">若要讓邏輯應用程式存取任何服務，您必須建立邏輯應用程式與服務之間的[*連線*](./connectors-overview.md)(如果您還尚未這麼做)。</span><span class="sxs-lookup"><span data-stu-id="eddc9-113">For your logic app to access any service, you have to create a [*connection*](./connectors-overview.md) between your logic app and the service, if you haven't already.</span></span> <span data-ttu-id="eddc9-114">此連線會授權邏輯應用程式存取資料。</span><span class="sxs-lookup"><span data-stu-id="eddc9-114">This connection authorizes your logic app to access data.</span></span>
-<span data-ttu-id="eddc9-115">若要讓邏輯應用程式存取事件中樞，您必須擁有事件中樞命名空間的 [管理] 權限和連接字串。</span><span class="sxs-lookup"><span data-stu-id="eddc9-115">For your logic app to access your Event Hub, you have to have **Manage** permissions and the connection string for your Event Hubs namespace.</span></span>
+<span data-ttu-id="7a6f1-113">如您邏輯應用程式 tooaccess 任何服務，您有 toocreate [*連接*](./connectors-overview.md)之間邏輯應用程式與 hello 服務，如果您還沒有這麼做。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-113">For your logic app tooaccess any service, you have toocreate a [*connection*](./connectors-overview.md) between your logic app and hello service, if you haven't already.</span></span> <span data-ttu-id="7a6f1-114">此連接會授權您 tooaccess 邏輯應用程式的資料。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-114">This connection authorizes your logic app tooaccess data.</span></span>
+<span data-ttu-id="7a6f1-115">您的邏輯應用程式 tooaccess 事件中樞，您必須 toohave**管理**權限和 hello 事件中樞命名空間的連接字串。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-115">For your logic app tooaccess your Event Hub, you have toohave **Manage** permissions and hello connection string for your Event Hubs namespace.</span></span>
 
-<span data-ttu-id="eddc9-116">若要檢查您的權限並取得連接字串，請遵循下列步驟。</span><span class="sxs-lookup"><span data-stu-id="eddc9-116">To check your permissions and get the connection string, follow these steps.</span></span>
+<span data-ttu-id="7a6f1-116">toocheck 您權限和 get hello 連接字串，請遵循下列步驟。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-116">toocheck your permissions and get hello connection string, follow these steps.</span></span>
 
-1.  <span data-ttu-id="eddc9-117">登入 [Azure 入口網站](https://portal.azure.com "Azure 入口網站")。</span><span class="sxs-lookup"><span data-stu-id="eddc9-117">Sign in to the [Azure portal](https://portal.azure.com "Azure portal").</span></span> 
+1.  <span data-ttu-id="7a6f1-117">登入 toohello [Azure 入口網站](https://portal.azure.com "Azure 入口網站")。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-117">Sign in toohello [Azure portal](https://portal.azure.com "Azure portal").</span></span> 
 
-2.  <span data-ttu-id="eddc9-118">移至您的事件中樞「命名空間」，而不是特定事件中樞。</span><span class="sxs-lookup"><span data-stu-id="eddc9-118">Go to your Event Hubs *namespace*, not the specific Event Hub.</span></span> <span data-ttu-id="eddc9-119">在命名空間刀鋒視窗的 [設定] 之下，選擇 [共用存取原則]。</span><span class="sxs-lookup"><span data-stu-id="eddc9-119">On the namespace blade, under **Settings**, choose **Shared access policies**.</span></span> <span data-ttu-id="eddc9-120">在 [宣告] 之下，確認您有該命名空間的 [管理] 權限。</span><span class="sxs-lookup"><span data-stu-id="eddc9-120">Under **Claims**, check that you have **Manage** permissions for that namespace.</span></span>
+2.  <span data-ttu-id="7a6f1-118">移 tooyour 事件中心*命名空間*，不 hello 特定事件中心。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-118">Go tooyour Event Hubs *namespace*, not hello specific Event Hub.</span></span> <span data-ttu-id="7a6f1-119">Hello 命名空間 刀鋒視窗底下**設定**，選擇**共用存取原則**。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-119">On hello namespace blade, under **Settings**, choose **Shared access policies**.</span></span> <span data-ttu-id="7a6f1-120">在 [宣告] 之下，確認您有該命名空間的 [管理] 權限。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-120">Under **Claims**, check that you have **Manage** permissions for that namespace.</span></span>
 
     ![管理事件中樞命名空間的權限](./media/connectors-create-api-azure-event-hubs/event-hubs-namespace.png)
 
-3.  <span data-ttu-id="eddc9-122">若要複製事件中樞命名空間的連接字串，請選擇 [RootManageSharedAccessKey]。</span><span class="sxs-lookup"><span data-stu-id="eddc9-122">To copy the connection string for the Event Hubs namespace, choose **RootManageSharedAccessKey**.</span></span> <span data-ttu-id="eddc9-123">選擇您的主索引鍵連接字串旁邊的 [複製] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="eddc9-123">Next to your primary key connection string, choose the copy button.</span></span>
+3.  <span data-ttu-id="7a6f1-122">toocopy hello 連接字串 hello 事件中樞命名空間中，選擇**RootManageSharedAccessKey**。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-122">toocopy hello connection string for hello Event Hubs namespace, choose **RootManageSharedAccessKey**.</span></span> <span data-ttu-id="7a6f1-123">下一步 tooyour 主索引鍵的連接字串中，選擇 hello 複製 按鈕。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-123">Next tooyour primary key connection string, choose hello copy button.</span></span>
 
     ![複製事件中樞命名空間連接字串](media/connectors-create-api-azure-event-hubs/find-event-hub-namespace-connection-string.png)
 
     > [!TIP]
-    > <span data-ttu-id="eddc9-125">若要確認您的連接字串是否與您的事件中樞命名空間或特定事件中樞相關聯，請檢查連接字串中的 `EntityPath` 參數。</span><span class="sxs-lookup"><span data-stu-id="eddc9-125">To confirm whether your connection string is associated with your Event Hubs namespace or with a specific Event Hub, check the connection string for the `EntityPath` parameter.</span></span> <span data-ttu-id="eddc9-126">如果您發現這個參數，此連接字串適用於特定事件中樞「實體」，而不是使用您的邏輯應用程式的正確字串。</span><span class="sxs-lookup"><span data-stu-id="eddc9-126">If you find this parameter, the connection string is for a specific Event Hub "entity", and is not the correct string to use with your logic app.</span></span>
+    > <span data-ttu-id="7a6f1-125">tooconfirm 與事件中樞命名空間或特定的事件中心，相關聯的連接字串是否檢查 hello 連接字串 hello`EntityPath`參數。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-125">tooconfirm whether your connection string is associated with your Event Hubs namespace or with a specific Event Hub, check hello connection string for hello `EntityPath` parameter.</span></span> <span data-ttu-id="7a6f1-126">如果您發現此參數，hello 連接字串是特定的事件中心 「 實體 」，而非 hello 正確的字串 toouse 邏輯應用程式。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-126">If you find this parameter, hello connection string is for a specific Event Hub "entity", and is not hello correct string toouse with your logic app.</span></span>
 
-4.  <span data-ttu-id="eddc9-127">將事件中樞觸發程序或動作新增至邏輯應用程式之後，當系統提示您輸入認證時，您可以連線至您的事件中樞命名空間。</span><span class="sxs-lookup"><span data-stu-id="eddc9-127">Now when you're prompted for credentials after adding an Event Hubs trigger or action to your logic app, you can connect to your Event Hubs namespace.</span></span> <span data-ttu-id="eddc9-128">指定您的連線名稱，輸入您複製的連接字串，然後選擇 [建立]。</span><span class="sxs-lookup"><span data-stu-id="eddc9-128">Give your connection a name, enter the connection string that you copied, and choose **Create**.</span></span>
+4.  <span data-ttu-id="7a6f1-127">現在當系統提示您輸入認證加入事件中心觸發程序或動作 tooyour 邏輯應用程式之後，您可以連接 tooyour 事件中樞命名空間。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-127">Now when you're prompted for credentials after adding an Event Hubs trigger or action tooyour logic app, you can connect tooyour Event Hubs namespace.</span></span> <span data-ttu-id="7a6f1-128">為您的連線指定名稱，輸入 hello 連接字串，複製，再選擇**建立**。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-128">Give your connection a name, enter hello connection string that you copied, and choose **Create**.</span></span>
 
     ![輸入事件中樞命名空間的連接字串](./media/connectors-create-api-azure-event-hubs/event-hubs-connection.png)
 
-    <span data-ttu-id="eddc9-130">您在建立連線之後，連線名稱應該會出現在事件中樞觸發程序或動作中。</span><span class="sxs-lookup"><span data-stu-id="eddc9-130">After you create your connection, the connection name should appear in the Event Hubs trigger or action.</span></span> 
-    <span data-ttu-id="eddc9-131">您現在可以在您的邏輯應用程式中繼續進行其他步驟。</span><span class="sxs-lookup"><span data-stu-id="eddc9-131">You can then continue with the other steps in your logic app.</span></span>
+    <span data-ttu-id="7a6f1-130">建立您的連線之後，hello 連接名稱應該會出現在 hello 事件中心觸發程序或動作。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-130">After you create your connection, hello connection name should appear in hello Event Hubs trigger or action.</span></span> 
+    <span data-ttu-id="7a6f1-131">然後，您可以繼續使用 hello 邏輯應用程式中的其他步驟。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-131">You can then continue with hello other steps in your logic app.</span></span>
 
     ![已建立事件中樞命名空間連線](./media/connectors-create-api-azure-event-hubs/event-hubs-connection-created.png)
 
-## <a name="start-workflow-when-your-event-hub-receives-new-events"></a><span data-ttu-id="eddc9-133">在事件中樞收到新事件時啟動工作流程</span><span class="sxs-lookup"><span data-stu-id="eddc9-133">Start workflow when your Event Hub receives new events</span></span>
+## <a name="start-workflow-when-your-event-hub-receives-new-events"></a><span data-ttu-id="7a6f1-133">在事件中樞收到新事件時啟動工作流程</span><span class="sxs-lookup"><span data-stu-id="7a6f1-133">Start workflow when your Event Hub receives new events</span></span>
 
-<span data-ttu-id="eddc9-134">[觸發程序](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)是在邏輯應用程式中啟動工作流程的事件。</span><span class="sxs-lookup"><span data-stu-id="eddc9-134">A [*trigger*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) is an event that starts a workflow in your logic app.</span></span> <span data-ttu-id="eddc9-135">若要在新事件傳送至事件中樞時啟動工作流程，請遵循下列步驟來新增可偵測此事件的觸發程序。</span><span class="sxs-lookup"><span data-stu-id="eddc9-135">To start a workflow when new events are sent to your Event Hub, follow these steps for adding the trigger that detects this event.</span></span>
+<span data-ttu-id="7a6f1-134">[觸發程序](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)是在邏輯應用程式中啟動工作流程的事件。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-134">A [*trigger*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) is an event that starts a workflow in your logic app.</span></span> <span data-ttu-id="7a6f1-135">新的事件傳送 tooyour 事件中樞時，請啟動的工作流程，請遵循下列步驟來新增 hello 觸發程序偵測到此事件。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-135">To start a workflow when new events are sent tooyour Event Hub, follow these steps for adding hello trigger that detects this event.</span></span>
 
-1.  <span data-ttu-id="eddc9-136">在 [Azure 入口網站](https://portal.azure.com "Azure 入口網站")中，移至現有的邏輯應用程式，或建立空白的邏輯應用程式。</span><span class="sxs-lookup"><span data-stu-id="eddc9-136">In the [Azure portal](https://portal.azure.com "Azure portal"), go to your existing logic app or create a blank logic app.</span></span>
+1.  <span data-ttu-id="7a6f1-136">在 hello [Azure 入口網站](https://portal.azure.com "Azure 入口網站")、 移 tooyour 現有邏輯應用程式，或建立空白的邏輯應用程式。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-136">In hello [Azure portal](https://portal.azure.com "Azure portal"), go tooyour existing logic app or create a blank logic app.</span></span>
 
-2.  <span data-ttu-id="eddc9-137">在邏輯應用程式設計工具的搜尋方塊中，輸入 `event hubs` 作為您的篩選條件。</span><span class="sxs-lookup"><span data-stu-id="eddc9-137">In the search box for the Logic App Designer, enter `event hubs` for your filter.</span></span> <span data-ttu-id="eddc9-138">選取此觸發程序︰**當事件可用於事件中樞時**</span><span class="sxs-lookup"><span data-stu-id="eddc9-138">Select this trigger: **When events are available in Event Hub**</span></span>
+2.  <span data-ttu-id="7a6f1-137">在 hello hello 邏輯應用程式的設計工具搜尋方塊中輸入`event hubs`用於您篩選條件。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-137">In hello search box for hello Logic App Designer, enter `event hubs` for your filter.</span></span> <span data-ttu-id="7a6f1-138">選取此觸發程序︰**當事件可用於事件中樞時**</span><span class="sxs-lookup"><span data-stu-id="7a6f1-138">Select this trigger: **When events are available in Event Hub**</span></span>
 
     ![選取當事件中樞收到新事件時的觸發程序](./media/connectors-create-api-azure-event-hubs/find-event-hubs-trigger.png)
 
-    <span data-ttu-id="eddc9-140">如果您還沒有事件中樞命名空間的連線，系統會提示您立即建立此連線。</span><span class="sxs-lookup"><span data-stu-id="eddc9-140">If you don't already have a connection to your Event Hubs namespace, you're prompted to create this connection now.</span></span> <span data-ttu-id="eddc9-141">指定您的連線名稱，然後輸入事件中樞命名空間的連接字串。</span><span class="sxs-lookup"><span data-stu-id="eddc9-141">Give your connection a name, and enter the connection string for your Event Hubs namespace.</span></span> 
-    <span data-ttu-id="eddc9-142">如有必要，請了解[如何尋找您的連接字串](#permissions-connection-string)。</span><span class="sxs-lookup"><span data-stu-id="eddc9-142">If necessary, learn [how to find your connection string](#permissions-connection-string).</span></span>
+    <span data-ttu-id="7a6f1-140">如果您還沒有連接 tooyour 事件中樞命名空間，則會提示您 toocreate 現在這個連線。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-140">If you don't already have a connection tooyour Event Hubs namespace, you're prompted toocreate this connection now.</span></span> <span data-ttu-id="7a6f1-141">指定的名稱，您的連線，並輸入您的事件中樞命名空間 hello 連接字串。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-141">Give your connection a name, and enter hello connection string for your Event Hubs namespace.</span></span> 
+    <span data-ttu-id="7a6f1-142">如有必要，了解[如何 toofind 連接字串](#permissions-connection-string)。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-142">If necessary, learn [how toofind your connection string](#permissions-connection-string).</span></span>
 
     ![輸入事件中樞命名空間的連接字串](./media/connectors-create-api-azure-event-hubs/event-hubs-connection.png)
 
-    <span data-ttu-id="eddc9-144">在您建立連線之後，[當事件可用於事件中樞時] 觸發程序的設定隨即出現。</span><span class="sxs-lookup"><span data-stu-id="eddc9-144">After you create the connection, the settings for the **When an event in available in an Event Hub** trigger appear.</span></span>
+    <span data-ttu-id="7a6f1-144">建立 hello 連線之後，hello 設定 hello**內發生事件時使用事件中心**觸發程序會出現。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-144">After you create hello connection, hello settings for hello **When an event in available in an Event Hub** trigger appear.</span></span>
 
     ![當事件中樞收到新事件時的觸發程序設定](./media/connectors-create-api-azure-event-hubs/event-hubs-trigger.png)
 
-3.  <span data-ttu-id="eddc9-146">輸入或選取您想要監視的事件中樞名稱。</span><span class="sxs-lookup"><span data-stu-id="eddc9-146">Enter or select the name for the Event Hub that you want to monitor.</span></span> <span data-ttu-id="eddc9-147">選取您想要檢查事件中樞的頻率和間隔。</span><span class="sxs-lookup"><span data-stu-id="eddc9-147">Select the frequency and interval for how often you want to check the Event Hub.</span></span>
+3.  <span data-ttu-id="7a6f1-146">輸入或選取 hello hello 想 toomonitor 事件中樞的名稱。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-146">Enter or select hello name for hello Event Hub that you want toomonitor.</span></span> <span data-ttu-id="7a6f1-147">選取 hello 頻率和間隔 toocheck hello 事件中心的頻率。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-147">Select hello frequency and interval for how often you want toocheck hello Event Hub.</span></span>
 
     > [!TIP]
-    > <span data-ttu-id="eddc9-148">若要選擇性地選取取用者群組以便讀取事件，請選擇 [顯示進階選項]。</span><span class="sxs-lookup"><span data-stu-id="eddc9-148">To optionally select a consumer group for reading events, choose **Show advanced options**.</span></span> 
+    > <span data-ttu-id="7a6f1-148">toooptionally 選取讀取事件的取用者群組中，選擇  **Show advanced 選項**。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-148">toooptionally select a consumer group for reading events, choose **Show advanced options**.</span></span> 
 
     ![指定事件中樞或取用者群組](./media/connectors-create-api-azure-event-hubs/event-hubs-trigger-details.png)
 
-    <span data-ttu-id="eddc9-150">您現在已設定觸發程序以啟動邏輯應用程式的工作流程。</span><span class="sxs-lookup"><span data-stu-id="eddc9-150">You've now set up a trigger to start a workflow for your logic app.</span></span> 
-    <span data-ttu-id="eddc9-151">您的邏輯應用程式會根據您所設定的排程，檢查指定的事件中樞。</span><span class="sxs-lookup"><span data-stu-id="eddc9-151">Your logic app checks the specified Event Hub based on the schedule that you set.</span></span> 
-    <span data-ttu-id="eddc9-152">如果您的應用程式在事件中樞找到新的事件，觸發程序就會在邏輯應用程式中執行其他動作或觸發程序。</span><span class="sxs-lookup"><span data-stu-id="eddc9-152">If your app finds new events in the Event Hub, the trigger runs other actions or triggers in your logic app.</span></span>
+    <span data-ttu-id="7a6f1-150">您現在設定觸發程序 toostart 工作流程應用程式邏輯。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-150">You've now set up a trigger toostart a workflow for your logic app.</span></span> 
+    <span data-ttu-id="7a6f1-151">應用程式邏輯會檢查 hello 指定根據您設定的 hello 排程的事件中樞。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-151">Your logic app checks hello specified Event Hub based on hello schedule that you set.</span></span> 
+    <span data-ttu-id="7a6f1-152">如果您的應用程式中 hello 事件中心，找到新的事件，hello 觸發程序，則會執行其他動作或觸發程序邏輯應用程式中。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-152">If your app finds new events in hello Event Hub, hello trigger runs other actions or triggers in your logic app.</span></span>
 
-## <a name="send-events-to-your-event-hub-from-your-logic-app"></a><span data-ttu-id="eddc9-153">將事件從邏輯應用程式傳送至事件中樞</span><span class="sxs-lookup"><span data-stu-id="eddc9-153">Send events to your Event Hub from your logic app</span></span>
+## <a name="send-events-tooyour-event-hub-from-your-logic-app"></a><span data-ttu-id="7a6f1-153">從邏輯應用程式傳送事件 tooyour 事件中樞</span><span class="sxs-lookup"><span data-stu-id="7a6f1-153">Send events tooyour Event Hub from your logic app</span></span>
 
-<span data-ttu-id="eddc9-154">[動作](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)是邏輯應用程式工作流程所執行的工作。</span><span class="sxs-lookup"><span data-stu-id="eddc9-154">An [*action*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) is a task performed by your logic app workflow.</span></span> <span data-ttu-id="eddc9-155">將觸發程序新增至邏輯應用程式之後，您可以新增一個動作，以對該觸發程序所產生的資料執行作業。</span><span class="sxs-lookup"><span data-stu-id="eddc9-155">After you add a trigger to your logic app, you can add an action to perform operations with data generated by that trigger.</span></span> <span data-ttu-id="eddc9-156">若要將事件從邏輯應用程式傳送至事件中樞，請遵循下列步驟。</span><span class="sxs-lookup"><span data-stu-id="eddc9-156">To send an event to your Event Hub from your logic app, follow these steps.</span></span>
+<span data-ttu-id="7a6f1-154">[動作](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)是邏輯應用程式工作流程所執行的工作。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-154">An [*action*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) is a task performed by your logic app workflow.</span></span> <span data-ttu-id="7a6f1-155">新增觸發程序 tooyour 邏輯應用程式之後，您可以加入動作 tooperform 操作該觸發程序所產生的資料。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-155">After you add a trigger tooyour logic app, you can add an action tooperform operations with data generated by that trigger.</span></span> <span data-ttu-id="7a6f1-156">toosend 事件 tooyour 事件中心從邏輯應用程式，請遵循下列步驟。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-156">toosend an event tooyour Event Hub from your logic app, follow these steps.</span></span>
 
-1.  <span data-ttu-id="eddc9-157">在邏輯應用程式設計工具中，於您的邏輯應用程式觸發程序之下，選擇 [新增步驟] > [新增動作]。</span><span class="sxs-lookup"><span data-stu-id="eddc9-157">In Logic App Designer, under your logic app trigger, choose **New step** > **Add an action**.</span></span>
+1.  <span data-ttu-id="7a6f1-157">在邏輯應用程式設計工具中，於您的邏輯應用程式觸發程序之下，選擇 [新增步驟] > [新增動作]。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-157">In Logic App Designer, under your logic app trigger, choose **New step** > **Add an action**.</span></span>
 
     ![選擇 [新增步驟]，然後選擇 [新增動作]](./media/connectors-create-api-azure-event-hubs/add-action.png)
 
-    <span data-ttu-id="eddc9-159">您現在可以尋找並選取要執行的動作。</span><span class="sxs-lookup"><span data-stu-id="eddc9-159">Now you can find and select an action to perform.</span></span> 
-    <span data-ttu-id="eddc9-160">雖然您可以選取任何動作，但在這個範例中，我們希望事件中樞動作傳送事件。</span><span class="sxs-lookup"><span data-stu-id="eddc9-160">Although you can select any action, for this example, we want the Event Hubs action to send events.</span></span>
+    <span data-ttu-id="7a6f1-159">現在您可以尋找並選取動作 tooperform。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-159">Now you can find and select an action tooperform.</span></span> 
+    <span data-ttu-id="7a6f1-160">雖然您可以選取任何動作，如這個範例中，我們想要 hello 事件中心動作 toosend 事件。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-160">Although you can select any action, for this example, we want hello Event Hubs action toosend events.</span></span>
 
-2.  <span data-ttu-id="eddc9-161">在搜尋方塊中，輸入 `event hubs` 作為篩選條件。</span><span class="sxs-lookup"><span data-stu-id="eddc9-161">In the search box, enter `event hubs` for your filter.</span></span>
-<span data-ttu-id="eddc9-162">選取此動作︰**傳送事件**</span><span class="sxs-lookup"><span data-stu-id="eddc9-162">Select this action: **Send event**</span></span>
+2.  <span data-ttu-id="7a6f1-161">在 [hello] 搜尋方塊中，輸入`event hubs`用於您篩選條件。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-161">In hello search box, enter `event hubs` for your filter.</span></span>
+<span data-ttu-id="7a6f1-162">選取此動作︰**傳送事件**</span><span class="sxs-lookup"><span data-stu-id="7a6f1-162">Select this action: **Send event**</span></span>
 
     ![選取「事件中樞 - 傳送事件」動作](./media/connectors-create-api-azure-event-hubs/find-event-hubs-action.png)
 
-3.  <span data-ttu-id="eddc9-164">輸入事件的必要詳細資料，例如要傳送事件的事件中樞名稱。</span><span class="sxs-lookup"><span data-stu-id="eddc9-164">Enter the required details for the event, such as the name for the Event Hub where you want to send the event.</span></span> <span data-ttu-id="eddc9-165">輸入有關事件的其他任何選擇性詳細資料，例如該事件的內容。</span><span class="sxs-lookup"><span data-stu-id="eddc9-165">Enter any other optional details about the event, such as content for that event.</span></span>
+3.  <span data-ttu-id="7a6f1-164">Hello 事件，例如 hello hello 想 toosend hello 事件的事件中樞的名稱，請輸入所需的 hello 詳細資料。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-164">Enter hello required details for hello event, such as hello name for hello Event Hub where you want toosend hello event.</span></span> <span data-ttu-id="7a6f1-165">輸入任何其他選擇性 hello 事件，例如，針對該事件內容的相關詳細資料。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-165">Enter any other optional details about hello event, such as content for that event.</span></span>
 
     > [!TIP]
-    > <span data-ttu-id="eddc9-166">若要選擇性地指定要傳送事件的事件中樞資料分割，請選擇 [顯示進階選項]。</span><span class="sxs-lookup"><span data-stu-id="eddc9-166">To optionally specify the Event Hub partition where to send the event, choose **Show advanced options**.</span></span> 
+    > <span data-ttu-id="7a6f1-166">toooptionally 指定 hello 事件中心資料分割，其中 toosend hello 事件，選擇**Show advanced 選項**。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-166">toooptionally specify hello Event Hub partition where toosend hello event, choose **Show advanced options**.</span></span> 
 
     ![輸入事件中樞名稱和選擇性事件詳細資料](./media/connectors-create-api-azure-event-hubs/event-hubs-send-event-action.png)
 
-6.  <span data-ttu-id="eddc9-168">儲存您的變更。</span><span class="sxs-lookup"><span data-stu-id="eddc9-168">Save your changes.</span></span>
+6.  <span data-ttu-id="7a6f1-168">儲存您的變更。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-168">Save your changes.</span></span>
 
     ![儲存您的邏輯應用程式](./media/connectors-create-api-azure-event-hubs/save-logic-app.png)
 
-    <span data-ttu-id="eddc9-170">您現在已設定可從邏輯應用程式傳送事件的動作。</span><span class="sxs-lookup"><span data-stu-id="eddc9-170">You've now set up an action to send events from your logic app.</span></span> 
+    <span data-ttu-id="7a6f1-170">您現在已設定動作 toosend 事件，從應用程式邏輯。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-170">You've now set up an action toosend events from your logic app.</span></span> 
 
-## <a name="connector-specific-details"></a><span data-ttu-id="eddc9-171">連接器特定的詳細資料</span><span class="sxs-lookup"><span data-stu-id="eddc9-171">Connector-specific details</span></span>
+## <a name="connector-specific-details"></a><span data-ttu-id="7a6f1-171">連接器特定的詳細資料</span><span class="sxs-lookup"><span data-stu-id="7a6f1-171">Connector-specific details</span></span>
 
-<span data-ttu-id="eddc9-172">檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/eventhubs/)的所有限制。</span><span class="sxs-lookup"><span data-stu-id="eddc9-172">View any triggers and actions defined in the swagger, and also see any limits in the [connector details](/connectors/eventhubs/).</span></span> 
+<span data-ttu-id="7a6f1-172">檢視任何觸發程序和動作中 hello swagger 定義，另請參閱 hello 的任何限制[連接器詳細資料](/connectors/eventhubs/)。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-172">View any triggers and actions defined in hello swagger, and also see any limits in hello [connector details](/connectors/eventhubs/).</span></span> 
 
-## <a name="get-help"></a><span data-ttu-id="eddc9-173">取得說明</span><span class="sxs-lookup"><span data-stu-id="eddc9-173">Get help</span></span>
+## <a name="get-help"></a><span data-ttu-id="7a6f1-173">取得說明</span><span class="sxs-lookup"><span data-stu-id="7a6f1-173">Get help</span></span>
 
-<span data-ttu-id="eddc9-174">若要提出問題、回答問題以及查看其他 Azure Logic Apps 使用者的做法，請造訪 [Azure Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。</span><span class="sxs-lookup"><span data-stu-id="eddc9-174">To ask questions, answer questions, and see what other Azure Logic Apps users are doing, visit the [Azure Logic Apps forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).</span></span>
+<span data-ttu-id="7a6f1-174">tooask 問題、 解答的問題，以及執行其他 Azure 邏輯應用程式使用者，請參閱瀏覽 hello [Azure 邏輯應用程式論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-174">tooask questions, answer questions, and see what other Azure Logic Apps users are doing, visit hello [Azure Logic Apps forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).</span></span>
 
-<span data-ttu-id="eddc9-175">若要改善 Logic Apps 和連接器，請在 [Logic Apps 使用者意見反應網站](http://aka.ms/logicapps-wish)上票選或提交想法。</span><span class="sxs-lookup"><span data-stu-id="eddc9-175">To help improve Logic Apps and connectors, vote on or submit ideas at the [Logic Apps user feedback site](http://aka.ms/logicapps-wish).</span></span>
+<span data-ttu-id="7a6f1-175">toohelp 改善邏輯應用程式和連接器、 票選或送出意見在 hello [Logic Apps 使用者意見反應網站](http://aka.ms/logicapps-wish)。</span><span class="sxs-lookup"><span data-stu-id="7a6f1-175">toohelp improve Logic Apps and connectors, vote on or submit ideas at hello [Logic Apps user feedback site](http://aka.ms/logicapps-wish).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="eddc9-176">後續步驟</span><span class="sxs-lookup"><span data-stu-id="eddc9-176">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="7a6f1-176">後續步驟</span><span class="sxs-lookup"><span data-stu-id="7a6f1-176">Next steps</span></span>
 
-*  [<span data-ttu-id="eddc9-177">尋找 Azure Logic Apps 的其他連接器</span><span class="sxs-lookup"><span data-stu-id="eddc9-177">Find other connectors for Azure Logic apps</span></span>](./apis-list.md)
+*  [<span data-ttu-id="7a6f1-177">尋找 Azure Logic Apps 的其他連接器</span><span class="sxs-lookup"><span data-stu-id="7a6f1-177">Find other connectors for Azure Logic apps</span></span>](./apis-list.md)

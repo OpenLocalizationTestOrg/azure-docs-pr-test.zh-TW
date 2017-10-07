@@ -1,6 +1,6 @@
 ---
-title: "適用於 Linux 和 Mac 的 Azure CLI 1.0 基本命令 | Microsoft Docs"
-description: "在 Linux 和 Mac 上，開始在 Azure Resource Manager 模式中管理 VM 的 Azure CLI 1.0 基本命令"
+title: "aaaBasic Azure CLI 1.0 命令適用於 Linux 和 Mac |Microsoft 文件"
+description: "您基本 Azure CLI 1.0 命令 tooget 開始管理 Linux 和 Mac 上的 Azure Resource Manager 模式中的 Vm"
 services: virtual-machines-linux
 documentationcenter: 
 author: RicksterCDN
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/12/2017
 ms.author: rclaus
-ms.openlocfilehash: 67830e40065f8c09f2b04de431aa17ecf5a83d2e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 58019dc5aefad801b976d261f4a239f5cf8c6dad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="common-azure-cli-10-commands-on-linux-and-mac"></a><span data-ttu-id="d8c43-103">Linux 和 Mac 上的 Azure CLI 1.0 常用命令</span><span class="sxs-lookup"><span data-stu-id="d8c43-103">Common Azure CLI 1.0 commands on Linux and Mac</span></span>
+# <a name="common-azure-cli-10-commands-on-linux-and-mac"></a><span data-ttu-id="ca8fd-103">Linux 和 Mac 上的 Azure CLI 1.0 常用命令</span><span class="sxs-lookup"><span data-stu-id="ca8fd-103">Common Azure CLI 1.0 commands on Linux and Mac</span></span>
 [!INCLUDE [virtual-machines-common-cli-manage-nodejs](../../../includes/virtual-machines-common-cli-manage-nodejs.md)]

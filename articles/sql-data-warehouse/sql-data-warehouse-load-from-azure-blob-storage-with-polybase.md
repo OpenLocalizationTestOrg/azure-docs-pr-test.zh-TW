@@ -1,6 +1,6 @@
 ---
-title: "從 Azure Blob 載入至 Azure 資料倉儲 | Microsoft Docs"
-description: "了解如何此用 PolyBase 從 Azure Blob 儲存體將資料載入 SQL 資料倉儲。 從公用資料將幾個資料表載入 Contoso 零售資料倉儲結構描述。"
+title: "從 Azure blob tooAzure 資料倉儲 aaaLoad |Microsoft 文件"
+description: "了解如何 toouse PolyBase tooload 資料從 Azure 到 SQL 資料倉儲的 blob 儲存體。 從公用資料載入 hello Contoso 零售資料倉儲結構描述的一些資料表。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,50 +15,50 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 2859c1144f72fd685af89f83024df1409902ab0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b4978ccefa4d55ff5c89fba84c5e705422ddbb7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="load-data-from-azure-blob-storage-into-sql-data-warehouse-polybase"></a><span data-ttu-id="5d4dc-104">從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)</span><span class="sxs-lookup"><span data-stu-id="5d4dc-104">Load data from Azure blob storage into SQL Data Warehouse (PolyBase)</span></span>
+# <a name="load-data-from-azure-blob-storage-into-sql-data-warehouse-polybase"></a><span data-ttu-id="af28b-104">從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)</span><span class="sxs-lookup"><span data-stu-id="af28b-104">Load data from Azure blob storage into SQL Data Warehouse (PolyBase)</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="5d4dc-105">Data Factory</span><span class="sxs-lookup"><span data-stu-id="5d4dc-105">Data Factory</span></span>](sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md)
-> * [<span data-ttu-id="5d4dc-106">PolyBase</span><span class="sxs-lookup"><span data-stu-id="5d4dc-106">PolyBase</span></span>](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md)
+> * [<span data-ttu-id="af28b-105">Data Factory</span><span class="sxs-lookup"><span data-stu-id="af28b-105">Data Factory</span></span>](sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md)
+> * [<span data-ttu-id="af28b-106">PolyBase</span><span class="sxs-lookup"><span data-stu-id="af28b-106">PolyBase</span></span>](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md)
 > 
 > 
 
-<span data-ttu-id="5d4dc-107">使用 PolyBase 和 T-SQL 命令來從 Azure Blob 儲存體將資料載入 Azure SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-107">Use PolyBase and T-SQL commands to load data from Azure blob storage into Azure SQL Data Warehouse.</span></span> 
+<span data-ttu-id="af28b-107">使用 PolyBase 與 T-SQL 命令 tooload 資料從 Azure blob 儲存體到 Azure SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="af28b-107">Use PolyBase and T-SQL commands tooload data from Azure blob storage into Azure SQL Data Warehouse.</span></span> 
 
-<span data-ttu-id="5d4dc-108">為了簡單起見，本教學課程會從公用 Azure 儲存體 Blob 將兩個資料表載入 Contoso 零售資料倉儲結構描述。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-108">To keep it simple, this tutorial loads two tables from a public Azure Storage Blob into the Contoso Retail Data Warehouse schema.</span></span> <span data-ttu-id="5d4dc-109">若要載入完整的資料集，請從 Microsoft SQL Server 範例儲存機制執行[載入完整 Contoso 零售資料倉儲][Load the full Contoso Retail Data Warehouse]範例。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-109">To load the full data set, run the example [Load the full Contoso Retail Data Warehouse][Load the full Contoso Retail Data Warehouse] from the Microsoft SQL Server Samples repository.</span></span>
+<span data-ttu-id="af28b-108">tookeep 它簡單，本教學課程中的載入兩個資料表公開的 Azure 儲存體 Blob hello Contoso 零售資料倉儲結構描述。</span><span class="sxs-lookup"><span data-stu-id="af28b-108">tookeep it simple, this tutorial loads two tables from a public Azure Storage Blob into hello Contoso Retail Data Warehouse schema.</span></span> <span data-ttu-id="af28b-109">tooload hello 完整資料集，執行 hello 範例[負載 hello Contoso 完整的零售資料倉儲][ Load hello full Contoso Retail Data Warehouse] hello Microsoft SQL Server 範例儲存機制中。</span><span class="sxs-lookup"><span data-stu-id="af28b-109">tooload hello full data set, run hello example [Load hello full Contoso Retail Data Warehouse][Load hello full Contoso Retail Data Warehouse] from hello Microsoft SQL Server Samples repository.</span></span>
 
-<span data-ttu-id="5d4dc-110">在本教學課程中，您將：</span><span class="sxs-lookup"><span data-stu-id="5d4dc-110">In this tutorial you will:</span></span>
+<span data-ttu-id="af28b-110">在本教學課程中，您將：</span><span class="sxs-lookup"><span data-stu-id="af28b-110">In this tutorial you will:</span></span>
 
-1. <span data-ttu-id="5d4dc-111">設定 PolyBase 以從 Azure Blob 儲存體載入</span><span class="sxs-lookup"><span data-stu-id="5d4dc-111">Configure PolyBase to load from Azure blob storage</span></span>
-2. <span data-ttu-id="5d4dc-112">將公用資料載入您的資料庫</span><span class="sxs-lookup"><span data-stu-id="5d4dc-112">Load public data into your database</span></span>
-3. <span data-ttu-id="5d4dc-113">在完成載入後執行最佳化。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-113">Perform optimizations after the load is finished.</span></span>
+1. <span data-ttu-id="af28b-111">設定 PolyBase tooload 從 Azure blob 儲存體</span><span class="sxs-lookup"><span data-stu-id="af28b-111">Configure PolyBase tooload from Azure blob storage</span></span>
+2. <span data-ttu-id="af28b-112">將公用資料載入您的資料庫</span><span class="sxs-lookup"><span data-stu-id="af28b-112">Load public data into your database</span></span>
+3. <span data-ttu-id="af28b-113">Hello 載入完成之後，請執行最佳化。</span><span class="sxs-lookup"><span data-stu-id="af28b-113">Perform optimizations after hello load is finished.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="5d4dc-114">開始之前</span><span class="sxs-lookup"><span data-stu-id="5d4dc-114">Before you begin</span></span>
-<span data-ttu-id="5d4dc-115">若要執行本教學課程，您需要已經擁有 SQL 資料倉儲資料庫的 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-115">To run this tutorial, you need an Azure account that already has a SQL Data Warehouse database.</span></span> <span data-ttu-id="5d4dc-116">如果您尚未擁有此資料庫，請參閱[建立 SQL 資料倉儲][Create a SQL Data Warehouse]。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-116">If you don't already have this, see [Create a SQL Data Warehouse][Create a SQL Data Warehouse].</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="af28b-114">開始之前</span><span class="sxs-lookup"><span data-stu-id="af28b-114">Before you begin</span></span>
+<span data-ttu-id="af28b-115">toorun 本教學課程中，您必須已有 SQL 資料倉儲資料庫的 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="af28b-115">toorun this tutorial, you need an Azure account that already has a SQL Data Warehouse database.</span></span> <span data-ttu-id="af28b-116">如果您尚未擁有此資料庫，請參閱[建立 SQL 資料倉儲][Create a SQL Data Warehouse]。</span><span class="sxs-lookup"><span data-stu-id="af28b-116">If you don't already have this, see [Create a SQL Data Warehouse][Create a SQL Data Warehouse].</span></span>
 
-## <a name="1-configure-the-data-source"></a><span data-ttu-id="5d4dc-117">1.設定資料來源</span><span class="sxs-lookup"><span data-stu-id="5d4dc-117">1. Configure the data source</span></span>
-<span data-ttu-id="5d4dc-118">PolyBase 使用 T-SQL 外部物件以定義外部資料的位置和屬性。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-118">PolyBase uses T-SQL external objects to define the location and attributes of the external data.</span></span> <span data-ttu-id="5d4dc-119">外部物件定義會儲存在 SQL 資料倉儲中。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-119">The external object definitions are stored in SQL Data Warehouse.</span></span> <span data-ttu-id="5d4dc-120">資料本身則會儲存在外部。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-120">The data itself is stored externally.</span></span>
+## <a name="1-configure-hello-data-source"></a><span data-ttu-id="af28b-117">1.Hello 資料來源設定</span><span class="sxs-lookup"><span data-stu-id="af28b-117">1. Configure hello data source</span></span>
+<span data-ttu-id="af28b-118">PolyBase 會使用 T-SQL 外部物件 toodefine hello 位置及 hello 外部資料的屬性。</span><span class="sxs-lookup"><span data-stu-id="af28b-118">PolyBase uses T-SQL external objects toodefine hello location and attributes of hello external data.</span></span> <span data-ttu-id="af28b-119">hello 外部物件的定義會儲存在 SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="af28b-119">hello external object definitions are stored in SQL Data Warehouse.</span></span> <span data-ttu-id="af28b-120">hello 資料本身儲存在外部。</span><span class="sxs-lookup"><span data-stu-id="af28b-120">hello data itself is stored externally.</span></span>
 
-### <a name="11-create-a-credential"></a><span data-ttu-id="5d4dc-121">1.1.</span><span class="sxs-lookup"><span data-stu-id="5d4dc-121">1.1.</span></span> <span data-ttu-id="5d4dc-122">建立認證</span><span class="sxs-lookup"><span data-stu-id="5d4dc-122">Create a credential</span></span>
-<span data-ttu-id="5d4dc-123">**略過此步驟** 。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-123">**Skip this step** if you are loading the Contoso public data.</span></span> <span data-ttu-id="5d4dc-124">您並不需要安全地存取公用資料，因為該資料已經可供所有人存取。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-124">You don't need secure access to the public data since it is already accessible to anyone.</span></span>
+### <a name="11-create-a-credential"></a><span data-ttu-id="af28b-121">1.1.</span><span class="sxs-lookup"><span data-stu-id="af28b-121">1.1.</span></span> <span data-ttu-id="af28b-122">建立認證</span><span class="sxs-lookup"><span data-stu-id="af28b-122">Create a credential</span></span>
+<span data-ttu-id="af28b-123">**略過此步驟**如果您載入 hello Contoso 公開資料。</span><span class="sxs-lookup"><span data-stu-id="af28b-123">**Skip this step** if you are loading hello Contoso public data.</span></span> <span data-ttu-id="af28b-124">您不需要安全存取 toohello 公用資料，因為它已經是可存取 tooanyone。</span><span class="sxs-lookup"><span data-stu-id="af28b-124">You don't need secure access toohello public data since it is already accessible tooanyone.</span></span>
 
-<span data-ttu-id="5d4dc-125">**不要略過此步驟** 。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-125">**Don't skip this step** if you are using this tutorial as a template for loading your own data.</span></span> <span data-ttu-id="5d4dc-126">若要透過認證存取資料，請使用下列指令碼來建立資料庫範圍的認證，然後在定義資料來源的位置時使用它。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-126">To access data through a credential, use the following script to create a database-scoped credential, and then use it when defining the location of the data source.</span></span>
+<span data-ttu-id="af28b-125">**不要略過此步驟** 。</span><span class="sxs-lookup"><span data-stu-id="af28b-125">**Don't skip this step** if you are using this tutorial as a template for loading your own data.</span></span> <span data-ttu-id="af28b-126">透過認證時，使用下列的 hello tooaccess 資料 toocreate 資料庫範圍認證的指令碼，然後再使用它，定義 hello hello 資料來源位置時。</span><span class="sxs-lookup"><span data-stu-id="af28b-126">tooaccess data through a credential, use hello following script toocreate a database-scoped credential, and then use it when defining hello location of hello data source.</span></span>
 
 ```sql
 -- A: Create a master key.
 -- Only necessary if one does not already exist.
--- Required to encrypt the credential secret in the next step.
+-- Required tooencrypt hello credential secret in hello next step.
 
 CREATE MASTER KEY;
 
 
 -- B: Create a database scoped credential
--- IDENTITY: Provide any string, it is not used for authentication to Azure storage.
+-- IDENTITY: Provide any string, it is not used for authentication tooAzure storage.
 -- SECRET: Provide your Azure storage account key.
 
 
@@ -70,9 +70,9 @@ WITH
 
 
 -- C: Create an external data source
--- TYPE: HADOOP - PolyBase uses Hadoop APIs to access data in Azure blob storage.
+-- TYPE: HADOOP - PolyBase uses Hadoop APIs tooaccess data in Azure blob storage.
 -- LOCATION: Provide Azure storage account name and blob container name.
--- CREDENTIAL: Provide the credential created in the previous step.
+-- CREDENTIAL: Provide hello credential created in hello previous step.
 
 CREATE EXTERNAL DATA SOURCE AzureStorage
 WITH (
@@ -82,10 +82,10 @@ WITH (
 );
 ```
 
-<span data-ttu-id="5d4dc-127">跳到步驟 2。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-127">Skip to step 2.</span></span>
+<span data-ttu-id="af28b-127">略過 toostep 2。</span><span class="sxs-lookup"><span data-stu-id="af28b-127">Skip toostep 2.</span></span>
 
-### <a name="12-create-the-external-data-source"></a><span data-ttu-id="5d4dc-128">1.2.</span><span class="sxs-lookup"><span data-stu-id="5d4dc-128">1.2.</span></span> <span data-ttu-id="5d4dc-129">建立外部資料來源</span><span class="sxs-lookup"><span data-stu-id="5d4dc-129">Create the external data source</span></span>
-<span data-ttu-id="5d4dc-130">使用此 [CREATE EXTERNAL DATA SOURCE][CREATE EXTERNAL DATA SOURCE] 命令以儲存資料的位置及類型。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-130">Use this [CREATE EXTERNAL DATA SOURCE][CREATE EXTERNAL DATA SOURCE] command to store the location of the data, and the type of data.</span></span> 
+### <a name="12-create-hello-external-data-source"></a><span data-ttu-id="af28b-128">1.2.</span><span class="sxs-lookup"><span data-stu-id="af28b-128">1.2.</span></span> <span data-ttu-id="af28b-129">建立 hello 外部資料來源</span><span class="sxs-lookup"><span data-stu-id="af28b-129">Create hello external data source</span></span>
+<span data-ttu-id="af28b-130">使用此[CREATE EXTERNAL DATA SOURCE] [ CREATE EXTERNAL DATA SOURCE]命令 toostore hello 位置 hello 資料和 hello 的資料類型。</span><span class="sxs-lookup"><span data-stu-id="af28b-130">Use this [CREATE EXTERNAL DATA SOURCE][CREATE EXTERNAL DATA SOURCE] command toostore hello location of hello data, and hello type of data.</span></span> 
 
 ```sql
 CREATE EXTERNAL DATA SOURCE AzureStorage_west_public
@@ -97,12 +97,12 @@ WITH
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="5d4dc-131">如果您選擇將 Azure Blob 儲存體容器設為公用，請記住，當資料離開資料中心時，您身為資料擁有者將必須支付資料流出費用。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-131">If you choose to make your azure blob storage containers public, remember that as the data owner you will be charged for data egress charges when data leaves the data center.</span></span> 
+> <span data-ttu-id="af28b-131">如果您選擇 toomake azure blob 儲存體容器公開，請記住，hello 資料擁有者為您將支付資料輸出費用資料離開 hello 資料中心時。</span><span class="sxs-lookup"><span data-stu-id="af28b-131">If you choose toomake your azure blob storage containers public, remember that as hello data owner you will be charged for data egress charges when data leaves hello data center.</span></span> 
 > 
 > 
 
-## <a name="2-configure-data-format"></a><span data-ttu-id="5d4dc-132">2.設定資料格式</span><span class="sxs-lookup"><span data-stu-id="5d4dc-132">2. Configure data format</span></span>
-<span data-ttu-id="5d4dc-133">資料將會以文字檔儲存在 Azure Blob 儲存體中，每個欄位都會以分隔符號分隔。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-133">The data is stored in text files in Azure blob storage, and each field is separated with a delimiter.</span></span> <span data-ttu-id="5d4dc-134">執行此 [CREATE EXTERNAL FILE FORMAT][CREATE EXTERNAL FILE FORMAT] 命令以指定文字檔中資料的格式。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-134">Run this [CREATE EXTERNAL FILE FORMAT][CREATE EXTERNAL FILE FORMAT] command to specify the format of the data in the text files.</span></span> <span data-ttu-id="5d4dc-135">Contoso 資料為未壓縮且以直立線符號分隔。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-135">The Contoso data is uncompressed and pipe delimited.</span></span>
+## <a name="2-configure-data-format"></a><span data-ttu-id="af28b-132">2.設定資料格式</span><span class="sxs-lookup"><span data-stu-id="af28b-132">2. Configure data format</span></span>
+<span data-ttu-id="af28b-133">hello 資料會儲存在 Azure blob 儲存體中的文字檔案中，每個欄位以分隔符號分隔。</span><span class="sxs-lookup"><span data-stu-id="af28b-133">hello data is stored in text files in Azure blob storage, and each field is separated with a delimiter.</span></span> <span data-ttu-id="af28b-134">執行此程序[CREATE EXTERNAL FILE FORMAT] [ CREATE EXTERNAL FILE FORMAT] hello 文字檔案中的 hello 資料命令 toospecify hello 格式。</span><span class="sxs-lookup"><span data-stu-id="af28b-134">Run this [CREATE EXTERNAL FILE FORMAT][CREATE EXTERNAL FILE FORMAT] command toospecify hello format of hello data in hello text files.</span></span> <span data-ttu-id="af28b-135">hello Contoso 資料未壓縮和管道分隔。</span><span class="sxs-lookup"><span data-stu-id="af28b-135">hello Contoso data is uncompressed and pipe delimited.</span></span>
 
 ```sql
 CREATE EXTERNAL FILE FORMAT TextFileFormat 
@@ -116,21 +116,21 @@ WITH
 );
 ``` 
 
-## <a name="3-create-the-external-tables"></a><span data-ttu-id="5d4dc-136">3.建立外部資料表</span><span class="sxs-lookup"><span data-stu-id="5d4dc-136">3. Create the external tables</span></span>
-<span data-ttu-id="5d4dc-137">您在指定資料來源和檔案格式之後，便可以開始建立外部資料表。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-137">Now that you have specified the data source and file format, you are ready to create the external tables.</span></span> 
+## <a name="3-create-hello-external-tables"></a><span data-ttu-id="af28b-136">3.建立 hello 外部資料表</span><span class="sxs-lookup"><span data-stu-id="af28b-136">3. Create hello external tables</span></span>
+<span data-ttu-id="af28b-137">現在您已經指定 hello 資料來源和檔案格式，您就準備好 toocreate hello 外部資料表。</span><span class="sxs-lookup"><span data-stu-id="af28b-137">Now that you have specified hello data source and file format, you are ready toocreate hello external tables.</span></span> 
 
-### <a name="31-create-a-schema-for-the-data"></a><span data-ttu-id="5d4dc-138">3.1.</span><span class="sxs-lookup"><span data-stu-id="5d4dc-138">3.1.</span></span> <span data-ttu-id="5d4dc-139">建立資料的結構描述。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-139">Create a schema for the data.</span></span>
-<span data-ttu-id="5d4dc-140">若要在您的資料庫中建立儲存 Contoso 資料的位置，請建立結構描述。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-140">To create a place to store the Contoso data in your database, create a schema.</span></span>
+### <a name="31-create-a-schema-for-hello-data"></a><span data-ttu-id="af28b-138">3.1.</span><span class="sxs-lookup"><span data-stu-id="af28b-138">3.1.</span></span> <span data-ttu-id="af28b-139">建立 hello 資料的結構描述。</span><span class="sxs-lookup"><span data-stu-id="af28b-139">Create a schema for hello data.</span></span>
+<span data-ttu-id="af28b-140">toocreate 位置 toostore hello Contoso 資料在資料庫中，建立結構描述。</span><span class="sxs-lookup"><span data-stu-id="af28b-140">toocreate a place toostore hello Contoso data in your database, create a schema.</span></span>
 
 ```sql
 CREATE SCHEMA [asb]
 GO
 ```
 
-### <a name="32-create-the-external-tables"></a><span data-ttu-id="5d4dc-141">3.2.</span><span class="sxs-lookup"><span data-stu-id="5d4dc-141">3.2.</span></span> <span data-ttu-id="5d4dc-142">建立外部資料表。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-142">Create the external tables.</span></span>
-<span data-ttu-id="5d4dc-143">執行此指令碼來建立 DimProduct 和 FactOnlineSales 外部資料表。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-143">Run this script to create the DimProduct and FactOnlineSales external tables.</span></span> <span data-ttu-id="5d4dc-144">我們在這邊只需要定義資料行名稱和資料類型，並將它們繫結至 Azure Blob 儲存體檔案的位置及格式。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-144">All we are doing here is defining column names and data types, and binding them to the location and format of the Azure blob storage files.</span></span> <span data-ttu-id="5d4dc-145">定義會儲存在 SQL 資料倉儲中，而資料則仍然儲存在 Azure 儲存體 Blob 中。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-145">The definition is stored in SQL Data Warehouse and the data is still in the Azure Storage Blob.</span></span>
+### <a name="32-create-hello-external-tables"></a><span data-ttu-id="af28b-141">3.2.</span><span class="sxs-lookup"><span data-stu-id="af28b-141">3.2.</span></span> <span data-ttu-id="af28b-142">建立 hello 外部資料表。</span><span class="sxs-lookup"><span data-stu-id="af28b-142">Create hello external tables.</span></span>
+<span data-ttu-id="af28b-143">執行這個指令碼 toocreate hello DimProduct 和 FactOnlineSales 外部資料表。</span><span class="sxs-lookup"><span data-stu-id="af28b-143">Run this script toocreate hello DimProduct and FactOnlineSales external tables.</span></span> <span data-ttu-id="af28b-144">這裡，我們所做為資料行名稱和資料類型定義，並加以繫結 toohello 位置與 hello Azure blob 儲存體檔案格式。</span><span class="sxs-lookup"><span data-stu-id="af28b-144">All we are doing here is defining column names and data types, and binding them toohello location and format of hello Azure blob storage files.</span></span> <span data-ttu-id="af28b-145">hello 定義會儲存在 SQL 資料倉儲和 hello 資料仍在 hello Azure 儲存體 Blob 中。</span><span class="sxs-lookup"><span data-stu-id="af28b-145">hello definition is stored in SQL Data Warehouse and hello data is still in hello Azure Storage Blob.</span></span>
 
-<span data-ttu-id="5d4dc-146">**LOCATION** 參數為 Azure 儲存體 Blob 中根目錄下方的資料夾。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-146">The  **LOCATION** parameter is the folder under the root folder in the Azure Storage Blob.</span></span> <span data-ttu-id="5d4dc-147">每個資料表都位於不同的資料夾中。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-147">Each table is in a different folder.</span></span>
+<span data-ttu-id="af28b-146">hello**位置**參數是 hello hello hello Azure 儲存體 Blob 中的根資料夾下的資料夾。</span><span class="sxs-lookup"><span data-stu-id="af28b-146">hello  **LOCATION** parameter is hello folder under hello root folder in hello Azure Storage Blob.</span></span> <span data-ttu-id="af28b-147">每個資料表都位於不同的資料夾中。</span><span class="sxs-lookup"><span data-stu-id="af28b-147">Each table is in a different folder.</span></span>
 
 ```sql
 
@@ -215,23 +215,23 @@ WITH
 ;
 ```
 
-## <a name="4-load-the-data"></a><span data-ttu-id="5d4dc-148">4.載入資料</span><span class="sxs-lookup"><span data-stu-id="5d4dc-148">4. Load the data</span></span>
-<span data-ttu-id="5d4dc-149">存取外部資料有很多不同的方式。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-149">There's different ways to access external data.</span></span>  <span data-ttu-id="5d4dc-150">您可以直接從外部資料表查詢資料、將資料載入新的資料庫資料表，或將外部資料新增到現有資料庫資料表。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-150">You can query data directly from the external table, load the data into new database tables, or add external data to existing database tables.</span></span>  
+## <a name="4-load-hello-data"></a><span data-ttu-id="af28b-148">4.將資料載入 hello</span><span class="sxs-lookup"><span data-stu-id="af28b-148">4. Load hello data</span></span>
+<span data-ttu-id="af28b-149">沒有多種 tooaccess 外部資料。</span><span class="sxs-lookup"><span data-stu-id="af28b-149">There's different ways tooaccess external data.</span></span>  <span data-ttu-id="af28b-150">您可以查詢直接從 hello 外部資料表的資料、 hello 資料載入至新的資料庫資料表，或新增外部 tooexisting 資料庫資料表。</span><span class="sxs-lookup"><span data-stu-id="af28b-150">You can query data directly from hello external table, load hello data into new database tables, or add external data tooexisting database tables.</span></span>  
 
-### <a name="41-create-a-new-schema"></a><span data-ttu-id="5d4dc-151">4.1.</span><span class="sxs-lookup"><span data-stu-id="5d4dc-151">4.1.</span></span> <span data-ttu-id="5d4dc-152">建立新的結構描述</span><span class="sxs-lookup"><span data-stu-id="5d4dc-152">Create a new schema</span></span>
-<span data-ttu-id="5d4dc-153">CTAS 會建立包含資料的新資料表。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-153">CTAS creates a new table that contains data.</span></span>  <span data-ttu-id="5d4dc-154">首先，請建立 Contoso 資料的結構描述。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-154">First, create a schema for the contoso data.</span></span>
+### <a name="41-create-a-new-schema"></a><span data-ttu-id="af28b-151">4.1.</span><span class="sxs-lookup"><span data-stu-id="af28b-151">4.1.</span></span> <span data-ttu-id="af28b-152">建立新的結構描述</span><span class="sxs-lookup"><span data-stu-id="af28b-152">Create a new schema</span></span>
+<span data-ttu-id="af28b-153">CTAS 會建立包含資料的新資料表。</span><span class="sxs-lookup"><span data-stu-id="af28b-153">CTAS creates a new table that contains data.</span></span>  <span data-ttu-id="af28b-154">首先，建立 hello contoso 資料的結構描述。</span><span class="sxs-lookup"><span data-stu-id="af28b-154">First, create a schema for hello contoso data.</span></span>
 
 ```sql
 CREATE SCHEMA [cso]
 GO
 ```
 
-### <a name="42-load-the-data-into-new-tables"></a><span data-ttu-id="5d4dc-155">4.2.</span><span class="sxs-lookup"><span data-stu-id="5d4dc-155">4.2.</span></span> <span data-ttu-id="5d4dc-156">將資料載入新資料表</span><span class="sxs-lookup"><span data-stu-id="5d4dc-156">Load the data into new tables</span></span>
-<span data-ttu-id="5d4dc-157">若要從 Azure Blob 儲存體載入資料，並將它儲存在資料庫內的資料表中，請使用 [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] 陳述式。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-157">To load data from Azure blob storage and save it in a table inside of your database, use the [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] statement.</span></span> <span data-ttu-id="5d4dc-158">以 CTAS 載入將能利用您剛剛建立的強型別外部資料表。針對每個資料表，請使用一個 [CTAS][CTAS] 陳述式。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-158">Loading with CTAS leverages the strongly typed external tables you have just created.To load the data into new tables, use one [CTAS][CTAS] statement per table.</span></span> 
+### <a name="42-load-hello-data-into-new-tables"></a><span data-ttu-id="af28b-155">4.2.</span><span class="sxs-lookup"><span data-stu-id="af28b-155">4.2.</span></span> <span data-ttu-id="af28b-156">Hello 資料載入至新的資料表</span><span class="sxs-lookup"><span data-stu-id="af28b-156">Load hello data into new tables</span></span>
+<span data-ttu-id="af28b-157">tooload 資料從 Azure blob 儲存體，並儲存在資料庫內資料表中，使用 hello [CREATE TABLE AS SELECT (TRANSACT-SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)]陳述式。</span><span class="sxs-lookup"><span data-stu-id="af28b-157">tooload data from Azure blob storage and save it in a table inside of your database, use hello [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] statement.</span></span> <span data-ttu-id="af28b-158">載入 CTAS 搭配利用 hello 強型別有只 created.tooload hello 資料加入新資料表的外部資料表，請使用其中一個[CTAS] [ CTAS]每個資料表的陳述式。</span><span class="sxs-lookup"><span data-stu-id="af28b-158">Loading with CTAS leverages hello strongly typed external tables you have just created.tooload hello data into new tables, use one [CTAS][CTAS] statement per table.</span></span> 
  
-<span data-ttu-id="5d4dc-159">CTAS 建立新的資料表，並將選取陳述式的結果填入該資料表。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-159">CTAS creates a new table and populates it with the results of a select statement.</span></span> <span data-ttu-id="5d4dc-160">CTAS 定義新資料表，以使它擁有和選取陳述式之結果相同的資料行和資料類型。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-160">CTAS defines the new table to have the same columns and data types as the results of the select statement.</span></span> <span data-ttu-id="5d4dc-161">如果您選取外部資料表上的所有資料行，則新資料表將會是外部資料表中資料行和資料類型的複本。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-161">If you select all the columns from an external table, the new table will be a replica of the columns and data types in the external table.</span></span>
+<span data-ttu-id="af28b-159">CTAS 建立新的資料表，並填入 hello select 陳述式的結果。</span><span class="sxs-lookup"><span data-stu-id="af28b-159">CTAS creates a new table and populates it with hello results of a select statement.</span></span> <span data-ttu-id="af28b-160">CTAS 定義新資料表 toohave hello hello 相同資料行和資料類型，如 hello hello 結果 select 陳述式。</span><span class="sxs-lookup"><span data-stu-id="af28b-160">CTAS defines hello new table toohave hello same columns and data types as hello results of hello select statement.</span></span> <span data-ttu-id="af28b-161">如果您從外部資料表選取 hello 的所有資料行，hello 新資料表會處於 hello 外部資料表的 hello 資料行和資料類型的複本。</span><span class="sxs-lookup"><span data-stu-id="af28b-161">If you select all hello columns from an external table, hello new table will be a replica of hello columns and data types in hello external table.</span></span>
 
-<span data-ttu-id="5d4dc-162">在此範例中，我們同時將維度和事實資料表建立為雜湊分散式資料表。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-162">In this example, we create both the dimension and the fact table as hash distributed tables.</span></span> 
+<span data-ttu-id="af28b-162">在此範例中，我們建立 hello 維度和 hello 事實資料表做為雜湊分散式的資料表。</span><span class="sxs-lookup"><span data-stu-id="af28b-162">In this example, we create both hello dimension and hello fact table as hash distributed tables.</span></span> 
 
 ```sql
 SELECT GETDATE();
@@ -241,20 +241,20 @@ CREATE TABLE [cso].[DimProduct]            WITH (DISTRIBUTION = HASH([ProductKey
 CREATE TABLE [cso].[FactOnlineSales]       WITH (DISTRIBUTION = HASH([ProductKey]  ) ) AS SELECT * FROM [asb].[FactOnlineSales]        OPTION (LABEL = 'CTAS : Load [cso].[FactOnlineSales]        ');
 ```
 
-### <a name="43-track-the-load-progress"></a><span data-ttu-id="5d4dc-163">4.3 追蹤載入進度</span><span class="sxs-lookup"><span data-stu-id="5d4dc-163">4.3 Track the load progress</span></span>
-<span data-ttu-id="5d4dc-164">您可以使用動態管理檢視 (DMV) 來追蹤載入進度。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-164">You can track the progress of your load using dynamic management views (DMVs).</span></span> 
+### <a name="43-track-hello-load-progress"></a><span data-ttu-id="af28b-163">4.3 追蹤 hello 負載進度</span><span class="sxs-lookup"><span data-stu-id="af28b-163">4.3 Track hello load progress</span></span>
+<span data-ttu-id="af28b-164">您可以追蹤您使用動態管理檢視 (Dmv) 的負載 hello 進度。</span><span class="sxs-lookup"><span data-stu-id="af28b-164">You can track hello progress of your load using dynamic management views (DMVs).</span></span> 
 
 ```sql
--- To see all requests
+-- toosee all requests
 SELECT * FROM sys.dm_pdw_exec_requests;
 
--- To see a particular request identified by its label
+-- toosee a particular request identified by its label
 SELECT * FROM sys.dm_pdw_exec_requests as r
 WHERE r.[label] = 'CTAS : Load [cso].[DimProduct]             '
       OR r.[label] = 'CTAS : Load [cso].[FactOnlineSales]        '
 ;
 
--- To track bytes and files
+-- tootrack bytes and files
 SELECT
     r.command,
     s.request_id,
@@ -277,10 +277,10 @@ ORDER BY
     gb_processed desc;
 ```
 
-## <a name="5-optimize-columnstore-compression"></a><span data-ttu-id="5d4dc-165">5.最佳化資料行存放區壓縮</span><span class="sxs-lookup"><span data-stu-id="5d4dc-165">5. Optimize columnstore compression</span></span>
-<span data-ttu-id="5d4dc-166">根據預設，SQL 資料倉儲會將資料表儲存為叢集資料行存放區索引。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-166">By default, SQL Data Warehouse stores the table as a clustered columnstore index.</span></span> <span data-ttu-id="5d4dc-167">載入完成後，某些資料列可能不會被壓縮為資料行存放區。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-167">After a load completes, some of the data rows might not be compressed into the columnstore.</span></span>  <span data-ttu-id="5d4dc-168">有許多原因會導致發生此情況。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-168">There's a variety of reasons why this can happen.</span></span> <span data-ttu-id="5d4dc-169">若要深入了解，請參閱[管理資料行存放區索引][manage columnstore indexes]。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-169">To learn more, see [manage columnstore indexes][manage columnstore indexes].</span></span>
+## <a name="5-optimize-columnstore-compression"></a><span data-ttu-id="af28b-165">5.最佳化資料行存放區壓縮</span><span class="sxs-lookup"><span data-stu-id="af28b-165">5. Optimize columnstore compression</span></span>
+<span data-ttu-id="af28b-166">根據預設，SQL 資料倉儲會儲存 hello 資料表作為叢集資料行存放區索引。</span><span class="sxs-lookup"><span data-stu-id="af28b-166">By default, SQL Data Warehouse stores hello table as a clustered columnstore index.</span></span> <span data-ttu-id="af28b-167">載入完成後，部分 hello 資料的資料列可能會不壓縮成 hello 資料行存放區。</span><span class="sxs-lookup"><span data-stu-id="af28b-167">After a load completes, some of hello data rows might not be compressed into hello columnstore.</span></span>  <span data-ttu-id="af28b-168">有許多原因會導致發生此情況。</span><span class="sxs-lookup"><span data-stu-id="af28b-168">There's a variety of reasons why this can happen.</span></span> <span data-ttu-id="af28b-169">詳細資訊，請參閱 toolearn[管理資料行存放區索引][manage columnstore indexes]。</span><span class="sxs-lookup"><span data-stu-id="af28b-169">toolearn more, see [manage columnstore indexes][manage columnstore indexes].</span></span>
 
-<span data-ttu-id="5d4dc-170">若要最佳化載入後的查詢效能和資料行存放區壓縮，請重建資料表以強制資料行存放區索引對所有資料列進行壓縮。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-170">To optimize query performance and columnstore compression after a load, rebuild the table to force the columnstore index to compress all the rows.</span></span> 
+<span data-ttu-id="af28b-170">toooptimize 查詢效能和負載之後, 的資料行存放區壓縮重建 hello 資料表 tooforce hello 資料行存放區索引 toocompress hello 的所有資料列。</span><span class="sxs-lookup"><span data-stu-id="af28b-170">toooptimize query performance and columnstore compression after a load, rebuild hello table tooforce hello columnstore index toocompress all hello rows.</span></span> 
 
 ```sql
 SELECT GETDATE();
@@ -290,14 +290,14 @@ ALTER INDEX ALL ON [cso].[DimProduct]               REBUILD;
 ALTER INDEX ALL ON [cso].[FactOnlineSales]          REBUILD;
 ```
 
-<span data-ttu-id="5d4dc-171">如需維護資料行存放區索引的詳細資訊，請參閱[管理資料行存放區索引][manage columnstore indexes]一文。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-171">For more information on maintaining columnstore indexes, see the [manage columnstore indexes][manage columnstore indexes] article.</span></span>
+<span data-ttu-id="af28b-171">如需維護資料行存放區索引的詳細資訊，請參閱 hello[管理資料行存放區索引][ manage columnstore indexes]發行項。</span><span class="sxs-lookup"><span data-stu-id="af28b-171">For more information on maintaining columnstore indexes, see hello [manage columnstore indexes][manage columnstore indexes] article.</span></span>
 
-## <a name="6-optimize-statistics"></a><span data-ttu-id="5d4dc-172">6.最佳化統計資料</span><span class="sxs-lookup"><span data-stu-id="5d4dc-172">6. Optimize statistics</span></span>
-<span data-ttu-id="5d4dc-173">您最好在載入後立刻建立單一資料行統計資料。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-173">It is best to create single-column statistics immediately after a load.</span></span> <span data-ttu-id="5d4dc-174">針對統計資料，您將會有一些選項。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-174">There are some choices for statistics.</span></span> <span data-ttu-id="5d4dc-175">例如，如果您在每個資料行上建立單一資料行統計資料，可能會需要很長的時間才能重建所有統計資料。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-175">For example, if you create single-column statistics on every column it might take a long time to rebuild all the statistics.</span></span> <span data-ttu-id="5d4dc-176">如果您知道某些資料行不會被包含在查詢述詞中，您可以略過為那些資料行建立統計資料。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-176">If you know certain columns are not going to be in query predicates, you can skip creating statistics on those columns.</span></span>
+## <a name="6-optimize-statistics"></a><span data-ttu-id="af28b-172">6.最佳化統計資料</span><span class="sxs-lookup"><span data-stu-id="af28b-172">6. Optimize statistics</span></span>
+<span data-ttu-id="af28b-173">載入之後立即是最佳的 toocreate 單一資料行統計資料。</span><span class="sxs-lookup"><span data-stu-id="af28b-173">It is best toocreate single-column statistics immediately after a load.</span></span> <span data-ttu-id="af28b-174">針對統計資料，您將會有一些選項。</span><span class="sxs-lookup"><span data-stu-id="af28b-174">There are some choices for statistics.</span></span> <span data-ttu-id="af28b-175">例如，如果您在每個資料行上建立單一資料行統計資料可能需要很長的時間 toorebuild hello 的所有統計資料。</span><span class="sxs-lookup"><span data-stu-id="af28b-175">For example, if you create single-column statistics on every column it might take a long time toorebuild all hello statistics.</span></span> <span data-ttu-id="af28b-176">如果您知道特定資料行不會成為 toobe 查詢述詞中的，您可以跳建立統計資料，這些資料行。</span><span class="sxs-lookup"><span data-stu-id="af28b-176">If you know certain columns are not going toobe in query predicates, you can skip creating statistics on those columns.</span></span>
 
-<span data-ttu-id="5d4dc-177">如果您決定要在每個資料表的每個資料行上建立單一資料行統計資料，您可以使用[統計資料][statistics]一文中的預存程序程式碼範例 `prc_sqldw_create_stats`。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-177">If you decide to create single-column statistics on every column of every table, you can use the stored procedure code sample `prc_sqldw_create_stats` in the [statistics][statistics] article.</span></span>
+<span data-ttu-id="af28b-177">如果您決定 toocreate 每個資料表的每個資料行的單一資料行統計資料，您可以使用 hello 預存程序程式碼範例`prc_sqldw_create_stats`在 hello[統計資料][ statistics]發行項。</span><span class="sxs-lookup"><span data-stu-id="af28b-177">If you decide toocreate single-column statistics on every column of every table, you can use hello stored procedure code sample `prc_sqldw_create_stats` in hello [statistics][statistics] article.</span></span>
 
-<span data-ttu-id="5d4dc-178">下列範例為建立統計資料的好起點。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-178">The following example is a good starting point for creating statistics.</span></span> <span data-ttu-id="5d4dc-179">它會在維度資料表中的每個資料行上，以及在事實資料表中的每個聯結資料行上建立單一資料行統計資料。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-179">It creates single-column statistics on each column in the dimension table, and on each joining column in the fact tables.</span></span> <span data-ttu-id="5d4dc-180">您之後隨時可以將單一或多個資料行統計資料新增到其他事實資料表資料行上。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-180">You can always add single or multi-column statistics to other fact table columns later on.</span></span>
+<span data-ttu-id="af28b-178">下列範例中的 hello 是很好的起點建立統計資料。</span><span class="sxs-lookup"><span data-stu-id="af28b-178">hello following example is a good starting point for creating statistics.</span></span> <span data-ttu-id="af28b-179">在 hello 維度資料表中，每個資料行和 hello 事實資料表中每個聯結資料行，它會建立單一資料行統計資料。</span><span class="sxs-lookup"><span data-stu-id="af28b-179">It creates single-column statistics on each column in hello dimension table, and on each joining column in hello fact tables.</span></span> <span data-ttu-id="af28b-180">您可以在稍後新增單一或多個資料行統計資料 tooother 事實資料表資料行。</span><span class="sxs-lookup"><span data-stu-id="af28b-180">You can always add single or multi-column statistics tooother fact table columns later on.</span></span>
 
 ```sql
 CREATE STATISTICS [stat_cso_DimProduct_AvailableForSaleDate] ON [cso].[DimProduct]([AvailableForSaleDate]);
@@ -341,10 +341,10 @@ CREATE STATISTICS [stat_cso_FactOnlineSales_PromotionKey] ON [cso].[FactOnlineSa
 CREATE STATISTICS [stat_cso_FactOnlineSales_StoreKey] ON [cso].[FactOnlineSales]([StoreKey]);
 ```
 
-## <a name="achievement-unlocked"></a><span data-ttu-id="5d4dc-181">成就解鎖！</span><span class="sxs-lookup"><span data-stu-id="5d4dc-181">Achievement unlocked!</span></span>
-<span data-ttu-id="5d4dc-182">您已成功將公用資料載入 Azure SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-182">You have successfully loaded public data into Azure SQL Data Warehouse.</span></span> <span data-ttu-id="5d4dc-183">太棒了！</span><span class="sxs-lookup"><span data-stu-id="5d4dc-183">Great job!</span></span>
+## <a name="achievement-unlocked"></a><span data-ttu-id="af28b-181">成就解鎖！</span><span class="sxs-lookup"><span data-stu-id="af28b-181">Achievement unlocked!</span></span>
+<span data-ttu-id="af28b-182">您已成功將公用資料載入 Azure SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="af28b-182">You have successfully loaded public data into Azure SQL Data Warehouse.</span></span> <span data-ttu-id="af28b-183">太棒了！</span><span class="sxs-lookup"><span data-stu-id="af28b-183">Great job!</span></span>
 
-<span data-ttu-id="5d4dc-184">您現在可以使用與下面類似的查詢來開始查詢資料表︰</span><span class="sxs-lookup"><span data-stu-id="5d4dc-184">You can now start querying the tables using queries like the following:</span></span>
+<span data-ttu-id="af28b-184">您現在可以開始查詢 hello 資料表使用類似 hello 下列查詢：</span><span class="sxs-lookup"><span data-stu-id="af28b-184">You can now start querying hello tables using queries like hello following:</span></span>
 
 ```sql
 SELECT  SUM(f.[SalesAmount]) AS [sales_by_brand_amount]
@@ -354,8 +354,8 @@ JOIN    [cso].[DimProduct]      AS p ON f.[ProductKey] = p.[ProductKey]
 GROUP BY p.[BrandName]
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="5d4dc-185">後續步驟</span><span class="sxs-lookup"><span data-stu-id="5d4dc-185">Next steps</span></span>
-<span data-ttu-id="5d4dc-186">若要載入完整的 Contoso 零售資料倉儲資料，請使用指令碼。如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL Data Warehouse development overview]。</span><span class="sxs-lookup"><span data-stu-id="5d4dc-186">To load the full Contoso Retail Data Warehouse data, use the script in For more development tips, see [SQL Data Warehouse development overview][SQL Data Warehouse development overview].</span></span>
+## <a name="next-steps"></a><span data-ttu-id="af28b-185">後續步驟</span><span class="sxs-lookup"><span data-stu-id="af28b-185">Next steps</span></span>
+<span data-ttu-id="af28b-186">tooload hello 完整 Contoso 零售資料倉儲的資料，使用中的 hello 指令碼，如需開發秘訣，請參閱[SQL 資料倉儲開發概觀][SQL Data Warehouse development overview]。</span><span class="sxs-lookup"><span data-stu-id="af28b-186">tooload hello full Contoso Retail Data Warehouse data, use hello script in For more development tips, see [SQL Data Warehouse development overview][SQL Data Warehouse development overview].</span></span>
 
 <!--Image references-->
 
@@ -377,4 +377,4 @@ GROUP BY p.[BrandName]
 
 <!--Other Web references-->
 [Microsoft Download Center]: http://www.microsoft.com/download/details.aspx?id=36433
-[Load the full Contoso Retail Data Warehouse]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md
+[Load hello full Contoso Retail Data Warehouse]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md

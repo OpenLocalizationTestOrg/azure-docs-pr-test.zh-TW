@@ -1,6 +1,6 @@
 ---
-title: "設定 SSL 卸載 - Azure 應用程式閘道 - Azure 入口網站 | Microsoft Docs"
-description: "本頁面提供使用入口網站來建立具有 SSL 卸載之應用程式閘道的指示"
+title: "aaaConfigure SSL 卸載 Azure 應用程式閘道的 Azure 入口網站 |Microsoft 文件"
+description: "本頁面提供的指示 toocreate 使用 hello 入口網站的應用程式閘道以 SSL 卸載"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,81 +14,81 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
-ms.openlocfilehash: f61be0cc4c9274c9914f7c468ce48a2a3d0a4f4a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e87ac0bbe10ac45e307c18802741c7bc31764a20
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-an-application-gateway-for-ssl-offload-by-using-the-portal"></a><span data-ttu-id="8df48-103">使用入口網站設定適用於 SSL 卸載的應用程式閘道</span><span class="sxs-lookup"><span data-stu-id="8df48-103">Configure an application gateway for SSL offload by using the portal</span></span>
+# <a name="configure-an-application-gateway-for-ssl-offload-by-using-hello-portal"></a><span data-ttu-id="28198-103">使用 hello 入口網站設定 SSL 卸載的應用程式閘道</span><span class="sxs-lookup"><span data-stu-id="28198-103">Configure an application gateway for SSL offload by using hello portal</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="8df48-104">Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="8df48-104">Azure portal</span></span>](application-gateway-ssl-portal.md)
-> * [<span data-ttu-id="8df48-105">Azure Resource Manager PowerShell</span><span class="sxs-lookup"><span data-stu-id="8df48-105">Azure Resource Manager PowerShell</span></span>](application-gateway-ssl-arm.md)
-> * [<span data-ttu-id="8df48-106">Azure 傳統 PowerShell</span><span class="sxs-lookup"><span data-stu-id="8df48-106">Azure Classic PowerShell</span></span>](application-gateway-ssl.md)
-> * [<span data-ttu-id="8df48-107">Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="8df48-107">Azure CLI 2.0</span></span>](application-gateway-ssl-cli.md)
+> * [<span data-ttu-id="28198-104">Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="28198-104">Azure portal</span></span>](application-gateway-ssl-portal.md)
+> * [<span data-ttu-id="28198-105">Azure Resource Manager PowerShell</span><span class="sxs-lookup"><span data-stu-id="28198-105">Azure Resource Manager PowerShell</span></span>](application-gateway-ssl-arm.md)
+> * [<span data-ttu-id="28198-106">Azure 傳統 PowerShell</span><span class="sxs-lookup"><span data-stu-id="28198-106">Azure Classic PowerShell</span></span>](application-gateway-ssl.md)
+> * [<span data-ttu-id="28198-107">Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="28198-107">Azure CLI 2.0</span></span>](application-gateway-ssl-cli.md)
 
-<span data-ttu-id="8df48-108">Azure 應用程式閘道可以設定為在閘道終止安全通訊端層 (SSL) 工作階段，以避免 Web 伺服陣列發生高成本的 SSL 解密工作。</span><span class="sxs-lookup"><span data-stu-id="8df48-108">Azure Application Gateway can be configured to terminate the Secure Sockets Layer (SSL) session at the gateway to avoid costly SSL decryption tasks to happen at the web farm.</span></span> <span data-ttu-id="8df48-109">SSL 卸載也可以簡化 Web 應用程式的前端伺服器設定和管理。</span><span class="sxs-lookup"><span data-stu-id="8df48-109">SSL offload also simplifies the front-end server setup and management of the web application.</span></span>
+<span data-ttu-id="28198-108">Azure 應用程式閘道可以在 hello 閘道 tooavoid 昂貴 SSL 解密工作 toohappen hello web 伺服陣列設定的 tooterminate hello Secure Sockets Layer (SSL) 工作階段。</span><span class="sxs-lookup"><span data-stu-id="28198-108">Azure Application Gateway can be configured tooterminate hello Secure Sockets Layer (SSL) session at hello gateway tooavoid costly SSL decryption tasks toohappen at hello web farm.</span></span> <span data-ttu-id="28198-109">Hello 前端伺服器安裝並管理 hello web 應用程式，也可以簡化 SSL 卸載。</span><span class="sxs-lookup"><span data-stu-id="28198-109">SSL offload also simplifies hello front-end server setup and management of hello web application.</span></span>
 
-## <a name="scenario"></a><span data-ttu-id="8df48-110">案例</span><span class="sxs-lookup"><span data-stu-id="8df48-110">Scenario</span></span>
+## <a name="scenario"></a><span data-ttu-id="28198-110">案例</span><span class="sxs-lookup"><span data-stu-id="28198-110">Scenario</span></span>
 
-<span data-ttu-id="8df48-111">下列案例會完成在現有應用程式閘道上設定 SSL 卸載的程序。</span><span class="sxs-lookup"><span data-stu-id="8df48-111">The following scenario goes through configuring SSL offload on an existing application gateway.</span></span> <span data-ttu-id="8df48-112">此案例假設您已經依照步驟 [建立應用程式閘道](application-gateway-create-gateway-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="8df48-112">The scenario assumes that you have already followed the steps to [Create an Application Gateway](application-gateway-create-gateway-portal.md).</span></span>
+<span data-ttu-id="28198-111">下列案例中的 hello 經歷設定 SSL 卸載上現有的應用程式閘道。</span><span class="sxs-lookup"><span data-stu-id="28198-111">hello following scenario goes through configuring SSL offload on an existing application gateway.</span></span> <span data-ttu-id="28198-112">hello 案例假設您已經有太遵循 hello 步驟[建立應用程式閘道](application-gateway-create-gateway-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="28198-112">hello scenario assumes that you have already followed hello steps too[Create an Application Gateway](application-gateway-create-gateway-portal.md).</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="8df48-113">開始之前</span><span class="sxs-lookup"><span data-stu-id="8df48-113">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="28198-113">開始之前</span><span class="sxs-lookup"><span data-stu-id="28198-113">Before you begin</span></span>
 
-<span data-ttu-id="8df48-114">若要設定與應用程式閘道搭配運作的 SSL 卸載，必須要有憑證。</span><span class="sxs-lookup"><span data-stu-id="8df48-114">To configure SSL offload with an application gateway, a certificate is required.</span></span> <span data-ttu-id="8df48-115">系統會在應用程式閘道上載入此憑證，然後用來對透過 SSL 傳送的流量進行加密和解密。</span><span class="sxs-lookup"><span data-stu-id="8df48-115">This certificate is loaded on the application gateway and used to encrypt and decrypt the traffic sent via SSL.</span></span> <span data-ttu-id="8df48-116">此憑證必須採用「個人資訊交換」(pfx) 格式。</span><span class="sxs-lookup"><span data-stu-id="8df48-116">The certificate needs to be in Personal Information Exchange (pfx) format.</span></span> <span data-ttu-id="8df48-117">此檔案格式可允許將私密金鑰匯出，而應用程式閘道需要這個匯出的金鑰來執行流量的加密和解密。</span><span class="sxs-lookup"><span data-stu-id="8df48-117">This file format allows for the private key to be exported which is required by the application gateway to perform the encryption and decryption of traffic.</span></span>
+<span data-ttu-id="28198-114">與應用程式閘道 tooconfigure SSL 卸載，需要憑證。</span><span class="sxs-lookup"><span data-stu-id="28198-114">tooconfigure SSL offload with an application gateway, a certificate is required.</span></span> <span data-ttu-id="28198-115">此憑證會載入上 hello 應用程式閘道和使用 tooencrypt 和解密透過 SSL 傳送嗨流量。</span><span class="sxs-lookup"><span data-stu-id="28198-115">This certificate is loaded on hello application gateway and used tooencrypt and decrypt hello traffic sent via SSL.</span></span> <span data-ttu-id="28198-116">hello 憑證必須 toobe 個人資訊交換 (pfx) 格式。</span><span class="sxs-lookup"><span data-stu-id="28198-116">hello certificate needs toobe in Personal Information Exchange (pfx) format.</span></span> <span data-ttu-id="28198-117">這種檔案格式允許 hello 私用金鑰 toobe 匯出所需的流量 hello 應用程式閘道 tooperform hello 加密和解密。</span><span class="sxs-lookup"><span data-stu-id="28198-117">This file format allows for hello private key toobe exported which is required by hello application gateway tooperform hello encryption and decryption of traffic.</span></span>
 
-## <a name="add-an-https-listener"></a><span data-ttu-id="8df48-118">新增 HTTPS 接聽程式</span><span class="sxs-lookup"><span data-stu-id="8df48-118">Add an HTTPS listener</span></span>
+## <a name="add-an-https-listener"></a><span data-ttu-id="28198-118">新增 HTTPS 接聽程式</span><span class="sxs-lookup"><span data-stu-id="28198-118">Add an HTTPS listener</span></span>
 
-<span data-ttu-id="8df48-119">HTTPS 接聽程式會根據其組態來尋找流量，並協助將流量路由傳送到後端集區。</span><span class="sxs-lookup"><span data-stu-id="8df48-119">The HTTPS listener looks for traffic based on its configuration and helps route the traffic to the backend pools.</span></span>
+<span data-ttu-id="28198-119">hello HTTPS 接聽程式會尋找其組態為基礎的流量，並協助路由 hello 流量 toohello 後端集區。</span><span class="sxs-lookup"><span data-stu-id="28198-119">hello HTTPS listener looks for traffic based on its configuration and helps route hello traffic toohello backend pools.</span></span>
 
-### <a name="step-1"></a><span data-ttu-id="8df48-120">步驟 1</span><span class="sxs-lookup"><span data-stu-id="8df48-120">Step 1</span></span>
+### <a name="step-1"></a><span data-ttu-id="28198-120">步驟 1</span><span class="sxs-lookup"><span data-stu-id="28198-120">Step 1</span></span>
 
-<span data-ttu-id="8df48-121">瀏覽到 Azure 入口網站，然後選取現有的應用程式閘道</span><span class="sxs-lookup"><span data-stu-id="8df48-121">Navigate to the Azure portal and select an existing application gateway</span></span>
+<span data-ttu-id="28198-121">瀏覽 toohello Azure 入口網站並選取現有的應用程式閘道</span><span class="sxs-lookup"><span data-stu-id="28198-121">Navigate toohello Azure portal and select an existing application gateway</span></span>
 
-### <a name="step-2"></a><span data-ttu-id="8df48-122">步驟 2</span><span class="sxs-lookup"><span data-stu-id="8df48-122">Step 2</span></span>
+### <a name="step-2"></a><span data-ttu-id="28198-122">步驟 2</span><span class="sxs-lookup"><span data-stu-id="28198-122">Step 2</span></span>
 
-<span data-ttu-id="8df48-123">按一下 [接聽程式]，然後按一下 [加入] 按鈕來加入接聽程式。</span><span class="sxs-lookup"><span data-stu-id="8df48-123">Click Listeners and click the Add button to add a listener.</span></span>
+<span data-ttu-id="28198-123">按一下接聽程式，然後按一下 hello 新增按鈕 tooadd 接聽程式。</span><span class="sxs-lookup"><span data-stu-id="28198-123">Click Listeners and click hello Add button tooadd a listener.</span></span>
 
 ![[應用程式閘道概觀] 刀鋒視窗][1]
 
-### <a name="step-3"></a><span data-ttu-id="8df48-125">步驟 3</span><span class="sxs-lookup"><span data-stu-id="8df48-125">Step 3</span></span>
+### <a name="step-3"></a><span data-ttu-id="28198-125">步驟 3</span><span class="sxs-lookup"><span data-stu-id="28198-125">Step 3</span></span>
 
-<span data-ttu-id="8df48-126">填入必要的接聽程式資訊，然後上傳 .pfx 憑證，完成時，按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="8df48-126">Fill out the required information for the listener and upload the .pfx certificate, when complete click OK.</span></span>
+<span data-ttu-id="28198-126">填寫 hello hello 接聽程式所需的資訊並上傳 hello.pfx 憑證，完成時，請按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="28198-126">Fill out hello required information for hello listener and upload hello .pfx certificate, when complete click OK.</span></span>
 
-<span data-ttu-id="8df48-127">**名稱** - 此值是接聽程式的易記名稱。</span><span class="sxs-lookup"><span data-stu-id="8df48-127">**Name** - This value is a friendly name of the listener.</span></span>
+<span data-ttu-id="28198-127">**名稱**-此值為 hello 接聽程式的易記名稱。</span><span class="sxs-lookup"><span data-stu-id="28198-127">**Name** - This value is a friendly name of hello listener.</span></span>
 
-<span data-ttu-id="8df48-128">**前端 IP 組態** - 此值是用於接聽程式的前端 IP 組態。</span><span class="sxs-lookup"><span data-stu-id="8df48-128">**Frontend IP configuration** - This value is the frontend IP configuration that is used for the listener.</span></span>
+<span data-ttu-id="28198-128">**前端 IP 組態**-這個值是用於 hello 接聽程式的 hello 前端 IP 組態。</span><span class="sxs-lookup"><span data-stu-id="28198-128">**Frontend IP configuration** - This value is hello frontend IP configuration that is used for hello listener.</span></span>
 
-<span data-ttu-id="8df48-129">**前端連接埠 (名稱/連接埠)** - 應用程式閘道前端上所使用之連接埠的易記名稱，以及實際使用的連接埠。</span><span class="sxs-lookup"><span data-stu-id="8df48-129">**Frontend port (Name/Port)** - A friendly name for the port used on the front end of the application gateway and the actual port used.</span></span>
+<span data-ttu-id="28198-129">**前端連接埠 （名稱/連接埠）** -hello hello 前端 hello 應用程式閘道和使用 hello 實際通訊埠上使用的連接埠的易記名稱。</span><span class="sxs-lookup"><span data-stu-id="28198-129">**Frontend port (Name/Port)** - A friendly name for hello port used on hello front end of hello application gateway and hello actual port used.</span></span>
 
-<span data-ttu-id="8df48-130">**通訊協定** - 用以判斷前端使用的是 https 還是 http 的參數。</span><span class="sxs-lookup"><span data-stu-id="8df48-130">**Protocol** - A switch to determine if https or http is used for the front end.</span></span>
+<span data-ttu-id="28198-130">**通訊協定**-交換器 toodetermine 如果 hello 前端使用 https 或 http。</span><span class="sxs-lookup"><span data-stu-id="28198-130">**Protocol** - A switch toodetermine if https or http is used for hello front end.</span></span>
 
-<span data-ttu-id="8df48-131">**憑證 (名稱/密碼)** - 如果使用 SSL 卸載，此設定就需要 .pfx 憑證，並且需要易記名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="8df48-131">**Certificate (Name/Password)** - If SSL offload is used, a .pfx certificate is required for this setting and a friendly name and password are required.</span></span>
+<span data-ttu-id="28198-131">**憑證 (名稱/密碼)** - 如果使用 SSL 卸載，此設定就需要 .pfx 憑證，並且需要易記名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="28198-131">**Certificate (Name/Password)** - If SSL offload is used, a .pfx certificate is required for this setting and a friendly name and password are required.</span></span>
 
 ![[加入接聽程式] 刀鋒視窗][2]
 
-## <a name="create-a-rule-and-associate-it-to-the-listener"></a><span data-ttu-id="8df48-133">建立規則並將它與接聽程式建立關聯</span><span class="sxs-lookup"><span data-stu-id="8df48-133">Create a rule and associate it to the listener</span></span>
+## <a name="create-a-rule-and-associate-it-toohello-listener"></a><span data-ttu-id="28198-133">建立規則，並將它關聯 toohello 接聽程式</span><span class="sxs-lookup"><span data-stu-id="28198-133">Create a rule and associate it toohello listener</span></span>
 
-<span data-ttu-id="8df48-134">現在已建立接聽程式。</span><span class="sxs-lookup"><span data-stu-id="8df48-134">The listener has now been created.</span></span> <span data-ttu-id="8df48-135">此時即可建立規則來處理來自接聽程式的流量。</span><span class="sxs-lookup"><span data-stu-id="8df48-135">It is time to create a rule to handle the traffic from the listener.</span></span> <span data-ttu-id="8df48-136">規則會定義如何根據多個組態設定將流量路由傳送到後端集區，包括是否使用以 Cookie 為基礎的工作階段同質性、通訊協定、連接埠和健康狀態探查。</span><span class="sxs-lookup"><span data-stu-id="8df48-136">Rules define how traffic is routed to the backend pools based on multiple configuration settings, including whether cookie-based session affinity is used, protocol, port, and health probes.</span></span>
+<span data-ttu-id="28198-134">現在已建立 hello 接聽程式。</span><span class="sxs-lookup"><span data-stu-id="28198-134">hello listener has now been created.</span></span> <span data-ttu-id="28198-135">它是時間 toocreate hello 接聽程式的規則 toohandle hello 流量。</span><span class="sxs-lookup"><span data-stu-id="28198-135">It is time toocreate a rule toohandle hello traffic from hello listener.</span></span> <span data-ttu-id="28198-136">規則定義流量的多個組態設定，包括是否使用 cookie 架構工作階段親和性、 通訊協定、 連接埠和健全狀況探查為基礎的路由的 toohello 後端集區的方式。</span><span class="sxs-lookup"><span data-stu-id="28198-136">Rules define how traffic is routed toohello backend pools based on multiple configuration settings, including whether cookie-based session affinity is used, protocol, port, and health probes.</span></span>
 
-### <a name="step-1"></a><span data-ttu-id="8df48-137">步驟 1</span><span class="sxs-lookup"><span data-stu-id="8df48-137">Step 1</span></span>
+### <a name="step-1"></a><span data-ttu-id="28198-137">步驟 1</span><span class="sxs-lookup"><span data-stu-id="28198-137">Step 1</span></span>
 
-<span data-ttu-id="8df48-138">按一下應用程式閘道的 [規則]  ，然後按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="8df48-138">Click the **Rules** of the application gateway, and then click Add.</span></span>
+<span data-ttu-id="28198-138">按一下 hello**規則**的 hello 應用程式閘道，然後按一下新增。</span><span class="sxs-lookup"><span data-stu-id="28198-138">Click hello **Rules** of hello application gateway, and then click Add.</span></span>
 
 ![[應用程式閘道規則] 刀鋒視窗][3]
 
-### <a name="step-2"></a><span data-ttu-id="8df48-140">步驟 2</span><span class="sxs-lookup"><span data-stu-id="8df48-140">Step 2</span></span>
+### <a name="step-2"></a><span data-ttu-id="28198-140">步驟 2</span><span class="sxs-lookup"><span data-stu-id="28198-140">Step 2</span></span>
 
-<span data-ttu-id="8df48-141">在 [新增基本規則]  刀鋒視窗中，輸入規則的易記名稱，然後選擇在上一個步驟中建立的接聽程式。</span><span class="sxs-lookup"><span data-stu-id="8df48-141">On the **Add basic rule** blade, type in the friendly name for the rule and choose the listener created in the previous step.</span></span> <span data-ttu-id="8df48-142">選擇適當的後端集區和 http 設定，然後按一下 [確定] </span><span class="sxs-lookup"><span data-stu-id="8df48-142">Choose the appropriate backend pool and http setting and click **OK**</span></span>
+<span data-ttu-id="28198-141">在 hello**加入基本規則**刀鋒視窗中，輸入 hello 規則 hello 易記名稱，然後選擇 hello hello 先前步驟中建立的接聽程式。</span><span class="sxs-lookup"><span data-stu-id="28198-141">On hello **Add basic rule** blade, type in hello friendly name for hello rule and choose hello listener created in hello previous step.</span></span> <span data-ttu-id="28198-142">選擇 hello 適當的後端集區和設定的 http，然後按一下**[確定]**</span><span class="sxs-lookup"><span data-stu-id="28198-142">Choose hello appropriate backend pool and http setting and click **OK**</span></span>
 
 ![[https 設定] 視窗][4]
 
-<span data-ttu-id="8df48-144">這些設定現在已儲存至應用程式閘道。</span><span class="sxs-lookup"><span data-stu-id="8df48-144">The settings are now saved to the application gateway.</span></span> <span data-ttu-id="8df48-145">這些設定可能需要一些時間進行儲存，然後才能透過入口網站或 PowerShell 檢視。</span><span class="sxs-lookup"><span data-stu-id="8df48-145">The save process for these settings may take a while before they are available to view through the portal or through PowerShell.</span></span> <span data-ttu-id="8df48-146">儲存之後，應用程式閘道就會處理流量的加密和解密。</span><span class="sxs-lookup"><span data-stu-id="8df48-146">Once saved the application gateway handles the encryption and decryption of traffic.</span></span> <span data-ttu-id="8df48-147">應用程式閘道與後端 Web 伺服器之間的所有流量都會透過 http 進行處理。</span><span class="sxs-lookup"><span data-stu-id="8df48-147">All traffic between the application gateway and the backend web servers will be handled over http.</span></span> <span data-ttu-id="8df48-148">任何回到用戶端的通訊只要是透過 https 起始，就會以加密的方式傳回用戶端。</span><span class="sxs-lookup"><span data-stu-id="8df48-148">Any communication back to the client if initiated over https will be returned to the client encrypted.</span></span>
+<span data-ttu-id="28198-144">hello 設定現在會儲存 toohello 應用程式閘道。</span><span class="sxs-lookup"><span data-stu-id="28198-144">hello settings are now saved toohello application gateway.</span></span> <span data-ttu-id="28198-145">hello 儲存這些設定的程序可能需要一些時間，才可使用 tooview 透過 hello 入口網站或 PowerShell。</span><span class="sxs-lookup"><span data-stu-id="28198-145">hello save process for these settings may take a while before they are available tooview through hello portal or through PowerShell.</span></span> <span data-ttu-id="28198-146">儲存之後 hello 應用程式閘道處理 hello 加密和解密的流量。</span><span class="sxs-lookup"><span data-stu-id="28198-146">Once saved hello application gateway handles hello encryption and decryption of traffic.</span></span> <span data-ttu-id="28198-147">透過 http 處理 hello 應用程式閘道與 hello 後端 web 伺服器之間的所有流量。</span><span class="sxs-lookup"><span data-stu-id="28198-147">All traffic between hello application gateway and hello backend web servers will be handled over http.</span></span> <span data-ttu-id="28198-148">如果透過 https 起始任何通訊回復 toohello 用戶端將會傳回 toohello 加密的用戶端。</span><span class="sxs-lookup"><span data-stu-id="28198-148">Any communication back toohello client if initiated over https will be returned toohello client encrypted.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="8df48-149">後續步驟</span><span class="sxs-lookup"><span data-stu-id="8df48-149">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="28198-149">後續步驟</span><span class="sxs-lookup"><span data-stu-id="28198-149">Next steps</span></span>
 
-<span data-ttu-id="8df48-150">若要了解如何設定與「Azure 應用程式閘道」搭配運作的自訂健康狀態探查，請參閱 [建立自訂健康狀態探查](application-gateway-create-gateway-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="8df48-150">To learn how to configure a custom health probe with Azure Application Gateway, see [Create a custom health probe](application-gateway-create-gateway-portal.md).</span></span>
+<span data-ttu-id="28198-150">toolearn 如何 tooconfigure 自訂健全狀況探查與 Azure 應用程式閘道，請參閱[建立自訂的健全狀況探查](application-gateway-create-gateway-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="28198-150">toolearn how tooconfigure a custom health probe with Azure Application Gateway, see [Create a custom health probe](application-gateway-create-gateway-portal.md).</span></span>
 
 [1]: ./media/application-gateway-ssl-portal/figure1.png
 [2]: ./media/application-gateway-ssl-portal/figure2.png

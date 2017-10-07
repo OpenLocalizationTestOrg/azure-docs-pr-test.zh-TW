@@ -1,6 +1,6 @@
 ---
-title: "在 Azure RemoteApp 中發佈 App | Microsoft Docs"
-description: "了解如何在 Azure RemoteApp 中發佈應用程式和資源。"
+title: "aaaPublish Azure RemoteApp 中的應用程式 |Microsoft 文件"
+description: "深入了解如何 toopublish 應用程式與 Azure RemoteApp 中的資源。"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,33 +13,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 4565fa498dbadd0601004c73bfee5171efe1fad1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d7d92187e9ed999ac79554c9bb61f56a8eceeb31
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-publish-an-app-in-remoteapp"></a><span data-ttu-id="858cf-103">如何在 RemoteApp 中發佈應用程式</span><span class="sxs-lookup"><span data-stu-id="858cf-103">How to publish an app in RemoteApp</span></span>
+# <a name="how-toopublish-an-app-in-remoteapp"></a><span data-ttu-id="75806-103">如何 toopublish RemoteApp 應用程式</span><span class="sxs-lookup"><span data-stu-id="75806-103">How toopublish an app in RemoteApp</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="858cf-104">Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。</span><span class="sxs-lookup"><span data-stu-id="858cf-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="858cf-105">如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。</span><span class="sxs-lookup"><span data-stu-id="858cf-105">Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
+> <span data-ttu-id="75806-104">Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。</span><span class="sxs-lookup"><span data-stu-id="75806-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="75806-105">讀取 hello[公告](https://go.microsoft.com/fwlink/?linkid=821148)如需詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="75806-105">Read hello [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
 > 
 > 
 
-<span data-ttu-id="858cf-106">建立 RemoteApp 收藏之後，您必須發佈想供使用者使用的應用程式或資源。</span><span class="sxs-lookup"><span data-stu-id="858cf-106">After you create your RemoteApp collection, you need to publish the apps or resources that you want to make available for your users.</span></span> <span data-ttu-id="858cf-107">隨您的訂閱提供的範本映像預設只會發佈幾個應用程式，若要共用其他應用程式，您必須發佈它們。</span><span class="sxs-lookup"><span data-stu-id="858cf-107">The template images provided with your subscription only have a few apps published by default - to share the other apps, you need to publish them.</span></span>
-
-> [!NOTE]
-> <span data-ttu-id="858cf-108">您需要更新應用程式嗎？</span><span class="sxs-lookup"><span data-stu-id="858cf-108">Do you need to update an app?</span></span> <span data-ttu-id="858cf-109">您將需要先 [更新映像](remoteapp-update.md) 。</span><span class="sxs-lookup"><span data-stu-id="858cf-109">You'll need to [update the image](remoteapp-update.md) first.</span></span>
-> 
-> 
-
-<span data-ttu-id="858cf-110">在入口網站的 [發佈] 索引標籤中，按一下 [發佈]。</span><span class="sxs-lookup"><span data-stu-id="858cf-110">On the **Publishing** tab in the portal, click **Publish**.</span></span> <span data-ttu-id="858cf-111">您可以從您範本映像的 [ **開始** ] 功能表新增應用程式，或是在範本映像提供安裝程式的路徑。</span><span class="sxs-lookup"><span data-stu-id="858cf-111">You can either add an app from your template image's **Start** menu or provide the path to where the app is installed on the template image.</span></span> <span data-ttu-id="858cf-112">如果您選擇從 [開始]  功能表新增，請從清單中選擇要發佈的 App。</span><span class="sxs-lookup"><span data-stu-id="858cf-112">If you choose to add from the **Start** menu, choose the app to publish from the list.</span></span> <span data-ttu-id="858cf-113">如果您選擇提供應用程式的路徑，請輸入應用程式的名稱和應用程式路徑。</span><span class="sxs-lookup"><span data-stu-id="858cf-113">If you choose to provide the path to the app, enter a name for the app and the path to the app.</span></span> <span data-ttu-id="858cf-114">請在路徑中使用變數，例如 "%systemdrive%" 而非 "c:\"。</span><span class="sxs-lookup"><span data-stu-id="858cf-114">Use variables in the path - for example, "%systemdrive%" instead of "c:\".</span></span>
+<span data-ttu-id="75806-106">建立您的 RemoteApp 集合之後，您需要 toopublish hello 應用程式或您為您的使用者想 toomake 可用資源。</span><span class="sxs-lookup"><span data-stu-id="75806-106">After you create your RemoteApp collection, you need toopublish hello apps or resources that you want toomake available for your users.</span></span> <span data-ttu-id="75806-107">hello 與您的訂用帳戶所提供的範本映像只能有少數應用程式發佈的預設值-tooshare hello 其他應用程式，您就需要 toopublish 它們。</span><span class="sxs-lookup"><span data-stu-id="75806-107">hello template images provided with your subscription only have a few apps published by default - tooshare hello other apps, you need toopublish them.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="858cf-115">如果您想要從 [開始] 功能表新增您的應用程式，就必須先「在您的範本映像上將該應用程式新增至 [開始] 功能表」。</span><span class="sxs-lookup"><span data-stu-id="858cf-115">If you want to add your app from the **Start** menu, you need to have *added that app to the **Start** menu on your template image.*</span></span> <span data-ttu-id="858cf-116">否則，RemoteApp 只會看到在 [開始] 功能表上的項目，而您會覺得很困惑。</span><span class="sxs-lookup"><span data-stu-id="858cf-116">Otherwise, RemoteApp will only see what *is* on the **Start** menu, and you will be confused.</span></span> 
+> <span data-ttu-id="75806-108">您需要 tooupdate 應用程式嗎？</span><span class="sxs-lookup"><span data-stu-id="75806-108">Do you need tooupdate an app?</span></span> <span data-ttu-id="75806-109">您必須太[更新 hello 影像](remoteapp-update.md)第一次。</span><span class="sxs-lookup"><span data-stu-id="75806-109">You'll need too[update hello image](remoteapp-update.md) first.</span></span>
 > 
-> <span data-ttu-id="858cf-117">若要確定您的 App 位於 [開始] 功能表，請將捷徑檔案 (**.lnk**) 置於 %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs 資料夾內。</span><span class="sxs-lookup"><span data-stu-id="858cf-117">To make sure your app is in the **Start** menu, place a shortcut file - **.lnk** - inside the %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs folder.</span></span>
 > 
-> <span data-ttu-id="858cf-118">如果您忘記在建立範本時將應用程式新增到 [開始] 功能表，請選擇新增路徑到應用程式。</span><span class="sxs-lookup"><span data-stu-id="858cf-118">If you forgot to add the app to the **Start** menu when you created the template, choose to add the path to the app.</span></span> <span data-ttu-id="858cf-119">(或者重新建立您的範本映像，但是這會比較費工。)</span><span class="sxs-lookup"><span data-stu-id="858cf-119">(Or recreate your template image, but that's quite a bit more work.)</span></span>
+
+<span data-ttu-id="75806-110">在 hello**發行**hello 入口網站中索引標籤上，按一下 **發行**。</span><span class="sxs-lookup"><span data-stu-id="75806-110">On hello **Publishing** tab in hello portal, click **Publish**.</span></span> <span data-ttu-id="75806-111">您可以從您的範本映像加入應用程式**啟動**功能表或提供 hello 路徑 toowhere hello 應用程式安裝在 hello 範本映像上。</span><span class="sxs-lookup"><span data-stu-id="75806-111">You can either add an app from your template image's **Start** menu or provide hello path toowhere hello app is installed on hello template image.</span></span> <span data-ttu-id="75806-112">如果您選擇 tooadd hello**啟動**功能表上，從 hello 清單中選擇 hello 應用程式 toopublish。</span><span class="sxs-lookup"><span data-stu-id="75806-112">If you choose tooadd from hello **Start** menu, choose hello app toopublish from hello list.</span></span> <span data-ttu-id="75806-113">如果您選擇 tooprovide hello 路徑 toohello 應用程式，輸入 hello 和 hello 路徑 toohello app 的名稱。</span><span class="sxs-lookup"><span data-stu-id="75806-113">If you choose tooprovide hello path toohello app, enter a name for hello app and hello path toohello app.</span></span> <span data-ttu-id="75806-114">使用 hello path-例如，"%systemdrive%"中的變數，而不是"c:\"。</span><span class="sxs-lookup"><span data-stu-id="75806-114">Use variables in hello path - for example, "%systemdrive%" instead of "c:\".</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="75806-115">如果您想 tooadd hello 應用程式**啟動**功能表上，您需要 toohave*加入該應用程式 toohello**啟動**範本映像上的功能表。*</span><span class="sxs-lookup"><span data-stu-id="75806-115">If you want tooadd your app from hello **Start** menu, you need toohave *added that app toohello **Start** menu on your template image.*</span></span> <span data-ttu-id="75806-116">否則，RemoteApp 只會看到什麼*是*hello 上**啟動**功能表上，而且您會產生混淆。</span><span class="sxs-lookup"><span data-stu-id="75806-116">Otherwise, RemoteApp will only see what *is* on hello **Start** menu, and you will be confused.</span></span> 
+> 
+> <span data-ttu-id="75806-117">toomake 確定您的應用程式處於 hello**啟動**功能表上，將快顯檔案- **.lnk** -hello %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs 資料夾內。</span><span class="sxs-lookup"><span data-stu-id="75806-117">toomake sure your app is in hello **Start** menu, place a shortcut file - **.lnk** - inside hello %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs folder.</span></span>
+> 
+> <span data-ttu-id="75806-118">如果您忘記 tooadd hello 應用程式 toohello**啟動**功能表建立 hello 範本時選擇 tooadd hello 路徑 toohello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="75806-118">If you forgot tooadd hello app toohello **Start** menu when you created hello template, choose tooadd hello path toohello app.</span></span> <span data-ttu-id="75806-119">(或者重新建立您的範本映像，但是這會比較費工。)</span><span class="sxs-lookup"><span data-stu-id="75806-119">(Or recreate your template image, but that's quite a bit more work.)</span></span>
 > 
 > 
 

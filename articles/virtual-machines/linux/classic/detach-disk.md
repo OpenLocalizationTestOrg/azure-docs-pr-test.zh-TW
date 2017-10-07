@@ -1,6 +1,6 @@
 ---
-title: "從 Azure 中的 Linux VM 卸離磁碟 | Microsoft Docs"
-description: "了解如何從使用傳統部署模型建立的 Azure 虛擬機器卸離資料磁碟。"
+title: "來自 Azure 中的 Linux VM 的磁碟 aaaDetach |Microsoft 文件"
+description: "了解 toodetach 從 Azure 虛擬機器使用 hello 傳統部署模型所建立的資料磁碟。"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2017
 ms.author: iainfou
-ms.openlocfilehash: ac982bc153d523de29940af9b9e2609a39cd48a6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d0ae362ab756dc4636bf5574deca7471223fb7f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-detach-a-disk-from-a-linux-virtual-machine"></a><span data-ttu-id="919ea-103">如何從 Linux 虛擬機器卸離磁碟</span><span class="sxs-lookup"><span data-stu-id="919ea-103">How to Detach a Disk from a Linux Virtual Machine</span></span>
+# <a name="how-toodetach-a-disk-from-a-linux-virtual-machine"></a><span data-ttu-id="d81bd-103">如何 tooDetach 從 Linux 虛擬機器的磁碟</span><span class="sxs-lookup"><span data-stu-id="d81bd-103">How tooDetach a Disk from a Linux Virtual Machine</span></span>
 > [!IMPORTANT] 
-> <span data-ttu-id="919ea-104">Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。</span><span class="sxs-lookup"><span data-stu-id="919ea-104">Azure has two different deployment models for creating and working with resources: [Resource Manager and Classic](../../../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="919ea-105">本文涵蓋之內容包括使用傳統部署模型。</span><span class="sxs-lookup"><span data-stu-id="919ea-105">This article covers using the Classic deployment model.</span></span> <span data-ttu-id="919ea-106">Microsoft 建議讓大部分的新部署使用資源管理員模式。</span><span class="sxs-lookup"><span data-stu-id="919ea-106">Microsoft recommends that most new deployments use the Resource Manager model.</span></span>
+> <span data-ttu-id="d81bd-104">Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。</span><span class="sxs-lookup"><span data-stu-id="d81bd-104">Azure has two different deployment models for creating and working with resources: [Resource Manager and Classic](../../../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="d81bd-105">本文件涵蓋使用 hello 傳統部署模型。</span><span class="sxs-lookup"><span data-stu-id="d81bd-105">This article covers using hello Classic deployment model.</span></span> <span data-ttu-id="d81bd-106">Microsoft 建議最新的部署使用 hello 資源管理員的模型。</span><span class="sxs-lookup"><span data-stu-id="d81bd-106">Microsoft recommends that most new deployments use hello Resource Manager model.</span></span>
 
 [!INCLUDE [howto-detach-disk-windows-linux](../../../../includes/howto-detach-disk-linux.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="919ea-107">後續步驟</span><span class="sxs-lookup"><span data-stu-id="919ea-107">Next steps</span></span>
-<span data-ttu-id="919ea-108">您可以閱讀下列文章來進一步了解如何使用 Linux VM：</span><span class="sxs-lookup"><span data-stu-id="919ea-108">You can read more about using your Linux VM in the following articles:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d81bd-107">後續步驟</span><span class="sxs-lookup"><span data-stu-id="d81bd-107">Next steps</span></span>
+<span data-ttu-id="d81bd-108">閱讀更多關於使用 Linux VM hello 下列文章中：</span><span class="sxs-lookup"><span data-stu-id="d81bd-108">You can read more about using your Linux VM in hello following articles:</span></span>
 
-* [<span data-ttu-id="919ea-109">如何將資料磁碟連接至 Linux 虛擬機器</span><span class="sxs-lookup"><span data-stu-id="919ea-109">How to Attach a Data Disk to a Linux Virtual Machine</span></span>](attach-disk.md)
-* [<span data-ttu-id="919ea-110">搭配傳統部署模型使用 Azuer CLI</span><span class="sxs-lookup"><span data-stu-id="919ea-110">Using the Azure CLI with the Classic deployment model</span></span>](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
+* [<span data-ttu-id="d81bd-109">如何 tooAttach 資料磁碟 tooa Linux 虛擬機器</span><span class="sxs-lookup"><span data-stu-id="d81bd-109">How tooAttach a Data Disk tooa Linux Virtual Machine</span></span>](attach-disk.md)
+* [<span data-ttu-id="d81bd-110">使用 Azure CLI hello 與 hello 傳統部署模型</span><span class="sxs-lookup"><span data-stu-id="d81bd-110">Using hello Azure CLI with hello Classic deployment model</span></span>](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
 

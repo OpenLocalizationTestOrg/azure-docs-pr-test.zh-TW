@@ -1,6 +1,6 @@
 ---
-title: "M0 連線到雲端：將 Feather M0 WiFi 連線到 Azure IoT 中樞 | Microsoft Docs"
-description: "了解如何設定及連線 Adafruit Feather M0 WiFi 和 Azure IoT 中樞，在本教學課程中將資料傳送到 Azure 雲端平台。"
+title: "M0 toocloud： 連接羽毛 M0 WiFi tooAzure IoT 中樞 |Microsoft 文件"
+description: "深入了解如何 tooset 及 Adafruit 羽毛 M0 WiFi tooAzure IoT 中樞 toosend 資料 toohello Azure 雲端平台連接在此教學課程。"
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,168 +15,168 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 8/16/2017
 ms.author: xshi
-ms.openlocfilehash: 0dcf6b46a4c6c743c713d24ce7844e801b278dcf
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6aabeb961a50ba5d3934f77eb1ccda4af1bf64c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-adafruit-feather-m0-wifi-to-azure-iot-hub-in-the-cloud"></a><span data-ttu-id="92423-103">將 Adafruit Feather M0 WiFi 連線到位於雲端的 Azure IoT 中樞</span><span class="sxs-lookup"><span data-stu-id="92423-103">Connect Adafruit Feather M0 WiFi to Azure IoT Hub in the cloud</span></span>
+# <a name="connect-adafruit-feather-m0-wifi-tooazure-iot-hub-in-hello-cloud"></a><span data-ttu-id="f024e-103">連接 Adafruit 羽毛 M0 WiFi tooAzure hello 雲端中的 IoT 中樞</span><span class="sxs-lookup"><span data-stu-id="f024e-103">Connect Adafruit Feather M0 WiFi tooAzure IoT Hub in hello cloud</span></span>
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
 ![BME280、Feather M0 WiFi 與 IoT 中樞之間的連線](media/iot-hub-adafruit-feather-m0-wifi-get-started/1_connection-m0-feather-m0-iot-hub.png)
 
-<span data-ttu-id="92423-105">在本教學課程中，您一開始會先了解使用 Arduino 面板的基本知識。</span><span class="sxs-lookup"><span data-stu-id="92423-105">In this tutorial, you begin by learning the basics of working with your Arduino board.</span></span> <span data-ttu-id="92423-106">接著會了解如何使用 [Azure IoT 中樞](iot-hub-what-is-iot-hub.md)讓您的裝置順暢地與雲端連線。</span><span class="sxs-lookup"><span data-stu-id="92423-106">You then learn how to seamlessly connect your devices to the cloud by using [Azure IoT Hub](iot-hub-what-is-iot-hub.md).</span></span>
+<span data-ttu-id="f024e-105">在本教學課程中，您必須開始學習使用 Arduino 面板的 hello 基本。</span><span class="sxs-lookup"><span data-stu-id="f024e-105">In this tutorial, you begin by learning hello basics of working with your Arduino board.</span></span> <span data-ttu-id="f024e-106">然後您學習如何 tooseamlessly 裝置 toohello 雲端使用連線[Azure IoT 中樞](iot-hub-what-is-iot-hub.md)。</span><span class="sxs-lookup"><span data-stu-id="f024e-106">You then learn how tooseamlessly connect your devices toohello cloud by using [Azure IoT Hub](iot-hub-what-is-iot-hub.md).</span></span>
 
-## <a name="what-you-do"></a><span data-ttu-id="92423-107">您要做什麼</span><span class="sxs-lookup"><span data-stu-id="92423-107">What you do</span></span>
+## <a name="what-you-do"></a><span data-ttu-id="f024e-107">您要做什麼</span><span class="sxs-lookup"><span data-stu-id="f024e-107">What you do</span></span>
 
-<span data-ttu-id="92423-108">將 Adafruit Feather M0 WiFi 連線到您將建立的 IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="92423-108">Connect Adafruit Feather M0 WiFi to an IoT hub that you create.</span></span> <span data-ttu-id="92423-109">然後，在 M0 WiF 上執行範例應用程式，以收集 BME280 感應器中的溫度和溼度資料。</span><span class="sxs-lookup"><span data-stu-id="92423-109">Then you run a sample application on M0 WiFi to collect the temperature and humidity data from a BME280.</span></span> <span data-ttu-id="92423-110">最後，將感應器資料傳送至 IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="92423-110">Finally, you send the sensor data to your IoT hub.</span></span>
+<span data-ttu-id="f024e-108">連接您所建立的 Adafruit 羽毛 M0 WiFi tooan IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="f024e-108">Connect Adafruit Feather M0 WiFi tooan IoT hub that you create.</span></span> <span data-ttu-id="f024e-109">然後從 BME280 M0 WiFi toocollect hello 氣溫和溼度資料上執行範例應用程式。</span><span class="sxs-lookup"><span data-stu-id="f024e-109">Then you run a sample application on M0 WiFi toocollect hello temperature and humidity data from a BME280.</span></span> <span data-ttu-id="f024e-110">最後，您可以傳送 hello 感應器資料 tooyour IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="f024e-110">Finally, you send hello sensor data tooyour IoT hub.</span></span>
 
 
-## <a name="what-you-learn"></a><span data-ttu-id="92423-111">您學到什麼</span><span class="sxs-lookup"><span data-stu-id="92423-111">What you learn</span></span>
+## <a name="what-you-learn"></a><span data-ttu-id="f024e-111">您學到什麼</span><span class="sxs-lookup"><span data-stu-id="f024e-111">What you learn</span></span>
 
-* <span data-ttu-id="92423-112">如何建立 IoT 中樞並為 Feather M0 WiFi 註冊裝置。</span><span class="sxs-lookup"><span data-stu-id="92423-112">How to create an IoT hub and register a device for Feather M0 WiFi</span></span>
-* <span data-ttu-id="92423-113">如何連接 Feather M0 WiFi 與感應器和電腦</span><span class="sxs-lookup"><span data-stu-id="92423-113">How to connect Feather M0 WiFi with the sensor and your computer</span></span>
-* <span data-ttu-id="92423-114">如何在 Feather M0 WiFi 上執行範例應用程式來收集感應器資料</span><span class="sxs-lookup"><span data-stu-id="92423-114">How to collect sensor data by running a sample application on Feather M0 WiFi</span></span>
-* <span data-ttu-id="92423-115">如何將感應器資料傳送至 IoT 中樞</span><span class="sxs-lookup"><span data-stu-id="92423-115">How to send the sensor data to your IoT hub</span></span>
+* <span data-ttu-id="f024e-112">如何 toocreate IoT 中樞和羽毛 M0 WiFi 如註冊裝置</span><span class="sxs-lookup"><span data-stu-id="f024e-112">How toocreate an IoT hub and register a device for Feather M0 WiFi</span></span>
+* <span data-ttu-id="f024e-113">如何 tooconnect 羽毛 M0 WiFi hello 感應器與您的電腦</span><span class="sxs-lookup"><span data-stu-id="f024e-113">How tooconnect Feather M0 WiFi with hello sensor and your computer</span></span>
+* <span data-ttu-id="f024e-114">如何執行範例應用程式上羽毛 M0 WiFi toocollect 感應器資料</span><span class="sxs-lookup"><span data-stu-id="f024e-114">How toocollect sensor data by running a sample application on Feather M0 WiFi</span></span>
+* <span data-ttu-id="f024e-115">如何 toosend hello 感應器資料 tooyour IoT 中樞</span><span class="sxs-lookup"><span data-stu-id="f024e-115">How toosend hello sensor data tooyour IoT hub</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="92423-116">您需要什麼</span><span class="sxs-lookup"><span data-stu-id="92423-116">What you need</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="f024e-116">您需要什麼</span><span class="sxs-lookup"><span data-stu-id="f024e-116">What you need</span></span>
 
-![本教學課程所需的零件](media/iot-hub-adafruit-feather-m0-wifi-get-started/2_parts-needed-for-the-tutorial.png)
+![Hello 教學課程需要的組件](media/iot-hub-adafruit-feather-m0-wifi-get-started/2_parts-needed-for-the-tutorial.png)
 
-<span data-ttu-id="92423-118">若要完成此作業，您需要 Feather M0 WiFi 入門套件中的下列零件：</span><span class="sxs-lookup"><span data-stu-id="92423-118">To complete this operation, you need the following parts from your Feather M0 WiFi Starter Kit:</span></span>
+<span data-ttu-id="f024e-118">toocomplete 這項作業，您需要 hello 羽毛 M0 WiFi 入門套件中的下列部分：</span><span class="sxs-lookup"><span data-stu-id="f024e-118">toocomplete this operation, you need hello following parts from your Feather M0 WiFi Starter Kit:</span></span>
 
-* <span data-ttu-id="92423-119">Feather M0 WiFi 面板</span><span class="sxs-lookup"><span data-stu-id="92423-119">The Feather M0 WiFi board</span></span>
-* <span data-ttu-id="92423-120">Micro USB 轉 Type A 的 USB 纜線</span><span class="sxs-lookup"><span data-stu-id="92423-120">A Micro USB to Type A USB cable</span></span>
+* <span data-ttu-id="f024e-119">hello 羽毛 M0 WiFi 面板</span><span class="sxs-lookup"><span data-stu-id="f024e-119">hello Feather M0 WiFi board</span></span>
+* <span data-ttu-id="f024e-120">微 USB tooType USB 纜線</span><span class="sxs-lookup"><span data-stu-id="f024e-120">A Micro USB tooType A USB cable</span></span>
 
-<span data-ttu-id="92423-121">您的開發環境還需要下列事項：</span><span class="sxs-lookup"><span data-stu-id="92423-121">You also need the following things for your development environment:</span></span>
+<span data-ttu-id="f024e-121">您還需要下列項目，為您的開發環境的 hello:</span><span class="sxs-lookup"><span data-stu-id="f024e-121">You also need hello following things for your development environment:</span></span>
 
-* <span data-ttu-id="92423-122">有效的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="92423-122">An active Azure subscription.</span></span> <span data-ttu-id="92423-123">如果您沒有 Azure 帳戶，請花幾分鐘的時間[建立免費的 Azure 試用帳戶](https://azure.microsoft.com/free/)。</span><span class="sxs-lookup"><span data-stu-id="92423-123">If you don't have an Azure account, [create a free Azure trial account](https://azure.microsoft.com/free/) in just a few minutes.</span></span>
-* <span data-ttu-id="92423-124">執行 Windows 或 Ubuntu 的 Mac 或 PC。</span><span class="sxs-lookup"><span data-stu-id="92423-124">A Mac or PC that is running Windows or Ubuntu.</span></span>
-* <span data-ttu-id="92423-125">供 Feather M0 WiFi 連線的無線網路。</span><span class="sxs-lookup"><span data-stu-id="92423-125">A wireless network for Feather M0 WiFi to connect to.</span></span>
-* <span data-ttu-id="92423-126">用來下載設定工具的網際網路連線。</span><span class="sxs-lookup"><span data-stu-id="92423-126">An Internet connection to download the configuration tool.</span></span>
-* <span data-ttu-id="92423-127">[Arduino IDE](https://www.arduino.cc/en/main/software) 1.6.8 版或更新版本。</span><span class="sxs-lookup"><span data-stu-id="92423-127">[Arduino IDE](https://www.arduino.cc/en/main/software) version 1.6.8 or later.</span></span> <span data-ttu-id="92423-128">舊版無法與 Azure IoT 中樞程式庫搭配運作。</span><span class="sxs-lookup"><span data-stu-id="92423-128">Earlier versions don't work with the Azure IoT Hub library.</span></span>
+* <span data-ttu-id="f024e-122">有效的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="f024e-122">An active Azure subscription.</span></span> <span data-ttu-id="f024e-123">如果您沒有 Azure 帳戶，請花幾分鐘的時間[建立免費的 Azure 試用帳戶](https://azure.microsoft.com/free/)。</span><span class="sxs-lookup"><span data-stu-id="f024e-123">If you don't have an Azure account, [create a free Azure trial account](https://azure.microsoft.com/free/) in just a few minutes.</span></span>
+* <span data-ttu-id="f024e-124">執行 Windows 或 Ubuntu 的 Mac 或 PC。</span><span class="sxs-lookup"><span data-stu-id="f024e-124">A Mac or PC that is running Windows or Ubuntu.</span></span>
+* <span data-ttu-id="f024e-125">若要羽毛 M0 WiFi tooconnect 無線網路。</span><span class="sxs-lookup"><span data-stu-id="f024e-125">A wireless network for Feather M0 WiFi tooconnect to.</span></span>
+* <span data-ttu-id="f024e-126">網際網路連線 toodownload hello 組態工具。</span><span class="sxs-lookup"><span data-stu-id="f024e-126">An Internet connection toodownload hello configuration tool.</span></span>
+* <span data-ttu-id="f024e-127">[Arduino IDE](https://www.arduino.cc/en/main/software) 1.6.8 版或更新版本。</span><span class="sxs-lookup"><span data-stu-id="f024e-127">[Arduino IDE](https://www.arduino.cc/en/main/software) version 1.6.8 or later.</span></span> <span data-ttu-id="f024e-128">舊版未使用 hello Azure IoT 中樞程式庫。</span><span class="sxs-lookup"><span data-stu-id="f024e-128">Earlier versions don't work with hello Azure IoT Hub library.</span></span>
 
-<span data-ttu-id="92423-129">如果您沒有感應器，下列項目可供選用。</span><span class="sxs-lookup"><span data-stu-id="92423-129">If you don’t have a sensor, the following items are optional.</span></span> <span data-ttu-id="92423-130">您也可以選擇使用模擬的感應器資料：</span><span class="sxs-lookup"><span data-stu-id="92423-130">You also have the option of using simulated sensor data:</span></span>
+<span data-ttu-id="f024e-129">如果您沒有感應器，hello 下列項目是選擇性的。</span><span class="sxs-lookup"><span data-stu-id="f024e-129">If you don’t have a sensor, hello following items are optional.</span></span> <span data-ttu-id="f024e-130">您也可以使用模擬的感應器資料的 hello 選項：</span><span class="sxs-lookup"><span data-stu-id="f024e-130">You also have hello option of using simulated sensor data:</span></span>
 
-* <span data-ttu-id="92423-131">BME280 溫度和溼度感應器</span><span class="sxs-lookup"><span data-stu-id="92423-131">A BME280 temperature and humidity sensor</span></span>
-* <span data-ttu-id="92423-132">麵包板</span><span class="sxs-lookup"><span data-stu-id="92423-132">A breadboard</span></span>
-* <span data-ttu-id="92423-133">M/M 跳線</span><span class="sxs-lookup"><span data-stu-id="92423-133">M/M jumper wires</span></span>
+* <span data-ttu-id="f024e-131">BME280 溫度和溼度感應器</span><span class="sxs-lookup"><span data-stu-id="f024e-131">A BME280 temperature and humidity sensor</span></span>
+* <span data-ttu-id="f024e-132">麵包板</span><span class="sxs-lookup"><span data-stu-id="f024e-132">A breadboard</span></span>
+* <span data-ttu-id="f024e-133">M/M 跳線</span><span class="sxs-lookup"><span data-stu-id="f024e-133">M/M jumper wires</span></span>
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
-## <a name="connect-feather-m0-wifi-with-the-sensor-and-your-computer"></a><span data-ttu-id="92423-134">連接 Feather M0 WiFi 與感應器和電腦</span><span class="sxs-lookup"><span data-stu-id="92423-134">Connect Feather M0 WiFi with the sensor and your computer</span></span>
-<span data-ttu-id="92423-135">在本節中，您可以將感應器連接至您的面板。</span><span class="sxs-lookup"><span data-stu-id="92423-135">In this section, you connect the sensors to your board.</span></span> <span data-ttu-id="92423-136">然後您可以將您的裝置插入電腦持續使用。</span><span class="sxs-lookup"><span data-stu-id="92423-136">Then you plug in your device to your computer for further use.</span></span>
+## <a name="connect-feather-m0-wifi-with-hello-sensor-and-your-computer"></a><span data-ttu-id="f024e-134">聯繫羽毛 M0 WiFi hello 感應器和您的電腦</span><span class="sxs-lookup"><span data-stu-id="f024e-134">Connect Feather M0 WiFi with hello sensor and your computer</span></span>
+<span data-ttu-id="f024e-135">在本節中，您可以連接 hello 感應器 tooyour 面板。</span><span class="sxs-lookup"><span data-stu-id="f024e-135">In this section, you connect hello sensors tooyour board.</span></span> <span data-ttu-id="f024e-136">然後您插入以便進一步使用於您裝置的 tooyour 電腦。</span><span class="sxs-lookup"><span data-stu-id="f024e-136">Then you plug in your device tooyour computer for further use.</span></span>
 
-### <a name="connect-a-dht22-temperature-and-humidity-sensor-to-feather-m0-wifi"></a><span data-ttu-id="92423-137">將 DHT22 溫度和溼度感應器連接至 Feather M0 WiFi</span><span class="sxs-lookup"><span data-stu-id="92423-137">Connect a DHT22 temperature and humidity sensor to Feather M0 WiFi</span></span>
+### <a name="connect-a-dht22-temperature-and-humidity-sensor-toofeather-m0-wifi"></a><span data-ttu-id="f024e-137">連接 DHT22 氣溫和溼度感應器 tooFeather M0 WiFi</span><span class="sxs-lookup"><span data-stu-id="f024e-137">Connect a DHT22 temperature and humidity sensor tooFeather M0 WiFi</span></span>
 
-<span data-ttu-id="92423-138">使用試驗電路板 和跳線來進行連接。</span><span class="sxs-lookup"><span data-stu-id="92423-138">Use the breadboard and jumper wires to make the connection.</span></span> <span data-ttu-id="92423-139">如果您沒有感應器，請略過本節，因為您可以改為使用模擬的感應器資料。</span><span class="sxs-lookup"><span data-stu-id="92423-139">If you don’t have a sensor, skip this section because you can use simulated sensor data instead.</span></span>
+<span data-ttu-id="f024e-138">使用 hello breadboard 和跳接器線路 toomake hello 的連線。</span><span class="sxs-lookup"><span data-stu-id="f024e-138">Use hello breadboard and jumper wires toomake hello connection.</span></span> <span data-ttu-id="f024e-139">如果您沒有感應器，請略過本節，因為您可以改為使用模擬的感應器資料。</span><span class="sxs-lookup"><span data-stu-id="f024e-139">If you don’t have a sensor, skip this section because you can use simulated sensor data instead.</span></span>
 
 ![連接參考](media/iot-hub-adafruit-feather-m0-wifi-get-started/3_connections_on_breadboard.png)
 
 
-<span data-ttu-id="92423-141">針對感應器針腳，請使用下列接線方式：</span><span class="sxs-lookup"><span data-stu-id="92423-141">For sensor pins, use the following wiring:</span></span>
+<span data-ttu-id="f024e-141">感應器 pin 碼，使用下列配線 hello:</span><span class="sxs-lookup"><span data-stu-id="f024e-141">For sensor pins, use hello following wiring:</span></span>
 
 
-| <span data-ttu-id="92423-142">開始 (感應器)</span><span class="sxs-lookup"><span data-stu-id="92423-142">Start (sensor)</span></span>           | <span data-ttu-id="92423-143">結束 (電路版)</span><span class="sxs-lookup"><span data-stu-id="92423-143">End (board)</span></span>            | <span data-ttu-id="92423-144">纜線顏色</span><span class="sxs-lookup"><span data-stu-id="92423-144">Cable color</span></span>   |
+| <span data-ttu-id="f024e-142">開始 (感應器)</span><span class="sxs-lookup"><span data-stu-id="f024e-142">Start (sensor)</span></span>           | <span data-ttu-id="f024e-143">結束 (電路版)</span><span class="sxs-lookup"><span data-stu-id="f024e-143">End (board)</span></span>            | <span data-ttu-id="f024e-144">纜線顏色</span><span class="sxs-lookup"><span data-stu-id="f024e-144">Cable color</span></span>   |
 | -----------------------  | ---------------------- | ------------: |
-| <span data-ttu-id="92423-145">VDD (針腳 27A)</span><span class="sxs-lookup"><span data-stu-id="92423-145">VDD (Pin 27A)</span></span>            | <span data-ttu-id="92423-146">3V (針腳 3A)</span><span class="sxs-lookup"><span data-stu-id="92423-146">3V (Pin 3A)</span></span>            | <span data-ttu-id="92423-147">紅色纜線</span><span class="sxs-lookup"><span data-stu-id="92423-147">Red cable</span></span>     |
-| <span data-ttu-id="92423-148">GND (針腳 29A)</span><span class="sxs-lookup"><span data-stu-id="92423-148">GND (Pin 29A)</span></span>            | <span data-ttu-id="92423-149">GND (針腳 6A)</span><span class="sxs-lookup"><span data-stu-id="92423-149">GND (Pin 6A)</span></span>           | <span data-ttu-id="92423-150">黑色纜線</span><span class="sxs-lookup"><span data-stu-id="92423-150">Black cable</span></span>   |
-| <span data-ttu-id="92423-151">SCK (針腳 30A)</span><span class="sxs-lookup"><span data-stu-id="92423-151">SCK (Pin 30A)</span></span>            | <span data-ttu-id="92423-152">SCK (針腳 12A)</span><span class="sxs-lookup"><span data-stu-id="92423-152">SCK (Pin 12A)</span></span>          | <span data-ttu-id="92423-153">黃色纜線</span><span class="sxs-lookup"><span data-stu-id="92423-153">Yellow cable</span></span>  |
-| <span data-ttu-id="92423-154">SDO (針腳 31A)</span><span class="sxs-lookup"><span data-stu-id="92423-154">SDO (Pin 31A)</span></span>            | <span data-ttu-id="92423-155">MI (針腳 14A)</span><span class="sxs-lookup"><span data-stu-id="92423-155">MI (Pin 14A)</span></span>           | <span data-ttu-id="92423-156">白色纜線</span><span class="sxs-lookup"><span data-stu-id="92423-156">White cable</span></span>   |
-| <span data-ttu-id="92423-157">SDI (針腳 32A)</span><span class="sxs-lookup"><span data-stu-id="92423-157">SDI (Pin 32A)</span></span>            | <span data-ttu-id="92423-158">M0 (針腳 13A)</span><span class="sxs-lookup"><span data-stu-id="92423-158">M0 (Pin 13A)</span></span>           | <span data-ttu-id="92423-159">藍色纜線</span><span class="sxs-lookup"><span data-stu-id="92423-159">Blue cable</span></span>    |
-| <span data-ttu-id="92423-160">cs (針腳 33A)</span><span class="sxs-lookup"><span data-stu-id="92423-160">CS (Pin 33A)</span></span>             | <span data-ttu-id="92423-161">GPIO 5 (針腳 15J)</span><span class="sxs-lookup"><span data-stu-id="92423-161">GPIO 5 (Pin 15J)</span></span>       | <span data-ttu-id="92423-162">橘色纜線</span><span class="sxs-lookup"><span data-stu-id="92423-162">Orange cable</span></span>  |
+| <span data-ttu-id="f024e-145">VDD (針腳 27A)</span><span class="sxs-lookup"><span data-stu-id="f024e-145">VDD (Pin 27A)</span></span>            | <span data-ttu-id="f024e-146">3V (針腳 3A)</span><span class="sxs-lookup"><span data-stu-id="f024e-146">3V (Pin 3A)</span></span>            | <span data-ttu-id="f024e-147">紅色纜線</span><span class="sxs-lookup"><span data-stu-id="f024e-147">Red cable</span></span>     |
+| <span data-ttu-id="f024e-148">GND (針腳 29A)</span><span class="sxs-lookup"><span data-stu-id="f024e-148">GND (Pin 29A)</span></span>            | <span data-ttu-id="f024e-149">GND (針腳 6A)</span><span class="sxs-lookup"><span data-stu-id="f024e-149">GND (Pin 6A)</span></span>           | <span data-ttu-id="f024e-150">黑色纜線</span><span class="sxs-lookup"><span data-stu-id="f024e-150">Black cable</span></span>   |
+| <span data-ttu-id="f024e-151">SCK (針腳 30A)</span><span class="sxs-lookup"><span data-stu-id="f024e-151">SCK (Pin 30A)</span></span>            | <span data-ttu-id="f024e-152">SCK (針腳 12A)</span><span class="sxs-lookup"><span data-stu-id="f024e-152">SCK (Pin 12A)</span></span>          | <span data-ttu-id="f024e-153">黃色纜線</span><span class="sxs-lookup"><span data-stu-id="f024e-153">Yellow cable</span></span>  |
+| <span data-ttu-id="f024e-154">SDO (針腳 31A)</span><span class="sxs-lookup"><span data-stu-id="f024e-154">SDO (Pin 31A)</span></span>            | <span data-ttu-id="f024e-155">MI (針腳 14A)</span><span class="sxs-lookup"><span data-stu-id="f024e-155">MI (Pin 14A)</span></span>           | <span data-ttu-id="f024e-156">白色纜線</span><span class="sxs-lookup"><span data-stu-id="f024e-156">White cable</span></span>   |
+| <span data-ttu-id="f024e-157">SDI (針腳 32A)</span><span class="sxs-lookup"><span data-stu-id="f024e-157">SDI (Pin 32A)</span></span>            | <span data-ttu-id="f024e-158">M0 (針腳 13A)</span><span class="sxs-lookup"><span data-stu-id="f024e-158">M0 (Pin 13A)</span></span>           | <span data-ttu-id="f024e-159">藍色纜線</span><span class="sxs-lookup"><span data-stu-id="f024e-159">Blue cable</span></span>    |
+| <span data-ttu-id="f024e-160">cs (針腳 33A)</span><span class="sxs-lookup"><span data-stu-id="f024e-160">CS (Pin 33A)</span></span>             | <span data-ttu-id="f024e-161">GPIO 5 (針腳 15J)</span><span class="sxs-lookup"><span data-stu-id="f024e-161">GPIO 5 (Pin 15J)</span></span>       | <span data-ttu-id="f024e-162">橘色纜線</span><span class="sxs-lookup"><span data-stu-id="f024e-162">Orange cable</span></span>  |
 
-<span data-ttu-id="92423-163">如需詳細資訊，請參閱 [Adafruit BME280 Humidity + Barometric Pressure + Temperature Sensor Breakout](https://learn.adafruit.com/adafruit-bme280-humidity-barometric-pressure-temperature-sensor-breakout/wiring-and-test?view=all) (Adafruit BME280 溼度 + 氣壓 + 溫度感應器分組) 和 [Adafruit Feather M0 WiFi pinouts](https://learn.adafruit.com/adafruit-feather-m0-wifi-atwinc1500/pinouts) (Adafruit Feather M0 WiFi 接腳圖)。</span><span class="sxs-lookup"><span data-stu-id="92423-163">For more information, see [Adafruit BME280 Humidity + Barometric Pressure + Temperature Sensor Breakout](https://learn.adafruit.com/adafruit-bme280-humidity-barometric-pressure-temperature-sensor-breakout/wiring-and-test?view=all) and [Adafruit Feather M0 WiFi pinouts](https://learn.adafruit.com/adafruit-feather-m0-wifi-atwinc1500/pinouts).</span></span>
+<span data-ttu-id="f024e-163">如需詳細資訊，請參閱 [Adafruit BME280 Humidity + Barometric Pressure + Temperature Sensor Breakout](https://learn.adafruit.com/adafruit-bme280-humidity-barometric-pressure-temperature-sensor-breakout/wiring-and-test?view=all) (Adafruit BME280 溼度 + 氣壓 + 溫度感應器分組) 和 [Adafruit Feather M0 WiFi pinouts](https://learn.adafruit.com/adafruit-feather-m0-wifi-atwinc1500/pinouts) (Adafruit Feather M0 WiFi 接腳圖)。</span><span class="sxs-lookup"><span data-stu-id="f024e-163">For more information, see [Adafruit BME280 Humidity + Barometric Pressure + Temperature Sensor Breakout](https://learn.adafruit.com/adafruit-bme280-humidity-barometric-pressure-temperature-sensor-breakout/wiring-and-test?view=all) and [Adafruit Feather M0 WiFi pinouts](https://learn.adafruit.com/adafruit-feather-m0-wifi-atwinc1500/pinouts).</span></span>
 
 
 
-<span data-ttu-id="92423-164">現在，Feather M0 WiFi 應該已經和作用中的感應器連接。</span><span class="sxs-lookup"><span data-stu-id="92423-164">Now your Feather M0 WiFi should be connected with a working sensor.</span></span>
+<span data-ttu-id="f024e-164">現在，Feather M0 WiFi 應該已經和作用中的感應器連接。</span><span class="sxs-lookup"><span data-stu-id="f024e-164">Now your Feather M0 WiFi should be connected with a working sensor.</span></span>
 
 ![連接 DHT22 與 Feather Huzzah](media/iot-hub-adafruit-feather-m0-wifi-get-started/4_connect-bme280-feather-m0-wifi.png)
 
-### <a name="connect-feather-m0-wifi-to-your-computer"></a><span data-ttu-id="92423-166">將 Feather M0 WiFi 連接到電腦</span><span class="sxs-lookup"><span data-stu-id="92423-166">Connect Feather M0 WiFi to your computer</span></span>
+### <a name="connect-feather-m0-wifi-tooyour-computer"></a><span data-ttu-id="f024e-166">羽毛 M0 WiFi tooyour 電腦連線</span><span class="sxs-lookup"><span data-stu-id="f024e-166">Connect Feather M0 WiFi tooyour computer</span></span>
 
-<span data-ttu-id="92423-167">請使用 Micro USB 轉 Type A 的 USB 纜線將 Feather M0 WiFi 連接到電腦，如下所示：</span><span class="sxs-lookup"><span data-stu-id="92423-167">Use the Micro USB to Type A USB cable to connect Feather M0 WiFi to your computer, as shown:</span></span>
+<span data-ttu-id="f024e-167">使用 hello 微 USB tooType USB 纜線 tooconnect 羽毛 M0 WiFi tooyour 的電腦，如下所示：</span><span class="sxs-lookup"><span data-stu-id="f024e-167">Use hello Micro USB tooType A USB cable tooconnect Feather M0 WiFi tooyour computer, as shown:</span></span>
 
-![將 Feather Huzzah 連接到電腦](media/iot-hub-adafruit-feather-m0-wifi-get-started/5_connect-feather-m0-wifi-computer.png)
+![羽毛 Huzzah tooyour 電腦連線](media/iot-hub-adafruit-feather-m0-wifi-get-started/5_connect-feather-m0-wifi-computer.png)
 
-### <a name="add-serial-port-permissions-ubuntu-only"></a><span data-ttu-id="92423-169">新增序列埠權限 (僅限 Ubuntu)</span><span class="sxs-lookup"><span data-stu-id="92423-169">Add serial port permissions (Ubuntu only)</span></span>
+### <a name="add-serial-port-permissions-ubuntu-only"></a><span data-ttu-id="f024e-169">新增序列埠權限 (僅限 Ubuntu)</span><span class="sxs-lookup"><span data-stu-id="f024e-169">Add serial port permissions (Ubuntu only)</span></span>
 
-<span data-ttu-id="92423-170">如果您使用 Ubuntu，請確定您具有操作 Feather M0 WiFi 的 USB 連接埠所需的權限。</span><span class="sxs-lookup"><span data-stu-id="92423-170">If you use Ubuntu, make sure you have the permissions to operate on the USB port of Feather M0 WiFi.</span></span> <span data-ttu-id="92423-171">若要新增序列埠權限，請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="92423-171">To add serial port permissions, follow these steps:</span></span>
+<span data-ttu-id="f024e-170">如果您使用 Ubuntu，請確定您擁有 hello 權限 toooperate 上 hello USB 連接埠的羽毛 M0 WiFi。</span><span class="sxs-lookup"><span data-stu-id="f024e-170">If you use Ubuntu, make sure you have hello permissions toooperate on hello USB port of Feather M0 WiFi.</span></span> <span data-ttu-id="f024e-171">tooadd 序列連接埠的權限，請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="f024e-171">tooadd serial port permissions, follow these steps:</span></span>
 
 
-1. <span data-ttu-id="92423-172">在終端機中執行下列命令：</span><span class="sxs-lookup"><span data-stu-id="92423-172">At a terminal, run the following commands:</span></span>
+1. <span data-ttu-id="f024e-172">在終端機中，執行下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="f024e-172">At a terminal, run hello following commands:</span></span>
 
    ```bash
    ls -l /dev/ttyUSB*
    ls -l /dev/ttyACM*
    ```
 
-   <span data-ttu-id="92423-173">您會得到下列其中一個輸出︰</span><span class="sxs-lookup"><span data-stu-id="92423-173">You get one of the following outputs:</span></span>
+   <span data-ttu-id="f024e-173">您取得其中一個 hello 下列輸出：</span><span class="sxs-lookup"><span data-stu-id="f024e-173">You get one of hello following outputs:</span></span>
 
-   * <span data-ttu-id="92423-174">crw-rw---- 1 root uucp xxxxxxxx</span><span class="sxs-lookup"><span data-stu-id="92423-174">crw-rw---- 1 root uucp xxxxxxxx</span></span>
-   * <span data-ttu-id="92423-175">crw-rw---- 1 root dialout xxxxxxxx</span><span class="sxs-lookup"><span data-stu-id="92423-175">crw-rw---- 1 root dialout xxxxxxxx</span></span>
+   * <span data-ttu-id="f024e-174">crw-rw---- 1 root uucp xxxxxxxx</span><span class="sxs-lookup"><span data-stu-id="f024e-174">crw-rw---- 1 root uucp xxxxxxxx</span></span>
+   * <span data-ttu-id="f024e-175">crw-rw---- 1 root dialout xxxxxxxx</span><span class="sxs-lookup"><span data-stu-id="f024e-175">crw-rw---- 1 root dialout xxxxxxxx</span></span>
 
-   <span data-ttu-id="92423-176">在輸出中，請注意 `uucp` 或 `dialout` 是 USB 連接埠的群組擁有者名稱。</span><span class="sxs-lookup"><span data-stu-id="92423-176">In the output, notice that `uucp` or `dialout` is the group owner name of the USB port.</span></span>
+   <span data-ttu-id="f024e-176">在 hello 輸出中，請注意，`uucp`或`dialout`hello USB 連接埠 hello 群組擁有者名稱。</span><span class="sxs-lookup"><span data-stu-id="f024e-176">In hello output, notice that `uucp` or `dialout` is hello group owner name of hello USB port.</span></span>
 
-2. <span data-ttu-id="92423-177">請執行下列命令，將使用者新增至群組︰</span><span class="sxs-lookup"><span data-stu-id="92423-177">To add the user to the group, run the following command:</span></span>
+2. <span data-ttu-id="f024e-177">tooadd hello 使用者 toohello 群組，執行下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="f024e-177">tooadd hello user toohello group, run hello following command:</span></span>
 
    ```bash
    sudo usermod -a -G <group-owner-name> <username>
    ```
 
-   <span data-ttu-id="92423-178">`<group-owner-name>` 是您在上一個步驟中取得的群組擁有者名稱。</span><span class="sxs-lookup"><span data-stu-id="92423-178">In the previous step, you obtained the group owner name `<group-owner-name>`.</span></span> <span data-ttu-id="92423-179">`<username>` 是 Ubuntu 使用者名稱。</span><span class="sxs-lookup"><span data-stu-id="92423-179">Your Ubuntu user name is `<username>`.</span></span>
+   <span data-ttu-id="f024e-178">您可以在 hello 先前步驟中，取得 hello 群組擁有者名稱`<group-owner-name>`。</span><span class="sxs-lookup"><span data-stu-id="f024e-178">In hello previous step, you obtained hello group owner name `<group-owner-name>`.</span></span> <span data-ttu-id="f024e-179">`<username>` 是 Ubuntu 使用者名稱。</span><span class="sxs-lookup"><span data-stu-id="f024e-179">Your Ubuntu user name is `<username>`.</span></span>
 
-3. <span data-ttu-id="92423-180">登出 Ubuntu，然後再次登入，以顯示變更。</span><span class="sxs-lookup"><span data-stu-id="92423-180">For the change to appear, sign out of Ubuntu and then sign in again.</span></span>
+3. <span data-ttu-id="f024e-180">Hello 變更 tooappear，如登出 Ubuntu 然後再重新登入。</span><span class="sxs-lookup"><span data-stu-id="f024e-180">For hello change tooappear, sign out of Ubuntu and then sign in again.</span></span>
 
-## <a name="collect-sensor-data-and-send-it-to-your-iot-hub"></a><span data-ttu-id="92423-181">收集感應器資料，並將它傳送至 IoT 中樞</span><span class="sxs-lookup"><span data-stu-id="92423-181">Collect sensor data and send it to your IoT hub</span></span>
+## <a name="collect-sensor-data-and-send-it-tooyour-iot-hub"></a><span data-ttu-id="f024e-181">收集感應器資料並傳送 tooyour IoT 中樞</span><span class="sxs-lookup"><span data-stu-id="f024e-181">Collect sensor data and send it tooyour IoT hub</span></span>
 
-<span data-ttu-id="92423-182">在本節中，您可以在 Feather M0 WiFi 上部署和執行範例應用程式。</span><span class="sxs-lookup"><span data-stu-id="92423-182">In this section, you deploy and run a sample application on Feather M0 WiFi.</span></span> <span data-ttu-id="92423-183">範例應用程式會讓 LED 在 Feather M0 WiFi 上閃爍。</span><span class="sxs-lookup"><span data-stu-id="92423-183">The sample application makes the LED blink on Feather M0 WiFi.</span></span> <span data-ttu-id="92423-184">然後，將從 BME280 感應器收集的溫度和溼度資料傳送至 IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="92423-184">It then sends the temperature and humidity data collected from the BME280 sensor to your IoT hub.</span></span>
+<span data-ttu-id="f024e-182">在本節中，您可以在 Feather M0 WiFi 上部署和執行範例應用程式。</span><span class="sxs-lookup"><span data-stu-id="f024e-182">In this section, you deploy and run a sample application on Feather M0 WiFi.</span></span> <span data-ttu-id="f024e-183">hello 範例應用程式可讓 hello 羽毛 M0 WiFi 上的 LED 閃爍。</span><span class="sxs-lookup"><span data-stu-id="f024e-183">hello sample application makes hello LED blink on Feather M0 WiFi.</span></span> <span data-ttu-id="f024e-184">然後會傳送 hello 溫度和溼度從收集的資料 hello BME280 感應器 tooyour IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="f024e-184">It then sends hello temperature and humidity data collected from hello BME280 sensor tooyour IoT hub.</span></span>
 
-### <a name="get-the-sample-application-from-github-and-prepare-the-arduino-ide"></a><span data-ttu-id="92423-185">從 GitHub 取得範例應用程式，並準備 Arduino IDE。</span><span class="sxs-lookup"><span data-stu-id="92423-185">Get the sample application from GitHub and prepare the Arduino IDE</span></span>
+### <a name="get-hello-sample-application-from-github-and-prepare-hello-arduino-ide"></a><span data-ttu-id="f024e-185">從 GitHub 取得 hello 範例應用程式，並準備 hello Arduino IDE</span><span class="sxs-lookup"><span data-stu-id="f024e-185">Get hello sample application from GitHub and prepare hello Arduino IDE</span></span>
 
-<span data-ttu-id="92423-186">範例應用程式會裝載在 GitHub 上。</span><span class="sxs-lookup"><span data-stu-id="92423-186">The sample application is hosted on GitHub.</span></span> <span data-ttu-id="92423-187">請從 GitHub 複製包含範例應用程式的範例存放庫。</span><span class="sxs-lookup"><span data-stu-id="92423-187">Clone the sample repository that contains the sample application from GitHub.</span></span> <span data-ttu-id="92423-188">若要複製範例存放庫，請遵循下列步驟︰</span><span class="sxs-lookup"><span data-stu-id="92423-188">To clone the sample repository, follow these steps:</span></span>
+<span data-ttu-id="f024e-186">hello 範例應用程式被裝載於 GitHub 上。</span><span class="sxs-lookup"><span data-stu-id="f024e-186">hello sample application is hosted on GitHub.</span></span> <span data-ttu-id="f024e-187">複製 hello 範例儲存機制包含從 GitHub hello 範例應用程式。</span><span class="sxs-lookup"><span data-stu-id="f024e-187">Clone hello sample repository that contains hello sample application from GitHub.</span></span> <span data-ttu-id="f024e-188">tooclone hello 範例儲存機制，請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="f024e-188">tooclone hello sample repository, follow these steps:</span></span>
 
-1. <span data-ttu-id="92423-189">開啟命令提示字元或終端機視窗。</span><span class="sxs-lookup"><span data-stu-id="92423-189">Open a command prompt or a terminal window.</span></span>
+1. <span data-ttu-id="f024e-189">開啟命令提示字元或終端機視窗。</span><span class="sxs-lookup"><span data-stu-id="f024e-189">Open a command prompt or a terminal window.</span></span>
 
-2. <span data-ttu-id="92423-190">移至想要儲存範例應用程式的資料夾。</span><span class="sxs-lookup"><span data-stu-id="92423-190">Go to a folder where you want the sample application to be stored.</span></span>
-3. <span data-ttu-id="92423-191">執行以下命令：</span><span class="sxs-lookup"><span data-stu-id="92423-191">Run the following command:</span></span>
+2. <span data-ttu-id="f024e-190">請您想要儲存的 hello 範例應用程式 toobe tooa 資料夾。</span><span class="sxs-lookup"><span data-stu-id="f024e-190">Go tooa folder where you want hello sample application toobe stored.</span></span>
+3. <span data-ttu-id="f024e-191">執行下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="f024e-191">Run hello following command:</span></span>
 
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-Feather-M0-WiFi-client-app.git
    ```
 
-### <a name="install-the-package-for-feather-m0-wifi-in-the-arduino-ide"></a><span data-ttu-id="92423-192">在 Arduino IDE 中安裝 Feather M0 WiFi 套件</span><span class="sxs-lookup"><span data-stu-id="92423-192">Install the package for Feather M0 WiFi in the Arduino IDE</span></span>
+### <a name="install-hello-package-for-feather-m0-wifi-in-hello-arduino-ide"></a><span data-ttu-id="f024e-192">安裝羽毛 M0 WiFi hello 套件 hello Arduino IDE 中</span><span class="sxs-lookup"><span data-stu-id="f024e-192">Install hello package for Feather M0 WiFi in hello Arduino IDE</span></span>
 
-1. <span data-ttu-id="92423-193">開啟範例應用程式儲存所在的資料夾。</span><span class="sxs-lookup"><span data-stu-id="92423-193">Open the folder where the sample application is stored.</span></span>
+1. <span data-ttu-id="f024e-193">開啟 hello hello 範例應用程式所在的資料夾。</span><span class="sxs-lookup"><span data-stu-id="f024e-193">Open hello folder where hello sample application is stored.</span></span>
 
-2. <span data-ttu-id="92423-194">在 Arduino IDE 中開啟應用程式資料夾中的 app.ino 檔案。</span><span class="sxs-lookup"><span data-stu-id="92423-194">Open the app.ino file in the app folder in the Arduino IDE.</span></span>
+2. <span data-ttu-id="f024e-194">Hello hello Arduino IDE 中的應用程式資料夾中開啟 hello app.ino 檔案。</span><span class="sxs-lookup"><span data-stu-id="f024e-194">Open hello app.ino file in hello app folder in hello Arduino IDE.</span></span>
 
-   ![在 Arduino IDE 中開啟範例應用程式](media/iot-hub-adafruit-feather-m0-wifi-get-started/6_arduino-ide-open-sample-app.png)
+   ![Arduino IDE 中開啟 hello 範例應用程式](media/iot-hub-adafruit-feather-m0-wifi-get-started/6_arduino-ide-open-sample-app.png)
 
 
-1. <span data-ttu-id="92423-196">按一下 [檔案] > [喜好設定] (Windows/Linux) 或 [Arduino] > [喜好設定] (Mac)，然後將下列連結複製貼入 Arduino IDE 喜好設定的 [Additional Boards Manager URLs] (其他面板管理員 URL) 選項。</span><span class="sxs-lookup"><span data-stu-id="92423-196">Click **File** > **Preferences** (Windows/Linux) or **Arduino** > **Preferences** (Mac) and copy and paste the link below into the **Additional Boards Manager URLs** option in the Arduino IDE preferences.</span></span>
+1. <span data-ttu-id="f024e-196">按一下**檔案** > **喜好設定**(Windows/Linux) 或**Arduino** > **喜好設定**(Mac)，並複製和貼上的 hello 連結底下 hello**其他面板管理員 Url**選項 hello Arduino IDE 喜好設定。</span><span class="sxs-lookup"><span data-stu-id="f024e-196">Click **File** > **Preferences** (Windows/Linux) or **Arduino** > **Preferences** (Mac) and copy and paste hello link below into hello **Additional Boards Manager URLs** option in hello Arduino IDE preferences.</span></span>
    
    ```
    https://adafruit.github.io/arduino-board-index/package_adafruit_index.json, https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
    ```
 
-1. <span data-ttu-id="92423-197">按一下 [工具] > [面板] > [面板管理員]，然後安裝 `Arduino SAMD Boards` 版本 `1.6.2` 或更新版本。</span><span class="sxs-lookup"><span data-stu-id="92423-197">Click **Tools** > **Board** > **Boards Manager**, and then install the `Arduino SAMD Boards` version `1.6.2` or later.</span></span> 
+1. <span data-ttu-id="f024e-197">按一下**工具** > **面板** > **面板管理員**，然後再安裝 hello`Arduino SAMD Boards`版本`1.6.2`或更新版本。</span><span class="sxs-lookup"><span data-stu-id="f024e-197">Click **Tools** > **Board** > **Boards Manager**, and then install hello `Arduino SAMD Boards` version `1.6.2` or later.</span></span> 
 
-1. <span data-ttu-id="92423-198">然後在相同的視窗中，安裝 `Adafruit SAMD Boards` 套件以新增面板檔案定義。</span><span class="sxs-lookup"><span data-stu-id="92423-198">Then in the same window, install `Adafruit SAMD Boards` package to add the board file definitions.</span></span>
+1. <span data-ttu-id="f024e-198">接著在 hello 相同的視窗，請安裝`Adafruit SAMD Boards`封裝 tooadd hello 面板檔案定義。</span><span class="sxs-lookup"><span data-stu-id="f024e-198">Then in hello same window, install `Adafruit SAMD Boards` package tooadd hello board file definitions.</span></span>
 
-   ![已安裝 esp8266 套件](media/iot-hub-adafruit-feather-m0-wifi-get-started/7_arduino-ide-package-url.png)
+   ![hello esp8266 套件安裝](media/iot-hub-adafruit-feather-m0-wifi-get-started/7_arduino-ide-package-url.png)
 
-4. <span data-ttu-id="92423-200">按一下 [工具] > [電路板] > [Adafruit M0 WiFi]。</span><span class="sxs-lookup"><span data-stu-id="92423-200">Click **Tools** > **Board** > **Adafruit M0 WiFi**.</span></span>
+4. <span data-ttu-id="f024e-200">按一下 [工具] > [電路板] > [Adafruit M0 WiFi]。</span><span class="sxs-lookup"><span data-stu-id="f024e-200">Click **Tools** > **Board** > **Adafruit M0 WiFi**.</span></span>
 
-5. <span data-ttu-id="92423-201">安裝驅動程式 (僅限 Windows)。</span><span class="sxs-lookup"><span data-stu-id="92423-201">Install drivers (for Windows only).</span></span> <span data-ttu-id="92423-202">當您插入 Feather M0 WiFi 時，您可能需要安裝驅動程式。</span><span class="sxs-lookup"><span data-stu-id="92423-202">When you plug in Feather M0 WiFi, you might need to install a driver.</span></span> <span data-ttu-id="92423-203">按一下[網頁上的下載連結](https://github.com/adafruit/Adafruit_Windows_Drivers/releases/download/1.1/adafruit_drivers.exe)下載驅動程式安裝程式。</span><span class="sxs-lookup"><span data-stu-id="92423-203">Click [the download link on the webpage](https://github.com/adafruit/Adafruit_Windows_Drivers/releases/download/1.1/adafruit_drivers.exe) to download the driver installer.</span></span> <span data-ttu-id="92423-204">請遵循步驟安裝想要的驅動程式。</span><span class="sxs-lookup"><span data-stu-id="92423-204">Follow the steps to install the drivers you want.</span></span>
+5. <span data-ttu-id="f024e-201">安裝驅動程式 (僅限 Windows)。</span><span class="sxs-lookup"><span data-stu-id="f024e-201">Install drivers (for Windows only).</span></span> <span data-ttu-id="f024e-202">當您插入羽毛 M0 WiFi 時，您可能需要 tooinstall 驅動程式。</span><span class="sxs-lookup"><span data-stu-id="f024e-202">When you plug in Feather M0 WiFi, you might need tooinstall a driver.</span></span> <span data-ttu-id="f024e-203">按一下[hello hello 網頁上的下載連結](https://github.com/adafruit/Adafruit_Windows_Drivers/releases/download/1.1/adafruit_drivers.exe)toodownload hello 驅動程式安裝程式。</span><span class="sxs-lookup"><span data-stu-id="f024e-203">Click [hello download link on hello webpage](https://github.com/adafruit/Adafruit_Windows_Drivers/releases/download/1.1/adafruit_drivers.exe) toodownload hello driver installer.</span></span> <span data-ttu-id="f024e-204">請遵循 hello 步驟 tooinstall hello 想驅動程式。</span><span class="sxs-lookup"><span data-stu-id="f024e-204">Follow hello steps tooinstall hello drivers you want.</span></span>
 
-### <a name="install-necessary-libraries"></a><span data-ttu-id="92423-205">安裝必要的程式庫</span><span class="sxs-lookup"><span data-stu-id="92423-205">Install necessary libraries</span></span>
+### <a name="install-necessary-libraries"></a><span data-ttu-id="f024e-205">安裝必要的程式庫</span><span class="sxs-lookup"><span data-stu-id="f024e-205">Install necessary libraries</span></span>
 
-1. <span data-ttu-id="92423-206">在 Arduino IDE 中，按一下 [草圖] > [包含程式庫] > [管理程式庫]。</span><span class="sxs-lookup"><span data-stu-id="92423-206">In the Arduino IDE, click **Sketch** > **Include Library** > **Manage Libraries**.</span></span>
+1. <span data-ttu-id="f024e-206">在 hello Arduino IDE 中，按一下 **草圖** > **包含程式庫** > **管理程式庫**。</span><span class="sxs-lookup"><span data-stu-id="f024e-206">In hello Arduino IDE, click **Sketch** > **Include Library** > **Manage Libraries**.</span></span>
 
-2. <span data-ttu-id="92423-207">逐一搜尋下列程式庫名稱。</span><span class="sxs-lookup"><span data-stu-id="92423-207">Search for the following library names one by one.</span></span> <span data-ttu-id="92423-208">為找到的每個程式庫，按一下 [安裝]：</span><span class="sxs-lookup"><span data-stu-id="92423-208">For each library that you find, click **Install**:</span></span>
+2. <span data-ttu-id="f024e-207">下列程式庫名稱一個 hello 搜尋。</span><span class="sxs-lookup"><span data-stu-id="f024e-207">Search for hello following library names one by one.</span></span> <span data-ttu-id="f024e-208">為找到的每個程式庫，按一下 [安裝]：</span><span class="sxs-lookup"><span data-stu-id="f024e-208">For each library that you find, click **Install**:</span></span>
 
    * `RTCZero`
    * `NTPClient`
@@ -187,55 +187,55 @@ ms.lasthandoff: 08/18/2017
    * `Adafruit BME280 Library`
    * `Adafruit Unified Sensor`
 
-3. <span data-ttu-id="92423-209">手動安裝 `Adafruit_WINC1500`。</span><span class="sxs-lookup"><span data-stu-id="92423-209">Manually install `Adafruit_WINC1500`.</span></span> <span data-ttu-id="92423-210">移至[此網站](https://github.com/adafruit/Adafruit_WINC1500)並按一下 [複製或下載] > [下載 ZIP]。</span><span class="sxs-lookup"><span data-stu-id="92423-210">Go to [this website](https://github.com/adafruit/Adafruit_WINC1500) and click **Clone or download** > **Download ZIP**.</span></span> <span data-ttu-id="92423-211">然後在 Arduino IDE 中，移至 [草圖] > [包含程式庫] > [新增 .zip 程式庫]，然後新增 ZIP 檔案。</span><span class="sxs-lookup"><span data-stu-id="92423-211">Then in your Arduino IDE, go to **Sketch** > **Include Library** > **Add .zip Library** and add the zip file.</span></span>
+3. <span data-ttu-id="f024e-209">手動安裝 `Adafruit_WINC1500`。</span><span class="sxs-lookup"><span data-stu-id="f024e-209">Manually install `Adafruit_WINC1500`.</span></span> <span data-ttu-id="f024e-210">跳過[此網站](https://github.com/adafruit/Adafruit_WINC1500)按一下**複製或下載** > **Download ZIP**。</span><span class="sxs-lookup"><span data-stu-id="f024e-210">Go too[this website](https://github.com/adafruit/Adafruit_WINC1500) and click **Clone or download** > **Download ZIP**.</span></span> <span data-ttu-id="f024e-211">接著在 Arduino IDE 中，前往 太**草圖** > **包含程式庫** > **新增程式庫.zip**新增 hello 的 zip 檔案。</span><span class="sxs-lookup"><span data-stu-id="f024e-211">Then in your Arduino IDE, go too**Sketch** > **Include Library** > **Add .zip Library** and add hello zip file.</span></span>
 
-### <a name="use-the-sample-application-if-you-dont-have-a-real-bme280-sensor"></a><span data-ttu-id="92423-212">如果沒有實體的 BME280 感應器，請使用範例應用程式。</span><span class="sxs-lookup"><span data-stu-id="92423-212">Use the sample application if you don’t have a real BME280 sensor</span></span>
+### <a name="use-hello-sample-application-if-you-dont-have-a-real-bme280-sensor"></a><span data-ttu-id="f024e-212">使用 hello 範例應用程式，如果您不需要實際的 BME280 感應器</span><span class="sxs-lookup"><span data-stu-id="f024e-212">Use hello sample application if you don’t have a real BME280 sensor</span></span>
 
-<span data-ttu-id="92423-213">如果您沒有實體的 BME280 感應器，範例應用程式可以模擬溫度和溼度資料。</span><span class="sxs-lookup"><span data-stu-id="92423-213">If you don’t have a real BME280 sensor, the sample application can simulate temperature and humidity data.</span></span> <span data-ttu-id="92423-214">若要設讓範例應用程式以使用模擬資料，請遵循下列步驟︰</span><span class="sxs-lookup"><span data-stu-id="92423-214">To set up the sample application to use simulated data, follow these steps:</span></span>
+<span data-ttu-id="f024e-213">如果您不需要實際的 BME280 感應器，hello 範例應用程式可以模擬氣溫和溼度的資料。</span><span class="sxs-lookup"><span data-stu-id="f024e-213">If you don’t have a real BME280 sensor, hello sample application can simulate temperature and humidity data.</span></span> <span data-ttu-id="f024e-214">tooset hello 範例應用程式 toouse 模擬資料，請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="f024e-214">tooset up hello sample application toouse simulated data, follow these steps:</span></span>
 
-1. <span data-ttu-id="92423-215">開啟 `app` 資料夾中的 `config.h` 檔案。</span><span class="sxs-lookup"><span data-stu-id="92423-215">Open the `config.h` file in the `app` folder.</span></span>
+1. <span data-ttu-id="f024e-215">開啟 hello`config.h`檔案在 hello`app`資料夾。</span><span class="sxs-lookup"><span data-stu-id="f024e-215">Open hello `config.h` file in hello `app` folder.</span></span>
 
-2. <span data-ttu-id="92423-216">找出下面這行程式碼，並將值從 `false` 變更為 `true`：</span><span class="sxs-lookup"><span data-stu-id="92423-216">Locate the following line of code and change the value from `false` to `true`:</span></span>
+2. <span data-ttu-id="f024e-216">找出 hello 下列程式碼行並變更 hello 值`false`太`true`:</span><span class="sxs-lookup"><span data-stu-id="f024e-216">Locate hello following line of code and change hello value from `false` too`true`:</span></span>
 
    ```c
    define SIMULATED_DATA true
    ```
-   ![設定範例應用程式以使用模擬資料](media/iot-hub-adafruit-feather-m0-wifi-get-started/8_arduino-ide-configure-app-use-simulated-data.png)
+   ![設定 hello 範例應用程式模擬 toouse 資料](media/iot-hub-adafruit-feather-m0-wifi-get-started/8_arduino-ide-configure-app-use-simulated-data.png)
 
-3. <span data-ttu-id="92423-218">使用 `Control-s` 儲存檔案。</span><span class="sxs-lookup"><span data-stu-id="92423-218">Save the file with `Control-s`.</span></span>
+3. <span data-ttu-id="f024e-218">儲存 hello 檔`Control-s`。</span><span class="sxs-lookup"><span data-stu-id="f024e-218">Save hello file with `Control-s`.</span></span>
 
-### <a name="deploy-the-sample-application-to-feather-m0-wifi"></a><span data-ttu-id="92423-219">將範例應用程式部署至 Feather M0 WiFi</span><span class="sxs-lookup"><span data-stu-id="92423-219">Deploy the sample application to Feather M0 WiFi</span></span>
+### <a name="deploy-hello-sample-application-toofeather-m0-wifi"></a><span data-ttu-id="f024e-219">部署 hello 範例應用程式 tooFeather M0 WiFi</span><span class="sxs-lookup"><span data-stu-id="f024e-219">Deploy hello sample application tooFeather M0 WiFi</span></span>
 
-1. <span data-ttu-id="92423-220">在 Arduino IDE 中，按一下 [工具] > [連接埠]，然後按一下 Feather M0 WiFi 的序列埠。</span><span class="sxs-lookup"><span data-stu-id="92423-220">In the Arduino IDE, click **Tool** > **Port**, and then click the serial port for Feather M0 WiFi.</span></span>
+1. <span data-ttu-id="f024e-220">在 hello Arduino IDE 中，按一下 **工具** > **連接埠**，然後按一下羽毛 M0 WiFi hello 序列連接埠。</span><span class="sxs-lookup"><span data-stu-id="f024e-220">In hello Arduino IDE, click **Tool** > **Port**, and then click hello serial port for Feather M0 WiFi.</span></span>
 
-2. <span data-ttu-id="92423-221">按一下 [草圖] > [上傳]，以建置範例應用程式並將其部署至 Feather M0 WiFi。</span><span class="sxs-lookup"><span data-stu-id="92423-221">Click **Sketch** > **Upload** to build and deploy the sample application to Feather M0 WiFi.</span></span>
+2. <span data-ttu-id="f024e-221">按一下**草圖** > **上傳**toobuild 和部署 hello 範例應用程式 tooFeather M0 WiFi。</span><span class="sxs-lookup"><span data-stu-id="f024e-221">Click **Sketch** > **Upload** toobuild and deploy hello sample application tooFeather M0 WiFi.</span></span>
 
-### <a name="enter-your-credentials"></a><span data-ttu-id="92423-222">輸入認證</span><span class="sxs-lookup"><span data-stu-id="92423-222">Enter your credentials</span></span>
+### <a name="enter-your-credentials"></a><span data-ttu-id="f024e-222">輸入認證</span><span class="sxs-lookup"><span data-stu-id="f024e-222">Enter your credentials</span></span>
 
-<span data-ttu-id="92423-223">上傳程序成功完成後，請遵循這些步驟來輸入認證：</span><span class="sxs-lookup"><span data-stu-id="92423-223">After the upload completes successfully, follow these steps to enter your credentials:</span></span>
+<span data-ttu-id="f024e-223">Hello 上傳成功完成之後，請遵循這些步驟 tooenter 您的認證：</span><span class="sxs-lookup"><span data-stu-id="f024e-223">After hello upload completes successfully, follow these steps tooenter your credentials:</span></span>
 
-1. <span data-ttu-id="92423-224">在 Arduino IDE 中，按一下 [工具] > [序列監視器]。</span><span class="sxs-lookup"><span data-stu-id="92423-224">In the Arduino IDE, click **Tools** > **Serial Monitor**.</span></span>
+1. <span data-ttu-id="f024e-224">在 hello Arduino IDE 中，按一下 **工具** > **序列監視器**。</span><span class="sxs-lookup"><span data-stu-id="f024e-224">In hello Arduino IDE, click **Tools** > **Serial Monitor**.</span></span>
 
-2. <span data-ttu-id="92423-225">在序列監視器視窗的右下角，在左邊的下拉式清單中選取 [No line ending] (沒有行尾結束符號)。</span><span class="sxs-lookup"><span data-stu-id="92423-225">In the lower-right corner of the serial monitor window, select **No line ending** in the drop-down list on the left.</span></span>
-3. <span data-ttu-id="92423-226">在右邊的下拉式清單中選取 [115200 傳輸速率]。</span><span class="sxs-lookup"><span data-stu-id="92423-226">Select **115200 baud** in the drop-down list on the right.</span></span>
-4. <span data-ttu-id="92423-227">如果系統要求您提供，請在上方的輸入方塊中輸入下列資訊，然後按一下 [傳送]：</span><span class="sxs-lookup"><span data-stu-id="92423-227">In the input box at the top, enter the following information if you're asked to provide it, and click **Send**:</span></span>
+2. <span data-ttu-id="f024e-225">在 hello hello 序列監視器視窗的右下角，選取 **沒有行尾結束符號**hello hello 左邊的下拉式清單中。</span><span class="sxs-lookup"><span data-stu-id="f024e-225">In hello lower-right corner of hello serial monitor window, select **No line ending** in hello drop-down list on hello left.</span></span>
+3. <span data-ttu-id="f024e-226">選取**115200 傳輸**hello hello 右邊的下拉式清單中。</span><span class="sxs-lookup"><span data-stu-id="f024e-226">Select **115200 baud** in hello drop-down list on hello right.</span></span>
+4. <span data-ttu-id="f024e-227">Hello hello 上方的輸入方塊中輸入下列資訊，如果您的 hello，然後按一下問 tooprovide**傳送**:</span><span class="sxs-lookup"><span data-stu-id="f024e-227">In hello input box at hello top, enter hello following information if you're asked tooprovide it, and click **Send**:</span></span>
 
-   * <span data-ttu-id="92423-228">Wi-Fi SSID</span><span class="sxs-lookup"><span data-stu-id="92423-228">Wi-Fi SSID</span></span>
-   * <span data-ttu-id="92423-229">Wi-Fi 密碼</span><span class="sxs-lookup"><span data-stu-id="92423-229">Wi-Fi password</span></span>
-   * <span data-ttu-id="92423-230">裝置連接字串</span><span class="sxs-lookup"><span data-stu-id="92423-230">Device connection string</span></span>
+   * <span data-ttu-id="f024e-228">Wi-Fi SSID</span><span class="sxs-lookup"><span data-stu-id="f024e-228">Wi-Fi SSID</span></span>
+   * <span data-ttu-id="f024e-229">Wi-Fi 密碼</span><span class="sxs-lookup"><span data-stu-id="f024e-229">Wi-Fi password</span></span>
+   * <span data-ttu-id="f024e-230">裝置連接字串</span><span class="sxs-lookup"><span data-stu-id="f024e-230">Device connection string</span></span>
 
 > [!Note]
-> <span data-ttu-id="92423-231">認證資訊會儲存在 Feather M0 WiFi 的 EEPROM 中。</span><span class="sxs-lookup"><span data-stu-id="92423-231">The credential information is stored in the EEPROM of Feather M0 WiFi.</span></span> <span data-ttu-id="92423-232">如果您按一下 Feather M0 WiFi 電路板上的重設按鈕，範例應用程式會詢問您是否要清除資訊。</span><span class="sxs-lookup"><span data-stu-id="92423-232">If you click the reset button on the Feather M0 WiFi board, the sample application asks if you want to erase the information.</span></span> <span data-ttu-id="92423-233">輸入 `Y` 清除資訊。</span><span class="sxs-lookup"><span data-stu-id="92423-233">Enter `Y` to erase the information.</span></span> <span data-ttu-id="92423-234">系統會再次要求您提供資訊。</span><span class="sxs-lookup"><span data-stu-id="92423-234">You're asked to provide the information a second time.</span></span>
+> <span data-ttu-id="f024e-231">hello 認證資訊會儲存在 hello 羽毛 M0 WiFi EEPROM。</span><span class="sxs-lookup"><span data-stu-id="f024e-231">hello credential information is stored in hello EEPROM of Feather M0 WiFi.</span></span> <span data-ttu-id="f024e-232">如果您按一下 hello 羽毛 M0 WiFi 面板 hello 重設 按鈕，hello 範例應用程式會詢問您是否 tooerase hello 資訊。</span><span class="sxs-lookup"><span data-stu-id="f024e-232">If you click hello reset button on hello Feather M0 WiFi board, hello sample application asks if you want tooerase hello information.</span></span> <span data-ttu-id="f024e-233">輸入`Y`tooerase hello 資訊。</span><span class="sxs-lookup"><span data-stu-id="f024e-233">Enter `Y` tooerase hello information.</span></span> <span data-ttu-id="f024e-234">系統會詢問 tooprovide hello 資訊第二次。</span><span class="sxs-lookup"><span data-stu-id="f024e-234">You're asked tooprovide hello information a second time.</span></span>
 
-### <a name="verify-that-the-sample-application-is-running-successfully"></a><span data-ttu-id="92423-235">確認範例應用程式已成功執行</span><span class="sxs-lookup"><span data-stu-id="92423-235">Verify that the sample application is running successfully</span></span>
+### <a name="verify-that-hello-sample-application-is-running-successfully"></a><span data-ttu-id="f024e-235">確認已成功執行 hello 範例應用程式</span><span class="sxs-lookup"><span data-stu-id="f024e-235">Verify that hello sample application is running successfully</span></span>
 
-<span data-ttu-id="92423-236">如果您在序列監視器視窗看到下列輸出，並在 Feather M0 WiFi 上看到閃爍的 LED，則表示範例應用程式已成功執行：</span><span class="sxs-lookup"><span data-stu-id="92423-236">If you see the following output from the serial monitor window and the blinking LED on Feather M0 WiFi, the sample application is running successfully:</span></span>
+<span data-ttu-id="f024e-236">如果您看見 hello 下列輸出從 hello 序列監視器視窗並 hello 羽毛 M0 WiFi hello 範例應用程式上的 LED 閃爍不停執行成功：</span><span class="sxs-lookup"><span data-stu-id="f024e-236">If you see hello following output from hello serial monitor window and hello blinking LED on Feather M0 WiFi, hello sample application is running successfully:</span></span>
 
 ![Arduino IDE 中的最終輸出](media/iot-hub-adafruit-feather-m0-wifi-get-started/9_arduino-ide-final-output.png)
 
-## <a name="next-steps"></a><span data-ttu-id="92423-238">後續步驟</span><span class="sxs-lookup"><span data-stu-id="92423-238">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="f024e-238">後續步驟</span><span class="sxs-lookup"><span data-stu-id="f024e-238">Next steps</span></span>
 
-<span data-ttu-id="92423-239">Feather M0 WiFi 已成功連線到 IoT 中樞，並將擷取到的感應器資料傳送至 IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="92423-239">You have successfully connected Feather M0 WiFi to your IoT hub and sent the captured sensor data to your IoT hub.</span></span> 
+<span data-ttu-id="f024e-239">您已成功連接羽毛 M0 WiFi tooyour IoT 中樞而傳送嗨擷取感應器資料 tooyour IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="f024e-239">You have successfully connected Feather M0 WiFi tooyour IoT hub and sent hello captured sensor data tooyour IoT hub.</span></span> 
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
 
