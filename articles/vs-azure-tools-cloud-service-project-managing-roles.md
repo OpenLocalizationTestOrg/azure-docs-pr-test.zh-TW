@@ -1,6 +1,6 @@
 ---
-title: "使用 Visual Studio 在 Azure 雲端服務中管理角色 | Microsoft Docs"
-description: "了解如何使用 Visual Studio，在 Azure 雲端服務中新增及移除角色。"
+title: "aaaManaging 角色在 Azure 中的雲端服務的 Visual Studio |Microsoft 文件"
+description: "了解如何 tooadd] 和 [移除角色在 Azure 中的雲端服務的 Visual Studio。"
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 03/21/2017
 ms.author: kraigb
-ms.openlocfilehash: 6ed857b857cf8c14506ca39725c214a7fea4fc95
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 131edc534d1110ba3d25cd00a3a24b643576875c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="managing-roles-in-azure-cloud-services-with-visual-studio"></a><span data-ttu-id="5bfe8-103">使用 Visual Studio 在 Azure 雲端服務中管理角色</span><span class="sxs-lookup"><span data-stu-id="5bfe8-103">Managing roles in Azure cloud services with Visual Studio</span></span>
-<span data-ttu-id="5bfe8-104">當您建立 Azure 雲端服務之後，您可以在該服務中加入角色或從中移除現有角色。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-104">After you have created your Azure cloud service, you can add new roles to it or remove existing roles from it.</span></span> <span data-ttu-id="5bfe8-105">您也可以匯入現有的專案，並將它轉換成角色。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-105">You can also import an existing project and convert it to a role.</span></span> <span data-ttu-id="5bfe8-106">例如，您可以匯入 ASP.NET Web 應用程式，並將它指定為 Web 角色。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-106">For example, you can import an ASP.NET web application and designate it as a web role.</span></span>
+# <a name="managing-roles-in-azure-cloud-services-with-visual-studio"></a><span data-ttu-id="f1669-103">使用 Visual Studio 在 Azure 雲端服務中管理角色</span><span class="sxs-lookup"><span data-stu-id="f1669-103">Managing roles in Azure cloud services with Visual Studio</span></span>
+<span data-ttu-id="f1669-104">建立 Azure 雲端服務之後，您可以新增新角色 tooit 或移除現有角色。</span><span class="sxs-lookup"><span data-stu-id="f1669-104">After you have created your Azure cloud service, you can add new roles tooit or remove existing roles from it.</span></span> <span data-ttu-id="f1669-105">您也可以匯入現有的專案，並將它轉換 tooa 角色。</span><span class="sxs-lookup"><span data-stu-id="f1669-105">You can also import an existing project and convert it tooa role.</span></span> <span data-ttu-id="f1669-106">例如，您可以匯入 ASP.NET Web 應用程式，並將它指定為 Web 角色。</span><span class="sxs-lookup"><span data-stu-id="f1669-106">For example, you can import an ASP.NET web application and designate it as a web role.</span></span>
 
-## <a name="adding-a-role-to-an-azure-cloud-service"></a><span data-ttu-id="5bfe8-107">將角色加入至 Azure 雲端服務</span><span class="sxs-lookup"><span data-stu-id="5bfe8-107">Adding a role to an Azure cloud service</span></span>
-<span data-ttu-id="5bfe8-108">下列步驟會逐步引導您完成將 Web 或背景工作角色加入至 Visual Studio 中的 Azure 雲端服務專案。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-108">The following steps guide you through adding a web or worker role to an Azure cloud service project in Visual Studio.</span></span>
+## <a name="adding-a-role-tooan-azure-cloud-service"></a><span data-ttu-id="f1669-107">加入角色 tooan Azure 雲端服務</span><span class="sxs-lookup"><span data-stu-id="f1669-107">Adding a role tooan Azure cloud service</span></span>
+<span data-ttu-id="f1669-108">hello 步驟會引導您在 Visual Studio 中加入的 web 或背景工作角色 tooan Azure 雲端服務專案。</span><span class="sxs-lookup"><span data-stu-id="f1669-108">hello following steps guide you through adding a web or worker role tooan Azure cloud service project in Visual Studio.</span></span>
 
-1. <span data-ttu-id="5bfe8-109">在 Visual Studio 中建立或開啟 Azure 雲端服務專案。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-109">Create or open an Azure cloud service project in Visual Studio.</span></span>
+1. <span data-ttu-id="f1669-109">在 Visual Studio 中建立或開啟 Azure 雲端服務專案。</span><span class="sxs-lookup"><span data-stu-id="f1669-109">Create or open an Azure cloud service project in Visual Studio.</span></span>
 
-1. <span data-ttu-id="5bfe8-110">在 [方案總管] 中，展開專案資料夾。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-110">In **Solution Explorer**, expand the project node</span></span>
+1. <span data-ttu-id="f1669-110">在**方案總管 中**，展開 hello 專案節點</span><span class="sxs-lookup"><span data-stu-id="f1669-110">In **Solution Explorer**, expand hello project node</span></span>
 
-1. <span data-ttu-id="5bfe8-111">以滑鼠右鍵按一下 [角色] 節點，以顯示操作功能表。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-111">Right-click the **Roles** node to display the context menu.</span></span> <span data-ttu-id="5bfe8-112">從操作功能表中，選取 [新增]，然後選取現有的 Web 角色或背景工作角色，或是建立 Web 或背景工作角色專案。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-112">From the context menu, select **Add**, then select an existing web role or worker role from the current solution, or create a web or worker role project.</span></span> <span data-ttu-id="5bfe8-113">您可以選取適當的專案 (例如 ASP.NET Web 應用程式專案)，並將它與角色專案產生關聯。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-113">You can also select an appropriate project, such as an ASP.NET web application project, and associate it with a role project.</span></span>
+1. <span data-ttu-id="f1669-111">以滑鼠右鍵按一下 hello**角色**節點 toodisplay hello 操作功能表。</span><span class="sxs-lookup"><span data-stu-id="f1669-111">Right-click hello **Roles** node toodisplay hello context menu.</span></span> <span data-ttu-id="f1669-112">Hello 內容功能表中選取**新增**，然後從 hello 目前方案中，選取現有的 web 角色或背景工作角色或建立 web 或背景工作角色專案。</span><span class="sxs-lookup"><span data-stu-id="f1669-112">From hello context menu, select **Add**, then select an existing web role or worker role from hello current solution, or create a web or worker role project.</span></span> <span data-ttu-id="f1669-113">您可以選取適當的專案 (例如 ASP.NET Web 應用程式專案)，並將它與角色專案產生關聯。</span><span class="sxs-lookup"><span data-stu-id="f1669-113">You can also select an appropriate project, such as an ASP.NET web application project, and associate it with a role project.</span></span>
 
-    ![將角色加入至 Azure 雲端服務專案的功能表選項](media/vs-azure-tools-cloud-service-project-managing-roles/add-role.png)
+    ![功能表選項 tooadd 角色 tooan Azure 雲端服務專案](media/vs-azure-tools-cloud-service-project-managing-roles/add-role.png)
 
-## <a name="removing-a-role-from-an-azure-cloud-service"></a><span data-ttu-id="5bfe8-115">從 Azure 雲端服務移除角色</span><span class="sxs-lookup"><span data-stu-id="5bfe8-115">Removing a role from an Azure cloud service</span></span>
-<span data-ttu-id="5bfe8-116">下列步驟會逐步引導您完成從 Visual Studio 中的 Azure 雲端服務專案移除 Web 或背景工作角色。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-116">The following steps guide you through removing a web or worker role from an Azure cloud service project in Visual Studio.</span></span>
+## <a name="removing-a-role-from-an-azure-cloud-service"></a><span data-ttu-id="f1669-115">從 Azure 雲端服務移除角色</span><span class="sxs-lookup"><span data-stu-id="f1669-115">Removing a role from an Azure cloud service</span></span>
+<span data-ttu-id="f1669-116">hello 下列步驟會引導您從 Visual Studio 中的 Azure 雲端服務專案中移除的 web 或背景工作角色。</span><span class="sxs-lookup"><span data-stu-id="f1669-116">hello following steps guide you through removing a web or worker role from an Azure cloud service project in Visual Studio.</span></span>
 
-1. <span data-ttu-id="5bfe8-117">在 Visual Studio 中建立或開啟 Azure 雲端服務專案。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-117">Create or open an Azure cloud service project in Visual Studio.</span></span>
+1. <span data-ttu-id="f1669-117">在 Visual Studio 中建立或開啟 Azure 雲端服務專案。</span><span class="sxs-lookup"><span data-stu-id="f1669-117">Create or open an Azure cloud service project in Visual Studio.</span></span>
 
-1. <span data-ttu-id="5bfe8-118">在 [方案總管] 中，展開專案資料夾。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-118">In **Solution Explorer**, expand the project node</span></span>
+1. <span data-ttu-id="f1669-118">在**方案總管 中**，展開 hello 專案節點</span><span class="sxs-lookup"><span data-stu-id="f1669-118">In **Solution Explorer**, expand hello project node</span></span>
 
-1. <span data-ttu-id="5bfe8-119">展開 [角色] 節點。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-119">Expand the **Roles** node.</span></span>
+1. <span data-ttu-id="f1669-119">展開 hello**角色**節點。</span><span class="sxs-lookup"><span data-stu-id="f1669-119">Expand hello **Roles** node.</span></span>
 
-1. <span data-ttu-id="5bfe8-120">以滑鼠右鍵按一下您要移除的節點，然後從操作功能表中選取 [移除]。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-120">Right-click the node you want to remove, and, from the context menu, select **Remove**.</span></span> 
+1. <span data-ttu-id="f1669-120">以滑鼠右鍵按一下您想 tooremove，並從 hello 內容功能表中，選取 hello 節點**移除**。</span><span class="sxs-lookup"><span data-stu-id="f1669-120">Right-click hello node you want tooremove, and, from hello context menu, select **Remove**.</span></span> 
 
-    ![將角色加入至 Azure 雲端服務的功能表選項](media/vs-azure-tools-cloud-service-project-managing-roles/remove-role.png)
+    ![功能表選項 tooadd 角色 tooan Azure 雲端服務](media/vs-azure-tools-cloud-service-project-managing-roles/remove-role.png)
 
-## <a name="readding-a-role-to-an-azure-cloud-service-project"></a><span data-ttu-id="5bfe8-122">將角色重新加入至 Azure 雲端服務專案</span><span class="sxs-lookup"><span data-stu-id="5bfe8-122">Readding a role to an Azure cloud service project</span></span>
-<span data-ttu-id="5bfe8-123">如果您從雲端服務專案中移除角色，但稍後決定將該角色重新加入至專案，則只有角色宣告和基本屬性 (例如端點和診斷資訊) 會被加入專案。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-123">If you remove a role from your cloud service project but later decide to add the role back to the project, only the role declaration and basic attributes, such as endpoints and diagnostics information, are added.</span></span> <span data-ttu-id="5bfe8-124">不會將任何其他資源或參考加入至 `ServiceDefinition.csdef` 檔案或 `ServiceConfiguration.cscfg` 檔案。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-124">No additional resources or references are added to the `ServiceDefinition.csdef` file or to the `ServiceConfiguration.cscfg` file.</span></span> <span data-ttu-id="5bfe8-125">如果您想要加入此資訊，就必須手動將它重新加回這些檔案。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-125">If you want to add this information, you need to manually add it back into these files.</span></span>
+## <a name="readding-a-role-tooan-azure-cloud-service-project"></a><span data-ttu-id="f1669-122">正在重新加入角色 tooan Azure 雲端服務專案</span><span class="sxs-lookup"><span data-stu-id="f1669-122">Readding a role tooan Azure cloud service project</span></span>
+<span data-ttu-id="f1669-123">如果您從雲端服務專案中移除角色，但稍後決定回 tooadd hello 角色加入 toohello 專案中，只有 hello 角色宣告和基本屬性，例如端點和診斷資訊。</span><span class="sxs-lookup"><span data-stu-id="f1669-123">If you remove a role from your cloud service project but later decide tooadd hello role back toohello project, only hello role declaration and basic attributes, such as endpoints and diagnostics information, are added.</span></span> <span data-ttu-id="f1669-124">沒有其他資源或參考會加入 toohello`ServiceDefinition.csdef`檔案或 toohello`ServiceConfiguration.cscfg`檔案。</span><span class="sxs-lookup"><span data-stu-id="f1669-124">No additional resources or references are added toohello `ServiceDefinition.csdef` file or toohello `ServiceConfiguration.cscfg` file.</span></span> <span data-ttu-id="f1669-125">如果您想 tooadd 這項資訊，您需要 toomanually 將它加回到這些檔案。</span><span class="sxs-lookup"><span data-stu-id="f1669-125">If you want tooadd this information, you need toomanually add it back into these files.</span></span>
 
-<span data-ttu-id="5bfe8-126">例如，您可能移除了 Web 服務角色，但稍後決定將這個角色重新加回方案。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-126">For example, you might remove a web service role and later you decide to add this role back into your solution.</span></span> <span data-ttu-id="5bfe8-127">如果您這樣做，將會發生錯誤。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-127">If you do this, an error occurs.</span></span> <span data-ttu-id="5bfe8-128">為了避免這個錯誤，您必須將下列 XML 顯示的 `<LocalResources>` 元素重新加回 `ServiceDefinition.csdef` 檔案。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-128">To prevent this error, you have to add the `<LocalResources>` element shown in the following XML back into the `ServiceDefinition.csdef` file.</span></span> <span data-ttu-id="5bfe8-129">使用您重新加回專案的 Web 服務角色名稱作為 **<LocalStorage>** 項目的部分名稱屬性。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-129">Use the name of the web service role that you added back into the project as part of the name attribute for the **<LocalStorage>** element.</span></span> <span data-ttu-id="5bfe8-130">在此範例中，此 Web 服務角色的名稱是 **WCFServiceWebRole1**。</span><span class="sxs-lookup"><span data-stu-id="5bfe8-130">In this example, the name of the web service role is **WCFServiceWebRole1**.</span></span>
+<span data-ttu-id="f1669-126">例如，您可能移除 web 服務角色，您稍後決定此角色回的 tooadd 帶入方案中。</span><span class="sxs-lookup"><span data-stu-id="f1669-126">For example, you might remove a web service role and later you decide tooadd this role back into your solution.</span></span> <span data-ttu-id="f1669-127">如果您這樣做，將會發生錯誤。</span><span class="sxs-lookup"><span data-stu-id="f1669-127">If you do this, an error occurs.</span></span> <span data-ttu-id="f1669-128">tooprevent 這個錯誤，您有 tooadd hello`<LocalResources>`示 hello 遵循 hello 送回 XML 項目`ServiceDefinition.csdef`檔案。</span><span class="sxs-lookup"><span data-stu-id="f1669-128">tooprevent this error, you have tooadd hello `<LocalResources>` element shown in hello following XML back into hello `ServiceDefinition.csdef` file.</span></span> <span data-ttu-id="f1669-129">使用 hello 名稱 hello web 服務角色的一部分 hello hello 名稱屬性已加回到專案 hello  **<LocalStorage>** 項目。</span><span class="sxs-lookup"><span data-stu-id="f1669-129">Use hello name of hello web service role that you added back into hello project as part of hello name attribute for hello **<LocalStorage>** element.</span></span> <span data-ttu-id="f1669-130">在此範例中，是 hello hello web 服務角色名稱**WCFServiceWebRole1**。</span><span class="sxs-lookup"><span data-stu-id="f1669-130">In this example, hello name of hello web service role is **WCFServiceWebRole1**.</span></span>
 
     <WebRole name="WCFServiceWebRole1">
         <Sites>
@@ -71,5 +71,5 @@ ms.lasthandoff: 08/29/2017
        </LocalResources>
     </WebRole>
 
-## <a name="next-steps"></a><span data-ttu-id="5bfe8-131">後續步驟</span><span class="sxs-lookup"><span data-stu-id="5bfe8-131">Next steps</span></span>
-- [<span data-ttu-id="5bfe8-132">使用 Visual Studio 設定 Azure 雲端服務的角色</span><span class="sxs-lookup"><span data-stu-id="5bfe8-132">Configure the Roles for an Azure cloud service with Visual Studio</span></span>](vs-azure-tools-configure-roles-for-cloud-service.md)
+## <a name="next-steps"></a><span data-ttu-id="f1669-131">後續步驟</span><span class="sxs-lookup"><span data-stu-id="f1669-131">Next steps</span></span>
+- [<span data-ttu-id="f1669-132">使用 Visual Studio 設定 Azure 雲端服務的 hello 角色</span><span class="sxs-lookup"><span data-stu-id="f1669-132">Configure hello Roles for an Azure cloud service with Visual Studio</span></span>](vs-azure-tools-configure-roles-for-cloud-service.md)

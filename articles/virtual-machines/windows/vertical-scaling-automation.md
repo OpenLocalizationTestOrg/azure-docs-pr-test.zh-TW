@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 自動化來垂直調整 Azure 虛擬機器 | Microsoft Docs"
-description: "使用「Azure 自動化」來垂直調整「Windows 虛擬機器」以回應監視警示"
+title: "aaaUse Azure 自動化 toovertically 調整 Windows 虛擬機器 |Microsoft 文件"
+description: "垂直縮放回應 toomonitoring 警示與 Azure 自動化中的 Windows 虛擬機器"
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -16,79 +16,79 @@ ms.topic: article
 ms.date: 03/29/2016
 ms.author: kasing
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ea5169c1a95f00e78ae3f5f177812466eb7a0deb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 24d07f3e2e217668f18676e6d6873be4f9770349
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="vertically-scale-windows-vms-with-azure-automation"></a><span data-ttu-id="62cf8-103">使用 Azure 自動化來垂直調整 Windows VM</span><span class="sxs-lookup"><span data-stu-id="62cf8-103">Vertically scale Windows VMs with Azure Automation</span></span>
+# <a name="vertically-scale-windows-vms-with-azure-automation"></a><span data-ttu-id="0f485-103">使用 Azure 自動化來垂直調整 Windows VM</span><span class="sxs-lookup"><span data-stu-id="0f485-103">Vertically scale Windows VMs with Azure Automation</span></span>
 
-<span data-ttu-id="62cf8-104">垂直調整大小是指為回應工作負載而增加或減少電腦資源的程序。</span><span class="sxs-lookup"><span data-stu-id="62cf8-104">Vertical scaling is the process of increasing or decreasing the resources of a machine in response to the workload.</span></span> <span data-ttu-id="62cf8-105">在 Azure 中，可以透過變更虛擬機器的大小來完成。</span><span class="sxs-lookup"><span data-stu-id="62cf8-105">In Azure this can be accomplished by changing the size of the Virtual Machine.</span></span> <span data-ttu-id="62cf8-106">在下列情況中這種方式很有幫助</span><span class="sxs-lookup"><span data-stu-id="62cf8-106">This can help in the following scenarios</span></span>
+<span data-ttu-id="0f485-104">垂直延展是增加或減少回應 toohello 工作負載中電腦的 hello 資源 hello 程序。</span><span class="sxs-lookup"><span data-stu-id="0f485-104">Vertical scaling is hello process of increasing or decreasing hello resources of a machine in response toohello workload.</span></span> <span data-ttu-id="0f485-105">在 Azure 中達成這點可以藉由變更 hello hello 虛擬機器大小。</span><span class="sxs-lookup"><span data-stu-id="0f485-105">In Azure this can be accomplished by changing hello size of hello Virtual Machine.</span></span> <span data-ttu-id="0f485-106">這可協助在下列案例的 hello</span><span class="sxs-lookup"><span data-stu-id="0f485-106">This can help in hello following scenarios</span></span>
 
-* <span data-ttu-id="62cf8-107">如果不常使用虛擬機器，可以將其調整成較小的規模，以降低每月成本</span><span class="sxs-lookup"><span data-stu-id="62cf8-107">If the Virtual Machine is not being used frequently, you can resize it down to a smaller size to reduce your monthly costs</span></span>
-* <span data-ttu-id="62cf8-108">如果虛擬機器預期會有尖峰負載，可以將其調整成較大的規模，以增加其容量</span><span class="sxs-lookup"><span data-stu-id="62cf8-108">If the Virtual Machine is seeing a peak load, it can be resized to a larger size to increase its capacity</span></span>
+* <span data-ttu-id="0f485-107">如果未使用經常 hello 虛擬機器，可以調整 tooa 較小的大小 tooreduce 向您的每月成本</span><span class="sxs-lookup"><span data-stu-id="0f485-107">If hello Virtual Machine is not being used frequently, you can resize it down tooa smaller size tooreduce your monthly costs</span></span>
+* <span data-ttu-id="0f485-108">如果 hello 虛擬機器會看見尖峰負載，它可以是調整過大小的 tooa 較大的大小 tooincrease 其容量</span><span class="sxs-lookup"><span data-stu-id="0f485-108">If hello Virtual Machine is seeing a peak load, it can be resized tooa larger size tooincrease its capacity</span></span>
 
-<span data-ttu-id="62cf8-109">完成此作業的步驟大致如下</span><span class="sxs-lookup"><span data-stu-id="62cf8-109">The outline for the steps to accomplish this is as below</span></span>
+<span data-ttu-id="0f485-109">這是與 hello 步驟 tooaccomplish 的 hello 大綱下方</span><span class="sxs-lookup"><span data-stu-id="0f485-109">hello outline for hello steps tooaccomplish this is as below</span></span>
 
-1. <span data-ttu-id="62cf8-110">將 Azure 自動化設定為可存取您的虛擬機器</span><span class="sxs-lookup"><span data-stu-id="62cf8-110">Setup Azure Automation to access your Virtual Machines</span></span>
-2. <span data-ttu-id="62cf8-111">將 Azure 自動化垂直調整大小 Runbook 匯入訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="62cf8-111">Import the Azure Automation Vertical Scale runbooks into your subscription</span></span>
-3. <span data-ttu-id="62cf8-112">將 Webhook 加入您的 Runbook 中</span><span class="sxs-lookup"><span data-stu-id="62cf8-112">Add a webhook to your runbook</span></span>
-4. <span data-ttu-id="62cf8-113">將警示加入虛擬機器中</span><span class="sxs-lookup"><span data-stu-id="62cf8-113">Add an alert to your Virtual Machine</span></span>
+1. <span data-ttu-id="0f485-110">設定 Azure 自動化 tooaccess 虛擬機器</span><span class="sxs-lookup"><span data-stu-id="0f485-110">Setup Azure Automation tooaccess your Virtual Machines</span></span>
+2. <span data-ttu-id="0f485-111">Hello 垂直延展的 Azure 自動化 runbook 匯入您的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="0f485-111">Import hello Azure Automation Vertical Scale runbooks into your subscription</span></span>
+3. <span data-ttu-id="0f485-112">加入 webhook tooyour runbook</span><span class="sxs-lookup"><span data-stu-id="0f485-112">Add a webhook tooyour runbook</span></span>
+4. <span data-ttu-id="0f485-113">新增警示 tooyour 虛擬機器</span><span class="sxs-lookup"><span data-stu-id="0f485-113">Add an alert tooyour Virtual Machine</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="62cf8-114">因為這是第一部虛擬機器大小的緣故，所以它可以調整的大小，會受限於目前虛擬機器部署所在之叢集中是否可使用其他大小。</span><span class="sxs-lookup"><span data-stu-id="62cf8-114">Because of the size of the first Virtual Machine, the sizes it can be scaled to, may be limited due to the availability of the other sizes in the cluster current Virtual Machine is deployed in.</span></span> <span data-ttu-id="62cf8-115">本文所用的已發佈自動化 Runbook 中，已考量了這個情況，只會於下列成對的 VM 大小內調整大小。</span><span class="sxs-lookup"><span data-stu-id="62cf8-115">In the published automation runbooks used in this article we take care of this case and only scale within the below VM size pairs.</span></span> <span data-ttu-id="62cf8-116">這表示 Standard_D1v2 虛擬機器不會突然相應增加為 Standard_G5 或相應減少為 Basic_A0。</span><span class="sxs-lookup"><span data-stu-id="62cf8-116">This means that a Standard_D1v2 Virtual Machine will not suddenly be scaled up to Standard_G5 or scaled down to Basic_A0.</span></span>
+> <span data-ttu-id="0f485-114">因為 hello hello 大小而第一個虛擬機器，它可以調整，以 hello 大小可能會有所限制到期的 hello toohello 可用性 hello 叢集中其他大小目前部署虛擬機器中。</span><span class="sxs-lookup"><span data-stu-id="0f485-114">Because of hello size of hello first Virtual Machine, hello sizes it can be scaled to, may be limited due toohello availability of hello other sizes in hello cluster current Virtual Machine is deployed in.</span></span> <span data-ttu-id="0f485-115">在 hello 發行我們處理此情況下，只調整 VM 大小組下方 hello 內這篇文章中使用自動化 runbook。</span><span class="sxs-lookup"><span data-stu-id="0f485-115">In hello published automation runbooks used in this article we take care of this case and only scale within hello below VM size pairs.</span></span> <span data-ttu-id="0f485-116">這表示不突然將 tooStandard_G5 來擴充或縮小 tooBasic_A0 Standard_D1v2 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="0f485-116">This means that a Standard_D1v2 Virtual Machine will not suddenly be scaled up tooStandard_G5 or scaled down tooBasic_A0.</span></span>
 > 
-> | <span data-ttu-id="62cf8-117">成對的調整 VM 大小</span><span class="sxs-lookup"><span data-stu-id="62cf8-117">VM sizes scaling pair</span></span> |  |
+> | <span data-ttu-id="0f485-117">成對的調整 VM 大小</span><span class="sxs-lookup"><span data-stu-id="0f485-117">VM sizes scaling pair</span></span> |  |
 > | --- | --- |
-> | <span data-ttu-id="62cf8-118">Basic_A0</span><span class="sxs-lookup"><span data-stu-id="62cf8-118">Basic_A0</span></span> |<span data-ttu-id="62cf8-119">Basic_A4</span><span class="sxs-lookup"><span data-stu-id="62cf8-119">Basic_A4</span></span> |
-> | <span data-ttu-id="62cf8-120">Standard_A0</span><span class="sxs-lookup"><span data-stu-id="62cf8-120">Standard_A0</span></span> |<span data-ttu-id="62cf8-121">Standard_A4</span><span class="sxs-lookup"><span data-stu-id="62cf8-121">Standard_A4</span></span> |
-> | <span data-ttu-id="62cf8-122">Standard_A5</span><span class="sxs-lookup"><span data-stu-id="62cf8-122">Standard_A5</span></span> |<span data-ttu-id="62cf8-123">Standard_A7</span><span class="sxs-lookup"><span data-stu-id="62cf8-123">Standard_A7</span></span> |
-> | <span data-ttu-id="62cf8-124">Standard_A8</span><span class="sxs-lookup"><span data-stu-id="62cf8-124">Standard_A8</span></span> |<span data-ttu-id="62cf8-125">Standard_A9</span><span class="sxs-lookup"><span data-stu-id="62cf8-125">Standard_A9</span></span> |
-> | <span data-ttu-id="62cf8-126">Standard_A10</span><span class="sxs-lookup"><span data-stu-id="62cf8-126">Standard_A10</span></span> |<span data-ttu-id="62cf8-127">Standard_A11</span><span class="sxs-lookup"><span data-stu-id="62cf8-127">Standard_A11</span></span> |
-> | <span data-ttu-id="62cf8-128">標準_D1</span><span class="sxs-lookup"><span data-stu-id="62cf8-128">Standard_D1</span></span> |<span data-ttu-id="62cf8-129">標準_D4</span><span class="sxs-lookup"><span data-stu-id="62cf8-129">Standard_D4</span></span> |
-> | <span data-ttu-id="62cf8-130">標準_D11</span><span class="sxs-lookup"><span data-stu-id="62cf8-130">Standard_D11</span></span> |<span data-ttu-id="62cf8-131">標準_D14</span><span class="sxs-lookup"><span data-stu-id="62cf8-131">Standard_D14</span></span> |
-> | <span data-ttu-id="62cf8-132">Standard_DS1</span><span class="sxs-lookup"><span data-stu-id="62cf8-132">Standard_DS1</span></span> |<span data-ttu-id="62cf8-133">Standard_DS4</span><span class="sxs-lookup"><span data-stu-id="62cf8-133">Standard_DS4</span></span> |
-> | <span data-ttu-id="62cf8-134">Standard_DS11</span><span class="sxs-lookup"><span data-stu-id="62cf8-134">Standard_DS11</span></span> |<span data-ttu-id="62cf8-135">Standard_DS14</span><span class="sxs-lookup"><span data-stu-id="62cf8-135">Standard_DS14</span></span> |
-> | <span data-ttu-id="62cf8-136">Standard_D1v2</span><span class="sxs-lookup"><span data-stu-id="62cf8-136">Standard_D1v2</span></span> |<span data-ttu-id="62cf8-137">Standard_D5v2</span><span class="sxs-lookup"><span data-stu-id="62cf8-137">Standard_D5v2</span></span> |
-> | <span data-ttu-id="62cf8-138">Standard_D11v2</span><span class="sxs-lookup"><span data-stu-id="62cf8-138">Standard_D11v2</span></span> |<span data-ttu-id="62cf8-139">Standard_D14v2</span><span class="sxs-lookup"><span data-stu-id="62cf8-139">Standard_D14v2</span></span> |
-> | <span data-ttu-id="62cf8-140">Standard_G1</span><span class="sxs-lookup"><span data-stu-id="62cf8-140">Standard_G1</span></span> |<span data-ttu-id="62cf8-141">Standard_G5</span><span class="sxs-lookup"><span data-stu-id="62cf8-141">Standard_G5</span></span> |
-> | <span data-ttu-id="62cf8-142">Standard_GS1</span><span class="sxs-lookup"><span data-stu-id="62cf8-142">Standard_GS1</span></span> |<span data-ttu-id="62cf8-143">Standard_GS5</span><span class="sxs-lookup"><span data-stu-id="62cf8-143">Standard_GS5</span></span> |
+> | <span data-ttu-id="0f485-118">Basic_A0</span><span class="sxs-lookup"><span data-stu-id="0f485-118">Basic_A0</span></span> |<span data-ttu-id="0f485-119">Basic_A4</span><span class="sxs-lookup"><span data-stu-id="0f485-119">Basic_A4</span></span> |
+> | <span data-ttu-id="0f485-120">Standard_A0</span><span class="sxs-lookup"><span data-stu-id="0f485-120">Standard_A0</span></span> |<span data-ttu-id="0f485-121">Standard_A4</span><span class="sxs-lookup"><span data-stu-id="0f485-121">Standard_A4</span></span> |
+> | <span data-ttu-id="0f485-122">Standard_A5</span><span class="sxs-lookup"><span data-stu-id="0f485-122">Standard_A5</span></span> |<span data-ttu-id="0f485-123">Standard_A7</span><span class="sxs-lookup"><span data-stu-id="0f485-123">Standard_A7</span></span> |
+> | <span data-ttu-id="0f485-124">Standard_A8</span><span class="sxs-lookup"><span data-stu-id="0f485-124">Standard_A8</span></span> |<span data-ttu-id="0f485-125">Standard_A9</span><span class="sxs-lookup"><span data-stu-id="0f485-125">Standard_A9</span></span> |
+> | <span data-ttu-id="0f485-126">Standard_A10</span><span class="sxs-lookup"><span data-stu-id="0f485-126">Standard_A10</span></span> |<span data-ttu-id="0f485-127">Standard_A11</span><span class="sxs-lookup"><span data-stu-id="0f485-127">Standard_A11</span></span> |
+> | <span data-ttu-id="0f485-128">標準_D1</span><span class="sxs-lookup"><span data-stu-id="0f485-128">Standard_D1</span></span> |<span data-ttu-id="0f485-129">標準_D4</span><span class="sxs-lookup"><span data-stu-id="0f485-129">Standard_D4</span></span> |
+> | <span data-ttu-id="0f485-130">標準_D11</span><span class="sxs-lookup"><span data-stu-id="0f485-130">Standard_D11</span></span> |<span data-ttu-id="0f485-131">標準_D14</span><span class="sxs-lookup"><span data-stu-id="0f485-131">Standard_D14</span></span> |
+> | <span data-ttu-id="0f485-132">Standard_DS1</span><span class="sxs-lookup"><span data-stu-id="0f485-132">Standard_DS1</span></span> |<span data-ttu-id="0f485-133">Standard_DS4</span><span class="sxs-lookup"><span data-stu-id="0f485-133">Standard_DS4</span></span> |
+> | <span data-ttu-id="0f485-134">Standard_DS11</span><span class="sxs-lookup"><span data-stu-id="0f485-134">Standard_DS11</span></span> |<span data-ttu-id="0f485-135">Standard_DS14</span><span class="sxs-lookup"><span data-stu-id="0f485-135">Standard_DS14</span></span> |
+> | <span data-ttu-id="0f485-136">Standard_D1v2</span><span class="sxs-lookup"><span data-stu-id="0f485-136">Standard_D1v2</span></span> |<span data-ttu-id="0f485-137">Standard_D5v2</span><span class="sxs-lookup"><span data-stu-id="0f485-137">Standard_D5v2</span></span> |
+> | <span data-ttu-id="0f485-138">Standard_D11v2</span><span class="sxs-lookup"><span data-stu-id="0f485-138">Standard_D11v2</span></span> |<span data-ttu-id="0f485-139">Standard_D14v2</span><span class="sxs-lookup"><span data-stu-id="0f485-139">Standard_D14v2</span></span> |
+> | <span data-ttu-id="0f485-140">Standard_G1</span><span class="sxs-lookup"><span data-stu-id="0f485-140">Standard_G1</span></span> |<span data-ttu-id="0f485-141">Standard_G5</span><span class="sxs-lookup"><span data-stu-id="0f485-141">Standard_G5</span></span> |
+> | <span data-ttu-id="0f485-142">Standard_GS1</span><span class="sxs-lookup"><span data-stu-id="0f485-142">Standard_GS1</span></span> |<span data-ttu-id="0f485-143">Standard_GS5</span><span class="sxs-lookup"><span data-stu-id="0f485-143">Standard_GS5</span></span> |
 > 
 > 
 
-## <a name="setup-azure-automation-to-access-your-virtual-machines"></a><span data-ttu-id="62cf8-144">將 Azure 自動化設定為可存取您的虛擬機器</span><span class="sxs-lookup"><span data-stu-id="62cf8-144">Setup Azure Automation to access your Virtual Machines</span></span>
-<span data-ttu-id="62cf8-145">您首先要做的是建立 Azure 自動化帳戶，其要裝載用來調整虛擬機器的 Runbook。</span><span class="sxs-lookup"><span data-stu-id="62cf8-145">The first thing you need to do is create an Azure Automation account that will host the runbooks used to scale a Virtual Machine.</span></span> <span data-ttu-id="62cf8-146">最近，自動化服務引進「執行身分帳戶」功能，極輕鬆即可代表使用者設定服務主體來自動執行 Runbook。</span><span class="sxs-lookup"><span data-stu-id="62cf8-146">Recently the Automation service introduced the "Run As account" feature which makes setting up the Service Principal for automatically running the runbooks on the user's behalf very easy.</span></span> <span data-ttu-id="62cf8-147">您可以在下文中閱讀更多相關資訊：</span><span class="sxs-lookup"><span data-stu-id="62cf8-147">You can read more about this in the article below:</span></span>
+## <a name="setup-azure-automation-tooaccess-your-virtual-machines"></a><span data-ttu-id="0f485-144">設定 Azure 自動化 tooaccess 虛擬機器</span><span class="sxs-lookup"><span data-stu-id="0f485-144">Setup Azure Automation tooaccess your Virtual Machines</span></span>
+<span data-ttu-id="0f485-145">您需要 toodo hello 第一件事是建立 Azure 自動化帳戶將裝載 hello runbook 使用 tooscale 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="0f485-145">hello first thing you need toodo is create an Azure Automation account that will host hello runbooks used tooscale a Virtual Machine.</span></span> <span data-ttu-id="0f485-146">最近 hello 自動化服務導入了 hello 「 執行身分帳戶 」 功能會自動執行 hello runbook 代表 hello 使用者很容易讓 hello 服務主體的設定。</span><span class="sxs-lookup"><span data-stu-id="0f485-146">Recently hello Automation service introduced hello "Run As account" feature which makes setting up hello Service Principal for automatically running hello runbooks on hello user's behalf very easy.</span></span> <span data-ttu-id="0f485-147">閱讀更多關於此 hello 的下列文件中：</span><span class="sxs-lookup"><span data-stu-id="0f485-147">You can read more about this in hello article below:</span></span>
 
-* [<span data-ttu-id="62cf8-148">使用 Azure 執行身分帳戶驗證 Runbook</span><span class="sxs-lookup"><span data-stu-id="62cf8-148">Authenticate Runbooks with Azure Run As account</span></span>](../../automation/automation-sec-configure-azure-runas-account.md)
+* [<span data-ttu-id="0f485-148">使用 Azure 執行身分帳戶驗證 Runbook</span><span class="sxs-lookup"><span data-stu-id="0f485-148">Authenticate Runbooks with Azure Run As account</span></span>](../../automation/automation-sec-configure-azure-runas-account.md)
 
-## <a name="import-the-azure-automation-vertical-scale-runbooks-into-your-subscription"></a><span data-ttu-id="62cf8-149">將 Azure 自動化垂直調整大小 Runbook 匯入訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="62cf8-149">Import the Azure Automation Vertical Scale runbooks into your subscription</span></span>
-<span data-ttu-id="62cf8-150">Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小所需之 Runbook。</span><span class="sxs-lookup"><span data-stu-id="62cf8-150">The runbooks that are needed for Vertically Scaling your Virtual Machine are already published in the Azure Automation Runbook Gallery.</span></span> <span data-ttu-id="62cf8-151">您必須將其匯入您的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="62cf8-151">You will need to import them into your subscription.</span></span> <span data-ttu-id="62cf8-152">您可以閱讀下列文章，了解如何匯入 Runbook。</span><span class="sxs-lookup"><span data-stu-id="62cf8-152">You can learn how to import runbooks by reading the following article.</span></span>
+## <a name="import-hello-azure-automation-vertical-scale-runbooks-into-your-subscription"></a><span data-ttu-id="0f485-149">Hello 垂直延展的 Azure 自動化 runbook 匯入您的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="0f485-149">Import hello Azure Automation Vertical Scale runbooks into your subscription</span></span>
+<span data-ttu-id="0f485-150">所需的垂直調整您的虛擬機器已經發行 hello Azure 自動化 Runbook 資源庫中的 hello runbook。</span><span class="sxs-lookup"><span data-stu-id="0f485-150">hello runbooks that are needed for Vertically Scaling your Virtual Machine are already published in hello Azure Automation Runbook Gallery.</span></span> <span data-ttu-id="0f485-151">您將需要 tooimport 為您的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="0f485-151">You will need tooimport them into your subscription.</span></span> <span data-ttu-id="0f485-152">您可以了解如何藉由讀取 tooimport runbook hello 下列文章。</span><span class="sxs-lookup"><span data-stu-id="0f485-152">You can learn how tooimport runbooks by reading hello following article.</span></span>
 
-* [<span data-ttu-id="62cf8-153">Azure 自動化的 Runbook 和模組資源庫</span><span class="sxs-lookup"><span data-stu-id="62cf8-153">Runbook and module galleries for Azure Automation</span></span>](../../automation/automation-runbook-gallery.md)
+* [<span data-ttu-id="0f485-153">Azure 自動化的 Runbook 和模組資源庫</span><span class="sxs-lookup"><span data-stu-id="0f485-153">Runbook and module galleries for Azure Automation</span></span>](../../automation/automation-runbook-gallery.md)
 
-<span data-ttu-id="62cf8-154">需要如下圖所示匯入 Runbook</span><span class="sxs-lookup"><span data-stu-id="62cf8-154">The runbooks that need to be imported are shown in the image below</span></span>
+<span data-ttu-id="0f485-154">需要 toobe 匯入的 hello runbook 所示 hello 圖</span><span class="sxs-lookup"><span data-stu-id="0f485-154">hello runbooks that need toobe imported are shown in hello image below</span></span>
 
 ![匯入 Runbook](./media/vertical-scaling-automation/scale-runbooks.png)
 
-## <a name="add-a-webhook-to-your-runbook"></a><span data-ttu-id="62cf8-156">將 Webhook 加入您的 Runbook 中</span><span class="sxs-lookup"><span data-stu-id="62cf8-156">Add a webhook to your runbook</span></span>
-<span data-ttu-id="62cf8-157">匯入 Runbook 之後，需要將 Webhook 加入 Runbook 中，如此即可從虛擬機器發出的警示加以觸發。</span><span class="sxs-lookup"><span data-stu-id="62cf8-157">Once you've imported the runbooks you'll need to add a webhook to the runbook so it can be triggered by an alert from a Virtual Machine.</span></span> <span data-ttu-id="62cf8-158">如需為 Runbook 建立 Webhook 的詳細資訊，請參閱</span><span class="sxs-lookup"><span data-stu-id="62cf8-158">The details of creating a webhook for your Runbook can be read here</span></span>
+## <a name="add-a-webhook-tooyour-runbook"></a><span data-ttu-id="0f485-156">加入 webhook tooyour runbook</span><span class="sxs-lookup"><span data-stu-id="0f485-156">Add a webhook tooyour runbook</span></span>
+<span data-ttu-id="0f485-157">您已匯入 hello runbook 之後您將需要 tooadd webhook toohello runbook，如此可藉由從虛擬機器警示。</span><span class="sxs-lookup"><span data-stu-id="0f485-157">Once you've imported hello runbooks you'll need tooadd a webhook toohello runbook so it can be triggered by an alert from a Virtual Machine.</span></span> <span data-ttu-id="0f485-158">為您的 Runbook 建立 webhook hello 詳細資料可以在這裡</span><span class="sxs-lookup"><span data-stu-id="0f485-158">hello details of creating a webhook for your Runbook can be read here</span></span>
 
-* [<span data-ttu-id="62cf8-159">Azure 自動化 Webhook</span><span class="sxs-lookup"><span data-stu-id="62cf8-159">Azure Automation webhooks</span></span>](../../automation/automation-webhooks.md)
+* [<span data-ttu-id="0f485-159">Azure 自動化 Webhook</span><span class="sxs-lookup"><span data-stu-id="0f485-159">Azure Automation webhooks</span></span>](../../automation/automation-webhooks.md)
 
-<span data-ttu-id="62cf8-160">關閉 Webhook 對話方塊之前，請務必複製 Webhook，因為在下一節中將需要此 Webhook。</span><span class="sxs-lookup"><span data-stu-id="62cf8-160">Make sure you copy the webhook before closing the webhook dialog as you will need this in the next section.</span></span>
+<span data-ttu-id="0f485-160">請確定您複製 hello webhook 之後才關閉 hello webhook 對話方塊，將會需要這個 hello 下一節。</span><span class="sxs-lookup"><span data-stu-id="0f485-160">Make sure you copy hello webhook before closing hello webhook dialog as you will need this in hello next section.</span></span>
 
-## <a name="add-an-alert-to-your-virtual-machine"></a><span data-ttu-id="62cf8-161">將警示加入虛擬機器中</span><span class="sxs-lookup"><span data-stu-id="62cf8-161">Add an alert to your Virtual Machine</span></span>
-1. <span data-ttu-id="62cf8-162">選取虛擬機器設定</span><span class="sxs-lookup"><span data-stu-id="62cf8-162">Select Virtual Machine settings</span></span>
-2. <span data-ttu-id="62cf8-163">選取 [警示規則]</span><span class="sxs-lookup"><span data-stu-id="62cf8-163">Select "Alert rules"</span></span>
-3. <span data-ttu-id="62cf8-164">選取 [加入警示]</span><span class="sxs-lookup"><span data-stu-id="62cf8-164">Select "Add alert"</span></span>
-4. <span data-ttu-id="62cf8-165">選取要引發警示的衡量標準</span><span class="sxs-lookup"><span data-stu-id="62cf8-165">Select a metric to fire the alert on</span></span>
-5. <span data-ttu-id="62cf8-166">選取要符合才會引發警示的條件</span><span class="sxs-lookup"><span data-stu-id="62cf8-166">Select a condition, which when fulfilled will cause the alert to fire</span></span>
-6. <span data-ttu-id="62cf8-167">針對步驟 5 的條件選取臨界值。</span><span class="sxs-lookup"><span data-stu-id="62cf8-167">Select a threshold for the condition in Step 5.</span></span> <span data-ttu-id="62cf8-168">要符合的</span><span class="sxs-lookup"><span data-stu-id="62cf8-168">to be fulfilled</span></span>
-7. <span data-ttu-id="62cf8-169">選取監視服務將檢查步驟 5 和 6 之條件和臨界值的期間</span><span class="sxs-lookup"><span data-stu-id="62cf8-169">Select a period over which the monitoring service will check for the condition and threshold in Steps 5 & 6</span></span>
-8. <span data-ttu-id="62cf8-170">貼上從上一節複製的 Webhook。</span><span class="sxs-lookup"><span data-stu-id="62cf8-170">Paste in the webhook you copied from the previous section.</span></span>
+## <a name="add-an-alert-tooyour-virtual-machine"></a><span data-ttu-id="0f485-161">新增警示 tooyour 虛擬機器</span><span class="sxs-lookup"><span data-stu-id="0f485-161">Add an alert tooyour Virtual Machine</span></span>
+1. <span data-ttu-id="0f485-162">選取虛擬機器設定</span><span class="sxs-lookup"><span data-stu-id="0f485-162">Select Virtual Machine settings</span></span>
+2. <span data-ttu-id="0f485-163">選取 [警示規則]</span><span class="sxs-lookup"><span data-stu-id="0f485-163">Select "Alert rules"</span></span>
+3. <span data-ttu-id="0f485-164">選取 [加入警示]</span><span class="sxs-lookup"><span data-stu-id="0f485-164">Select "Add alert"</span></span>
+4. <span data-ttu-id="0f485-165">在選取度量 toofire hello 警示</span><span class="sxs-lookup"><span data-stu-id="0f485-165">Select a metric toofire hello alert on</span></span>
+5. <span data-ttu-id="0f485-166">選取條件，當完成將導致 hello 警示 toofire</span><span class="sxs-lookup"><span data-stu-id="0f485-166">Select a condition, which when fulfilled will cause hello alert toofire</span></span>
+6. <span data-ttu-id="0f485-167">選取在步驟 5 中的 hello 條件的臨界值。</span><span class="sxs-lookup"><span data-stu-id="0f485-167">Select a threshold for hello condition in Step 5.</span></span> <span data-ttu-id="0f485-168">toobe 完成</span><span class="sxs-lookup"><span data-stu-id="0f485-168">toobe fulfilled</span></span>
+7. <span data-ttu-id="0f485-169">在步驟 5 和 6 選取的期間透過哪一個 hello 監視服務會檢查 hello 條件和臨界值</span><span class="sxs-lookup"><span data-stu-id="0f485-169">Select a period over which hello monitoring service will check for hello condition and threshold in Steps 5 & 6</span></span>
+8. <span data-ttu-id="0f485-170">貼上您複製 hello 前一節的 hello webhook。</span><span class="sxs-lookup"><span data-stu-id="0f485-170">Paste in hello webhook you copied from hello previous section.</span></span>
 
-![將警示加入虛擬機器 1 中](./media/vertical-scaling-automation/add-alert-webhook-1.png)
+![新增警示 tooVirtual 機器 1](./media/vertical-scaling-automation/add-alert-webhook-1.png)
 
-![將警示加入虛擬機器 2 中](./media/vertical-scaling-automation/add-alert-webhook-2.png)
+![新增警示 tooVirtual 機器 2](./media/vertical-scaling-automation/add-alert-webhook-2.png)
 

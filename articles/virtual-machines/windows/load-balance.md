@@ -1,6 +1,6 @@
 ---
-title: "基礎結構服務的負載平衡 | Microsoft Docs"
-description: "說明 Azure 支援的兩種類型的負載平衡：適用於雲端服務的負載平衡器，以及適用於用戶端流量的 Azure 流量管理員。"
+title: "平衡的基礎結構服務 aaaLoad |Microsoft 文件"
+description: "描述 Azure 所支援的負載平衡的 hello 兩種類型： 負載平衡器，為雲端服務和用戶端流量的 Azure Traffic Manager。"
 services: load-balancer
 documentationcenter: 
 author: kumudd
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2016
 ms.author: kumud
-ms.openlocfilehash: c8c75185a4b905ef839ccbd39b6f9e6d6dfb2496
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cff81948e36c34b4faf561daff1f48bf721c57c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="load-balancing-for-azure-infrastructure-services"></a><span data-ttu-id="a232d-103">Azure 基礎結構服務的負載平衡</span><span class="sxs-lookup"><span data-stu-id="a232d-103">Load balancing for Azure infrastructure services</span></span>
+# <a name="load-balancing-for-azure-infrastructure-services"></a><span data-ttu-id="0dec4-103">Azure 基礎結構服務的負載平衡</span><span class="sxs-lookup"><span data-stu-id="0dec4-103">Load balancing for Azure infrastructure services</span></span>
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 [!INCLUDE [virtual-machines-common-load-balance](../../../includes/virtual-machines-common-load-balance.md)]

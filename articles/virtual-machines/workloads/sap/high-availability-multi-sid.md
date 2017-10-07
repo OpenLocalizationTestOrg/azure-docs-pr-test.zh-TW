@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中建立 SAP 多 SID 組態 | Microsoft Docs"
-description: "Windows 虛擬機器上的 SAP NetWeaver 多 SID 組態的高可用性指南"
+title: "在 Azure 中 SAP 多 SID 組態 aaaCreate |Microsoft 文件"
+description: "指南 toohigh 可用性的 SAP NetWeaver Windows 虛擬機器上的多重 SID 組態"
 services: virtual-machines-windows, virtual-network, storage
 documentationcenter: saponazure
 author: goraco
@@ -17,13 +17,13 @@ ms.workload: infrastructure-services
 ms.date: 12/09/2016
 ms.author: goraco
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c813329b6fed2a2c23e59f1bdfd2d3babae0e724
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 546d951d1f0861b27639fdab40ebaf0b7f379575
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-sap-netweaver-multi-sid-configuration"></a><span data-ttu-id="43f39-103">建立 SAP NetWeaver 多 SID 組態</span><span class="sxs-lookup"><span data-stu-id="43f39-103">Create an SAP NetWeaver multi-SID configuration</span></span>
+# <a name="create-an-sap-netweaver-multi-sid-configuration"></a><span data-ttu-id="980a5-103">建立 SAP NetWeaver 多 SID 組態</span><span class="sxs-lookup"><span data-stu-id="980a5-103">Create an SAP NetWeaver multi-SID configuration</span></span>
 
 [767598]:https://launchpad.support.sap.com/#/notes/767598
 [773830]:https://launchpad.support.sap.com/#/notes/773830
@@ -444,93 +444,93 @@ ms.lasthandoff: 08/29/2017
 [xplat-cli-azure-resource-manager]:../../../xplat-cli-azure-resource-manager.md
 
 
-<span data-ttu-id="43f39-104">Microsoft 在 2016 年 9 月發行的功能，可讓您使用 [Azure 內部負載平衡器][load-balancer-multivip-overview]管理多個虛擬 IP 位址。</span><span class="sxs-lookup"><span data-stu-id="43f39-104">In September 2016, Microsoft released a feature where you can manage multiple virtual IP addresses by using an [Azure internal load balancer][load-balancer-multivip-overview].</span></span> <span data-ttu-id="43f39-105">這項功能已存在 Azure 外部負載平衡器。</span><span class="sxs-lookup"><span data-stu-id="43f39-105">This functionality already exists in the Azure external load balancer.</span></span>
+<span data-ttu-id="980a5-104">Microsoft 在 2016 年 9 月發行的功能，可讓您使用 [Azure 內部負載平衡器][load-balancer-multivip-overview]管理多個虛擬 IP 位址。</span><span class="sxs-lookup"><span data-stu-id="980a5-104">In September 2016, Microsoft released a feature where you can manage multiple virtual IP addresses by using an [Azure internal load balancer][load-balancer-multivip-overview].</span></span> <span data-ttu-id="980a5-105">這項功能已存在於 hello Azure 外部負載平衡器。</span><span class="sxs-lookup"><span data-stu-id="980a5-105">This functionality already exists in hello Azure external load balancer.</span></span>
 
-<span data-ttu-id="43f39-106">如果您有 SAP 部署，可以使用內部負載平衡器針對 SAP 的 ASCS/SCS 建立 Windows 叢集組態，如 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide]所述。</span><span class="sxs-lookup"><span data-stu-id="43f39-106">If you have an SAP deployment, you can use an internal load balancer to create a Windows cluster configuration for SAP ASCS/SCS, as documented in the [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide].</span></span>
+<span data-ttu-id="980a5-106">如果您有 SAP 部署時，您可以使用內部負載平衡器 toocreate Windows 叢集組態中的 SAP ASCS/SCS，述 hello [Windows Vm 上的高可用性的 SAP NetWeaver 指南][ sap-ha-guide].</span><span class="sxs-lookup"><span data-stu-id="980a5-106">If you have an SAP deployment, you can use an internal load balancer toocreate a Windows cluster configuration for SAP ASCS/SCS, as documented in hello [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide].</span></span>
 
-<span data-ttu-id="43f39-107">本文將著重於如何將單一 ASCS/SCS 安裝移至 SAP 多 SID 組態，方法是將其他 SAP ASCS/SCS 叢集執行個體安裝至現有 Windows Server 容錯移轉叢集 (WSFC) 叢集。</span><span class="sxs-lookup"><span data-stu-id="43f39-107">This article focuses on how to move from a single ASCS/SCS installation to an SAP multi-SID configuration by installing additional SAP ASCS/SCS clustered instances into an existing Windows Server Failover Clustering (WSFC) cluster.</span></span> <span data-ttu-id="43f39-108">完成此程序之後，您將已設定 SAP 多 SID 叢集。</span><span class="sxs-lookup"><span data-stu-id="43f39-108">When this process is completed, you will have configured an SAP multi-SID cluster.</span></span>
+<span data-ttu-id="980a5-107">本文著重在從單一 ASCS/SCS 安裝 tooan SAP 多 SID 組態藉由安裝其他 SAP ASCS/SCS toomove 到現有的 Windows Server 容錯移轉叢集 (WSFC) 叢集中叢集執行個體的方式。</span><span class="sxs-lookup"><span data-stu-id="980a5-107">This article focuses on how toomove from a single ASCS/SCS installation tooan SAP multi-SID configuration by installing additional SAP ASCS/SCS clustered instances into an existing Windows Server Failover Clustering (WSFC) cluster.</span></span> <span data-ttu-id="980a5-108">完成此程序之後，您將已設定 SAP 多 SID 叢集。</span><span class="sxs-lookup"><span data-stu-id="980a5-108">When this process is completed, you will have configured an SAP multi-SID cluster.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="43f39-109">這項功能僅適用於 Azure Resource Manager 部署模型。</span><span class="sxs-lookup"><span data-stu-id="43f39-109">This feature is available only in the Azure Resource Manager deployment model.</span></span>
+> <span data-ttu-id="980a5-109">只有在 hello Azure Resource Manager 部署模型中使用這項功能。</span><span class="sxs-lookup"><span data-stu-id="980a5-109">This feature is available only in hello Azure Resource Manager deployment model.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="43f39-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="43f39-110">Prerequisites</span></span>
-<span data-ttu-id="43f39-111">您已經設定用於一個 SAP ASCS/SCS 執行個體的 WSFC 叢集，如 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide]所述及如下圖所示。</span><span class="sxs-lookup"><span data-stu-id="43f39-111">You have already configured a WSFC cluster that is used for one SAP ASCS/SCS instance, as discussed in the [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide] and as shown in this diagram.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="980a5-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="980a5-110">Prerequisites</span></span>
+<span data-ttu-id="980a5-111">您已經設定 WSFC 叢集中使用一個 SAP ASCS/SCS 執行個體，請如所述 hello [Windows Vm 上的高可用性的 SAP NetWeaver 指南][ sap-ha-guide]和此圖表中所示。</span><span class="sxs-lookup"><span data-stu-id="980a5-111">You have already configured a WSFC cluster that is used for one SAP ASCS/SCS instance, as discussed in hello [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide] and as shown in this diagram.</span></span>
 
 ![高可用性的 SAP ASCS/SCS 執行個體][sap-ha-guide-figure-6001]
 
-## <a name="target-architecture"></a><span data-ttu-id="43f39-113">目標架構</span><span class="sxs-lookup"><span data-stu-id="43f39-113">Target architecture</span></span>
+## <a name="target-architecture"></a><span data-ttu-id="980a5-113">目標架構</span><span class="sxs-lookup"><span data-stu-id="980a5-113">Target architecture</span></span>
 
-<span data-ttu-id="43f39-114">目標是在相同 WSAFC 叢集中安裝多個 SAP ABAP ASCS 或 SAP Java SCS 叢集執行個體，如這裡所詳述：</span><span class="sxs-lookup"><span data-stu-id="43f39-114">The goal is to install multiple SAP ABAP ASCS or SAP Java SCS clustered instances in the same WSFC cluster, as illustrated here:</span></span>
+<span data-ttu-id="980a5-114">hello 的目標是的 tooinstall 多個 SAP ABAP ASCS 或 SAP Java SCS 叢集執行個體 hello 相同 WSFC 叢集中，如下圖所示：</span><span class="sxs-lookup"><span data-stu-id="980a5-114">hello goal is tooinstall multiple SAP ABAP ASCS or SAP Java SCS clustered instances in hello same WSFC cluster, as illustrated here:</span></span>
 
 ![Azure 中多個 SAP ASCS/SCS 叢集執行個體][sap-ha-guide-figure-6002]
 
 > [!NOTE]
-><span data-ttu-id="43f39-116">每個 Azure 內部負載平衡器的私人前端 IP 有數量限制。</span><span class="sxs-lookup"><span data-stu-id="43f39-116">There is a limit to the number of private front-end IPs for each Azure internal load balancer.</span></span>
+><span data-ttu-id="980a5-116">沒有為每個 Azure 內部負載平衡器的私用前端 Ip 限制 toohello 數目。</span><span class="sxs-lookup"><span data-stu-id="980a5-116">There is a limit toohello number of private front-end IPs for each Azure internal load balancer.</span></span>
 >
-><span data-ttu-id="43f39-117">一個 WSFC 叢集中 SAP ASCS/SCS 執行個體數目上限等於每個 Azure 內部負載平衡器的私人前端 IP 數目上限。</span><span class="sxs-lookup"><span data-stu-id="43f39-117">The maximum number of SAP ASCS/SCS instances in one WSFC cluster is equal to the maximum number of private front-end IPs for each Azure internal load balancer.</span></span>
+><span data-ttu-id="980a5-117">hello 一個 WSFC 叢集中的 SAP ASCS/SCS 執行個體數目上限是相等的 toohello 的每個 Azure 內部負載平衡器的私用前端 Ip 數目上限。</span><span class="sxs-lookup"><span data-stu-id="980a5-117">hello maximum number of SAP ASCS/SCS instances in one WSFC cluster is equal toohello maximum number of private front-end IPs for each Azure internal load balancer.</span></span>
 >
 
-<span data-ttu-id="43f39-118">如需更多有關負載平衡器限制的資訊，請參閱[網路限制：Azure Resource Manager][networking-limits-azure-resource-manager] 中的「每個負載平衡器的私人前端 IP」。</span><span class="sxs-lookup"><span data-stu-id="43f39-118">For more information about load-balancer limits, see "Private front end IP per load balancer" in [Networking limits: Azure Resource Manager][networking-limits-azure-resource-manager].</span></span>
+<span data-ttu-id="980a5-118">如需更多有關負載平衡器限制的資訊，請參閱[網路限制：Azure Resource Manager][networking-limits-azure-resource-manager] 中的「每個負載平衡器的私人前端 IP」。</span><span class="sxs-lookup"><span data-stu-id="980a5-118">For more information about load-balancer limits, see "Private front end IP per load balancer" in [Networking limits: Azure Resource Manager][networking-limits-azure-resource-manager].</span></span>
 
-<span data-ttu-id="43f39-119">具有兩個高度可用 SAP 系統的完整配置畫面如下所示：</span><span class="sxs-lookup"><span data-stu-id="43f39-119">The complete landscape with two high-availability SAP systems would look like this:</span></span>
+<span data-ttu-id="980a5-119">hello 與兩個高可用性的 SAP 系統的完整說明看起來會像這樣：</span><span class="sxs-lookup"><span data-stu-id="980a5-119">hello complete landscape with two high-availability SAP systems would look like this:</span></span>
 
 ![具有兩個 SAP 系統 SID 的 SAP 高可用性多 SID 設定][sap-ha-guide-figure-6003]
 
 > [!IMPORTANT]
-> <span data-ttu-id="43f39-121">安裝程式必須符合下列條件︰</span><span class="sxs-lookup"><span data-stu-id="43f39-121">The setup must meet the following conditions:</span></span>
-> - <span data-ttu-id="43f39-122">SAP ASCS / SCS 執行個體必須共用相同的 WSFC 叢集。</span><span class="sxs-lookup"><span data-stu-id="43f39-122">The SAP ASCS/SCS instances must share the same WSFC cluster.</span></span>
-> - <span data-ttu-id="43f39-123">每個 DBMS SID 必須有其自己專用的 WSFC 叢集。</span><span class="sxs-lookup"><span data-stu-id="43f39-123">Each DBMS SID must have its own dedicated WSFC cluster.</span></span>
-> - <span data-ttu-id="43f39-124">SAP 應用程式伺服器屬於必須擁有自己專用 VM 的一個 SAP 系統 SID。</span><span class="sxs-lookup"><span data-stu-id="43f39-124">SAP application servers that belong to one SAP system SID must have their own dedicated VMs.</span></span>
+> <span data-ttu-id="980a5-121">hello 安裝程式必須符合下列條件的 hello:</span><span class="sxs-lookup"><span data-stu-id="980a5-121">hello setup must meet hello following conditions:</span></span>
+> - <span data-ttu-id="980a5-122">hello SAP ASCS/SCS 執行個體必須共用 hello 相同 WSFC 叢集。</span><span class="sxs-lookup"><span data-stu-id="980a5-122">hello SAP ASCS/SCS instances must share hello same WSFC cluster.</span></span>
+> - <span data-ttu-id="980a5-123">每個 DBMS SID 必須有其自己專用的 WSFC 叢集。</span><span class="sxs-lookup"><span data-stu-id="980a5-123">Each DBMS SID must have its own dedicated WSFC cluster.</span></span>
+> - <span data-ttu-id="980a5-124">屬於 tooone SAP 系統 SID 的 SAP 應用程式伺服器必須有自己專用的 Vm。</span><span class="sxs-lookup"><span data-stu-id="980a5-124">SAP application servers that belong tooone SAP system SID must have their own dedicated VMs.</span></span>
 
 
-## <a name="prepare-the-infrastructure"></a><span data-ttu-id="43f39-125">準備基礎結構</span><span class="sxs-lookup"><span data-stu-id="43f39-125">Prepare the infrastructure</span></span>
-<span data-ttu-id="43f39-126">若要準備您的基礎結構，您可以安裝額外的 SAP ASCS/SCS 執行個體，並使用下列參數︰</span><span class="sxs-lookup"><span data-stu-id="43f39-126">To prepare your infrastructure, you can install an additional SAP ASCS/SCS instance with the following parameters:</span></span>
+## <a name="prepare-hello-infrastructure"></a><span data-ttu-id="980a5-125">準備 hello 基礎結構</span><span class="sxs-lookup"><span data-stu-id="980a5-125">Prepare hello infrastructure</span></span>
+<span data-ttu-id="980a5-126">tooprepare 您基礎結構，您可以使用下列參數的 hello 安裝額外的 SAP ASCS/SCS 執行個體：</span><span class="sxs-lookup"><span data-stu-id="980a5-126">tooprepare your infrastructure, you can install an additional SAP ASCS/SCS instance with hello following parameters:</span></span>
 
-| <span data-ttu-id="43f39-127">參數名稱</span><span class="sxs-lookup"><span data-stu-id="43f39-127">Parameter name</span></span> | <span data-ttu-id="43f39-128">值</span><span class="sxs-lookup"><span data-stu-id="43f39-128">Value</span></span> |
+| <span data-ttu-id="980a5-127">參數名稱</span><span class="sxs-lookup"><span data-stu-id="980a5-127">Parameter name</span></span> | <span data-ttu-id="980a5-128">值</span><span class="sxs-lookup"><span data-stu-id="980a5-128">Value</span></span> |
 | --- | --- |
-| <span data-ttu-id="43f39-129">SAP ASCS/SCS SID</span><span class="sxs-lookup"><span data-stu-id="43f39-129">SAP ASCS/SCS SID</span></span> |<span data-ttu-id="43f39-130">pr1-lb-ascs</span><span class="sxs-lookup"><span data-stu-id="43f39-130">pr1-lb-ascs</span></span> |
-| <span data-ttu-id="43f39-131">SAP DBMS 內部負載平衡器</span><span class="sxs-lookup"><span data-stu-id="43f39-131">SAP DBMS internal load balancer</span></span> | <span data-ttu-id="43f39-132">PR5</span><span class="sxs-lookup"><span data-stu-id="43f39-132">PR5</span></span> |
-| <span data-ttu-id="43f39-133">SAP 虛擬主機名稱</span><span class="sxs-lookup"><span data-stu-id="43f39-133">SAP virtual host name</span></span> | <span data-ttu-id="43f39-134">pr5-sap-cl</span><span class="sxs-lookup"><span data-stu-id="43f39-134">pr5-sap-cl</span></span> |
-| <span data-ttu-id="43f39-135">SAP ASCS/SCS 虛擬主機 IP 位址 (其他 Azure Load Balancer IP 位址)</span><span class="sxs-lookup"><span data-stu-id="43f39-135">SAP ASCS/SCS virtual host IP address (additional Azure load balancer IP address)</span></span> | <span data-ttu-id="43f39-136">10.0.0.50</span><span class="sxs-lookup"><span data-stu-id="43f39-136">10.0.0.50</span></span> |
-| <span data-ttu-id="43f39-137">SAP ASCS/SCS 執行個體號碼</span><span class="sxs-lookup"><span data-stu-id="43f39-137">SAP ASCS/SCS instance number</span></span> | <span data-ttu-id="43f39-138">50</span><span class="sxs-lookup"><span data-stu-id="43f39-138">50</span></span> |
-| <span data-ttu-id="43f39-139">其他 SAP ASCS/SCS 執行個體的 ILB 探查連接埠</span><span class="sxs-lookup"><span data-stu-id="43f39-139">ILB probe port for additional SAP ASCS/SCS instance</span></span> | <span data-ttu-id="43f39-140">62350</span><span class="sxs-lookup"><span data-stu-id="43f39-140">62350</span></span> |
+| <span data-ttu-id="980a5-129">SAP ASCS/SCS SID</span><span class="sxs-lookup"><span data-stu-id="980a5-129">SAP ASCS/SCS SID</span></span> |<span data-ttu-id="980a5-130">pr1-lb-ascs</span><span class="sxs-lookup"><span data-stu-id="980a5-130">pr1-lb-ascs</span></span> |
+| <span data-ttu-id="980a5-131">SAP DBMS 內部負載平衡器</span><span class="sxs-lookup"><span data-stu-id="980a5-131">SAP DBMS internal load balancer</span></span> | <span data-ttu-id="980a5-132">PR5</span><span class="sxs-lookup"><span data-stu-id="980a5-132">PR5</span></span> |
+| <span data-ttu-id="980a5-133">SAP 虛擬主機名稱</span><span class="sxs-lookup"><span data-stu-id="980a5-133">SAP virtual host name</span></span> | <span data-ttu-id="980a5-134">pr5-sap-cl</span><span class="sxs-lookup"><span data-stu-id="980a5-134">pr5-sap-cl</span></span> |
+| <span data-ttu-id="980a5-135">SAP ASCS/SCS 虛擬主機 IP 位址 (其他 Azure Load Balancer IP 位址)</span><span class="sxs-lookup"><span data-stu-id="980a5-135">SAP ASCS/SCS virtual host IP address (additional Azure load balancer IP address)</span></span> | <span data-ttu-id="980a5-136">10.0.0.50</span><span class="sxs-lookup"><span data-stu-id="980a5-136">10.0.0.50</span></span> |
+| <span data-ttu-id="980a5-137">SAP ASCS/SCS 執行個體號碼</span><span class="sxs-lookup"><span data-stu-id="980a5-137">SAP ASCS/SCS instance number</span></span> | <span data-ttu-id="980a5-138">50</span><span class="sxs-lookup"><span data-stu-id="980a5-138">50</span></span> |
+| <span data-ttu-id="980a5-139">其他 SAP ASCS/SCS 執行個體的 ILB 探查連接埠</span><span class="sxs-lookup"><span data-stu-id="980a5-139">ILB probe port for additional SAP ASCS/SCS instance</span></span> | <span data-ttu-id="980a5-140">62350</span><span class="sxs-lookup"><span data-stu-id="980a5-140">62350</span></span> |
 
 > [!NOTE]
-> <span data-ttu-id="43f39-141">對於 SAP ASCS/SCS 叢集執行個體，每個 IP 位址需要唯一的探查連接埠。</span><span class="sxs-lookup"><span data-stu-id="43f39-141">For SAP ASCS/SCS cluster instances, each IP address requires a unique probe port.</span></span> <span data-ttu-id="43f39-142">例如，如果 Azure 內部負載平衡器上有一個 IP 位址使用探查連接埠 62300，該負載平衡器上的任何其他 IP 位址就不能使用探查連接埠 62300。</span><span class="sxs-lookup"><span data-stu-id="43f39-142">For example, if one IP address on an Azure internal load balancer uses probe port 62300, no other IP address on that load balancer can use probe port 62300.</span></span>
+> <span data-ttu-id="980a5-141">對於 SAP ASCS/SCS 叢集執行個體，每個 IP 位址需要唯一的探查連接埠。</span><span class="sxs-lookup"><span data-stu-id="980a5-141">For SAP ASCS/SCS cluster instances, each IP address requires a unique probe port.</span></span> <span data-ttu-id="980a5-142">例如，如果 Azure 內部負載平衡器上有一個 IP 位址使用探查連接埠 62300，該負載平衡器上的任何其他 IP 位址就不能使用探查連接埠 62300。</span><span class="sxs-lookup"><span data-stu-id="980a5-142">For example, if one IP address on an Azure internal load balancer uses probe port 62300, no other IP address on that load balancer can use probe port 62300.</span></span>
 >
-><span data-ttu-id="43f39-143">針對本文目的，因為已保留探查連接埠 62300，我們會使用探查連接埠 62350。</span><span class="sxs-lookup"><span data-stu-id="43f39-143">For our purposes, because probe port 62300 is already reserved, we are using probe port 62350.</span></span>
+><span data-ttu-id="980a5-143">針對本文目的，因為已保留探查連接埠 62300，我們會使用探查連接埠 62350。</span><span class="sxs-lookup"><span data-stu-id="980a5-143">For our purposes, because probe port 62300 is already reserved, we are using probe port 62350.</span></span>
 
-<span data-ttu-id="43f39-144">您可以在具有兩個節點的現有 WSFC 叢集中安裝額外 SAP ASCS/SCS 執行個體︰</span><span class="sxs-lookup"><span data-stu-id="43f39-144">You can install additional SAP ASCS/SCS instances in the existing WSFC cluster with two nodes:</span></span>
+<span data-ttu-id="980a5-144">您可以在 hello 現有 WSFC 叢集包含兩個節點中安裝額外的 SAP ASCS/SCS 執行個體：</span><span class="sxs-lookup"><span data-stu-id="980a5-144">You can install additional SAP ASCS/SCS instances in hello existing WSFC cluster with two nodes:</span></span>
 
-| <span data-ttu-id="43f39-145">虛擬機器角色</span><span class="sxs-lookup"><span data-stu-id="43f39-145">Virtual machine role</span></span> | <span data-ttu-id="43f39-146">虛擬機器主機名稱</span><span class="sxs-lookup"><span data-stu-id="43f39-146">Virtual machine host name</span></span> | <span data-ttu-id="43f39-147">靜態 IP 位址</span><span class="sxs-lookup"><span data-stu-id="43f39-147">Static IP address</span></span> |
+| <span data-ttu-id="980a5-145">虛擬機器角色</span><span class="sxs-lookup"><span data-stu-id="980a5-145">Virtual machine role</span></span> | <span data-ttu-id="980a5-146">虛擬機器主機名稱</span><span class="sxs-lookup"><span data-stu-id="980a5-146">Virtual machine host name</span></span> | <span data-ttu-id="980a5-147">靜態 IP 位址</span><span class="sxs-lookup"><span data-stu-id="980a5-147">Static IP address</span></span> |
 | --- | --- | --- |
-| <span data-ttu-id="43f39-148">ASCS/SCS 執行個體的第 1 個叢集節點</span><span class="sxs-lookup"><span data-stu-id="43f39-148">1st cluster node for ASCS/SCS instance</span></span> |<span data-ttu-id="43f39-149">pr1-ascs-0</span><span class="sxs-lookup"><span data-stu-id="43f39-149">pr1-ascs-0</span></span> |<span data-ttu-id="43f39-150">10.0.0.10</span><span class="sxs-lookup"><span data-stu-id="43f39-150">10.0.0.10</span></span> |
-| <span data-ttu-id="43f39-151">ASCS/SCS 執行個體的第 2 個叢集節點</span><span class="sxs-lookup"><span data-stu-id="43f39-151">2nd cluster node for ASCS/SCS instance</span></span> |<span data-ttu-id="43f39-152">pr1-ascs-1</span><span class="sxs-lookup"><span data-stu-id="43f39-152">pr1-ascs-1</span></span> |<span data-ttu-id="43f39-153">10.0.0.9</span><span class="sxs-lookup"><span data-stu-id="43f39-153">10.0.0.9</span></span> |
+| <span data-ttu-id="980a5-148">ASCS/SCS 執行個體的第 1 個叢集節點</span><span class="sxs-lookup"><span data-stu-id="980a5-148">1st cluster node for ASCS/SCS instance</span></span> |<span data-ttu-id="980a5-149">pr1-ascs-0</span><span class="sxs-lookup"><span data-stu-id="980a5-149">pr1-ascs-0</span></span> |<span data-ttu-id="980a5-150">10.0.0.10</span><span class="sxs-lookup"><span data-stu-id="980a5-150">10.0.0.10</span></span> |
+| <span data-ttu-id="980a5-151">ASCS/SCS 執行個體的第 2 個叢集節點</span><span class="sxs-lookup"><span data-stu-id="980a5-151">2nd cluster node for ASCS/SCS instance</span></span> |<span data-ttu-id="980a5-152">pr1-ascs-1</span><span class="sxs-lookup"><span data-stu-id="980a5-152">pr1-ascs-1</span></span> |<span data-ttu-id="980a5-153">10.0.0.9</span><span class="sxs-lookup"><span data-stu-id="980a5-153">10.0.0.9</span></span> |
 
-### <a name="create-a-virtual-host-name-for-the-clustered-sap-ascsscs-instance-on-the-dns-server"></a><span data-ttu-id="43f39-154">在 DNS 伺服器上建立叢集 SAP ASCS/SCS 執行個體的虛擬主機名稱</span><span class="sxs-lookup"><span data-stu-id="43f39-154">Create a virtual host name for the clustered SAP ASCS/SCS instance on the DNS server</span></span>
+### <a name="create-a-virtual-host-name-for-hello-clustered-sap-ascsscs-instance-on-hello-dns-server"></a><span data-ttu-id="980a5-154">Hello DNS 伺服器上建立叢集的 hello SAP ASCS/SCS 執行個體的虛擬主機名稱</span><span class="sxs-lookup"><span data-stu-id="980a5-154">Create a virtual host name for hello clustered SAP ASCS/SCS instance on hello DNS server</span></span>
 
-<span data-ttu-id="43f39-155">您可以使用下列參數為 ASCS/SCS 執行個體的虛擬主機名稱建立 DNS 項目：</span><span class="sxs-lookup"><span data-stu-id="43f39-155">You can create a DNS entry for the virtual host name of the ASCS/SCS instance by using the following parameters:</span></span>
+<span data-ttu-id="980a5-155">您可以使用下列參數的 hello 建立 hello hello ASCS/SCS 執行個體的虛擬主機名稱的 DNS 項目：</span><span class="sxs-lookup"><span data-stu-id="980a5-155">You can create a DNS entry for hello virtual host name of hello ASCS/SCS instance by using hello following parameters:</span></span>
 
-| <span data-ttu-id="43f39-156">新的 SAP ASCS/SCS 虛擬主機名稱</span><span class="sxs-lookup"><span data-stu-id="43f39-156">New SAP ASCS/SCS virtual host name</span></span> | <span data-ttu-id="43f39-157">相關聯的 IP 位址</span><span class="sxs-lookup"><span data-stu-id="43f39-157">Associated IP address</span></span> |
+| <span data-ttu-id="980a5-156">新的 SAP ASCS/SCS 虛擬主機名稱</span><span class="sxs-lookup"><span data-stu-id="980a5-156">New SAP ASCS/SCS virtual host name</span></span> | <span data-ttu-id="980a5-157">相關聯的 IP 位址</span><span class="sxs-lookup"><span data-stu-id="980a5-157">Associated IP address</span></span> |
 | --- | --- | --- |
-|<span data-ttu-id="43f39-158">pr5-sap-cl</span><span class="sxs-lookup"><span data-stu-id="43f39-158">pr5-sap-cl</span></span> |<span data-ttu-id="43f39-159">10.0.0.50</span><span class="sxs-lookup"><span data-stu-id="43f39-159">10.0.0.50</span></span> |
+|<span data-ttu-id="980a5-158">pr5-sap-cl</span><span class="sxs-lookup"><span data-stu-id="980a5-158">pr5-sap-cl</span></span> |<span data-ttu-id="980a5-159">10.0.0.50</span><span class="sxs-lookup"><span data-stu-id="980a5-159">10.0.0.50</span></span> |
 
-<span data-ttu-id="43f39-160">新的主機名稱和 IP 位址會顯示在 DNS 管理員中，如下列螢幕擷取畫面所示︰</span><span class="sxs-lookup"><span data-stu-id="43f39-160">The new host name and IP address are displayed in the DNS Manager, as shown in the following screenshot:</span></span>
+<span data-ttu-id="980a5-160">hello 新的主機名稱和 IP 位址會顯示 hello DNS 管理員 中，在 hello 下列螢幕擷取畫面所示：</span><span class="sxs-lookup"><span data-stu-id="980a5-160">hello new host name and IP address are displayed in hello DNS Manager, as shown in hello following screenshot:</span></span>
 
-![DNS 管理員清單反白顯示已定義之新的 SAP ASCS/SCS 叢集虛擬名稱和 TCP/IP 位址的 DNS 項目][sap-ha-guide-figure-6004]
+![DNS 管理員 清單中反白顯示 hello 定義 hello 新 SAP ASCS/SCS 叢集虛擬名稱和 TCP/IP 位址的 DNS 項目][sap-ha-guide-figure-6004]
 
-<span data-ttu-id="43f39-162">建立 DNS 項目的程序在主要的 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide-9.1.1]中也有詳細說明。</span><span class="sxs-lookup"><span data-stu-id="43f39-162">The procedure for creating a DNS entry is also described in detail in the main [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide-9.1.1].</span></span>
+<span data-ttu-id="980a5-162">建立 DNS 項目 hello 程序也說明 hello 主要詳細[Windows Vm 上的高可用性的 SAP NetWeaver 指南][sap-ha-guide-9.1.1]。</span><span class="sxs-lookup"><span data-stu-id="980a5-162">hello procedure for creating a DNS entry is also described in detail in hello main [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide-9.1.1].</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="43f39-163">您指派給 ASCS/SCS 執行個體之虛擬主機名稱的新 IP 位址必須與指派給 SAP Azure Load Balancer 的新 IP 位址相同。</span><span class="sxs-lookup"><span data-stu-id="43f39-163">The new IP address that you assign to the virtual host name of the additional ASCS/SCS instance must be the same as the new IP address that you assigned to the SAP Azure load balancer.</span></span>
+> <span data-ttu-id="980a5-163">hello 您指派 toohello hello 其他 ASCS/SCS 執行個體的虛擬主機名稱的新 IP 位址必須是 hello 與 hello 新的 IP 位址指派給 toohello SAP 的 Azure 負載平衡器相同。</span><span class="sxs-lookup"><span data-stu-id="980a5-163">hello new IP address that you assign toohello virtual host name of hello additional ASCS/SCS instance must be hello same as hello new IP address that you assigned toohello SAP Azure load balancer.</span></span>
 >
-><span data-ttu-id="43f39-164">在我們的案例中，IP 位址是 10.0.0.50。</span><span class="sxs-lookup"><span data-stu-id="43f39-164">In our scenario, the IP address is 10.0.0.50.</span></span>
+><span data-ttu-id="980a5-164">在我們的案例所 10.0.0.50 hello IP 位址。</span><span class="sxs-lookup"><span data-stu-id="980a5-164">In our scenario, hello IP address is 10.0.0.50.</span></span>
 
-### <a name="add-an-ip-address-to-an-existing-azure-internal-load-balancer-by-using-powershell"></a><span data-ttu-id="43f39-165">使用 PowerShell 將 IP 位址新增至現有的 Azure 內部負載平衡器</span><span class="sxs-lookup"><span data-stu-id="43f39-165">Add an IP address to an existing Azure internal load balancer by using PowerShell</span></span>
+### <a name="add-an-ip-address-tooan-existing-azure-internal-load-balancer-by-using-powershell"></a><span data-ttu-id="980a5-165">使用 PowerShell 新增 IP 位址 tooan 現有 Azure 內部負載平衡器</span><span class="sxs-lookup"><span data-stu-id="980a5-165">Add an IP address tooan existing Azure internal load balancer by using PowerShell</span></span>
 
-<span data-ttu-id="43f39-166">若要在相同的 WSFC 叢集中建立多個 SAP ASCS/SCS 執行個體，請使用 PowerShell 將 IP 位址新增至現有的 Azure 內部負載平衡器。</span><span class="sxs-lookup"><span data-stu-id="43f39-166">To create more than one SAP ASCS/SCS instance in the same WSFC cluster, use PowerShell to add an IP address to an existing Azure internal load balancer.</span></span> <span data-ttu-id="43f39-167">每個 IP 位址都需要有自己的負載平衡規則、探查連接埠、前端 IP 集區和後端集區。</span><span class="sxs-lookup"><span data-stu-id="43f39-167">Each IP address requires its own load-balancing rules, probe port, front-end IP pool, and back-end pool.</span></span>
+<span data-ttu-id="980a5-166">以上一個 SAP ASCS/SCS 執行個體中的 toocreate hello 相同 WSFC 叢集，請使用 PowerShell tooadd 現有 Azure 內部負載平衡器 IP 位址 tooan。</span><span class="sxs-lookup"><span data-stu-id="980a5-166">toocreate more than one SAP ASCS/SCS instance in hello same WSFC cluster, use PowerShell tooadd an IP address tooan existing Azure internal load balancer.</span></span> <span data-ttu-id="980a5-167">每個 IP 位址都需要有自己的負載平衡規則、探查連接埠、前端 IP 集區和後端集區。</span><span class="sxs-lookup"><span data-stu-id="980a5-167">Each IP address requires its own load-balancing rules, probe port, front-end IP pool, and back-end pool.</span></span>
 
-<span data-ttu-id="43f39-168">下列指令碼會將新的 IP 位址新增至現有的負載平衡器。</span><span class="sxs-lookup"><span data-stu-id="43f39-168">The following script adds a new IP address to an existing load balancer.</span></span> <span data-ttu-id="43f39-169">請更新您環境的 PowerShell 變數。</span><span class="sxs-lookup"><span data-stu-id="43f39-169">Update the PowerShell variables for your environment.</span></span> <span data-ttu-id="43f39-170">指令碼會為所有 SAP ASCS/SCS 通訊埠建立所有必要的負載平衡規則。</span><span class="sxs-lookup"><span data-stu-id="43f39-170">The script will create all needed load-balancing rules for all SAP ASCS/SCS ports.</span></span>
+<span data-ttu-id="980a5-168">hello 下列指令碼會新增新 IP 位址 tooan 現有負載平衡器。</span><span class="sxs-lookup"><span data-stu-id="980a5-168">hello following script adds a new IP address tooan existing load balancer.</span></span> <span data-ttu-id="980a5-169">更新您的環境的 hello PowerShell 變數。</span><span class="sxs-lookup"><span data-stu-id="980a5-169">Update hello PowerShell variables for your environment.</span></span> <span data-ttu-id="980a5-170">hello 指令碼會建立所需的所有負載平衡規則的所有 SAP ASCS/SCS 連接埠。</span><span class="sxs-lookup"><span data-stu-id="980a5-170">hello script will create all needed load-balancing rules for all SAP ASCS/SCS ports.</span></span>
 
 ```powershell
 
@@ -551,7 +551,7 @@ $count = $ILB.FrontendIpConfigurations.Count + 1
 $FrontEndConfigurationName ="lbFrontendASCS$count"
 $LBProbeName = "lbProbeASCS$count"
 
-# Get the Azure VNet and subnet
+# Get hello Azure VNet and subnet
 $VNet = Get-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $ResourceGroupName
 $Subnet = Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $VNet -Name $SubnetName
 
@@ -574,14 +574,14 @@ $BEConfig = Add-AzureRmLoadBalancerBackendAddressPoolConfig -Name $BackEndConfig
 # Get new updated config
 $ILB = Get-AzureRmLoadBalancer -Name $ILBname -ResourceGroupName $ResourceGroupName
 
-# Assign VM NICs to backend pool
+# Assign VM NICs toobackend pool
 $BEPool = Get-AzureRmLoadBalancerBackendAddressPoolConfig -Name $BackEndConfigurationName -LoadBalancer $ILB
 foreach($VMName in $VMNames){
         $VM = Get-AzureRmVM -ResourceGroupName $ResourceGroupName -Name $VMName
         $NICName = ($VM.NetworkInterfaceIDs[0].Split('/') | select -last 1)        
         $NIC = Get-AzureRmNetworkInterface -name $NICName -ResourceGroupName $ResourceGroupName                
         $NIC.IpConfigurations[0].LoadBalancerBackendAddressPools += $BEPool
-        Write-Host "Assigning network card '$NICName' of the '$VMName' VM to the backend pool '$BackEndConfigurationName' ..." -ForegroundColor Green
+        Write-Host "Assigning network card '$NICName' of hello '$VMName' VM toohello backend pool '$BackEndConfigurationName' ..." -ForegroundColor Green
         Set-AzureRmNetworkInterface -NetworkInterface $NIC
         #start-AzureRmVM -ResourceGroupName $ResourceGroupName -Name $VM.Name
 }
@@ -594,79 +594,79 @@ $FEConfig = get-AzureRMLoadBalancerFrontendIpConfig -Name $FrontEndConfiguration
 $BEConfig = Get-AzureRmLoadBalancerBackendAddressPoolConfig -Name $BackEndConfigurationName -LoadBalancer $ILB
 $HealthProbe  = Get-AzureRmLoadBalancerProbeConfig -Name $LBProbeName -LoadBalancer $ILB
 
-Write-Host "Creating load balancing rules for the ports: '$Ports' ... " -ForegroundColor Green
+Write-Host "Creating load balancing rules for hello ports: '$Ports' ... " -ForegroundColor Green
 
 foreach ($Port in $Ports) {
 
         $LBConfigrulename = "lbrule$Port" + "_$count"
-        Write-Host "Creating load balancing rule '$LBConfigrulename' for the port '$Port' ..." -ForegroundColor Green
+        Write-Host "Creating load balancing rule '$LBConfigrulename' for hello port '$Port' ..." -ForegroundColor Green
 
         $ILB | Add-AzureRmLoadBalancerRuleConfig -Name $LBConfigRuleName -FrontendIpConfiguration $FEConfig  -BackendAddressPool $BEConfig -Probe $HealthProbe -Protocol tcp -FrontendPort  $Port -BackendPort $Port -IdleTimeoutInMinutes 30 -LoadDistribution Default -EnableFloatingIP   
 }
 
 $ILB | Set-AzureRmLoadBalancer
 
-Write-Host "Succesfully added new IP '$ILBIP' to the internal load balancer '$ILBName'!" -ForegroundColor Green
+Write-Host "Succesfully added new IP '$ILBIP' toohello internal load balancer '$ILBName'!" -ForegroundColor Green
 
 ```
-<span data-ttu-id="43f39-171">在執行指令碼之後，結果會顯示在 Azure 入口網站中，如下列螢幕擷取畫面所示︰</span><span class="sxs-lookup"><span data-stu-id="43f39-171">After the script has run, the results are displayed in the Azure portal, as shown in the following screenshot:</span></span>
+<span data-ttu-id="980a5-171">Hello 指令碼執行之後，結果會顯示在 hello hello Azure 入口網站，hello 下列螢幕擷取畫面所示：</span><span class="sxs-lookup"><span data-stu-id="980a5-171">After hello script has run, hello results are displayed in hello Azure portal, as shown in hello following screenshot:</span></span>
 
-![Azure 入口網站中新的前端 IP 集區][sap-ha-guide-figure-6005]
+![前端 IP 集區中 hello Azure 入口網站][sap-ha-guide-figure-6005]
 
-### <a name="add-disks-to-cluster-machines-and-configure-the-sios-cluster-share-disk"></a><span data-ttu-id="43f39-173">將磁碟新增至叢集機器，並設定 SIOS 叢集共用磁碟</span><span class="sxs-lookup"><span data-stu-id="43f39-173">Add disks to cluster machines, and configure the SIOS cluster share disk</span></span>
+### <a name="add-disks-toocluster-machines-and-configure-hello-sios-cluster-share-disk"></a><span data-ttu-id="980a5-173">新增磁碟 toocluster 機器，並設定 hello SIOS 叢集共用磁碟</span><span class="sxs-lookup"><span data-stu-id="980a5-173">Add disks toocluster machines, and configure hello SIOS cluster share disk</span></span>
 
-<span data-ttu-id="43f39-174">對於每個額外 SAP ASCS/SCS 執行個體，您必須新增叢集共用磁碟。</span><span class="sxs-lookup"><span data-stu-id="43f39-174">You must add a new cluster share disk for each additional SAP ASCS/SCS instance.</span></span> <span data-ttu-id="43f39-175">針對 Windows Server 2012 R2，目前使用的 WSFC 叢集共用磁碟是 SIOS DataKeeper 軟體解決方案。</span><span class="sxs-lookup"><span data-stu-id="43f39-175">For Windows Server 2012 R2, the WSFC cluster share disk currently in use is the SIOS DataKeeper software solution.</span></span>
+<span data-ttu-id="980a5-174">對於每個額外 SAP ASCS/SCS 執行個體，您必須新增叢集共用磁碟。</span><span class="sxs-lookup"><span data-stu-id="980a5-174">You must add a new cluster share disk for each additional SAP ASCS/SCS instance.</span></span> <span data-ttu-id="980a5-175">Windows Server 2012 R2，hello WSFC 叢集共用磁碟目前正在使用中的 hello SIOS DataKeeper 軟體解決方案。</span><span class="sxs-lookup"><span data-stu-id="980a5-175">For Windows Server 2012 R2, hello WSFC cluster share disk currently in use is hello SIOS DataKeeper software solution.</span></span>
 
-<span data-ttu-id="43f39-176">執行下列動作：</span><span class="sxs-lookup"><span data-stu-id="43f39-176">Do the following:</span></span>
-1. <span data-ttu-id="43f39-177">將額外磁碟或大小相同的磁碟 (您需要等量的磁碟) 新增至每個叢集節點中，並將其格式化。</span><span class="sxs-lookup"><span data-stu-id="43f39-177">Add an additional disk or disks of the same size (which you need to stripe) to each of the cluster nodes, and format them.</span></span>
-2. <span data-ttu-id="43f39-178">使用 SIOS DataKeeper 設定儲存體複寫。</span><span class="sxs-lookup"><span data-stu-id="43f39-178">Configure storage replication with SIOS DataKeeper.</span></span>
+<span data-ttu-id="980a5-176">請勿 hello 遵循：</span><span class="sxs-lookup"><span data-stu-id="980a5-176">Do hello following:</span></span>
+1. <span data-ttu-id="980a5-177">新增其他磁碟或磁碟的 hello 相同的大小 (您需要 toostripe) tooeach hello 的叢集節點，然後將它們格式化。</span><span class="sxs-lookup"><span data-stu-id="980a5-177">Add an additional disk or disks of hello same size (which you need toostripe) tooeach of hello cluster nodes, and format them.</span></span>
+2. <span data-ttu-id="980a5-178">使用 SIOS DataKeeper 設定儲存體複寫。</span><span class="sxs-lookup"><span data-stu-id="980a5-178">Configure storage replication with SIOS DataKeeper.</span></span>
 
-<span data-ttu-id="43f39-179">此程序假設您已在 WSFC 叢集機器上安裝了 SIOS DataKeeper。</span><span class="sxs-lookup"><span data-stu-id="43f39-179">This procedure assumes that you have already installed SIOS DataKeeper on the WSFC cluster machines.</span></span> <span data-ttu-id="43f39-180">如果已經安裝，您現在必須在電腦之間設定複寫。</span><span class="sxs-lookup"><span data-stu-id="43f39-180">If you have installed it, you must now configure replication between the machines.</span></span> <span data-ttu-id="43f39-181">如需此程序的詳細說明，請參閱主要的 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide-8.12.3.3]。</span><span class="sxs-lookup"><span data-stu-id="43f39-181">The process is described in detail in the main [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide-8.12.3.3].</span></span>  
+<span data-ttu-id="980a5-179">此程序假設您已經有安裝 SIOS DataKeeper hello WSFC 叢集的電腦上。</span><span class="sxs-lookup"><span data-stu-id="980a5-179">This procedure assumes that you have already installed SIOS DataKeeper on hello WSFC cluster machines.</span></span> <span data-ttu-id="980a5-180">如果您已安裝它，您現在必須設定 hello 機器之間的複寫。</span><span class="sxs-lookup"><span data-stu-id="980a5-180">If you have installed it, you must now configure replication between hello machines.</span></span> <span data-ttu-id="980a5-181">hello 程序中有詳細說明在 hello 主要[Windows Vm 上的高可用性的 SAP NetWeaver 指南][sap-ha-guide-8.12.3.3]。</span><span class="sxs-lookup"><span data-stu-id="980a5-181">hello process is described in detail in hello main [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide-8.12.3.3].</span></span>  
 
-![新的 SAP ASCS/SCS 共用磁碟的 DataKeeper 同步鏡像][sap-ha-guide-figure-6006]
+![DataKeeper 同步鏡像 hello 新 SAP ASCS/SCS 共用磁碟][sap-ha-guide-figure-6006]
 
-### <a name="deploy-vms-for-sap-application-servers-and-dbms-cluster"></a><span data-ttu-id="43f39-183">針對 SAP 應用程式伺服器和 DBMS 叢集部署 VM</span><span class="sxs-lookup"><span data-stu-id="43f39-183">Deploy VMs for SAP application servers and DBMS cluster</span></span>
+### <a name="deploy-vms-for-sap-application-servers-and-dbms-cluster"></a><span data-ttu-id="980a5-183">針對 SAP 應用程式伺服器和 DBMS 叢集部署 VM</span><span class="sxs-lookup"><span data-stu-id="980a5-183">Deploy VMs for SAP application servers and DBMS cluster</span></span>
 
-<span data-ttu-id="43f39-184">若要完成第二個 SAP 系統的基礎結構準備，執行下列作業︰</span><span class="sxs-lookup"><span data-stu-id="43f39-184">To complete the infrastructure preparation for the second SAP system, do the following:</span></span>
+<span data-ttu-id="980a5-184">第二個 SAP 系統 hello，toocomplete hello 基礎結構準備 hello 遵循：</span><span class="sxs-lookup"><span data-stu-id="980a5-184">toocomplete hello infrastructure preparation for hello second SAP system, do hello following:</span></span>
 
-1. <span data-ttu-id="43f39-185">為 SAP 應用程式伺服器部署專用 VM，並將它們放在其自己專用的可用性群組。</span><span class="sxs-lookup"><span data-stu-id="43f39-185">Deploy dedicated VMs for SAP application servers and put them in their own dedicated availability group.</span></span>
-2. <span data-ttu-id="43f39-186">為 DBMS 叢集部署專用 VM，並將它們放在其自己專用的可用性群組。</span><span class="sxs-lookup"><span data-stu-id="43f39-186">Deploy dedicated VMs for DBMS cluster and put them in their own dedicated availability group.</span></span>
+1. <span data-ttu-id="980a5-185">為 SAP 應用程式伺服器部署專用 VM，並將它們放在其自己專用的可用性群組。</span><span class="sxs-lookup"><span data-stu-id="980a5-185">Deploy dedicated VMs for SAP application servers and put them in their own dedicated availability group.</span></span>
+2. <span data-ttu-id="980a5-186">為 DBMS 叢集部署專用 VM，並將它們放在其自己專用的可用性群組。</span><span class="sxs-lookup"><span data-stu-id="980a5-186">Deploy dedicated VMs for DBMS cluster and put them in their own dedicated availability group.</span></span>
 
 
-## <a name="install-the-second-sap-sid2-netweaver-system"></a><span data-ttu-id="43f39-187">安裝第二個 SAP SID2 NetWeaver 系統</span><span class="sxs-lookup"><span data-stu-id="43f39-187">Install the second SAP SID2 NetWeaver system</span></span>
+## <a name="install-hello-second-sap-sid2-netweaver-system"></a><span data-ttu-id="980a5-187">安裝第二個 SID2 的 SAP NetWeaver 系統 hello</span><span class="sxs-lookup"><span data-stu-id="980a5-187">Install hello second SAP SID2 NetWeaver system</span></span>
 
-<span data-ttu-id="43f39-188">如需有關安裝第二個 SAP SID2 系統的完整程序說明，請參閱主要的 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide-9]。</span><span class="sxs-lookup"><span data-stu-id="43f39-188">The complete process of installing a second SAP SID2 system is described in the main [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide-9].</span></span>
+<span data-ttu-id="980a5-188">hello 安裝的第二個 SAP SID2 系統的完整程序所述 hello 主要[Windows Vm 上的高可用性的 SAP NetWeaver 指南][sap-ha-guide-9]。</span><span class="sxs-lookup"><span data-stu-id="980a5-188">hello complete process of installing a second SAP SID2 system is described in hello main [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide-9].</span></span>
 
-<span data-ttu-id="43f39-189">高階程序如下所示︰</span><span class="sxs-lookup"><span data-stu-id="43f39-189">The high-level procedure is as follows:</span></span>
+<span data-ttu-id="980a5-189">hello 高階程序如下所示：</span><span class="sxs-lookup"><span data-stu-id="980a5-189">hello high-level procedure is as follows:</span></span>
 
-1. <span data-ttu-id="43f39-190">[安裝 SAP 的第一個叢集節點][sap-ha-guide-9.1.2]。</span><span class="sxs-lookup"><span data-stu-id="43f39-190">[Install the SAP first cluster node][sap-ha-guide-9.1.2].</span></span>  
- <span data-ttu-id="43f39-191">在此步驟中，您要在**現有 WSFC 叢集節點 1** 上使用高可用性 ASCS/SCS 執行個體安裝 SAP。</span><span class="sxs-lookup"><span data-stu-id="43f39-191">In this step, you are installing SAP with a high-availability ASCS/SCS instance on the **EXISTING WSFC cluster node 1**.</span></span>
+1. <span data-ttu-id="980a5-190">[安裝 hello SAP 第一個叢集節點][sap-ha-guide-9.1.2]。</span><span class="sxs-lookup"><span data-stu-id="980a5-190">[Install hello SAP first cluster node][sap-ha-guide-9.1.2].</span></span>  
+ <span data-ttu-id="980a5-191">在此步驟中，您要安裝 SAP 與高可用性 ASCS/SCS 執行個體上 hello**現有的 WSFC 叢集節點 1**。</span><span class="sxs-lookup"><span data-stu-id="980a5-191">In this step, you are installing SAP with a high-availability ASCS/SCS instance on hello **EXISTING WSFC cluster node 1**.</span></span>
 
-2. <span data-ttu-id="43f39-192">[修改 ASCS/SCS 執行個體的 SAP 設定檔][sap-ha-guide-9.1.3]。</span><span class="sxs-lookup"><span data-stu-id="43f39-192">[Modify the SAP profile of the ASCS/SCS instance][sap-ha-guide-9.1.3].</span></span>
+2. <span data-ttu-id="980a5-192">[修改 hello ASCS/SCS 執行個體的 hello SAP 設定檔][sap-ha-guide-9.1.3]。</span><span class="sxs-lookup"><span data-stu-id="980a5-192">[Modify hello SAP profile of hello ASCS/SCS instance][sap-ha-guide-9.1.3].</span></span>
 
-3. <span data-ttu-id="43f39-193">[設定探查連接埠][sap-ha-guide-9.1.4]。</span><span class="sxs-lookup"><span data-stu-id="43f39-193">[Configure a probe port][sap-ha-guide-9.1.4].</span></span>  
- <span data-ttu-id="43f39-194">在此步驟中，您要使用 PowerShell 設定 SAP 叢集資源 SAP SID2 IP 探查連接埠。</span><span class="sxs-lookup"><span data-stu-id="43f39-194">In this step, you are configuring an SAP cluster resource SAP-SID2-IP probe port by using PowerShell.</span></span> <span data-ttu-id="43f39-195">在其中一個 SAP ASCS/SCS 叢集節點上執行此組態。</span><span class="sxs-lookup"><span data-stu-id="43f39-195">Execute this configuration on one of the SAP ASCS/SCS cluster nodes.</span></span>
+3. <span data-ttu-id="980a5-193">[設定探查連接埠][sap-ha-guide-9.1.4]。</span><span class="sxs-lookup"><span data-stu-id="980a5-193">[Configure a probe port][sap-ha-guide-9.1.4].</span></span>  
+ <span data-ttu-id="980a5-194">在此步驟中，您要使用 PowerShell 設定 SAP 叢集資源 SAP SID2 IP 探查連接埠。</span><span class="sxs-lookup"><span data-stu-id="980a5-194">In this step, you are configuring an SAP cluster resource SAP-SID2-IP probe port by using PowerShell.</span></span> <span data-ttu-id="980a5-195">其中一個 hello SAP ASCS/SCS 叢集節點上執行這項設定。</span><span class="sxs-lookup"><span data-stu-id="980a5-195">Execute this configuration on one of hello SAP ASCS/SCS cluster nodes.</span></span>
 
-4. <span data-ttu-id="43f39-196">[安裝資料庫執行個體][sap-ha-guide-9.2]。</span><span class="sxs-lookup"><span data-stu-id="43f39-196">[Install the database instance][sap-ha-guide-9.2].</span></span>  
- <span data-ttu-id="43f39-197">在此步驟中，您要在專用的 WSFC 叢集上安裝 DBMS。</span><span class="sxs-lookup"><span data-stu-id="43f39-197">In this step, you are installing DBMS on a dedicated WSFC cluster.</span></span>
+4. <span data-ttu-id="980a5-196">[安裝 hello 資料庫執行個體][sap-ha-guide-9.2]。</span><span class="sxs-lookup"><span data-stu-id="980a5-196">[Install hello database instance][sap-ha-guide-9.2].</span></span>  
+ <span data-ttu-id="980a5-197">在此步驟中，您要在專用的 WSFC 叢集上安裝 DBMS。</span><span class="sxs-lookup"><span data-stu-id="980a5-197">In this step, you are installing DBMS on a dedicated WSFC cluster.</span></span>
 
-5. <span data-ttu-id="43f39-198">[安裝第二個叢集節點][sap-ha-guide-9.3]。</span><span class="sxs-lookup"><span data-stu-id="43f39-198">[Install the second cluster node][sap-ha-guide-9.3].</span></span>  
- <span data-ttu-id="43f39-199">在此步驟中，您要在現有 WSFC 叢集節點 2 上使用高可用性 ASCS/SCS 執行個體安裝 SAP。</span><span class="sxs-lookup"><span data-stu-id="43f39-199">In this step, you are installing SAP with a high-availability ASCS/SCS instance on the existing WSFC cluster node 2.</span></span>
+5. <span data-ttu-id="980a5-198">[安裝第二個叢集節點 hello][sap-ha-guide-9.3]。</span><span class="sxs-lookup"><span data-stu-id="980a5-198">[Install hello second cluster node][sap-ha-guide-9.3].</span></span>  
+ <span data-ttu-id="980a5-199">在此步驟中，您要安裝 SAP 與現有 WSFC 叢集節點 hello 2 上的高可用性 ASCS/SCS 執行個體。</span><span class="sxs-lookup"><span data-stu-id="980a5-199">In this step, you are installing SAP with a high-availability ASCS/SCS instance on hello existing WSFC cluster node 2.</span></span>
 
-6. <span data-ttu-id="43f39-200">開啟 SAP ASCS/SCS 執行個體和 ProbePort 的 Windows 防火牆連接埠。</span><span class="sxs-lookup"><span data-stu-id="43f39-200">Open Windows Firewall ports for the SAP ASCS/SCS instance and ProbePort.</span></span>  
- <span data-ttu-id="43f39-201">在用於 SAP ASCS/SCS 執行個體的兩個叢集節點上，您要開啟 SAP ASCS/SCS 所使用的所有 Windows 防火牆連接埠。</span><span class="sxs-lookup"><span data-stu-id="43f39-201">On both cluster nodes that are used for SAP ASCS/SCS instances, you are opening all Windows Firewall ports that are used by SAP ASCS/SCS.</span></span> <span data-ttu-id="43f39-202">如需這些連接埠的清單，請參閱 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide-8.8]。</span><span class="sxs-lookup"><span data-stu-id="43f39-202">These ports are listed in the [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide-8.8].</span></span>  
- <span data-ttu-id="43f39-203">此外，開啟 Azure 內部負載平衡器探查連接埠，在我們的案例中為 62350。</span><span class="sxs-lookup"><span data-stu-id="43f39-203">Also open the Azure internal load balancer probe port, which is 62350 in our scenario.</span></span>
+6. <span data-ttu-id="980a5-200">開啟 Windows 防火牆連接埠 hello SAP ASCS/SCS 執行個體或甚至 ProbePort。</span><span class="sxs-lookup"><span data-stu-id="980a5-200">Open Windows Firewall ports for hello SAP ASCS/SCS instance and ProbePort.</span></span>  
+ <span data-ttu-id="980a5-201">在用於 SAP ASCS/SCS 執行個體的兩個叢集節點上，您要開啟 SAP ASCS/SCS 所使用的所有 Windows 防火牆連接埠。</span><span class="sxs-lookup"><span data-stu-id="980a5-201">On both cluster nodes that are used for SAP ASCS/SCS instances, you are opening all Windows Firewall ports that are used by SAP ASCS/SCS.</span></span> <span data-ttu-id="980a5-202">這些連接埠會列在 hello [Windows Vm 上的高可用性的 SAP NetWeaver 指南][sap-ha-guide-8.8]。</span><span class="sxs-lookup"><span data-stu-id="980a5-202">These ports are listed in hello [guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide-8.8].</span></span>  
+ <span data-ttu-id="980a5-203">也開啟 hello Azure 內部負載平衡器探查連接埠，也就是 62350 在我們的案例。</span><span class="sxs-lookup"><span data-stu-id="980a5-203">Also open hello Azure internal load balancer probe port, which is 62350 in our scenario.</span></span>
 
-7. <span data-ttu-id="43f39-204">[變更 SAP ERS Windows 服務執行個體的啟動類型][sap-ha-guide-9.4]。</span><span class="sxs-lookup"><span data-stu-id="43f39-204">[Change the start type of the SAP ERS Windows service instance][sap-ha-guide-9.4].</span></span>
+7. <span data-ttu-id="980a5-204">[變更 hello hello SAP 端 Windows 服務執行個體的啟動類型][sap-ha-guide-9.4]。</span><span class="sxs-lookup"><span data-stu-id="980a5-204">[Change hello start type of hello SAP ERS Windows service instance][sap-ha-guide-9.4].</span></span>
 
-8. <span data-ttu-id="43f39-205">在新的專用 VM 上[安裝 SAP 主要應用程式伺服器][sap-ha-guide-9.5]。</span><span class="sxs-lookup"><span data-stu-id="43f39-205">[Install the SAP primary application server][sap-ha-guide-9.5] on the new dedicated VM.</span></span>
+8. <span data-ttu-id="980a5-205">[安裝 hello SAP 主應用程式伺服器][ sap-ha-guide-9.5]上新的 hello 專用 VM。</span><span class="sxs-lookup"><span data-stu-id="980a5-205">[Install hello SAP primary application server][sap-ha-guide-9.5] on hello new dedicated VM.</span></span>
 
-9. <span data-ttu-id="43f39-206">在新的專用 VM 上[安裝 SAP 額外應用程式伺服器][sap-ha-guide-9.6]。</span><span class="sxs-lookup"><span data-stu-id="43f39-206">[Install the SAP additional application server][sap-ha-guide-9.6] on the new dedicated VM.</span></span>
+9. <span data-ttu-id="980a5-206">[安裝 hello SAP 其他應用程式伺服器][ sap-ha-guide-9.6]上新的 hello 專用 VM。</span><span class="sxs-lookup"><span data-stu-id="980a5-206">[Install hello SAP additional application server][sap-ha-guide-9.6] on hello new dedicated VM.</span></span>
 
-10. <span data-ttu-id="43f39-207">[測試 SAP ASCS/SCS 執行個體容錯移轉和 SIOS 複寫][sap-ha-guide-10]。</span><span class="sxs-lookup"><span data-stu-id="43f39-207">[Test the SAP ASCS/SCS instance failover and SIOS replication][sap-ha-guide-10].</span></span>
+10. <span data-ttu-id="980a5-207">[測試 hello SAP ASCS/SCS 執行個體容錯移轉和 SIOS 複寫][sap-ha-guide-10]。</span><span class="sxs-lookup"><span data-stu-id="980a5-207">[Test hello SAP ASCS/SCS instance failover and SIOS replication][sap-ha-guide-10].</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="43f39-208">後續步驟</span><span class="sxs-lookup"><span data-stu-id="43f39-208">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="980a5-208">後續步驟</span><span class="sxs-lookup"><span data-stu-id="980a5-208">Next steps</span></span>
 
-- <span data-ttu-id="43f39-209">[網路限制：Azure Resource Manager][networking-limits-azure-resource-manager]</span><span class="sxs-lookup"><span data-stu-id="43f39-209">[Networking limits: Azure Resource Manager][networking-limits-azure-resource-manager]</span></span>
-- <span data-ttu-id="43f39-210">[Azure Load Balancer 的多個 VIP][load-balancer-multivip-overview]</span><span class="sxs-lookup"><span data-stu-id="43f39-210">[Multiple VIPs for Azure Load Balancer][load-balancer-multivip-overview]</span></span>
-- <span data-ttu-id="43f39-211">[Windows VM 上的 SAP NetWeaver 高可用性指南][sap-ha-guide]</span><span class="sxs-lookup"><span data-stu-id="43f39-211">[Guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide]</span></span>
+- <span data-ttu-id="980a5-209">[網路限制：Azure Resource Manager][networking-limits-azure-resource-manager]</span><span class="sxs-lookup"><span data-stu-id="980a5-209">[Networking limits: Azure Resource Manager][networking-limits-azure-resource-manager]</span></span>
+- <span data-ttu-id="980a5-210">[Azure Load Balancer 的多個 VIP][load-balancer-multivip-overview]</span><span class="sxs-lookup"><span data-stu-id="980a5-210">[Multiple VIPs for Azure Load Balancer][load-balancer-multivip-overview]</span></span>
+- <span data-ttu-id="980a5-211">[Windows VM 上的 SAP NetWeaver 高可用性指南][sap-ha-guide]</span><span class="sxs-lookup"><span data-stu-id="980a5-211">[Guide for high-availability SAP NetWeaver on Windows VMs][sap-ha-guide]</span></span>
