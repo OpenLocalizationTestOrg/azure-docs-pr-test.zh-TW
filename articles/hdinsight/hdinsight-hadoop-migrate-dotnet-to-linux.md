@@ -1,6 +1,6 @@
 ---
-title: "在以 Linux 為基礎的 HDInsight - Azure 上搭配 Hadoop MapReduce 使用 .NET | Microsoft Docs"
-description: "了解如何在以 Linux 為基礎的 HDInsight 上使用 .NET 應用程式串流處理 MapReduce。"
+title: "aaaUse 與 Hadoop MapReduce 以 Linux 為基礎的 HDInsight 的 Azure 上的.NET |Microsoft 文件"
+description: "深入了解如何 toouse 串流 MapReduce 以 Linux 為基礎的 HDInsight 上的.NET 應用程式。"
 services: hdinsight
 documentationCenter: 
 author: Blackmist
@@ -16,59 +16,59 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/12/2017
 ms.author: larryfr
-ms.openlocfilehash: 6ad188fb752474ff5c7d8a3fb9d609eefe8c7a9a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5a4e6dc1b4dafa8cc40780e3371fa4b8ba3e3d48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-net-solutions-for-windows-based-hdinsight-to-linux-based-hdinsight"></a>將以 Windows 為基礎的 HDInsight 適用的 .NET 方案移轉至以 Linux 為基礎的 HDInsight
+# <a name="migrate-net-solutions-for-windows-based-hdinsight-toolinux-based-hdinsight"></a>移轉 Windows 為基礎的 hdinsight.NET 方案 tooLinux 為基礎的 HDInsight
 
-以 Linux 為基礎的 HDInsight 叢集使用 [Mono (https://mono-project.com)](https://mono-project.com) 來執行 .NET 應用程式。 Mono 可讓您搭配以 Linux 為基礎的 HDInsight 使用 .NET 元件 (例如 MapReduce 應用程式)。 在本文件中，了解如何移轉為以 Windows 為基礎的 HDInsight 建立的 .NET 方案，以在以 Linux 為基礎的 HDInsight 上搭配 Mono 使用。
+以 Linux 為基礎的 HDInsight 叢集使用[單聲道 (https://mono-project.com)](https://mono-project.com) toorun.NET 應用程式。 單聲道可讓您 toouse.NET 元件，例如與 linux 的 HDInsight MapReduce 應用程式。 在這份文件，了解 toomigrate.NET 方案建立 Windows 為基礎的 HDInsight 叢集 toowork Mono 以 Linux 為基礎的 HDInsight 上使用的方式。
 
 ## <a name="mono-compatibility-with-net"></a>Mono 與 .NET 的相容性
 
-4.2.1 版的 Mono 隨附於 3.5 版的 HDInsight。 如需 HDInsight 包含之 Mono 版本的詳細資訊，請參閱 [HDInsight 元件版本](hdinsight-component-versioning.md)。 若要安裝特定版本的 Mono，請參閱[安裝或更新 Mono](hdinsight-hadoop-install-mono.md) 文件。
+4.2.1 版的 Mono 隨附於 3.5 版的 HDInsight。 多個 hello Mono 隨附 HDInsight 版本的詳細資訊，請參閱[HDInsight 元件版本](hdinsight-component-versioning.md)。 tooinstall 特定版本的 Mono，請參閱 hello[安裝或更新 Mono](hdinsight-hadoop-install-mono.md)文件。
 
-如需 Mono 與 .NET 之間的相容性詳細資訊，請參閱 [Mono 相容性 (英文) (http://www.mono-project.com/docs/about-mono/compatibility/)](http://www.mono-project.com/docs/about-mono/compatibility/) 文件。
+如需 Mono 和.NET 之間的相容性的詳細資訊，請參閱 hello[單聲道相容性 (http://www.mono-project.com/docs/about-mono/compatibility/)](http://www.mono-project.com/docs/about-mono/compatibility/)文件。
 
 > [!IMPORTANT]
-> SCP.NET 架構與 Mono 相容。 如需搭配 Mono 使用 SCP.NET 的詳細資訊，請參閱[使用 Visual Studio 開發適用於 Apache Storm on HDInsight 的 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)。
+> 與單聲道相容 hello SCP.NET framework。 多個使用 Mono SCP.NET 的詳細資訊，請參閱[Apache Storm HDInsight 上使用 Visual Studio toodevelop C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)。
 
 ## <a name="automated-portability-analysis"></a>自動化的可攜性分析
 
-[.NET Portability Analyzer](https://marketplace.visualstudio.com/items?itemName=ConnieYau.NETPortabilityAnalyzer) 可用來產生一份您的應用程式和 Mono 之間的不相容性報告。 使用下列步驟設定分析器，以檢查您的應用程式是否具備 Mono 可攜性︰
+hello [.NET Portability Analyzer](https://marketplace.visualstudio.com/items?itemName=ConnieYau.NETPortabilityAnalyzer)可以是使用的 toogenerate 應用程式和單聲道之間的不相容的報表。 使用您的應用程式遵循步驟 tooconfigure hello 分析器 toocheck hello 單聲道的可攜性：
 
-1. 安裝 [.NET Portability Analyzer (英文)](https://marketplace.visualstudio.com/items?itemName=ConnieYau.NETPortabilityAnalyzer)。 在安裝期間，選取要使用的 Visual Studio 版本。
+1. 安裝 hello [.NET Portability Analyzer](https://marketplace.visualstudio.com/items?itemName=ConnieYau.NETPortabilityAnalyzer)。 在安裝期間，選取 Visual Studio toouse hello 版本。
 
-2. 從 Visual Studio 2015，選取 [分析] >  [Portability Analyzer 設定]，並確定已選取 [Mono] 區段中的 __4.5__。
+2. 從 Visual Studio 2015 中，選取__分析__ > __可攜性分析器設定__，並確定__4.5__簽入 hello__單聲道__ > 一節。
 
-    ![分析器設定的 [Mono] 區段中已選取 4.5](./media/hdinsight-hadoop-migrate-dotnet-to-linux/portability-analyzer-settings.png)
+    ![單聲道 hello 分析器設定區段中的 4.5 檢查](./media/hdinsight-hadoop-migrate-dotnet-to-linux/portability-analyzer-settings.png)
 
-    選取 [確定] 以儲存組態。
+    選取__確定__toosave hello 組態。
 
-3. 選取 [分析] > [分析組件可攜性]。 選取包含您的方案的組件，然後選取 [開啟] 以開始分析。
+3. 選取 [分析] > [分析組件可攜性]。 選取包含您的方案，hello 組件，然後選取__開啟__toobegin 分析。
 
-4. 分析完成之後，請選取 [分析] > [檢視分析報告]。 在 [可攜性分析結果] 中，選取 [開啟報告] 以開啟報告。
+4. 分析完成之後，請選取 [分析] > [檢視分析報告]。 在__可攜性分析結果__，選取__開啟報表__tooopen 報表。
 
     ![Portability Analyzer 結果對話方塊](./media/hdinsight-hadoop-migrate-dotnet-to-linux/portability-analyzer-results.png)
 
 > [!IMPORTANT]
-> 分析器無法找出您方案的每個問題。 例如，檔案路徑 `c:\temp\file.txt` 會視為有效，因為 Mono 可在 Windows 上執行，因此該路徑在該內容中有效。 不過，此路徑在 Linux 平台上無效。
+> hello 分析器無法攔截與您的方案的每個問題。 例如，檔案的檔案路徑`c:\temp\file.txt`Mono 執行於 Windows 上及在該內容中的 hello 路徑無效，因此視為 [確定]。 不過，hello 路徑不是有效的 Linux 平台上。
 
 ## <a name="manual-portability-analysis"></a>手動的可攜性分析
 
-使用[應用程式可攜性 (英文) (http://www.mono-project.com/docs/getting-started/application-portability/)](http://www.mono-project.com/docs/getting-started/application-portability/) 文件中的資訊，執行程式碼的手動稽核。
+執行您的程式碼使用 hello hello 資訊手動稽核[應用程式可攜性 (http://www.mono-project.com/docs/getting-started/application-portability/)](http://www.mono-project.com/docs/getting-started/application-portability/)文件。
 
 ## <a name="modify-and-build"></a>修改和建置
 
-您可以繼續使用 Visual Studio 建置適用於 HDInsight 的 .NET 方案。 不過，您必須確定專案已設定為使用 .NET Framework 4.5。
+您可以針對 HDInsight 繼續 toouse Visual Studio toobuild.NET 方案。 不過，您必須確定該 hello 專案設定的 toouse.NET Framework 4.5。
 
 ## <a name="deploy-and-test"></a>部署和測試
 
-使用 .NET Portability Analyzer 或手動分析的建議修改您的方案後，您必須使用 HDInsight 進行測試。 在以 Linux 為基礎的 HDInsight 叢集上測試方案，可能會揭露需要更正的細微問題。 建議您在測試時啟用應用程式中的其他記錄。
+一旦您修改您的方案使用 hello 建議從 hello.NET Portability Analyzer 或手動分析，您必須與 HDInsight 來進行測試。 測試以 Linux 為基礎的 HDInsight 叢集上的 hello 解決方案，可能會顯示需要更正 toobe 的細部問題。 建議您在測試時啟用應用程式中的其他記錄。
 
-如需存取記錄的詳細資訊，請參閱下列文件：
+如需有關存取記錄檔的詳細資訊，請參閱下列文件的 hello:
 
 * [存取以 Linux 為基礎之 HDInsight 上的 YARN 應用程式記錄](hdinsight-hadoop-access-yarn-app-logs-linux.md)
 

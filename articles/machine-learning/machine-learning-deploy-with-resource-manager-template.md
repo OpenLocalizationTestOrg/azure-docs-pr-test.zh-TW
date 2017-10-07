@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Resource Manager 部署 Machine Learning 工作區 | Microsoft Docs"
-description: "如何使用 Azure Resource Manager 範本部署 Azure Machine Learning 的工作區"
+title: "aaaDeploy Machine Learning 工作區與 Azure Resource Manager |Microsoft 文件"
+description: "如何 toodeploy Azure Machine Learning 使用 Azure Resource Manager 範本的工作區"
 services: machine-learning
 documentationcenter: 
 author: ahgyger
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/15/2017
 ms.author: ahgyger
-ms.openlocfilehash: 9e37780428b0867da63987ec4f7f843a8abeb907
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 308959825bcbd670f6ce9b6dc381be767f172357
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-machine-learning-workspace-using-azure-resource-manager"></a>使用 Azure Resource Manager 部署 Machine Learning 工作區
 ## <a name="introduction"></a>簡介
-使用 Azure Resource Manager 部署範本提供了可擴充的方式來部署具有驗證和重試機制的互連元件，為您節省時間。 若要設定 Azure Machine Learning 工作區，例如，您需要先設定 Azure 儲存體帳戶，然後再部署您的工作區。 假想您要對數百個工作區手動進行此動作。 簡單的替代方法是使用 Azure Resource Manager 範本來部署 Azure Machine Learning 工作區和所有相依性。 這篇文章會帶領您逐步完成此程序。 如需 Azure Resource Manager 的詳細概觀，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
+使用 Azure 資源管理員部署範本為您節省時間，提供可擴充的方式 toodeploy 相互連接與驗證和重試機制元件。 tooset 向上 Azure 機器學習服務工作區，例如，您需要 toofirst 設定 Azure 儲存體帳戶，然後再部署您的工作區。 假想您要對數百個工作區手動進行此動作。 簡單的替代方式是 toouse Azure Resource Manager 範本 toodeploy Azure 機器學習服務工作區和所有相依性。 這篇文章會帶領您逐步完成此程序。 如需 Azure Resource Manager 的詳細概觀，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
 
 ## <a name="step-by-step-create-a-machine-learning-workspace"></a>逐步說明：建立 Machine Learning 工作區
-我們將建立 Azure 資源群組，然後使用 Resource Manager 範本部署新的 Azure 儲存體帳戶和新的 Azure Machine Learning 工作區。 部署完成之後，我們會印出所建立的工作區的重要資訊 (主索引鍵、工作區識別碼和工作區的 URL)。
+我們將建立 Azure 資源群組，然後使用 Resource Manager 範本部署新的 Azure 儲存體帳戶和新的 Azure Machine Learning 工作區。 Hello 部署完成之後，我們會印出 hello （hello 主索引鍵、 hello 工作區識別碼和工作區中的 URL toohello hello） 所建立的工作區的相關重要資訊。
 
 ### <a name="create-an-azure-resource-manager-template"></a>建立 Azure Resource Manager 範本
-Machine Learning 工作區需有 Azure 儲存體帳戶來儲存連結到它的資料集。
-以下範本會使用資源群組的名稱來產生儲存體帳戶名稱和工作區名稱。  建立工作區時，它也會使用儲存體帳戶名稱做為屬性。
+機器學習服務工作區需要 Azure 儲存體帳戶 toostore hello 連結的資料集 tooit。
+hello 下列範本會使用 hello 名稱 hello 資源群組 toogenerate hello 儲存體帳戶名稱和 hello 工作區名稱。  它也會使用 hello 儲存體帳戶名稱做為屬性建立 hello 工作區時。
 
 ```
 {
@@ -78,31 +78,31 @@ Machine Learning 工作區需有 Azure 儲存體帳戶來儲存連結到它的�
 ```
 將此範本在 c:\temp\ 下儲存為 mlworkspace.json 檔案。
 
-### <a name="deploy-the-resource-group-based-on-the-template"></a>依據範本部署資源群組
+### <a name="deploy-hello-resource-group-based-on-hello-template"></a>部署 hello 範本為基礎的 hello 資源群組
 * 開啟 PowerShell
 * 安裝 Azure Resource Manager 和 Azure 服務管理的模組  
 
 ```
-# Install the Azure Resource Manager modules from the PowerShell Gallery (press “A”)
+# Install hello Azure Resource Manager modules from hello PowerShell Gallery (press “A”)
 Install-Module AzureRM -Scope CurrentUser
 
-# Install the Azure Service Management modules from the PowerShell Gallery (press “A”)
+# Install hello Azure Service Management modules from hello PowerShell Gallery (press “A”)
 Install-Module Azure -Scope CurrentUser
 ```
 
-   下列步驟會下載並安裝完成剩餘步驟所需的模組。 這只需要在您執行 PowerShell 命令的環境中執行一次。   
+   下列步驟下載並安裝 hello 模組需要 toocomplete hello 其餘步驟。 這個動作只需要 toobe hello 執行 hello PowerShell 命令所在的環境中，執行一次。   
 
-* 向 Azure 驗證  
+* 驗證 tooAzure  
 
 ```
-# Authenticate (enter your credentials in the pop-up window)
+# Authenticate (enter your credentials in hello pop-up window)
 Add-AzureRmAccount
 ```
-需要為每個工作階段重複執行這個步驟。 驗證之後，應該會顯示您的訂用帳戶資訊。
+此步驟需要 toobe 重複每個工作階段。 驗證之後，應該會顯示您的訂用帳戶資訊。
 
 ![Azure 帳戶][1]
 
-現在，我們已經可以存取 Azure，便可以建立資源群組。
+既然我們已經有存取 tooAzure，我們可以建立 hello 資源群組。
 
 * 建立資源群組
 
@@ -111,36 +111,36 @@ $rg = New-AzureRmResourceGroup -Name "uniquenamerequired523" -Location "South Ce
 $rg
 ```
 
-請確認資源群組已正確佈建。 **ProvisioningState** 應該是 “Succeeded”。
-範本會使用資源群組名稱來產生儲存體帳戶名稱。 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能使用數字和小寫字母。
+請確認已正確佈建 hello 資源群組。 **ProvisioningState** 應該是 “Succeeded”。
+hello 資源群組名稱會使用 hello 範本 toogenerate hello 儲存體帳戶名稱。 hello 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，並使用數字和小寫的字母。
 
 ![資源群組][2]
 
-* 使用資源群組部署，部署新的 Machine Learning 工作區。
+* 使用 hello 資源群組部署，部署新的機器學習服務工作區。
 
 ```
-# Create a Resource Group, TemplateFile is the location of the JSON template.
+# Create a Resource Group, TemplateFile is hello location of hello JSON template.
 $rgd = New-AzureRmResourceGroupDeployment -Name "demo" -TemplateFile "C:\temp\mlworkspace.json" -ResourceGroupName $rg.ResourceGroupName
 ```
 
-一旦完成部署之後，就可以直接存取您所部署的工作區的屬性。 例如，您可以存取主要金鑰權杖。
+一旦 hello 部署完成之後，就是您部署的 hello] 工作區的直接 tooaccess 屬性。 例如，您可以存取 hello 主要金鑰語彙基元。
 
 ```
 # Access Azure ML Workspace Token after its deployment.
 $rgd.Outputs.mlWorkspaceToken.Value
 ```
 
-另一種擷取現有工作區權杖的方式是使用 Invoke-AzureRmResourceAction 命令。 例如，您可以列出所有工作區的主要和次要權杖。
+現有的工作區的另一個方式 tooretrieve 語彙基元為 toouse hello Invoke AzureRmResourceAction 命令。 例如，您可以列出所有工作區的 hello 主要和次要的權杖。
 
 ```  
-# List the primary and secondary tokens of all workspaces
+# List hello primary and secondary tokens of all workspaces
 Get-AzureRmResource |? { $_.ResourceType -Like "*MachineLearning/workspaces*"} |% { Invoke-AzureRmResourceAction -ResourceId $_.ResourceId -Action listworkspacekeys -Force}  
 ```
-佈建工作區之後，您也可以使用 [適用於 Azure Machine Learning 的 PowerShell 模組](http://aka.ms/amlps)將許多 Azure Machine Learning Studio 工作自動化。
+Hello 工作區中佈建之後，您也可以自動化許多 Azure Machine Learning Studio 工作使用 hello [PowerShell Module for Azure Machine Learning](http://aka.ms/amlps)。
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 [編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。 
-* 看看 [Azure 快速入門範本儲存機制](https://github.com/Azure/azure-quickstart-templates)。 
+* 看看 hello [Azure 快速入門範本儲存機制](https://github.com/Azure/azure-quickstart-templates)。 
 * 觀看這段 [Azure Resource Manager](https://channel9.msdn.com/Events/Ignite/2015/C9-39)影片。 
 
 <!--Image references-->

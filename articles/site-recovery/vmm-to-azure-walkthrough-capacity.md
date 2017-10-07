@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Site Recovery 規劃產能並調整 Hyper-V VM (含 VMM) 至 Azure 的複寫 | Microsoft Docs"
-description: "使用 Azure Site Recovery 將 VMM 雲端中的 Hyper-V VM 複寫至 Azure 時，請使用本文規劃產能和調整"
+title: "aaaPlan 容量與縮放比例為 HYPER-V 虛擬機器與 Azure Site Recovery 的複寫 （VMM) tooAzure |Microsoft 文件"
+description: "複寫在 VMM 中的 HYPER-V Vm 雲端 tooAzure，與 Azure Site Recovery 時，使用此發行項 tooplan 容量和小數位數"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/23/2017
 ms.author: raynew
-ms.openlocfilehash: ab1dc21a829140f8cd2e57837d83a05b0d71bcdf
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 9818ada9bb21f60ac00b3894696201b06630cb2b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-3-plan-capacity-and-scaling-for-hyper-v-with-vmm-to-azure-replication"></a>步驟 3：規劃產能並調整 Hyper-V (含 VMM) 至 Azure 的複寫
+# <a name="step-3-plan-capacity-and-scaling-for-hyper-v-with-vmm-tooazure-replication"></a>步驟 3： 規劃容量與縮放比例 （使用 VMM) 的 HYPER-V tooAzure 複寫
 
-檢閱過[部署必要條件](vmm-to-azure-walkthrough-prerequisites.md)後，請使用這份文件找出在將 System Center Virtual Machine Manager (VMM) 雲端中的內部部署 Hyper-V VM 複寫至 Azure 時，使用 [Azure Site Recovery](site-recovery-overview.md) 規劃產能和調整的方法。
+您已檢閱過 hello 之後[部署必要條件](vmm-to-azure-walkthrough-prerequisites.md)、 使用容量規劃出此發行項 toofigure 和縮放比例，複寫時在內部部署 HYPER-V Vm 的 System Center Virtual Machine Manager (VMM) 雲端 tooAzure，與[Azure Site Recovery](site-recovery-overview.md)。
 
-閱讀本文之後，在本文下方張貼意見，或在 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 提出技術問題。
+閱讀這篇文章之後, 張貼的任何註解底部 hello 或詢問技術問題上 hello [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
 
 ## <a name="how-do-i-start-capacity-planning"></a>如何開始容量規劃？
 
 
-您需收集複寫環境的相關資訊，然後使用此資料搭配本文中強調的考量事項來規劃容量。
+您收集有關您複寫環境，然後使用 hello 的資料與 hello 考量這篇文章中反白顯示的計劃容量資訊。
 
 
 ## <a name="gather-information"></a>收集資訊
 
 1. 收集有關複寫環境的資訊，包括 VM、每個 VM 的磁碟和每個磁碟的儲存體。
-2. 識別複寫資料的每日變更 (流失) 率。 請下載 [Hyper-V 容量規劃工具](https://www.microsoft.com/download/details.aspx?id=39057)來取得變更率。 我們建議您執行此工具一週以上的時間來擷取平均值。
+2. 識別複寫資料的每日變更 (流失) 率。 下載 hello [HYPER-V 容量規劃工具](https://www.microsoft.com/download/details.aspx?id=39057)tooget hello 變更率。 我們建議您執行此工具透過週 toocapture 平均值。
  
 
 ## <a name="figure-out-capacity"></a>找出產能
 
-以您所收集的資訊作為基礎，執行 [Site Recovery Capacity Planner 工具](http://aka.ms/asr-capacity-planner-excel)來分析您的來源環境和工作負載，並且評估來源位置的頻寬需求和伺服器資源，以及在目標位置所需的資源 (虛擬機器和儲存體等等)。 有幾種模式可讓您執行工具：
+根據已收集的 hello 資訊，您執行 hello[站台復原產能規劃工具](http://aka.ms/asr-capacity-planner-excel)tooanalyze 您的來源環境和工作負載，估計頻寬需求和伺服器 hello 來源位置，資源和 hello資源 （虛擬機器和存放裝置等等），您需要在 hello 目標位置。 您可以透過幾種模式來執行 hello 工具：
 
-- 快速規劃：在此模式中執行工具，以 VM、磁碟、儲存體及變更率的平均數作為基礎，取得網路與伺服器的預測。
-- 詳細規劃：在此模式中執行工具，提供每個工作負載的 VM 層級詳細資料。 分析 VM 相容性，並取得網路和伺服器預測。
+- 快速的計劃： hello 工具以此模式執行的 tooget 網路和伺服器投影根據 Vm、 磁碟、 存放裝置和變更速率平均數目。
+- 詳細的規劃： 在此模式中，執行 hello 工具，並提供每個工作負載在 VM 層級的詳細資料。 分析 VM 相容性，並取得網路和伺服器預測。
 
-現在執行工具：
+現在執行 hello 工具：
 
-1. 下載[工具](http://aka.ms/asr-capacity-planner-excel)
-2. 若要執行快速規劃，請遵循[這些指示](site-recovery-capacity-planner.md#run-the-quick-planner)，並選取 **Hyper-V 至 Azure** 情節。
-3. 若要執行詳細規劃，請遵循[這些指示](site-recovery-capacity-planner.md#run-the-detailed-planner)，並選取 **Hyper-V 至 Azure** 情節。
+1. 下載 hello[工具](http://aka.ms/asr-capacity-planner-excel)
+2. toorun hello 快速規劃中，請遵循[這些指示](site-recovery-capacity-planner.md#run-the-quick-planner)，並選取 hello 案例**HYPER-V tooAzure**。
+3. toorun hello 詳細的規劃，請遵循[這些指示](site-recovery-capacity-planner.md#run-the-detailed-planner)，並選取 hello 案例**HYPER-V tooAzure**。
 
 ## <a name="control-network-bandwidth"></a>控制網路頻寬
 
-在計算您所需要的頻寬之後，您會有幾個選項可控制用於複寫的頻寬數量：
+您需要的導出的 hello 頻寬之後，您會有幾個選項用於複寫的頻寬控制 hello 量：
 
-* **節流頻寬**︰複寫至 Azure 的 Hyper-V 流量會經過特定的 Hyper-V 主機。 您可以在主機伺服器上進行頻寬節流。
-* **影響頻寬**︰您可以使用幾個登錄機碼來影響用於複寫的頻寬。
+* **節流的頻寬**: HYPER-V 複寫 tooAzure 流量透過特定的 HYPER-V 主機。 您可以節流處理 hello 主機伺服器上的頻寬。
+* **影響頻寬**： 您可能會影響用來複寫使用數個登錄機碼的 hello 頻寬。
 
 ### <a name="throttle-bandwidth"></a>節流頻寬
-1. 在 Hyper-V 主機伺服器上開啟 Microsoft Azure 備份 MMC 嵌入式管理單元。 根據預設，Microsoft Azure 備份的捷徑位於桌面上或在 C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin 中。
-2. 在嵌入式管理單元中，按一下 [變更屬性] 。
-3. 在 [節流] 索引標籤上，選取 [啟用備份操作的網際網路頻寬使用節流設定]，然後設定工作和非工作時數的限制。 有效範圍是每秒 512 Kbps 到 102 Mbps。
+1. 開啟 hello Microsoft Azure 備份 MMC 嵌入式管理單元 hello HYPER-V 主機伺服器上。 依預設 Microsoft Azure 備份的捷徑。 hello 桌面上或 C:\Program Files\Microsoft Azure 復原服務 Agent\bin\wabadmin
+2. 在 [hello] 嵌入式管理單元中按一下**變更屬性**。
+3. 在 hello**節流**索引標籤上選取**啟用網際網路頻寬使用節流設定的備份操作**，並設定工作的 hello 限制和非工作小時。 有效範圍是從每秒 512 Kbps too102 Mbps。
 
     ![節流頻寬](./media/vmm-to-azure-walkthrough-capacity/throttle2.png)
 
-您也可以使用 [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409.aspx) Cmdlet 來設定節流。 以下是一個範例：
+您也可以使用 hello [Set-obmachinesetting](https://technet.microsoft.com/library/hh770409.aspx) cmdlet tooset 節流。 以下是一個範例：
 
     $mon = [System.DayOfWeek]::Monday
     $tue = [System.DayOfWeek]::Tuesday
@@ -75,11 +75,11 @@ ms.lasthandoff: 07/29/2017
 **Set-OBMachineSetting -NoThrottle** 表示不需要節流。
 
 ### <a name="influence-network-bandwidth"></a>影響網路頻寬
-1. 在登錄中瀏覽至 **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Replication**。
-   * 若要影響複製磁碟上的頻寬流量，請修改 **UploadThreadsPerVM**的值，如果不存在則請建立機碼。
-   * 若要影響從 Azure 容錯回復流量的頻寬，請修改 **DownloadThreadsPerVM**的值。
-2. 預設值為 4。 在 “overprovisioned” 網路中，這些登錄機碼必須變更自其預設值。 最大值為 32。 監視流量，將此值最佳化。
+1. Hello 登錄中瀏覽過**HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Replication**。
+   * tooinfluence hello 頻寬流量複寫在磁碟上，修改 hello 值 hello **UploadThreadsPerVM**，或建立 hello 索引鍵，如果不存在。
+   * 從 Azure 容錯回復流量 tooinfluence hello 頻寬修改 hello 值**DownloadThreadsPerVM**。
+2. hello 預設值為 4。 在 「 超量佈建 」 的網路中，應該從 hello 預設值變更這些登錄機碼。 hello 上限為 32。 監視流量 toooptimize hello 值。
 
 ## <a name="next-steps"></a>後續步驟
 
-移至[步驟 4：規劃網路](vmm-to-azure-walkthrough-network.md)。
+跳過[步驟 4： 規劃網路](vmm-to-azure-walkthrough-network.md)。

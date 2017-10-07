@@ -1,6 +1,6 @@
 ---
-title: "Azure 上的企業級 WordPress | Microsoft Docs"
-description: "了解如何在 Azure App Service 上裝載企業級 WordPress 網站"
+title: "在 Azure 上的 aaaEnterprise 類別 WordPress |Microsoft 文件"
+description: "了解 toohost 企業級 WordPress Azure App Service 上的站台"
 services: app-service\web
 documentationcenter: 
 author: sunbuild
@@ -14,189 +14,189 @@ ms.tgt_pltfrm: na
 ms.workload: web
 ms.date: 10/24/2016
 ms.author: sumuth
-ms.openlocfilehash: 21281955458a2632d96a91d884cab13803f4d296
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4347eddb31d622d1189dc5db4d81b0f3745d6e69
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enterprise-class-wordpress-on-azure"></a>Azure 上的企業級 WordPress
-Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提供可調整、安全又容易使用的環境。 Microsoft 本身經營企業級網站，例如 [Office][officeblog] 和 [Bing][bingblog] 部落格。 本文將說明如何使用 Microsoft Azure App Service 的 Web Apps 功能來建立與維護可處理大量訪客的企業級雲端型 WordPress 網站。
+Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提供可調整、安全又容易使用的環境。 Microsoft 本身執行企業級站台，例如 hello [Office] [ officeblog]和[Bing] [ bingblog]部落格。 本文章將示範如何 toouse hello tooestablish Microsoft Azure App Service Web 應用程式功能及維護企業級、 以雲端為基礎的 WordPress 網站，可處理大量的訪客。
 
 ## <a name="architecture-and-planning"></a>架構與規劃
 基本 WordPress 安裝僅有兩項需求：
 
-* **MySQL 資料庫**：本需求可透過 [Azure Marketplace 中的 ClearDB][cdbnstore] 取得。 或者，您可以使用 [Windows][mysqlwindows] 或 [Linux][mysqllinux]，自行管理 Azure 虛擬機器上的 MySQL 安裝。
+* **MySQL 資料庫**： 這項需求是透過[hello Azure Marketplace 中的 ClearDB][cdbnstore]。 或者，您可以使用 [Windows][mysqlwindows] 或 [Linux][mysqllinux]，自行管理 Azure 虛擬機器上的 MySQL 安裝。
 
   > [!NOTE]
-  > ClearDB 提供數種 MySQL 組態。 每個組態具有不同的效能特性。 如需 Azure 市集所提供產品的相關資訊，請參閱 [Azure 市集][cdbnstore]，或直接參考 [ClearDB 網站](http://www.cleardb.com/pricing.view)。
+  > ClearDB 提供數種 MySQL 組態。 每個組態具有不同的效能特性。 請參閱 hello [Azure 市集][ cdbnstore]供應項目透過 hello Azure 市集或直接 hello 所見，會提供有關[ClearDB 網站](http://www.cleardb.com/pricing.view)。
   >
   >
 * **PHP 5.2.4 或更高版本**：Azure App Service 目前提供 [PHP 5.4、5.5 和 5.6 版][phpwebsite]。
 
   > [!NOTE]
-  > 建議您一律執行最新版本的 PHP，以便擁有最新的安全性問題修正。
+  > 我們建議，您永遠執行的 hello 最新版的 PHP，讓您擁有 hello 最新的安全性修正程式。
   >
   >
 
 ### <a name="basic-deployment"></a>基本部署
-如果您只使用基本需求，可在 Azure 區域內建立基本的解決方案。
+如果您使用只 hello 基本需求，您可以建立 Azure 的區域內的基本方案。
 
 ![Azure Web 應用程式與 MySQL 資料庫裝載於單一 Azure 區域中][basic-diagram]
 
-雖然這樣能讓您建立多個網站的 Web Apps 執行個體來相應放大您的應用程式，但是所有項目都會託管於特定地理區域的資料中心。 此區域以外的訪客在使用網站時，回應可能較為緩慢。 如果此區域中的資料中心停機，您的應用程式也會隨之停止執行。
+雖然這樣會讓您建立多個 hello 網站 tooscale 出您的應用程式的 Web 應用程式執行個體，所有項目被裝載在 hello 資料中心必須位於特定地理區域中。 在此區域之外訪客可能會看到回應時間緩慢 hello 站台使用時。 如果在此區域中的 hello 資料中心同時停機時，也會應用程式。
 
 ### <a name="multi-region-deployment"></a>多重區域部署
-您可以使用 Azure [流量管理員][trafficmanager]，在多個地理區域之間調整您的 WordPress 網站，並為所有訪客提供相同的 URL。 所有透過流量管理員進入的訪客，之後會根據負載平衡組態，路由傳送至某個區域。
+使用 Azure [Traffic Manager][trafficmanager]，您可以調整您的 WordPress 網站到多個地理區域，並提供所有造訪者 hello 相同的 URL。 所有造訪者有透過 Traffic Manager，並為基礎的路由的 tooa 區域 hello 負載平衡設定。
 
-![裝載於多個區域中的 Azure Web 應用程式，使用 CDBR 高可用性路由器，跨區域路由傳送至 MySQL][multi-region-diagram]
+![裝載在多個區域，使用 CDBR 高可用性路由器 tooroute tooMySQL 各地區的 Azure web 應用程式][multi-region-diagram]
 
-在每個區域中，仍會跨多個 Web Apps 執行個體調整 WordPress 網站，但這是特定區域內的調整。 高流量區域和低流量區域的調整可能會有所不同。
+在每個區域中，hello WordPress 網站仍會跨越多個 Web 應用程式執行個體，但此項縮放是特定 tooa 區域。 高流量區域和低流量區域的調整可能會有所不同。
 
-若要複寫並將流量路由傳送至多個 MySQL 資料庫，您可以使用 [ClearDB 高可用性路由器 (CDBR)][cleardbscale] (如左側所示) 或 [MySQL Cluster Carrier Grade Edition (CGE)][cge]。
+您可以使用 tooreplicate 和路由流量 toomultiple MySQL 資料庫，請[ClearDB 高可用性路由器 (CDBRs)] [ cleardbscale] （顯示左） 或[MySQL 叢集載波等級版本 (CGE)][cge].
 
 ### <a name="multi-region-deployment-with-media-storage-and-caching"></a>包含媒體儲存體和快取的多重區域部署
-如果網站接受上傳或託管媒體檔案，請使用 Azure Blob 儲存體。 如果您需要快取，請考慮 [Redis cache][rediscache]、[Memcache Cloud](http://azure.microsoft.com/gallery/store/garantiadata/memcached/)、[MemCachier](http://azure.microsoft.com/gallery/store/memcachier/memcachier/) 或 [Azure 市集](http://azure.microsoft.com/gallery/store/)中的其中一個快取產品。
+如果 hello 網站接受上傳或主機媒體檔案，使用 Azure Blob 儲存體。 如果您需要快取，請考慮[Redis 快取][rediscache]， [Memcache 雲端](http://azure.microsoft.com/gallery/store/garantiadata/memcached/)， [MemCachier](http://azure.microsoft.com/gallery/store/memcachier/memcachier/)，或其中一個 hello hello 中的其他快取提供項目[Azure 市集](http://azure.microsoft.com/gallery/store/)。
 
 ![裝載於多個區域中的 Azure Web 應用程式，搭配受管理的快取、Blob 儲存體和內容傳遞網路，為 MySQL 使用 CDBR 高可用性路由器][performance-diagram]
 
-依預設，Blob 儲存體會在不同區域中異地發佈，因此您無需擔心在所有網站中複寫檔案。 您也可以針對 Blob 儲存體啟用 Azure [內容傳遞網路][cdn]，這會將檔案分散到接近您訪客的結束節點。
+Blob 儲存體是地理分散到區域，依預設，所以您不需 tooworry 相關的所有站台複寫檔案。 您也可以啟用 hello Azure[內容傳遞網路][ cdn]針對 Blob 儲存體，這會發佈檔案 tooend 之節點的更接近 tooyour 訪客。
 
 ### <a name="planning"></a>規劃
 #### <a name="additional-requirements"></a>其他需求
-| 作法... | 目的... |
+| toodo 這... | 目的... |
 | --- | --- |
 | **上傳或儲存大型檔案** |[使用 Blob 儲存體的 WordPress 外掛程式][storageplugin] |
-| **傳送電子郵件** |[SendGrid][storesendgrid] 和[使用 SendGrid 的 WordPress 外掛程式][sendgridplugin] |
+| **傳送電子郵件** |[SendGrid] [ storesendgrid]和 hello[使用 SendGrid WordPress 外掛程式][sendgridplugin] |
 | **自訂網域名稱** |[在 Azure App Service 中設定自訂網域名稱][customdomain] |
 | **HTTPS** |[針對 Azure App Service 中的 Web 應用程式啟用 HTTPS][httpscustomdomain] |
-| **生產前驗證** |[針對 Azure App Service 中的 Web 應用程式設定預備環境][staging] <p>當您將 Web 應用程式從預備環境移至生產環境時，您也會移動 WordPress 組態。 在您將預備應用程式移至生產環境之前，請確定所有設定都已針對您的生產環境應用程式的需求更新。</p> |
+| **生產前驗證** |[針對 Azure App Service 中的 Web 應用程式設定預備環境][staging] <p>當您從暫存 tooproduction 移動 web 應用程式時，您也可以移動 hello WordPress 組態。 請確定所有設定都都更新的 toohello 生產應用程式的需求，然後才能移接移的 hello 應用程式 tooproduction。</p> |
 | **監視與疑難排解** |[針對 Azure App Service 中的 Web 應用程式啟用診斷記錄功能][log]及[監視 Azure App Service 中的 Web Apps][monitor] |
 | **部署您的網站** |[在 Azure App Service 中部署 Web 應用程式][deploy] |
 
 #### <a name="availability-and-disaster-recovery"></a>可用性和災難復原
-| 作法... | 目的... |
+| toodo 這... | 目的... |
 | --- | --- |
 | **負載平衡網站**或**異地發佈網站** |[使用 Azure 流量管理員路由傳送流量][trafficmanager] |
 | **備份與還原** |[備份 Azure App Service 中的 Web 應用程式][backup]及[還原 Azure App Service 中的 Web 應用程式][restore] |
 
 #### <a name="performance"></a>效能
-雲端效能主要是透過快取和相應放大來達成。不過，也應該要考量 Web Apps 主機的記憶體、頻寬與其他屬性。
+Hello 雲端中的效能是主要是透過快取和向外延展來達成。不過，應該考慮 hello 記憶體、 頻寬和其他屬性的 Web 應用程式裝載。
 
-| 作法... | 目的... |
+| toodo 這... | 目的... |
 | --- | --- |
 | **了解 App Service 執行個體功能** |[定價詳細資料，包括 App Service 層的功能][websitepricing] |
-| **快取資源** |[Redis cache][rediscache]、[Memcache Cloud](/gallery/store/garantiadata/memcached/)、[MemCachier](/gallery/store/memcachier/memcachier/) 或 [Azure 市集](/gallery/store/)中的其中一個快取產品 |
-| **調整您的應用程式** |[調整 Azure App Service 中的 Web 應用程式][websitescale]及 [ClearDB 高可用性路由][cleardbscale]。 如果您選擇主控與管理自己的 MySQL 安裝，您應考量可相應放大的 [MySQL Cluster CGE][cge]。 |
+| **快取資源** |[Redis 快取][rediscache]， [Memcache 雲端](/gallery/store/garantiadata/memcached/)， [MemCachier](/gallery/store/memcachier/memcachier/)，或其中一個 hello hello 中的其他快取提供項目[Azure 市集](/gallery/store/) |
+| **調整您的應用程式** |[調整 Azure App Service 中的 Web 應用程式][websitescale]及 [ClearDB 高可用性路由][cleardbscale]。 如果您選擇 toohost 並管理您自己的 MySQL 安裝時，您應該考慮[MySQL 叢集 CGE] [ cge]的向外延展。 |
 
 #### <a name="migration"></a>移轉
-將現有的 WordPress 網站移轉成 Azure App Service 的方法有兩種：
+有兩個方法 toomigrate 現有的 WordPress 網站 tooAzure 應用程式服務：
 
-* **[WordPress 匯出][export]**：此方法會匯出您部落格的內容。 您可以接著將內容匯入 Azure App Service 上新的 WordPress 網站，方法是使用 [WordPress Importer 外掛程式][import]。
+* **[WordPress 匯出][export]**： 這個方法會將匯出 hello 部落格的內容。 您可以接著使用匯入 hello 內容 tooa 新 WordPress 網站上 Azure App Service hello [WordPress 匯入工具外掛程式][import]。
 
   > [!NOTE]
   > 此程序可讓您移轉內容，但它無法移轉任何外掛程式、主題或其他自訂。 您必須手動重新安裝這些元件。
   >
   >
-* **手動移轉**：[備份您的網站][wordpressbackup]與[資料庫][wordpressdbbackup]，然後手動將它還原到 Azure App Service 中的 Web 應用程式，並與 MySQL 資料庫相關聯。 此方法可用來移轉高度自訂的網站，因為它避免了冗長的手動安裝外掛程式、主題和其他自訂。
+* **手動移轉**:[備份您的站台][ wordpressbackup]和[資料庫][wordpressdbbackup]，然後手動將它還原 tooa 在 Azure 中的 web 應用程式應用程式服務和相關聯的 MySQL 資料庫。 這個方法是有用的 toomigrate 高度自訂的網站，因為它可避免 hello tedium 手動安裝的外掛程式、 主題和其他自訂。
 
 ## <a name="step-by-step-instructions"></a>逐步指示
 ### <a name="create-a-wordpress-site"></a>建立 WordPress 網站
-1. 使用 [Azure Marketplace][cdbnstore]，在您將主控網站的區域 (或多個區域) 中建立 MySQL 資料庫，其大小為您在[架構與規劃](#planning)一節中所識別的大小。
-2. 請依照[在 Azure App Service 中建立 WordPress Web 應用程式][createwordpress]中的步驟，建立 WordPress Web 應用程式。 當您建立 Web 應用程式時，請選取 [使用現有的 MySQL 資料庫]，然後選取您在步驟 1 中建立的資料庫。
+1. 使用 hello [Azure Marketplace] [ cdbnstore] toocreate hello 大小所識別的 hello 的 MySQL 資料庫[架構和規劃](#planning)hello 區域或區域中的區段您將會在其中裝載您的網站。
+2. 中的 hello 步驟[WordPress web 應用程式建立 Azure App Service 中][ createwordpress] toocreate WordPress web 應用程式。 當您建立 hello web 應用程式時，選取**使用現有的 MySQL 資料庫**，然後選取您在步驟 1 中建立的 hello 資料庫。
 
-如果您打算移轉現有的 WordPress 網站，在建立新的 Web 應用程式後，請參閱[將現有的 WordPress 網站移轉至 Azure](#Migrate-an-existing-WordPress-site-to-Azure)。
+如果您要移轉現有的 WordPress 網站，請參閱[移轉現有的 WordPress 網站 tooAzure](#Migrate-an-existing-WordPress-site-to-Azure)之後建立新的 web 應用程式。
 
-### <a name="migrate-an-existing-wordpress-site-to-azure"></a>將現有的 WordPress 網站移轉至 Azure
-如[架構與規劃](#planning)一節所提到的，移轉 WordPress 網站的方法有兩種：
+### <a name="migrate-an-existing-wordpress-site-tooazure"></a>移轉現有的 WordPress 網站 tooAzure
+Hello 中所述[架構和規劃](#planning)區段中，有兩種方式 toomigrate WordPress 網站：
 
-* 對於沒有太多自訂或者您只想要移動內容的網站，請**使用匯出和匯入**。
-* 對於具有許多自訂，並且要移動所有項目的網站，請**使用備份與還原**。
+* **使用匯出和匯入**，不需要太多自訂，或只想 toomove hello 內容的站台。
+* **使用備份和還原**的站台有很多自訂您想 toomove 的所有項目。
 
-使用下列其中一個區段來移轉網站。
+使用下列各節 toomigrate hello 的其中一個站台。
 
-#### <a name="the-export-and-import-method"></a>匯出與匯入方法
-1. 使用 [WordPress 匯出][export]來匯出您的現有網站。
-2. 使用[建立 WordPress 網站](#Create-a-new-WordPress-site)一節中的步驟建立 Web 應用程式。
-3. 在 [Azure 入口網站][mgmtportal]上登入您的 WordPress 網站，然後按一下 [外掛程式] > [新增]。 搜尋與安裝 [WordPress Importer] 外掛程式。
-4. 在您安裝 WordPress Importer 外掛程式之後，按一下 [工具] > [匯入]，然後按一下 **WordPress** 以使用 WordPress Importer 外掛程式。
-5. 在 [Import WordPress] 頁面上，按一下 [選擇檔案]。 尋找從您現有 WordPress 網站匯出的 WXR 檔案，然後按一下 [上傳檔案和匯入]。
-6. 按一下 [提交] 。 系統將提示您已成功匯入。
-7. 完成所有這些步驟之後，在 [Azure 入口網站][mgmtportal]中，從 [應用程式服務] 刀鋒視窗重新啟動您的網站。
+#### <a name="hello-export-and-import-method"></a>hello 匯出和匯入方法
+1. 使用[WordPress 匯出][ export] tooexport 現有站台。
+2. 建立 web 應用程式使用中 hello hello 步驟[建立 WordPress 網站](#Create-a-new-WordPress-site)> 一節。
+3. 登入 tooyour WordPress 網站上 hello [Azure 入口網站][mgmtportal]，然後按一下**外掛程式** > **加入新**。 搜尋及安裝 hello **WordPress 匯入工具**外掛程式。
+4. 安裝 hello WordPress 匯入工具外掛程式之後，請按一下**工具** > **匯入**，然後按一下 **WordPress** toouse hello WordPress 匯入工具的外掛程式。
+5. 在 hello**匯入 WordPress**頁面上，按一下**選擇檔案**。 尋找現有的 WordPress 網站，從匯出的 hello WXR 檔案並按一下**上傳的檔案和匯入**。
+6. 按一下 [提交] 。 系統會提示您 hello 匯入成功。
+7. 完成所有步驟之後，重新啟動您的網站，從其**應用程式服務**刀鋒視窗中 hello [Azure 入口網站][mgmtportal]。
 
-匯入網站後，您可能需要執行下列步驟，以啟用不在匯入檔案中的設定。
+您匯入 hello 站台後，您可能需要 tooperform hello 遵循步驟 tooenable 設定不在 hello 匯入檔案中。
 
 | 如果使用... | 執行此動作... |
 | --- | --- |
-| **固定連結** |從新網站的 WordPress 儀表板中，依序按一下 [設定] > [固定連結]，然後更新固定連結結構。 |
-| **影像/媒體連結** |如果要更新新位置的連結，請使用 [Velvet Blues Update URLs 外掛程式][velvet] (此為搜尋和取代工具)，或手動在資料庫中更新。 |
-| **佈景主題** |移至 [外觀] > [佈景主題]，然後視需要更新網站佈景主題。 |
-| **功能表** |如果您的主題支援功能表，前往首頁的連結可能仍然內嵌舊的子目錄。 移至 [外觀] > [功能表]，然後加以更新。 |
+| **固定連結** |從 hello WordPress 儀表板的 hello 新網站，按一下 **設定** > **永久連結**，然後更新 hello 永久連結結構。 |
+| **影像/媒體連結** |tooupdate 連結 toohello 新位置，請使用 hello [Velvet 則藍色更新 Url 外掛程式][velvet]，搜尋和取代工具，或手動更新資料庫中的 hello 連結。 |
+| **佈景主題** |跳過**外觀** > **佈景主題**，然後視需要更新 hello 網站佈景主題。 |
+| **功能表** |如果您的佈景主題支援功能表，tooyour 首頁連結可能仍有 hello 內嵌在這些舊的子目錄。 跳過**外觀** > **功能表**，並予以更新。 |
 
-#### <a name="the-backup-and-restore-method"></a>備份與還原方法
-1. 使用 [WordPress 備份][wordpressbackup]上的資訊，以備份現有的 WordPress 網站。
-2. 使用[備份您的資料庫][wordpressdbbackup]上的資訊，以備份現有的資料庫。
-3. 建立資料庫並還原備份。
+#### <a name="hello-backup-and-restore-method"></a>hello 備份和還原方法
+1. 備份您現有的 WordPress 網站使用在 hello 資訊[WordPress 備份][wordpressbackup]。
+2. 備份您現有的資料庫，藉由在 hello 資訊[備份資料庫][wordpressdbbackup]。
+3. 建立資料庫，然後還原 hello 備份。
 
-   1. 從 [Azure Marketplace][cdbnstore] 中購買新的資料庫，或在 [Windows][mysqlwindows] 或 [Linux][mysqllinux] 虛擬機器上設定 MySQL 資料庫。
-   2. 使用 MySQL 用戶端 (如 [MySQL Workbench][workbench]) 連線到新的資料庫，並匯入您的 WordPress 資料庫。
-   3. 更新資料庫以將網域項目變更為新的 Azure App Service 網域，例如 mywordpress.azurewebsites.net。 使用[搜尋與取代 WordPress 資料庫指令碼][searchandreplace]，以安全的方式變更所有執行個體。
-4. 在 Azure 入口網站中建立 Web 應用程式，並發佈 WordPress 備份。
+   1. 購買新的資料庫從 hello [Azure Marketplace][cdbnstore]，或設定上的 MySQL 資料庫[Windows] [ mysqlwindows]或[Linux] [ mysqllinux]虛擬機器。
+   2. 使用 MySQL 用戶端，像是[MySQL Workbench] [ workbench] tooconnect toohello 新資料庫，然後匯入您的 WordPress 資料庫。
+   3. 更新 hello 資料庫 toochange hello 網域項目 tooyour 新 Azure 應用程式服務的網域，例如 mywordpress.azurewebsites.net。 使用 hello[搜尋和取代 WordPress 資料庫指令碼][ searchandreplace] toosafely 變更所有執行個體。
+4. 在 hello Azure 入口網站中建立 web 應用程式，並將發行 hello WordPress 備份。
 
-   1. 若要建立具有資料庫的 Web 應用程式，請在 [Azure 入口網站][mgmtportal]中，按一下 [新增] > [Web + 行動] > [Azure Marketplace] > [Web Apps] > [Web 應用程式 + SQL] \(或者 [Web 應用程式 + MySQL]) > [建立]。 設定所有必要的設定，來建立空的 Web 應用程式。
-   2. 在您的 WordPress 備份中，尋找 **wp-config.php** 檔案，並在編輯器中開啟該檔案。 使用新 MySQL 資料庫的資訊來取代下列項目：
+   1. toocreate 之 web 應用程式資料庫，在 hello [Azure 入口網站][mgmtportal]，按一下 **新增** > **Web + 行動** > **Azure Marketplace** > **Web 應用程式** > **Web 應用程式 + SQL** (或**Web 應用程式 + MySQL**) >**建立**。 設定所有必要的 hello 設定 toocreate 空 web 應用程式。
+   2. 在您的 WordPress 備份，找出 hello **wp config.php**檔案，並在編輯器中開啟它。 取代下列項目與新的 MySQL 資料庫的 hello 資訊 hello:
 
-      * **DB_NAME**：資料庫的使用者名稱。
-      * **DB_USER**：用來存取資料庫的使用者名稱。
-      * **DB_PASSWORD**：使用者密碼。
+      * **DB_NAME**: hello hello 資料庫使用者名稱。
+      * **DB_USER**: hello 使用者名稱使用 tooaccess hello 資料庫。
+      * **DB_PASSWORD**: hello 使用者密碼。
 
-        變更這些項目之後，請儲存並關閉 **wp-config.php** 檔案。
-   3. 使用[在 Azure App Service 中部署 Web 應用程式][deploy]中的資訊，啟用您想要使用的部署方法，然後將 WordPress 備份部署到 Azure App Service 中您的 Web 應用程式。
-5. 在部署 WordPress 網站後，您應能夠使用網站的 *.azurewebsite.net URL 來存取新網站 (當做 App Service Web 應用程式)。
+        變更這些項目之後，請儲存並關閉 hello **wp config.php**檔案。
+   3. 使用 hello[部署在 Azure App Service web 應用程式][ deploy]資訊 tooenable hello 部署方法，toouse，並接著部署 WordPress 備份 tooyour web 應用程式在 Azure App Service 中的。
+5. 部署 hello WordPress 網站之後，您應該能夠 tooaccess hello 新站台 （做為 App Service web 應用程式） 使用 hello *。 azurewebsite.net hello 網站 URL。
 
 ### <a name="configure-your-site"></a>設定網站
-在建立或移轉 WordPress 網站後，請使用下列資訊以提升效能或啟用其他功能。
+已建立或移轉 hello WordPress 網站之後，請使用下列資訊 tooimprove 效能 hello 或啟用其他功能。
 
-| 作法... | 目的... |
+| toodo 這... | 目的... |
 | --- | --- |
 | **設定 App Service 計劃模式、大小，以及啟用調整規模** |[在 Azure App Service 中調整 Web 應用程式規模][websitescale]。 |
-| **啟用持續資料庫連線** |依預設，WordPress 不會使用持續資料庫連線，因為在多個連線後，此選項會造成資料庫連線進入流速控制狀態。 若要啟用持續連線，請安裝[持續連線配接器外掛程式 (英文)](https://wordpress.org/plugins/persistent-database-connection-updater/installation/)。 |
-| **提升效能** |<ul><li><p><a href="https://azure.microsoft.com/en-us/blog/disabling-arrs-instance-affinity-in-windows-azure-web-sites/">停用 ARR Cookie</a>，這可以在 WordPress 於多個 Web Apps 執行個體上執行時改善效能。</p></li><li><p>啟用快取。 您可以使用 <a href="http://msdn.microsoft.com/library/azure/dn690470.aspx">Redis cache</a> (預覽版) 搭配 <a href="https://wordpress.org/plugins/redis-object-cache/">Redis 物件快取 WordPress 外掛程式</a>，或者您可以使用 <a href="/gallery/store/">Azure 市集</a>的其中一個快取產品。</p></li><li><p>[利用 Wincache 讓 WordPress 變得更快](https://wordpress.org/plugins/w3-total-cache/)。 Web 應用程式預設已啟用 Wincache。 搭配使用 WinCache 與動態快取時，請關閉 WinCache 的檔案快取，但保留啟用使用者和工作階段快取。 若要關閉檔案快取，請在系統層級的 .ini 檔案中，設定下列值：<br/><code>wincache.fcenabled = 0</code></p></li><li><p>[在 Azure App Service 中調整 Web 應用程式規模][websitescale]並使用 <a href="http://www.cleardb.com/developers/cdbr/introduction">ClearDB 高可用性路由</a>或 <a href="http://www.mysql.com/products/cluster/">MySQL Cluster CGE</a>。</p></li></ul> |
-| **使用 Blob 進行儲存** |<ol><li><p>[建立 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)。</p></li><li><p>了解如何[使用內容發佈網路 (CDN)](../cdn/cdn-create-new-endpoint.md) 來異地發佈儲存在 Blob 中的資料。</p></li><li><p>安裝和設定 <a href="https://wordpress.org/plugins/windows-azure-storage/">WordPress 外掛程式的 Azure 儲存體</a>。</p><p>如需此外掛程式的詳細安裝和設定資訊，請參閱<a href="http://plugins.svn.wordpress.org/windows-azure-storage/trunk/UserGuide.docx">使用者指南</a>。</p> </li></ol> |
-| **啟用電子郵件** |使用 Azure 市集來啟用 <a href="https://azure.microsoft.com/en-us/marketplace/partners/sendgrid/sendgrid-azure/">SendGrid</a>。 安裝 WordPress 的 <a href="http://wordpress.org/plugins/sendgrid-email-delivery-simplified">SendGrid 外掛程式</a>。 |
+| **啟用持續資料庫連線** |根據預設，WordPress 不使用持續性資料庫連接，可能會造成您之後的多個連線進行節流的連接 toohello 資料庫 toobecome。 tooenable 持續連線，安裝 hello[持續連線的介面卡外掛程式](https://wordpress.org/plugins/persistent-database-connection-updater/installation/)。 |
+| **提升效能** |<ul><li><p><a href="https://azure.microsoft.com/en-us/blog/disabling-arrs-instance-affinity-in-windows-azure-web-sites/">停用 hello ARR cookie</a>，如此可改善效能，多個 Web 應用程式執行個體上執行 WordPress 時。</p></li><li><p>啟用快取。 您可以使用<a href="http://msdn.microsoft.com/library/azure/dn690470.aspx">Redis 快取</a>（預覽） 以 hello <a href="https://wordpress.org/plugins/redis-object-cache/">Redis 物件快取 WordPress 外掛程式</a>，或者您可以使用其中一個 hello hello 從其他快取提供項目<a href="/gallery/store/">Azure 市集</a>。</p></li><li><p>[利用 Wincache 讓 WordPress 變得更快](https://wordpress.org/plugins/w3-total-cache/)。 Web 應用程式預設已啟用 Wincache。 當同時使用 WinCache 與動態快取，WinCache 的檔案快取，來關閉，但保留 hello 使用者和工作階段快取已啟用。 tooturn 關閉檔案快取，在系統層級.ini 檔案中，設定下列值的 hello:<br/><code>wincache.fcenabled = 0</code></p></li><li><p>[在 Azure App Service 中調整 Web 應用程式規模][websitescale]並使用 <a href="http://www.cleardb.com/developers/cdbr/introduction">ClearDB 高可用性路由</a>或 <a href="http://www.mysql.com/products/cluster/">MySQL Cluster CGE</a>。</p></li></ul> |
+| **使用 Blob 進行儲存** |<ol><li><p>[建立 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)。</p></li><li><p>了解如何太[使用 hello 內容散發網路](../cdn/cdn-create-new-endpoint.md)toogeo-發佈在 blob 中儲存的資料。</p></li><li><p>安裝和設定 hello <a href="https://wordpress.org/plugins/windows-azure-storage/">WordPress 外掛程式的 Azure 儲存體</a>。</p><p>如需詳細的設定和 hello 外掛程式的組態資訊，請參閱 hello<a href="http://plugins.svn.wordpress.org/windows-azure-storage/trunk/UserGuide.docx">使用者指南</a>。</p> </li></ol> |
+| **啟用電子郵件** |啟用<a href="https://azure.microsoft.com/en-us/marketplace/partners/sendgrid/sendgrid-azure/">SendGrid</a>使用 hello Azure 存放區。 安裝 hello <a href="http://wordpress.org/plugins/sendgrid-email-delivery-simplified">SendGrid 外掛程式</a>用於 WordPress。 |
 | **設定自訂網域名稱** |[在 Azure App Service 中設定自訂網域名稱][customdomain]。 |
 | **啟用自訂網域名稱的 HTTPS** |[針對 Azure App Service 中的 Web 應用程式啟用 HTTPS][httpscustomdomain]。 |
-| **負載平衡或異地發佈您的網站** |[使用 Azure 流量管理員路由傳送流量][trafficmanager]。 如果您打算使用自訂網域，請參閱[在 Azure App Service 中設定自訂網域名稱][customdomain]，以取得搭配自訂網域名稱使用流量管理員的相關資訊。 |
+| **負載平衡或異地發佈您的網站** |[使用 Azure 流量管理員路由傳送流量][trafficmanager]。 如果您使用自訂網域，請參閱[Azure App Service 中設定自訂網域名稱][ customdomain]如需有關資訊 toouse Traffic Manager 使用自訂網域名稱。 |
 | **啟用自動備份** |[在 Azure App Service 中備份 Web 應用程式][backup]。 |
 | **啟用診斷記錄** |[在 Azure App Service 中針對 Web 應用程式啟用診斷記錄功能][log]。 |
 
 ## <a name="next-steps"></a>後續步驟
 * [WordPress 最佳化 (英文)](http://codex.wordpress.org/WordPress_Optimization)
-* [在 Azure App Service 中將 WordPress 轉換成多站台](web-sites-php-convert-wordpress-multisite.md)
+* [WordPress toomultisite Azure App Service 中的轉換](web-sites-php-convert-wordpress-multisite.md)
 * [適用於 Azure 的 ClearDB 升級精靈 (英文)](http://www.cleardb.com/store/azure/upgrade)
 * [將 WordPress 裝載到 Azure App Service 中 Web 應用程式的子資料夾中 (英文)](http://blogs.msdn.com/b/webapps/archive/2013/02/13/hosting-wordpress-in-a-subfolder-of-your-windows-azure-web-site.aspx)
 * [逐步解說：使用 Azure 建立 WordPress 網站](http://blogs.technet.com/b/blainbar/archive/2013/08/07/article-create-a-wordpress-site-using-windows-azure-read-on.aspx)
 * [在 Azure 上裝載現有的 WordPress 部落格 (英文)](http://blogs.msdn.com/b/msgulfcommunity/archive/2013/08/26/migrating-a-self-hosted-wordpress-blog-to-windows-azure.aspx)
 * [在 WordPress 中啟用美化的固定連結 (英文)](http://www.iis.net/learn/extensions/url-rewrite-module/enabling-pretty-permalinks-in-wordpress)
-* [如何在 Azure App Service 上移轉與執行 WordPress 部落格 (英文)](http://www.kefalidis.me/2012/06/how-to-migrate-and-run-your-wordpress-blog-on-windows-azure-websites/)
-* [如何在 Azure App Service 上免費執行 WordPress (英文)](http://architects.dzone.com/articles/how-run-wordpress-azure)
+* [如何 toomigrate 及 Azure App Service 上執行您的 WordPress 部落格](http://www.kefalidis.me/2012/06/how-to-migrate-and-run-your-wordpress-blog-on-windows-azure-websites/)
+* [Toorun WordPress 的 Azure App Service 上可用的方式](http://architects.dzone.com/articles/how-run-wordpress-azure)
 * [在兩分鐘內完成在 Azure 上的 WordPress (英文)](http://www.sitepoint.com/wordpress-windows-azure-2-minutes-less/)
-* [WordPress 部落格移至 Azure - 第 1 部：在 Azure 上建立 WordPress 部落格 (英文)](http://www.davebost.com/2013/07/10/moving-a-wordpress-blog-to-windows-azure-part-1)
-* [WordPress 部落格移至 Azure - 第 2 部：傳輸內容 (英文)](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-transferring-your-content)
-* [WordPress 部落格移至 Azure - 第 3 部：設定自訂網域 (英文)](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-3-setting-up-your-custom-domain)
-* [WordPress 部落格移至 Azure - 第 4 部：美化永固定結與 URL 重新寫入規則 (英文)](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-4-pretty-permalinks-and-url-rewrite-rules)
-* [將 WordPress 部落格移至 Azure - 第 5 部分：從子資料夾移至根目錄 (英文)](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-5-moving-from-a-subfolder-to-the-root)
-* [如何在 Azure 帳戶中設定 WordPress Web 應用程式 (英文)](http://www.itexperience.net/2014/01/20/how-to-set-up-a-wordpress-website-in-your-windows-azure-account/)
+* [移動 WordPress 部落格 tooAzure-第 1 部分： 在 Azure 上建立 WordPress 部落格](http://www.davebost.com/2013/07/10/moving-a-wordpress-blog-to-windows-azure-part-1)
+* [移動 WordPress 部落格 tooAzure-第 2 部分： 傳送您的內容](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-transferring-your-content)
+* [移動 WordPress 部落格 tooAzure-3 部分： 設定您的自訂網域](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-3-setting-up-your-custom-domain)
+* [移動 WordPress 部落格 tooAzure-第 4 部分： 永久連結和 URL 重寫規則看起來很](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-4-pretty-permalinks-and-url-rewrite-rules)
+* [移動 WordPress 部落格 tooAzure-第 5 部分： 從子資料夾 toohello 根移動](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-5-moving-from-a-subfolder-to-the-root)
+* [如何註冊 WordPress tooset web 應用程式，您的 Azure 帳戶](http://www.itexperience.net/2014/01/20/how-to-set-up-a-wordpress-website-in-your-windows-azure-account/)
 * [在 Azure 上維持 WordPress (英文)](http://www.johnpapa.net/wordpress-on-azure/)
 * [在 Azure 上的 WordPress 秘訣 (英文)](http://www.johnpapa.net/azurecleardbmysql/)
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期的入門 Web 應用程式。 不需要信用卡，無需承諾。
+> 如果您想 tooget 之前註冊 Azure 帳戶與 Azure 應用程式服務已啟動，請移至太[再試一次應用程式服務](https://azure.microsoft.com/try/app-service/)，可以立即存留較短的入門的 web 應用程式中建立應用程式服務。 不需要信用卡，無需承諾。
 >
 >
 
 ## <a name="whats-changed"></a>變更的項目
-如需從網站變更為 App Service 的指南，請參閱 [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)。
+從網站 tooApp 服務指南 toohello 變更，請參閱[Azure App Service 以及它對現有的 Azure 服務影響](http://go.microsoft.com/fwlink/?LinkId=529714)。
 
 <!-- URL List -->
 

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Site Recovery 複寫至 Azure 的必要條件 | Microsoft Docs"
-description: "本文摘要說明使用 Azure Site Recovery 服務將 VM 和實體機器複寫至 Azure 的必要條件。"
+title: "使用 Azure Site Recovery 的複寫 tooAzure 的 aaaPrerequisites |Microsoft 文件"
+description: "本文摘要說明使用 hello Azure Site Recovery 服務複寫 Vm 和實體機器 tooAzure 的必要條件。"
 services: site-recovery
 documentationcenter: 
 author: rajani-janaki-ram
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 08/01/2017
 ms.author: rajanaki
-ms.openlocfilehash: fb5b8c9ac96ac44d0112919664a177f33ef392da
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c66cea8b097a872bae57e7b42e659e58c4b0b1f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-#  <a name="prerequisites-for-replicating-azure-virtual-machines-to-another-region-by-using-azure-site-recovery"></a>使用 Azure Site Recovery 將 Azure 虛擬機器複寫至另一個區域的必要條件
+#  <a name="prerequisites-for-replicating-azure-virtual-machines-tooanother-region-by-using-azure-site-recovery"></a>用來複寫使用 Azure Site Recovery 的 Azure 虛擬機器 tooanother 區域的必要條件
 
 > [!div class="op_single_selector"]
-> * [從 Azure 複寫至 Azure](site-recovery-azure-to-azure-prereq.md)
-> * [從內部部署複寫至 Azure](site-recovery-prereq.md)
+> * [從 Azure tooAzure 複寫](site-recovery-azure-to-azure-prereq.md)
+> * [從內部部署 tooAzure 複寫](site-recovery-prereq.md)
 
-Azure Site Recovery 是一項有助於建立商務持續性和災害復原 (BCDR) 策略的服務，可協調：
-* 將 Azure 虛擬機器複寫到另一個 Azure 區域。
-* 將內部部署實體伺服器與虛擬機器複寫至 Azure 或次要資料中心。 
+hello Azure Site Recovery 服務作為 tooyour 業務續航力和災害復原 (BCDR) 策略可藉由協調：
+* Azure 虛擬機器 tooanother Azure 區域資料複寫。
+* 在內部部署實體伺服器和虛擬機器 tooAzure 或 tooa 次要資料中心複寫。 
 
-當主要位置運作中斷時，您可以容錯移轉至次要位置，讓應用程式和工作負載保持可用。 當主要位置恢復正常作業時，您即可容錯回復至該位置。 如需有關 Site Recovery 的詳細資訊，請參閱[什麼是 Site Recovery？](site-recovery-overview.md)。
+當您的主要位置發生中斷時，您可以容錯移轉 tooa 次要位置 tookeep 應用程式和可用的工作負載。 當它傳回 toonormal 作業，您可以容錯回復 tooyour 主要位置。 如需有關 Site Recovery 的詳細資訊，請參閱[什麼是 Site Recovery？](site-recovery-overview.md)。
 
-本文摘要說明開始進行從內部部署到 Azure 的 Site Recovery 複寫的必要條件。
+本文摘要說明 hello 必要條件需要的 toobegin 內部 tooAzure 從站台復原複寫。
 
-在本文下方張貼意見，或在 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 提出技術問題。
+張貼在 hello hello 文章底部的任何註解或詢問技術問題上 hello [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
 
 ## <a name="azure-requirements"></a>Azure 需求
@@ -42,14 +42,14 @@ Azure Site Recovery 是一項有助於建立商務持續性和災害復原 (BCDR
 **需求** | **詳細資料**
 --- | ---
 **Azure 帳戶** | [Microsoft Azure](http://azure.microsoft.com/) 帳戶。<br/><br/> 您可以從 [免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。
-**Site Recovery 服務** | 如需有關 Site Recovery 價格的詳細資訊，請參閱 [Site Recovery 價格](https://azure.microsoft.com/pricing/details/site-recovery/)。 建議您在想要做為災害復原位置的目標 Azure 區域中建立復原服務保存庫。 例如，如果來源 VM 是在美國東部運作，而且您想要複寫到美國中部，建議您在美國中部建立保存庫。|
-**Azure 容量** | 對於您想要做為災害復原位置的目標 Azure 區域，您需要有足夠容量可容納虛擬機器、儲存體帳戶和網路元件的訂用帳戶。 您可以連絡支援人員增加容量。
-**儲存體指引** | 請確定您遵循來源 Azure 虛擬機器的[儲存體指引](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks)，以避免任何效能問題。 如果您遵循預設設定，Site Recovery 會根據來源組態建立所需的儲存體帳戶。 如果您自訂並選取您自己的設定，請確定您按照[虛擬機器磁碟的延展性目標](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks)進行。
-**網路服務指南** | 您需要將 Azure VM 對於特定 URL 或 IP 範圍的輸出連線能力列入白名單。 如需詳細資料，請參閱[複寫 Azure 虛擬機器的網路指引](site-recovery-azure-to-azure-networking-guidance.md)文章。
-**Azure VM** | 確定 Windows 或 Linux VM 上有全部最新的根憑證。 如果沒有最新的根憑證，VM 會因安全性條件限制而無法註冊至 Site Recovery。
+**Site Recovery 服務** | 如需有關 Site Recovery 價格的詳細資訊，請參閱 [Site Recovery 價格](https://azure.microsoft.com/pricing/details/site-recovery/)。 我們建議您復原服務保存庫中建立 hello 目標 Azure 地區的 toouse 做為災害復原位置。 比方說，如果在美國東部、 執行您的來源 Vm，而且您希望 tooreplicate tooCentral 我們，我們建議您在美國中部建立 hello 保存庫。|
+**Azure 容量** | Hello 目標 Azure 地區的 toouse 做為災害復原位置，您需要 toohave 足夠容量的虛擬機器、 儲存體帳戶和網路元件的訂用帳戶。 您可以連絡支援 tooadd 容量。
+**儲存體指引** | 請確定您遵循 hello[儲存體指引](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks)針對您的來源 Azure 虛擬機器 tooavoid 任何效能問題。 如果您遵循 hello 預設設定，站台復原就會建立所需的 hello hello 來源設定為基礎的儲存體帳戶。 如果您自訂，並選取您自己的設定，請確定您遵循 hello[虛擬機器磁碟的延展性目標](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks)。
+**網路服務指南** | 針對特定的 Url 或 IP 範圍，您需要從 Azure VM toowhitelist hello 的傳出連線。 如需詳細資訊，請參閱 toohello[網路複寫 Azure 虛擬機器的指引](site-recovery-azure-to-azure-networking-guidance.md)發行項。
+**Azure VM** | 確認所有 hello 最新的根憑證都會出現在 hello Windows 或 Linux VM 上。 如果 hello 最新的根憑證不存在，hello VM 不能註冊的 tooSite 復原，因為 toosecurity 條件約束。
 
 >[!NOTE]
->如需特定設定支援的詳細資料，請參閱[支援矩陣](site-recovery-support-matrix-azure-to-azure.md)。
+>如需支援的特定設定的詳細資訊，請參閱 hello[支援矩陣](site-recovery-support-matrix-azure-to-azure.md)。
 
 ## <a name="next-steps"></a>後續步驟
 - 深入了解[複寫 Azure 虛擬機器的網路指引](site-recovery-azure-to-azure-networking-guidance.md)。

@@ -1,6 +1,6 @@
 ---
-title: "在您的 Logic Apps 中新增 Facebook 連接器 | Microsoft Docs"
-description: "搭配 REST API 參數來使用 Facebook 連接器的概觀"
+title: "在您的 Logic Apps aaaAdd hello Facebook 連接器 |Microsoft 文件"
+description: "使用 REST API 參數 hello Facebook 連接器概觀"
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: e10a30ccef3e81cb3d7749696453d82b8958d076
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 962c6ed5d36e465de9d485d50e5c6dca6d44f470
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-facebook-connector"></a>開始使用 Facebook 連接器
-連線到 Facebook 並張貼在動態時報上、取得頁面摘要等等。 您可以利用 Facebook 來：
+# <a name="get-started-with-hello-facebook-connector"></a>開始使用 hello Facebook 連接器
+連接 tooFacebook 和張貼 tooa 時間表，取得網頁摘要、 等等。 您可以利用 Facebook 來：
 
-* 根據您從 Facebook 所取得的資料，來建置您的商務流程。 
+* 建置您的商務流程根據 hello 您從 Facebook 取得的資料。 
 * 在接收到新貼文時使用觸發程序。
-* 使用會張貼到您的動態時報、取得頁面摘要等等的動作。 這些動作會收到回應，然後輸出能讓其他動作使用的資料。 舉例來說，當您的動態時報上有新貼文時，您可以取得該貼文，然後把它推送到您的 Twitter 摘要。 
+* 張貼 tooyour 時間表中，使用動作取得網頁摘要、 等等。 這些動作取得回應，然後再 hello 輸出適用於其他動作。 例如，當時間表上有新文章時，您可以使用該文章，並直接將其推 tooyour Twitter 摘要。 
 
 您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
-## <a name="create-a-connection-to-facebook"></a>建立至 Facebook 的連線
-當您將這個連接器新增到邏輯應用程式時，您必須授權邏輯應用程式，使其能夠連線到您的 Facebook。
+## <a name="create-a-connection-toofacebook"></a>建立連接 tooFacebook
+當您新增此連接器 tooyour 邏輯應用程式時，您必須授權邏輯應用程式 tooconnect tooyour Facebook。
 
-1. 登入您的 Facebook 帳戶。
-2. 選取 [授權] ，然後允許您的邏輯應用程式連線並使用您的 Facebook。 
+1. Facebook 帳戶登入 tooyour
+2. 選取**授權**，並允許您的邏輯應用程式 tooconnect，並使用您的 Facebook。 
 
-> [!INCLUDE [Steps to create a connection to Facebook](../../includes/connectors-create-api-facebook.md)]
+> [!INCLUDE [Steps toocreate a connection tooFacebook](../../includes/connectors-create-api-facebook.md)]
 > 
 
 
 ## <a name="connector-specific-details"></a>連接器特定的詳細資料
 
-檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/facebook/)的所有限制。
+檢視任何觸發程序和動作中 hello swagger 定義，另請參閱 hello 的任何限制[連接器詳細資料](/connectors/facebook/)。
 
 ## <a name="more-connectors"></a>其他連接器
-返回 [API 清單](apis-list.md)。
+返回 toohello [Api 清單](apis-list.md)。

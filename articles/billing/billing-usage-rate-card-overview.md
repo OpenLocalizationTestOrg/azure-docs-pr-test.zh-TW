@@ -1,6 +1,6 @@
 ---
-title: "Azure 計費 API | Microsoft Docs"
-description: "了解 Azure 計費使用情況和 RateCard API，其可用來提供 Azure 資源耗用量和趨勢的見解。"
+title: "aaaAzure 計費 Api |Microsoft 文件"
+description: "深入了解 Azure 計費的使用量與 RateCard Api，也就是使用的 tooprovide 深入了解 Azure 資源耗用量和趨勢。"
 services: 
 documentationcenter: 
 author: BryanLa
@@ -15,65 +15,65 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/18/2017
 ms.author: mobandyo;bryanla
-ms.openlocfilehash: 394ed29ed468fe80f47a6517c9521a81a5ddb7fd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b3214996cc3279f76fdc7f0dbd2059c3ae7bb15c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-billing-apis-to-programmatically-get-insight-into-your-azure-usage"></a>使用 Azure 計費 API 來以程式設計方式深入了解 Azure 使用情況
-使用 Azure 計費 API 將使用情況和資源資料提取到您慣用的資料分析工具。 Azure 資源使用情況和 RateCard API 可協助您準確地預測並管理成本。 這些 API 會實作為資源提供者，並成為 Azure Resource Manager 所公開之 API 系列的一部分。  
+# <a name="use-azure-billing-apis-tooprogrammatically-get-insight-into-your-azure-usage"></a>使用 Azure 計費 Api tooprogrammatically 取得深入了解您的 Azure 使用量
+使用 Azure 計費 Api toopull 使用情形和資源資料到您的慣用的資料分析工具。 hello Azure 資源使用量和 RateCard 應用程式開發介面可協助您準確地預測和管理您的成本。 hello Api 會實作成資源提供者和 hello 系列 hello Azure 資源管理員所公開的應用程式開發介面的一部分。  
 
 ## <a name="azure-invoice-download-api-preview"></a>Azure 發票下載 API (預覽)
-[完成加入](billing-manage-access.md#opt-in)之後，請使用預覽版[發票 API](/rest/api/billing) 來下載發票。 這些功能包括：
+一次 hello[選擇在已經過完整](billing-manage-access.md#opt-in)、 使用 hello 預覽版本的下載發票[發票 API](/rest/api/billing)。 hello 功能包括：
 
-* **Azure 角色型存取控制** - 在 [Azure 入口網站](https://portal.azure.com)上或透過 [Azure PowerShell Cmdlet](/powershell/azure/overview) 設定存取原則，以指定哪些使用者或應用程式可以存取訂用帳戶的使用情況資料。 呼叫端必須使用標準的 Azure Active Directory 權杖進行驗證。 將呼叫端新增到「發票讀者」、「讀者」、「擁有者」或「參與者」角色，以存取特定 Azure 訂用帳戶的使用情況資料。
-* **日期篩選** - 使用 `$filter` 參數可依發票期間結束日期的相反時間順序取得所有發票。 
+* **Azure 角色型存取控制**-設定存取原則在 hello [Azure 入口網站](https://portal.azure.com)或透過[Azure PowerShell cmdlet](/powershell/azure/overview) toospecify 哪些使用者或應用程式進行存取toohello 訂用帳戶的使用量資料。 呼叫端必須使用標準的 Azure Active Directory 權杖進行驗證。 加入 hello 呼叫端 tooeither hello 計費的讀取器，讀取器、 擁有者或參與者角色 tooget 存取 toohello 使用量資料特定的 Azure 訂用帳戶。
+* **日期篩選**-使用 hello`$filter`參數 tooget hello 依反向時間順序中的所有 hello 發票的都發票期間的結束日期。 
 
 > [!NOTE]
-> 此功能目前為第一個預覽版本，可能會進行與舊版不相容的變更。 目前，某些訂用帳戶優惠 (不支援 EA、CSP、AIO) 和 Azure 德國無法使用此功能。
+> 這項功能處於預覽第一個版本，而且可能主旨 toobackward 不相容的變更。 目前，某些訂用帳戶優惠 (不支援 EA、CSP、AIO) 和 Azure 德國無法使用此功能。
 
 ## <a name="azure-resource-usage-api-preview"></a>Azure 資源使用情況 API (預覽)
-使用 Azure [資源使用情況 API](https://msdn.microsoft.com/library/azure/mt219003) 來取得預估的 Azure 耗用量資料。 此 API 包含︰
+使用 hello Azure[資源使用量 API](https://msdn.microsoft.com/library/azure/mt219003) tooget 估計 Azure 耗用量資料。 hello API 包括：
 
-* **Azure 角色型存取控制** - 在 [Azure 入口網站](https://portal.azure.com)上或透過 [Azure PowerShell Cmdlet](/powershell/azure/overview) 設定存取原則，以指定哪些使用者或應用程式可以存取訂用帳戶的使用情況資料。 呼叫端必須使用標準的 Azure Active Directory 權杖進行驗證。 將呼叫端新增到「發票讀者」、「讀者」、「擁有者」或「參與者」角色，以存取特定 Azure 訂用帳戶的使用情況資料。
-* **每小時或每日彙總** - 呼叫端可以指定要 Azure 使用情況資料的每小時值區或每日值區。 預設值為每日值區。
-* **執行個體中繼資料 (包括資源標記)** – 取得執行個體層級詳細資料，例如完整的資源 uri (/subscriptions/{subscription-id}/..)、資源群組資訊與資源標記。 此中繼資料可協助您以決定性及程式設計方式，根據標記為跨領域收費之類的使用案例配置使用量。
-* **資源中繼資料** - 資源詳細資料 (例如計量名稱、計量類別、計量子類別、單位和區域) 可讓呼叫端深入了解耗用的內容。 我們也致力於跨 Azure 入口網站、Azure 使用情況 CSV、EA 計費 CSV 和其他向外公開的體驗統一資源中繼資料術語，以讓您跨體驗將資料相互關聯。
+* **Azure 角色型存取控制**-設定存取原則在 hello [Azure 入口網站](https://portal.azure.com)或透過[Azure PowerShell cmdlet](/powershell/azure/overview) toospecify 哪些使用者或應用程式進行存取toohello 訂用帳戶的使用量資料。 呼叫端必須使用標準的 Azure Active Directory 權杖進行驗證。 加入 hello 呼叫端 tooeither hello 計費的讀取器，讀取器、 擁有者或參與者角色 tooget 存取 toohello 使用量資料特定的 Azure 訂用帳戶。
+* **每小時或每日彙總** - 呼叫端可以指定要 Azure 使用情況資料的每小時值區或每日值區。 hello 預設值是每日。
+* **執行個體中繼資料 （包括資源標記）** – 取得執行個體層級詳細資料，例如 hello 完整的資源 uri (/subscriptions/ {訂閱 id} / …)，hello 資源群組資訊和資源標記。 這個中繼資料可協助您確定的方式，並以程式設計方式配置 hello 標記，例如跨充電的使用案例使用方式。
+* **資源的中繼資料**-資源詳細資料，例如 hello 計量表的名稱、 計量表類別目錄、 計量表子類別目錄、 單位和區域提供 hello 呼叫者更深入了解什麼對於使用。 我們也正在 tooalign 資源的中繼資料術語跨 hello Azure 入口網站、 Azure 使用量 CSV，計費 CSV、 EA 和其他公開體驗，讓資料相互關聯跨體驗 toolet。
 * **所有優惠類型的使用情況** – 所有優惠類型 (例如隨收隨付、MSDN、貨幣承諾、貨幣信用額度和 EA) 皆有提供使用情況資料。
 
 ## <a name="azure-resource-ratecard-api-preview"></a>Azure 資源 RateCard API (預覽)
-使用 [Azure 資源 RateCard API](https://msdn.microsoft.com/library/azure/mt219005) 來取得可用 Azure 資源的清單，以及每個資源的預估價格資訊。 此 API 包含︰
+使用 hello [Azure 資源 RateCard API](https://msdn.microsoft.com/library/azure/mt219005) tooget hello 清單可用的 Azure 資源和估計每個定價資訊。 hello API 包括：
 
-* **Azure 角色型存取控制** - 在 [Azure 入口網站](https://portal.azure.com)上或透過 [Azure PowerShell Cmdlet](/powershell/azure/overview) 設定存取原則，以指定哪些使用者或應用程式可以存取 RateCard 資料。 呼叫端必須使用標準的 Azure Active Directory 權杖進行驗證。 將呼叫端新增至讀取者、擁有者或參與者角色，以存取特定 Azure 訂用帳戶的使用情況資料。
-* **支援隨收隨付、MSDN、貨幣承諾、貨幣信用額度優惠 (不支援 EA)** - 此 API 提供 Azure 優惠層級費率資訊。  此 API 的呼叫端必須輸入優惠資訊以取得資源詳細資料和費率。 由於 EA 優惠已自訂每個註冊的費率，所以我們目前無法提供 EA 費率。 
+* **Azure 角色型存取控制**-hello 上設定存取原則[Azure 入口網站](https://portal.azure.com)或透過[Azure PowerShell cmdlet](/powershell/azure/overview) toospecify 哪些使用者或應用程式進行存取toohello RateCard 資料。 呼叫端必須使用標準的 Azure Active Directory 權杖進行驗證。 加入 hello 呼叫端 tooeither hello 讀取器、 擁有者或參與者角色 tooget 存取 toohello 使用量資料特定的 Azure 訂用帳戶。
+* **支援隨收隨付、MSDN、貨幣承諾、貨幣信用額度優惠 (不支援 EA)** - 此 API 提供 Azure 優惠層級費率資訊。  此 API 的 hello 呼叫端必須傳入 hello 優惠資訊 tooget 資源詳細資料和率。 因為 EA 優惠已自訂每個註冊的速率，我們目前無法 tooprovide EA 率。 
 
 ## <a name="scenarios"></a>案例
-以下是一些案例，可產生使用情況和 RateCard API 的組合：
+以下是一些 hello 實現具有 hello 使用量與 hello RateCard Api hello 組合的案例：
 
-* **Azure 月份花費** - 使用使用情況和 RateCard API 的組合，來取得當月份雲端花費的更佳見解。 您可以分析每小時和每天的使用情況及收費評估值區。
-* **設定警示** – 使用使用情況和 RateCard API 來取得預估的雲端耗用量和收費，並設定以資源為基礎或以貨幣為基礎的警示。
-* **預測計費** – 取得預估的耗用量及雲端花費，並應用機器學習演算法來預測在計費週期結束時的計費情形。
-* **耗用前成本分析** – 使用 RateCard API 來預測當您將工作負載移至 Azure 時，所預期的使用量需要多少費用。 如果您有其他雲端或私用雲端中的現有工作負載，您也可以對應您的使用情況和 Azure 費率，以取得 Azure 花費的較佳評估。 此預估可讓您以優惠為依據來進行選擇，並比較和對比隨收隨付以外的不同優惠類型，包含貨幣承諾和貨幣信用額度。 此 API 也可讓您依區域查看成本差異，並可讓您執行假設成本分析，以幫助您做出部署決定。
+* **Azure 花 hello 月**-hello 月支出 hello 使用量和 RateCard Api tooget 更深入了解您的雲端使用 hello 組合。 您可以每小時分析 hello 和估計每日的值區的使用量和計量。
+* **設定警示**– 使用 hello 使用量及 hello RateCard Api tooget 估計雲端耗用量和費用，並設定資源或貨幣型警示。
+* **預測的帳單**– 取得您的估計耗用量和雲端的支出，和套用機器學習演算法 toopredict 哪些 hello bill 會結尾 hello hello 計費週期。
+* **成本分析前耗用量**– 使用多少帳單會套用至您的預期使用量時移動工作負載 tooAzure hello RateCard API toopredict。 如果您有其他的雲端或私人雲端中的現有工作負載時，您也可以對應與 hello Azure 率 tooget 花較佳的估計值，Azure 的使用方式。 這個 hello 能力 toopivot 上提供的服務，並比較與對照隨用隨付，超出的 hello 其他優惠類型之間的估計提供，例如預付與貨幣信貸。 hello API 也可讓您 hello 能力 toosee 成本差異區域，並可讓您 toodo 假設成本分析 toohelp 進行的部署決策。
 * **假設分析** -
   
-  * 您可以判斷是在另一個區域執行工作負載，還是在 Azure 資源的另一個組態上執行工作負載會比較符合成本效益。 Azure 資源成本可能會因為您所使用的 Azure 區域而有所不同。
+  * 您可以判斷它是否符合成本效益 toorun 工作負載在另一個區域中，或在另一個組態的 hello Azure 資源。 Hello 您所使用的 Azure 區域根據 azure 資源的成本可能會不同。
   * 您也可以判斷另一個 Azure 優惠類型是否會在 Azure 資源上提供更好的費率。
   
 ## <a name="partner-solutions"></a>合作夥伴解決方案
-[Microsoft Azure 使用情況和 RateCard API 可讓 Cloudyn 為客戶提供 ITFM](billing-usage-rate-card-partner-solution-cloudyn.md) 描述 Azure 計費 API 合作夥伴 [Cloudyn](https://www.cloudyn.com/microsoft-azure/) 所提供的整合經驗。 本文探討他們的使用經驗，並有影片來顯示如何使用 Cloudyn 和 Azure 計費 API 以從 Azure 耗用量資料取得見解。
+[Microsoft Azure 的使用量和 RateCard Api 啟用 Cloudyn tooProvide 客戶 ITFM](billing-usage-rate-card-partner-solution-cloudyn.md)描述 hello Azure 計費 API 協力廠商所提供的整合經驗[Cloudyn](https://www.cloudyn.com/microsoft-azure/)。 此文章說明其經驗相關，且包含的視訊，示範如何使用 Cloudyn 和 hello Azure 計費 Api tooget insights 從 Azure 耗用量資料。
 
-[Cloud Cruiser 和 Microsoft Azure 計費 API 整合](billing-usage-rate-card-partner-solution-cloudcruiser.md)描述 [Azure Pack 適用的 Cloud Cruiser Express](http://www.cloudcruiser.com/partners/microsoft/)如何直接從 Windows Azure Pack (WAP) 入口網站運作。 您可以順暢地從單一使用者介面管理 Microsoft Azure 私人或託管公用雲端的作業和財務等方面。   
+[雲端 Cruiser 和 Microsoft Azure 計費 API 整合](billing-usage-rate-card-partner-solution-cloudcruiser.md)描述如何[Cloud Cruiser Express for Azure 套件](http://www.cloudcruiser.com/partners/microsoft/)直接從 hello Windows Azure Pack (WAP) 入口網站的運作方式。 順暢地，您就可以從單一使用者介面管理這兩個 hello 操作及財務層面 hello Microsoft Azure 私人部署或裝載公用雲端。   
 
 ## <a name="next-steps"></a>後續步驟
-* 查看 GitHub 上的程式碼範例：
+* 請參閱 GitHub 上的 hello 程式碼範例：
   * [發票 API 程式碼範例 (英文)](https://go.microsoft.com/fwlink/?linkid=845124)
 
   * [使用情況 API 程式碼範例 (英文)](https://github.com/Azure-Samples/billing-dotnet-usage-api)
 
   * [RateCard API 程式碼範例 (英文)](https://github.com/Azure-Samples/billing-dotnet-ratecard-api)
 
-* 若要深入了解 Azure Resource Manager，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。 
+* toolearn 深入了解 hello Azure 資源管理員，請參閱[Azure 資源管理員概觀](../azure-resource-manager/resource-group-overview.md)。 
 
-* 如需可協助您了解雲端花費之必要工具套件的詳細資訊，請參閱 Gartner 文章 [IT 財務管理 (ITFM) 工具的市場指南](http://www.gartner.com/technology/reprints.do?id=1-212F7AL&ct=140909&st=sb)。
+* 多個必要 toohelp 您了解雲端的支出 hello suite 工具的資訊，請參閱 hello Gartner 文章[IT 財務管理 (ITFM) 工具的市場指南](http://www.gartner.com/technology/reprints.do?id=1-212F7AL&ct=140909&st=sb)。
 

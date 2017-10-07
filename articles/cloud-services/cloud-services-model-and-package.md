@@ -1,6 +1,6 @@
 ---
-title: "什麼是雲端服務模型和封裝 | Microsoft Docs"
-description: "說明 Azure 中的雲端服務模型 (.csdef、.cscfg) 和封裝 (.cspkg)"
+title: "aaaWhat 是雲端服務模型和封裝 |Microsoft 文件"
+description: "描述 hello 的雲端服務模型 （.csdef，.cscfg） 和 Azure 中的封裝 (.cspkg)"
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: adegeo
-ms.openlocfilehash: 21fbdbc4c24440c6fbbd7487cfbb2e0a3140aa96
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5280cdca4810859b6afdbbe1359fc2fabe871894
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-is-the-cloud-service-model-and-how-do-i-package-it"></a>什麼是雲端服務模型？如何封裝？
-雲端服務是從三個元件建立的，也就是服務定義 (.csdef)、服務組態 (.cscfg) 和服務封裝 (.cspkg)。 **ServiceDefinition.csdef** 和 **ServiceConfig.cscfg** 這兩個檔案是以 XML 為基礎，描述雲端服務的結構及其設定方式，統稱為模型。 **ServicePackage.cspkg** 是從 **ServiceDefinition.csdef** 產生的 zip 檔案，此外，包含所有必要的二進位型相依性。 Azure 會從 **ServicePackage.cspkg** 和 **ServiceConfig.cscfg** 建立雲端服務。
+# <a name="what-is-hello-cloud-service-model-and-how-do-i-package-it"></a>什麼是 hello 雲端服務模型，以及如何封裝？
+建立雲端服務從三個元件，hello 服務定義*(.csdef)*，hello 服務組態*(.cscfg)*，和服務套件*(.cspkg)*。 這兩個 hello **ServiceDefinition.csdef**和**ServiceConfig.cscfg**檔案是以 XML 為基礎，並描述 hello 雲端服務和其設定方式; hello 結構統稱為 「 hello 模型。 hello **ServicePackage.cspkg** hello 從產生的 zip 檔案**ServiceDefinition.csdef**和在其他方面，包含所有必要的 hello 二進位相依性。 Azure 建立的雲端服務從這兩個 hello **ServicePackage.cspkg**和 hello **ServiceConfig.cscfg**。
 
-一旦雲端服務在 Azure 中執行之後，您就可以透過 **ServiceConfig.cscfg** 檔案重新設定它，但您無法改變定義。
+一旦 hello 雲端服務在 Azure 中執行，您可加以重新設定透過 hello **ServiceConfig.cscfg**檔案，但您無法改變 hello 定義。
 
-## <a name="what-would-you-like-to-know-more-about"></a>您想要深入了解什麼？
-* 我想要深入了解 [ServiceDefinition.csdef](#csdef) 和 [ServiceConfig.cscfg](#cscfg) 檔案。
+## <a name="what-would-you-like-tooknow-more-about"></a>您想深入了解 tooknow 什麼？
+* 我想要深入了解 hello tooknow [ServiceDefinition.csdef](#csdef)和[ServiceConfig.cscfg](#cscfg)檔案。
 * 我已經了解，請給我 [一些範例](#next-steps) ，讓我可以設定。
-* 我想要建立 [ServicePackage.cspkg](#cspkg)。
+* 我想 toocreate hello [ServicePackage.cspkg](#cspkg)。
 * 我打算使用 Visual Studio，而我想要...
   * [建立雲端服務][vs_create]
   * [重新設定現有的雲端服務][vs_reconfigure]
@@ -38,7 +38,7 @@ ms.lasthandoff: 08/03/2017
 <a name="csdef"></a>
 
 ## <a name="servicedefinitioncsdef"></a>ServiceDefinition.csdef
-**ServiceDefinition.csdef** 檔案會指定 Azure 所使用的設定來設定雲端服務。 [Azure 服務定義結構描述 (.csdef 檔)](https://msdn.microsoft.com/library/azure/ee758711.aspx) 會為服務定義檔提供允許的格式。 以下範例顯示可以針對 Web 和背景工作角色定義的設定：
+hello **ServiceDefinition.csdef**檔案會指定所使用的 Azure tooconfigure hello 設定雲端服務。 hello [Azure 服務定義結構描述 (.csdef 檔)](https://msdn.microsoft.com/library/azure/ee758711.aspx) hello 允許的格式提供的服務定義檔。 hello 下列範例示範可以針對 hello Web 和背景工作角色定義的 hello 設定：
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -89,38 +89,38 @@ ms.lasthandoff: 08/03/2017
 </ServiceDefinition>
 ```
 
-您可以參考[服務定義結構描述](https://msdn.microsoft.com/library/azure/ee758711.aspx)，進一步了解此處所使用的 XML 結構描述，不過，以下是某些元素的簡短說明：
+您可以使用參照 toohello[服務定義結構描述](https://msdn.microsoft.com/library/azure/ee758711.aspx)進一步了解 hello 這裡使用的 XML 結構描述，不過，以下是一些 hello 元素的簡短說明：
 
 **Sites**  
-包含 IIS7 中所裝載的網站或 Web 應用程式的定義。
+包含在 IIS7 中所裝載的網站或 web 應用程式的 hello 定義。
 
 **InputEndpoints**  
-包含用來連絡雲端服務的端點的定義。
+包含端點的 hello 定義使用 toocontact hello 雲端服務。
 
 **InternalEndpoints**  
-包含角色執行個體用來彼此通訊的端點的定義。
+包含端點所使用的角色執行個體 toocommunicate 彼此 hello 定義。
 
 **ConfigurationSettings**  
-包含特定角色功能的設定定義。
+包含 hello 設定功能的定義特定角色。
 
-**Certificates**  
-包含角色所需的憑證的定義。 上述程式碼範例顯示用於設定 Azure Connect 的憑證。
+**憑證**  
+包含憑證所需的角色定義 hello。 hello 先前的程式碼範例示範使用 hello 設定 Azure Connect 的憑證。
 
 **LocalResources**  
-包含本機儲存資源的定義。 本機儲存資源是執行中角色執行個體所在之虛擬機器的檔案系統上的保留目錄。
+包含本機儲存體資源的 hello 定義。 本機儲存體資源是 hello hello 虛擬機器角色的執行個體執行所在的檔案系統上的預留的目錄。
 
 **Imports**  
-包含匯入的模組的定義。 上述程式碼範例顯示遠端桌面連線與 Azure Connect 的模組。
+包含 hello 定義匯入的模組。 hello 上述程式碼範例顯示遠端桌面連線與 Azure Connect 的 hello 模組。
 
 **Startup**  
-包含角色啟動時執行的工作。 這些工作是在 .cmd 或可執行檔中定義。
+包含 hello 角色啟動時執行的工作。 hello 工作是在.cmd 或可執行檔中定義。
 
 <a name="cscfg"></a>
 
 ## <a name="serviceconfigurationcscfg"></a>ServiceConfiguration.cscfg
-雲端服務設定的組態取決於 **ServiceConfiguration.cscfg** 檔案中的值。 您可以指定您想要在此檔案中為每個角色部署的執行個體的數目。 您在服務定義檔中定義的組態設定的值會加入至服務組態檔。 與雲端服務相關聯的任何管理憑證的指紋也會加入至檔案。 [Azure 服務組態結構描述 (.cscfg 檔)](https://msdn.microsoft.com/library/azure/ee758710.aspx) 為服務組態檔提供允許的格式。
+hello 的 hello 設定您的雲端服務的組態由在 hello hello 值**ServiceConfiguration.cscfg**檔案。 您指定您想 toodeploy，這個檔案中每個角色執行個體的 hello 數目。 hello hello 在 hello 服務定義檔中所定義的組態設定的值會加入 toohello 服務組態檔。 hello 與 hello 雲端服務相關聯的任何管理憑證指紋也會加入 toohello 檔案。 hello [Azure 服務組態結構描述 (.cscfg 檔)](https://msdn.microsoft.com/library/azure/ee758710.aspx) hello 允許的格式提供的服務組態檔。
 
-服務組態檔沒有與應用程式封裝在一起，但是做為個別的檔案上傳至 Azure，並用來設定雲端服務。 您可以上傳新的服務組態檔，無需重新部署您的雲端服務。 雲端服務執行時，可以變更雲端服務的組態值。 以下範例顯示可以針對 Web 和背景工作角色定義的組態設定：
+hello 服務組態檔不會封裝與 hello 應用程式，但會以個別檔案上傳的 tooAzure 和使用的 tooconfigure hello 雲端服務。 您可以上傳新的服務組態檔，無需重新部署您的雲端服務。 hello 雲端服務執行時，可以變更 hello hello 雲端服務的組態值。 hello 下列範例顯示 hello 可以針對 hello Web 和背景工作角色定義的組態設定：
 
 ```xml
 <?xml version="1.0"?>
@@ -140,28 +140,28 @@ ms.lasthandoff: 08/03/2017
 </ServiceConfiguration>
 ```
 
-您可以參考 [服務組態結構描述](https://msdn.microsoft.com/library/azure/ee758710.aspx) ，進一步了解此處所使用的 XML 結構描述，不過，以下是元素的簡短說明：
+您可以使用參照 toohello[服務組態結構描述](https://msdn.microsoft.com/library/azure/ee758710.aspx)為了更佳了解 hello XML 結構描述在此使用，不過，以下是 hello 元素的簡短說明：
 
 **Instances**  
-設定執行中角色執行個體的數目。 為防止您的雲端服務在升級期間可能變成無法使用，建議您部署多個 Web 對向角色執行個體。 部署多個執行個體的做法符合 [Azure 計算服務等級協定 (SLA)](http://azure.microsoft.com/support/legal/sla/)中的指導方針，當您為服務部署兩個或更多個角色執行個體時，此等級協定可保證網際網路對向角色有 99.95% 的外部連線能力。
+設定執行 hello 角色執行個體的 hello 數目。 您的雲端服務從可能變成無法使用在升級期間 tooprevent，建議您部署的直接存取 web 之角色的多個執行個體。 藉由部署多個執行個體，您符合 hello toohello 指導方針[Azure 計算服務等級協定 (SLA)](http://azure.microsoft.com/support/legal/sla/)，可保證當兩個網際網路對向角色 99.95%外部連線或多個角色服務上部署執行個體。
 
 **ConfigurationSettings**  
-設定執行中角色執行個體的設定。 `<Setting>` 元素的名稱必須符合服務定義檔中的設定定義。
+設定執行中角色執行個體的 hello hello 設定。 hello hello 名稱`<Setting>`項目必須符合 hello 服務定義檔中的 hello 設定定義。
 
-**Certificates**  
-設定服務所使用的憑證。 上述程式碼範例顯示如何定義 RemoteAccess 模組的憑證。 *thumbprint* 屬性的值必須設定為要使用的憑證的指紋。
+**憑證**  
+設定 hello hello 服務所使用的憑證。 hello 先前的程式碼範例示範如何 toodefine hello hello RemoteAccess 模組的憑證。 hello 值 hello*指紋*屬性必須設定 hello 憑證 toouse toohello 指紋。
 
 <p/>
 
 > [!NOTE]
-> 您可以使用文字編輯器，將憑證指紋新增至組態檔。 或者，在 Visual Studio 中，也可以在角色 [屬性] 頁面的 [憑證] 索引標籤上新增值。
+> hello hello 憑證指紋可加入 toohello 組態檔使用文字編輯器。 或者，可以在 hello 加入 hello 值**憑證**hello 索引標籤**屬性**hello 角色在 Visual Studio 中的頁面。
 > 
 > 
 
 ## <a name="defining-ports-for-role-instances"></a>定義角色執行個體的連接埠
-Azure 對於 Web 角色，僅允許一個進入點。 這表示所有流量都是透過一個 IP 位址發生。 您可以設定您的網站共用連接埠，方法是設定主機標頭，將要求導向到正確的位置。 您也可以設定您的應用程式接聽 IP 位址的公認連接埠。
+Azure 可讓您只有一個進入點 tooa web 角色。 這表示所有流量都是透過一個 IP 位址發生。 您可以設定您的網站 tooshare 連接埠設定 hello 主機標頭 toodirect hello 要求 toohello 正確的位置。 您也可以在 hello IP 位址上設定您的應用程式 toolisten toowell 已知連接埠。
 
-以下範例顯示具有網站及 Web 應用程式的 Web 角色的組態。 網站會設定為連接埠 80 上的預設進入位置，而 Web 應用程式則會設定為從稱為 "mail.mysite.cloudapp.net" 的替代主機標頭接收要求。
+hello 下列範例顯示 hello 的網站及 web 應用程式的 web 角色的組態。 hello 網站會設定為連接埠 80 上的 hello 預設進入位置，而且 hello web 應用程式會從名為"mail.mysite.cloudapp.net"的替代主機標頭設定的 tooreceive 要求。
 
 ```xml
 <WebRole>
@@ -196,55 +196,55 @@ Azure 對於 Web 角色，僅允許一個進入點。 這表示所有流量都�
 ```
 
 
-## <a name="changing-the-configuration-of-a-role"></a>變更角色的組態
-您可以在雲端服務於 Azure 中執行的同時，更新該雲端服務的組態，而不讓服務離線。 若要變更組態資訊，您可以上傳新的組態檔，或就地編輯現有的組態檔，並將其套用到執行中的服務。 您可以針對服務的組態進行下列變更：
+## <a name="changing-hello-configuration-of-a-role"></a>變更角色 hello 組態
+在 Azure 中，而未離線 hello 服務執行時，您可以更新您的雲端服務的 hello 組態。 toochange 組態資訊，您可以上傳新的組態檔，或編輯 hello 設定檔中的放置，並將它套用 tooyour 執行服務。 hello 進行下列變更可以 toohello 服務組態：
 
-* **變更組態設定的值**  
-  ：當組態設定變更時，角色執行個體可以選擇在執行個體上線時套用變更，或是正常回收執行個體，並在執行個體離線時套用變更。
-* **變更角色執行個體的服務拓撲**  
-  ：拓撲變更不會影響執行中的執行個體，但是要移除的執行個體除外。 其餘所有執行個體通常不需要進行回收，不過，您可以選擇回收角色執行個體，以回應拓撲變更。
-* **變更憑證指紋**  
-  ：當角色執行個體離線時，您可以只更新憑證。 如果在角色執行個體上線時加入、刪除或變更憑證，Azure 會讓執行個體正常離線以更新憑證，並在變更完成後讓它再次上線。
+* **變更組態設定的 hello 值**  
+  當組態設定變更，角色執行個體可以選擇 tooapply hello 變更 hello 執行個體仍在線上運作或 toorecycle hello 執行個體依正常程序並套用 hello 變更 hello 執行個體處於離線狀態。
+* **變更角色執行個體的 hello 服務拓撲**  
+  ：拓撲變更不會影響執行中的執行個體，但是要移除的執行個體除外。 所有剩餘的執行個體通常不需要 toobe 回收。不過，您可以選擇 toorecycle 角色執行個體中回應 tooa 拓撲變更。
+* **變更 hello 憑證指紋**  
+  ：當角色執行個體離線時，您可以只更新憑證。 如果憑證已加入、 刪除或變更的角色執行個體在線上時，Azure 依正常程序會 hello 執行個體離線 tooupdate hello 憑證，並且讓它重新上線 hello 變更完成之後。
 
 ### <a name="handling-configuration-changes-with-service-runtime-events"></a>使用服務執行階段事件處理組態變更
-[Azure 執行階段程式庫](https://msdn.microsoft.com/library/azure/mt419365.aspx)包含 [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.aspx) 命名空間，其中提供從角色來與 Azure 環境互動的類別。 [RoleEnvironment](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx) 類別會定義組態變更前後會引發的下列事件：
+hello [Azure 執行階段程式庫](https://msdn.microsoft.com/library/azure/mt419365.aspx)包含 hello [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.aspx)命名空間，提供在角色中的 Azure 環境互動 hello 的類別。 hello [RoleEnvironment](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx)類別會定義下列組態變更之前和之後所引發之事件的 hello:
 
 * **[Changing](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.changing.aspx) 事件**  
-  這會在組態變更套用至指定的角色執行個體之前發生，讓您有機會記下角色執行個體 (如有需要)。
+  發生這種情況的 hello 組態變更之前套用的 tooa 指定如有必要，向 hello 角色執行個體的機率 tootake 讓您的角色執行個體。
 * **[Changed](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.changed.aspx) 事件**  
-  ：在組態變更套用至指定的角色執行個體之後發生。
+  Hello 組態變更套用的 tooa 指定角色執行個體之後，就會發生。
 
 > [!NOTE]
-> 由於憑證變更時，一律會讓角色執行個體離線，因此不會引發 RoleEnvironment.Changing 或 RoleEnvironment.Changed 事件。
+> 因為憑證變更一律離線 hello 角色執行個體，因此不會引發 hello RoleEnvironment.Changing 或 RoleEnvironment.Changed 事件。
 > 
 > 
 
 <a name="cspkg"></a>
 
 ## <a name="servicepackagecspkg"></a>ServicePackage.cspkg
-若要將應用程式部署為 Azure 中的雲端服務，您必須先使用適當的格式封裝應用程式。 您可以使用 **CSPack** 命令列工具 (隨 [Azure SDK](https://azure.microsoft.com/downloads/)安裝) 做為 Visual Studio 的替代方案，以建立封裝檔案。
+toodeploy 為 Azure 中雲端服務的應用程式，您必須 hello 適當格式中的第一個套件 hello 應用程式。 您可以使用 hello **CSPack**命令列工具 (隨 hello [Azure SDK](https://azure.microsoft.com/downloads/)) 做為替代的 tooVisual Studio toocreate hello 封裝檔案。
 
-**CSPack** 會使用服務定義檔和服務組態檔的內容，定義封裝的內容。 **CSPack** 會產生應用程式封裝檔案 (.cspkg)，您可以使用 [Azure 入口網站](cloud-services-how-to-create-deploy-portal.md#create-and-deploy)，將其上傳至 Azure。 根據預設，套件的名稱為 `[ServiceDefinitionFileName].cspkg`，但是您可以使用 **CSPack** 的 `/out` 選項指定不同的名稱。
+**CSPack**使用 hello hello 服務定義檔和服務組態檔 toodefine hello hello 套件內容的內容。 **CSPack**使用 hello 所產生應用程式封裝檔 (.cspkg)，您可以上傳 tooAzure [Azure 入口網站](cloud-services-how-to-create-deploy-portal.md#create-and-deploy)。 根據預設，名為 hello 封裝`[ServiceDefinitionFileName].cspkg`，但是您可以指定不同的名稱使用 hello`/out`選項**CSPack**。
 
 **CSPack** 位於  
 `C:\Program Files\Microsoft SDKs\Azure\.NET SDK\[sdk-version]\bin\`
 
 > [!NOTE]
-> CSPack.exe (在 Windows 上) 可以透過執行隨 SDK 一起安裝的 **Microsoft Azure 命令提示字元** 捷徑來使用。  
+> CSPack.exe （在 windows 上），就可以使用執行 hello **Microsoft Azure 命令提示字元**捷徑與 hello SDK 一起安裝。  
 > 
-> 執行 CSPack.exe 程式本身，以查看所有可能的參數和命令的相關文件。
+> 執行 hello CSPack.exe 程式本身 toosee 所有 hello 可能交換器與命令相關的文件。
 > 
 > 
 
 <p />
 
 > [!TIP]
-> 在本機於 **Microsoft Azure 計算模擬器**中執行雲端服務，並使用 **/copyonly** 選項。 此選項會將應用程式的二進位檔案複製到目錄配置中，在計算模擬器中就可以從那裡執行它們。
+> 在本機執行雲端服務，在 hello **Microsoft Azure 計算模擬器**，使用 hello **/copyonly**選項。 此選項會複製 hello 應用程式 tooa 目錄配置從中他們可以執行 hello 計算模擬器中的 hello 二進位檔案。
 > 
 > 
 
-### <a name="example-command-to-package-a-cloud-service"></a>封裝雲端服務的範例命令
-下列範例會建立應用程式封裝，其中包含 Web 角色的資訊。 此命令會指定要使用的服務定義檔、可以找到二進位檔案所在的目錄，以及封裝檔案的名稱。
+### <a name="example-command-toopackage-a-cloud-service"></a>範例命令 toopackage 雲端服務
+hello 下列範例會建立應用程式封裝，其中包含 web 角色的 hello 資訊。 hello 命令指定 hello 服務定義檔 toouse，其中可以是二進位檔案的 hello 目錄找不到，hello hello 封裝檔案的名稱。
 
 ```cmd
 cspack [DirectoryName]\[ServiceDefinition]
@@ -253,7 +253,7 @@ cspack [DirectoryName]\[ServiceDefinition]
        /out:[OutputFileName]
 ```
 
-如果應用程式同時包含 Web 角色和背景工作角色，則會使用下列命令：
+如果 hello 應用程式包含 web 角色和背景工作角色，hello 使用下列命令：
 
 ```cmd
 cspack [DirectoryName]\[ServiceDefinition]
@@ -263,18 +263,18 @@ cspack [DirectoryName]\[ServiceDefinition]
        /role:[RoleName];[RoleBinariesDirectory];[RoleAssemblyName]
 ```
 
-其中的變數定義如下：
+其中 hello 變數的定義方式如下：
 
 | 變數 | 值 |
 | --- | --- |
-| \[DirectoryName\] |專案根目錄底下的子目錄，其中包含 Azure 專案的 .csdef 檔案。 |
-| \[ServiceDefinition\] |服務定義檔的名稱。 根據預設，此檔案的名稱為 ServiceDefinition.csdef。 |
-| \[OutputFileName\] |所產生的封裝檔案的名稱。 一般而言，這是設定為應用程式的名稱。 如果沒有指定檔案名稱，就會將應用程式封裝建立為 \[ApplicationName\].cspkg。 |
-| \[RoleName\] |服務定義檔中所定義的角色名稱。 |
-| \[RoleBinariesDirectory] |角色的二進位檔案的位置。 |
-| \[VirtualPath\] |在服務定義的 Sites 區段中定義的每個虛擬路徑的實體目錄。 |
-| \[PhysicalPath\] |在服務定義的 site 節點中定義的每個虛擬路徑內容的實體目錄。 |
-| \[RoleAssemblyName\] |角色的二進位檔案的名稱。 |
+| \[DirectoryName\] |hello hello 根專案目錄下 hello hello Azure 專案.csdef 檔案的子目錄。 |
+| \[ServiceDefinition\] |hello hello 服務定義檔的名稱。 根據預設，此檔案的名稱為 ServiceDefinition.csdef。 |
+| \[OutputFileName\] |hello hello 名稱產生套件檔案。 一般而言，這會設定 toohello hello 應用程式名稱。 如果沒有任何檔案名稱指定，hello 應用程式封裝會建立為\[ApplicationName\].cspkg。 |
+| \[RoleName\] |hello hello 服務定義檔中所定義的 hello 角色名稱。 |
+| \[RoleBinariesDirectory] |hello hello hello 角色二進位檔位置。 |
+| \[VirtualPath\] |hello hello hello 服務定義 Sites 區段中定義的每個虛擬路徑的實體目錄。 |
+| \[PhysicalPath\] |hello hello 內容 hello hello 服務定義的網站 節點中定義的每個虛擬路徑的實體目錄。 |
+| \[RoleAssemblyName\] |hello hello hello 角色二進位檔名稱。 |
 
 ## <a name="next-steps"></a>後續步驟
 我打算建立雲端服務封裝，而且我想要...

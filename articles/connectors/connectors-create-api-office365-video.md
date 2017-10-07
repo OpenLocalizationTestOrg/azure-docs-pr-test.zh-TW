@@ -1,6 +1,6 @@
 ---
-title: "在您的邏輯應用程式中新增 Office 365 影片連接器 | Microsoft Docs"
-description: "開始在您的 Microsoft Azure App Service Logic Apps 中使用 Office 365 影片連接器"
+title: "在您的 Logic apps aaaUse hello Office 365 影片連接器 |Microsoft 文件"
+description: "開始使用 Microsoft Azure 應用程式服務邏輯應用程式中的 hello Office 365 影片連接器"
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -15,33 +15,33 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: f0e3613d4a3fd5478787c0365eb7a0bcde886c81
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6e0a4b658d166d1cf8096d50f4bf2d502053aa43
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-office365-video-connector"></a>開始使用 Office 365 影片連接器
-連接至 Office 365 影片，以取得 Office 365 影片的相關資訊、影片清單等。 有了 Office 365 影片，您可以：
+# <a name="get-started-with-hello-office365-video-connector"></a>開始使用 hello Office365 視訊連接器
+連接 tooOffice 365 影片 tooget Office 365 影片資訊、 取得的視訊，及其他清單。 有了 Office 365 影片，您可以：
 
-* 根據您從 Office 365 影片所取得的資料，來建置您的商務流程。 
-* 檢查影片入口網站狀態、取得頻道影片清單等動作。 這些動作會收到回應，然後輸出能讓其他動作使用的資料。 例如，您可以使用 Bing 搜尋連接器來搜尋 Office 365 影片，然後使用 Office 365 影片連接器取得該影片的相關資訊。 如果影片符合您的需求，您可以將該影片張貼在 Facebook 上。 
+* 建置您的商務流程根據您 Office 365 視訊從取得的 hello 資料。 
+* 使用動作檢查 hello 視訊入口網站的狀態，請取得一份所有影片頻道，等等。 這些動作取得回應，然後再 hello 輸出適用於其他動作。 比方說，您可以使用 Office 365 影片 hello Bing 搜尋連接器 toosearch，然後使用 hello Office 365 視訊連接器 tooget 該視訊資訊。 如果視訊 hello 符合您的需求，您可以在 Facebook 上張貼這段影片。 
 
 您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
-## <a name="create-a-connection-to-office365-video-connector"></a>建立至 Office365 影片連接器的連線
-當您將這個連接器新增到邏輯應用程式時，您必須登入您的 Office 365 影片帳戶，並允許邏輯應用程式連線到您的帳戶。
+## <a name="create-a-connection-toooffice365-video-connector"></a>建立連接 tooOffice365 視訊連接器
+當您新增此連接器 tooyour 邏輯應用程式時，您必須登入-tooyour Office 365 影片中帳戶，並允許的 logic apps tooconnect tooyour 帳戶。
 
-> [!INCLUDE [Steps to create a connection to Office 365 Video](../../includes/connectors-create-api-office365video.md)]
+> [!INCLUDE [Steps toocreate a connection tooOffice 365 Video](../../includes/connectors-create-api-office365video.md)]
 > 
 > 
 
-當您建立連線之後，請輸入 Office 365 影片的屬性，例租用戶名稱或頻道識別碼。 
+建立 hello 連線之後，您輸入 hello Office 365 視訊內容，方式就如同 hello 租用戶名稱，或通道識別碼。 
 
 
 ## <a name="connector-specific-details"></a>連接器特定的詳細資料
 
-檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/office365videoconnector/)的所有限制。
+檢視任何觸發程序和動作中 hello swagger 定義，另請參閱 hello 的任何限制[連接器詳細資料](/connectors/office365videoconnector/)。
 
 ## <a name="more-connectors"></a>其他連接器
-返回 [API 清單](apis-list.md)。
+返回 toohello [Api 清單](apis-list.md)。

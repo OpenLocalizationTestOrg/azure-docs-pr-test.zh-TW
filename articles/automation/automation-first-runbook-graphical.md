@@ -1,6 +1,6 @@
 ---
-title: "我在 Azure 自動化中的第一個圖形化 Runbook | Microsoft Docs"
-description: "教學課程將逐步引導您建立、測試和發佈簡單的圖形化 Runbook。"
+title: "aaaMy 第一個圖形化 Azure 自動化中的 runbook |Microsoft 文件"
+description: "教學課程會引導您進行 hello 建立、 測試和發佈的簡單圖形化 runbook。"
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/17/2017
 ms.author: magoedte;bwren
-ms.openlocfilehash: 9d4b28416376482247127698bec7c99b83308885
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 964cf8bae75ca597959bfc39b2b07c22bbc9acb5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="my-first-graphical-runbook"></a>我的第一個圖形化 Runbook
 
@@ -30,154 +30,154 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-本教學課程將逐步引導您在 Azure 自動化中建立 [圖形化 Runbook](automation-runbook-types.md#graphical-runbooks) 。  我們先從測試和發佈的簡單 Runbook 開始，同時說明如何追蹤 Runbook 作業的狀態。  接著我們會修改 Runbook 以實際管理 Azure 資源，在此情況下會啟動 Azure 虛擬機器。  接著我們會新增 Runbook 參數和條件式連結，讓 Runbook 更加穩固，藉此完成本教學課程。
+本教學課程將引導您完成建立 hello[圖形化 runbook](automation-runbook-types.md#graphical-runbooks) Azure 自動化中。  我們開始測試，我們會說明如何 tootrack hello hello runbook 工作的狀態時，發行的簡易 runbook。  然後我們修改 hello runbook tooactually 管理在此情況下啟動 Azure 虛擬機器的 Azure 資源。  然後我們完成 hello 教學課程，讓 hello runbook 更強固的加入 runbook 的參數和條件式連結。
 
 ## <a name="prerequisites"></a>必要條件
-若要完成本教學課程，您需要下列項目。
+toocomplete 本教學課程中，您必須遵循的 hello。
 
 * Azure 訂用帳戶。  如果您沒有這類帳戶，可以[啟用自己的 MSDN 訂戶權益<a href="/pricing/free-account/" target="_blank">或](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)[註冊免費帳戶](https://azure.microsoft.com/free/)。
-* [Azure 自動化帳戶](automation-sec-configure-azure-runas-account.md)，用來保存 Runbook 以及向 Azure 資源驗證。  此帳戶必須擁有啟動和停止虛擬機器的權限。
+* [Azure 自動化帳戶](automation-sec-configure-azure-runas-account.md)toohold hello runbook 並驗證 tooAzure 資源。  此帳戶必須具有權限 toostart，停止 hello 虛擬機器。
 * Azure 虛擬機器。  我們將會停止並啟動這台電腦，因此它不應該是生產環境。
 
 ## <a name="step-1---create-runbook"></a>步驟 1 - 建立 Runbook
-我們會由建立一個可輸出文字 Hello World 的簡單 Runbook 開始。
+我們先建立輸出的 hello 文字的簡單 runbook *Hello World*。
 
-1. 在 Azure 入口網站中，開啟您的自動化帳戶。  
-   [自動化帳戶] 頁面提供這個帳戶中資源的快速檢視。  您應該已經有一些資產。  其中大部分是會自動包含在新自動化帳戶的模組。  您應該也擁有 [必要條件](#prerequisites)中所述的認證資產。
-2. 按一下 [Runbook]  磚以開啟 Runbook 的清單。<br> ![Runbook 控制項](media/automation-first-runbook-graphical/runbooks-resources-tile.png)
-3. 按一下 [新增 Runbook] 按鈕，然後按一下 [建立新的 Runbook] 來建立新的 Runbook。
-4. 為 Runbook 提供名稱「MyFirstRunbook-Graphical」 。
-5. 在此情況下，我們要建立[圖形化 Runbook](automation-graphical-authoring-intro.md)，因此請選取 [圖形] 作為 [Runbook 類型]。<br> ![新的 Runbook](media/automation-first-runbook-graphical/create-new-runbook.png)<br>
-6. 按一下 [建立]  來建立 Runbook 並開啟圖形化編輯器。
+1. 在 hello Azure 入口網站，開啟您的自動化帳戶。  
+   hello 自動化帳戶 頁面可讓您快速檢視 hello 資源此帳戶中。  您應該已經有一些資產。  其中大部分都是會自動包含在新的自動化帳戶的 hello 模組。  您也應該擁有 hello 認證資產中所述 hello[必要條件](#prerequisites)。
+2. 按一下 hello **Runbook**磚 tooopen hello runbook 的清單。<br> ![Runbook 控制項](media/automation-first-runbook-graphical/runbooks-resources-tile.png)
+3. 建立新的 runbook 上 hello 即可**新增 runbook**  按鈕，然後**建立新的 runbook**。
+4. Hello runbook hello 命名*MyFirstRunbook 圖形*。
+5. 在此情況下，我們會 toocreate[圖形化 runbook](automation-graphical-authoring-intro.md)因此選取**圖形**如**Runbook 類型**。<br> ![新的 Runbook](media/automation-first-runbook-graphical/create-new-runbook.png)<br>
+6. 按一下**建立**toocreate hello runbook 和開啟 hello 圖形化編輯器。
 
-## <a name="step-2---add-activities-to-the-runbook"></a>步驟 2 - 將活動加入至 Runbook
-編輯器左邊的 [程式庫] 控制項可讓您選取要加入到 Runbook 的活動。  我們將會加入 **Write-Output** Cmdlet 以從 Runbook 輸出文字。
+## <a name="step-2---add-activities-toohello-runbook"></a>步驟 2-新增活動 toohello runbook
+hello 左邊 hello hello 編輯器的程式庫控制項，可讓您 tooselect 活動 tooadd tooyour runbook。  我們會 tooadd **Write-output** cmdlet toooutput 文字從 hello runbook。
 
-1. 在 [程式庫] 控制項中，按一下搜尋文字方塊並輸入 **Write-Output**。  搜尋結果將會顯示在下面。 <br> ![Microsoft.PowerShell.Utility](media/automation-first-runbook-graphical/search-powershell-cmdlet-writeoutput.png)
-2. 向下捲動到清單底部。  您可以用滑鼠右鍵按一下 [Write-Output] 並選取 [新增至畫布]，或按一下 Cmdlet 旁邊的省略符號，然後選取 [新增至畫布]。
-3. 按一下畫布上的 **Write-Output** 活動。  這會開啟可讓您設定活動的 [組態] 控制項刀鋒視窗。
-4. [標籤]  會預設為 Cmdlet 的名稱，但我們可以將它變更為比較好記的名稱。 將它變更為「Write Hello World to output」 。
-5. 按一下 [參數] 來提供 Cmdlet 的參數值。  
-   某些 Cmdlet 有多個參數集，並且您必須選取您要使用的參數。 在此情況下，**Write-Output** 有只有一個參數集，因此您不需要選取其中一個。 <br> ![Write-Output 屬性](media/automation-first-runbook-graphical/write-output-properties-b.png)
-6. 選取 **InputObject** 參數。  這是我們在其中指定要傳送至輸出資料流之文字的參數。
-7. 在 [資料來源] 下拉式清單中，選取 [PowerShell 運算式]。  [資料來源]  下拉式清單提供您用來填入參數值的不同來源。  
-   您可以使用來自這類來源的輸出，例如另一個活動、自動化資產或 PowerShell 運算式。  在此情況下，我們只想要輸出文字「Hello World」 。 我們可以使用 PowerShell 運算式，並指定字串。
-8. 在 [運算式] 方塊中，輸入 "Hello World"，然後按一下 [確定] 兩次以返回畫布。<br> ![PowerShell Expression](media/automation-first-runbook-graphical/expression-hello-world.png)
-9. 按一下 [儲存] 來儲存 Runbook。<br> ![儲存 Runbook](media/automation-first-runbook-graphical/runbook-toolbar-save-revised20165.png)
+1. Hello 程式庫控制項，在中，按一下 hello [搜尋] 文字方塊以及類型**Write-output**。  hello 搜尋結果將會顯示如下。 <br> ![Microsoft.PowerShell.Utility](media/automation-first-runbook-graphical/search-powershell-cmdlet-writeoutput.png)
+2. 捲動 toohello hello 清單的底部。  您可以請按滑鼠右鍵**Write-output**選取**新增 toocanvas**或按一下 hello 橢圓形下一個 toohello 指令程式，然後選取**新增 toocanvas**。
+3. 按一下 hello **Write-output** hello 畫布上的活動。  這會開啟 hello 組態控制刀鋒視窗中，可讓您 tooconfigure hello 活動。
+4. hello**標籤**預設 toohello hello cmdlet 名稱，但我們可以將它變更 toosomething 更易懂。 它也變更*寫入 Hello World toooutput*。
+5. 按一下**參數**tooprovide hello cmdlet 參數的值。  
+   部分指令程式有多個參數集，而且您需要 tooselect 哪些您的一個 toouse。 在此情況下， **Write-output**設有只有一個參數，因此您不需要 tooselect 其中一個。 <br> ![Write-Output 屬性](media/automation-first-runbook-graphical/write-output-properties-b.png)
+6. 選取 hello **InputObject**參數。  這是我們可以在此指定 hello 文字 toosend toohello 輸出資料流 hello 參數。
+7. 在 hello**資料來源**下拉式清單中，選取**PowerShell 運算式**。  hello**資料來源**下拉式清單提供不同的來源，您會使用 toopopulate 參數值。  
+   您可以使用來自這類來源的輸出，例如另一個活動、自動化資產或 PowerShell 運算式。  在此情況下，我們只是想 toooutput hello 文字*Hello World*。 我們可以使用 PowerShell 運算式，並指定字串。
+8. 在 hello**運算式**方塊中，輸入*"Hello World"* ，然後按一下**確定**兩次 tooreturn toohello 畫布。<br> ![PowerShell Expression](media/automation-first-runbook-graphical/expression-hello-world.png)
+9. 按一下以儲存 hello runbook**儲存**。<br> ![儲存 Runbook](media/automation-first-runbook-graphical/runbook-toolbar-save-revised20165.png)
 
-## <a name="step-3---test-the-runbook"></a>步驟 3 - 測試 Runbook
-在我們發佈 Runbook 之前，為了使其可用於生產環境，我們想要測試以確定它可以正常運作。  測試 Runbook 時，您會執行其 **草稿** 版本，並以互動方式檢視其輸出。
+## <a name="step-3---test-hello-runbook"></a>步驟 3-測試 hello runbook
+我們發行 hello runbook toomake 之前它可用在生產環境中，我們想要 tootest 它 toomake 確定它是否正常運作。  測試 Runbook 時，您會執行其 **草稿** 版本，並以互動方式檢視其輸出。
 
-1. 按一下 [測試窗格] 來開啟 [測試] 刀鋒視窗。<br> ![測試窗格](media/automation-first-runbook-graphical/runbook-toolbar-test-revised20165.png)
-2. 按一下 [開始]  以開始測試。  這應該是唯一啟用的選項。
-3. 隨即會建立 [Runbook 工作](automation-runbook-execution.md) ，並在窗格中顯示其狀態。  
-   作業狀態一開始為「已排入佇列」，表示正在等候雲端中的 Runbook 背景工作可供使用。  然後當背景工作宣告該作業時，狀態會變更為 [正在開始]，然後 Runbook 實際開始執行時再變更為 [執行中]。  
-4. Runbook 工作完成時，會顯示其輸出。 在我們的情況中，我們應該會看到 Hello World。<br> ![](media/automation-first-runbook-graphical/runbook-test-results.png)
-5. 關閉 [測試] 刀鋒視窗返回畫布。
+1. 按一下**測試窗格**tooopen hello 測試刀鋒視窗。<br> ![測試窗格](media/automation-first-runbook-graphical/runbook-toolbar-test-revised20165.png)
+2. 按一下**啟動**toostart hello 測試。  這應該是 hello 才啟用選項。
+3. A [runbook 工作](automation-runbook-execution.md)建立 hello 窗格中顯示及其狀態。  
+   做為啟動 hello 作業狀態*排入佇列*表示它正在等待在 hello 雲端 toobecome 可用的 runbook worker。  然後移動太*起始*背景工作宣告 hello 作業時，然後*執行*hello runbook 實際開始執行時。  
+4. 當 hello runbook 作業完成時，會顯示其輸出。 在我們的情況中，我們應該會看到 Hello World。<br> ![](media/automation-first-runbook-graphical/runbook-test-results.png)
+5. 關閉 hello 測試刀鋒視窗 tooreturn toohello 畫布。
 
-## <a name="step-4---publish-and-start-the-runbook"></a>步驟 4 - 發佈和啟動 Runbook
-我們建立的 Runbook 仍處於草稿模式。 我們需要將它發佈，才能在生產環境中執行它。  當您發佈 Runbook 時，您會使用草稿版本覆寫現有的已發佈版本。  在我們的情況中，因為我們剛剛建立 Runbook，因此還沒有已發佈版本。
+## <a name="step-4---publish-and-start-hello-runbook"></a>步驟 4-發佈和啟動 hello runbook
+我們建立的 hello runbook 仍處於草稿模式。 我們需要 toopublish 前我們可以在生產環境中執行它。  當您發行的 runbook 時，您以覆寫現有已發佈版本 hello hello 草稿版本。  在我們的案例中，我們已發佈版本還沒有因為我們剛才建立 hello runbook。
 
-1. 按一下 [發佈] 來發佈 Runbook，然後出現提示時按一下 [是]。<br> ![](media/automation-first-runbook-graphical/runbook-toolbar-publish-revised20166.png)
-2. 如果您向左捲動以檢視 [Runbook] 刀鋒視窗中的 Runbook，它會顯示 [已發佈] 的 [撰寫狀態]。
-3. 捲動回右方以檢視 **MyFirstRunbook**的刀鋒視窗。  
-   在頂端的選項可讓我們啟動 Runbook、排程它在未來的某個時間點啟動，或建立 [webhook](automation-webhooks.md) ，使得可以透過 HTTP 呼叫啟動它。
-4. 我們只想要啟動 Runbook，因此按一下 [開始]，然後在提示出現時按一下 [是]。<br> ![啟動 Runbook](media/automation-first-runbook-graphical/runbook-controls-start-revised20165.png)
-5. 作業刀鋒視窗會開啟我們建立的 Runbook 作業。  我們可以關閉此刀鋒視窗，但在此情況下，我們會將它開啟，使得我們可以觀看作業的進度。
-6. [作業摘要]  中會顯示作業狀態，且符合當我們測試 Runbook 時看到的狀態。<br> ![工作摘要](media/automation-first-runbook-graphical/runbook-job-summary.png)
-7. 一旦 Runbook 狀態顯示 [已完成]，請按一下 [輸出]。 [輸出] 刀鋒視窗會開啟，而且可以在窗格中看到我們的 Hello World。<br> ![工作摘要](media/automation-first-runbook-graphical/runbook-job-output.png)  
-8. 關閉 [輸出] 刀鋒視窗。
-9. 按一下 [所有記錄檔] 以開啟 Runbook 作業的 [資料流] 刀鋒視窗。  我們應該只會在輸出資料流中看到「Hello World」  ，但可能也會顯示 Runbook 作業的其他資料流，例如 Runbook 寫入時發生的詳細資訊和錯誤。<br> ![工作摘要](media/automation-first-runbook-graphical/runbook-job-AllLogs.png)
-10. 關閉 [所有記錄檔] 刀鋒視窗和 [作業] 刀鋒視窗以返回 [MyFirstRunbook] 刀鋒視窗。
-11. 按一下 [作業] 以開啟此 Runbook 的 [作業] 刀鋒視窗。  這樣會列出此 Runbook 所建立的所有作業。 由於我們只執行一次作業，因此應該只會看到列出一項作業。<br> ![作業](media/automation-first-runbook-graphical/runbook-control-jobs.png)
-12. 您可以按一下此作業，以開啟我們啟動 Runbook 時所檢視的相同 [作業] 窗格。  這可讓您回到過去的時間並檢視針對特定 Runbook 所建立的任何工作的詳細資料。
+1. 按一下**發行**toopublish hello runbook，然後**是**出現提示時。<br> ![](media/automation-first-runbook-graphical/runbook-toolbar-publish-revised20166.png)
+2. 當您捲動左的 tooview hello runbook 在 hello **Runbook**刀鋒視窗中，顯示**撰寫狀態**的**發佈**。
+3. 捲軸背景 toohello 右 tooview hello 刀鋒視窗的**MyFirstRunbook**。  
+   hello hello 頂端的選項讓我們 toostart hello runbook、 排程在未來，hello toostart 或建立[webhook](automation-webhooks.md)讓它可以啟動透過 HTTP 呼叫。
+4. 我們只是想 toostart hello runbook 因此按一下**啟動**然後**是**出現提示時。<br> ![啟動 Runbook](media/automation-first-runbook-graphical/runbook-controls-start-revised20165.png)
+5. 作業刀鋒視窗會開啟供我們建立的 hello runbook 工作。  我們可以關閉此刀鋒視窗中，但在此情況下我們維持開啟，因此我們可以觀看 hello 作業的進度。
+6. 中會顯示 hello 作業狀態**工作摘要**和相符項目 hello 我們了解我們所測試 hello runbook 時的狀態。<br> ![工作摘要](media/automation-first-runbook-graphical/runbook-job-summary.png)
+7. 一次 hello runbook 狀態顯示*已完成*，按一下 **輸出**。 hello**輸出**刀鋒視窗會開啟，而且我們可以看到我們*Hello World* hello 窗格中。<br> ![工作摘要](media/automation-first-runbook-graphical/runbook-job-output.png)  
+8. 關閉 hello 輸出刀鋒視窗。
+9. 按一下**所有記錄檔**tooopen hello 資料流刀鋒視窗中的 hello runbook 工作。  我們應該只會看到*Hello World*在 hello 輸出資料流，但這會顯示 runbook 作業，例如 Verbose 和錯誤的其他資料流 hello runbook 是否寫入 toothem。<br> ![工作摘要](media/automation-first-runbook-graphical/runbook-job-AllLogs.png)
+10. 關閉刀鋒視窗中的所有記錄 hello 和 hello 作業 刀鋒視窗 tooreturn toohello MyFirstRunbook 刀鋒視窗。
+11. 按一下**作業**tooopen hello 作業刀鋒視窗，這個 runbook。  這會列出這個 runbook 所建立的所有 hello 作業。 我們只能看到列出因為我們只執行 hello 作業一次一項作業。<br> ![作業](media/automation-first-runbook-graphical/runbook-control-jobs.png)
+12. 您可以按一下此工作 tooopen hello 我們開始 hello runbook 時，我們會檢視的相同 [工作] 窗格。  這可讓您 toogo 回時間和檢視 hello 詳細資料中針對特定 runbook 所建立的任何作業。
 
 ## <a name="step-5---create-variable-assets"></a>步驟 5 - 建立變數資產
-我們已經測試並發行我們 Runbook，但是到目前為止，它似乎並不實用。 我們想要讓它管理 Azure 資源。  在設定要驗證的 Runbook 之前，我們會建立變數來保存訂用帳戶識別碼，並在設定要在下面的步驟 6 進行驗證的活動後參考此變數。  包括訂用帳戶內容的參考，可讓您輕鬆地處理多個訂用帳戶。  在繼續之前，請從 [導覽] 窗格上的 [訂用帳戶] 選項複製您的訂用帳戶識別碼。  
+我們已經測試並發行我們 Runbook，但是到目前為止，它似乎並不實用。 我們想要 toohave 它管理的 Azure 資源。  我們設定 hello runbook tooauthenticate 之前，我們會建立變數 toohold hello 訂用帳戶 ID，而且我們設定在步驟 6 中的 hello 活動 tooauthenticate 之後參考它。  包括參考 toohello 訂用帳戶內容，讓您 tooeasily 工作在多個訂用帳戶之間。  繼續之前，請從 hello 關閉 hello 瀏覽窗格的 [訂閱] 選項複製訂用帳戶 ID。  
 
-1. 在 [自動化帳戶] 刀鋒視窗中按一下 [資產] 圖格，隨即會開啟 [資產] 刀鋒視窗。
-2. 在 [資產] 刀鋒視窗中，按一下 [變數] 圖格。
-3. 在 [變數] 刀鋒視窗中，按一下 [新增變數]。<br>![自動化變數](media/automation-first-runbook-graphical/create-new-subscriptionid-variable.png)
-4. 在 [新增變數] 刀鋒視窗中，於 [名稱] 方塊中輸入 **AzureSubscriptionId**，並於 [值] 方塊中輸入您的訂用帳戶識別碼。  讓 [類型] 保持是 [字串]，並讓 [加密] 保持預設值。  
-5. 按一下 [建立]  來建立變數。  
+1. 在 hello 自動化帳戶刀鋒視窗中，按一下 hello**資產**磚與 hello**資產**開啟刀鋒視窗。
+2. 在 hello 資產刀鋒視窗中，按一下 hello**變數**磚。
+3. 在 hello 變數刀鋒視窗中，按一下 **加入變數**。<br>![自動化變數](media/automation-first-runbook-graphical/create-new-subscriptionid-variable.png)
+4. 在 hello 新變數 刀鋒視窗，在 hello**名稱**方塊中，輸入**AzureSubscriptionId**在 hello**值**中，輸入您的訂用帳戶識別碼。  保留*字串*hello**類型**hello 的預設值和**加密**。  
+5. 按一下**建立**toocreate hello 變數。  
 
-## <a name="step-6---add-authentication-to-manage-azure-resources"></a>步驟 6 - 加入驗證來管理 Azure 資源
-現在我們已經擁有用來保存訂用帳戶識別碼的變數，接下來我們可以設定 Runbook，以使用 [必要條件](#prerequisites)中提到的「執行身分」認證來進行驗證。  我們的做法是將 [Azure 執行身分] 連線 **Asset** 和 **Add-AzureRMAccount** Cmdlet 新增至畫布。  
+## <a name="step-6---add-authentication-toomanage-azure-resources"></a>步驟 6-新增驗證 toomanage Azure 資源
+既然我們已經有變數 toohold 我們訂用帳戶 ID，我們可以使用 hello 執行身分認證的參照的 tooin hello 設定我們 runbook tooauthenticate[必要條件](#prerequisites)。  方法是新增 hello Azure 執行身分連線**資產**和**新增 AzureRMAccount** cmdlet toohello 畫布。  
 
-1. 按一下 [MyFirstRunbook] 刀鋒視窗上的 [編輯] 來開啟圖形化編輯器。<br> ![編輯 Runbook](media/automation-first-runbook-graphical/runbook-controls-edit-revised20165.png)
-2. 我們不再需要 [撰寫 Hello World 到輸出]，因此以滑鼠右鍵按一下它並選取 [刪除]。
-3. 在 [程式庫] 控制項中，展開 [連線]，並選取 [新增至畫布] 以將 [AzureRunAsConnection] 新增至畫布。
-4. 在畫布上選取 [AzureRunAsConnection]，然後在 [組態] 控制項窗格的 [標籤] 文字方塊中輸入 [取得執行身分連線]。  這是連線
-5. 在 [程式庫] 控制項中，於搜尋文字方塊中輸入 **Add-AzureRmAccount** 。
-6. 將 [Set-AzureRmContext] **將 [Set-AzureRmContext]-AzureRmAccount** 加入至畫布。<br> ![](media/automation-first-runbook-graphical/search-powershell-cmdlet-addazurermaccount.png)
-7. 將滑鼠停留在 [取得執行身分連線]，直到圖形的底端出現圓形。 按一下圓形，並將箭頭拖曳到 [指定訂用帳戶識別碼] **Add-AzureRmAccount**。  您剛才建立的箭號是「連結」。  Runbook 會開始使用 [取得執行身分連線]，然後執行 [Add-AzureRmAccount]。<br> ![建立活動之間的連結](media/automation-first-runbook-graphical/runbook-link-auth-activities.png)
-8. 在畫布上選取 [Add-AzureRmAccount]，然後在 [組態] 控制項窗格的 [標籤] 文字方塊中輸入 [登入 Azure]。
-9. 按一下 [參數]  ，隨即會顯示 [活動參數組態] 刀鋒視窗。
-10. **Add-AzureRmAccount** 有多個參數集，因此我們必須先選取一個參數，我們才可以提供參數值。  按一下 [參數集]，然後選取 [ServicePrincipalCertificatewithSubscriptionId] 參數集。
-11. 一旦您選取參數集，參數會在 [活動參數組態] 刀鋒視窗中顯示。  按一下 [APPLICATIONID]。<br> ![加入 Azure RM 帳戶參數](media/automation-first-runbook-graphical/add-azurermaccount-params.png)
-12. 在 [參數值] 刀鋒視窗中，針對 [資料來源] 選取 [活動輸出] 並從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **ApplicationId**，然後按一下 [確定]。  我們會指定欄位路徑之屬性的名稱，因為活動會輸出具有多個屬性的物件。
-13. 按一下 [CERTIFICATETHUMBPRINT]，然後在 [參數值] 刀鋒視窗中，針對 [資料來源] 選取 [活動輸出]。  從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **CertificateThumbprint**，然後按一下 [確定]。
-14. 按一下 [SERVICEPRINCIPAL] 並在 [參數值] 刀鋒視窗中，針對 [資料來源] 選取 [ConstantValue]，按一下選項 [True]，然後按一下 [確定]。
-15. 按一下 [TENANTID]，然後在 [參數值] 刀鋒視窗中，針對 [資料來源] 選取 [活動輸出]。  從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **TenantId**，然後按兩次 [確定]。  
-16. 在 [程式庫] 控制項中，於搜尋文字方塊中輸入 **Set-AzureRmContext** 。
-17. 將 [Set-AzureRmContext]  加入至畫布。
-18. 在畫布上選取 [Set-AzureRmContext]，然後在 [組態] 控制項窗格的 [標籤] 文字方塊中輸入 [指定訂用帳戶識別碼]。
-19. 按一下 [參數]  ，隨即會顯示 [活動參數組態] 刀鋒視窗。
-20. **Set-AzureRmContext** 有多個參數集，因此我們必須先選取一個參數，我們才可以提供參數值。  按一下 [參數集]，然後選取 [SubscriptionId] 參數集。  
-21. 一旦您選取參數集，參數會在 [活動參數組態] 刀鋒視窗中顯示。  按一下 [SubscriptionID] 
-22. 在 [參數值] 刀鋒視窗中，針對 [資料來源] 選取 [變數資產]，接著在清單中選取 [AzureSubscriptionId]，然後按兩次 [確定]。   
-23. 將滑鼠停留在 [登入 Azure]  ，直到圖形的底端出現圓形。 按一下圓形，並將箭頭拖曳到 [指定訂用帳戶識別碼] 。
+1. 開啟 hello 圖形化編輯器，依序按一下**編輯**hello MyFirstRunbook 刀鋒視窗上。<br> ![編輯 Runbook](media/automation-first-runbook-graphical/runbook-controls-edit-revised20165.png)
+2. 我們不需要 hello**寫入 Hello World toooutput**失效，所以它以滑鼠右鍵按一下並選取**刪除**。
+3. 在 hello 程式庫控制項，依序展開**連線**並加入**AzureRunAsConnection** toohello 畫布上選取**新增 toocanvas**。
+4. Hello 畫布上選取**AzureRunAsConnection** hello 組態控制在窗格中，輸入**取得執行做為連接**在 hello**標籤**文字方塊。  這是 hello 連線
+5. 在 hello 程式庫控制項，輸入**新增 AzureRmAccount** hello 搜尋 文字方塊中。
+6. 新增**新增 AzureRmAccount** toohello 畫布。<br> ![](media/automation-first-runbook-graphical/search-powershell-cmdlet-addazurermaccount.png)
+7. 將滑鼠停留在**取得執行做為連接**直到 hello 底部 hello 圖形上會出現一個圓圈。 按一下 hello 圓形，然後拖曳 hello 箭號太**新增 AzureRmAccount**。  您所建立的 hello 箭號是*連結*。  hello runbook 以開始**取得執行做為連接**，然後執行**新增 AzureRmAccount**。<br> ![建立活動之間的連結](media/automation-first-runbook-graphical/runbook-link-auth-activities.png)
+8. Hello 畫布上選取**新增 AzureRmAccount** hello 組態控制窗格類型和**登入 tooAzure**在 hello**標籤**文字方塊。
+9. 按一下**參數**和 hello 活動參數設定刀鋒視窗隨即出現。
+10. **新增 AzureRmAccount**有多個參數集，因此我們需要一個 tooselect 之前，我們可以提供參數值。  按一下**參數設定**]，然後選取 [hello **ServicePrincipalCertificatewithSubscriptionId**參數集。
+11. 一旦您選取 hello 參數集時，會顯示 hello 參數在 hello 活動參數設定 刀鋒視窗。  按一下 [APPLICATIONID]。<br> ![加入 Azure RM 帳戶參數](media/automation-first-runbook-graphical/add-azurermaccount-params.png)
+12. 在 hello 參數值刀鋒視窗中，選取 **活動輸出**hello**資料來源**並選取**取得執行做為連接**從 hello 清單中，在 hello**欄位路徑**文字方塊中的型別**ApplicationId**，然後按一下**確定**。  我們會指定 hello 屬性 hello 欄位路徑 hello 名稱，因為 hello 活動會輸出具有多個屬性的物件。
+13. 按一下**CERTIFICATETHUMBPRINT**，然後在 hello 參數值刀鋒視窗中，選取**活動輸出**hello**資料來源**。  選取**取得執行做為連接**從 hello 清單中，在 hello**欄位路徑**文字方塊中的型別**CertificateThumbprint**，然後按一下 **[確定]**。
+14. 按一下**SERVICEPRINCIPAL**，然後在 hello 參數值刀鋒視窗中，選取**ConstantValue** hello**資料來源**，按一下 hello 選項**True**，然後按一下**確定**。
+15. 按一下**TENANTID**，然後在 hello 參數值刀鋒視窗中，選取**活動輸出**hello**資料來源**。  選取**取得執行做為連接**從 hello 清單中，在 hello**欄位路徑**文字方塊中的型別**TenantId**，然後按一下 **[確定]**兩次。  
+16. 在 hello 程式庫控制項，輸入**組 AzureRmContext** hello 搜尋 文字方塊中。
+17. 新增**組 AzureRmContext** toohello 畫布。
+18. Hello 畫布上選取**組 AzureRmContext** hello 組態控制窗格類型和**指定訂用帳戶 Id**在 hello**標籤**文字方塊。
+19. 按一下**參數**和 hello 活動參數設定刀鋒視窗隨即出現。
+20. **設定 AzureRmContext**有多個參數集，因此我們需要一個 tooselect 之前，我們可以提供參數值。  按一下**參數設定**]，然後選取 [hello **SubscriptionId**參數集。  
+21. 一旦您選取 hello 參數集時，會顯示 hello 參數在 hello 活動參數設定 刀鋒視窗。  按一下 [SubscriptionID] 
+22. 在 hello 參數值刀鋒視窗中，選取 **變數資產**hello**資料來源**選取**AzureSubscriptionId**從 hello 清單，然後按一下**確定**兩次。   
+23. 將滑鼠停留在**登入 tooAzure**直到 hello 底部 hello 圖形上會出現一個圓圈。 按一下 hello 圓形，然後拖曳 hello 箭號太**指定訂用帳戶 Id**。
 
-此時您的 Runbook 看起來應該像下面這樣︰ <br>![Runbook 驗證組態](media/automation-first-runbook-graphical/runbook-auth-config.png)
+您的 runbook 看起來應該像 hello 遵循此時： <br>![Runbook 驗證組態](media/automation-first-runbook-graphical/runbook-auth-config.png)
 
-## <a name="step-7---add-activity-to-start-a-virtual-machine"></a>步驟 7 - 加入活動以啟動虛擬機器
-我們現在要新增 **Start-AzureRmVM** 活動，以啟動虛擬機器。  您可以在您的 Azure 訂用帳戶中挑選任何虛擬機器，而現在您會將該名稱硬式編碼成 Cmdlet。
+## <a name="step-7---add-activity-toostart-a-virtual-machine"></a>步驟 7-新增活動 toostart 虛擬機器
+我們在這裡新增**開始 AzureRmVM**活動 toostart 虛擬機器。  您可以挑選任何虛擬機器，您的 Azure 訂閱，而且現在您硬，名稱為 hello cmdlet。
 
-1. 在 [程式庫] 控制項中，於搜尋文字方塊中輸入 **Start-AzureRm** 。
-2. 將 [Start-AzureRmVM] 新增至畫布，然後對它按一下並拖曳到 [指定訂用帳戶識別碼] 底下。
-3. 將滑鼠停留在 [指定訂用帳戶識別碼]  ，直到圖形的底端出現圓形。  按一下圓形，並將箭頭拖曳到 [Start-AzureRmVM] 。
-4. 選取 [Start-AzureRmVM]。  按一下 [參數]，然後按一下 [參數集] 以檢視 [Start-AzureRmVM] 的參數集。  選取 [ResourceGroupNameParameterSetName]  參數集。 請注意，[ResourceGroupName] 和 [名稱] 旁邊具有驚嘆號。  這表示它們是必要的參數。  也請注意這兩者應該是字串值。
-5. 選取 [Start-AzureRmVM] 。  在 [資料來源] 中選取 [PowerShell 運算式]，並輸入用雙引號括住的虛擬機器名稱，此為我們要用此 Runbook 啟動的虛擬機器。  按一下 [確定] 。<br>![Start-AzureRmVM 名稱參數值](media/automation-first-runbook-graphical/runbook-startvm-nameparameter.png)
-6. 選取 [ResourceGroupName]。 針對 [資料來源] 使用 [PowerShell 運算式]，並輸入用雙引號括住的資源群組名稱。  按一下 [確定] 。<br> ![Start-AzureRmVM 參數](media/automation-first-runbook-graphical/startazurermvm-params.png)
-7. 按一下 [測試] 窗格，如此我們可以測試 Runbook。
-8. 按一下 [開始]  以開始測試。  當它完成時，請檢查虛擬機器已啟動。
+1. 在 hello 程式庫控制項，輸入**開始 AzureRm** hello 搜尋 文字方塊中。
+2. 新增**開始 AzureRmVM** toohello 畫布，然後按一下並拖曳它下方**指定訂用帳戶 Id**。
+3. 將滑鼠停留在**指定訂用帳戶 Id**直到 hello 底部 hello 圖形上會出現一個圓圈。  按一下 hello 圓形，然後拖曳 hello 箭號太**開始 AzureRmVM**。
+4. 選取 [Start-AzureRmVM]。  按一下**參數**然後**參數設定**tooview hello 設定**開始 AzureRmVM**。  選取 hello **ResourceGroupNameParameterSetName**參數集。 請注意，[ResourceGroupName] 和 [名稱] 旁邊具有驚嘆號。  這表示它們是必要的參數。  也請注意這兩者應該是字串值。
+5. 選取 [Start-AzureRmVM] 。  選取**PowerShell 運算式**hello**資料來源**和 hello 名稱中的 hello 虛擬機器以我們開始此 runbook 的雙引號括住的類型。  按一下 [確定] 。<br>![Start-AzureRmVM 名稱參數值](media/automation-first-runbook-graphical/runbook-startvm-nameparameter.png)
+6. 選取 [ResourceGroupName]。 使用**PowerShell 運算式**hello**資料來源**和 hello 名稱中的 hello 資源群組以雙引號括住的類型。  按一下 [確定] 。<br> ![Start-AzureRmVM 參數](media/automation-first-runbook-graphical/startazurermvm-params.png)
+7. 以便我們可以測試 hello runbook，請按一下 [測試] 窗格。
+8. 按一下**啟動**toostart hello 測試。  在完成時，請檢查該 hello 虛擬機器已啟動。
 
-此時您的 Runbook 看起來應該像下面這樣︰ <br>![Runbook 驗證組態](media/automation-first-runbook-graphical/runbook-startvm.png)
+您的 runbook 看起來應該像 hello 遵循此時： <br>![Runbook 驗證組態](media/automation-first-runbook-graphical/runbook-startvm.png)
 
-## <a name="step-8---add-additional-input-parameters-to-the-runbook"></a>步驟 8 - 將其他輸入參數加入至 Runbook
-我們的 Runbook 目前會啟動在 **Start-AzureRmVM** Cmdlet 中指定之資源群組內的虛擬機器。  如果可以在啟動 Runbook 時指定這兩項，我們的 Runbook 會更有用。  我們現在會將輸入參數新增至 Runbook，以提供該功能。
+## <a name="step-8---add-additional-input-parameters-toohello-runbook"></a>步驟 8-新增額外的輸入的參數 toohello runbook
+我們 runbook 目前啟動 hello 的虛擬機器在 hello 我們 hello 中指定的資源群組中**開始 AzureRmVM** cmdlet。  我們的 runbook 會是我們無法同時指定 hello runbook 啟動時的更實用。  我們現在加入輸入的參數 toohello runbook tooprovide 該功能。
 
-1. 按一下 [MyFirstRunbook] 窗格上的 [編輯] 來開啟圖形化編輯器。
-2. 按一下 [輸入和輸出]，然後按一下 [新增輸入] 來開啟 [Runbook 輸入參數] 窗格。<br> ![Runbook 輸入和輸出](media/automation-first-runbook-graphical/runbook-toolbar-InputandOutput-revised20165.png)
-3. 對 [ *名稱* ] 指定 **VMName**。  將 [類型] 保留為 *string*，但將 [強制] 變更為 [是]。  按一下 [確定] 。
-4. 建立稱為 ResourceGroupName 的第二個必要輸入參數，然後按一下 [確定] 來關閉 [輸入和輸出] 窗格。<br> ![Runbook 輸入參數](media/automation-first-runbook-graphical/start-azurermvm-params-outputs.png)
-5. 選取 [Start-AzureRmVM] 活動，然後按一下 [參數]。
-6. 將 [名稱] 的 [資料來源] 變更為 [Runbook 輸入]，然後選取 [VMName]。<br>
-7. 將 [ResourceGroupName] 的 [資料來源] 變更為 [Runbook 輸入]，然後選取 [ResourceGroupName]。<br> ![Start-AzureVM 參數](media/automation-first-runbook-graphical/start-azurermvm-params-runbookinput.png)
-8. 儲存 Runbook 並開啟 [測試] 窗格。  請注意，您現在可以提供測試中使用的兩個輸入變數的值。
-9. 關閉 [測試] 窗格。
-10. 按一下 [發佈]  來發行新版本的 Runbook。
-11. 停止您在上一個步驟中啟動的虛擬機器。
-12. 按一下 [開始]  以啟動 Runbook。  輸入您要啟動之虛擬機器的 [VMName] 和 [ResourceGroupName]。<br> ![Start Runbook](media/automation-first-runbook-graphical/runbook-start-inputparams.png)
-13. Runbook 完成時，請檢查虛擬機器已啟動。
+1. 開啟 hello 圖形化編輯器，依序按一下**編輯**上 hello **MyFirstRunbook**窗格。
+2. 按一下**輸入和輸出**然後**加入輸入**tooopen hello Runbook 輸入參數 窗格。<br> ![Runbook 輸入和輸出](media/automation-first-runbook-graphical/runbook-toolbar-InputandOutput-revised20165.png)
+3. 指定*VMName* hello**名稱**。  保留*字串*hello**類型**，但變更**強制**太*是*。  按一下 [確定] 。
+4. 建立第二個必要的輸入的參數，呼叫*ResourceGroupName* ，然後按一下**確定**tooclose hello**輸入和輸出**窗格。<br> ![Runbook 輸入參數](media/automation-first-runbook-graphical/start-azurermvm-params-outputs.png)
+5. 選取 hello**開始 AzureRmVM**活動，然後按一下**參數**。
+6. 變更 hello**資料來源**如**名稱**太**Runbook 輸入**，然後選取  **VMName**。<br>
+7. 變更 hello**資料來源**如**ResourceGroupName**太**Runbook 輸入**，然後選取  **ResourceGroupName**。<br> ![Start-AzureVM 參數](media/automation-first-runbook-graphical/start-azurermvm-params-runbookinput.png)
+8. 儲存 hello runbook 並開啟 hello 測試窗格。  請注意，您可以現在提供值給 hello hello 測試中使用兩個輸入的變數。
+9. 關閉 hello 測試窗格。
+10. 按一下**發行**toopublish hello 新版 hello runbook。
+11. 停止 hello hello 上一個步驟中啟動的虛擬機器。
+12. 按一下**啟動**toostart hello runbook。  型別在 hello **VMName**和**ResourceGroupName**要 toostart hello 虛擬機器。<br> ![Start Runbook](media/automation-first-runbook-graphical/runbook-start-inputparams.png)
+13. Hello runbook 完成時，請檢查該 hello 虛擬機器已啟動。
 
 ## <a name="step-9---create-a-conditional-link"></a>步驟 9 - 建立條件式連結
-我們現在會修改 Runbook，讓它只會在未啟動時嘗試啟動虛擬機器。  您可將 **Get-AzureRmVM** Cmdlet 新增到可取得虛擬機器之執行個體層級狀態的 Runbook，來執行此動作。 然後您可新增名為 **取得狀態** 的 PowerShell 工作流程程式碼模組與 PowerShell 程式碼片段，來判斷虛擬機器的狀態是正在執行還是已停止。  只有當目前的執行狀態為已停止時，**取得狀態**模組中的條件式連結才會執行 **Start-AzureRmVM**。  最後我們會輸出訊息，通知您 VM 已成功啟動或未使用 PowerShell Write-Output Cmdlet。
+我們現在修改 hello runbook，使它只會嘗試 toostart hello 虛擬機器未啟動。  您可以加入**Get AzureRmVM**取得 hello hello 虛擬機器的執行個體層級狀態的 cmdlet toohello runbook。 接著您將新增的 PowerShell 工作流程程式碼模組稱為**取得狀態**PowerShell 的程式碼片段，碼 toodetermine hello 虛擬機器狀態是否正在執行或已停止。  條件式連結從 hello**取得狀態**模組只會執行**開始 AzureRmVM**如果停止 hello 目前執行中狀態。  最後，我們會輸出訊息 tooinform 您 hello VM 是否已成功啟動或不使用 hello PowerShell Write-output cmdlet。
 
-1. 在圖形化編輯器中開啟 **MyFirstRunbook** 。
-2. 移除 [指定訂用帳戶識別碼] 和 [Start-AzureRmVM] 之間的連結，方法是按一下該連結，然後按 [刪除] 鍵。
-3. 在 [程式庫] 控制項中，於搜尋文字方塊中輸入 **Get-AzureRm** 。
-4. 將 [Get-AzureRmVM]  加入至畫布。
-5. 選取 [Get-AzureRmVM]，然後選取 [參數集] 以檢視 [Get-AzureRmVM] 的參數集。  選取 [GetVirtualMachineInResourceGroupNameParamSet]  參數集。  請注意，[ResourceGroupName] 和 [名稱] 旁邊具有驚嘆號。  這表示它們是必要的參數。  也請注意這兩者應該是字串值。
+1. 開啟**MyFirstRunbook** hello 圖形化編輯器中。
+2. 移除 hello 連結之間**指定訂用帳戶 Id**和**開始 AzureRmVM**按一下它，然後按 hello*刪除*索引鍵。
+3. 在 hello 程式庫控制項，輸入**Get AzureRm** hello 搜尋 文字方塊中。
+4. 新增**Get AzureRmVM** toohello 畫布。
+5. 選取**Get AzureRmVM**然後**參數設定**tooview hello 設定**Get AzureRmVM**。  選取 hello **GetVirtualMachineInResourceGroupNameParamSet**參數集。  請注意，[ResourceGroupName] 和 [名稱] 旁邊具有驚嘆號。  這表示它們是必要的參數。  也請注意這兩者應該是字串值。
 6. 在 [名稱] 的 [資料來源] 底下，選取 [Runbook 輸入]，然後選取 [VMName]。  按一下 [確定] 。
 7. 在 [ResourceGroupName] 的 [資料來源] 底下，選取 [Runbook 輸入]，然後選取 [ResourceGroupName]。  按一下 [確定] 。
-8. 在 [狀態] 的 [資料來源] 底下，選取 [常數值]，然後按一下 [True]。  按一下 [確定] 。  
-9. 建立從 [指定訂用帳戶識別碼] 至 [Get-AzureRmVM] 的連結。
-10. 在 [程式庫] 控制項中展開 [Runbook 控制項]，並將 [程式碼] 新增至畫布。  
-11. 建立從 [Get-AzureRmVM] 至 [程式碼] 的連結。  
-12. 按一下 [程式碼]，接著在 [組態] 窗格中將標籤變更為 [取得狀態]。
-13. 選取 [程式碼] 參數，隨即出現 [程式碼編輯器] 刀鋒視窗。  
-14. 在程式碼編輯器中，貼上下列程式碼片段︰
+8. 在 狀態 的 資料來源 底下，選取 常數值，然後按一下True。  按一下 [確定] 。  
+9. 建立連結，以從**指定訂用帳戶 Id**太**Get AzureRmVM**。
+10. 在 hello 程式庫控制項中展開**Runbook 控制**並加入**程式碼**toohello 畫布。  
+11. 建立連結，以從**Get AzureRmVM**太**程式碼**。  
+12. 按一下**程式碼**和 hello 組態在窗格中，變更標籤太**取得狀態**。
+13. 選取**程式碼**參數和 hello**程式碼編輯器**刀鋒視窗隨即出現。  
+14. 在 hello 程式碼編輯器中，貼上下列程式碼片段的 hello:
     
      ```
      $StatusesJson = $ActivityOutput['Get-AzureRmVM'].StatusesText
@@ -189,25 +189,25 @@ ms.lasthandoff: 07/11/2017
      }
      $StatusOut
      ```
-15. 建立從 [取得狀態] 至 [Start-AzureRmVM] 的連結。<br> ![程式碼模組的 Runbook](media/automation-first-runbook-graphical/runbook-startvm-get-status.png)  
-16. 選取該連結，然後在 [組態] 窗格中將 [套用條件] 變更為 [是]。   請注意，連結轉變為虛線表示目標活動只有在條件解析為 true 時才會執行。  
-17. 在 [條件運算式] 中輸入 $ActivityOutput['Get Status'] -eq "Stopped"。  **Start-AzureRmVM** 現在只會在虛擬機器停止時執行。
-18. 在 [程式庫] 控制項中，展開 **Cmdlet**，然後展開 **Microsoft.PowerShell.Utility**。
-19. 將 [Write-Output] 新增至畫布兩次。<br> ![Write-Output 的 Runbook](media/automation-first-runbook-graphical/runbook-startazurermvm-complete.png)
-20. 在第一個 [Write-Output] 控制項中按一下 [參數]，然後將 [標籤] 值變更為 [通知 VM 已啟動]。
-21. 在 [InputObject] 中將 [資料來源] 變更為 [PowerShell 運算式]，然後輸入運算式 "$VMName successfully started"。
-22. 在第二個 [Write-Output] 控制項中按一下 [參數]，然後將 [標籤] 值變更為 [通知 VM 啟動失敗]
-23. 在 [InputObject] 中將 [資料來源] 變更為 [PowerShell 運算式]，然後輸入運算式 "$VMName could not start"。
-24. 建立從 [Start-AzureRmVM] 至 [通知 VM 已啟動] 和 [通知 VM 啟動失敗] 的連結。
-25. 選取連往 [通知 VM 已啟動] 的連結並將 [套用條件] 變更為 [True]。
-26. 在 [條件運算式] 中輸入 $ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -eq $true。  此 Write-Output 控制項現在只會在虛擬機器已成功啟動時執行。
-27. 選取連往 [通知 VM 啟動失敗] 的連結並將 [套用條件] 變更為 [True]。
-28. 在 [條件運算式] 中輸入 $ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -ne $true。  此 Write-Output 控制項現在只會在虛擬機器未成功啟動時執行。
-29. 儲存 Runbook 並開啟 [測試] 窗格。
-30. 在虛擬機器停止下啟動 Runbook，它應該會啟動。
+15. 建立連結，以從**取得狀態**太**開始 AzureRmVM**。<br> ![程式碼模組的 Runbook](media/automation-first-runbook-graphical/runbook-startvm-get-status.png)  
+16. 選取 hello 連結，並在 hello 設定窗格中，變更**套用條件**太**是**。   請注意 hello 連結會開啟 tooa 虛線一行指出 hello 目標活動只能執行是否 hello 條件解析 tootrue。  
+17. Hello**條件運算式**，型別*$ActivityOutput [' 取得狀態 ']-eq"Stopped"*。  **開始 AzureRmVM**現在僅執行如果 hello 虛擬機器已停止。
+18. 在 hello 程式庫控制項，依序展開**Cmdlet**然後**Microsoft.PowerShell.Utility**。
+19. 新增**Write-output** toohello 畫布兩次。<br> ![Write-Output 的 Runbook](media/automation-first-runbook-graphical/runbook-startazurermvm-complete.png)
+20. Hello 上第一個**Write-output**控制，請按一下**參數**並變更 hello**標籤**值太*通知 VM 啟動*。
+21. 如**InputObject**，變更**資料來源**太**PowerShell 運算式**hello 運算式中的類型和*"$VMName 已順利啟動。 」*.
+22. Hello 上第二個**Write-output**控制，請按一下**參數**並變更 hello**標籤**值太*通知 VM 啟動失敗*
+23. 如**InputObject**，變更**資料來源**太**PowerShell 運算式**hello 運算式中的類型和*"$VMName 無法啟動。 」*.
+24. 建立連結，以從**開始 AzureRmVM**太**通知 VM 啟動**和**通知 VM 啟動失敗**。
+25. 選取 hello 連結太**通知 VM 啟動**並變更**套用條件**太**True**。
+26. Hello**條件運算式**，型別*$ActivityOutput [' 開始-AzureRmVM']。IsSuccessStatusCode-eq $true*。  此寫入輸出控制現在僅執行 hello 虛擬機器已順利啟動。
+27. 選取 hello 連結太**通知 VM 啟動失敗**並變更**套用條件**太**True**。
+28. Hello**條件運算式**，型別*$ActivityOutput [' 開始-AzureRmVM']。IsSuccessStatusCode ne $true*。  此寫入輸出現在控制才會執行，如果未成功啟動 hello 虛擬機器。
+29. 儲存 hello runbook 並開啟 hello 測試窗格。
+30. 啟動 hello runbook 與 hello 虛擬機器已停止，並開始時間。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要深入了解圖形化編寫，請參閱 [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
-* 若要開始使用 PowerShell Runbook，請參閱 [我的第一個 PowerShell Runbook](automation-first-runbook-textual-powershell.md)
-* 若要開始使用 PowerShell 工作流程 Runbook，請參閱 [我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
+* toolearn 詳細資料圖形化撰寫，請參閱[Azure 自動化中的圖形化撰寫](automation-graphical-authoring-intro.md)
+* 請參閱 < 開始使用 PowerShell runbook tooget[我的第一個 PowerShell runbook](automation-first-runbook-textual-powershell.md)
+* tooget 開始使用 PowerShell 工作流程 runbook，請參閱[我的第一個 PowerShell 工作流程 runbook](automation-first-runbook-textual.md)
 

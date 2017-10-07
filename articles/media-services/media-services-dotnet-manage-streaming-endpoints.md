@@ -1,6 +1,6 @@
 ---
-title: "使用 .NET SDK 來管理串流端點。 | Microsoft Docs"
-description: "本主題說明如何透過 Azure 入口網站管理串流端點。"
+title: "aaaManage 串流端點，其中包含.NET SDK。 | Microsoft Docs"
+description: "本主題說明如何 toomanage 串流端點，其中包含 hello Azure 入口網站。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 2f4f464f8604b6f453d6b50b736c6a3a889a3408
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 30c092a8ebf4e2b2902392f4cf98f46d812ccdbc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-streaming-endpoints-with-net-sdk"></a>使用 .NET SDK 來管理串流端點
 
 >[!NOTE]
->請務必檢閱[概觀](media-services-streaming-endpoints-overview.md)主題。 此外，也請檢閱 [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint)。
+>請確定 tooreview hello[概觀](media-services-streaming-endpoints-overview.md)主題。 此外，也請檢閱 [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint)。
 
-本主題中的程式碼示範如何使用「Azure 媒體服務 .NET SDK」來執行下列工作：
+本主題中的 hello 程式碼會示範下列工作使用 toodo hello hello Azure Media Services.NET SDK 的方式：
 
-- 檢查預設串流端點。
+- 檢查 hello 預設串流端點。
 - 建立/新增新的串流端點。
 
-    如果您打算有不同的 CDN 或一個 CDN 和直接存取，您可能會想要有多個串流端點。
+    您可能會想 toohave 多個串流端點如果您計劃 toohave 不同 Cdn 或 CDN 和直接存取。
 
     > [!NOTE]
     > 只有當串流端點處於執行中狀態時，才會向您收取費用。
     
-- 更新串流端點。
+- 更新串流端點的 hello。
     
-    請務必呼叫 Update() 函式。
+    請確定 toocall hello update （） 函式。
 
-- 刪除串流端點。
+- 刪除串流端點的 hello。
 
     >[!NOTE]
-    >預設串流端點不可刪除。
+    >無法刪除 hello 預設串流端點。
 
-如需調整串流端點的相關資訊，請參閱 [這個](media-services-portal-scale-streaming-endpoints.md) 主題。
+如需如何 tooscale hello 串流端點資訊，請參閱[這](media-services-portal-scale-streaming-endpoints.md)主題。
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 
-設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
+設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
 
 ## <a name="add-code-that-manages-streaming-endpoints"></a>新增可管理串流端點的程式碼
     
-以下列程式碼取代 Program.cs 中的程式碼：
+取代下列程式碼的 hello hello hello Program.cs 中的程式碼：
 
     using System;
     using System.Configuration;
@@ -65,7 +65,7 @@ ms.lasthandoff: 08/29/2017
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =

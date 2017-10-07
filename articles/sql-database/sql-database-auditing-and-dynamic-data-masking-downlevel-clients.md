@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL Database 的資料表稽核、TDS 重新導向及 IP 端點 | Microsoft Docs"
+title: "aaaTable 稽核，TDS 重新導向，和 Azure SQL Database 的 IP 端點 |Microsoft 文件"
 description: "了解在 Azure SQL Database 中實作資料表稽核時的稽核、TDS 重新導向及 IP 端點變更。"
 services: sql-database
 documentationcenter: 
@@ -15,42 +15,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: giladm
-ms.openlocfilehash: d4a7e6658ec65a70bd7e07859e2a69acee58b7b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 966c23f92fab6fa459a515ad841bb2d5f75436aa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-database----downlevel-clients-support-and-ip-endpoint-changes-for-table-auditing"></a>SQL Database - 資料表稽核的舊版用戶端支援與 IP 端點變更
 
 > [!IMPORTANT]
-> 本文件僅適用於資料表稽核，也就是**現已淘汰**。<br>
-> 請使用新的 [Blob 稽核](sql-database-auditing.md)方法，**不**需要修改舊版用戶端連接字串。 Blob 稽核的其他資訊位在[開始使用 SQL Database 稽核](sql-database-auditing.md)。
+> 這份文件適用於僅 tooTable 稽核，也就是**現在已被取代**。<br>
+> 請使用新 hello [Blob 稽核](sql-database-auditing.md)方法，其中**不**需要舊版用戶端連接字串修改。 Blob 稽核的其他資訊位在[開始使用 SQL Database 稽核](sql-database-auditing.md)。
 
-[資料庫稽核](sql-database-auditing.md)可自動與支援 TDS 重新導向的 SQL 用戶端搭配運作。 請注意，使用「Blob 稽核」方法時，不適用重新導向。
+[資料庫稽核](sql-database-auditing.md)可自動與支援 TDS 重新導向的 SQL 用戶端搭配運作。 請注意使用 hello Blob 稽核方法時，將不會套用該重新導向。
 
 ## <a id="subheading-1"></a>舊版用戶端支援
-實作 TDS 7.4 的任何用戶端應該也支援重新導向。 例外包括其中未完全支援重新導向功能的 JDBC 4.0，和其中未實作重新導向的 Tedious for Node.JS。
+實作 TDS 7.4 的任何用戶端應該也支援重新導向。 例外狀況 toothis 納入 JDBC 4.0 的 hello 重新導向功能不完全支援和 Tedious for Node.JS 不會實作重新導向時。
 
-對於「舊版用戶端」，也就是支援 TDS 7.3 版和以下版本 - 應該修改連接字串中的伺服器 FQDN：
+「 下層用戶端 」，也就是它支援 TDS 版本 7.3，且以下-hello hello 連接字串中的伺服器 FQDN 應修改：
 
-連接字串中的原始伺服器 FQDN：<*伺服器名稱*>.database.windows.net
+原始伺服器 FQDN hello 連接字串中： <*伺服器名稱*>。.database.windows.net
 
-連接字串中已修改的伺服器 FQDN：<*伺服器名稱*>.database.**secure**.windows.net
+已修改的伺服器 FQDN hello 連接字串中： <*伺服器名稱*>.database。**安全**。 windows.net
 
 「舊版用戶端」的部分清單包括：
 
 * .NET 4.0 和以下版本，
 * ODBC 10.0 和以下版本。
-* JDBC (雖然 JDBC 支援 TDS 7.4，但並未完整支援 TDS 重新導向功能)
+* JDBC （雖然 JDBC 可支援 TDS 7.4，hello TDS 重新導向功能不完全支援）
 * Tedious (適用於 Node.JS)
 
-**備註：** 上述伺服器 FDQN 修改可能會對於套用 SQL Server 層級稽核原則有所助益，不需要每個資料庫中的組態步驟 (暫存緩和)。
+**備註：** hello 上述伺服器 FDQN 修改可能會有所助益也沒有需要的設定步驟 （暫存緩和） 每個資料庫中套用 SQL Server 層級稽核原則。
 
 ## <a id="subheading-2"></a>啟用稽核的 IP 端點變更
-請注意，當您啟用「資料表稽核」時，您資料庫的 IP 端點將會變更。 如果您有嚴格的防火牆設定，請適當更新這些防火牆設定。
+請注意，當您啟用稽核資料表，會變更資料庫的 hello IP 端點。 如果您有嚴格的防火牆設定，請適當更新這些防火牆設定。
 
-新的資料庫 IP 端點將取決於資料庫區域：
+hello 新資料庫 IP 端點將取決於 hello 資料庫區域：
 
 | 資料庫區域 | 可能的 IP 端點 |
 | --- | --- |

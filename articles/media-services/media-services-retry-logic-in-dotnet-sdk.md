@@ -1,6 +1,6 @@
 ---
-title: "Media Services SDK for .NET 中的重試邏輯 | Microsoft Docs"
-description: "本主題提供 Media Services SDK for .NET 中重試邏輯的概觀。"
+title: "aaaRetry 邏輯 hello Media Services SDK for.NET |Microsoft 文件"
+description: "hello 主題概要說明的重試邏輯中 hello Media Services SDK for.NET。"
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: juliako
-ms.openlocfilehash: 859dd76db4ba06196a853469a1385703d835fa22
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 18d0a9d68e55a48bc769fb6ae5711ddba78ed8e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="retry-logic-in-the-media-services-sdk-for-net"></a>Media Services SDK for .NET 中的重試邏輯
-當使用 Microsoft Azure 服務時，可能會發生暫時性錯誤。 如果發生暫時性錯誤，在大部分情況下，少數重試後作業會成功。 Media Services SDK for .NET 會實作重試邏輯來處理與例外狀況和錯誤 (Web 要求所造成) 相關聯的暫時性失敗、執行查詢、儲存變更，以及儲存體作業。  根據預設，Media Services SDK for .NET 在將例外狀況重新擲回您的應用程式之前，會執行四次重試。 然後您的應用程式中的程式碼必須適當地處理這個例外狀況。  
+# <a name="retry-logic-in-hello-media-services-sdk-for-net"></a>.NET 的重試 hello Media Services SDK 中的邏輯
+當使用 Microsoft Azure 服務時，可能會發生暫時性錯誤。 如果發生暫時性錯誤，在大部分情況下，在少數的重試後 hello 作業會成功。 hello Media Services SDK for.NET 實作 hello 重試邏輯 toohandle 暫時性錯誤例外狀況和 web 要求、 執行查詢，儲存變更，以及儲存體作業所造成的錯誤相關聯。  根據預設，hello Media Services SDK for.NET 會重新擲回 hello 例外狀況 tooyour 應用程式之前執行四次重試。 您的應用程式中的 hello 程式碼再必須正確處理這個例外狀況。  
 
- 以下是 Web 要求、儲存體、查詢和 SaveChanges 原則的簡短指導方針︰  
+ hello 下面是簡短的 Web 要求、 儲存體、 查詢和 SaveChanges 原則指導方針：  
 
-* 儲存原則適用於 blob 儲存體作業 (上傳或下載資產檔案)。  
-* Web 要求原則用於泛型 Web 要求 (例如，為了取得驗證權杖以及解析使用者叢集端點)。  
-* 查詢原則用於查詢 REST 的實體 (例如，mediaContext.Assets.Where(…))。  
-* SaveChanges 原則用於執行任何作業，在服務內變更資料 (例如，建立實體更新實體、呼叫作業的服務函式)。  
+* hello 存放裝置原則適用於 blob 儲存體作業 （上傳或下載 asset 檔案）。  
+* hello Web 要求的原則適用於一般 web 要求 （例如，用於取得驗證權杖和解決 hello 使用者叢集端點）。  
+* hello 查詢原則用於查詢其餘部分 (例如，mediaContext.Assets.Where(...)) 實體。  
+* hello SaveChanges 原則用來進行變更 （例如，建立更新實體，服務函式呼叫作業的實體） 的 hello 服務內的資料。  
   
-  本主題會列出由 Media Services SDK for .NET 重試邏輯處理的例外狀況類型和錯誤代碼。  
+  本主題列出例外狀況類型，並會由 hello Media Services SDK for.NET 的錯誤碼重試邏輯。  
 
 ## <a name="exception-types"></a>例外狀況類型
-下表描述 Media Services SDK for .NET 處理或未處理可能導致暫時性失敗的某些作業。  
+hello 下表描述該 hello Media Services SDK for.NET 的控制代碼的例外狀況或不會進行某些作業可能會造成暫時性錯誤處理。  
 
 | 例外狀況 | Web 要求 | 儲存體 | 查詢 | SaveChanges |
 | --- | --- | --- | --- | --- |
-| WebException<br/>如需詳細資訊，請參閱 [WebException 狀態碼](media-services-retry-logic-in-dotnet-sdk.md#WebExceptionStatus)一節。 |是 |是 |是 |是 |
+| WebException<br/>如需詳細資訊，請參閱 hello [WebException 狀態碼](media-services-retry-logic-in-dotnet-sdk.md#WebExceptionStatus)> 一節。 |是 |是 |是 |是 |
 | DataServiceClientException<br/> 如需詳細資訊，請參閱 [HTTP 錯誤狀態碼](media-services-retry-logic-in-dotnet-sdk.md#HTTPStatusCode)。 |否 |是 |是 |是 |
 | DataServiceQueryException<br/> 如需詳細資訊，請參閱 [HTTP 錯誤狀態碼](media-services-retry-logic-in-dotnet-sdk.md#HTTPStatusCode)。 |否 |是 |是 |是 |
 | DataServiceRequestException<br/> 如需詳細資訊，請參閱 [HTTP 錯誤狀態碼](media-services-retry-logic-in-dotnet-sdk.md#HTTPStatusCode)。 |否 |是 |是 |是 |
@@ -48,7 +48,7 @@ ms.lasthandoff: 08/29/2017
 | IOException |否 |是 |否 |否 |
 
 ### <a name="WebExceptionStatus"></a> WebException 狀態碼
-下表顯示重試邏輯實作的 WebException 錯誤碼。 [WebExceptionStatus](http://msdn.microsoft.com/library/system.net.webexceptionstatus.aspx) 列舉定義狀態碼。  
+hello 下表顯示代碼 hello 重試邏輯如何實作 WebException 錯誤。 hello [WebExceptionStatus](http://msdn.microsoft.com/library/system.net.webexceptionstatus.aspx)列舉型別定義 hello 的狀態碼。  
 
 | 狀態 | Web 要求 | 儲存體 | 查詢 | SaveChanges |
 | --- | --- | --- | --- | --- |
@@ -63,10 +63,10 @@ ms.lasthandoff: 08/29/2017
 | ReceiveFailure |是 |是 |是 |否 |
 | RequestCanceled |是 |是 |是 |否 |
 | 逾時 |是 |是 |是 |否 |
-| ProtocolError <br/>ProtocolError 重試是由 HTTP 狀態碼處理所控制。 如需詳細資訊，請參閱 [HTTP 錯誤狀態碼](media-services-retry-logic-in-dotnet-sdk.md#HTTPStatusCode)。 |是 |是 |是 |是 |
+| ProtocolError <br/>ProtocolError hello 重試受到 hello HTTP 狀態碼處理。 如需詳細資訊，請參閱 [HTTP 錯誤狀態碼](media-services-retry-logic-in-dotnet-sdk.md#HTTPStatusCode)。 |是 |是 |是 |是 |
 
 ### <a name="HTTPStatusCode"></a> HTTP 錯誤狀態碼
-當查詢和 SaveChanges 作業擲回 DataServiceClientException、DataServiceQueryException 或 DataServiceQueryException 時，StatusCode 屬性中會傳回 HTTP 錯誤狀態碼。  下表顯示重試邏輯實作的錯誤碼。  
+當查詢與 SaveChanges 作業擲回傳回 DataServiceClientException、 DataServiceQueryException 或 DataServiceQueryException 時，hello HTTP 錯誤狀態碼會傳回在 hello StatusCode 屬性。  hello 下表顯示的錯誤碼實作 hello 重試邏輯。  
 
 | 狀態 | Web 要求 | 儲存體 | 查詢 | SaveChanges |
 | --- | --- | --- | --- | --- |
@@ -79,7 +79,7 @@ ms.lasthandoff: 08/29/2017
 | 503 |是 |是 |是 |是 |
 | 504 |是 |是 |是 |否 |
 
-如果您想要看一下 Media Services SDK for .NET 重試邏輯的實際實作，請參閱 [azure-sdk-for-media-services](https://github.com/Azure/azure-sdk-for-media-services/tree/dev/src/net/Client/TransientFaultHandling)。
+如果您想 tootake 查看 hello 實際實作 hello Media Services SDK for.NET 重試邏輯，請參閱[azure-sdk--媒體-服務的](https://github.com/Azure/azure-sdk-for-media-services/tree/dev/src/net/Client/TransientFaultHandling)。
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

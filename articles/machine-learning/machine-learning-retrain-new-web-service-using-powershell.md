@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 重新訓練新的 Azure Machine Learning Web 服務 | Microsoft Docs"
-description: "了解如何使用 Machine Learning Management PowerShell Cmdlet 在 Azure Machine Learning 中以程式設計方式重新訓練模型，以及使用新訓練的模型來更新 Web 服務。"
+title: "新的 Azure Machine Learning web 服務使用 PowerShell aaaRetrain |Microsoft 文件"
+description: "了解 tooprogrammatically 重新定型模型和更新 hello web 服務 toouse hello 新定型的模型使用 hello 機器學習服務管理 PowerShell 指令程式的 Azure Machine Learning 中。"
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/28/2017
 ms.author: v-donglo
-ms.openlocfilehash: 804dd59e62f38ee1878045d93211ee18e0d5bfce
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5b77fa82cfe17f0b4e90007ef81c506ab712475b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="retrain-a-new-resource-manager-based-web-service-using-the-machine-learning-management-powershell-cmdlets"></a>使用 Machine Learning Management PowerShell Cmdlet 重新訓練以 Resource Manager 為基礎的新 Web 服務
-當您重新訓練新的 Web 服務時，可以更新預測性 Web 服務定義以參考新的訓練模型。  
+# <a name="retrain-a-new-resource-manager-based-web-service-using-hello-machine-learning-management-powershell-cmdlets"></a>進行重新培訓新的資源管理員基礎 web 服務使用 hello 機器學習服務管理 PowerShell 指令程式
+當您重新訓練新的 web 服務時，您會更新 hello 預測 web 服務定義 tooreference hello 新定型的模型。  
 
 ## <a name="prerequisites"></a>必要條件
 您必須設定訓練實驗與預測性實驗，如[以程式設計方式重新定型機器學習服務模型](machine-learning-retrain-models-programmatically.md)中所示。 
 
 > [!IMPORTANT]
-> 預測性實驗必須部署為 Azure Resource Manager (新) 型 Machine Learning Web 服務。 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
+> hello 預測實驗必須部署為 Azure 資源管理員 （新） 基礎機器學習 web 服務。 toodeploy 新的 web 服務，您必須擁有足夠的權限 hello 訂用帳戶 toowhich 您部署 hello web 服務。 如需詳細資訊，請參閱[管理 Web 服務使用 hello Azure 機器學習 Web 服務網站](machine-learning-manage-new-webservice.md)。 
 
 如需關於部署 Web 服務的其他資訊，請參閱[部署 Azure Machine Learning Web 服務](machine-learning-publish-a-machine-learning-web-service.md)。
 
-此程序要求您已安裝 Azure Machine Learning Cmdlet。 如需安裝 Machine Learning cmdlet 的資訊，請參閱 MSDN 上的 [Azure Machine Learning Cmdlet](https://msdn.microsoft.com/library/azure/mt767952.aspx) 參考。
+此程序需要您已安裝 hello Azure 機器學習指令程式。 安裝 hello 機器學習服務 cmdlet 的詳細資訊，請參閱 hello [Azure 機器學習指令程式](https://msdn.microsoft.com/library/azure/mt767952.aspx)MSDN 上的參考。
 
-已從重新定型輸出中複製下列資訊︰
+複製的 hello hello 重新訓練輸出中的下列資訊：
 
 * BaseLocation
 * RelativeLocation
 
-您採取的步驟如下︰
+hello 您採取的步驟如下：
 
-1. 登入您的 Azure Resource Manager 帳戶。
-2. 取得 Web 服務定義
-3. 將 Web 服務定義匯出為 JSON
-4. 在 JSON 中將參考更新為 ilearner blob。
-5. 將 JSON 匯入至 Web 服務定義
-6. 使用新的 Web 服務定義更新 Web 服務
+1. 登入 tooyour Azure 資源管理員帳戶。
+2. 取得 hello web 服務定義
+3. 匯出為 JSON 的 hello Web 服務定義
+4. 更新 hello JSON 中的 hello 參考 toohello ilearner 做為 blob。
+5. Hello JSON 匯入 Web 服務定義
+6. 使用新的 Web 服務定義更新 hello web 服務
 
-## <a name="sign-in-to-your-azure-resource-manager-account"></a>登入您的 Azure Resource Manager 帳戶
-您必須先在 PowerShell 環境中，使用 [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet 登入您的 Azure 帳戶。
+## <a name="sign-in-tooyour-azure-resource-manager-account"></a>登入 tooyour Azure 資源管理員帳戶
+您必須先登入從使用 hello hello PowerShell 環境中的 Azure 帳戶 tooyour[新增 AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) cmdlet。
 
-## <a name="get-the-web-service-definition"></a>取得 Web 服務定義
-接下來，呼叫 [Get AzureRmMlWebService](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet 取得 Web 服務。 Web 服務定義是 Web 服務訓練模型的內部表示法，且不可直接修改。 請確定您要擷取的是預測性實驗 (而非訓練實驗) 的 Web 服務定義。
+## <a name="get-hello-web-service-definition"></a>取得 Web 服務定義 hello
+接下來，取得 hello Web 服務所呼叫的 hello [Get AzureRmMlWebService](https://msdn.microsoft.com/library/mt619267.aspx) cmdlet。 hello Web 服務定義是 hello 定型模型的 hello web 服務的內部表示法，並不是直接修改。 請確定您會預測實驗和未定型實驗擷取 hello Web 服務定義。
 
     $wsd = Get-AzureRmMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'
 
-若要判斷現有 Web 服務的資源群組名稱，執行不含任何參數的 Get-AzureRmMlWebService cmdlet 來顯示您訂用帳戶中的 Web 服務。 找出 Web 服務，再查看其 Web 服務識別碼。 資源群組的名稱是識別碼中的第四個元素，緊接在 resourceGroups  元素之後。 在下列範例中，資源群組名稱是 Default-MachineLearning-SouthCentralUS。
+toodetermine hello 資源群組名稱的現有 web 服務，在您訂用帳戶中執行不含任何參數 toodisplay hello web 服務的 hello Get AzureRmMlWebService cmdlet。 找出 hello web 服務，然後查看 [其 web 服務識別碼。 hello hello 資源群組名稱是 hello 識別碼 hello 第四個元素後方 hello *resourceGroups*項目。 在下列範例的 hello，hello 資源群組名稱會是預設-MachineLearning-SouthCentralUS。
 
     Properties : Microsoft.Azure.Management.MachineLearning.WebServices.Models.WebServicePropertiesForGraph
     Id : /subscriptions/<subscription ID>/resourceGroups/Default-MachineLearning-SouthCentralUS/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237
@@ -64,18 +64,18 @@ ms.lasthandoff: 07/11/2017
     Type : Microsoft.MachineLearning/webServices
     Tags : {}
 
-或者，若要判斷現有 Web 服務的資源群組名稱，登入 Microsoft Azure Machine Learning Web 服務入口網站。 選取 Web 服務。 資源群組名稱是 Web 服務 URL 的第五個元素，緊接在 resourceGroups  元素之後。 在下列範例中，資源群組名稱是 Default-MachineLearning-SouthCentralUS。
+或者，toodetermine hello 資源群組名稱的現有 web 服務，toohello Microsoft Azure 機器學習 Web 服務入口網站上的記錄檔。 選取 hello web 服務。 hello 資源群組名稱是 hello hello web 服務，URL hello 第五個項目後方 hello *resourceGroups*項目。 在下列範例的 hello，hello 資源群組名稱會是預設-MachineLearning-SouthCentralUS。
 
     https://services.azureml.net/subscriptions/<subcription ID>/resourceGroups/Default-MachineLearning-SouthCentralUS/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237
 
 
-## <a name="export-the-web-service-definition-as-json"></a>將 Web 服務定義匯出為 JSON
-若要將定義修改為定型模型以使用新定型的模型，您必須先使用 [Export-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767935.aspx) cmdlet 將其匯出為 JSON 格式檔案。
+## <a name="export-hello-web-service-definition-as-json"></a>匯出為 JSON 的 hello Web 服務定義
+toomodify hello 定義 toohello 定型模型 toouse 新 hello 定型的模型，您必須先使用 hello[匯出 AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767935.aspx) cmdlet tooexport 它 tooa JSON 格式的檔案。
 
     Export-AzureRmMlWebService -WebService $wsd -OutputFile "C:\temp\mlservice_export.json"
 
-## <a name="update-the-reference-to-the-ilearner-blob-in-the-json"></a>在 JSON 中將參考更新為 ilearner blob。
-在資產中，找出 [定型模型]，使用 ilearner blob 的 URI 更新 locationInfo 節點中的 uri 值。 URI 的產生方式為結合來自 BES 重新定型呼叫輸出的 BaseLocation 和 RelativeLocation。 這會更新路徑以參考新定型的模型。
+## <a name="update-hello-reference-toohello-ilearner-blob-in-hello-json"></a>更新 hello JSON 中的 hello 參考 toohello ilearner 做為 blob。
+在 [hello 資產，找出 hello [定型的模型]，更新 hello *uri* hello 中的值*locationInfo*節點以 hello hello ilearner 做為 blob 的 URI。 hello URI 由產生結合 hello *BaseLocation*和 hello *RelativeLocation* hello BES 訓練呼叫 hello 輸出。 這會更新 hello 路徑 tooreference hello 新定型的模型。
 
      "asset3": {
         "name": "Retrain Samp.le [trained model]",
@@ -90,20 +90,20 @@ ms.lasthandoff: 07/11/2017
         }
       },
 
-## <a name="import-the-json-into-a-web-service-definition"></a>將 JSON 匯入至 Web 服務定義
-您必須使用 [Import-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767925.aspx) Cmdlet 將修改過的 JSON 檔案轉換回可用來更新 Web 服務定義的 Web 服務定義。
+## <a name="import-hello-json-into-a-web-service-definition"></a>Hello JSON 匯入 Web 服務定義
+您必須使用 hello[匯入 AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767925.aspx) cmdlet tooconvert hello 修改成 Web 服務定義，您可以使用 tooupdate hello Web 服務定義 JSON 檔案。
 
     $wsd = Import-AzureRmMlWebService -InputFile "C:\temp\mlservice_export.json"
 
 
-## <a name="update-the-web-service-with-new-web-service-definition"></a>使用新的 Web 服務定義更新 Web 服務
-最後，使用 [Update-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767922.aspx) Cmdlet 來更新 Web 服務定義。
+## <a name="update-hello-web-service-with-new-web-service-definition"></a>使用新的 Web 服務定義更新 hello web 服務
+最後，您使用[更新 AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767922.aspx) cmdlet tooupdate hello Web 服務定義。
 
     Update-AzureRmMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'  -ServiceUpdates $wsd
 
 ## <a name="summary"></a>摘要
-您可以使用 Machine Learning PowerShell Management Cmdlet 來更新預測性 Web 服務的定型模型，運用於如下案例︰
+您可以使用 hello 機器學習 PowerShell 管理 cmdlet，來更新 hello 定型的模型的預測的 Web 服務，啟用這類的案例：
 
 * 定期以新的資料重新定型模型。
-* 散發模型給客戶，目的是要讓他們使用自己的資料重新定型模型。
+* Hello 目標是讓它們重新訓練 hello 模型使用自己的資料模型 toocustomers 的散發。
 

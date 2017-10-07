@@ -1,6 +1,6 @@
 ---
-title: "使用 Java 建立 Azure Cosmos DB 文件資料庫 | Microsoft Docs'"
-description: "提供 Java 程式碼範例，您可用來連線及查詢 Azure Cosmos DB DocumentDB API"
+title: "使用 Java 的 Azure Cosmos DB 文件資料庫 aaaCreate |Microsoft 文件 |Microsoft 文件 '"
+description: "提供 Java 程式碼範例，您可以使用 tooconnect tooand 查詢 hello Azure Cosmos DB DocumentDB API"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,33 +15,33 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 08/02/2017
 ms.author: mimig
-ms.openlocfilehash: df1a25d703a7b8082bdabb4f7d593cb005d416fe
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 400c9e7780034d3e28d749e734786e950edad22f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-create-a-document-database-using-java-and-the-azure-portal"></a>Azure Cosmos DB︰使用 Java 和 Azure 入口網站建立文件資料庫
+# <a name="azure-cosmos-db-create-a-document-database-using-java-and-hello-azure-portal"></a>Azure Cosmos DB： 建立文件資料庫使用 Java 和 hello Azure 入口網站
 
-Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。 
+Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立與查詢文件、 索引鍵/值，以及 graph 資料庫，全部都是從 hello 全域發佈和核心 Azure Cosmos DB hello 的水平縮放功能獲益。 
 
-本快速入門會使用 Azure Cosmos DB 適用的 Azure 入口網站工具建立文件資料庫。 本快速入門也會顯示如何使用 [DocumentDB Java API](documentdb-sdk-java.md) 快速建立 Java 主控台應用程式。 本快速入門中的指示可運用在任何足以執行 Java 應用程式的作業系統上。 完成本快速入門，您就會熟悉在 UI 中或以程式設計的方式建立和修改文件資料庫資源 (不論您偏好哪種方式)。
+本快速入門建立文件資料庫使用的 Azure Cosmos DB hello Azure 入口網站的工具。 本快速入門也會顯示如何 tooquickly 建立 Java 主控台應用程式使用 hello [DocumentDB Java API](documentdb-sdk-java.md)。 本快速入門中的 hello 指示之後只能在能夠執行 Java 任何作業系統上。 完成本快速入門會熟悉建立和修改文件以 hello UI 或以程式設計的方式，無論是您的喜好設定的資料庫資源。
 
 ## <a name="prerequisites"></a>必要條件
 
 * [Java Development Kit (JDK) 1.7+](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-    * 在 Ubuntu 上，執行 `apt-get install default-jdk` 來安裝 JDK。
-    * 務必設定 JAVA_HOME 環境變數，以指向 JDK 安裝所在的資料夾。
+    * 在 Ubuntu，執行`apt-get install default-jdk`tooinstall hello JDK。
+    * 為確定 tooset hello JAVA_HOME 環境變數 toopoint toohello hello JDK 安裝的資料夾。
 * [下載](http://maven.apache.org/download.cgi)和[安裝 ](http://maven.apache.org/install.html) [Maven](http://maven.apache.org/) 二進位封存檔
-    * 在 Ubuntu 上，您可以執行 `apt-get install maven` 來安裝 Maven。
+    * 您可以執行 Ubuntu， `apt-get install maven` tooinstall Maven。
 * [Git](https://www.git-scm.com/)
-    * 在 Ubuntu 上，您可以執行 `sudo apt-get install git` 來安裝 Git。
+    * 您可以執行 Ubuntu， `sudo apt-get install git` tooinstall Git。
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="create-a-database-account"></a>建立資料庫帳戶
 
-您必須先使用 Azure Cosmos DB 建立 SQL (DocumentDB) 資料庫帳戶，才可以建立文件資料庫。
+您可以建立文件資料庫之前，您會需要 toocreate (DocumentDB) SQL database 帳戶與 Azure Cosmos DB。
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
@@ -52,13 +52,13 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 <a id="add-sample-data"></a>
 ## <a name="add-sample-data"></a>新增範例資料
 
-您現在可以使用 [資料總管] 將資料新增至您的新集合。
+您現在可以新增使用資料總管資料 tooyour 新集合。
 
-1. 在 [資料總管] 中，新的資料庫會出現在 [集合] 窗格中。 依序展開 [工作] 資料庫、[項目] 集合，按一下 [文件]，然後按一下 [新增文件]。 
+1. 在 Data 總管 hello 新資料庫會出現在 hello 集合 窗格。 展開 hello**工作**資料庫中，展開 hello**項目**集合中，按一下 **文件**，然後按一下**新文件**。 
 
-   ![在 Azure 入口網站的 [資料總管] 中建立新文件](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-new-document.png)
+   ![Hello Azure 入口網站中，資料檔案總管中建立新文件](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-new-document.png)
   
-2. 現在將文件新增至具有下列結構的集合。
+2. 現在加入文件 toohello 集合具有下列結構的 hello。
 
      ```json
      {
@@ -70,33 +70,33 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
      }
      ```
 
-3. 將 json 新增至 [文件] 索引標籤後，按一下 [儲存]。
+3. 一旦您已經新增 hello json toohello**文件**索引標籤上，按一下 **儲存**。
 
-    ![將 json 資料複製在 Azure 入口網站的 [資料總管] 中並按一下 [儲存]](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-save-document.png)
+    ![複製中 json 資料，並將其 hello Azure 入口網站中按一下 儲存資料檔案總管中](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-save-document.png)
 
-4.  多建立並儲存一份文件，以便在其中插入 `id` 屬性的唯一值，並適當變更其他屬性。 新文件可擁有您想要的任何結構，因為 Azure Cosmos DB 不會對您的資料強加任何結構描述。
+4.  建立並儲存多個一份文件，您可以在該處插入 hello 的唯一值`id`屬性，並適當地 hello 其他屬性的變更。 新文件可擁有您想要的任何結構，因為 Azure Cosmos DB 不會對您的資料強加任何結構描述。
 
-     現在按一下 [編輯篩選條件] 和 [套用篩選條件] 按鈕，即可在 [資料總管] 中使用查詢來擷取您的資料。 [資料總管] 預設會使用 `SELECT * FROM c` 來擷取集合中的所有文件，但您可以將其變更為不同的 [SQL 查詢](documentdb-sql-query.md) (例如 `SELECT * FROM c ORDER BY c._ts DESC`)，以根據時間戳記按遞減順序傳回所有的文件。 
+     您可以現在使用中的查詢資料總管 tooretrieve 資料即可 hello**編輯篩選**和**套用篩選**按鈕。 根據預設，使用資料總管`SELECT * FROM c`tooretrieve 所有文件 hello 集合，但您可以變更該 tooa 不同[SQL 查詢](documentdb-sql-query.md)，例如`SELECT * FROM c ORDER BY c._ts DESC`，tooreturn 所有 hello 文件，以遞減順序都基礎依時間戳記。 
  
-     您也可以使用 [資料總管] 來建立預存程序、UDF 和觸發程序，以執行伺服器端商務邏輯及調整輸送量。 [資料總管] 會公開 API 中所有可用的內建程式設計資料存取，但可讓您在 Azure 入口網站中輕鬆存取您的資料。
+     您也可以使用資料總管 toocreate 預存程序，Udf，觸發程序 tooperform 伺服器端商務邏輯也做為標尺的輸送量。 資料總管會公開所有 hello 程式設計的內建資料存取提供 hello Api，但提供讓您輕鬆存取 tooyour 資料 hello Azure 入口網站中。
 
-## <a name="clone-the-sample-application"></a>複製範例應用程式
+## <a name="clone-hello-sample-application"></a>複製 hello 範例應用程式
 
-現在讓我們切換為使用程式碼。 我們會從 GitHub 複製 DocumentDB API 應用程式、設定連接字串，然後執行它。 您會看到，以程式設計方式來處理資料有多麼的容易。 
+現在讓我們來切換 tooworking 與程式碼。 讓我們複製從 GitHub 設定 hello 連接字串，並執行它的 DocumentDB API 應用程式。 您會看到是多麼的輕鬆 toowork 資料以程式設計的方式。 
 
-1. 開啟 Git 終端機視窗 (例如 Git Bash)，然後使用 `CD` 來切換到工作目錄。  
+1. 開啟 git 終端機視窗，例如 git bash 和`CD`tooa 工作目錄。  
 
-2. 執行下列命令來複製範例存放庫。 
+2. 執行下列命令 tooclone hello 範例儲存機制的 hello。 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-documentdb-java-getting-started.git
     ```
 
-## <a name="review-the-code"></a>檢閱程式碼
+## <a name="review-hello-code"></a>檢閱 hello 程式碼
 
-讓我們快速檢閱應用程式中所發生的事情。 開啟 \src\GetStarted 資料夾中的 `Program.java` 檔案，並尋找建立 Azure Cosmos DB 資源的這些程式碼行。 
+讓我們進行快速檢閱 hello 應用程式中的情況。 開啟 hello `Program.java` hello \src\GetStarted 資料夾中的檔案，並尋找這行程式碼建立 hello Azure Cosmos DB 資源。 
 
-* 已初始化 `DocumentClient`。
+* hello`DocumentClient`已初始化。
 
     ```java
     this.client = new DocumentClient("https://FILLME.documents.azure.com",
@@ -128,7 +128,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 * 已建立一些文件。
 
     ```java
-    // Any Java object within your code can be serialized into JSON and written to Azure Cosmos DB
+    // Any Java object within your code can be serialized into JSON and written tooAzure Cosmos DB
     Family andersenFamily = new Family();
     andersenFamily.setId("Andersen.1");
     andersenFamily.setLastName("Andersen");
@@ -158,45 +158,45 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 ## <a name="update-your-connection-string"></a>更新您的連接字串
 
-現在，返回 Azure 入口網站以取得連接字串資訊，並將它複製到應用程式中。 這可讓您的應用程式與裝載的資料庫通訊。
+現在請返回 Azure 入口網站 tooget toohello 您的連接字串資訊並將它複製到 hello 應用程式。 這可讓您的應用程式 toocommunicate 裝載資料庫。
 
-1. 在 [Azure 入口網站](http://portal.azure.com/)中，於您 Azure Cosmos DB 帳戶的左側瀏覽區中，按一下 [金鑰]，然後按一下 [讀寫金鑰]。 在下一個步驟中，您將使用畫面右側的複製按鈕，將 URI 和主要金鑰複製到 `Program.java` 檔案。
+1. 在 hello [Azure 入口網站](http://portal.azure.com/)，在您的 Azure Cosmos DB 帳戶，在左瀏覽的 hello 按一下**金鑰**，然後按一下**讀寫金鑰**。 您將使用 hello 複製按鈕 hello 右邊 hello 螢幕 toocopy hello URI 和主索引鍵到 hello `Program.java` hello 下一個步驟中的檔案。
 
-    ![在 Azure 入口網站的 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/create-documentdb-dotnet/keys.png)
+    ![檢視及複製 hello Azure 入口網站中的存取金鑰，金鑰刀鋒視窗](./media/create-documentdb-dotnet/keys.png)
 
-2. 在開啟的 `Program.java` 檔案中，從入口網站複製您的 URI 值 (使用 [複製] 按鈕)，並使它成為 `Program.java` 中 DocumentClient 建構函式的端點值。 
+2. 在開啟的 hello`Program.java`檔案、 URI 值複製 （使用 hello [複製] 按鈕） 的 hello 入口網站，並讓它 hello hello 端點 toohello DocumentClient 建構函式中的值`Program.java`。 
 
     `"https://FILLME.documents.azure.com"`
 
-4. 然後，從入口網站複製您的主要金鑰值並將它貼在 “FILLME” 上，使其成為 DocumentClient 建構函式中的第二個參數。 您現已更新應用程式，使其具有與 Azure Cosmos DB 通訊所需的所有資訊。 
+4. 從 hello 入口網站複製您的主索引鍵的值，然後將它貼入"FILLME"，因此 hello hello DocumentClient 建構函式中的第二個參數。 您現在已更新您的應用程式與它需要與 Azure Cosmos DB toocommunicate 所有 hello 資訊。 
     
-## <a name="run-the-app"></a>執行應用程式
+## <a name="run-hello-app"></a>執行 hello 應用程式
 
-1. 在 git 終端機視窗中，`cd` 至 azure-cosmos-db-documentdb-java-getting-started 資料夾。
+1. 在 hello git 終端機視窗， `cd` toohello azure-cosmos-db-documentdb-java-getting-started 資料夾。
 
-2. 在 git 終端機視窗中，輸入 `mvn package` 以安裝必要的 Java 套件。
+2. 在 hello git 終端機視窗，輸入`mvn package`tooinstall hello 需要 Java 封裝。
 
-3. 在 git 終端機視窗中，於終端機視窗中執行 `mvn exec:java -D exec.mainClass=GetStarted.Program` 以啟動您的 Java 應用程式。
+3. Hello git 終端機視窗，在執行`mvn exec:java -D exec.mainClass=GetStarted.Program`在 hello 終端機視窗 toostart Java 應用程式。
 
-    在終端機視窗中，您會收到表示已建立 FamilyDB 資料庫的通知，並按任一鍵繼續。 按任一鍵來建立資料庫，然後切換到 [資料總管]，您會看到它現在包含 FamilyDB 資料庫。 繼續按按鍵來建立集合和文件，然後執行查詢。 當專案完成時，便會從您的帳戶中刪除資源。 
+    在 hello 終端機視窗中，您會收到 hello 的 FamilyDB 建立資料庫的通知和 toopress 金鑰 toocontinue。 按索引鍵 toocreate hello 資料庫，然後切換 toohello 資料總管，您會看到它現在包含 FamilyDB 資料庫。 繼續 toopress 金鑰 toocreate hello 集合和 hello 文件，然後執行查詢。 Hello 專案完成時，會從您的帳戶刪除 hello 資源。 
 
-    ![在 Azure 入口網站的 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/create-documentdb-java/console-output.png)
+    ![檢視及複製 hello Azure 入口網站中的存取金鑰，金鑰刀鋒視窗](./media/create-documentdb-java/console-output.png)
 
 
-## <a name="review-slas-in-the-azure-portal"></a>在 Azure 入口網站中檢閱 SLA
+## <a name="review-slas-in-hello-azure-portal"></a>在 hello Azure 入口網站中檢視 Sla
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>清除資源
 
-如果您將不繼續使用此應用程式，請使用下列步驟，在 Azure 入口網站中刪除本快速入門所建立的所有資源：
+如果您不打算 toocontinue toouse 此應用程式，刪除所有資源本快速入門以建立 hello Azure 入口網站以 hello 下列步驟：
 
-1. 從 Azure 入口網站的左側功能表中，按一下 [資源群組]，然後按一下您所建立資源的名稱。 
-2. 在資源群組頁面上，按一下 [刪除]，在文字方塊中輸入要刪除之資源的名稱，然後按一下 [刪除]。
+1. Hello Azure 入口網站中的 hello 左側功能表中按一下**資源群組**，然後按一下您所建立的 hello 資源的 hello 名稱。 
+2. 在資源群組頁面上，按一下 **刪除**，在 hello 文字方塊中，輸入 hello 資源 toodelete hello 名稱，然後按一下**刪除**。
 
 ## <a name="next-steps"></a>後續步驟
 
-在本快速入門中，您已了解如何使用 [資料總管] 來建立 Azure Cosmos DB 帳戶、文件資料庫和集合，以及如何執行應用程式來以程式設計方式執行同樣的作業。 您現在可以將其他資料匯入到 Cosmos DB 帳戶。 
+本快速入門中，您學到如何 toocreate Azure Cosmos DB 帳戶、 文件資料庫，以及使用 hello 資料總管 中，並執行應用程式 toodo 集合以程式設計方式 hello 相同的動作。 您現在可以匯入的其他資料 tooyour Cosmos DB 帳戶。 
 
 > [!div class="nextstepaction"]
 > [將資料匯入到 Azure Cosmos DB](import-data.md)

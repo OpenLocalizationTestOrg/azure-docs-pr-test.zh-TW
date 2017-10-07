@@ -1,6 +1,6 @@
 ---
-title: "使用 Apache Kafka 搭配 Storm on HDInsight - Azure | Microsoft Docs"
-description: "Apache Kafka 會隨著 Apache Storm on HDInsight 一起安裝。 了解如何使用 Storm 隨附的 KafkaBolt 和 KafkaSpout 元件來寫入 Kafka，然後從中讀取。 並且了解如何使用 Flux 架構來定義及提交 Storm 拓撲。"
+title: "aaaUse Storm HDInsight 的 Azure 上使用 Apache Kafka |Microsoft 文件"
+description: "Apache Kafka 會隨著 Apache Storm on HDInsight 一起安裝。 了解 toowrite tooKafka，並使用它，然後讀取 hello KafkaBolt 和 KafkaSpout Storm 所提供的元件。 也了解如何 toouse hello 變動 framework toodefine 和提交 Storm 拓撲。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,60 +15,60 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/21/2017
 ms.author: larryfr
-ms.openlocfilehash: e8895ef3c11aea48513e4060a20f5f49b11fc961
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 95701f51dfdf6f1a859dcde96d7053df4f21701f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-apache-kafka-preview-with-storm-on-hdinsight"></a>使用 Apache Kafka (預覽) 搭配 Storm on HDInsight
 
-了解如何使用 Apache Storm 讀取和寫入 Apache Kafka。 本例也示範如何將資料從 Storm 拓撲儲存到 HDInsight 所使用的 HDFS 相容檔案系統。
+深入了解如何從 toouse Apache Storm tooread 和寫入 tooApache Kafka。 此範例也示範如何從 HDFS 相容性 Storm 拓撲 toohello toosave 資料檔案使用 HDInsight 的系統。
 
 > [!NOTE]
-> 本文件中的步驟建立 Azure 資源群組，其中包含 Storm on HDInsight 和 Kafka on HDInsight cluster 叢集。 這兩個叢集都位於 Azure 虛擬網路中，可讓 Storm 叢集直接與 Kafka 叢集通訊。
+> 本文件中的 hello 步驟建立包含在 HDInsight 上的 Storm 以及 Kafka HDInsight 叢集上的 Azure 資源群組。 這些叢集會同時位於 Azure 虛擬網路，可讓 hello Storm 叢集 toodirectly 與 hello Kafka 叢集通訊。
 > 
-> 當您完成本文件中的步驟時，請記得刪除叢集，以避免產生過多的費用。
+> 當您完成這份文件中的 hello 步驟之後時，請記得 toodelete hello 叢集 tooavoid 過多費用。
 
-## <a name="get-the-code"></a>取得程式碼
+## <a name="get-hello-code"></a>取得 hello 程式碼
 
-在 [https://github.com/Azure-Samples/hdinsight-storm-java-kafka](https://github.com/Azure-Samples/hdinsight-storm-java-kafka) 可取得本文件所使用的範例程式碼。
+使用這份文件中的 hello 範例的 hello 程式碼將會位於[https://github.com/Azure-Samples/hdinsight-storm-java-kafka](https://github.com/Azure-Samples/hdinsight-storm-java-kafka)。
 
-若要編譯此專案，您需要開發環境的下列設定：
+toocompile 此專案中，您需要下列組態的開發環境的 hello:
 
 * [Java JDK 1.8](https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 或更新版本。 HDInsight 3.5 或更新版本需要 Java 8。
 
 * [Maven 3.x](https://maven.apache.org/download.cgi)
 
-* SSH 用戶端 (您需要 `ssh` 和 `scp` 命令) - 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+* 將 SSH 用戶端 (您需要 hello`ssh`和`scp`命令)-如需資訊，請參閱[搭配使用 SSH 和 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 * 文字編輯器或整合式開發環境 (IDE)。
 
-當您在開發工作站上安裝 Java 和 JDK 時可能會設定下列環境變數。 不過，您應該檢查它們是否存在，以及它們是否包含您系統的正確值。
+hello 下列環境變數設定當您在開發工作站上安裝 Java 和 hello JDK。 不過，您應該檢查其存在且包含您系統的 hello 正確值。
 
-* `JAVA_HOME` - 應指向已安裝 JDK 的目錄。
-* `PATH` - 應該包含下列路徑：
+* `JAVA_HOME`-應該指向 toohello hello JDK 安裝的目錄。
+* `PATH`-應包含下列路徑的 hello:
   
-    * `JAVA_HOME` (或對等的路徑)。
-    * `JAVA_HOME\bin` (或對等的路徑)。
-    * 已安裝 Maven 的目錄。
+    * `JAVA_HOME`（或 hello 等路徑）。
+    * `JAVA_HOME\bin`（或 hello 等路徑）。
+    * hello Maven 安裝所在的目錄。
 
-## <a name="create-the-clusters"></a>建立叢集
+## <a name="create-hello-clusters"></a>建立 hello 叢集
 
-Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息代理程式。 任何 Kafka 相關項目必須位於與 Kafka 叢集中節點相同的 Azure 虛擬網路。 例如，Kafka 和 Storm 叢集均位於 Azure 虛擬網路中。 下圖顯示叢集之間的通訊流動方式︰
+Apache Kafka HDInsight 上不提供存取 toohello Kafka broker 透過 hello 公用網際網路。 討論 tooKafka 必須在 hello 與 hello 節點中的相同 Azure 虛擬網路的任何項目 hello Kafka 叢集。 例如，hello Kafka 與 Storm 叢集位於 Azure 的虛擬網路中。 hello 下圖顯示 hello 叢集之間通訊流動的方式：
 
 ![Azure 虛擬網路中的 Storm 和 Kafka 叢集圖表](./media/hdinsight-apache-storm-with-kafka/storm-kafka-vnet.png)
 
 > [!NOTE]
-> 叢集上的其他服務 (例如 SSH 和 Ambari) 可以透過網際網路存取。 如需有關適用於 HDInsight 的公用連接埠詳細資訊，請參閱 [HDInsight 所使用的連接埠和 URI](hdinsight-hadoop-port-settings-for-services.md)。
+> 例如，可以透過存取 SSH 和 Ambari hello 網際網路，hello 叢集上的其他服務。 Hello 公用連接埠適用於 HDInsight 上的詳細資訊，請參閱[連接埠和 Uri 使用 HDInsight](hdinsight-hadoop-port-settings-for-services.md)。
 
-雖然您可以手動建立 Azure 虛擬網路、Kafka 和 Storm 叢集，但使用 Azure Resource Manager 範本更輕鬆。 使用下列步驟將 Azure 虛擬網路、Kafka 和 Storm 叢集部署到 Azure 訂用帳戶。
+雖然您可以建立 Azure 虛擬網路，Kafka，和 Storm 叢集以手動方式，很容易 toouse Azure Resource Manager 範本。 使用 hello 下列步驟 toodeploy Azure 虛擬網路，Kafka，，和 Storm 叢集 tooyour Azure 訂用帳戶。
 
-1. 使用以下按鈕，在 Azure 入口網站中登入 Azure 並開啟範本。
+1. 使用下列按鈕 toosign 中 tooAzure 和開啟 hello 範本 hello Azure 入口網站中的 hello。
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-storm-cluster-in-vnet-v2.json" target="_blank"><img src="./media/hdinsight-apache-storm-with-kafka/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-storm-cluster-in-vnet-v2.json" target="_blank"><img src="./media/hdinsight-apache-storm-with-kafka/deploy-to-azure.png" alt="Deploy tooAzure"></a>
    
-    Azure Resource Manager 範本位於 **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-storm-cluster-in-vnet-v1.json**。 它會建立下列資源︰
+    hello Azure Resource Manager 範本位於**https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-storm-cluster-in-vnet-v1.json**。 它會建立 hello 下列資源：
     
     * Azure 資源群組
     * Azure 虛擬網路
@@ -77,89 +77,89 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
     * HDInsight 版本 3.6 上的 Storm (三個背景工作角色節點)
 
   > [!WARNING]
-  > 若要保證 Kafka 在 HDInsight 上的可用性，您的叢集必須包含至少三個背景工作角色節點。 此範本會建立包含三個背景工作角色節點的 Kafka 叢集。
+  > HDInsight 上 Kafka tooguarantee 可用性，您的叢集必須包含至少三個背景工作節點。 此範本會建立包含三個背景工作角色節點的 Kafka 叢集。
 
-2. 使用下列指引來填入 [自訂部署] 刀鋒視窗上的項目︰
+2. 使用下列指引 toopopulate hello 項目上 hello 的 hello**自訂部署**刀鋒視窗中：
    
     ![HDInsight 自訂部署](./media/hdinsight-apache-storm-with-kafka/parameters.png)
 
-    * **資源群組**：建立群組或選取現有的群組。 此群組包含 HDInsight 叢集。
+    * **資源群組**：建立群組或選取現有的群組。 此群組包含 hello HDInsight 叢集。
    
-    * **位置**：選取在地理上靠近您的位置。
+    * **位置**： 選取位置的地理位置關閉 tooyou。
 
-    * **基底叢集名稱**︰此值會做為 Storm 和 Kafka 叢集的基底名稱。 例如，輸入 **hdi** 可建立名為 **storm-hdi** 的 Storm 叢集以及名為 **kafka-hdi** 的 Kafka 叢集。
+    * **基底叢集名稱**: hello Storm 和 Kafka 叢集 hello 基底名稱為使用此值。 例如，輸入 **hdi** 可建立名為 **storm-hdi** 的 Storm 叢集以及名為 **kafka-hdi** 的 Kafka 叢集。
    
-    * **叢集登入使用者名稱**：Storm 和 Kafka 叢集的系統管理員使用者名稱。
+    * **叢集登入使用者名稱**: hello Storm 和 Kafka 叢集 hello 系統管理員使用者名稱。
    
-    * **叢集登入密碼**：Storm 和 Kafka 叢集的系統管理員使用者密碼。
+    * **叢集登入密碼**: hello Storm 和 Kafka 叢集 hello 管理使用者的密碼。
     
-    * **SSH 使用者名稱**︰建立 Storm 和 Kafka 叢集的 SSH 使用者。
+    * **SSH 使用者名稱**: hello SSH 使用者 toocreate hello Storm 和 Kafka 叢集。
     
-    * **SSH 密碼**：Storm 和 Kafka 叢集的 SSH 使用者密碼。
+    * **SSH 密碼**: hello hello Storm 和 Kafka 叢集的 hello SSH 使用者密碼。
 
-3. 讀取**條款及條件**，然後選取 [我同意上方所述的條款及條件]。
+3. 讀取 hello**條款和條件**，然後選取**toohello 條款和條件前面所述，即表示我同意**。
 
-4. 最後，核取 [釘選到儀表板]，然後選取 [購買]。 大約需要 20 分鐘的時間來建立叢集。
+4. 最後，檢查**Pin toodashboard** ，然後選取 **購買**。 它會採用約 20 分鐘 toocreate hello 叢集。
 
-一旦建立資源，即會顯示 [資源群組] 刀鋒視窗。
+一旦已建立 hello 資源，會顯示 hello 資源群組的 hello 刀鋒視窗。
 
-![Vnet 和叢集的資源群組刀鋒視窗](./media/hdinsight-apache-storm-with-kafka/groupblade.png)
+![Hello vnet 與叢集資源群組 刀鋒視窗](./media/hdinsight-apache-storm-with-kafka/groupblade.png)
 
 > [!IMPORTANT]
-> 請注意，HDInsight 叢集的名稱是 **storm-BASENAME** 和 **kafka-BASENAME**，其中 BASENAME 是您提供給範本的名稱。 連接到叢集時，您會在稍後步驟中使用這些名稱。
+> 請注意，hello hello HDInsight 叢集名稱**storm BASENAME**和**kafka BASENAME**，其中 BASENAME 是 hello 提供 toohello 範本的名稱。 連接 toohello 叢集時，您可以使用在稍後步驟中的這些名稱。
 
-## <a name="understanding-the-code"></a>了解程式碼
+## <a name="understanding-hello-code"></a>了解 hello 程式碼
 
 此專案包含兩種拓撲︰
 
-* **KafkaWriter**︰由 **writer.yaml** 檔案定義，此拓撲會使用 Apache Storm 隨附的 KafkaBolt 將隨機句子寫入 Kafka。
+* **KafkaWriter**: hello 所定義**writer.yaml**檔案，此拓撲寫入使用 hello KafkaBolt 隨附 Apache Storm 的隨機句子 tooKafka。
 
-    此拓撲使用自訂 **SentenceSpout** 元件來產生隨機句子。
+    此拓撲會使用自訂**SentenceSpout**元件 toogenerate 隨機句子。
 
-* **KafkaReader**︰由 **reader.yaml** 檔案定義，此拓撲會使用 Apache Storm 隨附的 KafkaSpout 來讀取 Kafka 中的資料，然後將資料記錄至 stdout。
+* **KafkaReader**: hello 所定義**reader.yaml**檔案，此拓撲，讀取 Kafka 使用 hello KafkaSpout 隨附 Apache Storm 則記錄檔 hello 資料 toostdout。
 
-    此拓撲使用 Storm HdfsBolt 將資料寫入 Storm 叢集的預設儲存體。
+    此拓撲會使用 hello Storm HdfsBolt toowrite 資料 toodefault 儲存 hello Storm 叢集。
 ### <a name="flux"></a>Flux
 
-拓撲是使用 [Flux](https://storm.apache.org/releases/1.1.0/flux.html) 來定義的。 Storm 0.10.x 引進了 Flux，可讓您區隔拓撲組態與程式碼。 若為使用 Flux 架構的拓撲，拓撲定義於 YAML 檔案中。 YAML 檔案可以納入為拓撲的一部分。 它也可以是您提交拓撲時使用的獨立檔案。 Flux 也支援執行階段的變數替代 (在此範例中使用)。
+使用定義 hello 拓撲[變動](https://storm.apache.org/releases/1.1.0/flux.html)。 中導入變動 Storm 0.10.x，並讓您從 hello 碼 tooseparate hello 拓撲組態。 如需使用 hello 變動架構的拓撲，hello 拓撲 YAML 檔案中定義。 hello YAML 檔案可以是 hello 拓撲的一部分。 它也可以使用當您送出 hello 拓撲的獨立檔案。 Flux 也支援執行階段的變數替代 (在此範例中使用)。
 
-在執行階段會針對這些拓撲設定下列參數：
+hello 設定下列參數是在執行階段針對這些拓撲：
 
-* `${kafka.topic}`：拓樸讀取/寫入的 Kafka 主題名稱。
+* `${kafka.topic}`: hello hello Kafka 主題 hello 拓撲讀名稱。
 
-* `${kafka.broker.hosts}`：Kafka 訊息代理程式執行所在的主機。 KafkaBolt 在寫入 Kafka 時會使用訊息代理程式資訊。
+* `${kafka.broker.hosts}`: hello 裝載該 hello Kafka 居間處理上執行。 hello KafkaBolt 撰寫 tooKafka 時，會使用 hello broker 資訊。
 
-* `${kafka.zookeeper.hosts}`：Kafka 叢集中 Zookeeper 執行所在的主機。
+* `${kafka.zookeeper.hosts}`： 動物園管理員在執行中的 hello 主機 hello Kafka 叢集。
 
 如需 Flux 拓撲的詳細資訊，請參閱 [https://storm.apache.org/releases/1.1.0/flux.html](https://storm.apache.org/releases/1.1.0/flux.html)。
 
-## <a name="download-and-compile-the-project"></a>下載並編譯專案
+## <a name="download-and-compile-hello-project"></a>下載並編譯 hello 專案
 
-1. 在開發環境中，從 [https://github.com/Azure-Samples/hdinsight-storm-java-kafka](https://github.com/Azure-Samples/hdinsight-storm-java-kafka) 下載專案，開啟命令列，並將目錄變更為您下載專案的位置。
+1. 在開發環境中，下載 hello 專案從[https://github.com/Azure-Samples/hdinsight-storm-java-kafka](https://github.com/Azure-Samples/hdinsight-storm-java-kafka)，開啟 命令列，並變更您已經下載 hello 專案目錄 toohello 位置。
 
-2. 從 **hdinsight-storm-java-kafka** 目錄，使用下列命令來編譯專案並建立部署套件︰
+2. 從 hello **hdinsight storm-java kafka**目錄下，使用 hello 下列命令 toocompile hello 專案，並建立部署的套件：
 
   ```bash
   mvn clean package
   ```
 
-    封裝程序會在 `target` 目錄中建立名為 `KafkaTopology-1.0-SNAPSHOT.jar` 的檔案。
+    hello 封裝程序會建立名為`KafkaTopology-1.0-SNAPSHOT.jar`在 hello`target`目錄。
 
-3. 使用下列命令將套件複製到 Storm on HDInsight 叢集。 將 **USERNAME** 替換為叢集的 SSH 使用者名稱。 將 **BASENAME** 替換為您在建立叢集時使用的基底名稱。
+3. 使用下列命令 toocopy hello 封裝 tooyour Storm HDInsight 叢集上的 hello。 取代**USERNAME** hello 叢集 hello SSH 使用者名稱。 取代**BASENAME** hello 基底名稱與您在建立時使用 hello 叢集。
 
   ```bash
   scp ./target/KafkaTopology-1.0-SNAPSHOT.jar USERNAME@storm-BASENAME-ssh.azurehdinsight.net:KafkaTopology-1.0-SNAPSHOT.jar
   ```
 
-    出現提示時，請輸入您在建立叢集時所使用的密碼。
+    出現提示時，輸入 hello 建立 hello 叢集時所使用的密碼。
 
-## <a name="configure-the-topology"></a>設定拓撲
+## <a name="configure-hello-topology"></a>設定 hello 拓撲
 
-1. 請使用下列方法之一探索 Kafka 訊息代理程式主機：
+1. 使用其中一種下列方法 toodiscover hello hello Kafka broker 主機：
 
     ```powershell
-    $creds = Get-Credential -UserName "admin" -Message "Enter the HDInsight login"
-    $clusterName = Read-Host -Prompt "Enter the Kafka cluster name"
+    $creds = Get-Credential -UserName "admin" -Message "Enter hello HDInsight login"
+    $clusterName = Read-Host -Prompt "Enter hello Kafka cluster name"
     $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName/services/KAFKA/components/KAFKA_BROKER" `
         -Credential $creds
     $respObj = ConvertFrom-Json $resp.Content
@@ -172,20 +172,20 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
     ```
 
     > [!IMPORTANT]
-    > Bash 範例假設 `$CLUSTERNAME` 包含 HDInsight 叢集的名稱。 它也假設已安裝 [jq](https://stedolan.github.io/jq/)。 出現提示時，輸入叢集登入帳戶的密碼。
+    > hello Bash 範例假設`$CLUSTERNAME`包含 hello hello HDInsight 叢集名稱。 它也假設已安裝 [jq](https://stedolan.github.io/jq/)。 出現提示時，輸入 hello 密碼 hello 叢集登入帳戶。
 
-    傳回的值類似下列文字︰
+    傳回的 hello 值是類似 toohello 下列文字：
 
         wn0-kafka.53qqkiavjsoeloiq3y1naf4hzc.ex.internal.cloudapp.net:9092,wn1-kafka.53qqkiavjsoeloiq3y1naf4hzc.ex.internal.cloudapp.net:9092
 
     > [!IMPORTANT]
-    > 雖然叢集可能有兩個以上的訊息代理程式主機，您並不需要提供客戶端完整的主機名單。 列出一兩個主機便已足夠。
+    > 雖然可能會有兩個以上的 broker 主機叢集，您不需要 tooprovide 所有主機 tooclients 的完整清單。 列出一兩個主機便已足夠。
 
-2. 請使用下列方法之一探索 Kafka Zookeeper 主機：
+2. 使用下列方法 toodiscover hello Kafka 動物園管理員主機 hello 的其中一個：
 
     ```powershell
-    $creds = Get-Credential -UserName "admin" -Message "Enter the HDInsight login"
-    $clusterName = Read-Host -Prompt "Enter the Kafka cluster name"
+    $creds = Get-Credential -UserName "admin" -Message "Enter hello HDInsight login"
+    $clusterName = Read-Host -Prompt "Enter hello Kafka cluster name"
     $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName/services/ZOOKEEPER/components/ZOOKEEPER_SERVER" `
         -Credential $creds
     $respObj = ConvertFrom-Json $resp.Content
@@ -198,146 +198,146 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
     ```
 
     > [!IMPORTANT]
-    > Bash 範例假設 `$CLUSTERNAME` 包含 HDInsight 叢集的名稱。 它也假設已安裝 [jq](https://stedolan.github.io/jq/)。 出現提示時，輸入叢集登入帳戶的密碼。
+    > hello Bash 範例假設`$CLUSTERNAME`包含 hello hello HDInsight 叢集名稱。 它也假設已安裝 [jq](https://stedolan.github.io/jq/)。 出現提示時，輸入 hello 密碼 hello 叢集登入帳戶。
 
-    傳回的值類似下列文字︰
+    傳回的 hello 值是類似 toohello 下列文字：
 
         zk0-kafka.53qqkiavjsoeloiq3y1naf4hzc.ex.internal.cloudapp.net:2181,zk2-kafka.53qqkiavjsoeloiq3y1naf4hzc.ex.internal.cloudapp.net:2181
 
     > [!IMPORTANT]
-    > 雖然可能有兩個以上的 Zookeeper 節點，您並不需要提供客戶端完整的主機名單。 列出一兩個主機便已足夠。
+    > 兩個以上的動物園管理員節點時，您不需要 tooprovide 所有主機 tooclients 的完整清單。 列出一兩個主機便已足夠。
 
     儲存這個值以便稍後使用。
 
-3. 編輯專案根目錄中的 `dev.properties` 檔案。 將訊息代理程式和 Zookeeper 主機資訊新增至本檔案相符的行。 下例是使用先前步驟中的範例值所設定：
+3. 編輯 hello `dev.properties` hello hello 專案根目錄中的檔案。 此檔案中加入 hello Broker 和動物園管理員主機資訊 toohello 相符的行。 hello 下列範例會使用設定 hello 先前步驟中的 hello 範例值：
 
         kafka.zookeeper.hosts: zk0-kafka.53qqkiavjsoeloiq3y1naf4hzc.ex.internal.cloudapp.net:2181,zk2-kafka.53qqkiavjsoeloiq3y1naf4hzc.ex.internal.cloudapp.net:2181
         kafka.broker.hosts: wn0-kafka.53qqkiavjsoeloiq3y1naf4hzc.ex.internal.cloudapp.net:9092,wn1-kafka.53qqkiavjsoeloiq3y1naf4hzc.ex.internal.cloudapp.net:9092
         kafka.topic: stormtopic
 
-4. 儲存 `dev.properties` 檔案，然後使用下列命令將它上傳至 Storm 叢集：
+4. 儲存 hello`dev.properties`檔案，然後使用 hello 下列命令 tooupload 它 toohello Storm 叢集：
 
      ```bash
     scp dev.properties USERNAME@storm-BASENAME-ssh.azurehdinsight.net:KafkaTopology-1.0-SNAPSHOT.jar
     ```
 
-    將 **USERNAME** 替換為叢集的 SSH 使用者名稱。 將 **BASENAME** 替換為您在建立叢集時使用的基底名稱。
+    取代**USERNAME** hello 叢集 hello SSH 使用者名稱。 取代**BASENAME** hello 基底名稱與您在建立時使用 hello 叢集。
 
-## <a name="start-the-writer"></a>開始寫入器
+## <a name="start-hello-writer"></a>啟動 hello 寫入器
 
-1. 使用下列命令來透過 SSH 連接到 Storm 叢集。 將 **USERNAME** 替換為建立叢集時所使用的 SSH 使用者名稱。 將 **BASENAME** 替換為建立叢集時使用的基底名稱。
+1. 使用 hello 遵循使用 SSH tooconnect toohello Storm 叢集。 取代**USERNAME** hello 建立 hello 叢集時所使用的 SSH 使用者名稱。 取代**BASENAME** hello 建立 hello 叢集時所使用的基底名稱。
 
   ```bash
   ssh USERNAME@storm-BASENAME-ssh.azurehdinsight.net
   ```
 
-    出現提示時，請輸入您在建立叢集時所使用的密碼。
+    出現提示時，輸入 hello 建立 hello 叢集時所使用的密碼。
    
     如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-2. 從 SSH 連線，使用下列命令來建立拓撲使用的 Kafka 主題：
+2. 從 hello SSH 連線，使用下列命令 toocreate hello Kafka 主題 hello 拓撲所使用的 hello:
 
     ```bash
     /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --replication-factor 3 --partitions 8 --topic stormtopic --zookeeper $KAFKAZKHOSTS
     ```
 
-    以您在上一節擷取的 Zookeeper 主機資訊取代 `$KAFKAZKHOSTS`。
+    取代`$KAFKAZKHOSTS`hello 動物園管理員與裝載您擷取 hello 前一節中的資訊。
 
-2. 在連往 Storm 叢集的 SSH 連線中，使用下列命令來啟動寫入器拓撲：
+2. 從 hello SSH 連線 toohello Storm 叢集，使用下列命令 toostart hello 寫入器拓撲 hello:
 
     ```bash
     storm jar KafkaTopology-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --remote -R /writer.yaml --filter dev.properties
     ```
 
-    此命令使用的參數如下：
+    此命令搭配使用的 hello 參數如下：
 
-    * `org.apache.storm.flux.Flux`︰使用 Flux 來設定及執行此拓撲。
+    * `org.apache.storm.flux.Flux`： 使用變動 tooconfigure，並執行此拓撲。
 
-    * `--remote`：將拓撲提交至 Nimbus。 拓撲會分散於叢集中的背景工作節點。
+    * `--remote`： 送出 hello 拓撲 tooNimbus。 hello 拓撲會分佈在 hello hello 叢集中的背景工作節點。
 
-    * `-R /writer.yaml`︰使用 `writer.yaml` 檔案來設定拓撲。 `-R` 表示此資源包含在 jar 檔案中。 剛檔案位於 jar 的根目錄中，所以 `/writer.yaml` 是它的路徑。
+    * `-R /writer.yaml`： 使用 hello`writer.yaml`檔案 tooconfigure hello 拓撲。 `-R`表示此資源包含在 hello jar 檔案。 它是在 hello jar hello 根目錄中因此`/writer.yaml`是 hello 路徑 tooit。
 
-    * `--filter`：使用 `dev.properties` 檔案的值填入 `writer.yaml` 拓撲的項目。 例如，使用檔案的 `kafka.topic` 項目值取代拓撲定義的 `${kafka.topic}` 項目。
+    * `--filter`: Hello 中的項目填入`writer.yaml`使用 hello 中值的拓樸`dev.properties`檔案。 例如，hello hello 值`kafka.topic`hello 檔案中的項目是使用的 tooreplace hello `${kafka.topic}` hello 拓撲定義項目。
 
-5. 一旦啟動拓撲，請使用下列命令確認它將資料寫入 Kafka 主題：
+5. Hello 拓撲啟動之後，使用下列命令 tooverify 其正寫入資料 toohello Kafka 主題 hello:
 
   ```bash
   /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --zookeeper $KAFKAZKHOSTS --from-beginning --topic stormtopic
   ```
 
-    以您在上一節擷取的 Zookeeper 主機資訊取代 `$KAFKAZKHOSTS`。
+    取代`$KAFKAZKHOSTS`hello 動物園管理員與裝載您擷取 hello 前一節中的資訊。
 
-    此命令會使用 Kafka 隨附的指令碼來監視主題。 稍後，它應該會開始傳回已寫入主題的隨機句子。 輸出類似於下列範例：
+    此命令會使用隨附於 Kafka toomonitor hello 主題的指令碼。 隨後，它應該開始傳回隨機句子已寫入 toohello 主題。 hello 輸出是 toohello 類似下列範例程式碼：
 
         i am at two with nature             
-        an apple a day keeps the doctor away
-        snow white and the seven dwarfs     
-        the cow jumped over the moon        
-        an apple a day keeps the doctor away
-        an apple a day keeps the doctor away
-        the cow jumped over the moon        
-        an apple a day keeps the doctor away
-        an apple a day keeps the doctor away
+        an apple a day keeps hello doctor away
+        snow white and hello seven dwarfs     
+        hello cow jumped over hello moon        
+        an apple a day keeps hello doctor away
+        an apple a day keeps hello doctor away
+        hello cow jumped over hello moon        
+        an apple a day keeps hello doctor away
+        an apple a day keeps hello doctor away
         four score and seven years ago      
-        snow white and the seven dwarfs     
-        snow white and the seven dwarfs     
+        snow white and hello seven dwarfs     
+        snow white and hello seven dwarfs     
         i am at two with nature             
-        an apple a day keeps the doctor away
+        an apple a day keeps hello doctor away
 
-    使用 Ctrl + c 來停止指令碼。
+    使用 Ctrl + c toostop hello 指令碼。
 
-## <a name="start-the-reader"></a>開始讀取器
+## <a name="start-hello-reader"></a>啟動 hello 讀取器
 
-1. 在 Storm 叢集的 SSH 工作階段中，使用下列命令來啟動讀取器拓撲：
+1. 從 hello SSH 工作階段 toohello Storm 叢集，使用下列命令 toostart hello 讀取器拓撲 hello:
 
   ```bash
   storm jar KafkaTopology-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --remote -R /reader.yaml --filter dev.properties
   ```
 
-2. 拓撲啟動後，請開啟 Storm UI。 此 Web UI 位於 https://storm-BASENAME.azurehdinsight.net/stormui。 將 __BASENAME__ 替換為建立叢集時使用的基底名稱。 
+2. 一旦 hello 拓樸開始，開啟 hello Storm UI。 此 Web UI 位於 https://storm-BASENAME.azurehdinsight.net/stormui。 取代__BASENAME__ hello hello 叢集建立時使用的基底名稱。 
 
-    出現提示時，使用建立叢集時所用的系統管理員登入名稱 (預設為 `admin`) 和密碼。 您會看到類似下圖的網頁︰
+    出現提示時，使用 hello 管理員登入名稱 (預設值， `admin`) 和 hello 叢集建立時使用的密碼。 您會看到下列映像網頁類似 toohello:
 
     ![Storm UI](./media/hdinsight-apache-storm-with-kafka/stormui.png)
 
-3. 從 Storm UI 選取 [拓樸摘要] 區段中的 __kafka-reader__ 連結，以顯示 __kafka-reader__ 拓樸相關資訊。
+3. 從 hello Storm UI 中，選取 hello __kafka 讀取器__hello 中的連結__拓撲摘要__區段 toodisplay 資訊 hello __kafka 讀取器__拓撲。
 
-    ![Storm Web UI 的拓撲摘要區段](./media/hdinsight-apache-storm-with-kafka/topology-summary.png)
+    ![拓樸 hello Storm web UI 的 [摘要] 區段](./media/hdinsight-apache-storm-with-kafka/topology-summary.png)
 
-4. 選取 [Bolt (所有時間)] 區段中的 __logger-bolt__ 連結，以顯示 logger-bolt 元件的執行個體相關資訊。
+4. toodisplay 資訊 hello 元件的執行個體 hello 記錄器閃電，選取 hello__記錄器閃電__hello 中的連結__攻擊 （所有時間）__ > 一節。
 
-    ![Bolt 區段中的 Logger-bolt 連結](./media/hdinsight-apache-storm-with-kafka/bolts.png)
+    ![Hello 發射區段中的記錄器閃電連結](./media/hdinsight-apache-storm-with-kafka/bolts.png)
 
-5. 在 [執行程式] 區段中，選取 [連接埠] 欄中的連結，以顯示此元件執行個體的記錄資訊。
+5. 在 hello__執行程式__區段中，選取 hello 中的連結__連接埠__hello 元件的這個執行個體的資料行 toodisplay 記錄資訊。
 
     ![執行程式連結](./media/hdinsight-apache-storm-with-kafka/executors.png)
 
-    記錄檔包含從 Kafka 主題讀取的資料記錄檔。 記錄檔中的資訊類似下列文字︰
+    hello 記錄檔會包含讀取自 hello Kafka 主題的 hello 資料的記錄檔。 hello 記錄檔中的 hello 資訊是類似 toohello 下列文字：
 
         2016-11-04 17:47:14.907 c.m.e.LoggerBolt [INFO] Received data: four score and seven years ago
-        2016-11-04 17:47:14.907 STDIO [INFO] the cow jumped over the moon
-        2016-11-04 17:47:14.908 c.m.e.LoggerBolt [INFO] Received data: the cow jumped over the moon
-        2016-11-04 17:47:14.911 STDIO [INFO] snow white and the seven dwarfs
-        2016-11-04 17:47:14.911 c.m.e.LoggerBolt [INFO] Received data: snow white and the seven dwarfs
-        2016-11-04 17:47:14.932 STDIO [INFO] snow white and the seven dwarfs
-        2016-11-04 17:47:14.932 c.m.e.LoggerBolt [INFO] Received data: snow white and the seven dwarfs
-        2016-11-04 17:47:14.969 STDIO [INFO] an apple a day keeps the doctor away
-        2016-11-04 17:47:14.970 c.m.e.LoggerBolt [INFO] Received data: an apple a day keeps the doctor away
+        2016-11-04 17:47:14.907 STDIO [INFO] hello cow jumped over hello moon
+        2016-11-04 17:47:14.908 c.m.e.LoggerBolt [INFO] Received data: hello cow jumped over hello moon
+        2016-11-04 17:47:14.911 STDIO [INFO] snow white and hello seven dwarfs
+        2016-11-04 17:47:14.911 c.m.e.LoggerBolt [INFO] Received data: snow white and hello seven dwarfs
+        2016-11-04 17:47:14.932 STDIO [INFO] snow white and hello seven dwarfs
+        2016-11-04 17:47:14.932 c.m.e.LoggerBolt [INFO] Received data: snow white and hello seven dwarfs
+        2016-11-04 17:47:14.969 STDIO [INFO] an apple a day keeps hello doctor away
+        2016-11-04 17:47:14.970 c.m.e.LoggerBolt [INFO] Received data: an apple a day keeps hello doctor away
 
-## <a name="stop-the-topologies"></a>停止拓撲
+## <a name="stop-hello-topologies"></a>停止 hello 拓撲
 
-在連往 Storm 叢集的 SSH 工作階段中，使用下列命令來停止 Storm 拓撲：
+從 SSH 工作階段 toohello Storm 叢集中，使用下列命令 toostop hello Storm 拓撲 hello:
 
   ```bash
   storm kill kafka-writer
   storm kill kafka-reader
   ```
 
-## <a name="delete-the-cluster"></a>刪除叢集
+## <a name="delete-hello-cluster"></a>刪除 hello 叢集
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-因為本文件中的步驟會在相同的 Azure 資源群組中建立兩個叢集，您可以在 Azure 入口網站中刪除資源群組。 刪除資源群組，會移除依照本文指示建立的所有資源。
+因為這份文件中的 hello 步驟建立這兩者中的叢集 hello 相同的 Azure 資源群組，您可以刪除 hello hello Azure 入口網站中的資源群組。 正在刪除 hello 資源群組中移除遵循本文件所建立的所有資源。
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -1,6 +1,6 @@
 ---
-title: "如何從 Twilio 撥打電話 (PHP) | Microsoft Docs"
-description: "了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。 範例適用於 PHP 應用程式。"
+title: "aaaHow toomake 通話從 Twilio (PHP) |Microsoft 文件"
+description: "了解如何 toomake 電話及傳送 SMS 訊息 hello Twilio API 服務在 Azure 上。 範例適用於 PHP 應用程式。"
 documentationcenter: php
 services: 
 author: devinrader
@@ -14,25 +14,25 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 11/25/2014
 ms.author: microsofthelp@twilio.com
-ms.openlocfilehash: f35450ace02727ddf392dbbe857b934a45ee022a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e6fecc345bf9ae787d14d533bd8d96b175c2453b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-make-a-phone-call-using-twilio-in-a-php-application-on-azure"></a>如何在 Azure 上的 PHP 應用程式中使用 Twilio 撥打電話
-下列範例將說明如何從 Azure 代管的 PHP 網頁上使用 Twilio 撥打電話。 產生的應用程式會提示使用者提供電話值，如下列螢幕擷取畫面所示。
+# <a name="how-toomake-a-phone-call-using-twilio-in-a-php-application-on-azure"></a>如何在 Azure 上的 PHP 應用程式的電話使用 Twilio tooMake
+hello 下列範例示範您如何使用 Twilio toomake 從裝載於 Azure 的 PHP 網頁上的呼叫。 hello 產生應用程式會提示 hello 使用者通話值 hello 下列螢幕擷取畫面所示。
 
 ![Azure Call Form Using Twilio and PHP][twilio_php]
 
-您必須執行下列動作才能使用本主題中的程式碼：
+您將需要 toodo hello 下列 toouse 本主題中的 hello 程式碼：
 
-1. 從您的 [Twilio 主控台][twilio_console]取得 Twilio 帳戶和驗證權杖。 若要開始使用 Twilio，請在 [http://www.twilio.com/pricing][twilio_pricing] 上評估價格。 您可以在 [https://www.twilio.com/try-twilio][try_twilio] 上註冊試用帳戶。
-2. 取得 [適用於 PHP 的 Twilio 程式庫](https://github.com/twilio/twilio-php) ，或以 PEAR 封裝的形式進行安裝。 如需詳細資訊，請參閱 [讀我檔案](https://github.com/twilio/twilio-php/blob/master/README.md)。
-3. 安裝 Azure SDK for PHP。 如需 SDK 的概觀及其安裝指示，請參閱[設定 Azure SDK for PHP](app-service-web/web-sites-php-mysql-deploy-use-git.md)
+1. 從您的 [Twilio 主控台][twilio_console]取得 Twilio 帳戶和驗證權杖。 開始使用 Twilio，tooget 評估在定價[http://www.twilio.com/pricing][twilio_pricing]。 您可以在 [https://www.twilio.com/try-twilio][try_twilio] 上註冊試用帳戶。
+2. 取得 hello [Twilio for PHP 的程式庫](https://github.com/twilio/twilio-php)或將它安裝為西洋梨封裝。 如需詳細資訊，請參閱 hello[讀我檔案](https://github.com/twilio/twilio-php/blob/master/README.md)。
+3. 安裝 hello Azure SDK for PHP。 如需 hello SDK 和安裝指示的概觀，請參閱[hello Azure SDK for PHP 設定](app-service-web/web-sites-php-mysql-deploy-use-git.md)
 
 ## <a name="create-a-web-form-for-making-a-call"></a>建立用以撥打電話的 Web 表單
-下列 HTML 程式碼將說明如何建置網頁 (**callform.html**)，以擷取撥打電話所需的使用者資料：
+hello 下列 HTML 程式碼示範如何 toobuild 網頁 (**callform.html**)，擷取使用者資料進行呼叫：
 
 ```html
 <!DOCTYPE html>
@@ -55,7 +55,7 @@ ms.lasthandoff: 07/11/2017
       </tr>
       <tr>
         <td>Call message:</td>
-        <td><input name="callText" size="100" type="text" value="Hello. This is the call text. Good bye."></td>
+        <td><input name="callText" size="100" type="text" value="Hello. This is hello call text. Good bye."></td>
       </tr>
       <tr>
         <td colspan="2"><input type="submit" value="Make this call"></td>
@@ -66,8 +66,8 @@ ms.lasthandoff: 07/11/2017
 </html>
 ```
 
-## <a name="create-the-code-to-make-the-call"></a>建立用以撥打電話的程式碼
-下列程式碼將說明如何建置會在使用者提交 **callform.html** 所顯示的表單時受到呼叫的 **makecall.php**。 下方顯示的程式碼會建立通話訊息及產生通話。 同時，請務必使用來自 [Twilio 主控台][twilio_console]的 Twilio 帳戶和驗證權杖，而不是下方程式碼中指派給 **$sid** 和 **$token** 的預留位置值。
+## <a name="create-hello-code-toomake-hello-call"></a>建立 hello 程式碼 toomake hello 呼叫
+hello 下列程式碼會示範如何 toobuild **makecall.php**，稱為 hello 使用者送出 hello 表單顯示時**callform.html**。 hello 如下所示的程式碼會建立 hello 呼叫訊息，並產生 hello 呼叫。 此外，請確定您的 Twilio 帳戶和驗證語彙基元 hello 的 toouse [Twilio 主控台][ twilio_console]而不是太指派 hello 預留位置值**$sid**和**$token** hello 的下列程式碼。
 
 ```html
 <html>
@@ -100,27 +100,27 @@ echo "URI resource: " . $call->uri . "<br />";
 </html>
 ```
 
-除了撥打電話以外，**makecall.php** 也會顯示某些通話中繼資料，如以下影像中所示。 如需通話中繼資料的詳細資訊，請參閱 [https://www.twilio.com/docs/api/rest/call#instance-properties][twilio_call_properties]。
+此外 toomaking hello 呼叫， **makecall.php**中所示為 hello 圖顯示一些呼叫中繼資料。 如需通話中繼資料的詳細資訊，請參閱 [https://www.twilio.com/docs/api/rest/call#instance-properties][twilio_call_properties]。
 
 ![Azure Call Response Using Twilio and PHP][twilio_php_response]
 
-## <a name="run-the-application"></a>執行應用程式
-下一個步驟是將您的應用程式部署至 Azure 網站。 下列文章包含使用 Git、FTP 或 WebMatrix 來建立網站及部署程式碼的相關資訊 (並非每篇文章中的所有資訊都是相關的)：
+## <a name="run-hello-application"></a>執行 hello 應用程式
+hello 下一個步驟是 toodeploy 您應用程式 tooAzure 網站。 hello 下列文件包含用於建立網站及部署您使用 Git、 FTP 或 WebMatrix 的程式碼 （但並非所有的資訊，在每個發行項無關） hello 資訊：
 
 * [建立 PHP-MySQL Azure 網站並使用 Git 部署](app-service-web/web-sites-php-mysql-deploy-use-git.md)
 * [建立 PHP-MySQL Azure 網站並使用 FTP 部署](app-service-web/web-sites-php-mysql-deploy-use-ftp.md)
 
 ## <a name="next-steps"></a>後續步驟
-此程式可說明在 Azure 上的 PHP 中使用 Twilio 的基本功能。 在部署至生產環境中的 Azure 之前，您可以新增更多錯誤處理或其他功能。 例如：
+此程式碼提供 tooshow 您基本的功能使用 Twilio 在 Azure 上的 PHP。 在部署之前 tooAzure 在生產環境中的，您可能想要 tooadd 詳細的錯誤處理或其他功能。 例如：
 
-* 除了使用 Web 表單以外，您也可以使用 Azure 儲存體 Blob 或 SQL Database 來儲存電話號碼和通話文字。 如需在 PHP 中使用 Azure 儲存體 Blob 的相關資訊，請參閱[搭配使用 Azure 儲存體與 PHP 應用程式][howto_blob_storage_php]。 如需在 PHP 中使用 SQL Database 的相關資訊，請參閱[搭配使用 SQL Database 與 PHP 應用程式][howto_sql_azure_php]。
-* **makecall.php** 程式碼會使用 Twilio 提供的 URL ([http://twimlets.com/message][twimlet_message_url]) 來提供 Twilio 標記語言 (TwiML) 回應，以告知 Twilio 應如何執行通話。 例如，傳回的 TwiML 可能會包含 `<Say>` 動詞，而產生要傳達給受話方的文字。 除了使用 Twilio 提供的 URL 以外，您也可以建置自己的服務來回應 Twilio 的要求；如需詳細資訊，請參閱[如何在 PHP 中透過 Twilio 使用語音和簡訊功能][howto_twilio_voice_sms_php]。 如需 TwiML 的詳細資訊，請參閱 [http://www.twilio.com/docs/api/twiml][twiml]；如需 `<Say>` 和其他 Twilio 動詞的詳細資訊，請參閱 [http://www.twilio.com/docs/api/twiml/say][twilio_say]。
-* 閱讀 [https://www.twilio.com/docs/security][twilio_docs_security] 上的 Twilio 安全性指引。
+* 而不是使用網頁表單，也可以使用 Azure 儲存體 blob 或 SQL Database toostore 電話號碼，並呼叫的文字。 如需在 PHP 中使用 Azure 儲存體 Blob 的相關資訊，請參閱[搭配使用 Azure 儲存體與 PHP 應用程式][howto_blob_storage_php]。 如需在 PHP 中使用 SQL Database 的相關資訊，請參閱[搭配使用 SQL Database 與 PHP 應用程式][howto_sql_azure_php]。
+* hello **makecall.php**程式碼會使用 Twilio 提供的 URL ([http://twimlets.com/message][twimlet_message_url]) tooprovide Twilio 標記語言 (TwiML) 回應，如何通知 Twiliotooproceed hello 呼叫。 例如，可以包含 hello TwiML 傳回`<Say>`正在口語的 toohello 呼叫收件者的文字會產生的指令動詞。 而不是使用 hello Twilio 提供 URL，您可以建置自己服務 toorespond tooTwilio 要求。如需詳細資訊，請參閱[如何 tooUse 語音和簡訊功能的 PHP Twilio][howto_twilio_voice_sms_php]。 如需 TwiML 的詳細資訊，請參閱 [http://www.twilio.com/docs/api/twiml][twiml]；如需 `<Say>` 和其他 Twilio 動詞的詳細資訊，請參閱 [http://www.twilio.com/docs/api/twiml/say][twilio_say]。
+* 讀取 hello Twilio 安全性指導方針，在[https://www.twilio.com/docs/security][twilio_docs_security]。
 
 如需 Twilio 的其他資訊，請參閱 [https://www.twilio.com/docs][twilio_docs]。
 
 ## <a name="see-also"></a>另請參閱
-* [如何在 PHP 中透過 Twilio 使用語音和簡訊功能](partner-twilio-php-how-to-use-voice-sms.md)
+* [如何 tooUse Twilio 語音和簡訊功能的 PHP](partner-twilio-php-how-to-use-voice-sms.md)
 
 [twilio_console]: https://www.twilio.com/console
 [twilio_pricing]: http://www.twilio.com/pricing

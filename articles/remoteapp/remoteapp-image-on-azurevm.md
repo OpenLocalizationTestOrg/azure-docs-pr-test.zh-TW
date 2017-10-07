@@ -1,6 +1,6 @@
 ---
-title: "建立以 Azure VM 為基礎的 Azure RemoteApp 映像 | Microsoft Docs"
-description: "了解如何開始使用 Azure 虛擬機器來建立 Azure RemoteApp 映像。"
+title: "根據 Azure VM 的 Azure RemoteApp 映像的 aaaCreate |Microsoft 文件"
+description: "深入了解如何 toocreate 開始使用 Azure 虛擬機器的 Azure RemoteApp 映像。"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,49 +13,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: ee64b86835af8e6237cddcd8acc779fc6dac8214
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2d432bcb15be68a2946d91b5f36f41d980726338
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-azure-remoteapp-image-based-on-an-azure-virtual-machine"></a>建立以 Azure 虛擬機器為基礎的 Azure RemoteApp 映像
 > [!IMPORTANT]
-> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 讀取 hello[公告](https://go.microsoft.com/fwlink/?linkid=821148)如需詳細資訊。
 > 
 > 
 
-您可以從 Azure 虛擬機器建立 Azure RemoteApp 映像 (其中保存您在集合中共用的應用程式)。 您也可以使用我們已新增至 Azure VM 映像資源庫的虛擬機器映像，其符合所有 Azure RemoteApp 映像需求。如果您想要的話，您可以將該 VM 映像做為您自己 VM 的起點使用。 只需在映像庫中尋找「Windows Server 遠端桌面工作階段主機」。
+您可以從 Azure 虛擬機器建立 Azure RemoteApp 映像 （保存您共用您的集合中的 hello 應用程式）。 您也可以選擇 toouse 我們加入了 toohello Azure VM 映像庫符合所有 hello Azure RemoteApp 映像需求的虛擬機器映像-您可以使用該 VM 映像做為起點的 VM，如果您想要。 只尋找 hello hello 文件庫中的 「 Windows Server 遠端桌面工作階段主機 」 映像。
 
-根據 Azure VM 建立您的專屬映像共有兩個步驟：建立映像，然後將它從 Azure VM 映像庫上傳至 Azure RemoteApp。
+有自己的映像根據 Azure VM 的兩個步驟 toocreate-建立 hello 映像，然後將它上傳從 hello Azure VM 程式庫 tooAzure RemoteApp。
 
 ## <a name="create-a-custom-image-based-on-an-azure-vm"></a>建立以 Azure VM 為基礎的自訂映像
-使用這些步驟來建立以 Azure VM 為基礎的映像。
+使用這些步驟 toocreate 根據 Azure VM 映像。
 
-1. 建立 Azure 虛擬機器。 您可以使用 Azure 虛擬機器映像庫中的「Windows Server 遠端桌面工作階段主機」或「Windows Server 遠端桌面工作階段主機與 Microsoft Office 365 ProPlus」映像。 此映像符合所有的 Azure RemoteApp 範本映像需求。
+1. 建立 Azure 虛擬機器。 您可以使用 hello 「 Windows Server 遠端桌面工作階段主機 」 或 「 Windows Server 遠端桌面工作階段主機與 Microsoft Office 365 ProPlus 」 映像 hello hello Azure 虛擬機器映像庫中。 此映像符合所有的 hello Azure RemoteApp 範本映像需求。
    
     如需詳細資訊，請參閱[建立執行 Windows 的 VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-2. 連接至 VM，並安裝和設定您想要透過 RemoteApp 共用的應用程式。 請務必執行您應用程式所需的任何其他 Windows 設定。
+2. 連接 toohello VM 安裝和設定您想要透過 RemoteApp tooshare hello 應用程式。 請確定 tooperform 您的應用程式所需的任何其他 Windows 設定。
    
-    如需詳細資訊，請參閱[如何登入執行 Windows Server 的虛擬機器](../virtual-machines/windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
-3. 如果您打算使用 Windows Server 遠端桌面工作階段主機映像之一，它包含了可確保您的 VM 符合 RemoteApp 先決條件的驗證指令碼。 若要執行指令碼，請按兩下桌面上的 **ValidateRemoteAppImage** 。 在繼續進行下一個步驟之前，請確定已修正指令碼所報告的所有錯誤。
-4. SYSPREP 一般化和擷取映像。 如需相關指示，請參閱[如何擷取 Windows 虛擬機器作為範本使用](../virtual-machines/windows/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) 。
+    如需詳細資訊，請參閱[如何 tooa 執行 Windows Server 的虛擬機器上的 tooLog](../virtual-machines/windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+3. 如果您使用其中一個 hello Windows Server 遠端桌面工作階段主機映像，則包含的驗證指令碼，將可確保您的 VM 符合 hello RemoteApp 前 reqs. toorun 指令碼，連按兩下**ValidateRemoteAppImage** hello 桌面上。 請繼續 toohello 下一個步驟之前修復的 hello 指令碼所報告的所有錯誤。
+4. SYSPREP 一般化，擷取 hello 映像。 請參閱[如何 tooCapture 做為範本的 Windows 虛擬機器 tooUse](../virtual-machines/windows/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)如需相關指示。
 
-## <a name="import-the-image-into-the-azure-remoteapp-image-library"></a>將映像匯入 Azure RemoteApp 映像庫
-使用下列步驟將新的映像匯入 Azure RemoteApp：
+## <a name="import-hello-image-into-hello-azure-remoteapp-image-library"></a>Hello 映像匯入 hello Azure RemoteApp 映像庫
+使用這些步驟 tooimport hello 新映像到 Azure RemoteApp:
 
-1. 在 [ **範本映像** ] 索引標籤中：
+1. 在 [hello**範本映像**] 索引標籤：
    
    * 如果您沒有現有的映像，請按一下 [ **上傳或匯入範本映像**]。
-   * 如果您已經有一個以上的映像，請按一下 [ **+** ] 以新增映像。
+   * 如果您已經有至少一個映像，請按一下 **+**  tooadd 新映像。
 2. 選取 [從您的虛擬機器映像庫匯入映像]，然後按 [下一步]。
-3. 在下一個頁面上，從清單中選取自訂映像，並確認您已遵循建立映像時的所列步驟進行。 按一下 [下一步] 。
-4. 輸入新 RemoteApp 映像的名稱，並挑選一個位置，然後按一下核取記號以開始匯入程序。
+3. 在 hello 下一個頁面上，從 hello 清單中選取自訂映像，並確認您已遵循 hello 列出當您建立您的映像的步驟。 按一下 [下一步] 。
+4. 輸入 hello 新 RemoteApp 映像的名稱和挑選 hello 位置，然後按一下 hello 核取記號 toostart hello 匯入程序。
 
 > [!NOTE]
-> 您可以將映像從 Azure 虛擬機器支援的任何 Azure 位置，匯入到 Azure RemoteApp 支援的任何 Azure 位置。 視位置而定，匯入可能需要多達 25 分鐘的時間。
+> 您可以從任何支援的 Azure 虛擬機器 tooany Azure RemoteApp 所支援的 Azure 位置的 Azure 位置，以匯入映像。 根據 hello 位置 hello 匯入可能會佔用 too25 分鐘。
 > 
 > 
 
-現在您已經準備好開始建立新的收藏 ([雲端](remoteapp-create-cloud-deployment.md)收藏或[混合式](remoteapp-create-hybrid-deployment.md))，視您的需求而定。
+現在您已準備好 toocreate 您新的集合，或是[雲端](remoteapp-create-cloud-deployment.md)集合或[混合式](remoteapp-create-hybrid-deployment.md)，視您的需求。
 

@@ -1,6 +1,6 @@
 ---
-title: "透過 HTTP 端點呼叫、觸發或巢狀處理工作流程 - Azure Logic Apps | Microsoft Docs"
-description: "設定 HTTP 端點來呼叫、觸發或巢狀處理 Azure Logic Apps 的工作流程"
+title: "aaaCall，觸發程序，或巢狀工作流程搭配 HTTP 端點的 Azure 邏輯應用程式 |Microsoft 文件"
+description: "Azure 邏輯應用程式設定 HTTP 端點 toocall、 觸發程序或巢狀工作流程"
 services: logic-apps
 keywords: "工作流程, HTTP 端點"
 author: jeffhollan
@@ -16,17 +16,17 @@ ms.workload: integration
 ms.custom: H1Hack27Feb2017
 ms.date: 03/31/2017
 ms.author: LADocs; jehollan
-ms.openlocfilehash: c92692db23ac59f67890e26cce6b2d3272e8901d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 072a314c3bff75ab7696f86bb063bb7c03c4ae89
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="call-trigger-or-nest-workflows-with-http-endpoints-in-logic-apps"></a>在邏輯應用程式中透過 HTTP 端點呼叫、觸發或巢狀處理工作流程
 
 您可以在邏輯應用程式中利用原生方式公開同步的 HTTP 端點作為觸發程序，以透過 URL 來觸發或呼叫邏輯應用程式。 您也可以使用可呼叫端點的模式，以在邏輯應用程式中巢狀處理工作流程。
 
-若要建立 HTTP 端點，您可以新增這些觸發程序，以讓邏輯應用程式接收傳入要求︰
+toocreate HTTP 端點，您可以新增這些觸發程序，讓您的 logic apps 可以接收連入要求：
 
 * [要求](../connectors/connectors-native-reqres.md)
 
@@ -35,22 +35,22 @@ ms.lasthandoff: 07/11/2017
 * [HTTP Webhook](../connectors/connectors-native-webhook.md)
 
    > [!NOTE]
-   > 雖然我們的範例使用 [要求] 觸發程序，但是您可以使用任何列出的 HTTP 觸發程序，而且所有的原則都會同樣地套用到其他觸發程序類型。
+   > 雖然我們的範例使用 hello**要求**觸發程序，您可以使用任何的 hello 列出 HTTP 觸發程序，而且所有適用的原則即會相同 toohello 其他觸發程序類型。
 
 ## <a name="set-up-an-http-endpoint-for-your-logic-app"></a>設定邏輯應用程式的 HTTP 端點
 
-若要建立 HTTP 端點，請新增可接收傳入要求的觸發程序。
+toocreate HTTP 端點，新增觸發程序可以接收傳入要求。
 
-1. 登入 [Azure 入口網站](https://portal.azure.com "Azure 入口網站")。 移至邏輯應用程式，並開啟邏輯應用程式設計工具。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com "Azure 入口網站")。 連線 tooyour 邏輯應用程式，並開啟邏輯應用程式的設計工具。
 
-2. 新增可讓邏輯應用程式接收傳入要求的觸發程序。 例如，將**要求**觸發程序新增至邏輯應用程式。
+2. 新增可讓邏輯應用程式接收傳入要求的觸發程序。 例如，新增 hello**要求**觸發程序 tooyour 邏輯應用程式。
 
-3.  在 [要求本文 JSON 結構描述] 下方，您可以選擇針對預期要觸發程序收到的承載 (資料) 輸入 JSON 結構描述。
+3.  在下**要求本文 JSON 結構描述**，您可以選擇輸入如您預期 hello 觸發程序 tooreceive hello 裝載 （資料） 的 JSON 結構描述。
 
-    設計工具會使用此結構描述來產生權杖，而邏輯應用程式可以使用權杖以透過工作流程從觸發程序中取用、剖析和傳遞資料。 
+    hello 設計工具會使用此結構描述來產生 tooconsume、 parse 和傳遞資料，從 hello 觸發程序，透過您的工作流程，可以使用邏輯應用程式的權杖。 
     深入了解[從 JSON 結構描述產生的權杖](#generated-tokens)。
 
-    在此範例中，輸入設計工具中所顯示的結構描述︰
+    此範例中，輸入 hello hello 設計工具中顯示的結構描述：
 
     ```json
     {
@@ -66,11 +66,11 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-    ![新增要求動作][1]
+    ![加入 hello 要求動作][1]
 
     > [!TIP]
     > 
-    > 您可以從 [jsonschema.net](http://jsonschema.net/) 這類工具產生範例 JSON 承載的結構描述，或在 [要求] 觸發程序中選擇 [請使用範例承載產生結構描述] 來產生範例 JSON 承載的結構描述。 
+    > 您可以從這類工具產生的結構描述的範例 JSON 承載， [jsonschema.net](http://jsonschema.net/)，或在 hello**要求**觸發程序藉由選擇**使用範例內容 toogenerate 結構描述**。 
     > 輸入您的範例承載，然後選擇 [完成]。
 
     例如，此範例裝載︰
@@ -94,31 +94,31 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-4.  儲存您的邏輯應用程式。 在 [此 URL 的 HTTP POST] 下方，您現在應該會找到產生的回呼 URL，如下列範例所示：
+4.  儲存您的邏輯應用程式。 在下**HTTP POST toothis URL**，您現在應該會發現產生的回呼 URL，如下列範例：
 
     ![為端點產生的回呼 URL](./media/logic-apps-http-endpoint/generated-endpoint-url.png)
 
-    此 URL 的查詢參數中包含用於驗證的共用存取簽章 (SAS) 金鑰。 
-    您也可以從 Azure 入口網站的邏輯應用程式概觀中取得 HTTP 端點 URL。 在 [觸發程序記錄] 下方，選取觸發程序：
+    此 URL 包含用於驗證的 hello 查詢參數中的共用存取簽章 (SAS) 金鑰。 
+    您也可以從您的邏輯應用程式概觀 hello Azure 入口網站中取得 hello HTTP 端點 URL。 在 [觸發程序記錄] 下方，選取觸發程序：
 
     ![從 Azure 入口網站取得 HTTP 端點 URL][2]
 
-    或者，您可以進行這個呼叫來取得 URL：
+    或者，您可以取得 hello URL 進行此呼叫：
 
     ```
     POST https://management.azure.com/{logic-app-resourceID}/triggers/{myendpointtrigger}/listCallbackURL?api-version=2016-06-01
     ```
 
-## <a name="change-the-http-method-for-your-trigger"></a>變更觸發程序的 HTTP 方法
+## <a name="change-hello-http-method-for-your-trigger"></a>變更觸發程序的 hello HTTP 方法
 
-根據預設，[要求] 觸發程序會預期 HTTP POST 要求，但您可以使用不同的 HTTP 方法。 
+根據預設，hello**要求**觸發程序需要 HTTP POST 要求，但是您可以使用不同的 HTTP 方法。 
 
 > [!NOTE]
 > 您只能指定一種方法類型。
 
 1. 在 [要求] 觸發程序上，選擇 [顯示進階選項]。
 
-2. 開啟 [方法] 清單。 在此範例中，選取 **GET**，稍後測試 HTTP 端點的 URL。
+2. 開啟 hello**方法**清單。 在此範例中，選取 **GET**，稍後測試 HTTP 端點的 URL。
 
     > [!NOTE]
     > 您可以選取任何其他 HTTP 方法，或指定專屬邏輯應用程式的自訂方法。
@@ -127,27 +127,27 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="accept-parameters-through-your-http-endpoint-url"></a>透過 HTTP 端點 URL 接受參數
 
-當您想要 HTTP 端點 URL 接受參數時，請自訂觸發程序的相對路徑。
+當您想 HTTP 端點 URL tooaccept 參數時，自訂觸發程序的相對路徑。
 
 1. 在 [要求] 觸發程序上，選擇 [顯示進階選項]。 
 
-2. 在 [方法] 下方，指定您想要要求使用的 HTTP 方法。 在此範例中，選取 **GET** 方法 (如果還沒有這麼做的話)，以測試 HTTP 端點的 URL。
+2. 在下**方法**，指定您想要求 toouse hello HTTP 方法。 此範例中，選取 hello**取得**方法，如果您還沒有這麼做，以便您可以測試 HTTP 端點的 URL。
 
       > [!NOTE]
       > 當您指定觸發程序的相對路徑時，也必須明確地指定觸發程序的 HTTP 方法。
 
-3. 在 [相對路徑] 下方，指定您 URL 應該接受之參數的相對路徑，例如，`customers/{customerID}`。
+3. 在下**相對路徑**，指定您的 URL 應該接受的比方說，hello 參數的 hello 相對路徑`customers/{customerID}`。
 
-    ![指定參數的 HTTP 方法和相對路徑](./media/logic-apps-http-endpoint/relativeurl.png)
+    ![指定 hello HTTP 方法和參數的相對路徑](./media/logic-apps-http-endpoint/relativeurl.png)
 
-4. 若要使用參數，請將 [回應] 動作新增至邏輯應用程式 (在觸發程序下方，選擇 [新增步驟] > [新增動作] > [回應])。 
+4. toouse hello 參數，新增**回應**動作 tooyour 邏輯應用程式。 (在觸發程序下方，選擇 [新增步驟] > [新增動作] > [回應])。 
 
-5. 在您回應的 [本文] 中，包括觸發程序相對路徑中所指定參數的權杖。
+5. 在您的回應**主體**，包括您在觸發程序的相對路徑中指定的 hello 參數 hello token。
 
-    例如，若要傳回 `Hello {customerID}`，請使用 `Hello {customerID token}` 來更新回應的 [本文]。 
-    動態內容的清單應該會出現並顯示`customerID`權杖以供您選取。
+    例如，tooreturn `Hello {customerID}`，更新您的回應**主體**與`Hello {customerID token}`。 
+    hello 動態內容的清單應該會出現並顯示 hello`customerID`權杖以供您 tooselect。
 
-    ![將參數新增至回應本文](./media/logic-apps-http-endpoint/relativeurlresponse.png)
+    ![加入參數 tooresponse 主體](./media/logic-apps-http-endpoint/relativeurlresponse.png)
 
     您的 [本文] 應該如下列範例所示：
 
@@ -155,11 +155,11 @@ ms.lasthandoff: 07/11/2017
 
 6. 儲存您的邏輯應用程式。 
 
-    HTTP 端點 URL 現在包括相對路徑，例如︰ 
+    您的 HTTP 端點 URL 現在例如包含 hello 相對路徑： 
 
     https&#58;//prod-00.southcentralus.logic.azure.com/workflows/f90cb66c52ea4e9cabe0abf4e197deff/triggers/manual/paths/invoke/customers/{customerID}...
 
-7. 若要測試 HTTP 端點，請複製更新過的 URL，並將其貼入另一個瀏覽器視窗中，但將 `{customerID}` 取代為 `123456`，然後按 Enter 鍵。
+7. 您的 HTTP 端點、 複製和貼上至另一個瀏覽器視窗，hello 更新的 URL，但取代的 tootest`{customerID}`與`123456`，然後按 Enter。
 
     您的瀏覽器應該顯示下列文字︰ 
 
@@ -168,11 +168,11 @@ ms.lasthandoff: 07/11/2017
 <a name="generated-tokens"></a>
 ### <a name="tokens-generated-from-json-schemas-for-your-logic-app"></a>從 JSON 結構描述產生邏輯應用程式的權杖
 
-在 [要求] 觸發程序中提供 JSON 結構描述時，邏輯應用程式設計工具會產生該結構描述中屬性的權杖。 您接著可以使用這些權杖，透過邏輯應用程式工作流程來傳遞資料。
+當您提供的 JSON 結構描述中您**要求**觸發程序、 hello 邏輯應用程式的設計工具會產生語彙基元屬性的該結構描述中。 您接著可以使用這些權杖，透過邏輯應用程式工作流程來傳遞資料。
 
-在此範例中，如果您將 `title` 和 `name` 屬性新增至 JSON 結構描述，則現在可以將其權杖用於稍後的工作流程步驟。 
+例如，如果您新增 hello`title`和`name`屬性 tooyour JSON 結構描述，及其語彙基元現在會於稍後步驟中工作流程的可用 toouse。 
 
-以下是完整 JSON 結構描述︰
+以下是 hello 完整的 JSON 結構描述：
 
 ```json
 {
@@ -198,19 +198,19 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="create-nested-workflows-for-logic-apps"></a>建立邏輯應用程式的巢狀工作流程
 
-您可以新增其他可接收要求的邏輯應用程式，以在邏輯應用程式中巢狀處理工作流程。 若要包括這些邏輯應用程式，請將 [Azure Logic Apps - 選擇 Logic Apps 工作流程] 動作新增至觸發程序。 您接著可以從合格的邏輯應用程式中進行選取。
+您可以新增其他可接收要求的邏輯應用程式，以在邏輯應用程式中巢狀處理工作流程。 tooinclude 這些邏輯應用程式中，新增 hello **Azure 邏輯應用程式-選擇 Logic Apps 工作流程**動作 tooyour 觸發程序。 您接著可以從合格的邏輯應用程式中進行選取。
 
 ![新增另一個邏輯應用程式](./media/logic-apps-http-endpoint/choose-logic-apps-workflow.png)
 
 ## <a name="call-or-trigger-logic-apps-through-http-endpoints"></a>透過 HTTP 端點呼叫或觸發邏輯應用程式
 
-建立 HTTP 端點之後，您可以透過完整 URL 的 `POST` 方法來觸發邏輯應用程式。 邏輯應用程式具有直接存取端點的內建支援。
+建立 HTTP 端點之後，您可以觸發透過應用程式邏輯`POST`方法 toohello 完整的 URL。 邏輯應用程式具有直接存取端點的內建支援。
 
 ## <a name="reference-content-from-an-incoming-request"></a>參考來自傳入要求的內容
 
-如果內容的類型是 `application/json`，您可以從傳入要求參考屬性。 否則，會將內容視為可傳遞給其他 API 的單一二進位單位。 若要在工作流程內部參考此內容，您必須轉換該內容。 例如，如果您要傳遞 `application/xml` 內容，可以使用 `@xpath()` 進行 XPath 擷取，或使用 `@json()` 來將 XML 轉換成 JSON。 深入了解如何[使用內容類型](../logic-apps/logic-apps-content-type.md)。
+如果 hello 內容型別，則為`application/json`，您可以從 hello 連入要求參考屬性。 否則，內容會被視為單一的二進位單位，您可以將 tooother 應用程式開發介面。 tooreference hello 工作流程內部此內容，您必須轉換該內容。 例如，如果您傳遞`application/xml`內容，您可以使用  `@xpath()` XPath 擷取，或`@json()`轉換 XML tooJSON。 深入了解如何[使用內容類型](../logic-apps/logic-apps-content-type.md)。
 
-若要取得傳入要求的輸出，您可以使用 `@triggerOutputs()` 函式。 輸出可能如下列範例所示︰
+tooget hello 輸出從傳入要求，您可以使用 hello`@triggerOutputs()`函式。 hello 輸出看起來就像此範例中：
 
 ```json
 {
@@ -223,18 +223,18 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-若要特別存取 `body` 屬性，您可以使用 `@triggerBody()` 捷徑。 
+tooaccess hello`body`屬性明確地說，您可以使用 hello`@triggerBody()`捷徑。 
 
-## <a name="respond-to-requests"></a>回應要求
+## <a name="respond-toorequests"></a>回應 toorequests
 
-您可能想要將內容傳回給呼叫端，以回應可啟動邏輯應用程式的特定要求。 若要建構回應的狀態碼、標頭和本文，您可以使用 [回應] 動作。 這個動作可以出現在邏輯應用程式的任何位置，而不只是工作流程的結尾。
+您可以藉由傳回內容 toohello 呼叫端啟動邏輯應用程式的 toorespond toocertain 要求。 tooconstruct hello 狀態碼、 標頭和您的回應主體中，您可以使用 hello**回應**動作。 這個動作可以出現在邏輯應用程式，不只是在您的工作流程的 hello 結尾的任何位置。
 
 > [!NOTE] 
-> 如果邏輯應用程式未包括 [回應]，則 HTTP 端點會「立即」回應 [202 已接受] 狀態。 而且，為了讓原始要求取得回應，除非您呼叫工作流程作為巢狀邏輯應用程式，否則回應所需的所有步驟都必須在[要求逾時限制](./logic-apps-limits-and-config.md)內完成。 如果未在此限制內產生任何回應，傳入要求就會逾時，並收到 HTTP 回應 [408 用戶端逾時]。 針對巢狀邏輯應用程式，無論需要多少時間，父邏輯應用程式都會繼續等候回應，直到完成為止。
+> 如果應用程式邏輯不包含**回應**，回應 hello HTTP 端點*立即*與**202 已接受**狀態。 此外，如 hello 原始要求 tooget hello 回應 hello 回應所需的所有步驟必須內都完成 hello[要求逾時限制](./logic-apps-limits-and-config.md)除非呼叫 hello 做為巢狀的邏輯應用程式的工作流程。 如果沒有回應的情況發生這項限制內，hello 連入要求會逾時並收到 hello HTTP 回應**408 用戶端逾時**。 巢狀的 logic apps hello 父邏輯應用程式會繼續 toowait 完成為止，不論則需要多少時間的回應。
 
-### <a name="construct-the-response"></a>建構回應
+### <a name="construct-hello-response"></a>建構 hello 回應
 
-您可以在回應本文中包括數個標頭和任何類型的內容。 在範例回應中，標頭指定回應的內容類型為 `application/json`。 而根據先前針對 [要求] 觸發程序所更新的 JSON 結構描述，本文會包含 `title` 和 `name`。
+您可以在 hello 回應主體中包含一個以上的標頭和任何類型的內容。 在我們的範例回應 hello 標頭指定 hello 回應的內容類型`application/json`。 和 hello 主體會包含`title`和`name`根據 hello hello 先前已更新的 JSON 結構描述，**要求**觸發程序。
 
 ![HTTP 回應動作][3]
 
@@ -242,11 +242,11 @@ ms.lasthandoff: 07/11/2017
 
 | 屬性 | 說明 |
 | --- | --- |
-| StatusCode |指定用於回應傳入要求的 HTTP 狀態碼。 此代碼可以是任何以 2xx、4xx 或 5xx 開頭的有效狀態碼。 但是，不允許 3xx 狀態碼。 |
-| headers |定義要包含於回應中的標頭，且數目不限。 |
+| StatusCode |指定回應 toohello 連入要求的 hello HTTP 狀態碼。 此代碼可以是任何以 2xx、4xx 或 5xx 開頭的有效狀態碼。 但是，不允許 3xx 狀態碼。 |
+| headers |定義任意數目的標頭 tooinclude hello 回應中。 |
 | body |指定本文物件可以是字串、JSON 物件，甚至是上一個步驟中所參考的二進位內容。 |
 
-以下是 [回應] 動作之 JSON 結構描述目前的外觀：
+以下是何種 hello JSON 結構描述，看起來像現在 hello**回應**動作：
 
 ``` json
 "Response": {
@@ -266,48 +266,48 @@ ms.lasthandoff: 07/11/2017
 ```
 
 > [!TIP]
-> 若要檢視邏輯應用程式的完整 JSON 定義，請在邏輯應用程式設計工具上選擇 [程式碼檢視]。
+> tooview hello JSON 個完整定義邏輯上的應用程式，hello 邏輯應用程式的設計工具，選擇**程式碼檢視**。
 
 ## <a name="q--a"></a>問答集
 
 #### <a name="q-what-about-url-security"></a>問︰URL 安全性如何？
 
-答：Azure 會使用共用存取簽章 (SAS)，安全地產生邏輯應用程式回呼 URL。 這個簽章是以查詢參數的形式傳遞，且必須在引發您的邏輯應用程式之前先驗證。 Azure 會使用每個邏輯應用程式、觸發程序名稱以及要執行作業之秘密金鑰的唯一組合來產生簽章。 因此，除非某人具有邏輯應用程式秘密金鑰的存取權，否則他們無法產生有效的簽章。
+答：Azure 會使用共用存取簽章 (SAS)，安全地產生邏輯應用程式回呼 URL。 這個簽章是以查詢參數的形式傳遞，且必須在引發您的邏輯應用程式之前先驗證。 Azure 會產生 hello 簽章使用的每個邏輯應用程式、 hello 觸發程序名稱和執行的 hello 作業的祕密金鑰的唯一組合。 因此除非有人存取 toohello 秘密邏輯應用程式金鑰，否則他們無法產生有效的簽章。
 
    > [!IMPORTANT]
-   > 對於生產和安全系統，強烈建議直接從瀏覽器呼叫邏輯應用程式，因為：
+   > 生產環境與安全的系統，我們強烈建議針對直接從 hello 瀏覽器呼叫應用程式邏輯，因為：
    > 
-   > * URL 中出現共用存取金鑰。
-   > * 您由於邏輯應用程式客戶之間共用網域，而無法管理安全內容原則。
+   > * hello 共用的存取金鑰會出現在 hello URL。
+   > * 您無法管理安全內容的原則，因為 tooshared 網域整個邏輯應用程式的客戶。
 
 #### <a name="q-can-i-configure-http-endpoints-further"></a>問︰我可以進一步設定 HTTP 端點嗎？
 
-答︰可以，HTTP 端點透過 [**API 管理**](../api-management/api-management-key-concepts.md)來支援更進階的設定。 此服務也可讓您透過一致的方式管理所有 API，包括邏輯應用程式、設定自訂網域名稱、使用其他驗證方法等等，例如︰
+答︰可以，HTTP 端點透過 [**API 管理**](../api-management/api-management-key-concepts.md)來支援更進階的設定。 此服務也提供 hello 功能，針對您 tooconsistently 管理您的所有 Api，包括邏輯應用程式、 設定自訂網域名稱、 使用多個驗證方法及詳細資訊，例如：
 
-* [變更要求方法](https://docs.microsoft.com/azure/api-management/api-management-advanced-policies#SetRequestMethod)
-* [變更要求的 URL 區段](https://docs.microsoft.com/azure/api-management/api-management-transformation-policies#RewriteURL)
-* 在 [Azure 入口網站](https://portal.azure.com/ "Azure 入口網站")中設定 API 管理網域
-* 設定檢查基本驗證的原則
+* [變更 hello 要求方法](https://docs.microsoft.com/azure/api-management/api-management-advanced-policies#SetRequestMethod)
+* [變更 hello 的 hello 要求的 URL 區段](https://docs.microsoft.com/azure/api-management/api-management-transformation-policies#RewriteURL)
+* 設定您的 API 管理網域中 hello [Azure 入口網站](https://portal.azure.com/ "Azure 入口網站")
+* 設定基本驗證的原則 toocheck
 
-#### <a name="q-what-changed-when-the-schema-migrated-from-the-december-1-2014-preview"></a>問︰從 2014 年 12 月 1 日預覽版升級結構描述時的變更內容為何？
+#### <a name="q-what-changed-when-hello-schema-migrated-from-hello-december-1-2014-preview"></a>問： 什麼變更時從 hello 2014 年 12 月 1 日預覽移轉 hello 結構描述？
 
 答︰以下是這些變更的摘要︰
 
 | 2014 年 12 月 1 日預覽版 | 2016 年 6 月 1 日 |
 | --- | --- |
 | 按一下 [HTTP 接聽程式] API 應用程式 |按一下 [手動觸發程序] \(不需要 API 應用程式) |
-| HTTP 接聽程式設定 [自動傳送回應] |包括 [回應] 動作，或不在工作流程定義中 |
+| HTTP 接聽程式設定 [自動傳送回應] |可能包含**回應**動作或不在 hello 工作流程定義 |
 | 設定基本或 OAuth 驗證 |透過 API 管理 |
 | 設定 HTTP 方法 |在 [顯示進階選項] 下方，選擇 HTTP 方法。 |
 | 設定相對路徑 |在 [顯示進階選項] 下方，新增相對路徑。 |
-| 透過 `@triggerOutputs().body.Content` 參考傳入本文 |透過 `@triggerOutputs().body` 參考 |
-| **傳送 HTTP 回應** 動作 |按一下 [回應 HTTP 要求] \(不需要 API 應用程式) |
+| 透過參考 hello 傳入內容`@triggerOutputs().body.Content` |透過 `@triggerOutputs().body` 參考 |
+| **傳送 HTTP 回應**hello HTTP 接聽程式時採取的動作 |按一下**回應 tooHTTP 要求**（沒有 API 應用程式所需） |
 
 ## <a name="get-help"></a>取得說明
 
-若要提出問題、回答問題以及了解其他 Azure Logic Apps 使用者的做法，請造訪 [Azure Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。
+tooask 問題回答的問題，以及了解哪些其他 Azure 邏輯應用程式使用者的行為，請瀏覽 hello [Azure 邏輯應用程式論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。
 
-若要改善 Azure Logic Apps 和連接器，請在 [Azure Logic Apps 使用者意見反應網站](http://aka.ms/logicapps-wish)上票選或提交想法。
+toohelp 改善 Azure 邏輯應用程式和連接器、 票選或送出意見在 hello [Azure 邏輯應用程式使用者意見反應網站](http://aka.ms/logicapps-wish)。
 
 ## <a name="next-steps"></a>後續步驟
 

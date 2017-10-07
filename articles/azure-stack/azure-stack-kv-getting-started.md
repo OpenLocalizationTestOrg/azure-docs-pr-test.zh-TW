@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Azure 堆疊中的金鑰保存庫 |Microsoft 文件"
+title: "開始使用 Azure 堆疊中的金鑰保存庫的 aaaGetting |Microsoft 文件"
 description: "開始使用 Azure 堆疊金鑰保存庫"
 services: azure-stack
 documentationcenter: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 01/23/2017
 ms.author: ricardom
-ms.openlocfilehash: 32fad3ce17c877db661573e67c9cb5948b3c78fa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 66ae55291951ee0c673ba2b50ea4aecb3df19a88
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-key-vault"></a>開始使用金鑰保存庫
-本章節描述的步驟來建立保存庫、 管理金鑰和密碼，以及授權的使用者或應用程式叫用 Azure 堆疊中保存庫中的作業。 下列步驟假設存在租用戶的訂用帳戶，而且 KeyVault 服務註冊該訂用帳戶內。 所有範例命令會都根據可用的 KeyVault cmdlet Azure PowerShell SDK 的一部分。
+本章節描述 hello 步驟 toocreate 保存庫、 管理金鑰和密碼，以及驗證 Azure 堆疊中的 hello 保存庫中的使用者或應用程式 tooinvoke 作業。 hello 下列步驟假設存在租用戶的訂用帳戶，而且 KeyVault 服務註冊該訂用帳戶內。 所有的 hello 範例命令會根據 hello KeyVault cmdlet 可用 hello Azure PowerShell SDK 的一部分。
 
-## <a name="enabling-the-tenant-subscription-for-vault-operations"></a>啟用保存庫作業的租用戶訂用帳戶
-您可以發出對任何保存庫作業之前，您需要確定您的訂用帳戶已啟用保存庫作業。 您可以藉由發出下列 PowerShell 命令，確認：
+## <a name="enabling-hello-tenant-subscription-for-vault-operations"></a>啟用 hello 保存庫作業的租用戶訂用帳戶
+您可以發出對任何保存庫作業之前，您需要您的訂用帳戶已啟用的 tooensure 保存庫作業。 您可以藉由發出下列 PowerShell 命令的 hello，確認：
 
     Get-AzureRmResourceProvider -ProviderNamespace Microsoft.KeyVault | ft -AutoSize
 
-上述命令的輸出應該報告 「 已註冊 」 為每個資料列的 「 註冊 」 狀態。
+hello 的 hello 上述命令的輸出應該 hello 的每個資料列的 「 註冊 」 狀態報告 「 已註冊 」。
 
     ProviderNamespace RegistrationState ResourceTypes Locations
     Microsoft.KeyVault Registered {operations} {local}
@@ -36,11 +36,11 @@ ms.lasthandoff: 07/11/2017
     Microsoft.KeyVault Registered {vaults/secrets} {local}
 
 
- 如果不是大小寫，您應叫用註冊 KeyVault 服務會在您的訂用帳戶內的下列命令：
+ 如果不是 hello 案例，您應該叫用命令 tooregister hello KeyVault 服務您的訂用帳戶內之後的 hello:
 
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.KeyVault
 
-與下列項目是命令的輸出：
+而且 hello 下列 hello hello 命令輸出：
 
     ProviderNamespace : Microsoft.KeyVault
     RegistrationState : Registered
@@ -49,19 +49,19 @@ ms.lasthandoff: 07/11/2017
 
 
 > [!NOTE]
-> 如果您收到錯誤:"*訂用帳戶未註冊使用 Azure Key Vault*「 叫用時 KeyVault 指令程式，請確認您已啟用上述指示每 KeyVault 資源提供者。
+> 如果您收到 hello 錯誤:"*hello 訂用帳戶未註冊使用 Azure Key Vault*「 叫用時 KeyVault 指令程式，請確認您已啟用 hello KeyVault 資源提供者，依上述指示。
 > 
 > 
 
-## <a name="creating-a-hardened-container-a-vault-in-azure-stack-to-store-and-manage-cryptographic-keys-and-secrets"></a>建立 Azure 來儲存和管理密碼編譯金鑰和密碼的堆疊中的強化的容器 （保存庫）
-若要建立保存庫，租用戶應先建立資源群組。 下列 PowerShell 命令會建立該資源群組中的資源群組，然後再保存庫。 此範例也會包含該 cmdlet 的典型輸出。
+## <a name="creating-a-hardened-container-a-vault-in-azure-stack-toostore-and-manage-cryptographic-keys-and-secrets"></a>建立 Azure 堆疊 toostore 強行寫入的容器 （保存庫） 和管理密碼編譯金鑰和密碼
+在訂單 toocreate 保存庫，租用戶應該先建立資源群組。 hello 下列 PowerShell 命令的資源群組，然後再保存庫中建立資源群組。 hello 範例也包含 hello 從該 cmdlet 的典型輸出。
 
 ### <a name="creating-a-resource-group"></a>建立資源群組：
     New-AzureRmResourceGroup -Name vaultrg010 -Location local -Verbose -Force
 
 輸出：
 
-    VERBOSE: Performing the operation "Replacing resource group ..." on target "".
+    VERBOSE: Performing hello operation "Replacing resource group ..." on target "".
     VERBOSE: 12:52:51 PM - Created resource group 'vaultrg010' in location 'local'
     ResourceGroupName : vaultrg010
     Location : local
@@ -88,8 +88,8 @@ ms.lasthandoff: 07/11/2017
     Object ID : ca342e90-f6aa-435b-a11c-dfe5ef0bfeeb
     Application ID :
     Display Name : Tenant Admin (tenantadmin1@msazurestack.onmicrosoft.com)
-    Permissions to Keys : get, create, delete, list, update, import, backup, restore
-    Permissions to Secrets : all
+    Permissions tooKeys : get, create, delete, list, update, import, backup, restore
+    Permissions tooSecrets : all
     OriginalVault : Microsoft.Azure.Management.KeyVault.Vault
     ResourceId : /subscriptions/fa881715-3802-42cc-a54e-a06adf61584d/resourceGroups/vaultrg010/providers/Microsoft.KeyVault/vaults/vault010
     VaultName : vault010
@@ -98,22 +98,22 @@ ms.lasthandoff: 07/11/2017
     Tags : {}
     TagsTable :
 
-此 Cmdlet 的輸出會顯示您剛剛建立的金鑰保存庫屬性。 兩個最重要屬性是：
+此 cmdlet 的 hello 輸出會顯示您剛才建立的 hello 金鑰保存庫的內容。 hello 兩個最重要的屬性包括：
 
-* **保存庫名稱**： 在此範例中，這是**vault010**。 您將在其他金鑰保存庫 Cmdlet 中使用此名稱。
-* **保存庫 URI**： 在範例中，這是 https://vault010.vault.local.azurestack.global。 透過其 REST API 使用保存庫的應用程式必須使用此 URI。
+* **保存庫名稱**: hello 範例中，這是**vault010**。 您將在其他金鑰保存庫 Cmdlet 中使用此名稱。
+* **保存庫 URI**: hello 範例中，這是 https://vault010.vault.local.azurestack.global。 透過其 REST API 使用保存庫的應用程式必須使用此 URI。
 
-您的 Azure 帳戶現已取得在此金鑰保存庫上執行任何作業的授權。 而且，沒有其他人有此授權。
+現在已授權的 tooperform 保存庫上此金鑰的任何作業，就會是您的 Azure 帳戶。 而且，沒有其他人有此授權。
 
 ## <a name="operating-on-keys-and-secrets"></a>操作金鑰和密碼
-建立保存庫之後，請遵循下列步驟來建立管理金鑰和密碼：
+在建立之後的保存庫下方步驟 toocreate 後續 hello 管理金鑰和密碼：
 
 ### <a name="creating-a-key"></a>建立金鑰
-若要建立索引鍵，使用**Add-azurekeyvaultkey**依下列範例。 成功金鑰在建立之後，此 cmdlet 會輸出新建立的金鑰詳細資料。
+在排序 toocreate 金鑰，請使用 hello **Add-azurekeyvaultkey**每 hello 以下的範例。 成功建立金鑰後, hello cmdlet 會輸出 hello 新建立的索引鍵的詳細資料。
 
     Add-AzureKeyVaultKey -VaultName \$vaultName -Name\$keyVaultKeyName -Verbose -Destination Software
 
-以下是輸出*Add-azurekeyvaultkey* cmdlet:
+hello 以下是 hello 輸出 hello *Add-azurekeyvaultkey* cmdlet:
 
     Attributes : Microsoft.Azure.Commands.KeyVault.Models.KeyAttributes
     Key : {"kid":"https://vault010.vault.local.azurestack.global/keys/keyVaultKeyName001/86062b02b10342688f3b0b3713e343ff","kty":"RSA","key\_ops":\["encrypt"
@@ -125,14 +125,14 @@ ms.lasthandoff: 07/11/2017
     Version : 86062b02b10342688f3b0b3713e343ff
     Id : https://vault010.vault.local.azurestack.global:443/keys/keyVaultKeyName001/86062b02b10342688f3b0b3713e343ff
 
-透過使用其 URI，您現在可以參照您所建立或上傳至 Azure 金鑰保存庫的金鑰。 使用**https://vault010.vault.local.azurestack.global:443/索引鍵/keyVaultKeyName001**一律取得最新版本，並使用**https://vault010.vault.local.azurestack.global:443/機碼 /keyVaultKeyName001/86062b02b10342688f3b0b3713e343ff**取得特定版本。
+您現在可以參考此機碼，您建立或上傳 tooAzure 金鑰保存庫中，使用它的 URI。 使用**https://vault010.vault.local.azurestack.global:443/索引鍵/keyVaultKeyName001** tooalways 取得 hello 目前版本，並使用**https://vault010.vault.local.azurestack.global:443/機碼 /keyVaultKeyName001/86062b02b10342688f3b0b3713e343ff** tooget 這個特定的版本。
 
 ### <a name="retrieving-a-key"></a>擷取機碼
-使用**Get AzureKeyVaultKey**擷取索引鍵和其依下列範例的詳細資料：
+使用 hello **Get AzureKeyVaultKey** tooretrieve 下列範例 hello 的索引鍵和其每個詳細資料：
 
     Get-AzureKeyVaultKey -VaultName vault010 -Name keyVaultKeyName001
 
-以下是 Get AzureKeyVaultKey 的輸出
+hello 以下是 Get AzureKeyVaultKey hello 輸出
 
     Attributes : Microsoft.Azure.Commands.KeyVault.Models.KeyAttributes
     Key : {"kid":"https://vault010.vault.local.azurestack.global/keys/keyVaultKeyName001/86062b02b10342688f3b0b3713e343ff","kty":"RSA","key\_ops":\["encrypt"
@@ -179,17 +179,17 @@ ms.lasthandoff: 07/11/2017
     Content Type :
     Tags :
 
-現在，您可以在應用程式中使用金鑰保存庫和金鑰或密碼。
-您必須授權應用程式才能使用他們。
+現在，您的金鑰保存庫和金鑰或密碼已準備好應用程式 toouse。
+您必須授權應用程式 toouse 它們。
 
-## <a name="authorize-the-application-to-use-the-key-or-secret"></a>授權應用程式使用金鑰或密碼
-若要授權應用程式存取金鑰或密碼保存庫中的，請使用 Set-**AzureRmKeyVaultAccessPolicy** cmdlet。
+## <a name="authorize-hello-application-toouse-hello-key-or-secret"></a>授權 hello 應用程式 toouse hello 金鑰或密碼
+tooauthorize hello 應用程式 tooaccess hello hello 使用 hello Set-保存庫中金鑰或密碼**AzureRmKeyVaultAccessPolicy** cmdlet。
 
-例如，如果您的保存庫名稱是*ContosoKeyVault* ，而且您想要授權應用程式*用戶端識別碼*的*8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed*，而且您要授權應用程式解密及使用您的保存庫，執行下列命令中的金鑰簽署：
+比方說，如果您的保存庫名稱是*ContosoKeyVault*和 hello 應用程式要有 tooauthorize*用戶端識別碼*的*8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed*，而且您想 tooauthorize hello 應用程式 toodecrypt 並登入要執行 hello 下列在您的保存庫中的金鑰：
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -ServicePrincipalName 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed -PermissionsToKeys decrypt,sign
 
-如果您想要授權該相同的應用程式讀取您保存庫中的機密資料，請執行以下命令：
+如果您想 tooauthorize 該相同的應用程式 tooread 密碼在您的保存庫中，執行下列 hello:
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -ServicePrincipalName 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed -PermissionsToSecrets Get
 

@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 容器執行個體中掛接 Azure 檔案磁碟區"
-description: "了解如何掛接 Azure 檔案磁碟區來保存 Azure 容器執行個體的狀態"
+title: "aaaMounting Azure 容器執行個體中的 Azure 檔案磁碟區"
+description: "了解如何 toomount Azure 檔案磁碟區 toopersist 狀態時，使用 Azure 容器執行個體"
 services: container-instances
 documentationcenter: 
 author: seanmck
@@ -17,19 +17,19 @@ ms.workload: na
 ms.date: 08/01/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 4248a3769ba8a0fb067b3904d55d487fe67e5778
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d87215e06d5e5af40bfebcad17768ee45ccabbb2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mounting-an-azure-file-share-with-azure-container-instances"></a>使用 Azure 容器執行個體來掛接 Azure 檔案共用
 
-根據預設，Azure 容器執行個體都是無狀態的。 如果容器損毀或停止，其所有狀態都會遺失。 若要在容器超過存留期後保存其狀態，您必須從外部存放區掛接磁碟區。 本文說明如何掛接 Azure 檔案共用以便與 Azure 容器執行個體搭配使用。
+根據預設，Azure 容器執行個體都是無狀態的。 如果 hello 容器損毀或停止時，它的所有狀態都會遺失。 toopersist 狀態到超出 hello 存留期間 hello 容器，您必須從外部存放區來掛接磁碟區。 本文將說明如何 toomount Azure 的檔案共用 Azure 容器執行個體搭配使用。
 
 ## <a name="create-an-azure-file-share"></a>建立 Azure 檔案共用
 
-在搭配使用 Azure 檔案共用與 Azure 容器執行個體前，您必須先建立 Azure 檔案共用。 請執行下列指令碼來建立儲存體帳戶，以裝載檔案共用和共用本身。 請注意，儲存體帳戶名稱必須是全域唯一的，因此指令碼會在基底字串中加上隨機值。
+在搭配使用 Azure 檔案共用與 Azure 容器執行個體前，您必須先建立 Azure 檔案共用。 執行下列指令碼 toocreate hello 的儲存體帳戶 toohost hello 檔案共用和 hello 共用本身。 請注意該 hello 儲存體帳戶名稱必須是全域唯一的因此 hello 指令碼會新增的隨機值 toohello 基底的字串。
 
 ```azurecli-interactive
 # Change these four parameters
@@ -38,28 +38,28 @@ ACI_PERS_RESOURCE_GROUP=myResourceGroup
 ACI_PERS_LOCATION=eastus
 ACI_PERS_SHARE_NAME=acishare
 
-# Create the storage account with the parameters
+# Create hello storage account with hello parameters
 az storage account create -n $ACI_PERS_STORAGE_ACCOUNT_NAME -g $ACI_PERS_RESOURCE_GROUP -l $ACI_PERS_LOCATION --sku Standard_LRS
 
-# Export the connection string as an environment variable, this is used when creating the Azure file share
+# Export hello connection string as an environment variable, this is used when creating hello Azure file share
 export AZURE_STORAGE_CONNECTION_STRING=`az storage account show-connection-string -n $ACI_PERS_STORAGE_ACCOUNT_NAME -g $ACI_PERS_RESOURCE_GROUP -o tsv`
 
-# Create the share
+# Create hello share
 az storage share create -n $ACI_PERS_SHARE_NAME
 ```
 
 ## <a name="acquire-storage-account-access-details"></a>取得儲存體帳戶的存取詳細資料
 
-若要在 Azure 容器執行個體中掛接 Azure 檔案共用來作為磁碟區，您需要三個值：儲存體帳戶名稱、共用名稱和儲存體存取金鑰。 
+toomount Azure 容器執行個體在 Azure 的檔案共用做為磁碟區，您需要三個值： hello 儲存體帳戶名稱、 hello 共用名稱和 hello 儲存體存取金鑰。 
 
-如果您使用上述指令碼，所建立的儲存體帳戶名稱尾端會加上隨機值。 若要查詢最終字串 (包括隨機部分)，請使用下列命令：
+如果您使用上述的 hello 指令碼，在 hello 結尾隨機的值建立 hello 儲存體帳戶名稱。 tooquery hello 最終字串 （包括 hello 隨機部分），請使用下列命令的 hello:
 
 ```azurecli-interactive
 STORAGE_ACCOUNT=$(az storage account list --resource-group myResourceGroup --query "[?contains(name,'mystorageaccount')].[name]" -o tsv)
 echo $STORAGE_ACCOUNT
 ```
 
-我們已知道共用名稱 (在上述指令碼中是 acishare)，因此只差儲存體帳戶金鑰，此金鑰可以使用下列命令來找到：
+hello 共用名稱，就已經知道 (它是*acishare*上述 hello 指令碼中)，因此會維持為 hello 儲存體帳戶金鑰，您可以使用找到的所有 hello 下列命令：
 
 ```azurecli-interactive
 $STORAGE_KEY=$(az storage account keys list --resource-group myResourceGroup --account-name $STORAGE_ACCOUNT --query "[0].value" -o tsv)
@@ -68,29 +68,29 @@ echo $STORAGE_KEY
 
 ## <a name="store-storage-account-access-details-with-azure-key-vault"></a>使用 Azure 金鑰保存庫來儲存儲存體帳戶的存取詳細資料
 
-儲存體帳戶金鑰可保護資料的存取，因此建議您將金鑰儲存在 Azure 金鑰保存庫中。 
+儲存體帳戶金鑰保護存取 tooyour 資料，因此我們建議您將其儲存在 Azure 金鑰保存庫。 
 
-使用 Azure CLI 來建立金鑰保存庫：
+建立金鑰保存庫以 hello Azure CLI:
 
 ```azurecli-interactive
 KEYVAULT_NAME=aci-keyvault
 az keyvault create -n $KEYVAULT_NAME --enabled-for-template-deployment -g myResourceGroup
 ```
 
-在部署時，`enabled-for-template-deployment` 參數可讓 Azure Resource Manager 從金鑰保存庫提取祕密。
+hello`enabled-for-template-deployment`參數允許 Azure 資源管理員 toopull 從金鑰保存庫密碼在部署階段。
 
-將儲存體帳戶金鑰儲存為金鑰保存庫中的新祕密：
+存放區 hello 儲存體帳戶金鑰做為 hello 金鑰保存庫中的新密碼：
 
 ```azurecli-interactive
 KEYVAULT_SECRET_NAME=azurefilesstoragekey
 az keyvault secret set --vault-name $KEYVAULT_NAME --name $KEYVAULT_SECRET_NAME --value $STORAGE_KEY
 ```
 
-## <a name="mount-the-volume"></a>掛接磁碟區
+## <a name="mount-hello-volume"></a>掛接 hello 磁碟區
 
-在容器中掛接 Azure 檔案共用來作為磁碟區的程序需要兩個步驟。 首先，您要提供共用的詳細資料，以在定義容器群組時輸入，然後您要指定您想要如何在群組的一或多個容器內掛接磁碟區。
+在容器中掛接 Azure 檔案共用來作為磁碟區的程序需要兩個步驟。 首先，您提供定義 hello 容器群組的一部分的 hello 共用 hello 詳細資料，接著，您可以指定您想掛接一個或多個 hello 群組中的 hello 容器內的 hello 磁碟區的方式。
 
-若要定義想要可供掛接的磁碟區，請將 `volumes` 陣列新增到 Azure Resource Manager 範本中的容器群組定義，然後在個別容器的定義中參考這些磁碟區。
+您想要裝載、 toomake 可用 toodefine hello 磁碟區加入`volumes`陣列 toohello 容器群組定義在 hello Azure Resource Manager 範本中，然後在 hello hello 個別容器定義中參考它們。
 
 ```json
 {
@@ -150,7 +150,7 @@ az keyvault secret set --vault-name $KEYVAULT_NAME --name $KEYVAULT_SECRET_NAME 
 }
 ```
 
-範本中會納入儲存體帳戶名稱和金鑰來作為參數，並可在不同的參數檔案中提供。 若要填入參數檔案，您需要三個值：儲存體帳戶名稱、Azure 金鑰保存庫的資源識別碼，以及您用來儲存儲存體金鑰的金鑰保存庫祕密名稱。 如果您有遵循上述步驟，您可以使用下列指令碼取得這些值：
+hello 範本包含 hello 儲存體帳戶名稱和金鑰做為參數，可提供不同的參數檔案中。 toopopulate hello 參數檔案，您將需要三個值： hello 儲存體帳戶名稱、 hello Azure 金鑰保存庫、 資源識別碼和 hello 您使用 toostore hello 儲存體金鑰的金鑰保存庫秘密名稱。 如果您有遵循上述步驟，您可以使用下列指令碼的 hello 取得這些值：
 
 ```azurecli-interactive
 echo $STORAGE_ACCOUNT
@@ -158,7 +158,7 @@ echo $KEYVAULT_SECRET_NAME
 az keyvault show --name $KEYVAULT_NAME --query [id] -o tsv
 ```
 
-將這些值插入參數檔案中：
+插入 hello 參數檔案中的 hello 值：
 
 ```json
 {
@@ -180,26 +180,26 @@ az keyvault show --name $KEYVAULT_NAME --query [id] -o tsv
 }
 ```
 
-## <a name="deploy-the-container-and-manage-files"></a>部署容器及管理檔案
+## <a name="deploy-hello-container-and-manage-files"></a>部署 hello 容器及管理檔案
 
-透過定義的範本，您可以使用 Azure CLI 建立容器並掛接其磁碟區。 假設範本檔案的名稱為 azuredeploy.json，參數檔案的名稱為 azuredeploy.parameters.json，則命令列如下：
+Hello 範本定義時，您可以建立 hello 容器，並使用 Azure CLI hello 其磁碟區裝載。 假設 hello 範本檔案會命名為*azuredeploy.json* hello 參數檔案稱為*azuredeploy.parameters.json*，則 hello 命令列是：
 
 ```azurecli-interactive
 az group deployment create --name hellofilesdeployment --template-file azuredeploy.json --parameters @azuredeploy.parameters.json --resource-group myResourceGroup
 ```
 
-一旦啟動容器，您即可使用透過 **seanmckenna/aci-hellofiles** 映像部署的簡單 Web 應用程式，以管理位於指定掛接路徑之 Azure 檔案共用中的檔案。 透過下列操作取得 Web 應用程式的 IP 位址：
+一旦 hello 容器啟動時，您可以使用 hello 簡單 web 應用程式透過 hello 部署**seanmckenna/aci-hellofiles**映像，toohello 管理 hello Azure 檔案共用，在您指定的 hello 掛接路徑中的檔案。 取得 hello hello web 應用程式透過 hello 下列的 ip 位址：
 
 ```azurecli-interactive
 az container show --resource-group myResourceGroup --name hellofiles -o table
 ```
 
-您可以使用像 [Microsoft Azure 儲存體總管](http://storageexplorer.com)這類工具擷取及檢查寫入至檔案共用的檔案。
+您可以使用這類工具 hello [Microsoft Azure 儲存體總管](http://storageexplorer.com)tooretrieve 並檢查 hello 檔案寫入 toohello 檔案共用。
 
 >[!NOTE]
-> 若要深入了解如何使用 Azure Resource Manager 範本、參數檔案以及使用 Azure CLI 進行部署，請參閱[使用 Resource Manager 範本與 Azure CLI 部署資源](../azure-resource-manager/resource-group-template-deploy-cli.md)。
+> 請參閱深入了解使用 Azure Resource Manager 範本參數檔案和部署以 hello Azure CLI toolearn[部署資源，資源管理員範本與 Azure CLI](../azure-resource-manager/resource-group-template-deploy-cli.md)。
 
 ## <a name="next-steps"></a>後續步驟
 
-- 使用 Azure 容器執行個體部署您的第一個容器[快速入門](container-instances-quickstart.md)
-- 了解 [Azure 容器執行個體與容器 Orchestrator 之間的關聯性](container-instances-orchestrator-relationship.md)
+- 部署您使用 hello Azure 容器執行個體的第一個容器[快速入門](container-instances-quickstart.md)
+- 深入了解 hello[容器 orchestrators Azure 容器執行個體之間的關聯性](container-instances-orchestrator-relationship.md)

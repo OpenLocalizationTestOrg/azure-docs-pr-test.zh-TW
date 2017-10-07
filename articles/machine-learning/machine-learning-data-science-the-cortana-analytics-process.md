@@ -1,6 +1,6 @@
 ---
-title: "何謂 Team Data Science Process？  | Microsoft Docs"
-description: "Team Data Science Process 是一種系統化的方法，可建置運用進階分析的智慧型應用程式。"
+title: "aaaWhat 是小組資料科學程序？  | Microsoft Docs"
+description: "hello 小組資料科學程序是用於建置運用進階的分析的智慧型應用程式系統化方法。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -16,72 +16,72 @@ ms.date: 01/18/2017
 ms.author: bradsev
 ROBOTS: NOINDEX
 redirect_url: data-science-process-overview
-redirect_document_id: TRUE
-ms.openlocfilehash: d1ec602b2a69b0bd01bf7b43ef5fed9b8c2781c7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 57187be9c884389c13c226eab74aff137f5514a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-is-the-team-data-science-process-tdsp"></a>何謂 Team Data Science Process (TDSP)？
-[Team Data Science Process (TDSP)](data-science-process-overview.md) 提供系統化的方式建置智慧型應用程式，讓資料科學家小組可在將這些應用程式轉換為產品所需的完整活動生命週期內，有效率地共同作業。 TDSP 將概述定義開發週期的一系列步驟，以提供如何定義問題、設定所需的工具和環境、分析相關資料、建置及評估預測模型，然後在企業應用程式中部署這些模型的 **指引** 。 
+# <a name="what-is-hello-team-data-science-process-tdsp"></a>什麼是 hello 小組資料科學程序 (TDSP)？
+hello[小組資料科學程序 (TDSP)](data-science-process-overview.md)提供系統化的方法，讓資料科學家 toocollaborate 的小組可以在 hello 活動所需的完整生命週期的有效的 toobuilding 智慧型應用程式tooturn 到產品中，這些應用程式。 hello TDSP 概要說明一系列提供的步驟**指引**上如何 toodefine hello 問題，請設定 hello 工具和環境的需要分析相關的資料，建置和評估預測模型，然後再部署在這些模型企業應用程式。 
 
-以下是 **Team Data Science Process**中的步驟：  
+以下是中的 hello 步驟**資料科學的小組流程**:  
 
 ![CAP 工作流程](./media/machine-learning-data-science-the-cortana-analytics-process/CAP-workflow.png)
 
-此程序是 **反覆執行的**：對於模型能有新的和現有的了解或精確調整，可發展出、同時也有賴於先前依序完成的修改步驟。 現有的組織開發和專案規劃程序 **可輕易調整** ，以使用 TDSP 定義的步驟順序。 
+hello 程序是**反覆**: hello 程度的了解新的和現有的或因 hello 模型中的發展，而且需要縮短之前已經完成 hello 序列中的步驟。 現有的組織開發和專案計劃程序都**輕鬆地調整**toowork 以 hello TDSP 定義步驟的順序。 
 
-程序中的步驟已在 [TDSP 學習路徑](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中以圖表和連結方式呈現，如下所述。  
+hello hello 程序中的步驟訂位，而且連結 hello [TDSP 學習路徑](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)和下面所述。  
 
 ## <a name="preparation-steps"></a>準備步驟
-## <a name="p1-plan-the-analytics-project"></a>P1. 規劃分析專案
-定義您的商業目標和問題，是展開分析專案的第一步。 這些項目會以 **商業需求**的形式指定。 此步驟的主要目標，是要識別分析需要哪些主要商業變數 (例如銷售預測，或訂單屬詐騙性質的機率) 進行預測以達成這些需求。 接著通常需要進一步的規劃，以嘗試從分析的觀點了解達成專案目標所需的 **資料來源** 。 舉例來說，我們常會發現現有的系統必須收集並記錄其他類型的資料，才能解決問題並達成專案目標。 如需指引，請參閱[針對 Team Data Science Process 規劃您的環境](machine-learning-data-science-plan-your-environment.md)和[在 Azure 機器學習中的進階分析案例](machine-learning-data-science-plan-sample-scenarios.md)。  
+## <a name="p1-plan-hello-analytics-project"></a>P1. 規劃 hello 分析專案
+定義您的商業目標和問題，是展開分析專案的第一步。 這些項目會以 **商業需求**的形式指定。 此步驟中的中央目標是 tooidentify hello 重要商務變數 （銷售預測，或例如 hello 機率順序、 詐騙） hello 分析需求 toopredict toosatisfy 這些需求。 額外的規劃是則通常是不可或缺的 toodevelop hello 了解**資料來源**需要 tooaddress hello 從分析的觀點來看 hello 專案的目標。 是很常見的例如，現有的系統需要 toocollect 及記錄其他種類的資料 tooaddress toofind hello 問題達成 hello 專案目標。 如需指引，請參閱[規劃您的環境的 hello 資料科學的小組流程](machine-learning-data-science-plan-your-environment.md)和[Azure Machine Learning 中的進階分析的案例](machine-learning-data-science-plan-sample-scenarios.md)。  
 
 ## <a name="p2-setup-analytics-environment"></a>P2. 設定分析環境
-Team Data Science Process 的分析環境包含數個元件： 
+分析環境的 hello 小組資料科學程序包含數個元件： 
 
-* **資料工作區** ，用來暫存分析和建立模型所需的資料 
-* **處理基礎結構** ，用於資料的前置處理、瀏覽和模型化
-* **執行階段基礎結構** ，用來運作分析模型，及執行取用模型的智慧型用戶端應用程式。  
+* **資料工作區**hello 資料進行分析和模型，預備位置 
+* **處理基礎結構**前置處理、 瀏覽，和 hello 資料模型化
+* **執行階段基礎結構**toooperationalize hello 分析模型及執行使用 hello 模型的 hello 智慧型用戶端應用程式。  
 
-必須設定的分析基礎結構通常是環境中不屬於核心作業系統的部分。 但它通常會運用來自企業內多個系統的資料，以及來自公司外部的資料。 分析基礎結構可以純雲端架構或內部部署設定，或是兩者的混合。 如需選項，請參閱 [設定用於 Team Data Science Process 中的資料科學環境](machine-learning-data-science-environment-setup.md)。
+hello 分析基礎結構需要 toobe 安裝程式通常是環境的分開核心作業系統的一部分。 但它通常會運用 hello 企業中的多個系統以及從來源外部 toohello 公司的資料。 hello 分析基礎結構可以單純雲端為基礎，或在內部部署安裝程式或混合 hello 兩個。 選項，請參閱[設定資料科學環境以用於資料科學的小組流程 hello](machine-learning-data-science-environment-setup.md)。
 
 ## <a name="analytics-steps"></a>分析步驟：
-## <a name="1-ingest-data-into-the-analytical-environment"></a>1.將資料嵌入分析環境中
-第一個步驟是從各種來源 (企業內部或外部) 將相關資料導入預計用來處理資料的分析環境中。 來源的資料 **格式** 可能不同於目的地所需的格式。 因此，嵌入工具也可能必須完成某些資料轉換。 如需選項，請參閱 [將資料載入至儲存體環境進行分析](machine-learning-data-science-ingest-data.md)
+## <a name="1-ingest-data-into-hello-analytical-environment"></a>1.內嵌資料到 hello 分析環境
+hello 第一個步驟是從各種來源，或從內從外部 hello 企業版到可處理 hello 資料分析環境 toobring hello 相關資料。 hello**格式**hello 的資料來源可能會有所不同 hello hello 目的地所需的格式。 因此某些資料轉換也可能會有 toobe hello 擷取工具所完成。 如需選項，請參閱 [將資料載入至儲存體環境進行分析](machine-learning-data-science-ingest-data.md)
 
-除了初始的資料擷取以外，許多智慧型應用程式還需要在進行中的學習過程中定期重新整理資料。 這可以透過設定 **資料管線** 或工作流程來完成。 這構成了程序中反覆執行的部分，包括會重新建置和重新評估部署解決方案的智慧型應用程式所使用的分析模型。 例如，請參閱 [使用 Azure Data Factory 從內部部署的 SQL Server 移動資料至 SQL Azure](machine-learning-data-science-move-sql-azure-adf.md)。
+加法 toohello 初始擷取，資料的位置表示，在許多的智慧型應用程式會是需要的 toorefresh hello 資料定期持續學習程序的一部分。 這可以透過設定 **資料管線** 或工作流程來完成。 這會形成 hello 反覆 hello 程序的一部分，其中包含重建和重新評估 hello hello 方案部署的 hello 智慧型應用程式所使用的分析模型的一部分。 例如，請參閱[移動資料，從在內部部署 SQL server tooSQL Azure 與 Azure Data Factory](machine-learning-data-science-move-sql-azure-adf.md)。
 
 ## <a name="2-explore-and-pre-process-data"></a>2.瀏覽和前置處理資料
-下一個步驟藉由調查資料的**摘要統計資料**、關聯性和使用**視覺效果**之類的技術，來深入了解資料。 這也是處理 **資料品質** 及完整性問題之處，例如遺漏值、資料類型不相符和資料關聯性不一致等。 必須先使用前置處理轉換來清理原始資料，才能進一步執行分析和模型化。 如需說明，請參閱 [準備增強機器學習服務的資料的工作](machine-learning-data-science-prepare-data.md)。
+hello 下一個步驟是 tooobtain hello 資料更深入瞭解透過調查其**摘要統計資料**，關聯性，也可以使用這類技術**視覺效果**。 這也是處理 **資料品質** 及完整性問題之處，例如遺漏值、資料類型不相符和資料關聯性不一致等。 前置處理的轉換會使用的 tooclean hello 進一步分析之前的原始資料，而且可以進行模型化。 如需說明，請參閱[任務 tooprepare 資料增強的機器學習](machine-learning-data-science-prepare-data.md)。
 
 ## <a name="3-develop-features"></a>3.開發特性
-與網域專家合作的資料科學家，必須識別可擷取資料集的顯著屬性以及最適合用來預測計劃期間所識別之重要商業變數的特性。 這些新特性可以衍生自現有資料，或可能需要收集其他資料。 此程序稱為 **特性工程** ，這是建置有效預測性分析系統的重要步驟之一。 要執行此步驟，必須有創意地結合網域知識和獲取自資料瀏覽步驟的深入資訊。 如需指引，請參閱 [Team Data Science Process 中的特徵工程設計](machine-learning-data-science-create-features.md)。
+資料科學家，在與網域專家，必須識別 hello hello 資料集，該擷取 hello 主要屬性可以最適合使用的 toopredict hello 關鍵商務變數在計劃期間識別的功能。 這些新功能可以衍生自現有資料，或可能需要額外的資料 toobe 收集。 這個程序稱為**功能工程**和是其中一個 hello 建置有效的預測分析系統的主要步驟。 此步驟中需要有創意的網域專業與 hello insights 取自 hello 資料瀏覽步驟組合。 如需指引，請參閱[功能 hello 小組資料科學程序中的工程](machine-learning-data-science-create-features.md)。
 
 ## <a name="4-create-predictive-models"></a>4.建立預測模型
-資料科學家會建立分析模型，使用已清理和特性化的資料來預測規劃步驟中定義的商業需求所識別的重要變數。 機器學習系統支援多個適用於各種情況的 **模型化演算法** 。 如需指引，請參閱 [如何選擇 Team Azure 機器學習的演算法](machine-learning-algorithm-choice.md)。
+資料科學家建立分析模型 toopredict hello 重要變數 hello hello 規劃步驟，使用已清除的資料和特徵化中所定義的商務需求所識別。 機器學習系統支援多個**模型的演算法**所適用的 tooa 各種不同的案例。 如需指引，請參閱[如何 toochoose 小組 Azure 機器學習演算法](machine-learning-algorithm-choice.md)。
 
-資料科學家必須選擇最適合其預測工作的模型，而來自多個模型的結果也經常必須結合以取得最佳結果。 模型化的輸入資料通常隨機分成三個部分：
+資料科學家必須選擇其預測工作的 hello 最適當模型，而且是很常見，來自多個模型的結果必須結合 toobe tooobtain hello 獲得最佳結果。 hello 用於模型化的輸入的資料通常分成隨機三個部分：
 
 * 訓練資料集、 
 * 驗證資料集 
 * 測試資料集 
 
-模型會使用 **訓練資料集**來建置。 模型的最佳組合 (透過參數調整) 可藉由執行模型及評估 **驗證資料集**的預測誤差來選取。 最後，會使用 **測試資料集** 來評估選擇的模型對於未用來訓練或驗證模型之獨立資料的效能。  如需程序，請參閱 [如何評估 Azure 機器學習中的模型效能](machine-learning-evaluate-model-performance.md)。
+建立 hello 模型使用 hello**定型資料集**。 hello （具有參數調整） 的模型的最佳組合已選取執行 hello 模型，並測量 hello 的 hello 預測錯誤**驗證資料集**。 最後 hello**測試資料集**是獨立的資料不是使用的 tootrain hello 選擇模型用的 tooevaluate hello 效能或驗證 hello 模型。  如需程序，請參閱[tooevaluate 建立 Azure Machine Learning 中的效能的模型](machine-learning-evaluate-model-performance.md)。
 
 ## <a name="5-deploy-and-consume-models"></a>5.部署和取用模型
-在我們擁有一組妥善執行的模型後，這些模型即可 **開始運作** ，供其他應用程式取用。 預測可根據商業需求，以**即時**或**批次**的形式執行。 模型必須透過可輕易從各種不同的應用程式 (例如線上網站、試算表、儀表板或企業營運和後端應用程式) 取用的 **開放式 API 介面** 加以公開，才能開始運作。 請參閱 [部署 Azure Machine Learning Web 服務](machine-learning-publish-a-machine-learning-web-service.md)。
+一旦我們有一組執行的模型，可以是**實際運作**的其他應用程式 tooconsume。 根據 hello 的商務需求，會進行預測有兩種**即時**或在**批次**為基礎。 實際運作的 toobe hello 模型具有以公開 toobe**開啟 API 介面**，輕鬆地取用來自各種不同的應用程式這類線上網站、 試算表、 儀表板或商務和後端應用程式。 請參閱 [部署 Azure Machine Learning Web 服務](machine-learning-publish-a-machine-learning-web-service.md)。
 
 ## <a name="summary-and-next-steps"></a>摘要和後續步驟
-[Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 會模型化為一系列反覆執行的步驟，以針對使用進階分析來建置智慧型應用程式所需的工作**提供指引**。 每個步驟也會提供詳細資訊，說明如何使用各種不同的 Microsoft 技術來完成工作。 
+hello[資料科學的小組流程](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)塑造成一系列反覆執行的步驟，**提供指引**hello 工作所需的 toouse 進階分析 toobuild 的智慧型應用程式。 每個步驟也會提供有關如何 toouse 各種 Microsoft 技術 toocomplete hello 描述工作的細節。 
 
-雖然 TDSP 並未指定特定類型的 **文件** 構件，但最好能夠記錄資料瀏覽、模型化和評估的結果，並儲存相關的程式碼，使分析可以在必要時反覆執行。 這也可讓您在處理牽涉到類似資料和預測工作的其他應用程式時，能夠重複使用分析工作。
+雖然 TDSP 事先特定類型的未限定**文件**成品，是最佳作法 toodocument hello 結果 hello 資料瀏覽、 模型和評估，以及 toosave hello 相關的程式碼，因此，hello 分析可反覆執行時所需。 這也讓的 hello 分析工作牽涉到類似的資料和預測工作的其他應用程式上工作時重複使用。
 
-此外也會提供完整的端對端逐步解說，說明 **特定案例** 之程序中的所有步驟。 例如，請參閱︰
+完整的端對端逐步解說示範 hello 程序中的所有 hello 步驟**特定案例**也提供。 例如，請參閱︰
 
-* [Team Data Science Process 實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
-* [Team Data Science Process 實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)。
+* [在動作中的 hello 小組資料科學程序： 使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
+* [在動作中的 hello 小組資料科學程序： 使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)。
 * [在 Azure HDInsight 上使用 Spark 的資料科學](machine-learning-data-science-spark-overview.md)
 * [Azure Data Lake 中的可調整資料科學︰端對端逐步解說](machine-learning-data-science-process-data-lake-walkthrough.md)
 

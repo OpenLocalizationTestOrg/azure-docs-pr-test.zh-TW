@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure App Service 中的 Web 應用程式設定預備環境 | Microsoft Docs"
-description: "了解如何針對 Azure App Service 中的 Web 應用程式使用預備發行。"
+title: "設定預備環境中 Azure App Service web 應用程式的 aaaSet |Microsoft 文件"
+description: "了解 toouse 分段發行 Azure App Service 中的 web 應用程式的安裝。"
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -15,66 +15,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
-ms.openlocfilehash: ca27c55eaaceb3109b1450c550330dfc416fdf55
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 338424100a20bf823323313fb6699e439f367421
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-staging-environments-in-azure-app-service"></a>在 Azure App Service 中設定預備環境
 <a name="Overview"></a>
 
-當您將 Web 應用程式、Linux 上的 Web 應用程式、行動後端及 API 應用程式部署到 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 時，如果是在 [標準] 或 [進階] App Service 方案模式下執行，就可以部署到個別的部署位置，而不是預設的生產環境位置。 部署位置實際上是含有自己主機名稱的作用中應用程式。 兩個部署位置 (包括生產位置) 之間的應用程式內容與設定項目可以互相交換。 將應用程式部署至部署位置具有下列優點：
+當您部署您的 web 應用程式、 Linux、 行動裝置的後端，以及 API 應用程式的 web 應用程式太[App Service](http://go.microsoft.com/fwlink/?LinkId=529714)，hello 中執行時，您可以部署 tooa 不同的部署位置，而不是 hello 預設生產位置**標準**或**Premium**應用程式服務計劃模式。 部署位置實際上是含有自己主機名稱的作用中應用程式。 應用程式內容與組態項目可以交換兩個部署位置，包括 hello 生產位置。 部署您的應用程式 tooa 部署位置有 hello 下列優點：
 
-* 您可以先驗證預備部署位置中的應用程式變更，再將它與生產位置進行交換。
-* 先將應用程式部署至某個位置，然後再將它交換到生產位置，可確保該位置的所有執行個體在交換到生產位置之前都已準備就緒。 這麼做可以排除部署應用程式時的停機情況。 交換作業期間所有的流量都能順暢地重新導向，而且不會捨棄任何要求封包。 不需要預先交換驗證時，這整個工作流程可藉由設定 [自動交換](#Auto-Swap) 來自動化。
-* 交換之後，先前具有預備應用程式的位置，現在已經有之前的生產應用程式。 若交換到生產位置的變更不是您需要的變更，您可以立即執行相同的交換，以取回「上一個已知良好的網站」。
+* 您可以先再與 hello 生產位置交換驗證預備部署位置中的應用程式變更。
+* 第一次部署的應用程式 tooa 位置和交換至生產環境來確保 hello 位置的所有執行個體正在交換至生產環境之前會就緒。 這麼做可以排除部署應用程式時的停機情況。 hello 流量重新導向，隨選和交換作業之後的任何要求都會被卸除。 不需要預先交換驗證時，這整個工作流程可藉由設定 [自動交換](#Auto-Swap) 來自動化。
+* 交換之後, hello 位置使用先前執行的應用程式現在具有 hello 先前的生產環境應用程式。 如果 hello 變更成 hello 生產位置交換未如您所預期，您可以執行的 hello 相同交換立即 tooget 您 「 上次已知良好的站台 」 備份。
 
-每個 App Service 方案模式所支援的部署位置個數都不一樣。 若要找出應用程式模式所支援的位置個數，請參閱 [App Service 定價](https://azure.microsoft.com/pricing/details/app-service/)。
+每個 App Service 方案模式所支援的部署位置個數都不一樣。 您的應用程式模式可支援 toofind 出 hello 的插槽數目，請參閱[應用程式服務定價](https://azure.microsoft.com/pricing/details/app-service/)。
 
-* 當您的應用程式擁有多個位置時，就無法變更該模式。
+* 當您的應用程式有多個位置時，您無法變更 hello 模式。
 * 非生產的位置無法使用調整規模。
-* 非生產位置不支援連結的資源管理。 只有在 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715) 中，您才能藉由暫時將非生產位置移到其他 App Service 方案模式，來避免這種對生產位置的潛在影響。 請注意，非生產位置必須先再次與生產位置共用相同模式，您才能交換這兩個位置。
+* 非生產位置不支援連結的資源管理。 在 hello [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)，暫時移動 hello 非生產位置 tooa 不同應用程式服務計劃模式可以避免此潛在的影響，在生產環境位置。 請注意該 hello 非生產位置必須再次共用 hello hello 生產位置之前，您可以交換 hello 兩個位置具有相同的模式。
 
 <a name="Add"></a>
 
 ## <a name="add-a-deployment-slot"></a>新增部署位置
-應用程式必須在 [標準] 或 [高階] 模式中執行，您才能啟用多個部署位置。
+hello 應用程式必須執行 hello**標準**或**Premium**您 tooenable 多個部署位置中的模式順序。
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，開啟應用程式的[資源刀鋒視窗](../azure-resource-manager/resource-group-portal.md#manage-resources)。
-2. 選擇 [部署位置] 選項，然後按一下 [新增位置]。
+1. 在 hello [Azure 入口網站](https://portal.azure.com/)，開啟您的應用程式[資源刀鋒視窗](../azure-resource-manager/resource-group-portal.md#manage-resources)。
+2. 選擇 hello**部署位置**選項，然後按一下 **加入位置**。
    
     ![新增部署位置][QGAddNewDeploymentSlot]
    
    > [!NOTE]
-   > 如果應用程式尚未處於 [標準] 或 [高階] 模式，您將會收到訊息，指出支援啟用預備發佈的模式。 此時，您可以選取 [升級]，並瀏覽至應用程式的 [級別] 索引標籤後再繼續。
+   > 如果 hello 應用程式已不在 hello**標準**或**Premium**模式中，您會收到訊息，指出啟用預備的發行的 hello 支援模式。 此時，您擁有 hello 選項 tooselect**升級**並瀏覽 toohello**標尺** 索引標籤，應用程式才能繼續。
    > 
    > 
-3. 在 [新增位置] 刀鋒視窗中，指定位置名稱，然後選取是否要複製其他現有部署位置的應用程式設定。 按一下打勾記號繼續。
+3. 在 hello**加入位置**刀鋒視窗中，輸入 hello 插槽的名稱，然後選取是否 tooclone 應用程式組態，從另一個現有的部署位置。 按一下 hello 核取記號 toocontinue。
    
     ![組態來源][ConfigurationSource1]
    
-    第一次新增位置時，您只會有兩個選項：從生產環境的預設位置複製設定，或者完全不複製。
-    建立數個位置後，就可以從生產位置以外的位置複製組態：
+    hello 第一次加入位置，您只需要兩個選擇： hello 預設位置在生產環境中，或完全無法執行的複製組態。
+    建立數個位置之後，您會從實際執行其中一個 hello 以外的位置無法 tooclone 組態：
    
     ![組態來源][MultipleConfigurationSources]
-4. 在您應用程式的資源刀鋒視窗中，按一下 [部署位置]，然後按一下某個部署位置來開啟該位置的資源刀鋒視窗，當中會含有一組計量和組態，就像任何其他應用程式一樣。 刀鋒視窗頂端顯示之位置的名稱，提醒您正在檢視部署位置。
+4. 在您的應用程式資源刀鋒視窗中，按一下**部署位置**，然後按一下該位置的資源刀鋒視窗中，使用一組度量與組態，就像任何其他應用程式的部署位置 tooopen。 hello hello 插槽的名稱會顯示您要檢視在頂端的 hello 刀鋒視窗 tooremind hello hello 部署位置。
    
     ![Deployment Slot Title][StagingTitle]
-5. 在位置的刀鋒視窗中按一下應用程式 URL。 請注意，部署位置有自己的主機名稱，同時也是作用中的應用程式。 若要限制對部署位置的公用存取，請參閱 [App Service Web 應用程式 - 封鎖對非生產部署位置的 Web 存取](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)。
+5. 按一下 在 hello 插槽刀鋒視窗中的 hello 應用程式 URL。 請注意，hello 部署位置具有本身的主機名稱也是即時應用程式。 toolimit 公用存取 toohello 部署位置，請參閱[App Service Web 應用程式 – 區塊 web 存取 toonon 生產部署位置](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)。
 
-建立部署位置之後不會有任何內容。 您可以從不同的儲存機制分支，或從整個不同的儲存機制部署至位置。 您也可以變更位置的組態。 更新內容時，請使用與部署位置相關聯的發行設定檔或部署認證。  例如，您可以 [使用 Git 發行至此位置](app-service-deploy-local-git.md)。
+建立部署位置之後不會有任何內容。 您可以部署不同的儲存機制分支或完全不同的儲存機制從 toohello 位置。 您也可以變更 hello 位置的組態。 使用 hello 發行設定檔或部署認證更新內容的 hello 部署位置與相關聯。  例如，您可以[發行 toothis 插槽與 git](app-service-deploy-local-git.md)。
 
 <a name="AboutConfiguration"></a>
 
 ## <a name="configuration-for-deployment-slots"></a>部署位置組態
-當您複製其他部署位置的組態時，可以編輯複製的組態。 此外，某些組態項目在交換時會遵循內容 (非位置特定)，而其他組態項目將會在交換之後保留於同一個位置中 (位置特定)。 以下清單顯示當您交換位置時會變更的組態。
+當您複製另一個部署位置的組態時，hello 複製的設定為可編輯。 此外，某些組態項目會依照 hello 內容之間的交換 （沒有位置特定） 其他組態項目都會保留在相同位置 （在特定位置） 的交換之後 hello 時。 hello 下列清單顯示 hello 組態，當交換位置將會變更。
 
 **交換的設定**：
 
 * 一般設定 - 例如 Framework 版本、32/64 位元、Web 通訊端
-* 應用程式設定 (可以設定為停在某一個位置)
-* 連接字串 (可以設定為停在某一個位置)
+* （可設定的 toostick tooa 位置） 的應用程式設定
+* （可設定的 toostick tooa 位置） 的連接字串
 * 處理常式對應
 * 監視與診斷設定
 * WebJobs 內容
@@ -87,91 +87,91 @@ ms.lasthandoff: 08/18/2017
 * 擴充設定
 * WebJobs 排程器
 
-若要將應用程式設定或連接字串設定為停留在某一個位置 (未交換)，可存取特定位置的 [應用程式設定] 刀鋒視窗，然後針對應停留在該位置的設定項目選取 [位置設定] 方塊。 請注意，將組態項目標記為位置特定的，會在將該項目建立為無法跨所有與該應用程式相關聯的部署位置進行交換時產生影響。
+應用程式設定或連接字串 toostick tooa 位置 （不交換），存取 hello tooconfigure**應用程式設定**刀鋒視窗中的特定位置，然後選取 hello**位置設定**hello 方塊應盡可能 hello 位置的組態項目。 請注意，將標記的組態項目為特定位置的效果 hello 的跨 hello 應用程式相關聯的所有 hello 部署位置，建立做為不抽換的項目。
 
 ![位置設定][SlotSettings]
 
 <a name="Swap"></a>
 
 ## <a name="swap-deployment-slots"></a>交換部署位置 
-您可以在您應用程式資源刀鋒視窗的**概觀**或**部署位置**檢視中交換部署位置。
+您可以交換部署位置中 hello**概觀**或**部署位置**檢視您的應用程式資源刀鋒視窗。
 
 > [!IMPORTANT]
-> 在您將應用程式從部署位置交換到生產位置之前，請確定所有非位置特定的設定已完全依照您想要在交換目標中擁有它的方式明確地加以設定。
+> 您可以交換部署位置中的應用程式到實際執行環境之前，請確定所有非位置的特定設定已完全依照您想要 toohave 在 hello 交換的目標。
 > 
 > 
 
-1. 若要交換部署位置，可按一下應用程式命令列或部署位置命令列中的 [交換] 按鈕。
+1. tooswap 部署位置，按一下 hello**交換**hello 的 hello 應用程式的命令列中，或部署位置 hello 命令列中的按鈕。
    
     ![Swap Button][SwapButtonBar]
 
-2. 請確定交換來源和交換目標都已正確設定。 交換目標通常是生產位置。 按一下 確定  來完成操作。 當操作完成時，部署位置就已交換完畢。
+2. 請確定該 hello 交換來源和交換目標都已正確設定。 Hello 交換目標通常就是 hello 生產位置。 按一下**確定**toocomplete hello 作業。 Hello 作業完成時，已交換 hello 部署位置。
 
     ![完整的交換](./media/web-sites-staged-publishing/SwapImmediately.png)
 
-    針對**使用預覽交換**交換類型，請參閱[使用預覽交換 (多階段交換)](#Multi-Phase)。  
+    Hello**使用預覽交換**交換類型，請參閱[預覽 （多階段交換） 的交換](#Multi-Phase)。  
 
 <a name="Multi-Phase"></a>
 
 ## <a name="swap-with-preview-multi-phase-swap"></a>使用預覽交換 (多階段交換)
 
 使用預覽交換或多階段交換，簡化組態項目的位置特定驗證，例如連接字串。
-針對關鍵任務的工作負載，您想要驗證當套用生產位置的組態時應用程式的行為會如預期，且您必須在應用程式交換到生產環境*之前*執行這類驗證。 您需要的是使用預覽交換。
+針對關鍵任務工作負載，您想 toovalidate hello 應用程式的行為如預期般套用 hello 生產位置的組態時，而且您必須執行這類驗證*之前*hello 應用程式會交換至生產環境。 您需要的是使用預覽交換。
 
 > [!NOTE]
 > Linux 上的 Web 應用程式不支援使用預覽交換。
 
-當您使用**使用預覽交換**選項時 (請參閱[交換部署位置](#Swap))，App Service 會進行下列作業︰
+當您使用 hello**預覽交換**選項 (請參閱[交換部署位置](#Swap))，應用程式服務未遵循 hello:
 
-- 目的地位置會保留不變，因此不會影響該位置上的現有工作負載 (例如生產)。
-- 將目的地位置的組態項目套用至來源位置，包括位置特定的連接字串和應用程式設定。
-- 使用這些上述的組態項目重新啟動來源位置上的工作者處理序。
-- 當您完成交換時︰將 pre-warmed-up 來源位置移到目的地位置。 目的地位置會如手動交換移到來源位置。
-- 當您取消交換時︰將來源位置的組態項目重新套用至來源位置。
+- 保留 hello 目的地位置未變更所以現有的工作負載上該位置 （例如生產環境） 不會受到影響。
+- 適用於 hello 的 hello 目的地位置 toohello 來源位置，包括 hello 插槽特有的連接字串和應用程式設定的組態項目。
+- 重新啟動 hello 來源位置使用這些先前提及的組態項目上的 hello 工作者處理序。
+- 當您完成 hello 交換： hello 目的地插槽移 hello 前 warmed 向上來源位置。 hello 目的地位置會移到 hello 與手動交換的來源位置。
+- 當您取消 hello 交換： hello 的 hello 來源位置 toohello 來源位置的組態項目會重新套用。
 
-您可以完全預覽應用程式與目的地位置組態的行為模式。 當您完成驗證時，會在個別步驟中完成交換。 此步驟有額外好處，來源位置已做好使用所需的設定，且用戶端不會發生任何停機時間。  
+您可以預覽完全 hello 應用程式的行為方式與 hello 目的地位置的組態。 一旦您完成驗證，您會完成在個別步驟中的 hello 交換。 此步驟中具有 hello 好處 hello 來源位置已就緒與 hello 所需的組態，以及用戶端不會經歷任何停機時間。  
 
-Azure PowerShell Cmdlet 可供多階段交換的範例，包含在部署位置區段的 Azure PowerShell Cmdlet 內。
+Hello Azure PowerShell 指令程式可供多階段交換的範例包含在 hello Azure PowerShell cmdlet 的部署位置 區段中。
 
 <a name="Auto-Swap"></a>
 
 ## <a name="configure-auto-swap"></a>設定自動交換
-自動交換會簡化 DevOps 案例，在此案例中，您希望為該應用程式的客戶在不需冷啟動和不需關機的情況下連續部署您的應用程式。 當部署位置已設為自動交換至生產位置時，每當您將程式碼更新推送至該位置時，App Service 就會在其已於該位置上做好準備之後，自動將該應用程式交換至生產位置。
+自動交換簡化 DevOps 案例中，您 toocontinuously hello 應用程式的客戶部署應用程式與零冷啟動和零停機時間。 部署位置設定為自動交換到生產環境中，每次推送您的程式碼更新 toothat 位置，當應用程式服務將會自動交換 hello 應用程式至生產環境它有已就緒 hello 插槽中。
 
 > [!IMPORTANT]
-> 當您為某個位置啟用自動交換時，請確定位置設定會與適用於目標位置 (通常是生產位置) 的設定完全相同。
+> 當您啟用自動交換的位置時，請確定 hello 位置組態完全 hello 用於設定 hello 目標位置 （通常 hello 生產位置）。
 > 
 > 
 
 > [!NOTE]
 > Linux 上的 Web 應用程式不支援自動交換。
 
-為位置設定自動交換很容易。 請依照下列步驟執行：
+為位置設定自動交換很容易。 請遵循下列步驟執行 hello:
 
 1. 在**部署位置**中，選取非生產位置，然後在該位置的資源刀鋒視窗中選擇 [應用程式設定]。  
    
     ![][Autoswap1]
-2. 針對 [自動交換] 選取 [開啟]、在 [自動交換位置] 中選取所需的目標位置，然後按一下命令列中的 [儲存]。 確定此位置的組態設定完全適用於目標位置的組態設定。
+2. 選取**上**的**自動交換**，選取中的 hello 想要的目標位置**自動交換位置**，然後按一下**儲存**hello 命令列中。 請確定組態 hello 位置完全 hello 用於設定 hello 目標位置。
    
-    當操作完成時，[通知] 索引標籤會有綠色的「成功」字樣閃爍顯示。
+    hello**通知** 索引標籤將會閃爍綠色**成功**一旦 hello 作業已完成。
    
     ![][Autoswap2]
    
    > [!NOTE]
-   > 若要針對您的應用程式測試自動交換，可在 [自動交換位置] 中選取非生產的目標位置，以便先熟悉這個功能。  
+   > tootest 的自動交換，您的應用程式，您可以先選取中的非生產目標位置**自動交換位置**toobecome 熟悉 hello 功能。  
    > 
    > 
-3. 執行程式碼推送至該部署位置。 自動交換不久之後就會發生，而更新將反映於目標位置的 URL 上。
+3. 執行程式碼推入 toothat 部署位置。 一段時間之後會發生自動交換，而且 hello 更新會反映在目標位置的 URL。
 
 <a name="Rollback"></a>
 
-## <a name="to-rollback-a-production-app-after-swap"></a>交換之後回復生產應用程式
-若交換位置後，在生產位置中識別出錯誤，可以立即交換相同的兩個位置，將位置還原成交換前的狀態。
+## <a name="toorollback-a-production-app-after-swap"></a>toorollback 交換後在生產應用程式
+如果發現任何錯誤生產位置交換之後，復原 hello 位置後 tootheir 前交換狀態立即交換 hello 相同的兩個位置。
 
 <a name="Warm-up"></a>
 
 ## <a name="custom-warm-up-before-swap"></a>交換前的自訂準備
-某些應用程式可能需要自訂的準備動作。 web.config 中的 `applicationInitialization` 組態項目可讓您指定收到要求之前要執行的自訂初始化動作。 必須等候此自訂準備完成，才會進行交換作業。 以下是範例 web.config 片段。
+某些應用程式可能需要自訂的準備動作。 hello `applicationInitialization` web.config 中的組態項目可讓您 toospecify 自訂初始化動作 toobe 執行之前收到要求。 此自訂熱身 toocomplete 將會等到 hello 交換作業。 以下是範例 web.config 片段。
 
     <applicationInitialization>
         <add initializationPage="/" hostName="[app hostname]" />
@@ -180,8 +180,8 @@ Azure PowerShell Cmdlet 可供多階段交換的範例，包含在部署位置�
 
 <a name="Delete"></a>
 
-## <a name="to-delete-a-deployment-slot"></a>刪除部署位置
-在部署位置的刀鋒視窗中，開啟部署位置的刀鋒視窗，按一下 概觀 \(預設頁面)，然後按一下命令列中的 [刪除]。  
+## <a name="toodelete-a-deployment-slot"></a>toodelete 部署位置
+在 hello 刀鋒視窗中的部署位置，開啟 hello 部署位置的刀鋒視窗中，按一下 **概觀**（hello 預設頁面），然後按一下**刪除**hello 命令列中。  
 
 ![刪除部署位置][DeleteStagingSiteButton]
 
@@ -190,9 +190,9 @@ Azure PowerShell Cmdlet 可供多階段交換的範例，包含在部署位置�
 <a name="PowerShell"></a>
 
 ## <a name="azure-powershell-cmdlets-for-deployment-slots"></a>適用於部署位置的 Azure PowerShell Cmdlet
-Azure PowerShell 模組提供透過 Windows PowerShell 來管理 Azure 的 Cmdlet，包括支援管理 Azure App Service 中的部署位置。
+Azure PowerShell 是提供 cmdlet toomanage Azure 透過 Windows PowerShell，包括用於管理 Azure App Service 中的部署位置支援的模組。
 
-* 如需安裝與設定 Azure PowerShell，以及使用您的 Azure 訂用帳戶驗證 Azure PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Microsoft Azure PowerShell](/powershell/azure/overview)(英文)。  
+* 如需有關安裝及設定 Azure PowerShell，及其向您的 Azure 訂用帳戶的 Azure PowerShell 的資訊，請參閱[如何 tooinstall 和設定 Microsoft Azure PowerShell](/powershell/azure/overview)。  
 
 - - -
 ### <a name="create-a-web-app"></a>建立 Web 應用程式
@@ -207,7 +207,7 @@ New-AzureRmWebAppSlot -ResourceGroupName [resource group name] -Name [app name] 
 ```
 
 - - -
-### <a name="initiate-a-swap-with-review-multi-phase-swap-and-apply-destination-slot-configuration-to-source-slot"></a>起始使用預覽交換 (多階段交換) 並將目的地位置組態套用至來源位置
+### <a name="initiate-a-swap-with-review-multi-phase-swap-and-apply-destination-slot-configuration-toosource-slot"></a>起始與檢閱 （多階段交換） 的交換，並套用目的地位置組態 toosource 位置
 ```
 $ParametersObject = @{targetSlot  = "[slot name – e.g. “production”]"}
 Invoke-AzureRmResourceAction -ResourceGroupName [resource group name] -ResourceType Microsoft.Web/sites/slots -ResourceName [app name]/[slot name] -Action applySlotConfig -Parameters $ParametersObject -ApiVersion 2015-07-01
@@ -238,39 +238,39 @@ Remove-AzureRmResource -ResourceGroupName [resource group name] -ResourceType Mi
 <a name="CLI"></a>
 
 ## <a name="azure-command-line-interface-azure-cli-commands-for-deployment-slots"></a>適用於部署位置的 Azure 命令列介面 (Azure CLI) 命令
-Azure CLI 提供跨平台命令供您處理 Azure，包括支援管理 App Service 部署位置。
+hello Azure CLI 提供使用 Azure 中，包括用於管理應用程式服務的部署位置支援跨平台命令。
 
-* 如需安裝與設定 Azure CLI 的相關說明，包括如何將 Azure CLI 連線至 Azure 訂用帳戶的資訊，請參閱 [安裝與設定 Azure CLI](../cli-install-nodejs.md)。
-* 若要在 Azure CLI 中列出 Azure App Service 可用的命令，請呼叫 `azure site -h`。
+* 如需有關安裝和設定指示 hello Azure CLI，包括有關如何 tooconnect Azure CLI tooyour Azure 訂用帳戶，請參閱[安裝及設定 hello Azure CLI](../cli-install-nodejs.md)。
+* 適用於 Azure App Service 中 hello Azure CLI toolist hello 命令呼叫`azure site -h`。
 
 > [!NOTE] 
 > 針對適用於部署位置的 [Azure CLI 2.0](https://github.com/Azure/azure-cli) 命令，請參閱 [Azure App Service Web 部署位置](/cli/azure/appservice/web/deployment/slot)。
 
 - - -
 ### <a name="azure-site-list"></a>azure site list
-如需目前訂用帳戶中應用程式的相關資訊，請呼叫 **azure site list**，如下列範例所示。
+如 hello hello 目前訂用帳戶中的應用程式的相關資訊，請呼叫**azure 站台清單**，如下列範例中的 hello。
 
 `azure site list webappslotstest`
 
 - - -
 ### <a name="azure-site-create"></a>azure site create
-若要建立部署位置，請呼叫 **azure site create** 並指定現有應用程式的名稱與要建立之位置的名稱，如下列範例所示。
+部署位置，toocreate 呼叫**azure 站台建立**並指定現有的應用程式的 hello 名稱和 hello 插槽 toocreate，如同下列範例中的 hello hello 名稱。
 
 `azure site create webappslotstest --slot staging`
 
-若要對新位置啟用來源控制，請使用 **--git** 選項，如以下範例所示。
+hello 新位置，使用 hello tooenable 原始檔控制**-git**選項，如 hello 下列範例所示。
 
 `azure site create --git webappslotstest --slot staging`
 
 - - -
 ### <a name="azure-site-swap"></a>azure site swap
-若要將已更新的部署位置轉變成生產應用程式，請使用 **azure site swap** 命令來執行交換作業，如下列範例所示。 生產應用程式不會發生任何停機事件，也不會進行冷啟動。
+toomake hello 更新的部署位置 hello 生產環境應用程式，請使用 hello **azure 站台交換**命令 tooperform 交換操作，如 hello 下列範例所示。 hello 生產環境應用程式不會經歷任何停機時間，也不會經歷冷啟動。
 
 `azure site swap webappslotstest`
 
 - - -
 ### <a name="azure-site-delete"></a>azure site delete
-若要刪除不再需要的部署位置，請使用 **azure site delete** 命令，如以下範例所示。
+toodelete 部署位置已不再需要請使用 hello **azure 站台刪除**命令，如 hello 下列範例所示。
 
 `azure site delete webappslotstest --slot staging`
 
@@ -281,8 +281,8 @@ Azure CLI 提供跨平台命令供您處理 Azure，包括支援管理 App Servi
 > 
 
 ## <a name="next-steps"></a>後續步驟
-[Azure App Service Web 應用程式 - 封鎖對非生產環境部署位置的 Web 存取 (英文)](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
-[Linux 上的 App Service 簡介](./app-service-linux-intro.md)
+[Azure App Service Web 應用程式 – 封鎖 web 存取 toonon 生產部署位置](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
+[簡介 tooApp Linux 上的服務](./app-service-linux-intro.md)
 [Microsoft Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)
 
 <!-- IMAGES -->

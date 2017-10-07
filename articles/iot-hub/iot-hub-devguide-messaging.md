@@ -1,5 +1,5 @@
 ---
-title: "了解 Azure IoT 中樞傳訊 | Microsoft Docs"
+title: "aaaUnderstand Azure IoT 中樞傳訊 |Microsoft 文件"
 description: "開發人員指南 - IoT 中樞的裝置到雲端及雲端到裝置傳訊。 其中包括訊息格式和支援之通訊協定的相關資訊。"
 services: iot-hub
 documentationcenter: .net
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: f54398d7ac46bf178d2bb603669b399d25370736
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a610741e23e243f392f1c042f9ab4a00d42f734f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="device-to-cloud-and-cloud-to-device-messaging-with-iot-hub"></a>IoT 中樞的裝置到雲端及雲端到裝置傳訊
 
-使用 IoT 中樞傳訊以下列方式與您的裝置通訊：
+使用 IoT 中樞傳訊 toocommunicate 與依裝置：
 
-* 從您的裝置傳送[裝置對雲端][lnk-d2c]訊息到您的解決方案後端。
-* 從解決方案後端傳送[雲端對裝置][lnk-c2d]訊息到您的裝置。
+* 傳送[裝置到雲端][ lnk-d2c]訊息從您的裝置 tooyour 方案後端。
+* 傳送[雲端到裝置][ lnk-c2d]回 hello 解決方案的訊息結尾 tooyour 裝置。
 
-IoT 中樞傳訊功能的核心屬性是訊息的可靠性和持久性。 這些屬性可在裝置端上恢復間歇性連線，以及在雲端恢復事件處理的負載尖峰。 IoT 中樞會針對裝置到雲端和雲端到裝置訊息，實作「至少一次」  傳遞保證。
+IoT 中樞傳訊功能的核心屬性是 hello 穩定性及訊息的持續性。 這些屬性可讓在 hello 裝置端，彈性 toointermittent 連線和 tooload 升高 hello 雲端端處理的事件中。 IoT 中樞會針對裝置到雲端和雲端到裝置訊息，實作「至少一次」  傳遞保證。
 
-如需 IoT 中樞功能的簡介，請參閱 [Azure 和物聯網][lnk-azure-iot]及 [Azure IoT 中樞服務的概觀][lnk-iot-hub-overview]等文章。
+IoT 中樞簡介 toohello 功能，請參閱 hello 文件[Azure 和物聯網][ lnk-azure-iot]和[hello Azure IoT 中樞服務概觀][lnk-iot-hub-overview].
 
-## <a name="when-to-use-iot-hub-messaging"></a>使用 IoT 中樞傳訊時
+## <a name="when-toouse-iot-hub-messaging"></a>當 toouse IoT 中樞通訊
 
-使用裝置到雲端訊息可傳送裝置應用程式所傳來的時間序列遙測和警示，使用雲端到裝置訊息則可用來傳送單向通知給您的裝置應用程式。
+使用單向通知 tooyour 裝置應用程式的傳送時間數列遙測和警示您裝置的應用程式，從裝置到雲端訊息和雲端到裝置訊息。
 
-* 如果不確定要使用裝置對雲端訊息、回報屬性或檔案上傳，請參閱[裝置到雲端通訊指引][lnk-d2c-guidance]。
-* 如果不確定要使用雲端對裝置訊息、預期屬性或直接方法，請參閱[雲端到裝置通訊指引][lnk-c2d-guidance]。
+* 參照太[裝置到雲端通訊指引][ lnk-d2c-guidance]如果不確定之間使用裝置到雲端訊息、 報告的屬性或檔案上傳。
+* 參照太[雲端到裝置通訊指引][ lnk-c2d-guidance]如果不確定之間使用雲端到裝置訊息、 所需的屬性或直接的方法。
 
 ## <a name="next-steps"></a>後續步驟
 

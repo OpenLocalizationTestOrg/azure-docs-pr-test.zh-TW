@@ -1,6 +1,6 @@
 ---
 title: "NoSQL 教學課程：適用於 Azure Cosmos DB Java SDK 的 DocumentDB API | Microsoft Docs"
-description: "NoSQL 教學課程，將使用適用於 Azure Cosmos DB 的 DocumentDB API 來建立線上資料庫以及 Java 主控台應用程式。 Azure DocumentDB 是 JSON 的 NoSQL 資料庫。"
+description: "建立線上資料庫和 Java 主控台應用程式使用的 NoSQL 教學課程 hello Azure Cosmos DB DocumentDB API。 Azure DocumentDB 是 JSON 的 NoSQL 資料庫。"
 keywords: "nosql 教學課程, 線上資料庫, java 主控台應用程式"
 services: cosmos-db
 documentationcenter: Java
@@ -15,11 +15,11 @@ ms.devlang: java
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: arramac
-ms.openlocfilehash: 5c4bcda308f001572e1c34e991616fc209250a02
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1a298a15ab911d140b9df30ad52cfe0fa07c55b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="nosql-tutorial-build-a-documentdb-api-java-console-application"></a>NoSQL 教學課程：建置 DocumentDB API Java 主控台應用程式
 > [!div class="op_single_selector"]
@@ -32,45 +32,45 @@ ms.lasthandoff: 08/29/2017
 >  
 > 
 
-歡迎使用適用於 Azure Cosmos DB Java SDK 之 DocumentDB API 的 NoSQL 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 Azure Cosmos DB 資源。
+ 褖畫惎 toohello NoSQL 教學課程中的 hello Azure Cosmos DB Java sdk DocumentDB API ！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 Azure Cosmos DB 資源。
 
 我們會說明︰
 
-* 建立及連線至 Azure Cosmos DB 帳戶
+* 建立及連接 tooan Azure Cosmos DB 帳戶
 * 設定 Visual Studio 方案
 * 建立線上資料庫
 * 建立集合
 * 建立 JSON 文件
-* 查詢集合
+* 查詢 hello 集合
 * 建立 JSON 文件
-* 查詢集合
+* 查詢 hello 集合
 * 取代文件
 * 刪除文件
-* 刪除資料庫
+* 刪除 hello 資料庫
 
 讓我們開始吧！
 
 ## <a name="prerequisites"></a>必要條件
-請確定您具有下列項目：
+請確定您擁有 hello 下列：
 
-* 使用中的 Azure 帳戶。 如果您沒有帳戶，您可以註冊 [免費帳戶](https://azure.microsoft.com/free/)。 或者，您可以使用 [Azure Cosmos DB 模擬器](local-emulator.md)來進行本教學課程。
+* 使用中的 Azure 帳戶。 如果您沒有帳戶，您可以註冊 [免費帳戶](https://azure.microsoft.com/free/)。 或者，您可以使用 hello [Azure Cosmos DB 模擬器](local-emulator.md)本教學課程。
 * [Git](https://git-scm.com/downloads)
 * [Java Development Kit (JDK) 7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)。
 * [Maven](http://maven.apache.org/download.cgi).
 
 ## <a name="step-1-create-an-azure-cosmos-db-account"></a>步驟 1：建立 Azure Cosmos DB 帳戶
-讓我們來建立 Azure Cosmos DB 帳戶。 如果您已經擁有想要使用的帳戶，就可以跳到[複製 GitHub 專案](#GitClone)。 如果您是使用 Azure Cosmos DB 模擬器，請遵循 [Azure Cosmos DB 模擬器](local-emulator.md)的步驟來設定模擬器，並請直接跳到[複製 GitHub 專案](#GitClone)。
+讓我們來建立 Azure Cosmos DB 帳戶。 如果您已經有您想要讓 toouse 帳戶，您可以向前跳過[複製 hello GitHub 專案](#GitClone)。 如果您使用 hello Azure Cosmos DB 模擬器，請依照下列步驟 hello [Azure Cosmos DB 模擬器](local-emulator.md)tooset hello 模擬器並跳過[複製 hello GitHub 專案](#GitClone)。
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
-## <a id="GitClone"></a>步驟 2︰複製 GitHub 專案
-您可以先從複製[開始使用 Azure Cosmos DB 和 Java](https://github.com/Azure-Samples/documentdb-java-getting-started) 的 GitHub 存放庫著手。 例如，請從本機目錄執行下列命令將範例專案擷取到本機。
+## <a id="GitClone"></a>步驟 2： 複製 hello GitHub 專案
+您可以藉由複製 hello GitHub 儲存機制開始[開始使用 Azure Cosmos DB 和 Java](https://github.com/Azure-Samples/documentdb-java-getting-started)。 例如，從本機目錄執行下列 tooretrieve hello 範例專案在本機的 hello。
 
     git clone git@github.com:Azure-Samples/azure-cosmos-db-documentdb-java-getting-started.git
 
     cd azure-cosmos-db-documentdb-java-getting-started
 
-目錄中包含專案的 `pom.xml` 和 `src` 資料夾，此資料夾中所含的 Java 原始程式碼包括 `Program.java`)，它會顯示如何使用 Azure Cosmos DB 執行簡單的作業，例如建立文件和查詢集合內的資料。 `pom.xml` 包含 [Maven 上的 DocumentDB Java SDK](https://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb) 上的相依性。
+hello 目錄包含`pom.xml`hello 專案和`src`包含 Java 程式碼來源包括資料夾`Program.java`會顯示如何執行簡單作業之 Azure Cosmos DB 建立像文件及查詢內的資料集合。 hello`pom.xml`包含相依性 hello [DocumentDB Java SDK 上 Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb)。
 
     <dependency>
         <groupId>com.microsoft.azure</groupId>
@@ -78,10 +78,10 @@ ms.lasthandoff: 08/29/2017
         <version>LATEST</version>
     </dependency>
 
-## <a id="Connect"></a>步驟 3：連線至 Azure Cosmos DB 帳戶
-接下來，回到 [Azure 入口網站](https://portal.azure.com)擷取您的端點和主要金鑰。 必須提供 Azure Cosmos DB 端點 URL 和主要金鑰，您的應用程式才能了解所要連線的位置，而 Azure Cosmos DB 才會信任您的應用程式連線。
+## <a id="Connect"></a>步驟 3： 連接 tooan Azure Cosmos DB 帳戶
+接下來，head 回 toohello [Azure 入口網站](https://portal.azure.com)tooretrieve 您的端點和主要的主要金鑰。 hello Azure Cosmos DB 端點和主要金鑰所需的應用程式 toounderstand 位置，以及 Azure Cosmos DB tootrust tooconnect 應用程式的連接。
 
-在 Azure 入口網站中，瀏覽至 Azure Cosmos DB 帳戶，然後按一下 [金鑰]。 從入口網站複製 URI，並將它貼到 Program.java 檔案的 `https://FILLME.documents.azure.com` 中。 然後從入口網站複製主要金鑰，並將它貼到 `FILLME`中。
+在 hello Azure 入口網站，瀏覽 tooyour Azure Cosmos DB 帳戶，然後按一下**金鑰**。 從 hello 入口網站複製 hello URI，並將它貼入`https://FILLME.documents.azure.com`hello Program.java 檔案中。 複製 hello 從 hello 入口網站的主索引鍵，並將它貼入`FILLME`。
 
     this.client = new DocumentClient(
         "https://FILLME.documents.azure.com",
@@ -89,10 +89,10 @@ ms.lasthandoff: 08/29/2017
         , new ConnectionPolicy(),
         ConsistencyLevel.Session);
 
-![NoSQL 教學課程用來建立 Java 主控台應用程式之 Azure 入口網站的螢幕擷取畫面。 顯示 Azure Cosmos DB 帳戶，內含反白顯示的 [主動式] 集線器、[Azure Cosmos DB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值][keys]
+![Hello hello NoSQL 教學課程 toocreate Java 主控台應用程式所使用的 Azure 入口網站的螢幕擷取畫面。 帳戶，反白顯示，hello 活躍 hello 反白顯示 hello Azure Cosmos DB 帳戶刀鋒視窗上的 [金鑰] 按鈕和 hello URI、 主索引鍵和次要索引鍵的值上反白顯示 hello 金鑰刀鋒視窗會顯示 Azure Cosmos DB][keys]
 
 ## <a name="step-4-create-a-database"></a>步驟 4：建立資料庫
-可以使用 **DocumentClient** 類別的 [createDatabase](/java/api/com.microsoft.azure.documentdb._document_client.createdatabase) 方法建立 Azure Cosmos DB [資料庫](documentdb-resources.md#databases)。 資料庫是分割給多個集合之 JSON 文件儲存體的邏輯容器。
+您的 Azure Cosmos DB[資料庫](documentdb-resources.md#databases)可以建立使用 hello [createDatabase](/java/api/com.microsoft.azure.documentdb._document_client.createdatabase)方法 hello **DocumentClient**類別。 資料庫是 hello 的 JSON 文件儲存分割於各個集合的邏輯容器。
 
     Database database = new Database();
     database.setId("familydb");
@@ -104,7 +104,7 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-可以使用 **DocumentClient** 類別的 [createCollection](/java/api/com.microsoft.azure.documentdb._document_client.createcollection) 方法建立[集合](documentdb-resources.md#collections)。 集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。
+A[集合](documentdb-resources.md#collections)可以建立使用 hello [createCollection](/java/api/com.microsoft.azure.documentdb._document_client.createcollection)方法 hello **DocumentClient**類別。 集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。
 
 
     DocumentCollection collectionInfo = new DocumentCollection();
@@ -118,7 +118,7 @@ ms.lasthandoff: 08/29/2017
     this.client.createCollection("/dbs/familydb", collectionInfo, requestOptions);
 
 ## <a id="CreateDoc"></a>步驟 6：建立 JSON 文件
-您可以使用 **DocumentClient** 類別的 [createDocument](/java/api/com.microsoft.azure.documentdb._document_client.createdocument) 方法來建立[文件](documentdb-resources.md#documents)。 文件會是使用者定義的 (任意) JSON 內容。 現在可插入一或多份文件。 如果您已經有想要儲存於資料庫中的資料，就可以使用 Azure Cosmos DB 的[資料移轉工具](import-data.md)，將資料匯入資料庫中。
+A[文件](documentdb-resources.md#documents)可以建立使用 hello [createDocument](/java/api/com.microsoft.azure.documentdb._document_client.createdocument)方法 hello **DocumentClient**類別。 文件會是使用者定義的 (任意) JSON 內容。 現在可插入一或多份文件。 如果您已經有您想要 toostore 資料庫中的資料，您可以使用 Azure Cosmos DB 的[資料移轉工具](import-data.md)tooimport hello 資料插入資料庫。
 
     // Insert your Java objects as documents 
     Family andersenFamily = new Family();
@@ -138,10 +138,10 @@ ms.lasthandoff: 08/29/2017
 
     this.client.createDocument("/dbs/familydb/colls/familycoll", family, new RequestOptions(), true);
 
-![說明 NoSQL 教學課程用來建立 Java 主控台應用程式之帳戶、線上資料庫、集合和文件之間階層式關聯性的圖表](./media/documentdb-get-started/nosql-tutorial-account-database.png)
+![以圖表顯示的 hello 階層式關聯性，hello 帳戶、 hello 線上資料庫、 hello 集合和 hello hello NoSQL 教學課程 toocreate Java 主控台應用程式所使用的文件之間](./media/documentdb-get-started/nosql-tutorial-account-database.png)
 
 ## <a id="Query"></a>步驟 7︰查詢 Azure Cosmos DB 資源
-Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行豐富[查詢](documentdb-sql-query.md)。  下列範例程式碼示範如何使用 SQL 語法與 [queryDocuments](/java/api/com.microsoft.azure.documentdb._document_client.querydocuments) 方法來查詢 Azure Cosmos DB 中的文件。
+Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行豐富[查詢](documentdb-sql-query.md)。  下列範例程式碼的 hello 顯示 tooquery Azure Cosmos DB 中的文件以 hello 使用 SQL 語法[queryDocuments](/java/api/com.microsoft.azure.documentdb._document_client.querydocuments)方法。
 
     FeedResponse<Document> queryResults = this.client.queryDocuments(
         "/dbs/familydb/colls/familycoll",
@@ -154,7 +154,7 @@ Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行豐富[查
     }
 
 ## <a id="ReplaceDocument"></a>步驟 8︰取代 JSON 文件
-Azure Cosmos DB 支援使用 [replaceDocument](/java/api/com.microsoft.azure.documentdb._document_client.replacedocument) 方法來更新 JSON 文件。
+Azure Cosmos DB 支援更新的 JSON 文件使用 hello [replaceDocument](/java/api/com.microsoft.azure.documentdb._document_client.replacedocument)方法。
 
     // Update a property
     andersenFamily.Children[0].Grade = 6;
@@ -165,21 +165,21 @@ Azure Cosmos DB 支援使用 [replaceDocument](/java/api/com.microsoft.azure.doc
         null);
 
 ## <a id="DeleteDocument"></a>步驟 9︰刪除 JSON 文件
-同樣地，Azure Cosmos DB 支援使用 [deleteDocument](/java/api/com.microsoft.azure.documentdb._document_client.deletedocument) 方法來將 JSON 文件刪除。  
+同樣地，Azure Cosmos DB 支援刪除使用 hello 的 JSON 文件[deleteDocument](/java/api/com.microsoft.azure.documentdb._document_client.deletedocument)方法。  
 
     this.client.delete("/dbs/familydb/colls/familycoll/docs/Andersen.1", null);
 
-## <a id="DeleteDatabase"></a>步驟 10：刪除資料庫
-刪除已建立的資料庫會移除資料庫和所有子系資源 (集合、文件等)。
+## <a id="DeleteDatabase"></a>步驟 10： 刪除 hello 資料庫
+正在刪除建立 hello 資料庫移除 hello 資料庫和所有子系資源 （集合、 文件）。
 
     this.client.deleteDatabase("/dbs/familydb", null);
 
 ## <a id="Run"></a>步驟 11：一起執行您的 Java 主控台應用程式！
-若要從主控台執行應用程式，瀏覽至專案資料夾並使用 Maven 進行編譯：
+toorun hello 應用程式從 hello 主控台，瀏覽 toohello 專案資料夾，然後使用 Maven 編譯：
     
     mvn package
 
-執行 `mvn package` 會從 Maven 下載最新的 Azure Cosmos DB 文件庫，並產生 `GetStarted-0.0.1-SNAPSHOT.jar`。 然後執行下列命令來執行應用程式︰
+執行`mvn package`從 Maven 下載 hello 最新 Azure Cosmos 資料程式庫，並產生`GetStarted-0.0.1-SNAPSHOT.jar`。 藉由執行，然後執行 hello 應用程式：
 
     mvn exec:java -D exec.mainClass=GetStarted.Program
 
@@ -187,8 +187,8 @@ Azure Cosmos DB 支援使用 [replaceDocument](/java/api/com.microsoft.azure.doc
 
 ## <a name="next-steps"></a>後續步驟
 * 想要 Java Web 應用程式教學課程嗎？ 請參閱[使用 Azure Cosmos DB 以 Java 建置 Web 應用程式](documentdb-java-application.md)。
-* 了解如何[監視 Azure Cosmos DB 帳戶](monitor-accounts.md)。
-* 在 [Query Playground](https://www.documentdb.com/sql/demo)中，針對範例資料集執行查詢。
-* 如需深入了解程式設計模型，請參閱 [Azure Cosmos DB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)中的＜開發＞一節。
+* 了解如何太[監視 Azure Cosmos DB 帳戶](monitor-accounts.md)。
+* 執行查詢，根據我們的範例資料集，在 hello[查詢遊樂場](https://www.documentdb.com/sql/demo)。
+* 深入了解 hello hello hello 開發一節中的程式設計模型[Azure Cosmos DB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)。
 
 [keys]: media/documentdb-get-started/nosql-tutorial-keys.png

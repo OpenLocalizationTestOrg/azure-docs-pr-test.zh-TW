@@ -1,6 +1,6 @@
 ---
-title: "最佳化 Azure Machine Learning 中的演算法 | Microsoft Docs"
-description: "說明如何為 Azure Machine Learning 中的演算法選擇最佳的參數設定。"
+title: "aaaOptimize 您在 Azure Machine Learning 中的演算法 |Microsoft 文件"
+description: "說明如何 toochoose hello 最佳參數設定的 Azure Machine Learning 中的演算法。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: b3be7f31ac31c656744fb809e3972af0ac4ad4f1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fbf2f71abdbce19483fb048d67a39cbb368a928e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="choose-parameters-to-optimize-your-algorithms-in-azure-machine-learning"></a>選擇參數來最佳化 Azure Machine Learning 中的演算法
-本主題說明如何為 Azure Machine Learning 中的演算法選擇正確的超參數 (hyperparameter) 集。 大部分的機器學習服務演算法都會有需要設定的參數。 當您訓練一個模型時，必須提供這些參數的值。 訓練過的模型效率會依據所選擇的模型參數而定。 找出最佳參數集的過程稱為*模型選擇*。
+# <a name="choose-parameters-toooptimize-your-algorithms-in-azure-machine-learning"></a>Azure Machine Learning 中選擇您的演算法參數 toooptimize
+本主題描述如何 toochoose hello 右 hyperparameter 設定 Azure 機器學習演算法。 大部分的機器學習演算法有參數 tooset。 當定型模型時，您會需要這些參數的 tooprovide 值。 hello 效用 hello 定型的模型取決於您選擇的 hello 模型參數。 hello 尋找 hello 最佳參數集的程序稱為*模型選取*。
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-有各種方法可用來進行模型選擇。 在機器學習中，交叉驗證是其中一種最廣泛使用的模型選擇方法，在 Azure Machine Learning 中是預設的模型選擇機制。 由於 Azure Machine Learning 支援 R 和 Python 兩者，因此您一律可以使用 R 或 Python 來實作其自己的模型選擇機制。
+有各種方式 toodo 模型選取項目。 在 machine learning 中，交叉驗證是最常使用的 hello 方法的模型選取項目，而且 hello 預設模型在 Azure 機器學習的選取範圍機制。 由於 Azure Machine Learning 支援 R 和 Python 兩者，因此您一律可以使用 R 或 Python 來實作其自己的模型選擇機制。
 
-找出最佳參數集的過程有四個步驟：
+尋找 hello 最佳參數集的 hello 程序有四個步驟：
 
-1. **定義參數空間**：對於演算法，先決定您想要考慮的確切參數值。
-2. **定義交叉驗證設定**：決定如何選擇資料集的交叉驗證折數。
-3. **定義計量**：決定要使用哪一種計量來判斷最佳的參數集，例如正確度、均方根誤差、精確度、召回率或 f 分數。
-4. **訓練、評估和比較**：對於每個唯一的參數值組合，執行交叉驗證並根據您定義的錯誤計量。 評估和比較之後，您可以選擇最佳的模型。
+1. **定義 hello 參數空間**: hello 的演算法，請先決定您希望 tooconsider hello 確切的參數值。
+2. **定義 hello 交叉驗證設定**： 決定如何 toochoose 交叉驗證摺疊 hello 資料集。
+3. **定義 hello 度量**： 決定哪些度量 toouse 判斷 hello 一組最佳的參數，例如精確度，均方根平方錯誤、 有效位數、 選出或 f 分數。
+4. **定型、 評估並比較**: hello 參數值的每一個唯一組合，交叉驗證是由執行，並根據您定義的 hello 錯誤度量。 評估和比較之後, 您可以選擇 hello 效能最佳模型。
 
-下列影像說明在 Azure Machine Learning 中如何達到這個目標。
+下列映像的 hello 說明如何達成這在 Azure Machine Learning 中的顯示。
 
-![尋找最佳的參數集](./media/machine-learning-algorithm-parameters-optimize/fig1.png)
+![尋找 hello 最佳參數集](./media/machine-learning-algorithm-parameters-optimize/fig1.png)
 
-## <a name="define-the-parameter-space"></a>定義參數空間
-您可以在進行模型初始化步驟時定義參數集。 所有機器學習演算法的參數窗格都有兩種訓練模式：[單一參數] 和 [參數範圍]。 選擇 [參數範圍] 模式。 在參數範圍模式中，您可以針對每個參數輸入多個值。 您可以在文字方塊中輸入以逗號分隔的值。
+## <a name="define-hello-parameter-space"></a>定義 hello 參數空間
+您可以定義在 hello 模型初始化步驟設定 hello 參數。 hello 的所有機器學習演算法參數] 窗格有兩種定型模式：*單一參數*和*參數範圍*。 選擇 [參數範圍] 模式。 在參數範圍模式中，您可以針對每個參數輸入多個值。 您可以在 hello] 文字方塊中輸入以逗號分隔值。
 
 ![二元促進式決策樹，單一參數](./media/machine-learning-algorithm-parameters-optimize/fig2.png)
 
- 或者，您可以使用**使用範圍產生器**來定義網格的最大點數與最小點數，以及要產生的總點數。 參數值預設會以線性刻度產生。 但如果核取了 [對數刻度]，值會以對數刻度產生 (也就是相鄰兩點的比率而不是其差異為常數)。 對於整數參數，您可以使用連字號來定義範圍。 例如，"1-10" 表示介於 1 到 10 (兩者皆含) 之間的所有整數會構成參數集。 也支援使用混合的模式。 例如，此參數設定 "1-10, 20, 50" 會包括整數 1-10、20 和 50 個。
+ 或者，您可以定義 hello hello 格線和 hello 總數點 toobe 使用產生的最大和最小點**使用範圍產生器**。 根據預設，會產生線性標尺上的 hello 參數值。 但是如果**對數刻度**勾選，hello 值會產生 hello 對數刻度 （也就是 hello 相鄰點的 hello 比例是常數，而不是差異）。 對於整數參數，您可以使用連字號來定義範圍。 例如，"1-10"表示，介於 1 到 10 之間的所有整數 （兩者內含） 形成 hello 參數集。 也支援使用混合的模式。 比方說，hello 參數集"1-10、 20、 50"會加入整數 1-10、 20 到 50 個。
 
 ![二元促進式決策樹，參數範圍](./media/machine-learning-algorithm-parameters-optimize/fig3.png)
 
 ## <a name="define-cross-validation-folds"></a>定義交叉驗證折數
-[資料分割和取樣][partition-and-sample]模組可用來隨機指派資料的折數。 在下圖模組的範例組態中，我們定義五個折數，並且對樣本實例隨機指派折疊數目。
+hello[資料分割和取樣][ partition-and-sample]模組可以是使用的 toorandomly 指派摺疊 toohello 資料。 在下列範例組態 hello 模組 hello，我們會定義五個摺疊，並隨機指派摺疊數字 toohello 範例執行個體。
 
 ![資料分割和取樣](./media/machine-learning-algorithm-parameters-optimize/fig4.png)
 
-## <a name="define-the-metric"></a>定義計量
-[微調模型超參數][tune-model-hyperparameters]模組支援依據經驗為指定的演算法和資料集選擇一組最佳參數。 除了有關訓練模型的其他資訊，此模組的 [屬性] 窗格還包括用來判斷最佳參數集的計量。 分類和迴歸演算法分別有兩個不同的下拉式清單方塊。 如果考慮使用分類演算法，則會忽略迴歸計量，反之亦然。 在此特定範例中，計量是**正確度**。   
+## <a name="define-hello-metric"></a>定義 hello 度量
+hello[微調模型超][ tune-model-hyperparameters]模組提供實證選擇 hello 參數指定的演算法和資料集的一組最佳的支援。 此外訓練 hello tooother 資訊模型，hello**屬性**本單元的窗格包含決定最佳參數集 hello hello 度量。 分類和迴歸演算法分別有兩個不同的下拉式清單方塊。 如果列入考量的 hello 演算法是一種分類演算法，就會忽略 hello 迴歸度量，反之亦然。 在此特定範例中，是 hello 度量**精確度**。   
 
 ![掃掠參數](./media/machine-learning-algorithm-parameters-optimize/fig5.png)
 
 ## <a name="train-evaluate-and-compare"></a>訓練、評估和比較
-相同的[微調模型超參數][tune-model-hyperparameters]模組會訓練對應於參數集的所有模型、評估各種計量，然後根據您選擇的計量建立訓練最妥善的模型。 此模組有兩個必要的輸入項：
+hello 相同[微調模型超][ tune-model-hyperparameters]模組來定型，對應 toohello 參數集，會評估各種標準，然後建立 hello 自動定型的模型，根據 hello 所有 hello 模型您選擇的度量。 此模組有兩個必要的輸入項：
 
-* 未訓練過的學習者
-* 資料集
+* hello 未定型的學習模組
+* hello 資料集
 
-此模組也有一個選擇性資料集輸入項。 將具有折疊資訊的資料集連接到必要的資料集輸入。 如果資料集未被指派任何折疊資訊，則預設會自動執行 10 折交叉驗證。 如果尚未進行折疊指派，且在選擇性資料集區域提供了驗證資料集，則會使用選擇的訓練-測試模式和第一個資料集針對每一個參數組合訓練模型。
+hello 模組也有選擇性輸入資料集。 摺疊資訊 toohello 強制的資料集輸入具有連接 hello 資料集。 如果 hello 資料集未指派任何摺疊的資訊，然後 10 個摺疊的交叉驗證會自動執行的預設值。 如果不是 hello 摺疊指派 hello 選擇性資料集連接埠所提供的驗證資料集，然後選擇定型測試模式並 hello 第一個資料集是使用的 tootrain hello 模型，每一個參數組合。
 
 ![推進式決策樹分類器](./media/machine-learning-algorithm-parameters-optimize/fig6a.png)
 
-接著，會針對驗證資料集評估模型。 模組的左側輸出區域將不同的計量顯示為參數值的函數。 右側的輸出區域提供訓練過的模型，根據選擇的計量 (在此案例中為**正確度**) 對應到最佳的執行模型。  
+hello 模型會再評估 hello 驗證資料集。 hello 留待 hello 模組顯示的輸出連接埠不同的度量資訊的參數值的函式。 hello 右輸出連接埠提供 hello 定型的模型對應 toohello 效能最佳的模型，根據 toohello 選擇公制 (**精確度**在此情況下)。  
 
 ![驗證資料集](./media/machine-learning-algorithm-parameters-optimize/fig6b.png)
 
-將右側輸出區域具體呈現之後，您可以看到所選擇的確切參數。 此模型在儲存為訓練過的模型之後，可用來對測試集計分，或者用在可運作的 Web 服務。
+您可以看到 hello 精確參數選擇的視覺化 hello 右輸出連接埠。 此模型在儲存為訓練過的模型之後，可用來對測試集計分，或者用在可運作的 Web 服務。
 
 <!-- Module References -->
 [partition-and-sample]: https://msdn.microsoft.com/library/azure/a8726e34-1b3e-4515-b59a-3e4a475654b8/

@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement 使用者介面 - 觸達內容"
-description: "了解如何在 Azure Mobile Engagement 管理不同類型推播通知活動的指定內容"
+title: "aaaAzure Mobile Engagement 使用者介面-內容連接"
+description: "了解如何在 Azure Mobile Engagement toomanage hello 唯一內容推播通知的 hello 不同類型的活動"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 3741a43b74af5846e95e42d8a7b533621e780f2d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: de389eb4368d986ef00135036c26e26a2464663e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-the-unique-content-of-the-different-types-of-push-notification-campaigns"></a>如何管理不同類型推播通知活動的指定內容
-您可以使用新觸達活動的 [內容] 區段修改通知、投票、資料推送和磚 (僅限 Windows Phone) 的內容。 推播活動的內容設定與活動類型有關。 
+# <a name="how-toomanage-hello-unique-content-of-hello-different-types-of-push-notification-campaigns"></a>如何 toomanage hello hello 的推播通知活動的不同類型的唯一內容
+您可以使用 hello 新觸達活動 toomodify hello 內容的宣告、 投票、 資料推入和磚 (僅限 Windows Phone) 的內容 > 一節。 hello 內容設定的推送活動的是特定 toohello 活動類型。 
 
 ### <a name="content-types"></a>內容類型：
 * 通知
@@ -32,26 +32,26 @@ ms.lasthandoff: 07/11/2017
 ## <a name="content-of-announcements"></a>通知的內容
  ![Reach-Content1][30] 
 
-### <a name="choose-the-type-of-your-announcement"></a>選擇通知的類型：
-* 僅通知：這是簡單的標準通知。 表示如果使用者按一下通知，不會出現任何其他檢視，但是會發生與它關聯的動作。
-* 文字通知：這是一種吸引使用者查看文字檢視的通知。
-* Web 通知：這是一種吸引使用者查看 Web 檢視的通知。
+### <a name="choose-hello-type-of-your-announcement"></a>選擇宣告的 hello 類型：
+* 僅通知：這是簡單的標準通知。 這表示如果使用者按一下它，會出現任何其他檢視，但只有 hello 動作相關聯 tooit 就會發生。
+* 文字公告： 它是既定 hello 使用者 toohave 看一下文字檢視通知。
+* Web 公告： 它是既定 hello 使用者 toohave 查看網頁檢視的通知。
 
 ### <a name="see-also"></a>另請參閱
 * [觸達 - 作法 - 通知][Link 3] 
 
 ### <a name="about-web-view-announcements"></a>關於 Web 檢視通知：
-您在此處提供的每個 "{deviceid}" 字樣 (在 HTML 程式碼或 JavaScript 程式碼中) 將會自動取代為顯示通知的裝置識別碼。 這個簡單的方法可以擷取您後端系統裝載的外部 Web 服務中的 Azure Mobile Engagement 裝置識別碼。
-如果您想要建立全螢幕的 Web 檢視 (不含我們提供的預設 [動作] 和 [離開] 按鈕)，您可以從 Web 檢視通知的 JavaScript 程式碼中使用下列函式： 
+Hello 模式 {"deviceid}"hello HTML 程式碼或 JavaScript 程式碼您在此處提供的項目會自動取代為由顯示 hello 公告 hello 裝置 hello 識別項。 這是外部輕鬆 tooretrieve Azure Mobile Engagement 裝置識別碼 web 程式後端辦公室託管的服務。
+如果您想 toocreate 完整螢幕 web 檢視 （不含 hello 動作並結束提供預設按鈕我們） 您可以使用 hello web 檢視宣告的 JavaScript 程式碼中的下列功能： 
 
-* 執行通知動作：ReachContent.actionContent()
-* 離開通知：ReachContent.exitContent()
+* 執行 hello 公告： ReachContent.actionContent()
+* 結束 hello 公告： ReachContent.exitContent()
 
 ### <a name="choose-your-action"></a>選擇您的動作：
 ### <a name="about-action-urls"></a>關於動作 URL：
 可由目標裝置的作業系統解譯的任何 URL 都可以用來做為動作 URL。
-應用程式可能支援的任何專用 URL (例如讓使用者跳至特定畫面) 也可用來做為動作 URL。
-每個 {deviceid} 字樣的項目都會自動取代為執行動作的裝置識別碼。 透過您後端系統裝載的外部 Web 服務，這可用來輕鬆擷取 Azure Mobile Engagement 裝置識別碼。
+可能您的應用程式的所有專用 URL （例如 toomake 使用者跳 tooa 特定畫面） 的支援也可用以做為動作 URL。
+Hello {deviceid} 模式每次發生自動取代為執行 hello hello 裝置 hello 識別項。 這可以是透過您的後端辦公室託管的外部 web 服務使用的 tooeasily 擷取 Azure Mobile Engagement 裝置識別碼。
 
 * **Android + iOS 動作**
   * 開啟網頁
@@ -67,14 +67,14 @@ ms.lasthandoff: 07/11/2017
   * tel:\[phone-number\] 
   * 範例：tel:2125551212
 * **僅限 Android 的動作**
-  * 下載 Play 商店上的應用程式
+  * 下載 hello Play Store 上的應用程式
   * market://details?id=\[應用程式套件\] 
   * 範例：market://details?id=com.microsoft.office.word
   * 開始地理當地化的搜尋
   * geo:0,0?q=\[搜尋查詢\] 
   * 範例：geo:0,0?q=starbucks,paris
 * **僅限 iOS 的動作**
-  * 下載 App Store 上的應用程式
+  * 下載 hello App Store 上的應用程式
   * http://itunes.apple.com/[country]/app/[app name]/id[app id]?mt=8 
   * 範例︰http://itunes.apple.com/fr/app/briquet-virtuel/id430154748?mt=8
   * Windows 動作
@@ -90,7 +90,7 @@ ms.lasthandoff: 07/11/2017
   * 撥電話號碼 (需要 Skype 市集應用程式)
   * tel:\[phone-number\] 
   * 範例：tel:2125551212
-  * 下載 Play 商店上的應用程式
+  * 下載 hello Play Store 上的應用程式
   * ms-windows-store:PDP?PFN=\[app package ID\] 
   * 範例：ms-windows-store:PDP?PFN=4d91298a-07cb-40fb-aecc-4cb5615d53c1
   * 開始 bingmaps 搜尋
@@ -104,10 +104,10 @@ ms.lasthandoff: 07/11/2017
   * 範例：myfolderdata.txt
 
 ### <a name="build-a-tracking-url"></a>建置追蹤 URL：
-* 請參閱 <UI Documentation> 的＜設定＞一節，了解建置可讓使用者下載其他應用程式之追蹤 URL 的相關指示。
+* 請參閱 hello 的 < 設定 > 一節的 hello<UI Documentation>的建置追蹤 URL 的指示，可讓使用者 toodownload 其中一個其他的應用程式。
 
-### <a name="define-the-texts-of-your-announcement"></a>定義您的通知文字：
-填寫通知的標題、內容和按鈕文字。 您可以根據使用者如何回應此活動的觸達意見反應，找出未來的活動對象。 選取目標對象可以根據此活動是否已推送、回覆、採取動作或離開的意見反應。
+### <a name="define-hello-texts-of-your-announcement"></a>定義宣告的 hello 文字
+填寫 hello 標題、 內容和宣告的按鈕文字。 您可以針對未來的活動，根據的使用者已 toothis 行銷活動的回應 hello 觸達意見反應的對象。 目標對象可以根據 hello 意見反應是否這個活動只推入，回覆，採取動作，或結束。
 
 ### <a name="see-also"></a>另請參閱
 * [UI 文件 - 觸達 - 新增推播準則][Link 28]
@@ -115,8 +115,8 @@ ms.lasthandoff: 07/11/2017
 ## <a name="content-of-polls"></a>投票的內容
 ![Reach-Content2][31] 
 
-填寫通知的標題、描述和按鈕文字。 然後，新增問題和問題的答案選項。
-您可以根據使用者如何回應此活動的觸達意見反應，找出未來的活動對象。 選取目標對象時可以根據此活動是否已推送、回覆、採取動作或離開。 選取目標對象時也可以根據投票答案的意見反應，將其中的問題和答案選項做為準則。
+填寫 hello 標題、 描述和宣告的按鈕文字。 接著，新增問題和選擇 hello 答案 tooyour 問題。
+您可以針對未來的活動，根據的使用者已 toothis 行銷活動的回應 hello 觸達意見反應的對象。 選取目標對象時可以根據此活動是否已推送、回覆、採取動作或離開。 目標對象也可以根據輪詢回答意見反應，hello 問題與解答的選擇，當做準則。
 
 ### <a name="see-also"></a>另請參閱
 * [UI 文件 - 觸達 - 新增推播準則][Link 28]
@@ -124,15 +124,15 @@ ms.lasthandoff: 07/11/2017
 ## <a name="content-of-data-pushes"></a>資料推送的內容
 ![Reach-Content3][32] 
 
-### <a name="choose-the-type-of-your-data"></a>選擇您的資料類型：
+### <a name="choose-hello-type-of-your-data"></a>選擇資料的 hello 類型：
 * 文字
 * 二進位資料
 * Base64 資料
 
-### <a name="define-the-content-of-your-data"></a>定義資料的內容
-* 如果您選取推送文字資料，請複製文字並貼到 [內容] 方塊。
-* 如果您選取推送二進位或 base64 資料，請使用 [上傳您的檔案] 按鈕上傳您的檔案。
-* 您可以根據使用者如何回應此活動的觸達意見反應，找出未來的活動對象。 選取目標對象時可以根據此活動是否已推送、回覆、採取動作或離開。
+### <a name="define-hello-content-of-your-data"></a>定義資料的 hello 內容
+* 如果您選取 toopush 文字資料，複製並貼上 hello 「 內容 」 中的 hello 文字。
+* 如果您選取 toopush 二進位或 base64 資料，請使用 [上傳您的檔案] 按鈕 tooupload hello 您的檔案。
+* 您可以針對未來的活動，根據的使用者已 toothis 行銷活動的回應 hello 觸達意見反應的對象。 選取目標對象時可以根據此活動是否已推送、回覆、採取動作或離開。
 
 ### <a name="see-also"></a>另請參閱
 * [UI 文件 - 觸達 - 新增推播準則][Link 28]
@@ -140,9 +140,9 @@ ms.lasthandoff: 07/11/2017
 ## <a name="content-of-tiles-windows-phone-only"></a>磚的內容 (僅限 Windows Phone)
 ![Reach-Content4][33]
 
-### <a name="define-the-content-of-your-tile"></a>定義磚的內容
-磚承載是在 Windows Phone 裝置上應用程式磚中顯示的文字。
-磚推送是適用於 Windows Phone 之原生推送的 Microsoft 推播通知服務 (MPNS) 版本。 磚推送類型是唯一沒有回應的推播類型，因此無法依據磚推播活動的結果建置未來活動的對象。 
+### <a name="define-hello-content-of-your-tile"></a>定義磚的 hello 內容
+hello 磚裝載是顯示在 Windows Phone 裝置上的應用程式的 hello 磚中的 hello 文字 toobe。
+圖格發送是適用於 Windows Phone 的原生推送 hello Microsoft 推播通知服務 (MPNS) 版本。 hello 磚推入型別是 hello 唯一發送類型沒有回應，因此 hello 觀眾的未來的活動無法建置 hello 結果的並排顯示推播宣傳活動。 
 
 ### <a name="see-also"></a>另請參閱
 * [API 文件 - 觸達 API - 原生推送][Link 4]

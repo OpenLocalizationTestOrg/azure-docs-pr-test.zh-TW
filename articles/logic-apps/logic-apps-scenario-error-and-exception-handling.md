@@ -1,5 +1,5 @@
 ---
-title: "例外狀況處理與錯誤記錄案例 - Azure Logic Apps | Microsoft Docs"
+title: "aaaException 處理與錯誤記錄的案例-Azure 邏輯應用程式 |Microsoft 文件"
 description: "說明有關適用於 Azure Logic Apps 的進階例外狀況處理與錯誤記錄的實際使用案例"
 keywords: 
 services: logic-apps
@@ -16,51 +16,51 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 07/29/2016
 ms.author: LADocs; b-hoedid
-ms.openlocfilehash: 044de27c75da93c95609110d2b73336c42f746fe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e893a7b652254dca7b8a82398e8afd571f6ccd25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scenario-exception-handling-and-error-logging-for-logic-apps"></a>案例︰適用於邏輯應用程式的例外狀況處理與記錄錯誤
 
-本案例說明如何擴充邏輯應用程式，以提升對於例外狀況處理的支援。 我們使用了現實生活的使用案例來回答下列案例：「Azure Logic Apps 是否支援例外狀況與錯誤處理？」
+這個案例說明如何擴充邏輯應用程式 toobetter 支援例外狀況處理。 我們使用實際的使用案例 tooanswer hello 問題: 「 Azure 邏輯應用程式支援例外狀況和錯誤處理？ 」
 
 > [!NOTE]
-> 目前的 Azure Logic Apps 結構描述會提供標準的動作回應範本。 這個範本包括內部驗證和 API 應用程式所傳回的錯誤回應。
+> hello 目前 Azure 邏輯應用程式的結構描述會提供標準範本動作回應。 這個範本包括內部驗證和 API 應用程式所傳回的錯誤回應。
 
 ## <a name="scenario-and-use-case-overview"></a>案例和使用案例概觀
 
-以下為適用於此案例的使用案例： 
+以下是 hello 劇本做為此案例中的 hello 使用案例： 
 
-知名的醫療保健組織找到了我們，他們想要開發 Azure 解決方案，以使用 Microsoft Dynamics CRM Online 建立病患入口網站。 他們需要在 Dynamics CRM Online 病患入口網站和 Salesforce 之間傳送預約記錄。 因此要求我們對所有病患記錄使用 [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/) 標準。
+已知的醫療保健組織從事我們 toodevelop Azure 解決方案中會建立使用 Microsoft Dynamics CRM Online 的病患的入口網站。 但這需要 hello Dynamics CRM Online 病患入口網站與 Salesforce toosend 約會記錄。 我們要求 toouse hello [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/)標準所有病患的記錄。
 
-此專案有兩大需求︰  
+hello 專案有兩個主要需求：  
 
-* 用來記錄從 Dynamics CRM Online 入口網站傳送過來之記錄的方法
-* 用來檢視工作流程中所發生之任何錯誤的方法
+* 方法 toolog 記錄傳送 hello 從 Dynamics CRM Online 入口網站
+* 方式 tooview hello 工作流程內所發生的任何錯誤
 
 > [!TIP]
-> 如需關於此專案的高階影片，請參閱[整合使用者群組 (英文)](http://www.integrationusergroup.com/logic-apps-support-error-handling/ "Integration User Group")。
+> 如需這個專案的高層級影片，請參閱[整合使用者群組](http://www.integrationusergroup.com/logic-apps-support-error-handling/ "整合使用者群組")。
 
-## <a name="how-we-solved-the-problem"></a>問題解決方式
+## <a name="how-we-solved-hello-problem"></a>我們如何解決 hello 問題
 
-我們選擇以 [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/ "Azure Cosmos DB") 做為記錄檔和錯誤記錄的存放庫 (Cosmos DB 會將記錄當做文件)。 由於 Azure Logic Apps 具有適用於所有回應的標準範本，因此我們不需要建立自訂結構描述。 我們可以建立 API 應用程式來**插入**及**查詢**錯誤和記錄檔記錄。 我們也可以為 API 應用程式中的每個項目定義結構描述。  
+我們之所以選擇[Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/ "Azure Cosmos DB")為 hello 記錄和錯誤記錄 （Cosmos DB 參照為文件 toorecords） 儲存機制。 因為 Azure 邏輯應用程式的標準範本的所有回應，我們沒有 toocreate 自訂結構描述。 我們無法建立 API 應用程式太**插入**和**查詢**錯誤和記錄檔記錄。 我們也可以 hello API 應用程式中每個定義結構描述。  
 
-另一個需求是要在特定日期之後清除記錄。 Cosmos DB 具有稱為[存留時間 (英文)](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "存留時間") (TTL) 的屬性，這可讓我們設定每一筆記錄或每一個集合的「存留時間」值。 此功能讓我們不需手動在 Cosmos DB 中刪除記錄。
+另一個需求是 toopurge 記錄在特定日期之後。 Cosmos DB 具有名[時間 tooLive](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "時間 tooLive") (TTL)，這允許我們 tooset**時間 tooLive**每個記錄或集合的值。 這項功能也會刪除 hello 需要 toomanually Cosmos DB 中的刪除記錄。
 
 > [!IMPORTANT]
-> 為了完成本教學課程，您必須建立一個 Cosmos DB 資料庫和兩個集合 (記錄和錯誤)。
+> toocomplete 本教學課程中，您需要 toocreate Cosmos DB 資料庫和兩個集合 （記錄和錯誤）。
 
-## <a name="create-the-logic-app"></a>建立邏輯應用程式
+## <a name="create-hello-logic-app"></a>建立 hello 邏輯應用程式
 
-第一個步驟是建立邏輯應用程式，並在邏輯應用程式設計工具中開啟該應用程式。 在此範例中，我們會使用父子邏輯應用程式。 假設我們已建立父項，而且將要建立一個子邏輯應用程式。
+hello 第一個步驟是 toocreate hello 邏輯應用程式並在邏輯應用程式的設計工具中開啟的 hello 應用程式。 在此範例中，我們會使用父子邏輯應用程式。 假設我們已經建立 hello 父代，而且即將 toocreate 一個子邏輯應用程式。
 
-由於我們將記錄來自 Dynamics CRM Online 的記錄，因此讓我們從最上層開始。 我們必須使用**要求**觸發程序，因為父邏輯應用程式會觸發這個子項。
+因為我們 toolog hello 記錄傳出 Dynamics CRM Online，讓我們開始在 hello 最上方。 我們必須使用**要求**觸發，因為 hello 父邏輯應用程式會觸發此子系。
 
 ### <a name="logic-app-trigger"></a>邏輯應用程式觸發程序
 
-我們使用**要求**觸發程序，如下列範例所示：
+我們使用**要求**觸發 hello 下列範例所示：
 
 ```` json
 "triggers": {
@@ -100,14 +100,14 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="steps"></a>步驟
 
-我們必須記錄來自 Dynamics CRM Online 入口網站的病患記錄來源 (要求)。
+我們必須從 hello Dynamics CRM Online 入口網站會記錄 hello 病患記錄 hello 的來源 （要求）。
 
 1. 我們必須從 Dynamics CRM Online 取得新的預約記錄。
 
-   來自 CRM 的觸發程序會提供我們 **CRM PatentId**、**記錄類型**、**新的或更新的記錄** (新增或更新布林值) 和 **SalesforceId**。 **SalesforceId** 可以是 null，因為它只會用於更新。
-   我們使用 CRM **PatientID** 和 [記錄類型] 來取得 CRM 記錄。
+   來自 CRM hello 觸發程序會將我們提供 hello **CRM PatentId**，**記錄類型**，**新增或更新記錄**(新增或更新的布林值)，和**SalesforceId**。 hello **SalesforceId**可以是 null，因為它只會用更新。
+   我們使用 hello CRM 取得 hello CRM 記錄**PatientID**和 hello**記錄類型**。
 
-2. 接下來，必須新增 DocumentDB API 應用程式 **InsertLogEntry** 作業，如在這裡的邏輯應用程式設計工具所示。
+2. 接下來，我們需要 tooadd 我們 DocumentDB API 的應用程式**InsertLogEntry**如下所示，在邏輯應用程式的設計工具中的作業。
 
    **插入記錄檔項目**
 
@@ -124,15 +124,15 @@ ms.lasthandoff: 07/11/2017
 ## <a name="logic-app-source-code"></a>邏輯應用程式原始程式碼
 
 > [!NOTE]
-> 以下僅是範例。 由於此教學課程是以目前在生產環境中的實作為基礎，因此，**來源節點**的值可能不會顯示與安排預約相關的屬性。 
+> hello 遵循範例是僅範例。 本教學課程根據現在在生產環境中實作，因為 hello 值**來源節點**可能不會顯示屬性的相關的 tooscheduling 約會。 > 
 
 ### <a name="logging"></a>記錄
 
-下列邏輯應用程式的程式碼範例示範如何處理記錄。
+hello 下列邏輯應用程式程式碼範例將示範如何 toohandle 記錄。
 
 #### <a name="log-entry"></a>記錄檔項目
 
-以下是用來插入記錄項目的邏輯應用程式原始程式碼。
+以下是 hello 邏輯應用程式原始碼來插入記錄項目。
 
 ``` json
 "InsertLogEntry": {
@@ -160,7 +160,7 @@ ms.lasthandoff: 07/11/2017
 
 #### <a name="log-request"></a>記錄檔要求
 
-以下是張貼至 API 應用程式的記錄要求訊息。
+以下是 hello 記錄的要求訊息公佈 toohello API 應用程式。
 
 ``` json
     {
@@ -180,7 +180,7 @@ ms.lasthandoff: 07/11/2017
 
 #### <a name="log-response"></a>記錄檔回應
 
-以下是來自 API 應用程式的記錄回應訊息。
+以下是從 hello API 應用程式的 hello 記錄回應訊息。
 
 ``` json
 {
@@ -214,15 +214,15 @@ ms.lasthandoff: 07/11/2017
 
 ```
 
-現在讓我們看看錯誤處理步驟。
+現在讓我們看看 hello 錯誤處理步驟。
 
 ### <a name="error-handling"></a>錯誤處理
 
-下列邏輯應用程式程式碼範例示範如何實作錯誤處理。
+hello 下列邏輯應用程式程式碼範例示範如何實作錯誤處理。
 
 #### <a name="create-error-record"></a>建立錯誤記錄
 
-以下是用來建立錯誤記錄的邏輯應用程式原始程式碼。
+以下是 hello 邏輯應用程式原始程式碼建立錯誤記錄。
 
 ``` json
 "actions": {
@@ -269,7 +269,7 @@ ms.lasthandoff: 07/11/2017
         "isError": true,
         "crmId": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
         "patientId": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
-        "message": "Salesforce failed to complete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
+        "message": "Salesforce failed toocomplete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
         "providerId": "",
         "severity": 4,
         "salesforceId": "",
@@ -307,7 +307,7 @@ ms.lasthandoff: 07/11/2017
         "action": "New_Patient",
         "salesforceId": "",
         "update": false,
-        "body": "CRM failed to complete task: Message: duplicate value found: CRM_HUB_ID__c duplicates value on record with id: 001U000001c83gK",
+        "body": "CRM failed toocomplete task: Message: duplicate value found: CRM_HUB_ID__c duplicates value on record with id: 001U000001c83gK",
         "source": "{/"Account_Class_vod__c/":/"PRAC/",/"Account_Status_MED__c/":/"I/",/"CRM_HUB_ID__c/":/"6b115f6d-a7ee-e511-80f5-3863bb2eb2d0/",/"Credentials_vod__c/":/"DO - Degree level is DO/",/"DTC_ID_MED__c/":/"/",/"Fax/":/"/",/"FirstName/":/"A/",/"Gender_vod__c/":/"/",/"IMS_ID__c/":/"/",/"LastName/":/"BAILEY/",/"MterID_mp__c/":/"/",/"Medicis_ID_MED__c/":/"851588/",/"Middle_vod__c/":/"/",/"NPI_vod__c/":/"/",/"PDRP_MED__c/":false,/"PersonDoNotCall/":false,/"PersonEmail/":/"/",/"PersonHasOptedOutOfEmail/":false,/"PersonHasOptedOutOfFax/":false,/"PersonMobilePhone/":/"/",/"Phone/":/"/",/"Practicing_Specialty__c/":/"FM - FAMILY MEDICINE/",/"Primary_City__c/":/"/",/"Primary_State__c/":/"/",/"Primary_Street_Line2__c/":/"/",/"Primary_Street__c/":/"/",/"Primary_Zip__c/":/"/",/"RecordTypeId/":/"012U0000000JaPWIA0/",/"Request_Date__c/":/"2016-06-10T22:31:55.9647467Z/",/"XXXXXXX/":/"/",/"Specialty_1_vod__c/":/"/",/"Suffix_vod__c/":/"/",/"Website/":/"/"}",
         "code": 400,
         "errors": null,
@@ -340,7 +340,7 @@ ms.lasthandoff: 07/11/2017
     },
     "body": {
         "status": 400,
-        "message": "Salesforce failed to complete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
+        "message": "Salesforce failed toocomplete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
         "source": "Salesforce.Common",
         "errors": []
     }
@@ -348,11 +348,11 @@ ms.lasthandoff: 07/11/2017
 
 ```
 
-### <a name="return-the-response-back-to-parent-logic-app"></a>將回應傳回父邏輯應用程式
+### <a name="return-hello-response-back-tooparent-logic-app"></a>傳回 hello 回應後 tooparent 邏輯應用程式
 
-取得回應之後，您可以將回應傳回父邏輯應用程式。
+您收到 hello 回應之後，您可以傳遞 hello 回應後 toohello 父邏輯應用程式。
 
-#### <a name="return-success-response-to-parent-logic-app"></a>將成功回應傳回給父邏輯應用程式
+#### <a name="return-success-response-tooparent-logic-app"></a>傳回成功回應 tooparent 邏輯應用程式
 
 ``` json
 "SuccessResponse": {
@@ -374,7 +374,7 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-#### <a name="return-error-response-to-parent-logic-app"></a>將錯誤回應傳回給父邏輯應用程式
+#### <a name="return-error-response-tooparent-logic-app"></a>傳回的錯誤回應 tooparent 邏輯應用程式
 
 ``` json
 "ErrorResponse": {
@@ -404,12 +404,12 @@ ms.lasthandoff: 07/11/2017
 
 ### <a name="error-management-portal"></a>錯誤管理入口網站
 
-若要檢視錯誤，您可以建立 MVC Web 應用程式，以顯示來自 Cosmos DB 的錯誤記錄。 目前的版本中包含**清單**、**詳細資料**、**編輯**和**刪除**作業。
+tooview hello 錯誤，您可以從 Cosmos DB 建立 MVC web 應用程式 toodisplay hello 錯誤記錄。 hello**清單**，**詳細資料**，**編輯**，和**刪除**hello 目前版本中包含的作業。
 
 > [!NOTE]
-> 編輯作業︰Cosmos DB 會取代整份文件。 **清單**和**詳細資料**檢視中所顯示的記錄只是範例。 而非實際的病患預約記錄。
+> 編輯作業： Cosmos DB 取代 hello 整份文件。 hello 記錄顯示 hello**清單**和**詳細**檢視是僅範例。 而非實際的病患預約記錄。
 
-以下是使用先前所述方法建立之 MVC 應用程式詳細資料的範例。
+以下是範例我們的 MVC 應用程式的詳細資料之前建立 hello 所述的方法。
 
 #### <a name="error-management-list"></a>錯誤管理清單
 ![錯誤清單](media/logic-apps-scenario-error-and-exception-handling/errorlist.png)
@@ -419,7 +419,7 @@ ms.lasthandoff: 07/11/2017
 
 ### <a name="log-management-portal"></a>記錄檔管理入口網站
 
-為了檢視記錄檔，我們還建立了 MVC Web 應用程式。 以下是使用先前所述方法建立之 MVC 應用程式詳細資料的範例。
+tooview hello 記錄檔，我們也建立 MVC web 應用程式。 以下是範例我們的 MVC 應用程式的詳細資料之前建立 hello 所述的方法。
 
 #### <a name="sample-log-detail-view"></a>範例記錄檔詳細資料檢視
 ![記錄檔詳細資料檢視](media/logic-apps-scenario-error-and-exception-handling/samplelogdetail.png)
@@ -434,14 +434,14 @@ ms.lasthandoff: 07/11/2017
 * **LogController** 會在 DocumentDB 集合中插入記錄檔記錄 (文件)。
 
 > [!TIP]
-> 這兩個控制器使用 `async Task<dynamic>` 作業，允許作業在執行階段解析，讓我們可以在作業的主體中建立 DocumentDB 結構描述。 
+> 兩個控制器使用`async Task<dynamic>`作業，因此我們可以建立，在執行階段，讓作業 tooresolve hello DocumentDB hello hello 作業主體中的結構描述。 
 > 
 
-DocumentDB 中的每個文件都必須具有唯一識別碼。 我們將會使用 `PatientId` ，並加入轉換為 Unix 時間戳記值 (雙精確度) 的時間戳記。 我們會將值截斷以移除小數值。
+DocumentDB 中的每個文件都必須具有唯一識別碼。 我們使用`PatientId`和加入的時間戳記轉換 tooa Unix 時間戳記值 (double)。 我們會截斷 hello 值 tooremove hello 小數的值。
 
-您可以[從 GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs)檢視我們的錯誤控制器 API 的原始程式碼。
+您可以檢視錯誤 controller API hello 原始程式碼[從 GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs)。
 
-我們使用下列語法，從邏輯應用程式呼叫 API：
+我們使用 hello，請使用下列語法來呼叫 hello API 從邏輯應用程式：
 
 ``` json
  "actions": {
@@ -474,17 +474,17 @@ DocumentDB 中的每個文件都必須具有唯一識別碼。 我們將會使�
  }
 ```
 
-上述程式碼範例的運算式會檢查 Create_NewPatientRecord 狀態是否為 **Failed**。
+hello 運算式在上述程式碼範例會檢查 hello *Create_NewPatientRecord*狀態**失敗**。
 
 ## <a name="summary"></a>摘要
 
 * 您可以在邏輯應用程式中輕鬆地實作記錄和錯誤處理。
-* 您可以使用 DocumentDB 做為記錄檔和錯誤記錄 (文件) 的儲存機制。
-* 您可以使用 MVC 建立入口網站，以顯示記錄檔和錯誤記錄。
+* 記錄和錯誤記錄 （文件），您可以為 hello 儲存機制使用 DocumentDB。
+* 您可以使用 MVC toocreate 入口 toodisplay 記錄和錯誤記錄。
 
 ### <a name="source-code"></a>原始程式碼
 
-Logic Apps 例外狀況管理 API 應用程式的原始程式碼可在此 [GitHub 儲存機制](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "邏輯應用程式例外狀況管理 API")觀賞此專案的高階影片。
+hello hello Logic Apps 例外狀況管理 API 的應用程式的原始碼位於這[GitHub 儲存機制](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "邏輯應用程式例外狀況管理 API")。
 
 ## <a name="next-steps"></a>後續步驟
 

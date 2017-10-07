@@ -1,5 +1,5 @@
 ---
-title: "動作項目型 Azure 微服務生命週期概觀 | Microsoft Docs"
+title: "動作項目為基礎的 Azure microservices 生命週期的 aaaOverview |Microsoft 文件"
 description: "說明 Service Fabric Reliable Actor 生命週期、記憶體回收，以及手動刪除動作項目與其狀態"
 services: service-fabric
 documentationcenter: .net
@@ -14,53 +14,53 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/13/2017
 ms.author: amanbha
-ms.openlocfilehash: 75b7b77a0bef2051599a4f61183109cfb2ffff3b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a7926e372449048f0a579c2c58573754a4a82363
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="actor-lifecycle-automatic-garbage-collection-and-manual-delete"></a>動作項目生命週期、自動記憶體回收，以及手動刪除
-第一次呼叫動作項目的方法時就會啟動動作項目。 如果有一段可設定的時間未使用動作項目，動作項目就會停用 (由動作項目執行階段進行記憶體回收)。 動作項目與其狀態也可以隨時進行手動刪除。
+啟動動作項目 hello tooany 其方法進行呼叫的第一次。 動作項目是已停用 （記憶體回收 hello 執行者執行階段所收集），如果它不是可設定的一段時間。 動作項目與其狀態也可以隨時進行手動刪除。
 
 ## <a name="actor-activation"></a>啟用動作項目
-啟用動作項目後，會發生下列情況︰
+啟動動作項目時，hello 會發生下列情況：
 
 * 當動作項目有呼叫卻尚未為使用中時，會建立新的動作項目。
-* 載入動作項目狀態 (如果正在維護狀態)
-* 會呼叫 `OnActivateAsync` (C#) 或 `onActivateAsync` (Java) 方法 (可在動作項目實作中被覆寫)。
-* 動作項目現在被視為作用中。
+* 如果維護狀態，已載入 hello 動作項目的狀態。
+* hello `OnActivateAsync` (C#) 或`onActivateAsync`(Java) （這會覆寫在 hello 動作項目實作） 會呼叫。
+* hello 動作項目會視為使用中。
 
 ## <a name="actor-deactivation"></a>停用動作項目
-停用動作項目後，會發生下列情況︰
+當停用動作項目時，hello 會發生下列情況：
 
-* 動作項目若一段時間未使用，便會從使用中動作項目資料表移除。
-* 會呼叫 `OnDeactivateAsync` (C#) 或 `onDeactivateAsync` (Java) 方法 (可在動作項目實作中被覆寫)。 這會清除動作項目的所有計時器。 您不應該從此方法呼叫動作項目作業 (例如狀態變更)。
+* 當動作項目不是一段時間時，它會從 hello 作用中的動作項目資料表中移除。
+* hello `OnDeactivateAsync` (C#) 或`onDeactivateAsync`(Java) （這會覆寫在 hello 動作項目實作） 會呼叫。 這會清除所有 hello 計時器 hello 動作項目。 您不應該從此方法呼叫動作項目作業 (例如狀態變更)。
 
 > [!TIP]
-> 網狀架構動作項目的執行階段會發出某些[與動作項目啟用和停用相關的事件](service-fabric-reliable-actors-diagnostics.md#list-of-events-and-performance-counters)。 這些項目對於診斷與效能監視很有幫助。
+> hello Fabric 動作項目執行階段發出某些[tooactor 啟用和停用相關事件](service-fabric-reliable-actors-diagnostics.md#list-of-events-and-performance-counters)。 這些項目對於診斷與效能監視很有幫助。
 >
 >
 
 ### <a name="actor-garbage-collection"></a>動作項目記憶體回收
-停用動作項目後，動作項目物件的參考會釋出，而且通常可由 Common Language Runtime (CLR) 或 Java 虛擬機器 (JVM) 記憶體回收行程進行記憶體回收。 記憶體回收只會清除動作項目物件；它 **不會** 移除動作項目的狀態管理員中儲存的狀態。 下次啟用動作項目時，會建立新的動作項目物件並還原其狀態。
+動作項目已停用時，釋放參考 toohello 動作項目物件，它可以進行記憶體回收通常由 hello common language runtime (CLR) 或 java 虛擬機器 (JVM) 記憶體回收行程。 廢棄項目收集只清除 hello 動作項目物件。它會**不**移除儲存在 hello 執行者狀態管理員的狀態。 hello 下一個時間 hello 執行者啟動、 建立新的動作項目物件，並還原其狀態。
 
-就停用和記憶體回收的用途而言，什麼算是「一直在使用中」？
+哪些算是"的使用 的 hello 目的是要停用和記憶體回收？
 
 * 一直收到呼叫
-* `IRemindable.ReceiveReminderAsync` 方法 (僅適用於動作項目使用提醒時)。
+* `IRemindable.ReceiveReminderAsync`所叫用 （僅適用於 hello 動作項目使用提醒） 方法
 
 > [!NOTE]
-> 如果動作項目使用計時器，且已叫用其計時器回撥，則 **不** 算是「一直使用中」。
+> 如果 hello 動作項目使用計時器，並叫用其計時器回呼，它會**不**計數，表示 「 正在使用 」。
 >
 >
 
-在進入停用的細節前，最重要的是定義下列詞彙：
+我們進入停用的 hello 詳細資料之前，它會是重要 toodefine hello 下列條款：
 
-* *掃描間隔*。 這是動作項目執行階段掃描其作用中動作項目資料表中，是否有動作項目可予以停用和進行記憶體回收的間隔。 預設值為 1 分鐘。
-* *閒置逾時*。 這是動作項目維持未使用 (閒置) 所需的時間長度，過此時間後即可停用和進行記憶體回收。 預設值為 60 分鐘。
+* *掃描間隔*。 這是在哪一個 hello 執行者執行階段會掃描其作用中的動作項目資料表可以停用的執行者 hello 間隔和記憶體回收。 這個 hello 預設值為 1 分鐘。
+* *閒置逾時*。 這是 hello 動作項目需要 tooremain 上未使用的時間量 （閒置） 之前可以停用和記憶體回收。 這個 hello 預設值是 60 分鐘的時間。
 
-通常不需要變更這些預設值。 不過，如有必要，可以在註冊[動作項目服務](service-fabric-reliable-actors-platform.md)時透過 `ActorServiceSettings` 變更這些間隔：
+一般而言，您不需要 toochange 這些預設值。 不過，如有必要，可以在註冊[動作項目服務](service-fabric-reliable-actors-platform.md)時透過 `ActorServiceSettings` 變更這些間隔：
 
 ```csharp
 public class Program
@@ -93,29 +93,29 @@ public class Program
     }
 }
 ```
-對於每個作用中動作項目，動作項目執行階段會持續追蹤動作項目已閒置 (亦即未使用) 的時間。 動作項目執行階段每隔 `ScanIntervalInSeconds` 就會檢查每個動作項目，查看其是否可進行記憶體回收，如果已閒置 `IdleTimeoutInSeconds`，就會將其回收。
+針對每個作用中動作項目 hello 動作項目執行階段會追蹤的 hello 已閒置 （也就是未使用） 的時間量。 hello 動作項目執行階段會檢查每個 hello 執行者的每個`ScanIntervalInSeconds`toosee 如果記憶體回收可以收集並收集它，如果已閒置`IdleTimeoutInSeconds`。
 
-只要使用動作項目，其閒置時間就會重設為 0。 在此之後，只有當動作項目再次閒置達 `IdleTimeoutInSeconds`時，才會將動作項目作為記憶體回收。 請回想一下，當動作項目介面方法或動作項目提醒回撥執行時，動作項目會視為已使用。 如果動作項目的計時器回撥執行時， **不會** 將動作項目視為已使用。
+使用動作項目時，每當它閒置的時間是重設 too0。 在此之後，hello 動作項目進行記憶體回收才再次持續閒置的`IdleTimeoutInSeconds`。 恢復動作項目會被視為 toohave 已使用如果執行者介面方法或執行者提醒回呼在執行。 執行者是**不**toohave 會被視為已執行其計時器回呼時使用。
 
-下圖顯示單一動作項目的生命週期來說明下列概念。
+hello 下列圖表顯示 hello 生命週期的單一動作項目 tooillustrate 這些概念。
 
 ![閒置時間的範例][1]
 
-範例將說明動作項目方法呼叫、提醒，以及此動作項目存留期之計時器的影響。 範例中有幾下幾點值得注意：
+hello 範例會顯示 hello 這個動作項目存留期上的動作項目方法呼叫，備忘提醒和計時器的 hello 影響。 hello 遵循有關 hello 範例的重點是值得一提的是：
 
-* ScanInterval 及 IdleTimeout 分別設為 5 和 10。 (單位並不重要，因為我們的目的只為了說明概念)。
-* 系統會依照掃描間隔為 5 的定義，在 T=0、5、10、15、20、25 時掃描是否有可作為記憶體回收的動作項目。
-* 定期計時器會在 T=4、8、12、16、20、24 時引發，並執行其回呼。 這不會影響動作項目的閒置時間。
-* 在 T=7 的動作項目方法呼叫會將閒置時間重設為 0，並延遲動作項目的記憶體回收。
-* 動作項目提醒回撥會在 T=14 執行，並進一步延遲動作項目的廢棄項目收集。
-* 在 T=25 的記憶體回收期間，動作項目的閒置時間最後會超過為 10 的閒置逾時，並會將動作項目作為記憶體回收。
+* ScanInterval 和 IdleTimeout too5 和 10 分別設定。 （單位不重要，因為我們的目的在於 tooillustrate hello 概念。）
+* 執行者所定義的 hello 掃描間隔為 5 toobe 記憶體回收會發生在 T = 0，5、 10、 15、 20、 25 的 hello 掃描。
+* 定期計時器會在 T=4、8、12、16、20、24 時引發，並執行其回呼。 它不會影響 hello 執行者的 hello 閒置時間。
+* 在 T = 7 的執行者方法呼叫 hello 閒置時間 too0 會重設，而延遲 hello hello 執行者的記憶體回收。
+* T = 14 在執行的動作項目提醒回撥，進一步延遲 hello hello 執行者的記憶體回收。
+* Hello 的記憶體回收掃描在 T = 25，期間 hello 執行者的閒置時間最後超過 hello 閒置逾時為 10，而且 hello 執行者記憶體回收。
 
-動作項目正在執行其中一個方法時，無論在執行該方法時花費了多久的時間，動作項目絕對不會進行記憶體回收。 如先前所述，執行動作項目介面方法和提醒回撥會將動作項目的閒置時間重設為 0，來防止廢棄項目收集。 執行計時器回撥不會將閒置時間重設為 0。 不過，計時器回撥完成執行之前，會延遲動作項目的廢棄項目收集。
+動作項目正在執行其中一個方法時，無論在執行該方法時花費了多久的時間，動作項目絕對不會進行記憶體回收。 如先前所述，動作項目介面方法和提醒回呼的 hello 執行以防止記憶體回收 hello 執行者的閒置時間 too0 重設。 hello 執行計時器回呼不重設 hello 閒置時間 too0。 不過，hello 執行者的 hello 回收被延遲至 hello 計時器回呼已完成執行為止。
 
 ## <a name="deleting-actors-and-their-state"></a>刪除動作項目與其狀態
-已停用動作項目的記憶體回收只會清除動作項目物件；但不會移除動作項目的狀態管理員中儲存的資料。 重新啟用動作項目後，會再次透過狀態管理員提供其資料。 在動作項目將資料儲存於狀態管理員後停用，而永遠不會重新啟用的情況下，可能需要清除其資料。
+記憶體回收的已停用動作項目只會清除 hello 動作項目物件，但不會移除儲存動作項目的狀態管理員中的資料。 重新啟動動作項目時，其資料再次變成可用 tooit 透過 hello 狀態管理員。 在其中執行者將資料儲存在狀態管理員和停用，但是永遠不會重新啟動的情況下，可能需要 tooclean 其資料。
 
-[動作項目服務](service-fabric-reliable-actors-platform.md) 提供了從遠端呼叫端刪除動作項目的函式︰
+hello [Actor 服務](service-fabric-reliable-actors-platform.md)提供函式用於從遠端呼叫端刪除動作項目：
 
 ```csharp
 ActorId actorToDelete = new ActorId(id);
@@ -134,7 +134,7 @@ ActorService myActorServiceProxy = ActorServiceProxy.create(
 myActorServiceProxy.deleteActorAsync(actorToDelete);
 ```
 
-根據動作項目目前是否作用中而定，刪除動作項目具有下列效果︰
+刪除動作項目具有下列效果根據 hello 動作項目在目前作用中的 hello:
 
 * **作用中動作項目**
   * 動作項目會從作用中動作項目清單中移除並且停用。
@@ -142,7 +142,7 @@ myActorServiceProxy.deleteActorAsync(actorToDelete);
 * **非作用中動作項目**
   * 其狀態會永久刪除。
 
-請注意，動作項目無法從其中一個動作項目方法呼叫刪除本身，因為在動作項目呼叫內容中執行動作項目時無法刪除該動作項目，而執行階段已取得動作項目呼叫的鎖定以強制執行單一執行緒存取。
+請注意，呼叫動作項目無法刪除本身的其中一個動作項目方法，因為 hello 動作項目無法刪除執行中的 hello 執行階段已取得鎖定 hello 動作項目呼叫 tooenforce 單一執行緒的存取動作項目呼叫內容中時。
 
 ## <a name="next-steps"></a>後續步驟
 * [動作項目計時器和提醒](service-fabric-reliable-actors-timers-reminders.md)

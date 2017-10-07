@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement Android SDK 的進階報告選項"
-description: "描述如何為 Azure Mobile Engagement Android SDK 進行進階報告以擷取分析"
+title: "aaaAdvanced 報告 Azure Mobile Engagement Android SDK 選項"
+description: "描述如何 toodo 進階報告 toocapture 分析 Azure Mobile Engagement Android SDK"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/10/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: 2a1445afa2c2fca1a31ad9c012b9c8a917ebf65c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c8f4ea36c54715f4e09fd43c96132c15019a71b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advanced-reporting-with-engagement-on-android"></a>Android 上使用 Engagement 的進階報告
 > [!div class="op_single_selector"]
@@ -29,28 +29,28 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-本主題說明 Android 應用程式中的其他報告案例。 您可以將這些選項套用至 [快速入門](mobile-engagement-android-get-started.md) 教學課程中建立的應用程式。
+本主題說明 Android 應用程式中的其他報告案例。 您可以套用這些選項的 toohello 應用程式建立 hello[入門](mobile-engagement-android-get-started.md)教學課程。
 
 ## <a name="prerequisites"></a>必要條件
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-android-prereqs.md)]
 
-您完成的教學課程相當直接明瞭，但您還有一些進階選項可選擇。
+您已完成的 hello 教學課程刻意直接和簡單，但屬於進階的選項，您可以選擇。
 
 ## <a name="modifying-your-activity-classes"></a>修改 `Activity` 類別
-在[快速入門教學課程](mobile-engagement-android-get-started.md)中，您只需要讓 `*Activity` 子類別繼承對應的 `Engagement*Activity` 類別即可。 例如，如果您的舊版活動延伸 `ListActivity`，可以將它延伸 `EngagementListActivity`。
+在 hello[快速入門教學課程](mobile-engagement-android-get-started.md)，只 toodo 已 toomake 您`*Activity`子類別繼承自 hello 對應`Engagement*Activity`類別。 例如，如果您的舊版活動延伸 `ListActivity`，可以將它延伸 `EngagementListActivity`。
 
 > [!IMPORTANT]
-> 使用 `EngagementListActivity` 或 `EngagementExpandableListActivity` 時，務必先呼叫 `requestWindowFeature(...);` 再呼叫 `super.onCreate(...);`，否則會發生當機。
+> 當使用`EngagementListActivity`或`EngagementExpandableListActivity`，請確定任何呼叫太`requestWindowFeature(...);`太進行 hello 呼叫之前`super.onCreate(...);`，否則會發生損毀。
 > 
 > 
 
-您可以在 `src` 資料夾中找到這些類別，並將其複製到您的專案。 這些類別也會顯示在 **JavaDoc** 中。
+您可以在 hello 找到這些類別`src`資料夾，並可以將其複製到您的專案。 hello 類別中也會有 hello **JavaDoc**。
 
 ## <a name="alternate-method-call-startactivity-and-endactivity-manually"></a>替代方法：手動呼叫 `startActivity()` 和 `endActivity()`
-如果您無法或不想多載 `Activity` 類別，可以改為直接呼叫 `EngagementAgent` 的方式來開始和結束您的活動。
+如果您無法或不想 toooverload 您`Activity`類別，您可以改為開始和結束您的活動藉由呼叫 hello`EngagementAgent`的直接的方法。
 
 > [!IMPORTANT]
-> Android SDK 絕不會呼叫 `endActivity()` 方法，即使在關閉應用程式後也不會呼叫 (在 Android 上，應用程式永遠不會關閉)。 因此，「強烈」建議在您「所有」活動的 `onResume` 回呼中呼叫 `startActivity()` 方法，以及在您「所有」活動的 `onPause()` 回呼中呼叫 `endActivity()` 方法。 這是確保不會遺漏工作階段的唯一方法。 如果遺漏了工作階段，Engagement 服務永遠不會從 Engagement 後端中斷連線 (因為只要工作階段處於暫止狀態，服務就會保持連線)。
+> hello Android SDK 從未呼叫 hello`endActivity()`方法，即使關閉 hello 應用程式 （在 Android 上，應用程式會永遠不會關閉）。 因此，它是*高*建議 toocall hello `startActivity()` hello 中的方法`onResume`回呼的*所有*程式活動與 hello `endActivity()` hello 中的方法`onPause()`回呼的*所有*程式活動。 這是 hello 唯一方式 toobe 確定不會遺漏工作階段。 如果工作階段外洩，hello Engagement 服務永遠不會中斷 hello Engagement 後端 （因為 hello 服務仍會保持連接，只要工作階段已暫止）。
 > 
 > 
 
@@ -62,7 +62,7 @@ ms.lasthandoff: 07/11/2017
       protected void onResume()
       {
         super.onResume();
-        String activityNameOnEngagement = EngagementAgentUtils.buildEngagementActivityName(getClass()); // Uses short class name and removes "Activity" at the end.
+        String activityNameOnEngagement = EngagementAgentUtils.buildEngagementActivityName(getClass()); // Uses short class name and removes "Activity" at hello end.
         EngagementAgent.getInstance(this).startActivity(this, activityNameOnEngagement, null);
       }
 
@@ -74,12 +74,12 @@ ms.lasthandoff: 07/11/2017
       }
     }
 
-這個範例類似於 `EngagementActivity` 類別及其變體，原始程式碼位於 `src` 資料夾中。
+這個範例是類似 toohello`EngagementActivity`類別與變種，提供其原始程式碼中 hello`src`資料夾。
 
 ## <a name="using-applicationoncreate"></a>使用 Application.onCreate()
-您放置在 `Application.onCreate()` 和其他應用程式回呼中的程式碼，會針對您所有應用程式的處理程序而執行，包括 Engagement 服務。 可能會產生不必要的副作用，例如 Engagement 處理程序中有不必要的記憶體配置和執行緒，或重複的廣播接收器或服務。
+您將放置在任何程式碼`Application.onCreate()`和其他應用程式中執行所有應用程式的程序，包括 hello Engagement 服務回呼。 它可能會不必要的副作用，例如不必要的記憶體配置和 hello Engagement 的處理序中的執行緒或重複廣播接收器或服務。
 
-如果覆寫 `Application.onCreate()`，建議在 `Application.onCreate()` 函式的開頭加入下列程式碼片段：
+如果您覆寫`Application.onCreate()`，我們建議您加入下列程式碼片段在 hello 開頭的 hello 您`Application.onCreate()`函式：
 
      public void onCreate()
      {
@@ -89,17 +89,17 @@ ms.lasthandoff: 07/11/2017
        ... Your code...
      }
 
-您可以對 `Application.onTerminate()`、`Application.onLowMemory()` 和 `Application.onConfigurationChanged(...)` 執行相同的動作。
+您可以 hello 相同的動作，如`Application.onTerminate()`， `Application.onLowMemory()`，和`Application.onConfigurationChanged(...)`。
 
-您也可以不延伸 `Application`，改為延伸 `EngagementApplication`：回呼 `Application.onCreate()` 會進行處理程序檢查，並在目前的處理程序不是裝載 Engagement 服務的處理程序時才會呼叫 `Application.onApplicationProcessCreate()`，相同規則也適用於其他回呼。
+您也可以擴充`EngagementApplication`而不是擴充`Application`: hello 回呼`Application.onCreate()`程序的核取並呼叫沒有 hello`Application.onApplicationProcessCreate()`僅 hello 目前處理序是否不 hello 一個裝載 hello Engagement 服務，hello 適用相同的規則hello 其他回呼。
 
-## <a name="tags-in-the-androidmanifestxml-file"></a>AndroidManifest.xml 檔案中的標籤
-在 AndroidManifest.xml 檔案中的 service 標籤中， `android:label` 屬性可讓您選擇 Engagement 服務的名稱，此名稱會出現在使用者電話的「執行中服務」畫面中。 建議將此屬性設定為 `"<Your application name>Service"` (例如 `"AcmeFunGameService"`)。
+## <a name="tags-in-hello-androidmanifestxml-file"></a>Hello AndroidManifest.xml 檔中的標記
+在 hello AndroidManifest.xml 檔中的 hello 服務標記，hello`android:label`屬性可讓您的行動服務的 hello toochoose hello 名稱出現 tooend 使用者在他們的電話號碼 hello 」 執行的服務 」 畫面中。 我們建議將此屬性設定太`"<Your application name>Service"`(例如， `"AcmeFunGameService"`)。
 
-指定 `android:process` 屬性可確保 Engagement 服務在本身的處理程序中執行 (在與應用程式相同的處理程序中執行 Engagement，可能會造成主要/UI 執行緒回應速度較慢)。
+指定 hello`android:process`屬性可確保該 hello Engagement 服務執行其自己的處理程序 （在相同的處理序當做您的應用程式會讓您的主要/UI 執行緒可能較不回應 hello 執行 Engagement）。
 
 ## <a name="building-with-proguard"></a>使用 ProGuard 建置
-如果您使用 ProGuard 建立應用程式封裝，您需要保留一些類別。 您可以使用下列組態程式碼片段：
+如果您建立使用 ProGuard 應用程式套件，您需要 tookeep 某些類別。 您可以使用下列組態程式碼片段的 hello:
 
     -keep public class * extends android.os.IInterface
     -keep class com.microsoft.azure.engagement.reach.activity.EngagementWebAnnouncementActivity$EngagementReachContentJS {

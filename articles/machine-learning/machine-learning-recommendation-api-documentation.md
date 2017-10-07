@@ -1,6 +1,6 @@
 ---
-title: "Machine Learning 建議 API 文件 | Microsoft Docs"
-description: "Microsoft Azure Marketplace 中提供適用於建議引擎的 Azure Machine Learning 建議 API 文件。"
+title: "aaaMachine 學習建議 API 文件 |Microsoft 文件"
+description: "建議引擎 hello Microsoft Azure Marketplace 中可用的 azure 機器學習建議 API 文件。"
 services: machine-learning
 documentationcenter: 
 author: LuisCabrer
@@ -16,17 +16,17 @@ ms.date: 03/31/2017
 ms.author: LuisCa
 ROBOTS: NOINDEX
 redirect_url: machine-learning-datamarket-deprecation
-redirect_document_id: TRUE
-ms.openlocfilehash: 1fba64d78d779344e2895b0d54419186b7584865
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: d1cec228bf23870c05c8ab8df2779b0c3c65b06d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-machine-learning-recommendations-api-documentation"></a>Azure Machine Learning 建議 API 文件
 > [!NOTE]
-> 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。 Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。 它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。
-> 深入了解 [移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
+> 您應該開始使用 hello 建議 API 認知服務，而不此版本。 hello 建議認知服務將會取代此服務，並將那里開發所有 hello 新功能。 它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。
+> 深入了解[移轉 toohello 新認知的服務](http://aka.ms/recomigrate)
 > 
 > 
 
@@ -35,58 +35,58 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="1-general-overview"></a>1.一般概觀
-本文件是 API 參考。 您應該從＜Azure Machine Learning 建議 – 快速入門＞文件開始。
+本文件是 API 參考。 您應該開始與 hello 「 Azure 機器學習建議-快速啟動 」 文件。
 
-Azure Machine Learning 建議 API 可分成下列邏輯群組：
+hello Azure 機器學習建議 API 可以分成下列邏輯群組的 hello:
 
 * <ins>限制</ins> - 建議 API 限制。
 * <ins>一般資訊</ins> - 驗證、服務 URI 和版本控制的相關資訊。
-* <ins>模型基本操作</ins> - 可讓您對模型執行基本操作 (例如建立、更新及刪除模型) 的 API。
-* <ins>模型進階操作</ins> - 可讓您深入了解模型相關進階資料的 API。
-* <ins>模型商務規則</ins> - 可讓您管理模型建議結果之相關商業規則的 API。
-* <ins>目錄</ins> - 可讓您對模型目錄執行基本操作的 API。 目錄包含使用狀況資料項目的相關中繼資料資訊。
-* <ins>功能</ins> - 可讓您深入了解目錄中的項目，以及如何使用這項資訊來建立更佳建議的 API。
-* <ins>使用狀況資料</ins> - 可讓您對模型使用狀況資料執行基本操作的 API。 基本格式的使用狀況資料由資料列組成，這些資料列包含成對的 &#60;userId&#62;,&#60;itemId&#62;。
-* <ins>組建</ins> - 能夠讓您觸發模型組建並執行與此組建相關之基本操作的 API。 您可以在獲得有價值的使用狀況資料之後，觸發模型組建。
-* <ins>建議</ins> - 模型組建結束之後，可讓您取用建議的 API。
-* <ins>使用者資料</ins> - 可讓您擷取使用者使用方式資料之相關資訊的 API。
-* <ins>通知</ins> - 可讓您接收與 API 操作相關之問題通知的 API。 (例如，您透過資料擷取回報使用量資料，而大部分的事件處理都失敗了。 這將會引發錯誤通知。)
+* <ins>模型 Basic</ins> -Api 可讓您在模型上的 toodo hello 基本作業 （例如建立、 更新和刪除模型）。
+* <ins>模型進階</ins>-tooget 進階資料洞察能力 hello 模型可讓您的應用程式開發介面。
+* <ins>建立商務規則的模型</ins>-toomanage 商務規則 hello 模型建議結果可讓您的應用程式開發介面。
+* <ins>目錄</ins>-toodo 基本作業模型類別目錄可讓您的應用程式開發介面。 類別目錄含有 hello hello 使用量資料的項目上的中繼資料資訊。
+* <ins>功能</ins>-Api，可讓項目上的 tooget insights 入 hello 類別目錄以及 toouse 此資訊 toobuild 更好的建議。
+* <ins>使用量資料</ins>-Api 可讓您 toodo hello 模型使用方式資料的基本作業。 Hello 基本表單中的使用量資料是由組 & #60; userId & #62; 包含的資料列所組成，& #60; itemId & #62;。
+* <ins>建置</ins>-Api，可讓您 tootrigger 模型建置並執行基本作業的相關的 toothis 建置。 您可以在獲得有價值的使用狀況資料之後，觸發模型組建。
+* <ins>建議</ins>-Api 可讓您 tooconsume 建議模型的 hello 組建結束之後。
+* <ins>使用者資料</ins>-toofetch hello 使用者使用量資料的資訊可讓您的應用程式開發介面。
+* <ins>通知</ins>-Api 可讓您在問題 tooreceive 通知相關 tooyour API 作業。 （例如，您要回報透過資料擷取和大部分的失敗處理 hello 事件的使用量資料。 這將會引發錯誤通知。)
 
 ## <a name="2-limitations"></a>2.限制
-* 每個訂用帳戶的模型數上限是 10。
-* 每個模型的組建數上限是 20。
-* 一個目錄可以保留的項目數上限是 100,000。
-* 保留的使用點數上限是 ~5,000,000。 如果將上傳或回報新的點，就會將最舊的點刪除。
-* POST 中可以傳送的資料大小上限 (例如：匯入目錄資料、匯入使用資料) 是 200 MB。
-* 取得建議時可以要求的項目數目上限為 150 個。
+* hello 的模型，每個訂用帳戶數目上限為 10。
+* hello 的每個模型的組建數目上限為 20。
+* hello 類別目錄可以保存的項目數目上限為 100000。
+* hello 會保留的使用方式點數目上限是 ~ 5,000,000。 如果要上傳新的或報告，將會刪除最舊的 hello。
+* hello 可以傳送 POST （例如匯入類別目錄資料，匯入使用量資料） 中的資料大小上限為 200 MB。
+* hello 取得建議可以要求的項目數目上限為 150。
 
 ## <a name="3-apis---general-information"></a>3.API – 一般資訊
 ### <a name="31-authentication"></a>3.1. 驗證
-請遵循與驗證相關的 Microsoft Azure Marketplace 指導方針。 Marketplace 可支援基本或 OAuth 驗證方法。
+請遵循 hello Microsoft Azure Marketplace 的指導方針，驗證。 hello marketplace 支援任一種 hello 基本或 OAuth 驗證方法。
 
 ### <a name="32-service-uri"></a>3.2. 服務 URI
-Azure Machine Learning 建議 API 的服務根 URI 在 [這裡。](https://api.datamarket.azure.com/amla/recommendations/v3/)
+hello Azure 機器學習建議 Api 的 hello 服務根目錄 URI 是[這裡。](https://api.datamarket.azure.com/amla/recommendations/v3/)
 
-完整服務 URI 是使用 OData 規格的元素來表示。  
+hello 完整服務 URI 表示使用 hello OData 規格的項目。  
 
 ### <a name="33-api-version"></a>3.3. API 版本
-每個 API 呼叫最後會有名為 apiVersion 的查詢參數 (應設為 1.0)。
+每個 API 呼叫會有 hello 結尾呼叫應該設定 too1.0 的 api 版本查詢參數。
 
 ### <a name="34-ids-are-case-sensitive"></a>3.4. 識別碼會區分大小寫
-任何 API 所傳回的識別碼都會區分大小寫，且在後續 API 呼叫中做為參數傳遞時，也應該如此使用。 例如，模型識別碼和目錄識別碼都會區分大小寫。
+任何 hello Api，所傳回的識別碼會區分大小寫和後續的 API 呼叫中當做參數傳遞時應該如此使用。 例如，模型識別碼和目錄識別碼都會區分大小寫。
 
 ## <a name="4-recommendations-quality-and-cold-items"></a>4.建議品質和冷項目
 ### <a name="41-recommendation-quality"></a>4.1. 建議品質
-建立建議模型通常足以允許系統提供建議。 不過，建議品質取決於處理的使用量以及目錄的涵蓋範圍。 例如，如果您有許多冷項目 (沒有高使用量的項目)，系統很難提供建議給這類項目，或使用這類項目做為建議項目。 為了克服冷項目的問題，系統允許使用項目的中繼資料增強建議。 中繼資料可稱為功能。 典型的功能是書籍的作者或電影的演員。 功能是透過目錄，以索引鍵/值字串的格式提供。 若需目錄檔案的完整格式，請參閱 [匯入目錄區段](#81-import-catalog-data)。 
+建立建議模型通常是足夠 tooallow hello 系統 tooprovide 建議。 不過，建議的品質而異，根據處理 hello 使用量 hello hello 類別目錄的涵蓋範圍。 例如 hello 系統如果您有許多的陌生項目 （而不重要的使用方式的項目），必須提供的建議項目，或使用這類項目與建議的一個問題。 順序 tooovercome hello 陌生的項目問題，請在 hello 系統會允許 hello 使用 hello 項目 tooenhance hello 建議的中繼資料。 此中繼資料是參考的 tooas 功能。 典型的功能是書籍的作者或電影的演員。 功能是透過 hello 類別目錄的索引鍵/值字串 hello 形式提供。 Hello hello 類別目錄檔案的完整格式，請參閱 toohello[匯入類別目錄區段](#81-import-catalog-data)。 
 
 ### <a name="42-rank-build"></a>4.2. 排名組建
-功能可增強建議模型，但若要這樣做需要使用有意義的功能。 為了這個目的，引入新的組建 - 排名組建。 此組建會對功能的效益進行排名。 有意義的功能為排名分數 2 以上的功能。
-了解哪些是有意義的功能之後，會利用有意義功能的清單 (或子清單) 觸發建議組建。 這樣就可以使用這些功能同時增強暖項目和冷項目。 若要將它們用於暖項目，應設定 `UseFeatureInModel` 組建參數。 若要將它們用於冷項目，應啟用 `AllowColdItemPlacement` 組建參數。
-注意：不可能啟用 `AllowColdItemPlacement` 而不啟用 `UseFeatureInModel`。
+功能可以加強 hello 的建議模型，但是 toodo 還需要 hello 使用有意義的功能。 為了這個目的，引入新的組建 - 排名組建。 此組建將排名 hello 實用性的功能。 有意義的功能為排名分數 2 以上的功能。
+了解哪些 hello 功能有意義，觸發建議組建 hello 清單 （或子清單） 的有意義的功能。 這些功能的 hello 增強暖項目和陌生項目可能 toouse 它。 在順序 toouse 暖項目，它們 hello`UseFeatureInModel`組建參數應該設定。 陌生項目順序 toouse 功能，在 hello`AllowColdItemPlacement`應啟用組建參數。
+附註： 您不可能 tooenable`AllowColdItemPlacement`不啟用`UseFeatureInModel`。
 
 ### <a name="43-recommendation-reasoning"></a>4.3. 建議推論
-建議推論是功能使用方式的另一個層面。 的確，Azure Machine Learning 建議引擎可以使用功能來提供建議說明 (也稱為 推理)，讓建議取用者對建議項目產生更多信心。
-若要啟用推論，應在要求建議組建之前設定 `AllowFeatureCorrelation` 和 `ReasoningFeatureList` 參數。
+建議推論是功能使用方式的另一個層面。 事實上，hello Azure 機器學習建議引擎就可以使用功能 tooprovide 建議說明 （也稱為 推理），在 hello 開頭 toomore 信心建議 hello 建議取用者的項目。
+tooenable 推理，hello`AllowFeatureCorrelation`和`ReasoningFeatureList`參數應該在安裝程式先前 toorequesting 建議組建。
 
 ## <a name="5-model-basic"></a>5.模型基本操作
 ### <a name="51-create-model"></a>5.1. 建立模型
@@ -107,7 +107,7 @@ Azure Machine Learning 建議 API 的服務根 URI 在 [這裡。](https://api.d
 
 HTTP 狀態碼：200
 
-* `feed/entry/content/properties/id` – 包含模型識別碼。
+* `feed/entry/content/properties/id`-包含 hello 模型識別碼。
   **注意**：模型識別碼會區分大小寫。
 
 OData XML
@@ -149,7 +149,7 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| id |模型的唯一識別碼 (區分大小寫) |
+| id |Hello 模型 （區分大小寫） 的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -158,15 +158,15 @@ OData XML
 
 HTTP 狀態碼：200
 
-在下列項目之下，您可以找到模型資料：
+您可以找到下列項目 hello hello 模型資料：
 
 * `feed/entry/content/properties/Id` - 模型的唯一識別碼。
 * `feed/entry/content/properties/Name` - 模型名稱。
 * `feed/entry/content/properties/Date` - 模型建立日期。
-* `feed/entry/content/properties/Status` - 模型狀態。 下列其中之一：
+* `feed/entry/content/properties/Status` - 模型狀態。 下列其中一種 hello:
   * Created - 模型已建立且不包含目錄和使用方式。
   * ReadyForBuild - 模型已建立且包含目錄和使用狀況。
-* `feed/entry/content/properties/HasActiveBuild` - 表示模型是否已成功建置。
+* `feed/entry/content/properties/HasActiveBuild`-代表 hello 模型已成功建立。
 * `feed/entry/content/properties/BuildId` - 模型的作用中組建識別碼。
 * `feed/entry/content/properties/Mpr` - 模型的平均值百分位數排名 (MPR - 如需詳細資訊，請參閱 ModelInsight)。
 * `feed/entry/content/properties/UserName` - 模型的內部使用者名稱。
@@ -205,7 +205,7 @@ OData XML
     </feed>
 
 ### <a name="53----get-all-models"></a>5.3.    取得所有模型
-擷取目前使用者的所有模型。
+擷取 hello 目前使用者的所有機型。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -224,10 +224,10 @@ HTTP 狀態碼：200
 * `feed/entry/content/properties/Id` - 模型的唯一識別碼。
 * `feed/entry/content/properties/Name` - 模型名稱。
 * `feed/entry/content/properties/Date` - 模型建立日期。
-* `feed/entry/content/properties/Status` - 模型狀態。 下列其中之一：
+* `feed/entry/content/properties/Status` - 模型狀態。 下列其中一種 hello:
   * Created - 模型已建立且不包含目錄和使用方式。
   * ReadyForBuild - 模型已建立且包含目錄和使用狀況。
-* `feed/entry/content/properties/HasActiveBuild` - 表示模型是否已成功建置。
+* `feed/entry/content/properties/HasActiveBuild`-代表 hello 模型已成功建立。
 * `feed/entry/content/properties/BuildId` - 模型的作用中組建識別碼。
 * `feed/entry/content/properties/Mpr` - 模型 MPR (如需詳細資訊，請參閱 ModelInsight)。
 * `feed/entry/content/properties/UserName` - 模型的內部使用者名稱。
@@ -270,9 +270,9 @@ OData XML
     </feed>
 
 ### <a name="54----update-model"></a>5.4.    更新模型
-您可以更新模型描述或作用中組建識別碼。<br>
-<ins>作用中組建識別碼</ins> - 每個模型的每個組建都有組建識別碼。 作用中組建識別碼是每個新模型的第一個成功組建。 一旦您有作用中組建識別碼，而且您執行相同模型的其他組建，您必須是需要將它明確設為預設組建識別碼。 當您取用建議時，如果您未指定想要使用的組建識別碼，則會自動使用預設值。<br>
-此機制可讓您在生產環境中有建議模型時建置新模型，並先加以測試，再將其提升至生產環境。
+您可以更新 hello 模型描述或 hello 作用中的組建識別碼。<br>
+<ins>作用中組建識別碼</ins> - 每個模型的每個組建都有組建識別碼。 hello 作用中的組建識別碼是模型的 hello 第一個成功的組建的每個新。 當您有使用中的組建 ID，而且請勿 hello 的其他組建相同的模型，您需要 tooexplicitly hello 預設組建識別碼如果您想要將它設定。 當您使用的建議事項，如果未指定您想 toouse，將會自動使用其中一種 hello 預設 hello 組建 ID。<br>
+這項機制可讓您的生產環境-toobuild 新模型中有推薦模型並測試它們，才能將它們提升 tooproduction 之後。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -280,10 +280,10 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| id |模型的唯一識別碼 (區分大小寫) |
+| id |Hello 模型 （區分大小寫） 的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
-| 要求本文 |`<ModelUpdateParams xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`<br>`<Description>New Description</Description>`<br>`<ActiveBuildId>-1</ActiveBuildId>`<br>` </ModelUpdateParams>`<br><br>請注意，XML 標籤說明和 ActiveBuildId 是選擇性的。 如果您不想設定 Description 或 ActiveBuildId，請移除整個標記。 |
+| 要求本文 |`<ModelUpdateParams xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`<br>`<Description>New Description</Description>`<br>`<ActiveBuildId>-1</ActiveBuildId>`<br>` </ModelUpdateParams>`<br><br>請注意 hello XML 標記的描述，並將 ActiveBuildId 是選擇性的。 如果您不想 tooset 描述或 ActiveBuildId，移除 hello 整個標記。 |
 
 **回應**：
 
@@ -298,7 +298,7 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| id |模型的唯一識別碼 (區分大小寫) |
+| id |Hello 模型 （區分大小寫） 的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -331,7 +331,7 @@ OData XML
 
 ## <a name="6-model-advanced"></a>6.模型進階操作
 ### <a name="61----model-data-insight"></a>6.1.    模型資料深入了解
-傳回建置此模型時所用之使用狀況資料的相關統計資料。
+傳回建立此模型中的 hello 使用量資料的統計資料。
 
 僅適用於建議組建。
 
@@ -341,7 +341,7 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -350,25 +350,25 @@ OData XML
 
 HTTP 狀態碼：200
 
-傳回資料做為屬性的集合。
+hello 資料是以屬性的集合傳回。
 
-* `feed/entry/id/content/properties/key` - 保留屬性名稱。
-* `feed/entry/id/content/properties/value` - 保留屬性值。
+* `feed/entry/id/content/properties/key`-保存 hello 屬性名稱。
+* `feed/entry/id/content/properties/value`-保留 hello 屬性值。
 
-下表描述每個索引鍵表示的值。
+hello 下表描述每個索引鍵所代表的 hello 值。
 
-| 金鑰 | 說明 |
+| Key | 說明 |
 |:--- |:--- |
 | AvgItemLength |每個項目不同使用者的平均數目。 |
 | AvgUserLength |每個使用者不同項目的平均數目。 |
 | DensificationNumberOfItems |剪除不能模型化的項目之後的項目數目。 |
 | DensificationNumberOfUsers |剪除不能模型化的使用者和項目之後的始用點數目。 |
 | DensificationNumberOfRecords |剪除不能模型化的使用者和項目之後的始用點數目。 |
-| MaxItemLength |最受歡迎項目的不同使用者數目。 |
+| MaxItemLength |相異使用者 hello 熱門項目數目。 |
 | MaxUserLength |使用者之不同項目的最大數目。 |
 | MinItemLength |項目之不同使用者的最大數目。 |
 | MinUserLength |使用者之不同項目的最小數目。 |
-| RawNumberOfItems |使用方式檔案中的項目數目。 |
+| RawNumberOfItems |Hello 使用量檔案中的項目數目。 |
 | RawNumberOfUsers |任何剪除動作之前的使用點數目。 |
 | RawNumberOfRecords |任何剪除動作之前的使用點數目。 |
 | SamplingNumberOfItems |N/A |
@@ -567,7 +567,7 @@ OData XML
     </feed>
 
 ### <a name="62----model-insight"></a>6.2.    模型深入了解
-傳回作用中組建或 (如果有) 特定組建上的模型深入了解。
+傳回的深入了解模型 hello active 組建 （如果有） 或在特定的組建。
 
 僅適用於建議組建。
 
@@ -577,7 +577,7 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
 | buildId |選擇性 – 識別成功組建的編號。 |
 | apiVersion |1.0 |
 |  | |
@@ -587,18 +587,18 @@ OData XML
 
 HTTP 狀態碼：200
 
-傳回資料做為屬性的集合。
+hello 資料是以屬性的集合傳回。
 
 * `feed/entry/id/content/properties/key`
 * `feed/entry/id/content/properties/value`
 
-下表描述每個索引鍵表示的值。
+hello 下表描述每個索引鍵所代表的 hello 值。
 
-| 金鑰 | 說明 |
+| Key | 說明 |
 |:--- |:--- |
-| CatalogCoverage |目錄的哪個部分可以利用使用模式進行模型化。 其餘的項目都需要以內容為基礎的功能。 |
-| Mpr |模型的平均值百分位數排名。 越低越好。 |
-| NumberOfDimensions |矩陣分解演算法所使用的維度數目。 |
+| CatalogCoverage |Hello 類別目錄的哪個部分可以與使用模式和模型化。 hello rest 的 hello 項目必須以內容為基礎的功能。 |
+| Mpr |表示 hello 模型的百分位數等級。 越低越好。 |
+| NumberOfDimensions |Hello 矩陣 factorization 演算法使用的維度數目。 |
 
 OData XML
 
@@ -648,7 +648,7 @@ OData XML
     </feed>
 
 ### <a name="63----get-model-sample"></a>6.3.    取得模型範例
-取得建議模型的範例。
+取得 hello 建議模型的範例。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -656,7 +656,7 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -684,115 +684,115 @@ Level 1
     fb8cf7a6-8719-46ee-97d4-92f931d77a3a, Smoke and Mirrors: Short Fictions and Illusions Rating: 0.5188
     8f5fe006-79e4-4679-816b-950989d1db4b, A Place I've Never Been (Contemporary American Fiction) Rating: 0.5156
     d8db4583-cc0f-49ce-bc95-b7fa3491623f, Happiness: A Novel Rating: 0.5156
-50471eec-9aeb-4900-84d7-21567ab18546, If the Buddha Dated: A Handbook for Finding Love on a Spiritual Path
-    cfe922a1-7ca0-4f8d-ad9d-b7cc87bfe0ef, Divine Secrets of the Ya-Ya Sisterhood: A Novel Rating: 0.5266
-    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, The Poisonwood Bible: A Novel Rating: 0.5252
+50471eec-9aeb-4900-84d7-21567ab18546, If hello Buddha Dated: A Handbook for Finding Love on a Spiritual Path
+    cfe922a1-7ca0-4f8d-ad9d-b7cc87bfe0ef, Divine Secrets of hello Ya-Ya Sisterhood: A Novel Rating: 0.5266
+    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, hello Poisonwood Bible: A Novel Rating: 0.5252
     973f8cbd-0846-4f6b-9d28-4dd0d7dc3a19, Pigs in Heaven Rating: 0.5244
     e2cbf7ad-0636-4117-8b30-298da6df7077, Animal Dreams Rating: 0.5227
     6c818fd3-5a09-417d-9ab4-7ffe090f0fef, Confessions of an Ugly Stepsister: A Novel Rating: 0.5222
-5e97148f-defb-4d74-af2d-80f4763bf531, The Deep End of the Ocean (Oprah's Book Club)
-    5e97148f-defb-4d74-af2d-80f4763bf531, The Deep End of the Ocean (Oprah's Book Club) Rating: 0.537
+5e97148f-defb-4d74-af2d-80f4763bf531, hello Deep End of hello Ocean (Oprah's Book Club)
+    5e97148f-defb-4d74-af2d-80f4763bf531, hello Deep End of hello Ocean (Oprah's Book Club) Rating: 0.537
     5dcbac37-2946-4f2a-a0b3-bbe710f9409a, Up Island: A Novel Rating: 0.5277
     bc5b69db-733b-4346-adde-3927544258f7, Downtown Rating: 0.5275
     31fe5c63-3e5a-48d0-802b-d3b0f989a634, Have a Nice Day: A Tale of Blood and Sweatsocks Rating: 0.5252
-    0adf981a-b65b-4c11-b36b-78aca2f948a2, The Perfect Storm: A True Story of Men Against the Sea Rating: 0.5238
-68f97068-ae1a-4163-9e94-396b800b743d, Modoc: The True Story of the Greatest Elephant That Ever Lived
-    68f97068-ae1a-4163-9e94-396b800b743d, Modoc: The True Story of the Greatest Elephant That Ever Lived Rating: 0.5379
-    6724862e-e4e7-4022-9614-1468d8b902ff, Little House on the Prairie Rating: 0.5345
-    cdedb837-1620-496d-94c4-6ccfed888320, Little House in the Big Woods Rating: 0.5325
-    382164ba-406b-4187-b726-d7a54b9d790d, The Tao of Pooh Rating: 0.5309
-    6a068d6a-bb74-4ba3-b3f2-a956c4f9d1b5, On the Banks of Plum Creek Rating: 0.5285
+    0adf981a-b65b-4c11-b36b-78aca2f948a2, hello Perfect Storm: A True Story of Men Against hello Sea Rating: 0.5238
+68f97068-ae1a-4163-9e94-396b800b743d, Modoc: hello True Story of hello Greatest Elephant That Ever Lived
+    68f97068-ae1a-4163-9e94-396b800b743d, Modoc: hello True Story of hello Greatest Elephant That Ever Lived Rating: 0.5379
+    6724862e-e4e7-4022-9614-1468d8b902ff, Little House on hello Prairie Rating: 0.5345
+    cdedb837-1620-496d-94c4-6ccfed888320, Little House in hello Big Woods Rating: 0.5325
+    382164ba-406b-4187-b726-d7a54b9d790d, hello Tao of Pooh Rating: 0.5309
+    6a068d6a-bb74-4ba3-b3f2-a956c4f9d1b5, On hello Banks of Plum Creek Rating: 0.5285
 37ef8e74-e348-44e5-aabc-1d7f9efcb25b, Men Are from Mars Women Are from Venus: A Practical Guide for Improving Communication and Getting What You Want in Your Relationships
     37ef8e74-e348-44e5-aabc-1d7f9efcb25b, Men Are from Mars, Women Are from Venus: A Practical Guide for Improving Communication and Getting What You Want in Your Relationships Rating: 0.5397
     f2be16d4-5faf-4d32-ab83-7ba74d29261e, Politically Correct Bedtime Stories: Modern Tales for Our Life and Times Rating: 0.5207
     ef732c5c-334b-4d6b-ab82-7255eb7286d0, Honor Among Thieves Rating: 0.5195
-    0b209b8c-7cdd-47fd-b940-05c7ff7c60fc, The Giving Tree Rating: 0.5194
-    883b360f-8b42-407f-b977-2f44ad840877, Scary Stories to Tell in the Dark: Collected from American Folklore (Scary Stories) Rating: 0.5184
-ff51b67e-fa8e-4c5e-8f4d-02a928de735d, Men at Work: The Craft of Baseball
-    d008dae9-c73a-40a1-9a9b-96d5cf546f36, The Gulag Archipelago 1918-1956: An Experiment in Literary Investigation I-II Rating: 0.5416
-    ff51b67e-fa8e-4c5e-8f4d-02a928de735d, Men at Work: The Craft of Baseball Rating: 0.5403
+    0b209b8c-7cdd-47fd-b940-05c7ff7c60fc, hello Giving Tree Rating: 0.5194
+    883b360f-8b42-407f-b977-2f44ad840877, Scary Stories tooTell in hello Dark: Collected from American Folklore (Scary Stories) Rating: 0.5184
+ff51b67e-fa8e-4c5e-8f4d-02a928de735d, Men at Work: hello Craft of Baseball
+    d008dae9-c73a-40a1-9a9b-96d5cf546f36, hello Gulag Archipelago 1918-1956: An Experiment in Literary Investigation I-II Rating: 0.5416
+    ff51b67e-fa8e-4c5e-8f4d-02a928de735d, Men at Work: hello Craft of Baseball Rating: 0.5403
     49dec30e-0adb-411a-b186-48eaabf6f8bc, Fatherland Rating: 0.5394
-    cc7964fd-d30f-478e-a425-93ddbdf094ed, Magic the Gathering: Arena Vol. 1 Rating: 0.5379
-    8a1e9f36-97af-4614-bed9-24e3940a05f3, More Sniglets: Any Word That Doesn't Appear in the Dictionary but Should Rating: 0.5377
+    cc7964fd-d30f-478e-a425-93ddbdf094ed, Magic hello Gathering: Arena Vol. 1 Rating: 0.5379
+    8a1e9f36-97af-4614-bed9-24e3940a05f3, More Sniglets: Any Word That Doesn't Appear in hello Dictionary but Should Rating: 0.5377
 12a6d988-be21-4a09-8143-9d5f4261ba16, A Dream of Eagles
     07b10e28-9e7c-4032-90b7-10acab7f2460, Cryptonomicon Rating: 0.5417
     e4cc5e69-3567-43ab-b00f-f0d8d0506870, Hit List Rating: 0.5416
-    1f1a34c4-9781-49f5-a3cc-acec3ae3c71d, The Family Rating: 0.5371
+    1f1a34c4-9781-49f5-a3cc-acec3ae3c71d, hello Family Rating: 0.5371
     56daeffe-7d48-43cd-8ef8-7dffd0c103d3, Kilo Class Rating: 0.5366
     b2fe511e-5cb9-4a56-b823-2801e63e6a96, Legal Tender Rating: 0.5366
 df87525b-e435-4bd6-8701-4e60ad344e28, Finding Fish
-    56d33036-dfda-46b9-8e2a-76cb03921bb0, The X-Files: Ground Zero Rating: 0.5417
+    56d33036-dfda-46b9-8e2a-76cb03921bb0, hello X-Files: Ground Zero Rating: 0.5417
     0780cde8-6529-4e1d-b6c6-082c1b80e596, Twelve Red Herrings Rating: 0.5416
     df87525b-e435-4bd6-8701-4e60ad344e28, Finding Fish Rating: 0.5408
-    400fe331-2c35-490c-adbc-b28b4b73d56c, Shall We Tell the President? Rating: 0.5383
+    400fe331-2c35-490c-adbc-b28b4b73d56c, Shall We Tell hello President? Rating: 0.5383
     f86ad7d0-5c03-42b3-aebf-13d44aec8b30, Shades of Grace Rating: 0.5358
-de1f62a4-89e6-44d2-aaee-992a4bf093f1, The Map That Changed the World: William Smith and the Birth of Modern Geology
-    de1f62a4-89e6-44d2-aaee-992a4bf093f1, The Map That Changed the World: William Smith and the Birth of Modern Geology Rating: 0.5422
+de1f62a4-89e6-44d2-aaee-992a4bf093f1, hello Map That Changed hello World: William Smith and hello Birth of Modern Geology
+    de1f62a4-89e6-44d2-aaee-992a4bf093f1, hello Map That Changed hello World: William Smith and hello Birth of Modern Geology Rating: 0.5422
     b303538f-e2c6-4a2c-b425-8d21e684fc3e, My Uncle Oswald Rating: 0.5385
-    34b84627-48af-4a4c-96c4-b26fb3863f56, Midnight In the Garden of Good and Evil Rating: 0.5379
-    306cbaa7-b1a8-4142-9d55-e11b5018a7a8, The Street Lawyer Rating: 0.5376
+    34b84627-48af-4a4c-96c4-b26fb3863f56, Midnight In hello Garden of Good and Evil Rating: 0.5379
+    306cbaa7-b1a8-4142-9d55-e11b5018a7a8, hello Street Lawyer Rating: 0.5376
     e53b4baa-8c09-45c4-95c0-b6a26b98770b, Miss Smillas Feeling for Snow Rating: 0.5367
 
 Level 2
 ---------------
-352aaea1-6b12-454d-a3d5-46379d9e4eb2, The Sinister Pig (Hillerman Tony)
-    352aaea1-6b12-454d-a3d5-46379d9e4eb2, The Sinister Pig (Hillerman Tony) Rating: 0.5425
-    74c49398-bc10-4af5-a658-a996a1201254, Children of the Storm (Peters Elizabeth) Rating: 0.5387
-    9ba80080-196e-43fd-8025-391d963f77e7, The Floating Girl Rating: 0.5372
+352aaea1-6b12-454d-a3d5-46379d9e4eb2, hello Sinister Pig (Hillerman Tony)
+    352aaea1-6b12-454d-a3d5-46379d9e4eb2, hello Sinister Pig (Hillerman Tony) Rating: 0.5425
+    74c49398-bc10-4af5-a658-a996a1201254, Children of hello Storm (Peters Elizabeth) Rating: 0.5387
+    9ba80080-196e-43fd-8025-391d963f77e7, hello Floating Girl Rating: 0.5372
     e68f81d5-7745-4cc7-b943-fedb8fcc2ced, Killer Smile (Scottoline Lisa) Rating: 0.5353
     b2fe511e-5cb9-4a56-b823-2801e63e6a96, Legal Tender Rating: 0.5332
 c65c3995-abf7-4c7b-bb3c-8eb5aa9be7a5, Lake Wobegon days
-    0adf981a-b65b-4c11-b36b-78aca2f948a2, The Perfect Storm: A True Story of Men Against the Sea Rating: 0.5433
+    0adf981a-b65b-4c11-b36b-78aca2f948a2, hello Perfect Storm: A True Story of Men Against hello Sea Rating: 0.5433
     c65c3995-abf7-4c7b-bb3c-8eb5aa9be7a5, Lake Wobegon days Rating: 0.543
-    a00ae6ad-4a7f-4211-9836-75ce8834eb11, Sniglets (Snig'lit: Any Word That Doesn't Appear in the Dictionary But Should) Rating: 0.5327
+    a00ae6ad-4a7f-4211-9836-75ce8834eb11, Sniglets (Snig'lit: Any Word That Doesn't Appear in hello Dictionary But Should) Rating: 0.5327
     6f6e192e-0d64-49ca-9b63-f09413ea1ee6, Politically Correct Holiday Stories: For an Enlightened Yuletide Season Rating: 0.5307
     798051a8-147d-4d46-b0dc-e836325029e6, AGE OF INNOCENCE (MOVIE TIE-IN) Rating: 0.5301
 73f3e25a-e996-4162-9ed8-ff3d34075650, O Pioneers! (Penguin Twentieth-Century Classics)
-    cba8163f-6536-436b-8130-47b4a43c827f, Trust No One (The Official Guide to the X-Files Vol. 2) Rating: 0.5434
+    cba8163f-6536-436b-8130-47b4a43c827f, Trust No One (hello Official Guide toohello X-Files Vol. 2) Rating: 0.5434
     5708e4cb-2492-49c0-94a8-cc413eec5d89, Small Gods (Discworld Novels (Paperback)) Rating: 0.5406
     73f3e25a-e996-4162-9ed8-ff3d34075650, O Pioneers! (Penguin Twentieth-Century Classics) Rating: 0.5403
-    d885b0bd-ae4b-452d-bdf2-faa90197dbc9, The Color of Magic Rating: 0.539
-    b133a9c4-4784-4db3-b100-d0d6dffb94d2, The Truth Is Out There (The Official Guide to the X-Files Vol. 1) Rating: 0.5367
-271700a5-854a-4d5a-8409-6b57a5ee4de4, Fluke: Or I Know Why the Winged Whale Sings
-    271700a5-854a-4d5a-8409-6b57a5ee4de4, Fluke: Or I Know Why the Winged Whale Sings Rating: 0.5445
-    2de1c354-90ff-47c5-a0db-1bad7d88ef94, The Salaryman's Wife (Children of Violence Series) Rating: 0.5329
+    d885b0bd-ae4b-452d-bdf2-faa90197dbc9, hello Color of Magic Rating: 0.539
+    b133a9c4-4784-4db3-b100-d0d6dffb94d2, hello Truth Is Out There (hello Official Guide toohello X-Files Vol. 1) Rating: 0.5367
+271700a5-854a-4d5a-8409-6b57a5ee4de4, Fluke: Or I Know Why hello Winged Whale Sings
+    271700a5-854a-4d5a-8409-6b57a5ee4de4, Fluke: Or I Know Why hello Winged Whale Sings Rating: 0.5445
+    2de1c354-90ff-47c5-a0db-1bad7d88ef94, hello Salaryman's Wife (Children of Violence Series) Rating: 0.5329
     d279416e-19c0-43f8-9ec9-a585947879ca, Zen Attitude Rating: 0.5316
-    c8f854d7-3de3-4b23-8217-f4f851670fd4, Revenge of the Cootie Girls: A Robin Hudson Mystery (Robin Hudson Mysteries (Paperback)) Rating: 0.5305
-    8ef4751c-7074-409e-a3ac-d49b222fc864, Where the Wild Things Are Rating: 0.5289
+    c8f854d7-3de3-4b23-8217-f4f851670fd4, Revenge of hello Cootie Girls: A Robin Hudson Mystery (Robin Hudson Mysteries (Paperback)) Rating: 0.5305
+    8ef4751c-7074-409e-a3ac-d49b222fc864, Where hello Wild Things Are Rating: 0.5289
 9ad1b620-0a7b-4543-8673-66d4c3bcb2f1, Their Eyes Were Watching God
     9ad1b620-0a7b-4543-8673-66d4c3bcb2f1, Their Eyes Were Watching God Rating: 0.5446
-    da45c4d5-aba1-413b-a9bd-50df98b1e1d2, The Bean Trees Rating: 0.5389
-    65ecbdd1-131c-40c3-a3d6-d86ca281377a, The God of Small Things Rating: 0.5387
-    c78743bf-7947-4a0c-8db7-8a3bfe69ba70, The Stone Diaries Rating: 0.5355
+    da45c4d5-aba1-413b-a9bd-50df98b1e1d2, hello Bean Trees Rating: 0.5389
+    65ecbdd1-131c-40c3-a3d6-d86ca281377a, hello God of Small Things Rating: 0.5387
+    c78743bf-7947-4a0c-8db7-8a3bfe69ba70, hello Stone Diaries Rating: 0.5355
     973f8cbd-0846-4f6b-9d28-4dd0d7dc3a19, Pigs in Heaven Rating: 0.5344
-5f17d90a-2604-4fe8-8977-1a280b9098b1, One for the Money (Stephanie Plum Novels (Paperback))
-    5f17d90a-2604-4fe8-8977-1a280b9098b1, One for the Money (Stephanie Plum Novels (Paperback)) Rating: 0.5446
+5f17d90a-2604-4fe8-8977-1a280b9098b1, One for hello Money (Stephanie Plum Novels (Paperback))
+    5f17d90a-2604-4fe8-8977-1a280b9098b1, One for hello Money (Stephanie Plum Novels (Paperback)) Rating: 0.5446
     57169b2b-9a8a-486b-9aac-1ed98ce57168, Final Appeal Rating: 0.5332
     efcb1bc4-7278-4a8f-b491-befde02070d6, Moment of Truth Rating: 0.5329
     1efa91a2-993b-4c43-9f5c-3454fc12612d, Burn Factor Rating: 0.5309
-    24c59962-458a-4ec8-b95d-d694e861919c, At Home in Mitford (The Mitford Years) Rating: 0.5303
-4fd48c46-1a20-4c57-bc7f-a02ef123dc52, As Nature Made Him: The Boy Who Was Raised As a Girl
-    4fd48c46-1a20-4c57-bc7f-a02ef123dc52, As Nature Made Him: The Boy Who Was Raised As a Girl Rating: 0.5449
+    24c59962-458a-4ec8-b95d-d694e861919c, At Home in Mitford (hello Mitford Years) Rating: 0.5303
+4fd48c46-1a20-4c57-bc7f-a02ef123dc52, As Nature Made Him: hello Boy Who Was Raised As a Girl
+    4fd48c46-1a20-4c57-bc7f-a02ef123dc52, As Nature Made Him: hello Boy Who Was Raised As a Girl Rating: 0.5449
     cd5f2c03-20cb-43be-a1fb-3b4233e63222, Pigs in Heaven Rating: 0.5329
-    19985fdb-d07a-4a25-ae4a-97b9cb61e5d1, Love in the Time of Cholera (Penguin Great Books of the 20th Century) Rating: 0.5267
+    19985fdb-d07a-4a25-ae4a-97b9cb61e5d1, Love in hello Time of Cholera (Penguin Great Books of hello 20th Century) Rating: 0.5267
     15689d09-c711-4844-84d8-130a90237b26, Bel Canto Rating: 0.5245
-    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, The Poisonwood Bible: A Novel Rating: 0.5235
+    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, hello Poisonwood Bible: A Novel Rating: 0.5235
 98df28ec-41e7-4fca-b77f-8b0d3109085d, Star Trek Memories
-    f874b5a3-5d40-4436-94ff-0fa1c090ddf5, The Sun Also Rises (A Scribner classic) Rating: 0.5451
+    f874b5a3-5d40-4436-94ff-0fa1c090ddf5, hello Sun Also Rises (A Scribner classic) Rating: 0.5451
     98df28ec-41e7-4fca-b77f-8b0d3109085d, Star Trek Memories Rating: 0.5442
     0ce0014a-9a48-4013-a08a-7f2c11877930, H.M.S. Unseen Rating: 0.5421
-    15316ca6-1e38-425f-893d-691944a47000, More Scary Stories To Tell In The Dark Rating: 0.5409
-    329d5682-3dc3-4206-8aa2-eef4b1032258, Letters from the Earth Rating: 0.54
+    15316ca6-1e38-425f-893d-691944a47000, More Scary Stories tooTell In hello Dark Rating: 0.5409
+    329d5682-3dc3-4206-8aa2-eef4b1032258, Letters from hello Earth Rating: 0.54
 5b9445d5-c072-419c-8d49-6f669bb1b0a9, Daughter of Fortune: A Novel (Oprah's Book Club (Hardcover))
     5b9445d5-c072-419c-8d49-6f669bb1b0a9, Daughter of Fortune: A Novel (Oprah's Book Club (Hardcover)) Rating: 0.5462
-    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, The Poisonwood Bible: A Novel Rating: 0.5372
+    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, hello Poisonwood Bible: A Novel Rating: 0.5372
     604eb3bd-6026-4f51-bffd-9fb54f180400, Family Pictures: A Novel Rating: 0.5341
     8d06d01d-31cd-4678-b6b1-140a67987ce9, Songs in Ordinary Time (Oprah's Book Club (Paperback)) Rating: 0.5334
-    da45c4d5-aba1-413b-a9bd-50df98b1e1d2, The Bean Trees Rating: 0.5319
+    da45c4d5-aba1-413b-a9bd-50df98b1e1d2, hello Bean Trees Rating: 0.5319
 d5358189-d70f-4e35-8add-34b83b4942b3, Pigs in Heaven
     d5358189-d70f-4e35-8add-34b83b4942b3, Pigs in Heaven Rating: 0.5491
-    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, The Poisonwood Bible: A Novel Rating: 0.5401
-    c78743bf-7947-4a0c-8db7-8a3bfe69ba70, The Stone Diaries Rating: 0.5393
+    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, hello Poisonwood Bible: A Novel Rating: 0.5401
+    c78743bf-7947-4a0c-8db7-8a3bfe69ba70, hello Stone Diaries Rating: 0.5393
     8d06d01d-31cd-4678-b6b1-140a67987ce9, Songs in Ordinary Time (Oprah's Book Club (Paperback)) Rating: 0.5382
     973f8cbd-0846-4f6b-9d28-4dd0d7dc3a19, Pigs in Heaven Rating: 0.5367
 
@@ -800,17 +800,17 @@ d5358189-d70f-4e35-8add-34b83b4942b3, Pigs in Heaven
 
 
 ## <a name="7-model-business-rules"></a>7.模型商務規則
-以下是支援的規則類型：
+以下是支援的規則的 hello 類型：
 
-* <strong>BlockList</strong> -封鎖清單可讓您提供您不想在建議結果中傳回的項目清單。 
-* <strong>FeatureBlockList</strong> - 功能封鎖清單可讓您依據項目功能的值封鎖項目。
+* <strong>封鎖清單</strong>-封鎖清單可讓您 tooprovide 不要 tooreturn hello 建議結果中的項目清單。 
+* <strong>FeatureBlockList</strong> -功能封鎖清單可以讓您 tooblock 項目依據其功能 hello 值。
 
-*請勿在單一封鎖清單規則中傳送超過 1000 個項目，否則您的呼叫可能會逾時。如果您需要封鎖超過 1000 個項目，可以呼叫幾個封鎖清單。*
+*請勿在單一封鎖清單規則中傳送超過 1000 個項目，否則您的呼叫可能會逾時。如果您需要 tooblock 超過 1000 個項目，您可以進行數次的封鎖清單呼叫。*
 
-* <strong>Upsale</strong> - Upsale 可讓您強制在建議結果中傳回項目。
-* <strong>WhiteList</strong> - 允許清單可讓您只從項目的清單中建議建議項目。
-* <strong>FeatureWhiteList</strong> - 功能允許清單可讓您只建議具有特定功能值的項目。
-* <strong>PerSeedBlockList</strong> - PerSeedBlockList 可讓您提供無法做為建議結果傳回的項目清單給每個項目。
+* <strong>Upsale</strong> -Upsale 可讓您將項目 tooreturn tooenforce hello 建議結果中的。
+* <strong>白名單</strong>-白名單可讓您 tooonly 建議清單建議項目。
+* <strong>FeatureWhiteList</strong> -功能白名單可讓您有特定的功能值 tooonly 建議項目。
+* <strong>PerSeedBlockList</strong> -每次種子的區塊清單可讓您 tooprovide 每個項目不可當做建議結果傳回的項目清單。
 
 ### <a name="71----get-model-rules"></a>7.1.    取得模型規則
 | HTTP 方法 | URI |
@@ -819,7 +819,7 @@ d5358189-d70f-4e35-8add-34b83b4942b3, Pigs in Heaven
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -829,7 +829,7 @@ d5358189-d70f-4e35-8add-34b83b4942b3, Pigs in Heaven
 HTTP 狀態碼：200
 
 * `feed/entry/content/properties/Id` - 此規則的唯一識別碼。
-* `feed/entry/content/properties/Type` - 規則的類型。
+* `feed/entry/content/properties/Type`Hello 規則的類型。
 * `feed/entry/content/properties/Parameter` - 規則參數。
 
 OData XML
@@ -881,25 +881,25 @@ OData XML
 |  | |
 | 要求本文 | |
 
-<ins>在提供商務規則的項目識別碼時，請務必使用項目的外部識別碼 (您用於類別目錄檔案的同一識別碼)</ins><br>
-<ins>新增 BlockList 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>BlockList</Type><Value>{"ItemsToExclude":["2406E770-769C-4189-89DE-1C9283F93A96","3906E110-769C-4189-89DE-1C9283F98888"]}</Value></ApiFilter>`<br><br><ins>
-<ins>新增 FeatureBlockList 規則：</ins><br>
+<ins>當商務規則的提供項目 Id，請確定 toouse hello hello 項目的外部 Id (hello hello 類別目錄檔案中所用的相同識別碼)</ins><br>
+<ins>tooadd 封鎖清單規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>BlockList</Type><Value>{"ItemsToExclude":["2406E770-769C-4189-89DE-1C9283F93A96","3906E110-769C-4189-89DE-1C9283F98888"]}</Value></ApiFilter>`<br><br><ins>
+<ins>tooadd FeatureBlockList 規則：</ins><br>
 <br>
-`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureBlockList</Type><Value>{"Name":"Movie_category","Values":["Adult","Drama"]}</Value></ApiFilter>`<br><br><ins> 新增 Upsale 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>Upsale</Type><Value>{"ItemsToUpsale":["2406E770-769C-4189-89DE-1C9283F93A96"],"NumberOfItemsToUpsale":5}</Value></ApiFilter>`<br><br>
-<ins>新增 WhiteList 規則：</ins><br>
+`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureBlockList</Type><Value>{"Name":"Movie_category","Values":["Adult","Drama"]}</Value></ApiFilter>`<br><br><ins>tooadd Upsale 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>Upsale</Type><Value>{"ItemsToUpsale":["2406E770-769C-4189-89DE-1C9283F93A96"],"NumberOfItemsToUpsale":5}</Value></ApiFilter>`<br><br>
+<ins>tooadd 白名單規則：</ins><br>
 `<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>WhiteList</Type><Value>{"ItemsToInclude":["2406E770-769C-4189-89DE-1C9283F93A96","1116E770-769C-4189-89DE-1C9283F88888"]}</Value></ApiFilter>`<br><br><ins>
-<ins>新增 FeatureWhiteList 規則：</ins><br>
+<ins>tooadd FeatureWhiteList 規則：</ins><br>
 <br>
-`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureWhiteList</Type><Value>{"Name":"Movie_rating","Values":["PG13"]}</Value></ApiFilter>`<br><br><ins> 新增 PerSeedBlockList 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>PerSeedBlockList</Type><Value>{"SeedItems":["9949"],"ItemsToExclude":["9862","8158","8244"]}</Value></ApiFilter>`|
+`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureWhiteList</Type><Value>{"Name":"Movie_rating","Values":["PG13"]}</Value></ApiFilter>`<br><br><ins>tooadd PerSeedBlockList 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>PerSeedBlockList</Type><Value>{"SeedItems":["9949"],"ItemsToExclude":["9862","8158","8244"]}</Value></ApiFilter>`|
 
 **回應**：
 
 HTTP 狀態碼：200
 
-API 會傳回新建立的規則及其詳細資料。 規則屬性可從下列路徑擷取：
+hello API 傳回 hello 新建立規則，其詳細資料。 可以從下列路徑的 hello 擷取 hello 規則屬性：
 
 * `feed/entry/content/properties/Id` - 此規則的唯一識別碼。
-* `feed/entry/content/properties/Type` - 規則的類型：BlockList 或 Upsale。
+* `feed/entry/content/properties/Type`Hello 規則的類型： 封鎖清單或 Upsale。
 * `feed/entry/content/properties/Parameter` - 規則參數。
 
 OData XML
@@ -933,8 +933,8 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| filterId |篩選器的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
+| filterId |Hello 篩選器的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -950,7 +950,7 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -961,24 +961,24 @@ HTTP 狀態碼：200
 
 ## <a name="8-catalog"></a>8.目錄
 ### <a name="81----import-catalog-data"></a>8.1.    匯入目錄資料
-如果您將數個目錄檔案上傳至具有多個呼叫的相同模型，我們只會插入新的目錄項目。 現有的項目會保留原始值。 您無法使用這個方法更新目錄資料。
+如果您上傳數個類別目錄檔案 toohello 相同模型的數次呼叫時，我們將會插入只有 hello 新目錄項目。 現有的項目仍會與 hello 原始值。 您無法使用這個方法更新目錄資料。
 
-目錄資料應該遵循下列格式：
+hello 目錄資料應該遵循下列格式的 hello:
 
 * 沒有功能 - `<Item Id>,<Item Name>,<Item Category>[,<Description>]`
 * 具有功能 - `<Item Id>,<Item Name>,<Item Category>,[<Description>],<Features list>`
 
-注意：檔案大小上限為 200 MB。
+注意： hello 檔案大小上限為 200 MB。
 
 ** 格式詳細資料 **
 
 | 名稱 | 強制 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| 項目識別碼 |是 |[A-z]、[a-z]、[0-9]、[_] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度：50 |項目的唯一識別碼。 |
-| 項目名稱 |是 |任何英數字元<br> 最大長度：255 |項目名稱。 |
-| 項目類別 |是 |任何英數字元 <br> 最大長度：255 |此項目所屬類別 (例如烹飪書籍、劇本...) 可以是空的。 |
-| 說明 |否，除非顯示功能 (但可能是空的) |任何英數字元 <br> 最大長度：4000 |此項目的說明。 |
-| 功能清單 |否 |任何英數字元 <br> 最大長度：4000；功能數目上限：20 |以逗號分隔的「功能名稱=功能值」清單，可用來增強模型建議；請參閱 [進階主題](#2-advanced-topics) 一節。 |
+| 項目識別碼 |是 |[A-z]、[a-z]、[0-9]、[_] &#40;底線&#41;、[-] &#40;虛線&#41;<br>  最大長度：50 |項目的唯一識別碼。 |
+| 項目名稱 |是 |任何英數字元<br>  最大長度：255 |項目名稱。 |
+| 項目類別 |是 |任何英數字元 <br>  最大長度：255 |類別 toowhich 此項目所屬 （例如烹飪的書籍，戲劇...）。可以是空的。 |
+| 說明 |否，除非顯示功能 (但可能是空的) |任何英數字元 <br>  最大長度：4000 |此項目的說明。 |
+| 功能清單 |否 |任何英數字元 <br>  最大長度：4000；功能數目上限：20 |以逗號分隔清單的功能名稱 = 功能值，可以是使用的 tooenhance 模型建議。請參閱[進階主題](#2-advanced-topics)> 一節。 |
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -987,20 +987,20 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| 檔名 |目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (_)。<br>最大長度：50 |
+| modelId |Hello 模型的唯一識別碼 |
+| 檔名 |文字 hello 目錄的識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (_)。<br> 最大長度：50 |
 | apiVersion |1.0 |
 |  | |
-| 要求本文 |範例 (包含功能)：<br/>2406e770-769c-4189-89de-1c9283f93a96,Clara Callan,Book,the book  description,author=Richard Wright,publisher=Harper Flamingo Canada,year=2001<br>21bf8088-b6c0-4509-870c-e1c7ac78304a,The Forgetting Room: A Fiction (Byzantium Book),Book,,author=Nick Bantock,publisher=Harpercollins,year=1997<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23,Spadework,Book,,author=Timothy Findley, publisher=HarperFlamingo Canada, year=2001<br>552a1940-21e4-4399-82bb-594b46d7ed54,Restraint of Beasts,Book,the book description,author=Magnus Mills, publisher=Arcade Publishing, year=1998</pre> |
+| 要求本文 |範例 (包含功能)：<br/>2406e770-769 c-4189-89de-1c9283f93a96，亞克拉拉 Callan，活頁簿，hello 活頁簿描述，撰寫 = Richard Wright 發行者 = Harper Flamingo 加拿大，年 = 2001年<br>21bf8088-b6c0-4509-870 c-e1c7ac78304a，hello Forgetting 聊天室： 小說 （拜占庭活頁簿）、 書籍、 撰寫 = Nick Bantock 發行者 = Harpercollins，年 = 1997年<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23,Spadework,Book,,author=Timothy Findley, publisher=HarperFlamingo Canada, year=2001<br>552a1940-21e4-4399-82bb-594b46d7ed54，我們必須把這些本例中，活頁簿，hello 活頁簿描述，撰寫 = Magnus 廠發行者 = 遊樂場發行年 = 1998年</pre> |
 
 **回應**：
 
 HTTP 狀態碼：200
 
-API 傳回匯入的報告。
+hello API 傳回的 hello 匯入的報表。
 
 * `feed\entry\content\properties\LineCount` - 已接受的行數。
-* `feed\entry\content\properties\ErrorCount` - 因錯誤而未插入的行數。
+* `feed\entry\content\properties\ErrorCount`-不因為 tooan 錯誤插入的行數。
 
 OData XML
 
@@ -1027,7 +1027,7 @@ OData XML
 
 ### <a name="82----get-catalog"></a>8.2.    取得目錄
 擷取所有目錄項目。
-目錄會一次擷取一個頁面。 如果想要取得特定索引處的項目，您可以使用 $skip odata 參數。 例如，如果想要取得在位置 100 開始的項目，請將參數 $skip=100 加入至要求。
+hello 目錄是一次擷取一個頁面。 如果您想 tooget 特定索引處的項目，您可以使用 hello $skip odata 參數。 執行個體要 tooget 項目從 100 的位置開始，如果加入 hello 參數 $skip = 100 toohello 要求。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -1035,7 +1035,7 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -1044,10 +1044,10 @@ OData XML
 
 HTTP 狀態碼：200
 
-回應會包含每個目錄項目的一個項目。 每個項目都有下列資料：
+hello 回應包含一個項目，每個類別目錄項目。 每個項目具有下列資料的 hello:
 
-* `feed/entry/content/properties/ExternalId` - 目錄項目外部識別碼，由客戶提供。
-* `feed/entry/content/properties/InternalId` - 目錄項目內部識別碼，由 Azure Machine Learning 建議產生。
+* `feed/entry/content/properties/ExternalId`為目錄項目外部 ID、 hello hello 客戶所提供的其中一個。
+* `feed/entry/content/properties/InternalId`類別目錄項目內部識別碼 hello Azure 機器學習建議已產生的其中一個。
 * `feed/entry/content/properties/Name` - 目錄項目名稱。
 * `feed/entry/content/properties/Category` - 目錄項目類別。
 * `feed/entry/content/properties/Description` - 目錄項目說明。
@@ -1119,7 +1119,7 @@ OData XML
             <m:properties>
                 <d:ExternalId m:type="Edm.String">21BF8088-B6C0-4509-870C-E1C7AC78304A</d:ExternalId>
                 <d:InternalId m:type="Edm.String">ea65e4fa-768c-40b4-92c3-69d3e8178691</d:InternalId>
-                <d:Name m:type="Edm.String">The Forgetting Room: A Fiction (Byzantium Book)</d:Name>
+                <d:Name m:type="Edm.String">hello Forgetting Room: A Fiction (Byzantium Book)</d:Name>
                 <d:Category m:type="Edm.String">Book</d:Category>
                 <d:Description m:type="Edm.String"></d:Description>
                 <d:Metadata m:type="Edm.String"></d:Metadata>
@@ -1135,8 +1135,8 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| token |目錄項目名稱的 token。 應該至少包含 3 個字元。 |
+| modelId |Hello 模型的唯一識別碼 |
+| token |語彙基元的 hello 類別目錄項目的名稱。 應該至少包含 3 個字元。 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -1145,9 +1145,9 @@ OData XML
 
 HTTP 狀態碼：200
 
-回應會包含每個目錄項目的一個項目。 每個項目都有下列資料：
+hello 回應包含一個項目，每個類別目錄項目。 每個項目具有下列資料的 hello:
 
-* `feed/entry/content/properties/InternalId` - 目錄項目內部識別碼，由 Azure Machine Learning 建議產生。
+* `feed/entry/content/properties/InternalId`類別目錄項目內部識別碼 hello Azure 機器學習建議已產生的其中一個。
 * `feed/entry/content/properties/Name` - 目錄項目名稱。
 * `feed/entry/content/properties/Rating` - (保留供日後使用)
 * `feed/entry/content/properties/Reasoning` - (保留供日後使用)
@@ -1184,7 +1184,7 @@ OData XML
 ## <a name="9-usage-data"></a>9.使用狀況資料
 ### <a name="91----import-usage-data"></a>9.1.    匯入使用資料
 #### <a name="911-uploading-file"></a>9.1.1. 上傳檔案
-本節試範如何使用檔案上傳使用資料。 您可以利用使用資料呼叫此 API 數次。 將會針對所有呼叫儲存所有使用狀況資料。
+本節說明如何使用檔案 tooupload 使用量資料。 您可以利用使用資料呼叫此 API 數次。 將會針對所有呼叫儲存所有使用狀況資料。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -1192,18 +1192,18 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| 檔名 |目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (_)。<br>最大長度：50 |
+| modelId |Hello 模型的唯一識別碼 |
+| 檔名 |文字 hello 目錄的識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (_)。<br> 最大長度：50 |
 | apiVersion |1.0 |
 |  | |
-| 要求本文 |使用狀況資料。 格式：<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>說明</th></tr><tr><td>使用者識別碼</td><td>yes</td><td>[A-z]、[a-z]、[0-9]、[_] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度：255 </td><td>使用者的唯一識別碼。</td></tr><tr><td>項目識別碼</td><td>是</td><td>[A-z]、[a-z]、[0-9]、[&#95;] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度：50</td><td>項目的唯一識別碼。</td></tr><tr><td>時間</td><td>否</td><td>日期格式：YYYY/MM/DDTHH:MM:SS (例如 2013/06/20T10:00:00)</td><td>資料的時間。</td></tr><tr><td>事件</td><td>否；如果提供，必須也提供日期</td><td>下列其中之一：<br>• Click<br>• RecommendationClick<br>•    AddShopCart<br>• RemoveShopCart<br>• 購買</td><td></td></tr></table><br>檔案大小上限：200MB<br><br>範例：<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
+| 要求本文 |使用狀況資料。 格式：<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>說明</th></tr><tr><td>使用者識別碼</td><td>yes</td><td>[A-z]、[a-z]、[0-9]、[_] &#40;底線&#41;、[-] &#40;虛線&#41;<br>  最大長度：255 </td><td>使用者的唯一識別碼。</td></tr><tr><td>項目識別碼</td><td>是</td><td>[A-z]、[a-z]、[0-9]、[&#95;] &#40;底線&#41;、[-] &#40;虛線&#41;<br>  最大長度：50</td><td>項目的唯一識別碼。</td></tr><tr><td>時間</td><td>否</td><td>日期格式：YYYY/MM/DDTHH:MM:SS (例如 2013/06/20T10:00:00)</td><td>資料的時間。</td></tr><tr><td>事件</td><td>否；如果提供，必須也提供日期</td><td>下列其中一種 hello:<br>• Click<br>• RecommendationClick<br>•    AddShopCart<br>• RemoveShopCart<br>• 購買</td><td></td></tr></table><br>檔案大小上限：200MB<br><br>範例：<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
 
 **回應**：
 
 HTTP 狀態碼：200
 
 * `Feed\entry\content\properties\LineCount` - 已接受的行數。
-* `Feed\entry\content\properties\ErrorCount` - 因錯誤而未插入的行數。
+* `Feed\entry\content\properties\ErrorCount`-不因為 tooan 錯誤插入的行數。
 * `Feed\entry\content\properties\FileId` - 檔案識別碼。
 
 OData XML
@@ -1232,7 +1232,7 @@ OData XML
 
 
 #### <a name="912-using-data-acquisition"></a>9.1.2. 使用資料擷取
-本節示範如何將事件即時傳送到 Azure Machine Learning 建議 (通常是從您的網站)。
+本節說明如何在真實 toosend 事件時間 tooAzure 機器學習的建議事項，通常是從您的網站。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -1242,7 +1242,7 @@ OData XML
 | 參數名稱 | 有效值 |
 |:--- |:--- |
 | apiVersion |1.0 |
-| Request body |您想要傳送的每個事件的事件資料項目。 您應該為相同的使用者或瀏覽器工作階段在 SessionId 欄位中傳送相同的識別碼。 (請參閱下面的事件本文範例。) |
+| Request body |事件資料輸入您要為每個事件 toosend。 您應該傳送的 hello 相同的使用者或瀏覽器工作階段 hello hello SessionId 欄位中的相同識別碼。 (請參閱下面的事件本文範例。) |
 
 * 事件 'Click' 的範例：
   
@@ -1337,7 +1337,7 @@ OData XML
 
 ### <a name="92----list-model-usage-files"></a>9.2.    列出模型使用方式檔案
 擷取所有模型使用方式檔案的中繼資料。
-使用方式檔案會一次擷取一個頁面。 每個頁面包含 100 個項目。 如果想要取得特定索引處的項目，您可以使用 $skip odata 參數。 例如，如果想要取得在位置 100 開始的項目，請將參數 $skip=100 加入至要求。
+hello 使用量檔案會擷取一頁一次。 每個頁面包含 100 個項目。 如果您想 tooget 特定索引處的項目，您可以使用 hello $skip odata 參數。 執行個體要 tooget 項目從 100 的位置開始，如果加入 hello 參數 $skip = 100 toohello 要求。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -1345,7 +1345,7 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| forModelId |模型的唯一識別碼 |
+| forModelId |Hello 模型的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -1354,12 +1354,12 @@ OData XML
 
 HTTP 狀態碼：200
 
-回應會包含每個使用方式檔案的一個項目。 每個項目都有下列資料：
+hello 回應會包含每個使用量檔案的一個項目。 每個項目具有下列資料的 hello:
 
 * `feed\entry\content\properties\Id` - 使用狀況檔案識別碼。
 * `feed\entry\content\properties\Length` - 使用狀況檔案長度，以 MB 為單位。
-* `feed\entry\content\properties\DateModified` - 使用狀況檔案建立日期。
-* `feed\entry\content\properties\UseInModel` - 使用狀況檔案是否在模型中使用。
+* `feed\entry\content\properties\DateModified`-建立 hello 使用量檔案的日期。
+* `feed\entry\content\properties\UseInModel`-是否 hello 使用量檔案 hello 模型中使用。
 
 OData XML
 
@@ -1409,10 +1409,10 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
 | startDate |開始日期。 格式：yyyy/MM/ddTHH:mm:ss |
 | endDate |結束日期。 格式：yyyy/MM/ddTHH:mm:ss |
-| eventTypes |以逗號分隔的事件類型字串或是 null，可取得所有事件 |
+| eventTypes |以逗號分隔字串的事件類型或 null tooget 所有事件 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -1421,9 +1421,9 @@ OData XML
 
 HTTP 狀態碼：200
 
-索引鍵/值項目的集合。 每個集合都包含以小時分組之特定事件類型的事件總和。
+索引鍵/值項目的集合。 每個包含 hello 總和的每小時分組特定事件類型的事件。
 
-* `feed\entry[i]\content\properties\Key` - 包含時間 (以小時分組) 和事件類型。
+* `feed\entry[i]\content\properties\Key`-包含 （依小時分組） 的 hello 時間與 hello 事件類型。
 * `feed\entry[i]\content\properties\Value` - 事件總數。
 
 OData XML
@@ -1486,7 +1486,7 @@ OData XML
     </feed>
 
 ### <a name="94----get-usage-file-sample"></a>9.4.    取得使用方式檔案範例
-擷取前 2KB 的使用方式檔案內容。
+擷取 hello 的使用方式檔案內容的第一個 2 KB。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -1494,8 +1494,8 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| fileId |模型使用方式檔案的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
+| fileId |Hello 模型使用方式檔案的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -1526,7 +1526,7 @@ HTTP 狀態碼：200
 
 
 ### <a name="95----get-model-usage-file"></a>9.5.    取得模型使用方式檔案
-擷取使用方式檔案的完整內容。
+擷取 hello 的 hello 使用量檔案的完整內容。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -1534,8 +1534,8 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| mid |模型的唯一識別碼 |
-| fid |模型使用方式檔案的唯一識別碼 |
+| mid |Hello 模型的唯一識別碼 |
+| fid |Hello 模型使用方式檔案的唯一識別碼 |
 | 下載 |1 |
 | apiVersion |1.0 |
 |  | |
@@ -1584,7 +1584,7 @@ HTTP 狀態碼：200
 </pre>
 
 ### <a name="96----delete-usage-file"></a>9.6.    刪除使用方式檔案
-刪除指定的模型使用方式檔案。
+刪除 hello 指定的模型使用方式檔案。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -1592,8 +1592,8 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| fileId |要刪除之檔案的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
+| fileId |刪除 hello 檔案 toobe 的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -1611,7 +1611,7 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -1621,12 +1621,12 @@ HTTP 狀態碼：200
 HTTP 狀態碼：200
 
 ## <a name="10-features"></a>10.特性
-本節示範如何擷取功能資訊，例如匯入的功能和其值、其排名，以及此排名的配置時機。 匯入功能做為目錄資料的一部分，然後在排名組建完成時建立和其排名的關聯。
-功能排名可根據使用狀況資料和項目類型而變更。 但是對於一致的使用量/項目，排名只能有小幅的起伏。
-功能的排名為非負數的數字。 編號 0 表示未排名功能 (如果您在第一個排名組建完成之前叫用這個 API，就會發生這個情形)。 配置排名的日期稱為分數有效時間。
+本節說明 tooretrieve 功能資訊，例如 hello 匯入功能和其值、 其等級的方式和此陣序時所配置。 功能以資料的一部分 hello 類別目錄，匯入且然後陣序相關聯等級的組建完成時。
+使用量資料和項目類型的相應的 toohello 模式時，可以變更功能等級。 但一致使用量/項目，hello 陣序規範應該有小型的波動。
+hello 陣序的功能為非負數。 hello 的數字 0 表示該 hello 功能不次序比它 （如果您叫用 hello 第一次的陣序建置此應用程式開發介面先前 toohello 完成會發生）。 hello 日期 hello 陣序使用的屬性稱為 hello 分數有效期限。
 
 ### <a name="101-get-features-info-for-last-rank-build"></a>10.1. 取得功能資訊 (適用於上一個排名組建)
-擷取最後一次成功排名組建的功能資訊，包括排名。
+擷取 hello 功能的資訊，包括排名 hello 最後一個成功次序組建。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -1634,8 +1634,8 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| samplingSize |每個功能要包含的值數目是根據出現在目錄中的資料。 <br/>可能的值包括：<br> -1 - 所有範例。 <br>0 - 沒有取樣。 <br>N - 傳回每個功能名稱的 N 範例。 |
+| modelId |Hello 模型的唯一識別碼 |
+| samplingSize |針對每個功能，根據 toohello 資料出現在 hello 類別目錄值 tooinclude 數目。 <br/>可能的值包括：<br> -1 - 所有範例。 <br>0 - 沒有取樣。 <br>N - 傳回每個功能名稱的 N 範例。 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -1644,18 +1644,18 @@ HTTP 狀態碼：200
 
 HTTP 狀態碼：200
 
-回應包含功能資訊項目的清單。 每個項目包含：
+hello 回應包含功能資訊項目的清單。 每個項目包含：
 
 * `feed/entry/content/m:properties/d:Name` - 功能名稱。
-* `feed/entry/content/m:properties/d:RankUpdateDate` - 配置排名至此功能的日期，又稱為 分數有效時間功能。 歷程記錄日期 ('0001-01-01T00:00:00') 表示未執行排名組建。
+* `feed/entry/content/m:properties/d:RankUpdateDate`日期的 hello 順位時配置的 toothis 功能也稱為 分數有效時間功能。 歷程記錄日期 ('0001-01-01T00:00:00') 表示未執行排名組建。
 * `feed/entry/content/m:properties/d:Rank` - 功能排名 (float)。 排名 2.0 以上會被視為良好的功能。
-* `feed/entry/content/m:properties/d:SampleValues` - 逗號分隔的值清單高達要求的取樣大小。
+* `feed/entry/content/m:properties/d:SampleValues`-逗號分隔清單的總要求 toohello 取樣大小的值。
 
 OData XML
 
     <feed xmlns:base="https://api.datamarket.azure.com/amla/recommendations/v3/GetModelFeatures" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://www.w3.org/2005/Atom">
     <title type="text" />
-    <subtitle type="text">Get the features of a model</subtitle>
+    <subtitle type="text">Get hello features of a model</subtitle>
     <id>https://api.datamarket.azure.com/amla/recommendations/v3/GetModelFeatures?modelId='f13ab2e8-b530-4aa1-86f7-2f4a24714765'&amp;samplingSize='10'&amp;apiVersion='1.0'</id>
     <rights type="text" />
     <updated>2015-01-08T13:15:02Z</updated>
@@ -1705,7 +1705,7 @@ OData XML
 </feed>
 
 ### <a name="102-get-features-info-for-specific-rank-build"></a>10.2. 取得功能資訊 (適用於特定排名組建)
-擷取功能資訊，包括特定排名組建的排名。
+擷取 hello 功能的資訊，包括 hello 次序特定等級的組建。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -1713,9 +1713,9 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| samplingSize |每個功能要包含的值數目是根據出現在目錄中的資料。<br/> 可能的值包括：<br> -1 - 所有範例。 <br>0 - 沒有取樣。 <br>N - 傳回每個功能名稱的 N 範例。 |
-| rankBuildId |排名組建的唯一識別碼或代表上一個排名組建的 -1 |
+| modelId |Hello 模型的唯一識別碼 |
+| samplingSize |針對每個功能，根據 toohello 資料出現在 hello 類別目錄值 tooinclude 數目。<br/> 可能的值包括：<br> -1 - 所有範例。 <br>0 - 沒有取樣。 <br>N - 傳回每個功能名稱的 N 範例。 |
+| rankBuildId |Hello 次序組建或-1 代表 hello 最後一次的陣序組建的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -1724,18 +1724,18 @@ OData XML
 
 HTTP 狀態碼：200
 
-回應包含功能資訊項目的清單。 每個項目包含：
+hello 回應包含功能資訊項目的清單。 每個項目包含：
 
 * `feed/entry/content/m:properties/d:Name` - 功能名稱。
-* `feed/entry/content/m:properties/d:RankUpdateDate` - 配置排名至此功能的日期，又稱為 分數有效時間功能。 歷程記錄日期 ('0001-01-01T00:00:00') 表示未執行排名組建。
+* `feed/entry/content/m:properties/d:RankUpdateDate`日期的 hello 順位時配置的 toothis 功能也稱為 分數有效時間功能。 歷程記錄日期 ('0001-01-01T00:00:00') 表示未執行排名組建。
 * `feed/entry/content/m:properties/d:Rank` - 功能排名 (float)。 排名 2.0 以上會被視為良好的功能。
-* `feed/entry/content/m:properties/d:SampleValues` - 逗號分隔的值清單高達要求的取樣大小。
+* `feed/entry/content/m:properties/d:SampleValues`-逗號分隔清單的總要求 toohello 取樣大小的值。
 
 OData
 
     <feed xmlns:base="https://api.datamarket.azure.com/amla/recommendations/v3/GetModelFeatures" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://www.w3.org/2005/Atom">
         <title type="text" />
-        <subtitle type="text">Get the features of a model</subtitle>
+        <subtitle type="text">Get hello features of a model</subtitle>
         <id>https://api.datamarket.azure.com/amla/recommendations/v3/GetModelFeatures?modelId='f13ab2e8-b530-4aa1-86f7-2f4a24714765'&amp;samplingSize='10'&amp;rankBuildId=1000653&amp;apiVersion='1.0'</id>
         <rights type="text" />
         <updated>2015-01-08T13:54:22Z</updated>
@@ -1786,82 +1786,82 @@ OData
 
 
 ## <a name="11-build"></a>11.建置
-  本節說明和組建相關的不同 API。 有 3 個類型的組建：建議組建、排名組建和 FBT (通常會一起購買) 組建。
+  本章節將說明 hello 不同的 Api 相關 toobuilds。 有 3 個類型的組建：建議組建、排名組建和 FBT (通常會一起購買) 組建。
 
-建議組建的用途是產生用於預測的建議模型。 這種組建類型的預測可分為兩種類別：
+hello 建議組建的目的是的 toogenerate 推薦模型用於預測。 這種組建類型的預測可分為兩種類別：
 
-* I2I - 又稱為 項目對項目的建議 - 這個選項會根據指定的一個項目或項目清單，來預測可能高度感興趣的項目清單。
-* U2I - 又稱為 使用者對項目的建議 - 這個選項會根據指定的使用者識別碼 (及選擇性的項目清單)，來預測指定使用者 (及針對額外選擇的項目) 可能高度感興趣的項目清單。 U2I 建議是根據使用者在建置模型前感興趣之項目的歷程記錄。
+* I2I - 又稱為 項目 tooItem 建議的指定項目或清單項目的此選項將預測的項目，則可能 toobe 高度感興趣的清單。
+* U2I - 又稱為 指定使用者識別碼 （及選擇性的項目清單） 的使用者 tooItem 建議這個選項將預測的項目，則可能 toobe hello 給定使用者 （和其其他選擇的項目） 的高度感興趣的清單。 hello U2I 建議根據 hello 的 hello toohello 時間 hello 模型所建立的使用者感興趣的項目歷程記錄。
 
-排名組建為技術組建，可讓您了解功能的效益。 通常，若要取得包含功能之建議模型的最佳結果，您應該採取下列步驟：
+Rank 組建會技術建置，可讓您 toolearn hello 效益功能有關。 通常，在順序 tooget hello 最佳結果中包含功能的建議模型，您應該採取步驟的 hello:
 
-* 觸發排名組建 (除非功能的分數很穩定) 並等待直到取得功能分數。
-* 藉由呼叫 [Get Features Info](#101-get-features-info-for-last-rank-build) API 來擷取功能的排名。
-* 以下列參數設定建議組建：
-  * `useFeatureInModel` - 設定為 True。
-  * `ModelingFeatureList` - 設定為分數 2.0 或以上的逗號分隔功能清單 (以您在上一個步驟中擷取到的排名為根據)。
-  * `AllowColdItemPlacement` - 設定為 True。
-  * 您可以選擇性地將 `EnableFeatureCorrelation` 設定為 True，並將 `ReasoningFeatureList` 設定為您想要用於說明的功能清單 (通常是使用於模型化的相同功能清單或子清單)。
-* 以設定的參數觸發建議組建。
+* 觸發次序組建 （除非 hello 分數的功能是穩定的） 和等候，再取得 hello 特徵分數。
+* 擷取由呼叫 hello hello 陣序的功能[取得功能資訊](#101-get-features-info-for-last-rank-build)應用程式開發介面。
+* 設定下列參數的 hello 建議組建：
+  * `useFeatureInModel`-設定 tooTrue。
+  * `ModelingFeatureList`-設定 tooa 以逗號分隔清單的分數為 2.0 或更多的功能 （依據 toohello 陣序規範您 hello 先前步驟中所擷取）。
+  * `AllowColdItemPlacement`-設定 tooTrue。
+  * 您可以選擇設定`EnableFeatureCorrelation`tooTrue 和`ReasoningFeatureList`toohello 想 toouse 說明 (通常是相同的功能清單使用模型或子清單中的 hello) 的功能清單。
+* 觸發程序 hello 建議建置以 hello 設定參數。
 
-注意：如果您未設定任何參數 (例如叫用不含參數的建議組建) 或您沒有明確停用功能的使用方式 (例如 `UseFeatureInModel` 設為 False)，系統將會在排名組建存在時，將與功能相關的參數設定為上述的說明值。
+注意： 如果您未設定任何參數 （例如叫用不含參數的 hello 建議建置），或不明確地停止 hello 使用量的功能 (例如`UseFeatureInModel`設定 tooFalse)，hello 系統將會設定 hello 功能相關的參數toohello 說明上述的值，以防次序組建存在。
 
-同時執行相同模行的排名組建和建議組建時並沒有任何限制。 不過，您無法在同一個模型上，以平行方式執行兩個相同類型的組建。
+在執行中的次序組建上不受限制和建議同時建置 hello 相同模型。 不過，您無法執行這兩個組建的 hello hello 相同模型以平行方式在相同的類型。
 
 FBT (通常會一起購買) 組建也是另一種建議運算法，有時稱為「保守的」建議者，適用於本質上並不同質的目錄 (同質：書籍、電影、一些食物、流行；非同質：電腦與裝置、跨網域、高度差異)。
 
-注意：如果您上傳的使用方式檔案包含選擇性欄位 [事件類型]，則 FBT 模型只會使用 "Purchase" 事件。 如果沒有提供事件類型，所有事件都會視為 Purchase。
+注意： 如果 hello 您上傳的使用方式檔案包含 hello 選擇性欄位 「 事件類型 」 然後 FBT 模型的 「 採購 」 事件只有適用。 如果沒有提供事件類型，所有事件都會視為 Purchase。
 
 #### <a name="111-build-parameters"></a>11.1 組建參數
-每個組建類型都可以透過一組參數 (如下所述) 進行設定。 如果您未設定參數，系統會自動根據您觸發組建時出現的資訊分配值給參數。
+每個組建類型都可以透過一組參數 (如下所述) 進行設定。 如果您未設定 hello 參數，hello 系統將自動屬性，根據 toohello 資訊在 hello 的時間觸發組建的 toohello 參數值。
 
 ##### <a name="1111-usage-condenser"></a>11.1.1. 使用狀況冷凝器
-附帶少數使用點的使用者或項目可能包含較多雜訊而非資訊。 系統會嘗試預測要用於模型之每個使用者/項目的使用點數目下限。 這個數字會在項目的 ItemCutoffLowerBound 和 ItemCutoffUpperBound 參數所定義的範圍內，也在使用者的 UserCutOffLowerBound 和 UserCutoffUpperBound 參數所定義的範圍內。 將至少一個對應的界限設為零，可以使冷凝器對項目或使用者的影響最小化。
+附帶少數使用點的使用者或項目可能包含較多雜訊而非資訊。 hello 系統嘗試 toopredict hello 最少的每個模型中使用的使用者/項目 toobe 使用量點。 這會是 hello ItemCutoffLowerBound 和 ItemCutoffUpperBound 參數項目和 hello UserCutOffLowerBound 和使用者的 UserCutoffUpperBound 參數所定義的 hello 範圍所定義的 hello 範圍內。 hello 冷凝器影響項目或使用者可設定至少一個對應界限 toozero hello 降至最低。
 
 ##### <a name="1112-rank-build-parameters"></a>11.1.2. 排名組建參數
-下表描述排名組建的組建參數。
+hello 下表描述 hello 次序組建的組建參數。
 
-| 金鑰 | 說明 | 類型 | 有效值 |
+| Key | 說明 | 類型 | 有效值 |
 |:--- |:--- |:--- |:--- |
-| NumberOfModelIterations |整體運算時間和模型精確度會反映模型執行反覆運算的次數。 數字越高，得到的精確度就越高，但需要較久的運算時間。 |Integer |10-50 |
-| NumberOfModelDimensions |維度的數目與「功能」的數目相關，模型會嘗試尋找資料中的數目。 增加維度的數目將允許結果進一步微調成較小的叢集。 不過，太多維度會讓模型無法尋找項目之間的關聯。 |Integer |10-40 |
-| ItemCutOffLowerBound |定義冷凝器的項目下限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
-| ItemCutOffUpperBound |定義冷凝器的項目上限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
-| UserCutOffLowerBound |定義冷凝器的使用者下限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
-| UserCutOffUpperBound |定義冷凝器的使用者上限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| NumberOfModelIterations |hello 數目 hello 模型執行的反覆項目都會反映在 hello 整體計算時間和 hello 模型精確度。 hello hello 編號，hello 更好的精確度，您會收到，但是 hello 計算需要較久的時間。 |Integer |10-50 |
+| NumberOfModelDimensions |維度的 hello 數目相關 toohello '功能' hello 模型數目將會嘗試 toofind 資料中。 增加 hello 維度的數目，可讓更好，微調 hello 結果分成較小的群集。 但是，太多維度會防止 hello 模型尋找項目之間的關聯。 |Integer |10-40 |
+| ItemCutOffLowerBound |定義 hello hello 冷凝器的項目下限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| ItemCutOffUpperBound |定義 hello hello 冷凝器的項目上限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| UserCutOffLowerBound |定義 hello 使用者下限 hello 冷凝器。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| UserCutOffUpperBound |定義 hello 使用者上限 hello 冷凝器。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
 
 ##### <a name="1113-recommendation-build-parameters"></a>11.1.3. 建議組建參數
-下表描述建議組建的組建參數。
+hello 下表描述 hello 建議組建的組建參數。
 
-| 金鑰 | 說明 | 類型 | 有效值 |
+| Key | 說明 | 類型 | 有效值 |
 |:--- |:--- |:--- |:--- |
-| NumberOfModelIterations |整體運算時間和模型精確度會反映模型執行反覆運算的次數。 數字越高，得到的精確度就越高，但需要較久的運算時間。 |Integer |10-50 |
-| NumberOfModelDimensions |維度的數目與「功能」的數目相關，模型會嘗試尋找資料中的數目。 增加維度的數目將允許結果進一步微調成較小的叢集。 不過，太多維度會讓模型無法尋找項目之間的關聯。 |Integer |10-40 |
-| ItemCutOffLowerBound |定義冷凝器的項目下限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
-| ItemCutOffUpperBound |定義冷凝器的項目上限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
-| UserCutOffLowerBound |定義冷凝器的使用者下限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
-| UserCutOffUpperBound |定義冷凝器的使用者上限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| NumberOfModelIterations |hello 數目 hello 模型執行的反覆項目都會反映在 hello 整體計算時間和 hello 模型精確度。 hello hello 編號，hello 更好的精確度，您會收到，但是 hello 計算需要較久的時間。 |Integer |10-50 |
+| NumberOfModelDimensions |維度的 hello 數目相關 toohello '功能' hello 模型數目將會嘗試 toofind 資料中。 增加 hello 維度的數目，可讓更好，微調 hello 結果分成較小的群集。 但是，太多維度會防止 hello 模型尋找項目之間的關聯。 |Integer |10-40 |
+| ItemCutOffLowerBound |定義 hello hello 冷凝器的項目下限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| ItemCutOffUpperBound |定義 hello hello 冷凝器的項目上限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| UserCutOffLowerBound |定義 hello 使用者下限 hello 冷凝器。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| UserCutOffUpperBound |定義 hello 使用者上限 hello 冷凝器。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
 | 說明 |建置說明。 |String |任何文字，最多 512 個字元 |
-| EnableModelingInsights |可讓您計算建議模型上的度量。 |Boolean |True/False |
-| UseFeaturesInModel |指出是否可以使用功能以加強建議模型。 |Boolean |True/False |
-| ModelingFeatureList |使用於建議組建中的功能名稱逗號分隔清單，可加強建議。 |String |功能名稱，最多 512 個字元 |
-| AllowColdItemPlacement |指出建議是否也應該透過功能相似度推入冷項目。 |Boolean |True/False |
+| EnableModelingInsights |可讓您 toocompute 度量 hello 推薦模型上。 |Boolean |True/False |
+| UseFeaturesInModel |指出功能是否可以使用順序 tooenhance hello 建議模型中。 |Boolean |True/False |
+| ModelingFeatureList |功能名稱 toobe 順序 tooenhance hello 建議事項中的 hello 建議組建中使用的逗號分隔清單。 |String |Too512 字元組成的功能名稱 |
+| AllowColdItemPlacement |指出是否 hello 建議也應該推送的陌生項目透過功能相似。 |Boolean |True/False |
 | EnableFeatureCorrelation |指出功能是否可用於推論。 |Boolean |True/False |
-| ReasoningFeatureList |用於推論句 (例如建議說明) 的功能名稱逗號分隔清單。 |String |功能名稱，最多 512 個字元 |
-| EnableU2I |允許個人化的建議，又稱為 U2I (使用者對項目的建議)。 |Boolean |True/False (預設值為 True) |
+| ReasoningFeatureList |以逗號分隔清單的功能名稱 toobe 用於推理句子 （例如建議說明）。 |String |Too512 字元組成的功能名稱 |
+| EnableU2I |也稱為允許 hello 個人化的建議 U2I （使用者 tooitem 建議）。 |Boolean |True/False (預設值為 True) |
 
 ##### <a name="1114-fbt-build-parameters"></a>11.1.4. FBT 組建參數
-下表描述建議組建的組建參數。
+hello 下表描述 hello 建議組建的組建參數。
 
-| 金鑰 | 說明 | 類型 | 有效的值 (預設值) |
+| Key | 說明 | 類型 | 有效的值 (預設值) |
 |:--- |:--- |:--- |:--- |
-| FbtSupportThreshold |模型的保守程度。 模型化時要考量項目的共同出現次數。 |Integer |3-50 (6) |
-| FbtMaxItemSetSize |頻繁集合中的項目數界限。 |Integer |2-3 (2) |
-| FbtMinimalScore |頻繁集合應該具有的最低分數，以包含在傳回的結果中。 愈高愈好。 |兩倍 |0 以上 (0) |
-| FbtSimilarityFunction |定義組建所使用的相似度函式。 Lift 有利於機緣巧合、Co-occurrence 有助於可預測性，而 Jaccard 可在兩者間取得一個很好的平衡。 |String |cooccurrence, lift, jaccard (lift) |
+| FbtSupportThreshold |保守 hello 模型的方式。 共同的相符項目的項目 toobe 視為模型化的數目。 |Integer |3-50 (6) |
+| FbtMaxItemSetSize |界限 hello 頻繁的集合中的項目數目。 |Integer |2-3 (2) |
+| FbtMinimalScore |基本分數頻繁集應該包含在 hello 順序 toobe 中傳回結果。 hello 高 hello 更好。 |Double |0 以上 (0) |
+| FbtSimilarityFunction |定義 hello 相似度函式 toobe hello 組建所使用。 增益喜好 serendipity，共同出現喜好可預測性，且 Jaccard 之間 hello 兩個不錯的洩露。 |String |cooccurrence, lift, jaccard (lift) |
 
 ### <a name="112-trigger-a-recommendation-build"></a>11.2. 觸發建議組建
-  根據預設，此 API 會觸發建議模型組建。 若要觸發排名組建 (以評分功能)，應使用附帶組建類型參數的組建 API 變數。
+  根據預設，此 API 會觸發建議模型組建。 tootrigger 陣序規範組建 （在順序 tooscore 功能），應使用 hello 建置應用程式開發介面 variant 組建的型別參數。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -1870,19 +1870,19 @@ FBT (通常會一起購買) 組建也是另一種建議運算法，有時稱為�
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| userDescription |目錄的文字識別碼。 請注意，如果您使用空格，必須將其編碼改成 %20。 請參閱上面的範例。<br>最大長度：50 |
+| modelId |Hello 模型的唯一識別碼 |
+| userDescription |文字 hello 目錄的識別碼。 請注意，如果您使用空格，必須將其編碼改成 %20。 請參閱上面的範例。<br> 最大長度：50 |
 | apiVersion |1.0 |
 |  | |
-| 要求本文 |如果留白，將會使用預設的組建參數來執行組建。<br><br>如果您想要設定組建參數，請在主體中將參數傳送為 XML (如下列範例所示)。 (如需參數的說明，請參閱＜組建參數＞一節。)`<NumberOfModelIterations>40</NumberOfModelIterations><NumberOfModelDimensions>20</NumberOfModelDimensions><MinItemAppearance>5</MinItemAppearance><MinUserAppearance>5</MinUserAppearance><EnableModelingInsights>true</EnableModelingInsights><UseFeaturesInModel>false</UseFeaturesInModel><ModelingFeatureList>feature_name_1,feature_name_2,...</ModelingFeatureList><AllowColdItemPlacement>false</AllowColdItemPlacement><EnableFeatureCorrelation>false</EnableFeatureCorrelation><ReasoningFeatureList>feature_name_a,feature_name_b,...</ReasoningFeatureList></BuildParametersList>` |
+| 要求本文 |如果保留空白 hello 組建將會執行與 hello 預設組建參數。<br><br>如果您想 tooset hello 組建參數，請以 XML 傳送 hello 參數為 hello 如 hello 下列範例所示的本文。 （請參閱 hello < 組建參數 > 一節說明 hello 參數）。`<NumberOfModelIterations>40</NumberOfModelIterations><NumberOfModelDimensions>20</NumberOfModelDimensions><MinItemAppearance>5</MinItemAppearance><MinUserAppearance>5</MinUserAppearance><EnableModelingInsights>true</EnableModelingInsights><UseFeaturesInModel>false</UseFeaturesInModel><ModelingFeatureList>feature_name_1,feature_name_2,...</ModelingFeatureList><AllowColdItemPlacement>false</AllowColdItemPlacement><EnableFeatureCorrelation>false</EnableFeatureCorrelation><ReasoningFeatureList>feature_name_a,feature_name_b,...</ReasoningFeatureList></BuildParametersList>` |
 
 **回應**：
 
 HTTP 狀態碼：200
 
-這是非同步的 API。 您會得到一個組建識別碼做為回應。 若要知道組建何時結束，您應該呼叫「取得模型的組建狀態」API，並在回應中找出這個組建識別碼。 請注意，組建可能會花數分鐘到數小時的時間，視資料的大小而定。
+這是非同步的 API。 您會得到一個組建識別碼做為回應。 tooknow hello 建置結束時，您應該呼叫 hello 「 取得組建狀態的模型 」 應用程式開發介面，並找出這個組建 ID hello 回應中。 請注意，組建可以從分鐘 toohours hello hello 資料大小而定。
 
-您無法取用建議直到組建結束。
+您無法使用建議，直到 hello 建置結束。
 
 有效的組建狀態：
 
@@ -1892,9 +1892,9 @@ HTTP 狀態碼：200
 * 成功 - 組建已成功結束。
 * 錯誤 - 組建已結束但發生失敗。
 * 已取消 - 組建已取消。
-* 取消中 - 組建的取消要求已傳送。
+* 取消-已傳送 hello 組建的取消要求。
 
-請注意，組建識別碼可以在下列路徑下找到： `Feed\entry\content\properties\Id`
+請注意可以在 hello 下列路徑下找到 ID 該 hello 組建：`Feed\entry\content\properties\Id`
 
 OData XML
 
@@ -1943,20 +1943,20 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| userDescription |目錄的文字識別碼。 請注意，如果您使用空格，必須將其編碼改成 %20。 請參閱上面的範例。<br>最大長度：50 |
-| buildType |要叫用的組建類型： <br/> - 'Recommendation' 為建議組建 <br> - 'Ranking' 為排名組建 <br/> - 'Fbt' 為 FBT 組建 |
+| modelId |Hello 模型的唯一識別碼 |
+| userDescription |文字 hello 目錄的識別碼。 請注意，如果您使用空格，必須將其編碼改成 %20。 請參閱上面的範例。<br> 最大長度：50 |
+| buildType |Hello 組建 tooinvoke 類型： <br/> - 'Recommendation' 為建議組建 <br> - 'Ranking' 為排名組建 <br/>  - 'Fbt' 為 FBT 組建 |
 | apiVersion |1.0 |
 |  | |
-| 要求本文 |如果留白，將會使用預設的組建參數來執行組建。<br><br>如果您想要設定組建參數，請在主體中將它們傳送為 XML (如下列範例所示)。 (如需參數的說明和完整清單，請參閱＜組建參數＞一節。)`<BuildParametersList><NumberOfModelIterations>40</NumberOfModelIterations><NumberOfModelDimensions>20</NumberOfModelDimensions><MinItemAppearance>5</MinItemAppearance><MinUserAppearance>5</MinUserAppearance></BuildParametersList>` |
+| 要求本文 |如果保留空白 hello 組建將會執行與 hello 預設組建參數。<br><br>如果您想 tooset 組建參數，它們以傳送 XML 到像 hello 遵循範例中的 hello 主體。 （請參閱 hello 「 組建參數 」 一節的說明，以及 hello 參數的完整清單）。`<BuildParametersList><NumberOfModelIterations>40</NumberOfModelIterations><NumberOfModelDimensions>20</NumberOfModelDimensions><MinItemAppearance>5</MinItemAppearance><MinUserAppearance>5</MinUserAppearance></BuildParametersList>` |
 
 **回應**：
 
 HTTP 狀態碼：200
 
-這是非同步的 API。 您會得到一個組建識別碼做為回應。 若要知道組建何時結束，您應該呼叫「取得模型的組建狀態」API，並在回應中找出這個組建識別碼。 請注意，組建可能會花數分鐘到數小時的時間，視資料的大小而定。
+這是非同步的 API。 您會得到一個組建識別碼做為回應。 tooknow hello 建置結束時，您應該呼叫 hello 「 取得組建狀態的模型 」 應用程式開發介面，並找出這個組建 ID hello 回應中。 請注意，組建可以從分鐘 toohours hello hello 資料大小而定。
 
-您無法取用建議直到組建結束。
+您無法使用建議，直到 hello 建置結束。
 
 有效的組建狀態：
 
@@ -1968,7 +1968,7 @@ HTTP 狀態碼：200
 * 已取消 - 組建已取消。
 * 取消中 - 正在取消組建。
 
-請注意，組建識別碼可以在下列路徑下找到： `Feed\entry\content\properties\Id`
+請注意可以在 hello 下列路徑下找到 ID 該 hello 組建：`Feed\entry\content\properties\Id`
 
 OData XML
 
@@ -2021,29 +2021,29 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| onlyLastBuild |指出是要傳回模型的所有組建歷程記錄，還是只傳回最近一個組建的狀態 |
+| modelId |Hello 模型的唯一識別碼 |
+| onlyLastBuild |表示所有 hello 的 tooreturn 建置 hello 模型的歷程記錄] 或 [僅 hello 狀態的 hello 最新的組建 |
 | apiVersion |1.0 |
 
 **回應**：
 
 HTTP 狀態碼：200
 
-回應會包含每個組建的一個項目。 每個項目都有下列資料：
+hello 回應會包含每一組建的一個項目。 每個項目具有下列資料的 hello:
 
-* `feed/entry/content/properties/UserName` - 使用者的名稱。
-* `feed/entry/content/properties/ModelName` - 模型的名稱。
+* `feed/entry/content/properties/UserName`-Hello 使用者名稱。
+* `feed/entry/content/properties/ModelName`-Hello 模型的名稱。
 * `feed/entry/content/properties/ModelId` - 模型的唯一識別碼。
-* `feed/entry/content/properties/IsDeployed` - 組建是否已部署 (又稱為 作用中組建)。
+* `feed/entry/content/properties/IsDeployed`-Hello 組建是否部署 （也稱為 作用中組建)。
 * `feed/entry/content/properties/BuildId` - 組建的唯一識別碼。
-* `feed/entry/content/properties/BuildType` - 組建類型。
-* `feed/entry/content/properties/Status` - 組建狀態。 可以是下列其中之一：錯誤、建置中、已排入佇列、取消中、已取消、成功。
-* `feed/entry/content/properties/StatusMessage` - 詳細狀態訊息 (僅適用於特定狀態)。
+* `feed/entry/content/properties/BuildType`Hello 組建的型別。
+* `feed/entry/content/properties/Status` - 組建狀態。 可以是 hello 下列其中一種： 錯誤、 建置、 排入佇列，正在取消、 取消、 成功。
+* `feed/entry/content/properties/StatusMessage`-詳細狀態訊息 （適用於僅 toospecific 狀態）。
 * `feed/entry/content/properties/Progress` - 組建進度 (%)。
 * `feed/entry/content/properties/StartTime` - 組建開始時間。
 * `feed/entry/content/properties/EndTime` - 組建結束時間。
 * `feed/entry/content/properties/ExecutionTime` - 組建持續時間。
-* `feed/entry/content/properties/ProgressStep` - 正在進行中組建的目前階段相關詳細資料。
+* `feed/entry/content/properties/ProgressStep`組建正在進行中的 hello 目前階段的相關詳細資料。
 
 有效的組建狀態：
 
@@ -2105,28 +2105,28 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| onlyLastBuild |指出是要傳回模型的所有組建歷程記錄，還是只傳回最近一個組建的狀態。 |
+| onlyLastBuild |表示所有 hello 的 tooreturn 建置 hello 模型的歷程記錄] 或 [僅 hello 狀態的 hello 最新的組建。 |
 | apiVersion |1.0 |
 
 **回應**：
 
 HTTP 狀態碼：200
 
-回應會包含每個組建的一個項目。 每個項目都有下列資料：
+hello 回應會包含每一組建的一個項目。 每個項目具有下列資料的 hello:
 
-* `feed/entry/content/properties/UserName` - 使用者的名稱。
-* `feed/entry/content/properties/ModelName` - 模型的名稱。
+* `feed/entry/content/properties/UserName`-Hello 使用者名稱。
+* `feed/entry/content/properties/ModelName`-Hello 模型的名稱。
 * `feed/entry/content/properties/ModelId` - 模型的唯一識別碼。
-* `feed/entry/content/properties/IsDeployed` - 組建是否已部署。
+* `feed/entry/content/properties/IsDeployed`-是否部署 hello 組建。
 * `feed/entry/content/properties/BuildId` - 組建的唯一識別碼。
-* `feed/entry/content/properties/BuildType` - 組建類型。
-* `feed/entry/content/properties/Status` - 組建狀態。 可以是下列其中之一：錯誤、建置中、已排入佇列、已取消、取消中、成功。
-* `feed/entry/content/properties/StatusMessage` - 詳細狀態訊息 (僅適用於特定狀態)。
+* `feed/entry/content/properties/BuildType`Hello 組建的型別。
+* `feed/entry/content/properties/Status` - 組建狀態。 可以是 hello 下列其中一種： 錯誤、 建置、 已佇列、 已取消，正在取消、 成功。
+* `feed/entry/content/properties/StatusMessage`-詳細狀態訊息 （適用於僅 toospecific 狀態）。
 * `feed/entry/content/properties/Progress` - 組建進度 (%)。
 * `feed/entry/content/properties/StartTime` - 組建開始時間。
 * `feed/entry/content/properties/EndTime` - 組建結束時間。
 * `feed/entry/content/properties/ExecutionTime` - 組建持續時間。
-* `feed/entry/content/properties/ProgressStep` - 正在進行中組建的目前階段相關詳細資料。
+* `feed/entry/content/properties/ProgressStep`組建正在進行中的 hello 目前階段的相關詳細資料。
 
 有效的組建狀態：
 
@@ -2182,7 +2182,7 @@ OData XML
 ### <a name="116-delete-build"></a>11.6. 刪除組建
 刪除組建。
 
-注意： <br>您無法刪除使用中組建。 應該先將模型更新至不同的使用中組建，再刪除模型。<br>您無法刪除進行中組建。 您應該先藉由呼叫 <strong>取消組建</strong> 來取消組建。
+注意： <br>您無法刪除使用中組建。 hello 模型應該更新 tooa 其他作用中的組建，然後再刪除它。<br>您無法刪除進行中組建。 您應該先取消 hello 組建，藉由呼叫<strong>取消建置</strong>。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -2190,7 +2190,7 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| buildId |組建的唯一識別碼。 |
+| buildId |Hello 組建的唯一識別碼。 |
 | apiVersion |1.0 |
 
 **回應：**
@@ -2206,7 +2206,7 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| buildId |組建的唯一識別碼。 |
+| buildId |Hello 組建的唯一識別碼。 |
 | apiVersion |1.0 |
 
 **回應：**
@@ -2222,7 +2222,7 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| buildId |組建的唯一識別碼。 |
+| buildId |Hello 組建的唯一識別碼。 |
 | apiVersion |1.0 |
 
 **回應：**
@@ -2234,23 +2234,23 @@ HTTP 狀態碼：200
 * `feed/entry/content/properties/Key` - 組建參數名稱。
 * `feed/entry/content/properties/Value` - 組建參數值。
 
-下表描述每個索引鍵表示的值。
+hello 下表描述每個索引鍵所代表的 hello 值。
 
-| 金鑰 | 說明 | 類型 | 有效值 |
+| Key | 說明 | 類型 | 有效值 |
 |:--- |:--- |:--- |:--- |
-| NumberOfModelIterations |整體運算時間和模型精確度會反映模型執行反覆運算的次數。 數字越高，得到的精確度就越高，但需要較久的運算時間。 |Integer |10-50 |
-| NumberOfModelDimensions |維度的數目與「功能」的數目相關，模型會嘗試尋找資料中的數目。 增加維度的數目將允許結果進一步微調成較小的叢集。 不過，太多維度會讓模型無法尋找項目之間的關聯。 |Integer |10-40 |
-| ItemCutOffLowerBound |定義冷凝器的項目下限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
-| ItemCutOffUpperBound |定義冷凝器的項目上限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
-| UserCutOffLowerBound |定義冷凝器的使用者下限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
-| UserCutOffUpperBound |定義冷凝器的使用者上限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| NumberOfModelIterations |hello 數目 hello 模型執行的反覆項目都會反映在 hello 整體計算時間和 hello 模型精確度。 hello hello 編號，hello 更好的精確度，您會收到，但是 hello 計算需要較久的時間。 |Integer |10-50 |
+| NumberOfModelDimensions |維度的 hello 數目相關 toohello '功能' hello 模型數目將會嘗試 toofind 資料中。 增加 hello 維度的數目，可讓更好，微調 hello 結果分成較小的群集。 但是，太多維度會防止 hello 模型尋找項目之間的關聯。 |Integer |10-40 |
+| ItemCutOffLowerBound |定義 hello hello 冷凝器的項目下限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| ItemCutOffUpperBound |定義 hello hello 冷凝器的項目上限。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| UserCutOffLowerBound |定義 hello 使用者下限 hello 冷凝器。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
+| UserCutOffUpperBound |定義 hello 使用者上限 hello 冷凝器。 請參閱上述的使用狀況冷凝器。 |Integer |2 個以上 (0 代表停用冷凝器) |
 | 說明 |建置說明。 |String |任何文字，最多 512 個字元 |
-| EnableModelingInsights |可讓您計算建議模型上的度量。 |Boolean |True/False |
-| UseFeaturesInModel |指出是否可以使用功能以加強建議模型。 |Boolean |True/False |
-| ModelingFeatureList |使用於建議組建中的功能名稱逗號分隔清單，可加強建議。 |String |功能名稱，最多 512 個字元 |
-| AllowColdItemPlacement |指出建議是否也應該透過功能相似度推入冷項目。 |Boolean |True/False |
+| EnableModelingInsights |可讓您 toocompute 度量 hello 推薦模型上。 |Boolean |True/False |
+| UseFeaturesInModel |指出功能是否可以使用順序 tooenhance hello 建議模型中。 |Boolean |True/False |
+| ModelingFeatureList |功能名稱 toobe 順序 tooenhance hello 建議事項中的 hello 建議組建中使用的逗號分隔清單。 |String |Too512 字元組成的功能名稱 |
+| AllowColdItemPlacement |指出是否 hello 建議也應該推送的陌生項目透過功能相似。 |Boolean |True/False |
 | EnableFeatureCorrelation |指出功能是否可用於推論。 |Boolean |True/False |
-| ReasoningFeatureList |用於推論句 (例如建議說明) 的功能名稱逗號分隔清單。 |String |功能名稱，最多 512 個字元 |
+| ReasoningFeatureList |以逗號分隔清單的功能名稱 toobe 用於推理句子 （例如建議說明）。 |String |Too512 字元組成的功能名稱 |
 
 OData XML
 
@@ -2421,7 +2421,7 @@ OData XML
 
 ## <a name="12-recommendation"></a>12.建議
 ### <a name="121-get-item-recommendations-for-active-build"></a>12.1. 取得項目建議 (適用於作用中組建)
-根據種子 (輸入) 項目的清單，取得 "Recommendation" 或 "Fbt" 類型之作用中組建的建議。
+取得建議的 hello 作用中的組建類型的 「 建議事項 」 或者 「 Fbt"根據種子 （輸入） 項目清單。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -2429,9 +2429,9 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| itemIds |要建議的以逗號分隔項目清單。 <br>如果作用中組建的類型是 FBT，您可以只傳送一個項目。 <br>最大長度：1024 |
-| numberOfResults |必要結果的數目  <br> 最大值：150 |
+| modelId |Hello 模型的唯一識別碼 |
+| itemIds |以逗號分隔的 hello 項目 toorecommend 的清單。 <br>如果 hello active 組建的輸入 FBT，則您可以傳送只有一個項目。 <br>最大長度：1024 |
+| numberOfResults |必要結果的數目  <br>  最大值：150 |
 | includeMetatadata |未來使用，永遠為 false |
 | apiVersion |1.0 |
 
@@ -2439,14 +2439,14 @@ OData XML
 
 HTTP 狀態碼：200
 
-回應會包含每個建議項目的一個項目。 每個項目都有下列資料：
+hello 回應包含一個項目，每個建議的項目。 每個項目具有下列資料的 hello:
 
 * `Feed\entry\content\properties\Id` - 建議項目識別碼。
-* `Feed\entry\content\properties\Name` - 項目的名稱。
-* `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
+* `Feed\entry\content\properties\Name`-Hello 項目的名稱。
+* `Feed\entry\content\properties\Rating`-Hello 建議; 的評等較高的數字表示較高信心。
 * `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
-以下範例回應包含 10 個建議項目。
+以下的 hello 範例回應會包含 10 個建議的項目。
 
 OData XML
 
@@ -2608,28 +2608,28 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| itemIds |要建議的以逗號分隔項目清單。 <br>如果作用中組建的類型是 FBT，您可以只傳送一個項目。 <br>最大長度：1024 |
-| numberOfResults |必要結果的數目  <br> 最大值：150 |
+| modelId |Hello 模型的唯一識別碼 |
+| itemIds |以逗號分隔的 hello 項目 toorecommend 的清單。 <br>如果 hello active 組建的輸入 FBT，則您可以傳送只有一個項目。 <br>最大長度：1024 |
+| numberOfResults |必要結果的數目  <br>  最大值：150 |
 | includeMetatadata |未來使用，永遠為 false |
-| buildId |要用於此建議要求的組建識別碼 |
+| buildId |hello 建置此建議要求識別碼 toouse |
 | apiVersion |1.0 |
 
 **回應：**
 
 HTTP 狀態碼：200
 
-回應會包含每個建議項目的一個項目。 每個項目都有下列資料：
+hello 回應包含一個項目，每個建議的項目。 每個項目具有下列資料的 hello:
 
 * `Feed\entry\content\properties\Id` - 建議項目識別碼。
-* `Feed\entry\content\properties\Name` - 項目的名稱。
-* `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
+* `Feed\entry\content\properties\Name`-Hello 項目的名稱。
+* `Feed\entry\content\properties\Rating`-Hello 建議; 的評等較高的數字表示較高信心。
 * `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.1 中的回應範例
 
 ### <a name="123-get-fbt-recommendations-for-active-build"></a>12.3. 取得 FBT 建議 (適用於作用中組建)
-根據種子 (輸入) 項目，取得 "Fbt" 類型之作用中組建的建議。
+收到 hello"Fbt 」 為基礎的種子 （輸入） 項目類型的使用中的組建的建議。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -2637,10 +2637,10 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| itemId |建議的項目。 <br>最大長度：1024 |
-| numberOfResults |必要結果的數目  <br>最大值：150 |
-| minimalScore |頻繁集合應該具有的最低分數，以包含在傳回的結果中 |
+| modelId |Hello 模型的唯一識別碼 |
+| itemId |項目 toorecommend。 <br>最大長度：1024 |
+| numberOfResults |必要結果的數目  <br> 最大值：150 |
+| minimalScore |基本分數頻繁集應該包含在 hello 順序 toobe 中傳回結果 |
 | includeMetatadata |未來使用，永遠為 false |
 | apiVersion |1.0 |
 
@@ -2648,16 +2648,16 @@ HTTP 狀態碼：200
 
 HTTP 狀態碼：200
 
-回應會包含每個建議項目集 (通常會與種子/輸入項目一起購買的一組項目) 的一個項目。 每個項目都有下列資料：
+hello 回應會包含每個建議的項目集 （通常與 hello 種子/輸入項目一起購買的項目組） 的一個項目。 每個項目具有下列資料的 hello:
 
 * `Feed\entry\content\properties\Id1` - 建議項目識別碼。
-* `Feed\entry\content\properties\Name1` - 項目的名稱。
+* `Feed\entry\content\properties\Name1`-Hello 項目的名稱。
 * `Feed\entry\content\properties\Id2` - 第二個建議項目的識別碼 (選擇性)。
-* `Feed\entry\content\properties\Name2` - 第二個項目的名稱 (選擇性)。
-* `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
+* `Feed\entry\content\properties\Name2`-Hello 第 2 個項目 （選擇性） 名稱。
+* `Feed\entry\content\properties\Rating`-Hello 建議; 的評等較高的數字表示較高信心。
 * `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
-以下範例回應包含 3 個建議項目集。
+hello 以下的範例回應會包含 3 的建議項目組。
 
 OData XML
 
@@ -2727,25 +2727,25 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| itemId |建議的項目。 <br>最大長度：1024 |
-| numberOfResults |必要結果的數目  <br>最大值：150 |
-| minimalScore |頻繁集合應該具有的最低分數，以包含在傳回的結果中 |
+| modelId |Hello 模型的唯一識別碼 |
+| itemId |項目 toorecommend。 <br>最大長度：1024 |
+| numberOfResults |必要結果的數目  <br> 最大值：150 |
+| minimalScore |基本分數頻繁集應該包含在 hello 順序 toobe 中傳回結果 |
 | includeMetatadata |未來使用，永遠為 false |
-| buildId |要用於此建議要求的組建識別碼 |
+| buildId |hello 建置此建議要求識別碼 toouse |
 | apiVersion |1.0 |
 
 **回應：**
 
 HTTP 狀態碼：200
 
-回應會包含每個建議項目集 (通常會與種子/輸入項目一起購買的一組項目) 的一個項目。 每個項目都有下列資料：
+hello 回應會包含每個建議的項目集 （通常與 hello 種子/輸入項目一起購買的項目組） 的一個項目。 每個項目具有下列資料的 hello:
 
 * `Feed\entry\content\properties\Id1` - 建議項目識別碼。
-* `Feed\entry\content\properties\Name1` - 項目的名稱。
+* `Feed\entry\content\properties\Name1`-Hello 項目的名稱。
 * `Feed\entry\content\properties\Id2` - 第二個建議項目的識別碼 (選擇性)。
-* `Feed\entry\content\properties\Name2` - 第二個項目的名稱 (選擇性)。
-* `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
+* `Feed\entry\content\properties\Name2`-Hello 第 2 個項目 （選擇性） 名稱。
+* `Feed\entry\content\properties\Rating`-Hello 建議; 的評等較高的數字表示較高信心。
 * `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.3 中的回應範例
@@ -2753,12 +2753,12 @@ HTTP 狀態碼：200
 ### <a name="125-get-user-recommendations-for-active-build"></a>12.5. 取得使用者建議 (適用於作用中組建)
 取得標示為作用中組建之 "Recommendation" 類型之組建的使用者建議。
 
-這個 API 會根據使用者的使用歷程記錄，傳回預測的項目清單。
+hello API 會傳回一份根據 hello 使用者 toohello 使用量歷程記錄預測的項目。
 
 注意： 
 
 1. FBT 組建沒有使用者建議。
-2. 如果作用中組建是 FBT，這個方法會傳回錯誤。
+2. 如果使用中的 hello 建置是的 FBT 這個方法會傳回錯誤。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -2766,8 +2766,8 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| userId |使用者的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
+| userId |Hello 使用者的唯一識別碼 |
 | numberOfResults |必要結果的數目  |
 | includeMetatadata |未來使用，永遠為 false |
 | apiVersion |1.0 |
@@ -2776,11 +2776,11 @@ HTTP 狀態碼：200
 
 HTTP 狀態碼：200
 
-回應會包含每個建議項目的一個項目。 每個項目都有下列資料：
+hello 回應包含一個項目，每個建議的項目。 每個項目具有下列資料的 hello:
 
 * `Feed\entry\content\properties\Id` - 建議項目識別碼。
-* `Feed\entry\content\properties\Name` - 項目的名稱。
-* `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
+* `Feed\entry\content\properties\Name`-Hello 項目的名稱。
+* `Feed\entry\content\properties\Rating`-Hello 建議; 的評等較高的數字表示較高信心。
 * `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.1 中的回應範例
@@ -2788,12 +2788,12 @@ HTTP 狀態碼：200
 ### <a name="126-get-user-recommendations-with-item-list-for-active-build"></a>12.6. 使用項目清單取得使用者建議 (適用於作用中組建)
 使用額外的項目清單，取得標示為作用中組建之 "Recommendation" 類型之組建的使用者建議。
 
-這個 API 會根據使用者的使用歷程記錄和額外提供的項目，傳回預測的項目清單。
+hello API 會傳回一份根據 hello 使用者和 hello 額外的提供的項目的 toohello 使用量歷程記錄預測的項目。
 
 注意： 
 
 1. FBT 組建沒有使用者建議。
-2. 如果作用中組建是 FBT，這個方法會傳回錯誤。
+2. 如果使用中的 hello 建置是的 FBT 這個方法會傳回錯誤。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -2801,9 +2801,9 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| userId |使用者的唯一識別碼 |
-| itemsIds |要建議的以逗號分隔項目清單。 最大長度：1024 |
+| modelId |Hello 模型的唯一識別碼 |
+| userId |Hello 使用者的唯一識別碼 |
+| itemsIds |以逗號分隔的 hello 項目 toorecommend 的清單。 最大長度：1024 |
 | numberOfResults |必要結果的數目  |
 | includeMetatadata |未來使用，永遠為 false |
 | apiVersion |1.0 |
@@ -2812,11 +2812,11 @@ HTTP 狀態碼：200
 
 HTTP 狀態碼：200
 
-回應會包含每個建議項目的一個項目。 每個項目都有下列資料：
+hello 回應包含一個項目，每個建議的項目。 每個項目具有下列資料的 hello:
 
 * `Feed\entry\content\properties\Id` - 建議項目識別碼。
-* `Feed\entry\content\properties\Name` - 項目的名稱。
-* `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
+* `Feed\entry\content\properties\Name`-Hello 項目的名稱。
+* `Feed\entry\content\properties\Rating`-Hello 建議; 的評等較高的數字表示較高信心。
 * `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.1 中的回應範例
@@ -2824,7 +2824,7 @@ HTTP 狀態碼：200
 ### <a name="127-get-user-recommendations--of-a-specific-build"></a>12.7. 取得使用者建議 (屬於特定組建)
 取得 "Recommendation" 類型之特定組建的使用者建議。
 
-這個 API 會根據使用者的使用歷程記錄 (用於特定組建)，傳回預測的項目清單。
+hello API 會傳回一份根據 toohello 使用量記錄 hello 使用者 （在 hello 特定組建中使用） 的預測的項目。
 
 注意：FBT 組建沒有使用者建議。
 
@@ -2834,30 +2834,30 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| userId |使用者的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
+| userId |Hello 使用者的唯一識別碼 |
 | numberOfResults |必要結果的數目  |
 | includeMetatadata |未來使用，永遠為 false |
-| buildId |要用於此建議要求的組建識別碼 |
+| buildId |hello 建置此建議要求識別碼 toouse |
 | apiVersion |1.0 |
 
 **回應：**
 
 HTTP 狀態碼：200
 
-回應會包含每個建議項目的一個項目。 每個項目都有下列資料：
+hello 回應包含一個項目，每個建議的項目。 每個項目具有下列資料的 hello:
 
 * `Feed\entry\content\properties\Id` - 建議項目識別碼。
-* `Feed\entry\content\properties\Name` - 項目的名稱。
-* `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
+* `Feed\entry\content\properties\Name`-Hello 項目的名稱。
+* `Feed\entry\content\properties\Rating`-Hello 建議; 的評等較高的數字表示較高信心。
 * `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.1 中的回應範例
 
 ### <a name="128-get-user-recommendations-with-item-list-of-a-specific-build"></a>12.8. 使用項目清單取得使用者建議 (屬於特定組建)
-取得 "Recommendation" 類型和額外的項目清單之特定組建的使用者建議。
+取得使用者的建議特定的組建的型別 [建議] 和其他項目 hello 清單。
 
-這個 API 會根據使用者的使用歷程記錄和額外的項目清單，傳回預測的項目清單。
+hello API 會傳回預測的項目，根據 hello 使用者 toohello 使用量歷程記錄和 hello 其他項目清單的清單。
 
 注意：FBT 組建沒有使用者建議。
 
@@ -2867,55 +2867,55 @@ HTTP 狀態碼：200
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
-| userId |使用者的唯一識別碼 |
-| itemIds |要建議的以逗號分隔項目清單。 最大長度：1024 |
+| modelId |Hello 模型的唯一識別碼 |
+| userId |Hello 使用者的唯一識別碼 |
+| itemIds |以逗號分隔的 hello 項目 toorecommend 的清單。 最大長度：1024 |
 | numberOfResults |必要結果的數目  |
 | includeMetatadata |未來使用，永遠為 false |
-| buildId |要用於此建議要求的組建識別碼 |
+| buildId |hello 建置此建議要求識別碼 toouse |
 | apiVersion |1.0 |
 
 **回應：**
 
 HTTP 狀態碼：200
 
-回應會包含每個建議項目的一個項目。 每個項目都有下列資料：
+hello 回應包含一個項目，每個建議的項目。 每個項目具有下列資料的 hello:
 
 * `Feed\entry\content\properties\Id` - 建議項目識別碼。
-* `Feed\entry\content\properties\Name` - 項目的名稱。
-* `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
+* `Feed\entry\content\properties\Name`-Hello 項目的名稱。
+* `Feed\entry\content\properties\Rating`-Hello 建議; 的評等較高的數字表示較高信心。
 * `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.1 中的回應範例
 
 ## <a name="13-user-usage-history"></a>13.使用者使用歷程記錄
-一旦建置建議模型，系統即會允許擷取用於組建的使用者歷程記錄 (與特定使用者相關聯的項目)。
-這個 API 可擷取使用者歷程記錄
+一旦推薦模型所建立 hello 系統將可允許 tooretrieve hello 的使用者歷程記錄 （項目相關聯的 tooa 特定使用者） 用於 hello 組建。
+這個 API 允許 tooretrieve hello 的使用者歷程記錄
 
-注意：目前只有建議組建可使用使用者歷程記錄。
+注意： hello 的使用者歷程記錄是目前僅適用於建議組建。
 
 ### <a name="131-retrieve-user-history"></a>13.1 擷取使用者歷程記錄
-擷取用於作用中組建或指定使用者識別碼之指定組建中的項目清單。
+擷取 hello 清單用於 hello 作用中的項目建置，或在指定的 hello 建置指定的使用者 id 的 hello。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
-| GET |取得使用中組建的使用者歷程記錄。<br/>`<rootURI>/GetUserHistory?modelId=%27<model_id>%27&userId=%27<userId>%27&apiVersion=%271.0%27`<br/><br/>取得指定組建的使用者歷程記錄 `<rootURI>/GetUserHistory?modelId=%27<model_id>%27&userId=%27<userId>%27&buildId=<int>&apiVersion=%271.0%27`<br/><br/>範例：`<rootURI>/GetUserHistory?modelId=%2727967136e8-f868-4258-9331-10d567f87fae%27&&userId=%27u_1013%27&apiVersion=%271.0%277` |
+| GET |取得 hello active 組建 hello 使用者歷程記錄。<br/>`<rootURI>/GetUserHistory?modelId=%27<model_id>%27&userId=%27<userId>%27&apiVersion=%271.0%27`<br/><br/>取得指定組建的 hello hello 使用者歷程記錄`<rootURI>/GetUserHistory?modelId=%27<model_id>%27&userId=%27<userId>%27&buildId=<int>&apiVersion=%271.0%27`<br/><br/>範例：`<rootURI>/GetUserHistory?modelId=%2727967136e8-f868-4258-9331-10d567f87fae%27&&userId=%27u_1013%27&apiVersion=%271.0%277` |
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼。 |
-| userId |使用者的唯一識別碼。 |
-| buildId |選擇性參數，可用來表示應從中擷取使用者歷程記錄的組建 |
+| modelId |hello hello 模型的唯一識別項。 |
+| userId |hello hello 使用者的唯一識別項。 |
+| buildId |選擇性參數，允許從組建 hello 的使用者歷程記錄應擷取 tooindicate |
 | apiVersion |1.0 |
 
 **回應：**
 
 HTTP 狀態碼：200
 
-回應會包含每個建議項目的一個項目。 每個項目都有下列資料：
+hello 回應包含一個項目，每個建議的項目。 每個項目具有下列資料的 hello:
 
 * `Feed\entry\content\properties\Id` - 建議項目識別碼。
-* `Feed\entry\content\properties\Name` - 項目的名稱。
+* `Feed\entry\content\properties\Name`-Hello 項目的名稱。
 * `Feed\entry\content\properties\Rating` - N/A。
 * `Feed\entry\content\properties\Reasoning` - N/A。
 
@@ -2947,14 +2947,14 @@ OData XML
 </feed>
 
 ## <a name="14-notifications"></a>14.通知
-Azure Machine Learning 建議會在系統中持續發生錯誤時建立通知。 有 3 種類型的通知：
+Azure 機器學習建議 hello 系統中的持續性錯誤發生時，會建立通知。 有 3 種類型的通知：
 
 1. 組建失敗 – 每個組建失敗都會觸發此通知。
-2. 資料擷取處理失敗 - 當我們在處理每一模型的使用事件時，如果最後 5 分鐘有超過 100 個錯誤，就會觸發此通知。
-3. 建議取用失敗 - 當我們在處理每一模型的建議要求時，如果最後 5 分鐘有超過 100 個錯誤，就會觸發此通知。
+2. 我們有超過 100 個錯誤中 hello hello 處理的每個模型的使用量事件中的前 5 分鐘觸發處理失敗-此通知的資料擷取。
+3. 我們有超過 100 個錯誤中 hello hello 處理建議要求每個模型中的前 5 分鐘觸發建議耗用量失敗-此通知。
 
 ### <a name="141-get-notifications"></a>14.1. 取得通知
-擷取所有模型或單一模型的所有通知。
+擷取所有 hello 通知所有模型或單一模型。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -2962,7 +2962,7 @@ Azure Machine Learning 建議會在系統中持續發生錯誤時建立通知。
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |選擇性參數。 如果省略此參數，您將會取得所有模型的所有通知。 <br>有效值：模型的唯一識別碼。 |
+| modelId |選擇性參數。 如果省略此參數，您將會取得所有模型的所有通知。 <br>有效值： hello 模型的唯一識別碼。 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -2973,7 +2973,7 @@ HTTP 狀態碼：200
 
 OData XML
 
-    The response includes one entry per notification. Each entry has the following data:
+    hello response includes one entry per notification. Each entry has hello following data:
         * feed\entry\content\properties\UserName - Internal user name identification.
         * feed\entry\content\properties\ModelId - Model ID.
         * feed\entry\content\properties\Message - Notification message.
@@ -3013,7 +3013,7 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelId |模型的唯一識別碼 |
+| modelId |Hello 模型的唯一識別碼 |
 | apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
@@ -3042,6 +3042,6 @@ HTTP 狀態碼：200
 ## <a name="15-legal"></a>15.法律
 這份文件係依「現狀」提供。 本文件中提供的資訊與畫面 (包括 URL 及其他網際網路網站參考資料) 如有變更，恕不另行通知。<br><br>
 此處描述的一些範例僅供說明之用，純屬虛構。 並未影射或關聯任何真實的人、事、物。<br><br>
-本文件未提供給您任何 Microsoft 產品中任何智慧財產的任何法定權利。 您可以複製並使用這份文件，供內部參考之用。<br><br>
+本文件不會提供您任何法律權限 tooany 智慧財產權的任何 Microsoft 產品。 您可以複製並使用這份文件，供內部參考之用。<br><br>
 © 2015 Microsoft. 著作權所有，並保留一切權利。
 

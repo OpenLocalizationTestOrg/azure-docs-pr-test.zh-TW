@@ -1,6 +1,6 @@
 ---
-title: "Azure 受管理的應用程式 FileUpload UI 元素 | Microsoft Docs"
-description: "描述 Azure 受管理應用程式的 Microsoft.Common.FileUpload UI 元素"
+title: "aaaAzure 受管理的應用程式檔案上傳 UI 項目 |Microsoft 文件"
+description: "Azure 受管理的應用程式描述 hello Microsoft.Common.FileUpload UI 項目"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 217e9e63eb7cd198f70cee42b418867df9f1f993
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7af5bec992e3f120afb1bdf56d8b4c19a8e5e834
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftcommonfileupload-ui-element"></a>Microsoft.Common.FileUpload UI 元素
-控制項可讓使用者指定要上傳的一個或多個檔案。 您可以在[建立 Azure 受管理應用程式](managed-application-publishing.md)時使用此元素。
+允許使用者 toospecify 一或多個控制項檔案 tooupload。 您可以在[建立 Azure 受管理應用程式](managed-application-publishing.md)時使用此元素。
 
 ## <a name="ui-sample"></a>UI 範例
 ![Microsoft.Common.FileUpload](./media/managed-application-elements/microsoft.common.fileupload.png)
@@ -47,21 +47,21 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="remarks"></a>備註
-- `constraints.accept` 會指定在瀏覽器的 [檔案] 對話方塊中顯示的檔案類型。 請參閱 [HTML5 規格](http://www.w3.org/TR/html5/forms.html#attr-input-accept) 以取得允許的值。 預設值為 **null**。
-- 如果將 `options.multiple` 設為 **true**，使用者就允許在瀏覽器的 [檔案] 對話方塊中選取一個以上的檔案。 預設值為 **false**。
-- 這個元素會根據 `options.uploadMode` 的值，支援兩種檔案上傳模式。 如果是指定 **file**，輸出就會包含檔案內容作為 blob。 如果是指定 **url**，檔案就會上傳至暫存位置，而輸出會包含 blob 的 URL。 24 小時之後，就會清除暫存 blob。 預設值為 **file**。
-- `options.openMode` 的值會決定讀取檔案的方式。 如果預期是純文字檔案，則指定為 **text**；否則，指定為 **binary**。 預設值為 **text**。
-- 如果將 `options.uploadMode` 設為 **file**，且將 `options.openMode` 設為 **binary**，輸出就會是 base64 編碼。
-- `options.encoding` 會指定讀取檔案時要使用的編碼方式。 預設值為 **UTF-8**，且僅在 `options.openMode` 設為 **text** 時才會使用。
+- `constraints.accept`指定 hello hello 瀏覽器的 [檔案] 對話方塊中顯示的檔案類型。 請參閱 hello [HTML5 規格](http://www.w3.org/TR/html5/forms.html#attr-input-accept)針對允許的值。 hello 預設值是**null**。
+- 如果`options.multiple`設定得**true**，允許 hello 使用者 tooselect 多個瀏覽器 hello 檔案對話方塊中的一個檔案。 hello 預設值是**false**。
+- 這個項目支援上傳的檔案中的 hello 值為基礎的兩種模式`options.uploadMode`。 如果**檔案**指定，則 hello 輸出包含 hello hello 檔案儲存為 blob 內容。 如果**url**指定，則 hello 檔案上傳的 tooa 暫存位置，也未 hello 輸出包含 hello 的 hello blob 的 URL。 24 小時之後，就會清除暫存 blob。 hello 預設值是**檔案**。
+- hello 值`options.openMode`決定 hello 檔案讀取的方式。 如果預期的 toobe 純文字 hello 檔案，指定**文字**，否則，指定**二進位**。 hello 預設值是**文字**。
+- 如果`options.uploadMode`設定得**檔案**和`options.openMode`設定得**二進位**，hello 輸出是 base64 編碼。
+- `options.encoding`讀取 hello 檔案時，請指定 hello 編碼 toouse。 hello 預設值是**utf-8**，並用時，才`options.openMode`設定得**文字**。
 
 ## <a name="sample-output"></a>範例輸出
-如果 options.multiple 為 false 且 options.uploadMode 為 file，輸出就會包含檔案內容作為 JSON 字串：
+如果為 true，options.multiple options.uploadMode 是檔案，輸出會包含 hello hello 檔案內容為 JSON 字串：
 
 ```json
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 ```
 
-如果 options.multiple 為 true 且 options.uploadMode 為 file，輸出就會包含檔案內容作為 JSON 陣列：
+如果 options.multiple 成立 and'options.uploadMode 檔案，則輸出為 JSON 陣列包含 hello hello 檔案內容：
 
 ```json
 [
@@ -87,10 +87,10 @@ ms.lasthandoff: 07/11/2017
 ]
 ```
 
-測試 CreateUiDefinition 時，某些瀏覽器 (例如 Google Chrome) 會將瀏覽器主控台的 Microsoft.Common.FileUpload 元素所產生的 URL 截斷。 您可能需要以滑鼠右鍵按一下個別連結來複製完整的 URL。
+當測試 CreateUiDefinition，某些瀏覽器 （例如 Google Chrome) 截斷 hello 瀏覽器主控台中的 hello Microsoft.Common.FileUpload 項目所產生的 Url。 您可能需要 tooright 按一下個別連結 toocopy hello 完整的 Url。
 
 
 ## <a name="next-steps"></a>後續步驟
-* 如需受管理應用程式的簡介，請參閱 [Azure 受管理的應用程式概觀](managed-application-overview.md)。
-* 如需建立 UI 定義的簡介，請參閱[開始使用 CreateUiDefinition](managed-application-createuidefinition-overview.md)。
+* 對於簡介 toomanaged 應用程式，請參閱[Azure 受管理的應用程式概觀](managed-application-overview.md)。
+* 如需簡介 toocreating UI 定義，請參閱[入門 CreateUiDefinition](managed-application-createuidefinition-overview.md)。
 * 如需 UI 元素中通用屬性的說明，請參閱 [CreateUiDefinition 元素](managed-application-createuidefinition-elements.md)。

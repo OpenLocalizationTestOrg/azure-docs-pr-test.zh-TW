@@ -1,6 +1,6 @@
 ---
-title: "Azure Log Analytics 搜尋參考 | Microsoft Docs"
-description: "Log Analytics 搜尋參考描述搜尋語言，並且提供一般查詢語法選項，您可以在搜尋資料及篩選運算式時用來幫助您縮小搜尋範圍。"
+title: "aaaAzure 記錄分析搜尋參考 |Microsoft 文件"
+description: "hello 記錄分析搜尋參考描述 hello 搜尋語言，並提供資料的搜尋和篩選運算式 toohelp 縮小搜尋範圍時，您可以使用 hello 一般查詢語法選項。"
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -15,29 +15,29 @@ ms.topic: article
 ms.date: 07/13/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: fc9c9b0a6292dab256997a86a6db16367fc48cd3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7478a1139b88a1ce76ebb7b76027a6ccd66f4f27
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-search-reference"></a>Log Analytics 搜尋參考
 
 >[!NOTE]
-> 本文說明在 Azure Log Analytics 中使用目前查詢語言的記錄搜尋。  如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則您應該參閱[新語言的語言參考](https://go.microsoft.com/fwlink/?linkid=856079)。
+> 本文說明的記錄搜尋記錄分析中使用 hello 目前的查詢語言。  如果您的工作區已升級的 toohello[新的記錄分析查詢語言](log-analytics-log-search-upgrade.md)，則您應該太參閱[hello hello 新語言的語言參考](https://go.microsoft.com/fwlink/?linkid=856079)。
 
-下列關於搜尋語言的參考章節描述一般查詢語法選項，您可以在搜尋資料及篩選運算式時用來幫助您縮小搜尋範圍。 它也會描述您可以用來在已擷取的資料上採取動作的命令。
+hello 關於搜尋語言的下列參考章節描述 hello 一般查詢語法選項，您可以搜尋資料及篩選運算式 toohelp 縮小搜尋範圍時使用。 此外也說明您可以擷取 hello 資料上使用 tootake 動作的命令。
 
-您可以在[搜尋欄位和 Facet 參考](#search-field-and-facet-reference)小節中閱讀搜尋中傳回的欄位，以及協助您深入探討相似資料類別的 Facet。
+您可以閱讀搜尋中傳回的 hello 欄位和 hello facet，協助您更深入的資料，請在 hello 類別相似探索[搜尋欄位和 facet 參考章節](#search-field-and-facet-reference)。
 
 ## <a name="general-query-syntax"></a>一般查詢語法
-一般查詢的語法如下︰
+hello 一般查詢語法如下所示：
 
 ```
 filterExpression | command1 | command2 …
 ```
 
-篩選運算式 (`filterExpression`) 會定義查詢的 "where" 條件。 命令會套用至查詢所傳回的結果。 多個命令必須以縱線字元 ( | ) 分隔。
+hello 篩選條件運算式 (`filterExpression`) 定義的 hello"where"條件 hello 查詢。 hello 命令會套用 toohello hello 查詢所傳回的結果。 多個命令必須以 hello 縱線字元 (|) 分隔。
 
 ### <a name="general-syntax-examples"></a>一般語法範例
 範例：
@@ -46,10 +46,10 @@ filterExpression | command1 | command2 …
 system
 ```
 
-此查詢會傳回在已編製索引的任何欄位中進行全文檢索或詞彙搜尋時包含 system 這個單字的結果。
+此查詢會傳回結果包含 hello 文字*系統*已索引的全文檢索或詞彙搜尋的任何欄位中。
 
 > [!NOTE]
-> 並非所有的欄位都以此方式編製索引，不過最常見的文字欄位 (例如描述和名稱) 通常都是。
+> 並非所有的欄位會編製索引如此一來，但最常見的文字欄位 （例如描述和名稱） 通常 hello。
 >
 >
 
@@ -57,24 +57,24 @@ system
 system error
 ```
 
-此查詢會傳回包含 system 和 error 單字的結果。
+此查詢會傳回結果包含 hello 文字*系統*和*錯誤*。
 
 ```
 system error | sort ManagementGroupName, TimeGenerated desc | top 10
 ```
 
-此查詢會傳回包含 system 和 error 單字的結果。 然後會依據 ManagementGroupName 欄位 (依遞增順序)，再依據 TimeGenerated 欄位 (依遞減順序) 排序結果。 它只會採用前 10 個結果。
+此查詢會傳回結果包含 hello 文字*系統*和*錯誤*。 它再依 hello 結果 hello *ManagementGroupName*欄位 （依遞增順序），再以 hello *TimeGenerated*欄位 （依遞減順序）。 它會採用只有 hello 前 10 個結果。
 
 > [!IMPORTANT]
-> 所有的欄位名稱以及字串和文字欄位的值都會區分大小寫。
+> 所有 hello 欄位名稱和 hello hello 字串和文字欄位值會區分大小寫。
 >
 >
 
 ## <a name="filter-expressions"></a>篩選運算式
-下列小節說明篩選運算式。
+hello 下列小節將詳細說明 hello 篩選運算式。
 
 ### <a name="string-literals"></a>字串常值
-字串常值是未經由剖析器辨識為關鍵字或預先定義資料類型 (例如，數字或日期) 的任何字串。
+字串常值是無法 hello 剖析器辨識為關鍵字或預先定義的資料類型 （例如，數字或日期） 的任何字串。
 
 範例：
 
@@ -82,7 +82,7 @@ system error | sort ManagementGroupName, TimeGenerated desc | top 10
 These all are string literals
 ```
 
-此查詢會搜尋包含五個字全都出現的結果。 若要執行複雜的字串搜尋，請將字串常值以引號括起來。 例如：
+此查詢會搜尋包含五個字全都出現的結果。 tooperform 複雜的字串搜尋，請 hello 字串常值以引號括起來。 例如：
 
 ```
 "Windows Server"
@@ -91,7 +91,7 @@ These all are string literals
 這只會傳回結果為 Windows Server 的完全相符項目。
 
 ### <a name="numbers"></a>數字
-剖析器支援數值欄位的十進位整數和浮點數語法。
+hello 剖析器支援數值欄位 hello 十進位整數和浮點數語法。
 
 範例：
 
@@ -104,11 +104,11 @@ HTTP 500
 ```
 
 ### <a name="dates-and-times"></a>日期和時間
-系統中的每個資料片段都有 *TimeGenerated* 屬性，代表記錄的原始日期和時間。 某些資料類型可能另外有日期和時間欄位 (例如，*LastModified*)。
+Hello 系統中的資料的每個片段都有*TimeGenerated*屬性，代表的 hello 記錄 hello 原始日期和時間。 某些資料類型可能另外有日期和時間欄位 (例如，*LastModified*)。
 
-Azure Log Analytics 中的 [時間表/時間] 選取器會顯示經過一段時間的結果分佈 (根據目前執行的查詢)。 這是根據 *TimeGenerated* 欄位。 日期和時間欄位具有特定字串格式，可以在查詢中用來將查詢限制在特定時間範圍內。 您也可以使用語法來參考相對的時間間隔 (例如，「3 天前和 2 小時前之間」)。
+hello 時間表**圖表/時間**Azure Log Analytics 中的選取器會顯示經過一段時間 （相應 toohello 目前執行的查詢） 的結果分佈。 這根據 hello *TimeGenerated*欄位。 日期和時間欄位具有特定字串格式，可用於查詢 toorestrict hello 查詢 tooa 特定時間範圍內。 您也可以使用語法 toorefer toorelative （比方說，「 3 天前和 2 小時前之間 」） 的時間間隔。
 
-以下是有效形式的日期和時間語法：
+hello 下面是語法的供日期和時間的有效形式:
 
 ```
 yyyy-mm-ddThh:mm:ss.dddZ
@@ -141,14 +141,14 @@ yyyy-mm-dd
 TimeGenerated:2013-10-01T12:20
 ```
 
-前一個命令只會傳回 *TimeGenerated* 值剛好等於 2013 年 10 月 1 日 12:20 的記錄。
+hello 前一個命令只會傳回*TimeGenerated* 12:20 於 2013 年 10 月 1 日的值。
 
-剖析器也支援助憶鍵的日期/時間值，NOW。 (這也不太可能產生任何結果，因為資料無法這麼快速地通過系統)。
+hello 剖析器也支援助憶鍵日期/時間值 hello，NOW。 （它是不太可能，這樣會產生任何結果，因為資料無法這麼快速 hello 系統）。
 
-這些範例是用於相對與絕對日期的建置組塊。 在接下來的三個子節中，您會透過使用相對日期範圍的範例，看到如何在更進階的篩選條件中使用它們。
+這些範例是用於相對與絕對日期的建置組塊 toouse。 在 hello 接下來的三個子節中，您會看到如何 toouse 在更進階的篩選器，透過使用相對日期範圍的範例。
 
 ### <a name="datetime-math"></a>日期/時間數學
-使用日期/時間數學運算子，透過簡單的計算位移或四捨五入日期/時間值。
+使用 hello 日期/時間數學運算子 toooffset 或四捨五入 hello 日期/時間值，透過簡單的日期/時間計算。
 
 語法：
 
@@ -162,29 +162,29 @@ datetime[+|-]count unit
 
 | 運算子 | 說明 |
 | --- | --- |
-| / |將日期/時間四捨五入到指定的單位。 例如，NOW/DAY 會將目前的日期/時間四捨五入至目前日期的午夜。 |
-| + 或 - |將日期/時間位移指定的單位數。 例如，NOW+1HOUR 會將目前日期/時間位移晚一個小時。 2013-10-01T12:00-10DAYS 會將日期值位移回 10 天。 |
+| / |將日期/時間 toohello 指定單位。 例如，現在 / DAY 會四捨五入 hello 目前日期/時間 toomidnight hello 的目前日期。 |
+| + 或 - |位移日期/時間 hello 所指定單位的數。 例如，NOW + 1hour 會 hello 目前日期/時間往後移一個小時。 2013-10-01t12: 00-10days hello 日期值往回位移 10 天。 |
 
-您可以將日期/時間數學運算子鏈結在一起。 例如：
+Hello 日期/時間數學運算子可以鏈結在一起。 例如：
 
 ```
 NOW+1HOUR-10MONTHS/MINUTE
 ```
 
-下表列出受支援的日期/時間單位。
+hello 下表列出支援的 hello 日期/時間單位。
 
 | 日期/時間單位 | 說明 |
 | --- | --- |
-| YEAR, YEARS |四捨五入為目前的年份，或位移指定的年數。 |
-| MONTH, MONTHS |四捨五入為目前的月份，或位移指定的月數。 |
-| DAY, DAYS, DATE |四捨五入為目前的月份日期，或位移指定的天數。 |
-| HOUR, HOURS |四捨五入為目前的小時，或位移指定的小時數。 |
-| MINUTE, MINUTES |四捨五入為目前的分鐘，或位移指定的分鐘數。 |
-| SECOND, SECONDS |四捨五入為目前的秒，或位移指定的秒數。 |
-| MILLISECOND, MILLISECONDS, MILLI, MILLIS |四捨五入為目前的毫秒，或位移指定的毫秒數。 |
+| YEAR, YEARS |重試回合 toocurrent 年份或由 hello 位移指定年的數。 |
+| MONTH, MONTHS |重試回合 toocurrent 月份或由 hello 位移指定月的數。 |
+| DAY, DAYS, DATE |重試回合 toocurrent 天 hello 月份或由 hello 位移指定的天數。 |
+| HOUR, HOURS |重試回合 toocurrent 小時或由 hello 位移指定小時的數。 |
+| MINUTE, MINUTES |重試回合 toocurrent 分鐘或由 hello 位移指定分鐘的數。 |
+| SECOND, SECONDS |第二，四捨五入 toocurrent 或位移指定的 hello 的秒數字。 |
+| MILLISECOND, MILLISECONDS, MILLI, MILLIS |重試回合 toocurrent 毫秒或由 hello 位移指定毫秒的數。 |
 
 ### <a name="field-facets"></a>欄位 facet
-使用欄位 Facet，您可以指定特定欄位的搜尋條件及其實際值。 這與針對整個索引的各種詞彙撰寫「任意文字」查詢不同。 您已經在數個先前的範例中看過這項技術。 下列是更複雜的範例。
+藉由使用欄位 facet，您可以指定 hello 搜尋條件的特定欄位及其實際值。 這不同於整個 hello 索引的各種詞彙撰寫 「 任意文字 」 查詢。 您已經在數個先前的範例中看過這項技術。 hello 以下是更複雜的範例。
 
 **語法**
 
@@ -198,7 +198,7 @@ field=value
 
 **說明**
 
-搜尋特定值的欄位。 此值可以是字串常值、數字或日期和時間。
+搜尋 hello hello 特定值的欄位。 hello 值可以是字串常值、 數字或日期和時間。
 
 例如：
 
@@ -257,7 +257,7 @@ SampleValue:[0..2]
 ```
 
 ### <a name="in"></a>IN
-**IN** 關鍵字可讓您從值清單中選取。 根據您使用的語法，這可以是您所提供值的簡易清單或彙總值的清單。
+hello **IN**關鍵字可讓您 tooselect 從值清單。 根據您使用的 hello 語法，這可以是簡單清單所提供，值或彙總從值清單。
 
 語法 1：
 
@@ -265,7 +265,7 @@ SampleValue:[0..2]
 field IN {value1,value2,value3,...}
 ```
 
-此語法可讓您在簡易清單中包含所有的值。
+此語法可讓您 tooinclude 簡易清單中的所有值。
 
 
 
@@ -282,25 +282,25 @@ Computer IN {"srv01.contoso.com","srv02.contoso.com"}
 語法 2：
 
 ```
-(Outer query) (Field to use with inner query results) IN {Inner query | measure count() by (Field to send to outer query)} (rest  of outer query)  
+(Outer query) (Field toouse with inner query results) IN {Inner query | measure count() by (Field toosend tooouter query)} (rest  of outer query)  
 ```
 
-此語法可讓您建立彙總。 您可以將值清單從該彙總提供到另一個外部 (主要) 搜尋，這個搜尋會尋找具有那些值的事件。 若要這麼做，您必須以大括號括住內部搜尋，並使用 IN 運算子將其結果提供作為外部搜尋中欄位的可能值。
+此語法可讓您 toocreate 彙總。 您接著可以從這個彙總到另一個外部的 （主要） 搜尋，尋找具有這些值的事件摘要 hello 值清單。 做法是以大括號括住 hello 內部搜尋，再饋送其結果為 hello 外部搜尋中欄位的可能值，使用 hello IN 運算子。
 
-內部查詢範例︰*目前遺漏安全性更新的電腦*，並使用下列彙總查詢：
+內部查詢範例：*目前遺失安全性更新的電腦*以 hello 下列彙總查詢：
 
 ```
 Type:Update Classification="Security Updates"  UpdateState=needed TimeGenerated>NOW-25HOURS | measure count() by Computer
 ```    
 
-尋找 *目前遺漏安全性更新之電腦的所有 Windows 事件* 的最後查詢與下列類似：
+hello 最終查詢，以尋找*目前遺失安全性更新的電腦的所有 Windows 事件*類似 hello 下列：
 
 ```
 Type=Event Computer IN {Type:Update Classification="Security Updates"  UpdateState=needed TimeGenerated>NOW-25HOURS | measure count() by Computer}
 ```
 
 ### <a name="contains"></a>Contains
-**Contains** 關鍵字可讓您篩選欄位包含所指定字串的記錄。 這區分大小寫、僅適用於字串欄位，而且可能不包含任何逸出字元。
+hello **Contains**關鍵字可讓您 toofilter 記錄與欄位，其中包含指定的字串。 這區分大小寫、僅適用於字串欄位，而且可能不包含任何逸出字元。
 
 語法：
 
@@ -314,12 +314,12 @@ field:contains("string")
 Type:contains("Event")
 ```
 
-這會傳回類型包含字串 "Event" 的記錄。 範例包括 **Event**、**SecurityEvent** 和 **ServiceFabricOperationEvent**。
+這會傳回包含 hello 字串類型的記錄 「 事件 」。 範例包括 **Event**、**SecurityEvent** 和 **ServiceFabricOperationEvent**。
 
 
 
 ### <a name="regular-expressions"></a>規則運算式
-您可以使用 **Regex** 關鍵字，以規則運算式指定欄位的搜尋條件。 如需您可以在規則運算式中使用之語法的完整描述，請參閱[使用規則運算式在 Log Analytics 中篩選記錄搜尋](log-analytics-log-searches-regex.md)。
+您也可以使用 hello 與規則運算式，指定欄位的搜尋條件**Regex**關鍵字。 您可以使用規則運算式中的 hello 語法的完整說明，請參閱[記錄分析中使用規則運算式 toofilter 記錄搜尋](log-analytics-log-searches-regex.md)。
 
 語法：
 
@@ -334,7 +334,7 @@ Computer:Regex("^C.*")
 ```
 
 ### <a name="logical-operators"></a>邏輯運算子
-查詢語言支援邏輯運算子 (AND、OR 和 NOT) 和它們的 C 樣式別名 (分別是 *&&*、*||* 和 *!*)。 您可以使用括號來分組這些運算子。
+hello 查詢語言支援 hello 邏輯運算子 (*AND*，*或者*，和*不*) 及其 C 樣式別名 (*&&*， *||* ，和*！*分別)。 您可以使用括號 toogroup 這些運算子。
 
 範例：
 
@@ -347,35 +347,35 @@ system OR error
 Type:Alert AND NOT(Severity:1 OR ObjectId:"8066bbc0-9ec8-ca83-1edc-6f30d4779bcb8066bbc0-9ec8-ca83-1edc-6f30d4779bcb")
 ```
 
-您可以略過最上層篩選引數的邏輯運算子。 在此情況下，會假設採用 AND 運算子。
+您可以省略 hello 最上層篩選引數的 hello 邏輯運算子。 在此情況下，會假設 hello AND 運算子。
 
-| 篩選運算式 | 相當於 |
+| 篩選運算式 | 對等太|
 | --- | --- |
 | system error |system AND error |
 | system "Windows Server" OR Severity:1 |system AND ("Windows Server" OR Severity:1) |
 
 ### <a name="wildcarding"></a>萬用字元
-查詢語言支援使用 ( \* ) 字元來代表查詢中值的一個或多個字元。
+hello 查詢語言支援使用 hello ( \* ) 字元太表示值在查詢中的一或多個字元。
 
 範例：
 
- 尋找名稱中有 "SQL" 的所有電腦 (例如 "Redmond SQL")。
+ Hello 名稱，例如"REDMOND-SQL"中尋找具有"SQL"的所有電腦。
 
 ```
 Type=Event Computer=*SQL*
 ```
 
 > [!NOTE]
-> 此時，無法在引號內使用萬用字元。 例如，訊息 `"*This text*"` 將考慮使用 (\*) 作為常值 (\*) 字元。
+> 此時，無法在引號內使用萬用字元。 例如，hello 訊息`"*This text*"`會考慮 hello (\*) 做為常值 (\*) 字元。
 
 
 ## <a name="commands"></a>命令
 
 
-命令會套用至查詢所傳回的結果。 使用縱線字元 ( | ) 將命令套用至擷取的結果。 多個命令必須以縱線字元分隔。
+hello 命令會套用 toohello hello 查詢所傳回的結果。 使用 hello 管道字元 (|) tooapply 命令 toohello 擷取結果。 多個命令必須以 hello 縱線字元分隔。
 
 > [!NOTE]
-> 命令名稱可以大寫或小寫撰寫，與欄位名稱和資料不同。
+> 命令名稱可以大寫或小寫，不同於 hello 欄位名稱和 hello 資料撰寫。
 >
 >
 
@@ -384,7 +384,7 @@ Type=Event Computer=*SQL*
 
     sort field1 asc|desc, field2 asc|desc, …
 
-依特定欄位排序結果。 依遞增或遞減順序排序結果的 asc/desc 尾碼是選擇性的。 如果將其省略，則會假設採用 *asc* 排序順序。 在 **TimeGenerated** 位中，採用 *desc* 排序順序，因此預設會先傳回最新的結果。
+依特定欄位排序 hello 結果。 hello asc/desc 表示後置詞 toosort hello 結果按照遞增或遞減的順序是選擇性的。 如果省略，hello *asc*會假設採用排序順序。 Hello **TimeGenerated**  欄位中， *desc*假設排序順序，讓它預設會傳回 hello 最新的結果第一次。
 
 ### <a name="toplimit"></a>Top/Limit
 語法：
@@ -393,20 +393,20 @@ Type=Event Computer=*SQL*
 
 
     limit number
-將回應限制為前 N 個結果。
+限制 hello 回應 toohello 前 N 個結果。
 
 範例：
 
     Type:Alert errors detected | top 10
 
-傳回前 10 個比對結果。
+傳回 hello 前 10 個比對結果。
 
 ### <a name="skip"></a>Skip
 語法：
 
     skip number
 
-略過列出結果的數目。
+略過 hello 列出的結果數目。
 
 範例：
 
@@ -419,16 +419,16 @@ Type=Event Computer=*SQL*
 
     select field1, field2, ...
 
-將結果限制為您選擇的欄位。
+您選擇限制結果 toohello 欄位。
 
 範例：
 
     Type:Alert errors detected | select Name, Severity
 
-將傳回的結果欄位限制為 *Name* and *Severity*小節中閱讀搜尋中傳回的欄位，以及協助您深入鑽研相似資料類別的 Facet。
+限制太 hello 傳回的結果欄位*名稱*和*嚴重性*。
 
 ### <a name="measure"></a>Measure
-*measure* 命令可用來將統計函式套用至未經處理的搜尋結果。 需要取得資料的 *群組依據* 檢視時，這非常有用。 當您使用 measure 命令時，Log Analytics 搜尋會顯示含有彙總結果的資料表。
+hello*量值*命令是使用的 tooapply 統計函數 toohello 未經處理的搜尋結果。 這是很有幫助 tooget*分組*hello 資料的檢視。 當您使用 hello measure 命令時，記錄分析搜尋會顯示含有彙總結果的資料表。
 
 **語法：**
 
@@ -439,19 +439,19 @@ Type=Event Computer=*SQL*
 
 
 
-根據 groupField 彙總結果，並使用 aggregatedField 計算彙總的測量值。
+彙總依 hello 結果*groupField*，並使用計算 hello 彙總的量值*aggregatedField*。
 
 | 量值統計函式 | 說明 |
 | --- | --- |
-| *aggregateFunction* |彙總函式的名稱 (不區分大小寫)。 支援下列彙總函式：COUNT、MAX、MIN、SUM、AVG、STDDEV、COUNTDISTINCT、PERCENTILE## 或 PCT## (## 是 1 與 99 之間的任意數字)。 |
-| *aggregatedField* |正在彙總的欄位。 這是 COUNT 彙總函式的選擇性欄位，但必須是 SUM、MAX、MIN、AVG、STDDEV、PERCENTILE## 或 PCT## 的現有數值欄位 (## 是 1 與 99 之間的任意數字)。 aggregatedField 也可以是任一 **Extend** 支援的函式。 |
-| *fieldAlias* |計算彙總值 (選擇性) 別名。 如果未指定，欄位名稱會是 **AggregatedValue**。 |
-| *groupField* |用來分組結果集的欄位名稱。 |
-| *間隔* |時間間隔，格式為：**nnnNAME**。 **nnn** 是正整數。 **NAME** 是間隔名稱。 支援的間隔名稱區分大小寫，且包括：MILLISECOND[S]、SECOND[S]、MINUTE[S]、HOUR[S]、DAY[S]、MONTH[S] 和 YEAR[S]。 |
+| *aggregateFunction* |hello hello 彙總函式 （不區分大小寫） 的名稱。 支援下列彙總函式的 hello： 計數、 MAX、 MIN、 SUM、 AVG、 STDDEV、 COUNTDISTINCT、 百分位數 # # 或 PCT # # (# # 是介於 1 到 99 之間的數字)。 |
+| *aggregatedField* |hello 進行彙總的欄位。 這個欄位是選擇性的 hello 計數彙總函式，但是具有 toobe SUM、 MAX、 MIN、 AVG、 STDDEV、 百分位數 # # 或 PCT # # 的現有數值欄位 (# # 是介於 1 到 99 之間的數字)。 hello aggregatedField 也可以是任何 hello**擴充**支援的函數。 |
+| *fieldAlias* |hello hello （選擇性） 別名計算彙總值。 如果未指定，hello 的欄位名稱為**AggregatedValue**。 |
+| *groupField* |為分組依據的 hello hello hello 結果集的欄位名稱。 |
+| *間隔* |hello 時間間隔，hello 格式：**nnnNAME**。 **nnn**是 hello 正整數。 **名稱**hello 間隔名稱。 支援的間隔名稱區分大小寫，且包括：MILLISECOND[S]、SECOND[S]、MINUTE[S]、HOUR[S]、DAY[S]、MONTH[S] 和 YEAR[S]。 |
 
-間隔選項只能用於日期/時間群組欄位中 (例如 *TimeGenerated* and *TimeCreated*)。 目前，服務不會強制執行，但是沒有傳遞至後端之日期/時間的欄位會造成執行階段錯誤。 實作結構描述驗證時，服務 API 會拒絕某些查詢，其使用的欄位沒有間隔彙總的日期/時間。 目前的 *Measure* 實作支援任何彙總函式的間隔分組。
+hello 間隔選項只可以用於日期/時間群組欄位 (例如*TimeGenerated*和*TimeCreated*)。 目前，這不會強制執行 hello 服務，但是沒有傳遞 toohello 後端的日期/時間欄位會導致執行階段錯誤。 實作 hello 結構描述驗證時，hello 服務 API 會拒絕間隔彙總的使用不含日期/時間欄位的查詢。 目前的 hello*量值*實作支援為任何彙總函式的間隔分組。
 
-如果省略 BY 子句，但指定間隔 (作為第二個語法)，則預設採用 TimeGenerated 欄位。
+如果省略 hello BY 子句，但指定間隔 （作為第二個語法），hello *TimeGenerated*欄位預設會假設。
 
 範例：
 
@@ -459,91 +459,91 @@ Type=Event Computer=*SQL*
 
     Type:Alert | measure count() as Count by ObjectId
 
-依據 ObjectID 將警示分組，並計算每個群組的警示數目。 傳回的彙總值為 *Count* 欄位 (別名)。
+群組 hello 警示*ObjectID*，並計算每個群組的警示的 hello 數目。 hello 傳回彙的總值為 hello*計數*欄位 （別名）。
 
 **範例 2**
 
     Type:Alert | measure count() interval 1HOUR
 
-使用 *TimeGenerated* 欄位，依據 1 小時間隔將警示分組，並傳回每個間隔中的警示數目。
+群組依據 1 小時間隔 hello 警示使用 hello *TimeGenerated*欄位，以及每個間隔中的警示傳回 hello 數目。
 
 **範例 3**
 
     Type:Alert | measure count() as AlertsPerHour interval 1HOUR
 
-如同上述範例，但使用彙總欄位別名 (*AlertsPerHour*)。
+如同 hello 上述範例中，但使用彙總的欄位別名 (*AlertsPerHour*)。
 
 **範例 4**
 
     * | measure count() by TimeCreated interval 5DAYS
 
-使用 *TimeCreated* 欄位，依據 5 天間隔將結果分組，並傳回每個間隔中的結果數目。
+使用 hello，依據 5 天間隔分組 hello 結果*TimeCreated*欄位，以及每個間隔中的結果傳回 hello 數目。
 
 **範例 5**
 
     Type:Alert | measure max(Severity) by WorkflowName
 
-跟據工作負載名稱分組警示，並傳回每個工作流程的最大警示嚴重性值。
+群組的工作負載名稱 hello 警示，並傳回 hello 每個工作流程的最大警示嚴重性值。
 
 **範例 6**
 
     Type:Alert | measure min(Severity) by WorkflowName
 
-如同上述範例，但使用 min 彙總函式。
+如同 hello 上述範例中，但使用 hello *min*彙總函式。
 
 **範例 7**
 
     Type:Perf | measure avg(CounterValue) by Computer
 
-根據 computer 分組 Perf，並計算平均值 (avg)。
+效能分組的電腦，然後計算 hello 平均 (avg)。
 
 **範例 8**
 
     Type:Perf | measure sum(CounterValue) by Computer
 
-如同上述範例，但使用 sum。
+與 hello 前一個範例相同，但使用*總和*。
 
 **範例 9**
 
     Type:Perf | measure stddev(CounterValue) by Computer
 
-如同上述範例，但使用 stddev。
+與 hello 前一個範例相同，但使用*stddev*。
 
 **範例 10**
 
     Type:Perf | measure percentile70(CounterValue) by Computer
 
-如同上述範例，但使用 percentile70。
+與 hello 前一個範例相同，但使用*percentile70*。
 
 **範例 11**
 
     Type:Perf | measure pct70(CounterValue) by Computer
 
-如同上述範例，但使用 pct70。 請注意，PCT## 只是 PERCENTILE## 函式的別名。
+與 hello 前一個範例相同，但使用*pct70*。 請注意，PCT## 只是 PERCENTILE## 函式的別名。
 
 **範例 12**
 
     Type:Perf | measure avg(CounterValue) by Computer, CounterName
 
-先根據 Computer 然後根據 CounterName 分組 Perf，並計算平均 (avg)。
+依電腦第一次群組效能然後 CounterName 和計算 hello 平均 (avg)。
 
 **範例 13**
 
     Type:Alert | measure count() as Count by WorkflowName | sort Count desc | top 5
 
-取得最大數目警示的前五個工作流程。
+取得 hello 與 hello 警示最大數目的前五個工作流程。
 
 **範例 14**
 
     * | measure countdistinct(Computer) by Type
 
-計算針對每種類型報告的唯一電腦數目。
+計算 hello 報告每個類型的唯一電腦數目。
 
 **範例 15**
 
     * | measure countdistinct(Computer) Interval 1HOUR
 
-計算針對每個小時報告的唯一電腦數目。
+計算 hello 每小時報告的唯一電腦數目。
 
 **範例 16**
 
@@ -551,13 +551,13 @@ Type=Event Computer=*SQL*
 Type:Perf CounterName=”% Processor Time” InstanceName=”_Total” | measure avg(CounterValue) by Computer Interval 1HOUR
 ```
 
-根據 Computer 分組 % Processor Time，並傳回每小時的平均值。
+群組 %Processor Time 的電腦，並傳回 hello 平均每小時。
 
 **範例 17**
 
     Type:W3CIISLog | measure max(TimeTaken) by csMethod Interval 5MINUTES
 
-根據 method 分組 W3CIISLog，並傳回代表每 5 分鐘的最大值。
+群組 W3CIISLog 方法，並傳回 hello 最大值為每隔 5 分鐘。
 
 **範例 18**
 
@@ -565,7 +565,7 @@ Type:Perf CounterName=”% Processor Time” InstanceName=”_Total” | measure
 Type:Perf CounterName=”% Processor Time” InstanceName=”_Total”  | measure min(CounterValue) as MIN, avg(CounterValue) as AVG, percentile75(CounterValue) as PCT75, max(CounterValue) as MAX by Computer Interval 1HOUR
 ```
 
-根據電腦分組 % Processor Time，並傳回每小時的最小值、平均值、第 75 百分位數和最大值。
+群組 %Processor Time 的電腦，並傳回 hello 最小值、 平均、 第 75 百分位數 及每小時最大值。
 
 **範例 19**
 
@@ -573,7 +573,7 @@ Type:Perf CounterName=”% Processor Time” InstanceName=”_Total”  | measur
 Type:Perf CounterName=”% Processor Time”  | measure min(CounterValue) as MIN, avg(CounterValue) as AVG, percentile75(CounterValue) as PCT75, max(CounterValue) as MAX by Computer, InstanceName Interval 1HOUR
 ```
 
-先根據 computer 然後根據 Instance name 分組 % Processor Time，並傳回每小時的最小值、平均值、第 75 百分位數和最大值。
+群組 %Processor Time 先依電腦和執行個體名稱，以及傳回 hello 最小值、 平均值、 第 75 個百分位數及每小時最大值。
 
 **範例 20**
 
@@ -581,7 +581,7 @@ Type:Perf CounterName=”% Processor Time”  | measure min(CounterValue) as MIN
 Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | measure max(product(CounterValue,60)) as MaxDWPerMin by InstanceName Interval 1HOUR
 ```
 
-計算您電腦上每個磁碟每分鐘磁碟寫入的最大值。
+計算每個磁碟的每分鐘在您的電腦上的磁碟寫入的 hello 最大值。
 
 ### <a name="where"></a>Where
 語法：
@@ -590,7 +590,7 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 **where** AggregatedValue>20
 ```
 
-只能用於 Measure 命令之後，以進一步篩選 Measure 彙總函式所產生的彙總結果。
+僅適用於之後*量值*命令 toofurther 篩選 hello 彙總結果的 hello*量值*彙總函數所產生。
 
 範例：
 
@@ -605,16 +605,16 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 
     Dedup FieldName
 
-針對所指定欄位的每個唯一值，傳回第一份找到的文件。
+傳回 hello hello 指定欄位的每個唯一值找到的第一個文件。
 
 範例：
 
     Type=Event | Dedup EventID | sort TimeGenerated DESC
 
-這個範例會為每個 EventID 傳回一個事件 (最新事件)。
+這個範例會傳回一個事件 （hello 最新事件），每個 EventID。
 
 ### <a name="join"></a>Join
-聯結兩個查詢的結果以形成單一結果集。  支援下表所述的多個聯結類型。
+聯結 hello 結果的兩個查詢 tooform 單一結果集。  支援多個聯結類型描述 hello 依照資料表。
 
 | 聯結類型 | 說明 |
 |:--|:--|
@@ -623,7 +623,7 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 | left  | 傳回左查詢的所有記錄，以及傳回右查詢的相符記錄。 |
 
 
-- 聯結目前不支援下列查詢：包含 **IN**關鍵字、**Measure** 命令或 (如果目標為右側查詢的欄位) **Extend** 命令。
+- 聯結目前不支援包含 hello 查詢**IN**關鍵字、 hello**量值**命令或 hello**擴充**命令它是否為目標欄位從 hello 右側的查詢。
 - 您目前只可以在一個聯結中包含單一欄位。
 - 單一搜尋可能不包含一個以上的聯結。
 
@@ -635,7 +635,7 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 
 **範例**
 
-若要說明不同的聯結類型，請考慮聯結從稱為 MyBackup_CL 的自訂記錄收集的資料類型與每部電腦的活動訊號。  這些資料類型具有下列資料。
+tooillustrate hello 不同的聯結類型，請考慮加入的資料類型從呼叫 hello 活動訊號 MyBackup_CL 每一部電腦的自訂記錄檔收集。  這些資料型別具有下列資料的 hello。
 
 `Type = MyBackup_CL`
 
@@ -657,7 +657,7 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 
 `Type=MyBackup_CL | join inner Computer (Type=Heartbeat) Computer`
 
-當電腦欄位符合兩個資料類型時，傳回下列記錄。
+傳回 hello 下列記錄其中 hello 電腦欄位必須符合為這兩個資料型別。
 
 | 電腦| TimeGenerated | LastBackupStatus | TimeGenerated_joined | ComputerIP_joined | Type_joined |
 |:---|:---|:---|:---|:---|:---|
@@ -669,7 +669,7 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 
 `Type=MyBackup_CL | join outer Computer (Type=Heartbeat) Computer`
 
-傳回兩個資料類型的下列記錄。
+傳回 hello 下列這兩種資料類型的記錄。
 
 | 電腦| TimeGenerated | LastBackupStatus | TimeGenerated_joined | ComputerIP_joined | Type_joined |
 |:---|:---|:---|:---|:---|:---|
@@ -684,7 +684,7 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 
 `Type=MyBackup_CL | join left Computer (Type=Heartbeat) Computer`
 
-從 MyBackup_CL 傳回下列記錄，以及 Heartbeat 的任何相符欄位。
+傳回從 MyBackup_CL 下列記錄與任何比對的欄位從 活動訊號的 hello。
 
 | 電腦| TimeGenerated | LastBackupStatus | TimeGenerated_joined | ComputerIP_joined | Type_joined |
 |:---|:---|:---|:---|:---|:---|
@@ -694,7 +694,7 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 
 
 ### <a name="extend"></a>Extend
-可讓您在查詢中建立執行階段欄位。 請注意，執行階段欄位不能使用量值命令執行彙總。
+可讓您 toocreate 執行階段在查詢欄位中。 請注意，執行階段欄位不能與 hello measure 命令 tooperform 彙總。
 
 **範例 1**
 
@@ -709,7 +709,7 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 **範例 3**
 
     Type=WireData | EXTEND scale(TotalBytes,0,100) AS ScaledTotalBytes | Select ScaledTotalBytes,TotalBytes | SORT TotalBytes DESC
-調整 WireData TotalBytes 的值，讓所有結果都落在 0 與 100 之間。
+標尺 hello WireData TotalBytes 的值的所有結果介於 0 到 100 之間。
 
 **範例 4**
 
@@ -723,169 +723,169 @@ Type=Perf CounterName="% Processor Time" | EXTEND if(map(CounterValue,0,50,0,1),
 ```
 Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | Extend product(CounterValue,60) as DWPerMin| measure max(DWPerMin) by InstanceName Interval 1HOUR
 ```
-計算您電腦上每個磁碟每分鐘磁碟寫入的最大值。
+計算每個磁碟的每分鐘在您的電腦上的磁碟寫入的 hello 最大值。
 
 **支援的函式**
 
 | 函式 | 說明 | 語法範例 |
 | --- | --- | --- |
-| abs |傳回所指定數值或函式的絕對值。 |`abs(x)` <br> `abs(-5)` |
+| abs |傳回 hello 絕對值 hello 指定值或函式。 |`abs(x)` <br> `abs(-5)` |
 | acos |傳回值或函式的反餘弦值。 |`acos(x)` |
-| 和 |只有在其所有運算元都評估為 true 時，才會傳回 true 值。 |`and(not(exists(popularity)),exists(price))` |
+| 和 |如果且只有全部的運算元都評估 tootrue，則傳回 true 值。 |`and(not(exists(popularity)),exists(price))` |
 | asin |傳回值或函式的反正弦值。 |`asin(x)` |
 | atan |傳回值或函式的反正切值。 |`atan(x)` |
-| atan2 |傳回矩形座標 x、y 轉換為極座標所產生的角度。 |`atan2(x,y)` |
+| atan2 |傳回所產生的 x，y toopolar 座標 hello 矩形座標 hello 轉換 hello 角度。 |`atan2(x,y)` |
 | cbrt |立方根。 |`cbrt(x)` |
-| ceil |無條件進位到整數。 |`ceil(x)`  <br> `ceil(5.6)`：傳回 6 |
+| ceil |Tooan 整數向上四捨五入。 |`ceil(x)`  <br> `ceil(5.6)`：傳回 6 |
 | cos |傳回角度的餘弦值。 |`cos(x)` |
 | cosh |傳回角度的雙曲餘弦值。 |`cosh(x)` |
-| def |預設值的縮寫。 傳回欄位 "field" 的值。 如果欄位不存在，則會傳回所指定的預設值，並產生第一個值，其中：`exists()==true`。 |`def(rating,5)`。 此 def() 函式傳回分級，或如果在文件中未指定分級，則傳回 5。 <br> `def(myfield, 1.0)` 相當於 `if(exists(myfield),myfield,1.0)`。 |
-| 度 |將弧度轉換為度。 |`deg(x)` |
+| def |預設值的縮寫。 傳回 hello 欄位"field"的值。 如果 hello 欄位不存在，傳回指定的 hello 預設值，並產生 hello 第一個值位置： `exists()==true`。 |`def(rating,5)`。 此 def() 函式傳回 hello 評等，或如果未分級是 hello 文件中指定，會傳回 5。 <br> `def(myfield, 1.0)`相當太`if(exists(myfield),myfield,1.0)`。 |
+| 度 |將弧度 toodegrees 的轉換。 |`deg(x)` |
 | div |`div(x,y)` 除以 x 乘以 y。 |`div(1,y)` <br> `div(sum(x,100),max(y,1))` |
-| dist |傳回 n 維度空間中兩個向量之間的距離 (點)。 在次方中，使用 ValueSource 執行個體加上二以上的值，並計算兩個向量之間的距離。 每個 ValueSource 都必須是數字。 必須傳入偶數的 ValueSource 執行個體，而且此方法假設前半部分代表第一個向量，而後半部分代表第二個向量。 |`dist(2, x, y, 0, 0)`：計算每個文件的 (0,0) 和 (x,y) 之間的 Euclidean 距離。 <br> `dist(1, x, y, 0, 0)`：計算每個文件的 (0,0) 和 (x,y) 之間的 Manhattan (計程車) 距離。 <br> `dist(2,,x,y,z,0,0,0)`：每個文件的 (0,0,0) 和 (x,y,z) 之間的 Euclidean 距離。<br>`dist(1,x,y,z,e,f,g)`：(x,y,z) 和 (e,f,g) 之間的 Manhattan 距離，其中每個字母是欄位名稱。 |
-| exists |如果有欄位的任何成員，請傳回 TRUE。 |`exists(author)`：如果任何文件在 "author" 欄位中有值，則傳回 TRUE。<br>`exists(query(price:5.00))`：如果 "price" 符合 "5.00" 則傳回 TRUE。 |
-| exp |傳回歐拉數字乘冪 x。 |`exp(x)` |
-| floor |無條件捨去到整數。 |`floor(x)`  <br> `floor(5.6)`：傳回 5 |
+| dist |傳回兩個向量之間，（點） n 維度空間中的 hello 距離。 採用 hello 電源，加上兩個或多個，ValueSource 執行個體，並計算 hello hello 兩個向量之間的距離。 每個 ValueSource 都必須是數字。 必須有偶數的 ValueSource 執行個體傳入，並 hello 方法會假設 hello 前半部代表第一個向量的 hello，hello 半部代表 hello 第二個向量。 |`dist(2, x, y, 0, 0)`計算 hello 歐幾里德距離 (0，0) 和 (x，y) 每個文件。 <br> `dist(1, x, y, 0, 0)`計算 hello 曼哈頓 （計程車） 距離 (0，0) 和 (x，y) 每個文件。 <br> `dist(2,,x,y,z,0,0,0)`：每個文件的 (0,0,0) 和 (x,y,z) 之間的 Euclidean 距離。<br>`dist(1,x,y,z,e,f,g)`：(x,y,z) 和 (e,f,g) 之間的 Manhattan 距離，其中每個字母是欄位名稱。 |
+| exists |傳回 TRUE，如果有任何欄位成員的 hello 存在。 |`exists(author)`傳回在 hello"author"欄位具有數值的任何文件，則為 TRUE。<br>`exists(query(price:5.00))`：如果 "price" 符合 "5.00" 則傳回 TRUE。 |
+| exp |傳回歐拉數引發 toopower x。 |`exp(x)` |
+| floor |將下 tooan 整數進位。 |`floor(x)`  <br> `floor(5.6)`：傳回 5 |
 | hypo |傳回 sqrt(sum(pow(x,2),pow(y,2)))，而不需要中繼溢位或反向溢位。 |`hypo(x,y)`  <br> ` |
-| if |啟用條件式函式查詢。 在 `if(test,value1,value2)` 中：test 是或參照可傳回邏輯值 (TRUE 或 FALSE) 的邏輯值或運算式。 `value1` 是函式在 test 產生 TRUE 時所傳回的值。 `value2` 是函式在 test 產生 FALSE 時所傳回的值。 運算式可以是輸出布林值的任何函式。 也可以是傳回數值的函式，在此情況下，值 0 會解譯為 false 或傳回字串，在此情況下，空字串會解譯為 false。 |`if(termfreq(cat,'electronics'),popularity,42)`：這個函式會檢查每個文件，確認 cat 欄位中是否包含 "electronics" 這個字。 如果是的話，會傳回 popularity 欄位的值。 否則會傳回值 42。 |
-| linear |實作 `m*x+c`，其中 m 和 c 是常數，而 x 是任意函式。 這相當於 `sum(product(m,x),c)`，但較具效率，因為它實作為單一函式。 |`linear(x,m,c) linear(x,2,4)` 傳回 `2*x+4` |
-| ln |傳回所指定函式的自然對數。 |`ln(x)` |
-| log |傳回所指定函式的對數底數 10。 |`log(x)   log(sum(x,100))` |
-| map |將輸入函式 x 的任何落在 min 與 max (含) 之間的值對應到指定的目標。 min 和 max 引數必須是常數。 target 和 default 引數可以是常數或函式。 如果值 x 未落在 min 與 max 之間，則會傳回值 x，或者，如果指定為第 5 個引數，則會傳回預設值。 |`map(x,min,max,target) map(x,0,0,1)`：將任何 0 的值變更為 1。 這可用於處理預設值 0 的值。<br> `map(x,min,max,target,default)    map(x,0,100,1,-1)`：變更 0 和 100 到 1 之間的任何值，所有其他值為 -1。<br>  `map(x,0,100,sum(x,599),docfreq(text,solr))`：變更介於 0 和 100 到 x+599 之間的任何值和所有其他值，成為欄位文字中詞彙 'solr' 的頻率。 |
-| max |傳回多個巢狀函式或常數的最大數值 (指定為引數：`max(x,y,...)`。 max 函式也適用於將某個指定常數上的另一個函式或欄位「降到最小值」  使用 `field(myfield,max)` 語法來選取單一多值欄位的最大值。 |`max(myfield,myotherfield,0)` |
-| Min |傳回常數之多個巢狀函式的最小數值 (指定為引數︰`min(x,y,...)`。 min 函式也適用於使用常數提供函式的「上限」 使用 `field(myfield,min)` 語法來選取單一多值欄位的最小值。 |`min(myfield,myotherfield,0)` |
-| mod |計算函式 x 乘以函式 y 的模數。 |`mod(1,x)` <br> `mod(sum(x,100), max(y,1))` |
-| ms |傳回其引數之間差異的毫秒。 日期相對於 Unix 或 POSIX 時間新紀元：1970 年 1 月 1 日午夜 UTC。 引數可以是索引 TrieDateField 的名稱，或根據常數日期或 NOW 的日期算術。 `ms()` 相當於 `ms(NOW)`，epoch 以來毫秒數的數字。 `ms(a)` 傳回引數所代表之新紀元後的毫秒數。 `ms(a,b)` 傳回 b 之前發生的毫秒數，也就是 `a - b`。 |`ms(NOW/DAY)`<br>`ms(2000-01-01T00:00:00Z)`<br>`ms(mydatefield)`<br>`ms(NOW,mydatefield)`<br>`ms(mydatefield,2000-01-01T00:00:00Z)`<br>`ms(datefield1,datefield2)` |
-| 否 |所包裝函式的邏輯負值。 |`not(exists(author))`：當 `exists(author)` 為 false 時才為 TRUE。 |
+| if |啟用條件式函式查詢。 在`if(test,value1,value2)`，測試為或稱為 tooa 邏輯值或傳回邏輯值 （TRUE 或 FALSE） 運算式。 `value1`hello 值傳回 hello 函式如果測試結果為 TRUE。 `value2`hello 值傳回 hello 函式如果測試結果 FALSE。 運算式可以是輸出布林值的任何函式。 也可以是傳回數值的函式，在此情況下，值 0 會解譯為 false 或傳回字串，在此情況下，空字串會解譯為 false。 |`if(termfreq(cat,'electronics'),popularity,42)`此函式會檢查每個文件 toosee，如果它包含"electronics"hello cat 欄位中的 hello 一詞。 如果它，然後 hello hello popularity 欄位的值會傳回。 否則，傳回 hello 42 一值。 |
+| linear |實作 `m*x+c`，其中 m 和 c 是常數，而 x 是任意函式。 這相當太`sum(product(m,x),c)`，但當它實作為單一函式稍微更有效率。 |`linear(x,m,c) linear(x,2,4)` 傳回 `2*x+4` |
+| ln |傳回 hello 自然對數的 hello 指定函式。 |`ln(x)` |
+| log |傳回 hello 記錄檔基底 10 hello 的指定函式。 |`log(x)   log(sum(x,100))` |
+| map |對應任何輸入函式 x 的值落在 min 和 max (含） 之間 toohello 指定的目標。 hello 引數的 min 和 max 必須是常數。 hello 引數的目標和預設值可以是常數或函式。 如果 x 的 hello 值不在 min 和 max 之間，則會傳回 x 的任一個 hello 值，或若指定做為第 5 個引數，則傳回預設值。 |`map(x,min,max,target) map(x,0,0,1)`變更任何 0 too1 的值。 這可用於處理預設值 0 的值。<br> `map(x,min,max,target,default)    map(x,0,100,1,-1)`變更任何 0 和 100 too1 與所有其他值太-1 之間的值。<br>  `map(x,0,100,sum(x,599),docfreq(text,solr))`變更任何值，介於 0 和 100 toox + 599 和所有其他值 toofrequency 的 hello hello 欄位文字中的 ' solr' 一詞。 |
+| max |傳回 hello 的多個巢狀函式或常數，指定為引數的最大數值： `max(x,y,...)`。 hello max 函式也可用於 「 bottoming"另一個函式位於某些指定常數或欄位。  使用 hello`field(myfield,max)`語法選取單一多值欄位的 hello 最大值。 |`max(myfield,myotherfield,0)` |
+| Min |傳回 hello 的常數，指定為引數的多個巢狀函式的最小數值： `min(x,y,...)`。 hello min 函式也可以用來將提供在使用常數的函式 「 上限 」。 使用 hello`field(myfield,min)`語法選取單一多值欄位的 hello 最小值。 |`min(myfield,myotherfield,0)` |
+| mod |計算 hello 的 hello 函式 x 的 hello 函式 y 的模數。 |`mod(1,x)` <br> `mod(sum(x,100), max(y,1))` |
+| ms |傳回其引數之間差異的毫秒。 日期是相對 toohello Unix 或 POSIX 時間 epoch、 午夜，1970 年 1 月 1 日 UTC。 引數可以是 hello 名稱索引的 TrieDateField 或根據常數日期或 NOW。 `ms()`相當太`ms(NOW)`，數目 hello 新紀元以來的毫秒數。 `ms(a)`傳回 hello 引數代表的 hello 新紀元以來的 hello 的毫秒數。 `ms(a,b)`傳回 hello 的毫秒數 b 之前發生，也就是`a - b`。 |`ms(NOW/DAY)`<br>`ms(2000-01-01T00:00:00Z)`<br>`ms(mydatefield)`<br>`ms(NOW,mydatefield)`<br>`ms(mydatefield,2000-01-01T00:00:00Z)`<br>`ms(datefield1,datefield2)` |
+| 否 |邏輯否定的 hello hello 值包裝函式。 |`not(exists(author))`：當 `exists(author)` 為 false 時才為 TRUE。 |
 | 或 |邏輯分離。 |`or(value1,value2)`：如果 value1 或 value2 為 true，則為 TRUE。 |
-| pow |將指定的基底提升為指定的次方。 `pow(x,y)` 將 x 提升為次方 y。 |`pow(x,y)`<br>`pow(x,log(y))`<br>`pow(x,0.5)`：與 sqrt 相同。 |
-| product |傳回多個數值或函式 (指定為逗號分隔的清單) 的乘積。 `mul(...)` 也可以作為這個函式的別名。 |`product(x,y,...)`<br>`product(x,2)`<br>`product(x,y)`<br>`mul(x,y)` |
-| recip |執行 `recip(x,m,a,b)` 實作 `a/(m*x+b)` 的倒數函式，其中 m、a 和 b 是常數，而 x 是任何任意複雜函式。 a 與 b 相等而且 x>=0 時，此函式的最大值為 1，會在 x 增加時減少。 同時增加 a 和 b 的值，可將整個函式移到曲線最平緩的部分。 x 為 `rord(datefield)`時，這些屬性可以將這個設為提升較新文件的理想函式。 |`recip(myfield,m,a,b)`<br>`recip(rord(creationDate),1,1000,1000)` |
-| rad |將度數轉換為弧度。 |`rad(x)` |
-| rint |四捨五入為最接近的整數。 |`rint(x)`  <br> `rint(5.6)`：傳回 6 |
+| pow |引發 hello 指定指定的基底 toohello 電源。 `pow(x,y)`引發 x toohello 乘 y。 |`pow(x,y)`<br>`pow(x,log(y))`<br>`pow(x,0.5)`hello 與 sqrt 的相同。 |
+| product |傳回 hello 的多個值或函式，以逗號分隔的清單中指定的產品。 `mul(...)` 也可以作為這個函式的別名。 |`product(x,y,...)`<br>`product(x,2)`<br>`product(x,y)`<br>`mul(x,y)` |
+| recip |執行 `recip(x,m,a,b)` 實作 `a/(m*x+b)` 的倒數函式，其中 m、a 和 b 是常數，而 x 是任何任意複雜函式。 a 與 b 相等而且 x>=0 時，此函式的最大值為 1，會在 x 增加時減少。 增加 hello 值 hello 整個函式 tooa 移動 b 一起結果呈現 hello 曲線的一部分。 x 為 `rord(datefield)`時，這些屬性可以將這個設為提升較新文件的理想函式。 |`recip(myfield,m,a,b)`<br>`recip(rord(creationDate),1,1000,1000)` |
+| rad |將轉換度 tooradians。 |`rad(x)` |
+| rint |重試回合 toohello 接近的整數。 |`rint(x)`  <br> `rint(5.6)`：傳回 6 |
 | sin |傳回角度的正弦值。 |`sin(x)` |
 | sinh |傳回角度的雙曲正弦值。 |`sinh(x)` |
-| 級別 |調整函式 x 的值，讓它們落在指定的 minTarget 與 maxTarget (含) 之間。 目前的實作會周遊所有函式值以取得最小值和最大值，讓它可以取得正確的小數位數。 目前的實作無法區別何時刪除文件或文件是否沒有值。 在這些情況下，它會使用 0.0 值。 這表示，如果值通常都大於 0.0，其中一個還是可以將 0.0 當成要對應來源的最小值。 在這些情況下，適當的 `map()` 函式可以用做將 0.0 變更為實際範圍內之值的因應措施，如這裡所示：`scale(map(x,0,0,5),1,2)` |`scale(x,minTarget,maxTarget)`<br>`scale(x,1,2)`：調整 x 值，讓所有值都在 1 與 2 (含) 之間。 |
-| sqrt |傳回所指定數值或函式的平方根。 |`sqrt(x)`<br>`sqrt(100)`<br>`sqrt(sum(x,100))` |
-| strdist |計算兩個字串之間的距離。 使用 Lucene 拼字檢查程式 StringDistance 介面並支援該套件中可用的所有實作。 也允許應用程式透過 Solr 的資源載入功能插入專屬的實作。 strdist 採用 `(string1, string2, distance measure)`。 距離量值的可能值如下︰<ul><li>jw: Jaro-Winkler</li><li>編輯︰Levenstein 或編輯距離</li><li>ngram：NGramDistance，如果指定，也可以選擇性地傳入 ngram 大小。 預設值為 2。</li><li>FQN：StringDistance 介面實作的完整類別名稱。 必須要有無引數建構函式。</li></ul> |`strdist("SOLR",id,edit)` |
+| 級別 |標尺的 hello 函式 x 的值，例如其落 hello 之間指定的 minTarget 和 maxTarget （含)。 hello 目前的實作會周遊所有的 hello 函式值 tooobtain hello min 和 max，因而取得 hello 正確調整規模。 hello 目前的實作無法區別已刪除的文件，或沒有值的文件。 在這些情況下，它會使用 0.0 值。 這表示，如果值通常都大於 0.0，其中一個可以仍然以 0.0 結束 hello 從最小值 toomap 如下。 在這些情況下，適當`map()`函式可用為因應措施 toochange 0.0 tooa hello 實際範圍內值，如下所示：`scale(map(x,0,0,5),1,2)` |`scale(x,minTarget,maxTarget)`<br>`scale(x,1,2)`標尺 hello x 的值，使所有值都都介於 1 和 2 （含) 之間。 |
+| sqrt |傳回 hello 平方根 hello 指定值或函式。 |`sqrt(x)`<br>`sqrt(100)`<br>`sqrt(sum(x,100))` |
+| strdist |計算兩個字串之間的 hello 距離。 使用 hello Lucene 拼字檢查工具 StringDistance 介面，並支援所有可用該套件中的 hello 實作。 也允許應用程式 tooplug 自己，透過 Solr 的資源載入功能。 strdist 採用 `(string1, string2, distance measure)`。 距離量值的可能值如下︰<ul><li>jw: Jaro-Winkler</li><li>編輯︰Levenstein 或編輯距離</li><li>ngram: NGramDistance，hello 如果指定，可以選擇傳入 hello ngram 大小太。 預設值為 2。</li><li>FQN︰ 完整類別名稱 hello StringDistance 介面的實作。 必須要有無引數建構函式。</li></ul> |`strdist("SOLR",id,edit)` |
 | sub |從 `sub(x,y)`傳回 x-y。 |`sub(myfield,myfield2)`<br>`sub(100,sqrt(myfield))` |
-| Sum |傳回多個數值或函式 (指定為逗號分隔的清單) 的總和。 `add(...)` 可以作為這個函式的別名。 |`sum(x,y,...)`<br>`sum(x,1)`<br>`sum(x,y)`<br>`sum(sqrt(x),log(y),z,0.5)`<br>`add(x,y)` |
-| termfreq |傳回在該文件欄位中字詞出現的次數。 |termfreq(text,'memory') |
+| Sum |傳回 hello 多個值或函式，以逗號分隔的清單中指定的總和。 `add(...)` 可以作為這個函式的別名。 |`sum(x,y,...)`<br>`sum(x,1)`<br>`sum(x,y)`<br>`sum(sqrt(x),log(y),z,0.5)`<br>`add(x,y)` |
+| termfreq |傳回 hello 詞彙出現在該文件的 hello 欄位中的 hello 次數。 |termfreq(text,'memory') |
 | tan |傳回角度的正切值。 |`tan(x)` |
 | tanh |傳回角度的雙曲正切值。 |`tanh(x)` |
 
 ## <a name="search-field-and-facet-reference"></a>搜尋欄位和 Facet 參考 (英文)
-當您使用記錄搜尋來尋找資料時，結果會顯示各種欄位和 Facet。 資訊的某些部分可能不太清楚。 使用下列資訊來協助了解結果。
+當您使用記錄搜尋 toofind 資料時，結果會顯示各種欄位和 facet。 Hello 資訊的某些部分可能不會出現太清楚。 使用下列資訊 toohelp 您了解 hello 結果 hello。
 
 | 欄位 | 搜尋類型 | 說明 |
 | --- | --- | --- |
-| TenantId |全部 |用來分割資料。 |
-| TimeGenerated |全部 |用來驅動時間軸，timeselectors (在搜尋和其他螢幕中)。 它代表資料片段的產生 (通常在代理程式上) 時間。 時間以 ISO 格式表示，且一律為 UTC。 如果類型是根據現有檢測 (也就是，記錄中的事件)，這通常是記錄項目/列/記錄的實際記錄時間。 針對某些透過管理組件或在雲端 (例如，建議或警示) 所產生的其他類型，時間代表不同的東西。 這是收集到含某種組態之快照集資料的這個新部分的時間，或根據它產生建議/警示的時間。 |
-| EventID |Event |Windows 事件記錄中的 EventID。 |
-| EventLog |Event |Windows 在其中記錄事件的事件記錄。 |
+| TenantId |全部 |使用 toopartition 資料。 |
+| TimeGenerated |全部 |使用 toodrive hello 時間軸，timeselectors （在搜尋和其他螢幕中）。 它代表 hello 資料片段的產生 （通常在 hello 代理程式）。 hello 時間以 ISO 格式表示，且一律為 UTC。 在現有的檢測 （也就是記錄檔中的事件） 為基礎之型別的 hello 情況下，這通常是真實時間該 hello 日誌項目/行/記錄 hello。 Hello 的某些其他透過管理組件或 hello 雲端 （例如，建議或警示） 中所產生的型別 hello 一些不同的時間表示。 這是當收集到這個新資料片段和某種組態之快照，或根據它產生建議/警示的 hello 時間。 |
+| EventID |Event |Hello Windows 事件記錄檔中的 EventID。 |
+| EventLog |Event |其中 hello 事件記錄的 Windows 事件記錄檔。 |
 | EventLevelName |Event |重大/警告/資訊/成功 |
 | EventLevel |Event |重大/警告/資訊/成功的數值 (對於更容易/更適合閱讀的查詢，請改用 EventLevelName)。 |
-| SourceSystem |全部 |資料來自何處 (根據服務的附加模式)。 範例包括 Microsoft System Center Operations Manager 和 Azure 儲存體。 |
+| SourceSystem |全部 |Hello 資料來自何處 （的附加模式 toohello 服務）。 範例包括 Microsoft System Center Operations Manager 和 Azure 儲存體。 |
 | ObjectName |PerfHourly |Windows 效能物件名稱。 |
 | InstanceName |PerfHourly |Windows 效能計數器執行個體名稱。 |
 | CounteName |PerfHourly |Windows 效能計數器名稱。 |
-| ObjectDisplayName |PerfHourly、ConfigurationAlert、ConfigurationObject、ConfigurationObjectProperty |Operations Manager 中效能集合規則設為目標之物件的顯示名稱。 也可以是 Operational Insights 探索到之物件的顯示名稱，或針對其產生警示之物件的顯示名稱。 |
-| RootObjectName |PerfHourly、ConfigurationAlert、ConfigurationObject、ConfigurationObjectProperty |Operations Manager 中效能集合規則設為目標之物件的父系的父系 (在雙主控關聯性中) 的顯示名稱。 也可以是 Operational Insights 探索到之物件的顯示名稱，或針對其產生警示之物件的顯示名稱。 |
-| 電腦 |大部分的類型 |資料所屬的電腦名稱。 |
-| DeviceName |ProtectionStatus |資料所屬的電腦名稱 (如同 "Computer")。 |
+| ObjectDisplayName |PerfHourly、ConfigurationAlert、ConfigurationObject、ConfigurationObjectProperty |在 Operations Manager 中效能集合規則以其為目標的 hello 物件的顯示名稱。 也可能是 hello 的 Operational Insights 所探索到的 hello 物件的顯示名稱，或針對哪些 hello 產生警示。 |
+| RootObjectName |PerfHourly、ConfigurationAlert、ConfigurationObject、ConfigurationObjectProperty |Hello hello （在雙主控關聯性） 中的父代在 Operations Manager 中效能集合規則以其為目標的 hello 物件父系的顯示名稱。 也可能是 hello 的 Operational Insights 所探索到的 hello 物件的顯示名稱，或針對哪些 hello 產生警示。 |
+| 電腦 |大部分的類型 |Hello 資料所屬的電腦名稱。 |
+| DeviceName |ProtectionStatus |電腦名稱 hello 資料太所屬 （相同 「 電腦 」）。 |
 | DetectionId |ProtectionStatus | |
-| ThreatStatusRank |ProtectionStatus |威脅狀態排名是威脅狀態的數字表示。 與 HTTP 回應碼類似，排名在數字之間會有間距 (這是無威脅為 150 而不是 100 或 0 的原因)，以留下空間來新增狀態。 針對威脅狀態和防護狀態的彙總，目的是要顯示電腦在選取時間間隔中所經歷的最差狀態。 數字可排名不同的狀態，以查看最高數字的記錄。 |
+| ThreatStatusRank |ProtectionStatus |威脅狀態排名是 hello 威脅狀態的數值表示法。 類似 tooHTTP 回應碼，hello 排名有 hello 數字之間的間距 （這就是為什麼沒有威脅是 150 並不是 100 或 0），留出空間 tooadd 新狀態。 威脅狀態和防護狀態的彙總，如 hello 意圖會是 tooshow hello 的最差狀態 hello 電腦已在選取的時間週期的 hello 期間。 hello 數字排名 hello 不同狀態，讓您可以查看 hello 記錄與 hello 最高數字。 |
 | ThreatStatus |ProtectionStatus |ThreatStatus 的描述，與 ThreatStatusRank 1:1 對應。 |
-| TypeofProtection |ProtectionStatus |在電腦中偵測到的反惡意程式碼產品：無、Microsoft 惡意程式碼移除工具、Forefront 等等。 |
+| TypeofProtection |ProtectionStatus |Hello 電腦中偵測到的反惡意程式碼產品： 無、 Microsoft 惡意程式碼移除工具、 Forefront 等等。 |
 | ScanDate |ProtectionStatus | |
 | SourceHealthServiceId |ProtectionStatus、RequiredUpdate |這台電腦之代理程式的 HealthService 識別碼。 |
 | HealthServiceId |大部分的類型 |這台電腦之代理程式的 HealthService 識別碼。 |
 | ManagementGroupName |大部分的類型 |Operations Manager 附加代理程式的管理群組名稱。 否則會是 null/空白。 |
 | ObjectType |ConfigurationObject |由 Log Analytics 組態評估所探索到之這個物件的類型 (例如 Operations Manager 管理組件的類型/類別)。 |
-| UpdateTitle |RequiredUpdate |找到未安裝的更新名稱。 |
-| PublishDate |RequiredUpdate |更新何時在 Microsoft Update 上發佈。 |
-| 伺服器 |RequiredUpdate |資料所屬的電腦名稱 (如同 "Computer")。 |
-| 產品 |RequiredUpdate |更新適用的產品。 |
+| UpdateTitle |RequiredUpdate |Hello 已找不到已安裝的更新名稱。 |
+| PublishDate |RequiredUpdate |當 hello 更新 Microsoft Update 上發佈。 |
+| 伺服器 |RequiredUpdate |電腦名稱 hello 資料太所屬 （相同 「 電腦 」）。 |
+| 產品 |RequiredUpdate |套用於 hello 更新的產品。 |
 | UpdateClassification |RequiredUpdate |更新類型 (例如，更新彙總套件、Service Pack)。 |
 | KBID |RequiredUpdate |描述此最佳做法或更新的 KB 文章識別碼。 |
-| WorkflowName |ConfigurationAlert |產生警示之規則或監視器的名稱。 |
-| 嚴重性 |ConfigurationAlert |警示的嚴重性。 |
-| 優先順序 |ConfigurationAlert |警示的優先順序。 |
+| WorkflowName |ConfigurationAlert |Hello 規則或監視產生 hello 警示的名稱。 |
+| 嚴重性 |ConfigurationAlert |Hello 警示的嚴重性。 |
+| 優先順序 |ConfigurationAlert |Hello 警示的優先順序。 |
 | IsMonitorAlert |ConfigurationAlert |此警示由監視器 (true) 或規則 (false) 所產生？ |
-| AlertParameters |ConfigurationAlert |使用 Log Analytics 警示之參數的 XML。 |
-| Context |ConfigurationAlert |使用 Log Analytics 警示之內容的 XML。 |
-| 工作負載 |ConfigurationAlert |警示所參考的技術或工作負載。 |
-| AdvisorWorkload |建議 |建議所參考的技術或工作負載。 |
+| AlertParameters |ConfigurationAlert |Hello 記錄分析警示的 hello 參數的 XML。 |
+| Context |ConfigurationAlert |Hello 警示內容的 hello 記錄分析的 XML。 |
+| 工作負載 |ConfigurationAlert |技術或 hello 警示的工作負載參考。 |
+| AdvisorWorkload |建議 |技術或 hello 建議的工作負載參考。 |
 | 說明 |ConfigurationAlert |警示描述 (簡短)。 |
-| DaysSinceLastUpdate |UpdateAgent |此代理程式在幾天前 (相對於記錄的 TimeGenerated) 從 Windows Server Update Service (WSUS) 或 Microsoft Update 安裝了任何更新？ |
+| DaysSinceLastUpdate |UpdateAgent |幾天前 (這筆記錄的相對 tooTimeGenerated) 沒有此代理程式安裝任何更新從 Windows Server Update Service (WSUS) 或 Microsoft Update？ |
 | DaysSinceLastUpdateBucket |UpdateAgent |根據 DaysSinceLastUpdate，多久以前的時間值區分類是上一次從 WSUS/Microsoft Update 安裝任何更新的電腦。 |
 | AutomaticUpdateEnabled |UpdateAgent |自動更新檢查是在此代理程式上啟用或停用的嗎？ |
-| AutomaticUpdateValue |UpdateAgent |自動更新檢查會設為自動下載和安裝、只下載，或只檢查嗎？ |
-| WindowsUpdateAgentVersion |UpdateAgent |Microsoft Update 代理程式的版本號碼。 |
+| AutomaticUpdateValue |UpdateAgent |是用來自動更新檢查設定 tooautomatically 下載和安裝、 只下載，或只檢查嗎？ |
+| WindowsUpdateAgentVersion |UpdateAgent |Hello Microsoft Update 代理程式版本號碼。 |
 | WSUSServer |UpdateAgent |此更新代理程式的目標是哪個 WSUS 伺服器？ |
-| OSVersion |UpdateAgent |此更新代理程式在其上執行的作業系統版本。 |
-| 名稱 |建議，ConfigurationObjectProperty |來自 Log Analytics 組態評估的建議名稱/標題或屬性名稱。 |
+| OSVersion |UpdateAgent |Hello 作業系統版本上執行此更新代理程式。 |
+| 名稱 |建議，ConfigurationObjectProperty |名稱/標題 hello 建議，或記錄分析 configuration assessment 中的 hello 屬性的名稱。 |
 | 值 |ConfigurationObjectProperty |來自 Log Analytics 組態評估的屬性值。 |
-| KBLink |建議 |描述此最佳做法或更新的 KB 文章 URL。 |
-| RecommendationStatus |建議 |建議為一些類型，其記錄會更新，而不只是新增至搜尋索引。 此狀態會變更建議是否為作用中/開啟，或者 Log Analytics 是否偵測到狀態已解決。 |
+| KBLink |建議 |描述此最佳作法或更新的 URL toohello KB 文章。 |
+| RecommendationStatus |建議 |建議 hello 為一些類型，其記錄取得更新，剛加入 toohello 搜尋索引。 此狀態會變更 hello 建議是否作用中/開啟，或如果記錄分析偵測到它已解決。 |
 | RenderedDescription |Event |Windows 事件的呈現描述 (具有填入參數的重複使用文字)。 |
-| ParameterXml |Event |使用 Windows 事件之資料區段中參數的 XML (如同在事件檢視器中所見)。 |
-| EventData |Event |使用 Windows 事件之完整資料區段的 XML (如同在事件檢視器中所見)。 |
-| 來源 |Event |產生事件的事件記錄來源。 |
-| EventCategory |Event |事件的類別，直接來自 Windows 事件記錄。 |
-| UserName |Event |Windows 事件的使用者名稱 (通常是 NT AUTHORITY\LOCALSYSTEM)。 |
-| SampleValue |PerfHourly |效能計數器每小時彙總的平均值。 |
-| Min |PerfHourly |效能計數器每小時彙總的每小時間隔內最小值。 |
-| max |PerfHourly |效能計數器每小時彙總的每小時間隔內最大值。 |
-| Percentile95 |PerfHourly |效能計數器每小時彙總的每小時間隔內第 95 個百分位數。 |
-| SampleCount |PerfHourly |多少未經處理的效能計數器範例用來產生此每小時彙總記錄。 |
+| ParameterXml |Event |Windows 事件 （如事件檢視器中所見） hello data 區段中的 hello 參數的 XML。 |
+| EventData |Event |Hello 整個資料一節中的 Windows 事件 （如同在事件檢視器） 的 XML。 |
+| 來源 |Event |產生 hello 事件的事件記錄檔來源。 |
+| EventCategory |Event |直接從 hello Windows 事件記錄檔的 hello 事件類別目錄。 |
+| UserName |Event |Hello Windows 事件 (通常是 NT AUTHORITY\LOCALSYSTEM) 的使用者名稱。 |
+| SampleValue |PerfHourly |Hello 每小時彙總效能計數器的平均值。 |
+| Min |PerfHourly |Hello 效能計數器每小時彙總的每小時間隔內的最小值。 |
+| max |PerfHourly |Hello 效能計數器每小時彙總的每小時間隔內的最大值。 |
+| Percentile95 |PerfHourly |hello 第 95 個百分 hello 效能計數器每小時彙總的每小時間隔。 |
+| SampleCount |PerfHourly |多少 「 未經處理的效能計數器範例已使用的 tooproduce 此每小時彙總記錄。 |
 | Threat |ProtectionStatus |找到的惡意程式碼名稱。 |
-| StorageAccount |W3CIISLog |從其中讀取記錄的 Azure 儲存體帳戶。 |
-| AzureDeploymentID |W3CIISLog |記錄所屬之雲端服務的 Azure 部署識別碼。 |
-| 角色 |W3CIISLog |記錄所屬之 Azure 雲端服務的角色。 |
-| RoleInstance |W3CIISLog |記錄所屬之 Azure 角色的 RoleInstance。 |
-| sSiteName |W3CIISLog |記錄所屬的 IIS 網站 (metabase 標記法)；在原始記錄中的 s-sitename 欄位。 |
-| sComputerName |W3CIISLog |原始記錄中的 s-computername 欄位。 |
-| sIP |W3CIISLog |HTTP 要求被定址的目標伺服器 IP 位址。 原始記錄中的 s-ip 欄位。 |
-| csMethod |W3CIISLog |用戶端在 HTTP 要求中使用的 HTTP 方法 (例如，GET/POST)。 原始記錄中的 cs-method。 |
-| cIP |W3CIISLog |HTTP 要求的來源用戶端 IP 位址。 原始記錄中的 c-ip 欄位。 |
-| csUserAgent |W3CIISLog |由用戶端宣告的 HTTP 使用者代理程式 (瀏覽器或其他方式)。 原始記錄中的 cs-user-agent。 |
-| scStatus |W3CIISLog |由伺服器傳回給用戶端的 HTTP 狀態碼 (例如，200/403/500)。 原始記錄中的 cs-status。 |
-| TimeTaken |W3CIISLog |完成要求所花費的時間 (以毫秒為單位)。 原始記錄中的 timetaken 欄位。 |
-| csUriStem |W3CIISLog |要求的相對 URI (沒有主機位址，也就是 /search) 的要求。 原始記錄中的 cs-uristem 欄位。 |
+| StorageAccount |W3CIISLog |Azure 儲存體帳戶 hello 記錄被讀取。 |
+| AzureDeploymentID |W3CIISLog |所屬的 azure 部署識別碼 hello 雲端服務 hello 記錄檔。 |
+| 角色 |W3CIISLog |所屬的 hello Azure 雲端服務 hello 記錄檔的角色。 |
+| RoleInstance |W3CIISLog |Hello hello 記錄的 Azure 角色的 RoleInstance 所屬。 |
+| sSiteName |W3CIISLog |Hello 記錄檔的 IIS 網站所屬 too(metabase notation);hello hello 原始記錄中的 s-sitename 欄位。 |
+| sComputerName |W3CIISLog |hello hello 原始記錄中的 s-computername 欄位。 |
+| sIP |W3CIISLog |伺服器 IP 位址 hello HTTP 要求被定址的目標。 hello hello 原始記錄中的 s-ip 欄位。 |
+| csMethod |W3CIISLog |HTTP 方法 （例如，GET/POST） hello hello HTTP 要求中的用戶端使用。 hello cs 方法 hello 原始記錄中。 |
+| cIP |W3CIISLog |用戶端 IP 位址 hello HTTP 要求的來源。 hello hello 原始記錄中的 c-ip 欄位。 |
+| csUserAgent |W3CIISLog |Hello 用戶端所宣告的 HTTP User-agent (瀏覽器或其他)。 hello cs-使用者代理程式 hello 原始記錄中。 |
+| scStatus |W3CIISLog |用戶端-伺服器 toohello hello 傳回 HTTP 狀態碼 (例如 200/403/500)。 hello 中 cs-status hello 原始記錄檔。 |
+| TimeTaken |W3CIISLog |時間長度 （以毫秒為單位） 的 hello 要求所花費 toocomplete。 hello hello 原始記錄中的 timetaken 欄位。 |
+| csUriStem |W3CIISLog |要求的相對 URI (沒有主機位址，也就是 /search) 的要求。 hello hello 原始記錄中的 cs-uristem 欄位。 |
 | csUriQuery |W3CIISLog |URI 查詢。 只有 ASP 頁面等動態頁面才需要 URI 查詢，所以此欄位通常包含靜態網頁的連字號。 |
-| sPort |W3CIISLog |傳送 HTTP 要求的目標伺服器連接埠 (也是 IIS 接聽的目標，因為 IIS 會挑選該連接埠)。 |
-| csUserName |W3CIISLog |已驗證的使用者名稱，如果要求已通過驗證且不匿名。 |
-| csVersion |W3CIISLog |使用於要求中的 HTTP 通訊協定版本 (例如，HTTP/1.1)。 |
+| sPort |W3CIISLog |已傳送 hello HTTP 要求的伺服器連接埠 （和 IIS 所接聽，因為它會挑選它）。 |
+| csUserName |W3CIISLog |如果 hello 要求已通過驗證且不匿名，驗證使用者名稱。 |
+| csVersion |W3CIISLog |Hello 要求 (例如，HTTP/1.1) 中使用的 HTTP 通訊協定版本。 |
 | csCookie |W3CIISLog |Cookie 資訊。 |
-| csReferer |W3CIISLog |使用者上次造訪的網站。 這個網站提供目前網站的連結。 |
+| csReferer |W3CIISLog |Hello 使用者上次造訪的網站。 這個網站提供連結 toohello 目前站台。 |
 | csHost |W3CIISLog |要求的主機標頭 (例如，www.mysite.com)。 |
 | scSubStatus |W3CIISLog |子狀態錯誤碼。 |
 | scWin32Status |W3CIISLog |Windows 狀態碼。 |
-| csBytes |W3CIISLog |在要求中從用戶端傳送到伺服器的位元組。 |
-| scBytes |W3CIISLog |在回應中從伺服器傳回給用戶端的位元組。 |
+| csBytes |W3CIISLog |從 hello 用戶端 toohello 伺服器 hello 要求中傳送的位元組。 |
+| scBytes |W3CIISLog |在 hello 伺服器 toohello 用戶端 hello 回應中傳回的位元組。 |
 | ConfigChangeType |ConfigurationChange |變更的類別 (例如，WindowsServices/Software)。 |
-| ChangeCategory |ConfigurationChange |變更的類別 (已修改/已新增/已移除)。 |
+| ChangeCategory |ConfigurationChange |Hello 變更 （已修改/新增/移除） 類別。 |
 | SoftwareType |ConfigurationChange |軟體的類型 (更新/應用程式)。 |
-| SoftwareName |ConfigurationChange |軟體的名稱 (僅適用於軟體變更)。 |
-| 發佈者 |ConfigurationChange |發佈軟體的供應商 (僅適用於軟體變更)。 |
-| SvcChangeType |ConfigurationChange |已套用在 Windows 服務的變更類型 (State/StartupType/Path/ServiceAccount)。 這僅適用於 Windows 服務變更。 |
-| SvcDisplayName |ConfigurationChange |顯示已變更的服務名稱。 |
-| SvcName |ConfigurationChange |已變更的服務名稱。 |
-| SvcState |ConfigurationChange |要求的新 (目前) 狀態。 |
-| SvcPreviousState |ConfigurationChange |服務的上一個已知狀態 (僅適用於服務狀態變更時)。 |
+| SoftwareName |ConfigurationChange |Hello 軟體 （僅適用 toosoftware 變更） 的名稱。 |
+| 發佈者 |ConfigurationChange |發佈 hello 軟體 （僅適用 toosoftware 變更） 供應商。 |
+| SvcChangeType |ConfigurationChange |已套用在 Windows 服務的變更類型 (State/StartupType/Path/ServiceAccount)。 這是適用於 tooWindows 服務變更。 |
+| SvcDisplayName |ConfigurationChange |已變更的 hello 服務顯示名稱。 |
+| SvcName |ConfigurationChange |已變更的 hello 服務的名稱。 |
+| SvcState |ConfigurationChange |Hello 服務新 （目前） 狀態。 |
+| SvcPreviousState |ConfigurationChange |上一個已知 hello 服務 （僅適用於服務狀態變更） 的狀態。 |
 | SvcStartupType |ConfigurationChange |服務啟動類型。 |
 | SvcPreviousStartupType |ConfigurationChange |上一個服務啟動類型 (僅適用於服務啟動類型變更時)。 |
 | SvcAccount |ConfigurationChange |服務帳戶。 |
 | SvcPreviousAccount |ConfigurationChange |先前的服務帳戶 (僅適用於服務帳戶變更時)。 |
-| SvcPath |ConfigurationChange |Windows 服務的可執行檔路徑。 |
-| SvcPreviousPath |ConfigurationChange |Windows 服務先前的可執行檔路徑 (僅適用於其變更時)。 |
-| SvcDescription |ConfigurationChange |服務的描述。 |
+| SvcPath |ConfigurationChange |路徑 toohello 可執行檔的 hello Windows 服務。 |
+| SvcPreviousPath |ConfigurationChange |上一個 hello hello （僅適用於其變更） 的 Windows 服務的可執行檔的路徑。 |
+| SvcDescription |ConfigurationChange |Hello 服務的描述。 |
 | 上一步 |ConfigurationChange |此軟體先前的狀態 (已安裝/未安裝/上一個版本)。 |
 | Current |ConfigurationChange |此軟體最新的狀態 (已安裝/未安裝/上一個版本)。 |
 
 ## <a name="next-steps"></a>後續步驟
 如需記錄搜尋的其他資訊：
 
-* 熟悉 [記錄搜尋](log-analytics-log-searches.md) 以檢視方案所收集的詳細資訊。
-* 使用 [Log Analytics 中的自訂欄位](log-analytics-custom-fields.md)來延伸記錄搜尋。
+* 讓您熟悉[記錄搜尋](log-analytics-log-searches.md)tooview 詳細解決方案所收集的資訊。
+* 使用[記錄分析中的自訂欄位](log-analytics-custom-fields.md)tooextend 記錄搜尋。

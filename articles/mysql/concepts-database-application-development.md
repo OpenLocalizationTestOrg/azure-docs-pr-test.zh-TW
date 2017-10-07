@@ -1,6 +1,6 @@
 ---
-title: "適用於 MySQL 的 Azure 資料庫的資料庫應用程式開發概觀 | Microsoft Docs"
-description: "介紹開發人員在撰寫應用程式程式碼以連接到適用於 MySQL 的 Azure 資料庫時所應遵循的設計考量"
+title: "Azure 資料庫的 MySQL aaaDatabase 應用程式開發概觀 |Microsoft 文件"
+description: "引進了用於 MySQL 撰寫應用程式程式碼 tooconnect tooAzure 資料庫時，開發人員應該遵循的設計考量"
 services: mysql
 author: v-chenyh
 ms.author: v-chenyh
@@ -9,26 +9,26 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 350dd775e172120d806d1193877a34d94f4d3f6a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f08df605eba21b4ba4b43565c0a7ded95779a171
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-development-overview-for-azure-database-for-mysql"></a>適用於 MySQL 的 Azure 資料庫的應用程式開發概觀 
-本文討論開發人員在撰寫應用程式程式碼以連接到適用於 MySQL 的 Azure 資料庫時所應遵循的設計考量 
+這篇文章討論的 MySQL 撰寫應用程式程式碼 tooconnect tooAzure 資料庫時，開發人員應該遵循的設計考量 
 
 > [!TIP]
-> 如需示範如何建立伺服器、建立伺服器型防火牆、檢視伺服器屬性、建立資料庫、使用 Workbench 和 mysql.exe 進行連接和查詢的教學課程，請參閱[設計您的第一個 Azure MySQL 資料庫](tutorial-design-database-using-portal.md)
+> 教學課程顯示如何 toocreate 伺服器，建立伺服器型防火牆，檢視伺服器屬性、 建立資料庫、 連線，並使用 workbench 和 mysql.exe 查詢，請參閱[設計您的第一個 Azure MySQL 資料庫](tutorial-design-database-using-portal.md)
 
 ## <a name="language-and-platform"></a>語言和平台
-有一些程式碼範例可供各種程式設計語言和平台使用。 您可以在下列文章中找到程式碼範例的連結：[用來連接到適用於 MySQL 的 Azure 資料庫的連線庫](concepts-connection-libraries.md)
+有一些程式碼範例可供各種程式設計語言和平台使用。 您可以找到連結 toohello 程式碼範例：[連接程式庫用於 MySQL 的 tooconnect tooAzure 資料庫](concepts-connection-libraries.md)
 
 ## <a name="tools"></a>工具
-適用於 MySQL 的 Azure 資料庫會使用 MySQL 社群版本，此版本可與 MySQL 一般管理工具相容，例如 Workbench 或 MySQL 公用程式 (例如 mysql.exe、[phpMyAdmin](https://www.phpmyadmin.net/)、[Navicat](https://www.navicat.com/products/navicat-for-mysql) 等)。 您也可以使用 Azure 入口網站、Azure CLI 和 REST API，來與資料庫服務互動。
+Azure 的 MySQL 資料庫使用 hello MySQL community 版本，與 MySQL 常見的管理工具 Workbench 或 MySQL 公用程式，例如 mysql.exe，例如相容[phpMyAdmin](https://www.phpmyadmin.net/)， [Navicat](https://www.navicat.com/products/navicat-for-mysql)，和其他人。 您也可以使用 hello Azure 入口網站、 Azure CLI 和 REST Api toointeract 與 hello 資料庫服務。
 
 ## <a name="resource-limitations"></a>資源限制
-Azure MySQL 資料庫會使用兩個種不同機制來管理可供伺服器使用的資源： 
+Azure 的 MySQL 資料庫管理 hello 資源可用 tooa 伺服器使用兩個不同的機制： 
 - 資源管理 
 - 強制執行限制。
 
@@ -39,12 +39,12 @@ Azure MySQL 資料庫提供資源，以便在 MySQL 資料庫上限制存取、�
 Azure MySQL 資料庫支援適用於使用者與登入的伺服器驗證。
 
 ## <a name="resiliency"></a>復原功能
-當連接到 MySQL 資料庫發生暫時性錯誤時，您的程式碼應該重試呼叫。 我們建議重試邏輯使用後端停止邏輯，如此它就不會同時重試多個用戶端而讓 SQL Database 超過負荷。
+當連線 tooMySQL 資料庫時，就會發生暫時性的錯誤時，您的程式碼應該重試 hello 呼叫。 我們建議您使用 hello 重試邏輯使用邏輯、 功能，讓它不會不會使不勝負荷 hello SQL Database 與多個用戶端重試一次同時。
 
-- 程式碼範例︰如需示範重試邏輯的程式碼範例，請參閱以下文章中您所選擇語言的範例︰[用來連接到適用於 MySQL 的 Azure 資料庫的連線庫](concepts-connection-libraries.md)
+- 程式碼範例： 取得程式碼範例將示範中，然後重試邏輯，請參閱您選擇在 hello 語言的範例：[連接程式庫用於 MySQL 的 tooconnect tooAzure 資料庫](concepts-connection-libraries.md)
 
 ## <a name="managing-connections"></a>管理連接
-資料庫連接是一項有限的資源，因此我們建議在存取您的 MySQL 資料庫時合理地使用連接，以達到更佳的效能。
-- 使用連接共用或持續性連接來存取資料庫。
-- 使用簡短的連接存留時間範圍來存取資料庫。 
-- 在嘗試連接期間，於您的應用程式中使用重試邏輯，會因為並行連接數已達到允許的最大值而導致失敗。 在重試邏輯中，設定短暫的延遲，接著等待一段隨機的時間，然後再嘗試其他連接。
+資料庫連線是有限的資源，因此我們建議您合理使用的連接存取您的 MySQL 資料庫時 tooachieve 更佳的效能。
+- 存取 hello 資料庫使用連接共用或持續連線。
+- 使用簡短的連接生命週期的 access hello 資料庫。 
+- Hello hello 連線嘗試、 toocatch 失敗，因為 tooconcurrent 連接點的應用程式中使用重試邏輯已達到允許的 hello 最大值。 在 [hello 重試邏輯、 設定短暫的延遲，，然後等待 hello 其他連接嘗試之前的隨機時間點。

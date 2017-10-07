@@ -6,8 +6,8 @@
 ## [整合 Jenkins 和 Kubernetes](/azure/container-service/container-service-kubernetes-jenkins)
 ## [Jenkins 和 Azure CLI](/azure/jenkins/execute-cli-jenkins-pipeline)
 ## [Docker、GitHub 及 Jenkins](/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd)
-## [部署到 App Service](/azure/jenkins/deploy-Jenkins-app-service-plugin)
-# 使用說明指南
+## [部署 tooApp 服務](/azure/jenkins/deploy-Jenkins-app-service-plugin)
+# 如何 tooguides
 ## [保護 Azure 上的 Jenkins](https://jenkins.io/blog/2017/04/20/secure-jenkins-on-azure/)
 # 資源
 ## [Azure 藍圖](https://azure.microsoft.com/roadmap/)

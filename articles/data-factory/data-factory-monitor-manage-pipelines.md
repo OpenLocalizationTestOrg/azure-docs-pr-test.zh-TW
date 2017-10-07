@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 入口網站和 PowerShell 監視和管理管線 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站和 Azure PowerShell 監視並管理您建立的 Azure 資料處理站和管線。"
+title: "aaaMonitor 和使用 hello Azure 入口網站和 PowerShell 管理管線 |Microsoft 文件"
+description: "了解 toouse hello Azure 入口網站和 Azure PowerShell toomonitor 和管理 hello Azure data factory 和您所建立的管線的方式。"
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,91 +14,91 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: spelluru
-ms.openlocfilehash: 61bb5379cd94dd00814e14420947e7783999ff0a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a8d3c7943e79450895ff754f06a37fdad1cbef92
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-and-manage-azure-data-factory-pipelines-by-using-the-azure-portal-and-powershell"></a>使用 Azure 入口網站和 PowerShell 監視和管理 Azure Data Factory 管線
+# <a name="monitor-and-manage-azure-data-factory-pipelines-by-using-hello-azure-portal-and-powershell"></a>監視和管理 Azure Data Factory 管線使用 hello Azure 入口網站和 PowerShell
 > [!div class="op_single_selector"]
 > * [使用 Azure 入口網站/Azure PowerShell](data-factory-monitor-manage-pipelines.md)
 > * [使用監視及管理應用程式](data-factory-monitor-manage-app.md)
 
 
 > [!IMPORTANT]
-> 監視及管理應用程式對監視及管理您的資料管線，以及針對任何問題進行疑難排解，提供更佳的支援。 如需使用應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視及管理 Data Factory 管線](data-factory-monitor-manage-app.md)。 
+> hello 監督和管理應用程式提供更佳的支援的監視與管理您的資料管線，以及疑難排解任何問題。 如需有關使用 hello 應用程式的詳細資訊，請參閱[監視和管理使用 hello 監視和管理應用程式的 Data Factory 管線](data-factory-monitor-manage-app.md)。 
 
 
-本文描述如何使用 Azure 入口網站和 PowerShell 來監視、管理和偵錯您的管線。 本文也會提供如何建立警示和取得失敗通知的詳細資訊。
+本文說明如何 toomonitor、 管理及使用 Azure 入口網站和 PowerShell 偵錯您的管線。 hello 發行項也會提供資訊 toocreate 警示的方式，以及取得有關失敗的通知。
 
 ## <a name="understand-pipelines-and-activity-states"></a>了解管線和活動狀態
-藉由使用 Azure 入口網站，您可以：
+Hello Azure 入口網站，您可以使用：
 
 * 以圖表形式檢視 Data Factory。
 * 檢視管線中的活動。
 * 檢視輸入和輸出資料集。
 
-本節也描述資料集配量從某個狀態轉換至另一個狀態的方法。   
+本章節也說明從一個狀態 tooanother 狀態轉換的資料集配量的方式。   
 
-### <a name="navigate-to-your-data-factory"></a>瀏覽至您的 Data Factory
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下左邊功能表的 [Data Factory]。 如果沒看見，請按一下 [更多服務]，然後在 [智慧 + 分析] 類別底下按一下 [Data Factory]。
+### <a name="navigate-tooyour-data-factory"></a>瀏覽 tooyour 資料處理站
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+2. 按一下**Data factory** hello hello 左邊的功能表上。 如果您沒有看到它，按一下**更多服務 >**，然後按一下 [ **Data factory**下 hello**智慧 + 分析**類別目錄。
 
    ![全部瀏覽 -> Data Factory](./media/data-factory-monitor-manage-pipelines/browseall-data-factories.png)
-3. 在 [Data Factory] 刀鋒視窗中，選取您感興趣的 Data Factory。
+3. 在 [hello **Data factory**刀鋒視窗中，選取 hello 您感興趣的 data factory。
 
     ![選取 Data Factory](./media/data-factory-monitor-manage-pipelines/select-data-factory.png)
 
-   您應該會看到 Data Factory 的首頁。
+   您應該會看到 hello 首頁 hello data factory。
 
    ![Data Factory 刀鋒視窗](./media/data-factory-monitor-manage-pipelines/data-factory-blade.png)
 
 #### <a name="diagram-view-of-your-data-factory"></a>Data Factory 的圖表檢視
-Data Factory 的 [圖表] 檢視提供單一窗格，可用來監視和管理 Data Factory 及其資產。 若要查看 Data Factory 的 [圖表] 檢視，請按一下 Data Factory 首頁上的 [圖表]。
+hello**圖表**檢視的 data factory 提供單一的半透明 toomonitor 窗格及管理 hello data factory 和其資產。 toosee hello**圖表**您的 data factory 的檢視，請按一下**圖表**hello data factory 的 hello 首頁上。
 
 ![圖表檢視](./media/data-factory-monitor-manage-pipelines/diagram-view.png)
 
-您可以將圖表配置放大、縮小、縮放至適當比例、放大到 100% 和鎖定，以及自動定位管線和資料集。 您也可以查看資料歷程資訊 (也就是顯示所選取項目的上游和下游項目)。
+您可以放大、 縮小，縮放 toofit、 縮放 too100%、 鎖定 hello hello 圖表配置和自動定位管線與資料集。 您也可以查看 hello 資料歷程資訊 （也就是顯示選取項目的上游及下游項目）。
 
 ### <a name="activities-inside-a-pipeline"></a>管線中的活動
-1. 在管線上按一下滑鼠右鍵，然後按一下 [開啟管線]，就能查看所有管線中的活動，以及活動的輸入和輸出資料集。 當您的管線有超過一個的活動且您想了解單一管線的作業歷程時，這個功能會非常有用。
+1. 以滑鼠右鍵按一下 hello 管線，然後按一下**開啟管線**toosee hello 中的所有活動的都管線，以及 hello 活動的輸入和輸出資料集。 這項功能時，您的管線包含一個以上的活動和您想要的單一管線 toounderstand hello 作業歷程。
 
     ![開啟管線功能表](./media/data-factory-monitor-manage-pipelines/open-pipeline-menu.png)     
-2. 在下列範例中，您會在具有輸入與輸出的管線中看到複製活動。 
+2. 在下列範例的 hello，您會看到複製活動中使用輸入和輸出的 hello 管線。 
 
     ![管線中的活動](./media/data-factory-monitor-manage-pipelines/activities-inside-pipeline.png)
-3. 您可以按一下左上角階層連結中的 [Data Factory] 連結，瀏覽回 Data Factory 首頁。
+3. 您可以巡覽的 hello data factory 的回復 toohello 首頁按一下 hello **Data factory** hello hello 左上角的階層連結中的連結。
 
-    ![瀏覽回到 Data Factory](./media/data-factory-monitor-manage-pipelines/navigate-back-to-data-factory.png)
+    ![瀏覽後 toodata factory](./media/data-factory-monitor-manage-pipelines/navigate-back-to-data-factory.png)
 
-### <a name="view-the-state-of-each-activity-inside-a-pipeline"></a>管線中每個活動的檢視狀態
-您可以藉由檢視活動所產生的任何資料集的狀態，查看活動的目前狀態。
+### <a name="view-hello-state-of-each-activity-inside-a-pipeline"></a>在管線內的每個活動檢視 hello 狀態
+您可以藉由檢視任何 hello hello 活動所產生的資料集的 hello 狀態檢視 hello 目前活動的狀態。
 
-按兩次 [圖表] 中的 **OutputBlobTable**，您就會看到管線中不同活動執行時所產生的所有配量。 您可以看到複製活動在過去八個月來每個月都執行成功，且所產生的配量都處於「就緒」狀態。  
+按兩下 hello **OutputBlobTable**在 hello**圖表**，您可以看到不同的活動執行內的管線所產生的所有 hello 配量。 您可以看到 hello 複製活動已順利執行 hello 最後八小時，以及產生 hello 配量在 hello**準備**狀態。  
 
-![管線的狀態](./media/data-factory-monitor-manage-pipelines/state-of-pipeline.png)
+![Hello 管線的狀態](./media/data-factory-monitor-manage-pipelines/state-of-pipeline.png)
 
-Data Factory 中的資料集配量可以有下列狀態之一：
+hello hello data factory 中的資料集配量可以具有下列狀態的 hello 其中一項：
 
 <table>
 <tr>
     <th align="left">State</th><th align="left">子狀態</th><th align="left">說明</th>
 </tr>
 <tr>
-    <td rowspan="8">等候</td><td>ScheduleTime</td><td>尚未到達執行配量的時間。</td>
+    <td rowspan="8">等候</td><td>ScheduleTime</td><td>hello 時間未針對 hello 配量 toorun 發生。</td>
 </tr>
 <tr>
-<td>DatasetDependencies</td><td>上游相依項目尚未就緒。</td>
+<td>DatasetDependencies</td><td>hello 上游相依性未準備好。</td>
 </tr>
 <tr>
-<td>ComputeResources</td><td>計算資源無法使用。</td>
+<td>ComputeResources</td><td>hello 計算資源無法使用。</td>
 </tr>
 <tr>
-<td>ConcurrencyLimit</td> <td>所有活動執行個體都忙於執行其他配量。</td>
+<td>ConcurrencyLimit</td> <td>所有的 hello 活動執行個體都忙於執行其他配量。</td>
 </tr>
 <tr>
-<td>ActivityResume</td><td>活動已暫停，除非活動繼續，否則無法執行配量。</td>
+<td>ActivityResume</td><td>hello 活動已暫停，直到繼續 hello 活動無法執行 hello 配量。</td>
 </tr>
 <tr>
 <td>Retry</td><td>正在重試活動執行。</td>
@@ -107,69 +107,69 @@ Data Factory 中的資料集配量可以有下列狀態之一：
 <td>驗證</td><td>驗證尚未啟動。</td>
 </tr>
 <tr>
-<td>ValidationRetry</td><td>驗證正在等待重試。</td>
+<td>ValidationRetry</td><td>驗證是等待 toobe 重試。</td>
 </tr>
 <tr>
 <tr>
 <td rowspan="2">InProgress</td><td>Validating</td><td>驗證正在進行中。</td>
 </tr>
 <td>-</td>
-<td>正在處理配量。</td>
+<td>正在處理 hello 配量。</td>
 </tr>
 <tr>
-<td rowspan="4">Failed</td><td>TimedOut</td><td>活動執行超過活動所允許的時間。</td>
+<td rowspan="4">Failed</td><td>TimedOut</td><td>hello 活動的執行時間超過所允許的 hello 活動。</td>
 </tr>
 <tr>
-<td>Canceled</td><td>配量已由使用者動作取消。</td>
+<td>Canceled</td><td>使用者動作已取消 hello 配量。</td>
 </tr>
 <tr>
 <td>驗證</td><td>驗證失敗。</td>
 </tr>
 <tr>
-<td>-</td><td>無法產生及/或驗證配量。</td>
+<td>-</td><td>hello 配量無法 toobe 產生及/或驗證。</td>
 </tr>
-<td>就緒</td><td>-</td><td>配量已就緒，可供取用。</td>
-</tr>
-<tr>
-<td>Skipped</td><td>None</td><td>配量並未進行處理。</td>
+<td>就緒</td><td>-</td><td>hello 配量是供取用。</td>
 </tr>
 <tr>
-<td>None</td><td>-</td><td>配量曾經是不同狀態，但已重設。</td>
+<td>Skipped</td><td>None</td><td>不是正在處理 hello 配量。</td>
+</tr>
+<tr>
+<td>None</td><td>-</td><td>配量 tooexist 搭配不同的狀態，但已重設。</td>
 </tr>
 </table>
 
 
 
-按一下 [最近更新的配量] 刀鋒視窗中的配量項目，即可檢視有關配量的詳細資訊。
+您可以檢視 hello 配量的詳細資料，依序按一下 [配量上的項目 hello**最近更新配量**刀鋒視窗。
 
 ![配量的詳細資料](./media/data-factory-monitor-manage-pipelines/slice-details.png)
 
-若已多次執行配量，則您會在 [活動執行]  清單中看到多個資料列。 您可按一下 [ **活動執行** ] 清單中的執行項目，檢視有關活動執行的詳細資訊。 此清單會顯示所有記錄檔，且如果有錯誤訊息的話，也會一併展示。 這個功能非常實用，您可以檢視和偵錯記錄檔而不必離開您的 Data Factory。
+如果已經執行多次 hello 配量，您會看到多重資料列的 hello**活動執行**清單。 您可以檢視活動按一下 hello 中的 hello 執行項目，以執行詳細**活動執行**清單。 hello 清單會顯示所有 hello 記錄檔，以及錯誤訊息，如果有的話。 此功能十分有用 tooview 和偵錯記錄檔，而不需要 tooleave 您的 data factory。
 
 ![活動執行詳細資料](./media/data-factory-monitor-manage-pipelines/activity-run-details.png)
 
-若配量不是處於 [就緒] 狀態，您可以在 [未就緒的上游配量] 清單中看到未就緒且阻礙目前配量執行的上游配量。 當您的配量處於 [等候] 狀態且您想要了解配量等候的上游相依項目時，此功能相當有用。
+如果 hello 配量不在 hello**準備**狀態，您可以看到未準備好並封鎖 hello hello 中執行的目前配量的 hello 上游配量**未就緒的上游配量**清單。 在您的配量時，此功能十分有用**等候**狀態和您想要在等待 toounderstand hello 上游相依性 hello 配量。
 
 ![尚未就緒的上游配量](./media/data-factory-monitor-manage-pipelines/upstream-slices-not-ready.png)
 
 ### <a name="dataset-state-diagram"></a>資料集狀態圖表
-在部署了 Data Factory 且管線具有有效的使用中週期後，資料集配量就會從某種狀態轉換為另一種狀態。 目前配量狀態遵循下列的狀態圖表：
+部署 data factory hello 管線有有效的使用中期間後，hello 資料集配量從一個狀態 tooanother 轉換。 目前，hello 配量狀態會遵循下列狀態圖表 hello:
 
 ![狀態圖表](./media/data-factory-monitor-manage-pipelines/state-diagram.png)
 
-Data Factory 內的資料集狀態轉換流程如下：等候中 -> 進行中/進行中 (驗證中) -> 就緒/失敗。
+hello data factory 中的資料集的狀態轉換流量是 hello 下列： 等候]-> [進度/中-進行中 （驗證）]-> [已備妥/失敗。
 
-配量一開始的狀態是**等候**，在等到先決條件符合後才會執行。 接著，活動會開始執行，配量則進入 [進行中] 狀態。 活動執行可能成功或失敗。 根據執行的結果，配量會標示為 [就緒] 或 [失敗]。
+的 hello 配量開始**等候**先決條件 toobe 符合其執行之前所等候的狀態。 Hello 活動開始執行，然後 hello 配量進入**In-progress**狀態。 hello 活動執行可能會成功或失敗。 hello 配量會標示為**準備**或**失敗**根據 hello hello 執行結果。
 
-您可以重設配量，以從 [就緒] 或 [失敗] 狀態返回 [等候] 狀態。 您也可以將配量狀態標記為 [略過]，這會防止活動執行且不會處理該配量。
+您可以重設回從 hello hello 配量 toogo**準備**或**失敗**狀態 toohello**等候**狀態。 也可以將 hello 配量狀態太**略過**，這樣就不會執行和不處理 hello 配量的 hello 活動。
 
 ## <a name="pause-and-resume-pipelines"></a>暫停及繼續管線
 您可以使用 Azure Powershell 管理您的管線。 例如，您可以執行 Azure PowerShell Cmdlet 來暫停和繼續執行管線。 
 
 > [!NOTE] 
-> 圖表檢視不支援暫停和繼續管線。 如果您想要使用使用者介面，請使用監視及管理應用程式。 如需使用應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視及管理 Data Factory 管線](data-factory-monitor-manage-app.md)一文。 
+> hello 圖表檢視不支援暫停和繼續管線。 如果您想 toouse 使用者介面時，使用 hello 監視和管理應用程式。 如需有關使用 hello 應用程式的詳細資訊，請參閱[監視和管理使用 hello 監視和管理應用程式的 Data Factory 管線](data-factory-monitor-manage-app.md)發行項。 
 
-您可以使用 **Suspend-AzureRmDataFactoryPipeline** PowerShell Cmdlet 來暫停/暫止管線。 若您在問題獲得解決之前不想執行管線，此 Cmdlet 非常有用。 
+您可以暫停/暫停管線使用 hello**暫停 AzureRmDataFactoryPipeline** PowerShell cmdlet。 這個指令程式時，您不想 toorun 管線直到問題得到解決為止。 
 
 ```powershell
 Suspend-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryName] <String> [-Name] <String>
@@ -180,7 +180,7 @@ Suspend-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryNa
 Suspend-AzureRmDataFactoryPipeline -ResourceGroupName ADF -DataFactoryName productrecgamalbox1dev -Name PartitionProductsUsagePipeline
 ```
 
-在修正管線的問題後，您可以執行下列 PowerShell 命令來繼續暫止的管線：
+Hello 管線與已修正 hello 問題之後，您可以藉由執行下列 PowerShell 命令的 hello 繼續暫停的 hello 管線：
 
 ```powershell
 Resume-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryName] <String> [-Name] <String>
@@ -192,27 +192,27 @@ Resume-AzureRmDataFactoryPipeline -ResourceGroupName ADF -DataFactoryName produc
 ```
 
 ## <a name="debug-pipelines"></a>偵錯管線
-Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure PowerShell 來對管線進行偵錯和疑難排解。
+Azure Data Factory toodebug 為您提供豐富的功能，並使用 hello Azure 入口網站和 Azure PowerShell 來進行疑難排解管線。
 
-> [!NOTE} 使用監視及管理應用程式針對錯誤進行疑難排解更加容易。 如需使用應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視及管理 Data Factory 管線](data-factory-monitor-manage-app.md)一文。 
+> [!請注意} 很容易 tootroubleshot 使用錯誤 hello 監視和管理應用程式。 如需有關使用 hello 應用程式的詳細資訊，請參閱[監視和管理使用 hello 監視和管理應用程式的 Data Factory 管線](data-factory-monitor-manage-app.md)發行項。 
 
 ### <a name="find-errors-in-a-pipeline"></a>尋找管線中的錯誤
-如果管線中的活動執行失敗，管線所產生的資料集會因為該失敗而處於錯誤狀態。 您可以使用下列方法，在 Azure Data Factory 中偵錯和疑難排解錯誤。
+Hello 活動執行會在管線中失敗，hello hello 管線所產生的資料集處於錯誤狀態是因為 hello 錯誤。 您可以偵錯，並使用下列方法 hello 疑難排解 Azure Data Factory 中的錯誤。
 
-#### <a name="use-the-azure-portal-to-debug-an-error"></a>使用 Azure 入口網站偵錯錯誤
-1. 在 [資料表] 刀鋒視窗中，按一下 [狀態] 設為 [失敗] 的問題配量。
+#### <a name="use-hello-azure-portal-toodebug-an-error"></a>使用 Azure 入口網站 toodebug 錯誤 hello
+1. 在 [hello**資料表**刀鋒視窗中，按一下具有 hello hello 問題配量**狀態**設定得**失敗**。
 
    ![含有問題配量的資料表刀鋒視窗](./media/data-factory-monitor-manage-pipelines/table-blade-with-error.png)
-2. 在 [資料配量] 刀鋒視窗中，按一下失敗的活動執行。
+2. 在 [hello**資料配量**刀鋒視窗中，按一下 hello 活動執行失敗。
 
    ![發生錯誤的資料配量](./media/data-factory-monitor-manage-pipelines/dataslice-with-error.png)
-3. 在 [活動執行詳細資料] 刀鋒視窗中，您可以下載與 HDInsight 處理相關聯的檔案。 按一下 Status/stderr 中的 [下載] 以下載包含錯誤詳細資料的錯誤記錄檔。
+3. 在 [hello**活動執行詳細資料**刀鋒視窗中，您可以下載 hello HDInsight 處理相關聯的 hello 檔案。 按一下**下載**狀態/stderr toodownload hello 錯誤記錄檔，其中包含關於 hello 錯誤詳細資料。
 
    ![含有錯誤的活動執行詳細資料刀鋒視窗](./media/data-factory-monitor-manage-pipelines/activity-run-details-with-error.png)     
 
-#### <a name="use-powershell-to-debug-an-error"></a>使用 PowerShell 偵錯錯誤
+#### <a name="use-powershell-toodebug-an-error"></a>使用 PowerShell toodebug 錯誤
 1. 啟動 **PowerShell**。
-2. 執行 **Get-AzureRmDataFactorySlice** 命令來查看配量及其狀態。 您應該會看到狀態為 [失敗] 的配量。        
+2. 執行 hello **Get AzureRmDataFactorySlice**命令 toosee hello 配量和其狀態。 您應該會看見 hello 狀態顯示為配量**失敗**。        
 
     ```powershell   
     Get-AzureRmDataFactorySlice [-ResourceGroupName] <String> [-DataFactoryName] <String> [-DatasetName] <String> [-StartDateTime] <DateTime> [[-EndDateTime] <DateTime> ] [-Profile <AzureProfile> ] [ <CommonParameters>]
@@ -224,7 +224,7 @@ Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure
     ```
 
    將 **StartDateTime** 取代為您的管線開始時間。 
-3. 現在，執行 **Get-AzureRmDataFactoryRun** Cmdlet，以取得關於此配量之活動執行的詳細資料。
+3. 現在，執行 hello **Get AzureRmDataFactoryRun** cmdlet tooget 詳細 hello 活動執行 hello 配量。
 
     ```powershell   
     Get-AzureRmDataFactoryRun [-ResourceGroupName] <String> [-DataFactoryName] <String> [-DatasetName] <String> [-StartDateTime]
@@ -237,8 +237,8 @@ Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure
     Get-AzureRmDataFactoryRun -ResourceGroupName ADF -DataFactoryName LogProcessingFactory -DatasetName EnrichedGameEventsTable -StartDateTime "5/5/2014 12:00:00 AM"
     ```
 
-    StartDateTime 的值就是您在上一步驟記下的錯誤/問題配量的開始時間。 date-time 應該用雙引號括住。
-4. 您應該會看到含有此錯誤詳細資料的輸出，如下所示：
+    StartDateTime hello 值為 hello 您從 hello 上一個步驟記下的 hello 錯誤/問題配量的開始時間。 hello 日期-時間應該用雙引號括住。
+4. 您應該會看到類似 toohello 下列 hello 錯誤的相關詳細資料的輸出：
 
     ```   
     Id                      : 841b77c9-d56c-48d1-99a3-8c16c3e77d39
@@ -262,7 +262,7 @@ Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure
     PipelineName            : EnrichGameLogsPipeline
     Type                    :
     ```
-5. 您可以使用在輸出中看見的 ID 值執行 **Save-AzureRmDataFactoryLog** Cmdlet，並在 Cmdlet 中使用 **-DownloadLogsoption** 來下載記錄檔。
+5. 您可以執行 hello**儲存 AzureRmDataFactoryLog** cmdlet 搭配您從 hello 輸出，請參閱，以及使用 hello 下載 hello 記錄檔的識別碼值 hello **-DownloadLogsoption** hello 指令程式。
 
     ```powershell
     Save-AzureRmDataFactoryLog -ResourceGroupName "ADF" -DataFactoryName "LogProcessingFactory" -Id "841b77c9-d56c-48d1-99a3-8c16c3e77d39" -DownloadLogs -Output "C:\Test"
@@ -271,32 +271,32 @@ Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure
 ## <a name="rerun-failures-in-a-pipeline"></a>重新執行管線中的失敗
 
 > [!IMPORTANT]
-> 使用監視及管理應用程式針對錯誤進行疑難排解以及重新執行失敗的配量更加容易。 如需使用應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視及管理 Data Factory 管線](data-factory-monitor-manage-app.md)。 
+> 它是更容易 tootroubleshoot 錯誤，而且使用重新執行失敗的配量 hello 監視和管理應用程式。 如需有關使用 hello 應用程式的詳細資訊，請參閱[監視和管理使用 hello 監視和管理應用程式的 Data Factory 管線](data-factory-monitor-manage-app.md)。 
 
-### <a name="use-the-azure-portal"></a>使用 Azure 入口網站
-在對管線中的失敗進行疑難排解和偵錯後，您可以瀏覽到錯誤配量並按一下命令列上的 [執行] 按鈕，重新執行失敗。
+### <a name="use-hello-azure-portal"></a>使用 hello Azure 入口網站
+在疑難排解和偵錯在管線中的失敗之後，您可重新執行失敗瀏覽 toohello 錯誤配量，然後按一下 hello**執行**hello 命令列上的按鈕。
 
 ![重新執行失敗的配量](./media/data-factory-monitor-manage-pipelines/rerun-slice.png)
 
-萬一原則失敗而導致配量驗證失敗 (例如：沒有可用資料)，您可以修正失敗並重新驗證，方法是按一下命令列上的 [驗證] 按鈕。
+萬一 hello 配量驗證失敗是因為原則錯誤 （例如，如果資料無法使用），您可以修正 hello 失敗，並依序按一下 hello 重新驗證**驗證**hello 命令列上的按鈕。
 
 ![修正錯誤並進行驗證](./media/data-factory-monitor-manage-pipelines/fix-error-and-validate.png)
 
 ### <a name="use-azure-powershell"></a>使用 Azure PowerShell
-您可以使用 **Set-AzureRmDataFactorySliceStatus** Cmdlet 來重新執行失敗。 如需該 Cmdlet 的語法及其他詳細資料，請參閱 [Set-AzureRmDataFactorySliceStatus](https://msdn.microsoft.com/library/mt603522.aspx) 主題。
+您可以使用 hello 重新執行失敗**組 AzureRmDataFactorySliceStatus** cmdlet。 請參閱 hello[組 AzureRmDataFactorySliceStatus](https://msdn.microsoft.com/library/mt603522.aspx)的語法和 hello 指令程式的其他詳細資料。
 
 **範例：**
 
-下列範例把 Azure Data Factory 'WikiADF' 中 'DAWikiAggregatedData' 資料表的所有配量狀態都設為 'Waiting'。
+hello 下列範例會設定所有的扇區的 hello 資料表 'DAWikiAggregatedData' too'Waiting hello 狀態 ' hello Azure data factory 'WikiADF' 中。
 
-'UpdateType' 已設為 'UpstreamInPipeline'，這代表資料表中每個配量的狀態以及所有相依 (上游) 資料表的狀態都設為 'Waiting'。 此參數的另一個可能值為 'Individual'。
+設定 too'UpstreamInPipeline 'P' hello '，這表示 hello 資料表的每個配量和所有相依 （上游） 資料表 hello 的狀態會設定 too'Waiting'。 hello 其他可能的值，這個參數為 「 個人 」。
 
 ```powershell
 Set-AzureRmDataFactorySliceStatus -ResourceGroupName ADF -DataFactoryName WikiADF -DatasetName DAWikiAggregatedData -Status Waiting -UpdateType UpstreamInPipeline -StartDateTime 2014-05-21T16:00:00 -EndDateTime 2014-05-21T20:00:00
 ```
 
 ## <a name="create-alerts"></a>建立警示
-當建立、更新或刪除 Azure 資料時 (例如 Data Factory)，Azure 會記錄使用者事件。 您可以對這些事件建立警示。 您可以使用 Data Factory 擷取各種度量並建立度量警示。 我們建議您使用事件來進行即時監視，使用度量來做歷程記錄。
+當建立、更新或刪除 Azure 資料時 (例如 Data Factory)，Azure 會記錄使用者事件。 您可以對這些事件建立警示。 您可以使用 Data Factory toocapture 多種標準，以及建立度量的警示。 我們建議您使用事件來進行即時監視，使用度量來做歷程記錄。
 
 ### <a name="alerts-on-events"></a>事件警示
 Azure 事件可讓您深入了解 Azure 資源的情況。 使用 Azure Data Factory 時，下列情況會產生事件：
@@ -305,14 +305,14 @@ Azure 事件可讓您深入了解 Azure 資源的情況。 使用 Azure Data Fac
 * 資料處理 (「回合」形式) 已開始或完成。
 * 建立或移除隨選 HDInsight 叢集。
 
-您可以針對這些使用者事件建立警示，並設定它們傳送電子郵件通知給訂用帳戶的管理員和共同管理員。 此外，您還可以指定使用者的其他電子郵件地址，當條件符合時，這些使用者需要收到電子郵件通知。 此功能在您想要取得有關失敗的通知且不想要持續監視您的 Data Factory 時會非常有用。
+您可以建立這些使用者事件的警示，並設定它們 toosend 電子郵件通知 toohello 系統管理員和 coadministrators hello 訂用帳戶。 此外，您可以指定符合 hello 條件時，需要 tooreceive 電子郵件通知的使用者的其他電子郵件地址。 當您要 tooget 在失敗時收到通知，而且不想 toocontinuously 監視您的 data factory，這個功能會很有用。
 
 > [!NOTE]
-> 入口網站目前無法顯示事件警示。 使用[監視及管理應用程式](data-factory-monitor-manage-app.md)來查看所有警示。
+> 目前，hello 入口網站不會顯示警示的事件。 使用 hello[監視和管理應用程式](data-factory-monitor-manage-app.md)toosee 所有警示。
 
 
 #### <a name="specify-an-alert-definition"></a>指定警示定義
-若要指定警示定義，您需要建立 JSON 檔案來描述您想要接獲通知的作業。 在下列範例中，警示會針對 RunFinished 作業傳送電子郵件通知。 具體而言，當 Data Factory 中完成一個回合，而且執行失敗時 (Status = FailedExecution)，就會傳送電子郵件通知。
+toospecify 警示定義，您會建立描述要 toobe 上發生警示的 hello 作業的 JSON 檔案。 在下列範例的 hello，hello 警示會傳送 hello RunFinished 作業的電子郵件通知。 toobe 特定電子郵件通知會傳送 hello data factory 中的執行已完成，而且 hello 執行失敗時 (狀態 = FailedExecution)。
 
 ```JSON
 {
@@ -329,7 +329,7 @@ Azure 事件可讓您深入了解 Azure 資源的情況。 使用 Azure Data Fac
             "properties":
             {
                 "name": "ADFAlertsSlice",
-                "description": "One or more of the data slices for the Azure Data Factory has failed processing.",
+                "description": "One or more of hello data slices for hello Azure Data Factory has failed processing.",
                 "isEnabled": true,
                 "condition":
                 {
@@ -353,15 +353,15 @@ Azure 事件可讓您深入了解 Azure 資源的情況。 使用 Azure Data Fac
 }
 ```
 
-如果不想接獲特定失敗的通知，您可以移除 JSON 定義中的 **subStatus**。
+您可以移除**子狀態**從 hello JSON 定義，如果您不想 toobe 特定失敗的警示。
 
-此範例會為您的訂用帳戶中所有 Data Factory 設定警示。 如果您想要為特定 Data Factory 設定警示，可以在 **dataSource** 指定 Data Factory 的 **resourceUri**：
+此範例會設定您的訂用帳戶中的所有資料處理站的 hello 警示。 如果您想 hello 警示 toobe 設定特定的資料處理站，您可以指定資料處理站**resourceUri**在 hello **dataSource**:
 
 ```JSON
 "resourceUri" : "/SUBSCRIPTIONS/<subscriptionId>/RESOURCEGROUPS/<resourceGroupName>/PROVIDERS/MICROSOFT.DATAFACTORY/DATAFACTORIES/<dataFactoryName>"
 ```
 
-下列表格提供可用作業與狀態 (及子狀態) 的清單。
+hello 下表提供 hello 清單可用的作業和狀態 （和子狀態）。
 
 | 作業名稱 | 狀態 | 子狀態 |
 | --- | --- | --- |
@@ -371,21 +371,21 @@ Azure 事件可讓您深入了解 Azure 資源的情況。 使用 Azure Data Fac
 | OnDemandClusterCreateSuccessful |Succeeded | |
 | OnDemandClusterDeleted |Succeeded | |
 
-如需範例中所使用之 JSON 元素的詳細資料，請參閱[建立警示規則](https://msdn.microsoft.com/library/azure/dn510366.aspx)。
+請參閱[建立警示規則](https://msdn.microsoft.com/library/azure/dn510366.aspx)hello hello 範例中使用的 JSON 元素的詳細資料。
 
-#### <a name="deploy-the-alert"></a>部署警示
-如果要部署警示，請使用 Azure PowerShell Cmdlet **New-AzureRmResourceGroupDeployment**，如下列範例所示：
+#### <a name="deploy-hello-alert"></a>部署 hello 警示
+toodeploy hello 警示，請使用 hello Azure PowerShell 指令程式**新增 AzureRmResourceGroupDeployment**hello 下列範例所示：
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName adf -TemplateFile .\ADFAlertFailedSlice.json  
 ```
 
-成功完成資源群組部署之後，您會看到下列訊息：
+Hello 資源群組部署已順利完成之後，您會看到下列訊息的 hello:
 
 ```
 VERBOSE: 7:00:48 PM - Template is valid.
-WARNING: 7:00:48 PM - The StorageAccountName parameter is no longer used and will be removed in a future release.
-Please update scripts to remove this parameter.
+WARNING: 7:00:48 PM - hello StorageAccountName parameter is no longer used and will be removed in a future release.
+Please update scripts tooremove this parameter.
 VERBOSE: 7:00:49 PM - Create template deployment 'ADFAlertFailedSlice'.
 VERBOSE: 7:00:57 PM - Resource microsoft.insights/alertrules 'ADFAlertsSlice' provisioning status is succeeded
 
@@ -400,11 +400,11 @@ Outputs           :
 ```
 
 > [!NOTE]
-> 您可以使用 [建立警示規則](https://msdn.microsoft.com/library/azure/dn510366.aspx) REST API 來建立警示規則。 JSON 承載類似於 JSON 範例。  
+> 您可以使用 hello[建立警示規則](https://msdn.microsoft.com/library/azure/dn510366.aspx)REST API toocreate 警示規則。 hello JSON 裝載是類似 toohello JSON 範例。  
 
 
-#### <a name="retrieve-the-list-of-azure-resource-group-deployments"></a>擷取 Azure 資源群組部署的清單
-如果要擷取已部署的 Azure 資源群組部署清單，請使用 Cmdlet **Get-AzureRmResourceGroupDeployment**，如下列範例所示：
+#### <a name="retrieve-hello-list-of-azure-resource-group-deployments"></a>擷取 Azure 資源群組部署的 hello 的清單
+tooretrieve hello 清單部署 Azure 資源群組部署，請使用 hello cmdlet **Get AzureRmResourceGroupDeployment**hello 下列範例所示：
 
 ```powershell
 Get-AzureRmResourceGroupDeployment -ResourceGroupName adf
@@ -422,23 +422,23 @@ Outputs           :
 ```
 
 #### <a name="troubleshoot-user-events"></a>使用者事件疑難排解
-1. 您可以看到在按一下 [度量和作業] 圖格後產生的所有事件。
+1. 您可以查看所有 hello 事件產生後按一下 hello**度量和作業**磚。
 
     ![度量和作業圖格](./media/data-factory-monitor-manage-pipelines/metrics-and-operations-tile.png)
-2. 按一下 [事件] 圖格來查看事件。
+2. 按一下 hello**事件**磚 toosee hello 事件。
 
     ![[事件] 磚](./media/data-factory-monitor-manage-pipelines/events-tile.png)
-3. 在 [事件] 刀鋒視窗中，您可以查看事件、篩選事件等項目的詳細資料。
+3. 在 [hello**事件**刀鋒視窗中，您可以看到事件、 已篩選的事件，等等的相關詳細資料。
 
     ![事件刀鋒視窗](./media/data-factory-monitor-manage-pipelines/events-blade.png)
-4. 在作業清單中按一下導致錯誤的 [作業]。
+4. 按一下**作業**hello 作業的清單中，會造成錯誤。
 
     ![選取作業](./media/data-factory-monitor-manage-pipelines/select-operation.png)
-5. 按一下 [錯誤] 事件，以查看錯誤的詳細資料。
+5. 按一下**錯誤**hello 錯誤的相關事件 toosee 詳細資料。
 
     ![事件錯誤](./media/data-factory-monitor-manage-pipelines/operation-error-event.png)
 
-如需可用於新增、取得或移除警示的 PowerShell Cmdlet，請參閱 [Azure Insight Cmdlet](https://msdn.microsoft.com/library/mt282452.aspx)。 以下是一些關於使用 **Get AlertRule** Cmdlet 的範例：
+請參閱[Azure Insight cmdlet](https://msdn.microsoft.com/library/mt282452.aspx) PowerShell 指令程式，您可以使用 tooadd，或以移除警示。 以下是一些使用 hello 範例**Get AlertRule** cmdlet:
 
 ```powershell
 get-alertrule -res $resourceGroup -n ADFAlertsSlice -det
@@ -460,7 +460,7 @@ Status                : Failed
 SubStatus             : FailedExecution
 Claims                : Microsoft.Azure.Management.Insights.Models.RuleManagementEventClaimsDataSource
 Condition      :
-Description : One or more of the data slices for the Azure Data Factory has failed processing.
+Description : One or more of hello data slices for hello Azure Data Factory has failed processing.
 Status      : Enabled
 Name:       : ADFAlertsSlice
 Tags       :
@@ -499,7 +499,7 @@ Location   : West US
 Name       : FailedExecutionRunsWest0
 ```
 
-執行下列 get-help 命令，以查看關於 Get-AlertRule Cmdlet 的詳細資訊和範例。
+執行的 hello 下列 get-help 命令 toosee 詳細資料及 hello Get AlertRule cmdlet 的範例。
 
 ```powershell
 get-help Get-AlertRule -detailed
@@ -510,67 +510,67 @@ get-help Get-AlertRule -examples
 ```
 
 
-如果您在入口網站刀鋒視窗上看到產生警示的事件但沒有收到電子郵件通知，請檢查指定的電子郵件地址是否設定為接收來自外部寄件者的電子郵件。 警示的電子郵件可能遭到您的電子郵件設定封鎖。
+如果您看到 hello 警示產生事件 hello 入口網站的刀鋒視窗，但不是會收到電子郵件通知，請檢查指定的 hello 電子郵件地址從外部寄件者是否設定 tooreceive 電子郵件。 電子郵件設定可能已封鎖 hello 警示的電子郵件。
 
 ### <a name="alerts-on-metrics"></a>度量的警示
-您可以在 Data Factory 中擷取各種度量並建立度量警示。 您可以針對您 Data Factory 配量的下列度量進行監視和建立警示：
+您可以在 Data Factory 中擷取各種度量並建立度量警示。 您可以監視和 hello 下列度量資訊。 您的 data factory 中的 hello 扇區上建立警示：
 
 * **失敗的執行**
 * **成功的執行**
 
-這些度量很實用，並且可讓您在 Data Factory 取得整體失敗和成功執行的概觀。 每次有配量執行時就會發出度量。 整點時，這些度量會彙總並推送至儲存體帳戶。 若要啟用度量，請設定儲存體帳戶。
+這些度量資訊會很有用，並且協助您 tooget hello data factory 中執行的整體失敗和成功的概觀。 每次有配量執行時就會發出度量。 在 hello 開頭 hello 小時，這些度量會彙總，推入 tooyour 儲存體帳戶。 tooenable 度量設定儲存體帳戶。
 
 #### <a name="enable-metrics"></a>啟用度量
-若要啟用度量，請從 [Data Factory] 刀鋒視窗按一下下列選項：
+tooenable 度量，按一下 [從 hello hello 下列**Data Factory**刀鋒視窗中：
 
 [監視] > [度量] > [診斷設定] > [診斷]
 
 ![診斷連結](./media/data-factory-monitor-manage-pipelines/diagnostics-link.png)
 
-在 [診斷] 刀鋒視窗中，按一下 [啟用]，選取儲存體帳戶，然後按一下 [儲存]。
+在 [hello**診斷**刀鋒視窗中，按一下 [**上**，選取 hello 儲存體帳戶，然後按一下**儲存**。
 
 ![[診斷] 刀鋒視窗](./media/data-factory-monitor-manage-pipelines/diagnostics-blade.png)
 
-最長可能需要一小時才能在 [監視] 刀鋒視窗中看見度量，因為度量是每小時彙總一次。
+它可能會佔用 hello 度量 toobe hello 上可見的 tooone 小時**監視**刀鋒視窗因為度量彙總每小時發生。
 
 ### <a name="set-up-an-alert-on-metrics"></a>設定度量警示
-按一下 [Data Factory 度量] 圖格︰
+按一下 hello **Data Factory 度量**磚：
 
 ![Data Factory 度量圖格](./media/data-factory-monitor-manage-pipelines/data-factory-metrics-tile.png)
 
-在 [度量] 刀鋒視窗中，按一下工具列上的 [+ 新增警示]。
+在 [hello**度量**刀鋒視窗中，按一下 [ **+ 新增警示**hello 工具列上。
 ![Data Factory 度量刀鋒視窗 > 新增警示](./media/data-factory-monitor-manage-pipelines/add-alert.png)
 
-在 [新增警示規則] 頁面上執行下列步驟，然後按一下 [確定]。
+在 [hello**加入警示規則**頁面上，執行 hello 下列步驟，然後按一下**確定**。
 
-* 輸入警示的名稱 (範例︰「失敗警示」)。
-* 輸入警示的描述 (範例︰「發生失敗時傳送電子郵件」)。
+* 輸入 hello 警示的名稱 (範例: 「 失敗通知 」)。
+* 輸入 hello 警示的描述 (範例: 「 發生失敗時傳送電子郵件 」)。
 * 選取度量 (「失敗的執行」與「成功的執行」)。
 * 指定條件和臨界值。   
-* 指定期間。
-* 指定是否應傳送電子郵件給擁有者、參與者和讀取者。
+* 指定 hello 一段時間。
+* 指定 tooowners、 參與者與讀者，是否應傳送電子郵件。
 
 ![Data Factory 度量刀鋒視窗 > 新增警示規則](./media/data-factory-monitor-manage-pipelines/add-an-alert-rule.png)
 
-成功新增警示規則後，刀鋒視窗會隨即關閉，而您會在 [度量] 刀鋒視窗上看到新的警示。
+Hello 警示規則已順利新增，hello 刀鋒視窗會關閉，您看到 hello 新的警示上 hello 之後**度量**刀鋒視窗。
 
 ![Data Factory 度量刀鋒視窗 > 已新增警示](./media/data-factory-monitor-manage-pipelines/failed-alert-in-metric-blade.png)
 
-您也應該會在 [警示規則] 圖格上看到警示數目。 按一下 [警示規則] 圖格。
+您也應該會看到 hello hello 中的警示數目**警示規則**磚。 按一下 hello**警示規則**磚。
 
 ![Data Factory 度量刀鋒視窗 - 新增規則](./media/data-factory-monitor-manage-pipelines/alert-rules-tile-rules.png)
 
-在 [警示規則] 刀鋒視窗中，您會看到任何現有的警示。 若要新增警示，請按一下工具列上的 [新增警示]。
+在 [hello**警示規則**刀鋒視窗中，您會看到任何現有的警示。 按一下警示，tooadd**新增警示**hello 工具列上。
 
 ![警示規則刀鋒視窗](./media/data-factory-monitor-manage-pipelines/alert-rules-blade.png)
 
 ### <a name="alert-notifications"></a>警示通知
-警示規則與條件相符後，您應該會收到指出警示已啟用的電子郵件。 在問題獲得解決且警示條件不再符合任何規則後，您就會收到指出警示已獲得解決的電子郵件。
+Hello 警示規則的比對 hello 條件之後，您應該取得指出啟動 hello 警示的電子郵件。 Hello 問題已解決和 hello 警示條件不符合不再之後，您會收到電子郵件，指出 hello 警示已解決。
 
 此行為不同於事件，其會針對警示規則相符的每個失敗傳送通知。
 
 ### <a name="deploy-alerts-by-using-powershell"></a>使用 PowerShell 部署警示
-您可以使用部署事件警示的相同方法來部署度量警示。
+您可以部署警示，如度量 hello 相同事件的方式。
 
 **警示定義**
 
@@ -614,16 +614,16 @@ get-help Get-AlertRule -examples
 }
 ```
 
-以適當的值取代範例中的 subscriptionId、resourceGroupName、和 dataFactoryName。
+取代*subscriptionId*， *resourceGroupName*，和*dataFactoryName* hello 範例以適當的值。
 
 metricName 目前支援兩個值︰
 
 * FailedRuns
 * SuccessfulRuns
 
-**部署警示**
+**部署 hello 警示**
 
-如果要部署警示，請使用 Azure PowerShell Cmdlet **New-AzureRmResourceGroupDeployment**，如下列範例所示：
+toodeploy hello 警示，請使用 hello Azure PowerShell 指令程式**新增 AzureRmResourceGroupDeployment**hello 下列範例所示：
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName adf -TemplateFile .\FailedRunsGreaterThan5.json
@@ -647,13 +647,13 @@ Parameters        :
 Outputs           
 ```
 
-您也可以使用 **Add-AlertRule** Cmdlet 來部署警示規則。 如需詳細資料及範例，請參閱 [Add-AlertRule](https://msdn.microsoft.com/library/mt282468.aspx) 主題。  
+您也可以使用 hello**新增 AlertRule** cmdlet toodeploy 警示規則。 請參閱 hello[新增 AlertRule](https://msdn.microsoft.com/library/mt282468.aspx)如需詳細資訊與範例的主題。  
 
-## <a name="move-a-data-factory-to-a-different-resource-group-or-subscription"></a>將 Data Factory 移至另一個資源群組或訂用帳戶
-您可以使用 Data Factory 首頁上的 [移動]  命令列按鈕，將 Data Factory 移至另一個資源群組或訂用帳戶。
+## <a name="move-a-data-factory-tooa-different-resource-group-or-subscription"></a>移動資料 factory tooa 不同的資源群組或訂用帳戶
+您可以移動資料 factory tooa 不同的資源群組或不同的訂用帳戶使用 hello**移動**命令列上的 data factory 的 hello 首頁上的按鈕。
 
 ![移動 Data Factory](./media/data-factory-monitor-manage-pipelines/MoveDataFactory.png)
 
-您也可以將任何相關資源 (例如與 Data Factory 相關聯的警示) 連同 Data Factory 一起移動。
+您也可以移動任何相關的資源 （例如警示與 hello data factory 相關聯），以及 hello 資料 factory。
 
 ![移動資源對話方塊](./media/data-factory-monitor-manage-pipelines/MoveResources.png)

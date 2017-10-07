@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Data Factory 建立預測資料管線 | Microsoft Docs"
-description: "說明如何使用 Azure Data Factory 和 Azure Machine Learning 建立預測管線"
+title: "使用 Azure Data Factory aaaCreate 預測的資料管線 |Microsoft 文件"
+description: "描述如何 toocreate 建立預測管線使用 Azure Data Factory 和 Azure Machine Learning"
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: shlo
-ms.openlocfilehash: d8e2c9583fc909e4e015e2d40473d2754529d8ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 943210c28b1696e299ff9b7cc96369b95f182354
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-predictive-pipelines-using-azure-machine-learning-and-azure-data-factory"></a>使用 Azure Machine Learning 和 Azure Data Factory 來建立預測管線
 
@@ -37,51 +37,51 @@ ms.lasthandoff: 07/11/2017
 ## <a name="introduction"></a>簡介
 
 ### <a name="azure-machine-learning"></a>Azure Machine Learning
-[Azure 機器學習服務](https://azure.microsoft.com/documentation/services/machine-learning/) 可讓您建置、測試以及部署預測性分析解決方案。 從高階觀點而言，由下列三個步驟完成這個動作：
+[Azure Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/)可讓您 toobuild 測試和部署的預測分析解決方案。 從高階觀點而言，由下列三個步驟完成這個動作：
 
-1. **建立訓練實驗**。 您可以使用 Azure ML Studio 來進行此步驟。 ML Studio 是共同作業的視覺化開發環境，可供您使用訓練資料來訓練和測試預測性分析模型。
-2. **將其轉換為評分實驗**。 一旦您的模型已使用現有資料訓練，並做好使用該模型為新資料評分的準備之後，您準備並簡化用於評分實驗。
-3. **將其部署為 Web 服務**。 只要按一下，您就可以將評分實驗當做 Azure Web 服務發佈。 您可以透過此 Web 服務端點將資料傳送給您的模型，並從模型接收結果預測。  
+1. **建立訓練實驗**。 您可以使用 hello Azure ML Studio，以進行此步驟。 hello ML studio 是共同作業視覺式開發環境，您使用 tootrain 和測試模型使用定型資料的預測分析。
+2. **將它轉換 tooa 預測實驗**。 一旦您的模型已定型使用現有的資料，而且您準備好 toouse 它 tooscore 新資料準備，並簡化計分實驗。
+3. **將其部署為 Web 服務**。 只要按一下，您就可以將評分實驗當做 Azure Web 服務發佈。 您可以傳送資料 tooyour 模型，透過此 web 服務端點，並接收從 hello 模型結果的預測。  
 
 ### <a name="azure-data-factory"></a>Azure Data Factory
-Data Factory 是雲端架構資料整合服務，用來協調以及自動**移動**和**轉換**資料。 您可以使用 Azure Data Factory 建立資料整合方案，以從各種資料存放區內嵌資料、轉換/處理資料，並將結果資料發佈至資料存放區。
+Data Factory 是以雲端為基礎的資料整合服務會協調及自動 hello**移動**和**轉換**的資料。 您可以建立資料整合方案使用 Azure Data Factory 可以擷取從各種資料存放區的資料，轉換/處理序 hello 資料，並將發行 hello 結果資料 toohello 資料存放區。
 
-Data Factory 服務可讓您建立資料管線，以移動和轉換資料，然後依指定的排程 (每小時、每天、每週等) 執行管線。 它也提供豐富的視覺效果來顯示資料管線之間的歷程和相依性，並可透過單一整合檢視監視您所有的資料管線，以輕鬆地找出問題並設定監視警示。
+資料處理站服務 toocreate 資料管線，而移動和轉換資料，可讓您，然後再執行指定的排程 （每小時、 每天、 每週等等） 上的 hello 管線。 它也提供豐富的視覺效果 toodisplay hello 歷程和您的資料管線之間的相依性監視所有您在資料管線，從單一統一的檢視 tooeasily 找出問題並設定監視警示。
 
-請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)和[建置您的第一個管線](data-factory-build-your-first-pipeline.md)文章，快速地開始使用 Azure Data Factory 服務。
+請參閱[簡介 tooAzure Data Factory](data-factory-introduction.md)和[建置您的第一個管線](data-factory-build-your-first-pipeline.md)文章 tooquickly 開始 hello Azure Data Factory 服務使用。
 
 ### <a name="data-factory-and-machine-learning-together"></a>Data Factory 和 Machine Learning 一起合作
-Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Machine Learning][azure-machine-learning] Web 服務進行預測性分析。 在 Azure Data Factory 管線中使用 [批次執行活動]  ，您可以叫用 Azure ML Web 服務以對批次中的資料進行預測。 如需詳細資訊，請參閱 [使用批次執行活動叫用 Azure ML Web 服務](#invoking-an-azure-ml-web-service-using-the-batch-execution-activity) 一節。
+Azure Data Factory 可讓您 tooeasily 建立使用已發行的管線[Azure Machine Learning] [ azure-machine-learning] web 服務的預測分析。 使用 hello**批次執行活動**在 Azure Data Factory 管線中，您可以叫用 Azure ML web 服務 toomake 預測 hello 批次中的資料。 請參閱[叫用 Azure ML web 服務使用 hello 批次執行活動](#invoking-an-azure-ml-web-service-using-the-batch-execution-activity)如需詳細資訊。
 
-經過一段時間，必須使用新的輸入資料集重新訓練 Azure ML 評分實驗中的預測模型。 您可以執行下列步驟，從 Data Factory 管線重新訓練 Azure ML 模型：
+經過一段時間，在 hello Azure ML 計分實驗中的 hello 預測模型需要 toobe 原樣使用新的輸入資料集。 您可以執行下列步驟的 hello 重新訓練從 Data Factory 管線的 Azure ML 模型：
 
-1. 將訓練實驗 (而非預設實驗) 發佈為 Web 服務。 在 Azure ML Studio 中進行此步驟的方法，和先前案例中將預測實驗公開為 Web 服務的方法一樣。
-2. 使用 Azure ML 批次執行活動，對訓練實驗叫用 Web 服務。 基本上，您可以使用 Azure ML 批次執行活動來叫用訓練 Web 服務和評分 Web 服務。
+1. 將 hello 定型實驗 （不預測實驗） 發佈為 web 服務。 您可以如同 tooexpose 預測實驗為 web 服務在 hello 前一個案例中，您 hello Azure ML Studio 中的這個步驟。
+2. 使用 hello Azure ML 批次執行活動 tooinvoke hello web 服務的 hello 定型實驗。 基本上，您可以使用 hello Azure ML 批次執行活動 tooinvoke web 服務的定型和計分 web 服務。
 
-完成重新訓練之後，您可以使用「Azure ML 更新資源活動」，使用新訓練的模型來更新評分 Web 服務 (以 Web 服務公開的預測實驗)。 如需詳細資料，請參閱[使用更新資源活動更新模型](data-factory-azure-ml-update-resource-activity.md)一文。
+您完成定型之後，更新 hello 計分 web 服務 （預測實驗公開為 web 服務） 與 hello 定型新模型，使用 hello **Azure ML 更新資源活動**。 如需詳細資料，請參閱[使用更新資源活動更新模型](data-factory-azure-ml-update-resource-activity.md)一文。
 
 ## <a name="invoking-a-web-service-using-batch-execution-activity"></a>使用批次執行活動來叫用 Web 服務
-您可以使用 Azure Data Factory 協調資料的移動和處理作業，然後使用 Azure Machine Learning 批次執行。 以下是最上層的步驟︰
+您使用 Azure Data Factory tooorchestrate 資料移動和處理，並執行使用 Azure Machine Learning 批次執行。 Hello 最上層步驟如下：
 
-1. 建立 Azure Machine Learning 連結服務。 您需要下列值︰
+1. 建立 Azure Machine Learning 連結服務。 您需要下列值的 hello:
 
-   1. **要求 URI** 。 您可以按一下 Web 服務頁面中的 **批次執行** 連結，即可找到要求 URI。
-   2. **API 金鑰** 。 按一下已發佈的 Web 服務，即可找到 API 金鑰。
-   3. 使用 **AzureMLBatchExecution** 活動。
+   1. **要求 URI** hello 批次執行應用程式開發介面。 您可以找到要求的 URI hello 按一下 hello**批次執行**hello web 服務 頁面中的連結。
+   2. **API 金鑰**hello 已發行的 Azure Machine Learning web 服務。 您可以按一下 hello 已發行的 web 服務，以尋找 hello API 金鑰。
+   3. 使用 hello **AzureMLBatchExecution**活動。
 
       ![機器學習服務儀表板](./media/data-factory-azure-ml-batch-execution-activity/AzureMLDashboard.png)
 
       ![批次 URI](./media/data-factory-azure-ml-batch-execution-activity/batch-uri.png)
 
-### <a name="scenario-experiments-using-web-service-inputsoutputs-that-refer-to-data-in-azure-blob-storage"></a>案例：使用 Web 服務輸入/輸出 (參考 Azure Blob 儲存體中的資料) 的實驗
-在此案例中，Azure Machine Learning Web 服務會使用 Azure Blob 儲存體中的檔案資料執行預測，並將預測結果儲存在 Blob 儲存體中。 下列 JSON 使用 AzureMLBatchExecution 活動定義 Data Factory 管線。 此活動以 **DecisionTreeInputBlob** 資料集做為輸入，以 **DecisionTreeResultBlob** 資料集做為輸出。 **DecisionTreeInputBlob** 會做為輸入以使用 **webServiceInput** JSON 屬性傳遞至 Web 服務。 **DecisionTreeResultBlob** 會做為輸出以使用 **webServiceOutputs** JSON 屬性傳遞至 Web 服務。  
+### <a name="scenario-experiments-using-web-service-inputsoutputs-that-refer-toodata-in-azure-blob-storage"></a>案例： 實驗使用 Web 服務輸入/輸出參考 Azure Blob 儲存體 toodata
+在此案例中，hello Azure 機器學習 Web 服務會使用 Azure blob 儲存體中的檔案中的資料做出預測，並將 hello blob 儲存體中的 hello 預測結果。 hello 下列 JSON 定義與 AzureMLBatchExecution 活動的 Data Factory 管線。 hello 活動有 hello 集**DecisionTreeInputBlob**做為輸入和**DecisionTreeResultBlob**做為 hello 輸出。 hello **DecisionTreeInputBlob**被當做輸入的 toohello web 服務，方法是使用 hello **webServiceInput** JSON 屬性。 hello **DecisionTreeResultBlob**被當做輸出 toohello Web 服務，方法是使用 hello **webServiceOutputs** JSON 屬性。  
 
 > [!IMPORTANT]
-> 如果 Web 服務接受多個輸入，請使用 **webServiceInputs** 屬性，而不要使用 **webServiceInput**。 如需如何使用 webServiceInputs 屬性的範例，請參閱 [Web 服務需要多個輸入](#web-service-requires-multiple-inputs) 一節。
+> 如果 hello web 服務接受多個輸入，使用 hello **webServiceInputs**屬性，而不要使用**webServiceInput**。 請參閱 hello [Web 服務需要多個輸入](#web-service-requires-multiple-inputs)> 一節使用 hello webServiceInputs 屬性的範例。
 >
-> **webServiceInput**/**webServiceInputs** 和 **webServiceOutputs** 屬性 (位於 **typeProperties** 中) 所參考的資料集必須也包含在活動的 **inputs** 和 **outputs** 中。
+> 資料集所參考的 hello **webServiceInput**/**webServiceInputs**和**webServiceOutputs**屬性 (在**typeProperties**) 也必須包含在 hello 活動**輸入**和**輸出**。
 >
-> 在您的 Azure ML 實驗中，Web 服務輸入和輸出連接埠及全域參數有您可以自訂的預設名稱 ("input1"、"input2")。 您用於 webServiceInputs、webServiceOutputs 及 globalParameters 設定的名稱必須與實驗中的名稱完全相同。 您可以檢視您 Azure ML 端點之 [批次執行說明] 頁面上的範例要求承載，來確認預期的對應。
+> 在您的 Azure ML 實驗中，Web 服務輸入和輸出連接埠及全域參數有您可以自訂的預設名稱 ("input1"、"input2")。 您使用 webServiceInputs、 webServiceOutputs，和 globalParameters 設定 hello 名稱必須完全符合 hello 實驗中的 hello 名稱。 您可以在 Azure ML 端點 tooverify hello 預期對應 hello 批次執行說明頁面上檢視 hello 範例要求裝載。
 >
 >
 
@@ -127,16 +127,16 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
 }
 ```
 > [!NOTE]
-> 只有當輸入及輸出屬於 AzureMLBatchExecution 活動時，才可以當做參數傳遞至 Web 服務。 例如，在上面的 JSON 片段中，DecisionTreeInputBlob 是 AzureMLBatchExecution 活動的輸入，其透過 webServiceInput 參數傳遞至 Web 服務做為輸入。   
+> 只有輸入及輸出的 hello AzureMLBatchExecution 活動可以傳遞為參數 toohello Web 服務。 例如，在 JSON 片段上方 hello，DecisionTreeInputBlob 是輸入的 toohello AzureMLBatchExecution 活動，以透過 webServiceInput 參數當做輸入的 toohello Web 服務。   
 >
 >
 
 ### <a name="example"></a>範例
-此範例使用 Azure 儲存體來存放輸入和輸出資料。
+這個範例會使用 Azure 儲存體 toohold 兩者 hello 輸入和輸出資料。
 
-建議您在瀏覽此範例之前，先瀏覽[透過 Data Factory 建立第一個管線][adf-build-1st-pipeline]教學課程。 在此範例中使用 Data Factory 編輯器來建立 Data Factory 構件 (連結服務、資料集、管線)。   
+我們建議您通過 hello[建置您的第一個管線，使用 Data Factory] [ adf-build-1st-pipeline]再通過此範例中，教學課程。 在此範例中使用 hello Data Factory 編輯器 toocreate Data Factory 成品連結的服務、 資料集 （管線）。   
 
-1. 為您的 **Azure 儲存體**建立**連結服務**。 如果輸入和輸出檔案在不同的儲存體帳戶中，您就需要兩個連結服務。 以下是 JSON 範例：
+1. 為您的 **Azure 儲存體**建立**連結服務**。 如果 hello 輸入和輸出檔案位於不同的儲存體帳戶，您需要兩個連結的服務。 以下是 JSON 範例：
 
     ```JSON
     {
@@ -149,7 +149,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
       }
     }
     ```
-2. 建立**輸入** Azure Data Factory **資料集**。 與某些其他 Data Factory 資料集不同的是，這些資料集必須同時包含 **folderPath** 和 **fileName** 值。 您可以使用資料分割，讓每個批次執行 (每一個資料配量) 處理或產生唯一的輸入和輸出檔案。 您可能需要包含某個上游活動，以將輸入轉換成 CSV 檔案格式，並將它放在每個配量的儲存體帳戶中。 在此情況下，您不需包含下列範例所示的 **external** 及 **externalData** 設定，而您的 DecisionTreeInputBlob 會是不同活動的輸出資料集。
+2. 建立 hello**輸入**Azure Data Factory**資料集**。 與某些其他 Data Factory 資料集不同的是，這些資料集必須同時包含 **folderPath** 和 **fileName** 值。 您可以使用資料分割 toocause 每個批次執行 （每一個資料配量） tooprocess 或產生唯一的輸入和輸出檔。 您可能需要的 tooinclude 某些上游活動 tootransform hello 輸入 hello CSV 檔案格式，並將它放在每個配量的 hello 儲存體帳戶。 在此情況下，您不會加入 hello**外部**和**externalData**顯示 hello 下列在範例中和您 DecisionTreeInputBlob 會 hello 的不同活動的輸出資料集設定。
 
     ```JSON
     {
@@ -181,7 +181,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
     }
     ```
 
-    您的輸入 csv 檔案必須要有資料行標題資料列。 如果使用 [複製活動] 建立 csv 或將其移至 Blob 儲存體，則接收屬性 **blobWriterAddHeader** 應該設為 **true**。 例如：
+    您輸入的 csv 檔案必須有 hello 欄標題列。 如果您使用 hello**複製活動**toocreate/移動到 hello blob 儲存體 hello csv，您應該設定 hello 接收屬性**blobWriterAddHeader**太**true**。 例如：
 
     ```JSON
     sink:
@@ -191,8 +191,8 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
     }
     ```
 
-    如果 csv 檔案沒有標頭資料列，您可能會看到下列錯誤：**活動中的錯誤：讀取字串時發生錯誤。非預期的權杖：StartObject。路徑 ''、行 1、位置 1**。
-3. 建立**輸出** Azure Data Factory **資料集**。 此範例使用資料分割來為每一個配量執行建立一個唯一輸出路徑。 如果沒有資料分割，活動就會覆寫檔案。
+    如果 hello csv 檔案並沒有 hello 標頭資料列，您可能會看到下列錯誤 hello:**活動中的錯誤： 讀取字串時發生錯誤。非預期的權杖：StartObject。路徑 ''、行 1、位置 1**。
+3. 建立 hello**輸出**Azure Data Factory**資料集**。 這個範例會使用每個配量執行分割 toocreate 唯一的輸出路徑。 沒有資料分割的 hello，hello 活動會覆寫 hello 檔。
 
     ```JSON
     {
@@ -233,7 +233,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
       }
     }
     ```
-4. 建立 **AzureMLLinkedService** 類型的**連結服務**，並提供 API 金鑰和模型批次執行 URL。
+4. 建立**連結服務**的型別： **AzureMLLinkedService**、 提供 hello API 金鑰，以及模型批次執行 URL。
 
     ```JSON
     {
@@ -247,11 +247,11 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
       }
     }
     ```
-5. 最後，撰寫一個包含 **AzureMLBatchExecution** 活動的管線。 在執行階段，管線會執行下列步驟︰
+5. 最後，撰寫一個包含 **AzureMLBatchExecution** 活動的管線。 在執行階段，管線會執行下列步驟的 hello:
 
-   1. 從輸入資料集取得輸入檔案的位置。
-   2. 叫用 Azure Machine Learning 批次執行 API
-   3. 將批次執行輸出複製到輸出資料集中指定的 Blob。
+   1. 從您的輸入資料集取得 hello hello 輸入檔的位置。
+   2. 叫用 hello Azure Machine Learning 批次執行應用程式開發介面
+   3. 複製 hello 在輸出資料集中指定的批次執行輸出 toohello blob。
 
       > [!NOTE]
       > AzureMLBatchExecution 活動可以有零個或多個輸入，以及一個或多個輸出。
@@ -300,24 +300,24 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
     }
     ```
 
-      **開始**和**結束**日期時間必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2014-10-14T16:32:41Z。 **結束**時間是選用項目。 如果您未指定 **end** 屬性的值，則會以「**start + 48 小時**」計算。 若要無限期地執行管線，請指定 **9999-09-09** 做為 **end** 屬性的值。 如需 JSON 屬性的詳細資料，請參閱 [JSON 指令碼參考](https://msdn.microsoft.com/library/dn835050.aspx) 。
+      **開始**和**結束**日期時間必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2014-10-14T16:32:41Z。 hello**結束**次為選擇性。 如果您未指定值為 hello**結束**屬性，它會計算為"**start + 48 小時。**" 無限期地指定 toorun hello 管線**9999-09-09**為 hello hello 值**結束**屬性。 如需 JSON 屬性的詳細資料，請參閱 [JSON 指令碼參考](https://msdn.microsoft.com/library/dn835050.aspx) 。
 
       > [!NOTE]
-      > 您可自行選擇是否指定 AzureMLBatchExecution 活動的輸入。
+      > 指定 hello AzureMLBatchExecution 活動的輸入是選擇性的。
       >
       >
 
-### <a name="scenario-experiments-using-readerwriter-modules-to-refer-to-data-in-various-storages"></a>案例：使用讀取器/寫入器模組參考各種儲存體資料的實驗
-建立 Azure ML 實驗時的另一個常見案例，是使用讀取器和寫入器模組。 讀取器模組是用來將資料載入實驗，而寫入器模組則是用於儲存您的實驗資料。 如需讀取器和寫入器模組的詳細資料，請參閱 MSDN Library 上的[讀取器](https://msdn.microsoft.com/library/azure/dn905997.aspx)和[寫入器](https://msdn.microsoft.com/library/azure/dn905984.aspx)主題。     
+### <a name="scenario-experiments-using-readerwriter-modules-toorefer-toodata-in-various-storages"></a>案例： 實驗不同的儲存體中使用讀取器/寫入器模組 toorefer toodata
+建立 Azure ML 實驗時的另一個常見案例是 toouse 讀取器和寫入器模組。 hello 讀取器模組是使用的 tooload 實驗資料而 hello 編寫器模組 toosave 將實驗中的資料。 如需讀取器和寫入器模組的詳細資料，請參閱 MSDN Library 上的[讀取器](https://msdn.microsoft.com/library/azure/dn905997.aspx)和[寫入器](https://msdn.microsoft.com/library/azure/dn905984.aspx)主題。     
 
-使用讀取器和寫入器模組時，較好的做法是針對這些讀取器/寫入器模組的每一個屬性，使用 Web 服務參數。 這些 Web 參數可讓您在執行階段設定值。 例如，建立實驗時，您可以利用讀取器模組使用 Azure SQL Database：XXX.database.windows.net。 部署 Web 服務之後，您需要啟用 Web 服務的取用者，藉此指定另一個稱為 YYY.database.windows.net 的 Azure SQL Server。 您可以使用 Web 服務參數來設定此值。
+使用時 hello 讀取器和寫入器模組，它是很好的作法 toouse 這些讀取器/寫入器模組的每一個屬性的 Web 服務參數。 這些 web 參數可讓您 tooconfigure hello 值在執行階段。 例如，建立實驗時，您可以利用讀取器模組使用 Azure SQL Database：XXX.database.windows.net。 Hello web 服務完成部署之後，您要的 hello web 服務 toospecify tooenable hello 取用者呼叫 YYY.database.windows.net 另一個 Azure SQL Server。 您可以使用 Web 服務參數 tooallow 設定此值 toobe。
 
 > [!NOTE]
-> Web 服務的輸入和輸出與 Web 服務參數不同。 在第一個案例中，您已了解如何為 Azure ML Web 服務指定輸入和輸出。 在此案例中，您會傳遞 Web 服務的參數，以對應至讀取器/寫入器模組的屬性。
+> Web 服務的輸入和輸出與 Web 服務參數不同。 在 hello 第一個案例中，您已經知道如何為 Azure ML Web 服務指定為輸入及輸出。 在此案例中，您可以將 Web 服務對應 tooproperties 的讀取器/寫入器模組的參數來傳遞。
 >
 >
 
-讓我們看看使用 Web 服務參數的案例。 您已部署 Azure Machine Learning Web 服務，其使用讀取器模組所讀取的資料，是來自其中一個受 Azure Machine Learning 支援的資料來源 (例如：Azure SQL Database)。 批次執行之後，會使用寫入器模組寫入結果 (Azure SQL Database)。  實驗中沒有定義任何 Web 服務的輸入和輸出。 在此情況下，我們建議您為讀取器和寫入器模組設定相關 Web 服務參數。 此組態允許在使用 AzureMLBatchExecution 活動時設定讀取器/寫入器模組。 如以下活動 JSON 所示，在 **globalParameters** 區段中指定 Web 服務參數。
+讓我們看看使用 Web 服務參數的案例。 您有已部署的 Azure Machine Learning web 服務使用其中一個支援的 Azure Machine Learning hello 資料來源的讀取器模組 tooread 資料 (例如： Azure SQL Database)。 執行 hello 批次執行之後，hello 結果會寫入使用 (Azure SQL Database) 寫入器模組。  Hello 實驗中定義任何 web 服務輸入及輸出。 在此情況下，我們建議您設定 hello 讀取器和寫入器模組的相關 web 服務參數。 此設定可讓使用 hello AzureMLBatchExecution 活動時，設定模組 toobe hello 讀取器/寫入器。 您指定 Web 服務參數在 hello **globalParameters**區段 hello 活動 JSON 中，如下所示。
 
 ```JSON
 "typeProperties": {
@@ -328,7 +328,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
 }
 ```
 
-您也可以使用 [Data Factory 函式](data-factory-functions-variables.md) 傳遞 Web 服務參數的值，如下列範例所示：
+您也可以使用[Data Factory 函數](data-factory-functions-variables.md)傳遞值 hello Web 服務參數 hello 下列範例所示：
 
 ```JSON
 "typeProperties": {
@@ -339,14 +339,14 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
 ```
 
 > [!NOTE]
-> Web 服務參數區分大小寫，因此，請確定您在活動 JSON 中所指定的名稱符合 Web 服務所公開的名稱。
+> hello Web 服務參數會區分大小寫，因此請確定您指定在 hello 活動中的 hello 名稱 JSON 符合 hello hello Web 服務所公開的。
 >
 >
 
-### <a name="using-a-reader-module-to-read-data-from-multiple-files-in-azure-blob"></a>使用讀取器模組讀取 Azure Blob 中多個檔案的資料
-具有 Pig 和 Hive 等活動的巨量資料管線可以產生沒有副檔名的一個或多個輸出檔案。 例如，當您指定外部 Hive 資料表時，外部 Hive 資料表的資料可以儲存在 Azure Blob 儲存體中，並命名為：000000_0。 您可以在實驗中使用讀取器模組讀取多個檔案，並將該模組用於預測。
+### <a name="using-a-reader-module-tooread-data-from-multiple-files-in-azure-blob"></a>使用讀取器模組 tooread 資料從 Azure Blob 中的多個檔案
+具有 Pig 和 Hive 等活動的巨量資料管線可以產生沒有副檔名的一個或多個輸出檔案。 例如，當您指定外部的 Hive 資料表，hello hello 外部的 Hive 資料表的資料可以儲存在 Azure blob 儲存體以下列名稱 000000_0 hello。 您可以使用在實驗 tooread hello 讀取器模組的多個檔案，並用於預測。
 
-在 Azure Machine Learning 實驗中使用讀取器模組時，您可以指定 Azure Blob 做為輸入。 Azure Blob 儲存體中的檔案可以是在 HDInsight 上執行的 Pig 和 Hive 指令碼所產生的輸出檔 (範例：000000_0)。 讀取器模組可讓您藉由設定 **容器、目錄或 Blob 的路徑**來讀取檔案 (沒有副檔名)。 **容器路徑**指向容器，**目錄/Blob** 則指向包含檔案的資料夾，如下圖所示。 星號 (也就是 \*) **會指定容器/資料夾中的所有檔案 (也就是 data/aggregateddata/year=2014/month-6/\*)** 將讀取為實驗的一部分。
+當使用 hello 讀取器模組在 Azure 機器學習實驗中，您可以指定 Azure Blob 做為輸入。 hello Azure blob 儲存體中的 hello 檔案可以是 hello 輸出檔案 (範例： 000000_0)，在 HDInsight 上執行 Pig 和 Hive 指令碼所產生。 hello 讀取器模組可讓您 tooread 副檔名的檔案 （無） 藉由設定 hello**路徑 toocontainer、 目錄/blob**。 hello**路徑 toocontainer**點 toohello 容器和**目錄/blob**點 toofolder hello 檔案所在 hello 下列影像所示。 也就是星號 hello \*)**指定所有 hello hello 容器/資料夾中的檔案 (也就是資料/aggregateddata/年 = 6-2014年/月 /\*)** hello 實驗中讀取。
 
 ![Azure Blob 屬性](./media/data-factory-create-predictive-pipelines/azure-blob-properties.png)
 
@@ -401,16 +401,16 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
 }
 ```
 
-在上述 JSON 範例中：
+在上述範例 JSON hello:
 
-* 已部署的 Azure Machine Learning Web 服務使用讀取器和寫入器模組，讀取 Azure SQL Database 的資料，或將資料寫入其中。 此 Web 服務會公開下列 4 個參數：資料庫伺服器名稱、資料庫名稱、伺服器使用者帳戶名稱和伺服器使用者帳戶密碼。  
-* **開始**和**結束**日期時間必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2014-10-14T16:32:41Z。 **結束**時間是選用項目。 如果您未指定 **end** 屬性的值，則會以「**start + 48 小時**」計算。 若要無限期地執行管線，請指定 **9999-09-09** 做為 **end** 屬性的值。 如需 JSON 屬性的詳細資料，請參閱 [JSON 指令碼參考](https://msdn.microsoft.com/library/dn835050.aspx) 。
+* hello 部署 Azure 機器學習 Web 服務會使用讀取器和寫入器模組 tooread/寫入資料，從 / tooan Azure SQL Database。 此 Web 服務會公開下列四個參數的 hello： 資料庫伺服器名稱、 資料庫名稱、 伺服器使用者帳戶名稱，以及伺服器的使用者帳戶密碼。  
+* **開始**和**結束**日期時間必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2014-10-14T16:32:41Z。 hello**結束**次為選擇性。 如果您未指定值為 hello**結束**屬性，它會計算為"**start + 48 小時。**" 無限期地指定 toorun hello 管線**9999-09-09**為 hello hello 值**結束**屬性。 如需 JSON 屬性的詳細資料，請參閱 [JSON 指令碼參考](https://msdn.microsoft.com/library/dn835050.aspx) 。
 
 ### <a name="other-scenarios"></a>其他案例
 #### <a name="web-service-requires-multiple-inputs"></a>Web 服務需要多個輸入
-如果 Web 服務接受多個輸入，請使用 **webServiceInputs** 屬性，而不要使用 **webServiceInput**。 **webServiceInputs** 所參考的資料集也必須包含在活動的 **inputs** 中。
+如果 hello web 服務接受多個輸入，使用 hello **webServiceInputs**屬性，而不要使用**webServiceInput**。 資料集所參考的 hello **webServiceInputs**也必須包含在 hello 活動**輸入**。
 
-在您的 Azure ML 實驗中，Web 服務輸入和輸出連接埠及全域參數有您可以自訂的預設名稱 ("input1"、"input2")。 您用於 webServiceInputs、webServiceOutputs 及 globalParameters 設定的名稱必須與實驗中的名稱完全相同。 您可以檢視您 Azure ML 端點之 [批次執行說明] 頁面上的範例要求承載，來確認預期的對應。
+在您的 Azure ML 實驗中，Web 服務輸入和輸出連接埠及全域參數有您可以自訂的預設名稱 ("input1"、"input2")。 您使用 webServiceInputs、 webServiceOutputs，和 globalParameters 設定 hello 名稱必須完全符合 hello 實驗中的 hello 名稱。 您可以在 Azure ML 端點 tooverify hello 預期對應 hello 批次執行說明頁面上檢視 hello 範例要求裝載。
 
 ```JSON
 {
@@ -453,7 +453,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
 ```
 
 #### <a name="web-service-does-not-require-an-input"></a>Web 服務不需要輸入
-Azure ML 批次執行 Web 服務可用來執行任何可能不需要任何輸入的工作流程，例如 R 或 Python 指令碼。 或者，您也可以使用不會公開任何 GlobalParameters 的讀取器模組來設定實驗。 在此情況下，AzureMLBatchExecution 活動的設定如下：
+Azure ML 批次執行 web 服務可以是任何工作流程使用的 toorun，例如 R 或 Python 指令碼，可能不需要任何輸入。 或者，hello 實驗可能不會公開任何 GlobalParameters 讀取器模組以進行設定。 在此情況下，hello AzureMLBatchExecution 活動會設定如下：
 
 ```JSON
 {
@@ -480,7 +480,7 @@ Azure ML 批次執行 Web 服務可用來執行任何可能不需要任何輸入
 ```
 
 #### <a name="web-service-does-not-require-an-inputoutput"></a>Web 服務不需要輸入/輸出
-Azure ML 批次執行 Web 服務可能未設定任何 Web 服務輸出。 在此範例中，沒有任何 Web 服務輸入或輸出，也不會設定任何 GlobalParameters。 仍會在活動本身設定輸出，但不會將它指定為 webServiceOutput。
+hello Azure ML 批次執行 web 服務可能沒有設定任何 Web 服務輸出。 在此範例中，沒有任何 Web 服務輸入或輸出，也不會設定任何 GlobalParameters。 仍有本身，hello 活動上設定的輸出，但它不指定為 webServiceOutput。
 
 ```JSON
 {
@@ -503,8 +503,8 @@ Azure ML 批次執行 Web 服務可能未設定任何 Web 服務輸出。 在此
 },
 ```
 
-#### <a name="web-service-uses-readers-and-writers-and-the-activity-runs-only-when-other-activities-have-succeeded"></a>Web 服務會使用讀取器和寫入器，而且只有在其他活動皆成功時，才會執行活動
-Azure ML Web 服務的讀取器和寫入器模組可能會設定為不一定要利用任何 GlobalParameters 來執行。 但是，您可能想要在管線中內嵌服務呼叫來使用資料集相依性，只有在完成一些上游處理之後，才會叫用該服務。 您也可以在使用此方法完成批次執行之後觸發一些其他動作。 在此情況下，您可以使用活動輸入和輸出來表達相依性，而不需將它們任一個命名為 Web 服務輸入或輸出。
+#### <a name="web-service-uses-readers-and-writers-and-hello-activity-runs-only-when-other-activities-have-succeeded"></a>Web 服務會使用讀取器和寫入器，和其他活動成功時，才 hello 活動執行
+hello Azure ML web 服務讀取器和寫入器模組可能會設定的 toorun，不論任何 GlobalParameters。 不過，您可能想 tooembed 服務呼叫某些上游處理完成時，才會使用資料集相依性 tooinvoke hello 服務在管線中。 使用這種方式完成 hello 批次執行之後，您也可以觸發某些其他動作。 在此情況下，你可以使用活動輸入及輸出，但不命名它們其中任何一個為 Web 服務輸入或輸出的 hello 相依性。
 
 ```JSON
 {
@@ -535,33 +535,33 @@ Azure ML Web 服務的讀取器和寫入器模組可能會設定為不一定要�
 },
 ```
 
-**心得** 如下︰
+hello**心得**是：
 
-* 如果您的實驗端點使用 webServiceInput：它可透過 Blob 資料集來表示，並且會包含於活動輸入以及 webServiceInput 屬性中。 否則，即會省略 webServiceInput 屬性。
-* 如果您的實驗端點使用 webServiceOutput：它們可透過 Blob 資料集來表示，並且會包含於活動輸出以及 webServicepOutputs 屬性中。 活動輸出和 webServiceOutputs 會以此實驗中的每個輸出名稱來對應。 否則，即會省略 webServiceOutputs 屬性。
-* 如果您的實驗端點會公開 globalParameter，則會在活動 globalParameters 屬性中提供它們以做為金鑰值組。 否則，即會省略 globalParameters 屬性。 金鑰會區分大小寫。 [Azure Data Factory 函式](data-factory-functions-variables.md) 可能會在值中使用。
-* 您可以將額外的資料集包含於活動輸入和輸出屬性中，而不需在活動的 typeProperties 中加以參考。 這些資料集會使用配量相依性來管理執行，但其他的則會被 AzureMLBatchExecution 活動所忽略。
+* 如果您的實驗端點使用 webServiceInput： 它由 blob 資料集，並納入 hello 活動輸入] 和 [hello webServiceInput 屬性。 否則，會省略 hello webServiceInput 屬性。
+* 如果您的實驗端點使用 webServiceOutput(s)： 它們由 blob 資料集，且會包含在 hello 活動輸出以及 hello webServiceOutputs 屬性中。 hello 活動會輸出和 webServiceOutputs hello hello 實驗中的每個輸出名稱對應。 否則，會省略 hello webServiceOutputs 屬性。
+* 如果您的實驗端點公開 globalParameter(s)，會收到 hello 活動 globalParameters 屬性中做為索引鍵的值組。 否則，會省略 hello globalParameters 屬性。 hello 索引鍵是區分大小寫。 [Azure Data Factory 函數](data-factory-functions-variables.md)可能用於 hello 值。
+* 額外的資料集可能包含在 hello 活動輸入及輸出屬性，不含 hello 活動 typeProperties 中所參考。 這些資料集控管使用配量相依性的執行，但 hello AzureMLBatchExecution 活動會加以忽略。
 
 
 ## <a name="updating-models-using-update-resource-activity"></a>使用更新資源活動來更新模型
-完成重新訓練之後，您可以使用「Azure ML 更新資源活動」，使用新訓練的模型來更新評分 Web 服務 (以 Web 服務公開的預測實驗)。 如需詳細資料，請參閱[使用更新資源活動更新模型](data-factory-azure-ml-update-resource-activity.md)一文。
+您完成定型之後，更新 hello 計分 web 服務 （預測實驗公開為 web 服務） 與 hello 定型新模型，使用 hello **Azure ML 更新資源活動**。 如需詳細資料，請參閱[使用更新資源活動更新模型](data-factory-azure-ml-update-resource-activity.md)一文。
 
 ### <a name="reader-and-writer-modules"></a>讀取器和寫入器模組
-使用 Azure SQL 讀取器和寫入器，是常見的 Web 服務參數使用案例。 讀取器模組可用來將資料從 Azure Machine Learning Studio 外部的資料管理服務載入至實驗。 寫入器模組則用來將資料從實驗儲存至 Azure Machine Learning Studio 外部的資料管理服務。  
+使用 Web 服務參數的常見案例是 hello 使用 Azure SQL 讀取器和寫入器。 hello 讀取器模組已從 Azure Machine Learning Studio 以外的資料管理服務的實驗使用的 tooload 資料。 hello 寫入器模組是 toosave 資料到 Azure Machine Learning Studio 以外的資料管理服務將實驗中。  
 
-如需 Azure Blob/Azure SQL 讀取器/寫入器的詳細資料，請參閱 MSDN Library 上的[讀取器](https://msdn.microsoft.com/library/azure/dn905997.aspx)和[寫入器](https://msdn.microsoft.com/library/azure/dn905984.aspx)主題。 上一節中的範例已使用 Azure Blob 讀取器與 Azure Blob 寫入器。 本節討論如何使用 Azure SQL 讀取器和 Azure SQL 寫入器。
+如需 Azure Blob/Azure SQL 讀取器/寫入器的詳細資料，請參閱 MSDN Library 上的[讀取器](https://msdn.microsoft.com/library/azure/dn905997.aspx)和[寫入器](https://msdn.microsoft.com/library/azure/dn905984.aspx)主題。 hello 前一節中的 hello 範例使用 hello Azure Blob 讀取器和 Azure Blob 的寫入器。 本節討論如何使用 Azure SQL 讀取器和 Azure SQL 寫入器。
 
 ## <a name="frequently-asked-questions"></a>常見問題集
-**問：** 我擁有巨量資料管線所產生的多個檔案。 我可以使用 AzureMLBatchExecution 活動來處理所有檔案嗎？
+**問：** 我擁有巨量資料管線所產生的多個檔案。 可以使用 hello AzureMLBatchExecution 活動 toowork 所有 hello 檔案嗎？
 
-**答：** 是。 如需詳細資料，請參閱 **使用讀取器模組讀取 Azure Blob 中多個檔案的資料** 一節。
+**答：** 是。 請參閱 hello**使用讀取器模組 tooread 資料從 Azure Blob 中的多個檔案**如需詳細資訊。
 
 ## <a name="azure-ml-batch-scoring-activity"></a>AzureML 批次計分活動
-如果您使用 **AzureMLBatchScoring** 活動來與 Azure Machine Learning 整合，建議您使用最新的 **AzureMLBatchExecution** 活動。
+如果您使用 hello **AzureMLBatchScoring**活動 toointegrate 與 Azure Machine Learning 中的，我們建議您使用 hello 最新**AzureMLBatchExecution**活動。
 
-2015 年 8 月發行的 Azure SDK 和 Azure PowerShell 中導入了 AzureMLBatchExecution 活動。
+hello AzureMLBatchExecution 活動 hello 2015 年 8 月發行的 Azure SDK 和 Azure PowerShell 中引進。
 
-如果您想要繼續使用 AzureMLBatchScoring 活動，請繼續閱讀本節。  
+如果您想 toocontinue 使用 hello AzureMLBatchScoring 活動，請繼續閱讀本節。  
 
 ### <a name="azure-ml-batch-scoring-activity-using-azure-storage-for-inputoutput"></a>使用 Azure 儲存體進行輸入/輸出的 AzureML 批次計分活動
 
@@ -601,7 +601,7 @@ Azure ML Web 服務的讀取器和寫入器模組可能會設定為不一定要�
 ```
 
 ### <a name="web-service-parameters"></a>Web 服務參數
-若要指定 Web 服務參數的值，請將 **typeProperties** 區段新增至管線 JSON 中的 **AzureMLBatchScoringActivty** 區段，如下列範例所示：
+新增 Web 服務參數，toospecify 值**typeProperties**區段 toohello **AzureMLBatchScoringActivty** > 一節中 hello 管線 JSON hello 下列範例所示：
 
 ```JSON
 "typeProperties": {
@@ -611,7 +611,7 @@ Azure ML Web 服務的讀取器和寫入器模組可能會設定為不一定要�
     }
 }
 ```
-您也可以使用 [Data Factory 函式](data-factory-functions-variables.md) 傳遞 Web 服務參數的值，如下列範例所示：
+您也可以使用[Data Factory 函數](data-factory-functions-variables.md)傳遞值 hello Web 服務參數 hello 下列範例所示：
 
 ```JSON
 "typeProperties": {
@@ -622,7 +622,7 @@ Azure ML Web 服務的讀取器和寫入器模組可能會設定為不一定要�
 ```
 
 > [!NOTE]
-> Web 服務參數區分大小寫，因此，請確定您在活動 JSON 中所指定的名稱符合 Web 服務所公開的名稱。
+> hello Web 服務參數會區分大小寫，因此請確定您指定在 hello 活動中的 hello 名稱 JSON 符合 hello hello Web 服務所公開的。
 >
 >
 

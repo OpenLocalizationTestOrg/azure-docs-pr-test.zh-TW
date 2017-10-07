@@ -1,6 +1,6 @@
 ---
-title: "將現有的自訂 SSL 憑證繫結至 Azure Web Apps | Microsoft Docs"
-description: "了解如何將自訂 SSL 憑證繫結至 Azure App Service 中的 web 應用程式、行動裝置應用程式後端或 API 應用程式。"
+title: "aaaBind 現有的自訂 SSL 憑證 tooAzure Web 應用程式 |Microsoft 文件"
+description: "了解 tootoobind，自訂 SSL 憑證 tooyour web 應用程式、 行動裝置應用程式後端或在 Azure App Service API 應用程式。"
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
@@ -15,15 +15,15 @@ ms.topic: tutorial
 ms.date: 06/23/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 15c31ae5451a31dff2df08047ee43e75edacc127
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3503ba9f96c8ea8d18451e8bf9a9b441797ef44d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="bind-an-existing-custom-ssl-certificate-to-azure-web-apps"></a>將現有的自訂 SSL 憑證繫結至 Azure Web Apps
+# <a name="bind-an-existing-custom-ssl-certificate-tooazure-web-apps"></a>繫結現有自訂 SSL 憑證 tooAzure Web 應用程式
 
-Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 本教學課程會示範如何將您從受信任憑證授權單位購買的自訂 SSL 憑證繫結至 [Azure Web Apps](app-service-web-overview.md)。 當您完成時，將可以在自訂 DNS 網域的 HTTPS 端點存取 web 應用程式。
+Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 此教學課程會示範如何自訂 SSL toobind 您太購自受信任的憑證授權單位憑證[Azure Web Apps](app-service-web-overview.md)。 當您完成時，您會無法 tooaccess web 應用程式在您的自訂 DNS 網域的 hello HTTPS 端點。
 
 ![Web 應用程式與自訂 SSL 憑證](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
 
@@ -31,72 +31,72 @@ Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 本�
 
 > [!div class="checklist"]
 > * 升級應用程式的定價層
-> * 將自訂 SSL 憑證繫結至 App Service
+> * 繫結您自訂的 SSL 憑證 tooApp 服務
 > * 為應用程式強制使用 HTTPS
 > * 使用指令碼來自動繫結 SSL 憑證
 
 > [!NOTE]
-> 如果您需要自訂 SSL 憑證，可以直接在 Azure 入口網站取得，並將它繫結至 web 應用程式。 遵循 [App Service 憑證教學課程](web-sites-purchase-ssl-web-site.md)。
+> 如果您需要 tooget 自訂的 SSL 憑證，可以直接取得 hello Azure 入口網站中的其中一個，並將它繫結 tooyour web 應用程式。 請遵循 hello [App Service 憑證教學課程](web-sites-purchase-ssl-web-site.md)。
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本教學課程：
+toocomplete 本教學課程：
 
 - [建立 App Service 應用程式](/azure/app-service/)
-- [將自訂 DNS 名稱對應至 Web 應用程式](app-service-web-tutorial-custom-domain.md)
+- [對應的自訂 DNS 名稱 tooyour web 應用程式](app-service-web-tutorial-custom-domain.md)
 - 取得受信任憑證授權單位所核發的 SSL 憑證
 
 <a name="requirements"></a>
 
 ### <a name="requirements-for-your-ssl-certificate"></a>SSL 憑證的需求
 
-若要在 App Service 中使用憑證，憑證必須符合以下所有需求︰
+toouse App Service 中的憑證，hello 憑證必須符合下列需求的所有 hello:
 
 * 由受信任的憑證授權單位簽署
 * 以受密碼保護的 PFX 檔案形式匯出
 * 包含長度至少為 2048 位元的私密金鑰
-* 包含憑證鏈結中的所有中繼憑證
+* 包含 hello 憑證鏈結中的所有中繼憑證
 
 > [!NOTE]
-> **橢圓曲線密碼編譯 (ECC) 憑證**可搭配 App Service 使用，但不在本文討論範圍內。 請洽詢您的憑證授權單位，了解建立 ECC 憑證的確切步驟。
+> **橢圓曲線密碼編譯 (ECC) 憑證**可搭配 App Service 使用，但不在本文討論範圍內。 使用 hello 確切步驟 toocreate ECC 憑證上的憑證授權單位。
 
 ## <a name="prepare-your-web-app"></a>準備您的 Web 應用程式
 
-若要將自訂 SSL 憑證繫結至您的 web 應用程式，您的 [App Service 方案](https://azure.microsoft.com/pricing/details/app-service/)必須為**基本**、**標準**或**進階**層。 在此步驟中，您要確定 Web 應用程式在支援的定價層。
+toobind 自訂 SSL 憑證 tooyour web 應用程式，您[App Service 方案](https://azure.microsoft.com/pricing/details/app-service/)必須在 hello**基本**，**標準**，或**Premium**層。 在此步驟中，您確定，您的 web 應用程式在 hello 支援定價層。
 
-### <a name="log-in-to-azure"></a>登入 Azure
+### <a name="log-in-tooazure"></a>登入 tooAzure
 
-開啟 [Azure 入口網站](https://portal.azure.com)。
+開啟 hello [Azure 入口網站](https://portal.azure.com)。
 
-### <a name="navigate-to-your-web-app"></a>瀏覽至您的 Web 應用程式
+### <a name="navigate-tooyour-web-app"></a>瀏覽 tooyour web 應用程式
 
-按一下左側功能表中的 [應用程式服務]，然後按一下 Web 應用程式的名稱。
+從 hello 左窗格中，按一下 **應用程式服務**，然後按一下hello web 應用程式名稱。
 
 ![選取 Web 應用程式](./media/app-service-web-tutorial-custom-ssl/select-app.png)
 
-您已經位於 Web 應用程式的管理頁面。  
+您處於 hello 管理您的 web 應用程式 頁面。  
 
-### <a name="check-the-pricing-tier"></a>檢查定價層
+### <a name="check-hello-pricing-tier"></a>核取 hello 定價層
 
-在 Web 應用程式頁面的左側導覽中，捲動到 [設定] 區段，然後選取 [相應增加 (App Service 方案)]。
+在 hello 左側瀏覽您的 web 應用程式頁面，捲動 toohello**設定**區段，然後選取**向上擴充 （應用程式服務方案）**。
 
 ![相應增加功能表](./media/app-service-web-tutorial-custom-ssl/scale-up-menu.png)
 
-請檢查以確定您的 web 應用程式不在**免費**或**共用** 層中。 系統會以深藍色方塊醒目顯示 Web 應用程式目前的層。
+請確定您的 web 應用程式不在 hello toomake**免費**或**共用**層。 系統會以深藍色方塊醒目顯示 Web 應用程式目前的層。
 
 ![檢查定價層](./media/app-service-web-tutorial-custom-ssl/check-pricing-tier.png)
 
-**免費**和**共用**層中不支援自訂 SSL。 如果您需要相應增加，請遵循下一節中的步驟來進行。 否則，請關閉 [選擇定價層] 頁面，然後跳至[上傳並繫結 SSL 憑證](#upload)。
+不支援自訂 SSL hello**免費**或**共用**層。 如果您需要 tooscale 總時，請遵循 hello 下一節中的 hello 步驟。 否則，請關閉 hello**選擇定價層**頁面上，並略過太[上傳和 SSL 憑證繫結](#upload)。
 
 ### <a name="scale-up-your-app-service-plan"></a>相應增加您的 App Service 方案
 
-選取**基本****標準**或**高階**層的其中一個。
+選取其中一個 hello**基本**，**標準**，或**Premium**層。
 
 按一下 [選取] 。
 
 ![選擇定價層](./media/app-service-web-tutorial-custom-ssl/choose-pricing-tier.png)
 
-當您看見下列通知時，表示擴充作業已完成。
+當您看到下列通知 hello 時，hello 調整規模作業已完成。
 
 ![相應增加通知](./media/app-service-web-tutorial-custom-ssl/scale-notification.png)
 
@@ -104,15 +104,15 @@ Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 本�
 
 ## <a name="bind-your-ssl-certificate"></a>繫結 SSL 憑證
 
-您已準備好將 SSL 憑證上傳至您的 web 應用程式。
+您已準備好 tooupload SSL 憑證 tooyour web 應用程式。
 
 ### <a name="merge-intermediate-certificates"></a>合併中繼憑證
 
-如果憑證授權單位在憑證鏈結中提供多個憑證，您需要依序合併憑證。 
+如果您的憑證授權單位可提供您多個憑證 hello 憑證鏈結中，您需要為了 toomerge hello 憑證。 
 
-若要這樣做，請在文字編輯器中開啟您收到的每個憑證。 
+toodo 這開啟每個憑證所收到的文字編輯器中。 
 
-為合併的憑證建立一個檔案，並取名為 _mergedcertificate.crt_。 在文字編輯器中，將每個憑證的內容複製到這個檔案中。 憑證的順序看起來應類似以下範本：
+建立 hello 合併憑證，請呼叫檔案_mergedcertificate.crt_。 在文字編輯器中，將複製到這個檔案的 hello 內容的每個憑證。 憑證的 hello 順序看起來應該像 hello 下列範本：
 
 ```
 -----BEGIN CERTIFICATE-----
@@ -132,99 +132,99 @@ Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 本�
 -----END CERTIFICATE-----
 ```
 
-### <a name="export-certificate-to-pfx"></a>將憑證匯出為 PFX
+### <a name="export-certificate-toopfx"></a>匯出憑證 tooPFX
 
-使用與憑證要求共同產生的私密金鑰，將您合併的 SSL 憑證匯出。
+使用 hello 私用金鑰來產生憑證要求匯出合併的 SSL 憑證。
 
-如果您是使用 OpenSSL 產生憑證要求，則已建立私密金鑰檔案。 若要將您的憑證匯出為 PFX，請執行下列命令。 取代預留位置 _&lt;private-key-file>_ 和 _&lt;merged-certificate-file>_。
+如果您是使用 OpenSSL 產生憑證要求，則已建立私密金鑰檔案。 tooexport 您憑證 tooPFX，執行下列命令的 hello。 Hello 預留位置取代_&lt;私用金鑰檔 >_和_&lt;合併憑證檔案 >_。
 
 ```
 openssl pkcs12 -export -out myserver.pfx -inkey <private-key-file> -in <merged-certificate-file>  
 ```
 
-請在出現提示時定義一個匯出密碼。 您之後將 SSL 憑證上傳至 App Service 時，將會用到這組密碼。
+請在出現提示時定義一個匯出密碼。 上傳您 SSL 憑證 tooApp 服務更新版本時，您將使用此密碼。
 
-如果您使用 IIS 或 _Certreq.exe_ 產生憑證要求，請將憑證安裝至本機電腦，然後[將憑證匯出為 PFX](https://technet.microsoft.com/library/cc754329(v=ws.11).aspx)。
+如果您使用 IIS 或_Certreq.exe_ toogenerate 您的憑證要求、 安裝 hello 憑證 tooyour 本機電腦，然後[匯出 hello 憑證 tooPFX](https://technet.microsoft.com/library/cc754329(v=ws.11).aspx)。
 
 ### <a name="upload-your-ssl-certificate"></a>上傳 SSL 憑證
 
-若要上傳 SSL 憑證，請按一下 Web 應用程式左側導覽列中的 [SSL 憑證]。
+tooupload SSL 憑證，請按一下**SSL 憑證**hello 左瀏覽 web 應用程式中。
 
 按一下 [上傳憑證]。
 
-在 [PFX 憑證檔案] 中，選取您的 PFX 檔案。 在 [憑證密碼] 中，輸入您將 PFX 檔案匯出時所建立的密碼。
+在 [PFX 憑證檔案] 中，選取您的 PFX 檔案。 在**憑證密碼**，匯出 hello PFX 檔案時，您所建立的型別 hello 密碼。
 
 按一下 [上傳] 。
 
 ![Upload certificate](./media/app-service-web-tutorial-custom-ssl/upload-certificate.png)
 
-當 App Service 完成上傳您的憑證時，它會出現在 [SSL 憑證] 頁面。
+當應用程式服務完成上傳您的憑證時，它會出現在 hello **SSL 憑證**頁面。
 
 ![Certificate uploaded](./media/app-service-web-tutorial-custom-ssl/certificate-uploaded.png)
 
 ### <a name="bind-your-ssl-certificate"></a>繫結 SSL 憑證
 
-在 [SSL 繫結] 區段中，按一下 [新增繫結]。
+在 hello **SSL 繫結**區段中，按一下**新增繫結**。
 
-在 [新增 SSL 繫結] 頁面中，使用下拉式清單選取要保護的網域名稱，以及要使用的憑證。
+在 hello**新增 SSL 繫結**頁面上，使用 hello 下拉式清單 tooselect hello 網域名稱 toosecure 和 hello 憑證 toouse。
 
 > [!NOTE]
-> 如果您已經上傳憑證，但 [主機名稱] 下拉式清單中沒有顯示網域名稱，請嘗試重新整理瀏覽器頁面。
+> 如果您已上傳您的憑證，但是看 hello 網域名稱在 hello **Hostname**下拉式清單中，請嘗試重新整理 hello 瀏覽器頁面。
 >
 >
 
-在 **SSL 類型**中，選擇使用**[伺服器名稱指示 (SNI) ](http://en.wikipedia.org/wiki/Server_Name_Indication)**還是以 IP 為基礎的 SSL。
+在**SSL 類型**，選取是否 toouse **[伺服器名稱指示 (SNI)](http://en.wikipedia.org/wiki/Server_Name_Indication)** 或以 IP 為主的 SSL。
 
-- **以 SNI 為基礎的 SSL**：可能會新增多個以 SNI 為基礎的 SSL 繫結。 此選項可允許多個 SSL 憑證保護同一個 IP 位址上的多個網域。 大多數現代化的瀏覽器 (包括 Internet Explorer、Chrome、Firefox 和 Opera) 都支援 SNI (可在[伺服器名稱指示](http://wikipedia.org/wiki/Server_Name_Indication)找到更完整的瀏覽器支援資訊)。
-- **以 IP 為基礎的 SSL**：可能只會新增一個以 IP 為基礎的 SSL 繫結。 此選項只允許一個 SSL 憑證保護專用的公用 IP 位址。 若要保護多個網域，您必須全部使用相同的 SSL 憑證來保護它們。 這是 SSL 繫結的傳統選項。
+- **以 SNI 為基礎的 SSL**：可能會新增多個以 SNI 為基礎的 SSL 繫結。 此選項可讓多個 SSL 憑證 toosecure hello 上的多個網域相同的 IP 位址。 大多數現代化的瀏覽器 (包括 Internet Explorer、Chrome、Firefox 和 Opera) 都支援 SNI (可在[伺服器名稱指示](http://wikipedia.org/wiki/Server_Name_Indication)找到更完整的瀏覽器支援資訊)。
+- **以 IP 為基礎的 SSL**：可能只會新增一個以 IP 為基礎的 SSL 繫結。 此選項可讓只有一個 SSL 憑證 toosecure 專用的公用 IP 位址。 toosecure 多個網域，您必須保護它們全部透過 hello 相同的 SSL 憑證。 這是以 SSL 繫結的 hello 傳統選項。
 
 按一下 [新增繫結]。
 
 ![繫結 SSL 憑證](./media/app-service-web-tutorial-custom-ssl/bind-certificate.png)
 
-當 App Service 完成上傳您的憑證時，它會出現在 [SSL 繫結] 頁面。
+當應用程式服務完成上傳您的憑證時，它會出現在 hello **SSL 繫結**區段。
 
-![繫結至 web 應用程式的憑證](./media/app-service-web-tutorial-custom-ssl/certificate-bound.png)
+![憑證繫結 tooweb 應用程式](./media/app-service-web-tutorial-custom-ssl/certificate-bound.png)
 
 ## <a name="remap-a-record-for-ip-ssl"></a>將 IP SSL 的 A 記錄重新對應
 
-如果您不使用 web 應用程式中以 IP 為基礎的 SSL，請跳至[測試自訂網域的 HTTPS](#test)。
+如果您不在您 web 應用程式中使用 IP SSL，請略過太[測試您的自訂網域的 HTTPS](#test)。
 
 根據預設，web 應用程式會使用共用的公用 IP 位址。 當您將以 IP 為基礎的 SSL 與憑證繫結時，App Service 會為 Web 應用程式建立新的專用 IP 位址。
 
-如果您已將 A 記錄對應至 web 應用程式，請使用這個新的專用 IP 位址來更新您的網域登錄。
+如果您已對應的記錄 tooyour web 應用程式，您的網域登錄以更新這個新的專用 IP 位址。
 
-已將 Web 應用程式的**自訂網域**頁面更新為新的專用 IP 位址。 [複製此 IP 位址](app-service-web-tutorial-custom-domain.md#info)，然後[將 A 記錄重新對應](app-service-web-tutorial-custom-domain.md#map-an-a-record)到這個新的 IP 位址。
+Web 應用程式的**自訂網域**hello 新的專用 IP 位址更新頁面。 [複製此 IP 位址](app-service-web-tutorial-custom-domain.md#info)，然後[重新對應 hello 記錄](app-service-web-tutorial-custom-domain.md#map-an-a-record)toothis 新的 IP 位址。
 
 <a name="test"></a>
 
 ## <a name="test-https"></a>測試 HTTPS
 
-現在只剩下確定 HTTPS 是否能用在您的自訂網域。 在各種瀏覽器中，瀏覽至 `https://<your.custom.domain>` 以查看它是否能提供您的 web 應用程式。
+所有已離開 toodo 是 toomake 確定 HTTPS 適合您的自訂網域。 在不同的瀏覽器中瀏覽過`https://<your.custom.domain>`toosee，設定您的 web 應用程式。
 
-![入口網站瀏覽至 Azure 應用程式](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
+![入口網站瀏覽 tooAzure 應用程式](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
 
 > [!NOTE]
 > 如果您的 web 應用程式出現憑證驗證錯誤，您可能使用了自我簽署憑證。
 >
-> 如果不是，在您將憑證匯出為 PFX 檔案時，可能遺漏了中繼憑證。
+> 如果不是 hello 案例，您可能有遺漏的中繼憑證匯出您的憑證 toohello PFX 檔案時。
 
 <a name="bkmk_enforce"></a>
 
 ## <a name="enforce-https"></a>強制使用 HTTPS
 
-App Service 不會強制使用 HTTPS，因此任何使用者仍可以使用 HTTP 存取您的 Web 應用程式。 若要強制 Web 應用程式使用 HTTPS，請在 Web 應用程式的 _web.config_ 檔案中定義重寫規則。 無論 Web 應用程式語言架構為何，App Service 應用程式都會使用這個檔案。
+App Service 不會強制使用 HTTPS，因此任何使用者仍可以使用 HTTP 存取您的 Web 應用程式。 web 應用程式的 HTTPS tooenforce 定義重寫規則中 hello _web.config_ web 應用程式的檔案。 應用程式服務會使用這個檔案，不論 hello 語言架構 web 應用程式。
 
 > [!NOTE]
-> 有語言特定的要求重新導向。 ASP.NET MVC 可使用 [RequireHttps](http://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) 篩選，而非 _web.config_ 中的重寫規則。
+> 有語言特定的要求重新導向。 ASP.NET MVC 可使用 hello [RequireHttps](http://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx)篩選器，而不是在 hello 重寫規則_web.config_。
 
-如果您是 .NET 開發人員，應該很熟悉這個檔案。 它會在您解決方案的根目錄。
+如果您是 .NET 開發人員，應該很熟悉這個檔案。 它會在您方案的 hello 根目錄。
 
 此外，如果您是使用 PHP、Node.js、Python 或 Java 進行開發，我們有可能會在 App Service 中代表您產生這個檔案。
 
-遵循[使用 FTP/S 將應用程式部署至 Azure App Service](app-service-deploy-ftp.md) 中的指示，連線到 Web 應用程式的 FTP 端點。
+Tooyour web 應用程式的 FTP 端點連接在 hello 指示[部署您使用 FTP/S 的應用程式服務的應用程式 tooAzure](app-service-deploy-ftp.md)。
 
-此檔案應該位於 _/home/site/wwwroot_。 如果沒有，請在此資料夾中建立一個 _web.config_ 檔案，並包含下列 XML：
+此檔案應該位於 _/home/site/wwwroot_。 如果沒有，請建立_web.config_以下列 XML 的 hello 這個資料夾中的檔案：
 
 ```xml   
 <?xml version="1.0" encoding="UTF-8"?>
@@ -247,19 +247,19 @@ App Service 不會強制使用 HTTPS，因此任何使用者仍可以使用 HTTP
 </configuration>
 ```
 
-對於現有的 _web.config_ 檔案，請將整個 `<rule>` 元素複製到 _web.config_ 的 `configuration/system.webServer/rewrite/rules` 元素中。 如果您的 _web.config_ 中有其他 `<rule>` 元素，請將複製的 `<rule>` 元素放在其他 `<rule>` 元素之前。
+現有_web.config_檔案中，複製 hello 整個`<rule>`項目插入您_web.config_的`configuration/system.webServer/rewrite/rules`項目。 如果有其他`<rule>`中的項目您_web.config_，複製的位置 hello`<rule>`之前 hello 其他項目`<rule>`項目。
 
-每當使用者向 web 應用程式要求 HTTP 時，此規則就會將 HTTP 301 (永久重新導向) 傳回 HTTPS 通訊協定。 例如，它會從 `http://contoso.com` 重新導向至 `https://contoso.com`。
+每當 hello 使用者提出 HTTP 要求 tooyour web 應用程式時，此規則就會傳回 HTTP 301 （永久重新導向） toohello HTTPS 通訊協定。 例如，它會重新導向從`http://contoso.com`太`https://contoso.com`。
 
-如需 IIS URL Rewrite 模組的詳細資訊，請參閱 [URL Rewrite](http://www.iis.net/downloads/microsoft/url-rewrite) \(英文\) 文件。
+如需有關 hello IIS URL Rewrite 模組的詳細資訊，請參閱 hello [URL Rewrite](http://www.iis.net/downloads/microsoft/url-rewrite)文件。
 
 ## <a name="enforce-https-for-web-apps-on-linux"></a>強制 Linux 上的 Web Apps 使用 HTTPS
 
-Linux 上的 App Service 不會強制使用 HTTPS，因此任何使用者仍可以使用 HTTP 存取您的 Web 應用程式。 若要強制 Web 應用程式使用 HTTPS，請在 Web 應用程式的 _.htaccess_ 檔案中定義重寫規則。 
+Linux 上的 App Service 不會強制使用 HTTPS，因此任何使用者仍可以使用 HTTP 存取您的 Web 應用程式。 web 應用程式的 HTTPS tooenforce 定義重寫規則中 hello _.htaccess_ web 應用程式的檔案。 
 
-遵循[使用 FTP/S 將應用程式部署至 Azure App Service](app-service-deploy-ftp.md) 中的指示，連線到 Web 應用程式的 FTP 端點。
+Tooyour web 應用程式的 FTP 端點連接在 hello 指示[部署您使用 FTP/S 的應用程式服務的應用程式 tooAzure](app-service-deploy-ftp.md)。
 
-在 _/home/site/wwwroot_ 中，建立一個包含以下程式碼的 _.htaccess_ 檔案：
+在_/home/site/wwwroot_，建立_.htaccess_檔案以下列程式碼的 hello:
 
 ```
 RewriteEngine On
@@ -267,15 +267,15 @@ RewriteCond %{HTTP:X-ARR-SSL} ^$
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 ```
 
-每當使用者向 web 應用程式要求 HTTP 時，此規則就會將 HTTP 301 (永久重新導向) 傳回 HTTPS 通訊協定。 例如，它會從 `http://contoso.com` 重新導向至 `https://contoso.com`。
+每當 hello 使用者提出 HTTP 要求 tooyour web 應用程式時，此規則就會傳回 HTTP 301 （永久重新導向） toohello HTTPS 通訊協定。 例如，它會重新導向從`http://contoso.com`太`https://contoso.com`。
 
 ## <a name="automate-with-scripts"></a>使用指令碼進行自動化
 
-您可以使用 [Azure CLI](/cli/azure/install-azure-cli) 或 [Azure PowerShell](/powershell/azure/overview)，透過指令碼將 web 應用程式的 SSL 繫結自動化。
+您可以自動化的 SSL 繫結的 web 應用程式與指令碼，使用 hello [Azure CLI](/cli/azure/install-azure-cli)或[Azure PowerShell](/powershell/azure/overview)。
 
 ### <a name="azure-cli"></a>Azure CLI
 
-下列命令會將匯出的 PFX 檔案上傳，並取得憑證指紋。
+hello 下列命令會將匯出的 PFX 檔案上傳，並取得 hello 指紋。
 
 ```bash
 thumbprint=$(az appservice web config ssl upload \
@@ -287,7 +287,7 @@ thumbprint=$(az appservice web config ssl upload \
     --output tsv)
 ```
 
-下列命令會使用上述命令的指紋來新增以 SNI 為基礎的 SSL 繫結。
+hello 下列命令會將使用 hello 指紋 hello 前一個命令從 sni SSL 繫結。
 
 ```bash
 az appservice web config ssl bind \
@@ -299,7 +299,7 @@ az appservice web config ssl bind \
 
 ### <a name="azure-powershell"></a>Azure PowerShell
 
-下列命令會將匯出的 PFX 檔案上傳，並新增以 SNI 為基礎的 SSL 繫結。
+hello 下列命令將匯出的 PFX 檔案上傳並新增 sni SSL 繫結。
 
 ```PowerShell
 New-AzureRmWebAppSSLBinding `
@@ -317,11 +317,11 @@ New-AzureRmWebAppSSLBinding `
 
 > [!div class="checklist"]
 > * 升級應用程式的定價層
-> * 將自訂 SSL 憑證繫結至 App Service
+> * 繫結您自訂的 SSL 憑證 tooApp 服務
 > * 為應用程式強制使用 HTTPS
 > * 使用指令碼來自動繫結 SSL 憑證
 
-前進至下一個教學課程，以了解如何使用 Azure 內容傳遞網路。
+如何前進 toohello 下一個教學課程 toolearn toouse Azure 內容傳遞網路。
 
 > [!div class="nextstepaction"]
-> [將內容傳遞網路 (CDN) 新增至 Azure App Service](app-service-web-tutorial-content-delivery-network.md)
+> [將內容傳遞網路 (CDN) tooan Azure App Service](app-service-web-tutorial-content-delivery-network.md)

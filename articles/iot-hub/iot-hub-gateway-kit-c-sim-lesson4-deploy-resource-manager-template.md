@@ -1,12 +1,12 @@
 ---
 title: "模擬裝置與 Azure IoT 閘道 - 第 4 課：儲存訊息 | Microsoft Docs"
-description: "將訊息從 Intel NUC 儲存到您的 IoT 中樞，然後將訊息寫入 Azure 表格儲存體，並讀取雲端中的訊息。"
+description: "從 Intel NUC tooyour IoT 中樞儲存訊息、 將它們寫入 tooAzure 資料表儲存體，然後讀取它們從 hello 雲端。"
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "將資料儲存在雲端, 儲存在雲端的資料, iot 雲端服務"
+keywords: "將資料儲存在 hello 雲端中，儲存在雲端中，資料 iot 雲端服務"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-gateway-kit-c-lesson1-set-up-nuc
 ms.assetid: ffed0c2e-b092-40e1-9113-8196ec057d67
@@ -17,41 +17,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: c7fc47b07acede28ffe790debca7e38521726011
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 230f2708b62b89c6eed2e238efefc1c4da86e373
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-function-app-and-storage-account"></a>建立 Azure 函式應用程式與儲存體帳戶
 
-Azure Functions 是可在雲端輕鬆執行「函式」(一小段程式碼) 的解決方案。 Azure 函數應用程式可在 Azure 中主控函數的執行。 
+Azure 的函式是方案，輕鬆地執行_函式_（一些程式碼片段） hello 雲端中。 Azure 的函式應用程式裝載函式在 Azure 中的 hello 執行。 
 
 ## <a name="what-you-will-do"></a>將執行的作業
 
-- 使用 Azure Resource Manager 範本來建立 Azure 函式應用程式及 Azure 儲存體帳戶。 Azure 函式應用程式會接聽 Azure IoT 中樞事件、處理傳入訊息，並將它們寫入 Azure 表格儲存體。
+- Azure 的函式應用程式與 Azure 儲存體帳戶，請使用 Azure Resource Manager 範本 toocreate。 hello Azure 函式應用程式會接聽 tooAzure IoT 中樞事件、 處理內送訊息，並將其寫入 tooAzure 資料表儲存體。
 
-如果您有任何問題，請在[疑難排解頁面](iot-hub-gateway-kit-c-sim-troubleshooting.md)尋求解決方案。
+如果您有任何問題，尋找解決方案上 hello[疑難排解頁面](iot-hub-gateway-kit-c-sim-troubleshooting.md)。
 
 
 ## <a name="what-you-will-learn"></a>學習目標
 
 在這一課，您將了解：
 
-- 如何使用 Azure Resource Manager 部署 Azure 資源。
-- 如何使用 Azure 函數應用程式處理 IoT 中樞訊息，並將它們寫入 Azure 表格儲存體中的資料表。
+- 如何 toouse Azure 資源管理員 toodeploy Azure 資源。
+- 如何 toouse Azure 函式應用程式 tooprocess IoT 中樞的訊息，並在 Azure 資料表儲存體中撰寫 tooa 資料表。
 
 ## <a name="what-you-need"></a>您需要什麼
 
-您必須已順利完成先前的課程︰
+您必須已順利完成 hello 先前的課程：
 
 - [第 1 課：將 Intel NUC 設定為 IoT 閘道器](iot-hub-gateway-kit-c-sim-lesson1-set-up-nuc.md)
 - [第 2 課：準備好您的主機電腦和 Azure IoT 中樞](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-win32.md)
-- [第 3 課︰接收來自模擬裝置的訊息，並讀取來自 IoT 中樞的傳入訊息](iot-hub-gateway-kit-c-sim-lesson3-configure-simulated-device-app.md)
+- [第 3 課： 從 hello 模擬裝置接收訊息，並從 IoT 中樞讀取訊息](iot-hub-gateway-kit-c-sim-lesson3-configure-simulated-device-app.md)
 
 ## <a name="open-a-sample-app"></a>開啟範例應用程式
 
-前往您的 `iot-hub-c-intel-nuc-gateway-getting-started` 存放庫資料夾，初始化組態檔，然後執行下列命令在 Visual Studio Code 中開啟範例專案︰
+移 tooyour`iot-hub-c-intel-nuc-gateway-getting-started`儲存機制資料夾，初始化 hello 設定檔，然後開啟 hello 範例專案在 Visual Studio 程式碼中藉由執行下列命令的 hello:
 
 ```bash
 cd Lesson4
@@ -62,29 +62,29 @@ code .
 
 ![存放庫結構](media/iot-hub-gateway-kit-lessons/lesson4/arm_template.png)
 
-- `arm-template.json` 檔案為包含 Azure 函式應用程式及 Azure 儲存體帳戶的 Azure Resource Manager 範本。
-- `arm-template-param.json` 檔案是 Azure Resource Manager 範本使用的組態檔。
-- `ReceiveDeviceMessages` 子資料夾包含 Azure 函數的 Node.js 程式碼。
+- hello`arm-template.json`檔案是包含 Azure 的函式應用程式與 Azure 儲存體帳戶的 hello Azure Resource Manager 範本。
+- hello`arm-template-param.json`檔案為 hello hello Azure Resource Manager 範本所使用的組態檔。
+- hello`ReceiveDeviceMessages`子資料夾包含 hello Node.js hello Azure 函式程式碼。
 
 ## <a name="configure-azure-resource-manager-templates-and-create-resources-in-azure"></a>在 Azure 中設定 Azure Resource Manager 範本並建立資源
 
-更新 Visual Studio Code 中的 `arm-template-param.json` 檔案。
+更新 hello `arm-template-param.json` Visual Studio 程式碼中的檔案。
 
 ![arm 範本 json](media/iot-hub-gateway-kit-lessons/lesson4/arm_template_param.png)
 
 - 將 `[your IoT Hub name]` 取代為您在第 2 課指定的 `{my hub name}`。
 
-在您更新 `arm-template-param.json` 檔案後，請執行下列命令來將資源部署到 Azure：
+更新 hello 之後`arm-template-param.json`檔案中，執行下列命令的 hello 部署 hello 資源 tooAzure:
 
 ```bash
 az group deployment create --template-file arm-template.json --parameters @arm-template-param.json -g iot-gateway
 ```
 
-如果您在第 2 課中沒有變更值，請使用 `iot-gateway` 作為 `{resource group name}` 的值。
+使用`iot-gateway`做為 hello 值`{resource group name}`如果您沒有變更 hello 課程 2 中的值。
 
 ## <a name="summary"></a>摘要
 
-您已建立 Azure 函式應用程式以處理 IoT 中樞訊息，並建立 Azure 儲存體帳戶以儲存這些訊息。 您現在可以讀取由您的閘道器傳送至 IoT 中樞的訊息。
+您已建立您的 Azure 函式應用程式 tooprocess IoT 中樞訊息，與 Azure 儲存體帳戶的 toostore 這些訊息。 您現在可以讀取由您的閘道 tooyour IoT 中樞傳送的訊息。
 
 ## <a name="next-steps"></a>後續步驟
 [讀取保存在 Azure 儲存體中的訊息](iot-hub-gateway-kit-c-sim-lesson4-read-table-storage.md)。

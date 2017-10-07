@@ -11,7 +11,7 @@
 ## [建立您的第一個 VM](devtest-lab-create-first-vm.md)
 ## [設定開始原則](devtest-lab-get-started-with-lab-policies.md)
 
-# 使用說明指南
+# 如何 tooguides
 ## 在實驗室中使用 VM
 ### [建立 VM](devtest-lab-add-vm.md)
 ### [建立可宣告 VM](devtest-lab-add-claimable-vm.md)
@@ -20,7 +20,7 @@
 ## 在實驗室環境中
 ### [建立一個環境](devtest-lab-create-environment-from-arm.md)
 
-## 安全存取實驗室
+## 安全存取 tooLabs
 ### [加入實驗室擁有者與使用者](devtest-lab-add-devtest-user.md)
 ### [以自訂角色來自訂權限](devtest-lab-grant-user-permissions-to-specific-lab-policies.md)
 
@@ -33,7 +33,7 @@
 
 ## 管理自訂映像
 ### [從 VM 建立自訂映像](devtest-lab-create-custom-image-from-vm-using-portal.md)
-### [使用 Azure 入口網站從 VHD 建立自訂映像](devtest-lab-create-template.md)
+### [從 VHD 使用 hello Azure 入口網站建立自訂映像](devtest-lab-create-template.md)
 ### [使用 PowerShell 從 VHD 建立自訂映像](devtest-lab-create-custom-image-from-vhd-using-powershell.md)
 ### [使用 AzCopy 來上傳 VHD 檔案](devtest-lab-upload-vhd-using-azcopy.md)
 ### [使用 PowerShell 上傳 VHD 檔案](devtest-lab-upload-vhd-using-powershell.md)

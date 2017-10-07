@@ -1,6 +1,6 @@
 ---
-title: "App Service 環境 | Microsoft Docs"
-description: "何謂 Azure App Service 環境？ App Service 環境簡介。"
+title: "aaaApp Service 環境 |Microsoft 文件"
+description: "何謂 Azure App Service 環境？ 簡介 tooApp Service 環境。"
 keywords: "azure app service 環境, 虛擬網路, 安全網路"
 services: app-service
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/01/2016
 ms.author: stefsch
-ms.openlocfilehash: 1de3f2c513f4f5ce6fd2ab2b57514122955a9a98
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b59fed4e5a72d4c4805e1dca203747e07e77103
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="app-service-environment-documentation"></a>App Service 環境文件
 App Service 環境是 Azure App Service 的[高階][PremiumTier]服務方案選項，提供完全隔離的專用環境，能夠極為安全地執行 Azure App Service 應用程式，包括 [Web Apps][WebApps]、[Mobile Apps][MobileApps]和 [API Apps][APIApps]。  
@@ -31,9 +31,9 @@ App Service 環境是 Azure App Service 的[高階][PremiumTier]服務方案選�
 
 客戶可以在單一 Azure 區域，以及跨多個 Azure 區域中建立多個 App Service 環境。  這使得 App Service 環境很適合用來水平調整無狀態應用程式層的規模，以支援高 RPS 工作負載。
 
-App Service 環境已經過隔離，可執行只有單一客戶的應用程式，且一律會部署到虛擬網路。  客戶可以使用[網路安全性群組][NetworkSecurityGroups]，精確控制輸入和輸出應用程式網路流量。  應用程式也可以透過虛擬網路建立與內部部署公司資源的高速安全連線。
+App Service 環境隔離的 toorunning 只有單一客戶的應用程式，而且一律部署至虛擬網路。  客戶可以使用[網路安全性群組][NetworkSecurityGroups]，精確控制輸入和輸出應用程式網路流量。  應用程式也可以建立安全的高速連線透過虛擬網路 tooon 內部公司資源。
 
-應用程式經常需要存取公司資源，例如內部資料庫和 Web 服務。  只要是可透過[站對站][SiteToSite] VPN 和 [Azure ExpressRoute][ExpressRoute] 連接來取得的資源，App Service 環境上執行的應用程式都可以存取。
+應用程式經常需要 tooaccess 公司資源，例如內部資料庫和 web 服務。  只要是可透過[站對站][SiteToSite] VPN 和 [Azure ExpressRoute][ExpressRoute] 連接來取得的資源，App Service 環境上執行的應用程式都可以存取。
 
 * [何謂 App Service 環境？](../app-service-web/app-service-app-service-environment-intro.md)
 * [建立 App Service 環境](../app-service-web/app-service-web-how-to-create-an-app-service-environment.md)

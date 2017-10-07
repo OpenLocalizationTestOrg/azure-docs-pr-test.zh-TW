@@ -1,6 +1,6 @@
 ---
-title: "使用 Python 從 Azure Blob 儲存體來回移動資料 | Microsoft Docs"
-description: "使用 Python 從 Azure Blob 儲存體來回移動資料"
+title: "從 Azure Blob 儲存體使用 Python aaaMove 資料 tooand |Microsoft 文件"
+description: "移動資料 tooand 從 Azure Blob 儲存體使用 Python"
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: 0eea1ff8e4f4c1d108445e1a1250b6fa8ff48910
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c2be9600e0d6cb05bcf4109a8d554db522704ecb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-data-to-and-from-azure-blob-storage-using-python"></a>使用 Python 從 Azure Blob 儲存體來回移動資料
-本主題說明如何使用 Python API 列出、上傳及下載 Blob。 使用 Azure SDK 中提供的 Python API，您可以
+# <a name="move-data-tooand-from-azure-blob-storage-using-python"></a>移動資料 tooand 從 Azure Blob 儲存體使用 Python
+本主題描述如何 toolist 上, 傳及下載 blob 使用 hello Python 應用程式開發介面。 以 hello Azure SDK 中提供的 Python API，您可以：
 
 * 建立容器
 * 將 Blob 上傳至容器
 * 下載 Blob
-* 列出容器中的 Blob
+* 列出容器中的 hello blob
 * 刪除 Blob
 
-如需使用 Python API 的詳細資訊，請參閱 [如何從 Python 使用 Blob 儲存體服務](../storage/blobs/storage-python-how-to-use-blob-storage.md)。
+如需使用 hello Python 應用程式開發介面的詳細資訊，請參閱[tooUse hello 來自 Python 的 Blob 儲存體服務的方式](../storage/blobs/storage-python-how-to-use-blob-storage.md)。
 
 [!INCLUDE [blob-storage-tool-selector](../../includes/machine-learning-blob-storage-tool-selector.md)]
 
 > [!NOTE]
-> 如果您是使用以 [Azure 中的資料科學虛擬機器](machine-learning-data-science-virtual-machines.md)提供的指令碼所設定的 VM，則 AzCopy 已經安裝在 VM 上。
+> 如果您要使用所提供的 hello 指令碼與設定的 VM [Azure 中的資料科學虛擬機器](machine-learning-data-science-virtual-machines.md)，然後 AzCopy hello VM 上已安裝。
 > 
 > [!NOTE]
-> 如需 Azure Blob 儲存體的完整介紹，請參閱 [Azure Blob 基本概念](../storage/blobs/storage-dotnet-how-to-use-blobs.md)和 [Azure Blob 服務](https://msdn.microsoft.com/library/azure/dd179376.aspx)。
+> 完成簡介 tooAzure blob 儲存體，請參閱太[Azure Blob 的基本概念](../storage/blobs/storage-dotnet-how-to-use-blobs.md)和太[Azure Blob 服務](https://msdn.microsoft.com/library/azure/dd179376.aspx)。
 > 
 > 
 
 ## <a name="prerequisites"></a>必要條件
-本文件假設您擁有 Azure 訂用帳戶、儲存體帳戶和該帳戶的對應儲存體金鑰。 上傳/下載資料之前，您必須知道 Azure 儲存體帳戶名稱和帳戶金鑰。
+本文件假設您有 Azure 訂用帳戶、 儲存體帳戶和該帳戶 hello 對應儲存體金鑰。 上傳/下載資料之前，您必須知道 Azure 儲存體帳戶名稱和帳戶金鑰。
 
-* 若要設定 Azure 訂用帳戶，請參閱 [免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
-* 如需建立儲存體帳戶以及取得帳戶和金鑰資訊的指示，請參閱 [關於 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)。
+* tooset 註冊 Azure 訂用帳戶，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
+* 如需建立儲存體帳戶的指示，以及取得帳戶和金鑰的資訊，請參閱 [關於 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)。
 
-## <a name="upload-data-to-blob"></a>將資料上傳至 Blob
-將下列程式碼片段新增至您希望以程式設計方式存取 Azure 儲存體的任何 Python 程式碼頂端附近：
+## <a name="upload-data-tooblob"></a>上傳資料 tooBlob
+加入下列程式碼片段，任何您想在其中 tooprogrammatically 存取 Azure 儲存體的 Python 程式碼的 hello 頂端附近的 hello:
 
     from azure.storage.blob import BlobService
 
-**BlobService** 物件讓您能使用容器及 blob。 下列程式碼會使用儲存體帳戶名稱和帳戶金鑰來建立 BlobService 物件。 使用您真正的帳戶和金鑰來取代帳戶名稱和帳戶金鑰。
+hello **BlobService**物件可讓您使用容器和 blob。 下列程式碼的 hello 建立 BlobService 物件使用 hello 儲存體帳戶名稱和帳戶金鑰。 使用您真正的帳戶和金鑰來取代帳戶名稱和帳戶金鑰。
 
     blob_service = BlobService(account_name="<your_account_name>", account_key="<your_account_key>")
 
-使用下列方法，將資料上傳至 Blob：
+使用下列方法 tooupload 資料 tooa blob hello:
 
-1. put\_block\_blob\_from\_path (從指定路徑上傳檔案的內容)
-2. put\_block_blob\_from\_file (從任何已經開啟的檔案/資料流上傳內容)
+1. put\_區塊\_blob\_從\_（上傳 hello 從 hello 指定路徑的檔案內容） 的路徑
+2. put\_block_blob\_從\_（上傳已開啟的檔案/資料流中的 hello 內容） 的檔案
 3. put\_block\_blob\_from\_bytes (上傳位元組陣列)
-4. put\_block\_blob\_from\_text (使用指定的編碼方式上傳指定的文字值)
+4. put\_區塊\_blob\_從\_文字 (上傳指定的 hello 使用 hello 文字值會指定編碼方式)
 
-下列程式碼範例會將本機檔案上傳至容器：
+下列範例程式碼的 hello 上傳本機檔案 tooa 容器：
 
     blob_service.put_block_blob_from_path("<your_container_name>", "<your_blob_name>", "<your_local_file_name>")
 
-下列程式碼範例會將本機目錄中的所有檔案 (不含目錄) 上傳至 Blob 儲存體：
+hello 下列範例程式碼上傳所有 hello 檔 （不含目錄） 中的本機目錄 tooblob 儲存體：
 
     from azure.storage.blob import BlobService
     from os import listdir
@@ -80,7 +80,7 @@ ms.lasthandoff: 08/29/2017
     LOCAL_DIRECT = "<your_local_directory>"        
 
     blob_service = BlobService(account_name=ACCOUNT_NAME, account_key=ACCOUNT_KEY)
-    # find all files in the LOCAL_DIRECT (excluding directory)
+    # find all files in hello LOCAL_DIRECT (excluding directory)
     local_file_list = [f for f in listdir(LOCAL_DIRECT) if isfile(join(LOCAL_DIRECT, f))]
 
     file_num = len(local_file_list)
@@ -90,24 +90,24 @@ ms.lasthandoff: 08/29/2017
         try:
             blob_service.put_block_blob_from_path(CONTAINER_NAME, blob_name, local_file)
         except:
-            print "something wrong happened when uploading the data %s"%blob_name
+            print "something wrong happened when uploading hello data %s"%blob_name
 
 
 ## <a name="download-data-from-blob"></a>從 Blob 下載資料
-使用下列方法，從 Blob 下載資料：
+使用下列方法 toodownload 資料 blob 中的 hello:
 
 1. get\_blob\_to\_path
 2. get\_blob\_to\_file
 3. get\_blob\_to\_bytes
 4. get\_blob\_to\_text
 
-這些方法可以在資料大小超過 64 MB 時執行必要的區塊化動作。
+執行 hello 所需區塊處理 hello hello 資料大小超過 64 MB 時，這些方法。
 
-下列程式碼範例會將容器中 Blob 的內容下載至本機檔案：
+hello 下列範例程式碼下載 blob 容器 tooa 本機檔案中的 hello 的內容：
 
     blob_service.get_blob_to_path("<your_container_name>", "<your_blob_name>", "<your_local_file_name>")
 
-下列程式碼範例會從容器下載所有 Blob。 它會使用 list\_blobs 來取得容器中可用的 Blob 清單，並將它們下載至本機目錄。
+hello 下列範例程式碼會下載的所有 blob 的容器。 它會使用清單\_tooget hello 份可用 hello 容器中 blob 的 blob，並將其下載 tooa 本機目錄。
 
     from azure.storage.blob import BlobService
     from os.path import join
@@ -127,4 +127,4 @@ ms.lasthandoff: 08/29/2017
         try:
             blob_service.get_blob_to_path(CONTAINER_NAME, blob.name, local_file)
         except:
-            print "something wrong happened when downloading the data %s"%blob.name
+            print "something wrong happened when downloading hello data %s"%blob.name

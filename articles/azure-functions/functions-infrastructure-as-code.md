@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions 中函數應用程式的自動化資源部署 | Microsoft Docs"
-description: "了解如何建置能部署函數應用程式的 Azure Resource Manager 範本。"
+title: "Azure 功能中的函式應用程式的 aaaAutomate 資源部署 |Microsoft 文件"
+description: "深入了解如何 toobuild 函式應用程式會將部署的 Azure Resource Manager 範本。"
 services: Functions
 documtationcenter: na
 author: lindydonna
@@ -16,15 +16,15 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: glenga
-ms.openlocfilehash: 15496e4ab2858b2aa319d53f1c438a259a3d5e49
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b0df0d4ef9fe93213f7b1cb1d1e6b4e14f8b3a30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automate-resource-deployment-for-your-function-app-in-azure-functions"></a>Azure Functions 中函數應用程式的自動化資源部署
 
-您可以使用 Azure Resource Manager 範本來部署函數應用程式。 本文概述執行這項作業所需的資源和參數。 您可能需要部署額外的資源，視函數應用程式中的[觸發程序和繫結](functions-triggers-bindings.md)而定。
+您可以使用 Azure Resource Manager 範本 toodeploy 函式應用程式。 本文概述所需的 hello 資源和執行這項作業的參數。 您可能需要 toodeploy 其他資源，根據 hello[觸發程序和繫結](functions-triggers-bindings.md)函式應用程式中。
 
 如需關於建立範本的詳細資訊，請參閱 [編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
@@ -56,9 +56,9 @@ ms.lasthandoff: 08/29/2017
 }
 ```
 
-此外，您必須在網站組態中將 `AzureWebJobsStorage` 和 `AzureWebJobsDashboard` 屬性指定為應用程式設定。 Azure Functions 執行階段會使用 `AzureWebJobsStorage` 連接字串來建立內部佇列。 連接字串 `AzureWebJobsDashboard` 可用來記錄到 Azure 資料表儲存體，以及啟動入口網站中的 [監視] 索引標籤。
+此外，hello 屬性`AzureWebJobsStorage`和`AzureWebJobsDashboard`必須指定為 hello 站台設定中的應用程式設定。 hello Azure 函式執行階段會使用 hello `AzureWebJobsStorage` toocreate 內部佇列的連接字串。 hello 連接字串`AzureWebJobsDashboard`為使用的 toolog tooAzure 資料表儲存體和電源 hello**監視器**hello 入口網站中的索引標籤。
 
-這些屬性會在 `siteConfig` 物件的 `appSettings`集合中指定：
+這些屬性會指定在 hello`appSettings`中 hello 集合`siteConfig`物件：
 
 ```json
 "appSettings": [
@@ -74,11 +74,11 @@ ms.lasthandoff: 08/29/2017
 
 ### <a name="hosting-plan"></a>主控方案
 
-主控方案的定義有所差異，取決於您使用取用方案或 App Service 方案。 請參閱[採用取用方案部署函數應用程式](#consumption)和[採用 App Service 方案部署函數應用程式](#app-service-plan)。
+裝載計劃的 hello hello 定義會有所差異，取決於您是否使用 「 耗用量或應用程式服務方案。 請參閱[部署函式的應用程式上 hello 耗用量計劃](#consumption)和[部署函式上的應用程式的 App Service 方案 hello](#app-service-plan)。
 
 ### <a name="function-app"></a>函式應用程式
 
-函數應用程式資源可藉由使用 **Microsoft.Web/Site** 類型和 **functionapp** 種類的資源來定義：
+使用類型的資源定義 hello 函式應用程式資源**Microsoft.Web/Site**以及種類**functionapp**:
 
 ```json
 {
@@ -95,15 +95,15 @@ ms.lasthandoff: 08/29/2017
 
 <a name="consumption"></a>
 
-## <a name="deploy-a-function-app-on-the-consumption-plan"></a>採用取用方案部署函數應用程式
+## <a name="deploy-a-function-app-on-hello-consumption-plan"></a>部署 hello 耗用量計劃的函式應用程式
 
-函數應用程式的執行模式有兩種︰取用方案和 App Service 方案。 取用方案會在您的程式碼執行時自動配置計算能力、視需要相應放大來處理負載，然後在程式碼未執行時相應減少。 因此，您不必支付閒置 VM 的費用，或必須預先保留容量。 若要深入了解主控方案的詳細資訊，請參閱 [Azure Functions 取用和 App Service 方案](functions-scale.md)。
+您可以在兩個不同的模式中執行的函式應用程式： hello 耗用量計劃和 hello 應用程式服務方案。 hello 耗用量計劃您的程式碼會執行時，能有效擴充為必要 toohandle 負載，而且再按比例減少 程式碼未執行時，自動配置運算能力。 因此，您不需要 toopay 對於閒置的 Vm，而且您沒有 tooreserve 容量事先。 toolearn 深入了解主控方案，請參閱[Azure 函式耗用量和應用程式服務計劃](functions-scale.md)。
 
 如需範例 Azure Resource Manager 範本，請參閱[採用取用方案的函數應用程式]。
 
 ### <a name="create-a-consumption-plan"></a>建立取用方案
 
-取用方案是一種特殊的「伺服器陣列」資源類型。 您可以使用 `computeMode` 和 `sku` 屬性的 `Dynamic` 值加以指定：
+取用方案是一種特殊的「伺服器陣列」資源類型。 您指定使用 hello`Dynamic`值 hello`computeMode`和`sku`屬性：
 
 ```json
 {
@@ -121,7 +121,7 @@ ms.lasthandoff: 08/29/2017
 
 ### <a name="create-a-function-app"></a>建立函數應用程式
 
-此外，取用方案的網站組態中需要兩個額外的其他設定：`WEBSITE_CONTENTAZUREFILECONNECTIONSTRING` 和 `WEBSITE_CONTENTSHARE`。 這些屬性能設定儲存函數應用程式程式碼和組態的儲存體帳戶和檔案路徑。
+此外，耗用量計劃需要 hello 站台設定中兩個額外的設定：`WEBSITE_CONTENTAZUREFILECONNECTIONSTRING`和`WEBSITE_CONTENTSHARE`。 這些屬性會設定 hello 儲存體帳戶和檔案路徑 hello 函式應用程式程式碼和組態的儲存位置。
 
 ```json
 {
@@ -166,9 +166,9 @@ ms.lasthandoff: 08/29/2017
 
 <a name="app-service-plan"></a> 
 
-## <a name="deploy-a-function-app-on-the-app-service-plan"></a>採用 App Service 方案部署函數應用程式
+## <a name="deploy-a-function-app-on-hello-app-service-plan"></a>部署函式的應用程式上 hello App Service 方案
 
-在 App Service 方案中，您的函數應用程式是依據基本、標準或進階 SKU 在專用的 VM 上執行，就像 Web 應用程式一樣。 如需 App Service 方案運作方式的詳細資訊，請參閱 [Azure App Service 方案深入概觀](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。 
+Hello App Service 方案，在應用程式函式會執行專用在 Basic、 Standard 和 Premium Sku 類似 tooweb 應用程式上的 Vm 上。 如需 hello 應用程式服務方案的運作方式的詳細資訊，請參閱 hello [Azure App Service 方案深入概觀](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。 
 
 如需範例 Azure Resource Manager 範本，請參閱[採用 Azure App Service 方案的函數應用程式]。
 
@@ -192,12 +192,12 @@ ms.lasthandoff: 08/29/2017
 
 ### <a name="create-a-function-app"></a>建立函數應用程式 
 
-在您選取調整選項之後，請建立函數應用程式。 該 App 將會是保存您所有函數的容器。
+在您選取調整選項之後，請建立函數應用程式。 hello 應用程式會保留您所有的函式的 hello 容器。
 
-函數應用程式有許多子資源可供您用於部署，包括應用程式設定和原始檔控制選項。 您也可以選擇移除 **sourcecontrols** 子資源並改為使用不同的[部署選項](functions-continuous-deployment.md)。
+函數應用程式有許多子資源可供您用於部署，包括應用程式設定和原始檔控制選項。 您也可以選擇 tooremove hello **sourcecontrols**子資源，並使用不同[部署選項](functions-continuous-deployment.md)改為。
 
 > [!IMPORTANT]
-> 若要使用 Azure Resource Manager 成功部署應用程式，請務必了解資源在 Azure 中部署的方式。 在下列範例中，將使用 **siteConfig** 套用高層級組態。 請務必將這些組態設定為高層級，因為它們會將資訊傳遞給 Functions 執行階段和部署引擎。 在套用子 **sourcecontrols/web** 資源之前，需要高層級資訊。 雖然也可以在子層級 **config/appSettings** 資源設定這些設定，在某些案例下，您的函數應用程式需在套用 **config/appSettings**「之前」完成部署。 例如，在搭配使用函數應用程式與 [Logic Apps](../logic-apps/index.md) 時，您的函數為另一個資源的相依性。
+> toosuccessfully 使用 Azure Resource Manager 部署應用程式，它是如何在 Azure 中部署資源的重要 toounderstand。 在下列範例的 hello，最上層設定適用於使用**網站組態**。 是重要 tooset 這些組態在最上方層級，因為它們傳達資訊 toohello 函式的執行階段和部署引擎。 Hello 子系之前所需的最上層的資訊是**sourcecontrols/web**資源套用。 中的這些設定可能 tooconfigure 雖然 hello 子層級**appSettings 組態/**資源，在某些情況下，函式應用程式必須先部署*之前* **appSettings 組態 /**套用。 例如，在搭配使用函數應用程式與 [Logic Apps](../logic-apps/index.md) 時，您的函數為另一個資源的相依性。
 
 ```json
 {
@@ -252,25 +252,25 @@ ms.lasthandoff: 08/29/2017
 }
 ```
 > [!TIP]
-> 此範本使用[專案](https://github.com/projectkudu/kudu/wiki/Customizing-deployments#using-app-settings-instead-of-a-deployment-file) (英文) 應用程式設定值，它能設定「函數部署引擎」(Kudu) 在其中尋找可部署程式碼的基礎目錄。 在我們的存放庫中，我們的函數是位於 **src** 資料夾的子資料夾中。 因此，在上述範例中，我們將應用程式設定值設定為 `src`。 如果您的函數位於您存放庫的根，或您並非從來源控制項進行部署，您可以移除此應用程式設定值。
+> 此範本使用 hello[專案](https://github.com/projectkudu/kudu/wiki/Customizing-deployments#using-app-settings-instead-of-a-deployment-file)應用程式設定值，設定 hello 基底目錄中的 hello 函式部署引擎 (Kudu) 會尋找任何可部署的程式碼。 在我們的儲存機制中，我們函式是位於子資料夾中的 hello **src**資料夾。 因此，在上述範例中的 hello，我們設定 hello 應用程式設定值太`src`。 如果您的函式是您的儲存機制的 hello 根目錄或並不會從原始檔控制部署，您可以移除此應用程式設定值。
 
 ## <a name="deploy-your-template"></a>部署您的範本
 
-您可以使用以下任何方式來部署範本：
+您可以使用任何下列方式 toodeploy hello 範本：
 
 * [PowerShell](../azure-resource-manager/resource-group-template-deploy.md)
 * [Azure CLI](../azure-resource-manager/resource-group-template-deploy-cli.md)
 * [Azure 入口網站](../azure-resource-manager/resource-group-template-deploy-portal.md)
 * [REST API](../azure-resource-manager/resource-group-template-deploy-rest.md)
 
-### <a name="deploy-to-azure-button"></a>部署至 Azure 按鈕
+### <a name="deploy-tooazure-button"></a>部署 tooAzure 按鈕
 
-以 GitHub 中 `azuredeploy.json` 檔案的原始路徑 [URL 編碼](https://www.bing.com/search?q=url+encode)版本取代 ```<url-encoded-path-to-azuredeploy-json>```。
+取代```<url-encoded-path-to-azuredeploy-json>```與[URL 編碼](https://www.bing.com/search?q=url+encode)hello 原始路徑的版本您`azuredeploy.json`GitHub 中的檔案。
 
 以下是使用 Markdown 的範例：
 
 ```markdown
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/<url-encoded-path-to-azuredeploy-json>)
+[![Deploy tooAzure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/<url-encoded-path-to-azuredeploy-json>)
 ```
 
 以下是使用 HTML 的範例：
@@ -281,10 +281,10 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-深入了解如何開發並設定 Azure Functions。
+深入了解如何 toodevelop 及設定 Azure 函式。
 
 * [Azure Functions 開發人員參考](functions-reference.md)
-* [如何設定 Azure Functions 應用程式設定](functions-how-to-use-azure-function-app-settings.md)
+* [Tooconfigure Azure 應用程式設定的運作方式](functions-how-to-use-azure-function-app-settings.md)
 * [建立您的第一個 Azure 函式](functions-create-first-azure-function.md)
 
 <!-- LINKS -->

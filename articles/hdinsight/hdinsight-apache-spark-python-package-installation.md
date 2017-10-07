@@ -1,6 +1,6 @@
 ---
-title: "指令碼動作 - 在 Azure HDInsight 上搭配 Jupyter 安裝 Python 套件 | Microsoft Docs"
-description: "說明如何使用指令碼動作以設定讓 HDInsight Spark 叢集隨附之 Jupyter Notebook 使用外部 Python 套件的逐步指示。"
+title: "aaaScript 動作-安裝 Python 封裝，使用 Azure HDInsight 上 Jupyter |Microsoft 文件"
+description: "上如何 toouse 指令碼動作 tooconfigure Jupyter 筆記本適用於 HDInsight Spark 叢集 toouse 外部 python 封裝的逐步指示。"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,49 +16,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 20cf384c96d4ff4eaf064c8880ad128d521fb9bf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 54db79e67995dee7ca00abff979f7d74ae5ab9cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-script-action-to-install-external-python-packages-for-jupyter-notebooks-in-apache-spark-clusters-on-hdinsight"></a>使用指令碼動作在 HDInsight Linux 上的 Apache Spark 叢集中安裝 Jupyter Notebook 的外部 Python 封裝
+# <a name="use-script-action-tooinstall-external-python-packages-for-jupyter-notebooks-in-apache-spark-clusters-on-hdinsight"></a>使用 Apache Spark 叢集，在 HDInsight 上 Jupyter 筆記本的指令碼動作 tooinstall 外部 Python 封裝
 > [!div class="op_single_selector"]
 > * [使用資料格魔術](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
 > * [使用指令碼動作](hdinsight-apache-spark-python-package-installation.md)
 >
 >
 
-了解如何使用指令碼動作，將 HDInsight (Linux) 上的 Apache Spark 叢集設定為使用外部、社群的提供 **Python** 套件，而不是叢集中現成隨附的套件。
+了解如何 toouse 指令碼動作 tooconfigure Apache Spark 叢集上 HDInsight (Linux) toouse 外部、 社群貢獻**python**不封裝在 hello 叢集中包含的方塊外。
 
 > [!NOTE]
-> 您也可以藉由使用 `%%configure` 魔術，設定 Jupyter Notebook 來使用外部的封裝。 如需指示，請參閱[在 HDInsight 上的 Apache Spark 叢集中搭配 Jupyter Notebook 使用外部封裝](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)。
+> 您也可以藉由設定 Jupyter 筆記本`%%configure`magic toouse 外部的封裝。 如需指示，請參閱[在 HDInsight 上的 Apache Spark 叢集中搭配 Jupyter Notebook 使用外部封裝](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)。
 > 
 > 
 
-您可以搜尋[套件索引](https://pypi.python.org/pypi)，以取得可用的套件完整清單。 您也可以從其他來源取得可用套件清單。 例如，您可以安裝經由 [Anaconda](https://docs.continuum.io/anaconda/pkg-docs) 或 [conda-forge](https://conda-forge.github.io/feedstocks.html) 提供的套件。
+您可以搜尋 hello[封裝索引](https://pypi.python.org/pypi)如 hello 的封裝所提供的完整清單。 您也可以從其他來源取得可用套件清單。 例如，您可以安裝經由 [Anaconda](https://docs.continuum.io/anaconda/pkg-docs) 或 [conda-forge](https://conda-forge.github.io/feedstocks.html) 提供的套件。
 
-在本文中，您將學習如何在叢集上使用指令碼動作安裝 [TensorFlow](https://www.tensorflow.org/) 套件，並使用透過 Jupyter Notebook 來使用它。
+在本文中，您將學習如何 tooinstall hello [TensorFlow](https://www.tensorflow.org/)封裝您的叢集上使用指令碼 Actoin 並使用透過 hello Jupyter 筆記本。
 
 ## <a name="prerequisites"></a>必要條件
-您必須滿足以下條件：
+您必須擁有 hello 下列：
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
    > [!NOTE]
-   > 如果您在 HDInsight Linux 上還沒有 Spark 叢集，您可以在叢集建立期間執行指令碼動作。 瀏覽有關於[如何使用自訂指令碼動作](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-customize-cluster-linux)的文件。
+   > 如果您在 HDInsight Linux 上還沒有 Spark 叢集，您可以在叢集建立期間執行指令碼動作。 瀏覽 hello 文件上[toouse 自訂如何編寫指令碼動作](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-customize-cluster-linux)。
    > 
    > 
 
 ## <a name="use-external-packages-with-jupyter-notebooks"></a>搭配 Jupyter Notebook 使用外部套件
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。 您也可以按一下 [瀏覽全部] > [HDInsight 叢集] 來瀏覽至您的叢集。   
+1. 從 hello [Azure 入口網站](https://portal.azure.com/)，從 hello 開始面板中，按一下 Spark 叢集中的 hello 磚 （如果您釘選它 toohello 開始面板）。 您也可以導覽 tooyour 叢集下的**瀏覽所有** > **HDInsight 叢集**。   
 
-2. 從 Spark 叢集刀鋒視窗中，按一下 [使用量] 下的 [指令碼動作]。 執行自訂動作，將 TensorFlow 安裝在前端節點和背景工作角色節點。 您可以從這裡參考 bash 指令碼: https://hdiconfigactions.blob.core.windows.net/linuxtensorflow/tensorflowinstall.sh 瀏覽有關於 [如何使用自訂指令碼動作](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-customize-cluster-linux) 的文件。
+2. 從 hello Spark 叢集刀鋒視窗中，按一下 **指令碼動作**下**使用量**。 執行安裝 TensorFlow hello 前端節點和 hello 背景工作角色節點中的 hello 自訂動作。 您可以從參考 hello bash 指令碼： https://hdiconfigactions.blob.core.windows.net/linuxtensorflow/tensorflowinstall.sh 造訪 hello 文件上的[toouse 自訂如何編寫指令碼動作](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-customize-cluster-linux)。
 
    > [!NOTE]
-   > 叢集中有兩個 Python 安裝。 Spark 會使用位於 `/usr/bin/anaconda/bin` 的 Anaconda Python 安裝。 在您的自訂動作中，透過 `/usr/bin/anaconda/bin/pip` 和 `/usr/bin/anaconda/bin/conda` 來參考該安裝。
+   > 有兩個 python 安裝 hello 叢集中。 Spark 會使用 hello Anaconda 的 python 安裝位於`/usr/bin/anaconda/bin`。 在您的自訂動作中，透過 `/usr/bin/anaconda/bin/pip` 和 `/usr/bin/anaconda/bin/conda` 來參考該安裝。
    > 
    > 
 
@@ -66,20 +66,20 @@ ms.lasthandoff: 07/11/2017
 
     ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-python-package-installation/hdinsight-spark-create-notebook.png "建立新的 Jupyter Notebook")
 
-4. 系統隨即會建立新 Notebook，並以 Untitled.pynb 的名稱開啟。 在頂端按一下 Notebook 名稱，然後輸入好記的名稱。
+4. 建立新的記事本，並開啟 hello 名稱 Untitled.pynb。 按一下頂端 hello hello 筆記本名稱並輸入好記的名稱。
 
-    ![提供 Notebook 的名稱](./media/hdinsight-apache-spark-python-package-installation/hdinsight-spark-name-notebook.png "提供 Notebook 的名稱")
+    ![提供的名稱 hello 筆記本](./media/hdinsight-apache-spark-python-package-installation/hdinsight-spark-name-notebook.png "提供 hello 筆記本的名稱")
 
 5. 現在，您將 `import tensorflow` 並執行 hello world 範例。 
 
-    要複製的程式碼︰
+    程式碼 toocopy:
 
         import tensorflow as tf
         hello = tf.constant('Hello, TensorFlow!')
         sess = tf.Session()
         print(sess.run(hello))
 
-    結果如下所示：
+    hello 結果看起來像這樣：
     
     ![TensorFlow 程式碼執行](./media/hdinsight-apache-spark-python-package-installation/execution.png "執行 TensorFlow 程式碼")
 
@@ -91,7 +91,7 @@ ms.lasthandoff: 07/11/2017
 ### <a name="scenarios"></a>案例
 * [Spark 和 BI：在 HDInsight 中搭配使用 Spark 和 BI 工具執行互動式資料分析](hdinsight-apache-spark-use-bi-tools.md)
 * [Spark 和機器學習服務：使用 HDInsight 中的 Spark，利用 HVAC 資料來分析建築物溫度](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark 和機器學習服務：使用 HDInsight 中的 Spark 來預測食品檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [機器學習的 Spark： 使用 HDInsight toopredict 食物檢查結果中的 Spark](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
 * [使用 HDInsight 中的 Spark 進行網站記錄分析](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
@@ -101,12 +101,12 @@ ms.lasthandoff: 07/11/2017
 
 ### <a name="tools-and-extensions"></a>工具和擴充功能
 * [在 HDInsight 上的 Apache Spark 叢集中搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [HDInsight 工具外掛程式用於 IntelliJ 概念 toocreate 並提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [從遠端使用 HDInsight Tools 外掛程式 IntelliJ 概念 toodebug Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-zeppelin-notebook.md)
 * [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
-* [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [在您的電腦上安裝 Jupyter 並連接 tooan HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### <a name="manage-resources"></a>管理資源
-* [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
+* [管理 Azure HDInsight 中的 hello Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)

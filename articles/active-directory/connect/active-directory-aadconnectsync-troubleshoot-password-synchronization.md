@@ -1,6 +1,6 @@
 ---
-title: "針對使用 Azure AD Connect 同步執行的密碼同步處理進行疑難排解 | Microsoft Docs"
-description: "本文提供如何針對密碼同步化問題進行疑難排解的相關資訊。"
+title: "搭配 Azure AD Connect 同步化 aaaTroubleshoot 密碼同步化 |Microsoft 文件"
+description: "這篇文章提供有關如何資訊 tootroubleshoot 密碼同步處理問題。"
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 33fa6a8867764975a57b8727e7705529d1d7506a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 390eafec792cb39251627c14cb754f8bb30035b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-password-synchronization-with-azure-ad-connect-sync"></a>針對使用 Azure AD Connect 同步執行的密碼同步處理進行疑難排解
-本主題提供如何針對密碼同步處理問題進行疑難排解的步驟。 如果密碼未如預期般同步，可能會影響一部分使用者或所有使用者。 對於 1.1.524.0 版或更新版本的 Azure Active directory (Azure AD) Connect 部署，現在有一個診斷 Cmdlet 可讓您針對密碼同步化問題進行疑難排解：
+本主題提供如何 tootroubleshoot 發出密碼同步處理步驟。 如果密碼未如預期般同步，可能會影響一部分使用者或所有使用者。 Azure Active directory (Azure AD) 連線版本 1.1.524.0 部署，或更新版本中，目前已診斷的指令程式，您可以使用 tootroubleshoot 密碼同步處理的問題：
 
-* 如果是未同步任何密碼的問題，請參閱[未同步任何密碼：使用診斷 Cmdlet 進行疑難排解](#no-passwords-are-synchronized-troubleshoot-by-using-the-diagnostic-cmdlet)一節。
+* 如果您有問題會在同步處理沒有密碼，請參閱 toohello[沒有密碼會同步處理： 使用 hello 診斷的指令程式來進行疑難排解](#no-passwords-are-synchronized-troubleshoot-by-using-the-diagnostic-cmdlet)> 一節。
 
-* 如果是個別物件的問題，請參閱[一個物件未同步密碼：使用診斷 Cmdlet 進行疑難排解](#one-object-is-not-synchronizing-passwords-troubleshoot-by-using-the-diagnostic-cmdlet)一節。
+* 如果您有個別的物件發生問題，請參閱 toohello[一個物件不會同步處理密碼： 使用 hello 診斷的指令程式來進行疑難排解](#one-object-is-not-synchronizing-passwords-troubleshoot-by-using-the-diagnostic-cmdlet)> 一節。
 
 舊版的 Azure AD Connect 部署：
 
-* 如果是未同步任何密碼的問題，請參閱[未同步任何密碼：手動疑難排解步驟](#no-passwords-are-synchronized-manual-troubleshooting-steps)一節。
+* 如果您有問題會在同步處理沒有密碼，請參閱 toohello[沒有密碼會同步處理： 疑難排解步驟的手動](#no-passwords-are-synchronized-manual-troubleshooting-steps)> 一節。
 
-* 如果是個別物件的問題，請參閱[一個物件未同步密碼：手動疑難排解步驟](#one-object-is-not-synchronizing-passwords-manual-troubleshooting-steps)一節。
+* 如果您有個別的物件發生問題，請參閱 toohello[一個物件不會同步處理密碼： 疑難排解步驟的手動](#one-object-is-not-synchronizing-passwords-manual-troubleshooting-steps)> 一節。
 
-## <a name="no-passwords-are-synchronized-troubleshoot-by-using-the-diagnostic-cmdlet"></a>未同步任何密碼：使用診斷 Cmdlet 進行疑難排解
-您可以使用 `Invoke-ADSyncDiagnostics` Cmdlet 來查明未同步任何密碼的原因。
+## <a name="no-passwords-are-synchronized-troubleshoot-by-using-hello-diagnostic-cmdlet"></a>不會將密碼同步處理： 使用 hello 診斷的指令程式來進行疑難排解
+您可以使用 hello `Invoke-ADSyncDiagnostics` cmdlet toofigure 出為什麼沒有密碼會同步處理。
 
 > [!NOTE]
-> `Invoke-ADSyncDiagnostics` Cmdlet 僅適用於 Azure AD Connect 1.1.524.0 版或更新版本。
+> hello `Invoke-ADSyncDiagnostics` cmdlet 是僅適用於 Azure AD Connect 版本 1.1.524.0 或更新版本。
 
-### <a name="run-the-diagnostics-cmdlet"></a>執行診斷 Cmdlet
-針對未同步任何密碼的問題進行疑難排解：
+### <a name="run-hello-diagnostics-cmdlet"></a>執行 hello 診斷 cmdlet
+會在同步處理不會將密碼 tootroubleshoot 問題：
 
-1. 在您的 Azure AD Connect 伺服器上，使用 [以系統管理員身分執行] 選項開啟新的 Windows PowerShell 工作階段。
+1. 開啟新的 Windows PowerShell 工作階段，在您 Azure AD Connect 的伺服器上以 hello**系統管理員身分執行**選項。
 
 2. 執行 `Set-ExecutionPolicy RemoteSigned` 或 `Set-ExecutionPolicy Unrestricted`。
 
@@ -50,72 +50,72 @@ ms.lasthandoff: 08/18/2017
 
 4. 執行 `Invoke-ADSyncDiagnostics -PasswordSync`。
 
-### <a name="understand-the-results-of-the-cmdlet"></a>了解 Cmdlet 的結果
-診斷 Cmdlet 會執行下列檢查：
+### <a name="understand-hello-results-of-hello-cmdlet"></a>了解 hello cmdlet 的 hello 結果
+hello 診斷 cmdlet 會執行下列檢查 hello:
 
-* 確認您的 Azure AD 租用戶已啟用密碼同步化功能。
+* 會驗證該 hello Azure AD 租用戶啟用密碼同步處理功能。
 
-* 確認 Azure AD Connect 伺服器不是處於預備模式。
+* 會驗證該 hello Azure AD Connect 伺服器不是預備模式。
 
-* 針對每個現有的內部部署 Active Directory 連接器 (對應至現有的 Active Directory 樹系)：
+* 針對每個現有的內部部署 Active Directory 連接器 （其對應 tooan 現有 Active Directory 樹系）：
 
-   * 確認密碼同步化功能已啟用。
+   * 會驗證該 hello 啟用密碼同步處理功能。
    
-   * 在 Windows 應用程式事件記錄中搜尋密碼同步化活動訊號事件。
+   * 密碼同步處理活動訊號中的事件 hello 搜尋 Windows 應用程式事件記錄檔。
 
-   * 針對內部部署 Active Directory 連接器下的每個 Active Directory 網域：
+   * 每個 Active Directory 網域下 hello 在內部部署 Active Directory 連接器：
 
-      * 確認可從 Azure AD Connect 伺服器存取網域。
+      * 會驗證該 hello 網域可從 hello Azure AD Connect 的伺服器連線。
 
-      * 確認內部部署 Active Directory 連接器所使用的 Active Directory Domain Services (AD DS) 帳戶，具有密碼同步化所需的正確使用者名稱、密碼和權限。
+      * 驗證 hello hello 在內部部署 Active Directory 連接器所使用的 Active Directory 網域服務 (AD DS) 帳戶具有 hello 正確的使用者名稱、 密碼和密碼同步處理所需的權限。
 
-下圖說明在單一網域、內部部署 Active Directory 拓撲上，執行此 Cmdlet 的結果：
+hello 下列圖表說明單一網域，在內部部署 Active Directory 拓樸的 hello cmdlet 的 hello 的結果：
 
 ![密碼同步化的診斷輸出](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/phsglobalgeneral.png)
 
-本節的其餘部分說明 Cmdlet 所傳回的特定結果和對應的問題。
+hello 本節其餘部分將說明特定 hello cmdlet 所傳回的結果和對應的問題。
 
 #### <a name="password-synchronization-feature-isnt-enabled"></a>密碼同步化功能未啟用
-如果您尚未使用 Azure AD Connect 精靈來啟用密碼同步化，則會傳回下列錯誤：
+如果您尚未使用 hello Azure AD Connect 精靈啟用密碼同步處理，會傳回下列錯誤 hello:
 
 ![密碼同步化未啟用](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/phsglobaldisabled.png)
 
 #### <a name="azure-ad-connect-server-is-in-staging-mode"></a>Azure AD Connect 伺服器處於預備模式
-如果 Azure AD Connect 伺服器處於預備模式，則會暫時停用密碼同步化，也會傳回下列錯誤：
+如果正在預備模式 hello Azure AD Connect 的伺服器，暫時停用密碼同步處理，並 hello 會傳回下列錯誤：
 
 ![Azure AD Connect 伺服器處於預備模式](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/phsglobalstaging.png)
 
 #### <a name="no-password-synchronization-heartbeat-events"></a>沒有密碼同步化活動訊號事件
-每個內部部署 Active Directory 連接器各有自己的密碼同步化通道。 當密碼同步化通道已建立，而且沒有任何密碼變更需要同步時，Windows 應用程式事件記錄下每隔 30 分鐘會產生一次活動訊號事件 (EventId 654)。 對於每個內部部署 Active Directory 連接器，此 Cmdlet 會搜尋過去三小時內對應的活動訊號事件。 如果找不到活動訊號事件，則會傳回下列錯誤：
+每個內部部署 Active Directory 連接器各有自己的密碼同步化通道。 當建立 hello 密碼同步處理通道，而且沒有任何同步處理的密碼變更 toobe 時，活動訊號事件 (EventId 654) 會產生一次每隔 30 分鐘在 hello Windows 應用程式事件記錄檔。 每個內部部署 Active Directory 連接器 hello 指令程式會搜尋 hello 中對應的活動訊號事件過去三小時內。 如果不找到任何活動訊號的事件，hello 會傳回下列錯誤：
 
 ![沒有密碼同步化活動訊號事件](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/phsglobalnoheartbeat.png)
 
 #### <a name="ad-ds-account-does-not-have-correct-permissions"></a>AD DS 帳戶沒有正確的權限
-如果內部部署 Active Directory 連接器用來同步密碼雜湊的 AD DS 帳戶沒有適當的權限，則會傳回下列錯誤：
+如果使用 hello hello AD DS 帳戶內部部署 Active Directory 連接器 toosynchronize 密碼雜湊並沒有 hello 適當的權限，hello 會傳回下列錯誤：
 
 ![不正確的認證](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/phsglobalaccountincorrectpermission.png)
 
 #### <a name="incorrect-ad-ds-account-username-or-password"></a>不正確的 AD DS 帳戶使用者名稱或密碼
-如果內部部署 Active Directory 連接器用來同步密碼雜湊的 AD DS 帳戶有不正確的使用者名稱或密碼，則會傳回下列錯誤：
+如果 hello AD DS 帳戶由 hello 在內部部署 Active Directory 連接器 toosynchronize 密碼雜湊不正確的使用者名稱或密碼，hello 會傳回下列錯誤：
 
 ![不正確的認證](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/phsglobalaccountincorrectcredential.png)
 
-## <a name="one-object-is-not-synchronizing-passwords-troubleshoot-by-using-the-diagnostic-cmdlet"></a>一個物件未同步密碼：使用診斷 Cmdlet 進行疑難排解
-您可以使用 `Invoke-ADSyncDiagnostics` Cmdlet 來判斷一個物件未同步密碼的原因。
+## <a name="one-object-is-not-synchronizing-passwords-troubleshoot-by-using-hello-diagnostic-cmdlet"></a>一個物件不會同步處理密碼： 使用 hello 診斷的指令程式來進行疑難排解
+您可以使用 hello `Invoke-ADSyncDiagnostics` cmdlet toodetermine 為什麼一個物件並未同步處理密碼。
 
 > [!NOTE]
-> `Invoke-ADSyncDiagnostics` Cmdlet 僅適用於 Azure AD Connect 1.1.524.0 版或更新版本。
+> hello `Invoke-ADSyncDiagnostics` cmdlet 是僅適用於 Azure AD Connect 版本 1.1.524.0 或更新版本。
 
-### <a name="run-the-diagnostics-cmdlet"></a>執行診斷 Cmdlet
-針對未同步任何密碼的問題進行疑難排解：
+### <a name="run-hello-diagnostics-cmdlet"></a>執行 hello 診斷 cmdlet
+會在同步處理不會將密碼 tootroubleshoot 問題：
 
-1. 在您的 Azure AD Connect 伺服器上，使用 [以系統管理員身分執行] 選項開啟新的 Windows PowerShell 工作階段。
+1. 開啟新的 Windows PowerShell 工作階段，在您 Azure AD Connect 的伺服器上以 hello**系統管理員身分執行**選項。
 
 2. 執行 `Set-ExecutionPolicy RemoteSigned` 或 `Set-ExecutionPolicy Unrestricted`。
 
 3. 執行 `Import-Module ADSyncDiagnostics`。
 
-4. 執行下列 Cmdlet：
+4. 執行下列 cmdlet 的 hello:
    ```
    Invoke-ADSyncDiagnostics -PasswordSync -ADConnectorName <Name-of-AD-Connector> -DistinguishedName <DistinguishedName-of-AD-object>
    ```
@@ -124,158 +124,158 @@ ms.lasthandoff: 08/18/2017
    Invoke-ADSyncDiagnostics -PasswordSync -ADConnectorName "contoso.com" -DistinguishedName "CN=TestUserCN=Users,DC=contoso,DC=com"
    ```
 
-### <a name="understand-the-results-of-the-cmdlet"></a>了解 Cmdlet 的結果
-診斷 Cmdlet 會執行下列檢查：
+### <a name="understand-hello-results-of-hello-cmdlet"></a>了解 hello cmdlet 的 hello 結果
+hello 診斷 cmdlet 會執行下列檢查 hello:
 
-* 在 Active Directory 連接器空間、Metaverse 和 Azure AD 連接器空間中，檢查 Active Directory 物件的狀態。
+* Hello hello Active Directory 連接器空間、 Metaverse 和 Azure 中的 hello Active Directory 物件狀態會檢查 AD 連接器空間。
 
-* 確認有已啟用密碼同步化的同步化規則，且已套用至 Active Directory 物件。
+* 驗證已啟用密碼同步處理的同步處理規則，並套用 toohello Active Directory 物件。
 
-* 試著擷取並顯示上次嘗試同步物件密碼的結果。
+* 嘗試 tooretrieve 並顯示 hello 的結果 hello 最後嘗試 toosynchronize hello 密碼 hello 物件。
 
-下圖說明針對單一物件的密碼同步化進行疑難排解時，執行此 Cmdlet 的結果：
+疑難排解密碼同步化單一物件時，hello 下列圖表說明 hello cmdlet 的 hello 結果：
 
 ![密碼同步化的診斷輸出 - 單一物件](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/phssingleobjectgeneral.png)
 
-本節的其餘部分說明 Cmdlet 所傳回的特定結果和對應的問題。
+hello 本節其餘部分將說明特定 hello cmdlet 所傳回的結果和對應的問題。
 
-#### <a name="the-active-directory-object-isnt-exported-to-azure-ad"></a>Active Directory 物件未匯出至 Azure AD
-因為 Azure AD 租用戶中沒有對應的物件，這個內部部署 Active Directory 帳戶的密碼同步化失敗。 傳回下列錯誤：
+#### <a name="hello-active-directory-object-isnt-exported-tooazure-ad"></a>hello Active Directory 物件不是匯出的 tooAzure AD
+這在內部部署 Active Directory 帳戶的密碼同步處理失敗，因為在 hello Azure AD 租用戶中沒有對應的物件。 會傳回下列錯誤 hello:
 
 ![遺漏 Azure AD 物件](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/phssingleobjectnotexported.png)
 
 #### <a name="user-has-a-temporary-password"></a>使用者有暫時密碼
-目前，Azure AD Connect 不支援與 Azure AD 同步暫時密碼。 如果對內部部署 Active Directory 使用者設定 [在下次登入時變更密碼] 選項，密碼就視為暫時。 傳回下列錯誤：
+目前，Azure AD Connect 不支援與 Azure AD 同步暫時密碼。 密碼會被視為 toobe 暫存如果 hello**在下次登入時變更密碼**hello 在內部部署 Active Directory 使用者上設定選項。 會傳回下列錯誤 hello:
 
 ![未匯出暫時密碼](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/phssingleobjecttemporarypassword.png)
 
-#### <a name="results-of-last-attempt-to-synchronize-password-arent-available"></a>上次嘗試同步密碼沒有結果
-根據預設，Azure AD Connect 會密碼同步化嘗試的結果保存七天。 如果選取的 Active Directory 物件沒有可用的結果，則會傳回下列警告：
+#### <a name="results-of-last-attempt-toosynchronize-password-arent-available"></a>上次嘗試 toosynchronize 密碼的結果，就無法使用
+根據預設，Azure AD Connect 儲存 hello 的有效期是七天的密碼同步處理嘗試的結果。 如果沒有可用的 hello 選取 Active Directory 物件的結果，則會傳回下列警告 hello:
 
 ![單一物件的診斷輸出 - 沒有密碼同步記錄](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/phssingleobjectnohistory.png)
 
 
 ## <a name="no-passwords-are-synchronized-manual-troubleshooting-steps"></a>未同步任何密碼：手動疑難排解步驟
-請依照下列步驟來判斷未同步任何密碼的原因：
+請遵循這些步驟 toodetermine，不會將密碼同步處理的原因：
 
-1. Connect 伺服器是否是處於[預備模式](active-directory-aadconnectsync-operations.md#staging-mode)？ 處於預備模式的伺服器不會同步處理任何密碼。
+1. 中的 hello 連接伺服器[預備模式](active-directory-aadconnectsync-operations.md#staging-mode)嗎？ 處於預備模式的伺服器不會同步處理任何密碼。
 
-2. 執行[取得密碼同步設定的狀態](#get-the-status-of-password-sync-settings)一節中的指令碼。 它可讓您大致了解密碼同步設定作業。  
+2. 執行 hello hello 指令碼[取得的密碼同步處理設定 hello 狀態](#get-the-status-of-password-sync-settings)> 一節。 它可讓您 hello 密碼同步處理組態的概觀。  
 
     ![來自密碼同步設定的 PowerShell 指令碼輸出](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/psverifyconfig.png)  
 
-3. 如果 Azure AD 中未啟用此功能，或未啟用同步通道狀態，請執行 Connect 安裝精靈。 選取 [自訂同步處理選項] 並取消選取密碼同步。這項變更會暫時停用此功能。 然後再次執行精靈並重新啟用密碼同步處理。再次執行指令碼，確認組態正確無誤。
+3. 如果 hello 功能未啟用 Azure AD 中，或未啟用 hello 同步通道狀態，執行 hello 連線安裝精靈。 選取 [自訂同步處理選項] 並取消選取密碼同步。這項變更暫時停用 hello 功能。 然後再次執行 hello 精靈並重新啟用密碼同步。執行 hello 指令碼一次 hello 組態的 tooverify 是否正確。
 
-4. 查看事件記錄中是否有錯誤。 尋找下列事件，這些事件會指出問題所在︰
-    * 來源：「目錄同步作業」識別碼：0、611、652、655。如果您看到這些事件，即表示有連線問題。 事件記錄訊息包含發生問題的樹系資訊。 如需詳細資訊，請參閱[連線問題](#connectivity problem)。
+4. 查看有錯誤的 hello 事件記錄檔。 尋找下列事件，則表示問題 hello:
+    * 來源：「目錄同步作業」識別碼：0、611、652、655。如果您看到這些事件，即表示有連線問題。 hello 事件記錄檔訊息包含您有問題的所在的樹系資訊。 如需詳細資訊，請參閱[連線問題](#connectivity problem)。
 
-5. 如果您沒有看到任何活動訊號，或任何其他操作都沒有作用，請執行[觸發所有密碼的完整同步](#trigger-a-full-sync-of-all-passwords)。 只執行一次指令碼。
+5. 如果您沒有看到任何活動訊號，或任何其他操作都沒有作用，請執行[觸發所有密碼的完整同步](#trigger-a-full-sync-of-all-passwords)。 Hello 指令碼只執行一次。
 
-6. 請參閱[針對一個未同步密碼的物件進行疑難排解](#one-object-is-not-synchronizing-passwords)一節。
+6. 請參閱 hello[疑難排解不同步處理密碼的一個物件](#one-object-is-not-synchronizing-passwords)> 一節。
 
 ### <a name="connectivity-problems"></a>連線問題
 
 您是否能夠與 Azure AD 連線？
 
-帳戶是否具備可讀取所有網域中密碼雜湊的必要權限？ 如果您使用 [快速設定] 來安裝 Connect，權限應該已經正確。 
+沒有 hello 帳戶具有必要的權限 tooread hello 密碼雜湊中的所有網域？ 如果您安裝連接使用 Express 設定時，應該已經正確 hello 權限。 
 
-如果您使用自訂安裝，請執行下列動作來手動設定權限：
+如果您使用自訂安裝，hello 手動設定權限執行 hello 下列動作：
     
-1. 若要尋找 Active Directory 連接器所使用的帳戶，請啟動 **Synchronization Service Manager**。 
+1. hello Active Directory 連接器，開始使用 toofind hello 帳戶**同步處理服務管理員**。 
  
-2. 移至 [連接器]，然後尋找您要進行疑難排解的內部部署 Active Directory 樹系。 
+2. 跳過**連接器**，然後搜尋您正在疑難排解的 hello 在內部部署 Active Directory 樹系。 
  
-3. 選取 [連接器]，然後按一下 [屬性]。 
+3. 選取 hello 連接器，然後按一下**屬性**。 
  
-4. 前往 [連線至 Active Directory 樹系] 。  
+4. 跳過**連接 tooActive Directory 樹系**。  
     
     ![Active Directory 連接器所使用的帳戶](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/connectoraccount.png)  
-    記下使用者名稱和帳戶所在的網域。
+    請注意 hello 使用者名稱和 hello hello 帳戶所在的網域。
     
-5. 啟動 **Active Directory 使用者和電腦**，然後確認您稍早發現的帳戶，已在樹系中所有網域的根目錄上設定下列權限：
+5. 啟動**Active Directory 使用者和電腦**，然後確認您稍早發現的 hello 帳戶具有設定所有的網域樹系中的 hello 根目錄的 hello 後續權限：
     * 複寫目錄變更
     * 複寫目錄變更 (全部)
 
-6. Azure AD Connect 是否可以連線到網域控制站？ 如果 Connect 伺服器無法連線到所有網域控制站，請設定 [只使用慣用的網域控制站]。  
+6. 為 hello 網域控制站連線到 Azure AD connect 嗎？ 如果 hello 連接伺服器無法連線 tooall 網域控制站，設定**只使用慣用的網域控制站**。  
     
     ![Active Directory 連接器所使用的網域控制站](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/preferreddc.png)  
     
-7. 返回 **Synchronization Service Manager**，並**設定目錄磁碟分割**。 
+7. 請返回太**同步處理服務管理員**和**設定目錄分割**。 
  
-8. 在 [選取目錄分割] 中選取您的網域，選取 [只使用慣用的網域控制站] 核取方塊，然後按一下 [設定]。 
+8. 選取您的網域中**選取目錄分割**，選取 hello**只使用慣用的網域控制站**核取方塊，然後**設定**。 
 
-9. 在清單中，輸入 Connect 應該用來進行密碼同步的網域控制站。此相同清單也用於匯入和匯出。 針對您的所有網域執行這些步驟。
+9. 在 [hello] 清單中，輸入 hello 網域控制站連接應該用於密碼同步處理。hello 匯入和匯出也使用相同的清單。 針對您的所有網域執行這些步驟。
 
-10. 如果此指令碼顯示沒有活動訊號，請執行[觸發所有密碼的完整同步](#trigger-a-full-sync-of-all-passwords)中的指令碼。
+10. 如果 hello 指令碼會顯示沒有任何活動訊號，請執行 hello 指令碼[觸發完整同步處理所有密碼](#trigger-a-full-sync-of-all-passwords)。
 
 ## <a name="one-object-is-not-synchronizing-passwords-manual-troubleshooting-steps"></a>一個物件未同步密碼：手動疑難排解步驟
-您可以藉由檢閱物件的狀態，輕鬆地疑難排解密碼同步處理問題。
+您可以輕鬆地疑難排解密碼同步處理的問題，藉由檢閱 hello 物件狀態。
 
-1. 在 **Active Directory 使用者和電腦**中，搜尋使用者，然後確認已清除 [使用者必須在下次登入時變更密碼] 核取方塊。  
+1. 在**Active Directory 使用者和電腦**搜尋 hello 使用者，然後確認該 hello**使用者必須變更密碼，在下次登入時**核取方塊。  
 
     ![Active Directory 生產力密碼](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/adprodpassword.png)  
 
-    如果選取此核取方塊，請要求使用者登入並變更密碼。 暫時密碼不會與 Azure AD 同步。
+    如果選取 [hello] 核取方塊，詢問 hello 使用者 toosign 中的，並變更 hello 密碼。 暫時密碼不會與 Azure AD 同步。
 
-2. 如果 Active Directory 中的密碼看起來正確，請在同步處理引擎中追蹤使用者。 從內部部署 Active Directory 到 Azure AD 追蹤使用者，就能知道物件是否有描述性錯誤。
+2. 如果在 Active Directory 中 hello 密碼正確無誤，請遵循 hello hello 同步處理引擎中的使用者。 由下列 hello 使用者從內部部署 Active Directory tooAzure AD，您可以看到 hello 物件上是否具描述性的錯誤。
 
-    a. 啟動 [Synchronization Service Manager](active-directory-aadconnectsync-service-manager-ui.md)。
+    a. 啟動 hello[同步處理服務管理員](active-directory-aadconnectsync-service-manager-ui.md)。
 
-    b.這是另一個 C# 主控台應用程式。 按一下 [連接器] 。
+    b. 按一下 [連接器] 。
 
-    c. 選取使用者所在的 **Active Directory 連接器**。
+    c. 選取 hello **Active Directory 連接器**hello 使用者所在的位置。
 
     d. 選取 [搜尋連接器空間] 。
 
-    e. 在 [範圍] 方塊中，選取 [DN 或錨點]，然後輸入您要進行疑難排解之使用者的完整 DN。
+    e. 在 hello**範圍**方塊中，選取**DN 或錨點**，然後輸入 hello 完整 DN hello 使用者您正在疑難排解。
 
     ![在連接器空間中依 DN 搜尋使用者](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/searchcs.png)  
 
-    f. 找出您要搜尋的使用者，然後按一下 [屬性] 來查看所有屬性。 如果該使用者不在搜尋結果中，請確認您的[篩選規則](active-directory-aadconnectsync-configure-filtering.md)，且務必執行[套用並驗證變更](active-directory-aadconnectsync-configure-filtering.md#apply-and-verify-changes)，如此 Connect 中才會顯示該使用者。
+    f. 找出您要尋找，然後按一下 hello 使用者**屬性**toosee 所有 hello 屬性。 如果 hello 使用者不是在 hello 搜尋結果，請確認您[篩選規則](active-directory-aadconnectsync-configure-filtering.md)，並確定您執行[套用並驗證變更](active-directory-aadconnectsync-configure-filtering.md#apply-and-verify-changes)的 hello 使用者 tooappear 連線中。
 
-    g. 若要查看物件在過去一週的密碼同步詳細資料，請按一下 [記錄]。  
+    g. 過去一週中，按一下 toosee hello 密碼同步處理物件的詳細資料 hello hello**記錄**。  
 
     ![物件記錄詳細資料](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/csobjectlog.png)  
 
-    如果物件記錄是空的，則表示 Azure AD Connect 無法從 Active Directory 讀取密碼雜湊。 請繼續進行[連線錯誤](#connectivity-errors)疑難排解。 如果您看到 [成功] 以外的任何其他值，請參考[密碼同步記錄](#password-sync-log)中的表格。
+    如果 hello 物件記錄是空的 Azure AD Connect 已從 Active Directory 無法 tooread hello 密碼雜湊。 請繼續進行[連線錯誤](#connectivity-errors)疑難排解。 如果您看到任何其他值比**成功**，toohello 資料表中的，請參閱[密碼同步處理記錄](#password-sync-log)。
 
-    h. 選取 [歷程] 索引標籤，並確認至少有一個同步規則的 [PasswordSync] 資料行是 **True**。 在預設組態中，同步規則的名稱是 **In from AD - User AccountEnabled**。  
+    h. 選取 hello**歷程**索引標籤，然後確認該至少一個同步處理規則中 hello **PasswordSync**資料行是**True**。 Hello 預設組態中，在 hello hello 同步處理規則名稱是**中 from AD-User AccountEnabled**。  
 
     ![使用者的相關歷程資訊](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/cspasswordsync.png)  
 
-    i. 按一下 [Metaverse 物件屬性] 來顯示使用者屬性清單。  
+    i. 按一下**Metaverse 物件屬性**toodisplay 的使用者屬性清單。  
 
     ![Metaverse 資訊](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/mvpasswordsync.png)  
 
-    確認沒有任何 **cloudFiltered** 屬性存在。 確定網域屬性 (domainFQDN 和 domainNetBios) 具有預期的值。
+    確認沒有任何 **cloudFiltered** 屬性存在。 請確定 hello 網域屬性 （domainFQDN 和 domainNetBios） 具有 hello 預期的值。
 
-    j. 按一下 [連接器] 索引標籤。請確定您看到已連線至內部部署 Active Directory 和 Azure AD 的連接器。
+    j. 按一下 hello**連接器** 索引標籤。請確定您看到連接器 tooboth 內部部署 Active Directory 與 Azure AD。
 
     ![Metaverse 資訊](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/mvconnectors.png)  
 
-    k. 選取代表 Azure AD 的資料列，按一下 [屬性]，然後按一下 [歷程] 索引標籤。連接器空間物件應該有一個輸出規則的 [PasswordSync] 資料行設為 **True**。 在預設組態中，同步規則的名稱是 **Out to AAD - User Join**。  
+    k. 選取 hello 資料列代表 Azure AD 中，按一下**屬性**，然後按一下hello**歷程** 索引標籤 hello 連接器空間物件中應該會有輸出規則 hello **PasswordSync**資料行集太**True**。 Hello 預設組態中，在 hello hello 同步處理規則名稱是**出 tooAAD-User Join**。  
 
     ![連接器空間物件屬性對話方塊](./media/active-directory-aadconnectsync-troubleshoot-password-synchronization/cspasswordsync2.png)  
 
 ### <a name="password-sync-log"></a>密碼同步記錄
-[狀態] 欄可以有下列值︰
+hello 狀態資料行可以有下列值的 hello:
 
 | 狀態 | 說明 |
 | --- | --- |
 | 成功 |已成功同步處理密碼。 |
-| FilteredByTarget |密碼會設為 [使用者必須在下次登入時變更密碼] 。 未同步處理密碼。 |
-| NoTargetConnection |Metaverse 或 Azure AD 連接器空間中沒有任何物件。 |
-| SourceConnectorNotPresent |在內部部署 Active Directory 連接器空間中找不到任何物件。 |
-| TargetNotExportedToDirectory |尚未匯出 Azure AD 連接器空間中的物件。 |
+| FilteredByTarget |密碼設定得**使用者必須變更密碼，在下次登入時**。 未同步處理密碼。 |
+| NoTargetConnection |Hello metaverse 或 hello Azure AD 連接器空間中任何物件。 |
+| SourceConnectorNotPresent |Hello 在內部部署 Active Directory 連接器空間中找不到物件。 |
+| TargetNotExportedToDirectory |hello Azure AD 連接器空間中的 hello 物件尚未匯出。 |
 | MigratedCheckDetailsForMoreInfo |記錄項目建立於組建 1.0.9125.0 之前，並且以其舊版的狀態顯示。 |
 | 錯誤 |服務傳回未知的錯誤。 |
-| 不明 |嘗試處理密碼雜湊的批次時發生錯誤。  |
+| 不明 |嘗試 tooprocess 密碼雜湊的批次時發生錯誤。  |
 | MissingAttribute |無法使用 Azure AD Domain Services 所需的特定屬性 (例如，Kerberos 雜湊)。 |
-| RetryRequestedByTarget |先前無法使用 Azure AD Domain Services 所需的特定屬性 (例如，Kerberos 雜湊)。 會嘗試重新同步處理使用者的密碼雜湊。 |
+| RetryRequestedByTarget |先前無法使用 Azure AD Domain Services 所需的特定屬性 (例如，Kerberos 雜湊)。 會嘗試 tooresynchronize hello 使用者密碼雜湊。 |
 
-## <a name="scripts-to-help-troubleshooting"></a>協助疑難排解的指令碼
+## <a name="scripts-toohelp-troubleshooting"></a>指令碼 toohelp 疑難排解
 
-### <a name="get-the-status-of-password-sync-settings"></a>取得密碼同步設定的狀態
+### <a name="get-hello-status-of-password-sync-settings"></a>取得密碼同步處理設定 hello 狀態
 ```
 Import-Module ADSync
 $connectors = Get-ADSyncConnector
@@ -314,7 +314,7 @@ if ($aadConnectors -ne $null -and $adConnectors -ne $null)
     }
     else
     {
-        Write-Warning "More than one Azure AD Connectors found. Please update the script to use the appropriate Connector."
+        Write-Warning "More than one Azure AD Connectors found. Please update hello script toouse hello appropriate Connector."
     }
 }
 Write-Host
@@ -331,9 +331,9 @@ Write-Host
 
 #### <a name="trigger-a-full-sync-of-all-passwords"></a>觸發所有密碼的完整同步處理
 > [!NOTE]
-> 只執行一次這個指令碼。 如果需要執行多次，則表示問題出在其他地方。 若要針對問題進行疑難排解，請連絡 Microsoft 支援服務。
+> 只執行一次這個指令碼。 如果您需要 toorun，它一次以上，其他項目是 hello 問題。 tootroubleshoot hello 問題，請連絡 Microsoft 支援。
 
-您可以使用下列指令碼來觸發所有密碼的完整同步︰
+您可以使用下列指令碼的 hello 觸發完整同步處理所有密碼：
 
 ```
 $adConnector = "<CASE SENSITIVE AD CONNECTOR NAME>"

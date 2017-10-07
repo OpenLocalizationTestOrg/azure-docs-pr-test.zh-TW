@@ -1,6 +1,6 @@
 ---
-title: "如何透過 WebJobs SDK 使用 Azure 佇列儲存體"
-description: "了解如何透過 WebJobs SDK 使用 Azure 佇列儲存體。 建立和刪除查詢、插入、查看、取得和刪除佇列訊息等。"
+title: "aaaHow toouse hello WebJobs SDK 使用 Azure 佇列儲存體"
+description: "了解如何 toouse Azure 佇列儲存體與 hello WebJobs SDK。 建立和刪除查詢、插入、查看、取得和刪除佇列訊息等。"
 services: app-service\web, storage
 documentationcenter: .net
 author: ggailey777
@@ -14,19 +14,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/01/2016
 ms.author: glenga
-ms.openlocfilehash: 63b987a2c9471f2929b8d2dd605323910d2ad43b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 49f844436b0453489800b2762a5c7dc30b9db805
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-queue-storage-with-the-webjobs-sdk"></a>如何透過 WebJobs SDK 使用 Azure 佇列儲存體
+# <a name="how-toouse-azure-queue-storage-with-hello-webjobs-sdk"></a>如何 toouse Azure 佇列儲存體與 hello WebJobs SDK
 ## <a name="overview"></a>概觀
-本指南提供了 C# 程式碼範例，示範如何透過 Azure 佇列儲存體服務使用 Azure WebJobs SDK 1.x 版。
+本指南提供 C# 程式碼範例，示範如何 toouse hello Azure WebJobs SDK 版本 1.x 以 hello Azure 佇列儲存體服務。
 
-本指南假設您知道[如何使用指向您儲存體帳戶的連接字串，在 Visual Studio 中建立 WebJob 專案](websites-dotnet-webjobs-sdk-get-started.md)，或是使用指向[多個儲存體帳戶](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs)的連接字串來建立該專案。
+hello 指南假設您知道[toocreate WebJob 專案在 Visual Studio 中使用連接字串該點 tooyour 儲存體帳戶的方式](websites-dotnet-webjobs-sdk-get-started.md)或太[多個儲存體帳戶](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs)。
 
-大部分的程式碼片段只會顯示函數，不會顯示建立 `JobHost` 物件的程式碼，如此範例所示：
+大部分的 hello 程式碼片段只會顯示函式，不 hello 程式碼會建立 hello`JobHost`物件，如此範例所示：
 
         static void Main(string[] args)
         {
@@ -34,76 +34,76 @@ ms.lasthandoff: 07/11/2017
             host.RunAndBlock();
         }
 
-本指南包含下列主題：
+hello 指南包含下列主題中的 hello:
 
-* [如何在接收到佇列訊息時觸發函數](#trigger)
+* [如何 tootrigger 接收佇列訊息時的函式](#trigger)
   * 字串佇列訊息
   * POCO 佇列訊息
   * Async 函數
-  * 適用於 QueueTrigger 屬性的型別
+  * 適用於類型 hello QueueTrigger 屬性
   * 輪詢演算法
   * 多個執行個體
   * 平行執行
   * 取得佇列或佇列訊息中繼資料
   * 正常關機
-* [如何在處理佇列訊息時建立佇列訊息](#createqueue)
+* [Toocreate 佇列處理的佇列訊息時訊息的方式](#createqueue)
   * 字串佇列訊息
   * POCO 佇列訊息
   * 建立多個訊息或使用非同步函式
-  * 適用於 Queue 屬性的型別
-  * 在函式主體中使用 WebJobs SDK 屬性
-* [如何在處理佇列訊息時讀取及寫入 Blob](#blobs)
+  * 適用於類型 hello 佇列屬性
+  * 使用 WebJobs SDK hello 函式主體中的屬性
+* [Tooread 和寫入 blob 處理的佇列訊息時的方式](#blobs)
   * 字串佇列訊息
   * POCO 佇列訊息
-  * 適用於 Blob 屬性的型別
-* [如何處理有害訊息](#poison)
+  * 適用於類型 hello Blob 屬性
+* [如何 toohandle 有害訊息](#poison)
   * 自動處理有害訊息
   * 手動處理有害訊息
-* [如何設定組態選項](#config)
+* [如何 tooset 組態選項](#config)
   * 在程式碼中設定 SDK 連接字串
   * 設定 QueueTrigger 設定
   * 在程式碼中設定 WebJobs SDK 建構函式參數的值
-* [如何手動觸發函數](#manual)
-* [如何寫入記錄檔](#logs)
-* [如何處理錯誤及設定逾時](#errors)
+* [如何 tootrigger 函式以手動方式](#manual)
+* [Toowrite 的記錄檔](#logs)
+* [如何 toohandle 錯誤和設定的逾時](#errors)
 * [後續步驟](#nextsteps)
 
-## <a id="trigger"></a> 如何在接收到佇列訊息時觸發函數
-若要撰寫 WebJobs SDK 在收到佇列訊息時所呼叫的函數，請使用 `QueueTrigger` 屬性。 屬性建構函式採用字串參數，來指定要輪詢的佇列名稱。 您也可以 [動態設定佇列名稱](#config)。
+## <a id="trigger"></a>如何 tootrigger 接收佇列訊息時的函式
+toowrite hello WebJobs SDK 的函式呼叫接收佇列訊息時，請使用 hello`QueueTrigger`屬性。 hello 屬性建構函式接受字串參數，指定 hello 佇列 toopoll hello 名稱。 您也可以[動態設定 hello 佇列名稱](#config)。
 
 ### <a name="string-queue-messages"></a>字串佇列訊息
-在下列範例中，佇列包含字串訊息，以便 套用 `QueueTrigger` 至名為 `logMessage` 的字串參數，其中包含佇列訊息的內容。 函數會 [將記錄訊息寫入儀表板](#logs)。
+在下列範例的 hello，hello 佇列包含字串訊息，因此`QueueTrigger`是套用的 tooa 字串參數名稱為`logMessage`包含 hello hello 佇列訊息內容。 hello 函式[寫入記錄檔訊息 toohello 儀表板](#logs)。
 
         public static void ProcessQueueMessage([QueueTrigger("logqueue")] string logMessage, TextWriter logger)
         {
             logger.WriteLine(logMessage);
         }
 
-除了 `string` 之外，參數也可以是一個位元組陣列、一個 `CloudQueueMessage` 物件，或一個您定義的 POCO。
+除了`string`，hello 參數可以是位元組陣列，`CloudQueueMessage`物件或您定義 POCO。
 
 ### <a name="poco-plain-old-clr-objecthttpenwikipediaorgwikiplainoldclrobject-queue-messages"></a>POCO ( [純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) 佇列訊息
-在下列範例中，佇列訊息會包含 `BlobInformation` 物件的 JSON，其中包含 `BlobName` 屬性。 SDK 會自動將物件還原序列化。
+在下列範例的 hello，hello 佇列訊息包含的 JSON`BlobInformation`物件，其中包括`BlobName`屬性。 hello SDK 會自動將 hello 物件還原序列化。
 
         public static void WriteLogPOCO([QueueTrigger("logqueue")] BlobInformation blobInfo, TextWriter logger)
         {
-            logger.WriteLine("Queue message refers to blob: " + blobInfo.BlobName);
+            logger.WriteLine("Queue message refers tooblob: " + blobInfo.BlobName);
         }
 
-SDK 會使用 [Newtonsoft.Json NuGet](http://www.nuget.org/packages/Newtonsoft.Json) 封裝來序列化和還原序列化訊息。 如果您在不使用 WebJobs SDK 的程式中建立佇列訊息，您可以撰寫和下面範例類似的程式碼來建立 SDK 能夠剖析的 POCO 佇列訊息。
+hello SDK 會使用 hello [Newtonsoft.Json NuGet 套件](http://www.nuget.org/packages/Newtonsoft.Json)tooserialize 和還原序列化訊息。 如果您未使用 hello WebJobs SDK 的程式中建立訊息排入佇列，您可以撰寫程式碼，如下列範例 toocreate POCO 佇列訊息的 hello SDK 可以剖析該 hello。
 
         BlobInformation blobInfo = new BlobInformation() { BlobName = "log.txt" };
         var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(blobInfo));
         logQueue.AddMessage(queueMessage);
 
 ### <a name="async-functions"></a>Async 函數
-下面的非同步函式會 [將記錄檔寫入儀表板](#logs)。
+遵循 async 函式的 hello[寫入記錄檔 toohello 儀表板](#logs)。
 
         public async static Task ProcessQueueMessageAsync([QueueTrigger("logqueue")] string logMessage, TextWriter logger)
         {
             await logger.WriteLineAsync(logMessage);
         }
 
-Async 函數可能需要取 [消語彙基元](http://www.asp.net/mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4#CancelToken)，如下列範例所示 (會複製 Blob)。 (如需 `queueTrigger` 預留位置的說明，請參閱 [Blobs](#blobs) 一節。)
+非同步函式可能需要[取消語彙基元](http://www.asp.net/mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4#CancelToken)，如下列範例複製 blob 的 hello 所示。 (如需說明的 hello`queueTrigger`預留位置，請參閱 hello [Blob](#blobs) > 一節。)
 
         public async static Task ProcessQueueMessageAsyncCancellationToken(
             [QueueTrigger("blobcopyqueue")] string blobName,
@@ -114,8 +114,8 @@ Async 函數可能需要取 [消語彙基元](http://www.asp.net/mvc/overview/pe
             await blobInput.CopyToAsync(blobOutput, 4096, token);
         }
 
-### <a id="qtattributetypes"></a> 適用於 QueueTrigger 屬性的型別
-您可以將 `QueueTrigger` 與下列型別搭配使用：
+### <a id="qtattributetypes"></a>適用於類型 hello QueueTrigger 屬性
+您可以使用`QueueTrigger`以 hello 下列類型：
 
 * `string`
 * 序列化為 JSON 的 POCO 型別
@@ -123,20 +123,20 @@ Async 函數可能需要取 [消語彙基元](http://www.asp.net/mvc/overview/pe
 * `CloudQueueMessage`
 
 ### <a id="polling"></a> 輪詢演算法
-SDK 會實作隨機指數型倒退演算法，以降低閒置佇列輪詢對儲存體交易成本的影響。  找到訊息時，SDK 會等待兩秒，然後檢查的另一個訊息；當找不到任何訊息時，它會等候大約四秒，然後再試一次。 連續嘗試取得佇列訊息失敗後，等候時間會持續增加，直到它到達等待時間上限 (預設值為一分鐘)。 [您可以設定等待時間上限](#config)。
+hello SDK 實作閒置佇列輪詢對於儲存體交易成本的隨機指數型撤退演算法 tooreduce hello 的效果。  Hello SDK 找到訊息時，會等待兩秒，並且接著會檢查其他訊息;找到沒有訊息時它會等候大約四個秒後再試一次。 後續的嘗試失敗的 tooget 佇列訊息之後, hello 等候時間持續 tooincrease 直到達到 hello 最長等待時間的預設值 tooone 分鐘。 [hello 最長等待時間是可設定](#config)。
 
 ### <a id="instances"></a> 多個執行個體
-如果您的 Web 應用程式是在多個執行個體上執行，則會有一個連續的 WebJob 在每部機器上執行，而每部機器將會等待觸發程序，才嘗試執行函式。 WebJobs SDK 佇列觸發程序會自動防止函式處理佇列訊息多次；不需將函式撰寫成等冪函式。 不過，如果您想要確保在即使有多個主 Web 應用程式執行個體的情況下，仍然只有一個函式執行個體會執行，則您可以使用 `Singleton` 屬性。
+如果您的 web 應用程式在多個執行個體上執行，在每部電腦上，執行連續的 WebJob 和每一部機器將會等候觸發程序，並嘗試 toorun 函式。 hello WebJobs SDK 佇列觸發程序會自動防止函式處理佇列訊息多次;函式沒有 toobe 寫入 toobe 具有等冪性。 不過，如果您想 tooensure 函式只能有一個執行個體執行，即使有多個執行個體的 hello 主機 web 應用程式，您可以使用 hello`Singleton`屬性。
 
 ### <a id="parallel"></a> 平行執行
-如果您有多個函數在不同的佇列上接聽，則同時接收到訊息時，SDK 會以平行方式呼叫它們。
+如果您有多個函式在不同的佇列上接聽，hello SDK 會呼叫它們以平行方式同時接收訊息時。
 
-收到單一佇列的多個訊息時也是如此。 根據預設，SDK 會一次取得一批 (16 個) 佇列訊息，並執行以平行方式處理它們的函數。 [您可以設定批次大小](#config)。 當要處理的訊息數目減少到批次大小 (該批訊息數目) 的一半時，SDK 就會取得另一批訊息並開始處理那些訊息。 因此，每個函數並行處理之訊息的上限數目為批次大小 (該批訊息數目) 的 1.5 倍。 這項限制個別套用至具有 `QueueTrigger` 屬性的每個函式。
+hello 也是如此單一佇列接收多個訊息時。 根據預設，hello SDK 取得 16 的佇列訊息的批次，一次，並執行以平行方式處理它們的 hello 函式。 [hello 批次大小是可設定](#config)。 當正在處理的 hello 數目取得 toohalf hello 批次大小的清單時，hello SDK 取得另一個批次，並開始處理這些訊息。 因此 hello 的並行處理每個函式的訊息數目上限是一倍半 hello 批次大小。 這項限制會分別套用 tooeach 函式具有`QueueTrigger`屬性。
 
-如果您不想要平行執行在單一佇列上收到的訊息，您可以將批次大小設定為 1。 另請參閱 **Azure WebJobs SDK 1.1.0 RTM** 中的 [更充分掌控佇列處理](https://azure.microsoft.com/blog/azure-webjobs-sdk-1-1-0-rtm/)。
+如果您不想為上一個佇列接收訊息的平行執行，您可以設定 hello 批次大小 too1。 另請參閱 **Azure WebJobs SDK 1.1.0 RTM** 中的 [更充分掌控佇列處理](https://azure.microsoft.com/blog/azure-webjobs-sdk-1-1-0-rtm/)。
 
 ### <a id="queuemetadata"></a>取得佇列或佇列訊息中繼資料
-您可以透過新增參數至方法簽章來取得下列訊息屬性：
+您可以取得下列訊息屬性加入參數 toohello 方法簽章的 hello:
 
 * `DateTimeOffset` expirationTime
 * `DateTimeOffset` insertionTime
@@ -146,9 +146,9 @@ SDK 會實作隨機指數型倒退演算法，以降低閒置佇列輪詢對儲�
 * `string` popReceipt
 * `int` dequeueCount
 
-如果您想要直接使用 Azure 儲存體 API，您也可以加入 `CloudStorageAccount` 參數。
+如果您想 toowork 直接與 hello Azure 儲存體 API，您也可以加入`CloudStorageAccount`參數。
 
-下列範例會將此中繼資料全部寫入至 INFO 應用程式記錄檔。 在範例中，logMessage 和 queueTrigger 包含佇列訊息的內容。
+hello 下列範例會將所有寫入此中繼資料 tooan 資訊應用程式記錄檔。 在 hello 範例中，則為 logMessage 和 queueTrigger 包含 hello hello 佇列訊息內容。
 
         public static void WriteLog([QueueTrigger("logqueue")] string logMessage,
             DateTimeOffset expirationTime,
@@ -175,7 +175,7 @@ SDK 會實作隨機指數型倒退演算法，以降低閒置佇列輪詢對儲�
                 queueTrigger);
         }
 
-以下是範例程式碼所寫入的範例記錄：
+以下是範例記錄檔寫入 hello 範例程式碼：
 
         logMessage=Hello world!
         expirationTime=10/14/2014 10:31:04 PM +00:00
@@ -188,9 +188,9 @@ SDK 會實作隨機指數型倒退演算法，以降低閒置佇列輪詢對儲�
         queueTrigger=Hello world!
 
 ### <a id="graceful"></a>順利關機
-在連續 WebJob 中執行的函數可以接受 `CancellationToken` 參數，該參數可讓作業系統在 WebJob 即將終止時通知函數。 您可以使用此通知來確保函數不會在讓資料維持不一致狀態的情況下意外終止。
+在連續 web 工作執行的函式可以接受`CancellationToken`參數可讓 hello 作業系統 toonotify hello 函式時 hello WebJob 即將 toobe 終止。 您可以使用此通知 toomake 確定 hello 函式不會意外終止，使資料處於不一致狀態的方式。
 
-下列範例示範如何透過函數檢查即將終止的 WebJob。
+下列範例會示範如何 hello toocheck 即將發生的 WebJob 終止函式中。
 
     public static void GracefulShutdownDemo(
                 [QueueTrigger("inputqueue")] string inputText,
@@ -209,15 +209,15 @@ SDK 會實作隨機指數型倒退演算法，以降低閒置佇列輪詢對儲�
         }
     }
 
-**注意：** 儀表板可能不會正確顯示已關閉之函數的狀態與輸出。
+**注意：** hello 儀表板，可能無法正確顯示 hello 狀態和已關閉的函式的輸出。
 
 如需詳細資訊，請參閱 [WebJobs 正常關機](http://blog.amitapple.com/post/2014/05/webjobs-graceful-shutdown/#.VCt1GXl0wpR)。   
 
-## <a id="createqueue"></a> 如何在處理佇列訊息時建立佇列訊息
-若要編寫會建立新佇列訊息的函數，請使用 `Queue` 屬性。 就像 `QueueTrigger`一樣，您可以用字串的方式傳入佇列名稱，或者您可以 [動態設定佇列名稱](#config)。
+## <a id="createqueue"></a>Toocreate 佇列處理的佇列訊息時訊息的方式
+toowrite 函式會建立新的佇列訊息，使用 hello`Queue`屬性。 像`QueueTrigger`、 您要傳入 hello 佇列名稱做為字串，或您可以[動態設定 hello 佇列名稱](#config)。
 
 ### <a name="string-queue-messages"></a>字串佇列訊息
-下面的非同步程式碼範例會在名稱為 "outputqueue" 的佇列中建立一個新的佇列訊息，其內容與名為 "inputqueue" 的佇列中收到的佇列訊息相同。 (如需非同步函式，請使用 `IAsyncCollector<T>`，如本節後續內容所示。)
+hello 下列非非同步程式碼範例會建立新的佇列訊息，名為"outputqueue"hello 佇列中以內容為 hello 佇列訊息相同收到 hello 佇列名為"inputqueue 」 中的 hello。 (如需非同步函式，請使用 `IAsyncCollector<T>`，如本節後續內容所示。)
 
         public static void CreateQueueMessage(
             [QueueTrigger("inputqueue")] string queueMessage,
@@ -227,7 +227,7 @@ SDK 會實作隨機指數型倒退演算法，以降低閒置佇列輪詢對儲�
         }
 
 ### <a name="poco-plain-old-clr-objecthttpenwikipediaorgwikiplainoldclrobject-queue-messages"></a>POCO ( [純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) 佇列訊息
-若要建立包含 POCO 物件 (而非字串) 的佇列訊息，請將 POCO 做為輸出參數傳送至 `Queue` 屬性建構函式。
+toocreate 包含 POCO，而不是字串時，傳遞 hello POCO 的佇列訊息型別作為輸出參數 toohello`Queue`屬性建構函式。
 
         public static void CreateQueueMessage(
             [QueueTrigger("inputqueue")] BlobInformation blobInfoInput,
@@ -236,10 +236,10 @@ SDK 會實作隨機指數型倒退演算法，以降低閒置佇列輪詢對儲�
             blobInfoOutput = blobInfoInput;
         }
 
-SDK 會自動將物件序列化為 JSON。 即使物件是空值，也一律會建立佇列訊息。
+hello SDK 自動序列化 hello 物件 tooJSON。 一律建立佇列訊息，即使 hello 物件為 null。
 
 ### <a name="create-multiple-messages-or-in-async-functions"></a>建立多個訊息或使用非同步函式
-若要建立多個訊息，請將輸出佇列的參數型別設為 `ICollector<T>` 或 `IAsyncCollector<T>`，如下面範例所示。
+toocreate 多則訊息，請 hello 輸出佇列的 hello 參數類型`ICollector<T>`或`IAsyncCollector<T>`hello 下列範例所示。
 
         public static void CreateQueueMessages(
             [QueueTrigger("inputqueue")] string queueMessage,
@@ -251,23 +251,23 @@ SDK 會自動將物件序列化為 JSON。 即使物件是空值，也一律會�
             outputQueueMessage.Add(queueMessage + "2");
         }
 
-呼叫 `Add` 方法時，就會立即建立每個佇列訊息。
+每個佇列的訊息建立時立即 hello`Add`方法呼叫。
 
-### <a name="types-that-the-queue-attribute-works-with"></a>適用於 Queue 屬性的型別
-您可以在下列參數型別使用 `Queue` 屬性：
+### <a name="types-that-hello-queue-attribute-works-with"></a>型別適用於該 hello 佇列屬性
+您可以使用 hello `Queue` hello 下列參數類型的屬性：
 
-* `out string` (函式結束時，如果參數值非 Null，就會建立佇列訊息)
+* `out string`（如果參數值為非 null，hello 函式結束時，會建立佇列訊息）
 * `out byte[]` (作用就像是 `string`)
 * `out CloudQueueMessage` (作用就像是 `string`)
-* `out POCO` (可序列化型別，當函式結束時，如果參數為 Null，就會使用 Null 物件建立訊息)
+* `out POCO`（可序列化的型別，如果會建立訊息的 null 物件 hello 參數為 null，hello 函式結束時）
 * `ICollector`
 * `IAsyncCollector`
-* `CloudQueue` (用於直接使用 Azure 儲存體 API 手動建立訊息)
+* `CloudQueue`（適用於建立使用手動 hello Azure 儲存體 API 直接的訊息）
 
-### <a id="ibinder"></a>在函式主體中使用 WebJobs SDK 屬性
-如果您需要先在函式中執行部分工作，然後再使用 WebJobs SDK 屬性，例如 `Queue`、`Blob`  或 `Table`，您可以使用 `IBinder` 介面。
+### <a id="ibinder"></a>使用 WebJobs SDK hello 函式主體中的屬性
+如果您需要 toodo 一些適用於您的函式之前使用 WebJobs SDK 屬性，例如`Queue`， `Blob`，或`Table`，您可以使用 hello`IBinder`介面。
 
-下列範例會使用輸入佇列訊息，並在輸出佇列中建立含有相同內容的新訊息。 輸出佇列名稱會由函數主體中的程式碼設定。
+hello 下列範例會採用輸入的佇列訊息，並以相同的內容中輸出佇列的 hello 建立新的訊息。 hello 輸出佇列名稱是由 hello hello 函式主體中的程式碼設定。
 
         public static void CreateQueueMessage(
             [QueueTrigger("inputqueue")] string queueMessage,
@@ -279,15 +279,15 @@ SDK 會自動將物件序列化為 JSON。 即使物件是空值，也一律會�
             outputQueue.AddMessage(new CloudQueueMessage(queueMessage));
         }
 
-`IBinder` 介面也能與 `Table` 和 `Blob` 屬性搭配使用。
+hello`IBinder`介面也可以搭配 hello`Table`和`Blob`屬性。
 
-## <a id="blobs"></a> 如何在處理佇列訊息時讀取及寫入 Blob 與表格
-`Blob` 與 `Table` 屬性可讓您讀取和寫入 Blob 與資料表。 本節中的範例適用於 Blob。 如需示範如何在建立或更新 Blob 時觸發程序的程式碼範例，請參閱[如何透過 WebJobs SDK 使用 Azure Blob 儲存體](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)，若需讀取和撰寫資料表的程式碼範例，請參閱[如何透過 WebJobs SDK 使用 Azure 資料表儲存體](websites-dotnet-webjobs-sdk-storage-tables-how-to.md)。
+## <a id="blobs"></a>Tooread 和寫入的 blob 和資料表處理佇列訊息時
+hello`Blob`和`Table`屬性 tooread 可讓您和寫入 blob 和資料表。 本節中的 hello 範例套用 tooblobs。 程式碼範例，示範如何 tootrigger 處理當建立或更新的 blob 時，請參閱[toouse Azure blob 儲存體與 hello WebJobs SDK 的方式](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)，以及讀取和寫入資料表的程式碼範例，請參閱[如何 toouse Azure 資料表儲存體與 hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-tables-how-to.md)。
 
 ### <a name="string-queue-messages-triggering-blob-operations"></a>觸發 Blob 作業的字串佇列訊息
-對於包含字串的佇列訊息，您可以在 `Blob` 屬性的 `blobPath` 參數中使用 `queueTrigger` 預留位置，它包含了訊息的內容。
+包含字串，佇列訊息`queueTrigger`是的預留位置，您可以使用在 hello`Blob`屬性的`blobPath`包含 hello hello 訊息內容的參數。
 
-下列範例使用 `Stream` 物件來讀取及寫入 Blob。 佇列訊息提供位於 textblobs 容器中 Blob 的名稱。 會在相同的容器中建立 Blob 的複本，並在其名稱中附加 "-new"。
+hello 下列範例會使用`Stream`物件 tooread 和寫入 blob。 hello 佇列訊息是 blob 的 hello 位於 hello textblobs 容器中名稱。 一份 hello blob"-新 「 附加的 toohello 名稱中建立 hello 相同容器。
 
         public static void ProcessQueueMessage(
             [QueueTrigger("blobcopyqueue")] string blobName,
@@ -297,11 +297,11 @@ SDK 會自動將物件序列化為 JSON。 即使物件是空值，也一律會�
             blobInput.CopyTo(blobOutput, 4096);
         }
 
-`Blob` 屬性建構函式採用 `blobPath` 參數來指定容器與 Blob 名稱。 如需此預留位置的詳細資訊，請參閱 [如何透過 WebJobs SDK 使用 Azure Blob 儲存體](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)。
+hello`Blob`屬性建構函式會採用`blobPath`指定 hello 容器和 blob 名稱的參數。 如需這個預留位置的詳細資訊，請參閱[如何 toouse Azure blob 儲存體與 hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)，
 
-當這個屬性裝飾 `Stream` 物件，另一個建構函式參數會將 `FileAccess` 模式指定為讀取、 寫入或讀取/寫入。
+當 hello 屬性裝飾`Stream`物件，另一個建構函式參數指定 hello`FileAccess`為讀取、 寫入或讀取/寫入模式。
 
-下列範例使用 `CloudBlockBlob` 物件來刪除 Blob。 佇列訊息就是 Blob 的名稱。
+hello 下列範例會使用`CloudBlockBlob`物件 toodelete blob。 hello 佇列訊息是 hello hello blob 名稱。
 
         public static void DeleteBlob(
             [QueueTrigger("deleteblobqueue")] string blobName,
@@ -311,9 +311,9 @@ SDK 會自動將物件序列化為 JSON。 即使物件是空值，也一律會�
         }
 
 ### <a id="pocoblobs"></a> POCO ( [純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) 佇列訊息
-對於在佇列訊息中儲存為 JSON 的 POCO 物件，您可以在 `Queue` 屬性的 `blobPath` 參數中使用指定物件屬性的預留位置。 您也可以使用 [佇列中繼資料屬性名稱](#queuemetadata) 做為預留位置。
+POCO，以 JSON 格式儲存在 hello 佇列訊息，您可以使用該名稱在 hello 的 hello 物件內容的預留位置`Queue`屬性的`blobPath`參數。 您也可以使用 [佇列中繼資料屬性名稱](#queuemetadata) 做為預留位置。
 
-下列範例會將 Blob 複製到具有不同副檔名的新 Blob。 佇列訊息就是包含 `BlobName` 與 `BlobNameWithoutExtension` 屬性的 `BlobInformation` 物件。 在 `Blob` 屬性的 Blob 路徑中使用屬性名稱做為預留位置。
+hello 下列範例會複製不同的擴充功能的 blob tooa 新 blob。 hello 佇列訊息是`BlobInformation`物件，其中包含`BlobName`和`BlobNameWithoutExtension`屬性。 hello 屬性名稱作為 hello blob 路徑中的預留位置 hello`Blob`屬性。
 
         public static void CopyBlobPOCO(
             [QueueTrigger("copyblobqueue")] BlobInformation blobInfo,
@@ -323,38 +323,38 @@ SDK 會自動將物件序列化為 JSON。 即使物件是空值，也一律會�
             blobInput.CopyTo(blobOutput, 4096);
         }
 
-SDK 會使用 [Newtonsoft.Json NuGet](http://www.nuget.org/packages/Newtonsoft.Json) 封裝來序列化和還原序列化訊息。 如果您在不使用 WebJobs SDK 的程式中建立佇列訊息，您可以撰寫和下面範例類似的程式碼來建立 SDK 能夠剖析的 POCO 佇列訊息。
+hello SDK 會使用 hello [Newtonsoft.Json NuGet 套件](http://www.nuget.org/packages/Newtonsoft.Json)tooserialize 和還原序列化訊息。 如果您未使用 hello WebJobs SDK 的程式中建立訊息排入佇列，您可以撰寫程式碼，如下列範例 toocreate POCO 佇列訊息的 hello SDK 可以剖析該 hello。
 
         BlobInformation blobInfo = new BlobInformation() { BlobName = "boot.log", BlobNameWithoutExtension = "boot" };
         var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(blobInfo));
         logQueue.AddMessage(queueMessage);
 
-如果您需要先在函數中執行部分工作，然後再將 Blob 繫結至物件，您可以在函數主體中使用屬性， [如之前所示的佇列屬性](#ibinder)。
+如果您需要函式中的某些工作的 toodo 繫結 blob tooan 物件之前，您可以使用 hello hello 函式，主體中的 hello 屬性[如上所示為 hello 佇列屬性](#ibinder)。
 
-### <a id="blobattributetypes"></a> 可以與 Blob 屬性搭配使用的型別
-`Blob` 屬性能與下列型別搭配使用：
+### <a id="blobattributetypes"></a>您可以使用 hello 類型 Blob 屬性
+hello`Blob`屬性可用以 hello 下列類型：
 
-* `Stream` (讀取或寫入，可使用 FileAccess 建構函式參數指定)
+* `Stream`（讀取或寫入使用 hello FileAccess 建構函式參數所指定）
 * `TextReader`
 * `TextWriter`
 * `string` (讀取)
-* `out string` (寫入；當函式傳回時，如果字串參數非 Null，就只會建立 Blob)
+* `out string`（撰寫; hello 字串參數為非 null，當 hello 函式傳回時，才會建立 blob）
 * POCO (讀取)
-* out POCO (寫入；一律會建立 Blob，當函式傳回時，如果 POCO 參數為 Null，就建立為 Null 物件)
+* POCO 出撰寫; 一律建立的 blob (如果 POCO 參數為 null，hello 函式傳回時，會建立為 null 的物件）
 * `CloudBlobStream` (寫入)
 * `ICloudBlob` (讀取或寫入)
 * `CloudBlockBlob` (讀取或寫入)
 * `CloudPageBlob` (讀取或寫入)
 
-## <a id="poison"></a> 如何處理有害訊息
-內容會導致函數失敗的訊息稱為「有害訊息」 。 當函數失敗時不會刪除佇列訊息，最後會再度挑選到該訊息，造成重複循環。 SDK 可在有限的反覆次數之後自動中斷循環，或者您可以手動中斷循環。
+## <a id="poison"></a>如何 toohandle 有害訊息
+訊息內容會導致函式 toofail 稱為*有害訊息*。 Hello 函式失敗時，不會刪除 hello 佇列訊息，且最終會收取一次，導致 hello 循環 toobe 重複。 hello SDK 可以自動中斷 hello 循環之後有限數目的反覆項目，或手動進行。
 
 ### <a name="automatic-poison-message-handling"></a>自動處理有害訊息
-SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試失敗，訊息便會移到有害佇列中。 [您可以設定重試次數上限](#config)。
+hello SDK 會呼叫向上 too5 時間 tooprocess 佇列訊息的函式。 如果 hello 第五個再試一次失敗，hello 訊息是移動的 tooa 有害佇列。 [hello 重試次數上限是可設定](#config)。
 
-有害佇列名為 *{originalqueuename}*-poison。 您可以撰寫函數，透過記錄或傳送通知表示需要手動處理，來處理有害佇列中的訊息。
+hello 有害佇列名為*{originalqueuename}*-有害。 您可以撰寫函式 tooprocess 訊息從 hello 有害佇列記錄或傳送通知，需要進行手動處理。
 
-在下列範例中，當佇列訊息包含不存在的 Blob 名稱時， `CopyBlob` 函式將會失敗。 發生時，就會從 copyblobqueue 佇列將訊息移至 copyblobqueue-poison 佇列。 `ProcessPoisonMessage` 接著會記錄有害訊息。
+在下列範例 hello hello`CopyBlob`佇列訊息包含 hello 名稱不存在的 blob 時，函式將會失敗。 當發生這種情況時，hello 訊息移動 hello copyblobqueue 佇列 toohello copyblobqueue 有害佇列中。 hello`ProcessPoisonMessage`則記錄檔 hello 有害訊息。
 
         public static void CopyBlob(
             [QueueTrigger("copyblobqueue")] string blobName,
@@ -367,15 +367,15 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
         public static void ProcessPoisonMessage(
             [QueueTrigger("copyblobqueue-poison")] string blobName, TextWriter logger)
         {
-            logger.WriteLine("Failed to copy blob, name=" + blobName);
+            logger.WriteLine("Failed toocopy blob, name=" + blobName);
         }
 
-下圖顯示這些函數處理有害訊息之後的主控台輸出。
+hello 如下圖所示這些函式的主控台的輸出處理有害訊息時。
 
 ![主控台輸出中的有害訊息處理](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/poison.png)
 
 ### <a name="manual-poison-message-handling"></a>手動處理有害訊息
-您可以將名為 `dequeueCount` 的 `int` 參數加入到函式中，來取得訊息已被挑選來處理的次數。 然後您可以檢查函數程式碼中的清除佇列計數，並在數目超出臨界值時自行執行有害訊息處理，如下面的範例所示。
+您可以新增取得 hello 取用訊息的次數處理`int`參數名為`dequeueCount`tooyour 函式。 接著，您可以核取 hello 清除佇列計數在函式程式碼和執行您自己有害訊息處理時所 hello 超過臨界值，如 hello 下列範例所示。
 
         public static void CopyBlob(
             [QueueTrigger("copyblobqueue")] string blobName, int dequeueCount,
@@ -385,7 +385,7 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
         {
             if (dequeueCount > 3)
             {
-                logger.WriteLine("Failed to copy blob, name=" + blobName);
+                logger.WriteLine("Failed toocopy blob, name=" + blobName);
             }
             else
             {
@@ -393,15 +393,15 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
             }
         }
 
-## <a id="config"></a> 如何設定組態選項
-您可以使用 `JobHostConfiguration` 型別來設定下列組態選項：
+## <a id="config"></a>如何 tooset 組態選項
+您可以使用 hello`JobHostConfiguration`類型 tooset hello 下列組態選項：
 
-* 在程式碼中設定 SDK 連接字串。
+* 程式碼中設定 hello SDK 連接字串。
 * 設定 `QueueTrigger` 設定，例如清除佇列計數上限。
 * 從組態取得佇列名稱。
 
 ### <a id="setconnstr"></a>在程式碼中設定 SDK 連接字串
-在程式碼中設定 SDK 連接字串可讓您在組態檔或環境變數中使用您自己的連接字串名稱，如下面範例所示。
+程式碼中設定 hello SDK 連接字串可讓您 toouse 自己組態檔或環境變數中的連接字串名稱 hello 下列範例所示。
 
         static void Main(string[] args)
         {
@@ -423,13 +423,13 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
         }
 
 ### <a id="configqueue"></a>設定 QueueTrigger 設定
-您可以配置會套用至佇列訊息處理的下列設定：
+您可以設定下列設定適用於 toohello 佇列的訊息處理 hello:
 
-* 挑選以同時平行執行的佇列訊息數目上限 (預設值為 16)。
-* 將佇列訊息傳送到有害佇列之前的重試次數上限 (預設值為 5)。
-* 佇列為空的時，要再次輪詢前的等待時間上限 (預設值為 1 分鐘)。
+* hello 同時平行執行的 toobe 會收取的佇列訊息的最大數目 （預設值為 16）。
+* hello 佇列訊息傳送 tooa 有害佇列之前的重試次數上限 （預設值為 5）。
+* hello 最長等待時間之前再次輪詢佇列空的時 （預設值為 1 分鐘）。
 
-下列範例示範如何配置這些設定：
+下列範例會示範如何 hello tooconfigure 這些設定：
 
         static void Main(string[] args)
         {
@@ -442,18 +442,18 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
         }
 
 ### <a id="setnamesincode"></a>在程式碼中設定 WebJobs SDK 建構函式參數的值
-有時候您不想要採取硬式編碼的方式，而是在程式碼中指定佇列名稱、Blob 名稱或容器或資料表名稱。 例如，您可能想要在組態檔或環境變數中指定 `QueueTrigger` 的佇列名稱。
+有時候您會想 toospecify 佇列名稱、 blob 名稱或容器，或資料表名稱在程式碼，而不是硬式編碼它。 例如，您可能會想 toospecify hello 佇列名稱`QueueTrigger`組態檔或環境變數中。
 
-方法是將 `NameResolver` 物件傳入 `JobHostConfiguration` 型別。 在 WebJobs SDK 屬性建構函式參數中包含以百分比 (%) 符號括住的特殊預留位置，然後 `NameResolver` 程式碼會指定實際要用以取代那些預留位置的值。
+您可以執行此動作，傳遞`NameResolver`物件 toohello`JobHostConfiguration`型別。 您加入特殊的預留位置包圍百分比 （%） 符號 WebJobs SDK 屬性建構函式參數，而您`NameResolver`程式碼會指定用來取代這些預留位置 hello 實際值 toobe。
 
-例如，假設您想要在測試環境中使用名為 logqueuetest 的佇列，和在生產環境中使用名為 logqueueprod 的佇列。 您不想使用硬式編碼的佇列名稱，而想要在會有實際佇列名稱的 `appSettings` 集合中指定項目的名稱。 如果 `appSettings` 索引鍵為 logqueue，您的函式看起來可能像下面的範例。
+例如，假設您想要 toouse 佇列名為 logqueuetest hello 測試環境和生產環境中的一個具名的 logqueueprod。 而不是硬式編碼的佇列名稱，您會想 toospecify hello hello 中的項目名稱`appSettings`必須 hello 實際的佇列名稱的集合。 如果 hello`appSettings`索引鍵是 logqueue、 您的函式可能看起來像下列範例中的 hello。
 
         public static void WriteLog([QueueTrigger("%logqueue%")] string logMessage)
         {
             Console.WriteLine(logMessage);
         }
 
-`NameResolver` 類別接著可以從 `appSettings` 取得佇列名稱，如下面範例所示：
+您`NameResolver`類別無法再取得 hello 佇列名稱，從`appSettings`hello 下列範例所示：
 
         public class QueueNameResolver : INameResolver
         {
@@ -463,7 +463,7 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
             }
         }
 
-您將 `NameResolver` 類別傳入 `JobHost` 物件，如下面範例所示。
+您傳遞 hello`NameResolver`類別中 toohello`JobHost`物件 hello 下列範例所示。
 
         static void Main(string[] args)
         {
@@ -473,10 +473,10 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
             host.RunAndBlock();
         }
 
-**注意：** 每次呼叫函式時，都會解析佇列、資料表及 Blob 名稱，但只有在應用程式啟動時才會解析 Blob 容器名稱。 您無法在執行工作時，變更 Blob 容器名稱。
+**注意：**佇列、 資料表和 blob 名稱，會解析每次呼叫函式，但 hello 應用程式啟動時，才解析 blob 容器名稱。 Hello 作業執行時，您無法變更 blob 容器名稱。
 
-## <a id="manual"></a>如何手動觸發函數
-若要手動觸發函式，請在函式的 `JobHost` 物件與 `NoAutomaticTrigger` 屬性上使用 `Call` 或 `CallAsync` 方法，如下列範例所示。
+## <a id="manual"></a>如何 tootrigger 函式以手動方式
+tootrigger 函式以手動方式，使用 hello`Call`或`CallAsync`方法上 hello`JobHost`物件和 hello `NoAutomaticTrigger` hello 下列範例所示，在 hello 函式，屬性。
 
         public class Program
         {
@@ -497,29 +497,29 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
             }
         }
 
-## <a id="logs"></a>如何寫入記錄檔
-儀表板會在兩個地方顯示記錄檔：WebJob 的頁面與特定 WebJob 引動過程的頁面。
+## <a id="logs"></a>Toowrite 的記錄檔
+hello 儀表板會顯示記錄檔中兩個地方： hello 分頁的 hello WebJob 及在特定的 WebJob 呼叫 hello 頁面。
 
 ![WebJob 頁面中的記錄檔](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardapplogs.png)
 
 ![函式引動過程頁面中的記錄檔](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardlogs.png)
 
-您在函式或在 `Main()` 方法中所呼叫主控台方法的輸出會顯示在 WebJob 的 [儀表板] 頁面，而不是特定方法引動過程的頁面。 您從方法簽章的參數所取得 TextWriter 物件的輸出會顯示在方法引動過程的 [儀表板] 頁面。
+從主控台的方法，讓您呼叫的函式中或在 hello 輸出`Main()`方法會出現，而非在特定的方法引動過程的 hello 頁面中的 hello WebJob hello 儀表板頁面。 從您自參數取得您的方法簽章中的 hello TextWriter 物件的輸出會出現在方法引動過程的 hello 儀表板頁面。
 
-因為主控台屬於單一執行緒，無法同時執行許多工作函式，所以主控台輸出無法連結到特定的方法引動過程。 這就是 SDK 提供的每個函式引動過程都使用自己專屬的記錄寫入器物件的原因。
+主控台輸出無法連結的 tooa 特定的方法引動過程，因為 hello 主控台時，單一執行緒，可能會在 hello 執行許多工作函式相同的時間。 這就是為什麼 hello SDK 提供與它自己唯一的記錄寫入器物件的每個函式引動過程。
 
-若要寫入[應用程式追蹤記錄](web-sites-dotnet-troubleshoot-visual-studio.md#logsoverview)，請使用 `Console.Out` (建立標示為 INFO 的記錄檔) 與 `Console.Error` (建立標示為 ERROR 的記錄檔)。 替代方法是使用 [Trace 或 TraceSource](http://blogs.msdn.com/b/mcsuksoldev/archive/2014/09/04/adding-trace-to-azure-web-sites-and-web-jobs.aspx)，除了資訊與錯誤之外，還能提供詳細資訊、警告及嚴重層級。 視您設定 Azure 網頁應用程式的方式而定，應用程式追蹤記錄檔會出現在網頁應用程式記錄檔、Azure 資料表或 Azure Blob 中。 所有主控台輸出的應用程式記錄檔裡最近的 100 筆記錄也同樣會顯示在 WebJob 的 [儀表板] 頁面，而不是函式引動過程的頁面。
+toowrite[應用程式的追蹤記錄檔](web-sites-dotnet-troubleshoot-visual-studio.md#logsoverview)，使用`Console.Out`（建立標示為資訊的記錄檔） 和`Console.Error`（建立標示為錯誤記錄檔）。 替代方式是 toouse[追蹤或 TraceSource](http://blogs.msdn.com/b/mcsuksoldev/archive/2014/09/04/adding-trace-to-azure-web-sites-and-web-jobs.aspx)、 提供詳細資訊，警告和嚴重層級中加入 tooInfo 和錯誤。 應用程式的追蹤記錄檔會出現在 hello web 應用程式記錄檔，Azure 資料表，或 Azure blob，根據您設定您的 Azure web 應用程式的方式。 如為 true 的所有主控台輸出，hello 最近 100 應用程式記錄檔也會出現在 hello WebJob，不 hello 頁面函式的引動過程的 hello 儀表板頁面。
 
-只有當程式是以 Azure WebJob 執行時，主控台輸出才會顯示在儀表板，而不是在本機或在某些其他環境中執行時。
+主控台輸出會出現在 hello 儀表板才 hello 程式執行 Azure WebJob，除非 hello 程式在本機執行或某些其他環境中。
 
-停用針對高輸送量的儀表板記錄。 根據預設，SDK 會將記錄寫入儲存體，而且在處理許多訊息時，這項活動可能會降低效能。 若要停用記錄，請將儀表板連接字串設定為 null，如下列範例所示。
+停用針對高輸送量的儀表板記錄。 根據預設，hello SDK 寫入記錄檔 toostorage，而且這項活動可能會降低效能，當您要處理許多訊息。 記錄、 toodisable 設定 hello 儀表板連線字串 toonull hello 下列範例所示。
 
         JobHostConfiguration config = new JobHostConfiguration();       
         config.DashboardConnectionString = "";        
         JobHost host = new JobHost(config);
         host.RunAndBlock();
 
-下列範例示範寫入記錄檔的數種方式：
+hello 下列範例顯示數種方式 toowrite 記錄檔：
 
         public static void WriteLog(
             [QueueTrigger("logqueue")] string logMessage,
@@ -531,50 +531,50 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
             logger.WriteLine("TextWriter - " + logMessage);
         }
 
-在 WebJobs SDK 儀表板中，當您移到某個特定函式引動過程的頁面並按一下 [切換輸出] 時，就會顯示來自 `TextWriter` 物件的輸出：
+Hello WebJobs SDK 儀表板，在 hello 輸出 hello`TextWriter`物件顯示當您移至特定的 toohello 頁面函式引動過程，並按一下**切換輸出**:
 
 ![按一下函式引動過程連結](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardinvocations.png)
 
 ![函式引動過程頁面中的記錄檔](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardlogs.png)
 
-在 WebJobs SDK 儀表板中，當您移到 WebJob (而非函式引動過程) 的頁面並按一下 [切換輸出] 時，則會顯示主控台輸出最近的 100 行。
+Hello WebJobs SDK 儀表板，hello 最近 100 行主控台的輸出顯示出當您移至 toohello 頁面 hello WebJob （不適用於 hello 函式引動過程），然後按一下**切換輸出**。
 
 ![按一下切換輸出](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardapplogs.png)
 
-在連續的 WebJob 中，應用程式記錄檔顯示在 Web 應用程式檔案系統中的 /data/jobs/continuous/*{webjobname}*/job_log.txt。
+在連續的 WebJob，應用程式記錄檔中顯示/資料/工作/連續/*{webjobname}*/job_log.txt hello web 應用程式檔案系統中的。
 
         [09/26/2014 21:01:13 > 491e54: INFO] Console.Write - Hello world!
         [09/26/2014 21:01:13 > 491e54: ERR ] Console.Error - Hello world!
         [09/26/2014 21:01:13 > 491e54: INFO] Console.Out - Hello world!
 
-在 Azure Blob 中，應用程式記錄檔看起來如下所示：2014-09-26T21:01:13,Information,contosoadsnew,491e54,635473620738373502,0,17404,17,Console.Write - Hello world!, 2014-09-26T21:01:13,Error,contosoadsnew,491e54,635473620738373502,0,17404,19,Console.Error - Hello world!, 2014-09-26T21:01:13,Information,contosoadsnew,491e54,635473620738529920,0,17404,17,Console.Out - Hello world!,
+在 Azure blob hello 應用程式記錄檔，看起來像這樣： 2014年-09-26T21:01:13,Information,contosoadsnew,491e54,635473620738373502,0,17404,17,Console.Write-Hello world ！、 2014年-09-26T21:01:13，錯誤，contosoadsnew，491e54，635473620738373502,0,17404,19,Console.Error-Hello world ！、 2014年-09-26T21:01:13,Information,contosoadsnew,491e54,635473620738529920,0,17404,17,Console.Out-Hello world ！，
 
-而在 Azure 資料表中，`Console.Out` 和 `Console.Error` 記錄檔看起來像這樣：
+在 Azure 資料表 hello`Console.Out`和`Console.Error`記錄看起來像這樣：
 
 ![在資料表中的資訊記錄檔](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/tableinfo.png)
 
 ![在資料表中的錯誤記錄檔](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/tableerror.png)
 
-如果您想要插入自己的記錄器，請參閱 [這個範例](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Program.cs)。
+如果您希望 tooplug 自己記錄器，請參閱[本例](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Program.cs)。
 
-## <a id="errors"></a>如何處理錯誤及設定逾時
-WebJobs SDK 也包含 [Timeout](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs) 屬性，您可以使用此屬性讓函式在未於指定的時間長度內完成時取消執行。 而如果您想要在於一段指定的時間內有太多錯誤發生時引發警示，則可以使用 `ErrorTrigger` 屬性。 以下是一個 [ErrorTrigger 範例](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Error-Monitoring)。
+## <a id="errors"></a>如何 toohandle 錯誤和設定的逾時
+hello WebJobs SDK 也包含[逾時](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs)屬性，您可以使用的 toocause 函式 toobe 取消，如果沒有指定的一段時間內完成。 如果您想要 tooraise 警示會在一段指定時間內進行太多錯誤，您可以使用 hello`ErrorTrigger`屬性。 以下是一個 [ErrorTrigger 範例](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Error-Monitoring)。
 
 ```
 public static void ErrorMonitor(
 [ErrorTrigger("00:01:00", 1)] TraceFilter filter, TextWriter log,
 [SendGrid(
-    To = "admin@emailaddress.com",
+    too= "admin@emailaddress.com",
     Subject = "Error!")]
  SendGridMessage message)
 {
-    // log last 5 detailed errors to the Dashboard
+    // log last 5 detailed errors toohello Dashboard
    log.WriteLine(filter.GetDetailedMessage(5));
    message.Text = filter.GetDetailedMessage(1);
 }
 ```
 
-您也可以藉由使用組態參數 (可以是應用程式設定或環境變數名稱)，動態停用和啟用函式來控制是否可以觸發這些函式。 如需範例程式碼，請參閱 [WebJobs SDK 範例儲存機制](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs)中的 `Disable` 屬性。
+您也會動態地可停用並啟用函式 toocontrol 是否它們可以觸發，藉由使用應用程式設定或環境變數名稱可能是組態參數。 範例程式碼，請參閱 hello`Disable`屬性[hello WebJobs SDK 範例儲存機制](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs)。
 
 ## <a id="nextsteps"></a> 後續步驟
-本指南提供的程式碼範例示範如何處理使用 Azure 佇列的常見案例。 如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱 [Azure WebJobs 建議使用的資源](http://go.microsoft.com/fwlink/?linkid=390226)。
+本指南提供的程式碼範例會顯示如何以使用 Azure 佇列 toohandle 常見案例。 如需有關如何 toouse Azure WebJobs 和 hello WebJobs SDK，請參閱[Azure WebJobs 建議資源](http://go.microsoft.com/fwlink/?linkid=390226)。

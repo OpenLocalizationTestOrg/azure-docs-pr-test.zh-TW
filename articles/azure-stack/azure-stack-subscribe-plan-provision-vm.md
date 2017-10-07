@@ -1,6 +1,6 @@
 ---
-title: "訂閱供應項目 | Microsoft Docs"
-description: "以租用戶身分了解如何訂閱供應項目。"
+title: "aaaSubscribe tooan 優惠 |Microsoft 文件"
+description: "租用戶，了解如何 toosubscribe tooan 提供。"
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 7/03/2017
 ms.author: erikje
-ms.openlocfilehash: 3cd87ebe9827249d32f15b5de0ad8521d0282c47
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b9e340d2030ceeaad0667cb4183aae0a34f3336a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="subscribe-to-an-offer"></a>訂閱優惠
+# <a name="subscribe-tooan-offer"></a>訂閱 tooan 供應項目
 既然您已經[建立供應項目](azure-stack-create-offer.md)，接著應測試您的租用戶是否可以建立訂用帳戶。
 
-1. [登入](azure-stack-connect-azure-stack.md) Azure Stack 租用戶入口網站 (https://portal.local.azurestack.external)，然後按一下 [取得訂用帳戶]。
+1. [登入](azure-stack-connect-azure-stack.md)toohello Azure 堆疊租用戶入口網站 (https://portal.local.azurestack.external)，然後按一下**取得訂用帳戶**。
 
    ![](media/azure-stack-subscribe-plan-provision-vm/image01.png)
-2. 在 [顯示名稱] 欄位中，輸入您的訂用帳戶名稱、按一下 [供應項目]、按一下 [選擇供應項目] 刀鋒視窗中的其中一個供應項目，然後按一下 [建立]。
+2. 在 hello**顯示名稱**欄位中，輸入您的訂用帳戶的名稱，按一下**提供**，按一下其中一個 hello hello 優惠**選擇優惠**刀鋒視窗中，然後按一下 **建立**。
 
    ![](media/azure-stack-subscribe-plan-provision-vm/image02.png)
-3. 若要檢視您建立的訂用帳戶，請按一下 [更多服務]、按一下 [訂用帳戶]，然後按一下您的新訂用帳戶。  
+3. 建立 tooview hello 訂用帳戶中，按一下**更多服務**，按一下 **訂閱**，然後按一下 新的訂用。  
 
-訂閱供應項目之後，請重新整理入口網站以查看哪些服務是新訂用帳戶的一部分。
+訂閱 tooan 供應項目之後，重新整理 hello 入口 toosee 哪些服務為 hello 新訂閱的一部分。
 
-## <a name="subscribe-to-an-add-on-plan"></a>訂閱附加方案
-如果供應項目有附加方案，租用戶可以隨時將附加方案加入至其訂用帳戶。  
+## <a name="subscribe-tooan-add-on-plan"></a>訂閱 tooan 附加元件計劃
+如果 hello 供應項目有附加元件計劃，租用戶可以將其加入 tootheir 訂用帳戶在任何時間。  
 
-1. 在租用戶入口網站中，選取 [更多服務] > [訂用帳戶]。
+1. 在 hello 租用戶入口網站中，選取 **更多服務** > **訂閱**。
 
-2. 按一下訂用帳戶 > [新增方案] 按鈕，然後選取附加方案。
+2. Hello 訂用帳戶上按一下 >**加入方案**按鈕，然後選取 hello 附加元件計劃。
 
 
 

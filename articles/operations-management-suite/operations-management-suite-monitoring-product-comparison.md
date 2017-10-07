@@ -1,6 +1,6 @@
 ---
-title: "Microsoft 監視產品比較 | Microsoft Docs"
-description: "Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  本文會說明 OMS 中包含的各種服務，並提供其詳細內容的連結。"
+title: "監視產品比較 aaaMicrosoft |Microsoft 文件"
+description: "Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  這份文件識別包含在 OMS 中的 hello 不同服務，並提供連結 tootheir 詳細內容。"
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,157 +14,157 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/27/2016
 ms.author: bwren
-ms.openlocfilehash: b4201f105a87b0a41059c061eb37fb35d4514e02
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 61144a298fe73c35181070d552c41b96fc445097
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoft-monitoring-product-comparison"></a>Microsoft 監視產品比較
-本文根據產品架構、監視資源的邏輯，以及執行所收集資料分析的方式，提供 System Center Operations Manager (SCOM) 與 Operations Management Suite (OMS) 中 Log Analytics 之間的比較。  這是為了讓您對其差異和相對優點有基本的了解。  
+本文章提供 System Center Operations Manager (SCOM) 與記錄分析 Operations Management Suite (OMS) 之間的比較，其架構、 它們如何監視資源，以及執行 hello 資料分析的 hello 邏輯方面它們收集。  這是 toogive 您基本的了解其差異和相對優勢。  
 
 ## <a name="basic-architecture"></a>基本架構
 ### <a name="system-center-operations-manager"></a>System Center Operations Manager
-所有 SCOM 元件都已安裝在您的資料中心。  [代理程式已安裝](http://technet.microsoft.com/library/hh551142.aspx) 於 SCOM 所管理的 Windows 和 Linux 機器上。  代理程式會連接到與 SCOM 資料庫和資料倉儲通訊的 [管理伺服器](https://technet.microsoft.com/library/hh301922.aspx) 。  代理程式依賴網域驗證來連接到管理伺服器。  受信任網域以外的代理程式可以執行憑證驗證或連接到 [閘道伺服器](https://technet.microsoft.com/library/hh212823.aspx)。
+所有 SCOM 元件都已安裝在您的資料中心。  [代理程式已安裝](http://technet.microsoft.com/library/hh551142.aspx) 於 SCOM 所管理的 Windows 和 Linux 機器上。  代理程式連接太[管理伺服器](https://technet.microsoft.com/library/hh301922.aspx)與 hello SCOM 資料庫和資料倉儲的通訊。  代理程式會依賴網域驗證 tooconnect toomanagement 伺服器。  受信任網域以外可以執行憑證驗證，或連線 tooa[閘道伺服器](https://technet.microsoft.com/library/hh212823.aspx)。
 
-SCOM 需要兩個 SQL Database，一個用於作業資料，另一個做為資料倉儲，以支援報告和資料分析。  [報告伺服器](https://technet.microsoft.com/library/hh298611.aspx) 會執行 SQL Reporting 服務以報告資料倉儲中的資料。 
+SCOM 需要兩個 SQL 資料庫，一個用於作業中的資料，另一個資料倉儲 toosupport 報告和資料分析。  A [Reporting Server](https://technet.microsoft.com/library/hh298611.aspx)資料上執行 SQL Reporting Services tooreport，從 hello 資料倉儲。 
 
-SCOM 可以使用 [Azure](https://www.microsoft.com/download/details.aspx?id=38414)、[Office 365](https://www.microsoft.com/download/details.aspx?id=43708) 和 [AWS](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/AWSManagementPack.html)等產品的管理組件來監視雲端資源。  這些管理組件會使用一或多個本機代理程式做為 Proxy，以便探索雲端資源及執行工作流程來測量其效能和可用性。  Proxy 代理程式也用來 [監視網路裝置](https://technet.microsoft.com/library/hh212935.aspx) 和其他外部資源。
+SCOM 可以使用 [Azure](https://www.microsoft.com/download/details.aspx?id=38414)、[Office 365](https://www.microsoft.com/download/details.aspx?id=43708) 和 [AWS](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/AWSManagementPack.html)等產品的管理組件來監視雲端資源。  這些管理組件使用一個或多個本機代理程式，為探索 proxy 雲端資源和執行工作流程 toomeasure，其效能和可用性。  Proxy 代理程式也會使用太[監視網路裝置](https://technet.microsoft.com/library/hh212935.aspx)和其他外部資源。
 
-Operations 主控台是連接到其中一部管理伺服器的 Windows 應用程式，可讓系統管理員檢視及分析所收集的資料並設定 SCOM 環境。  Web 式主控台可以裝載於任何 IIS 伺服器上並透過瀏覽器提供資料分析。
+hello Operations 主控台是連線 tooone hello 管理伺服器和允許 hello 管理員 tooview 及分析收集到的資料，並設定 hello SCOM 環境的 Windows 應用程式。  Web 式主控台可以裝載於任何 IIS 伺服器上並透過瀏覽器提供資料分析。
 
 ![SCOM 架構](media/operations-management-suite-monitoring-product-comparison/scom-architecture.png)
 
 ### <a name="log-analytics"></a>Log Analytics
-大部分的 OMS 元件位於 Azure 雲端，因此您可以用最低的成本與系統管理投入來進行部署和管理。  Log Analytics 收集的所有資料都會儲存在 OMS 儲存機制中。
+大部分的 OMS 元件是 hello Azure 雲端中，因此您可以部署和管理具有最低成本和系統管理工作。  記錄分析所收集的所有資料都會都儲存在 hello OMS 儲存機制。
 
 Log Analytics 也可以從下列三個來源收集資料：
 
-* 執行 Windows 和 [Microsoft Monitoring Agent (MMA)](https://technet.microsoft.com/library/mt484108.aspx) 或 Linux 和[適用於 Linux 的 Operations Management Suite 代理程式](https://technet.microsoft.com/library/mt622052.aspx)的實體和虛擬機器。  這些電腦可以是 Azure 或其他雲端中的內部部署或虛擬機器。
+* 實體和虛擬機器執行 Windows 和 hello [Microsoft Monitoring Agent (MMA)](https://technet.microsoft.com/library/mt484108.aspx)或 Linux 和 hello [Operations Management Suite Agent for Linux](https://technet.microsoft.com/library/mt622052.aspx)。  這些電腦可以是 Azure 或其他雲端中的內部部署或虛擬機器。
 * Azure 儲存體帳戶，其具有 Azure 背景工作角色、Web 角色或虛擬機器所收集的 [Azure 診斷](../cloud-services/cloud-services-dotnet-diagnostics.md) 資料。
-* [SCOM 管理群組的連線](https://technet.microsoft.com/library/mt484104.aspx)。  在此組態中，代理程式會與 SCOM 管理伺服器通訊，而這些伺服器會將資料傳遞至 SCOM 資料庫，而後資料會傳遞至 OMS 資料存放區。
-  系統管理員會分析所收集的資料，並透過裝載於 Azure 並可從任何瀏覽器存取的 OMS 入口網站設定 Log Analytics。  用來存取此資料的行動應用程式適用於標準平台。
+* [連接 tooa SCOM 管理群組](https://technet.microsoft.com/library/mt484104.aspx)。  在此組態中，與 SCOM 管理伺服器傳送嗨資料 toohello SCOM 資料庫，然後傳遞 toohello OMS 資料存放區 hello 代理程式進行通訊。
+  系統管理員會分析收集到的資料，並設定 hello OMS 入口網站，其會裝載於 Azure，而且可以從任何瀏覽器存取記錄分析。  行動裝置應用程式 tooaccess 這項資料可供 hello 標準平台。
 
 ![Log Analytics 架構](media/operations-management-suite-monitoring-product-comparison/log-analytics-architecture.png)
 
 ### <a name="integrating-scom-and-log-analytics"></a>整合 SCOM 與 Log Analytics
-SCOM 使用做為 Log Analytics 的資料來源時，您可以在混合式監視環境中利用這兩種產品的功能。  除了繼續從 SCOM 執行管理組件以外，您可以透過 OMS 即將管理的 Operations 主控台來設定現有的 SCOM 代理程式，  
-已連線 SCOM 管理群組的資料會利用下列四個方法之一傳遞至 Log Analytics︰
+記錄分析使用 SCOM 做為資料來源時，您可以利用兩個產品在混合式監視環境中的 hello 功能。  您可以設定現有的 SCOM 代理程式，透過 hello Operations 主控台 toobe OMS 所管理，除了 toocontinuing toorun 管理組件從 SCOM。  
+從已連線的 SCOM 管理群組的資料傳送 tooLog 分析使用四種方法之一：
 
-* 代理程式會收集事件和效能資料並傳遞至 SCOM。  而後 SCOM 中的管理伺服器會將資料傳遞至 Log Analytics。
-* 某些事件 (例如 IIS 記錄檔和安全性事件) 會繼續從代理程式直接傳遞至 Log Analytics。
-* 有些解決方案會將其他軟體傳遞至代理程式，或要求即將安裝的軟體收集其他資料。  此資料通常會直接傳送到 Log Analytics。
-* 有些解決方案會直接從 SCOM 管理伺服器收集不是源自代理程式的資料。  例如， [警示管理解決方案](https://technet.microsoft.com/library/mt484092.aspx) 會在警示建立後，從 SCOM 收集警示。
+* 事件和效能資料，會由 hello 代理程式收集並傳遞 tooSCOM。  SCOM 中的管理伺服器然後傳送 hello 資料 tooLog 分析。
+* 某些事件，例如 IIS 記錄檔和安全性事件繼續 toobe 直接 tooLog 分析會從傳送嗨代理程式。
+* 某些解決方案將會提供額外的軟體 toohello 代理程式或軟體必須安裝的 toocollect 額外的資料。  這項資料將通常會傳送直接 tooLog 分析。
+* 部分解決方案會直接從 SCOM 管理伺服器，不是來自 hello 代理程式收集資料。  例如，hello[警示管理解決方案](https://technet.microsoft.com/library/mt484092.aspx)它們建立之後，從 SCOM 收集警示。
 
 ## <a name="monitoring-logic"></a>監視邏輯
-SCOM 和 Log Analytics 使用從代理程式收集的類似資料，但它們定義和實作其資料收集邏輯的方式，以及它們分析所收集資料的方式基本上有所差異。
+SCOM 和記錄分析與類似從代理程式收集的資料搭配使用，但有基本差異，其定義和實作資料收集其邏輯的方式和它們如何分析其所收集的 hello 資料中。
 
 ### <a name="operations-manager"></a>Operations Manager
-SCOM 的監視邏輯是在 [管理組件](https://technet.microsoft.com/library/hh457558.aspx) 中實作，而這些組件包含可供探索要監視之元件、測量這些元件之健康狀態，以及收集要分析之資料的邏輯。  監視資料可與收集事件或效能計數器一樣簡單，或可以使用指令碼中實作的複雜邏輯。  除了硬體和網路裝置以外，包含完整監視的管理組件可用於各種 [Microsoft 和協力廠商應用程式](http://go.microsoft.com/fwlink/?LinkId=82105) 。  您可以針對自訂應用程式 [撰寫您自己的管理組件](http://aka.ms/mpauthor) 。
+監視邏輯中實作 SCOM[管理組件](https://technet.microsoft.com/library/hh457558.aspx)其中包含的邏輯來探索元件 toomonitor，測量 hello 健全狀況的這些元件，並收集資料 tooanalyze。  監視資料可與收集事件或效能計數器一樣簡單，或可以使用指令碼中實作的複雜邏輯。  包含完整的監視的管理組件可供各種不同的[Microsoft 和協力廠商應用程式](http://go.microsoft.com/fwlink/?LinkId=82105)加法 toohardware 和網路裝置中。  您可以針對自訂應用程式 [撰寫您自己的管理組件](http://aka.ms/mpauthor) 。
 
-管理組件包含多個工作流程，而每個工作流程會執行不同的監視功能，例如效能計數器取樣、檢查服務的狀態，或執行指令碼。  每個工作流程會獨立執行並定義自己的結果，例如將寫入至哪個資料庫，以及是否會產生警示。 
+管理組件包含每個執行一些不同的監視功能，例如取樣效能計數器、 檢查 hello 狀態的服務，或執行指令碼的多個工作流程。  每個工作流程會獨立執行，並定義它自己結果，例如哪些資料庫則會寫入 tooand 是否會產生警示。 
 
-您可以覆寫工作流程詳細資料，例如其執行的頻率、視為錯誤的臨界值，以及其產生之警示的嚴重性。  您也可以加入您自己的工作流程，以提供其他功能。
+您可以覆寫，例如 hello 頻率使用者執行，這些錯誤，請考慮 hello 臨界值的工作流程的詳細資料和 hello hello 它們產生的警示嚴重性。  您也可以加入您自己的工作流程，以提供其他功能。
 
 ![覆寫](media/operations-management-suite-monitoring-product-comparison/scom-overrides.png)
 
-管理伺服器會將管理組件安裝於 Operations Manager 資料庫並自動發佈至代理程式。  每個代理程式會自動下載管理組件，並載入其所安裝的應用程式的相關工作流程。  代理程式收集的資料會傳遞回管理伺服器，以便插入 SCOM 資料庫和資料倉儲。  Operations 主控台可讓您透過自訂檢視、儀表板及管理組件中包含的報告，檢視和分析此資料。
+管理組件會安裝在 hello Operations Manager 資料庫，並會自動散發 tooagents 管理伺服器。  每個代理程式會自動下載管理組件，並載入工作流程相關 toohello 應用程式安裝軟體。  Hello 代理程式所收集的資料傳遞到 hello SCOM 資料庫和資料倉儲後 toohello 插入作業的管理伺服器。  hello Operations 主控台可讓您 tooview 和分析這項資料透過自訂檢視、 儀表板和包含 hello 管理組件中的報表。
 
-下圖說明管理組件的散發。
+hello 發佈的管理組件以 hello 下列圖表所示。
 
 ![管理組件流程](media/operations-management-suite-monitoring-product-comparison/scom-mpflow.png)
 
 ### <a name="log-analytics"></a>Log Analytics
 #### <a name="event-and-performance-collection"></a>事件和效能集合
-Log Analytics 會從使用 Windows 事件記錄檔、IIS 記錄檔和 Syslog 等來源的代理程式系統收集事件和效能計數器。  您可以透過 Log Analytics 入口網站定義收集資料的準則，然後建立記錄檔查詢以分析所收集的資料。  當您建立 OMS 工作區時，會定義一組標準準則，而您可以針對特定應用程式定義其他資料。 
+Log Analytics 會從使用 Windows 事件記錄檔、IIS 記錄檔和 Syslog 等來源的代理程式系統收集事件和效能計數器。  您可以定義的條件的資料會收集透過 hello 記錄分析入口網站，然後建立記錄檔查詢 tooanalyze hello 收集資料。  當您建立 OMS 工作區時，會定義一組標準準則，而您可以針對特定應用程式定義其他資料。 
 
 ![在 Log Analytics 中定義事件記錄檔](media/operations-management-suite-monitoring-product-comparison/log-analytics-definedata.png)
 
-雖然 SCOM 有許多詳細的工作流程，通常會為資料定義特定準則以及應在回應中執行的動作，但 Log Analytics 有更多有關資料收集的一般準則。  記錄檔查詢和解決方案會提供更多目標式準則，可供分析雲端中收集的特定資料並採取相關動作。
+雖然 SCOM 有許多通常會定義之資料的特定準則的詳細工作流程和 hello 動作應該執行以回應，記錄分析會有多個一般準則的資料收集。  記錄查詢及解決方案提供多目標的準則來分析及已收集後代表 hello 雲端中的特定資料。
 
 #### <a name="solutions"></a>解決方案
-解決方案會提供資料收集和分析的額外邏輯。  您可以選取要從「方案庫」新增至 OMS 訂用帳戶的解決方案。
+解決方案會提供資料收集和分析的額外邏輯。  您可以從 hello 解決方案資源庫選取解決方案 tooadd tooyour OMS 訂用帳戶。
 
 ![方案庫](media/operations-management-suite-monitoring-product-comparison/log-analytics-solutiongallery.png)
 
-解決方案主要在雲端執行，並提供 OMS 儲存機制中所收集事件和效能計數器的分析。  它們也可以定義要收集的其他資料，而此資料可以使用記錄檔搜尋進行分析，或是藉由解決方案在 OMS 儀表板中提供的其他使用者介面進行分析。 
+在提供的事件和效能計數器收集 hello OMS 儲存機制中分析的 hello 雲端中主要是執行方案。  它們也可以定義其他資料 toobe 收集記錄的查詢或 hello OMS 儀表板中的 hello 方案所提供的其他使用者介面可分析。 
 
-例如， [變更追蹤解決方案](https://technet.microsoft.com/library/mt484099.aspx) 會偵測代理程式系統的組態變更，並將事件寫入至 OMS 儲存機制，以便利用數個可彙總所偵測變更的圖形化檢視進行分析。  您可以從已彙總的檢視向下鑽研至可顯示方案所收集之詳細資料的記錄查詢。
+例如，hello[變更追蹤解決方案](https://technet.microsoft.com/library/mt484099.aspx)偵測組態變更代理程式的系統上，並將事件 toohello OMS 儲存機制，可以分析與彙總的多個圖形化檢視偵測到變更。  您可以向下鑽研從 hello 彙總檢視的記錄檔查詢該顯示 hello 詳細 hello 解決方案所收集的資料。
 
-雖然您可以選取將哪些解決方案加入至您的訂用帳戶，但您目前無法建立自己的解決方案。  您可以選取事件和效能計數器，根據您自己的記錄查詢收集並建立自訂檢視。
+雖然您可以選取哪些解決方案新增 tooyour 訂用帳戶，您目前沒有 hello 能力 toocreate 專屬的解決方案。  您可以選取 hello 事件和效能計數器 toocollect，並建立您自己的記錄檔查詢為基礎的自訂檢視。
 
-下圖摘要顯示 Log Analytics 的監視邏輯。
+記錄分析的監視邏輯 hello 都摘要在下列圖表中的 hello。
 
 ![Log Analytics 方案流程](media/operations-management-suite-monitoring-product-comparison/log-analytics-solution-flow.png)
 
 ## <a name="health-monitoring"></a>健康狀態監視
 ### <a name="operations-manager"></a>Operations Manager
-SCOM 可以為應用程式的不同元件建立模型，並提供每個元件的即時健康狀態。  這不僅可讓您檢視在一段時間內偵測到的錯誤和效能，也可以在任何指定的時間驗證應用程式或系統及其每個元件的實際健康狀態。  因為它了解應用程式可用的時間週期，所以 SCOM 中的健康狀態引擎也支援服務等級協定 (SLA)，以分析和報告一段時間的應用程式可用性。
+SCOM 可以 hello 不同元件的應用程式模型，並針對每個提供即時的健全狀況。  這可讓您 toonot 僅檢視偵測到錯誤和經過一段時間的效能，但 toovalidate 也 hello 實際的應用程式或系統的健全狀況和每個元件在任何指定時間。  因為其了解 hello 應用程式所提供的時間週期，在 SCOM 中的 hello 健全狀況引擎也支援服務等級協定 (SLA) 的分析和報告 hello 應用程式可用性的一段時間。
 
-例如，下列檢視會顯示 SCOM 所監視之 SQL Database 引擎的即時健康狀態。  其中一個資料庫引擎的每個資料庫的健康狀態會顯示在檢視的下半部。
+例如，下列的 hello 檢視會顯示 hello 由 SCOM 監視的 SQL 資料庫引擎的即時健全狀況。  每個 hello 資料庫引擎的其中一個 hello 資料庫 hello 健全狀況會顯示 hello 下方 hello 檢視的下半部。
 
 ![狀態檢視](media/operations-management-suite-monitoring-product-comparison/scom-state-view.png)
 
-以下顯示其中一個資料庫引擎的健康狀態總管，包含用來判斷其整體健康狀態的監視器。  這些監視器已定義於 SQL 管理組件中，會對 SCOM 探索到的所有 SQL Database 引擎執行。
+hello hello 資料庫引擎的其中一個健全狀況總管如下所示 hello 監視器使用的 toodetermine 的整體健康狀況。  這些監視器會 hello SQL 管理組件中定義，並針對探索到的 SCOM 的所有 SQL 資料庫引擎執行。
 
 ![健康狀態總管](media/operations-management-suite-monitoring-product-comparison/scom-health-explorer.png)
 
-可以結合多個系統上的元件來測量分散式應用程式的健康狀態。  這特別適合用於包含多個分散式元件的企業營運應用程式。  您可以建立一個模型，以測量每個元件的健康狀態，進而積存至應用程式的可用性。
+多個系統上的元件可以結合的 toomeasure hello 健全狀況的分散式應用程式。  這特別適合用於包含多個分散式元件的企業營運應用程式。  您可以建立量值的每個元件的 hello 健全狀況模型的彙總套件，到 hello 應用程式的可用性。
 
-Active Directory 是其中一個可提供模型來分析其分散式元件的管理組件範例。  下面的範例圖表顯示整體環境的健康狀態以及樹系、網域和網域控制站之間的關聯性。  每個元件都包含子元件和多個類似於上述 SQL 範例的監視器。
+Active Directory 是一個管理組件可提供模型 tooanalyze 其分散式的元件的範例。  hello 範例圖表下方顯示 hello 健全狀況的 hello 整體環境和 hello 樹系、 網域和網域控制站之間的關聯性。  每個這些元件包括子元件和多個監視器類似 toohello SQL 上述範例。
 
 ![SCOM 圖表檢視](media/operations-management-suite-monitoring-product-comparison/scom-diagram-view.png)
 
 ### <a name="log-analytics"></a>Log Analytics
-OMS 不包含可製作應用程式模型或測量其即時健康狀態的通用引擎。  個別的解決方案可會根據所收集的資料來評估特定服務的整體健康狀態，並在代理程式上安裝自訂邏輯以執行即時分析。  因為在雲端執行的解決方案可以存取 OMS 儲存機制，所以常可提供比管理組件通常執行的更深入分析。 
+OMS 不包含常見的引擎 toomodel 應用程式或測量其即時健康情況。  個別解決方案可能評估 hello 的特定服務的整體健全狀況根據收集的資料，而它們可能會安裝自訂邏輯 hello 代理程式 tooperform 即時分析。  在以存取 toohello OMS 儲存機制的 hello 雲端中執行方案，因為它們通常可以提供比通常是由管理組件的深入分析。 
 
-例如， [AD 評估和 SQL 評估解決方案](https://technet.microsoft.com/library/mt484102.aspx) 可分析所收集的資料，並提供不同環境層面的評比。  它包含改善建議，用以改善環境的可用性和效能。
+例如，hello [AD 評估和 SQL 評估解決方案](https://technet.microsoft.com/library/mt484102.aspx)分析收集到的資料，並提供 hello 環境的不同層面的等級。  其中包括改良功能，才能進行的 hello 環境 tooimprove hello 可用性與效能的建議。
 
 ![AD 評估方案](media/operations-management-suite-monitoring-product-comparison/log-analytics-ad-assessment.png)
 
 ## <a name="data-analysis"></a>資料分析
-SCOM 和 Log Analytics 各自提供不同的功能來分析所收集的資料。  SCOM 在 Operations 主控台中有檢視和儀表板可供分析各種格式和報告中的近期資料，進而以表格式形式呈現資料倉儲中的資料。  Log Analytics 提供完整的記錄檔查詢語言和介面，以便分析 OMS 儲存機制中的資料。  SCOM 做為 Log Analytics 的資料來源時，儲存機制包含 SCOM 所收集的資料，因此 Log Analytics 工具可用來分析來自這兩個系統的資料。
+SCOM 和記錄分析每個提供不同功能 tooanalyze 收集資料。  SCOM 檢視和儀表板中有 hello Operations 主控台來分析各種不同的格式，呈現表格式表單中的 hello 資料倉儲中資料的報表中新資料。  記錄分析會提供完整的記錄檔查詢語言和介面來分析 hello OMS 儲存機制中的資料。  SCOM 做為資料來源使用的記錄分析時，hello 儲存機制包含使 hello 記錄分析工具能夠使用的 tooanalyze 資料，從兩個系統，SCOM 所收集的資料。
 
 ### <a name="operations-manager"></a>Operations Manager
 #### <a name="views"></a>Views
-Operations 主控台中的檢視可讓您以不同的格式檢視 SCOM 所收集的各種資料類型，通常表格式適用於事件、警示和狀態資料，而折線圖適用於效能資料。  檢視會執行最少的資料分析或彙總，但確實可讓您根據特定準則進行篩選。 
+Hello Operations 主控台中的檢視可讓您 tooview 不同的資料類型不同的格式，如事件、 警示和狀態資料和效能資料的折線圖通常表格式收集 SCOM。  檢視執行最少的分析或彙總的 hello 資料，但不要讓您根據 tooparticular 準則 toofilter。 
 
 ![Views](media/operations-management-suite-monitoring-product-comparison/scom-views.png)
 
-管理組件通常會提供多個檢視，以支援其所監視的應用程式或系統。  這可能包括管理組件探索到的不同物件的狀態檢視、偵測到之問題的警示檢視，以及計數器的效能檢視。
+管理組件通常會提供支援 hello 應用程式或系統，它會監視的多個檢視。  這可能包括 hello hello 管理組件探索的不同物件的狀態檢視、 警示檢視偵測到的問題和計數器的效能檢視。
 
-這些檢視特別適合用來分析環境的目前狀態，包括未決警示和受監視系統和物件的健康狀態。  您可以向下鑽研到支援特定警示的詳細事件或效能資料，以便診斷其根本原因。 同樣地，您可以檢視不同應用程式元件的效能和健康狀態，以評估其目前的健康狀態。
+檢視是特別適用於分析 hello hello 環境包括未解決的警示和 hello 健全狀況狀態監視的系統和物件的目前狀態。  您可以向下鑽研 toodetailed 事件或效能資料順序 toodiagnose 中支援的特定警示的根本原因。 同樣地，您可以檢視 hello 效能和健全狀況的不同元件的應用程式 tooassess 其目前的健全狀況。
 
 #### <a name="dashboards"></a>儀表板
-Operations 主控台中的儀表板主要處理與檢視相同的資料，但自訂性較佳，而且可以包含更豐富的視覺效果。  有一組標準儀表板可供您使用，以便針對您的用途輕鬆地自訂。  您也可以使用 PowerShell Widget，其可顯示 PowerShell 查詢所傳回的資料。
+Hello 主要使用 Operations 主控台的儀表板 hello 相同的資料檢視但更可自訂，以及可以包含更豐富的視覺效果。  有一組標準儀表板可供您使用，以便針對您的用途輕鬆地自訂。  您也可以使用 PowerShell Widget，其可顯示 PowerShell 查詢所傳回的資料。
 
 ![儀表板](media/operations-management-suite-monitoring-product-comparison/scom-dashboard.png)
 
-開發人員能將自訂元件加入至他們納入其管理組件中的儀表板。  這些儀表板可針對特定應用程式高度特製化，例如 SQL 管理組件中的儀表板，如下所示。  此儀表板也可做為自訂版本的範本。
+開發人員需要 hello 能力 tooadd 自訂元件 toodashboards 它們包含在其管理組件。  這些可能是非常特殊的 tooa 特定應用程式，例如 hello 如下所示的 SQL 管理組件中的 hello 儀表板。  此儀表板也可做為自訂版本的範本。
 
 ![SQL 儀表板](media/operations-management-suite-monitoring-product-comparison/scom-sql-dashboard.png)
 
 #### <a name="reports"></a>報告
-SCOM 中的報告會以表格式形式分析資料倉儲中的資料。  您可加以列印和排程，以便以不同的檔案格式 (包括 PDF、CSV 及 Word) 自動交付。  報告會使用資料倉儲中的資料，所以特別適合用於長期趨勢分析。
+SCOM 中的報表會分析在表格式表單中的 hello 資料倉儲中的資料。  您可加以列印和排程，以便以不同的檔案格式 (包括 PDF、CSV 及 Word) 自動交付。  報表會使用 hello 資料倉儲中的資料，讓它們特別適用於長期趨勢分析。
 
 管理組件通常會提供特定應用程式的自訂報告。  您也可以從可針對自己的應用程式自訂或可供執行臨機操作分析的一般報告庫選取。
 
-以下是範例效能報告，其中顯示 Active Directory 管理組件所收集的資料。
+以下是範例效能報表，顯示 hello Active Directory Management Pack 所收集的資料。
 
 ![報告](media/operations-management-suite-monitoring-product-comparison/scom-report.png)
 
 ### <a name="log-analytics"></a>Log Analytics
-Log Analytics 具有 [查詢語言](https://technet.microsoft.com/library/mt484120.aspx) ，您可以用來執行多個應用程式的資料分析，而不需建立自訂檢視或報告。  因為 OMS 是在雲端實作，所以查詢和資料分析的效能不受任何硬體限制約束，而且可以快速地分析查詢 (包括數百萬筆記錄)。 
+記錄分析具有[查詢語言](https://technet.microsoft.com/library/mt484120.aspx)，您可以使用 tooperform 分析跨 hello 需要 toocreate 沒有多個應用程式資料的自訂檢視或報表。  由於 OMS 會實 hello 雲端中，查詢和資料分析的效能不主旨 tooany 硬體限制，而且可以快速地分析查詢包括數百萬筆記錄。 
 
-Log Analytics 中的查詢也是其他功能的基礎。  您可以儲存查詢、將其結果匯出到 Excel，或讓它自動定期執行並產生警示 (如果結果符合特定準則)。  
+記錄分析中的查詢也是 hello 其他功能的基礎。  您可以將查詢儲存、 匯出其結果 tooExcel，或讓它自動定期執行，並產生其結果符合特定準則的警示。  
 
 ![記錄檔查詢流程](media/operations-management-suite-monitoring-product-comparison/log-analytics-query-flow.png)
 
-以下是 Log Analytics 查詢的範例。  在此範例中，會傳回名稱包含 “started” 的所有事件並依事件識別碼分組。  使用者只需提供查詢，而 Log Analytics 會動態產生使用者介面以執行分析。  選取清單中的任何項目，便會傳回詳細的事件資料。
+以下是 Log Analytics 查詢的範例。  在此範例中傳回和分組事件中的 「 已啟動 」 hello 名稱中使用的所有事件識別碼。  hello 使用者只要提供 hello 查詢，並記錄分析會動態產生 hello 使用者介面 tooperform hello 分析。  Hello 清單中選取任何項目將會傳回 hello 詳細事件資料。
 
 ![記錄檔查詢](media/operations-management-suite-monitoring-product-comparison/log-analytics-query.png)
 
-除了提供臨機操作分析以外，Log Analytics 中的查詢可儲存起來以供日後使用，也可以加入至您的 [OMS 儀表板](http://technet.microsoft.com/library/mt484090.aspx) (如下列範例所示)。
+此外 tooproviding 臨機操作分析，記錄分析中的查詢可以儲存為未來使用，並且加入的 tooyour [OMS 儀表板](http://technet.microsoft.com/library/mt484090.aspx)hello 下列範例所示。
 
 ![OMS 儀表板](media/operations-management-suite-monitoring-product-comparison/log-analytics-dashboard.png)
 

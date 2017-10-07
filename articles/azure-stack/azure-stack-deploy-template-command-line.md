@@ -1,6 +1,6 @@
 ---
-title: "以命令列部署 Azure Stack 中的範本 | Microsoft Docs"
-description: "了解如何使用跨平台命令列介面 (CLI) 部署範本到 Azure Stack 上。"
+title: "以 Azure 堆疊中的 hello 命令列 aaaDeploy 範本 |Microsoft 文件"
+description: "了解如何 toouse hello 跨平台命令列介面 (CLI) toodeploy 範本 tooAzure 堆疊。"
 services: azure-stack
 documentationcenter: 
 author: heathl17
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: helaw
-ms.openlocfilehash: cd1b61899ead7b4e86a81125841c1b37d019280b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6fa6b19ac94d3f020008d04ff07f1ce489aa3418
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-templates-in-azure-stack-using-the-command-line"></a>使用命令列部署 Azure Stack 中的範本
-使用命令列將 Azure Resource Manager 範本部署到 Azure Stack 開發套件。 Azure Resource Manager 範本可藉由單一協調作業，來部署和佈建應用程式的所有資源。
+# <a name="deploy-templates-in-azure-stack-using-hello-command-line"></a>部署 Azure 堆疊使用 hello 命令列中的範本
+使用 hello 命令列 toodeploy Azure Resource Manager 範本 toohello Azure 堆疊開發套件。 Azure 資源管理員範本部署和佈建您的應用程式在單一、 協調作業中的所有 hello 資源。
 
 ## <a name="before-you-begin"></a>開始之前
- - 使用 Azure CLI [安裝並連線](azure-stack-connect-cli.md)至 Azure Stack
- - 從 [建立儲存體帳戶範例範本](https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/101-create-storage-account) 下載 *azuredeploy.json* 和 *azuredeploy.parameters.json* 檔案。
+ - [安裝並連接](azure-stack-connect-cli.md)tooAzure 堆疊時會搭配 Azure CLI
+ - 下載 hello 檔案*azuredeploy.json*和*azuredeploy.parameters.json*從 hello[建立儲存體帳戶範例範本](https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/101-create-storage-account)。
  
 ## <a name="deploy-template"></a>部署範本
-瀏覽至下載這些檔案的資料夾，並執行下列命令來部署範本：
+瀏覽 toohello 資料夾，其中這些檔案已下載並執行下列命令 toodeploy hello 範本 hello:
 
     azure group create "cliRG" "local" –f azuredeploy.json –d "testDeploy" –e azuredeploy.parameters.json
 
-此命令會將範本部署至 Azure Stack POC 預設位置中的資源群組 **cliRG**。
+此命令會將部署 hello 範本 toohello 資源群組**cliRG** hello Azure 堆疊 POC 的預設位置中。
 
 ## <a name="validate-template-deployment"></a>驗證範本部署
-若要查看此資源群組和儲存體帳戶，請使用下列命令：
+toosee 此資源群組和儲存體帳戶時，使用 hello 下列命令：
 
     azure group list
 

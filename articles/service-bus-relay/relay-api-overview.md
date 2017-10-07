@@ -1,5 +1,5 @@
 ---
-title: "Azure 轉送 API 概觀 | Microsoft Docs"
+title: "aaaAzure 轉送 API 概觀 |Microsoft 文件"
 description: "可用的 Azure 轉送 API 概觀"
 services: event-hubs
 documentationcenter: na
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: sethm
-ms.openlocfilehash: 8d93a0344adc3b0b7617f3a7d85124142d7a7555
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3c4d737d5fee9a8babce094fa6dfddb28910834b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="available-relay-apis"></a>可用的轉送 API
 
 ## <a name="runtime-apis"></a>執行階段 API
 
-下表列出所有目前可用的轉送執行階段用戶端。
+hello 下表列出所有目前可用的轉送執行階段用戶端。
 
-[更多資訊](#additional-information)章節包含每個執行階段程式庫之狀態的詳細資訊。
+hello[更多資訊](#additional-information)> 一節包含每個執行階段程式庫 hello 狀態的詳細資訊。
 
 | 語言/平台 | 可用的功能 | 用戶端封裝 | 存放庫 |
 | --- | --- | --- | --- |
@@ -37,9 +37,9 @@ ms.lasthandoff: 07/11/2017
 ### <a name="additional-information"></a>其他資訊
 
 #### <a name="net"></a>.NET
-.NET 生態系統有多個執行階段，因此有多個適用於事件中樞的 .NET 程式庫。 .NET Standard 程式庫可使用 .NET Core 或 .NET Framework 執行，然而 .NET Framework 程式庫只能在 .NET Framework 環境中執行。 如需 .NET Framework 的詳細資訊，請參閱[架構版本](/dotnet/articles/standard/frameworks#framework-versions)。
+hello.NET 生態系統有多個執行階段，因此有多個.NET 程式庫建立事件中樞。 hello.NET Framework 程式庫的類型只能在.NET Framework 環境中執行時，使用.NET 核心或 hello.NET Framework 中，可以執行 hello.NET 標準程式庫。 如需 .NET Framework 的詳細資訊，請參閱[架構版本](/dotnet/articles/standard/frameworks#framework-versions)。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解 Azure 轉送，請造訪下列連結：
+toolearn 深入了解 Azure 轉送，請前往下列連結：
 * [什麼是 Azure 轉送？](relay-what-is-it.md)
 * [轉送常見問題集](relay-faq.md)

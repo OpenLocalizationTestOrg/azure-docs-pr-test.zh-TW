@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 搭配 API 管理快速入門 | Microsoft Docs"
-description: "本指南示範如何快速開始使用 Azure API 管理與 Service Fabric。"
+title: "使用 API 管理快速入門 aaaAzure Service Fabric |Microsoft 文件"
+description: "本指南也說明如何 tooquickly 開始使用 Azure API 管理和服務網狀架構。"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/01/2017
 ms.author: vturecek
-ms.openlocfilehash: e9f44d8a43d274768f43261fea68f0da9c681ae1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f76f3f39a92f89892d6a02ecaab1ec3d343fe2a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-with-azure-api-management-quick-start"></a>Service Fabric 搭配 Azure API 管理快速入門
 
-本指南示範如何設定搭配 Service Fabric 的「Azure API 管理」，並設定您的第一個 API 作業以將流量傳送到 Service Fabric 中的後端服務。 若要深入了解搭配 Service Fabric 的「Azure API 管理」案例，請參閱[概觀](service-fabric-api-management-overview.md)一文。 
+本指南也說明如何 tooset 以 Service Fabric 的 Azure API 管理及設定 Service Fabric 中的第一個應用程式開發介面作業 toosend 流量 tooback 後端服務。 toolearn 有關使用 Service Fabric 的 Azure API 管理案例的詳細資訊，請參閱 「 hello[概觀](service-fabric-api-management-overview.md)發行項。 
 
-## <a name="deploy-api-management-and-service-fabric-to-azure"></a>將 API 管理與 Service Fabric 部署至 Azure
+## <a name="deploy-api-management-and-service-fabric-tooazure"></a>部署應用程式開發介面管理和服務網狀架構 tooAzure
 
-第一個步驟是將「API 管理」與 Service Fabric 叢集部署至共用「虛擬網路」中的 Azure。 這可讓「API 管理」與 Service Fabric 直接進行通訊，以便執行服務探索、服務分割區解析，以及將流量直接轉送到 Service Fabric 中的任何後端服務。
+toodeploy API 管理而共用的虛擬網路中的 Service Fabric 叢集 tooAzure hello 第一個步驟。 這可讓 Service Fabric 直接使用 API 管理 toocommunicate，讓它直接 tooany 後端服務在 Service Fabric 中可以執行服務探索、 服務分割解析，以及將流量。
 
 ### <a name="topology"></a>拓撲
 
-本指南會將下列拓撲部署至 Azure，其中「API 管理」與 Service Fabric 位於相同「虛擬網路」的子網路中：
+本指南將部署的 hello 下列 API 管理和服務網狀架構中的子網路是拓樸 tooAzure hello 相同虛擬網路：
 
  ![圖片標題][sf-apim-topology-overview]
 
-為了快速開始使用，針對每個部署步驟都提供了 Resource Manager 範本：
+tooget 快速地開始，資源管理員範本可供每個部署步驟：
 
  - 網路拓撲：
     - [network.json][network-arm]
@@ -46,11 +46,11 @@ ms.lasthandoff: 08/03/2017
     - [apim.json][apim-arm]
     - [apim.parameters.json][apim-parameters-arm]
 
-### <a name="sign-in-to-azure-and-select-your-subscription"></a>登入 Azure 帳戶並選取您的訂用帳戶
+### <a name="sign-in-tooazure-and-select-your-subscription"></a>登入 tooAzure 並選取您的訂用帳戶
 
-本指南使用 [Azure PowerShell][azure-powershell]。 開始新的 PowerShell 工作階段時，請先登入您的 Azure 帳戶並選取您的訂用帳戶，然後再執行 Azure 命令。
+本指南使用 [Azure PowerShell][azure-powershell]。 當您啟動新的 PowerShell 工作階段時，登入 tooyour Azure 帳戶，並選取您的訂用帳戶，然後再執行 Azure 命令。
  
-登入您的 Azure 帳戶：
+Azure 帳戶登入 tooyour 中：
 
 ```powershell
 PS > Login-AzureRmAccount
@@ -71,42 +71,42 @@ PS > Set-AzureRmContext -SubscriptionId <guid>
 PS > New-AzureRmResourceGroup -Name <my-resource-group> -Location westus
 ```
 
-### <a name="deploy-the-network-topology"></a>部署網路拓撲
+### <a name="deploy-hello-network-topology"></a>部署 hello 網路拓撲
 
-第一個步驟是設定將作為「API 管理」與 Service Fabric 叢集部署位置的網路拓撲。 [network.json][network-arm] Resource Manager 範本已設定為建立一個含有兩個子網路和兩個「網路安全性群組」(NSG) 的「虛擬網路」(VNET)。 
+hello 第一個步驟是 tooset 向上 hello 網路拓樸 toowhich API 管理，並將部署的 hello Service Fabric 叢集。 hello [network.json] [ network-arm] Resource Manager 範本會設定的 toocreate 虛擬網路 (VNET) 具有兩個的子網路和兩個網路安全性群組 (NSG) 群組。 
 
-[network.parameters.json][network-parameters-arm] 參數檔包含將作為「API 管理」與 Service Fabric 部署位置的子網路名稱和 NSG。 就這份指南而言，參數值無須變更。 「API 管理」與 Service Fabric Resource Manager 範本會使用這些值，因此如果您在這裡修改它們，就必須相應地在其他 Resource Manager 範本中也修改它們。 
+hello [network.parameters.json] [ network-parameters-arm]參數檔案包含 hello 名稱 hello 子網路和應用程式開發介面管理和服務網狀架構將會部署到的 Nsg。 本指南中，hello 參數值就不需要 toobe 變更。 使用這些值的 hello API 管理和服務網狀架構資源管理員範本，因此如果在修改這裡，您必須修改在據以 hello 其他資源管理員範本。 
 
- 1. 下載下列 Resource Manager 範本和參數檔：
+ 1. 下載下列資源管理員範本和參數檔 hello:
 
     - [network.json][network-arm]
     - [network.parameters.json][network-parameters-arm]
 
- 2. 使用下列 PowerShell 命令來部署用於網路設定的 Resource Manager 範本和參數檔：
+ 2. 使用下列 PowerShell 命令 toodeploy hello 資源管理員範本和參數檔案 hello 網路安裝程式的 hello:
 
     ```powershell
     PS > New-AzureRmResourceGroupDeployment -ResourceGroupName <my-resource-group> -TemplateFile .\network.json -TemplateParameterFile .\network.parameters.json -Verbose
     ```
 
-### <a name="deploy-the-service-fabric-cluster"></a>部署 Service Fabric 叢集
+### <a name="deploy-hello-service-fabric-cluster"></a>部署 hello Service Fabric 叢集
 
-部署完網路資源之後，下一個步驟是將 Service Fabric 叢集部署至為 Service Fabric 叢集指定之子網路與 NSG 中的 VNET。 針對本教學課程，Service Fabric Resource Manager 範本已預先設定為使用您在上一個步驟中設定之 VNET、子網路及 NSG 的名稱。 
+一旦部署完成 hello 網路資源，hello 下一個步驟是 toodeploy Service Fabric 叢集 toohello VNET hello 子網路中，且 NSG 指定 hello Service Fabric 叢集。 本教學課程，hello 服務網狀架構資源管理員範本是預先設定的 toouse hello 名稱 hello VNET、 子網路，以及您 hello 上一個步驟中設定的 NSG。 
 
-Service Fabric 叢集 Resource Manager 範本已設定為建立具有憑證安全性的安全叢集。 此憑證可用來保護您叢集的節點對節點通訊，以及管理使用者對您 Service Fabric 叢集的存取。 「API 管理」會使用此憑證來存取「Service Fabric 命名服務」以探索服務。
+hello Service Fabric 叢集資源管理員範本是已設定的 toocreate 憑證安全性的安全叢集。 hello 憑證是針對您的叢集和 toomanage 使用者存取 tooyour Service Fabric 叢集使用的 toosecure 節點對節點通訊。 API 管理使用此憑證 tooaccess hello Service Fabric 命名服務的服務探索。
 
 基於叢集安全性考量，此步驟需要您在 Key Vault 中有憑證。 如需有關使用 Key Vault 來設定安全叢集的詳細資訊，請參閱[這份關於使用 Resource Manager 在 Azure 中建立叢集的指南](service-fabric-cluster-creation-via-arm.md)
 
 > [!NOTE]
-> 您可以在除了用於存取叢集的憑證之外，再新增 Azure Active Directory 驗證。 Azure Active Directory 是建議用來管理使用者對您 Service Fabric 叢集之存取的方式，但並非完成本教學課程所需的項目。 不論是叢集的節點對節點安全性，還是「Azure API 管理」驗證，都需要憑證，後者目前不支援向 Service Fabric 後端的 Azure Active Directory 進行驗證。
+> 您可以在用於叢集存取的加法 toohello 憑證加入 Azure Active Directory 驗證。 Azure Active Directory hello 建議方式 toomanage 使用者存取 tooyour Service Fabric 叢集，但不是需要 toocomplete 本教學課程。 不論是叢集的節點對節點安全性，還是「Azure API 管理」驗證，都需要憑證，後者目前不支援向 Service Fabric 後端的 Azure Active Directory 進行驗證。
 
- 1. 下載下列 Resource Manager 範本和參數檔：
+ 1. 下載下列資源管理員範本和參數檔 hello:
  
     - [cluster.json][cluster-arm]
     - [cluster.parameters.json][cluster-parameters-arm]
 
- 2. 填寫用於您部署之 `cluster.parameters.json` 檔案中的空白參數，包括您叢集憑證的 [Key Vault 資訊](service-fabric-cluster-creation-via-arm.md#set-up-a-key-vault)。
+ 2. 填寫在 hello hello 空參數`cluster.parameters.json`檔案的部署，包括 hello[金鑰保存庫資訊](service-fabric-cluster-creation-via-arm.md#set-up-a-key-vault)叢集憑證。
 
- 3. 使用下列 PowerShell 命令來部署 Resource Manager 範本和參數檔，以建立 Service Fabric 叢集：
+ 3. 使用下列 PowerShell 命令 toodeploy hello 資源管理員範本和參數檔案 toocreate hello Service Fabric 叢集 hello:
 
     ```powershell
     PS > New-AzureRmResourceGroupDeployment -ResourceGroupName <my-resource-group> -TemplateFile .\cluster.json -TemplateParameterFile .\cluster.parameters.json -Verbose
@@ -114,18 +114,18 @@ Service Fabric 叢集 Resource Manager 範本已設定為建立具有憑證安�
 
 ### <a name="deploy-api-management"></a>部署 API 管理
 
-最後，將「API 管理」部署至為「API 管理」指定之子網路和 NSG 中的 VNET。 您不需要等到 Service Fabric 叢集部署完成再部署「API 管理」。 
+最後，部署在 hello 子網路和指定的 API 管理 NSG 中的 API 管理 toohello VNET。 您無須 toowait 的 hello Service Fabric 叢集部署 toofinish 之前部署 API 管理。 
 
-針對本教學課程，「API 管理」Resource Manager 範本已預先設定為使用您在上一個步驟中設定之 VNET、子網路及 NSG 的名稱。 
+本教學課程，hello API 管理 Resource Manager 範本是預先設定的 toouse hello 名稱 hello VNET、 子網路，以及您 hello 上一個步驟中設定的 NSG。 
 
- 1. 下載下列 Resource Manager 範本和參數檔：
+ 1. 下載下列資源管理員範本和參數檔 hello:
  
     - [apim.json][apim-arm]
     - [apim.parameters.json][apim-parameters-arm]
 
- 2. 填寫用於您部署之 `apim.parameters.json` 中的空白參數。
+ 2. 填寫在 hello hello 空參數`apim.parameters.json`為您的部署。
 
- 3. 使用下列 PowerShell 命令來部署用於「API 管理」的 Resource Manager 範本和參數檔：
+ 3. 使用下列 PowerShell 命令 toodeploy hello 資源管理員範本和參數檔案 API 管理的 hello:
 
     ```powershell
     PS > New-AzureRmResourceGroupDeployment -ResourceGroupName <my-resource-group> -TemplateFile .\apim.json -TemplateParameterFile .\apim.parameters.json -Verbose
@@ -133,43 +133,43 @@ Service Fabric 叢集 Resource Manager 範本已設定為建立具有憑證安�
 
 ## <a name="configure-api-management"></a>設定 API 管理
 
-部署完您的「API 管理」與 Service Fabric 叢集之後，您可以在「API 管理」中設定 Service Fabric 後端。 這可讓您建立將流量傳送到 Service Fabric 叢集的後端服務原則。
+部署完您的「API 管理」與 Service Fabric 叢集之後，您可以在「API 管理」中設定 Service Fabric 後端。 這可讓您 toocreate 傳送流量 tooyour Service Fabric 叢集的後端服務原則。
 
 ### <a name="api-management-security"></a>API 管理安全性
 
-若要設定 Service Fabric 後端，您必須先設定「API 管理」安全性設定。 若要設定安全性設定，請移至您在 Azure 入口網站中的「API 管理」服務。
+tooconfigure hello Service Fabric 後端中，您必須先 tooconfigure API 管理安全性設定。 tooconfigure 安全性設定，請移 tooyour API 管理服務在 hello Azure 入口網站中。
 
-#### <a name="enable-the-api-management-rest-api"></a>啟用 API 管理 REST API
+#### <a name="enable-hello-api-management-rest-api"></a>啟用 hello API 管理 REST API
 
-「API 管理」REST API 是目前設定後端服務的唯一方式。 第一個步驟是啟用「API 管理」REST API 並保護它。
+hello API 管理 REST API 是目前唯一的方式 tooconfigure hello 後端服務。 hello 第一個步驟為 tooenable hello API 管理 REST API，並保護其安全。
 
- 1. 在「API 管理」服務中，選取 [安全性] 底下的 [管理 API - 預覽]。
- 2. 選取 [啟用 API 管理 REST API] 核取方塊。
- 3. 記下「管理 API」URL - 這是我們稍後將用來設定 Service Fabric 後端的 URL
- 4. 選取到期日和金鑰，然後按一下靠近頁面底部的 [產生] 按鈕來產生「存取權杖」。
- 5. 複製該「存取權杖」並儲存它 - 我們將在接下來的步驟中使用此權杖。 請注意，這與主要金鑰和次要金鑰不同。
+ 1. 在 hello API 管理服務中，選取 **管理 API-PREVIEW**下**安全性**。
+ 2. 檢查 hello**啟用 API 管理 REST API**核取方塊。
+ 3. 請注意 hello 管理 API URL-這是我們會使用向上 hello Service Fabric 後端的更新版本 tooset hello URL
+ 4. 產生**存取權杖**藉由選取到期日和索引鍵，然後按一下 hello**產生**朝 hello hello 頁面底部的按鈕。
+ 5. 複製 hello**存取權杖**並將它儲存-我們會使用它在 hello 下列步驟。 請注意這點不同於 hello 主要金鑰和次要金鑰。
 
 #### <a name="upload-a-service-fabric-client-certificate"></a>上傳 Service Fabric 用戶端憑證
 
-「API 管理」必須使用能夠存取您叢集的用戶端憑證來向 Service Fabric 叢集進行驗證，才能探索服務。 為了簡單起見，本教學課程會使用建立 Service Fabric 叢集時所指定的相同憑證，此憑證預設即可用來存取您的叢集。
+API 管理必須與您的 Service Fabric 叢集服務探索使用具有存取 tooyour 叢集的用戶端憑證驗證。 為了簡單起見，這個教學課程使用 hello 相同的憑證建立其預設值可以是使用的 tooaccess hello Service Fabric 叢集時，指定您的叢集。
 
- 1. 在「API 管理」服務中，選取 [安全性] 底下的 [用戶端憑證 - 預覽]。
- 2. 按一下 [+ 新增] 按鈕
- 2. 選取您建立 Service Fabric 叢集時所指定叢集憑證的私密金鑰檔案 (.pfx)、為它命名，然後提供私密金鑰密碼。
-
-> [!NOTE]
-> 本教學課程會將相同的憑證用於用戶端驗證和叢集節點對節點安全性。 如果您有一個已設定來存取 Service Fabric 叢集的個別用戶端憑證，則您可以使用該憑證。
-
-### <a name="configure-the-backend"></a>設定後端
-
-既然已設定「API 管理」安全性，您現在便可以設定 Service Fabric 後端。 就 Service Fabric 後端而言，作為後端的是 Service Fabric 叢集，而不是特定的 Service Fabric 服務。 這可讓單一原則路由傳送到叢集內的多個服務。
-
-此步驟需要您稍早產生的存取權杖，以及您在上一個步驟中上傳到「API 管理」之叢集憑證的指紋。
+ 1. 在 hello API 管理服務中，選取 **用戶端憑證-PREVIEW**下**安全性**。
+ 2. 按一下 hello **+ 加**按鈕
+ 2. 選取 hello 私密金鑰檔 (.pfx) 的 hello 叢集指定憑證，則建立 Service Fabric 叢集時，為它命名，並提供 hello 私密金鑰密碼。
 
 > [!NOTE]
-> 如果您在上一個步驟中針對「API 管理」使用個別的用戶端憑證，則在此步驟中，除了叢集憑證指紋之外，您還需要用戶端憑證的指紋。
+> 本教學課程使用相同憑證的 hello 的用戶端驗證和叢集節點的安全性。 如果您有一個設定的 tooaccess Service Fabric 叢集，您可以使用不同的用戶端憑證。
 
-請將下列 HTTP PUT 要求傳送到您稍早在啟用「API 管理」REST API 以設定 Service Fabric 後端服務時所記下的「API 管理」API URL。 當命令成功時，您應該會看到 `HTTP 201 Created` 回應。 如需有關每個欄位的詳細資訊，請參閱「API 管理」[後端 API 參考文件](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-contract-reference#a-namebackenda-backend)。
+### <a name="configure-hello-backend"></a>設定 hello 後端
+
+API 管理的安全性設定，您可以設定 hello Service Fabric 後端。 Service Fabric 範例 hello Service Fabric 叢集是 hello 後端，而不是特定的 Service Fabric 服務。 這允許一項服務比單一原則 tooroute toomore hello 叢集中。
+
+這個步驟需要 hello 您先前產生的存取權杖，並 hello 您上傳 tooAPI 管理 hello 上一個步驟中的您叢集的憑證指紋。
+
+> [!NOTE]
+> 如果您使用不同的用戶端憑證 hello 上一個步驟中的 API 管理，您需要 hello 指紋 hello 用戶端憑證在此步驟中加入 toohello 叢集憑證指紋。
+
+傳送 hello 遵循 HTTP PUT 要求 toohello 您先前記下啟用 hello API 管理 REST API tooconfigure hello Service Fabric 後端服務時的 API 管理 API URL。 您應該會看到`HTTP 201 Created`hello 命令執行成功的回應。 如需有關每個欄位的詳細資訊，請參閱 hello API 管理[後端應用程式開發介面參考文件](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-contract-reference#a-namebackenda-backend)。
 
 HTTP 命令和 URL：
 ```http
@@ -200,9 +200,9 @@ Content-Type: application/json
 }
 ```
 
-這裡的 **url** 參數是當後端原則中未指定任何服務名稱時，您叢集內作為所有要求路由傳送目的地之服務的完整服務名稱。 如果您不打算有後援服務，則可以使用假的服務名稱 (例如 "fabric:/fake/service")。
+hello **url**這裡參數就是完整的服務名稱是在叢集中的所有要求的服務路由 tooby 預設，如果後端原則中不指定任何服務名稱。 您可能使用假的服務名稱，例如"fabric: / 假/服務 」 如果您不想 toohave 後援服務。
 
-如需有關每個欄位的詳細其他詳細資料，請參閱「API 管理」[後端 API 參考文件](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-contract-reference#a-namebackenda-backend)。
+請參閱 toohello API 管理[後端應用程式開發介面參考文件](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-contract-reference#a-namebackenda-backend)如需有關每個欄位。
 
 #### <a name="example"></a>範例
 
@@ -229,11 +229,11 @@ Content-Type: application/json
 
 ## <a name="deploy-a-service-fabric-back-end-service"></a>部署 Service Fabric 後端服務
 
-既然您已將 Service Fabric 設定為「API 管理」的後端，現在便可為 API 撰寫將流量傳送到 Service Fabric 服務的後端原則。 但是您必須先有一個在 Service Fabric 中執行的服務來接受要求。
+有 hello Service Fabric 設定為後端 tooAPI 管理之後，您可以編寫後端原則，您將流量傳送 tooyour Service Fabric 服務的 api。 但首先您必須在 Service Fabric tooaccept 要求中執行的服務。
 
 ### <a name="create-a-service-fabric-service-with-an-http-endpoint"></a>建立具有 HTTP 端點的 Service Fabric 服務
 
-針對本教學課程，我們將使用預設的 Web API 專案範本來建立一個基本的無狀態「ASP.NET Core 可靠服務」。 這會為您的服務建立一個 HTTP 端點，而您將會透過「Azure API 管理」來公開此服務：
+此教學課程中，我們將建立基本無狀態 ASP.NET Core 可靠的服務使用 hello 預設 Web API 專案範本。 這會為您的服務建立一個 HTTP 端點，而您將會透過「Azure API 管理」來公開此服務：
 
 ```
 /api/values
@@ -244,10 +244,10 @@ Content-Type: application/json
 設定完開發環境之後，請以「系統管理員」身分啟動 Visual Studio，然後建立 ASP.NET Core 服務：
 
  1. 在 Visual Studio 中，選取 [檔案] -> [新增專案]。
- 2. 選取 [雲端] 底下的 [Service Fabric 應用程式] 範本，然後將它命名為 **"ApiApplication"**。
- 3. 選取 [ASP.NET Core] 服務範本，然後將專案命名為 **"WebApiService"**。
- 4. 選取 [Web API ASP.NET Core 1.1] 專案範本。
- 5. 建立專案之後，開啟 `PackageRoot\ServiceManifest.xml`，然後從端點資源組態中移除 `Port` 屬性：
+ 2. 選取雲端下的 hello Service Fabric 應用程式範本並將其命名**"ApiApplication"**。
+ 3. 選取 hello ASP.NET Core 服務範本和名稱 hello 專案**"WebApiService"**。
+ 4. 選取 Web 應用程式開發介面 ASP.NET Core 1.1 hello 專案範本。
+ 5. Hello 專案建立之後，開啟`PackageRoot\ServiceManifest.xml`並移除 hello `Port` hello 端點資源的組態屬性：
  
     ```xml
     <Resources>
@@ -257,54 +257,54 @@ Content-Type: application/json
     </Resources>
     ```
 
-    這可讓 Service Fabric 從應用程式連接埠範圍動態指定連接埠，這些是我們透過叢集 Resource Manager 範本中的「網路安全性群組」開啟的連接埠，可允許流量從「API 管理」流到 Service Fabric。
+    這可讓 Service Fabric toospecify hello 應用程式連接埠的範圍，我們透過 hello 網路安全性小組在 hello 叢集資源管理員範本中，開啟允許流量 tooflow tooit 從 API 管理中的動態連接埠。
  
- 6. 在 Visual Studio 中按 F5 以確認本機有提供 Web API。 
+ 6. 按 f5 鍵，在 Visual Studio tooverify hello web API 中的是在本機使用。 
 
-    開啟 Service Fabric Explorer，然後向下切入到特定的 ASP.NET Core 服務執行個體，以查看此服務所接聽的基底位址。 將 `/api/values` 新增到基底位址，然後在瀏覽器中開啟它。 這會叫用 Web API 範本中 ValuesController 上的 Get 方法。 它會傳回範本所提供的預設回應，也就是包含兩個字串的 JSON 陣列：
+    開啟 Service Fabric 總管，並向下切入 tooa hello ASP.NET Core service toosee hello 基底位址 hello 服務正在接聽的特定執行個體。 新增`/api/values`toohello 基底地址，並在瀏覽器中開啟它。 這樣會叫用 hello hello Web API 範本中的 hello ValuesController 上的 Get 方法。 它會傳回 hello hello 範本，包含兩個字串的 JSON 陣列所提供的預設回應：
 
     ```json
     ["value1", "value2"]`
     ```
 
-    這是您將透過 Azure 中的「API 管理」公開的端點。
+    這是您將會公開透過 API 管理 Azure 中的 hello 端點。
 
- 7. 最後，將應用程式部署至您在 Azure 中的叢集。 [使用 Visual Studio](service-fabric-publish-app-remote-cluster.md#to-publish-an-application-using-the-publish-service-fabric-application-dialog-box)，在 [應用程式] 專案上按一下滑鼠右鍵，然後選取 [發行]。 提供您的叢集端點 (例如 `mycluster.westus.cloudapp.azure.com:19000`) 以將應用程式部署至您在 Azure 中的 Service Fabric 叢集。
+ 7. 最後，部署在 Azure 中的 hello 應用程式 tooyour 叢集。 [使用 Visual Studio](service-fabric-publish-app-remote-cluster.md#to-publish-an-application-using-the-publish-service-fabric-application-dialog-box)，以滑鼠右鍵按一下 hello 應用程式專案，然後選取**發行**。 提供您的叢集端點 (例如， `mycluster.westus.cloudapp.azure.com:19000`) toodeploy hello 應用程式 tooyour Service Fabric 叢集在 Azure 中。
 
 一個名為 `fabric:/ApiApplication/WebApiService` 的 ASP.NET Core 無狀態服務現在應該正在 Azure 中的 Service Fabric 叢集內執行。
 
 ## <a name="create-an-api-operation"></a>建立 API 作業
 
-現在我們已經準備好在「API 管理」中建立作業，供外部用戶端用來與在 Service Fabric 叢集內執行的 ASP.NET Core 無狀態服務進行通訊。
+現在我們準備 toocreate API 管理中的作業與該外部用戶端使用 toocommunicate hello hello Service Fabric 叢集中執行的 ASP.NET Core 無狀態服務。
 
- 1. 登入 Azure 入口網站，然後瀏覽至您的「API 管理」服務部署。
- 2. 在 [API 管理] 服務刀鋒視窗中，選取 [API - 預覽]
- 3. 按一下 [空白 API] 方塊，然後在對話方塊中填入資訊：
+ 1. 登入 toohello Azure 入口網站，並瀏覽 tooyour API 管理服務部署。
+ 2. 在 hello API 管理服務刀鋒視窗中，選取  **Api-預覽**
+ 3. 加入新的應用程式開發介面，請按一下 hello**空白應用程式開發介面**方塊，並填寫 [hello] 對話方塊：
 
      - **Web 服務 URL**：就 Service Fabric 後端而言，並不使用此 URL 值。 您可以在這裡輸入任何值。 針對本教學課程，請使用：`http://servicefabric`。
      - **名稱**：為您的 API 提供任何名稱。 針對本教學課程，請使用 `Service Fabric App`。
      - **URL 配置**：選取 [HTTP]、[HTTPS] 或 [both]。 針對本教學課程，請使用 `both`。
      - **API URL 尾碼**：為 API 提供一個尾碼。 針對本教學課程，請使用 `myapp`。
  
- 4. 建立 API 之後，按一下 [+ 新增作業] 來新增前端 API 作業。 填寫值：
+ 4. 一旦建立 hello API 時，按一下  **+ 加入作業**tooadd 前端的 API 作業。 填寫 hello 值：
     
-     - **URL**：選取 `GET` 並提供 API 的 URL 路徑。 針對本教學課程，請使用 `/api/values`。
+     - **URL**： 選取`GET`和 hello API 提供的 URL 路徑。 針對本教學課程，請使用 `/api/values`。
      
-       根據預設，這裡指定的 URL 路徑是傳送到後端 Service Fabric 服務的 URL 路徑。 如果您在這裡使用與您服務所用相同的 URL 路徑 (在此例中為 `/api/values`)，則無須進一步修改，作業即可運作。 您也可以在這裡指定與您後端 Service Fabric 服務所用不同的 URL 路徑，在此情況下，您稍後也將需要在作業原則中指定路徑重寫。
-     - **顯示名稱**：為 API 提供任何名稱。 針對本教學課程，請使用 `Values`。
+       根據預設，hello URL 指定路徑這裡 hello URL 路徑傳送 toohello 後端服務的網狀架構服務。 如果您使用 hello 相同 URL 路徑以下服務所使用，在此情況下`/api/values`，然後 hello 作業適用於不需要進一步修改。 您也可以指定 URL 路徑不同於您的後端服務的網狀架構服務所使用的 hello URL 路徑在此情況下您也會需要 toospecify 路徑重寫作業原則中更新版本。
+     - **顯示名稱**： 提供 hello 應用程式開發介面的任何名稱。 針對本教學課程，請使用 `Values`。
 
 ## <a name="configure-a-backend-policy"></a>設定後端原則
 
-後端原則會將所有項目繫結在一起。 您需在此原則中設定作為要求路由傳送目的地的後端 Service Fabric 服務。 您可以將此原則套用至任何 API 作業。 [Service Fabric 的後端組態](https://docs.microsoft.com/azure/api-management/api-management-transformation-policies#SetBackendService)提供下列要求路由控制： 
- - 服務執行個體選取：方法是以硬式編碼 (例如 `"fabric:/myapp/myservice"`) 或從 HTTP 要求產生 (例如 `"fabric:/myapp/users/" + context.Request.MatchedParameters["name"]`) 來指定 Service Fabric 服務執行個體名稱。
+hello 後端原則結合的所有項目。 這是您在其中設定 hello 後端 Service Fabric 服務 toowhich 要求會路由傳送。 您可以套用此原則 tooany API 作業。 hello [Service Fabric 的後端設定](https://docs.microsoft.com/azure/api-management/api-management-transformation-policies#SetBackendService)提供 hello 下列要求會路由控制項： 
+ - 藉由指定的 Service Fabric 服務執行個體名稱，可能是硬式編碼服務執行個體選取範圍 (比方說， `"fabric:/myapp/myservice"`) 或產生自 hello HTTP 要求 (例如， `"fabric:/myapp/users/" + context.Request.MatchedParameters["name"]`)。
  - 分割區解析：方法是使用任何 Service Fabric 資料分割配置來產生分割區索引鍵。
  - 無狀態服務的複本選取。
- - 解析重試條件：可讓您指定重新解析服務位置及重新傳送要求的條件。
+ - 解決方式重試重新解決服務的位置，然後重新傳送要求 toospecify hello 條件可讓您的條件。
 
-針對本教學課程，請建立一個後端原則，以將要求直接路由傳送到稍早部署的 ASP.NET Core 無狀態服務：
+此教學課程中，建立路由要求直接 toohello 先前部署的 ASP.NET Core 無狀態服務的後端原則：
 
- 1. 按一下編輯圖示，然後選取 [程式碼檢視]，以選取和編輯 `Values` 作業的「輸入原則」。
- 2. 在原則程式碼編輯器中，於輸入原則底下新增 `set-backend-service` 原則 (如下所示)，然後按一下 [儲存] 按鈕：
+ 1. 選取和編輯 hello**輸入原則**hello`Values`按一下 hello [編輯] 圖示，然後再選取作業**程式碼檢視**。
+ 2. 在 [hello 原則程式碼編輯器] 中，加入`set-backend-service`原則底下輸入原則，如下所示，並按一下 hello**儲存**按鈕：
     
     ```xml
     <policies>
@@ -324,33 +324,33 @@ Content-Type: application/json
     </policies>
     ```
 
-如需完整的一組 Service Fabric 後端原則屬性，請參考 [API 管理後端文件](https://docs.microsoft.com/azure/api-management/api-management-transformation-policies#SetBackendService)
+一組完整的 Service Fabric 後端原則屬性，請參閱 toohello [API 管理後端文件](https://docs.microsoft.com/azure/api-management/api-management-transformation-policies#SetBackendService)
 
-### <a name="add-the-api-to-a-product"></a>將 API 新增至產品。 
+### <a name="add-hello-api-tooa-product"></a>新增 hello API tooa 產品。 
 
-您必須先將 API 新增至產品以將存取權授與使用者，才能呼叫該 API。 
+您可以呼叫 hello API 之前，它必須加入您將可以授與存取 toousers tooa 產品。 
 
- 1. 在 [API 管理] 服務中，選取 [產品 - 預覽]。
- 2. 「API 管理」預設會提供兩種產品：[入門] 和 [無限制]。 請選取 [無限制] 產品。
+ 1. 在 hello API 管理服務中，選取 **產品-PREVIEW**。
+ 2. 「API 管理」預設會提供兩種產品：[入門] 和 [無限制]。 選取 hello 無限制的產品。
  3. 選取 API。
- 4. 按一下 [+新增] 按鈕。
- 5. 選取您在先前步驟中建立的 `Service Fabric App` API，然後按一下 [選取] 按鈕。
+ 4. 按一下 hello **+ 加** 按鈕。
+ 5. 選取 hello `Service Fabric App` API hello 前述步驟中建立，並按一下 hello**選取** 按鈕。
 
 ### <a name="test-it"></a>進行測試
 
-您現在可以嘗試直接從 Azure 入口網站透過「API 管理」，將要求傳送到 Service Fabric 中的後端服務。
+您現在可以嘗試透過 API 管理服務網狀架構中傳送要求 tooyour 後端服務，直接從 hello Azure 入口網站。
 
- 1. 在 [API 管理] 服務中，選取 [API - 預覽]。
- 2. 在您於先前步驟中建立的 `Service Fabric App` API 中，選取 [測試] 索引標籤。
- 3. 按一下 [傳送] 按鈕以將測試要求傳送到後端服務。
+ 1. 在 hello API 管理服務中，選取  **API-PREVIEW**。
+ 2. 在 [hello `Service Fabric App` hello 先前步驟中，在您建立的應用程式開發介面選取 hello**測試**] 索引標籤。
+ 3. 按一下 hello**傳送**按鈕 toosend 測試要求 toohello 後端服務。
 
 ## <a name="next-steps"></a>後續步驟
 
 此時，您應該已在 Service Fabric 與「API 管理」做好基本設定。
 
-本教學課程針對您的 Service Fabric 叢集使用基本憑證型使用者驗證，以便讓您快速進行設定。 建議您使用 [Azure Active Directory 驗證](service-fabric-cluster-creation-via-arm.md#set-up-azure-active-directory-for-client-authentication)，以針對 Service Fabric 叢集提供更進階的使用者驗證。 
+此教學課程會使用您得以快速設定，您 Service Fabric 叢集 tooget 基本憑證為基礎的使用者驗證。 建議您使用 [Azure Active Directory 驗證](service-fabric-cluster-creation-via-arm.md#set-up-azure-active-directory-for-client-authentication)，以針對 Service Fabric 叢集提供更進階的使用者驗證。 
 
-接著，[在 Azure API 管理中建立和設定進階產品設定](https://docs.microsoft.com/azure/api-management/api-management-howto-product-with-rules)，以準備好您的應用程式來應付真實世界流量。
+下一步[建立並設定進階的產品設定在 Azure API 管理](https://docs.microsoft.com/azure/api-management/api-management-howto-product-with-rules)tooprepare 應用程式的真實世界的流量。
 
 <!-- links -->
 [azure-powershell]:https://azure.microsoft.com/documentation/articles/powershell-install-configure/

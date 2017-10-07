@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Data Lake Analytics 來分析網站記錄 | Microsoft Docs"
-description: "了解如何使用資料湖分析來分析網站記錄。 "
+title: "使用 Azure Data Lake Analytics aaaAnalyze 網站記錄檔 |Microsoft 文件"
+description: "了解 tooanalyze 網站記錄使用 Data Lake Analytics 的方式。 "
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: saveenr
-ms.openlocfilehash: 25fbbe97d26491fc421f4821315761c18e523ec8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d27aaca95ed2b643cfed7a17b0066bf7fa4a1bf5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-website-logs-using-azure-data-lake-analytics"></a>使用 Azure Data Lake Analytics 來分析網站記錄
-了解如何使用資料湖分析來分析網站記錄，特別是找出哪些訪客來源在嘗試瀏覽網站時遇到錯誤。
+了解如何使用 Data Lake Analytics，特別是在找出哪些推薦者 」 上 tooanalyze 網站記錄檔發生錯誤當他們嘗試 toovisit hello 網站。
 
 ## <a name="prerequisites"></a>必要條件
 * **Visual Studio 2015 或 Visual Studio 2013**。
 * **[Visual Studio 適用的 Data Lake 工具](http://aka.ms/adltoolsvs)**。
 
-    安裝適用於 Visual Studio 的 Data Lake 工具之後，您會在 Visual Studio 的 [工具] 功能表中看到 [Datat Lake] 項目：
+    資料湖 Tools for Visual Studio 安裝之後，您會看到**Data Lake** hello 中的項目**工具**Visual Studio 中的功能表：
 
     ![U-SQL Visual Studio 功能表](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-menu.png)
-* **對於資料湖分析和適用於 Visual Studio 的資料湖工具有基本的認識**。 若要開始使用，請參閱：
+* **Data Lake Analytics 和 hello 資料湖 Tools for Visual Studio 的基本知識**。 tooget 啟動，請參閱：
 
   * [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
 * **資料湖分析帳戶。**  請參閱[建立 Azure Data Lake Analytics 帳戶可節省時間](data-lake-analytics-get-started-portal.md)。
-* **將範例資料上傳到資料湖分析帳戶。** 請參閱[複製範例資料檔案](data-lake-analytics-get-started-portal.md)。
+* **上傳 hello 範例資料 toohello Data Lake Analytics 帳戶。** 請參閱[toocopy 範例資料檔](data-lake-analytics-get-started-portal.md)。
 
-    若要執行資料湖分析工作，您需要一些資料。 即使資料湖工具支援上傳資料，您將使用入口網站來上傳範例資料，以方便遵循本教學課程。
+    toorun Data Lake Analytics 工作中，您將需要一些資料。 即使 hello Data Lake Tools 支援上傳的資料，您將在此教學課程更容易 toofollow 時使用 hello 入口 tooupload hello 範例資料 toomake。
 
-## <a name="connect-to-azure"></a>連接到 Azure
-您必須先連接至 Azure，然後才能建置及測試任何 U-SQL 指令碼。
+## <a name="connect-tooazure"></a>連接 tooAzure
+您可以建立和測試任何 U-SQL 指令碼之前，您必須先連接 tooAzure。
 
-**連接到資料湖分析**
+**tooconnect tooData Lake Analytics**
 
 1. 開啟 Visual Studio。
 2. 按一下 [Data Lake] > [選項和設定]。
-3. 按一下 [登入]，或者如果已有其他人登入則按一下 [變更使用者]，並遵循指示。
-4. 按一下 [確定]  關閉 [選項和設定] 對話方塊。
+3. 按一下**登入**，或**變更使用者**如果有人已登入，並遵循 hello 指示。
+4. 按一下**確定**tooclose hello 選項和設定 對話方塊。
 
-**瀏覽您的資料湖分析帳戶**
+**toobrowse Data Lake Analytics 帳戶**
 
 1. 從 Visual Studio 中，按 **CTRL+ALT+S**，開啟 [伺服器總管]。
-2. 在 [伺服器總管] 中展開 [Azure]，然後展開 [Data Lake Analytics]。 如果有資料湖分析帳戶，您就會看到其清單。 您無法從 Visual Studio 建立資料湖分析帳戶。 若要建立帳戶，請參閱[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md) 或[使用 Azure PowerShell 開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-powershell.md)。
+2. 在 [伺服器總管] 中展開 [Azure]，然後展開 [Data Lake Analytics]。 如果有資料湖分析帳戶，您就會看到其清單。 您無法從 hello studio 建立 Data Lake Analytics 帳戶。 toocreate 的帳戶，請參閱[開始使用 Azure 入口網站的 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md)或[開始使用 Azure PowerShell 的 Azure Data Lake Analytics](data-lake-analytics-get-started-powershell.md)。
 
 ## <a name="develop-u-sql-application"></a>開發 U-SQL 應用程式
-U-SQL 應用程式基本上是 U-SQL 指令碼。 若要深入了解 U-SQL，請參閱 [開始使用 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
+U-SQL 應用程式基本上是 U-SQL 指令碼。 toolearn 進一步了解 U-SQL，請參閱[開始使用 U-SQL](data-lake-analytics-u-sql-get-started.md)。
 
-您可以加入其他使用者定義的運算子至應用程式。  如需詳細資訊，請參閱 [針對資料湖分析工作開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)。
+您可以加入 新增使用者定義運算子 toohello 應用程式。  如需詳細資訊，請參閱 [針對資料湖分析工作開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)。
 
-**建立並提交資料湖分析工作**
+**toocreate 和送出 Data Lake Analytics 工作**
 
-1. 按一下 [檔案] > [新增] > [專案]。
-2. 選取 [U-SQL 專案] 類型。
+1. 按一下 hello**檔案 > 新增 > 專案**。
+2. 選取 hello U-SQL 專案類型。
 
     ![新的 U-SQL Visual Studio 專案](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-new-project.png)
 3. 按一下 [確定] 。 Visual Studio 會建立具有 Script.usql 檔案的方案。
-4. 在 Script.usql 檔案中輸入下列指令碼：
+4. 輸入下列指令碼到 hello Script.usql 檔案 hello:
 
-        // Create a database for easy reuse, so you don't need to read from a file every time.
+        // Create a database for easy reuse, so you don't need tooread from a file every time.
         CREATE DATABASE IF NOT EXISTS SampleDBTutorials;
 
-        // Create a Table valued function. TVF ensures that your jobs fetch data from the weblog file with the correct schema.
+        // Create a Table valued function. TVF ensures that your jobs fetch data from hello weblog file with hello correct schema.
         DROP FUNCTION IF EXISTS SampleDBTutorials.dbo.WeblogsView;
         CREATE FUNCTION SampleDBTutorials.dbo.WeblogsView()
         RETURNS @result TABLE
@@ -144,39 +144,39 @@ U-SQL 應用程式基本上是 U-SQL 指令碼。 若要深入了解 U-SQL，請
                 cs_referer,
                 sc_status;
 
-    若要了解 U-SQL，請參閱 [開始使用資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。    
-5. 將新的 U-SQL 指令碼加入至專案並輸入下列資訊：
+    toounderstand hello U-SQL，請參閱[開始使用資料 Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。    
+5. 加入新的 U-SQL 指令碼 tooyour 專案，然後輸入 hello 下列：
 
-        // Query the referrers that ran into errors
+        // Query hello referrers that ran into errors
         @content =
             SELECT *
             FROM SampleDBTutorials.dbo.ReferrersPerDay
             WHERE sc_status >=400 AND sc_status < 500;
 
         OUTPUT @content
-        TO @"/Samples/Outputs/UnsuccessfulResponses.log"
+        too@"/Samples/Outputs/UnsuccessfulResponses.log"
         USING Outputters.Tsv();
-6. 依序切換回至第一個 U-SQL 指令碼和 [提交]  按鈕，指定您的分析帳戶。
-7. 從 [方案總管] 中，在 [Script.usql] 上按一下滑鼠右鍵，然後按一下 [建置指令碼]。 確認 [輸出] 窗格中的結果。
-8. 從 [方案總管] 中，在 [Script.usql] 上按一下滑鼠右鍵，然後按一下 [提交指令碼]。
-9. 確認 [分析帳戶] 是在您想要執行工作的帳戶，然後按一下 [提交]。 提交作業完成時，[適用於 Visual Studio 的資料湖工具結果] 視窗中便會出現提交結果和工作連結。
-10. 請等待工作成功完成。  如果工作失敗，很可能是因為遺漏了原始檔。  請參閱本教學課程的＜必要條件＞一節。 如需其他疑難排解資訊，請參閱 [監視和疑難排解 Azure 資料湖分析工作](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)。
+6. 切換後 toohello 第一個 U-SQL 指令碼和 下一步 toohello**送出**按鈕，指定您 Analytics 帳戶。
+7. 從 方案總管 中，在 Script.usql 上按一下滑鼠右鍵，然後按一下建置指令碼。 請確認 hello [輸出] 窗格中的 hello 結果。
+8. 從 方案總管 中，在 Script.usql 上按一下滑鼠右鍵，然後按一下提交指令碼。
+9. 確認 hello **Analytics 帳戶**為您想 toorun hello 工作，然後再按一下其中一個 hello**送出**。 Hello 提交完成時，都可使用 hello Data Lake Tools for Visual Studio 結果 視窗中送出結果和工作連結。
+10. 請等到 hello 工作順利完成。  如果 hello 工作失敗，它很可能遺失 hello 原始程式檔。  請參閱 hello 本教學課程的必要條件一節。 如需其他疑難排解資訊，請參閱 [監視和疑難排解 Azure 資料湖分析工作](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)。
 
-    工作完成之後，您會看到下列畫面：
+    Hello 作業完成時，您應該會看到下列畫面 hello:
 
     ![資料湖分析分析 weblog 網站記錄](./media/data-lake-analytics-analyze-weblogs/data-lake-analytics-analyze-weblogs-job-completed.png)
 11. 現在針對 **Script1.usql**重複步驟 7 - 10。
 
-**查看作業輸出**
+**toosee hello 作業輸出**
 
-1. 在 [伺服器總管] 中，依序展開 [Azure]、[Data Lake Analytics]、您的 Data Lake Analytics 帳戶，以及 [儲存體帳戶]，然後用滑鼠右鍵按一下預設的 Data Lake 儲存體帳戶，再按一下 [總管]。
-2. 按兩下 [範例] 來開啟資料夾，然後再連按兩下 [輸出]。
+1. 從**伺服器總管**，依序展開**Azure**，依序展開**Data Lake Analytics**，依序展開您的資料湖分析帳戶**的儲存體帳戶**hello 預設資料湖存放區的帳戶，以滑鼠右鍵按一下，然後按**總管**。
+2. 按兩下**範例**tooopen hello 資料夾，然後按兩下 **輸出**。
 3. 按兩下 **UnsuccessfulResponsees.log**。
-4. 您也可以按兩下工作的圖形檢視內的輸出檔，直接瀏覽至輸出。
+4. 直接 toohello 輸出，您也可以按兩下 hello hello 圖表檢視順序 toonavigate 中的 hello 作業內的輸出檔。
 
 ## <a name="see-also"></a>另請參閱
-若要使用不同的工具開始使用資料湖分析，請參閱：
+tooget 開始使用 Data Lake Analytics 使用不同的工具，請參閱：
 
-* [使用 Azure 入口網站開始使用資料湖分析](data-lake-analytics-get-started-portal.md)
+* [使用 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
 * [使用 Azure PowerShell 開始使用資料湖分析](data-lake-analytics-get-started-powershell.md)
 * [使用 .NET SDK 開始使用資料湖分析](data-lake-analytics-get-started-net-sdk.md)

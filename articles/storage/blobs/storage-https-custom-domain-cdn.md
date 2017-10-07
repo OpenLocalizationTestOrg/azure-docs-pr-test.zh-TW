@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CDN 透過 HTTPS 以自訂網域存取 blob"
-description: "了解如何整合 Azure CDN 與 Blob 儲存體，以透過 HTTPS 使用自訂網域存取 blob"
+title: "aaaUsing hello Azure CDN tooaccess blob 使用透過 HTTPS 的自訂網域"
+description: "了解如何使用 blob 儲存體 tooaccess toointegrate hello Azure CDN 的 blob 使用自訂網域透過 HTTPS"
 services: storage
 documentationcenter: 
 author: michaelhauss
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: mihauss
-ms.openlocfilehash: 6bad04df324a374f6e8473890345cf516322abd6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f6cee36ca5495983545f2f6a8ff140677cf6914b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-azure-cdn-to-access-blobs-with-custom-domains-over-https"></a>使用 Azure CDN 透過 HTTPS 以自訂網域存取 blob
+# <a name="using-hello-azure-cdn-tooaccess-blobs-with-custom-domains-over-https"></a>使用自訂網域中的 hello Azure CDN tooaccess blob，透過 HTTPS
 
 Azure 內容傳遞網路 (CDN) 現在支援自訂網域名稱使用 HTTPS。
-您可以利用這個功能，使用您的自訂網域透過 HTTPS 存取儲存體 blob。 若要這樣做，您必須先在您的 blob 端點啟用 Azure CDN，並將 CDN 對應至自訂網域名稱。 一旦您採取這些步驟，啟用自訂網域 HTTPS 就會簡化為一步啟用和完整憑證管理，而且不須要 CDN 價格以外的費用。
+您可以利用此在 HTTPS 上使用自訂網域的功能 tooaccess 儲存體 blob。 toodo 因此，您必須先 tooenable Azure CDN 的 blob 端點和對應 hello CDN tooa 自訂網域名稱。 一旦您採取下列步驟，啟用 HTTPS 的自訂網域已經過簡化透過一種單鍵啟用，完成憑證管理，以及所有的任何額外的成本 toonormal CDN 定價。
 
-這項功能很重要，因為它讓您可以在傳輸敏感的 Web 應用程式資料時保護隱私與資料完整性。 使用 SSL 通訊協定透過 HTTPS 提供流量，可確保資料在網際網路上傳遞時已經過加密。 HTTPS 提供信任與認證，並保護您的 Web 應用程式免於攻擊。
+這項功能非常重要的因為它可讓您 tooprotect hello 隱私權和機密的 web 應用程式資料在傳輸過程中的資料完整性。 使用 hello SSL 通訊協定 tooserve 流量透過 HTTPS 可確保已加密資料，當傳送 hello 跨網際網路。 HTTPS 提供信任與認證，並保護您的 Web 應用程式免於攻擊。
 
 > [!NOTE]
-> 除了提供自訂網域名稱的 SSL 支援，Azure CDN 也可協助您調整應用程式規模，以便在世界各地供應高頻寬內容。
-> 若要深入了解，請參閱 [Azure CDN 概觀](../../cdn/cdn-overview.md)。
+> 此外 tooproviding SSL 支援自訂網域名稱，hello Azure CDN 可協助您調整應用程式 toodeliver 高頻寬內容 hello 世界各地。
+> toolearn 詳細資訊，請參閱[hello Azure CDN 概觀](../../cdn/cdn-overview.md)。
 >
 >
 
 ## <a name="quick-start"></a>快速入門
 
-以下是您的自訂 Blob 儲存體端點啟用 HTTPS 所需的步驟︰
+這些是您自訂的 blob 儲存體端點的 hello 步驟需要的 tooenable HTTPS:
 
 1.  [整合 Azure 儲存體帳戶與 Azure CDN](../../cdn/cdn-create-a-storage-account-with-cdn.md)。
-    如果您還沒有在 Azure 入口網站中建立儲存體帳戶，本文將逐步引導您。
-2.  [將 Azure CDN 內容對應至自訂網域](../../cdn/cdn-map-content-to-custom-domain.md)。
+    這篇文章會引導您在 hello Azure 入口網站中建立儲存體帳戶，如果您有尚未完成操作。
+2.  [對應的 Azure CDN 內容 tooa 自訂網域](../../cdn/cdn-map-content-to-custom-domain.md)。
 3.  [在 Azure CDN 自訂網域上啟用 HTTPS](../../cdn/cdn-custom-ssl.md)。
 
 ## <a name="shared-access-signatures"></a>共用存取簽章
 
-如果您的 Blob 儲存體端點設定為不允許匿名讀取權限，則必須在您對您的自訂網域提出的每個要求中提供[共用存取簽章 (SAS)](../common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) 權杖。 根據預設，Blob 儲存體端點不允許匿名讀取權限。 如需共用存取簽章的詳細資訊，請參閱[管理對容器與 blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
+如果您的 blob 儲存體端點設定的 toodisallow 匿名讀取權限，您將需要 tooprovide[共用存取簽章 (SAS)](../common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)語彙基元，在每個要求您進行 tooyour 自訂網域。 根據預設，Blob 儲存體端點不允許匿名讀取權限。 如需共用存取簽章的詳細資訊，請參閱[管理對容器與 blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
 
-Azure CDN 不理會任何加在 SAS 權杖上的限制。 例如，所有 SAS 權杖都有到期時間。 這表示使用過期的 SAS 仍可存取內容，直到內容從 CDN 邊緣節點上被清除。 您可以設定快取的回應標頭，以控制可在 CDN 上快取資料多久時間。 如需指示請參閱[在 Azure CDN 中管理 Azure 儲存體 Blob 的到期](../../cdn/cdn-manage-expiration-of-blob-content.md)。
+Azure CDN 不會遵守任何限制加入的 toohello SAS 權杖。 例如，所有 SAS 權杖都有到期時間。 這表示內容仍然使用過期的 SAS 存取，直到該內容會清除從 hello CDN 邊緣節點。 您可以控制多久快取資料 hello CDN 上所設定的 hello 快取的回應標頭。 如需指示請參閱[在 Azure CDN 中管理 Azure 儲存體 Blob 的到期](../../cdn/cdn-manage-expiration-of-blob-content.md)。
 
-如果您為同一 blob 端點建立多個 SAS URL，建議您開啟 Azure CDN 的查詢字串快取。 這是為了確保每個 URL 會被當作唯一實體。 如需詳細資訊，請參閱[使用查詢字串控制 Azure CDN 快取行為](../../cdn/cdn-query-string.md)。
+如果您要建立 hello 的多個 SAS Url 相同的 blob 端點，我們建議您開啟您的 Azure CDN 的快取的查詢字串。 這是 tooensure，每個 URL 會被視為唯一的實體。 如需詳細資訊，請參閱[使用查詢字串控制 Azure CDN 快取行為](../../cdn/cdn-query-string.md)。
 
-## <a name="http-to-https-redirection"></a>HTTP 至 HTTPS 的重新導向
+## <a name="http-toohttps-redirection"></a>HTTP tooHTTPS 重新導向
 
-您可以選擇將 HTTP 流量重新導向至 HTTPS。 這需要使用 Verizon 上提供的 Azure CDN。 您必須用下列規則[使用 Azure CDN 規則引擎覆寫 HTTP 行為](../../cdn/cdn-rules-engine.md)：
+您可以選擇 tooredirect HTTP 流量 tooHTTPS。 這需要從 Verizon hello Azure CDN premium 供應項目的使用。 您需要[覆寫 HTTP 使用的 Azure CDN 規則引擎的行為](../../cdn/cdn-rules-engine.md)下列規則：
 
 ![](./media/storage-https-custom-domain-cdn/redirect-to-https.png)
 
-cdn-endpoint-name 是指您為 CDN 端點設定的名稱。 您可以從下拉式清單中選取其值。 origin-path 指的是您的靜態內容所在的原始儲存體帳戶的路徑。
-如果您將所有靜態內容裝載在單一容器中，則將 origin-path 取代為該容器的名稱。
+"Cdn 的端點名稱的"是指在您設定您的 CDN 端點的 toohello 名稱。 您可以從 hello 下拉式清單中選取此值。 [來源路徑] 是指您靜態內容所在來源儲存體帳戶中的 hello 路徑。
+如果您裝載單一容器中的所有靜態內容，取代 hello 名稱，該容器的 [來源路徑]。
 
-如需深入了解規則，請參閱 [Azure CDN 規則引擎功能](../../cdn/cdn-rules-engine-reference-features.md)。
+規則深入剖析，請參閱 hello [Azure CDN 規則引擎功能](../../cdn/cdn-rules-engine-reference-features.md)。
 
 ## <a name="pricing-and-billing"></a>價格和計費
 
-當您透過 Azure CDN 存取 blob 時，需支付邊緣節點和起點 (Blob 儲存體) 之間流量的 [Blob 儲存體價格](https://azure.microsoft.com/pricing/details/storage/blobs/)，以及從邊緣節點存取資料的 [CDN 價格](https://azure.microsoft.com/pricing/details/cdn/)。
+當您透過 Azure CDN 存取 blob 時，您必須支付[Blob 儲存體價格](https://azure.microsoft.com/pricing/details/storage/blobs/)hello 邊緣節點與 hello 原點 （Blob 儲存） 之間的流量和[CDN 價格](https://azure.microsoft.com/pricing/details/cdn/)從 hello 邊緣節點存取的資料。
 
-例如，假設您的儲存體帳戶在美國西部，且使用 Azure CDN 存取它。 如果有人在英國嘗試透過 CDN 存取該儲存體帳戶中的其中一個 blob，Azure 會先檢查該 blob 最接近英國的邊緣節點。 如果找到，它會存取該 blob 複本且會使用 CDN 定價，因為是正在 CDN 上存取。 如果找不到，Azure 會將 blob 複製到邊緣節點，這會產生輸出和交易費用 (如「Blob 儲存體價格」中所述)，然後存取邊緣節點上的檔案，而這會產生 CDN 費用。
+例如，假設您的儲存體帳戶在美國西部，且使用 Azure CDN 存取它。 如果有人在 hello 英國嘗試的 tooaccess hello 的其中一個 hello CDN 透過該儲存體帳戶中的 blob，Azure 會先檢查最接近該 blob hello 英國 hello 邊緣節點。 如果找到，它會存取該副本 hello blob，並會使用 CDN 定價，因為它正在存取 hello CDN 上。 如果找不到，Azure 將會複製 hello blob toohello 邊緣節點，這會導致輸出和交易費用，以指定在 hello Blob 儲存體定價，並存取 hello 邊緣節點上，而導致 CDN 計費 hello 檔案。
 
-查看 [CDN 價格頁面](https://azure.microsoft.com/pricing/details/cdn/)時請注意，自訂網域名稱的 HTTPS 支援只適用於 Verizon 的 Azure CDN 產品 (「標準」和「進階」)。
+查看 hello 時[CDN 定價頁面](https://azure.microsoft.com/pricing/details/cdn/)，請注意，HTTPS 支援的自訂網域名稱只適用於 Azure CDN 從 Verizon 產品 （Standard 和 Premium）。
 
 ## <a name="next-steps"></a>後續步驟
 

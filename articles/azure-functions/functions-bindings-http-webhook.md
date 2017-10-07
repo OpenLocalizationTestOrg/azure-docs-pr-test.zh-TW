@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions HTTP 和 Webhook 繫結 | Microsoft Docs"
-description: "了解如何在 Azure Functions 中使用 HTTP 和 Webhook 觸發程序與繫結。"
+title: "aaaAzure 函式 HTTP 和 webhook 繫結 |Microsoft 文件"
+description: "了解如何 toouse HTTP 和 webhook 觸發程序和 Azure 函式中的繫結。"
 services: functions
 documentationcenter: na
 author: mattchenderson
@@ -16,21 +16,21 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: mahender
-ms.openlocfilehash: 71c0d22c4b1824078982b9d1cc76645f947ae603
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c23b7a1443d492ed78c595e97d1d778a7ab12416
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-http-and-webhook-bindings"></a>Azure Functions HTTP 和 Webhook 繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中設定並使用 HTTP 觸發程序和繫結。
-利用這些資訊，您就可以使用 Azure Functions 建置無伺服器 API 並回應 Webhook。
+這篇文章說明如何 tooconfigure 和 http 的工作觸發程序和 Azure 函式中的繫結。
+進行這些動作，您可以使用 Azure 函式 toobuild 無伺服器應用程式開發介面和回應 toowebhooks。
 
-Azure Functions 提供下列繫結：
-- [HTTP 觸發程序](#httptrigger)可讓您透過 HTTP 要求叫用函式。 您可以將它自訂來回應 [Webhook](#hooktrigger)。
-- [HTTP 輸出繫結](#output)可讓您回應要求。
+Azure 的函式會提供下列繫結的 hello:
+- [HTTP 觸發程序](#httptrigger)可讓您透過 HTTP 要求叫用函式。 這可以是自訂的 toorespond 太[webhook](#hooktrigger)。
+- [HTTP 輸出繫結](#output)可讓您 toorespond toohello 要求。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
@@ -39,14 +39,14 @@ Azure Functions 提供下列繫結：
 <a name="httptrigger"></a>
 
 ## <a name="http-trigger"></a>HTTP 觸發程序
-HTTP 觸發程序將會執行您的函式，以回應 HTTP 要求。 您可以自訂它來回應特定的 URL 或一組 HTTP 方法。 也可以設定 HTTP 觸發程序來回應 Webhook。 
+hello HTTP 觸發程序將會回應 tooan HTTP 要求中執行您的函式。 您可以加以自訂 toorespond tooa 特定 URL 或一組 HTTP 方法。 HTTP 觸發程序也可以設定的 toorespond toowebhooks。 
 
-如果使用 Functions 入口網站，您也可以使用預先製作的範本立即開始。 選取 [新函式] 然後從 [案例] 下拉式清單選擇 [API 與 Webhook]。 選取其中一個範本，然後按一下 [建立]。
+如果使用 hello 函式網站，您可以也會開始立即使用 預先製作的範本。 選取**新函式**從 hello"應用程式開發介面 & Webhook"**案例**下拉式清單。 選取其中一個 hello 範本，然後按一下**建立**。
 
-根據預設，HTTP 觸發程序會以 HTTP 200 OK 的狀態碼和空白主體回應要求。 若要修改回應，請設定 [HTTP 輸出繫結](#output)
+根據預設，HTTP 觸發程序會回應 toohello 要求空本文與 HTTP 200 「 確定 」 狀態碼。 toomodify hello 回應，設定[HTTP 輸出繫結](#output)
 
 ### <a name="configuring-an-http-trigger"></a>設定 HTTP 觸發程序
-HTTP 觸發程序是藉由在 function.json 的 `bindings` 陣列中包含類似下列的 JSON 物件來定義：
+定義 HTTP 觸發程序包括下列 hello 中 JSON 的物件類似 toohello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -58,37 +58,37 @@ HTTP 觸發程序是藉由在 function.json 的 `bindings` 陣列中包含類似
     "route": "values/{id}"
 },
 ```
-繫結支援下列屬性：
+hello 繫結支援下列屬性的 hello:
 
-* **name**：必要項目，函式程式碼中用於要求或要求主體的變數名稱。 請參閱[從程式碼使用 HTTP 觸發程序](#httptriggerusage)。
-* **type**：必要項目，必須設定為 "httpTrigger"。
-* **direction**：必要項目，必須設定為 "in"。
-* _authLevel_：這會決定要求上必須存在哪些金鑰 (若有的話) 以叫用函式。 請參閱下方的[使用金鑰](#keys)。 值可以是下列其中一種：
+* **名稱**： 需要-hello hello 要求或要求主體函式程式碼中使用的變數名稱。 請參閱[從程式碼使用 HTTP 觸發程序](#httptriggerusage)。
+* **型別**： 需要-必須設定太"httpTrigger"。
+* **方向**： 需要-必須是 「 位置 」 太設定。
+* _authLevel_ ： 這會決定哪些索引鍵，如果有的話，需要 toobe hello 要求上呈現順序 tooinvoke hello 函式中。 請參閱下方的[使用金鑰](#keys)。 hello 值可以是 hello 下列其中一種：
     * _anonymous_：不需要 API 金鑰。
-    * _function_：需要函式專屬的 API 金鑰。 如果沒有提供任何值，此為預設值。
-    * _admin_：需要主要金鑰。
-* **methods**：此為函式將回應的 HTTP 方法陣列。 如果未指定，函式將會回應所有的 HTTP 方法。 請參閱[自訂 HTTP 端點](#url)。
-* **route**：這會定義路由範本，控制函式將回應哪些要求 URL。 如果沒有提供任何值，預設值為 `<functionname>`。 請參閱[自訂 HTTP 端點](#url)。
-* **webHookType**：這會設定 HTTP 觸發程序做為指定提供者的 Webhook 接收器。 如果選擇此項目，則不應設定 _methods_ 屬性。 請參閱[回應 Webhook](#hooktrigger)。 值可以是下列其中一種：
+    * _function_：需要函式專屬的 API 金鑰。 如果未提供，這會是 hello 預設值。
+    * _系統管理員_: hello 主索引鍵為必要。
+* **方法**： 這是 toowhich hello 函式會回應 hello HTTP 方法的陣列。 如果未指定，hello 函式會回應 tooall HTTP 方法。 請參閱[自訂 hello HTTP 端點](#url)。
+* **路由**： 這會定義 hello 路由範本，控制 toowhich 要求會回覆您的函式的 Url。 hello 若未提供任何預設值是`<functionname>`。 請參閱[自訂 hello HTTP 端點](#url)。
+* **webHookType** ： 這會將 hello HTTP 觸發程序 tooact 設定為 hello 指定提供者的 webhook 線上發生干擾。 hello_方法_屬性不應該設定這個選擇。 請參閱[回應 toowebhooks](#hooktrigger)。 hello 值可以是 hello 下列其中一種：
     * _genericJson_：一般用途的 Webhook 端點，不需要特定提供者的邏輯。
-    * _github_：函式將回應 GitHub Webhook。 如果選擇此項目，則不應設定 _authLevel_ 屬性。
-    * _github_：函式將回應 Slack Webhook。 如果選擇此項目，則不應設定 _authLevel_ 屬性。
+    * _github_ : hello 函式會回應 tooGitHub webhook。 hello _authLevel_屬性不應該設定這個選擇。
+    * _slack_ : hello 函式會回應 tooSlack webhook。 hello _authLevel_屬性不應該設定這個選擇。
 
 <a name="httptriggerusage"></a>
 ### <a name="working-with-an-http-trigger-from-code"></a>從程式碼使用 HTTP 觸發程序
-針對 C# 和 F# 函式，您可以宣告觸發程序輸入的類型為 `HttpRequestMessage` 或自訂類型。 如果您選擇 `HttpRequestMessage`，那您將會取得要求物件的完整存取權。 對於自訂類型 (例如 POCO)，Functions 會嘗試將要求主體剖析為 JSON 以填入物件屬性。
+對於 C# 和 F # 函式，您可以是宣告您的觸發程序輸入 toobe hello 類型`HttpRequestMessage`或自訂型別。 如果您選擇`HttpRequestMessage`，就會得到完整存取 toohello 要求物件。 自訂 （例如 POCO) 類型，函式會嘗試 tooparse hello 要求主體為 JSON toopopulate hello 物件屬性。
 
-對於 Node.js 函式，Functions 執行階段提供要求主體而非要求物件。
+Node.js 函式，hello 函式執行階段會提供 hello 要求本文，而不是 hello 要求物件。
 
 請參閱 [HTTP 觸發程序範例](#httptriggersample)以取得範例使用方式。
 
 
 <a name="output"></a>
 ## <a name="http-response-output-binding"></a>HTTP 回應輸出繫結
-使用 HTTP 輸出繫結來回應 HTTP 要求傳送者。 此繫結需要 HTTP 觸發程序，並可讓您自訂與觸發程序要求相關聯的回應。 如果沒有提供 HTTP 輸出繫結，HTTP 觸發程序將會傳回 HTTP 200 OK 和空白主體。 
+使用 hello HTTP 輸出繫結 toorespond toohello HTTP 要求寄件者。 這個繫結需要 HTTP 觸發程序，並可讓您 toocustomize hello 回應 hello 觸發程序的要求相關聯。 如果沒有提供 HTTP 輸出繫結，HTTP 觸發程序將會傳回 HTTP 200 OK 和空白主體。 
 
 ### <a name="configuring-an-http-output-binding"></a>設定 HTTP 輸出繫結
-HTTP 輸出繫結是藉由在 function.json 的 `bindings` 陣列中包含類似下列的 JSON 物件來定義：
+hello HTTP 輸出繫結定義包含下列 hello 中 JSON 的物件類似 toohello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -97,38 +97,38 @@ HTTP 輸出繫結是藉由在 function.json 的 `bindings` 陣列中包含類似
     "direction": "out"
 }
 ```
-繫結包含下列屬性：
+hello 繫結包含下列屬性的 hello:
 
-* **name**：必要項目，函式程式碼中用於回應的變數名稱。 請參閱[從程式碼使用 HTTP 輸出繫結](#outputusage)。
-* **type**：必要項目，必須設定為 "http"。
-* **direction**：必要項目，必須設定為 "out"。
+* **名稱**： 需要-hello 回應 hello 函式程式碼中使用的變數名稱。 請參閱[從程式碼使用 HTTP 輸出繫結](#outputusage)。
+* **型別**： 需要-必須設定太"http"。
+* **方向**： 需要-必須設定太"out"。
 
 <a name="outputusage"></a>
 ### <a name="working-with-an-http-output-binding-from-code"></a>從程式碼使用 HTTP 輸出繫結
-您可以使用輸出參數 (例如 "res") 來回應 http 或 Webhook 呼叫端。 或者，您可以使用標準 `Request.CreateResponse()` (C#) 或 `context.res` (Node.JS) 模式來傳回您的回應。 如需有關如何使用第二個方法的範例，請參閱 [HTTP 觸發程序範例](#httptriggersample)和 [Webhook 觸發程序範例](#hooktriggersample)。
+您可以使用 hello 輸出參數 (例如，"res 」) toorespond toohello http 或 webhook 呼叫者。 或者，您可以使用標準`Request.CreateResponse()`(C#) 或`context.res`(Node.JS) 模式 tooreturn 您的回應。 如需如何 toouse hello 第二個方法的範例，請參閱[HTTP 觸發程序範例](#httptriggersample)和[Webhook 觸發程序範例](#hooktriggersample)。
 
 
 <a name="hooktrigger"></a>
-## <a name="responding-to-webhooks"></a>回應 Webhook
-含有 _webHookType_ 屬性的 HTTP 觸發程序將會設定為回應 [Webhook](https://en.wikipedia.org/wiki/Webhook)。 基本組態會使用 "genericJson" 設定。 這會將要求限制為只有那些使用 HTTP POST 和包含 `application/json` 內容類型的要求。
+## <a name="responding-toowebhooks"></a>回應 toowebhooks
+HTTP 觸發程序以 hello _webHookType_屬性會設定的 toorespond 太[webhook](https://en.wikipedia.org/wiki/Webhook)。 hello 基本組態會使用 hello"genericJson 」 設定。 這會限制要求 tooonly 與使用 HTTP POST 和以 hello`application/json`內容類型。
 
-觸發程序可另外針對特定的 Webhook 提供者進行調整 (例如 [GitHub](https://developer.github.com/webhooks/) 和 [Slack](https://api.slack.com/outgoing-webhooks))。 如果指定了提供者，Functions 執行階段就可為您處理提供者的驗證邏輯。  
+hello 觸發程序可以此外是量身訂做的 tooa webhook 特定提供者 (例如[GitHub](https://developer.github.com/webhooks/)和[Slack](https://api.slack.com/outgoing-webhooks))。 如果指定的提供者，則 hello 函式執行階段將會處理 hello 提供者的驗證邏輯為您。  
 
 ### <a name="configuring-github-as-a-webhook-provider"></a>將 GitHub 設定為 Webhook 提供者
-若要回應 GitHub Webhook，請先建立含有 HTTP 觸發程序的函式，然後將 _webHookType_ 屬性設定為 "github"。 接著將其 [URL](#url) 和 [API 金鑰](#keys) 複製到您 GitHub 存放庫的 [加入 webhook] 頁面。 若要深入了解，請參閱 GitHub 的[建立 Webhook](http://go.microsoft.com/fwlink/?LinkID=761099&clcid=0x409) 文件。
+toorespond tooGitHub webhook，第一次使用了 HTTP 觸發程序，建立您的函式，並設定 hello _webHookType_屬性太"github"。 接著將其 [URL](#url) 和 [API 金鑰](#keys) 複製到您 GitHub 存放庫的 [加入 webhook] 頁面。 若要深入了解，請參閱 GitHub 的[建立 Webhook](http://go.microsoft.com/fwlink/?LinkID=761099&clcid=0x409) 文件。
 
 ![](./media/functions-bindings-http-webhook/github-add-webhook.png)
 
 ### <a name="configuring-slack-as-a-webhook-provider"></a>將 Slack 設定為 Webhook 提供者
-Slack webhook 會為您產生權杖，而不是由您指定，因此您必須使用 Slack 的權杖來設定函式專屬的金鑰。 請參閱[使用金鑰](#keys)。
+hello Slack 的 webhook 為您產生權杖，而不是讓您指定，因此您必須設定的函式特定金鑰 Slack hello 權杖。 請參閱[使用金鑰](#keys)。
 
 <a name="url"></a>
-## <a name="customizing-the-http-endpoint"></a>自訂 HTTP 端點
-根據預設，當您為 HTTP 觸發程序或 WebHook 建立函式時，將可藉由下列形式的路由來定址該函式：
+## <a name="customizing-hello-http-endpoint"></a>自訂 hello HTTP 端點
+依預設建立 HTTP 觸發程序，或 WebHook，函式時 hello 函式為可定址與 hello 表單的路由：
 
     http://<yourapp>.azurewebsites.net/api/<funcname> 
 
-您可以在 HTTP 觸發程序的輸入繫結上使用選擇性的 `route` 屬性來自訂此路由。 舉例來說，下列 *function.json* 檔案定義了 HTTP 觸發程序的 `route` 屬性：
+您可以自訂此路由使用選擇性的 hello `route` hello HTTP 觸發程序上的屬性輸入繫結。 例如，hello 遵循*function.json*檔案會定義`route`HTTP 觸發程序的屬性：
 
 ```json
     {
@@ -149,11 +149,11 @@ Slack webhook 會為您產生權杖，而不是由您指定，因此您必須使
     }
 ```
 
-在使用此設定的情況下，現在便可使用下列路由來定址該函式，而不需使用原始路由。
+使用此組態，hello 函式現在是可定址以 hello 遵循而不是 hello 原始路由的路由。
 
     http://<yourapp>.azurewebsites.net/api/products/electronics/357
 
-這可讓該函式程式碼在位址中支援兩個參數，即 "category" 和 "id"。 您可以將任何 [Web API 路由條件約束](https://www.asp.net/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2#constraints)與您的參數搭配使用。 下列 C# 函式程式碼會同時利用這兩個參數。
+這可讓 hello 函式程式碼在 hello 位址、 「 類別目錄 」 和 「 識別碼 」 的 toosupport 兩個參數。 您可以將任何 [Web API 路由條件約束](https://www.asp.net/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2#constraints)與您的參數搭配使用。 hello 下列 C# 函式程式碼會使用這兩個參數。
 
 ```csharp
     public static Task<HttpResponseMessage> Run(HttpRequestMessage req, string category, int? id, 
@@ -166,7 +166,7 @@ Slack webhook 會為您產生權杖，而不是由您指定，因此您必須使
     }
 ```
 
-以下是使用相同路由參數的 Node.js 函式程式碼。
+以下是相同的路由參數 Node.js 函式程式碼 toouse hello。
 
 ```javascript
     module.exports = function (context, req) {
@@ -176,13 +176,13 @@ Slack webhook 會為您產生權杖，而不是由您指定，因此您必須使
 
         if (!id) {
             context.res = {
-                // status: 200, /* Defaults to 200 */
+                // status: 200, /* Defaults too200 */
                 body: "All " + category + " items were requested."
             };
         }
         else {
             context.res = {
-                // status: 200, /* Defaults to 200 */
+                // status: 200, /* Defaults too200 */
                 body: category + " item with id = " + id + " was requested."
             };
         }
@@ -191,7 +191,7 @@ Slack webhook 會為您產生權杖，而不是由您指定，因此您必須使
     } 
 ```
 
-所有函式路由預設前面都會加上 *api*。 您也可以在 *host.json* 檔案中使用 `http.routePrefix` 屬性來自訂或移除前置詞。 下列範例會在 *host.json* 檔案中使用空字串作為前置詞來移除 *api* 路由前置詞。
+所有函式路由預設前面都會加上 *api*。 您也可以自訂或移除使用 hello hello 首碼`http.routePrefix`屬性中的您*host.json*檔案。 hello 下列範例會移除 hello *api*路由前置字元，使用空字串 hello 前置詞在 hello *host.json*檔案。
 
 ```json
     {
@@ -201,52 +201,52 @@ Slack webhook 會為您產生權杖，而不是由您指定，因此您必須使
     }
 ```
 
-如需有關如何更新您函數 *host.json* 檔案的詳細資訊，請參閱[如何更新函數應用程式檔案](functions-reference.md#fileupdate)。 
+如需詳細資訊 tooupdate hello *host.json*函式，請參閱 < 檔案[tooupdate 運作應用程式檔案的方式](functions-reference.md#fileupdate)。 
 
 如需有關您可以在 *host.json* 檔案中設定之其他屬性的資訊，請參閱 [host.json 參考](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)。
 
 
 <a name="keys"></a>
 ## <a name="working-with-keys"></a>使用金鑰
-HttpTriggers 可以利用金鑰來增加安全性。 標準 HttpTrigger 可以將這些金鑰做為 API 金鑰，要求金鑰必須存在於要求上。 Webhook 可以以多種方式使用金鑰授權要求，視提供者支援的方式而定。
+HttpTriggers 可以利用金鑰來增加安全性。 標準 HttpTrigger 可以使用這些 API 金鑰，為需要 hello 金鑰 toobe hello 要求上呈現。 Webhook 可以使用各種不同的方式，根據哪個 hello 提供者支援的索引鍵 tooauthorize 要求。
 
-金鑰會當作您函數應用程式的一部分儲存於 Azure 中，並在加密後靜置。 若要檢視您的金鑰，請建立新的金鑰或將金鑰輪替為新的值，瀏覽至入口網站中您的其中一個函式，然後選取 [管理]。 
+金鑰會當作您函數應用程式的一部分儲存於 Azure 中，並在加密後靜置。 tooview 您的金鑰，建立新的或復原金鑰 toonew 值、 導覽 tooone hello 入口網站中函式，並選取 「 管理 」。 
 
 金鑰類型有兩種：
-- **主機金鑰**：這些金鑰由函數應用程式中所有的函式共用。 當做為 API 金鑰使用時，這些金鑰會允許存取函數應用程式中的任何函式。
-- **函式金鑰**：這些金鑰僅適用於據以定義它們的特定函式。 當做為 API 金鑰使用時，這些金鑰僅允許存取該函式。
+- **主機金鑰**： 共用這些機碼的 hello 函式應用程式內的所有函式。 API 金鑰當做使用時，這些行為允許 hello 函式應用程式內存取 tooany 函式。
+- **功能鍵**： 這些金鑰套用只有 toohello 特定函式的定義。 API 金鑰當做使用時，這些只允許存取 toothat 函式。
 
-每個金鑰均為具名以供參考，並且在函式和主機層級有一預設金鑰 (名稱為 "default")。 「主要金鑰」是預設的主機金鑰，名稱為 "_master"，它是針對每個函數應用程式所定義且無法撤銷。 它會提供執行階段 API 的系統管理存取權。 在繫結 JSON 中使用 `"authLevel": "admin"` 會要求此金鑰必須存在於要求上；任何其他金鑰將會導致授權失敗。
+如需參考，名為每個索引鍵，而且 hello 函式和主機層級沒有 （名為 「 預設 」） 的預設索引鍵。 hello**主要金鑰**預設主機鍵名為"_master 」，為每個函式應用程式定義並無法撤銷。 它會提供系統管理存取權 toohello 執行階段 Api。 使用`"authLevel": "admin"`hello 中繫結 JSON hello 要求上呈現此金鑰 toobe; 任何其他金鑰會導致授權失敗。
 
 > [!NOTE]
-> 由於主要金鑰會授與提高的權限，因此您不應該與第三方共用此金鑰，或是將它散發到原生用戶端應用程式。 當您選擇管理授權層級時，請務必謹慎。
+> 到期 toohello 提高權限不應與協力廠商共用此機碼或原生用戶端應用程式，將它發佈以 hello 的主要金鑰，授與權限。 當您選擇 hello 管理員授權層級時，請務必謹慎。
 > 
 > 
 
 ### <a name="api-key-authorization"></a>API 金鑰授權
-根據預設，HttpTrigger 會在 HTTP 要求中要求 API 金鑰。 因此您的 HTTP 要求通常看起來像這樣：
+根據預設，HttpTrigger 要求 hello HTTP 要求中的 API 金鑰。 因此您的 HTTP 要求通常看起來像這樣：
 
     https://<yourapp>.azurewebsites.net/api/<function>?code=<ApiKey>
 
-金鑰可包含在名為 `code` 的查詢字串變數中 (如上所述)，或是包含在 `x-functions-key` HTTP 標頭中。 金鑰的值可以是針對函式定義的任何函式金鑰，或是任何主機金鑰。
+hello 金鑰可以包含在查詢字串變數，名為`code`、 與以上所述，或可以包含在`x-functions-key`HTTP 標頭。 hello hello 機碼值可以是定義 hello 函式的任何函式索引鍵或所有主機金鑰。
 
-您可以選擇在不需要金鑰的情況下允許要求，或是指定必須使用主要金鑰，方法是變更繫結 JSON 中的 `authLevel` 屬性 (請參閱 [HTTP 觸發程序](#httptrigger))。
+您可以選擇 tooallow 要求沒有金鑰，或指定該 hello 主要金鑰必須使用藉由變更 hello `authLevel` hello 繫結 JSON 中的屬性 (請參閱[HTTP 觸發程序](#httptrigger))。
 
 ### <a name="keys-and-webhooks"></a>金鑰和 Webhook
-Webhook 授權是由 Webhook 接收器元件 (HttpTrigger 的一部分) 處理，處理機制則根據 Webhook 的類型而異。 不過，每個機制都依賴金鑰。 根據預設，將會使用名稱為 "default" 的函式金鑰。 如果您想要使用不同的金鑰，您必須設定 Webhook 提供者以下列其中一種方式將金鑰名稱隨著要求一起傳送：
+Webhook 授權則 hello webhook 線上發生干擾元件來處理，hello HttpTrigger 和 hello 機制的一部分而異 hello webhook 型別。 不過，每個機制都依賴金鑰。 根據預設，會使用名為 「 預設 」 的 hello 函式索引鍵。 如果您想 toouse 不同的索引鍵，您需要 tooconfigure hello webhook 提供者 toosend hello 金鑰名稱與 hello 要求 hello 下列方式之一：
 
-- **查詢字串**：提供者在 `clientid` 查詢字串參數中傳遞金鑰名稱 (例如 `https://<yourapp>.azurewebsites.net/api/<funcname>?clientid=<keyname>`)。
-- **要求標頭**︰提供者在 `x-functions-clientid` 標頭中傳遞金鑰名稱。
+- **查詢字串**: hello 提供者會將 hello 索引鍵名稱傳入 hello`clientid`查詢字串參數 (例如`https://<yourapp>.azurewebsites.net/api/<funcname>?clientid=<keyname>`)。
+- **要求標頭**: hello 提供者會將 hello 索引鍵名稱傳入 hello`x-functions-clientid`標頭。
 
 > [!NOTE]
-> 函式金鑰的優先順序高於主機金鑰。 如果兩個金鑰是以相同的名稱定義，將會使用函式金鑰。
+> 函式金鑰的優先順序高於主機金鑰。 如果兩個索引鍵所定義的名稱相同，hello hello 將使用功能鍵。
 > 
 > 
 
 
 <a name="httptriggersample"></a>
 ## <a name="http-trigger-samples"></a>HTTP 觸發程序範例
-假設您 function.json 的 `bindings` 陣列中有下列 HTTP 觸發程序：
+假設您有下列 HTTP 觸發程序在 hello hello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -257,7 +257,7 @@ Webhook 授權是由 Webhook 接收器元件 (HttpTrigger 的一部分) 處理�
 },
 ```
 
-請參閱在查詢字串或 HTTP 要求主體中尋找 `name` 參數的語言特定範例。
+請參閱 hello 特定語言的範例會求取`name`在 hello 查詢字串或 hello hello HTTP 要求主體中的參數。
 
 * [C#](#httptriggercsharp)
 * [F#](#httptriggerfsharp)
@@ -282,16 +282,16 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     // Get request body
     dynamic data = await req.Content.ReadAsAsync<object>();
 
-    // Set name to query string or body data
+    // Set name tooquery string or body data
     name = name ?? data?.name;
 
     return name == null
-        ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
+        ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on hello query string or in hello request body")
         : req.CreateResponse(HttpStatusCode.OK, "Hello " + name);
 }
 ```
 
-您也可以繫結到 POCO，不是 `HttpRequestMessage`。 這會從要求主體水合，剖析成 JSON。 同樣地，類型可以傳遞至 HTTP 回應輸出繫結，而這會傳回為狀態碼 200 的回應主體。
+您也可以繫結 tooa POCO 而不是`HttpRequestMessage`。 這將 hydrated 從 hello hello 要求，剖析成 JSON 主體。 同樣地，toohello HTTP 回應輸出繫結時，可以傳遞類型，這將會傳回 200 狀態碼的 hello 回應主體。
 ```csharp
 using System.Net;
 using System.Threading.Tasks;
@@ -327,11 +327,11 @@ let Run(req: HttpRequestMessage) =
             try
                 return req.CreateResponse(HttpStatusCode.OK, "Hello " + data?name)
             with e ->
-                return req.CreateErrorResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
+                return req.CreateErrorResponse(HttpStatusCode.BadRequest, "Please pass a name on hello query string or in hello request body")
     } |> Async.StartAsTask
 ```
 
-您需要 `project.json` 檔案，以使用 NuGet 來參考 `FSharp.Interop.Dynamic` 和 `Dynamitey` 組件，例如︰
+您需要`project.json`，並使用 NuGet tooreference hello`FSharp.Interop.Dynamic`和`Dynamitey`組件，就像這樣：
 
 ```json
 {
@@ -346,7 +346,7 @@ let Run(req: HttpRequestMessage) =
 }
 ```
 
-這會使用 NuGet 來擷取相依性，並會在指令碼中加以參考。
+這將會使用 NuGet toofetch 程式相依性，並將指令碼中參考。
 
 <a name="httptriggernodejs"></a>
 ### <a name="http-trigger-sample-in-nodejs"></a>Node.JS 中的 HTTP 觸發程序範例
@@ -356,14 +356,14 @@ module.exports = function(context, req) {
 
     if (req.query.name || (req.body && req.body.name)) {
         context.res = {
-            // status: 200, /* Defaults to 200 */
+            // status: 200, /* Defaults too200 */
             body: "Hello " + (req.query.name || req.body.name)
         };
     }
     else {
         context.res = {
             status: 400,
-            body: "Please pass a name on the query string or in the request body"
+            body: "Please pass a name on hello query string or in hello request body"
         };
     }
     context.done();
@@ -374,7 +374,7 @@ module.exports = function(context, req) {
 
 <a name="hooktriggersample"></a>
 ## <a name="webhook-samples"></a>Webhook 範例
-假設您 function.json 的`bindings` 陣列中有下列 Webhook 觸發程序︰
+假設您有下列 hello 中的 webhook 觸發程序的 hello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -385,7 +385,7 @@ module.exports = function(context, req) {
 },
 ```
 
-請參閱會記錄 GitHub 問題註解的語言特定範例。
+請參閱 GitHub 問題註解記錄檔的 hello 特定語言的範例。
 
 * [C#](#hooktriggercsharp)
 * [F#](#hooktriggerfsharp)

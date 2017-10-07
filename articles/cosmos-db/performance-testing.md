@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB 規模和效能測試 | Microsoft Docs"
-description: "了解使用 Azure Cosmos DB 來執行規模和效能測試"
+title: "aaaAzure Cosmos DB 規模和效能測試 |Microsoft 文件"
+description: "了解 tooperform 的調整規模和效能測試以 Azure Cosmos DB"
 keywords: "效能測試"
 services: cosmos-db
 author: arramac
@@ -15,44 +15,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: arramac
-ms.openlocfilehash: b5a1edd08819e82437c5b22d8eb131665d7c9645
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 46d1217e11a39ee970a868de9a5c5dfcf52cedf3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="performance-and-scale-testing-with-azure-cosmos-db"></a>Azure Cosmos DB 的效能和規模測試
-效能和規模測試是應用程式開發過程中的關鍵步驟。 對許多應用程式來說，資料庫層對整體效能和延展性具有相當重大的影響，因此是效能測試的重要元件。 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 是為了能夠彈性延展及獲得可預測的效能而建置，因此非常適合需要高效能資料庫層的應用程式。 
+效能和規模測試是應用程式開發過程中的關鍵步驟。 對於許多應用程式，hello 資料庫層次都有重大影響 hello 整體效能和延展性，且因此效能的重要元件測試。 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 是為了能夠彈性延展及獲得可預測的效能而建置，因此非常適合需要高效能資料庫層的應用程式。 
 
-這篇文章適合做為針對其 Cosmos DB 工作負載實作效能測試套件或針對高效能應用程式案例評估 Cosmos DB 之開發人員的參考。 主要是著重在隔離的資料庫效能測試，但也包含適用於實際執行應用程式的最佳做法。
+這篇文章適合做為針對其 Cosmos DB 工作負載實作效能測試套件或針對高效能應用程式案例評估 Cosmos DB 之開發人員的參考。 其主要著重在隔離的效能測試的 hello 資料庫，但也包含 實際執行應用程式的最佳作法。
 
-閱讀本文後，您將能夠回答下列問題：   
+閱讀這篇文章之後, 您將無法 tooanswer hello 下列問題：   
 
 * 哪裡可以找到可供進行 Cosmos DB 效能測試的範例 .NET 用戶端應用程式？ 
 * 如何藉由 Cosmos DB 從我的用戶端應用程式達到高輸送量層級？
 
-若要開始使用程式碼，請從 [Azure Cosmos DB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)下載專案。 
+tooget 啟動程式碼時，請下載 hello 專案從[Azure Cosmos DB 效能測試的範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)。 
 
 > [!NOTE]
-> 此應用程式的目標，在於示範透過少數用戶端電腦發揮 Cosmos DB 更好效能的最佳作法。 而不是要示範可以無限制調整的服務尖峰容量。
+> 此應用程式的 hello 目標是 toodemonstrate 解壓縮從 Cosmos DB 更佳的效能較少的用戶端電腦的最佳作法。 這是不會進行 hello 服務，可以調整 limitlessly toodemonstrate hello 尖峰容量。
 > 
 > 
 
-如果您要尋找用戶端設定選項，以改善 Cosmos DB 效能，請參閱 [Azure Cosmos DB 效能祕訣](performance-tips.md)。
+如果您要尋找用戶端設定選項 tooimprove Cosmos DB 的效能，請參閱[Azure Cosmos DB 效能祕訣](performance-tips.md)。
 
-## <a name="run-the-performance-testing-application"></a>執行效能測試應用程式
-若要開始使用，最快的方法就是依以下步驟所述，編譯並執行下面的 .NET 範例。 您也可以檢閱原始程式碼，然後對自己的用戶端應用程式實作類似的組態。
+## <a name="run-hello-performance-testing-application"></a>執行 hello 效能測試應用程式
+hello 最快方式 tooget 啟動，而且 toocompile 執行的 hello.NET 範例下, 面 hello 步驟中所述。 您也可以檢閱 hello 原始程式碼，並實作類似組態 tooyour 自己的用戶端應用程式。
 
-**步驟 1：**從 [Azure Cosmos DB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark) 或 GitHub 存放庫的分支下載專案。
+**步驟 1:**下載 hello 專案從[Azure Cosmos DB 效能測試的範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)，或 「 分叉 」 hello GitHub 儲存機制。
 
-**步驟 2：** 修改 App.config 中 EndpointUrl、AuthorizationKey、CollectionThroughput 及 DocumentTemplate (選擇性) 的設定。
+**步驟 2:**修改的端點 Url、 AuthorizationKey、 CollectionThroughput 和 DocumentTemplate （選擇性） 在 App.config 中的 hello 設定。
 
 > [!NOTE]
-> 以高輸送量佈建集合之前，請參閱 [價格頁面](https://azure.microsoft.com/pricing/details/cosmos-db/) 以估算每個集合的成本。 Azure Cosmos DB 對儲存體和輸送量是以小時為基礎獨立計費，因此您可以藉由在測試後刪除或降低 Azure Cosmos DB 集合的輸送量來節省成本。
+> 之前佈建具有高輸送量的集合，請參閱 toohello[定價頁面](https://azure.microsoft.com/pricing/details/cosmos-db/)tooestimate hello 成本，每個集合。 Azure 的 Cosmos db-storage 帳單和獨立每小時，因此您可以藉由刪除或降低 Azure Cosmos DB 集合 hello 輸送量測試後節省成本的輸送量。
 > 
 > 
 
-**步驟 3：** 從命令列編譯並執行主控台應用程式。 您應該會看到如以下的輸出：
+**步驟 3:**編譯及執行 hello 主控台應用程式從 hello 命令列。 您應該會看到類似 hello 下列輸出：
 
     Summary:
     ---------------------------------------------------------------------
@@ -98,15 +98,15 @@ ms.lasthandoff: 08/03/2017
     DocumentDBBenchmark completed successfully.
 
 
-**步驟 4 (如有必要)：** 從工具回報的輸送量 (RU/秒) 應該等於或大於佈建的集合輸送量。 如果情況並非如此，向上微調 DegreeOfParallelism 可協助您達到該限制。 如果來自用戶端應用程式的輸送量達持平狀態，在相同或不同機器上啟動多個應用程式執行個體將可協助您在各個不同的執行個體達到所佈建的限制。 如果您需要協助進行這個步驟，請撰寫電子郵件寄至 askcosmosdb@microsoft.com 或在 [Azure 入口網站](https://portal.azure.com)提出支援票證。
+**步驟 4 （如有必要）：** hello 輸送量報告 （RU/秒） 從 hello 工具應該 hello 相同或高於 hello hello 集合的佈建的輸送量。 否則，請增加 hello DegreeOfParallelism 少量遞增的方式可協助您達到 hello。 如果您的用戶端應用程式中的 hello 輸送量會停滯不前，啟動 hello 應用程式的多個執行個體上 hello 相同或不同的電腦將協助您達到佈建的 hello hello 跨不同的執行個體。 如果您需要這個步驟的說明，請撰寫一封電子郵件tooaskcosmosdb@microsoft.com或提出支援票證從 hello [Azure 入口網站](https://portal.azure.com)。
 
-讓應用程式處於執行狀態之後，您便可以嘗試不同的[索引編製原則](indexing-policies.md)和[一致性層級](consistency-levels.md)，以了解它們對輸送量和延遲的影響。 您也可以檢閱原始程式碼，然後對自己的測試套件或實際執行應用程式實作類似的組態。
+一旦您擁有 hello 應用程式執行時，您可以嘗試不同[編製索引原則](indexing-policies.md)和[一致性層級](consistency-levels.md)toounderstand 其對輸送量和延遲的影響。 您也可以檢閱 hello 原始程式碼，並實作類似的設定 tooyour 自己的測試套件或實際執行應用程式。
 
 ## <a name="next-steps"></a>後續步驟
-在這篇文章中，我們探討了如何使用 .NET 主控台應用程式來執行 Cosmos DB 的相關效能和規模測試。 如需有關使用 Azure Cosmos DB 的其他資訊，請參閱下面的連結。
+在這篇文章中，我們探討了如何使用 .NET 主控台應用程式來執行 Cosmos DB 的相關效能和規模測試。 請如需使用 Azure Cosmos DB 的詳細資訊，參閱下列 toohello 連結。
 
 * [Azure Cosmos DB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)
-* [改善 Azure Cosmos DB 效能的用戶端設定選項](performance-tips.md)
+* [用戶端設定選項 tooimprove Azure Cosmos DB 效能](performance-tips.md)
 * [Azure Cosmos DB 中的伺服器端資料分割](partition-data.md)
 
 

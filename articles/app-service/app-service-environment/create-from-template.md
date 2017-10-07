@@ -1,6 +1,6 @@
 ---
-title: "使用 Resource Manager 範本建立 Azure App Service Environment"
-description: "說明如何使用 Resource Manager 範本建立外部或 ILB Azure App Service Environment"
+title: "aaaCreate Azure App Service 環境使用資源管理員範本"
+description: "說明如何使用資源管理員範本的外部或 ILB Azure App Service 環境 toocreate"
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,74 +13,74 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: ccompy
-ms.openlocfilehash: e6b21086488352c1da914b4656ad1d216fd6de85
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c8aeedee675a6e931169b725ee916cc7fa8f762f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-ase-by-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本立 ASE
 
 ## <a name="overview"></a>概觀
-Azure App Service Environment (ASE) 可以使用網際網路可存取端點，或是 Azure 虛擬網路 (VNet) 中內部位址上的端點來建立。 使用內部端點建立時，該端點是由稱為內部負載平衡器 (ILB) 的 Azure 元件提供。 使用內部 IP 位址的 ASE 稱為 ILB ASE。 具有公用端點的 ASE 稱為外部 ASE。 
+Azure App Service Environment (ASE) 可以使用網際網路可存取端點，或是 Azure 虛擬網路 (VNet) 中內部位址上的端點來建立。 使用內部端點建立時，該端點是由稱為內部負載平衡器 (ILB) 的 Azure 元件提供。 內部 IP 位址上 hello ASE 稱為 ILB ase。 hello ASE 與公用端點會呼叫外部 ase。 
 
-ASE 可以使用 Azure 入口網站或 Azure Resource Manager 範本來建立。 本文逐步解說使用 Resource Manager 範本建立外部 ASE 或 ILB ASE 所需的步驟和語法。 若要了解如何在 Azure 入口網站中建立 ASE，請參閱 [建立外部 ASE][MakeExternalASE] 或 [建立 ILB ASE][MakeILBASE] 。
+Ase 中可以建立使用 hello Azure 入口網站或 Azure Resource Manager 範本。 本文逐步解說 hello 步驟和所需的資源管理員範本 toocreate 外部 ASE 或 ILB ASE 語法。 toolearn toocreate ASE hello Azure 入口網站中的看到如何[進行外部 ASE] [ MakeExternalASE]或[進行 ILB ASE][MakeILBASE]。
 
-在入口網站中建立 ASE 時，可以選擇同時建立 VNet，或選擇要部署至既有 VNet。 從範本建立 ASE 時，必須具備下列項目： 
+當您建立 ASE hello Azure 入口網站中時，您可以在相同的時間，或選擇到預先存在的 VNet toodeploy hello 建立 VNet。 從範本建立 ASE 時，必須具備下列項目： 
 
 * Resource Manager VNet。
-* 該 VNet 中的子網路。 建議的 ASE 子網路是 `/25`，並具有 128 個位址，以容納未來成長。 ASE 建立之後，無法變更大小。
-* 您的 VNnet 中的資源識別碼。 您可以從 Azure 入口網站中的虛擬網路屬性底下取得這項資訊。
-* 您想要部署的訂用帳戶。
-* 您想要部署的位置。
+* 該 VNet 中的子網路。 我們建議的 ASE 子網路大小`/25`128 位址 tooaccomodate 未來成長使用。 建立 hello ASE 之後，您無法變更 hello 大小。
+* 從您的 VNet hello 資源識別碼。 在虛擬網路內容 下，您可以從 hello Azure 入口網站取得這項資訊。
+* 您想成 toodeploy 的 hello 訂用帳戶。
+* 您想成 toodeploy hello 位置。
 
-若要自動化 ASE 建立：
+tooautomate ASE 建立：
 
-1. 從範本建立 ASE。 如果是建立外部 ASE，完成此步驟就建立完成。 如果是建立 ILB ASE，還要再執行一些工作。
+1. 從範本建立 hello ASE。 如果是建立外部 ASE，完成此步驟就建立完成。 如果您建立 ILB ase 中，有幾個的多個項目 toodo。
 
 2. 建立 ILB ASE 之後，會上傳與您的 ILB ASE 網域相符的 SSL 憑證。
 
-3. 上傳的 SSL 憑證會指派給 ILB ASE 作為其「預設」SSL 憑證。  如果 ILB ASE 上的應用程式是使用指派給 ASE 的一般根網域 (例如 https://someapp.mycustomrootcomain.com)，此憑證將使用於此應用程式的 SSL 流量。
+3. hello 已上傳的 SSL 憑證指派 toohello ILB ASE 做為其 「 預設 」 的 SSL 憑證。  此憑證用於 SSL 流量 tooapps hello ILB ASE 上，使用 hello 一般根網域的指派的 toohello ASE (例如，https://someapp.mycustomrootcomain.com) 時。
 
 
-## <a name="create-the-ase"></a>建立 ASE
+## <a name="create-hello-ase"></a>建立 hello ASE
 在 GitHub 上的[範例][quickstartasev2create]中有可建立 ASE 的 Resource Manager 範本及其相關聯的參數檔案。
 
-如果您想要建立 ILB ASE，請使用這些 Resource Manager 範本[範例][quickstartilbasecreate]。 它們符合該使用案例。 azuredeploy.parameters.json 檔案中的大部分參數是建立 ILB ASE 和外部 ASE 的通用參數。 建立 ILB ASE 時，以下清單會呼叫特殊附註的參數或唯一參數︰
+如果您想 toomake ILB ase 中，使用這些資源管理員範本[範例][quickstartilbasecreate]。 它們，符合 toothat 使用案例。 大部分的 hello 參數在 hello *azuredeploy.parameters.json*檔案是常見 toohello 建立 ILB ASEs 和外部 ASEs。 hello 表呼叫參數的特殊附註，或獨有的當您建立 ILB ase 中：
 
-* interalLoadBalancingMode：在大多數情況下，此屬性設定為 3，這表示連接埠 80/443 上的 HTTP/HTTPS 流量，以及 ASE 上的 FTP 服務所接聽的控制項/資料通道連接埠將會繫結至 ILB 配置的虛擬網路內部位址。 如果此屬性設定為 2，只有 FTP 服務相關的連接埠 (控制和資料通道) 會繫結至 ILB 位址， HTTP/HTTPS 流量將保留在公用 VIP 上。
-* dnsSuffix︰這個參數定義要指派給 ASE 的預設根網域。 在 Azure App Service 的公用種變化中，所有 Web 應用程式的預設根網域皆為 azurewebsites.net 。 由於 ILB ASE 位於客戶虛擬網路的內部，所以不適合使用公用服務的預設根網域。 相反地，ILB ASE 應具有適合在公司的內部虛擬網路內使用的預設根網域。 例如，Contoso Corporation 可能會將 internal-contoso.com 的預設根網域用於只能在 Contoso 虛擬網路內解析和存取的應用程式。 
-* ipSslAddressCount︰在 azuredeploy.json 檔案中，這個參數的值會自動預設為 0，因為 ILB ASE 只有單一 ILB 位址。 ILB ASE 沒有明確的 IP-SSL 位址。 因此，ILB ASE 的 IP-SSL 位址集區必須設定為零。 否則，就會發生佈建錯誤。 
+* *interalLoadBalancingMode*： 在大部分情況下，設定此 too3，這表示這兩個連接埠 80/443 上的 HTTP/HTTPS 流量，及 hello 控制項/資料通道連接埠上 hello ASE tooby hello FTP 服務該通訊埠，您將繫結的 tooan ILB 配置的虛擬網路內部位址。 如果這個屬性設定 too2，只有 hello FTP 服務的相關連接埠 （控制和資料通道） 是繫結的 tooan ILB 位址。 hello HTTP/HTTPS 流量會保留在 hello 公用 VIP。
+* *dns 尾碼*： 這個參數會定義會指派的 toohello ASE hello 預設根網域。 在 Azure App Service hello 公用種變化，hello 預設根網域的所有 web 應用程式是*.azurewebsites.net*。 由於 ILB ASE 內部 tooa 客戶虛擬網路，就沒有任何意義 toouse hello 公開服務的預設根網域。 相反地，ILB ASE 應具有適合在公司的內部虛擬網路內使用的預設根網域。 例如，Contoso Corporation 可能會使用預設的根網域的*內部 contoso.com*針對預定的 toobe 解析與只能在 Contoso 虛擬網路中存取應用程式。 
+* *ipSslAddressCount*： 這個參數會自動預設為 tooa 中的數值 0 hello *azuredeploy.json*檔案，因為 ILB ASEs 只能有單一的 ILB 位址。 ILB ASE 沒有明確的 IP-SSL 位址。 因此，hello ILB ase 中的 IP SSL 位址集區必須設定 toozero。 否則，就會發生佈建錯誤。 
 
-填入 azuredeploy.parameters.json 檔案後，就可以使用下列 Powershell 程式碼片段建立 ASE。 將檔案路徑變更為您電腦上 Resource Manager 範本檔案的位置。 記得提供您自己的 Resource Manager 部署名稱和資源群組名稱的值：
+之後 hello *azuredeploy.parameters.json*檔案填滿，請建立 hello ASE 利用 hello PowerShell 程式碼片段。 變更 hello 檔案路徑 toomatch hello 資源管理員範本檔案位置在電腦上。 請記住 toosupply 您自己的值為 hello 資源管理員部署名稱和 hello 資源群組名稱：
 
     $templatePath="PATH\azuredeploy.json"
     $parameterPath="PATH\azuredeploy.parameters.json"
 
     New-AzureRmResourceGroupDeployment -Name "CHANGEME" -ResourceGroupName "YOUR-RG-NAME-HERE" -TemplateFile $templatePath -TemplateParameterFile $parameterPath
 
-建立 ASE 約需一小時。 然後在入口網站中，ASE 會顯示在觸發部署之訂用帳戶的 ASE 清單中。
+它會建立 hello ASE toobe 一小時。 然後 hello ASE 顯示 hello ASEs 觸發 hello 部署的 hello 訂閱 hello 清單中的入口網站中。
 
-## <a name="upload-and-configure-the-default-ssl-certificate"></a>上傳和設定預設SSL 憑證
-SSL 憑證必須與 ASE 相關聯，作為用來建立應用程式的 SSL 連線的「預設」SSL 憑證。 如果 ASE 的預設 DNS 尾碼是 internal-contoso.com，則連線到 https://some-random-app.internal-contoso.com 需要 *.internal contoso.com 的有效 SSL 憑證。 
+## <a name="upload-and-configure-hello-default-ssl-certificate"></a>上傳和設定 hello 「 預設 」 的 SSL 憑證
+會使用的 tooestablish SSL 連線 tooapps hello 「 預設 」 SSL 憑證，必須是與 hello ASE 相關聯的 SSL 憑證。 如果 hello ASE 的預設 DNS 尾碼是*內部 contoso.com*，連線 toohttps://some-random-app.internal-contoso.com 需要有效的 SSL 憑證 **.internal contoso.com*. 
 
-使用內部憑證授權單位、向外部簽發者購買憑證、或使用自我簽署的憑證，取得有效的 SSL 憑證。 無論 SSL 憑證的來源為何，都需要正確設定下列憑證屬性︰
+使用內部憑證授權單位、向外部簽發者購買憑證、或使用自我簽署的憑證，取得有效的 SSL 憑證。 不論 hello 來源 hello SSL 憑證，必須適當設定下列憑證屬性的 hello:
 
-* **Subject**：此屬性必須設為 *.your-root-domain-here.com。
-* **Subject Alternative Name**此屬性必須同時包含 *.your-root-domain-here.com 和 *.scm.your-root-domain-here.com。 系統將使用 your-app-name.scm.your-root-domain-here.com 形式的位址，進行與每個應用程式相關聯的 SCM/Kudu 網站的 SSL 連線。
+* **主旨**： 此屬性必須設定得 **.your 根網域-here.com*。
+* **Subject Alternative Name**此屬性必須同時包含 *.your-root-domain-here.com 和 *.scm.your-root-domain-here.com。與每個應用程式關聯的 SCM/Kudu 站台的 SSL 連線 toohello 使用 hello 表單的位址*your-app-name.scm.your-root-domain-here.com*。
 
-備妥有效的 SSL 憑證，還需要兩個額外的準備步驟。 將 SSL 憑證轉換/儲存為 .pfx 檔案。 請記住，.pfx 檔案必須包含所有中繼和根憑證。 使用密碼保護其安全。
+備妥有效的 SSL 憑證，還需要兩個額外的準備步驟。 轉換/儲存為.pfx 檔案 hello SSL 憑證。 請記住該 hello.pfx 檔案必須包含所有中繼和根憑證。 使用密碼保護其安全。
 
-必須將 .pfx 檔案轉換成 base64 字串，因為上傳 SSL 憑證會使用 Resource Manager 範本。 因為 Resource Manager 範本是文字檔案，所以必須將 .pfx 檔案轉換成 base64 字串， 如此才能將其納入範本參數。
+toobe 轉換成 base64 字串 hello 的 SSL 憑證上傳使用資源管理員範本，因為需要 hello.pfx 檔案。 因為資源管理員範本檔案是文字檔，hello.pfx 檔必須轉換成 base64 字串。 如此一來，它可以包含為 hello 範本的參數。
 
-使用以下 PowerShell 程式碼片段來進行：
+使用下列 PowerShell 程式碼片段的 hello:
 
 * 產生自我簽署憑證。
-* 匯出 .pfx 檔案形式的憑證。
-* 將 .pfx 檔案轉換為 base64 編碼的字串。
-* 將 base64 編碼的字串儲存到別的檔案。 
+* Hello 憑證匯出為.pfx 檔案。
+* 轉換為 base64 編碼的字串中的 hello.pfx 檔案。
+* 儲存 hello base64 編碼字串 tooa 個別檔案。 
 
-以下 base64 編碼的 Powershell 程式碼是改寫自 [Powershell 指令碼部落格][examplebase64encoding]：
+此為 base64 編碼的 PowerShell 程式碼是來自 hello [PowerShell 指令碼的部落格][examplebase64encoding]:
 
         $certificate = New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "*.internal-contoso.com","*.scm.internal-contoso.com"
 
@@ -94,16 +94,16 @@ SSL 憑證必須與 ASE 相關聯，作為用來建立應用程式的 SSL 連線
         $fileContentEncoded = [System.Convert]::ToBase64String($fileContentBytes)
         $fileContentEncoded | set-content ($fileName + ".b64")
 
-成功產生 SSL 憑證並轉換成 base64 編碼字串後，使用 GitHub 上的[設定預設 SSL 憑證][quickstartconfiguressl]範例 Resource Manager 範本。 
+Hello SSL 憑證已成功產生，並轉換 tooa base64 編碼字串之後，使用 hello 範例 Resource Manager 範本[設定 hello 預設 SSL 憑證][ quickstartconfiguressl] GitHub 上。 
 
-azuredeploy.parameters.json 檔案中有以下參數︰
+hello 參數在 hello *azuredeploy.parameters.json*檔案如下：
 
-* ︰設定 ILB ASE 的名稱。
-* ︰包含 ILB ASE 部署所在的 Azure 區域的文字字串。  例如："South Central US (美國中南部)"。
-* pfxBlobString：.pfx 檔案的 based64 編碼字串表示法。 使用稍早的程式碼片段，複製 "exportedcert.pfx.b64" 中的字串。 貼上字串作為 pfxBlobString 屬性的值。
-* : The  used to secure the .pfx file.
-* ︰憑證的指紋。 如果您從 Powershell 擷取此值 (例如先前程式碼片段中的 $certificate.Thumbprint )，可以直接使用該值。 如果您從 Windows 憑證對話方塊中複製此值，請記得去除多餘的空格。 CertificateThumbprint 應該像這樣：AF3143EB61D43F6727842115BB7F17BBCECAECAE。
-* ︰您自己選擇的好記字串識別碼，可用來識別憑證。 Microsoft.Web/certificates 實體表示 SSL 憑證，而此名稱會作為實體的唯一 Resource Manager 識別碼的一部分。 名稱「必須」以下列尾碼結尾︰\_yourASENameHere_InternalLoadBalancingASE。 Azure 入口網站會以這個尾碼為指標，表示憑證要用於保護啟用 ILB 的 ASE。
+* *appServiceEnvironmentName*: hello 的 hello ILB ASE 正在設定的名稱。
+* *existingAseLocation*： 文字字串，包含 hello hello ILB ASE 部署所在的 Azure 區域。  例如："South Central US (美國中南部)"。
+* *pfxBlobString*: hello based64 編碼的字串表示法的 hello.pfx 檔案。 使用 hello 稍早所示的程式碼片段，並將複製 hello"exportedcert.pfx.b64 」 中所包含的字串。 中貼上做為 hello hello 值*pfxBlobString*屬性。
+* *密碼*: hello 用密碼 toosecure hello.pfx 檔案。
+* *certificateThumbprint*: hello 憑證的指紋。 如果您從 PowerShell 擷取這個值 (例如， *$certificate。憑證指紋*hello 從先前程式碼片段)，您可以使用 hello 值。 如果您從 Windows 憑證對話方塊 hello 複製 hello 值，請記得 toostrip 出 hello 無關的空格。 hello *certificateThumbprint*應看起來像 AF3143EB61D43F6727842115BB7F17BBCECAECAE。
+* *certificateName*： 自己選擇的好記的字串識別項使用 tooidentity hello 憑證。 hello 名稱用於一部分 hello 唯一的資源管理員識別碼 hello *Microsoft.Web/certificates*代表 hello SSL 憑證的實體。 hello 名稱*必須*結尾 hello 下列尾碼： \_yourASENameHere_InternalLoadBalancingASE。 hello Azure 入口網站會使用這個後置詞，如 hello 憑證指標是使用的 toosecure ILB 啟用 ase。
 
 以下是 azuredeploy.parameters.json  的縮簡範例︰
 
@@ -132,27 +132,27 @@ azuredeploy.parameters.json 檔案中有以下參數︰
          }
     }
 
-填入 azuredeploy.parameters.json 檔案後，使用下列 Powershell 程式碼片段設定預設 SSL。 將檔案路徑變更為您電腦上 Resource Manager 範本檔案的位置。 記得提供您自己的 Resource Manager 部署名稱和資源群組名稱的值：
+之後 hello *azuredeploy.parameters.json*檔案填滿、 使用 hello PowerShell 程式碼片段設定 hello 預設 SSL 憑證。 變更 hello 檔案路徑 toomatch hello 資源管理員範本檔案的位置在電腦。 請記住 toosupply 您自己的值為 hello 資源管理員部署名稱和 hello 資源群組名稱：
 
      $templatePath="PATH\azuredeploy.json"
      $parameterPath="PATH\azuredeploy.parameters.json"
 
      New-AzureRmResourceGroupDeployment -Name "CHANGEME" -ResourceGroupName "YOUR-RG-NAME-HERE" -TemplateFile $templatePath -TemplateParameterFile $parameterPath
 
-每個 ASE 前端套用變更大約需要 40 分鐘。 例如，有一個預設大小的 ASE 使用兩個前端，則範本將需要大約一小時 20 分鐘的時間才能完成。 執行範本時，無法調整 ASE。  
+花大約 40 分鐘每項 ASE 前端 tooapply hello 變更。 例如，對於預設大小的 ASE 使用兩個前端，hello 範本所花費一小時和 20 分鐘 toocomplete 周圍。 當執行 hello 範本時，無法擴充 hello ASE。  
 
-範本完成之後，可以透過 HTTPS 存取 ILB ASE 上的應用程式。 此連線使用預設 SSL 憑證加以保護。 如果 ILB ASE 上的應用程式是使用應用程式名稱加上預設主機名稱的組合來定址，則會使用預設 SSL 憑證。 例如，https://mycustomapp.internal-contoso.com 會使用 *.internal contoso.com 的預設 SSL 憑證。
+Hello 範本完成之後，可以透過 HTTPS 存取 hello ILB ASE 上的應用程式。 hello 連線使用 hello 預設 SSL 憑證來進行保護。 hello ILB ASE 上的應用程式會使用 hello 應用程式名稱加上 hello 預設主機名稱的組合來進行定址時，會使用 hello 預設 SSL 憑證。 例如，https://mycustomapp.internal-contoso.com 使用 hello 預設 SSL 憑證的 **.internal contoso.com*。
 
-不過，就如同在公用多租用戶服務上執行的應用程式，開發人員可以為個別的應用程式設定自訂主機名稱。 他們也可以為個別的應用程式設定唯一 SNI SSL 憑證繫結。
+不過，如同 hello 的多租用戶公用服務執行的應用程式，開發人員可以設定個別的應用程式的自訂主機名稱。 他們也可以為個別的應用程式設定唯一 SNI SSL 憑證繫結。
 
 ## <a name="app-service-environment-v1"></a>App Service 環境 v1 ##
-App Service Environment 有兩個版本：ASEv1 和 ASEv2。 前述資訊架構在 ASEv2 上。 本節說明 ASEv1 與 ASEv2 之間的差異。
+App Service Environment 有兩個版本：ASEv1 和 ASEv2。 hello 上述資訊為基礎 ASEv2。 此區段會顯示 hello ASEv2 ASEv1 之間的差異。
 
-在 ASEv1 中，要手動管理所有資源， 包括前端、背景工作角色和用於 IP 型 SSL 的 IP 位址。 首先，您必須將想要在其中裝載的背景工作角色集區相應放大，才能相應放大 App Service 方案。
+ASEv1，在您的所有資源 hello 手動管理。 含有 hello 前端、 背景工作，與用於 IP SSL 的 IP 位址。 您可以調整您的應用程式服務計劃之前，您必須向外延展 hello 背景工作集區的 toohost 它。
 
-ASEv1 使用與 ASEv2 不同的定價模式。 在 ASEv1 中，要支付每個配置的核心， 包括用於前端或未裝載任何工作負載之背景工作角色的核心。 在 ASEv1 中，ASE 的預設最大調整大小總計是 55 個主機， 包括背景工作角色與前端。 ASEv1 的其中一個優點，是可以部署在傳統虛擬網路和 Resource Manager虛擬網路中。 若要深入了解 ASEv1，請參閱 [App Service Environment v1 簡介][ASEv1Intro]。
+ASEv1 使用與 ASEv2 不同的定價模式。 在 ASEv1 中，要支付每個配置的核心， 包括用於前端或未裝載任何工作負載之背景工作角色的核心。 ASEv1，在 ase 中的 hello 預設最大標尺大小會是 55 主機總計。 包括背景工作角色與前端。 一個利用 tooASEv1 是它可以部署在傳統的虛擬網路和資源管理員的虛擬網路中。 toolearn 深入了解 ASEv1，請參閱[App Service 環境 v1 簡介][ASEv1Intro]。
 
-若要使用 Resource Manager 範本建立 ASEv1，請參閱[使用 Resource Manager 範本建立 ILB ASE v1][ILBASEv1Template]。
+toocreate ASEv1 使用資源管理員範本，請參閱[使用資源管理員範本建立 ILB ASE v1][ILBASEv1Template]。
 
 
 <!--Links-->

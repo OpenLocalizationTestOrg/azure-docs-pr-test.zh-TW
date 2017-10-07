@@ -1,6 +1,6 @@
 ---
-title: "如何在 Azure 入口網站中建立服務匯流排命名空間 | Microsoft Docs"
-description: "使用 Azure 入口網站建立服務匯流排命名空間。"
+title: "aaaHow toocreate hello Azure 入口網站中的服務匯流排命名空間 |Microsoft 文件"
+description: "建立服務匯流排命名空間使用 hello Azure 入口網站。"
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 06/27/2017
 ms.author: sethm
-ms.openlocfilehash: c8654ed547a9001e2e968d2a45d990a73ef27d3b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d8907e7e4a804056f6d66d5a177d9ace967ed2ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-service-bus-namespace-using-the-azure-portal"></a>使用 Azure 入口網站建立服務匯流排命名空間
+# <a name="create-a-service-bus-namespace-using-hello-azure-portal"></a>建立服務匯流排命名空間使用 hello Azure 入口網站
 
-命名空間是所有傳訊元件的範圍容器。 多個佇列和主題可以位於單一命名空間，而且命名空間通常會做為應用程式容器。 有 2 個不同的方式可建立服務匯流排命名空間：
+命名空間是所有傳訊元件的範圍容器。 多個佇列和主題可以位於單一命名空間，而且命名空間通常會做為應用程式容器。 有兩個不同的方式 toocreate 服務匯流排命名空間：
 
 1. Azure 入口網站 (本文)
 2. [Resource Manager 範本][create-namespace-using-arm]
 
-## <a name="create-a-namespace-in-the-azure-portal"></a>在 Azure 入口網站中建立命名空間
+## <a name="create-a-namespace-in-hello-azure-portal"></a>在 hello Azure 入口網站中建立命名空間
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
@@ -35,7 +35,7 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-查看 [GitHub 範例][github-samples]，其中會示範一些更進階的 Azure 服務匯流排傳訊功能。
+請查看我們[GitHub 範例][github-samples]，示範一些更進階功能的 Azure Service Bus 訊息 hello。
 
 [create-namespace-using-arm]: service-bus-resource-manager-overview.md
 [github-samples]: https://github.com/Azure/azure-service-bus/tree/master/samples

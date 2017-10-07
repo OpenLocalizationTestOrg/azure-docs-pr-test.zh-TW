@@ -1,6 +1,6 @@
 ---
-title: "從 Web 應用程式使用 Azure 金鑰保存庫 | Microsoft Docs"
-description: "使用本教學課程來幫助您了解如何從 Web 應用程式使用 Azure 金鑰保存庫。"
+title: "從 Web 應用程式的 Azure 金鑰保存庫 aaaUse |Microsoft 文件"
+description: "使用此教學課程 toohelp 您學習如何 toouse Azure 金鑰保存庫的 web 應用程式。"
 services: key-vault
 documentationcenter: 
 author: adhurwit
@@ -14,77 +14,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/07/2017
 ms.author: adhurwit
-ms.openlocfilehash: d095bcfe37baefa90cf79bb48bff3f703ce1dad7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d5e2299e60b379c4e234d5cd6be03411c5a5c958
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-key-vault-from-a-web-application"></a>從 Web 應用程式使用 Azure 金鑰保存庫
 ## <a name="introduction"></a>簡介
-使用此教學課程來幫助您了解如何從 Azure 中的 Web 應用程式使用 Azure 金鑰保存庫。 它會引導您完成從 Azure 金鑰保存庫存取密碼的程序，以便在 Web 應用程式中使用該密碼。
+使用此教學課程 toohelp 您學習如何 toouse Azure 金鑰保存庫在 Azure 中的 web 應用程式。 它會引導您完成存取 Azure 金鑰保存庫中的密碼，使其可以用於 web 應用程式中的 hello 程序。
 
-**預估完成時間：** 15 分鐘。
+**估計時間 toocomplete:** 15 分鐘
 
 如需 Azure 金鑰保存庫的概觀資訊，請參閱 [什麼是 Azure 金鑰保存庫？](key-vault-whatis.md)
 
 ## <a name="prerequisites"></a>必要條件
-若要完成本教學課程，您必須具備下列項目：
+toocomplete 本教學課程中，您必須擁有下列 hello:
 
-* Azure 金鑰保存庫中密碼的 URI
-* 已在 Azure Active Directory 註冊，且有權存取您金鑰保存庫之 Web 應用程式的用戶端識別碼和用戶端密碼
-* Web 應用程式。 我們將會說明 ASP.NET MVC 應用程式在 Azure 中做為 Web 應用程式部署的步驟。
+* 在 Azure 金鑰保存庫 URI tooa 密碼
+* 用戶端識別碼和用戶端秘密 web 應用程式向 Azure Active Directory 具有存取 tooyour 金鑰保存庫
+* Web 應用程式。 我們將說明 ASP.NET MVC 應用程式部署在 Azure Web 應用程式中的 hello 步驟。
 
 > [!NOTE]
-> 在本教學課程中，完成在 [開始使用 Azure 金鑰保存庫](key-vault-get-started.md) 中所列步驟是很重要的，這樣您才會有 Web 應用程式的密碼 URI 和用戶端識別碼和用戶端密碼。
+> 您已完成 hello 步驟中所列務必[開始使用 Azure 金鑰保存庫](key-vault-get-started.md)本教學課程中，讓您擁有 hello URI tooa 密碼和 hello 用戶端識別碼和用戶端密碼是 web 應用程式。
 > 
 > 
 
-已在 Azure Active Directory 註冊、且已獲權存取金鑰保存庫的 Web 應用程式將會被用來存取金鑰保存庫。 如果情況不是這樣，請回到開始使用教學課程中的註冊應用程式，並重複列出的步驟。
+將用來存取 hello 金鑰保存庫的 hello web 應用程式為 hello 其中一個 Azure Active Directory 中註冊且已被授與存取 tooyour 金鑰保存庫。 如果這不是 hello 案例，請返回 tooRegister hello 快速入門教學課程中的應用程式，並重複 hello 步驟所列。
 
-本教學課程是針對 Web 開發人員所設計，這些開發人員必須了解在 Azure 上建立 Web 應用程式的基本概念。 如需有關 Azure Web Apps 的詳細資訊，請參閱 [Web Apps 概觀](../app-service-web/app-service-web-overview.md)。
+本教學課程是針對 web 程式開發人員了解 hello 基本概念，在 Azure 上建立 web 應用程式的設計。 如需有關 Azure Web Apps 的詳細資訊，請參閱 [Web Apps 概觀](../app-service-web/app-service-web-overview.md)。
 
 ## <a id="packages"></a>新增 Nuget 封裝
-有二個 Web 應用程式必須已安裝的封裝。
+有兩個 web 應用程式需要 toohave 安裝的封裝。
 
 * Active Directory 驗證程式庫 - 包含與 Azure Active Directory 互動及管理使用者身分識別的方法
 * Azure 金鑰保存庫資源庫 - 包含與 Azure 金鑰保存庫互動的方法
 
-您可以使用 Package Manager Console 的 Install-Package 命令安裝這二個封裝。
+這兩個這些封裝可以使用安裝 hello Package Manager Console 使用 hello Install-package 命令。
 
-    // this is currently the latest stable version of ADAL
+    // this is currently hello latest stable version of ADAL
     Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.16.204221202
 
     Install-Package Microsoft.Azure.KeyVault
 
 
 ## <a id="webconfig"></a>修改 Web.Config
-有三個必須加入至 web.config 檔案的應用程式設定，如下所示。
+有三個應用程式設定需要 toobe 加入的 toohello web.config 檔案，如下所示。
 
-    <!-- ClientId and ClientSecret refer to the web application registration with Azure Active Directory -->
+    <!-- ClientId and ClientSecret refer toohello web application registration with Azure Active Directory -->
     <add key="ClientId" value="clientid" />
     <add key="ClientSecret" value="clientsecret" />
 
-    <!-- SecretUri is the URI for the secret in Azure Key Vault -->
+    <!-- SecretUri is hello URI for hello secret in Azure Key Vault -->
     <add key="SecretUri" value="secreturi" />
 
 
-如果您不打算將您的應用程式做為 Azure Web 應用程式裝載，則您應該將實際的 ClientId、用戶端密碼和密碼 URI 值加入 web.config。 因為我們將在 Azure 入口網站中新增實際值以取得額外的安全性層級，不然，您可以保留這些虛擬值。
+如果您不會 toohost 您應用程式當做 Azure Web 應用程式，您應該加入 hello 實際 ClientId、 用戶端密碼和密碼 URI 值 toohello web.config。因為我們將會獲得一層額外的安全性 hello Azure 入口網站中加入 hello 實際值，否則保留這些空值。
 
-## <a id="gettoken"></a>新增方法以取得存取權杖
-為了能夠使用金鑰保存庫 API，您需要存取權杖。 金鑰保存庫用戶端會處理金鑰保存庫 API 的呼叫，但是您必須提供具有取得存取權杖的函式。  
+## <a id="gettoken"></a>加入方法 tooGet 存取權杖
+在訂單 toouse hello 金鑰保存庫 API 中，您需要存取權杖。 金鑰保存庫用戶端 hello 處理呼叫 toohello 金鑰保存庫 API，但需要 toosupply 取得 hello 存取語彙基元函式使用。  
 
-以下是從 Azure Active Directory 取得存取權杖的程式碼。 此程式碼可以放置在應用程式的任何位置。 我想要新增 Utils 或 EncryptionHelper 類別。  
+以下是 hello 程式碼 tooget 從 Azure Active Directory 存取權杖。 此程式碼可以放置在應用程式的任何位置。 我喜歡 tooadd 公用程式或 EncryptionHelper 類別。  
 
     //add these using statements
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
     using System.Threading.Tasks;
     using System.Web.Configuration;
 
-    //this is an optional property to hold the secret after it is retrieved
+    //this is an optional property toohold hello secret after it is retrieved
     public static string EncryptSecret { get; set; }
 
-    //the method that will be provided to the KeyVaultClient
+    //hello method that will be provided toohello KeyVaultClient
     public static async Task<string> GetToken(string authority, string resource, string scope)
     {
         var authContext = new AuthenticationContext(authority);
@@ -93,18 +93,18 @@ ms.lasthandoff: 07/11/2017
         AuthenticationResult result = await authContext.AcquireTokenAsync(resource, clientCred);
 
         if (result == null)
-            throw new InvalidOperationException("Failed to obtain the JWT token");
+            throw new InvalidOperationException("Failed tooobtain hello JWT token");
 
         return result.AccessToken;
     }
 
 > [!NOTE]
-> 使用用戶端識別碼和用戶端密碼來驗證 Azure AD 應用程式是最簡單的方法。 此外，如果在 Web 應用程式中使用該密碼，您將能夠區分職責，並充分掌控您的金鑰管理。 但是，要這樣做就必須將用戶端密碼保存在組態設定中。在某種程度上，這樣的做法與將您要保護的密碼保存在組態設定中的方法相較而言，兩者的風險是一樣的。 如需關於如何使用用戶端識別碼與憑證 (而非用戶端識別碼與用戶端密碼) 來驗證 Azure AD 應用程式的討論，請參閱以下內容。
+> 使用用戶端識別碼和用戶端密碼是最簡單方式 tooauthenticate hello Azure AD 應用程式。 此外，如果在 Web 應用程式中使用該密碼，您將能夠區分職責，並充分掌控您的金鑰管理。 但是，它會依賴置於您的組態設定其中部分可能會放在您的組態設定，想 tooprotect hello 密碼做為有風險的 hello 用戶端密碼。 如 toouse 用戶端識別碼和憑證，而不是用戶端識別碼和用戶端密碼 tooauthenticate hello Azure AD 應用程式的討論，請參閱下方內容。
 > 
 > 
 
-## <a id="appstart"></a>在應用程式啟動時擷取密碼
-現在我們需要呼叫金鑰保存庫 API，並擷取密碼的程式碼。 下列程式碼可以放置在任何位置，只要在您需要使用它之前呼叫即可。 我已將程式碼放入 Global.asax 的應用程式啟動事件中，因此它在啟動時會執行一次，並讓密碼可在應用程式中使用。
+## <a id="appstart"></a>擷取在啟動應用程式的 hello 密碼
+現在我們需要 toocall hello 金鑰保存庫 API 的程式碼，並擷取 hello 密碼。 hello 下列程式碼可能會放入任何地方，只要您需要 toouse 之前呼叫它。 我有 hello hello Global.asax 中的應用程式開始事件中將這個程式，以便執行一次啟動並讓 hello 供 hello 應用程式密碼。
 
     //add these using statements
     using Microsoft.Azure.KeyVault;
@@ -115,34 +115,34 @@ ms.lasthandoff: 07/11/2017
 
     var sec = await kv.GetSecretAsync(WebConfigurationManager.AppSettings["SecretUri"]);
 
-    //I put a variable in a Utils class to hold the secret for general  application use.
+    //I put a variable in a Utils class toohold hello secret for general  application use.
     Utils.EncryptSecret = sec.Value;
 
 
 
-## <a id="portalsettings"></a>(選擇性) 在 Azure 入口網站中新增應用程式設定
-如果您已有 Azure Web Apps，您現在可以在 Azure 入口網站中為 AppSettings 新增實際值。 如此一來，實際值將不會存在於 web.config 中，但會透過您有個別存取控制功能的入口網站受到保護。 這些值會被您在 web.config 中輸入的值取代。 請確定名稱都相同。
+## <a id="portalsettings"></a>在 hello Azure 入口網站 （選擇性） 加入應用程式設定
+如果您有 Azure Web 應用程式您現在可以在 hello Azure 入口網站中加入 hello hello AppSettings 的實際值。 如此一來，hello 實際值 hello web.config 中將不會但受到 hello 入口網站具有獨立的存取控制功能。 這些值將會取代為您輸入在 web.config 中的 hello 值。請確定 hello 名稱是 hello 相同。
 
 ![Azure 入口網站中顯示的應用程式設定][1]
 
 ## <a name="authenticate-with-a-certificate-instead-of-a-client-secret"></a>使用憑證 (而非用戶端密碼) 進行驗證。
-若要驗證 Azure AD 應用程式，另一種方式是使用用戶端識別碼和憑證 (而非用戶端識別碼和用戶端密碼)。 以下是在 Azure Web 應用程式中使用憑證的步驟：
+另一個方式 tooauthenticate Azure AD 應用程式是使用用戶端識別碼和憑證，而非用戶端識別碼和用戶端密碼。 下列是 hello 步驟 toouse Azure Web 應用程式中的憑證：
 
 1. 取得或建立憑證
-2. 將憑證與 Azure AD 應用程式產生關聯
-3. 將程式碼加入 Web 應用程式以使用憑證
-4. 將憑證加入 Web 應用程式
+2. 將憑證 hello 與 Azure AD 應用程式產生關聯
+3. 新增程式碼 tooyour Web 應用程式 toouse hello 憑證
+4. 新增憑證 tooyour Web 應用程式
 
-**取得或建立憑證** 基於本文的目的，我們將測試憑證。 以下幾個命令可讓您在開發人員命令提示字元中用來建立憑證。 變更您要建立憑證檔案的目錄位置。  此外，對於憑證的開始和結束日期，使用目前日期加上 1 年。
+**取得或建立憑證** 基於本文的目的，我們將測試憑證。 以下是幾個您可以使用開發人員命令提示字元 toocreate 中憑證的命令。 變更目錄 toowhere 您想要建立 hello 憑證檔案。  此外，開頭和結尾 hello 憑證日期 hello，使用 hello 目前日期加上 1 年。
 
     makecert -sv mykey.pvk -n "cn=KVWebApp" KVWebApp.cer -b 03/07/2017 -e 03/07/2018 -r
     pvk2pfx -pvk mykey.pvk -spc KVWebApp.cer -pfx KVWebApp.pfx -po test123
 
-記下 .pfx 的結束日期和密碼 (在此範例中為：07/31/2016 和 test123)。 您將需要在下面使用這些資訊。
+請記下 hello 結束日期和 hello hello.pfx 的密碼 (在此範例中： 07/31/2016年和 test123)。 您將需要在下面使用這些資訊。
 
 如需如何建立測試憑證的詳細資訊，請參閱 [做法：自行建立測試憑證](https://msdn.microsoft.com/library/ff699202.aspx)
 
-**將憑證與 Azure AD 應用程式產生關聯** 有了憑證之後，您需要將其與 Azure AD 應用程式產生關聯。 目前「Azure 入口網站」並不支援此工作流程；您可以透過 PowerShell 來完成此工作流程。 請執行下列命令將憑證與 Azure AD 應用程式建立關聯：
+**與 Azure AD 應用程式產生關聯的 hello 憑證**有憑證之後，您需要 tooassociate 它與 Azure AD 應用程式。 目前，hello Azure 入口網站不支援這個工作流程。這可以透過 PowerShell 完成。 執行下列命令 tooassoicate hello 憑證與 hello Azure AD 應用程式的 hello:
 
     $x509 = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
     $x509.Import("C:\data\KVWebApp.cer")
@@ -158,16 +158,16 @@ ms.lasthandoff: 07/11/2017
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName 'contosokv' -ServicePrincipalName $sp.ServicePrincipalName -PermissionsToSecrets all -ResourceGroupName 'contosorg'
 
-    # get the thumbprint to use in your app settings
+    # get hello thumbprint toouse in your app settings
     $x509.Thumbprint
 
-執行這些命令之後，您就可以在 Azure AD 中看到應用程式。 搜尋時，在搜尋對話方塊中，請務必選取 [我公司所擁有的應用程式]，而不是 [我公司所使用的應用程式]。
+執行這些命令之後，您可以看到在 Azure AD 中的 hello 應用程式。 搜尋時，請選取 [我的公司擁有的應用程式] 而不是 「 應用程式我的公司會使用"hello 搜尋對話方塊。
 
-若要深入了解 Azure AD 應用程式物件和 ServicePrincipal 物件，請參閱[應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)
+toolearn 深入了解 Azure AD 應用程式物件和 ServicePrincipal 物件，請參閱[應用程式與服務主體物件](../active-directory/active-directory-application-objects.md)
 
-**將程式碼加入 Web 應用程式以使用憑證** 現在我們將程式碼加入您的 Web 應用程式，以存取憑證並使用其進行驗證。
+**新增程式碼 tooyour Web 應用程式 toouse hello 憑證**現在我們將會加入程式碼 tooyour Web 應用程式 tooaccess hello 憑證，並將它用於驗證。
 
-首先，使用程式碼存取憑證。
+第一個是程式碼 tooaccess hello 憑證。
 
     public static class CertificateHelper
     {
@@ -178,7 +178,7 @@ ms.lasthandoff: 07/11/2017
             {
                 store.Open(OpenFlags.ReadOnly);
                 X509Certificate2Collection col = store.Certificates.Find(X509FindType.FindByThumbprint,
-                    findValue, false); // Don't validate certs, since the test root isn't installed.
+                    findValue, false); // Don't validate certs, since hello test root isn't installed.
                 if (col == null || col.Count == 0)
                     return null;
                 return col[0];
@@ -191,9 +191,9 @@ ms.lasthandoff: 07/11/2017
     }
 
 
-請注意，StoreLocation 是 CurrentUser，而不是 LocalMachine。 另外，由於我們使用測試憑證，因此我們必須提供 "false" 憑證給 Find 方法。
+請注意該 hello StoreLocation 而不是 LocalMachine CurrentUser。 我們提供的 'false' toohello 並發現方法，因為我們使用測試憑證。
 
-接著是使用 CertificateHelper 並建立驗證所需之 ClientAssertionCertificate 的程式碼。
+接下來是使用 hello CertificateHelper 並建立 ClientAssertionCertificate 為驗證所需的程式碼。
 
     public static ClientAssertionCertificate AssertionCert { get; set; }
 
@@ -204,7 +204,7 @@ ms.lasthandoff: 07/11/2017
     }
 
 
-以下是取得存取 Token 的新程式碼。 此程式碼將會取代上述的 GetToken 方法。 為方便起見，我已將其改名。
+以下是 hello 新程式碼 tooget hello 的存取權杖。 這會取代上述的 hello GetToken 方法。 為方便起見，我已將其改名。
 
     public static async Task<string> GetAccessToken(string authority, string resource, string scope)
     {
@@ -215,21 +215,21 @@ ms.lasthandoff: 07/11/2017
 
 為了方便使用，我已將所有此類程式碼放入我的 Web 應用程式專案的公用程式類別。
 
-最後的程式碼變更位在 Application_Start 方法中。 首先，我們需要呼叫 GetCert() 方法以載入 ClientAssertionCertificate。 接著，在建立新的 KeyVaultClient 時，變更我們所提供的回呼方法。 請注意，這會取代我們上面的程式碼。
+最後一個程式碼變更 hello 處於 hello Application_Start 方法。 首先，我們需要 toocall hello GetCert() 方法 tooload hello ClientAssertionCertificate。 然後我們再變更 hello 時建立新的 KeyVaultClient 我們提供的回呼方法。 請注意這會取代 hello 我們在上面的程式碼。
 
     Utils.GetCert();
     var kv = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(Utils.GetAccessToken));
 
 
-**透過 Azure 入口網站將憑證加入 Web 應用程式** 將憑證加入您的 Web 應用程式的程序相當簡單，只需兩個步驟。 首先，請移至 Azure 入口網站並瀏覽至您的 Web 應用程式。 在 Web 應用程式的 [設定] 刀鋒視窗中，按一下 [自訂網域及 SSL] 的項目。 在開啟的刀鋒視窗中，您將能夠上傳先前建立的憑證 KVWebApp.pfx，並請確定您記得 pfx 的密碼。
+**新增憑證 tooyour Web 應用程式透過 Azure 入口網站 hello**新增憑證 tooyour Web 應用程式是簡單的兩個步驟的程序。 首先，請移 toohello Azure 入口網站，並瀏覽 tooyour Web 應用程式。 在 hello 設定刀鋒視窗中的 Web 應用程式，按一下 「 自訂網域與 SSL 」 hello 項目。 Hello 上刀鋒視窗，開啟時，您將會無法 tooupload hello KVWebApp.pfx 先前建立的憑證，請確定您記得 hello hello pfx 密碼。
 
-![在 Azure 入口網站中將憑證加入 Web 應用程式][2]
+![在 hello Azure 入口網站中加入憑證 tooa Web 應用程式][2]
 
-您需要做的最後一件事，就是將應用程式設定新增至名為WEBSITE\_LOAD\_CERTIFICATES 與值為 * 的 Web 應用程式。 如此可確保載入所有憑證。 如果您只想載入已上傳的憑證，則可輸入其憑證指紋的逗號分隔清單。
+hello，您需要 toodo 的最後一個項目是 tooadd 具有 hello 名稱網站的 Web 應用程式的應用程式設定 tooyour\_負載\_憑證和值為 *。 如此可確保載入所有憑證。 如果您想 tooload 只有 hello 的憑證，您已上傳，然後您可以輸入其指紋的逗號分隔清單。
 
-若要深入了解將憑證加入 Web 應用程式的程序，請參閱 [在 Azure 網站應用程式中使用憑證](https://azure.microsoft.com/blog/2014/10/27/using-certificates-in-azure-websites-applications/)
+toolearn 詳細資料加入憑證 tooa Web 應用程式，請參閱[Azure 網站應用程式中使用的憑證](https://azure.microsoft.com/blog/2014/10/27/using-certificates-in-azure-websites-applications/)
 
-**將憑證加入至金鑰保存庫以做為密碼** (而非直接上傳您的憑證至 Web 應用程式服務)，您可以將其儲存在金鑰保存庫以做為密碼，並從此處加以部署。 這是兩個步驟的程序，以下的部落格文章有大概的描述： [透過金鑰保存庫部署 Azure Web 應用程式憑證](https://blogs.msdn.microsoft.com/appserviceteam/2016/05/24/deploying-azure-web-app-certificate-through-key-vault/)
+**新增憑證 tooKey 保存庫做為密碼**而不是直接上傳您的憑證 toohello Web 應用程式服務，您可以將它儲存在金鑰保存庫做為密碼，並將它從該處部署。 這是兩個步驟程序所述 hello 下列部落格文章：[透過金鑰保存庫部署 Azure Web 應用程式憑證](https://blogs.msdn.microsoft.com/appserviceteam/2016/05/24/deploying-azure-web-app-certificate-through-key-vault/)
 
 ## <a id="next"></a>接續步驟
 如需程式設計參考，請參閱 [Azure 金鑰保存庫 C# 用戶端 API 參考](https://msdn.microsoft.com/library/azure/dn903628.aspx)。

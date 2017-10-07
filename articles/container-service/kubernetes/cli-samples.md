@@ -1,5 +1,5 @@
 ---
-title: "Azure Container Service 指令碼範例 | Microsoft Docs"
+title: "aaaAzure 容器服務指令碼範例 |Microsoft 文件"
 description: "Azure Container Service 指令碼範例"
 services: container-service
 documentationcenter: 
@@ -17,15 +17,15 @@ ms.workload: na
 ms.date: 05/30/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: b56c45fc711cc2831adde80617b14a82601b49e7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8c655a1c2a13c5636211ba8333c0e7a338b1e79a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cli-samples-for-azure-container-service"></a>適用於 Azure Container Service 的 Azure CLI 範例
 
-下表包含使用 Azure CLI 所建置之 Bash 指令碼的連結。
+hello 下表包含使用 Azure CLI hello 建置連結 toobash 指令碼。
 
 | | |
 |---|---|

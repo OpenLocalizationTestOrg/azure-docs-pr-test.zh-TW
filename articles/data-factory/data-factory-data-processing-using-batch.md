@@ -1,6 +1,6 @@
 ---
-title: "使用 Data Factory 和 Batch 處理大型資料集 | Microsoft Docs"
-description: "說明如何使用 Azure Batch 的平行處理功能處理 Azure Data Factory 管線中的大量資料。"
+title: "aaaProcess 大型資料集使用 Data Factory 和批次 |Microsoft 文件"
+description: "描述如何 tooprocess 大量的 Azure Data Factory 中的資料管線所使用的 Azure 批次的平行處理功能。"
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,124 +14,124 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: spelluru
-ms.openlocfilehash: 9defbf7a6a515740fa3b3cb1c67a2f5f9d9baa01
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6788f02de555d2e9d6588cc990a39043866d7e97
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="process-large-scale-datasets-using-data-factory-and-batch"></a>使用 Data Factory 和 Batch 處理大型資料集
-本文說明範例解決方案的架構，此解決方案能以自動且排程的方式移動和處理大型資料集。 本文也提供如何使用 Azure Data Factory 和 Azure Batch 實作解決方案的端對端逐步解說。
+本文說明範例解決方案的架構，此解決方案能以自動且排程的方式移動和處理大型資料集。 它也提供使用 Azure Data Factory 和 Azure 批次的端對端逐步解說 tooimplement hello 方案。
 
-這篇文章比我們的一般文章還長，因為它包含整個範例解決方案的逐步解說。 如果您不熟悉 Batch 和 Data Factory，您可以了解這兩項服務以及它們如何搭配運作。 如果您已對這兩項服務有所了解，而且要設計/架構解決方案，則可以將焦點純粹放在文章內的[架構章節](#architecture-of-sample-solution)，如果您正在開發原型或解決方案，或許也會想試試[逐步解說](#implementation-of-sample-solution)中的逐步指示。 歡迎您對此內容以及您如何使用它提出看法。
+這篇文章比我們的一般文章還長，因為它包含整個範例解決方案的逐步解說。 如果您是新 tooBatch 及資料 Factory，您可以了解這些服務，它們共同運作的方式。 如果您知道 hello 服務的相關項目，會設計/架構解決方案，您可以專注於 hello 只[架構 > 一節](#architecture-of-sample-solution)的 hello 發行項，如果您正在開發原型或方案，您可能也想 tootry逐步解說中 hello[逐步解說](#implementation-of-sample-solution)。 歡迎您對此內容以及您如何使用它提出看法。
 
-讓我們先看看 Data Factory 和 Batch 服務如何有助於處理雲端中的大型資料集。     
+首先，讓我們看看如何協助 Data Factory 和批次服務處理 hello 雲端中的大型資料集。     
 
 ## <a name="why-azure-batch"></a>為何使用 Azure Batch？
-Azure Batch 可讓您在雲端有效率地執行大規模的平行和高效能運算 (HPC) 應用程式。 它是一項平台服務，可排程要在一組受管理的虛擬機器上執行的計算密集型工作，而且可以調整計算資源以符合工作的需求。
+Azure 批次，可讓您有效率地在 hello 雲端中的 toorun 大規模平行和高效能運算 (HPC) 應用程式。 這是排程需要大量計算工作 toorun managed 集合上的虛擬機器的平台服務，可以自動調整計算資源 toomeet hello 需求的工作。
 
-在使用 Batch 服務時，您可以定義用來大規模平行執行應用程式的 Azure 計算資源。 您可以依需要或依排程的工作來執行，而不需要手動建立、設定和管理 HPC 叢集、個別的虛擬機器、虛擬網路或複雜的作業和工作排程基礎結構。
+以 hello 批次服務，您定義 Azure 計算資源 tooexecute 應用程式以平行方式，而是在標尺。 您可以依需求或排程執行作業，而不需要 toomanually 建立、 設定和管理 HPC 叢集、 個別的虛擬機器、 虛擬網路或複雜的工作和工作排程基礎結構。
 
-如果您不熟悉 Azure Batch，請參閱下列文章，因為其內容有助於了解本文所述解決方案的架構/實作。   
+請參閱下列文章，如果您不熟悉 Azure 批次因為它有助於了解 hello 架構/hello 方案實作本文所述的 hello。   
 
 * [Azure Batch 的基本概念](../batch/batch-technical-overview.md)
 * [Batch 功能概觀](../batch/batch-api-basics.md)
 
-(選擇性) 若要深入了解 Azure Batch，請參閱 [Azure Batch 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/batch/)。
+（選擇性） toolearn 進一步了解 Azure 批次，請參閱 hello [Azure 批次學習路徑](https://azure.microsoft.com/documentation/learning-paths/batch/)。
 
 ## <a name="why-azure-data-factory"></a>為何使用 Azure Data Factory？
-Data Factory 是雲端架構資料整合服務，用來協調以及自動移動和轉換資料。 透過 Data Factory 服務，您可以建立受管理的資料管線，將資料從內部部署和雲端的資料存放區移動至集中式資料存放區 (例如︰Azure Blob 儲存體)，以及使用服務 (例如 Azure HDInsight 和 Azure Machine Learning) 處理/轉換資料。 您也可以利用排程方式 (每小時、每天、每週等) 排定執行資料管線，以及快速地監視和管理資料管線以找出問題並採取行動。
+Data Factory 是以雲端為基礎的資料整合服務會協調及自動 hello 移動和轉換資料。 使用 hello Data Factory 服務，您可以建立將資料從內部部署和雲端資料儲存區 tooa 集中的資料存放區的 managed 的資料管線 (例如： Azure Blob 儲存體)，和處理程序轉換資料，使用 Azure HDInsight 等 Azure 服務機器學習。 您也可以排程已排程的方式 （每小時、 每天、 每週等） 和監視器中的資料管線 toorun 和管理它們在概覽 tooidentify 問題並採取動作。
 
-如果您不熟悉 Azure Data Factory，請參閱下列文章，因為其內容有助於了解本文所述解決方案的架構/實作。  
+請參閱下列文章，如果您不熟悉 Azure Data Factory 因為它有助於了解 hello 架構/hello 方案實作本文所述的 hello。  
 
 * [Azure Data Factory 簡介](data-factory-introduction.md)
 * [建置第一個資料管線](data-factory-build-your-first-pipeline.md)   
 
-(選擇性) 若要深入了解 Azure Data Factory，請參閱 [Azure Data Factory 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/data-factory/)。
+（選擇性） toolearn 深入了解 Azure Data Factory，請參閱 hello [Azure Data factory 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/data-factory/)。
 
 ## <a name="data-factory-and-batch-together"></a>Data Factory 和 Batch 一起使用
-Data Factory 中有內建的活動，例如複製活動，其可將資料從來源資料存放區複製/移動到目的地資料存放區，以及 Hive 活動，其可在 Azure 上使用 Hadoop 叢集 (HDInsight) 處理資料。 如需支援的轉換活動清單，請參閱 [資料轉換活動](data-factory-data-transformation-activities.md) 。
+資料處理站包含內建活動，例如 tooa 目的地資料存放區和 Hive 活動 tooprocess 資料在 Azure 上使用 Hadoop 叢集 (HDInsight)，從來源資料複製活動 toocopy/移動資料存放區。 如需支援的轉換活動清單，請參閱 [資料轉換活動](data-factory-data-transformation-activities.md) 。
 
-它也可讓您建立自訂的 .NET 活動來使用您自己的邏輯移動或處理資料，以及在 Azure HDInsight 叢集上或 Azure Batch VM 集區上執行這些活動。 當您使用 Azure Batch 時，您可以將集區設定為根據您提供的公式自動調整大小 (根據工作負載新增或移除 VM)。     
+也可讓您 toocreate 自訂.NET 活動 toomove 或處理序的資料，與您自己的邏輯，並在 Azure HDInsight 叢集上或 Azure Batch 集區的 Vm 上執行這些活動。 當您使用 Azure 批次時，您可以設定 hello 集區 tooauto 標尺 （新增或移除 hello 的工作負載的 Vm） 根據您提供的公式。     
 
 ## <a name="architecture-of-sample-solution"></a>範例解決方案架構
-雖然本文所描述的架構是針對簡單的解決方案，但它也和複雜案例相關，例如依金融服務、映像處理和轉譯以及基因分析進行的風險模型建立。
+即使這篇文章中所描述的 hello 架構適用於簡單的解決方案，它是相關 toocomplex 案例，例如風險所涵蓋了金融服務、 映像處理和轉譯和 genomic 分析模型。
 
-此圖表將說明 1) Data Factory 如何協調資料移動和處理，以及 2) Azure Batch 如何以平行方式處理資料。 下載及列印圖表以便參考 (11 x 17 英吋 或 A3 的大小)︰[使用 Azure Batch 和 Data Factory 的 HPC 和資料協調](http://go.microsoft.com/fwlink/?LinkId=717686)。
+hello 圖表將說明 Data Factory 1） 如何協調資料移動，並處理和 2） 如何處理 Azure 批次的資料則會以平行方式 hello。 下載和列印 hello 圖表，以方便參考 (11x17 中。 或 A3 的大小)︰[使用 Azure Batch 和 Data Factory 的 HPC 和資料協調](http://go.microsoft.com/fwlink/?LinkId=717686)。
 
 [![大規模資料處理圖表](./media/data-factory-data-processing-using-batch/image1.png)](http://go.microsoft.com/fwlink/?LinkId=717686)
 
-下列清單提供程序中的基本步驟。 此解決方案包含用來建置端對端解決方案的程式碼和說明。
+hello 下列清單提供 hello hello 程序的基本步驟。 hello 解決方案包含程式碼和說明 toobuild hello 端對端解決方案。
 
-1. **以計算節點的集區 (VM) 設定 Azure Batch**。 您可以指定節點數目和每個節點的大小。
+1. **以計算節點的集區 (VM) 設定 Azure Batch**。 您可以指定節點的 hello 數目和每個節點的大小。
 2. **建立 Azure Data Factory 執行個體** ，並為其設定代表 Azure Blob 儲存體、Azure Batch 計算服務、輸入/輸出資料和工作流程/管線的實體，並建立具有會移動和轉換資料之活動的工作流程/管線。
-3. **在 Data Factory 管線建立自訂 .NET 活動**。 活動是在 Azure Batch 集區上執行的使用者程式碼。
+3. **在 hello Data Factory 管線中建立的自訂.NET 活動**。 hello 活動是您在 hello Azure Batch 集區執行的使用者程式碼。
 4. **將大量的輸入資料儲存為 Azure 儲存體中的 blob**。 資料會分成邏輯配量 (通常依時間來分)。
-5. **Data Factory 將要以平行方式處理的資料複製到次要位置**。
-6. **Data Factory 使用 Batch 所配置的集區執行自訂活動**。 Data Factory 可以同時執行多個活動。 每個活動各處理某個配量的資料。 結果會儲存在 Azure 儲存體中。
-7. **Data Factory 會將最終結果移至第三個位置**，以透過應用程式加以散發，或由其他工具做進一步的處理。
+5. **Data Factory 複製以平行方式處理資料的**toohello 次要位置。
+6. **Data Factory 執行 hello 使用批次所配置的 hello 集區的自訂活動**。 Data Factory 可以同時執行多個活動。 每個活動各處理某個配量的資料。 hello 結果會儲存在 Azure 儲存體。
+7. **Data Factory 移動 hello 最終結果 tooa 第三個位置**，應用程式，透過散發，或做進一步處理其他工具。
 
 ## <a name="implementation-of-sample-solution"></a>範例解決方案的實作
-此範例解決方案是刻意簡化的，旨在為您示範如何搭配使用 Data Factory 和 Batch 來處理資料集。 此解決方案純粹計算某個搜尋詞彙 (“Microsoft”) 在以時間序列組織的輸入檔案中出現的次數。 它會將此計數輸出至輸出檔案。
+hello 範例方案刻意簡單，而且是 tooshow 您如何 toouse Data Factory 和批次一起 tooprocess 資料集。 hello 方案就是計算組織中的時間序列的輸入檔中的 hello 次數的搜尋詞彙 ("Microsoft")。 它會輸出 hello 計數 toooutput 檔案。
 
-**時間**：如果您熟悉 Azure、Data Factory 和 Batch 的基本概念，並且已符合下列先決條件，我們預估此解決方案需要 1-2 小時來完成。
+**時間**： 如果您已熟悉 Azure Data Factory 及批次中的基本概念，而且已完成的 hello 必要條件下面所列，我們會評估此解決方案會 toocomplete 1-2 小時。
 
 ### <a name="prerequisites"></a>必要條件
 #### <a name="azure-subscription"></a>Azure 訂閱
 如果您沒有 Azure 訂用帳戶，則只需要幾分鐘的時間就可以建立免費試用帳戶。 請參閱 [免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 #### <a name="azure-storage-account"></a>Azure 儲存體帳戶
-在本教學課程中，您會使用 Azure 儲存體帳戶來儲存資料。 如果您沒有 Azure 儲存體帳戶，請參閱 [建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)。 範例解決方案會使用 Blob 儲存體。
+您可以使用 Azure 儲存體帳戶將 hello 資料儲存在本教學課程。 如果您沒有 Azure 儲存體帳戶，請參閱 [建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)。 hello 範例解決方案會使用 blob 儲存體。
 
 #### <a name="azure-batch-account"></a>Azure Batch 帳戶
-使用 [Azure 入口網站](http://manage.windowsazure.com/) 建立 Azure Batch 帳戶。 請參閱 [建立和管理 Azure Batch 帳戶](../batch/batch-account-create-portal.md)。 請記下 Azure Batch 帳戶名稱和帳戶金鑰。 您也可以使用 [New-AzureRmBatchAccount](https://msdn.microsoft.com/library/mt603749.aspx) Cmdlet 建立 Azure Batch 帳戶。 如需使用此 Cmdlet 的詳細指示，請參閱 [開始使用 Azure Batch PowerShell Cmdlet](../batch/batch-powershell-cmdlets-get-started.md) 。
+建立 Azure 批次帳戶使用 hello [Azure 入口網站](http://manage.windowsazure.com/)。 請參閱 [建立和管理 Azure Batch 帳戶](../batch/batch-account-create-portal.md)。 請注意 hello Azure Batch 帳戶名稱和帳戶金鑰。 您也可以使用[新增 AzureRmBatchAccount](https://msdn.microsoft.com/library/mt603749.aspx) cmdlet toocreate Azure Batch 帳戶。 如需使用此 Cmdlet 的詳細指示，請參閱 [開始使用 Azure Batch PowerShell Cmdlet](../batch/batch-powershell-cmdlets-get-started.md) 。
 
-範例解決方案會使用 Azure Batch (透過 Azure Data Factory 管線間接使用)，以平行方式處理計算節點集區 (受管理的虛擬機器集合) 上的資料。
+hello 範例方案會使用 Azure 批次 （間接透過 Azure Data Factory 管線） tooprocess 資料，以平行方式的運算節點 （受管理的虛擬機器集合） 的集區上。
 
 #### <a name="azure-batch-pool-of-virtual-machines-vms"></a>Azure Batch 虛擬機器 (VM) 集區
 建立至少有 2 個計算節點的 **Azure Batch 集區** 。
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下左側功能標中的 [瀏覽]，然後按一下 [Batch 帳戶]。
-2. 選取您的 Azure Batch 帳戶，以開啟 [Batch 帳戶]  刀鋒視窗。
+1. 在 hello [Azure 入口網站](https://portal.azure.com)，按一下 **瀏覽**在 hello 左的窗格中，然後按一下**批次帳戶**。
+2. 選取您的 Azure Batch 帳戶 tooopen hello**批次帳戶**刀鋒視窗。
 3. 按一下 [集區]  圖格。
-4. 在 [集區]  刀鋒視窗中，按一下工具列上的 [新增] 按鈕以新增集區。
-   1. 輸入集區的識別碼 (**集區識別碼**)。 請注意 **集區的識別碼**；您在建立 Data Factory 解決方案時需要它。
-   2. 指定作業系統系列設定的 **Windows Server 2012 R2** 。
+4. 在 hello**集區**刀鋒視窗中，按一下 hello 工具列 tooadd 集區中的 新增 按鈕。
+   1. 請輸入 hello 集區的識別碼 (**集區識別碼**)。 請注意 hello **hello 集區的識別碼**; 時，您需要它建立 hello Data Factory 方案。
+   2. 指定**Windows Server 2012 R2** hello 作業系統系列設定。
    3. 選取 **節點定價層**。
-   4. 輸入 **2** 做為 [目標專用] 設定的值。
-   5. 輸入 **2** 做為 [每個節點的工作上限] 設定的值。
-   6. 按一下 [確定]  以建立集區。
+   4. 輸入**2**做為 hello 值**目標專用**設定。
+   5. 輸入**2**做為 hello 值**每個節點的最大工作**設定。
+   6. 按一下**確定**toocreate hello 集區。
 
 #### <a name="azure-storage-explorer"></a>Azure 儲存體總管
-[Azure 儲存體總管 6 (工具)](https://azurestorageexplorer.codeplex.com/) 或 [CloudXplorer](http://clumsyleaf.com/products/cloudxplorer) (來自 ClumsyLeaf 軟體)。 您可使用這些工具來檢查及更改 Azure 儲存體專案中的資料，包括雲端架構應用程式的記錄檔。
+[Azure 儲存體總管 6 (工具)](https://azurestorageexplorer.codeplex.com/) 或 [CloudXplorer](http://clumsyleaf.com/products/cloudxplorer) (來自 ClumsyLeaf 軟體)。 您可以使用這些工具來檢查及更改 Azure 儲存體專案包括雲端裝載應用程式的 hello 記錄檔中的 hello 資料。
 
 1. 使用私用存取 (沒有匿名存取) 建立名為 **mycontainer** 的容器
-2. 如果您使用 **CloudXplorer**，請建立具有下列結構的資料夾和子資料夾：
+2. 如果您使用**CloudXplorer**、 建立資料夾和子資料夾與 hello 下列結構：
 
    ![](./media/data-factory-data-processing-using-batch/image3.png)
 
-   `Inputfolder` 和 `outputfolder` 是 `mycontainer` 中的最上層資料夾。 `inputfolder` 具有含日期時間戳記 (YYYY-MM-DD-HH) 的子資料夾。
+   `Inputfolder` 和 `outputfolder` 是 `mycontainer` 中的最上層資料夾。 hello`inputfolder`具有與日期時間戳記 (YYYY-MM-DD-HH) 的子資料夾。
 
-   如果您使用 **Azure 儲存體總管**，在下一個步驟中，您必須上傳具有下列名稱的檔案：`inputfolder/2015-11-16-00/file.txt`、`inputfolder/2015-11-16-01/file.txt` 等等。 此步驟會自動建立資料夾。
-3. 在您的電腦上建立內容中含有關鍵字 **Microsoft** 的文字檔 **file.txt**。 例如：“test custom activity Microsoft test custom activity Microsoft”。
-4. 將檔案上傳至 Azure Blob 儲存體中的下列輸入資料夾。
+   如果您使用**Azure 儲存體總管**，在 hello 下一個步驟中，您需要 tooupload 檔名： `inputfolder/2015-11-16-00/file.txt`， `inputfolder/2015-11-16-01/file.txt` ，依此類推。 此步驟會自動建立 hello 資料夾。
+3. 建立文字檔**file.txt**有 hello 關鍵字的內容與您電腦上**Microsoft**。 例如：“test custom activity Microsoft test custom activity Microsoft”。
+4. 上傳 hello 檔案 toohello 下一個輸入 Azure blob 儲存體中的資料夾。
 
    ![](./media/data-factory-data-processing-using-batch/image4.png)
 
-   如果您使用 **Azure 儲存體總管**，請將檔案 **file.txt** 上傳至 **mycontainer**。 在工具列上按一下 [複製]，以建立 blob 的複本。 在 [複製 Blob] 對話方塊中，將**目的地 Blob 名稱**變更為 `inputfolder/2015-11-16-00/file.txt`。 重複此步驟以建立 `inputfolder/2015-11-16-01/file.txt`、`inputfolder/2015-11-16-02/file.txt`、`inputfolder/2015-11-16-03/file.txt`、`inputfolder/2015-11-16-04/file.txt` 等等。 此動作會自動建立資料夾。
-5. 建立另一個容器，名為：`customactivitycontainer`。 您會將自訂活動 zip 檔案上傳至此容器。
+   如果您使用**Azure 儲存體總管**，hello 檔案上傳**file.txt**太**mycontainer**。 按一下**複製**hello 工具列 toocreate hello blob 的複本上。 在 hello**複製 Blob**對話方塊中，變更 hello**目的地 blob 名稱**太`inputfolder/2015-11-16-00/file.txt`。 重複此步驟 toocreate `inputfolder/2015-11-16-01/file.txt`， `inputfolder/2015-11-16-02/file.txt`， `inputfolder/2015-11-16-03/file.txt`， `inputfolder/2015-11-16-04/file.txt` ，依此類推。 這個動作會自動建立 hello 資料夾。
+5. 建立另一個容器，名為：`customactivitycontainer`。 您上傳 hello 自訂活動 zip 檔案 toothis 容器。
 
 #### <a name="visual-studio"></a>Visual Studio
-安裝 Microsoft Visual Studio 2012 或更新版本，以建立要在 Data Factory 解決方案中使用的自訂 Batch 活動。
+安裝 Microsoft Visual Studio 2012 或更新版本 toocreate hello 自訂批次活動 toobe hello Data Factory 方案中使用。
 
-### <a name="high-level-steps-to-create-the-solution"></a>建立解決方案的高階步驟
-1. 建立包含資料處理邏輯的自訂活動。
-2. 建立使用自訂活動的 Azure Data Factory：
+### <a name="high-level-steps-toocreate-hello-solution"></a>高階步驟 toocreate hello 方案
+1. 建立包含 hello 資料處理邏輯的自訂活動。
+2. 建立 Azure data factory，以使用自訂活動的 hello:
 
-### <a name="create-the-custom-activity"></a>建立自訂活動
-Data Factory 自訂活動是此範例解決方案的核心。 範例解決方案會使用 Azure Batch 執行自訂活動。 如需開發自訂活動，並在 Azure Data Factory 管線中加以使用的基本資訊，請參閱 [在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md) 。
+### <a name="create-hello-custom-activity"></a>建立 hello 自訂活動
+hello Data Factory 的自訂活動是此範例方案的 hello 心。 hello 範例解決方案會使用 Azure Batch toorun hello 自訂活動。 請參閱[Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)hello 的基本資訊 toodevelop 自訂活動和使用在 Azure Data Factory 管線。
 
-若要建立您可以在 Azure Data Factory 管線中使用的 .NET 自訂活動，您必須利用實作 **IDotNetActivity** 介面的類別建立 **.NET 類別庫**專案。 這個介面只有一個方法： **執行**。 以下是該方法的簽章：
+toocreate.NET 自訂活動，您可以使用 Azure Data Factory 管線中，您需要 toocreate **.NET 類別庫**所實作的類別具有專案**IDotNetActivity**介面。 這個介面只有一個方法： **執行**。 以下是 hello hello 方法簽章：
 
 ```csharp
 public IDictionary<string, string> Execute(
@@ -141,38 +141,38 @@ public IDictionary<string, string> Execute(
             IActivityLogger logger)
 ```
 
-此方法有幾個您必須了解的關鍵元件。
+hello 方法都有一些您需要 toounderstand 的主要元件。
 
-* 此方法會採用四個參數：
+* hello 方法會採用四個參數：
 
-  1. **linkedServices**。 將輸入/輸出資料來源 (例如：Azure Blob 儲存體) 連結到 Data Factory 的連結服務列舉清單。 在此範例中，只有一個用於輸入和輸出的 Azure 儲存體類型連結服務。
-  2. **資料集**。 這是資料集的可列舉清單。 您可以使用這個參數取得輸入和輸出資料集定義的位置和結構描述。
-  3. **活動**。 這個參數代表目前的計算實體 - 在此情況下為 Azure Batch 服務。
-  4. **記錄器**。 記錄器可讓您撰寫會呈現為管線的「使用者」記錄檔的偵錯註解。
-* 此方法會傳回未來可用來將自訂活動鏈結在一起的字典。 尚未實作這項功能，因此會從方法傳回空的字典。
+  1. **linkedServices**。 連結輸入/輸出資料來源的連結服務的可列舉清單 (例如： Azure Blob 儲存體) toohello 資料 factory。 在此範例中，只有一個用於輸入和輸出的 Azure 儲存體類型連結服務。
+  2. **資料集**。 這是資料集的可列舉清單。 您可以使用此參數 tooget hello 位置以及輸入和輸出資料集所定義的結構描述。
+  3. **活動**。 這個參數代表 hello 目前計算實體-在此情況下，Azure 批次服務。
+  4. **記錄器**。 hello 記錄器可讓您為 「 使用者 」 記錄檔以取得 hello 撰寫偵錯註解呈現的 hello 管線。
+* hello 方法會傳回可使用的 toochain 自訂活動運算子 hello 未來的字典。 尚未實作這項功能，因此從 hello 方法會傳回空的字典。
 
-#### <a name="procedure-create-the-custom-activity"></a>程序：建立自訂活動
+#### <a name="procedure-create-hello-custom-activity"></a>程序： 建立 hello 自訂活動
 1. 在 Visual Studio 中建立 .NET 類別庫專案。
 
    1. 啟動 **Visual Studio 2012**/**2013/2015**。
-   2. 按一下 [檔案]，指向 [新增]，然後按一下 [專案]。
-   3. 展開 [範本]，然後選取 [Visual C#]**\#**。 在此逐步解說中，您使用 C\# 中，但您可以使用任何 .NET 語言來開發自訂活動。
-   4. 從右邊的專案類型清單中選取 [類別庫]。
-   5. 針對 [名稱] 輸入 **MyDotNetActivity**。
-   6. 在 [位置] 中選取 **C:\\ADF**。 建立資料夾 **ADF** (如果不存在)。
-   7. 按一下 [確定]  以建立專案。
-2. 按一下 [**工具**]，指向 [**NuGet 封裝管理員**]，然後按一下 [**封裝管理員主控台**]。
-3. 在 [封裝管理員主控台] 中，執行下列命令匯入 **Microsoft.Azure.Management.DataFactories**。
+   2. 按一下**檔案**，點太**新增**，然後按一下**專案**。
+   3. 展開 [範本]，然後選取 [Visual C#]**\#**。 在本逐步解說中，您可以使用 C\#，但是您可以使用任何.NET 語言 toodevelop hello 自訂活動。
+   4. 選取**類別庫**從 hello hello 右上的專案類型清單。
+   5. 輸入**MyDotNetActivity** hello**名稱**。
+   6. 選取**c:\\ADF** hello**位置**。 建立 hello 資料夾**ADF**如果不存在。
+   7. 按一下**確定**toocreate hello 專案。
+2. 按一下**工具**，點太**NuGet 套件管理員**，然後按一下**Package Manager Console**。
+3. 在 hello **Package Manager Console**，執行下列命令 tooimport hello **Microsoft.Azure.Management.DataFactories**。
 
     ```powershell
     Install-Package Microsoft.Azure.Management.DataFactories
     ```
-4. 將 **Azure 儲存體** NuGet 封裝匯入專案中。 您會在此範例中使用 Blob 儲存體 API，因此需要此套件。
+4. 匯入 hello **Azure 儲存體**toohello 專案中的 NuGet 封裝。 因為您使用 hello Blob 儲存體 API 在這個範例中，您會需要此封裝。
 
     ```powershell
     Install-Package Azure.Storage
     ```
-5. 將下列 **using** 指示詞加入至專案中的原始程式檔。
+5. 新增下列 hello**使用**hello 專案中的指示詞 toohello 來源檔案。
 
     ```csharp
     using System.IO;
@@ -186,22 +186,22 @@ public IDictionary<string, string> Execute(
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Blob;
     ```
-6. 將 **namespace** 的名稱變更為 **MyDotNetActivityNS**。
+6. 變更 hello 名稱的 hello**命名空間**太**MyDotNetActivityNS**。
 
     ```csharp
     namespace MyDotNetActivityNS
     ```
-7. 將類別的名稱變更為 **MyDotNetActivity**，並從 **IDotNetActivity** 介面延伸它，如下所示。
+7. 變更 hello hello 類別名稱太**MyDotNetActivity**從其中 hello **IDotNetActivity**介面，如底下所示。
 
     ```csharp
     public class MyDotNetActivity : IDotNetActivity
     ```
-8. 對 **MyDotNetActivity** 類別實作 (新增) **IDotNetActivity** 介面的 **Execute** 方法，並將下列範例程式碼複製到方法。 請參閱 [Execute 方法](#execute-method) 一節，以了解此方法中使用的邏輯。
+8. 實作 （加入） hello **Execute**方法 hello **IDotNetActivity**介面 toohello **MyDotNetActivity**類別，並複製下列範例程式碼 toohello 方法的 hello。 請參閱 hello [Execute Method](#execute-method)一節說明此方法中使用的 hello 邏輯。
 
     ```csharp
     /// <summary>
-    /// Execute method is the only method of IDotNetActivity interface you must implement.
-    /// In this sample, the method invokes the Calculate method to perform the core logic.  
+    /// Execute method is hello only method of IDotNetActivity interface you must implement.
+    /// In this sample, hello method invokes hello Calculate method tooperform hello core logic.  
     /// </summary>
     public IDictionary<string, string> Execute(
        IEnumerable<LinkedService> linkedServices,
@@ -218,7 +218,7 @@ public IDictionary<string, string> Execute(
        foreach (LinkedService ls in linkedServices)
            logger.Write("linkedService.Name {0}", ls.Name);
     
-       // using First method instead of Single since we are using the same
+       // using First method instead of Single since we are using hello same
        // Azure Storage linked service for input and output.
        inputLinkedService = linkedServices.First(
            linkedService =>
@@ -226,18 +226,18 @@ public IDictionary<string, string> Execute(
            inputDataset.Properties.LinkedServiceName).Properties.TypeProperties
            as AzureStorageLinkedService;
     
-       string connectionString = inputLinkedService.ConnectionString; // To create an input storage client.
+       string connectionString = inputLinkedService.ConnectionString; // toocreate an input storage client.
        string folderPath = GetFolderPath(inputDataset);
        string output = string.Empty; // for use later.
     
-       // create storage client for input. Pass the connection string.
+       // create storage client for input. Pass hello connection string.
        CloudStorageAccount inputStorageAccount = CloudStorageAccount.Parse(connectionString);
        CloudBlobClient inputClient = inputStorageAccount.CreateCloudBlobClient();
     
-       // initialize the continuation token before using it in the do-while loop.
+       // initialize hello continuation token before using it in hello do-while loop.
        BlobContinuationToken continuationToken = null;
        do
-       {   // get the list of input blobs from the input storage client object.
+       {   // get hello list of input blobs from hello input storage client object.
            BlobResultSegment blobList = inputClient.ListBlobsSegmented(folderPath,
                                     true,
                                     BlobListingDetails.Metadata,
@@ -246,43 +246,43 @@ public IDictionary<string, string> Execute(
                                     null,
                                     null);
     
-           // Calculate method returns the number of occurrences of
-           // the search term (“Microsoft”) in each blob associated
-           // with the data slice.
+           // Calculate method returns hello number of occurrences of
+           // hello search term (“Microsoft”) in each blob associated
+           // with hello data slice.
            //
-           // definition of the method is shown in the next step.
+           // definition of hello method is shown in hello next step.
            output = Calculate(blobList, logger, folderPath, ref continuationToken, "Microsoft");
     
        } while (continuationToken != null);
     
-       // get the output dataset using the name of the dataset matched to a name in the Activity output collection.
+       // get hello output dataset using hello name of hello dataset matched tooa name in hello Activity output collection.
        Dataset outputDataset = datasets.Single(dataset => dataset.Name == activity.Outputs.Single().Name);
     
        folderPath = GetFolderPath(outputDataset);
     
-       logger.Write("Writing blob to the folder: {0}", folderPath);
+       logger.Write("Writing blob toohello folder: {0}", folderPath);
     
-       // create a storage object for the output blob.
+       // create a storage object for hello output blob.
        CloudStorageAccount outputStorageAccount = CloudStorageAccount.Parse(connectionString);
-       // write the name of the file.
+       // write hello name of hello file.
        Uri outputBlobUri = new Uri(outputStorageAccount.BlobEndpoint, folderPath + "/" + GetFileName(outputDataset));
     
        logger.Write("output blob URI: {0}", outputBlobUri.ToString());
-       // create a blob and upload the output text.
+       // create a blob and upload hello output text.
        CloudBlockBlob outputBlob = new CloudBlockBlob(outputBlobUri, outputStorageAccount.Credentials);
-       logger.Write("Writing {0} to the output blob", output);
+       logger.Write("Writing {0} toohello output blob", output);
        outputBlob.UploadText(output);
     
-       // The dictionary can be used to chain custom activities together in the future.
+       // hello dictionary can be used toochain custom activities together in hello future.
        // This feature is not implemented yet, so just return an empty dictionary.
        return new Dictionary<string, string>();
     }
     ```
-9. 將下列協助程式方法加入至類別。 這些方法可用 **Execute** 方法來叫用。 最重要的是， **Calculate** 方法會隔離逐一查看每個 blob 的程式碼。
+9. 新增下列 helper 方法 toohello 類別 hello。 這些方法會叫用 hello **Execute**方法。 最重要的是，hello **Calculate**方法隔離 hello 程式碼，可逐一查看每個 blob。
 
     ```csharp
     /// <summary>
-    /// Gets the folderPath value from the input/output dataset.
+    /// Gets hello folderPath value from hello input/output dataset.
     /// </summary>
     private static string GetFolderPath(Dataset dataArtifact)
     {
@@ -301,7 +301,7 @@ public IDictionary<string, string> Execute(
     }
     
     /// <summary>
-    /// Gets the fileName value from the input/output dataset.
+    /// Gets hello fileName value from hello input/output dataset.
     /// </summary>
     
     private static string GetFileName(Dataset dataArtifact)
@@ -321,8 +321,8 @@ public IDictionary<string, string> Execute(
     }
     
     /// <summary>
-    /// Iterates through each blob (file) in the folder, counts the number of instances of search term in the file,
-    /// and prepares the output text that is written to the output blob.
+    /// Iterates through each blob (file) in hello folder, counts hello number of instances of search term in hello file,
+    /// and prepares hello output text that is written toohello output blob.
     /// </summary>
     
     public static string Calculate(BlobResultSegment Bresult, IActivityLogger logger, string folderPath, ref BlobContinuationToken token, string searchTerm)
@@ -341,13 +341,13 @@ public IDictionary<string, string> Execute(
                                 where word.ToLowerInvariant() == searchTerm.ToLowerInvariant()
                                 select word;
                int wordCount = matchQuery.Count();
-               output += string.Format("{0} occurrences(s) of the search term \"{1}\" were found in the file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
+               output += string.Format("{0} occurrences(s) of hello search term \"{1}\" were found in hello file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
            }
        }
        return output;
     }
     ```
-    **GetFolderPath** 方法會將路徑傳回資料集所指向的資料夾，而 **GetFileName** 方法會傳回資料集指向的 blob/檔案名稱。
+    hello **GetFolderPath**方法會傳回 hello 路徑 toohello 資料夾該 hello 資料集點 tooand hello **GetFileName**方法會傳回 hello hello blob 檔案的名稱/的 hello 指向資料集。
 
     ```csharp
 
@@ -360,26 +360,26 @@ public IDictionary<string, string> Execute(
             "folderPath": "mycontainer/inputfolder/{Year}-{Month}-{Day}-{Hour}",
     ```
 
-    **Calculate** 方法會在輸入檔案 (資料夾中的 blob) 計算關鍵字 **Microsoft** 的執行個體數目。 搜尋詞彙 ("Microsoft") 已在程式碼中硬式編碼。
+    hello **Calculate**方法會計算關鍵字的執行個體的 hello 數目**Microsoft** hello 輸入檔 (hello 資料夾中的 blob) 中。 hello 搜尋詞彙 ("Microsoft") 是硬式編碼 hello 程式碼中。
 
-1. 編譯專案。 按一下功能表中的 [建置]，然後按一下 [建置方案]。
-2. 啟動 [Windows 檔案總管]，瀏覽至 **bin\\debug** 或 **bin\\release** 資料夾 (視建置類型而定)。
-3. 建立 zip 檔案 **MyDotNetActivity.zip**，檔案中包含 **\\bin\\Debug** 資料夾中的所有二進位檔。 建議您新增 MyDotNetActivity.**pdb** 檔案，讓您可以取得額外的詳細資訊，例如在失敗發生時，原始程式碼中引起問題的程式碼行號。
+1. 編譯 hello 專案。 按一下**建置**從 hello 功能表，然後按一下**建置方案**。
+2. 啟動**Windows 檔案總管**，並瀏覽過**bin\\偵錯**或**bin\\釋放**資料夾視 hello 組建類型而定。
+3. 建立 zip 檔案**MyDotNetActivity.zip** ，其中包含所有的 hello 二進位碼檔案中 hello  **\\bin\\偵錯**資料夾。 您可能想 tooinclude hello MyDotNetActivity。**pdb**檔案以便讓您取得 hello hello 問題原因發生失敗時，原始程式碼中的其他詳細資料，例如行號。
 
    ![](./media/data-factory-data-processing-using-batch/image5.png)
-4. 將 **MyDotNetActivity.zip** 當作 Blob 上傳至 Blob 容器：Azure Blob 儲存體中的 `customactivitycontainer`，由 **ADFTutorialDataFactory** 中的 **StorageLinkedService** 連結服務使用。 建立 blob 容器 `customactivitycontainer` (如果尚未存在)。
+4. 上傳**MyDotNetActivity.zip**為 toohello blob 容器的 blob:`customactivitycontainer`在 hello Azure blob 儲存體的 hello **StorageLinkedService**連結服務中 hello **ADFTutorialDataFactory**使用。 建立 hello blob 容器`customactivitycontainer`如果不存在。
 
 #### <a name="execute-method"></a>Execute 方法
-本節提供 Execute 方法中與程式碼相關的詳細資料和注意事項。
+本章節提供更多詳細資料和 hello hello Execute 方法中的程式碼的相關注意事項。
 
-1. 逐一查看輸入集合的成員可在 [Microsoft.WindowsAzure.Storage.Blob](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.aspx) 命名空間中找到。 逐一查看 blob 集合需要使用 **BlobContinuationToken** 類別。 基本上，您必須搭配使用 do-while 迴圈和權杖做為結束迴圈的機制。 如需詳細資訊，請參閱 [如何從 .NET 使用 Blob 儲存體](../storage/blobs/storage-dotnet-how-to-use-blobs.md)。 基本迴圈如下所示：
+1. 逐一查看 hello 輸入集合的 hello 成員存在於 hello [Microsoft.WindowsAzure.Storage.Blob](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.aspx)命名空間。 逐一查看 hello blob 集合時，需要使用 hello **BlobContinuationToken**類別。 基本上，您必須使用與-while 迴圈與 hello 權杖做為結束迴圈 hello hello 機制。 如需詳細資訊，請參閱[如何 toouse 與.NET 的 Blob 儲存體](../storage/blobs/storage-dotnet-how-to-use-blobs.md)。 基本迴圈如下所示：
 
     ```csharp
-    // Initialize the continuation token.
+    // Initialize hello continuation token.
     BlobContinuationToken continuationToken = null;
     do
     {
-    // Get the list of input blobs from the input storage client object.
+    // Get hello list of input blobs from hello input storage client object.
     BlobResultSegment blobList = inputClient.ListBlobsSegmented(folderPath,
     
                          true,
@@ -395,60 +395,60 @@ public IDictionary<string, string> Execute(
     } while (continuationToken != null);
 
     ```
-   請參閱 [ListBlobsSegmented](https://msdn.microsoft.com/library/jj717596.aspx) 方法的文件以了解詳細資料。
-2. 以邏輯方式逐一查看 blob 集的程式碼會在 do-while 迴圈中執行。 在 **Execute** 方法中，執行 do-while 迴圈會將 blob 清單傳遞至名為 **Calculate** 的方法。 此方法會傳回名為 **output** 的字串變數，也就是在區段中逐一查看所有 blob 的結果。
+   請參閱 hello 文件以 hello [ListBlobsSegmented](https://msdn.microsoft.com/library/jj717596.aspx)方法，如需詳細資訊。
+2. hello 程式碼的 hello 內以邏輯方式處理透過 blob hello 組會做為 while 迴圈。 在 hello **Execute**方法中，執行 hello-雖然迴圈傳送 hello 的 blob 清單 tooa 方法名為**Calculate**。 hello 方法會傳回名為的字串變數**輸出**也就是需要逐一查看所有 hello blob hello 區段中的 hello 結果。
 
-   它會在傳遞給 **Calculate** 方法的 blob 中，傳回搜尋詞彙 (**Microsoft**) 的出現次數。
+   它會傳回 hello 次數 hello 搜尋詞彙 (**Microsoft**) hello blob 中傳遞 toohello **Calculate**方法。
 
     ```csharp
-    output += string.Format("{0} occurrences of the search term \"{1}\" were found in the file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
+    output += string.Format("{0} occurrences of hello search term \"{1}\" were found in hello file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
     ```
-3. 一旦 **Calculate** 方法完成此工作，它必須寫入至新的 blob。 因此對於每個處理過的 blob 集，都可以利用結果撰寫新的 blob。 若要寫入新的 blob，請先找到輸出資料集。
+3. 一次 hello **Calculate** hello 工作完成的方法，則必須寫入 tooa 新 blob。 讓每一組處理的 blob，可以與 hello 結果寫入新的 blob。 toowrite tooa 新 blob，第一個尋找 hello 輸出資料集。
 
     ```csharp
-    // Get the output dataset using the name of the dataset matched to a name in the Activity output collection.
+    // Get hello output dataset using hello name of hello dataset matched tooa name in hello Activity output collection.
     Dataset outputDataset = datasets.Single(dataset => dataset.Name == activity.Outputs.Single().Name);
     ```
-4. 程式碼也會呼叫 helper 方法： **GetFolderPath** 來擷取資料夾路徑 (儲存體容器名稱)。
+4. hello 程式碼也會呼叫的 helper 方法： **GetFolderPath** tooretrieve hello 資料夾路徑 （hello 儲存體容器名稱）。
 
     ```csharp
     folderPath = GetFolderPath(outputDataset);
     ```
-   **GetFolderPath** 會將 DataSet 物件轉換成 AzureBlobDataSet，其具有一個名為 FolderPath 的屬性。
+   hello **GetFolderPath**轉換 hello 資料集物件 tooan AzureBlobDataSet，有一個名為 FolderPath 屬性。
 
     ```csharp
     AzureBlobDataset blobDataset = dataArtifact.Properties.TypeProperties as AzureBlobDataset;
     
     return blobDataset.FolderPath;
     ```
-5. 程式碼會呼叫 **GetFileName** 方法來擷取檔案名稱 (blob 名稱)。 程式碼取得資料夾路徑的方式類似上述程式碼。
+5. hello 程式碼呼叫 hello **GetFileName**方法 tooretrieve hello 檔案名稱 （blob）。 hello 程式碼是類似 toohello 上述程式碼 tooget hello 資料夾路徑。
 
     ```csharp
     AzureBlobDataset blobDataset = dataArtifact.Properties.TypeProperties as AzureBlobDataset;
     
     return blobDataset.FileName;
     ```
-6. 藉由建立 URI 物件寫入檔案的名稱。 URI 建構函式使用 **BlobEndpoint** 屬性傳回容器名稱。 新增資料夾路徑和檔案名稱以建構輸出 blob URI。  
+6. 藉由建立 URI 物件寫入 hello hello 檔案名稱。 hello URI 建構函式使用 hello **BlobEndpoint**屬性 tooreturn hello 容器名稱。 hello 資料夾路徑和檔案名稱會加入 tooconstruct hello 輸出 blob URI。  
 
     ```csharp
-    // Write the name of the file.
+    // Write hello name of hello file.
     Uri outputBlobUri = new Uri(outputStorageAccount.BlobEndpoint, folderPath + "/" + GetFileName(outputDataset));
     ```
-7. 已寫入檔案名稱，現在您可以從 **Calculate** 方法將輸出字串寫入新的 blob：
+7. 已寫入 hello hello 檔案名稱和您現在可以撰寫 hello 輸出字串 hello 從**Calculate**方法 tooa 新的 blob:
 
     ```csharp
-    // Create a blob and upload the output text.
+    // Create a blob and upload hello output text.
     CloudBlockBlob outputBlob = new CloudBlockBlob(outputBlobUri, outputStorageAccount.Credentials);
-    logger.Write("Writing {0} to the output blob", output);
+    logger.Write("Writing {0} toohello output blob", output);
     outputBlob.UploadText(output);
     ```
 
-### <a name="create-the-data-factory"></a>建立 Data Factory
-在 [建立自訂活動] [](#create-the-custom-activity) 區段中，您建立自訂活動，並將包含二進位檔和 PDB 檔案的 zip 檔案上傳到 Azure blob 容器。 在本節中，您將透過使用**自訂活動**的**管線**建立 Azure **Data Factory**。
+### <a name="create-hello-data-factory"></a>建立 hello 資料處理站
+在 [hello[建立 hello 自訂活動](#create-the-custom-activity)] 區段中，建立自訂活動和上傳的 hello zip 檔案與二進位檔和 hello PDB 檔案 tooan Azure blob 容器。 在本節中，您將建立 Azure**資料 factory**與**管線**使用 hello**自訂活動**。
 
-自訂活動的輸入資料集代表 blob 儲存體中輸入資料夾 (`mycontainer\\inputfolder`) 的 blob (檔案)。 活動的輸出資料集代表 blob 儲存體中輸出資料夾 (`mycontainer\\outputfolder`) 的輸出 blob。
+hello 的 hello 自訂活動代表 hello 輸入資料夾中的 hello blob （檔案） 的輸入資料集 (`mycontainer\\inputfolder`) blob 儲存體中。 hello 輸出資料集，如 hello 活動代表 hello 輸出資料夾中的 hello 輸出 blob (`mycontainer\\outputfolder`) blob 儲存體中。
 
-將一或多個檔案放置在輸入資料夾中：
+卸除一個或多個檔案中的 hello 輸入資料夾：
 
 ```
 mycontainer -\> inputfolder
@@ -459,97 +459,97 @@ mycontainer -\> inputfolder
     2015-11-16-04
 ```
 
-例如，將含有下列內容的一個檔案 (file.txt) 放入每個資料夾中。
+以 hello 內容之後到每一個 hello 資料夾，例如，卸除一個檔案 (.txt)。
 
 ```
 test custom activity Microsoft test custom activity Microsoft
 ```
 
-即使資料夾有 2 個以上的檔案，每個輸入資料夾還是會對應至 Azure Data Factory 中的配量。 管線處理每個配量時，自訂活動會為該配量逐一查看輸入資料夾中的所有 blob。
+每個輸入的資料夾對應 tooa Azure Data Factory 中的配量，即使 hello 資料夾有 2 個以上的檔案。 Hello 管線處理每個配量時，該配量的 hello 輸入資料夾中的所有 hello blob 會都重複 hello 自訂活動。
 
-您可看到五個具有相同內容的輸出檔案。 例如，處理 2015-11-16-00 資料夾中的檔案所產生的輸出檔案包含下列內容：
+您會看到五個輸出檔案以 hello 相同內容。 例如，處理 hello 2015-11-16-00 資料夾中的 hello 檔案 hello 輸出檔案具有下列內容的 hello:
 
 ```
-2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-00/file.txt.
+2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-00/file.txt.
 ```
 
-如果您將多個具有相同內容的檔案 (file.txt、file2.txt、file3.txt) 放置到輸入資料夾中，您會在輸出檔案中看見下列內容。 每個資料夾 (2015-11-16-00 等) 分別對應至此範例中的配量，即使資料夾有多個輸入檔案亦然。
+如果您卸除多個檔案 （.txt、 file2.txt、 file3.txt） 以 hello 中，相同內容 toohello 輸入的資料夾，則會看見 hello hello 輸出檔中的內容之後。 每個資料夾 (2015年-11-16-00，等等) 對應 tooa 配量在此範例中，即使 hello 資料夾有多個輸入的檔。
 
 ```csharp
-2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-00/file.txt.
-2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-00/file2.txt.
-2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-00/file3.txt.
+2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-00/file.txt.
+2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-00/file2.txt.
+2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-00/file3.txt.
 ```
 
-輸出檔案現在會有三行，與配量相關聯的資料夾 (2015-11-16-00) 中的每個輸入檔案 (blob) 各一行。
+hello 輸出檔案具有三行，其中每個輸入檔案 (blob) hello 與 hello 配量 (2015年-11-16-00) 相關聯的資料夾中。
 
-每個活動執行都會建立一個工作。 在此範例中，管線中只有一個活動。 由管線處理配量時，自訂活動即會在 Azure Batch 上執行，以處理配量。 由於有 5 個配量 (每個配量可以有多個 blob 或檔案)，因此在 Azure Batch 中會建立 5 個工作。 工作在 Batch 上執行時，它實際上就是執行中的自訂活動。
+每個活動執行都會建立一個工作。 在此範例中，只有一個活動中沒有 hello 管線。 Hello 管線處理配量，hello 自訂活動會在 Azure 批次 tooprocess hello 配量上執行。 由於有 5 個配量 (每個配量可以有多個 blob 或檔案)，因此在 Azure Batch 中會建立 5 個工作。 工作將會批次上時，實際上 hello 執行自訂活動。
 
-下列逐步解說將提供其他詳細資料。
+下列逐步解說的 hello 提供其他詳細資料。
 
-#### <a name="step-1-create-the-data-factory"></a>步驟 1：建立 Data Factory
-1. 登入 [Azure 入口網站](https://portal.azure.com/)之後，執行下列步驟：
+#### <a name="step-1-create-hello-data-factory"></a>步驟 1： 建立 hello 資料處理站
+1. 登入 toohello 之後[Azure 入口網站](https://portal.azure.com/)，執行下列步驟 hello:
 
-   1. 按一下左側功能表上的 [新增]  。
-   2. 按一下 [新增] 刀鋒視窗中的 [資料 + 分析]。
-   3. 按一下 [資料分析] 刀鋒視窗上的 [Data Factory]。
-2. 在 [新增 Data Factory] 刀鋒視窗中，輸入 **CustomActivityFactor** 做為 [名稱]。 Azure Data Factory 的名稱在全域必須是唯一的。 如果您收到錯誤：**Data Factory 名稱 “CustomActivityFactory” 無法使用**，請變更 Data Factory 名稱 (例如 **yournameCustomActivityFactory**)，然後試著重新建立。
+   1. 按一下**新增**hello 左側功能表上。
+   2. 按一下**資料 + 分析**在 hello**新增**刀鋒視窗。
+   3. 按一下**Data Factory**上 hello**資料分析**刀鋒視窗。
+2. 在 hello**新的 data factory**刀鋒視窗中，輸入**CustomActivityFactory** hello 名稱。 hello hello Azure data factory 的名稱必須是全域唯一的。 如果您收到 hello 錯誤： **Data factory 名稱"CustomActivityFactory"不是使用**，變更 hello hello data factory 名稱 (例如， **yournameCustomActivityFactory**)，然後再次嘗試建立一次。
 3. 按一下 [資源群組名稱] ，並選取現有的資源群組，或建立一個群組。
-4. 請確認您使用的是要在其中建立 Data Factory 的正確訂用帳戶和區域。
-5. 按一下 [新增 Data Factory] 刀鋒視窗上的 [建立]。
-6. 您會看到 Data Factory 建立在 Azure 入口網站的 [儀表板]  中。
-7. 在 Data Factory 成功建立後，您會看到 Data Factory 頁面，顯示 Data Factory 的內容。
+4. 請確認您使用 hello 正確的訂用帳戶和您想要建立 hello 資料 factory toobe 的區域。
+5. 按一下**建立**上 hello**新的 data factory**刀鋒視窗。
+6. 您會看到 hello hello 中建立的資料處理站**儀表板**的 hello Azure 入口網站。
+7. 已成功建立 hello 資料處理站之後，您會看到 hello 資料 factory 頁面上，它會顯示 hello hello data factory 的內容。
 
    ![](./media/data-factory-data-processing-using-batch/image6.png)
 
 #### <a name="step-2-create-linked-services"></a>步驟 2：建立連結服務
-連結服務會將資料存放區或計算服務連結至 Azure Data Factory。 在此步驟中，您會將 **Azure 儲存體**帳戶和 **Azure Batch** 帳戶連結到 Data Factory。
+連結的服務將資料存放區，或計算服務 tooan 的 Azure data factory。 在此步驟中，您連結您**Azure 儲存體**帳戶和**Azure Batch**帳戶 tooyour 資料 factory。
 
 #### <a name="create-azure-storage-linked-service"></a>建立 Azure 儲存體連結服務
-1. 按一下 **CustomActivityFactory** 的 [DATA FACTORY] 刀鋒視窗上的 [作者和部署] 圖格。 您會看到 [Data Factory 編輯器]。
-2. 在命令列上按一下 [新增資料儲存區]，然後選擇 [Azure 儲存體]。 在編輯器中，您應該會看到用來建立 Azure 儲存體連結服務的 JSON 指令碼。
+1. 按一下 hello**作者及部署**磚 hello **DATA FACTORY**刀鋒伺服器**CustomActivityFactory**。 您會看到 hello Data Factory 編輯器。
+2. 按一下**新建資料存放區**在 hello 命令列，然後選擇  **Azure 儲存體。** 您應該會看見 hello JSON 指令碼來建立 Azure 儲存體已連結的 hello 編輯器中的服務。
 
    ![](./media/data-factory-data-processing-using-batch/image7.png)
 
-3. 以您的 Azure 儲存體帳戶名稱取代**帳戶名稱**，並以 Azure 儲存體帳戶的存取金鑰取代**帳戶金鑰**。 若要了解如何取得儲存體存取金鑰，請參閱 [檢視、複製和重新產生儲存體存取金鑰](../storage/common/storage-create-storage-account.md#manage-your-storage-account)
+3. 取代**帳戶名稱**hello Azure 儲存體帳戶名稱和**帳戶金鑰**hello 的 hello Azure 儲存體帳戶的存取金鑰。 toolearn 如何 tooget 您的儲存體存取金鑰，請參閱[檢視、 複製和重新產生儲存體存取金鑰](../storage/common/storage-create-storage-account.md#manage-your-storage-account)。
 
-4. 按一下命令列的 [部署]  ，部署連結服務。
+4. 按一下**部署**hello 命令列 toodeploy hello 連結服務。
 
    ![](./media/data-factory-data-processing-using-batch/image8.png)
 
 #### <a name="create-azure-batch-linked-service"></a>建立 Azure Batch 連結服務
-在此步驟中，您會為您的 **Azure Batch** 帳戶建立用來執行 Data Factory 自訂活動的連結服務。
+在此步驟中，您可以建立連結的服務，如您**Azure Batch**為使用的 toorun hello Data Factory 的自訂活動的帳戶。
 
-1. 在命令列上按一下 [新增計算]，然後選擇 [Azure Batch]。 您應該會在編輯器中看到用來建立 Azure Batch 連結服務的 JSON 指令碼。
-2. 在 JSON 指令碼中：
+1. 按一下**新計算**在 hello 命令列，然後選擇  **Azure 批次。** 您應該會看見 hello JSON 指令碼來建立 Azure Batch 連結 hello 編輯器中的服務。
+2. 在 hello JSON 指令碼：
 
-   1. 使用您的 Azure Batch 帳戶名稱來取代 **帳戶名稱** 。
-   2. 使用 Azure Batch 帳戶的存取金鑰來取代 **存取金鑰** 。
-   3. 針對 **poolName** 屬性輸入集區識別碼。 您可以針對此屬性指定集區名稱或集區識別碼。
-   4. 針對 **batchUri** JSON 屬性，輸入 Batch URI。
+   1. 取代**帳戶名稱**hello Azure Batch 帳戶名稱。
+   2. 取代**便捷鍵**hello hello Azure Batch 帳戶存取索引鍵。
+   3. 輸入 hello hello 集區識別碼 hello **poolName**屬性**。** 您可以針對此屬性指定集區名稱或集區識別碼。
+   4. 輸入 hello 批次 URI hello **batchUri** JSON 屬性。
 
       > [!IMPORTANT]
-      > [Azure Batch 帳戶] 刀鋒視窗中的 **URL** 格式如下：\<accountname\>.\<region\>.batch.azure.com。針對 JSON 中的 **batchUri** 屬性，您必須從該 URL **移除 "accountname"** 。 範例：`"batchUri": "https://eastus.batch.azure.com"`.
+      > hello **URL**從 hello **Azure Batch 帳戶 刀鋒視窗**處於 hello 下列格式： \<accountname\>。\<區域\>。 batch.azure.com。Hello **batchUri** hello JSON 屬性，您需要太**移除"accountname。 」** 從 hello 的 URL。 範例：`"batchUri": "https://eastus.batch.azure.com"`.
       >
       >
 
       ![](./media/data-factory-data-processing-using-batch/image9.png)
 
-      針對 **poolName** 屬性，您也可以指定該集區的 ID，而非集區名稱。
+      Hello **poolName**屬性，您也可以指定 hello 識別碼 hello 集區，而不是 hello hello 集區的名稱。
 
       > [!NOTE]
-      > 與支援 HDInsight 的情況不同，Data Factory 服務不支援 Azure Batch 的隨選選項。 您只能使用 Azure Data Factory 中自己的 Azure Batch 集區。
+      > hello Data Factory 服務不支援隨選項 Azure 批次的 HDInsight 的一樣。 您只能使用 Azure Data Factory 中自己的 Azure Batch 集區。
       >
       >
-   5. 指定作業系統系列設定的 **StorageLinkedService** for the **StorageLinkedService** 。 您已在前述步驟中建立此連結服務。 此儲存體會做為檔案和記錄檔的預備區域。
-3. 按一下命令列的 [部署]  ，部署連結服務。
+   5. 指定**StorageLinkedService** hello **linkedServiceName**屬性。 您 hello 上一個步驟中建立這項連結的服務。 此儲存體會做為檔案和記錄檔的預備區域。
+3. 按一下**部署**hello 命令列 toodeploy hello 連結服務。
 
 #### <a name="step-3-create-datasets"></a>步驟 3：建立資料集
-在此步驟中，您會建立資料集來代表輸入和輸出資料。
+在此步驟中，您可以建立資料集 toorepresent 輸入和輸出資料。
 
 #### <a name="create-input-dataset"></a>建立輸入資料集
-1. 在 Data Factory 的 [編輯器] 中，按一下工具列上的 [新增資料集] 按鈕，然後從下拉式功能表中選取 [Azure Blob 儲存體]。
-2. 使用下列 JSON 程式碼片段取代右窗格中的 JSON：
+1. 在 hello**編輯器**hello Data Factory 中，按一下 **新的資料集**上 hello 工具列，並按一下按鈕**Azure Blob 儲存體**從 hello 下拉式選單。
+2. 取代下列 JSON 片段 hello hello 右窗格中的 hello JSON:
 
     ```json
     {
@@ -607,11 +607,11 @@ test custom activity Microsoft test custom activity Microsoft
     }
     ```
 
-    您稍後會在本逐步解說建立管線，開始時間為：2015-11-16T00:00:00Z，而結束時間為：2015-11-16T05:00:00Z。 排程為**每小時**產生，因此會有 5 個輸入/輸出配量 (在 **00**:00:00 -\> **05**:00:00 之間)。
+    您稍後會在本逐步解說建立管線，開始時間為：2015-11-16T00:00:00Z，而結束時間為：2015-11-16T05:00:00Z。 它會排程的 tooproduce 資料**每小時**，因此有 5 個輸入/輸出配量 (之間**00**: 00:00-\> **05**: 00:00)。
 
-    輸入資料集的 **frequency** 和 **interval** 設定為 **Hour** 和 **1**，這表示每小時皆可使用輸入配量。
+    hello**頻率**和**間隔**hello 輸入資料集設定太**小時**和**1**，這表示該 hello 輸入配量是可用每小時。
 
-    以下是每個配量的開始時間，由上述 JSON 程式碼片段中的 **SliceStart** 系統變數代表。
+    以下是 hello 開始時間的每個配量，由表示**SliceStart** hello 上方 JSON 片段中的系統變數。
 
     | **配量** | **開始時間**          |
     |-----------|-------------------------|
@@ -621,7 +621,7 @@ test custom activity Microsoft test custom activity Microsoft
     | 4         | 2015-11-16T**03**:00:00 |
     | 5         | 2015-11-16T**04**:00:00 |
 
-    **FolderPath** 是使用配量開始時間 (**SliceStart**) 的年、月、日和小時部分來計算的。 因此，輸入資料夾對應至配量的方式如下。
+    hello **folderPath**使用 hello 年、 月、 日和小時一部分 hello 配量的開始時間的計算 (**SliceStart**)。 因此，以下是輸入的資料夾的對應的 tooa 配量的方式。
 
     | **配量** | **開始時間**          | **輸入資料夾**  |
     |-----------|-------------------------|-------------------|
@@ -631,13 +631,13 @@ test custom activity Microsoft test custom activity Microsoft
     | 4         | 2015-11-16T**03**:00:00 | 2015-11-16-**03** |
     | 5         | 2015-11-16T**04**:00:00 | 2015-11-16-**04** |
 
-1. 按一下工具列上的 [部署]，以建立並部署 **InputDataset** 資料表。
+1. 按一下**部署**hello 工具列 toocreate 且部署 hello **InputDataset**資料表。
 
 #### <a name="create-output-dataset"></a>建立輸出資料集
-在此步驟中，您會建立屬於 AzureBlob 類型的另一個資料集，來代表輸出資料。
+在此步驟中，您可以建立類型 AzureBlob toorepresent hello 輸出資料的其他資料集。
 
-1. 在 Data Factory 的 [編輯器] 中，按一下工具列上的 [新增資料集] 按鈕，然後從下拉式功能表中選取 [Azure Blob 儲存體]。
-2. 使用下列 JSON 程式碼片段取代右窗格中的 JSON：
+1. 在 hello**編輯器**hello Data Factory 中，按一下 **新的資料集**上 hello 工具列，並按一下按鈕**Azure Blob 儲存體**從 hello 下拉式選單。
+2. 取代下列 JSON 片段 hello hello 右窗格中的 hello JSON:
 
     ```json
     {
@@ -667,7 +667,7 @@ test custom activity Microsoft test custom activity Microsoft
     }
     ```
 
-    為每個輸入配量產生輸出 blob/檔案。 以下是為每個配量命名輸出檔案的方式。 所有的輸出檔案會產生於一個輸出資料夾中：`mycontainer\\outputfolder`。
+    為每個輸入配量產生輸出 blob/檔案。 以下是為每個配量命名輸出檔案的方式。 所有的 hello 輸出檔案產生一個輸出資料夾中： `mycontainer\\outputfolder`。
 
     | **配量** | **開始時間**          | **輸出檔案**       |
     |-----------|-------------------------|-----------------------|
@@ -677,20 +677,20 @@ test custom activity Microsoft test custom activity Microsoft
     | 4         | 2015-11-16T**03**:00:00 | 2015-11-16-**03.txt** |
     | 5         | 2015-11-16T**04**:00:00 | 2015-11-16-**04.txt** |
 
-    請記得，輸入資料夾 (例如：2015-11-16-00) 中的所有檔案，都是開始時間為 2015-11-16-00 之配量的一部分。 處理此配量時，自訂活動會掃描每個檔案，並利用搜尋詞彙 (“Microsoft”) 的出現次數在輸出檔案中產生資料行。 如果資料夾 2015-11-16-00 中有三個檔案，則輸出檔案中會有三行：2015-11-16-00.txt。
+    請記住所有 hello 輸入的資料夾中的檔案 (例如： 2015年-11-16-00) 屬於 hello 的開始時間配量： 2015年-11-16-00。 此配量處理時，hello 自訂活動會掃描每個檔案，並產生 hello 與 hello 發生次數的搜尋詞彙 ("Microsoft") 的輸出檔中的資料行。 Hello 輸出檔 hello 資料夾 2015年-11-16-00 中有三個檔案，如果有三個行： 2015年-11-16-00.txt。
 
-1. 按一下工具列上的 [部署]，以建立並部署 **OutputDataset**。
+1. 按一下**部署**hello 工具列 toocreate 且部署 hello **OutputDataset**。
 
-#### <a name="step-4-create-and-run-the-pipeline-with-custom-activity"></a>步驟 4：建立並執行使用自訂活動的管線
-在此步驟中，您會建立具有一個活動的管線，也就是您先前建立的自訂活動。
+#### <a name="step-4-create-and-run-hello-pipeline-with-custom-activity"></a>步驟 4： 建立和執行自訂活動與 hello 管線
+在此步驟中，您可以建立管線某個活動，hello 您稍早建立的自訂活動。
 
 > [!IMPORTANT]
-> 如果尚未將 **file.txt** 上傳至 blob 容器中的輸入資料夾，請先執行此動作，再建立管線。 在管線 JSON 中，**IsPaused** 屬性會設定為 false，使管線會在**開始**日期到達後立即執行。
+> 如果尚未上傳 hello **file.txt** tooinput 資料夾在 hello blob 容器中，建立 hello 管線之前執行此動作。 hello **isPaused**屬性設定 toofalse hello 管線 JSON，因此 hello 管線便會立即執行為 hello**啟動**日期為過去的 hello。
 >
 >
 
-1. 在 Data Factory 編輯器中，按一下工具列上的 [ **新增管線** ]。 如果看不到此命令，請按一下 [...] (省略符號) 就可看到。
-2. 使用下列 JSON 指令碼取代右窗格中的 JSON︰
+1. 在 hello Data Factory 編輯器中，按一下 **新管線**hello 命令列上。 如果看不到 hello 命令，請按一下**...（省略符號）** toosee 它。
+2. 取代下列 JSON 指令碼的 hello hello 右窗格中的 hello JSON:
 
     ```json
     {
@@ -735,101 +735,101 @@ test custom activity Microsoft test custom activity Microsoft
       }
     }
     ```
-   請注意下列幾點：
+   請注意下列點 hello:
 
-   * 管線中只有一個活動，且其類型為： **DotNetActivity**。
-   * **AssemblyName** 設定為 DLL 的名稱：**MyDotNetActivity.dll**。
-   * **EntryPoint** 設定為 **MyDotNetActivityNS.MyDotNetActivity**。 在您的程式碼中，它基本上是 \<namespace\>.\<classname\>。
-   * **PackageLinkedService** 設為 **StorageLinkedService**，會指向包含自訂活動 zip 檔案的 Blob 儲存體。 如果您將不同的 Azure 儲存體帳戶用於輸入/輸出檔案和自訂活動 zip 檔案，您必須建立另一個 Azure 儲存體連結服務。 本文假設您使用相同的 Azure 儲存體帳戶。
-   * **PackageFile** 設定為 **customactivitycontainer/MyDotNetActivity.zip**。 其格式為：\<containerforthezip\>/\<nameofthezip.zip\>。
-   * 自訂活動會採用 **InputDataset** 做為輸入和 **OutputDataset** 做為輸出。
-   * 自訂活動的 **linkedServiceName** 屬性會指向 **AzureBatchLinkedService**，這會告知 Azure Data Factory 自訂活動必須在 Azure Batch 上執行。
-   * **並行** 設定很重要。 如果您使用預設值 1，則即使您在 Azure Batch 集區中有 2 個或更多計算節點，配量仍會逐一進行處理。 因此，您將無法使用 Azure Batch 的平行處理功能。 如果您將 **並行** 設定為較高的值 (例如 2)，這表示可以同時處理 2 個配量 (對應於 Azure Batch 中的 2 個工作)，在此情況下，將會同時使用 Azure Batch 集區中的兩個 VM。 因此，請適當設定並行屬性。
-   * 根據預設，無論何時，一個工作 (配量) 都只會在一個 VM 上執行。 原因是 Azure Batch 集區的 [每個 VM 的工作數上限]  預設為 1。 根據必要條件，您在建立集區時將此屬性設定為 2，因此可以同時在 VM 上執行兩個 Data Factory 配量。
+   * Hello 管線中只能有一個活動，而且型別的： **DotNetActivity**。
+   * **AssemblyName**設定 toohello hello DLL 名稱： **MyDotNetActivity.dll**。
+   * **EntryPoint**設定得**MyDotNetActivityNS.MyDotNetActivity**。 在您的程式碼中，它基本上是 \<namespace\>.\<classname\>。
+   * **PackageLinkedService**設定得**StorageLinkedService** ，以指 toohello blob 儲存體包含 hello 自訂活動的 zip 檔案。 如果您使用不同的 Azure 儲存體帳戶輸入/輸出檔案和 hello 自訂活動的 zip 檔案，您必須 toocreate 另一個 Azure 儲存體連結服務。 本文假設您使用 hello 相同的 Azure 儲存體帳戶。
+   * **PackageFile**設定得**customactivitycontainer/MyDotNetActivity.zip**。 其為 hello 格式： \<containerforthezip\>/\<nameofthezip.zip\>。
+   * hello 自訂活動會採用**InputDataset**做為輸入和**OutputDataset**做為輸出。
+   * hello **linkedServiceName** hello 自訂活動的屬性指向 toohello **AzureBatchLinkedService**，它會告訴 Azure Data Factory 的 hello 自訂活動必須 toorun Azure 批次。
+   * hello**並行**設定很重要。 如果您使用 hello 預設值為 1，即使您有 2 或多個計算節點 hello Azure Batch 集區中的，會處理 hello 配量一個接著一個。 因此，您就不可以運用 Azure 批次的 hello 平行處理功能。 如果您設定**並行**tooa 較高的值，例如 2，表示兩個配量 （對應 tootwo Azure 批次中的工作） 可以在 hello 處理相同的時間，在此情況下，這兩個 hello 中的 Vm hello Azure Batch 集區並加以使用。 因此，適當地設定 hello 並行屬性。
+   * 根據預設，無論何時，一個工作 (配量) 都只會在一個 VM 上執行。 hello 原因在於，根據預設，hello**每個 VM 的最大工作**too1 Azure Batch 集區設定。 必要條件的一部分，您建立了集區與這個屬性集 too2，讓兩個 Data Factory 配量可在 hello VM 上執行相同的時間。
 
-    -   **isPaused** 屬性預設為 false。 在此範例中，管線會立即執行，因為配量已在過去開始。 您可以將此屬性設為 true，以暫停管線，並將其設回 false，以重新啟動。
+    -   **isPaused**屬性 toofalse 預設設定。 hello 管線執行立即在此範例中，因為 hello 配量開始在過去的 hello。 您可以設定這個屬性 tootrue toopause hello 管線，並將它回復 toofalse toorestart。
 
-    -   **start** 時間和 **end**時間相差 5 小時，而配量會每小時產生，因此管線會產生 5 個配量。
+    -   hello**啟動**時間和**結束**時間是 5 小時以上距離而配量不會產生每小時，因此 hello 管線所產生五個配量。
 
-1. 按一下命令列上的 [部署]  ，部署管線。
+1. 按一下**部署**hello 命令列 toodeploy hello 管線。
 
-#### <a name="step-5-test-the-pipeline"></a>步驟 5：測試管線
-在此步驟中，您會將檔案放置在輸入資料夾中，以測試管線。 首先，我們以每一個輸入資料夾含有一個檔案的方式來測試管線。
+#### <a name="step-5-test-hello-pipeline"></a>步驟 5： 測試 hello 管線
+在此步驟中，您測試管線 hello 放 hello 輸入資料夾的檔案。 讓我們開頭為測試 hello 管線每一個輸入資料夾的一個檔案。
 
-1. 在 Azure 入口網站的 [Data Factory] 刀鋒視窗中，按一下 [圖表] 。
+1. 在 hello Data Factory 刀鋒視窗中 hello Azure 入口網站中，按一下 **圖表**。
 
    ![](./media/data-factory-data-processing-using-batch/image10.png)
-2. 在圖表檢視中，按兩下輸入資料集：**InputDataset**。
+2. 在 hello 圖表檢視中，按兩下 輸入資料集： **InputDataset**。
 
    ![](./media/data-factory-data-processing-using-batch/image11.png)
-3. 您應會看到 **InputDataset** 刀鋒視窗中已包含所有的 5 個配量。 請留意每個配量的 [配量開始時間] 和 [配量結束時間]。
+3. 您應該會看見 hello **InputDataset**刀鋒視窗的全部五個配量的準備。 請注意 hello**配量的開始時間**和**配量結束時間**每個配量。
 
    ![](./media/data-factory-data-processing-using-batch/image12.png)
-4. 在 [圖表檢視] 中，現在按一下 [OutputDataset]。
-5. 如果已產生 5 個輸出配量，您應該會看到它們都處於就緒狀態。
+4. 在 hello**圖表檢視**，現在按一下**OutputDataset**。
+5. 您應該會看到 hello 五個輸出配量會 hello 就緒狀態，是否他們已經產生。
 
    ![](./media/data-factory-data-processing-using-batch/image13.png)
-6. 使用 Azure 入口網站檢視與**配量**相關聯的**工作**，並查看每個配量在哪個 VM 上執行。 請參閱 [Data Factory 和 Batch 整合](#data-factory-and-batch-integration) 一節，以取得詳細資料。
-7. 在您的 Azure Blob 儲存體中，您應會在 `mycontainer` 的 `outputfolder` 中看見輸出檔案。
+6. 使用 Azure 入口網站 tooview hello**工作**hello 與相關聯**配量**並查看哪些 VM 執行的每個配量。 請參閱 [Data Factory 和 Batch 整合](#data-factory-and-batch-integration) 一節，以取得詳細資料。
+7. 您應該會看到 hello 輸出檔中 hello`outputfolder`的`mycontainer`在您的 Azure blob 儲存體。
 
    ![](./media/data-factory-data-processing-using-batch/image15.png)
 
-   您應會看見五個輸出檔案，每個輸入配量各一個。 每個輸出檔案應會有類似下列輸出的內容：
+   您應會看見五個輸出檔案，每個輸入配量各一個。 每個 hello 輸出檔案應該具有內容的類似 toohello 下列輸出：
 
     ```
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-00/file.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-00/file.txt.
     ```
-   下圖說明 Data Factory 配量如何對應至 Azure Batch 中的工作。 在此範例中，一個配量只有一個執行。
+   hello 下列圖表說明 hello Data Factory 配量將 tootasks Azure 批次中的對應。 在此範例中，一個配量只有一個執行。
 
    ![](./media/data-factory-data-processing-using-batch/image16.png)
-8. 現在，我們要以一個資料夾包含多個檔案的方式來試試。 使用與資料夾 **2015-11-06-01**中的 file.txt 相同的內容，建立檔案 **file2.txt**、**file3.txt**、**file4.txt** 和 **file5.txt**。
-9. 在輸出資料夾中，**刪除**輸出檔案：**2015-11-16-01.txt**。
-10. 現在，在 **OutputDataset** 刀鋒視窗中，以滑鼠右鍵按一下 [配量開始時間] 設定為 **11/16/2015 01:00:00 AM** 的配量，然後按一下 [執行]，以重新執行/重新處理配量。 現在，配量會有 5 個檔案，而不是 1 個檔案。
+8. 現在，我們要以一個資料夾包含多個檔案的方式來試試。 建立檔案： **file2.txt**， **file3.txt**， **file4.txt**，和**file5.txt** hello 與相同內容如 file.txt hello 資料夾中所示：**2015年-11-06-01**。
+9. 在 hello 輸出資料夾中，**刪除**hello 輸出檔： **2015年-11-16-01.txt**。
+10. 現在，在 hello **OutputDataset**刀鋒視窗中，以滑鼠右鍵按一下 hello 配量與**配量的開始時間**設定得**2015 年 11 月 16 日 01:00:00 AM**，然後按一下**執行**toorerun/重新 process hello 配量。 現在，hello 配量會有五個檔案，而不是一個檔案。
 
     ![](./media/data-factory-data-processing-using-batch/image17.png)
-11. 在配量執行完成，且其狀態為 [就緒] 之後，在您 Blob 儲存體之 `mycontainer` 的 `outputfolder` 中驗證此配量的輸出檔案 (**2015-11-16-01.txt**) 中的內容。 配量的每個檔案應該都有一行。
+11. Hello 配量執行，其狀態為之後**準備**，確認此配量的 hello 輸出檔中的 hello 內容 (**2015年-11-16-01.txt**) 在 hello`outputfolder`的`mycontainer`在您的 blob 儲存體。 應該要有每個檔案的 hello 配量的線。
 
     ```
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file.txt.
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file2.txt.
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file3.txt.
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file4.txt.
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file5.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-01/file.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-01/file2.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-01/file3.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-01/file4.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-01/file5.txt.
     ```
 
 > [!NOTE]
-> 如果您未先刪除輸出檔案 2015-11-16-01.txt，即以 5 個輸入檔案來嘗試，您會看到先前的配量執行有一行，而目前的配量執行有五行。 根據預設，內容會附加至已存在的輸出檔案。
+> 如果您未刪除 hello 輸出檔案 2015年-11-16-01.txt 嘗試以五個輸入檔案之前，您會看到從 hello 先前配量執行一行和五行 hello 目前配量執行中。 根據預設，hello 內容是附加的 toooutput 檔案已經存在。
 >
 >
 
 #### <a name="data-factory-and-batch-integration"></a>Data Factory 和 Batch 整合
-Data Factory 服務會在 Azure Batch 中建立作業，其名為：`adf-poolname:job-xxx`。
+hello Data Factory 服務 Azure 批次中建立工作以 hello 名稱： `adf-poolname:job-xxx`。
 
 ![Azure Data Factory - Batch 作業](media/data-factory-data-processing-using-batch/data-factory-batch-jobs.png)
 
-配量的每個活動執行都會在作業中建立一個工作。 如果有 10 個配量就緒可供處理，作業中會建立 10 個工作。 如果您在集區中有多個計算結點，您可以同時執行多個配量。 如果每個計算結點的工作上限設為 > 1，則相同的計算上可以執行多個配量。
+配量的每個活動執行時，會建立 hello 作業中的工作。 如果有 10 個配量準備 toobe 處理，10 個工作會建立 hello 作業中。 您可以有多個配量，以平行方式執行，如果您有多個計算節點區內 hello。 如果 hello 最大的工作，每個計算節點設定得 > 1，可以有超過一個配量上 hello 執行相同的計算。
 
-此範例中有 5 個配量，所以 Azure Batch 中有 5 個工作。 在 Azure Data Factory 中的管線 JSON 中將**並行**設定為 **5**，並且在具有 **2** 個 VM 的 Azure Batch 集區中將 [每個 VM 的工作數上限] 設定為 **2**，工作會執行得很快 (請檢查工作的開始和結束時間)。
+此範例中有 5 個配量，所以 Azure Batch 中有 5 個工作。 以 hello**並行**設定得**5** hello 在管線中 Azure Data Factory JSON 和**每個 VM 的最大工作**設定得**2** Azure 批次中集區**2** hello 工作執行快速 （檢查工作的開始和結束時間） 的 Vm。
 
-使用入口網站來檢視與 **配量** 相關聯的 Batch 作業及其工作，並查看每個配量在哪個 VM 上執行。
+使用 hello 入口 tooview hello 批次工作和其相關聯之工作與 hello**配量**並查看哪些 VM 執行的每個配量。
 
 ![Azure Data Factory - Batch 作業工作](media/data-factory-data-processing-using-batch/data-factory-batch-job-tasks.png)
 
-### <a name="debug-the-pipeline"></a>偵錯管線
+### <a name="debug-hello-pipeline"></a>偵錯 hello 管線
 偵錯包含一些基本技術：
 
-1. 如果輸入配量不是設定為 [就緒] ，請確認輸入資料夾結構正確，且 file.txt 存在於輸入資料夾中。
+1. 如果未設定 hello 輸入配量太**準備**，確認 hello 輸入的資料夾結構是否正確，以及 file.txt 存在 hello 輸入資料夾中。
 
    ![](./media/data-factory-data-processing-using-batch/image3.png)
-2. 在自訂活動的 **Execute** 方法中，使用可協助您針對問題進行疑難排解的 **IActivityLogger** 物件記錄資訊。 記錄的訊息會顯示在 user\_0.log 檔案中。
+2. 在 hello **Execute**方法的自訂活動，使用 hello **IActivityLogger**物件 toolog 資訊可協助您疑難排解問題。 記錄的 hello 訊息顯示在 hello 使用者\_0 記錄檔。
 
-   在 [OutputDataset] 刀鋒視窗中，按一下配量，以查看該配量的 [資料配量] 刀鋒視窗。 您會看到該配量的 [活動執行]。 您會看到一個為該配量執行的活動。 如果您按一下命令列中的 [執行]，您可以為相同的配量啟動另一個活動執行。
+   在 hello **OutputDataset**刀鋒視窗中，按一下 hello 配量 toosee hello**資料配量**刀鋒視窗，該配量。 您會看到該配量的 [活動執行]。 您應該會看到一個 hello 配量執行的活動。 如果您按一下**執行**hello 命令列中，您可以啟動另一個活動執行 hello 相同配量。
 
-   當您按一下活動執行，您會看到包含記錄檔清單的 [活動執行詳細資料]  刀鋒視窗。 您會在 **user\_0.log** 檔案中看到記錄的訊息。 發生錯誤時，您會看到三個活動執行，因為管線/活動 JSON 中的重試計數設定為 3。 當您按一下活動執行，您會看到您可以檢閱的記錄檔來疑難排解錯誤。
+   當您按一下 hello 活動執行時，請參閱 hello**活動執行詳細資料**刀鋒視窗的記錄檔的清單。 您會看到記錄的訊息，在 hello**使用者\_0 記錄**檔案。 當發生錯誤時，因為 hello 重試計數設定 too3 hello 管線/活動 JSON 中會看到三個活動執行。 當您按一下 hello 活動執行時，您會看到 hello 記錄檔，您可以檢閱 tootroubleshoot hello 錯誤。
 
    ![](./media/data-factory-data-processing-using-batch/image18.png)
 
-   在記錄檔清單中，按一下 [user-0.log] **IActivityLogger.Write**方法的結果。 在右窗格中的是使用 **IActivityLogger.Write** 方法的結果。
+   在 hello 清單中的記錄檔，按一下 hello**使用者 0.log**。 Hello 右面板中會使用 hello 的 hello 結果**IActivityLogger.Write**方法。
 
    ![](./media/data-factory-data-processing-using-batch/image19.png)
 
@@ -844,32 +844,32 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：`adf-poolnam
     
     Trace\_T\_D\_12/6/2015 1:43:38 AM\_T\_D\_\_T\_D\_Information\_T\_D\_0\_T\_D\_Activity e3817da0-d843-4c5c-85c6-40ba7424dce2 finished successfully
     ```
-3. 在 zip 檔案中包含 **PDB** 檔案，錯誤詳細資料才會在錯誤發生時包含**呼叫堆疊**等資訊。
-4. 自訂活動之 zip 檔案中的所有檔案都必須位於 **最上層** 且不包含任何子資料夾。
+3. 包含 hello **PDB**檔案 hello zip 檔案中，所以 hello 錯誤詳細資料會有這類資訊**呼叫堆疊**發生的錯誤。
+4. 所有 hello hello zip 檔案中的 hello 自訂活動必須是在 hello**上層**具有任何子資料夾。
 
    ![](./media/data-factory-data-processing-using-batch/image20.png)
-5. 確認 **assemblyName** (MyDotNetActivity.dll)、**entryPoint** (MyDotNetActivityNS.MyDotNetActivity)、**packageFile** (customactivitycontainer/MyDotNetActivity.zip) 和 **packageLinkedService** (應指向包含 zip 檔案的 Azure blob 儲存體) 都設為正確的值。
-6. 如果您修正錯誤，並想要重新處理配量，請以滑鼠右鍵按一下 [OutputDataset] 刀鋒視窗中的配量，然後按一下 [執行]。
+5. 請確定該 hello **assemblyName** (MyDotNetActivity.dll)， **entryPoint** (MyDotNetActivityNS.MyDotNetActivity)， **packageFile** (customactivitycontainer /MyDotNetActivity.zip) 和**packageLinkedService** (應該點 toohello Azure blob 儲存體包含 hello zip 檔案) 會設定 toocorrect 值。
+6. 如果您修正錯誤，且想 tooreprocess hello 配量，以滑鼠右鍵按一下 hello 配量在 hello **OutputDataset**刀鋒視窗，然後按一下**執行**。
 
    ![](./media/data-factory-data-processing-using-batch/image21.png)
 
    > [!NOTE]
-   > 您會在 Azure Blob 儲存體中看到一個**容器**，名為：`adfjobs`。 此容器並不會自動刪除，但您可在完成解決方案的測試後安全地加以刪除。 同樣地，Data Factory 解決方案也會建立 Azure Batch **作業**，名為：`adf-\<pool ID/name\>:job-0000000001`。 您可以在測試解決方案之後刪除此作業 (如果您要的話)。
+   > 您會在 Azure Blob 儲存體中看到一個**容器**，名為：`adfjobs`。 不會自動刪除此容器，但您在完成測試 hello 方案之後可以安全地刪除。 同樣地，hello Data Factory 方案建立 Azure 批次**作業**名為： `adf-\<pool ID/name\>:job-0000000001`。 如果您想測試 hello 方案之後，您可以刪除此作業。
    >
    >
-7. 自訂活動不會使用來自您套件的 **app.config** 檔案。 因此，如果您的程式碼會從組態檔讀取任何連接字串，則在執行階段沒有作用。 最佳做法是使用 Azure Batch 將所有祕密存放在 **Azure KeyVault** 中、使用以憑證為基礎的服務主體來保護金鑰保存庫，然後將憑證發佈至 Azure Batch 集區。 接著，.NET 自訂活動便可以在執行階段從 KeyVault 存取密碼。 此解決方案是一般解決方案，可以擴展至任何類型的祕密，不僅限於連接字串。
+7. hello 自訂活動不會使用 hello **app.config**檔案從您的封裝。 因此，如果您的程式碼會讀取 hello 組態檔中的任何連接字串，因此無法在執行階段。 hello 最佳作法是當使用 Azure Batch toohold 中的秘密**Azure KeyVault**、 使用憑證為基礎的服務主體 tooprotect hello 所以 keyvault，及散布 hello 憑證 tooAzure 批次集區。 hello.NET 自訂活動，則可以從 hello KeyVault 在執行階段存取機密資料。 這個解決方案是泛型，而且可以延展 tooany 類型的密碼，而不只是連接字串。
 
-    此外，也有較簡單的因應措施 (但並非最佳做法)︰您可以建立一個帶有連接字串設定的 **Azure SQL 連結服務** 、建立一個使用該連結服務的資料集，然後將該資料集以虛擬輸入資料集的形式鏈結至自訂 .NET 活動。 接著，您便可以在自訂活動程式碼中存取連結服務的連接字串，並且這在執行階段應該能夠發揮作用。  
+    沒有簡單的因應措施 （但不是最佳作法）： 您可以建立**Azure SQL 連結服務**與連接字串設定，建立使用 hello 連結的服務，以及鏈結 hello 資料集做為虛擬輸入資料集的資料集自訂.NET 活動 toohello。 接著，您可以存取 hello 連結服務的連接字串 hello 自訂活動程式碼中，且它應該在執行階段可以正常運作。  
 
-#### <a name="extend-the-sample"></a>擴充範例
-您可以擴充此範例，以深入了解 Azure Data Factory 和 Azure Batch 的功能。 例如，若要處理不同時間範圍的配量，請執行下列步驟：
+#### <a name="extend-hello-sample"></a>擴充 hello 範例
+您可以擴充此範例 toolearn 有關 Azure Data Factory 和 Azure 批次功能的詳細資訊。 例如，tooprocess 配量在不同的時間範圍中，請勿 hello 下列步驟：
 
-1. 在 `inputfolder`中新增下列子資料夾，然後將輸入檔案放入這些資料夾中：2015-11-16-05、2015-11-16-06、201-11-16-07、2011-11-16-08、2015-11-16-09。 將管線的結束時間從 `2015-11-16T05:00:00Z` 變更為 `2015-11-16T10:00:00Z`。 在 [圖表檢視] 中，按兩下 **InputDataset**，並確認輸入配量已就緒。 按兩下 **OuptutDataset** ，以查看輸出配量的狀態。 如果它們都處於 [就緒] 狀態，請在輸出資料夾中查看輸出檔案。
-2. 增加或減少**並行**設定，以了解它對您解決方案的效能有何影響，尤其是在 Azure Batch 上執行的處理。 (請參閱「步驟 4：建立並執行管線」，以進一步了解**並行**設定。)
-3. 建立 [每個 VM 的工作數上限] 較低/較高的集區。 若要使用您所建立的新集區，請更新 Data Factory 解決方案中的 Azure Batch 連結服務。 (請參閱「步驟 4：建立並執行管線」，以進一步了解 [每個 VM 的工作數上限] 設定。)
-4. 建立具有 **自動調整** 功能的 Azure Batch 集區。 自動調整 Azure Batch 集區中的計算節點就是動態調整應用程式所使用的處理能力。 
+1. 新增下列子資料夾中 hello hello `inputfolder`: 2015年-11-16-05，2015年-11-16-06，201-11-16-07，2011年-11-16-08 版 2015年-11-16-09 並放置在輸入檔在這些資料夾中的。 變更 hello 管線就會從 hello 結束時間`2015-11-16T05:00:00Z`太`2015-11-16T10:00:00Z`。 在 hello**圖表檢視**，按兩下 hello **InputDataset**，並確認已準備 hello 輸入配量。 按兩下**OuptutDataset** toosee hello 輸出配量狀態。 如果它們都處於就緒狀態，請檢查 hello hello 輸出檔的輸出資料夾。
+2. 增加或減少 hello**並行**設定 toounderstand 它會如何影響您的方案，hello 效能特別 hello 處理 Azure 批次上發生。 (請參閱步驟 4： 建立和執行 hello 管線，如需有關 hello**並行**設定。)
+3. 建立 [每個 VM 的工作數上限] 較低/較高的集區。 toouse hello 新集區在建立時，更新 hello hello Data Factory 方案中的 Azure Batch 連結服務。 (請參閱步驟 4： 建立和執行 hello 管線，如需有關 hello**每個 VM 的最大工作**設定。)
+4. 建立具有 **自動調整** 功能的 Azure Batch 集區。 自動調整 Azure Batch 集區中的計算節點是 hello 動態調整處理能力，您的應用程式所使用。 
 
-    這裡的範例公式會有下列行為：當集區一開始建立時，它會以 1 部 VM 啟動。 $PendingTasks 計量會定義執行中 + 作用中 (已排入佇列) 狀態的工作數目。  公式會尋找過去 180 秒內的平均擱置中工作數目，並據以設定 TargetDedicated。 它會確保 TargetDedicated 一律不會超過 25 部 VM。 因此，當提交新工作時，集區會自動成長而且工作會完成，VM 會依序成為可用，而且自動調整規模功能會壓縮那些 VM。 您可以視需要調整 startingNumberOfVMs 及 maxNumberofVMs。
+    hello 範例公式會達到 hello 下列行為： 一開始建立 hello 集區時，開始的 1 的 VM。 $PendingTasks 度量定義 hello 數項工作中執行 + （佇列） 的作用中狀態。  hello 公式中 hello 過去 180 秒尋找 hello 的平均數目暫止的工作，並據此設定 TargetDedicated。 它會確保 TargetDedicated 一律不會超過 25 部 VM。 因此，提交新的工作，因為集區自動成長和做為工作完成，Vm 會變成可用逐一和 hello 自動調整壓縮這些 Vm。 startingNumberOfVMs 和 maxNumberofVMs 可以調整的 tooyour 需求。
  
     自動調整公式：
 
@@ -883,28 +883,28 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：`adf-poolnam
 
    如需詳細資訊，請參閱 [自動調整 Azure Batch 集區中的計算節點](../batch/batch-automatic-scaling.md) 。
 
-   如果集區使用預設的 [autoScaleEvaluationInterval](https://msdn.microsoft.com/library/azure/dn820173.aspx)，Batch 服務在執行自訂活動之前，可能需要 15-30 分鐘的時間準備 VM。  如果集區使用不同的 autoScaleEvaluationInterval，Batch 服務可能需要 autoScaleEvaluationInterval + 10 分鐘。
-5. 在範例解決方案中，**Execute** 方法會叫用可處理輸入資料配量以產生輸出資料配量的 **Calculate** 方法。 您可以自行撰寫方法來處理輸入資料，然後呼叫您自己的方法，而取代 Execute 方法中的 Calculate 方法呼叫。
+   如果 hello 集區使用 hello 預設[autoScaleEvaluationInterval](https://msdn.microsoft.com/library/azure/dn820173.aspx)，hello 批次服務可能需要 15 到 30 分鐘 tooprepare hello VM，然後再執行 hello 自訂活動。  如果 hello 集區使用不同的 autoScaleEvaluationInterval，hello 批次服務可能需要 autoScaleEvaluationInterval + 10 分鐘。
+5. 在 hello 範例解決方案中，hello **Execute**方法會叫用 hello **Calculate**方法，以處理輸入的資料配量 tooproduce 輸出資料配量。 您可以撰寫您自己的方法 tooprocess 輸入資料，並以呼叫 tooyour 方法取代 hello Execute 方法中的 hello Calculate 方法呼叫。
 
-### <a name="next-steps-consume-the-data"></a>後續步驟：取用資料
-處理資料之後，您可以使用 **Microsoft Power BI** 之類的線上工具來取用資料。 以下連結可協助您了解 Power BI，以及如何在 Azure 中加以使用：
+### <a name="next-steps-consume-hello-data"></a>後續步驟： 取用 hello 資料
+處理資料之後，您可以使用 **Microsoft Power BI** 之類的線上工具來取用資料。 以下是您了解 Power BI 連結 toohelp 以及 toouse 它在 Azure 中：
 
 * [在 Power BI 中探索資料集](https://powerbi.microsoft.com/documentation/powerbi-service-get-data/)
-* [開始使用 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started/)
+* [開始使用 Power BI Desktop hello](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started/)
 * [重新整理 Power BI 中的資料](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/)
 * [Azure 和 Power BI - 基本概觀](https://powerbi.microsoft.com/documentation/powerbi-azure-and-power-bi/)
 
 ## <a name="references"></a>參考
 * [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/)
 
-  * [Azure Data Factory 服務簡介](data-factory-introduction.md)
+  * [簡介 tooAzure Data Factory 服務](data-factory-introduction.md)
   * [開始使用 Azure Data Factory](data-factory-build-your-first-pipeline.md)
   * [在 Azure 資料處理站管線中使用自訂活動](data-factory-use-custom-activities.md)
 * [Azure Batch](https://azure.microsoft.com/documentation/services/batch/)
 
   * [Azure Batch 的基本概念](../batch/batch-technical-overview.md)
   * [Azure Batch 功能概觀](../batch/batch-api-basics.md)
-  * [在 Azure 入口網站中建立和管理 Azure Batch 帳戶](../batch/batch-account-create-portal.md)
+  * [建立和管理 Azure Batch 帳戶在 hello Azure 入口網站](../batch/batch-account-create-portal.md)
   * [開始使用 Azure Batch 程式庫 .NET](../batch/batch-dotnet-get-started.md)
 
 [batch-explorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer

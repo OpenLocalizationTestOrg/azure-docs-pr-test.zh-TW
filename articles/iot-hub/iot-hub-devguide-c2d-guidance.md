@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT 中樞雲端到裝置選項 | Microsoft Docs"
-description: "開發人員指南 - 針對雲端到裝置通訊，提供直接方法、裝置對應項的所需屬性或雲端到裝置訊息的使用時機指引。"
+title: "IoT 中樞雲端到裝置 aaaAzure 選項 |Microsoft 文件"
+description: "開發人員指南-指引 toouse 時直接的方法、 兩個裝置所需的屬性或雲端到裝置訊息雲端到裝置通訊。"
 services: iot-hub
 documentationcenter: 
 author: fsautomata
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: elioda
-ms.openlocfilehash: e6cd4880c9bfcc670bd116d3dd8e5245d70f85cd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bb95445054fa2711e34fc1d928c3665e0246c81c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cloud-to-device-communications-guidance"></a>Cloud-to-device communications guidance
-IoT 中樞提供三個選項以便裝置應用程式對後端應用程式公開功能︰
+IoT 中心提供裝置應用程式 tooexpose 功能 tooa 後端應用程式的三個的選項：
 
-* [直接方法][lnk-methods]，適用於需要立即確認結果的通訊。 直接方法通常用於裝置的互動式控制，例如開啟風扇。
-* [對應項的所需屬性][lnk-twins]，適用於可讓裝置進入特定所需狀態的長時間執行命令。 例如，將遙測傳送間隔設定為 30 分鐘。
-* [雲端到裝置訊息][lnk-c2d]，適用於對裝置應用程式的單向通知。
+* [直接方法][ lnk-methods]需要立即確認 hello 結果的通訊。 直接方法通常用於裝置的互動式控制，例如開啟風扇。
+* [兩個的所需屬性][ lnk-twins]的長時間執行的命令可讓您能 tooput hello 裝置插入特定預期狀態。 例如，設定 hello 遙測傳送間隔 too30 分鐘數。
+* [雲端到裝置訊息][ lnk-c2d]單向通知 toohello 裝置應用程式。
 
-以下是各種雲端到裝置通訊選項的詳細比較。
+以下是 hello 的詳細的比較雲端到裝置通訊的各種選項。
 
 |  | 直接方法 | 對應項的所需屬性 | 雲端到裝置的訊息 |
 | ---- | ------- | ---------- | ---- |
-| 案例 | 需要立即確認的命令，例如開啟風扇。 | 可讓裝置進入特定所需狀態的長時間執行命令。 例如，將遙測傳送間隔設定為 30 分鐘。 | 對裝置應用程式的單向通知。 |
-| 資料流 | 雙向。 裝置應用程式可以立即回應方法。 解決方案後端會接收到根據要求上下文的結果。 | 單向。 裝置應用程式會收到屬性變更的通知。 | 單向。 裝置應用程式接收訊息
-| 耐久性 | 無法聯繫已中斷連接的裝置。 解決方案後端會收到裝置未連線的通知。 | 屬性值會保留在裝置對應項中。 裝置會在下一次重新連線時讀取它。 使用 [IoT 中樞查詢語言][lnk-query]可擷取屬性值。 | IoT 中樞可以保留訊息長達 48 小時。 |
+| 案例 | 需要立即確認的命令，例如開啟風扇。 | 長時間執行的命令適 tooput hello 裝置特定的所需的狀態。 例如，設定 hello 遙測傳送間隔 too30 分鐘數。 | 單向通知 toohello 裝置應用程式。 |
+| 資料流 | 雙向。 hello 裝置應用程式可以立即回應 toohello 方法。 hello 方案後端收到 hello 結果客 toohello 要求。 | 單向。 hello 裝置應用程式會收到一則通知 hello 屬性變更。 | 單向。 hello 裝置應用程式收到 hello 訊息
+| 耐久性 | 無法聯繫已中斷連接的裝置。 hello 方案後端會收到該 hello 裝置未連接。 | 屬性值會保留在 hello 裝置兩個。 裝置會在下一次重新連線時讀取它。 屬性值會以 hello 可擷取[IoT 中樞的查詢語言][lnk-query]。 | IoT 中樞可以保留訊息 too48 時數。 |
 | 目標 | 使用 **deviceId** 的單一裝置，或使用[作業][lnk-jobs]的多個裝置。 | 使用 **deviceId** 的單一裝置，或使用[作業][lnk-jobs]的多個裝置。 | 依照 **deviceId** 的單一裝置。 |
-| 大小 | 最多 8KB 要求和 8KB 回應。 | 所需屬性大小上限為 8KB。 | 最多 64KB 的訊息。 |
+| 大小 | 向上 too8KB 要求和 8 KB 的回應。 | 所需屬性大小上限為 8KB。 | Too64KB 訊息。 |
 | 頻率 | 高。 如需詳細資訊，請參閱 [IoT 中樞限制][lnk-quotas]。 | 中。 如需詳細資訊，請參閱 [IoT 中樞限制][lnk-quotas]。 | 低。 如需詳細資訊，請參閱 [IoT 中樞限制][lnk-quotas]。 |
 | 通訊協定 | 目前僅適用於使用 MQTT 時。 | 目前僅適用於使用 MQTT 時。 | 適用於所有通訊協定。 裝置必須在使用 HTTP 時進行輪詢。 |
 
-在下列教學課程中，了解如何使用直接方法、所需屬性和雲端到裝置訊息︰
+了解 toouse 如何直接的方法、 所需的屬性和雲端到裝置訊息 hello 遵循教學課程中：
 
 * [使用直接方法][lnk-methods-tutorial]，適用於直接方法；
-* [使用所需屬性來設定裝置][lnk-twin-properties]，適用於裝置對應項的所需屬性； 
+* [使用所需的屬性 tooconfigure 裝置][lnk-twin-properties]，針對裝置的兩個的預期屬性。 
 * [傳送雲端到裝置訊息][lnk-c2d-tutorial]，適用於雲端到裝置訊息。
 
 [lnk-twins]: iot-hub-devguide-device-twins.md

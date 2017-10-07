@@ -1,6 +1,6 @@
 ---
-title: "將來自串流分析的資料串流處理至 Data Lake Store | Microsoft Docs"
-description: "使用 Azure 串流分析將資料串流處理至 Azure Data Lake Store"
+title: "資料湖存放區的資料流分析 aaaStream 資料 |Microsoft 文件"
+description: "使用 Azure Stream Analytics toostream 資料至 Azure 資料湖存放區"
 services: data-lake-store,stream-analytics
 documentationcenter: 
 author: nitinme
@@ -14,116 +14,116 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 90104aaacf24a5a7156900fc3848a27f60329814
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 68c727d4807db0abe6efa90145d68c78902eb789
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="stream-data-from-azure-storage-blob-into-data-lake-store-using-azure-stream-analytics"></a>使用 Azure 串流分析將來自 Azure 儲存體 Blob 的資料串流處理至 Data Lake Store
-在這篇文章中，您將了解如何使用 Azure Data Lake Store 做為 Azure 串流分析作業的輸出。 這篇文章示範從 Azure 儲存體 Blob (輸入) 讀取資料以及將資料寫入至 Data Lake Store (輸出) 的簡單案例。
+在本文中，您將學習如何 toouse Azure 資料湖存放區做為 Azure 資料流分析工作的輸出。 本文將示範一個簡單的案例，可從 Azure 儲存體 blob （輸入） 讀取資料並寫入 hello data tooData Lake Store （輸出）。
 
 > [!NOTE]
-> 目前只有在 [Azure 傳統入口網站](https://manage.windowsazure.com)支援建立及設定串流分析的 Data Lake Store 輸出。 因此，此教學課程的部份內容會使用 Azure 傳統入口網站。
+> 在這個階段中，建立及設定 Data Lake Store 的輸出資料流分析支援只能在 hello [Azure 傳統入口網站](https://manage.windowsazure.com)。 因此，本教學課程中的某些部分會使用 hello Azure 傳統入口網站。
 >
 >
 
 ## <a name="prerequisites"></a>必要條件
-開始進行本教學課程之前，您必須具備下列條件：
+開始本教學課程之前，您必須擁有 hello 下列：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-* **Azure 儲存體帳戶**。 您將使用來自此帳戶的 Blob 容器來輸入串流分析作業的資料。 本教學課程中，假設您有名為 **storageforasa** 的儲存體帳戶，並在該帳戶中建立名為 **storageforasacontainer** 的容器。 一旦您已建立容器，請將範例資料檔案上傳給容器。 
+* **Azure 儲存體帳戶**。 您將使用此帳戶 tooinput 資料從 blob 容器的資料流分析工作。 此教學課程中，假設您有儲存體帳戶呼叫**storageforasa** hello 帳戶內的容器呼叫**storageforasacontainer**。 當您建立 hello 容器之後時上, 傳範例資料檔案 tooit。 
   
-* **Azure Data Lake Store 帳戶**。 遵循 [使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)的指示。 假設您有名為 **asadatalakestore** 的 Data Lake Store 帳戶。 
+* **Azure Data Lake Store 帳戶**。 請遵循指示 hello[開始使用 Azure 資料湖存放區使用 hello Azure 入口網站](data-lake-store-get-started-portal.md)。 假設您有名為 **asadatalakestore** 的 Data Lake Store 帳戶。 
 
 ## <a name="create-a-stream-analytics-job"></a>建立串流分析作業
-您可以從建立包含輸入來源和輸出目的地的串流分析作業開始。 本教學課程中，來源是 Azure Blob 容器，而目的地則是 Data Lake Store。
+您可以從建立包含輸入來源和輸出目的地的串流分析作業開始。 本教學課程，hello 來源是 Azure blob 容器而且 hello 目的地資料湖存放區。
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
 
-2. 從左窗格中，按一下 [串流分析作業]，然後按一下 [新增]。
+2. 從 hello 左窗格中，按一下 **串流分析工作**，然後按一下**新增**。
 
     ![建立串流分析作業](./media/data-lake-store-stream-analytics/create.job.png "建立串流分析作業")
 
     > [!NOTE]
-    > 請確定您所建立的作業位於和儲存體帳戶相同的區域，否則在區域之間移動資料，您會需要支付額外費用。
+    > 請確定您建立可在 hello 作業與 hello 儲存體帳戶，或相同的區域將會產生不同的區域之間移動資料的額外成本。
     >
 
-## <a name="create-a-blob-input-for-the-job"></a>建立作業的 Blob 輸入
+## <a name="create-a-blob-input-for-hello-job"></a>建立 Blob 輸入 hello 工作
 
-1. 開啟「串流分析作業」頁面，在左窗格中按一下 [輸入] 索引標籤，然後按一下 [新增]。
+1. 開啟 hello 頁面 hello 資料流分析工作，從 hello 左窗格按一下 hello**輸入**索引標籤，然後再按一下**新增**。
 
-    ![將輸入新增至您的作業](./media/data-lake-store-stream-analytics/create.input.1.png "將輸入新增至您的作業")
+    ![加入輸入的 tooyour 作業](./media/data-lake-store-stream-analytics/create.input.1.png "加入輸入的 tooyour 作業")
 
-2. 在 [新增輸入] 刀鋒視窗中，提供下列值。
+2. 在 hello**新輸入**刀鋒視窗中，提供下列值的 hello。
 
-    ![將輸入新增至您的作業](./media/data-lake-store-stream-analytics/create.input.2.png "將輸入新增至您的作業")
+    ![加入輸入的 tooyour 作業](./media/data-lake-store-stream-analytics/create.input.2.png "加入輸入的 tooyour 作業")
 
-    * 在 [輸入別名] 中輸入作業輸入的唯一名稱。
+    * 如**輸入別名**，輸入 hello 工作輸入唯一的名稱。
     * 在 [來源類型] 中，選取 [資料流]。
     * 在 [來源] 中，選取 [Blob 儲存體]。
     * 在 [訂用帳戶] 中，選取 [使用來自目前訂用帳戶的 Blob 儲存體]。
-    * 在 [儲存體帳戶] 中，選取您在必要條件中所建立的儲存體帳戶。 
-    * 在 [容器] 中，選取您在選取的儲存體帳戶中建立的容器。
+    * 如**儲存體帳戶**，選取您所建立的 hello 儲存體帳戶 hello 必要條件的一部分。 
+    * 如**容器**，選取您在 hello hello 容器選取儲存體帳戶。
     * 在 [事件序列化格式] 中，選取 [CSV]。
     * 在 [分隔符號] 中，選取 [定位鍵]。
     * 在 [編碼] 中，選取 [UTF-8]。
 
-    按一下 [建立] 。 入口網站現在會新增輸入並測試其連線。
+    按一下 [建立] 。 hello 入口網站現在將 hello 輸入並測試 hello 連接 tooit。
 
 
-## <a name="create-a-data-lake-store-output-for-the-job"></a>建立作業的 Data Lake Store 輸出
+## <a name="create-a-data-lake-store-output-for-hello-job"></a>建立 Data Lake Store hello 作業輸出
 
-1. 開啟「串流分析作業」頁面，按一下 [輸出] 索引標籤，然後按一下 [新增]。
+1. 開啟 hello 資料流分析工作的 hello 頁面中，按一下 hello**輸出**索引標籤，然後再按一下**新增**。
 
-    ![將輸出新增至您的作業](./media/data-lake-store-stream-analytics/create.output.1.png "將輸出新增至您的作業")
+    ![加入輸出 tooyour 作業](./media/data-lake-store-stream-analytics/create.output.1.png "加入輸出 tooyour 作業")
 
-2. 在 [新增輸出] 刀鋒視窗中，提供下列值。
+2. 在 hello**新輸出**刀鋒視窗中，提供下列值的 hello。
 
-    ![將輸出新增至您的作業](./media/data-lake-store-stream-analytics/create.output.2.png "將輸出新增至您的作業")
+    ![加入輸出 tooyour 作業](./media/data-lake-store-stream-analytics/create.output.2.png "加入輸出 tooyour 作業")
 
-    * 在 [輸出別名] 中輸入作業輸出的唯一名稱。 此為易記名稱，用於在查詢中將查詢輸出指向這個 Data Lake Store。
+    * 如**輸出別名**，輸入 hello 作業輸出的唯一名稱。 這是用於查詢 toodirect hello 查詢輸出 toothis Data Lake Store 的易記名稱。
     * 在 [接收] 中，選取 [Data Lake Store]。
-    * 系統會提示您授權 Data Lake Store 帳戶的存取權。 按一下 [授權]。
+    * 您將會提示的 tooauthorize 存取 tooData Lake Store 帳戶。 按一下 [授權]。
 
-3. 在 [新增輸出] 刀鋒視窗中，繼續來提供下列值。
+3. 在 hello**新輸出**刀鋒視窗中，繼續 tooprovide hello 下列值。
 
-    ![將輸出新增至您的作業](./media/data-lake-store-stream-analytics/create.output.3.png "將輸出新增至您的作業")
+    ![加入輸出 tooyour 作業](./media/data-lake-store-stream-analytics/create.output.3.png "加入輸出 tooyour 作業")
 
-    * 在 [帳戶名稱] 中，選取您已建立並且要在其中傳入作業輸出的 Data Lake Store 帳戶。
-    * 在 [路徑前置詞模式] 中，輸入用來在指定的 Data Lake Store 帳戶中寫入檔案的檔案路徑。
-    * 在 [日期格式] 中，如果您在前置詞路徑中使用日期權杖，您可以選取組織檔案要用的日期格式。
-    * 在 [時間格式] 中，如果您在前置詞路徑中使用時間權杖，請指定組織檔案時要使用的時間格式。
+    * 如**帳戶名稱**，選取您已建立您想要傳送至 hello 作業輸出 toobe hello Data Lake Store 帳戶。
+    * 如**路徑前置詞模式**，輸入檔案路徑使用 toowrite 內 hello 檔案指定 Data Lake Store 帳戶。
+    * 如**日期格式**，如果您使用的日期語彙基元 hello 前置詞路徑中，您可以選取組織檔案的 hello 日期格式。
+    * 如**時間格式**，如果您使用時間語彙基元 hello 前置詞的路徑中，指定組織檔案的 hello 時間格式。
     * 在 [事件序列化格式] 中，選取 [CSV]。
     * 在 [分隔符號] 中，選取 [定位鍵]。
     * 在 [編碼] 中，選取 [UTF-8]。
     
-    按一下頁面底部的 [新增] 。 入口網站現在會新增輸出並測試其連線。
+    按一下 [建立] 。 hello 入口網站現在將 hello 輸出，並測試 hello 連接 tooit。
     
-## <a name="run-the-stream-analytics-job"></a>執行串流分析作業
+## <a name="run-hello-stream-analytics-job"></a>執行 hello 資料流分析工作
 
-1. 若要執行串流分析作業，您必須從 [查詢] 索引標籤來執行查詢。 本教學課程中，您可以藉由以作業輸入和輸出別名取代預留位置的方式執行範例查詢，如下方螢幕擷取畫面所示。
+1. toorun 資料流分析工作，您必須執行的查詢從 hello**查詢** 索引標籤。此教學課程中，您可以執行 hello 範例查詢來取代以 hello hello 預留位置工作輸入和輸出別名，hello 下列螢幕擷取畫面所示。
 
     ![執行查詢](./media/data-lake-store-stream-analytics/run.query.png "執行查詢")
 
-2. 在畫面頂端按一下 [儲存]，然後在 [概觀] 索引標籤上按一下 [啟動]。 在對話方塊中，選取 [自訂時間]，然後設定目前的日期和時間。
+2. 按一下**儲存**從 hello 囉 」 畫面頂端，然後從 hello**概觀**索引標籤上，按一下 **啟動**。 從 hello 對話方塊中，選取 **自訂時間**，然後設定 hello 目前日期和時間。
 
     ![設定作業時間](./media/data-lake-store-stream-analytics/run.query.2.png "設定作業時間")
 
-    按一下 [啟動] 以啟動作業。 啟動作業會需要費時幾分鐘。
+    按一下**啟動**toostart hello 作業。 它可能會佔用 tooa 幾分鐘的時間 toostart hello 作業。
 
-3. 若要觸發作業以從 Blob 挑選資料，請將範例資料檔案複製到 Blob 容器。 您可以從 [Azure Data Lake Git 儲存機制](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt)取得範例資料檔案。 在本教學課程中，我們要複製檔案 **vehicle1_09142014.csv**。 您可以使用各種用戶端，例如： [Azure 儲存體總管](http://storageexplorer.com/)，將資料上傳至 Blob 容器。
+3. tootrigger hello toopick hello 的工作資料 hello blob 複製的範例資料檔案 toohello blob 容器。 您可以取得範例資料檔從 hello [Azure 資料湖 Git 儲存機制](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt)。 本教學課程，讓我們複製 hello 檔案**vehicle1_09142014.csv**。 您可以使用各種用戶端，例如[Azure 儲存體總管](http://storageexplorer.com/)，tooupload 資料 tooa blob 容器。
 
-4. 在 [概觀] 索引標籤的 [監視] 底下，查看資料的處理情形。
+4. 從 hello**概觀**索引標籤，下方**監視**，請參閱 hello 資料處理的方式。
 
     ![監視作業](./media/data-lake-store-stream-analytics/run.query.3.png "監視作業")
 
-5. 最後，您可以確認作業輸出資料已可在 Data Lake Store 帳戶中使用。 
+5. 最後，您可以確認 hello 工作輸出資料均可在 hello Data Lake Store 帳戶。 
 
     ![確認輸出](./media/data-lake-store-stream-analytics/run.query.4.png "確認輸出")
 
-    請注意，在 [資料總管] 窗格中，輸出會寫入至 Data Lake Store 輸出設定中所指定的資料夾路徑 (`streamanalytics/job/output/{date}/{time}`)。  
+    Hello 資料總管 窗格，請注意該 hello 輸出會寫入的 tooa 資料夾路徑，做為指定在 hello Data Lake Store 輸出設定 (`streamanalytics/job/output/{date}/{time}`)。  
 
 ## <a name="see-also"></a>另請參閱
-* [建立 HDInsight 叢集以使用 Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
+* [建立 Data Lake Store 的 HDInsight 叢集 toouse](data-lake-store-hdinsight-hadoop-use-portal.md)

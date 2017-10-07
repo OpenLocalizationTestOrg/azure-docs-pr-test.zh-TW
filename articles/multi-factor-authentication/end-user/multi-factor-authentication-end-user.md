@@ -1,6 +1,6 @@
 ---
-title: "開始使用雙步驟驗證 |Microsoft Docs"
-description: "這是可協助使用者開始使用 Azure Multi-Factor Authentication 的 Azure Multi-Factor Authentication 頁面。"
+title: "以兩步驟驗證啟動 aaaGet |Microsoft 文件"
+description: "這是可協助您的使用者，以取得會使用 Azure Multi-factor Authentication hello Azure 多因素驗證頁面。"
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,36 +15,36 @@ ms.date: 06/15/2017
 ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: end-user
-ms.openlocfilehash: 6527e624ce9c911b201881ffd409c57b2f065ef3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 35cc05480f52ea5a22cf3e509ace6012e9aabf8e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-does-azure-multi-factor-authentication-mean-for-me"></a>Azure Multi-Factor Authentication 對我有何意義？
-您從某個 IT 人員或老闆取得一封電子郵件，他們表示已對您的帳戶新增其他安全性驗證。  因此這代表什麼？
+因此，您收到一封電子郵件於 IT 或說加入這些額外的安全性驗證 tooyour 帳戶主管。  因此這代表什麼？
 
-別擔心。 您的組織只是想要採取額外步驟，以確保您在登入時就是您所表明的人員。 使用您的使用者名稱、密碼及電話的組合，即可完成這項驗證。  
+不是 tooworry。 您的組織只想 tootake 額外的步驟 tooensure，您可以利用您說出您是在登入時。 使用您的使用者名稱、密碼及電話的組合，即可完成這項驗證。  
 
-所以，您所需進行的第一件事就是完成註冊流程。  但是在我們開始該程序之前，有幾件事要決定。
+因此您需要 hello 第一件事 toodo 是完整 hello 註冊程序。  但我們之前啟動程序有個幾件事 toodecide。
 
 * **辦公室電話或行動電話** - 選擇使用您的辦公室電話或行動電話。
-* **行動電話通話、簡訊或行動應用程式** - 如果使用行動電話，請選擇接收電話、簡訊，或使用行動應用程式。
-* **具有通知或驗證碼的行動應用程式** - 如果您使用行動應用程式，請選擇收到您要回應的通知或驗證碼。
+* **撥打行動電話、 文字或行動裝置應用程式**-如果使用行動電話，收到呼叫時，文字，或使用 hello 行動裝置應用程式之間選擇。
+* **行動裝置應用程式通知或驗證的程式碼**-如果使用 hello 行動裝置應用程式，選擇接收通知，您回應 tooor 驗證碼。
 
 > [!NOTE]
-> 您的 IT 部門可能會停用上述一或多個選項。  若是如此，這些選項在註冊流程期間將無法使用。  
+> 您的 IT 部門可能會停用上述一或多個選項。  若是如此，這些選項將無法使用 hello 註冊程序期間。  
 
-既然您已決定驗證方法，現在就可以開始註冊。 使用[設定體驗](multi-factor-authentication-end-user-first-time.md)連結，開始逐步完成註冊流程。
+現在您已決定在驗證方法，它是時間 tooregister。 使用 hello[安裝經驗](multi-factor-authentication-end-user-first-time.md)連結 tooget 入門逐步解說，hello 註冊程序上。
 
-## <a name="how-to-get-going-with-two-step-verification"></a>如何使用雙步驟驗證
-選取以下其中一個主題以便開始。
+## <a name="how-tooget-going-with-two-step-verification"></a>如何使用雙步驟驗證 tooget
+選取其中一個這些主題 tooget 啟動。
 
 | 主題 | 說明 |
 |:--- |:--- |
-| [設定體驗](multi-factor-authentication-end-user-first-time.md) |描述第一次設定 Multi-Factor Authentication 的程序。 |
-| [登入體驗](multi-factor-authentication-end-user-signin.md) |顯示使用各種方法 (例如電話或應用程式) 登入時所能預期的情況。 |
+| [設定體驗](multi-factor-authentication-end-user-first-time.md) |描述 hello 程序設定多重要素驗證 hello 第一次。 |
+| [登入體驗](multi-factor-authentication-end-user-signin.md) |顯示您可以預期登入使用 hello 各種方法，例如電話或應用程式。 |
 | [變更您的設定](multi-factor-authentication-end-user-manage-settings.md) |示範如何變更您的設定，例如電話號碼或慣用的註冊方法。 |
 | [協助使用應用程式密碼](multi-factor-authentication-end-user-app-passwords.md) |尋找有關建立和使用應用程式密碼的資訊。 |
-| [使用行動應用程式](microsoft-authenticator-app-how-to.md) |Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。 |
+| [使用 hello 行動應用程式](microsoft-authenticator-app-how-to.md) |hello Microsoft 驗證器應用程式是供[Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)， [Android](http://go.microsoft.com/fwlink/?Linkid=825072)，和[IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。 |
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 指令碼範例 - 使用 VM 平衡流量負載以達到高可用性 | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 使用 VM 平衡流量負載以達到高可用性"
+title: "CLI 指令碼範例提供高可用性的負載平衡流量 tooVMs aaaAzure |Microsoft 文件"
+description: "Azure CLI 指令碼範例-負載平衡流量 tooVMs 高可用性"
 services: load-balancer
 documentationcenter: load-balancer
 author: KumudD
@@ -15,15 +15,15 @@ ms.tgt_pltfrm:
 ms.workload: infrastructure
 ms.date: 07/07/2017
 ms.author: kumud
-ms.openlocfilehash: 69a7753cc75b028e2bf093053d9a5fc0890562e8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0954b5c261512724dfb9c6e7be123c9d45624f4d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="load-balance-traffic-to-vms-for-high-availability"></a>使用 VM 平衡流量負載以達到高可用性
+# <a name="load-balance-traffic-toovms-for-high-availability"></a>負載平衡流量 tooVMs 高可用性
 
-此指令碼範例會建立所需的一切，以執行數部依據高可用性和負載平衡組態所設定的 Ubuntu 虛擬機器。 執行指令碼之後，您將擁有三部已加入至 Azure 可用性設定組並可透過 Azure Load Balancer 存取的虛擬機器。 
+此指令碼範例會建立所需的所有項目 toorun 數個 Ubuntu 虛擬機器設定高可用性和負載平衡的設定。 之後執行 hello 指令碼，您將擁有三部虛擬機器，聯結 tooan Azure 可用性設定組，且可透過 Azure 負載平衡器。 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
@@ -31,11 +31,11 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-azurecli-interactive[主要](../../../cli_scripts/virtual-machine/create-vm-nlb/create-vm-nlb.sh "快速建立 VM")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-nlb/create-vm-nlb.sh "Quick Create VM")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-執行下列命令來移除資源群組、VM 和所有相關資源。
+執行下列命令 tooremove hello 資源群組、 VM 和所有相關的資源的 hello。
 
 ```azurecli
 az group delete --name myResourceGroup
@@ -43,7 +43,7 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼使用下列命令來建立資源群組、虛擬機器、可用性設定組、負載平衡器和所有相關資源。 下表中的每個命令都會連結至命令特定的文件。
+此指令碼會使用下列命令 toocreate 資源群組、 虛擬機器、 可用性設定組中，負載平衡器和所有相關的資源的 hello。 Hello 資料表連結 toocommand 特定文件中的每個命令。
 
 | 命令 | 注意事項 |
 |---|---|
@@ -51,18 +51,18 @@ az group delete --name myResourceGroup
 | [az network vnet create](https://docs.microsoft.com/cli/azure/network/vnet#create) | 建立 Azure 虛擬網路和子網路。 |
 | [az network public-ip create](https://docs.microsoft.com/cli/azure/network/public-ip#create) | 建立具有靜態 IP 位址和相關聯 DNS 名稱的公用 IP 位址。 |
 | [az network lb create](https://docs.microsoft.com/cli/azure/network/lb#create) | 建立 Azure 負載平衡器。 |
-| [az network lb probe create](https://docs.microsoft.com/cli/azure/network/lb/probe#create) | 建立負載平衡器探查。 負載平衡器探查是用來監視負載平衡器集合中的每部 VM。 如有任何 VM 變得無法存取，就不會將流量路由至該 VM。 |
-| [az network lb rule create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | 建立負載平衡器規則。 在此範例中，會為連接埠 80 建立規則。 HTTP 流量到達負載平衡器時，它會路由傳送至 LB 集內其中一部 VM 的連接埠 80。 |
-| [az network lb inbound-nat-rule create](https://docs.microsoft.com/cli/azure/network/lb/inbound-nat-rule#create) | 建立負載平衡器網路位址轉譯 (NAT) 規則。  NAT 規則會將負載平衡器的連接埠對應至 VM 上的連接埠。 在此範例中，會為傳送到負載平衡器集合中每部 VM 的 SSH 流量建立 NAT 規則。  |
-| [az network nsg create](https://docs.microsoft.com/cli/azure/network/nsg#create) | 建立網路安全性群組 (NSG)，做為網際網路和虛擬機器之間的安全性界限。 |
-| [az network nsg rule create](https://docs.microsoft.com/cli/azure/network/nsg/rule#create) | 建立允許輸入流量的 NSG 規則。 在此範例中，會開放連接埠 22 供 SSH 流量使用。 |
-| [az network nic create](https://docs.microsoft.com/cli/azure/network/nic#create) | 建立虛擬網路卡，並將它連接至虛擬網路、子網路及 NSG。 |
-| [az vm availability-set create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | 建立可用性設定組。 可用性設定組可將虛擬機器分散到各個實體資源，讓整個集合不致受到萬一發生的失敗所影響，藉此來確保應用程式運作時間。 |
-| [az vm create](/cli/azure/vm#create) | 建立虛擬機器，並將它連線到網路卡、虛擬網路、子網路及 NSG。 此命令也會指定要使用的虛擬機器映像和管理認證。  |
+| [az network lb probe create](https://docs.microsoft.com/cli/azure/network/lb/probe#create) | 建立負載平衡器探查。 負載平衡器探查是使用的 toomonitor hello 負載平衡器集內的每個 VM。 如果任何 VM 變得無法存取，流量不是路由的 toohello VM。 |
+| [az network lb rule create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | 建立負載平衡器規則。 在此範例中，會為連接埠 80 建立規則。 HTTP 流量抵達 hello 負載平衡器時，它是路由的 tooport 80 hello Vm hello LB 集內的其中一個。 |
+| [az network lb inbound-nat-rule create](https://docs.microsoft.com/cli/azure/network/lb/inbound-nat-rule#create) | 建立負載平衡器網路位址轉譯 (NAT) 規則。  NAT 規則對應 hello 負載平衡器 tooa 連接埠在 VM 上的連接埠。 在此範例中，會為在 hello 負載平衡器集 SSH 流量 tooeach VM 建立 NAT 規則。  |
+| [az network nsg create](https://docs.microsoft.com/cli/azure/network/nsg#create) | 建立網路安全性群組 (NSG)，也就是 hello 網際網路和 hello 虛擬機器的安全性界限。 |
+| [az network nsg rule create](https://docs.microsoft.com/cli/azure/network/nsg/rule#create) | 建立 NSG 規則 tooallow 輸入流量。 在此範例中，會開放連接埠 22 供 SSH 流量使用。 |
+| [az network nic create](https://docs.microsoft.com/cli/azure/network/nic#create) | 建立虛擬網路介面卡，並將其附加 toohello 虛擬網路、 子網路和 NSG。 |
+| [az vm availability-set create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | 建立可用性設定組。 可用性設定組來確保應用程式執行時間跨實體資源分配 hello 虛擬機器，使得發生失敗時，不受影響 hello 整個集合。 |
+| [az vm create](/cli/azure/vm#create) | 建立 hello 虛擬機器，並將它連接 toohello 網路卡、 虛擬網路、 子網路和 NSG。 此命令也會指定使用 hello 虛擬機器映像 toobe 和系統管理認證。  |
 | [az group delete](https://docs.microsoft.com/cli/azure/vm/extension#set) | 刪除資源群組，包括所有的巢狀資源。 |
 
 ## <a name="next-steps"></a>後續步驟
 
-如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
+如需有關 Azure CLI hello 的詳細資訊，請參閱[Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 
-您可以在 [Azure 網路文件](../cli-samples.md)中找到其他 Azure 網路 CLI 指令碼範例。
+其他的 Azure 網路 CLI 指令碼範例可以在 hello [Azure 網路文件](../cli-samples.md)。

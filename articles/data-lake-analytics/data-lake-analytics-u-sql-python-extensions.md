@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Data Lake Analytics 中擴充 U-SQL 指令碼與 Python | Microsoft Docs"
-description: "了解如何在 U-SQL 指令碼中執行 Python 程式碼"
+title: "aaaExtend U-SQL 指令碼使用在 Azure Data Lake Analytics Python |Microsoft 文件"
+description: "了解 toorun Python U-SQL 指令碼中的程式碼"
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/20/2017
 ms.author: saveenr
-ms.openlocfilehash: d18ef1f747aee2fa01cef9891432d0461031ee4c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f051f56f67522d4f2b8e6e54fd21a5c95ce3ba92
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-get-started-with-extending-u-sql-with-python"></a>教學課程︰開始擴充 U-SQL 與 Python
 
-U-SQL 的 Python 擴充可讓開發人員進行大量的 Python 程式碼平行執行。 以下範例說明基本概念：
+U sql Python 延伸可讓開發人員 tooperform 大量平行執行 Python 程式碼。 hello 下列範例將說明 hello 基本步驟：
 
-* 使用 `REFERENCE ASSEMBLY` 陳述式啟用 U-SQL 指令碼的 Python 延伸模組
-* 使用 `REDUCE` 作業分割索引鍵上的輸入資料
-* U-SQL 的 Python 延伸模組有內建的歸納器 (`Extension.Python.Reducer`)，可執行指派給歸納器之每一個頂點上的 Python 程式碼
-* U-SQL 指令碼包含內嵌的 Python 程式碼，其中的 `usqlml_main` 函式會接受 pandas 資料框架作為輸入，並傳回 pandas 資料框架作為輸出。
+* 使用 hello `REFERENCE ASSEMBLY` hello U-SQL 指令碼的陳述式 tooenable Python 擴充功能
+* 使用 hello`REDUCE`作業 toopartition hello 輸入在索引鍵的資料
+* hello U-SQL 的 Python 擴充功能包含內建減壓器 (`Extension.Python.Reducer`) 每個頂點指派 toohello 減壓器上執行的 Python 程式碼
+* hello U-SQL 指令碼包含內嵌的 hello Python 程式碼具有函式，呼叫`usqlml_main`，接受熊做為輸入的資料框架，並傳回熊做為輸出資料框架。
 
 --
 
@@ -59,7 +59,7 @@ U-SQL 的 Python 擴充可讓開發人員進行大量的 Python 程式碼平行�
         USING new Extension.Python.Reducer(pyScript:@myScript);
 
     OUTPUT @m
-        TO "/tweetmentions.csv"
+        too"/tweetmentions.csv"
         USING Outputters.Csv();
 
 ## <a name="how-python-integrates-with-u-sql"></a>Python 如何與 U-SQL 整合
@@ -67,11 +67,11 @@ U-SQL 的 Python 擴充可讓開發人員進行大量的 Python 程式碼平行�
 ### <a name="datatypes"></a>資料類型
 
 * U-SQL 的字串和數值資料行在 Pandas 和 U-SQL 之間會如現狀轉換
-* U-SQL 的 Null 與 Pandas 的 `NA` 值會互相轉換
+* U SQL Null 會轉換從熊 tooand`NA`值
 
 ### <a name="schemas"></a>結構描述
 
-* U-SQL 不支援 Pandas 的索引向量。 Python 函式中所有的輸入資料框架一律具有 64 位元的數值索引，範圍從 0 到資料列數目減 1。 
+* U-SQL 不支援 Pandas 的索引向量。 Hello Python 函式中的所有輸入的資料框架一定 64 位元數字的索引，從 0 到 hello 資料列數目減 1。 
 * U-SQL 資料集不能有重複的資料行名稱。
 * U-SQL 資料集的資料行名稱不是字串。 
 
@@ -79,20 +79,20 @@ U-SQL 的 Python 擴充可讓開發人員進行大量的 Python 程式碼平行�
 僅支援 Python 3.5.1 (針對 Windows 編譯)。 
 
 ### <a name="standard-python-modules"></a>標準 Python 模組
-包含所有的標準 Python 模組。
+包含的所有 hello 標準 Python 模組。
 
 ### <a name="additional-python-modules"></a>其他 Python 模組
-除了標準 Python 程式庫，還包含數個常用的 Python 程式庫︰
+除了 hello 標準的 Python 程式庫，幾個常用的 python 程式庫會包含：
 
     pandas
     numpy
     numexpr
 
 ### <a name="exception-messages"></a>例外狀況訊息
-目前，Python 程式碼中的例外狀況是顯示為泛型頂點失敗。 在未來，U-SQL 作業的錯誤訊息將會顯示 Python 例外狀況訊息。
+目前，Python 程式碼中的例外狀況是顯示為泛型頂點失敗。 在未來的 hello，hello U-SQL 作業錯誤訊息會顯示 hello Python 例外狀況訊息。
 
 ### <a name="input-and-output-size-limitations"></a>輸入和輸出的大小限制
-指派給每個頂點的記憶體數量皆有上限。 目前，該限制為 6 GB 用於 AU。 因為輸入和輸出資料框架必須存在於Python 程式碼的記憶體中，輸入和輸出的大小總和不能超過 6 GB。
+每個頂點都有指派 tooit 的記憶體數量有限。 目前，該限制為 6 GB 用於 AU。 Hello 輸入和輸出資料框架必須存在於記憶體中 hello Python 程式碼，因為 hello hello 輸入和輸出的大小總計不能超過 6 GB。
 
 ## <a name="see-also"></a>另請參閱
 * [Microsoft Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)

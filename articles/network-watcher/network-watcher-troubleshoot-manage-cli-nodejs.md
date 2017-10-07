@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure 虛擬網路閘道和連線進行疑難排解 - Azure CLI 1.0 | Microsoft Docs"
-description: "此頁面說明如何使用 Azure 網路監看員來針對 Azure CLI 1.0 進行疑難排解"
+title: "aaaTroubleshoot Azure 虛擬網路閘道與連線-Azure CLI 1.0 |Microsoft 文件"
+description: "此頁面說明 toouse hello Azure 網路監看員如何疑難排解 Azure CLI 1.0"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/19/2017
 ms.author: gwallace
-ms.openlocfilehash: 9de4b2a0bdda7ffbd269883877a708d67312092f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a0511689d773f9c7216b0fe5470e27f754eb600b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-virtual-network-gateway-and-connections-using-azure-network-watcher-azure-cli-10"></a>使用 Azure 網路監看員 Azure CLI 1.0 來針對虛擬網路閘道和連線進行疑難排解
 
@@ -29,35 +29,35 @@ ms.lasthandoff: 08/29/2017
 > - [CLI 2.0](network-watcher-troubleshoot-manage-cli.md)
 > - [REST API](network-watcher-troubleshoot-manage-rest.md)
 
-網路監看員提供了許多功能，因為它的作用就是為了讓您了解您在 Azure 中的網路資源。 這些功能的其中之一便是資源疑難排解。 您可以透過入口網站、PowerShell、CLI 或 REST API 呼叫資源疑難排解。 一經呼叫，網路監看員就會檢查虛擬網路閘道或連線的健全狀況，並傳回其調查結果。
+網路監看員會提供許多功能與 toounderstanding 您在 Azure 中的網路資源。 這些功能的其中之一便是資源疑難排解。 疑難排解資源可以透過 hello 入口網站、 PowerShell、 CLI 或 REST API 呼叫。 呼叫時，網路監看員會檢查 hello 的虛擬網路閘道或連線的健全狀況，並傳回其發現。
 
 本文使用跨平台 Azure CLI 1.0，這適用於 Windows、Mac 和 Linux。 
 
 ## <a name="before-you-begin"></a>開始之前
 
-此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。
+此案例假設您已依照中的 hello 步驟[建立網路監看員](network-watcher-create.md)toocreate 網路監看員。
 
 如需支援的閘道類型清單，請瀏覽[支援的閘道類型](/network-watcher-troubleshoot-overview.md#supported-gateway-types)。
 
 ## <a name="overview"></a>概觀
 
-資源疑難排解可讓您針對虛擬網路閘道和連線所發生的問題進行疑難排解。 在要求進行資源疑難排解後，便會查詢並檢查記錄。 檢查完成時，就會傳回結果。 資源疑難排解要求是執行時間很長的要求，可能需要幾分鐘的時間才會傳回結果。 疑難排解記錄會儲存在指定儲存體帳戶的容器中。
+疑難排解資源提供 hello 功能的虛擬網路閘道與連線發生問題進行疑難排解。 當提出要求時 tooresource 疑難排解記錄檔正在檢查和查詢。 檢查完成時，會傳回 hello 結果。 疑難排解要求是長時間執行的資源要求，但這可能需要多個分鐘 tooreturn 結果。 hello 疑難排解記錄檔會儲存在指定的儲存體帳戶的容器。
 
 ## <a name="retrieve-a-virtual-network-gateway-connection"></a>擷取虛擬網路閘道連線
 
-在此範例中，系統會對連線執行資源疑難排解。 您也可以將它傳遞給虛擬網路閘道。 下列 Cmdlet 會列出資源群組中的 VPN 連線。
+在此範例中，系統會對連線執行資源疑難排解。 您也可以將它傳遞給虛擬網路閘道。 hello 下列 cmdlet 會列出 hello vpn 連線的資源群組中。
 
 ```azurecli
 azure network vpn-connection list -g resourceGroupName
 ```
 
-您也可以執行命令來查看訂用帳戶中的連線。
+您也可以執行 hello 命令 toosee hello 連線訂用帳戶中。
 
 ```azurecli
 azure network vpn-connection list -s subscription
 ```
 
-在取得連線的名稱之後，您可以執行此命令來取得其資源識別碼︰
+一旦您擁有 hello hello 連接名稱，您可以執行這個命令 tooget 其資源識別碼：
 
 ```azurecli
 azure network vpn-connection show -g resourceGroupName -n connectionName
@@ -65,21 +65,21 @@ azure network vpn-connection show -g resourceGroupName -n connectionName
 
 ## <a name="create-a-storage-account"></a>建立儲存體帳戶
 
-資源疑難排解會傳回資源健全狀況的相關資料，它也會將記錄儲存到儲存體帳戶以供檢閱。 在此步驟中，我們會建立儲存體帳戶，如果已有現有的儲存體帳戶，您也可以使用它。
+疑難排解資源傳回 hello hello 資源健全狀況的相關資料，它也會儲存記錄檔 tooa 儲存體帳戶 toobe 檢閱。 在此步驟中，我們會建立儲存體帳戶，如果已有現有的儲存體帳戶，您也可以使用它。
 
-1. 建立儲存體帳戶
+1. 建立 hello 儲存體帳戶
 
     ```azurecli
     azure storage account create -n storageAccountName -l location -g resourceGroupName
     ```
 
-1. 取得儲存體帳戶金鑰
+1. 取得 hello 儲存體帳戶金鑰
 
     ```azurecli
     azure storage account keys list storageAccountName -g resourcegroupName
     ```
 
-1. 建立容器
+1. 建立 hello 容器
 
     ```azurecli
     azure storage container create --account-name storageAccountName -g resourcegroupName --account-key {storageAccountKey} --container logs
@@ -87,20 +87,20 @@ azure network vpn-connection show -g resourceGroupName -n connectionName
 
 ## <a name="run-network-watcher-resource-troubleshooting"></a>執行網路監看員資源疑難排解
 
-您可以使用 `network watcher troubleshoot` Cmdlet 對資源進行疑難排解。 我們會將資源群組、網路監看員名稱、連線識別碼、儲存體帳戶識別碼，以及用以儲存疑難排解結果之 Blob 的路徑傳遞給此 Cmdlet。
+疑難排解資源以 hello `network watcher troubleshoot` cmdlet。 我們會傳送 hello cmdlet hello 資源群組、 hello hello 網路監看員，hello hello 連接識別碼的名稱 hello hello 的儲存體帳戶的識別碼和 hello 路徑 toohello blob toostore hello 疑難排解中的結果。
 
 ```azurecli
 azure network watcher troubleshoot -g resourceGroupName -n networkWatcherName -t connectionId -i storageId -p storagePath
 ```
 
-在執行此 Cmdlet 後，網路監看員會檢閱資源以驗證其健康狀態。 它會將結果傳回殼層，並將結果的記錄儲存在指定的儲存體帳戶中。
+一旦您執行 hello cmdlet，網路監看員會檢閱 hello 資源 tooverify hello 健全狀況。 它會傳回 hello 結果 toohello shell，並將指定 hello 儲存體帳戶中的 hello 結果的記錄檔。
 
-## <a name="understanding-the-results"></a>了解結果
+## <a name="understanding-hello-results"></a>了解 hello 結果
 
-動作文字會提供有關如何解決問題的一般指引。 如果問題有可行動作，則會提供附有其他指引的連結。 如果沒有其他指引，回應中會提供 URL 以供您開啟支援案例。  如需回應屬性和所含內容的詳細資訊，請瀏覽[網路監看員疑難排解概觀](network-watcher-troubleshoot-overview.md)
+動作的 hello 文字上 tooresolve hello 問題的方式，提供一般指引。 Hello 問題，可以採取的動作，如果是其他指南提供的連結。 Hello 案例中的任何其他指引，hello 回應提供 hello url tooopen 支援案例。  如需回應 hello 和時要包含的 hello 屬性的詳細資訊，請瀏覽[網路監看員疑難排解概觀](network-watcher-troubleshoot-overview.md)
 
-如需從 Azure 儲存體帳戶下載檔案的指示，請參閱[以 .NET 開始使用 Azure Blob 儲存體](../storage/blobs/storage-dotnet-how-to-use-blobs.md)。 另一項可用工具為儲存體總管。 有關儲存體總管的詳細資訊可以在下列連結找到︰[儲存體總管](http://storageexplorer.com/)
+如需從 azure 儲存體帳戶下載檔案的指示，請參閱太[開始使用適用於.NET 的 Azure Blob 儲存體使用](../storage/blobs/storage-dotnet-how-to-use-blobs.md)。 另一項可用工具為儲存體總管。 儲存體總管的詳細資訊可以在這裡找到在 hello 下列連結：[存放裝置總管](http://storageexplorer.com/)
 
 ## <a name="next-steps"></a>後續步驟
 
-如果設定已變更而停止了 VPN 連線，請參閱[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)以追蹤可能有問題的網路安全性群組和安全性規則。
+如果設定已變更為該停止 VPN 連線能力，請參閱[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)tootrack 向 hello 網路安全性群組和安全性規則，可能會有問題。

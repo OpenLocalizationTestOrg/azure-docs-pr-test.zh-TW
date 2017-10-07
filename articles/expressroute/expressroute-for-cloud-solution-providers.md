@@ -1,6 +1,6 @@
 ---
-title: "適用於雲端解決方案提供者 (CSP) 的 Azure ExpressRoute | Microsoft Docs"
-description: "本文提供的資訊適用於想要將 Azure 服務和 ExpressRoute 併入其供應項目的雲端服務提供者。"
+title: "aaaAzure 雲端方案提供者的 ExpressRoute |Microsoft 文件"
+description: "本文提供的雲端服務提供者資訊該想 tooincorporate Azure 服務和 ExpressRoute 到其供應項目。"
 documentationcenter: na
 services: expressroute
 author: richcar
@@ -14,127 +14,127 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: richcar
-ms.openlocfilehash: 26c9420c9b8ba1aff6b016c01b8ed51853c91506
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 062ecbb5e461e4384b01c4ac478cab696b7ed398
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="expressroute-for-cloud-solution-providers-csp"></a>適用於雲端解決方案提供者 (CSP) 的 ExpressRoute
-Microsoft 為傳統的轉銷商和經銷商 (CSP) 提供超大規模的服務，以便為您的客戶快速佈建新的服務和解決方案，而不需要投資開發這些新服務。 若要讓雲端解決方案提供者 (CSP) 能夠直接管理這些新服務，Microsoft 提供了一些程式和 API，讓 CSP 可以代表您的客戶管理 Microsoft Azure 資源。 其中一個資源是 ExpressRoute。 ExpressRoute 可讓 CSP 將現有的客戶資源連接到 Azure 服務。 ExpressRoute 是 Azure 中服務的高速私用通訊連結。 
+Microsoft 提供超小數位數傳統的轉售商 」 和 「 散發者 (CSP) toobe 無法 toorapidly 佈建的新服務和解決方案的客戶不 hello 需要 tooinvest 開發這些新服務的服務。 tooallow hello 雲端方案提供者 (CSP) hello 能力 toodirectly 管理這些新的服務，Microsoft 提供的程式及 Api，可讓 hello CSP toomanage 代表客戶的 Microsoft Azure 資源。 其中一個資源是 ExpressRoute。 ExpressRoute 可讓 hello CSP tooconnect 現有客戶資源 tooAzure 服務。 ExpressRoute 是在 Azure 中的高速私用通訊連結 tooservices。 
 
-ExpresRoute 是由一組附加至單一客戶訂用帳戶的高可用性電路所組成，不能由多個客戶共用。 每個電路應在不同的路由器中終止，以維持高可用性。
+ExpresRoute 被組成一組的高可用性，附加的 tooa 單一客戶的訂閱並不能共用的多個客戶的電路。 每個 expressroute 電路應該終止中不同的路由器 toomaintain hello 高可用性。
 
 > [!NOTE]
 > ExpressRoute 有頻寬和連接端點，這表示大型/複雜的實作需要單一客戶有多個 ExpressRoute 電路。
 > 
 > 
 
-Microsoft Azure 提供越來越多的服務，您可以將這些服務提供給您的客戶。  若要充分利用這些服務，則必須使用 ExpressRoute 連接，以提供對 Microsoft Azure 環境的高速低延遲存取。
+Microsoft Azure 提供越來越多的服務，您可以提供 tooyour 客戶。  toobest 充分利用這些服務都需要 hello 使用 ExpressRoute 連線 tooprovide 高速低延遲存取 toohello Microsoft Azure 環境。
 
 ## <a name="microsoft-azure-management"></a>Microsoft Azure 管理
-Microsoft 允許以程式設計方式整合您自己的服務管理系統，進而提供 API 讓 CSP 管理 Azure 客戶訂用帳戶。 [這裡](https://msdn.microsoft.com/library/partnercenter/dn974944.aspx)可以找到支援的管理功能。
+Microsoft 提供的 Csp Api toomanage hello Azure 客戶訂用帳戶允許以程式設計方式與您自己的服務管理系統的整合。 [這裡](https://msdn.microsoft.com/library/partnercenter/dn974944.aspx)可以找到支援的管理功能。
 
 ## <a name="microsoft-azure-resource-management"></a>Microsoft Azure 資源管理
-您與客戶簽訂的合約將會決定訂用帳戶的管理方式。 CSP 可以直接管理資源的建立和維護，或客戶可以持續控制 Microsoft Azure 訂用帳戶並建立他們所需的 Azure 資源。 如果您的客戶管理其 Microsoft Azure 訂用帳戶中的資源建立，他們會使用以下其中一個模型：“Connect-Through” 模型或 “Connect-To” 模型。 下列各節會詳細說明這些模型。  
+Hello 合約您有與您的客戶將會決定如何將管理 hello 訂用帳戶。 hello CSP 才能直接管理 hello 建立和維護的資源或 hello 客戶可維持 hello Microsoft Azure 訂用帳戶的控制，並建立 hello Azure 資源，其所需。 如果您的客戶管理的資源在其 Microsoft Azure 訂用帳戶中的 hello 建立它們會使用兩個模型的其中一個:"連線-透過 「 模型或 「 直接-目標 」 模型。 Hello 下列各節將詳細說明這些模型。  
 
 ### <a name="connect-through-model"></a>Connect-Through 模型
 ![替代文字](./media/expressroute-for-cloud-solution-providers/connect-through.png)  
 
-在 Connect-Through 模型中，CSP 會在您的資料中心與您客戶的 Azure 訂用帳戶之間建立直接連線。 使用 ExpressRoute 進行直接連線，連接您的網路與 Azure。 然後您的客戶會連接到您的網路。 此案例需要客戶通過 CSP 網路來存取 Azure 服務。 
+在 hello 連接透過模型 hello CSP 會建立您的資料中心和客戶的 Azure 訂用帳戶之間的直接連接。 使用 ExpressRoute，您的網路連線與 Azure 建立 hello 直接連線。 然後您的客戶 tooyour 網路連線。 此案例需要該 hello 客戶通過 hello CSP 網路 tooaccess Azure 服務。 
 
-如果您的客戶有其他不受您管理的 Azure 訂用帳戶，他們會使用公用網際網路或自己的私人連線來連接到非 CSP 訂用帳戶下所佈建的這些服務。 
+如果您的客戶有未受其他 Azure 訂用帳戶 hello 您時，它們會使用公用網際網路或自己佈建 hello 非 CSP 訂用帳戶底下的私用連接 tooconnect toothose 服務的 hello。 
 
-對於管理 Azure 服務的 CSP，假設此 CSP 有先前建立的客戶身分識別存放區，該存放區之後會複寫到 Azure Active Directory 中，以便透過 Administrate-On-Behalf-Of (AOBO) 管理其 CSP 訂用帳戶。 此案例的關鍵驅動因素包括特定的夥伴或服務提供者已建立起與客戶的關聯性、客戶目前使用提供者服務，或夥伴想要提供由提供者裝載和由 Azure 裝載的解決方案組合，以提供彈性及解決 CSP 無法單獨滿足的客戶挑戰。 此模型如下 **圖**所說明。
+管理 Azure 服務的 csp，則會假設該 hello CSP 具有先前建立的客戶識別儲存的會再複寫到 Azure Active Directory 管理其 CSP 訂用帳戶透過 Administrate-On-Behalf-Of (AOBO)。 在此案例的重要驅動程式包含其中為特定的夥伴或服務提供者建立關聯性與 hello 客戶、 hello 客戶目前使用提供者服務，或者 hello 夥伴 desire tooprovide 裝載提供者的組合與 Azure 託管解決方案 tooprovide 彈性和地址客戶面臨的挑戰這無法滿足單獨的 CSP。 此模型如下 **圖**所說明。
 
 ![替代文字](./media/expressroute-for-cloud-solution-providers/connect-through-model.png)
 
-### <a name="connect-to-model"></a>Connect-To 模型
+### <a name="connect-toomodel"></a>連接 toomodel
 ![替代文字](./media/expressroute-for-cloud-solution-providers/connect-to.png)
 
-在 Connect-To 模型中，服務提供者會使用 ExpressRoute 透過客戶的 (客戶) 網路，在其客戶的資料中心與 CSP 佈建的 Azure 訂用帳戶之間建立直接連線。
+在 hello 連接 toomodel，hello 服務提供者會建立其客戶的資料中心之間的直接連線，並 hello CSP 佈建 Azure 訂用帳戶使用 ExpressRoute hello 客戶 （客戶） 透過網路。
 
 > [!NOTE]
-> 在 ExpressRoute 中，客戶需要建立和維護 ExpressRoute 電路。  
+> Expressroute hello 客戶會需要 toocreate 和維護 hello ExpressRoute 電路。  
 > 
 > 
 
-此連線案例需要客戶使用全部或部分由客戶建立、擁有和管理的直接網路連線，透過客戶網路直接連接，以存取 CSP 管理的 Azure 訂用帳戶。 對於這些客戶，假設提供者目前並沒有已建立的客戶身分識別存放區，且提供者會協助客戶將其目前的身分識別存放區複寫到 Azure Active Directory 中，以便透過 AOBO 管理其訂用帳戶。 此案例的關鍵驅動因素包括特定的夥伴或服務提供者已建立起與客戶的關聯性、客戶目前使用提供者服務，或夥伴想要提供單獨以 Azure 裝載的解決方案為基礎的服務，而不需要現有的提供者資料中心或基礎結構。
+此連線的案例需要該 hello 客戶直接透過客戶網路 tooaccess CSP 管理 Azure 訂用帳戶，就會使用連接的建立、 擁有且受 hello 客戶的全部或部分直接網路連線。 這些客戶會假設 hello 提供者目前沒有建立，客戶身分識別存放區，而且 hello 提供者會將其目前的身分識別存放區到 Azure Active Directory 複寫管理的協助 hello 客戶其透過 AOBO 訂用帳戶。 此案例中的重要驅動程式包含其中為特定的夥伴或服務提供者建立關聯性與 hello 客戶、 hello 客戶目前使用提供者服務，或者 hello 夥伴完全根據 desire tooprovide 服務沒有 hello 的 azure 託管的方案需要現有的提供者資料中心或基礎結構。
 
 ![替代文字](./media/expressroute-for-cloud-solution-providers/connect-to-model.png)
 
-這兩個選項之間的選擇依據是客戶的需求以及您目前提供 Azure 服務的需求。 下列連結涵蓋這些模型的詳細資料，以及相關聯的角色型存取控制、網路和身分識別設計模式︰
+hello 這些兩個選項之間選擇根據客戶的需求，且您目前必須 tooprovide Azure 服務。 hello 詳細資料，這些模型和 hello 相關聯的角色型存取控制，網路功能，並涵蓋身分識別設計模式中 hello 下列連結查看詳細資料：
 
 * **角色型存取控制 (RBAC)** – RBAC 是以 Azure Active Directory 為基礎。  如需 Azure RBAC 的詳細資訊，請參閱 [這裡](../active-directory/role-based-access-control-configure.md)。
-* **網路** – 涵蓋 Microsoft Azure 中的各種網路主題。
-* **Azure Active Directory (AAD)** – AAD 提供 Microsoft Azure 和第三方 SaaS 應用程式的身分識別管理。 如需有關 Azure AD 的詳細資訊，請參閱 [這裡](https://azure.microsoft.com/documentation/services/active-directory/)。  
+* **網路**– 涵蓋 hello 各種主題的 Microsoft Azure 中的網路。
+* **Azure Active Directory (AAD)** – AAD 提供 hello Microsoft Azure 和第 3 個合作對象 SaaS 應用程式的身分識別管理。 如需有關 Azure AD 的詳細資訊，請參閱 [這裡](https://azure.microsoft.com/documentation/services/active-directory/)。  
 
 ## <a name="network-speeds"></a>網路速度
-ExpressRoute 支援 50 Mb/s 至 10 Gb/s 的網路速度。 這可讓客戶購買其獨特環境所需的網路頻寬量。
+ExpressRoute 支援從 50 Mb/s too10Gb/s 的網路速度。 這可讓客戶 toopurchase hello 其獨特的環境所需的網路頻寬量。
 
 > [!NOTE]
-> 您可以在不干擾通訊的情況下，視需要增加網路頻寬，但若要降低網路速度，則需拆解電路並以較低的網路速度加以重建。  
+> 視需要而不會中斷的通訊，您可以增加網路頻寬，但 tooreduce hello 網路速度需要破壞 hello 循環，再重新建立 hello 較低的網路速度。  
 > 
 > 
 
-ExpressRoute 支援多個 vNet 至單一 ExpressRoute 電路的連線，以便更加妥善利用高速連線。 同一個客戶所擁有的多個 Azure 訂用帳戶可以共用單一 ExpressRoute 電路。
+ExpressRoute 支援較佳的 hello 高速連線使用率 hello 連接的多個 Vnet tooa 單一 ExpressRoute 電路。 可以在 hello 所擁有的多個 Azure 訂閱之間共用單一 ExpressRoute 電路相同的客戶。
 
 ## <a name="configuring-expressroute"></a>設定 ExpressRoute
-ExpressRoute 可設定為透過單一 ExpressRoute 電路支援三種類型的流量 ([路由網域](#ExpressRoute-routing-domains))。 此流量可以分成 Microsoft 對等、Azure 公用對等和私用對等。 視 ExpressRoute 電路的大小和您的客戶所需的隔離而定，您可以選擇透過單一 ExpressRoute 電路傳送一個或所有類型的流量，或使用多個 ExpressRoute 電路。 您的客戶的安全狀態可能不允許公用流量和私用流量透過相同的電路周遊。
+ExpressRoute 可以設定的 toosupport 三種類型的流量 ([路由網域](#ExpressRoute-routing-domains)) 透過單一的 ExpressRoute 電路。 此流量可以分成 Microsoft 對等、Azure 公用對等和私用對等。 您可以選擇一個或所有類型的單一 ExpressRoute 線路上傳送的流量 toobe 或多個 ExpressRoute 電路的 hello ExpressRoute 電路並隔離您的客戶所需的 hello 大小而定。 hello 安全性狀態，您的客戶可能不允許公用流量，以及透過私人流量 tootraverse hello 相同電路。
 
 ### <a name="connect-through-model"></a>Connect-Through 模型
-在 Connect-Through 組態中，您會負責所有網路基礎，以將客戶資料中心資源連接到 Azure 中裝載的訂用帳戶。 每個想要使用 Azure 功能的客戶都需有自己的 ExpressRoute 連線 (將由您管理)。 您將使用客戶用來購買 ExpressRoute 電路的相同方法。 您將依照 [ExpressRoute 電路佈建和電路狀態工作流程](expressroute-workflows.md) 一文中所述的相同步驟執行。 接著，您將設定邊界閘道協定 (BGP) 路由來控制在內部部署網路與 Azure vNet 之間流動的流量。
+在連接透過組態 hello 您是負責 hello 網路 underpinnings tooconnect 客戶資料中心資源 toohello 訂用帳戶裝載於 Azure 中的所有項目。 每個客戶的想 toouse Azure 功能會需要的自己 ExpressRoute 連線，將受 hello 您。 hello 您將使用 hello 相同方法 hello 客戶會使用 tooprocure hello ExpressRoute 電路。 hello，您將遵循相同的步驟所述 hello 文件中的 hello [ExpressRoute 工作流程](expressroute-workflows.md)循環佈建和循環狀態。 然後，您將設定 hello 邊界閘道通訊協定 (BGP) 路由 toocontrol hello 流量流入 hello 與內部網路與 Azure vNet 之間 hello。
 
-### <a name="connect-to-model"></a>Connect-To 模型
-在 Connect-To 組態中，您的客戶已經有 Azure 連線，或者會起始對網際網路服務提供者的連線，以將 ExpressRoute 從您的客戶擁有的資料中心直接連結至 Azure，而不是您的資料中心。 若要開始佈建程序，您的客戶將依照上面 Connect-Through 模型中所述的步驟執行。 一旦建立電路，您的客戶必須設定內部部署路由器，才能存取您的網路和 Azure vNnet。
+### <a name="connect-toomodel"></a>連接 toomodel
+在連接 tooconfiguration 客戶已經有現有的連接 tooAzure 或將會起始連線 toohello 網際網路服務提供者從您的客戶自己的資料中心連結 ExpressRoute 直接 tooAzure，而不是您的資料中心。 toobegin hello 佈建程序，您的客戶將步驟 hello 如上所述 hello 連接到模型中。 一旦建立 hello 電路客戶需要 tooconfigure hello 在內部部署路由器 toobe 無法 tooaccess 您的網路和 Azure Vnet。
 
-您可以設定連接及設定路由，允許您資料中心的資源與您資料中心的用戶端資源進行通訊，或與 Azure 中裝載的資源進行通訊。
+您可以協助設定 hello 連線並設定 hello 路由 tooallow hello 資源中您資料中心 toocommunicate hello 用戶端中的資源資料中心，或裝載於 Azure 的 hello 資源。
 
 ## <a name="expressroute-routing-domains"></a>ExpressRoute 路由網域
-ExpressRoute 提供三種路由網域︰公用、私用和 Microsoft 對等。 每個路由網域都是使用主動-主動組態中完全相同的路由器設定，以提供高可用性。 如需 ExpressRoute 路由網域的詳細資訊，請參閱 [這裡](expressroute-circuit-peerings.md)。
+ExpressRoute 提供三種路由網域︰公用、私用和 Microsoft 對等。 每個 hello 路由網域都設定了高可用性的主動-主動組態中的相同路由器。 如需 ExpressRoute 路由網域的詳細資訊，請參閱 [這裡](expressroute-circuit-peerings.md)。
 
-您可以定義自訂路由篩選器，只允許您想允許或需要的路由。 如需詳細資訊或了解如何進行這些變更，請參閱以下文章︰ [使用 PowerShell 建立和修改 ExpressRoute 電路的路由](expressroute-howto-routing-classic.md) ，以取得路由篩選器的詳細資訊。
+您可以定義的自訂路由篩選 tooallow 只有 hello 路由您想要 tooallow 或需要。 如需詳細資訊或 toosee 如何 toomake 這些變更請參閱文件：[建立和修改使用 PowerShell 的 ExpressRoute 電路的路由](expressroute-howto-routing-classic.md)如需詳細資訊 路由篩選條件。
 
 > [!NOTE]
-> 若為 Microsoft 和公用對等，連線必須是客戶或 CSP 所擁有的公用 IP 位址，而且必須遵守所有定義的規則。 如需詳細資訊，請參閱 [ExpressRoute 必要條件](expressroute-prerequisites.md) 頁面。  
+> Microsoft 和公用互連連線但 hello 客戶或 CSP 所擁有的公用 IP 位址，而且必須遵守 tooall 定義規則。 如需詳細資訊，請參閱 hello [ExpressRoute 必要條件](expressroute-prerequisites.md)頁面。  
 > 
 > 
 
 ## <a name="routing"></a>路由
-ExpressRoute 會透過 Azure 虛擬網路閘道連接到 Azure 網路。 網路閘道提供 Azure 虛擬網路的路由。
+ExpressRoute 連線 toohello Azure 透過 hello Azure 虛擬網路閘道的網路。 網路閘道提供 Azure 虛擬網路的路由。
 
-建立 Azure 虛擬網路時，也會建立 vNet 的預設路由表，以便從 vNet 的子網路雙向導引流量。 如果預設路由表不敷解決方案使用，可以建立自訂路由，將連出流量路由傳送至自訂應用裝置，或封鎖對特定子網路或外部網路的路由。
+建立 Azure 虛擬網路時，也會建立預設路由表 hello vNet toodirect 流量從 hello hello vNet 子網路。 如果 hello 預設路由表並不足以執行自訂的 hello 方案 tooroute 傳出流量 toocustom 應用裝置可以建立路由，或者 tooblock 路由 toospecific 子網路或外部網路。
 
 ### <a name="default-routing"></a>預設路由
-預設路由表包含下列路由：
+hello 預設路由表包含下列路由 hello:
 
 * 子網路內的路由
-* 虛擬網路內的子網路對子網路路由
-* 對網際網路的路由
+* 子網路-到-子網路 hello 虛擬網路內
+* toohello 網際網路
 * 使用 VPN 閘道的虛擬網路對虛擬網路路由
 * 使用 VPN 或 ExpressRoute 閘道的虛擬網路對內部部署網路路由
 
 ![替代文字](./media/expressroute-for-cloud-solution-providers/default-routing.png)  
 
 ### <a name="user-defined-routing-udr"></a>使用者定義的路由 (UDR)
-使用者定義的路由能夠控制從虛擬網路中指派的子網路輸出至其他子網路的流量，或透過其中一個其他預先定義的閘道 (ExpressRoute、網際網路或 VPN) 輸出的流量。 使用者定義的路由表可以取代預設的系統路由表，其以自訂路由取代預設的路由表。 利用使用者定義的路由，客戶可以建立對應用裝置 (例如防火牆或入侵偵測應用裝置) 的特定路由，或封鎖從裝載使用者定義之路由的子網路對特定子網路的存取。 如需使用者定義的路由概觀，請參閱 [這裡](../virtual-network/virtual-networks-udr-overview.md)。 
+使用者定義的路由讓 hello hello 從輸出流量控制指派子網路 tooother hello 虛擬網路中的子網路，或在其中一個 hello 其他預先定義的閘道 （ExpressRoute; 網際網路或 VPN）。 hello 預設系統路由表可以取代的使用者定義路由表，以自訂路由取代 hello 預設路由表。 使用使用者定義路由時，客戶可以建立特定路由 tooappliances，例如防火牆或入侵偵測應用程式，或封鎖存取 toospecific 子網路，從裝載 hello 使用者定義路由的 hello 子網路。 如需使用者定義的路由概觀，請參閱 [這裡](../virtual-network/virtual-networks-udr-overview.md)。 
 
-## <a name="security"></a>Security
-視正在使用中的模型 (Connect-To 或 Connect-Through) 而定，您的客戶會在其 vNet 中定義安全性原則，或提供安全性原則需求給 CSP 來定義其 vNet。 可以定義下列安全性準則︰
+## <a name="security"></a>安全性
+根據哪一個模型正在使用中，連接 tooor 連接透過您的客戶定義其 vNet 中的 hello 安全性原則，或提供 toohello CSP toodefine tootheir Vnet hello 安全性原則需求。 可以定義下列安全性準則的 hello:
 
-1. **客戶隔離** — Azure 平台會將客戶識別碼和 vNet 資訊儲存在安全的資料庫中 (用來封裝 GRE 通道中每個客戶的流量)，藉此提供客戶隔離。
-2. **網路安全性群組 (NSG)** 規則用於定義在 Azure 中傳入和傳出 vNet 子網路的流量。 根據預設，NSG 包含封鎖規則和允許規則，前者可封鎖從網際網路至 vNet 的流量，後者適用於 vNet 內的流量。 如需網路安全性群組的詳細資訊，請參閱 [這裡](https://azure.microsoft.com/blog/network-security-groups/)。
-3. **強制通道** — 這個選項可透過 ExpressRoute 連線，將源自於 Azure 的網際網路繫結流量重新導向至內部部署資料中心。 如需強制通道的詳細資訊，請參閱 [這裡](expressroute-routing.md#advertising-default-routes)。  
-4. **加密** — 即使 ExpressRoute 電路專用於特定客戶，網路提供者仍可能違反規定，讓入侵者檢查封包流量。 若要解決這個可能性，客戶或 CSP 可以針對在內部部署資源與 Azure 資源之間流動的所有流量，定義 IPSec 通道模式原則，進而將透過連線的流量加密 (請參閱上面圖 5：ExpressRoute 安全性中客戶 1 的選擇性通道模式 IPSec)。 第二個選項是在 ExpressRoute 電路的每個端點使用防火牆應用裝置。 這需要兩端都安裝額外的第三方防火牆 VM/應用裝置，才能將透過 ExpressRoute 電路的流量加密。
+1. **客戶隔離**— hello Azure 平台提供客戶隔離客戶識別碼和 vNet 資訊儲存在安全資料庫中，也就是使用的 tooencapsulate GRE 通道中的每個客戶的流量。
+2. **網路安全性群組 (NSG)**規則是用來定義允許流量進出的 Azure Vnet 中的 hello 子網路。 根據預設，hello NSG 包含封鎖規則 tooblock 流量從 hello 網際網路 toohello vNet 和允許規則的 vNet 內的流量。 如需網路安全性群組的詳細資訊，請參閱 [這裡](https://azure.microsoft.com/blog/network-security-groups/)。
+3. **強制通道**— 這是網際網路繫結流量源自於 Azure toobe 被重新導向到內部部署資料中心上的 hello ExpressRoute 連線 toohello 選項 tooredirect。 如需強制通道的詳細資訊，請參閱 [這裡](expressroute-routing.md#advertising-default-routes)。  
+4. **加密**— 即使 hello ExpressRoute 電路專用的 tooa 特定客戶，沒有 hello 網路提供者的 hello 可能性可能會違反服務等級，允許入侵者 tooexamine 封包流量。 tooaddress 潛在、 客戶或 CSP 可以透過加密流量 hello 藉由定義所有流量流入 hello 內部部署資源和 Azure 資源 （請參閱 「 選擇性通道模式 toohello IPSec 客戶 1 之間的 IPSec 通道模式原則的連線圖 5: ExpressRoute 安全性上述)。 hello 第二個選項是 hello 的 toouse hello 每個結束點 ExpressRoute 電路的防火牆應用裝置。 這將需要額外的第 3 個合作對象防火牆 Vm 設備/toobe 安裝這兩個 ends tooencrypt hello 流量透過 hello ExpressRoute 電路。
 
 ![替代文字](./media/expressroute-for-cloud-solution-providers/expressroute-security.png)  
 
 ## <a name="next-steps"></a>後續步驟
-雲端解決方案提供者服務可讓您提升您對於客戶的價值，而不需要購買昂貴的基礎結構和功能，同時讓您維持主要外包提供者的地位。 透過 CSP API 可達成與 Microsoft Azure 的緊密整合，讓您將 Microsoft Azure 的管理整合在現有的管理架構內。  
+hello 雲端方案提供者服務會提供值 tooyour 客戶 hello 不需要成本基礎結構和能力購買，同時維持您所在位置為 hello 主要外包提供者的方式 tooincrease。 使用 Microsoft Azure 的緊密整合，即可完成 hello CSP API，可讓您的 Microsoft Azure 中現有的管理架構的 toointegrate 管理。  
 
-在下列連結中可以找到額外的資訊︰
+可以在 hello 下列連結查看找到的其他資訊：
 
 [Microsoft Cloud 解決方案提供者方案](https://partner.microsoft.com/en-US/Solutions/cloud-reseller-overview)。  
-[做好準備以雲端解決方案提供者身分交易](https://partner.microsoft.com/en-us/solutions/cloud-reseller-pre-launch)。  
+[取得做為雲端方案提供者的準備 tootransact](https://partner.microsoft.com/en-us/solutions/cloud-reseller-pre-launch)。  
 [Microsoft Cloud 解決方案提供者資源](https://partner.microsoft.com/en-us/solutions/cloud-reseller-resources)。
 

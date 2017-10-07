@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 入口網站建立 SQL Database 警示 | Microsoft Docs"
-description: "使用 Azure 入口網站建立 SQL Database 的警示，在符合指定條件時觸發通知或自動化。"
+title: "aaaUse SQL Database 的 Azure 入口網站 toocreate 警示 |Microsoft 文件"
+description: "使用 hello Azure 入口網站 toocreate SQL Database 的警示，可以觸發通知或自動化您指定的 hello 條件符合時。"
 author: aamalvea
 manager: jhubbard
 editor: 
@@ -15,26 +15,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/06/2017
 ms.author: aamalvea
-ms.openlocfilehash: bfbaa71dc5716fbbc23d04bbd62210193c990e8e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4e494b130a26c4cdf42445cb49648fce9bf4d300
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-portal-to-create-alerts-for-azure-sql-database-and-data-warehouse"></a>使用 Azure 入口網站建立 Azure SQL Database 和資料倉儲警示
+# <a name="use-azure-portal-toocreate-alerts-for-azure-sql-database-and-data-warehouse"></a>使用 Azure 入口網站 toocreate 警示的 Azure SQL Database 和資料倉儲
 
 ## <a name="overview"></a>概觀
-本文說明如何使用 Azure 入口網站設定 Azure SQL Database 和資料倉儲警示。 本文也提供設定警示期間的最佳做法。    
+本文章將示範如何使用 Azure SQL Database 和資料倉儲警示 tooset hello Azure 入口網站。 本文也提供設定警示期間的最佳做法。    
 
 您可以收到以您 Azure 服務的監視計量或事件為基礎的警示。
 
-* **計量值** - 當指定的計量值超出您在任一方向指派的臨界值時會觸發警示。 也就是說，當先符合條件而之後該條件不再符合時，兩方面皆會觸發。    
+* **度量值**-hello hello 值，指定的度量超出您在任一方向中指派的閾值時，警示觸發程序。 也就是說，它會觸發兩者當第一次符合 hello 條件，並且再之後時，條件不再達成。    
 * **活動記錄檔事件** - 警示可觸發*每一個*事件，或是僅在發生特定事件數目時才觸發。
 
-您可以在警示觸發時，設定警示執行下列動作︰
+您可以設定警示 toodo hello，下列情況觸發：
 
-* 傳送電子郵件給服務管理員和共同管理員
-* 傳送電子郵件至您指定的其他電子郵件
+* 傳送電子郵件通知 toohello 服務管理員和共同管理員
+* 您指定的 tooadditional 電子郵件傳送電子郵件。
 * 呼叫 webhook
 
 您可以透過下列方式設定和取得有關警示規則的資訊
@@ -44,36 +44,36 @@ ms.lasthandoff: 07/11/2017
 * [命令列介面 (CLI)](../monitoring-and-diagnostics/insights-alerts-command-line-interface.md)
 * [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn931945.aspx)
 
-## <a name="create-an-alert-rule-on-a-metric-with-the-azure-portal"></a>使用 Azure 入口網站建立計量的警示規則
-1. 在 [入口網站](https://portal.azure.com/)中，找到您要監視的資源並選取。
+## <a name="create-an-alert-rule-on-a-metric-with-hello-azure-portal"></a>建立警示規則上 hello Azure 入口網站的度量
+1. 在 hello[入口網站](https://portal.azure.com/)，找出您感興趣監視 hello 資源並加以選取。
 2. SQL DB 和彈性集區的此這個步驟與 SQL DW 不相同： 
 
-   - **僅限 SQL DB 和彈性集區**：選取 [監視] 區段底下的 [警示] 或 [警示規則]。 不同資源的文字和圖示會有些許不同。  
+   - **SQL 資料庫 （& s) 只彈性集區**： 選取**警示**或**警示規則**hello [監視] 區段底下。 hello 文字和圖示可能各不相同稍有不同的資源。  
    
      ![監視](../monitoring-and-diagnostics/media/insights-alerts-portal/AlertRulesButton.png)
   
-   - **僅限 SQL DW**：選取 [一般工作] 區段下的 [監視]。 按一下 [DWU 使用量] 圖表。
+   - **只有 SQL DW**： 選取**監視**下 hello 一般工作 > 一節。 按一下 hello **DWU 使用量**圖形。
 
      ![一般工作](../monitoring-and-diagnostics/media/insights-alerts-portal/AlertRulesButtonDW.png)
 
-3. 選取 [新增警示]  命令，並填寫各欄位。
+3. 選取 hello**新增警示**命令，並填寫 hello 欄位。
    
     ![新增警示](../monitoring-and-diagnostics/media/insights-alerts-portal/AddDBAlertPage.png)
 4. 為您的警示規則命名 ([名稱])，選擇將會顯示在電子郵件通知中的 [描述]。
-5. 選取您要監視的 [計量]，然後為計量選擇 [條件] 和 [臨界值]。 同時選擇警示觸發程序之前，計量規則必須滿足的 [期間]  。 例如，如果您使用「PT5M」期間，且您的警示會尋找高於 80% 的 CPU，當 CPU 已持續 5 分鐘高於 80%，警示就會觸發。 一旦發生第一次觸發，它會在 CPU 持續 5 分鐘低於 80 % 時再次觸發。 CPU 度量每隔 1 分鐘發生一次。   
-6. 如果您想要在警示引發時傳送電子郵件給系統管理員和共同管理員，請勾選 [電子郵件的擁有者...]  。
-7. 如果您想要讓其他電子郵件信箱在警示引發時收到通知，在 [其他系統管理員電子郵件]  欄位新增它們。 以分號分隔多個電子郵件 - *email@contoso.com;email2@contoso.com*
-8. 如果您想在警示引發時呼叫webhook，在[webhook]  欄位中放入有效的 URI。
-9. 完成後選取 [確定]  建立警示。   
+5. 選取 hello**度量**toomonitor，然後選擇 **條件**和**閾值**hello 公制值。 同時選擇 hello**期間**的 hello 度量的時間必須符合規則之前 hello 警示觸發程序。 例如，如果您使用 hello 期間 」 PT5M 」 警示會尋找 CPU 高於 80%，hello 警示時，觸發 hello CPU 已經一致上述 80 %5 分鐘。 一旦發生 hello 第一個觸發程序，一次觸發時 hello CPU 會保持低於 80 %5 分鐘。 hello CPU 度量，就會發生每隔 1 分鐘。   
+6. 請檢查**電子郵件擁有者...**如果您想要以電子郵件傳送的系統管理員和共同管理員 toobe 當 hello 引發警示。
+7. 如果您想要其他的電子郵件 tooreceive 通知時 hello 警示引發，增益 hello**其他的系統管理員 email(s)**欄位。 以分號分隔多個電子郵件 - *email@contoso.com;email2@contoso.com*
+8. 將放在有效的 URI，在 hello **Webhook**欄位若要呼叫它時 hello 引發警示。
+9. 選取**確定**時完成的 toocreate hello 警示。   
 
-在幾分鐘之內，警示會開始作用，且先前所述觸發。
+在幾分鐘的時間內 hello 警示為作用中，且觸發程序，如先前所述。
 
 ## <a name="managing-your-alerts"></a>管理警示
 一旦建立警示，您可以選取警示，並且︰
 
-* 檢視圖表，其中顯示計量臨界值與前一天的實際值。
+* 檢視圖表顯示 hello 度量的閾值，從 hello 的 hello 實際值的前一天。
 * 編輯或刪除警示。
-* 如果您想要暫時停止或恢復接收警示的通知，可以**停用**或**啟用**警示。
+* **停用**或**啟用**它，如果您想要 tootemporarily 停止或繼續接收該警示的通知。
 
 
 ## <a name="sql-database-alert-values"></a>SQL Database 警示值
@@ -113,7 +113,7 @@ ms.lasthandoff: 07/11/2017
 | SQL 資料倉儲 | connection_successful | 成功的連線 | 總計 | 10 分鐘 |
 | SQL 資料倉儲 | connection_failed | 失敗的連線 | 總計 | 10 分鐘 |
 | SQL 資料倉儲 | blocked_by_firewall | 遭到防火牆封鎖 | 總計 | 10 分鐘 |
-| SQL 資料倉儲 | service_level_objective | 資料庫的服務等級目標 | 總計 | 10 分鐘 |
+| SQL 資料倉儲 | service_level_objective | Hello 資料庫的服務等級目標 | 總計 | 10 分鐘 |
 | SQL 資料倉儲 | dwu_limit | dwu 限制 | 最大值 | 10 分鐘 |
 | SQL 資料倉儲 | dwu_consumption_percent | DWU 百分比 | 平均值 | 10 分鐘 |
 | SQL 資料倉儲 | dwu_used | 已使用 DWU | 平均值 | 10 分鐘 |
@@ -121,7 +121,7 @@ ms.lasthandoff: 07/11/2017
 
 
 ## <a name="next-steps"></a>後續步驟
-* [取得 Azure 監視的概觀](../monitoring-and-diagnostics/monitoring-overview.md) 中說明您可以收集和監視的資訊類型。
+* [取得的 Azure 監視概觀](../monitoring-and-diagnostics/monitoring-overview.md)包括 hello 類型的資訊，您可以收集和監視。
 * 深入了解 [在警示中設定 webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md)。
 * 依照 [診斷記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) 中的做法，收集您服務中詳細的高頻率計量。
-* 依照 [計量集合概觀](../monitoring-and-diagnostics/insights-how-to-customize-monitoring.md) 中的做法，確保您的服務可使用且有回應。
+* 取得[概觀度量收集](../monitoring-and-diagnostics/insights-how-to-customize-monitoring.md)toomake 確定您的服務可用，並能繼續回應。

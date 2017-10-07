@@ -1,6 +1,6 @@
 ---
-title: "使用 Spark 進階資料探索和模型化 | Microsoft Docs"
-description: "使用 HDInsight Spark 並透過交叉驗證和超參數最佳化定型模型，執行資料探索和二進位分類和迴歸模型化。"
+title: "aaaAdvanced 資料瀏覽和模型使用 Spark |Microsoft 文件"
+description: "使用 HDInsight Spark toodo 資料瀏覽和定型二元分類和迴歸模型使用交叉驗證和 hyperparameter 最佳化。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/15/2017
 ms.author: deguhath;bradsev;gokuma
-ms.openlocfilehash: e6bf6bd3c905f077841ef166540337a251b91ad1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 055c342857fd732633cec9810de69cee61db973d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advanced-data-exploration-and-modeling-with-spark"></a>使用 Spark 進階資料探索和模型化
 [!INCLUDE [machine-learning-spark-modeling](../../includes/machine-learning-spark-modeling.md)]
 
-本逐步解說會使用 HDInsight Spark，在 NYC 計程車車程和費用 2013 資料集的取樣上，使用交叉驗證和超參數最佳化來執行資料探索和定型二進位分類和迴歸模型。 它將引導您逐步完成 [資料科學程序](http://aka.ms/datascienceprocess)、端對端、使用 HDInsight Spark 叢集處理，並使用 Azure blob 來儲存資料和模型。 程序會探索和視覺化從 Azure 儲存體 Blob 中引進的資料，然後準備資料來建立預測模型。 已使用 Python 來編寫解決方案程式碼，並顯示相關的繪圖。 這些模型是使用 Spark MLlib 工具組來執行二進位分類和迴歸模型工作。 
+本逐步解說會使用 HDInsight Spark toodo 資料瀏覽及定型二元分類和迴歸模型使用交叉驗證和範例的 hello NYC hyperparameter 最佳化計程車路線再見 2013年資料集。 它將引導您完成 hello 步驟的 hello[資料科學程序](http://aka.ms/datascienceprocess)、 端對端，使用 HDInsight Spark 叢集以進行處理和 Azure blob toostore hello 資料和 hello 模型。 hello 程序探索和視覺化資料從 Azure 儲存體 Blob，並準備 hello 資料 toobuild 預測模型。 Python 已使用的 toocode hello 方案和 tooshow hello 相關繪圖。 這些模型是使用 hello Spark MLlib toolkit toodo 二元分類和迴歸模型工作的組建。 
 
-* **二進位分類** 工作可預測是否已支付某趟車程的小費。 
-* **迴歸** 工作可根據其他小費功能來預測小費金額。 
+* hello**二元分類**工作是 toopredict 不論是否在提示支付 hello 路線。 
+* hello**迴歸**工作是根據其他提示功能 hello 提示 toopredict hello 數量。 
 
-模型化步驟也包含程式碼來示範如何定型、評估和儲存每類模型。 這個主題涵蓋一些與[使用 Spark 資料探索和模型化](machine-learning-data-science-spark-data-exploration-modeling.md)主題相同的內容， 但更「進階」；這是指它也會使用交叉驗證搭配超參數掃掠，以最佳方式定型精確的分類和迴歸模型。 
+hello 模型步驟也包含程式碼示範如何 tootrain，評估並儲存每種模型類型。 hello 主題涵蓋一些 hello 相同地面為 hello[資料探索和模型使用 Spark](machine-learning-data-science-spark-data-exploration-modeling.md)主題。 但是，它一個 「 進階 」，它也與 hyperparameter 清除 tootrain 以最佳方式精確的分類和迴歸模型使用交叉驗證。 
 
-**交叉驗證 (CV)** 是一種技術，評估以一組已知資料定型的模型如何一般化，以預測在其上尚未定型的資料集的功能。  此處所使用的通用實作是將資料集分割成 K 摺疊，然後以循環配置資源方式定型所有摺疊，只留下其中一個摺疊。 評估測試未定型的此摺疊中獨立資料集時精確預測模型的能力。
+**交叉驗證 (CV)**是評估如何在一組已知的資料上定型模型一般化所在它尚未定型資料集 toopredicting hello 功能的技術。  這裡使用的一般實作是 toodivide 成 K 摺疊的資料集，並再 hello 中定型模型，只留下其中一個 hello 摺疊所有以循環配置資源方式。 評估 hello 模型 tooprediction 經過測試，在此模型中未使用的摺疊 tootrain hello hello 獨立的資料集時，精確地 hello 能力。
 
-**超參數最佳化** 是選擇用於學習演算法的超參數集的問題所在，通常具有最佳化獨立資料集上演算法效能的測量的目標。 **超參數** 是值，必須在模型定型程序之外指定。 這些值的假設可能會影響模型的彈性和精確度。 決策樹有超參數，例如，想要的深度和樹狀目錄中的分葉數目等。 支援向量機器 (SVM) 需要設定分類誤判損失詞彙。 
+**Hyperparameter 最佳化**hello 問題的選擇通常會有 hello 目標最佳化 hello 演算法的效能，在獨立的資料集上的量值的學習演算法的超集。 **超**hello 模型定型程序之外，必須指定的值。 假設這些值可能會影響 hello 彈性及 hello 模型的精確度。 決策樹有超參數，例如例如 hello 預期深度和 hello 樹狀目錄中的分葉數目。 支援向量機器 (SVM) 需要設定分類誤判損失詞彙。 
 
-此處所使用的執行超參數最佳化常見做法是格線搜尋，或 **參數掃掠**。 是透過值執行詳盡搜尋，而該值是學習演算法的超參數空間的指定子集。 交叉驗證可以提供效能度量，挑出格線搜尋演算法所產生的最佳結果。 CV 與超參數掃掠搭配使用，有助於限制問題，例如定型資料模型的過度配適，以便模型會保留容量以套用至從中擷取定型資料的一般集合。
+這裡使用的常見方式 tooperform hyperparameter 最佳化是方格搜尋，或**參數掃掠**。 這包含學習演算法執行徹底搜尋透過 hello 值指定的 hello hyperparameter 空間的子集。 交叉驗證可以提供的效能度量 toosort 出 hello 所 hello 方格搜尋演算法產生最佳的結果。 CV 搭配 hyperparameter 審慎有助於限制問題，例如使 hello 模型會保留 hello 容量 tooapply toohello 一般的資料集從哪些 hello 擷取定型資料，過度配適模型 tootraining 資料。
 
-我們使用的模型包括羅吉斯和線性迴歸、隨機樹系和漸層停駐推進式決策樹︰
+我們使用 hello 模型包括羅吉斯和線性迴歸、 隨機樹系和梯度促進式樹狀結構：
 
-* [使用 SGD 的線性迴歸](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD) 是一種使用隨機梯度下降 (SGD) 方法的線性迴歸模型，並使用最佳化和功能縮放比例來預測支付的小費金額。 
-* [使用 LBFGS 的羅吉斯迴歸](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.classification.LogisticRegressionWithLBFGS) 或「對數優劣比」迴歸是使用相依變數來執行資料分類時，可使用的迴歸模型。 LBFGS 是牛頓最佳化演算法，可使用有限的電腦記憶體量來逼近 Broyden–Fletcher–Goldfarb–Shanno (BFGS) 演算法，且廣泛用於機器學習中。
-* [隨機樹系](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests) 是整體的決策樹。  隨機樹系結合許多決策樹來降低風險過度膨脹。 隨機樹系適用於迴歸和分類，可處理分類功能，也可擴充至多類別分類設定。 隨機樹系不需要調整功能，而且能夠擷取非線性和功能互動。 隨機樹系是其中一個最成功的分類和迴歸的機器學習模型。
-* [漸層停駐推進式決策樹](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) 是整體的決策樹。 GBT 反覆地訓練決策樹以盡可能降低遺失函式。 GBT 適用於迴歸和分類，並可處理分類功能、不需要調整功能，而且能夠擷取非線性和功能互動。 它們也可用於多類別分類設定。
+* [線性迴歸與 SGD](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD)的線性迴歸模型，會使用隨機梯度下降 (SGD) 的方法和最佳化和功能的縮放比例 toopredict hello 提示數量付費。 
+* [羅吉斯迴歸與 LBFGS](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.classification.LogisticRegressionWithLBFGS)或 「 logit"迴歸是一種迴歸模型，hello 相依變數是類別 toodo 資料分類時才能使用。 LBFGS 是記憶體的 odd Newton 最佳化演算法的近似於使用電腦數量有限的 hello Broyden – Fletcher – Goldfarb – Shanno (BFGS) 演算法和可廣泛用於機器學習。
+* [隨機樹系](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests) 是整體的決策樹。  結合許多決策樹 tooreduce hello 的風險過度配適。 隨機樹系用於迴歸和分類和可以處理類別的功能，可以擴充 toohello 多級分類設定。 它們不需要功能縮放比例和都能 toocapture 非線性和功能互動。 隨機樹系是其中一種 hello 可以最順利機器學習的分類和迴歸模型。
+* [漸層停駐推進式決策樹](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) 是整體的決策樹。 GBTs 定型決策樹反覆 toominimize 損失函數。 GBTs 用於迴歸和分類和可以處理類別的功能，不需要調整功能，而是可以 toocapture 非線性互動的功能。 它們也可用於多類別分類設定。
 
-使用 CV 和超參數掃掠的模型化範例會針對二進位分類問題顯示。 更簡單的範例 (不含參數掃掠) 會出現在迴歸工作的主要主題中。 但是在附錄中，另外也會提到針對線性迴歸使用彈性 net 的驗證，和針對隨機樹系迴歸使用 CV 和參數掃掠的驗證。 **彈性 net** 是正規化迴歸方法，以符合線性迴歸模型，線性結合 L1 和 L2 度量做為 [lasso](https://en.wikipedia.org/wiki/Lasso%20%28statistics%29) 和 [ridge](https://en.wikipedia.org/wiki/Tikhonov_regularization) 方法的處罰。   
+模型使用 CV 和 Hyperparameter 範例會顯示 hello 二元分類問題掃掠。 （不含參數掃掠） 的簡單範例會顯示 hello 主要主題中的迴歸工作。 但也顯示 hello 附錄中使用參數掃掠隨機樹系迴歸，線性迴歸和 CV 使用彈性的網路驗證。 hello**彈性 net**是正則化的迴歸方法的調整線性迴歸模型，以線性方式結合 hello L1 與 L2 度量處罰下 hello[套索](https://en.wikipedia.org/wiki/Lasso%20%28statistics%29)和[立體浮凸](https://en.wikipedia.org/wiki/Tikhonov_regularization)方法。   
 
 > [!NOTE]
-> 雖然 Spark MLlib 工具組設計成可處理大型資料集，在這裡為了簡便我們使用極小的範例 (使用 170 個資料列，原始的 NYC 資料集約 0.1%，~30 Mb)。 此處提供的練習有效地在含有 2 個背景工作節點的 HDInsight 叢集上執行 (大約 10 分鐘)。 相同的程式碼中 (稍加修改) 可以用來處理大型資料集，適當修改的程式碼則可快取記憶體的資料以及變更叢集大小。
+> 雖然 hello Spark MLlib toolkit 設計的 toowork 大型資料集，是此處為了方便起見使用相對較小的範例 (使用 170 K 資料列，約 0.1%的 hello 原始 NYC 資料集 ~ 30 Mb)。 在 HDInsight 叢集上具有 2 個背景工作節點，有效率地 （在約 10 分鐘） 執行此處指定的 hello 練習。 hello 相同程式碼，稍加修改，可以使用的 tooprocess 較大資料集，以適當的修改快取記憶體中的資料和變更 hello 叢集大小。
 > 
 > 
 
 ## <a name="setup-spark-clusters-and-notebooks"></a>設定：Spark 叢集和 Notebook
-此逐步解說所提供的設定步驟和程式碼適用於使用 HDInsight Spark 1.6。 不過 Jupyter Notebook 可供 HDInsight Spark 1.6 版和 Spark 2.0 叢集兩者使用。 Notebook 的描述及它們的連結已在包含它們的 GitHub 儲存機制的 [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) 中提供。 此外，此處及連結的 Notebook 內的程式碼皆屬泛型程式碼，而且應該能在任何 Spark 叢集上運作。 若您不是使用 HDInsight Spark，叢集設定和管理步驟可能與這裡顯示的稍有不同。 為了方便起見，以下是可讓 Spark 1.6 版和 2.0 版在 Jupyter Notebook 伺服器的 pyspark 核心中執行的 Jupyter Notebook 連結：
+此逐步解說所提供的設定步驟和程式碼適用於使用 HDInsight Spark 1.6。 不過 Jupyter Notebook 可供 HDInsight Spark 1.6 版和 Spark 2.0 叢集兩者使用。 Hello 中提供的 hello 筆記本與連結 toothem 描述[Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) hello GitHub 儲存機制包含它們。 此外，hello 程式碼及連結的 hello 筆記本為泛型，應該在任何 Spark 叢集上運作。 如果您未使用 HDInsight Spark，hello 叢集中設定和管理步驟可能稍有不同於這裡所顯示。 為了方便起見，以下是 hello 的 hello 連結 toohello Jupyter 筆記本 Spark 1.6 版和 2.0 toobe Jupyter 筆記本伺服器 hello pyspark 核心中執行：
 
 ### <a name="spark-16-notebooks"></a>Spark 1.6 Notebook
 
@@ -59,26 +59,26 @@ ms.lasthandoff: 07/11/2017
 
 ### <a name="spark-20-notebooks"></a>Spark 2.0 Notebook
 
-[Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb)：此檔案提供如何在 Spark 2.0 叢集中執行資料瀏覽、模型化和評分的相關資訊。
+[Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb)： 這個檔案提供如何 tooperform 資料瀏覽、 建立模型及計分 Spark 2.0 叢集資訊。
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-## <a name="setup-storage-locations-libraries-and-the-preset-spark-context"></a>安裝程式︰儲存體位置、程式庫和預設 Spark 內容
-Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。 如此可使用 Spark 處理該處儲存的任何現有資料，並在 WASB 中再次儲存結果。
+## <a name="setup-storage-locations-libraries-and-hello-preset-spark-context"></a>安裝程式： 儲存位置、 程式庫，與 hello 預設 Spark 內容
+Spark 是無法 tooread 」 和 「 寫入 tooAzure (也稱為 WASB) 的儲存體 Blob。 因此，任何現有的資料儲存於該處可處理使用的 Spark，hello 結果儲存一次在 WASB。
 
-若要在 WASB 中儲存模型或檔案，必須正確指定路徑。 可以使用以「wasb:///」開頭的路徑，參考連接到 Spark 叢集的預設容器。 其他位置由「wasb://」參考。
+hello 路徑需要正確地指定 toobe toosave 模型或 WASB 中的檔案。 hello 預設容器附加 toohello Spark 叢集，可以使用來參考以開頭的路徑:"wasb: / /"。 其他位置由「wasb://」參考。
 
 ### <a name="set-directory-paths-for-storage-locations-in-wasb"></a>在 WASB 中設定儲存位置的目錄路徑
-下列程式碼範例會指定要讀取資料的位置，和將儲存模型輸出的模型儲存體目錄的路徑：
+hello 下列程式碼範例指定 hello 位置 hello 資料 toobe 讀取，並儲存 hello hello 模型儲存體目錄 toowhich hello 模型輸出路徑：
 
-    # SET PATHS TO FILE LOCATIONS: DATA AND MODEL STORAGE
+    # SET PATHS tooFILE LOCATIONS: DATA AND MODEL STORAGE
 
     # LOCATION OF TRAINING DATA
     taxi_train_file_loc = "wasb://mllibwalkthroughs@cdspsparksamples.blob.core.windows.net/Data/NYCTaxi/JoinedTaxiTripFare.Point1Pct.Train.tsv";
 
 
-    # SET THE MODEL STORAGE DIRECTORY PATH 
-    # NOTE THAT THE FINAL BACKSLASH IN THE PATH IS NEEDED.
+    # SET hello MODEL STORAGE DIRECTORY PATH 
+    # NOTE THAT hello FINAL BACKSLASH IN hello PATH IS NEEDED.
     modelDir = "wasb:///user/remoteuser/NYCTaxi/Models/";
 
     # PRINT START TIME
@@ -90,7 +90,7 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。 如此可�
 datetime.datetime(2016, 4, 18, 17, 36, 27, 832799)
 
 ### <a name="import-libraries"></a>匯入程式庫
-使用下列程式碼匯入必要的程式庫：
+匯入必要的程式庫，以下列程式碼的 hello:
 
     # LOAD PYSPARK LIBRARIES
     import pyspark
@@ -109,28 +109,28 @@ datetime.datetime(2016, 4, 18, 17, 36, 27, 832799)
 
 
 ### <a name="preset-spark-context-and-pyspark-magics"></a>預設 Spark 內容及 PySpark magic
-Jupyter Notebook 所提供的 PySpark 核心有預設的內容。 因此您不必明確設定 Spark 或 Hive 內容，就能開始使用您所開發的應用程式。 依預設會將這些內容提供給您使用。 這些內容包括：
+所提供的 Jupyter 筆記本 hello PySpark 核心有預設的內容。 因此您不需要 tooset hello Spark 或登錄區內容明確之前您開始使用您所開發的 hello 應用程式。 依預設會將這些內容提供給您使用。 這些內容包括：
 
 * sc - 代表 Spark 
 * sqlContext - 代表 Hive
 
-PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 呼叫的特殊命令。 在這些程式碼範例中，就使用了兩個此類型的命令。
+hello PySpark 核心提供一些預先定義 「 我們"，這是特殊的命令，您可以呼叫具有 %%。 在這些程式碼範例中，就使用了兩個此類型的命令。
 
-* **%%local** 指定後續行所列的程式碼要在本機執行。 程式碼必須是有效的 Python 程式碼。
-* **%%sql -o <variable name>** 會針對 sqlContext 執行 Hive 查詢。 如果傳遞 -o 參數，則查詢的結果會當做 Pandas 資料框架，保存在 %%local Python 內容中。
+* **%%本機**指定 hello 下來幾行中的程式碼是 toobe 以本機方式執行。 程式碼必須是有效的 Python 程式碼。
+* **%%sql o <variable name>** 執行針對 hello sqlContext Hive 查詢。 如果傳遞 hello-o 參數，則 hello hello 查詢結果會持續保留在 hello %%熊資料框架的本機 Python 環境。
 
-如需關於 Jupyter Notebook 核心，以及其所提供的預先定義 "magics" 的詳細資訊，請參閱 [HDInsight 上的 HDInsight Spark Linux 叢集可供 Jupyter Notebook 使用的核心](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md)。
+針對 Jupyter 筆記本和預先定義的 hello hello 核心上的詳細資訊 」 magics 」，它們提供，請參閱[HDInsight 上的叢集與 HDInsight Spark Linux Jupyter 筆記本的可用的核心](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md)。
 
 ## <a name="data-ingestion-from-public-blob"></a>來自公用 Blob 的資料擷取：
-資料科學程序的第一個步驟，是將要分析的資料從其來源位置內嵌到您的資料探索和模型化環境。 這種環境在本逐步解說中是 Spark。 本節包含程式碼來完成一系列的工作︰
+hello hello 資料科學程序的第一個步驟是 tooingest hello 資料 toobe 分析從來源到您的資料探索和模型環境的所在位置。 這種環境在本逐步解說中是 Spark。 本節包含 hello 程式碼 toocomplete 一系列的工作：
 
-* 擷取要模型化的資料範例
-* 在輸入資料集中讀取 (儲存為 .tsv 檔案)
-* 格式化和清除資料
+* 內嵌 hello 資料範例 toobe 模型化
+* 讀取輸入資料集中 hello （儲存為.tsv 檔案）
+* 格式和全新 hello 資料
 * 建立並快取記憶體中的物件 (RDD 或資料框架)
 * 將它註冊為 SQL 內容中的暫存資料表。
 
-以下是資料擷取的程式碼。
+擷取資料的 hello 程式碼如下。
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -138,7 +138,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     # IMPORT FILE FROM PUBLIC BLOB
     taxi_train_file = sc.textFile(taxi_train_file_loc)
 
-    # GET SCHEMA OF THE FILE FROM HEADER
+    # GET SCHEMA OF hello FILE FROM HEADER
     schema_string = taxi_train_file.first()
     fields = [StructField(field_name, StringType(), True) for field_name in schema_string.split('\t')]
     fields[7].dataType = IntegerType() #Pickup hour
@@ -175,33 +175,33 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
         .drop('direct_distance').drop('surcharge')\
         .filter("passenger_count > 0 and passenger_count < 8 AND payment_type in ('CSH', 'CRD') AND tip_amount >= 0 AND tip_amount < 30 AND fare_amount >= 1 AND fare_amount < 150 AND trip_distance > 0 AND trip_distance < 100 AND trip_time_in_secs > 30 AND trip_time_in_secs < 7200" )
 
-    # CACHE & MATERIALIZE DATA-FRAME IN MEMORY. GOING THROUGH AND COUNTING NUMBER OF ROWS MATERIALIZES THE DATA-FRAME IN MEMORY
+    # CACHE & MATERIALIZE DATA-FRAME IN MEMORY. GOING THROUGH AND COUNTING NUMBER OF ROWS MATERIALIZES hello DATA-FRAME IN MEMORY
     taxi_df_train_cleaned.cache()
     taxi_df_train_cleaned.count()
 
     # REGISTER DATA-FRAME AS A TEMP-TABLE IN SQL-CONTEXT
     taxi_df_train_cleaned.registerTempTable("taxi_train")
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **輸出**
 
-執行上述儲存格所花費的時間︰276.62 秒
+時間 tooexecute 儲存格上方： 276.62 秒
 
 ## <a name="data-exploration--visualization"></a>資料探索和虛擬化
-一旦將資料引進 Spark，資料科學程序的下一個步驟是透過探索和虛擬化以更深入瞭解資料。 在本節中，我們會使用 SQL 查詢檢查計程車資料，並繪製目標變數和潛在功能以進行視覺檢查。 具體來說，我們會繪製計程車車程中的乘客計數頻率、小費金額的頻率，及小費如何隨付款金額和類型而異。
+一旦 hello 資料已放入 Spark，hello hello 資料科學程序中的下一個步驟是 toogain hello 資料探索和視覺效果的更深入了解。 在本節中，我們會檢查 hello 計程車資料使用 SQL 查詢和繪圖 hello 目標變數與潛在功能視覺化進行檢查。 具體來說，我們會繪製旅客計數計程車往返、 hello 頻率的提示數量和如何提示因付款金額和型別中的 hello 頻率。
 
-### <a name="plot-a-histogram-of-passenger-count-frequencies-in-the-sample-of-taxi-trips"></a>在計程車車程範例中繪製乘客計數頻率的長條圖
-此程式碼與後續程式碼片段使用了 SQL magic 來查詢範例及本機 magic 以繪製資料。
+### <a name="plot-a-histogram-of-passenger-count-frequencies-in-hello-sample-of-taxi-trips"></a>繪製旅客計數頻率的計程車行程 hello 範例中的長條圖
+這個程式碼和後續的程式碼片段，請使用 SQL magic tooquery hello 範例資料和本機 magic tooplot hello 資料。
 
-* **SQL magic (`%%sql`)** HDInsight PySpark 核心支援針對 sqlContext 進行簡單的內嵌 HiveQL 查詢。 「-o VARIABLE_NAME」引數會將 SQL 查詢的輸出，保存為 Jupyter 伺服器上的 Pandas 資料框架。 這代表會在本機模式中使用此引數。
-* **`%%local` magic** 是用來在 Jupyter 伺服器本機 (HDInsight 叢集的前端節點) 上執行程式碼。 一般來說，您使用 `%%sql -o` magic 之後使用 `%%local` magic 來執行查詢。 -o 參數會將 SQL 查詢的輸出保存在本機。 接著 `%%local` magic 會針對保存在本機之 SQL 查詢的輸出，觸發下一組程式碼片段在本機執行。 執行完程式碼後，輸出將會自動以視覺化方式呈現。
+* **SQL magic (`%%sql`)** hello HDInsight PySpark 核心支援 hello sqlContext 輕鬆內嵌 HiveQL 查詢。 hello (-o VARIABLE_NAME) 引數會保存 hello 的 hello SQL 查詢的輸出為熊資料框架 hello Jupyter 伺服器上。 這表示在 hello 本機模式中使用。
+* hello  **`%%local` magic**是 hello Jupyter 伺服器，也就是 hello 的 hello HDInsight 叢集的前端節點上在本機使用 toorun 程式碼。 通常，您會使用`%%local`magic 之後 hello `%%sql -o` magic 是使用的 toorun 查詢。 hello-o 參數會保存在本機 hello SQL 查詢的 hello 輸出。 然後 hello `%%local` magic 觸發程序 hello 下一組程式碼片段 toorun 在本機憑藉已在本機保存的 hello 輸出的 hello SQL 查詢。 執行 hello 程式碼之後，會自動視覺化 hello 輸出。
 
-此查詢會擷取按乘客計數排列的車程。 
+此查詢會擷取 hello 往返依旅客計數。 
 
     # PLOT FREQUENCY OF PASSENGER COUNTS IN TAXI TRIPS
 
@@ -210,23 +210,23 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     SELECT passenger_count, COUNT(*) as trip_counts FROM taxi_train WHERE passenger_count > 0 and passenger_count < 7 GROUP BY passenger_count
 
 
-此程式碼從查詢輸出中建立了本機資料框架，以及繪製資料。 `%%local` magic 建立了本機資料框架「`sqlResults`」，可用於搭配 Matplotlib 進行繪製。 
+此程式碼建立 hello 查詢輸出的本機資料框架，並繪製 hello 資料。 hello `%%local` magic 建立本機資料框架， `sqlResults`，可以用來與 matplotlib 繪製。 
 
 > [!NOTE]
-> 在本逐步解說中，會多次使用此 PySpark magic。 如果資料總量很大，您應該取樣以建立可容納於本機記憶體的資料框架。
+> 在本逐步解說中，會多次使用此 PySpark magic。 如果 hello 資料量很大，您應該取樣 toocreate 本機記憶體內可容納資料框架。
 > 
 > 
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER
     %%local
 
-    # USE THE JUPYTER AUTO-PLOTTING FEATURE TO CREATE INTERACTIVE FIGURES. 
-    # CLICK ON THE TYPE OF PLOT TO BE GENERATED (E.G. LINE, AREA, BAR ETC.)
+    # USE hello JUPYTER AUTO-PLOTTING FEATURE tooCREATE INTERACTIVE FIGURES. 
+    # CLICK ON hello TYPE OF PLOT tooBE GENERATED (E.G. LINE, AREA, BAR ETC.)
     sqlResults
 
-以下是繪製按乘客計數排列車程的程式碼
+以下是 hello 程式碼 tooplot hello 往返旅客計數
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES
     %%local
     import matplotlib.pyplot as plt
     %matplotlib inline
@@ -244,10 +244,10 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 ![按乘客計數排列的車程頻率](./media/machine-learning-data-science-spark-advanced-data-exploration-modeling/frequency-of-trips-by-passenger-count.png)
 
-在 Notebook 內使用 [類型]  功能表按鈕，您可以選擇幾種不同類型的視覺效果 (資料表、圓形圖、折線圖、區域圖或橫條圖)。 橫條圖繪製結果會在此顯示。
+您可以在多種不同類型的視覺效果 （資料表、 圓形圖、 線條、 區域或列） 之間使用選取 hello**類型**hello 筆記本中的功能表按鈕。 以下顯示 hello 橫條圖。
 
 ### <a name="plot-a-histogram-of-tip-amounts-and-how-tip-amount-varies-by-passenger-count-and-fare-amounts"></a>繪製小費金額，和小費金額如何隨乘客計數和費用金額變化的長條圖。
-使用 SQL 查詢來取樣資料。
+使用 SQL 查詢 toosample 資料...
 
     # SQL SQUERY
     %%sql -q -o sqlResults
@@ -262,9 +262,9 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
         AND tip_amount < 25
 
 
-此程式碼儲存格使用 SQL 查詢來建立三種圖的資料。
+此資料格，程式碼會使用 hello SQL 查詢 toocreate 三種繪圖 hello 資料。
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES
     %%local
     %matplotlib inline
 
@@ -302,17 +302,17 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 ![按費用金額排列的小費金額](./media/machine-learning-data-science-spark-advanced-data-exploration-modeling/tip-amount-by-fare-amount.png)
 
 ## <a name="feature-engineering-transformation-and-data-preparation-for-modeling"></a>模型化的功能工程、轉換和資料準備
-本節描述並提供程序的程式碼，可用來準備資料以供 ML 模型化使用。 它示範如何執行下列工作：
+本章節描述，並提供用於 ML 模型使用 tooprepare 資料的程序的 hello 程式碼。 它會顯示影響 toodo hello 下列工作：
 
 * 將小時分割到流量時間分類區以建立新功能
 * 索引和 on-hot 編碼分類功能
 * 建立輸入到 ML 函式的標示點物件
-* 建立資料的隨機子取樣，並將它分割成訓練和測試集
+* 建立 hello 資料的隨機子取樣和分割成定型集和測試集
 * 調整功能
 * 快取記憶體中的物件
 
 ### <a name="create-a-new-feature-by-partitioning-traffic-times-into-bins"></a>將流量時間分割到分類區以建立新功能
-此程式碼示範如何將流量時間分割到分類區以建立新功能，以及如何從記憶體快取產生的資料框架。 在重複使用彈性分散式資料集 (RDD) 和資料框架的位置，快取可改善執行時間。 因此，我們會在逐步解說中的幾個階段快取 RDD 和資料框架。
+此程式碼顯示如何 toocreate 的新功能，藉由分割流量時間分組然後 toocache hello 產生資料框架，在記憶體中的方式。 快取，會導致 tooimproved 執行時間，彈性分散式資料集 (RDDs) 和資料框架會重複使用。 因此，我們會在逐步解說中的幾個階段快取 RDD 和資料框架。
 
     # CREATE FOUR BUCKETS FOR TRAFFIC TIMES
     sqlStatement = """
@@ -328,8 +328,8 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     taxi_df_train_with_newFeatures = sqlContext.sql(sqlStatement)
 
     # CACHE DATA-FRAME IN MEMORY & MATERIALIZE DF IN MEMORY
-    # THE .COUNT() GOES THROUGH THE ENTIRE DATA-FRAME,
-    # MATERIALIZES IT IN MEMORY, AND GIVES THE COUNT OF ROWS.
+    # hello .COUNT() GOES THROUGH hello ENTIRE DATA-FRAME,
+    # MATERIALIZES IT IN MEMORY, AND GIVES hello COUNT OF ROWS.
     taxi_df_train_with_newFeatures.cache()
     taxi_df_train_with_newFeatures.count()
 
@@ -338,11 +338,11 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 126050
 
 ### <a name="index-and-one-hot-encode-categorical-features"></a>索引和 one-hot 編碼分類功能
-本節說明如何索引並編碼分類功能，以輸入模型化函式中。 MLlib 的模型化和預測函式需要先執行功能來分類要索引或編碼的分類輸入資料，才能使用這些資料。 
+此區段會顯示如何 tooindex 或編碼的輸入 hello 模型函式的類別特徵。 hello 模型和預測的 MLlib 函式需要與類別的輸入資料的功能會編製索引，或編碼先前 toouse。 
 
-根據模型，您需要以不同方式索引或編碼它們。 例如，羅吉斯和線性迴歸模型需要一個有效編碼方式，例如，含 3 個類別的一個功能可擴充至 3 個功能資料行，根據觀察的類別，每個資料行包含 0 或 1。 MLlib 提供 [OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) 函式以執行 one-hot 編碼。 此編碼器會將標籤索引資料行對應到二進位向量資料行 (最多有一個單一值)。 這種編碼方式允許將預期數值功能的演算法 (例如羅吉斯迴歸) 套用至分類功能。
+視 hello 模型而定，您需要 tooindex 或將它們以不同方式編碼。 例如，羅吉斯和線性迴歸模型需要一個熱門的編碼，其中，具有三個類別的功能，例如才可擴充到三個特徵資料行，與每個包含 0 或 1，視所觀察 hello 分類。 提供 MLlib [OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder)函式 toodo 一個熱編碼方式。 此編碼器將對應的二進位的向量，使用最多為單一其中一個值的標籤索引 tooa 資料行的資料行。 這種編碼方式可讓演算法所預期的數字的重要的功能，例如羅吉斯迴歸，套用 toobe toocategorical 功能。
 
-以下是要索引及編碼分類功能的程式碼︰
+以下是 hello tooindex 程式碼，並將編碼類別特徵：
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -352,7 +352,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
     # INDEX AND ENCODE VENDOR_ID
     stringIndexer = StringIndexer(inputCol="vendor_id", outputCol="vendorIndex")
-    model = stringIndexer.fit(taxi_df_train_with_newFeatures) # Input data-frame is the cleaned one from above
+    model = stringIndexer.fit(taxi_df_train_with_newFeatures) # Input data-frame is hello cleaned one from above
     indexed = model.transform(taxi_df_train_with_newFeatures)
     encoder = OneHotEncoder(dropLast=False, inputCol="vendorIndex", outputCol="vendorVec")
     encoded1 = encoder.transform(indexed)
@@ -381,17 +381,17 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **輸出**
 
-執行上述儲存格所花費的時間︰3.14 秒
+時間 tooexecute 儲存格上方： 3.14 秒
 
 ### <a name="create-labeled-point-objects-for-input-into-ml-functions"></a>建立輸入到 ML 函式的標示點物件
-本節包含的程式碼示範如何將分類的文字資料索引做為標示點資料類型以及如何編碼。 這可準備它用來訓練及測試 MLlib 羅吉斯迴歸和其他分類模型。 標示點物件是彈性分散式資料集 (RDD)，其格式化成適合 MLlib 中大部分的 ML 演算法的輸入資料。 [標示點](https://spark.apache.org/docs/latest/mllib-data-types.html#labeled-point) 是本機向量 (密集或疏鬆)，與標籤/回應相關聯。
+此章節包含程式碼，說明如何為標記的點資料 tooindex 類別的文字資料類型以及如何 tooencode 它。 這準備好使用 toobe tootrain 和測試 MLlib 羅吉斯迴歸和其他分類模型。 標示點物件是彈性分散式資料集 (RDD)，其格式化成適合 MLlib 中大部分的 ML 演算法的輸入資料。 [標示點](https://spark.apache.org/docs/latest/mllib-data-types.html#labeled-point) 是本機向量 (密集或疏鬆)，與標籤/回應相關聯。
 
-以下是要為二進位分類進行索引及編碼文字功能的程式碼。
+以下是 hello tooindex 程式碼，並將編碼的二元分類的文字功能。
 
     # FUNCTIONS FOR BINARY CLASSIFICATION
 
@@ -415,7 +415,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
         return  labPt
 
 
-以下是要為線性迴歸分析進行編碼及建立類別文字功能的程式碼。
+以下是 hello 程式碼的線性迴歸分析的 tooencode 和索引類別文字功能。
 
     # FUNCTIONS FOR REGRESSION WITH TIP AMOUNT AS TARGET VARIABLE
 
@@ -437,8 +437,8 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
         return  labPt
 
 
-### <a name="create-a-random-sub-sampling-of-the-data-and-split-it-into-training-and-testing-sets"></a>建立資料的隨機子取樣，並將它分割成訓練和測試集
-此程式碼會建立隨機取樣資料 (這裡使用 25%)。 雖然您不需要這個範例 (因為資料集的大小)，我們將在這裡示範如何取樣， 這樣您就了解如何在需要時使用它來自行解決問題。 當樣本非常大時，這樣可在訓練模型時節省大量時間。 接下來我們將範例分割成訓練部分 (這裡為 75%) 和測試部分 (這裡為 25%)，以便在分類和迴歸模型化中使用。
+### <a name="create-a-random-sub-sampling-of-hello-data-and-split-it-into-training-and-testing-sets"></a>建立 hello 資料的隨機子取樣和分割成定型集和測試集
+此程式碼會建立隨機取樣的 hello 資料 （在這裡使用 25%）。 雖然您不需要這個到期 toohello 大小的 hello 資料集的範例，我們將示範如何您也可以取樣 hello 資料。 您就知道如何 toouse 它視您的問題。 在大型範例中，如此可在訓練模型時節省大量時間。 接下來我們將 hello 範例分割成定型一部分 （這裡 75%) 和測試的一部分 （這裡 25%) toouse 分類和迴歸模型中。
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -475,21 +475,21 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **輸出**
 
-執行上述儲存格所花費的時間︰0.31 秒
+時間 tooexecute 儲存格上方： 0.31 秒
 
 ### <a name="feature-scaling"></a>調整功能
-調整功能，也稱為資料正規化，以確保具廣泛分散值的功能在目標函式中沒有過多權重。 用於調整功能的程式碼會使用 [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) ，將功能調整至單位變異數。 這是由 MLlib 提供，用於使用隨機梯度下降 (SGD) 的線性迴歸。 SGD 為訓練廣泛的其他機器學習模型的常用演算法，例如正則化迴歸或支援向量機器 (SVM)。   
+調整功能，也稱為資料正規化，以確保，功能與廣泛分散的值未授與過多權衡 hello 目標函式。 hello 功能縮放比例的程式碼會使用 hello [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) tooscale hello 功能 toounit 變異數。 這是由 MLlib 提供，用於使用隨機梯度下降 (SGD) 的線性迴歸。 SGD 為訓練廣泛的其他機器學習模型的常用演算法，例如正則化迴歸或支援向量機器 (SVM)。   
 
 > [!TIP]
-> 我們找到了適用於調整功能的 LinearRegressionWithSGD 演算法。   
+> 我們發現 hello LinearRegressionWithSGD 演算法 toobe 機密 toofeature 縮放比例。   
 > 
 > 
 
-以下是要用於正規化線性 SGD 演算法的比例調整變數的程式碼。
+以下是用於正則化的 hello 線性 SGD 演算法 hello 程式碼 tooscale 變數。
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -516,14 +516,14 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **輸出**
 
-執行上述儲存格所花費的時間︰11.67 秒
+時間 tooexecute 儲存格上方： 11.67 秒
 
 ### <a name="cache-objects-in-memory"></a>快取記憶體中的物件
-快取用於分類、迴歸和縮放功能的輸入資料框架物件，可降低訓練和測試 ML 演算法所花費的時間。
+caching hello 輸入的資料框架物件會用於迴歸、 分類，以及縮放功能，可以降低 hello 時間進行定型和測試的 ML 演算法。
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -547,14 +547,14 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **輸出** 
 
-執行上述儲存格所花費的時間︰0.13 秒
+時間 tooexecute 儲存格上方： 0.13 秒
 
 ## <a name="predict-whether-or-not-a-tip-is-paid-with-binary-classification-models"></a>使用二進位分類模型來預測是否支付小費
-本節說明如何為二進位分類工作使用三個模型，預測是否支付計程車車程的小費。 顯示模型如下︰
+本節說明如何使用三個模型的預測的 hello 二元分類工作在提示支付計程車路線。 呈現的 hello 模型如下：
 
 * 羅吉斯迴歸 
 * 隨機樹系
@@ -566,24 +566,24 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 2. **模型評估** 
 3. **儲存模型** 
 
-我們會示範如何以兩種方式使用參數掃掠執行交叉驗證 (CV)︰
+我們會示範如何 toodo 交叉驗證 (CV) 與參數掃掠兩種方式：
 
-1. 使用 **泛型** 自訂程式碼，可以套用至 MLlib 中的任何演算法，以及套用至演算法中的任何參數集。 
-2. 使用 **pySpark CrossValidator 管線函式**。 請注意，CrossValidator 對 Spark 1.5.0 有幾項限制︰ 
+1. 使用**泛型**自訂程式碼可以套用的 tooany 演算法 MLlib 和 tooany 參數中設定的演算法中。 
+2. 使用 hello **pySpark CrossValidator 管線函式**。 請注意，CrossValidator 對 Spark 1.5.0 有幾項限制︰ 
    
    * 管線模型無法儲存/保存供未來取用。
    * 無法用於模型中的每個參數。
    * 無法用於每個 MLlib 演算法。
 
-### <a name="generic-cross-validation-and-hyperparameter-sweeping-used-with-the-logistic-regression-algorithm-for-binary-classification"></a>針對二進位分類搭配使用一般交叉驗證和超參數掃掠與羅吉斯迴歸演算法
-本節的程式碼顯示如何定型、評估及使用 [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) 來儲存羅吉斯迴歸模型，可預測是否針對 NYC 計程車車程和費用資料集的某趟車程支付小費。 模型是使用交叉驗證 (CV) 和超參數掃掠定型，這兩種方法是使用自訂程式碼實作，可以套用至 MLlib 中的任何學習演算法。   
+### <a name="generic-cross-validation-and-hyperparameter-sweeping-used-with-hello-logistic-regression-algorithm-for-binary-classification"></a>交叉驗證和 hyperparameter 掃掠搭配 hello 羅吉斯迴歸演算法使用二元分類的泛型
+本節中的 hello 程式碼顯示如何 tootrain，評估及儲存與羅吉斯迴歸模型[LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm)的預測是否付費的行程 hello NYC 計程車行程及價位資料集中的提示。 hello 模型已定型使用交叉驗證 (CV) 和實作自訂程式碼可以套用的學習演算法中 MLlib hello tooany hyperparameter 掃掠。   
 
 > [!NOTE]
-> 執行此自訂 CV 程式碼可能需要數分鐘的時間。
+> hello 執行此自訂的 CV 程式碼可能需要幾分鐘的時間。
 > 
 > 
 
-**使用 CV 及超參數掃掠來定型羅吉斯迴歸模型**
+**使用 CV 和 hyperparameter 掃掠 hello 羅吉斯迴歸模型定型**
 
     # LOGISTIC REGRESSION CLASSIFICATION WITH CV AND HYPERPARAMETER SWEEPING
 
@@ -602,7 +602,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     paramGrid = list(ParameterGrid(grid))
     numModels = len(paramGrid)
 
-    # SET NUM FOLDS AND NUM PARAMETER SETS TO SWEEP ON
+    # SET NUM FOLDS AND NUM PARAMETER SETS tooSWEEP ON
     nFolds = 3;
     h = 1.0 / nFolds;
     metricSum = np.zeros(numModels);
@@ -652,16 +652,16 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
                                                   intercept=True)
 
 
-    # PRINT COEFFICIENTS AND INTERCEPT OF THE MODEL
-    # NOTE: There are 20 coefficient terms for the 10 features, 
-    #       and the different categories for features: vendorVec (2), rateVec, paymentVec (6), TrafficTimeBinsVec (4)
+    # PRINT COEFFICIENTS AND INTERCEPT OF hello MODEL
+    # NOTE: There are 20 coefficient terms for hello 10 features, 
+    #       and hello different categories for features: vendorVec (2), rateVec, paymentVec (6), TrafficTimeBinsVec (4)
     print("Coefficients: " + str(logitBest.weights))
     print("Intercept: " + str(logitBest.intercept))
 
     # PRINT ELAPSED TIME    
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **輸出**
@@ -670,11 +670,11 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 截距：-0.0111216486893
 
-執行上述儲存格所花費的時間︰14.43 秒
+時間 tooexecute 儲存格上方： 14.43 秒
 
-**使用標準度量評估二進位分類模型**
+**評估具有標準度量的 hello 二元分類模型**
 
-本章節中的程式碼示範如何針對測試資料集評估羅吉斯迴歸模型，包括 ROC 曲線的繪製。
+本節中的 hello 程式碼會示範如何 tooevaluate 羅吉斯迴歸模型針對測試資料集，包括 hello ROC 曲線的繪圖。
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -714,7 +714,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     # PRINT ELAPSED TIME    
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **輸出**
@@ -731,22 +731,22 @@ ROC 下的領域 = 0.983383274312
 
 F1 分數 = 0.984174341679
 
-執行上述儲存格所花費的時間︰2.67 秒
+時間 tooexecute 儲存格上方： 2.67 秒
 
-**繪製 ROC 曲線。**
+**繪製 hello ROC 曲線。**
 
-predictionAndLabelsDF 已在先前的儲存格中已註冊為 tmp_results 資料表。 tmp_results 可用來執行查詢，並將結果輸出至 sqlResults 資料框架供繪製之用。 程式碼如下。
+hello *predictionAndLabelsDF*註冊為資料表， *tmp_results*，在 hello 上一個儲存格。 *tmp_results*可以使用的 toodo 查詢和 hello sqlResults 資料框架來繪製至輸出結果。 Hello 程式碼如下。
 
     # QUERY RESULTS                              
     %%sql -q -o sqlResults
     SELECT * from tmp_results
 
 
-以下是建立預測和繪製 ROC 曲線的程式碼。
+以下是 hello 程式碼 toomake 預測及繪圖 hello ROC 曲線。
 
     # MAKE PREDICTIONS AND PLOT ROC-CURVE
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES                              
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES                              
     %%local
     %matplotlib inline
     from sklearn.metrics import roc_curve,auc
@@ -776,7 +776,7 @@ predictionAndLabelsDF 已在先前的儲存格中已註冊為 tmp_results 資料
 
 **blob 中供未來取用的保留模型**
 
-本章節中的程式碼示範如何儲存羅吉斯迴歸模型以供取用。
+本節中的 hello 程式碼會示範如何 toosave hello 羅吉斯迴歸模型的耗用量。
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -794,18 +794,18 @@ predictionAndLabelsDF 已在先前的儲存格中已註冊為 tmp_results 資料
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds";
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds";
 
 
 **輸出**
 
-執行上述儲存格所花費的時間︰34.57 秒
+時間 tooexecute 儲存格上方： 34.57 秒
 
 ### <a name="use-mllibs-crossvalidator-pipeline-function-with-logistic-regression-elastic-regression-model"></a>搭配使用 MLlib 的 CrossValidator 管線函式與 LogisticRegression (彈性迴歸) 模型
-本節的程式碼顯示如何定型、評估及使用 [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) 來儲存羅吉斯迴歸模型，可預測是否針對 NYC 計程車車程和費用資料集的某趟車程支付小費。 模型是使用交叉驗證 (CV) 和超參數掃掠定型，這兩種方法是使用 CV 的 MLlib CrossValidator 管線函式和參數掃掠進行實作。   
+本節中的 hello 程式碼顯示如何 tootrain，評估及儲存與羅吉斯迴歸模型[LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm)的預測是否付費的行程 hello NYC 計程車行程及價位資料集中的提示。 hello 模型使用交叉驗證 (CV) 來定型和 hyperparameter 掃掠實作以 hello MLlib CrossValidator 管線函式的 CV 參數掃掠。   
 
 > [!NOTE]
-> 執行此 MLlib CV 程式碼可能需要數分鐘的時間。
+> hello 執行此 MLlib CV 程式碼可能需要幾分鐘的時間。
 > 
 > 
 
@@ -835,7 +835,7 @@ predictionAndLabelsDF 已在先前的儲存格中已註冊為 tmp_results 資料
                         evaluator=BinaryClassificationEvaluator(),
                         numFolds=3)
 
-    # CONVERT TO DATA-FRAME: THIS DOES NOT RUN ON RDDs
+    # CONVERT tooDATA-FRAME: THIS DOES NOT RUN ON RDDs
     trainDataFrame = sqlContext.createDataFrame(oneHotTRAINbinary, ["features", "label"])
 
     # TRAIN WITH CROSS-VALIDATION
@@ -851,23 +851,23 @@ predictionAndLabelsDF 已在先前的儲存格中已註冊為 tmp_results 資料
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds";
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds";
 
 **輸出**
 
-執行上述儲存格所花費的時間︰107.98 秒
+時間 tooexecute 儲存格上方： 107.98 秒
 
-**繪製 ROC 曲線。**
+**繪製 hello ROC 曲線。**
 
-predictionAndLabelsDF 已在先前的儲存格中已註冊為 tmp_results 資料表。 tmp_results 可用來執行查詢，並將結果輸出至 sqlResults 資料框架供繪製之用。 程式碼如下。
+hello *predictionAndLabelsDF*註冊為資料表， *tmp_results*，在 hello 上一個儲存格。 *tmp_results*可以使用的 toodo 查詢和 hello sqlResults 資料框架來繪製至輸出結果。 Hello 程式碼如下。
 
     # QUERY RESULTS
     %%sql -q -o sqlResults
     SELECT label, prediction, probability from tmp_results
 
-以下是繪製 ROC 曲線的程式碼。
+以下是 hello 程式碼 tooplot hello ROC 曲線。
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES 
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES 
     %%local
     from sklearn.metrics import roc_curve,auc
 
@@ -894,7 +894,7 @@ predictionAndLabelsDF 已在先前的儲存格中已註冊為 tmp_results 資料
 ![使用 MLlib 的 CrossValidator 的羅吉斯迴歸 ROC 曲線](./media/machine-learning-data-science-spark-advanced-data-exploration-modeling/mllib-crossvalidator-roc-curve.png)
 
 ### <a name="random-forest-classification"></a>隨機樹系分類
-本節的程式碼顯示如何訓練評估及儲存隨機樹系迴歸，可預測是否針對 NYC 計程車車程和費用資料集的某趟車程支付小費。
+本節中的 hello 程式碼會示範如何 tootrain，評估及儲存預測提示支付路線 hello NYC 計程車行程及價位資料集內的隨機樹系迴歸。
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -913,7 +913,7 @@ predictionAndLabelsDF 已在先前的儲存格中已註冊為 tmp_results 資料
                                            categoricalFeaturesInfo=categoricalFeaturesInfo,
                                            numTrees=25, featureSubsetStrategy="auto",
                                            impurity='gini', maxDepth=5, maxBins=32)
-    ## UN-COMMENT IF YOU WANT TO PRING TREES
+    ## UN-COMMENT IF YOU WANT tooPRING TREES
     #print('Learned classification forest model:')
     #print(rfModel.toDebugString())
 
@@ -935,17 +935,17 @@ predictionAndLabelsDF 已在先前的儲存格中已註冊為 tmp_results 資料
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **輸出**
 
 ROC 下的領域 = 0.985336538462
 
-執行上述儲存格所花費的時間︰26.72 秒
+時間 tooexecute 儲存格上方： 26.72 秒
 
 ### <a name="gradient-boosting-trees-classification"></a>漸層停駐提升樹狀結構類別
-本節的程式碼顯示如何訓練評估及儲存漸層停駐提升樹狀結構模型，可預測是否針對 NYC 計程車車程和費用資料集的某趟車程支付小費。
+本節中的 hello 程式碼會示範 tootrain，如何評估及儲存預測提示支付 hello NYC 計程車行程及價位資料集中的行程的漸層停駐提升樹模型。
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -958,7 +958,7 @@ ROC 下的領域 = 0.985336538462
 
     gbtModel = GradientBoostedTrees.trainClassifier(indexedTRAINbinary, categoricalFeaturesInfo=categoricalFeaturesInfo,
                                                     numIterations=10)
-    ## UNCOMMENT IF YOU WANT TO PRINT TREE DETAILS
+    ## UNCOMMENT IF YOU WANT tooPRINT TREE DETAILS
     #print('Learned classification GBT model:')
     #print(bgtModel.toDebugString())
 
@@ -980,38 +980,38 @@ ROC 下的領域 = 0.985336538462
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **輸出**
 
 ROC 下的領域 = 0.985336538462
 
-執行上述儲存格所花費的時間︰28.13 秒
+時間 tooexecute 儲存格上方： 28.13 秒
 
 ## <a name="predict-tip-amount-with-regression-models-not-using-cv"></a>使用迴歸模型預測小費金額 (非使用 CV)
-本節說明如何使用三種迴歸工作模型：根據其他小費功能預測支付的計程車車程的小費金額。 顯示模型如下︰
+本節說明如何使用三個模型 hello 迴歸工作： 預測支付其他提示功能為基礎的計程車行程 hello 提示數量。 呈現的 hello 模型如下：
 
 * 正規化線性迴歸
 * 隨機樹系
 * 漸層停駐提升樹狀結構
 
-這些模型將在簡介中說明。 每個模型建置程式碼區段會分成幾個步驟︰ 
+這些模型是以 hello 簡介所述。 每個模型建置程式碼區段會分成幾個步驟︰ 
 
 1. **模型定型** 資料
 2. **模型評估** 
 3. **儲存模型**    
 
-> AZURE 附註︰交叉驗證未與本節中的三個迴歸模型搭配使用，因為這是用來顯示羅吉斯迴歸模型詳細資料的方法。 本主題的＜附錄＞示範如何針對線性迴歸使用 CV 與 Elastic Net。
+> AZURE 的附註： 交叉驗證未搭配使用 hello 三種迴歸模型在本節中，因為這顯示 hello 羅吉斯迴歸模型的詳細資料。 範例顯示 hello 這個主題的 < 附錄中提供 toouse 與彈性 Net CV 線性迴歸的方式。
 > 
-> AZURE NOTE︰在我們的經驗中，交集的 LinearRegressionWithSGD 模型可能會發生問題，且必須小心變更/最佳化參數以取得有效的模型。 調整變數對於聚合很有用。 本主題中的＜附錄＞所顯示的 Elastic Net 迴歸也可用來取代 LinearRegressionWithSGD。
+> AZURE 的附註： 我們的經驗，可能有問題有 LinearRegressionWithSGD 模型的交集，參數必須 toobe 變更/最佳化仔細取得有效的模型。 調整變數對於聚合很有用。 Net 迴歸彈性，顯示在 hello 附錄 toothis 主題中，也可以代替 LinearRegressionWithSGD。
 > 
 > 
 
 ### <a name="linear-regression-with-sgd"></a>使用 SGD 的線性迴歸
-本節的程式碼示範如何使用縮放功能來訓練線性迴歸 (使用隨機梯度下降 (SGD) 以最佳化)，以及如何評分、評估並將模型儲存在 Azure Blob 儲存體 (WASB)。
+hello 本節中的程式碼會示範如何 toouse 會縮放功能 tootrain 最佳化，使用隨機梯度下降 (SGD) 線性迴歸以及 tooscore，如何評估，並將 hello 模型儲存在 Azure Blob 儲存體 (WASB)。
 
 > [!TIP]
-> 在我們的經驗中，交集的 LinearRegressionWithSGD 模型可能會發生問題，且必須小心變更/最佳化參數以取得有效的模型。 調整變數對於聚合很有用。
+> 在我們的經驗，可能有問題的 hello 交集的 LinearRegressionWithSGD 模型，而參數需要 toobe 變更/最佳化仔細取得有效的模型。 調整變數對於聚合很有用。
 > 
 > 
 
@@ -1025,12 +1025,12 @@ ROC 下的領域 = 0.985336538462
     from pyspark.mllib.evaluation import RegressionMetrics
     from scipy import stats
 
-    # USE SCALED FEATURES TO TRAIN MODEL
+    # USE SCALED FEATURES tooTRAIN MODEL
     linearModel = LinearRegressionWithSGD.train(oneHotTRAINregScaled, iterations=100, step = 0.1, regType='l2', regParam=0.1, intercept = True)
 
-    # PRINT COEFFICIENTS AND INTERCEPT OF THE MODEL
-    # NOTE: There are 20 coefficient terms for the 10 features, 
-    #       and the different categories for features: vendorVec (2), rateVec, paymentVec (6), TrafficTimeBinsVec (4)
+    # PRINT COEFFICIENTS AND INTERCEPT OF hello MODEL
+    # NOTE: There are 20 coefficient terms for hello 10 features, 
+    #       and hello different categories for features: vendorVec (2), rateVec, paymentVec (6), TrafficTimeBinsVec (4)
     print("Coefficients: " + str(linearModel.weights))
     print("Intercept: " + str(linearModel.intercept))
 
@@ -1051,7 +1051,7 @@ ROC 下的領域 = 0.985336538462
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **輸出**
 
@@ -1063,13 +1063,13 @@ RMSE = 1.23485131376
 
 R-sqr = 0.597963951127
 
-執行上述儲存格所花費的時間︰38.62 秒
+時間 tooexecute 儲存格上方： 38.62 秒
 
 ### <a name="random-forest-regression"></a>隨機樹系迴歸
-本節的程式碼顯示如何訓練評估及儲存隨機樹系模型，可預測 NYC 計程車車程資料的小費金額。   
+本節中的 hello 程式碼會示範如何 tootrain，評估及儲存預測 hello NYC 計程車路線資料的提示數量的隨機樹系模型。   
 
 > [!NOTE]
-> 在附錄中提供使用自訂程式碼的交叉驗證與參數掃掠。
+> 交叉驗證參數掃掠使用自訂程式碼與 hello 附錄中提供。
 > 
 > 
 
@@ -1089,7 +1089,7 @@ R-sqr = 0.597963951127
     rfModel = RandomForest.trainRegressor(indexedTRAINreg, categoricalFeaturesInfo=categoricalFeaturesInfo,
                                         numTrees=25, featureSubsetStrategy="auto",
                                         impurity='variance', maxDepth=10, maxBins=32)
-    # UN-COMMENT IF YOU WANT TO PRING TREES
+    # UN-COMMENT IF YOU WANT tooPRING TREES
     #print('Learned classification forest model:')
     #print(rfModel.toDebugString())
 
@@ -1111,7 +1111,7 @@ R-sqr = 0.597963951127
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **輸出**
 
@@ -1119,12 +1119,12 @@ RMSE = 0.931981967875
 
 R-sqr = 0.733445485802
 
-執行上述儲存格所花費的時間︰25.98 秒
+時間 tooexecute 儲存格上方： 25.98 秒
 
 ### <a name="gradient-boosting-trees-regression"></a>漸層停駐提升樹狀結構迴歸
-本節的程式碼顯示如何訓練評估及儲存漸層停駐提升樹狀結構模型，可預測 NYC 計程車車程資料的小費金額。
+本節中的 hello 程式碼會示範 tootrain，如何評估及儲存預測 hello NYC 計程車路線資料的提示數量的漸層停駐提升樹模型。
 
-* * 來定型及評估 * *
+**訓練及評估 **
 
     #PREDICT TIP AMOUNTS USING GRADIENT BOOSTING TREES
 
@@ -1161,7 +1161,7 @@ R-sqr = 0.733445485802
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **輸出**
@@ -1170,11 +1170,11 @@ RMSE = 0.928172197114
 
 R-sqr = 0.732680354389
 
-執行上述儲存格所花費的時間︰20.9 秒
+時間 tooexecute 儲存格上方： 20.9 秒
 
 **圖**
 
-tmp_results 已在先前的儲存格中註冊為 Hive 資料表。 來自資料表的結果已輸出至 sqlResults  資料框架以供繪製之用。 程式碼如下
+*tmp_results*註冊為 hello 前一個資料格集中的 Hive 資料表。 來自 hello 資料表的結果會輸出到 hello *sqlResults*來繪製資料框架。 以下是 hello 程式碼
 
     # PLOT SCATTER-PLOT BETWEEN ACTUAL AND PREDICTED TIP VALUES
 
@@ -1183,9 +1183,9 @@ tmp_results 已在先前的儲存格中註冊為 Hive 資料表。 來自資料�
     SELECT * from tmp_results
 
 
-以下是使用 Jupyter 伺服器繪製資料的程式碼。
+以下是使用 hello Jupyter 伺服器 hello 程式碼 tooplot hello 資料。
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES
     %%local
     import numpy as np
 
@@ -1202,10 +1202,10 @@ tmp_results 已在先前的儲存格中註冊為 Hive 資料表。 來自資料�
 ![Actual-vs-predicted-tip-amounts](./media/machine-learning-data-science-spark-advanced-data-exploration-modeling/actual-vs-predicted-tips.png)
 
 ## <a name="appendix-additional-regression-tasks-using-cross-validation-with-parameter-sweeps"></a>附錄︰使用交叉驗證與參數掃掠的額外迴歸工作
-本附錄包含程式碼，示範如何針對線性迴歸使用彈性 net 以執行 CV，以及如何針對隨機樹系迴歸使用自訂程式碼，以參數掃掠執行 CV。
+本附錄包含程式碼顯示如何使用線性迴歸和如何 toodo CV 參數掃掠隨機樹系迴歸中使用自訂程式碼的彈性 net toodo CV。
 
 ### <a name="cross-validation-using-elastic-net-for-linear-regression"></a>針對線性迴歸使用彈性 net 進行交叉驗證
-本章節中的程式碼示範如何針對線性迴歸使用彈性 net 進行交叉驗證，以及如何針對測試資料評估模型。
+本節中的 hello 程式碼會示範 toodo 交叉驗證使用線性迴歸 net 彈性的方式，以及如何 tooevaluate hello 針對測試資料的模型。
 
     ###  CV USING ELASTIC NET FOR LINEAR REGRESSION
 
@@ -1229,7 +1229,7 @@ tmp_results 已在先前的儲存格中註冊為 Hive 資料表。 來自資料�
                                   .build() 
 
     # DEFINE PIPELINE 
-    # SIMPLY THE MODEL HERE, WITHOUT TRANSFORMATIONS
+    # SIMPLY hello MODEL HERE, WITHOUT TRANSFORMATIONS
     pipeline = Pipeline(stages=[lr])
 
     # DEFINE CV WITH PARAMETER SWEEP
@@ -1238,7 +1238,7 @@ tmp_results 已在先前的儲存格中註冊為 Hive 資料表。 來自資料�
                         evaluator=RegressionEvaluator(),
                         numFolds=3)
 
-    # CONVERT TO DATA FRAME, AS CROSSVALIDATOR WON'T RUN ON RDDS
+    # CONVERT tooDATA FRAME, AS CROSSVALIDATOR WON'T RUN ON RDDS
     trainDataFrame = sqlContext.createDataFrame(oneHotTRAINreg, ["features", "label"])
 
     # TRAIN WITH CROSS-VALIDATION
@@ -1249,34 +1249,34 @@ tmp_results 已在先前的儲存格中註冊為 Hive 資料表。 來自資料�
     testDataFrame = sqlContext.createDataFrame(oneHotTESTreg, ["features", "label"])
 
     # MAKE PREDICTIONS ON TEST DOCUMENTS
-    # cvModel uses the best model found (lrModel).
+    # cvModel uses hello best model found (lrModel).
     predictionAndLabels = cv_model.transform(testDataFrame)
 
-    # CONVERT TO DF AND SAVE REGISER DF AS TABLE
+    # CONVERT tooDF AND SAVE REGISER DF AS TABLE
     predictionAndLabels.registerTempTable("tmp_results");
 
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **輸出**
 
-執行上述儲存格所花費的時間︰161.21 秒
+時間 tooexecute 儲存格上方： 161.21 秒
 
 **使用 R-SQR 度量進行評估**
 
-tmp_results 已在先前的儲存格中註冊為 Hive 資料表。 來自資料表的結果已輸出至 sqlResults  資料框架以供繪製之用。 程式碼如下
+*tmp_results*註冊為 hello 前一個資料格集中的 Hive 資料表。 來自 hello 資料表的結果會輸出到 hello *sqlResults*來繪製資料框架。 以下是 hello 程式碼
 
     # SELECT RESULTS
     %%sql -q -o sqlResults
     SELECT label,prediction from tmp_results
 
 
-以下是計算 R-sqr 的程式碼。
+以下是 hello 程式碼 toocalculate R sqr。
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES
     %%local
     from scipy import stats
 
@@ -1291,7 +1291,7 @@ tmp_results 已在先前的儲存格中註冊為 Hive 資料表。 來自資料�
 R-sqr = 0.619184907088
 
 ### <a name="cross-validation-with-parameter-sweep-using-custom-code-for-random-forest-regression"></a>針對隨機樹系迴歸使用自訂程式碼以參數掃掠進行交叉驗證。
-本章節中的程式碼示範如何針對隨機樹系迴歸使用自訂程式碼以參數掃掠執行交叉驗證，以及如何針對測試資料評估模型。
+本節中的 hello 程式碼會示範 toodo 參數掃掠隨機樹系迴歸中使用自訂程式碼使用交叉驗證的方式和 tooevaluate hello 模型測試資料的方式。
 
     # RECORD START TIME
     timestart= datetime.datetime.now()
@@ -1310,7 +1310,7 @@ R-sqr = 0.619184907088
     ## SPECIFY LEVELS OF CATEGORICAL VARIBLES
     categoricalFeaturesInfo={0:2, 1:2, 2:6, 3:4}
 
-    # SPECIFY NUMFOLDS AND ARRAY TO HOLD METRICS
+    # SPECIFY NUMFOLDS AND ARRAY tooHOLD METRICS
     nFolds = 3;
     numModels = len(paramGrid)
     h = 1.0 / nFolds;
@@ -1370,7 +1370,7 @@ R-sqr = 0.619184907088
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **輸出**
@@ -1379,10 +1379,10 @@ RMSE = 0.906972198262
 
 R-sqr = 0.740751197012
 
-執行上述儲存格所花費的時間︰69.17 秒
+時間 tooexecute 儲存格上方： 69.17 秒
 
 ### <a name="clean-up-objects-from-memory-and-print-model-locations"></a>從記憶體清除物件並列印模型位置
-使用 `unpersist()` 刪除記憶體中快取的物件。
+使用`unpersist()`toodelete 物件在記憶體中快取。
 
     # UNPERSIST OBJECTS CACHED IN MEMORY
 
@@ -1413,7 +1413,7 @@ R-sqr = 0.740751197012
 
 PythonRDD[122] at RDD at PythonRDD.scala: 43
 
-* * 列印輸出使用耗用量筆記本中的模型檔案的路徑。 * * 若要取用，且分數為獨立的資料集，您需要複製和貼上 」 耗用量筆記本"中的這些檔案名稱。
+* * 列印輸出路徑 toomodel 檔案 toobe hello 耗用量筆記本中使用。 * * tooconsume 和分數不受影響的資料集，您需要 toocopy 並將這些檔案名稱貼入 hello"耗用量筆記型電腦 」 中。
 
     # PRINT MODEL FILE LOCATIONS FOR CONSUMPTION
     print "logisticRegFileLoc = modelDir + \"" + logisticregressionfilename + "\"";
@@ -1439,7 +1439,7 @@ BoostedTreeClassificationFileLoc = modelDir + "GradientBoostingTreeClassificatio
 BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression_2016-05-0316_52_18.827237"
 
 ## <a name="whats-next"></a>後續步驟
-現在已使用 Spark MlLib 建立迴歸和分類模型，您已瞭解如何評分及評估這些模型。
+現在您已經以 hello Spark MlLib 建立迴歸和分類的模型，您就準備好 toolearn 如何 tooscore 和評估這些模型。
 
-**模型耗用量︰** 若要瞭解如何評分及評估本主題中所建立的分類和迴歸模型，請參閱 [評分及評估 Spark 建置機器學習服務模型](machine-learning-data-science-spark-model-consumption.md)。
+**模型耗用量：** toolearn 如何 tooscore 和評估建立本主題中的 hello 分類和迴歸模型，請參閱[分數及評估 Spark 建立機器學習模型](machine-learning-data-science-spark-model-consumption.md)。
 

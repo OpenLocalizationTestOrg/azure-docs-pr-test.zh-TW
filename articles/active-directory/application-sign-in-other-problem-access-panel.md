@@ -1,6 +1,6 @@
 ---
-title: "從存取面板登入應用程式的問題 | Microsoft Docs"
-description: "如何為從 Microsoft Azure AD 存取面板 (myapps.microsoft.com) 存取應用程式時發生的問題疑難排解"
+title: "登入 tooan hello 存取面板應用程式的 aaaProblems |Microsoft 文件"
+description: "如何從應用程式存取 tootroubleshoot 問題 hello myapps.microsoft.com Microsoft Azure AD 存取面板"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -14,19 +14,19 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
 ms.reviewer: japere
-ms.openlocfilehash: 188a00db59b0aa8d26facc678fb52d96272183b6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 346c4da06416bb9b330bdd5b1201253af19ba58b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="problems-signing-in-to-an-application-from-the-access-panel"></a>從存取面板登入應用程式的問題
+# <a name="problems-signing-in-tooan-application-from-hello-access-panel"></a>登入 tooan hello 存取面板應用程式的問題
 
-存取面板是網頁型入口網站，可讓在 Azure Active Directory (Azure AD) 中具有公司或學校帳戶的使用者，檢視和啟動 Azure AD 系統管理員已授權他們存取的雲端式應用程式。 
+hello 存取面板是網頁型的入口網站，可讓使用者使用工作或學校帳戶，Azure Active Directory (Azure AD) tooview 並啟動雲端架構應用程式中的 hello Azure AD 系統管理員已授與它們存取權。 
 
-在 Azure AD 入口網站中可代表使用者設定這些應用程式。 應用程式必須經過正確的設定並指派至使用者或使用者所屬的群組，才能在存取面板中顯示該應用程式。
+這些應用程式會代表 hello Azure AD 入口網站中的 hello 使用者設定。 hello 應用程式必須正確設定並指派的 toohello 使用者或群組 hello 使用者是 toosee hello 存取面板中的 hello 應用程式的成員。
 
-使用者能看見的應用程式類型可分為以下類別：
+應用程式的使用者會看見 hello 類型落在 hello 下列類別：
 
 -   Office 365 應用程式
 
@@ -36,33 +36,33 @@ ms.lasthandoff: 08/03/2017
 
 -   含現有 SSO 解決方案的應用程式
 
-## <a name="general-issues-to-check-first"></a>首先檢查的一般問題
+## <a name="general-issues-toocheck-first"></a>一般會先發出 toocheck
 
--   請確定您使用的**瀏覽器**符合存取面板的最低需求。
+-   請確定您使用**瀏覽器**符合 hello hello 存取面板的最低需求。
 
--   確定使用者的瀏覽器已將應用程式的 URL 新增至其**信任的網站**。
+-   請確定 hello 使用者的瀏覽器已新增的 hello 應用程式 tooits hello URL**信任的網站**。
 
--   檢查應用程式以確認其**設定**正確。
+-   請確定 toocheck hello 應用程式是**設定**正確。
 
--   確定使用者的帳戶**已啟用**可供登入。
+-   請確定 hello 使用者帳戶是**啟用**的登入。
 
--   確定使用者的帳戶**未鎖定**。
+-   請確定 hello 使用者帳戶是**並未鎖定。**
 
--   確定使用者的**密碼未過期或忘記**。
+-   請確定 hello 使用者的**密碼未過期或遺失。**
 
 -   確定 **Multi-Factor Authentication** 未封鎖使用者存取。
 
 -   確定**條件式存取原則**或**身分識別保護**原則未封鎖使用者存取。
 
--   確定使用者的**驗證連絡資訊**為最新版本，而可強制執行 Multi-Factor Authentication 或條件式存取原則。
+-   請確定使用者的**驗證連絡人資訊**已啟動 toodate tooallow Multi-factor Authentication 或條件式存取原則 toobe 強制執行。
 
--   也要確定嘗試清除瀏覽器的 Cookie，然後嘗試再次登入。
+-   請確定 tooalso 請嘗試清除瀏覽器的 cookie，然後再試一次 toosign 中的。
 
-## <a name="meeting-browser-requirements-for-the-access-panel"></a>符合存取面板的瀏覽器需求
+## <a name="meeting-browser-requirements-for-hello-access-panel"></a>會議 hello 存取面板 的瀏覽器需求
 
-存取面板需要支援 JavaScript 且已啟用 CSS 的瀏覽器。 若要在存取面板中使用密碼單一登入 (SSO)，必須在使用者的瀏覽器中安裝存取面板延伸模組。 當使用者選取已設定密碼 SSO 的應用程式時，就會自動下載此存取面板延伸模組。
+存取面板 hello 需要支援 JavaScript 的瀏覽器，並啟用 CSS。 toouse 密碼型單一登入 (SSO) 在 hello 存取面板，hello 存取面板延伸模組必須安裝在 hello 使用者的瀏覽器。 當使用者選取已設定密碼 SSO 的應用程式時，就會自動下載此存取面板延伸模組。
 
-若是密碼 SSO，則使用者的瀏覽器可以是：
+針對密碼型 SSO，hello 終端使用者的瀏覽器可以是：
 
 -   Internet Explorer 8、9、10、11 -- 在 Windows 7 或更新版本上
 
@@ -72,445 +72,445 @@ ms.lasthandoff: 08/03/2017
 
 -   Firefox 26.0 或更新版本 - 在 Windows XP SP2 或更新版本，和在 Mac OS X 10.6 或更新版本上
 
-## <a name="how-to-install-the-access-panel-browser-extension"></a>如何安裝存取面板的瀏覽器延伸模組
+## <a name="how-tooinstall-hello-access-panel-browser-extension"></a>如何 tooinstall hello 存取面板瀏覽器延伸模組
 
-若要安裝存取面板的瀏覽器延伸模組，請遵循下列步驟：
+tooinstall hello 存取面板瀏覽器延伸模組，請遵循下列 hello 步驟：
 
-1.  在其中一種支援的瀏覽器中開啟[存取面板](https://myapps.microsoft.com)，然後在您的 Azure AD 中以**使用者**身分登入。
+1.  開啟 hello[存取面板](https://myapps.microsoft.com)其中一種支援的 hello 瀏覽器和登入為**使用者**Azure AD 中。
 
-2.  按一下存取面板中的 [密碼-SSO 應用程式]。
+2.  按一下**password SSO 應用程式**hello 存取面板中。
 
-3.  在要求安裝軟體的提示中，選取 [立即安裝]。
+3.  在 hello 提示詢問 tooinstall hello 軟體，選取 **立即安裝**。
 
-4.  系統會根據您的瀏覽器將您導向至下載連結。 將延伸模組**新增**到瀏覽器中。
+4.  根據您的瀏覽器就導向的 toohello 下載連結。 **新增**hello 延伸 tooyour 瀏覽器。
 
-5.  如果您的瀏覽器要求，請選取 [啟用] 或 [允許] 該延伸模組。
+5.  如果您的瀏覽器要求，請選取 tooeither**啟用**或**允許**hello 延伸模組。
 
 6.  安裝之後，**重新啟動**瀏覽器工作階段。
 
-7.  登入存取面板，並查看您是否可以**啟動**密碼-SSO 應用程式
+7.  到 hello 存取面板登入，請參閱 < 是否您可以**啟動**password SSO 應用程式
 
-您可能也會從下列直接連結中下載適用於 Chrome 和 Edge 的擴充功能：
+您可能也 hello 從下載擴充功能的 Chrome 和邊緣 hello 以下的直接連結：
 
 -   [Chrome 存取面板延伸模組](https://chrome.google.com/webstore/detail/access-panel-extension/ggjhpefgjjfobnfoldnjipclpcfbgbhl)
 
 -   [Edge 存取面板延伸模組](https://www.microsoft.com/store/apps/9pc9sckkzk84)
 
-## <a name="how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a>如何為 Azure AD 資源庫應用程式設定同盟單一登入
+## <a name="how-tooconfigure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a>如何 tooconfigure 同盟單一登入 Azure AD 圖庫應用程式
 
-Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式都提供逐步教學課程。 您可以存取[如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/)，以取得詳細的逐步指引。
+啟用具備企業單一登入功能的 hello Azure AD 資源庫中的所有應用程式有可用的逐步教學課程。 您可以存取 hello[如何教學課程清單 toointegrate SaaS 應用程式與 Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/)如需詳細資料的逐步指引。
 
-若要設定 Azure AD 資源庫中的應用程式，您必須：
+您需要 tooconfigure 從 hello Azure AD 的組件庫的應用程式：
 
--   [從 Azure AD 資源庫新增應用程式](#add-an-application)
+-   [從 hello Azure AD 資源庫新增應用程式](#add-an-application)
 
--   [在 Azure AD 中設定應用程式的中繼資料值 (登入 URL、識別碼、回覆 URL)](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
+-   [設定 Azure AD （登入 URL，識別項，回覆 URL） 中的 hello 應用程式的中繼資料值](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
 
--   [選取使用者識別碼並新增要傳送到應用程式的使用者屬性](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
+-   [選取使用者的識別項並新增使用者屬性傳送 toobe toohello 應用程式](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
 
 -   [擷取 Azure AD 中繼資料與憑證](#download-the-azure-ad-metadata-or-certificate)
 
--   [在應用程式中設定 Azure AD 中繼資料值 (登入 URL、簽發者、登出 URL 與憑證)](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
+-   [在 hello 應用程式 （登入 URL、 簽發者、 登出 URL 和憑證） 中設定 Azure AD 中繼資料值](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
 
--   [將使用者指派給應用程式](#assign-users-to-the-application)
+-   [將使用者指派 toohello 應用程式](#assign-users-to-the-application)
 
-### <a name="add-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫新增應用程式
+### <a name="add-an-application-from-hello-azure-ad-gallery"></a>從 hello Azure AD 資源庫新增應用程式
 
-若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
+tooadd hello Azure AD 資源庫，從應用程式，請遵循下列 hello 步驟：
 
-1.  開啟 [Azure 入口網站](https://portal.azure.com)，然後以**全域管理員**或**共同管理員**身分登入。
+1.  開啟 hello [Azure 入口網站](https://portal.azure.com)身分登入和**全域管理員**或**共同管理員**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [企業應用程式] 刀鋒視窗右上角的 [新增] 按鈕
+5.  按一下 hello**新增**上 hello hello 右上角的按鈕**企業應用程式**刀鋒視窗
 
-6.  在 [從資源庫新增] 區段的 [輸入名稱] 文字方塊中，輸入應用程式名稱。
+6.  在 hello**輸入的名稱**文字方塊中，從 hello**從 hello 圖庫新增**> 一節中，輸入 hello 名稱 hello 應用程式。
 
-7.  選取您要設為單一登入的應用程式。
+7.  選取要用於單一登入 tooconfigure hello 應用程式。
 
-8.  新增應用程式之前，您可以從 [名稱] 文字方塊變更其名稱。
+8.  然後再加入 hello 應用程式，您可以變更其名稱從 hello**名稱**文字方塊。
 
-9.  按一下 [新增] 按鈕新增應用程式。
+9.  按一下**新增**按鈕，tooadd hello 應用程式。
 
-稍候片刻，您便能看見應用程式的設定刀鋒視窗。
+短時間，就能 toosee hello 應用程式的組態刀鋒視窗。
 
-### <a name="configure-single-sign-on-for-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫為應用程式設定單一登入
+### <a name="configure-single-sign-on-for-an-application-from-hello-azure-ad-gallery"></a>設定單一登入應用程式從 hello Azure AD 資源庫
 
-若要設定應用程式使用單一登入，請依照下列步驟執行：
+tooconfigure 單一登入的應用程式，請遵循下列 hello 步驟：
 
-1.  <span id="_Hlk477187909" class="anchor"><span id="_Hlk477001983" class="anchor"></span></span>開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**或**共同管理員**身分登入。
+1.  <span id="_Hlk477187909" class="anchor"><span id="_Hlk477001983" class="anchor"></span></span>開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
+5.  按一下**所有應用程式**tooview 所有應用程式的清單。
 
-  * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
+  * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
 
-6.  選取您要設定單一登入的應用程式。
+6.  選取您想 tooconfigure 單一登入的 hello 應用程式。
 
-7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
+7.  一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。
 
-8.  從 [模式] 下拉式清單選取 [SAML 登入]。
+8.  選取**SAML 型登入**從 hello**模式**下拉式清單。
 
-9.  在 [網域及 URL] 中輸入必要值。 這些值應從應用程式廠商處取得。
+9.  輸入中的所需的 hello 值**網域和 Url。** 您應該從 hello 應用程式廠商，以取得這些值。
 
-   1. 若要將應用程式設定為 SP 啟始的 SSO，則登入 URL 為必要值。 對於某些應用程式，識別碼也是必要值。
+   1. tooconfigure hello 應用程式做為 SP 起始的 SSO hello 登入 URL 是必要的值。 有些應用程式識別碼 hello 也是必要的值。
 
-   2. 若要將應用程式設定為 IdP 啟始的單一登入，則 [登入 URL] 為必要值。 對於某些應用程式，識別碼也是必要值。
+   2. tooconfigure hello 應用程式做為 IdP 初始化的 SSO，hello 回覆 URL 是必要的值。 有些應用程式識別碼 hello 也是必要的值。
 
-10. **選擇性：**如果您想要看到非必要值，請按一下 [顯示進階 URL 設定]。
+10. **選擇性：**按一下**顯示進階的 URL 設定**您希望 toosee hello 非必要的值。
 
-11. 在 [使用者屬性] 中，從 [使用者識別碼] 下拉式清單選取使用者的唯一識別碼。
+11. 在 hello**使用者屬性**，選取 hello hello 中使用者的唯一識別碼**使用者識別碼**下拉式清單。
 
-12. **選擇性：**按一下 [檢視和編輯所有其他使用者屬性]，以編輯當使用者登入時要以 SAML 權杖傳送至應用程式的屬性。
+12. **選擇性：**按一下**檢視和編輯所有其他使用者屬性**tooedit hello 屬性 hello SAML 權杖中傳送的 toobe toohello 應用程式，當使用者登入。
 
-   新增屬性：
+   tooadd 屬性：
 
-   1. 按一下 [新增屬性]。 輸入 [名稱]，然後從下拉式清單選取 [值]。
+   1. 按一下 [新增屬性]。 輸入 hello**名稱**和 hello 選取 hello**值**從 hello 下拉式清單。
 
-   2. 按一下 [儲存]。 您會在資料表中看到新屬性。
+   2. 按一下 [儲存]。 您會看到 hello hello 資料表中的新屬性。
 
-13. 按一下 [設定 &lt;應用程式名稱&gt;]，以存取如何在應用程式中設定單一登入的文件。 此外，您會有透過該應用程式設定 SSO 所需的中繼資料 URL 與憑證。
+13. 按一下**設定&lt;應用程式名稱&gt;** tooaccess 文件中的有關 tooconfigure 單一登入 hello 應用程式中。 此外，您有 hello 中繼資料 Url 和與 hello 應用程式所需的憑證 toosetup SSO。
 
-14. 按一下 [儲存] 儲存組態。
+14. 按一下**儲存**toosave hello 組態。
 
-15. 將使用者指派給應用程式。
+15. 將使用者指派 toohello 應用程式。
 
-### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a>選取使用者識別碼並新增要傳送到應用程式的使用者屬性
+### <a name="select-user-identifier-and-add-user-attributes-toobe-sent-toohello-application"></a>選取使用者的識別項並新增使用者屬性傳送 toobe toohello 應用程式
 
-若要選取使用者識別碼或新增使用者屬性，請依照下列步驟執行：
+tooselect hello 使用者識別碼或新增使用者屬性，請遵循下列的 hello 步驟：
 
-1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。
+1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
+5.  按一下**所有應用程式**tooview 所有應用程式的清單。
 
-  * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
+  * 如果看不到您想 tooshow 這裡的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
 
-6.  選取您已設定單一登入的應用程式。
+6.  選取您已設定單一登入的 hello 應用程式。
 
-7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
+7.  一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。
 
-8.  在 [使用者屬性] 區段下，從 [使用者識別碼] 下拉式清單選取使用者的唯一識別碼。 所選的選項必須符合應用程式中預期的值，才能驗證使用者。
+8.  在 hello**使用者屬性**區段中，選取 hello hello 中使用者的唯一識別碼**使用者識別碼**下拉式清單。 hello 選取的選項必須在 hello 應用程式 tooauthenticate hello 使用者 toomatch hello 預期的值。
 
     >[!NOTE]
-    >Azure AD 會根據應用程式在 SAML AuthRequest 中選取的值或要求的格式，來選取 NameID 屬性 (使用者識別碼) 的格式。 如需詳細資訊，請參閱[單一登入 SAML 通訊協定](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest)文章中的＜NameIDPolicy＞一節。
+    >Hello NameID 屬性 （使用者識別碼） 的 azure AD 選取 hello 格式會根據選取的 hello 值或 hello hello hello SAML AuthRequest 中的應用程式所要求的格式。 如需詳細資訊，請造訪 hello 文章[單一登入的 SAML 通訊協定](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest)hello 下一節 NameIDPolicy。
     >
     >
 
-9.  若要新增使用者屬性，按一下 [檢視和編輯所有其他使用者屬性]，以編輯當使用者登入時要以 SAML 權杖傳送至應用程式的屬性。
+9.  tooadd 使用者屬性，按一下**檢視和編輯所有其他使用者屬性**tooedit hello 屬性 hello SAML 權杖中傳送的 toobe toohello 應用程式，當使用者登入。
 
-   新增屬性：
+   tooadd 屬性：
 
-   1. 按一下 [新增屬性]。 輸入 [名稱]，然後從下拉式清單選取 [值]。
+   1. 按一下 [新增屬性]。 輸入 hello**名稱**和 hello 選取 hello**值**從 hello 下拉式清單。
 
-   2. 按一下 [儲存]。 您會在資料表中看到新屬性。
+   2. 按一下 [儲存]。 您會看到 hello hello 資料表中的新屬性。
 
-### <a name="download-the-azure-ad-metadata-or-certificate"></a>下載 Azure AD 中繼資料或憑證
+### <a name="download-hello-azure-ad-metadata-or-certificate"></a>下載 hello Azure AD 中繼資料或憑證
 
-若要從 Azure AD 下載應用程式中繼資料或憑證，請依照下列步驟執行：
+toodownload hello 應用程式中繼資料或憑證從 Azure AD，請遵循下列 hello 步驟：
 
-1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。
+1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
+5.  按一下**所有應用程式**tooview 所有應用程式的清單。
 
-  * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
+  * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
 
-6.  選取您已設定單一登入的應用程式。
+6.  選取您已設定單一登入的 hello 應用程式。
 
-7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
+7.  一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。
 
-8.  移至 [SAML 簽署憑證] 區段，然後按一下 [下載] 資料行值。 根據應用程式設定單一登入時所需的項目，您會看到下載中繼資料 XML 或憑證的選項。
+8.  跳過**SAML 簽章憑證**區段，然後按一下 **下載**資料行值。 根據哪些 hello 應用程式需要設定單一登入，您會看到其中一個 hello 選項 toodownload hello 中繼資料 XML 或 hello 憑證。
 
-    Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XML 檔案。
+    Azure AD 不會提供 URL tooget hello 中繼資料。 hello 中繼資料，才能擷取為 XML 檔案。
 
-## <a name="how-to-configure-federated-single-sign-on-for-a-non-gallery-application"></a>如何為不在資源庫內的應用程式設定同盟單一登入
+## <a name="how-tooconfigure-federated-single-sign-on-for-a-non-gallery-application"></a>如何 tooconfigure 同盟單一登入非組件庫的應用程式
 
-若要設定不在資源庫內的應用程式，您必須有 Azure AD Premium，且應用程式必須支援 SAML 2.0。 如需有關 Azure AD 版本的詳細資訊，請參閱 [Azure AD 定價](https://azure.microsoft.com/pricing/details/active-directory/)。
+tooconfigure 非組件庫的應用程式，您必須具備 toohave Azure AD premium 與 hello 應用程式支援 SAML 2.0。 如需有關 Azure AD 版本的詳細資訊，請參閱 [Azure AD 定價](https://azure.microsoft.com/pricing/details/active-directory/)。
 
--   [在 Azure AD 中設定應用程式的中繼資料值 (登入 URL、識別碼、回覆 URL)](#configuring-single-sign-on)
+-   [設定 Azure AD （登入 URL，識別項，回覆 URL） 中的 hello 應用程式的中繼資料值](#configuring-single-sign-on)
 
--   [選取使用者識別碼並新增要傳送到應用程式的使用者屬性](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
+-   [選取使用者的識別項並新增使用者屬性傳送 toobe toohello 應用程式](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
 
 -   [擷取 Azure AD 中繼資料與憑證](#download-the-azure-ad-metadata-or-certificate)
 
--   [在應用程式中設定 Azure AD 中繼資料值 (登入 URL、簽發者、登出 URL 與憑證)](#configuring-single-sign-on)
+-   [在 hello 應用程式 （登入 URL、 簽發者、 登出 URL 和憑證） 中設定 Azure AD 中繼資料值](#configuring-single-sign-on)
 
-### <a name="configure-the-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url"></a>在 Azure AD 中設定應用程式的中繼資料值 (登入 URL、識別碼、回覆 URL)
+### <a name="configure-hello-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url"></a>設定 Azure AD （登入 URL，識別項，回覆 URL） 中的 hello 應用程式的中繼資料值
 
-若要為不在 Azure AD 資源庫中的應用程式設定單一登入，請依照下列步驟執行：
+tooconfigure 單一登入的應用程式不在 hello Azure AD 資源庫，請遵循下列 hello 步驟：
 
-1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。
+1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [企業應用程式] 刀鋒視窗右上角的 [新增] 按鈕
+5.  按一下 hello**新增**上 hello hello 右上角的按鈕**企業應用程式**刀鋒視窗
 
-6.  按一下 [Add your own app (新增您的應用程式)] 區段中的 [Non-gallery application (非資源庫應用程式)]
+6.  按一下**非組件庫的應用程式**在 hello**新增您自己的應用程式**區段
 
-7.  在 [名稱] 文字方塊中輸入應用程式的名稱。
+7.  輸入 hello hello 應用程式名稱在 hello**名稱**文字方塊。
 
-8.  按一下 [新增] 按鈕以新增應用程式。
+8.  按一下**新增**按鈕，tooadd hello 應用程式。
 
-9.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
+9.  一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。
 
-10. 在 [模式] 下拉式清單中選取 [SAML 登入]
+10. 選取**SAML 型登入**在 hello**模式**下拉式清單
 
-11. 在 [網域及 URL] 中輸入必要值 這些值應從應用程式廠商處取得。
+11. 輸入中的所需的 hello 值**網域和 Url。** 您應該從 hello 應用程式廠商，以取得這些值。
 
-  1. 若要將應用程式設定為 IdP 啟始的 SSO，請輸入回覆 URL 與識別碼。
+  1. tooconfigure hello IdP 初始化的 SSO 應用程式輸入 hello 回覆 URL 和識別碼 hello。
 
-  2. **選擇性：**若要將應用程式設定為 SP 啟始的 SSO，則登入 URL 為必要值。
+  2. **選擇性：** tooconfigure hello 應用程式做為 SP 起始的 SSO hello 登入 URL 是必要的值。
 
-12. 在 [使用者屬性] 中，從 [使用者識別碼] 下拉式清單選取使用者的唯一識別碼。
+12. 在 hello**使用者屬性**，選取 hello hello 中使用者的唯一識別碼**使用者識別碼**下拉式清單。
 
-13. **選擇性：**按一下 [檢視和編輯所有其他使用者屬性]，以編輯當使用者登入時要以 SAML 權杖傳送至應用程式的屬性。
+13. **選擇性：**按一下**檢視和編輯所有其他使用者屬性**tooedit hello 屬性 hello SAML 權杖中傳送的 toobe toohello 應用程式，當使用者登入。
 
-   新增屬性：
+   tooadd 屬性：
 
-   1. 按一下 [新增屬性]。 輸入 [名稱]，然後從下拉式清單選取 [值]。
+   1. 按一下 [新增屬性]。 輸入 hello**名稱**和 hello 選取 hello**值**從 hello 下拉式清單。
 
-   2. 按一下 [儲存]。 您會在資料表中看到新屬性。
+   2. 按一下 [儲存]。 您會看到 hello hello 資料表中的新屬性。
 
-14. 按一下 [設定 &lt;應用程式名稱&gt;]，以存取如何在應用程式中設定單一登入的文件。 此外，您有應用程式所需的 Azure AD URL 與憑證。
+14. 按一下**設定&lt;應用程式名稱&gt;** tooaccess 文件中的有關 tooconfigure 單一登入 hello 應用程式中。 此外，您有 Azure AD Url 和 hello 應用程式所需的憑證。
 
-### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a>選取使用者識別碼並新增要傳送到應用程式的使用者屬性
+### <a name="select-user-identifier-and-add-user-attributes-toobe-sent-toohello-application"></a>選取使用者的識別項並新增使用者屬性傳送 toobe toohello 應用程式
 
-若要選取使用者識別碼或新增使用者屬性，請依照下列步驟執行：
+tooselect hello 使用者識別碼或新增使用者屬性，請遵循下列的 hello 步驟：
 
-1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。
+1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
+5.  按一下**所有應用程式**tooview 所有應用程式的清單。
 
-  * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
+  * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
 
-6.  選取您已設定單一登入的應用程式。
+6.  選取您已設定單一登入的 hello 應用程式。
 
-7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
+7.  一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。
 
-8.  在 [使用者屬性] 區段下，從 [使用者識別碼] 下拉式清單選取使用者的唯一識別碼。 所選的選項必須符合應用程式中預期的值，才能驗證使用者。
+8.  在 hello**使用者屬性**區段中，選取 hello hello 中使用者的唯一識別碼**使用者識別碼**下拉式清單。 hello 選取的選項必須在 hello 應用程式 tooauthenticate hello 使用者 toomatch hello 預期的值。
 
    >[!NOTE]
-   >Azure AD 會根據應用程式在 SAML AuthRequest 中選取的值或要求的格式，來選取 NameID 屬性 (使用者識別碼) 的格式。 如需詳細資訊，請參閱[單一登入 SAML 通訊協定](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest)文章中的＜NameIDPolicy＞一節。
+   >Hello NameID 屬性 （使用者識別碼） 的 azure AD 選取 hello 格式會根據選取的 hello 值或 hello hello hello SAML AuthRequest 中的應用程式所要求的格式。 如需詳細資訊，請造訪 hello 文章[單一登入的 SAML 通訊協定](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest)hello 下一節 NameIDPolicy。
    >
    >
 
-9.  若要新增使用者屬性，按一下 [檢視和編輯所有其他使用者屬性]，以編輯當使用者登入時要以 SAML 權杖傳送至應用程式的屬性。
+9.  tooadd 使用者屬性，按一下**檢視和編輯所有其他使用者屬性**tooedit hello 屬性 hello SAML 權杖中傳送的 toobe toohello 應用程式，當使用者登入。
 
-   若要新增屬性︰
+   tooadd 屬性：
 
-   1. 按一下 [新增屬性]。 輸入 [名稱]，然後從下拉式清單中選取 [值]。
+   1. 按一下 [新增屬性]。 輸入 hello**名稱**和 hello 選取 hello**值**從 hello 下拉式清單。
 
-   2. 按一下 [儲存] 。 您會在資料表中看到新屬性。
+   2. 按一下 [儲存] 。 您會看到 hello hello 資料表中的新屬性。
 
-### <a name="download-the-azure-ad-metadata-or-certificate"></a>下載 Azure AD 中繼資料或憑證
+### <a name="download-hello-azure-ad-metadata-or-certificate"></a>下載 hello Azure AD 中繼資料或憑證
 
-若要從 Azure AD 下載應用程式中繼資料或憑證，請依照下列步驟執行：
+toodownload hello 應用程式中繼資料或憑證從 Azure AD，請遵循下列 hello 步驟：
 
-1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。
+1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
+5.  按一下**所有應用程式**tooview 所有應用程式的清單。
 
-   * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
+   * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
 
-6.  選取您已設定單一登入的應用程式。
+6.  選取您已設定單一登入的 hello 應用程式。
 
-7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
+7.  一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。
 
-8.  移至 [SAML 簽署憑證] 區段，然後按一下 [下載] 資料行值。 根據應用程式設定單一登入時所需的項目，您會看到下載中繼資料 XML 或憑證的選項。
+8.  跳過**SAML 簽章憑證**區段，然後按一下 **下載**資料行值。 根據哪些 hello 應用程式需要設定單一登入，您會看到其中一個 hello 選項 toodownload hello 中繼資料 XML 或 hello 憑證。
 
-    Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XML 檔案。
+    Azure AD 不會提供 URL tooget hello 中繼資料。 hello 中繼資料，才能擷取為 XML 檔案。
 
-## <a name="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>如何為 Azure AD 資源庫應用程式設定密碼單一登入
+## <a name="how-tooconfigure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>如何 tooconfigure 密碼單一登入 Azure AD 圖庫應用程式
 
-若要設定 Azure AD 資源庫中的應用程式，您必須：
+您需要 tooconfigure 從 hello Azure AD 的組件庫的應用程式：
 
--   [從 Azure AD 資源庫新增應用程式](#add-an-application)
+-   [從 hello Azure AD 資源庫新增應用程式](#add-an-application)
 
--   [設定應用程式使用密碼單一登入](#configure-the-application)
+-   [設定密碼單一登入的 hello 應用程式](#configure-the-application)
 
-### <a name="add-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫新增應用程式
+### <a name="add-an-application-from-hello-azure-ad-gallery"></a>從 hello Azure AD 資源庫新增應用程式
 
-若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
+tooadd hello Azure AD 資源庫，從應用程式，請遵循下列 hello 步驟：
 
-1.  開啟 [Azure 入口網站](https://portal.azure.com)，然後以**全域管理員**或**共同管理員**身分登入。
+1.  開啟 hello [Azure 入口網站](https://portal.azure.com)身分登入和**全域管理員**或**共同管理員**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [企業應用程式] 刀鋒視窗右上角的 [新增] 按鈕
+5.  按一下 hello**新增**上 hello hello 右上角的按鈕**企業應用程式**刀鋒視窗
 
-6.  在 [從資源庫新增] 區段的 [輸入名稱] 文字方塊中，輸入應用程式名稱
+6.  在 hello**輸入的名稱**文字方塊中，從 hello**從 hello 圖庫新增**> 一節中，輸入 hello 名稱 hello 應用程式
 
-7.  選取您要設為單一登入的應用程式
+7.  選取您想 tooconfigure 進行單一登入的 hello 應用程式
 
-8.  新增應用程式之前，您可以從 [名稱] 文字方塊變更其名稱。
+8.  然後再加入 hello 應用程式，您可以變更其名稱從 hello**名稱**文字方塊。
 
-9.  按一下 [新增] 按鈕新增應用程式。
+9.  按一下**新增**按鈕，tooadd hello 應用程式。
 
-稍候片刻，您便能看見應用程式的設定刀鋒視窗。
+短時間，就能 toosee hello 應用程式的組態刀鋒視窗。
 
-### <a name="configure-the-application-for-password-single-sign-on"></a>設定應用程式使用密碼單一登入
+### <a name="configure-hello-application-for-password-single-sign-on"></a>設定密碼單一登入的 hello 應用程式
 
-若要設定應用程式使用單一登入，請依照下列步驟執行：
+tooconfigure 單一登入的應用程式，請遵循下列 hello 步驟：
 
-1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**或**共同管理員**身分登入。
+1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
+5.  按一下**所有應用程式**tooview 所有應用程式的清單。
 
- * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
+ * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
 
-6.  選取您要設定單一登入的應用程式
+6.  選取您想 tooconfigure 單一登入的 hello 應用程式
 
-7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
+7.  一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。
 
-8.  選取 [以密碼為基礎的登入] 模式。
+8.  選取 hello 模式**密碼式登入。**
 
-9.  將使用者指派至應用程式。
+9.  將使用者指派 toohello 應用程式。
 
-10. 此外，您也可以選取使用者資料列，按一下 [更新認證]，然後代表使用者輸入使用者名稱和密碼，以代表使用者提供認證。 否則，系統會提示使用者在啟動時自行輸入認證。
+10. 此外，您也可以提供代表 hello 使用者認證選取 hello 的 hello 使用者的資料列，並按一下**更新認證**並代表 hello 使用者輸入 hello 使用者名稱和密碼。 否則，使用者在提示的 tooenter hello 認證本身在啟動。
 
-## <a name="how-to-configure-password-single-sign-on-for-a-non-gallery-application"></a>如何為不在資源庫內的應用程式設定密碼單一登入
+## <a name="how-tooconfigure-password-single-sign-on-for-a-non-gallery-application"></a>如何 tooconfigure 密碼單一登入非組件庫的應用程式
 
-若要設定 Azure AD 資源庫中的應用程式，您必須：
+您需要 tooconfigure 從 hello Azure AD 的組件庫的應用程式：
 
 -   [新增不在資源庫內的應用程式](#add-a-non-gallery-application)
 
--   [設定應用程式使用密碼單一登入](#configure-the-application-for-password-single-sign-on)
+-   [設定密碼單一登入的 hello 應用程式](#configure-the-application-for-password-single-sign-on)
 
 ### <a name="add-a-non-gallery-application"></a>新增不在資源庫內的應用程式
 
-若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
+tooadd hello Azure AD 資源庫，從應用程式，請遵循下列 hello 步驟：
 
-1.  開啟 [Azure 入口網站](https://portal.azure.com)，然後以**全域管理員**或**共同管理員**身分登入。
+1.  開啟 hello [Azure 入口網站](https://portal.azure.com)身分登入和**全域管理員**或**共同管理員**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [企業應用程式] 刀鋒視窗右上角的 [新增] 按鈕
+5.  按一下 hello**新增**上 hello hello 右上角的按鈕**企業應用程式**刀鋒視窗
 
 6.  按一下 [不在資源庫內的應用程式]。
 
-7.  在 [名稱] 文字方塊中輸入應用程式的名稱。 選取 [新增]。
+7.  輸入 hello 應用程式的名稱在 hello**名稱**文字方塊。 選取 [新增]。
 
-稍候片刻，您便能看見應用程式的設定刀鋒視窗。
+短時間，就能 toosee hello 應用程式的組態刀鋒視窗。
 
-### <a name="configure-the-application-for-password-single-sign-on"></a>設定應用程式使用密碼單一登入
+### <a name="configure-hello-application-for-password-single-sign-on"></a>設定密碼單一登入的 hello 應用程式
 
-若要設定應用程式使用單一登入，請依照下列步驟執行：
+tooconfigure 單一登入的應用程式，請遵循下列 hello 步驟：
 
-1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**或**共同管理員**身分登入。
+1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
+5.  按一下**所有應用程式**tooview 所有應用程式的清單。
 
- * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
+ * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
 
-6.  選取您要設定單一登入的應用程式。
+6.  選取您想 tooconfigure 單一登入的 hello 應用程式。
 
-7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
+7.  一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。
 
-8.  選取 [以密碼為基礎的登入] 模式。
+8.  選取 hello 模式**密碼式登入。**
 
-9.  輸入**登入 URL**。 這是使用者輸入使用者名稱和密碼來登入的 URL。 確保在 URL 看得到登入欄位。
+9.  輸入 hello**登入 URL**。 這是讓使用者輸入其使用者名稱和密碼 toosign 中的以 hello URL。 請確定 hello 登入欄位會顯示在 hello URL。
 
-10. 將使用者指派至應用程式。
+10. 將使用者指派 toohello 應用程式。
 
-11. 此外，您也可以選取使用者資料列，按一下 [更新認證]，然後代表使用者輸入使用者名稱和密碼，以代表使用者提供認證。 否則，系統會提示使用者在啟動時自行輸入認證。
+11. 此外，您也可以提供代表 hello 使用者認證選取 hello 的 hello 使用者的資料列，並按一下**更新認證**並代表 hello 使用者輸入 hello 使用者名稱和密碼。 否則，使用者在提示的 tooenter hello 認證本身在啟動。
 
-## <a name="how-to-assign-a-user-to-an-application-directly"></a>如何將使用者直接指派至應用程式
+## <a name="how-tooassign-a-user-tooan-application-directly"></a>如何 tooassign 使用者 tooan 應用程式直接
 
-若要直接將一或多個使用者指派至應用程式，請依照下列步驟執行︰
+tooassign 一或多個使用者 tooan 應用程式直接管理，請遵循下列 hello 步驟：
 
-1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。
+1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
 
-3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
 
-4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
 
-5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
+5.  按一下**所有應用程式**tooview 所有應用程式的清單。
 
-  * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
+  * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
 
-6.  從清單中選取您想要指派使用者的應用程式。
+6.  選取您想要使用者 toofrom hello 清單 tooassign hello 應用程式。
 
-7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [使用者和群組]。
+7.  一旦 hello 應用程式載入時，按一下 **使用者和群組**從 hello 應用程式的左導覽功能表。
 
-8.  按一下 [使用者和群組] 清單頂端的 [新增] 按鈕，以開啟 [新增指派] 刀鋒視窗。
+8.  按一下 hello**新增**hello 頂端的按鈕**使用者和群組**清單 tooopen hello**將作業加入**刀鋒視窗。
 
-9.  從 [新增指派] 刀鋒視窗按一下 [使用者和群組] 選取器。
+9.  按一下 hello**使用者和群組**選取器從 hello**將作業加入**刀鋒視窗。
 
-10. 在 [依姓名或電子郵件地址搜尋] 搜尋方塊中，輸入您有興趣指派之使用者的**全名**或**電子郵件地址**。
+10. Hello 中的型別**全名**或**電子郵件地址**hello 使用者您感興趣指派到 hello 的**依名稱或電子郵件地址搜尋**搜尋 方塊。
 
-11. 將滑鼠停留在清單中的**使用者**上方，以顯示**核取方塊**。 按一下使用者設定檔照片或標誌旁邊的核取方塊，將使用者新增至 [已選取] 清單。
+11. 將滑鼠停留在 hello**使用者**在 hello 清單 tooreveal**核取方塊**。 按一下 [hello] 核取方塊下一步 toohello 使用者的設定檔的相片或標誌 tooadd 使用者 toohello**選取**清單。
 
-12. **選擇性︰**如果您想要**新增多位使用者**，請在 [依姓名或電子郵件地址搜尋] 搜尋方塊中，輸入另一個**全名**或**電子郵件地址**，然後按一下核取方塊，將此使用者新增至 [已選取] 清單。
+12. **選擇性：**如果您希望太**新增多個使用者**，在另一個類型**全名**或**電子郵件地址**到 hello**依名稱搜尋電子郵件地址或**搜尋 方塊中，然後按一下 hello 核取方塊 tooadd 這個使用者 toohello**選取**清單。
 
-13. 當您完成選取使用者時，按一下 [選取] 按鈕，將他們新增到要指派至應用程式的使用者和群組清單。
+13. 當您完成選取的使用者，請按一下 hello**選取**按鈕 tooadd 它們的使用者和群組 toobe toohello 清單指派 toohello 應用程式。
 
-14. **選擇性︰**按一下 [新增指派] 刀鋒視窗中的 [選取角色] 選取器，以選取要指派給您已選取使用者的角色。
+14. **選擇性：**按一下 hello**選取角色**hello 中的選取器**將作業加入**刀鋒視窗 tooselect 角色 tooassign toohello 使用者已選取。
 
-15. 按一下 [指派] 按鈕，將應用程式指派給選取的使用者。
+15. 按一下 hello**指派**按鈕 tooassign hello 應用程式 toohello 選取的使用者。
 
-稍待片刻，您已選取的使用者便能在存取面板中啟動這些應用程式。
+在短時間，您已選取的 hello 使用者會無法 toolaunch 中的這些應用程式之後 hello 存取面板。
 
-## <a name="if-these-troubleshooting-steps-do-not-the-resolve-the-issue"></a>如果這些疑難排解步驟無法解決問題
+## <a name="if-these-troubleshooting-steps-do-not-hello-resolve-hello-issue"></a>如果不執行 hello 這些疑難排解步驟解決 hello 問題
 
-使用下列資訊 (若有的話) 開啟支援票證︰
+開啟支援票證以 hello 如果有的話，下列資訊：
 
 -   相互關聯錯誤 ID
 
@@ -525,5 +525,5 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 -   Fiddler 追蹤
 
 ## <a name="next-steps"></a>後續步驟
-[使用應用程式 Proxy 提供單一登入應用程式](active-directory-application-proxy-sso-using-kcd.md)
+[提供單一登入 tooyour 應用程式與應用程式 Proxy](active-directory-application-proxy-sso-using-kcd.md)
 

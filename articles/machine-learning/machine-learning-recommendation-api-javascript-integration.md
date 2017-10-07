@@ -16,81 +16,81 @@ ms.date: 03/31/2017
 ms.author: luisca
 ROBOTS: NOINDEX
 redirect_url: machine-learning-datamarket-deprecation
-redirect_document_id: TRUE
-ms.openlocfilehash: 8f27962d097bffc2a03de80244ae41d6573a4bf3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 4c5f0eee4aa04ce823321d52985374c52850f0d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-machine-learning-recommendations---javascript-integration"></a>Azure Machine Learning Recommendations - JavaScript 整合
 > [!NOTE]
-> 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。 Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。 它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。
-> 深入了解 [移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
+> 您應該開始使用 hello 建議 API 認知服務，而不此版本。 hello 建議認知服務將會取代此服務，並將那里開發所有 hello 新功能。 它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。
+> 深入了解[移轉 toohello 新認知的服務](http://aka.ms/recomigrate)
 > 
 > 
 
-本文件說明如何使用 JavaScript 整合您的網站。 JavaScript 可讓您傳送資料擷取事件，並在建立建議模型之後取用建議。 透過 JS 完成的所有操作也能從伺服器端完成。
+本文件描述如何 toointegrate 您使用 JavaScript 的網站。 hello JavaScript 可讓您 toosend 資料擷取的事件和 tooconsume 建議一旦建置推薦模型。 透過 JS 完成的所有操作也能從伺服器端完成。
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="1-general-overview"></a>1.一般概觀
 利用 2 階段所包含的 Azure ML Recommendations 來整合您的網站：
 
-1. 將事件傳送到 Azure ML Recommendations。 這樣做將能建立建議模型。
-2. 取用建議。 建立模型之後，您就可以取用建議。 (本文件並未說明如何建立模型，請閱讀快速入門指南以取得做法的詳細資訊)。
+1. 將事件傳送到 Azure ML Recommendations。 這會讓 toobuild 推薦模型。
+2. 耗用 hello 建議。 建立 hello 模型之後，您可以使用 hello 建議。 （此文件並未說明如何讀取 toobuild 模型時，會 hello 快速入門指南 tooget 詳細資訊）。
 
 <ins>第一階段</ins>
 
-在第一階段中，您會將一個小型 JavaScript 程式庫插入 HTML 網頁，讓該頁面可在事件於 HTML 網頁上發生時將其傳送到 Azure ML Recommendations 伺服器 (透過資料市場)：
+Hello 中第一個階段，您將插入至 html 頁面小型的 JavaScript 程式庫，可讓 hello 頁面 toosend 事件 hello html 網頁上發生時於 Azure ML 建議伺服器 （透過資料市場）：
 
 ![繪圖 1][1]
 
 <ins>第二階段</ins>
 
-在第二階段中，當您想要在頁面上顯示建議時，請選取下列其中一個選項：
+在 [hello 第二個階段，當您想在 hello] 頁面上的 tooshow hello 建議您選取其中一個 hello 下列選項：
 
-1. 您的伺服器 (在頁面轉譯階段) 呼叫 Azure ML Recommendations 伺服器 (透過資料市場) 以取得建議。 結果會包含項目識別碼的清單。 您的伺服器需要利用「中繼資料」 (例如影像、描述) 項目擴充結果，以及將建立的頁面傳送給瀏覽器。
+1.您的伺服器 （在頁面上轉譯的 hello 階段） 會呼叫 Azure ML 建議伺服器 （透過資料市場） tooget 建議。 hello 結果會包含項目 id 的清單。您的伺服器需要 tooenrich hello 結果與 hello 項目中繼資料 （例如影像、 描述），並傳送 hello 建立頁面 toohello 瀏覽器。
 
 ![繪圖 2][2]
 
-2. 另一個選擇是使用第一階段中的小型 JavaScript 檔案，以取得簡單的建議項目清單。 這裡收到的資料會比第一個選擇還要精簡。
+2.hello 另一個選項是 toouse hello 小 JavaScript 檔案從階段一個 tooget 建議項目的簡單清單。 比 hello 第一個選項 hello 一款這裡收到 hello 資料。
 
 ![繪圖 3][3]
 
 ## <a name="2-prerequisites"></a>2.必要條件
-1. 使用 API 建立新的模型。 如需如何執行此操作，請參閱快速入門指南。
-2. 使用 base64 將 &lt;dataMarketUser&gt;:&lt;dataMarketKey&gt; 編碼。 (這將會用於基本驗證，讓 JS 程式碼能夠呼叫 API)。
+1. 建立新的模型使用 hello 應用程式開發介面。 請參閱 hello 快速入門指南 toodo 它。
+2. 使用 base64 將 &lt;dataMarketUser&gt;:&lt;dataMarketKey&gt; 編碼。 （這將用於 hello 基本驗證 tooenable hello JS 程式碼 toocall hello 應用程式開發介面）。
 
 ## <a name="3-send-data-acquisition-events-using-javascript"></a>3.使用 JavaScript 傳送資料擷取事件
-下列步驟可加入傳送事件的速度：
+下列步驟的 hello 促進傳送事件：
 
-1. 在程式碼中納入 JQuery 程式庫。 您可以利用下列 URL 來從 nuget 下載。
+1. 在程式碼中納入 JQuery 程式庫。 您可以從下列 URL 的 hello 中的 nuget 下載它。
    
      http://www.nuget.org/packages/jQuery/1.8.2
-2. 從下列 URL 納入 Recommendations Java Script 程式庫：http://aka.ms/RecoJSLib1
-3. 使用適當參數初始化 Azure ML Recommendations 程式庫。
+2. 將從下列 URL 的 hello hello 建議 Java 指令碼程式庫包括： http://aka.ms/RecoJSLib1
+3. 初始化 Azure ML 建議程式庫與 hello 適當的參數。
    
-     <script> AzureMLRecommendationsStart("<base64encoding of username:key>", "<model_id>"); </script>
-4. 傳送適當的事件。 有關所有型別事件的詳細說明 (Click 事件範例)，請參閱下節  <script> 如果 (typeof AzureMLRecommendationsEvent=="undefined") {         
+     <script>AzureMLRecommendationsStart (「<base64encoding of username:key>"，"< model_id >");</script> 
+4.傳送嗨適當的事件。 有關所有型別事件的詳細說明 (Click 事件範例)，請參閱下節  <script> 如果 (typeof AzureMLRecommendationsEvent=="undefined") {         
                      AzureMLRecommendationsEvent = []; } AzureMLRecommendationsEvent.push({ event: "click", item: "18321116" }); </script>
 
 ### <a name="31----limitations-and-browser-support"></a>3.1.    限制和瀏覽器支援
 這是參考實作並依現況提供。 其應該支援所有主要瀏覽器。
 
 ### <a name="32----type-of-events"></a>3.2.    事件類型
-程式庫一共支援 5 種類型的事件：點選 (Click)、建議點選 (Recommendation Click)、加入購物車 (Add to Shop Cart)、從購物車移除 (Remove from Shop Cart) 以及購買 (Purchase)。 另外還有一種用來設定使用者內容的事件，稱為登入 (Login)。
+事件的 5 hello 程式庫支援的類型有： 按一下 []，按一下建議，新增 tooShop 購物車，移除購物車及購買。 沒有使用的 tooset hello 使用者內容呼叫登入的其他事件。
 
 #### <a name="321-click-event"></a>3.2.1. 點選事件
-每當使用者點選項目時，都應該會使用這個事件。 當使用者點選項目時，通常會開啟含有該項目詳細資料的新頁面。在這個頁面中，應該會觸發此事件。
+每當使用者點選項目時，都應該會使用這個事件。 只有當使用者按一下項目時，通常以 hello 項目詳細資料; 開啟新的頁面在此頁面應觸發這個事件。
 
 參數：
 
 * event (字串, 強制) - “click”
-* item (字串, 強制) - 項目的唯一識別碼
-* itemName (字串, 選擇性) - 項目的名稱
-* itemDescription (字串, 選擇性) - 項目的描述
-* itemCategory (字串, 選擇性) - 項目的類別
+* 項目 (string，強制)-hello 項目的唯一識別碼
+* itemName (string，選用)-hello hello 項目名稱
+* itemDescription (string，選用)-hello 項目的 hello 描述
+* itemCategory (string，選用)-hello hello 項目分類的
   
         <script>
             if (typeof AzureMLRecommendationsEvent == "undefined") { AzureMLRecommendationsEvent = []; }
@@ -106,17 +106,17 @@ ms.lasthandoff: 07/11/2017
 
 
 #### <a name="322-recommendation-click-event"></a>3.2.2. 建議點選事件
-每當使用者點選項目 (從 Azure ML Recommendations 接收當成建議的項目) 時，都應該會使用這個事件。 當使用者點選項目時，通常會開啟含有該項目詳細資料的新頁面。在這個頁面中，應該會觸發此事件。
+每當使用者點選項目 (從 Azure ML Recommendations 接收當成建議的項目) 時，都應該會使用這個事件。 只有當使用者按一下項目時，通常以 hello 項目詳細資料; 開啟新的頁面在此頁面應觸發這個事件。
 
 參數：
 
 * event (字串, 強制) - “recommendationclick”
-* item (字串, 強制) - 項目的唯一識別碼
-* itemName (字串, 選擇性) - 項目的名稱
-* itemDescription (字串, 選擇性) - 項目的描述
-* itemCategory (字串, 選擇性) - 項目的類別
-* seeds (字串陣列, 選擇性) - 產生建議查詢的種子。
-* recoList (字串陣列, 選擇性) - 產生被按一下之項目的建議要求的結果。
+* 項目 (string，強制)-hello 項目的唯一識別碼
+* itemName (string，選用)-hello hello 項目名稱
+* itemDescription (string，選用)-hello 項目的 hello 描述
+* itemCategory (string，選用)-hello hello 項目分類的
+* 種子 （字串陣列，選用）-hello 產生 hello 建議查詢的種子。
+* （字串陣列，選用）-recoList hello hello 建議要求產生已按下的 hello 項的結果。
   
         <script>
             if (typeof AzureMLRecommendationsEvent=="undefined") { AzureMLRecommendationsEvent = []; }
@@ -132,14 +132,14 @@ ms.lasthandoff: 07/11/2017
 
 
 #### <a name="323-add-shopping-cart-event"></a>3.2.3. 加入購物車事件
-當使用者將項目加入購物車時，應該會使用這個事件。
+此事件應該用於當 hello 使用者加入購物車的項目 toohello。
 參數：
 
 * event (字串, 強制) - “addshopcart”
-* item (字串, 強制) - 項目的唯一識別碼
-* itemName (字串, 選擇性) - 項目的名稱
-* itemDescription (字串, 選擇性) - 項目的描述
-* itemCategory (字串, 選擇性) - 項目的類別
+* 項目 (string，強制)-hello 項目的唯一識別碼
+* itemName (string，選用)-hello hello 項目名稱
+* itemDescription (string，選用)-hello 項目的 hello 描述
+* itemCategory (string，選用)-hello hello 項目分類的
   
         <script>
             if (typeof AzureMLRecommendationsEvent == "undefined") { AzureMLRecommendationsEvent = []; }
@@ -147,15 +147,15 @@ ms.lasthandoff: 07/11/2017
         </script>
 
 #### <a name="324-remove-shopping-cart-event"></a>3.2.4. 移除購物車事件
-當使用者移除購物車中的項目時，應該會使用這個事件。
+Hello 使用者移除項目 toohello 購物車時，應該使用這個事件。
 
 參數：
 
 * event (字串, 強制) - “removeshopcart”
-* item (字串, 強制) - 項目的唯一識別碼
-* itemName (字串, 選擇性) - 項目的名稱
-* itemDescription (字串, 選擇性) - 項目的描述
-* itemCategory (字串, 選擇性) - 項目的類別
+* 項目 (string，強制)-hello 項目的唯一識別碼
+* itemName (string，選用)-hello hello 項目名稱
+* itemDescription (string，選用)-hello 項目的 hello 描述
+* itemCategory (string，選用)-hello hello 項目分類的
   
         <script>
             if (typeof AzureMLRecommendationsEvent=="undefined") { AzureMLRecommendationsEvent = []; }
@@ -163,18 +163,18 @@ ms.lasthandoff: 07/11/2017
         </script>
 
 #### <a name="325-purchase-event"></a>3.2.5. 購買事件
-當使用者購買購物車中的項目時，應該會使用這個事件。
+Hello 使用者購買他購物車時，應該使用這個事件。
 
 參數：
 
 * event (字串) - “purchase”
 * items (Purchased[]) - 陣列會為購買的每個項目保留一個項目。<br><br>
   已購買項目的格式︰
-  * item (字串) – 項目的唯一識別碼。
+  * 項目 （字串）-hello 項目的唯一識別碼。
   * count (整數或字串) - 已購買的項目數。
-  * price (浮點數或字串) - 選擇性欄位 - 項目的價格。
+  * 價格 （float 或字串） 為選擇性欄位-hello 價格 hello 項目。
 
-以下範例顯示總共購買 3 個項目 (33, 34, 35)，已填入其中兩個的所有欄位 (item, count, price)，還有一個 (item 34) 沒有價格。
+hello 下面範例 3 購買項目 （33、 34、 35），其中包含所有已填入欄位項目、 計數 （價格） 和一個 （項目 34） 沒有價格的兩個。
 
         <script>
             if ( typeof AzureMLRecommendationsEvent == "undefined"){ AzureMLRecommendationsEvent = []; }
@@ -182,14 +182,14 @@ ms.lasthandoff: 07/11/2017
         </script>
 
 #### <a name="326-user-login-event"></a>3.2.6. 使用者登入事件
-Azure ML Recommendations 事件程式庫會建立並使用 Cookie，以識別來自相同瀏覽器的事件。 為了改善模型結果，Azure ML Recommendations 能夠為使用者設定將覆寫 Cookie 使用的唯一識別。
+Azure ML 建議事件程式庫會建立並使用來自順序 tooidentify 事件中的 cookie hello 相同的瀏覽器。 在訂單 tooimprove hello 模型結果 Azure ML 建議可讓 tooset 使用者的唯一識別碼，將會覆寫 hello cookie 使用方式。
 
-在使用者登入您的網站後，應該會使用這個事件。
+Hello 使用者登入 tooyour 網站之後，就應該使用此事件。
 
 參數：
 
 * event (字串) - “userlogin”
-* user (字串) - 使用者的唯一識別。
+* 使用者 （字串）-hello 使用者的唯一識別碼。
   
         <script>
             if (typeof AzureMLRecommendationsEvent=="undefined") { AzureMLRecommendationsEvent = []; }
@@ -197,25 +197,25 @@ Azure ML Recommendations 事件程式庫會建立並使用 Cookie，以識別來
         </script>
 
 ## <a name="4-consume-recommendations-via-javascript"></a>4.透過 JavaScript 取用建議
-取用建議的程式碼是由用戶端網頁的某些 JavaScript 事件所觸發。 建議回應包含建議項目識別碼、其名稱及評等。 最好只有在以清單顯示建議的項目時，才使用這個選項 - 較複雜的處理 (例如，新增項目的中繼資料) 應該在伺服器端整合完成。
+利用 hello 建議的 hello 程式碼是由用戶端 hello 網頁觸發某些 JavaScript 事件。 hello 建議回應會包含 hello 的建議項目 Id、 其名稱和其分級。 這個選項，只讓清單顯示的建議項目-更複雜處理 （例如將 hello 項目中繼資料） 的 hello 應該在 hello 伺服器端整合的最佳 toouse 它。
 
 ### <a name="41-consume-recommendations"></a>4.1 取用建議
-若要取用建議，您必須將必要的 JavaScript 程式碼納入頁面中，然後呼叫 AzureMLRecommendationsStart。 請參閱第 2 節。
+您需要 tooinclude hello tooconsume 建議需要在頁面和 toocall AzureMLRecommendationsStart 中的 JavaScript 程式庫。 請參閱第 2 節。
 
-若要取用一或多個項目的建議，您必須呼叫以下方法： AzureMLRecommendationsGetI2IRecommendation。
+一或多個項目的 tooconsume 建議需要的 toocall 呼叫的方法： AzureMLRecommendationsGetI2IRecommendation。
 
 參數：
 
-* items (字串的陣列) - 要取得建議的一或多個項目。 如果您取用 Fbt 組建，則您在這裡只能設定一個項目。
+* 一或多個項目 tooget 建議的項目 （陣列的字串-）。 如果您取用 Fbt 組建，則您在這裡只能設定一個項目。
 * numberOfResults (整數) - 所需結果的數目。
-* includeMetadata (布林值, 選擇性) - 如果設為 'true' 表示必須在結果中填入中繼資料欄位。
-* 處理函式 - 將處理所傳回建議的函式。 資料會以下列陣列的方式傳回︰
+* includeMetadata （布林值，選用）-如果設定 too'true' 表示該 hello 中繼資料必須先填入欄位 hello 結果中。
+* 處理函式-處理 hello 建議函式傳回。 hello 資料是以陣列傳回：
   * 項目 - 項目唯一識別碼
   * 名稱 - 項目名稱 (如果存在於目錄中)
   * 評等 - 建議評等
-  * 中繼資料 - 代表項目中繼資料的字串
+  * 中繼資料的字串，代表 hello hello 項目中繼資料
 
-範例：下列程式碼要求項目 "64f6eb0d-947a-4c18-a16c-888da9e228ba" (而不指定 includeMetadata - 即暗示不需要任何中繼資料) 提供 8 個建議，然後將結果串連到緩衝區。
+範例： hello 下列程式碼要求 8 建議項目 」 64f6eb0d-947a-4c18-a16c-888da9e228ba 」 (並不指定 includeMetadata-它隱含地說，無中繼資料，就需要)，它必須接著 hello 結果串連成一個緩衝區。
 
         <script>
              var reco = AzureMLRecommendationsGetI2IRecommendation(["64f6eb0d-947a-4c18-a16c-888da9e228ba"], 8, false, function (reco) {

@@ -1,5 +1,5 @@
 ---
-title: "Azure 服務匯流排配對的命名空間 |Microsoft Docs"
+title: "服務匯流排 aaaAzure 配對命名空間 |Microsoft 文件"
 description: "配對的命名空間實作詳細資料和成本"
 services: service-bus-messaging
 documentationcenter: na
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: sethm
-ms.openlocfilehash: a200ea7937b9f5296c743928a9408897adfba428
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4c44b2b95d2228e1ad8075b52634d88a1593d3b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="paired-namespace-implementation-details-and-cost-implications"></a>配對命名空間實作詳細資料和成本影響
-使用 [SendAvailabilityPairedNamespaceOptions][SendAvailabilityPairedNamespaceOptions] 執行個體的 [PairNamespaceAsync][PairNamespaceAsync] 方法會代表您執行可見的工作。 因為使用此功能時有一些成本考量，了解這些工作會有所幫助，以便預期發生時的行為。 API 會代表您下列從事下列自動行為：
+hello [PairNamespaceAsync] [ PairNamespaceAsync]方法，使用[SendAvailabilityPairedNamespaceOptions] [ SendAvailabilityPairedNamespaceOptions]執行個體，請執行可見的工作您的身分。 因為有成本考量使用 hello 功能時，所以這些工作，讓您在發生時加以預期 hello 行為的有用 toounderstand。 hello API 會代替您遵循自動行為 hello:
 
 * 建立待處理項目佇列。
-* 建立可與佇列或主題交談的 [MessageSender][MessageSender] 物件。
-* 當傳訊實體變成無法使用時，在嘗試偵測該實體何時可再度使用時傳送 ping 訊息到實體。
-* 選擇性建立一組可將訊息從待處理項目佇列移到主要佇列的「訊息幫浦」。
-* 協調主要和次要 [MessagingFactory][MessagingFactory] 執行個體的關閉/失敗。
+* 建立[MessageSender] [ MessageSender]交談 tooqueues 或主題的物件。
+* 當訊息實體變得無法使用時，會傳送 ping 訊息 toohello 實體中嘗試 toodetect 時該實體再度恢復使用。
+* 選擇性地建立一組 「 訊息幫浦 」 移動訊息從 hello 待處理項目佇列 toohello 主要佇列。
+* 協調關閉/錯誤的主要和次要的 hello [MessagingFactory] [ MessagingFactory]執行個體。
 
-概括而言，此功能的運作方式如下：當主要實體的狀況良好時，不會發生任何行為變更。 當 [FailoverInterval][FailoverInterval] 期間過後，而且主要實體未看到非暫時性 [MessagingException][MessagingException] 或 [TimeoutException][TimeoutException] 之後有任何成功傳送，則會發生下列行為：
+在高層級，hello 功能的運作方式如下： hello 主要實體狀況良好時，就會發生任何行為變更。 當 hello [FailoverInterval] [ FailoverInterval]期間結束，並可 hello 主要實體看見任何成功傳送之後非暫時性[MessagingException] [MessagingException]或[TimeoutException][TimeoutException]，就會發生下列行為的 hello:
 
-1. 傳送至主要實體的作業會停用，而系統會 ping 主要實體，直到可以成功傳送 ping 為止。
+1. 傳送作業 toohello 主要實體會停用，直到可以順利傳遞 ping 為止，hello 系統 ping hello 主要實體。
 2. 已選取隨機待處理項目佇列。
-3. [BrokeredMessage][BrokeredMessage] 物件會路由傳送至所選的積存佇列。
-4. 如果傳送至所選待處理項目佇列的作業失敗，則會從輪替提取該佇列並選取新的佇列。 [MessagingFactory][MessagingFactory] 執行個體上的所有傳送端都會得知失敗。
+3. [BrokeredMessage] [ BrokeredMessage]物件是路由的 toohello 選擇待處理項目佇列。
+4. 如果選擇待處理項目佇列傳送作業 toohello 失敗，該佇列提取從 hello 循環，並選取新的佇列。 所有的寄件者在 hello [MessagingFactory] [ MessagingFactory] hello 失敗的了解的執行個體。
 
-下圖描繪順序。 首先，傳送端會傳送訊息。
+下列數據的 hello 會描述 hello 順序。 首先，hello 寄件者會傳送訊息。
 
 ![配對的命名空間][0]
 
-無法傳送到主要佇列時，傳送端會開始傳送訊息到隨機選擇的待處理項目佇列。 同時，它會開始進行 ping 工作。
+在失敗 toosend toohello 主要佇列，hello 寄件者會開始傳送訊息 tooa 隨機選擇的待處理項目佇列。 同時，它會開始進行 ping 工作。
 
 ![配對的命名空間][1]
 
-此時訊息仍在次要佇列中，而尚未傳遞到主要佇列。 一旦主要佇列再度恢復良好狀況，至少有一個程序應該執行 Syphon。 Syphon 會將各種待處理項目佇列中的訊息傳遞至適當的目的地實體 (佇列和主題)。
+此時 hello 訊息仍然在 hello 次要佇列，而尚未傳遞 toohello 主要佇列。 Hello 主要佇列恢復狀況良好後, 至少其中一個處理序應執行虹吸 hello。 hello 虹吸 hello 訊息從傳送所有 hello 各種待處理項目佇列 toohello 適當的目的地實體 （佇列和主題）。
 
 ![配對的命名空間][2]
 
-本主題的其餘部分將討論這些片段運作方式的具體詳細資料。
+本主題的 hello 其餘部分將討論 hello 的這些作業的運作方式的特定詳細資料。
 
 ## <a name="creation-of-backlog-queues"></a>建立待處理項目佇列
-傳遞至 [PairNamespaceAsync][PairNamespaceAsync] 方法的 [SendAvailabilityPairedNamespaceOptions][SendAvailabilityPairedNamespaceOptions] 物件會指出您要使用的積存佇列數目。 然後建立已明確設定下列屬性的每個積存佇列 (所有其他值都會設為 [QueueDescription][QueueDescription] 預設值)：
+hello [SendAvailabilityPairedNamespaceOptions] [ SendAvailabilityPairedNamespaceOptions]傳遞 toohello 物件[PairNamespaceAsync] [ PairNamespaceAsync]方法表示 hello待處理項目數目排入佇列，您想 toouse。 每個待處理項目佇列然後建立以 hello 下列屬性明確設定 (所有其他值都會設 toohello [QueueDescription] [ QueueDescription]預設值):
 
 | Path | [primary namespace]/x-servicebus-transfer/[index]，其中 [index] 是 [0, BacklogQueueCount) 中的值 |
 | --- | --- |
@@ -63,15 +63,15 @@ ms.lasthandoff: 07/11/2017
 | EnableDeadLetteringOnMessageExpiration |true |
 | EnableBatchedOperations |true |
 
-例如，針對命名空間 **contoso`contoso/x-servicebus-transfer/0` 建立的第一個積存佇列名為** 。
+例如，命名空間建立 hello 第一次的待處理項目佇列**contoso**名為`contoso/x-servicebus-transfer/0`。
 
-建立佇列時，程式碼會先查看是否有此佇列存在。 如果此佇列不存在，則會建立佇列。 程式碼不會清除「額外的」待處理項目佇列。 具體而言，如果具有主要命名空間 **contoso** 的應用程式要求 5 個積存佇列，但有一個具有路徑 `contoso/x-servicebus-transfer/7` 的積存佇列存在，則該額外的積存佇列仍然存在，但不會使用。 系統明確允許額外的待處理項目佇列存在但不會使用。 身為命名空間擁有者，您必須負責清除任何未使用/不需要的待處理項目佇列。 此決策的原因是服務匯流排無法得知您的命名空間中所有佇列的目的為何。 此外，如果佇列具有指定的名稱但不符合所假設的 [QueueDescription][QueueDescription]，則您的理由是您自己要變更預設行為。 不保證您的程式碼會修改待處理項目佇列。 請務必徹底測試您的變更。
+當建立 hello 佇列，hello 程式碼會先檢查 toosee 如果存在這類的佇列。 如果 hello 佇列不存在，則會建立 hello 佇列。 hello 程式碼並不會清除 「 額外的 」 待處理項目佇列。 具體來說，如果 hello 應用程式與 hello 主要命名空間**contoso**要求五個待處理項目佇列但 hello 路徑的待處理項目佇列`contoso/x-servicebus-transfer/7`存在，仍會出現額外的積存佇列，而不是。 hello 系統會明確地允許多餘的待處理項目佇列 tooexist，不會使用。 Hello 命名空間擁有者，會負責清除任何未使用/不需要待處理項目佇列。 這項決策的 hello 原因是服務匯流排無法知道您的命名空間中的所有 hello 佇列都存在目的為何。 此外，如果佇列存在 hello 給定名稱，但不符合 hello 假設[QueueDescription][QueueDescription]，則原因取決於您自己的變更 hello 預設行為。 不保證修改 toohello 待處理項目佇列的程式碼。 徹底請確定 tootest 您的變更。
 
 ## <a name="custom-messagesender"></a>自訂 MessageSender
-傳送時，所有訊息都會經過內部 [MessageSender][MessageSender] 物件，該物件在一切可行時會正常表現，但在出現問題時會重新導向至積存佇列。 收到非暫時性失敗時，會啟動計時器。 在由 [FailoverInterval][FailoverInterval] 屬性值組成的 [TimeSpan][TimeSpan] 期間 (其間並未傳送任何成功訊息) 過後，會進行容錯移轉。 此時，每個實體會發生下列情況︰
+傳送時，所有訊息都會都移到內部[MessageSender] [ MessageSender]正常運作時的所有項目運作，以及當項目 」 中斷。 」，將重新導向 toohello 待處理項目佇列的物件 收到非暫時性失敗時，會啟動計時器。 之後[TimeSpan] [ TimeSpan]期間組成 hello [FailoverInterval] [ FailoverInterval]期間沒有成功的訊息傳送的屬性值可供 hello 容錯移轉。 此時，hello 會發生下列狀況的每個實體：
 
-* 每隔 [PingPrimaryInterval][PingPrimaryInterval] 就會執行一次 Ping 工作來檢查實體是否可用。 此工作一旦成功，使用該實體的所有用戶端程式碼會立即開始將新訊息傳送到主要命名空間。
-* 未來要從任何其他傳送端傳送到該相同實體的要求，將導致所傳送的[BrokeredMessage][BrokeredMessage] 遭到修改以放入積存佇列中。 修改作業會從 [BrokeredMessage][BrokeredMessage] 物件移除某些屬性，並將它們儲存在其他地方。 下列屬性已被清除並新增於新別名之下，可讓服務匯流排和 SDK 以一致的方式處理訊息︰
+* Ping 工作會執行每個[PingPrimaryInterval] [ PingPrimaryInterval] toocheck hello 實體是否可用。 這項工作中成功後，立即使用 hello 實體的所有用戶端程式碼會開始傳送新訊息 toohello 主要命名空間。
+* 未來的要求 toosend toothat 相同的實體，從任何其他傳送者將會導致 hello [BrokeredMessage] [ BrokeredMessage]傳送 toobe 修改 toosit hello 待處理項目佇列中的。 hello 修改某些屬性移除 hello [BrokeredMessage] [ BrokeredMessage]物件，並將它們儲存到其他位置。 hello 下列屬性會被清除並加入新的別名，讓服務匯流排和 hello SDK tooprocess 訊息統一之下：
 
 | 舊屬性名稱 | 新屬性名稱 |
 | --- | --- |
@@ -79,23 +79,23 @@ ms.lasthandoff: 07/11/2017
 | TimeToLive |x-ms-timetolive |
 | ScheduledEnqueueTimeUtc |x-ms-path |
 
-原始目的地路徑也會以名為 x-ms-path 的屬性形式儲存在訊息內。 這種設計可讓多個實體的訊息共存於單一待處理項目佇列中。 這些屬性會由 Syphon 轉譯回來。
+hello 原始目的地路徑也儲存在 hello 訊息做為 x ms 路徑的屬性。 此設計可讓單一待處理項目佇列中的許多實體 toocoexist 的訊息。 hello 屬性會傳回由 hello 虹吸轉譯。
 
-自訂的 [MessageSender][MessageSender] 物件可能會在訊息接近 256 KB 限制並進行容錯移轉時遇到問題。 自訂的 [MessageSender][MessageSender] 物件會將所有佇列和主題的訊息一起存放在積存佇列中。 此物件會將待處理項目佇列中許多主要項目的訊息混合在一起。 為了處理許多不知道彼此存在之用戶端間的負載平衡，SDK 會為您在程式碼中建立的每個 [QueueClient][QueueClient] 或 [TopicClient][TopicClient] 隨機挑選一個積存佇列。
+自訂 hello [MessageSender] [ MessageSender]物件可能會發生問題，當訊息達到 hello 256 KB 的限制，並可供容錯移轉。 自訂 hello [MessageSender] [ MessageSender]物件會儲存所有佇列和主題一起 hello 待處理項目佇列中的訊息。 此物件會將來自許多混雜在 hello 待處理項目佇列的訊息。 toohandle 之間的負載平衡隨機不知道每個其他 hello SDK 的許多用戶端會針對每個挑選一個待處理項目佇列[QueueClient] [ QueueClient]或[TopicClient] [TopicClient]您在程式碼中建立。
 
 ## <a name="pings"></a>Ping
-Ping 訊息是空的 [BrokeredMessage][BrokeredMessage]，它的 [ContentType][ContentType] 屬性設定為 application/vnd.ms-servicebus-ping 且 [TimeToLive][TimeToLive] 值為 1 秒。 此 ping 在服務匯流排中有一個特性︰當任何呼叫端要求 [BrokeredMessage][BrokeredMessage] 時，伺服器絕不會傳遞 ping。 因此，您永遠都不必了解如何接收並忽略這些訊息。 當每個用戶端的每個 [MessagingFactory][MessagingFactory] 執行個體的每個實體 (唯一佇列或主題) 被視為無法使用時，將會進行 ping。 根據預設，這會每分鐘發生一次。 Ping 訊息會被視為一般的服務匯流排訊息，可能會導致頻寬和訊息的費用。 只要用戶端偵測到系統可以使用，訊息就會停止。
+Ping 訊息是空白[BrokeredMessage] [ BrokeredMessage]具有其[ContentType] [ ContentType]屬性設定 tooapplication/vnd.ms servicebus-ping和[TimeToLive] [ TimeToLive]值為 1 秒。 此 ping 在 Service Bus 中有一個特性： hello 伺服器永遠不會傳遞 ping 要求的任何呼叫端時[BrokeredMessage][BrokeredMessage]。 因此，您不再需要 toolearn 如何 tooreceive 並忽略這些訊息。 每個實體 （唯一佇列或主題），每個[MessagingFactory] [ MessagingFactory]視為 toobe 無法使用時，將會被 ping 每個用戶端的執行個體。 根據預設，這會每分鐘發生一次。 Ping 訊息會被視為 toobe 一般服務匯流排訊息，而且可能會導致頻寬和訊息的費用。 Hello 用戶端會偵測 hello 系統是可用，如 hello 訊息，會停止。
 
-## <a name="the-syphon"></a>Syphon
-應用程式中至少有一個可執行程式應該主動執行 Syphon。 Syphon 會執行持續 15 分鐘的長時間輪詢接收。 當所有實體都可使用且有 10 個待處理項目佇列時，裝載 Syphon 的應用程式會呼叫接收作業︰每小時 40 次、每天 960 次和 30 天內 28800 次。 當 Syphon 主動將訊息從待處理項目移到主要佇列時，每則訊息會發生下列收費 (訊息大小和頻寬的標準收費適用於所有階段)︰
+## <a name="hello-syphon"></a>hello 虹吸
+Hello 應用程式中的至少一個可執行程式應主動執行虹吸 hello。 hello 虹吸會執行長時間輪詢接收達 15 分鐘。 當所有實體都都可用，您有 10 個待處理項目佇列 hello 裝載 hello 虹吸呼叫 hello 接收作業 40 次每小時、 每天 960 次，並在 30 天內達到 28800 次應用程式。 當 hello 虹吸主動從 hello 待處理項目 toohello 主要佇列移動訊息時，每個訊息就會發生下列的費用 （訊息大小和頻寬的標準收費適用於所有階段） 的 hello:
 
-1. 傳送至待處理項目佇列。
-2. 從待處理項目佇列接收。
-3. 傳送至主要佇列。
-4. 從主要佇列接收。
+1. 傳送 toohello 待處理項目。
+2. 收到 hello 待處理項目。
+3. 傳送主要 toohello。
+4. 接收來自主要 hello。
 
 ## <a name="closefault-behavior"></a>關閉/錯誤行為
-在裝載 Syphon 的應用程式內，一旦主要或次要 [MessagingFactory][MessagingFactory] 發生錯誤或已關閉，但其夥伴並未同時發生錯誤/關閉且 Syphon 偵測到此狀態之後，Syphon 就會採取行動。 如果其他 [MessagingFactory][MessagingFactory] 未在 5 秒內關閉，則 Syphon 會發生錯誤但仍開啟 [MessagingFactory][MessagingFactory]。
+裝載 hello 虹吸、 一次 hello 主要或次要資料庫的應用程式內[MessagingFactory] [ MessagingFactory]發生錯誤或已關閉而不需要其夥伴也正在發生錯誤/關閉和 hello 虹吸偵測到此狀態hello 虹吸作用。 如果其他 hello [MessagingFactory] [ MessagingFactory]未關閉 hello 虹吸將會在 5 秒內，錯誤 hello 仍開啟[MessagingFactory] [ MessagingFactory].
 
 ## <a name="next-steps"></a>後續步驟
 如需服務匯流排非同步通訊的詳細討論，請參閱[非同步通訊模式和高可用性][Asynchronous messaging patterns and high availability]。 

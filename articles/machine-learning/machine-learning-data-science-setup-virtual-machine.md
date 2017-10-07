@@ -1,5 +1,5 @@
 ---
-title: "將虛擬機器設定為 IPython Notebook 伺服器 | Microsoft Docs"
+title: "為 IPython Notebook 伺服器的虛擬機器 aaaSet |Microsoft 文件"
 description: "設定 Azure 虛擬機器，以在資料科學環境中搭配 IPython 伺服器進行進階分析。"
 services: machine-learning
 documentationcenter: 
@@ -14,71 +14,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: xibingao;bradsev
-ms.openlocfilehash: 66fd9e5573390ac6faeb82ad5b0f7ddb18d50a77
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 58386140ec7742ade1f7e183ec842a2b09b9dfca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-an-azure-virtual-machine-as-an-ipython-notebook-server-for-advanced-analytics"></a>將 Azure 虛擬機器設定為 IPython Notebook 伺服器供進階分析使用
-本主題示範如何針對可用來做為資料科學環境一部分的進階分析，佈建及設定 Azure 虛擬機器。 Windows 虛擬機器是使用支援工具 (例如 IPython Notebook、Azure 儲存體總管、AzCopy)，以及其他對於進階分析專案非常實用的公用程式來設定。 例如，Azure 儲存體總管和 AzCopy 會提供便利的方法，將資料從本機電腦上傳至 Azure Blob 儲存體，或者從 Blob 儲存體將資料下載到本機電腦。
+本主題說明如何 tooprovision 及設定 Azure 虛擬機器執行進階分析，可用來當做資料科學環境的一部分。 hello Windows 虛擬機器設定有支援 IPython 筆記型電腦、 Azure 儲存體總管、 AzCopy，以及可用於進階的分析專案的其他公用程式之類的工具。 Azure 儲存體總管和 AzCopy，例如，提供方便的方式 tooupload 資料 tooAzure blob 儲存體從您的本機電腦或 toodownload 它 tooyour 從 blob 儲存體的本機電腦。
 
 ## <a name="create-vm"></a>步驟 1：建立一般用途的 Azure 虛擬機器
-如果您已經具有 Azure 虛擬機器，而且只想在其上設定 IPython Notebook 伺服器，就可以略過這個步驟，繼續執行 [步驟 2：將 IPython Notebook 的端點加入現有的虛擬機器](#add-endpoint)。
+如果您已經有 Azure 虛擬機器，而且只想 tooset IPython 筆記型電腦的伺服器上，則可以略過此步驟，並繼續太[步驟 2： 加入 IPython Notebook tooan 現有虛擬機器的端點](#add-endpoint)。
 
-在 Azure 上建立虛擬機器的程序開始之前，您必須決定處理適用於其專案之資料所需的機器大小。 比起較大型的機器，較小型的機器配備較少的記憶體和較少的 CPU 核心數目，但價格也較便宜。 如需機器類型和價格清單，請參閱<a href="http://azure.microsoft.com/pricing/details/virtual-machines/" target="_blank">虛擬機器定價</a>頁面
+開始之前的 Azure 上建立虛擬機器的 hello 程序，您需要其專案所需的 tooprocess hello 資料的 hello 機器 toodetermine hello 大小。 比起較大型的機器，較小型的機器配備較少的記憶體和較少的 CPU 核心數目，但價格也較便宜。 如需電腦類型和價格的清單，請參閱 hello<a href="http://azure.microsoft.com/pricing/details/virtual-machines/" target="_blank">虛擬機器定價</a>頁面
 
-1. 登入 <a href="https://manage.windowsazure.com" target="_blank">Azure 傳統入口網站</a>，然後按一下左上角的 [新增]。 隨即會快顯一個視窗。 選取 [計算] -> [虛擬機器] -> [從組件庫]。
+1. 登入太<a href="https://manage.windowsazure.com" target="_blank">Azure 傳統入口網站</a>，然後按一下**新增**hello 左下角中。 隨即會快顯一個視窗。 選取 [計算] -> [虛擬機器] -> [從組件庫]。
    
     ![建立工作區][24]
-2. 選擇下列其中一個映像：
+2. 選擇其中一個 hello 下列影像：
    
    * Windows Server 2012 R2 Datacenter
    * Windows Server Essentials 體驗 (Windows Server 2012 R2)
      
-     然後按一下右下方指向右側的箭號，前往下一個設定頁面。
+     然後，按一下 hello 指向 hello 較低權限 toogo hello 下一個組態頁面的右邊的箭號。
      
      ![建立工作區][25]
-3. 輸入您想要建立的虛擬機器名稱、根據機器即將處理的資料大小和您想要的機器功能有多強大 (記憶體大小和運算核心數目) 來選取機器的大小 (預設值：A3)、輸入機器的使用者名稱和密碼。 接著，按一下指向右側的箭號，前往下一個設定頁面。
+3. 輸入的名稱要 toocreate，選取 hello hello 機器大小為 hello 虛擬機器 (預設： A3) 根據 hello 資料 hello 機器 hello 大小會持續 tooprocess，而且您想 hello 機器 toobe （記憶體大小和 hello 數目計算核心） 的功能強大輸入 hello 機器使用者名稱和密碼。 然後，按一下 hello 箭號向右 toogo toohello 下一個組態頁面。
    
     ![建立工作區][26]
-4. 選取 [區域/同質群組/虛擬網路]，其中包含您規劃要用於這部虛擬機器的 [儲存體帳戶]，然後選取該儲存體帳戶。 輸入端點的名稱 (此處為 "IPython")，藉此在 [端點] 欄位底部新增端點。 您可以選擇任何字串做為端點的 [名稱]，以及任何介於 0 和 65536 之間的整數**用作** [公用連接埠]。 [私人連接埠] 必須為 **9999**。 您應該**避免**使用已經指派給網際網路服務的公用連接埠。 <a href="http://www.chebucto.ns.ca/~rakerman/port-table.html" target="_blank">適用於網際網路服務的連接埠</a>會提供已指派且應避免的連接埠清單。
+4. 選取 hello**區域/同質群組/虛擬網路**包含 hello**儲存體帳戶**toouse 此虛擬機器，計劃，然後選取該儲存體帳戶。 將端點加入在 hello hello 底部**端點**欄位輸入 hello hello 端點 ("IPython"這裡) 名稱。 您可以選擇任何字串 hello 做**名稱**hello 結束點，以及介於 0 到 65536 之間的任何整數**可用**為 hello**公用連接埠**。 hello**私用連接埠**具有 toobe **9999**。 您應該**避免**使用已經指派給網際網路服務的公用連接埠。 <a href="http://www.chebucto.ns.ca/~rakerman/port-table.html" target="_blank">適用於網際網路服務的連接埠</a>會提供已指派且應避免的連接埠清單。
    
     ![建立工作區][27]
-5. 按一下勾號以啟動虛擬機器佈建程序。
+5. 按一下 hello 核取記號 toostart hello 虛擬機器佈建程序。
    
     ![建立工作區][28]
 
-它可能需要 15-25 分鐘，才能完成虛擬機器佈建程序。 建立虛擬機器之後，這部機器的狀態應顯示為 [執行中] 。
+可能需要 15-25 分鐘 toocomplete hello 虛擬機器佈建程序。 建立 hello 虛擬機器之後，此機器 hello 狀態應該顯示為**執行**。
 
 ![建立工作區][29]
 
-## <a name="add-endpoint"></a>步驟 2：將 IPython Notebook 的端點新增到現有的虛擬機器
-如果您已遵循步驟 1 中的指示建立虛擬機器，則已經新增適用於 IPython Notebook 的端點，可略過此步驟。
+## <a name="add-endpoint"></a>步驟 2： 新增 IPython Notebook tooan 現有虛擬機器的端點
+如果您在步驟 1 中的 hello 指示建立 hello 虛擬機器，然後 IPython 筆記型電腦的 hello 端點已經加入，並略過此步驟。
 
-如果虛擬機器已經存在，而且您需要新增將在以下步驟 3 中安裝的 IPython Notebook 端點，請先登入 Azure 傳統入口網站、選取虛擬機器，然後新增 IPython Notebook 伺服器的端點。 下圖包含在將 IPython Notebook 的端點新增到 Windows 虛擬機器之後入口網站的螢幕擷取畫面。
+如果 hello 虛擬機器已存在，而且您需要您將在下面步驟 3 中安裝的 IPython 筆記型電腦 tooadd 端點，第一個登入 tooAzure 傳統入口網站，選取 hello 虛擬機器，並加入 IPython Notebook 伺服器 hello 端點。 hello 圖包含 hello 入口網站的螢幕擷取畫面之後加入的 IPython 筆記型電腦的 hello 端點 tooa Windows 虛擬機器。
 
 ![建立工作區][17]
 
 ## <a name="run-commands"></a>步驟 3：安裝 IPython Notebook 和其他支援工具
-建立虛擬機器之後，請使用遠端桌面通訊協定 (RDP) 登入 Windows 虛擬機器。 如需指示，請參閱[如何登入執行 Windows Server 的虛擬機器](../virtual-machines/windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 以**系統管理員**身分開啟 **命令提示字元** (**不是 Powershell 命令視窗**)，並執行下列命令。
+Hello 虛擬機器建立之後，使用遠端桌面通訊協定 (RDP) toolog toohello Windows 虛擬機器上。 如需指示，請參閱[如何 tooa 執行 Windows Server 的虛擬機器上的 tooLog](../virtual-machines/windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 開啟 hello**命令提示字元**(**不 hello Powershell 命令視窗**) 做為**管理員**和 hello 執行下列命令。
 
     set script='https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/MachineSetup/Azure_VM_Setup_Windows.ps1'
 
     @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString(%script%))"
 
-完成安裝時，會在 *C:\\Users\\\<使用者名稱\>\\Documents\\IPython Notebooks* 目錄中自動啟動 IPython Notebook 伺服器。
+Hello 安裝完成時，在 hello IPython Notebook 伺服器會自動啟動的 hello *c:\\使用者\\\<使用者名\>\\文件\\IPython筆記本*目錄。
 
-出現提示時，請輸入 IPython Notebook 的密碼，以及機器系統管理員的密碼。 這讓 IPython Notebook 能夠做為機器上的服務來執行 。
+出現提示時，輸入 hello IPython 筆記型電腦的密碼和 hello hello 機器系統管理員密碼。 如此 hello IPython 筆記型電腦 toorun hello 電腦上以服務。
 
 ## <a name="access"></a>步驟 4：從網頁瀏覽器存取 IPython Notebook
-若要存取 IPython Notebook 伺服器，請開啟網頁瀏覽器，然後在 [URL] 文字方塊中輸入 *https://&#60;虛擬機器 DNS 名稱>:&#60;公用連接埠號碼>*。 其中 *&#60;公用連接埠號碼>* 應該是您在新增 IPython Notebook 端點時所指定的連接埠號碼。
+tooaccess hello IPython Notebook 伺服器，開啟 web 瀏覽器，然後輸入*https://&#60;virtual 電腦的 DNS 名稱 >: & #60; 公用連接埠號碼 >* hello [URL] 文字方塊中。 在這裡，hello *& #60; 公用連接埠號碼 >*應該是您指定當 hello IPython 筆記型電腦加入端點的 hello 連接埠號碼。
 
-在 Azure 傳統入口網站中可找到 *&#60;虛擬機器 DNS 名稱>*。 登入傳統入口網站之後，按一下 [虛擬機器]，並選取您建立的機器，然後選取 [儀表板]，DNS 名稱隨即顯示，如下所示：
+hello *& #60; 虛擬機器 DNS 名稱 >*位於 hello Azure 傳統入口網站。 登入 toohello 傳統入口網站之後，按一下 [**虛擬機器**，選取您建立、，然後選取 hello 機器**儀表板**，hello DNS 名稱將會顯示，如下所示：
 
 ![建立工作區][19]
 
-您將會看見一則警告，指出「此網站的安全性憑證有問題」(Internet Explorer) 或「您的連接不是私人連接」(Chrome)，如下圖所示。 按一下 **繼續瀏覽此網站 (不建議)** (Internet Explorer)，或者依序按一下 **進階** 和 **前往 &#60;*DNS 名稱*> (不安全)** (Chrome)，以便繼續進行。 接著，輸入您先前指定的密碼來存取 IPython Notebook。
+您將會遇到警告，告知*沒有此網站的安全性憑證有問題*(Internet Explorer) 或*您的連接不是私用*(Chrome) 中 hello 下列所示數字。 按一下**繼續 toothis 網站 （不建議）** (Internet Explorer) 或**進階**然後**太繼續 & #60;*DNS 名稱*> （不安全） * * toocontinue (Chrome)。 然後輸入您指定的早期 tooaccess hello IPython Notebook hello 密碼。
 
 **Internet Explorer：**
 ![建立工作區][20]
@@ -86,39 +86,39 @@ ms.lasthandoff: 07/11/2017
 **Chrome：**
 ![建立工作區][21]
 
-登入 IPython Notebook 之後， *DataScienceSamples* 目錄將顯示在瀏覽器上。 此目錄包含由 Microsoft 共用的 IPython Notebook 範例，可協助使用者進行資料科學工作。 這些 IPython Notebook 範例是在 IPython Notebook 伺服器設定程序期間，從 [**GitHub 存放庫**](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/iPythonNotebooks)簽出至虛擬機器。 Microsoft 會經常維護並更新此儲存機制。 使用者可以瀏覽 GitHub 存放庫，以取得最近更新的 IPython Notebook 範例。
+登入 toohello IPython 筆記型電腦，目錄之後*DataScienceSamples* hello 瀏覽器上會顯示。 此目錄包含由 Microsoft toohelp 使用者進行資料科學工作所共用的範例 IPython Notebook。 這些範例 IPython Notebook 從簽出[ **GitHub 儲存機制**](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/iPythonNotebooks) toohello hello IPython 筆記型電腦伺服器安裝程序期間的虛擬機器。 Microsoft 會經常維護並更新此儲存機制。 使用者可能瀏覽 hello GitHub 儲存機制 tooget hello 最近更新的範例 IPython Notebook。
 ![建立工作區][18]
 
-## <a name="upload"></a>步驟 5：從本機電腦將現有的 IPython Notebook 上傳至 IPython Notebook 伺服器
-IPython Notebook 提供一種簡單的方式，讓使用者可將其本機電腦上現有的 IPython Notebook 上傳至虛擬機器上的 IPython Notebook 伺服器。 當您在網頁瀏覽器上登入 IPython Notebook 之後，可按一下以進入將上傳 IPython Notebook 的 **目錄** 。 然後，在 [ **檔案總管**] 中選取要從本機電腦上傳的 IPython Notebook .ipynb 檔案，並將其拖放到網頁瀏覽器上的 IPython Notebook 目錄。 按一下 [ **上傳** ] 按鈕，將 .ipynb 檔案上傳到 IPython Notebook 伺服器。 其他使用者接著就可以從 Web 瀏覽器開始使用它。
+## <a name="upload"></a>步驟 5： 上傳現有的 IPython 筆記型電腦從本機電腦 toohello IPython Notebook 伺服器
+IPython Notebook 使用者 tooupload 現有的 IPython 筆記型電腦在其本機電腦 toohello hello 虛擬機器上的 IPython Notebook 伺服器上提供一個簡單的方法。 登入 toohello IPython 筆記型電腦網頁瀏覽器中之後，按到 hello**目錄**IPython 筆記型電腦將會上傳到該 hello。 然後，從在 hello hello 本機電腦中選取 [IPython 筆記型電腦.ipynb 檔案 tooupload**檔案總管**，並將拖放 toohello IPython 筆記型電腦目錄 hello web 瀏覽器上。 按一下 hello**上傳**按鈕，tooupload hello.ipynb 檔案 toohello IPython Notebook 伺服器。 其他使用者接著就可以從 Web 瀏覽器開始使用它。
 
 ![建立工作區][22]
 
 ![建立工作區][23]
 
 ## <a name="shutdown"></a>關閉並取消配置未使用的虛擬機器
-Azure 虛擬機器的定價策略是「 **只針對您使用的項目進行付費**」。 若要確保未使用虛擬機器時不會被計費，當它閒置時，其狀態必須是 [ **已停止 (已取消配置)** ]。
+Azure 虛擬機器的定價策略是「 **只針對您使用的項目進行付費**」。 tooensure，不會計費不使用虛擬機器時，它具有 toobe 中的 hello**已停止 （取消配置）**在不使用時的狀態。
 
 > [!NOTE]
-> 如果您從 VM 內部關閉虛擬機器 (使用 Windows 電源選項)，雖然 VM 已停止，但仍然處於已配置狀態。 若要確保系統不會繼續計費，請一律從 [Azure 傳統入口網站](http://manage.windowsazure.com/)停止虛擬機器。 您也可以藉由呼叫 **ShutdownRoleOperation** 搭配相當於 "StoppedDeallocated" 的 "PostShutdownAction"，透過 Powershell 來停止 VM。
+> 如果您關閉 hello 虛擬機器從 hello VM （使用 Windows 電源選項），內部 hello VM 已停止，但會維持配置。 不會繼續計費，toobe tooensure 一律停駐虛擬機器從 hello [Azure 傳統入口網站](http://manage.windowsazure.com/)。 您也可以藉由呼叫停止 VM，透過 Powershell hello **ShutdownRoleOperation**太與 「 PostShutdownAction"等於"StoppedDeallocated"。
 > 
 > 
 
-關閉及解除配置虛擬機器：
+tooshut 向下，及取消配置 hello 虛擬機器：
 
-1. 使用您的帳戶登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)。  
-2. 從左側導覽列選取 [ **虛擬機器** ]。
-3. 在虛擬機器清單中，按一下虛擬機器的名稱，然後移至 [ **儀表板** ] 頁面。
-4. 按一下頁面底部的 [ **關閉**]。
+1. 登入 toohello [Azure 傳統入口網站](http://manage.windowsazure.com/)使用您的帳戶。  
+2. 選取**虛擬機器**從 hello 左側的導覽列。
+3. 在 hello 清單中的虛擬機器，按一下您的虛擬機器，然後移 toohello hello 名稱**儀表板**頁面。
+4. 在 [hello hello 頁面底部，按一下**關機**。
 
 ![VM 關閉][15]
 
-虛擬機器將會取消配置，但不是刪除。 您隨時都可從 Azure 傳統入口網站重新啟動虛擬機器。
+hello 虛擬機器將會取消配置，但是不會刪除。 您可以隨時從 hello Azure 傳統入口網站，以重新啟動您的虛擬機器。
 
-## <a name="your-azure-vm-is-ready-to-use-whats-next"></a>您的 Azure VM 已準備好可供使用：下一步是什麼？
-您的虛擬機器已經準備好在資料科學練習中使用。 虛擬機器也已經準備好用來做為 IPython Notebook 伺服器，以進行資料探索和處理，以及其他可與 Azure 機器學習服務和 Team Data Science Process 一起使用的工作。
+## <a name="your-azure-vm-is-ready-toouse-whats-next"></a>Azure VM 已準備好 toouse： 後續步驟？
+您的虛擬機器就準備好在您的資料科學練習 toouse。 也可以使用 IPython Notebook 伺服器 hello 瀏覽和處理的資料，以及其他工作搭配使用 Azure 機器學習和 hello 資料科學的小組流程 hello 虛擬機器。
 
-[學習路徑](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中說明了 Team Data Science Process 的後續步驟，其中可能包含將資料移至 HDInsight 並在其中處理資料與取樣，做為透過 Azure Machine Learning 從資料學習的準備。
+後續步驟的 hello hello 中對應資料科學的小組流程中的 hello[學習路徑](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)，而且可能包括將資料移入 HDInsight，程序、 範例它那里與 Azure 機器學習 hello 資料的準備步驟了解。
 
 [15]: ./media/machine-learning-data-science-setup-virtual-machine/vmshutdown.png
 [17]: ./media/machine-learning-data-science-setup-virtual-machine/add-endpoints-after-creation.png

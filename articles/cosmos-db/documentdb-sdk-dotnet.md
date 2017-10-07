@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB .NET SDK 和資源 | Microsoft Docs"
-description: "全面了解 .NET API 和 SDK，包括發行日期、停用日期及 Azure Cosmos DB .NET SDK 每個版本之間的變更。"
+title: "aaaAzure Cosmos DB.NET SDK 與資源 |Microsoft 文件"
+description: ".NET API 和 SDK 包括發行日期、 停用日期和 hello Azure Cosmos DB.NET SDK 的每個版本之間所做的變更，深入了解 hello。"
 services: cosmos-db
 documentationcenter: .net
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 08/11/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 317792e04244a96cf8e47bc7e4a7f633f7a6d8c3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0ec30e0130067a9b8d4c9176cf7465bac8925bf9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-net-sdk-download-and-release-notes"></a>Azure Cosmos DB .NET SDK：下載和版本資訊
 > [!div class="op_single_selector"]
@@ -43,7 +43,7 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**範例**</td><td>[.NET 程式碼範例](documentdb-dotnet-samples.md)</td></tr>
 
-<tr><td>**開始使用**</td><td>[開始使用 Azure Cosmos DB .NET SDK 教學課程](documentdb-get-started.md)</td></tr>
+<tr><td>**快速入門**</td><td>[開始使用 hello Azure Cosmos DB.NET SDK](documentdb-get-started.md)</td></tr>
 
 <tr><td>**Web 應用程式教學課程**</td><td>[使用 Azure Cosmos DB 進行 Web 應用程式開發](documentdb-dotnet-application.md)</td></tr>
 
@@ -54,15 +54,15 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="a-name11701170"></a><a name="1.17.0"/>1.17.0 
 
-* 已新增將 PartitionKeyRangeId 做為 FeedOption 的支援，以供對特定分割區索引鍵範圍值限制查詢結果範圍。 
-* 已新增將 StartTime 做為 ChangeFeedOption 的支援，以開始尋找該時間之後的變更。
+* PartitionKeyRangeId FeedOption 的查詢結果 tooa 特定的資料分割索引鍵的範圍值的範圍設定為已加入的支援。 
+* StartTime 為 ChangeFeedOption toostart hello 變更尋找該時間之後所新增的支援。
 
 ### <a name="a-name11611161"></a><a name="1.16.1"/>1.16.1
-* 修正 JsonSerializable 類別中可能會造成堆疊溢位例外狀況的問題。
+* Hello JsonSerializable 類別可能會造成堆疊溢位例外狀況中修正的問題。
 
 ### <a name="a-name11601160"></a><a name="1.16.0"/>1.16.0
-*   已修正需要重新編譯應用程式的問題，之所以有此問題，是因為在 DocumentClient 建構函式中導入 JsonSerializerSettings 來作為選擇性參數。
-* 已將 DocumentClient 建構函式標記為過時，該建構函式需要 JsonSerializerSettings 來作為最後一個參數，以在傳遞 JsonSerializerSettings 參數時允許使用 ConnectionPolicy 和 ConsistencyLevel 參數的預設值。
+*   已修正的問題，需要重新編譯的 hello 應用程式到期的 JsonSerializerSettings toohello 簡介做 hello DocumentClient 建構函式中為選擇性參數。
+* 標示的 hello DocumentClient 建構函式已經過時 hello ConnectionPolicy 和 ConsistencyLevel 參數的預設值的最後一個參數 tooallow JsonSerializerSettings 參數中傳遞時需要 JsonSerializerSettings。
 
 ### <a name="a-name11501150"></a><a name="1.15.0"/>1.15.0
 *   已新增對 [DocumentClient](/dotnet/api/microsoft.azure.documents.client.documentclient?view=azure-dotnet) 具現化時指定自訂 JsonSerializerSettings 的支援。
@@ -73,9 +73,9 @@ ms.lasthandoff: 08/18/2017
 ### <a name="a-name11401140"></a><a name="1.14.0"/>1.14.0
 *   已新增對新一致性層級 ConsistentPrefix 的支援。
 *   已新增對個別資料分割之查詢計量的支援。
-*   已新增對限制查詢之接續權杖大小的支援。
+*   限制查詢的 hello 接續 token 的 hello 大小新增的支援。
 *   已新增對失敗要求進行更詳細追蹤的支援。
-*   SDK 中已有一些效能改進。
+*   Hello SDK 中進行一些效能改進。
 
 ### <a name="a-name11341134"></a><a name="1.13.4"/>1.13.4
 * 在功能上與 1.13.3 相同。 已有一些內部變更。
@@ -84,96 +84,96 @@ ms.lasthandoff: 08/18/2017
 * 在功能上與 1.13.2 相同。 已有一些內部變更。
 
 ### <a name="a-name11321132"></a><a name="1.13.2"/>1.13.2
-* 修正將在彙總查詢之 FeedOptions 中提供的 PartitionKey 值忽略的問題。
+* 修正忽略 hello PartitionKey 值的彙總查詢 FeedOptions 中提供的問題。
 * 修正在執行移動途中跨資料分割 Order By 查詢期間，進行資料分割管理的透明處理時發生的問題。
 
 ### <a name="a-name11311131"></a><a name="1.13.1"/>1.13.1
-* 已修正在 ASP.NET 內容內部使用時會在某些非同步 API 中造成死結的問題。
+* 修正造成死結的某些資料 hello 非同步 Api ASP.NET 內容中使用時的問題。
 
 ### <a name="a-name11301130"></a><a name="1.13.0"/>1.13.0
-* 修正來讓 SDK 在某些情況下能夠更有彈性地進行自動容錯移轉。
+* 修正 toomake SDK 更多彈性 tooautomatic 容錯移轉，在某些情況下的。
 
 ### <a name="a-name11221122"></a><a name="1.12.2"/>1.12.2
-* 修正偶爾會造成「WebException: 無法解析遠端名稱」的錯誤。
-* 透過針對 ReadDocumentAsync API 新增多載，以新增直接讀取具類型文件的支援。
+* 偶爾會造成 WebException 可解決問題的修正： 無法解析 hello 遠端名稱。
+* 加入的 hello 支援直接讀取藉由新增新的多載 tooReadDocumentAsync API 的具類型的文件。
 
 ### <a name="a-name11211121"></a><a name="1.12.1"/>1.12.1
 * 新增彙總查詢的 LINQ 支援 (COUNT、MIN、MAX、SUM 和 AVG)。
-* 針對使用事件處理常式所造成的 ConnectionPolicy 物件，修正記憶體流失問題。
+* 為記憶體流失問題的事件處理常式的 hello 使用所造成的 hello ConnectionPolicy 物件解決問題。
 * 修正使用 ETag 時 UpsertAttachmentAsync 無法運作的問題。
 * 修正根據字串欄位排序時交叉資料分割排序依據查詢接續無法運作的問題。
 
 ### <a name="a-name11201120"></a><a name="1.12.0"/>1.12.0
 * 新增彙總查詢的支援 (COUNT、MIN、MAX、SUM 和 AVG)。 請參閱[彙總支援](documentdb-sql-query.md#Aggregates)。
-* 已將分割區集合的最小輸送量從 10,100 RU/s 降低為 2500 RU/s。
+* 降低從 10,100 RU/秒 too2500 RU/秒的分割區集合最小的輸送量。
 
 ### <a name="a-name11141114"></a><a name="1.11.4"/>1.11.4
-* 修正一個某些跨分割區查詢在 32 位元主機處理序中失敗的問題。
-* 修正在閘道模式中未使用失敗要求的權杖來更新工作階段容器的問題。
+* 其中某些 hello 跨資料分割查詢在 hello 32 位元主控件程序失敗的問題的修正。
+* 其中 hello 工作階段的容器不更新與 hello 閘道模式中的失敗要求的語彙基元可解決問題的修正。
 * 修正縱向選取中具有 UDF 呼叫的查詢在某些案例中失敗的問題。
-* 已修正用戶端效能，以提高要求的讀取和寫入輸送量。
+* 用戶端端效能修正增加 hello 讀寫 hello 要求輸送量。
 
 ### <a name="a-name11131113"></a><a name="1.11.3"/>1.11.3
-* 修正未使用失敗要求的權杖來更新工作階段容器的問題。
-* 新增 SDK 支援，以在 32 位元主機處理序中運作。 請注意，若使用跨分割區查詢，建議您使用 64 位元主機處理以獲得改進的效能。
+* 其中 hello 工作階段的容器不更新與 hello 語彙基元可解決問題的修正失敗的要求。
+* 在 32 位元主控件程序中的 hello SDK toowork 加入的支援。 請注意，若使用跨分割區查詢，建議您使用 64 位元主機處理以獲得改進的效能。
 * 改進關於 IN 運算式中涉及大量分割區索引鍵值之查詢案例的效能。
-* 在設定 PopulateQuotaInfo 選項時，已在 ResourceResponse 中填入各種資源配額統計資料，以供文件集合讀取要求使用。
+* 文件集合讀取要求，當 PopulateQuotaInfo 要求選項設定，請填入 hello ResourceResponse 中的各種資源配額統計資料。
 
 ### <a name="a-name11111111"></a><a name="1.11.1"/>1.11.1
-* 針對在 1.11.0 推出的 CreateDocumentCollectionIfNotExistsAsync API 小幅修正效能。
-* 針對和高比例並行要求有關的案例，修正 SDK 中的效能。
+* Hello CreateDocumentCollectionIfNotExistsAsync API 1.11.0 中導入的小效能修正程式。
+* 效能修正在 hello SDK 涉及高度並行要求的情形。
 
 ### <a name="a-name11101110"></a><a name="1.11.0"/>1.11.0
-* 支援新的類別和方法以在集合內處理文件的[變更摘要](change-feed.md)。
+* 支援新的類別和方法 tooprocess hello[變更摘要](change-feed.md)集合內的文件。
 * 支援跨資料分割繼續查詢和改善跨資料分割查詢的一些效能。
 * 新增 CreateDatabaseIfNotExistsAsync 和 CreateDocumentCollectionIfNotExistsAsync 方法。
 * 針對下列系統函式支援 LINQ︰IsDefined、IsNull 和 IsPrimitive。
-* 修正在搭配使用 Nuget 套件和具有 project.json 工具的專案時，自動將 Microsoft.Azure.Documents.ServiceInterop.dll 和 DocumentDB.Spatial.Sql.dll 組件的 bin 放入應用程式的 bin 資料夾的動作。
+* 搭配有 project.json 工具的專案使用 hello Nuget 封裝時，請修正自動 binplacing 的 Microsoft.Azure.Documents.ServiceInterop.dll 和 DocumentDB.Spatial.Sql.dll 組件 tooapplication 的 bin 資料夾。
 * 支援發出用戶端 ETW 追蹤，其可在偵錯案例中幫上忙。
 
 ### <a name="a-name11001100"></a><a name="1.10.0"/>1.10.0
 * 新增分割集合的直接連線支援。
-* 改進「界限-陳舊」一致性層級的效能。
+* 經改善 hello 繫結失效的一致性層級的效能。
 * 新增為異地隔離空間查詢指定集合索引編製原則時的 Polygon 和 LineString 資料類型。
 * 新增轉譯述詞時對 StringEnumConverter、IsoDateTimeConverter、UnixDateTimeConverter 的 LINQ 支援。
 * 多項 SDK 錯誤修正。
 
 ### <a name="a-name195195"></a><a name="1.9.5"/>1.9.5
-* 將造成下列 NotFoundException 的問題修正︰讀取工作階段不適用於輸入工作階段權杖。 查詢異地分散帳戶讀取區域時，在某些情況下發生此例外狀況。
-* 公開 ResourceResponse 類別中的 ResponseStream 屬性，可讓您直接從回應存取基礎資料流。
+* 已修正的問題，造成的 hello 遵循 NotFoundException: hello 讀取工作階段不是供 hello 輸入工作階段權杖。 查詢 hello 讀取地區之地理分散的帳戶時，在某些情況下發生此例外狀況。
+* 公開 hello ResourceResponse 類別，讓直接存取 toohello 基礎資料流從回應中的 hello ResponseStream 屬性。
 
 ### <a name="a-name194194"></a><a name="1.9.4"/>1.9.4
-* 修改了 ResourceResponse、FeedResponse、StoredProcedureResponse 和 MediaResponse 類別以實作對應的公用介面，讓它們可以模擬用於測試導向部署 (TDD)。
+* 修改過的 hello ResourceResponse、 FeedResponse、 StoredProcedureResponse 和 MediaResponse 類別 tooimplement hello 對應公用介面，以便它們可以模仿的測試為導向的部署 (TDD)。
 * 修正了使用自訂 JsonSerializerSettings 物件來序列化資料時，會造成資料分割索引鍵標頭格式不正確的問題。
 
 ### <a name="a-name193193"></a><a name="1.9.3"/>1.9.3
-* 已修正造成長時間執行的查詢失敗，並伴隨「授權權杖目前無效」錯誤的問題。
-* 已修正會從跨資料分割的排名/排序依據查詢中移除原始 SqlParameterCollection 的問題。
+* 已修正的問題造成長時間執行的查詢 toofail 發生錯誤： 授權權杖無效，無法在 hello 目前的時間。
+* 固定移除問題 hello 原始 SqlParameterCollection 從跨資料分割 top/排序依據查詢。
 
 ### <a name="a-name192192"></a><a name="1.9.2"/>1.9.2
 * 已新增分割集合的平行查詢支援。
 * 已新增分割集合的跨資料分割 ORDER BY 和 TOP 查詢支援。
-* 已修正使用 Azure Cosmos DB Nuget 套件參照來參考 Azure Cosmos DB 專案時，遺失所需的 DocumentDB.Spatial.Sql.dll 與 Microsoft.Azure.Documents.ServiceInterop.dll 參照。
-* 已修正在 LINQ 中使用使用者定義的函式時，使用不同類型參數的能力。 
-* 已修正廣域複寫帳戶中的的錯誤，此錯誤會使得 Upsert 呼叫導向讀取位置而非寫入位置。
-* 已在遺失的 IDocumentClient 介面加入方法： 
+* 遺漏參考 tooDocumentDB.Spatial.Sql.dll 和 Microsoft.Azure.Documents.ServiceInterop.dll 參考參考 toohello Azure Cosmos DB Nuget 套件的 Azure Cosmos DB 專案時所需的固定的 hello。
+* 固定的 hello 能力 toouse LINQ 中使用使用者定義函數時的不同類型的參數。 
+* 修正 bug 的全球複寫帳戶其中 Upsert 呼叫已導向的 tooread 位置，而非寫入位置。
+* 遺漏了加入的方法 toohello IDocumentClient 介面： 
   * UpsertAttachmentAsync 方法，會接受 mediaStream 及選項做為參數
   * CreateAttachmentAsync 方法，會接受選項做為參數
   * CreateOfferQuery 方法，會接受 querySpec 做為參數
-* 已解除密封 IDocumentClient 介面中公開的公用類別。
+* 非密封的 hello IDocumentClient 介面中公開的公用類別。
 
 ### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
-* 新增對多重區域資料庫帳戶的支援。
-* 新增在已節流處理的要求上進行重試的支援。  使用者可以藉由設定 ConnectionPolicy.RetryOptions 屬性，來自訂重試次數和等待時間上限。
-* 新增新的 IDocumentClient 介面，其中會定義所有 DocumenClient 屬性和方法的簽章。  做為此變更的一部分，也將建立 IQueryable 和 IOrderedQueryable 的擴充方法變更為 DocumentClient 類別本身上的方法。
-* 新增組態選項，以針對指定的 Azure Cosmos DB 端點 URI 設定 ServicePoint.ConnectionLimit。  使用 ConnectionPolicy.MaxConnectionLimit 來變更預設值 (已設為 50)。
+* 加入的 hello 支援多重地區資料庫帳戶。
+* 新增在已節流處理的要求上進行重試的支援。  使用者可以自訂 hello 重試次數和 hello 最大等待時間藉由設定 hello ConnectionPolicy.RetryOptions 屬性。
+* 加入新的 IDocumentClient 介面定義所有 DocumenClient 屬性及方法的 hello 簽章。  這項變更的一部分，也變更 hello DocumentClient 類別本身建立 IQueryable 和 IOrderedQueryable toomethods 的擴充方法。
+* 新增組態選項 tooset hello ServicePoint.ConnectionLimit 特定 Azure Cosmos DB 端點 Uri。  使用 ConnectionPolicy.MaxConnectionLimit toochange hello 預設值，它會設定 too50。
 * 已淘汰 IPartitionResolver 及其實作。  現在不支援 IPartitionResolver。 建議您針對更高的儲存體和輸送量使用分割集合。
 
 ### <a name="a-name171171"></a><a name="1.7.1"/>1.7.1
-* 根據會接受 RequestOptions 做為參數的 ExecuteStoredProcedureAsync 方法，新加入 URI 多載。
+* 加入多載 tooUri 型 ExecuteStoredProcedureAsync 方法採用 RequestOptions 做為參數。
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
-* 新加入文件的存留時間 (TTL) 支援。
+* 加入時間 toolive (TTL) 支援的文件。
 
 ### <a name="a-name163163"></a><a name="1.6.3"/>1.6.3
 * 修正 .NET SDK 的 Nuget 封裝錯誤，可供封裝為 Azure 雲端服務解決方案的一部分。
@@ -182,24 +182,24 @@ ms.lasthandoff: 08/18/2017
 * 實作[已分割的集合](partition-data.md)和[使用者定義的效能等級](performance-levels.md)。 
 
 ### <a name="a-name153153"></a><a name="1.5.3"/>1.5.3
-* **[已修正]** 查詢 Azure Cosmos DB 端點時擲回：「System.Net.Http.HttpRequestException：將內容複製到資料流時發生錯誤」。
+* **[固定]**查詢 Azure DB Cosmos 端點就會擲回: ' System.Net.Http.HttpRequestException： 複製內容 tooa 資料流時發生錯誤 '。
 
 ### <a name="a-name152152"></a><a name="1.5.2"/>1.5.2
 * 擴充的 LINQ 支援包括新的分頁、條件式運算式以及範圍比較的運算子。
-  * Take 運算子：可啟用 LINQ 中的 SELECT TOP 行為
-  * CompareTo 運算子：可啟用字串範圍比較
+  * 進行 LINQ 運算子 tooenable 選取前行為
+  * CompareTo 運算子 tooenable 字串範圍比較
   * 條件式 (?) 與聯合運算子 (??)
 * **[已修正]** 將模型投射與 LINQ 查詢中的 Where-In 結合使用時發生 ArgumentOutOfRangeException。 [#81](https://github.com/Azure/azure-documentdb-dotnet/issues/81)
 
 ### <a name="a-name151151"></a><a name="1.5.1"/>1.5.1
-* **[已修正]** 如果 Select 不是最後一個運算式，LINQ 提供者會假設沒有任何預測，並會產生不正確的 SELECT *。  [#58](https://github.com/Azure/azure-documentdb-dotnet/issues/58)
+* **[固定]**如果選取不是最後一個運算式 hello hello LINQ 提供者假設投射，而且產生 SELECT * 不正確。  [#58](https://github.com/Azure/azure-documentdb-dotnet/issues/58)
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
 * 實作 Upsert、新增 UpsertXXXAsync 方法
 * 所有要求的效能改進
 * LINQ 提供者支援字串的條件式、聯合和 CompareTo 方法
-* **[已修正]** LINQ 提供者 --> 在 List 上實作 Contains 方法，以產生與 IEnumerable 和 Array 上相同的 SQL
-* **[已修正]** 重試時，BackoffRetryUtility 會再次使用相同的 HttpRequestMessage，而非建立新的
+* **[固定]** LINQ 提供者--> 實作是否包含在清單 toogenerate 方法 hello 上 IEnumerable 和陣列相同的 SQL
+* **[固定]** BackoffRetryUtility 使用 hello 相同的 HttpRequestMessage，而不要建立新的重試
 * **[已過時]** UriFactory.CreateCollection --> 現應使用 UriFactory.CreateDocumentCollection
 
 ### <a name="a-name141141"></a><a name="1.4.1"/>1.4.1
@@ -207,8 +207,8 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
 * 已新增以識別碼為基礎的路由
-  * 新的 UriFactory 協助程式，可協助建構以識別碼為基礎的資源連結
-  * DocumentClient 上新的多載可接受 URI
+  * 新的 UriFactory helper tooassist 建構 ID 為基礎的資源連結
+  * 在 URI 中 DocumentClient tootake 上的新多載
 * LINQ 中新增用於地理空間的 IsValid() 和 isvaliddetailed ()
 * 增強的 LINQ 提供者支援：
   * **算術** - Abs、Acos、Asin、Atan、Ceiling、Cos、Exp、Floor、Log、Log10、Pow、Round、Sign、Sin、Sqrt、Tan、Truncate
@@ -228,17 +228,17 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * 已新增對 Newtonsoft.Json v5.0.7 的相依性。
-* 變更為支援 Order By：
+* Order By 做的變更 toosupport:
   
   * LINQ 提供者支援 OrderBy() 或 OrderByDescending()
-  * IndexingPolicy 支援 Order By 
+  * IndexingPolicy toosupport Order By 
     
     **可能使得舊程式碼無法運作的變更** 
     
-    如果現有程式碼以自訂索引原則來佈建集合，則需要更新現有的程式碼，才能支援新的 IndexingPolicy 類別。 如果您沒有自訂的索引原則，這個變更不會影響到您。
+    如果您有現有的程式碼以自訂的編製索引原則，會佈建集合，您現有的程式碼需要 toobe 更新 toosupport hello 新 IndexingPolicy 類別。 如果您沒有自訂的索引原則，這個變更不會影響到您。
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
-* 使用新的 HashPartitionResolver 和 RangePartitionResolver 類別及 IPartitionResolver，以新增對資料分割的支援。
+* 加入的資料分割使用 hello 新 HashPartitionResolver 和 RangePartitionResolver 類別和 hello ipartitionresolver 型支援。
 * 已新增 DataContract 序列化。
 * 已新增 LINQ 提供者中的 GUID 支援。
 * 已新增 LINQ 中的 UDF 支援。
@@ -247,11 +247,11 @@ ms.lasthandoff: 08/18/2017
 * GA SDK
 
 ## <a name="release--retirement-dates"></a>發行和停用日期
-Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供順利轉換至較新/支援的版本。
+Microsoft 至少提供通知**12 個月**之前淘汰順序 toosmooth hello 轉換 tooa 較新/支援版本的 SDK。
 
-新的功能與最佳化項目只會新增至目前的 SDK，因此建議您一律盡早升級至最新的 SDK 版本。 
+新功能和功能與最佳化僅加入 toohello 目前 SDK，因此建議您，您一律升級 toohello 最新版本 SDK 盡早。 
 
-服務會拒絕使用已停用 SDK 的任何 Azure Cosmos DB 要求。
+Hello 服務將會拒絕任何要求 tooAzure Cosmos DB 使用已淘汰的 SDK。
 
 <br/>
 
@@ -301,5 +301,5 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>另請參閱
-若要深入了解 Cosmos DB，請參閱 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 服務頁面。 
+請參閱深入了解 Cosmos DB toolearn [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)服務頁面。 
 

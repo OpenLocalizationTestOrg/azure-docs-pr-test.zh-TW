@@ -1,6 +1,6 @@
 ---
-title: "Azure 訂用帳戶限制與配額 | Microsoft Docs"
-description: "提供通用的 Azure 訂用帳戶和服務限制、配額和條件約束的清單。 這包括如何增加限制和最大值的詳細資訊。"
+title: "aaaAzure 訂用帳戶限制和配額 |Microsoft 文件"
+description: "提供通用的 Azure 訂用帳戶和服務限制、配額和條件約束的清單。 這包括 tooincrease 如何限制以及最大值的詳細資訊。"
 services: 
 documentationcenter: 
 author: rothja
@@ -15,32 +15,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: byvinyal
-ms.openlocfilehash: a76acd67e9ba7822f2837b3c08e2ede389047f11
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a754d56124520791254ab8f1729808f0750ff222
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-subscription-and-service-limits-quotas-and-constraints"></a>Azure 訂用帳戶和服務限制、配額與限制
-本文件列出一些最常見的 Microsoft Azure 限制，有時也稱為配額。 本文件目前未涵蓋所有 Azure 服務。 清單將隨著時間擴展並更新以涵蓋更多平台。
+本文列出一些 hello 最常見 Microsoft Azure 的限制，有時也稱為配額。 本文件目前未涵蓋所有 Azure 服務。 經過一段時間，hello 清單將會展開，並更新 hello 平台的更多的 toocover。
 
-請瀏覽 [Azure 定價一覽](https://azure.microsoft.com/pricing/) 以深入了解 Azure 定價。 您可以在那裡使用[定價計算機](https://azure.microsoft.com/pricing/calculator/)或透過瀏覽服務 (例如，[Windows VM](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)) 的定價詳細資料頁面來估計成本。 如需協助您管理成本的祕訣，請參閱[使用 Azure 計費與成本管理避免非預期的成本](billing/billing-getting-started.md)。
-
-> [!NOTE]
-> 如果您想要將限制或配額提升到**預設限制**以上，您可以[免費提出線上客戶支援要求](azure-supportability/resource-manager-core-quotas-request.md)。 您無法將限制提升到高於下表中所示的**上限**值。 如果沒有**上限**欄，資源即沒有可調整的限制。 
-> 
-> 免費試用訂用帳戶無法增加限制或配額。 如果您有免費試用，則可以升級到 [隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/) 訂用帳戶。 如需詳細資訊，請參閱[將 Azure 免費試用版升級至隨收隨付](billing/billing-upgrade-azure-subscription.md)。
-> 
-
-## <a name="limits-and-the-azure-resource-manager"></a>限制和 Azure 資源管理員
-現在您可以結合多個 Azure 中的資源到單一的 Azure 資源群組。 使用資源群組時的限制是，在全域時會使用 Azure 資源管理員在地區層級管理。 如需 Azure 資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](azure-resource-manager/resource-group-overview.md)。
-
-在以下的限制中，已加入了新資料表，以反映在使用 Azure 資源管理員時的限制方面的任何差異。 例如，有**訂用帳戶限制**資料表和**訂用帳戶限制 - Azure Resource Manager** 資料表。 當某個限制同時適用於這兩個案例時，只會顯示在第一個資料表中。 除非另有說明，限制在所有區域中全域適用。
+請瀏覽[Azure 定價一覽](https://azure.microsoft.com/pricing/)toolearn 深入了解 Azure 定價。 您可以估計成本使用 hello[定價計算機](https://azure.microsoft.com/pricing/calculator/)或透過瀏覽 hello 定價詳細資料頁面的服務 (例如， [Windows Vm](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows))。 提示 toohelp 用於管理您的成本，請參閱[避免非預期的成本，以及 Azure 帳單和成本管理](billing/billing-getting-started.md)。
 
 > [!NOTE]
-> 請務必強調 Azure 資源群組中資源的配額是基於您的訂閱可以存取的每一區域，而不是每一訂閱 (服務管理配額則是)。 讓我們以核心配額為例。 如果您需要要求增加配額以支援核心，您必須決定您想要在哪些區域中使用多少個核心，然後提出 Azure 資源群組核心配額的特定要求，以取得您想要的數量和區域。 因此，如果您需要在西歐使用 30 個核心以在該處執行應用程式，您應該在西歐特別要求 30 個核心。 但是您在任何其他區域中的核心配額將不會增加 -- 僅西歐會有 30 個核心配額。
+> 如果您想 tooraise hello 限制或配額上方 hello**預設限制**，[開啟免費線上客戶支援要求](azure-supportability/resource-manager-core-quotas-request.md)。 hello 限制無法引發上方 hello**上限**hello 下表所示的值。 如果沒有任何**上限**資料行，然後 hello 資源不會有可調整的限制。 
+> 
+> 免費試用訂用帳戶無法增加限制或配額。 如果您有免費的試用版，您可以升級 tooa[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)訂用帳戶。 如需詳細資訊，請參閱[升級 Azure 免費試用 tooPay-為-您-Go](billing/billing-upgrade-azure-subscription.md)。
+> 
+
+## <a name="limits-and-hello-azure-resource-manager"></a>限制和 hello Azure 資源管理員
+現在很可能 toocombine tooa 中的多個 Azure 資源的單一 Azure 資源群組。 當使用資源群組，一次是屬於全域的限制會變成管理在 hello Azure 資源管理員使用的地區層級。 如需 Azure 資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](azure-resource-manager/resource-group-overview.md)。
+
+在新的資料表下方的 hello 限制已加入的 tooreflect 限制的任何差異使用 hello Azure 資源管理員時。 例如，有**訂用帳戶限制**資料表和**訂用帳戶限制 - Azure Resource Manager** 資料表。 當限制會套用 tooboth 案例時，它只會顯示 hello 第一個資料表中。 除非另有說明，限制在所有區域中全域適用。
+
+> [!NOTE]
+> 它會是重要 tooemphasize 的 Azure 資源群組中的資源配額是每個區域可以存取您的訂閱，並不是每個訂閱，是與 hello 服務管理配額一樣。 讓我們以核心配額為例。 如果您需要的 toorequest 核心支援增加配額，您如何需要 toodecide 許多核心您想要在哪一個區域，toouse，然後讓 Azure 資源群組中的特定要求核心配額為 hello 金額和您想要的區域。 因此，如果您需要 toouse 30 核心西歐 toorun 在您的應用程式那里;您應該特別要求在西歐 30 個核心。 但您不需要任何其他區域中增加核心配額--只西歐將會有 hello 30 核心配額。
 > <!-- -->
-> 因此，考慮決定每個區域中您的工作負載所需的 Azure 資源群組配額，並在要考慮部署的每個區域中要求該數量可能會有所幫助。 請參閱 [移難排解部署問題](resource-manager-common-deployment-errors.md) ，以取得探索您特定區域目前的配額的其他說明。
+> 如此一來，您可能會發現決定哪些 Azure 資源群組配額需要 toobe 金額考慮部署到其中的每個區域中任何一個區域，和要求的工作負載的有用 tooconsider。 請參閱 [移難排解部署問題](resource-manager-common-deployment-errors.md) ，以取得探索您特定區域目前的配額的其他說明。
 > 
 > 
 
@@ -96,7 +96,7 @@ ms.lasthandoff: 08/29/2017
 [!INCLUDE [azure-subscription-limits](../includes/azure-subscription-limits.md)]
 
 #### <a name="subscription-limits---azure-resource-manager"></a>訂用帳戶限制 - Azure Resource Manager
-使用 Azure 資源管理員和 Azure 資源群組時，適用下列限制。 使用 Azure 資源管理員時未變更的限制不會在以下列出。 請參閱先前的資料表來瞭解這些限制。
+使用 hello Azure 資源管理員和 Azure 資源群組時，就會適用下列限制的 hello。 下面未列出以 hello Azure 資源管理員中未變更的限制。 請這些限制，參閱 toohello 上表。
 
 如需處理限制 Resource Manager 要求的資訊，請參閱[節流 Resource Manager 要求](resource-manager-request-limits.md)。
 
@@ -110,7 +110,7 @@ ms.lasthandoff: 08/29/2017
 [!INCLUDE [azure-virtual-machines-limits](../includes/azure-virtual-machines-limits.md)]
 
 #### <a name="virtual-machines-limits---azure-resource-manager"></a>虛擬機器限制 - Azure 資源管理員
-使用 Azure 資源管理員和 Azure 資源群組時，適用下列限制。 使用 Azure 資源管理員時未變更的限制不會在以下列出。 請參閱先前的資料表來瞭解這些限制。
+使用 hello Azure 資源管理員和 Azure 資源群組時，就會適用下列限制的 hello。 下面未列出以 hello Azure 資源管理員中未變更的限制。 請這些限制，參閱 toohello 上表。
 
 [!INCLUDE [azure-virtual-machines-limits-azure-resource-manager](../includes/azure-virtual-machines-limits-azure-resource-manager.md)]
 
@@ -144,7 +144,7 @@ ms.lasthandoff: 08/29/2017
 #### <a name="storage-service-limits"></a>儲存體服務限制
 [!INCLUDE [azure-storage-limits](../includes/azure-storage-limits.md)]
 
-<!-- conceptual info about disk limits -- applies to unmanaged and managed -->
+<!-- conceptual info about disk limits -- applies toounmanaged and managed -->
 #### <a name="virtual-machine-disk-limits"></a>虛擬機器磁碟限制 
 [!INCLUDE [azure-storage-limits-vm-disks](../includes/azure-storage-limits-vm-disks.md)]
 
@@ -167,7 +167,7 @@ ms.lasthandoff: 08/29/2017
 [!INCLUDE [azure-cloud-services-limits](../includes/azure-cloud-services-limits.md)]
 
 ### <a name="app-service-limits"></a>應用程式服務限制
-下列應用程式服務限制包含 Web 應用程式、行動應用程式、API 應用程式和邏輯應用程式的限制。
+hello 下列 App Service 的限制包括 Web 應用程式、 行動應用程式、 應用程式開發介面應用程式和邏輯應用程式的限制。
 
 [!INCLUDE [azure-websites-limits](../includes/azure-websites-limits.md)]
 
@@ -178,22 +178,22 @@ ms.lasthandoff: 08/29/2017
 [!INCLUDE [azure-batch-limits](../includes/azure-batch-limits.md)]
 
 ### <a name="biztalk-services-limits"></a>BizTalk 服務限制
-下表顯示 Azure Biztalk 服務的限制。
+hello 下表顯示 hello 限制 Azure Biztalk 服務。
 
 [!INCLUDE [biztalk-services-service-limits](../includes/biztalk-services-service-limits.md)]
 
 ### <a name="azure-cosmos-db-limits"></a>Azure Cosmos DB 限制
-Azure Cosmos DB 是一個全域調整資料庫，可以調整輸送量和儲存體來因應您應用程式的需要。 如果您有關於 Azure Cosmos DB 調整的問題，請傳送電子郵件給 askcosmosdb@microsoft.com。
+Azure Cosmos DB 是輸送量與儲存體可以縮放的 toohandle 應用程式所需的任何全域延展資料庫。 如果您有任何疑問 hello Azure Cosmos DB 所提供的小數位數，請傳送電子郵件tooaskcosmosdb@microsoft.com。
 
 ### <a name="mobile-engagement-limits"></a>Mobile Engagement 限制
 [!INCLUDE [azure-mobile-engagement-limits](../includes/azure-mobile-engagement-limits.md)]
 
 ### <a name="search-limits"></a>搜尋限制
-定價層會決定搜尋服務的容量和限制。 層級包括：
+定價層會決定 hello 容量限制您的搜尋服務。 層級包括：
 
 *  多租用戶服務，與其他 Azure 訂戶共用，適用於評估及小型開發專案。
-*  可針對規模較小的生產工作負載提供專用的計算資源，以及針對高可用性的查詢工作負載提供最多 3 個複本。
-*  適用於較大型生產工作負載。 標準層內具有多個層級，如此就能讓您選擇最符合工作負載設定檔的資源設定。
+* *基本*提供專用的運算資源在規模較小的生產工作負載的高可用性的查詢工作負載的 toothree 複本。
+*  適用於較大型生產工作負載。 多個層級存在於 hello 標準層，以便您可以選擇最符合您的工作負載設定檔的資源設定。
 
 **每一訂用帳戶的限制**
 
@@ -203,7 +203,7 @@ Azure Cosmos DB 是一個全域調整資料庫，可以調整輸送量和儲存�
 
 [!INCLUDE [azure-search-limits-per-service](../includes/azure-search-limits-per-service.md)]
 
-若要深入了解更細微的限制，例如文件大小、每秒的查詢數、金鑰、要求和回應，請參閱 [Azure 搜尋服務的服務限制](search/search-limits-quotas-capacity.md)。
+toolearn 進一步了解限制更細微的層級，例如文件大小、 查詢每秒、 金鑰、 要求和回應，請參閱[服務在 Azure 搜尋中的限制](search/search-limits-quotas-capacity.md)。
 
 ### <a name="media-services-limits"></a>媒體服務限制
 [!INCLUDE [azure-mediaservices-limits](../includes/azure-mediaservices-limits.md)]

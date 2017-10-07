@@ -1,6 +1,6 @@
 ---
-title: "以範例作為起始"
-description: "對於 Power BI Embedded，使用 SDK 將互動式 Power BI 報告加入您的商務智慧應用程式中"
+title: "aaaGet 入門範例"
+description: "Power BI Embedded，使用 SDK tooadd 互動式 Power BI 報表到您的商業智慧應用程式"
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/02/2017
 ms.author: asaxton
-ms.openlocfilehash: c3cb1763f807220a4a829f410d7eb77974b25776
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1fef9dd8e0f734b748b930d3f85ad4b517d9661e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-power-bi-embedded-sample"></a>開始使用 Power BI Embedded 範例
 
-運用 **Microsoft Power BI Embedded**，您可以將 Power BI 報告整合至您的 Web 應用程式或行動應用程式。 在本文中，會向您介紹 **Power BI Embedded** 開始使用範例。
+運用 **Microsoft Power BI Embedded**，您可以將 Power BI 報告整合至您的 Web 應用程式或行動應用程式。 在本文中，我們將介紹您 toohello **Power BI Embedded** get 啟動的範例。
 
-在我們繼續之前，您可能想要儲存下列資源。 它們會協助您將 Power BI 報告整合至範例應用程式和您自己的應用程式。
+繼續討論之前，您可能會想 toosave hello 下列資源。 它們會太將 Power BI 報表整合到 hello 範例應用程式和您自己的應用程式時提供協助。
 
 * [範例工作區 Web 應用程式](http://go.microsoft.com/fwlink/?LinkId=761493)
 * [Power BI Embedded API 參考](https://msdn.microsoft.com/en-US/library/azure/mt711507.aspx)
@@ -33,26 +33,26 @@ ms.lasthandoff: 07/11/2017
 * [JavaScript 報告內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo)
 
 > [!NOTE] 
-> 在您可以設定及執行 Power BI Embedded 開始使用範例之前，您需要在您的 Azure 訂用帳戶中至少建立一個「工作區集合」。 若要了解如何在 Azure 入口網站中建立**工作區集合**，請參閱[開始使用 Power BI Embedded](power-bi-embedded-get-started.md)。
+> 您可以設定及執行的 hello Power BI Embedded 取得啟動範例之前，您需要至少一個 toocreate**工作區集合**您 Azure 訂用帳戶中。 toolearn 如何 toocreate**工作區集合**hello Azure 入口網站中看到[開始使用 Power BI Embedded](power-bi-embedded-get-started.md)。
 
-## <a name="configure-the-sample-app"></a>設定範例應用程式
+## <a name="configure-hello-sample-app"></a>Hello 範例應用程式設定
 
-讓我們逐步引導您設定 Visual Studio 開發環境，以存取執行範例應用程式時所需的元件。
+讓我們逐步解說設定 Visual Studio 開發環境 tooaccess hello 元件所需的 toorun hello 範例應用程式。
 
-1. 下載並解壓縮 GitHub 上的 [Power BI Embedded - 將報表整合到 Web 應用程式中](http://go.microsoft.com/fwlink/?LinkId=761493) 範例。
-2. 在 Visual Studio 中開啟 **PowerBI-embedded.sln** 。 您可能需要執行 NuGET 套件管理器主控台中的 **Update-Package** 以更新此方案中使用的套件。
-3. 建置方案。
-4. 執行 **ProvisionSample** 主控台應用程式。 您可以在範例主控台應用程式中，佈建工作區並匯入 PBIX 檔案。
-5. 若要佈建新的**工作區**，請選取選項 1 [集合管理]，然後選取選項 6 [佈建新的工作區]。
-6. 若要匯入新的**報告**，請選取選項 2 [報告管理]，然後選取選項 3 [將 PBIX 桌面檔案匯入工作區]。
+1. 下載並解壓縮 hello [Power BI Embedded-將報表整合到 web 應用程式](http://go.microsoft.com/fwlink/?LinkId=761493)GitHub 上的範例。
+2. 在 Visual Studio 中開啟 **PowerBI-embedded.sln** 。 您可能需要 tooexecute hello**更新套件**hello 這個解決方案中的使用順序 tooupdate hello 封裝中的 NuGET 封裝管理員主控台中的命令。
+3. 建置 hello 方案。
+4. 執行 hello **ProvisionSample**主控台應用程式。 Hello 範例主控台應用程式，您可以佈建的工作區，並匯入 PBIX 檔案。
+5. 新 tooprovision**工作區**，選取選項 1，**集合管理**，然後選取選項 6，**提供新的工作區**
+6. 新 tooimport**報表**，選取 選項 2:**報告管理**，然後選取選項 3，**匯入 PBIX Desktop 檔案，在工作區**。
 
-7. 輸入您的 [工作區集合] 名稱，以及 [存取金鑰]。 您可以在「Azure 入口網站」 中取得這些項目。 若要深入了解如何取得存取金鑰 ，請參閱＜開始使用 Microsoft Power BI Embedded＞中的 [檢視 Power BI API 存取金鑰](power-bi-embedded-get-started.md#view-power-bi-api-access-keys) 。
+7. 輸入您的 [工作區集合] 名稱，以及 [存取金鑰]。 您可以取得這些 hello **Azure 入口網站**。 深入了解如何 toolearn tooget 您**便捷鍵**，請參閱[檢視 Power BI API 存取金鑰](power-bi-embedded-get-started.md#view-power-bi-api-access-keys)中開始使用 Microsoft Power BI Embedded。
 
     ![](media/powerbi-embedded-get-started-sample/azure-portal.png)
-8. 複製並儲存新建立的「工作區識別碼」  ，以供稍後在此文章中使用。 「工作區識別碼」建立之後，您就可以在「Azure 入口網站」中找到它。
+8. 複製並儲存新建立的 hello**工作區識別碼**toouse 本文稍後。 之後 hello**工作區識別碼**已建立，您可以找到它 hello **Azure 入口網站**。
 
     ![](media/powerbi-embedded-get-started-sample/workspace-id.png)
-9. 若要將 PBIX 檔案匯入到您的**工作區**，請選取選項 **6。**\[將 PBIX Desktop 檔案匯入現有的工作區\]。 如果您現在沒有 PBIX 檔案，可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
+9. tooimport PBIX 檔案到您**工作區**，選取選項**6。**\[將 PBIX Desktop 檔案匯入現有的工作區\]。 如果您沒有 PBIX 檔案很方便，您可以下載 hello[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
 10. 如果出現提示，請輸入易記名稱做為您「資料集」 的名稱。
 
 您應該會看到像這樣的回應：
@@ -63,15 +63,15 @@ Checking import state... Succeeded
 ```
 
 > [!NOTE]
-> 如果您的 PBIX 檔案包含任何直接查詢連接，請執行選項 7 來更新連接字串。
+> 如果您的 PBIX 檔案包含的任何直接查詢連接，執行選項 7 tooupdate hello 連接字串。
 
-此時，您已經將 Power BI PBIX 報表匯入到您的**工作區**。 現在我們看一下如何執行 **Power BI Embedded** 開始使用範例 Web 應用程式。
+此時，您已經將 Power BI PBIX 報表匯入到您的**工作區**。 現在，讓我們看看 toorun hello **Power BI Embedded**取得已啟動的範例 web 應用程式。
 
-## <a name="run-the-sample-web-app"></a>執行範例 Web 應用程式
-Web 應用程式範例是一個範例應用程式，會轉譯匯入到您**工作區**的報表。 以下說明如何設定 Web 應用程式範例。
+## <a name="run-hello-sample-web-app"></a>執行 hello 範例 web 應用程式
+hello web 應用程式範例是範例應用程式匯入到將報表轉譯您**工作區**。 以下是如何 tooconfigure hello web 應用程式範例。
 
-1. 在 **PowerBI-embedded** Visual Studio 解決方案中，用滑鼠右鍵按一下 [EmbedSample] Web 應用程式，然後選擇 [設定為啟始專案]。
-2. 在 **web.config** 中，於 **EmbedSample** Web 應用程式中編輯 **appSettings**：**AccessKey**、**WorkspaceCollection** 名稱，及 **WorkspaceId**。
+1. 在 hello **PowerBI 內嵌**Visual Studio 方案，右邊按一下 hello **EmbedSample** web 應用程式，並選擇**設定為啟始專案**。
+2. 在**web.config**，在 hello **EmbedSample** web 應用程式，請編輯 hello **appSettings**: **AccessKey**， **WorkspaceCollection**名稱，和**工作區識別碼**。
 
     ```
     <appSettings>
@@ -81,28 +81,28 @@ Web 應用程式範例是一個範例應用程式，會轉譯匯入到您**工�
         <add key="powerbi:WorkspaceId" value="" />
     </appSettings>
     ```
-3. 執行 **EmbedSample** Web 應用程式。
+3. 執行 hello **EmbedSample** web 應用程式。
 
-在您執行 **EmbedSample** Web 應用程式之後，左邊瀏覽窗格應該就會包含一個 [多個報表] 功能表。 若要檢視您匯入的報表，請展開 [多個報表]，然後按一下報表。 如果您匯入了[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)，範例 Web 應用程式看起來就會像這樣：
+一旦執行 hello **EmbedSample** web 應用程式，應該包含 hello 左邊的導覽面板**報表**功能表。 tooview hello 報表匯入，依序展開**報表**，按一下報表。 如果您匯入 hello[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)，hello 範例 web 應用程式會看起來像這樣：
 
 ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-sample-left-nav.png)
 
-在您按一下報表之後，**EmbedSample** Web 應用程式應該看起來像這樣：
+按一下報表之後，hello **EmbedSample** web 應用程式看起來應該這樣：
 
 ![](media/powerbi-embedded-get-started-sample/sample-web-app.png)
 
-## <a name="explore-the-sample-code"></a>探討範例程式碼
+## <a name="explore-hello-sample-code"></a>瀏覽 hello 範例程式碼
 
-**Microsoft Power BI Embedded** 範例是向您示範如何將 **Power BI** 報告整合到您應用程式中的範例 Web 應用程式。 它會使用「模型-檢視-控制器」(MVC) 設計樣式來示範最佳作法。 本節重點在於 **PowerBI-embedded** Web 應用程式方案中您可以探討的部分範例程式碼。 「模型-檢視-控制器」(MVC) 樣式會依據使用者在三種個別類型中的輸入來分隔網域、簡報及動作的模型製作：模型、檢視及控制器。 若要詳細了解 MVC，請參閱[了解 ASP.NET](http://www.asp.net/mvc)。
+hello **Microsoft Power BI Embedded**範例是為您示範如何的範例 web 應用程式 toointegrate **Power BI**報表到應用程式。 它會使用模型檢視控制器 (MVC) 設計模式 toodemonstrate 最佳作法。 本章節強調 hello 範例程式碼，您可以瀏覽 hello 內的部分**PowerBI 內嵌**web 應用程式方案。 hello 模型檢視控制器 (MVC) 模式分隔 hello hello 網域、 hello 簡報和 hello 動作分成三個不同類別的使用者輸入所根據的模型： 模型、 檢視和控制。 toolearn 深入了解 MVC，請參閱[深入了解 ASP.NET](http://www.asp.net/mvc)。
 
-**Microsoft Power BI Embedded** 範例程式碼的各部分如下。 每個區段都包含 PowerBI-embedded.sln 解決方案中的檔案名稱，因此您可以很容易地在範例中找到程式碼。
+hello **Microsoft Power BI Embedded**範例程式碼會區隔，如下所示。 每個區段 hello PowerBI embedded.sln 方案中包含 hello 檔案名稱，以便您可以輕鬆找到 hello 範例中的 hello 程式碼。
 
 > [!NOTE]
-> 本節是示範程式碼撰寫方式之範例程式碼的摘要。 若要檢視完整範例，請在 Visual Studio 中載入 PowerBI-embedded.sln 解決方案。
+> 此區段是摘要的 hello 範例程式碼會顯示 hello 程式碼撰寫的方式。 tooview hello 完整範例，請載入 Visual Studio 中的 hello PowerBI embedded.sln 方案。
 
 ### <a name="model"></a>模型
 
-範例有 **ReportsViewModel** 和 **ReportViewModel**。
+hello 範例具有**ReportsViewModel**和**ReportViewModel**。
 
 **ReportsViewModel.cs**：代表 Power BI Reports。
 
@@ -122,7 +122,7 @@ Web 應用程式範例是一個範例應用程式，會轉譯匯入到您**工�
 
 ### <a name="connection-string"></a>連接字串
 
-連接字串必須為下列格式：
+hello 連接字串必須是下列格式的 hello:
 
 ```
 Data Source=tcp:MyServer.database.windows.net,1433;Initial Catalog=MyDatabase
@@ -132,14 +132,14 @@ Data Source=tcp:MyServer.database.windows.net,1433;Initial Catalog=MyDatabase
 
 ### <a name="view"></a>檢視
 
-**檢視**可管理 Power BI **Reports** 和 **Power BI Report** 的顯示。
+hello**檢視**管理 Power BI 的 hello 顯示**報表**和 Power BI**報表**。
 
-**Reports.cshtml**：反覆執行 **Model.Reports** 來建立 **ActionLink**。 **ActionLink** 是由以下項目組成：
+**Reports.cshtml**： 逐一查看**Model.Reports** toocreate **ActionLink**。 hello **ActionLink**是由所組成，如下所示：
 
 | 部分 | 說明 |
 | --- | --- |
-| Title |報表名稱。 |
-| QueryString |報表識別碼的連結。 |
+| Title |Hello 報表的名稱。 |
+| QueryString |連結 toohello 報表識別碼。 |
 
     <div id="reports-nav" class="panel-collapse collapse">
         <div class="panel-body">
@@ -155,7 +155,7 @@ Data Source=tcp:MyServer.database.windows.net,1433;Initial Catalog=MyDatabase
         </div>
     </div>
 
-Report.cshtml：設定 **Model.AccessToken**，以及 **PowerBIReportFor** 的 Lambda 運算式。
+Report.cshtml： 設定 hello **Model.AccessToken**，hello 的 Lambda 運算式和**PowerBIReportFor**。
 
     @model ReportViewModel
 
@@ -168,7 +168,7 @@ Report.cshtml：設定 **Model.AccessToken**，以及 **PowerBIReportFor** 的 L
 
 ### <a name="controller"></a>Controller
 
-**DashboardController.cs**：建立會傳遞**應用程式權杖**的 PowerBIClient。 JSON Web 權杖 (JWT) 是從**簽署金鑰**產生，可用於取得**認證**。 **Credentials** 是用來建立 **PowerBIClient** 的執行個體。 在您擁有 **PowerBIClient** 的執行個體之後，您就可以呼叫 GetReports() 與 GetReportsAsync()。
+**DashboardController.cs**：建立會傳遞**應用程式權杖**的 PowerBIClient。 JSON Web Token (JWT) 會產生從 hello**簽署金鑰**tooget hello**認證**。 hello**認證**的執行個體是使用的 toocreate **PowerBIClient**。 在您擁有 **PowerBIClient** 的執行個體之後，您就可以呼叫 GetReports() 與 GetReportsAsync()。
 
 CreatePowerBIClient()
 
@@ -223,13 +223,13 @@ Task<ActionResult> Report(string reportId)
 
 ### <a name="integrate-a-report-into-your-app"></a>將報表整合到您的應用程式中
 
-在您擁有 **Report** 之後，您就可以使用 **IFrame** 來內嵌 Power BI **Report**。 以下是來自 **Microsoft Power BI Embedded** 範例中 powerbi.js 的程式碼片段。
+一旦**報表**，您使用**IFrame** tooembed hello Power BI**報表**。 以下是從 powerbi.js hello 中的程式碼片段**Microsoft Power BI Embedded**範例。
 
 ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-iframe-code.png)
 
 ## <a name="filter-reports-embedded-in-your-application"></a>篩選內嵌在應用程式中的報表
 
-您可以使用 URL 語法，篩選內嵌的報表。 若要這樣做，請將含有 **eq** 運算子的 **$filter** 查詢字串參數新增到含指定篩選的 iFrame src URL。 以下是篩選的查詢語法︰
+您可以使用 URL 語法，篩選內嵌的報表。 toodo，您將加入**$filter**查詢字串參數**eq**運算子 tooyour iFrame src url 並指定 hello 篩選器。 以下是 hello 篩選的查詢語法：
 
 ```
 https://app.powerbi.com/reportEmbed
@@ -238,7 +238,7 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 ```
 
 > [!NOTE]
-> {表格名稱/欄位名稱} 不能包含空格或特殊字元。 {欄位值} 接受單一類別目錄值。  
+> {表格名稱/欄位名稱} 不能包含空格或特殊字元。 hello {fieldValue} 接受單一類別值。  
 
 ## <a name="see-also"></a>另請參閱
 
@@ -248,4 +248,4 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 [從資料集建立新的報告](power-bi-embedded-create-report-from-dataset.md)  
 [Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)  
 [JavaScript 內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
-有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
+有其他疑問？ [再試一次 hello Power BI 社群](http://community.powerbi.com/)

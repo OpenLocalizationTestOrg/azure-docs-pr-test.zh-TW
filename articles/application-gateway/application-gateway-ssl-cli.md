@@ -1,6 +1,6 @@
 ---
-title: "設定 SSL 卸載 - Azure 應用程式閘道 - Azure CLI 2.0 | Microsoft Docs"
-description: "本頁面提供使用 Azure CLI 2.0 來建立具有 SSL 卸載之應用程式閘道的指示"
+title: "aaaConfigure SSL 卸載 Azure 應用程式閘道-Azure CLI 2.0 |Microsoft 文件"
+description: "本頁面提供的指示 toocreate 應用程式閘道以 SSL 卸載 Azure CLI 2.0"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/26/2017
 ms.author: gwallace
-ms.openlocfilehash: e8c1ba09daef09ef5002e33345905772961c1d93
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f8d50e0c6ffef17c807938d816410e6d85321c9a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-an-application-gateway-for-ssl-offload-by-using-azure-cli-20"></a>使用 Azure CLI 2.0 設定適用於 SSL 卸載的應用程式閘道
 
@@ -27,39 +27,39 @@ ms.lasthandoff: 08/18/2017
 > * [Azure 傳統 PowerShell](application-gateway-ssl.md)
 > * [Azure CLI 2.0](application-gateway-ssl-cli.md)
 
-Azure 應用程式閘道可以設定為在閘道終止安全通訊端層 (SSL) 工作階段，以避免 Web 伺服陣列發生高成本的 SSL 解密工作。 SSL 卸載也可簡化在前端伺服器的憑證管理。
+Azure 應用程式閘道可以在 hello 閘道 tooavoid 昂貴 SSL 解密工作 toohappen hello web 伺服陣列設定的 tooterminate hello Secure Sockets Layer (SSL) 工作階段。 SSL 卸載也可簡化在 hello 前端伺服器的憑證管理。
 
-## <a name="prerequisite-install-the-azure-cli-20"></a>必要條件：安裝 Azure CLI 2.0
+## <a name="prerequisite-install-hello-azure-cli-20"></a>必要條件： 安裝 hello Azure CLI 2.0
 
-若要執行本文的步驟，您需要[安裝適用於 Mac、Linux 和 Windows 的 Azure 命令列介面 (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)。
+tooperform hello 步驟在本文中，您需要[hello Azure 命令列介面安裝的 Mac、 Linux 及 Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)。
 
 ## <a name="required-components"></a>必要的元件
 
-* **後端伺服器集區：** 後端伺服器的 IP 位址清單。 列出的 IP 位址應屬於虛擬網路子網路或是公用 IP/VIP。
-* **後端伺服器集區設定：** 每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。 這些設定會繫結至集區，並套用至集區內所有伺服器。
-* **前端連接埠：** 此連接埠是在應用程式閘道上開啟的公用連接埠。 流量會達到此連接埠，然後重新導向至其中一個後端伺服器。
-* **接聽程式：** 接聽程式具有前端連接埠、通訊協定 (Http 或 Https，這些設定都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。
-* **規則：** 規則會繫結接聽程式和後端伺服器集區，並定義流量達到特定接聽程式時應該導向至哪個後端伺服器集區。 目前只支援 *基本* 規則。 *基本* 規則是循環配置資源的負載分配。
+* **後端伺服器集區：** hello hello 後端伺服器的 IP 位址清單。 列出 hello IP 位址應該是屬於 toohello 虛擬網路子網路，或應該是公用 IP/VIP。
+* **後端伺服器集區設定：** 每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。 這些設定會繫結的 tooa 集區，並套用的 tooall hello 集區內的伺服器。
+* **前端連接埠：**此連接埠是開啟 hello 應用程式閘道上的 hello 公用連接埠。 流量叫用這個連接埠，然後再取得重新導向 tooone 的 hello 後端伺服器。
+* **接聽程式：** hello 接聽程式有前端連接埠的通訊協定 （Http 或 Https，這些設定是區分大小寫），與 hello 的 SSL 憑證名稱 （如果有設定 SSL 卸載）。
+* **規則：** hello 規則繫結 hello 接聽程式和 hello 後端伺服器集區，並定義哪一個後端伺服器集區 hello 流量應導向的 toowhen 配接器特定接聽程式。 目前，只有 hello*基本*規則支援。 hello*基本*規則是循環配置資源負載分佈。
 
 **其他組態注意事項**
 
-針對 SSL 憑證組態，**HttpListener** 中的通訊協定應該變更為 *Https* (區分大小寫)。 將 **SslCertificate** 元素新增至 **HttpListener**，並針對 SSL 憑證設定變數值。 前端連接埠應該更新為 443。
+SSL 憑證設定，如 hello 中的通訊協定**HttpListener**也應該變更*Https* （區分大小寫）。 hello **SslCertificate**太新增項目**HttpListener** hello hello SSL 憑證設定的變數值。 hello 前端連接埠應為更新的 too443。
 
-**啟用以 Cookie 為基礎的同質性**：您可以設定應用程式閘道，以確保來自用戶端工作階段的要求一律會導向至 Web 伺服陣列中的相同 VM。 此案例透過插入允許閘道適當導向流量的工作階段 Cookie 來完成。 若要啟用以 Cookie 為基礎的同質性，請在 **BackendHttpSettings** 元素中將 **CookieBasedAffinity** 設定為 *Enabled*。
+**tooenable cookie 為基礎的同質**： 應用程式閘道可以是來自用戶端工作階段的要求會導向的 toohello 設定的 tooensure hello web 伺服陣列中相同的 VM。 此案例中是由資料隱碼的工作階段 cookie，可讓 hello 閘道 toodirect 流量時，適當地完成。 tooenable cookie 架構親和性，設定**CookieBasedAffinity**太*啟用*在 hello **BackendHttpSettings**項目。
 
 ## <a name="configure-ssl-offload-on-an-existing-application-gateway"></a>在現有的應用程式閘道上設定 SSL 卸載
 
 ```azurecli-interactive
 #!/bin/bash
 
-# Create a new front end port to be used for SSL
+# Create a new front end port toobe used for SSL
 az network application-gateway frontend-port create \
   --name sslport \
   --port 443 \
   --gateway-name "AdatumAppGateway" \
   --resource-group "AdatumAppGatewayRG"
 
-# Upload the .pfx certificate for SSL offload
+# Upload hello .pfx certificate for SSL offload
 az network application-gateway ssl-cert create \
   --name "newcert" \
   --cert-file /home/azureuser/self-signed/AdatumAppGatewayCert.pfx \
@@ -67,7 +67,7 @@ az network application-gateway ssl-cert create \
   --gateway-name "AdatumAppGateway" \
   --resource-group "AdatumAppGatewayRG"
 
-# Create a new listener referencing the port and certificate created earlier
+# Create a new listener referencing hello port and certificate created earlier
 az network application-gateway http-listener create \
   --frontend-ip "appGatewayFrontendIP" \
   --frontend-port sslport  \
@@ -76,14 +76,14 @@ az network application-gateway http-listener create \
   --gateway-name "AdatumAppGateway" \
   --resource-group "AdatumAppGatewayRG"
 
-# Create a new back-end pool to be used
+# Create a new back-end pool toobe used
 az network application-gateway address-pool create \
   --gateway-name "AdatumAppGateway" \
   --resource-group "AdatumAppGatewayRG" \
   --name "appGatewayBackendPool2" \
   --servers 10.0.0.7 10.0.0.8
 
-# Create a new back-end HTTP settings using the new probe
+# Create a new back-end HTTP settings using hello new probe
 az network application-gateway http-settings create \
   --name "settings2" \
   --port 80 \
@@ -92,7 +92,7 @@ az network application-gateway http-settings create \
   --gateway-name "AdatumAppGateway" \
   --resource-group "AdatumAppGatewayRG"
 
-# Create a new rule linking the listener to the back-end pool
+# Create a new rule linking hello listener toohello back-end pool
 az network application-gateway rule create \
   --name "rule2" \
   --rule-type Basic \
@@ -106,7 +106,7 @@ az network application-gateway rule create \
 
 ## <a name="create-an-application-gateway-with-ssl-offload"></a>建立具有 SSL 卸載的應用程式閘道
 
-下列範例會建立具有 SSL 卸載的應用程式閘道。  憑證和憑證密碼，都必須更新為有效的私密金鑰。
+hello 下列範例會使用 SSL 卸載，建立應用程式閘道。  hello 憑證和憑證密碼必須更新的 tooa 有效的私密金鑰。
 
 ```azurecli-interactive
 #!/bin/bash
@@ -137,7 +137,7 @@ az network application-gateway create \
 
 ## <a name="get-application-gateway-dns-name"></a>取得應用程式閘道 DNS 名稱
 
-建立閘道之後，下一步是設定通訊的前端。 當使用公用 IP 時，應用程式閘道需要動態指派的 DNS 名稱 (不易記住)。 為了確保使用者可以叫用應用程式閘道，可使用 CNAME 記錄來指向應用程式閘道的公用端點。 [在 Azure 中設定自訂網域名稱](../cloud-services/cloud-services-custom-domain-name-portal.md)。 若要設定別名，請使用連接至應用程式閘道的 PublicIPAddress 項目，擷取應用程式閘道的詳細資料及其關聯的 IP/DNS 名稱。 應用程式閘道的 DNS 名稱應該用來建立將兩個 Web 應用程式指向此 DNS 名稱的 CNAME 記錄。 不建議使用 A-records，因為重新啟動應用程式閘道時，VIP 可能會變更。
+一旦建立 hello 閘道，hello 下一個步驟是 tooconfigure hello 前端進行通訊。 當使用公用 IP 時，應用程式閘道需要動態指派的 DNS 名稱 (不易記住)。 tooensure 終端使用者可以叫用 hello 應用程式閘道，CNAME 記錄可使用的 toopoint toohello 公用端點的 hello 應用程式閘道。 [在 Azure 中設定自訂網域名稱](../cloud-services/cloud-services-custom-domain-name-portal.md)。 tooconfigure 別名，擷取 hello 應用程式閘道和其相關聯的 IP/DNS 名稱，使用 hello PublicIPAddress 項目附加的 toohello 應用程式閘道的詳細資料。 hello 應用程式閘道的 DNS 名稱應該使用的 toocreate CNAME 記錄，哪個點 hello 兩個 web 應用程式 toothis DNS 名稱。 不建議 hello 使用 A 記錄，因為可能會在重新啟動應用程式閘道變更 hello VIP。
 
 
 ```azurecli-interactive
@@ -182,7 +182,7 @@ az network public-ip show --name "pip" --resource-group "AdatumAppGatewayRG"
 
 ## <a name="next-steps"></a>後續步驟
 
-如果您想要將應用程式閘道設為與內部負載平衡器 (ILB) 搭配使用，請參閱 [建立具有內部負載平衡器 (ILB) 的應用程式閘道](application-gateway-ilb.md)。
+如果您想 tooconfigure 內部負載平衡器 (ILB) 應用程式閘道 toouse，請參閱[內部負載平衡器 (ILB) 建立應用程式閘道](application-gateway-ilb.md)。
 
 如果您想進一步了解一般負載平衡選項，請參閱：
 

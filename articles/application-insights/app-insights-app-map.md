@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights 的應用程式對應 | Microsoft Docs"
-description: "應用程式元件之間的相依性視覺化呈現方式，其中會標示 KPI 和警示。"
+title: "aaaApplication Azure Application Insights 中的對應 |Microsoft 文件"
+description: "Hello 應用程式元件之間的相依性的視覺化呈現方式標示 Kpi 和警示。"
 services: application-insights
 documentationcenter: 
 author: SoubhagyaDash
@@ -13,30 +13,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: 207526b7a675f92134d045ebefb9a372749bce92
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 96ab753a100ea53ec7d367e3559b6622ab6fd182
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-map-in-application-insights"></a>Application Insights 的應用程式對應
-在 [Azure Application Insights](app-insights-overview.md) 中，應用程式對應是應用程式元件相依性關係的視覺化版面配置。 每個元件都會顯示負載、效能、失敗和警示等 KPI，以協助您找出任何造成效能問題或失敗的元件。 您可以從任何元件逐一點選至更詳細的診斷，例如 Application Insights 事件。 如果您的應用程式使用 Azure 服務，您也可以逐一點選 Azure 診斷，例如 SQL 資料庫建議程式的建議。
+在[Azure Application Insights](app-insights-overview.md)，應用程式對應為 visual hello 相依性關聯性的應用程式元件的版面配置。 每個元件顯示 Kpi toohelp 負載、 效能、 失敗和警示，例如您找出任何造成效能問題或失敗的元件。 您可以按一下任何元件 toomore 從詳細的診斷，例如 Application Insights 事件。 如果您的應用程式使用 Azure 服務，您也可以按一下透過 tooAzure 診斷，例如 SQL Database Advisor 的建議。
 
-和其他圖表一樣，您可以將應用程式對應釘選至 Azure 儀表板，而其功能仍可完整運作。 
+類似其他圖表中，您可以釘選的應用程式對應 toohello Azure 儀表板，可完整運作。 
 
-## <a name="open-the-application-map"></a>開啟應用程式對應
-從應用程式的概觀刀鋒視窗中開啟對應︰
+## <a name="open-hello-application-map"></a>開啟 hello 應用程式對應
+從您的應用程式的 hello 概觀刀鋒視窗開啟 hello 對應：
 
 ![開啟應用程式對應](./media/app-insights-app-map/01.png)
 
 ![應用程式對應](./media/app-insights-app-map/02.png)
 
-此對應會顯示︰
+hello 對應可顯示：
 
 * 可用性集合
-* 用戶端元件 (使用 JavaScript SDK 監視)
+* 用戶端元件 （使用 JavaScript SDK hello 監視）
 * 伺服器端元件
-* 用戶端和伺服器元件的相依性
+* Hello 用戶端和伺服器元件的相依性
 
 您可以展開與摺疊相依性連結群組︰
 
@@ -47,9 +47,9 @@ ms.lasthandoff: 08/18/2017
 ![群組的相依性](./media/app-insights-app-map/03-2.png)
 
 ## <a name="spot-problems"></a>找出問題
-每個節點都有相關的效能指標，例如該元件的負載、效能和失敗率。 
+每個節點都有相關的效能指標，例如 hello 負載、 效能和失敗率，該元件。 
 
-警告圖示會點出可能的問題。 橘色的警告表示要求、頁面檢視或相依性呼叫發生失敗。 紅色表示失敗率大於 5 %。 如果您想要調整這些閾值，請開啟 [選項]。
+警告圖示會點出可能的問題。 橘色的警告表示要求、頁面檢視或相依性呼叫發生失敗。 紅色表示失敗率大於 5 %。 如果您想 tooadjust 這些閾值，請開啟 [選項]。
 
 ![失敗圖示](./media/app-insights-app-map/04.png)
 
@@ -61,66 +61,66 @@ ms.lasthandoff: 08/18/2017
 
 ![Azure 建議](./media/app-insights-app-map/06.png)
 
-按一下任何圖示即可取得詳細資料：
+按一下任何圖示 tooget 更多詳細資料：
 
 ![Azure 建議](./media/app-insights-app-map/07.png)
 
 ## <a name="diagnostic-click-through"></a>診斷點選連結
-對應上的每個節點都會提供以診斷做為目標的點選連結。 這些選項會隨節點類型而有所不同。
+每一個 hello 節點 hello 地圖上提供目標的點選連結，以診斷資訊。 hello 選項 hello hello 節點類型而有所不同。
 
 ![伺服器選項](./media/app-insights-app-map/09.png)
 
-對於裝載在 Azure 中的元件，這些選項包括元件的直接連結。
+Azure 中主控的元件，hello 選項包括 toothem 直接連結。
 
 ## <a name="filters-and-time-range"></a>篩選和時間範圍
-根據預設，對應中會摘要列出選定時間範圍內的所有可用資料。 但是，您可以透過篩選，使其只包含特定作業名稱或相依性。
+根據預設，hello 對應摘要說明可用的 hello 選擇時間範圍內的所有 hello 資料。 但是，可以先篩選 tooinclude 只在特定作業名稱或相依性。
 
-* 作業名稱︰這包括頁面檢視和伺服器端要求類型。 使用此選項時，對應中只會顯示伺服器端/用戶端節點上所選作業的 KPI。 它會顯示在這些特定作業內容中呼叫的相依性。
-* 相依性基底名稱︰這包括 AJAX 瀏覽器相依性和伺服器端相依性。 如果您使用 TrackDependency API 來報告自訂相依性遙測，這些資料也會在此出現。 您可以選取要顯示在對應中的相依性。 此選取項目目前不會篩選伺服器端要求或用戶端頁面檢視。
+* 作業名稱︰這包括頁面檢視和伺服器端要求類型。 使用此選項，hello 地圖顯示 hello hello 只 hello 選取作業的伺服器/用戶端節點上的 KPI。 它會顯示在這些特定作業的 hello 內容中呼叫 hello 相依性。
+* 相依性的主檔名： 這包括 hello AJAX 瀏覽器的相依性和伺服器端的相依性。 如果您要報告自訂相依性遙測，以 hello TrackDependency API，它們也出現在這裡。 您可以選取 hello 相依性 tooshow hello 地圖上。 目前這個選項不會篩選 hello 伺服器端要求或 hello 用戶端的分頁檢視。
 
 ![設定篩選](./media/app-insights-app-map/11.png)
 
 ## <a name="save-filters"></a>儲存篩選
-若要儲存您已套用的篩選，請將篩選後的檢視釘選到 [儀表板](app-insights-dashboards.md)。
+toosave hello 篩選已套用，針 hello 篩選過的檢視拖曳至[儀表板](app-insights-dashboards.md)。
 
-![釘選到儀表板](./media/app-insights-app-map/12.png)
+![Pin toodashboard](./media/app-insights-app-map/12.png)
 
 ## <a name="error-pane"></a>錯誤窗格
-當您按一下對應中的節點時，會在右側顯示錯誤窗格，將該節點的失敗進行彙總。 失敗會先依作業識別碼群組，然後再依問題識別碼群組。
+當您按一下 hello map 中的節點時，錯誤窗格會顯示在 hello 彙總失敗，該節點的右側。 失敗會先依作業識別碼群組，然後再依問題識別碼群組。
 
 ![錯誤窗格](./media/app-insights-app-map/error-pane.png)
 
-按一下失敗可前往該失敗的最新範例。
+按一下 上失敗，會在 toohello 發生失敗的最新執行個體。
 
 ## <a name="resource-health"></a>資源健康情況
-對於某些資源類型，資源健康狀態會顯示在 [錯誤] 窗格的頂端。 例如，按一下 SQL 節點會顯示資料庫的健康狀態和所發出的任何警示。
+對於某些資源類型，資源健全狀況會顯示在 hello hello 錯誤窗格頂端。 例如，按一下 [SQL] 節點會顯示 hello 資料庫健康狀態與任何已引發的警示。
 
 ![資源健康情況](./media/app-insights-app-map/resource-health.png)
 
-您可以按一下資源名稱來檢視該資源的標準概觀計量。
+您可以按一下 hello 資源名稱 tooview 標準概觀度量該資源。
 
 ## <a name="end-to-end-system-app-maps"></a>端對端系統應用程式對應
 
 *需要 SDK 2.3 版或更新版本*
 
-如果您的應用程式有多個元件 (例如 Web 應用程式以外的後端服務)，則可以在一個整合式應用程式對應上顯示所有元件。
+如果您的應用程式具有數個元件-例如後, 端服務此外 toohello web 應用程式層，則您可以顯示所有在一個整合式應用程式對應。
 
 ![設定篩選](./media/app-insights-app-map/multi-component-app-map.png)
 
-應用程式對應會尋找伺服器節點，方法是遵循已安裝 Application Insights SDK 的伺服器之間所發出的任何 HTTP 相依性呼叫。 會假設每個 Application Insights 資源都包含一部伺服器。
+hello 應用程式對應尋找遵循以 hello Application Insights SDK 安裝的伺服器之間進行的任何 HTTP 相依性呼叫的伺服器節點。 每個 Application Insights 資源會假設 toocontain 一部伺服器。
 
 ### <a name="multi-role-app-map-preview"></a>多角色應用程式對應 (預覽)
 
-預覽多角色應用程式對應功能可讓您使用應用程式對應搭配多部伺服器，將資料傳送至相同的 Application Insights  / 檢測金鑰。 對應中的伺服器會依遙測項目上的 cloud_RoleName 屬性進行區隔。 從 [預覽] 刀鋒視窗將 [多角色應用程式對應]設為 [開啟]，可啟用這項設定。
+hello 預覽多角色應用程式對應功能可讓您 toouse hello 應用程式對應具有多個伺服器傳送資料 toohello 相同的 Application Insights 資源 / 檢測金鑰。 Hello 對應中的伺服器分散 hello cloud_RoleName 屬性遙測項目上。 設定*多角色應用程式對應*太*上*從 hello 預覽刀鋒視窗 tooenable 這項設定。
 
-在微服務應用程式，或在您要於單一 Application Insights 資源內將多部伺服器之間的事件相互關聯的其他情況下，可能需要這種方法。
+在微服務應用程式，或在其他案例中，您 toocorrelate 事件在單一的 Application Insights 資源內的多部伺服器，可能需要這種方法。
 
 ## <a name="video"></a>影片
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player] 
 
 ## <a name="feedback"></a>意見反應
-請透過入口網站的意見反應選項提供意見反應。
+請透過提供意見反應 hello 入口網站的意見反應 選項。
 
 ![MapLink-1 影像](./media/app-insights-app-map/13.png)
 

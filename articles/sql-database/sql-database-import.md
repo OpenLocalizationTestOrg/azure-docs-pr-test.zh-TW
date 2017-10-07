@@ -1,5 +1,5 @@
 ---
-title: "匯入 BACPAC 檔案以建立 Azure SQL Database | Microsoft Docs"
+title: "aaaImport BACPAC 檔案的 Azure SQL database toocreate |Microsoft 文件"
 description: "匯入 BACPAC 檔案以建立新的 Azure SQL Database。"
 services: sql-database
 documentationcenter: 
@@ -15,48 +15,48 @@ ms.author: carlrab
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
-ms.openlocfilehash: 285e17ed6d0ce700cb518864df7a3b5f5e55bee5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d5fc93acf27b79502969fcd6199d11161915b19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="import-a-bacpac-file-to-a-new-azure-sql-database"></a>將 BACPAC 檔案匯入到新的 Azure SQL Database
+# <a name="import-a-bacpac-file-tooa-new-azure-sql-database"></a>匯入 BACPAC 檔案 tooa 新的 Azure SQL Database
 
-當您需要從封存匯入資料庫或從另一個平台進行移轉時，您可以從 [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 檔案匯入資料庫結構描述和資料。 BACPAC 檔案是一種副檔名為 BACPAC 的 ZIP 檔案，其包含來自 SQL Server Database 的中繼資料和資料。 BACPAC 檔案可以從 Azure Blob 儲存體 (僅限標準儲存體) 匯入，或從內部部署位置中的本機儲存體匯入。 若要使匯入速度最大化，我們建議您指定較高的服務層和效能等級 (例如 P6)，然後在匯入成功後，適當地向下調整。 此外，匯入之後的資料庫相容性等級會以來源資料庫的相容性等級為基礎。 
+當您需要 tooimport 從封存資料庫，或從另一個平台移轉時，您可以匯入 hello 資料庫結構描述和資料從[BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4)檔案。 BACPAC 檔案是包含 hello 中繼資料和資料從 SQL Server 資料庫的 BACPAC 的延伸模組 ZIP 檔案。 BACPAC 檔案可以從 Azure Blob 儲存體 (僅限標準儲存體) 匯入，或從內部部署位置中的本機儲存體匯入。 toomaximize hello 匯入的速度，我們建議您指定較高服務層和效能層級，P6，例如，並 hello 匯入成功後，再擴充 toodown 適當。 此外，hello 匯入後的 hello 資料庫相容性層級根據 hello hello 來源資料庫的相容性層級。 
 
 > [!IMPORTANT] 
-> 您將資料庫移轉至 Azure SQL Database 後，可選擇於目前的相容性等級 (針對 AdventureWorks2008R2 資料庫為等級 100) 或更高等級運作資料庫。 如需於特定相容性層級操作資料庫的含意與選項詳細資訊，請參閱 [ALTER DATABASE 相容性層級 (ALTER DATABASE Compatibility Level)](https://docs.microsoft.com/sql/t-sql/statements/alter-database-transact-sql-compatibility-level)。 如需相容性層級其他相關資料庫等級設定的資訊，另請參閱 [ALTER DATABASE 範圍組態 (ALTER DATABASE SCOPED CONFIGURATION)](https://docs.microsoft.com/sql/t-sql/statements/alter-database-scoped-configuration-transact-sql)。   >
+> 移轉您的資料庫 tooAzure SQL 資料庫之後，您可以選擇 toooperate hello 資料庫在其目前的相容性層級 （層級 100 hello AdventureWorks2008R2 資料庫） 或更高的層級。 如需有關 hello 含意與作業系統特定的相容性層級的資料庫選項的詳細資訊，請參閱[ALTER DATABASE 相容性層級](https://docs.microsoft.com/sql/t-sql/statements/alter-database-transact-sql-compatibility-level)。 另請參閱[ALTER DATABASE SCOPED CONFIGURATION](https://docs.microsoft.com/sql/t-sql/statements/alter-database-scoped-configuration-transact-sql)對於其他資料庫層級設定的相關資訊與相關 toocompatibility 層級。   >
 
 > [!NOTE]
-> 若要將 BACPAC 匯入到新的資料庫，您必須先建立 Azure SQL Database 邏輯伺服器。 如需如何使用 SQLPackage 將 SQL Server Database 移轉到 Azure SQL Database 的教學課程，請參閱[移轉 SQL Server 資料庫](sql-database-migrate-your-sql-server-database.md)
+> tooimport BACPAC tooa 新的資料庫，您必須先建立 Azure SQL Database 邏輯伺服器。 如需顯示如何 toomigrate SQL Server 資料庫 tooAzure SQL Database 的教學課程使用 SQLPackage，請參閱[移轉 SQL Server 資料庫](sql-database-migrate-your-sql-server-database.md)
 >
 
 ## <a name="import-from-a-bacpac-file-using-azure-portal"></a>使用 Azure 入口網站從 BACPAC 檔案匯入
 
-本文提供的指示將說明如何使用 [Azure 入口網站](https://portal.azure.com)，從 BACPAC 檔案 (儲存於 Azure Blob 儲存體中) 建立 Azure SQL Database。 使用 Azure 入口網站匯入的方式只支援從 Azure Blob 儲存體匯入 BACPAC 檔案。
+本文章提供指示，說明如何從 Azure blob 儲存體中使用 hello 的 BACPAC 檔案建立 Azure SQL database [Azure 入口網站](https://portal.azure.com)。 匯入使用 hello Azure 入口網站支援從 Azure blob 儲存體匯入 BACPAC 檔案。
 
-若要使用 Azure 入口網站匯入資料庫，請開啟資料庫頁面，然後按一下工具列上的 [匯入]。 指定儲存體帳戶和容器，然後選取您要匯入的 BACPAC 檔案。 選取新資料庫的大小 (通常與來源相同)，並提供目的地 SQL Server 認證。  
+資料庫使用 tooimport hello Azure 入口網站、 資料庫和按一下開啟 hello 頁面**匯入**hello 工具列上。 指定 hello 儲存體帳戶和容器，然後選取您想要 tooimport hello BACPAC 檔案。 選取 hello hello 新的資料庫大小 (通常 hello 相同做原點)，並提供 hello 目的地 SQL Server 認證。  
 
    ![資料庫匯入](./media/sql-database-import/import.png)
 
-若要監視匯入作業的進度，請開啟包含匯入資料庫的邏輯伺服器頁面。 向下捲動至**作業**，然後按一下 [匯入/匯出歷程記錄] 。
+hello toomonitor hello 進度匯入作業中，開啟 hello 邏輯伺服器包含 hello 資料庫匯入的 hello 頁面。 向下捲動太**作業**，然後按一下**匯入/匯出**歷程記錄。
 
-### <a name="monitor-the-progress-of-an-import-operation"></a>監視匯入作業的進度
+### <a name="monitor-hello-progress-of-an-import-operation"></a>匯入作業的監視 hello 進度
 
-若要監視匯入作業的進度，請將邏輯伺服器的頁面開啟為要匯入的資料庫。 向下捲動至**作業**，然後按一下 [匯入/匯出歷程記錄] 。
+hello toomonitor hello 進度匯入作業中，開啟 hello 邏輯伺服器的資料庫正在匯入哪些 hello 匯入的 hello 頁面。 向下捲動太**作業**，然後按一下**匯入/匯出**歷程記錄。
    
    ![匯入](./media/sql-database-import/import-history.png)![匯入狀態](./media/sql-database-import/import-status.png)
 
-確認伺服器上的資料庫為線上狀態，請按一下 [SQL 資料庫]，並確認新的資料庫為 [線上]。
+tooverify hello 資料庫是即時 hello 伺服器上，按一下  **SQL 資料庫**，並確認新資料庫的 hello**線上**。
 
 ## <a name="import-from-a-bacpac-file-using-sqlpackage"></a>使用 SQLPackage 從 BACPAC 檔案匯入
 
-若要使用 [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx) 命令列公用程式匯入 SQL Database，請參閱[匯入參數和屬性](https://msdn.microsoft.com/library/hh550080.aspx#Import Parameters and Properties)。 SQLPackage 公用程式隨附於最新版的 [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) 和 [SQL Server Data Tools for Visual Studio](https://msdn.microsoft.com/library/mt204009.aspx)，或者您也可以直接從 Microsoft 下載中心下載最新版的 [SqlPackage](https://www.microsoft.com/download/details.aspx?id=53876)。
+tooimport SQL 資料庫使用 hello [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx)命令列公用程式，請參閱[匯入參數和屬性](https://msdn.microsoft.com/library/hh550080.aspx#Import Parameters and Properties)。 hello SQLPackage 公用程式隨附的 hello 最新版[SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)和[SQL Server Data Tools for Visual Studio](https://msdn.microsoft.com/library/mt204009.aspx)，或者，您可以下載 hello 最新版本的[SqlPackage](https://www.microsoft.com/download/details.aspx?id=53876)直接 hello Microsoft 下載中心。
 
-針對大部分生產環境中的延展性和效能，我們建議您使用 SQLPackage 公用程式。 如需 SQL Server 客戶諮詢小組部落格中有關使用 BACPAC 檔案進行移轉的主題，請參閱[使用 BACPAC 檔案從 SQL Server 移轉至 Azure SQL Database](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/)。
+我們建議 hello 用於 hello SQLPackage 公用程式的規模和效能，在大部分的實際執行環境。 SQL Server 客戶諮詢團隊部落格有關移轉使用 BACPAC 檔案，請參閱[從 SQL Server tooAzure 使用 BACPAC 檔案的 SQL Database 移轉](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/)。
 
-請參閱下列 SQLPackage 命令，以取得如何將 **AdventureWorks2008R2** 資料庫從本機儲存體匯入到 Azure SQL Database 邏輯伺服器 (在此範例中稱為 **mynewserver20170403**) 的指令碼範例。 此指令碼會示範如何建立名為 **myMigratedDatabase** 的新資料庫，並搭配 **Premium (進階)**服務層和 **P6** 服務目標。 將這些值變更為適合您環境的值。
+請參閱下列指令碼範例的 SQLPackage 命令 hello tooimport hello **AdventureWorks2008R2**資料庫從本機儲存體 tooan Azure SQL Database 邏輯伺服器，稱為**mynewserver20170403**在此範例中。 此指令碼會顯示 hello 建立新的資料庫稱為**myMigratedDatabase**，服務層的**Premium**，以及服務目標的**P6**。 變更這些值做為適當的 tooyour 環境。
 
 ```cmd
 SqlPackage.exe /a:import /tcs:"Data Source=mynewserver20170403.database.windows.net;Initial Catalog=myMigratedDatabase;User Id=ServerAdmin;Password=<change_to_your_password>" /sf:AdventureWorks2008R2.bacpac /p:DatabaseEdition=Premium /p:DatabaseServiceObjective=P6
@@ -65,10 +65,10 @@ SqlPackage.exe /a:import /tcs:"Data Source=mynewserver20170403.database.windows.
    ![sqlpackage 匯入](./media/sql-database-migrate-your-sql-server-database/sqlpackage-import.png)
 
 > [!IMPORTANT]
-> Azure SQL Database 邏輯伺服器會接聽連接埠 1433。 如果您嘗試從公司防火牆連線至 Azure SQL Database 邏輯伺服器，則必須在公司防火牆中開啟此連接埠，您才能成功連線。
+> Azure SQL Database 邏輯伺服器會接聽連接埠 1433。 如果您正嘗試 tooconnect tooan Azure SQL Database 邏輯伺服器從公司防火牆內，此連接埠必須在 hello 公司防火牆中開啟您 toosuccessfully 連線。
 >
 
-此範例會說明如何透過 Active Directory 通用驗證使用 SqlPackage.exe 匯入資料庫：
+這個範例會示範如何 tooimport SqlPackage.exe 使用 Active Directory 通用驗證的資料庫：
 
 ```cmd
 SqlPackage.exe /a:Import /sf:testExport.bacpac /tdn:NewDacFX /tsn:apptestserver.database.windows.net /ua:True /tid:"apptest.onmicrosoft.com"
@@ -76,7 +76,7 @@ SqlPackage.exe /a:Import /sf:testExport.bacpac /tdn:NewDacFX /tsn:apptestserver.
 
 ## <a name="import-from-a-bacpac-file-using-powershell"></a>使用 PowerShell 從 BACPAC 檔案匯入
 
-使用 [New-AzureRmSqlDatabaseImport](/powershell/module/azurerm.sql/new-azurermsqldatabaseimport) Cmdlet 來提交匯入資料庫要求至 Azure SQL Database 服務。 視資料庫大小而定，匯入作業可能需要一些時間才能完成。
+使用 hello[新增 AzureRmSqlDatabaseImport](/powershell/module/azurerm.sql/new-azurermsqldatabaseimport) cmdlet toosubmit 匯入資料庫要求 toohello Azure SQL Database 服務。 根據資料庫的 hello 大小，hello 匯入作業可能需要一些時間 toocomplete。
 
  ```powershell
  $importRequest = New-AzureRmSqlDatabaseImport -ResourceGroupName "myResourceGroup" `
@@ -93,7 +93,7 @@ SqlPackage.exe /a:Import /sf:testExport.bacpac /tdn:NewDacFX /tsn:apptestserver.
 
  ```
 
-若要查看匯入要求的狀態，請使用 [Get-AzureRmSqlDatabaseImportExportStatus](/powershell/module/azurerm.sql/get-azurermsqldatabaseimportexportstatus) Cmdlet。 如果在要求後立即執行此 Cmdlet，通常會傳回 **Status : InProgress**。 當您看見 **Status: Succeeded** 時，便代表匯入已完成。
+hello toocheck hello 狀態匯入要求，請使用 hello [Get AzureRmSqlDatabaseImportExportStatus](/powershell/module/azurerm.sql/get-azurermsqldatabaseimportexportstatus) cmdlet。 Hello 後立即執行此要求會通常傳回**狀態： InProgress**。 當您看到**狀態： 成功**hello 匯入作業完成。
 
 ```powershell
 $importStatus = Get-AzureRmSqlDatabaseImportExportStatus -OperationStatusLink $importRequest.OperationStatusLink
@@ -112,9 +112,9 @@ $importStatus
 如需其他指令碼範例，請參閱[從 BACPAC 檔案匯入資料庫](scripts/sql-database-import-from-bacpac-powershell.md)。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要了解如何連接並查詢匯入的 SQL Database，請參閱[使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)。
-* 如需 SQL Server 客戶諮詢小組部落格中有關使用 BACPAC 檔案進行移轉的主題，請參閱[使用 BACPAC 檔案從 SQL Server 移轉至 Azure SQL Database](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/)。
-* 如需有關整個 SQL Server 資料庫移轉程序的討論，包括效能建議，請參閱[將 SQL Server 資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。
+* toolearn 如何 tooconnect tooand 查詢匯入的 SQL 資料庫，請參閱[連接 SQL Server Management Studio tooSQL 資料庫及執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)。
+* SQL Server 客戶諮詢團隊部落格有關移轉使用 BACPAC 檔案，請參閱[從 SQL Server tooAzure 使用 BACPAC 檔案的 SQL Database 移轉](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/)。
+* 如需 hello 整個 SQL Server 資料庫移轉程序，包括效能建議的討論，請參閱[移轉 SQL 資料庫的 SQL Server 資料庫 tooAzure](sql-database-cloud-migrate.md)。
 
 
 

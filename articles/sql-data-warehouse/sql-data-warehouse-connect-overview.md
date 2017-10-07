@@ -1,6 +1,6 @@
 ---
-title: "連線到 Azure SQL 資料倉儲 | Microsoft Docs"
-description: "如何尋找您的伺服器名稱和 Azure SQL 資料倉儲的連接字串"
+title: "aaaConnect tooAzure SQL 資料倉儲 |Microsoft 文件"
+description: "如何 toofind hello 伺服器名稱和連接字串，您 tooAzure SQL 資料倉儲"
 services: sql-data-warehouse
 documentationcenter: NA
 author: antvgski
@@ -15,30 +15,30 @@ ms.workload: data-services
 ms.custom: connect
 ms.date: 10/31/2016
 ms.author: anvang;barbkess
-ms.openlocfilehash: 72c2b404e66611da421eca0dc30aa71e18c6d120
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f15e098026afb7c5efbbbfaf62b681e8cd7936bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-azure-sql-data-warehouse"></a>連接到 Azure SQL 資料倉儲
-本文可協助您第一次連接到 SQL 資料倉儲。
+# <a name="connect-tooazure-sql-data-warehouse"></a>連接 tooAzure SQL 資料倉儲
+這篇文章可協助您取得資料倉儲的連接的 tooSQL hello 第一次。
 
 ## <a name="find-your-server-name"></a>尋找您的伺服器名稱
-連接到 SQL 資料倉儲的第一個步驟是了解如何尋找您的伺服器名稱。  例如，下列範例中的伺服器名稱是 sample.database.windows.net。 若要尋找完整的伺服器名稱：
+hello 知道資料倉儲的第一個步驟 tooconnecting tooSQL 如何 toofind 您的伺服器名稱。  比方說，在下列範例中的 hello hello 伺服器名稱是 sample.database.windows.net。 toofind hello 完整的伺服器名稱：
 
-1. 移至 [Azure 入口網站][Azure portal]。
+1. 移 toohello [Azure 入口網站][Azure portal]。
 2. 按一下 [SQL Database]  
-3. 按一下您想連接的資料庫。
-4. 找出完整的伺服器名稱。
+3. 按一下您想要 tooconnect hello 資料庫。
+4. 找出 hello 完整的伺服器名稱。
    
     ![完整伺服器名稱][1]
 
 ## <a name="supported-drivers-and-connection-strings"></a>支援的驅動程式和連接字串
-Azure SQL 資料倉儲支援 [ADO.NET][ADO.NET]、[ODBC][ODBC]、[PHP][PHP] 和 [JDBC][JDBC]。 按一下上述其中一個驅動程式，以尋找最新版本和文件。 若要從 Azure 入口網站自動為您使用的驅動程式產生連接字串，您可以按一下前述範例中的 [顯示資料庫連接字串]  。  下列一些範例顯示每個驅動程式的連接字串。
+Azure SQL 資料倉儲支援 [ADO.NET][ADO.NET]、[ODBC][ODBC]、[PHP][PHP] 和 [JDBC][JDBC]。 按一下其中一個 hello 上述驅動程式 toofind hello 最新版本，且文件。 tooautomatically 產生 hello hello 驅動程式所使用的連接字串從 hello Azure 入口網站中，您可以按一下 hello**顯示資料庫的連接字串**從前面範例中的 hello。  下列一些範例顯示每個驅動程式的連接字串。
 
 > [!NOTE]
-> 請考慮將連線逾時設定為 300 秒，以便在短時間無法使用時能夠維持連線。
+> 請考慮設定 hello 連接逾時 too300 秒 tooallow 連接 toosurvive 短期間無法使用。
 > 
 > 
 
@@ -54,7 +54,7 @@ Driver={SQL Server Native Client 11.0};Server=tcp:{your_server}.database.windows
 
 ### <a name="php-connection-string-example"></a>PHP 連接字串範例
 ```PHP
-Server: {your_server}.database.windows.net,1433 \r\nSQL Database: {your_database}\r\nUser Name: {your_user_name}\r\n\r\nPHP Data Objects(PDO) Sample Code:\r\n\r\ntry {\r\n   $conn = new PDO ( \"sqlsrv:server = tcp:{your_server}.database.windows.net,1433; Database = {your_database}\", \"{your_user_name}\", \"{your_password_here}\");\r\n    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );\r\n}\r\ncatch ( PDOException $e ) {\r\n   print( \"Error connecting to SQL Server.\" );\r\n   die(print_r($e));\r\n}\r\n\rSQL Server Extension Sample Code:\r\n\r\n$connectionInfo = array(\"UID\" => \"{your_user_name}\", \"pwd\" => \"{your_password_here}\", \"Database\" => \"{your_database}\", \"LoginTimeout\" => 30, \"Encrypt\" => 1, \"TrustServerCertificate\" => 0);\r\n$serverName = \"tcp:{your_server}.database.windows.net,1433\";\r\n$conn = sqlsrv_connect($serverName, $connectionInfo);
+Server: {your_server}.database.windows.net,1433 \r\nSQL Database: {your_database}\r\nUser Name: {your_user_name}\r\n\r\nPHP Data Objects(PDO) Sample Code:\r\n\r\ntry {\r\n   $conn = new PDO ( \"sqlsrv:server = tcp:{your_server}.database.windows.net,1433; Database = {your_database}\", \"{your_user_name}\", \"{your_password_here}\");\r\n    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );\r\n}\r\ncatch ( PDOException $e ) {\r\n   print( \"Error connecting tooSQL Server.\" );\r\n   die(print_r($e));\r\n}\r\n\rSQL Server Extension Sample Code:\r\n\r\n$connectionInfo = array(\"UID\" => \"{your_user_name}\", \"pwd\" => \"{your_password_here}\", \"Database\" => \"{your_database}\", \"LoginTimeout\" => 30, \"Encrypt\" => 1, \"TrustServerCertificate\" => 0);\r\n$serverName = \"tcp:{your_server}.database.windows.net,1433\";\r\n$conn = sqlsrv_connect($serverName, $connectionInfo);
 ```
 
 ### <a name="jdbc-connection-string-example"></a>JDBC 連接字串範例
@@ -73,11 +73,11 @@ SQL 資料倉儲會在連線和物件建立期間將一些設定標準化。 這
 | [DATEFIRST][DATEFIRST] |7 |
 
 ## <a name="next-steps"></a>後續步驟
-若要使用 Visual Studio 連線及查詢，請參閱 [使用 Visual Studio 查詢][Query with Visual Studio]。 若要深入了解驗證選項，請參閱 [適用於 Azure SQL 資料倉儲的驗證][Authentication to Azure SQL Data Warehouse]。
+tooconnect 及查詢使用 Visual Studio，請參閱[Visual Studio 中的查詢][Query with Visual Studio]。 toolearn 進一步了解驗證選項，請參閱[驗證 tooAzure SQL 資料倉儲][Authentication tooAzure SQL Data Warehouse]。
 
 <!--Articles-->
 [Query with Visual Studio]: ./sql-data-warehouse-query-visual-studio.md
-[Authentication to Azure SQL Data Warehouse]: ./sql-data-warehouse-authentication.md
+[Authentication tooAzure SQL Data Warehouse]: ./sql-data-warehouse-authentication.md
 
 <!--MSDN references-->
 [ADO.NET]: https://msdn.microsoft.com/library/e80y5yhx(v=vs.110).aspx

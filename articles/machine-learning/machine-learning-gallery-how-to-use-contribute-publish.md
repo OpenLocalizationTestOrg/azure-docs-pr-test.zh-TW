@@ -1,6 +1,6 @@
 ---
-title: "Cortana Intelligence 資源庫 | Microsoft Docs"
-description: "共用及探索 Cortana Intelligence 資源庫中的分析資源等內容。 了解其他人並且自己貢獻社群。"
+title: "aaaCortana 智慧組件庫 |Microsoft 文件"
+description: "共用及探索分析資源和多個 hello Cortana 智慧組件庫中。 從其他人了解，並進行您自己的貢獻 toohello 社群。"
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,82 +14,82 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: 9a62ada405344207126cdc9fddc92b4c8601bc04
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2a976cda99ac55660f725dca7f7e34b821d62ad8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="share-and-discover-resources-in-the-cortana-intelligence-gallery"></a>在 Cortana Intelligence 資源庫中共用及探索資源
+# <a name="share-and-discover-resources-in-hello-cortana-intelligence-gallery"></a>共用及探索 hello Cortana 智慧組件庫中的資源
 [!INCLUDE [gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 <!-- separating these 2 includes -->
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="what-can-i-find-in-the-gallery"></a>我可以在資源庫中找到什麼？
-Cortana Intelligence 資源庫包含各種可供您開發自己的分析解決方案的資源。
+## <a name="what-can-i-find-in-hello-gallery"></a>可以找到什麼 hello 組件庫中？
+hello Cortana 智慧組件庫包含各種資源，您可以使用 toodevelop 您自己的分析解決方案。
 
-* **[實驗](machine-learning-gallery-experiments.md)**：資源庫包含各種已在 Azure Machine Learning Studio 開發的實驗。 小至示範特定機器學習服務技術的快速概念證明實驗，大至用於解決複雜機器學習服務問題的完整開發解決方案，都在這些實驗的涵蓋範圍內。
+* **[實驗](machine-learning-gallery-experiments.md)** -hello 組件庫包含各種不同的已開發出 Azure Machine Learning Studio 中的實驗。 這些範圍是從快速概念證明實驗示範特定的機器學習技巧，toofully 開發複雜的機器學習問題的解決方案。
 * **[Jupyter 筆記本](machine-learning-gallery-jupyter-notebooks.md)**：Jupyter 筆記本可在單一的互動式畫布中納入程式碼、資料視覺效果和文件。
-  資源庫中的 Notebook 會提供進階機器學習服務之技術和解決方案的教學課程和詳細說明。
+  筆記本 hello 組件庫中的提供了教學課程和進階機器學習技術和解決方案的詳細的說明。
 
 <!--
-- **[Machine Learning APIs](https://machine-learning-gallery-apis.md)** - An experiment developed in Azure Machine Learning can be launched as a web service so that the analytics model can be accessed by others through a set of REST APIs. A variety of these APIs are available in the Gallery, such as a product recommendation engine or cloud-based face and speech recognition.
+- **[Machine Learning APIs](https://machine-learning-gallery-apis.md)** - An experiment developed in Azure Machine Learning can be launched as a web service so that hello analytics model can be accessed by others through a set of REST APIs. A variety of these APIs are available in hello Gallery, such as a product recommendation engine or cloud-based face and speech recognition.
 -->
 
-* **[解決方案](machine-learning-gallery-solutions.md)**：可讓您從預先設定的解決方案、參考結構與設計模式迅速地建置 Cortana Intelligence 解決方案。 透過隨附的指示或精選的合作夥伴建置您自己的解決方案。
-* **[教學課程](machine-learning-gallery-tutorials.md)**：此資源中提供了許多教學課程來引導您了解機器學習服務的技術和概念，或說明用來解決各種機器學習服務問題的進階方法。
+* **[解決方案](machine-learning-gallery-solutions.md)**：可讓您從預先設定的解決方案、參考結構與設計模式迅速地建置 Cortana Intelligence 解決方案。 請您自己與 hello 包含指示或精選夥伴。
+* **[教學課程](machine-learning-gallery-tutorials.md)** -數目教學課程會使用 toowalk 您透過機器學習技術和概念或 toodescribe 進階解決各種機器學習問題的方法。
 
 按照邏輯，這些基本的資源庫資源可以透過以下兩種不同方式群組在一起︰
 
-* **[集合](machine-learning-gallery-collections.md)**：集合可讓您將用於處理特定解決方案或概念的實驗、API 和其他資源庫項目群組在一起。
-* **[產業](machine-learning-gallery-industries.md)**：資源庫的 [產業] 區段集結了零售、製造、金融和醫療保健等產業特有的各種資源。
+* **[集合](machine-learning-gallery-collections.md)** -集合可讓您 toogroup 一起實驗，應用程式開發介面，和特定的解決方案或概念，其他的主機庫項目該位址。
+* **[產業](machine-learning-gallery-industries.md)** -hello hello 圖庫產業區段將結合在一起，做為零售版、 製造、 銀行、 線上和 healthcare 特定 toosuch 產業的各種資源。
 
-最後，**[競賽](machine-learning-gallery-competitions.md)**提供了絕佳機會讓您與資料科學家社群較量，看誰能用 Cortana Intelligence Suite 解決複雜的問題。
+最後， **[競爭](machine-learning-gallery-competitions.md)**提供令人興奮的機會 toocompete 資料 scientsts hello 社群 toosolve 使用 Cortana 智慧套件的複雜問題。
 
 ![Cortana Intelligence 資源庫首頁](media/machine-learning-gallery-how-to-use-contribute-publish/gallery-home-page.png)
 
 ## <a name="discover-and-learn"></a>探索及了解
-任何人都可以瀏覽和搜尋資源庫中已由 Microsoft 和進階分析社群發表的不同資源類型。
-使用這些內容來深入了解並開始解決您自己的資料分析問題。
-您也可以將實驗和 Jupyter 筆記本下載到自己的 Machine Learning Studio 工作區。
+任何人都可以瀏覽，並在 hello 有已由 Microsoft 貢獻和 hello 進階的分析社群的組件庫中搜尋 hello 不同類型的資源。
+使用多個這些 toolearn 並開始在解決您自己的資料分析問題。
+您也可以下載的實驗和 Jupyter 筆記本 tooyour 自己 Machine Learning Studio 工作區。
 
-您可以輕鬆地在資源庫中找到最近發佈的熱門資源，或者您可以根據名稱、標記、演算法及其他屬性來搜尋。
-按一下資源庫標頭中的 [全部瀏覽]  ，然後選取頁面左邊的縮小搜尋範圍，並在頂端輸入搜尋字詞。
+您可以輕鬆找到最近已發行和熱門資源中 hello 組件庫，或您可以搜尋的名稱、 標籤、 演算法和其他屬性。
+按一下**全部瀏覽**在 hello 圖庫標頭，然後選取將精簡 hello 左側搜尋的 hello 頁面並輸入搜尋詞彙在 hello 最上方。
 
-按一下任何磚內的作者名稱，檢視特定作者的發表內容：
+從任何 hello 磚中的 hello 作者名稱，即可檢視某位特定作者的參與：
 
 ![檢視作者的發表內容](media/machine-learning-gallery-how-to-use-contribute-publish/view-by-author.png)
 
-您可以透過每個資源頁面的註解區段，提供註解、意見回應或發問。
-您甚至可以使用 LinkedIn 或 Twitter 的共用功能，與朋友或同事共用感興趣的資源。
-您也可以使用電子郵件傳送這些資源的連結，以邀請其他使用者檢視這些頁面。
+您可以註解、 提供意見反應或提問透過 hello 註解區段在每個資源] 頁面上。
+您甚至可以共用感興趣的資源與朋友或同事使用 hello 共用 LinkedIn 或 Twitter 的能力。
+您可能也電子郵件傳送連結 toothese 資源 tooinvite 其他使用者 tooview hello 頁面。
 
-![與朋友共用此項目](media/machine-learning-gallery-how-to-use-contribute-publish/comment-and-share.png)
+![與朋友分享此項目](media/machine-learning-gallery-how-to-use-contribute-publish/comment-and-share.png)
 
-## <a name="contribute-to-the-gallery"></a>提供給資源庫
-當您登入時，您將成為資源庫社群的成員。 您可以發表自己的資源庫項目，以便其他人可以從您發現的解決方案中受益。
+## <a name="contribute-toohello-gallery"></a>參與 toohello 組件庫
+當您登入您變得 hello 圖庫社群的成員。 這可讓您自己的圖庫項目，讓其他人可以受益於 hello 方案已經發現的 toocontribute。
 
-當其他人瀏覽您在資源庫中發表的項目時，您可以追蹤所發表項目的檢視次數與下載次數：
+當其他人有您的貢獻成品 hello 組件庫中，您可以依照 hello 多個檢視和下載您的貢獻成品的項目：
 
-![與朋友共用此項目](media/machine-learning-gallery-how-to-use-contribute-publish/view-and-download-counts.png)
+![與朋友分享此項目](media/machine-learning-gallery-how-to-use-contribute-publish/view-and-download-counts.png)
 
-使用者也可以加入註解，並與資料科學社群的其他成員共用您的發表項目。
+使用者也可以新增註解，並與 hello 資料科學社群的其他成員共用您的貢獻成品。
 您可以登入討論工具 (例如 Disqus) 並在您的發表項目上出現註解時獲得通知。
 
 ![追蹤使用者註解](media/machine-learning-gallery-how-to-use-contribute-publish/follow-comments.png)
 
-您可以將下列項目發表到資源庫，請參考下列連結以瞭解詳細資訊：
+您可以參與 hello 下列項目 toohello 組件庫-請遵循這些連結以取得詳細資訊：
 
 * **[集合](machine-learning-gallery-collections.md#contribute)**
 * **[實驗](machine-learning-gallery-experiments.md#contribute)**
 * **[教學課程](machine-learning-gallery-tutorials.md#contribute)**
 
-## <a name="we-want-to-hear-from-you"></a>歡迎您提供相關資訊！
-我們希望資源庫是由我們的使用者驅使，並且適合我們的使用者。 使用右側的笑臉符號告訴我們您喜歡或不喜歡資源庫。  
+## <a name="we-want-toohear-from-you"></a>我們想要從您的 toohear ！
+我們想要 hello 圖庫 toobe 導向我們的使用者和使用者。 使用 hello hello 右 tootell 的臉我們所喜愛或仇恨 hello 組件庫的相關。  
 
 ![意見反應](./media/machine-learning-gallery-how-to-use-contribute-publish/feedback.png)
 
-**[前往資源庫 >>](http://gallery.cortanaintelligence.com)**
+**[接受我 toohello 圖庫 >>](http://gallery.cortanaintelligence.com)**
 

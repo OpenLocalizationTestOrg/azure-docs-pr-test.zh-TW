@@ -1,6 +1,6 @@
 ---
 title: "Azure Cosmos DB：DocumentDB Java API、SDK 和資源 | Microsoft Docs"
-description: "了解所有 Java API 和 SDK 相關資訊，包括發行日期、停用日期及 Azure Cosmos DB DocumentDB Java SDK 每個版本之間所做的變更。"
+description: "了解 hello Java API 和 SDK 包括發行日期、 停用日期和 hello Azure Cosmos DB DocumentDB Java SDK 的每個版本之間所做的變更。"
 services: cosmos-db
 documentationcenter: java
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: khdang
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 15e3f7ef3bfd6b1f61fe6081a378bdb29e0a1aa2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8ef43ebeb7ae1bfc55512c4a7489c1b7930122d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-documentdb-java-sdk-release-notes-and-resources"></a>Azure Cosmos DB：DocumentDB Java SDK 版本資訊與資源
 > [!div class="op_single_selector"]
@@ -41,9 +41,9 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**API 文件**</td><td>[Java API 參考文件](/java/api/com.microsoft.azure.documentdb)</td></tr>
 
-<tr><td>**參與 SDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
+<tr><td>**參與 tooSDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
 
-<tr><td>**開始使用**</td><td>[開始使用 Java SDK](documentdb-java-get-started.md)</td></tr>
+<tr><td>**快速入門**</td><td>[開始使用 hello Java SDK](documentdb-java-get-started.md)</td></tr>
 
 <tr><td>**Web 應用程式教學課程**</td><td>[使用 Azure Cosmos DB 進行 Web 應用程式開發](documentdb-java-application.md)</td></tr>
 
@@ -53,8 +53,8 @@ ms.lasthandoff: 08/18/2017
 ## <a name="release-notes"></a>版本資訊
 
 ### <a name="a-name11201120"></a><a name="1.12.0"/>1.12.0
-* 重大錯誤修正，要求在分割區分割期間處理。
-* 已利用 Strong 和 BoundedStaleness 一致性層級修正問題。
+* 在資料分割期間處理的重大錯誤修正 toorequest 分割。
+* 已修正的問題，以強式 hello 和 BoundedStaleness 一致性層級。
 
 ### <a name="a-name11101110"></a><a name="1.11.0"/>1.11.0
 * 已新增對新一致性層級 ConsistentPrefix 的支援。
@@ -62,11 +62,11 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="a-name11001100"></a><a name="1.10.0"/>1.10.0
 * 已啟用對低至 2,500 RU/秒且以 100 RU/秒遞增量進行調整之資料分割集合的支援。
-* 已修正原生組件中的 Bug，這會在某些查詢中導致 NullRef 例外狀況。
+* 這可能導致 NullRef 例外狀況，在某些查詢中的 hello 原生組件中修正的 bug。
 
 ### <a name="a-name196196"></a><a name="1.9.6"/>1.9.6
-* 修正查詢引擎組態中可能對閘道模式中的查詢造成例外狀況的錯誤。
-* 修正工作階段容器中可能在集合建立後立即對要求造成「找不到擁有者資源」例外狀況的幾個錯誤。
+* 在 hello 查詢引擎組態閘道模式可能會造成例外狀況的查詢中修正的 bug。
+* 修正 hello 可能會導致 「 找不到擁有者資源 」 的例外狀況要求在集合建立後立即的工作階段容器中的幾個 bug。
 
 ### <a name="a-name195195"></a><a name="1.9.5"/>1.9.5
 * 新增彙總查詢的支援 (COUNT、MIN、MAX、SUM 和 AVG)。 請參閱[彙總支援](documentdb-sql-query.md#Aggregates)。
@@ -80,72 +80,72 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="a-name194194"></a><a name="1.9.4"/>1.9.4
 * 在 ConnectionPolicy.setProxy() API 加入簡單的用戶端執行個體 Proxy 支援。
-* 加入的 DocumentClient.close() API 可正確關閉 DocumentClient 執行個體。
-* 從原生組件 (而不是從閘道) 衍生的查詢計劃利用直接連線模式改善查詢效能。
-* 設定 FAIL_ON_UNKNOWN_PROPERTIES = false，讓使用者不需要在其 POJO 定義 JsonIgnoreProperties。
-* 重新建構記錄使用 SLF4J。
+* 加入的 DocumentClient.close() API tooproperly 關閉 DocumentClient 執行個體。
+* 在直接連線模式，而不是 hello 閘道的 hello 原生組件從類別衍生 hello 查詢計劃中的改進的查詢效能。
+* 設定 FAIL_ON_UNKNOWN_PROPERTIES = false，因此使用者不需要在其 POJO JsonIgnoreProperties toodefine。
+* 重構記錄 toouse SLF4J。
 * 修正一致性讀取器中的其他幾個 Bug。
 
 ### <a name="a-name193193"></a><a name="1.9.3"/>1.9.3
-* 修正連線管理中的 Bug，避免連線在直接連線模式中流失。
-* 修正排名最前的查詢中可能會擲回 NullReferenece 例外狀況的 Bug。
-* 透過減少內部快取的網路呼叫數來增進效能。
+* Hello 連接管理 tooprevent 連接中的流失直接連線模式中修正的 bug。
+* 修正的 bug hello 最上層查詢中，它可能會擲回 「 NullReferenece 例外狀況。
+* 藉由減少 hello hello 內部快取的網路呼叫數目的提升的效能。
 * 在 DocumentClientException 中的 ActivityID 和要求 URI 中加入狀態碼以協助疑難排解。
 
 ### <a name="a-name192192"></a><a name="1.9.2"/>1.9.2
-* 修正連線管理中的問題以提供穩定性。
+* 穩定性 hello 連線的管理中修正的問題。
 
 ### <a name="a-name191191"></a><a name="1.9.1"/>1.9.1
 * 新增對 BoundedStaleness 一致性層級的支援。
 * 新增對已分割集合之 CRUD 作業的直接連線支援。
 * 修正以 SQL 查詢資料庫時發生的錯誤。
-* 修正工作階段權杖設定不正確之工作階段快取中的錯誤。
+* Hello，工作階段權杖可能未正確設定的工作階段快取中修正的 bug。
 
 ### <a name="a-name190190"></a><a name="1.9.0"/>1.9.0
 * 新增對跨資料分割平行查詢的支援。
 * 新增對已分割集合的 TOP/ORDER BY 查詢支援。
 * 新增對強式一致性的支援。
 * 新增對使用直接連線時之名稱型要求的支援。
-* 修正以使得 ActivityId 在所有要求重試之間保持一致。
-* 修正與以相同名稱重新建立集合時之工作階段快取相關的錯誤。
+* 固定的 toomake ActivityId 保持一致所有要求重試次數。
+* 修正的 bug 時重新建立 hello 與集合相關 toohello 工作階段快取相同的名稱。
 * 新增為異地隔離空間查詢指定集合索引編製原則時的 Polygon 和 LineString 資料類型。
 * 修正適用於 Java 1.8 之 Java Doc 的錯誤。
 
 ### <a name="a-name181181"></a><a name="1.8.1"/>1.8.1
-* 修正 PartitionKeyDefinitionMap 中將單一資料分割集合加入快取，而非提出額外擷取資料分割索引鍵要求的錯誤。
-* 修正在提供不正確的資料分割索引鍵時不重試的錯誤。
+* PartitionKeyDefinitionMap 中修正的 bug toocache 單一分割區集合並不進行額外提取資料分割索引鍵的要求。
+* 提供不正確的資料分割索引鍵值時，請修正 bug toonot 重試。
 
 ### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
-* 新增對多重區域資料庫帳戶的支援。
-* 新增在已節流處理的要求上自動重試的支援，方法是提供選項來自訂重試次數上限和等待時間上限。  請參閱 RetryOptions 和 ConnectionPolicy.getRetryOptions()。
+* 加入的 hello 支援多重地區資料庫帳戶。
+* 新增的支援選項 toocustomize hello max 節流的要求上的自動重試重試次數和最大值重試等候時間。  請參閱 RetryOptions 和 ConnectionPolicy.getRetryOptions()。
 * 已淘汰以 IPartitionResolver 為基礎的自訂分割程式碼。 請針對更高的儲存體和輸送量使用分割集合。
 
 ### <a name="a-name171171"></a><a name="1.7.1"/>1.7.1
 * 新加入節流的重試原則支援。  
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
-* 新加入文件的存留時間 (TTL) 支援。
+* 加入時間 toolive (TTL) 支援的文件。
 
 ### <a name="a-name160160"></a><a name="1.6.0"/>1.6.0
 * 實作[已分割的集合](partition-data.md)和[使用者定義的效能等級](performance-levels.md)。
 
 ### <a name="a-name151151"></a><a name="1.5.1"/>1.5.1
-* 修正 HashPartitionResolver 中的錯誤以產生與其他 SDK 一致的 little-endian 雜湊值。
+* HashPartitionResolver toogenerate 雜湊值和其他 Sdk 一致由小到大 toobe 中修正的 bug。
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
-* 新增「雜湊和範圍」分割區解析程式來協助將應用程式跨多個分割區分區。
+* 將雜湊和範圍加入資料分割的解析程式 tooassist 與跨多個資料分割的分區化應用程式。
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
-* 實作 Upsert。 已新增新的 upsertXXX 方法以支援 Upsert 功能。
+* 實作 Upsert。 新的 upsertXXX 方法加入 toosupport Upsert 功能。
 * 實作以識別碼為基礎的路由。 不需變更公用 API，所有變更皆為內部變更。
 
 ### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
-* 已略過版本以配合其他 SDK 的版本號碼
+* 發行已略過 toobring 對齊方式，與其他 Sdk 版本號碼
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * 支援地理空間索引
 * 驗證所有資源的識別碼屬性。 資源的識別碼不能包含 ?、/、#、\, 字元，或以空格作為結尾。
-* 將新標頭「索引轉換進度」加至 ResourceResponse。
+* 加入新的標頭 「 索引轉換進行 」 tooResourceResponse。
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 * 實作 V2 索引原則
@@ -154,14 +154,14 @@ ms.lasthandoff: 08/18/2017
 * GA SDK
 
 ## <a name="release--retirement-dates"></a>發行和停用日期
-Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供順利轉換至較新/支援的版本。
+Microsoft 提供通知的最少**12 個月**之前淘汰順序 toosmooth hello 轉換 tooa 較新/支援版本的 SDK。
 
-新的功能與最佳化項目只會新增至目前的 SDK，因此建議您一律盡早升級至最新的 SDK 版本。
+新功能和功能與最佳化僅加入 toohello 目前 SDK，因此建議，您一律升級 toohello 最新版本 SDK 盡早。
 
-服務將會拒絕使用已停用 SDK 的任何 Cosmos DB 要求。
+Hello 服務，將會拒絕任何要求 tooCosmos 使用已停用的 SDK 的 DB。
 
 > [!WARNING]
-> 所有 **1.0.0** 版之前的 DocumentDB SDK for Java 版本都將於 **2016 年 2 月 29 日**淘汰。
+> 所有版本的 hello DocumentDB SDK for Java 先前 tooversion **1.0.0**將會遭到淘汰**2016 年 2 月 29 日**。
 > 
 > 
 
@@ -203,5 +203,5 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>另請參閱
-若要深入了解 Cosmos DB，請參閱 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 服務頁面。
+請參閱深入了解 Cosmos DB toolearn [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)服務頁面。
 

@@ -1,6 +1,6 @@
 ---
-title: "開發具有媒體服務的 Azure Functions"
-description: "本主題說明如何使用 Azure 入口網站開始開發具有媒體服務的 Azure Functions。"
+title: "aaaDevelop Azure Media services 的函式"
+description: "本主題說明如何開發 Azure Media Services 使用的函式的 toostart hello Azure 入口網站。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,47 +14,47 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/21/2017
 ms.author: juliako
-ms.openlocfilehash: 35d539855572fef6c00de614a4e57738a8abd075
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3b2c2fb498fea399c862dfbdb63033d06cabf6d0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="develop-azure-functions-with-media-services"></a>開發具有媒體服務的 Azure Functions
 
-本主題說明如何開始建立使用媒體服務的 Azure Functions。 本主題中定義的 Azure Function 會針對新的 MP4 檔案監視名為 **input** 的儲存體帳戶容器。 一旦將檔案拖放至儲存體容器之後，blob 觸發程序將會執行此函式。
+本主題說明如何 tooget 開始建立使用媒體服務的 Azure 函式。 hello Azure 本主題中所定義的函式監視名為儲存體帳戶容器**輸入**新 MP4 檔案。 一旦檔案放入 hello 儲存體容器，hello blob 觸發程序會執行 hello 函式。
 
-如果您想要瀏覽及部署使用 Azure 媒體服務的現有 Azure Functions，請參閱[媒體服務 Azure Functions](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)。 此存放庫包含的範例會使用媒體服務來顯示與直接從 Blob 儲存體擷取內容、進行編碼，再將內容寫回 Blob 儲存體相關的工作流程。 此存放庫也包含如何透過 Webhook 和 Azure 佇列監視作業通知的範例。 您也可以根據[媒體服務 Azure Functions (英文)](https://github.com/Azure-Samples/media-services-dotnet-functions-integration) 儲存機制中的範例來開發您的函式。 若要部署函式，請按 [部署至 Azure] 按鈕。
+如果您想 tooexplore 和部署使用 Azure Media Services 的現有 Azure 函式時，請參閱[媒體服務的 Azure 功能](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)。 這個儲存機制包含使用 Media Services tooshow 工作流程相關的 tooingesting 內容直接從 blob 儲存體，編碼方式，將內容寫入回 tooblob 儲存體的範例。 它也包含如何 toomonitor 作業透過 Webhook 和 Azure 佇列通知的範例。 您也可以開發根據 hello 中的 hello 範例函式[媒體服務的 Azure 功能](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)儲存機制。 toodeploy hello 函式，請按 hello**部署 tooAzure** ] 按鈕。
 
 ## <a name="prerequisites"></a>必要條件
 
-- 您必須先具備有效的 Azure 帳戶，才可以建立第一個函式。 如果您還沒有 Azure 帳戶， [可以使用免費帳戶](https://azure.microsoft.com/free/)。
-- 如果您要建立會對 Azure 媒體服務 (AMS) 帳戶執行動作或是會接聽媒體服務所傳送之事件的 Azure Functions，您應該建立 AMS 帳戶，如[這裡](media-services-portal-create-account.md)所述。
-- 了解[如何使用 Azure Functions](../azure-functions/functions-overview.md)。 此外，請參閱：
+- 您可以建立您的第一個函式之前，您會需要 toohave 有效的 Azure 帳戶。 如果您還沒有 Azure 帳戶， [可以使用免費帳戶](https://azure.microsoft.com/free/)。
+- 如果您正在執行您的 Azure 媒體服務 (AMS) 帳戶或接聽 tooevents 由 Media Services 傳送 toocreate Azure 函式，如所述，您應該建立 AMS 帳戶，[這裡](media-services-portal-create-account.md)。
+- 了解[如何 toouse Azure 函式](../azure-functions/functions-overview.md)。 此外，請參閱：
     - [Azure Functions HTTP 和 Webhook 繫結](../azure-functions/functions-triggers-bindings.md)
-    - [如何設定 Azure Functions 應用程式設定](../azure-functions/functions-how-to-use-azure-function-app-settings.md)
+    - [如何 tooconfigure Azure 函式應用程式設定](../azure-functions/functions-how-to-use-azure-function-app-settings.md)
     
 ## <a name="considerations"></a>考量
 
--  在 Consumption 方案下執行的 Azure Functions 有 5 分鐘的逾時限制。
+-  Azure hello 耗用量計劃之下執行的函式具有 5 分鐘逾時限制。
 
 ## <a name="create-a-function-app"></a>建立函數應用程式
 
-1. 移至 [Azure 入口網站](http://portal.azure.com) ，然後以您的 Azure 帳戶登入。
+1. 移 toohello [Azure 入口網站](http://portal.azure.com)和使用您的 Azure 帳戶登入。
 2. 如[這裡](../azure-functions/functions-create-function-app-portal.md)所述建立函式應用程式。
 
 >[!NOTE]
-> 您在 **StorageConnection** 環境變數中指定的儲存體帳戶 (請見上一個步驟) 應該與您的應用程式位於相同的區域。
+> 您在 hello 中指定的儲存體帳戶**StorageConnection**環境變數 （請參閱 hello 下一個步驟） 應該在 hello 與您的應用程式相同的區域。
 
 ## <a name="configure-function-app-settings"></a>設定函式應用程式設定
 
-開發媒體服務函式時，您可以很方便地新增要在整個函式中使用的環境變數。 若要設定應用程式設定，請按一下 [設定應用程式設定] 連結。 如需詳細資訊，請參閱[如何設定 Azure Function 應用程式設定](../azure-functions/functions-how-to-use-azure-function-app-settings.md)。 
+開發媒體服務函式，很方便 tooadd 將在整個函式的環境變數。 tooconfigure 應用程式設定，請按一下 hello 設定應用程式設定] 連結。 如需詳細資訊，請參閱[如何 tooconfigure Azure 函式應用程式設定](../azure-functions/functions-how-to-use-azure-function-app-settings.md)。 
 
 例如：
 
 ![設定](./media/media-services-azure-functions/media-services-azure-functions001.png)
 
-本文中所定義的函式會假設您在應用程式設定中具有下列環境變數：
+hello 定義函式，在本文中，假設您擁有 hello 遵循您的應用程式設定中的環境變數：
 
 **AMSAccount**：AMS 帳戶名稱 (例如 testams)
 
@@ -71,12 +71,12 @@ ms.lasthandoff: 08/29/2017
 部署函式應用程式之後，您可以在**應用程式服務** Azure Functions 中找到它。
 
 1. 選取您的函式應用程式，然後按一下 [新增函式]。
-2. 選擇 [C#] 語言和 [資料處理] 案例。
-3. 選擇 [BlobTrigger] 範本。 每次將 blob 上傳到 **input** 容器時，將會觸發此函式。 **input** 名稱指定於下一個步驟的 **Path** 中。
+2. 選擇 hello **C#**語言和**資料處理**案例。
+3. 選擇 [BlobTrigger] 範本。 此函式將會觸發，每當 blob 上傳到 hello**輸入**容器。 hello**輸入**名稱指定在 hello**路徑**，hello 下一個步驟中。
 
     ![檔案](./media/media-services-azure-functions/media-services-azure-functions004.png)
 
-4. 一旦您選取 **BlobTrigger** 之後，頁面上將出現更多控制項。
+4. 一旦您選取**BlobTrigger**，某些更多的控制會出現在 hello] 頁面上。
 
     ![檔案](./media/media-services-azure-functions/media-services-azure-functions005.png)
 
@@ -85,16 +85,16 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="files"></a>檔案
 
-您的 Azure 函式會與本節所述的程式碼檔案和其他檔案相關聯。 根據預設，函式會與 **function.json** 和 **run.csx** (C#) 檔案相關聯。 您必須新增 **project.json** 檔案。 本節其餘部分會說明這些檔案的定義。
+您的 Azure 函式會與本節所述的程式碼檔案和其他檔案相關聯。 根據預設，函式會與 **function.json** 和 **run.csx** (C#) 檔案相關聯。 您將需要 tooadd **project.json**檔案。 hello 本節其餘部分會顯示 hello 定義，這些檔案。
 
 ![檔案](./media/media-services-azure-functions/media-services-azure-functions003.png)
 
 ### <a name="functionjson"></a>function.json
 
-function.json 檔案會定義函式繫結和其他組態設定。 執行階段使用此檔案來判斷要監視的事件，以及如何傳入資料並從函式執行傳回資料。 如需詳細資訊，請參閱 [Azure Functions HTTP 和 Webhook 繫結](../azure-functions/functions-reference.md#function-code)。
+hello function.json 檔案定義 hello 函式繫結和其他組態設定。 hello runtime 使用這個檔案 toodetermine hello 事件 toomonitor 和如何 toopass 資料到傳回的資料，從函式執行。 如需詳細資訊，請參閱 [Azure Functions HTTP 和 Webhook 繫結](../azure-functions/functions-reference.md#function-code)。
 
 >[!NOTE]
->將 **disabled** 屬性設定為 **true** 以防止函式執行。 
+>設定 hello**停用**屬性太**true** tooprevent hello 函式不會執行。 
 
 
 以下是 **function.json** 檔案的範例。
@@ -114,7 +114,7 @@ function.json 檔案會定義函式繫結和其他組態設定。 執行階段�
 
 ### <a name="projectjson"></a>project.json
 
-project.json 檔案包含相依性。 以下是 **project.json** 檔案的範例，其中包含來自 Nuget 的必要 .NET Azure 媒體服務封裝。 請注意，版本號碼將隨著對封裝的最新更新而不同，因此您應該確認最新版本。 
+hello project.json 檔案包含相依性。 以下是範例**project.json**從 Nuget 封裝檔案，其中包含所需的 hello.NET Azure Media Services。 請注意，hello 版本號碼會變更與最新的更新 toohello 封裝，因此您應該確認 hello 最新版本。 
 
     {
       "frameworks": {
@@ -129,14 +129,14 @@ project.json 檔案包含相依性。 以下是 **project.json** 檔案的範例
     
 ### <a name="runcsx"></a>run.csx
 
-這是您的函式適用的 C# 程式碼。  以下定義的函式會針對新的 MP4 檔案監視名為 **input** (指定於路徑中) 的儲存體帳戶。 一旦將檔案拖放至儲存體容器之後，blob 觸發程序將會執行此函式。
+這是您的函式的 hello C# 程式碼。  hello 函式定義監視器下方名為儲存體帳戶容器**輸入**（這是 hello 路徑中指定） 的新 MP4 檔案。 一旦檔案放入 hello 儲存體容器，hello blob 觸發程序會執行 hello 函式。
     
-本節中定義的範例會示範 
+此區段中定義的 hello 範例將示範 
 
-1. 如何將資產內嵌到媒體服務帳戶 (藉由將 blob 複製到 AMS 資產)，以及 
-2. 如何提交編碼作業，該作業會使用媒體編碼器標準的「彈性資料流」預設。
+1. tooingest 到 Media Services 資產 （藉由複製 blob 到 AMS 資產） 的帳戶和 
+2. 如何 toosubmit 編碼工作使用媒體編碼程式標準的 「 自動調整 Streaming 」 預設。
 
-在真實案例中，您很可能想要追蹤作業進度，然後發佈編碼的資產。 如需詳細資訊，請參閱[使用 Azure WebHook 監視媒體服務作業通知](media-services-dotnet-check-job-progress-with-webhooks.md)。 如需詳細資訊，請參閱[媒體服務 Azure Functions (英文)](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)。  
+在 hello 真實生活案例中，您很可能會想 tootrack 工作進度，，然後發行您編碼的資產。 如需詳細資訊，請參閱[使用 Azure Webhook toomonitor Media Services 工作通知](media-services-dotnet-check-job-progress-with-webhooks.md)。 如需詳細資訊，請參閱[媒體服務 Azure Functions (英文)](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)。  
 
 當您完成定義之後，按一下 [儲存並執行]。
 
@@ -171,12 +171,12 @@ project.json 檔案包含相依性。 以下是 **project.json** 檔案的範例
 
     public static void Run(CloudBlockBlob myBlob, string fileName, TraceWriter log)
     {
-        // NOTE that the variables {fileName} here come from the path setting in function.json
-        // and are passed into the  Run method signature above. We can use this to make decisions on what type of file
-        // was dropped into the input container for the function. 
+        // NOTE that hello variables {fileName} here come from hello path setting in function.json
+        // and are passed into hello  Run method signature above. We can use this toomake decisions on what type of file
+        // was dropped into hello input container for hello function. 
 
-        // No need to do any Retry strategy in this function, By default, the SDK calls a function up to 5 times for a 
-        // given blob. If the fifth try fails, the SDK adds a message to a queue named webjobs-blobtrigger-poison.
+        // No need toodo any Retry strategy in this function, By default, hello SDK calls a function up too5 times for a 
+        // given blob. If hello fifth try fails, hello SDK adds a message tooa queue named webjobs-blobtrigger-poison.
 
         log.Info($"C# Blob trigger function processed: {fileName}.mp4");
         log.Info($"Using Azure Media Services account : {_mediaServicesAccountName}");
@@ -184,16 +184,16 @@ project.json 檔案包含相依性。 以下是 **project.json** 檔案的範例
 
         try
         {
-        // Create and cache the Media Services credentials in a static class variable.
+        // Create and cache hello Media Services credentials in a static class variable.
         _cachedCredentials = new MediaServicesCredentials(
                 _mediaServicesAccountName,
                 _mediaServicesAccountKey);
 
-        // Used the chached credentials to create CloudMediaContext.
+        // Used hello chached credentials toocreate CloudMediaContext.
         _context = new CloudMediaContext(_cachedCredentials);
 
-        // Step 1:  Copy the Blob into a new Input Asset for the Job
-        // ***NOTE: Ideally we would have a method to ingest a Blob directly here somehow. 
+        // Step 1:  Copy hello Blob into a new Input Asset for hello Job
+        // ***NOTE: Ideally we would have a method tooingest a Blob directly here somehow. 
         // using code from this sample - https://azure.microsoft.com/en-us/documentation/articles/media-services-copying-existing-blob/
 
         StorageCredentials mediaServicesStorageCredentials =
@@ -203,25 +203,25 @@ project.json 檔案包含相依性。 以下是 **project.json** 檔案的範例
 
         // Step 2: Create an Encoding Job
 
-        // Declare a new encoding job with the Standard encoder
+        // Declare a new encoding job with hello Standard encoder
         IJob job = _context.Jobs.Create("Azure Function - MES Job");
 
-        // Get a media processor reference, and pass to it the name of the 
-        // processor to use for the specific task.
+        // Get a media processor reference, and pass tooit hello name of hello 
+        // processor toouse for hello specific task.
         IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-        // Create a task with the encoding details, using a custom preset
+        // Create a task with hello encoding details, using a custom preset
         ITask task = job.Tasks.AddNew("Encode with Adaptive Streaming",
             processor,
             "Adaptive Streaming",
             TaskOptions.None); 
 
-        // Specify the input asset to be encoded.
+        // Specify hello input asset toobe encoded.
         task.InputAssets.Add(newAsset);
 
-        // Add an output asset to contain the results of the job. 
+        // Add an output asset toocontain hello results of hello job. 
         // This output is specified as AssetCreationOptions.None, which 
-        // means the output asset is not encrypted. 
+        // means hello output asset is not encrypted. 
         task.OutputAssets.AddNew(fileName, AssetCreationOptions.None);
 
         job.Submit();
@@ -266,13 +266,13 @@ project.json 檔案包含相依性。 以下是 **project.json** 檔案的範例
     }
 
     /// <summary>
-    /// Creates a new asset and copies blobs from the specifed storage account.
+    /// Creates a new asset and copies blobs from hello specifed storage account.
     /// </summary>
-    /// <param name="blob">The specified blob.</param>
-    /// <returns>The new asset.</returns>
+    /// <param name="blob">hello specified blob.</param>
+    /// <returns>hello new asset.</returns>
     public static async Task<IAsset> CreateAssetFromBlobAsync(CloudBlockBlob blob, string assetName, TraceWriter log)
     {
-         //Get a reference to the storage account that is associated with the Media Services account. 
+         //Get a reference toohello storage account that is associated with hello Media Services account. 
         StorageCredentials mediaServicesStorageCredentials =
         new StorageCredentials(_storageAccountName, _storageAccountKey);
         _destinationStorageAccount = new CloudStorageAccount(mediaServicesStorageCredentials, false);
@@ -286,7 +286,7 @@ project.json 檔案包含相依性。 以下是 **project.json** 檔案的範例
         ILocator destinationLocator = _context.Locators.CreateLocator(LocatorType.Sas, asset, writePolicy);
         CloudBlobClient destBlobStorage = _destinationStorageAccount.CreateCloudBlobClient();
 
-        // Get the destination asset container reference
+        // Get hello destination asset container reference
         string destinationContainerName = (new Uri(destinationLocator.Path)).Segments[1];
         CloudBlobContainer assetContainer = destBlobStorage.GetContainerReference(destinationContainerName);
 
@@ -300,7 +300,7 @@ project.json 檔案包含相依性。 以下是 **project.json** 檔案的範例
 
         log.Info("Created asset.");
 
-        // Get hold of the destination blob
+        // Get hold of hello destination blob
         CloudBlockBlob destinationBlob = assetContainer.GetBlockBlobReference(blob.Name);
 
         // Copy Blob
@@ -334,15 +334,15 @@ project.json 檔案包含相依性。 以下是 **project.json** 檔案的範例
     }
 ##<a name="test-your-function"></a>測試您的函式
 
-若要測試您的函式，您需要將 MP4 檔案上傳到您在連接字串中指定之儲存體帳戶的 **input** 容器。  
+tootest 您的函式，您需要的 MP4 檔案到 hello tooupload**輸入**hello hello 連接字串中指定的儲存體帳戶的容器。  
 
 ## <a name="next-step"></a>後續步驟
 
-現在，您可以開始開發媒體服務應用程式。 
+此時，您就準備好 toostart 開發媒體服務應用程式。 
  
-如需使用 Azure Functions 和 Logic Apps 搭配 Azure 媒體服務來建立自訂內容建立工作流程的詳細資訊和完整範例/解決方案，請參閱 [GitHub 上的媒體服務 .NET 功能整合範例 (英文)](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)。
+如需詳細資料與完整範例/解決方案 Azure Media Services toocreate 自訂內容建立工作流程搭配使用 Azure 函式和邏輯應用程式，請參閱 hello[媒體服務.NET 函式整合 GitHub 上的範例](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)
 
-另請參閱[使用 Azure WebHook 監視 .NET 的媒體服務作業通知](media-services-dotnet-check-job-progress-with-webhooks.md)。 
+此外，請參閱[使用 Azure Webhook toomonitor Media Services 工作通知使用.NET](media-services-dotnet-check-job-progress-with-webhooks.md)。 
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

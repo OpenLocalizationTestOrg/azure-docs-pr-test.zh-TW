@@ -1,5 +1,5 @@
 ---
-title: "適用於 Windows 通用 App Engagement SDK 的進階組態"
+title: "aaaAdvanced 組態的 Windows 通用應用程式參與 SDK"
 description: "適用於 Azure Mobile Engagement 與 Windows 通用 App 的進階組態選項"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: cb9454212c94cf65093219c3d24c71277ede7877
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 23bd05012bc25d438d8d4985a112280bed0292b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advanced-configuration-for-windows-universal-apps-engagement-sdk"></a>適用於 Windows 通用 App Engagement SDK 的進階組態
 > [!div class="op_single_selector"]
@@ -29,27 +29,27 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-此程序描述如何設定 Azure Mobile Engagement Android 應用程式的各種組態選項。
+此程序描述如何 tooconfigure Azure Mobile Engagement Android 應用程式的各種組態選項。
 
 ## <a name="prerequisites"></a>必要條件
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-windows-store-prereqs.md)]
 
 ## <a name="advanced-configuration"></a>進階組態
 ### <a name="disable-automatic-crash-reporting"></a>停用自動當機報告
-您可以停用 Engagement 的自動當機報告功能。 然後，在發生未處理的例外狀況時，Engagement 不做任何動作。
+您可以停用報告功能的 Engagement hello 自動損毀。 然後，在發生未處理的例外狀況時，Engagement 不做任何動作。
 
 > [!WARNING]
-> 如果您停用此功能，則當應用程式中發生未處理的當機時，Engagement 不會傳送該當機，「且」不會關閉工作階段和工作。
+> 如果您停用這項功能，則您的應用程式中未處理的損毀時，Engagement 不會傳送 hello 損毀**AND** hello 工作階段和工作不會關閉。
 > 
 > 
 
-若要停用自動當機報告，請依照您宣告的方式自訂您的組態：
+toodisable 自動當機報告，自訂您的組態，根據您在宣告的 hello 方式而定：
 
 #### <a name="from-engagementconfigurationxml-file"></a>從 `EngagementConfiguration.xml` 檔案
-在 `<reportCrash>` 和 `</reportCrash>` 標記之間，將報告當機設為 `false`。
+設定報表損毀太`false`之間`<reportCrash>`和`</reportCrash>`標記。
 
 #### <a name="from-engagementconfiguration-object-at-run-time"></a>於執行階段時從 `EngagementConfiguration` 物件
-使用 EngagementConfiguration 物件將報告當機設為 false。
+設定報表損毀 toofalse 使用 EngagementConfiguration 物件。
 
         /* Engagement configuration. */
         EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -59,18 +59,18 @@ ms.lasthandoff: 07/11/2017
         engagementConfiguration.Agent.ReportCrash = false;
 
 ### <a name="disable-real-time-reporting"></a>停用即時報告
-根據預設，Engagement 會即時報告記錄檔。 如果應用程式報告記錄檔的頻率很高，建議您緩衝記錄檔，以固定時段一次報告全部的記錄檔。 這稱為「高載模式」。
+根據預設，hello Engagement 服務報表會即時記錄。 如果您的應用程式經常報告記錄檔，它是較佳的 toobuffer hello 記錄檔和 tooreport 同時在一般時間為基礎。 這稱為「高載模式」。
 
-若要這樣做，請呼叫方法：
+toodo 因此，呼叫 hello 方法：
 
         EngagementAgent.Instance.SetBurstThreshold(int everyMs);
 
-該引數是以 「毫秒」為單位的值。 如果您想要重新啟動及時記錄，可以呼叫該方法，而不需要使用任何參數 (或使用 0 為值)。
+hello 引數是中的值**毫秒**。 每當您想 tooreactivate hello 即時記錄，請呼叫 hello 方法未使用任何參數，或使用 hello 0 值。
 
-高載模式可以稍微延長電池使用時間但對 Engagement 監視器會有影響：所有工作階段和工作持續時間會調整為高載閾值 (因此，可能將看不到時間比高載閾值短的工作階段和作業)。 我們建議使用低於 30000 (30 秒) 的高載閾值。 儲存的記錄檔僅限 300 個項目。 如果傳送太長，您可能會遺失某些記錄檔。
+高載模式稍微增加 hello 電池壽命，但有 hello Engagement 監視影響： 所有工作階段和作業的持續時間會捨入的 toohello 高載臨界值 （因此，工作階段和短 hello 高載閾值可能不會顯示作業）。 我們建議使用低於 30000 (30 秒) 的高載閾值。 已儲存記錄檔是有限的 too300 項目。 如果傳送太長，您可能會遺失某些記錄檔。
 
 > [!WARNING]
-> 高載閾值無法設定為小於一秒的時間間隔。 如果您這樣做，SDK 會顯示含錯誤訊息的追蹤，並且自動重設為預設值 (0 秒)。 這樣會觸發 SDK 以即時的方式報告記錄檔。
+> hello 高載閾值不能設定的 tooa 期間一個小於第二個。 如果這樣做，請 hello SDK 顯示追蹤與 hello 錯誤，並會自動重設 toohello 預設值為零秒。 這個觸發程序 hello SDK tooreport hello 記錄中的即時。
 > 
 > 
 

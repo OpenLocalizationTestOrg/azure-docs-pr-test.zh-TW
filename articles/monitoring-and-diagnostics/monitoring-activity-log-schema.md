@@ -1,6 +1,6 @@
 ---
-title: "Azure 活動記錄事件結構描述 | Microsoft Docs"
-description: "了解發出至活動記錄之資料的事件結構描述"
+title: "aaaAzure 活動記錄檔事件結構描述 |Microsoft 文件"
+description: "了解 hello 事件結構描述的資料發出到 hello 活動記錄檔"
 author: johnkemnetz
 manager: robb
 services: monitoring-and-diagnostics
@@ -12,17 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: johnkem
-ms.openlocfilehash: a4ceb822e0ec3e1c1dc31ece1db761834e795f6c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dfece949a20a4d9b4e8a4d488c1c34842d87d586
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-activity-log-event-schema"></a>Azure 活動記錄事件結構描述
-透過「Azure 活動記錄」，您可深入了解 Azure 中發生的任何訂用帳戶層級事件。 本文說明每個資料類別的事件結構描述。
+hello **Azure 活動記錄檔**是提供深入了解 Azure 中所發生的任何訂用帳戶層級事件的記錄。 本文說明 hello 事件結構描述，每個分類的資料。
 
 ## <a name="administrative"></a>管理
-透過 Resource Manager 執行的所有建立、更新、刪除和動作作業皆記錄在此類別中。 您可能會在此類別中看到的事件類型範例包括「建立虛擬機器」和「刪除網路安全性群組」。使用者或應用程式使用 Resource Manager 所執行的每個動作，都會成為特定資源類型上的作業模型。 如果作業類型為「寫入」、「刪除」或「動作」，則該作業的啟動及成功或失敗記錄皆會記錄在「系統管理」類別。 「系統管理」類別也包含訂用帳戶中角色型存取控制的所有變更。
+這個類別所包含的所有 hello 記錄建立、 更新、 刪除和動作的作業執行透過資源管理員。 Hello 類型的事件，您會看到此類別中包含的範例 「 建立虛擬機器 」 和 「 刪除網路安全性群組 」 每個使用者所採取的動作，或使用資源管理員的應用程式會模型化為特定資源類型上的作業。 如果 hello 作業類型是寫入刪除或動作，hello 記錄 hello 開始和成功或失敗的作業都會記錄在 hello 系統管理類別。 hello 系統管理類別也會包含在訂閱中的任何變更 toorole 型存取控制。
 
 ### <a name="sample-event"></a>範例事件
 ```json
@@ -102,29 +102,29 @@ ms.lasthandoff: 08/18/2017
 ### <a name="property-descriptions"></a>屬性描述
 | 元素名稱 | 說明 |
 | --- | --- |
-| 授權 |事件的 RBAC 屬性的 blob。 通常包括 action、role 和 scope 屬性。 |
-| 呼叫者 |已執行作業的使用者的電子郵件地址，根據可用性的 UPN 宣告或 SPN 宣告。 |
-| 通道 |為下列其中一個值：Admin、Operation |
-| claims |Active Directory 用來驗證使用者或應用程式以在 Resource Manager 中執行此作業的 JWT 權杖。 |
-| correlationId |通常是字串格式的 GUID。 具有相同 correlationId、屬於同一 uber 動作的事件。 |
+| 授權 |Blob hello 事件的 RBAC 屬性。 通常包含 hello 「 動作 」、 「 角色 」 和 「 範圍 」 屬性。 |
+| 呼叫者 |已執行 hello 作業、 UPN 宣告或 SPN 宣告根據可用性的 hello 使用者的電子郵件地址。 |
+| 通道 |Hello 下列值之一: 「 系統管理 」、 「 作業 」 |
+| claims |hello JWT token 是由 Active Directory tooauthenticate hello 使用者或應用程式 tooperform 資源管理員中的這項作業。 |
+| correlationId |通常是 hello 字串格式 GUID。 共用的相互關聯識別碼的事件屬於 toohello 相同超級動作。 |
 | 說明 |事件的靜態文字描述。 |
 | eventDataId |事件的唯一識別碼。 |
-| httpRequest |描述 HTTP 要求的 blob。 通常包括 “clientRequestId”、“clientIpAddress”和 “method” (HTTP 方法。 例如，PUT)。 |
-| 層級 |事件的層級。 下列其中一個值：重大、錯誤、警告、資訊和詳細資訊 |
-| resourceGroupName |受影響資源的資源群組的名稱。 |
-| resourceProviderName |受影響資源的資源提供者的名稱。 |
-| resourceId |受影響資源的資源識別碼。 |
-| operationId |對應至單一作業的事件共用的 GUID。 |
-| operationName |作業名稱。 |
-| properties |描述事件詳細資料的一組 `<Key, Value>` 配對 (也就是字典)。 |
-| status |字串，描述作業的狀態。 常見的值包括︰Started、In Progress、Succeeded、Failed、Active、Resolved。 |
-| 子狀態 |通常包含對應 REST 呼叫的 HTTP 狀態碼，但也可以包含其他描述子狀態的字串，常見的值包括：確定 (HTTP 狀態碼︰200)，已建立 (HTTP 狀態碼︰201)、接受 (HTTP 狀態碼︰202)、沒有內容 (HTTP 狀態碼︰204)、不正確的要求 (HTTP 狀態碼︰400)、找不到 (HTTP 狀態碼︰404)，衝突 (HTTP 狀態碼︰409)、內部伺服器錯誤 (HTTP 狀態碼︰500)、服務無法使用 (HTTP 狀態碼︰503)、閘道逾時 (HTTP 狀態碼︰504)。 |
-| eventTimestamp |處理與事件對應之要求的Azure 服務產生事件時的時間戳記。 |
-| submissionTimestamp |當事件變成可供查詢時的時間戳記。 |
+| httpRequest |Blob 描述 hello Http 要求。 通常包括 hello"clientRequestId"、"clientIpAddress"和"method"（HTTP 方法。 例如，PUT)。 |
+| 層級 |Hello 事件層級。 Hello 下列值之一: 「 重大 」、 「 錯誤 」、 「 警告 」、 「 資訊 」 及 「 詳細資訊 」 |
+| resourceGroupName |Hello hello 資源群組名稱會影響資源。 |
+| resourceProviderName |Hello hello 資源提供者的名稱會影響資源 |
+| resourceId |資源識別碼 hello 影響資源。 |
+| operationId |GUID 對應 tooa 單一作業的 hello 事件之間共用。 |
+| operationName |Hello 作業的名稱。 |
+| 屬性 |一組`<Key, Value>`組 （也就是字典） 描述 hello hello 事件詳細資料。 |
+| status |描述 hello hello 作業狀態的字串。 常見的值包括︰Started、In Progress、Succeeded、Failed、Active、Resolved。 |
+| 子狀態 |通常 hello hello 對應 REST 呼叫的 HTTP 狀態碼，但也可能包含其他描述子狀態，例如這些常見的值的字串: [確定] (HTTP 狀態碼： 200)，建立 (HTTP 狀態碼： 201)、 接受 (HTTP 狀態碼： 202)，無內容 (HTTP狀態碼： 204)，不正確的要求 (HTTP 狀態碼： 400)、 找不到 (HTTP 狀態碼： 404)，衝突 (HTTP 狀態碼： 409)，內部伺服器錯誤 (HTTP 狀態碼： 500)，則 Service 無法使用 (HTTP 狀態碼： 503)，閘道逾時 (HTTP 狀態碼： 504)。 |
+| eventTimestamp |Hello Azure 服務處理 hello 產生 hello 事件時的時間戳記要求相對應的 hello 事件。 |
+| submissionTimestamp |時間戳記 hello 事件變成可供查詢。 |
 | subscriptionId |Azure 訂用帳戶識別碼。 |
 
 ## <a name="service-health"></a>服務健康情況
-所有在 Azure 中發生的服務健康情況事件皆記錄在此類別中。 您可能會在此類別中看到的事件類型範例為「美國東部的 SQL Azure 發生停機事件」。 服務健康情況事件有五個種類：「需要採取動作」、「協助復原」、「事件」、「維護」、「資訊」或「安全性」，這些事件只會在訂用帳戶中有可能會受該事件影響的資源時顯示。
+這個類別所包含任何服務健全狀況事件發生在 Azure 中的 hello 的記錄。 舉例來說，hello 您將會看到此類別中類型是事件的"SQL Azure，在美國東部發生停機。 」 服務健全狀況事件有五種： 所需的動作、 協助復原、 事件、 維護、 資訊或安全性，和，才會出現您擁有 hello 訂用帳戶會受到 hello 事件中的資源。
 
 ### <a name="sample-event"></a>範例事件
 ```json
@@ -168,13 +168,13 @@ ms.lasthandoff: 08/18/2017
     "title": "Network Infrastructure - UK South",
     "service": "Service Fabric",
     "region": "UK South",
-    "communication": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited to App Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows to mitigate the impact. The next update will be provided in 60 minutes, or as events warrant.",
+    "communication": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited tooApp Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows toomitigate hello impact. hello next update will be provided in 60 minutes, or as events warrant.",
     "incidentType": "Incident",
     "trackingId": "NA0F-BJG",
     "impactStartTime": "2017-07-20T21:41:00.0000000Z",
     "impactedServices": "[{\"ImpactedRegions\":[{\"RegionName\":\"UK South\"}],\"ServiceName\":\"Service Fabric\"}]",
     "defaultLanguageTitle": "Network Infrastructure - UK South",
-    "defaultLanguageContent": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited to App Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows to mitigate the impact. The next update will be provided in 60 minutes, or as events warrant.",
+    "defaultLanguageContent": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited tooApp Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows toomitigate hello impact. hello next update will be provided in 60 minutes, or as events warrant.",
     "stage": "Active",
     "communicationId": "636361902146035247",
     "version": "0.1.1"
@@ -185,34 +185,34 @@ ms.lasthandoff: 08/18/2017
 ### <a name="property-descriptions"></a>屬性描述
 元素名稱 | 說明
 -------- | -----------
-通道 | 為下列其中一個值：Admin、Operation
-correlationId | 通常是字串格式的 GUID。 屬於相同 uber 動作的事件通常會共用同一個 correlationId。
-說明 | 事件的描述。
-eventDataId | 事件的唯一識別碼。
-eventName | 事件的標題。
-層級 | 事件的層級。 下列其中一個值：重大、錯誤、警告、資訊和詳細資訊
-resourceProviderName | 受影響資源的資源提供者名稱。 如果未知，此參數會是 null。
-resourceType| 受影響資源的資源類型。 如果未知，此參數會是 null。
+通道 | 是 hello 下列值之一: 「 系統管理 」、 「 作業 」
+correlationId | 通常是 hello 字串格式的 GUID。 事件與屬於相同超級動作通常會共用的 toohello hello 相同的相互關聯識別碼。
+說明 | Hello 事件的描述。
+eventDataId | hello 事件的唯一識別項。
+eventName | hello hello 事件標題。
+層級 | Hello 事件層級。 Hello 下列值之一: 「 重大 」、 「 錯誤 」、 「 警告 」、 「 資訊 」 及 「 詳細資訊 」
+resourceProviderName | Hello hello 資源提供者的名稱會影響資源。 如果未知，此參數會是 null。
+resourceType| 資源的 hello hello 類型會影響資源。 如果未知，此參數會是 null。
 子狀態 | 針對服務健康情況事件通常為 null。
-eventTimestamp | 記錄事件產生並提交至活動記錄時的時間戳記。
-submissionTimestamp |   事件在活動記錄中可供查詢時的時間戳記。
-subscriptionId | 記錄此事件的 Azure 訂用帳戶。
-status | 字串，描述作業的狀態。 某些常見的值為：Active、Resolved。
-operationName | 作業名稱。 通常是 Microsoft.ServiceHealth/incident/action。
+eventTimestamp | 時間戳記 hello 記錄事件產生並提交 toohello 活動記錄檔。
+submissionTimestamp |   時間戳記 hello 事件變成可在 hello 活動記錄檔中。
+subscriptionId | hello 記錄這個事件的 Azure 訂用帳戶。
+status | 描述 hello hello 作業狀態的字串。 某些常見的值為：Active、Resolved。
+operationName | Hello 作業的名稱。 通常是 Microsoft.ServiceHealth/incident/action。
 category | "ServiceHealth"
-resourceId | 受影響資源的資源識別碼 (如果知道)。 否則會提供訂用帳戶識別碼。
-Properties.title | 此通訊的當地語系化標題。 預設語言為英文。
-Properties.communication | 與 HTML 標記通訊的詳細資料 (已當地語系化)。 預設語言為英文。
+resourceId | 如果已知資源識別碼 hello 會影響資源。 否則會提供訂用帳戶識別碼。
+Properties.title | 此通訊的 hello 當地語系化標題。 英文是 hello 預設語言。
+Properties.communication | hello 當地語系化 hello 通訊以 HTML 標記的詳細資料。 英文是 hello 預設值。
 Properties.incidentType | 可能的值：AssistedRecovery、ActionRequired、Information、Incident、Maintenance、Security
-Properties.trackingId | 識別與此事件 (event) 相關聯的附帶事件 (Incident)。 可用此屬性讓與附帶事件 (Incident) 有關的事件 (event) 相關聯。
-Properties.impactedServices | 逸出的 JSON blob，描述受到附帶事件 (Incident) 影響的服務和區域。 Services 清單 (每一份都有 ServiceName) 和 ImpactedRegions 清單 (每一份都有 RegionName)。
-Properties.defaultLanguageTitle | 英文的通訊
-Properties.defaultLanguageContent | 英文的通訊，如 html 標記或純文字
+Properties.trackingId | 識別此事件相關聯的 hello 事件。 使用此 toocorrelate hello 事件相關的 tooan 事件。
+Properties.impactedServices | 逸出的 JSON blob hello 服務和區域 hello 事件受影響的描述。 Services 清單 (每一份都有 ServiceName) 和 ImpactedRegions 清單 (每一份都有 RegionName)。
+Properties.defaultLanguageTitle | 英文版的 hello 通訊
+Properties.defaultLanguageContent | 做為 html 標記或純文字的英文版的 hello 通訊
 Properties.stage | AssistedRecovery、ActionRequired、Information、Incident、Security 的可能值：Active、Resolved。 Maintenance 的可能值︰Active、Planned、InProgress、Canceled、Rescheduled、Resolved、Complete
-Properties.communicationId | 與此事件相關聯的通訊。
+Properties.communicationId | hello 通訊此事件是相關聯。
 
 ## <a name="alert"></a>警示
-此類別包含所有 Azure 警示的啟用記錄。 您可能會在此類別中看到的事件類型範例為「myVM 上的 CPU 百分比在過去 5 分鐘內已超過 80」。 各種 Azure 系統都有警示概念，您可以定義某種類型的規則，並在條件符合該規則時接收通知。 每次支援的 Azure 警示類型「啟動」時，或產生通知的條件符合時，該啟用記錄會也會推送至此類別的活動記錄。
+這個類別所包含所有啟用的 Azure 警示 hello 的記錄。 Hello 您將會看到此類別中類型的範例是事件的"myVM 上的 CPU 百分比已超過 80 hello 過去 5 分鐘。 」 各種 Azure 系統都有警示概念，您可以定義某種類型的規則，並在條件符合該規則時接收通知。 每次支援 Azure 的警示類型 '啟動，' 或 hello 條件都符合的 toogenerate 通知，hello 啟用的記錄也會推入 toothis 類別目錄的 hello 活動記錄檔。
 
 ### <a name="sample-event"></a>範例事件
 
@@ -224,7 +224,7 @@ Properties.communicationId | 與此事件相關聯的通訊。
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/spn": "Microsoft.Insights/alertRules"
   },
   "correlationId": "/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/microsoft.insights/alertrules/myalert/incidents/L3N1YnNjcmlwdGlvbnMvZGY2MDJjOWMtN2FhMC00MDdkLWE2ZmItZWIyMGM4YmQxMTkyL3Jlc291cmNlR3JvdXBzL0NzbUV2ZW50RE9HRk9PRC1XZXN0VVMvcHJvdmlkZXJzL21pY3Jvc29mdC5pbnNpZ2h0cy9hbGVydHJ1bGVzL215YWxlcnQwNjM2MzYyMjU4NTM1MjIxOTIw",
-  "description": "'Disk read LessThan 100000 ([Count]) in the last 5 minutes' has been resolved for CloudService: myResourceGroup/Production/Event.BackgroundJobsWorker.razzle (myResourceGroup)",
+  "description": "'Disk read LessThan 100000 ([Count]) in hello last 5 minutes' has been resolved for CloudService: myResourceGroup/Production/Event.BackgroundJobsWorker.razzle (myResourceGroup)",
   "eventDataId": "149d4baf-53dc-4cf4-9e29-17de37405cd9",
   "eventName": {
     "value": "Alert",
@@ -280,52 +280,52 @@ Properties.communicationId | 與此事件相關聯的通訊。
 | --- | --- |
 | 呼叫者 | 一律是 Microsoft.Insights/alertRules |
 | 通道 | 一律是 “Admin, Operation” |
-| claims | 具有警示引擎的 SPN (服務主體名稱) 或資源類型的 JSON Blob。 |
-| correlationId | 字串格式的 GUID。 |
-| 說明 |警示事件的靜態文字描述。 |
-| eventDataId |警示事件的唯一識別碼。 |
-| 層級 |事件的層級。 下列其中一個值：重大、錯誤、警告、資訊和詳細資訊 |
-| resourceGroupName |如果為計量警示，這是受影響資源的資源群組名稱。 針對其他警示類型，這是包含警示本身的資源群組名稱。 |
-| resourceProviderName |如果為計量警示，這是受影響資源的資源提供者名稱。 針對其他警示類型，這是警示本身的資源提供者名稱。 |
-| resourceId | 如果為計量警示，這是受影響資源的資源識別碼名稱。 針對其他警示類型，這是警示資源本身的資源識別碼。 |
-| operationId |對應至單一作業的事件共用的 GUID。 |
-| operationName |作業名稱。 |
-| properties |描述事件詳細資料的一組 `<Key, Value>` 配對 (也就是字典)。 |
-| status |字串，描述作業的狀態。 常見的值包括︰Started、In Progress、Succeeded、Failed、Active、Resolved。 |
+| claims | JSON 的 hello 警示引擎 hello SPN （服務主體的名稱） 或資源類型的 blob。 |
+| correlationId | Hello 字串格式的 GUID。 |
+| 說明 |Hello 警示事件的靜態文字描述。 |
+| eventDataId |Hello 警示事件的唯一識別碼。 |
+| 層級 |Hello 事件層級。 Hello 下列值之一: 「 重大 」、 「 錯誤 」、 「 警告 」、 「 資訊 」 及 「 詳細資訊 」 |
+| resourceGroupName |Hello hello 資源群組名稱會影響資源是否度量的警示。 對於其他警示類型，這是 hello hello 包含本身 hello 警示的資源群組名稱。 |
+| resourceProviderName |Hello hello 資源提供者的名稱會影響資源是否度量的警示。 對於其他警示類型，這是 hello hello 資源提供者名稱本身 hello 警示。 |
+| resourceId | Hello hello 資源 ID 的名稱會影響資源是否度量的警示。 對於其他警示類型，這是 hello hello 警示資源本身的資源識別碼。 |
+| operationId |GUID 對應 tooa 單一作業的 hello 事件之間共用。 |
+| operationName |Hello 作業的名稱。 |
+| 屬性 |一組`<Key, Value>`組 （也就是字典） 描述 hello hello 事件詳細資料。 |
+| status |描述 hello hello 作業狀態的字串。 常見的值包括︰Started、In Progress、Succeeded、Failed、Active、Resolved。 |
 | 子狀態 | 針對警示通常為 null。 |
-| eventTimestamp |處理與事件對應之要求的Azure 服務產生事件時的時間戳記。 |
-| submissionTimestamp |當事件變成可供查詢時的時間戳記。 |
+| eventTimestamp |Hello Azure 服務處理 hello 產生 hello 事件時的時間戳記要求相對應的 hello 事件。 |
+| submissionTimestamp |時間戳記 hello 事件變成可供查詢。 |
 | subscriptionId |Azure 訂用帳戶識別碼。 |
 
 ### <a name="properties-field-per-alert-type"></a>每個警示類型的屬性欄位
-屬性欄位將依據警示事件來源包含不同的值。 兩個常見的警示事件提供者為活動記錄警示和計量警示。
+hello 屬性] 欄位會包含根據 hello 事件來源的 hello 警示有不同的值。 兩個常見的警示事件提供者為活動記錄警示和計量警示。
 
 #### <a name="properties-for-activity-log-alerts"></a>活動記錄警示的屬性
 | 元素名稱 | 說明 |
 | --- | --- |
-| properties.subscriptionId | 導致啟用此活動記錄警示規則之活動記錄事件的訂用帳戶識別碼。 |
-| properties.eventDataId | 導致啟用此活動記錄警示規則之活動記錄事件的事件資料識別碼。 |
-| properties.resourceGroup | 導致啟用此活動記錄警示規則之活動記錄事件的資源群組。 |
-| properties.resourceId | 導致啟用此活動記錄警示規則之活動記錄事件的資源識別碼。 |
-| properties.eventTimestamp | 導致啟用此活動記錄警示規則之活動記錄事件的事件時間戳記。 |
-| properties.operationName | 導致啟用此活動記錄警示規則之活動記錄事件的作業名稱。 |
-| properties.status | 導致啟用此活動記錄警示規則之活動記錄事件的狀態。|
+| properties.subscriptionId | 從 hello 活動記錄檔事件導致啟動此活動記錄檔的警示規則 toobe hello 訂用帳戶 ID。 |
+| properties.eventDataId | 從 hello 活動記錄檔事件導致啟動此活動記錄檔的警示規則 toobe 事件資料識別碼 hello。 |
+| properties.resourceGroup | 從 hello 活動記錄檔事件導致啟動此活動記錄檔的警示規則 toobe hello 資源群組。 |
+| properties.resourceId | 從 hello 活動記錄檔事件導致啟動此活動記錄檔的警示規則 toobe hello 資源識別碼。 |
+| properties.eventTimestamp | hello 導致啟動此活動記錄檔的警示規則 toobe hello 活動記錄檔事件的事件時間戳記。 |
+| properties.operationName | 從 hello 活動記錄檔事件導致啟動此活動記錄檔的警示規則 toobe hello 作業名稱。 |
+| properties.status | 從 hello 活動記錄檔事件導致啟動此活動記錄檔的警示規則 toobe hello 狀態。|
 
 #### <a name="properties-for-metric-alerts"></a>計量警示屬性
 | 元素名稱 | 說明 |
 | --- | --- |
-| properties.RuleUri | 計量警示規則本身的資源識別碼。 |
-| properties.RuleName | 計量警示規則的名稱。 |
-| properties.RuleDescription | 計量警示規則的描述 (如警示規則中所定義)。 |
-| properties.Threshold | 用於評估計量警示規則的臨界值。 |
-| properties.WindowSizeInMinutes | 用於評估計量警示規則的視窗大小。 |
-| properties.Aggregation | 定義於計量警示規則中的彙總類型。 |
-| properties.Operator | 用於評估計量警示規則的條件運算子。 |
-| properties.MetricName | 用於評估計量警示規則之計量的計量名稱。 |
-| properties.MetricUnit | 用於評估計量警示規則之計量的計量單位。 |
+| properties.RuleUri | Hello 度量的警示規則本身的資源識別碼。 |
+| properties.RuleName | hello hello 度量的警示規則名稱。 |
+| properties.RuleDescription | hello hello 度量警示的規則 （如 hello 警示規則中所定義） 的描述。 |
+| properties.Threshold | hello hello 評估 hello 度量的警示規則中使用的臨界值。 |
+| properties.WindowSizeInMinutes | 使用 hello 評估 hello 度量的警示規則中的 hello 視窗大小。 |
+| properties.Aggregation | hello hello 度量的警示規則中所定義的彙總類型。 |
+| properties.Operator | hello hello 評估 hello 度量的警示規則中使用條件式的運算子。 |
+| properties.MetricName | 使用 hello 評估 hello 度量的警示規則中的 hello 度量 hello 度量名稱。 |
+| properties.MetricUnit | 使用 hello 評估 hello 度量的警示規則中的 hello 度量 hello 度量單位。 |
 
 ## <a name="autoscale"></a>Autoscale
-所有與自動調整引擎 (以訂用帳戶中定義的自動調整設定為基礎) 作業相關的所有事件皆記錄在此類別。 您可能會在此類別中看到的事件類型範例為「自動調整相應增加動作失敗」。 自動調整可讓您使用自動調整設定，依據每日時間和/或負載 (計量) 資料，自動相應放大或縮小受支援資源類型中的執行個體數目。 符合相應增加或相應減少的條件時，啟動及成功或失敗事件將會記錄在此類別中。
+這個類別包含 hello 作業的記錄任何事件相關的 toohello hello 自動調整引擎根據您定義您的訂用帳戶中的任何自動調整規模設定。 Hello 您將會看到此類別中類型的範例是事件的 「 自動調整規模小數位數設定動作失敗。 」 使用自動調整規模，您可以自動向外擴充或調整在 hello 中支援的資源類型的執行個體的數目會根據使用自動調整規模設定的日期和/或負載 （標準） 的資料的時間。 Hello 條件符合時 tooscale 向上或向下 hello 開始，並成功或失敗的事件會記錄在此類別。
 
 ### <a name="sample-event"></a>範例事件
 ```json
@@ -336,7 +336,7 @@ Properties.communicationId | 與此事件相關聯的通訊。
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/spn": "Microsoft.Insights/autoscaleSettings"
   },
   "correlationId": "fc6a7ff5-ff68-4bb7-81b4-3629212d03d0",
-  "description": "The autoscale engine attempting to scale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count to 2 instances count.",
+  "description": "hello autoscale engine attempting tooscale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count too2 instances count.",
   "eventDataId": "a5b92075-1de9-42f1-b52e-6f3e4945a7c7",
   "eventName": {
     "value": "AutoscaleAction",
@@ -364,7 +364,7 @@ Properties.communicationId | 與此事件相關聯的通訊。
     "localizedValue": "Microsoft.Insights/AutoscaleSettings/Scaledown/Action"
   },
   "properties": {
-    "Description": "The autoscale engine attempting to scale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count to 2 instances count.",
+    "Description": "hello autoscale engine attempting tooscale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count too2 instances count.",
     "ResourceName": "/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource",
     "OldInstancesCount": "3",
     "NewInstancesCount": "2",
@@ -389,28 +389,28 @@ Properties.communicationId | 與此事件相關聯的通訊。
 | --- | --- |
 | 呼叫者 | 一律是 Microsoft.Insights/autoscaleSettings |
 | 通道 | 一律是 “Admin, Operation” |
-| claims | 具有自動調整引擎的 SPN (服務主體名稱) 或資源類型的 JSON Blob。 |
-| correlationId | 字串格式的 GUID。 |
-| 說明 |自動調整事件的靜態文字描述。 |
-| eventDataId |自動調整事件的唯一識別碼。 |
-| 層級 |事件的層級。 下列其中一個值：重大、錯誤、警告、資訊和詳細資訊 |
-| resourceGroupName |自動調整設定的資源群組名稱。 |
-| resourceProviderName |自動調整設定的資源提供者名稱。 |
-| resourceId |自動調整設定的資源識別碼。 |
-| operationId |對應至單一作業的事件共用的 GUID。 |
-| operationName |作業名稱。 |
-| properties |描述事件詳細資料的一組 `<Key, Value>` 配對 (也就是字典)。 |
-| properties.Description | 自動調整引擎所執行之作業的詳細描述。 |
-| properties.ResourceName | 受影響資源 (執行調整動作的資源) 的資源識別碼 |
-| properties.OldInstancesCount | 自動調整動作生效之前的執行個體數目。 |
-| properties.NewInstancesCount | 自動調整動作生效之後的執行個體數目。 |
-| properties.LastScaleActionTime | 自動調整動作發生時的時間戳記。 |
-| status |字串，描述作業的狀態。 常見的值包括︰Started、In Progress、Succeeded、Failed、Active、Resolved。 |
+| claims | JSON hello SPN （服務主體的名稱） 或資源的類型，hello 自動調整引擎的 blob。 |
+| correlationId | Hello 字串格式的 GUID。 |
+| 說明 |Hello 自動調整事件的靜態文字描述。 |
+| eventDataId |Hello 自動調整事件的唯一識別碼。 |
+| 層級 |Hello 事件層級。 Hello 下列值之一: 「 重大 」、 「 錯誤 」、 「 警告 」、 「 資訊 」 及 「 詳細資訊 」 |
+| resourceGroupName |Hello 自動調整規模設定 hello 資源群組名稱。 |
+| resourceProviderName |Hello 自動調整規模設定 hello 資源提供者名稱。 |
+| resourceId |資源識別碼 hello 自動調整規模設定。 |
+| operationId |GUID 對應 tooa 單一作業的 hello 事件之間共用。 |
+| operationName |Hello 作業的名稱。 |
+| 屬性 |一組`<Key, Value>`組 （也就是字典） 描述 hello hello 事件詳細資料。 |
+| properties.Description | 詳細的描述哪些 hello 自動調整引擎正在進行的工作。 |
+| properties.ResourceName | 資源識別碼 hello 影響資源 (hello 的 hello 正在執行調整動作的資源) |
+| properties.OldInstancesCount | hello 自動調整規模動作之前的執行個體的 hello 數目所花費的效果。 |
+| properties.NewInstancesCount | hello 自動調整規模動作之後的執行個體的 hello 數目所花費的效果。 |
+| properties.LastScaleActionTime | hello 的 hello 自動調整規模動作發生時的時間戳記。 |
+| status |描述 hello hello 作業狀態的字串。 常見的值包括︰Started、In Progress、Succeeded、Failed、Active、Resolved。 |
 | 子狀態 | 針對自動調整通常為 null。 |
-| eventTimestamp |處理與事件對應之要求的Azure 服務產生事件時的時間戳記。 |
-| submissionTimestamp |當事件變成可供查詢時的時間戳記。 |
+| eventTimestamp |Hello Azure 服務處理 hello 產生 hello 事件時的時間戳記要求相對應的 hello 事件。 |
+| submissionTimestamp |時間戳記 hello 事件變成可供查詢。 |
 | subscriptionId |Azure 訂用帳戶識別碼。 |
 
 ## <a name="next-steps"></a>後續步驟
-* [深入了解活動記錄檔 (之前的稽核記錄檔)](monitoring-overview-activity-logs.md)
-* [將 Azure 活動記錄檔串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
+* [深入了解 hello 活動記錄檔 （先前稱為稽核記錄檔）](monitoring-overview-activity-logs.md)
+* [資料流 hello Azure 活動記錄檔 tooEvent 集線器](monitoring-stream-activity-logs-event-hubs.md)

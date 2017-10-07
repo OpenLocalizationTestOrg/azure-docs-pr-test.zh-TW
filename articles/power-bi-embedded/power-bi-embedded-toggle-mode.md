@@ -1,6 +1,6 @@
 ---
-title: "為 Azure Power BI Embedded 中的報告切換檢視和編輯模式 | Microsoft Docs"
-description: "了解如何為 Power BI Embedded 內的報告切換檢視和編輯模式。"
+title: "檢視和編輯模式中 Azure Power BI Embedded 報表之間 aaaToggle |Microsoft 文件"
+description: "深入了解如何內嵌 Power BI 中報表的檢視和編輯模式之間 tootoggle。"
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,22 +15,22 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: f73bf05b41523a5833cc9366fb84cb7021b4b7a9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9e3da5f9ae74d221af650adebde7c9d83b38a99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="toggle-between-view-and-edit-mode-for-reports-in-power-bi-embedded"></a>為 Power BI Embedded 中的報告切換檢視和編輯模式
 
-了解如何為 Power BI Embedded 內的報告切換檢視和編輯模式。
+深入了解如何內嵌 Power BI 中報表的檢視和編輯模式之間 tootoggle。
 
 ## <a name="creating-an-access-token"></a>建立存取權杖
 
-您必須建立可讓您檢視和編輯報告的存取權杖。 若要編輯和儲存報告，您需要 **Report.ReadWrite** 權杖權限。 如需詳細資訊，請參閱[在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)。
+您將需要 toocreate hello 能力 tooboth 檢視和編輯報表，可讓您存取權杖。 tooedit 儲存報告，您將需要 hello **Report.ReadWrite**語彙基元的權限。 如需詳細資訊，請參閱[在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)。
 
 > [!NOTE]
-> 這可讓您對現有報告進行編輯並儲存變更。 如果您也想要可支援**另存新檔**的功能，您需要提供額外的權限。 如需詳細資訊，請參閱[範圍](power-bi-embedded-app-token-flow.md#scopes)。
+> 這將允許您 tooedit 並儲存變更 tooan 現有的報表。 如果您也想要支援的 hello 函式**存**，您將需要 toosupply 額外的權限。 如需詳細資訊，請參閱[範圍](power-bi-embedded-app-token-flow.md#scopes)。
 
 ```
 using Microsoft.PowerBI.Security;
@@ -44,7 +44,7 @@ var token = embedToken.Generate("{access key}");
 
 ## <a name="embed-configuration"></a>內嵌組態
 
-您必須提供權限和 viewMode，才能在編輯模式中看到 [儲存] 按鈕。 如需詳細資訊，請參閱[內嵌組態詳細資料](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details)。
+您將需要 toosupply 權限和順序 toosee hello 儲存在編輯模式中的按鈕中的 viewMode。 如需詳細資訊，請參閱[內嵌組態詳細資料](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details)。
 
 例如，在 JavaScript 中：
 
@@ -54,7 +54,7 @@ var token = embedToken.Generate("{access key}");
     // Get models. Models, it contains enums that can be used.
     var models = window['powerbi-client'].models;
 
-    // Embed configuration used to describe the what and how to embed.
+    // Embed configuration used toodescribe hello what and how tooembed.
     // This object is used when calling powerbi.embed.
     // This also includes settings and options such as filters.
     // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
@@ -71,43 +71,43 @@ var token = embedToken.Generate("{access key}");
         }
     };
 
-    // Get a reference to the embedded report HTML element
+    // Get a reference toohello embedded report HTML element
     var reportContainer = $('#reportContainer')[0];
 
-    // Embed the report and display it within the div container.
+    // Embed hello report and display it within hello div container.
     var report = powerbi.embed(reportContainer, config);
 ```
 
-這表示根據 **viewMode** 內嵌檢視模式報告已設為 **models.ViewMode.View**。
+這會指出基礎檢視模式中的 tooembed hello 報表**viewMode**設定得**模型。ViewMode.View**。
 
 ## <a name="view-mode"></a>檢視模式
 
-如果您處於編輯模式，您可以使用下列 JavaScript 來切換為檢視模式。
+如果您是在編輯模式，您可以使用下列 JavaScript tooswitch 進入檢視模式的 hello。
 
 ```
-// Get a reference to the embedded report HTML element
+// Get a reference toohello embedded report HTML element
 var reportContainer = $('#reportContainer')[0];
 
-// Get a reference to the embedded report.
+// Get a reference toohello embedded report.
 report = powerbi.get(reportContainer);
 
-// Switch to view mode.
+// Switch tooview mode.
 report.switchMode("view");
 
 ```
 
 ## <a name="edit-mode"></a>編輯模式
 
-如果您處於檢視模式，您可以使用下列 JavaScript 來切換為編輯模式。
+如果您在檢視模式，您可以使用下列 JavaScript tooswitch 進入編輯模式的 hello。
 
 ```
-// Get a reference to the embedded report HTML element
+// Get a reference toohello embedded report HTML element
 var reportContainer = $('#reportContainer')[0];
 
-// Get a reference to the embedded report.
+// Get a reference toohello embedded report.
 report = powerbi.get(reportContainer);
 
-// Switch to edit mode.
+// Switch tooedit mode.
 report.switchMode("edit");
 
 ```
@@ -121,4 +121,4 @@ report.switchMode("edit");
 [JavaScript 內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
 [PowerBI-CSharp Git 存放庫](https://github.com/Microsoft/PowerBI-CSharp)  
 [PowerBI-Node Git存放庫](https://github.com/Microsoft/PowerBI-Node)  
-有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
+有其他疑問？ [再試一次 hello Power BI 社群](http://community.powerbi.com/)

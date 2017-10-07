@@ -1,5 +1,5 @@
 ---
-title: "Azure Application Insights 遙測資料模型 - 相依性遙測 | Microsoft Docs"
+title: "aaaAzure 應用程式 Insights 遙測資料模型的相依性遙測 |Microsoft 文件"
 description: "相依性遙測的 Application Insights 資料模型"
 services: application-insights
 documentationcenter: .net
@@ -12,23 +12,23 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/17/2017
 ms.author: bwren
-ms.openlocfilehash: 2e97c3f951f46c32802aea543b93d5ab1bb76228
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: cd5ab7c61d3498e4aa2a0aa0c8b0d106a92912e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="dependency-telemetry-application-insights-data-model"></a>相依性遙測：Application Insights 資料模型
 
-相依性遙測 (在 [Application Insights](app-insights-overview.md) 中) 代表受監視元件與遠端元件 (例如 SQL 或 HTTP 端點) 的互動。
+相依性遙測 (在[Application Insights](app-insights-overview.md)) 代表與遠端的元件，例如 SQL 或 HTTP 端點的 hello 監視元件的互動。
 
 ## <a name="name"></a>名稱
 
-使用此相依性呼叫所起始之命令的名稱。 基數值低。 範例為預存程序名稱和 URL 路徑範本。
+此相依性呼叫以起始 hello 命令的名稱。 基數值低。 範例為預存程序名稱和 URL 路徑範本。
 
 ## <a name="id"></a>ID
 
-相依性呼叫執行個體的識別碼。 用來與此相依性呼叫的對應要求遙測項目相互關聯。 如需詳細資訊，請參閱[相互關聯](application-insights-correlation.md)頁面。
+相依性呼叫執行個體的識別碼。 用於相互關聯與 hello 要求遙測項目對應 toothis 相依性呼叫。 如需詳細資訊，請參閱[相互關聯](application-insights-correlation.md)頁面。
 
 ## <a name="data"></a>資料
 

@@ -1,6 +1,6 @@
 ---
-title: "建立適用於 PHP 的 Azure Web 和背景工作角色 | Microsoft Docs"
-description: "在 Azure 雲端服務中建立 PHP Web 和背景工作角色及設定 PHP 執行階段的指南。"
+title: "aaaCreate Azure for PHP web 和背景工作角色 |Microsoft 文件"
+description: "指南 toocreating PHP web 和背景工作角色在 Azure 雲端服務和設定 hello PHP 執行階段中。"
 services: 
 documentationcenter: php
 author: rmcmurray
@@ -14,35 +14,35 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: 214fdcfe20f3fa4ebcbe41308404f8b7e7d15310
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 04a6e8c9c379cb0f854645941b6bc7d614bb91f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-php-web-and-worker-roles"></a>如何建立 PHP Web 和背景工作角色
-## <a name="overview"></a>Overview
-本指南將說明如何在 Windows 開發環境中建立 PHP Web 或背景工作角色、從「內建」的可用版本中選擇特定版本的 PHP、變更 PHP 組態、啟用擴充功能，最終部署至 Azure。 此外也會說明如何設定 Web 或背景工作角色，以使用您所提供的 PHP 執行階段 (具有自訂組態和擴充功能)。
+# <a name="how-toocreate-php-web-and-worker-roles"></a>如何 toocreate PHP web 和背景工作角色
+## <a name="overview"></a>概觀
+本指南將說明 toocreate PHP web 或背景工作角色在 Windows 開發環境中，選擇特定版本的 PHP hello 從可用的 「 內建 」 版本的方式、 變更 hello 的 PHP 設定、 啟用擴充功能，和最後，部署 tooAzure。 它也會說明如何 tooconfigure web 或背景工作角色 toouse 您提供 PHP 執行階段 （使用自訂組態和擴充功能）。
 
 ## <a name="what-are-php-web-and-worker-roles"></a>什麼是 PHP Web 和背景工作角色？
-Azure 提供三種運算模型來執行應用程式：Azure 應用程式服務、Azure 虛擬機器和 Azure 雲端服務。 這三種模型都支援 PHP。 雲端服務 (包含 Web 和背景工作角色) 可提供 *平台即服務 (PaaS)*。 在雲端服務中，Web 角色提供專用的 Internet Information Services (IIS) Web 伺服器，用來代管前端 Web 應用程式。 背景工作角色可以執行非同步、長時間或永久的工作，且不受使用者互動或輸入所影響。
+Azure 提供三種運算模型來執行應用程式：Azure 應用程式服務、Azure 虛擬機器和 Azure 雲端服務。 這三種模型都支援 PHP。 雲端服務 (包含 Web 和背景工作角色) 可提供 *平台即服務 (PaaS)*。 在雲端服務中，web 角色會提供專用的 Internet Information Services (IIS) web 伺服器 toohost 前端 web 應用程式。 背景工作角色可以執行非同步、長時間或永久的工作，且不受使用者互動或輸入所影響。
 
 如需這些選項的詳細資訊，請參閱[計算 Azure 提供的裝載選項](cloud-services/cloud-services-choose-me.md)。
 
-## <a name="download-the-azure-sdk-for-php"></a>下載 Azure SDK for PHP
-[Azure SDK for PHP] 由數個元件組成。 本文將使用下列兩個元件：Azure PowerShell 和 Azure 模擬器。 這兩個元件可透過 Microsoft Web Platform Installer 來安裝。 如需詳細資訊，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azure/overview)。
+## <a name="download-hello-azure-sdk-for-php"></a>下載 hello Azure SDK for PHP
+hello [Azure SDK for PHP]數個元件所組成。 此發行項將會使用其中兩個： Azure PowerShell 和 hello Azure 模擬器。 這兩個元件可以透過 hello Microsoft Web Platform Installer 安裝。 如需詳細資訊，請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ## <a name="create-a-cloud-services-project"></a>建立雲端服務專案
-建立 PHP Web 或背景工作角色的第一個步驟是建立 Azure 服務專案。 Azure 服務專案可作為 Web 和背景工作角色的邏輯容器，且包含專案的[服務定義 (.csdef)] 和[服務組態 (.cscfg)] 檔案。
+在建立 PHP web 或背景工作角色的 hello 第一個步驟是 toocreate Azure 服務專案。 Azure 服務專案當做 web 和背景工作角色的邏輯容器，它包含 hello 專案[服務定義 (.csdef)]和[服務組態 (.cscfg)]檔案。
 
-若要建立新的 Azure 服務專案，請以系統管理員身分執行 Azure PowerShell 並執行下列命令：
+toocreate 新的 Azure 服務專案，為系統管理員，以執行 Azure PowerShell，然後執行下列命令的 hello:
 
     PS C:\>New-AzureServiceProject myProject
 
-此命令會建立新目錄 (`myProject`)，讓您可將 Web 和背景工作角色新增至該處。
+此命令會建立新的目錄 (`myProject`) toowhich 您可以加入 web 和背景工作角色。
 
 ## <a name="add-php-web-or-worker-roles"></a>新增 PHP Web 或背景工作角色
-若要將 PHP Web 角色新增至專案，請從專案的根目錄中執行下列命令：
+tooadd PHP web 角色 tooa 專案中，執行下列命令從 hello 專案根目錄中的 hello:
 
     PS C:\myProject> Add-AzurePHPWebRole roleName
 
@@ -51,16 +51,16 @@ Azure 提供三種運算模型來執行應用程式：Azure 應用程式服務�
     PS C:\myProject> Add-AzurePHPWorkerRole roleName
 
 > [!NOTE]
-> `roleName` 是選用參數。 若省略此參數，將會自動產生角色名稱。 第一個建立的 Web 角色將是 `WebRole1`、第二個將是 `WebRole2`，依此類推。 第一個建立的背景工作角色將是 `WorkerRole1`、第二個將是 `WorkerRole2`，依此類推。
+> hello`roleName`參數是選擇性的。 如果省略，將會自動產生 hello 角色名稱。 hello 建立第一個 web 角色`WebRole1`，第二個會是 hello `WebRole2`，依此類推。 hello 建立第一個背景工作角色就會是`WorkerRole1`，第二個會是 hello `WorkerRole2`，依此類推。
 >
 >
 
-## <a name="specify-the-built-in-php-version"></a>指定內建 PHP 版本
-當您將 PHP Web 或背景工作角色新增至專案時，專案的組態檔會進行修改，使應用程式在部署時，會將 PHP 安裝在其每個 Web 或背景工作執行個體上。 若要檢視依預設所將安裝的 PHP 版本，請執行下列命令：
+## <a name="specify-hello-built-in-php-version"></a>指定 hello 內建的 PHP 版本
+當您新增 PHP web 或背景工作角色 tooa 專案時，以便在部署時，將應用程式的每個 web 或背景工作執行個體上安裝 PHP，會修改 hello 專案的組態檔。 根據預設，執行下列命令的 hello 將會安裝的 PHP toosee hello 版本：
 
     PS C:\myProject> Get-AzureServiceProjectRoleRuntime
 
-前述命令的輸出會類似於下列內容。 在此範例中，會將 PHP 5.3.17 的 `IsDefault` 旗標設為 `true`，表示這是預設安裝的 PHP 版本。
+hello 上述 hello 命令的輸出看起來類似 toowhat 如下所示。 在此範例中，hello`IsDefault`旗標設定得`true`for PHP 5.3.17，表示它將會安裝 hello 預設的 PHP 版本。
 
 ```
 Runtime Version     PackageUri                      IsDefault
@@ -74,44 +74,44 @@ PHP 5.3.17          http://nodertncu.blob.core...   True
 PHP 5.4.0           http://nodertncu.blob.core...   False
 ```
 
-您可以將 PHP 執行階段版本設為任何列出的 PHP 版本。 例如，若要將 PHP 版本 (針對名為 `roleName`的角色) 設為 5.4.0，請使用下列命令：
+您可以設定 hello PHP 執行階段版本 tooany 的 hello 所列的 PHP 版本。 例如，tooset hello PHP 版本 (hello 名稱的角色`roleName`) too5.4.0，下列命令使用 hello:
 
     PS C:\myProject> Set-AzureServiceProjectRole roleName php 5.4.0
 
 > [!NOTE]
-> 可用的 PHP 版本未來可能會變更。
+> Hello 未來可能會變更可用的 PHP 版本。
 >
 >
 
-## <a name="customize-the-built-in-php-runtime"></a>自訂內建 PHP 執行階段
-對於您在前述步驟中安裝的 PHP 執行階段，您可以完整掌控其組態，包括修改 `php.ini` 設定和啟用擴充功能。
+## <a name="customize-hello-built-in-php-runtime"></a>自訂 hello 內建的 PHP 執行階段
+已擁有 hello PHP 執行階段，當您遵循 hello 上述的步驟，包括修改安裝 hello 組態的完整控制權`php.ini`設定及啟用擴充功能。
 
-若要自訂內建 PHP 執行階段，請遵循下列步驟：
+toocustomize hello 內建的 PHP 執行階段，請遵循下列步驟：
 
-1. 將名為 `php` 的新資料夾新增至 Web 角色的 `bin` 目錄。 對於背景工作角色，請將其新增至角色的根目錄。
-2. 在`php` 資料夾中，建立另一個名為 `ext` 的資料夾。 在此資料夾中放入任何您要啟用的 `.dll` 擴充功能檔案 (例如 `php_mongo.dll`)。
-3. 將 `php.ini` 檔案新增至 `php` 資料夾。 在此檔案中啟用自訂擴充功能，並設定 PHP 指示詞。 例如，如果您要開啟 `display_errors`，並啟用 `php_mongo.dll` 擴充功能，則 `php.ini` 檔案的內容將如下所示：
+1. 加入新的資料夾，名為`php`，toohello `bin` web 角色的目錄。 背景工作角色，將它加入 toohello 角色的根目錄。
+2. 在 hello`php`資料夾中，建立名為另一個資料夾`ext`。 將它放置在`.dll`延伸模組檔案 (例如`php_mongo.dll`) 您想 tooenable 此資料夾中的。
+3. 新增`php.ini`檔案 toohello`php`資料夾。 在此檔案中啟用自訂擴充功能，並設定 PHP 指示詞。 比方說，如果您想要 tooturn`display_errors`上並啟用 hello`php_mongo.dll`擴充功能，以 hello 內容您`php.ini`檔案將會如下：
 
         display_errors=On
         extension=php_mongo.dll
 
 > [!NOTE]
-> 任何未在您提供的 `php.ini` 檔案中明確設定的設定，都將自動設為其預設值。 但請留意，您可以新增完整的 `php.ini` 檔案。
+> 您不需要明確 hello 中設定任何設定`php.ini`檔案會自動提供將它設為 tootheir 預設值。 但請留意，您可以新增完整的 `php.ini` 檔案。
 >
 >
 
 ## <a name="use-your-own-php-runtime"></a>使用您自己的 PHP 執行階段
-在某些情況下，您可能會想要提供自己的 PHP 執行階段，而不依照前述的說明選取內建 PHP 執行階段並加以設定。 例如，您可以使用與在開發環境使用的 Web 或背景工作角色中相同的 PHP 執行階段。 這可讓您更輕鬆地確保應用程式在您的生產環境中不會變更行為。
+在某些情況下，而不是選取內建的 PHP 執行階段並加以設定 （如上所述），您可能想 tooprovide 您自己的 PHP 執行階段。 例如，您可以使用相同的 PHP 執行階段，您在開發環境中使用的 web 或背景工作角色中的 hello。 這可讓您更輕鬆 tooensure hello 應用程式不會變更您的生產環境中的行為。
 
-### <a name="configure-a-web-role-to-use-your-own-php-runtime"></a>設定 Web 角色以使用您自己的 PHP 執行階段
-若要設定 Web 角色以使用您所提供的 PHP 執行階段，請遵循下列步驟：
+### <a name="configure-a-web-role-toouse-your-own-php-runtime"></a>設定 web 角色 toouse 您自己的 PHP 執行階段
+tooconfigure web 角色 toouse PHP 執行階段提供時，請遵循下列步驟：
 
 1. 如本主題先前所述，建立 Azure 服務專案並加入 PHP Web 角色。
-2. 在位於 Web 角色根目錄內的 `bin` 資料夾中建立 `php` 資料夾，然後將 PHP 執行階段 (所有的二進位檔、組態檔、子資料夾等) 新增至 `php` 資料夾。
-3. (選擇性) 如果您的 PHP 執行階段使用[適用於 PHP for SQL Server 的 Microsoft 驅動程式][sqlsrv drivers]，您就必須將 Web 角色設定為在佈建時安裝 [SQL Server Native Client 2012][sql native client]。 若要執行此動作，請將 [請將sqlncli.msi x64 安裝程式] 新增至 Web 角色根目錄的 `bin` 資料夾中。 下一個步驟中說明的啟動指令碼，將會在角色進行佈建時以無訊息方式執行安裝程式。 如果您的 PHP 執行階段並未使用適用於 PHP for SQL Server 的 Microsoft 驅動程式，您可以從下一個步驟所顯示的指令碼中移除以下一行：
+2. 建立`php`資料夾中 hello`bin`資料夾，其位於 web 角色的根目錄，並將您的 PHP 執行階段 （所有二進位檔、 組態檔、 子資料夾等） toohello`php`資料夾。
+3. （選擇性）如果您的 PHP 執行階段使用 hello [Microsoft Drivers for PHP for SQL Server][sqlsrv drivers]，您將需要 tooconfigure 您的 web 角色 tooinstall [SQL Server Native Client 2012] [sql native client]時加以佈建。 toodo，新增 hello [sqlncli.msi x64 installer] toohello `bin` web 角色的根目錄中的資料夾。 hello hello 下一個步驟中所述的啟動指令碼 hello 角色佈建時，會以無訊息模式執行 hello 安裝程式。 如果您的 PHP 執行階段不使用 hello Microsoft Drivers for PHP for SQL Server，您可以移除 hello hello 下一個步驟中所顯示的 hello 指令碼中的下列行：
 
         msiexec /i sqlncli.msi /qn IACCEPTSQLNCLILICENSETERMS=YES
-4. 定義啟動工作，設定 [Internet Information Services (IIS)][iis.net] 使用您的 PHP 執行階段來處理 `.php` 頁面的要求。 若要執行此動作，請在文字編輯器中開啟 `setup_web.cmd` 檔案 (位於 Web 角色根目錄的 `bin` 檔案中)，並使用下列指令碼來取代它的內容：
+4. 定義設定的啟動工作[網際網路資訊服務 (IIS)] [ iis.net] toouse 要求您的 PHP 執行階段 toohandle`.php`頁面。 toodo，開啟 hello`setup_web.cmd`檔案 (在 hello `bin` web 角色的根目錄的檔案) 中的文字編輯器，並取代其內容與 hello 下列指令碼：
 
     ```cmd
     @ECHO ON
@@ -130,30 +130,30 @@ PHP 5.4.0           http://nodertncu.blob.core...   False
     %WINDIR%\system32\inetsrv\appcmd.exe set config -section:system.webServer/handlers /+"[name='PHP',path='*.php',verb='GET,HEAD,POST',modules='FastCgiModule',scriptProcessor='%PHP_FULL_PATH%',resourceType='Either',requireAccess='Script']" /commit:apphost
     %WINDIR%\system32\inetsrv\appcmd.exe set config -section:system.webServer/fastCgi /"[fullPath='%PHP_FULL_PATH%'].queueLength:50000"
     ```
-5. 將應用程式檔案新增至 Web 角色的根目錄。 這會是 Web 伺服器的根目錄。
-6. 如以下的[發佈您的應用程式](#publish-your-application)一節所述，發佈您的應用程式。
+5. 新增應用程式檔案 tooyour web 角色的根目錄。 這會是 hello web 伺服器的根目錄。
+6. 將應用程式發行 hello 中所述[發行您的應用程式](#publish-your-application)下一節。
 
 > [!NOTE]
-> 在執行前述步驟 (使用您自己的 PHP 執行階段) 之後，您可以將 `download.ps1` 指令碼 (位於 Web 角色根目錄的 `bin` 資料夾中) 刪除。
+> hello`download.ps1`指令碼 (在 hello `bin` hello web 角色的根目錄資料夾) 可以執行上面所述，使用您自己的 PHP 執行階段的 hello 步驟之後刪除。
 >
 >
 
-### <a name="configure-a-worker-role-to-use-your-own-php-runtime"></a>設定背景工作角色以使用您自己的 PHP 執行階段
-若要設定背景工作角色以使用您所提供的 PHP 執行階段，請遵循下列步驟：
+### <a name="configure-a-worker-role-toouse-your-own-php-runtime"></a>設定背景工作角色 toouse 您自己的 PHP 執行階段
+tooconfigure 背景工作角色 toouse PHP 執行階段提供時，請遵循下列步驟：
 
 1. 如本主題先前所述，建立 Azure 服務專案並加入 PHP 背景工作角色。
-2. 在背景工作角色的根目錄中建立 `php` 資料夾，然後將 PHP 執行階段 (所有的二進位檔、組態檔、子資料夾等) 新增至 `php` 資料夾。
-3. (選擇性) 如果您的 PHP 執行階段使用[適用於 PHP for SQL Server 的 Microsoft 驅動程式][sqlsrv drivers]，您就必須將背景工作角色設定為在佈建時安裝 [SQL Server Native Client 2012][sql native client]。 若要執行此動作， [請將sqlncli.msi x64 安裝程式] 新增至背景工作角色的根目錄。 下一個步驟中說明的啟動指令碼，將會在角色進行佈建時以無訊息方式執行安裝程式。 如果您的 PHP 執行階段並未使用適用於 PHP for SQL Server 的 Microsoft 驅動程式，您可以從下一個步驟所顯示的指令碼中移除以下一行：
+2. 建立`php`hello 背景工作角色的根目錄中的資料夾，然後新增您的 PHP 執行階段 （所有二進位檔、 組態檔、 子資料夾等） toohello`php`資料夾。
+3. （選擇性）如果您的 PHP 執行階段使用[Microsoft Drivers for PHP for SQL Server][sqlsrv drivers]，您將需要 tooconfigure 程式背景工作角色 tooinstall [SQL Server Native Client 2012] [sql native client]時加以佈建。 toodo，新增 hello [sqlncli.msi x64 installer] toohello 背景工作角色的根目錄。 hello hello 下一個步驟中所述的啟動指令碼 hello 角色佈建時，會以無訊息模式執行 hello 安裝程式。 如果您的 PHP 執行階段不使用 hello Microsoft Drivers for PHP for SQL Server，您可以移除 hello hello 下一個步驟中所顯示的 hello 指令碼中的下列行：
 
         msiexec /i sqlncli.msi /qn IACCEPTSQLNCLILICENSETERMS=YES
-4. 定義啟動工作，在佈建角色時將您的 `php.exe` 可執行檔新增至背景工作角色的 PATH 環境變數中。 若要執行此動作，請在文字編輯器中開啟 `setup_worker.cmd` 檔案 (位於背景工作角色的根目錄中)，並使用下列指令碼來取代它的內容：
+4. 定義啟動工作加入您`php.exe`hello 角色佈建時可執行檔 toohello 背景工作角色的 PATH 環境變數。 toodo，開啟 hello`setup_worker.cmd`檔案 （位於 hello 背景工作角色的根目錄），在文字編輯器中，並且其內容取代下列指令碼的 hello:
 
     ```cmd
     @echo on
 
     cd "%~dp0"
 
-    echo Granting permissions for Network Service to the web root directory...
+    echo Granting permissions for Network Service toohello web root directory...
     icacls ..\ /grant "Network Service":(OI)(CI)W
     if %ERRORLEVEL% neq 0 goto error
     echo OK
@@ -174,36 +174,36 @@ PHP 5.4.0           http://nodertncu.blob.core...   False
     echo FAILED
     exit /b -1
     ```
-5. 將應用程式檔案新增至背景工作角色的根目錄。
-6. 如以下的[發佈您的應用程式](#publish-your-application)一節所述，發佈您的應用程式。
+5. 加入您的應用程式檔案 tooyour 背景工作角色的根目錄。
+6. 將應用程式發行 hello 中所述[發行您的應用程式](#publish-your-application)下一節。
 
-## <a name="run-your-application-in-the-compute-and-storage-emulators"></a>在計算和儲存模擬器中執行您的應用程式
-Azure 模擬器所提供的本機環境，可讓您在 Azure 應用程式部署至雲端前先加以測試。 模擬器與 Azure 環境之間有若干差異。 若要深入了解，請參閱[使用 Azure 儲存體模擬器進行開發和測試](storage/common/storage-use-emulator.md)。
+## <a name="run-your-application-in-hello-compute-and-storage-emulators"></a>在 hello 計算和儲存體模擬器執行應用程式
+hello Azure 模擬器會提供在其中您可以測試 Azure 應用程式部署 toohello 雲端之前，先在本機環境。 有一些 hello 模擬器與 hello Azure 環境之間的差異。 這更好，請參閱的 toounderstand[使用 hello Azure 儲存體模擬器進行開發和測試](storage/common/storage-use-emulator.md)。
 
-請注意，您必須在本機安裝 PHP，才能使用計算模擬器。 計算模擬器會使用您的本機 PHP 安裝執行您的應用程式。
+請注意，您必須擁有 PHP 安裝在本機 toouse hello 計算模擬器。 hello 計算模擬器會使用您本機的 PHP 安裝 toorun 您的應用程式。
 
-若要在模擬器中執行您的專案，請從專案的根目錄執行下列命令：
+toorun 專案 hello 模擬器中的執行下列命令，從您的專案根目錄 hello:
 
     PS C:\MyProject> Start-AzureEmulator
 
-您將看到類似以下的輸出：
+您會看到輸出類似 toothis:
 
     Creating local package...
     Starting Emulator...
     Role is running at http://127.0.0.1:81
     Started
 
-您可以開啟網頁瀏覽器，並瀏覽至輸出中顯示的本機位址 (在前述範例輸出中為`http://127.0.0.1:81` )，即可看見您的應用程式正在模擬器中執行。
+您可以看到您的應用程式開啟網頁瀏覽器並瀏覽 toohello hello 輸出中所示的本機位址 hello 模擬器中執行 (`http://127.0.0.1:81`在 hello 上面的範例輸出中)。
 
-若要停止模擬器，請執行下列命令：
+toostop hello 模擬器，執行此命令：
 
     PS C:\MyProject> Stop-AzureEmulator
 
 ## <a name="publish-your-application"></a>發佈您的應用程式
-若要發佈應用程式，您必須先使用 [Import-AzurePublishSettingsFile](https://msdn.microsoft.com/library/azure/dn790370.aspx) Cmdlet 匯入您的發佈設定。 使用 [Publish-AzureServiceProject](https://msdn.microsoft.com/library/azure/dn495166.aspx) Cmdlet 發佈應用程式，如下所示。 如需登入的相關資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
+toopublish 應用程式時，您需要 toofirst 匯入您發行設定使用 hello [Import-azurepublishsettingsfile](https://msdn.microsoft.com/library/azure/dn790370.aspx) cmdlet。 然後您可以發行應用程式使用 hello[發行 AzureServiceProject](https://msdn.microsoft.com/library/azure/dn495166.aspx) cmdlet。 如需登入資訊，請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ## <a name="next-steps"></a>後續步驟
-如需詳細資訊，請參閱 [PHP 開發人員中心](/develop/php/)。
+如需詳細資訊，請參閱 hello [PHP 開發人員中心](/develop/php/)。
 
 [Azure SDK for PHP]: /develop/php/common-tasks/download-php-sdk/
 [install ps and emulators]: http://go.microsoft.com/fwlink/p/?linkid=320376&clcid=0x409
@@ -212,4 +212,4 @@ Azure 模擬器所提供的本機環境，可讓您在 Azure 應用程式部署�
 [iis.net]: http://www.iis.net/
 [sql native client]: http://msdn.microsoft.com/sqlserver/aa937733.aspx
 [sqlsrv drivers]: http://php.net/sqlsrv
-[請將sqlncli.msi x64 安裝程式]: http://go.microsoft.com/fwlink/?LinkID=239648
+[sqlncli.msi x64 installer]: http://go.microsoft.com/fwlink/?LinkID=239648

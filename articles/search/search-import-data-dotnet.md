@@ -1,6 +1,6 @@
 ---
-title: "上傳資料 (.NET - Azure 搜尋服務) | Microsoft Docs"
-description: "了解如何使用 .NET SDK 將資料上傳至 Azure 搜尋服務中的索引。"
+title: "aaa 」 上傳資料 (.NET 的 Azure 搜尋) |Microsoft 文件 」"
+description: "了解如何在 Azure 搜尋中使用 tooupload 資料 tooan 索引 hello.NET SDK。"
 services: search
 documentationcenter: 
 author: brjohnstmsft
@@ -15,13 +15,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 01/13/2017
 ms.author: brjohnst
-ms.openlocfilehash: bdd952869143c6ca6374bb9264db5bcba1f32b50
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 78ddbefb522884d1f61cb275c25c091487aee639
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-data-to-azure-search-using-the-net-sdk"></a>使用 .NET SDK 將資料上傳到 Azure 搜尋服務
+# <a name="upload-data-tooazure-search-using-hello-net-sdk"></a>上傳資料 tooAzure 搜尋使用 hello.NET SDK
 > [!div class="op_single_selector"]
 > * [概觀](search-what-is-data-import.md)
 > * [.NET](search-import-data-dotnet.md)
@@ -29,47 +29,47 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-本文將說明如何使用 [Azure 搜尋服務 .NET SDK](https://aka.ms/search-sdk) 將資料匯入 Azure 搜尋服務索引。
+這篇文章將示範如何 toouse hello [Azure 搜尋.NET SDK](https://aka.ms/search-sdk) tooimport 資料到 Azure 搜尋索引。
 
-在開始閱讀本逐步解說前，請先 [建立好 Azure 搜尋服務索引](search-what-is-an-index.md)。 本文也假設您已建立 `SearchServiceClient` 物件，如 [使用 .NET SDK 建立 Azure 搜尋服務索引](search-create-index-dotnet.md#CreateSearchServiceClient)中所示。
+在開始閱讀本逐步解說前，請先 [建立好 Azure 搜尋服務索引](search-what-is-an-index.md)。 本文也假設您已經建立`SearchServiceClient`物件中所示[建立 Azure 搜尋索引，使用.NET SDK hello](search-create-index-dotnet.md#CreateSearchServiceClient)。
 
 > [!NOTE]
-> 本文中的所有範例程式碼均以 C# 撰寫。 您可以 [在 GitHub](http://aka.ms/search-dotnet-howto)找到完整的原始程式碼。 您也可以閱讀 [Azure 搜尋服務 .NET SDK](search-howto-dotnet-sdk.md)，以取得更詳細的範例程式碼逐步說明。
+> 本文中的所有範例程式碼均以 C# 撰寫。 您可以找到 hello 完整的原始程式碼[GitHub 上](http://aka.ms/search-dotnet-howto)。 您也可以閱讀 hello [Azure 搜尋.NET SDK](search-howto-dotnet-sdk.md) for 的詳細逐步 hello 範例程式碼。
 
-若要使用 .NET SDK 將文件發送到您的索引中，您必須：
+在訂單 toopush 文件至您的索引使用 hello.NET SDK，您必須：
 
-1. 建立 `SearchIndexClient` 物件以連接到您的搜尋索引。
-2. 建立 `IndexBatch`，其中包含要新增、修改或刪除的文件。
-3. 呼叫 `SearchIndexClient` 的 `Documents.Index` 方法以將 `IndexBatch` 傳送到您的搜尋索引。
+1. 建立`SearchIndexClient`物件 tooconnect tooyour 搜尋索引。
+2. 建立`IndexBatch`包含 hello 文件 toobe 新增、 修改或刪除。
+3. 呼叫 hello`Documents.Index`方法您`SearchIndexClient`toosend hello `IndexBatch` tooyour 搜尋索引。
 
-## <a name="create-an-instance-of-the-searchindexclient-class"></a>建立 SearchIndexClient 類別的執行個體
-若要使用 Azure 搜尋服務 .NET SDK 將資料匯入索引，您必須建立 `SearchIndexClient` 類別的執行個體。 您可以自己建構此執行個體，但如果您已經有 `SearchServiceClient` 執行個體可呼叫其 `Indexes.GetClient` 方法，會更為輕鬆。 例如，以下是您可從名為 `serviceClient` 的 `SearchServiceClient` 為索引 "hotels" 取得 `SearchIndexClient` 的方法：
+## <a name="create-an-instance-of-hello-searchindexclient-class"></a>建立 hello SearchIndexClient 類別的執行個體
+索引使用 tooimport 資料 hello Azure 搜尋.NET SDK，您就需要 toocreate hello 的執行個體`SearchIndexClient`類別。 您可以建構此執行個體，但它更容易如果您已經有`SearchServiceClient`執行個體 toocall 其`Indexes.GetClient`方法。 例如，以下是您想要如何取得`SearchIndexClient`hello 索引從名為 「 旅館"`SearchServiceClient`名為`serviceClient`:
 
 ```csharp
 ISearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotels");
 ```
 
 > [!NOTE]
-> 在一般搜尋應用程式中，索引的管理和填入是由搜尋查詢的個別元件所處理。 `Indexes.GetClient` 可以很輕易填入索引，因為它可以節省提供其他 `SearchCredentials` 的麻煩。 執行方法是將用於建立 `SearchServiceClient` 的系統管理金鑰傳遞至新的 `SearchIndexClient`。 但在執行查詢的應用程式中，最好直接建立 `SearchIndexClient` ，如此一來就可以傳遞查詢金鑰，而非系統管理金鑰。 這不僅符合 [最低權限原則](https://en.wikipedia.org/wiki/Principle_of_least_privilege) ，也可以讓您的應用程式更安全。 您可以在 [Azure 搜尋服務 REST API 參考](https://docs.microsoft.com/rest/api/searchservice/)找到系統管理金鑰及查詢金鑰的詳細資訊。
+> 在一般搜尋應用程式中，索引的管理和填入是由搜尋查詢的個別元件所處理。 `Indexes.GetClient`填入索引，因為它會將儲存您的方便 hello 提供另一個問題`SearchCredentials`。 其做法是傳遞 hello 管理金鑰，您使用的 toocreate hello `SearchServiceClient` toohello 新`SearchIndexClient`。 不過，在 hello 部分中執行查詢的應用程式，它是較佳的 toocreate hello`SearchIndexClient`直接，讓您可以傳入的查詢索引鍵，而不是管理金鑰。 這是與 hello 一致[最低權限原則](https://en.wikipedia.org/wiki/Principle_of_least_privilege)，都能協助您更安全的應用程式 toomake。 您可以進一步了解系統管理金鑰和查詢索引鍵中 hello [Azure 搜尋 REST API 參考](https://docs.microsoft.com/rest/api/searchservice/)。
 > 
 > 
 
-`SearchIndexClient` 具有 `Documents` 屬性。 此屬性提供您新增、修改、刪除或查詢索引中文件所需的所有方法。
+`SearchIndexClient` 具有 `Documents` 屬性。 這個屬性提供所有 hello 方法需要 tooadd、 修改、 刪除或查詢文件索引中。
 
-## <a name="decide-which-indexing-action-to-use"></a>決定要使用的索引編製動作
-若要使用 .NET SDK 匯入資料，您必須將資料封裝到 `IndexBatch` 物件中。 `IndexBatch` 會封裝 `IndexAction` 物件集合，每個物件各包含一份文件和一個屬性，後者會告知 Azure 搜尋服務要對該文件執行什麼動作 (上傳、合併、刪除等)。 依據您在以下動作中所做的選擇，每個文件內只需包含某些欄位：
+## <a name="decide-which-indexing-action-toouse"></a>決定哪個索引動作 toouse
+使用.NET SDK hello tooimport 資料，您需要 toopackage 組成資料到`IndexBatch`物件。 `IndexBatch`封裝的集合`IndexAction`物件，其中每個包含文件和屬性，會告訴 Azure 搜尋哪些動作 tooperform 文 （上傳、 合併、 刪除等等）。 取決於哪些 hello 下列您選擇的動作，只有特定欄位必須包含每個文件：
 
 | 動作 | 說明 | 每個文件的必要欄位 | 注意事項 |
 | --- | --- | --- | --- |
-| `Upload` |`Upload` 動作類似「upsert」，如果是新文件，就會插入該文件，如果文件已經存在，就會更新/取代它。 |索引鍵以及其他任何您想要定義的欄位 |在更新/取代現有文件時，要求中未指定的欄位會將其欄位設定為 `null`。 即使先前已將欄位設定為非 null 值也是一樣。 |
-| `Merge` |使用指定的欄位更新現有文件。 如果文件不存在於索引中，合併就會失敗。 |索引鍵以及其他任何您想要定義的欄位 |您在合併中指定的任何欄位將取代文件中現有的欄位。 這包括類型 `DataType.Collection(DataType.String)`的欄位。 例如，如果文件包含欄位 `tags` 且值為 `["budget"]`，而您使用值 `["economy", "pool"]` 針對 `tags` 執行合併，則 `tags` 欄位最後的值會是 `["economy", "pool"]`。 而不會是 `["budget", "economy", "pool"]`。 |
-| `MergeOrUpload` |如果含有指定索引鍵的文件已經存在於索引中，則此動作的行為會類似 `Merge`。 如果文件不存在，其行為會類似新文件的 `Upload` 。 |索引鍵以及其他任何您想要定義的欄位 |- |
-| `Delete` |從索引中移除指定的文件。 |僅索引鍵 |您指定的所有欄位 (索引鍵欄位除外) 都將被忽略。 如果您想要從文件中移除個別欄位，請改用 `Merge` ，而且只需明確地將該欄位設為 null。 |
+| `Upload` |`Upload`動作是類似 tooan"upsert"(如果它是新插入和更新/取代如果它存在 hello 文件。 |索引鍵，再加上您想 toodefine 的任何其他欄位 |當更新/取代現有的文件，hello 要求中未指定任何欄位將會有其欄位太設定`null`。 這是即使 hello 欄位先前設定 tooa 非 null 值。 |
+| `Merge` |更新現有文件以 hello 指定欄位。 Hello 文件不存在 hello 索引中，如果 hello 合併將會失敗。 |索引鍵，再加上您想 toodefine 的任何其他欄位 |您在合併中指定任何欄位將會取代 hello hello 文件中的現有欄位。 這包括類型 `DataType.Collection(DataType.String)`的欄位。 例如，如果 hello 文件包含欄位`tags`值`["budget"]`和執行的合併值`["economy", "pool"]`的`tags`，hello hello 的最終值`tags`欄位就是`["economy", "pool"]`。 而不會是 `["budget", "economy", "pool"]`。 |
+| `MergeOrUpload` |此動作的行為類似`Merge`如果 hello 索引中的文件以 hello 給定索引鍵已經存在。 如果 hello 文件不存在，它的行為類似`Upload`與新的文件。 |索引鍵，再加上您想 toodefine 的任何其他欄位 |- |
+| `Delete` |從 hello 索引中移除 hello 指定文件。 |僅索引鍵 |您指定其他非 hello 索引鍵欄位將會忽略所有的欄位。 如果您想 tooremove 個別欄位從 文件，請使用`Merge`相反地，並直接將 hello 欄位明確 toonull。 |
 
-您可以指定要搭配 `IndexBatch` 不同靜態方法及 `IndexAction` 類別使用的動作，如下一節所示。
+您可以指定要與 toouse 何種動作 hello 各種的靜態方法的 hello`IndexBatch`和`IndexAction`類別 hello 下一節中所示。
 
 ## <a name="construct-your-indexbatch"></a>建構您的 IndexBatch
-您現在已經知道可對文件執行哪些動作，並準備好建構 `IndexBatch`。 下方範例示範如何使用不同動作建立批次。 請注意，我們的範例使用稱為 `Hotel` 的自訂類別，其對應到 "hotels" 索引中的文件。
+現在您知道哪些動作 tooperform 上您的文件時，您就準備好 tooconstruct hello `IndexBatch`。 如何 hello 範例所示 toocreate 具有幾個不同的動作的批次。 請注意我們的範例會使用自訂類別，稱為`Hotel`對應 tooa hello 「 旅館"索引中的文件。
 
 ```csharp
 var actions =
@@ -112,7 +112,7 @@ var actions =
             {
                 HotelId = "3",
                 BaseRate = 129.99,
-                Description = "Close to town hall and the river"
+                Description = "Close tootown hall and hello river"
             }),
         IndexAction.Delete(new Hotel() { HotelId = "6" })
     };
@@ -120,19 +120,19 @@ var actions =
 var batch = IndexBatch.New(actions);
 ```
 
-在此案例中，我們使用了 `Upload`、`MergeOrUpload`和 `Delete` 作為搜尋動作，如同對 `IndexAction` 類別呼叫的方法所指定。
+在此情況下，我們會使用`Upload`， `MergeOrUpload`，和`Delete`我們搜尋指定的動作，hello hello 上呼叫的方法為`IndexAction`類別。
 
-假設此 "hotels" 索引範例已填入幾份文件。 請留意我們在使用 `MergeOrUpload` 時是如何不必指定所有可能的文件欄位，以及在使用 `Delete` 時如何僅指定文件索引鍵 (`HotelId`)。
+假設此 "hotels" 索引範例已填入幾份文件。 請注意如何我們沒有 toospecify hello 可能文件的所有欄位時使用`MergeOrUpload`以及我們僅指定 hello 文件索引鍵的方式 (`HotelId`) 時使用`Delete`。
 
-另請注意，每個索引編製要求中最多只能包含 1000 份文件。
+此外，請注意，您可以只包含單一索引要求中 too1000 文件。
 
 > [!NOTE]
-> 在此範例中，我們在不同文件中套用了不同動作。 如果您要在批次中所有文件執行相同動作，而不要呼叫 `IndexBatch.New`，則可以使用 `IndexBatch` 的其他靜態方法。 例如，您可以藉由呼叫 `IndexBatch.Merge`、`IndexBatch.MergeOrUpload` 或 `IndexBatch.Delete` 來建立批次。 這些方法會採用文件 (在此範例中為類型 `Hotel` 的物件) 集合，而非 `IndexAction` 物件。
+> 在此範例中，我們會套用不同的動作 toodifferent 文件。 如果您想 tooperform hello 相同動作的 hello 批次，而不是呼叫中的所有文件`IndexBatch.New`，您可以使用 hello 其他的靜態方法`IndexBatch`。 例如，您可以藉由呼叫 `IndexBatch.Merge`、`IndexBatch.MergeOrUpload` 或 `IndexBatch.Delete` 來建立批次。 這些方法會採用文件 (在此範例中為類型 `Hotel` 的物件) 集合，而非 `IndexAction` 物件。
 > 
 > 
 
-## <a name="import-data-to-the-index"></a>將資料匯入索引
-您現在已將 `IndexBatch` 物件初始化，便可在 `SearchIndexClient` 物件上呼叫 `Documents.Index`，將其傳送到索引。 下列範例示範如何呼叫 `Index`，以及您必須執行的幾個額外步驟：
+## <a name="import-data-toohello-index"></a>匯入資料 toohello 索引
+既然您已初始化`IndexBatch`物件，您可以將它傳送 toohello 索引藉由呼叫`Documents.Index`上您`SearchIndexClient`物件。 下列範例會示範如何 hello toocall `Index`，以及您需要 tooperform 一些額外步驟：
 
 ```csharp
 try
@@ -141,26 +141,26 @@ try
 }
 catch (IndexBatchException e)
 {
-    // Sometimes when your Search service is under load, indexing will fail for some of the documents in
-    // the batch. Depending on your application, you can take compensating actions like delaying and
-    // retrying. For this simple demo, we just log the failed document keys and continue.
+    // Sometimes when your Search service is under load, indexing will fail for some of hello documents in
+    // hello batch. Depending on your application, you can take compensating actions like delaying and
+    // retrying. For this simple demo, we just log hello failed document keys and continue.
     Console.WriteLine(
-        "Failed to index some of the documents: {0}",
+        "Failed tooindex some of hello documents: {0}",
         String.Join(", ", e.IndexingResults.Where(r => !r.Succeeded).Select(r => r.Key)));
 }
 
-Console.WriteLine("Waiting for documents to be indexed...\n");
+Console.WriteLine("Waiting for documents toobe indexed...\n");
 Thread.Sleep(2000);
 ```
 
-請留意對 `Index` 方法的呼叫前後的 `try`/`catch`。 Catch 區塊會處理索引編製的重大錯誤案例。 如果您的 Azure Search 服務無法將 Batch 中的一些文件編制索引，則 `Documents.Index` 會擲回 `IndexBatchException`。 如果您在服務負載過重時編制文件的索引，就會發生此情況。 **我們強烈建議您在程式碼中明確處理此情況。** 您可以延遲，然後重新嘗試將失敗的文件編制索引，或像範例一樣加以記錄並繼續，或是根據您應用程式的資料一致性需求執行其他操作。
+請注意 hello `try` / `catch`周圍 hello 呼叫 toohello`Index`方法。 hello catch 區塊處理編製索引的重要的錯誤案例。 如果您的 Azure 搜尋服務失敗的 tooindex hello 的批次中的 hello 某些文件`IndexBatchException`，所擲回`Documents.Index`。 如果您在服務負載過重時編制文件的索引，就會發生此情況。 **我們強烈建議您在程式碼中明確處理此情況。** 您可以延遲，然後重試失敗，索引 hello 文件或您可以記錄並繼續像 hello 範例會執行，或者，您可以執行根據您的應用程式資料的一致性需求的其他項目。
 
-最後，上方範例中的程式碼會延遲兩秒。 您的 Azure 搜尋服務中會發生非同步索引編製，因此範例應用程式必須稍待一會，才能確定文件已準備好可供搜尋。 通常只有在示範、測試和範例應用程式中，才需要這類延遲。
+最後，hello 範例的程式碼 hello 上面兩秒的延遲。 索引會發生以非同步方式在 Azure 搜尋服務中，所以 hello 範例應用程式需要 toowait hello 文件可供搜尋簡短時間 tooensure。 通常只有在示範、測試和範例應用程式中，才需要這類延遲。
 
 <a name="HotelClass"></a>
 
-### <a name="how-the-net-sdk-handles-documents"></a>.NET SDK 如何處理文件
-您可能想知道 Azure 搜尋服務 .NET SDK 如何能夠將使用者定義的類別執行個體 (例如 `Hotel` 上傳至索引。 若要協助回答該問題，請查看 `Hotel` 類別，其對應到 [使用 .NET SDK 建立 Azure 搜尋服務索引](search-create-index-dotnet.md#DefineIndex)中定義的索引結構描述：
+### <a name="how-hello-net-sdk-handles-documents"></a>Hello.NET SDK 的文件的處理方式
+您可能想知道 hello Azure 搜尋.NET SDK 無法 tooupload 之類的使用者定義的類別執行個體的方式`Hotel`toohello 索引。 toohelp 回答這個問題，讓我們看看 hello`Hotel`對應 toohello 索引結構描述中定義的類別[建立 Azure 搜尋索引，使用.NET SDK hello](search-create-index-dotnet.md#DefineIndex):
 
 ```csharp
 [SerializePropertyNamesAsCamelCase]
@@ -209,32 +209,32 @@ public partial class Hotel
 }
 ```
 
-首先要注意的是，每個 `Hotel` 的公用屬性會對應索引定義中的欄位，但這之中有一項關鍵的差異：每個欄位的名稱會以小寫字母 (「駝峰式命名法」) 為開頭，而每個 `Hotel` 的公用屬性名稱會以大小字母 (「巴斯卡命名法」) 為開頭。 這在執行資料繫結、而目標結構描述在應用程式開發人員控制範圍之外的 .NET 應用程式中很常見。 與其違反 .NET 命名方針，使屬性名稱為駝峰式命名法，您可以改用 `[SerializePropertyNamesAsCamelCase]` 屬性，告訴 SDK 自動將屬性名稱對應至駝峰式命名法。
+hello 首先 toonotice 在於每一個公用屬性的`Hotel`對應 tooa 欄位在 hello 索引定義中，但有一點很重要： hello 名稱的每個公開時 hello 每個欄位的名稱會以小寫字母 （「 camel 命名法的情況"），啟動屬性`Hotel`開頭的大寫字母 （「 Pascal 大小寫 」）。 這是常見的案例中執行資料繫結其中 hello 目標結構描述是控制外部 hello hello 應用程式開發人員的.NET 應用程式。 而不是讓 tooviolate hello.NET 命名指導方針進行屬性名稱依照 camel 命名法的情況下，您可以告訴 hello SDK toomap hello 屬性名稱 toocamel 案例會自動以 hello`[SerializePropertyNamesAsCamelCase]`屬性。
 
 > [!NOTE]
-> Azure 搜尋服務 .NET SDK 使用 [NewtonSoft JSON.NET](http://www.newtonsoft.com/json/help/html/Introduction.htm) 程式庫來將您的自訂模型物件序列化到 JSON 中，以及將您在 JSON 中的自訂模型物件還原序列化。 如有需要，您可以自訂這個序列化的過程。 您可以在[使用 JSON.NET 自訂序列化](search-howto-dotnet-sdk.md#JsonDotNet)中找到詳細資訊。 其中一個範例就是上方範例程式碼中在 `DescriptionFr` 屬性使用 `[JsonProperty]` 屬性的方式。
+> hello Azure 搜尋.NET SDK 會使用 hello [NewtonSoft JSON.NET](http://www.newtonsoft.com/json/help/html/Introduction.htm) tooserialize 程式庫和您自訂的模型物件 tooand，從 JSON 還原序列化。 如有需要，您可以自訂這個序列化的過程。 您可以在[使用 JSON.NET 自訂序列化](search-howto-dotnet-sdk.md#JsonDotNet)中找到詳細資訊。 一個範例是使用 hello hello`[JsonProperty]`屬性 hello`DescriptionFr`上述的 hello 範例程式碼中的屬性。
 > 
 > 
 
-第二個要注意的是，`Hotel` 類別為公用屬性的資料類型。 這些屬性的 .NET 類型會對應至索引定義中，與其相當的欄位類型。 例如，`Category` 字串屬性會對應至 `category` 欄位 (此欄位屬於 `DataType.String` 類型)。 `bool?` 與 `DataType.Boolean`、`DateTimeOffset?` 與 `DataType.DateTimeOffset` 等之間也有類似的類型對應。 類型對應的特定規則和 `Documents.Get` 方法已一起記載於 [Azure 搜尋服務 .NET SDK 參考](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.idocumentsoperations#Microsoft_Azure_Search_IDocumentsOperations_GetWithHttpMessagesAsync__1_System_String_System_Collections_Generic_IEnumerable_System_String__Microsoft_Azure_Search_Models_SearchRequestOptions_System_Collections_Generic_Dictionary_System_String_System_Collections_Generic_List_System_String___System_Threading_CancellationToken_)。
+hello 第二個重要好處 hello`Hotel`類別是 hello hello 公用屬性資料類型。 這些屬性的 hello.NET 型別對應 tootheir hello 索引定義中的對等的欄位類型。 例如，hello`Category`字串屬性會對應 toohello`category`欄位的型別`DataType.String`。 `bool?` 與 `DataType.Boolean`、`DateTimeOffset?` 與 `DataType.DateTimeOffset` 等之間也有類似的類型對應。 hello hello 型別對應的特定規則都會記錄以 hello`Documents.Get`方法在 hello [Azure 搜尋.NET SDK 參考](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.idocumentsoperations#Microsoft_Azure_Search_IDocumentsOperations_GetWithHttpMessagesAsync__1_System_String_System_Collections_Generic_IEnumerable_System_String__Microsoft_Azure_Search_Models_SearchRequestOptions_System_Collections_Generic_Dictionary_System_String_System_Collections_Generic_List_System_String___System_Threading_CancellationToken_)。
 
-將您自己的類別用作文件的功能雙向均適用；您也可以擷取搜尋結果，然後讓 SDK 將結果自動還原序列化為您選擇的類型，如 [下一篇文章](search-query-dotnet.md)所示。
+此功能 toouse 雙向; 運作自己的類別為文件您也可以擷取搜尋結果，且擁有 hello SDK 自動還原序列化這些 tooa 類型您選擇的 hello 中所示[下一篇文章](search-query-dotnet.md)。
 
 > [!NOTE]
-> Azure 搜尋服務 .NET SDK 還支援使用 `Document` 類別的動態類型文件，也就是欄位名稱與欄位值的索引鍵/值對應。 當您在設計階段卻不知道索引的結構描述時，這很實用，否則要繫結到特定模型類別會很麻煩。 SDK 中所有處理文件的方法，都有可搭配 `Document` 類別使用的多載，以及使用泛型類型參數的強類型多載。 本文的範例程式碼只使用了後者。
+> hello Azure 搜尋.NET SDK 也支援動態具類型的文件使用 hello`Document`類別，這是索引鍵/值對應的欄位名稱 toofield 值。 您不知道 hello 索引結構描述在設計階段，或者它會是很不方便 toobind toospecific 模型類別，這是非常實用。 中的所有 hello 方法 hello SDK 文件處理都具有多載，搭配 hello`Document`類別，以及接受泛型型別參數的強型別多載。 只有 hello 後者這篇文章中的 hello 範例程式碼中使用。
 > 
 > 
 
 **為什麼您應該使用 Nullable 資料類型**
 
-當您將自己的模型類別設計為可對應至 Azure 搜尋服務索引時，建議您將 `bool` 和 `int` 等的值類型屬性宣告為可為 Null (例如宣告為 `bool?`，而不是 `bool`)。 如果您使用不可為 Null 的屬性，則必須保證  索引中沒有任何文件的對應欄位包含 Null 值。 SDK 和 Azure 搜尋服務都不會協助您強制執行這項規定。
+當設計您的模型類別 toomap tooan Azure 搜尋索引，我們建議您宣告實值類型的屬性，例如`bool`和`int`toobe 可為 null (例如，`bool?`而不是`bool`)。 如果您使用非 null 的屬性，您有太**保證**沒有文件索引中的包含 hello 對應欄位的 null 值。 Hello SDK 都 hello Azure 搜尋服務可協助您 tooenforce 這。
 
-這不只是假設性的問題：如果您在類型為 `DataType.Int32` 的現有索引中新增欄位， 更新索引定義之後，所有文件對於該新的欄位具有 null 值 (因為所有類型在 Azure 搜尋服務中都可為 null)。 如果您接著對該欄位使用 `int` 屬性不可為 Null 的模型類別，就會在嘗試擷取文件時得到類似這樣的 `JsonSerializationException`：
+這不只是假設性的問題： 想像一下，讓您加入新欄位 tooan 現有索引型別的`DataType.Int32`。 在更新之後 hello 索引定義，所有文件必須針對該新欄位的 null 值 （因為所有類型都是可為 null 的 Azure 搜尋）。 若您搭配不可為 null，然後使用模型類別`int`該欄位的屬性，您會收到`JsonSerializationException`tooretrieve 文件時，就像這樣：
 
-    Error converting value {null} to type 'System.Int32'. Path 'IntValue'.
+    Error converting value {null} tootype 'System.Int32'. Path 'IntValue'.
 
 因此，我們建議您在模型類別中使用可為 Null 的類型，來做為最佳作法。
 
 ## <a name="next-steps"></a>後續步驟
-在填入 Azure 搜尋服務索引後，您就可以開始發出查詢來搜尋文件。 如需詳細資料，請參閱 [查詢 Azure 搜尋服務索引](search-query-overview.md) 。
+填入您的 Azure 搜尋索引之後, 會準備 toostart 發出查詢 toosearch 文件。 如需詳細資料，請參閱 [查詢 Azure 搜尋服務索引](search-query-overview.md) 。
 

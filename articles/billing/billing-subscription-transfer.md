@@ -1,7 +1,7 @@
 ---
-title: "將 Azure 訂用帳戶擁有權轉移給另一個帳戶 |Microsoft 文件"
-description: "描述如何將 Azure 訂用帳戶轉移給另一位使用者，以及一些關於此程序的常見問題集 (FAQ)"
-keywords: "轉移 azure 訂用帳戶,azure 轉移訂用帳戶,將 azure 訂用帳戶移到另一個帳戶,azure 變更訂用帳戶擁有者,將 azure 訂用帳戶轉移給另一個帳戶"
+title: "aaaTransfer Azure 訂用帳戶擁有權 tooanother 帳戶 |Microsoft 文件"
+description: "描述如何 tootransfer Azure 訂用帳戶 tooanother 使用者，而某些常見問題集 (FAQ) 有關 hello 程序"
+keywords: "azure 訂用帳戶，azure 轉移訂用帳戶傳輸，移動 azure 訂用帳戶 tooanother 帳戶、 azure 變更訂閱擁有者、 傳輸 azure 訂用帳戶 tooanother 帳戶"
 services: 
 documentationcenter: 
 author: genlin
@@ -17,144 +17,144 @@ ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8a856c39eb11546f35cb4e8c21e6bdcce98857a8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d2d9f5d9ccd34738701493e5f31c2f83a02f5d48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="transfer-ownership-of-an-azure-subscription-to-another-account"></a>將 Azure 訂用帳戶的擁有權轉移給另一個帳戶
+# <a name="transfer-ownership-of-an-azure-subscription-tooanother-account"></a>Azure 訂用帳戶 tooanother 帳戶的擁有權轉移
 
-您可以在帳戶中心內，將您的訂用帳戶轉送給隨用隨付、Visual Studio、行動套件或 BizSpark 訂用帳戶的使用者。 我們也支援轉送這些訂用帳戶類型的 Azure 外部服務。 
+您可以傳輸您的訂用帳戶 tooanother 使用者隨用隨付、 Visual Studio、 動作組件或 BizSpark 中針對訂閱 hello 帳戶中心。 我們支援 Azure 外部的服務，這些訂用帳戶類型的 hello 的傳輸。 
 
-在下列情況下，您可能想要轉移 Azure 訂用帳戶的擁有權：
+您可能想 tootransfer 擁有權的 Azure 訂用帳戶，當您：
 
-* 需要將 Azure 訂用帳戶的帳單擁有權交給其他人。
-* 想要變更用來註冊 Azure 的帳戶。 或許您是使用 Microsoft 帳戶，但原本是想要使用您的公司或學校帳戶。
-* 想要將您的 Azure 訂用帳戶移到另一個目錄。
-* Azure 和 Office 365 在不同的租用戶中，並想要合併。
+* 需要 toohand 的其他您 Azure 訂用帳戶 toosomeone 帳單擁有權。
+* 想要使用 Azure 進行 toosign 的 toochange hello 帳戶。 也許您會使用您的 Microsoft 帳戶，而改為為了 toouse 工作或學校帳戶。
+* 想 toomove 從一個目錄 tooanother 您 Azure 訂用帳戶。
+* 在不同的租用戶中具有 Azure 和 Office 365，而且想 tooconsolidate。
 
-若要將您的訂用帳戶變更至不同的優惠，請參閱[切換至不同的 Azure 訂用帳戶優惠](billing-how-to-switch-azure-offer.md)。 
+toochange 提供您的訂用帳戶 tooa 不同，請參閱[切換您的 Azure 訂用帳戶 tooanother 優惠](billing-how-to-switch-azure-offer.md)。 
 
 ## <a name="transfer-ownership-of-an-azure-subscription"></a>轉移 Azure 訂用帳戶的擁有權
 > [!VIDEO https://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/Transfer-an-Azure-subscription/player]
 >
 >
 
-1. 登入 <https://account.windowsazure.com/Subscriptions>。 您必須是帳戶管理員，才能執行擁有權轉送。 若要找出誰是訂用帳戶的帳戶管理員，請參閱[常見問題集](#faq)。
+1. 登入 <https://account.windowsazure.com/Subscriptions>。 您有 toobe hello 帳戶管理員 tooperform 擁有權轉移。 toofind 負責 hello 帳戶 hello 訂用帳戶管理員，請參閱 hello[常見問題集](#faq)。
 
-2. 選取要移轉的訂用帳戶。
+2. 選取 hello 訂用帳戶 tootransfer。
 
-3. 按一下 [轉移訂用帳戶]  選項。 如果您未看到此按鈕，請參閱[常見問題集](#no-button)。
+3. 按一下 hello**轉移訂用帳戶**選項。 請參閱[常見問題集](#no-button)如果您沒有看見 hello 按鈕。
 
    ![Azure 帳戶的訂用帳戶索引標籤](./media/billing-subscription-transfer/image1.png)
-4. 指定接受者。
+4. 指定 hello 收件者。
 
    ![移轉訂用帳戶對話方塊](./media/billing-subscription-transfer/image2.PNG)
-5. 接受者會自動收到含有接受連結的電子郵件。
+5. hello 收件者自動取得含有接受連結的電子郵件。
 
-   ![給接受者的訂用帳戶移轉電子郵件](./media/billing-subscription-transfer/image3.png)
-6. 接受者按一下連結並遵循指示進行，包括輸入他們的付款資訊。
+   ![訂用帳戶傳送電子郵件 toorecipient](./media/billing-subscription-transfer/image3.png)
+6. hello 收件者按一下 hello 連結，並遵循 hello 指示，包括輸入其付款資訊。
 
    ![第一個訂用帳戶移轉網頁](./media/billing-subscription-transfer/image4.png)
 
    ![第二個訂用帳戶移轉網頁](./media/billing-subscription-transfer/image5.png)
-7. 成功！ 現在已移轉訂用帳戶。
+7. 成功！ 現在傳送嗨訂用帳戶。
 
 ## <a name="transfer-subscription-ownership-for-enterprise-agreement-ea-customers"></a>轉送 Enterprise 合約 (EA) 客戶的訂用帳戶擁有權
-企業系統管理員可以轉送註冊內之訂用帳戶的擁有權。 若要開始使用，請參閱 EA 入口網站中的[轉送帳戶擁有權](https://ea.azure.com/helpdocs/changeAccountOwnerForASubscription)。
+hello 企業系統管理員可以傳輸在嘗試註冊訂閱的擁有權。 tooget 啟動，請參閱[傳輸帳戶擁有權](https://ea.azure.com/helpdocs/changeAccountOwnerForASubscription)hello EA 入口網站中。
 
 ## <a name="next-steps-after-accepting-ownership-of-a-subscription"></a>接受訂用帳戶擁有權後的後續步驟
-1. 您現在是帳戶管理員。 請檢視並更新服務管理員和共同管理員。 移至 [設定]，管理 [Azure 傳統入口網站](https://manage.windowsazure.com) 中的管理員。 [深入了解管理員角色](billing-add-change-azure-subscription-administrator.md)。
+1. 現在您已經準備 hello 帳戶系統管理員。 檢閱並更新 hello 服務系統管理員和共同管理員。 管理系統管理員 」 中 hello [Azure 傳統入口網站](https://manage.windowsazure.com)移 tooSettings。 [深入了解管理員角色](billing-add-change-azure-subscription-administrator.md)。
 
-2. 您也可以針對訂用帳戶和服務使用角色型存取控制 (RBAC)。 瀏覽 [Azure 入口網站](https://portal.azure.com)。 [深入了解 RBAC](../active-directory/role-based-access-control-configure.md)
+2. 您也可以針對訂用帳戶和服務使用角色型存取控制 (RBAC)。 請瀏覽 hello [Azure 入口網站](https://portal.azure.com)。 [深入了解 RBAC](../active-directory/role-based-access-control-configure.md)
 
 3. 更新與此訂用帳戶服務相關聯的認證，包括：
    
-   * 可將使用者管理權限授與給訂用帳戶資源的管理憑證。 如需詳細資訊，請參閱 [Create and upload a management certificate for Azure](../cloud-services/cloud-services-certs-create.md)
+   * 授與 hello 使用者系統管理員權限 toosubscription 資源的管理憑證。 如需詳細資訊，請參閱 [Create and upload a management certificate for Azure](../cloud-services/cloud-services-certs-create.md)
    
    * 服務 (例如儲存體) 的存取金鑰。 如需詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)
    
    * 服務 (例如 Azure 虛擬機器) 的遠端存取認證。 
 
-4. 若要[更新此訂用帳戶的計費警示](https://account.windowsazure.com/Subscriptions)，請至 [Azure 帳戶中心](billing-set-up-alerts.md)。 
+4. [更新此訂用帳戶的計費警示](billing-set-up-alerts.md)在 hello [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。 
 
-5. 如果您正與合作夥伴協力作業，請考慮更新此訂用帳戶的合作夥伴 ID。 您可以在 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)更新合作夥伴識別碼。
+5. 如果您使用與合作夥伴，請考慮更新此訂用帳戶的 hello 合作夥伴 ID。 您可以更新在 hello hello 合作夥伴 ID [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。
 
 <a id="faq"></a>
 
 ## <a name="frequently-asked-questions-faq"></a>常見問題集 (FAQ)
-* <a name="whoisaa"></a>**訂用帳戶的帳戶管理員是誰？**
+* <a name="whoisaa"></a>**Hello hello 訂用帳戶的帳戶管理員是誰？**
 
-  帳戶管理員就是註冊或購買 Azure 訂用帳戶的人員。 他們已獲得授權存取[帳戶中心](https://account.windowsazure.com/Home/Index)並可執行各種管理工作，像是建立訂用帳戶、取消訂用帳戶、變更訂用帳戶的計費方式，或變更服務管理員。 如果您不確定誰是訂用帳戶的帳戶管理員，請使用下列步驟來找出帳戶管理員。
+  hello 帳戶系統管理員是 hello 人員註冊或購買 hello Azure 訂用帳戶。 它們是授權的 tooaccess hello[帳戶中心](https://account.windowsazure.com/Home/Index)以及執行各種管理工作，例如建立訂閱、 取消訂用帳戶、 變更 hello 計費訂用帳戶，或變更 hello 服務系統管理員。 如果您不確定 hello 帳戶系統管理員是訂用帳戶，使用下列步驟 toofind 出 hello。
 
-  1. 登入 [Azure 入口網站](https://portal.azure.com)。
-  2. 在 [中樞] 功能表中，選取 [訂用帳戶] 。
-  3. 選取您想要檢查的訂用帳戶，然後查看 [設定]。
-  4. 選取 [屬性] 。 該訂用帳戶的帳戶管理員會顯示在 [帳戶管理員]  方塊中。  
+  1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+  2. 在 hello 中樞功能表中，選取 **訂用帳戶**。
+  3. 選取您想 toocheck，，然後再查看底下的 hello 訂用帳戶**設定**。
+  4. 選取 [屬性] 。 hello hello 訂用帳戶的帳戶管理員會顯示在 hello**帳戶管理員**方塊。  
 
 * **所有項目都會轉送嗎？包括資源群組、VM、磁碟和其他執行中的服務？**
 
-  是，VM、磁碟和網站等所有資源都會轉移給新的擁有者。 不過，不會跨不同目錄轉送您所設定的任何[系統管理員角色](billing-add-change-azure-subscription-administrator.md)和[角色型存取控制 (RBAC)](../active-directory/role-based-access-control-configure.md) 原則。
+  是，您的資源像是磁碟的 Vm 和網站傳送 toohello 新擁有者。 不過，不會跨不同目錄轉送您所設定的任何[系統管理員角色](billing-add-change-azure-subscription-administrator.md)和[角色型存取控制 (RBAC)](../active-directory/role-based-access-control-configure.md) 原則。
 
-* <a id="no-button"></a>為何沒看到 [轉送訂用帳戶] 按鈕？
+* <a id="no-button"></a>**為什麼無法查看 hello 轉移訂用帳戶 按鈕？**
 
-  如果您沒看到 [轉送訂用帳戶] 按鈕，則表示您的優惠不支援訂用帳戶轉送。 [連絡客戶支援](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
+  如果您沒有看見 hello**轉移訂用帳戶**按鈕，則不支援您的優惠訂用帳戶轉移。 [連絡客戶支援](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
 * **訂用帳戶移轉會造成服務中斷嗎？**
 
-  不會影響服務。 轉送訂用帳戶會在目前帳戶管理員之下取消訂用帳戶，並在接受者的帳戶之下建立訂用帳戶。 新的訂用帳戶與基礎 Azure 服務相關聯。 訂用帳戶 ID 維持不變。
+  沒有影響 toohello 服務。 傳送嗨訂用帳戶取消 hello hello 目前帳戶系統管理員的訂用帳戶，並建立 hello 收件者的帳戶下的訂用帳戶。 相關聯的 toohello 基礎的 Azure 服務 hello 新的訂用帳戶。 會維持為訂用帳戶識別碼 hello hello 相同。
 
-* **如何使用此程序來變更訂用帳戶的目錄？**
+* **如何使用這個程序 toochange hello 目錄訂用帳戶中？**
 
-  Azure 訂用帳戶建立在帳戶管理員所屬的目錄中。 若要變更目錄，請將訂用帳戶轉移到目標目錄中的使用者帳戶。 當使用者完成步驟接受轉移時，訂用帳戶就會自動移至目標目錄。
+  帳戶系統管理員屬於該 hello 時，是 hello 目錄中建立 Azure 訂用帳戶。 toochange hello 目錄中，傳送嗨訂用帳戶 tooa 使用者帳戶 hello 目標目錄中。 該使用者完成 hello 步驟 tooaccept 傳輸，hello 訂用帳戶時，會自動移動的 toohello 目標目錄。
 
-* **如果我接管另一個組織的訂用帳戶帳單擁有權，他們可以繼續存取我的資源嗎？**
+* **如果我接管來自另一個組織的訂用帳戶的帳單擁有權時，繼續 toohave 存取 toomy 資源它們嗎？**
 
-  如果訂用帳戶轉移到另一個租用戶，與先前的租用戶相關聯的使用者會失去訂用帳戶的存取權。 即使使用者不再是服務管理員或共同管理員，他們仍可能透過其他安全性機制來存取訂用帳戶，包括：
+  如果 hello 訂用帳戶轉移的 tooanother 租用戶，hello 與 hello 先前的租用戶相關聯的使用者失去存取 toohello 訂用帳戶。 即使使用者不是服務管理員或共同管理員，它們仍然可能透過其他安全性機制，包括存取 toohello 訂用帳戶：
 
-  * 可將使用者管理權限授與給訂用帳戶資源的管理憑證。 如需詳細資訊，請參閱[建立和上傳 Azure 的管理憑證](../cloud-services/cloud-services-certs-create.md)。
+  * 授與 hello 使用者系統管理員權限 toosubscription 資源的管理憑證。 如需詳細資訊，請參閱[建立和上傳 Azure 的管理憑證](../cloud-services/cloud-services-certs-create.md)。
   * 服務 (例如儲存體) 的存取金鑰。 如需詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)。
   * 服務 (例如 Azure 虛擬機器) 的遠端存取認證。
 
- 如果接受者需要限制對其資源的存取權，則應考慮更新所有與服務相關聯的密碼。 您可以使用下列步驟來更新大部分的資源：
+ 如果 hello 收件者需要 toorestrict 存取 tootheir 資源，它們應該考慮更新任何與 hello 服務相關聯的密碼。 最多資源可以使用下列步驟的 hello 更新：
 
-    1. 移至 [Azure 入口網站](https://portal.azure.com)。
-    2. 在 [中樞] 功能表中，選取 [所有資源]。
-    3. 選取資源。 
-    4. 在資源刀鋒視窗中，按一下 [設定] 。 您可以在這裡檢視並更新現有的密碼。
+    1. 移 toohello [Azure 入口網站](https://portal.azure.com)。
+    2. 在 hello 中樞功能表中，選取 **所有資源**。
+    3. 選取 hello 資源。 
+    4. 在 hello 資源刀鋒視窗中，按一下 **設定**。 您可以在這裡檢視並更新現有的密碼。
 
-* **如果我在計費週期中途移轉訂用帳戶，接受者需要支付整個計費週期嗎？**
+* **如果我 hello 訂用帳戶傳輸 hello 中間的 hello 帳單週期，並 hello 收件者支付 hello 整個計費循環嗎？**
 
-  傳送者負責支付移轉完成當時所報告的任何使用量。 接受者負責支付移傳以後所報告的使用量。 可能有某些使用量是在移轉之前發生，但在之後才報告。 使用量會包含在接受者的帳單中。
+  hello 寄件者會負責 toohello 點 hello 傳送已完成上回報了任何使用方式的付款。 hello 收件者會負責從傳輸及更新版本的 hello 時間報告的使用方式。 可能有某些使用量是在移轉之前發生，但在之後才報告。 hello 使用隨附於 hello 收件者的帳單。
 
-* **接受者可存取使用量及帳單記錄嗎？**
+* **Hello 收件者是否有存取 toousage 和帳單記錄？**
 
-  接受者可用的資訊只有最新帳單的金額，而如果訂用帳戶是在產生第一份帳單之前移轉，則可使用目前餘額。 其餘的使用量及帳單記錄不會隨著訂用帳戶一起移轉。
+  hello 唯一資訊可用 toohello 收件者 hello 數量 hello 最後一個帳單或如果產生 hello 第一個帳單之前，已傳送 hello 訂用帳戶 hello 餘額。 hello 的 hello 使用量及帳單記錄的其餘部分將不會傳送 hello 訂用帳戶中執行。
 
-* **移轉期間可以變更優惠嗎？**
+* **可在傳輸期間變更 hello 優惠嗎？**
 
-  優惠必須維持不變。 若要變更優惠，請參閱[切換至不同的 Azure 訂用帳戶優惠](billing-how-to-switch-azure-offer.md)。
+  hello 供應項目必須保持 hello 相同。 toochange 您提供服務，請參閱[切換您的 Azure 訂用帳戶 tooanother 優惠](billing-how-to-switch-azure-offer.md)。
 
-* **我可以將訂用帳戶轉移給另一個國家/地區的使用者帳戶嗎？**
+* **可以傳輸在另一個國家/地區的訂用帳戶 tooa 使用者帳戶？**
 
-  否，不支援將訂用帳戶轉移給另一個國家/地區的使用者帳戶。 接受者的使用者帳戶必須在相同的國家/地區。
+  否，不支援傳送另一個國家/地區的訂用帳戶 tooa 使用者帳戶。 hello 收件者的使用者帳戶必須是在 hello 相同國家/地區。
 
-* **接受者可以使用不同的付款方法嗎？**
+* **Hello 收件者可以使用不同的付款方式嗎？**
 
-  是。 但訂用帳戶帳單記錄會拆成兩個帳戶。  
+  是。 但 hello 訂閱計費記錄分成兩個帳戶。  
 
-* **Azure 訂用帳戶轉移後，付款方法會受到影響嗎？**
+* **Hello 付款方法被影響之後傳輸 Azure 訂用帳戶？**
 
-  若要接受訂用帳戶轉移，必須提供信用卡或類似的訂用帳戶付款方法。 例如，如果 Bob 將訂用帳戶轉移給 Jane，而 Jane 接受轉移，則 Jane 必須提供用來支付訂用帳戶的付款方法。 完成轉移之後，就會向 Jane 收取訂用帳戶的費用，而不是向 Bob 收取。
+  tooaccept 訂用帳戶轉移、 信用卡或類似的付款方式必須提供 toopay hello 訂用帳戶。 例如，如果 Bob 將轉移訂用帳戶 tooJane Jane 接受 hello 傳輸，Jane 必須提供付款方法 toopay hello 訂用帳戶。 Hello 轉移完成之後，會將 Jane 計費 hello 訂用帳戶不 Bob。
 
-* **如何將我的 Azure 訂用帳戶資料與服務移轉至新的訂用帳戶？**
+* **如何移轉資料和我 Azure 訂用帳戶 toonew 訂用帳戶的服務？**
 
-  如果您無法轉移訂用帳戶的擁有權，則可手動移轉您的資源。 請參閱[將資源移動到新的資源群組或訂用帳戶](../azure-resource-manager/resource-group-move-resources.md)。
+  如果您無法轉移訂用帳戶的擁有權，則可手動移轉您的資源。 請參閱[移動資源 toonew 資源群組或訂用帳戶](../azure-resource-manager/resource-group-move-resources.md)。
 
 
 
 ## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。
-如果仍需要協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。 
+如果您仍需要協助，[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)tooget 快速解決您的問題。 
 
 

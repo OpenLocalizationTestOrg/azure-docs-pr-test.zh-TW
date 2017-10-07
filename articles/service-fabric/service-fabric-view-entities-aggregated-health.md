@@ -1,6 +1,6 @@
 ---
-title: "如何檢視 Azure Service Fabric 實體的彙總健康情況 | Microsoft Docs"
-description: "說明如何透過健康情況查詢和一般查詢，來查詢、檢視和評估 Azure Service Fabric 實體的彙總健康情況。"
+title: "aaaHow tooview Azure Service Fabric 實體的彙總健全狀況 |Microsoft 文件"
+description: "描述如何 tooquery，檢視，並評估 Azure Service Fabric 實體的彙總健全狀況，透過健全狀況查詢和一般的查詢。"
 services: service-fabric
 documentationcenter: .net
 author: oanapl
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: oanapl
-ms.openlocfilehash: b97972b1bdc28a17fb9c3a0e997738f5bd0b5d15
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: add810551cac26d2b4ff81b57d94ddd780c2cc2f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-service-fabric-health-reports"></a>檢視 Service Fabric 健康狀態報告
-Azure Service Fabric 導入了由健康情況實體組成的[健康情況模型](service-fabric-health-introduction.md)，系統元件和看門狗可以在其上回報所監視的本機情況。 [健康情況存放區](service-fabric-health-introduction.md#health-store) 會彙總所有健康情況資料，以判斷實體是否狀況良好。
+Azure Service Fabric 導入了由健康情況實體組成的[健康情況模型](service-fabric-health-introduction.md)，系統元件和看門狗可以在其上回報所監視的本機情況。 hello[健全狀況存放區](service-fabric-health-introduction.md#health-store)彙總所有健全狀況資料 toodetermine 實體是否狀況良好。
 
-叢集會自動填入系統元件所傳送的健康情況報告。 請參閱 [使用系統健康狀態報告進行疑難排解](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)。
+hello 叢集會自動填入傳送嗨系統元件的健康情況報告。 深入了解在[使用系統健康情況報告 tootroubleshoot](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)。
 
-Service Fabric 會提供多種方式，以取得實體的彙總健康情況：
+Service Fabric 提供多個方式 tooget hello 彙總健全狀況的 hello 實體：
 
 * [Service Fabric 總管](service-fabric-visualizing-your-cluster.md) 或其他視覺效果工具
 * 健康情況查詢 (透過 PowerShell、API 或 REST)
-* 一般查詢會傳回一份實體清單，這些實體的其中一個屬性即為健康情況 (透過 PowerShell、API 或 REST)
+* 一般查詢傳回一份含健全狀況作為其中 hello 內容 （透過 PowerShell、 API 或 REST） 的實體
 
-為了示範這些選項，我們會使用具有五個節點和 [fabric:/WordCount 應用程式](http://aka.ms/servicefabric-wordcountapp) 的本機叢集。 **fabric:/WordCount** 應用程式包含兩項預設服務︰`WordCountServiceType` 類型的具狀態服務，以及 `WordCountWebServiceType` 類型的無狀態服務。 我變更了 `ApplicationManifest.xml`，以要求具狀態服務的七個目標複本和一個磁碟分割。 因為叢集中只有五個節點，所以系統元件會回報服務磁碟分割的警告，因為它低於目標計數。
+這些選項，讓我們 toodemonstrate 本機叢集使用五個節點和 hello [fabric: / WordCount 應用程式](http://aka.ms/servicefabric-wordcountapp)。 hello **fabric: / WordCount**應用程式包含兩個預設的服務，可設定狀態之型別的服務`WordCountServiceType`，與無狀態服務型別的`WordCountWebServiceType`。 我變更 hello `ApplicationManifest.xml` toorequire 七 hello 可設定狀態的服務和一個資料分割的目標複本。 因為 hello 叢集中只有五個節點，hello 系統元件會報告警告 hello 服務磁碟分割上，所以下列 hello 目標的計數。
 
 ```xml
 <Service Name="WordCountService">
@@ -48,17 +48,17 @@ Service Fabric 會提供多種方式，以取得實體的彙總健康情況：
 ```
 
 ## <a name="health-in-service-fabric-explorer"></a>Service Fabric 總管中的健康情況
-Service Fabric 總管提供叢集的視覺化檢視。 在下圖中，您可以看到：
+Service Fabric 總管提供 hello 叢集的視覺化檢視。 在下面的 hello 影像，您可以看到：
 
-* 應用程式 **fabric:/WordCount** 是紅色 (錯誤)，因為它具有 **MyWatchdog** 針對屬性 **Availability** 所回報的錯誤事件。
-* 應用程式的其中一個服務 **fabric:/WordCount/WordCountService** 是黃色 (警告)。 服務已設有七個複本，但叢集只有五個節點，所以有兩個複本無法安置。 雖然這裡沒有顯示，但因為來自 `System.FM` 的系統報告顯示 `Partition is below target replica or instance count`，所以服務磁碟分割為黃色。 黃色分割區觸發了黃色服務。
-* 因為應用程式是紅色，所以叢集為紅色。
+* hello 應用程式**fabric: / WordCount**是紅色 （在錯誤），因為它所報告的錯誤事件**MyWatchdog** hello 屬性**可用性**。
+* 應用程式的其中一個服務 **fabric:/WordCount/WordCountService** 是黃色 (警告)。 hello 服務已設定有七個複本，且 hello 叢集有五個節點，讓兩個 repicas 不放。 雖然它不會顯示以下，hello 服務資料分割是黃色由於系統報告`System.FM`說`Partition is below target replica or instance count`。 hello 黃色的資料分割的觸發程序 hello 黃色的服務。
+* hello 叢集是紅色的因為 hello 紅色應用程式。
 
-評估使用叢集資訊清單和應用程式資訊清單的預設原則。 它們是嚴格的原則，不容許任何失敗。
+hello 評估使用從 hello 叢集資訊清單和應用程式資訊清單的預設原則。 它們是嚴格的原則，不容許任何失敗。
 
-使用 Service Fabric 總管檢視叢集：
+Service Fabric 總管 hello 叢集的檢視：
 
-![使用 Service Fabric 總管檢視叢集。][1]
+![Service Fabric 總管 hello 叢集的檢視。][1]
 
 [1]: ./media/service-fabric-view-entities-aggregated-health/servicefabric-explorer-cluster-health.png
 
@@ -69,47 +69,47 @@ Service Fabric 總管提供叢集的視覺化檢視。 在下圖中，您可以�
 >
 
 ## <a name="health-queries"></a>健康情況查詢
-Service Fabric 會針對每種支援的 [實體類型](service-fabric-health-introduction.md#health-entities-and-hierarchy)公開健康情況查詢。 您可透過 API (在 [FabricClient.HealthManager](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthmanager?view=azure-dotnet) 上使用方法)、PowerShell Cmdlet 和 REST 來存取查詢。 這些查詢會傳回實體的完整健康情況資訊：彙總健康情況、實體健康事件、子系健康情況 (如果適用)、狀況不佳評估 (當實體狀況不佳時)，以及子系健康情況統計資料 (如果適用)。
+服務網狀架構會公開為每個支援的 hello 的健康狀態查詢[實體類型](service-fabric-health-introduction.md#health-entities-and-hierarchy)。 可以透過 hello 上使用方法的 API 來存取[FabricClient.HealthManager](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthmanager?view=azure-dotnet)，PowerShell cmdlet 和 REST。 這些查詢會傳回有關 hello 實體的完整健全狀況資訊： hello 彙總健全狀況狀態、 實體健全狀況事件、 子健全狀況狀態 （如果適用的話）、 健康情況不良的評估 （當 hello 實體並非狀況良好） 和子系的健全狀況統計資料 （當適用）。
 
 > [!NOTE]
-> 當健康狀態存放區中完全填滿一個健全狀況實體時，將會傳回此健全狀況實體。 實體必須是作用中 (未刪除)，並且具有系統報告。 階層鏈結上其父實體也必須有系統報告。 如果無法達成上述任何條件，健康情況查詢會傳回具有 [FabricErrorCode](https://docs.microsoft.com/dotnet/api/system.fabric.fabricerrorcode) `FabricHealthEntityNotFound` 的 [FabricException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception)，以顯示為何不傳回實體。
+> 健康實體會傳回完整擴展 hello health store 中時。 hello 實體必須是作用中 （不會刪除），並具有系統報告。 其父代上的實體 hello 階層鏈結也必須有系統的報表。 Hello 健全狀況不符合上述任何情況，如果查詢傳回[FabricException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception)與[FabricErrorCode](https://docs.microsoft.com/dotnet/api/system.fabric.fabricerrorcode) `FabricHealthEntityNotFound` ，它會顯示 hello 實體不會傳回原因。
 >
 >
 
-健康情況查詢需要傳入實體識別碼，識別碼會視實體類型而定。 查詢會接受選擇性的健康情況原則參數。 如果未指定健康狀態原則，則會使用叢集或應用程式資訊清單的 [健康狀態原則](service-fabric-health-introduction.md#health-policies) 進行評估。 如果資訊清單不包含的健康狀態原則的定義，則預設健康情況原則會用於評估。 預設健康情況原則不容許任何失敗。 查詢也接受只傳回部分事件或子事件的篩選，這些事件與所指定的篩選相符。 另一個篩選條件允許排除子系統計資料。
+hello 健康狀態查詢數目必須傳入 hello 實體識別碼 hello 實體類型而定。 hello 查詢接受選用的健全狀況原則參數。 如果未不指定任何健全狀況原則，hello[健全狀況原則](service-fabric-health-introduction.md#health-policies)hello 叢集或應用程式資訊清單用來進行評估。 如果 hello 資訊清單不包含的健全狀況原則定義，hello 預設健全狀況原則可用來評估。 hello 預設健全狀況原則不能容許的任何失敗。 hello 查詢也接受篩選條件傳回只有部分的子系或事件-hello 的尊重 hello 指定的篩選。 另一個篩選器允許排除 hello 子系統計資料。
 
 > [!NOTE]
-> 輸出篩選會套用在伺服器端，所以訊息回覆的大小會減少。 建議使用輸出篩選來限制傳回的資料，而不是在用戶端上套用篩選。
+> 因此 hello 訊息回覆縮小 hello 伺服器端，會套用 hello 輸出篩選器。 我們建議您使用 hello 輸出篩選器 toolimit hello 資料傳回，而非 hello 用戶端上套用篩選。
 >
 >
 
 實體的健康狀態包含︰
 
-* 實體的彙總健康情況狀態。 健康狀態資料存放區根據實體健康狀態報告、子健全狀況狀態 (如果適用) 和健康狀態原則所判斷的結果。 深入了解 [實體健康情況評估](service-fabric-health-introduction.md#health-evaluation)。  
-* 實體上的健康情況事件。
-* 針對可以有子系的實體，提供所有子系的健康情況狀態集合。 健康情況狀態包含實體識別碼和彙總健康情況狀態。 若要取得子系的完整健康情況，請傳入子系識別碼，呼叫子實體類型的查詢健康情況。
-* 如果實體的狀況不佳，則健康情況不佳的評估會指向觸發實體狀態的報告。 評估是遞迴式的，其中包含觸發目前健康情況的子系健康情況評估。 例如，看門狗回報了複本錯誤。 應用程式健康情況會顯示狀況不良服務所致的狀況不良評估；服務因為磁碟分割發生錯誤而處於健康情況不良狀態；磁碟分割因為複本發生錯誤而處於健康情況不良狀態；複本因為看門狗錯誤健康情況報告而處於健康情況不良狀態。
-* 具有子系之實體的所有子系類型的健康情況統計資料。 例如，叢集健康情況可顯示叢集中的應用程式、服務、磁碟分割、複本，以及已部署實體總數。 服務健康情況會顯示指定的服務之下的磁碟分割和複本總數。
+* hello hello 實體彙總健全狀況狀態。 實體健全狀況報表、 子系的健全狀況狀態 （如果適用的話），以及健康原則為基礎的 hello 健全狀況存放區，藉以計算。 深入了解 [實體健康情況評估](service-fabric-health-introduction.md#health-evaluation)。  
+* hello hello 實體上的健全狀況事件。
+* hello 集合的所有子系可以有子系的 hello 實體的健全狀況狀態。 包含實體識別碼及其 hello 彙總健全狀況狀態的 hello 健全狀態。 為子系，tooget 完整健全狀況為 hello 子實體型別呼叫 hello 查詢健全狀況，並傳入 hello 子系識別碼。
+* 如果 hello 實體並非狀況良好，hello 狀況不良的評估，該點 toohello 報告，會觸發 hello hello 實體狀態。 hello 評估是遞迴式的其中包含觸發目前的健全狀況狀態的 hello 子系健康情況評估。 例如，看門狗回報了複本錯誤。 hello 應用程式健全狀況顯示狀況不良評估 tooan 狀況不良服務; 到期hello 服務是由於 tooa 錯誤; 中的資料分割的狀況不良hello 資料分割會處於狀況不良，因為發生錯誤; tooa 複本hello 複本為狀況不良到期 toohello 監視錯誤健全狀況報表。
+* hello 的所有子系類型有子系的 hello 實體的健全狀況統計資料。 例如，叢集健全狀況顯示 hello 總數應用程式、 服務、 資料分割和複本，並部署 hello 叢集中的實體。 服務健全狀況顯示 hello 總數資料分割和複本 hello 底下指定的服務。
 
 ## <a name="get-cluster-health"></a>取得叢集健康情況
-傳回叢集實體的健全狀況，並且包含應用程式和節點 (叢集的子系) 的健全狀況狀態。 輸入：
+會傳回 hello hello 叢集中實體的健全狀況，並包含 hello 健全狀況狀態的應用程式和節點 （hello 叢集的子系）。 輸入：
 
-* [選擇性] 用來評估節點和叢集事件的叢集健康狀態原則。
-* [選擇性] 應用程式健康情況原則對應，加上用來覆寫應用程式資訊清單原則的健康情況原則。
-* [選擇性] 事件、節點和應用程式的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件、節點及應用程式都會用來評估實體彙總健全狀況，不論篩選器為何。
-* [選用] 用於排除健康情況統計資料的篩選條件。
-* [選用] 用於在健康情況統計資料中包含 fabric:/系統健康情況統計資料的篩選條件。 僅適用於未排除健康情況統計資料時。 根據預設，健康情況統計資料只包含使用者應用程式的統計資料，而不包含系統應用程式的統計資料。
+* [選用] hello 叢集健全狀況原則會使用 tooevaluate hello 節點和 hello 叢集事件。
+* [選用] hello 應用程式健全狀況原則對應 hello 健康原則使用 toooverride hello 應用程式資訊清單的原則。
+* [選用]事件、 節點及指定感興趣的項目，且傳回 hello 結果 （例如，只，錯誤或警告和錯誤） 中的應用程式的篩選條件。 所有的事件、 節點和應用程式會使用的 tooevaluate hello 實體彙總健全狀況，不論 hello 篩選器。
+* [選用]篩選 tooexclude 健全狀況統計資料。
+* [選用]篩選 tooinclude fabric: / 系統健全狀況統計資料中的 hello 健全狀況統計資料。 僅適用於未排除 hello 健全狀況統計資料。 根據預設，hello 健全狀況統計資料會包含使用者應用程式和不 hello 系統應用程式的統計資料。
 
 ### <a name="api"></a>API
-若要取得叢集健康情況，請建立 `FabricClient` ，並在其 [HealthManager](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthasync) 上呼叫 **GetClusterHealthAsync**方法。
+tooget 叢集健全狀況，請建立`FabricClient`和呼叫 hello [GetClusterHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthasync)方法上的其**HealthManager**。
 
-下列呼叫會取得叢集健全狀況︰
+hello 下列呼叫會取得 hello 叢集健全狀況：
 
 ```csharp
 ClusterHealth clusterHealth = await fabricClient.HealthManager.GetClusterHealthAsync();
 ```
 
-以下程式碼使用自訂的叢集健全狀況原則和針對節點與應用程式的篩選，取得叢集健全狀況。 其指定健康情況統計資料包含 fabric:/系統統計資料。 這會建立包含輸入資訊的 [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthquerydescription)。
+hello 下列程式碼使用自訂的叢集健全狀況原則取得 hello 叢集健全狀況和篩選的節點和應用程式。 它會指定 hello 健全狀況統計資料包括 hello fabric: / 系統的統計資料。 它會建立[ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthquerydescription)，其中包含 hello 輸入的資訊。
 
 ```csharp
 var policy = new ClusterHealthPolicy()
@@ -141,11 +141,11 @@ ClusterHealth clusterHealth = await fabricClient.HealthManager.GetClusterHealthA
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得叢集健康情況的 Cmdlet 是 [Get-ServiceFabricClusterHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealth)。 首先會使用 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) Cmdlet 連接到叢集。
+hello cmdlet tooget hello 叢集健全狀況是[Get ServiceFabricClusterHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealth)。 首先，使用 hello 連線 toohello 叢集[Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet。
 
-叢集的狀態是五個節點、系統應用程式和依所述設定的 fabric:/WordCount。
+hello hello 叢集狀態已有五個節點、 hello 系統應用程式，且 fabric: / WordCount 設定中所述。
 
-以下 Cmdlet 會使用預設的健康情況原則，取得叢集健康情況。 彙總健康情況為警告，因為 fabric:/WordCount 應用程式處於警告狀態。 請注意健康情況不佳的評估，會如何提供觸發彙總健康情況的條件的詳細資料。
+hello 下列指令程式會使用預設的健全狀況原則，以取得叢集健全狀況。 hello 彙總健全狀況狀態為警告，因為 hello fabric: / WordCount 應用程式處於警告。 請注意 hello 狀況不良的評估 hello 條件觸發 hello 彙總健全狀況所提供的詳細資料。
 
 ```xml
 PS D:\ServiceFabric> Get-ServiceFabricClusterHealth
@@ -202,7 +202,7 @@ HealthStatistics        :
                           Application           : 0 Ok, 1 Warning, 0 Error
 ```
 
-以下 Powershell Cmdlet 會使用自訂的應用程式原則，取得叢集的健康情況。 它會篩選結果，只取得發生錯誤或警告的應用程式和節點。 因此不會傳回任何節點，因為全部都狀況良好。 只有 fabric:/WordCount 應用程式符合應用程式篩選。 由於自訂原則針對 fabric:/WordCount 應用程式，指定將警告視為錯誤，因此應用程式以及叢集，均被評估為錯誤。
+hello 下列 PowerShell cmdlet 會取得 hello hello 叢集健全狀況所使用的自訂應用程式原則。 它會篩選結果 tooget 只有應用程式和錯誤或警告中的節點。 因此不會傳回任何節點，因為全部都狀況良好。 只有 hello fabric: / WordCount 應用程式會尊重 hello 應用程式篩選器。 因為 hello 自訂原則會指定 tooconsider 警告 hello 網狀架構的錯誤為: / WordCount 應用程式，hello 應用程式會評估為錯誤，並且是 hello 叢集。
 
 ```powershell
 PS D:\ServiceFabric> $appHealthPolicy = New-Object -TypeName System.Fabric.Health.ApplicationHealthPolicy
@@ -239,25 +239,25 @@ HealthEvents            : None
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得叢集健全狀況。
+您可以取得叢集健全狀況與[GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster)或[POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-by-using-a-health-policy)包含 hello 本文中所述的健全狀況原則。
 
 ## <a name="get-node-health"></a>取得節點的健康情況
-傳回節點實體的健全狀況，並且包含節點上報告的健康狀態事件。 輸入：
+會傳回 hello 節點實體的健全狀況，並包含報告 hello 節點上的 hello 健康狀態事件。 輸入：
 
-* [必要] 可識別節點的節點名稱。
-* [選擇性] 用來評估健康情況的叢集健康情況原則設定。
-* [選擇性] 事件的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件都會用來評估實體彙總健全狀況，不論篩選器為何。
+* [必要] hello 節點識別 hello 節點的名稱。
+* [選用] hello 叢集健全狀況原則設定會用 tooevaluate 健全狀況。
+* [選用]指定感興趣的項目，且傳回 hello 結果 （例如，只，錯誤或警告和錯誤） 中的事件篩選條件。 所有事件都都使用的 tooevaluate hello 實體彙總健全狀況，不論 hello 篩選器。
 
 ### <a name="api"></a>API
-若要透過 API 取得節點健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetNodeHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getnodehealthasync) 方法。
+tooget 節點健全狀況 hello API，透過建立`FabricClient`和呼叫 hello [GetNodeHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getnodehealthasync)其 HealthManager 上的方法。
 
-以下程式碼會取得指定節點名稱的節點健全狀況：
+hello 下列程式碼會取得 hello hello 指定的節點名稱的節點健全狀況：
 
 ```csharp
 NodeHealth nodeHealth = await fabricClient.HealthManager.GetNodeHealthAsync(nodeName);
 ```
 
-以下程式碼會透過 [NodeHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.nodehealthquerydescription)傳入事件篩選和自訂原則，取得指定節點名稱的節點健全狀況：
+hello 下列程式碼會取得 hello 節點健全狀況 hello 事件篩選器和自訂原則中指定節點名稱，以及傳遞[NodeHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.nodehealthquerydescription):
 
 ```csharp
 var queryDescription = new NodeHealthQueryDescription(nodeName)
@@ -270,8 +270,8 @@ NodeHealth nodeHealth = await fabricClient.HealthManager.GetNodeHealthAsync(quer
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得節點健全狀況的 Cmdlet 是 [Get-ServiceFabricNodeHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricnodehealth)。 首先會使用 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) Cmdlet 連接到叢集。
-以下 Cmdlet 會使用預設的健康情況原則，取得節點健康情況：
+hello cmdlet tooget hello 節點健全狀況是[Get ServiceFabricNodeHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricnodehealth)。 首先，使用 hello 連線 toohello 叢集[Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet。
+hello 下列指令程式會使用預設的健全狀況原則取得 hello 節點健全狀況：
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricNodeHealth _Node_1
@@ -293,7 +293,7 @@ HealthEvents          :
                         Transitions           : Error->Ok = 7/13/2017 4:40:47 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
-以下 Cmdlet 會取得叢集中所有節點的健康情況：
+hello 下列 cmdlet 會取得所有節點的 hello 健全狀況 hello 叢集中：
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricNode | Get-ServiceFabricNodeHealth | select NodeName, AggregatedHealthState | ft -AutoSize
@@ -308,26 +308,26 @@ _Node_0                     Ok
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得節點健全狀況。
+您可以取得節點健全狀況與[GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node)或[POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node-by-using-a-health-policy)包含 hello 本文中所述的健全狀況原則。
 
 ## <a name="get-application-health"></a>取得應用程式健康情況
-傳回應用程式實體的健康情況。 包含已部署應用程式和服務子系的健康情況狀態。 輸入：
+傳回 hello 應用程式的實體健全的狀況。 它包含 hello hello 部署應用程式和服務的子節點的健全狀況狀態。 輸入：
 
-* [必要] 可識別應用程式的應用程式名稱 (URI)。
-* [選擇性] 用來覆寫應用程式資訊清單原則的應用程式健康情況原則。
-* [選擇性] 事件、服務和已部署應用程式的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件、服務及已部署應用程式都會用來評估實體彙總健全狀況，不論篩選器為何。
-* [選用] 用於排除健康情況統計資料的篩選條件。 如果未指定，健康情況統計資料包含所有應用程式子系的 OK、警告和錯誤計數：服務、磁碟分割、複本、已部署的應用程式及已部署的服務套件。
+* [必要] hello 應用程式名稱 (URI) 可識別 hello 應用程式。
+* [選用] hello 應用程式健全狀況原則會使用 toooverride hello 應用程式資訊清單的原則。
+* [選用]篩選事件、 服務和已部署的應用程式所指定的項目感興趣，且在 hello 結果 （例如，只，錯誤或警告和錯誤） 傳回。 所有的事件、 服務和已部署應用程式會使用的 tooevaluate hello 實體彙總健全狀況，不論 hello 篩選器。
+* [選用]篩選 tooexclude hello 健全狀況統計資料。 如果未指定，hello 健全狀況統計資料包括 hello 確定、 警告和錯誤的應用程式的所有子系計數： 服務資料分割，複本部署的應用程式，及部署服務套件。
 
 ### <a name="api"></a>API
-若要取得應用程式健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getapplicationhealthasync) 方法。
+tooget 應用程式健全狀況，建立`FabricClient`和呼叫 hello [GetApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getapplicationhealthasync)其 HealthManager 上的方法。
 
-以下程式碼會取得指定應用程式名稱 (URI) 的應用程式健全狀況：
+hello 下列程式碼會取得 hello hello 指定應用程式名稱 (URI) 的應用程式健全狀況：
 
 ```csharp
 ApplicationHealth applicationHealth = await fabricClient.HealthManager.GetApplicationHealthAsync(applicationName);
 ```
 
-以下程式碼會透過 [ApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.applicationhealthquerydescription)指定篩選和自訂原則，取得指定應用程式名稱 (URI) 的應用程式健全狀況。
+hello 下列程式碼取得 hello hello 指定應用程式名稱 (URI) 的應用程式健全狀況與篩選器，並透過指定的自訂原則[ApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.applicationhealthquerydescription)。
 
 ```csharp
 HealthStateFilter warningAndErrors = HealthStateFilter.Error | HealthStateFilter.Warning;
@@ -356,9 +356,9 @@ ApplicationHealth applicationHealth = await fabricClient.HealthManager.GetApplic
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得應用程式健全狀況的 Cmdlet 是 [Get-ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps)。 首先會使用 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) Cmdlet 連接到叢集。
+hello cmdlet tooget hello 應用程式健全狀況是[Get ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps)。 首先，使用 hello 連線 toohello 叢集[Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet。
 
-以下 Cmdlet 會傳回 **fabric:/WordCount** 應用程式的健全狀況：
+hello 下列 cmdlet 會傳回 hello 健全狀況的 hello **fabric: / WordCount**應用程式：
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplicationHealth fabric:/WordCount
@@ -426,7 +426,7 @@ HealthStatistics                :
                                   DeployedApplication   : 5 Ok, 0 Warning, 0 Error
 ```
 
-以下 PowerShell Cmdlet 會傳入自訂原則。 它也會篩選子系和事件。
+下列 PowerShell 指令程式將自訂原則中的 hello。 它也會篩選子系和事件。
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplicationHealth -ApplicationName fabric:/WordCount -ConsiderWarningAsError $true -ServicesFilter Error -EventsFilter Error -DeployedApplicationsFilter Error -ExcludeHealthStatistics
@@ -454,26 +454,26 @@ HealthEvents                    : None
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application-by-using-an-application-health-policy) (含有其本文中所述的健康狀態原則) 取得應用程式健全狀況。
+您可以取得與應用程式健全狀況[GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application)或[POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application-by-using-an-application-health-policy)包含 hello 本文中所述的健全狀況原則。
 
 ## <a name="get-service-health"></a>取得服務健康情況
-傳回服務實體的健康情況。 包含分割區的健康情況狀態。 輸入：
+傳回 hello 健全狀況服務實體。 它包含 hello 資料分割健全狀況狀態。 輸入：
 
-* [必要] 可識別服務的服務名稱 (URI)。
-* [選擇性] 用來覆寫應用程式資訊清單原則的應用程式健康情況原則。
-* [選擇性] 事件和分割區的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件和分割區都會用來評估實體彙總健全狀況，不論篩選器為何。
-* [選用] 用於排除健康情況統計資料的篩選條件。 如果未指定，健康情況統計資料會顯示服務的所有磁碟分割和複本之 OK、警告和錯誤計數。
+* [必要] hello 服務名稱 (URI)，識別 hello 服務。
+* [選用] hello 應用程式健全狀況原則會使用 toooverride hello 應用程式資訊清單的原則。
+* [選用]事件和指定感興趣的項目，且傳回 hello 結果 （例如，只，錯誤或警告和錯誤） 中的資料分割的篩選條件。 所有事件和資料分割都是使用的 tooevaluate hello 實體彙總健全狀況，不論 hello 篩選器。
+* [選用]篩選 tooexclude 健全狀況統計資料。 如果未指定，確定 hello 健全狀況統計資料顯示 hello、 警告和錯誤的所有資料分割和複本 hello 服務的計數。
 
 ### <a name="api"></a>API
-若要透過 API 取得服務健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetServiceHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getservicehealthasync) 方法。
+tooget 服務健全狀況 hello API，透過建立`FabricClient`和呼叫 hello [GetServiceHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getservicehealthasync)其 HealthManager 上的方法。
 
-以下範例會使用指定的服務名稱 (URI)，取得服務的健康情況：
+hello 下列範例會取得具有指定的服務名稱 (URI) 的服務的 hello 健全狀況：
 
 ```charp
 ServiceHealth serviceHealth = await fabricClient.HealthManager.GetServiceHealthAsync(serviceName);
 ```
 
-以下程式碼會透過 [ServiceHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.servicehealthquerydescription)指定篩選和自訂原則，取得指定服務名稱 (URI) 的服務健全狀況：
+hello 下列程式碼會取得 hello 服務健全狀況 hello 指定的服務名稱 (URI)，指定篩選器和自訂原則透過[ServiceHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.servicehealthquerydescription):
 
 ```csharp
 var queryDescription = new ServiceHealthQueryDescription(serviceName)
@@ -486,9 +486,9 @@ ServiceHealth serviceHealth = await fabricClient.HealthManager.GetServiceHealthA
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得服務健全狀況的 Cmdlet 是 [Get-ServiceFabricServiceHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricservicehealth)。 首先會使用 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) Cmdlet 連接到叢集。
+hello cmdlet tooget hello 服務健全狀況是[Get ServiceFabricServiceHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricservicehealth)。 首先，使用 hello 連線 toohello 叢集[Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet。
 
-以下 Cmdlet 會使用預設的健康情況原則，取得服務健康情況：
+hello 下列指令程式會使用預設的健全狀況原則取得 hello 服務健全狀況：
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricServiceHealth -ServiceName fabric:/WordCount/WordCountService
@@ -526,27 +526,27 @@ HealthStatistics      :
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得服務健全狀況。
+您可以取得服務健全狀況與[GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service)或[POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-by-using-a-health-policy)包含 hello 本文中所述的健全狀況原則。
 
 ## <a name="get-partition-health"></a>取得分割區健康情況
-傳回分割區實體的健康情況。 包含複本的健康情況狀態。 輸入：
+傳回的資料分割實體的 hello 健全狀況。 它包含 hello 複本健全狀況狀態。 輸入：
 
-* [必要] 可識別分割區的分割識別碼 (GUID)。
-* [選擇性] 用來覆寫應用程式資訊清單原則的應用程式健康情況原則。
-* [選擇性] 事件和複本的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件和複本都會用來評估實體彙總健全狀況，不論篩選器為何。
-* [選用] 用於排除健康情況統計資料的篩選條件。 如果未指定，健康情況統計資料會顯示處於 OK、警告和錯誤狀態的複本數目。
+* [必要] hello 資料分割識別碼 (GUID)，識別 hello 資料分割。
+* [選用] hello 應用程式健全狀況原則會使用 toooverride hello 應用程式資訊清單的原則。
+* [選用]篩選條件的事件及指定感興趣的項目，且傳回 hello 結果 （例如，只，錯誤或警告和錯誤） 中的複本。 所有的事件和複本都是使用的 tooevaluate hello 實體彙總健全狀況，不論 hello 篩選器。
+* [選用]篩選 tooexclude 健全狀況統計資料。 如果未指定，hello 健全狀況統計資料會顯示幾個複本處於 [確定]、 警告和錯誤狀態。
 
 ### <a name="api"></a>API
-若要透過 API 取得分割區健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetPartitionHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getpartitionhealthasync) 方法。 若要指定選擇性參數，請建立 [PartitionHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.partitionhealthquerydescription)。
+tooget 資料分割的健全狀況 hello API，透過建立`FabricClient`和呼叫 hello [GetPartitionHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getpartitionhealthasync)其 HealthManager 上的方法。 toospecify 選擇性參數，建立[PartitionHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.partitionhealthquerydescription)。
 
 ```csharp
 PartitionHealth partitionHealth = await fabricClient.HealthManager.GetPartitionHealthAsync(partitionId);
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得分割區健全狀況的 Cmdlet 是 [Get-ServiceFabricPartitionHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricpartitionhealth)。 首先會使用 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) Cmdlet 連接到叢集。
+hello cmdlet tooget hello 資料分割健全狀況是[Get ServiceFabricPartitionHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricpartitionhealth)。 首先，使用 hello 連線 toohello 叢集[Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet。
 
-以下 Cmdlet 會取得 **fabric:/WordCount/WordCountService** 服務之所有磁碟分割的健康情況，並篩選掉複本健康情況：
+hello 下列 cmdlet 會取得所有資料分割的 hello hello 健全狀況**fabric: / WordCount/WordCountService**服務也已經篩選掉複本健全狀況狀態：
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricPartition fabric:/WordCount/WordCountService | Get-ServiceFabricPartitionHealth -ReplicasFilter None
@@ -585,8 +585,8 @@ HealthEvents          :
                         SentAt                : 7/13/2017 6:35:17 PM
                         ReceivedAt            : 7/13/2017 6:35:18 PM
                         TTL                   : 00:01:05
-                        Description           : The Load Balancer was unable to find a placement for one or more of the Service's Replicas:
-                        Secondary replica could not be placed due to the following constraints and properties:  
+                        Description           : hello Load Balancer was unable toofind a placement for one or more of hello Service's Replicas:
+                        Secondary replica could not be placed due toohello following constraints and properties:  
                         TargetReplicaSetSize: 7
                         Placement Constraint: N/A
                         Parent Service: N/A
@@ -618,26 +618,26 @@ HealthStatistics      :
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得分割區健全狀況。
+您可以取得與資料分割健全狀況[GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition)或[POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition-by-using-a-health-policy)包含 hello 本文中所述的健全狀況原則。
 
 ## <a name="get-replica-health"></a>取得複本健康情況
-傳回可設定具狀態服務複本或無狀態服務執行個體的健康狀態。 輸入：
+傳回 hello 的可設定狀態的服務複本或無狀態服務執行個體的健全狀況。 輸入：
 
-* [必要] 可識別複本的分割區識別碼 (GUID) 和複本識別碼。
-* [選擇性] 用來覆寫應用程式資訊清單原則的應用程式健康情況原則參數。
-* [選擇性] 事件的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件都會用來評估實體彙總健全狀況，不論篩選器為何。
+* [必要] hello 資料分割識別碼 (GUID) 和複本識別碼，可識別 hello 複本。
+* [選用] hello 應用程式健全狀況原則的參數使用 toooverride hello 應用程式資訊清單的原則。
+* [選用]指定感興趣的項目，且傳回 hello 結果 （例如，只，錯誤或警告和錯誤） 中的事件篩選條件。 所有事件都都使用的 tooevaluate hello 實體彙總健全狀況，不論 hello 篩選器。
 
 ### <a name="api"></a>API
-若要透過 API 取得複本健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetReplicaHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getreplicahealthasync) 方法。 若要指定進階參數，請使用 [ReplicaHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.replicahealthquerydescription)。
+tooget hello 複本健全狀況 hello API，透過建立`FabricClient`和呼叫 hello [GetReplicaHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getreplicahealthasync)其 HealthManager 上的方法。 進階參數，使用 toospecify [ReplicaHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.replicahealthquerydescription)。
 
 ```csharp
 ReplicaHealth replicaHealth = await fabricClient.HealthManager.GetReplicaHealthAsync(partitionId, replicaId);
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得複本健全狀況的 Cmdlet 是 [Get-ServiceFabricReplicaHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricreplicahealth)。 首先會使用 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) Cmdlet 連接到叢集。
+hello cmdlet tooget hello 複本健全狀況是[Get ServiceFabricReplicaHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricreplicahealth)。 首先，使用 hello 連線 toohello 叢集[Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet。
 
-以下 Cmdlet 會針對服務的所有分割區取得主要複本健康情況：
+hello 下列 cmdlet 會取得 hello hello hello 服務的所有資料分割的主要複本的健全狀況：
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricPartition fabric:/WordCount/WordCountService | Get-ServiceFabricReplica | where {$_.ReplicaRole -eq "Primary"} | Get-ServiceFabricReplicaHealth
@@ -661,18 +661,18 @@ HealthEvents          :
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得複本健全狀況。
+您可以取得複本健全狀況與[GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica)或[POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica-by-using-a-health-policy)包含 hello 本文中所述的健全狀況原則。
 
 ## <a name="get-deployed-application-health"></a>取得已部署應用程式的健康情況
-傳回部署在節點實體上的應用程式健康情況。 包含已部署的服務封裝健康情況狀態。 輸入：
+傳回 hello 部署在實體節點上的應用程式的健全狀況。 它包含部署的 hello 服務封裝健全狀況狀態。 輸入：
 
-* [必要] 可識別已部署應用程式的應用程式名稱 (URI) 和節點名稱 (字串)。
-* [選擇性] 用來覆寫應用程式資訊清單原則的應用程式健康情況原則。
-* [選擇性] 事件和已部署服務封裝的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件和已部署服務封裝都會用來評估實體彙總健全狀況，不論篩選器為何。
-* [選用] 用於排除健康情況統計資料的篩選條件。 如果未指定，健康情況統計資料會顯示處於 OK、警告和錯誤健康狀態的已部署服務套件數目。
+* [必要] hello 應用程式名稱 (URI) 和節點名稱 （字串），識別 hello 部署應用程式。
+* [選用] hello 應用程式健全狀況原則會使用 toooverride hello 應用程式資訊清單的原則。
+* [選用]事件和指定感興趣的項目，且傳回 hello 結果 （例如，只，錯誤或警告和錯誤） 中的已部署的服務封裝的篩選條件。 所有事件和部署的服務封裝都是使用的 tooevaluate hello 實體彙總健全狀況，不論 hello 篩選器。
+* [選用]篩選 tooexclude 健全狀況統計資料。 如果未指定，hello 健全狀況統計資料會顯示 [確定]、 警告和錯誤健全狀況狀態的已部署的服務套件 hello 數目。
 
 ### <a name="api"></a>API
-若要透過 API 取得部署在節點上之應用程式的健全狀況，請建立 `FabricClient` 並在其 HealthManager 上呼叫 [GetDeployedApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedapplicationhealthasync) 方法。 若要指定選擇性參數，請使用 [DeployedApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedapplicationhealthquerydescription)。
+tooget hello 健全狀況的 hello API，透過在節點上部署的應用程式建立`FabricClient`和呼叫 hello [GetDeployedApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedapplicationhealthasync)其 HealthManager 上的方法。 toospecify 選擇性參數，請使用[DeployedApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedapplicationhealthquerydescription)。
 
 ```csharp
 DeployedApplicationHealth health = await fabricClient.HealthManager.GetDeployedApplicationHealthAsync(
@@ -680,9 +680,9 @@ DeployedApplicationHealth health = await fabricClient.HealthManager.GetDeployedA
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得已部署應用程式健全狀況的 Cmdlet 是 [Get-ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps)。 首先會使用 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) Cmdlet 連接到叢集。 若要找出應用程式的部署位置，請執行 [Get-ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps) ，並查看部署的應用程式子系。
+hello cmdlet tooget hello 部署應用程式健全狀況是[Get ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps)。 首先，使用 hello 連線 toohello 叢集[Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet。 toofind 出應用程式的部署位置執行[Get ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps)並查看 hello 部署應用程式的子系。
 
-以下 Cmdlet 會取得部署在 **_Node_2** 節點上的 **fabric:/WordCount** 應用程式健康情況。
+hello 下列 cmdlet 會取得 hello 健全狀況的 hello **fabric: / WordCount**上部署的應用程式**_Node_2**。
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricDeployedApplicationHealth -ApplicationName fabric:/WordCount -NodeName _Node_0
@@ -710,7 +710,7 @@ HealthEvents                       :
                                      SentAt                : 7/13/2017 5:57:06 PM
                                      ReceivedAt            : 7/13/2017 5:57:17 PM
                                      TTL                   : Infinite
-                                     Description           : The application was activated successfully.
+                                     Description           : hello application was activated successfully.
                                      RemoveWhenExpired     : False
                                      IsExpired             : False
                                      Transitions           : Error->Ok = 7/13/2017 5:57:17 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -720,17 +720,17 @@ HealthStatistics                   :
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得已部署應用程式健全狀況。
+您可以取得部署的應用程式健全狀況[GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application)或[POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application-by-using-a-health-policy)包含 hello 本文中所述的健全狀況原則。
 
 ## <a name="get-deployed-service-package-health"></a>取得已部署服務封裝的健康情況
-傳回已部署服務封裝實體的健康情況。 輸入：
+傳回 hello 已部署的服務套件實體健全的狀況。 輸入：
 
-* [必要] 可識別已部署服務封裝的應用程式名稱 (URI)、節點名稱 (字串) 及服務資訊清單名稱 (字串)。
-* [選擇性] 用來覆寫應用程式資訊清單原則的應用程式健康情況原則。
-* [選擇性] 事件的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件都會用來評估實體彙總健全狀況，不論篩選器為何。
+* [必要] hello 應用程式名稱 (URI)、 節點名稱 （字串） 和服務資訊清單的名稱 （字串），識別 hello 部署服務封裝。
+* [選用] hello 應用程式健全狀況原則會使用 toooverride hello 應用程式資訊清單的原則。
+* [選用]指定感興趣的項目，且傳回 hello 結果 （例如，只，錯誤或警告和錯誤） 中的事件篩選條件。 所有事件都都使用的 tooevaluate hello 實體彙總健全狀況，不論 hello 篩選器。
 
 ### <a name="api"></a>API
-若要透過 API 取得已部署服務套件的健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetDeployedServicePackageHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedservicepackagehealthasync) 方法。 若要指定選擇性參數，請使用 [DeployedServicePackageHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedservicepackagehealthquerydescription)。
+tooget hello hello API，透過已部署的服務封裝健全狀況建立`FabricClient`和呼叫 hello [GetDeployedServicePackageHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedservicepackagehealthasync)其 HealthManager 上的方法。 toospecify 選擇性參數，請使用[DeployedServicePackageHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedservicepackagehealthquerydescription)。
 
 ```csharp
 DeployedServicePackageHealth health = await fabricClient.HealthManager.GetDeployedServicePackageHealthAsync(
@@ -738,9 +738,9 @@ DeployedServicePackageHealth health = await fabricClient.HealthManager.GetDeploy
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得已部署服務套件健全狀況的 Cmdlet 是 [Get-ServiceFabricDeployedServicePackageHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicepackagehealth)。 首先會使用 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) Cmdlet 連接到叢集。 若要查看應用程式的部署位置，請執行 [Get-ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps) ，並查看部署的應用程式。 若要查看應用程式中的服務封裝件為何，請檢視 [Get-ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps) 輸出中已部署服務封裝的子系。
+hello cmdlet tooget hello 部署服務封裝健全狀況是[Get ServiceFabricDeployedServicePackageHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicepackagehealth)。 首先，使用 hello 連線 toohello 叢集[Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet。 執行應用程式部署所在的 toosee [Get ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps)並查看部署的 hello 應用程式。 服務封裝中的應用程式，查看在 hello toosee 部署服務封裝的子系在 hello [Get ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps)輸出。
 
-以下 Cmdlet 會取得部署在 **_Node_2** 節點上 **fabric:/WordCount** 應用程式的 **WordCountServicePkg** 服務套件健全狀況。 此實體的 **System.Hosting** 報告具有成功的服務封裝和進入點啟用，以及成功的服務類型註冊。
+hello 下列 cmdlet 會取得 hello 健全狀況的 hello **WordCountServicePkg**服務封裝的 hello **fabric: / WordCount**上部署的應用程式**_Node_2**。 hello 實體具有**System.Hosting**成功的服務封裝和項目點啟動，並註冊成功的服務類型的報表。
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricDeployedApplication -ApplicationName fabric:/WordCount -NodeName _Node_2 | Get-ServiceFabricDeployedServicePackageHealth -ServiceManifestName WordCountServicePkg
@@ -759,7 +759,7 @@ HealthEvents               :
                              SentAt                : 7/13/2017 5:57:06 PM
                              ReceivedAt            : 7/13/2017 5:57:18 PM
                              TTL                   : Infinite
-                             Description           : The ServicePackage was activated successfully.
+                             Description           : hello ServicePackage was activated successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/13/2017 5:57:18 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -771,7 +771,7 @@ HealthEvents               :
                              SentAt                : 7/13/2017 5:57:06 PM
                              ReceivedAt            : 7/13/2017 5:57:18 PM
                              TTL                   : Infinite
-                             Description           : The CodePackage was activated successfully.
+                             Description           : hello CodePackage was activated successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/13/2017 5:57:18 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -783,51 +783,51 @@ HealthEvents               :
                              SentAt                : 7/13/2017 5:57:07 PM
                              ReceivedAt            : 7/13/2017 5:57:18 PM
                              TTL                   : Infinite
-                             Description           : The ServiceType was registered successfully.
+                             Description           : hello ServiceType was registered successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/13/2017 5:57:18 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得已部署服務封裝的健全狀況。
+您可以取得已部署的服務封裝健全狀況與[GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package)或[POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package-by-using-a-health-policy)包含 hello 本文中所述的健全狀況原則。
 
 ## <a name="health-chunk-queries"></a>健全狀況區塊查詢
-健全狀況區塊查詢可以傳回每個輸入篩選器的多層級叢集子系 (以遞迴方式)。 它支援的進階篩選條件允許在選擇要傳回的子系時有很大的彈性。 篩選條件可以依照唯一識別碼或依照其他群組識別碼和/或健康情況來指定子系。 根據預設，沒有子系包含在內，不同於永遠包含第一個層級子系的健全狀況命令。
+hello 健全狀況區塊的查詢可以傳回多層級的叢集子系 （遞迴），每個輸入篩選器。 它支援進階的篩選器可讓很大的彈性選擇 hello 子系 toobe 傳回。 hello 篩選條件可以指定子系，hello 唯一識別碼或其他群組識別碼和/或健全狀況狀態。 根據預設，沒有子系是包含在內，但不要的 toohealth 命令永遠包含第一層子系。
 
-[健全狀況查詢](service-fabric-view-entities-aggregated-health.md#health-queries) 只會傳回每個必要篩選器之指定實體的第一個層級子系。 若要取得子系的子系，您必須呼叫每個相關實體的其他健全狀況 API。 同樣地，若要取得特定實體的健全狀況，您必須呼叫每個所需實體的一個健全狀況 API。 區塊查詢進階篩選可讓您在一個查詢中要求多個相關項目，將訊息大小和訊息數目降至最低。
+hello[健康狀態查詢](service-fabric-view-entities-aggregated-health.md#health-queries)傳回的只是第一層子系的 hello 指定每個必要的篩選條件的實體。 tooget hello 子系的 hello 子系，您必須呼叫其他健全狀況 Api 針對每個感興趣的實體。 同樣地，tooget hello 健全狀況的特定實體，您必須呼叫一個健全狀況 API 所需的每個實體。 hello 區塊查詢進階篩選可讓您 toorequest hello 訊息大小和 hello 訊息數目降到最低的一個查詢中感興趣的多個項目。
 
-區塊查詢的值是您可以在一個呼叫中取得多個叢集實體 (可能是在必要的根開始的所有叢集實體) 的健康狀態。 您可以如下表示複雜的健全狀況查詢︰
+hello 值 hello 區塊查詢的是，您可以在單一呼叫中的多個叢集實體 （潛在所有叢集實體開始必要的根） 取得健全狀況狀態。 您可以如下表示複雜的健全狀況查詢︰
 
 * 只傳回發生錯誤的應用程式，以及針對這些應用程式，包含所有發生警告或錯誤的服務。 針對傳回的服務，包含所有分割。
-* 只傳回 4 個應用程式的健康情況，由其名稱指定。
-* 只傳回所需應用程式類型的應用程式健全狀況。
-* 傳回單一節點上所有已部署的實體。 傳回所有應用程式，單一指定節點上所有已部署的應用程式，與該節點上所有已部署的服務封裝。
+* 傳回只有四個應用程式，其名稱所指定的 hello 健全狀況。
+* 傳回只 hello 健全狀況所需的應用程式類型的應用程式。
+* 傳回單一節點上所有已部署的實體。 傳回所有的應用程式、 hello 指定節點上已部署的所有應用程式和所有部署的 hello 服務封裝，該節點上。
 * 傳回所有發生錯誤的複本。 傳回所有應用程式、服務、磁碟分割，以及只傳回發生錯誤的複本。
 * 傳回所有應用程式。 針對指定的服務，包含所有分割。
 
-目前的健全狀況區塊查詢僅對叢集實體公開。 它會傳回叢集健全狀況區塊，其中包含︰
+目前，hello 健全狀況區塊查詢公開只 for hello 叢集實體。 它會傳回叢集健全狀況區塊，其中包含︰
 
-* 叢集彙總健全狀況狀態。
-* 採用輸入篩選器的節點健康狀態區塊清單。
-* 採用輸入篩選器的應用程式健康狀態區塊清單。 每個應用程式健康狀態區塊都包含下列兩個區塊清單，具備所有採用輸入篩選器之服務的區塊清單，以及具備所有採用篩選器之部署應用程式的區塊清單。 對於服務和已部署應用程式的子系亦然。 如此一來，叢集中的所有實體都有可能在要求時以階層的形式傳回。
+* hello 叢集彙總健全狀況狀態。
+* hello 健全狀況狀態區塊的節點清單尊重輸入篩選器。
+* hello 健全狀況狀態的區塊清單尊重輸入篩選器的應用程式。 每個應用程式健全狀況狀態區塊尊重輸入篩選器和尊重 hello 篩選條件的所有已部署應用程式區塊清單的所有服務都包含區塊清單。 相同的 hello 的服務和已部署的應用程式的子系。 如此一來，hello 叢集中的所有實體可能會都傳回要求，以階層方式。
 
 ### <a name="cluster-health-chunk-query"></a>叢集健全狀況區塊查詢
-傳回叢集實體的健全狀況，並包含必要子系的階層健康狀態區塊。 輸入：
+會傳回 hello hello 叢集中實體的健全狀況，並包含必要的子系的 hello 階層的健全狀況狀態的區塊。 輸入：
 
-* [選擇性] 用來評估節點和叢集事件的叢集健康狀態原則。
-* [選擇性] 應用程式健康情況原則對應，加上用來覆寫應用程式資訊清單原則的健康情況原則。
-* [選擇性] 節點和應用程式的篩選器，指定對那些項目感到興趣，並且應該在結果中傳回。 篩選器專屬於實體的實體/群組，或適用於該層級的所有實體。 篩選器清單可包含一個一般篩選器及/或由查詢傳回之細微實體的特定識別碼篩選器。 如果子系是空的，依預設不會傳回子系。
-  如需深入了解篩選器，請參閱 [NodeHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.nodehealthstatefilter) 和 [ApplicationHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthstatefilter)。 應用程式篩選器可以遞迴方式指定進階的篩選器給子系。
+* [選用] hello 叢集健全狀況原則會使用 tooevaluate hello 節點和 hello 叢集事件。
+* [選用] hello 應用程式健全狀況原則對應 hello 健康原則使用 toooverride hello 應用程式資訊清單的原則。
+* [選用]節點和指定感興趣的項目，且傳回 hello 結果中的應用程式的篩選條件。 hello 篩選特定 tooan 實體/群組的實體或適用 tooall 該層級的實體。 hello 篩選器清單可以包含一個一般篩選器和/或特定的識別項 toofine 資料粒度實體 hello 查詢所傳回的篩選。 如果是空的預設不會傳回 hello 子系。
+  深入了解在 hello 篩選[NodeHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.nodehealthstatefilter)和[ApplicationHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthstatefilter)。 hello 應用程式篩選器可遞迴指定進階的篩選器的子系。
 
-區塊結果包含採用篩選器的子系。
+hello 區塊結果包含尊重 hello 篩選的 hello 子系。
 
-區塊查詢目前不會傳回狀況不良的評估或實體事件。 該額外資訊可使用現有的叢集健全狀況查詢取得。
+目前，hello 區塊查詢不會傳回處於狀況不良的評估或實體的事件。 可以使用現有叢集健全狀況查詢 hello 取得額外資訊。
 
 ### <a name="api"></a>API
-若要取得叢集健康區塊，請建立 `FabricClient` ，並在其 [HealthManager](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthchunkasync) 上呼叫 **GetClusterHealthChunkAsync**方法。 您可以傳入 [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthchunkquerydescription) 來描述健全狀況原則和進階篩選器。
+tooget 叢集健全狀況區塊中，建立`FabricClient`和呼叫 hello [GetClusterHealthChunkAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthchunkasync)方法上的其**HealthManager**。 您可以傳入[ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthchunkquerydescription) toodescribe 健全狀況原則和進階篩選器。
 
-下列程式碼使用進階篩選器取得叢集健全狀況區塊。
+hello 下列程式碼取得叢集健全狀況區塊與進階篩選器。
 
 ```csharp
 var queryDescription = new ClusterHealthChunkQueryDescription();
@@ -857,7 +857,7 @@ var wordCountServiceFilter = new ServiceHealthStateFilter()
 };
 wordCountServiceFilter.PartitionFilters.Add(wordCountServicePartitionFilter);
 
-// Application filter: for specific application, return no services except the ones of interest
+// Application filter: for specific application, return no services except hello ones of interest
 var wordCountApplicationFilter = new ApplicationHealthStateFilter()
     {
         // Always return fabric:/WordCount application
@@ -871,9 +871,9 @@ var result = await fabricClient.HealthManager.GetClusterHealthChunkAsync(queryDe
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得叢集健全狀況的 Cmdlet 是 [Get-ServiceFabricClusterChunkHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealthchunk)。 首先會使用 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) Cmdlet 連接到叢集。
+hello cmdlet tooget hello 叢集健全狀況是[Get ServiceFabricClusterChunkHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealthchunk)。 首先，使用 hello 連線 toohello 叢集[Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet。
 
-下列程式碼只有在錯誤時才會取得節點，只有一個特定節點例外，應該一律將其傳回。
+hello 下列程式碼會取得節點只有當它們位於除了特定的節點，一律會傳回錯誤。
 
 ```xml
 PS D:\ServiceFabric> $errorFilter = [System.Fabric.Health.HealthStateFilter]::Error;
@@ -881,7 +881,7 @@ $allFilter = [System.Fabric.Health.HealthStateFilter]::All;
 
 $nodeFilter1 = New-Object System.Fabric.Health.NodeHealthStateFilter -Property @{HealthStateFilter=$errorFilter}
 $nodeFilter2 = New-Object System.Fabric.Health.NodeHealthStateFilter -Property @{NodeNameFilter="_Node_1";HealthStateFilter=$allFilter}
-# Create node filter list that will be passed in the cmdlet
+# Create node filter list that will be passed in hello cmdlet
 $nodeFilters = New-Object System.Collections.Generic.List[System.Fabric.Health.NodeHealthStateFilter]
 $nodeFilters.Add($nodeFilter1)
 $nodeFilters.Add($nodeFilter2)
@@ -899,7 +899,7 @@ NodeHealthStateChunks        :
 ApplicationHealthStateChunks : None
 ```
 
-下列 Cmdlet 會利用應用程式篩選器取得叢集區塊。
+hello 下列 cmdlet 會取得叢集區塊與應用程式篩選器。
 
 ```xml
 PS D:\ServiceFabric> $errorFilter = [System.Fabric.Health.HealthStateFilter]::Error;
@@ -965,7 +965,7 @@ ApplicationHealthStateChunks :
                                         HealthState           : Error
 ```
 
-下列 Cmdlet 會傳回單一節點上所有的已部署實體。
+hello 下列 cmdlet 會傳回已部署的所有實體節點上。
 
 ```xml
 PS D:\ServiceFabric> $errorFilter = [System.Fabric.Health.HealthStateFilter]::Error;
@@ -1021,56 +1021,56 @@ ApplicationHealthStateChunks :
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-using-health-chunks)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/health-of-cluster) (含有其本文中所述的健康狀態原則和進階篩選) 取得叢集健全狀況區塊。
+您可以取得叢集健全狀況區塊與[GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-using-health-chunks)或[POST 要求](https://docs.microsoft.com/rest/api/servicefabric/health-of-cluster)內含健全狀況原則和 hello 本文所述的進階篩選器。
 
 ## <a name="general-queries"></a>一般查詢
-一般查詢會傳回指定類型的 Service Fabric 實體清單。 這些查詢會透過 API (透過 **FabricClient.QueryManager**上的方法)、Powershell Cmdlet 和 REST 來公開。 這些查詢會從多個元件彙總子查詢。 其中一個元件是 [健康狀態資料存放區](service-fabric-health-introduction.md#health-store)，它會針對每個查詢結果填入彙總健全狀況狀態。  
+一般查詢會傳回指定類型的 Service Fabric 實體清單。 這些元素會公開透過 hello 應用程式開發介面 (透過 hello 方法上**FabricClient.QueryManager**)、 PowerShell cmdlet 和 REST。 這些查詢會從多個元件彙總子查詢。 其中一個為 hello[健全狀況存放區](service-fabric-health-introduction.md#health-store)，其中會填入 hello 彙總的每個查詢結果的健全狀況狀態。  
 
 > [!NOTE]
-> 一般查詢會傳回實體的彙總健康情況狀態，但不包含豐富的健康情況資料。 如果實體狀況不佳，您可以使用健康情況查詢加以追蹤，以取得所有的健康情況資訊，包括事件、子系健康情況狀態和健康情況不佳的評估。
+> 一般查詢傳回 hello 實體 hello 彙總健全狀況狀態，並且不包含豐富的健全狀況資料。 如果實體未正常運作，您可以追蹤健全狀況查詢 tooget 所有其健全狀況資訊，包括事件、 子健全狀況狀態和狀況不良的評估。
 >
 >
 
-如果一般查詢傳回不明的實體健康狀態，則可能是健康狀態存放區中沒有實體的完整資料。 此外，也可能是健康狀態存放區的子查詢未成功 (例如，發生通訊錯誤，或已節流處理健康狀態存放區)。 請針對實體使用健康情況查詢加以追蹤。 如果子查詢發生暫時性錯誤，例如網路問題，此待處理的查詢可能會成功。 它也可以從健康狀態存放區提供關於為何實體不公開的詳細資料。
+如果一般查詢會傳回實體的未知的健全狀況狀態，則可能該 hello 健全狀況存放區不會有完整的 hello 實體的資料。 此外，也可以為子查詢 toohello 健全狀況存放區未成功 （例如，發生通訊錯誤，或 hello 健全狀況存放區已節流處理）。 追蹤 hello 實體的健全狀況查詢。 如果 hello 子查詢發生暫時性錯誤，例如網路問題，此待處理的查詢可能會成功。 它也可以提供更多詳細資料從 hello health store 有關 hello 實體未公開的原因。
 
-包含實體 **HealthState** 的查詢為：
+hello 包含查詢**HealthState**的實體包括：
 
-* 節點清單：傳回叢集中的節點清單 (已分頁)。
+* 節點清單： hello 叢集中 （分頁） 傳回 hello 清單節點。
   * API： [FabricClient.QueryClient.GetNodeListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getnodelistasync)
   * PowerShell：Get-ServiceFabricNode
-* 應用程式清單：傳回叢集中的應用程式清單 (已分頁)。
+* 應用程式清單： 傳回 hello （分頁） hello 叢集中的應用程式清單。
   * API： [FabricClient.QueryClient.GetApplicationListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getapplicationlistasync)
   * PowerShell：Get-ServiceFabricApplication
-* 服務清單：傳回應用程式中的服務清單 (已分頁)。
+* 服務清單: （分頁） 的應用程式中的服務傳回 hello 清單。
   * API： [FabricClient.QueryClient.GetServiceListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getservicelistasync)
   * PowerShell：Get-ServiceFabricService
-* 分割區清單：傳回服務中的分割區清單 (已分頁)。
+* 資料分割清單: （分頁） 服務中的資料分割傳回 hello 清單。
   * API： [FabricClient.QueryClient.GetPartitionListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getpartitionlistasync)
   * PowerShell：Get-ServiceFabricPartition
-* 複本清單：傳回分割區中的複本清單 (已分頁)。
+* 複本清單： 傳回 hello 份資料分割 （分頁） 中的複本。
   * API： [FabricClient.QueryClient.GetReplicaListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getreplicalistasync)
   * PowerShell：Get-ServiceFabricReplica
-* 已部署應用程式清單：傳回節點上已部署應用程式的清單。
+* 部署應用程式清單： 傳回 hello 清單的節點上已部署的應用程式。
   * API： [FabricClient.QueryClient.GetDeployedApplicationListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getdeployedapplicationlistasync)
   * PowerShell：Get-ServiceFabricDeployedApplication
-* 已部署服務封裝清單：傳回已部署應用程式中的服務封裝清單。
+* 部署服務套件清單： 傳回 hello 服務中的封裝清單部署的應用程式。
   * API： [FabricClient.QueryClient.GetDeployedServicePackageListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getdeployedservicepackagelistasync)
   * PowerShell：Get-ServiceFabricDeployedApplication
 
 > [!NOTE]
-> 有些查詢會傳回已分頁的結果。 這些查詢的傳回內容是衍生自 [PagedList<T>](https://docs.microsoft.com/dotnet/api/system.fabric.query.pagedlist-1) 的清單。 如果結果不符合訊息，只會傳回頁面，且 ContinuationToken 會追蹤列舉停止之處。 繼續呼叫相同的查詢，並從先前的查詢傳入接續權杖以取得後續結果。
+> 某些 hello 查詢傳回分頁的結果。 hello 傳回這些查詢是清單衍生自[PagedList<T>](https://docs.microsoft.com/dotnet/api/system.fabric.query.pagedlist-1)。 如果 hello 結果未納入一則訊息，只會傳回頁並 ContinuationToken，可以追蹤列舉的停止處。 繼續 toocall hello 相同查詢，並傳入 hello 接續 token，從 hello 先前查詢 tooget 下一個結果。
 >
 >
 
 ### <a name="examples"></a>範例
-以下程式碼會取得叢集中健全狀況不佳的應用程式：
+hello 下列程式碼會取得 hello 狀況不良的應用程式中 hello 叢集：
 
 ```csharp
 var applications = fabricClient.QueryManager.GetApplicationListAsync().Result.Where(
   app => app.HealthState == HealthState.Error);
 ```
 
-以下 Cmdlet 會取得 fabric:/WordCount 應用程式的應用程式詳細資料。 請注意，健康情況狀態為警告。
+hello 下列 cmdlet 會取得 hello hello 網狀架構的應用程式詳細資料: / WordCount 應用程式。 請注意，健康情況狀態為警告。
 
 ```powershell
 PS C:\> Get-ServiceFabricApplication -ApplicationName fabric:/WordCount
@@ -1090,7 +1090,7 @@ ApplicationParameters  : { "WordCountWebService_InstanceCount" = "1";
                          [ProcessId] -tid [ThreadId]","EnvironmentBlock":"_NO_DEBUG_HEAP=1\u0000"}]" }
 ```
 
-以下 Cmdlet 會取得健康情況為錯誤的服務：
+hello 下列 cmdlet 會取得 hello 服務健全狀況狀態，錯誤為：
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplication | Get-ServiceFabricService | where {$_.HealthState -eq "Error"}
@@ -1107,13 +1107,13 @@ HealthState            : Error
 ```
 
 ## <a name="cluster-and-application-upgrades"></a>叢集和應用程式升級
-叢集與應用程式的受監視升級期間，Service Fabric 會檢查健康情況，以確保一切都能維持在健康情況良好的狀態。 如果實體藉由使用已設定的健康狀況原則評估為狀況不良，升級會套用升級特定原則來決定下一個動作。 升級可能會暫停，以允許使用者互動 (例如修正錯誤條件或變更原則)，或是它會自動回復成先前的良好版本。
+監視在升級期間的 hello 叢集和應用程式，Service Fabric 會檢查所有項目維持良好健康情況 tooensure。 如果實體是使用 設定健全狀況原則評估為狀況不良，hello 升級適用於升級特定原則 toodetermine hello 下一個動作。 hello 升級可能會暫停的 tooallow 使用者互動 （例如修正錯誤條件或變更原則），或它可能會自動回復 toohello 良好舊版。
 
-在叢集  升級期間，您可以取得叢集升級狀態。 升級狀態包括狀況不良的評估，指向叢集中狀況不良的項目。 如果因為健全狀況問題導致升級回復，升級狀態會記住最後的狀況不良原因。 升級回復或停止之後，這項資訊可協助系統管理員調查問題出在哪裡。
+期間*叢集*升級，您可以取得 hello 叢集的升級狀態。 hello 升級狀態包括狀況不良的評估，哪一個點 toowhat 狀況不良 hello 叢集中。 如果 hello 升級回復 toohealth 問題到期，hello 升級狀態會記住 hello 上次狀況不良的原因。 這項資訊可協助系統管理員調查 hello 升級復原或停止之後發生錯誤的原因。
 
-同樣地，在應用程式  升級期間，應用程式升級狀態也會包含任何狀況不良的評估。
+同樣地，在下列期間*應用程式*升級，任何處於狀況不良的評估中所包含 hello 應用程式升級狀態。
 
-以下顯示修改後的 fabric:/WordCount 應用程式的應用程式升級狀態。 監視程式回報了它其中一個複本的錯誤。 因為健康情況檢查未通過，所以會將升級回復。
+hello 下列範例示範 hello 應用程式升級狀態為已修改光纖: / WordCount 應用程式。 監視程式回報了它其中一個複本的錯誤。 hello 升級循環，因為未遵守 hello 健康情況檢查。
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationUpgrade fabric:/WordCount
@@ -1167,12 +1167,12 @@ ForceRestart                  : False
 UpgradeReplicaSetCheckTimeout : 00:15:00
 ```
 
-深入了解 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)。
+深入了解 hello [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)。
 
-## <a name="use-health-evaluations-to-troubleshoot"></a>使用健康狀況評估以進行疑難排解
-叢集或應用程式中發生問題時，查看叢集或應用程式的健康情況，可以找出發生問題的原因。 健全狀況不佳的評估會提供觸發目前狀況不佳狀態的原因的詳細資料。 如果需要，您可以向下鑽研至狀況不良的子實體，以識別根本原因。
+## <a name="use-health-evaluations-tootroubleshoot"></a>使用健全狀況評估 tootroubleshoot
+Hello 叢集或應用程式發生問題時，看看 hello 叢集或應用程式健全狀況 toopinpoint 錯誤。 hello 狀況不良的評估會提供有關哪些觸發的 hello 目前狀況不良狀態詳細資料。 如果需要您可以切入至狀況不良的子實體 tooidentify hello 根本原因。
 
-例如，將應用程式視為健康情況不良，因為有其中一個複本的錯誤報告。 下列 Powershell Cmdlet 可顯示健康情況不良的評估：
+例如，將應用程式視為健康情況不良，因為有其中一個複本的錯誤報告。 hello 下列 Powershell 指令程式會顯示 hello 狀況不良的評估：
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplicationHealth fabric:/WordCount -EventsFilter None -ServicesFilter None -DeployedApplicationsFilter None -ExcludeHealthStatistics
@@ -1200,7 +1200,7 @@ DeployedApplicationHealthStates : None
 HealthEvents                    : None
 ```
 
-您可以查看複本，以取得詳細資訊：
+您可以查看 hello 複本 tooget 的詳細資訊：
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricReplicaHealth -ReplicaOrInstanceId 131444422260002646 -PartitionId af2e3e44-a8f8-45ac-9f31-4093eb897600
@@ -1239,16 +1239,16 @@ HealthEvents          :
 ```
 
 > [!NOTE]
-> 狀況不良的評估顯示實體的第一個原因評估為目前的健康狀態。 可能有多個其他事件觸發此狀態，但是評估中不會反映這些事件。 如需詳細資訊，請向下鑽研健全狀況實體，以找出叢集中所有狀況不良的報告。
+> hello 狀況不良的評估顯示 hello 第一個原因 hello 實體被評估 toocurrent 健全狀況狀態。 可能有多個觸發此狀態下，其他事件，但不是會反映在 hello 評估。 tooget 的詳細資訊，向下切入至 hello 健全狀況實體 toofigure hello 叢集中的 hello 處於不健全狀況報表。
 >
 >
 
 ## <a name="next-steps"></a>後續步驟
-[使用系統健康狀態報告進行疑難排解](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
+[使用系統健全狀況報表 tootroubleshoot](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
 
 [新增自訂 Service Fabric 健康狀態報告](service-fabric-report-health.md)
 
-[如何回報和檢查服務健全狀況](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
+[Tooreport 並檢查服務健全狀況](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
 
 [在本機上監視及診斷服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 

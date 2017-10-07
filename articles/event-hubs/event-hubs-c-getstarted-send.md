@@ -1,6 +1,6 @@
 ---
-title: "使用 C 將事件傳送至 Azure 事件中樞 | Microsoft Docs"
-description: "使用 C 將事件傳送至 Azure 事件中樞"
+title: "aaaSend 事件 tooAzure 事件中心使用 C |Microsoft 文件"
+description: "傳送事件使用 C tooAzure 事件中心"
 services: event-hubs
 documentationcenter: 
 author: sethmanheim
@@ -14,37 +14,37 @@ ms.devlang: csharp
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: a615ee39b6c3731cc7df366e9fabeed5219a71b4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bb53300c070debb4a3658a38df9d3966f08e81ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-events-to-azure-event-hubs-using-c"></a>使用 C 將事件傳送至 Azure 事件中樞
+# <a name="send-events-tooazure-event-hubs-using-c"></a>傳送事件使用 C tooAzure 事件中心
 
 ## <a name="introduction"></a>簡介
-事件中樞是高度可擴充的擷取系統，每秒可擷取數百萬個事件，讓應用程式能處理並分析已連線裝置與應用程式產生的大量資料。 資料收集到事件中樞後，您可以使用任何即時分析提供者或儲存體叢集來轉換與儲存資料。
+事件中心是可高度擴充擷取系統可以內嵌包含數百萬個事件每秒，讓應用程式 tooprocess 及分析 hello 連接的裝置和應用程式所產生的資料量很大。 資料收集到事件中樞後，您可以使用任何即時分析提供者或儲存體叢集來轉換與儲存資料。
 
-如需詳細資訊，請參閱 [事件中樞概觀][Event Hubs overview]。
+如需詳細資訊，請參閱 hello [事件中心概觀] [事件中心概觀]。
 
-在本教學課程中，您將了解如何使用以 C 撰寫的主控台應用程式將事件傳送到事件中樞。若要接收事件，請按一下左側目錄中適當的接收語言。
+在此教學課程中，您將學習如何 toosend 事件 tooan 事件中心 C.tooreceive 事件中使用主控台應用程式按一下 hello 適當接收的語言 hello 左側資料表的內容中。
 
-若要完成本教學課程，您需要下列項目：
+toocomplete 本教學課程中，您必須遵循的 hello:
 
-* C 開發環境。 在本教學課程中，我們假設 Azure Linux VM上的 gcc 堆疊有 Ubuntu 14.04。
+* C 開發環境。 本教學課程，我們將假設使用 Ubuntu 14.04 Azure Linux VM 上的 hello gcc 堆疊。
 * [Microsoft Visual Studio](https://www.visualstudio.com/)。
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-## <a name="send-messages-to-event-hubs"></a>將訊息傳送至事件中心
-在本節中，我們會撰寫一個 C 應用程式，以將事件傳送到事件中樞。 此程式碼會使用 [Apache Qpid 專案](http://qpid.apache.org/)中的 Proton AMQP 程式庫。 這與搭配使用 Service Bus Queues and Topics 與透過 C 的 AMQP 類似 (如 [這裡](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504)所示)。 如需詳細資訊，請參閱 [Qpid Proton 文件](http://qpid.apache.org/proton/index.html)。
+## <a name="send-messages-tooevent-hubs"></a>將訊息傳送 tooEvent 集線器
+本節中，我們會撰寫 C 應用程式 toosend 事件 tooyour 事件中樞。 hello 程式碼會使用從 hello hello Proton AMQP 程式庫[Apache Qpid 專案](http://qpid.apache.org/)。 這很類似 toousing Service Bus 佇列和主題，但從 C AMQP 如下所示[這裡](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504)。 如需詳細資訊，請參閱 [Qpid Proton 文件](http://qpid.apache.org/proton/index.html)。
 
-1. 從 [Qpid AMQP Messenger 頁面](https://qpid.apache.org/proton/messenger.html)，遵循指示以安裝 Qpid Proton (視您的環境而定)。
-2. 若要編譯 Proton 程式庫，請安裝下列封裝：
+1. 從 hello [Qpid AMQP Messenger 頁面](https://qpid.apache.org/proton/messenger.html)，遵循 hello 指示 tooinstall Qpid Proton，根據您的環境。
+2. toocompile hello Proton 程式庫，請安裝下列封裝的 hello:
    
     ```shell
     sudo apt-get install build-essential cmake uuid-dev openssl libssl-dev
     ```
-3. 下載 [Qpid Proton 程式庫](http://qpid.apache.org/proton/index.html)，並將它解壓縮，例如：
+3. 下載 hello [Qpid Proton 程式庫](http://qpid.apache.org/proton/index.html)，並將它解壓縮，例如：
    
     ```shell
     wget http://archive.apache.org/dist/qpid/proton/0.7/qpid-proton-0.7.tar.gz
@@ -59,7 +59,7 @@ ms.lasthandoff: 08/18/2017
     cmake -DCMAKE_INSTALL_PREFIX=/usr ..
     sudo make install
     ```
-5. 在工作目錄中，使用下列程式碼建立一個稱為 **sender.c** 的新檔案。 請記得將值替換成您的事件中樞名稱和命名空間名稱。 您也必須替代先前針對 **SendRule** 建立之金鑰的 URL 編碼版本。 您可以在 [這裡](http://www.w3schools.com/tags/ref_urlencode.asp)對其進行 URL 編碼。
+5. 在工作目錄中，建立新的檔案，稱為**sender.c**以下列程式碼的 hello。 請記住您的事件中樞的名稱和命名空間名稱的 toosubstitute hello 值。 您也必須替代 URL 編碼版本 hello 的 hello 金鑰**SendRule**稍早建立。 您可以在 [這裡](http://www.w3schools.com/tags/ref_urlencode.asp)對其進行 URL 編碼。
    
     ```c
     #include "proton/message.h"
@@ -121,7 +121,7 @@ ms.lasthandoff: 08/18/2017
     }
    
     int main(int argc, char** argv) {
-        printf("Press Ctrl-C to stop the sender process\n");
+        printf("Press Ctrl-C toostop hello sender process\n");
    
         pn_messenger_t *messenger = pn_messenger(NULL);
         pn_messenger_set_outgoing_window(messenger, 1);
@@ -140,18 +140,18 @@ ms.lasthandoff: 08/18/2017
         return 0;
     }
     ```
-6. 編譯檔案，並假設 **gcc**：
+6. 編譯 hello 檔案假設**gcc**:
    
     ```
     gcc sender.c -o sender -lqpid-proton
     ```
 
     > [!NOTE]
-    > 在這個程式碼中，我們使用輸出視窗 1 盡快強制輸出訊息。 應用程式一般應該會嘗試批次處理訊息，以增加輸送量。 如需如何在此環境和其他環境中，以及從提供繫結的平台 (目前是 Perl、PHP、Python 和 Ruby) 中使用 Qpid Proton 程式庫的相關資訊，請參閱 [Qpid AMQP Messenger 頁面](https://qpid.apache.org/proton/messenger.html)。
+    > 在此程式碼中，我們使用外寄出 1 個 tooforce hello 訊息的視窗執行下列儘速。 一般情況下，您的應用程式應該嘗試 toobatch 訊息 tooincrease 輸送量。 請參閱 hello [Qpid AMQP Messenger 頁面](https://qpid.apache.org/proton/messenger.html)如需如何 toouse hello Qpid Proton 程式庫在此範例與其他環境，以及從繫結所提供的平台 （目前 Perl、 PHP、 Python 和 Ruby）。
 
 
 ## <a name="next-steps"></a>後續步驟
-您可以造訪下列連結以深入了解事件中樞︰
+您可以進一步了解事件中心瀏覽下列連結查看 hello:
 
 * [事件中樞概觀](event-hubs-what-is-event-hubs.md
 )

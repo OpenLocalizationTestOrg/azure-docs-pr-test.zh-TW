@@ -1,5 +1,5 @@
 ---
-title: "透過 Azure 內容傳遞網路的大型檔案下載最佳化"
+title: "透過 hello Azure 內容傳遞網路 aaaLarge 檔案下載最佳化"
 description: "深度解說大型檔案下載最佳化"
 services: cdn
 documentationcenter: 
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: v-semcev
-ms.openlocfilehash: 7a5d5d1d0de24ebb0a5115ede1e572f38454bd78
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2646979bfb38e997037bcff5b1cdda34e22c394a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="large-file-download-optimization-via-the-azure-content-delivery-network"></a>透過 Azure 內容傳遞網路的大型檔案下載最佳化
+# <a name="large-file-download-optimization-via-hello-azure-content-delivery-network"></a>透過 hello Azure 內容傳遞網路的大型檔案下載最佳化
 
-透過網際網路傳遞的內容檔案大小，由於功能增強、圖形改善和媒體內容更豐富，而持續成長。 這種成長是由許多因素所驅動，包括：寬頻滲透、大型廉價存放裝置、高畫質影片普遍增加，以及連線至網際網路的裝置 (IoT) 等。 快速且有效的大型檔案傳遞機制，對於確保順暢且愉悅的取用者體驗極為重要。
+傳送 hello 網際網路上的內容檔案大小繼續 toogrow 到期 tooenhanced 功能、 改善的圖形，以及豐富的媒體內容。 這種成長是由許多因素所驅動，包括：寬頻滲透、大型廉價存放裝置、高畫質影片普遍增加，以及連線至網際網路的裝置 (IoT) 等。 大型檔案快速又有效率的傳遞機制是重大 tooensure 平滑且更有趣的取用者經驗。
 
-傳送大型檔案有幾項困難。 首先，大型檔案的平均下載時間很可觀，因為許多應用程式可能無法循序下載所有資料。 在某些情況下，應用程式可能先下載檔案的最後一部分，然後再下載第一部分。 當只要求少量的檔案，或使用者暫停下載時，下載會失敗。 下載也可能會延遲到內容傳遞網路 (CDN) 從來源伺服器擷取整個檔案之後。 
+傳送大型檔案有幾項困難。 首先，hello 的平均時間 toodownload 大型檔案可能十分顯著因為應用程式可能會以循序方式下載所有資料。 在某些情況下，應用程式可能會下載 hello 最後一部分之前 hello 第一個部分的檔案。 當要求只有少量的檔案，或使用者暫停下載時，hello 下載可能會失敗。 hello 下載也可能會延遲直到 hello 後內容傳遞網路 (CDN) 會擷取 hello 整個檔案從 hello 原始伺服器。 
 
-其次，使用者電腦和檔案之間的延遲，決定使用者檢視內容的速度。 此外，網路壅塞和容量問題也會影響輸送量。 伺服器與使用者之間遼遠的距離，為封包遺失額外提供許多機會，降低品質。 因輸送量有限與封包遺失增多造成的品質降低，可能表現於完成檔案下載的等待時間大幅增加。 
+第二，使用者的電腦和 hello 檔案之間的 hello 延遲決定，他們可以檢視內容的 hello 速度。 此外，網路壅塞和容量問題也會影響輸送量。 大於伺服器與使用者之間的距離會建立其他封包遺失 toooccur 減少品質的機會。 hello 品質降低因有限輸送量並增加的封包遺失可能會增加檔案下載 toofinish hello 等候時間。 
 
-第三，許多大型檔案不會完整傳遞。 使用者可能會中途取消下載，或只觀賞冗長 MP4 影片的前幾分鐘。 因此，許多軟體和媒體傳遞公司希望只傳遞所要求檔案的一部分。 有效率散佈要求的部分會降低原始伺服器的輸出流量。 有效率的散佈也會減少原始伺服器上的記憶體與 I/O 壓力。 
+第三，許多大型檔案不會完整傳遞。 使用者可能取消下載到一半，或觀賞只 hello 長 MP4 視訊前幾分鐘。 因此，軟體和媒體傳遞公司都想 toodeliver 唯一 hello 部分之要求的檔案。 散佈 hello 要求部分可以降低 hello 原始伺服器 hello 輸出流量。 Hello 記憶體和 I/O 壓力 hello 來源伺服器上的，也會減少有效率的通訊群組。 
 
-Akamai 的 Azure 內容傳遞網路現在提供一項功能，可將大型檔案有效傳遞給全球的使用者。 此功能會減少延遲，因為它可以降低來源伺服器上的負載。 使用標準 Akamai 定價層可取得這項功能。
+hello Azure 內容傳遞網路從 Akamai 現在提供傳送大型檔案有效率地 toousers 跨大規模 hello 地球的功能。 hello 功能可降低延遲，因為它可以減少 hello hello 來源伺服器上的負載。 這項功能可與 hello Akamai 標準定價層。
 
-## <a name="configure-a-cdn-endpoint-to-optimize-delivery-of-large-files"></a>設定 CDN 端點以最佳化大型檔案的傳遞
+## <a name="configure-a-cdn-endpoint-toooptimize-delivery-of-large-files"></a>將大型檔案的 CDN 端點 toooptimize 傳遞設定
 
-您可以設定 CDN 端點，以最佳化透過 Azure 入口網站傳遞大型檔案。 若要這樣做，您也可以使用 REST API 或任何用戶端 SDK。 下列步驟示範透過 Azure 入口網站的程序。
+您可以設定您的 CDN 端點 toooptimize 傳遞，如透過 hello Azure 入口網站的大型檔案。 您也可以使用我們的 REST Api，或任何 hello 用戶端 Sdk toodo 這。 hello 下列步驟顯示 hello 程序，透過 hello Azure 入口網站。
 
-1. 若要新增新的端點，請在 [CDN 設定檔] 頁面上選取 [端點]。
+1. 新的端點，在 hello tooadd**的 CDN 設定檔**頁面上，選取**端點**。
 
     ![新增端點](./media/cdn-large-file-optimization/01_Adding.png)  
  
-2. 在 [最佳化對象] 下拉式清單中，選取 [下載大型檔案]。
+2. 在 hello**適合**下拉式清單中，選取**大型檔案的下載**。
 
     ![已選取大型檔案最佳化](./media/cdn-large-file-optimization/02_Creating.png)
 
 
-建立 CDN 端點後，就會對所有符合特定準則的檔案套用大型檔案最佳化。 下一節會說明此程序。
+建立 hello CDN 端點之後，它適用於符合特定準則的所有檔案的 hello 大型檔案最佳化。 hello 之後 > 一節說明此程序。
 
-## <a name="optimize-for-delivery-of-large-files-with-the-azure-content-delivery-network-from-akamai"></a>使用 Akamai 的 Azure 內容傳遞網路最佳化大型檔案的傳遞
+## <a name="optimize-for-delivery-of-large-files-with-hello-azure-content-delivery-network-from-akamai"></a>針對從 Akamai 以 hello Azure 內容傳遞網路的大型檔案傳遞最佳化
 
-大型檔案最佳化類型功能會開啟網路最佳化和組態，更快速且反應迅速地傳遞大型檔案。 使用 Akamai 的一般 Web 傳遞只快取低於 1.8 GB 的檔案，而且可以通道 (不是快取) 檔案最多 150 GB。 大型檔案最佳化快取檔案最多 150 GB。
+更快速且更 responsively hello 大型檔案最佳化類型功能開啟網路最佳化和組態 toodeliver 大型檔案。 Akamai 與一般 web 傳遞快取只下方 1.8 g b 的檔案，並可以通道 （而不是快取） 檔案組成 too150 GB。 大型的檔案最佳化功能會快取總 too150 GB 的檔案。
 
-大型檔案最佳化在滿足特定條件下會生效。 條件包括原始伺服器的運作方式以及所要求的檔案大小和類型。 在詳細了解這些主題之前，您應該了解最佳化如何作用。 
+大型檔案最佳化在滿足特定條件下會生效。 條件包括 hello 原始伺服器的運作方式 hello 和大小的 hello 要求的檔案類型。 我們在這些主題的詳細資料之前，您應該了解 hello 最佳化的運作方式。 
 
 ### <a name="object-chunking"></a>物件區塊化 
 
-Akamai 的 Azure 內容傳遞網路使用稱為物件區塊處理的技術。 要求大型檔案時，CDN 會從原始伺服器擷取較小的檔案片段。 在 CDN Edge Server/POP 伺服器收到完整或位元組範圍的檔案要求之後，它會檢查此最佳化是否支援檔案類型。 它也會檢查檔案類型是否符合檔案大小需求。 如果檔案大小大於 10 MB，則 CDN Edge Server 會向原始伺服器要求 2 MB 區塊的檔案。 
+hello Akamai 從 Azure 內容傳遞網路會使用稱為物件區塊的技術。 要求的大型檔案時，hello CDN 會從 hello 原點擷取 hello 檔案的較小的片段。 Hello CDN 邊緣/彈出伺服器收到完整或位元組範圍的檔案要求之後，它會檢查是否支援此最佳化的 hello 檔案類型。 它也會檢查 hello 檔案類型是否符合 hello 檔案大小需求。 如果 hello 檔案大小大於 10 MB，hello CDN 邊緣伺服器要求 hello 檔案從 2 MB 的區塊中的 hello 原點。 
 
-區塊抵達 CDN Edge 之後，會被快取並立即提供給使用者。 然後 CDN 會以平行方式預先提取下一個區塊。 此預先擷取可確保內容領先使用者一個區塊，以降低延遲。 此程序一直持續到整個檔案下載完畢 (如有要求)、取得所有位元組範圍 (如有要求)，或用戶端終止連線。 
+Hello 區塊抵達 hello CDN 邊緣之後，它有快取，並立即提供 toohello 使用者。 hello CDN，然後以平行方式預先提取 hello 下一個區塊。 這個預先擷取可確保 hello 內容仍然 hello 使用者，可減少延遲，前面的一個區塊。 此程序會等到整個 hello 繼續下載檔案時 （如有要求），所有的位元組範圍 （如有要求），或 hello 用戶端會終止 hello 連線。 
 
-如需位元組範圍要求的詳細資訊，請參閱 [RFC 7233](https://tools.ietf.org/html/rfc7233)。
+如需有關 hello 位元組範圍要求的詳細資訊，請參閱[RFC 7233](https://tools.ietf.org/html/rfc7233)。
 
-CDN 會在收到任何區塊時即予以快取。 不必快取 CDN 快取上的整個檔案。 CDN 快取會提供後續的檔案或位元組範圍要求 。 如果不是在 CDN 快取所有的區塊，就會使用預先擷取向原始伺服器要求區塊。 此最佳化依賴原始伺服器的功能，支援位元組範圍的要求。 _如果原始伺服器不支援位元組範圍要求，此最佳化就不會生效。_ 
+在收到 hello CDN 會快取任何區塊。 hello 整個檔案沒有 toobe hello CDN 快取上快取。 後續 hello 檔案或位元組範圍要求是從 hello CDN 快取。 如果並非所有的 hello 區塊會 hello CDN 快取，預先擷取是使用的 toorequest hello 原點的區塊。 此最佳化依賴 hello 能力 hello 原始伺服器 toosupport 位元組範圍要求。 _如果 hello 原始伺服器不支援位元組範圍要求，此最佳化並非有效的。_ 
 
 ### <a name="caching"></a>快取
-大型檔案最佳化會使用不同的預設從一般 Web 傳遞快取逾期時間。 它會根據 HTTP 回應碼來區分正向快取與負向快取。 如果原始伺服器透過回應中的 Cache-control 或 Expires 標頭指定到期時間，則 CDN 會接受該值。 當原始伺服器未指定，而且檔案符合此最佳化類型的類型和大小條件時，CDN 會使用預設值進行大型檔案最佳化。 否則，CDN 會使用預設值進行一般 Web 傳遞。
+大型檔案最佳化會使用不同的預設從一般 Web 傳遞快取逾期時間。 它會根據 HTTP 回應碼來區分正向快取與負向快取。 如果指定到期時間透過快取控制 hello 原始伺服器，或到期 hello 回應標頭，hello CDN 會接受該值。 當 hello 原點未指定，hello 檔符合此最佳化類型的 hello 類型和大小條件 hello CDN 使用大型的檔案最佳化功能 hello 預設值。 否則，hello CDN 會使用預設值進行一般 web 傳遞。
 
 
 |    | 一般 Web | 大型檔案最佳化 
@@ -74,13 +74,13 @@ CDN 會在收到任何區塊時即予以快取。 不必快取 CDN 快取上的�
 
 ### <a name="deal-with-origin-failure"></a>處理原始伺服器失敗
 
-原始伺服器讀取逾時長度從兩秒的一般 Web 傳遞，增加到兩分鐘的大型檔案最佳化類型。 這會增加帳戶，讓較大的檔案大小避免提早逾時連接。
+hello 原始讀取逾時長度會增加從 hello 大型檔案最佳化類型的一般 web 傳遞 tootwo 分鐘的兩秒。 這種增加量較大檔案大小 tooavoid hello 提早逾時連接的帳戶。
 
-當連線逾時，CDN 會先重試幾次，再向用戶端傳送「504 - 閘道逾時」錯誤。 
+當連線逾時時，hello CDN 重試數次傳送 「 504-閘道逾時 」 錯誤 toohello 用戶端之前。 
 
 ### <a name="conditions-for-large-file-optimization"></a>大型檔案最佳化的條件
 
-下表列出大型檔案最佳化所需滿足的準則集合：
+hello 下表列出 hello 整組準則 toobe 滿足大型檔案最佳化：
 
 條件 | 值 
 --- | --- 
@@ -89,40 +89,40 @@ CDN 會在收到任何區塊時即予以快取。 不必快取 CDN 快取上的�
 檔案大小上限 | 150 GB 
 原始伺服器特性 | 必須支援位元組範圍要求 
 
-## <a name="optimize-for-delivery-of-large-files-with-the-azure-content-delivery-network-from-verizon"></a>使用 Verizon 的 Azure 內容傳遞網路最佳化大型檔案的傳遞
+## <a name="optimize-for-delivery-of-large-files-with-hello-azure-content-delivery-network-from-verizon"></a>針對從 Verizon 以 hello Azure 內容傳遞網路的大型檔案傳遞最佳化
 
-Verizon 的 Azure 內容傳遞網路傳遞大型檔案沒有檔案大小限制。 預設會開啟額外的功能，以更快傳遞大型檔案。
+hello Verizon 從 Azure 內容傳遞網路將傳遞沒有端點上的檔案大小的大型檔案。 其他功能會開啟預設 toomake 傳送大型檔案的速度。
 
 ### <a name="complete-cache-fill"></a>完成快取填滿
 
-預設的完成快取填滿功能，可讓 CDN 在初始要求被放棄或遺失時，將檔案提取至快取。 
+hello 預設完整快取填滿功能可讓您 hello CDN toopull 檔案到 hello 快取的初始要求是放棄或遺失。 
 
-完成快取填滿最適合大型資產。 使用者一般不會從頭到尾下載。 他們使用漸進式下載。 預設行為會強制 Edge Server 從原始伺服器起始資產的背景擷取。 之後，資產會位於 Edge Server 的本機快取中。 在完整物件位於快取之後，Edge Server 可針對快取的物件滿足 CDN 的位元組範圍要求。
+完成快取填滿最適合大型資產。 一般而言，使用者不會從下載開始 toofinish。 他們使用漸進式下載。 hello 預設行為會強制 hello edge server tooinitiate hello 資產的背景擷取從 hello 原始伺服器。 之後，hello 資產是 hello 邊緣伺服器的本機快取中。 Hello 完整物件位於 hello 快取之後，hello edge server，可滿足 hello 快取物件的位元組範圍要求 toohello CDN。
 
-預設行為可以透過 Verizon Premium 層中的規則引擎來停用。
+可以停用 hello 預設行為，透過 hello Verizon Premium 層中的 hello 規則引擎。
 
 ### <a name="peer-cache-fill-hot-filing"></a>對等快取填滿 Hotfiling
 
-預設的對等快取填滿 hot-filing 功能使用複雜的專屬演算法。 它根據頻寬及彙總要求計量，使用其他的快取 Edge Server，滿足用戶端對大型、熱門物件的要求。 這項功能可防止將大量額外要求傳送至使用者原始伺服器的情況。 
+hello 預設對等快取填滿熱歸檔功能會使用複雜的專屬演算法。 它會使用其他的邊緣快取伺服器，根據頻寬，並彙總要求度量 toofulfill 用戶端要求的大型、 高度受歡迎的物件。 這項功能可防止大量的額外要求傳送 tooa 使用者的原始伺服器所在的情況。 
 
 ### <a name="conditions-for-large-file-optimization"></a>大型檔案最佳化的條件
 
-預設開啟 Verizon 的最佳化功能。 檔案大小上限沒有任何限制。 
+依預設會開啟 Verizon 的 hello 最佳化功能。 檔案大小上限沒有任何限制。 
 
 ## <a name="additional-considerations"></a>其他考量
 
-請考慮此最佳化類型下列其他層面。
+請考慮 hello 遵循此最佳化類型的其他層面。
  
 ### <a name="azure-content-delivery-network-from-akamai"></a>Akamai 的 Azure 內容傳遞網路
 
-- 區塊處理程序會對原始伺服器產生其他要求。 不過，原始伺服器傳遞的整個資料量會小很多。 區塊處理會導致 CDN 更好的快取特性。
+- hello 區塊處理程序會產生其他要求 toohello 原始伺服器。 不過，hello 整體 hello 的原始傳送的資料數量會小很多。 區塊處理的結果中有更佳在 hello CDN 快取的特性。
 
-- 降低原始伺服器的記憶體和 I/O 壓力，因為傳遞較小的檔案片段。
+- 記憶體和 I/O 壓力會減少在 hello 原點因為傳送嗨檔案的較小的片段。
 
-- 在 CDN 快取的區塊，在內容到期或從快取收回之前，對原始伺服器沒有任何其他要求。
+- 在 hello CDN 快取的區塊，如有任何其他要求 toohello 原點 hello 內容到期或收回從 hello 快取之前。
 
-- 使用者可以向 CDN 提出範圍要求，這些要求會被視為任何一般檔案處理。 只有當檔案類型有效，且位元組範圍介於 10 MB 到 150 GB 之間時，才適用最佳化。 如果要求的平均檔案大小小於 10 MB，您可能會想要改用一般 Web 傳遞。
+- 使用者可在建立範圍要求 toohello CDN，且它們視為一般的檔案。 只有當它是有效的檔案類型，而且 hello 位元組範圍是介於 10 MB 到 150 GB 之間，適用於最佳化。 如果 hello 要求的平均檔案大小小於 10 MB，您可能改用想 toouse 一般 web 傳遞。
 
 ### <a name="azure-content-delivery-network-from-verizon"></a>Verizon 的 Azure 內容傳遞網路
 
-一般 Web 傳遞最佳化類型能夠傳遞大型檔案。
+hello 一般 web 傳遞最佳化類型可以傳遞大型檔案。

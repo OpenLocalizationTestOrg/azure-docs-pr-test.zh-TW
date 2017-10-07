@@ -1,6 +1,6 @@
 ---
-title: "Azure CDN 即時警示 | Microsoft Docs"
-description: "Microsoft Azure CDN 中的即時警示。 即時警示可針對 CDN 設定檔中端點的效能提供通知。"
+title: "aaaAzure CDN 的即時警示 |Microsoft 文件"
+description: "Microsoft Azure CDN 中的即時警示。 即時警示提供有關 hello 效能，您的 CDN 設定檔中的 hello 端點的通知。"
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 6e66eb076ac7220823a848b5047f147d4101cd55
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 269c90437088bbc41bf899a8c02749e8e6f3006c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="real-time-alerts-in-microsoft-azure-cdn"></a>Microsoft Azure CDN 中的即時警示
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
 ## <a name="overview"></a>Overview
-本文件說明 Microsoft Azure CDN 中的即時警示。 這項功能可針對 CDN 設定檔中端點的效能提供即時通知。  您可以根據以下狀況設定電子郵件或 HTTP 警示︰
+本文件說明 Microsoft Azure CDN 中的即時警示。 這項功能提供您的 CDN 設定檔中的 hello 端點的 hello 效能的即時通知。  您可以根據以下狀況設定電子郵件或 HTTP 警示︰
 
 * 頻寬
 * 狀態碼
@@ -32,67 +32,67 @@ ms.lasthandoff: 07/11/2017
 * 連線
 
 ## <a name="creating-a-real-time-alert"></a>建立即時警示
-1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽到您的 CDN 設定檔。
+1. 在 hello [Azure 入口網站](https://portal.azure.com)，瀏覽 tooyour 的 CDN 設定檔。
    
     ![CDN 設定檔刀鋒視窗](./media/cdn-real-time-alerts/cdn-profile-blade.png)
-2. 在 [CDN 設定檔] 刀鋒視窗中，按一下 [管理]  按鈕。
+2. 從 hello CDN 設定檔刀鋒視窗中，按一下 [hello**管理**] 按鈕。
    
     ![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-real-time-alerts/cdn-manage-btn.png)
    
-    隨即開啟 CDN 管理入口網站。
-3. 將滑鼠移至 [分析] 索引標籤上，然後將滑鼠移至 [即時統計資料] 飛出視窗上。  按一下 [即時警示] 。
+    hello CDN 管理入口網站隨即開啟。
+3. 暫留在 hello**分析** 索引標籤，然後暫留在 hello**即時統計資料**彈出式視窗。  按一下 [即時警示] 。
    
     ![CDN 管理入口網站](./media/cdn-real-time-alerts/cdn-premium-portal.png)
    
-    隨即會顯示現有警示組態 (如果有的話) 的清單。
-4. 按一下 [新增警示]  按鈕。
+    會顯示 hello 清單的現有警示的組態 （如果有的話）。
+4. 按一下 hello**新增警示** 按鈕。
    
     ![新增警示按鈕](./media/cdn-real-time-alerts/cdn-add-alert.png)
    
     隨即會顯示可供建立新警示的表單。
    
     ![新增警示表單](./media/cdn-real-time-alerts/cdn-new-alert.png)
-5. 如果您想要在按一下 [儲存] 時讓此警示啟用，請核取 [已啟用警示] 核取方塊。
-6. 在 [名稱]  欄位中輸入用來描述警示的名稱。
-7. 在 [媒體類型] 下拉式清單中，選取 [HTTP 大型物件]。
+5. 如果您想要此警示 toobe active 當您按一下**儲存**，檢查 hello**啟用警示**核取方塊。
+6. 輸入您的警示的描述性名稱在 hello**名稱**欄位。
+7. 在 hello**媒體類型**下拉式清單中，選取**HTTP 大型物件**。
    
     ![選取了 HTTP 大型物件的媒體類型](./media/cdn-real-time-alerts/cdn-http-large.png)
    
    > [!IMPORTANT]
-   > 您必須選取 [HTTP 大型物件] 做為 [媒體類型]。  **來自 Verizon 的 Azure CDN** 不會使用其他選項。  若未能選取 [HTTP 大型物件]，將導致警示永不觸發。
+   > 您必須選取**HTTP 大型物件**為 hello**媒體類型**。  hello 其他選項不會使用**Verizon 從 Azure CDN**。  失敗 tooselect **HTTP 大型物件**會導致您的警示觸發 toonever。
    > 
    > 
-8. 選取 [度量]、[運算子] 和 [觸發值]，來建立要監視的 [運算式]。
+8. 建立**運算式**選取 toomonitor**度量**，**運算子**，和**觸發值**。
    
-   * 針對 [度量] ，請選取您要監視的狀況類型。   是頻寬使用量，單位是每秒 Mb 數。   是連往 Edge Server 的並行 HTTP 連線數目。  如需各種快取狀態和狀態碼的定義，請參閱 [Azure CDN 快取狀態碼](https://msdn.microsoft.com/library/mt759237.aspx)和 [Azure CDN HTTP 狀態碼](https://msdn.microsoft.com/library/mt759238.aspx)
-   *  是可在度量和觸發值之間建立關聯性的數學運算子。
-   * **Trigger Value** 是在傳送通知之前必須先符合的臨界值。
+   * 如**度量**，選取您想要監視的狀況 hello 類型。  **頻寬 Mbps**是 hello mbps 的頻寬使用量的數量。  **總連線**是 hello 數字的並行 HTTP 連線 tooour 邊緣伺服器。  如需 hello 的定義各種快取狀態和狀態碼，請參閱[Azure CDN 快取狀態碼](https://msdn.microsoft.com/library/mt759237.aspx)和[Azure CDN HTTP 狀態碼](https://msdn.microsoft.com/library/mt759238.aspx)
+   * **運算子**是 hello 數學運算子，以建立 hello hello 度量和 hello 觸發程序的值之間的關聯性。
+   * **觸發值**通知將送出之前，必須符合的 hello 臨界值。
      
-     在下面的範例中，我所建立的運算式表示我想要在 404 狀態碼數目大於 25 時收到通知。
+     在下列範例中的 hello，我已經建立 hello 運算式會表示我希望 toobe hello 404 狀態碼的數目大於 25 時收到通知。
      
      ![即時警示的範例運算式](./media/cdn-real-time-alerts/cdn-expression.png)
-9. 在 [間隔] 中，輸入您想要評估運算式的頻率。
-10. 在 [通知時機]  下拉式清單中，選取當運算式評估為 true 時，您想要在何時收到通知。
+9. 如**間隔**，輸入您想要評估的 hello 運算式的頻率。
+10. 在 hello**通知**下拉式清單中，選取您想要 toobe 時收到通知 hello 運算式為 true 時。
     
-    *  表示會在第一次偵測到指定狀況時傳送通知。
-    *  表示會於未再偵測到指定狀況時傳送通知。 只有在網路監視系統已偵測到發生指定狀況後，才會觸發此通知。
-    *  表示會在網路監視系統每一次偵測到指定狀況時傳送通知。 請記住，在每一次的間隔中，網路監視系統只會檢查一次是否發生指定狀況。
-    *  表示會在第一次偵測到指定狀況時傳送通知，並於未再偵測到該狀況時再次傳送通知。
-11. 如果您想要透過電子郵件接收通知，請核取 [透過電子郵件通知]  核取方塊。  
+    * **條件開始**指出 hello 指定首次偵測到條件時，將收到通知。
+    * **條件結束**指出 hello 可讓您指定不會再偵測到條件時，將收到通知。 網路監視系統偵測到指定的 hello 之後，可以只觸發此通知條件發生。
+    * **連續**表示通知會傳送 hello 網路監視系統每次偵測到指定的 hello 條件。 請記住 hello 網路監視系統將只檢查一次每個間隔 hello 指定條件。
+    * **條件開始和結束**指出 hello 偵測到 hello 指定的條件的第一次，然後再次 hello 條件不會再偵測到時，將收到通知。
+11. 如果您想要 tooreceive 通知電子郵件，請檢查 hello**透過電子郵件通知**核取方塊。  
     
     ![透過電子郵件通知表單](./media/cdn-real-time-alerts/cdn-notify-email.png)
     
-    在 [收件者]  欄位中，輸入您想要讓通知傳送到的電子郵件地址。 在 [主旨] 和 [內文] 中，您可以保留預設值，或者使用 [可用關鍵字] 清單來自訂訊息，以在傳送訊息時動態插入警示資料。
+    在 hello**至**欄位中，輸入您想通知傳送嗨電子郵件地址。 如**主旨**和**主體**、 您可能會讓 hello 預設值，或您可以自訂 hello 訊息使用 hello**可用關鍵字**清單 toodynamically 插入警示資料時傳送 hello 訊息。
     
     > [!NOTE]
-    > 您可以按一下 [測試通知] 按鈕來測試電子郵件通知，但僅限在儲存警示組態之後進行。
+    > 您可以測試 hello 電子郵件通知，依序按一下 hello**測試通知**按鈕，但僅限於儲存 hello 警示設定後。
     > 
     > 
-12. 如果您想要讓通知張貼到 Web 伺服器，請核取 [透過 HTTP Post 通知]  核取方塊。
+12. 如果您想通知 toobe 張貼 tooa web 伺服器，請檢查 hello**通知，透過 HTTP Post**核取方塊。
     
     ![透過 HTTP Post 通知表單](./media/cdn-real-time-alerts/cdn-notify-http.png)
     
-    在 [Url]  欄位中，輸入您想要用來張貼 HTTP 訊息的 URL。 在 [標頭]  文字方塊中，輸入要在要求中傳送的 HTTP 標頭。  在 [內文] 中，您可以使用 [可用關鍵字] 清單來自訂訊息，以在傳送訊息時動態插入警示資料。  [標頭] 和 [內文] 會預設為 XML 承載，情形類似下面的範例。
+    在 hello **Url**欄位中，輸入您想讓 hello HTTP 訊息公佈的 hello URL。 在 hello**標頭**文字方塊中，輸入 hello HTTP 標頭 toobe hello 要求中傳送。  如**主體**您呇簏濻 hello 訊息使用 hello**可用關鍵字**清單 toodynamically 傳送 hello 訊息時，插入警示資料。  **標頭**和**主體**預設下列範例中的 tooan XML 裝載類似 toohello。
     
     ```
     <string xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
@@ -101,10 +101,10 @@ ms.lasthandoff: 07/11/2017
     ```
     
     > [!NOTE]
-    > 您可以按一下 [測試通知] 按鈕來測試 HTTP Post 通知，但僅限在儲存警示組態之後進行。
+    > 您可以按一下 hello 測試 hello HTTP Post 通知**測試通知**按鈕，但僅限於儲存 hello 警示設定後。
     > 
     > 
-13. 按一下 [儲存]  按鈕以儲存您的警示組態。  如果您在步驟 5 中核取了 [已啟用警示]  ，您的警示現在便已啟用。
+13. 按一下 hello**儲存**按鈕 toosave 您警示設定。  如果您在步驟 5 中核取了 [已啟用警示]  ，您的警示現在便已啟用。
 
 ## <a name="next-steps"></a>後續步驟
 * 分析 [Azure CDN 中的即時統計資料](cdn-real-time-stats.md)

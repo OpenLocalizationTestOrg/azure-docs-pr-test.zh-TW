@@ -1,6 +1,6 @@
 ---
-title: "iOS 通知中樞已當地語系化的即時新聞教學課程"
-description: "了解如何使用 Azure 服務匯流排通知中樞傳送本地化重大新聞通知 (iOS)。"
+title: "aaaNotification 集線器當地語系化重大新聞教學課程適用於 iOS"
+description: "了解如何 toouse Azure Service Bus 通知中樞 toosend 當地語系化重大消息通知 (iOS)。"
 services: notification-hubs
 documentationcenter: ios
 author: ysxu
@@ -14,13 +14,13 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: fd2b7d9dfd4f432bbcbaa3ed76f8bec0b9677e17
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9fe88c0440e93b72d349574160ddcd85a7ba0be0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-notification-hubs-to-send-localized-breaking-news-to-ios-devices"></a>使用通知中心將當地語系化的即時新聞傳送至 iOS 裝置
+# <a name="use-notification-hubs-toosend-localized-breaking-news-tooios-devices"></a>使用通知中樞 toosend 當地語系化重大消息 tooiOS 裝置
 > [!div class="op_single_selector"]
 > * [Windows 市集 C#](notification-hubs-windows-store-dotnet-xplat-localized-wns-push-notification.md)
 > * [iOS](notification-hubs-ios-xplat-localized-apns-push-notification.md)
@@ -28,26 +28,26 @@ ms.lasthandoff: 07/11/2017
 > 
 
 ## <a name="overview"></a>概觀
-本主題說明如何使用 Azure 通知中樞的 [範本](notification-hubs-templates-cross-platform-push-messages.md) 功能，廣播已由語言及裝置當地語系化的即時新聞通知。 在本教學課程中，首先會在 [使用通知中心傳送即時新聞]中建立 iOS 應用程式。 完成之後，您將可註冊您感興趣的類別、指定您要接收哪種語言的通知，並以該語言針對選取的類別接收推播通知。
+本主題說明如何 toouse hello[範本](notification-hubs-templates-cross-platform-push-messages.md)Azure 通知中樞 toobroadcast 重大消息通知已當地語系化的語言和裝置的功能。 在本教學課程就開始 hello iOS 應用程式中建立[使用通知中樞 toosend 最新消息]。 完成時，您將會為您感興趣的類別可以 tooregister，tooreceive hello 通知，在指定的語言，並接收只推播通知 hello 選取類別以該語言。
 
-此案例分成兩部分：
+有兩個部分 toothis 案例：
 
-* iOS 應用程式允許用戶端裝置指定語言，以及訂閱不同的即時新聞類別；
-* 後端使用 Azure 通知中樞的**標籤**和**範本**功能廣播通知。
+* iOS 應用程式可讓用戶端裝置 toospecify 語言和 toosubscribe toodifferent 重大新聞分類。
+* hello 後端廣播 hello 通知，請使用 hello**標記**和**範本**feautres Azure 通知中心。
 
 ## <a name="prerequisites"></a>必要條件
-您必須已完成 [使用通知中心傳送即時新聞] 教學課程，並具有可用的程式碼，因為此教學課程是直接根據該程式碼而建置的。
+您必須已經完成 hello[使用通知中樞 toosend 最新消息]教學課程，而且有 hello 程式碼，因為本教學課程是直接在該程式碼時。
 
 (選擇性) 需要 Visual Studio 2012 或更新版本。
 
 ## <a name="template-concepts"></a>範本概念
-在 [使用通知中心傳送即時新聞] ，您建置了使用 **標籤** 來訂閱不同即時新聞類別之通知的應用程式。
-但有許多應用程式是以多個市場為目標的，因此需要當地語系化。 這表示通知本身的內容必須進行當地語系化，並傳遞至正確的裝置集。
-在此主題中，我們將說明如何使用通知中樞的 **範本** 功能，輕鬆地傳遞已當地語系化的即時新聞通知。
+在[使用通知中樞 toosend 最新消息]建置的應用程式，使用**標記**toosubscribe toonotifications 不同新聞分類。
+但有許多應用程式是以多個市場為目標的，因此需要當地語系化。 這表示 hello 通知會自行 hello 內容有 toobe 當地語系化，而且傳遞的 toohello 一組正確的裝置。
+本主題中我們將示範如何 toouse hello**範本**tooeasily 傳遞的通知中樞的功能當地語系化重大消息通知。
 
-注意：傳送當地語系化通知的方法之一，是為每個標籤建立多個版本。 例如，若要支援英文、法文和中文，我們將必須為世界新聞建立三個不同的標籤："world_en"、"world_fr" 和 "world_ch"。 接著，我們必須將當地語系化版本的世界新聞分別傳送至這三個標籤。 在此主題中我們會使用範本，以避免使用過多的標籤和傳送過多訊息。
+注意： 其中一種方式 toosend 當地語系化通知是 toocreate 多個版本的每個標記。 比方說，toosupport 英文、 法文及中文，我們需要三個不同的標記世界新聞:"world_en"，"world_fr，"和"world_ch"。 我們必須 toosend 這些標記的 hello world 新聞 tooeach 的當地語系化的版本。 本主題中我們將會使用範本 tooavoid hello 擴散的標記以及將多個訊息傳送的 hello 需求。
 
-以較高的層級而言，範本可用來指定特定裝置接收通知的方式。 範本可參照您的應用程式後端所傳送的訊息中包含的屬性，藉以指定確切的裝載格式。 在此處的範例中，我們將傳送地區設定無從驗證、且包含所有支援語言的訊息：
+在高的層級中，範本會方式 toospecify 如何特定裝置應該會收到通知。 hello 範本會指定藉由參考是由您的應用程式後端傳送 hello 訊息部分的 tooproperties hello 確切的裝載格式。 在此處的範例中，我們將傳送地區設定無從驗證、且包含所有支援語言的訊息：
 
     {
         "News_English": "...",
@@ -55,7 +55,7 @@ ms.lasthandoff: 07/11/2017
         "News_Mandarin": "..."
     }
 
-接著，我們將確保裝置會為參照正確屬性的範本進行註冊。 例如，想要註冊法文新聞的 iOS 應用程式，將會註冊下列項目：
+然後我們會確保裝置註冊使用的範本，是指 toohello 正確的屬性。 比方說，iOS 應用程式的法文新聞想 tooregister 會註冊 hello 下列：
 
     {
         aps:{
@@ -65,19 +65,19 @@ ms.lasthandoff: 07/11/2017
 
 範本的功能非常強大，您可以在 [範本](notification-hubs-templates-cross-platform-push-messages.md) 一文中了解詳情。
 
-## <a name="the-app-user-interface"></a>應用程式使用者介面
-現在，我們將修改您在 [使用通知中心傳送即時新聞] 主題中建立的即時新聞應用程式，以使用範本傳送當地語系化的即時新聞。
+## <a name="hello-app-user-interface"></a>hello 應用程式使用者介面
+我們現在將會修改您建立 hello 主題中的 hello 即時新聞應用程式[使用通知中樞 toosend 最新消息]toosend 當地語系化使用範本的重大消息。
 
-在您的 MainStoryboard_iPhone.storyboard 中，以我們支援的三種語言加入分段控制：英文、法文與中文。
+您 MainStoryboard_iPhone.storyboard 中新增 分割控制項與 hello 三個語言，我們將支援這些語言： 英文、 法文和中文。
 
 ![][13]
 
-接著，請確實在您的 ViewController.h 中新增 IBOutlet，如下所示：
+請確定 tooadd IBOutlet 中您 ViewController.h 如下所示：
 
 ![][14]
 
-## <a name="building-the-ios-app"></a>建置 iOS 應用程式
-1. 在您的 Notification.h 中新增 *retrieveLocale* 方法，然後修改儲存和訂閱方法，如下所示：
+## <a name="building-hello-ios-app"></a>建置 hello iOS 應用程式
+1. 在您 Notification.h 新增 hello *retrieveLocale*方法，並修改 hello 存放區和訂閱方法，如下所示：
    
         - (void) storeCategoriesAndSubscribeWithLocale:(int) locale categories:(NSSet*) categories completion: (void (^)(NSError* error))completion;
    
@@ -87,7 +87,7 @@ ms.lasthandoff: 07/11/2017
    
         - (int) retrieveLocale;
    
-    在您的 Notification.m 中新增地區設定參數，並將其儲存在使用者預設值中，以修改 *storeCategoriesAndSubscribe* 方法：
+    在您 Notification.m 修改 hello *storeCategoriesAndSubscribe*方法，加入 hello 地區設定參數，並將其儲存在 hello 使用者預設值：
    
         - (void) storeCategoriesAndSubscribeWithLocale:(int) locale categories:(NSSet *)categories completion:(void (^)(NSError *))completion {
             NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -98,7 +98,7 @@ ms.lasthandoff: 07/11/2017
             [self subscribeWithLocale: locale categories:categories completion:completion];
         }
    
-    然後修改 *subscribe* 方法，以加入地區設定：
+    然後修改 hello*訂閱*方法 tooinclude hello 地區設定：
    
         - (void) subscribeWithLocale: (int) locale categories:(NSSet *)categories completion:(void (^)(NSError *))completion{
             SBNotificationHub* hub = [[SBNotificationHub alloc] initWithConnectionString:@"<connection string>" notificationHubPath:@"<hub name>"];
@@ -121,9 +121,9 @@ ms.lasthandoff: 07/11/2017
             [hub registerTemplateWithDeviceToken:self.deviceToken name:@"localizednewsTemplate" jsonBodyTemplate:template expiryTemplate:@"0" tags:categories completion:completion];
         }
    
-    請注意，我們現在使用的是 *registerTemplateWithDeviceToken* 方法，而非 *registerNativeWithDeviceToken*，並請留意其使用方式。 我們在註冊範本時必須提供 json 範本，以及範本的名稱 (因為應用程式可能會註冊不同的範本)。 請確實將您的類別註冊為標籤，因為我們要確保能夠收到這些新聞的通知。
+    請注意，我們現在使用的方式 hello 方法*registerTemplateWithDeviceToken*，而不是*registerNativeWithDeviceToken*。 當我們註冊範本我們有 tooprovide hello json 範本以及 hello 範本的名稱 （如我們的應用程式可能會想 tooregister 不同的範本）。 請確定 tooregister 標記，為您分類因為我們想要這些新聞 toomake 確定 tooreceive hello notifciations。
    
-    加入方法，從使用者預設設定擷取地區設定：
+    新增方法 tooretrieve hello 地區設定 hello 使用者預設值：
    
         - (int) retrieveLocale {
             NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -132,11 +132,11 @@ ms.lasthandoff: 07/11/2017
    
             return locale < 0?0:locale;
         }
-2. 我們已修改 Notifications 類別，現在我們必須確保 ViewController 會使用新的 UISegmentControl。 請在 *viewDidLoad* 方法中新增下列程式碼行，以確實顯示目前選取的地區設定：
+2. 既然我們修改通知類別時，我們有 toomake 確定我們 ViewController 可使用的 hello 新 UISegmentControl。 新增下列一行 hello hello *viewDidLoad*方法 toomake 確定 tooshow hello 地區設定目前選取：
    
         self.Locale.selectedSegmentIndex = [notifications retrieveLocale];
    
-    接著請在 *subscribe* 方法中，將您對 *storeCategoriesAndSubscribe* 的呼叫變更為下列項目：
+    然後，在您*訂閱*方法中，變更呼叫 toohello *storeCategoriesAndSubscribe* toohello 下列：
    
         [notifications storeCategoriesAndSubscribeWithLocale: self.Locale.selectedSegmentIndex categories:[NSSet setWithArray:categories] completion: ^(NSError* error) {
             if (!error) {
@@ -148,7 +148,7 @@ ms.lasthandoff: 07/11/2017
                 NSLog(@"Error subscribing: %@", error);
             }
         }];
-3. 最後，您必須在 AppDelegate.m 中更新 *didRegisterForRemoteNotificationsWithDeviceToken* 方法，以便能在應用程式啟動時正確重新整理您的註冊。 請使用下列程式碼變更您對通知之 *subscribe* 方法的呼叫：
+3. 最後，您有 tooupdate hello *didRegisterForRemoteNotificationsWithDeviceToken*您 d 中的方法，讓您的應用程式啟動時，您可以正確地更新您的註冊。 變更呼叫 toohello*訂閱*hello 下列通知方法：
    
         NSSet* categories = [self.notifications retrieveCategories];
         int locale = [self.notifications retrieveLocale];
@@ -161,8 +161,8 @@ ms.lasthandoff: 07/11/2017
 ## <a name="optional-send-localized-template-notifications-from-net-console-app"></a>(選擇性) 從.NET 主控台應用程式傳送當地語系化的範本通知。
 [!INCLUDE [notification-hubs-localized-back-end](../../includes/notification-hubs-localized-back-end.md)]
 
-## <a name="optional-send-localized-template-notifications-from-the-device"></a>(選擇性) 從裝置傳送當地語系化的範本通知
-如果您無法存取 Visual Studio，或只想要測試直接從裝置上的應用程式，請傳送當地語系化的範本通知。  您只要對先前教學課程中所定義的 `SendNotificationRESTAPI` 方法，加入當地語系化的範本參數即可。
+## <a name="optional-send-localized-template-notifications-from-hello-device"></a>（選擇性）將當地語系化的範本通知從 hello 裝置傳送
+如果您不具有存取 tooVisual Studio 中，或想要直接從 hello hello 裝置上的應用程式傳送嗨當地語系化範本通知 toojust 測試。  您可以簡單加入當地語系化的 hello 範本參數 toohello `SendNotificationRESTAPI` hello 上一個教學課程中所定義的方法。
 
         - (void)SendNotificationRESTAPI:(NSString*)categoryTag
         {
@@ -171,18 +171,18 @@ ms.lasthandoff: 07/11/2017
 
             NSString *json;
 
-            // Construct the messages REST endpoint
+            // Construct hello messages REST endpoint
             NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/messages/%@", HubEndpoint,
                                                HUBNAME, API_VERSION]];
 
-            // Generated the token to be used in the authorization header.
+            // Generated hello token toobe used in hello authorization header.
             NSString* authorizationToken = [self generateSasToken:[url absoluteString]];
 
-            //Create the request to add the template notification message to the hub
+            //Create hello request tooadd hello template notification message toohello hub
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
             [request setHTTPMethod:@"POST"];
 
-            // Add the category as a tag
+            // Add hello category as a tag
             [request setValue:categoryTag forHTTPHeaderField:@"ServiceBusNotification-Tags"];
 
             // Template notification
@@ -201,13 +201,13 @@ ms.lasthandoff: 07/11/2017
             // JSON Content-Type
             [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
 
-            //Authenticate the notification message POST request with the SaS token
+            //Authenticate hello notification message POST request with hello SaS token
             [request setValue:authorizationToken forHTTPHeaderField:@"Authorization"];
 
-            //Add the notification message body
+            //Add hello notification message body
             [request setHTTPBody:[json dataUsingEncoding:NSUTF8StringEncoding]];
 
-            // Send the REST request
+            // Send hello REST request
             NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                {
@@ -248,7 +248,7 @@ ms.lasthandoff: 07/11/2017
 
 <!-- URLs. -->
 [How To: Service Bus Notification Hubs (iOS Apps)]: http://msdn.microsoft.com/library/jj927168.aspx
-[使用通知中心傳送即時新聞]: /manage/services/notification-hubs/breaking-news-ios
+[使用通知中樞 toosend 最新消息]: /manage/services/notification-hubs/breaking-news-ios
 [Mobile Service]: /develop/mobile/tutorials/get-started
 [使用通知中樞來通知使用者：ASP.NET]: /manage/services/notification-hubs/notify-users-aspnet
 [使用通知中樞來通知使用者：行動服務]: /manage/services/notification-hubs/notify-users
@@ -259,11 +259,11 @@ ms.lasthandoff: 07/11/2017
 [Get started with data]: /develop/mobile/tutorials/get-started-with-data-ios
 [Get started with authentication]: /develop/mobile/tutorials/get-started-with-users-ios
 [Get started with push notifications]: /develop/mobile/tutorials/get-started-with-push-ios
-[Push notifications to app users]: /develop/mobile/tutorials/push-notifications-to-users-ios
+[Push notifications tooapp users]: /develop/mobile/tutorials/push-notifications-to-users-ios
 [Authorize users with scripts]: /develop/mobile/tutorials/authorize-users-in-scripts-ios
 [JavaScript and HTML]: ../get-started-with-push-js.md
 
 [Windows Developer Preview registration steps for Mobile Services]: ../mobile-services-windows-developer-preview-registration.md
 [wns object]: http://go.microsoft.com/fwlink/p/?LinkId=260591
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
-[Notification Hubs How-To for iOS]: http://msdn.microsoft.com/library/jj927168.aspx
+[Notification Hubs How-toofor iOS]: http://msdn.microsoft.com/library/jj927168.aspx

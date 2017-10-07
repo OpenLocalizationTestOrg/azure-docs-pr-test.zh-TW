@@ -1,6 +1,6 @@
 ---
-title: "建立非互動式驗證 .NET HDInsight 應用程式 - Azure | Microsoft Docs"
-description: "了解如何建立非互動式驗證 .NET HDInsight 應用程式。"
+title: "aaaCreate 非互動式驗證.NET HDInsight applciations-Azure |Microsoft 文件"
+description: "深入了解如何 toocreate 非互動式驗證.NET HDInsight 應用程式。"
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -16,48 +16,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: 7821a9e60e60ff01cff06db2a6f216a260c1c41a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5367c160b0146e6b855486b95f363e8fe7f1c98f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-non-interactive-authentication-net-hdinsight-applications"></a>建立非互動式驗證 .NET HDInsight 應用程式
-您可以使用應用程式本身的身分識別 (非互動式) 或使用應用程式的登入使用者的身分識別 (互動式)，執行 .NET Azure HDInsight 應用程式。 如需互動式應用程式的範例，請參閱[連接至 Azure HDInsight](hdinsight-administer-use-dotnet-sdk.md#connect-to-azure-hdinsight)。 本文將說明如何建立非互動式驗證 .NET 應用程式，來連接到 Azure 及管理 HDInsight。
+您可以執行.NET 的 Azure HDInsight 應用程式 （非互動式） 的應用程式自己的身分識別或 hello hello 登入的使用者 （互動式） hello 應用程式的識別之下。 如需 hello 互動式應用程式的範例，請參閱[連接 tooAzure HDInsight](hdinsight-administer-use-dotnet-sdk.md#connect-to-azure-hdinsight)。 本文章將示範如何 toocreate 非互動式驗證.NET 應用程式 tooconnect tooAzure 和管理 HDInsight。
 
 從非互動式 .NET 應用程式，您需要︰
 
 * 您的 Azure 訂用帳戶租用戶識別碼 (又稱為目錄識別碼)。 請參閱[取得租用戶識別碼](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-tenant-id)。
-* Azure Active Directory 應用程式用戶端識別碼。 請參閱[建立 Azure Active Directory 應用程式](../azure-resource-manager/resource-group-create-service-principal-portal.md#create-an-azure-active-directory-application)以及[取得應用程式識別碼](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key)
-* Azure Active Directory 應用程式祕密金鑰。 請參閱[取得應用程式驗證金鑰](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key)
+* hello Azure Active Directory 應用程式用戶端識別碼。 請參閱[建立 Azure Active Directory 應用程式](../azure-resource-manager/resource-group-create-service-principal-portal.md#create-an-azure-active-directory-application)以及[取得應用程式識別碼](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key)
+* hello Azure Active Directory 應用程式祕密金鑰。 請參閱[取得應用程式驗證金鑰](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key)
 
 ## <a name="prerequisites"></a>必要條件
 * HDInsight 叢集。 請參閱[入門教學課程](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster)。
 
 
 
-## <a name="assign-azure-ad-application-to-role"></a>將 Azure AD 應用程式指派給角色
-您必須將應用程式指派給某個 [角色](../active-directory/role-based-access-built-in-roles.md) ，以便授與它執行動作的權限。 您可以針對訂用帳戶、資源群組或資源的層級設定範圍。 較低的範圍層級會繼承較高層級的權限 (舉例來說，為資源群組的讀取者角色新增應用程式，代表該角色可以讀取資源群組及其所包含的任何資源)。 在本教學課程中，您將在資源群組層級設定範圍。 如需詳細資訊，請參閱[使用角色指派來管理 Azure 訂用帳戶資源的存取權](../active-directory/role-based-access-control-configure.md)
+## <a name="assign-azure-ad-application-toorole"></a>指派 Azure AD 應用程式 toorole
+您必須指派 hello 應用程式 tooa[角色](../active-directory/role-based-access-built-in-roles.md)toogrant 它執行動作的權限。 您可以設定 hello 範圍層級 hello hello 訂用帳戶、 資源群組或資源。 hello 權限是範圍的繼承的 toolower 層級 （例如，新增資源群組的應用程式 toohello 讀取器角色表示它可以讀取 hello 資源群組及它所包含的任何資源）。 在本教學課程中，您將在 hello 資源群組層級設定 hello 範圍。 如需詳細資訊，請參閱[使用角色指派 toomanage 存取 tooyour Azure 訂用帳戶資源](../active-directory/role-based-access-control-configure.md)
 
-**將擁有者角色新增至 Azure AD 應用程式**
+**tooadd hello 擁有者角色 toohello Azure AD 應用程式**
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下左側面板上的 [資源群組] 。
-3. 按一下資源群組，它包含您稍後在本教學課程中要在其中執行 Hive 查詢的 HDInsight 叢集。 如果有太多的資源群組，您可以使用篩選器。
-4. 從資源群組功能表中，按一下 [存取控制 (IAM)]。
-5. 從 [使用者] 刀鋒視窗中，按一下 [新增]。
-6. 依照指示以將 [擁有者] 角色新增至您在上一個程序中建立的 Azure AD 應用程式。 當您成功完成此作業時，您會看到 [使用者] 刀鋒視窗中列出的應用程式具有 [擁有者] 角色。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+2. 按一下**資源群組**hello 左窗格中。
+3. 按一下包含您要執行 Hive 查詢稍後在本教學課程中的 hello HDInsight 叢集的 hello 資源群組。 如果有太多的資源群組，您可以使用 hello 篩選器。
+4. 按一下**存取控制 (IAM)**從 hello 資源群組功能表。
+5. 按一下**新增**從 hello**使用者**刀鋒視窗。
+6. 請遵循 hello 指令 tooadd hello**擁有者**hello 最後一個程序建立角色 toohello Azure AD 應用程式。 當您成功完成它時，您應該會看到 hello hello 與 hello 擁有者角色的使用者 刀鋒視窗中列出的應用程式。
 
 ## <a name="develop-hdinsight-client-application"></a>開發 HDInsight 用戶端應用程式
 
 1. 建立 C# 主控台應用程式。
-2. 新增以下 Nuget 套件：
+2. 將下列 Nuget 套件 hello:
 
         Install-Package Microsoft.Azure.Common.Authentication -Pre
         Install-Package Microsoft.Azure.Management.HDInsight -Pre
         Install-Package Microsoft.Azure.Management.Resources -Pre
 
-3. 使用下列程式碼範例：
+3. 使用下列程式碼範例的 hello:
 
         using System;
         using System.Security;
@@ -77,7 +77,7 @@ ms.lasthandoff: 07/11/2017
                 private static Guid SubscriptionId = new Guid("<Enter Your Azure Subscription ID>");
                 private static string tenantID = "<Enter Your Tenant ID (A.K.A. Directory ID)>";
                 private static string applicationID = "<Enter Your Application ID>";
-                private static string secretKey = "<Enter the Application Secret Key>";
+                private static string secretKey = "<Enter hello Application Secret Key>";
         
                 private static void Main(string[] args)
                 {
@@ -100,11 +100,11 @@ ms.lasthandoff: 07/11/2017
                         Console.WriteLine("\t Cluster location: " + name.Location);
                         Console.WriteLine("\t Cluster version: " + name.Properties.ClusterVersion);
                     }
-                    Console.WriteLine("Press Enter to continue");
+                    Console.WriteLine("Press Enter toocontinue");
                     Console.ReadLine();
                 }
 
-                /// Get the access token for a service principal and provided key                
+                /// Get hello access token for a service principal and provided key                
                 public static TokenCloudCredentials GetTokenCloudCredentials(string tenantId, string clientId, SecureString secretKey)
                 {
                     var authFactory = new AuthenticationFactory();

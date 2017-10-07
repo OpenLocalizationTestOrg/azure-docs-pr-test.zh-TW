@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB 簡介：適用於 MongoDB 的 API | Microsoft Docs"
-description: "了解如何透過常用的 OSS MongoDB API，使用 Azure Cosmos DB 來儲存及查詢大量 JSON 文件 (低延遲)。"
+title: "簡介 tooAzure Cosmos DB: API for MongoDB。 |Microsoft 文件"
+description: "了解如何使用 Azure Cosmos DB toostore 和查詢的 JSON 文件具有低度延遲使用大量磁碟區 hello 受歡迎的 OSS MongoDB Api。"
 keywords: "MongoDB 是什麼"
 services: cosmos-db
 author: AndrewHoh
@@ -15,57 +15,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: anhoh
-ms.openlocfilehash: 4dbf91a3c1d6a287d7337647f9e059566c7ddbe5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1eb88014cc4809332e3f5c109a44a55814194934
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-azure-cosmos-db-api-for-mongodb"></a>Azure Cosmos DB 簡介：適用於 MongoDB 的 API
+# <a name="introduction-tooazure-cosmos-db-api-for-mongodb"></a>簡介 tooAzure Cosmos DB: API for MongoDB。
 
-[Azure Cosmos DB](../cosmos-db/introduction.md) 是 Microsoft 全域散發的多模型資料庫服務，適用於任務關鍵性應用程式。 Azure Cosmos DB 提供[一站式全域散發](distribute-data-globally.md)、全球[彈性調整的輸送量和儲存體](partition-data.md)、達到第 99 個百分位數的個位數毫秒延遲、[五個定義完善的一致性層級](consistency-levels.md)，以及保證的高可用性，全部都由[領先業界的 SLA (英文)](https://azure.microsoft.com/support/legal/sla/cosmos-db/) 所支援。 Azure Cosmos DB 會[自動編製資料的索引](http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf)，您不需要處理結構描述和索引管理。 它是多重模型，可支援文件、索引鍵/值、圖表和單欄式資料模型。 
+[Azure Cosmos DB](../cosmos-db/introduction.md) 是 Microsoft 全域發佈的多模型資料庫服務，適用於任務關鍵性應用程式。 提供 azure Cosmos DB[周全全域發佈](distribute-data-globally.md)，[彈性調整的輸送量與儲存體](partition-data.md)hello 99th 百分位數 在全球、 單一位數毫秒延遲[五個定義完善的一致性層級](consistency-levels.md)，而保證其高可用性，所有支援[領先業界的 Sla](https://azure.microsoft.com/support/legal/sla/cosmos-db/)。 Azure Cosmos DB[自動索引資料](http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf)而不需要使用結構描述與索引管理 toodeal。 它是多重模型，可支援文件、索引鍵/值、圖表和單欄式資料模型。 
 
 ![Azure Cosmos DB：MongoDB API](./media/mongodb-introduction/cosmosdb-mongodb.png) 
 
-Cosmos DB 資料庫可作為針對 [MongoDB](https://docs.mongodb.com/manual/introduction/) 所撰寫之應用程式的資料存放區。 這表示，使用現有的[驅動程式](https://docs.mongodb.org/ecosystem/drivers/)，針對 MongoDB 所撰寫的應用程式現在可與 Cosmos DB 通訊，並使用 Cosmos DB 資料庫而非 MongoDB 資料庫。 在許多情況下，您只要變更連接字串，就可以從使用 MongoDB 切換到 Cosmos DB。 您可以使用這項功能，輕鬆地在 Azure 雲端建置及執行 MongoDB 資料庫應用程式，利用 Azure Cosmos DB 的全域散發和[領先業界的完整 SLA](https://azure.microsoft.com/support/legal/sla/cosmos-db)，同時繼續使用 MongoDB 的熟悉技能和工具。
+Cosmos DB 資料庫可以當做 hello 資料存放區針對所撰寫的應用程式[MongoDB](https://docs.mongodb.com/manual/introduction/)。 這表示，使用現有的[驅動程式](https://docs.mongodb.org/ecosystem/drivers/)，針對 MongoDB 所撰寫的應用程式現在可與 Cosmos DB 通訊，並使用 Cosmos DB 資料庫而非 MongoDB 資料庫。 在許多情況下，您可以切換使用 MongoDB tooCosmos DB 只要變更連接字串。 使用這項功能，您可以輕鬆建置和執行的 MongoDB 資料庫應用程式，在 hello Azure 雲端與 Azure Cosmos DB 的全域發佈和[完整業界領先的 Sla](https://azure.microsoft.com/support/legal/sla/cosmos-db)，同時繼續 toouse 熟悉技術和工具 for MongoDB。
 
 
-## <a name="what-is-the-benefit-of-using-azure-cosmos-db-for-mongodb-applications"></a>於 MongoDB 應用程式使用 Azure Cosmos DB 有何好處？
+## <a name="what-is-hello-benefit-of-using-azure-cosmos-db-for-mongodb-applications"></a>使用 Azure Cosmos DB MongoDB 應用程式的 hello 優點為何？
 
-**可彈性調整的輸送量和儲存體：**輕鬆相應增加或相應減少 MongoDB 資料庫，以符合您應用程式的需求。 您的資料會儲存在固態硬碟 (SSD) 中以便獲得可預測的低延遲。 Cosmos DB 支援的 MongoDB 集合可調整為幾乎不受限制的儲存體大小和佈建輸送量。 隨著應用程式的成長，您可以依據可預測的效能彈性且順暢地調整 Cosmos DB。 
+**可彈性擴充的輸送量與儲存體：**輕鬆地向上延展或向您 MongoDB 資料庫 toomeet 需要您的應用程式。 您的資料會儲存在固態硬碟 (SSD) 中以便獲得可預測的低延遲。 Cosmos DB 支援可調整 toovirtually MongoDB 集合無限制的儲存體大小和佈建的輸送量。 隨著應用程式的成長，您可以依據可預測的效能彈性且順暢地調整 Cosmos DB。 
 
-**多重區域複寫**︰Cosmos DB 會自動將您的資料複寫至與您 MongoDB 帳戶相關聯的所有區域，讓您開發需要全域存取資料的應用程式，也能在一致性、可用性與效能之間做出取捨，而且全都有相對應的保證。 Cosmos DB 利用多路連接 API 提供自動的區域性容錯移轉，還能夠彈性調整世界各地的輸送量和儲存體。 請參閱[將資料分散到全球](distribute-data-globally.md)以深入了解。
+**多區域複寫：** Cosmos DB 會明確地將複寫您資料 tooall 區域，您已與您 MongoDB 帳戶關聯，讓您同時提供之間的權衡取捨完全需要全域存取 toodata toodevelop 應用程式一致性、 可用性和效能，所有的相對應的擔保。 Cosmos DB hello 地球提供透明區域的容錯移轉多路連接的應用程式開發介面，和 hello 能力 tooelastically 標尺輸送量與儲存體。 請參閱[將資料分散到全球](distribute-data-globally.md)以深入了解。
 
-**MongoDB 相容性**︰您可以使用現有的 MongoDB 專業知識、應用程式程式碼和工具。 您可以開發使用 MongoDB 的應用程式，並使用完全受管理的全域分散式 Cosmos DB 服務來部署這些應用程式。
+**MongoDB 相容性**︰您可以使用現有的 MongoDB 專業知識、應用程式程式碼和工具。 您可以使用 MongoDB 開發應用程式，並將其部署 tooproduction 使用 hello 完全受管理的全域散發的 Cosmos 資料庫服務。
 
-**不需要任何伺服器管理工作**︰您不需要管理和調整 MongoDB 資料庫。 Cosmos DB 是完全受管理的服務，這表示您不需要自己管理任何基礎結構或虛擬機器。 Cosmos DB 可在 30 個以上的 [Azure 區域](https://azure.microsoft.com/regions/services/)中使用。
+**沒有伺服器管理**： 您沒有 toomanage 並調整 MongoDB 資料庫。 Cosmos DB 是完全受管理的服務，這表示您沒有 toomanage 任何基礎結構或虛擬機器自己。 Cosmos DB 可在 30 個以上的 [Azure 區域](https://azure.microsoft.com/regions/services/)中使用。
 
-**可調整的一致性層級：**提供五個定義完善的一致性層級可選擇，讓您能在一致性與效能之間做出最好的取捨。 針對查詢和讀取作業，Cosmos DB 提供五個不同的一致性層級：強式、限定過期、工作階段、一致的前置和最終。 這些細微且定義完善的一致性層級可讓您在一致性、可用性與延遲三者間做出合理取捨。 深入了解[使用一致性層級將可用性和效能最大化](consistency-levels.md)。
+**可微調的一致性層級：**從 5 中的選取正確定義的一致性與效能之間的一致性層級 tooachieve 最佳取捨。 針對查詢和讀取作業，Cosmos DB 提供五個不同的一致性層級：強式、限定過期、工作階段、一致的前置和最終。 這些細微且妥善定義的一致性層級可讓您 toomake 音效之間的利弊得失一致性、 可用性和延遲。 進一步了解[toomaximize 可用性和效能，使用一致性層級](consistency-levels.md)。
 
-**自動編製索引**：根據預設，Cosmos DB 會自動為 MongoDB 資料庫中文件內的所有屬性編製索引，且不預期或需要任何結構描述或建立次要索引。
+**自動索引**： 根據預設，Cosmos DB 自動 MongoDB 資料庫中的文件內的所有 hello 屬性編製都索引並不預期或要求任何結構描述或建立次要索引。
 
-**企業級** - Azure Cosmos DB 支援多個本機複本，在面對本機和區域故障時可提供 99.99% 的可用性和資料保護。 Azure Cosmos DB 有企業級的[合規性認證 (英文)](https://www.microsoft.com/trustcenter) 和安全性功能。 
+**企業級**-Azure Cosmos DB 中的本機和區域失敗 hello 朝支援多個本機複本 toodeliver 99.99%可用性與資料保護。 Azure Cosmos DB 有企業級的[合規性認證 (英文)](https://www.microsoft.com/trustcenter) 和安全性功能。 
 
 在這段 Azure Friday 影片中，和 Scott Hanselman 與 Azure Cosmos DB 工程總經理 Kirill Gavrylyuk 一起深入了解。
 
 > [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Introducing-Azure-Cosmos-DB/player]
 > 
 
-## <a name="how-to-get-started"></a>如何開始使用
+## <a name="how-tooget-started"></a>如何啟動 tooget
 
-請遵循 MongoDB 快速入門建立 Cosmos DB 帳戶，然後移轉您現有的 Mongo DB 應用程式以使用 Cosmos DB，或建置一個新的應用程式：
+請遵循 hello MongoDB 快速入門 toocreate Cosmos DB 帳戶和移轉您現有的 Mongo DB 應用程式 toouse Cosmos DB，或建立新的：
 
 * [移轉現有的 Node.js MongoDB Web 應用程式](create-mongodb-nodejs.md)。
-* [使用 .NET 和 Azure 入口網站建置 MongoDB API Web 應用程式](create-mongodb-dotnet.md)
-* [使用 Java 和 Azure 入口網站建置 MongoDB API 主控台應用程式](create-mongodb-java.md)
+* [建置 MongoDB API web 應用程式的.NET 和 hello Azure 入口網站](create-mongodb-dotnet.md)
+* [建置 MongoDB API 主控台應用程式使用 Java 和 hello Azure 入口網站](create-mongodb-java.md)
 
 ## <a name="next-steps"></a>後續步驟
 
-Azure Cosmos DB 的 MongoDB API 相關資訊已整合至整體 Azure Cosmos DB 文件，但以下有幾個線索可讓您開始使用︰
+關於 Azure Cosmos DB 的 MongoDB API 的資訊已整合至 hello 整體 Azure Cosmos DB 文件，但以下是一些您一開始的指標 tooget:
 
-* 依照下列[連線到 MongoDB 帳戶](connect-mongodb-account.md)教學課程，了解如何取得您的帳戶連接字串資訊。
-* 依照[使用 MongoChef 搭配 Azure Cosmos DB](mongodb-mongochef.md) 教學課程來了解如何在 MongoChef 中建立 Azure Cosmos DB 資料庫和 MongoDB 應用程式之間的連線。
-* 依照[將資料移轉至具有 MongoDB 通訊協定支援的 Azure Cosmos DB](mongodb-migrate.md) 教學課程，將資料匯入適用於 MongoDB 的 API資料庫。
-* 使用 [Robomongo](mongodb-robomongo.md) 連線至 API for MongoDB 帳戶。
-* 使用 [GetLastRequestStatistics 命令和 Azure 入口網站計量](request-units.md#GetLastRequestStatistics)，了解您的作業使用多少 RU。
-* 了解如何[設定全球分散式應用程式的讀取喜好設定](../cosmos-db/tutorial-global-distribution-mongodb.md)。
+* 請遵循 hello [tooa MongoDB 帳戶連接](connect-mongodb-account.md)教學課程 toolearn 如何 tooget 您帳戶的連接字串資訊。
+* 請遵循 hello[使用 MongoChef 搭配 Azure Cosmos DB](mongodb-mongochef.md)教學課程 toolearn 如何 toocreate Azure Cosmos DB 資料庫與 MongoChef MongoDB 應用程式之間的連線。
+* 請遵循 hello[移轉與通訊協定 support for MongoDB。 資料 tooAzure Cosmos DB](mongodb-migrate.md)教學課程 tooimport MongoDB 資料庫中的使用您資料 tooan 應用程式開發介面。
+* 連接 MongoDB 帳戶使用的 API tooan [Robomongo](mongodb-robomongo.md)。
+* 了解您的作業使用以 hello 多少 RUs [GetLastRequestStatistics 命令和 hello Azure 入口網站的度量](request-units.md#GetLastRequestStatistics)。
+* 了解如何太[設定讀取全域散發的應用程式喜好設定](../cosmos-db/tutorial-global-distribution-mongodb.md)。

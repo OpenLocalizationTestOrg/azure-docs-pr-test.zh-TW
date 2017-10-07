@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL Database 資源限制 | Microsoft Docs"
+title: "SQL Database 資源限制 aaaAzure |Microsoft 文件"
 description: "此頁面描述一些 Azure SQL Database 常見的資源限制。"
 services: sql-database
 documentationcenter: na
@@ -15,61 +15,61 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 07/12/2017
 ms.author: carlrab
-ms.openlocfilehash: e75458db79e6c15f8d5155b71f04a20fa21818ff
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3e7be4fdc74e802d37274690531caaf138bcedb0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-resource-limits"></a>Azure SQL Database 資源限制
 ## <a name="overview"></a>概觀
-Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源：**資源管理**和**限制強制執行**。 本主題將說明這兩種主要的資源管理方法。
+Azure SQL Database 管理 hello 資源可用 tooa 資料庫使用兩個不同的機制：**資源控管**和**強制的限制**。 本主題將說明這兩種主要的資源管理方法。
 
 ## <a name="resource-governance"></a>資源管理
-基本、標準、進階和進階 RS 服務層的設計目的之一，是讓 Azure SQL Database 彷彿在獨立的電腦上執行，而與其他資料庫隔離。 資源管理便會模擬這個行為。 如果彙總的資源使用率達到可用 CPU、記憶體、記錄 I/O 和資料 I/O 資源 (指派至資料庫) 的上限，資源管理會將查詢排入執行佇列中，並在系統釋出資源時，適時將資源指派給佇列中的查詢。
+Hello hello Basic、 Standard、 Premium 和 RS Premium 服務層的設計目標是針對 Azure SQL Database toobehave hello 資料庫如同它自己的機器，隔離與其他資料庫上執行。 資源管理便會模擬這個行為。 如果 hello 彙總資源使用率達到 hello 最大可用 CPU、 記憶體、 記錄檔 I/O 和資料 I/O 資源指派的 toohello 資料庫、 資源控管執行中的佇列查詢，並將指派 toohello 排入佇列時的查詢釋出資源。
 
-在專用的電腦上使用所有可用的資源，會導致目前正在執行的查詢花費更多執行時間，而這可能會使得用戶端上的命令逾時。 具備積極重試邏輯的應用程式，以及時常對資料庫執行查詢的應用程式，若在嘗試執行新查詢時達到並行要求的上限，便可能出現錯誤訊息。
+做為在專用電腦上，利用所有可用的資源結果中執行更久的目前執行的查詢，從而會導致 hello 用戶端上的命令逾時。 具有積極重試邏輯應用程式以及針對高頻率的 hello 資料庫執行查詢的應用程式時可能會出現錯誤訊息時已達到 hello 限制的並行要求嘗試 tooexecute 新查詢。
 
 ### <a name="recommendations"></a>建議：
-資料庫使用率接近上限時，監視資源使用率以及查詢的平均回應時間。 查詢的延遲較高時，您通常可採取三種應對方式：
+接近 hello 資料庫最大使用率時，監視 hello 的資源使用率與 hello 平均回應時間的查詢。 查詢的延遲較高時，您通常可採取三種應對方式：
 
-1. 減少資料庫的傳入要求數目，以避免逾時和要求不斷累積。
-2. 為資料庫指派更高的效能層級。
-3. 將查詢最佳化，以降低每個查詢的資源使用率。 如需詳細資訊，請參閱＜Azure SQL Database 效能指南＞一文的「查詢微調/提示」章節。
+1. 減少 hello 連入要求 toohello 資料庫 tooprevent 逾時和 hello 以免要求次數。
+2. 指派較高的效能層級 toohello 資料庫。
+3. 最佳化查詢 tooreduce hello 的每個查詢的資源使用率。 如需詳細資訊，請參閱 hello hello Azure SQL Database 效能指引文件中的查詢微調/提示 > 一節。
 
 ## <a name="enforcement-of-limits"></a>限制強制執行
-系統會在達到上限時拒絕新的要求，藉此強制執行 CPU、記憶體、記錄 I/O 和資料 I/O 以外的資源。 當資料庫達到設定的大小上限時，會使得資料大小增加的插入與更新作業將會失敗，但選取與刪除作業仍能繼續運作。 用戶端收到的[錯誤訊息](sql-database-develop-error-messages.md)會因達到的上限而有所不同。
+系統會在達到上限時拒絕新的要求，藉此強制執行 CPU、記憶體、記錄 I/O 和資料 I/O 以外的資源。 當資料庫到達 hello 設定大小上限、 插入和更新，可以提升資料的大小失敗，同時選取並刪除繼續 toowork。 用戶端接收[錯誤訊息](sql-database-develop-error-messages.md)根據 hello 已達到的限制。
 
-例如，SQL Database 的連線數，以及可以處理的並行要求數目都將受到限制。 SQL Database 可允許資料庫的連接數大於並行要求的數目，以支援連接共用。 雖然應用程式能輕易控制可用的連接數目，但平行要求的數目通常難以預估及控制。 尤其在尖峰負載期間，應用程式往往傳送過多的要求，或是資料庫在達到資源上限後，因為執行耗時較長的查詢而開始累積背景工作執行緒，此時就可能發生錯誤。
+例如，hello tooa SQL 資料庫的連接數目和 hello 可處理的並行要求數目會限制。 SQL Database 可讓連接 toohello 資料庫 toobe 的 hello 數目大於 hello 的並行要求 toosupport 連接共用。 Hello 應用程式可以輕鬆地控制 hello 可用的連接數目，而平行要求的 hello 數目通常是時間更難 tooestimate 和 toocontrol。 特別是在 hello 應用程式傳送太多要求或 hello 資料庫達到其資源限制，並開始堆積背景工作執行緒，因為 toolonger 執行查詢，可能會遇到錯誤時的尖峰負載。
 
 ## <a name="service-tiers-and-performance-levels"></a>服務層和效能等級
 單一資料庫和彈性集區都有服務層和效能等級。
 
 ### <a name="single-databases"></a>單一資料庫
-對於單一資料庫，資料庫的限制是由服務層級和效能等級所定義。 下表說明基本、標準、進階和進階 RS 資料庫在不同效能等級的特性。
+單一資料庫，資料庫的 hello 限制由 hello 資料庫服務層和效能層級定義。 hello 下表描述在不同的效能層級的 Basic、 Standard、 Premium 和 Premium RS 資料庫 hello 特性。
 
 [!INCLUDE [SQL DB service tiers table](../../includes/sql-database-service-tiers-table.md)]
 
 > [!IMPORTANT]
-> 使用 P11 和 P15 效能等級的客戶不需額外付費就能使用最多 4 TB 的內含儲存體。 這個 4 TB 選項目前已在下列區域提供：美國東部 2、美國西部、美國維吉尼亞州政府、西歐、德國中部、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。
+> 使用 P11 和 P15 效能層級的客戶可以使用向上 too4 TB，包括存放裝置，不另收費。 4 TB 則使用此選項目前在 hello 下列區域： 美國 East2、 美國西部、 美國 Gov 維吉尼亞州、 西歐、 德國中央、 南東亞、 日本東部、 澳洲東部、 加拿大中央和加拿大東部。
 >
 
 ### <a name="elastic-pools"></a>彈性集區
-[彈性集區](sql-database-elastic-pool.md) 可在集區中的資料庫之間共用資源。 下表說明基本、標準、進階和進階 RS 彈性集區的特性。
+[彈性集區](sql-database-elastic-pool.md)hello 集區中的資料庫之間共用資源。 下表中的 hello 說明 Basic、 Standard、 Premium 和 Premium RS 彈性集區 hello 特性。
 
 [!INCLUDE [SQL DB service tiers table for elastic databases](../../includes/sql-database-service-tiers-table-elastic-pools.md)]
 
-如需上述表格所列之每項資源的擴充定義，請參閱[服務層功能和限制](sql-database-performance-guidance.md#service-tier-capabilities-and-limits)中的說明。 如需服務層的概觀，請參閱 [Azure SQL Database 服務層和效能等級](sql-database-service-tiers.md)。
+Hello 之前的表格中所列每項資源已展開定義，請參閱中的 hello 描述[服務層的功能以及限制](sql-database-performance-guidance.md#service-tier-capabilities-and-limits)。 如需服務層的概觀，請參閱 [Azure SQL Database 服務層和效能等級](sql-database-service-tiers.md)。
 
 ## <a name="other-sql-database-limits"></a>其他 SQL Database 限制
 | 領域 | 限制 | 說明 |
 | --- | --- | --- |
-| 每個訂用帳戶使用自動匯出的資料庫 |10 |自動匯出可讓您建立自訂排程以備份 SQL Database。 此功能的預覽將於 2017 年 3 月 1 日結束。  |
-| 每一伺服器的資料庫 |最多 5000 個 |每一部伺服器最多允許 5000 個資料庫。 |
-| 每一部伺服器的 DTU |45000 |每一部伺服器允許 45000 個 DTU，以佈建獨立資料庫和彈性集區。 每一伺服器允許的獨立資料庫和集區總數，僅受限於伺服器 DTU 數目。  
+| 每個訂用帳戶使用自動匯出的資料庫 |10 |自動的匯出可讓您 toocreate 自訂的排程來備份 SQL 資料庫。 這項功能的 hello 預覽版即將結束 2017 年 3 月 1 上。  |
+| 每一伺服器的資料庫 |向上 too5000 |向上 too5000 資料庫允許每一部伺服器。 |
+| 每一部伺服器的 DTU |45000 |每一部伺服器允許 45000 個 DTU，以佈建獨立資料庫和彈性集區。 hello 總數的獨立資料庫與集區允許每個伺服器只會受到伺服器的 Dtu hello 號碼。  
 
 > [!IMPORTANT]
-> Azure SQL 資料庫自動匯出目前為預覽狀態，並會在 2017 年 3 月 1 日停用。 從 2016 年 12 月 1 日開始，您將無法再於任何 SQL 資料庫上設定自動匯出。 所有現有的自動匯出作業會繼續運作至 2017 年 3 月 1 日。 2016 年 12 月 1 日之後，您可以使用[長期的備份保留](sql-database-long-term-retention.md)或 [Azure 自動化](../automation/automation-intro.md)，根據您選擇的排程使用 PowerShell 定期封存 SQL Database。 如需範例指令碼，您可以[從 GitHub 下載範例指令碼](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-automation-automated-export)。
+> Azure SQL 資料庫自動匯出目前為預覽狀態，並會在 2017 年 3 月 1 日停用。 從 2016 年 12 月 1 日，您將不再能夠 tooconfigure 自動化匯出任何 SQL 資料庫。 您現有的自動的匯出作業將會繼續 toowork 2017 年 3 月 1 日。 2016 年 12 月 1 日之後，您可以使用[長期備份的保留](sql-database-long-term-retention.md)或[Azure 自動化](../automation/automation-intro.md)使用 PowerShell 定期，根據您選擇的 tooa 排程定期 tooarchive SQL 資料庫。 如需範例指令碼中，您可以下載 hello[範例指令碼從 GitHub](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-automation-automated-export)。
 >
 
 

@@ -1,6 +1,6 @@
 ---
-title: "建立 Web 應用程式的自訂 DNS 記錄 | Microsoft Docs"
-description: "如何使用 Azure DNS 來建立 Web 應用程式的自訂網域 DNS 記錄。"
+title: "aaaCreate web 應用程式的自訂 DNS 記錄 |Microsoft 文件"
+description: "Toocreate 自訂網域 DNS 資料錄的方式使用 Azure DNS 的 web 應用程式。"
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -13,39 +13,39 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/16/2016
 ms.author: gwallace
-ms.openlocfilehash: b054a41ecd69ee1c802d8403fe4b25128f016e3c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 070c808a55bab922eb624d99ae5c275d8eaa5aaa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-dns-records-for-a-web-app-in-a-custom-domain"></a>在自訂網域中建立 Web 應用程式的 DNS 記錄
 
-您可以使用 Azure DNS 來裝載 Web 應用程式的自訂網域。 例如，您正在建立 Azure Web 應用程式，而且想要讓使用者使用 contoso.com 或 www.contoso.com 做為 FQDN 來存取它。
+您可以使用 Azure DNS toohost 自訂網域，您的 web 應用程式。 比方說，您所建立的 Azure web 應用程式，而且您想要使用者 tooaccess 它透過使用 contoso.com 或 www.contoso.com 當做 FQDN。
 
-若要這樣做，您必須建立兩筆記錄︰
+toodo，您有 toocreate 兩筆記錄：
 
-* 指向 contoso.com 的根 "A" 記錄
-* 指向 A 記錄之 www 名稱的 "CNAME" 記錄
+* 根"A"的記錄指標 toocontoso.com
+* "CNAME"hello www 名稱指向 toohello 記錄記錄
 
-請記住，如果您在 Azure 中建立 Web 應用程式的 A 記錄，如果 Web 應用程式的基礎 IP 位址變更，則您必須手動更新 A 記錄。
+請注意，如果您在 Azure 中建立 web 應用程式的 A 記錄，記錄必須手動更新，如果 hello hello hello web 應用程式變更為基礎的 IP 位址。
 
 ## <a name="before-you-begin"></a>開始之前
 
-開始之前，您必須先在 Azure DNS 中建立 DNS 區域，並將註冊機構中的區域委派給 Azure DNS。
+在開始之前，必須首先 Azure DNS 中建立 DNS 區域，並在您的註冊機構 tooAzure DNS 委派 hello 區域。
 
-1. 若要建立 DNS 區域，請依照 [建立 DNS 區域](dns-getstarted-create-dnszone.md)的步驟進行。
-2. 若要將 DNS 委派給 Azure DNS，請依照 [DNS 網域委派](dns-domain-delegation.md)中的步驟進行。
+1. toocreate DNS 區域，請依照下列中的 hello 步驟[建立 DNS 區域](dns-getstarted-create-dnszone.md)。
+2. toodelegate 您 DNS tooAzure DNS，請依照下列中的 hello 步驟[DNS 網域委派](dns-domain-delegation.md)。
 
-建立區域並委派給 Azure DNS 之後，便可以為您的自訂網域建立記錄。
+之後建立區域委派它 tooAzure DNS，然後您可以建立記錄的自訂網域。
 
 ## <a name="1-create-an-a-record-for-your-custom-domain"></a>1.建立自訂網域的 A 記錄
 
-A 記錄可用來將名稱對應到其 IP 位址。 在下列範例中，我們會將 @ 當成 A 記錄指派給 IPv4 位址：
+A 記錄是使用的 toomap 名稱 tooits IP 位址。 Hello 下列範例中我們將會為 IPv4 位址的 A 記錄 tooan 指派:
 
 ### <a name="step-1"></a>步驟 1
 
-建立 A 記錄，並指派給變數 $rs
+建立 A 記錄，並指派 tooa 變數 $rs
 
 ```powershell
 $rs= New-AzureRMDnsRecordSet -Name "@" -RecordType "A" -ZoneName "contoso.com" -ResourceGroupName "MyAzureResourceGroup" -Ttl 600
@@ -53,9 +53,9 @@ $rs= New-AzureRMDnsRecordSet -Name "@" -RecordType "A" -ZoneName "contoso.com" -
 
 ### <a name="step-2"></a>步驟 2
 
-使用指派的 $rs 變數，將 IPv4 值新增至先前建立的記錄集 "@"。 指派的 IPv4 值將是您 Web 應用程式的 IP 位址。
+新增 hello IPv4 值 toohello 先前建立的記錄組"@"使用 hello $rs 變數指派。 hello 指派的 IPv4 值將是 hello web 應用程式的 IP 位址。
 
-若要尋找 Web 應用程式的 IP 位址，請依照[在 Azure App Service 中設定自訂網域名稱](../app-service-web/app-service-web-tutorial-custom-domain.md)的步驟進行。
+toofind hello IP 位址，web 應用程式中，請依照下列中的 hello 步驟[Azure App Service 中設定自訂網域名稱](../app-service-web/app-service-web-tutorial-custom-domain.md)。
 
 ```powershell
 Add-AzureRMDnsRecordConfig -RecordSet $rs -Ipv4Address "<your web app IP address>"
@@ -63,7 +63,7 @@ Add-AzureRMDnsRecordConfig -RecordSet $rs -Ipv4Address "<your web app IP address
 
 ### <a name="step-3"></a>步驟 3
 
-認可對記錄集所做的變更。 使用 `Set-AzureRMDnsRecordSet` 將記錄集的變更上傳到 Azure DNS：
+認可 hello 變更 toohello 記錄集。 使用`Set-AzureRMDnsRecordSet`tooupload hello 變更 toohello 記錄集 tooAzure DNS:
 
 ```powershell
 Set-AzureRMDnsRecordSet -RecordSet $rs
@@ -71,17 +71,17 @@ Set-AzureRMDnsRecordSet -RecordSet $rs
 
 ## <a name="2-create-a-cname-record-for-your-custom-domain"></a>2.建立自訂網域的 CNAME 記錄
 
-如果您的網域已受 Azure DNS 管理 (請參閱 [DNS 網域委派](dns-domain-delegation.md))，您可以使用下列範例，建立 contoso.azurewebsites.net 的 CNAME 記錄。
+如果您的網域已經受 Azure DNS (請參閱[DNS 網域委派](dns-domain-delegation.md)，您可以使用 hello 遵循 hello 範例 toocreate: contoso.azurewebsites.net 的 CNAME 記錄。
 
 ### <a name="step-1"></a>步驟 1
 
-開啟 PowerShell 並建立新的 CNAME 記錄集，然後指派給變數 $rs。 此範例會在名為 "contoso.com" 的DNS 區域中建立一個「存留時間」為 600 秒的記錄集類型 CNAME。
+開啟 PowerShell 並建立新的 CNAME 記錄集並指派 tooa 變數 $rs。 這個範例會建立 「 時間 toolive 」 為 600 秒 DNS 區域中名為"contoso.com"的資料錄集類型 CNAME。
 
 ```powershell
 $rs = New-AzureRMDnsRecordSet -ZoneName contoso.com -ResourceGroupName myresourcegroup -Name "www" -RecordType "CNAME" -Ttl 600
 ```
 
-以下是回應範例。
+下列範例中的 hello 是 hello 回應。
 
 ```
 Name              : www
@@ -96,15 +96,15 @@ Tags              : {}
 
 ### <a name="step-2"></a>步驟 2
 
-一旦建立 CNAME 記錄集，您需要建立將指向 Web 應用程式的別名值。
+Hello CNAME 記錄組建立之後，您需要 toocreate 將會為 toohello web 應用程式的別名值。
 
-使用先前指派的變數 "$rs"，您可以使用下列 PowerShell 命令來建立 Web 應用程式 contoso.azurewebsites.net 的別名。
+使用先前指派變數"$rs"hello 您可以使用以下 toocreate hello 別名 hello PowerShell 命令的 hello web 應用程式： contoso.azurewebsites.net。
 
 ```powershell
 Add-AzureRMDnsRecordConfig -RecordSet $rs -Cname "contoso.azurewebsites.net"
 ```
 
-以下是回應範例。
+下列範例中的 hello 是 hello 回應。
 
 ```
     Name              : www
@@ -119,13 +119,13 @@ Add-AzureRMDnsRecordConfig -RecordSet $rs -Cname "contoso.azurewebsites.net"
 
 ### <a name="step-3"></a>步驟 3
 
-使用 `Set-AzureRMDnsRecordSet` Cmdlet 來認可所做的變更：
+認可使用 hello hello 變更`Set-AzureRMDnsRecordSet`cmdlet:
 
 ```powershell
 Set-AzureRMDnsRecordSet -RecordSet $rs
 ```
 
-您可以使用 nslookup 來驗證由查詢 "www.contoso.com" 正確建立的記錄，如下所示：
+您可以驗證 hello 記錄已正確建立藉由查詢 hello"www.contoso.com"使用 nslookup，如下所示：
 
 ```
 PS C:\> nslookup
@@ -146,17 +146,17 @@ contoso.azurewebsites.net
 
 ## <a name="create-an-awverify-record-for-web-apps"></a>建立 Web Apps 的 awverify 記錄
 
-如果您決定使用 Web 應用程式的 A 記錄，您必須通過驗證程序，才能確保您擁有自訂網域。 此驗證步驟可透過建立名為 "awverify" 的特殊 CNAME 記錄來完成。 本節適用於僅限 A 記錄。
+如果您決定 toouse A 記錄 web 應用程式時，您必須通過驗證程序 tooensure 您自己的 hello 自訂網域。 此驗證步驟可透過建立名為 "awverify" 的特殊 CNAME 記錄來完成。 本節適用於僅 tooA 記錄。
 
 ### <a name="step-1"></a>步驟 1
 
-建立 awverify 記錄。 在以下範例中，我們將建立 contoso.com 的 "awverify" 記錄，以驗證自訂網域的擁有權。
+建立 hello"awverify 」 記錄。 在 [hello 下列範例中，我們將建立 hello 自訂網域為 contoso.com tooverify 擁有權的 hello"aweverify 」 記錄。
 
 ```powershell
 $rs = New-AzureRMDnsRecordSet -ZoneName "contoso.com" -ResourceGroupName "myresourcegroup" -Name "awverify" -RecordType "CNAME" -Ttl 600
 ```
 
-以下是回應範例。
+下列範例中的 hello 是 hello 回應。
 
 ```
 Name              : awverify
@@ -171,13 +171,13 @@ Tags              : {}
 
 ### <a name="step-2"></a>步驟 2
 
-一旦建立 "awverify" 記錄集，請指派 CNAME 記錄集別名。 在以下範例中，我們會將 CNAME 記錄集別名指派為 awverify.contoso.azurewebsites.net。
+一旦建立資料錄集 」 awverify"hello，指派別名設定 hello CNAME 記錄。 在 [hello 下列範例中，我們將會指派 hello CNAMe 記錄集別名 tooawverify.contoso.azurewebsites.net。
 
 ```powershell
 Add-AzureRMDnsRecordConfig -RecordSet $rs -Cname "awverify.contoso.azurewebsites.net"
 ```
 
-以下是回應範例。
+下列範例中的 hello 是 hello 回應。
 
 ```
     Name              : awverify
@@ -192,7 +192,7 @@ Add-AzureRMDnsRecordConfig -RecordSet $rs -Cname "awverify.contoso.azurewebsites
 
 ### <a name="step-3"></a>步驟 3
 
-使用 `Set-AzureRMDnsRecordSet cmdlet`認可所做的變更，如下列命令所示。
+認可使用 hello hello 變更`Set-AzureRMDnsRecordSet cmdlet`下方的 hello 命令所示。
 
 ```powershell
 Set-AzureRMDnsRecordSet -RecordSet $rs
@@ -200,4 +200,4 @@ Set-AzureRMDnsRecordSet -RecordSet $rs
 
 ## <a name="next-steps"></a>後續步驟
 
-依照 [設定 App Service 的自訂網域名稱](../app-service-web/web-sites-custom-domain-name.md) 中的步驟設定 Web 應用程式使用自訂網域。
+中的 hello 步驟[設定應用程式服務的自訂網域名稱](../app-service-web/web-sites-custom-domain-name.md)tooconfigure 您 web 應用程式 toouse 自訂網域。

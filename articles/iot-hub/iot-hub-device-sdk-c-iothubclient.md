@@ -1,6 +1,6 @@
 ---
-title: "適用於 C 的 Azure IoT 裝置 SDK - IoTHubClient | Microsoft Docs"
-description: "如何使用適用於 C 的 Azure IoT 裝置 SDK 中的 IoTHubClient 程式庫，以建立與 IoT 中樞通訊的裝置應用程式。"
+title: "c-IoTHubClient aaaAzure IoT 裝置 SDK |Microsoft 文件"
+description: "如何在 C toocreate 裝置應用程式的 hello Azure IoT 裝置 SDK toouse hello IoTHubClient 程式庫進行通訊的與 IoT 中樞。"
 services: iot-hub
 documentationcenter: 
 author: olivierbloch
@@ -14,70 +14,70 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/06/2016
 ms.author: obloch
-ms.openlocfilehash: 422d89014511f0d08ba57a893570ff7b253b7bc4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d1ece79e9ba6d1e5fd45cabb8fca393b24052e07
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-device-sdk-for-c--more-about-iothubclient"></a>適用於 C 的 Azure IoT 裝置 SDK - 深入了解 IoTHubClient
-本系列的[第一篇文章](iot-hub-device-sdk-c-intro.md)介紹了「適用於 C 的 Azure IoT 裝置 SDK」。該文章已說明 SDK 中有兩個架構層。 在基底的是 **IoTHubClient** 程式庫，可直接管理與 IoT 中樞的通訊。 還有 **序列化程式** 庫，此程式庫建置於其頂部以提供序列化服務。 在本文中，我們將提供 **IoTHubClient** 程式庫的其他詳細資料。
+hello[先文章](iot-hub-device-sdk-c-intro.md)中這個數列導入 hello **C 的 Azure IoT 裝置 SDK**。該文章已說明 SDK 中有兩個架構層。 在 [hello 基底 hello **IoTHubClient**可直接管理與 IoT 中樞通訊的程式庫。 另外還有 hello**序列化程式**在該組建 tooprovide 序列化服務的程式庫。 本文章中我們將提供其他詳細資料上 hello **IoTHubClient**程式庫。
 
-前一篇文章描述如何使用 **IoTHubClient** 程式庫傳送事件到 IoT 中樞及接收訊息。 本文將向您介紹「較低層級 API」，以說明如何更精確地管理傳送和接收資料的「時機」來延伸該討論。 我們也將說明如何使用 **IoTHubClient** 程式庫中的屬性處理功能，將屬性附加到事件 (並從訊息將其擷取)。 最後，我們將提供其他說明，以不同的方式來處理從 IoT 中樞接收的訊息。
+hello 前一篇文章所述方式 toouse hello **IoTHubClient**文件庫 toosend 事件 tooIoT 中樞和接收訊息。 這篇文章解釋 toomore 精確地管理已延伸，討論*時*您傳送和接收資料，引入您 toohello**較低層級 Api**。 我們也將說明如何 tooattach 屬性 tooevents （和擷取訊息） 使用 hello 屬性處理 hello 的功能**IoTHubClient**程式庫。 最後，我們將提供詳細說明不同的方式 toohandle 從 IoT 中樞接收的訊息。
 
-本文以涵蓋幾個其他主題 (包括更多有關裝置認證及如何透過組態選項變更 **IoTHubClient** 行為的資訊) 做總結。
+hello 文章結束時，會涵蓋數個其他的主題，包括裝置認證有關的詳細資訊和如何 toochange hello 行為 hello **IoTHubClient**透過組態選項。
 
-我們將使用 **IoTHubClient** SDK 範例來說明這些主題。 如果您想要依照這些內容，請參閱「適用於 C 的 Azure IoT 裝置 SDK」中隨附的 **iothub\_client\_sample\_http** 和 **iothub\_client\_sample\_amqp** 應用程式。這些範例會示範下列各節中所述的所有內容。
+我們將使用 hello **IoTHubClient** SDK 範例 tooexplain 這些主題。 如果您想沿著 toofollow，請參閱 hello **iot 中樞\_用戶端\_範例\_http**和**iot 中樞\_用戶端\_範例\_amqp** hello Azure IoT 裝置 SDK 中包含的這些範例會示範 c 的所有項目 hello 下列各節中所述的應用程式。
 
-您可以尋找[**適用於 C 的 Azure IoT 裝置 SDK**](https://github.com/Azure/azure-iot-sdk-c) GitHub 儲存機制，然後在 [C API 參考資料](https://azure.github.io/azure-iot-sdk-c/index.html)中檢視 API 的詳細資料。
+您可以找到 hello [ **C 的 Azure IoT 裝置 SDK** ](https://github.com/Azure/azure-iot-sdk-c) GitHub 儲存機制和檢視詳細資料的 hello API 在 hello [C 應用程式開發介面參考](https://azure.github.io/azure-iot-sdk-c/index.html)。
 
-## <a name="the-lower-level-apis"></a>較低層級的 API
-前一篇文章描述了 **iothub\_client\_sample\_amqp** 應用程式內容中 **IotHubClient** 的基本作業。 比方說，該文說明如何使用下列程式碼初始化程式庫。
+## <a name="hello-lower-level-apis"></a>hello 較低層級應用程式開發介面
+hello 前一篇文章所述的 hello hello 基本作業**IotHubClient** hello hello 內容中**iot 中樞\_用戶端\_範例\_amqp**應用程式。 比方說，它會說明如何 tooinitialize hello 使用此程式碼的程式庫。
 
 ```
 IOTHUB_CLIENT_HANDLE iotHubClientHandle;
 iotHubClientHandle = IoTHubClient_CreateFromConnectionString(connectionString, AMQP_Protocol);
 ```
 
-此外，還會說明如何使用這個函式呼叫來傳送事件。
+它也說明如何使用這個 toosend 事件函式呼叫。
 
 ```
 IoTHubClient_SendEventAsync(iotHubClientHandle, message.messageHandle, SendConfirmationCallback, &message);
 ```
 
-本文還會說明如何藉由註冊回呼函式來接收訊息。
+hello 同時也說明 tooreceive 藉由註冊回呼函式的訊息。
 
 ```
 int receiveContext = 0;
 IoTHubClient_SetMessageCallback(iotHubClientHandle, ReceiveMessageCallback, &receiveContext);
 ```
 
-本文同時示範了如何使用如下的程式碼釋放資源。
+hello 發行項也會示範使用 toofree 資源 hello 如下的程式碼。
 
 ```
 IoTHubClient_Destroy(iotHubClientHandle);
 ```
 
-但是每個 API 都有隨附函式：
+但是有附屬的這些 Api 的函式 tooeach:
 
 * IoTHubClient\_LL\_CreateFromConnectionString
 * IoTHubClient\_LL\_SendEventAsync
 * IoTHubClient\_LL\_SetMessageCallback
 * IoTHubClient\_LL\_Destroy
 
-這些函式的 API 名稱中都包含 "LL"。 除此之外，這其中每個函式的參數都會與其非 LL 的對應項目相同。 不過，這些函式的行為有一個重要的差異。
+所有這些函式 hello API 名稱中包含"LL"。 除此之外，其他每一個這些函式的 hello 參數都是相同 tootheir 非 LL 對應項目。 不過，這些函式的 hello 行為不相同，有一項重要的。
 
-當您呼叫 **IoTHubClient\_CreateFromConnectionString** 時，基礎程式庫會建立在背景中執行的新執行緒。 此執行緒會將事件傳送到 IoT 中樞以及接收其訊息。 使用 "LL" API 時不會建立這類執行緒。 背景執行緒的建立是為了方便開發人員。 您完全不必擔心要明確地將事件傳送到 IoT 中樞以及從中接收訊息 -- 此動作會在背景中自動進行。 相對地，"LL" API 可讓您明確控制與「IoT 中樞」的通訊 (如果您需要的話)。
+當您呼叫**IoTHubClient\_CreateFromConnectionString**，hello 基礎程式庫建立新的執行緒 hello 背景中執行。 此執行緒會將事件傳送到 IoT 中樞以及接收其訊息。 使用 hello"LL"應用程式開發介面時，會建立沒有這類執行緒。 hello 建立 hello 背景執行緒是方便 toohello 開發人員。 您不需要明確地將事件傳送和接收訊息從 IoT 中樞-它在 hello 背景中自動進行有關 tooworry。 相反地，hello"LL"應用程式開發介面可讓您明確掌控與 IoT 中樞通訊如有需要。
 
-若要更深入了解，讓我們看看一個範例：
+toounderstand 這個較好，讓我們來看一個範例：
 
-當您呼叫 **IoTHubClient\_SendEventAsync** 時，其實是將事件放入緩衝區中。 在您呼叫 **IoTHubClient\_CreateFromConnectionString** 時建立的背景執行緒會持續監視這個緩衝區，並將它所包含的任何資料傳送到「IoT 中樞」。 這些動作會在主執行緒執行其他工作的同時在背景中進行。
+當您呼叫**IoTHubClient\_SendEventAsync**，您正在實際做什麼 hello 事件放在緩衝區中。 hello 背景執行緒呼叫時建立**IoTHubClient\_CreateFromConnectionString**持續監視這個緩衝區，並傳送任何資料，它包含 tooIoT 中樞。 發生這種情況在 hello hello 背景中相同時間該 hello 主執行緒所執行的其他工作。
 
-同樣地，當您使用 **IoTHubClient\_SetMessageCallback** 來註冊訊息的回呼函式時，即是在指示 SDK 讓背景執行緒在收到訊息時叫用回呼函式 (不受主執行緒影響)。
+同樣地，當您註冊的回呼函式，以訊息**IoTHubClient\_SetMessageCallback**，您要指示 hello SDK toohave hello 背景執行緒會將訊息時，叫用 hello 回呼函式接收獨立的 hello 主執行緒。
 
-"LL" API 不會建立背景執行緒。 而是必須呼叫新的 API 明確地與 IoT 中樞之間傳送和接收資料。 下列範例就將此進行示範。
+背景執行緒時，請勿建立 hello"LL"應用程式開發介面。 相反地，新的 API，必須先呼叫 tooexplicitly 傳送和接收來自 IoT 中樞的資料。 Hello 下列範例所示。
 
-SDK 中隨附的 **iothub\_client\_sample\_http** 應用程式會示範較低層級的 API。 在該範例中，我們會使用類似以下的程式碼，將事件傳送給「IoT 中樞」︰
+hello **iot 中樞\_用戶端\_範例\_http** hello 示範 SDK 中隨附的應用程式 hello 較低層級應用程式開發介面。 在該範例中，我們會傳送事件 tooIoT 集線器與 hello 如下的程式碼：
 
 ```
 EVENT_INSTANCE message;
@@ -87,7 +87,7 @@ message.messageHandle = IoTHubMessage_CreateFromByteArray((const unsigned char*)
 IoTHubClient_LL_SendEventAsync(iotHubClientHandle, message.messageHandle, SendConfirmationCallback, &message)
 ```
 
-前三行會建立訊息，而最後一行會傳送事件。 不過，如先前所述，「傳送」事件表示只是將資料放置於緩衝區中。 當我們呼叫 **IoTHubClient\_LL\_SendEventAsync** 時，不會在網路上傳輸任何內容。 若要實際將資料輸入到「IoT 中樞」，您必須呼叫 **IoTHubClient\_LL\_DoWork**，如下列範例所示：
+hello 前三行建立 hello 訊息和 hello 最後一行會傳送 hello 事件。 不過，如先前所述，「 傳送 」 hello 事件表示 hello 資料只會置於緩衝區。 執行任何動作會當我們呼叫 hello 網路上傳輸**IoTHubClient\_LL\_SendEventAsync**。 在訂單 tooactually 輸入 hello 資料 tooIoT 中樞，您必須呼叫**IoTHubClient\_LL\_DoWork**，如這個範例所示：
 
 ```
 while (1)
@@ -97,13 +97,13 @@ while (1)
 }
 ```
 
-此程式碼 (來自 **iothub\_client\_sample\_http** 應用程式) 會重複地呼叫 **IoTHubClient\_LL\_DoWork**。 每次呼叫 **IoTHubClient\_LL\_DoWork** 時，它都會將某些事件從緩衝區傳送到「IoT 中樞」，而且會擷取傳送到裝置的佇列訊息。 在後者的情況下，這表示如果我們已註冊訊息的回呼函式，則會叫用回呼 (假設所有訊息皆已加入佇列)。 我們會使用如下的程式碼來註冊這類回呼函式：
+此程式碼 (從 hello **iot 中樞\_用戶端\_範例\_http**應用程式) 重複呼叫**IoTHubClient\_LL\_DoWork**. 每次**IoTHubClient\_LL\_DoWork**是呼叫，從 hello 緩衝區 tooIoT 中樞傳送某些事件，而且它會擷取佇列的訊息傳送 toohello 裝置。 hello 後者的情況下表示，如果我們註冊回呼函式的訊息，然後 hello 會叫用回呼 （假設任何訊息的佇列）。 我們會註冊這類的回呼函式與 hello 如下的程式碼：
 
 ```
 IoTHubClient_LL_SetMessageCallback(iotHubClientHandle, ReceiveMessageCallback, &receiveContext)
 ```
 
-迴圈中經常呼叫 **IoTHubClient\_LL\_DoWork** 的原因是每次呼叫它時，它都會將「一些」緩衝的事件傳送到「IoT 中樞」，並為裝置擷取加入佇列的「下一個」訊息。 每次呼叫都不保證會傳送所有緩衝的事件或擷取所有加入佇列的訊息。 如果您想要傳送緩衝區中的所有事件，並繼續進行其他處理程序，您可以使用如下程式碼來取代此迴圈：
+hello 原因**IoTHubClient\_LL\_DoWork**通常稱為迴圈是每次呼叫時，它會傳送*某些*緩衝事件 tooIoT 中樞並擷取*接下來 hello*訊息佇列中等待 hello 裝置。 每個呼叫不保證 toosend 所有經過緩衝處理的事件或 tooretrieve 所有排入佇列的訊息。 如果您想的 toosend hello 中的所有事件緩衝區，然後繼續執行上其他處理此迴圈可以取代 hello 如下的程式碼：
 
 ```
 IOTHUB_CLIENT_STATUS status;
@@ -115,29 +115,29 @@ while ((IoTHubClient_LL_GetSendStatus(iotHubClientHandle, &status) == IOTHUB_CLI
 }
 ```
 
-此程式碼會呼叫 **IoTHubClient\_LL\_DoWork**，直到緩衝區中的所有事件都已傳送到「IoT 中樞」為止。 請注意，這並未一併暗示已收到所有佇列的訊息。 部分原因是因為檢查「所有」訊息的決定性並不如動作一般。 如果您擷取「所有」訊息，但另一個訊息又隨即傳送至裝置，會發生什麼事？ 更好的處理方法是利用程式化的逾時。 例如，每次叫用訊息回呼函式時，它可以重設計時器。 如果最後 *X* 秒都沒有收到任何訊息，您可以接著撰寫邏輯來繼續處理。
+此程式碼會呼叫**IoTHubClient\_LL\_DoWork**之前已傳送嗨緩衝區中的所有事件 tooIoT 中樞。 請注意，這並未一併暗示已收到所有佇列的訊息。 部分 hello 這個錯誤是原因的，檢查 「 全部 」 的訊息不會為具決定性的動作。 如果您擷取"all"hello 訊息，但另一個然後傳送 toohello 裝置，會發生什麼情況之後立即？ 與更好的方式 toodeal 是經過程式設計逾時。 例如，hello 訊息回呼函式無法重設的計時器，每次叫用它。 然後您可以撰寫邏輯 toocontinue 處理，例如，沒有訊息所收到的 hello 上次*X*秒。
 
-當您完成輸入事件和接收訊息時，請務必呼叫相對應的函式來清除資源。
+當您在完成的 ingressing 事件，並接收訊息，是確定 toocall hello 對應函式 tooclean 資源。
 
 ```
 IoTHubClient_LL_Destroy(iotHubClientHandle);
 ```
 
-基本上，只有一組 API 會利用背景執行緒來傳送和接收資料，另一組 API 不會利用背景執行緒來執行相同的動作。 許多開發人員可能會偏好非 LL API，但是如果開發人員想要明確控制網路傳輸，則較低層級的 API 會相當有用。 例如，有些裝置會隨時間收集資料，並且只在指定的時間間隔輸入事件 (例如，每小時一次或一天一次)。 較低層級 API 可在您與 IoT 中樞之間傳送和接收資料時，提供您明確控制的功能。 其他人則會單純地偏好較低層級 API 所提供的簡單性。 一切動作都發生在主執行緒上，而不是有些工作會在背景中發生。
+基本上是只有一組 Api toosend 利用背景執行緒與另一組 Api，並 hello hello 背景執行緒沒有相同的動作和接收資料。 許多開發人員可能偏好使用 hello 非-LL Api，但 hello 較低層級 Api 時很有用 hello 開發人員想要明確控制網路傳輸。 例如，有些裝置會隨時間收集資料，並且只在指定的時間間隔輸入事件 (例如，每小時一次或一天一次)。 hello 較低層級應用程式開發介面提供當您傳送和接收資料，或從 IoT 中樞時，hello 能力 tooexplicitly 控制項。 其他人只會偏好 hello 簡化較低層級 Api，提供該 hello。 Hello 主執行緒，而不是在 hello 背景某些工作發生的所有項目會發生。
 
-無論您選擇哪種模型，請務必與您使用的 API 一致。 如果您是透過呼叫 **IoTHubClient\_LL\_CreateFromConnectionString** 來開始著手，請務必只使用對應的較低層級 API 來進行任何追蹤工作：
+您選擇，無論模型是確定 toobe 一致的應用程式開發介面中使用。 如果您藉由呼叫啟動**IoTHubClient\_LL\_CreateFromConnectionString**，確定您只使用 hello 對應較低層級 Api，任何後續追蹤的工作：
 
 * IoTHubClient\_LL\_SendEventAsync
 * IoTHubClient\_LL\_SetMessageCallback
 * IoTHubClient\_LL\_Destroy
 * IoTHubClient\_LL\_DoWork
 
-相反的情況也成立。 如果您從 **IoTHubClient\_CreateFromConnectionString** 開始著手，則請使用非 LL API 來進行任何額外的處理。
+相反的 hello 也是如此。 如果您開始使用**IoTHubClient\_CreateFromConnectionString**，然後使用 hello 非-LL Api 進行任何其他處理。
 
-在「適用於 C 的 Azure IoT 裝置 SDK」中，如需較低層級 API 的完整範例，請參閱 **iothub\_client\_sample\_http** 應用程式。 如需非 LL API 的完整範例，請參考 **iothub\_client\_sample\_amqp** 應用程式。
+在 [hello Azure IoT 裝置 SDK c，請參閱 hello **iot 中樞\_用戶端\_範例\_http** hello 的完整範例應用程式較低層級應用程式開發介面。 hello **iot 中樞\_用戶端\_範例\_amqp**應用程式可以如需完整範例的 hello 非-LL 應用程式開發介面參考。
 
 ## <a name="property-handling"></a>屬性處理
-到我們描述了傳送資料的目前為止，我們也已經參考訊息的內文。 例如，請思考下列程式碼：
+到目前為止我們已說明傳送資料，我們已被參照 toohello hello 訊息本文。 例如，請思考下列程式碼：
 
 ```
 EVENT_INSTANCE message;
@@ -146,7 +146,7 @@ message.messageHandle = IoTHubMessage_CreateFromByteArray((const unsigned char*)
 IoTHubClient_LL_SendEventAsync(iotHubClientHandle, message.messageHandle, SendConfirmationCallback, &message)
 ```
 
-此範例會傳送訊息給 IoT 中樞，包含文字 "Hello World"。 不過，IoT 中樞也允許屬性附加至每個訊息。 這些屬性是可附加至訊息的名稱/值組。 例如，我們可以修改上述程式碼，將屬性附加至訊息：
+這個範例會傳送訊息 tooIoT 集線器與 hello 文字"Hello World"。 不過，IoT 中樞也可讓屬性 toobe 附加的 tooeach 訊息。 屬性是可附加的 toohello 訊息的名稱/值組。 例如，我們可以修改前一個程式碼 tooattach hello 屬性 toohello 訊息：
 
 ```
 MAP_HANDLE propMap = IoTHubMessage_Properties(message.messageHandle);
@@ -154,18 +154,18 @@ sprintf_s(propText, sizeof(propText), "%d", i);
 Map_AddOrUpdate(propMap, "SequenceNumber", propText);
 ```
 
-我們從呼叫 **IoTHubMessage\_Properties** 開始著手，然後將訊息的控制代碼傳遞給它。 我們得到的回應是 **MAP\_HANDLE** 參考，這可讓我們開始新增屬性。 後者可透過呼叫 **Map\_AddOrUpdate** 來完成，這會參考 MAP\_HANDLE、屬性名稱和屬性值。 利用此 API，我們可以依意願新增應用程式。
+我們一開始呼叫**IoTHubMessage\_屬性**並將其傳遞訊息的 hello 控制代碼。 我們會得到回**對應\_處理**可讓我們 toostart 加入屬性的參考。 後者的 hello 伴隨著呼叫**對應\_AddOrUpdate**，其可接受參考 tooa 對應\_控制代碼、 hello 屬性名稱，以及 hello 屬性值。 利用此 API，我們可以依意願新增應用程式。
 
-從「事件中樞」讀取事件時，接收者可以列舉屬性並擷取其對應的值。 例如，在 .NET 中，這可藉由存取 [EventData 物件上的屬性集合](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventdata.properties.aspx)來完成。
+從讀取 hello 事件時**事件中心**，hello 接收者可以列舉 hello 屬性並擷取其對應的值。 例如，在.NET 中達成這點會藉由存取 hello [hello EventData 物件上的屬性集合](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventdata.properties.aspx)。
 
-在上述範例中，我們會將屬性附加至我們傳送給 IoT 中樞的事件。 屬性也可以附加至從 IoT 中樞接收的訊息。 如果我們想要從訊息擷取屬性，可以在訊息回呼函式中使用如下的程式碼：
+在 hello 前一個範例中，我們正在將附加我們傳送給 tooIoT 中樞屬性 tooan 事件。 屬性也可以附加的 toomessages 接收從 IoT 中樞。 如果我們想要從訊息 tooretrieve 屬性，我們可以使用我們訊息回呼函式中的 hello 如下的程式碼：
 
 ```
 static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
 {
     . . .
 
-    // Retrieve properties from the message
+    // Retrieve properties from hello message
     MAP_HANDLE mapProperties = IoTHubMessage_Properties(message);
     if (mapProperties != NULL)
     {
@@ -190,12 +190,12 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HA
 }
 ```
 
-對 **IoTHubMessage\_Properties** 的呼叫會傳回 **MAP\_HANDLE** 參考。 然後，我們會將該參考傳遞給 **Map\_GetInternals**，以取得對名稱/值組陣列的參考 (以及屬性的計數)。 此時就可以很容易地列舉屬性來取得我們想要的值。
+太 hello 呼叫**IoTHubMessage\_屬性**傳回 hello**對應\_處理**參考。 我們再傳遞該參考太**對應\_GetInternals** tooobtain hello 名稱/值的參考 tooan 陣列配對 （以及 hello 屬性的計數）。 此時，它是列舉 hello 屬性 tooget toohello 值我們想要的簡單方式。
 
-您不必在應用程式中使用屬性。 不過，如果您需要在事件上設定它們，或從訊息擷取它們， **IoTHubClient** 程式庫很容易就能辦到。
+在您的應用程式中，您不需要 toouse 屬性。 不過，如果您需要 tooset 這些事件或擷取這些訊息，從 hello **IoTHubClient**程式庫可讓您輕鬆。
 
 ## <a name="message-handling"></a>訊息處理
-如先前所述，當訊息從 IoT 中樞送達時， **IoTHubClient** 程式庫會叫用註冊的回呼函式來回應。 此函式有一個傳回參數值得額外說明。 以下是 **iothub\_client\_sample\_http** 範例應用程式中回呼函式的摘錄：
+如先前所述，當訊息抵達從 IoT 中樞 hello **IoTHubClient**回應叫用註冊的回呼函式的程式庫。 此函式有一個傳回參數值得額外說明。 以下是在 hello hello 回呼函式的摘錄**iot 中樞\_用戶端\_範例\_http**範例應用程式：
 
 ```
 static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
@@ -205,35 +205,35 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HA
 }
 ```
 
-請注意，傳回類型為 **IOTHUBMESSAGE\_DISPOSITION\_RESULT**，而在此特殊案例中，我們會傳回 **IOTHUBMESSAGE\_ACCEPTED**。 我們還有其他的值可從此函式傳回，這些值會變更 **IoTHubClient** 程式庫回應訊息回呼的方式。 選項如下。
+請注意，hello 傳回型別是**IOTHUBMESSAGE\_配置\_結果**，在這個特定案例，我們決定傳回**IOTHUBMESSAGE\_接受**。 有其他值，我們可以從這個函式傳回變更如何 hello **IoTHubClient**程式庫會做出反應 toohello 訊息回呼。 以下是 hello 選項。
 
-* **IOTHUBMESSAGE\_ACCEPTED** – 已成功處理訊息。 **IoTHubClient** 程式庫將不會以相同的訊息再次叫用回呼函式。
-* **IOTHUBMESSAGE\_REJECTED** – 未處理訊息，且未來也不打算處理。 **IoTHubClient** 程式庫不得以相同的訊息再次叫用回呼函式。
-* **IOTHUBMESSAGE\_ABANDONED** – 未成功處理訊息，但 **IoTHubClient** 程式庫應以相同的訊息再次叫用回呼函式。
+* **IOTHUBMESSAGE\_接受**– hello 訊息已成功處理。 hello **IoTHubClient**程式庫不會叫用一次以 hello hello 回呼函式相同的訊息。
+* **IOTHUBMESSAGE\_已拒絕**– hello 訊息尚未處理，而且沒有任何 desire toodo 動作 hello 未來。 hello **IoTHubClient**程式庫不叫用一次以 hello hello 回呼函式相同的訊息。
+* **IOTHUBMESSAGE\_已放棄**– hello 訊息尚未處理成功，但 hello **IoTHubClient**程式庫應該要叫用一次以 hello hello 回呼函式相同的訊息。
 
-針對前兩個傳回程式碼， **IoTHubClient** 程式庫會將訊息傳送至 IoT 中樞，代表應該從裝置佇列中刪除訊息且不再傳遞。 最終結果一樣 (從裝置佇列刪除訊息)，但仍會記錄是否已接受或拒絕訊息。  對於可聽取意見回應並了解裝置已接受或拒絕特定訊息的訊息傳送者而言，記錄這項區別的功能非常實用。
+Hello 前兩個傳回碼，hello **IoTHubClient**程式庫會傳送訊息 tooIoT 中樞 hello 訊息，指出應該從 hello 裝置佇列中刪除，並不會傳遞一次。 hello 淨效果為 hello 相同 （hello 訊息從佇列中刪除 hello 裝置），但仍會記錄 hello 訊息是否已接受或拒絕。  錄製區別這兩者是有用的 hello 訊息 toosenders 可以接聽的意見反應和了解，是否裝置已接受或拒絕特定的訊息。
 
-在最後一個案例中，訊息也會傳送至 IoT 中樞，但它表示應重新傳遞訊息。 如果您遇到某個錯誤但想要再次嘗試處理訊息，您通常會放棄訊息。 相對地，當您遇到無法復原的錯誤時 (或者如果您只是決定不想處理訊息)，拒絕訊息是適當的方式。
+在最後一個案例中 hello 訊息也會傳送 tooIoT 集線器，但它會指出該 hello 訊息應重新傳遞。 通常您會放棄的訊息，如果您遇到某些錯誤，但想 tootry tooprocess hello 訊息一次。 相較之下，拒絕的訊息適合，當您遇到無法復原的錯誤 （或如果您只需決定您不要 tooprocess hello 訊息）。
 
-在任何情況下，請留意不同的傳回程式碼，您就能從 **IoTHubClient** 程式庫引發所需的行為。
+在任何情況下，請留意 hello 不同傳回碼，讓您可以引發您想要從 hello 的 hello 行為**IoTHubClient**程式庫。
 
 ## <a name="alternate-device-credentials"></a>替代裝置認證
-如先前所述，使用 **IoTHubClient** 程式庫時，必須先使用如以下的呼叫來取得 **IOTHUB\_CLIENT\_HANDLE**：
+如先前所述，hello 首先 toodo 時使用 hello **IoTHubClient**程式庫是 tooobtain **iot 中樞\_用戶端\_處理**例如 hello 呼叫下列：
 
 ```
 IOTHUB_CLIENT_HANDLE iotHubClientHandle;
 iotHubClientHandle = IoTHubClient_CreateFromConnectionString(connectionString, AMQP_Protocol);
 ```
 
-**IoTHubClient\_CreateFromConnectionString** 的引數是裝置連接字串和一個參數，此參數指出用來與 IoT 中樞通訊的通訊協定。 裝置連接字串的格式如下所示：
+hello 引數太**IoTHubClient\_CreateFromConnectionString** hello 裝置連接字串和表示我們使用 toocommunicate 與 IoT 中樞的 hello 通訊協定的參數。 hello 裝置連接字串的格式顯示，如下所示：
 
 ```
 HostName=IOTHUBNAME.IOTHUBSUFFIX;DeviceId=DEVICEID;SharedAccessKey=SHAREDACCESSKEY
 ```
 
-這個字串中包含四項資訊：IoT 中樞名稱、IoT 中樞尾碼、裝置識別碼和共用存取金鑰。 當您在 Azure 入口網站中建立 IoT 中樞執行個體時，可以取得 IoT 中樞的完整網域名稱 (FQDN) - 這可為您提供 IoT 中樞名稱 (FQDN 的第一個部分) 和 IoT 中樞尾碼 (FQDN 的其餘部分)。 您會在使用 IoT 中樞註冊裝置時，取得裝置識別碼和共用存取金鑰 (如[前一篇文章](iot-hub-device-sdk-c-intro.md)所述)。
+這個字串中包含四項資訊：IoT 中樞名稱、IoT 中樞尾碼、裝置識別碼和共用存取金鑰。 Hello Azure 入口網站中建立您的 IoT 中樞執行個體時，取得的 IoT 中樞的 hello 完整的網域名稱 (FQDN)，這可讓您 hello IoT 中樞名稱 （hello 第一部份 hello FQDN） 和 hello IoT 中樞後置詞 (hello rest 的 hello FQDN)。 當您註冊您的裝置與 IoT 中樞時，取得 hello 裝置識別碼和 hello 共用的存取金鑰 (hello 中所述[前一篇文章](iot-hub-device-sdk-c-intro.md))。
 
-**IoTHubClient\_CreateFromConnectionString** 提供您一個方法來初始化程式庫。 喜歡的話，您也可以使用這些個別的參數 (而不是裝置連接字串) 建立新的 **IOTHUB\_CLIENT\_HANDLE**。 使用下列程式碼即可達成：
+**IoTHubClient\_CreateFromConnectionString**可讓您其中一種方式 tooinitialize hello 程式庫。 如果您想要的話，您可以建立新**iot 中樞\_用戶端\_處理**使用這些個別的參數，而不是 hello 裝置連接字串。 這是以下列程式碼的 hello 來達成：
 
 ```
 IOTHUB_CLIENT_CONFIG iotHubClientConfig;
@@ -245,12 +245,12 @@ iotHubClientConfig.protocol = HTTP_Protocol;
 IOTHUB_CLIENT_HANDLE iotHubClientHandle = IoTHubClient_LL_Create(&iotHubClientConfig);
 ```
 
-其作用與 **IoTHubClient\_CreateFromConnectionString** 相同。
+這可達成 hello 相同的動作**IoTHubClient\_CreateFromConnectionString**。
 
-顯而易見，您會想要使用 **IoTHubClient\_CreateFromConnectionString**，而不是這個較冗長的初始化方法。 但請記住，當您在 IoT 中樞註冊裝置時，您得到的是裝置識別碼和裝置金鑰 (不是連接字串)。 [前一篇文章](iot-hub-device-sdk-c-intro.md)介紹的「裝置總管」SDK 工具會使用 **Azure IoT 服務 SDK** 中的程式庫，從裝置識別碼、裝置金鑰及 IoT 中樞主機名稱建立裝置連接字串。 因此，呼叫 **IoTHubClient\_LL\_Create** 可能是較慣用的做法，因為它可以為您省下產生連接字串的步驟。 使用任何方法都很方便。
+很明顯，您會想 toouse **IoTHubClient\_CreateFromConnectionString**而不是這個更多詳細資料的初始化方法。 但請記住，當您在 IoT 中樞註冊裝置時，您得到的是裝置識別碼和裝置金鑰 (不是連接字串)。 hello*裝置總管*hello 中導入的 SDK 工具[前一篇文章](iot-hub-device-sdk-c-intro.md)使用文件庫中 hello **Azure IoT 服務 SDK** toocreate hello 裝置中的連接字串hello 裝置識別碼、 裝置識別碼和 IoT 中樞的主機名稱。 因此呼叫**IoTHubClient\_LL\_建立**可能是更理想，因為它可以節省 hello 步驟產生連接字串。 使用任何方法都很方便。
 
 ## <a name="configuration-options"></a>組態選項
-到目前為止，有關 **IoTHubClient** 程式庫運作方式的所有描述內容都反映其預設行為。 不過，您可以設定幾個選項來變更程式庫的運作方式。 這可以藉由運用 **IoTHubClient\_LL\_SetOption** API 來完成。 請思考此範例：
+到目前為止的所有項目所述有關 hello 方式 hello **IoTHubClient**程式庫的運作方式會反映其預設行為。 不過，有一些您可以設定的 toochange hello 程式庫的運作方式的選項。 這會透過利用 hello **IoTHubClient\_LL\_SetOption**應用程式開發介面。 請思考此範例：
 
 ```
 unsigned int timeout = 30000;
@@ -259,17 +259,17 @@ IoTHubClient_LL_SetOption(iotHubClientHandle, "timeout", &timeout);
 
 有一些常用的選項：
 
-* **SetBatching** (bool) - 如果為 **true**，則傳送到「IoT 中樞」的資料會以批次傳送。 如果為 **false**，就表示訊息會個別傳送。 預設值為 **false**。 請注意，**SetBatching** 選項僅適用於 HTTP 通訊協定，不適用於 MQTT 或 AMQP 通訊協定。
-* **Timeout** (unsigned int) - 這個值會以毫秒為單位表示。 如果傳送 HTTP 要求或接收回應所花費的時間超過這個時間，即表示連接逾時。
+* **SetBatching** (bool) – 如果**true**，再傳送資料 tooIoT 中樞傳送批次中。 如果為 **false**，就表示訊息會個別傳送。 hello 預設值是**false**。 請注意該 hello **SetBatching**選項只適用於 toohello HTTP 通訊協定和不 toohello MQTT 或 AMQP 通訊協定。
+* **Timeout** (unsigned int) - 這個值會以毫秒為單位表示。 如果要傳送的 HTTP 要求或接收回應使用超過這個時間，hello 連接逾時。
 
-此批次處理選項極為重要。 根據預設，程式庫會個別輸入事件 (單一事件是您傳遞給 **IoTHubClient\_LL\_SendEventAsync** 的任何內容)。 如果批次處理選項為 **true**，程式庫會盡可能從緩衝區收集事件 (上限為 IoT 中樞將接受的最大訊息大小)。  事件批次會在單一 HTTP 呼叫中傳送到 IoT 中樞 (個別事件已統合至 JSON 陣列中)。 啟用批次處理通常會導致效能大幅提升，因為網路來回行程正在減少。 它也會大幅減少頻寬，因為您正利用事件批次傳送一組 HTTP 標頭，而不是針對每個個別事件傳送一組標頭。 除非您有使用其他方式的特定理由，否則通常會想要啟用批次處理。
+批次處理選項的 hello 很重要。 根據預設，hello 庫 ingresses 事件個別 (單一事件是任何您傳遞太**IoTHubClient\_LL\_SendEventAsync**)。 如果批次處理選項的 hello **true**，hello 程式庫會收集會從 hello 緩衝區 （向上 toohello IoT 中樞將會接受最大訊息大小） 的事件數目。  hello 事件批次傳送 tooIoT 中樞在單一 HTTP 呼叫 （hello 個別事件會配套到 JSON 陣列）。 啟用批次處理通常會導致效能大幅提升，因為網路來回行程正在減少。 它也會大幅減少頻寬，因為您正利用事件批次傳送一組 HTTP 標頭，而不是針對每個個別事件傳送一組標頭。 除非有特定原因 toodo，否則您通常會想 tooenable 批次處理。
 
 ## <a name="next-steps"></a>後續步驟
-本文詳細說明「適用於 C 的 Azure IoT 裝置 SDK」中所發現 **IoTHubClient** 程式庫的行為。利用這項資訊，您應可充分了解 **IoTHubClient** 程式庫的功能。 [下一篇文章](iot-hub-device-sdk-c-serializer.md) 將提供 **序列化程式** 庫的類似詳細資料。
+本文說明中的 hello 詳細 hello 行為**IoTHubClient** hello 中找到程式庫**C 的 Azure IoT 裝置 SDK**。利用此資訊，您應該深入了解的 hello hello 功能**IoTHubClient**程式庫。 hello[下一篇文章](iot-hub-device-sdk-c-serializer.md)hello 會類似的詳細說明**序列化程式**程式庫。
 
-若要深入了解如何開發 IoT 中樞，請參閱 [Azure IoT SDK][lnk-sdks]。
+toolearn 進一步了解開發的 IoT 中樞，請參閱 hello [Azure IoT Sdk][lnk-sdks]。
 
-若要進一步探索 IoT 中樞的功能，請參閱︰
+toofurther 瀏覽的 IoT 中樞的 hello 功能，請參閱：
 
 * [使用 Azure IoT Edge 來模擬裝置][lnk-iotedge]
 

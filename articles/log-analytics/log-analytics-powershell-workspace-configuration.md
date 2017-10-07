@@ -1,5 +1,5 @@
 ---
-title: "使用 PowerShell 建立和設定 Log Analytics 工作區 | Microsoft Docs"
+title: "aaaUse PowerShell tooCreate 及設定記錄分析工作區 |Microsoft 文件"
 description: "Log Analytics 會使用來自內部部署或雲端基礎結構中之伺服器的資料。 您可以在 Azure 診斷產生電腦資料時，從 Azure 儲存體加以收集。"
 services: log-analytics
 documentationcenter: 
@@ -14,64 +14,64 @@ ms.devlang: powershell
 ms.topic: article
 ms.date: 11/21/2016
 ms.author: richrund
-ms.openlocfilehash: 6807ab67e3593da82c147669b29bfdae3b6c967c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a6d66194204cc58de6aafb687a19fe9611e0c58e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-log-analytics-using-powershell"></a>使用 PowerShell 管理 Log Analytics
-您可以從命令列或在指令碼中，使用 [Log Analytics PowerShell Cmdlet](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) 在 Log Analytics 中執行各種功能。  您可以使用 PowerShell 執行的工作範例包括︰
+您可以使用 hello[記錄分析 PowerShell cmdlet](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) tooperform 各種函式中記錄分析從命令列或指令碼的一部分。  您可以使用 PowerShell 執行 hello 工作的範例包括：
 
 * 建立工作區
 * 新增或移除方案
 * 匯入和匯出已儲存的搜尋
 * 建立電腦群組
-* 從已安裝 Windows 代理程式的電腦啟用 IIS 記錄檔收集功能
+* 啟用從電腦的 IIS 記錄檔收集 hello 已安裝的 Windows 代理程式
 * 從 Linux 和 Windows 電腦收集效能計數器
 * 在 Linux 電腦上收集 syslog 事件 
 * 從 Windows 事件記錄檔收集事件
 * 收集自訂事件記錄檔
-* 將 Log Analytics 代理程式加入至 Azure 虛擬機器
-* 設定 Log Analytics 將 Azure 診斷所收集的資料編製索引
+* 新增 hello 記錄分析代理程式 tooan Azure 虛擬機器
+* 設定使用 Azure 診斷收集記錄檔分析 tooindex 資料
 
-本文提供兩個程式碼範例，示範您可以從 PowerShell 執行的一些功能。  關於其他功能，您可以參考 [Log Analytics PowerShell Cmdlet 參考文件](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) 。
+本文章提供兩個程式碼範例將示範一些您可以從 PowerShell 執行的 hello 函式。  您可以使用參照 toohello[記錄分析 PowerShell cmdlet 參考](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx)對其他函式。
 
 > [!NOTE]
-> Log Analytics 在以前稱為 Operational Insights，這也是 Cmdlet 中使用此名稱的原因。
+> 記錄分析前稱為 Operational Insights，這也是為什麼 hello hello cmdlet 中使用的名稱。
 > 
 > 
 
 ## <a name="prerequisites"></a>必要條件
-這些範例可與 AzureRm.OperationalInsights 模組的 2.3.0 版或更新版本搭配運作。
+這些範例處理 2.3.0 版本或更新版本的 hello AzureRm.OperationalInsights 模組。
 
 
 ## <a name="create-and-configure-a-log-analytics-workspace"></a>建立及設定 Log Analytics 工作區
-下列指令碼範例說明如何：
+hello 下列指令碼範例說明如何：
 
 1. 建立工作區
-2. 列出可用的方案
-3. 將方案加入至工作區
+2. 清單 hello 可用的解決方案
+3. 新增解決方案 toohello 工作區
 4. 匯入已儲存的搜尋
 5. 匯出已儲存的搜尋
 6. 建立電腦群組
-7. 從已安裝 Windows 代理程式的電腦啟用 IIS 記錄檔收集功能
+7. 啟用從電腦的 IIS 記錄檔收集 hello 已安裝的 Windows 代理程式
 8. 從 Linux 電腦收集邏輯磁碟效能計數器 (% Used Inodes; Free Megabytes; % Used Space; Disk Transfers/sec; Disk Reads/sec; Disk Writes/sec)
 9. 從 Linux 電腦收集 syslog 事件
-10. 從 Windows 電腦的應用程式事件記錄檔收集錯誤和警告事件
+10. 從 Windows 電腦的 hello 應用程式事件記錄檔收集錯誤和警告事件
 11. 從 Windows 電腦收集記憶體可用 Mb 效能計數器
 12. 收集自訂記錄檔 
 
 ```
 
 $ResourceGroup = "oms-example"
-$WorkspaceName = "log-analytics-" + (Get-Random -Maximum 99999) # workspace names need to be unique - Get-Random helps with this for the example code
+$WorkspaceName = "log-analytics-" + (Get-Random -Maximum 99999) # workspace names need toobe unique - Get-Random helps with this for hello example code
 $Location = "westeurope"
 
-# List of solutions to enable
+# List of solutions tooenable
 $Solutions = "Security", "Updates", "SQLAssessment"
 
-# Saved Searches to import
+# Saved Searches tooimport
 $ExportedSearches = @"
 [
     {
@@ -89,7 +89,7 @@ $ExportedSearches = @"
 ]
 "@ | ConvertFrom-Json
 
-# Custom Log to collect
+# Custom Log toocollect
 $CustomLog = @"
 {
     "customLogName": "sampleCustomLog1", 
@@ -127,14 +127,14 @@ $CustomLog = @"
     }
 "@
 
-# Create the resource group if needed
+# Create hello resource group if needed
 try {
     Get-AzureRmResourceGroup -Name $ResourceGroup -ErrorAction Stop
 } catch {
     New-AzureRmResourceGroup -Name $ResourceGroup -Location $Location
 }
 
-# Create the workspace
+# Create hello workspace
 New-AzureRmOperationalInsightsWorkspace -Location $Location -Name $WorkspaceName -Sku Standard -ResourceGroupName $ResourceGroup
 
 # List all solutions and their installation status
@@ -160,7 +160,7 @@ foreach ($search in $ExportedSearches) {
 # Create Computer Group based on a query
 New-AzureRmOperationalInsightsComputerGroup -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName -SavedSearchId "My Web Servers" -DisplayName "Web Servers" -Category "My Saved Searches" -Query "Computer=""web*"" | distinct Computer" -Version 1
 
-# Create a computer group based on names (up to 5000)
+# Create a computer group based on names (up too5000)
 $computerGroup = """servername1.contoso.com"",""servername2.contoso.com"",""servername3.contoso.com"",""servername4.contoso.com"""
 New-AzureRmOperationalInsightsComputerGroup -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName -SavedSearchId "My Named Servers" -DisplayName "Named Servers" -Category "My Saved Searches" -Query $computerGroup -Version 1
 
@@ -186,8 +186,8 @@ New-AzureRmOperationalInsightsCustomLogDataSource -ResourceGroupName $ResourceGr
 
 ```
 
-## <a name="configuring-log-analytics-to-index-azure-diagnostics"></a>設定 Log Analytics 來編製 Azure 診斷的索引
-若要以無代理程式的方式監視 Azure 資源，資源需要啟用 Azure 診斷並將其設定為寫入至 Log Analytics 工作區。 此方法會將資料直接傳送到 Log Analytics，而且不需要將資料寫入儲存體帳戶。 支援的資源包括：
+## <a name="configuring-log-analytics-tooindex-azure-diagnostics"></a>設定 Azure 診斷的記錄分析 tooindex
+Azure 資源的無代理程式監視，hello 資源需要 toohave Azure 診斷已啟用且設定 toowrite tooa 記錄分析工作區。 這個方法會將資料傳送直接 tooLog 分析，而且不需要資料 toobe 寫入 tooa 儲存體帳戶。 支援的資源包括：
 
 | 資源類型 | 記錄檔 | 度量 |
 | --- | --- | --- |
@@ -210,9 +210,9 @@ New-AzureRmOperationalInsightsCustomLogDataSource -ResourceGroupName $ResourceGr
 | 網站               |     | 是 |
 | Web 伺服器陣列        |     | 是 |
 
-如需可用度量的詳細資訊，請參閱[支援 Azure 監視器的度量](../monitoring-and-diagnostics/monitoring-supported-metrics.md)。
+Hello hello 可用度量的詳細資訊，請參閱太[支援的 Azure 監視的度量](../monitoring-and-diagnostics/monitoring-supported-metrics.md)。
 
-如需可用記錄檔的詳細資訊，請參閱[支援的服務以及診斷記錄檔的結構描述](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md)。
+Hello 的 hello 可用的記錄檔的詳細資訊，請參閱太[支援診斷記錄檔的服務和結構描述](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md)。
 
 ```
 $workspaceId = "/subscriptions/d2e37fee-1234-40b2-5678-0b2199de3b50/resourcegroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/rollingbaskets"
@@ -222,27 +222,27 @@ $resourceId = "/SUBSCRIPTIONS/ec11ca60-1234-491e-5678-0ea07feae25c/RESOURCEGROUP
 Set-AzureRmDiagnosticSetting -ResourceId $resourceId -WorkspaceId $workspaceId -Enabled $true
 ```
 
-您也可以使用前述 Cmdlet，來收集不同訂用帳戶中之資源的記錄檔。 因為您會提供建立記錄檔之資源和記錄檔所傳送至之工作區這兩個項目的識別碼，因此這個 Cmdlet 可跨訂用帳戶運作。
+您也可以使用 hello 前面 cmdlet toocollect 記錄檔，從不同的訂用帳戶中的資源。 hello cmdlet 是無法 toowork 跨訂用帳戶，因為您提供建立記錄檔的這兩個 hello 資源 hello id，然後再 hello 工作區 hello 記錄會傳送到。
 
 
-## <a name="configuring-log-analytics-to-index-azure-diagnostics-from-storage"></a>設定 Log Analytics 以對來自儲存體的 Azure 診斷編製索引
-若要從傳統雲端服務或 Service Fabric 叢集的執行中執行個體內收集記錄檔資料，您必須先將資料寫入 Azure 儲存體。 然後，可將 Log Analytics 設定為從儲存體帳戶收集記錄檔。 支援的資源包括：
+## <a name="configuring-log-analytics-tooindex-azure-diagnostics-from-storage"></a>設定記錄分析 tooindex 從儲存體的 Azure 診斷
+toocollect 記錄資料從 service fabric 叢集或傳統的雲端服務的執行個體中，您需要 toofirst 寫入 hello tooAzure 儲存資料。 記錄分析就設定 toocollect hello 記錄檔從 hello 儲存體帳戶。 支援的資源包括：
 
 * 傳統雲端服務 (Web 和背景工作角色)
 * Service Fabric 叢集
 
-下列範例示範如何執行：
+下列範例會示範如何 hello 至：
 
-1. 列出現有的儲存體帳戶和 Log Analytics 檢索的資源來源位置
-2. 建立組態以讀取儲存體帳戶
-3. 更新新建立的組態以檢索其他位置的資料
-4. 刪除新建立的組態
+1. 列出 hello 現有儲存體帳戶和記錄分析將索引資料的位置
+2. 從儲存體帳戶中建立組態 tooread
+3. 新建立的組態 tooindex 資料從其他位置更新 hello
+4. 刪除 hello 新建立的組態
 
 ```
 # validTables = "WADWindowsEventLogsTable", "LinuxsyslogVer2v0", "WADServiceFabric*EventTable", "WADETWEventTable" 
 $workspace = (Get-AzureRmOperationalInsightsWorkspace).Where({$_.Name -eq "your workspace name"})
 
-# Update these two lines with the storage account resource ID and the storage account key for the storage account you want to Log Analytics to  
+# Update these two lines with hello storage account resource ID and hello storage account key for hello storage account you want tooLog Analytics too 
 $storageId = "/subscriptions/ec11ca60-1234-491e-5678-0ea07feae25c/resourceGroups/demo/providers/Microsoft.Storage/storageAccounts/wadv2storage"
 $key = "abcd=="
 
@@ -255,12 +255,12 @@ New-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.Resou
 # Update existing insight
 Set-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" -Tables @("WADWindowsEventLogsTable", "WADETWEventTable") -Containers @("wad-iis-logfiles")
 
-# Remove the insight
+# Remove hello insight
 Remove-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" 
 
 ```
 
-您也可以使用前述指令碼，來收集不同訂用帳戶中之儲存體帳戶的記錄檔。 因為您會提供儲存體帳戶資源識別碼和對應的存取金鑰，因此指令碼可跨訂用帳戶運作。 當您變更存取金鑰時，您需要更新儲存體深入解析使其擁有新的金鑰。
+您也可以使用上述指令碼 toocollect 記錄檔從儲存體帳戶不同的訂用帳戶中的 hello。 hello 指令碼是無法 toowork 跨訂用帳戶，因為您可以提供 hello 儲存體帳戶資源識別碼和對應的便捷鍵。 當您變更 hello 便捷鍵時，您會需要 tooupdate hello 儲存深入了解 toohave hello 新金鑰。
 
 
 ## <a name="next-steps"></a>後續步驟

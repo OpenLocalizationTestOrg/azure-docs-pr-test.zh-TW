@@ -1,6 +1,6 @@
 ---
-title: "從 C# 連線至 Azure Database for PostgreSQL | Microsoft Docs"
-description: "本快速入門提供 C# (.NET) 程式碼範例，可讓您連線至 Azure Database for PostgreSQL 來查詢資料。"
+title: "從 C# PostgreSQL 連接 tooAzure 資料庫 |Microsoft 文件"
+description: "本快速入門提供的 C# (.NET) 程式碼範例可以使用 tooconnect 並查詢 PostgreSQL 從 Azure 資料庫的資料。"
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,52 +11,52 @@ ms.custom: mvc
 ms.devlang: csharp
 ms.topic: quickstart
 ms.date: 06/23/2017
-ms.openlocfilehash: 91e0269e310688dc88d139430ccf386a1d26a61c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5ba7426f8ad263193cdb208b3531da0ceff181dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-postgresql-use-net-c-to-connect-and-query-data"></a>Azure Database for PostgreSQL︰使用 .NET (C#) 連線及查詢資料
-本快速入門示範如何使用 C# 應用程式來連線到 Azure Database for PostgreSQL。 它會顯示如何使用 SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。 本文中的步驟假設您已熟悉使用 C# 進行開發，但不熟悉 Azure Database for PostgreSQL。
+# <a name="azure-database-for-postgresql-use-net-c-tooconnect-and-query-data"></a>Azure PostgreSQL 資料庫： 使用.NET (C#) tooconnect 和查詢資料
+本快速入門示範如何 tooconnect tooan PostgreSQL 使用 C# 應用程式的 Azure 資料庫。 它會顯示 toouse SQL 陳述式 tooquery，如何插入、 更新和刪除 hello 資料庫中的資料。 hello 本文章中的步驟假設您已熟悉開發使用 C# 中，且新 tooworking Azure PostgreSQL 資料庫。
 
 ## <a name="prerequisites"></a>必要條件
-本快速入門使用在以下任一指南中建立的資源作為起點︰
+本快速入門會使用 hello 資源建立在其中一個這些指南做為起點：
 - [建立 DB - 入口網站](quickstart-create-server-database-portal.md)
 - [建立 DB - CLI](quickstart-create-server-database-azure-cli.md)
 
 您也需要：
-- 安裝 [.NET Framework](https://www.microsoft.com/net/download)。 請依照連結文章中的步驟，特別為您的平台 (Windows、Ubuntu Linux 或 macOS) 安裝 .NET。 
-- 安裝 [Visual Studio](https://www.visualstudio.com/downloads/) 或 Visual Studio Code 以輸入及編輯程式碼。
+- 安裝 [.NET Framework](https://www.microsoft.com/net/download)。 請遵循 hello hello 連結文章 tooinstall.NET 特別為您的平台 （Windows、 Ubuntu Linux 或 macOS） 中的步驟。 
+- 安裝[Visual Studio](https://www.visualstudio.com/downloads/)或 Visual Studio Code tootype 和編輯程式碼。
 - 安裝 [Npgsql](http://www.npgsql.org/doc/index.html) 程式庫，如下所述。
 
 ## <a name="install-npgsql-references-into-your-visual-studio-solution"></a>將 Npgsql 參考安裝在 Visual Studio 解決方案中
-若要從 C# 應用程式連線到 PostgreSQL，請使用稱為 Npgsql 的開放原始碼 ADO.NET 程式庫。 NuGet 有助於輕鬆下載和管理參考。
+從 C# 應用程式 tooPostgreSQL，hello tooconnect 使用稱為 Npgsql 的 hello 開放原始碼 ADO.NET 程式庫。 下載並輕鬆地管理 hello 參考，NuGet 可幫助。
 
 1. 建立新的 C# 解決方案或開啟現有解決方案： 
    - 在 Visual Studio 中，按一下 [檔案] 功能表的 [新增] > [專案]，以建立解決方案。
-   - 在 [新增專案] 對話方塊中，展開 [範本] > [Visual C#]。 
+   - 在 hello 新增專案對話方塊中，展開**範本** > **Visual C#**。 
    - 選擇適當的範本，例如 [主控台應用程式 (.NET Core)]。
 
-2. 使用 Nuget 套件管理員來安裝 Npgsql：
-   - 按一下 [工具] 功能表 > [Nuget 套件管理員] > [套件管理員主控台]。
-   - 在 [套件管理員主控台] 中，輸入 `Install-Package Npgsql`
-   - 安裝命令會下載 Npgsql.dll 和相關組件，並將它們新增為解決方案中的相依性。
+2. 使用 Nuget 套件管理員 tooinstall Npgsql hello:
+   - 按一下 hello**工具**功能表 > **NuGet 套件管理員** > **Package Manager Console**。
+   - 在 hello **Package Manager Console**，類型`Install-Package Npgsql`
+   - hello 安裝命令下載 hello Npgsql.dll 和相關的組件，並將它們加入做為 hello 方案中的相依性。
 
 ## <a name="get-connection-information"></a>取得連線資訊
-取得連線到 Azure Database for PostgreSQL 所需的連線資訊。 您需要完整的伺服器名稱和登入認證。
+取得 PostgreSQL hello 連線所需的資訊 tooconnect toohello Azure 資料庫。 您需要 hello 完整的伺服器名稱和登入認證。
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 從 Azure 入口網站的左側功能表中，按一下 [所有資源]，然後搜尋您所建立的伺服器，例如 **mypgserver-20170401**。
-3. 按一下伺服器名稱 [mypgserver-20170401]。
-4. 選取伺服器的 [概觀] 頁面。 記下 [伺服器名稱] 和 [伺服器管理員登入名稱]。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com/)。
+2. 在 Azure 入口網站中的 hello 左側功能表中按一下**所有資源**，並搜尋您已經建立，例如 hello 伺服器**mypgserver 20170401**。
+3. 按一下伺服器名稱，hello **mypgserver 20170401**。
+4. 選取 hello 伺服器**概觀**頁面。 請記下 hello**伺服器名稱**和**伺服器系統管理員登入名稱**。
  ![Azure Database for PostgreSQL - 伺服器管理員登入](./media/connect-csharp/1-connection-string.png)
-5. 如果您忘記伺服器登入資訊，請瀏覽至 [概觀] 頁面來檢視伺服器管理員登入名稱，並視需要重設密碼。
+5. 如果您忘記您的伺服器登入資訊，請瀏覽 toohello**概觀**頁面 tooview hello 伺服器系統管理員登入名稱，並視需要重設 hello 密碼。
 
 ## <a name="connect-create-table-and-insert-data"></a>連線、建立資料表及插入資料
-使用下列程式碼搭配 **CREATE TABLE** 和 **INSERT INTO** SQL 陳述式來連線和載入資料。 此程式碼使用 NpgsqlCommand 類別搭配 [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) 方法來建立 PostgreSQL 連線。 然後，程式碼會使用 [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand) 方法，設定 CommandText 屬性，並呼叫 [ExecuteNonQuery()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) 方法來執行資料庫命令。 
+使用 hello 下列程式碼 tooconnect 並載入 hello 資料使用**CREATE TABLE**和**INSERT INTO** SQL 陳述式。 hello 程式碼使用 NpgsqlCommand 類別具有方法[open （)](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) tooestablish 連接 tooPostgreSQL。 然後，hello 程式碼會使用方法[CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand)管理員、 設定 hello CommandText 屬性，並呼叫方法[executenonquery （)](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) toorun hello 資料庫命令。 
 
-以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。 
+取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。 
 
 ```csharp
 using System;
@@ -70,7 +70,7 @@ namespace Driver
 {
     public class AzurePostgresCreate
     {
-        // Obtain connection string information from the portal
+        // Obtain connection string information from hello portal
         //
         private static string Host = "mypgserver-20170401.postgres.database.azure.com";
         private static string User = "mylogin@mypgserver-20170401";
@@ -123,7 +123,7 @@ namespace Driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN to exit");
+            Console.WriteLine("Press RETURN tooexit");
             Console.ReadLine();
         }
     }
@@ -131,9 +131,9 @@ namespace Driver
 ```
 
 ## <a name="read-data"></a>讀取資料
-使用下列程式碼搭配 **SELECT** SQL 陳述式來連線和讀取資料。 此程式碼使用 NpgsqlCommand 類別搭配 [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) 方法來建立 PostgreSQL 連線。 然後，程式碼會使用 [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand) 和 [ExecuteReader()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteReader) 方法來執行資料庫命令。 接下來程式碼會使用 [Read()](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_Read) 前往結果中的記錄。 接下來程式碼會使用 [GetInt32()](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_GetInt32_System_Int32_) 和 [GetString()](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_GetString_System_Int32_) 來剖析記錄中的值。
+使用 hello 下列程式碼 tooconnect 並讀取 hello 資料使用**選取**SQL 陳述式。 hello 程式碼使用 NpgsqlCommand 類別具有方法[open （)](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) tooestablish 連接 tooPostgreSQL。 然後，hello 程式碼會使用方法[CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand)和方法[executereader （)](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteReader) toorun hello 資料庫命令。 接下來 hello 程式碼使用[read](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_Read) tooadvance toohello hello 結果記錄。 然後，hello 程式碼會使用[GetInt32()](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_GetInt32_System_Int32_)和[Sr](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_GetString_System_Int32_) tooparse hello 記錄中的 hello 值。
 
-以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。 
+取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。 
 
 ```csharp
 using System;
@@ -147,7 +147,7 @@ namespace Driver
 {
     public class AzurePostgresRead
     {
-        // Obtain connection string information from the portal
+        // Obtain connection string information from hello portal
         //
         private static string Host = "mypgserver-20170401.postgres.database.azure.com";
         private static string User = "mylogin@mypgserver-20170401";
@@ -192,7 +192,7 @@ namespace Driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN to exit");
+            Console.WriteLine("Press RETURN tooexit");
             Console.ReadLine();
         }
     }
@@ -201,9 +201,9 @@ namespace Driver
 
 
 ## <a name="update-data"></a>更新資料
-使用下列程式碼搭配 **UPDATE** SQL 陳述式來連線和讀取資料。 此程式碼使用 NpgsqlCommand 類別搭配 [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) 方法來建立 PostgreSQL 連線。 然後，程式碼會使用 [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand) 方法，設定 CommandText 屬性，並呼叫 [ExecuteNonQuery()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) 方法來執行資料庫命令。
+使用 hello 下列程式碼 tooconnect 並讀取 hello 資料使用**更新**SQL 陳述式。 hello 程式碼使用 NpgsqlCommand 類別具有方法[open （)](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) tooestablish 連接 tooPostgreSQL。 然後，hello 程式碼會使用方法[CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand)管理員、 設定 hello CommandText 屬性，並呼叫方法[executenonquery （)](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) toorun hello 資料庫命令。
 
-以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。 
+取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。 
 
 ```csharp
 using System;
@@ -217,7 +217,7 @@ namespace Driver
 {
     public class AzurePostgresUpdate
     {
-        // Obtain connection string information from the portal
+        // Obtain connection string information from hello portal
         //
         private static string Host = "mypgserver-20170401.postgres.database.azure.com";
         private static string User = "mylogin@mypgserver-20170401";
@@ -256,7 +256,7 @@ namespace Driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN to exit");
+            Console.WriteLine("Press RETURN tooexit");
             Console.ReadLine();
         }
     }
@@ -265,11 +265,11 @@ namespace Driver
 
 
 ## <a name="delete-data"></a>刪除資料
-使用下列程式碼搭配 **DELETE** SQL 陳述式來連線和讀取資料。 
+使用 hello 下列程式碼 tooconnect 並讀取 hello 資料使用**刪除**SQL 陳述式。 
 
- 此程式碼使用 NpgsqlCommand 類別搭配 [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) 方法來建立 PostgreSQL 連線。 然後，程式碼會使用 [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand) 方法，設定 CommandText 屬性，並呼叫 [ExecuteNonQuery()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) 方法來執行資料庫命令。
+ hello 程式碼使用 NpgsqlCommand 類別具有方法[open （)](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) tooestablish 連接 tooPostgreSQL。 然後，hello 程式碼會使用方法[CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand)管理員、 設定 hello CommandText 屬性，並呼叫方法[executenonquery （)](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) toorun hello 資料庫命令。
 
-以建立伺服器和資料庫時所指定的值，取代主機、資料庫名稱、使用者和密碼參數。 
+取代 hello 值，指定當您建立 hello 伺服器和資料庫中的 hello 主機、 DBName、 使用者和密碼參數。 
 
 ```csharp
 using System;
@@ -283,7 +283,7 @@ namespace Driver
 {
     public class AzurePostgresDelete
     {
-        // Obtain connection string information from the portal
+        // Obtain connection string information from hello portal
         //
         private static string Host = "mypgserver-20170401.postgres.database.azure.com";
         private static string User = "mylogin@mypgserver-20170401";
@@ -319,7 +319,7 @@ namespace Driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN to exit");
+            Console.WriteLine("Press RETURN tooexit");
             Console.ReadLine();
         }
     }

@@ -1,6 +1,6 @@
 ---
-title: "使用 SSH 通道存取 Azure HDInsight | Microsoft Docs"
-description: "了解如何使用 SSH 通道，安全地瀏覽以 Linux 為基礎的 HDInsight 節點上裝載的 Web 資源。"
+title: "aaaUse SSH 通道 tooaccess Azure HDInsight |Microsoft 文件"
+description: "了解如何 toouse SSH 通道 toosecurely 瀏覽以 Linux 為基礎的 HDInsight 節點上裝載的 web 資源。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,21 +15,21 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/21/2017
 ms.author: larryfr
-ms.openlocfilehash: 4b606ea3797d685b9deacf72f1bd31e0ef007f98
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8a315c53751bbe6950a182674f4108c67c2f2f8e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-ssh-tunneling-to-access-ambari-web-ui-jobhistory-namenode-oozie-and-other-web-uis"></a>使用 SSH 通道來存取 Ambari Web UI、JobHistory、NameNode、Oozie 及其他 Web UI
+# <a name="use-ssh-tunneling-tooaccess-ambari-web-ui-jobhistory-namenode-oozie-and-other-web-uis"></a>使用 SSH 通道 tooaccess Ambari web UI、 JobHistory、 NameNode、 Oozie 和其他 web Ui
 
-以 Linux 為基礎的 HDInsight 叢集可讓您透過網際網路存取 Ambari Web UI，但無法存取 UI 的某些功能。 例如，經由 Ambari 呈現的其他服務的 Web UI。 若要使用 Ambari Web UI 的完整功能，您必須在叢集前端使用 SSH 通道。
+以 Linux 為基礎的 HDInsight 叢集提供透過 hello 網際網路存取 tooAmbari web UI，但 hello UI 的某些功能。 例如，hello web UI Ambari 透過其他服務。 如需完整的 hello Ambari web UI 的功能，您必須使用 SSH 通道 toohello 叢集標頭。
 
 ## <a name="why-use-an-ssh-tunnel"></a>為何要使用 SSH 通道
 
-Ambari 中的數個功能表只有透過 SSH 通道才能運作。 這些功能表依賴其他節點類型上執行的網站和服務，例如背景工作節點。 通常這些網站並未受到保護，因此直接在網際網路上公開並不安全。
+有幾個 Ambari hello 功能表只可透過 SSH 通道。 這些功能表依賴其他節點類型上執行的網站和服務，例如背景工作節點。 通常，這些網站並未受到保護，因此並不安全的 toodirectly 公開它們在 hello 網際網路。
 
-下列 Web UI 需要 SSH 通道：
+下列 Web Ui 的 hello 需要 SSH 通道：
 
 * JobHistory
 * NameNode
@@ -37,118 +37,118 @@ Ambari 中的數個功能表只有透過 SSH 通道才能運作。 這些功能�
 * Oozie Web UI
 * HBase Master 和記錄 UI
 
-如果您使用指令碼動作來自訂叢集，則您安裝的任何服務或公用程式，都會需要 SSH 通道才能公開 Web UI。 例如，如果您使用指令碼動作安裝 Hue，就必須使用 SSH 通道來存取 Hue Web UI。
+如果您使用指令碼動作 toocustomize 您的叢集時，任何服務或公用程式安裝會公開 web UI 要求的 SSH 通道。 例如，如果您安裝使用指令碼動作色調，您必須使用 SSH 通道 tooaccess hello 色調 web UI。
 
 > [!IMPORTANT]
-> 如果您透過虛擬網路直接存取 HDInsight，便不需要使用 SSH 通道。 如需透過虛擬網路直接存取 HDInsight 的範例，請參閱[將 HDInsight 連線至內部部署網](connect-on-premises-network.md)文件。
+> 如果您有直接存取 tooHDInsight 透過虛擬網路，您不需要 toouse SSH 通道。 如需直接存取 HDInsight 透過虛擬網路的範例，請參閱 hello[連接 HDInsight tooyour 在內部部署網路](connect-on-premises-network.md)文件。
 
 ## <a name="what-is-an-ssh-tunnel"></a>什麼是 SSH 通道
 
-[安全殼層 (SSH) 通道](https://en.wikipedia.org/wiki/Tunneling_protocol#Secure_Shell_tunneling)會路由傳送傳送至本機工作站上連接埠的流量。 流量是透過與 HDInsight 叢集前端節點的 SSH 連線進行路由傳送。 解析要求的方式就像它是源自前端節點一樣。 接著，透過工作站的通道，將回應路由傳送回去。
+[安全殼層 (SSH) 通道](https://en.wikipedia.org/wiki/Tunneling_protocol#Secure_Shell_tunneling)tooa 連接埠傳送您的本機工作站上的流量路由傳送。 hello 流量路由傳送透過 SSH 連線 tooyour HDInsight 叢集前端節點。 hello 要求會解析，如同原始程式碼 hello 前端節點上。 hello 回應 hello 通道 tooyour 工作站透過回傳然後路由傳送。
 
 ## <a name="prerequisites"></a>必要條件
 
 * SSH 用戶端。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-* 可以設定為使用 SOCKS5 Proxy 的網頁瀏覽器。
+* 可以是網頁瀏覽器設定 toouse SOCKS5 proxy。
 
     > [!WARNING]
-    > Windows 的內建 SOCKS Proxy 支援不支援 SOCKS5，並且不適用此文件中的步驟。 下列瀏覽器會仰賴 Windows Proxy 設定，而且目前不適用本文件中的步驟︰
+    > hello SOCKS proxy 支援內建於 Windows 不支援 SOCKS5，而且不適用於這份文件中的 hello 步驟。 hello 下列瀏覽器依賴 Windows proxy 設定，並目前並不是使用這份文件中的 hello 步驟：
     >
     > * Microsoft Edge
     > * Microsoft Internet Explorer
     >
-    > Google Chrome 也會依賴 Windows Proxy 設定。 不過，您可以安裝支援 SOCKS5 的延伸模組。 我們建議使用 [FoxyProxy Standard](https://chrome.google.com/webstore/detail/foxyproxy-standard/gcknhkkoolaabfmlnjonogaaifnjlfnp)。
+    > Google Chrome 也依賴 Windows hello 的 proxy 設定。 不過，您可以安裝支援 SOCKS5 的延伸模組。 我們建議使用 [FoxyProxy Standard](https://chrome.google.com/webstore/detail/foxyproxy-standard/gcknhkkoolaabfmlnjonogaaifnjlfnp)。
 
-## <a name="usessh"></a>使用 SSH 命令建立通道
+## <a name="usessh"></a>建立使用 hello SSH 命令通道
 
-使用下列命令，利用 `ssh` 命令建立 SSH 通道。 以您 HDInsight 叢集的 SSH 使用者取代 **USERNAME**，並以您 HDInsight 叢集的名稱取代 **CLUSTERNAME**：
+使用 hello 下列命令 toocreate SSH 通道使用 hello`ssh`命令。 取代**USERNAME**與您的 HDInsight 叢集和取代的 SSH 使用者**CLUSTERNAME** hello 您的 HDInsight 叢集名稱：
 
 ```bash
 ssh -C2qTnNf -D 9876 USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
 ```
 
-此命令會建立透過 SSH 將流量由本機連接埠 9876 路由傳送至叢集的連線。 可用選項包括：
+此命令會建立路由流量 toolocal 連接埠 9876 toohello 叢集透過 SSH 的連接。 hello 選項如下：
 
-* **D 9876** - 會透過通道路由傳送流量的本機連接埠。
+* **D 9876** -hello 路由傳送流量透過 hello 通道的本機連接埠。
 * **C** - 壓縮所有資料，因為網路流量大多是文字。
-* **2** - 強制 SSH 僅嘗試通訊協定第 2 版。
+* **2** -force SSH tootry 通訊協定版本 2 只。
 * **q** - 無訊息模式。
 * **T** - 停用虛擬 tty 配置，因為我們只是轉送連接埠。
 * **n** - 防止讀取 STDIN，因為我們只是轉送連接埠。
 * **N** - 不執行遠端命令，因為我們只是轉送連接埠。
-* **f** - 在背景中執行。
+* **f** -hello 背景中執行。
 
-在命令完成後，會將傳送至本機電腦上連接埠 9876 的流量路由傳送至叢集前端節點。
+一旦 hello 命令完成時，傳送的流量 tooport 9876 hello 本機電腦上就是路由的 toohello 叢集前端節點。
 
 ## <a name="useputty"></a>使用 PuTTY 建立通道
 
-[PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty) 是適用於 Windows 的圖形化 SSH 用戶端。 使用下列步驟，利用 PuTTY 建立 SSH 通道：
+[PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty) 是適用於 Windows 的圖形化 SSH 用戶端。 使用下列步驟 toocreate SSH 通道使用 PuTTY hello:
 
-1. 開啟 PuTTY，並輸入連線資訊。 如果您不熟悉 PuTTY，請參閱 [PuTTY 文件 (http://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html) (英文)](http://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html)。
+1. 開啟 PuTTY，並輸入連線資訊。 如果您不熟悉 PuTTY，請參閱 hello [PuTTY 文件 (http://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html)](http://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html)。
 
-2. 在對話方塊左側的 [類別] 區段中，依序展開 [連接] 和 [SSH]，最後選取 [通道]。
+2. 在 hello**類別**區段 toohello 方 hello 對話方塊中，展開**連接**，依序展開**SSH**，然後選取**通道**。
 
-3. 在 [ **控制 SSH 連接埠轉送的選項** ] 表單中提供下列資訊：
+3. 提供下列資訊在 hello hello**選項控制 SSH 連接埠轉送**表單：
    
-   * **來源連接埠** - 您想要轉送之用戶端上的連接埠。 例如， **9876**。
+   * **來源連接埠**-hello 想 tooforward hello 用戶端上的連接埠。 例如， **9876**。
 
-   * **目的地** - 以 Linux 為基礎的 HDInsight 叢集的 SSH 位址。 例如， **mycluster-ssh.azurehdinsight.net**。
+   * **目的地**-hello hello 以 Linux 為基礎的 HDInsight 叢集的 SSH 位址。 例如， **mycluster-ssh.azurehdinsight.net**。
 
    * **動態** - 啟用動態 SOCKS Proxy 路由。
      
      ![通道處理選項的影像](./media/hdinsight-linux-ambari-ssh-tunnel/puttytunnel.png)
 
-4. 按一下 [新增] 以新增設定，然後按一下 [開啟] 開啟 SSH 連線。
+4. 按一下**新增**tooadd hello 設定，然後按一下**開啟**tooopen SSH 連線。
 
-5. 出現提示時，登入伺服器。
+5. 出現提示時，登入 toohello 伺服器。
 
-## <a name="use-the-tunnel-from-your-browser"></a>從瀏覽器使用通道
+## <a name="use-hello-tunnel-from-your-browser"></a>使用從您的瀏覽器的 hello 通道
 
 > [!IMPORTANT]
-> 本節中的步驟使用 Mozilla FireFox 瀏覽器，因為它在所有平台上提供相同的 Proxy 設定。 其他現代瀏覽器 (例如 Google Chrome) 可能需要延伸模組 (例如 FoxyProxy) 才能使用通道。
+> hello 依這個區段使用 hello Mozilla FireFox 瀏覽器中，因為它在所有平台之間提供 hello 相同的 proxy 設定。 其他的新式瀏覽器，例如 Google Chrome，可能需要等 FoxyProxy toowork hello 通道與擴充功能。
 
-1. 將瀏覽器設定為使用建立通道時所使用的 **localhost** 和連接埠做為 **SOCKS v5** Proxy。 Firefox 的設定如下所示。 如果您使用與 9876 不同的連接埠，請將連接埠變更為您所用的連接埠：
+1. 設定 hello 瀏覽器 toouse **localhost**和 hello 時使用的連接埠建立 hello 通道為**SOCKS v5** proxy。 Hello Firefox 設定看起來如下。 如果您使用不同的通訊埠，比 9876，變更您所使用的 hello 連接埠 toohello:
    
     ![Firefox 設定的影像](./media/hdinsight-linux-ambari-ssh-tunnel/firefoxproxy.png)
    
    > [!NOTE]
-   > 選取 [遠端 DNS] 會使用 HDInsight 叢集解析網域名稱系統 (DNS) 要求。 這項設定會使用叢集的前端節點來解析 DNS。
+   > 選取**遠端 DNS**解析網域名稱系統 (DNS) 要求使用 hello HDInsight 叢集。 這項設定會解析 DNS 使用 hello hello 叢集前端節點。
 
-2. 請瀏覽 [http://www.whatismyip.com/](http://www.whatismyip.com/) 這類網站，驗證通道可以運作。 傳回的 IP 應該是 Microsoft Azure 資料中心使用的 IP。
+2. 請確認該 hello 通道的運作方式是瀏覽網站時，例如[http://www.whatismyip.com/](http://www.whatismyip.com/)。 hello IP 傳回其中一個應由 hello Microsoft Azure 資料中心。
 
 ## <a name="verify-with-ambari-web-ui"></a>驗證 Ambari Web UI
 
-建立叢集後，請使用下列步驟來確認您可以從 Ambari Web 存取服務 Web UI：
+一旦建立 hello 叢集中，使用下列步驟，您可以從 hello Ambari Web 存取服務 web Ui 的 tooverify hello:
 
-1. 在瀏覽器中，移至 http://headnodehost:8080 。 `headnodehost` 位址會透過通道傳送到叢集，並解析為執行 Ambari 的前端節點。 出現提示時，請輸入您叢集的管理員使用者名稱 (admin) 和密碼。 Ambari Web UI 可能會出現第二次的提示。 若是如此，請重新輸入資訊。
+1. 在您的瀏覽器，移 toohttp://headnodehost:8080。 hello`headnodehost`位址是透過傳送 hello 通道 toohello 叢集，然後解決 toohello 叢集前端節點上執行 Ambari。 出現提示時，輸入 hello 系統管理員使用者名稱 （管理員） 和密碼為您的叢集。 您可能會提示輸入第二次 hello Ambari web UI。 若是如此，重新輸入 hello 資訊。
 
    > [!NOTE]
-   > 使用 http://headnodehost:8080 位址連線至叢集時，表示您是透過通道進行連線。 通訊是使用 SSH 通道進行保護，而非 HTTPS。 若要透過 HTTPS 與網際網路連接，請使用 https://CLUSTERNAME.azurehdinsight.net，其中 **CLUSTERNAME** 是叢集的名稱。
+   > 當使用 hello http://headnodehost:8080 位址 tooconnect toohello 叢集，您透過 hello 通道進行連線。 使用 hello SSH 通道，而非 HTTPS 來保護通訊。 tooconnect 超過 hello 網際網路使用 HTTPS，請使用 https://CLUSTERNAME.azurehdinsight.net，其中**CLUSTERNAME**是 hello hello 叢集名稱。
 
-2. 在 Ambari Web UI 中，選取頁面左邊清單中的 HDFS。
+2. 從 hello Ambari Web UI，請從左側的 hello 頁面 hello hello 清單中選取 HDFS。
 
     ![選取 HDFS 的影像](./media/hdinsight-linux-ambari-ssh-tunnel/hdfsservice.png)
 
-3. 顯示 HDFS 服務資訊時，請選取 [快速連結] 。 叢集前端節點的清單隨即出現。 選取其中一個前端節點，然後選取 [NameNode UI] 。
+3. 顯示 hello HDFS 服務資訊時，選取**快速連結**。 Hello 叢集前端節點的清單隨即出現。 選取其中一個 hello 前端節點，然後再選取**NameNode UI**。
 
-    ![展開 [快速連結] 功能表的影像](./media/hdinsight-linux-ambari-ssh-tunnel/namenodedropdown.png)
+    ![展開 hello QuickLinks 功能表的映像](./media/hdinsight-linux-ambari-ssh-tunnel/namenodedropdown.png)
 
    > [!NOTE]
-   > 當您選取 [快速連結] 時，可能會出現等候指示器。 如果您的網際網路連線速度較慢，可能會發生這種情況。 請等候一兩分鐘，讓系統從伺服器接收資料，然後再次嘗試列出作業。
+   > 當您選取 [快速連結] 時，可能會出現等候指示器。 如果您的網際網路連線速度較慢，可能會發生這種情況。 等候一分鐘或收到 hello 伺服器 hello 資料 toobe 的兩個，然後再試一次 hello 清單。
    >
-   > 螢幕右側可能會切掉 [快速連結] 功能表中的部分項目。 若是如此，請使用滑鼠展開功能表，然後使用向右鍵將畫面捲動到右邊，以查看功能表的其餘部分。
+   > 某些項目在 hello**快速連結**功能表可能會切掉 hello hello 螢幕右側的。 如果是這樣，依序展開 [hello] 功能表，使用滑鼠，並使用 hello 向右箭號鍵 tooscroll hello 螢幕 toohello 右 toosee hello 的其餘部分 hello 功能表。
 
-4. 將會顯示與下圖類似的頁面：
+4. 會顯示下列影像頁面類似 toohello:
 
-    ![NameNode UI 的影像](./media/hdinsight-linux-ambari-ssh-tunnel/namenode.png)
+    ![Hello NameNode UI 的映像](./media/hdinsight-linux-ambari-ssh-tunnel/namenode.png)
 
    > [!NOTE]
-   > 請注意此頁面的 URL，它應該會類似於 **http://hn1-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8088/cluster**。 此 URI 使用節點的內部完整網域名稱 (FQDN)，而且必須使用 SSH 通道才能存取。
+   > 請注意此頁面中; hello URL它應該類似太**http://hn1-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8088/叢集**。 此 URI 使用 hello 內部完整的網域名稱 (FQDN) 的 hello 節點，而且僅可存取時使用的 SSH 通道。
 
 ## <a name="next-steps"></a>後續步驟
 
-既然，您已了解如何建立和使用 SSH 通道，請參閱下列文件以了解其他使用 Ambari 的方式：
+既然您已經學會如何 toocreate 及使用 SSH 通道，請參閱下列文件的其他方式 toouse Ambari hello:
 
 * [使用 Ambari 管理 HDInsight 叢集](hdinsight-hadoop-manage-ambari.md)
 

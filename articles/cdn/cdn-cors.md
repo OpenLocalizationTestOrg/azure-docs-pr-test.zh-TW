@@ -1,6 +1,6 @@
 ---
-title: "搭配 CORS 使用 Azure CDN | Microsoft Docs"
-description: "了解如何使用 Azure 內容傳遞網路 (CDN) 搭配跨來源資源共用 (CORS)。"
+title: "Azure CDN 與 CORS aaaUsing |Microsoft 文件"
+description: "了解如何 toouse hello Azure 內容傳遞網路 (CDN) toowith 跨原始資源共用 (CORS)。"
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 7070397f6e69b21add75bad8220f0b8ebe36d266
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c743b56c32a2d3aacc9a77094cb87d61b95d2f7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-azure-cdn-with-cors"></a>搭配 CORS 使用 Azure CDN
 ## <a name="what-is-cors"></a>CORS 是什麼？
-CORS (Cross Origin Resource Sharing；跨來源資源共用) 是一項 HTTP 功能，可讓在某個網域下執行的 Web 應用程式存取其他網域中的資源。 為了減少跨網站指令碼攻擊的可能性，所有現代網頁瀏覽器都實作稱為 [Same-Origin Policy (同源原則)](http://www.w3.org/Security/wiki/Same_Origin_Policy)的安全性限制。  這樣可以防止網頁呼叫其他網域中的 API。  CORS 提供安全的方式來允許從一個來源 (來源網域) 呼叫其他來源中的 API。
+CORS （跨原始資源共用） 是一種 HTTP 功能，可讓 web 應用程式執行另一個網域中的下一個網域 tooaccess 資源。 在訂單 tooreduce hello 跨網站指令碼攻擊的可能性，所有現代化 web 瀏覽器實作稱為安全性限制[相同來源原則](http://www.w3.org/Security/wiki/Same_Origin_Policy)。  這樣可以防止網頁呼叫其他網域中的 API。  CORS 提供安全的方式 tooallow 一個原始主機 （hello 原始網域） toocall 應用程式開發介面中另一個來源。
 
 ## <a name="how-it-works"></a>運作方式
 CORS 要求有兩種類型，*簡單要求*和*複雜要求*。
 
 ### <a name="for-simple-requests"></a>對於簡單要求︰
 
-1. 瀏覽器會傳送有額外**來源** HTTP 要求標頭的 CORS 要求。 此標頭的值是提供父頁面的來源，是以*通訊協定*、*網域*和*連接埠*的組合來定義的。  當來自 https://www.contoso.com 的頁面嘗試存取位於 fabrikam.com 來源的使用者資料時，會將以下要求標頭傳送到 fabrikam.com：
+1. hello 瀏覽器傳送 hello CORS 要求具有其他**原點**HTTP 要求標頭。 此標頭的 hello 值是服務的定義為 hello 組合 hello 父系分頁的 hello 原點*通訊協定，* *網域*和*連接埠。*  當頁面從 https://www.contoso.com 嘗試 tooaccess hello fabrikam.com 原點中的使用者資料時，下列要求標頭的 hello 就會傳送 toofabrikam.com:
 
    `Origin: https://www.contoso.com`
 
-2. 該伺服器的回應可能是下列其中一項：
+2. hello 伺服器可能回應 hello 下列任何一項：
 
    * 回應中的 **Access-Control-Allow-Origin** 標頭指出所允許的來源網站。 例如：
 
      `Access-Control-Allow-Origin: https://www.contoso.com`
 
-   * HTTP 錯誤碼 (例如 403)；如果伺服器在檢查 Origin 標頭之後，不允許跨來源要求，則會出現此錯誤碼
+   * HTTP 錯誤碼 403 例如如果 hello 伺服器不允許檢查 hello Origin 標頭之後的 hello 跨原始要求
 
    * **Access-Control-Allow-Origin** 標頭包含允許所有來源的萬用字元：
 
@@ -47,52 +47,52 @@ CORS 要求有兩種類型，*簡單要求*和*複雜要求*。
 
 ### <a name="for-complex-requests"></a>對於複雜要求︰
 
-複雜要求指的是瀏覽器在傳送實際 CORS 要求之前，必須先傳送*預檢要求* (也就是預備探查) 的 CORS 要求。 如果原始 CORS 可以處理，而且是對相同 URL 的 `OPTIONS` 要求，那麼預檢要求會要求伺服器權限。
+複雜的要求是 CORS 要求其中 hello 瀏覽器需要的 toosend*預檢要求*（也就是初步探查） 傳送嗨實際 CORS 要求之前。 hello 預檢要求會要求 hello server 權限是否 hello 原始 CORS 要求可以繼續執行，且未`OPTIONS`要求 toohello 相同的 URL。
 
 > [!TIP]
-> 如需 CORS 流程和常見陷阱的詳細資訊，請參閱 [REST API 的 CORS 指南 (英文)](https://www.moesif.com/blog/technical/cors/Authoritative-Guide-to-CORS-Cross-Origin-Resource-Sharing-for-REST-APIs/)。
+> 如需有關 CORS 流程和常見的問題的詳細資訊，請檢視 hello [REST api 引導 tooCORS](https://www.moesif.com/blog/technical/cors/Authoritative-Guide-to-CORS-Cross-Origin-Resource-Sharing-for-REST-APIs/)。
 >
 >
 
 ## <a name="wildcard-or-single-origin-scenarios"></a>萬用字元或單一來源的狀況
-當 **Access-Control-Allow-Origin** 標頭設為萬用字元 (\*) 或單一來源時，Azure CDN 上的 CORS 不需要額外設定就會自動生效。  CDN 會快取第一個回應，且後續的要求將使用相同的標頭。
+在 Azure CDN 的 CORS 會自動運作，不需要額外的組態時 hello**存取控制-允許-原始**toowildcard （*） 或單一來源，設定標頭。  hello CDN 將會快取 hello 第一個回應，且後續要求將會使用 hello 相同的標頭。
 
-如果在您的來源上設定 CORS 之前已經向 CDN 發出要求，您必須清除您端點內容上的內容，以重新載入包含 **Access-Control-Allow-Origin** 標頭的內容。
+如果要求已完成您的原點 hello 上會設定 toohello CDN 先前 tooCORS，您將需要 toopurge 內容上您的端點內容 tooreload hello 內容以 hello**存取控制-允許-原始**標頭。
 
 ## <a name="multiple-origin-scenarios"></a>多重來源的狀況
-如果您要針對 CORS 允許使用特定清單中的來源，則會稍微複雜一點。 問題會在 CDN 快取第一個 CORS 來源的 **Access-Control-Allow-Origin** 標頭時發生。  當其他 CORS 來源發出後續要求時，CDN 會提供已快取的 **Access-Control-Allow-Origin** 標頭，而此標頭會不相符。  有幾個方法可以修正此問題。
+如果您需要 tooallow origins toobe CORS 所允許的特定清單，事情就得較複雜。 hello 問題發生於 hello CDN 快取 hello**存取控制-允許-原始**hello 第一個 CORS 原始的標頭。  Hello CDN 時不同的 CORS 原始後續要求，將服務快取的 hello**存取控制-允許-原始**標頭，並不相符。  有數種方式 toocorrect 這。
 
 ### <a name="azure-cdn-premium-from-verizon"></a>來自 Verizon 的 Azure CDN 進階
-完成此作業的最佳方法是使用「來自 Verizon 的 Azure CDN 進階」 ，它會公開一些進階功能。 
+hello 最佳方式 tooenable 這是 toouse **Verizon 從 Azure CDN Premium**，而這會公開一些進階功能。 
 
-您必須 [建立規則](cdn-rules-engine.md) 來檢查要求的 **Origin** 標頭。  如果是有效的來源，您的規則將使用要求中提供的來源設定 **Access-Control-Allow-Origin** 標頭。  如果 **Origin** 中指定的來源是不允許的，您的規則應會忽略 **Access-Control-Allow-Origin** 標頭，這將導致瀏覽器拒絕要求。 
+您必須太[建立規則](cdn-rules-engine.md)toocheck hello**原點**hello 要求標頭。  如果它是有效的來源，您的規則將會設定 hello**存取控制-允許-原始**hello 要求中提供的 hello origin 標頭。  如果在 hello 指定 hello 原點**原點**標頭不允許，您的規則應該省略 hello**存取控制-允許-原始**這會導致 hello 瀏覽器 tooreject hello 要求標頭。 
 
-使用規則引擎來這樣做的方法有兩種。  在這兩種情況下，會完全忽略來自檔案原始伺服器的 **Access-Control-Allow-Origin** 標頭，而允許的 CORS 來源會完全由 CDN 的規則引擎來管理。
+有兩種方式 toodo 這與 hello 規則引擎。  在這兩種情況下，hello**存取控制-允許-原始**從 hello 檔案的原始伺服器的標頭會完全忽略，hello CDN 規則引擎便會完全管理 hello 允許出處 CORS。
 
 #### <a name="one-regular-expression-with-all-valid-origins"></a>包含所有有效來源的規則運算式
-在此情況下，您會建立包含您要允許使用之所有來源的規則運算式。 
+在此情況下，您將建立規則運算式，其中包含所有 hello origins 想 tooallow: 
 
     https?:\/\/(www\.contoso\.com|contoso\.com|www\.microsoft\.com|microsoft.com\.com)$
 
 > [!TIP]
-> **來自 Verizon 的 Azure CDN** 會使用 [Perl 相容的規則運算式](http://pcre.org/)做為其規則運算式的引擎。  您可以使用像 [Regular Expressions 101](https://regex101.com/) 這樣的工具來驗證您的規則運算式。  請注意，規則運算式中的「/」字元是有效的，不需要逸出，不過將該字元逸出被視為是最佳做法，且某些規則運算式驗證程式也預期將它逸出。
+> **來自 Verizon 的 Azure CDN** 會使用 [Perl 相容的規則運算式](http://pcre.org/)做為其規則運算式的引擎。  您可以使用這類工具[規則運算式 101](https://regex101.com/) toovalidate 規則運算式。  請注意，hello"/"字元在規則運算式中有效，而且不需要逸出 toobe，不過，逸出該字元會被視為最佳作法和某些 regex 驗證程式所預期的。
 > 
 > 
 
-如果規則運算式相符，您的規則會將來自來源的 **Access-Control-Allow-Origin** 標頭 (如果有) 取代為傳送該要求的來源。  您也可以加入額外的 CORS 標頭，例如 **Access-Control-Allow-Methods**。
+Hello 規則運算式比對，如果您的規則將會取代 hello**存取控制-允許-原始**與 hello 要求傳送嗨原點的 hello 原始標題 （如果有的話）。  您也可以加入額外的 CORS 標頭，例如 **Access-Control-Allow-Methods**。
 
 ![包含規則運算式的規則範例](./media/cdn-cors/cdn-cors-regex.png)
 
 #### <a name="request-header-rule-for-each-origin"></a>針對每個來源要求標頭規則
-除了規則運算式之外，您也可以使用**要求標頭萬用字元**[比對條件](https://msdn.microsoft.com/library/mt757336.aspx#Anchor_1)，針對每個要允許的來源建立個別規則。 如同規則運算式方法一樣，也是僅由規則引擎設定 CORS 標頭。 
+而不是規則運算式中，您可以改為建立個別的每個來源規則您想使用 hello tooallow**要求標頭萬用字元**[符合條件](https://msdn.microsoft.com/library/mt757336.aspx#Anchor_1)。 為使用 hello 規則運算式方法時，hello 規則引擎單獨集 hello CORS 標頭。 
 
 ![不含規則運算式的規則範例](./media/cdn-cors/cdn-cors-no-regex.png)
 
 > [!TIP]
-> 在上述範例中，萬用字元 (*) 的作用是告訴規則引擎 HTTP 和 HTTPS 兩者都要比對。
+> Hello 上述範例中，在 hello hello 萬用字元使用 * 告訴 hello 規則引擎 toomatch HTTP 和 HTTPS。
 > 
 > 
 
 ### <a name="azure-cdn-standard"></a>Azure CDN 標準
-在 Azure CDN 標準設定檔上，在不使用萬用字元來源情況下允許多重來源的唯一機制是使用 [查詢字串快取](cdn-query-string.md)。  您需要啟用 CDN 端點的查詢字串設定，然後針對來自每個允許之網域的查詢使用唯一的查詢字串。 這樣做將使 CDN 針對每個唯一的查詢字串快取個別物件。 但是這不是最理想的方法，因為它會導致在 CDN 上快取同一個檔案的多個複本。  
+在 Azure CDN 標準設定檔，hello 只有多個來源，而不需 hello hello 萬用字元原點使用的機制 tooallow toouse[查詢字串快取](cdn-query-string.md)。  您要 hello CDN 端點 tooenable 查詢字串設定，以及接著要求從每個允許的網域使用唯一的查詢字串。 如此一來，將會導致 hello CDN 快取每個唯一的查詢字串的個別物件。 這個方法並不理想，不過，因為它會導致多個副本 hello 相同檔案快取上 hello CDN。  
 

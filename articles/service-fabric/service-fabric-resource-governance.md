@@ -1,6 +1,6 @@
 ---
-title: "適用於容器和服務的 Azure Service Fabric 資源管理 | Microsoft Docs"
-description: "Azure Service Fabric 可讓您針對在容器內部或外部執行的服務指定資源限制。"
+title: "aaaAzure 服務網狀架構資源管理針對容器和服務 |Microsoft 文件"
+description: "Azure 服務網狀架構可讓您執行內部或外部的容器服務 toospecify 資源限制。"
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: 88d44953ad83f9e7401fd087a39842e4a3790124
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 34e368211d98ff6b5b294c9c8b3af5ca30eeb20c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-governance"></a>資源管理 
 
-在相同的節點或叢集上執行多個服務時，有可能發生一個服務取用較多資源而導致其他服務無資源可用的情況。 此問題稱為擾鄰問題。 Service Fabric 可讓開發人員指定每一服務的保留和限制，以確保有資源可用並且也限制其資源使用量。 
+當上執行多個服務 hello 相同節點或叢集時，很可能在一個服務可能會耗用更多資源匱乏資源的其他服務。 這個問題是參照的 tooas hello 雜訊芳鄰的問題。 Service Fabric 可讓 hello 開發人員 toospecify 保留項目和每個服務 tooguarantee 資源限制，以及也會限制其資源使用量。 
 
 ## <a name="resource-governance-metrics"></a>資源管理計量 
 
-Service Fabric 可依每一[服務套件](service-fabric-application-model.md)支援資源管理。 指派給「服務套件」的資源可以進一步在程式碼套件之間分配。 指定的資源限制也意謂著資源的保留。 Service Fabric 支援使用兩個內建的[計量](service-fabric-cluster-resource-manager-metrics.md)來指定每一服務套件的 CPU 和記憶體：
+Service Fabric 可依每一[服務套件](service-fabric-application-model.md)支援資源管理。 指派 tooService 套件 hello 資源可以進一步劃分的程式碼封裝。 指定的 hello 資源限制也表示 hello 資源 hello 保留項的目。 Service Fabric 支援使用兩個內建的[計量](service-fabric-cluster-resource-manager-metrics.md)來指定每一服務套件的 CPU 和記憶體：
 
-* CPU (計量名稱 `ServiceFabric:/_CpuCores`)：核心係指主機電腦上可用的邏輯核心，所有節點上所有核心的權數都相同。
-* 記憶體 (計量名稱 `ServiceFabric:/_MemoryInMB`)：記憶體的單位為 MB，它會與電腦上可用的實體記憶體對應。
+* CPU (衡量標準名稱`ServiceFabric:/_CpuCores`): 一個核心 hello 主機電腦，可以使用的邏輯核心跨越所有節點的所有核心會都評估而且 hello 相同。
+* 記憶體 (衡量標準名稱`ServiceFabric:/_MemoryInMB`): 表示記憶體以 mb 為單位，而且它會對應 toophysical hello 電腦可以使用的記憶體。
 
-僅提供彈性保留保證 - 如果超出可用的資源數，執行階段就會拒絕開啟新的服務套件。 不過，如在節點上放置另一個可執行檔或容器，可能就會違反原先的保留保證。
+僅彈性保留保證就會提供-hello 執行階段會拒絕開啟新的服務封裝可用的資源超過。 不過，如果另一個可執行檔或容器放置在 hello 節點時，可能違反 hello 原始保留保證。
 
-針對這兩個計量，[叢集資源管理員](service-fabric-cluster-resource-manager-cluster-description.md)會追蹤叢集總容量、叢集中每個節點上的負載，以及叢集中剩餘的資源數。 這兩個計量等同於任何其他使用者或自訂計量，而且所有現有的功能都可以與它們搭配使用：
-* 叢集可以根據這兩個計量 (預設行為) 來進行[平衡](service-fabric-cluster-resource-manager-balancing.md)。
-* 叢集可以根據這兩個計量來進行[重組](service-fabric-cluster-resource-manager-defragmentation-metrics.md)。
+這些兩個度量，hello[叢集資源管理員](service-fabric-cluster-resource-manager-cluster-description.md)追蹤總叢集容量，hello hello 叢集中的每個節點上的負載，和剩餘的 hello 叢集中的資源。 這些兩個度量資訊會相當 tooany，其他使用者或自訂的度量和所有現有的功能可以搭配它們：
+* 可以是叢集[平衡](service-fabric-cluster-resource-manager-balancing.md)根據 toothese 兩個度量 （預設行為）。
+* 可以是叢集[重組](service-fabric-cluster-resource-manager-defragmentation-metrics.md)根據 toothese 兩個度量。
 * 在[描述叢集](service-fabric-cluster-resource-manager-cluster-description.md)時，可以為這兩個計量設定緩衝處理的容量。
 
 這些計量不支援[動態負載報告](service-fabric-cluster-resource-manager-metrics.md)，而這些計量的負載則是在建立時定義。
 
 ## <a name="cluster-set-up-for-enabling-resource-governance"></a>設定叢集以啟用資源管理
 
-您應該依下列方式，在叢集的每個節點中手動定義容量：
+容量應定義為以手動方式在 hello 叢集中的每個節點類型，如下所示：
 
 ```xml
     <NodeType Name="MyNodeType">
@@ -53,7 +53,7 @@ Service Fabric 可依每一[服務套件](service-fabric-application-model.md)�
     </NodeType>
 ```
  
-只有在使用者服務上才允許進行資源管理，在任何系統服務上則都不允許。 指定容量時，必須保留部分核心和記憶體不進行配置，以供系統服務使用。 為了獲得最佳效能，在叢集資訊清單中應該也開啟下列設定： 
+只有在使用者服務上才允許進行資源管理，在任何系統服務上則都不允許。 指定容量時，必須保留部分核心和記憶體不進行配置，以供系統服務使用。 為了達到最佳效能，下列設定的 hello 應該也開啟 hello 叢集資訊清單中： 
 
 ```xml
 <Section Name="PlacementAndLoadBalancing">
@@ -65,7 +65,7 @@ Service Fabric 可依每一[服務套件](service-fabric-application-model.md)�
 
 ## <a name="specifying-resource-governance"></a>指定資源管理 
 
-指定資源管理限制時，是在應用程式資訊清單 (ServiceManifestImport 區段) 中指定，如下列範例所示：
+資源控管限制 hello 應用程式資訊清單 （ServiceManifestImport 區段） 中指定 hello 下列範例所示：
 
 ```xml
 <?xml version='1.0' encoding='UTF-8'?>
@@ -73,9 +73,9 @@ Service Fabric 可依每一[服務套件](service-fabric-application-model.md)�
   <Parameters>
   </Parameters>
   <!--
-  ServicePackageA has the number of CPU cores defined, but doesn't have the MemoryInMB defined.
-  In this case, Service Fabric will sum the limits on code packages and uses the sum as 
-  the overall ServicePackage limit.
+  ServicePackageA has hello number of CPU cores defined, but doesn't have hello MemoryInMB defined.
+  In this case, Service Fabric will sum hello limits on code packages and uses hello sum as 
+  hello overall ServicePackage limit.
   -->
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName='ServicePackageA' ServiceManifestVersion='v1'/>
@@ -87,11 +87,11 @@ Service Fabric 可依每一[服務套件](service-fabric-application-model.md)�
   </ServiceManifestImport>
 ```
   
-在此範例中，服務套件 ServicePackageA 在其所在的節點上獲得一個核心。 此服務套件包含兩個程式碼套件 (CodeA1 和 CodeA2)，且兩者皆指定 `CpuShares` 參數。 CpuShares 的比例 512:256 會將核心在這兩個程式碼套件做分配。 因此，在此範例中，CodeA1 會獲得 2/3 的核心，CodeA2 則獲得 1/3 的核心 (並具有同樣的彈性保證保留)。 如果未針對程式碼套件指定 CpuShares，Service Fabric 就會在它們之間平均分配核心。
+在此範例中，服務封裝 ServicePackageA 取得 hello 節點放置的位置上的其中一個核心。 此服務封裝包含兩個程式碼封裝 （CodeA1 和 CodeA2），並同時指定 hello`CpuShares`參數。 CpuShares 512:256 hello 比例將在兩個程式碼封裝 hello 之間分割 hello 核心。 因此，在此範例中，CodeA1 取得三分之二的核心，CodeA2 取得三分之一的核心 （並的軟體保證保留 hello 相同）。 如果當 CpuShares 不會指定程式碼封裝，Service Fabric 會將它們之間平均 hello 核心。
 
-記憶體限制是絕對的，因此這兩個程式碼套件都限制為 1024 MB 的記憶體 (並具有同樣的彈性保證保留)。 程式碼套件 (容器或處理序) 無法配置超過此限制的記憶體，如果嘗試這麼做，將會導致發生記憶體不足的例外狀況。 若要讓資源限制強制能夠運作，應該為服務套件內的所有程式碼套件都指定記憶體限制。
+記憶體限制是絕對的因此這兩個程式碼封裝的有限的 too1024 MB 的記憶體 （和 hello 相同的軟體保證保留）。 程式碼封裝 （容器或處理程序） 不能 tooallocate 記憶體超過此限制，而嘗試 toodo 因此會導致記憶體不足例外狀況。 資源限制強制 toowork，所有的程式碼封裝在服務封裝內必須有指定記憶體限制。
 
 
 ## <a name="next-steps"></a>後續步驟
-* 若要深入了解「叢集資源管理員」，請參閱這篇[文章](service-fabric-cluster-resource-manager-introduction.md)。
-* 若要深入了解應用程式模型、服務套件、程式碼套件，以及複本如何與它們對應，請參閱這篇[文章](service-fabric-application-model.md)。
+* toolearn 更多有關叢集資源管理員，請閱讀本[文章](service-fabric-cluster-resource-manager-introduction.md)。
+* 深入了解應用程式模型中，服務套件、 程式碼封裝和複本如何對應 toothem toolearn 讀取這[文章](service-fabric-application-model.md)。

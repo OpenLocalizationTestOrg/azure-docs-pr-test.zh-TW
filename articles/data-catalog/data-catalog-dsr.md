@@ -1,6 +1,6 @@
 ---
-title: "Azure 資料目錄中支援的資料來源 | Microsoft Docs"
-description: "本文列出目前支援之資料來源的規格。"
+title: "aaaSupported 在 Azure 資料目錄中的資料來源 |Microsoft 文件"
+description: "本文列出 hello 目前支援的資料來源的規格。"
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: d6867c73bc6ea3c238cceef8a68466d451f3365c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4bfcabf31bf9fd781c939a5026abc42a5407df32
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-data-sources-in-azure-data-catalog"></a>Azure 資料目錄中支援的資料來源
 
-您可以使用公用 API 或 Click Once 註冊工具，或是直接在「Azure 資料目錄」Web 入口網站中手動輸入資訊，來發佈中繼資料。 下表摘要說明現今目錄支援的所有資料來源，以及每個資料來源適用的發佈功能。 此外，也列出每個資料來源可以從我們的入口網站「開啟」體驗啟動的外部資料工具。 第二個表格包含每個資料來源連線屬性的較技術性規格。
+您可以使用公用 API 或按一下 發佈中繼資料-一次註冊工具，或直接 toohello Azure 資料目錄入口網站手動輸入資訊。 hello 下表摘要說明會受到 hello 目錄今天，而且每個 hello 的發行功能的所有資料來源。 也列出 hello 外部資料工具時，每個資料來源可啟動從我們 「 開啟位置 」 的入口網站的經驗。 hello 第二個資料表包含每個資料來源連接屬性的詳細技術規格。
 
 
 ## <a name="list-of-supported-data-sources"></a>支援的資料來源的清單
@@ -443,12 +443,12 @@ ms.lasthandoff: 08/18/2017
     </tr>
 </table>
 
-如果您需要對其他來源的支援，請向 [Azure 資料目錄論壇](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409)提交功能要求。
+如果您需要支援的其他來源，提出功能要求 toohello [Azure 資料目錄論壇](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409)。
 
 
 ## <a name="data-source-reference-specification"></a>資料來源參考規格
 > [!NOTE]
-> 下表中的「DSL 結構」資料行僅列出「Azure 資料目錄」所使用「位址」屬性包的連線屬性。 也就是說，「位址」屬性包可以針對 Azure 資料目錄保存但並未使用的資料來源，包含其他連接屬性。
+> hello **DSL 結構**hello 下表中的資料行列出只有 hello 連接屬性 「 位址 」 屬性包所使用的 Azure 資料目錄。 也就是 「 位址 」 屬性包可包含 hello 資料來源的 Azure 資料目錄持續發生，但是不會使用其他連接屬性。
 
 <table>
     <tr>
@@ -970,7 +970,7 @@ ms.lasthandoff: 08/18/2017
       </td>
     </tr>
     <tr>
-      <td>其他 (以上皆非)</td>
+      <td>其他 （無 hello 以上）</td>
       <td>\*</td>
       <td>\*</td>
       <td>

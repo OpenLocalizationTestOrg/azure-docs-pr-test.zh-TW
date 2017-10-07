@@ -1,5 +1,5 @@
 ---
-title: "資料列層級安全性與 Power BI Embedded"
+title: "使用 Power BI Embedded aaaRow 層級安全性"
 description: "資料列層級安全性與 Power BI Embedded 的詳細資料"
 services: power-bi-embedded
 documentationcenter: 
@@ -15,102 +15,102 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: 1cde5b9ee4c716af07d427d4d0eb3f0775d456ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 384f78826ecc710cf8f101b251ae68b074f3e98b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="row-level-security-with-power-bi-embedded"></a>Power BI Embedded 的資料列層級安全性
 
-資料列層級安全性 (RLS) 可以用來限制使用者對於報告或資料集內特定資料的存取，讓多個不同使用者在查看不同資料的同時，能夠使用相同的報告。 Power BI Embedded 現在支援使用 RLS 設定資料集。
+資料列層級安全性 (RLS) 可以是報表或資料集，讓多個不同的使用者 toouse hello 所有文件都看到不同的資料時的相同報表中使用的 toorestrict 使用者存取 tooparticular 資料。 Power BI Embedded 現在支援使用 RLS 設定資料集。
 
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-flow-1.png)
 
-為了利用 RLS，了解三個主要概念很重要：使用者、角色和規則。 讓我們仔細看看每個概念：
+在順序 tootake 優點 RLS，務必了解三個主要概念;使用者、 角色和規則。 讓我們仔細看看每個概念：
 
-**使用者** – 這是檢視報告的實際使用者。 在 Power BI Embedded 中，使用者是依應用程式權杖中的使用者名稱屬性來識別。
+**使用者**– 這些 hello 實際使用者檢視報表。 Power BI Embedded，使用者所識別的應用程式權杖中的 hello username 屬性。
 
-**角色** – 使用者所屬角色。 角色是規則的容器，並可命名為類似「業務經理」或「業務代表」的項目。 在 Power BI Embedded 中，使用者是依應用程式權杖中的角色屬性來識別。
+**角色**– 使用者所屬的 tooroles。 角色是規則的容器，並可命名為類似「業務經理」或「業務代表」的項目。 Power BI Embedded，使用者所識別的應用程式權杖中的 hello 角色屬性。
 
-**規則** – 角色有規則，這些規則是要套用至資料的實際篩選器。 可以像 “Country = USA” 一樣簡單，或是更動態的項目。
+**規則**– 角色其規則，而且這些規則將套用的 toobe toohello 資料 hello 實際篩選。 可以像 “Country = USA” 一樣簡單，或是更動態的項目。
 
 ### <a name="example"></a>範例
 
-對於這篇文章的其餘部分，我們將提供撰寫 RLS，然後在內嵌應用程式中使用的範例。 我們的範例會使用 [零售分析範例](http://go.microsoft.com/fwlink/?LinkID=780547) PBIX 檔案。
+這篇文章 hello 其餘部分，我們會提供撰寫 RLS，並再耗用，內嵌的應用程式中的範例。 我們的範例會使用 hello[零售分析範例](http://go.microsoft.com/fwlink/?LinkID=780547)PBIX 檔案。
 
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-scenario-2.png)
 
-我們的零售分析範例會顯示特定零售鏈中所有商店的銷售額。 沒有 RLS，不論哪一個區域的經理登入及檢視報告，都會看到相同的資料。 資深管理階層決定每個區域經理只能看到他們所管理的商店的銷售額，為了達成這個目的，我們可以使用 RLS。
+我們零售分析範例會顯示特定零售鏈結中所有的 hello 商店的銷售。 沒有 RLS，不論哪個地區管理員登入並檢視 hello 報表，就會看到 hello 相同的資料。 每個區域經理只能看到 hello 銷售 hello 存放區所管理，以及 toodo 這判定資深管理，我們可以使用 RLS。
 
-RLS 是在 Power BI Desktop 中撰寫。 當開啟資料集和報告時，我們可以切換至圖表檢視來查看結構描述︰
+RLS 是在 Power BI Desktop 中撰寫。 Hello 資料集和報表會開啟時，我們可以切換 toodiagram 檢視 toosee hello 結構描述：
 
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-diagram-view-3.png)
 
-以下是一些對於此結構描述要注意的事項：
+以下是幾件事 toonotice 與此結構描述：
 
-* 所有量值，例如**總銷售額**，是儲存在**銷售**事實資料表。
+* 所有量值，例如**Total Sales**，會儲存在 hello**銷售**事實資料表。
 * 有四個額外的相關維度資料表︰**項目**、**時間**、**商店**和**區域**。
-* 關聯線的箭號表示篩選條件可以從一個資料表流向另一個資料表的方向。 例如，如果篩選條件置於目前結構描述中的**時間[日期]**，它只會往下篩選**銷售**資料表中的值。 其他資料表都不會受到此篩選條件的影響，因為關聯線的所有箭號都指向銷售資料表，不會指向其他方向。
-* **區域** 資料表表示誰是每個區域的經理︰
+* hello 關聯性線條上的 hello 箭號表示篩選條件可以從一個資料表 tooanother 流動的方式。 比方說，如果篩選置於**時間 [Date]**，hello 目前結構描述中就會只往下篩選中 hello 值**銷售**資料表。 沒有其他資料表會受到這個篩選條件，因為所有的 hello 箭號 hello 關聯性線條點 toohello 銷售資料表並不會離開。
+* hello**地區**資料表表示 hello 管理員的每個區域者：
   
   ![](media/power-bi-embedded-rls/pbi-embedded-rls-district-table-4.png)
 
-根據此結構描述，如果我們將篩選條件套用至區域資料表中的 [區域經理] 資料行，且如果該篩選條件符合檢視報告的使用者，則該篩選條件也會往下篩選**商店**和**銷售**資料表，只顯示該特定區域經理的資料。
+根據此結構描述，如果我們套用篩選器 toohello**區域經理**中的資料行 hello 區域資料表，和該篩選條件符合 hello 使用者檢視 hello 報表，如果該篩選條件也將篩選向下 hello**存放區**和**銷售**資料表 tooonly 顯示該特定地區的資料管理員。
 
 方式如下：
 
-1. 在 [模型] 索引標籤中，按一下 [管理角色] 。  
+1. 在 [hello 模型] 索引標籤上按一下**管理角色**。  
    ![](media/power-bi-embedded-rls/pbi-embedded-rls-modeling-tab-5.png)
 2. 建立新的角色，稱為 [經理] 。  
    ![](media/power-bi-embedded-rls/pbi-embedded-rls-manager-role-6.png)
-3. 在 [區域] 資料表中輸入下列 DAX 運算式︰**[District Manager] = USERNAME()**  
+3. 在 hello**地區**資料表輸入下列 DAX 運算式的 hello: **[區域經理] = username （）**  
    ![](media/power-bi-embedded-rls/pbi-embedded-rls-manager-role-7.png)
-4. 若要確保規則都能運作，在 [模型] 索引標籤上，按一下 [以角色身分檢視]，然後輸入下列項目︰  
+4. 使用 toomake 確定 hello 規則，在 hello**模型**索引標籤上，按一下 **以角色身分檢視**，然後輸入 hello 下列：  
    ![](media/power-bi-embedded-rls/pbi-embedded-rls-view-as-roles-8.png)
    
-   報告隨即會顯示資料，如同您已登入為 **Andrew Ma**。
+   hello 報表現在將會顯示資料如同您已登入為**Andrew Ma**。
 
-像我們在這裡所做的一樣套用篩選條件，將會往下篩選**區域**、**商店**和**銷售**資料表中的所有記錄。 不過，由於**銷售**和**時間**之間的關聯的篩選方向，**銷售**和**項目**與**項目**和**時間**資料表將不會向下篩選。
+套用 hello 篩選，在這裡，我們所做的 hello 方式關閉 hello 中的所有記錄會篩選**地區**，**存放區**，和**銷售**資料表。 不過，由於 hello 篩選方向 hello 之間的關聯性上**銷售**和**時間**，**銷售**和**項目**，和**項目**和**時間**將不會向下篩選資料表。
 
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-diagram-view-9.png)
 
-對於此需求可能沒問題，但是，如果我們不想要讓經理查看他們沒有任何銷售的項目，我們可以針對關聯性開啟雙向交叉篩選，讓安全性篩選條件同時流向兩個方向。 這可以藉由編輯**銷售**和**項目**之間的關聯性來完成，如下所示：
+可能是 [確定]，這項需求，不過，如果我們不想其不具有任何銷售經理 toosee 項目，我們無法開啟雙向交叉篩選兩個方向的 hello 關聯性和流程 hello 安全性篩選。 作法是藉由編輯 hello 之間的關聯性**銷售**和**項目**，如下所示：
 
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-edit-relationship-10.png)
 
-現在，篩選條件可以從銷售資料表流向 **項目** 資料表：
+現在，篩選可以也傳送 hello Sales 資料表 toohello 從**項目**資料表：
 
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-diagram-view-11.png)
 
 > [!NOTE]
-> 如果您針對資料使用 DirectQuery 模式，您必須啟用雙向交叉篩選，方法是選取這兩個選項︰
+> 如果您使用 DirectQuery 模式為您的資料，您將需要 tooenable 雙向交叉篩選選取這兩個選項：
 
 1. [檔案]  ->  [選項和設定]  ->  [預覽功能]  ->  [針對 DirectQuery 啟用兩個方向的交叉篩選]。
 2. [檔案]  ->  [選項和設定]  ->  [DirectQuery]  ->  [允許 DirectQuery 模式中的不受限制量值]。
 
-若要深入了解雙向交叉篩選，下載 [SQL Server Analysis Services 2016 和 Power BI Desktop 中的雙向交叉篩選] [(](http://download.microsoft.com/download/2/7/8/2782DF95-3E0D-40CD-BFC8-749A2882E109/Bidirectional cross-filtering in Analysis Services 2016 and Power BI.docx)) 白皮書。
+深入了解雙向交叉篩選，下載 hello toolearn[雙向交叉篩選 SQL Server Analysis Services 2016 和 Power BI Desktop 中](http://download.microsoft.com/download/2/7/8/2782DF95-3E0D-40CD-BFC8-749A2882E109/Bidirectional cross-filtering in Analysis Services 2016 and Power BI.docx)白皮書。
 
-這會包裝 Power BI Desktop 中需要完成的所有工作，但還有一件工作需要完成，讓我們定義的 RLS 規則在 Power BI Embedded 中運作。 使用者是由您的應用程式和應用程式權杖驗證和授權，應用程式和應用程式權杖是用來授與使用者對於特定 Power BI Embedded 報告的存取權。 Power BI Embedded 對於您的使用者是誰，並沒有任何特定資訊。 如果要讓 RLS 運作，您需要將一些額外的內容傳遞做為您的應用程式權杖的一部分︰
+這會結束所有的 hello 工作需要 toobe 完成在 Power BI Desktop 中，但沒有一個多份工作需要完成的 toobe toomake hello RLS 規則我們在 Power BI Embedded 定義工作。 使用者獲得驗證和授權您的應用程式和應用程式語彙基元是使用的 toogrant 該使用者存取 tooa 特定 Power BI Embedded 報表。 Power BI Embedded 對於您的使用者是誰，並沒有任何特定資訊。 RLS toowork，您將需要 toopass 某些額外的內容做為您的應用程式的權杖的一部分：
 
-* **username** (選擇性) – 與 RLS 搭配使用，這是字串，可以在套用 RLS 規則時用來協助識別使用者。 請參閱「搭配使用資料列層級安全性和 Power BI Embedded」
-* **角色** – 字串，包含套用資料列層級安全性規則時要選取的角色。 如果傳遞多個角色，應該將它們傳遞為字串陣列。
+* **使用者名稱**（選用） – 使用 rls 這是可用的字串 toohelp 套用 RLS 規則時，請識別 hello 使用者。 請參閱「搭配使用資料列層級安全性和 Power BI Embedded」
+* **角色**– 套用資料列層級安全性規則時，包含 hello 角色 tooselect 的字串。 如果傳遞多個角色，應該將它們傳遞為字串陣列。
 
-您可以使用 [CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#Microsoft_PowerBI_Security_PowerBIToken_CreateReportEmbedToken_System_String_System_String_System_String_System_DateTime_System_String_System_Collections_Generic_IEnumerable_System_String__) 方法來建立權杖。 如果 username 屬性存在，則您也必須在角色中傳遞至少一個值。
+使用 hello 建立 hello 語彙基元[CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#Microsoft_PowerBI_Security_PowerBIToken_CreateReportEmbedToken_System_String_System_String_System_String_System_DateTime_System_String_System_Collections_Generic_IEnumerable_System_String__)方法。 如果 hello username 屬性存在，則您也必須在角色中傳遞至少一個值。
 
-例如，您可以變更 EmbedSample。 DashboardController 第 55 行可以從
+例如，您可以變更 hello EmbedSample。 DashboardController 第 55 行可以從
 
     var embedToken = PowerBIToken.CreateReportEmbedToken(this.workspaceCollection, this.workspaceId, report.Id);
 
-更新成
+to
 
     var embedToken = PowerBIToken.CreateReportEmbedToken(this.workspaceCollection, this.workspaceId, report.Id, "Andrew Ma", ["Manager"]);'
 
-完整的應用程式權杖看起來如下：
+hello 完整的應用程式語彙基元看起來像這樣：
 
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-app-token-string-12.png)
 
-現在，所有項目都聚合在一起，當有人登入我們的應用程式以檢視此報告，他們將只能夠看到他們獲得允許可以看到的資料，如同我們的資料列層級安全性所定義。
+現在，與所有的 hello 片段放在一起，當有人登入我們的應用程式 tooview 這份報表，他們只必須能夠 toosee hello 資料才會允許 toosee，本公司的資料列層級安全性所定義。
 
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-dashboard-13.png)
 
@@ -120,5 +120,5 @@ RLS 是在 Power BI Desktop 中撰寫。 當開啟資料集和報告時，我們
 [在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)  
 [Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)  
 [JavaScript 內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
-有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
+有其他疑問？ [再試一次 hello Power BI 社群](http://community.powerbi.com/)
 

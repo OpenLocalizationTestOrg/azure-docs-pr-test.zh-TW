@@ -1,6 +1,6 @@
 ---
-title: "從 Azure StorSimple 將檔案上傳至 Azure 媒體服務帳戶 | Microsoft Docs"
-description: "本文提供 Azure StorSimple Data Manager 的簡短概述。 本文也會連結至教學課程，說明如何從 StorSimple 擷取資料，並將它當作資產上傳至 Azure 媒體服務帳戶。"
+title: "從 Azure StorSimple 的 Azure Media Services 帳戶將 aaaUpload 檔案 |Microsoft 文件"
+description: "本文提供 Azure StorSimple Data Manager 的簡短概述。 hello 發行項也會連結 tootutorials，教您如何從 StorSimple tooextract 資料並將它上傳為資產 tooan Azure Media Services 帳戶。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/27/2017
 ms.author: juliako
-ms.openlocfilehash: 636d55c15aa383208ffb39d5224123831af962c9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7e9712aa480106bbd5fcc63eaecf0418b24a8bef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="upload-files-into-an-azure-media-services-account-from-azure-storsimple"></a>從 Azure StorSimple 將檔案上傳至 Azure 媒體服務帳戶
 
-本文提供 Azure StorSimple Data Manager 的簡短概述。 本文也會連結至教學課程，說明如何從 StorSimple 擷取資料，並將此資料當作資產上傳至 Azure 媒體服務 (AMS) 帳戶。
+本文提供 Azure StorSimple Data Manager 的簡短概述。 hello 發行項也會連結 tootutorials，教您如何從 StorSimple tooextract 資料並將此資料上傳為資產 tooan Azure 媒體服務 (AMS) 帳戶。
 
 > 
 > [!NOTE]
@@ -31,22 +31,22 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="overview"></a>概觀
 
-在媒體服務中，您會將數位檔案上傳到到資產。 「資產」可以包含視訊、音訊、影像、縮圖集合、文字播放軌及隱藏式輔助字幕檔案 (以及這些檔案的相關中繼資料)。上傳檔案之後，您的內容會安全地儲存在雲端，以進一步進行處理和串流處理。
+在媒體服務中，您會將數位檔案上傳到到資產。 hello 資產可以包含視訊、 音訊、 影像、 縮圖集合、 文字播放軌和隱藏式的字幕檔案 （和 hello 中繼資料，這些檔案的相關。）Hello 檔案上傳，一旦您的內容會安全地儲存在 hello 用於進一步處理和雲端資料流。
 
-[Azure StorSimple](https://docs.microsoft.com/azure/storsimple/) 使用雲端儲存體做為內部部署解決方案的擴充功能，並且跨內部部署儲存體和雲端儲存體自動將資料分層。 StorSimple 裝置會先刪除重複資料並加以壓縮，再將資料傳送至雲端，以非常有效率的方式將大型檔案傳送至雲端。 [StorSimple Data Manager](../storsimple/storsimple-data-manager-overview.md) 服務提供 API，可讓您從 StorSimple 擷取資料並將它呈現為 AMS 資產。
+[Azure StorSimple](https://docs.microsoft.com/azure/storsimple/) hello 的延伸模組在內部部署方案並自動層 hello 在內部部署儲存體和雲端存放裝置之間的資料，使用雲端儲存體。 hello StorSimple 裝置 dedupes，並將您的資料壓縮再將它傳送 toohello 雲端進行傳送大型檔案 toohello 雲端非常有效率。 hello [StorSimple Data Manager](../storsimple/storsimple-data-manager-overview.md)服務提供 Api，可讓您 tooextract 資料從 StorSimple，並加以呈現為 AMS 資產。
 
 ## <a name="get-started"></a>開始使用
 
-1. [建立媒體服務帳戶](media-services-portal-create-account.md)以便將資產傳輸至其中。
-2. 註冊 Data Manager 預覽版本，如 [StorSimple Data Manager](../storsimple/storsimple-data-manager-overview.md)一文所述。
+1. [建立 Media Services 帳戶](media-services-portal-create-account.md)要 tootransfer hello 資產。
+2. 註冊資料管理員預覽 hello 中所述[StorSimple Data Manager](../storsimple/storsimple-data-manager-overview.md)發行項。
 3. 建立 StorSimple Data Manager 帳戶。
 4. 建立資料轉換作業，以在執行時從 StorSimple 裝置擷取資料並將它傳輸到 AMS 帳戶中做為資產。 
 
-    當作業開始執行時，會建立儲存體佇列。 此佇列中會填入已轉換的 blob 備妥時的相關訊息。 此佇列的名稱與作業定義的名稱相同。 您可以使用此佇列來判斷資產何時準備就緒，並呼叫您所需的媒體服務作業以在其上執行。 例如，您可以使用此佇列來觸發 Azure Function，其中有所需的媒體服務程式碼。
+    Hello 作業啟動時執行，則會建立儲存體佇列。 此佇列中會填入已轉換的 blob 備妥時的相關訊息。 hello 這個佇列名稱是 hello 與 hello hello 工作定義名稱相同。 您可以使用這個佇列 toodetermine 時資產是準備以及您想要的媒體服務作業 toorun 呼叫它。 例如，您可以使用這個佇列 tootrigger hello 必要的媒體服務程式碼中擁有 Azure 函式。
 
 ## <a name="see-also"></a>另請參閱
 
-[使用 .Net SDK 在 Data Manager 中觸發作業](../storsimple/storsimple-data-manager-dotnet-jobs.md)
+[使用 hello.Net SDK tootrigger hello 資料管理員中的工作](../storsimple/storsimple-data-manager-dotnet-jobs.md)
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

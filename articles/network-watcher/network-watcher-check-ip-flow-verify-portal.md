@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員 IP 流量驗證來驗證流量 - Azure 入口網站 | Microsoft Docs"
-description: "本文說明如何檢查虛擬機器中的流入或流出流量是被允許或拒絕"
+title: "驗證與 Azure 網路監看員 IP 流量 aaaVerify 流量-Azure 入口網站 |Microsoft 文件"
+description: "本文說明如何 toocheck 如果允許或拒絕流量 tooor 從虛擬機器"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 7db29c186cf6e6f3b40a680ab76f1d2763f806ba
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: abf639f36d32f3416dd927e66b635267b746e62f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-if-traffic-is-allowed-or-denied-to-or-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>使用 Azure 網路監看員的 IP 流量驗證元件來檢查 VM 中的流入或流出流量是被允許或拒絕
+# <a name="check-if-traffic-is-allowed-or-denied-tooor-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>如果是允許或拒絕流量 tooor 從 IP 流程驗證 VM 的 Azure 網路監看員的元件，請檢查
 
 > [!div class="op_single_selector"]
 > - [Azure 入口網站](network-watcher-check-ip-flow-verify-portal.md)
@@ -30,36 +30,36 @@ ms.lasthandoff: 07/11/2017
 > - [Azure REST API](network-watcher-check-ip-flow-verify-rest.md)
 
 
-IP 流量驗證是網路監看員的一項功能，可讓您驗證虛擬機器中的流入或流出流量是否被允許。 可執行傳入或傳出流量的驗證。 此案例可用於取得虛擬機器的目前狀態，以了解其是否可以和外部資源或其他資源。 IP 流量驗證可用來驗證是否已正確設定網路安全性群組 (NSG) 規則，並針對 NSG 規則所封鎖的流量進行疑難排解。 使用 IP 流量驗證的另一個原因是可以確保 NSG 會正確封鎖您想要封鎖的流量。
+IP 流量驗證是一項功能可讓您 tooverify 如果允許 tooor 從虛擬機器的流量的網路監看員。 hello 驗證可以執行傳入或傳出的流量。 這個案例中很有用 tooget 的虛擬機器是否可以彼此通訊 tooan 外部資源或其他資源的目前狀態。 IP 流量確認是否可使用的 tooverify，是否您的網路安全性群組 (NSG) 規則都已正確設定及疑難排解 NSG 規則而遭到封鎖的流量。 另一個原因需要使用 IP 流程可讓您確認是否想要封鎖 tooensure 流量正在封鎖正確 hello NSG。
 
 ## <a name="before-you-begin"></a>開始之前
 
-此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員，或您擁有現有的網路監看員執行個體。 此案例也假設已有具有有效虛擬機器的資源群組可供使用。
+此案例假設您已依照中的 hello 步驟[建立網路監看員](network-watcher-create.md)toocreate 網路監看員或具有網路監看員的現有執行個體。 hello 案例也會假設具有有效的虛擬機器的資源群組存在 toobe 使用。
 
 ## <a name="scenario"></a>案例
 
-此案例使用 IP 流量驗證來驗證虛擬機器是否可以透過連接埠 443 和其他機器通訊。 如果流量被拒絕，它會傳回拒絕該流量的安全性規則。 若要深入了解 IP 流量驗證，請造訪 [IP 流量驗證概觀](network-watcher-ip-flow-verify-overview.md)
+此案例使用 IP 流程確認 tooverify，如果虛擬機器可以彼此 tooanother 機器通訊透過連接埠 443。 如果 hello 流量遭到拒絕，它會傳回 hello 安全性規則，拒絕的流量。 toolearn 深入了解 IP 流程驗證，請瀏覽[IP 流程確認概觀](network-watcher-ip-flow-verify-overview.md)
 
 ### <a name="run-ip-flow-verify"></a>執行 IP 流量驗證
 
-瀏覽至您的網路監看員，然後按一下 [IP 流量驗證]。 選取虛擬機器和您想要驗證流量的網路介面。 輸入任何其他篩選的資訊，然後按一下 [檢查]。
+瀏覽 tooyour 網路監看員，並按一下**IP 流量確認**。 選取 hello 虛擬機器和網路介面您想要從 tooverify 流量。 輸入任何其他篩選的資訊，然後按一下 [檢查]。
 
-一旦您按一下 [檢查]，會檢查根據您提供之準則的流程。 結果是**允許存取**或**拒絕存取**。 如果存取被拒，會提供封鎖流量的網路安全性群組 (NSG) 和安全性規則。 如果拒絕流量是預期的行為，則此規則已成功。
+一旦您按一下**檢查**，會檢查您所提供的 hello 準則為基礎的 hello 流程。 hello 結果是**允許存取**或**拒絕存取**。 如果存取被拒，hello 網路安全性群組 (NSG)，並提供封鎖流量的安全性規則。 Hello 拒絕的流量是預期的行為，然後 hello 規則成功。
 
 > [!NOTE]
-> IP 流量驗證需要配置 VM 資源。
+> IP 流量確認需要 hello VM 資源一配置。
 
-您可以從下列映像中看到，允許輸出的 HTTPS 流量。
+您可以從下列映像的 hello 看到，已允許 hello 輸出的 HTTPS 流量。
 
 ![IP 流量驗證概觀][1]
 
-如下圖所示，流量會變更為輸入，輸入連接埠會變更為 123。 流量現在會遭拒絕，會提供「拒絕存取」訊息與網路安全性群組以及拒絕流量的安全性規則。
+Hello 下列影像所示，變更流量 tooinbound 和 hello 輸入連接埠變更 too123。 現在拒絕的流量，以及 hello 網路安全性群組和安全性規則，拒絕 hello 流量提供 hello 訊息 「 拒絕存取 」。
 
 ![IP 流量結果][2]
 
 ## <a name="next-steps"></a>後續步驟
 
-如果流量遭到封鎖，但不應如此，請參閱[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)以追蹤網路安全性群組和所定義的安全性規則。
+如果正在封鎖流量，不應該看到[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)tootrack hello 網路安全性群組和安全性規則所定義的關閉。
 
 [1]: ./media/network-watcher-check-ip-flow-verify-portal/figure1.png
 [2]: ./media/network-watcher-check-ip-flow-verify-portal/figure2.png

@@ -1,6 +1,6 @@
 ---
-title: "RemoteApp 雲端集合疑難排解 - 建立 | Microsoft Docs"
-description: "了解如何疑難排解 RemoteApp 雲端集合建立失敗"
+title: "aaaTroubleshoot RemoteApp 雲端集合建立 |Microsoft 文件"
+description: "了解如何 tootroubleshoot RemoteApp 雲端集合建立失敗"
 services: remoteapp
 documentationcenter: 
 author: vkbucha
@@ -13,36 +13,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 304ba7c5057b27c459bccbb75d3a711567757675
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9484ecbdb048ede8df725215b313e049cc7648f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-creating-remoteapp-cloud-collections"></a>建立 RemoteApp 雲端集合疑難排解
 > [!IMPORTANT]
-> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 讀取 hello[公告](https://go.microsoft.com/fwlink/?linkid=821148)如需詳細資訊。
 > 
 > 
 
-如果建立雲端集合遇到問題，請查看下列資訊。
+若您有建立雲端集合的問題，請查看下列資訊的 hello。
 
 ## <a name="your-image-is-invalid"></a>您的映像無效
-如果您在等候 Azure 佈建集合時，看到如「GoldImageInvalid」的訊息，表示範本映像不符合 [已定義的映像需求](remoteapp-imagereqs.md)。 因此，請閱讀 [需求](remoteapp-imagereqs.md)並修正映像，然後再嘗試重新建立集合。
+如果您正在等候 Azure tooprovision 您的集合時，您會看到類似 「 GoldImageInvalid 」 的訊息，表示您的範本映像不符合 hello[定義映像需求](remoteapp-imagereqs.md)。 因此，請移讀取這些[需求](remoteapp-imagereqs.md)，修正您的映像，然後再試 toocreate 集合一次。
 
-## <a name="common-errors-seen-in-the-azure-management-portal"></a>Azure 管理入口網站中的常見錯誤
+## <a name="common-errors-seen-in-hello-azure-management-portal"></a>在 hello Azure 管理入口網站中看到的常見錯誤
     DNS server could not be reached
     ProvisioningTimeout
 
-雲端集合通常會因為您在建立期間使用自訂映像而失敗。  如果您看到上述其中一個錯誤，而且您正在使用自訂映像來建立集合，請檢查下列事項：
+雲端集合通常會因為您在建立期間使用自訂映像而失敗。  如果您看到上述錯誤 hello 的而且您使用自訂映像 toocreate hello 集合，請參閱 hello 下列事項：
 
-* 確定上傳的自訂映像符合映像需求。
-* 最常見的問題是映像的 Sysprep 處理不正確。  
-* 確認映像可以在 HYPER-V 內開機，或嘗試直接在 Azure 訂用帳戶中使用映像建立 IAAS VM。 如果 VM 無法開機且未啟動，則通常表示未正確準備自訂映像。  請遵循＜如何為 RemoteApp 建立自訂範本映像＞來確認已建立自訂映像
+* 確定您已上傳該 hello 自訂映像符合映像需求。
+* 最常 hello 常見的問題是該 hello 映像未正確 syspreped。  
+* 確認 hello 映像可以開機 HYPER-V 中，或嘗試直接在您使用 hello 映像的 Azure 訂用帳戶中建立的 IAAS VM。 如果 hello VM 失敗 tooboot 並不會啟動，則這通常表示該 hello 自訂映像未準備正確。  確認 hello 自訂映像已建立下列 hello 如何 toocreate 自訂的範本映像的 RemoteApp
 
-如果您使用訂用帳戶隨附的其中一個 Microsoft 映像，請嘗試再次建立集合。 如果問題仍存在，請連絡 Microsoft 支援。
+如果您使用其中一個 hello Microsoft 映像包含您訂用帳戶，請嘗試再次 toocreate hello 集合。 如果 hello 問題持續發生請連絡 Microsoft 支援。
 
     PlatformImageTrialModeOnly
 
-如果看到這個錯誤，通常表示您已經升級至付費帳戶，但您正在嘗試使用 Microsoft 提供的映像，而該映像只在服務的試用模式期間有效。 在此情況下，請嘗試再次建立您的雲端集合，但務必指定正確的映像。
+如果您看到此錯誤通常表示尚未升級的 tooa 付費帳戶，但您嘗試 toouse 在 hello hello 服務試用模式期間才是有效的 Microsoft 提供的映像。 在此情況下，嘗試 toocreate 您雲端的集合，但會確定 toospecify hello 正確的映像。
 

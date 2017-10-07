@@ -1,6 +1,6 @@
 ---
-title: "搭配 Batch 來使用需要大量計算的 Azure VM | Microsoft Docs"
-description: "如何在 Azure Batch 集區中利用具備 RDMA 功能或已啟用 GPU 功能的 VM 大小"
+title: "aaaUse 需要大量計算的 Azure Vm 與批次 |Microsoft 文件"
+description: "具備 RDMA 功能，或按一下 啟用 GPU 的 VM tootake 利用 Azure Batch 集區中的調整大小"
 services: batch
 documentationcenter: 
 author: dlepow
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: danlep
-ms.openlocfilehash: c52a054e4fc8f61f871acd9f35b9a3e6247e48ef
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 6a462a5f2a44ddcec8bf4e5c200d444cac8fafe6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-rdma-capable-or-gpu-enabled-instances-in-batch-pools"></a>在 Batch 集區中使用具備 RDMA 功能或已啟用 GPU 功能的執行個體
 
-為了執行某些 Batch 作業，您可能會想利用專門設計來進行大規模計算的 Azure VM 大小。 例如，若要執行多執行個體的 [MPI 工作負載](batch-mpi.md)，您可以選擇 A8、A9 或 H 系列的大小，因為這些大小擁有的網路介面可供進行遠端直接記憶體存取 (RDMA)。 這些大小會連線到 InfiniBand 網路來進行節點間通訊，以加速 MPI 應用程式的運作。 如果是 CUDA 應用程式，則可以選擇 N 系列大小，因為這些大小包含 NVIDIA Tesla 圖形處理器 (GPU) 顯示卡。
+toorun 特定批次作業，您可能會想針對大規模的計算的 Azure VM 大小的 tootake 優點。 例如，toorun 多重執行個體[MPI 工作負載](batch-mpi.md)、 您可以選擇 A8、 A9、 或 H 序列的大小會有網路介面的遠端直接記憶體存取 (RDMA)。 這些大小連接 tooan InfiniBand 網路節點間的通訊，可加速 MPI 應用程式。 如果是 CUDA 應用程式，則可以選擇 N 系列大小，因為這些大小包含 NVIDIA Tesla 圖形處理器 (GPU) 顯示卡。
 
-本文會就如何在 Batch 集區中使用某些 Azure 特製大小提供指導方針與範例。 若要了解規格及背景，請參閱：
+本文提供指引和範例 toouse 一些 Azure 的特定大小，請在批次集區。 若要了解規格及背景，請參閱：
 
 * 高效能計算 VM 大小 ([Linux](../virtual-machines/linux/sizes-hpc.md)、[Windows](../virtual-machines/windows/sizes-hpc.md)) 
 
@@ -33,20 +33,20 @@ ms.lasthandoff: 07/29/2017
 
 ## <a name="subscription-and-account-limits"></a>訂用帳戶與帳戶限制
 
-* **配額** - 可以新增至 Batch 集區之節點的數量或類型可能會受到一或多個 Azure 配額所限制。 當您選擇具備 RDMA 功能、已啟用 GPU 功能或其他多核心 VM 大小時，更會受到限制。 根據您所建立的 Batch 帳戶類型，配額可能會套用於帳戶本身或套用於訂用帳戶。
+* **配額**-hello 數目或類型，可能會限制一個或多個 Azure 配額的節點中，您可以加入 tooa 批次集區。 您會更有可能 toobe 限制，當您選擇具備 RDMA 功能，啟用 GPU 或其他多核心的 VM 大小。 根據您所建立的批次帳戶 hello 類型，toohello 帳戶本身或 tooyour 訂用帳戶，無法套用 hello 配額。
 
-    * 如果您在 **Batch 服務**組態中建立了您的 Batch 帳戶，您就會受到[每個 Batch 帳戶的專用核心配額](batch-quota-limit.md#resource-quotas)所限制。 根據預設，這個配額為 20 個核心。 如果您使用[低優先順序 VM](batch-low-pri-vms.md)，這些 VM 有另外的適用配額。 
+    * 如果您建立您的 Batch 帳戶在 hello**批次服務**組態都受到 hello[每個批次帳戶的專用的核心配額](batch-quota-limit.md#resource-quotas)。 根據預設，這個配額為 20 個核心。 個別配額套用太[低優先權 Vm](batch-low-pri-vms.md)，如果您使用它們。 
 
-    * 如果您在**使用者訂用帳戶**組態中建立了帳戶，您的訂用帳戶會受到每個區域的 VM 核心數目所限制。 請參閱 [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)。 您的訂用帳戶也會對某些 VM 大小 (包括 HPC 和 GPU 執行個體) 套用區域配額。 在使用者訂用帳戶組態中，Batch 帳戶沒有另外的適用配額。 
+    * 如果您建立 hello 帳戶在 hello**使用者訂用帳戶**組態，您的訂用帳戶限制每個區域的 VM 核心的 hello 數目。 請參閱 [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)。 您的訂用帳戶也會套用地區配額 toocertain VM 大小，包括 HPC 和 GPU 的執行個體。 在 hello 使用者訂用帳戶設定中，沒有其他配額套用 toohello Batch 帳戶。 
 
-  當您在 Batch 中使用特製 VM 大小時，您可能必須增加一或多個配額。 若要要求增加配額，可免費[開啟線上客戶支援要求](../azure-supportability/how-to-create-azure-support-request.md)。
+  在批次中使用特製化的 VM 大小時您可能需要指定 tooincrease 一或多個配額。 toorequest 增加配額，開啟[線上客戶支援要求](../azure-supportability/how-to-create-azure-support-request.md)不收費。
 
-* **區域可用性** - 在您用來建立 Batch 帳戶的區域中，可能不會提供需要大量計算的 VM。 若要確認是否有提供某個大小，請參閱[依區域提供的產品](https://azure.microsoft.com/regions/services/)。
+* **區域可用性**-需要大量計算 Vm 可能無法使用您用來建立批次帳戶的 hello 區域中。 toocheck 的大小是可用，請參閱[依地區可用的產品](https://azure.microsoft.com/regions/services/)。
 
 
 ## <a name="dependencies"></a>相依項目
 
-只有特定作業系統會支援需要大量計算之大小的 RDMA 和 GPU 功能。 根據您的作業系統，您可能需要安裝或設定額外的驅動程式或其他軟體。 下表摘要說明這些相依性。 如需詳細資訊，請參閱連結的文章。 若要了解用來設定 Batch 集區的選項，請參閱本文稍後的內容。
+只能在某些作業系統支援 hello RDMA 和 GPU 功能需要大量計算的大小。 根據您的作業系統，您可能需要 tooinstall，或設定額外的驅動程式或其他軟體。 hello 下表摘要說明這些相依性。 如需詳細資訊，請參閱連結的文章。 選項 tooconfigure 批次集區，請參閱本文稍後。
 
 
 ### <a name="linux-pools---virtual-machine-configuration"></a>Linux 集區 - 虛擬機器組態
@@ -74,7 +74,7 @@ ms.lasthandoff: 07/29/2017
 ### <a name="windows-pools---cloud-services-configuration"></a>Windows 集區 - 雲端服務組態
 
 > [!NOTE]
-> 具有雲端服務組態的 Batch 集區不支援 N 系列大小。
+> 批次集區與 hello 雲端服務組態中不支援 N 序列的大小。
 >
 
 | 大小 | 功能 | 作業系統 | 必要的軟體 | 集區設定 |
@@ -87,17 +87,17 @@ ms.lasthandoff: 07/29/2017
 
 ## <a name="pool-configuration-options"></a>集區組態選項
 
-為了對 Batch 集區設定特製 VM 大小，Batch API 及工具提供了數個選項供您安裝必要的軟體或驅動程式，包括：
+tooconfigure 特製化的 VM 大小，批次集區、 hello 批次應用程式開發介面和工具會提供數個選項所需的 tooinstall 軟體或驅動程式，包括：
 
-* [啟動工作](batch-api-basics.md#start-task) - 將安裝套件作為資源檔來上傳到 Azure 儲存體帳戶 (與 Batch 帳戶位於相同區域)。 建立啟動工作命令列，以在集區啟動時以無訊息模式安裝資源檔。 如需詳細資訊，請參閱 [REST API 文件](/rest/api/batchservice/add-a-pool-to-an-account#bk_starttask)。
+* [啟動工作](batch-api-basics.md#start-task)-以資源檔案 tooan hello 中的 Azure 儲存體帳戶上傳的安裝套件與 hello 批次帳戶相同的區域。 Hello 集區啟動時，請以無訊息方式建立開始工作命令列 tooinstall hello 資源檔案。 如需詳細資訊，請參閱 hello [REST API 文件](/rest/api/batchservice/add-a-pool-to-an-account#bk_starttask)。
 
   > [!NOTE] 
-  > 啟動工作必須以提升的 (系統管理員) 權限來執行，而且必須等候到成功。
+  > hello 啟動工作必須執行以提升權限 （系統管理員） 權限，以及必須等候成功。
   >
 
-* [應用程式套件](batch-application-packages.md) - 將壓縮的安裝套件新增至您的 Batch 帳戶，並在集區中設定套件參考。 此設定會將套件上傳到集區中的所有節點，並將套件解壓縮。 如果該套件是安裝程式，請建立啟動工作命令列，以在所有集區節點上以無訊息方式安裝應用程式。 您也可以選擇在節點上有工作排定要執行時安裝套件。
+* [應用程式封裝](batch-application-packages.md)-zip 壓縮的安裝封裝 tooyour 批次帳戶中加入和設定封裝參考 hello 集區。 這個設定會將上傳，並會 hello hello 集區中的所有節點上的封裝。 如果 hello 封裝是安裝程式，建立啟動工作命令列 toosilently 安裝 hello 應用程式集區的所有節點上。 排程的 toorun 節點上工作時，選擇性地安裝 hello 封裝。
 
-* [自訂集區映像](batch-api-basics.md#pool) - 建立自訂的 Windows 或 Linux VM 映像，並在其中包含 VM 大小所需的驅動程式、軟體或其他設定。 如果您在使用者訂用帳戶組態中建立了 Batch 帳戶，請為 Batch 集區指定自訂映像  (Batch 服務組態中的帳戶不支援自訂映像)。只有虛擬機器組態中的集區可以使用自訂映像。
+* [自訂的集區映像](batch-api-basics.md#pool)-建立自訂的 Windows 或 Linux VM 映像，其中包含驅動程式、 軟體或其他設定所需的 hello VM 大小。 如果您建立您的 Batch 帳戶在 hello 使用者訂用帳戶設定中，指定 hello 批次集區的自訂映像。 （自訂映像不支援在 hello 批次服務組態中的帳戶）。自訂映像只可以搭配 hello 虛擬機器組態中的集區。
 
   > [!IMPORTANT]
   > 在 Batch 集區中，您目前無法使用以受控磁碟或進階儲存體建立的自訂映像。
@@ -105,17 +105,17 @@ ms.lasthandoff: 07/29/2017
 
 
 
-* [Batch Shipyard](https://github.com/Azure/batch-shipyard) 會自動將 GPU 和 RDMA 設定為對 Azure Batch 上的容器化工作負載透明地進行處理。 Batch Shipyard 完全是透過組態檔來驅動。 有許多可用的配方組態範例可啟用 GPU 和 RDMA 工作負載，例如 [CNTK GPU 配方](https://github.com/Azure/batch-shipyard/tree/master/recipes/CNTK-GPU-OpenMPI)，此配方會在 N 系列 VM 上預先設定 GPU 驅動程式，並以 Docker 映像的形式載入 Microsoft 辨識工具組。
+* [批次造船廠](https://github.com/Azure/batch-shipyard)hello GPU 和 rdma 來說 toowork 以透明的方式會以自動設定 Azure 批次的容器化工作負載。 Batch Shipyard 完全是透過組態檔來驅動。 有許多範例配方設定可啟用 GPU 和 rdma 來說工作負載，例如 hello [CNTK GPU 配方](https://github.com/Azure/batch-shipyard/tree/master/recipes/CNTK-GPU-OpenMPI)的預先設定了 N 系列 Vm 的 GPU 驅動程式，並載入 Microsoft 認知工具組做為 Docker 映像的軟體。
 
 
 ## <a name="example-microsoft-mpi-on-an-a8-vm-pool"></a>範例：A8 VM 集區上的 Microsoft MPI
 
-若要在 Azure A8 節點所構成的集區上執行 Windows MPI 應用程式，您必須安裝支援的 MPI 實作。 以下的步驟範例可供您使用 Batch 應用程式套件，在 Windows 集區上安裝 [Microsoft MPI](https://msdn.microsoft.com/library/bb524831(v=vs.85).aspx)。
+toorun Windows MPI 應用程式集區的 Azure A8 節點上，您需要 tooinstall 支援的 MPI 實作。 以下是範例步驟 tooinstall [Microsoft MPI](https://msdn.microsoft.com/library/bb524831(v=vs.85).aspx) Windows 在集區使用的批次應用程式套件。
 
-1. 下載適用於最新版 Microsoft MPI 的[安裝套件](http://go.microsoft.com/FWLink/p/?LinkID=389556) (MSMpiSetup.exe)。
-2. 建立該套件的 zip 檔案。
-3. 將套件上傳至您的 Batch 帳戶。 如需相關步驟，請參閱[應用程式套件](batch-application-packages.md)指引。 指定應用程式識別碼 (例如 MSMPI) 和版本 (例如 8.1)。 
-4. 使用 Batch API 或 Azure 入口網站，在雲端服務組態中建立具有所需節點數目和規模大小的集區。 下表顯示使用啟動工作以自動安裝模式設定 MPI 的設定範例：
+1. 下載 hello[安裝套件](http://go.microsoft.com/FWLink/p/?LinkID=389556)(MSMpiSetup.exe) 的 Microsoft MPI hello 最新版本。
+2. 建立 hello 封裝 zip 檔案。
+3. 上傳 hello 封裝 tooyour Batch 帳戶。 如需步驟，請參閱 hello[應用程式封裝](batch-application-packages.md)指引。 指定應用程式識別碼 (例如 MSMPI) 和版本 (例如 8.1)。 
+4. 使用 hello 批次 Api 或 Azure 入口網站，建立具有所需的 hello 節點和小數位數數目的 hello 雲端服務組態中的集區。 hello 下表顯示範例設定 tooset MPI 註冊以使用啟動工作的自動安裝模式：
 
 | 設定 | 值 |
 | ---- | ----- | 
@@ -129,21 +129,21 @@ ms.lasthandoff: 07/29/2017
 
 ## <a name="example-nvidia-tesla-drivers-on-nc-vm-pool"></a>範例：NC VM 集區上的 NVIDIA Tesla 驅動程式
 
-若要在 Linux NC 節點所構成的集區上執行 CUDA 應用程式，您必須在節點上安裝 CUDA Toolkit 8.0。 此工具組會安裝所需的 NVIDIA Tesla GPU 驅動程式。 以下的步驟範例可供您部署具有 GPU 驅動程式的自訂 Ubuntu 16.04 LTS 映像：
+toorun CUDA 應用程式集區的 NC Linux 節點上，您需要 tooinstall CUDA Toolkit 8.0 hello 節點上。 hello Toolkit 安裝 hello 必要 NVIDIA Tesla GPU 驅動程式。 以下是範例步驟 toodeploy hello GPU 驅動程式的自訂 Ubuntu 16.04 LTS 映像：
 
-1. 部署執行 Ubuntu 16.04 LTS 的 Azure NC6 VM。 例如，在美國中南部區域建立 VM。 請確定您在建立 VM 時使用的是標準儲存體，而且「未使用」受控磁碟。
-2. 遵循步驟來連線至 VM 並[安裝 CUDA 驅動程式](../virtual-machines/linux/n-series-driver-setup.md#install-cuda-drivers-for-nc-vms)。
-3. 將 Linux 代理程式取消佈建，然後使用 Azure CLI 1.0 命令擷取 Linux VM 映像。 如需相關步驟，請參閱[擷取在 Azure 上執行的 Linux 虛擬機器](../virtual-machines/linux/capture-image-nodejs.md)。 記下映像的 URI。
+1. 部署執行 Ubuntu 16.04 LTS 的 Azure NC6 VM。 例如，在 hello 美國中南部地區建立 hello VM。 請確定您有標準的儲存區，建立 hello VM 和*沒有*管理的磁碟。
+2. 請遵循 hello 步驟 tooconnect toohello VM 和[安裝 CUDA 驅動程式](../virtual-machines/linux/n-series-driver-setup.md#install-cuda-drivers-for-nc-vms)。
+3. 取消佈建 hello Linux 代理程式，然後擷取 Linux VM 映像使用 hello Azure CLI 1.0 命令。 如需相關步驟，請參閱[擷取在 Azure 上執行的 Linux 虛擬機器](../virtual-machines/linux/capture-image-nodejs.md)。 記下 hello 影像 URI。
   > [!IMPORTANT]
-  > 請勿使用 Azure CLI 2.0 命令來擷取 Azure Batch 的映像。 CLI 2.0 命令目前只能擷取使用受控磁碟所建立的 VM。
+  > 請勿針對 Azure 批次使用 Azure CLI 2.0 命令 toocapture hello 映像。 目前 hello CLI 2.0 命令只會擷取使用受管理的磁碟建立的 Vm。
   >
-4. 在支援 NC VM 的區域中以使用者訂用帳戶組態建立 Batch 帳戶。
-5. 使用 Batch API 或 Azure 入口網站，以自訂映像建立具有所需節點數目和規模大小的集區。 下表顯示該映像的集區設定範例：
+4. 建立批次帳戶，使用 hello 使用者訂用帳戶設定，支援 NC Vm 所在的地區。
+5. 使用 hello 批次 Api 或 Azure 入口網站使用 hello 自訂映像來建立資料庫，並以 hello 所需的節點和小數位數數目。 hello 下表顯示 hello 映像的範例集區設定：
 
 | 設定 | 值 |
 | ---- | ---- |
 | **映像類型** | 自訂映像 |
-| **自訂映像** | 下列格式的映像 URI：`https://yourstorageaccountdisks.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/MyVHDNamePrefix-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd` |
+| **自訂映像** | 影像 hello 表單的 URI`https://yourstorageaccountdisks.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/MyVHDNamePrefix-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd` |
 | **節點代理程式 SKU** | batch.node.ubuntu 16.04 |
 | **節點大小** | NC6 標準 |
 
@@ -151,6 +151,6 @@ ms.lasthandoff: 07/29/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-* 若要在 Azure Batch 集區上執行 MPI 作業，請參閱 [Windows](batch-mpi.md) 或 [Linux](https://blogs.technet.microsoft.com/windowshpc/2016/07/20/introducing-mpi-support-for-linux-on-azure-batch/) 範例。
+* Azure Batch 集區上的 toorun MPI 工作，請參閱 「 hello [Windows](batch-mpi.md)或[Linux](https://blogs.technet.microsoft.com/windowshpc/2016/07/20/introducing-mpi-support-for-linux-on-azure-batch/)範例。
 
-* 如需 Batch 上之 GPU 工作負載的範例，請參閱 [Batch Shipyard](https://github.com/Azure/batch-shipyard/) 配方。
+* 例如批次中的 GPU 工作負載的詳細資訊，請參閱 hello[批次造船廠](https://github.com/Azure/batch-shipyard/)的訣竅。

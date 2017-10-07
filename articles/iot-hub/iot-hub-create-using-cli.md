@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI (az.py) 建立 IoT 中樞 | Microsoft Docs"
-description: "如何使用跨平台 Azure CLI 2.0 (az.py) 建立 Azure IoT 中樞。"
+title: "使用 Azure CLI (az.py) IoT 中樞 aaaCreate |Microsoft 文件"
+description: "如何使用您建立 Azure IoT 中樞 toocreate hello 跨平台 Azure CLI 2.0 (az.py)。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: dobett
-ms.openlocfilehash: 161089159999a4a63a39b059e69a08b7a9297445
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9c9639235c2ac343e6ceb9578291dafaea26ea24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-iot-hub-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立 IoT 中樞
+# <a name="create-an-iot-hub-using-hello-azure-cli-20"></a>建立使用 Azure CLI 2.0 hello IoT 中樞
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 ## <a name="introduction"></a>簡介
 
-您可以使用 Azure CLI 2.0 (az.py)，以程式設計方式建立和管理 Azure IoT 中樞。 本文將說明如何使用 Azure CLI 2.0 (az.py) 建立 IoT 中樞。
+您可以使用 Azure CLI 2.0 (az.py) toocreate，並以程式設計方式管理 Azure IoT 中樞。 本文章將示範如何 toouse 會 hello Azure CLI 2.0 (az.py) toocreate IoT 中樞。
 
-您可以使用下列其中一個 CLI 版本來完成工作︰
+您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：
 
-* [Azure CLI (azure.js)](iot-hub-create-using-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI。
-* Azure CLI 2.0 (az.py) - 適用於資源管理部署模型的新一代 CLI (如本文中所述)。
+* [Azure CLI (azure.js)](iot-hub-create-using-cli-nodejs.md) – hello CLI hello 傳統和資源管理部署模型。
+* Azure CLI 2.0 (az.py)-hello 新一代 CLI hello 資源管理部署模型的這篇文章中所述。
 
-若要完成此教學課程，您需要下列項目：
+toocomplete 本教學課程中，您需要遵循的 hello:
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
 * [Azure CLI 2.0][lnk-CLI-install]。
 
 ## <a name="sign-in-and-set-your-azure-account"></a>登入並設定 Azure 帳戶
 
-登入您的 Azure 帳戶並選取您的訂用帳戶。
+登入 tooyour Azure 帳戶，並選取您的訂用帳戶。
 
-1. 在命令提示字元中，執行[登入命令][lnk-login-command]：
+1. 在 hello 命令提示字元中執行 hello[登入命令][lnk-login-command]:
     
     ```azurecli
     az login
     ```
 
-    依照指示使用程式碼進行驗證，並透過網頁瀏覽器登入 Azure 帳戶。
+    請遵循 hello 指示 tooauthenticate 使用 hello 程式碼，並登入 tooyour 透過 web 瀏覽器的 Azure 帳戶。
 
-2. 如果您有多個 Azure 訂用帳戶，則登入 Azure 會授予您所有與認證相關聯之 Azure 帳戶的存取權。 使用下列[命令來列出可供您使用的 Azure 帳戶][lnk-az-account-command]︰
+2. 如果您有多個 Azure 訂用帳戶，授與存取 tooall 登入 tooAzure hello 與認證相關聯的 Azure 帳戶。 使用下列 hello[命令 toolist hello Azure 帳戶][ lnk-az-account-command]適用於您 toouse:
     
     ```azurecli
     az account list 
     ```
 
-    使用下列命令，選取您想要用來執行命令以建立 IoT 中樞的訂用帳戶。 您可以使用來自上一個命令之輸出內的訂用帳戶名稱或識別碼︰
+    使用下列命令 tooselect 訂用帳戶的 toouse toorun hello 命令 toocreate IoT 中樞的 hello。 您可以使用 hello 訂用帳戶名稱或識別碼，從 hello 輸出 hello 前一個命令：
 
     ```azurecli
     az account set --subscription {your subscription name or id}
@@ -64,20 +64,20 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="create-an-iot-hub"></a>建立 IoT 中樞
 
-使用 Azure CLI 建立資源群組，然後新增 IoT 中樞。
+使用 hello Azure CLI toocreate 資源群組，然後再加入 IoT 中樞。
 
-1. 在建立 IoT 中樞時，必須將其建立在資源群組內。 使用現有的資源群組，或執行下列[命令來建立資源群組][lnk-az-resource-command]：
+1. 在建立 IoT 中樞時，必須將其建立在資源群組內。 使用現有的資源群組，或執行 hello 下列[命令 toocreate 資源群組][lnk-az-resource-command]:
     
     ```azurecli
      az group create --name {your resource group name} --location westus
     ```
 
     > [!TIP]
-    > 上一個範例會建立位於美國西部位置的資源群組。 您可以執行命令 `az account list-locations -o table`，以檢視可用位置清單。
+    > hello 前一個範例會在 hello 美國西部位置中建立 hello 資源群組。 您可以執行 hello 命令，以檢視可用位置清單`az account list-locations -o table`。
     >
     >
 
-2. 使用 IoT 中樞的全域唯一名稱，在資源群組中執行下列命令[建立 IoT 中樞][lnk-az-iot-command]：
+2. 執行下列 hello[命令 toocreate IoT 中樞][ lnk-az-iot-command]在資源群組中，使用您的 IoT 中樞的全域唯一名稱：
     
     ```azurecli
     az iot hub create --name {your iot hub name} --resource-group {your resource group name} --sku S1
@@ -87,34 +87,34 @@ ms.lasthandoff: 08/03/2017
 
 
 > [!NOTE]
-> 上一個命令會在您付費使用的 S1 定價層中建立 IoT 中樞。 如需詳細資訊，請參閱 [Azure IoT 中樞價格][lnk-iot-pricing]。
+> hello 前一個命令會建立 IoT 中樞 hello S1 定價的層，您需要付費。 如需詳細資訊，請參閱 [Azure IoT 中樞價格][lnk-iot-pricing]。
 >
 >
 
 ## <a name="remove-an-iot-hub"></a>移除 IoT 中樞
 
-您可以使用 Azure CLI 來[刪除個別資源][lnk-az-resource-command](例如 IoT 中樞)，或刪除資源群組和其所有資源 (包括任何 IoT 中樞)。
+您也可以使用 Azure CLI hello[刪除個別的資源，][lnk-az-resource-command]，例如 IoT 中心] 或 [刪除資源群組和它的所有資源，包括任何 IoT 中樞。
 
-若要刪除 IoT 中樞，請執行下列命令︰
+IoT 中樞，執行下列命令的 hello toodelete:
 
 ```azurecli
 az iot hub delete --name {your iot hub name} --resource-group {your resource group name}
 ```
 
-若要刪除資源群組和其所有資源，請執行下列命令︰
+toodelete 資源群組和其所有資源，執行 hello，下列命令：
 
 ```azurecli
 az group delete --name {your resource group name}
 ```
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解如何開發 IoT 中樞，請參閱以下文章︰
+進一步了解開發的 IoT 中樞 toolearn，請參閱下列文章的 hello:
 
 * [IoT 中樞開發人員指南][lnk-devguide]
 
-若要進一步探索 IoT 中樞的功能，請參閱︰
+toofurther 瀏覽的 IoT 中樞的 hello 功能，請參閱：
 
-* [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+* [使用 hello Azure 入口網站 toomanage IoT 中樞][lnk-portal]
 
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/

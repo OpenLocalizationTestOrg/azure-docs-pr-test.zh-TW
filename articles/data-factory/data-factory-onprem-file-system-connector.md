@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Data Factory 從檔案系統來回複製資料 | Microsoft Docs"
-description: "了解如何使用 Azure Data Factory 從內部部署檔案系統來回複製資料。"
+title: "aaaCopy 資料，從檔案系統，使用 Azure Data Factory |Microsoft 文件"
+description: "深入了解如何從內部部署檔案系統使用 Azure Data Factory toocopy 資料 tooand。"
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: jingwang
-ms.openlocfilehash: 52305e54f539de6aba2ba9cc856a09e04d608ded
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 201b8bc3ffa639df781443aa0c3f95c975d280be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-data-to-and-from-an-on-premises-file-system-by-using-azure-data-factory"></a>使用 Azure Data Factory 從內部部署檔案系統來回複製資料
-本文說明如何使用 Azure Data Factory 中的「複製活動」，從內部部署檔案系統來回複製資料。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。
+# <a name="copy-data-tooand-from-an-on-premises-file-system-by-using-azure-data-factory"></a>從內部部署檔案系統複製資料 tooand，使用 Azure Data Factory
+本文說明如何 toouse hello Azure Data Factory toocopy 資料從內部部署檔案系統中的複製活動。 它是在 hello 基礎[資料移動活動](data-factory-data-movement-activities.md)文件： hello 複製活動會提供資料移動的一般概觀。
 
 ## <a name="supported-scenarios"></a>支援的案例
-您可以從內部部署檔案系統將資料複製到下列資料存放區：
+您可以將資料複製**從內部部署檔案系統**toohello 下列資料存放區：
 
 [!INCLUDE [data-factory-supported-sink](../../includes/data-factory-supported-sinks.md)]
 
-您可以從下列資料存放區將資料複製到內部部署檔案系統：
+您可以將資料複製下列資料存放區的 hello **tooan 內部檔案系統**:
 
 [!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
 
 > [!NOTE]
-> 來源檔案成功複製至目的地後，「複製活動」不會將它刪除。 如果您需要在成功複製後刪除來源檔案，請建立自訂活動來刪除檔案，並在管道中使用該活動。 
+> 複製活動不會刪除 hello 原始程式檔之後順利複製的 toohello 目的地。 如果您需要 toodelete hello 原始程式檔複製成功之後，建立自訂活動 toodelete hello 檔案，並使用 hello 管線中的 hello 活動。 
 
 ## <a name="enabling-connectivity"></a>啟用連線
-Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案系統，或從內部部署的檔案系統連出。 您必須在內部部署環境安裝「資料管理閘道」，Data Factory 服務才能連接到任何支援的內部部署資料存放區 (包括檔案系統)。 如需有關資料管理閘道以及設定閘道的逐步指示，請參閱[利用資料管理閘道在內部部署資源和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。 除了資料管理閘道，不需要安裝其他二進位檔即可和內部部署檔案系統進行通訊。 您必須安裝和使用「資料管理閘道」，即使檔案系統位於 Azure IaaS VM 中也一樣。 如需有關閘道的詳細資訊，請參閱[資料管理閘道](data-factory-data-management-gateway.md)。
+Data Factory 支援透過在內部部署檔案系統中的連接 tooand**資料管理閘道器**。 您必須安裝 hello 資料管理閘道器在內部部署環境的 hello Data Factory 服務 tooconnect tooany 支援在內部部署資料存放區包括檔案系統中。 請參閱 toolearn 有關資料管理閘道器以及如需 hello 閘道設定的逐步指示[在內部部署來源和資料管理閘道與 hello 雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。 資料管理閘道器，除了其他二進位檔案需要安裝 toobe toocommunicate tooand 從內部部署檔案系統。 您必須安裝並使用 hello 資料管理閘道，即使是在 Azure IaaS VM 的 hello 檔案系統。 如需 hello 閘道的詳細資訊，請參閱[資料管理閘道器](data-factory-data-management-gateway.md)。
 
-若要使用 Linux 檔案共用，請在 Linux 伺服器上安裝 [Samba](https://www.samba.org/)，在 Windows 伺服器上安裝「資料管理閘道」。 不支援在 Linux 伺服器上安裝資料管理閘道。
+安裝 Linux 檔案共用，toouse [Samba](https://www.samba.org/) Linux 伺服器和 Windows server 上的安裝資料管理閘道器上。 不支援在 Linux 伺服器上安裝資料管理閘道。
 
 ## <a name="getting-started"></a>開始使用
 您可以藉由使用不同的工具/API，建立內含複製活動的管線，以將資料移進/移出檔案系統。
 
-建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
+最簡單方式 toocreate hello 管線為 toouse hello**複製精靈**。 請參閱[教學課程： 建立管線，使用複製精靈](data-factory-copy-data-wizard-tutorial.md)快速逐步解說中建立管線中使用 hello 複製資料精靈 」。
 
-您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API** 及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+您也可以使用下列工具 toocreate 管線 hello: **Azure 入口網站**， **Visual Studio**， **Azure PowerShell**， **Azure Resource Manager 範本**， **.NET API**，和**REST API**。 請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)的逐步指示 toocreate 具有複製活動的管線。
 
-不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線：
+無論您是使用 hello 工具或 Api，會執行下列步驟 toocreate 移動來源資料中的資料存放區 tooa 接收資料存放區的管線的 hello:
 
 1. 建立 **Data Factory**。 資料處理站可包含一或多個管線。 
-2. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。 例如，如果您從 Azure Blob 儲存體將資料複製到內部部署檔案系統，您會建立兩個連結服務，將內部部署檔案系統和 Azure 儲存體帳戶連結至資料處理站。 有關內部部署檔案系統專屬的連結服務屬性，請參閱[連結服務屬性](#linked-service-properties)一節。
-3. 建立**資料集**，代表複製作業的輸入和輸出資料。 在上一個步驟所述的範例中，您可以建立資料集來指定包含輸入資料的 Blob 容器與資料夾。 同時，您會建立另一個資料集來指定檔案系統中的資料夾與檔案名稱 (選擇性)。 針對內部部署檔案系統專屬的資料集屬性，請參閱[資料集屬性](#dataset-properties)一節。
-4. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 在稍早所述的範例中，您使用 BlobSource 作為來源，以及使用 FileSystemSink 作為複製活動的接收器。 同樣地，如果您是從內部部署檔案系統複製到 Azure Blob 儲存體，則在複製活動中使用 FileSystemSource 和 BlobSink。 針對內部部署檔案系統專屬的複製活動屬性，請參閱[複製活動屬性](#copy-activity-properties)一節。 如需有關如何使用資料存放區作為來源或接收器的詳細資訊，請按一下上一節中資料存放區的連結。
+2. 建立**連結的服務**toolink 輸入和輸出資料存放區 tooyour 資料 factory。 例如，如果您從 Azure blob 儲存體 tooan 在內部部署檔案系統複製資料，您建立兩個連結的服務 toolink 在內部部署檔案系統與 Azure 儲存體帳戶 tooyour 資料 factory。 對於特定 tooan 在內部部署檔案系統連結的服務屬性，請參閱[連結服務屬性](#linked-service-properties)> 一節。
+3. 建立**資料集**toorepresent 輸入和輸出 hello 的資料複製作業。 在 hello hello 最後一個步驟中所述的範例中，您可以建立資料集 toospecify hello blob 容器和包含 hello 輸入的資料的資料夾。 此外，您會建立另一個資料集 toospecify hello 資料夾和檔案名稱 （選擇性） 在檔案系統。 為特定 tooon 內部的資料集屬性的檔案系統，請參閱[資料集屬性](#dataset-properties)> 一節。
+4. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 在先前所述 hello 範例中，您使用 BlobSource 作為來源和使用 FileSystemSink 做為接收器 hello 複製活動。 同樣地，如果您要從內部部署檔案系統 tooAzure Blob 儲存體複製，則使用 FileSystemSource 和 BlobSink 的 hello 複製活動。 複製活動內容特定 tooon 內部檔案系統，請參閱[複製活動屬性](#copy-activity-properties)> 一節。 如需如何 toouse 的資料存放區做為來源或接收的詳細資訊，按一下 hello hello 資料存放區上一節中的連結。
 
-使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到檔案系統 (或從檔案系統複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples-for-copying-data-to-and-from-file-system)一節。
+當您使用 hello 精靈時，會自動為您建立這些 Data Factory 實體 （連結的服務、 資料集和 hello 管線） 的 JSON 定義。 當您使用 [工具/Api （除了.NET 應用程式開發介面） 時，您會定義這些 Data Factory 實體使用 hello JSON 格式。  如需使用的 toocopy 資料，從檔案系統的 Data Factory 實體的 JSON 定義的範例，請參閱[JSON 範例](#json-examples-for-copying-data-to-and-from-file-system)本文一節。
 
-下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義檔案系統特定的 Data Factory 實體：
+hello 下列各節提供有關使用的 toodefine Data Factory 實體特定 toofile 系統的 JSON 屬性的詳細資料：
 
 ## <a name="linked-service-properties"></a>連結服務屬性
-您可以利用「內部部署檔案伺服器」已連結服務，將內部部署的檔案系統連結到 Azure Data Factory。 下表說明內部部署檔案伺服器連結服務專屬的 JSON 元素。
+您可以連結在內部部署檔案系統 tooan Azure data factory 以 hello**在內部部署檔案伺服器**連結服務。 hello 下表提供說明屬於特定 toohello 連結在內部部署檔案伺服器服務的 JSON 元素。
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |確保 type 屬性設為 **OnPremisesFileServer**。 |是 |
-| 主機 |指定想要複製之資料夾的根路徑。 字串中的特殊字元需使用逸出字元 ‘ \ ’。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。 |是 |
-| userid |指定具有伺服器存取權之使用者的識別碼。 |否 (如果您選擇 encryptedCredential) |
-| password |指定使用者 (userid) 的密碼。 |否 (如果您選擇 encryptedCredential) |
-| encryptedCredential |指定可以透過執行 New-AzureRmDataFactoryEncryptValue Cmdlet 來取得的加密認證。 |否 (如果您選擇以純文字指定使用者識別碼和密碼) |
-| gatewayName |指定 Data Factory 應該用來連接到內部部署檔案伺服器的閘道器名稱。 |是 |
+| 類型 |請確定 hello type 屬性設定太**OnPremisesFileServer**。 |是 |
+| 主機 |指定您想 toocopy hello 資料夾 hello 根路徑。 使用 hello 逸出字元 '\' hello 字串中的特殊字元。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。 |是 |
+| userid |指定具有存取 toohello 伺服器 hello 使用者識別碼 hello。 |否 (如果您選擇 encryptedCredential) |
+| password |指定 hello hello 使用者 (userid) 的密碼。 |否 (如果您選擇 encryptedCredential) |
+| encryptedCredential |指定您可以藉由執行 hello 新增 AzureRmDataFactoryEncryptValue cmdlet 取得的 hello 加密認證。 |否 （如果您選擇 toospecify 使用者識別碼和密碼以純文字） |
+| gatewayName |指定 hello hello 閘道的 Data Factory 應該使用 tooconnect toohello 在內部部署檔案伺服器名稱。 |是 |
 
 
 ### <a name="sample-linked-service-and-dataset-definitions"></a>範例連結服務和資料集定義
@@ -114,24 +114,24 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 ## <a name="dataset-properties"></a>資料集屬性
 如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型。
 
-不同類型資料集的 TypeProperties 區段不同。 它提供各種資訊，例如資料存放區中資料的格式與位置。 **FileShare** 類型資料集的 typeProperties 區段有下列屬性：
+hello typeProperties 區段是不同的資料集的每個型別。 它提供資訊，例如 hello 位置和 hello 資料存放區中的 hello 資料格式。 hello typeProperties 區段 hello 資料集型別的**FileShare**具有下列屬性的 hello:
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| folderPath |指定資料夾的子路徑。 字串中的特殊字元需使用逸出字元 ‘ \ ’。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。<br/><br/>您可以結合此屬性與 **partitionBy**，讓資料夾路徑以配量開始/結束日期時間為基礎。 |是 |
-| fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>當未指定輸出資料集的 fileName，且在活動接收中未指定 preserveHierarchy 時，所產生檔案的名稱格式如下： <br/><br/>`Data.<Guid>.txt` (例如： Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
-| fileFilter |指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。 <br/><br/>允許的值為︰`*` (多個字元) 和 `?` (單一字元)。<br/><br/>範例 1："fileFilter": "*.log"<br/>範例 2："fileFilter": 2014-1-?.txt"<br/><br/>請注意，fileFilter 適用於輸入 FileShare 資料集。 |否 |
-| partitionedBy |您可以使用 partitionedBy 來指定時間序列資料的動態 folderPath/fileName。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
-| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
+| folderPath |指定 hello 子路徑 toohello 資料夾。 使用 hello 逸出字元 ' \' hello 字串中的特殊字元。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。<br/><br/>您可以結合此屬性與**partitionBy** toohave 資料夾路徑根據配量開始/結束日期時間。 |是 |
+| fileName |在 [hello 指定 hello hello 檔案名稱**folderPath**如果您想 hello 資料表 toorefer tooa 特定檔案 hello 資料夾中的。 如果您未指定任何值，這個屬性，hello 資料表會指向 tooall hello 資料夾中的檔案。<br/><br/>當**fileName**未指定輸出資料集和**preserveHierarchy**中未指定活動接收 hello hello 產生檔案名稱是以下列格式的 hello: <br/><br/>`Data.<Guid>.txt` (例如： Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
+| fileFilter |指定篩選 toobe 使用 tooselect hello folderPath 中檔案的子集，而不是所有的檔案。 <br/><br/>允許的值為︰`*` (多個字元) 和 `?` (單一字元)。<br/><br/>範例 1："fileFilter": "*.log"<br/>範例 2："fileFilter": 2014-1-?.txt"<br/><br/>請注意，fileFilter 適用於輸入 FileShare 資料集。 |否 |
+| partitionedBy |您可以使用 partitionedBy toospecify 動態 folderPath/檔名，時間序列資料。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
+| format | 支援下列格式類型的 hello: **TextFormat**， **JsonFormat**， **AvroFormat**， **OrcFormat**， **ParquetFormat**。 設定 hello**類型**下格式 tooone 這些值的屬性。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想太**複製檔做為-是**之間以檔案為基礎存放區 （二進位複製），略過這兩個輸入和輸出資料集定義中的 hello 格式 > 一節。 |否 |
+| compression | 指定 hello 類型和層級的 hello 資料壓縮。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
 
 > [!NOTE]
 > 無法同時使用 fileName 和 fileFilter。
 
 ### <a name="using-partitionedby-property"></a>使用 partitionedBy 屬性
-如上一節所述，您可以使用 **partitionedBy** 屬性、[Data Factory 函式及系統變數](data-factory-functions-variables.md)，來指定時間序列資料的動態 folderPath 和檔案名稱。
+當 hello 上一節中所述，您可指定動態 folderPath 和 filename 時間序列資料的 hello **partitionedBy**屬性， [Data Factory 函數與 hello 系統變數](data-factory-functions-variables.md)。
 
-若要進一步了解時間序列資料集、排程和配量，請參閱[建立資料集](data-factory-create-datasets.md)、[排程和執行](data-factory-scheduling-and-execution.md)以及[建立管線](data-factory-create-pipelines.md)。
+toounderstand 更多詳細資料，在時間序列資料集、 排程和配量，請參閱[建立資料集](data-factory-create-datasets.md)，[排程與執行](data-factory-scheduling-and-execution.md)，和[建立管線](data-factory-create-pipelines.md)。
 
 #### <a name="sample-1"></a>範例 1：
 
@@ -143,7 +143,7 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 ],
 ```
 
-在此範例中，{Slice} 會取代成 Data Factory 系統變數 SliceStart 的值，其格式為 (YYYYMMDDHH)。 SliceStart 是指配量的開始時間。 每個配量的 folderPath 都不同。 例如：wikidatagateway/wikisampledataout/2014100103 或 wikidatagateway/wikisampledataout/2014100104。
+在此範例中，hello hello Data Factory 系統變數 SliceStart hello 格式 (YYYYMMDDHH) 值會取代 {Slice}。 SliceStart 是指配 toostart hello 配量時間。 hello folderPath 是不同的每個配量。 例如：wikidatagateway/wikisampledataout/2014100103 或 wikidatagateway/wikisampledataout/2014100104。
 
 #### <a name="sample-2"></a>範例 2：
 
@@ -159,45 +159,45 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 ],
 ```
 
-在此範例中，會擷取 SliceStart 的年、月、日和時間給 folderPath 和 fileName 屬性所使用的個別變數。
+在此範例中，年、 月、 日和時間的 SliceStart 會擷取到個別 hello folderPath 和 fileName 屬性所使用的變數。
 
 ## <a name="copy-activity-properties"></a>複製活動屬性
-如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料集，以及原則) 適用於所有類型的活動。 而活動的 **typeProperties** 區段中，可用的屬性會隨著每個活動類型而有所不同。
+區段和屬性可用來定義活動的完整清單，請參閱 hello[建立管線](data-factory-create-pipelines.md)發行項。 屬性 (例如名稱、描述、輸入和輸出資料集，以及原則) 適用於所有類型的活動。 而 hello 中可用屬性**typeProperties** hello 活動的區段會隨每個活動類型。
 
-就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。 如果您要從內部部署的檔案系統移動資料，需將複製活動中的來源類型設定為 **FileSystemSource**。 同樣地，如果您要將資料移到內部部署的檔案系統，則需將複製活動中的接收器類型設定為 **FileSystemSink**。 本節提供 FileSystemSource 和 FileSystemSink 所支援的屬性清單。
+複製活動它們而異的來源與接收的 hello 類型。 如果您要從內部部署檔案系統中移動資料，您設定 hello 來源類型 hello 複製活動中太**FileSystemSource**。 同樣地，如果您要移動資料 tooan 在內部部署檔案系統，hello 接收器類型中設定 hello 複製活動太**使用 FileSystemSink**。 本節提供 FileSystemSource 和 FileSystemSink 所支援的屬性清單。
 
-**FileSystemSource** 支援下列屬性：
-
-| 屬性 | 說明 | 允許的值 | 必要 |
-| --- | --- | --- | --- |
-| 遞迴 |指出是否從子資料夾、或只有從指定的資料夾，以遞迴方式讀取資料。 |True/False (預設值為 False) |否 |
-
-**FileSystemSink** 支援下列屬性：
+**FileSystemSource**支援 hello 下列屬性：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| copyBehavior |當來源為 BlobSource 或 FileSystem 時，定義複製行為。 |**PreserveHierarchy：**保留目標資料夾中的檔案階層。 亦即，來源檔案到來源資料夾的相對路徑，與目標檔案到目標資料夾的相對路徑相同。<br/><br/>**FlattenHierarchy：**來源資料夾的中所有檔案都會建立在目標資料夾的第一層中。 建立的目標檔案會具有自動產生的名稱。<br/><br/>**MergeFiles：**將來源資料夾的所有檔案合併為一個檔案。 如果有指定檔案/Blob 名稱，合併檔案的名稱會是指定的名稱。 否則，就會是自動產生的檔案名稱。 |否 |
+| 遞迴 |指出是否 hello 讀取資料以遞迴方式從 hello 子資料夾，或只能從 hello 指定的資料夾。 |True/False (預設值為 False) |否 |
+
+**使用 FileSystemSink**支援 hello 下列屬性：
+
+| 屬性 | 說明 | 允許的值 | 必要 |
+| --- | --- | --- | --- |
+| copyBehavior |Hello 來源 BlobSource 或檔案系統時，請定義 hello 複製行為。 |**PreserveHierarchy:**保留 hello hello 目標資料夾中的檔案階層。 也就是說，hello hello 來源檔案 toohello 來源資料夾的相對路徑是 hello 與 hello 相對路徑的 hello 目標檔案 toohello 目標資料夾相同。<br/><br/>**FlattenHierarchy:** hello 第一個層級的目標資料夾中建立 hello 來源資料夾中的所有檔案。 會使用自動產生名稱建立 hello 目標檔案。<br/><br/>**MergeFiles:**合併 hello 來源資料夾 tooone 檔案中的所有檔案。 如果指定 hello 檔案名稱/blob 名稱，則 hello 合併的檔案名稱是 hello 指定的名稱。 否則，就會是自動產生的檔案名稱。 |否 |
 
 ### <a name="recursive-and-copybehavior-examples"></a>遞迴和 copyBehavior 範例
-本節說明 recursive 和 copyBehavior 屬性在不同組合的情況下，複製作業所產生的行為。
+本章節描述 hello 產生不同的值為 hello 遞迴和 copyBehavior 屬性組合的 hello 複製作業的行為。
 
 | recursive 值 | copyBehavior 值 | 產生的行為 |
 | --- | --- | --- |
-| true |preserveHierarchy |具有下列結構的來源資料夾 Folder1：<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>會以與來源相同的結構，建立目標資料夾 Folder1：<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5 |
-| true |flattenHierarchy |具有下列結構的來源資料夾 Folder1：<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>會以下列結構建立目標資料夾 1： <br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 有自動產生的名稱<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2 有自動產生的名稱<br/>&nbsp;&nbsp;&nbsp;&nbsp;File3 有自動產生的名稱<br/>&nbsp;&nbsp;&nbsp;&nbsp;File4 有自動產生的名稱<br/>&nbsp;&nbsp;&nbsp;&nbsp;File5 有自動產生的名稱 |
-| true |mergeFiles |具有下列結構的來源資料夾 Folder1：<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>會以下列結構建立目標資料夾 1： <br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 + File2 + File3 + File4 + File 5 的內容會合併成一個檔案，並有自動產生的檔案名稱。 |
-| false |preserveHierarchy |具有下列結構的來源資料夾 Folder1：<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>會以下列結構建立目標資料夾 1：<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/><br/>系統不會挑選含有 File3、File4、File5 的 Subfolder1。 |
-| false |flattenHierarchy |具有下列結構的來源資料夾 Folder1：<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>會以下列結構建立目標資料夾 1：<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 有自動產生的名稱<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2 有自動產生的名稱<br/><br/>系統不會挑選含有 File3、File4、File5 的 Subfolder1。 |
-| false |mergeFiles |具有下列結構的來源資料夾 Folder1：<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>會以下列結構建立目標資料夾 1：<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 + File2 的內容會合併成一個檔案，並有自動產生的檔案名稱。<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 有自動產生的名稱<br/><br/>系統不會挑選含有 File3、File4、File5 的 Subfolder1。 |
+| true |preserveHierarchy |來源資料夾 Folder1 以 hello 下列結構，<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>建立 hello 目標資料夾 Folder1 hello 相同結構為 hello 來源：<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5 |
+| true |flattenHierarchy |來源資料夾 Folder1 以 hello 下列結構，<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>使用下列結構的 hello 建立 hello 目標 Folder1: <br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 有自動產生的名稱<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2 有自動產生的名稱<br/>&nbsp;&nbsp;&nbsp;&nbsp;File3 有自動產生的名稱<br/>&nbsp;&nbsp;&nbsp;&nbsp;File4 有自動產生的名稱<br/>&nbsp;&nbsp;&nbsp;&nbsp;File5 有自動產生的名稱 |
+| true |mergeFiles |來源資料夾 Folder1 以 hello 下列結構，<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>使用下列結構的 hello 建立 hello 目標 Folder1: <br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 + File2 + File3 + File4 + File 5 的內容會合併成一個檔案，並有自動產生的檔案名稱。 |
+| false |preserveHierarchy |來源資料夾 Folder1 以 hello 下列結構，<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>使用下列結構的 hello 建立 hello 目標資料夾 Folder1:<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/><br/>系統不會挑選含有 File3、File4、File5 的 Subfolder1。 |
+| false |flattenHierarchy |來源資料夾 Folder1 以 hello 下列結構，<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>使用下列結構的 hello 建立 hello 目標資料夾 Folder1:<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 有自動產生的名稱<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2 有自動產生的名稱<br/><br/>系統不會挑選含有 File3、File4、File5 的 Subfolder1。 |
+| false |mergeFiles |來源資料夾 Folder1 以 hello 下列結構，<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Subfolder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>使用下列結構的 hello 建立 hello 目標資料夾 Folder1:<br/><br/>Folder1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 + File2 的內容會合併成一個檔案，並有自動產生的檔案名稱。<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1 有自動產生的名稱<br/><br/>系統不會挑選含有 File3、File4、File5 的 Subfolder1。 |
 
 ## <a name="supported-file-and-compression-formats"></a>支援的檔案和壓縮格式
 請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md)文章以了解詳細資訊。
 
-## <a name="json-examples-for-copying-data-to-and-from-file-system"></a>從檔案系統來回複製資料的 JSON 範例
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到內部部署檔案系統和 Azure Blob 儲存體，以及複製其中的資料。 您可以使用 Azure Data Factory 中的複製活動，把資料「直接」複製到[支援的來源和接收器](data-factory-data-movement-activities.md#supported-data-stores-and-formats)一文中所述的任何接收器。
+## <a name="json-examples-for-copying-data-tooand-from-file-system"></a>從檔案系統複製資料 tooand JSON 範例
+hello 下列範例會提供範例 JSON 定義，您可以使用 toocreate 管線使用 hello [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)， [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)，或[Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)。 它們會顯示如何從內部部署檔案系統和 Azure Blob 儲存體 toocopy 資料 tooand。 不過，您可以將資料複製*直接*從 hello 來源 tooany hello 接收中列出的任一[支援來源與接收](data-factory-data-movement-activities.md#supported-data-stores-and-formats)Azure Data Factory 中使用複製活動。
 
-### <a name="example-copy-data-from-an-on-premises-file-system-to-azure-blob-storage"></a>範例：將資料從內部部署檔案系統複製到 Azure Blob 儲存體
-此範例示範如何將資料從內部部署檔案系統複製到 Azure Blob 儲存體。 範例有下列 Data Factory 實體：
+### <a name="example-copy-data-from-an-on-premises-file-system-tooazure-blob-storage"></a>範例： 將資料從內部部署檔案系統 tooAzure Blob 儲存體複製
+這個範例示範如何從內部部署檔案系統 tooAzure Blob 儲存體 toocopy 資料。 hello 範例有下列 Data Factory 實體的 hello:
 
 * [OnPremisesFileServer](#linked-service-properties)類型的連結服務。
 * [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)類型的連結服務。
@@ -205,9 +205,9 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 * [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 * 具有使用 [FileSystemSource](#copy-activity-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-下列範例每小時都會將時間序列資料從內部部署檔案系統複製到 Azure Blob 儲存體。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
+下列範例中的 hello 複製時間序列資料從內部部署檔案系統 tooAzure Blob 儲存體每小時。 這些範例中所使用的 hello JSON 屬性 hello 各節所述之後 hello 範例。
 
-首先，依照[利用資料管理閘道在內部部署來源和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)的指示設定資料管理閘道。
+第一個步驟中，設定資料管理閘道器中的 hello 指示根據[在內部部署來源和資料管理閘道與 hello 雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
 
 **內部部署檔案伺服器連結服務：**
 
@@ -226,7 +226,7 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 }
 ```
 
-我們建議使用 **encryptedCredential** 屬性，而不要使用 **userid** 和 **password** 屬性。 如需此連結服務的詳細資訊，請參閱[檔案系統連結服務](#linked-service-properties)。
+我們建議您使用 hello **encryptedCredential**屬性改為 hello **userid**和**密碼**屬性。 如需此連結服務的詳細資訊，請參閱[檔案系統連結服務](#linked-service-properties)。
 
 **Azure 儲存體連結服務：**
 
@@ -244,9 +244,9 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 
 **內部部署檔案系統輸入資料集：**
 
-每小時從新的檔案挑選資料。 會根據配量的開始時間來決定 folderPath 和 fileName 屬性。  
+每小時從新的檔案挑選資料。 hello folderPath 和 fileName 屬性由決定依據 hello hello 配量的開始時間。  
 
-`"external": "true"` 設定會通知 Data Factory：這是 Data Factory 外部的資料集而且不是由 Data Factory 中的活動所產生。
+設定`"external": "true"`該 hello 集外部 toohello 資料處理站，且不產生 hello data factory 中的活動時，會通知 Data Factory。
 
 ```JSON
 {
@@ -310,7 +310,7 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 
 **Azure Blob 儲存體資料集：**
 
-資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑。 資料夾路徑會使用開始時間的年、月、日和小時部分。
+資料會寫入 tooa 新 blob 的每個小時 (頻率： 小時、 interval: 1)。 hello blob 的 hello 資料夾路徑會動態評估 hello 正在處理的 hello 配量的開始時間為基礎。 hello 資料夾路徑會使用 hello 的 hello 開始時間的年、 月、 日和小時部分。
 
 ```JSON
 {
@@ -370,7 +370,7 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 
 **具有檔案系統來源和 Blob 接收器的管線中複製活動：**
 
-此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **FileSystemSource**，而 **sink** 類型設為 **BlobSink**。
+hello 管線包含設定的 toouse 複製活動 hello 輸入和輸出資料集，並為排程的 toorun 每個小時。 在 hello 管線 JSON 定義中，hello**來源**類型設定得**FileSystemSource**，和**接收**類型設定得**BlobSink**。
 
 ```JSON
 {  
@@ -418,8 +418,8 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 }
 ```
 
-### <a name="example-copy-data-from-azure-sql-database-to-an-on-premises-file-system"></a>範例：將資料從 Azure SQL Database 複製到內部部署檔案系統
-下列範例顯示︰
+### <a name="example-copy-data-from-azure-sql-database-tooan-on-premises-file-system"></a>範例： 將資料從 Azure SQL Database tooan 在內部部署檔案系統複製
+下列範例會示範 hello:
 
 * [AzureSqlDatabase](data-factory-azure-sql-connector.md#linked-service-properties) 類型的已連結服務。
 * [OnPremisesFileServer](#linked-service-properties)類型的連結服務。
@@ -427,7 +427,7 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 * [FileShare](#dataset-properties) 類型的輸出資料集。
 * 具有使用 [SqlSource](data-factory-azure-sql-connector.md##copy-activity-properties) 和 [FileSystemSink](#copy-activity-properties) 之複製活動的管線。
 
-此範例會每小時將時間序列資料從 Azure SQL 資料表複製到內部部署檔案系統。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
+hello 範例將時間序列資料從 Azure SQL 資料表 tooan 在內部部署檔案系統每小時。 這些範例中所使用的 hello JSON 屬性各節所述之後 hello 範例。
 
 **Azure SQL Database 已連結的服務：**
 
@@ -460,13 +460,13 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 }
 ```
 
-我們建議使用 **encryptedCredential** 屬性，而不要使用 **userid** 和 **password** 屬性。 如需此連結服務的詳細資訊，請參閱[檔案系統連結服務](#linked-service-properties)。
+我們建議您使用 hello **encryptedCredential**屬性，而不要使用 hello **userid**和**密碼**屬性。 如需此連結服務的詳細資訊，請參閱[檔案系統連結服務](#linked-service-properties)。
 
 **Azure SQL 輸入資料集：**
 
-此範例假設您已在 SQL Azure 中建立 "MyTable" 資料表，其中包含時間序列資料的資料行 (名稱為 "timestampcolumn")。
+hello 範例假設您已建立資料表"MyTable"Azure SQL 中和它包含稱為"timestampcolumn 「 時間序列資料的資料行。
 
-``“external”: ”true”`` 設定會通知 Data Factory：這是 Data Factory 外部的資料集而且不是由 Data Factory 中的活動所產生。
+設定``“external”: ”true”``該 hello 集外部 toohello 資料處理站，且不產生 hello data factory 中的活動時，會通知 Data Factory。
 
 ```JSON
 {
@@ -495,7 +495,7 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 
 **內部部署檔案系統輸出資料集：**
 
-資料會每小時複製到新的檔案。 會根據配量的開始時間來決定 Blob 的 folderPath 和 fileName。
+資料是每小時的複製的 tooa 新檔案。 hello folderPath 和 fileName hello blob 決定依據 hello hello 配量的開始時間。
 
 ```JSON
 {
@@ -559,7 +559,7 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 
 **具有 SQL 來源和檔案系統接收器的管線中複製活動：**
 
-此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **SqlSource**，而 **sink** 類型設為 **FileSystemSink**。 針對 **SqlReaderQuery** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
+hello 管線包含設定的 toouse 複製活動 hello 輸入和輸出資料集，並為排程的 toorun 每個小時。 在 hello 管線 JSON 定義中，hello**來源**類型設定得**SqlSource**，和 hello**接收**類型設定得**使用 FileSystemSink**。 hello SQL 查詢，以指定的 hello **SqlReaderQuery**屬性選取 hello 資料在過去小時 toocopy hello。
 
 ```JSON
 {  
@@ -609,7 +609,7 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 ```
 
 
-您也可以在複製活動定義中，將來自來源資料集的資料行與來自接收資料集的資料行對應。 如需詳細資料，請參閱[在 Azure Data Factory 中對應資料集資料行](data-factory-map-columns.md)。
+您也可以將對應從來源資料集 toocolumns 接收 hello 複製活動定義中的資料集的資料行。 如需詳細資料，請參閱[在 Azure Data Factory 中對應資料集資料行](data-factory-map-columns.md)。
 
 ## <a name="performance-and-tuning"></a>效能和微調
- 若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
+ 關於金鑰 toolearn 因素影響 hello 效能的 Azure Data Factory 和各種方式 toooptimize 中的資料移動 （複製活動），請參閱 hello[複製活動效能及微調指南](data-factory-copy-activity-performance.md)。

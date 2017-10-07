@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 2.0 開始使用 Azure Data Lake Analytics | Microsoft Docs"
-description: "了解如何透過 Azure 命令列介面 2.0 建立 Data Lake Analytics 帳戶、使用 U-SQL 建立 Data Lake Analytics 作業，以及提交作業。 "
+title: "開始使用 Azure CLI 2.0 的 Azure Data Lake Analytics aaaGet |Microsoft 文件"
+description: "了解如何 toouse hello Azure 命令列介面 2.0 toocreate Data Lake Analytics 帳戶中建立使用 U SQL Data Lake Analytics 工作並送出 hello 作業。 "
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -13,108 +13,108 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: jgao
-ms.openlocfilehash: fe2b84aac718ff5eddd4d73b5dc2120362952c1e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c4e91c0d3526e4932c2948c0a326d4cedc985791
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-analytics-using-azure-cli-20"></a>使用 Azure CLI 2.0 開始使用 Azure Data Lake Analytics
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-在本教學課程中，您會開發一個作業可讀取定位字元分隔值 (TSV) 檔案，並將該檔案轉換為逗點分隔值 (CSV) 檔案。 若要使用其他支援的工具進行同一個教學課程，請使用此區段最上方的下拉式清單。
+在本教學課程中，您會開發一個作業可讀取定位字元分隔值 (TSV) 檔案，並將該檔案轉換為逗點分隔值 (CSV) 檔案。 透過相同的教學課程使用其他支援的 hello toogo 工具，在這一節的 hello 最上層使用 hello 下拉式清單。
 
 ## <a name="prerequisites"></a>必要條件
-開始進行本教學課程之前，您必須具備下列項目：
+開始本教學課程之前，您必須具備下列項目 hello:
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * **Azure CLI 2.0**. 請參閱 [安裝和設定 Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)。
 
-## <a name="log-in-to-azure"></a>登入 Azure
+## <a name="log-in-tooazure"></a>登入 tooAzure
 
-若要登入您的 Azure 訂用帳戶：
+toolog tooyour Azure 訂用帳戶中：
 
 ```
 azurecli
 az login
 ```
 
-系統會要求您瀏覽至 URL，然後輸入驗證碼。  然後遵循指示輸入您的認證。
+您要求的 toobrowse tooa URL，而且輸入驗證碼。  然後依照 hello 指示 tooenter 您的認證。
 
-一旦您已登入後，登入命令會列出您的訂用帳戶。
+一旦您登入，hello 登入的命令會列出訂用帳戶。
 
-若要使用特定的訂用帳戶︰
+toouse 特定訂用帳戶：
 
 ```
 az account set --subscription <subscription id>
 ```
 
 ## <a name="create-data-lake-analytics-account"></a>建立 Data Lake Analytics 帳戶
-您需要 Data Lake Analytics 帳戶，才能執行作業。 若要建立 Data Lake Analytics 帳戶，您必須指定下列項目：
+您需要 Data Lake Analytics 帳戶，才能執行作業。 toocreate Data Lake Analytics 帳戶，您必須指定下列項目 hello:
 
-* **Azure 資源群組**。 Data Lake Analytics 帳戶必須建立在 Azure 資源群組內。 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 可讓您將應用程式中的資源做為群組使用。 您可以透過單一、協調的作業，將應用程式的所有資源進行部署、更新或刪除。  
+* **Azure 資源群組**。 Data Lake Analytics 帳戶必須建立在 Azure 資源群組內。 [Azure 資源管理員](../azure-resource-manager/resource-group-overview.md)可讓您與您的應用程式，為群組中的 hello 資源 toowork。 您可以部署、 更新或刪除 hello 資源的所有應用程式在單一、 協調作業。  
 
-若要列出訂用帳戶下的現有資源群組：
+toolist hello 現有資源群組您的訂用帳戶底下：
 
 ```
 az group list
 ```
 
-若要建立新的資源群組：
+toocreate 新的資源群組：
 
 ```
 az group create --name "<Resource Group Name>" --location "<Azure Location>"
 ```
 
 * **Data Lake Analytics 帳戶名稱**。 每一個 Data Lake Analytics 帳戶都有名稱。
-* **位置**。 使用其中一個支援 Data Lake Analytics 的 Azure 資料中心。
+* **位置**。 使用其中一個支援 Data Lake Analytics 的 hello Azure 資料中心。
 * **預設 Data Lake Store 帳戶**：每個 Data Lake Analytics 帳戶都有一個預設的 Data Lake Store 帳戶。
 
-若要列出現有的 Data Lake Store 帳戶：
+toolist hello 現有 Data Lake Store 帳戶：
 
 ```
 az dls account list
 ```
 
-建立新的 Data Lake Store 帳戶：
+toocreate 新的 Data Lake Store 帳戶：
 
 ```azurecli
 az dls account create --account "<Data Lake Store Account Name>" --resource-group "<Resource Group Name>"
 ```
 
-使用下列語法建立 Data Lake Analytics 帳戶：
+使用下列語法 toocreate Data Lake Analytics 帳戶的 hello:
 
 ```
 az dla account create --account "<Data Lake Analytics Account Name>" --resource-group "<Resource Group Name>" --location "<Azure location>" --default-data-lake-store "<Default Data Lake Store Account Name>"
 ```
 
-建立帳戶後，您可以使用下列命令列出帳戶，並顯示帳戶詳細資料︰
+建立帳戶後，您可以使用下列命令 toolist hello 帳戶 hello，並顯示 帳戶詳細資料：
 
 ```
 az dla account list
 az dla account show --account "<Data Lake Analytics Account Name>"            
 ```
 
-## <a name="upload-data-to-data-lake-store"></a>將資料上傳至 Data Lake Store
-在本教學課程中，您會處理一些搜尋記錄檔。  搜尋記錄檔可以儲存在 Data Lake Store 或 Azure Blob 儲存體中。
+## <a name="upload-data-toodata-lake-store"></a>上傳資料 tooData 湖存放區
+在本教學課程中，您會處理一些搜尋記錄檔。  hello 搜尋記錄檔可以儲存在資料湖存放區或 Azure Blob 儲存體中。
 
-Azure 入口網站會提供使用者介面，可將範例資料檔案複製到預設的 Data Lake Store 存放區帳戶，其中包括搜尋記錄檔案。 若要將資料上傳至預設 Data Lake Store 帳戶，請參閱 [準備來源資料](data-lake-analytics-get-started-portal.md) 。
+hello Azure 入口網站提供使用者介面複製某些範例資料檔案 toohello 預設 Data Lake Store 帳戶，包括搜尋記錄檔。 請參閱[準備來源資料](data-lake-analytics-get-started-portal.md)tooupload hello 資料 toohello 預設 Data Lake Store 帳戶。
 
-若要使用 CLI 2.0 上傳檔案，請使用下列命令：
+使用 CLI 2.0 tooupload 檔案中使用下列命令的 hello:
 
 ```
 az dls fs upload --account "<Data Lake Store Account Name>" --source-path "<Source File Path>" --destination-path "<Destination File Path>"
 az dls fs list --account "<Data Lake Store Account Name>" --path "<Path>"
 ```
 
-Data Lake Analytics 也可存取 Azure Blob 儲存體。  若要將資料上傳至 Azure Blob 儲存體，請參閱 [使用 Azure CLI 搭配 Azure 儲存體](../storage/common/storage-azure-cli.md)。
+Data Lake Analytics 也可存取 Azure Blob 儲存體。  上傳資料 tooAzure Blob 儲存體，請參閱[使用 hello 與 Azure 儲存體的 Azure CLI](../storage/common/storage-azure-cli.md)。
 
 ## <a name="submit-data-lake-analytics-jobs"></a>提交 Data Lake Analytics 工作
-Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL，請參閱[開始使用 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
+hello Data Lake Analytics 工作是以 hello U-SQL 語言撰寫。 toolearn 進一步了解 U-SQL，請參閱[開始使用 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和[U-SQL 語言 eence](http://go.microsoft.com/fwlink/?LinkId=691348)。
 
-**建立 Data Lake Analytics 工作指令碼**
+**toocreate Data Lake Analytics 作業指令碼**
 
-使用下列 U-SQL 指令碼建立文字檔，並將該檔案儲存到您的工作站：
+使用下列的 U-SQL 指令碼，建立文字檔案，並將儲存 hello 文字檔案 tooyour 工作站：
 
 ```
 @a  = 
@@ -125,21 +125,21 @@ Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL�
         ) AS 
               D( customer, amount );
 OUTPUT @a
-    TO "/data.csv"
+    too"/data.csv"
     USING Outputters.Csv();
 ```
 
-此 U-SQL 指令碼會使用 **Extractors.Tsv()** 讀取來源資料檔案，然後使用 **Outputters.Csv()** 建立 csv 檔案。
+此 U-SQL 指令碼會讀取 hello 來源資料檔案使用**Extractors.Tsv()**，然後建立使用 csv 檔案**Outputters.Csv()**。
 
-除非您將來源檔案複製到其他位置，否則請勿修改這兩個路徑。  Data Lake Analytics 會建立輸出資料夾 (若尚未建立)。
+請勿修改 hello 兩個路徑，除非您將 hello 原始程式檔複製到不同的位置。  Data Lake Analytics 建立 hello 輸出資料夾，如果不存在。
 
-使用儲存在預設 Data Lake Store 帳戶中檔案的相對路徑，是比較容易的方法。 您也可以使用絕對路徑。  例如：
+它是簡單 toouse 預設 Data Lake Store 帳戶中儲存的檔案相對路徑。 您也可以使用絕對路徑。  例如：
 
 ```
 adl://<Data LakeStorageAccountName>.azuredatalakestore.net:443/Samples/Data/SearchLog.tsv
 ```
 
-您必須使用絕對路徑存取連結儲存體帳戶中的檔案。  儲存在連結 Azure 儲存體帳戶中之檔案的語法是：
+您必須使用連結的儲存體帳戶中的絕對路徑 tooaccess 檔案。  檔案儲存在連結的 Azure 儲存體帳戶中的 hello 語法為：
 
 ```
 wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Data/SearchLog.tsv
@@ -150,9 +150,9 @@ wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Da
 > 不支援使用公用容器的 Azure Blob 容器。      
 >
 
-**提交作業**
+**toosubmit 工作**
 
-使用以下語法提交作業。
+使用下列語法 toosubmit 作業 hello。
 
 ```
 az dla job submit --account "<Data Lake Analytics Account Name>" --job-name "<Job Name>" --script "<Script Path and Name>"
@@ -164,7 +164,7 @@ az dla job submit --account "<Data Lake Analytics Account Name>" --job-name "<Jo
 az dla job submit --account "myadlaaccount" --job-name "myadlajob" --script @"C:\DLA\myscript.txt"
 ```
 
-**若要列出作業並顯示作業詳細資料**
+**toolist 作業與顯示工作詳細資料**
 
 ```
 azurecli
@@ -172,7 +172,7 @@ az dla job list --account "<Data Lake Analytics Account Name>"
 az dla job show --account "<Data Lake Analytics Account Name>" --job-identity "<Job Id>"
 ```
 
-**取消作業**
+**toocancel 工作**
 
 ```
 az dla job cancel --account "<Data Lake Analytics Account Name>" --job-identity "<Job Id>"
@@ -180,7 +180,7 @@ az dla job cancel --account "<Data Lake Analytics Account Name>" --job-identity 
 
 ## <a name="retrieve-job-results"></a>擷取作業結果
 
-作業完成之後，您可以使用下列命令列出該輸出檔案，並下載檔案：
+作業完成之後，您可以使用下列命令 toolist hello 輸出檔案的 hello 和下載 hello 檔案：
 
 ```
 az dls fs list --account "<Data Lake Store Account Name>" --source-path "/Output" --destination-path "<Destintion>"
@@ -199,7 +199,7 @@ az dls fs downlod --account "myadlsaccount" --source-path "/Output/SearchLog-fro
 
 **取得管線和週期的相關資訊**
 
-使用 `az dla job pipeline` 命令來查看先前提交作業的管線資訊。
+使用 hello `az dla job pipeline` toosee hello 管線資訊先前已送出工作的命令。
 
 ```
 az dla job pipeline list --account "<Data Lake Analytics Account Name>"
@@ -207,7 +207,7 @@ az dla job pipeline list --account "<Data Lake Analytics Account Name>"
 az dla job pipeline show --account "<Data Lake Analytics Account Name>" --pipeline-identity "<Pipeline ID>"
 ```
 
-使用 `az dla job recurrence` 命令來查看先前提交作業的週期資訊。
+使用 hello`az dla job recurrence`命令 toosee hello 循環資訊，如先前已提交的工作。
 
 ```
 az dla job recurrence list --account "<Data Lake Analytics Account Name>"
@@ -217,6 +217,6 @@ az dla job recurrence show --account "<Data Lake Analytics Account Name>" --recu
 
 ## <a name="next-steps"></a>後續步驟
 
-* 若要查看 Data Lake Analytics CLI 2.0 參考文件，請參閱 [Data Lake Analytics](https://docs.microsoft.com/cli/azure/dla)。
-* 若要查看 Data Lake Store CLI 2.0 參考文件，請參閱 [Data Lake Store](https://docs.microsoft.com/cli/azure/dls)。
-* 若要了解更複雜的查詢，請參閱 [使用 Azure Data Lake Analytics 來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
+* toosee hello 資料湖分析 CLI 2.0 參考文件，請參閱[Data Lake Analytics](https://docs.microsoft.com/cli/azure/dla)。
+* toosee hello 資料湖存放區 CLI 2.0 參考文件，請參閱[Data Lake Store](https://docs.microsoft.com/cli/azure/dls)。
+* toosee 更複雜的查詢，請參閱[使用 Azure Data Lake Analytics 分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。

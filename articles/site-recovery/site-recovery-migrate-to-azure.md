@@ -1,6 +1,6 @@
 ---
-title: "使用 Site Recovery 移轉至 Azure | Microsoft Docs"
-description: "本文概述如何使用 Azure Site Recovery 將 VM 與實體伺服器移轉至 Azure"
+title: "使用站台復原 aaaMigrate tooAzure |Microsoft 文件"
+description: "本文提供移轉的 Vm 和 Azure Site recovery 的實體伺服器 tooAzure 的概觀"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,70 +14,70 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 04/05/2017
 ms.author: raynew
-ms.openlocfilehash: f4dfe430fba51bd009431ca72279a21be55e3a40
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6e65deee337c5371d441812ddb820dc8bc233684
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-to-azure-with-site-recovery"></a>使用 Site Recovery 移轉至 Azure
+# <a name="migrate-tooazure-with-site-recovery"></a>移轉與 Site Recovery tooAzure
 
-請閱讀本文，以概略了解如何使用 Azure Site Recovery 服務來移轉虛擬機器和實體伺服器。
+閱讀本文如需使用 移轉虛擬機器和實體伺服器 hello Azure Site Recovery 服務。
 
-Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器和虛擬機器的複寫協調至雲端 (Azure) 或次要資料中心，協助您的 BCDR 策略。 當您的主要位置發生故障時，您容錯移轉至次要位置，讓應用程式和工作負載保持可用。 當它恢復正常作業時，容錯回復至您的主要位置。 深入了解 [什麼是 Site Recovery？](site-recovery-overview.md) 您也可以使用 Site Recovery，將現有的內部部署工作負載移轉至 Azure，以加速您的雲端旅程，並使用 Azure 提供的功能陣列。
+站台復原是達成 tooyour BCDR 策略，來協調複寫在內部部署實體伺服器和虛擬機器 toohello 雲端 (Azure)，或 tooa 次要資料中心的 Azure 服務。 當您的主要位置發生中斷時，您容錯移轉 toohello 次要位置 tookeep 應用程式和可用的工作負載。 當它傳回 toonormal 作業，您就會容錯回復 tooyour 主要位置。 深入了解 [什麼是 Site Recovery？](site-recovery-overview.md) 您也可以使用站台復原 toomigrate 您現有的內部工作負載 tooAzure tooexpedite 您的雲端之旅和可用性 hello Azure 提供的功能的陣列。
 
-如需如何執行移轉的快速概觀，請觀看這段影片。
+如需快速概觀 tooperform 移轉 toothis 視訊，請參閱。
 >[!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/ASRHowTo-Video2-Migrate-Virtual-Machines-to-Azure/player]
 
-本文說明 [Azure 入口網站](https://portal.azure.com)中的部署作業。 [Azure 傳統入口網站](https://manage.windowsazure.com/)可用來維護現有的 Site Recovery 保存庫，但無法建立新的保存庫。
+本文說明部署中 hello [Azure 入口網站](https://portal.azure.com)。 hello [Azure 傳統入口網站](https://manage.windowsazure.com/)可以使用的 toomaintain 現有站台復原保存庫，但您無法建立新的保存庫。
 
-若有任何意見，請張貼於文末。 請在 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)提出技術問題。
+張貼在 hello 這篇文章底部的任何註解。 在 hello 詢問技術問題[Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
 
 ## <a name="what-do-we-mean-by-migration"></a>移轉的意思為何？
 
-您可以將用來複寫內部部署 VM 和實體伺服器的 Site Recovery 部署至 Azure 或次要站台。 您會複寫機器、發生中斷時從主要站台容錯移轉它們，然後在主要站台復原時將它們容錯移轉回到該站台。 除此之外，您還可以使用 Site Recovery 將 VM 和實體伺服器移轉到 Azure，讓使用者可以存取它們做為 Azure VM。 移轉作業需要進行複寫、從主要站台容錯移轉至 Azure，以及完整的移轉軌跡。
+您可以部署站台復原的複寫在內部部署 Vm 和實體伺服器、 tooAzure 或 tooa 次要站台。 複寫機器，它們從容錯移轉 hello 主要站台的中斷發生的而且它會復原完成時將它們容錯回復 toohello 主要站台。 在加法 toothis，您可以使用站台復原 toomigrate Vm 和實體伺服器 tooAzure，讓使用者可以存取它們做為 Azure Vm。 移轉需要複寫和容錯移轉從 hello 主要站台 tooAzure 和完成移轉筆勢。
 
 ## <a name="what-can-site-recovery-migrate"></a>Site Recovery 可以移轉什麼項目？
 
 您可以：
 
-- 將在內部部署 Hyper-V VM、VMware VM 和實體伺服器上執行的工作負載，移轉到 Azure VM 上來執行。 在此案例中，您也可以執行完整的複寫和容錯回復。
+- 將 Azure Vm 上的內部部署 HYPER-V Vm、 VMware Vm 與實體伺服器、 toorun 上執行的工作負載的移轉。 在此案例中，您也可以執行完整的複寫和容錯回復。
 - 在 Azure 區域之間移轉 [Azure IaaS VM](site-recovery-migrate-azure-to-azure.md)。 此案例目前只支援移轉，亦即不支援容錯回復。
-- 將 [AWS Windows 執行個體](site-recovery-migrate-aws-to-azure.md)移轉到 Azure IaaS VM。 此案例目前只支援移轉，亦即不支援容錯回復。
+- 移轉[AWS Windows 執行個體](site-recovery-migrate-aws-to-azure.md)tooAzure IaaS Vm。 此案例目前只支援移轉，亦即不支援容錯回復。
 
 ## <a name="migrate-on-premises-vms-and-physical-servers"></a>移轉內部部署 VM 和實體伺服器
 
-若要移轉內部部署 Hyper-V VM、VMware VM 和實體伺服器，您所需遵循的步驟幾乎和一般複寫時所使用的步驟相同。
+toomigrate 內部部署 HYPER-V Vm、 VMware Vm 和實體伺服器，您可以遵循幾乎相同步驟所使用的一般複寫的 hello。
 
 1. 設定復原服務保存庫
-2. 設定所需的管理伺服器 (VMware、VMM、Hyper-V - 視您要移轉的項目而定)、將它們新增至保存庫，並指定複寫設定。
-3. 針對您想要移轉的電腦啟用複寫
-4. 在初始移轉之後，執行快速的測試容錯移轉，以確保一切運作正常。
+2. 設定所需的 hello 管理伺服器 (VMware，VMM 中，HYPER-V-取決於您想要 toomigrate)、 將它們加入 toohello 保存庫，並指定複寫設定。
+3. 啟用複寫，對 hello 機器想 toomigrate
+4. Hello 初始移轉之後，執行一切正常地快速測試容錯移轉 tooensure。
 5. 確認複寫環境有用之後，您需要根據您的案例[所支援的項目](site-recovery-failover.md)使用計劃性或非計劃性容錯移轉。 我們建議您儘可能使用規劃的容錯移轉。
-6. 若要進行移轉，您不需要認可容錯移轉或刪除它。 相反地，您要為所要移轉的每一部機器選取**完成移轉**選項。
-     - 在 [複寫的項目] 中，以滑鼠右鍵按一下 VM，然後按一下 [完成移轉]。 按一下 [確定] 以完成。 您可以在 [Site Recovery 作業] 中監視 [完成移轉] 作業，以在 VM 屬性中追蹤進度。
-     - **完成移轉**動作會完成移轉程序、移除機器的複寫，並停止該機器的 Site Recovery 計費。
+6. 如需移轉，您不需要 toocommit 容錯移轉時，或刪除它。 相反地，您可以選取 hello**完成移轉**選項要為每一部機器 toomigrate。
+     - 在**複寫的項目**，以滑鼠右鍵按一下 hello VM，然後按一下**完成移轉**。 按一下**確定**toocomplete。 您也可以監視中的 hello 完成移轉作業中追蹤在 hello VM 屬性中，進度**站台復原工作**。
+     - hello**完成移轉**動作完成 hello 移轉程序、 移除 hello 機器的複寫和停止 hello 機器的 Site Recovery 計費。
 
 ![完成移轉](./media/site-recovery-hyper-v-site-to-azure/migrate.png)
 
 ## <a name="migrate-between-azure-regions"></a>在不同的 Azure 地區之間移轉
 
-您可以使用 Site Recovery 在區域之間移轉 Azure VM。 此案例只支援移轉。 換句話說，您可以複寫 Azure VM，並將它們容錯移轉至另一個區域，但您無法容錯回復。 在此案例中，您要設定復原服務保存庫、部署用來管理複寫的內部部署組態伺服器、將它新增至保存庫，以及指定複寫設定。 為您想要移轉的機器啟用複寫，並執行快速的測試容錯移轉。 然後使用**完成移轉**選項執行非計劃性容錯移轉。
+您可以使用 Site Recovery 在區域之間移轉 Azure VM。 此案例只支援移轉。 換句話說，您可以複寫 hello Azure Vm，並容錯 tooanother 區域，但您無法進行容錯回復。 在此案例中，您將設定復原服務保存庫，部署在內部部署組態伺服器 toomanage 複寫，將它加入 toohello 保存庫，並指定複寫設定。 針對您想 toomigrate，而且執行快速的 hello 機器測試容錯移轉，您可以啟用複寫。 然後您可以執行規劃的容錯移轉以 hello**完成移轉**選項。
 
-## <a name="migrate-aws-to-azure"></a>將 AWS 移轉至 Azure
+## <a name="migrate-aws-tooazure"></a>移轉 AWS tooAzure
 
-您可以將 AWS 執行個體移轉至 Azure VM。 此案例只支援移轉。 換句話說，您可以複寫 AWS 執行個體，並將它們容錯移轉至 Azure，但您無法容錯回復。 在進行移轉時，AWS 執行個體的處理方式和實體伺服器相同。 您要設定復原服務保存庫、部署用來管理複寫的內部部署組態伺服器、將它新增至保存庫，以及指定複寫設定。 為您想要移轉的機器啟用複寫，並執行快速的測試容錯移轉。 然後使用**完成移轉**選項執行非計劃性容錯移轉。
+您可以移轉 AWS 執行個體 tooAzure Vm。 此案例只支援移轉。 換句話說，您可以將複寫 hello AWS 執行個體，並容錯 tooAzure，但您無法進行容錯回復。 AWS 執行個體以處理 hello 相同實體伺服器進行移轉的方式。 您設定 復原服務保存庫、 部署在內部部署組態伺服器 toomanage 複寫、 將它加入 toohello 保存庫，和指定的複寫設定。 針對您想 toomigrate，而且執行快速的 hello 機器測試容錯移轉，您可以啟用複寫。 然後您可以執行規劃的容錯移轉以 hello**完成移轉**選項。
 
 
 
 
 ## <a name="next-steps"></a>後續步驟
 
-- [將 VMware VM 移轉至 Azure](site-recovery-vmware-to-azure.md)
-- [將 VMM 雲端中的 Hyper-V VM 移轉至 Azure](site-recovery-vmm-to-azure.md)
-- [將沒有 VMM 的 Hyper-V VM 移轉至 Azure](site-recovery-hyper-v-site-to-azure.md)
+- [移轉 VMware Vm tooAzure](site-recovery-vmware-to-azure.md)
+- [在 VMM 雲端 tooAzure 移轉 HYPER-V Vm](site-recovery-vmm-to-azure.md)
+- [移轉 HYPER-V Vm 沒有 VMM tooAzure](site-recovery-hyper-v-site-to-azure.md)
 - [在 Azure 區域之間移轉 Azure VM](site-recovery-migrate-azure-to-azure.md)
-- [將 AWS 執行個體移轉至 Azure](site-recovery-migrate-aws-to-azure.md)
-- [準備已移轉的機器，以便複寫](site-recovery-azure-to-azure-after-migration.md)至其他區域以因應災害復原的需要。
+- [移轉 AWS 執行個體 tooAzure](site-recovery-migrate-aws-to-azure.md)
+- [準備移轉的機器 tooenable 複寫](site-recovery-azure-to-azure-after-migration.md)tooanother 嚴重損壞修復所需的區域。
 - [複寫 Azure 虛擬機器](site-recovery-azure-to-azure.md)來開始保護您的工作負載。

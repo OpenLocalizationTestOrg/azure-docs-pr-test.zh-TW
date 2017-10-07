@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 資訊安全中心管理安全性警示 | Microsoft Docs"
-description: "本文件可協助您使用「Azure 資訊安全中心」功能來管理及回應安全性警示。"
+title: "在 Azure 資訊安全中心 aaaManage 安全性警示 |Microsoft 文件"
+description: "這份文件可協助您 toouse Azure 資訊安全中心功能 toomanage，以及回應 toosecurity 警示。"
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/19/2017
 ms.author: yurid
-ms.openlocfilehash: 56fcfbfdbe15749132ba6a27861142fd564063c3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f1cb7e4770776827b75ed15893914678c1f44216
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="managing-and-responding-to-security-alerts-in-azure-security-center"></a>管理及回應 Azure 資訊安全中心的安全性警示
-本文件可協助您使用 Azure 資訊安全中心來管理及回應安全性警示。
+# <a name="managing-and-responding-toosecurity-alerts-in-azure-security-center"></a>管理及回應 toosecurity Azure 資訊安全中心警示
+這份文件可協助您使用 Azure 資訊安全中心 toomanage 和回應 toosecurity 警示。
 
 > [!NOTE]
-> 若要啟用進階偵測，請升級至 Azure 資訊安全中心標準。 提供 60 天的免費試用。 若要升級，請選取[安全性原則](security-center-policies.md)中的 [定價層]。 若要深入了解，請參閱 [Azure 資訊安全中心價格](security-center-pricing.md)。
+> 升級 tooAzure 安全性 Center 標準 tooenable 進階偵測。 提供 60 天的免費試用。 tooupgrade，選取定價層 hello[安全性原則](security-center-policies.md)。 請參閱[Azure 資訊安全中心定價](security-center-pricing.md)toolearn 更多。
 >
 >
 
 ## <a name="what-are-security-alerts"></a>什麼是安全性警示：
-資訊安全中心會自動收集、分析及整合您 Azure 資源、網路和已連線的合作夥伴解決方案 (例如防火牆和端點保護解決方案) 的記錄檔資料，來偵測真正的威脅並減少誤判情形。 「資訊安全中心」會顯示優先安全性警示清單，以及需要您快速調查問題的資訊，和如何修復攻擊行為的建議。
+資訊安全中心會自動收集、 分析時，整合記錄資料從您的 Azure 資源，hello 網路和連接協力廠商解決方案，例如防火牆和 endpoint protection 解決方案，toodetect 威脅，並且減少誤判。 優先順序的安全性警示的清單會顯示在資訊安全中心，以及 hello 資訊需要 tooquickly 調查 hello 問題，並建議如何 tooremediate 攻擊。
 
 
 > [!NOTE]
@@ -38,56 +38,56 @@ ms.lasthandoff: 08/03/2017
 >
 
 ## <a name="managing-security-alerts"></a>管理安全性警示
-您可以查看 [安全性警示]  圖格來檢視目前的警示。 開啟 Azure 入口網站並遵循下列步驟來查看有關每個警示的更多詳細資訊：
+您可以檢閱您目前的警示，藉由查看 hello**安全性警示**磚。 開啟 Azure 入口網站，並遵循下方 toosee hello 步驟有關每種警示的更多詳細資料：
 
-1. 您會在「資訊安全中心」的儀表板看到 [安全性警示]  圖格。
+1. 在 hello 資訊安全中心儀表板中，您會看到 hello**安全性警示**磚。
 
     ![資訊安全中心的 [安全性警示] 圖格](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig1-ga.png)
 
-2. 按一下圖格，開啟 [安全性警示]  刀鋒視窗，其中包括與警示相關的詳細資料，如下所示。
+2. 按一下 hello 磚 tooopen hello**安全性警示**刀鋒視窗，其中包含更多詳細 hello 警示如下所示。
 
-   ![資訊安全中心的 [安全性警示] 刀鋒視窗](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig2-ga.png)
+   ![hello 安全性警示 刀鋒視窗中的資訊安全中心](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig2-ga.png)
 
-這個刀鋒視窗的底部會顯示每個警示的詳細資料。 如要為警示排序，請按一下您要做為排序依據的的資料行。 下列為每個資料行的定義：
+在 hello 此刀鋒視窗的下半部是 hello 每個警示的詳細資料。 toosort，按一下您想要依 toosort hello 資料行。 每個資料行的 hello 定義如下所示：
 
-* **描述**：警示的簡短說明。
+* **描述**: hello 警示的簡短說明。
 * **計數**：在特定一天偵測到這個特定類型的所有警示清單。
-* **偵測者**：負責觸發警示的服務。
-* **日期**：事件發生的日期。
-* **狀態**：該警示目前的狀態。 狀態分為兩種：
-  * **使用中**：已偵測到安全性警示。
-* **嚴重性**：嚴重性層級，分為高、中或低。
+* **偵測到**: hello 負責觸發 hello 警示的服務。
+* **日期**: hello 日期 hello 事件發生。
+* **狀態**: hello 該警示的目前狀態。 狀態分為兩種：
+  * **Active**： 已偵測到 hello 安全性警示。
+* **嚴重性**: hello 嚴重性層級，它可以是高、 中或低。
 
 ### <a name="filtering-alerts"></a>篩選警示
-您可以根據日期、狀態及嚴重性來篩選警示。 如果您需要縮小顯示的安全性警示檢視範圍，篩選警示會相當有用。 例如，您可能想確認在過去 24 小時發生的安全性警示，因為您正在調查系統中可能的入侵行動。
+您可以根據日期、狀態及嚴重性來篩選警示。 篩選警示可用於案例中您需要的安全性警示顯示 toonarrow hello 範圍。 例如，可能您想 tooaddress 就會發生在 hello 過去 24 小時您正在調查可能違反 hello 系統中的安全性警示。
 
-1. 按一下 [安全性警示] 刀鋒視窗上的 [篩選]。 即會開啟 [篩選]  刀鋒視窗，您可以選取想要查看的日期、狀態和嚴重性值。
+1. 按一下**篩選**上 hello**安全性警示**刀鋒視窗。 hello**篩選**刀鋒視窗會開啟，並選取您想 toosee hello 日期、 狀態和嚴重性值。
 
     ![篩選資訊安全中心的警示](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig3-2017.png)
 
-### <a name="respond-to-security-alerts"></a>回應安全性警示
-選取一個安全性警示以深入了解觸發警示的事件；如果發現項目，您需要進行一些步驟來阻止攻擊。 安全性警示會依類型及日期區分。 按一下安全性警示會開啟刀鋒視窗，其中包括已分組的警示清單。
+### <a name="respond-toosecurity-alerts"></a>回應 toosecurity 警示
+選取 安全性警示 toolearn hello 事件觸發 hello 警示，以及項目，如果有的話會引導您有關需要 tootake tooremediate 攻擊。 安全性警示會依類型及日期區分。 按一下 安全性警示，會開啟刀鋒視窗中包含的 hello 分組警示清單。
 
-![對於 Azure 資訊安全中心的安全性警示的回應](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig5-ga.png)
+![回應 toosecurity Azure 資訊安全中心警示](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig5-ga.png)
 
-在此案例中，所觸發的警示是關於可疑的遠端桌面通訊協定 (RDP) 活動。 第一個資料行顯示哪些資源遭到攻擊；第二個資料行顯示資源遭受攻擊的次數；第三個資料行顯示攻擊的時間；第四個資料行顯示警示的狀態；而第五個資料行顯示攻擊的嚴重性。 在檢閱這項資訊後，按一下遭到攻擊的資源，隨即會開啟新的刀鋒視窗。
+在此情況下，所觸發的 hello 警示，請參閱 toosuspicious 遠端桌面通訊協定 (RDP) 活動。 hello 第一個資料行顯示的受攻擊的資源;hello 第二個顯示多少次 hello 資源遭到攻擊。hello 第三個 hello 時間顯示 hello 攻擊。hello 第四個顯示 hello 警示; 狀態並 hello 第五個顯示 hello 嚴重性 hello 攻擊。 檢閱此資訊之後，按一下 遭到攻擊的 hello 資源，並且會在開啟的新刀鋒視窗。
 
-![對於如何處理 Azure 資訊安全中心的安全性警示的建議](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig6-ga.png)
+![Azure 資訊安全中心中的哪些 toodo 安全性的相關警示的建議](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig6-ga.png)
 
-在此刀鋒視窗的 [說明]  欄位中，您會找到關於這個事件的其他詳細資料。 這些額外的詳細資料可供深入了解什麼會觸發安全性警示、目標資源、來源 IP 位址 (若適用)，以及有關如何補救的建議。  在某些情況下，來源 IP 位址會是空的 (不適用)，因為並非所有的 Windows 安全性事件記錄檔都包含 IP 位址。
+在 hello**描述**欄位的這個刀鋒視窗中您會發現此事件的詳細。 適用的 hello 來源 IP 位址，以及如何提出建議時，這些額外的詳細資料提供深入了解哪些 hello 觸發的安全性警示，hello 目標資源，tooremediate。  在某些情況下，hello 來源 IP 位址會是空的 （不適用） 因為並非所有的 Windows 安全性事件記錄檔包含 hello IP 位址。
 
-資訊安全中心會根據安全性警示，建議您不同的補救方法。 在某些情況下，您可能必須使用其他的 Azure 功能來實作建議的補救方法。 例如，這個攻擊的補救方法是使用[網路 ACL](../virtual-network/virtual-networks-acl.md) 或[網路安全性群組](../virtual-network/virtual-networks-nsg.md)規則，將產生此攻擊的 IP 位址列入封鎖清單。
+資訊安全中心所建議的 hello 補救異相應 toohello 安全性警示。 在某些情況下，您可能會有 toouse 其他的 Azure 功能 tooimplement hello 建議補救。 這種攻擊是 tooblacklist hello IP 位址，使用產生這種攻擊，例如 hello 補救[網路 ACL](../virtual-network/virtual-networks-acl.md)或[網路安全性群組](../virtual-network/virtual-networks-nsg.md)規則。
 
 > [!NOTE]
-> 如需不同警示類型的詳細資訊，請閱讀 [Azure 資訊安全中心不同類型的安全性警示](security-center-alerts-type.md)。
+> Hello 不同類型警示的詳細資訊，請參閱[Azure 資訊安全中心中的型別安全性警示](security-center-alerts-type.md)。
 >
 >
 
 ## <a name="see-also"></a>另請參閱
-在本文件中，您了解到如何在資訊安全中心設定安全性原則。 如要深入了解資訊安全中心，請參閱下列主題：
+在本文件中，您學到如何 tooconfigure 資訊安全中心的安全性原則。 toolearn 有關資訊安全中心的詳細資訊，請參閱 hello 下列資訊：
 
 * [在 Azure 資訊安全中心處理安全性事件](security-center-incident.md)
 * [Azure 資訊安全中心的偵測功能](security-center-detection-capabilities.md)
 * [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md)
-* [Azure 資訊安全中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題。
+* [Azure 資訊安全中心常見問題集](security-center-faq.md)— 尋找使用 hello 服務相關的常見問題集。
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 尋找有關 Azure 安全性與相容性的部落格文章。

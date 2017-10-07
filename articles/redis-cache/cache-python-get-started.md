@@ -1,5 +1,5 @@
 ---
-title: "如何搭配使用 Azure Redis 快取與 Python | Microsoft Docs"
+title: "aaaHow toouse Azure Redis 快取使用 Python |Microsoft 文件"
 description: "開始搭配使用 Azure Redis 快取與 Python"
 services: redis-cache
 documentationcenter: 
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
 ms.date: 02/10/2017
 ms.author: sdanie
-ms.openlocfilehash: cdbee52574d0ffbe82ef3dc98f2848f4d00ba2ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 74c03eb4ce17ff3574595fd2bb37e399d71c6eb4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-redis-cache-with-python"></a>如何搭配使用 Azure Redis 快取與 Python
+# <a name="how-toouse-azure-redis-cache-with-python"></a>如何 toouse Azure Redis 快取使用 Python
 > [!div class="op_single_selector"]
 > * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 > * [ASP.NET](cache-web-app-howto.md)
@@ -30,7 +30,7 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-本主題說明如何搭配使用 Azure Redis 快取與 Python。
+本主題說明您如何 tooget 開始使用 Azure Redis 快取使用 Python。
 
 ## <a name="prerequisites"></a>必要條件
 安裝 [redis-py](https://github.com/andymccurdy/redis-py)。
@@ -38,15 +38,15 @@ ms.lasthandoff: 07/11/2017
 ## <a name="create-a-redis-cache-on-azure"></a>在 Azure 上建立 Redis 快取
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-## <a name="retrieve-the-host-name-and-access-keys"></a>擷取主機名稱和存取金鑰
+## <a name="retrieve-hello-host-name-and-access-keys"></a>擷取 hello 主機名稱和存取金鑰
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
-## <a name="enable-the-non-ssl-endpoint"></a>啟用非 SSL 端點
-有些 Redis 用戶端不支援 SSL，且預設會 [停用新的 Azure Redis 快取執行個體的非 SSL 連接埠](cache-configure.md#access-ports)。 在本文撰寫當下， [redis-py](https://github.com/andymccurdy/redis-py) 用戶端不支援 SSL。 
+## <a name="enable-hello-non-ssl-endpoint"></a>啟用 hello 非 SSL 端點
+有些 Redis 用戶端不支援 SSL，以及預設 hello[非 SSL 連接埠已停用新的 Azure Redis 快取執行個體](cache-configure.md#access-ports)。 Hello 撰寫本文時，在 hello [redis py](https://github.com/andymccurdy/redis-py)用戶端不支援 SSL。 
 
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-non-ssl-port.md)]
 
-## <a name="add-something-to-the-cache-and-retrieve-it"></a>在快取中加入項目並擷取該項目
+## <a name="add-something-toohello-cache-and-retrieve-it"></a>加入一些內容 toohello 快取並擷取它
     >>> import redis
     >>> r = redis.StrictRedis(host='<name>.redis.cache.windows.net',
           port=6380, db=0, password='<key>', ssl=True)

@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Application Insights 來診斷 Web 應用程式中的失敗和例外狀況 | Microsoft Docs"
+title: "aaaDiagnose 失敗和例外狀況中的 web 應用程式與 Azure Application Insights |Microsoft 文件"
 description: "擷取從 ASP.NET 應用程式與所要求遙測的例外狀況。"
 services: application-insights
 documentationcenter: .net
@@ -13,23 +13,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: 7eeacdc6677ccdebb1653e94a163ecb47090b7ee
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8930e6d2b29f83ea635c4ecb7afd11fc1d97d085
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="diagnose-exceptions-in-your-web-apps-with-application-insights"></a>使用 Application Insights 在 Web 應用程式中診斷例外狀況
-[Application Insights](app-insights-overview.md) 會回報您即時 Web 應用程式中的例外狀況。 您可以在用戶端和伺服器端讓失敗的要求與例外狀況及其他事件相互關聯，以便快速地診斷原因。
+[Application Insights](app-insights-overview.md) 會回報您即時 Web 應用程式中的例外狀況。 您可以與交互關聯失敗的要求例外狀況和其他事件在 hello 用戶端和伺服器，如此您就可以快速地診斷出 hello 原因。
 
 ## <a name="set-up-exception-reporting"></a>設定例外狀況報告
-* 讓伺服器應用程式回報例外狀況︰
+* 從您的伺服器應用程式報告 toohave 例外狀況：
   * 在應用程式程式碼中安裝 [Application Insights SDK](app-insights-asp-net.md)，或
   * IIS Web 伺服器：執行 [Application Insights 代理程式](app-insights-monitor-performance-live-website-now.md)；或
-  * Azure Web 應用程式：新增 [Application Insights 擴充功能](app-insights-azure-web-apps.md)
-  * Java Web 應用程式：安裝 [Java 代理程式](app-insights-java-agent.md)
-* 在您的網頁中安裝 [JavaScript 程式碼片段](app-insights-javascript.md)來攔截瀏覽器例外狀況。
-* 在某些應用程式架構中或搭配某些設定時，您必須採取一些額外的步驟，才能攔截較多的例外狀況：
+  * Azure web 應用程式： 新增 hello [Application Insights 擴充功能](app-insights-azure-web-apps.md)
+  * Java web 應用程式： 安裝 hello [Java 代理程式](app-insights-java-agent.md)
+* 安裝 hello [JavaScript 程式碼片段](app-insights-javascript.md)網頁 toocatch 瀏覽器例外狀況。
+* 在某些應用程式架構，或使用某些設定，您需要 tootake 某些額外的步驟 toocatch 詳細例外狀況：
   * [Web Form](#web-forms)
   * [MVC](#mvc)
   * [Web API 1.*](#web-api-1)
@@ -37,77 +37,77 @@ ms.lasthandoff: 08/18/2017
   * [WCF](#wcf)
 
 ## <a name="diagnosing-exceptions-using-visual-studio"></a>使用 Visual Studio 診斷例外狀況
-在 Visual Studio 中開啟應用程式解決方案以協助偵錯。
+在 Visual Studio 偵錯的 toohelp 開啟 hello 應用程式方案。
 
-在您的伺服器上或開發機器上使用 F5 執行應用程式。
+執行 hello 應用程式，您的伺服器上或使用 F5 在開發電腦上。
 
-在 Visual Studio 中開啟 [Application Insights 搜尋] 視窗，並將它設定為顯示您的應用程式的事件。 當您偵錯時，您只要按一下 [Application Insights] 按鈕即可執行此操作。
+在 Visual Studio 中，開啟 hello Application Insights 搜尋視窗，並將它從您的應用程式設定 toodisplay 事件。 您正在偵錯時，您可以只要按一下 hello Application Insights 按鈕。
 
-![以滑鼠右鍵按一下專案，然後選擇 [Application Insights]、[開啟]。](./media/app-insights-asp-net-exceptions/34.png)
+![Hello 專案上按一下滑鼠右鍵，然後選擇 Application Insights 開啟。](./media/app-insights-asp-net-exceptions/34.png)
 
-請注意，您可以篩選報告僅顯示例外狀況。
+請注意，您可以篩選 hello 報表 tooshow 只是例外狀況。
 
 *未顯示例外狀況？請參閱[擷取例外狀況](#exceptions)。*
 
-按一下例外狀況報告以顯示其堆疊追蹤。
-按一下堆疊追蹤中的行參考，以開啟相關程式碼檔案。  
+按一下 [例外狀況報告 tooshow] 其堆疊追蹤。
+按一下 hello 堆疊追蹤，tooopen hello 相關的程式碼檔案中的行參考。  
 
-在程式碼中，注意 CodeLens 會顯示關於例外狀況的資料︰
+在 hello 程式碼，請注意，CodeLens 會顯示 hello 例外狀況的相關資料：
 
 ![CodeLens 的例外狀況通知。](./media/app-insights-asp-net-exceptions/35.png)
 
-## <a name="diagnosing-failures-using-the-azure-portal"></a>使用 Azure 入口網站診斷失敗
-從應用程式的 [Application Insights] 概要，失敗磚會顯示例外狀況和失敗的 HTTP 要求的圖表，以及導致最頻繁失敗的要求 URL 的清單。
+## <a name="diagnosing-failures-using-hello-azure-portal"></a>使用 hello Azure 入口網站的診斷失敗
+從您的應用程式的 hello Application Insights 概觀，hello 失敗磚會顯示例外狀況和失敗的 HTTP 要求的圖表以及 hello 的清單要求會導致 hello 最常失敗的 Url。
 
 ![選取 [設定]、[失敗]](./media/app-insights-asp-net-exceptions/012-start.png)
 
-按一下清單中其中一個失敗的例外狀況類型，可取得該例外狀況的個別發生次數，您可以在其中查看詳細資料和堆疊追蹤︰
+按一下透過其中一個 hello 失敗 hello 清單 tooget tooindividual 相符項目中的 hello 例外狀況，您可以在此查看 hello 詳細資料，堆疊追蹤的例外狀況類型：
 
-![選取失敗要求的執行個體，並在例外狀況詳細資料底下，取得例外狀況的執行個體。](./media/app-insights-asp-net-exceptions/030-req-drill.png)
+![選取的執行個體失敗的要求，並在 例外狀況詳細資料，取得 tooinstances hello 例外狀況。](./media/app-insights-asp-net-exceptions/030-req-drill.png)
 
-**或者，**您可以從要求清單中啟動，並尋找與它相關的例外狀況。
+**或者，**您可以開始從要求的 hello 清單，然後找出例外狀況相關的 tooit。
 
 *未顯示例外狀況？請參閱[擷取例外狀況](#exceptions)。*
 
 
 ## <a name="custom-tracing-and-log-data"></a>自訂追蹤和記錄資料
-若要取得您的 app 的特定診斷資料，您可以插入程式碼以傳送您自己的遙測資料。 這會隨著要求、頁面檢視和其他自動收集的資料顯示在診斷搜尋中。
+tooget 診斷資料特定 tooyour 應用程式中，您可以插入程式碼 toosend 遙測資料。 這顯示在診斷搜尋、 hello 要求、 頁面檢視，以及其他自動收集資料。
 
 您有幾種選項：
 
-* [TrackEvent()](app-insights-api-custom-events-metrics.md#trackevent) 通常用來監視使用模式，但它傳送的資料也會出現在診斷搜尋的 [自訂事件] 下。 事件具有名稱，並且可以包含字串屬性和數值度量，您可以對其[篩選診斷搜尋](app-insights-diagnostic-search.md)。
+* [Trackevent （)](app-insights-api-custom-events-metrics.md#trackevent)通常用來監視使用狀況模式，但它也會傳送的資料出現在自訂事件診斷搜尋 hello。 事件具有名稱，並且可以包含字串屬性和數值度量，您可以對其[篩選診斷搜尋](app-insights-diagnostic-search.md)。
 * [TrackTrace()](app-insights-api-custom-events-metrics.md#tracktrace) 可讓您傳送較長的資料，例如 POST 資訊。
 * [TrackException()](#exceptions) 會傳送堆疊追蹤。 [深入了解例外狀況](#exceptions)。
 * 如果您已經使用 Log4Net 或 NLog 等記錄架構，您可以[擷取這些記錄](app-insights-asp-net-trace-logs.md)，然後在診斷搜尋中將它們連同要求和例外狀況資料一起檢視。
 
-若要查看這些事件，請開啟[搜尋](app-insights-diagnostic-search.md)、開啟 [篩選]，然後選擇 [自訂事件]、[追蹤] 或 [例外狀況]。
+這些事件中，開啟 toosee[搜尋](app-insights-diagnostic-search.md)、 開啟篩選器，，，然後選擇 自訂事件、 追蹤或例外狀況。
 
 ![鑽研](./media/app-insights-asp-net-exceptions/viewCustomEvents.png)
 
 > [!NOTE]
-> 如果您的應用程式會產生大量遙測，調適性取樣模型會自動藉由僅傳送事件代表性片段，減少傳送到入口網站的量。 為相同作業之一部分的事件會選取或取消選取為群組，讓您可以在相關事件之間瀏覽。 [了解取樣。](app-insights-sampling.md)
+> 如果您的應用程式會產生大量的遙測，hello 調整取樣模組將會自動減少 hello 磁碟區所傳送的 toohello 入口網站傳送代表性數部分的事件。 屬於的 hello 相同的作業將會被選取或取消選取此選項為群組，如此您可以瀏覽之間相關事件的事件。 [了解取樣。](app-insights-sampling.md)
 >
 >
 
-### <a name="how-to-see-request-post-data"></a>如何查看要求 POST 資料
-要求詳細資料不包括在 POST 呼叫中傳送至您的應用程式的資料。 若要報告此資料：
+### <a name="how-toosee-request-post-data"></a>Toosee 要求張貼資料的方式
+要求詳細資料不包含 hello 資料傳送 POST 呼叫 tooyour 應用程式。 toohave 回報這項資料：
 
-* 在您的應用程式專案中[安裝 SDK](app-insights-asp-net.md)。
-* 在您的應用程式中插入程式碼來呼叫 [Microsoft.ApplicationInsights.TrackTrace()](app-insights-api-custom-events-metrics.md#tracktrace)。 在訊息參數中傳送 POST 資料。 允許的大小有限制，所以您應該嘗試只傳送基本的資料。
-* 當您調查失敗的要求時，會發現相關聯的追蹤。  
+* [安裝 hello SDK](app-insights-asp-net.md)應用程式專案中。
+* 將程式碼插入您的應用程式 toocall [Microsoft.ApplicationInsights.TrackTrace()](app-insights-api-custom-events-metrics.md#tracktrace)。 傳送 hello 訊息參數中的 hello 張貼資料。 沒有允許 toohello 大小限制，因此您應該嘗試 toosend 只 hello 重要資料。
+* 當您調查失敗的要求時，以尋找相關聯的 hello 追蹤。  
 
 ![鑽研](./media/app-insights-asp-net-exceptions/060-req-related.png)
 
 ## <a name="exceptions"></a> 擷取例外狀況和相關的診斷資料
-一開始，您不會在入口網站看到應用程式中造成失敗的所有例外狀況。 您會看到任何瀏覽器例外狀況 (如果您在網頁中使用 [JavaScript SDK](app-insights-javascript.md))。 但是 IIS 會攔截大部分的伺服器例外狀況，而且您必須撰寫一段程式碼才能查看它們。
+首先，您將不會 hello 入口網站中看到您的應用程式會造成失敗的所有 hello 例外狀況。 您會看到瀏覽器中的任何例外狀況 (如果您使用 hello [JavaScript SDK](app-insights-javascript.md) web 網頁中)。 但大部分的伺服器例外狀況所捕捉 IIS，您有 toowrite 的位元的程式碼 toosee 它們。
 
 您可以：
 
-* **明確記錄例外狀況** ，方法是將程式碼插入例外狀況處理常式中，以報告例外狀況。
-* **自動擷取例外狀況** ，方法是設定您的 ASP.NET 架構。 架構類型不同，則必要的新增項目也不同。
+* **明確地記錄例外狀況**插入程式碼中的例外狀況處理常式 tooreport hello 例外狀況。
+* **自動擷取例外狀況** ，方法是設定您的 ASP.NET 架構。 hello 必要新增項目都會有不同不同類型的架構。
 
 ## <a name="reporting-exceptions-explicitly"></a>明確報告例外狀況
-最簡單的方法是在例外狀況處理常式中插入 TrackException() 的呼叫。
+hello 最簡單的方式是在例外狀況處理常式中呼叫 tooTrackException() tooinsert。
 
 JavaScript
 
@@ -137,7 +137,7 @@ C#
        var measurements = new Dictionary <string, double>
          {{"Users", currentGame.Users.Count}};
 
-       // Send the exception telemetry:
+       // Send hello exception telemetry:
        telemetry.TrackException(ex, properties, measurements);
     }
 
@@ -155,21 +155,21 @@ VB
       Dim measurements = New Dictionary (Of String, Double)
       measurements.Add("Users", currentGame.Users.Count)
 
-      ' Send the exception telemetry:
+      ' Send hello exception telemetry:
       telemetry.TrackException(ex, properties, measurements)
     End Try
 
-屬性和度量參數是選用的，但對於[篩選和新增](app-insights-diagnostic-search.md)額外資訊來說，相當有用。 比方說，如果您有一個應用程式可以執行數個遊戲，則您可以找到與特定遊戲相關的所有例外狀況報告。 您可以將許多項目加入至每個字典，且項目數量不限。
+hello 屬性和量值的參數是選擇性的但可用於[篩選和加入](app-insights-diagnostic-search.md)額外的資訊。 比方說，如果您有可以執行數個遊戲的應用程式，您無法找到所有 hello 例外狀況報告相關的 tooa 特定遊戲。 您可以像 tooeach 字典，做為您加入數目的項目。
 
 ## <a name="browser-exceptions"></a>瀏覽器例外狀況
 大部分的瀏覽器例外狀況都會報告。
 
-如果您的網頁包含來自內容傳遞網路或其他網域的指令碼檔案，請確定指令碼標籤具有屬性 ```crossorigin="anonymous"```，而且伺服器會傳送 [CORS 標頭](http://enable-cors.org/)。 這可讓您從這些資源取得未處理 JavaScript 例外狀況的堆疊追蹤和詳細資料。
+如果您的網頁包含指令碼檔案的內容傳遞網路或其他網域，請確定指令碼標記具有 hello 屬性```crossorigin="anonymous"```，並將該 hello 伺服器傳送[CORS 標頭](http://enable-cors.org/)。 這可讓您 tooget 堆疊追蹤和從這些資源的未處理 JavaScript 例外狀況的詳細資料。
 
 ## <a name="web-forms"></a>Web Form
-對於 Web Form，HTTP 模組能夠在未使用 CustomErrors 設定重新導向時收集例外狀況。
+Web form 設有 CustomErrors 沒有重新導向時 hello HTTP 模組時，將會無法 toocollect hello 例外狀況。
 
-但是，如果您有使用中的重新導向，將下列程式碼新增至 Global.asax.cs 中的 Application_Error 函式。 (如果您還沒有檔案，請加入 Global.asax 檔案。)
+但是如果您有使用中的重新導向，加入下列行 toohello Application_Error 函式中 Global.asax.cs hello。 (如果您還沒有檔案，請加入 Global.asax 檔案。)
 
 *C#*
 
@@ -185,7 +185,7 @@ VB
 
 
 ## <a name="mvc"></a>MVC
-如果 [CustomErrors](https://msdn.microsoft.com/library/h0hfz6fc.aspx) 組態是 `Off`，則例外狀況將可供 [HTTP 模組](https://msdn.microsoft.com/library/ms178468.aspx)收集。 不過，如果它是 `RemoteOnly` (預設值) 或 `On`，則會清除例外狀況，且不適用於讓 Application Insights 自動收集。 您可以藉由覆寫 [System.Web.Mvc.HandleErrorAttribute class](http://msdn.microsoft.com/library/system.web.mvc.handleerrorattribute.aspx)，並且針對以下不同的 MVC 版本如下所示的套用已覆寫的類別，來進行修正 ([github 來源](https://github.com/AppInsightsSamples/Mvc2UnhandledExceptions/blob/master/MVC2App/Controllers/AiHandleErrorAttribute.cs))：
+如果 hello [CustomErrors](https://msdn.microsoft.com/library/h0hfz6fc.aspx)設定`Off`，則例外狀況將可供 hello [HTTP 模組](https://msdn.microsoft.com/library/ms178468.aspx)toocollect。 不過，如果它是`RemoteOnly`（預設值） 或`On`，然後將清除 hello 例外狀況並不適用於 Application Insights tooautomatically 收集。 您可以藉由覆寫 hello 修正[System.Web.Mvc.HandleErrorAttribute 類別](http://msdn.microsoft.com/library/system.web.mvc.handleerrorattribute.aspx)，並套用覆寫的 hello 類別，如所示為 hello 不同 MVC 以下的版本 ([github 來源](https://github.com/AppInsightsSamples/Mvc2UnhandledExceptions/blob/master/MVC2App/Controllers/AiHandleErrorAttribute.cs)):
 
     using System;
     using System.Web.Mvc;
@@ -200,7 +200,7 @@ VB
         {
             if (filterContext != null && filterContext.HttpContext != null && filterContext.Exception != null)
             {
-                //If customError is Off, then AI HTTPModule will report the exception
+                //If customError is Off, then AI HTTPModule will report hello exception
                 if (filterContext.HttpContext.IsCustomErrorEnabled)
                 {   //or reuse instance (recommended!). see note above  
                     var ai = new TelemetryClient();
@@ -213,7 +213,7 @@ VB
     }
 
 #### <a name="mvc-2"></a>MVC 2
-使用您的控制器中的新屬性取代 HandleError 屬性。
+Hello HandleError 屬性取代為您新的屬性，在您的控制站。
 
     namespace MVC2App.Controllers
     {
@@ -244,7 +244,7 @@ VB
     {
       public static void RegisterGlobalFilters(GlobalFilterCollection filters)
       {
-        // Default replaced with the override to track unhandled exceptions
+        // Default replaced with hello override tootrack unhandled exceptions
         filters.Add(new AiHandleErrorAttribute());
       }
     }
@@ -273,7 +273,7 @@ VB
       }
     }
 
-您可以將此覆寫的屬性加入到特定的控制器，或將它加入至 WebApiConfig 類別中的全域篩選組態：
+您無法加入此覆寫的屬性 toospecific 控制站，或將它 toohello 全域篩選器設定 hello 到 WebApiConfig 類別中：
 
     using System.Web.Http;
     using WebApi1.x.App_Start;
@@ -297,7 +297,7 @@ VB
 
 [範例](https://github.com/AppInsightsSamples/WebApi_1.x_UnhandledExceptions)
 
-有一些無法處理的例外狀況篩選器案例。 例如：
+有無法處理 hello 例外狀況篩選條件的案例數目。 例如：
 
 * 從控制器建構函式擲回的例外狀況。
 * 從訊息處理常式擲回的例外狀況。
@@ -326,7 +326,7 @@ VB
       }
     }
 
-將其新增至 WebApiConfig 中的服務：
+視情況中新增此 toohello 服務：
 
     using System.Web.Http;
     using System.Web.Http.ExceptionHandling;
@@ -357,8 +357,8 @@ VB
 
 做為替代方案，您可以：
 
-1. 以 IExceptionHandler 的自訂實作取代唯一的 ExceptionHandler。 這只會在架構仍然可以選擇要傳送的回應訊息時呼叫 (不會在針對執行個體中止連接時呼叫)
-2. 例外狀況篩選器 (如以上的 Web API 1.x 控制器章節所述) - 在所有案例中均不會呼叫。
+1. 取代 hello 只 ExceptionHandler 利用 IExceptionHandler 的自訂實作。 這只稱為 hello 架構時仍能 toochoose 的回應訊息 toosend （不是在 hello 連接已中止執行個體）
+2. 例外狀況篩選條件 （如中所述在上述的 Web API 1.x 控制站上的 hello > 一節）-不會在所有情況下呼叫。
 
 ## <a name="wcf"></a>WCF
 新增類別，該類別會擴充屬性和實作 IErrorHandler 和 IServiceBehavior。
@@ -412,7 +412,7 @@ VB
       }
     }
 
-將屬性新增至服務實作：
+加入 hello 屬性 toohello 服務實作：
 
     namespace WcfService4
     {
@@ -424,19 +424,19 @@ VB
 [範例](https://github.com/AppInsightsSamples/WCFUnhandledExceptions)
 
 ## <a name="exception-performance-counters"></a>例外狀況效能計數器
-如果您已在伺服器上[安裝 Application Insights代理程式](app-insights-monitor-performance-live-website-now.md)，您便可取得由 .NET 測量的例外狀況比率圖表。 這包括已處理和未處理的 .NET 例外狀況。
+如果您有[安裝 Application Insights 的代理程式 hello](app-insights-monitor-performance-live-website-now.md)您在伺服器上，您可以取得 hello 例外狀況率，.NET 所測量的圖表。 這包括已處理和未處理的 .NET 例外狀況。
 
 開啟 [計量瀏覽器] 刀鋒視窗、加入新圖表，然後選取 [效能計數器] 下方所列的 [例外狀況比率] 。
 
-.NET framework 會計算間隔中的例外狀況次數並除以間隔長度，以計算得出例外狀況比率。
+hello.NET framework 來計算 hello 速率的間隔中計算的例外狀況的 hello 數，然後除以 hello hello 間隔長度。
 
-請注意，其與 Application Insights 入口網站執行 TrackException 報告計數算得的「例外狀況」計數不同。 取樣間隔不同，且 SDK 不會針對所有已處理與未處理的例外狀況傳送 TrackException 報告。
+請注意，它將會不同於 hello '例外狀況' hello Application Insights 入口網站的計算方式是計算 TrackException 報告的計數。 hello 取樣間隔不同，而且 hello SDK 不會將傳送 TrackException 報告所有處理和未處理的例外狀況。
 
 ## <a name="video"></a>影片
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player] 
 
 ## <a name="next-steps"></a>後續步驟
-* [監視 REST、SQL 及其他對相依性的呼叫](app-insights-asp-net-dependencies.md)
+* [監視 REST、 SQL 及其他呼叫 toodependencies](app-insights-asp-net-dependencies.md)
 * [監視頁面載入時間、瀏覽器例外狀況及 AJAX 呼叫](app-insights-javascript.md)
 * [監視效能計數器](app-insights-performance-counters.md)
