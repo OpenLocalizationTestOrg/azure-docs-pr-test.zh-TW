@@ -1,0 +1,49 @@
+---
+title: "在 Azure microservices aaaSpecify 度量和放置設定 |Microsoft 文件"
+description: "藉由指定計量、放置條件約束及其他放置原則來描述 Service Fabric 服務。"
+services: service-fabric
+documentationcenter: .net
+author: masnider
+manager: timlt
+editor: 
+ms.assetid: 16e135c1-a00a-4c6f-9302-6651a090571a
+ms.service: Service-Fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/18/2017
+ms.author: masnider
+ms.openlocfilehash: c633518b5dbf0c7b84e0d46c06bf1f92365d184d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/06/2017
+---
+# <a name="configuring-cluster-resource-manager-settings-for-service-fabric-services"></a><span data-ttu-id="33cdf-103">設定 Service Fabric 服務的叢集資源管理員設定</span><span class="sxs-lookup"><span data-stu-id="33cdf-103">Configuring cluster resource manager settings for Service Fabric services</span></span>
+<span data-ttu-id="33cdf-104">hello Service Fabric 叢集資源管理員可讓您管理每個個別命名服務的 hello 規則更細微的控制。</span><span class="sxs-lookup"><span data-stu-id="33cdf-104">hello Service Fabric Cluster Resource Manager allows fine-grained control over hello rules that govern every individual named service.</span></span> <span data-ttu-id="33cdf-105">每個指定的服務可以指定規則應該會將它配置 hello 叢集中的方式。</span><span class="sxs-lookup"><span data-stu-id="33cdf-105">Each named service can specify rules for how it should be allocated in hello cluster.</span></span> <span data-ttu-id="33cdf-106">每個指定的服務也可以定義 hello 組，它想 tooreport，包括它們所 toothat 服務重要的度量。</span><span class="sxs-lookup"><span data-stu-id="33cdf-106">Each named service can also define hello set of metrics that it wants tooreport, including how important they are toothat service.</span></span> <span data-ttu-id="33cdf-107">設定服務可細分成三個不同的工作︰</span><span class="sxs-lookup"><span data-stu-id="33cdf-107">Configuring services breaks down into three different tasks:</span></span>
+
+1. <span data-ttu-id="33cdf-108">設定放置條件約束</span><span class="sxs-lookup"><span data-stu-id="33cdf-108">Configuring placement constraints</span></span>
+2. <span data-ttu-id="33cdf-109">設定計量</span><span class="sxs-lookup"><span data-stu-id="33cdf-109">Configuring metrics</span></span>
+3. <span data-ttu-id="33cdf-110">設定進階放置原則及其他規則 (較不常見)</span><span class="sxs-lookup"><span data-stu-id="33cdf-110">Configuring advanced placement policies and other rules (less common)</span></span>
+
+## <a name="placement-constraints"></a><span data-ttu-id="33cdf-111">放置條件約束</span><span class="sxs-lookup"><span data-stu-id="33cdf-111">Placement constraints</span></span>
+<span data-ttu-id="33cdf-112">位置條件約束是使用的 toocontrol hello 叢集中的節點可實際執行服務。</span><span class="sxs-lookup"><span data-stu-id="33cdf-112">Placement constraints are used toocontrol which nodes in hello cluster a service can actually run on.</span></span> <span data-ttu-id="33cdf-113">通常在特定命名服務執行個體或指定的型別限制 toorun 特定類型的節點上的所有服務。</span><span class="sxs-lookup"><span data-stu-id="33cdf-113">Typically a particular named service instance or all services of a given type constrained toorun on a particular type of node.</span></span> <span data-ttu-id="33cdf-114">放置條件約束是可擴充的。</span><span class="sxs-lookup"><span data-stu-id="33cdf-114">Placement constraints are extensible.</span></span> <span data-ttu-id="33cdf-115">您可以依據節點類型定義任何屬性集，然後在建立服務時為它們選取條件約束。</span><span class="sxs-lookup"><span data-stu-id="33cdf-115">You can define any set of properties per  node type, and then select for them with constraints when creating services.</span></span> <span data-ttu-id="33cdf-116">您也可以變更執行中的服務放置條件約束。</span><span class="sxs-lookup"><span data-stu-id="33cdf-116">You can also change a service's placement constraints while it is running.</span></span> <span data-ttu-id="33cdf-117">這可讓您 toorespond toochanges hello 叢集或 hello hello 服務需求。</span><span class="sxs-lookup"><span data-stu-id="33cdf-117">THis allows you toorespond toochanges in hello cluster or hello requirements of hello service.</span></span> <span data-ttu-id="33cdf-118">指定節點的 hello 屬性也可以進行更新動態 hello 叢集中。</span><span class="sxs-lookup"><span data-stu-id="33cdf-118">hello properties of a given node can also be updated dynamically in hello cluster.</span></span> <span data-ttu-id="33cdf-119">上放置條件約束和如何 tooconfigure 它們可以在找到更多資訊[這篇文章](service-fabric-cluster-resource-manager-cluster-description.md#node-properties-and-placement-constraints)</span><span class="sxs-lookup"><span data-stu-id="33cdf-119">More information on placement constraints and how tooconfigure them can be found in [this article](service-fabric-cluster-resource-manager-cluster-description.md#node-properties-and-placement-constraints)</span></span>
+
+## <a name="metrics"></a><span data-ttu-id="33cdf-120">度量</span><span class="sxs-lookup"><span data-stu-id="33cdf-120">Metrics</span></span>
+<span data-ttu-id="33cdf-121">度量資訊是 hello 組指定的具名的服務需要的資源。</span><span class="sxs-lookup"><span data-stu-id="33cdf-121">Metrics are hello set of resources that a given named service needs.</span></span> <span data-ttu-id="33cdf-122">服務的計量組態包括該服務的每個具狀態複本或無狀態執行個體對該資源的預設耗用量。</span><span class="sxs-lookup"><span data-stu-id="33cdf-122">A service's metric configuration includes how much of that resource each stateful replica or stateless instance of that service consumes by default.</span></span> <span data-ttu-id="33cdf-123">度量也會包含表示重要性平衡該度量 toothat 服務以防缺點是必要的加權。</span><span class="sxs-lookup"><span data-stu-id="33cdf-123">Metrics also include a weight that indicates how important balancing that metric is toothat service, in case tradeoffs are necessary.</span></span>
+
+## <a name="advanced-placement-rules"></a><span data-ttu-id="33cdf-124">進階放置規則</span><span class="sxs-lookup"><span data-stu-id="33cdf-124">Advanced placement rules</span></span>
+<span data-ttu-id="33cdf-125">在較少見的情況中，有其他類型的配置規則可使用。</span><span class="sxs-lookup"><span data-stu-id="33cdf-125">There are other types of placement rules that are useful in less common scenarios.</span></span> <span data-ttu-id="33cdf-126">部分範例如下：</span><span class="sxs-lookup"><span data-stu-id="33cdf-126">Some examples are:</span></span>
+- <span data-ttu-id="33cdf-127">對於依地理位置的分散式叢集有助益的條件約束</span><span class="sxs-lookup"><span data-stu-id="33cdf-127">Constraints that help with geographically distributed clusters</span></span>
+- <span data-ttu-id="33cdf-128">特定應用程式架構</span><span class="sxs-lookup"><span data-stu-id="33cdf-128">Certain application architectures</span></span>
+
+<span data-ttu-id="33cdf-129">其他放置規則是透過「相互關聯」或「原則」來設定。</span><span class="sxs-lookup"><span data-stu-id="33cdf-129">Other placement rules are configured via either Correlations or Policies.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="33cdf-130">後續步驟</span><span class="sxs-lookup"><span data-stu-id="33cdf-130">Next steps</span></span>
+- <span data-ttu-id="33cdf-131">度量資訊是如何 hello Service Fabric 叢集資源管理員管理耗用量和 hello 叢集中的容量。</span><span class="sxs-lookup"><span data-stu-id="33cdf-131">Metrics are how hello Service Fabric Cluster Resource Manger manages consumption and capacity in hello cluster.</span></span> <span data-ttu-id="33cdf-132">toolearn 更多關於度量和如何 tooconfigure 它們，請參閱[這篇文章](service-fabric-cluster-resource-manager-metrics.md)</span><span class="sxs-lookup"><span data-stu-id="33cdf-132">toolearn more about metrics and how tooconfigure them, check out [this article](service-fabric-cluster-resource-manager-metrics.md)</span></span>
+- <span data-ttu-id="33cdf-133">親和性是您可以針對服務設定的一種模式。</span><span class="sxs-lookup"><span data-stu-id="33cdf-133">Affinity is one mode you can configure for your services.</span></span> <span data-ttu-id="33cdf-134">它並不常見，但如果您需要，可以參閱 [這裡](service-fabric-cluster-resource-manager-advanced-placement-rules-affinity.md)</span><span class="sxs-lookup"><span data-stu-id="33cdf-134">It is not common, but if you need it you can learn about it [here](service-fabric-cluster-resource-manager-advanced-placement-rules-affinity.md)</span></span>
+- <span data-ttu-id="33cdf-135">有許多不同的位置規則可以設定服務 toohandle 的其他案例。</span><span class="sxs-lookup"><span data-stu-id="33cdf-135">There are many different placement rules that can be configured on your service toohandle additional scenarios.</span></span> <span data-ttu-id="33cdf-136">您可以在 [這裡](service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies.md)</span><span class="sxs-lookup"><span data-stu-id="33cdf-136">You can find out about those different placement policies [here](service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies.md)</span></span>
+- <span data-ttu-id="33cdf-137">Hello 從頭開始並[取得簡介 toohello Service Fabric 叢集資源管理員](service-fabric-cluster-resource-manager-introduction.md)</span><span class="sxs-lookup"><span data-stu-id="33cdf-137">Start from hello beginning and [get an Introduction toohello Service Fabric Cluster Resource Manager](service-fabric-cluster-resource-manager-introduction.md)</span></span>
+- <span data-ttu-id="33cdf-138">toofind 出 hello 叢集資源管理員如何管理和 hello 叢集中的負載平衡簽出 hello 發行項上[平衡負載](service-fabric-cluster-resource-manager-balancing.md)</span><span class="sxs-lookup"><span data-stu-id="33cdf-138">toofind out about how hello Cluster Resource Manager manages and balances load in hello cluster, check out hello article on [balancing load](service-fabric-cluster-resource-manager-balancing.md)</span></span>
+- <span data-ttu-id="33cdf-139">hello 叢集資源管理員有許多選擇可用來描述 hello 叢集。</span><span class="sxs-lookup"><span data-stu-id="33cdf-139">hello Cluster Resource Manager has many options for describing hello cluster.</span></span> <span data-ttu-id="33cdf-140">toofind 出更多相關資訊，請參閱這篇文章上[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)</span><span class="sxs-lookup"><span data-stu-id="33cdf-140">toofind out more about them, check out this article on [describing a Service Fabric cluster](service-fabric-cluster-resource-manager-cluster-description.md)</span></span>

@@ -1,6 +1,6 @@
 ---
-title: "設定 VM (傳統) 的私人 IP 位址 - Azure PowerShell | Microsoft Docs"
-description: "了解如何使用 PowerShell 設定虛擬機器 (傳統) 的私人 IP 位址。"
+title: "適用於 Vm （傳統）-Azure PowerShell aaaConfigure 私人 IP 位址 |Microsoft 文件"
+description: "了解如何 tooconfigure 私人 IP 位址使用 PowerShell 的虛擬機器 （傳統）。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,13 +16,13 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 5da2992fad89a703086b7645c88f6d8e1a39e4b3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 99546ee9c2c4eb9aa7b67f30721d37ef9b2944f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-private-ip-addresses-for-a-virtual-machine-classic-using-powershell"></a><span data-ttu-id="76f29-103">使用 PowerShell 設定虛擬機器 (傳統) 的私人 IP 位址</span><span class="sxs-lookup"><span data-stu-id="76f29-103">Configure private IP addresses for a virtual machine (Classic) using PowerShell</span></span>
+# <a name="configure-private-ip-addresses-for-a-virtual-machine-classic-using-powershell"></a><span data-ttu-id="6702d-103">使用 PowerShell 設定虛擬機器 (傳統) 的私人 IP 位址</span><span class="sxs-lookup"><span data-stu-id="6702d-103">Configure private IP addresses for a virtual machine (Classic) using PowerShell</span></span>
 
 [!INCLUDE [virtual-networks-static-private-ip-selectors-classic-include](../../includes/virtual-networks-static-private-ip-selectors-classic-include.md)]
 
@@ -30,18 +30,18 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-<span data-ttu-id="76f29-104">本文涵蓋之內容包括傳統部署模型。</span><span class="sxs-lookup"><span data-stu-id="76f29-104">This article covers the classic deployment model.</span></span> <span data-ttu-id="76f29-105">您也可以 [管理資源管理員部署模型中的靜態私人 IP 位址](virtual-networks-static-private-ip-arm-ps.md)。</span><span class="sxs-lookup"><span data-stu-id="76f29-105">You can also [manage a static private IP address in the Resource Manager deployment model](virtual-networks-static-private-ip-arm-ps.md).</span></span>
+<span data-ttu-id="6702d-104">本文涵蓋 hello 傳統部署模型。</span><span class="sxs-lookup"><span data-stu-id="6702d-104">This article covers hello classic deployment model.</span></span> <span data-ttu-id="6702d-105">您也可以[管理 hello Resource Manager 部署模型中的靜態私人 IP 位址](virtual-networks-static-private-ip-arm-ps.md)。</span><span class="sxs-lookup"><span data-stu-id="6702d-105">You can also [manage a static private IP address in hello Resource Manager deployment model](virtual-networks-static-private-ip-arm-ps.md).</span></span>
 
 [!INCLUDE [virtual-networks-static-ip-scenario-include](../../includes/virtual-networks-static-ip-scenario-include.md)]
 
-<span data-ttu-id="76f29-106">以下的範例 PowerShell 命令會預期已經建立簡單的環境。</span><span class="sxs-lookup"><span data-stu-id="76f29-106">The sample PowerShell commands below expect a simple environment already created.</span></span> <span data-ttu-id="76f29-107">如果您想要執行如本文件中所顯示的命令，請先建置 [建立 VNet](virtual-networks-create-vnet-classic-netcfg-ps.md)中所說明的測試環境。</span><span class="sxs-lookup"><span data-stu-id="76f29-107">If you want to run the commands as they are displayed in this document, first build the test environment described in [Create a VNet](virtual-networks-create-vnet-classic-netcfg-ps.md).</span></span>
+<span data-ttu-id="6702d-106">下列的 hello 範例 PowerShell 命令預期簡單的環境中已經建立。</span><span class="sxs-lookup"><span data-stu-id="6702d-106">hello sample PowerShell commands below expect a simple environment already created.</span></span> <span data-ttu-id="6702d-107">如果您想 toorun hello 命令，因為它們會顯示在此文件，第一次建立 hello 測試環境中所述[建立 VNet](virtual-networks-create-vnet-classic-netcfg-ps.md)。</span><span class="sxs-lookup"><span data-stu-id="6702d-107">If you want toorun hello commands as they are displayed in this document, first build hello test environment described in [Create a VNet](virtual-networks-create-vnet-classic-netcfg-ps.md).</span></span>
 
-## <a name="how-to-verify-if-a-specific-ip-address-is-available"></a><span data-ttu-id="76f29-108">如何驗證特定 IP 位址是否可用</span><span class="sxs-lookup"><span data-stu-id="76f29-108">How to verify if a specific IP address is available</span></span>
-<span data-ttu-id="76f29-109">若要驗證 IP 位址 192.168.1.101 在名為 TestVnet 的 VNet 中是否可用，請執行下列 PowerShell 命令，並驗證 IsAvailable 的值：</span><span class="sxs-lookup"><span data-stu-id="76f29-109">To verify if the IP address *192.168.1.101* is available in a VNet named *TestVNet*, run the following PowerShell command and verify the value for *IsAvailable*:</span></span>
+## <a name="how-tooverify-if-a-specific-ip-address-is-available"></a><span data-ttu-id="6702d-108">如何 tooverify 特定的 IP 位址是否可用</span><span class="sxs-lookup"><span data-stu-id="6702d-108">How tooverify if a specific IP address is available</span></span>
+<span data-ttu-id="6702d-109">如果 hello tooverify IP 位址*192.168.1.101*位於名為 VNet *TestVNet*，執行下列 PowerShell 命令的 hello，並確認 hello 值*IsAvailable*:</span><span class="sxs-lookup"><span data-stu-id="6702d-109">tooverify if hello IP address *192.168.1.101* is available in a VNet named *TestVNet*, run hello following PowerShell command and verify hello value for *IsAvailable*:</span></span>
 
     Test-AzureStaticVNetIP –VNetName TestVNet –IPAddress 192.168.1.101 
 
-<span data-ttu-id="76f29-110">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="76f29-110">Expected output:</span></span>
+<span data-ttu-id="6702d-110">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="6702d-110">Expected output:</span></span>
 
     IsAvailable          : True
     AvailableAddresses   : {}
@@ -49,8 +49,8 @@ ms.lasthandoff: 07/11/2017
     OperationId          : fd3097e1-5f4b-9cac-8afa-bba1e3492609
     OperationStatus      : Succeeded
 
-## <a name="how-to-specify-a-static-private-ip-address-when-creating-a-vm"></a><span data-ttu-id="76f29-111">建立 VM 時如何指定靜態私人 IP 位址</span><span class="sxs-lookup"><span data-stu-id="76f29-111">How to specify a static private IP address when creating a VM</span></span>
-<span data-ttu-id="76f29-112">下方 PowerShell 指令碼會建立名為 TestService 的新雲端服務，接著從 Azure 中擷取映像，然後在新的雲端服務中使用擷取的映像建立名為 DNS01 的 VM，接下來設定 VM 位於 FrontEnd 子網路中，並設定 192.168.1.7 作為 VM 的靜態私人 IP：</span><span class="sxs-lookup"><span data-stu-id="76f29-112">The PowerShell script below creates a new cloud service named *TestService*, then retrieves an image from Azure, creates a VM named *DNS01* in the new cloud service using the retrieved image, sets the VM to be in a subnet named *FrontEnd*, and sets *192.168.1.7* as a static private IP address for the VM:</span></span>
+## <a name="how-toospecify-a-static-private-ip-address-when-creating-a-vm"></a><span data-ttu-id="6702d-111">如何 toospecify 靜態私人 IP 位址建立 VM 時</span><span class="sxs-lookup"><span data-stu-id="6702d-111">How toospecify a static private IP address when creating a VM</span></span>
+<span data-ttu-id="6702d-112">hello 下列 PowerShell 指令碼會建立新的雲端服務，名為*TestService*，然後從 Azure 擷取映像，建立名為 VM *DNS01* hello 新雲端服務中使用 hello 擷取映像，設定hello 名為的子網路的 VM toobe*前端*，並設定*從 192.168.1.7* hello VM 的靜態私人 IP 位址為：</span><span class="sxs-lookup"><span data-stu-id="6702d-112">hello PowerShell script below creates a new cloud service named *TestService*, then retrieves an image from Azure, creates a VM named *DNS01* in hello new cloud service using hello retrieved image, sets hello VM toobe in a subnet named *FrontEnd*, and sets *192.168.1.7* as a static private IP address for hello VM:</span></span>
 
     New-AzureService -ServiceName TestService -Location "Central US"
     $image = Get-AzureVMImage | where {$_.ImageName -like "*RightImage-Windows-2012R2-x64*"}
@@ -60,7 +60,7 @@ ms.lasthandoff: 07/11/2017
       Set-AzureStaticVNetIP -IPAddress 192.168.1.7 |
       New-AzureVM -ServiceName TestService –VNetName TestVNet
 
-<span data-ttu-id="76f29-113">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="76f29-113">Expected output:</span></span>
+<span data-ttu-id="6702d-113">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="6702d-113">Expected output:</span></span>
 
     WARNING: No deployment found in service: 'TestService'.
     OperationDescription OperationId                          OperationStatus
@@ -68,12 +68,12 @@ ms.lasthandoff: 07/11/2017
     New-AzureService     fcf705f1-d902-011c-95c7-b690735e7412 Succeeded      
     New-AzureVM          3b99a86d-84f8-04e5-888e-b6fc3c73c4b9 Succeeded  
 
-## <a name="how-to-retrieve-static-private-ip-address-information-for-a-vm"></a><span data-ttu-id="76f29-114">如何擷取 VM 的靜態私人 IP 位址資訊</span><span class="sxs-lookup"><span data-stu-id="76f29-114">How to retrieve static private IP address information for a VM</span></span>
-<span data-ttu-id="76f29-115">若要檢視使用上述指令碼建立之 VM 的私人 IP 位址資訊，請執行下列 PowerShell 命令，並觀察 *IpAddress*的值：</span><span class="sxs-lookup"><span data-stu-id="76f29-115">To view the static private IP address information for the VM created with the script above, run the following PowerShell command and observe the values for *IpAddress*:</span></span>
+## <a name="how-tooretrieve-static-private-ip-address-information-for-a-vm"></a><span data-ttu-id="6702d-114">如何 tooretrieve 靜態私人 IP 位址適用於 VM 的資訊</span><span class="sxs-lookup"><span data-stu-id="6702d-114">How tooretrieve static private IP address information for a VM</span></span>
+<span data-ttu-id="6702d-115">tooview hello 靜態私人 IP 位址建立 VM 與 hello 指令碼，請執行下列 PowerShell 命令的 hello hello 資訊，並觀察 hello 值*IpAddress*:</span><span class="sxs-lookup"><span data-stu-id="6702d-115">tooview hello static private IP address information for hello VM created with hello script above, run hello following PowerShell command and observe hello values for *IpAddress*:</span></span>
 
     Get-AzureVM -Name DNS01 -ServiceName TestService
 
-<span data-ttu-id="76f29-116">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="76f29-116">Expected output:</span></span>
+<span data-ttu-id="6702d-116">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="6702d-116">Expected output:</span></span>
 
     DeploymentName              : TestService
     Name                        : DNS01
@@ -102,34 +102,34 @@ ms.lasthandoff: 07/11/2017
     OperationId                 : 34c1560a62f0901ab75cde4fed8e8bd1
     OperationStatus             : OK
 
-## <a name="how-to-remove-a-static-private-ip-address-from-a-vm"></a><span data-ttu-id="76f29-117">如何移除 VM 的靜態私人 IP 位址</span><span class="sxs-lookup"><span data-stu-id="76f29-117">How to remove a static private IP address from a VM</span></span>
-<span data-ttu-id="76f29-118">若要移除上述指令碼中新增至 VM 的靜態私人 IP 位址，請執行下列 PowerShell 命令：</span><span class="sxs-lookup"><span data-stu-id="76f29-118">To remove the static private IP address added to the VM in the script above, run the following PowerShell command:</span></span>
+## <a name="how-tooremove-a-static-private-ip-address-from-a-vm"></a><span data-ttu-id="6702d-117">如何 tooremove 靜態私人 IP 位址從 VM</span><span class="sxs-lookup"><span data-stu-id="6702d-117">How tooremove a static private IP address from a VM</span></span>
+<span data-ttu-id="6702d-118">tooremove hello 靜態私人 IP 位址執行下列 PowerShell 命令的 hello 上方的 hello 指令碼中加入 toohello VM:</span><span class="sxs-lookup"><span data-stu-id="6702d-118">tooremove hello static private IP address added toohello VM in hello script above, run hello following PowerShell command:</span></span>
 
     Get-AzureVM -ServiceName TestService -Name DNS01 |
       Remove-AzureStaticVNetIP |
       Update-AzureVM
 
-<span data-ttu-id="76f29-119">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="76f29-119">Expected output:</span></span>
+<span data-ttu-id="6702d-119">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="6702d-119">Expected output:</span></span>
 
     OperationDescription OperationId                          OperationStatus
     -------------------- -----------                          ---------------
     Update-AzureVM       052fa6f6-1483-0ede-a7bf-14f91f805483 Succeeded
 
-## <a name="how-to-add-a-static-private-ip-address-to-an-existing-vm"></a><span data-ttu-id="76f29-120">如何將靜態私人 IP 位址新增至現有的 VM</span><span class="sxs-lookup"><span data-stu-id="76f29-120">How to add a static private IP address to an existing VM</span></span>
-<span data-ttu-id="76f29-121">若要將靜態私人 IP 位址新增至使用上述指令碼建立之 VM，請執行下列命令：</span><span class="sxs-lookup"><span data-stu-id="76f29-121">To add a static private IP address to the VM created using the script above, runt he following command:</span></span>
+## <a name="how-tooadd-a-static-private-ip-address-tooan-existing-vm"></a><span data-ttu-id="6702d-120">Tooadd 靜態私人 IP 定址 tooan 現有 VM 的方式</span><span class="sxs-lookup"><span data-stu-id="6702d-120">How tooadd a static private IP address tooan existing VM</span></span>
+<span data-ttu-id="6702d-121">tooadd 靜態私人 IP 位址 toohello 下命令使用上述 runt hello 指令碼建立 VM:</span><span class="sxs-lookup"><span data-stu-id="6702d-121">tooadd a static private IP address toohello VM created using hello script above, runt he following command:</span></span>
 
     Get-AzureVM -ServiceName TestService -Name DNS01 |
       Set-AzureStaticVNetIP -IPAddress 192.168.1.7 |
       Update-AzureVM
 
-<span data-ttu-id="76f29-122">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="76f29-122">Expected output:</span></span>
+<span data-ttu-id="6702d-122">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="6702d-122">Expected output:</span></span>
 
     OperationDescription OperationId                          OperationStatus
     -------------------- -----------                          ---------------
     Update-AzureVM       77d8cae2-87e6-0ead-9738-7c7dae9810cb Succeeded 
 
-## <a name="next-steps"></a><span data-ttu-id="76f29-123">後續步驟</span><span class="sxs-lookup"><span data-stu-id="76f29-123">Next steps</span></span>
-* <span data-ttu-id="76f29-124">深入了解 [保留的公用 IP](virtual-networks-reserved-public-ip.md) 位址。</span><span class="sxs-lookup"><span data-stu-id="76f29-124">Learn about [reserved public IP](virtual-networks-reserved-public-ip.md) addresses.</span></span>
-* <span data-ttu-id="76f29-125">深入了解 [執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md) 位址。</span><span class="sxs-lookup"><span data-stu-id="76f29-125">Learn about [instance-level public IP (ILPIP)](virtual-networks-instance-level-public-ip.md) addresses.</span></span>
-* <span data-ttu-id="76f29-126">請參閱 [保留 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)。</span><span class="sxs-lookup"><span data-stu-id="76f29-126">Consult the [Reserved IP REST APIs](https://msdn.microsoft.com/library/azure/dn722420.aspx).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="6702d-123">後續步驟</span><span class="sxs-lookup"><span data-stu-id="6702d-123">Next steps</span></span>
+* <span data-ttu-id="6702d-124">深入了解 [保留的公用 IP](virtual-networks-reserved-public-ip.md) 位址。</span><span class="sxs-lookup"><span data-stu-id="6702d-124">Learn about [reserved public IP](virtual-networks-reserved-public-ip.md) addresses.</span></span>
+* <span data-ttu-id="6702d-125">深入了解 [執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md) 位址。</span><span class="sxs-lookup"><span data-stu-id="6702d-125">Learn about [instance-level public IP (ILPIP)](virtual-networks-instance-level-public-ip.md) addresses.</span></span>
+* <span data-ttu-id="6702d-126">請參閱 hello[保留 IP REST Api](https://msdn.microsoft.com/library/azure/dn722420.aspx)。</span><span class="sxs-lookup"><span data-stu-id="6702d-126">Consult hello [Reserved IP REST APIs](https://msdn.microsoft.com/library/azure/dn722420.aspx).</span></span>
 

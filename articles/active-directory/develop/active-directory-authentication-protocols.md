@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 驗證通訊協定 | Microsoft Docs"
-description: "Azure Active Directory (AD) 所支援驗證通訊協定的概觀"
+title: "Active Directory 驗證通訊協定 aaaAzure |Microsoft 文件"
+description: "Hello 驗證通訊協定支援的 Azure Active Directory (AD) 的概觀"
 documentationcenter: dev-center-name
 author: priyamohanram
 services: active-directory
@@ -15,24 +15,24 @@ ms.workload: identity
 ms.date: 04/27/2017
 ms.author: priyamo
 ms.custom: aaddev
-ms.openlocfilehash: 91416669281aa8eeef5916db008f9b0cbcbf77e2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1584efa83d30746075e970b8523c3abdccd34859
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # Azure Active Directory 驗證通訊協定
-Azure Active Directory (Azure AD) 支援數個最常用的驗證和授權通訊協定。 本節中的主題描述 Azure AD 中所支援的通訊協定和其實作。 這些主題包括支援的宣告類型回顧、同盟中繼資料的使用簡介、詳細的 OAuth 2.0  和 SAML 2.0 通訊協定參考文件，以及疑難排解小節。
+Azure Active Directory (Azure AD) 支援數個最常使用的 hello 驗證和授權通訊協定。 本節中的 hello 主題描述支援的 hello 通訊協定及其實作在 Azure AD 中。 hello 主題包括檢閱支援的宣告類型，toohello 簡介使用同盟中繼資料、 詳細的 OAuth 2.0。 和 SAML 2.0 通訊協定參考文件，以及疑難排解小節。
 
 ## 驗證通訊協定的文件和參考資料
-* [Azure AD 中簽署金鑰變換的相關重要資訊](active-directory-signing-key-rollover.md) – 了解 Azure AD 的簽署金鑰變換模式、對自動更新金鑰進行的變更，以及如何更新最常見應用程式案例的討論。
-* [支援的權杖和宣告類型](active-directory-token-and-claims.md) - 了解 Azure AD 所發出之權杖中的宣告。
-* [同盟中繼資料](active-directory-federation-metadata.md) - 了解如何尋找並解譯 Azure AD 所產生的中繼資料文件。
-* [Azure AD 中的 OAuth 2.0](active-directory-protocols-oauth-code.md) - 了解 Azure AD 中的 OAuth 2.0 實作。
-* [OpenID Connect 1.0](active-directory-protocols-openid-connect-code.md) - 了解如何使用 OAuth 2.0 (授權通訊協定) 進行驗證。
-* [使用用戶端認證的服務對服務呼叫](active-directory-protocols-oauth-service-to-service.md) - 了解如何使用 OAuth 2.0 用戶端認證授與流程來進行服務對服務呼叫。
-* [使用代理者流程的服務對服務呼叫](active-directory-protocols-oauth-on-behalf-of.md) - 了解如何使用 OAuth 2.0 代理者流程來進行服務對服務呼叫。
-* [SAML 通訊協定參照](active-directory-saml-protocol-reference.md) - 了解 Azure AD 的單一登入和單一登出 SAML 設定檔。
+* [重要資訊有關簽署金鑰變換在 Azure AD 中](active-directory-signing-key-rollover.md)– 了解 Azure AD 簽署金鑰容錯移轉模式，您可以變更 tooupdate hello 金鑰自動和討論如何 tooupdate hello 最常見的應用程式案例。
+* [支援權杖和宣告類型](active-directory-token-and-claims.md)-了解 Azure AD 所發出的 hello 權杖中的 hello 宣告。
+* [同盟中繼資料](active-directory-federation-metadata.md)-了解如何 toofind 並解譯 Azure AD 會產生 hello 中繼資料文件。
+* [Azure AD 的 OAuth 2.0](active-directory-protocols-oauth-code.md) -了解 Azure ad 的 OAuth 2.0 hello 實作。
+* [OpenID Connect 1.0](active-directory-protocols-openid-connect-code.md) -了解如何 toouse OAuth 2.0 授權通訊協定進行驗證。
+* [服務會使用用戶端認證的 tooService 呼叫](active-directory-protocols-oauth-service-to-service.md)-了解如何 toouse OAuth 2.0 用戶端認證授與服務 tooservice 呼叫的流程。
+* [服務會與 On-Behalf-Of 流量 tooService 呼叫](active-directory-protocols-oauth-on-behalf-of.md)-了解如何 toouse 服務 tooservice 的 OAuth 2.0 On-Behalf-Of 流程呼叫。
+* [SAML 通訊協定參考](active-directory-saml-protocol-reference.md)-了解 Azure AD 的 hello 單一登入和單一登出 SAML 設定檔。
 
 ## 另請參閱
 [Azure Active Directory 開發人員指南](active-directory-developers-guide.md)

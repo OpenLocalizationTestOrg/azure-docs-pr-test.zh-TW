@@ -1,6 +1,6 @@
 ---
-title: "新增快取以改善 Azure API 管理的效能 | Microsoft Docs"
-description: "了解如何改善 API 管理服務呼叫的延遲、頻寬耗用量和 Web 服務負載。"
+title: "快取在 Azure API 管理 tooimprove 效能 aaaAdd |Microsoft 文件"
+description: "了解 API 管理服務呼叫載入 tooimprove hello 延遲、 頻寬耗用量，以及 web 服務的方式。"
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,71 +14,71 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 59c595f0d5ce849f44c46fdb6cab0b44d35fffa0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 056ab7cf788218327e30bd5c028b76e3b1977fb0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-caching-to-improve-performance-in-azure-api-management"></a><span data-ttu-id="29bc2-103">新增快取以改善 Azure API 管理的效能</span><span class="sxs-lookup"><span data-stu-id="29bc2-103">Add caching to improve performance in Azure API Management</span></span>
-<span data-ttu-id="29bc2-104">可以設定 API 管理中的作業進行回應快取。</span><span class="sxs-lookup"><span data-stu-id="29bc2-104">Operations in API Management can be configured for response caching.</span></span> <span data-ttu-id="29bc2-105">對於不常變更的資料，回應快取可大幅降低 API 延遲、頻寬耗用量和 Web 服務負載。</span><span class="sxs-lookup"><span data-stu-id="29bc2-105">Response caching can significantly reduce API latency, bandwidth consumption, and web service load for data that does not change frequently.</span></span>
+# <a name="add-caching-tooimprove-performance-in-azure-api-management"></a><span data-ttu-id="8eb8c-103">在 Azure API 管理中加入快取 tooimprove 效能</span><span class="sxs-lookup"><span data-stu-id="8eb8c-103">Add caching tooimprove performance in Azure API Management</span></span>
+<span data-ttu-id="8eb8c-104">可以設定 API 管理中的作業進行回應快取。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-104">Operations in API Management can be configured for response caching.</span></span> <span data-ttu-id="8eb8c-105">對於不常變更的資料，回應快取可大幅降低 API 延遲、頻寬耗用量和 Web 服務負載。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-105">Response caching can significantly reduce API latency, bandwidth consumption, and web service load for data that does not change frequently.</span></span>
 
-<span data-ttu-id="29bc2-106">本指南說明如何新增 API 的回應快取，以及設定範例 Echo API 作業的原則。</span><span class="sxs-lookup"><span data-stu-id="29bc2-106">This guide shows you how to add response caching for your API and configure policies for the sample Echo API operations.</span></span> <span data-ttu-id="29bc2-107">您之後可以從開發人員入口網站呼叫作業，確認快取作用中。</span><span class="sxs-lookup"><span data-stu-id="29bc2-107">You can then call the operation from the developer portal to verify caching in action.</span></span>
-
-> [!NOTE]
-> <span data-ttu-id="29bc2-108">如需使用原則運算式依索引鍵快取項目的詳細資訊，請參閱 [在 Azure API 管理中自訂快取](api-management-sample-cache-by-key.md)。</span><span class="sxs-lookup"><span data-stu-id="29bc2-108">For information on caching items by key using policy expressions, see [Custom caching in Azure API Management](api-management-sample-cache-by-key.md).</span></span>
-> 
-> 
-
-## <a name="prerequisites"></a><span data-ttu-id="29bc2-109">必要條件</span><span class="sxs-lookup"><span data-stu-id="29bc2-109">Prerequisites</span></span>
-<span data-ttu-id="29bc2-110">遵循本指南中的步驟之前，您必須擁有已設定 API 和產品的 API 管理服務執行個體。</span><span class="sxs-lookup"><span data-stu-id="29bc2-110">Before following the steps in this guide, you must have an API Management service instance with an API and a product configured.</span></span> <span data-ttu-id="29bc2-111">如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。</span><span class="sxs-lookup"><span data-stu-id="29bc2-111">If you have not yet created an API Management service instance, see [Create an API Management service instance][Create an API Management service instance] in the [Get started with Azure API Management][Get started with Azure API Management] tutorial.</span></span>
-
-## <span data-ttu-id="29bc2-112"><a name="configure-caching"> </a>設定要快取的作業</span><span class="sxs-lookup"><span data-stu-id="29bc2-112"><a name="configure-caching"> </a>Configure an operation for caching</span></span>
-<span data-ttu-id="29bc2-113">在此步驟中，您將檢閱範例 Echo API 的 **取得資源 (快取)** 作業的快取設定。</span><span class="sxs-lookup"><span data-stu-id="29bc2-113">In this step, you will review the caching settings of the **GET Resource (cached)** operation of the sample Echo API.</span></span>
+<span data-ttu-id="8eb8c-106">本指南也說明如何 tooadd 回應快取 api 和設定 hello 範例回應 API 作業的原則。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-106">This guide shows you how tooadd response caching for your API and configure policies for hello sample Echo API operations.</span></span> <span data-ttu-id="8eb8c-107">然後，您就可以從 hello 開發人員入口網站 tooverify 快取中的動作呼叫 hello 作業。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-107">You can then call hello operation from hello developer portal tooverify caching in action.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="29bc2-114">每個「API 管理」服務執行個體皆隨附預先設定的範例 Echo API，可供您試驗與了解「API 管理」。</span><span class="sxs-lookup"><span data-stu-id="29bc2-114">Each API Management service instance comes preconfigured with an Echo API that can be used to experiment with and learn about API Management.</span></span> <span data-ttu-id="29bc2-115">如需詳細資訊，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]。</span><span class="sxs-lookup"><span data-stu-id="29bc2-115">For more information, see [Get started with Azure API Management][Get started with Azure API Management].</span></span>
+> <span data-ttu-id="8eb8c-108">如需使用原則運算式依索引鍵快取項目的詳細資訊，請參閱 [在 Azure API 管理中自訂快取](api-management-sample-cache-by-key.md)。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-108">For information on caching items by key using policy expressions, see [Custom caching in Azure API Management](api-management-sample-cache-by-key.md).</span></span>
 > 
 > 
 
-<span data-ttu-id="29bc2-116">若要開始，請在 API 管理服務的 Azure 入口網站中按一下 [發佈者入口網站]。</span><span class="sxs-lookup"><span data-stu-id="29bc2-116">To get started, click **Publisher portal** in the Azure Portal for your API Management service.</span></span> <span data-ttu-id="29bc2-117">這會帶您前往 API 管理發行者入口網站。</span><span class="sxs-lookup"><span data-stu-id="29bc2-117">This takes you to the API Management publisher portal.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="8eb8c-109">必要條件</span><span class="sxs-lookup"><span data-stu-id="8eb8c-109">Prerequisites</span></span>
+<span data-ttu-id="8eb8c-110">本指南中的下列 hello 步驟之前，您必須具有 API，並設定產品的 API 管理服務執行個體。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-110">Before following hello steps in this guide, you must have an API Management service instance with an API and a product configured.</span></span> <span data-ttu-id="8eb8c-111">如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][ Create an API Management service instance]在 hello[開始使用 Azure API 管理][Get started with Azure API Management]教學課程。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-111">If you have not yet created an API Management service instance, see [Create an API Management service instance][Create an API Management service instance] in hello [Get started with Azure API Management][Get started with Azure API Management] tutorial.</span></span>
+
+## <span data-ttu-id="8eb8c-112"><a name="configure-caching"> </a>設定要快取的作業</span><span class="sxs-lookup"><span data-stu-id="8eb8c-112"><a name="configure-caching"> </a>Configure an operation for caching</span></span>
+<span data-ttu-id="8eb8c-113">在此步驟中，您將檢閱快取設定的 hello hello**取得資源 （快取）** hello 範例回應應用程式開發介面的作業。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-113">In this step, you will review hello caching settings of hello **GET Resource (cached)** operation of hello sample Echo API.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="8eb8c-114">每個 API 管理服務執行個體是預先設定以回應 API 可與使用的 tooexperiment 和了解 API 管理。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-114">Each API Management service instance comes preconfigured with an Echo API that can be used tooexperiment with and learn about API Management.</span></span> <span data-ttu-id="8eb8c-115">如需詳細資訊，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-115">For more information, see [Get started with Azure API Management][Get started with Azure API Management].</span></span>
+> 
+> 
+
+<span data-ttu-id="8eb8c-116">tooget 啟動，按一下**發行者入口網站**API 管理服務的 hello Azure 入口網站中。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-116">tooget started, click **Publisher portal** in hello Azure Portal for your API Management service.</span></span> <span data-ttu-id="8eb8c-117">這會帶您 toohello API 管理發行者入口網站。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-117">This takes you toohello API Management publisher portal.</span></span>
 
 ![發行者入口網站][api-management-management-console]
 
-<span data-ttu-id="29bc2-119">從左側 [API 管理] 功能表按一下 [API]，然後按一下 [Echo API]。</span><span class="sxs-lookup"><span data-stu-id="29bc2-119">Click **APIs** from the **API Management** menu on the left, and then click **Echo API**.</span></span>
+<span data-ttu-id="8eb8c-119">按一下**Api**從 hello **API 管理**hello 左、，然後按一下功能表**Echo API**。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-119">Click **APIs** from hello **API Management** menu on hello left, and then click **Echo API**.</span></span>
 
 ![Echo API][api-management-echo-api]
 
-<span data-ttu-id="29bc2-121">按一下 [作業] 索引標籤，然後從 [作業] 清單中按一下 [取得資源 (快取)] 作業。</span><span class="sxs-lookup"><span data-stu-id="29bc2-121">Click the **Operations** tab, and then click the **GET Resource (cached)** operation from the **Operations** list.</span></span>
+<span data-ttu-id="8eb8c-121">按一下 hello**作業**索引標籤，然後再按一下 hello**取得資源 （快取）**作業 hello**作業**清單。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-121">Click hello **Operations** tab, and then click hello **GET Resource (cached)** operation from hello **Operations** list.</span></span>
 
 ![Echo API operations][api-management-echo-api-operations]
 
-<span data-ttu-id="29bc2-123">按一下 [快取]  索引標籤，以檢視此作業的快取設定。</span><span class="sxs-lookup"><span data-stu-id="29bc2-123">Click the **Caching** tab to view the caching settings for this operation.</span></span>
+<span data-ttu-id="8eb8c-123">按一下 hello**快取** 索引標籤 tooview hello 快取設定。 這項作業。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-123">Click hello **Caching** tab tooview hello caching settings for this operation.</span></span>
 
 ![Caching tab][api-management-caching-tab]
 
-<span data-ttu-id="29bc2-125">若要對作業啟用快取，請選取 [啟用]  核取方塊。</span><span class="sxs-lookup"><span data-stu-id="29bc2-125">To enable caching for an operation, select the **Enable** check box.</span></span> <span data-ttu-id="29bc2-126">此範例中已啟用快取。</span><span class="sxs-lookup"><span data-stu-id="29bc2-126">In this example, caching is enabled.</span></span>
+<span data-ttu-id="8eb8c-125">tooenable 快取作業中，選取 hello**啟用**核取方塊。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-125">tooenable caching for an operation, select hello **Enable** check box.</span></span> <span data-ttu-id="8eb8c-126">此範例中已啟用快取。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-126">In this example, caching is enabled.</span></span>
 
-<span data-ttu-id="29bc2-127">每一個作業回應都是根據 [依查詢字串參數改變] 和 [依標頭改變] 欄位的值來識別。</span><span class="sxs-lookup"><span data-stu-id="29bc2-127">Each operation response is keyed, based on the values in the **Vary by query string parameters** and **Vary by headers** fields.</span></span> <span data-ttu-id="29bc2-128">如果您想要根據查詢字串參數或標頭來快取多個回應，您可以在這兩個欄位中設定。</span><span class="sxs-lookup"><span data-stu-id="29bc2-128">If you want to cache multiple responses based on query string parameters or headers, you can configure them in these two fields.</span></span>
+<span data-ttu-id="8eb8c-127">每個作業的回應做為索引鍵，根據 hello hello 值**區分的查詢字串參數**和**Vary 標頭所**欄位。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-127">Each operation response is keyed, based on hello values in hello **Vary by query string parameters** and **Vary by headers** fields.</span></span> <span data-ttu-id="8eb8c-128">如果您想的 toocache 多個回應為基礎的查詢字串參數或標頭，您可以在這兩個欄位中設定它們。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-128">If you want toocache multiple responses based on query string parameters or headers, you can configure them in these two fields.</span></span>
 
-<span data-ttu-id="29bc2-129">[持續期間] 指定快取回應的到期間隔。</span><span class="sxs-lookup"><span data-stu-id="29bc2-129">**Duration** specifies the expiration interval of the cached responses.</span></span> <span data-ttu-id="29bc2-130">在此範例中，間隔是 **3600** 秒，相當於一小時。</span><span class="sxs-lookup"><span data-stu-id="29bc2-130">In this example, the interval is **3600** seconds, which is equivalent to one hour.</span></span>
+<span data-ttu-id="8eb8c-129">**持續時間**指定快取的 hello 回應 hello 到期間隔。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-129">**Duration** specifies hello expiration interval of hello cached responses.</span></span> <span data-ttu-id="8eb8c-130">在此範例中，是 hello 間隔**3600**秒，這是對等 tooone 小時。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-130">In this example, hello interval is **3600** seconds, which is equivalent tooone hour.</span></span>
 
-<span data-ttu-id="29bc2-131">根據此範例中的快取組態，對 **取得資源 (快取)** 作業的第一個要求是從後端服務傳回回應。</span><span class="sxs-lookup"><span data-stu-id="29bc2-131">Using the caching configuration in this example, the first request to the **GET Resource (cached)** operation returns a response from the backend service.</span></span> <span data-ttu-id="29bc2-132">此回應將被快取，並依指定的標頭和查詢字串參數來識別。</span><span class="sxs-lookup"><span data-stu-id="29bc2-132">This response will be cached, keyed by the specified headers and query string parameters.</span></span> <span data-ttu-id="29bc2-133">後續使用相符的參數呼叫此操作時，將傳回快取的回應，直到快取期間間隔到期為止。</span><span class="sxs-lookup"><span data-stu-id="29bc2-133">Subsequent calls to the operation, with matching parameters, will have the cached response returned, until the cache duration interval has expired.</span></span>
+<span data-ttu-id="8eb8c-131">使用快取設定，在此範例中的 hello，hello 第一個要求 toohello**取得資源 （快取）**作業傳回的回應 hello 後端服務。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-131">Using hello caching configuration in this example, hello first request toohello **GET Resource (cached)** operation returns a response from hello backend service.</span></span> <span data-ttu-id="8eb8c-132">此回應將會快取，做為索引鍵所指定的 hello 標頭和查詢字串參數。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-132">This response will be cached, keyed by hello specified headers and query string parameters.</span></span> <span data-ttu-id="8eb8c-133">後續呼叫 toohello 作業，並具有相符的參數，會有 hello 快取回應 hello 快取持續時間間隔過期之前傳回。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-133">Subsequent calls toohello operation, with matching parameters, will have hello cached response returned, until hello cache duration interval has expired.</span></span>
 
-## <span data-ttu-id="29bc2-134"><a name="caching-policies"> </a>檢閱快取原則</span><span class="sxs-lookup"><span data-stu-id="29bc2-134"><a name="caching-policies"> </a>Review the caching policies</span></span>
-<span data-ttu-id="29bc2-135">在此步驟中，您將檢閱範例 Echo API 的 **取得資源 (快取)** 作業快取設定。</span><span class="sxs-lookup"><span data-stu-id="29bc2-135">In this step, you review the caching settings for the **GET Resource (cached)** operation of the sample Echo API.</span></span>
+## <span data-ttu-id="8eb8c-134"><a name="caching-policies"></a>檢閱 hello 快取原則</span><span class="sxs-lookup"><span data-stu-id="8eb8c-134"><a name="caching-policies"> </a>Review hello caching policies</span></span>
+<span data-ttu-id="8eb8c-135">您可以在此步驟中，檢閱快取設定 hello**取得資源 （快取）** hello 範例回應應用程式開發介面的作業。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-135">In this step, you review hello caching settings for hello **GET Resource (cached)** operation of hello sample Echo API.</span></span>
 
-<span data-ttu-id="29bc2-136">在 [快取]  索引標籤上設定操作的快取設定時，就會加入操作的快取原則。</span><span class="sxs-lookup"><span data-stu-id="29bc2-136">When caching settings are configured for an operation on the **Caching** tab, caching policies are added for the operation.</span></span> <span data-ttu-id="29bc2-137">您可以在原則編輯器中檢閱和編輯這些原則。</span><span class="sxs-lookup"><span data-stu-id="29bc2-137">These policies can be viewed and edited in the policy editor.</span></span>
+<span data-ttu-id="8eb8c-136">當快取設定作業的 hello**快取**索引標籤上，快取原則會加入 hello 作業。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-136">When caching settings are configured for an operation on hello **Caching** tab, caching policies are added for hello operation.</span></span> <span data-ttu-id="8eb8c-137">這些原則可以檢視和編輯在 hello 原則編輯器。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-137">These policies can be viewed and edited in hello policy editor.</span></span>
 
-<span data-ttu-id="29bc2-138">從左邊的 [API 管理] 功能表中按一下 [原則]，然後從 [作業] 下拉式清單中選取 [Echo API/取得資源 (快取)]。</span><span class="sxs-lookup"><span data-stu-id="29bc2-138">Click **Policies** from the **API Management** menu on the left, and then select **Echo API / GET Resource (cached)** from the **Operation** drop-down list.</span></span>
+<span data-ttu-id="8eb8c-138">按一下**原則**從 hello **API 管理**功能表上，然後再選取 hello **Echo API / 取得資源 （快取）**從 hello**作業**下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-138">Click **Policies** from hello **API Management** menu on hello left, and then select **Echo API / GET Resource (cached)** from hello **Operation** drop-down list.</span></span>
 
 ![Policy scope operation][api-management-operation-dropdown]
 
-<span data-ttu-id="29bc2-140">這樣會在原則編輯器中顯示此操作的原則。</span><span class="sxs-lookup"><span data-stu-id="29bc2-140">This displays the policies for this operation in the policy editor.</span></span>
+<span data-ttu-id="8eb8c-140">這在 hello 原則編輯器中顯示 hello 原則，這項作業。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-140">This displays hello policies for this operation in hello policy editor.</span></span>
 
 ![API Management policy editor][api-management-policy-editor]
 
-<span data-ttu-id="29bc2-142">此操作的原則定義中包含一些原則，定義上一個步驟中使用 [快取]  索引標籤所檢閱的快取組態。</span><span class="sxs-lookup"><span data-stu-id="29bc2-142">The policy definition for this operation includes the policies that define the caching configuration that were reviewed using the **Caching** tab in the previous step.</span></span>
+<span data-ttu-id="8eb8c-142">這項作業的 hello 原則定義包含 hello 原則定義 hello 快取設定，來檢閱使用 hello**快取**hello 上一個步驟中的索引標籤。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-142">hello policy definition for this operation includes hello policies that define hello caching configuration that were reviewed using hello **Caching** tab in hello previous step.</span></span>
 
 ```xml
 <policies>
@@ -98,50 +98,50 @@ ms.lasthandoff: 07/11/2017
 ```
 
 > [!NOTE]
-> <span data-ttu-id="29bc2-143">在原則編輯器中對快取原則所做的變更，將反映在作業的 [快取] 索引標籤中，反之亦然。</span><span class="sxs-lookup"><span data-stu-id="29bc2-143">Changes made to the caching policies in the policy editor will be reflected on the **Caching** tab of an operation, and vice-versa.</span></span>
+> <span data-ttu-id="8eb8c-143">快取原則 hello 原則編輯器 中的所做的變更 toohello 就會反映在 hello**快取** 索引標籤的操作，反之亦然。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-143">Changes made toohello caching policies in hello policy editor will be reflected on hello **Caching** tab of an operation, and vice-versa.</span></span>
 > 
 > 
 
-## <span data-ttu-id="29bc2-144"><a name="test-operation"> </a>呼叫作業和測試快取</span><span class="sxs-lookup"><span data-stu-id="29bc2-144"><a name="test-operation"> </a>Call an operation and test the caching</span></span>
-<span data-ttu-id="29bc2-145">為了瞭解快取的運作方式，我們可以從開發人員入口網站呼叫操作。</span><span class="sxs-lookup"><span data-stu-id="29bc2-145">To see the caching in action, we can call the operation from the developer portal.</span></span> <span data-ttu-id="29bc2-146">在右上角的功能表中按一下 [開發人員入口網站]  。</span><span class="sxs-lookup"><span data-stu-id="29bc2-146">Click **Developer portal** in the top right menu.</span></span>
+## <span data-ttu-id="8eb8c-144"><a name="test-operation"></a>呼叫作業並測試 hello 快取</span><span class="sxs-lookup"><span data-stu-id="8eb8c-144"><a name="test-operation"> </a>Call an operation and test hello caching</span></span>
+<span data-ttu-id="8eb8c-145">toosee hello 快取中的動作，我們可以呼叫 hello 作業從 hello 開發人員入口網站。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-145">toosee hello caching in action, we can call hello operation from hello developer portal.</span></span> <span data-ttu-id="8eb8c-146">按一下**開發人員入口網站**hello 右上方功能表中。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-146">Click **Developer portal** in hello top right menu.</span></span>
 
 ![開發人員入口網站][api-management-developer-portal-menu]
 
-<span data-ttu-id="29bc2-148">在頂端功能表中按一下 [API]，然後選取 [Echo API]。</span><span class="sxs-lookup"><span data-stu-id="29bc2-148">Click **APIs** in the top menu, and then select **Echo API**.</span></span>
+<span data-ttu-id="8eb8c-148">按一下**Api**在 hello 上方的功能表，然後選取  **Echo API**。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-148">Click **APIs** in hello top menu, and then select **Echo API**.</span></span>
 
 ![Echo API][api-management-apis-echo-api]
 
-> <span data-ttu-id="29bc2-150">如果您的帳戶只設定或只看見一個 API，按一下 API 將帶您直接前往該 API 的作業。</span><span class="sxs-lookup"><span data-stu-id="29bc2-150">If you have only one API configured or visible to your account, then clicking APIs takes you directly to the operations for that API.</span></span>
+> <span data-ttu-id="8eb8c-150">如果您有只有一個應用程式開發介面設定，或顯示 tooyour 帳戶，然後按一下 應用程式開發介面引導您直接 toohello 作業，該 api。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-150">If you have only one API configured or visible tooyour account, then clicking APIs takes you directly toohello operations for that API.</span></span>
 > 
 > 
 
-<span data-ttu-id="29bc2-151">選取 [取得資源 (快取)] 作業，然後按一下 [開啟主控台]。</span><span class="sxs-lookup"><span data-stu-id="29bc2-151">Select the **GET Resource (cached)** operation, and then click **Open Console**.</span></span>
+<span data-ttu-id="8eb8c-151">選取 hello**取得資源 （快取）**作業，然後再按一下**開啟主控台**。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-151">Select hello **GET Resource (cached)** operation, and then click **Open Console**.</span></span>
 
 ![Open console][api-management-open-console]
 
-<span data-ttu-id="29bc2-153">主控台可讓您直接從開發人員入口網站叫用操作。</span><span class="sxs-lookup"><span data-stu-id="29bc2-153">The console allows you to invoke operations directly from the developer portal.</span></span>
+<span data-ttu-id="8eb8c-153">hello 主控台可讓您直接從 hello 開發人員入口網站的 tooinvoke 作業。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-153">hello console allows you tooinvoke operations directly from hello developer portal.</span></span>
 
 ![主控台][api-management-console]
 
-<span data-ttu-id="29bc2-155">保留 **param1** 和 **param2** 的預設值。</span><span class="sxs-lookup"><span data-stu-id="29bc2-155">Keep the default values for **param1** and **param2**.</span></span>
+<span data-ttu-id="8eb8c-155">保留預設值 hello **param1**和**param2**。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-155">Keep hello default values for **param1** and **param2**.</span></span>
 
-<span data-ttu-id="29bc2-156">從 [subscription-key]  下拉式清單中選取所需的金鑰。</span><span class="sxs-lookup"><span data-stu-id="29bc2-156">Select the desired key from the **subscription-key** drop-down list.</span></span> <span data-ttu-id="29bc2-157">若您的帳戶只有一個訂用帳戶，則系統會自動選取它。</span><span class="sxs-lookup"><span data-stu-id="29bc2-157">If your account has only one subscription, it will already be selected.</span></span>
+<span data-ttu-id="8eb8c-156">選取 hello 所需的索引鍵，從 hello**訂閱金鑰**下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-156">Select hello desired key from hello **subscription-key** drop-down list.</span></span> <span data-ttu-id="8eb8c-157">若您的帳戶只有一個訂用帳戶，則系統會自動選取它。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-157">If your account has only one subscription, it will already be selected.</span></span>
 
-<span data-ttu-id="29bc2-158">在 [要求標頭] 文字方塊中輸入 **sampleheader:value1**。</span><span class="sxs-lookup"><span data-stu-id="29bc2-158">Enter **sampleheader:value1** in the **Request headers** text box.</span></span>
+<span data-ttu-id="8eb8c-158">輸入**sampleheader:value1**在 hello**要求標頭**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-158">Enter **sampleheader:value1** in hello **Request headers** text box.</span></span>
 
-<span data-ttu-id="29bc2-159">按一下 [HTTP Get]  ，並記下回應標頭。</span><span class="sxs-lookup"><span data-stu-id="29bc2-159">Click **HTTP Get** and make a note of the response headers.</span></span>
+<span data-ttu-id="8eb8c-159">按一下**HTTP Get**並記下的 hello 回應標頭。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-159">Click **HTTP Get** and make a note of hello response headers.</span></span>
 
-<span data-ttu-id="29bc2-160">在 [要求標頭] 文字方塊中輸入 **sampleheader:value2**，然後按一下 [HTTP Get]。</span><span class="sxs-lookup"><span data-stu-id="29bc2-160">Enter **sampleheader:value2** in the **Request headers** text box, and then click **HTTP Get**.</span></span>
+<span data-ttu-id="8eb8c-160">輸入**sampleheader:value2**在 hello**要求標頭**文字方塊，然後再按一下**HTTP Get**。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-160">Enter **sampleheader:value2** in hello **Request headers** text box, and then click **HTTP Get**.</span></span>
 
-<span data-ttu-id="29bc2-161">請注意，在回應中，**sampleheader** 的值仍然是 **value1**。</span><span class="sxs-lookup"><span data-stu-id="29bc2-161">Note that the value of **sampleheader** is still **value1** in the response.</span></span> <span data-ttu-id="29bc2-162">請試驗一些不同的值，可發現傳回第一次呼叫的快取回應。</span><span class="sxs-lookup"><span data-stu-id="29bc2-162">Try some different values and note that the cached response from the first call is returned.</span></span>
+<span data-ttu-id="8eb8c-161">請注意 hello 該值的**sampleheader**仍然是**value1** hello 回應中。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-161">Note that hello value of **sampleheader** is still **value1** in hello response.</span></span> <span data-ttu-id="8eb8c-162">請嘗試一些不同的值，並請注意，要傳回快取的 hello 回應 hello 第一次呼叫。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-162">Try some different values and note that hello cached response from hello first call is returned.</span></span>
 
-<span data-ttu-id="29bc2-163">在 [param2] 欄位中輸入 **25**，然後按一下 [HTTP Get]。</span><span class="sxs-lookup"><span data-stu-id="29bc2-163">Enter **25** into the **param2** field, and then click **HTTP Get**.</span></span>
+<span data-ttu-id="8eb8c-163">輸入**25**到 hello **param2**欄位，，然後按一下**HTTP Get**。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-163">Enter **25** into hello **param2** field, and then click **HTTP Get**.</span></span>
 
-<span data-ttu-id="29bc2-164">請注意，回應中的 **sampleheader** 值現在是 **value2**。</span><span class="sxs-lookup"><span data-stu-id="29bc2-164">Note that the value of **sampleheader** in the response is now **value2**.</span></span> <span data-ttu-id="29bc2-165">因為操作結果是依查詢字串來識別，所以不會傳回前一個快取回應。</span><span class="sxs-lookup"><span data-stu-id="29bc2-165">Because the operation results are keyed by query string, the previous cached response was not returned.</span></span>
+<span data-ttu-id="8eb8c-164">請注意 hello 該值的**sampleheader**在 hello 回應現在是**value2**。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-164">Note that hello value of **sampleheader** in hello response is now **value2**.</span></span> <span data-ttu-id="8eb8c-165">Hello 作業結果會根據查詢字串做為索引鍵，因為未傳回 hello 先前快取回的應。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-165">Because hello operation results are keyed by query string, hello previous cached response was not returned.</span></span>
 
-## <span data-ttu-id="29bc2-166"><a name="next-steps"> </a>後續步驟</span><span class="sxs-lookup"><span data-stu-id="29bc2-166"><a name="next-steps"> </a>Next steps</span></span>
-* <span data-ttu-id="29bc2-167">如需快取原則的詳細資訊，請參閱 [API 管理原則參考文件][API Management policy reference]中的[快取原則][Caching policies]。</span><span class="sxs-lookup"><span data-stu-id="29bc2-167">For more information about caching policies, see [Caching policies][Caching policies] in the [API Management policy reference][API Management policy reference].</span></span>
-* <span data-ttu-id="29bc2-168">如需使用原則運算式依索引鍵快取項目的詳細資訊，請參閱 [在 Azure API 管理中自訂快取](api-management-sample-cache-by-key.md)。</span><span class="sxs-lookup"><span data-stu-id="29bc2-168">For information on caching items by key using policy expressions, see [Custom caching in Azure API Management](api-management-sample-cache-by-key.md).</span></span>
+## <span data-ttu-id="8eb8c-166"><a name="next-steps"> </a>後續步驟</span><span class="sxs-lookup"><span data-stu-id="8eb8c-166"><a name="next-steps"> </a>Next steps</span></span>
+* <span data-ttu-id="8eb8c-167">如需有關快取原則的詳細資訊，請參閱[快取原則][ Caching policies]在 hello [API 管理原則參考][API Management policy reference]。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-167">For more information about caching policies, see [Caching policies][Caching policies] in hello [API Management policy reference][API Management policy reference].</span></span>
+* <span data-ttu-id="8eb8c-168">如需使用原則運算式依索引鍵快取項目的詳細資訊，請參閱 [在 Azure API 管理中自訂快取](api-management-sample-cache-by-key.md)。</span><span class="sxs-lookup"><span data-stu-id="8eb8c-168">For information on caching items by key using policy expressions, see [Custom caching in Azure API Management](api-management-sample-cache-by-key.md).</span></span>
 
 [api-management-management-console]: ./media/api-management-howto-cache/api-management-management-console.png
 [api-management-echo-api]: ./media/api-management-howto-cache/api-management-echo-api.png
@@ -155,10 +155,10 @@ ms.lasthandoff: 07/11/2017
 [api-management-console]: ./media/api-management-howto-cache/api-management-console.png
 
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 
@@ -168,6 +168,6 @@ ms.lasthandoff: 07/11/2017
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
 [Configure an operation for caching]: #configure-caching
-[Review the caching policies]: #caching-policies
-[Call an operation and test the caching]: #test-operation
+[Review hello caching policies]: #caching-policies
+[Call an operation and test hello caching]: #test-operation
 [Next steps]: #next-steps

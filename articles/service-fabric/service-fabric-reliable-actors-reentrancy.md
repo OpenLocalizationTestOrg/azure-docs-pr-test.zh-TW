@@ -1,6 +1,6 @@
 ---
-title: "動作項目型 Azure 微服務中的重新進入 | Microsoft Docs"
-description: "Service Fabric Reliable Actors 重新進入簡介"
+title: "以行動為基礎的 Azure microservices aaaReentrancy |Microsoft 文件"
+description: "服務網狀架構 Reliable Actors 的簡介 tooreentrancy"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 00fcccb379bf1ba3875fbaba57a05b00fa228622
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 61c69bcf0f100e075d19ba155954c05789b71761
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="reliable-actors-reentrancy"></a><span data-ttu-id="f5537-103">Reliable Actors 重新進入</span><span class="sxs-lookup"><span data-stu-id="f5537-103">Reliable Actors reentrancy</span></span>
-<span data-ttu-id="f5537-104">Reliable Actors 執行階段預設允許邏輯呼叫以內容為基礎的重新進入。</span><span class="sxs-lookup"><span data-stu-id="f5537-104">The Reliable Actors runtime, by default, allows logical call context-based reentrancy.</span></span> <span data-ttu-id="f5537-105">這允許位於相同的呼叫內容鏈結的動作項目可重新進入。</span><span class="sxs-lookup"><span data-stu-id="f5537-105">This allows for actors to be reentrant if they are in the same call context chain.</span></span> <span data-ttu-id="f5537-106">例如，動作項目 A 傳送訊息給動作項目 B，而動作項目 B 又將訊息傳送給動作項目 C。當處理訊息時，如果動作項目 C 呼叫動作項目 A，則此訊息是可以重新進入的，因此將允許此訊息。</span><span class="sxs-lookup"><span data-stu-id="f5537-106">For example, Actor A sends a message to Actor B, who sends a message to Actor C. As part of the message processing, if Actor C calls Actor A, the message is reentrant, so it will be allowed.</span></span> <span data-ttu-id="f5537-107">屬於不同呼叫內容的其他任何訊息都將在動作項目 A 上遭到封鎖，直到其處理完畢為止。</span><span class="sxs-lookup"><span data-stu-id="f5537-107">Any other messages that are part of a different call context will be blocked on Actor A until it finishes processing.</span></span>
+# <a name="reliable-actors-reentrancy"></a><span data-ttu-id="1f49f-103">Reliable Actors 重新進入</span><span class="sxs-lookup"><span data-stu-id="1f49f-103">Reliable Actors reentrancy</span></span>
+<span data-ttu-id="1f49f-104">hello Reliable Actors 執行階段中，依預設，可讓邏輯呼叫內容為基礎的重新進入。</span><span class="sxs-lookup"><span data-stu-id="1f49f-104">hello Reliable Actors runtime, by default, allows logical call context-based reentrancy.</span></span> <span data-ttu-id="1f49f-105">這允許執行者 toobe reentrant 如果它們是在 hello 相同呼叫內容的鏈結。</span><span class="sxs-lookup"><span data-stu-id="1f49f-105">This allows for actors toobe reentrant if they are in hello same call context chain.</span></span> <span data-ttu-id="1f49f-106">例如，執行者 A 會傳送訊息 tooActor B 傳送訊息 tooActor c 的人員Hello 訊息處理的一部分，如果執行者 C 呼叫動作項目，hello 訊息是可重新進入，因此它不會允許。</span><span class="sxs-lookup"><span data-stu-id="1f49f-106">For example, Actor A sends a message tooActor B, who sends a message tooActor C. As part of hello message processing, if Actor C calls Actor A, hello message is reentrant, so it will be allowed.</span></span> <span data-ttu-id="1f49f-107">屬於不同呼叫內容的其他任何訊息都將在動作項目 A 上遭到封鎖，直到其處理完畢為止。</span><span class="sxs-lookup"><span data-stu-id="1f49f-107">Any other messages that are part of a different call context will be blocked on Actor A until it finishes processing.</span></span>
 
-<span data-ttu-id="f5537-108">有兩個選項適用於 `ActorReentrancyMode` 列舉中定義的動作項目重新進入︰</span><span class="sxs-lookup"><span data-stu-id="f5537-108">There are two options available for actor reentrancy defined in the `ActorReentrancyMode` enum:</span></span>
+<span data-ttu-id="1f49f-108">有兩個選項可用來在 hello 中定義的動作項目重新進入`ActorReentrancyMode`列舉：</span><span class="sxs-lookup"><span data-stu-id="1f49f-108">There are two options available for actor reentrancy defined in hello `ActorReentrancyMode` enum:</span></span>
 
-* <span data-ttu-id="f5537-109">`LogicalCallContext` (預設行為)</span><span class="sxs-lookup"><span data-stu-id="f5537-109">`LogicalCallContext` (default behavior)</span></span>
-* <span data-ttu-id="f5537-110">`Disallowed` - 停用重新進入</span><span class="sxs-lookup"><span data-stu-id="f5537-110">`Disallowed` - disables reentrancy</span></span>
+* <span data-ttu-id="1f49f-109">`LogicalCallContext` (預設行為)</span><span class="sxs-lookup"><span data-stu-id="1f49f-109">`LogicalCallContext` (default behavior)</span></span>
+* <span data-ttu-id="1f49f-110">`Disallowed` - 停用重新進入</span><span class="sxs-lookup"><span data-stu-id="1f49f-110">`Disallowed` - disables reentrancy</span></span>
 
 ```csharp
 public enum ActorReentrancyMode
@@ -42,9 +42,9 @@ public enum ActorReentrancyMode
     Disallowed(2)
 }
 ```
-<span data-ttu-id="f5537-111">可在註冊期間在 `ActorService`的設定中設定重新進入。</span><span class="sxs-lookup"><span data-stu-id="f5537-111">Reentrancy can be configured in an `ActorService`'s settings during registration.</span></span> <span data-ttu-id="f5537-112">此設定適用於動作項目服務中建立的所有動作項目執行個體。</span><span class="sxs-lookup"><span data-stu-id="f5537-112">The setting applies to all actor instances created in the actor service.</span></span>
+<span data-ttu-id="1f49f-111">可在註冊期間在 `ActorService`的設定中設定重新進入。</span><span class="sxs-lookup"><span data-stu-id="1f49f-111">Reentrancy can be configured in an `ActorService`'s settings during registration.</span></span> <span data-ttu-id="1f49f-112">hello 設定適用於 tooall hello 行動服務中建立的動作項目執行個體。</span><span class="sxs-lookup"><span data-stu-id="1f49f-112">hello setting applies tooall actor instances created in hello actor service.</span></span>
 
-<span data-ttu-id="f5537-113">下列範例會示範動作項目服務如何將重新進入模式設定為 `ActorReentrancyMode.Disallowed`。</span><span class="sxs-lookup"><span data-stu-id="f5537-113">The following example shows an actor service that sets the reentrancy mode to `ActorReentrancyMode.Disallowed`.</span></span> <span data-ttu-id="f5537-114">在此情況下，如果動作項目傳送可重新進入的訊息給另一個動作項目類型，就會擲回 `FabricException` 類型的例外狀況。</span><span class="sxs-lookup"><span data-stu-id="f5537-114">In this case, if an actor sends a reentrant message to another actor, an exception of type `FabricException` will be thrown.</span></span>
+<span data-ttu-id="1f49f-113">hello 下列範例示範設定 hello 重新進入模式太 actor 服務`ActorReentrancyMode.Disallowed`。</span><span class="sxs-lookup"><span data-stu-id="1f49f-113">hello following example shows an actor service that sets hello reentrancy mode too`ActorReentrancyMode.Disallowed`.</span></span> <span data-ttu-id="1f49f-114">在此情況下，如果執行者會傳送可重新進入的訊息 tooanother 執行者，類型的例外狀況`FabricException`就會擲回。</span><span class="sxs-lookup"><span data-stu-id="1f49f-114">In this case, if an actor sends a reentrant message tooanother actor, an exception of type `FabricException` will be thrown.</span></span>
 
 ```csharp
 static class Program
@@ -109,5 +109,5 @@ static class Program
 ```
 
 
-## <a name="next-steps"></a><span data-ttu-id="f5537-115">後續步驟</span><span class="sxs-lookup"><span data-stu-id="f5537-115">Next steps</span></span>
-* <span data-ttu-id="f5537-116">參閱[動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)來深入了解重新進入</span><span class="sxs-lookup"><span data-stu-id="f5537-116">Learn more about reentrancy in the [Actor API reference documentation](https://msdn.microsoft.com/library/azure/dn971626.aspx)</span></span>
+## <a name="next-steps"></a><span data-ttu-id="1f49f-115">後續步驟</span><span class="sxs-lookup"><span data-stu-id="1f49f-115">Next steps</span></span>
+* <span data-ttu-id="1f49f-116">深入了解 hello 中的重新進入[執行者 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)</span><span class="sxs-lookup"><span data-stu-id="1f49f-116">Learn more about reentrancy in hello [Actor API reference documentation](https://msdn.microsoft.com/library/azure/dn971626.aspx)</span></span>

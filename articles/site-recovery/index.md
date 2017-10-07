@@ -1,6 +1,6 @@
 ---
-title: "Azure Site Recovery 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何藉由部署和管理複寫，設定實體伺服器和虛擬機器的雲端災害復原和商務持續性。"
+title: "aaaAzure Site Recovery 文件-教學課程中，API 參考 |Microsoft 文件"
+description: "深入了解如何 tooset 向上雲端災害復原和商務持續性的實體伺服器和虛擬機器的部署和管理複寫。"
 services: site-recovery
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 06/05/2017
 ms.author: carolz
-ms.openlocfilehash: ef7a25de4536cfd54331e1bce7d22f351768585c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 08c295488f2e9058922a495ffac24ee96f33fbda
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="site-recovery-documentation"></a>Site Recovery 文件
 
-了解如何使用 Site Recovery 提供業務續航力及災害復原策略，以便在停機期間也能讓應用程式持續運作並提供工作負載。 教學課和及其他文章會說明如何規劃、部署及管理複寫、容錯移轉、內部部署機器復原以及 Azure VM。
+深入了解如何 toouse Site Recovery toocontribute tooyour 業務續航力和災難復原策略，tookeep 應用程式和工作負載期間的停機時間提供。 教學課程和其他文件會顯示如何 tooplan，部署和管理 hello 複寫、 容錯移轉和復原的內部部署機器和 Azure Vm。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>開始將 Hyper-V VM 複寫至 Azure (不透過 VMM)</h3>
+                        <h3>開始使用 HYPER-V Vm tooAzure （無 VMM) 的複寫</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>開始將 VMM 雲端中的 Hyper-V VM 複寫至 Azure</h3>
+                        <h3>開始使用 HYPER-V Vm 的 VMM 雲端 tooAzure 中的複寫</h3>
                     </div>
                 </div>
             </div>

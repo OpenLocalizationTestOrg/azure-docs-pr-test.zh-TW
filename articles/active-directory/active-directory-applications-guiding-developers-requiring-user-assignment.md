@@ -1,6 +1,6 @@
 ---
-title: "要求使用者指派 - Azure AD | Microsoft Docs'"
-description: "如何要求 Azure 應用程式的使用者指派。"
+title: "aaaRequire 使用者指派 Azure AD |Microsoft 文件 '"
+description: "如何將使用者指派 toorequire Azure 應用程式。"
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 05/16/2017
 ms.author: kgremban
 robots: noindex
-ms.openlocfilehash: 079b806c041a4a21e9350342867aee581c57bf45
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b72037cb2321fe03a8ecbbefb568029ce903a126
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-and-applications-require-user-assignment"></a><span data-ttu-id="a6509-103">Azure AD 和應用程式：要求使用者指派</span><span class="sxs-lookup"><span data-stu-id="a6509-103">Azure AD and applications: Require user assignment</span></span>
-## <a name="requiring-user-assignment"></a><span data-ttu-id="a6509-104">要求使用者指派</span><span class="sxs-lookup"><span data-stu-id="a6509-104">Requiring User Assignment</span></span>
-1. <span data-ttu-id="a6509-105">使用系統管理員帳戶登入 Azure 入口網站。</span><span class="sxs-lookup"><span data-stu-id="a6509-105">Log in to the Azure portal with an administrator account.</span></span>
-2. <span data-ttu-id="a6509-106">在主功能表中按一下 [ **所有項目** ] 項目。</span><span class="sxs-lookup"><span data-stu-id="a6509-106">Click on the **All Items** item in the main menu.</span></span>
-3. <span data-ttu-id="a6509-107">選擇您要為應用程式使用的目錄。</span><span class="sxs-lookup"><span data-stu-id="a6509-107">Choose the directory you are using for the application.</span></span>
-4. <span data-ttu-id="a6509-108">按一下 [ **應用程式** ] 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="a6509-108">Click on the **APPLICATIONS** tab.</span></span>
-5. <span data-ttu-id="a6509-109">從與此目錄相關聯的應用程式清單中選取應用程式。</span><span class="sxs-lookup"><span data-stu-id="a6509-109">Select the application from the list of applications associated with this directory.</span></span>
-6. <span data-ttu-id="a6509-110">按一下 [設定]  索引標籤。</span><span class="sxs-lookup"><span data-stu-id="a6509-110">Click the **CONFIGURE** tab.</span></span>
-7. <span data-ttu-id="a6509-111">將 [ **需要使用者指派才能存取應用程式** ] 切換成 [是]。</span><span class="sxs-lookup"><span data-stu-id="a6509-111">Change the **User Assignment Required to Access App** toggle to Yes.</span></span>
-8. <span data-ttu-id="a6509-112">按一下畫面底部的 [ **儲存** ] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="a6509-112">Click the **Save** button at the bottom of the screen.</span></span>
+# <a name="azure-ad-and-applications-require-user-assignment"></a><span data-ttu-id="a9b8a-103">Azure AD 和應用程式：要求使用者指派</span><span class="sxs-lookup"><span data-stu-id="a9b8a-103">Azure AD and applications: Require user assignment</span></span>
+## <a name="requiring-user-assignment"></a><span data-ttu-id="a9b8a-104">要求使用者指派</span><span class="sxs-lookup"><span data-stu-id="a9b8a-104">Requiring User Assignment</span></span>
+1. <span data-ttu-id="a9b8a-105">登入 toohello Azure 入口網站以系統管理員帳戶。</span><span class="sxs-lookup"><span data-stu-id="a9b8a-105">Log in toohello Azure portal with an administrator account.</span></span>
+2. <span data-ttu-id="a9b8a-106">按一下 hello**所有項目**hello 主功能表中的項目。</span><span class="sxs-lookup"><span data-stu-id="a9b8a-106">Click on hello **All Items** item in hello main menu.</span></span>
+3. <span data-ttu-id="a9b8a-107">選擇您要用於 hello 應用程式的 hello 目錄。</span><span class="sxs-lookup"><span data-stu-id="a9b8a-107">Choose hello directory you are using for hello application.</span></span>
+4. <span data-ttu-id="a9b8a-108">按一下 hello**應用程式** 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="a9b8a-108">Click on hello **APPLICATIONS** tab.</span></span>
+5. <span data-ttu-id="a9b8a-109">從 hello 這個目錄相關聯的應用程式清單中選取 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="a9b8a-109">Select hello application from hello list of applications associated with this directory.</span></span>
+6. <span data-ttu-id="a9b8a-110">按一下 hello**設定** 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="a9b8a-110">Click hello **CONFIGURE** tab.</span></span>
+7. <span data-ttu-id="a9b8a-111">變更 hello**需要使用者指派 tooAccess 應用程式**切換 tooYes。</span><span class="sxs-lookup"><span data-stu-id="a9b8a-111">Change hello **User Assignment Required tooAccess App** toggle tooYes.</span></span>
+8. <span data-ttu-id="a9b8a-112">按一下 hello**儲存**在 hello 囉 」 畫面底部的按鈕。</span><span class="sxs-lookup"><span data-stu-id="a9b8a-112">Click hello **Save** button at hello bottom of hello screen.</span></span>
 
-<span data-ttu-id="a6509-113">現在您需要將使用者及/或群組指派給應用程式。</span><span class="sxs-lookup"><span data-stu-id="a6509-113">You will now have to assign users and/or groups to the application.</span></span> <span data-ttu-id="a6509-114">請參閱[將使用者指派給應用程式](active-directory-applications-guiding-developers-assigning-users.md)和[將群組指派給應用程式](active-directory-applications-guiding-developers-assigning-groups.md)。</span><span class="sxs-lookup"><span data-stu-id="a6509-114">See [Assigning users to an application](active-directory-applications-guiding-developers-assigning-users.md) and [Assigning groups to an application](active-directory-applications-guiding-developers-assigning-groups.md).</span></span>
+<span data-ttu-id="a9b8a-113">您現在會有 tooassign 使用者和/或群組 toohello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="a9b8a-113">You will now have tooassign users and/or groups toohello application.</span></span> <span data-ttu-id="a9b8a-114">請參閱[tooan 應用程式指派給使用者](active-directory-applications-guiding-developers-assigning-users.md)和[tooan 應用程式將群組指派](active-directory-applications-guiding-developers-assigning-groups.md)。</span><span class="sxs-lookup"><span data-stu-id="a9b8a-114">See [Assigning users tooan application](active-directory-applications-guiding-developers-assigning-users.md) and [Assigning groups tooan application](active-directory-applications-guiding-developers-assigning-groups.md).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="a6509-115">後續步驟</span><span class="sxs-lookup"><span data-stu-id="a6509-115">Next Steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a9b8a-115">後續步驟</span><span class="sxs-lookup"><span data-stu-id="a9b8a-115">Next Steps</span></span>
 [!INCLUDE [active-directory-applications-guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]

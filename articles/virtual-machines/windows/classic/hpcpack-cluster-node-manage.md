@@ -1,6 +1,6 @@
 ---
-title: "管理 HPC Pack 叢集計算節點 |Microsoft Docs"
-description: "了解可在 Azure 中新增、移除、啟動和停止 HPC Pack 2012 R2 叢集計算節點的 PowerShell 指令碼工具"
+title: "aaaManage HPC Pack 叢集計算節點 |Microsoft 文件"
+description: "深入了解 PowerShell 指令碼工具 tooadd、 移除、 啟動，以及停止在 Azure 中的 HPC Pack 2012 R2 叢集計算節點"
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -15,63 +15,63 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: big-compute
 ms.date: 12/29/2016
 ms.author: danlep
-ms.openlocfilehash: dc9f354191b9e80ff6a01bd401a874c6998bda79
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5ac1142cc5da984020779434fbb7cba5ad7c14bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-the-number-and-availability-of-compute-nodes-in-an-hpc-pack-cluster-in-azure"></a><span data-ttu-id="c1ba3-103">在 Azure 的 HPC Pack 叢集中管理計算節點的數目和可用性</span><span class="sxs-lookup"><span data-stu-id="c1ba3-103">Manage the number and availability of compute nodes in an HPC Pack cluster in Azure</span></span>
-<span data-ttu-id="c1ba3-104">如果您已在 Azure VM 中建立 HPC Pack 2012 R2 叢集，您可能會需要可輕易地在叢集中新增、移除、啟動 (佈建) 或停止 (解除佈建) 一些計算節點 VM 的方法。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-104">If you created an HPC Pack 2012 R2 cluster in Azure VMs, you might want ways to easily add, remove, start (provision), or stop (deprovision) some compute node VMs in the cluster.</span></span> <span data-ttu-id="c1ba3-105">若要執行這些工作，請執行安裝在前端節點 VM 上的 Azure PowerShell 指令碼。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-105">To do these tasks, run Azure PowerShell scripts that are installed on the head node VM.</span></span> <span data-ttu-id="c1ba3-106">這些指令碼可協助您控制 HPC Pack 叢集資源的數目和可用性，讓您得以控制成本。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-106">These scripts help you control the number and availability of your HPC Pack cluster resources so you can control costs.</span></span>
+# <a name="manage-hello-number-and-availability-of-compute-nodes-in-an-hpc-pack-cluster-in-azure"></a><span data-ttu-id="5b530-103">管理 hello 數目和計算節點，在 Azure 中部署 HPC Pack 叢集中的可用性</span><span class="sxs-lookup"><span data-stu-id="5b530-103">Manage hello number and availability of compute nodes in an HPC Pack cluster in Azure</span></span>
+<span data-ttu-id="5b530-104">如果您在 Azure Vm 中建立的 HPC Pack 2012 R2 叢集，您可能想 tooeasily 新增、 移除、 啟動 （佈建），或一些停止 （解除佈建） 的方式計算節點 Vm，叢集中。</span><span class="sxs-lookup"><span data-stu-id="5b530-104">If you created an HPC Pack 2012 R2 cluster in Azure VMs, you might want ways tooeasily add, remove, start (provision), or stop (deprovision) some compute node VMs in the cluster.</span></span> <span data-ttu-id="5b530-105">toodo 這些工作，執行 hello 前端節點 VM 上安裝 Azure PowerShell 指令碼。</span><span class="sxs-lookup"><span data-stu-id="5b530-105">toodo these tasks, run Azure PowerShell scripts that are installed on hello head node VM.</span></span> <span data-ttu-id="5b530-106">這些指令碼可協助您控制 hello 數目和 HPC Pack 叢集資源的可用性，您可以控制成本。</span><span class="sxs-lookup"><span data-stu-id="5b530-106">These scripts help you control hello number and availability of your HPC Pack cluster resources so you can control costs.</span></span>
 
 > [!IMPORTANT] 
-> <span data-ttu-id="c1ba3-107">本文適用於 Azure 中使用傳統部署模型建立的 HPC Pack 2012 R2 叢集。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-107">This article applies only to HPC Pack 2012 R2 clusters in Azure created using the classic deployment model.</span></span> <span data-ttu-id="c1ba3-108">Microsoft 建議讓大部分的新部署使用資源管理員模式。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-108">Microsoft recommends that most new deployments use the Resource Manager model.</span></span>
-> <span data-ttu-id="c1ba3-109">此外，本文中所述的 PowerShell 指令碼不適用於 HPC Pack 2016。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-109">In addition, the PowerShell scripts described in this article are not available in HPC Pack 2016.</span></span>
+> <span data-ttu-id="5b530-107">本文適用於僅 tooHPC Pack 2012 R2 中的叢集使用 hello 傳統部署模型所建立的 Azure。</span><span class="sxs-lookup"><span data-stu-id="5b530-107">This article applies only tooHPC Pack 2012 R2 clusters in Azure created using hello classic deployment model.</span></span> <span data-ttu-id="5b530-108">Microsoft 建議最新的部署使用 hello 資源管理員的模型。</span><span class="sxs-lookup"><span data-stu-id="5b530-108">Microsoft recommends that most new deployments use hello Resource Manager model.</span></span>
+> <span data-ttu-id="5b530-109">此外，本文中所述的 hello PowerShell 指令碼中沒有 HPC Pack 2016。</span><span class="sxs-lookup"><span data-stu-id="5b530-109">In addition, hello PowerShell scripts described in this article are not available in HPC Pack 2016.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="c1ba3-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="c1ba3-110">Prerequisites</span></span>
-* <span data-ttu-id="c1ba3-111">**Azure VM 中的 HPC Pack 2012 R2 叢集**：在傳統部署模型中建立 HPC Pack 2012 R2 叢集。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-111">**HPC Pack 2012 R2 cluster in Azure VMs**: Create an HPC Pack 2012 R2 cluster in the classic deployment model.</span></span> <span data-ttu-id="c1ba3-112">例如，您可以使用 Azure Marketplace 中的 HPC Pack 2012 R2 VM 映像和 Azure PowerShell 指令碼，將部署自動化。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-112">For example, you can automate the deployment by using the HPC Pack 2012 R2 VM image in the Azure Marketplace and an Azure PowerShell script.</span></span> <span data-ttu-id="c1ba3-113">如需相關資訊和必要條件，請參閱[使用 HPC Pack IaaS 部署指令碼建立 HPC 叢集](hpcpack-cluster-powershell-script.md)。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-113">For information and prerequisites, see [Create an HPC Cluster with the HPC Pack IaaS deployment script](hpcpack-cluster-powershell-script.md).</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="5b530-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="5b530-110">Prerequisites</span></span>
+* <span data-ttu-id="5b530-111">**在 Azure Vm 中的 HPC Pack 2012 R2 叢集**: hello 傳統部署模型中建立與 HPC Pack 2012 R2 的叢集。</span><span class="sxs-lookup"><span data-stu-id="5b530-111">**HPC Pack 2012 R2 cluster in Azure VMs**: Create an HPC Pack 2012 R2 cluster in hello classic deployment model.</span></span> <span data-ttu-id="5b530-112">例如，您可以使用 hello hello Azure Marketplace 中的 HPC Pack 2012 R2 VM 映像和 Azure PowerShell 指令碼自動化 hello 部署。</span><span class="sxs-lookup"><span data-stu-id="5b530-112">For example, you can automate hello deployment by using hello HPC Pack 2012 R2 VM image in hello Azure Marketplace and an Azure PowerShell script.</span></span> <span data-ttu-id="5b530-113">資訊和必要條件，請參閱[以 hello HPC Pack IaaS 部署指令碼建立 HPC 叢集](hpcpack-cluster-powershell-script.md)。</span><span class="sxs-lookup"><span data-stu-id="5b530-113">For information and prerequisites, see [Create an HPC Cluster with hello HPC Pack IaaS deployment script](hpcpack-cluster-powershell-script.md).</span></span>
   
-    <span data-ttu-id="c1ba3-114">部署之後，會在前端節點的 %CCP\_HOME%bin 資料夾中發現節點管理指令碼。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-114">After deployment, find the node management scripts in the %CCP\_HOME%bin folder on the head node.</span></span> <span data-ttu-id="c1ba3-115">以系統管理員身分執行每個指令碼。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-115">Run each of the scripts as an administrator.</span></span>
-* <span data-ttu-id="c1ba3-116">**Azure 發佈設定檔或管理憑證**：您必須前端節點上執行下列其中一項：</span><span class="sxs-lookup"><span data-stu-id="c1ba3-116">**Azure publish settings file or management certificate**: You need to do one of the following on the head node:</span></span>
+    <span data-ttu-id="5b530-114">部署之後，hello 節點管理指令碼中尋找 hello %ccp\_hello 前端節點上的主目錄 %bin 資料夾。</span><span class="sxs-lookup"><span data-stu-id="5b530-114">After deployment, find hello node management scripts in hello %CCP\_HOME%bin folder on hello head node.</span></span> <span data-ttu-id="5b530-115">系統管理員身分執行每個 hello 指令碼。</span><span class="sxs-lookup"><span data-stu-id="5b530-115">Run each of hello scripts as an administrator.</span></span>
+* <span data-ttu-id="5b530-116">**Azure 發行設定檔案或管理憑證**： 需要 hello 前端節點上的 toodo hello 下列其中一種：</span><span class="sxs-lookup"><span data-stu-id="5b530-116">**Azure publish settings file or management certificate**: You need toodo one of hello following on hello head node:</span></span>
   
-  * <span data-ttu-id="c1ba3-117">**匯入 Azure 發佈設定檔**。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-117">**Import the Azure publish settings file**.</span></span> <span data-ttu-id="c1ba3-118">若要這麼做，請在前端節點上執行下列 Azure PowerShell Cmdlet：</span><span class="sxs-lookup"><span data-stu-id="c1ba3-118">To do this, run the following Azure PowerShell cmdlets on the head node:</span></span>
+  * <span data-ttu-id="5b530-117">**匯入 hello Azure 發行設定檔**。</span><span class="sxs-lookup"><span data-stu-id="5b530-117">**Import hello Azure publish settings file**.</span></span> <span data-ttu-id="5b530-118">toodo 下列 Azure PowerShell cmdlet hello 前端節點上，執行的 hello:</span><span class="sxs-lookup"><span data-stu-id="5b530-118">toodo this, run hello following Azure PowerShell cmdlets on hello head node:</span></span>
     
     ```PowerShell
     Get-AzurePublishSettingsFile
     
     Import-AzurePublishSettingsFile –PublishSettingsFile <publish settings file>
     ```
-  * <span data-ttu-id="c1ba3-119">**前端節點上設定 Azure 管理憑證**。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-119">**Configure the Azure management certificate on the head node**.</span></span> <span data-ttu-id="c1ba3-120">如果您有 .cer 檔案，請在 CurrentUser\My certificate store 中將其匯入，並為您的 Azure 環境 (AzureCloud 或 AzureChinaCloud) 執行下列 Azure PowerShell Cmdlet：</span><span class="sxs-lookup"><span data-stu-id="c1ba3-120">If you have the .cer file, import it in the CurrentUser\My certificate store and then run the following Azure PowerShell cmdlet for your Azure environment (either AzureCloud or AzureChinaCloud):</span></span>
+  * <span data-ttu-id="5b530-119">**Hello 前端節點上設定 hello Azure 管理憑證**。</span><span class="sxs-lookup"><span data-stu-id="5b530-119">**Configure hello Azure management certificate on hello head node**.</span></span> <span data-ttu-id="5b530-120">如果您擁有 hello.cer 檔案，它匯入 hello CurrentUser\My 憑證存放區，然後再執行下列 Azure PowerShell cmdlet （AzureCloud 或 AzureChinaCloud） 您 Azure 環境的 hello:</span><span class="sxs-lookup"><span data-stu-id="5b530-120">If you have hello .cer file, import it in hello CurrentUser\My certificate store and then run hello following Azure PowerShell cmdlet for your Azure environment (either AzureCloud or AzureChinaCloud):</span></span>
     
     ```PowerShell
     Set-AzureSubscription -SubscriptionName <Sub Name> -SubscriptionId <Sub ID> -Certificate (Get-Item Cert:\CurrentUser\My\<Cert Thrumbprint>) -Environment <AzureCloud | AzureChinaCloud>
     ```
 
-## <a name="add-compute-node-vms"></a><span data-ttu-id="c1ba3-121">新增計算節點 VM</span><span class="sxs-lookup"><span data-stu-id="c1ba3-121">Add compute node VMs</span></span>
-<span data-ttu-id="c1ba3-122">使用 **Add-HpcIaaSNode.ps1** 指令碼新增計算節點。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-122">Add compute nodes with the **Add-HpcIaaSNode.ps1** script.</span></span>
+## <a name="add-compute-node-vms"></a><span data-ttu-id="5b530-121">新增計算節點 VM</span><span class="sxs-lookup"><span data-stu-id="5b530-121">Add compute node VMs</span></span>
+<span data-ttu-id="5b530-122">加入計算節點以 hello **Add-hpciaasnode.ps1**指令碼。</span><span class="sxs-lookup"><span data-stu-id="5b530-122">Add compute nodes with hello **Add-HpcIaaSNode.ps1** script.</span></span>
 
-### <a name="syntax"></a><span data-ttu-id="c1ba3-123">語法</span><span class="sxs-lookup"><span data-stu-id="c1ba3-123">Syntax</span></span>
+### <a name="syntax"></a><span data-ttu-id="5b530-123">語法</span><span class="sxs-lookup"><span data-stu-id="5b530-123">Syntax</span></span>
 ```PowerShell
 Add-HPCIaaSNode.ps1 [-ServiceName] <String> [-ImageName] <String>
  [-Quantity] <Int32> [-InstanceSize] <String> [-DomainUserName] <String> [[-DomainUserPassword] <String>]
  [[-NodeNameSeries] <String>] [<CommonParameters>]
 
 ```
-### <a name="parameters"></a><span data-ttu-id="c1ba3-124">參數</span><span class="sxs-lookup"><span data-stu-id="c1ba3-124">Parameters</span></span>
-* <span data-ttu-id="c1ba3-125">**ServiceName**：會新增計算節點 VM 之雲端服務的名稱。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-125">**ServiceName**: Name of the cloud service that new compute node VMs are added to.</span></span>
-* <span data-ttu-id="c1ba3-126">**ImageName**：Azure VM 映像名稱，透過 Azure 傳統入口網站或 Azure PowerShell Cmdlet **Get-AzureVMImage** 可以取得此名稱。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-126">**ImageName**: Azure VM image name, which can be obtained through the Azure classic portal or Azure PowerShell cmdlet **Get-AzureVMImage**.</span></span> <span data-ttu-id="c1ba3-127">這些映像必須符合下列需求：</span><span class="sxs-lookup"><span data-stu-id="c1ba3-127">The image must meet the following requirements:</span></span>
+### <a name="parameters"></a><span data-ttu-id="5b530-124">參數</span><span class="sxs-lookup"><span data-stu-id="5b530-124">Parameters</span></span>
+* <span data-ttu-id="5b530-125">**ServiceName**: hello 新增計算節點 Vm 的雲端服務名稱加入。</span><span class="sxs-lookup"><span data-stu-id="5b530-125">**ServiceName**: Name of hello cloud service that new compute node VMs are added to.</span></span>
+* <span data-ttu-id="5b530-126">**ImageName**: Azure VM 映像名稱，可透過 hello Azure 傳統入口網站或 Azure PowerShell cmdlet 取得**Get-azurevmimage**。</span><span class="sxs-lookup"><span data-stu-id="5b530-126">**ImageName**: Azure VM image name, which can be obtained through hello Azure classic portal or Azure PowerShell cmdlet **Get-AzureVMImage**.</span></span> <span data-ttu-id="5b530-127">hello 映像必須符合下列需求的 hello:</span><span class="sxs-lookup"><span data-stu-id="5b530-127">hello image must meet hello following requirements:</span></span>
   
-  1. <span data-ttu-id="c1ba3-128">必須安裝 Windows 作業系統。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-128">A Windows operating system must be installed.</span></span>
-  2. <span data-ttu-id="c1ba3-129">必須在計算節點角色中安裝 HPC Pack。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-129">HPC Pack must be installed in the compute node role.</span></span>
-  3. <span data-ttu-id="c1ba3-130">映像必須是使用者類別中的私人映像，而不是公用 Azure VM 映像。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-130">The image must be a private image in the User category, not a public Azure VM image.</span></span>
-* <span data-ttu-id="c1ba3-131">**Quantity**：要新增的計算節點 VM 數目。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-131">**Quantity**: Number of compute node VMs to be added.</span></span>
-* <span data-ttu-id="c1ba3-132">**InstanceSize**：計算節點 VM 的大小。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-132">**InstanceSize**: Size of the compute node VMs.</span></span>
-* <span data-ttu-id="c1ba3-133">**DomainUserName**：網域使用者名稱，用來將新的 VM 加入網域中。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-133">**DomainUserName**: Domain user name, which is used to join the new VMs to the domain.</span></span>
-* <span data-ttu-id="c1ba3-134">**DomainUserPassword**：網域使用者的密碼。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-134">**DomainUserPassword**: Password of the domain user.</span></span>
-* <span data-ttu-id="c1ba3-135">**NodeNameSeries** (選用)：計算節點的命名模式。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-135">**NodeNameSeries** (optional): Naming pattern for the compute nodes.</span></span> <span data-ttu-id="c1ba3-136">格式必須為 &lt;*Root\_Name*&gt;&lt;*Start\_Number*&gt;%。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-136">The format must be &lt;*Root\_Name*&gt;&lt;*Start\_Number*&gt;%.</span></span> <span data-ttu-id="c1ba3-137">例如，MyCN%10% 表示從 MyCN11 開始的一系列計算節點名稱。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-137">For example, MyCN%10% means a series of the compute node names starting from MyCN11.</span></span> <span data-ttu-id="c1ba3-138">如果未指定，指令碼會使用 HPC 叢集中已設定的節點命名序列。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-138">If not specified, the script uses the configured node naming series in the HPC cluster.</span></span>
+  1. <span data-ttu-id="5b530-128">必須安裝 Windows 作業系統。</span><span class="sxs-lookup"><span data-stu-id="5b530-128">A Windows operating system must be installed.</span></span>
+  2. <span data-ttu-id="5b530-129">必須安裝 HPC Pack 在 hello 運算節點角色。</span><span class="sxs-lookup"><span data-stu-id="5b530-129">HPC Pack must be installed in hello compute node role.</span></span>
+  3. <span data-ttu-id="5b530-130">hello 映像必須是 hello 使用者分類，不是公用 Azure VM 映像中的私人映像。</span><span class="sxs-lookup"><span data-stu-id="5b530-130">hello image must be a private image in hello User category, not a public Azure VM image.</span></span>
+* <span data-ttu-id="5b530-131">**數量**： 加入計算節點 Vm toobe 數目。</span><span class="sxs-lookup"><span data-stu-id="5b530-131">**Quantity**: Number of compute node VMs toobe added.</span></span>
+* <span data-ttu-id="5b530-132">**InstanceSize**: hello 的大小計算節點 Vm。</span><span class="sxs-lookup"><span data-stu-id="5b530-132">**InstanceSize**: Size of hello compute node VMs.</span></span>
+* <span data-ttu-id="5b530-133">**DomainUserName**： 網域使用者名稱，也就是使用的 toojoin hello 新 Vm toohello 網域。</span><span class="sxs-lookup"><span data-stu-id="5b530-133">**DomainUserName**: Domain user name, which is used toojoin hello new VMs toohello domain.</span></span>
+* <span data-ttu-id="5b530-134">**DomainUserPassword**: hello 網域使用者的密碼。</span><span class="sxs-lookup"><span data-stu-id="5b530-134">**DomainUserPassword**: Password of hello domain user.</span></span>
+* <span data-ttu-id="5b530-135">**NodeNameSeries** （選擇性）： hello 的計算節點命名模式。</span><span class="sxs-lookup"><span data-stu-id="5b530-135">**NodeNameSeries** (optional): Naming pattern for hello compute nodes.</span></span> <span data-ttu-id="5b530-136">hello 格式必須為&lt;*根\_名稱*&gt;&lt;*啟動\_數目*&gt;%。</span><span class="sxs-lookup"><span data-stu-id="5b530-136">hello format must be &lt;*Root\_Name*&gt;&lt;*Start\_Number*&gt;%.</span></span> <span data-ttu-id="5b530-137">例如，MyCN %10%表示一系列的 hello 計算從 MyCN11 開始的節點名稱。</span><span class="sxs-lookup"><span data-stu-id="5b530-137">For example, MyCN%10% means a series of hello compute node names starting from MyCN11.</span></span> <span data-ttu-id="5b530-138">如果未指定，則 hello 指令碼會使用 hello 設定 hello HPC 叢集中節點命名序列。</span><span class="sxs-lookup"><span data-stu-id="5b530-138">If not specified, hello script uses hello configured node naming series in hello HPC cluster.</span></span>
 
-### <a name="example"></a><span data-ttu-id="c1ba3-139">範例</span><span class="sxs-lookup"><span data-stu-id="c1ba3-139">Example</span></span>
-<span data-ttu-id="c1ba3-140">下列範例會根據 VM 映像 *hpccnimage1*，在雲端服務 *hpcservice1* 中新增 20 個大型計算節點 VM。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-140">The following example adds 20 size Large compute node VMs in the cloud service *hpcservice1*, based on the VM image *hpccnimage1*.</span></span>
+### <a name="example"></a><span data-ttu-id="5b530-139">範例</span><span class="sxs-lookup"><span data-stu-id="5b530-139">Example</span></span>
+<span data-ttu-id="5b530-140">hello 下列範例會將 20 大型運算節點 Vm hello 雲端服務中*hpcservice1 中新增*根據 hello VM 映像， *hpccnimage1*。</span><span class="sxs-lookup"><span data-stu-id="5b530-140">hello following example adds 20 size Large compute node VMs in hello cloud service *hpcservice1*, based on hello VM image *hpccnimage1*.</span></span>
 
 ```PowerShell
 Add-HPCIaaSNode.ps1 –ServiceName hpcservice1 –ImageName hpccniamge1
@@ -80,73 +80,73 @@ Add-HPCIaaSNode.ps1 –ServiceName hpcservice1 –ImageName hpccniamge1
 ```
 
 
-## <a name="remove-compute-node-vms"></a><span data-ttu-id="c1ba3-141">移除計算節點 VM</span><span class="sxs-lookup"><span data-stu-id="c1ba3-141">Remove compute node VMs</span></span>
-<span data-ttu-id="c1ba3-142">使用 **Remove-HpcIaaSNode.ps1** 指令碼移除計算節點。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-142">Remove compute nodes with the **Remove-HpcIaaSNode.ps1** script.</span></span>
+## <a name="remove-compute-node-vms"></a><span data-ttu-id="5b530-141">移除計算節點 VM</span><span class="sxs-lookup"><span data-stu-id="5b530-141">Remove compute node VMs</span></span>
+<span data-ttu-id="5b530-142">移除計算節點以 hello **Remove-hpciaasnode.ps1**指令碼。</span><span class="sxs-lookup"><span data-stu-id="5b530-142">Remove compute nodes with hello **Remove-HpcIaaSNode.ps1** script.</span></span>
 
-### <a name="syntax"></a><span data-ttu-id="c1ba3-143">語法</span><span class="sxs-lookup"><span data-stu-id="c1ba3-143">Syntax</span></span>
+### <a name="syntax"></a><span data-ttu-id="5b530-143">語法</span><span class="sxs-lookup"><span data-stu-id="5b530-143">Syntax</span></span>
 ```PowerShell
 Remove-HPCIaaSNode.ps1 -Name <String[]> [-DeleteVHD] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 
 Remove-HPCIaaSNode.ps1 -Node <Object> [-DeleteVHD] [-Force] [-Confirm] [<CommonParameters>]
 ```
 
-### <a name="parameters"></a><span data-ttu-id="c1ba3-144">參數</span><span class="sxs-lookup"><span data-stu-id="c1ba3-144">Parameters</span></span>
-* <span data-ttu-id="c1ba3-145">**Name**：要移除之叢集節點的名稱。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-145">**Name**: Names of cluster nodes to be removed.</span></span> <span data-ttu-id="c1ba3-146">支援萬用字元。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-146">Wildcards are supported.</span></span> <span data-ttu-id="c1ba3-147">參數集名稱是 Name。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-147">The parameter set name is Name.</span></span> <span data-ttu-id="c1ba3-148">您無法同時指定 **Name** 和 **Node** 參數。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-148">You can't specify both the **Name** and **Node** parameters.</span></span>
-* <span data-ttu-id="c1ba3-149">**Node**：要移除之節點的 HpcNode 物件，可透過 HPC PowerShell Cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx)取得。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-149">**Node**: The HpcNode object for the nodes to be removed, which can be obtained through the HPC PowerShell cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx).</span></span> <span data-ttu-id="c1ba3-150">參數集名稱是 Node。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-150">The parameter set name is Node.</span></span> <span data-ttu-id="c1ba3-151">您無法同時指定 **Name** 和 **Node** 參數。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-151">You can't specify both the **Name** and **Node** parameters.</span></span>
-* <span data-ttu-id="c1ba3-152">**DeleteVHD** (選擇性)：針對已移除的 VM 進行相關磁碟的刪除時所使用的設定。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-152">**DeleteVHD** (optional): Setting to delete the associated disks for the VMs that are removed.</span></span>
-* <span data-ttu-id="c1ba3-153">**Force** (選擇性)：在移除 HPC 節點前強制使其離線的設定。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-153">**Force** (optional): Setting to force HPC nodes offline before removing them.</span></span>
-* <span data-ttu-id="c1ba3-154">**Confirm** (選擇性)：執行命令前先行確認的提示。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-154">**Confirm** (optional): Prompt for confirmation before executing the command.</span></span>
-* <span data-ttu-id="c1ba3-155">**WhatIf**：用來說明您所執行的命令未實際執行時將會有何狀況的設定。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-155">**WhatIf**: Setting to describe what would happen if you executed the command without actually executing the command.</span></span>
+### <a name="parameters"></a><span data-ttu-id="5b530-144">參數</span><span class="sxs-lookup"><span data-stu-id="5b530-144">Parameters</span></span>
+* <span data-ttu-id="5b530-145">**名稱**： 移除叢集節點 toobe 的名稱。</span><span class="sxs-lookup"><span data-stu-id="5b530-145">**Name**: Names of cluster nodes toobe removed.</span></span> <span data-ttu-id="5b530-146">支援萬用字元。</span><span class="sxs-lookup"><span data-stu-id="5b530-146">Wildcards are supported.</span></span> <span data-ttu-id="5b530-147">hello 參數集名稱為 Name。</span><span class="sxs-lookup"><span data-stu-id="5b530-147">hello parameter set name is Name.</span></span> <span data-ttu-id="5b530-148">您不能指定兩個 hello**名稱**和**節點**參數。</span><span class="sxs-lookup"><span data-stu-id="5b530-148">You can't specify both hello **Name** and **Node** parameters.</span></span>
+* <span data-ttu-id="5b530-149">**節點**: hello HpcNode 物件物件 hello 節點 toobe 移除，可以透過 hello HPC PowerShell cmdlet 取得[Get-hpcnode 取得](https://technet.microsoft.com/library/dn887927.aspx)。</span><span class="sxs-lookup"><span data-stu-id="5b530-149">**Node**: hello HpcNode object for hello nodes toobe removed, which can be obtained through hello HPC PowerShell cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx).</span></span> <span data-ttu-id="5b530-150">hello 參數集名稱為節點。</span><span class="sxs-lookup"><span data-stu-id="5b530-150">hello parameter set name is Node.</span></span> <span data-ttu-id="5b530-151">您不能指定兩個 hello**名稱**和**節點**參數。</span><span class="sxs-lookup"><span data-stu-id="5b530-151">You can't specify both hello **Name** and **Node** parameters.</span></span>
+* <span data-ttu-id="5b530-152">**DeleteVHD** （選擇性）： 設定 toodelete 相關聯的 hello hello 會移除的 Vm 磁碟。</span><span class="sxs-lookup"><span data-stu-id="5b530-152">**DeleteVHD** (optional): Setting toodelete hello associated disks for hello VMs that are removed.</span></span>
+* <span data-ttu-id="5b530-153">**強制**（選擇性）： 移除之前，先設定 tooforce HPC 節點離線。</span><span class="sxs-lookup"><span data-stu-id="5b530-153">**Force** (optional): Setting tooforce HPC nodes offline before removing them.</span></span>
+* <span data-ttu-id="5b530-154">**確認**（選擇性）： hello 命令在執行之前確認提示。</span><span class="sxs-lookup"><span data-stu-id="5b530-154">**Confirm** (optional): Prompt for confirmation before executing hello command.</span></span>
+* <span data-ttu-id="5b530-155">**WhatIf**： 如果您執行 hello 命令，而不實際執行 hello 命令設定 toodescribe 什麼會發生。</span><span class="sxs-lookup"><span data-stu-id="5b530-155">**WhatIf**: Setting toodescribe what would happen if you executed hello command without actually executing hello command.</span></span>
 
-### <a name="example"></a><span data-ttu-id="c1ba3-156">範例</span><span class="sxs-lookup"><span data-stu-id="c1ba3-156">Example</span></span>
-<span data-ttu-id="c1ba3-157">下列範例會使名稱開頭為 *HPCNode-CN-* 的節點強制離線，然後移除節點及其相關聯的磁碟。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-157">The following example forces offline the nodes with names beginning *HPCNode-CN-* and them removes the nodes and their associated disks.</span></span>
+### <a name="example"></a><span data-ttu-id="5b530-156">範例</span><span class="sxs-lookup"><span data-stu-id="5b530-156">Example</span></span>
+<span data-ttu-id="5b530-157">hello 下列範例會強制離線 hello 節點名稱開頭*為 Hpcnode-cn-CN-*並加以移除 hello 節點和其相關聯的磁碟。</span><span class="sxs-lookup"><span data-stu-id="5b530-157">hello following example forces offline hello nodes with names beginning *HPCNode-CN-* and them removes hello nodes and their associated disks.</span></span>
 
 ```PowerShell
 Remove-HPCIaaSNode.ps1 –Name HPCNodeCN-* –DeleteVHD -Force
 ```
 
-## <a name="start-compute-node-vms"></a><span data-ttu-id="c1ba3-158">啟動計算節點 VM</span><span class="sxs-lookup"><span data-stu-id="c1ba3-158">Start compute node VMs</span></span>
-<span data-ttu-id="c1ba3-159">使用 **Start-HpcIaaSNode.ps1** 指令碼啟動計算節點。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-159">Start compute nodes with the **Start-HpcIaaSNode.ps1** script.</span></span>
+## <a name="start-compute-node-vms"></a><span data-ttu-id="5b530-158">啟動計算節點 VM</span><span class="sxs-lookup"><span data-stu-id="5b530-158">Start compute node VMs</span></span>
+<span data-ttu-id="5b530-159">開始計算節點以 hello **Start-hpciaasnode.ps1**指令碼。</span><span class="sxs-lookup"><span data-stu-id="5b530-159">Start compute nodes with hello **Start-HpcIaaSNode.ps1** script.</span></span>
 
-### <a name="syntax"></a><span data-ttu-id="c1ba3-160">語法</span><span class="sxs-lookup"><span data-stu-id="c1ba3-160">Syntax</span></span>
+### <a name="syntax"></a><span data-ttu-id="5b530-160">語法</span><span class="sxs-lookup"><span data-stu-id="5b530-160">Syntax</span></span>
 ```PowerShell
 Start-HPCIaaSNode.ps1 -Name <String[]> [<CommonParameters>]
 
 Start-HPCIaaSNode.ps1 -Node <Object> [<CommonParameters>]
 ```
-### <a name="parameters"></a><span data-ttu-id="c1ba3-161">參數</span><span class="sxs-lookup"><span data-stu-id="c1ba3-161">Parameters</span></span>
-* <span data-ttu-id="c1ba3-162">**Name**：要啟動之叢集節點的名稱。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-162">**Name**: Names of the cluster nodes to be started.</span></span> <span data-ttu-id="c1ba3-163">支援萬用字元。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-163">Wildcards are supported.</span></span> <span data-ttu-id="c1ba3-164">參數集名稱是 Name。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-164">The parameter set name is Name.</span></span> <span data-ttu-id="c1ba3-165">您無法同時指定 **Name** 和 **Node** 參數。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-165">You cannot specify both the **Name** and **Node** parameters.</span></span>
-* <span data-ttu-id="c1ba3-166">**Node**- 要啟動之節點的 HpcNode 物件，可透過 HPC PowerShell Cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx)取得。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-166">**Node**- The HpcNode object for the nodes to be started, which can be obtained through the HPC PowerShell cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx).</span></span> <span data-ttu-id="c1ba3-167">參數集名稱是 Node。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-167">The parameter set name is Node.</span></span> <span data-ttu-id="c1ba3-168">您無法同時指定 **Name** 和 **Node** 參數。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-168">You cannot specify both the **Name** and **Node** parameters.</span></span>
+### <a name="parameters"></a><span data-ttu-id="5b530-161">參數</span><span class="sxs-lookup"><span data-stu-id="5b530-161">Parameters</span></span>
+* <span data-ttu-id="5b530-162">**名稱**: hello 叢集節點 toobe 名稱開始。</span><span class="sxs-lookup"><span data-stu-id="5b530-162">**Name**: Names of hello cluster nodes toobe started.</span></span> <span data-ttu-id="5b530-163">支援萬用字元。</span><span class="sxs-lookup"><span data-stu-id="5b530-163">Wildcards are supported.</span></span> <span data-ttu-id="5b530-164">hello 參數集名稱為 Name。</span><span class="sxs-lookup"><span data-stu-id="5b530-164">hello parameter set name is Name.</span></span> <span data-ttu-id="5b530-165">您不能指定兩個 hello**名稱**和**節點**參數。</span><span class="sxs-lookup"><span data-stu-id="5b530-165">You cannot specify both hello **Name** and **Node** parameters.</span></span>
+* <span data-ttu-id="5b530-166">**節點**-hello HpcNode 物件物件 hello 節點 toobe 啟動，可以透過 hello HPC PowerShell cmdlet 取得[Get-hpcnode 取得](https://technet.microsoft.com/library/dn887927.aspx)。</span><span class="sxs-lookup"><span data-stu-id="5b530-166">**Node**- hello HpcNode object for hello nodes toobe started, which can be obtained through hello HPC PowerShell cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx).</span></span> <span data-ttu-id="5b530-167">hello 參數集名稱為節點。</span><span class="sxs-lookup"><span data-stu-id="5b530-167">hello parameter set name is Node.</span></span> <span data-ttu-id="5b530-168">您不能指定兩個 hello**名稱**和**節點**參數。</span><span class="sxs-lookup"><span data-stu-id="5b530-168">You cannot specify both hello **Name** and **Node** parameters.</span></span>
 
-### <a name="example"></a><span data-ttu-id="c1ba3-169">範例</span><span class="sxs-lookup"><span data-stu-id="c1ba3-169">Example</span></span>
-<span data-ttu-id="c1ba3-170">下列範例會啟動名稱開頭為 *HPCNode-CN-*的節點。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-170">The following example starts nodes with names beginning *HPCNode-CN-*.</span></span>
+### <a name="example"></a><span data-ttu-id="5b530-169">範例</span><span class="sxs-lookup"><span data-stu-id="5b530-169">Example</span></span>
+<span data-ttu-id="5b530-170">hello 下列範例會啟動節點名稱開頭*為 Hpcnode-cn-CN-*。</span><span class="sxs-lookup"><span data-stu-id="5b530-170">hello following example starts nodes with names beginning *HPCNode-CN-*.</span></span>
 
 ```PowerShell
 Start-HPCIaaSNode.ps1 –Name HPCNodeCN-*
 ```
 
-## <a name="stop-compute-node-vms"></a><span data-ttu-id="c1ba3-171">停止計算節點 VM</span><span class="sxs-lookup"><span data-stu-id="c1ba3-171">Stop compute node VMs</span></span>
-<span data-ttu-id="c1ba3-172">使用 **Stop-HpcIaaSNode.ps1** 指令碼停止計算節點。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-172">Stop compute nodes with the **Stop-HpcIaaSNode.ps1** script.</span></span>
+## <a name="stop-compute-node-vms"></a><span data-ttu-id="5b530-171">停止計算節點 VM</span><span class="sxs-lookup"><span data-stu-id="5b530-171">Stop compute node VMs</span></span>
+<span data-ttu-id="5b530-172">停止運算節點以 hello **Stop-hpciaasnode.ps1**指令碼。</span><span class="sxs-lookup"><span data-stu-id="5b530-172">Stop compute nodes with hello **Stop-HpcIaaSNode.ps1** script.</span></span>
 
-### <a name="syntax"></a><span data-ttu-id="c1ba3-173">語法</span><span class="sxs-lookup"><span data-stu-id="c1ba3-173">Syntax</span></span>
+### <a name="syntax"></a><span data-ttu-id="5b530-173">語法</span><span class="sxs-lookup"><span data-stu-id="5b530-173">Syntax</span></span>
 ```PowerShell
 Stop-HPCIaaSNode.ps1 -Name <String[]> [-Force] [<CommonParameters>]
 
 Stop-HPCIaaSNode.ps1 -Node <Object> [-Force] [<CommonParameters>]
 ```
 
-### <a name="parameters"></a><span data-ttu-id="c1ba3-174">參數</span><span class="sxs-lookup"><span data-stu-id="c1ba3-174">Parameters</span></span>
-* <span data-ttu-id="c1ba3-175">**Name**- 要停止之叢集節點的名稱。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-175">**Name**- Names of the cluster nodes to be stopped.</span></span> <span data-ttu-id="c1ba3-176">支援萬用字元。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-176">Wildcards are supported.</span></span> <span data-ttu-id="c1ba3-177">參數集名稱是 Name。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-177">The parameter set name is Name.</span></span> <span data-ttu-id="c1ba3-178">您無法同時指定 **Name** 和 **Node** 參數。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-178">You cannot specify both the **Name** and **Node** parameters.</span></span>
-* <span data-ttu-id="c1ba3-179">**Node**：要停止之節點的 HpcNode 物件，可透過 HPC PowerShell Cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx)取得。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-179">**Node**: The HpcNode object for the nodes to be stopped, which can be obtained through the HPC PowerShell cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx).</span></span> <span data-ttu-id="c1ba3-180">參數集名稱是 Node。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-180">The parameter set name is Node.</span></span> <span data-ttu-id="c1ba3-181">您無法同時指定 **Name** 和 **Node** 參數。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-181">You cannot specify both the **Name** and **Node** parameters.</span></span>
-* <span data-ttu-id="c1ba3-182">**Force** (選擇性)：在停止 HPC 節點前強制使其離線的設定。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-182">**Force** (optional): Setting to force HPC nodes offline before stopping them.</span></span>
+### <a name="parameters"></a><span data-ttu-id="5b530-174">參數</span><span class="sxs-lookup"><span data-stu-id="5b530-174">Parameters</span></span>
+* <span data-ttu-id="5b530-175">**名稱**-停止 hello 叢集節點 toobe 的名稱。</span><span class="sxs-lookup"><span data-stu-id="5b530-175">**Name**- Names of hello cluster nodes toobe stopped.</span></span> <span data-ttu-id="5b530-176">支援萬用字元。</span><span class="sxs-lookup"><span data-stu-id="5b530-176">Wildcards are supported.</span></span> <span data-ttu-id="5b530-177">hello 參數集名稱為 Name。</span><span class="sxs-lookup"><span data-stu-id="5b530-177">hello parameter set name is Name.</span></span> <span data-ttu-id="5b530-178">您不能指定兩個 hello**名稱**和**節點**參數。</span><span class="sxs-lookup"><span data-stu-id="5b530-178">You cannot specify both hello **Name** and **Node** parameters.</span></span>
+* <span data-ttu-id="5b530-179">**節點**: hello HpcNode 物件物件 hello 節點 toobe 停止，可以透過 hello HPC PowerShell cmdlet 取得[Get-hpcnode 取得](https://technet.microsoft.com/library/dn887927.aspx)。</span><span class="sxs-lookup"><span data-stu-id="5b530-179">**Node**: hello HpcNode object for hello nodes toobe stopped, which can be obtained through hello HPC PowerShell cmdlet [Get-HpcNode](https://technet.microsoft.com/library/dn887927.aspx).</span></span> <span data-ttu-id="5b530-180">hello 參數集名稱為節點。</span><span class="sxs-lookup"><span data-stu-id="5b530-180">hello parameter set name is Node.</span></span> <span data-ttu-id="5b530-181">您不能指定兩個 hello**名稱**和**節點**參數。</span><span class="sxs-lookup"><span data-stu-id="5b530-181">You cannot specify both hello **Name** and **Node** parameters.</span></span>
+* <span data-ttu-id="5b530-182">**強制**（選擇性）： 設定 tooforce HPC 節點離線之前加以停止。</span><span class="sxs-lookup"><span data-stu-id="5b530-182">**Force** (optional): Setting tooforce HPC nodes offline before stopping them.</span></span>
 
-### <a name="example"></a><span data-ttu-id="c1ba3-183">範例</span><span class="sxs-lookup"><span data-stu-id="c1ba3-183">Example</span></span>
-<span data-ttu-id="c1ba3-184">下列範例會使名稱開頭為 *HPCNode-CN-* 的節點強制離線，然後停止節點。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-184">The following example forces offline nodes with names beginning *HPCNode-CN-* and then stops the nodes.</span></span>
+### <a name="example"></a><span data-ttu-id="5b530-183">範例</span><span class="sxs-lookup"><span data-stu-id="5b530-183">Example</span></span>
+<span data-ttu-id="5b530-184">hello 下列範例會強制離線的節點名稱開頭*為 Hpcnode-cn-CN-*和停駐點然後 hello 節點。</span><span class="sxs-lookup"><span data-stu-id="5b530-184">hello following example forces offline nodes with names beginning *HPCNode-CN-* and then stops hello nodes.</span></span>
 
 ```PowerShell
 Stop-HPCIaaSNode.ps1 –Name HPCNodeCN-* -Force
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="c1ba3-185">後續步驟</span><span class="sxs-lookup"><span data-stu-id="c1ba3-185">Next steps</span></span>
-* <span data-ttu-id="c1ba3-186">若要根據叢集上目前工作的工作負載，自動增加或縮減叢集節點的方法，請參閱[在 Azure 中根據叢集工作負載自動增加和縮減 HPC Pack 叢集資源](hpcpack-cluster-node-autogrowshrink.md)。</span><span class="sxs-lookup"><span data-stu-id="c1ba3-186">To automatically grow or shrink the cluster nodes according to the current workload of jobs and tasks on the cluster, see [Automatically grow and shrink the HPC Pack cluster resources in Azure according to the cluster workload](hpcpack-cluster-node-autogrowshrink.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="5b530-185">後續步驟</span><span class="sxs-lookup"><span data-stu-id="5b530-185">Next steps</span></span>
+* <span data-ttu-id="5b530-186">tooautomatically 成長或壓縮 hello 根據目前的工作負載 hello 工作及工作 hello 叢集上的叢集節點，請參閱[自動擴增和縮減 Azure 相應 toohello 叢集工作負載中helloHPCPack叢集資源](hpcpack-cluster-node-autogrowshrink.md).</span><span class="sxs-lookup"><span data-stu-id="5b530-186">tooautomatically grow or shrink hello cluster nodes according to hello current workload of jobs and tasks on hello cluster, see [Automatically grow and shrink hello HPC Pack cluster resources in Azure according toohello cluster workload](hpcpack-cluster-node-autogrowshrink.md).</span></span>
 

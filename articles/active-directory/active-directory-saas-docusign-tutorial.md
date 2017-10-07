@@ -1,6 +1,6 @@
 ---
 title: "教學課程：Azure Active Directory 與 DocuSign 整合 | Microsoft Docs"
-description: "了解如何設定 Azure Active Directory 與 DocuSign 之間的單一登入。"
+description: "了解 tooconfigure 的單一登入 Azure Active Directory 與 DocuSign 之間。"
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,259 +13,259 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: jeedes
-ms.openlocfilehash: 29c99fdf39d366df90abc070f7b836320935035c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e4ef40b8f5af20d811d8d806d2bd7e2039c55052
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-docusign"></a><span data-ttu-id="298c1-103">教學課程：Azure Active Directory 與 DocuSign 整合</span><span class="sxs-lookup"><span data-stu-id="298c1-103">Tutorial: Azure Active Directory integration with DocuSign</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-docusign"></a><span data-ttu-id="0b83a-103">教學課程：Azure Active Directory 與 DocuSign 整合</span><span class="sxs-lookup"><span data-stu-id="0b83a-103">Tutorial: Azure Active Directory integration with DocuSign</span></span>
 
-<span data-ttu-id="298c1-104">在本教學課程中，您會了解如何整合 DocuSign 與 Azure Active Directory (Azure AD)。</span><span class="sxs-lookup"><span data-stu-id="298c1-104">In this tutorial, you learn how to integrate DocuSign with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="0b83a-104">在此教學課程中，您學會如何 toointegrate DocuSign 與 Azure Active Directory (Azure AD)。</span><span class="sxs-lookup"><span data-stu-id="0b83a-104">In this tutorial, you learn how toointegrate DocuSign with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="298c1-105">DocuSign 與 Azure AD 整合提供下列優點：</span><span class="sxs-lookup"><span data-stu-id="298c1-105">Integrating DocuSign with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="0b83a-105">整合 Azure AD 與 DocuSign 可以提供下列優點 hello:</span><span class="sxs-lookup"><span data-stu-id="0b83a-105">Integrating DocuSign with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="298c1-106">您可以在 Azure AD 中控制可存取 DocuSign 的人員</span><span class="sxs-lookup"><span data-stu-id="298c1-106">You can control in Azure AD who has access to DocuSign</span></span>
-- <span data-ttu-id="298c1-107">您可以讓使用者使用他們的 Azure AD 帳戶自動登入 DocuSign (單一登入)</span><span class="sxs-lookup"><span data-stu-id="298c1-107">You can enable your users to automatically get signed-on to DocuSign (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="298c1-108">您可以在 Azure 入口網站中集中管理您的帳戶</span><span class="sxs-lookup"><span data-stu-id="298c1-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="0b83a-106">您可以控制存取 tooDocuSign Azure AD 中</span><span class="sxs-lookup"><span data-stu-id="0b83a-106">You can control in Azure AD who has access tooDocuSign</span></span>
+- <span data-ttu-id="0b83a-107">您可以啟用您的使用者 tooautomatically get 登入 tooDocuSign （單一登入） 具有其 Azure AD 帳戶</span><span class="sxs-lookup"><span data-stu-id="0b83a-107">You can enable your users tooautomatically get signed-on tooDocuSign (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="0b83a-108">您可以管理您的帳戶，在單一中央位置-hello Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="0b83a-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="298c1-109">如果您想要了解有關 SaaS 應用程式與 Azure AD 之整合的更多詳細資料，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。</span><span class="sxs-lookup"><span data-stu-id="298c1-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="0b83a-109">如果您想 tooknow 詳細與 Azure AD SaaS 應用程式整合，請參閱[什麼是應用程式存取和單一登入與 Azure Active Directory](active-directory-appssoaccess-whatis.md)。</span><span class="sxs-lookup"><span data-stu-id="0b83a-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="298c1-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="298c1-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="0b83a-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="0b83a-110">Prerequisites</span></span>
 
-<span data-ttu-id="298c1-111">若要設定 Azure AD 與 DocuSign 整合，您需要下列項目：</span><span class="sxs-lookup"><span data-stu-id="298c1-111">To configure Azure AD integration with DocuSign, you need the following items:</span></span>
+<span data-ttu-id="0b83a-111">tooconfigure Azure AD 與 DocuSign 的整合，您需要下列項目 hello:</span><span class="sxs-lookup"><span data-stu-id="0b83a-111">tooconfigure Azure AD integration with DocuSign, you need hello following items:</span></span>
 
-- <span data-ttu-id="298c1-112">Azure AD 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="298c1-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="298c1-113">已啟用 DocuSign 單一登入的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="298c1-113">A DocuSign single sign-on enabled subscription</span></span>
+- <span data-ttu-id="0b83a-112">Azure AD 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="0b83a-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="0b83a-113">已啟用 DocuSign 單一登入的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="0b83a-113">A DocuSign single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="298c1-114">若要測試本教學課程中的步驟，我們不建議使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="298c1-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="0b83a-114">本教學課程中的步驟 tootest hello，不建議使用實際執行環境。</span><span class="sxs-lookup"><span data-stu-id="0b83a-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="298c1-115">若要測試本教學課程中的步驟，您應該遵循這些建議：</span><span class="sxs-lookup"><span data-stu-id="298c1-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="0b83a-115">在本教學課程 tootest hello 步驟，您應該遵循這些建議：</span><span class="sxs-lookup"><span data-stu-id="0b83a-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="298c1-116">除非必要，否則請勿使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="298c1-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="298c1-117">如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。</span><span class="sxs-lookup"><span data-stu-id="298c1-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="0b83a-116">除非必要，否則請勿使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="0b83a-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="0b83a-117">如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。</span><span class="sxs-lookup"><span data-stu-id="0b83a-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="298c1-118">案例描述</span><span class="sxs-lookup"><span data-stu-id="298c1-118">Scenario description</span></span>
-<span data-ttu-id="298c1-119">在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="298c1-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="298c1-120">本教學課程中說明的案例由二個主要建置組塊組成：</span><span class="sxs-lookup"><span data-stu-id="298c1-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="0b83a-118">案例描述</span><span class="sxs-lookup"><span data-stu-id="0b83a-118">Scenario description</span></span>
+<span data-ttu-id="0b83a-119">在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="0b83a-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="0b83a-120">本教學課程所述的 hello 案例包含兩個主要建置組塊：</span><span class="sxs-lookup"><span data-stu-id="0b83a-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="298c1-121">從資源庫新增 DocuSign</span><span class="sxs-lookup"><span data-stu-id="298c1-121">Adding DocuSign from the gallery</span></span>
-2. <span data-ttu-id="298c1-122">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="298c1-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="0b83a-121">從 hello 圖庫加入 DocuSign</span><span class="sxs-lookup"><span data-stu-id="0b83a-121">Adding DocuSign from hello gallery</span></span>
+2. <span data-ttu-id="0b83a-122">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="0b83a-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-docusign-from-the-gallery"></a><span data-ttu-id="298c1-123">從資源庫新增 DocuSign</span><span class="sxs-lookup"><span data-stu-id="298c1-123">Adding DocuSign from the gallery</span></span>
-<span data-ttu-id="298c1-124">若要設定將 DocuSign 整合到 Azure AD 中，您需要從資源庫將 DocuSign 新增到受管理的 SaaS 應用程式清單。</span><span class="sxs-lookup"><span data-stu-id="298c1-124">To configure the integration of DocuSign into Azure AD, you need to add DocuSign from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-docusign-from-hello-gallery"></a><span data-ttu-id="0b83a-123">從 hello 圖庫加入 DocuSign</span><span class="sxs-lookup"><span data-stu-id="0b83a-123">Adding DocuSign from hello gallery</span></span>
+<span data-ttu-id="0b83a-124">tooconfigure hello 整合 DocuSign 到 Azure AD，您需要從受管理的 SaaS 應用程式的 hello 圖庫 tooyour 清單 tooadd DocuSign。</span><span class="sxs-lookup"><span data-stu-id="0b83a-124">tooconfigure hello integration of DocuSign into Azure AD, you need tooadd DocuSign from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="298c1-125">**若要從資源庫新增 DocuSign，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="298c1-125">**To add DocuSign from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="0b83a-125">**tooadd DocuSign hello 圖庫中，從執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="0b83a-125">**tooadd DocuSign from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="298c1-126">在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。</span><span class="sxs-lookup"><span data-stu-id="298c1-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="0b83a-126">在 [hello ** [Azure 入口網站](https://portal.azure.com)**，請在 hello 左邊的導覽面板中按一下**Azure Active Directory**圖示。</span><span class="sxs-lookup"><span data-stu-id="0b83a-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="298c1-128">瀏覽至 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="298c1-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="298c1-129">然後移至 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="298c1-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="0b83a-128">瀏覽過**企業應用程式**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="0b83a-129">然後跳過**所有應用程式**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-129">Then go too**All applications**.</span></span>
 
     ![應用程式][2]
     
-3. <span data-ttu-id="298c1-131">按一下對話方塊頂端的 [新增應用程式] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="298c1-131">Click **New application** button on the top of the dialog.</span></span>
+3. <span data-ttu-id="0b83a-131">按一下**新的應用程式**上 hello hello 對話方塊上方的按鈕。</span><span class="sxs-lookup"><span data-stu-id="0b83a-131">Click **New application** button on hello top of hello dialog.</span></span>
 
     ![應用程式][3]
 
-4. <span data-ttu-id="298c1-133">在搜尋方塊中，輸入 **DocuSign**。</span><span class="sxs-lookup"><span data-stu-id="298c1-133">In the search box, type **DocuSign**.</span></span>
+4. <span data-ttu-id="0b83a-133">在 [hello] 搜尋方塊中，輸入**DocuSign**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-133">In hello search box, type **DocuSign**.</span></span>
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-docusign-tutorial/tutorial_docusign_search.png)
 
-5. <span data-ttu-id="298c1-135">在結果窗格中，選取 [DocuSign]，然後按一下 [新增] 按鈕以新增應用程式。</span><span class="sxs-lookup"><span data-stu-id="298c1-135">In the results panel, select **DocuSign**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="0b83a-135">在 [hello [結果] 窗格中，選取 [ **DocuSign**，然後按一下 [**新增**按鈕 tooadd hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="0b83a-135">In hello results panel, select **DocuSign**, and then click **Add** button tooadd hello application.</span></span>
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-docusign-tutorial/tutorial_docusign_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="298c1-137">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="298c1-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="298c1-138">在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 DocuSign 設定及測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="298c1-138">In this section, you configure and test Azure AD single sign-on with DocuSign based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="0b83a-137">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="0b83a-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="0b83a-138">在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 DocuSign 設定及測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="0b83a-138">In this section, you configure and test Azure AD single sign-on with DocuSign based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="298c1-139">若要讓單一登入運作，Azure AD 必須知道 DocuSign 與 Azure AD 中互相對應的使用者。</span><span class="sxs-lookup"><span data-stu-id="298c1-139">For single sign-on to work, Azure AD needs to know what the counterpart user in DocuSign is to a user in Azure AD.</span></span> <span data-ttu-id="298c1-140">換句話說，必須建立 Azure AD 使用者和 DocuSign 中相關使用者之間的連結關聯性。</span><span class="sxs-lookup"><span data-stu-id="298c1-140">In other words, a link relationship between an Azure AD user and the related user in DocuSign needs to be established.</span></span>
+<span data-ttu-id="0b83a-139">單一登入 toowork，Azure AD 需要 tooknow hello 的對等項目的使用者 docusign 是 tooa 使用者在 Azure AD 中。</span><span class="sxs-lookup"><span data-stu-id="0b83a-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in DocuSign is tooa user in Azure AD.</span></span> <span data-ttu-id="0b83a-140">換句話說，Azure AD 使用者與 docusign 的 hello 相關的使用者之間的連結關聯性需要 toobe 建立。</span><span class="sxs-lookup"><span data-stu-id="0b83a-140">In other words, a link relationship between an Azure AD user and hello related user in DocuSign needs toobe established.</span></span>
 
-<span data-ttu-id="298c1-141">建立此連結關聯性的方法，就是將 Azure AD 中**使用者名稱**的值指派為 DocuSign 中 **Username** 的值。</span><span class="sxs-lookup"><span data-stu-id="298c1-141">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in DocuSign.</span></span>
+<span data-ttu-id="0b83a-141">此連結關聯性建立 hello 將值指派為 hello**使用者名稱**做為 hello hello 值的 Azure AD 中**Username** docusign。</span><span class="sxs-lookup"><span data-stu-id="0b83a-141">This link relationship is established by assigning hello value of hello **user name** in Azure AD as hello value of hello **Username** in DocuSign.</span></span>
 
-<span data-ttu-id="298c1-142">若要設定及測試與 DocuSign 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：</span><span class="sxs-lookup"><span data-stu-id="298c1-142">To configure and test Azure AD single sign-on with DocuSign, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="0b83a-142">tooconfigure 及 Azure AD 單一登入與 DocuSign 的測試，您必須遵循的建置組塊 toocomplete hello:</span><span class="sxs-lookup"><span data-stu-id="0b83a-142">tooconfigure and test Azure AD single sign-on with DocuSign, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="298c1-143">**[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。</span><span class="sxs-lookup"><span data-stu-id="298c1-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="298c1-144">**[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="298c1-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="298c1-145">**[建立 DocuSign 測試使用者](#creating-a-docusign-test-user)** - 在 DocuSign 中建立 Britta Simon 的對應項目，且該項目與 Azure AD 中代表使用者的項目連結。</span><span class="sxs-lookup"><span data-stu-id="298c1-145">**[Creating a DocuSign test user](#creating-a-docusign-test-user)** - to have a counterpart of Britta Simon in DocuSign that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="298c1-146">**[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="298c1-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="298c1-147">**[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。</span><span class="sxs-lookup"><span data-stu-id="298c1-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="0b83a-143">**[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** -tooenable 使用者 toouse 這項功能。</span><span class="sxs-lookup"><span data-stu-id="0b83a-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="0b83a-144">**[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** -tootest Azure AD 單一登入與許 Simon。</span><span class="sxs-lookup"><span data-stu-id="0b83a-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="0b83a-145">**[建立測試使用者 DocuSign](#creating-a-docusign-test-user) ** -toohave 許 Simon docusign 連結的 toohello Azure AD 使用者表示法的對應項目。</span><span class="sxs-lookup"><span data-stu-id="0b83a-145">**[Creating a DocuSign test user](#creating-a-docusign-test-user)** - toohave a counterpart of Britta Simon in DocuSign that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="0b83a-146">**[指派 hello Azure AD 的測試使用者](#assigning-the-azure-ad-test-user)** -tooenable 許 Simon toouse Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="0b83a-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="0b83a-147">**[測試單一登入](#testing-single-sign-on)** -tooverify 是否 hello 組態工作。</span><span class="sxs-lookup"><span data-stu-id="0b83a-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="298c1-148">設定 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="298c1-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="0b83a-148">設定 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="0b83a-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="298c1-149">在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，然後在您的 DocuSign 應用程式中設定單一登入。</span><span class="sxs-lookup"><span data-stu-id="298c1-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your DocuSign application.</span></span>
+<span data-ttu-id="0b83a-149">在本節中，您可以啟用 Azure AD 單一登入 hello Azure 入口網站中，並設定單一登入 DocuSign 的應用程式中。</span><span class="sxs-lookup"><span data-stu-id="0b83a-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your DocuSign application.</span></span>
 
-<span data-ttu-id="298c1-150">**若要使用 DocuSign 設定 Azure AD 單一登入，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="298c1-150">**To configure Azure AD single sign-on with DocuSign, perform the following steps:**</span></span>
+<span data-ttu-id="0b83a-150">**tooconfigure Azure AD 單一登入與 DocuSign，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="0b83a-150">**tooconfigure Azure AD single sign-on with DocuSign, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="298c1-151">在 Azure 入口網站的 [DocuSign] 應用程式整合頁面上，按一下 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="298c1-151">In the Azure portal, on the **DocuSign** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="0b83a-151">在 Azure 入口網站上 hello hello **DocuSign**應用程式整合頁面上，按一下 [**單一登入**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-151">In hello Azure portal, on hello **DocuSign** application integration page, click **Single sign-on**.</span></span>
 
     ![設定單一登入][4]
 
-2. <span data-ttu-id="298c1-153">在 [單一登入] 對話方塊上，於 [模式] 選取 [SAML 登入]，以啟用單一登入。</span><span class="sxs-lookup"><span data-stu-id="298c1-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="0b83a-153">在 [hello**單一登入**對話方塊中，選取**模式**為**SAML 型登入**tooenable 單一登入。</span><span class="sxs-lookup"><span data-stu-id="0b83a-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![設定單一登入](./media/active-directory-saas-docusign-tutorial/tutorial_docusign_samlbase.png)
 
-3. <span data-ttu-id="298c1-155">在 [SAML 簽署憑證] 區段上，按一下 [\憑證 (Base 64)\]，然後將憑證檔案儲存在您的電腦上。</span><span class="sxs-lookup"><span data-stu-id="298c1-155">On the **SAML Signing Certificate** section, click **Certificate(Base 64)** and then save certificate file on your computer.</span></span>
+3. <span data-ttu-id="0b83a-155">在 [hello **SAML 簽章憑證**區段中，按一下**憑證 (base-64)**然後儲存憑證檔案儲存在您的電腦。</span><span class="sxs-lookup"><span data-stu-id="0b83a-155">On hello **SAML Signing Certificate** section, click **Certificate(Base 64)** and then save certificate file on your computer.</span></span>
 
     ![設定單一登入](./media/active-directory-saas-docusign-tutorial/tutorial_docusign_certificate.png) 
 
-4. <span data-ttu-id="298c1-157">在 Azure 入口網站的 [DocuSign 設定] 區段中，按一下 [設定 DocuSign] 可開啟 [設定登入] 視窗。</span><span class="sxs-lookup"><span data-stu-id="298c1-157">On the **DocuSign Configuration** section of Azure portal, Click **Configure DocuSign** to open Configure sign-on window.</span></span> <span data-ttu-id="298c1-158">從 [快速參考] 區段中複製 [登出 URL、SAML 實體識別碼和 SAML 單一登入服務 URL]。</span><span class="sxs-lookup"><span data-stu-id="298c1-158">Copy the **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+4. <span data-ttu-id="0b83a-157">在 hello **DocuSign 組態**> 一節的 Azure 入口網站中，按一下**設定 DocuSign** tooopen 設定登入視窗。</span><span class="sxs-lookup"><span data-stu-id="0b83a-157">On hello **DocuSign Configuration** section of Azure portal, Click **Configure DocuSign** tooopen Configure sign-on window.</span></span> <span data-ttu-id="0b83a-158">複製 hello**登出 URL、 SAML 實體識別碼、 和 SAML 單一登入服務 URL**從 hello**快速參考 > 一節。**</span><span class="sxs-lookup"><span data-stu-id="0b83a-158">Copy hello **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
     
     ![設定單一登入](./media/active-directory-saas-docusign-tutorial/tutorial_docusign_configure.png)
 
-5. <span data-ttu-id="298c1-160">在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 **DocuSign 系統管理入口網站**。</span><span class="sxs-lookup"><span data-stu-id="298c1-160">In a different web browser window, login to your **DocuSign admin portal** as an administrator.</span></span>
+5. <span data-ttu-id="0b83a-160">在不同的網頁瀏覽器視窗中，登入 tooyour **DocuSign 管理員入口網站**身為系統管理員。</span><span class="sxs-lookup"><span data-stu-id="0b83a-160">In a different web browser window, login tooyour **DocuSign admin portal** as an administrator.</span></span>
 
-6. <span data-ttu-id="298c1-161">在左側導覽功能表中按一下 [網域] 。</span><span class="sxs-lookup"><span data-stu-id="298c1-161">In the navigation menu on the left, click **Domains**.</span></span>
+6. <span data-ttu-id="0b83a-161">在 [hello hello 左側的導覽功能表上，按一下 [**網域**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-161">In hello navigation menu on hello left, click **Domains**.</span></span>
    
     ![設定單一登入][51]
 
-7. <span data-ttu-id="298c1-163">在右窗格中，按一下 [宣告網域] 。</span><span class="sxs-lookup"><span data-stu-id="298c1-163">On the right pane, click **Claim Domain**.</span></span>
+7. <span data-ttu-id="0b83a-163">在 [hello 右窗格中，按一下 [**宣告網域**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-163">On hello right pane, click **Claim Domain**.</span></span>
    
     ![設定單一登入][52]
 
-8. <span data-ttu-id="298c1-165">在 [宣告網域] 對話方塊，於 [網域名稱] 文字方塊內輸入您的公司網域，然後按一下 [宣告]。</span><span class="sxs-lookup"><span data-stu-id="298c1-165">On the **Claim a domain** dialog, in the **Domain Name** textbox, type your company domain, and then click **Claim**.</span></span> <span data-ttu-id="298c1-166">確定您已驗證網域，而且狀態為作用中。</span><span class="sxs-lookup"><span data-stu-id="298c1-166">Make sure that you verify the domain and the status is active.</span></span>
+8. <span data-ttu-id="0b83a-165">在 [hello**宣告網域**對話方塊中的，在 [hello**網域名稱**文字方塊中，輸入您公司的網域，然後再按一下**宣告**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-165">On hello **Claim a domain** dialog, in hello **Domain Name** textbox, type your company domain, and then click **Claim**.</span></span> <span data-ttu-id="0b83a-166">請確定您確認 hello 網域，而且 hello 狀態為使用中。</span><span class="sxs-lookup"><span data-stu-id="0b83a-166">Make sure that you verify hello domain and hello status is active.</span></span>
    
     ![設定單一登入][53]
 
-9. <span data-ttu-id="298c1-168">在左側的功能表中，按一下 [識別提供者] </span><span class="sxs-lookup"><span data-stu-id="298c1-168">In menu on the left side, click **Identity Providers**</span></span>  
+9. <span data-ttu-id="0b83a-168">在 [hello 左側功能表中，按一下 [**身分識別提供者**</span><span class="sxs-lookup"><span data-stu-id="0b83a-168">In menu on hello left side, click **Identity Providers**</span></span>  
    
     ![設定單一登入][54]
-10. <span data-ttu-id="298c1-170">在右窗格中，按一下 [新增識別提供者] 。</span><span class="sxs-lookup"><span data-stu-id="298c1-170">In the right pane, click **Add Identity Provider**.</span></span> 
+10. <span data-ttu-id="0b83a-170">Hello 右窗格中，按一下 [**新增身分識別提供者**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-170">In hello right pane, click **Add Identity Provider**.</span></span> 
    
     ![設定單一登入][55]
 
-11. <span data-ttu-id="298c1-172">在 [識別提供者設定]  頁面上執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="298c1-172">On the **Identity Provider Settings** page, perform the following steps:</span></span>
+11. <span data-ttu-id="0b83a-172">在 [hello**身分識別提供者設定**頁面上，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="0b83a-172">On hello **Identity Provider Settings** page, perform hello following steps:</span></span>
    
     ![設定單一登入][56]
 
-    <span data-ttu-id="298c1-174">a.</span><span class="sxs-lookup"><span data-stu-id="298c1-174">a.</span></span> <span data-ttu-id="298c1-175">在 [名稱] 文字方塊中，輸入組態的唯一名稱。</span><span class="sxs-lookup"><span data-stu-id="298c1-175">In the **Name** textbox, type a unique name for your configuration.</span></span> <span data-ttu-id="298c1-176">請勿使用空格。</span><span class="sxs-lookup"><span data-stu-id="298c1-176">Do not use spaces.</span></span>
+    <span data-ttu-id="0b83a-174">a.</span><span class="sxs-lookup"><span data-stu-id="0b83a-174">a.</span></span> <span data-ttu-id="0b83a-175">在 [hello**名稱**文字方塊中，輸入您的組態的唯一名稱。</span><span class="sxs-lookup"><span data-stu-id="0b83a-175">In hello **Name** textbox, type a unique name for your configuration.</span></span> <span data-ttu-id="0b83a-176">請勿使用空格。</span><span class="sxs-lookup"><span data-stu-id="0b83a-176">Do not use spaces.</span></span>
 
-    <span data-ttu-id="298c1-177">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="298c1-177">b.</span></span> <span data-ttu-id="298c1-178">將 **SAML 實體識別碼**貼到 [識別提供者簽發者] 文字方塊。</span><span class="sxs-lookup"><span data-stu-id="298c1-178">Paste **SAML Entity ID** into the **Identity Provider Issuer** textbox.</span></span>
+    <span data-ttu-id="0b83a-177">b.</span><span class="sxs-lookup"><span data-stu-id="0b83a-177">b.</span></span> <span data-ttu-id="0b83a-178">貼上**SAML 實體識別碼**到 hello**身分識別提供者簽發者**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="0b83a-178">Paste **SAML Entity ID** into hello **Identity Provider Issuer** textbox.</span></span>
 
-    <span data-ttu-id="298c1-179">c.</span><span class="sxs-lookup"><span data-stu-id="298c1-179">c.</span></span> <span data-ttu-id="298c1-180">將 [SAML 單一登入服務 URL] 貼到 [識別提供者登入 URL] 文字方塊。</span><span class="sxs-lookup"><span data-stu-id="298c1-180">Paste **SAML Single Sign-On Service URL** into the **Identity Provider Login URL** textbox.</span></span>
+    <span data-ttu-id="0b83a-179">c.</span><span class="sxs-lookup"><span data-stu-id="0b83a-179">c.</span></span> <span data-ttu-id="0b83a-180">貼上**SAML 單一登入服務 URL**到 hello**身分識別提供者登入 URL**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="0b83a-180">Paste **SAML Single Sign-On Service URL** into hello **Identity Provider Login URL** textbox.</span></span>
 
-    <span data-ttu-id="298c1-181">d.</span><span class="sxs-lookup"><span data-stu-id="298c1-181">d.</span></span> <span data-ttu-id="298c1-182">將 [登出 URL] 貼到 [識別提供者登出 URL] 文字方塊。</span><span class="sxs-lookup"><span data-stu-id="298c1-182">Paste **Sign-Out URL** into the **Identity Provider Logout URL** textbox.</span></span>
+    <span data-ttu-id="0b83a-181">d.</span><span class="sxs-lookup"><span data-stu-id="0b83a-181">d.</span></span> <span data-ttu-id="0b83a-182">貼上**登出 URL**到 hello**身分識別提供者登出 URL**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="0b83a-182">Paste **Sign-Out URL** into hello **Identity Provider Logout URL** textbox.</span></span>
 
-    <span data-ttu-id="298c1-183">e.</span><span class="sxs-lookup"><span data-stu-id="298c1-183">e.</span></span> <span data-ttu-id="298c1-184">選取 [登入驗證要求]。</span><span class="sxs-lookup"><span data-stu-id="298c1-184">Select **Sign AuthN Request**.</span></span>
+    <span data-ttu-id="0b83a-183">e.</span><span class="sxs-lookup"><span data-stu-id="0b83a-183">e.</span></span> <span data-ttu-id="0b83a-184">選取 [登入驗證要求]。</span><span class="sxs-lookup"><span data-stu-id="0b83a-184">Select **Sign AuthN Request**.</span></span>
 
-    <span data-ttu-id="298c1-185">f.</span><span class="sxs-lookup"><span data-stu-id="298c1-185">f.</span></span> <span data-ttu-id="298c1-186">選取 [POST] 做為 [驗證要求傳送方式]。</span><span class="sxs-lookup"><span data-stu-id="298c1-186">As **Send AuthN request by**, select **POST**.</span></span>
+    <span data-ttu-id="0b83a-185">f.</span><span class="sxs-lookup"><span data-stu-id="0b83a-185">f.</span></span> <span data-ttu-id="0b83a-186">選取 [POST] 做為 [驗證要求傳送方式]。</span><span class="sxs-lookup"><span data-stu-id="0b83a-186">As **Send AuthN request by**, select **POST**.</span></span>
 
-    <span data-ttu-id="298c1-187">g.</span><span class="sxs-lookup"><span data-stu-id="298c1-187">g.</span></span> <span data-ttu-id="298c1-188">選取 [GET] 作為 [登出要求傳送方式]。</span><span class="sxs-lookup"><span data-stu-id="298c1-188">As **Send logout request by**, select **GET**.</span></span>
+    <span data-ttu-id="0b83a-187">g.</span><span class="sxs-lookup"><span data-stu-id="0b83a-187">g.</span></span> <span data-ttu-id="0b83a-188">選取 [GET] 作為 [登出要求傳送方式]。</span><span class="sxs-lookup"><span data-stu-id="0b83a-188">As **Send logout request by**, select **GET**.</span></span>
 
-12. <span data-ttu-id="298c1-189">在 [自訂屬性對應] 區段中，選擇您想要與 Azure AD 宣告對應的欄位。</span><span class="sxs-lookup"><span data-stu-id="298c1-189">In the **Custom Attribute Mapping** section, choose the field you want to map with Azure AD Claim.</span></span> <span data-ttu-id="298c1-190">在此範例中，**emailaddress** 宣告的對應值是 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**。</span><span class="sxs-lookup"><span data-stu-id="298c1-190">In this example, the **emailaddress** claim is mapped with the value of **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**.</span></span> <span data-ttu-id="298c1-191">這是 Azure AD 針對電子郵件宣告所提供的預設宣告名稱。</span><span class="sxs-lookup"><span data-stu-id="298c1-191">It is the default claim name from Azure AD for email claim.</span></span> 
+12. <span data-ttu-id="0b83a-189">在 [hello**自訂屬性對應**區段中，選擇 hello 欄位想 toomap 與 Azure AD 的宣告。</span><span class="sxs-lookup"><span data-stu-id="0b83a-189">In hello **Custom Attribute Mapping** section, choose hello field you want toomap with Azure AD Claim.</span></span> <span data-ttu-id="0b83a-190">在此範例中，hello **emailaddress** hello 值是對應宣告**http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-190">In this example, hello **emailaddress** claim is mapped with hello value of **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**.</span></span> <span data-ttu-id="0b83a-191">它是從 Azure AD 電子郵件宣告 hello 預設宣告的名稱。</span><span class="sxs-lookup"><span data-stu-id="0b83a-191">It is hello default claim name from Azure AD for email claim.</span></span> 
    
     > [!NOTE]
-    > <span data-ttu-id="298c1-192">請使用適當的 **使用者識別碼**，將使用者從 Azure AD 對應到 DocuSign 使用者對應。</span><span class="sxs-lookup"><span data-stu-id="298c1-192">Use the appropriate **User identifier** to map the user from Azure AD to DocuSign user mapping.</span></span> <span data-ttu-id="298c1-193">選取適當的欄位，並根據組織的設定輸入適當的值。</span><span class="sxs-lookup"><span data-stu-id="298c1-193">Select the proper Field and enter the appropriate value based on your organization settings.</span></span>
+    > <span data-ttu-id="0b83a-192">使用適當的 hello**使用者識別碼**toomap hello 使用者從 Azure AD tooDocuSign 使用者對應。</span><span class="sxs-lookup"><span data-stu-id="0b83a-192">Use hello appropriate **User identifier** toomap hello user from Azure AD tooDocuSign user mapping.</span></span> <span data-ttu-id="0b83a-193">選取 hello 適當欄位，然後輸入 hello 取決於您的組織設定適當的值。</span><span class="sxs-lookup"><span data-stu-id="0b83a-193">Select hello proper Field and enter hello appropriate value based on your organization settings.</span></span>
           
     ![設定單一登入][57]
 
-13. <span data-ttu-id="298c1-195">在 [識別提供者憑證] 區段中按一下 [新增憑證]，然後上傳您已從 Azure AD 入口網站下載的憑證。</span><span class="sxs-lookup"><span data-stu-id="298c1-195">In the **Identity Provider Certificate** section, click **Add Certificate**, and then upload the certificate you have downloaded from Azure AD portal.</span></span>   
+13. <span data-ttu-id="0b83a-195">在 [hello**身分識別提供者憑證**區段中，按一下**加入憑證**，然後再上傳您從 Azure AD 入口網站下載的 hello 憑證。</span><span class="sxs-lookup"><span data-stu-id="0b83a-195">In hello **Identity Provider Certificate** section, click **Add Certificate**, and then upload hello certificate you have downloaded from Azure AD portal.</span></span>   
    
     ![設定單一登入][58]
 
-14. <span data-ttu-id="298c1-197">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="298c1-197">Click **Save**.</span></span>
+14. <span data-ttu-id="0b83a-197">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="0b83a-197">Click **Save**.</span></span>
 
-15. <span data-ttu-id="298c1-198">在 [識別提供者] 區段中，按一下 [動作]，然後按一下 [端點]。</span><span class="sxs-lookup"><span data-stu-id="298c1-198">In the **Identity Providers** section, click **Actions**, and then click **Endpoints**.</span></span>   
+15. <span data-ttu-id="0b83a-198">在 [hello**身分識別提供者**區段中，按一下**動作**，然後按一下 [**端點**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-198">In hello **Identity Providers** section, click **Actions**, and then click **Endpoints**.</span></span>   
    
     ![設定單一登入][59]
  
-16. <span data-ttu-id="298c1-200">在 **DocuSign 系統管理入口網站**的 [檢視 SAML 2.0 端點] 區段中，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="298c1-200">In the **View SAML 2.0 Endpoints** section on **DocuSign admin portal**, perform the following steps:</span></span>
+16. <span data-ttu-id="0b83a-200">在 [hello**檢視 SAML 2.0 端點**區段**DocuSign 管理員入口網站**，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="0b83a-200">In hello **View SAML 2.0 Endpoints** section on **DocuSign admin portal**, perform hello following steps:</span></span>
    
     ![設定單一登入][60]
    
-    <span data-ttu-id="298c1-202">a.</span><span class="sxs-lookup"><span data-stu-id="298c1-202">a.</span></span> <span data-ttu-id="298c1-203">複製**服務提供者簽發者 URL**，然後貼入 Azure 入口網站的 **DocuSign 網域與 URL** 區段上的 [識別碼] 文字方塊，請遵循下列模式：`https://<subdomain>.docusign.com/organization/<uniqueID>/saml2/login/sp/<uniqueID>`。</span><span class="sxs-lookup"><span data-stu-id="298c1-203">Copy the **Service Provider Issuer URL**, and then paste into the **Identifier** textbox on **DocuSign Domain and URLs** section of the Azure portal following the pattern: `https://<subdomain>.docusign.com/organization/<uniqueID>/saml2/login/sp/<uniqueID>`.</span></span>
+    <span data-ttu-id="0b83a-202">a.</span><span class="sxs-lookup"><span data-stu-id="0b83a-202">a.</span></span> <span data-ttu-id="0b83a-203">複製 hello**服務提供者簽發者 URL**，然後貼入 hello**識別碼**上的文字方塊**DocuSign 網域和 Url** hello Azure 入口網站的下列 hello 區段模式： `https://<subdomain>.docusign.com/organization/<uniqueID>/saml2/login/sp/<uniqueID>`。</span><span class="sxs-lookup"><span data-stu-id="0b83a-203">Copy hello **Service Provider Issuer URL**, and then paste into hello **Identifier** textbox on **DocuSign Domain and URLs** section of hello Azure portal following hello pattern: `https://<subdomain>.docusign.com/organization/<uniqueID>/saml2/login/sp/<uniqueID>`.</span></span>
    
-    <span data-ttu-id="298c1-204">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="298c1-204">b.</span></span> <span data-ttu-id="298c1-205">複製**服務提供者登入 URL**，然後貼入 Azure 入口網站的 [DocuSign 網域與 URL] 區段上的 [登入 URL] 文字方塊，遵循下列模式：`https://<subdomain>.docusign.com/organization/<uniqueID>/saml2/`。</span><span class="sxs-lookup"><span data-stu-id="298c1-205">Copy the **Service Provider Login URL**, and then paste into the **Sign On URL** textbox on **DocuSign Domain and URLs** section of the Azure portal following the pattern: `https://<subdomain>.docusign.com/organization/<uniqueID>/saml2/`.</span></span>
+    <span data-ttu-id="0b83a-204">b.</span><span class="sxs-lookup"><span data-stu-id="0b83a-204">b.</span></span> <span data-ttu-id="0b83a-205">複製 hello**服務提供者登入 URL**，然後貼入 hello**登入 URL**上的文字方塊**DocuSign 網域和 Url** hello Azure 入口網站的下列 hello 區段模式： `https://<subdomain>.docusign.com/organization/<uniqueID>/saml2/`。</span><span class="sxs-lookup"><span data-stu-id="0b83a-205">Copy hello **Service Provider Login URL**, and then paste into hello **Sign On URL** textbox on **DocuSign Domain and URLs** section of hello Azure portal following hello pattern: `https://<subdomain>.docusign.com/organization/<uniqueID>/saml2/`.</span></span>
 
     ![設定單一登入](./media/active-directory-saas-docusign-tutorial/tutorial_docusign_url.png)
       
-    <span data-ttu-id="298c1-207">c.</span><span class="sxs-lookup"><span data-stu-id="298c1-207">c.</span></span>  <span data-ttu-id="298c1-208">按一下 [關閉]。</span><span class="sxs-lookup"><span data-stu-id="298c1-208">Click **Close**</span></span>
+    <span data-ttu-id="0b83a-207">c.</span><span class="sxs-lookup"><span data-stu-id="0b83a-207">c.</span></span>  <span data-ttu-id="0b83a-208">按一下 [關閉]。</span><span class="sxs-lookup"><span data-stu-id="0b83a-208">Click **Close**</span></span>
     
-17. <span data-ttu-id="298c1-209">在 Azure 入口網站上，按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="298c1-209">On the Azure portal, click **Save**.</span></span>
+17. <span data-ttu-id="0b83a-209">在 [hello Azure 入口網站，按一下 [**儲存**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-209">On hello Azure portal, click **Save**.</span></span>
     
     ![設定單一登入](./media/active-directory-saas-docusign-tutorial/tutorial_general_400.png)
 
 > [!TIP]
-> <span data-ttu-id="298c1-211">現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！</span><span class="sxs-lookup"><span data-stu-id="298c1-211">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="298c1-212">從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。</span><span class="sxs-lookup"><span data-stu-id="298c1-212">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="298c1-213">您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="298c1-213">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="0b83a-211">您現在可以讀取這些指示在 hello 的精簡版本[Azure 入口網站](https://portal.azure.com)，而您要設定 hello 應用程式 ！</span><span class="sxs-lookup"><span data-stu-id="0b83a-211">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="0b83a-212">加入此應用程式從 hello 之後**Active Directory > 企業應用程式**區段中，只要按一下 hello**單一登入**] 索引標籤和存取 hello 內嵌文件，透過 hello **組態**hello 底部的區段。</span><span class="sxs-lookup"><span data-stu-id="0b83a-212">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="0b83a-213">閱讀更多有關 hello embedded 文件功能： [Azure AD 的內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="0b83a-213">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="298c1-214">建立 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="298c1-214">Creating an Azure AD test user</span></span>
-<span data-ttu-id="298c1-215">本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。</span><span class="sxs-lookup"><span data-stu-id="298c1-215">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="0b83a-214">建立 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="0b83a-214">Creating an Azure AD test user</span></span>
+<span data-ttu-id="0b83a-215">hello 本節目標在於 toocreate hello 呼叫許 Simon 的 Azure 入口網站中的測試使用者。</span><span class="sxs-lookup"><span data-stu-id="0b83a-215">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![建立 Azure AD 使用者][100]
 
-<span data-ttu-id="298c1-217">**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="298c1-217">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="0b83a-217">**toocreate 測試使用者在 Azure AD 中，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="0b83a-217">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="298c1-218">在 **Azure 入口網站**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。</span><span class="sxs-lookup"><span data-stu-id="298c1-218">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="0b83a-218">在 [hello **Azure 入口網站**，在 hello 左側的導覽窗格中，按一下**Azure Active Directory**圖示。</span><span class="sxs-lookup"><span data-stu-id="0b83a-218">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-docusign-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="298c1-220">若要顯示使用者清單，請移至 [使用者和群組]，然後按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="298c1-220">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="0b83a-220">toodisplay hello 使用者清單，請移過**使用者和群組**按一下**所有使用者**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-220">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-docusign-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="298c1-222">在對話方塊的頂端，按一下 [新增] 以開啟 [使用者] 對話方塊。</span><span class="sxs-lookup"><span data-stu-id="298c1-222">At the top of the dialog, click **Add** to open the **User** dialog.</span></span>
+3. <span data-ttu-id="0b83a-222">在 [hello hello 對話方塊頂端，按一下**新增**tooopen hello**使用者**對話方塊。</span><span class="sxs-lookup"><span data-stu-id="0b83a-222">At hello top of hello dialog, click **Add** tooopen hello **User** dialog.</span></span>
  
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-docusign-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="298c1-224">在 [使用者]  對話頁面上，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="298c1-224">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="0b83a-224">在 [hello**使用者**對話方塊頁面上，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="0b83a-224">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-docusign-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="298c1-226">a.</span><span class="sxs-lookup"><span data-stu-id="298c1-226">a.</span></span> <span data-ttu-id="298c1-227">在 [名稱] 文字方塊中，輸入 **BrittaSimon**。</span><span class="sxs-lookup"><span data-stu-id="298c1-227">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="0b83a-226">a.</span><span class="sxs-lookup"><span data-stu-id="0b83a-226">a.</span></span> <span data-ttu-id="0b83a-227">在 [hello**名稱**文字方塊中，輸入**BrittaSimon**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-227">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="298c1-228">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="298c1-228">b.</span></span> <span data-ttu-id="298c1-229">在 [使用者名稱] 文字方塊中，輸入 BrittaSimon 的**電子郵件地址**。</span><span class="sxs-lookup"><span data-stu-id="298c1-229">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="0b83a-228">b.</span><span class="sxs-lookup"><span data-stu-id="0b83a-228">b.</span></span> <span data-ttu-id="0b83a-229">在 [hello**使用者名**文字方塊中，型別 hello**電子郵件地址**BrittaSimon。</span><span class="sxs-lookup"><span data-stu-id="0b83a-229">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="298c1-230">c.</span><span class="sxs-lookup"><span data-stu-id="298c1-230">c.</span></span> <span data-ttu-id="298c1-231">選取 [顯示密碼] 並記下 [密碼] 的值。</span><span class="sxs-lookup"><span data-stu-id="298c1-231">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="0b83a-230">c.</span><span class="sxs-lookup"><span data-stu-id="0b83a-230">c.</span></span> <span data-ttu-id="0b83a-231">選取**顯示密碼**記下 hello hello 值**密碼**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-231">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="298c1-232">d.</span><span class="sxs-lookup"><span data-stu-id="298c1-232">d.</span></span> <span data-ttu-id="298c1-233">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="298c1-233">Click **Create**.</span></span>
+    <span data-ttu-id="0b83a-232">d.</span><span class="sxs-lookup"><span data-stu-id="0b83a-232">d.</span></span> <span data-ttu-id="0b83a-233">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="0b83a-233">Click **Create**.</span></span>
  
-### <a name="creating-a-docusign-test-user"></a><span data-ttu-id="298c1-234">建立 DocuSign 測試使用者</span><span class="sxs-lookup"><span data-stu-id="298c1-234">Creating a DocuSign test user</span></span>
+### <a name="creating-a-docusign-test-user"></a><span data-ttu-id="0b83a-234">建立 DocuSign 測試使用者</span><span class="sxs-lookup"><span data-stu-id="0b83a-234">Creating a DocuSign test user</span></span>
 
-<span data-ttu-id="298c1-235">應用程式支援**及時 (Just In Time) 使用者佈建**，而在驗證之後，則會在應用程式中自動建立使用者。</span><span class="sxs-lookup"><span data-stu-id="298c1-235">Application supports **Just in time user provisioning** and after authentication users are created in the application automatically.</span></span>
+<span data-ttu-id="0b83a-235">應用程式支援**即時使用者佈建恰好**和之後自動建立 hello 應用程式中驗證使用者。</span><span class="sxs-lookup"><span data-stu-id="0b83a-235">Application supports **Just in time user provisioning** and after authentication users are created in hello application automatically.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="298c1-236">指派 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="298c1-236">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="0b83a-236">指派 hello Azure AD 的測試使用者</span><span class="sxs-lookup"><span data-stu-id="0b83a-236">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="298c1-237">在本節中，您會將 DocuSign 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。</span><span class="sxs-lookup"><span data-stu-id="298c1-237">In this section, you enable Britta Simon to use Azure single sign-on by granting her access to DocuSign.</span></span>
+<span data-ttu-id="0b83a-237">在本節中，您可以授與他們存取 tooDocuSign 啟用許 Simon toouse Azure 單一登入。</span><span class="sxs-lookup"><span data-stu-id="0b83a-237">In this section, you enable Britta Simon toouse Azure single sign-on by granting her access tooDocuSign.</span></span>
 
 ![指派使用者][200] 
 
-<span data-ttu-id="298c1-239">**若要將 Britta Simon 指派給 DocuSign，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="298c1-239">**To assign Britta Simon to DocuSign, perform the following steps:**</span></span>
+<span data-ttu-id="0b83a-239">**tooassign 許 Simon tooDocuSign，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="0b83a-239">**tooassign Britta Simon tooDocuSign, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="298c1-240">在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="298c1-240">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="0b83a-240">在 hello Azure 入口網站，開啟 hello 應用程式檢視，然後導覽 toohello 目錄檢視，並跳過**企業應用程式**然後按一下 [**所有應用程式**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-240">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![指派使用者][201] 
 
-2. <span data-ttu-id="298c1-242">在應用程式清單中，選取 [DocuSign]。</span><span class="sxs-lookup"><span data-stu-id="298c1-242">In the applications list, select **DocuSign**.</span></span>
+2. <span data-ttu-id="0b83a-242">在 [hello] 應用程式清單中，選取**DocuSign**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-242">In hello applications list, select **DocuSign**.</span></span>
 
     ![設定單一登入](./media/active-directory-saas-docusign-tutorial/tutorial_docusign_app.png) 
 
-3. <span data-ttu-id="298c1-244">在左側功能表中，按一下 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="298c1-244">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="0b83a-244">在左側 hello hello 功能表上，按一下**使用者和群組**。</span><span class="sxs-lookup"><span data-stu-id="0b83a-244">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![指派使用者][202] 
 
-4. <span data-ttu-id="298c1-246">按一下 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="298c1-246">Click **Add** button.</span></span> <span data-ttu-id="298c1-247">然後選取 [新增指派] 對話方塊上的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="298c1-247">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="0b83a-246">按一下 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="0b83a-246">Click **Add** button.</span></span> <span data-ttu-id="0b83a-247">然後選取 [新增指派] 對話方塊上的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="0b83a-247">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![指派使用者][203]
 
-5. <span data-ttu-id="298c1-249">在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。</span><span class="sxs-lookup"><span data-stu-id="298c1-249">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="0b83a-249">在**使用者和群組**對話方塊中，選取**許 Simon** hello 使用者] 清單中。</span><span class="sxs-lookup"><span data-stu-id="0b83a-249">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="298c1-250">按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="298c1-250">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="0b83a-250">按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="0b83a-250">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="298c1-251">按一下 [新增指派] 對話方塊上的 [指派] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="298c1-251">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="0b83a-251">按一下 [新增指派] 對話方塊上的 [指派] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="0b83a-251">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="298c1-252">測試單一登入</span><span class="sxs-lookup"><span data-stu-id="298c1-252">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="0b83a-252">測試單一登入</span><span class="sxs-lookup"><span data-stu-id="0b83a-252">Testing single sign-on</span></span>
 
-<span data-ttu-id="298c1-253">在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。</span><span class="sxs-lookup"><span data-stu-id="298c1-253">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="0b83a-253">在本節中，您可以測試您 Azure AD 單一登入的組態 hello 存取面板。</span><span class="sxs-lookup"><span data-stu-id="0b83a-253">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="298c1-254">當您在存取面板中按一下 [DocuSign] 磚時，應該會自動登入您的 DocuSign 應用程式。</span><span class="sxs-lookup"><span data-stu-id="298c1-254">When you click the DocuSign tile in the Access Panel, you should get automatically signed-on to your DocuSign application.</span></span>
-<span data-ttu-id="298c1-255">如需「存取面板」的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。</span><span class="sxs-lookup"><span data-stu-id="298c1-255">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
+<span data-ttu-id="0b83a-254">當您按一下 hello DocuSign 磚 hello 存取面板中的時，您應該取得 tooyour 自動登入 DocuSign 的應用程式。</span><span class="sxs-lookup"><span data-stu-id="0b83a-254">When you click hello DocuSign tile in hello Access Panel, you should get automatically signed-on tooyour DocuSign application.</span></span>
+<span data-ttu-id="0b83a-255">如需 hello 存取面板的詳細資訊，請參閱[簡介 toohello 存取面板](active-directory-saas-access-panel-introduction.md)。</span><span class="sxs-lookup"><span data-stu-id="0b83a-255">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="298c1-256">其他資源</span><span class="sxs-lookup"><span data-stu-id="298c1-256">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="0b83a-256">其他資源</span><span class="sxs-lookup"><span data-stu-id="0b83a-256">Additional resources</span></span>
 
-* [<span data-ttu-id="298c1-257">如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單</span><span class="sxs-lookup"><span data-stu-id="298c1-257">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="298c1-258">什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？</span><span class="sxs-lookup"><span data-stu-id="298c1-258">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
-* [<span data-ttu-id="298c1-259">設定使用者佈建</span><span class="sxs-lookup"><span data-stu-id="298c1-259">Configure User Provisioning</span></span>](active-directory-saas-docusign-provisioning-tutorial.md)
+* [<span data-ttu-id="0b83a-257">如何教學課程清單 tooIntegrate SaaS 應用程式與 Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="0b83a-257">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="0b83a-258">什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？</span><span class="sxs-lookup"><span data-stu-id="0b83a-258">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="0b83a-259">設定使用者佈建</span><span class="sxs-lookup"><span data-stu-id="0b83a-259">Configure User Provisioning</span></span>](active-directory-saas-docusign-provisioning-tutorial.md)
 
 
 <!--Image references-->

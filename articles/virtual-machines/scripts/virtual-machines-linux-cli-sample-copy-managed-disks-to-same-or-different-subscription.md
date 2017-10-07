@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 指令碼範例 - 將受控磁碟複製 (移動) 到相同或不同的訂用帳戶 | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 將受控磁碟複製 (移動) 到相同或不同的訂用帳戶"
+title: "CLI 指令碼範例-aaaAzure 複製 （移動） 磁碟 toosame 或管理不同訂用帳戶 |Microsoft 文件"
+description: "Azure CLI 指令碼範例-複製 （移動） 管理磁碟 toosame 或不同的訂用帳戶"
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
@@ -15,39 +15,39 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: ramankum
-ms.openlocfilehash: dcf92babf84872ffbbba81127952f8422104c723
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b1fa207bd6e05d7094be08855e7823e3b7686013
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-managed-disks-to-same-or-different-subscription-with-cli"></a><span data-ttu-id="bde72-103">使用 CLI將受控磁碟複製到相同或不同的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="bde72-103">Copy managed disks to same or different subscription with CLI</span></span>
+# <a name="copy-managed-disks-toosame-or-different-subscription-with-cli"></a><span data-ttu-id="642e2-103">複製 toosame 受管理的磁碟或不同的訂用帳戶使用 CLI</span><span class="sxs-lookup"><span data-stu-id="642e2-103">Copy managed disks toosame or different subscription with CLI</span></span>
 
-<span data-ttu-id="bde72-104">此指令碼會將受控磁碟複製到相同的訂用帳戶，或同區域的不同訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="bde72-104">This script copies a managed disk to same or different subscription but in the same region.</span></span> 
+<span data-ttu-id="642e2-104">此指令碼將複製的受管理的磁碟 toosame 或不同的訂用帳戶，但在 hello 相同區域。</span><span class="sxs-lookup"><span data-stu-id="642e2-104">This script copies a managed disk toosame or different subscription but in hello same region.</span></span> 
 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="sample-script"></a><span data-ttu-id="bde72-105">範例指令碼</span><span class="sxs-lookup"><span data-stu-id="bde72-105">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="642e2-105">範例指令碼</span><span class="sxs-lookup"><span data-stu-id="642e2-105">Sample script</span></span>
 
-<span data-ttu-id="bde72-106">[!code-azurecli[main](../../../cli_scripts/virtual-machine/copy-managed-disks-to-same-or-different-subscription/copy-managed-disks-to-same-or-different-subscription.sh "複製受控磁碟")]</span><span class="sxs-lookup"><span data-stu-id="bde72-106">[!code-azurecli[main](../../../cli_scripts/virtual-machine/copy-managed-disks-to-same-or-different-subscription/copy-managed-disks-to-same-or-different-subscription.sh "Copy managed disk")]</span></span>
+[!code-azurecli[main](../../../cli_scripts/virtual-machine/copy-managed-disks-to-same-or-different-subscription/copy-managed-disks-to-same-or-different-subscription.sh "Copy managed disk")]
 
 
-## <a name="script-explanation"></a><span data-ttu-id="bde72-107">指令碼說明</span><span class="sxs-lookup"><span data-stu-id="bde72-107">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="642e2-106">指令碼說明</span><span class="sxs-lookup"><span data-stu-id="642e2-106">Script explanation</span></span>
 
-<span data-ttu-id="bde72-108">此指令碼會使用下列命令，在使用來源受控磁碟識別碼的目標訂用帳戶中，建立新的受控磁碟。</span><span class="sxs-lookup"><span data-stu-id="bde72-108">This script uses following commands to create a new managed disk in the target subscription using the Id of the source managed disk.</span></span> <span data-ttu-id="bde72-109">下表中的每個命令都會連結至命令特定的文件。</span><span class="sxs-lookup"><span data-stu-id="bde72-109">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="642e2-107">此指令碼會使用下列命令 toocreate hello 目標訂用帳戶使用的新受管理的磁碟 hello 識別碼 hello 來源的受管理的磁碟。</span><span class="sxs-lookup"><span data-stu-id="642e2-107">This script uses following commands toocreate a new managed disk in hello target subscription using hello Id of hello source managed disk.</span></span> <span data-ttu-id="642e2-108">Hello 資料表連結 toocommand 特定文件中的每個命令。</span><span class="sxs-lookup"><span data-stu-id="642e2-108">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="bde72-110">命令</span><span class="sxs-lookup"><span data-stu-id="bde72-110">Command</span></span> | <span data-ttu-id="bde72-111">注意事項</span><span class="sxs-lookup"><span data-stu-id="bde72-111">Notes</span></span> |
+| <span data-ttu-id="642e2-109">命令</span><span class="sxs-lookup"><span data-stu-id="642e2-109">Command</span></span> | <span data-ttu-id="642e2-110">注意事項</span><span class="sxs-lookup"><span data-stu-id="642e2-110">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="bde72-112">az disk show</span><span class="sxs-lookup"><span data-stu-id="bde72-112">az disk show</span></span>](https://docs.microsoft.com/cli/azure/disk#show) | <span data-ttu-id="bde72-113">使用受控磁碟的名稱和資源群組屬性，取得受控磁碟的所有屬性。</span><span class="sxs-lookup"><span data-stu-id="bde72-113">Gets all the properties of a managed disk using the name and resource group properties of the managed disk.</span></span> <span data-ttu-id="bde72-114">使用 Id 屬性將受控磁碟複製到不同的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="bde72-114">Id property is used to copy the managed disk to different subscription.</span></span>  |
-| [<span data-ttu-id="bde72-115">az disk create</span><span class="sxs-lookup"><span data-stu-id="bde72-115">az disk create</span></span>](https://docs.microsoft.com/cli/azure/disk#create) | <span data-ttu-id="bde72-116">使用父受控磁碟的識別碼和名稱，在不同的訂閱中建立一個新的受控磁碟管，來複製受控磁碟。</span><span class="sxs-lookup"><span data-stu-id="bde72-116">Copies a managed disk by creating a new managed disk in different subscription using Id and name the parent managed disk.</span></span>  |
+| [<span data-ttu-id="642e2-111">az disk show</span><span class="sxs-lookup"><span data-stu-id="642e2-111">az disk show</span></span>](https://docs.microsoft.com/cli/azure/disk#show) | <span data-ttu-id="642e2-112">取得所有受管理的磁碟使用的 hello 受管理磁碟 hello 名稱和資源群組屬性 hello 屬性。</span><span class="sxs-lookup"><span data-stu-id="642e2-112">Gets all hello properties of a managed disk using hello name and resource group properties of hello managed disk.</span></span> <span data-ttu-id="642e2-113">Id 屬性是使用的 toocopy hello 管理磁碟 toodifferent 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="642e2-113">Id property is used toocopy hello managed disk toodifferent subscription.</span></span>  |
+| [<span data-ttu-id="642e2-114">az disk create</span><span class="sxs-lookup"><span data-stu-id="642e2-114">az disk create</span></span>](https://docs.microsoft.com/cli/azure/disk#create) | <span data-ttu-id="642e2-115">將受管理的磁碟複製藉由使用識別碼和名稱的不同訂用帳戶中建立新的受管理的磁碟 hello 父管理磁碟。</span><span class="sxs-lookup"><span data-stu-id="642e2-115">Copies a managed disk by creating a new managed disk in different subscription using Id and name hello parent managed disk.</span></span>  |
 
-## <a name="next-steps"></a><span data-ttu-id="bde72-117">後續步驟</span><span class="sxs-lookup"><span data-stu-id="bde72-117">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="642e2-116">後續步驟</span><span class="sxs-lookup"><span data-stu-id="642e2-116">Next steps</span></span>
 
-[<span data-ttu-id="bde72-118">從受控磁碟建立虛擬機器</span><span class="sxs-lookup"><span data-stu-id="bde72-118">Create a virtual machine from a managed disk</span></span>](./virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fpowershell%2fmodule%2ftoc.json)
+[<span data-ttu-id="642e2-117">從受控磁碟建立虛擬機器</span><span class="sxs-lookup"><span data-stu-id="642e2-117">Create a virtual machine from a managed disk</span></span>](./virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fpowershell%2fmodule%2ftoc.json)
 
-<span data-ttu-id="bde72-119">如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。</span><span class="sxs-lookup"><span data-stu-id="bde72-119">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="642e2-118">如需有關 Azure CLI hello 的詳細資訊，請參閱[Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。</span><span class="sxs-lookup"><span data-stu-id="642e2-118">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="bde72-120">您可以在 [Azure Linux VM 文件](../../app-service-web/app-service-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)中找到其他的虛擬機器和受控磁碟 CLI 指令碼範例。</span><span class="sxs-lookup"><span data-stu-id="bde72-120">Additional virtual machine and managed disks CLI script samples can be found in the [Azure Linux VM documentation](../../app-service-web/app-service-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="642e2-119">其他虛擬機器和受管理的磁碟 CLI 指令碼範例可以在 hello [Azure Linux VM 文件](../../app-service-web/app-service-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="642e2-119">Additional virtual machine and managed disks CLI script samples can be found in hello [Azure Linux VM documentation](../../app-service-web/app-service-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>

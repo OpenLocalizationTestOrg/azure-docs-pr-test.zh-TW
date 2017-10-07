@@ -10,8 +10,8 @@
 ## [註冊 Azure AD Premium](active-directory-get-started-premium.md)
 ## [新增自訂網域名稱](add-custom-domain.md)
 ## [設定公司商標](customize-branding.md)
-## [在 Azure AD 中新增使用者](add-users-azure-active-directory.md)
-## [將授權指派給使用者](license-users-groups.md)
+## [新增使用者 tooAzure AD](add-users-azure-active-directory.md)
+## [指派授權 toousers](license-users-groups.md)
 ## [啟用自助式密碼重設](active-directory-passwords-getting-started.md)
 
 
@@ -38,9 +38,9 @@
 
 ## 管理使用者
 ### [使用群組指派授權](active-directory-licensing-whatis-azure-portal.md)
-#### [將授權指派給群組](active-directory-licensing-group-assignment-azure-portal.md)
+#### [指派授權 tooa 群組](active-directory-licensing-group-assignment-azure-portal.md)
 #### [識別並解決群組的授權問題](active-directory-licensing-group-problem-resolution-azure-portal.md)
-#### [將個別授權使用者移轉至群組型的授權](active-directory-licensing-group-migration-azure-portal.md)
+#### [移轉個別的授權的使用者 toogroup 授權](active-directory-licensing-group-migration-azure-portal.md)
 #### [群組型授權的其他案例](active-directory-licensing-group-advanced.md)
 #### [群組型授權的 PowerShell 範例](active-directory-licensing-ps-examples.md)
 ### [從其他目錄中新增使用者 (傳統入口網站)](active-directory-create-users-external.md)
@@ -60,15 +60,15 @@
 ### [管理群組擁有者](active-directory-accessmanagement-managing-group-owners.md)
 ### [管理群組成員資格](active-directory-groups-membership-azure-portal.md)
 ### [使用群組指派授權](active-directory-licensing-whatis-azure-portal.md)
-#### [將授權指派給群組](active-directory-licensing-group-assignment-azure-portal.md)
+#### [指派授權 tooa 群組](active-directory-licensing-group-assignment-azure-portal.md)
 #### [識別並解決群組的授權問題](active-directory-licensing-group-problem-resolution-azure-portal.md)
-#### [將個別授權使用者移轉至群組型的授權](active-directory-licensing-group-migration-azure-portal.md)
+#### [移轉個別的授權的使用者 toogroup 授權](active-directory-licensing-group-migration-azure-portal.md)
 #### [群組型授權的其他案例](active-directory-licensing-group-advanced.md)
 #### [群組型授權的 PowerShell 範例](active-directory-licensing-ps-examples.md)
 ### [設定 Office 365 群組到期時間](active-directory-groups-lifecycle-azure-portal.md)
 ### [檢視全部群組](active-directory-groups-view-azure-portal.md)
 ### [啟用專用群組](active-directory-accessmanagement-dedicated-groups.md)
-### [新增 SaaS 應用程式的群組存取權](active-directory-accessmanagement-group-saasapps.md)
+### [新增群組存取 tooSaaS 應用程式](active-directory-accessmanagement-group-saasapps.md)
 ### [還原已刪除的 Office 365 群組](active-directory-groups-restore-azure-portal.md)
 ### 管理群組設定
 #### [Azure 入口網站](active-directory-groups-settings-azure-portal.md)
@@ -89,7 +89,7 @@
 ### 工作
 #### [設定具名位置](active-directory-named-locations.md)
 #### [尋找活動報告](active-directory-reporting-migration.md)
-#### [使用 Azure Active Directory Power BI 內容套件](active-directory-reporting-power-bi-content-pack-how-to.md)
+#### [使用 hello Azure Active Directory Power BI 內容套件](active-directory-reporting-power-bi-content-pack-how-to.md)
 ### 參考
 #### [保留](active-directory-reporting-retention.md)
 #### [延遲](active-directory-reporting-latencies-azure-portal.md)
@@ -131,7 +131,7 @@
 
 ## 管理裝置
 ### [簡介](device-management-introduction.md)
-### [使用 Azure 入口網站](device-management-azure-portal.md)
+### [使用 hello Azure 入口網站](device-management-azure-portal.md)
 ### [常見問題集](device-management-faq.md)
 ### 工作
 #### [設定混合式 Azure AD 已加入裝置](device-management-hybrid-azuread-joined-devices-setup.md) 
@@ -188,7 +188,7 @@
 ##### [SharePoint](application-proxy-enable-remote-access-sharepoint.md)
 ##### [Microsoft Teams](application-proxy-teams.md)
 #### [疑難排解](active-directory-application-proxy-troubleshoot.md)
-#### 使用傳統入口網站
+#### 使用 hello 傳統入口網站
 ##### [下載連接器](application-proxy-enable-classic-portal.md)
 ##### [發佈應用程式](active-directory-application-proxy-publish.md)
 ##### [使用連接器](active-directory-application-proxy-connectors.md)
@@ -202,7 +202,7 @@
 #### [檢視我的所有應用程式](active-directory-coreapps-view-azure-portal.md)
 #### [管理使用者帳戶佈建](active-directory-enterprise-apps-manage-provisioning.md)
 
-### [管理應用程式的存取權](active-directory-managing-access-to-apps.md)
+### [管理存取 tooapps](active-directory-managing-access-to-apps.md)
 #### [自助服務存取](active-directory-self-service-application-access.md)
 #### [SSO 存取](active-directory-appssoaccess-whatis.md)
 #### [SSO 憑證](active-directory-sso-certs.md)
@@ -253,7 +253,7 @@
 #### [在沒有邀請的情況下新增 B2B 使用者](active-directory-b2b-add-user-without-invite.md)
 #### [B2B 的條件式存取](active-directory-b2b-mfa-instructions.md)
 #### [B2B 共用原則](active-directory-b2b-delegate-invitations.md)
-#### [將 B2B 使用者新增至角色](active-directory-b2b-add-guest-to-role.md)
+#### [新增 B2B 使用者 tooa 角色](active-directory-b2b-add-guest-to-role.md)
 #### [動態群組和 B2B 使用者](active-directory-b2b-dynamic-groups.md)
 #### [稽核與報告](active-directory-b2b-auditing-and-reporting.md)
 #### [B2B 和 Office 365 外部共用](active-directory-b2b-o365-external-user.md)
@@ -261,16 +261,16 @@
 #### [目前限制](active-directory-b2b-current-limitations.md)
 #### [常見問題集](active-directory-b2b-faq.md)
 #### [疑難排解 B2B](active-directory-b2b-troubleshooting.md)
-#### [了解 B2B 使用者](active-directory-b2b-user-properties.md)
+#### [了解 hello B2B 使用者](active-directory-b2b-user-properties.md)
 #### [B2B 使用者權杖](active-directory-b2b-user-token.md)
 #### [適用於 Azure AD 整合應用程式的 B2B](active-directory-b2b-configure-saas-apps.md)
 #### [B2B 使用者宣告對應](active-directory-b2b-claims-mapping.md)
-#### [比較 B2B 共同作業與 B2C](active-directory-b2b-compare-b2c.md)
+#### [比較 B2B 共同作業 tooB2C](active-directory-b2b-compare-b2c.md)
 #### [取得 B2B 支援](active-directory-b2b-support.md)
 
 ### [使用 Azure AD Connect 整合內部部署身分識別](./connect/active-directory-aadconnect.md)
 
-## 委派資源存取
+## 委派存取 tooresources
 ### [管理員角色](active-directory-assign-admin-roles.md)
 #### [指派管理員角色](active-directory-users-assign-role-azure-portal.md)
 ### [管理單位](active-directory-administrative-units-management.md)
@@ -283,7 +283,7 @@
 #### [自訂角色](role-based-access-control-custom-roles.md)
 #### [為內部及外部使用者指派自訂角色](role-based-access-control-create-custom-roles-for-internal-external-users.md)
 #### [報告](role-based-access-control-access-change-history-report.md)
-#### 更多管理角色的方式
+#### 更多方式 toomanage 角色
 ##### [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 ##### [PowerShell](role-based-access-control-manage-access-powershell.md)
 ##### [REST](role-based-access-control-manage-access-rest.md)
@@ -299,7 +299,7 @@
 #### [技術參考](active-directory-conditional-access-technical-reference.md)
 #### [支援的應用程式](active-directory-conditional-access-supported-apps.md)
 #### [了解裝置原則](active-directory-conditional-access-device-policies.md)
-#### [設定已連接應用程式的存取權](active-directory-conditional-access-policy-connected-applications.md)
+#### [設定存取 tooconnected 應用程式](active-directory-conditional-access-policy-connected-applications.md)
 #### [補救](active-directory-conditional-access-device-remediation.md)
 #### [常見問題集](active-directory-conditional-faqs.md)
 #### [傳統入口網站](active-directory-conditional-access.md)

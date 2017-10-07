@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Active Directory 授權開發人員帳戶 - Azure API 管理 | Microsoft Docs"
-description: "了解如何在 API 管理中使用 Azure Active Directory 授權使用者"
+title: "使用 Azure Active Directory Azure API 管理 aaaAuthorize 開發人員帳戶 |Microsoft 文件"
+description: "深入了解如何使用 API 管理中的 Azure Active Directory tooauthorize 使用者。"
 services: api-management
 documentationcenter: API Management
 author: steved0x
@@ -14,177 +14,177 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 7637e6419d17a2d75904fbe63df5f27d4be4bbe3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ebf5447a509a47df35e4262138bfcf423cb1dd5c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-authorize-developer-accounts-using-azure-active-directory-in-azure-api-management"></a><span data-ttu-id="83224-103">如何在 Azure API 管理中使用 Azure Active Directory 授權開發人員帳戶</span><span class="sxs-lookup"><span data-stu-id="83224-103">How to authorize developer accounts using Azure Active Directory in Azure API Management</span></span>
-## <a name="overview"></a><span data-ttu-id="83224-104">概觀</span><span class="sxs-lookup"><span data-stu-id="83224-104">Overview</span></span>
-<span data-ttu-id="83224-105">本指南說明如何讓使用者能夠從 Azure Active Directory 存取開發人員入口網站。</span><span class="sxs-lookup"><span data-stu-id="83224-105">This guide shows you how to enable access to the developer portal for users from Azure Active Directory.</span></span> <span data-ttu-id="83224-106">本指南也說明如何管理 Azure Active Directory 的使用者，方法是加入包含 Azure Active Directory 的使用者的外部群組。</span><span class="sxs-lookup"><span data-stu-id="83224-106">This guide also shows you how to manage groups of Azure Active Directory users by adding external groups that contain the users of an Azure Active Directory.</span></span>
+# <a name="how-tooauthorize-developer-accounts-using-azure-active-directory-in-azure-api-management"></a><span data-ttu-id="c2314-103">如何 tooauthorize 開發人員帳戶使用 Azure Active Directory 在 Azure API 管理</span><span class="sxs-lookup"><span data-stu-id="c2314-103">How tooauthorize developer accounts using Azure Active Directory in Azure API Management</span></span>
+## <a name="overview"></a><span data-ttu-id="c2314-104">概觀</span><span class="sxs-lookup"><span data-stu-id="c2314-104">Overview</span></span>
+<span data-ttu-id="c2314-105">本指南也說明如何 tooenable 存取 toohello 開發人員入口網站，讓使用者從 Azure Active Directory。</span><span class="sxs-lookup"><span data-stu-id="c2314-105">This guide shows you how tooenable access toohello developer portal for users from Azure Active Directory.</span></span> <span data-ttu-id="c2314-106">本指南也會顯示如何加入外部群組包含 Azure Active Directory 使用者 toomanage 群組 hello Azure Active Directory 使用者。</span><span class="sxs-lookup"><span data-stu-id="c2314-106">This guide also shows you how toomanage groups of Azure Active Directory users by adding external groups that contain hello users of an Azure Active Directory.</span></span>
 
-> <span data-ttu-id="83224-107">若要完成本指南中的步驟，您必須先具備要在其中建立應用程式的 Azure Active Directory。</span><span class="sxs-lookup"><span data-stu-id="83224-107">To complete the steps in this guide you must first have an Azure Active Directory in which to create an application.</span></span>
+> <span data-ttu-id="c2314-107">本指南中步驟 toocomplete hello 必須先有 Azure Active Directory 中哪些 toocreate 應用程式。</span><span class="sxs-lookup"><span data-stu-id="c2314-107">toocomplete hello steps in this guide you must first have an Azure Active Directory in which toocreate an application.</span></span>
 > 
 > 
 
-## <a name="how-to-authorize-developer-accounts-using-azure-active-directory"></a><span data-ttu-id="83224-108">如何使用 Azure Active Directory 授權開發人員帳戶</span><span class="sxs-lookup"><span data-stu-id="83224-108">How to authorize developer accounts using Azure Active Directory</span></span>
-<span data-ttu-id="83224-109">若要開始，請在 API 管理服務的 Azure 入口網站中按一下 [發佈者入口網站]。</span><span class="sxs-lookup"><span data-stu-id="83224-109">To get started, click **Publisher portal** in the Azure portal for your API Management service.</span></span> <span data-ttu-id="83224-110">這會帶您前往 API 管理發行者入口網站。</span><span class="sxs-lookup"><span data-stu-id="83224-110">This takes you to the API Management publisher portal.</span></span>
+## <a name="how-tooauthorize-developer-accounts-using-azure-active-directory"></a><span data-ttu-id="c2314-108">如何 tooauthorize 開發人員帳戶使用 Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="c2314-108">How tooauthorize developer accounts using Azure Active Directory</span></span>
+<span data-ttu-id="c2314-109">tooget 啟動，按一下**發行者入口網站**hello API 管理服務的 Azure 入口網站中。</span><span class="sxs-lookup"><span data-stu-id="c2314-109">tooget started, click **Publisher portal** in hello Azure portal for your API Management service.</span></span> <span data-ttu-id="c2314-110">這會帶您 toohello API 管理發行者入口網站。</span><span class="sxs-lookup"><span data-stu-id="c2314-110">This takes you toohello API Management publisher portal.</span></span>
 
 ![發行者入口網站][api-management-management-console]
 
-> <span data-ttu-id="83224-112">如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。</span><span class="sxs-lookup"><span data-stu-id="83224-112">If you have not yet created an API Management service instance, see [Create an API Management service instance][Create an API Management service instance] in the [Get started with Azure API Management][Get started with Azure API Management] tutorial.</span></span>
+> <span data-ttu-id="c2314-112">如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][ Create an API Management service instance]在 hello[開始使用 Azure API 管理][Get started with Azure API Management]教學課程。</span><span class="sxs-lookup"><span data-stu-id="c2314-112">If you have not yet created an API Management service instance, see [Create an API Management service instance][Create an API Management service instance] in hello [Get started with Azure API Management][Get started with Azure API Management] tutorial.</span></span>
 > 
 > 
 
-<span data-ttu-id="83224-113">從左側的 [API 管理] 功能表按一下 [安全性]，然後按一下 [外部身分識別]。</span><span class="sxs-lookup"><span data-stu-id="83224-113">Click **Security** from the **API Management** menu on the left and click **External Identities**.</span></span>
+<span data-ttu-id="c2314-113">按一下**安全性**從 hello **API 管理**hello 左側，按一下功能表**外部識別**。</span><span class="sxs-lookup"><span data-stu-id="c2314-113">Click **Security** from hello **API Management** menu on hello left and click **External Identities**.</span></span>
 
 ![外部身分識別][api-management-security-external-identities]
 
-<span data-ttu-id="83224-115">按一下 [ **Azure Active Directory**]。</span><span class="sxs-lookup"><span data-stu-id="83224-115">Click **Azure Active Directory**.</span></span> <span data-ttu-id="83224-116">記下 [重新導向 URL]  ，然後切換到 Azure 傳統入口網站中您的 Azure Active Directory。</span><span class="sxs-lookup"><span data-stu-id="83224-116">Make a note of the **Redirect URL** and switch over to your Azure Active Directory in the Azure Classic Portal.</span></span>
+<span data-ttu-id="c2314-115">按一下 [ **Azure Active Directory**]。</span><span class="sxs-lookup"><span data-stu-id="c2314-115">Click **Azure Active Directory**.</span></span> <span data-ttu-id="c2314-116">請記下 hello**重新導向 URL**和切換 tooyour Azure Active Directory hello Azure 傳統入口網站中。</span><span class="sxs-lookup"><span data-stu-id="c2314-116">Make a note of hello **Redirect URL** and switch over tooyour Azure Active Directory in hello Azure Classic Portal.</span></span>
 
 ![外部身分識別][api-management-security-aad-new]
 
-<span data-ttu-id="83224-118">按一下 [新增] 按鈕來建立新 Azure Active Directory 應用程式，並選擇 [新增我的組織正在開發的應用程式]。</span><span class="sxs-lookup"><span data-stu-id="83224-118">Click the **Add** button to create a new Azure Active Directory application, and choose **Add an application my organization is developing**.</span></span>
+<span data-ttu-id="c2314-118">按一下 hello**新增**按鈕 toocreate 新的 Azure Active Directory 應用程式，然後選擇**加入我組織正在開發的應用程式**。</span><span class="sxs-lookup"><span data-stu-id="c2314-118">Click hello **Add** button toocreate a new Azure Active Directory application, and choose **Add an application my organization is developing**.</span></span>
 
 ![加入新的 Azure Active Directory 應用程式][api-management-new-aad-application-menu]
 
-<span data-ttu-id="83224-120">輸入應用程式的名稱，選取 [ **Web 應用程式和/或 Web API**]，然後按 [下一步] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="83224-120">Enter a name for the application, select **Web application and/or Web API**, and click the next button.</span></span>
+<span data-ttu-id="c2314-120">輸入的名稱 hello 應用程式中，選取**Web 應用程式和/或 Web API**，然後按一下 下一步按鈕的 hello。</span><span class="sxs-lookup"><span data-stu-id="c2314-120">Enter a name for hello application, select **Web application and/or Web API**, and click hello next button.</span></span>
 
 ![新 Azure Active Directory 應用程式][api-management-new-aad-application-1]
 
-<span data-ttu-id="83224-122">在 [登入 URL] 中，輸入開發人員入口網站的登入 URL。</span><span class="sxs-lookup"><span data-stu-id="83224-122">For **Sign-on URL**, enter the sign-on URL of your developer portal.</span></span> <span data-ttu-id="83224-123">在此範例中，[登入 URL] 為 `https://aad03.portal.current.int-azure-api.net/signin`。</span><span class="sxs-lookup"><span data-stu-id="83224-123">In this example, the **Sign-on URL** is `https://aad03.portal.current.int-azure-api.net/signin`.</span></span> 
+<span data-ttu-id="c2314-122">如**登入 URL**，輸入 hello 登入您的開發人員入口網站的 URL。</span><span class="sxs-lookup"><span data-stu-id="c2314-122">For **Sign-on URL**, enter hello sign-on URL of your developer portal.</span></span> <span data-ttu-id="c2314-123">在此範例中，hello**登入 URL**是`https://aad03.portal.current.int-azure-api.net/signin`。</span><span class="sxs-lookup"><span data-stu-id="c2314-123">In this example, hello **Sign-on URL** is `https://aad03.portal.current.int-azure-api.net/signin`.</span></span> 
 
-<span data-ttu-id="83224-124">針對 [ **應用程式識別碼 URL**]，請輸入 Azure Active Directory 的預設網域或自訂網域，並為其附加獨特的字串。</span><span class="sxs-lookup"><span data-stu-id="83224-124">For the **App ID URL**, enter either the default domain or a custom domain for the Azure Active Directory, and append a unique string to it.</span></span> <span data-ttu-id="83224-125">在此範例中，使用了 **https://contoso5api.onmicrosoft.com** 的預設網域並指定尾碼 **/api**。</span><span class="sxs-lookup"><span data-stu-id="83224-125">In this example, the default domain of **https://contoso5api.onmicrosoft.com** is used with the suffix of **/api** specified.</span></span>
+<span data-ttu-id="c2314-124">Hello**應用程式識別碼 URL**、 hello Azure Active Directory 中，輸入 hello 預設定義域或自訂網域，然後附加唯一字串 tooit。</span><span class="sxs-lookup"><span data-stu-id="c2314-124">For hello **App ID URL**, enter either hello default domain or a custom domain for hello Azure Active Directory, and append a unique string tooit.</span></span> <span data-ttu-id="c2314-125">在此範例中，hello 的預設網域**https://contoso5api.onmicrosoft.com**搭配 hello 尾碼**/api**指定。</span><span class="sxs-lookup"><span data-stu-id="c2314-125">In this example, hello default domain of **https://contoso5api.onmicrosoft.com** is used with hello suffix of **/api** specified.</span></span>
 
 ![新 Azure Active Directory 應用程式屬性][api-management-new-aad-application-2]
 
-<span data-ttu-id="83224-127">按一下核取記號按鈕來儲存並建立應用程式，然後切換至 [設定] 索引標籤來設定新應用程式。</span><span class="sxs-lookup"><span data-stu-id="83224-127">Click the check button to save and create the application, and switch to the **Configure** tab to configure the new application.</span></span>
+<span data-ttu-id="c2314-127">按一下 hello 核取按鈕 toosave 和建立 hello 應用程式，並切換 toohello**設定**tooconfigure hello 新應用程式索引標籤上。</span><span class="sxs-lookup"><span data-stu-id="c2314-127">Click hello check button toosave and create hello application, and switch toohello **Configure** tab tooconfigure hello new application.</span></span>
 
 ![新 Azure Active Directory 應用程式已建立][api-management-new-aad-app-created]
 
-<span data-ttu-id="83224-129">如果將對這個應用程式使用多個 Azure Active Directory，請對 [應用程式是多租用戶] 按一下 [是]。</span><span class="sxs-lookup"><span data-stu-id="83224-129">If multiple Azure Active Directories are going to be used for this application, click **Yes** for **Application is multi-tenant**.</span></span> <span data-ttu-id="83224-130">預設值為 [ **否**]。</span><span class="sxs-lookup"><span data-stu-id="83224-130">The default is **No**.</span></span>
+<span data-ttu-id="c2314-129">如果多個 Azure Active Directory 將 toobe 此應用程式使用，請按一下**是**如**應用程式是多租用戶**。</span><span class="sxs-lookup"><span data-stu-id="c2314-129">If multiple Azure Active Directories are going toobe used for this application, click **Yes** for **Application is multi-tenant**.</span></span> <span data-ttu-id="c2314-130">hello 預設值是**否**。</span><span class="sxs-lookup"><span data-stu-id="c2314-130">hello default is **No**.</span></span>
 
 ![是][api-management-aad-app-multi-tenant]
 
-<span data-ttu-id="83224-132">從發佈者入口網站中 [外部身分識別] 索引標籤的 [Azure Active Directory] 區段，複製 [重新導向 URL]，並貼上至 [回覆 URL]。</span><span class="sxs-lookup"><span data-stu-id="83224-132">Copy the **Redirect URL** from the **Azure Active Directory** section of the **External Identities** tab in the publisher portal and paste it into the **Reply URL** text box.</span></span> 
+<span data-ttu-id="c2314-132">複製 hello**重新導向 URL**從 hello **Azure Active Directory**區段 hello**外部識別**hello 發行者入口網站中索引標籤，並將它貼到 hello **回覆 URL**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="c2314-132">Copy hello **Redirect URL** from hello **Azure Active Directory** section of hello **External Identities** tab in hello publisher portal and paste it into hello **Reply URL** text box.</span></span> 
 
 ![回覆 URL][api-management-aad-reply-url]
 
-<span data-ttu-id="83224-134">捲動至設定索引標籤的底端，選取 [應用程式權限] 下拉式清單，並勾選 [讀取目錄資料]。</span><span class="sxs-lookup"><span data-stu-id="83224-134">Scroll to the bottom of the configure tab, select the **Application Permissions** drop-down, and check **Read directory data**.</span></span>
+<span data-ttu-id="c2314-134">捲軸 toohello 底部 hello 設定索引標籤上，選取 hello**應用程式權限**下拉式清單中，並檢查**讀取目錄資料**。</span><span class="sxs-lookup"><span data-stu-id="c2314-134">Scroll toohello bottom of hello configure tab, select hello **Application Permissions** drop-down, and check **Read directory data**.</span></span>
 
 ![應用程式權限][api-management-aad-app-permissions]
 
-<span data-ttu-id="83224-136">選取 [委派權限] 下拉式清單，並勾選 [啟用登入並讀取使用者的設定檔]。</span><span class="sxs-lookup"><span data-stu-id="83224-136">Select the **Delegate Permissions** drop-down, and check **Enable sign-on and read users' profiles**.</span></span>
+<span data-ttu-id="c2314-136">選取 hello**委派權限**下拉式清單中，並檢查**啟用登入並讀取使用者的設定檔**。</span><span class="sxs-lookup"><span data-stu-id="c2314-136">Select hello **Delegate Permissions** drop-down, and check **Enable sign-on and read users' profiles**.</span></span>
 
 ![委派的權限][api-management-aad-delegated-permissions]
 
-> <span data-ttu-id="83224-138">如需應用程式和委派的權限的詳細資訊，請參閱[存取 Graph API][Accessing the Graph API]。</span><span class="sxs-lookup"><span data-stu-id="83224-138">For more information about application and delegated permissions, see [Accessing the Graph API][Accessing the Graph API].</span></span>
+> <span data-ttu-id="c2314-138">如需應用程式和委派的權限的詳細資訊，請參閱[存取 hello Graph API][Accessing hello Graph API]。</span><span class="sxs-lookup"><span data-stu-id="c2314-138">For more information about application and delegated permissions, see [Accessing hello Graph API][Accessing hello Graph API].</span></span>
 > 
 > 
 
-<span data-ttu-id="83224-139">複製 [ **用戶端識別碼** ] 至剪貼簿。</span><span class="sxs-lookup"><span data-stu-id="83224-139">Copy the **Client Id** to the clipboard.</span></span>
+<span data-ttu-id="c2314-139">複製 hello**用戶端識別碼**toohello 剪貼簿。</span><span class="sxs-lookup"><span data-stu-id="c2314-139">Copy hello **Client Id** toohello clipboard.</span></span>
 
 ![用戶端識別碼][api-management-aad-app-client-id]
 
-<span data-ttu-id="83224-141">切換回發行者入口網站，並將從 Azure Active Directory 應用程式組態複製的 [ **用戶端識別碼** ] 貼上。</span><span class="sxs-lookup"><span data-stu-id="83224-141">Switch back to the publisher portal and paste in the **Client Id** copied from the Azure Active Directory application configuration.</span></span>
+<span data-ttu-id="c2314-141">切換後 toohello 發行者入口網站，並貼上在 hello**用戶端識別碼**複製 hello Azure Active Directory 應用程式組態中。</span><span class="sxs-lookup"><span data-stu-id="c2314-141">Switch back toohello publisher portal and paste in hello **Client Id** copied from hello Azure Active Directory application configuration.</span></span>
 
 ![用戶端識別碼][api-management-client-id]
 
-<span data-ttu-id="83224-143">切換回 Azure Active Directory 組態，並按一下 [金鑰] 區段中的 [選取持續時間] 下拉式清單，然後指定期間。</span><span class="sxs-lookup"><span data-stu-id="83224-143">Switch back to the Azure Active Directory configuration, and click the **Select duration** drop-down in the **Keys** section and specify an interval.</span></span> <span data-ttu-id="83224-144">在此範例中使用 **1 年** 。</span><span class="sxs-lookup"><span data-stu-id="83224-144">In this example, **1 year** is used.</span></span>
+<span data-ttu-id="c2314-143">切換後 toohello Azure Active Directory 設定，然後按一下 hello**選取持續時間**下拉式清單中 hello**金鑰**區段，並指定間隔。</span><span class="sxs-lookup"><span data-stu-id="c2314-143">Switch back toohello Azure Active Directory configuration, and click hello **Select duration** drop-down in hello **Keys** section and specify an interval.</span></span> <span data-ttu-id="c2314-144">在此範例中使用 **1 年** 。</span><span class="sxs-lookup"><span data-stu-id="c2314-144">In this example, **1 year** is used.</span></span>
 
-![金鑰][api-management-aad-key-before-save]
+![Key][api-management-aad-key-before-save]
 
-<span data-ttu-id="83224-146">按一下 [ **儲存** ] 以儲存組態並顯示金鑰。</span><span class="sxs-lookup"><span data-stu-id="83224-146">Click **Save** to save the configuration and display the key.</span></span> <span data-ttu-id="83224-147">複製金鑰至剪貼簿。</span><span class="sxs-lookup"><span data-stu-id="83224-147">Copy the key to the clipboard.</span></span>
+<span data-ttu-id="c2314-146">按一下**儲存**toosave hello 組態和顯示 hello 金鑰。</span><span class="sxs-lookup"><span data-stu-id="c2314-146">Click **Save** toosave hello configuration and display hello key.</span></span> <span data-ttu-id="c2314-147">將複製 hello 金鑰 toohello 剪貼簿。</span><span class="sxs-lookup"><span data-stu-id="c2314-147">Copy hello key toohello clipboard.</span></span>
 
-> <span data-ttu-id="83224-148">記下此金鑰。</span><span class="sxs-lookup"><span data-stu-id="83224-148">Make a note of this key.</span></span> <span data-ttu-id="83224-149">關閉 Azure Active Directory 組態視窗之後，即無法再次顯示金鑰。</span><span class="sxs-lookup"><span data-stu-id="83224-149">Once you close the Azure Active Directory configuration window, the key cannot be displayed again.</span></span>
+> <span data-ttu-id="c2314-148">記下此金鑰。</span><span class="sxs-lookup"><span data-stu-id="c2314-148">Make a note of this key.</span></span> <span data-ttu-id="c2314-149">一旦您關閉 hello Azure Active Directory 設定 視窗中，無法再次顯示 hello 索引鍵。</span><span class="sxs-lookup"><span data-stu-id="c2314-149">Once you close hello Azure Active Directory configuration window, hello key cannot be displayed again.</span></span>
 > 
 > 
 
-![金鑰][api-management-aad-key-after-save]
+![Key][api-management-aad-key-after-save]
 
-<span data-ttu-id="83224-151">切換回發行者入口網站，並將金鑰貼上至 [ **用戶端密碼** ] 文字方塊。</span><span class="sxs-lookup"><span data-stu-id="83224-151">Switch back to the publisher portal and paste the key into the **Client Secret** text box.</span></span>
+<span data-ttu-id="c2314-151">交換器後 toohello 發行者入口網站和貼上 hello 金鑰貼入 hello**用戶端密碼**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="c2314-151">Switch back toohello publisher portal and paste hello key into hello **Client Secret** text box.</span></span>
 
 ![用戶端密碼][api-management-client-secret]
 
-<span data-ttu-id="83224-153">**允許的租用戶**  指定哪些目錄可存取 API 管理服務執行個體的 API。</span><span class="sxs-lookup"><span data-stu-id="83224-153">**Allowed Tenants** specifies which directories have access to the APIs of the API Management service instance.</span></span> <span data-ttu-id="83224-154">指定您要授與存取的 Azure Active Directory 執行個體的網域。</span><span class="sxs-lookup"><span data-stu-id="83224-154">Specify the domains of the Azure Active Directory instances to which you want to grant access.</span></span> <span data-ttu-id="83224-155">您可以使用換行符號、空格或逗號來分隔多個網域。</span><span class="sxs-lookup"><span data-stu-id="83224-155">You can separate multiple domains with newlines, spaces, or commas.</span></span>
+<span data-ttu-id="c2314-153">**允許租用戶**指定的目錄有存取 toohello hello API 管理服務執行個體的應用程式開發介面。</span><span class="sxs-lookup"><span data-stu-id="c2314-153">**Allowed Tenants** specifies which directories have access toohello APIs of hello API Management service instance.</span></span> <span data-ttu-id="c2314-154">指定您想要 toogrant 存取 Azure Active Directory 執行個體 toowhich hello 的 hello 網域。</span><span class="sxs-lookup"><span data-stu-id="c2314-154">Specify hello domains of hello Azure Active Directory instances toowhich you want toogrant access.</span></span> <span data-ttu-id="c2314-155">您可以使用換行符號、空格或逗號來分隔多個網域。</span><span class="sxs-lookup"><span data-stu-id="c2314-155">You can separate multiple domains with newlines, spaces, or commas.</span></span>
 
 ![允許的租用戶][api-management-client-allowed-tenants]
 
 
-<span data-ttu-id="83224-157">指定需要的組態之後，按一下 [ **儲存**]。</span><span class="sxs-lookup"><span data-stu-id="83224-157">Once the desired configuration is specified, click **Save**.</span></span>
+<span data-ttu-id="c2314-157">一旦 hello 想要指定組態，請按一下**儲存**。</span><span class="sxs-lookup"><span data-stu-id="c2314-157">Once hello desired configuration is specified, click **Save**.</span></span>
 
 ![儲存][api-management-client-allowed-tenants-save]
 
-<span data-ttu-id="83224-159">儲存變更之後，在指定 Azure Active Directory 中的使用者透過遵循[使用 Azure Active Directory 帳戶登入開發人員入口網站][Log in to the Developer portal using an Azure Active Directory account]中的步驟，即可登入開發人員入口網站。</span><span class="sxs-lookup"><span data-stu-id="83224-159">Once the changes are saved, the users in the specified Azure Active Directory can sign in to the Developer portal by following the steps in [Log in to the Developer portal using an Azure Active Directory account][Log in to the Developer portal using an Azure Active Directory account].</span></span>
+<span data-ttu-id="c2314-159">一旦儲存 hello 變更了，指定 Azure Active Directory 可以登入 toohello 開發人員入口網站中的 hello 步驟在 hello hello 使用者[登入 toohello 開發人員入口網站使用的 Azure Active Directory 帳戶][Log in toohello Developer portal using an Azure Active Directory account].</span><span class="sxs-lookup"><span data-stu-id="c2314-159">Once hello changes are saved, hello users in hello specified Azure Active Directory can sign in toohello Developer portal by following hello steps in [Log in toohello Developer portal using an Azure Active Directory account][Log in toohello Developer portal using an Azure Active Directory account].</span></span>
 
-<span data-ttu-id="83224-160">可以在 [ **允許的租用戶** ] 區段中指定多個網域。</span><span class="sxs-lookup"><span data-stu-id="83224-160">Multiple domains can be specified in the **Allowed Tenants** section.</span></span> <span data-ttu-id="83224-161">在使用者可透過與註冊應用程式之原始網域不同的網域登入前，不同網域的全域管理員必須授與權限，應用程式才能存取目錄資料。</span><span class="sxs-lookup"><span data-stu-id="83224-161">Before any user can log in from a different domain than the original domain where the application was registered, a global administrator of the different domain must grant permission for the application to access directory data.</span></span> <span data-ttu-id="83224-162">若要授與權限，全域系統管理員應該移至 `https://<URL of your developer portal>/aadadminconsent` (例如，https://contoso.portal.azure-api.net/aadadminconsent)，輸入他們想要提供存取權之 Active Directory 租用戶的網域名稱，然後按一下 [提交]。</span><span class="sxs-lookup"><span data-stu-id="83224-162">To grant permission, the global administrator should go to `https://<URL of your developer portal>/aadadminconsent` (for example, https://contoso.portal.azure-api.net/aadadminconsent), type in the domain name of the Active Directory tenant they want to give access to and click Submit.</span></span> <span data-ttu-id="83224-163">在下列範例中，來自 `miaoaad.onmicrosoft.com` 的全域管理員嘗試給予這個特定開發人員入口網站的權限。</span><span class="sxs-lookup"><span data-stu-id="83224-163">In the following example, a global administrator from `miaoaad.onmicrosoft.com` is trying to give permission to this particular developer portal.</span></span> 
+<span data-ttu-id="c2314-160">可以指定多個網域在 hello**允許租用戶**> 一節。</span><span class="sxs-lookup"><span data-stu-id="c2314-160">Multiple domains can be specified in hello **Allowed Tenants** section.</span></span> <span data-ttu-id="c2314-161">任何使用者可以從不同 hello hello 應用程式註冊所在的原始網域的網域登入前，hello 不同網域的全域管理員必須授與權限 hello 應用程式 tooaccess 目錄資料。</span><span class="sxs-lookup"><span data-stu-id="c2314-161">Before any user can log in from a different domain than hello original domain where hello application was registered, a global administrator of hello different domain must grant permission for hello application tooaccess directory data.</span></span> <span data-ttu-id="c2314-162">toogrant 權限，hello 全域系統管理員應太`https://<URL of your developer portal>/aadadminconsent`(例如，https://contoso.portal.azure-api.net/aadadminconsent)，按一下 [提交] hello 網域名稱中的 hello 他們想 toogive 存取 tooand 的 Active Directory 租用戶的型別。</span><span class="sxs-lookup"><span data-stu-id="c2314-162">toogrant permission, hello global administrator should go too`https://<URL of your developer portal>/aadadminconsent` (for example, https://contoso.portal.azure-api.net/aadadminconsent), type in hello domain name of hello Active Directory tenant they want toogive access tooand click Submit.</span></span> <span data-ttu-id="c2314-163">在 hello 下列範例中，全域系統管理員身分從`miaoaad.onmicrosoft.com`正嘗試 toogive 權限 toothis 特定開發人員入口網站。</span><span class="sxs-lookup"><span data-stu-id="c2314-163">In hello following example, a global administrator from `miaoaad.onmicrosoft.com` is trying toogive permission toothis particular developer portal.</span></span> 
 
 ![權限][api-management-aad-consent]
 
-<span data-ttu-id="83224-165">在下一個畫面中，系統會提示全域系統管理員確認要給予權限。</span><span class="sxs-lookup"><span data-stu-id="83224-165">In the next screen, the global administrator will be prompted to confirm giving the permission.</span></span> 
+<span data-ttu-id="c2314-165">Hello 下一個畫面中，在 hello 全域系統管理員可提示的 tooconfirm 賦予 hello 的權限。</span><span class="sxs-lookup"><span data-stu-id="c2314-165">In hello next screen, hello global administrator will be prompted tooconfirm giving hello permission.</span></span> 
 
 ![權限][api-management-permissions-form]
 
-> <span data-ttu-id="83224-167">如果非全域管理員在全域管理員授與其權限之前便嘗試登入，登入嘗試會失敗，並且顯示錯誤畫面。</span><span class="sxs-lookup"><span data-stu-id="83224-167">If a non-global administrator tries to log in before permissions are granted by a global administrator, the login attempt fails and an error screen is displayed.</span></span>
+> <span data-ttu-id="c2314-167">如果非全域系統管理員嘗試 toolog 中之前的權限會授與全域系統管理員、 hello 登入嘗試失敗和錯誤畫面隨即出現。</span><span class="sxs-lookup"><span data-stu-id="c2314-167">If a non-global administrator tries toolog in before permissions are granted by a global administrator, hello login attempt fails and an error screen is displayed.</span></span>
 > 
 > 
 
-## <a name="how-to-add-an-external-azure-active-directory-group"></a><span data-ttu-id="83224-168">如何加入外部 Azure Active Directory 群組</span><span class="sxs-lookup"><span data-stu-id="83224-168">How to add an external Azure Active Directory Group</span></span>
-<span data-ttu-id="83224-169">為 Azure Active Directory 中的使用者啟用存取之後，您可以將 Azure Active Directory 群組加入至 API 管理，以更輕鬆管理所需產品的群組中開發人員的關聯。</span><span class="sxs-lookup"><span data-stu-id="83224-169">After enabling access for users in an Azure Active Directory, you can add Azure Active Directory groups into API Management to more easily manage the association of the developers in the group with the desired products.</span></span>
+## <a name="how-tooadd-an-external-azure-active-directory-group"></a><span data-ttu-id="c2314-168">如何 tooadd 外部的 Azure Active Directory 群組</span><span class="sxs-lookup"><span data-stu-id="c2314-168">How tooadd an external Azure Active Directory Group</span></span>
+<span data-ttu-id="c2314-169">啟用 Azure Active Directory 中使用者的存取權之後，您可以新增至 API 管理 toomore 的 Azure Active Directory 群組輕鬆地管理 hello 與之間的關聯 hello 群組中的 hello 開發人員想要的 hello 產品。</span><span class="sxs-lookup"><span data-stu-id="c2314-169">After enabling access for users in an Azure Active Directory, you can add Azure Active Directory groups into API Management toomore easily manage hello association of hello developers in hello group with hello desired products.</span></span>
 
-> <span data-ttu-id="83224-170">若要設定外部 Azure Active Directory 群組，必須先遵循上一節中的程序，在 [身分識別] 索引標籤中設定 Azure Active Directory。</span><span class="sxs-lookup"><span data-stu-id="83224-170">To configure an external Azure Active Directory group, the Azure Active Directory must first be configured in the Identities tab by following the procedure in the previous section.</span></span> 
+> <span data-ttu-id="c2314-170">tooconfigure 外部的 Azure Active Directory 群組，hello Azure Active Directory 必須先設定 hello 身分識別 索引標籤中遵循 hello hello 前一節中的程序。</span><span class="sxs-lookup"><span data-stu-id="c2314-170">tooconfigure an external Azure Active Directory group, hello Azure Active Directory must first be configured in hello Identities tab by following hello procedure in hello previous section.</span></span> 
 > 
 > 
 
-<span data-ttu-id="83224-171">外部 Azure Active Directory 群組是從您要授與群組存取之產品的 [ **可見性** ] 索引標籤中加入。</span><span class="sxs-lookup"><span data-stu-id="83224-171">External Azure Active Directory groups are added from the **Visibility** tab of the product for which you wish to grant access to the group.</span></span> <span data-ttu-id="83224-172">按一下 [ **產品**]，然後按一下所需產品的名稱。</span><span class="sxs-lookup"><span data-stu-id="83224-172">Click **Products**, and then click the name of the desired product.</span></span>
+<span data-ttu-id="c2314-171">從 hello 加入外部 Azure Active Directory 群組**可視性**hello 產品想 toogrant 存取 toohello 群組 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="c2314-171">External Azure Active Directory groups are added from hello **Visibility** tab of hello product for which you wish toogrant access toohello group.</span></span> <span data-ttu-id="c2314-172">按一下**產品**，然後按一下hello hello 所需的產品名稱。</span><span class="sxs-lookup"><span data-stu-id="c2314-172">Click **Products**, and then click hello name of hello desired product.</span></span>
 
 ![Configure product][api-management-configure-product]
 
-<span data-ttu-id="83224-174">切換至 [可見度] 索引標籤，然後按一下 [從 Azure Active Directory 新增群組]。</span><span class="sxs-lookup"><span data-stu-id="83224-174">Switch to the **Visibility** tab, and click **Add Groups from Azure Active Directory**.</span></span>
+<span data-ttu-id="c2314-174">切換 toohello**可視性**索引標籤，然後按一下**新增的群組，從 Azure Active Directory**。</span><span class="sxs-lookup"><span data-stu-id="c2314-174">Switch toohello **Visibility** tab, and click **Add Groups from Azure Active Directory**.</span></span>
 
 ![加入群組][api-management-add-groups]
 
-<span data-ttu-id="83224-176">從下拉式清單選取 [Azure Active Directory 租用戶]，然後在要新增的 [群組] 文字方塊中輸入所需群組的名稱。</span><span class="sxs-lookup"><span data-stu-id="83224-176">Select the **Azure Active Directory Tenant** from the drop-down list, and then type the name of the desired group in the **Groups** to be added text box.</span></span>
+<span data-ttu-id="c2314-176">選取 hello **Azure Active Directory 租用戶**hello 下拉式清單中，與在 hello hello 所需群組然後類型 hello 名稱**群組**toobe 加入文字方塊。</span><span class="sxs-lookup"><span data-stu-id="c2314-176">Select hello **Azure Active Directory Tenant** from hello drop-down list, and then type hello name of hello desired group in hello **Groups** toobe added text box.</span></span>
 
 ![選取群組][api-management-select-group]
 
-<span data-ttu-id="83224-178">此群組名稱可在您的 Azure Active Directory 的 [ **群組** ] 清單中找到，如下列範例所示。</span><span class="sxs-lookup"><span data-stu-id="83224-178">This group name can be found in the **Groups** list for your Azure Active Directory, as shown in the following example.</span></span>
+<span data-ttu-id="c2314-178">此群組名稱可以在 hello**群組**hello 下列範例所示，您的 Azure Active directory，清單。</span><span class="sxs-lookup"><span data-stu-id="c2314-178">This group name can be found in hello **Groups** list for your Azure Active Directory, as shown in hello following example.</span></span>
 
 ![Azure Active Directory 群組清單][api-management-aad-groups-list]
 
-<span data-ttu-id="83224-180">按一下 [ **加入** ] 可驗證群組名稱並加入群組。</span><span class="sxs-lookup"><span data-stu-id="83224-180">Click **Add** to validate the group name and add the group.</span></span> <span data-ttu-id="83224-181">在此範例中會新增 **Contoso 5 Developers** 外部群組。</span><span class="sxs-lookup"><span data-stu-id="83224-181">In this example, the **Contoso 5 Developers** external group is added.</span></span> 
+<span data-ttu-id="c2314-180">按一下**新增**toovalidate hello 群組名稱，並加入 hello 群組。</span><span class="sxs-lookup"><span data-stu-id="c2314-180">Click **Add** toovalidate hello group name and add hello group.</span></span> <span data-ttu-id="c2314-181">在此範例中，hello **Contoso 5 開發人員**就會加入外部群組。</span><span class="sxs-lookup"><span data-stu-id="c2314-181">In this example, hello **Contoso 5 Developers** external group is added.</span></span> 
 
 ![Group added][api-management-aad-group-added]
 
-<span data-ttu-id="83224-183">按一下 [ **儲存** ] 以儲存新群組選項。</span><span class="sxs-lookup"><span data-stu-id="83224-183">Click **Save** to save the new group selection.</span></span>
+<span data-ttu-id="c2314-183">按一下**儲存**toosave hello 新群組選取項目。</span><span class="sxs-lookup"><span data-stu-id="c2314-183">Click **Save** toosave hello new group selection.</span></span>
 
-<span data-ttu-id="83224-184">透過一個產品設定 Azure Active Directory 群組之後，即可在 API 管理服務執行個體中其他產品的 [可見性] 索引標籤加以查看。</span><span class="sxs-lookup"><span data-stu-id="83224-184">Once an Azure Active Directory group has been configured from one product, it is available to be checked on the **Visibility** tab for the other products in the API Management service instance.</span></span>
+<span data-ttu-id="c2314-184">一旦已設定 Azure Active Directory 群組從一個產品，就是檢查 hello 可用 toobe**可視性** 索引標籤的 hello hello API 管理服務執行個體中的其他產品。</span><span class="sxs-lookup"><span data-stu-id="c2314-184">Once an Azure Active Directory group has been configured from one product, it is available toobe checked on hello **Visibility** tab for hello other products in hello API Management service instance.</span></span>
 
-<span data-ttu-id="83224-185">在加入外部群組之後，若要檢查並設定其屬性，請從 [群組] 索引標籤按一下群組的名稱。</span><span class="sxs-lookup"><span data-stu-id="83224-185">To review and configure the properties for external groups once they have been added, click the name of the group from the **Groups** tab.</span></span>
+<span data-ttu-id="c2314-185">tooreview 並設定 hello 屬性外部一旦已加入的群組按一下 hello hello hello 群組名稱**群組** 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="c2314-185">tooreview and configure hello properties for external groups once they have been added, click hello name of hello group from hello **Groups** tab.</span></span>
 
 ![管理群組][api-management-groups]
 
-<span data-ttu-id="83224-187">從此處，您可以編輯群組的 [名稱] 和 [說明]。</span><span class="sxs-lookup"><span data-stu-id="83224-187">From here you can edit the **Name** and the **Description** of the group.</span></span>
+<span data-ttu-id="c2314-187">您可以從這裡編輯 hello**名稱**和 hello**描述**的 hello 群組。</span><span class="sxs-lookup"><span data-stu-id="c2314-187">From here you can edit hello **Name** and hello **Description** of hello group.</span></span>
 
 ![編輯群組][api-management-edit-group]
 
-<span data-ttu-id="83224-189">來自所設定 Azure Active Directory 的使用者可以登入開發人員入口網站，並透過下一節中的指示，以檢視及訂閱他們看的見的任何群組。</span><span class="sxs-lookup"><span data-stu-id="83224-189">Users from the configured Azure Active Directory can sign in to the Developer portal and view and subscribe to any groups for which they have visibility by following the instructions in the following section.</span></span>
+<span data-ttu-id="c2314-189">Hello 的使用者設定的 Azure Active Directory 登入 toohello 開發人員入口網站並檢視和訂閱他們擁有之可見性 hello 之後 > 一節中的 hello 指示 tooany 群組。</span><span class="sxs-lookup"><span data-stu-id="c2314-189">Users from hello configured Azure Active Directory can sign in toohello Developer portal and view and subscribe tooany groups for which they have visibility by following hello instructions in hello following section.</span></span>
 
-## <a name="how-to-log-in-to-the-developer-portal-using-an-azure-active-directory-account"></a><span data-ttu-id="83224-190">如何使用 Azure Active Directory 帳戶登入開發人員入口網站</span><span class="sxs-lookup"><span data-stu-id="83224-190">How to log in to the Developer portal using an Azure Active Directory account</span></span>
-<span data-ttu-id="83224-191">若要使用前一節設定的 Azure Active Directory 帳戶登入開發人員入口網站，請使用來自 Active Directory 應用程式組態的 [登入 URL] 開啟新瀏覽器視窗，然後按一下 [Azure Active Directory]。</span><span class="sxs-lookup"><span data-stu-id="83224-191">To log into the Developer portal using an Azure Active Directory account configured in the previous sections, open a new browser window using the **Sign-on URL** from the Active Directory application configuration, and click **Azure Active Directory**.</span></span>
+## <a name="how-toolog-in-toohello-developer-portal-using-an-azure-active-directory-account"></a><span data-ttu-id="c2314-190">如何使用 Azure Active Directory 帳戶 toohello 開發人員入口網站中的 toolog</span><span class="sxs-lookup"><span data-stu-id="c2314-190">How toolog in toohello Developer portal using an Azure Active Directory account</span></span>
+<span data-ttu-id="c2314-191">toolog hello 開發人員入口網站，使用 Azure Active Directory 帳戶設定在 hello 先前章節中，開啟新的瀏覽器視窗，使用 hello**登入 URL**從 hello Active Directory 應用程式組態，然後按一下**Azure Active Directory**。</span><span class="sxs-lookup"><span data-stu-id="c2314-191">toolog into hello Developer portal using an Azure Active Directory account configured in hello previous sections, open a new browser window using hello **Sign-on URL** from hello Active Directory application configuration, and click **Azure Active Directory**.</span></span>
 
 ![開發人員入口網站][api-management-dev-portal-signin]
 
-<span data-ttu-id="83224-193">輸入您的 Azure Active Directory 中其中一個使用者的認證，然後按一下 [ **登入**]。</span><span class="sxs-lookup"><span data-stu-id="83224-193">Enter the credentials of one of the users in your Azure Active Directory, and click **Sign in**.</span></span>
+<span data-ttu-id="c2314-193">輸入您 Azure Active Directory 中的 hello 的其中一個 hello 使用者的認證，然後按一下**登入**。</span><span class="sxs-lookup"><span data-stu-id="c2314-193">Enter hello credentials of one of hello users in your Azure Active Directory, and click **Sign in**.</span></span>
 
-![登入][api-management-aad-signin]
+![Sign in][api-management-aad-signin]
 
-<span data-ttu-id="83224-195">如果需要其他資訊，可能會出現註冊表單的提示。</span><span class="sxs-lookup"><span data-stu-id="83224-195">You may be prompted with a registration form if any additional information is required.</span></span> <span data-ttu-id="83224-196">完成註冊表單，然後按一下 [ **註冊**]。</span><span class="sxs-lookup"><span data-stu-id="83224-196">Complete the registration form and click **Sign up**.</span></span>
+<span data-ttu-id="c2314-195">如果需要其他資訊，可能會出現註冊表單的提示。</span><span class="sxs-lookup"><span data-stu-id="c2314-195">You may be prompted with a registration form if any additional information is required.</span></span> <span data-ttu-id="c2314-196">完成 hello 註冊表單，然後按一下**註冊**。</span><span class="sxs-lookup"><span data-stu-id="c2314-196">Complete hello registration form and click **Sign up**.</span></span>
 
 ![註冊][api-management-complete-registration]
 
-<span data-ttu-id="83224-198">您的使用者現在已登入您的 API 服務執行個體的開發人員入口網站。</span><span class="sxs-lookup"><span data-stu-id="83224-198">Your user is now logged into the developer portal for your API Management service instance.</span></span>
+<span data-ttu-id="c2314-198">您的使用者現在已登入您 API 管理服務執行個體的 hello 開發人員入口網站中。</span><span class="sxs-lookup"><span data-stu-id="c2314-198">Your user is now logged into hello developer portal for your API Management service instance.</span></span>
 
 ![註冊完成][api-management-registration-complete]
 
@@ -220,10 +220,10 @@ ms.lasthandoff: 07/11/2017
 [api-management-groups]: ./media/api-management-howto-aad/api-management-groups.png
 [api-management-edit-group]: ./media/api-management-howto-aad/api-management-edit-group.png
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 [API Management policy reference]: api-management-policy-reference.md
@@ -232,13 +232,13 @@ ms.lasthandoff: 07/11/2017
 
 [http://oauth.net/2/]: http://oauth.net/2/
 [WebApp-GraphAPI-DotNet]: https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet
-[Accessing the Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
+[Accessing hello Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
 
 [Prerequisites]: #prerequisites
 [Configure an OAuth 2.0 authorization server in API Management]: #step1
-[Configure an API to use OAuth 2.0 user authorization]: #step2
-[Test the OAuth 2.0 user authorization in the Developer Portal]: #step3
+[Configure an API toouse OAuth 2.0 user authorization]: #step2
+[Test hello OAuth 2.0 user authorization in hello Developer Portal]: #step3
 [Next steps]: #next-steps
 
-[Log in to the Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
+[Log in toohello Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
 

@@ -1,6 +1,6 @@
 ---
-title: "測試 Azure VM 網路輸送量 | Microsoft Docs"
-description: "了解如何測試 Azure 虛擬機器網路輸送量。"
+title: "aaaTesting Azure VM 網路輸送量 |Microsoft 文件"
+description: "了解如何 tootest Azure 虛擬機器的網路輸送量。"
 services: virtual-network
 documentationcenter: na
 author: steveesp
@@ -14,151 +14,151 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/21/2017
 ms.author: steveesp
-ms.openlocfilehash: ccebc722386a19014674d7a59757a3685bd50793
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2da85c27bc8d16a443b215891f4cd0460f41926f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="bandwidththroughput-testing-ntttcp"></a><span data-ttu-id="66b18-103">頻寬/輸送量測試 (NTTTCP)</span><span class="sxs-lookup"><span data-stu-id="66b18-103">Bandwidth/Throughput testing (NTTTCP)</span></span>
+# <a name="bandwidththroughput-testing-ntttcp"></a><span data-ttu-id="4822c-103">頻寬/輸送量測試 (NTTTCP)</span><span class="sxs-lookup"><span data-stu-id="4822c-103">Bandwidth/Throughput testing (NTTTCP)</span></span>
 
-<span data-ttu-id="66b18-104">在 Azure 中測試網路輸送量效能時，最好是使用工具來針對網路進行測試，而儘量不使用其他可能影響效能的資源。</span><span class="sxs-lookup"><span data-stu-id="66b18-104">When testing network throughput performance in Azure, it's best to use a tool that targets the network for testing and minimizes the use of other resources that could impact performance.</span></span> <span data-ttu-id="66b18-105">建議使用 NTTTCP。</span><span class="sxs-lookup"><span data-stu-id="66b18-105">NTTTCP is recommended.</span></span>
+<span data-ttu-id="4822c-104">測試網路輸送量效能，請在 Azure 中時，最佳 toouse 目標 hello 網路進行測試，可能會影響效能的其他資源的 hello 使用降至最低的工具。</span><span class="sxs-lookup"><span data-stu-id="4822c-104">When testing network throughput performance in Azure, it's best toouse a tool that targets hello network for testing and minimizes hello use of other resources that could impact performance.</span></span> <span data-ttu-id="4822c-105">建議使用 NTTTCP。</span><span class="sxs-lookup"><span data-stu-id="4822c-105">NTTTCP is recommended.</span></span>
 
-<span data-ttu-id="66b18-106">請將工具複製到兩個大小相同的 Azure VM。</span><span class="sxs-lookup"><span data-stu-id="66b18-106">Copy the tool to two Azure VMs of the same size.</span></span> <span data-ttu-id="66b18-107">一個 VM 作為「傳送端」，另一個作為「接收端」。</span><span class="sxs-lookup"><span data-stu-id="66b18-107">One VM functions as SENDER and the other as RECEIVER.</span></span>
+<span data-ttu-id="4822c-106">複製 hello 工具 tootwo hello 的 Azure Vm 大小相同。</span><span class="sxs-lookup"><span data-stu-id="4822c-106">Copy hello tool tootwo Azure VMs of hello same size.</span></span> <span data-ttu-id="4822c-107">一個 VM 做為傳送者和接收者為其他 hello。</span><span class="sxs-lookup"><span data-stu-id="4822c-107">One VM functions as SENDER and hello other as RECEIVER.</span></span>
 
-#### <a name="deploying-vms-for-testing"></a><span data-ttu-id="66b18-108">部署用於測試的 VM</span><span class="sxs-lookup"><span data-stu-id="66b18-108">Deploying VMs for testing</span></span>
-<span data-ttu-id="66b18-109">基於這項測試的目的，兩個 VM 應該位於相同的「雲端服務」或相同的「可用性設定組」中，以便我們使用其內部 IP 並將「負載平衡器」從測試中排除。</span><span class="sxs-lookup"><span data-stu-id="66b18-109">For the purposes of this test, the two VMs should be in either the same Cloud Service or the same Availability Set so that we can use their internal IPs and exclude the Load Balancers from the test.</span></span> <span data-ttu-id="66b18-110">您可以使用 VIP 進行測試，但這類型的測試不在本文件的涵蓋範圍內。</span><span class="sxs-lookup"><span data-stu-id="66b18-110">It is possible to test with the VIP but this kind of testing is outside the scope of this document.</span></span>
+#### <a name="deploying-vms-for-testing"></a><span data-ttu-id="4822c-108">部署用於測試的 VM</span><span class="sxs-lookup"><span data-stu-id="4822c-108">Deploying VMs for testing</span></span>
+<span data-ttu-id="4822c-109">基於 hello 這項測試，兩個 Vm 應該位於 hello hello 相同雲端服務或 hello 相同可用性設定組，讓我們能夠使用其內部 Ip 並排除 hello 測試 hello 負載平衡器。</span><span class="sxs-lookup"><span data-stu-id="4822c-109">For hello purposes of this test, hello two VMs should be in either hello same Cloud Service or hello same Availability Set so that we can use their internal IPs and exclude hello Load Balancers from hello test.</span></span> <span data-ttu-id="4822c-110">它是以 hello VIP 可能 tootest，但這種測試是在這份文件 hello 範圍之外。</span><span class="sxs-lookup"><span data-stu-id="4822c-110">It is possible tootest with hello VIP but this kind of testing is outside hello scope of this document.</span></span>
  
-<span data-ttu-id="66b18-111">記下「傳送端」的 IP 位址。</span><span class="sxs-lookup"><span data-stu-id="66b18-111">Make a note of the RECEIVER's IP address.</span></span> <span data-ttu-id="66b18-112">讓我將該 IP 稱為 "a.b.c.r"</span><span class="sxs-lookup"><span data-stu-id="66b18-112">Let's call that IP "a.b.c.r"</span></span>
+<span data-ttu-id="4822c-111">記下 hello 接收者的 IP 位址。</span><span class="sxs-lookup"><span data-stu-id="4822c-111">Make a note of hello RECEIVER's IP address.</span></span> <span data-ttu-id="4822c-112">讓我將該 IP 稱為 "a.b.c.r"</span><span class="sxs-lookup"><span data-stu-id="4822c-112">Let's call that IP "a.b.c.r"</span></span>
 
-<span data-ttu-id="66b18-113">記下該 VM 上的核心數目。</span><span class="sxs-lookup"><span data-stu-id="66b18-113">Make a note of the number of cores on the VM.</span></span> <span data-ttu-id="66b18-114">讓我們將此稱為 "\#num\_cores"</span><span class="sxs-lookup"><span data-stu-id="66b18-114">Let's call this "\#num\_cores"</span></span>
+<span data-ttu-id="4822c-113">記下的核心數目 hello hello VM 上。</span><span class="sxs-lookup"><span data-stu-id="4822c-113">Make a note of hello number of cores on hello VM.</span></span> <span data-ttu-id="4822c-114">讓我們將此稱為 "\#num\_cores"</span><span class="sxs-lookup"><span data-stu-id="4822c-114">Let's call this "\#num\_cores"</span></span>
  
-<span data-ttu-id="66b18-115">在傳送端 VM 和接收端 VM 上執行長達 300 秒 (或 5 分鐘) 的 NTTTCP 測試。</span><span class="sxs-lookup"><span data-stu-id="66b18-115">Run the NTTTCP test for 300 seconds (or 5 minutes) on the sender VM and receiver VM.</span></span>
+<span data-ttu-id="4822c-115">VM hello 寄件者和接收者 VM 上執行的 hello NTTTCP 測試 300 秒 （或 5 分鐘）。</span><span class="sxs-lookup"><span data-stu-id="4822c-115">Run hello NTTTCP test for 300 seconds (or 5 minutes) on hello sender VM and receiver VM.</span></span>
 
-<span data-ttu-id="66b18-116">提示：第一次設定此測試時，您可以嘗試較短的測試期間以更快獲得回饋。</span><span class="sxs-lookup"><span data-stu-id="66b18-116">Tip: When setting up this test for the first time, you might try a shorter test period to get feedback sooner.</span></span> <span data-ttu-id="66b18-117">在工具如預期般運作之後，請將測試期間延長到 300 秒以獲得最精確的結果。</span><span class="sxs-lookup"><span data-stu-id="66b18-117">Once the tool is working as expected, extend the test period to 300 seconds for the most accurate results.</span></span>
+<span data-ttu-id="4822c-116">提示： 當第一次設定這項測試的 hello，您可以嘗試較短的測試週期 tooget 意見反應更快。</span><span class="sxs-lookup"><span data-stu-id="4822c-116">Tip: When setting up this test for hello first time, you might try a shorter test period tooget feedback sooner.</span></span> <span data-ttu-id="4822c-117">一旦 hello 工具如預期般，擴充 hello 測試期間 too300 秒 hello 最精確的結果。</span><span class="sxs-lookup"><span data-stu-id="4822c-117">Once hello tool is working as expected, extend hello test period too300 seconds for hello most accurate results.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="66b18-118">傳送端**和**接收端必須指定**相同的**測試持續時間參數 (-t)。</span><span class="sxs-lookup"><span data-stu-id="66b18-118">The sender **and** receiver must specify **the same** test duration parameter (-t).</span></span>
+> <span data-ttu-id="4822c-118">hello 寄件者**和**接收者必須指定**hello 相同**測試持續時間參數 (-t)。</span><span class="sxs-lookup"><span data-stu-id="4822c-118">hello sender **and** receiver must specify **hello same** test duration parameter (-t).</span></span>
 
-<span data-ttu-id="66b18-119">測試單一 TCP 串流 10 秒：</span><span class="sxs-lookup"><span data-stu-id="66b18-119">To test a single TCP stream for 10 seconds:</span></span>
+<span data-ttu-id="4822c-119">tootest 10 秒的單一 TCP 資料流：</span><span class="sxs-lookup"><span data-stu-id="4822c-119">tootest a single TCP stream for 10 seconds:</span></span>
 
-<span data-ttu-id="66b18-120">接收端參數：ntttcp -r -t 10 -P 1</span><span class="sxs-lookup"><span data-stu-id="66b18-120">Receiver parameters: ntttcp -r -t 10 -P 1</span></span>
+<span data-ttu-id="4822c-120">接收端參數：ntttcp -r -t 10 -P 1</span><span class="sxs-lookup"><span data-stu-id="4822c-120">Receiver parameters: ntttcp -r -t 10 -P 1</span></span>
 
-<span data-ttu-id="66b18-121">傳送端參數：ntttcp -s10.27.33.7 -t 10 -n 1 -P 1</span><span class="sxs-lookup"><span data-stu-id="66b18-121">Sender parameters: ntttcp -s10.27.33.7 -t 10 -n 1 -P 1</span></span>
+<span data-ttu-id="4822c-121">傳送端參數：ntttcp -s10.27.33.7 -t 10 -n 1 -P 1</span><span class="sxs-lookup"><span data-stu-id="4822c-121">Sender parameters: ntttcp -s10.27.33.7 -t 10 -n 1 -P 1</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="66b18-122">上述範例應該僅用來確認您的組態。</span><span class="sxs-lookup"><span data-stu-id="66b18-122">The preceding sample should only be used to confirm your configuration.</span></span> <span data-ttu-id="66b18-123">本文稍後會提供有效的測試範例。</span><span class="sxs-lookup"><span data-stu-id="66b18-123">Valid examples of testing are covered later in this document.</span></span>
+> <span data-ttu-id="4822c-122">上述範例中的 hello 應該只能使用的 tooconfirm 您的設定。</span><span class="sxs-lookup"><span data-stu-id="4822c-122">hello preceding sample should only be used tooconfirm your configuration.</span></span> <span data-ttu-id="4822c-123">本文稍後會提供有效的測試範例。</span><span class="sxs-lookup"><span data-stu-id="4822c-123">Valid examples of testing are covered later in this document.</span></span>
 
-## <a name="testing-vms-running-windows"></a><span data-ttu-id="66b18-124">測試執行 Windows 的 VM：</span><span class="sxs-lookup"><span data-stu-id="66b18-124">Testing VMs running WINDOWS:</span></span>
+## <a name="testing-vms-running-windows"></a><span data-ttu-id="4822c-124">測試執行 Windows 的 VM：</span><span class="sxs-lookup"><span data-stu-id="4822c-124">Testing VMs running WINDOWS:</span></span>
 
-#### <a name="get-ntttcp-onto-the-vms"></a><span data-ttu-id="66b18-125">請將 NTTTCP 放到 VM 上。</span><span class="sxs-lookup"><span data-stu-id="66b18-125">Get NTTTCP onto the VMs.</span></span>
+#### <a name="get-ntttcp-onto-hello-vms"></a><span data-ttu-id="4822c-125">NTTTCP 進入 hello Vm。</span><span class="sxs-lookup"><span data-stu-id="4822c-125">Get NTTTCP onto hello VMs.</span></span>
 
-<span data-ttu-id="66b18-126">下載最新版本：<https://gallery.technet.microsoft.com/NTttcp-Version-528-Now-f8b12769></span><span class="sxs-lookup"><span data-stu-id="66b18-126">Download the latest version: <https://gallery.technet.microsoft.com/NTttcp-Version-528-Now-f8b12769></span></span>
+<span data-ttu-id="4822c-126">下載最新版本的 hello: <https://gallery.technet.microsoft.com/NTttcp-Version-528-Now-f8b12769></span><span class="sxs-lookup"><span data-stu-id="4822c-126">Download hello latest version: <https://gallery.technet.microsoft.com/NTttcp-Version-528-Now-f8b12769></span></span>
 
-<span data-ttu-id="66b18-127">或搜尋它 (如果已移動)：<https://www.bing.com/search?q=ntttcp+download>\< -- 應該是第一個點選項目</span><span class="sxs-lookup"><span data-stu-id="66b18-127">Or search for it if moved: <https://www.bing.com/search?q=ntttcp+download>\< -- should be first hit</span></span>
+<span data-ttu-id="4822c-127">或搜尋它 (如果已移動)：<https://www.bing.com/search?q=ntttcp+download>\< -- 應該是第一個點選項目</span><span class="sxs-lookup"><span data-stu-id="4822c-127">Or search for it if moved: <https://www.bing.com/search?q=ntttcp+download>\< -- should be first hit</span></span>
 
-<span data-ttu-id="66b18-128">請考慮將 NTTTCP 放在個別的資料夾，例如 c:\\tools</span><span class="sxs-lookup"><span data-stu-id="66b18-128">Consider putting NTTTCP in separate folder, like c:\\tools</span></span>
+<span data-ttu-id="4822c-128">請考慮將 NTTTCP 放在個別的資料夾，例如 c:\\tools</span><span class="sxs-lookup"><span data-stu-id="4822c-128">Consider putting NTTTCP in separate folder, like c:\\tools</span></span>
 
-#### <a name="allow-ntttcp-through-the-windows-firewall"></a><span data-ttu-id="66b18-129">允許 NTTTCP 通過 Windows 防火牆</span><span class="sxs-lookup"><span data-stu-id="66b18-129">Allow NTTTCP through the Windows firewall</span></span>
-<span data-ttu-id="66b18-130">在「接收端」的 Windows 防火牆上建立一個「允許」規則，以允許 NTTTCP 流量到達。</span><span class="sxs-lookup"><span data-stu-id="66b18-130">On the RECEIVER, create an Allow rule on the Windows Firewall to allow the NTTTCP traffic to arrive.</span></span> <span data-ttu-id="66b18-131">最簡單的方式是依名稱允許整個 NTTTCP 程式，而不是允許特定的輸入 TCP 連接埠。</span><span class="sxs-lookup"><span data-stu-id="66b18-131">It's easiest to allow the entire NTTTCP program by name rather than to allow specific TCP ports inbound.</span></span>
+#### <a name="allow-ntttcp-through-hello-windows-firewall"></a><span data-ttu-id="4822c-129">透過 hello 的 Windows 防火牆允許 NTTTCP</span><span class="sxs-lookup"><span data-stu-id="4822c-129">Allow NTTTCP through hello Windows firewall</span></span>
+<span data-ttu-id="4822c-130">在 hello 接收者，建立允許規則 hello Windows 防火牆 tooallow 上的 NTTTCP 流量 tooarrive。</span><span class="sxs-lookup"><span data-stu-id="4822c-130">On hello RECEIVER, create an Allow rule on hello Windows Firewall tooallow the NTTTCP traffic tooarrive.</span></span> <span data-ttu-id="4822c-131">它是最簡單 tooallow hello 整個 NTTTCP 程式名稱而不是輸入 tooallow 特定 TCP 連接埠。</span><span class="sxs-lookup"><span data-stu-id="4822c-131">It's easiest tooallow hello entire NTTTCP program by name rather than tooallow specific TCP ports inbound.</span></span>
 
-<span data-ttu-id="66b18-132">請依照下列方式允許 NTTTCP 通過 Windows 防火牆：</span><span class="sxs-lookup"><span data-stu-id="66b18-132">Allow ntttcp through the Windows Firewall like this:</span></span>
+<span data-ttu-id="4822c-132">允許 ntttcp 透過 hello Windows 防火牆，就像這樣：</span><span class="sxs-lookup"><span data-stu-id="4822c-132">Allow ntttcp through hello Windows Firewall like this:</span></span>
 
-<span data-ttu-id="66b18-133">netsh advfirewall firewall add rule program=\<PATH\>\\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY</span><span class="sxs-lookup"><span data-stu-id="66b18-133">netsh advfirewall firewall add rule program=\<PATH\>\\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY</span></span>
+<span data-ttu-id="4822c-133">netsh advfirewall firewall add rule program=\<PATH\>\\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY</span><span class="sxs-lookup"><span data-stu-id="4822c-133">netsh advfirewall firewall add rule program=\<PATH\>\\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY</span></span>
 
-<span data-ttu-id="66b18-134">例如，如果您將 ntttcp.exe 複製到 "c:\\tools" 資料夾，則命令會是這樣：</span><span class="sxs-lookup"><span data-stu-id="66b18-134">For example, if you copied ntttcp.exe to the "c:\\tools" folder, this would be the command:</span></span> 
+<span data-ttu-id="4822c-134">例如，如果您複製 ntttcp.exe toohello"c:\\工具 」 資料夾中，這會是 hello 命令：</span><span class="sxs-lookup"><span data-stu-id="4822c-134">For example, if you copied ntttcp.exe toohello "c:\\tools" folder, this would be hello command:</span></span> 
 
-<span data-ttu-id="66b18-135">netsh advfirewall firewall add rule program=c:\\tools\\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY</span><span class="sxs-lookup"><span data-stu-id="66b18-135">netsh advfirewall firewall add rule program=c:\\tools\\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY</span></span>
+<span data-ttu-id="4822c-135">netsh advfirewall firewall add rule program=c:\\tools\\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY</span><span class="sxs-lookup"><span data-stu-id="4822c-135">netsh advfirewall firewall add rule program=c:\\tools\\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY</span></span>
 
-#### <a name="running-ntttcp-tests"></a><span data-ttu-id="66b18-136">執行 NTTTCP 測試</span><span class="sxs-lookup"><span data-stu-id="66b18-136">Running NTTTCP tests</span></span>
+#### <a name="running-ntttcp-tests"></a><span data-ttu-id="4822c-136">執行 NTTTCP 測試</span><span class="sxs-lookup"><span data-stu-id="4822c-136">Running NTTTCP tests</span></span>
 
-<span data-ttu-id="66b18-137">啟動「接收端」上的 NTTTCP (**從 CMD 執行**，不是從 PowerShell)：</span><span class="sxs-lookup"><span data-stu-id="66b18-137">Start NTTTCP on the RECEIVER (**run from CMD**, not from PowerShell):</span></span>
+<span data-ttu-id="4822c-137">Hello 接收者上啟動 NTTTCP (**從 CMD 執行**，而不是從 PowerShell):</span><span class="sxs-lookup"><span data-stu-id="4822c-137">Start NTTTCP on hello RECEIVER (**run from CMD**, not from PowerShell):</span></span>
 
-<span data-ttu-id="66b18-138">ntttcp -r –m [2\*\#num\_cores],\*,a.b.c.r -t 300</span><span class="sxs-lookup"><span data-stu-id="66b18-138">ntttcp -r –m [2\*\#num\_cores],\*,a.b.c.r -t 300</span></span>
+<span data-ttu-id="4822c-138">ntttcp -r –m [2\*\#num\_cores],\*,a.b.c.r -t 300</span><span class="sxs-lookup"><span data-stu-id="4822c-138">ntttcp -r –m [2\*\#num\_cores],\*,a.b.c.r -t 300</span></span>
 
-<span data-ttu-id="66b18-139">如果 VM 有四個核心且 IP 位址為 10.0.0.4，就會看起來像這樣：</span><span class="sxs-lookup"><span data-stu-id="66b18-139">If the VM has four cores and an IP address of 10.0.0.4, it would look like this:</span></span>
+<span data-ttu-id="4822c-139">如果 hello VM 有四個核心和 IP 位址為 10.0.0.4，它看起來會像這樣：</span><span class="sxs-lookup"><span data-stu-id="4822c-139">If hello VM has four cores and an IP address of 10.0.0.4, it would look like this:</span></span>
 
-<span data-ttu-id="66b18-140">ntttcp -r –m 8,\*,10.0.0.4 -t 300</span><span class="sxs-lookup"><span data-stu-id="66b18-140">ntttcp -r –m 8,\*,10.0.0.4 -t 300</span></span>
-
-
-<span data-ttu-id="66b18-141">啟動「傳送端」上的 NTTTCP (**從 CMD 執行**，不是從 PowerShell)：</span><span class="sxs-lookup"><span data-stu-id="66b18-141">Start NTTTCP on the SENDER (**run from CMD**, not from PowerShell):</span></span>
-
-<span data-ttu-id="66b18-142">ntttcp -s –m 8,\*,10.0.0.4 -t 300</span><span class="sxs-lookup"><span data-stu-id="66b18-142">ntttcp -s –m 8,\*,10.0.0.4 -t 300</span></span> 
-
-<span data-ttu-id="66b18-143">等候結果。</span><span class="sxs-lookup"><span data-stu-id="66b18-143">Wait for the results.</span></span>
+<span data-ttu-id="4822c-140">ntttcp -r –m 8,\*,10.0.0.4 -t 300</span><span class="sxs-lookup"><span data-stu-id="4822c-140">ntttcp -r –m 8,\*,10.0.0.4 -t 300</span></span>
 
 
-## <a name="testing-vms-running-linux"></a><span data-ttu-id="66b18-144">測試執行 Linux 的 VM：</span><span class="sxs-lookup"><span data-stu-id="66b18-144">Testing VMs running LINUX:</span></span>
+<span data-ttu-id="4822c-141">Hello 寄件者上啟動 NTTTCP (**從 CMD 執行**，而不是從 PowerShell):</span><span class="sxs-lookup"><span data-stu-id="4822c-141">Start NTTTCP on hello SENDER (**run from CMD**, not from PowerShell):</span></span>
 
-<span data-ttu-id="66b18-145">請使用 nttcp-for-linux。</span><span class="sxs-lookup"><span data-stu-id="66b18-145">Use nttcp-for-linux.</span></span> <span data-ttu-id="66b18-146">可從 <https://github.com/Microsoft/ntttcp-for-linux> 取得</span><span class="sxs-lookup"><span data-stu-id="66b18-146">It is available from <https://github.com/Microsoft/ntttcp-for-linux></span></span>
+<span data-ttu-id="4822c-142">ntttcp -s –m 8,\*,10.0.0.4 -t 300</span><span class="sxs-lookup"><span data-stu-id="4822c-142">ntttcp -s –m 8,\*,10.0.0.4 -t 300</span></span> 
 
-<span data-ttu-id="66b18-147">在 Linux VM (「傳送端」和「接收端」兩者) 上，執行下列命令以在 VM 上準備 ntttcp-for-linux：</span><span class="sxs-lookup"><span data-stu-id="66b18-147">On the Linux VMs (both SENDER and RECEIVER), run these commands to prepare ntttcp-for-linux on your VMs:</span></span>
+<span data-ttu-id="4822c-143">等候 hello 結果。</span><span class="sxs-lookup"><span data-stu-id="4822c-143">Wait for hello results.</span></span>
 
-<span data-ttu-id="66b18-148">CentOS - 安裝 Git：</span><span class="sxs-lookup"><span data-stu-id="66b18-148">CentOS - Install Git:</span></span>
+
+## <a name="testing-vms-running-linux"></a><span data-ttu-id="4822c-144">測試執行 Linux 的 VM：</span><span class="sxs-lookup"><span data-stu-id="4822c-144">Testing VMs running LINUX:</span></span>
+
+<span data-ttu-id="4822c-145">請使用 nttcp-for-linux。</span><span class="sxs-lookup"><span data-stu-id="4822c-145">Use nttcp-for-linux.</span></span> <span data-ttu-id="4822c-146">可從 <https://github.com/Microsoft/ntttcp-for-linux> 取得</span><span class="sxs-lookup"><span data-stu-id="4822c-146">It is available from <https://github.com/Microsoft/ntttcp-for-linux></span></span>
+
+<span data-ttu-id="4822c-147">在 hello Linux Vm （傳送者和接收者），執行這些命令來準備 ntttcp-為-linux Vm 上：</span><span class="sxs-lookup"><span data-stu-id="4822c-147">On hello Linux VMs (both SENDER and RECEIVER), run these commands to prepare ntttcp-for-linux on your VMs:</span></span>
+
+<span data-ttu-id="4822c-148">CentOS - 安裝 Git：</span><span class="sxs-lookup"><span data-stu-id="4822c-148">CentOS - Install Git:</span></span>
 ``` bash
   yum install gcc -y  
   yum install git -y
 ```
-<span data-ttu-id="66b18-149">Ubuntu - 安裝 Git：</span><span class="sxs-lookup"><span data-stu-id="66b18-149">Ubuntu - Install Git:</span></span>
+<span data-ttu-id="4822c-149">Ubuntu - 安裝 Git：</span><span class="sxs-lookup"><span data-stu-id="4822c-149">Ubuntu - Install Git:</span></span>
 ``` bash
  apt-get -y install build-essential  
  apt-get -y install git
 ```
-<span data-ttu-id="66b18-150">在兩部機器上都建立並安裝：</span><span class="sxs-lookup"><span data-stu-id="66b18-150">Make and Install on both:</span></span>
+<span data-ttu-id="4822c-150">在兩部機器上都建立並安裝：</span><span class="sxs-lookup"><span data-stu-id="4822c-150">Make and Install on both:</span></span>
 ``` bash
  git clone <https://github.com/Microsoft/ntttcp-for-linux>
  cd ntttcp-for-linux/src
  make && make install
 ```
 
-<span data-ttu-id="66b18-151">與 Windows 範例中相同，我們假設 Linux「接收端」的 IP 為 10.0.0.4</span><span class="sxs-lookup"><span data-stu-id="66b18-151">As in the Windows example, we assume the Linux RECEIVER's IP is 10.0.0.4</span></span>
+<span data-ttu-id="4822c-151">如同 hello Windows 範例中，我們假設是 10.0.0.4 hello Linux 接收者的 IP。</span><span class="sxs-lookup"><span data-stu-id="4822c-151">As in hello Windows example, we assume hello Linux RECEIVER's IP is 10.0.0.4</span></span>
 
-<span data-ttu-id="66b18-152">啟動「接收端」上的 NTTTCP-for-Linux：</span><span class="sxs-lookup"><span data-stu-id="66b18-152">Start NTTTCP-for-Linux on the RECEIVER:</span></span>
+<span data-ttu-id="4822c-152">啟動 NTTTCP 為 Linux hello 接收者上：</span><span class="sxs-lookup"><span data-stu-id="4822c-152">Start NTTTCP-for-Linux on hello RECEIVER:</span></span>
 
 ``` bash
 ntttcp -r -t 300
 ```
 
-<span data-ttu-id="66b18-153">然後在「傳送端」上執行：</span><span class="sxs-lookup"><span data-stu-id="66b18-153">And on the SENDER, run:</span></span>
+<span data-ttu-id="4822c-153">然後在 hello 寄件者，執行：</span><span class="sxs-lookup"><span data-stu-id="4822c-153">And on hello SENDER, run:</span></span>
 
 ``` bash
 ntttcp -s10.0.0.4 -t 300
 ```
  
-<span data-ttu-id="66b18-154">如果未提供時間參數，則測試時間長度預設為 60 秒</span><span class="sxs-lookup"><span data-stu-id="66b18-154">Test length defaults to 60 seconds if no time parameter is given</span></span>
+<span data-ttu-id="4822c-154">指定測試長度預設值 too60 秒如果沒有時間參數</span><span class="sxs-lookup"><span data-stu-id="4822c-154">Test length defaults too60 seconds if no time parameter is given</span></span>
 
-## <a name="testing-between-vms-running-windows-and-linux"></a><span data-ttu-id="66b18-155">在執行 Windows 和 LINUX 的 VM 之間進行測試：</span><span class="sxs-lookup"><span data-stu-id="66b18-155">Testing between VMs running Windows and LINUX:</span></span>
+## <a name="testing-between-vms-running-windows-and-linux"></a><span data-ttu-id="4822c-155">在執行 Windows 和 LINUX 的 VM 之間進行測試：</span><span class="sxs-lookup"><span data-stu-id="4822c-155">Testing between VMs running Windows and LINUX:</span></span>
 
-<span data-ttu-id="66b18-156">在此案例中，我們應該啟用非同步模式，才能執行測試。</span><span class="sxs-lookup"><span data-stu-id="66b18-156">On this scenarios we should enable the no-sync mode so the test can run.</span></span> <span data-ttu-id="66b18-157">若要執行上述動作，請針對 Linux 使用 **-N 旗標**；針對 Windows 使用 **-ns 旗標**。</span><span class="sxs-lookup"><span data-stu-id="66b18-157">This is done by using the **-N flag** for Linux, and **-ns flag** for Windows.</span></span>
+<span data-ttu-id="4822c-156">此案例中，我們應該啟用 hello 沒有同步處理模式讓 hello 測試執行。</span><span class="sxs-lookup"><span data-stu-id="4822c-156">On this scenarios we should enable hello no-sync mode so hello test can run.</span></span> <span data-ttu-id="4822c-157">這是使用 hello **-N 旗標**for Linux，和**奈旗標**for Windows。</span><span class="sxs-lookup"><span data-stu-id="4822c-157">This is done by using hello **-N flag** for Linux, and **-ns flag** for Windows.</span></span>
 
-#### <a name="from-linux-to-windows"></a><span data-ttu-id="66b18-158">從 Linux 到 Windows：</span><span class="sxs-lookup"><span data-stu-id="66b18-158">From Linux to Windows:</span></span>
+#### <a name="from-linux-toowindows"></a><span data-ttu-id="4822c-158">從 Linux tooWindows:</span><span class="sxs-lookup"><span data-stu-id="4822c-158">From Linux tooWindows:</span></span>
 
-<span data-ttu-id="66b18-159">接收者 <Windows>：</span><span class="sxs-lookup"><span data-stu-id="66b18-159">Receiver <Windows>:</span></span>
+<span data-ttu-id="4822c-159">接收者 <Windows>：</span><span class="sxs-lookup"><span data-stu-id="4822c-159">Receiver <Windows>:</span></span>
 
 ``` bash
 ntttcp -r -m <2 x nr cores>,*,<Windows server IP>
 ```
 
-<span data-ttu-id="66b18-160">傳送者 <Linux>：</span><span class="sxs-lookup"><span data-stu-id="66b18-160">Sender <Linux> :</span></span>
+<span data-ttu-id="4822c-160">傳送者 <Linux>：</span><span class="sxs-lookup"><span data-stu-id="4822c-160">Sender <Linux> :</span></span>
 
 ``` bash
 ntttcp -s -m <2 x nr cores>,*,<Windows server IP> -N -t 300
 ```
 
-#### <a name="from-windows-to-linux"></a><span data-ttu-id="66b18-161">從 Windows 到 Linux：</span><span class="sxs-lookup"><span data-stu-id="66b18-161">From Windows to Linux:</span></span>
+#### <a name="from-windows-toolinux"></a><span data-ttu-id="4822c-161">從 Windows tooLinux:</span><span class="sxs-lookup"><span data-stu-id="4822c-161">From Windows tooLinux:</span></span>
 
-<span data-ttu-id="66b18-162">接收者 <Linux>：</span><span class="sxs-lookup"><span data-stu-id="66b18-162">Receiver <Linux>:</span></span>
+<span data-ttu-id="4822c-162">接收者 <Linux>：</span><span class="sxs-lookup"><span data-stu-id="4822c-162">Receiver <Linux>:</span></span>
 
 ``` bash
 ntttcp -r -m <2 x nr cores>,*,<Linux server IP>
 ```
 
-<span data-ttu-id="66b18-163">傳送者 <Windows>：</span><span class="sxs-lookup"><span data-stu-id="66b18-163">Sender <Windows>:</span></span>
+<span data-ttu-id="4822c-163">傳送者 <Windows>：</span><span class="sxs-lookup"><span data-stu-id="4822c-163">Sender <Windows>:</span></span>
 
 ``` bash
 ntttcp -s -m <2 x nr cores>,*,<Linux  server IP> -ns -t 300
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="66b18-164">後續步驟</span><span class="sxs-lookup"><span data-stu-id="66b18-164">Next steps</span></span>
-* <span data-ttu-id="66b18-165">視結果而定，可能有將您案例的[網路輸送量機器最佳化](virtual-network-optimize-network-bandwidth.md)的空間。</span><span class="sxs-lookup"><span data-stu-id="66b18-165">Depending on results, there may be room to [Optimize network throughput machines](virtual-network-optimize-network-bandwidth.md) for your scenario.</span></span>
-* <span data-ttu-id="66b18-166">深入了解 [Azure 虛擬網路的常見問題 (FAQ)](virtual-networks-faq.md)</span><span class="sxs-lookup"><span data-stu-id="66b18-166">Learn more wtih [Azure Virtual Network frequently asked questions (FAQ)](virtual-networks-faq.md)</span></span>
+## <a name="next-steps"></a><span data-ttu-id="4822c-164">後續步驟</span><span class="sxs-lookup"><span data-stu-id="4822c-164">Next steps</span></span>
+* <span data-ttu-id="4822c-165">根據不同的結果，可能有空間太[最佳化網路輸送量機器](virtual-network-optimize-network-bandwidth.md)您的案例。</span><span class="sxs-lookup"><span data-stu-id="4822c-165">Depending on results, there may be room too[Optimize network throughput machines](virtual-network-optimize-network-bandwidth.md) for your scenario.</span></span>
+* <span data-ttu-id="4822c-166">深入了解 [Azure 虛擬網路的常見問題 (FAQ)](virtual-networks-faq.md)</span><span class="sxs-lookup"><span data-stu-id="4822c-166">Learn more wtih [Azure Virtual Network frequently asked questions (FAQ)](virtual-networks-faq.md)</span></span>

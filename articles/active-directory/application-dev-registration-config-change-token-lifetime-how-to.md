@@ -1,6 +1,6 @@
 ---
-title: "如何為自訂開發的應用程式變更權杖存留期預設值 | Microsoft Docs"
-description: "如何為針對 Azure AD 開發的應用程式更新權杖存留期原則"
+title: "針對自訂開發的應用程式預設 aaaHow toochange hello 權杖存留期 |Microsoft 文件"
+description: "如何在 Azure AD，您所開發的應用程式的 tooupdate 權杖存留期原則"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,26 +13,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: a28eacd820ed28a6470992ce86b060e886c00bcb
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6e1aa1f2a7c33c1f55c5fb619c618ad43cd96273
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-change-the-token-lifetime-defaults-for-a-custom-developed-application"></a><span data-ttu-id="50a4e-103">如何為自訂開發的應用程式變更權杖存留期預設值</span><span class="sxs-lookup"><span data-stu-id="50a4e-103">How to change the token lifetime defaults for a custom-developed application</span></span>
+# <a name="how-toochange-hello-token-lifetime-defaults-for-a-custom-developed-application"></a><span data-ttu-id="b72f1-103">Toochange hello 權杖存留期的自訂開發的應用程式的預設值</span><span class="sxs-lookup"><span data-stu-id="b72f1-103">How toochange hello token lifetime defaults for a custom-developed application</span></span>
 
-<span data-ttu-id="50a4e-104">Azure AD Premium 可讓應用程式開發人員與租用戶系統管理員為針對非機密用戶端簽發的權杖設定存留期。</span><span class="sxs-lookup"><span data-stu-id="50a4e-104">Azure AD Premium allows app developers and tenant admins to configure the lifetime of tokens issued for non-confidential clients.</span></span> <span data-ttu-id="50a4e-105">權杖存留期原則是以整個租用戶為基礎所設定，或針對要存取的資源所設定。</span><span class="sxs-lookup"><span data-stu-id="50a4e-105">Token lifetime policies are set on a tenant-wide basis or the resources being accessed.</span></span>
+<span data-ttu-id="b72f1-104">Azure AD Premium 可讓應用程式開發人員和租用戶系統管理員 」 tooconfigure hello 存留期的非機密用戶端簽發的權杖。</span><span class="sxs-lookup"><span data-stu-id="b72f1-104">Azure AD Premium allows app developers and tenant admins tooconfigure hello lifetime of tokens issued for non-confidential clients.</span></span> <span data-ttu-id="b72f1-105">權杖存留期原則會設定租用戶通用的原則或 hello 資源清單。</span><span class="sxs-lookup"><span data-stu-id="b72f1-105">Token lifetime policies are set on a tenant-wide basis or hello resources being accessed.</span></span>
 
- * <span data-ttu-id="50a4e-106">若要設定權杖存留期原則，您必須下載 [Azure AD PowerShell 模組 (英文)](https://www.powershellgallery.com/packages/AzureADPreview)。</span><span class="sxs-lookup"><span data-stu-id="50a4e-106">To set a token lifetime policy, you need to download the [Azure AD PowerShell Module](https://www.powershellgallery.com/packages/AzureADPreview).</span></span>
+ * <span data-ttu-id="b72f1-106">tooset 權杖存留期原則，您需要 toodownload hello [Azure AD PowerShell 模組](https://www.powershellgallery.com/packages/AzureADPreview)。</span><span class="sxs-lookup"><span data-stu-id="b72f1-106">tooset a token lifetime policy, you need toodownload hello [Azure AD PowerShell Module](https://www.powershellgallery.com/packages/AzureADPreview).</span></span>
 
- * <span data-ttu-id="50a4e-107">執行 **Connect-AzureAD -Confirm** 命令。</span><span class="sxs-lookup"><span data-stu-id="50a4e-107">Run the **Connect-AzureAD -Confirm** command.</span></span>
+ * <span data-ttu-id="b72f1-107">執行 hello**連接 azure Ad-確認**命令。</span><span class="sxs-lookup"><span data-stu-id="b72f1-107">Run hello **Connect-AzureAD -Confirm** command.</span></span>
 
- * <span data-ttu-id="50a4e-108">下列範例原則會設定單一要素重新整理權杖存留期上限。</span><span class="sxs-lookup"><span data-stu-id="50a4e-108">Here’s an example policy that sets the max age single factor refresh token.</span></span> <span data-ttu-id="50a4e-109">建立原則：```New-AzureADPolicy -Definition @('{"TokenLifetimePolicy":{"Version":1, "MaxAgeSingleFactor":"until-revoked"}}') -DisplayName "OrganizationDefaultPolicyScenario" -IsOrganizationDefault $true -Type "TokenLifetimePolicy"```</span><span class="sxs-lookup"><span data-stu-id="50a4e-109">Create the policy: ```New-AzureADPolicy -Definition @('{"TokenLifetimePolicy":{"Version":1, "MaxAgeSingleFactor":"until-revoked"}}') -DisplayName "OrganizationDefaultPolicyScenario" -IsOrganizationDefault $true -Type "TokenLifetimePolicy"```</span></span>
+ * <span data-ttu-id="b72f1-108">以下是範例原則，設定 hello 最大存留期的一項因素重新整理語彙基元。</span><span class="sxs-lookup"><span data-stu-id="b72f1-108">Here’s an example policy that sets hello max age single factor refresh token.</span></span> <span data-ttu-id="b72f1-109">建立 hello 原則：```New-AzureADPolicy -Definition @('{"TokenLifetimePolicy":{"Version":1, "MaxAgeSingleFactor":"until-revoked"}}') -DisplayName "OrganizationDefaultPolicyScenario" -IsOrganizationDefault $true -Type "TokenLifetimePolicy"```</span><span class="sxs-lookup"><span data-stu-id="b72f1-109">Create hello policy: ```New-AzureADPolicy -Definition @('{"TokenLifetimePolicy":{"Version":1, "MaxAgeSingleFactor":"until-revoked"}}') -DisplayName "OrganizationDefaultPolicyScenario" -IsOrganizationDefault $true -Type "TokenLifetimePolicy"```</span></span>
 
- * <span data-ttu-id="50a4e-110">請參閱[設定權杖存留期](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-configurable-token-lifetimes)一文，以了解如何建立其他自訂。</span><span class="sxs-lookup"><span data-stu-id="50a4e-110">Checkout the [Configuring token lifetime](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-configurable-token-lifetimes)   document to learn how to create other custom.</span></span>
+ * <span data-ttu-id="b72f1-110">簽出 hello[設定權杖存留期](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-configurable-token-lifetimes)如何文件 toolearn toocreate 其他自訂。</span><span class="sxs-lookup"><span data-stu-id="b72f1-110">Checkout hello [Configuring token lifetime](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-configurable-token-lifetimes)   document toolearn how toocreate other custom.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="50a4e-111">後續步驟</span><span class="sxs-lookup"><span data-stu-id="50a4e-111">Next steps</span></span>
-[<span data-ttu-id="50a4e-112">設定權杖存留期</span><span class="sxs-lookup"><span data-stu-id="50a4e-112">Configuring Token Lifetime</span></span>](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-configurable-token-lifetimes)<br>
+## <a name="next-steps"></a><span data-ttu-id="b72f1-111">後續步驟</span><span class="sxs-lookup"><span data-stu-id="b72f1-111">Next steps</span></span>
+[<span data-ttu-id="b72f1-112">設定權杖存留期</span><span class="sxs-lookup"><span data-stu-id="b72f1-112">Configuring Token Lifetime</span></span>](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-configurable-token-lifetimes)<br>
 
-[<span data-ttu-id="50a4e-113">Azure AD 權杖參考</span><span class="sxs-lookup"><span data-stu-id="50a4e-113">Azure AD Token Reference</span></span>](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-token-and-claims)
+[<span data-ttu-id="b72f1-113">Azure AD 權杖參考</span><span class="sxs-lookup"><span data-stu-id="b72f1-113">Azure AD Token Reference</span></span>](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-token-and-claims)
 

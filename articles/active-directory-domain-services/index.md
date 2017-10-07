@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory Domain Services 文件 - 教學課程 | Microsoft Docs"
-description: "了解如何使用 Active Directory Domain Services 將 Azure 虛擬機器加入網域中 (而不需使用網域控制站)，以及利用群組原則管理這些虛擬機器。"
+title: "aaaAzure Active Directory 網域服務 」 文件-教學課程 |Microsoft 文件"
+description: "深入了解如何 toouse Active Directory 網域服務 toojoin Azure 虛擬機器而不需要使用網域控制站的 tooa 網域，並使用群組原則管理它們。"
 services: active-directory-ds
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 9654ec8791de56c33e4973e8ba20ef6e52780955
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5f1dcc57d92e1e950662c1f0cc1d00252e2fab50
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="active-directory-domain-services-documentation"></a>Active Directory Domain Services 文件
 
-了解如何使用 Active Directory Domain Services 將 Azure 虛擬機器加入網域中，而不需使用網域控制站。 教學課程和其他文件會示範如何使用群組原則來管理虛擬機器。
+了解如何 toouse Active Directory 網域服務 toojoin Azure 虛擬機器而不需要使用網域控制站的 tooa 網域。 教學課程和其他文件會顯示如何 toomanage 虛擬機器使用群組原則。
 
 <ul class="panelContent cardsFTitle">
     <li>

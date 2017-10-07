@@ -1,6 +1,6 @@
 ---
-title: "使用安全地存放在 Azure Stack 上的憑證部署虛擬機器 | Microsoft 文件"
-description: "了解如何使用 Azure Stack 中的金鑰保存庫來部署虛擬機器，並將憑證推送至該虛擬機器"
+title: "虛擬機器上，使用安全地儲存憑證 Azure 堆疊 aaaDeploy |Microsoft 文件"
+description: "了解如何 toodeploy 虛擬機器和發送至其本身的憑證，使用金鑰保存庫中 Azure 堆疊"
 services: azure-stack
 documentationcenter: 
 author: SnehaGunda
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/03/2017
 ms.author: sngun
-ms.openlocfilehash: 95008e783b2597895e870ceb3514bffbd4ab1dbf
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b5fa0a502ba582e10ff59b8af0568bf134d3d189
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-virtual-machine-and-include-certificate-retrieved-from-a-key-vault"></a><span data-ttu-id="37cf1-103">建立虛擬機器，並加入從金鑰保存庫擷取的憑證</span><span class="sxs-lookup"><span data-stu-id="37cf1-103">Create a virtual machine and include certificate retrieved from a key vault</span></span>
+# <a name="create-a-virtual-machine-and-include-certificate-retrieved-from-a-key-vault"></a><span data-ttu-id="2a06e-103">建立虛擬機器，並加入從金鑰保存庫擷取的憑證</span><span class="sxs-lookup"><span data-stu-id="2a06e-103">Create a virtual machine and include certificate retrieved from a key vault</span></span>
 
-<span data-ttu-id="37cf1-104">本文可協助您在 Azure Stack 中建立虛擬機器，並將憑證推送至該虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="37cf1-104">This article helps you to create a virtual machine in Azure Stack and push certificates onto it.</span></span> 
+<span data-ttu-id="2a06e-104">這篇文章可協助您 toocreate Azure 堆疊和發送至其本身的憑證中的虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="2a06e-104">This article helps you toocreate a virtual machine in Azure Stack and push certificates onto it.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="37cf1-105">必要條件</span><span class="sxs-lookup"><span data-stu-id="37cf1-105">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="2a06e-105">必要條件</span><span class="sxs-lookup"><span data-stu-id="2a06e-105">Prerequisites</span></span>
 
-* <span data-ttu-id="37cf1-106">Azure Stack 雲端系統管理員必須已經[建立](azure-stack-create-offer.md)包含 Azure Key Vault 服務的供應項目。</span><span class="sxs-lookup"><span data-stu-id="37cf1-106">Azure Stack cloud administrators must have [created an offer](azure-stack-create-offer.md) that includes the Azure Key Vault service.</span></span>  
-* <span data-ttu-id="37cf1-107">使用者必須[訂閱](azure-stack-subscribe-plan-provision-vm.md)包含 Key Vault 服務的供應項目。</span><span class="sxs-lookup"><span data-stu-id="37cf1-107">Users must [subscribe to an offer](azure-stack-subscribe-plan-provision-vm.md) that includes the Key Vault service.</span></span>  
-* [<span data-ttu-id="37cf1-108">安裝 Azure Stack 適用的 PowerShell。</span><span class="sxs-lookup"><span data-stu-id="37cf1-108">Install PowerShell for Azure Stack.</span></span>](azure-stack-powershell-install.md)  
-* [<span data-ttu-id="37cf1-109">設定 Azure Stack 使用者的 PowerShell 環境</span><span class="sxs-lookup"><span data-stu-id="37cf1-109">Configure the Azure Stack user's PowerShell environment</span></span>](azure-stack-powershell-configure-user.md)
+* <span data-ttu-id="2a06e-106">Azure 堆疊雲端系統管理員必須具有[建立優惠](azure-stack-create-offer.md)包含 hello Azure 金鑰保存庫服務。</span><span class="sxs-lookup"><span data-stu-id="2a06e-106">Azure Stack cloud administrators must have [created an offer](azure-stack-create-offer.md) that includes hello Azure Key Vault service.</span></span>  
+* <span data-ttu-id="2a06e-107">使用者必須[訂閱 tooan 優惠](azure-stack-subscribe-plan-provision-vm.md)包含 hello 金鑰保存庫服務。</span><span class="sxs-lookup"><span data-stu-id="2a06e-107">Users must [subscribe tooan offer](azure-stack-subscribe-plan-provision-vm.md) that includes hello Key Vault service.</span></span>  
+* [<span data-ttu-id="2a06e-108">安裝適用於 Azure Stack 的 PowerShell</span><span class="sxs-lookup"><span data-stu-id="2a06e-108">Install PowerShell for Azure Stack.</span></span>](azure-stack-powershell-install.md)  
+* [<span data-ttu-id="2a06e-109">設定 hello Azure 堆疊使用者的 PowerShell 環境</span><span class="sxs-lookup"><span data-stu-id="2a06e-109">Configure hello Azure Stack user's PowerShell environment</span></span>](azure-stack-powershell-configure-user.md)
 
-<span data-ttu-id="37cf1-110">Azure Stack 中的金鑰保存庫可用來存放憑證。</span><span class="sxs-lookup"><span data-stu-id="37cf1-110">A key vault in Azure Stack is used to store certificates.</span></span> <span data-ttu-id="37cf1-111">憑證在許多不同情況下都很有幫助。</span><span class="sxs-lookup"><span data-stu-id="37cf1-111">Certificates are helpful in many different scenarios.</span></span> <span data-ttu-id="37cf1-112">例如，假設您在 Azure Stack 中有一個虛擬機器正在執行需要憑證的應用程式。</span><span class="sxs-lookup"><span data-stu-id="37cf1-112">For example, consider a scenario where you have a virtual machine in Azure Stack that is running an application that needs a certificate.</span></span> <span data-ttu-id="37cf1-113">此憑證可用於加密、向 Active Directory 進行驗證，或用於網站上的 SSL。</span><span class="sxs-lookup"><span data-stu-id="37cf1-113">This certificate can be used for encrypting, for authenticating to Active Directory, or for SSL on a website.</span></span> <span data-ttu-id="37cf1-114">將憑證存放在金鑰保存庫有助於確保憑證的安全。</span><span class="sxs-lookup"><span data-stu-id="37cf1-114">Having the certificate in a key vault helps make sure that it's secure.</span></span>
+<span data-ttu-id="2a06e-110">Azure 堆疊中的金鑰保存庫是使用的 toostore 憑證。</span><span class="sxs-lookup"><span data-stu-id="2a06e-110">A key vault in Azure Stack is used toostore certificates.</span></span> <span data-ttu-id="2a06e-111">憑證在許多不同情況下都很有幫助。</span><span class="sxs-lookup"><span data-stu-id="2a06e-111">Certificates are helpful in many different scenarios.</span></span> <span data-ttu-id="2a06e-112">例如，假設您在 Azure Stack 中有一個虛擬機器正在執行需要憑證的應用程式。</span><span class="sxs-lookup"><span data-stu-id="2a06e-112">For example, consider a scenario where you have a virtual machine in Azure Stack that is running an application that needs a certificate.</span></span> <span data-ttu-id="2a06e-113">此憑證可用來加密驗證 tooActive 目錄，或 SSL 的網站上。</span><span class="sxs-lookup"><span data-stu-id="2a06e-113">This certificate can be used for encrypting, for authenticating tooActive Directory, or for SSL on a website.</span></span> <span data-ttu-id="2a06e-114">具有 hello 憑證金鑰保存庫可以協助確定它是安全。</span><span class="sxs-lookup"><span data-stu-id="2a06e-114">Having hello certificate in a key vault helps make sure that it's secure.</span></span>
 
-<span data-ttu-id="37cf1-115">在本文中，我們會針對如何將憑證推送至 Azure Stack 中的 Windows 虛擬機器，逐步說明所需的步驟。</span><span class="sxs-lookup"><span data-stu-id="37cf1-115">In this article, we walk you through the steps required to push a certificate onto a Windows virtual machine in Azure Stack.</span></span> <span data-ttu-id="37cf1-116">您可以從 Azure Stack 開發套件，或從 Windows 外部用戶端 (如果是透過 VPN 連線) 來使用這些步驟。</span><span class="sxs-lookup"><span data-stu-id="37cf1-116">You can use these steps either from the Azure Stack Development Kit, or from a Windows-based external client if you are connected through VPN.</span></span>
+<span data-ttu-id="2a06e-115">在本文中，我們逐步引導您 hello 步驟需要 toopush Azure 堆疊中的 Windows 虛擬機器的憑證。</span><span class="sxs-lookup"><span data-stu-id="2a06e-115">In this article, we walk you through hello steps required toopush a certificate onto a Windows virtual machine in Azure Stack.</span></span> <span data-ttu-id="2a06e-116">如果您透過 VPN 連線，您可以使用下列步驟從 hello Azure 堆疊開發套件，或是從 windows 的外部用戶端。</span><span class="sxs-lookup"><span data-stu-id="2a06e-116">You can use these steps either from hello Azure Stack Development Kit, or from a Windows-based external client if you are connected through VPN.</span></span>
 
-<span data-ttu-id="37cf1-117">下列步驟說明將憑證推送至虛擬機器所需的程序：</span><span class="sxs-lookup"><span data-stu-id="37cf1-117">The following steps describe the process required to push a certificate onto the virtual machine:</span></span>
+<span data-ttu-id="2a06e-117">hello 下列步驟說明 hello 所需程序 toopush hello 虛擬機器上的憑證：</span><span class="sxs-lookup"><span data-stu-id="2a06e-117">hello following steps describe hello process required toopush a certificate onto hello virtual machine:</span></span>
 
-1. <span data-ttu-id="37cf1-118">建立 Key Vault 祕密。</span><span class="sxs-lookup"><span data-stu-id="37cf1-118">Create a Key Vault secret.</span></span>
-2. <span data-ttu-id="37cf1-119">更新 azuredeploy.parameters.json 檔案。</span><span class="sxs-lookup"><span data-stu-id="37cf1-119">Update the azuredeploy.parameters.json file.</span></span>
-3. <span data-ttu-id="37cf1-120">部署範本</span><span class="sxs-lookup"><span data-stu-id="37cf1-120">Deploy the template</span></span>
+1. <span data-ttu-id="2a06e-118">建立 Key Vault 祕密。</span><span class="sxs-lookup"><span data-stu-id="2a06e-118">Create a Key Vault secret.</span></span>
+2. <span data-ttu-id="2a06e-119">更新 hello azuredeploy.parameters.json 檔案。</span><span class="sxs-lookup"><span data-stu-id="2a06e-119">Update hello azuredeploy.parameters.json file.</span></span>
+3. <span data-ttu-id="2a06e-120">部署 hello 範本</span><span class="sxs-lookup"><span data-stu-id="2a06e-120">Deploy hello template</span></span>
 
-## <a name="create-a-key-vault-secret"></a><span data-ttu-id="37cf1-121">建立 Key Vault 祕密</span><span class="sxs-lookup"><span data-stu-id="37cf1-121">Create a Key Vault secret</span></span>
+## <a name="create-a-key-vault-secret"></a><span data-ttu-id="2a06e-121">建立 Key Vault 祕密</span><span class="sxs-lookup"><span data-stu-id="2a06e-121">Create a Key Vault secret</span></span>
 
-<span data-ttu-id="37cf1-122">下列指令碼會建立 .pfx 格式的憑證、建立金鑰保存庫，並將憑證存放在金鑰保存庫中當做祕密。</span><span class="sxs-lookup"><span data-stu-id="37cf1-122">The following script creates a certificate in the .pfx format, creates a key vault, and stores the certificate in the key vault as a secret.</span></span> <span data-ttu-id="37cf1-123">建立金鑰保存庫時，您必須使用 `-EnabledForDeployment` 參數。</span><span class="sxs-lookup"><span data-stu-id="37cf1-123">You must use the `-EnabledForDeployment` parameter when you're creating the key vault.</span></span> <span data-ttu-id="37cf1-124">此參數可確保您能夠從 Azure Resource Manager 範本參考金鑰保存庫。</span><span class="sxs-lookup"><span data-stu-id="37cf1-124">This parameter makes sure that the key vault can be referenced from Azure Resource Manager templates.</span></span>
+<span data-ttu-id="2a06e-122">hello 下列指令碼會建立 hello.pfx 格式的憑證、 建立金鑰保存庫，並儲存 hello 憑證 hello 做為密碼金鑰保存庫中。</span><span class="sxs-lookup"><span data-stu-id="2a06e-122">hello following script creates a certificate in hello .pfx format, creates a key vault, and stores hello certificate in hello key vault as a secret.</span></span> <span data-ttu-id="2a06e-123">您必須使用 hello`-EnabledForDeployment`參數，當您要建立 hello 金鑰保存庫。</span><span class="sxs-lookup"><span data-stu-id="2a06e-123">You must use hello `-EnabledForDeployment` parameter when you're creating hello key vault.</span></span> <span data-ttu-id="2a06e-124">這個參數可確保您可以從 Azure 資源管理員範本參考該 hello 金鑰保存庫。</span><span class="sxs-lookup"><span data-stu-id="2a06e-124">This parameter makes sure that hello key vault can be referenced from Azure Resource Manager templates.</span></span>
 
 ```powershell
 
-# Create a certificate in the .pfx format
+# Create a certificate in hello .pfx format
 New-SelfSignedCertificate `
   -certstorelocation cert:\LocalMachine\My `
   -dnsname contoso.microsoft.com
 
 $pwd = ConvertTo-SecureString `
-  -String "<Password used to export the certificate>" `
+  -String "<Password used tooexport hello certificate>" `
   -Force `
   -AsPlainText
 
 Export-PfxCertificate `
-  -cert "cert:\localMachine\my\<Certificate Thumbprint that was created in the previous step>" `
-  -FilePath "<Fully qualified path where the exported certificate can be stored>" `
+  -cert "cert:\localMachine\my\<Certificate Thumbprint that was created in hello previous step>" `
+  -FilePath "<Fully qualified path where hello exported certificate can be stored>" `
   -Password $pwd
 
-# Create a key vault and upload the certificate into the key vault as a secret
+# Create a key vault and upload hello certificate into hello key vault as a secret
 $vaultName = "contosovault"
 $resourceGroup = "contosovaultrg"
 $location = "local"
 $secretName = "servicecert"
-$fileName = "<Fully qualified path where the exported certificate can be stored>"
-$certPassword = "<Password used to export the certificate>"
+$fileName = "<Fully qualified path where hello exported certificate can be stored>"
+$certPassword = "<Password used tooexport hello certificate>"
 
 $fileContentBytes = get-content $fileName `
   -Encoding Byte
@@ -106,13 +106,13 @@ Set-AzureKeyVaultSecret `
 
 ```
 
-<span data-ttu-id="37cf1-125">當您執行上述指令碼時，輸出會包含祕密 URI。</span><span class="sxs-lookup"><span data-stu-id="37cf1-125">When you run the previous script, the output includes the secret URI.</span></span> <span data-ttu-id="37cf1-126">請記下此 URI。</span><span class="sxs-lookup"><span data-stu-id="37cf1-126">Make a note of this URI.</span></span> <span data-ttu-id="37cf1-127">在[將憑證推送至 Windows Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-push-certificate-windows) \(英文\) 中，您必須參考此 URI。</span><span class="sxs-lookup"><span data-stu-id="37cf1-127">You have to reference it in the [Push certificate to Windows Resource Manager template](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-push-certificate-windows).</span></span> <span data-ttu-id="37cf1-128">將 [vm-push-certificate-windows 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-push-certificate-windows) \(英文\) 資料夾下載至您的開發電腦上。</span><span class="sxs-lookup"><span data-stu-id="37cf1-128">Download the [vm-push-certificate-windows template](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-push-certificate-windows) folder onto your development computer.</span></span> <span data-ttu-id="37cf1-129">此資料夾中包含 `azuredeploy.json` 和 `azuredeploy.parameters.json` 檔案，您在接下來的步驟中將需要這些檔案。</span><span class="sxs-lookup"><span data-stu-id="37cf1-129">This folder contains the `azuredeploy.json` and `azuredeploy.parameters.json` files, which you will need in the next steps.</span></span>
+<span data-ttu-id="2a06e-125">當您執行 hello 至上一個指令碼時，hello 輸出會包括 hello 密碼 URI。</span><span class="sxs-lookup"><span data-stu-id="2a06e-125">When you run hello previous script, hello output includes hello secret URI.</span></span> <span data-ttu-id="2a06e-126">請記下此 URI。</span><span class="sxs-lookup"><span data-stu-id="2a06e-126">Make a note of this URI.</span></span> <span data-ttu-id="2a06e-127">您有 tooreference 在 hello[推播憑證 tooWindows Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-push-certificate-windows)。</span><span class="sxs-lookup"><span data-stu-id="2a06e-127">You have tooreference it in hello [Push certificate tooWindows Resource Manager template](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-push-certificate-windows).</span></span> <span data-ttu-id="2a06e-128">下載 hello [vm 推播憑證-windows 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-push-certificate-windows)到開發電腦上的資料夾。</span><span class="sxs-lookup"><span data-stu-id="2a06e-128">Download hello [vm-push-certificate-windows template](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-push-certificate-windows) folder onto your development computer.</span></span> <span data-ttu-id="2a06e-129">此資料夾包含 hello`azuredeploy.json`和`azuredeploy.parameters.json`hello 後續步驟中，您將需要的檔案。</span><span class="sxs-lookup"><span data-stu-id="2a06e-129">This folder contains hello `azuredeploy.json` and `azuredeploy.parameters.json` files, which you will need in hello next steps.</span></span>
 
-<span data-ttu-id="37cf1-130">根據您的環境值，修改 `azuredeploy.parameters.json` 檔案。</span><span class="sxs-lookup"><span data-stu-id="37cf1-130">Modify the `azuredeploy.parameters.json` file according to your environment values.</span></span> <span data-ttu-id="37cf1-131">要注意的參數是保存庫名稱、保存庫資源群組以及祕密 URI (產生自先前的指令碼)。</span><span class="sxs-lookup"><span data-stu-id="37cf1-131">The parameters of special interest are the vault name, the vault resource group, and the secret URI (as generated by the previous script).</span></span> <span data-ttu-id="37cf1-132">下列檔案是參數檔案的範例：</span><span class="sxs-lookup"><span data-stu-id="37cf1-132">The following file is an example of a parameter file:</span></span>
+<span data-ttu-id="2a06e-130">修改 hello`azuredeploy.parameters.json`根據 tooyour 環境值的檔案。</span><span class="sxs-lookup"><span data-stu-id="2a06e-130">Modify hello `azuredeploy.parameters.json` file according tooyour environment values.</span></span> <span data-ttu-id="2a06e-131">特別感興趣的 hello 參數是 hello 保存庫名稱、 hello 保存庫的資源群組，以及 hello 密碼 URI （如 hello 至上一個指令碼所產生）。</span><span class="sxs-lookup"><span data-stu-id="2a06e-131">hello parameters of special interest are hello vault name, hello vault resource group, and hello secret URI (as generated by hello previous script).</span></span> <span data-ttu-id="2a06e-132">下列檔 hello 是參數檔案的範例：</span><span class="sxs-lookup"><span data-stu-id="2a06e-132">hello following file is an example of a parameter file:</span></span>
 
-## <a name="update-the-azuredeployparametersjson-file"></a><span data-ttu-id="37cf1-133">更新 azuredeploy.parameters.json 檔案</span><span class="sxs-lookup"><span data-stu-id="37cf1-133">Update the azuredeploy.parameters.json file</span></span>
+## <a name="update-hello-azuredeployparametersjson-file"></a><span data-ttu-id="2a06e-133">更新 hello azuredeploy.parameters.json 檔案</span><span class="sxs-lookup"><span data-stu-id="2a06e-133">Update hello azuredeploy.parameters.json file</span></span>
 
-<span data-ttu-id="37cf1-134">根據您的環境，以 vaultName、祕密 URI、VmName 和其他值來更新 azuredeploy.parameters.json 檔案。</span><span class="sxs-lookup"><span data-stu-id="37cf1-134">Update the azuredeploy.parameters.json file with the vaultName, secret URI, VmName, and other values as per your environment.</span></span> <span data-ttu-id="37cf1-135">下列 JSON 檔案會顯示範本參數檔案的範例：</span><span class="sxs-lookup"><span data-stu-id="37cf1-135">The following JSON file shows an example of the template parameters file:</span></span> 
+<span data-ttu-id="2a06e-134">更新 hello azuredeploy.parameters.json 檔案 hello vaultName、 與密碼的 URI、 VmName，根據您的環境的其他值。</span><span class="sxs-lookup"><span data-stu-id="2a06e-134">Update hello azuredeploy.parameters.json file with hello vaultName, secret URI, VmName, and other values as per your environment.</span></span> <span data-ttu-id="2a06e-135">hello 下列 JSON 檔案顯示 hello 範本參數檔案的範例：</span><span class="sxs-lookup"><span data-stu-id="2a06e-135">hello following JSON file shows an example of hello template parameters file:</span></span> 
 
 ```json
 {
@@ -147,36 +147,36 @@ Set-AzureKeyVaultSecret `
 }
 ```
 
-## <a name="deploy-the-template"></a><span data-ttu-id="37cf1-136">部署範本</span><span class="sxs-lookup"><span data-stu-id="37cf1-136">Deploy the template</span></span>
+## <a name="deploy-hello-template"></a><span data-ttu-id="2a06e-136">部署 hello 範本</span><span class="sxs-lookup"><span data-stu-id="2a06e-136">Deploy hello template</span></span>
 
-<span data-ttu-id="37cf1-137">現在，使用下列 PowerShell 指令碼部署範本：</span><span class="sxs-lookup"><span data-stu-id="37cf1-137">Now deploy the template by using the following PowerShell script:</span></span>
+<span data-ttu-id="2a06e-137">現在使用下列 PowerShell 指令碼的 hello 部署 hello 範本：</span><span class="sxs-lookup"><span data-stu-id="2a06e-137">Now deploy hello template by using hello following PowerShell script:</span></span>
 
 ```powershell
-# Deploy a Resource Manager template to create a VM and push the secret onto it
+# Deploy a Resource Manager template toocreate a VM and push hello secret onto it
 New-AzureRmResourceGroupDeployment `
   -Name KVDeployment `
   -ResourceGroupName $resourceGroup `
-  -TemplateFile "<Fully qualified path to the azuredeploy.json file>" `
-  -TemplateParameterFile "<Fully qualified path to the azuredeploy.parameters.json file>"
+  -TemplateFile "<Fully qualified path toohello azuredeploy.json file>" `
+  -TemplateParameterFile "<Fully qualified path toohello azuredeploy.parameters.json file>"
 ```
 
-<span data-ttu-id="37cf1-138">成功部署範本之後，會產生下列輸出：</span><span class="sxs-lookup"><span data-stu-id="37cf1-138">When the template is deployed successfully, it results in the following output:</span></span>
+<span data-ttu-id="2a06e-138">Hello 範本順利部署時，它會產生下列輸出的 hello:</span><span class="sxs-lookup"><span data-stu-id="2a06e-138">When hello template is deployed successfully, it results in hello following output:</span></span>
 
 ![部署輸出](media\azure-stack-kv-push-secret-into-vm/deployment-output.png)
 
-<span data-ttu-id="37cf1-140">部署此虛擬機器時，Azure Stack 會將憑證推送至虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="37cf1-140">When this virtual machine is deployed, Azure Stack pushes the certificate onto the virtual machine.</span></span> <span data-ttu-id="37cf1-141">在 Windows 中，系統會利用使用者提供的憑證存放區，將憑證新增至 LocalMachine 憑證位置。</span><span class="sxs-lookup"><span data-stu-id="37cf1-141">In Windows, the certificate is added to the LocalMachine certificate location, with the certificate store that the user provided.</span></span> <span data-ttu-id="37cf1-142">在 Linux 中，憑證會置於 /var/lib/waagent 目錄底下，其中 X509 憑證檔案的檔案名稱為 &lt;UppercaseThumbprint&gt;.crt，且私密金鑰的檔案名稱為 &lt;UppercaseThumbprint&gt;.prv。</span><span class="sxs-lookup"><span data-stu-id="37cf1-142">In Linux, the certificate is placed under the /var/lib/waagent directory, with the file name &lt;UppercaseThumbprint&gt;.crt for the X509 certificate file and &lt;UppercaseThumbprint&gt;.prv for the private key.</span></span>
+<span data-ttu-id="2a06e-140">在部署此虛擬機器時，Azure 堆疊推入 hello hello 虛擬機器上的憑證。</span><span class="sxs-lookup"><span data-stu-id="2a06e-140">When this virtual machine is deployed, Azure Stack pushes hello certificate onto hello virtual machine.</span></span> <span data-ttu-id="2a06e-141">在 Windows hello 憑證會新增 toohello LocalMachine 存放區提供該 hello 使用者的憑證位置，與 hello 憑證。</span><span class="sxs-lookup"><span data-stu-id="2a06e-141">In Windows, hello certificate is added toohello LocalMachine certificate location, with hello certificate store that hello user provided.</span></span> <span data-ttu-id="2a06e-142">在 Linux 中 hello 憑證會放在 hello 檔名的 hello /var/lib/waagent 目錄下&lt;UppercaseThumbprint&gt;.crt hello X509 憑證檔案和&lt;UppercaseThumbprint&gt;.prv hello私用的索引鍵。</span><span class="sxs-lookup"><span data-stu-id="2a06e-142">In Linux, hello certificate is placed under hello /var/lib/waagent directory, with hello file name &lt;UppercaseThumbprint&gt;.crt for hello X509 certificate file and &lt;UppercaseThumbprint&gt;.prv for hello private key.</span></span>
 
-## <a name="retire-certificates"></a><span data-ttu-id="37cf1-143">淘汰憑證</span><span class="sxs-lookup"><span data-stu-id="37cf1-143">Retire certificates</span></span>
+## <a name="retire-certificates"></a><span data-ttu-id="2a06e-143">淘汰憑證</span><span class="sxs-lookup"><span data-stu-id="2a06e-143">Retire certificates</span></span>
 
-<span data-ttu-id="37cf1-144">在上一節中，我們示範如何將新的憑證推送至虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="37cf1-144">In the preceding section, we showed you how to push a new certificate onto a virtual machine.</span></span> <span data-ttu-id="37cf1-145">您的舊憑證仍然在虛擬機器上，而且無法移除。</span><span class="sxs-lookup"><span data-stu-id="37cf1-145">Your old certificate is still on the virtual machine, and it can't be removed.</span></span> <span data-ttu-id="37cf1-146">不過，您可以使用 `Set-AzureKeyVaultSecretAttribute` Cmdlet 來停用舊版的祕密。</span><span class="sxs-lookup"><span data-stu-id="37cf1-146">However, you can disable the older version of the secret by using the `Set-AzureKeyVaultSecretAttribute` cmdlet.</span></span> <span data-ttu-id="37cf1-147">以下是此 Cmdlet 的使用範例。</span><span class="sxs-lookup"><span data-stu-id="37cf1-147">The following is an example usage of this cmdlet.</span></span> <span data-ttu-id="37cf1-148">請務必根據您的環境，取代保存庫名稱、祕密名稱和版本值：</span><span class="sxs-lookup"><span data-stu-id="37cf1-148">Make sure to replace the vault name, secret name, and version values according to your environment:</span></span>
+<span data-ttu-id="2a06e-144">在前一節的 hello，我們也示範了您如何 toopush 虛擬機器到新的憑證。</span><span class="sxs-lookup"><span data-stu-id="2a06e-144">In hello preceding section, we showed you how toopush a new certificate onto a virtual machine.</span></span> <span data-ttu-id="2a06e-145">舊的憑證仍在 hello 虛擬機器，且無法移除。</span><span class="sxs-lookup"><span data-stu-id="2a06e-145">Your old certificate is still on hello virtual machine, and it can't be removed.</span></span> <span data-ttu-id="2a06e-146">不過，您可以使用停用舊版 hello 密碼 hello hello `Set-AzureKeyVaultSecretAttribute` cmdlet。</span><span class="sxs-lookup"><span data-stu-id="2a06e-146">However, you can disable hello older version of hello secret by using hello `Set-AzureKeyVaultSecretAttribute` cmdlet.</span></span> <span data-ttu-id="2a06e-147">hello 以下是這個 cmdlet 的範例使用方式。</span><span class="sxs-lookup"><span data-stu-id="2a06e-147">hello following is an example usage of this cmdlet.</span></span> <span data-ttu-id="2a06e-148">請確定 tooreplace hello 保存庫名稱、 密碼的名稱和版本值根據 tooyour 環境：</span><span class="sxs-lookup"><span data-stu-id="2a06e-148">Make sure tooreplace hello vault name, secret name, and version values according tooyour environment:</span></span>
 
 ```powershell
 Set-AzureKeyVaultSecretAttribute -VaultName contosovault -Name servicecert -Version e3391a126b65414f93f6f9806743a1f7 -Enable 0
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="37cf1-149">後續步驟</span><span class="sxs-lookup"><span data-stu-id="37cf1-149">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2a06e-149">後續步驟</span><span class="sxs-lookup"><span data-stu-id="2a06e-149">Next steps</span></span>
 
-* [<span data-ttu-id="37cf1-150">使用金鑰保存庫密碼部署 VM</span><span class="sxs-lookup"><span data-stu-id="37cf1-150">Deploy a VM with a Key Vault password</span></span>](azure-stack-kv-deploy-vm-with-secret.md)
-* [<span data-ttu-id="37cf1-151">允許應用程式存取 Key Vault</span><span class="sxs-lookup"><span data-stu-id="37cf1-151">Allow an application to access Key Vault</span></span>](azure-stack-kv-sample-app.md)
+* [<span data-ttu-id="2a06e-150">使用金鑰保存庫密碼部署 VM</span><span class="sxs-lookup"><span data-stu-id="2a06e-150">Deploy a VM with a Key Vault password</span></span>](azure-stack-kv-deploy-vm-with-secret.md)
+* [<span data-ttu-id="2a06e-151">允許應用程式 tooaccess 金鑰保存庫</span><span class="sxs-lookup"><span data-stu-id="2a06e-151">Allow an application tooaccess Key Vault</span></span>](azure-stack-kv-sample-app.md)
 
 

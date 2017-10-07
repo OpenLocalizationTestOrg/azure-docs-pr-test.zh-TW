@@ -5,7 +5,7 @@
 ## [常見問題集](faq.md)
 
 # 開始使用
-## [使用入口網站建立 Linux VM](createportal.md)
+## [建立 Linux VM 與 hello 入口網站](createportal.md)
 ## [安裝 Azure CLI](../../../cli-install-nodejs.md)
 ## [建立 SSH 金鑰](../mac-create-ssh-keys.md)
 
@@ -16,21 +16,21 @@
 ### [搭配使用遠端桌面與 Linux VM](remote-desktop.md)
 ### [管理 VM 擴充功能](manage-extensions.md)
 ### [管理 VM 使用 Visual Studio](manage-visual-studio.md)
-### [使用診斷 VM 擴充功能監視 VM](../diagnostic-extension.md)
-### [使用診斷 VM 擴充功能 v2.x 監視 VM](diagnostic-extension-v2.md)
+### [監視 Vm 使用 hello 診斷 VM 延伸模組](../diagnostic-extension.md)
+### [監視使用 v2.x hello 診斷 VM 延伸模組的 Vm](diagnostic-extension-v2.md)
 ### [插入自訂資料](inject-custom-data.md)
 ### [重設 Linux 的密碼或金鑰、修正 SSH 並檢查磁碟](reset-access.md)
 ### [維護](planned-maintenance-schedule.md)
-### [使用 CLI 建立 Docker 主機](cli-use-docker.md)
-### [使用入口網站建立 Docker 主機](portal-use-docker.md)
-### [如何搭配swarm 使用 Docker](../../virtual-machines-linux-docker-swarm.md)
+### [建立使用 hello CLI Docker 主機](cli-use-docker.md)
+### [建立使用 hello 入口網站的 Docker 主機](portal-use-docker.md)
+### [如何 toouse 與群集的 Docker](../../virtual-machines-linux-docker-swarm.md)
 
 ## 使用儲存體
 ### [連接資料磁碟](attach-disk.md)
 ### [卸離與資料磁碟](detach-disk.md)
 
 ## 網路
-### [開啟連接埠連接到您的 VM](setup-endpoints.md)
+### [開啟連接埠 tooyour VM](setup-endpoints.md)
 ### [連接 VM 與虛擬網路或雲端服務](connect-vms.md)
 
 ## 部署映像
@@ -43,7 +43,7 @@
 ### MySQL 和 MariaDB
 #### [MariaDB 叢集教學課程](mariadb-mysql-cluster.md)
 #### [在 OpenSUSE VM 上安裝 MySQL](mysql-on-opensuse.md)
-#### [使用負載平衡集合將 MySQL 叢集化](mysql-cluster.md)
+#### [使用負載平衡集 tooclusterize MySQL](mysql-cluster.md)
 #### [最佳化 MySQL 效能](optimize-mysql.md)
 
 ## 執行應用程式
@@ -52,8 +52,8 @@
 ### [LAMP 堆疊](lamp-script.md)
 ### [Tomcat](setup-tomcat.md)
 ### [Web 應用程式與 Visual Studio](web-app-visual-studio.md)
-### [用以執行 MPI 應用程式的 RDMA 叢集](rdma-cluster.md)
-### [如何搭配使用 Azure 從屬外掛程式與 Hudson CI](../../virtual-machines-azure-slave-plugin-for-hudson.md)
+### [RDMA 叢集 toorun MPI 應用程式](rdma-cluster.md)
+### [如何 toouse hello Azure 從屬外掛程式與 Hudson CI](../../virtual-machines-azure-slave-plugin-for-hudson.md)
 ### HPC Pack
 #### [為 Linux 工作負載建立叢集](hpcpack-cluster-powershell-script.md)
 #### [管理具有 Linux 節點的叢集](hpcpack-cluster.md)
@@ -64,7 +64,7 @@
 ## 疑難排解
 ### [VM 部署](troubleshoot-deployment-new-vm.md)
 ### [重新啟動 VM 或調整 VM 的大小](restart-resize-error-troubleshooting.md)
-### [將虛擬硬碟附加至進行疑難排解的 VM](troubleshoot-recovery-disks-portal.md)
+### [連接虛擬硬碟 tootroubleshooting VM](troubleshoot-recovery-disks-portal.md)
 
 # 參考
 ## [PowerShell](/powershell/azure/overview)
