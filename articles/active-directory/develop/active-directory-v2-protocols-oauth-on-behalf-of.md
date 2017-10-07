@@ -1,6 +1,6 @@
 ---
-title: "Azure AD v2.0 OAuth2.0 代理者流程 | Microsoft Docs"
-description: "本文說明如何使用 HTTP 訊息，以利用 OAuth2.0 代理者流程實作服務對服務驗證。"
+title: "aaaAzure AD v2.0 OAuth2.0 上-代表 」 流程 |Microsoft 文件"
+description: "本文說明如何： toouse HTTP 訊息 tooimplement 服務 tooservice 驗證使用 hello OAuth2.0 代表的流程。"
 services: active-directory
 documentationcenter: 
 author: navyasric
@@ -15,61 +15,61 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 356083fbaabfcd2ec7581adf319fa22b810df0d3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6063869d07c2544000094db8deea7dce19f14f67
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # Azure Active Directory v2.0 和 OAuth 2.0 代理者流程
-OAuth2.0 代理者流程的使用案例，是應用程式叫用服務/Web API，而後者又需要呼叫另一個服務/Web API。 其概念是透過要求鏈傳播委派的使用者身分識別和權限。 中介層服務若要向下游服務提出已驗證的要求，需要代表使用者保護來自 Azure Active Directory (Azure AD) 存取權杖。
+OAuth 2.0 On-Behalf-Of 流程 hello 做 hello 實務應用程式要叫用服務/web API，又需要 toocall 另一個服務/web API。 hello 概念是 toopropagate hello 委派使用者識別與透過 hello 要求鏈的權限。 Hello 中介層服務進行驗證的 toomake 要求 toohello 下游服務，它會代表 hello 使用者需要 toosecure 從 Azure Active Directory (Azure AD)，存取權杖。
 
 > [!NOTE]
-> v2.0 端點並未支援所有的 Azure Active Directory 案例和功能。 若要判斷您是否應該使用 v2.0 端點，請參閱 [v2.0 限制](active-directory-v2-limitations.md)。
+> hello v2.0 端點不支援所有的 Azure Active Directory 的案例和功能。 toodetermine 是否應該使用 hello v2.0 端點，閱讀有關[v2.0 限制](active-directory-v2-limitations.md)。
 >
 >
 
 ## 通訊協定圖表
-假設使用者已使用 [OAuth 2.0 授權碼授與流程](active-directory-v2-protocols-oauth-code.md)通過應用程式的驗證。 此時，應用程式有一個包含使用者宣告的存取權杖 (權杖 A)，且同意存取中介層 Web API (API A)。 現在，API A 需要向下游 Web API (API B) 提出已驗證的要求。
+假設該 hello 使用者已驗證的應用程式使用 hello [OAuth 2.0 授權碼授與流程](active-directory-v2-protocols-oauth-code.md)。 此時，hello 應用程式會有存取語彙基元 (語彙基元 A) 與 hello 使用者宣告和同意 tooaccess hello 中間層 web 應用程式開發介面 (API A)。 現在，應用程式開發介面的需要 toomake 已驗證的要求 toohello 下游 web 應用程式開發介面 (API B)。
 
-接下來的步驟由代理者流程構成，並搭配下圖協助說明。
+hello 遵照的步驟，構成 hello 代表的流程，並說明，請參閱下列圖表中的 hello hello 協助。
 
 ![OAuth2.0 代理者流程](media/active-directory-protocols-oauth-on-behalf-of/active-directory-protocols-oauth-on-behalf-of-flow.png)
 
 
-1. 用戶端應用程式使用權杖 A 向 API A 提出要求。
-2. API A會向 Azure AD 權杖發行端點進行驗證，並要求存取 API B 的權杖。
-3. Azure AD 權杖發行端點以權杖 A 驗證 API A 的認證，並發出 API B 的存取權杖 (權杖 B)。
-4. 在對 API B 的要求的授權標頭中設定權杖 B。
-5. API B 傳回來自受保護資源的資料。
+1. hello 用戶端應用程式會要求 tooAPI 與 hello 語彙基元 a。
+2. 應用程式開發介面的驗證 toohello Azure AD 權杖發行端點，並要求權杖 tooaccess API b。
+3. hello Azure AD 權杖發行端點會驗證與權杖的應用程式開發介面的認證和問題 hello API B （語彙基元 B） 的存取權杖。
+4. hello 權杖 B hello 要求 tooAPI B.hello 授權標頭中設定
+5. 應用程式開發介面 b 所傳回資料從受保護資源的 hello
 
 > [!NOTE]
-> 在此案例中，中介層服務不會利用使用者互動來取得使用者的下游 API 存取同意。 因此，在驗證期間必須先呈現授與存取下游 API 的選項，作為同意步驟的一部分。
+> 在此案例中，hello 中介層服務會有任何使用者互動 tooobtain hello 使用者的同意 tooaccess hello 下游應用程式開發介面。 因此，hello 下游應用程式開發介面會呈現選項 toogrant 存取 toohello 前方 hello 同意步驟，在驗證期間的一部分。
 >
 
-## 服務對服務的存取權杖要求
-若要要求存取權杖，請對租用戶特定的 Azure AD v2.0 端點提出 HTTP POST 並搭配下列參數。
+## 服務 tooservice 存取權杖要求
+toorequest 存取權杖，以下列參數的 hello 讓 HTTP POST toohello 租用戶特定 Azure AD v2.0 端點。
 
 ```
 https://login.microsoftonline.com/<tenant>/oauth2/v2.0/token
 ```
 
-有兩種情況，取決於用戶端應用程式是選擇透過共用密碼或憑證來保護。
+有兩種情況下，根據 hello 用戶端應用程式是否選擇 toobe 受到共用的密碼或憑證。
 
 ### 第一種情況︰使用共用密碼的存取權杖要求
-使用共用密碼時，服務對服務存取權杖要求包含下列參數：
+當使用共用的密碼時，服務對服務存取權杖要求包含下列參數的 hello:
 
 | 參數 |  | 說明 |
 | --- | --- | --- |
-| grant_type |必要 | 權杖要求的類型。 若是使用 JWT 的要求，此值必須是 **urn:ietf:params:oauth:grant-type:jwt-bearer**。 |
-| client_id |必要 | [應用程式註冊入口網站](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)指派給您應用程式的「應用程式識別碼」。 |
-| client_secret |必要 | 您在應用程式註冊入口網站中為應用程式產生的「應用程式祕密」。 |
-| assertion |必要 | 要求中使用的權杖值。 |
-| scope |必要 | 權杖要求範圍的清單，各項目之間以空格分隔。 如需詳細資訊，請參閱[範圍](active-directory-v2-scopes.md)。|
-| requested_token_use |必要 | 指定應該如何處理要求。 在代理者流程中，此值必須是 **on_behalf_of**。 |
+| grant_type |必要 | hello 的 hello 語彙基元要求類型。 使用 JWT 的要求，hello 值必須是**urn: ietf:params:oauth:grant-型別： jwt-承載**。 |
+| client_id |必要 | hello 應用程式識別碼的 hello[應用程式註冊入口網站](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)指派 tooyour 應用程式。 |
+| client_secret |必要 | 您為 hello 應用程式註冊入口網站中的應用程式所產生的 hello 應用程式密碼。 |
+| assertion |必要 | hello hello 要求中所使用的 hello 權杖值。 |
+| scope |必要 | 並以空格分隔 hello 權杖要求的範圍清單。 如需詳細資訊，請參閱[範圍](active-directory-v2-scopes.md)。|
+| requested_token_use |必要 | 指定應該如何處理 hello 要求。 Hello 代表的流程，在 hello 值必須是**on_behalf_of**。 |
 
 #### 範例
-下列 HTTP POST 會要求對 https://graph.windows.net Web API 的存取權杖，範圍是 `user.read`。
+hello 下列 HTTP POST 要求存取權杖與`user.read`hello https://graph.microsoft.com web API 的範圍。
 
 ```
 //line breaks for legibility only
@@ -87,22 +87,22 @@ grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer
 ```
 
 ### 第二種情況︰使用憑證的存取權杖要求
-使用憑證的服務對服務存取權杖要求包含下列參數：
+使用憑證服務對服務存取權杖要求包含下列參數的 hello:
 
 | 參數 |  | 說明 |
 | --- | --- | --- |
-| grant_type |必要 | 權杖要求的類型。 若是使用 JWT 的要求，此值必須是 **urn:ietf:params:oauth:grant-type:jwt-bearer**。 |
-| client_id |必要 | [應用程式註冊入口網站](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)指派給您應用程式的「應用程式識別碼」。 |
-| client_assertion_type |必要 |值必須是 `urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
-| client_assertion |必要 | 您必須建立判斷提示 (JSON Web 權杖)，並使用註冊的憑證來簽署，以作為應用程式的認證。  請參閱[憑證認證](active-directory-certificate-credentials.md)，以了解如何註冊您的憑證與判斷提示的格式。|
-| assertion |必要 | 要求中使用的權杖值。 |
-| requested_token_use |必要 | 指定應該如何處理要求。 在代理者流程中，此值必須是 **on_behalf_of**。 |
-| scope |必要 | 權杖要求範圍的清單，各項目之間以空格分隔。 如需詳細資訊，請參閱[範圍](active-directory-v2-scopes.md)。|
+| grant_type |必要 | hello 的 hello 語彙基元要求類型。 使用 JWT 的要求，hello 值必須是**urn: ietf:params:oauth:grant-型別： jwt-承載**。 |
+| client_id |必要 | hello 應用程式識別碼的 hello[應用程式註冊入口網站](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)指派 tooyour 應用程式。 |
+| client_assertion_type |必要 |hello 值必須是`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
+| client_assertion |必要 | 判斷提示 （JSON Web 權杖），您需要 toocreate hello 以簽署憑證，您會註冊為您的應用程式的認證。  閱讀有關[憑證認證](active-directory-certificate-credentials.md)toolearn 如何 tooregister hello 判斷提示您憑證和 hello 的格式。|
+| assertion |必要 | hello hello 要求中所使用的 hello 權杖值。 |
+| requested_token_use |必要 | 指定應該如何處理 hello 要求。 Hello 代表的流程，在 hello 值必須是**on_behalf_of**。 |
+| scope |必要 | 並以空格分隔 hello 權杖要求的範圍清單。 如需詳細資訊，請參閱[範圍](active-directory-v2-scopes.md)。|
 
-請注意，在透過共用密碼要求的情況中，參數幾乎相同，不同之處在於使用下列兩個參數來取代 client_secret 參數：client_assertion_type 和 client_assertion。
+請注意，hello 參數幾乎 hello 與 hello 大小寫的 hello 要求相同的共用密碼之處在於會以兩個參數取代 hello client_secret 參數： client_assertion_type 和 client_assertion。
 
 #### 範例
-下列 HTTP POST 會使用憑證要求對 https://graph.windows.net Web API 的存取權杖，範圍是`user.read`。
+hello 下列 HTTP POST 要求存取權杖與`user.read`hello https://graph.microsoft.com web API 的憑證範圍。
 
 ```
 // line breaks for legibility only
@@ -120,19 +120,19 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
 &scope=https://graph.microsoft.com/user.read
 ```
 
-## 服務對服務的存取權杖回應
-成功的回應是 JSON OAuth 2.0 回應，包含下列參數。
+## 服務 tooservice 存取權杖回應
+成功回應是以下列參數的 hello 的 JSON OAuth 2.0 回應。
 
 | 參數 | 說明 |
 | --- | --- |
-| token_type |表示權杖類型值。 Azure AD 唯一支援的類型是 [持有人] 。 如需持有人權杖的詳細資訊，請參閱 [OAuth 2.0 授權架構︰持有人權杖用法 (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt)。 |
-| scope |在權杖中授與的存取範圍。 |
-| expires_in |存取權杖的有效時間長度 (以秒為單位)。 |
-| access_token |所要求的存取權杖。 呼叫端服務可以使用此權杖來向接收端服務進行驗證。 |
-| refresh_token |所要求之存取權杖的重新整理權杖。 呼叫端服務可以使用這個權杖，在目前的存取權杖過期之後，要求其他的存取權杖。 |
+| token_type |表示 hello 語彙基元型別值。 hello Azure AD 支援的類型**承載**。 如需承載權杖的詳細資訊，請參閱 hello [OAuth 2.0 授權架構： 承載權杖用法 (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt)。 |
+| scope |hello hello 語彙基元中授與的存取範圍。 |
+| expires_in |hello 長度的時間 hello 存取權杖是有效 （以秒為單位）。 |
+| access_token |hello 要求的存取權杖。 呼叫服務的 hello 可以使用這個語彙基元 tooauthenticate toohello 接收服務。 |
+| refresh_token |hello hello 要求的存取權杖重新整理權杖。 呼叫服務的 hello 後可以使用這個語彙基元 toorequest 另一個存取權杖 hello 目前存取權杖到期。 |
 
 ### 成功回應範例
-下列範例顯示向 https://graph.microsoft.com Web API 要求存取權杖的成功回應。
+hello 下列範例顯示 hello https://graph.microsoft.com web API 的存取權杖的成功回應 tooa 要求。
 
 ```
 {
@@ -146,12 +146,12 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
 ```
 
 ### 錯誤回應範例
-嘗試取得下游 API 的存取權杖時，如果下游 API 有條件式存取原則，例如在其上設定多重要素驗證時，Azure AD 權杖端點會傳回錯誤回應。 中介層服務應該向用戶端應用程式呈現此錯誤，以便用戶端應用程式可以提供使用者互動，以滿足條件式存取原則。
+錯誤回應會傳回 Azure AD 權杖端點時，嘗試 tooacquire 存取權杖的 hello 下游應用程式開發介面，如果 hello 下游應用程式開發介面具有條件式存取原則，例如設於其上的多因素驗證。 hello 中介層服務應該出現此錯誤 toohello 用戶端應用程式以便 hello 用戶端應用程式可以提供 hello 使用者互動 toosatisfy hello 條件式存取原則。
 
 ```
 {
     "error":"interaction_required",
-    "error_description":"AADSTS50079: Due to a configuration change made by your administrator, or because you moved to a new location, you must enroll in multi-factor authentication to access 'bf8d80f9-9098-4972-b203-500f535113b1'.\r\nTrace ID: b72a68c3-0926-4b8e-bc35-3150069c2800\r\nCorrelation ID: 73d656cf-54b1-4eb2-b429-26d8165a52d7\r\nTimestamp: 2017-05-01 22:43:20Z",
+    "error_description":"AADSTS50079: Due tooa configuration change made by your administrator, or because you moved tooa new location, you must enroll in multi-factor authentication tooaccess 'bf8d80f9-9098-4972-b203-500f535113b1'.\r\nTrace ID: b72a68c3-0926-4b8e-bc35-3150069c2800\r\nCorrelation ID: 73d656cf-54b1-4eb2-b429-26d8165a52d7\r\nTimestamp: 2017-05-01 22:43:20Z",
     "error_codes":[50079],
     "timestamp":"2017-05-01 22:43:20Z",
     "trace_id":"b72a68c3-0926-4b8e-bc35-3150069c2800",
@@ -160,8 +160,8 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
 }
 ```
 
-## 使用存取權杖來存取受保護資源
-現在，中介層服務可以使用取得的權杖，在 `Authorization` 標頭中設定權杖，並向下游 Web API 提出已驗證的要求。
+## 使用 hello 保護資源的存取語彙基元 tooaccess hello
+現在 hello 中介層服務可以使用 hello 驗證權杖取得上述 toomake 要求 toohello 下游 web API 中，設定 hello 語彙基元所 hello`Authorization`標頭。
 
 ### 範例
 ```
@@ -171,6 +171,6 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRQUJBQUFBQUFCbmZpRy1tQTZOVG
 ```
 
 ## 後續步驟
-進一步了解 OAuth 2.0 通訊協定，以及另一種使用用戶端認證來執行服務對服務驗證的方式。
+深入了解 hello OAuth 2.0 通訊協定和另一個方式 tooperform 服務 tooservice 驗證使用用戶端認證。
 * [Azure AD v2.0 中的 OAuth 2.0 用戶端認證授與](active-directory-v2-protocols-oauth-client-creds.md)
 * [Azure AD v2.0 中的 OAuth 2.0](active-directory-v2-protocols-oauth-code.md)

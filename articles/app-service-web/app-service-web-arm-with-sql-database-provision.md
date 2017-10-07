@@ -1,6 +1,6 @@
 ---
-title: "佈建使用 SQL Database 的 Web 應用程式"
-description: "使用 Azure 資源管理員範本來部署 Web 應用程式，其中包含 SQL Database。"
+title: "aaaProvision 使用 SQL Database 的 web 應用程式"
+description: "使用 Azure Resource Manager 範本 toodeploy 包括 SQL Database 的 web 應用程式。"
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2016
 ms.author: cephalin
-ms.openlocfilehash: cc34f684f8c50e95a62cb7b04fd2ddce5deb68d6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 189c0122d201e88f15013bf241d66652ef23df4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="provision-a-web-app-with-a-sql-database"></a>佈建 Web 應用程式與 SQL Database
-在本主題中，您將學習如何建立 Azure 資源管理員範本，以部署 Web 應用程式與 SQL Database。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
+在本主題中，您將學習如何 toocreate 部署 web 應用程式和 SQL Database 的 Azure Resource Manager 範本。 您將學習如何 toodefine 部署的資源，以及如何 toodefine 參數指定當 hello 執行部署。 您可以使用此範本為您自己的部署，或自訂它 toomeet 您的需求。
 
 如需關於建立範本的詳細資訊，請參閱 [編寫 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
 如需有關部署應用程式的詳細資訊，請參閱 [透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)。
 
-如需完整的範本，請參閱 [Web 應用程式與 SQL Database 範本](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json)。
+Hello 完成範本，請參閱[與 SQL Database Web 應用程式範本](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json)。
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -41,29 +41,29 @@ ms.lasthandoff: 07/11/2017
 * 警示規則
 * 應用程式情資
 
-若要自動執行部署，請按一下下列按鈕：
+toorun 自動 hello 部署，請按一下下列按鈕 hello:
 
-[![部署至 Azure](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)
+[![部署 tooAzure](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)
 
-## <a name="parameters-to-specify"></a>要指定的參數
+## <a name="parameters-toospecify"></a>參數 toospecify
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 ### <a name="administratorlogin"></a>administratorLogin
-資料庫伺服器系統管理員要使用的帳戶名稱。
+hello hello 資料庫伺服器管理員的帳戶名稱 toouse。
 
     "administratorLogin": {
       "type": "string"
     }
 
 ### <a name="administratorloginpassword"></a>administratorLoginPassword
-資料庫伺服器系統管理員要使用的密碼。
+hello 密碼 toouse hello 資料庫伺服器管理員。
 
     "administratorLoginPassword": {
       "type": "securestring"
     }
 
 ### <a name="databasename"></a>databaseName
-要建立之新資料庫的名稱。
+新資料庫 toocreate hello hello 名稱。
 
     "databaseName": {
       "type": "string",
@@ -71,7 +71,7 @@ ms.lasthandoff: 07/11/2017
     }
 
 ### <a name="collation"></a>collation
-用來管理字元適當用法的資料庫定序。
+適當的控管 hello 資料庫定序 toouse 使用的字元。
 
     "collation": {
       "type": "string",
@@ -79,7 +79,7 @@ ms.lasthandoff: 07/11/2017
     }
 
 ### <a name="edition"></a>edition
-要建立的資料庫類型。
+資料庫 toocreate hello 型別。
 
     "edition": {
       "type": "string",
@@ -90,12 +90,12 @@ ms.lasthandoff: 07/11/2017
         "Premium"
       ],
       "metadata": {
-        "description": "The type of database to create."
+        "description": "hello type of database toocreate."
       }
     }
 
 ### <a name="maxsizebytes"></a>maxSizeBytes
-資料庫的大小上限 (位元組)。
+hello 大小上限，以位元組為單位，hello 資料庫。
 
     "maxSizeBytes": {
       "type": "string",
@@ -103,7 +103,7 @@ ms.lasthandoff: 07/11/2017
     }
 
 ### <a name="requestedserviceobjectivename"></a>requestedServiceObjectiveName
-與版本的效能等級對應的名稱。 
+hello 名稱對應 toohello 效能層級的版本。 
 
     "requestedServiceObjectiveName": {
       "type": "string",
@@ -118,12 +118,12 @@ ms.lasthandoff: 07/11/2017
         "P3"
       ],
       "metadata": {
-        "description": "Describes the performance level for Edition"
+        "description": "Describes hello performance level for Edition"
       }
     }
 
 ## <a name="variables-for-names"></a>名稱的變數
-這個範本包括建構範本所用名稱的變數。 變數值會使用 **uniqueString** 函式從資源群組識別碼產生名稱。
+此範本包括建構 hello 範本中使用的名稱的變數。 hello 變數的值使用 hello **uniqueString**函式 toogenerate hello 資源群組識別碼的名稱。
 
     "variables": {
         "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -132,9 +132,9 @@ ms.lasthandoff: 07/11/2017
     },
 
 
-## <a name="resources-to-deploy"></a>要部署的資源
+## <a name="resources-toodeploy"></a>資源 toodeploy
 ### <a name="sql-server-and-database"></a>SQL Server 和資料庫
-建立新的 SQL Server 和資料庫。 **serverName** 參數中指定伺服器名稱，**serverLocation** 參數中指定位置。 在建立新的伺服器時，您必須提供資料庫伺服器系統管理員的登入名稱和密碼。 
+建立新的 SQL Server 和資料庫。 hello hello 伺服器名稱會指定在 hello **serverName** hello 中指定的參數和 hello 位置**分別為 serverLocation**參數。 在建立 hello 新的伺服器時，您必須提供登入名稱和 hello 資料庫伺服器系統管理員密碼。 
 
     {
       "name": "[variables('sqlserverName')]",
@@ -373,7 +373,7 @@ ms.lasthandoff: 07/11/2017
       },
       "properties": {
         "name": "[concat('CPUHigh ', variables('hostingPlanName'))]",
-        "description": "[concat('The average CPU is high across all the instances of ', variables('hostingPlanName'))]",
+        "description": "[concat('hello average CPU is high across all hello instances of ', variables('hostingPlanName'))]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
@@ -407,7 +407,7 @@ ms.lasthandoff: 07/11/2017
       },
       "properties": {
         "name": "[concat('LongHttpQueue ', variables('hostingPlanName'))]",
-        "description": "[concat('The HTTP queue for the instances of ', variables('hostingPlanName'), ' has a large number of pending requests.')]",
+        "description": "[concat('hello HTTP queue for hello instances of ', variables('hostingPlanName'), ' has a large number of pending requests.')]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
@@ -446,7 +446,7 @@ ms.lasthandoff: 07/11/2017
       }
     }
 
-## <a name="commands-to-run-deployment"></a>執行部署的命令
+## <a name="commands-toorun-deployment"></a>命令 toorun 部署
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell
@@ -462,6 +462,6 @@ ms.lasthandoff: 07/11/2017
     az resource deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json --parameters '@azuredeploy.parameters.json'
 
 > [!NOTE]
-> 如需參數 JSON 檔案的內容，請參閱 [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json)。
+> 如需 hello 參數 JSON 檔案的內容，請參閱[azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json)。
 >
 >

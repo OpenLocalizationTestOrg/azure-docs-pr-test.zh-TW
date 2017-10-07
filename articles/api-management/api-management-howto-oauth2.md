@@ -1,6 +1,6 @@
 ---
-title: "在 Azure API 管理中使用 OAuth 2.0 授權開發人員帳戶 | Microsoft Docs"
-description: "了解如何在 API 管理中使用 OAuth 2.0 來授權給使用者。"
+title: "在 Azure API 管理使用 OAuth 2.0 aaaAuthorize 開發人員帳戶 |Microsoft 文件"
+description: "深入了解如何使用 API 管理中的 OAuth 2.0 tooauthorize 使用者。"
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,126 +14,126 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: a19c453bb3271374b587f3d0b35adad55863b490
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 934901dd6df399470a3257bf7a3a9b9fb5f40d5e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-authorize-developer-accounts-using-oauth-20-in-azure-api-management"></a>如何在 Azure API 管理中使用 OAuth 2.0 授權開發人員帳戶
-許多 API 都支援使用 [OAuth 2.0](http://oauth.net/2/) 來保護 API，並確保只有有效的使用者才能存取，而且他們只能存取獲授權的資源。 為了搭配使用 Azure API 管理的互動式開發人員主控台與這類 API，服務可讓您設定服務執行個體來使用已啟用 OAuth 2.0 的 API。
+# <a name="how-tooauthorize-developer-accounts-using-oauth-20-in-azure-api-management"></a>如何 tooauthorize 開發人員帳戶使用 Azure API 管理中的 OAuth 2.0
+許多應用程式開發介面支援[OAuth 2.0](http://oauth.net/2/) toosecure hello 應用程式開發介面，並確保，只有有效的使用者有權存取，且他們只能存取資源 toowhich 他們正在權。 在訂單 toouse Azure API 管理的互動式開發人員主控台中使用這類應用程式開發介面，hello 服務可讓您 tooconfigure OAuth 2.0 與您服務執行個體 toowork 啟用應用程式開發介面。
 
 ## <a name="prerequisites"> </a>必要條件
-本指南將示範如何設定 API 管理服務執行個體，以便使用開發人員帳戶適用的 OAuth 2.0 授權，但並未示範如何設定 OAuth 2.0 提供者。 儘管步驟相似，且用來在 API 管理服務執行個體中設定 OAuth 2.0 所需的資訊也相同，但每個 OAuth 2.0 提供者的組態並不相同。 本主題演示的範例將 Azure Active Directory 當做 OAuth 2.0 提供者。
+本指南也說明您如何 tooconfigure 您 API 管理服務執行個體 toouse OAuth 2.0 授權的開發人員帳戶，但並未顯示您如何 tooconfigure OAuth 2.0 提供者。 每個提供者是不同，雖然 hello 步驟很類似，而且使用 OAuth 2.0 設定您的 API 管理服務執行個體中的資訊所需的 hello 前面的 OAuth 2.0 的 hello 組態 hello 相同。 本主題演示的範例將 Azure Active Directory 當做 OAuth 2.0 提供者。
 
 > [!NOTE]
-> 如需使用 Azure Active Directory 設定 OAuth 2.0 的詳細資訊，請參閱 [WebApp-GraphAPI-DotNet][WebApp-GraphAPI-DotNet] (英文) 範例。
+> 如需有關如何設定使用 Azure Active Directory 的 OAuth 2.0 的詳細資訊，請參閱 hello [WebApp-GraphAPI-DotNet] [ WebApp-GraphAPI-DotNet]範例。
 > 
 > 
 
 ## <a name="step1"> </a>在 API 管理中設定 OAuth 2.0 授權伺服器
-若要開始，請在 API 管理服務的 Azure 入口網站中按一下 [發佈者入口網站]。
+tooget 啟動，按一下**發行者入口網站**API 管理服務的 hello Azure 入口網站中。
 
 ![發行者入口網站][api-management-management-console]
 
 > [!NOTE]
-> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][ Create an API Management service instance]在 hello[開始使用 Azure API 管理][Get started with Azure API Management]教學課程。
 > 
 > 
 
-從左側的 [API 管理] 功能表按一下 [安全性]，然後依序按一下 [OAuth 2.0] 和 [新增授權伺服器]。
+按一下**安全性**從 hello **API 管理**hello，請按一下功能表**OAuth 2.0**，然後按一下**新增授權伺服器**。
 
 ![OAuth 2.0][api-management-oauth2]
 
-按一下 [Add authorization server] 後，即會出現新的授權伺服器表單。
+按一下後**新增授權伺服器**，會顯示 hello 新授權伺服器表單。
 
 ![New server][api-management-oauth2-server-1]
 
-在 [名稱] 和 [說明] 欄位中輸入名稱和選擇性的說明。 
+中輸入名稱和選擇性描述 hello**名稱**和**描述**欄位。 
 
 > [!NOTE]
-> 這些欄位可用來在目前的 API 管理服務執行個體中識別 OAuth 2.0 授權伺服器，且欄位的值並非來自 OAuth 2.0 伺服器。
+> 這些欄位是使用的 tooidentify hello OAuth 2.0 授權伺服器 hello 目前 API 管理服務執行個體內，其值不是來自 hello OAuth 2.0 伺服器。
 > 
 > 
 
-輸入 [用戶端註冊頁面 URL]。 此頁面可供使用者建立及管理帳戶，並且會因為使用的 OAuth 2.0 提供者不同而有所差異。 [用戶端註冊頁面 URL] 指向使用者可用來建立和設定其對 OAuth 2.0 提供者之專屬帳戶的頁面，而提供者支援使用者帳戶管理。 即使 OAuth 2.0 提供者支援這項功能，有些組織還是未設定或未使用這項功能。 如果您的 OAuth 2.0 提供者未設定使用者帳戶管理，請在這裡輸入預留位置 URL (例如您公司的 URL) 或 `https://placeholder.contoso.com` 這類 URL。
+輸入 hello**用戶端註冊頁面 URL**。 此頁面是使用者可建立並管理他們的帳戶，並使用 hello OAuth 2.0 提供者而有所不同。 hello**用戶端註冊頁面 URL**點 toohello 頁面上的使用者可以使用 toocreate 並且支援帳戶的使用者管理的 OAuth 2.0 提供者設定自己的帳戶。 某些組織不設定或不使用這項功能，即使 hello OAuth 2.0 提供者支援它。 如果您的 OAuth 2.0 提供者並沒有設定帳戶的使用者管理，輸入以下預留位置 URL 例如 hello 您公司的 URL，或是如`https://placeholder.contoso.com`。
 
-表單的下一個區段含有 [授權碼授與類型]、[授權端點 URL] 及 [授權要求方法] 等設定。
+hello hello 表單下一個區段包含 hello**授權碼授與類型**，**授權端點 URL**，和**授權要求方法**設定。
 
 ![New server][api-management-oauth2-server-2]
 
-勾選需要的類型以指定 [Authorization code grant types]  。  。
+指定 hello**授權碼授與類型**藉由檢查 hello 預期型別。  。
 
-輸入 [Authorization endpoint URL] 。 對於 Azure Active Directory，此 URL 將與下列 URL 相似；其中， `<client_id>` 將取代為向 OAuth 2.0 伺服器識別應用程式的用戶端識別碼。
+輸入 hello**授權端點 URL**。 針對 Azure Active Directory，此 URL 會類似 toohello 下列 URL，其中`<client_id>`取代 hello 識別您的應用程式 toohello OAuth 2.0 伺服器的用戶端識別碼。
 
 `https://login.microsoftonline.com/<client_id>/oauth2/authorize`
 
-[授權要求方法] 能指定將授權要求傳送到 OAuth 2.0 伺服器的方法。 預設會選取 **GET**。
+hello**授權要求方法**指定 hello 授權要求傳送 toohello OAuth 2.0 伺服器的方式。 預設會選取 **GET**。
 
-下一個區段是指定 [權杖端點 URL]、[用戶端驗證方法]、[存取權杖傳送方法] 及 [預設範圍] 的地方。
+hello 下一個區段是在 hello**語彙基元端點 URL**，**用戶端驗證方法**，**傳送方法的存取權杖**，和**預設範圍**所指定。
 
 ![New server][api-management-oauth2-server-3]
 
-對於 Azure Active Directory OAuth 2.0 伺服器，[權杖端點 URL] 將具有以下格式；其中 `<APPID>` 的格式為 `yourapp.onmicrosoft.com`。
+Azure Active Directory OAuth 2.0 伺服器，請 hello**語彙基元端點 URL**必須遵循格式，hello 其中`<APPID>`hello 格式的`yourapp.onmicrosoft.com`。
 
 `https://login.microsoftonline.com/<APPID>/oauth2/token`
 
-[用戶端驗證方法] 的預設設定是 [基本]，而 [存取權杖傳送方法] 則是 [授權標頭]。 這些值和 [預設範圍] 均是在此表單區段設定的。
+hello 預設設定**用戶端驗證方法**是**基本**，和**傳送方法的存取權杖**是**授權標頭**. 在 hello 表單，以及 hello 的這個區段上設定這些值**預設範圍**。
 
-[用戶端認證] 區段含有 [用戶端識別碼] 和 [用戶端密碼]，這兩個項目可在 OAuth 2.0 伺服器的建立和組態程序中取得。 指定 [用戶端識別碼] 和 [用戶端密碼] 後，系統便會產生 [授權碼] 的 **redirect_uri**。 此 URI 可用來設定 OAuth 2.0 伺服器組態中的回覆 URL。
+hello**用戶端認證**區段包含 hello**用戶端識別碼**和**用戶端密碼**，這取得的 OAuth 2.0 hello 建立及設定程序期間伺服器。 一次 hello**用戶端識別碼**和**用戶端密碼**都有指定，hello **redirect_uri** hello**授權碼**產生。 這個 URI 是 OAuth 2.0 伺服器設定中的使用的 tooconfigure hello 回覆 URL。
 
 ![New server][api-management-oauth2-server-4]
 
-如果將 [授權碼授與類型] 設定為 [資源擁有者密碼]，您便需要使用 [資源擁有者密碼認證] 區段來指定認證，若不想這麼做，則可以將授與類型保持空白。
+如果**授權碼授與類型**設定得**資源擁有者密碼**，hello**資源擁有者密碼認證**區段是使用的 toospecify 那些認證;或者您可以保留空白。
 
 ![New server][api-management-oauth2-server-5]
 
-完成表單後，按一下 [儲存]  以儲存 API 管理 OAuth 2.0 授權伺服器組態。 儲存伺服器組態後，您便可以設定 API 以使用此組態，如下一個小節所述。
+完成 hello 表單之後，請按一下**儲存**toosave hello API 管理的 OAuth 2.0 授權伺服器設定。 Hello 伺服器組態儲存之後，您可以設定應用程式開發介面 toouse 此組態中，hello 下一節中所示。
 
-## <a name="step2"> </a>設定 API 以使用 OAuth 2.0 使用者授權
-從左側的 [API 管理] 功能表按一下 [API]，接著依序按一下所需之 API 的名稱和 [安全性]，然後勾選 [OAuth 2.0] 的方塊。
+## <a name="step2"></a>設定 API toouse OAuth 2.0 使用者授權
+按一下**Api**從 hello **API 管理**留在 hello 功能表，按一下所需的 hello API hello 名稱，按一下**安全性**，然後核取方塊 hello **OAuth2.0**。
 
 ![User authorization][api-management-user-authorization]
 
-從下拉式清單選取需要的 [授權伺服器]，然後按一下 [儲存]。
+選取所需的 hello**授權伺服器**從 hello 下拉式清單中，然後按一下**儲存**。
 
 ![User authorization][api-management-user-authorization-save]
 
-## <a name="step3"> </a>在開發人員入口網站中測試 OAuth 2.0 使用者授權
-設定好 OAuth 2.0 授權伺服器並將 API 設定為使用該伺服器後，您可以前往開發人員入口網站並呼叫 API 來進行測試。  按一下右上方功能表的 [開發人員入口網站]  。
+## <a name="step3"></a>測試 hello 開發人員入口網站中的 hello OAuth 2.0 使用者授權
+一旦您已設定您的 OAuth 2.0 授權伺服器，並設定您的應用程式開發介面 toouse 該伺服器，您可以移 toohello 開發人員入口網站，並呼叫 API 來進行測試。  按一下**開發人員入口網站**hello 右上方功能表中。
 
 ![開發人員入口網站][api-management-developer-portal-menu]
 
-在上方功能表中按一下 [API]，然後選取 [Echo API]。
+按一下**Api** hello 最上層功能表，然後選取在**Echo API**。
 
 ![Echo API][api-management-apis-echo-api]
 
 > [!NOTE]
-> 如果您的帳戶只設定或只看見一個 API，按一下 API 將帶您直接前往該 API 的作業。
+> 如果您有只有一個應用程式開發介面設定，或顯示 tooyour 帳戶，然後按一下 應用程式開發介面引導您直接 toohello 作業，該 api。
 > 
 > 
 
-選取 [GET 資源] 作業、按一下 [開啟主控台]，然後從下拉式功能表選取 [授權碼]。
+選取 hello**取得資源**作業中，按一下**開啟主控台**，然後選取**授權碼**hello 下拉式清單中。
 
 ![Open console][api-management-open-console]
 
-選取 [授權碼]  時，系統會顯示含有 OAuth 2.0 提供者之登入表單的快顯視窗。 在此範例中，登入表單是由 Azure Active Directory 提供。
+當**授權碼**已選取，快顯視窗會顯示以 hello 登入表單 hello OAuth 2.0 提供者。 在此範例中是由 Azure Active Directory 提供 hello 登入表單。
 
 > [!NOTE]
-> 如果已停用快顯視窗，瀏覽器會提示您加以啟用。 啟用後，請再次選取 [授權碼]  ，系統就會顯示登入表單。
+> 如果您有快顯視窗已停用將會提示您 tooenable 它們 hello 瀏覽器。 啟用之後，請選取**授權碼**再次 hello 登入表單便會出現。
 > 
 > 
 
 ![Sign in][api-management-oauth2-signin]
 
-登入後，系統會將授權要求的 `Authorization : Bearer` 標頭填入 [要求標頭]。
+一旦您已登入，hello**要求標頭**會填入`Authorization : Bearer`授權 hello 要求的標頭。
 
 ![Request header token][api-management-request-header-token]
 
-此時，您可以針對剩餘的參數設定需要的值，然後再提交要求。 
+此時您可以設定所需的 hello 值 hello 剩餘參數，並送出 hello 要求。 
 
 ## <a name="next-steps"></a>後續步驟
-如需使用 OAuth 2.0 和 API 管理的詳細資訊，請參閱下列影片以及隨附的 [文章](api-management-howto-protect-backend-with-aad.md)。
+如需有關如何使用 OAuth 2.0 和 API 管理的詳細資訊，請參閱 hello 下列視訊和隨附[文章](api-management-howto-protect-backend-with-aad.md)。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Protecting-Web-API-Backend-with-Azure-Active-Directory-and-API-Management/player]
 > 
@@ -155,10 +155,10 @@ ms.lasthandoff: 08/03/2017
 [api-management-apis-echo-api]: ./media/api-management-howto-oauth2/api-management-apis-echo-api.png
 
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 [API Management policy reference]: api-management-policy-reference.md
@@ -170,7 +170,7 @@ ms.lasthandoff: 08/03/2017
 
 [Prerequisites]: #prerequisites
 [Configure an OAuth 2.0 authorization server in API Management]: #step1
-[Configure an API to use OAuth 2.0 user authorization]: #step2
-[Test the OAuth 2.0 user authorization in the Developer Portal]: #step3
+[Configure an API toouse OAuth 2.0 user authorization]: #step2
+[Test hello OAuth 2.0 user authorization in hello Developer Portal]: #step3
 [Next steps]: #next-steps
 

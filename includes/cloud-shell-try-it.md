@@ -1,13 +1,13 @@
 
 ## <a name="launch-azure-cloud-shell"></a>啟動 Azure Cloud Shell
 
-Azure Cloud Shell 是免費的 Bash Shell，您可以直接在 Azure 入口網站內執行。 它具有預先安裝和設定的 Azure CLI，可與您的帳戶搭配使用。 按一下 [Azure 入口網站](https://portal.azure.com) 右上方功能表上的 [Cloud Shell] 按鈕。
+hello Azure 雲端殼層是免費的 Bash 殼層，您可以直接在 hello Azure 入口網站中執行。 它有的 hello Azure CLI 預先安裝和設定 toouse 與您的帳戶。 按一下 hello**雲端殼層**hello 右上方的 hello 中的 hello 功能表上的按鈕[Azure 入口網站](https://portal.azure.com)。
 
 [![Cloud Shell](./media/cloud-shell-try-it/cloud-shell-menu.png)](https://portal.azure.com)
 
-按鈕會啟動互動式殼層，可讓您用來執行本主題中的所有步驟：
+hello 按鈕會啟動，您可以使用本主題中的 hello 的所有步驟的 toorun 互動式殼層：
 
-[![顯示 Cloud Shell 視窗的螢幕擷取畫面](./media/cloud-shell-try-it/cloud-shell-safari.png)](https://portal.azure.com)
+[![螢幕擷取畫面顯示 hello hello 入口網站中的雲端殼層視窗](./media/cloud-shell-try-it/cloud-shell-safari.png)](https://portal.azure.com)
 
 
 

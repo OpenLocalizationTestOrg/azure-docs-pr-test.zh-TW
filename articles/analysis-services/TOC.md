@@ -2,7 +2,7 @@
 ## [什麼是 Azure Analysis Services？](analysis-services-overview.md)
 ## [支援的資料來源](analysis-services-datasource.md)
 ## [驗證和使用者權限](analysis-services-manage-users.md)
-## [連線至內部部署資料來源](analysis-services-gateway.md)
+## [Tooon 內部部署資料來源連接](analysis-services-gateway.md)
 ## [相容性層級](analysis-services-compat-level.md)
 ## [高可用性](analysis-services-bcdr.md)
 
@@ -12,7 +12,7 @@
 ## [從 Visual Studio 部署模型](analysis-services-deploy.md)
 ## [在 Azure 入口網站 (預覽) 中建立模型](analysis-services-create-model-portal.md)
 
-# 作法 
+# 如何太
 ## [管理伺服器](analysis-services-manage.md)
 ## [管理資料庫使用者](analysis-services-database-users.md)
 ## [管理伺服器管理員](analysis-services-server-admins.md)

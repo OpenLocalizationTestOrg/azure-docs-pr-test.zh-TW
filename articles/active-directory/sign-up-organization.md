@@ -1,6 +1,6 @@
 ---
-title: "以組織方式註冊 Azure"
-description: "了解如何使用公司或學校帳戶，來運用您已有的現有使用者帳戶、原則、設定或內部部署伺服器部署，而提升您的組織在內部部署身分識別基礎結構與 Azure AD 之間的效率。"
+title: "aaaSign Azure 以組織身分註冊"
+description: "了解如何使用工作或學校帳戶 tooleverage hello 現有的使用者帳戶、 原則、 設定或內部部署伺服器部署已有並改善您的組織在內部部署身分識別基礎結構與 Azure AD 之間的效率。"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -13,25 +13,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: curtand
-ms.openlocfilehash: 07ad266ad87028996c4a7b3e4365c11b019f8529
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 89db37b2370b3805691278d6223a26450ef4514b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sign-up-for-azure-as-an-organization"></a>以組織方式註冊 Azure
-直至近日之前，您只能使用 Microsoft 帳戶 (Windows Live ID) 註冊新的 Microsoft Azure 訂閱。 Azure 現在支援使用下列任一種帳戶方式進行註冊：
+直至近日之前，您只能使用 Microsoft 帳戶 (Windows Live ID) 註冊新的 Microsoft Azure 訂閱。 現在支援使用其中一個 hello 下列兩個帳戶方法 toosign 註冊 azure:
 
-* **Microsoft 帳戶** (您為了個人用途而建立) - 可供存取所有消費者導向的 Microsoft 產品和雲端服務，例如 Outlook (Hotmail)、Messenger、OneDrive、MSN、Xbox LIVE 或 Office 365。 註冊 Outlook.com 信箱時會自動建立 Microsoft 帳戶。 Microsoft 帳戶在建立之後，可以用來存取與消費者相關的 Microsoft 雲端服務或 Azure。 [深入了解](http://www.microsoft.com/account/default.aspx)
-* **工作或學校帳戶** (系統管理員為了商業/學術用途所發放) - 可供存取所有小型、中型和企業商業層級 Microsoft 雲端服務，例如 Azure、Microsoft Intune 或 Office 365。 當您以組織身分登入其中一個服務時，在 Azure Active Directory 中會自動佈建以雲端為基礎的目錄，以代表您的組織。 [深入了解](active-directory-administer.md)
+* **Microsoft 帳戶**（您所建立供個人使用）-tooall 消費者導向 Microsoft 產品可供存取，而且雲端服務，例如 Outlook (Hotmail)、 Messenger、 OneDrive、 MSN、 Xbox LIVE 或 Office 365。 註冊 Outlook.com 信箱時會自動建立 Microsoft 帳戶。 建立 Microsoft 帳戶之後，它可以是使用的 tooaccess 消費者相關 Microsoft 雲端服務或 Azure。 [深入了解](http://www.microsoft.com/account/default.aspx)
+* **工作或學校帳戶**（用於商務/學術作業管理員發出）-tooall 小型、 中型和企業商業層級 Microsoft 雲端服務，例如 Azure、 Microsoft Intune 或 Office 365 提供存取。 當您註冊 tooone 這些服務以組織身分時時，請以雲端為基礎的目錄會自動在 Azure Active Directory toorepresent 中，佈建您的組織。 [深入了解](active-directory-administer.md)
   
-    此目錄建立後，系統管理員即可建立使用者，並根據其所需存取的雲端服務訂閱 (例如 Azure)，將授權指派給這些使用者。
+    在建立此目錄之後，系統管理員可以建立使用者及指派授權 toothem 基礎上的雲端服務訂用帳戶，他們需要存取，例如 Azure。
 
-想要以組織方式註冊 Azure 嗎？ [**立即註冊**](https://azure.microsoft.com/pricing/purchase-options/)
+要註冊 Azure toosign 做為組織嗎？ [**立即註冊**](https://azure.microsoft.com/pricing/purchase-options/)
 
 **其他資源**
 
 * [Microsoft Azure 部落格](https://azure.microsoft.com/blog/)
 * [什麼是 Azure AD？](active-directory-whatis.md)
-* [在雲端中使用內部部署身分識別基礎結構](active-directory-aadconnect.md)
+* [Hello 雲端中使用您在內部部署身分識別基礎結構](active-directory-aadconnect.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "從 Log Analytics 取消 Azure 自動化帳戶連結 | Microsoft Docs"
-description: "此文章提供如何將 Azure 自動化帳戶從 OMS 工作區取消連結的概觀。"
+title: "Azure 自動化帳戶的記錄分析 aaaUnlink |Microsoft 文件"
+description: "本文章提供如何 toounlink Azure 自動化帳戶從 OMS 工作區的概觀。"
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: how-to-article
 ms.date: 02/07/2017
 ms.author: magoedte
-ms.openlocfilehash: 56b09c2cfc14813b5efcb364c580787fec1bf639
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3ec0745673f6a872538d33023a7a1d2bb1d18ec3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-unlink-your-automation-account-from-a-log-analytics-workspace"></a>如何將自動化帳戶從 Log Analytics 工作區取消連結
+# <a name="how-toounlink-your-automation-account-from-a-log-analytics-workspace"></a>如何 toounlink 您的自動化帳戶從記錄分析工作區
 
-Azure 自動化與 Log Analytics 整合，不僅支援所有自動化帳戶 Runbook 作業的主動式監視，而且是在您匯入下列相依於 Log Analytics 的解決方案時所必須的：
+Azure 自動化整合記錄分析 toonot 只支援主動式監視之 runbook 工作的所有的自動化帳戶，但也是必要時您匯入下列相依於記錄分析解決方案的 hello:
 
 * [更新管理](../operations-management-suite/oms-solution-update-management.md)
 * [變更追蹤](../log-analytics/log-analytics-change-tracking.md)
 * [於下班時間啟動/停止 VM](automation-solution-vm-management.md)
  
-若決定不想再讓自動化帳戶與 Log Analytics 整合，您可以直接從 Azure 入口網站將您的帳戶取消連結。  繼續之前，您必須先移除稍早所述的解決方案，否則此程序將無法完成。  檢閱您已匯入之特定解決方案的主題，以了解移除解決方案所需的步驟。  
+如果您決定您不再想 toointegrate 記錄分析您的自動化帳戶，您可以取消連結您的帳戶，直接從 hello Azure 入口網站。  在繼續之前，您需要先 tooremove hello 解決方案稍早所提及，否則此程序將無法再繼續。  Hello 特定方案的檢閱 hello 主題您已匯入所需的 toounderstand hello 步驟 tooremove 它。  
 
-移除這些解決方案之後，您可以執行下列步驟以將您的自動化帳戶取消連結。
+移除這些方案之後可以執行下列步驟 toounlink hello 自動化帳戶。
 
 ## <a name="unlink-workspace"></a>取消連結工作區
 
-1. 從 Azure 入口網站，開啟您的自動化帳戶，然後在 [自動化帳戶] 刀鋒視窗的 [帳戶] 刀鋒視窗中選取 [取消連結工作區]。<br><br> ![取消連結工作區選項](media/automation-unlink-from-log-analytics/automation-unlink-workspace-option.png)<br><br>  
-2. 在 [取消連結工作區] 刀鋒視窗上，按一下 [取消連結工作區]。<br><br> ![取消連結工作區刀鋒視窗](media/automation-unlink-from-log-analytics/automation-unlink-workspace-blade.png)。<br><br>  您會收到提示，確認您想要繼續。<br><br>
-3. 當 Azure 自動化嘗試將您的帳戶從 Log Analytics 工作區取消連結時，您可以從功能表在 [通知] 下追蹤進度。
+1. 從 hello Azure 入口網站，開啟您的自動化帳戶，然後在 hello 自動化帳戶 刀鋒視窗，在 hello 帳戶 刀鋒視窗中，選取**取消連結工作區**。<br><br> ![取消連結工作區選項](media/automation-unlink-from-log-analytics/automation-unlink-workspace-option.png)<br><br>  
+2. 在 hello 取消連結工作區刀鋒視窗中，按一下 **取消連結 worksapce**。<br><br> ![取消連結工作區刀鋒視窗](media/automation-unlink-from-log-analytics/automation-unlink-workspace-blade.png)。<br><br>  您會收到確認您想 tooproceed 提示。<br><br>
+3. 但是 Azure 自動化會嘗試 toounlink hello 帳戶記錄分析工作區，您可以追蹤在 hello 進度**通知**hello 功能表。
 
-若使用「更新管理」解決方案，您可以在移除解決方案之後選擇移除已不再需要的下列項目。
+如果您使用 hello 更新管理解決方案，或者您可能想 tooremove hello 下列 hello 方案中移除之後不再需要的項目。
 
-* 更新排程。  每個都會有符合您建立之更新部署的名稱)
+* 更新排程。  每個都會有名稱符合您所建立的 hello 更新部署）
 
-* 針對解決方案建立的混合式背景工作角色群組。  每個都會具有如下名稱：machine1.contoso.com_9ceb8108-26c9-4051-b6b3-227600d715c8)。
+* 建立 hello 方案的混合式背景工作群組。  每個將命名為同樣的太 machine1.contoso.com_9ceb8108-26 c 9-4051-b6b3-227600d715c8)。
 
-若使用「於下班時間啟動/停止 VM」解決方案，您可以在移除解決方案之後選擇移除已不再需要的下列項目。
+如果您在離峰時間方案時使用 hello 啟動/停止 Vm，或者您可能想 tooremove hello 下列 hello 方案中移除之後不再需要的項目。
 
 * 啟動及停止 VM Runbook 排程 
 * 啟動及停止 VM Runbook
@@ -52,4 +52,4 @@ Azure 自動化與 Log Analytics 整合，不僅支援所有自動化帳戶 Runb
 
 ## <a name="next-steps"></a>後續步驟
 
-若要重新設定您的自動化帳戶以與 OMS Log Analytics 整合，請參閱[從自動化將作業狀態和作業串流轉送到 Log Analytics (OMS)](automation-manage-send-joblogs-log-analytics.md)。 
+tooreconfigure 您自動化帳戶 toointegrate，OMS 記錄分析，請參閱[自動化 tooLog 分析 (OMS) 從轉寄工作狀態和作業資料流](automation-manage-send-joblogs-log-analytics.md)。 

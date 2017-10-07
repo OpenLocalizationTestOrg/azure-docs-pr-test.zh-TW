@@ -1,6 +1,6 @@
 ---
 title: "教學課程：使用 Entity Framework 和資料列層級安全性的 Web 應用程式搭配多租用戶資料庫"
-description: "了解如何使用 Entity Framework 和資料列層級安全性，搭配多租用戶 SQL Database 後端來開發 ASP.NET MVC 5 Web 應用程式。"
+description: "了解如何 toodevelop ASP.NET MVC 5 web 應用程式與 SQL Database backent，使用 Entity Framework 和資料列層級安全性的多租用戶。"
 metakeywords: azure asp.net mvc entity framework multi tenant row level security rls sql database
 services: app-service\web
 documentationcenter: .net
@@ -14,30 +14,30 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 04/25/2016
 ms.author: thmullan
-ms.openlocfilehash: ba1bb3d84b462dfebbb2564569517d7336bf54fd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b715e01807032c3f6497c374ce427dd762af141
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-web-app-with-a-multi-tenant-database-using-entity-framework-and-row-level-security"></a>教學課程：使用 Entity Framework 和資料列層級安全性的 Web 應用程式搭配多租用戶資料庫
-本教學課程示範如何使用 Entity Framework 和[資料列層級安全性](https://msdn.microsoft.com/library/dn765131.aspx)，搭配 "[共用的資料庫、共用的結構描述](https://msdn.microsoft.com/library/aa479086.aspx)" 租用模型，建置多租用戶 Web 應用程式。 在此模型中，單一資料庫包含許多租用戶的資料，而且每個資料表中的每個資料列都有一個相關聯的「租用戶識別碼」。 資料列層級安全性 (RLS) 是 Azure SQL Database 的新功能，用來防止租用戶存取彼此的資料。 這只需要對應用程式進行一次微幅的變更即可。 RLS 將租用戶存取邏輯集中在資料庫本身之內，簡化應用程式碼並降低租用戶之間不慎洩露資料的風險。
+本教學課程示範如何 toobuild 多租用戶 web 應用程式與 「[共用的資料庫、 共用的結構描述](https://msdn.microsoft.com/library/aa479086.aspx)"租用戶模型，使用 Entity Framework 和[資料列層級安全性](https://msdn.microsoft.com/library/dn765131.aspx)。 在此模型中，單一資料庫包含許多租用戶的資料，而且每個資料表中的每個資料列都有一個相關聯的「租用戶識別碼」。 資料列層級安全性 (RLS)，Azure SQL Database 的新功能是使用的 tooprevent 租用戶存取彼此的資料。 這需要只是單一，小幅變更 toohello 應用程式。 根據集中 hello 租用戶存取邏輯 hello 資料庫本身內，RLS 簡化 hello 應用程式程式碼，並減少 hello 的租用戶之間的資料不慎外洩的風險。
 
-我們就從 [使用驗證和 SQL DB 建立 ASP.NET MVC 應用程式並部署至 Azure App Service](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md)中簡單的「連絡人管理員」應用程式開始。 現在，此應用程式允許所有使用者 (租用戶) 看見所有連絡人：
+讓我們開始 hello 簡單連絡人管理員應用程式中使用[驗證與 SQL 資料庫建立 ASP.NET MVP 應用程式和部署 tooAzure App Service](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md)。 權限，hello 應用程式允許所有使用者 （租用戶） toosee 所有連絡人：
 
 ![啟用 RLS 之前的連絡人管理員應用程式](./media/web-sites-dotnet-entity-framework-row-level-security/ContactManagerApp-Before.png)
 
-只要經過少數的微幅變更，我們就能支援多租用戶，讓使用者能夠看見屬於他們的連絡人。
+有幾個小變更，我們將支援多租用戶，讓使用者能夠 toosee 只有 hello 連絡人隸屬 toothem。
 
-## <a name="step-1-add-an-interceptor-class-in-the-application-to-set-the-sessioncontext"></a>步驟 1：在應用程式中加入「攔截器」類別來設定 SESSION_CONTEXT
-我們需要進行一項應用程式變更。 因為所有應用程式使用者使用相同的連接字串 (也就是相同的 SQL 登入) 連線到資料庫，RLS 原則目前無法知道應該篩選哪一個使用者。 這種方法在 Web 應用程式中很常見，因為可讓連接共用更有效率，但這表示我們需要另一種方式來識別資料庫內目前的應用程式使用者。 解決方法是在執行查詢之前，讓應用程式在開啟連接之後立即在 [SESSION_CONTEXT](https://msdn.microsoft.com/library/mt590806) 中設定目前 UserId 的機碼值組。 SESSION_CONTEXT 是工作階段範圍的機碼值存放區，RLS 原則會使用其中儲存的 UserId 來識別目前的使用者。
+## <a name="step-1-add-an-interceptor-class-in-hello-application-tooset-hello-sessioncontext"></a>步驟 1： 加入在 hello 應用程式 tooset hello SESSION_CONTEXT 攔截器類別
+沒有一個應用程式變更，我們需要 toomake。 因為所有的應用程式使用者連線 toohello 資料庫使用 hello 相同的連接字串 （也就是相同的 SQL 登入），目前沒有任何 RLS 原則 tooknow 它應該篩選使用者的方式。 這個方法是在 web 應用程式中很常見，因為它可讓有效率的連接共用，但這表示我們需要另一個方式 tooidentify hello 目前應用程式的使用者 hello 資料庫內。 hello 解決方案是 toohave hello 應用程式集的索引鍵-值組 hello hello 中目前的使用者識別碼[SESSION_CONTEXT](https://msdn.microsoft.com/library/mt590806)之後立即開啟連接，之前它會執行任何查詢。 SESSION_CONTEXT 是工作階段範圍索引鍵-值存放區，且我們 RLS 原則將會使用使用者識別碼儲存在它的 hello tooidentify hello 目前的使用者。
 
-我們會加入[攔截器](https://msdn.microsoft.com/data/dn469464.aspx) (特別是 [DbConnectionInterceptor](https://msdn.microsoft.com/library/system.data.entity.infrastructure.interception.idbconnectioninterceptor))，這是 Entity Framework (EF) 6 中的新功能，可在 EF 開啟連接時執行 T-SQL 陳述式，以自動在 SESSION_CONTEXT 中設定目前的 UserId。
+我們將會加入[攔截器](https://msdn.microsoft.com/data/dn469464.aspx)(特別是， [DbConnectionInterceptor](https://msdn.microsoft.com/library/system.data.entity.infrastructure.interception.idbconnectioninterceptor))，在 Entity Framework (EF) 6，tooautomatically 組的新功能藉由執行 hello hello SESSION_CONTEXT 中目前的使用者識別碼T-SQL 陳述式時 EF 開啟的連接。
 
-1. 在 Visual Studio 中開啟 ContactManager 專案。
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 [模型] 資料夾，然後選擇 [新增] -> [類別]。
-3. 將新類別命名為 "SessionContextInterceptor.cs"，按一下 [加入]。
-4. 使用下列程式碼取代 SessionContextInterceptor.cs 的內容。
+1. 開啟 Visual Studio 中的 hello ContactManager 專案。
+2. Hello 方案總管] 中的 hello Models 資料夾上按一下滑鼠右鍵，然後選擇 [加入 > 類別。
+3. Hello 新類別命名為"SessionContextInterceptor.cs 」，並按一下 [新增]。
+4. 取代下列程式碼的 hello SessionContextInterceptor.cs hello 內容。
 
 ```
 using System;
@@ -55,7 +55,7 @@ namespace ContactManager.Models
     {
         public void Opened(DbConnection connection, DbConnectionInterceptionContext interceptionContext)
         {
-            // Set SESSION_CONTEXT to current UserId whenever EF opens a connection
+            // Set SESSION_CONTEXT toocurrent UserId whenever EF opens a connection
             try
             {
                 var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
@@ -179,41 +179,41 @@ namespace ContactManager.Models
 }
 ```
 
-這是唯一需要的應用程式變更。 接著開始建置並發佈應用程式。
+這是所需的 hello 唯一的應用程式變更。 請繼續進行建置和發佈 hello 應用程式。
 
-## <a name="step-2-add-a-userid-column-to-the-database-schema"></a>步驟 2：將 UserId 資料行加入至資料庫結構描述
-接下來，我們需要將 UserId 資料行加入至 Contacts 資料表，使每個資料列與使用者 (租用戶) 相關聯。 我們將直接在資料庫中變更結構描述，所以 EF 資料模型中不必包含此欄位。
+## <a name="step-2-add-a-userid-column-toohello-database-schema"></a>步驟 2： 新增的使用者識別碼資料行 toohello 資料庫結構描述
+接下來，我們需要使用者識別碼資料行 toohello 連絡人資料表 tooassociate tooadd 每個資料列與使用者 （租用戶）。 我們將直接在 hello 資料庫中的 hello 結構描述變更我們沒有 tooinclude 此欄位在我們的 EF 資料模型。
 
-使用 SQL Server Management Studio 或 Visual Studio，直接連接到資料庫，然後執行下列 T-SQL：
+Toohello 資料庫直接連線，使用 SQL Server Management Studio 或 Visual Studio 中，並接著執行下列 T-SQL hello:
 
 ```
 ALTER TABLE Contacts ADD UserId nvarchar(128)
     DEFAULT CAST(SESSION_CONTEXT(N'UserId') AS nvarchar(128))
 ```
 
-這會將 UserId 資料行加入至 Contacts 資料表。 我們使用 nvarchar (128) 資料類型來比對儲存在 AspNetUsers 資料表中的 UserId，我們也建立 DEFAULT 條件約束，自動將新插入的資料列的 UserId 設定為目前儲存在 SESSION_CONTEXT 中的 UserId。
+這會將 「 使用者識別碼資料行 toohello 連絡人 」 資料表。 我們使用 hello nvarchar （128) 資料型別 toomatch hello hello AspNetUsers 資料表中儲存的使用者 Id，我們會建立預設條件約束，將會自動設定新插入的資料列 toobe hello 目前儲存在 SESSION_CONTEXT 中的使用者識別碼的使用者識別碼 hello。
 
-現在，資料表如下所示：
+現在 hello 資料表看起來像這樣：
 
 ![SSMS Contacts 資料表](./media/web-sites-dotnet-entity-framework-row-level-security/SSMS-Contacts.png)
 
-建立新的連絡人時，將會自動指派正確的 UserId 給他們。 但為了示範，我們還是指派幾個現有的連絡人給現有的使用者。
+新的連絡人建立時，它們會自動指派給 hello 更正使用者識別碼。 基於示範目的，不過，讓我們來指派這些現有使用者的現有連絡人 tooan 一些。
 
-如果您已在應用程式建立一些使用者 (例如使用本機、Google 或 Facebook 帳戶)，就可以在 AspNetUsers 資料表中看見他們。 在以下的螢幕擷取畫面中，目前為止只有一個使用者。
+如果您已在 hello 應用程式已經建立少數使用者 (例如，使用本機、 Google 或 Facebook 帳戶)，就可以看到它們 hello AspNetUsers 資料表中。 在 hello 以下螢幕擷取畫面，則只有一位使用者為止。
 
 ![SSMS AspNetUsers 資料表](./media/web-sites-dotnet-entity-framework-row-level-security/SSMS-AspNetUsers.png)
 
-複製 user1@contoso.com 的 Id，並貼到以下的 T-SQL 陳述式中。 執行此陳述式，將三個連絡人與此 UserId 相關聯。
+複製 hello 識別碼的user1@contoso.com，並將它貼到下列 hello T-SQL 陳述式。 執行與此使用者識別碼 hello 連絡人此陳述式 tooassociate 三個。
 
 ```
 UPDATE Contacts SET UserId = '19bc9b0d-28dd-4510-bd5e-d6b6d445f511'
 WHERE ContactId IN (1, 2, 5)
 ```
 
-## <a name="step-3-create-a-row-level-security-policy-in-the-database"></a>步驟 3：在資料庫中建立資料列層級安全性原則
-最後一個步驟是建立安全性原則，使用 SESSION_CONTEXT 中的 UserId 自動篩選查詢所傳回的結果。
+## <a name="step-3-create-a-row-level-security-policy-in-hello-database"></a>步驟 3: Hello 資料庫中建立的資料列層級安全性原則
+hello 最後一個步驟是 toocreate 使用查詢所傳回的 SESSION_CONTEXT tooautomatically 篩選 hello 結果中的 hello UserId 的安全性原則。
 
-在仍然連接資料庫的情況下，執行下列 T-SQL：
+仍然連接的 toohello 資料庫時執行下列 T-SQL hello:
 
 ```
 CREATE SCHEMA Security
@@ -234,18 +234,18 @@ go
 
 ```
 
-此程式碼會執行三個動作。 首先，建立新的結構描述，當作集中管理和限制 RLS 物件存取權的最佳作法。 接著，建立述詞函數，當資料列的 UserId 符合 SESSION_CONTEXT 中的 UserId 時，將傳回 '1'。 最後，建立安全性原則，在 Contacts 資料表上加入此函數作為篩選和封鎖述詞。 篩選述詞可讓查詢只傳回屬於目前使用者的資料列，而封鎖述詞充當保護措施，防止應用程式不慎插入錯誤使用者的資料列。
+此程式碼會執行三個動作。 首先，它會建立新的結構描述集中和限制存取 toohello RLS 物件的最佳作法。 接下來，它會建立 hello 使用者識別碼的資料列符合 hello SESSION_CONTEXT 中的使用者識別碼時，會傳回 '1' 的述詞函式。 最後，它會建立與 hello 連絡人 」 資料表上同時執行篩選及區塊述詞新增此函數的安全性原則。 hello 篩選器述詞會造成查詢 tooreturn 唯一資料列屬於 toohello 目前的使用者，並 hello block 述詞做為防護措施 tooprevent hello 應用程式永遠不小心插入 hello 錯誤的使用者的資料列。
 
-現在執行應用程式，並以 user1@contoso.com. 這位使用者現在只會看到我們稍早指派給此 UserId 的連絡人：
+現在執行 hello 應用程式，並以登入user1@contoso.com。此使用者現在會看到我們指派 toothis UserId 先前只有 hello 連絡人：
 
 ![啟用 RLS 之前的連絡人管理員應用程式](./media/web-sites-dotnet-entity-framework-row-level-security/ContactManagerApp-After.png)
 
-若要進一步驗證，請嘗試註冊新的使用者。 因為尚未指派連絡人給他們，他們看不到任何連絡人。 如果他們建立新的連絡人，則會指派給他們，也只有他們才能看見這個連絡人。
+toovalidate 這此外，請重試登錄新的使用者。 因為沒有任何已指派 toothem，他們會看到任何連絡人。 如果他們建立新的連絡人，則會指派 toothem，而且只將其無法 toosee 它。
 
 ## <a name="next-steps"></a>後續步驟
-就這麼簡單！ 這個簡單的連絡人管理員 Web 應用程式已轉換成多租用戶應用程式，每個使用者都有自己的連絡人清單。 由於使用資料列層級安全性，我們已避免在應用程式碼中強制執行租用戶存取邏輯的複雜性。 這種透明度可讓應用程式專注於處理目前的實際商務問題，而隨著應用程式的程式碼基底不斷成長，也能降低意外洩漏資料的風險。
+就這麼簡單！ hello 簡單連絡管理員 web 應用程式都已轉換成每個使用者擁有它自己的連絡人清單的其中一個多租用戶。 使用資料列層級安全性，我們已經可以避免 hello 複雜度強制執行應用程式的程式碼中的租用戶存取邏輯。 此投影片允許 hello 應用程式 toofocus 手邊，hello 真實商務問題，並也會減少不慎洩漏資料，如 hello 應用程式的程式碼庫 hello 風險成長。
 
-本教學課程只是稍微示範一下 RLS 的功能。 比方說，存取邏輯可以更複雜或更精細，而 SESSION_CONTEXT 中也不僅止於只能儲存目前的 UserId 而已。 也可以 [整合 RLS 與彈性資料庫工具用戶端程式庫](../sql-database/sql-database-elastic-tools-multi-tenant-row-level-security.md) ，在相應放大的資料層中支援多租用戶分區。
+本教學課程有只刮傷的 hello 介面 rls 可行。 比方說，它可能更複雜的 toohave 或細微的存取權邏輯和它的可能 toostore 而已 hello hello SESSION_CONTEXT 中目前的使用者識別碼。 此外，也可以太[RLS 整合 hello 彈性資料庫工具用戶端程式庫](../sql-database/sql-database-elastic-tools-multi-tenant-row-level-security.md)toosupport 向外延展資料層中的多租用戶分區。
 
-除了這些可能性，我們也正在努力讓 RLS 更臻完美。 如果您有任何疑問、構想或期望，請留下您的意見。 歡迎提供意見反應！
+超出這些可能性，我們也正在 toomake RLS 更好。 如果您有任何問題、 意見或您想要 toosee 的項目，請讓我們知道 hello 註解中。 歡迎提供意見反應！
 

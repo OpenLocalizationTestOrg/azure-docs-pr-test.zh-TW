@@ -1,32 +1,21 @@
 ---
-title: "Azure CosmosDB︰使用 Golang 和 Azure 入口網站建置 MongoDB API 主控台應用程式 | Microsoft Docs"
-description: "提供可用來連線及查詢 Azure Cosmos DB 的 Golang 程式碼範例"
-services: cosmos-db
-author: Durgaprasad-Budhwani
-manager: jhubbard
-editor: mimig1
-ms.service: cosmos-db
-ms.topic: hero-article
-ms.date: 07/21/2017
-ms.author: mimig
-ms.openlocfilehash: 9461a5d86b321fd02167379ba8751d44a861ebc2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
-ms.translationtype: MT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+標題： aaa"Azure Cosmos DB： 建置與 Golang MongoDB API 主控台應用程式和 hello Azure 入口網站 |Microsoft 文件 」 描述： 顯示您可以使用 tooconnect tooand Golang 程式碼範例會查詢 Azure Cosmos DB 服務： cosmos db 作者： Durgaprasad Budhwani 管理員： jhubbard 編輯器： mimig1
+
+ms.service: cosmos db ms.topic： 英雄文章 ms.date: 07/21/2017 ms.author: mimig
 ---
-# <a name="azure-cosmos-db-build-a-mongodb-api-console-app-with-golang-and-the-azure-portal"></a>Azure CosmosDB︰使用 Golang 和 Azure 入口網站建置 MongoDB API 主控台應用程式
 
-Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。
+# <a name="azure-cosmos-db-build-a-mongodb-api-console-app-with-golang-and-hello-azure-portal"></a>Azure Cosmos DB： 建置與 Golang MongoDB API 主控台應用程式和 hello Azure 入口網站
 
-本快速入門示範如何使用以 [Golang](https://golang.org/) 撰寫的現有 [MongoDB](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-introduction) 應用程式，並將它連線到可支援 MongoDB 用戶端連線的 Azure Cosmos DB 資料庫。
+Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立與查詢文件、 索引鍵/值，以及 graph 資料庫，全部都是從 hello 全域發佈和核心 Azure Cosmos DB hello 的水平縮放功能獲益。
 
-換句話說，您的 Golang 應用程式只知道它使用 MongoDB API 連線到資料庫。 對於資料儲存在 Azure Cosmos DB 中的應用程式而言是透明的。
+本快速入門示範如何將現有的 toouse [MongoDB](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-introduction)撰寫應用程式[Golang](https://golang.org/)並將它連接 tooyour Azure Cosmos DB 資料庫支援 MongoDB 用戶端連線。
+
+換句話說，Golang 應用程式只會知道它連接 tooa 資料庫使用 MongoDB Api。 是透明 toohello hello 資料的應用程式會儲存在 Azure Cosmos DB。
 
 ## <a name="prerequisites"></a>必要條件
 
 - Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free) 。
-- [Go](https://golang.org/) 語言的 [Go](https://golang.org/dl/) 和基本知識。
+- [移](https://golang.org/dl/)hello 的基本知識和[移](https://golang.org/)語言。
 - IDE — Jetbrains 的 [Gogland](https://www.jetbrains.com/go/)、Microsoft 的 [Visual Studio 程式碼](https://code.visualstudio.com/) 或 [Atom](https://atom.io/)。 在本教學課程中，我是使用 Goglang。
 
 <a id="create-account"></a>
@@ -34,55 +23,55 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount-mongodb.md)]
 
-## <a name="clone-the-sample-application"></a>複製範例應用程式
+## <a name="clone-hello-sample-application"></a>複製 hello 範例應用程式
 
-複製範例應用程式並安裝必要的套件。
+複製 hello 範例應用程式，並安裝所需的 hello 封裝。
 
-1. 在 GOROOT\src 資料夾 (預設為 C:\Go\) 內建立名為 CosmosDBSample 的資料夾。
-2. 使用 git 終端機視窗 (例如 git bash) 執行下列命令，將範例存放庫複製到 CosmosDBSample 資料夾中。 
+1. 建立預設為 C:\Go\ hello GOROOT\src 資料夾內名為 CosmosDBSample 資料夾。
+2. 執行下列命令，例如 git bash tooclone hello 範例儲存機制使用 git 終端機視窗，into hello CosmosDBSample 資料夾 hello。 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-mongodb-golang-getting-started.git
     ```
-3.  執行下列命令以取得 mgo 套件。 
+3.  執行下列命令 tooget hello mgo 套件 hello。 
 
     ```
     go get gopkg.in/mgo.v2
     ```
 
-[mgo](http://labix.org/mgo) 驅動程式 (發音為 mango) 是 [Go 語言](http://golang.org/)的 [MongoDB](http://www.mongodb.org/) 驅動程式，它可在非常簡單且符合標準 Go 慣用語的 API 之下實作豐富且經過妥善測試的精選功能。
+hello [mgo](http://labix.org/mgo)驅動程式 (phishing 英文發音如為*mango*) 是[MongoDB](http://www.mongodb.org/) hello 驅動程式[移語言](http://golang.org/)實作 rich 而且也測試在下列標準 Go 慣用語非常簡單的 API 功能的選取範圍。
 
 <a id="connection-string"></a>
 
 ## <a name="update-your-connection-string"></a>更新您的連接字串
 
-現在，返回 Azure 入口網站以取得連接字串資訊，並將它複製到應用程式中。
+現在請返回 Azure 入口網站 tooget toohello 您的連接字串資訊並將它複製到 hello 應用程式。
 
-1. 按一下左側導覽功能表中的 [快速入門]，然後按一下 [其他] 以檢視 Go 應用程式所需的連接字串資訊。
+1. 按一下**快速入門**在 hello 左的導覽功能表，然後按一下**其他**hello 移至應用程式所需的 tooview hello 連接字串資訊。
 
-2. 在 Goglang 中，開啟 GOROOT\CosmosDBSample 目錄中的 main.go 檔案，並從 Azure 入口網站使用連接字串資訊來更新下列程式碼行，如下列螢幕擷取畫面所示。 
+2. 在 Goglang，hello GOROOT\CosmosDBSample 目錄中開啟 hello main.go 檔案並更新如下列幾行程式碼使用 hello Azure 入口網站中的 hello 連接字串資訊 hello 下列螢幕擷取畫面所示的 hello。 
 
-    在 Azure 入口網站的連接字串窗格中，資料庫名稱是 [主機] 值的前置詞。 針對下圖中顯示的帳戶，資料庫名稱是 golang-coach。
+    hello 資料庫名稱是 hello hello 前置詞**主機**hello Azure 入口網站的連接字串 窗格中的值。 Hello 帳戶 hello 圖所示，hello 資料庫名稱會是 golang 指導。
 
     ```go
-    Database: "The prefix of the Host value in the Azure portal",
-    Username: "The Username in the Azure portal",
-    Password: "The Password in the Azure portal",
+    Database: "hello prefix of hello Host value in hello Azure portal",
+    Username: "hello Username in hello Azure portal",
+    Password: "hello Password in hello Azure portal",
     ```
 
-    ![Azure 入口網站中的 [快速入門] 窗格、顯示連接字串資訊的 [其他] 索引標籤](./media/create-mongodb-golang/cosmos-db-golang-connection-string.png)
+    ![快速入門 窗格中，hello Azure 入口網站顯示 hello 連接字串資訊中的其他索引標籤](./media/create-mongodb-golang/cosmos-db-golang-connection-string.png)
 
-3. 儲存 main.go 檔案。
+3. 儲存 hello main.go 檔案。
 
-## <a name="review-the-code"></a>檢閱程式碼
+## <a name="review-hello-code"></a>檢閱 hello 程式碼
 
-讓我們快速檢閱 main.go 檔案中所發生的事情。 
+讓我們進行快速檢閱 hello main.go 檔案中的情況。 
 
-### <a name="connecting-the-go-app-to-azure-cosmos-db"></a>將 Go 應用程式連線到 Azure Cosmos DB
+### <a name="connecting-hello-go-app-tooazure-cosmos-db"></a>連接到應用程式 tooAzure Cosmos DB hello
 
-Azure Cosmos DB 支援啟用 SSL 的 MongoDB。 若要連線至啟用 SSL 的 MongoDB，您需要在 [mgo.DialInfo](http://gopkg.in/mgo.v2#DialInfo) 中定義 **DialServer** 函式，並利用 [tls.*Dial*](http://golang.org/pkg/crypto/tls#Dial) 函式執行連線。
+Azure Cosmos DB 支援 hello 啟用 SSL MongoDB。 tooconnect tooan 啟用 SSL MongoDB，您需要 toodefine hello **DialServer**函式在[mgo。DialInfo](http://gopkg.in/mgo.v2#DialInfo)，並讓使用 hello [tls。*撥號*](http://golang.org/pkg/crypto/tls#Dial)函式 tooperform hello 連線。
 
-下列 Golang 程式碼片段會透過 Azure Cosmos DB MongoDB API 連線到 Go 應用程式。 DialInfo 類別保存可供建立 MongoDB 叢集之工作階段的選項。
+遵循 Golang 程式碼片段的 hello 與 Azure Cosmos DB MongoDB API 連線 hello 移至應用程式。 hello *DialInfo*類別保存選項建立工作階段使用 MongoDB 的叢集。
 
 ```go
 // DialInfo holds options for establishing a session with a MongoDB cluster.
@@ -98,27 +87,27 @@ dialInfo := &mgo.DialInfo{
 }
 
 // Create a session which maintains a pool of socket connections
-// to our Azure Cosmos DB MongoDB database.
+// tooour Azure Cosmos DB MongoDB database.
 session, err := mgo.DialWithInfo(dialInfo)
 
 if err != nil {
-    fmt.Printf("Can't connect to mongo, go error %v\n", err)
+    fmt.Printf("Can't connect toomongo, go error %v\n", err)
     os.Exit(1)
 }
 
 defer session.Close()
 
-// SetSafe changes the session safety mode.
-// If the safe parameter is nil, the session is put in unsafe mode, 
+// SetSafe changes hello session safety mode.
+// If hello safe parameter is nil, hello session is put in unsafe mode, 
 // and writes become fire-and-forget,
-// without error checking. The unsafe mode is faster since operations won't hold on waiting for a confirmation.
+// without error checking. hello unsafe mode is faster since operations won't hold on waiting for a confirmation.
 // 
 session.SetSafe(&mgo.Safe{})
 ```
 
-沒有 SSL 連線時會使用 **mgo.Dial()** 方法。 SSL 連線需使用 **mgo.DialWithInfo()** 方法。
+hello **mgo。Dial()**方法可在沒有 SSL 連線。 SSL 連接，hello **mgo。DialWithInfo()**的方法。
 
-**DialWIthInfo{}** 物件的執行個體用來建立工作階段物件。 一旦建立工作階段，您就可以使用下列程式碼片段來存取集合：
+執行個體的 hello **DialWIthInfo {}**物件是使用的 toocreate hello 工作階段物件。 一旦建立 hello 工作階段之後，您可以使用下列程式碼片段的 hello 存取 hello 集合：
 
 ```go
 collection := session.DB(“database”).C(“package”)
@@ -157,10 +146,10 @@ if err != nil {
 
 ### <a name="query-or-read-a-document"></a>查詢或閱讀文件
 
-Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行豐富查詢。 下列範例程式碼示範您可以針對集合中之文件執行的查詢。
+Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行豐富查詢。 hello 下列範例程式碼顯示您可以針對 hello 文件集合中執行的查詢。
 
 ```go
-// Get a Document from the collection
+// Get a Document from hello collection
 result := Package{}
 err = collection.Find(bson.M{"fullname": "react"}).One(&result)
 if err != nil {
@@ -199,13 +188,13 @@ if err != nil {
 }
 ```
     
-## <a name="run-the-app"></a>執行應用程式
+## <a name="run-hello-app"></a>執行 hello 應用程式
 
-1. 在 Goglang 中，確定您的 GOPATH (可在 [檔案]、[設定]、[Go]、[GOPATH] 之下取得) 包含 gopkg 的安裝位置，預設為 USERPROFILE\go。 
-2. 將可刪除文件的程式碼行 (行 91-96) 註解化，以便在執行應用程式後查看文件。
-3. 在 Goglang 中，按一下 [執行]，然後按一下 [執行 [建置 main.go 並執行]]。
+1. 在 Goglang，確定您 GOPATH (適用於**檔案**，**設定**，**移**， **GOPATH**) 包含 hello 位置中的 hellogopkg 已安裝，也就是 USERPROFILE\go 預設。 
+2. 使執行 hello 應用程式後，您可以看到 hello 文件註解刪除 hello 文件中，行 91 96 的 hello 行。
+3. 在 Goglang 中，按一下 執行，然後按一下執行 建置 main.go 並執行。
 
-    應用程式會完成並顯示在[建立文件](#create-document)中建立之文件的說明。
+    hello 應用程式完成，並顯示 hello 文件中建立 hello 描述[建立文件](#create-document)。
     
     ```
     Description: A framework for building native apps with React.
@@ -213,32 +202,32 @@ if err != nil {
     Process finished with exit code 0
     ```
 
-    ![顯示應用程式輸出的 Goglang](./media/create-mongodb-golang/goglang-cosmos-db.png)
+    ![Goglang 顯示 hello 輸出的 hello 應用程式](./media/create-mongodb-golang/goglang-cosmos-db.png)
     
 ## <a name="review-your-document-in-data-explorer"></a>在資料總管中檢閱您的文件
 
-回到 Azure 入口網站，以在 [資料總管] 中查看您的文件。
+請返回 Azure 入口網站 toosee toohello 資料總管文件。
 
-1. 按一下左側瀏覽功能表中的 [資料總管 (預覽)]，展開 [golang-coach]、[套件]，然後按一下 [文件]。 在 [文件] 索引標籤上，按一下 \_id 以在右窗格中顯示文件。 
+1. 按一下**資料總管 （預覽）**在 hello 左的導覽功能表上，依序展開**golang 指導**，**封裝**，然後按一下**文件**。 在 hello**文件**索引標籤上，按一下 hello \_hello 右窗格中的識別碼 toodisplay hello 文件。 
 
-    ![顯示新建文件的資料總管](./media/create-mongodb-golang/golang-cosmos-db-data-explorer.png)
+    ![資料總管顯示 hello 新建立的文件](./media/create-mongodb-golang/golang-cosmos-db-data-explorer.png)
     
-2. 您可以接著使用內嵌的文件並按一下 [更新] 來儲存它。 您也可以刪除文件，或建立新的文件或查詢。
+2. 您可以接著使用 hello 文件內嵌並按一下 **更新**toosave 它。 您也可以刪除 hello 文件，或建立新文件或查詢。
 
-## <a name="review-slas-in-the-azure-portal"></a>在 Azure 入口網站中檢閱 SLA
+## <a name="review-slas-in-hello-azure-portal"></a>在 hello Azure 入口網站中檢視 Sla
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>清除資源
 
-如果您將不繼續使用此應用程式，請使用下列步驟，在 Azure 入口網站中刪除本快速入門所建立的所有資源：
+如果您不打算 toocontinue toouse 此應用程式，刪除所有資源本快速入門以建立 hello Azure 入口網站以 hello 下列步驟：
 
-1. 從 Azure 入口網站的左側功能表中，按一下 [資源群組]，然後按一下您所建立資源的名稱。 
-2. 在資源群組頁面上，按一下 [刪除]，在文字方塊中輸入要刪除之資源的名稱，然後按一下 [刪除]。
+1. Hello Azure 入口網站中的 hello 左側功能表中按一下**資源群組**，然後按一下您所建立的 hello 資源的 hello 名稱。 
+2. 在資源群組頁面上，按一下 **刪除**，在 hello 文字方塊中，輸入 hello 資源 toodelete hello 名稱，然後按一下**刪除**。
 
 ## <a name="next-steps"></a>後續步驟
 
-在本快速入門中，您已了解如何建立 Azure Cosmos DB 帳戶，以及如何使用適用於 MongoDB 的 API 來執行 Golang 應用程式。 您現在可以將其他資料匯入到 Cosmos DB 帳戶。 
+本快速入門中，您學到如何 toocreate Azure Cosmos DB 帳戶和執行 Golang 應用程式使用 hello API MongoDB。 您現在可以匯入的其他資料 tooyour Cosmos DB 帳戶。 
 
 > [!div class="nextstepaction"]
-> [將資料匯入 MongoDB API 的 Azure Cosmos DB](mongodb-migrate.md)
+> [資料匯入至 Azure Cosmos DB hello MongoDB 應用程式開發介面](mongodb-migrate.md)

@@ -1,5 +1,5 @@
 ---
-title: "與 Azure AD 搭配使用的 SaaS 應用程式整合教學課程 | Microsoft Docs"
+title: "應用程式整合教學課程使用 Azure AD 與 aaaSaaS |Microsoft 文件"
 description: "設定以各種第三方軟體即服務的應用程式來進行的 Azure Active Directory 單一登入整合。"
 services: active-directory
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.date: 06/21/2017
 ms.author: joflore
 ms.custom: it-pro
 ms.reviewer: jeedes
-ms.openlocfilehash: 5bedead730e0538c4cad464a9aee7f97a5a8c3ef
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d99ec50ac2db52ab0f8547b2caaac19fd3a5a0d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="saas-application-integration-with-azure-active-directory"></a>SaaS 應用程式與 Azure Active Directory 的整合
 
-為了協助您與 Azure Active Directory 整合已啟用雲端功能的 [(SaaS)](https://azure.microsoft.com/overview/what-is-saas/) 應用程式，我們開發出一套教學課程，以逐步引導您完成設定。
+toohelp 整合您具備雲端功能[(SaaS)](https://azure.microsoft.com/overview/what-is-saas/)與 Azure Active Directory 的應用程式，我們所開發的教學課程會逐步引導您完成設定集合。
 
-在擁有使用者佈建指引的地方，我們都納入了應用程式教學課程，並在應用程式教學課程的右側資料行中提供了使用者佈建指引。
+我們已有使用者佈建的指導方針，包含應用程式的教學課程的使用者佈建 hello 右側的欄，下一步 toohello 應用程式教學課程。
 
-如需已預先整合到 Azure AD 的 SaaS 應用程式完整清單，請參閱 [Active Directory Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps)。
+Hello 的 SaaS 應用程式已預先整合到 Azure AD 的完整清單，請參閱 hello [Active Directory Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps)。
 
 ## <a name="saas-tutorials"></a>SaaS 教學課程
 
@@ -68,7 +68,7 @@ ms.lasthandoff: 08/18/2017
 | ![標誌](./media/active-directory-saas-tutorial-list/active-directory-saas-autotaskworkplace-tutorial.png)| [Autotask](active-directory-saas-autotaskworkplace-tutorial.md)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_BambooHR.png)| [Bamboo HR](active-directory-saas-bamboo-hr-tutorial.md)|
 | ![標誌](./media/active-directory-saas-tutorial-list/saasapp_bambubysproutsocial.png)| [Bambu by Sprout Social](active-directory-saas-bambubysproutsocial-tutorial.md)|
-| ![標誌](./media/active-directory-saas-tutorial-list/active-directory-saas-bcinthecloud-tutorial.png)| [BC in the Cloud](active-directory-saas-bcinthecloud-tutorial.md)
+| ![標誌](./media/active-directory-saas-tutorial-list/active-directory-saas-bcinthecloud-tutorial.png)| [BC hello 雲端中](active-directory-saas-bcinthecloud-tutorial.md)
 | ![標誌](./media/active-directory-saas-tutorial-list/active-directory-saas-beeline-tutorial.png)| [BeeLine](active-directory-saas-beeline-tutorial.md)|
 | ![標誌](./media/active-directory-saas-tutorial-list/active-directory-saas-benefithub-tutorial.png)| [BenefitHub](active-directory-saas-benefithub-tutorial.md)
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Benefitssolver.png)| [Benefitsolver](active-directory-saas-benefitsolver-tutorial.md)|
@@ -349,7 +349,7 @@ ms.lasthandoff: 08/18/2017
 | ![標誌](./media/active-directory-saas-tutorial-list/saasapp_teamphoria.png)| [Teamphoria](active-directory-saas-teamphoria-tutorial.md)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_TeamSeer.png)| [TeamSeer](active-directory-saas-teamseer-tutorial.md)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Teamwork.png)| [Teamwork](active-directory-saas-teamwork-tutorial.md)
-| ![標誌](./media/active-directory-saas-tutorial-list/active-directory-saas-thefundingportal-tutorial.png)| [The Funding Portal](active-directory-saas-thefundingportal-tutorial.md)|
+| ![標誌](./media/active-directory-saas-tutorial-list/active-directory-saas-thefundingportal-tutorial.png)| [hello Funding 入口網站](active-directory-saas-thefundingportal-tutorial.md)|
 | ![標誌](./media/active-directory-saas-tutorial-list/active-directory-saas-thirdlight-tutorial.png)| [ThirdLight](active-directory-saas-thirdlight-tutorial.md)|
 | ![標誌](./media/active-directory-saas-tutorial-list/active-directory-saas-thoughtworks-mingle-tutorial.png)| [Thoughtworks Mingle](active-directory-saas-thoughtworks-mingle-tutorial.md)|
 | ![標誌](./media/active-directory-saas-tutorial-list/active-directory-saas-thousandeyes-tutorial.png)| [ThousandEyes](active-directory-saas-thousandeyes-tutorial.md)|
@@ -403,4 +403,4 @@ ms.lasthandoff: 08/18/2017
 ## <a name="related-articles"></a>相關文章
 
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-* [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [如何教學課程清單 tooIntegrate SaaS 應用程式](active-directory-saas-tutorial-list.md)

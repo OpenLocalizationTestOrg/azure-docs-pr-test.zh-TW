@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Resource Manager 進行的部署作業 | Microsoft Docs"
-description: "說明如何使用入口網站、PowerShell、Azure CLI 及 REST API 來檢視 Azure Resource Manager 部署作業。"
+title: "aaaDeployment 作業使用 Azure Resource Manager |Microsoft 文件"
+description: "描述如何 tooview Azure Resource Manager 部署作業與 hello 入口網站、 PowerShell、 Azure CLI 和 REST API。"
 services: azure-resource-manager,virtual-machines
 documentationcenter: 
 tags: top-support-issue
@@ -15,65 +15,65 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: infrastructure
 ms.date: 01/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: fb6b3b357fd1f66184e480115a9c863ba31ac193
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ba4823ca73caca83dfc07c99d736344ef8b7b54d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-deployment-operations-with-azure-resource-manager"></a>使用 Azure Resource Manager 來檢視部署作業
 
 
-您可以透過 Azure 入口網站檢視部署的作業。 當您在部署期間收到錯誤時，您可能對於檢視作業最感興趣，所以本文著重於檢視失敗的作業。 入口網站提供介面，讓您輕鬆地找到錯誤並判斷可能的修正方法。
+您可以檢視透過 hello Azure 入口網站部署的 hello 作業。 您可能會最想要檢視 hello 作業，當您具有在部署期間收到錯誤，所以本文會著重於檢視失敗的作業。 hello 入口網站提供的介面，可讓您找出 hello tooeasily 的錯誤，並判斷可能的修正方法。
 
 [!INCLUDE [resource-manager-troubleshoot-introduction](../../includes/resource-manager-troubleshoot-introduction.md)]
 
 ## <a name="portal"></a>入口網站
-若要查看部署作業，請使用下列步驟 ︰
+toosee hello 部署作業，請使用下列步驟的 hello:
 
-1. 針對部署所含的資源群組，請注意最後一個部署的狀態。 您可以選取此狀態，以取得更多詳細資料。
+1. Hello 資源群組參與 hello 部署，請注意 hello hello 最後一個部署狀態。 您可以選取此狀態 tooget 更多詳細資料。
    
     ![deployment status](./media/resource-manager-deployment-operations/deployment-status.png)
-2. 您會看到最近的部署歷程記錄。 選取失敗的部署。
+2. 您會看到 hello 最新的部署歷程記錄。 選取 hello 部署失敗。
    
     ![deployment status](./media/resource-manager-deployment-operations/select-deployment.png)
-3. 選取連結以查看部署失敗的原因描述。 在下圖中，DNS 記錄不是唯一的。  
+3. 選取 hello 連結 toosee 的原因描述 hello 部署失敗。 在下面的 hello 影像，hello DNS 記錄不是唯一的。  
    
     ![檢視失敗的部署](./media/resource-manager-deployment-operations/view-error.png)
    
-    此錯誤訊息應足以讓您開始進行疑難排解。 不過，如果您需要有關哪些工作已完成的詳細資料，您可以檢視如下列步驟中所示的作業。
-4. 您可以在 [部署] 刀鋒視窗中檢視所有的部署作業。 選取任一作業以查看詳細資料。
+    這則錯誤訊息應足以供您 toobegin 疑難排解。 不過，如果您需要更多詳細資料的已完成工作時，您可以檢視 hello 作業 hello 步驟中所示。
+4. 您可以檢視所有 hello 部署作業中 hello**部署**刀鋒視窗。 選取任何作業 toosee 更多詳細資料。
    
     ![檢視作業](./media/resource-manager-deployment-operations/view-operations.png)
    
-    在此情況下，您會看到儲存體帳戶、虛擬網路和可用性設定組都已成功建立。 公用 IP 位址失敗，並未嘗試其他資源。
-5. 您可以選取 [事件] ，以檢視部署的事件。
+    在此情況下，您會看到 hello 儲存體帳戶、 虛擬網路和可用性設定組已成功建立。 hello 公用 IP 位址失敗時，和其他資源而未嘗試進行。
+5. 您可以選取來檢視事件 hello 部署**事件**。
    
     ![檢視事件](./media/resource-manager-deployment-operations/view-events.png)
-6. 您會看見部署的所有事件，選取任何一個事件即可取得詳細資料。 請一併注意相互關聯識別碼。 與技術支援人員合作來排解部署問題時，此值會相當有用。
+6. 您看到所有 hello 部署的 hello 事件，並選取任何一個，如需詳細資訊。 請注意太 hello 相互關聯識別碼。 使用技術支援人員 tootroubleshoot 部署時，這個值可以是很有幫助。
    
     ![查看事件](./media/resource-manager-deployment-operations/see-all-events.png)
 
 ## <a name="powershell"></a>PowerShell
-1. 若要取得部署的整體狀態，請使用 **Get-AzureRmResourceGroupDeployment** 命令。 
+1. tooget hello 整體狀態的部署時，使用 hello **Get AzureRmResourceGroupDeployment**命令。 
 
   ```powershell
   Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup
   ```
 
-   或者，您也可以篩選結果，只找出失敗的部署。
+   或者，您可以篩選只在已失敗的部署的 hello 結果。
 
   ```powershell
   Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup | Where-Object ProvisioningState -eq Failed
   ```
    
-2. 每個部署都包括多個作業。 每個作業皆代表部署程序中的一個步驟。 若要探索部署有何問題，您通常需要查看有關部署作業的詳細資訊。 您可以利用 **Get-AzureRmResourceGroupDeploymentOperation**查看作業的狀態。
+2. 每個部署都包括多個作業。 每一項作業代表 hello 部署程序中的步驟。 toodiscover 發生了什麼錯誤與部署，您通常需要 toosee hello 部署作業的詳細資料。 您可以查看 hello 狀態的 hello 作業**Get AzureRmResourceGroupDeploymentOperation**。
 
   ```powershell 
   Get-AzureRmResourceGroupDeploymentOperation -ResourceGroupName ExampleGroup -DeploymentName vmDeployment
   ```
 
-    以下列格式傳回多項作業︰
+    它會傳回多個作業具有下列格式的 hello 中的每一個：
 
   ```powershell
   Id             : /subscriptions/{guid}/resourceGroups/ExampleGroup/providers/Microsoft.Resources/deployments/Microsoft.Template/operations/A3EB2DA598E0A780
@@ -85,13 +85,13 @@ ms.lasthandoff: 07/11/2017
                    serviceRequestId:0196828d-8559-4bf6-b6b8-8b9057cb0e23...}
   ```
 
-3. 若要取得有關失敗作業的詳細資訊，請擷取具有 [失敗]  狀態的作業屬性。
+3. tooget 詳細失敗的作業，擷取作業與 hello 屬性**失敗**狀態。
 
   ```powershell
   (Get-AzureRmResourceGroupDeploymentOperation -DeploymentName Microsoft.Template -ResourceGroupName ExampleGroup).Properties | Where-Object ProvisioningState -eq Failed
   ```
    
-    這會以下列格式傳回所有失敗的作業︰
+    它會傳回所有與 hello 遵循格式中的每一個 hello 失敗的作業：
 
   ```powershell
   provisioningOperation : Create
@@ -107,8 +107,8 @@ ms.lasthandoff: 07/11/2017
                           resourceType=Microsoft.Network/publicIPAddresses; resourceName=myPublicIP}
   ```
 
-    請記下此作業的 serviceRequestId 和 trackingId。 與技術支援人員合作來排解部署問題時，serviceRequestId 會相當有用。 您將在下一個步驟中運用 trackingId 將重點放在特定的作業。
-4. 若要取得特定失敗作業的狀態訊息，請使用下列命令︰
+    請注意 hello serviceRequestId hello trackingId hello 作業。 使用技術支援人員 tootroubleshoot 部署時，hello serviceRequestId 可能很有用。 您將使用 hello trackingId hello 下一個步驟 toofocus 上特定作業中。
+4. 特定的失敗作業，下列命令使用 hello tooget hello 狀態訊息：
 
   ```powershell
   ((Get-AzureRmResourceGroupDeploymentOperation -DeploymentName Microsoft.Template -ResourceGroupName ExampleGroup).Properties | Where-Object trackingId -eq f4ed72f8-4203-43dc-958a-15d041e8c233).StatusMessage.error
@@ -121,9 +121,9 @@ ms.lasthandoff: 07/11/2017
   ----           -------                                                                        -------
   DnsRecordInUse DNS record dns.westus.cloudapp.azure.com is already used by another public IP. {}
   ```
-4. Azure 中的每個部署作業包含要求和回應內容。 要求內容是部署期間您傳送至 Azure 的內容 (例如，建立 VM、作業系統磁碟和其他資源)。 回應內容是 Azure 從您的部署要求傳送回來的內容。 部署期間，您可以使用 **DeploymentDebugLogLevel** 參數來指定要求和/或回應會保留在記錄檔中。 
+4. Azure 中的每個部署作業包含要求和回應內容。 hello 要求內容是什麼您傳送 tooAzure 在部署期間 (例如，建立的 VM，作業系統磁碟和其他資源)。 hello 回應內容是 Azure 傳送回從您的部署要求。 在部署期間，您可以使用**DeploymentDebugLogLevel** hello 要求和/或回應的參數 toospecify 會保留在 hello 記錄檔中。 
 
-  您會使用下列 PowerShell 命令從記錄檔取得該資訊，並將它儲存在本機︰
+  您從 hello 記錄檔，取得這項資訊，並將它儲存在本機上使用下列 PowerShell 命令的 hello:
 
   ```powershell
   (Get-AzureRmResourceGroupDeploymentOperation -DeploymentName "TestDeployment" -ResourceGroupName "Test-RG").Properties.request | ConvertTo-Json |  Out-File -FilePath <PathToFile>
@@ -133,13 +133,13 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="azure-cli"></a>Azure CLI
 
-1. 利用 **azure group deployment show** 命令取得部署的整體狀態。
+1. 取得部署的整體狀態 hello 以 hello **azure 群組部署顯示**命令。
 
   ```azurecli
   azure group deployment show --resource-group ExampleGroup --name ExampleDeployment --json
   ```
   
-  其中一個傳回的值是 **correlationId**。 此值可用來追蹤相關的事件，並且在與技術支援人員合作來排解部署問題時會相當有用。
+  其中一個 hello 傳回值為 hello **correlationId**。 會使用此值 tootrack 相關的事件，而且可以很有幫助時使用的技術支援人員 tootroubleshoot 部署。
 
   ```azurecli
   "properties": {
@@ -147,7 +147,7 @@ ms.lasthandoff: 07/11/2017
     "correlationId": "4002062a-a506-4b5e-aaba-4147036b771a",
   ```
 
-2. 若要查看某個部署的作業，請使用：
+2. 針對部署中，使用 toosee hello 作業：
 
   ```azurecli
   azure group deployment operation list --resource-group ExampleGroup --name ExampleDeployment --json
@@ -155,13 +155,13 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="rest"></a>REST
 
-1. 利用 [取得範本部署的相關資訊](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_Get) 作業，來取得部署相關資訊。
+1. 取得以 hello 部署的相關資訊[取得範本部署的相關資訊](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_Get)作業。
 
   ```http
   GET https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}?api-version={api-version}
   ```
 
-    在回應中，請特別注意 **provisioningState**、**correlationId** 和 **error** 元素。 **correlationId** 可用來追蹤相關的事件，並且在與技術支援人員合作來排解部署問題時會相當有用。
+    Hello 回應，請特別注意 hello **provisioningState**， **correlationId**，和**錯誤**項目。 hello **correlationId**用 tootrack 相關的事件，而且可以很有幫助時使用的技術支援人員 tootroubleshoot 部署。
 
   ```json
   { 
@@ -178,13 +178,13 @@ ms.lasthandoff: 07/11/2017
   }
   ```
 
-2. 使用 [列出所有範本部署作業](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_List) 的作業，來取得部署作業的相關資訊。 
+2. 取得以 hello 的部署作業的相關資訊[列出所有範本部署作業](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_List)作業。 
 
   ```http
   GET https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}/operations?$skiptoken={skiptoken}&api-version={api-version}
   ```
    
-    回應會根據您在部署期間於 **debugSetting** 屬性中指定的內容，來包含要求和 (或) 回應資訊。
+    hello 回應包含要求和/或回應的資訊，根據您指定在 hello **debugSetting**在部署期間的屬性。
 
   ```json
   {
@@ -213,7 +213,7 @@ ms.lasthandoff: 07/11/2017
 
 
 ## <a name="next-steps"></a>後續步驟
-* 如需解決特定部署錯誤的說明，請參閱 [針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。
-* 若要了解如何使用活動記錄來監視其他類型的動作，請參閱[檢視活動記錄以管理 Azure 資源](resource-group-audit.md)。
-* 若要在執行之前驗證您的部署，請參閱 [使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
+* 如需協助解決特定部署錯誤，請參閱[部署資源 tooAzure 與 Azure 資源管理員時，解決常見的錯誤](resource-manager-common-deployment-errors.md)。
+* 有關使用 hello 活動 toolearn 記錄 toomonitor 其他類型的動作，請參閱[檢視活動記錄 toomanage Azure 資源](resource-group-audit.md)。
+* toovalidate 您的部署，然後再執行它，請參閱[部署的資源群組與 Azure Resource Manager 範本](resource-group-template-deploy.md)。
 

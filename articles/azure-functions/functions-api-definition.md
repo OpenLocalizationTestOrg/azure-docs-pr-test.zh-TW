@@ -1,5 +1,5 @@
 ---
-title: "Azure Functions 中的 OpenAPI 中繼資料 | Microsoft Docs"
+title: "aaaOpenAPI Azure 函式中的中繼資料 |Microsoft 文件"
 description: "Azure Functions 中的 OpenAPI 支援概觀"
 services: functions
 documentationcenter: 
@@ -14,41 +14,41 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: alkarche
-ms.openlocfilehash: e426e56bcac30c740e86d620dadf291fe31e3e10
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fff8f14110469a002a6c9dca03f641672003a3a1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="openapi-20-metadata-support-in-azure-functions-preview"></a>Azure Functions 中的 OpenAPI 2.0 中繼資料支援 (預覽)
-Azure Functions 中的 OpenAPI 2.0 (先前稱為 Swagger) 中繼資料支援是預覽功能，可讓您用來撰寫函式應用程式內的 OpenAPI 2.0 定義。 接著您可以使用函式應用程式裝載該檔案。
+OpenAPI 2.0 (先前稱為 Swagger) Azure 函式中的中繼資料支援是預覽功能，您可以使用 toowrite OpenAPI 2.0 定義函式應用程式內。 您接著可以使用 hello 函式應用程式來裝載該檔案。
 
-[OpenAPI 中繼資料](http://swagger.io/)可讓裝載 REST API 的函式供其他各種軟體使用。 此軟體包含諸如 PowerApps 和 [Azure App Service 的 API Apps 功能](https://docs.microsoft.com/azure/app-service-api/app-service-api-dotnet-get-started#a-idcodegena-generate-client-code-for-the-data-tier)等 Microsoft 供應項目、諸如 [Postman](https://www.getpostman.com/docs/importing_swagger) 等第三方開發人員工具，以及[許多其他套件](http://swagger.io/tools/)。
+[OpenAPI 中繼資料](http://swagger.io/)可讓主控 REST API toobe 函式供各種不同的其他軟體。 此軟體包含 Microsoft 供應項目，例如 PowerApps 和 hello [Azure App Service API 應用程式功能](https://docs.microsoft.com/azure/app-service-api/app-service-api-dotnet-get-started#a-idcodegena-generate-client-code-for-the-data-tier)，例如協力廠商開發人員工具[郵差](https://www.getpostman.com/docs/importing_swagger)，和[許多更多封裝](http://swagger.io/tools/).
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 >[!TIP]
->建議您從[入門教學課程](./functions-api-definition-getting-started.md)開始，然後再回到此文件學習更多特定的功能。
+>我們建議您從 hello[快速入門教學課程](./functions-api-definition-getting-started.md)然後有關特定功能的詳細資訊傳回 toothis 文件 toolearn。
 
 ## <a name="enable"></a>啟用 OpenAPI 定義支援
-您可以在函式應用程式設定的**平台功能**中的 **API 定義**頁面上，設定所有 OpenAPI 設定。
+您可以設定所有 OpenAPI 上 hello **API 定義**中函式應用程式的頁面**平台功能**。
 
-若要允許產生託管的 OpenAPI 定義和快速入門定義，請將 **API 定義來源** 設定為**函式 (預覽)**。 **外部 URL** 可讓您的函式使用裝載在其他位置的 OpenAPI 定義。
+tooenable hello 產生託管的 OpenAPI 定義和快速入門的定義中，設定**API 定義來源**太**函式 （預覽）**。 **外部 URL**允許函式 toouse OpenAPI 定義裝載存放在其他地方。
 
 ## <a name="generate-definition"></a> 從您的函式中繼資料產生 Swagger 基本架構
-範本可協助您開始撰寫第一個 OpenAPI 定義。 定義範本功能會針對每個 HTTP 觸發程序函式，使用 function.json 中所有的中繼資料來建立鬆散的 OpenAPI 定義。 您會需要從 [OpenAPI 規格](http://swagger.io/specification/)填入 API 的更多相關資訊，例如要求和回應範本。
+範本可協助您開始撰寫第一個 OpenAPI 定義。 hello 定義範本功能會建立疏鬆 OpenAPI 定義使用 hello function.json 檔案中的 hello 的所有中繼資料，每個 HTTP 觸發程序函式。 您將需要 toofill 中的詳細資訊，您的 API，從 hello 相關[OpenAPI 規格](http://swagger.io/specification/)，例如要求和回應的範本。
 
-如需逐步指示，請參閱[快速入門教學課程](./functions-api-definition-getting-started.md)。
+如需逐步指示，請參閱 hello[快速入門教學課程](./functions-api-definition-getting-started.md)。
 
 ### <a name="templates"></a>可用範本
 
 |名稱| 描述 |
 |:-----|:-----|
-|已產生的定義|具有可從函式現有中繼資料推斷之最大數量資訊的 OpenAPI 定義。|
+|已產生的定義|OpenAPI 具有定義 hello 最大數量來推斷從 hello 函式的現有中繼資料的資訊。|
 
-### <a name="quickstart-details"></a>產生的定義中所包含之中繼資料
+### <a name="quickstart-details"></a>產生的 hello 定義中包含的中繼資料
 
-下表顯示 Azure 入口網站設定和 function.json 中相對應的資料，如同對應到所產生的 Swagger 基本架構。
+下列表格代表 hello hello Azure 入口網站設定和 function.json 中的對應資料，所以產生的對應的 toohello Swagger 基本架構。
 
 |Swagger.json|入口網站 UI|Function.json|
 |:----|:-----|:-----|
@@ -58,26 +58,26 @@ Azure Functions 中的 OpenAPI 2.0 (先前稱為 Swagger) 中繼資料支援是�
 |[安全性](http://swagger.io/specification/#security-scheme-object-112)|**金鑰**|不存在|
 |operationID*|**路由 + 允許的動詞**|路由 + 允許的動詞|
 
-\*只有與 PowerApps 和 Flow 整合才需要作業識別碼。
+\*只需要整合與 PowerApps 和流程 hello 作業識別碼。
 > [!NOTE]
-> x-ms-summary 擴充提供 Logic Apps、Power 和 AppsFlow 中的顯示名稱。
+> hello x ms 摘要延伸模組提供邏輯應用程式、 PowerApps，以及流程中的顯示名稱。
 >
-> 若要進一步了解，請參閱[為 PowerApps 自訂 Swagger 定義](https://powerapps.microsoft.com/tutorials/customapi-how-to-swagger/)。
+> 詳細資訊，請參閱 toolearn[自訂您的 Swagger 定義 powerapps](https://powerapps.microsoft.com/tutorials/customapi-how-to-swagger/)。
 
-## <a name="CICD"></a>使用 CI/CD 設定 API 定義
+## <a name="CICD"></a>使用 CI/CD tooset 應用程式開發介面定義
 
- 從原始檔控制啟用讓原始檔控制修改 API 定義之前，您必須先啟用裝載在入口網站中的 API 定義。 遵循下列指示：
+ 您必須啟用應用程式開發介面定義裝載 hello 入口網站中啟用原始檔控制 toomodify 您從原始檔控制的應用程式開發介面定義之前。 遵循下列指示：
 
-1. 瀏覽至函式應用程式設定中的 **API 定義 (預覽)**。
-  1. 將 **API 定義來源**設定為 **Function**。
-  1. 依序按一下 [產生 API 定義範本]、[儲存] 可建立範本定義以供稍後修改。
+1. 瀏覽過**API 定義 （預覽）**函式應用程式設定中。
+  1. 設定**API 定義來源**太**函式**。
+  1. 按一下**產生應用程式開發介面定義範本**然後**儲存**toocreate 稍後修改的範本定義。
   1. 請注意您的 API 定義 URL 和金鑰。
 1. [設定持續整合/持續部署 (CI/CD)](https://docs.microsoft.com/azure/azure-functions/functions-continuous-deployment#continuous-deployment-requirements)。
 2. 在原始檔控制中的 \site\wwwroot\.azurefunctions\swagger\swagger.json 修改 swagger.json。
 
-現在，您對存放庫中的 swagger.json 所進行之變更，會由您在步驟 1.c 中記下的 API 定義 URL 及金鑰之函式應用程式進行裝載。
+現在，tooswagger.json 在您的儲存機制中所裝載的應用程式函式，在 hello API 定義 URL 的變更，並記下的索引鍵步驟 1.c。
 
 ## <a name="next-steps"></a>後續步驟
-* [入門教學課程](functions-api-definition-getting-started.md)。 請嘗試我們的逐步解說，以查看 OpenAPI 定義實際運作。
-* [Azure Functions GitHub 存放庫](https://github.com/Azure/Azure-Functions/)。 查看 Functions 存放庫以提供我們 API 定義支援預覽的意見反應。 針對您想在更新看到的任何功能提出 GitHub 問題。
+* [入門教學課程](functions-api-definition-getting-started.md)。 請嘗試我們的逐步解說 toosee OpenAPI 中定義的動作。
+* [Azure Functions GitHub 存放庫](https://github.com/Azure/Azure-Functions/)。 簽出 hello 函式儲存機制 toogive 我們 hello API 定義支援預覽的意見反應。 針對您想要更新的 toosee 的任何項目進行 GitHub 問題。
 * [Azure Functions 開發人員參考](functions-reference.md)。 深入了解如何撰寫函式程式碼及定義觸發程序和繫結。

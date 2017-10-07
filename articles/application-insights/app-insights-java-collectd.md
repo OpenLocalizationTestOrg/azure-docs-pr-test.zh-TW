@@ -1,6 +1,6 @@
 ---
-title: "監視 Linux - Azure 上的 Java Web 應用程式效能 | Microsoft Docs"
-description: "使用 Application Insights 的 CollectD 外掛程式擴充您的 Java 網站的應用程式效能監視功能。"
+title: "aaaMonitor on Linux 的 Azure 的 Java web 應用程式效能 |Microsoft 文件"
+description: "擴充應用程式效能監視您的 Java 網站以 hello CollectD 外掛程式的 Application Insights。"
 services: application-insights
 documentationcenter: java
 author: harelbr
@@ -13,39 +13,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/24/2016
 ms.author: bwren
-ms.openlocfilehash: 4ea917b068e0242bfb88d7357eca032607a43a3f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f783e8607a83b2b43f67d3a2fc20f100aa2f75ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="collectd-linux-performance-metrics-in-application-insights"></a>collectd：Application Insights 中的 Linux 效能計量
 
 
-若要在 [Application Insights](app-insights-overview.md) 中瀏覽 Linux 系統效能度量，請安裝 [collectd](http://collectd.org/) 以及其 Application Insights 外掛程式。 這個開放原始碼解決方案會收集各種系統和網路統計資料。
+tooexplore Linux 系統中的效能標準[Application Insights](app-insights-overview.md)，安裝[collectd](http://collectd.org/)搭配其 Application Insights 外掛程式。 這個開放原始碼解決方案會收集各種系統和網路統計資料。
 
-如果您已[使用 Application Insights 檢測您的 Java Web 服務][java]，通常您會使用 collectd。 提供給您更多資料來幫助您增強應用程式的效能或診斷問題。 
+如果您已[使用 Application Insights 檢測您的 Java Web 服務][java]，通常您會使用 collectd。 它可讓您更多資料 toohelp 您 tooenhance 應用程式效能或診斷問題。 
 
 ![範例圖表](./media/app-insights-java-collectd/sample.png)
 
 ## <a name="get-your-instrumentation-key"></a>取得檢測金鑰
-在 [Microsoft Azure 入口網站](https://portal.azure.com)中，開啟您要顯示資料的 [Application Insights](app-insights-overview.md) 資源。 (或[建立新的資源](app-insights-create-new-resource.md)。)
+在 hello [Microsoft Azure 入口網站](https://portal.azure.com)，開啟 hello [Application Insights](app-insights-overview.md)想 hello 資料 tooappear 資源。 (或[建立新的資源](app-insights-create-new-resource.md)。)
 
-取得一份可識別資源的檢測金鑰。
+製作 hello 檢測金鑰識別 hello 資源的複本。
 
-![瀏覽全部，開啟您的資源，然後在 [Essentials] 下拉式清單中，選取並複製檢測金鑰](./media/app-insights-java-collectd/02-props.png)
+![全部瀏覽，開啟您的資源，然後在 hello Essentials 下拉式清單中，select 和複製 hello 檢測金鑰](./media/app-insights-java-collectd/02-props.png)
 
-## <a name="install-collectd-and-the-plug-in"></a>安裝 collectd 和外掛程式
+## <a name="install-collectd-and-hello-plug-in"></a>安裝 collectd 和 hello 外掛程式
 在您的 Linux 伺服器機器上：
 
 1. 安裝 [collectd](http://collectd.org/) 5.4.0 版或更新版本。
-2. 下載 [Application Insights collectd 寫入器外掛程式](https://aka.ms/aijavasdk)。 記下版本號碼。
-3. 將外掛程式 JAR 複製到 `/usr/share/collectd/java`。
+2. 下載 hello [collectd 寫入器的 Application Insights 外掛程式](https://aka.ms/aijavasdk)。 請注意 hello 版本號碼。
+3. 複製 hello 外掛程式 JAR 到`/usr/share/collectd/java`。
 4. 編輯 `/etc/collectd/collectd.conf`：
-   * 確定 [Java 外掛程式](https://collectd.org/wiki/index.php/Plugin:Java) 已啟用。
-   * 更新 java.class.path 的 JVMArg 以包括下列 JAR。 更新版本號碼以符合您所下載的版本：
+   * 請確認[hello Java 外掛程式](https://collectd.org/wiki/index.php/Plugin:Java)已啟用。
+   * 更新下列 JAR hello java.class.path tooinclude hello JVMArg。 更新 hello 版本號碼 toomatch hello 您下載：
    * `/usr/share/collectd/java/applicationinsights-collectd-1.0.5.jar`
-   * 使用來自您的資源的檢測金鑰，加入此程式碼片段：
+   * 加入此程式碼片段使用 hello 檢測金鑰從您的資源：
 
 ```XML
 
@@ -90,47 +90,47 @@ ms.lasthandoff: 08/18/2017
 
 設定其他 [collectd 外掛程式](https://collectd.org/wiki/index.php/Table_of_Plugins)，它可以從不同來源收集各種資料。
 
-根據其 [手冊](https://collectd.org/wiki/index.php/First_steps)重新啟動 collectd。
+重新啟動 collectd 根據 tooits[手動](https://collectd.org/wiki/index.php/First_steps)。
 
-## <a name="view-the-data-in-application-insights"></a>在 Application Insights 中檢視資料
-在您的 Application Insights 資源中，開啟[計量瀏覽器並加入圖表][metrics]，從 [自訂] 類別選取您想要查看的度量。
+## <a name="view-hello-data-in-application-insights"></a>檢視 Application Insights 中的 hello 資料
+在 Application Insights 資源中，開啟[計量瀏覽器和新增圖表][metrics]，您想從 hello 自訂分類 toosee 選取 hello 度量。
 
 ![](./media/app-insights-java-collectd/result.png)
 
-根據預設，會對收集度量來源的所有主機電腦彙總度量。 若要檢視每一主機的度量，在圖表的 [詳細資料] 刀鋒視窗中，開啟 [群組]，然後選擇依 CollectD-Host 群組。
+根據預設，會彙總從中 hello 計量所收集的所有主機電腦上的 hello 度量。 tooview hello 度量，每個主機，在 hello 圖表詳細資料 刀鋒視窗，開啟 群組，然後選擇 toogroup CollectD 主機。
 
-## <a name="to-exclude-upload-of-specific-statistics"></a>排除特定統計資料的上傳
-根據預設，Application Insights 外掛程式會傳送所有啟用的 collectd 'read' 外掛程式所收集的所有資料。 
+## <a name="tooexclude-upload-of-specific-statistics"></a>tooexclude 上傳的特定統計資料
+根據預設，hello Application Insights 外掛程式會傳送 hello 讀取所有資料收集的所有啟用的 hello collectd' ' 的外掛程式。 
 
-若要排除特定外掛程式或資料來源的資料：
+從特定的外掛程式或資料來源的 tooexclude 資料：
 
-* 編輯組態檔。 
+* 編輯 hello 設定檔。 
 * 在 `<Plugin ApplicationInsightsWriter>`中，加入指示詞行，如下所示：
 
 | 指示詞 | 效果 |
 | --- | --- |
-| `Exclude disk` |排除 `disk` 外掛程式所收集的所有資料 |
-| `Exclude disk:read,write` |排除來自 `disk` 外掛程式名為 `read` 和 `write` 的來源。 |
+| `Exclude disk` |排除所有的資料收集的 hello`disk`外掛程式 |
+| `Exclude disk:read,write` |排除 hello 來源名為`read`和`write`從 hello`disk`外掛程式。 |
 
 以新行分隔個別指示詞。
 
 ## <a name="problems"></a>有問題嗎？
-*我在入口網站中看不到任何資料*
+*我沒看到 hello 入口網站中的資料*
 
-* 開啟[搜尋][diagnostic]以查看原始事件是否已抵達。 有時需要較長的時間才會在計量瀏覽器中顯示。
-* 您可能需要 [設定輸出資料的防火牆例外狀況](app-insights-ip-addresses.md)
-* 在 Application Insights 外掛程式中啟用追蹤。 在 `<Plugin ApplicationInsightsWriter>`內加入這一行：
+* 開啟[搜尋][ diagnostic] toosee 如果已到達 hello 未經處理的事件。 有時候會更長的 tooappear 在計量瀏覽器。
+* 您可能需要[設定為外送資料的防火牆例外狀況](app-insights-ip-addresses.md)
+* 啟用 hello Application Insights 外掛程式中的追蹤。 在 `<Plugin ApplicationInsightsWriter>`內加入這一行：
   * `SDKLogger true`
-* 開啟終端機，並以詳細資訊模式啟動 collectd，以查看所報告的任何問題：
+* 開啟終端機，然後開始 collectd 詳細模式，toosee 它報告任何問題：
   * `sudo collectd -f`
 
 ## <a name="known-issue"></a>已知問題
 
-Application Insights 的「寫入」外掛程式與某些「讀取」外掛程式不相容。 有些外掛程式有時會在 Application Insights 外掛程式預期要有浮點數的位置傳送 "NaN"。
+hello 應用程式 Insights 寫入外掛程式是與特定讀取外掛程式不相容。 某些外掛程式有時會傳送 hello Application Insights 外掛程式，必須要有浮點數"NaN"。
 
-徵狀：collectd 記錄檔會顯示包含下列資訊的錯誤：「AI: ...SyntaxError: 未預期的權杖 N」。
+徵兆： hello collectd 記錄檔會顯示錯誤，包括 「 AI::...SyntaxError: 未預期的權杖 N」。
 
-因應措施：排除有問題的「寫入」外掛程式所收集的資料。 
+因應措施： 排除 hello 問題寫入外掛程式所收集的資料。 
 
 <!--Link references-->
 

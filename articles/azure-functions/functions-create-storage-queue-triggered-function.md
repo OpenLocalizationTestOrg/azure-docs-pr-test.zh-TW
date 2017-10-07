@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中建立由佇列訊息所觸發的函式 | Microsoft Docs"
-description: "使用 Azure Functions 來建立無伺服器函式，並讓此函式由提交至 Azure 儲存體佇列的訊息來叫用。"
+title: "在 Azure 佇列訊息所觸發的函式 aaaCreate |Microsoft 文件"
+description: "使用 Azure 函式 toocreate 無伺服器的函式會叫用的訊息提交 tooan Azure 儲存體佇列。"
 services: azure-functions
 documentationcenter: na
 author: ggailey777
@@ -16,21 +16,21 @@ ms.workload: na
 ms.date: 05/31/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 92a03154bf5a8945e2de9606afd138803c76fafe
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e9501ed336b502eaeee3fa62ec4ae085c76de0ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-function-triggered-by-azure-queue-storage"></a>建立 Azure 佇列儲存體所觸發的函式
 
-了解如何建立函式，並讓此函式在訊息提交至 Azure 儲存體佇列時觸發。
+了解如何 toocreate 郵件時所觸發的函式提交 tooan Azure 儲存體佇列。
 
-![檢視記錄中的訊息。](./media/functions-create-storage-queue-triggered-function/function-app-in-portal-editor.png)
+![Hello 記錄檔中檢視訊息。](./media/functions-create-storage-queue-triggered-function/function-app-in-portal-editor.png)
 
 ## <a name="prerequisites"></a>必要條件
 
-- 下載並安裝 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)。
+- 下載並安裝 hello [Microsoft Azure 儲存體總管](http://storageexplorer.com/)。
 
 - Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
 
@@ -42,65 +42,65 @@ ms.lasthandoff: 08/29/2017
 
 ![已成功建立函式應用程式。](./media/functions-create-first-azure-function/function-app-create-success.png)
 
-接下來，您要在新的函式應用程式中建立函式。
+接下來，您會在 hello 新函式應用程式中建立函式。
 
 <a name="create-function"></a>
 
 ## <a name="create-a-queue-triggered-function"></a>建立由佇列觸發的函式
 
-1. 展開函式應用程式，然後按一下 [Functions] 旁的 [+] 按鈕。 如果這是您函式應用程式中的第一個函式，請選取 [自訂函式]。 這會顯示一組完整的函式範本。
+1. 展開您的函式應用程式，然後按一下 hello  **+** 太下一步按鈕**函式**。 如果 hello 函式應用程式中的第一個函式，請選取**自訂函式**。 這會顯示 hello 組完整的函式樣板。
 
-    ![Azure 入口網站中的 Functions 快速入門](./media/functions-create-storage-queue-triggered-function/add-first-function.png)
+    ![在 Azure 入口網站的 hello 函式 [快速入門] 頁面](./media/functions-create-storage-queue-triggered-function/add-first-function.png)
 
-2. 為您想要的語言選取 **QueueTrigger** 範本，並使用如表格中指定的設定。
+2. 選取 hello **QueueTrigger**您想要的語言，以及使用 hello 類似設定 hello 表中所指定的範本。
 
-    ![建立由儲存體佇列所觸發的函式。](./media/functions-create-storage-queue-triggered-function/functions-create-queue-storage-trigger-portal.png)
+    ![建立 hello 儲存觸發佇列函式。](./media/functions-create-storage-queue-triggered-function/functions-create-queue-storage-trigger-portal.png)
     
     | 設定 | 建議的值 | 說明 |
     |---|---|---|
-    | **佇列名稱**   | myqueue-items    | 儲存體帳戶中的連線目標佇列名稱。 |
-    | **儲存體帳戶連線** | AzureWebJobStorage | 您可以使用應用程式函式已在使用的儲存體帳戶連線，或建立新的連線。  |
+    | **佇列名稱**   | myqueue-items    | 名稱的 hello 佇列 tooconnect tooin 儲存體帳戶。 |
+    | **儲存體帳戶連線** | AzureWebJobStorage | 您可以使用應用程式的函式，已經使用 hello 儲存體帳戶連接或另外新建一個。  |
     | **函式命名** | 函式應用程式中的唯一名稱 | 這個由佇列所觸發之函式的名稱。 |
 
-3. 按一下 [建立] 可建立函式。
+3. 按一下**建立**toocreate 您的函式。
 
-接下來，您要連線到 Azure 儲存體帳戶並建立 **myqueue-items** 儲存體佇列。
+接下來，您連接 tooyour Azure 儲存體帳戶，並建立 hello **myqueue 項目**儲存體佇列。
 
-## <a name="create-the-queue"></a>建立佇列
+## <a name="create-hello-queue"></a>建立 hello 佇列
 
-1. 在您的函式中，按一下 [整合]，展開 [文件]，然後複製**帳戶名稱**和**帳戶金鑰**。 您會使用這些認證來連線至儲存體帳戶。 如果您已連線至儲存體帳戶，請跳至步驟 4。
+1. 在您的函式中，按一下 [整合]，展開 [文件]，然後複製**帳戶名稱**和**帳戶金鑰**。 您使用這些認證 tooconnect toohello 儲存體帳戶。 如果您已連接儲存體帳戶，略過 toostep 4。
 
-    ![取得儲存體帳戶的連線認證。](./media/functions-create-storage-queue-triggered-function/functions-storage-account-connection.png)v
+    ![收到 hello 儲存體帳戶的連接認證。](./media/functions-create-storage-queue-triggered-function/functions-storage-account-connection.png)v
 
-1. 執行 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)工具，按一下左側的 [連線] 圖示，選擇 [使用儲存體帳戶名稱和金鑰]，然後按 [下一步]。
+1. 執行 hello [Microsoft Azure 儲存體總管](http://storageexplorer.com/)工具，請按一下 hello 連接 hello 左邊的圖示，請選擇**使用儲存體帳戶名稱和金鑰**，然後按一下**下一步**。
 
-    ![執行「儲存體帳戶總管」工具。](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-1.png)
+    ![執行 hello 儲存體帳戶總管工具。](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-1.png)
 
-1. 輸入從步驟 1 得到的 [帳戶名稱] 和 [帳戶金鑰]，按 [下一步]，然後按一下 [連線]。
+1. 輸入 hello**帳戶名稱**和**帳戶金鑰**從步驟 1 中，按一下 **下一步**然後**連接**。
 
-    ![輸入儲存體認證和連線。](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-2.png)
+    ![輸入 hello 儲存體認證和連接。](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-2.png)
 
-1. 展開連結的儲存體帳戶，以滑鼠右鍵按一下 [佇列]，按一下 [建立佇列]，輸入 `myqueue-items`，然後按 Enter 鍵。
+1. 展開 hello 附加儲存體帳戶，以滑鼠右鍵按一下**佇列**，按一下 **建立佇列**，型別`myqueue-items`，然後按下 enter。
 
     ![建立儲存體佇列。](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-create-queue.png)
 
-您已擁有儲存體佇列，接下來您可以在佇列中新增訊息以測試函式。
+您已經有儲存體佇列，您可以藉由新增訊息 toohello 佇列測試 hello 函式。
 
-## <a name="test-the-function"></a>測試函式
+## <a name="test-hello-function"></a>測試 hello 函式
 
-1. 回到 Azure 入口網站，瀏覽至您的函式，展開頁面底部的 [記錄]，並確定記錄串流並未暫停。
+1. 在 hello Azure 入口網站，瀏覽 tooyour 函式展開 hello**記錄**底部 hello hello 頁面，並確定該記錄檔資料流不已暫停。
 
 1. 在儲存體總管中，依序展開您的儲存體帳戶、[佇列] 和 [myqueue-items]，然後按一下 [新增訊息]。
 
-    ![將訊息新增至佇列。](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-add-message.png)
+    ![新增訊息 toohello 佇列。](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-add-message.png)
 
 1. 將您的 "Hello World!" 輸入 在 [訊息文字] 訊息中，然後按一下 [確定]。
 
-1. 等候幾秒鐘，然後回到您的函式記錄，並確認系統已從佇列中讀取新訊息。
+1. 等候數秒鐘，然後返回 tooyour 函數記錄檔並確認已從 hello 佇列讀取該 hello 新訊息。
 
-    ![檢視記錄中的訊息。](./media/functions-create-storage-queue-triggered-function/functions-queue-storage-trigger-view-logs.png)
+    ![Hello 記錄檔中檢視訊息。](./media/functions-create-storage-queue-triggered-function/functions-queue-storage-trigger-view-logs.png)
 
-1. 回到儲存體總管，按一下 [重新整理]，然後確認系統已處理訊息，佇列中已沒有該訊息。
+1. 在 儲存體總管 中，按一下 **重新整理**並確認該 hello 訊息已處理，而且已不存在於 hello 佇列。
 
 ## <a name="clean-up-resources"></a>清除資源
 
@@ -108,7 +108,7 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-您已建立了函式，並讓它在儲存體佇列中有訊息新增時執行。
+您已建立執行時加入 tooa 儲存體佇列訊息的函式。
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 

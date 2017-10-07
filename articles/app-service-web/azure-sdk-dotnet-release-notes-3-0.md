@@ -1,5 +1,5 @@
 ---
-title: "Azure SDK for .NET 3.0 版本資訊 | Microsoft 文件"
+title: "aaaAzure SDK for.NET 3.0 版本資訊 |Microsoft 文件"
 description: "Azure SDK for .NET 3.0 版本資訊"
 services: app-service\web
 documentationcenter: .net
@@ -13,39 +13,39 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 03/07/2017
 ms.author: juliako
-ms.openlocfilehash: eea4e569ac2d0192ed7872d2fcb9bed03614832b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8970b4c9b64de40dc29a33d69006a00ae5e38a50
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sdk-for-net-30-release-notes"></a>Azure SDK for .NET 3.0 版本資訊
 
-本主題包含 Azure SDK for .NET 3.0 版的版本資訊。
+本主題包含適用於.NET 的 3.0 版的 hello Azure SDK 版本資訊。
 
 ##<a name="azure-sdk-for-net-30-release-summary"></a>Azure SDK for .NET 3.0 發行摘要
 
 發行日期︰2017/03/07
  
-Azure SDK 3.0 在此版本中沒有重大變更。 在現有的雲端服務專案上使用這套 SDK 也不需要升級程序。 為了在無需升級程序的情況下允許使用 Azure SDK 3.0，Azure SDK 3.0 會安裝至與 Azure SDK 2.9 相同的目錄中。 大部分元件的主要版本並未自 2.9 變更，而是只更新組建編號。
+在此版本中引進了沒有重大變更 toohello Azure SDK 3.0。 沒有也需要升級的程序 tooleverage 此 SDK 與現有的雲端服務專案。 tooallow 使用 hello Azure SDK 3.0 而不需要升級程序，Azure SDK 3.0 安裝 toohello 為 Azure SDK 2.9 中相同的目錄。 大部分的 hello 元件並未從 2.9 變更 hello 主要版本，但改為更新 hello 組建編號。
 
 ## <a name="visual-studio-2017-rtw"></a>Visual Studio 2017 RTW
 
-- 在 Visual Studio 2017 中，這個版本的 Azure SDK for .NET 內建於 Azure 工作負載。 未來將會在 Visual Studio 2017 中提供您開發 Azure 所需的一切工具。 在 Visual Studio 2015 中，將仍然可以透過 WebPI 使用這套 SDK。 現在既然已釋出 Visual Studio 2017，我們已不再提供 Visual Studio 2013 適用的 Azure SDK .NET 版本。
+- 在 Visual Studio 2017，這一版的 hello Azure SDK for.NET 內建 toohello Azure 工作負載。 Toodo Azure 開發所需的所有 hello 工具將會都是 Visual Studio 2017 往後的一部分。 Visual Studio 2015 的 hello SDK 仍可透過 WebPI。 現在既然已釋出 Visual Studio 2017，我們已不再提供 Visual Studio 2013 適用的 Azure SDK .NET 版本。
 
 ### <a name="azure-diagnostics"></a>Azure 診斷
 
-- 已變更為只儲存部分連接字串，並以雲端服務儲存體連接字串的權杖取代金鑰。 實際的儲存體金鑰現在儲存在使用者設定檔資料夾中，方便控制其存取權。 Visual Studio 會從使用者設定檔資料夾中讀取儲存體金鑰，以執行本機偵錯和發佈程序。 
-- 為了因應上述變更，Visual Studio Online 小組已增強 Azure 雲端服務部署工作範本，當使用者在持續整合及部署中發佈至 Azure 時，可以指定儲存體金鑰來設定診斷擴充。
-- 我們已可讓您儲存安全連接字串和 Azure 診斷 (WAD) 的 Token 化，協助您解決跨環境組態的問題。
+- 已變更的 hello 行為 tooonly 儲存部分連接字串與 hello 索引鍵的雲端服務診斷儲存體連接字串語彙基元所取代。 hello 實際的儲存體金鑰現在會儲存在 hello 使用者設定檔資料夾，所以可以控制其存取權。 Visual Studio 會從本機偵錯和發行程序的使用者設定檔資料夾讀取 hello 儲存體金鑰。 
+- 在回應 toohello 變更上面所述，Visual Studio Online team 增強的 hello Azure 雲端服務部署工作範本讓使用者可以指定發佈 tooAzure 連續整合時，設定診斷延伸模組的 hello 儲存體金鑰與部署。
+- 我們已經可能 toostore 安全的連接字串和 token 化的 Azure 診斷 (WAD)，toohelp 您跨 environements 解決組態問題。
  
 ### <a name="windows-server-2016-virtual-machines"></a>Windows Server 2016 虛擬機器
 
-- Visual Studio 現在支援將雲端服務部署到作業系統系列 5 (Windows Server 2016) 虛擬機器。 對於現有的雲端服務，您可以變更設定，以新的作業系統系列為目標。 建立新的雲端服務時，如果您選擇使用 .net 4.6 或更高版本建立服務，服務會預設為使用作業系統系列 5。  如需詳細資訊，您可以檢閱[客體 OS 系列支援資料表](../cloud-services/cloud-services-guestos-update-matrix.md)。
+- Visual Studio 現在支援部署雲端服務 tooOS 系列 5 (Windows Server 2016) 的虛擬機器。 對於現有的雲端服務，您可以變更設定 tootarget hello 新的 OS 系列。 在建立新的雲端服務，如果您選擇使用.net 4.6 或更高的 toocreate hello 服務時，它將預設 hello 服務 toouse OS 系列 5。  如需詳細資訊，您可以檢閱 hello[客體作業系統系列支援資料表](../cloud-services/cloud-services-guestos-update-matrix.md)。
 
 ### <a name="known-issues"></a>已知問題
 
-- Azure .NET SDK 3.0 中造成了在 Visual Studio 2015 的並存組態中移除 Visual Studio 2017 時的問題。  如果已安裝 Visual Studio 2015 的 Azure SDK，如果解除安裝 Visual Studio 2017，將會移除 Microsoft Azure 儲存體模擬器和 Microsoft Azure 計算模擬器。  這會在 Visual Studio 2015 建立和偵錯新雲端服務專案時產生錯誤。 若要修正這個問題，請透過 Web Platform Installer 重新安裝 Azure SDK。  此問題將在未來的 Visual Studio 2017 更新中獲得解決。  。
+- Azure .NET SDK 3.0 中造成了在 Visual Studio 2015 的並存組態中移除 Visual Studio 2017 時的問題。  如果您擁有 hello Azure SDK for Visual Studio 2015 安裝，hello Microsoft Azure 儲存體模擬器與 Microsoft Azure 計算模擬器將會移除當您解除安裝 Visual Studio 2017。  這會在 Visual Studio 2015 建立和偵錯新雲端服務專案時產生錯誤。 在排序 toofix 此問題，重新安裝 hello Web Platform Installer 從 hello Azure SDK。  hello 問題將獲得解決在未來的 Visual Studio 2017 更新中。  .
 
  
 ### <a name="azure-in-role-cache"></a>Azure In-Role Cache 

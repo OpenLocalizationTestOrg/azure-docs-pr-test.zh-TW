@@ -1,5 +1,5 @@
 ---
-title: "Azure CLI 指令碼範例 - 在 App Service 方案中建立函式應用程式 | Microsoft Docs"
+title: "aaaAzure CLI 指令碼範例-應用程式服務方案中建立函式的應用程式 |Microsoft 文件"
 description: "Azure CLI 指令碼範例 - 在 App Service 方案中建立函式應用程式"
 services: functions
 documentationcenter: functions
@@ -16,33 +16,33 @@ ms.workload: web
 ms.date: 04/11/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 40c3fa6fa6c07d59e4bf55531e116ba50aa92b91
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c0ffbbbf022e5680e5ae3141e784e7c7bced0bc0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-function-app-in-an-app-service-plan"></a>在 App Service 方案中建立函式應用程式
 
-此範例指令碼會建立 Azure 函式應用程式，這是您的函式容器。 系統會使用專用的 App Service 方案建立函數應用程式，這表示您的伺服器資源會永遠啟用。
+此範例指令碼會建立 Azure 函式應用程式，這是您的函式容器。 使用專用的應用程式服務方案，這表示您的伺服器資源都在建立 hello 函式應用程式。
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇 tooinstall，並在本機上使用 hello CLI，本主題會需要您執行 hello Azure CLI 版本 2.0 或更新版本。 執行`az --version`toofind hello 版本。 如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
 ## <a name="sample-script"></a>範例指令碼
 
 此指令碼會使用專用的 [App Service 方案](../functions-scale.md#app-service-plan)建立 Azure 函數應用程式。
 
-[!code-azurecli-interactive[主要](../../../cli_scripts/azure-functions/create-function-app-app-service-plan/create-function-app-app-service-plan.sh "在 App Service 方案上建立 Azure 函式")]
+[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/create-function-app-app-service-plan/create-function-app-app-service-plan.sh "Create an Azure Function on an App Service plan")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>指令碼說明
 
-下表中的每個命令都會連結至命令特定的文件。 此指令碼會使用下列命令：
+Hello 資料表連結 toocommand 特定文件中的每個命令。 此指令碼會使用下列命令的 hello:
 
 | 命令 | 注意事項 |
 |---|---|
@@ -53,6 +53,6 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
+如需有關 Azure CLI hello 的詳細資訊，請參閱[Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 
-您可以在 [Azure Functions 文件](../functions-cli-samples.md)中找到其他 Azure Functions CLI 指令碼範例。
+其他 Azure 函式 CLI 指令碼範例可以在 hello [Azure 函式文件](../functions-cli-samples.md)。

@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 來備份及還原 App Service 應用程式"
-description: "了解如何使用 PowerShell 來備份和還原 Azure App Service 中的應用程式"
+title: "aaaUse PowerShell tooback 及還原 App Service 應用程式"
+description: "深入了解如何 toouse PowerShell tooback 及還原 Azure App Service 中的應用程式"
 services: app-service
 documentationcenter: 
 author: NKing92
@@ -14,34 +14,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2016
 ms.author: nicking
-ms.openlocfilehash: 34a7e1d025c301ca056753d964bb3c5f4f1a62d8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4042166f6c650841926f010056d6c80ab2de57e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-powershell-to-back-up-and-restore-app-service-apps"></a>使用 PowerShell 來備份及還原 App Service 應用程式
+# <a name="use-powershell-tooback-up-and-restore-app-service-apps"></a>使用 PowerShell tooback] 和 [還原 App Service 應用程式
 > [!div class="op_single_selector"]
 > * [PowerShell](app-service-powershell-backup.md)
 > * [REST API](../app-service-web/websites-csm-backup.md)
 > 
 > 
 
-了解如何使用 Azure PowerShell 來備份及還原 [App Service 應用程式](https://azure.microsoft.com/services/app-service/web/)。 如需有關 Web 應用程式備份的詳細資訊，包括需求和限制，請參閱 [在 Azure App Service 中備份 Web 應用程式](../app-service-web/web-sites-backup.md)。
+深入了解如何 toouse Azure PowerShell tooback 及還原[App Service 應用程式](https://azure.microsoft.com/services/app-service/web/)。 如需有關 Web 應用程式備份的詳細資訊，包括需求和限制，請參閱 [在 Azure App Service 中備份 Web 應用程式](../app-service-web/web-sites-backup.md)。
 
 ## <a name="prerequisites"></a>必要條件
-若要使用 PowerShell 來管理您的應用程式備份，您需要下列項目︰
+toouse PowerShell toomanage 您應用程式的備份，您需要遵循的 hello:
 
-* **SAS URL** ，提供 Azure 儲存體容器的讀取和寫入存取權。 如需 SAS URL 的說明，請參閱 [了解 SAS 模型](../storage/common/storage-dotnet-shared-access-signature-part-1.md) 。 如需使用 PowerShell 管理 Azure 儲存體的範例，請參閱 [搭配使用 Azure PowerShell 與 Azure 儲存體](../storage/common/storage-powershell-guide-full.md) 。
-* **資料庫連接字串** ，如果您想要備份資料庫和 Web 應用程式。
+* **SAS URL** ，可讓讀取和寫入權限 tooan Azure 儲存體容器。 請參閱[了解 hello SAS 模型](../storage/common/storage-dotnet-shared-access-signature-part-1.md)取得 SAS Url 的說明。 如需使用 PowerShell 管理 Azure 儲存體的範例，請參閱 [搭配使用 Azure PowerShell 與 Azure 儲存體](../storage/common/storage-powershell-guide-full.md) 。
+* **資料庫連接字串**如果您想將資料庫 tooback 您 web 應用程式。
 
-### <a name="how-to-generate-a-sas-url-to-use-with-the-web-app-backup-cmdlets"></a>如何產生 SAS URL 以搭配 Web 應用程式備份 Cmdlet 使用
-您可以使用 PowerShell 產生 SAS URL。 以下是如何產生一個 SAS URL 以搭配本文所討論的 Cmdlet 使用的範例。
+### <a name="how-toogenerate-a-sas-url-toouse-with-hello-web-app-backup-cmdlets"></a>Toogenerate SAS URL toouse hello web 應用程式與如何備份 cmdlet
+您可以使用 PowerShell 產生 SAS URL。 以下是如何 toogenerate 可以搭配 hello cmdlet 的其中一個本文所討論的範例。
 
         $storageAccountName = "<your storage account's name>"
         $storageAccountRg = "<your storage account's resource group>"
 
-        # This returns an array of keys for your storage account. Be sure to select the appropriate key. Here we select the first key as a default.
+        # This returns an array of keys for your storage account. Be sure tooselect hello appropriate key. Here we select hello first key as a default.
         $storageAccountKey = Get-AzureRmStorageAccountKey -ResourceGroupName $storageAccountRg -Name $storageAccountName
         $context = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey[0].Value
 
@@ -52,7 +52,7 @@ ms.lasthandoff: 08/29/2017
 如需安裝和使用 Azure PowerShell 的指示，請參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](/powershell/azure/overview) 。
 
 ## <a name="create-a-backup"></a>建立備份
-使用 New-AzureRmWebAppBackup Cmdlet 來建立 Web 應用程式的備份。
+使用 hello 新增 AzureRmWebAppBackup cmdlet toocreate web 應用程式的備份。
 
         $sasUrl = "<your SAS URL>"
         $resourceGroupName = "Default-Web-WestUS"
@@ -60,48 +60,48 @@ ms.lasthandoff: 08/29/2017
 
         $backup = New-AzureRmWebAppBackup -ResourceGroupName $resourceGroupName -Name $appName -StorageAccountUrl $sasUrl
 
-這會以自動產生的名稱建立備份。 如果您要為您的備份提供名稱，請使用 BackupName 選用參數。
+這會以自動產生的名稱建立備份。 如果您想要 tooprovide 您備份的名稱，使用 hello BackupName 選擇性參數。
 
         $backup = New-AzureRmWebAppBackup -ResourceGroupName $resourceGroupName -Name $appName -StorageAccountUrl $sasUrl -BackupName MyBackup
 
-若要將資料庫包含在備份中，請先使用 New-AzureRmWebAppDatabaseBackupSetting Cmdlet 建立資料庫備份設定，然後在 New-AzureRmWebAppBackup Cmdlet 的 Databases 參數中提供該設定。 Databases 參數可接受資料庫設定陣列，讓您備份一個以上的資料庫。
+tooinclude hello 備份中的資料庫第一次建立資料庫的備份設定，使用 hello 新增 AzureRmWebAppDatabaseBackupSetting cmdlet，然後提供該設定在 hello hello 新增 AzureRmWebAppBackup cmdlet 資料庫參數。 hello 資料庫參數接受允許您 tooback 多個資料庫的資料庫設定的陣列。
 
         $dbSetting1 = New-AzureRmWebAppDatabaseBackupSetting -Name DB1 -DatabaseType SqlAzure -ConnectionString "<connection_string>"
         $dbSetting2 = New-AzureRmWebAppDatabaseBackupSetting -Name DB2 -DatabaseType SqlAzure -ConnectionString "<connection_string>"
         $dbBackup = New-AzureRmWebAppBackup -ResourceGroupName $resourceGroupName -Name $appName -BackupName MyBackup -StorageAccountUrl $sasUrl -Databases $dbSetting1,$dbSetting2
 
 ## <a name="get-backups"></a>取得備份
-Get-AzureRmWebAppBackupList Cmdlet 會傳回 Web 應用程式的所有備份陣列。 您必須提供 Web 應用程式與其資源群組的名稱。
+hello Get AzureRmWebAppBackupList cmdlet 會傳回陣列的 web 應用程式中的所有備份。 您必須提供 hello hello web 應用程式名稱和其資源群組。
 
         $resourceGroupName = "Default-Web-WestUS"
         $appName = "ContosoApp"
         $backups = Get-AzureRmWebAppBackupList -Name $appName -ResourceGroupName $resourceGroupName
 
-若要取得特定備份，請使用 Get-AzureRmWebAppBackup Cmdlet。
+tooget 特定備份，使用 hello Get AzureRmWebAppBackup 指令程式。
 
         $backup = Get-AzureRmWebAppBackup -Name $appName -ResourceGroupName $resourceGroupName -BackupId 10102
 
-為了方便，您也可以使用管線將 Web 應用程式物件傳送至任何備份管理 Cmdlet。
+您也可以將 web 應用程式物件傳送至任一個 hello 備份管理 cmdlet，為了方便起見。
 
         $app = Get-AzureRmWebApp -Name ContosoApp -ResourceGroupName Default-Web-WestUS
         $backupList = $app | Get-AzureRmWebAppBackupList
         $backup = $app | Get-AzureRmWebAppBackup -BackupId 10102
 
 ## <a name="schedule-automatic-backups"></a>排程自動備份
-您可以排程備份以在指定的間隔自動進行。 若要設定備份排程，請使用 Edit-AzureRmWebAppBackupConfiguration Cmdlet。 此 Cmdlet 會採用數個參數︰
+您可以依指定的間隔自動排程備份 toohappen。 tooconfigure 備份排程，使用 hello 編輯 AzureRmWebAppBackupConfiguration 指令程式。 此 Cmdlet 會採用數個參數︰
 
-* **Name** - Web 應用程式的名稱。
-* **ResourceGroupName** - 包含 Web 應用程式之資源群組的名稱。
-* **Slot** - 選用。 Web 應用程式位置的名稱。
-* **StorageAccountUrl** - 用來儲存備份的 Azure 儲存體容器的 SAS URL。
-* **FrequencyInterval** - 應多久進行一次備份的數值。 必須是正整數。
-* **FrequencyUnit** - 應多久進行一次備份的時間單位。 選項為 [小時] 和 [天]。
-* **RetentionPeriodInDays** - 在自動刪除自動備份前所應儲存的天數。
-* **StartTime** - 選用。 應開始自動備份的時間。 如果這是 null，將立即開始備份。 必須是 DateTime。
-* **Databases** - 選用。 要備份資料庫的 DatabaseBackupSettings 陣列。
-* **KeepAtLeastOneBackup** - 選擇性切換參數。 如有一個備份應該永遠留在儲存體帳戶中 (無論有多舊)，請提供此參數值。
+* **名稱**-hello hello web 應用程式的名稱。
+* **ResourceGroupName** -hello hello 資源群組包含 hello web 應用程式的名稱。
+* **Slot** - 選用。 hello hello web 應用程式位置名稱。
+* **StorageAccountUrl** -hello Azure 儲存體容器使用 toostore hello 備份 hello SAS URL。
+* **FrequencyInterval** -頻率 hello 備份應該設定成數值。 必須是正整數。
+* **FrequencyUnit** -的頻率 hello 應該備份來進行時間單位。 選項為 [小時] 和 [天]。
+* **RetentionPeriodInDays** -hello 自動備份應該儲存之前不會自動刪除的天數。
+* **StartTime** - 選用。 hello hello 自動備份應開始的時間。 如果這是 null，將立即開始備份。 必須是 DateTime。
+* **Databases** - 選用。 Hello 資料庫 toobackup DatabaseBackupSettings 的陣列。
+* **KeepAtLeastOneBackup** - 選擇性切換參數。 這如果一個備份應該永遠保持 hello 儲存體帳戶，無論它是舊的供應器。
 
-以下是如何使用此 Cmdlet 的範例。
+以下是如何的範例 toouse 這個指令程式。
 
         $resourceGroupName = "Default-Web-WestUS"
         $appName = "ContosoApp"
@@ -112,25 +112,25 @@ Get-AzureRmWebAppBackupList Cmdlet 會傳回 Web 應用程式的所有備份陣�
           -StorageAccountUrl "<your SAS URL>" -FrequencyInterval 6 -FrequencyUnit Hour -Databases $dbSetting1,$dbSetting2 `
           -KeepAtLeastOneBackup -StartTime (Get-Date).AddHours(1)
 
-若要取得目前的備份排程，請使用 Get-AzureRmWebAppBackupConfiguration Cmdlet。 這很適合用於修改已設定的排程。
+tooget hello 目前的備份排程，使用 hello Get AzureRmWebAppBackupConfiguration 指令程式。 這很適合用於修改已設定的排程。
 
         $configuration = Get-AzureRmWebAppBackupConfiguration -Name $appName -ResourceGroupName $resourceGroupName
 
-        # Modify the configuration slightly
+        # Modify hello configuration slightly
         $configuration.FrequencyInterval = 2
         $configuration.FrequencyUnit = "Day"
 
-        # Apply the new configuration by piping it into the Edit-AzureRmWebAppBackupConfiguration cmdlet
+        # Apply hello new configuration by piping it into hello Edit-AzureRmWebAppBackupConfiguration cmdlet
         $configuration | Edit-AzureRmWebAppBackupConfiguration
 
 ## <a name="restore-a-web-app-from-a-backup"></a>從備份還原 Web 應用程式
-若要從備份中還原 Web 應用程式，請使用 Restore-AzureRmWebAppBackup Cmdlet。 使用這個 Cmdlet 的最簡單方式就是透過管線傳入從 Get-AzureRmWebAppBackup Cmdlet 或 Get-AzureRmWebAppBackupList Cmdlet 擷取的備份物件。
+toorestore web 應用程式，從備份使用 hello 還原 AzureRmWebAppBackup 指令程式。 最簡單方式 toouse hello 這個指令程式是 toopipe 備份物件擷取自 hello Get AzureRmWebAppBackup cmdlet 或 Get AzureRmWebAppBackupList cmdlet 中。
 
-一旦有備份物件，即可透過管線將該物件送至 Restore-AzureRmWebAppBackup Cmdlet。 指定 Overwrite 切換參數，以指出您打算以備份的內容覆寫 Web 應用程式的內容。 如果備份包含資料庫，也將會還原這些資料庫。
+備份的物件之後，您可以將其傳送到 hello 還原 AzureRmWebAppBackup cmdlet。 指定您想 toooverwrite hello 的內容，您的 web 應用程式的 hello 備份的 hello 內容 hello 覆寫參數參數 tooindicate。 如果 hello 備份包含資料庫，這些資料庫也會一併還原。
 
         $backup | Restore-AzureRmWebAppBackup -Overwrite
 
-以下是如何藉由指定所有參數來使用 Restore-AzureRmWebAppBackup 的範例。
+以下是範例 toouse hello 還原 AzureRmWebAppBackup 藉由指定所有 hello 參數的方式。
 
         $resourceGroupName = "Default-Web-WestUS"
         $appName = "ContosoApp"
@@ -141,13 +141,13 @@ Get-AzureRmWebAppBackupList Cmdlet 會傳回 Web 應用程式的所有備份陣�
         Restore-AzureRmWebAppBackup -ResourceGroupName $resourceGroupName -Name $appName -Slot $slotName -StorageAccountUrl "<your SAS URL>" -BlobName $blobName -Databases $dbSetting1,$dbSetting2 -Overwrite
 
 ## <a name="delete-a-backup"></a>刪除備份
-若要刪除備份，請使用 Remove-AzureRmWebAppBackup Cmdlet。 這會從您的儲存體帳戶移除備份。 指定您的應用程式名稱、其資源群組和您想要刪除之備份的識別碼。
+toodelete 備份時，使用 hello 移除 AzureRmWebAppBackup 指令程式。 這會移除 hello 備份從儲存體帳戶。 指定您的應用程式名稱，其資源群組，然後 hello 識別碼 hello 備份您想要 toodelete。
 
         $resourceGroupName = "Default-Web-WestUS"
         $appName = "ContosoApp"
         Remove-AzureRmWebAppBackup -ResourceGroupName $resourceGroupName -Name $appName -BackupId 10102
 
-您也可以透過管線將備份物件送至 Remove-AzureRmWebAppBackup Cmdlet 加以刪除。
+您也可以將備份的物件傳送至 hello 移除 AzureRmWebAppBackup cmdlet toodelete 它。
 
         $backup = Get-AzureRmWebAppBackup -Name $appName -ResourceGroupName $resourceGroupName -BackupId 10102
         $backup | Remove-AzureRmWebAppBackup -Overwrite

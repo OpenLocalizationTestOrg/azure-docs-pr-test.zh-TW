@@ -1,6 +1,6 @@
 ---
-title: "Azure 入口網站支援的瀏覽器和裝置 | Microsoft Docs"
-description: "描述 Azure 入口網站運作所在的瀏覽器和裝置。"
+title: "aaaSupported 瀏覽器及裝置的 Azure 入口網站 |Microsoft 文件"
+description: "描述 hello 瀏覽器及裝置的 hello Azure 入口網站運作。"
 services: 
 documentationcenter: 
 author: flanakin
@@ -16,20 +16,20 @@ ms.topic: article
 ms.date: 06/28/2017
 ms.author: micflan
 ms.custom: accessibility
-ms.openlocfilehash: f8718e240eaefb47b18b6098be083e335ccbc89d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1adac737e062803e67d4b820738bb0fcd21c81b0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="supported-browsers-and-devices-for-the-azure-portal"></a>Azure 入口網站支援的瀏覽器和裝置
-您可以在所有新式的桌上型電腦、平板電腦裝置和瀏覽器上執行 [Azure 入口網站](https://portal.azure.com)。
+# <a name="supported-browsers-and-devices-for-hello-azure-portal"></a>支援的瀏覽器及裝置 hello Azure 入口網站
+您可以執行 hello [Azure 入口網站](https://portal.azure.com)上所有的現代桌面平板裝置和瀏覽器。
 
 ### <a name="supported-devices"></a>支援的裝置
-Azure 入口網站可在新式的 PC、Mac 和平板電腦上順利執行。 如果您需要從行動裝置管理 Azure 資源，請嘗試適用於 iPhone 和 Android 上的預覽 Azure 應用程式。 如需詳細資訊，請參閱部落格文章 [Azure 應用程式公開預覽版簡介](https://azure.microsoft.com/blog/azure-app-preview/)。
+hello Azure 入口網站執行絕佳現代化電腦、 Mac 和平板電腦上。 如果您需要 toomanage 您從行動裝置的 Azure 資源，請嘗試 hello 適用於 iPhone 和 Android 上預覽的 Azure 應用程式。 如需詳細資訊，請參閱 hello 部落格文章[簡介 hello Azure 應用程式公開預覽](https://azure.microsoft.com/blog/azure-app-preview/)。
 
 ### <a name="supported-browsers"></a>支援的瀏覽器
-建議使用與您的作業系統相容的最新瀏覽器。 支援下列瀏覽器：
+我們建議您使用與您的作業系統相容的 hello 最新瀏覽器。 支援下列瀏覽器的 hello:
 
 * Microsoft Edge (最新版本)
 * Internet Explorer 11

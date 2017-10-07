@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory Domain Services︰啟用 Azure Active Directory Domain Services | Microsoft Docs"
-description: "使用 Azure 傳統入口網站啟用 Azure Active Directory Domain Services"
+description: "啟用 Azure Active Directory 網域服務使用 hello Azure 傳統入口網站"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,84 +14,84 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/28/2017
 ms.author: maheshu
-ms.openlocfilehash: ed72325ca9db99405c6173eb882a92f80cd77f47
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6263eb1849808a7c85e572e1046bc9039362dd9f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-azure-active-directory-domain-services-using-the-azure-classic-portal"></a>使用 Azure 傳統入口網站啟用 Azure Active Directory Domain Services
+# <a name="enable-azure-active-directory-domain-services-using-hello-azure-classic-portal"></a>啟用 Azure Active Directory 網域服務使用 hello Azure 傳統入口網站
 
 ## <a name="task-3-enable-azure-active-directory-domain-services"></a>工作 3︰啟用 Azure Active Directory Domain Services
-在此工作中，您執行下列步驟來啟用您目錄的 Azure Active Directory Domain Services (Azure AD DS)︰
+在這個工作中，以啟用 Azure Active Directory 網域服務 (Azure AD DS) 為您的目錄執行下列步驟的 hello:
 
-1. 前往 [Azure 傳統入口網站](https://manage.windowsazure.com)。
-2. 在左窗格中選取 [Active Directory] 按鈕。
-3. 選取您要啟用 Azure AD DS 的 Azure Active Directory (Azure AD) 租用戶 (目錄)。
+1. 移 toohello [Azure 傳統入口網站](https://manage.windowsazure.com)。
+2. Hello 左窗格中，選取 [hello **Active Directory** ] 按鈕。
+3. 選取您要為其 Azure AD DS tooenable hello Azure Active Directory (Azure AD) 租用 （目錄）。
 
     ![選取 Azure AD 目錄](./media/active-directory-domain-services-getting-started/select-aad-directory.png)
-4. 在 [預覽目錄] 頁面上，按一下 [設定] 索引標籤。
+4. 在 [hello**預覽目錄**頁面上，按一下 hello**設定**] 索引標籤。
 
     ![設定目錄的索引標籤](./media/active-directory-domain-services-getting-started/configure-tab.png)
-5. 在 [網域服務] 下，將 [啟用此目錄的網域服務] 選項變更為 [是]。  
-    其他的 Azure Active Directory Domain Services 組態選項會出現在頁面上。
+5. 在下**網域服務**，變更 hello**啟用這個目錄的網域服務**太選項**是**。  
+    在 hello 頁面上出現其他的 Azure Active Directory 網域服務組態選項。
 
     ![啟用網域服務](./media/active-directory-domain-services-getting-started/enable-domain-services.png)
 
    > [!NOTE]
-   > 當您針對租用戶啟用 Azure Active Directory Domain Services 時，Azure AD 會產生並儲存驗證使用者所需的 Kerberos 和 NTLM 認證雜湊。
+   > 當您啟用 Azure Active Directory 網域服務租用戶時，Azure AD 會產生並儲存 hello Kerberos and NTLM 認證雜湊所需的驗證使用者。
    >
    >
-6. 指定 **網域服務的 DNS 網域名稱**。
+6. 指定 hello**網域服務的 DNS 網域名稱**。
 
-   * 根據預設，將會選取目錄的預設網域名稱 (具有 **.onmicrosoft.com** 尾碼)。
+   * hello 目錄 hello 預設網域名稱 (與**。 onmicrosoft.com**尾碼) 預設會選取。
 
-   * 清單包含所有已針對 Azure AD 目錄設定的網域，包括您在 [網域] 索引標籤中設定的已驗證以及未驗證的網域。
+   * hello 清單包含所有已設定的 Azure AD 目錄的網域，包括驗證和未驗證網域上 hello 設定**網域** 索引標籤。
 
-   * 您也可以輸入自訂網域名稱。 在此範例中，自訂網域名稱是 contoso100.com。
+   * 您也可以輸入自訂網域名稱。 在此範例中，hello 自訂網域名稱是*contoso100.com*。
 
      > [!WARNING]
-     > 指定網域名稱的前置詞 (例如，contoso100.com 網域名稱中的 contoso100) 必須包含 15 個以內的字元。 您無法使用包含超過 15 個字元的前置詞建立 Azure Active Directory Domain Services。
+     > hello 前置詞指定的網域名稱 (例如， *contoso100*在 hello *contoso100.com*網域名稱) 必須包含 15 個字元。 您無法使用包含超過 15 個字元的前置詞建立 Azure Active Directory Domain Services。
      >
      >
-7. 確定虛擬網路中還沒有您為受管理網域選擇的 DNS 網域名稱。 具體來說，檢查是否︰
+7. 請確定您已選擇 hello 受管理的網域不存在 hello 虛擬網路中的 hello DNS 網域名稱。 具體來說，是否檢查 toosee:
 
-   * 您在虛擬網路上已有包含相同 DNS 網域名稱的網域。
+   * 您已經擁有網域以 hello 相同 hello 虛擬網路上的 DNS 網域名稱。
 
-   * 您選取的虛擬網路已透過 VPN 連線到內部部署網路，而您在內部部署網路上有 DNS 網域名稱相同的網域。
+   * hello 您選取的虛擬網路有 VPN 連線與內部部署網路，且您必須以 hello 網域相同的 DNS 網域名稱，在內部部署網路上。
 
-   * 您在虛擬網路上已有具有該名稱的雲端服務。
-8. 選取您想要 Azure Active Directory Domain Services 可用的虛擬網路。 在 [將網域服務連線至此虛擬網路] 下拉式清單中，選取您建立的虛擬網路和專用子網路。 並請考慮下列項目：
+   * Hello 虛擬網路上有該名稱與現有的雲端服務。
+8. 選取您想要使用的 Azure Active Directory 網域服務 toobe 的虛擬網路。 選取 hello 虛擬網路和專用子網路，您可以在 hello**連接網域服務 toothis 虛擬網路**下拉式清單。 也請考慮下列 hello:
 
-   * 請確定您指定的虛擬網路屬於 Azure Active Directory Domain Services 所支援的 Azure 區域。 如需可使用 Azure Active Directory Domain Services 的 Azure 區域清單，請參閱[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services/)頁面。
+   * 請確定您已指定該 hello 虛擬網路屬於 tooan 支援的 Azure Active Directory 網域服務的 Azure 區域。 tooascertain hello Azure Active Directory 網域服務可使用的 Azure 區域，請參閱[依地區的 Azure 服務](https://azure.microsoft.com/regions/#services/)。
 
-   * 屬於不支援 Azure Active Directory Domain Services 區域的虛擬網路，不會出現在下拉式清單中。
+   * 虛擬網路屬於 tooa 地區不支援 Azure Active Directory 網域服務，不要顯示 hello 下拉式清單中。
 
-   * 在虛擬網路內使用適用於 Azure Active Directory Domain Services 的專用子網路。 請勿選取閘道子網路。 請參閱[網路考量](active-directory-ds-networking.md)。
+   * 用於 Azure Active Directory 網域服務中的 hello 虛擬網路內的專用子網路。 請勿*不*選取 hello 閘道子網路。 請參閱[網路考量](active-directory-ds-networking.md)。
 
-   * 同樣地，使用 Azure Resource Manager 建立的虛擬網路也不會出現在下拉式清單中。 Resource Manager 型虛擬網路目前不為 Azure Active Directory Domain Services 所支援。
-9. 若要啟用 Azure Active Directory Domain Services，請按一下頁面底部工作窗格中的 [儲存]。
-    * 在為您的目錄啟用 Azure Active Directory Domain Services 時，頁面會顯示 [暫止] 狀態。
+   * 同樣地，使用 Azure 資源管理員所建立的虛擬網路並不會顯示 hello 下拉式清單中。 Resource Manager 型虛擬網路目前不為 Azure Active Directory Domain Services 所支援。
+9. tooenable Azure Active Directory 網域服務，在 hello hello 頁面底部的 hello 工作窗格中按一下**儲存**。
+    * 正在為您的目錄啟用 Azure Active Directory 網域服務，而 hello 頁面會顯示狀態*暫止*。
 
         ![啟用 [網域服務] 視窗](./media/active-directory-domain-services-getting-started/enable-domain-services-pendingstate.png)
 
         > [!NOTE]
-        > Azure Active Directory Domain Services 可針對您的受管理網域提供高可用性。 啟用 Azure Active Directory Domain Services 後，可在虛擬網路上使用網域服務的 IP 位址會逐一顯示。 一旦服務針對您的網域啟用高可用性之後，第二個 IP 位址便會立即顯示在第一個之後。 在針對您的網域設定高可用性並使它成為作用中狀態時，您應該會在 [設定] 索引標籤的 [網域服務] 區段中看到兩個 IP 位址。
+        > Azure Active Directory Domain Services 可針對您的受管理網域提供高可用性。 啟用 Azure Active Directory 網域服務後，hello hello 虛擬網路上可用服務都在其所在網域的 IP 位址會是一次顯示的一個。 hello 第二個 IP 位址會顯示 hello 後不久前，很快就 hello 服務可讓您的網域的高可用性。 當設定高可用性時，作用中的網域，您應該會看到兩個 IP 位址在 hello**網域服務**區段 hello**設定** 索引標籤。
         >
         >
-    * 大約 20 至 30 分鐘後，會在 [設定] 頁面的 [IP 位址] 欄位中看見可在您虛擬網路上使用「網域服務」的第一個 IP 位址。
+    * 在約 20 too30 分鐘 hello 在其所在網域服務是在 hello 虛擬網路中可用的第一個 IP 位址後**IP 位址**欄位 hello**設定**頁面。
 
         ![顯示第一次佈建 IP 的 [網域服務] 視窗](./media/active-directory-domain-services-getting-started/domain-services-enabled-firstdc-available.png)
-    * 若您的網域可支援高可用性，則會在頁面上顯示兩個 IP 位址。 在所選虛擬網路上，從這兩個 IP 位址可使用您的受管理網域。
+    * 當高可用性是您的網域內運作時，兩個 IP 位址會顯示在 [hello] 頁面上。 在所選虛擬網路上，從這兩個 IP 位址可使用您的受管理網域。
 
-10. 記下這兩個 IP 位址，以更新您虛擬網路的 DNS 設定。 如此會讓虛擬網路上的虛擬機器連線到網域，以進行像是加入網域等作業。
+10. 請注意 hello 兩個 IP 位址，以便您可以更新 hello DNS 設定虛擬網路。 如此可讓 hello 進行運算，例如網域加入虛擬網路 tooconnect toohello 網域上的虛擬機器。
 
     ![顯示兩個已佈建 IP 的 [網域服務] 視窗](./media/active-directory-domain-services-getting-started/domain-services-enabled-bothdcs-available.png)
 
 > [!NOTE]
-> 視 Azure AD 租用戶大小而定 (例如，使用者或群組等的數目)，同步處理至您的受管理網域需要一些時間。 這個同步處理程序會在背景執行。 對於具有成千上萬個物件的大型租用戶，則可能需要一到兩天的時間，所有使用者、群組成員資格和認證才會完成同步處理。
+> 根據您的 Azure AD 租用戶 （例如，hello 數字的使用者或群組） 的 hello 大小，同步處理 tooyour 受管理的網域會需要一些時間。 此同步處理程序會在 hello 背景。 針對大型的租用戶提供數以萬計的物件，可能需要一天，或兩個的所有使用者、 群組成員資格和認證 toobe 同步處理。
 >
 >
 
 ## <a name="next-step"></a>後續步驟
-[工作 4：更新 Azure 虛擬網路的 DNS 設定](active-directory-ds-getting-started-update-dns.md)
+[工作 4： 更新 hello hello Azure 虛擬網路的 DNS 設定](active-directory-ds-getting-started-update-dns.md)

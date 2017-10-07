@@ -46,13 +46,13 @@
 #### [啟用離線同步](app-service-mobile-android-get-started-offline-data.md)
 #### [新增驗證](app-service-mobile-android-get-started-users.md)
 #### [新增推播通知](app-service-mobile-android-get-started-push.md)
-#### [使用用戶端 SDK](app-service-mobile-android-how-to-use-client-library.md)
+#### [使用 hello client SDK](app-service-mobile-android-how-to-use-client-library.md)
 
 ### Cordova
 #### [啟用離線同步](app-service-mobile-cordova-get-started-offline-data.md)
 #### [新增驗證](app-service-mobile-cordova-get-started-users.md)
 #### [新增推播通知](app-service-mobile-cordova-get-started-push.md)
-#### 使用用戶端 SDK
+#### 使用 hello client SDK
 ##### [Cordova](app-service-mobile-cordova-how-to-use-client-library.md)
 ##### [JavaScript/HTML](app-service-mobile-html-how-to-use-client-library.md)
 
@@ -60,52 +60,52 @@
 #### [啟用離線同步](app-service-mobile-ios-get-started-offline-data.md)
 #### [新增驗證](app-service-mobile-ios-get-started-users.md)
 #### [新增推播通知](app-service-mobile-ios-get-started-push.md)
-#### [使用用戶端 SDK](app-service-mobile-ios-how-to-use-client-library.md)
+#### [使用 hello client SDK](app-service-mobile-ios-how-to-use-client-library.md)
 
 ### Windows
 #### [啟用離線同步](app-service-mobile-windows-store-dotnet-get-started-offline-data.md)
 #### [新增驗證](app-service-mobile-windows-store-dotnet-get-started-users.md)
 #### [新增推播通知](app-service-mobile-windows-store-dotnet-get-started-push.md)
-#### [使用用戶端 SDK](app-service-mobile-dotnet-how-to-use-client-library.md)
+#### [使用 hello client SDK](app-service-mobile-dotnet-how-to-use-client-library.md)
 
 ### Xamarin.Android
 #### [啟用離線同步](app-service-mobile-xamarin-android-get-started-offline-data.md)
 #### [新增驗證](app-service-mobile-xamarin-android-get-started-users.md)
 #### [新增推播通知](app-service-mobile-xamarin-android-get-started-push.md)
-#### [使用用戶端 SDK](app-service-mobile-dotnet-how-to-use-client-library.md)
+#### [使用 hello client SDK](app-service-mobile-dotnet-how-to-use-client-library.md)
 
 ### Xamarin.Forms
 #### [啟用離線同步](app-service-mobile-xamarin-forms-get-started-offline-data.md)
 #### [新增驗證](app-service-mobile-xamarin-forms-get-started-users.md)
 #### [新增推播通知](app-service-mobile-xamarin-forms-get-started-push.md)
-#### [使用用戶端 SDK](app-service-mobile-dotnet-how-to-use-client-library.md)
+#### [使用 hello client SDK](app-service-mobile-dotnet-how-to-use-client-library.md)
 
 ### Xamarin.iOS
 #### [啟用離線同步](app-service-mobile-xamarin-ios-get-started-offline-data.md)
 #### [新增驗證](app-service-mobile-xamarin-ios-get-started-users.md)
 #### [新增推播通知](app-service-mobile-xamarin-ios-get-started-push.md)
-#### [使用用戶端 SDK](app-service-mobile-dotnet-how-to-use-client-library.md)
+#### [使用 hello client SDK](app-service-mobile-dotnet-how-to-use-client-library.md)
 
-### 使用伺服器 SDK
+### 與 hello 伺服器 SDK 搭配使用
 #### [.NET 後端](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)
 #### [Node.js 後端](app-service-mobile-node-backend-how-to-use-server-sdk.md)
 #### [用戶端及伺服器版本設定](app-service-mobile-client-and-server-versioning.md)
 
-### Web Job
-#### [什麼是 Azure WebJob SDK](../app-service-web/websites-dotnet-webjobs-sdk.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+### Web Jobs
+#### [Hello Azure WebJobs SDK 是什麼](../app-service-web/websites-dotnet-webjobs-sdk.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 #### [在 Azure App Service 中建立 .NET WebJob](../app-service-web/websites-dotnet-webjobs-sdk-get-started.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-#### [如何透過 WebJob SDK 使用 Azure Blob 儲存體 (英文)](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-#### [如何透過 WebJob SDK 使用 Azure 佇列儲存體 (英文)](../app-service-web/websites-dotnet-webjobs-sdk-storage-queues-how-to.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-#### [如何搭配使用 Azure 服務匯流排與 WebJob SDK (英文)](../app-service-web/websites-dotnet-webjobs-sdk-service-bus.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-#### [如何透過 WebJob SDK 使用 Azure 資料表儲存體 (英文)](../app-service-web/websites-dotnet-webjobs-sdk-storage-tables-how-to.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+#### [如何 toouse Azure blob 儲存體與 hello WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+#### [如何 toouse Azure 佇列儲存體與 hello WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk-storage-queues-how-to.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+#### [如何 toouse Azure 服務匯流排與 hello WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk-service-bus.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+#### [如何 toouse Azure 資料表儲存體與 hello WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk-storage-tables-how-to.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
 ### App Service 環境
 #### [在 App Service 環境中建立 Web 應用程式](../app-service-web/app-service-web-how-to-create-a-web-app-in-an-ase.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-#### [如何使用 Azure Resource Manager 範本建立 ILB ASE](../app-service-web/app-service-app-service-environment-create-ilb-ase-resourcemanager.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+#### [如何 tooCreate ILB ASE 使用 Azure 資源管理員範本](../app-service-web/app-service-app-service-environment-create-ilb-ase-resourcemanager.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 #### [使用內部負載平衡器](../app-service-web/app-service-environment-with-internal-load-balancer.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
 ## [部署](../app-service/app-service-deployment-readme.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-### [部署到 App Service](../app-service-web/web-sites-deploy.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+### [部署 tooApp 服務](../app-service-web/web-sites-deploy.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ### [雲端同步部署](../app-service-web/app-service-deploy-content-sync.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ### [連續部署](../app-service-web/app-service-continuous-deployment.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ### [預備環境](../app-service-web/web-sites-staged-publishing.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
@@ -137,14 +137,14 @@
 ### [App Service 環境](../app-service/app-service-app-service-environments-readme.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 #### [設定](../app-service-web/app-service-web-configure-an-app-service-environment.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 #### [自訂組態設定](../app-service-web/app-service-app-service-environment-custom-settings.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-#### [如何控制輸入流量](../app-service-web/app-service-app-service-environment-control-inbound-traffic.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+#### [Toocontrol 輸入流量的方式](../app-service-web/app-service-app-service-environment-control-inbound-traffic.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 #### [網路架構概觀](../app-service-web/app-service-app-service-environment-network-architecture-overview.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 #### [使用 ExpressRoute 的網路組態詳細資料](../app-service-web/app-service-app-service-environment-network-configuration-expressroute.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
 ## 移轉
-### [相較於行動服務，App Service 如何？](app-service-mobile-value-prop-migration-from-mobile-services.md)
-### [將現有的行動服務移轉至 App Service](app-service-mobile-migrating-from-mobile-services.md)
-### 將現有的行動服務升級至 App Service
+### [應用程式服務如何比較 tooMobile 服務？](app-service-mobile-value-prop-migration-from-mobile-services.md)
+### [移轉現有的行動服務 tooApp 服務](app-service-mobile-migrating-from-mobile-services.md)
+### 升級現有的行動服務 tooApp 服務
 #### [.NET 後端](app-service-mobile-net-upgrading-from-mobile-services.md)
 #### [Node.js 後端](app-service-mobile-node-backend-upgrading-from-mobile-services.md)
 
@@ -167,12 +167,12 @@
 ### 保護 App Service 環境
 #### [設定 Web 應用程式防火牆](../app-service-web/app-service-app-service-environment-web-application-firewall.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 #### [實作多層的安全性架構](../app-service-web/app-service-app-service-environment-layered-security.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-#### [安全地連接到後端資源](../app-service-web/app-service-app-service-environment-securely-connecting-to-backend-resources.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+#### [安全地連接 tooBackend 資源](../app-service-web/app-service-app-service-environment-securely-connecting-to-backend-resources.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
 ## 備份
 ### [在 Azure 中備份應用程式](../app-service-web/web-sites-backup.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ### [在 Azure 中還原應用程式](../app-service-web/web-sites-restore.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-### [使用 REST 來備份及還原 App Service 應用程式](../app-service-web/websites-csm-backup.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+### [使用 REST tooback] 和 [還原 App Service 應用程式](../app-service-web/websites-csm-backup.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
 ## [監視](../app-service-web/web-sites-monitor.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ### [啟用診斷記錄](../app-service-web/web-sites-enable-diagnostic-log.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
@@ -193,15 +193,15 @@
 
 ## 整合
 ### [使用混合式連線存取內部部署資源](../app-service-web/web-sites-hybrid-connection-get-started.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-### [如何在 Azure 上使用 SendGrid 傳送電子郵件](../app-service-web/sendgrid-dotnet-how-to-send-email.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-### [匯出至 PowerApps 和 Microsoft Flow](../app-service/app-service-export-api-to-powerapps-and-flow.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+### [如何搭配 Azure 使用 SendGrid toosend 電子郵件](../app-service-web/sendgrid-dotnet-how-to-send-email.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+### [匯出 tooPowerApps 和 Microsoft Flow](../app-service/app-service-export-api-to-powerapps-and-flow.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
 ## 疑難排解
 ### Mobile Apps 的一般疑難排解
 #### [.NET 後端](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#how-to-debug-and-troubleshoot-the-net-server-sdk)
 #### [Node.js 後端](app-service-mobile-node-backend-how-to-use-server-sdk.md#Debugging)
 ### [啟用診斷記錄](../app-service-web/web-sites-enable-diagnostic-log.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
-### [串流記錄和主控台](../app-service-web/web-sites-streaming-logs-and-console.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+### [資料流記錄和 hello 主控台](../app-service-web/web-sites-streaming-logs-and-console.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ### [使用 Visual Studio 進行疑難排解](../app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
 # 參考

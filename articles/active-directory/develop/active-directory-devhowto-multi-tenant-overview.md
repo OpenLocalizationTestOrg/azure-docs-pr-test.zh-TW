@@ -1,5 +1,5 @@
 ---
-title: "如何建置可讓任何 Azure AD 使用者登入的應用程式 | Microsoft Docs"
+title: "aaaHow toobuild 可以登入 Azure AD 中的任何使用者的應用程式 |Microsoft 文件"
 description: "如何建置可讓使用者從任何 Azure Active Directory 租用戶登入之應用程式 (也稱為多租用戶應用程式) 的逐步解說。"
 services: active-directory
 documentationcenter: 
@@ -15,61 +15,61 @@ ms.workload: identity
 ms.date: 04/26/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: f1c79fa7e3b0e160487b5941741f6a6c677c6b81
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 123ea8125fa3c308ce0f124cc58e85ec28d476d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-sign-in-any-azure-active-directory-ad-user-using-the-multi-tenant-application-pattern"></a>如何使用多租用戶應用程式模式登入任何 Azure Active Directory (AD) 使用者
-如果您提供「軟體即服務」應用程式給許多公司，您可以將您的應用程式設定為可接受來自任何 Azure AD 租用戶的登入。  在 Azure AD 中，這稱為讓您的應用程式成為多租用戶應用程式。  任何 Azure AD 租用戶中的使用者在同意搭配您的應用程式使用其帳戶之後，便可登入您的應用程式。  
+# <a name="how-toosign-in-any-azure-active-directory-ad-user-using-hello-multi-tenant-application-pattern"></a>如何在任何 Azure Active Directory (AD) 使用者使用 toosign hello 多租用戶應用程式模式
+如果您提供 「 軟體即服務應用程式 toomany 組織，您可以設定您應用程式 tooaccept 登入任何 Azure AD 租用戶。  在 Azure AD 中，這稱為讓您的應用程式成為多租用戶應用程式。  在任何 Azure AD 租用戶中的使用者將無法 tooyour 後的應用程式中無法 toosign 同意 toouse 其帳戶與您的應用程式。  
 
-如果您的現有應用程式有其自己的帳戶系統，或支援從其他雲端提供者執行其他登入方式，則新增從任何租用戶執行 Azure AD 登入很簡單。 只要註冊您的應用程式、透過 OAuth2、OpenID Connect 或 SAML 新增登入程式碼，然後將 [使用 Microsoft 登入] 按鈕放在您的應用程式上即可。 按下面的按鈕來深入了解如何將應用程式加上商標。
+如果您的現有應用程式有其自己的帳戶系統，或支援從其他雲端提供者執行其他登入方式，則新增從任何租用戶執行 Azure AD 登入很簡單。 只要註冊您的應用程式、透過 OAuth2、OpenID Connect 或 SAML 新增登入程式碼，然後將 [使用 Microsoft 登入] 按鈕放在您的應用程式上即可。 按一下下列按鈕 toolearn 深入了解您的應用程式的商標 hello。
 
 [![登入按鈕][AAD-Sign-In]][AAD-App-Branding]
 
-本文假設您已經熟悉如何為 Azure AD 建置單一租用戶應用程式。  如果並非如此，請返回[開發人員指南首頁][AAD-Dev-Guide]，然後試試其中一個快速入門！
+本文假設您已經熟悉如何為 Azure AD 建置單一租用戶應用程式。  如果您不這樣做，head 備份 toohello[開發人員指南首頁][ AAD-Dev-Guide] ，然後再次嘗試我們的快速入門的其中一個 ！
 
-將您的應用程式轉換成 Azure AD 多租用戶應用程式包含四個簡單的步驟︰
+有四個簡單步驟 tooconvert 到 Azure AD 多租用戶應用程式的應用程式：
 
-1. 將您的應用程式註冊更新成多租用戶
-2. 將您的程式碼更新成將要求傳送給 /common 端點 
-3. 將您的程式碼更新成可處理多個簽發者值
+1. 更新您的應用程式註冊 toobe 多租用戶
+2. 更新您的程式碼 toosend 要求 toohello /common 端點 
+3. 更新您的程式碼 toohandle 多個簽發者值
 4. 了解使用者和系統管理員的同意意向並進行適當的程式碼變更
 
-讓我們仔細看看每個步驟。 您也可以直接跳到[這份多租用戶範例清單][AAD-Samples-MT]。
+讓我們仔細看看每個步驟。 您也可以直接太跳[這份清單的多租用戶範例][AAD-Samples-MT]。
 
-## <a name="update-registration-to-be-multi-tenant"></a>將註冊更新成多租用戶
-Azure AD 中的 Web 應用程式/API 註冊預設是單一租用戶。  您只要在 [Azure 入口網站][AZURE-portal]中的應用程式註冊內容頁面上，找出 [多租用戶] 切換開關並將它設定為 [是]，即可將您的註冊轉換成多租用戶。
+## <a name="update-registration-toobe-multi-tenant"></a>更新註冊 toobe 多租用戶
+Azure AD 中的 Web 應用程式/API 註冊預設是單一租用戶。  您可以讓您註冊多租用戶尋找您的應用程式註冊在 hello hello 屬性頁面上的 hello"多 Tenanted"切換[Azure 入口網站][ AZURE-portal]並將其設定太"Yes"。
 
-此外請注意，Azure AD 會要求應用程式的「應用程式識別碼 URI」必須具全域唯一性，才能被設定成多租用戶應用程式。 「應用程式識別碼 URI」是其中一種可在通訊協定訊息中識別應用程式的方式。  在單一租用戶應用程式中，只要該租用戶內有唯一的應用程式識別碼 URI 就已足夠。  就多租用戶應用程式而言，該 URI 則必須具全域唯一性，Azure AD 才能在所有租用戶中找到該應用程式。  系統會透過要求「應用程式識別碼 URI」必須具有與已驗證的 Azure AD 租用戶網域相符的主機名稱，來強制執行全域唯一性。  例如，如果租用戶的名稱是 contoso.onmicrosoft.com，則有效的「應用程式識別碼 URI」會是 `https://contoso.onmicrosoft.com/myapp`。  如果租用戶具有已驗證的網域 `contoso.com`，則有效的「應用程式識別碼 URI」也會是 `https://contoso.com/myapp`。  如果「應用程式識別碼 URI」沒有按照這個模式，將應用程式設定成多租用戶時就會失敗。
+也請注意之前的應用程式可以由多租用戶，, Azure AD 需要 hello hello 應用程式 toobe 全域唯一的應用程式識別碼 URI。 hello 應用程式識別碼 URI 是應用程式識別通訊協定訊息中的 hello 方法之一。  單一租用戶應用程式中，就足夠 hello 應用程式識別碼 URI toobe 該租用戶中唯一的。  為多租用戶應用程式，它必須是全域唯一讓 Azure AD 可以跨所有租用戶尋找 hello 應用程式。  藉由要求 hello 應用程式識別碼 URI toohave 符合 hello Azure AD 租用戶的已驗證的網域主機名稱會強制執行全域的唯一性。  例如，如果您的租用戶的 hello 名稱 contoso.onmicrosoft.com 則有效應用程式識別碼 URI 會`https://contoso.onmicrosoft.com/myapp`。  如果租用戶具有已驗證的網域 `contoso.com`，則有效的「應用程式識別碼 URI」也會是 `https://contoso.com/myapp`。  Hello 應用程式識別碼 URI 未遵循此模式設定為多租用戶的應用程式將會失敗。
 
-原生用戶端註冊預設即為多租用戶。  您不需要採取任何動作來將原生用戶端應用程式註冊轉換成多租用戶。
+原生用戶端註冊預設即為多租用戶。  您不需要任何動作 toomake 的原生用戶端應用程式註冊多租用戶 tootake。
 
-## <a name="update-your-code-to-send-requests-to-common"></a>將您的程式碼更新成將要求傳送給 /common
-在單一租用戶應用程式中，登入要求會傳送至租用戶的登入端點。 例如，以 contoso.onmicrosoft.com 來說，端點會是：
+## <a name="update-your-code-toosend-requests-toocommon"></a>更新您的程式碼 toosend 要求太/一般
+在單一租用戶應用程式中，登入要求會傳送 toohello 租用戶登入端點。 例如，如 contoso.onmicrosoft.com hello 端點將會是：
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com
 
-傳送給租用戶端點的要求可以讓該租用戶中的使用者 (或來賓) 登入該租用戶中的應用程式。  使用多租用戶應用程式時，應用程式事先並不知道使用者來自哪個租用戶，因此您無法將要求傳送給租用戶的端點。  取而代之的是，會將要求傳送給在所有 Azure AD 租用戶進行多工的端點：
+傳送要求的租用戶 tooa 端點中該租用戶中的租用戶 tooapplications 登入使用者 （或來賓）。  與多租用戶應用程式，並不知道 hello 應用程式最前面位置 hello 租用戶的使用者是從，因此無法傳送要求 tooa 租用戶端點。  相反地，要求會傳送信號分離跨所有的 Azure AD 租用戶的 tooan 端點：
 
     https://login.microsoftonline.com/common
 
-當 Azure AD 在 /common 端點收到要求時，它會讓使用者登入，藉此探索使用者來自哪個租用戶。  /common 端點可以與 Azure AD 支援的所有驗證通訊協定搭配使用：OpenID Connect、OAuth 2.0、SAML 2.0 及「WS-同盟」。
+當 Azure AD 會收到要求時在 hello/一般端點，它 hello 使用者登入，而結果會探索哪些租用戶 hello 使用者是從。  hello/一般端點可以使用所有的 hello Azure AD 支援的驗證通訊協定： OpenID Connect、 OAuth 2.0、 SAML 2.0 和 WS-同盟。
 
-然後，傳給應用程式的登入回應會包含代表使用者的權杖。  權杖中的簽發者值會告知應用程式該使用者來自哪個租用戶。  從 /common 端點傳回回應時，權杖中的簽發者值將會與使用者的租用戶對應。  請務必注意，/common 端點不是租用戶，也不是簽發者，而只是一個多工器。  使用 /common 時，必須更新您應用程式中用來驗證權杖的邏輯，以便將這一點納入考量。 
+hello 登入回應 toohello 然後應用程式包含代表 hello 使用者的權杖。  hello 權杖中的 hello 簽發者值會告訴應用程式租用戶的 hello 使用者是從。  當回應會傳回從 hello/一般端點，hello 權杖中的 hello 簽發者值會對應 toohello 使用者的租用戶。  它是重要 toonote hello/一般端點不是租用戶，而且不是簽發者，只要多工器。  使用時 /common，在您的應用程式 toovalidate 權杖中的 hello 邏輯必須更新 toobe tootake 這納入考量。 
 
-如先前所述，多租用戶應用程式也應該為使用者提供一致的登入體驗，以遵循 Azure AD 應用程式的商標指導方針。 按下面的按鈕來深入了解如何將應用程式加上商標。
+稍早提到、 多租用戶應用程式也應該為使用者提供一致的登入體驗，如下列 hello Azure AD 應用程式的商標指導方針。 按一下下列按鈕 toolearn 深入了解您的應用程式的商標 hello。
 
 [![登入按鈕][AAD-Sign-In]][AAD-App-Branding]
 
-讓我們深入地看一下 /common 端點的使用和您的程式碼實作。
+讓我們看看 hello /common hello 使用端點和您的程式碼中實作更多詳細資料。
 
-## <a name="update-your-code-to-handle-multiple-issuer-values"></a>將您的程式碼更新成可處理多個簽發者值
+## <a name="update-your-code-toohandle-multiple-issuer-values"></a>更新您的程式碼 toohandle 多個簽發者值
 Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。  
 
 > [!NOTE]
-> 雖然原生用戶端應用程式會要求並接收來自 Azure AD 的權杖，但它們這麼做是為了將權杖傳送給 API 來進行驗證。  原生應用程式不會驗證權杖，而且必須將它們視為不透明。
+> 在原生用戶端應用程式要求並接收來自 Azure AD 的權杖時，它們執行的動作是 toosend 它們 tooAPIs，驗證其中。  原生應用程式不會驗證權杖，而且必須將它們視為不透明。
 > 
 > 
 
@@ -77,106 +77,106 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com
 
-然後使用它來建構中繼資料 URL (在此例中為 OpenID Connect)，例如︰
+並使用它 tooconstruct 中繼資料 URL （在此情況下，OpenID Connect） 類似：
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com/.well-known/openid-configuration
 
-以下載用來驗證權杖的兩項關鍵資訊︰租用戶的簽署金鑰和簽發者值。  每個 Azure AD 租用戶都有具有採用下列格式的唯一簽發者值︰
+toodownload 兩個重要的資訊片段，這是使用的 toovalidate 權杖： hello 租用戶的簽署金鑰和簽發者值。  每個 Azure AD 租用戶的簽發者唯一值為 hello 表單：
 
     https://sts.windows.net/31537af4-6d77-4bb9-a681-d2394888ea26/
 
-其中的 GUID 值是租用戶的租用戶識別碼重新命名安全版本。  如果您按一下上方的 `contoso.onmicrosoft.com` 中繼資料連結，您可以在文件中看到此簽發者值。
+其中 hello GUID 值是 hello hello 租用戶的租用戶識別碼 hello 重新命名安全版本。  如果您按一下前的中繼資料連結的 hello `contoso.onmicrosoft.com`，您可以看到這個 hello 文件中的簽發者值。
 
-當單一租用戶應用程式驗證權杖時，它會根據中繼資料文件中的簽署金鑰來檢查權杖的簽章。 這可讓它確定權杖中的簽發者值符合中繼資料文件中找到的值。
+當單一租用戶應用程式會驗證權杖時，它會檢查 hello 權杖簽署金鑰 hello 中繼資料文件的 hello hello 簽章。 這可以讓它 toomake 確定 hello 簽發者值 hello 語彙基元的相符項目 hello 一個 hello 中繼資料文件中找到。
 
-因為 /common 端點既不對應租用戶也不是簽發者，所以當您檢查 /common 之中繼資料中的簽發者值時，它擁有的是一個樣板化的 URL 而不是實際值︰
+由於 hello/一般端點未對應 tooa 租用戶，而且不是簽發者，當您檢查 hello 中繼資料中的 hello 簽發者值/常見它具有一個樣板化的 URL，而不是實際的值：
 
     https://sts.windows.net/{tenantid}/
 
-因此，多租用戶應用程式無法僅透過將中繼資料中的簽發者值與權杖中的 `issuer` 值做比對來驗證權杖。  多租用戶應用程式需要有可根據簽發者值的租用戶識別碼部分來決定哪些簽發者值有效、哪些簽發者值無效的邏輯。  
+因此，多租用戶應用程式時，無法只藉由比對以 hello hello 中繼資料中的 hello 簽發者值驗證語彙基元`issuer`hello 權杖中的值。  多租用戶應用程式的簽發者值有效，而且可不需要邏輯 toodecide，根據 hello 租用戶識別碼部分 hello 簽發者值。  
 
-例如，如果多租用戶應用程式只允許從已註冊服務的特定租用戶登入，它就必須檢查權杖中的簽發者值或 `tid` 宣告值，以確認該租用戶在其訂閱者清單中。  如果多租用戶應用程式只處理個人而不根據租用戶做出任何存取決策，則它可以完全忽略簽發者值。
+例如，如果多租用戶應用程式僅允許登入特定的租用戶已註冊的服務，然後它必須檢查 hello 簽發者值或 hello`tid`宣告在 hello 語彙基元 toomake 確定該租用戶的清單中的值訂閱者。  如果多租用戶應用程式僅處理個人版，並沒有做出任何存取根據租用戶，則其可以忽略 hello 簽發者值完全。
 
-在可於本文結尾的[相關內容](#related-content)一節中的多租用戶範例中，為了讓任何 Azure AD 租用戶都能登入，已將簽發者驗證停用。
+在 hello hello 多租用戶範例[相關內容](#related-content)在本文中，簽發者驗證的 hello 結尾的區段是已停用的 tooenable 中的任何 Azure AD 租用戶 toosign。
 
-現在，讓我們看看登入多租用戶應用程式之使用者的使用者體驗。
+現在讓我們看看 hello 登入 toomulti 租用戶應用程式的使用者的使用者體驗。
 
 ## <a name="understanding-user-and-admin-consent"></a>了解使用者和系統管理員的同意意向
-若要讓使用者登入 Azuer AD 中的應用程式，必須以使用者的租用戶代表該應用程式。  這可讓組織執行一些操作，例如在來自其租用戶的使用者登入應用程式時套用唯一原則。  就單一租用戶應用程式而言，這個註冊程序相當簡單；就是您在 [Azure 入口網站][AZURE-portal]中註冊應用程式時所進行的程序。
+Hello 應用程式必須針對使用者 toosign tooan 在 Azure AD 中的應用程式中，表示 hello 使用者的租用戶中。  這可讓組織 hello toodo 等項目套用唯一的原則，從其租用戶的使用者登入時 toohello 應用程式。  單一租用戶應用程式中，此註冊很簡單;它具有 hello hello 註冊 hello 應用程式時，會發生情況的其中一個[Azure 入口網站][AZURE-portal]。
 
-就多租用戶應用程式而言，應用程式的初始註冊程序則是在開發人員所使用的 Azure AD 租用戶中進行。  當來自不同租用戶的使用者第一次登入應用程式時，Azure AD 會要求他們同意應用程式所要求的權限。  如果他們同意，系統就會在使用者的租用戶中建立一個稱為「服務主體」的應用程式代表，然後登入便可繼續進行。 系統也會在記錄使用者對應用程式之同意意向的目錄中建立委派。 如需有關應用程式之「應用程式」和「服務主體」物件的詳細資訊，請參閱[應用程式物件和服務主體物件][AAD-App-SP-Objects]。
+為多租用戶應用程式，hello hello 應用程式的初始註冊位於 hello hello 開發人員所使用的 Azure AD 租用戶。  當使用者從不同的租用戶登入時 toohello 應用程式的 hello 第一次時，Azure AD 會要求他們 hello 應用程式所要求的 tooconsent toohello 權限。  如果他們同意，則 hello 應用程式的表示法稱為*服務主體*中建立 hello 使用者的租用戶，而且登入可以繼續。 委派，也會建立 hello 記錄 hello 使用者同意 toohello 應用程式的目錄中。 請參閱[應用程式與服務主體物件][ AAD-App-SP-Objects]需 hello 應用程式的應用程式和 ServicePrincipal 物件，和如何彼此 tooeach 其他詳細資料。
 
-![同意單層式應用程式][Consent-Single-Tier] 
+![同意 toosingle 層應用程式][Consent-Single-Tier] 
 
-這個同意體驗會受到應用程式所要求的權限影響。  Azure AD 支援兩種類型的權限，即僅限應用程式的權限和委派的權限︰
+此同意體驗會受到 hello hello 應用程式所要求的權限。  Azure AD 支援兩種類型的權限，即僅限應用程式的權限和委派的權限︰
 
-* 委派的權限可讓應用程式能夠充當登入的使用者來執行該使用者所能執行的一部分操作。  例如，您可以授與應用程式委派的權限來讀取登入之使用者的行事曆。
-* 僅限應用程式的權限會直接授與應用程式的識別身分。  例如，您可以將僅限應用程式的權限授與應用程式來讀取租用戶中的使用者清單，而且不論是誰登入此應用程式。
+* 委派的權限授與應用程式 hello 能力 tooact，登入的使用者子集的 hello 事項 hello 使用者一樣。  例如，您可以授與登入使用者的行事曆應用程式 hello 委派權限 tooread hello。
+* 僅限應用程式的權限授與直接 toohello hello 應用程式識別。  例如，您可以授與的應用程式 hello 僅限應用程式的權限 tooread hello 清單中的租用戶，不論使用者登入 toohello 應用程式的使用者。
 
-有些權限可以由一般使用者同意，有些則需要租用戶系統管理員的同意。 
+某些權限可以是已獲得同意的 tooby 一般使用者，而有些則需要在租用戶系統管理員的同意。 
 
 ### <a name="admin-consent"></a>系統管理員同意
-僅限應用程式的權限一律需要租用戶系統管理員的同意。  如果您的應用程式要求僅限應用程式的權限，當使用者嘗試登入應用程式時，將會出現錯誤訊息，指出該使用者無法同意。
+僅限應用程式的權限一律需要租用戶系統管理員的同意。  如果您的應用程式要求僅限應用程式的權限，而且使用者嘗試 toosign toohello 應用程式中的，將指出 hello 使用者不能 tooconsent 顯示錯誤訊息。
 
-有些委派的權限也需要租用戶系統管理員的同意。  例如，若要能夠以登入的使用者身分寫回 Azure AD，就需要租用戶系統管理員的同意。  與僅限應用程式的權限一樣，如果一般使用者嘗試登入要求委派權限的應用程式，而該權限需要系統管理員同意，您的應用程式將會收到錯誤。  權限是否需要系統管理員同意是由發佈資源的開發人員決定，而且可以在該資源的文件中找到這項資訊。  如需說明 Azure AD Graph API 和 Microsoft Graph API 可用權限的主題連結，請參閱本文的 [相關內容](#related-content) 一節。
+有些委派的權限也需要租用戶系統管理員的同意。  比方說，hello 能力 toowrite 後 tooAzure AD hello 登入的使用者為要求的租用戶系統管理員同意。  僅限應用程式的權限，例如，如果一般的使用者嘗試 toosign tooan 要求需要管理員同意的委派權限的應用程式中您的應用程式會收到錯誤。  需要權限獲得管理員同意取決於發行 hello 資源的 hello 開發人員，而且可以在 hello 文件以 hello 資源中找到。  連結 tootopics 說明 hello 可用權限 hello Azure AD Graph API 和 Microsoft Graph API 位於 hello[相關內容](#related-content)本文一節。
 
-如果您的應用程式使用需要系統管理員同意的權限，您就必須要有相關的表示，例如可供系統管理員起始動作的按鈕或連結。  您的應用程式針對此動作傳送的要求是一個一般的 OAuth2/OpenID Connect 授權要求，但此要求同時也包含 `prompt=admin_consent` 查詢字串參數。  在系統管理員同意且系統已在客戶的租用戶中建立服務主體之後，後續的登入要求就不再需要 `prompt=admin_consent` 參數。 由於系統管理員已決定可接受要求的權限，因此從該時間點之後，就不會再提示租用戶中的任何其他使用者行使同意權。
+如果您的應用程式使用需要獲得管理員同意權限，您會需要 toohave 手勢，例如按鈕或連結 hello 系統管理員可以在其中啟動 hello 動作。  您的應用程式傳送這個動作是一般 OAuth2/OpenID Connect 授權要求，但也包含 hello hello 要求`prompt=admin_consent`查詢字串參數。  後續登入要求之後 hello 系統管理員同意和 hello 客戶的租用戶建立 hello 服務主體，不需要 hello`prompt=admin_consent`參數。 Hello 系統管理員決定 hello 要求權限是可接受，因為將會從該點之後的同意不提示 hello 租用戶中的任何其他使用者。
 
-如果應用程式要求的權限不需要系統管理員同意，則應用程式也可以使用 `prompt=admin_consent` 參數。 這是在應用程式需要一種體驗的情況下完成，也就是租用戶系統管理員「註冊」一次，此後就不會再提示其他使用者要表示同意。
+hello`prompt=admin_consent`要求權限，不需要獲得管理員同意的應用程式也可以使用參數。 這是當 hello 應用程式需要體驗其中 hello 租用戶系統管理員 「 註冊 」 一次，且沒有其他系統會提示使用者的同意層級從該點上。
 
-如果應用程式需要系統管理員同意，當系統管理員登入，但未傳送 `prompt=admin_consent` 參數時，系統管理員**只針對其使用者帳戶**才會順利同意此應用程式。  一般使用者將仍然無法登入此應用程式並對其行使同意權。  當您想要先讓租用戶系統管理員能夠瀏覽您的應用程式，然後才允許其他使用者存取時，這會相當有用。
+如果應用程式需要系統管理員同意和管理員簽署在但 hello`prompt=admin_consent`參數不會傳送、 hello 系統管理員已成功將同意 toohello 應用程式**只為其使用者帳戶**。  一般使用者仍不會在無法 toosign 和同意 toohello 應用程式。  這非常有用，如果您想 toogive hello 租用戶系統管理員 hello 能力 tooexplore 您的應用程式，才能允許其他使用者的存取。
 
-租用戶系統管理員可以停用一般使用者對應用程式行使同意權的能力。  如果停用這項功能，就一律需要系統管理員同意，才能在租用戶中設定應用程式。  如果您想要在停用一般使用者同意的情況下測試您的應用程式，您可以在 [Azure 入口網站][AZURE-portal]的 Azure AD 租用戶設定區段中找到設定參數。
+租用戶系統管理員可以停用一般使用者 tooconsent tooapplications hello 能力。  這項功能已停用，都一律需要 hello hello 租用戶中設定的應用程式 toobe 獲得管理員同意。  如果您想的 tootest 停用您的應用程式，一般使用者同意的情況下，您可以找到 hello 的組態參數： hello Azure AD 租用戶中的 hello 的組態區段[Azure 入口網站][AZURE-portal]。
 
 > [!NOTE]
-> 有些應用程式想要提供一種體驗，讓一般使用者能夠一開始即表示同意，之後應用程式即可讓系統管理員參與操作並要求需要系統管理員同意的權限。  目前在 Azure AD 中還沒有任何方法可以使用單一應用程式註冊來達到這個目的。  即將推出 Azure AD v2 端點將可允許應用程式在執行階段 (而不是在註冊階段) 要求權限，這將使得此情況變成可行。  如需詳細資訊，請參閱 [Azure AD 應用程式模型 v2 開發人員指南][AAD-V2-Dev-Guide]。
+> 某些應用程式想要運作的一般使用者能 tooconsent 一開始，而稍後 hello 應用程式可能是 hello 系統管理員並要求權限的系統管理員同意體驗。  沒有任何方式 toodo 這與單一應用程式註冊在現今 Azure AD 中。  hello 即將推出的 Azure AD v2 端點可讓應用程式 toorequest 權限，在執行階段，而不是在登錄時，會啟用此案例。  如需詳細資訊，請參閱 hello [Azure AD 應用程式模型 v2 開發人員指南][AAD-V2-Dev-Guide]。
 > 
 > 
 
 ### <a name="consent-and-multi-tier-applications"></a>同意和多層應用程式
-您的應用程式可能會有多層，每一層皆由它自己在 Azure AD 中的註冊代表。  例如，一個呼叫 Web API 的原生應用程式，或是一個呼叫 Web API 的 Web 應用程式。  在這兩種情況下，用戶端 (原生應用程式或 Web 應用程式) 都會要求可呼叫資源 (Web API) 的權限。  若要讓用戶端順利獲得客戶同意新增到其租用戶中，則它要求權限的所有資源必須都已經存在於客戶的租用戶中。  如果不符合此條件，Azuer AD 將會傳回錯誤，指出必須先新增資源。
+您的應用程式可能會有多層，每一層皆由它自己在 Azure AD 中的註冊代表。  例如，一個呼叫 Web API 的原生應用程式，或是一個呼叫 Web API 的 Web 應用程式。  在這兩種情況下，hello 用戶端 （原生應用程式或 web 應用程式） 會要求權限 toocall hello 資源 (web 應用程式開發介面)。  針對 hello 用戶端 toobe 成功同意至客戶的租用戶，它會要求權限的所有資源 toowhich 必須存都在於 hello 客戶的租用戶。  如果不符合此條件，Azure AD 會傳回必須先新增 hello 資源時發生錯誤。
 
 **單一租用戶中的多層**
 
-如果您的邏輯應用程式包含兩個或更多個應用程式註冊 (例如個別的用戶端和資源)，這可能會造成問題。  如何先將資源新增到客戶租用戶中？  Azure AD 涵蓋此情況，支援在單一步驟中同意用戶端和資源。 使用者在同意頁面上會看到用戶端和資源所要求的權限總和。  若要啟用此行為，在資源的應用程式資訊清單中，資源的應用程式註冊就必須以 `knownClientApplications` 的形式包含用戶端的「應用程式識別碼」。  例如：
+如果您的邏輯應用程式包含兩個或更多個應用程式註冊 (例如個別的用戶端和資源)，這可能會造成問題。  如何取得 hello 資源 hello 客戶租用戶到第一個？  Azure AD 涵蓋此案例藉由啟用用戶端和資源 toobe 同意以單一步驟。 hello 使用者會看見 hello 總和的 hello hello 用戶端和 hello 同意頁面上的資源要求的權限。  tooenable 這種行為，hello 資源的應用程式註冊必須包含 hello 用戶端應用程式識別碼，表示為`knownClientApplications`應用程式資訊清單中。  例如：
 
     knownClientApplications": ["94da0930-763f-45c7-8d26-04d5938baab2"]
 
-您可以透過資源[應用程式的資訊清單][AAD-App-Manifest]更新此屬性。 在本文結尾的[相關內容](#related-content)一節中，一個呼叫 Web API 的多層原生用戶端範例中會示範作法。 下圖提供同意單一租用戶中註冊之多層應用程式的概觀︰
+此屬性可以透過 hello 資源更新[應用程式的資訊清單][AAD-App-Manifest]。 這示範於多層式的原生用戶端，在 hello 呼叫 web API 範例[相關內容](#related-content)hello 本文結尾 > 一節。 hello 圖概略說明同意在單一租用戶中註冊之多層式應用程式：
 
-![同意多層式已知用戶端應用程式][Consent-Multi-Tier-Known-Client] 
+![同意 toomulti 層已知的用戶端應用程式][Consent-Multi-Tier-Known-Client] 
 
 **多個租用戶中的多層**
 
-如果在不同的租用戶中註冊不同的應用程式層，將會發生類似的情況。  例如，想像建置一個會呼叫 Office 365 Exchange Online API 的原生用戶端應用程式的情況。  若要開發此原生應用程式，然後讓此原生應用程式在客戶的租用戶中執行，就必須要有 Exchange Online 服務主體。  在此情況下，開發人員和客戶必須購買 Exchange Online，如此才能在其租用戶中建立服務主體。  
+如果 hello 不同的應用程式層會在不同的租用戶中註冊，則會發生類似的案例。  例如，請考慮 hello 的建置呼叫 hello Office 365 Exchange Online API 的原生用戶端應用程式的大小寫。  應用程式，及更新版本的客戶的租用戶中的 hello 原生應用程式 toorun，toodevelop hello 原生、 hello Exchange Online 服務主體必須存在。  在此情況下，hello 開發人員和客戶購買 Exchange Online 的 hello 服務主體 toobe 其租用戶中建立。  
 
-如果是 Microsoft 以外的組織所建置的 API，API 的開發人員必須提供方法讓客戶同意將應用程式新增至其客戶的租用戶。 建議的設計是第三方開發人員將 API 建置成也可當作 Web 用戶端來實作註冊︰
+在應用程式開發介面，由 Microsoft 以外的組織所建立的 hello 情況下，hello 的 hello API 的開發人員必須 tooprovide 方式他們的客戶 tooconsent hello 的應用程式至其客戶的租用戶。 hello 建議設計為 hello 第 3 個合作對象開發人員 toobuild hello 應用程式開發介面，它也可以當作 web 用戶端 tooimplement 註冊：
 
-1. 遵循先前的章節，以確保 API 實作多租用戶應用程式註冊/程式碼的需求
-2. 除了公開 API 的範圍/角色，請確定註冊包含「登入和讀取使用者設定檔」Azure AD 權限 (依預設會提供)
-3. 遵循稍早討論的[系統管理員同意](#admin-consent)指引，在 Web 用戶端實作登入/註冊頁面 
-4. 當使用者同意應用程式後，就會在其租用戶中會建立服務主體和同意委派連結，而原生應用程式可以取得 API 的權杖
+1. 請遵循 hello 先前各節 tooensure hello API 實作 hello 多租用戶應用程式登錄/程式碼的需求
+2. 此外 tooexposing hello 應用程式開發介面的範圍/角色，請確定 hello 註冊包含 hello 」 登入並讀取使用者設定檔"（預設值所提供） 的 Azure AD 權限
+3. 在 hello web 用戶端，遵循 hello 中實作登在 /-註冊頁面[獲得管理員同意](#admin-consent)先前討論一般指導方針 
+4. 一旦 hello 使用者同意 toohello 應用程式，hello 服務主體和同意委派連結便會建立在其租用戶和 hello 原生應用程式可以取得 hello API 的語彙基元
 
-下圖提供同意不同租用戶中註冊之多層應用程式的概觀︰
+下列圖表中的 hello 概略說明同意在不同的租用戶中註冊之多層式應用程式：
 
-![同意多層式多方應用程式][Consent-Multi-Tier-Multi-Party] 
+![同意 toomulti 層多方應用程式][Consent-Multi-Tier-Multi-Party] 
 
 ### <a name="revoking-consent"></a>撤銷同意
-使用者和系統管理員可以隨時撤銷對您應用程式的同意：
+使用者和系統管理員可以撤銷同意 tooyour 應用程式在任何時間：
 
-* 使用者可藉由將個別應用程式從其[存取面板應用程式][AAD-Access-Panel]清單中移除，來撤銷對這些應用程式的存取權。
-* 系統管理員可藉由使用 [Azure 入口網站][AZURE-portal]的 Azure AD 管理區段，將應用程式從 Azure AD 中移除，來撤銷對這些應用程式的存取權。
+* 使用者撤銷存取 tooindividual 應用程式移除它們從其[存取面板應用程式][ AAD-Access-Panel]清單。
+* 系統管理員移除 hello hello Azure AD 管理一節，使用 Azure AD 撤銷存取 tooapplications [Azure 入口網站][AZURE-portal]。
 
-如果是由系統管理員代表租用戶中的所有使用者對應用程式行使同意權，使用者就不能個別撤銷存取權。  只有系統管理員才能撤銷存取權，並且只能針對整個應用程式撤銷。
+如果系統管理員同意時 tooan 租用戶中的所有使用者的應用程式，使用者就無法個別撤銷存取權。  只有 hello 系統管理員可以撤銷存取權，而且只會針對 hello 整個應用程式。
 
 ### <a name="consent-and-protocol-support"></a>同意和通訊協定支援
-在 Azure AD 中，是透過 OAuth、OpenID Connect、「WS-同盟」及 SAML 通訊協定來支援同意。  由於 SAML 和「WS-同盟」通訊協定並不支援 `prompt=admin_consent` 參數，因此系統管理員只能透過 OAuth 和 OpenID Connect 行使同意權。
+同意 hello OAuth、 OpenID Connect，透過 Azure ad 支援 WS-同盟和 SAML 通訊協定。  hello SAML 和 WS-同盟通訊協定不支援 hello`prompt=admin_consent`參數，因此系統管理員同意才可透過 OAuth 和 OpenID Connect。
 
 ## <a name="multi-tenant-applications-and-caching-access-tokens"></a>多租用戶應用程式和快取存取權杖
-多租用戶應用程式也可以取得存取權杖來呼叫受 Azure AD 保護的 API。  搭配多租用戶應用程式使用 Active Directory Authentication Library (ADAL) 時有一個常見的錯誤，就是一開始即使用 /common 來為使用者要求權杖、接收回應，然後也使用 /common 來為該相同使用者要求後續的權杖。  由於從 Azure AD 傳回的回應是來自租用戶而非 /common，因此 ADAL 快取權杖時會將它視為來自租用戶。 後續為了為使用者取得存取權杖而進行的 /common 呼叫會遺漏快取項目，因此系統會再次提示使用者登入。  為了避免遺漏快取，請確定後續為已登入之使用者進行的呼叫是對租用戶的端點發出。
+多租用戶應用程式也可以取得存取權杖 toocall Azure AD 所保護的應用程式開發介面。  使用 hello Active Directory 驗證程式庫 (ADAL) 的多租用戶應用程式時常見的錯誤 tooinitially 要求使用者使用 /common 語彙基元、 接收回應，然後要求該相同的使用者，同時也使用 /common 後續的權杖。  因為從 Azure AD 的 hello 回應不會從租用戶，/通用，ADAL 會快取為來自 hello 租用戶的 hello 語彙基元。 hello 後續呼叫太/一般 tooget hello 使用者遺漏 hello 快取項目和 hello 使用者的存取權杖是提示的 toosign 中一次。  tooavoid 遺漏 hello 快取，請確定後續已登入的使用者會呼叫 toohello 租用戶端點。
 
 ## <a name="next-steps"></a>後續步驟
-在本文中，您已了解如何建置可讓使用者從任何 Azure Active Directory 租用戶登入的應用程式。 在啟用您應用程式與 Azure Active Directory 之間的單一登入功能之後，您也可以將應用程式更新成存取 Microsoft 資源 (例如 Office 365) 所公開的 API。 因此，您可以在應用程式中提供個人化的體驗，例如向使用者顯示內容資訊，像是他們的個人資料圖片或下一個行事曆約會。 若要深入了解如何對 Azure Active Directory 和 Office 365 服務 (例如 Exchange、SharePoint、OneDrive、OneNote、Planner、Excel 等) 進行 API 呼叫，請瀏覽：[Microsoft Graph API][MSFT-Graph-overview]。
+在本文中，您學到如何 toobuild 可以登入任何 Azure Active Directory 租用戶中的應用程式。 啟用單一登入您的應用程式與 Azure Active Directory 之間之後, 您也可以更新您的應用程式 tooaccess Microsoft 資源，例如 Office 365 所公開的 Api。 因此您可以提供個人化的經驗中您的應用程式，例如顯示 toohello 使用者，其設定檔圖片或其下一個行事曆約會等內容的相關資訊。 toolearn 深入了解進行 API 呼叫 tooAzure Active Directory 和 Office 365 服務，例如 Exchange、 SharePoint、 OneDrive、 OneNote、 Planner、 Excel 和詳細資訊，請造訪： [Microsoft Graph API][MSFT-Graph-overview]。
 
 
 ## <a name="related-content"></a>相關內容
@@ -185,11 +185,11 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 * [Azure AD 開發人員指南][AAD-Dev-Guide]
 * [應用程式物件和服務主體物件][AAD-App-SP-Objects]
 * [整合應用程式與 Azure Active Directory][AAD-Integrating-Apps]
-* [同意架構的概觀][AAD-Consent-Overview]
+* [Hello 同意架構的概觀][AAD-Consent-Overview]
 * [Microsoft Graph API 權限範圍][MSFT-Graph-permision-scopes]
 * [Azure AD Graph API 權限範圍][AAD-Graph-Perm-Scopes]
 
-請使用下列意見區段來提供意見反應，並協助我們改善及設計我們的內容。
+請使用下列註解區段 tooprovide 意見反應的 hello，並協助我們改善並圖形內容。
 
 <!--Reference style links IN USE -->
 [AAD-Access-Panel]:  https://myapps.microsoft.com

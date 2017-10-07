@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 自動化管理 Azure Web 應用程式 | Microsoft Docs"
-description: "了解如何使用 Azure 自動化服務管理 Web 應用程式。"
+title: "Azure Web 應用程式使用 Azure 自動化 aaaManage |Microsoft 文件"
+description: "深入了解如何 hello Azure 自動化服務可以使用的 toomanage Azure Web 應用程式。"
 services: app-service\web, automation
 documentationcenter: 
 author: mgoedtel
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/29/2016
 ms.author: magoedte
-ms.openlocfilehash: a96332346747114620ee6ebd2a2d0c4417d4a213
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6d80351a2927f26753cfbaead6e1c0c3c94e86e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-azure-web-app-using-azure-automation"></a>使用 Azure 自動化管理 Azure Web 應用程式
-本指南將為您介紹 Azure 自動化服務，以及如何使用它來簡化 Web 應用程式管理。
+本指南將介紹 toohello Azure 自動化服務，而且您可以如何使用的 toosimplify 管理的 Azure Web 應用程式。
 
 ## <a name="what-is-azure-automation"></a>什麼是 Azure 自動化？
-[Azure 自動化](../automation/automation-intro.md) 是一項 Azure 服務，可經由程序自動化簡化雲端管理。 使用 Azure 自動化，可以自動執行手動、重複、長時間執行及容易出錯的工作，以提高您的組織的可靠性、效率和時間價值。
+[Azure 自動化](../automation/automation-intro.md) 是一項 Azure 服務，可經由程序自動化簡化雲端管理。 使用 Azure 自動化，自動化的 tooincrease 可靠性、 效率與時間 toovalue 為您的組織可能會手動、 重複、 長時間執行，而且容易產生錯誤的工作。
 
-Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，可加以調整以符合您的需求。 在 Azure 自動化中，可以手動方式、由協力廠商系統或依排定的間隔開始執行程序，讓工作只發生在必要時刻。
+Azure 自動化會提供您的需求調整 toomeet 的非常可靠、 高可用性的工作流程執行引擎。 在 Azure 自動化中，程序可透過手動方式、經由協力廠商系統，或依照排程的間隔啟動，讓工作精準地在需要時執行。
 
-將您的雲端管理工作交由「Azure 自動化」自動執行，以減少營運負擔並釋出 IT 和開發維運人力，使其專注於能夠為企業創造價值的工作上。
+降低操作費用並釋出 IT 和 DevOps 人員 toofocus 移動您的雲端管理工作 toobe 商務價值的工作自動執行的 Azure 自動化。
 
 ## <a name="how-can-azure-automation-help-manage-azure-web-app"></a>Azure 自動化為何有助於管理 Azure Web 應用程式？
-Web 應用程式可透過 [Azure PowerShell 模組](/powershell/azureps-cmdlets-docs)中提供的 PowerShell Cmdlet，在 Azure 自動化中受到管理。 您可以 [在 Azure 自動化中安裝這些 Web 應用程式 PowerShell Cmdlet](https://azure.microsoft.com/blog/announcing-azure-resource-manager-support-azure-automation-runbooks/)，以便您能夠在服務內執行所有 Web 應用程式管理工作。 您也可以在 Azure 自動化中將這些 Cmdlet 與其他 Azure 服務的 Cmdlet 配對，將跨 Azure 服務和協力廠商系統的複雜工作自動化。
+Web 應用程式可以使用 hello 中可用的 hello PowerShell cmdlet 來管理 Azure 自動化中[Azure PowerShell 模組](/powershell/azureps-cmdlets-docs)。 您可以[安裝這些 Web 應用程式的 PowerShell cmdlet 在 Azure 自動化中](https://azure.microsoft.com/blog/announcing-azure-resource-manager-support-azure-automation-runbooks/)，如此一來，您可以執行所有的 hello 服務內的 Web 應用程式管理工作。 您也可以跨 Azure 服務和第 3 個合作對象系統配對在 Azure 自動化中這些 cmdlet 與其他 Azure 服務 tooautomate 複雜工作的 hello cmdlet。
 
 以下是使用自動化來管理應用程式服務的一些範例 ︰
 
 * [用來管理 Web Apps 的指令碼](https://azure.microsoft.com/documentation/scripts/)
 
 ## <a name="next-steps"></a>後續步驟
-了解 Azure 自動化的基本概念以及如何用它來管理 Azure Web 應用程式之後，請參考下列連結，以深入了解 Azure 自動化。
+既然您已經學會 hello 的 Azure 自動化，而且可以如何使用的 toomanage Azure Web 應用程式的基本概念，請遵循這些連結 toolearn 深入了解 Azure 自動化。
 
-* 請參閱 Azure 自動化 [入門指南](../automation/automation-first-runbook-graphical.md)
+* 請參閱 hello Azure 自動化[入門教學課程](../automation/automation-first-runbook-graphical.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions Cosmos DB 繫結 | Microsoft Docs"
-description: "了解如何在 Azure Functions 中使用 Azure Cosmos DB 繫結。"
+title: "aaaAzure 函式 Cosmos DB 繫結 |Microsoft 文件"
+description: "了解如何在 Azure 函式 toouse Azure Cosmos DB 繫結。"
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,48 +16,48 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 04/18/2016
 ms.author: glenga
-ms.openlocfilehash: de95b0591eb95e76dbb7ba2382e9e14e1f66cda1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 76b89e8296db1dd28dff9528903b1f6a28f55232
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-cosmos-db-bindings"></a>Azure Functions Cosmos DB 繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-本文說明如何在 Azure Functions 中設定 Azure Cosmos DB 繫結和撰寫其程式碼。 Azure Functions 支援 Cosmos DB 的輸入和輸出繫結。
+這篇文章說明如何在 Azure 函式的 tooconfigure 和程式碼 Azure Cosmos DB 繫結。 Azure Functions 支援 Cosmos DB 的輸入和輸出繫結。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-如需 Cosmos DB 的詳細資訊，請參閱 [Cosmos DB 簡介](../documentdb/documentdb-introduction.md)和[建置 Cosmos DB 主控台應用程式](../documentdb/documentdb-get-started.md)。
+如需有關 Cosmos DB 的詳細資訊，請參閱[簡介 tooCosmos DB](../documentdb/documentdb-introduction.md)和[建置 Cosmos DB 主控台應用程式](../documentdb/documentdb-get-started.md)。
 
 <a id="docdbinput"></a>
 
 ## <a name="documentdb-api-input-binding"></a>DocumentDB API 輸入繫結
-DocumentDB API 輸入繫結會擷取 Cosmos DB 文件，並將它傳遞給函式的具名輸入參數。 您可以根據叫用該函式的觸發程序來判斷文件識別碼。 
+hello DocumentDB API 輸入繫結擷取 Cosmos DB 文件，並將其傳遞 toohello 名為的 hello 函式的輸入的參數。 判斷識別碼 hello 文件以 hello 函式會叫用的 hello 觸發程序。 
 
-DocumentDB API 輸入繫結在 *function.json* 中具有下列屬性：
+hello DocumentDB API 輸入繫結具有下列屬性中的 hello *function.json*:
 
-- `name`︰函數程式碼中用於文件的識別碼名稱
-- `type`︰必須設定為 "documentdb"
-- `databaseName`︰包含文件的資料庫
-- `collectionName`︰包含文件的集合
-- `id`︰要擷取之文件的識別碼。 此屬性支援繫結參數；請參閱 [Azure Functions 觸發程序和繫結概念](functions-triggers-bindings.md)一文中的[在繫結運算式中繫結到自訂輸入屬性](functions-triggers-bindings.md#bind-to-custom-input-properties-in-a-binding-expression)。
-- `sqlQuery`：用來擷取多份文件的 Cosmos DB SQL 查詢。 此查詢支援執行階段繫結。 例如：`SELECT * FROM c where c.departmentId = {departmentId}`
-- `connection`：包含 Cosmos DB 連接字串的應用程式設定名稱
-- `direction`：必須設定為 `"in"`。
+- `name`： 使用函式程式碼中的 hello 文件識別名稱
+- `type`： 必須設定得 「 documentdb"
+- `databaseName`: hello 資料庫包含 hello 文件
+- `collectionName`: hello 集合，其中包含 hello 文件
+- `id`: hello hello 文件 tooretrieve 的識別碼。 此屬性支援繫結參數。請參閱[toocustom 輸入的屬性繫結中繫結運算式](functions-triggers-bindings.md#bind-to-custom-input-properties-in-a-binding-expression)hello 本文[Azure 函式的觸發程序和繫結概念](functions-triggers-bindings.md)。
+- `sqlQuery`：用來擷取多份文件的 Cosmos DB SQL 查詢。 hello 查詢支援執行階段繫結。 例如：`SELECT * FROM c where c.departmentId = {departmentId}`
+- `connection`: hello 包含 Cosmos DB 連線字串 hello 應用程式設定名稱
+- `direction`： 必須設定得`"in"`。
 
-不可同時指定 `id` 和 `sqlQuery`。 如果既未設定 `id` 也未設定 `sqlQuery`，則會擷取整個集合。
+hello 屬性`id`和`sqlQuery`無法同時指定。 如果沒有`id`也`sqlQuery`設定，hello 整個擷取集合。
 
 ## <a name="using-a-documentdb-api-input-binding"></a>使用 DocumentDB API 輸入繫結
 
-* 在 C# 和 F# 函式中，當函式順利結束時，系統會自動保留透過具名輸入參數對輸入文件所做的任何變更。 
-* 在 JavaScript 函數中，不會在函數結束時自動執行更新。 請改用 `context.bindings.<documentName>In` 和 `context.bindings.<documentName>Out` 來進行更新。 請參閱 [JavaScript 範例](#injavascript)。
+* 在 C# 和 F # 函式，hello 函式成功，結束時也會自動保存 toohello 透過具名的輸入參數的輸入文件所做的變更。 
+* 在 JavaScript 函數中，不會在函數結束時自動執行更新。 請改用`context.bindings.<documentName>In`和`context.bindings.<documentName>Out`toomake 更新。 請參閱 hello [JavaScript 範例](#injavascript)。
 
 <a name="inputsample"></a>
 
 ## <a name="input-sample-for-single-document"></a>單一文件的輸入範例
-假設您在 function.json 的 `bindings` 陣列中有下列 DocumentDB API 輸入繫結︰
+假設您有下列 hello DocumentDB API 輸入 hello 中的繫結`bindings`function.json 的陣列：
 
 ```json
 {
@@ -71,7 +71,7 @@ DocumentDB API 輸入繫結在 *function.json* 中具有下列屬性：
 }
 ```
 
-請參閱使用此輸入繫結來更新文件的文字值的特定語言範例。
+請參閱 hello 特定語言的範例會使用此輸入繫結 tooupdate hello 文件的文字值。
 
 * [C#](#incsharp)
 * [F#](#infsharp)
@@ -98,7 +98,7 @@ let Run(myQueueItem: string, inputDocument: obj) =
   inputDocument?text <- "This has changed."
 ```
 
-此範例需要一個指定 `FSharp.Interop.Dynamic` 和 `Dynamitey` NuGet 相依性的 `project.json` 檔案︰
+這個範例需要`project.json`檔案，指定 hello`FSharp.Interop.Dynamic`和`Dynamitey`NuGet 相依性：
 
 ```json
 {
@@ -113,7 +113,7 @@ let Run(myQueueItem: string, inputDocument: obj) =
 }
 ```
 
-若要新增 `project.json` 檔案，請參閱 [F# 封裝管理](functions-reference-fsharp.md#package)。
+tooadd`project.json`檔案，請參閱[F # 封裝管理](functions-reference-fsharp.md#package)。
 
 <a name="injavascript"></a>
 
@@ -130,9 +130,9 @@ module.exports = function (context) {
 
 ## <a name="input-sample-with-multiple-documents"></a>具有多份文件的輸入範例
 
-假設您想要使用佇列觸發程序來自訂查詢參數，以擷取 SQL 查詢所指定的多份文件。 
+假設您想 tooretrieve SQL 查詢，所指定的多個文件使用佇列觸發程序 toocustomize hello 查詢參數。 
 
-在此範例中，佇列觸發程序會提供參數 `departmentId`。`{ "departmentId" : "Finance" }` 的佇列訊息會傳回財務部門的所有記錄。 請在 *function.json* 中使用下列程式碼︰
+在此範例中，hello 佇列觸發程序提供的參數`departmentId`。佇列訊息的`{ "departmentId" : "Finance" }`會傳回 hello 財務部門的所有記錄。 使用中的 hello 下列*function.json*:
 
 ```
 {
@@ -177,30 +177,30 @@ module.exports = function (context, input) {
 ```
 
 ## <a id="docdboutput"></a>DocumentDB API 輸出繫結
-DocumentDB API 輸出繫結可讓您將新的文件寫入 Azure Cosmos DB 資料庫。 它在 *function.json* 中具有下列屬性：
+hello DocumentDB API 輸出繫結可讓您撰寫新的文件 tooan Azure Cosmos DB 資料庫。 它有下列屬性中的 hello *function.json*:
 
-- `name`︰函數程式碼中用於新文件的識別碼
-- `type`：必須設定為 `"documentdb"`
-- `databaseName` ︰包含其中將建立新文件之集合的資料庫。
-- `collectionName` ︰其中將建立新文件的集合。
-- `createIfNotExists`︰一個布林值，用來指出當集合不存在時是否要建立集合。 預設值為 *false*。 因為新集合會使用保留的輸送量建立，其具有價格含意。 如需詳細資訊，請瀏覽 [定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
-- `connection`：包含 Cosmos DB 連接字串的應用程式設定名稱
-- `direction`：必須設定為 `"out"`
+- `name`： 識別項在函式程式碼用於 hello 新文件
+- `type`： 必須太設定`"documentdb"`
+- `databaseName`： 包含 hello 集合將會建立新文件 hello hello 資料庫。
+- `collectionName`: hello hello 新文件將會建立的集合。
+- `createIfNotExists`： 布林值 tooindicate 是否會建立 hello 集合，如果不存在。 hello 預設值是*false*。 hello 原因為新建立的集合，以使用保留輸送量，具有定價含意。 如需詳細資訊，請瀏覽 hello[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
+- `connection`: hello 包含 Cosmos DB 連線字串 hello 應用程式設定名稱
+- `direction`： 必須太設定`"out"`
 
 ## <a name="using-a-documentdb-api-output-binding"></a>使用 DocumentDB API 輸出繫結
-本節說明如何在您的函式程式碼中使用您的 DocumentDB API 輸出繫結。
+本節說明如何 toouse DocumentDB API 輸出繫結函式程式碼中。
 
-在函式中寫入輸出參數時，依預設會在資料庫中產生新文件，使用自動產生的 GUID 做為文件識別碼。 您可以藉由在輸出參數中指定 `id` JSON 屬性來指定輸出文件的文件識別碼。 
+當您撰寫 toohello 輸出參數在函數中，預設資料庫中產生新的文件時，以自動產生的 GUID 為 hello 文件識別碼。 您可以指定 hello 文件識別碼的輸出文件，藉由指定 hello `id` hello 中的 JSON 屬性輸出參數。 
 
 >[!Note]  
->當您指定現有文件的識別碼時，新的輸出文件會覆寫現有文件。 
+>當您指定的現有文件的 hello 識別碼時，則取得 hello 新輸出文件的覆寫。 
 
-如果要輸出多個文件，您也可以繫結至 `ICollector<T>` 或 `IAsyncCollector<T>`，`T` 表示其中一種支援的類型。
+toooutput 多份文件，您也可以繫結太`ICollector<T>`或`IAsyncCollector<T>`其中`T`是其中一個支援的 hello 類型。
 
 <a name="outputsample"></a>
 
 ## <a name="documentdb-api-output-binding-sample"></a>DocumentDB API 輸出繫結範例
-假設您在 function.json 的 `bindings` 陣列中有下列 DocumentDB API 輸出繫結︰
+假設您有下列 hello DocumentDB API 輸出繫結中 hello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -214,7 +214,7 @@ DocumentDB API 輸出繫結可讓您將新的文件寫入 Azure Cosmos DB 資料
 }
 ```
 
-而且您有可接收 JSON 佇列的佇列輸入繫結，其格式如下︰
+而且您擁有 hello 遵循格式中接收 JSON 的佇列的佇列輸入繫結：
 
 ```json
 {
@@ -224,7 +224,7 @@ DocumentDB API 輸出繫結可讓您將新的文件寫入 Azure Cosmos DB 資料
 }
 ```
 
-而且您想要針對每一筆記錄建立下列格式的 Cosmos DB 文件︰
+與要 toocreate Cosmos DB 文件以 hello 遵循每一筆記錄的格式：
 
 ```json
 {
@@ -235,7 +235,7 @@ DocumentDB API 輸出繫結可讓您將新的文件寫入 Azure Cosmos DB 資料
 }
 ```
 
-請參閱使用此輸出繫結將文件新增至您的資料庫的特定語言範例。
+請參閱 hello 特定語言的範例會使用此輸出繫結 tooadd 文件 tooyour 資料庫。
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -292,7 +292,7 @@ let Run(myQueueItem: string, employeeDocument: byref<obj>, log: TraceWriter) =
       address = employee?address }
 ```
 
-此範例需要一個指定 `FSharp.Interop.Dynamic` 和 `Dynamitey` NuGet 相依性的 `project.json` 檔案︰
+這個範例需要`project.json`檔案，指定 hello`FSharp.Interop.Dynamic`和`Dynamitey`NuGet 相依性：
 
 ```json
 {
@@ -307,7 +307,7 @@ let Run(myQueueItem: string, employeeDocument: byref<obj>, log: TraceWriter) =
 }
 ```
 
-若要新增 `project.json` 檔案，請參閱 [F# 封裝管理](functions-reference-fsharp.md#package)。
+tooadd`project.json`檔案，請參閱[F # 封裝管理](functions-reference-fsharp.md#package)。
 
 <a name="outjavascript"></a>
 

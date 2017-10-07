@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Active Directory 中自訂登入頁面 | Microsoft Docs"
-description: "了解如何將公司商標新增到 Azure 登入頁面"
+title: "登入頁面 hello Azure Active Directory aaaCustomize |Microsoft 文件"
+description: "深入了解如何 tooadd 公司品牌 toohello Azure 登入頁面"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,70 +14,70 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
-ms.openlocfilehash: 27590c018ea55e9793246c7a4cab10f934ea502b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 151521e3b9cbc6a438a589735058fbff78443cf8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-company-branding-to-your-sign-in-page-in-the-azure-active-directory"></a>在 Azure Active Directory 中將公司商標新增至登入頁面
-為了避免混淆，許多公司都想對其管理的所有網站和服務套用一致的外觀與風格。 Azure Active Directory 是透過讓您利用公司標誌和自訂色彩配置來自訂登入頁面外觀的方式，提供這項功能。 登入頁面是當您登入 Office 365 或其他使用 Azure AD 作為識別提供者的 Web 型應用程式時，所顯示的頁面。 您可以與此頁面互動來輸入您的認證。
+# <a name="add-company-branding-tooyour-sign-in-page-in-hello-azure-active-directory"></a>新增公司品牌 tooyour 登入頁面 hello Azure Active Directory 中
+tooavoid 混淆的可能性，許多公司都想 tooapply 一致的外觀及操作所有 hello 網站和他們管理的服務。 Azure Active Directory 可讓您 toocustomize hello 外觀 hello 登入頁面與您的公司標誌自訂色彩配置，以提供這項功能。 hello 登入頁面為 hello 頁面，會出現在您登入 tooOffice 365 或其他 web 應用程式使用 Azure AD 作為身分識別提供者。 您互動此頁面 tooenter 您的認證。
 
-如果您想要在此頁面上顯示您的公司商標、色彩和其他可自訂的元素，請參閱下列影像以了解這兩種做法的差異。
+如果您的公司品牌、 色彩和其他可自訂的元素，此頁面上，您會想 tooshow，請參閱下列映像 toounderstand hello hello 兩種體驗差異 hello。
 
-下列螢幕擷取畫面顯示桌上型電腦上 Office 365 登入頁面的自訂「前」  範例︰
+下列螢幕擷取畫面顯示和 hello Office 365 登入頁面在桌面的電腦上的範例 hello**之前**自訂：
 
 ![自訂前的 Office 365 登入頁面](./media/active-directory-branding-custom-signon-azure-portal/sign-in-page-before-customization.png)
 
-下列螢幕擷取畫面顯示桌上型電腦上 Office 365 登入頁面的自訂「後」  範例︰
+下列螢幕擷取畫面顯示和 hello Office 365 登入頁面在桌面的電腦上的範例 hello**之後**自訂：
 
 ![自訂後的 Office 365 登入頁面](./media/active-directory-branding-custom-signon-azure-portal/sign-in-page-after-customization.png)
 
-## <a name="customizing-the-sign-in-page"></a>自訂登入頁面
-一般而言，如果您需要透過瀏覽器存取貴組織訂閱的雲端應用程式和服務，您可使用登入頁面。
+## <a name="customizing-hello-sign-in-page"></a>自訂 hello 登入頁面
+一般而言，如果您需要瀏覽器為基礎的存取 tooyour 雲端應用程式和貴組織訂閱的服務，您可以使用 hello 登入頁面。
 
-如果您已對登入頁面套用變更，最多需要一小時變更才會出現。
+如果您已套用變更 tooyour 登入頁面上，就可以在 hello 變更 tooappear tooan 小時。
 
 只有當您使用租用戶特定 URL (例如 https://outlook.com/**contoso**.com 或 https://mail.**contoso**.com) 來造訪服務時，才會顯示加上商標的登入頁面。
 
 當您造訪具有非租用戶特定 URL (例如 https://mail.office365.com) 的服務，就會看到未加上商標的登入頁面。 在此情況下，只要您一輸入使用者識別碼或是選取使用者磚，就會顯示您的商標。
 
 > [!NOTE]
-> * 在您已設定商標之 Azure 入口網站的 [網域]  部分，您的網域名稱必須顯示為 [作用中]。 如需詳細資訊，請參閱 [新增自訂網域名稱](active-directory-domains-add-azure-portal.md)。
-> * 登入頁面商標不會延續到 Microsoft 的消費者登入頁面。 如果您使用 Microsoft 帳戶進行登入，您可能會看到 Azure AD 所呈現且已加上商標的使用者磚清單，但是您組織的商標不會套用到 Microsoft 帳戶登入頁面。
+> * 您的網域名稱必須為 使用出現在 hello**網域**部分 hello Azure 入口網站中您已設定的商標。 如需詳細資訊，請參閱 [新增自訂網域名稱](active-directory-domains-add-azure-portal.md)。
+> * 登入頁面品牌不會延續 toohello 消費者登入的 Microsoft 的頁面。 如果您使用 Microsoft 帳戶登入，您可能會看到加上品牌的 Azure AD 所呈現的使用者磚清單，但您組織的品牌 hello 不會套用 toohello Microsoft 帳戶登入頁面。
 >
 >
 
-登入頁面上的 [讓我保持登入] 核取方塊，可讓使用者在關閉並重新開啟其瀏覽器時保持登入狀態。
+在您登入頁面上，hello**讓我保持登**核取方塊可讓使用者 tooremain 時關閉並重新開啟瀏覽器登入。
 
    ![讓我保持登入](./media/active-directory-branding-custom-signon-azure-portal/01.png)
 
-它不會影響工作階段存留期。 您可以在 Azure Active Directory 登入頁面上隱藏此核取方塊。
-是否會顯示核取方塊取決於 [已停用 [讓我保持登入]] 的設定。
+它不會影響工作階段存留期。 您可以隱藏 hello hello Azure Active Directory 登入頁面上的核取方塊。
+Hello 核取方塊會顯示是否取決 hello 設定**讓我保持登停用**。
 
    ![讓我保持登入](./media/active-directory-branding-custom-signon-azure-portal/02.png)
 
-若要隱藏此核取方塊，請將此設定設為 [是]。
+toohide hello 核取方塊，設定此設定太**是**。
 
 > [!NOTE]
-> SharePoint Online 和 Office 2010 的某些功能取決於能夠核取此方塊的使用者。 如果您將此設定設為隱藏，使用者可能會在登入時看見其他和非預期的提示。
+> SharePoint Online 和 Office 2010 的某些功能而定的使用者可以 toocheck 此方塊。 如果您設定此設定 toohidden，您的使用者可能會看到 toosign 中其他和非預期的提示。
 >
 >
 
-**將公司商標新增到您的目錄：**
+**tooadd 公司商標 tooyour 目錄：**
 
-1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
-2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)hello 目錄的全域管理員的帳戶。
+2. 選取**更多服務**，輸入**使用者和群組**在 hello 文字方塊中，然後選取  **Enter**。
 
    ![開啟使用者管理](./media/active-directory-branding-custom-signon-azure-portal/user-management.png)
-3. 在 [使用者和群組] 刀鋒視窗上，選取 [公司商標]。
-4. 在 [使用者和群組 - 公司商標] 刀鋒視窗上，選取 [編輯] 命令。
+3. 在 hello**使用者和群組**刀鋒視窗中，選取**公司商標**。
+4. 在 hello**使用者和群組-公司商標**刀鋒視窗中，選取 hello**編輯**命令。
 
     ![編輯自訂商標](./media/active-directory-branding-custom-signon-azure-portal/edit-branding.png)
-5. 修改您想要自訂的元素。 所有元素都是選用的。
+5. 修改您想 toocustomize 的 hello 項目。 所有元素都是選用的。
 6. 按一下 [儲存] 。
 
-您對登入頁面商標所做的任何變更可能最多需要一個小時才會顯示。
+如您所做 toohello 登入頁面品牌 tooappear，它可能佔用 tooan 小時。
 
 ## <a name="next-steps"></a>後續步驟
 [新增語言特定公司商標](active-directory-branding-localize-azure-portal.md)

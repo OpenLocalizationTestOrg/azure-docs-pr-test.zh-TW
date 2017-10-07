@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中建置 Node.js 和 MongoDB Web 應用程式 | Microsoft Docs"
-description: "了解如何取得在 Azure 中運作的 Node.js 應用程式，並利用 MongoDB 連接字串連線到 Cosmos DB 資料庫。"
+title: "aaaBuild Node.js 和 MongoDB web 應用程式在 Azure 中 |Microsoft 文件"
+description: "深入了解如何 tooget Node.js 應用程式在 Azure 中工作，與連接 tooa Cosmos DB 資料庫使用 MongoDB 連接字串。"
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
@@ -15,15 +15,15 @@ ms.topic: tutorial
 ms.date: 05/04/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 3b309382be8cdf8d48b396207fd482a5dc5ed934
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 532251c51ed6f8513e6e366393e889b67a85e5b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-nodejs-and-mongodb-web-app-in-azure"></a>在 Azure 中建置 Node.js 和 MongoDB Web 應用程式
 
-Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 本教學課程示範如何在 Azure 中建立 Node.js Web 應用程式，並將它連線到 MongoDB 資料庫。 完成之後，您的 MEAN 應用程式 (MongoDB、Express、AngularJS 及 Node.js) 將會在 [Azure App Service](app-service-web-overview.md) 中執行。 為了簡單起見，範例應用程式會使用 [MEAN.js web 架構](http://meanjs.org/)。
+Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 本教學課程會示範如何 toocreate Node.js web 應用程式在 Azure 中的，並將它連接 tooa MongoDB 資料庫。 完成之後，您的 MEAN 應用程式 (MongoDB、Express、AngularJS 及 Node.js) 將會在 [Azure App Service](app-service-web-overview.md) 中執行。 為了簡單起見，hello 範例應用程式使用 hello [MEAN.js web 架構](http://meanjs.org/)。
 
 ![在 Azure App Service 中執行的 MEAN.js 應用程式](./media/app-service-web-tutorial-nodejs-mongodb-app/meanjs-in-azure.png)
 
@@ -31,15 +31,15 @@ Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 本�
 
 > [!div class="checklist"]
 > * 在 Azure 中建立 MongoDB 資料庫
-> * 將 Node.js 應用程式連線至 MongoDB
-> * 將應用程式部署至 Azure
-> * 將資料模型更新並將應用程式重新部署
+> * 連接 Node.js 應用程式 tooMongoDB
+> * 部署 hello 應用程式 tooAzure
+> * 更新 hello 資料模型，部署 hello 應用程式
 > * 來自 Azure 的串流診斷記錄
-> * 在 Azure 入口網站中管理應用程式
+> * 管理 hello hello Azure 入口網站中的應用程式
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本教學課程：
+toocomplete 本教學課程：
 
 1. [安裝 Git](https://git-scm.com/)
 1. [安裝 Node.js 和 NPM](https://nodejs.org/)
@@ -50,41 +50,41 @@ Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 本�
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇 tooinstall，並在本機上使用 hello CLI，本主題會需要您執行 hello Azure CLI 版本 2.0 或更新版本。 執行`az --version`toofind hello 版本。 如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
 ## <a name="test-local-mongodb"></a>測試本機的 MongoDB
 
-開啟終端機視窗，然後 `cd` 至 MongoDB 安裝的 `bin` 目錄。 您可使用這個終端機視窗來執行本教學課程中的所有命令。
+開啟 hello 終端機視窗和`cd`toohello `bin` MongoDB 安裝目錄。 您可以使用這個終端機視窗 toorun hello 的所有命令，在本教學課程。
 
-在終端機上執行 `mongo`，以連接到本機的 MongoDB 伺服器。
+執行`mongo`hello 終端機 tooconnect tooyour 本機 MongoDB 伺服器中。
 
 ```bash
 mongo
 ```
 
-如果連接成功，則您的 MongoDB 資料庫已在執行中。 如果沒有，請確定您的本機 MongoDB 資料庫已遵循[安裝 MongoDB Community Edition](https://docs.mongodb.com/manual/administration/install-community/) 中的步驟來啟動。 MongoDB 通常已安裝，但您仍需要執行 `mongod` 才能將它啟動。 
+如果連接成功，則您的 MongoDB 資料庫已在執行中。 如果沒有，請確定您的本機 MongoDB 資料庫已啟動在 hello 步驟[安裝 MongoDB Community Edition](https://docs.mongodb.com/manual/administration/install-community/)。 通常，MongoDB 已安裝，但您仍然需要 toostart 它藉由執行`mongod`。 
 
-當您完成測試 MongoDB 資料庫時，在終端機上輸入 `Ctrl+C`。 
+當您完成測試 MongoDB 資料庫中，輸入`Ctrl+C`hello 終端機中。 
 
 ## <a name="create-local-nodejs-app"></a>建立本機的 Node.js 應用程式
 
-在此步驟中，您要設定本機的 Node.js 專案。
+在此步驟中，您會將設定 hello 本機 Node.js 專案。
 
-### <a name="clone-the-sample-application"></a>複製範例應用程式
+### <a name="clone-hello-sample-application"></a>複製 hello 範例應用程式
 
-在終端機視窗中，使用 `cd` 移至工作目錄。  
+在 hello 終端機視窗， `cd` tooa 工作目錄。  
 
-執行下列命令來複製範例存放庫。 
+執行下列命令 tooclone hello 範例儲存機制的 hello。 
 
 ```bash
 git clone https://github.com/Azure-Samples/meanjs.git
 ```
 
-此範例存放庫包含 [MEAN.js 存放庫](https://github.com/meanjs/mean)的副本。 若要在 App Service 上執行，會將它做修改 (如需詳細資訊，請參閱 MEAN.js 存放庫[讀我檔案](https://github.com/Azure-Samples/meanjs/blob/master/README.md))。
+這個範例儲存機制包含一份 hello [MEAN.js 儲存機制](https://github.com/meanjs/mean)。 它會修改的 toorun App Service 上 (如需詳細資訊，請參閱 hello MEAN.js 儲存機制[讀我檔案](https://github.com/Azure-Samples/meanjs/blob/master/README.md))。
 
-### <a name="run-the-application"></a>執行應用程式
+### <a name="run-hello-application"></a>執行 hello 應用程式
 
-執行下列命令以安裝必要的套件，然後啟動應用程式。
+執行下列命令 tooinstall hello 所需封裝的 hello 和啟動 hello 應用程式。
 
 ```bash
 cd meanjs
@@ -92,7 +92,7 @@ npm install
 npm start
 ```
 
-當應用程式完全載入時，您會看到類似下列的訊息：
+完全載入 hello 應用程式時，您會看到下列訊息類似 toohello:
 
 ```
 --
@@ -106,25 +106,25 @@ MEAN.JS version: 0.5.0
 --
 ```
 
-在瀏覽器中瀏覽至 http://localhost:3000 。 按一下上層功能表中的 [註冊]，然後建立測試使用者。 
+瀏覽 toohttp://localhost:3000 瀏覽器中。 按一下**註冊**入 hello 上方的功能表，並建立測試使用者。 
 
-MEAN.js 範例應用程式會將使用者資料儲存於資料庫中。 如果您成功建立使用者並且登入，則您的應用程式正在將資料寫入本機 MongoDB 資料庫。
+hello MEAN.js 範例應用程式會將使用者資料儲存在 hello 資料庫。 如果您在建立使用者和登入成功時，您的應用程式會撰寫資料 toohello 本機 MongoDB 資料庫。
 
-![MEAN.js 成功連線至 MongoDB](./media/app-service-web-tutorial-nodejs-mongodb-app/mongodb-connect-success.png)
+![MEAN.js 順利連線 tooMongoDB](./media/app-service-web-tutorial-nodejs-mongodb-app/mongodb-connect-success.png)
 
-選取 [系統管理員] > [管理文章] 來新增一些文章。
+選取**Admin > 管理文件**tooadd 某些文件。
 
-如需隨時停止 Node.js，請在終端機上按下 `Ctrl+C`。 
+toostop Node.js，也可以隨時按`Ctrl+C`hello 終端機中。 
 
 ## <a name="create-production-mongodb"></a>建立生產環境 MongoDB
 
-在此步驟中，您要在 Azure 中建立 MongoDB 資料庫。 當您的應用程式部署至 Azure 時，它會使用此雲端資料庫。
+在此步驟中，您要在 Azure 中建立 MongoDB 資料庫。 已部署的 tooAzure 您的應用程式時，它會使用此雲端的資料庫。
 
 針對 MongoDB，本教學課程使用 [Azure Cosmos DB](/azure/documentdb/)。 Cosmos DB 支援 MongoDB 用戶端連線。
 
-### <a name="log-in-to-azure"></a>登入 Azure
+### <a name="log-in-tooazure"></a>登入 tooAzure
 
-您將使用 Azure CLI 2.0 在 Azure 中建立裝載應用程式所需的資源。 使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
+您將在 Azure 中使用 Azure CLI 2.0 hello toocreate hello 所需資源 toohost 您的應用程式。 登入 Azure 訂用帳戶以 hello tooyour [az 登入](/cli/azure/#login)命令，並遵循螢幕上指示 hello。
 
 ```azurecli-interactive
 az login
@@ -132,23 +132,23 @@ az login
 
 ### <a name="create-a-resource-group"></a>建立資源群組
 
-使用 [az group create](/cli/azure/group#create) 命令來建立資源群組。
+建立資源群組以 hello [az 群組建立](/cli/azure/group#create)命令。
 
 [!INCLUDE [Resource group intro](../../includes/resource-group.md)]
 
-下列範例會在西歐區域中建立一個資源群組。
+hello 下列範例會建立資源群組中 hello 西歐地區。
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location "West Europe"
 ```
 
-使用 [az appservice list-locations](/cli/azure/appservice#list-locations) Azure CLI 命令以列出可用的位置。 
+使用 hello [az appservice 列出位置](/cli/azure/appservice#list-locations)Azure CLI 命令 toolist 可用的位置。 
 
 ### <a name="create-a-cosmos-db-account"></a>建立 Cosmos DB 帳戶
 
-使用 [az cosmosdb create](/cli/azure/cosmosdb#create) 命令來建立 Cosmos DB 帳戶。
+建立以 hello Cosmos DB 帳戶[az cosmosdb 建立](/cli/azure/cosmosdb#create)命令。
 
-在下列命令中，以唯一的 Cosmos DB 名稱取代 \<cosmosdb_name> 預留位置。 這個名稱會用來作為 Cosmos DB 端點 `https://<cosmosdb_name>.documents.azure.com/` 的一部分，因此，這個名稱在 Azure 中的所有 Cosmos DB 帳戶上必須是唯一的。 名稱只能包含小寫字母、數字及連字號 (-) 字元，且長度必須為 3 到 50 個字元。
+在 hello 下列命令，以取代 hello 的唯一 Cosmos DB 名稱 *\<cosmosdb_name >*預留位置。 這個名稱會當做 hello 一部分 hello Cosmos DB 端點， `https://<cosmosdb_name>.documents.azure.com/`，因此 hello 名稱需要 toobe 唯一跨所有 Cosmos DB 帳戶在 Azure 中。 hello 名稱必須包含小寫字母、 數字和 hello 連字號 （-） 字元，且必須介於 3 到 50 個字元之間。
 
 ```azurecli-interactive
 az cosmosdb create \
@@ -157,9 +157,9 @@ az cosmosdb create \
     --kind MongoDB
 ```
 
---kind MongoDB 參數會啟用 MongoDB 用戶端連線。
+hello *-kind MongoDB*參數可啟用 MongoDB 用戶端連線。
 
-建立 Cosmos DB 帳戶之後，Azure CLI 會顯示類似下列範例的資訊：
+建立 hello Cosmos DB 帳戶時，hello Azure CLI 顯示資訊的類似 toohello 下列範例：
 
 ```json
 {
@@ -177,19 +177,19 @@ az cosmosdb create \
 }
 ```
 
-## <a name="connect-app-to-production-mongodb"></a>將應用程式連線至生產環境 MongoDB
+## <a name="connect-app-tooproduction-mongodb"></a>連接應用程式 tooproduction MongoDB
 
-在此步驟中，您要使用 MongoDB 連接字串，將 MEAN.js 範例應用程式連線至您剛才建立的 Cosmos DB 資料庫。 
+在此步驟中，您可以連接 MEAN.js 範例應用程式 toohello Cosmos DB 資料庫您剛剛建立，使用 MongoDB 連接字串。 
 
-### <a name="retrieve-the-database-key"></a>擷取資料庫索引鍵
+### <a name="retrieve-hello-database-key"></a>擷取 hello 資料庫金鑰
 
-若要連線至 Cosmos DB 資料庫，您需要資料庫金鑰。 使用 [az cosmosdb list-keys](/cli/azure/cosmosdb#list-keys) 命令來擷取主要金鑰。
+tooconnect toohello Cosmos DB 資料庫，您必須 hello 資料庫金鑰。 使用 hello [az cosmosdb 清單索引鍵](/cli/azure/cosmosdb#list-keys)命令 tooretrieve hello 主索引鍵。
 
 ```azurecli-interactive
 az cosmosdb list-keys --name <cosmosdb_name> --resource-group myResourceGroup
 ```
 
-Azure CLI 會顯示類似下列範例的資訊：
+hello Azure CLI 顯示資訊的類似 toohello 下列範例：
 
 ```json
 {
@@ -200,19 +200,19 @@ Azure CLI 會顯示類似下列範例的資訊：
 }
 ```
 
-複製 `primaryMasterKey` 的值。 您需要在下一個步驟中用到此資訊。
+複製 hello 值`primaryMasterKey`。 您需要這個 hello 下一個步驟中的資訊。
 
 <a name="devconfig"></a>
-### <a name="configure-the-connection-string-in-your-nodejs-application"></a>在 Node.js 應用程式中設定連接字串
+### <a name="configure-hello-connection-string-in-your-nodejs-application"></a>Node.js 應用程式中設定 hello 連接字串
 
 在您的 MEAN.js 存放庫中，開啟 _config/env/production.js_。
 
-在 `db` 物件中，更新 `uri` 的值：
+在 hello`db`物件，更新 hello 值`uri`:
 
-* 將兩個 \<cosmosdb_name> 預留位置取代為您的 Cosmos DB 資料庫名稱。
-* 將 \<primary_master_key> 預留位置取代為您在上一個步驟中複製的索引鍵。
+* 取代 hello 兩 *\<cosmosdb_name >*預留位置取代您 Cosmos DB 的資料庫名稱。
+* 取代 hello  *\<primary_master_key >*預留位置 hello hello 先前步驟中複製的索引鍵。
 
-下列程式碼顯示 `db` 物件：
+hello 下列程式碼顯示 hello`db`物件：
 
 ```javascript
 db: {
@@ -221,27 +221,27 @@ db: {
 },
 ```
 
-需要 `ssl=true` 選項，因為 [Cosmos DB 需要 SSL](../cosmos-db/connect-mongodb-account.md#connection-string-requirements)。 
+hello`ssl=true`選項是必要的因為[Cosmos DB 需要 SSL](../cosmos-db/connect-mongodb-account.md#connection-string-requirements)。 
 
 儲存您的變更。
 
-### <a name="test-the-application-in-production-mode"></a>在生產模式中測試應用程式 
+### <a name="test-hello-application-in-production-mode"></a>在實際執行模式中測試 hello 應用程式 
 
-執行下列命令以縮短及組合生產環境的指令碼。 這個流程會產生生產環境所需的檔案。
+執行下列命令 toominify 和組合指令碼 hello 的生產環境的 hello。 此程序會產生所需的 hello 實際執行環境的 hello 檔案。
 
 ```bash
 gulp prod
 ```
 
-執行下列命令以使用您在 _config/env/production.js_ 中設定的連接字串。
+執行下列命令 toouse hello 您在設定連接字串的 hello _config/env/production.js_。
 
 ```bash
 NODE_ENV=production node server.js
 ```
 
-`NODE_ENV=production` 會設定環境變數，告知 Node.js 在生產環境中執行。  `node server.js` 會啟動存放庫根目錄中的 Node.js 伺服器與 `server.js`。 這是在 Azure 中載入 Node.js 應用程式的方式。 
+`NODE_ENV=production`設定告知 Node.js toorun hello 實際執行環境中的 hello 環境變數。  `node server.js`啟動 hello Node.js 伺服器和`server.js`儲存機制根目錄中。 這是在 Azure 中載入 Node.js 應用程式的方式。 
 
-載入應用程式之後，請檢查以確定它正在生產環境中執行：
+載入 hello 應用程式時，請檢查 toomake 確定 hello 實際執行環境中執行它：
 
 ```
 --
@@ -254,27 +254,27 @@ App version:     0.5.0
 MEAN.JS version: 0.5.0
 ```
 
-在瀏覽器中瀏覽至 http://localhost:8443 。 按一下上層功能表中的 [註冊]，然後建立測試使用者。 如果您成功建立使用者並且登入，則您的應用程式正在將資料寫入 Azure 中的 Cosmos DB 資料庫。 
+瀏覽 toohttp://localhost:8443 瀏覽器中。 按一下**註冊**入 hello 上方的功能表，並建立測試使用者。 如果您成功建立使用者和登入，您的應用程式會在 Azure 中撰寫資料 toohello Cosmos DB 資料庫。 
 
-在終端機中，輸入 `Ctrl+C` 以停止 Node.js。 
+在終端機 hello，請輸入，Node.js 停止`Ctrl+C`。 
 
-## <a name="deploy-app-to-azure"></a>將應用程式部署到 Azure
+## <a name="deploy-app-tooazure"></a>部署應用程式 tooAzure
 
-在此步驟中，您要將已與 MongoDB 連接的 Node.js 應用程式部署至 Azure App Service。
+在此步驟中，您可以部署您 MongoDB 連接 Node.js 應用程式 tooAzure 應用程式服務。
 
 ### <a name="create-an-app-service-plan"></a>建立應用程式服務方案
 
-使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令來建立 App Service 方案。 
+建立應用程式服務方案以 hello [az 應用程式服務方案建立](/cli/azure/appservice/plan#create)命令。 
 
 [!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
-下列範例會使用**免費**定價層，建立名為 _myAppServicePlan_ 的 App Service 方案：
+hello 下列範例會建立名為 App Service 方案_myAppServicePlan_使用 hello**免費**定價層：
 
 ```azurecli-interactive
 az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE
 ```
 
-建立 App Service 方案後，Azure CLI 會顯示類似下列範例的資訊：
+建立 hello 應用程式服務方案時，hello Azure CLI 顯示資訊的類似 toohello 下列範例：
 
 ```json 
 { 
@@ -294,17 +294,17 @@ az appservice plan create --name myAppServicePlan --resource-group myResourceGro
 
 ### <a name="create-a-web-app"></a>建立 Web 應用程式
 
-使用 [az webapp create](/cli/azure/webapp#create) 命令，在 `myAppServicePlan` App Service 方案中建立 Web 應用程式。 
+建立 web 應用程式在 hello`myAppServicePlan`應用程式服務方案以 hello [az webapp 建立](/cli/azure/webapp#create)命令。 
 
-Web 應用程式會為您提供裝載空間來部署程式碼，以及提供 URL 讓您能夠檢視已部署的應用程式。 用來建立 Web 應用程式。 
+hello web 應用程式可讓您裝載空間 toodeploy 您的程式碼和為您提供 URL tooview hello 部署應用程式。 使用 toocreate hello web 應用程式。 
 
-在下列命令中，將 \<app_name> 預留位置取代為唯一的應用程式名稱。 這個名稱是作為 Web 應用程式預設 URL 的一部分，因此，這個名稱在 Azure App Service 的所有應用程式中必須是唯一的。 
+在 hello 下列命令，將取代 hello  *\<app_name >*具有唯一的應用程式名稱的預留位置。 這個名稱會做為 hello hello 預設 URL 的一部分 hello web 應用程式，因此 hello 名稱需要 toobe 唯一跨 Azure App Service 中的所有應用程式。 
 
 ```azurecli-interactive
 az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
 ```
 
-建立 Web 應用程式後，Azure CLI 會顯示類似下列範例的資訊： 
+Hello web 應用程式建立後，hello Azure CLI 顯示資訊的類似 toohello 下列範例： 
 
 ```json 
 {
@@ -323,11 +323,11 @@ az webapp create --name <app_name> --resource-group myResourceGroup --plan myApp
 
 ### <a name="configure-an-environment-variable"></a>設定環境變數
 
-稍早在本教學課程中，您已將資料庫連接字串硬式編碼於 _config/env/production.js_ 中。 基於安全性最佳做法，您會想要將這些敏感性資料保存在您的 Git 存放庫以外的地方。 為了在 Azure 中執行應用程式，您將改用環境變數。
+稍早在 hello 教學課程，您硬式編碼 hello 資料庫連接字串中_config/env/production.js_。 為了保持安全性最佳作法，想要 tookeep 這個敏感性資料從您的 Git 儲存機制。 為了在 Azure 中執行應用程式，您將改用環境變數。
 
-在 App Service 中，您可以使用 [az webapp config appsettings update](/cli/azure/webapp/config/appsettings#update) 命令將環境變數設定為「應用程式設定」。 
+在應用程式服務中，您設定環境變數為_應用程式設定_使用 hello [az webapp config appsettings 更新](/cli/azure/webapp/config/appsettings#update)命令。 
 
-下列範例會在 Azure Web 應用程式中設定 `MONGODB_URI` 應用程式設定。 取代 \<app_name>、\<cosmosdb_name> 和 \<primary_master_key> 預留位置。
+hello 下列範例會設定`MONGODB_URI`Azure web 應用程式中的應用程式設定。 取代 hello  *\<app_name >*，  *\<cosmosdb_name >*，和 *\<primary_master_key >*預留位置。
 
 ```azurecli-interactive
 az webapp config appsettings update \
@@ -338,13 +338,13 @@ az webapp config appsettings update \
 
 在 Node.js 程式碼中，您可以利用 `process.env.MONGODB_URI` 來存取此應用程式設定，就像存取任何環境變數一樣。 
 
-現在，使用下列命令，將您的變更復原為 _config/env/production.js_：
+現在，復原變更 too_config/env/production.js_ 以 hello 下列命令：
 
 ```bash
 git checkout -- .
 ```
 
-再次開啟 _config/env/production.js_。 請注意，已經將預設的 MEAN.js 應用程式設定為使用您建立的 `MONGODB_URI` 環境變數。
+再次開啟 _config/env/production.js_。 請注意該 hello 預設 MEAN.js 應用程式已設定的 toouse hello`MONGODB_URI`您建立的環境變數。
 
 ```javascript
 db: {
@@ -355,41 +355,41 @@ db: {
 
 ### <a name="configure-local-git-deployment"></a>設定本機 git 部署 
 
-使用 [az webapp deployment user set](/cli/azure/webapp/deployment/user#set) 命令來建立部署的認證。
+使用 hello [az webapp 部署使用者集合](/cli/azure/webapp/deployment/user#set)命令 toocreate 認證進行部署。
 
-您可以使用各種方式來將應用程式部署至 Azure App Service，包括 FTP、本機 Git、GitHub、Visual Studio Team Services 和 BitBucket。 對於 FTP 和本機 Git，必須在伺服器上設定部署使用者，才能驗證您的部署。 此部署使用者是帳戶層級，與 Azure 訂用帳戶的帳戶不同。 您只需設定此部署使用者一次。
+您可以部署您的應用程式 tooAzure 應用程式服務，以各種方式，包括 FTP、 本機 Git、 GitHub、 Visual Studio Team Services 和 BitBucket。 若為 FTP 和本機 Git，則需要您的部署 hello 伺服器 tooauthenticate toohave 部署使用者設定。 此部署使用者是帳戶層級，與 Azure 訂用帳戶的帳戶不同。 您只需要 tooconfigure 這個部署使用者一次。
 
-在下列命令中，將 *\<user-name>* 和 *\<password>* 取代為新的使用者名稱和密碼。 使用者名稱必須是唯一的。 密碼長度必須至少為 8 個字元，包含下列三個元素其中兩個：字母、數字、符號。 如果您收到 ` 'Conflict'. Details: 409` 錯誤，請變更使用者名稱。 如果您收到 ` 'Bad Request'. Details: 400` 錯誤，請使用更強的密碼。
+下列命令，取代在 hello *\<使用者名稱 >*和*\<密碼 >*與新的使用者名稱和密碼。 hello 使用者名稱必須是唯一的。 hello 密碼必須至少為八個字元，以下列三個元素的 hello 的兩個： 字母、 數字、 符號。 如果您收到` 'Conflict'. Details: 409`錯誤，變更 hello 使用者名稱。 如果您收到 ` 'Bad Request'. Details: 400` 錯誤，請使用更強的密碼。
 
 ```azurecli-interactive
 az appservice web deployment user set --user-name <username> --password <password>
 ```
 
-記下使用者名稱和密碼，以在您部署應用程式的稍後步驟中使用。
+記錄 hello 使用者名稱和密碼，以在稍後的步驟，當您部署的 hello 應用程式中使用。
 
-使用 [az webapp deployment source config-local-git](/cli/azure/webapp/deployment/source#config-local-git) 命令，來設定 Azure Web 應用程式的本機 Git 存取。 
+使用 hello [az webapp 部署來源設定為本機的 git](/cli/azure/webapp/deployment/source#config-local-git)命令 tooconfigure 本機 Git 存取 toohello Azure web 應用程式。 
 
 ```azurecli-interactive
 az webapp deployment source config-local-git --name <app_name> --resource-group myResourceGroup
 ```
 
-設定部署使用者時，Azure CLI 會以下列格式顯示 Azure Web 應用程式的部署 URL：
+Hello 部署使用者設定時，Azure CLI hello 會顯示 hello Azure web 應用程式的部署 URL 中 hello 下列格式：
 
 ```bash 
 https://<username>@<app_name>.scm.azurewebsites.net:443/<app_name>.git 
 ``` 
 
-複製終端機的輸出，因為下一個步驟中會使用此資訊。 
+因為它會使用 hello 下一個步驟中複製 hello hello 終端機中，從輸出。 
 
-### <a name="push-to-azure-from-git"></a>從 Git 推送至 Azure
+### <a name="push-tooazure-from-git"></a>從 Git 推送 tooAzure
 
-將 Azure 遠端新增至本機 Git 存放庫。 
+新增 Azure 遠端 tooyour 本機 Git 儲存機制。 
 
 ```bash
 git remote add azure <paste_copied_url_here> 
 ```
 
-推送至 Azure 遠端，以部署您的 Node.js 應用程式。 建立部署使用者時，系統會提示您輸入稍早提供的密碼。 
+推送 toohello Azure 遠端 toodeploy Node.js 應用程式。 安裝程式將會提示您稍早提供一部分 hello hello 部署使用者建立的 hello 密碼。 
 
 ```bash
 git push azure master
@@ -399,7 +399,7 @@ git push azure master
 
 ```bash
 Counting objects: 5, done.
-Delta compression using up to 4 threads.
+Delta compression using up too4 threads.
 Compressing objects: 100% (5/5), done.
 Writing objects: 100% (5/5), 489 bytes | 0 bytes/s, done.
 Total 5 (delta 3), reused 0 (delta 0)
@@ -413,40 +413,40 @@ remote: Handling node.js deployment.
 .
 .
 remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net/<app_name>.git
+toohttps://<app_name>.scm.azurewebsites.net/<app_name>.git
  * [new branch]      master -> master
 ``` 
 
-您可能會注意到，部署程序會在 `npm install` 之後執行 [Gulp](http://gulpjs.com/)。 App Service 不會在部署期間執行 Gulp 或 Grunt 工作，因此，這個範例存放庫在其根目錄中有兩個其他檔案可啟用它： 
+您可能會注意到 hello 部署程序執行[Gulp](http://gulpjs.com/)之後`npm install`。 應用程式服務不會在部署期間執行 Gulp 或 grunt 所完成的工作，因此這個範例儲存機制具有兩個額外的檔案其根目錄 tooenable 它： 
 
-- _.deployment_ - 此檔案會告訴 App Service，執行 `bash deploy.sh` 以作為自訂部署指令碼。
-- _deploy.sh_ - 自訂部署指令碼。 如果您檢閱檔案，您將看到它會在 `npm install` 和 `bower install` 之後執行 `gulp prod`。 
+- _.deployment_ -此檔案會告知應用程式服務 toorun `bash deploy.sh` hello 自訂部署指令碼。
+- _deploy.sh_ -hello 自訂部署指令碼。 如果您檢閱 hello 檔案時，您會看到應用程式會執行`gulp prod`之後`npm install`和`bower install`。 
 
-您可以使用這種方法，將任何步驟新增至您的 Git 部署。 如果您在任一時間點重新啟動 Azure Web 應用程式，App Service 並不會重新執行這些自動化工作。
+您可以使用此方法 tooadd 任何步驟 tooyour Git 為基礎的部署。 如果您在任一時間點重新啟動 Azure Web 應用程式，App Service 並不會重新執行這些自動化工作。
 
-### <a name="browse-to-the-azure-web-app"></a>瀏覽至 Azure Web 應用程式 
+### <a name="browse-toohello-azure-web-app"></a>瀏覽 toohello Azure web 應用程式 
 
-使用 Web 瀏覽器，瀏覽至已部署的 Web 應用程式。 
+瀏覽使用網頁瀏覽器 toohello 部署 web 應用程式。 
 
 ```bash 
 http://<app_name>.azurewebsites.net 
 ``` 
 
-按一下上層功能表中的 [註冊]，然後建立一位虛擬使用者。 
+按一下**註冊**入 hello 上方的功能表，並建立虛擬使用者。 
 
-如果成功且應用程式會自動登入已建立的使用者，則您在 Azure 中的 MEAN.js 應用程式就已連線到 MongoDB (Cosmos DB) 資料庫。 
+如果您為成功，而且 hello 應用程式會自動登入 toohello 在 Azure 中建立使用者，然後 MEAN.js 應用程式都有連線能力 toohello MongoDB (Cosmos DB) 資料庫。 
 
 ![在 Azure App Service 中執行的 MEAN.js 應用程式](./media/app-service-web-tutorial-nodejs-mongodb-app/meanjs-in-azure.png)
 
-選取 [系統管理員] > [管理文章] 來新增一些文章。 
+選取**Admin > 管理文件**tooadd 某些文件。 
 
 **恭喜！** 您正在 Azure App Service 中執行資料驅動的 Node.js 應用程式。
 
 ## <a name="update-data-model-and-redeploy"></a>更新資料模型並重新部署
 
-在此步驟中，您會變更 `article` 資料模型，並將變更發佈至 Azure。
+在此步驟中，您可以變更 hello`article`資料模型，並發行變更 tooAzure。
 
-### <a name="update-the-data-model"></a>更新資料模型
+### <a name="update-hello-data-model"></a>更新 hello 資料模型
 
 開啟 _modules/articles/server/models/article.server.model.js_。
 
@@ -467,15 +467,15 @@ var ArticleSchema = new Schema({
 });
 ```
 
-### <a name="update-the-articles-code"></a>更新 articles 程式碼
+### <a name="update-hello-articles-code"></a>更新 hello 文件的程式碼
 
-更新 `articles` 程式碼的其餘部分以使用 `comment`。
+更新的 hello rest 您`articles`程式碼 toouse `comment`。
 
-有五個需要修改的檔案：伺服器控制器和四個用戶端檢視。 
+有五個檔案，您需要 toomodify: hello 伺服器控制器和 hello 四個用戶端檢視。 
 
 開啟 _modules/articles/server/controllers/articles.server.controller.js_。
 
-在 `update` 函式中，新增 `article.comment` 的指派。 下列程式碼會顯示已完成的 `update` 函式：
+在 hello`update`函式中，新增的指派`article.comment`。 hello 下列程式碼顯示 hello 完成`update`函式：
 
 ```javascript
 exports.update = function (req, res) {
@@ -491,7 +491,7 @@ exports.update = function (req, res) {
 
 開啟 _modules/articles/client/views/view-article.client.view.html_。
 
-就在結尾 `</section>` 標記的正上方，新增下列程式碼行來顯示 `comment` 以及剩餘的文章資料：
+正上方 hello 右`</section>`標記中加入下列行 toodisplay hello`comment`連同其他部分 hello hello 發行項資料：
 
 ```HTML
 <p class="lead" ng-bind="vm.article.comment"></p>
@@ -499,7 +499,7 @@ exports.update = function (req, res) {
 
 開啟 _modules/articles/client/views/list-articles.client.view.html_。
 
-就在結尾 `</a>` 標記的正上方，新增下列程式碼行來顯示 `comment` 以及剩餘的文章資料：
+正上方 hello 右`</a>`標記中加入下列行 toodisplay hello`comment`連同其他部分 hello hello 發行項資料：
 
 ```HTML
 <p class="list-group-item-text" ng-bind="article.comment"></p>
@@ -507,7 +507,7 @@ exports.update = function (req, res) {
 
 開啟 _modules/articles/client/views/admin/list-articles.client.view.html_。
 
-在 `<div class="list-group">` 元素內部且就在結尾 `comment` 標記的正上方，新增下列程式碼行來顯示 `</a>` 以及剩餘的文章資料：
+內部 hello`<div class="list-group">`元素與 hello 結尾的正上方`</a>`標記中加入下列行 toodisplay hello`comment`連同其他部分 hello hello 發行項資料：
 
 ```HTML
 <p class="list-group-item-text" data-ng-bind="article.comment"></p>
@@ -515,7 +515,7 @@ exports.update = function (req, res) {
 
 開啟 _modules/articles/client/views/admin/form-article.client.view.html_。
 
-找到包含提交按鈕的 `<div class="form-group">` 元素，如下所示：
+尋找 hello`<div class="form-group">`包含 hello 送出按鈕，像這樣的項目：
 
 ```HTML
 <div class="form-group">
@@ -523,7 +523,7 @@ exports.update = function (req, res) {
 </div>
 ```
 
-就在此標記的正上方，新增另一個 `<div class="form-group">` 元素，讓使用者能夠編輯 `comment` 欄位。 新的元素應該如下所示：
+此標記的正上方加入另一個`<div class="form-group">`項目，可讓人員編輯 hello`comment`欄位。 新的元素應該如下所示：
 
 ```HTML
 <div class="form-group">
@@ -544,56 +544,56 @@ NODE_ENV=production node server.js
 ```
 
 > [!NOTE]
-> 請記住，您的 _config/env/production.js_ 已還原，`MONGODB_URI` 環境變數只會設定於 Azure Web 應用程式中，而不會設定於本機電腦上。 如果您查看設定檔，就會發現生產設定預設為使用本機的 MongoDB 資料庫。 如此可確保當您在本機測試程式碼變更時，不會碰觸到生產資料。
+> 請記住，您_config/env/production.js_已還原，和 hello `MONGODB_URI` Azure web 應用程式中，而不是在本機電腦，才會設定環境變數。 如果您看一下 hello 設定檔，您會發現該 hello production 組態預設值 toouse 本機 MongoDB 資料庫。 如此可確保當您在本機測試程式碼變更時，不會碰觸到生產資料。
 
-在瀏覽器中，瀏覽至 `http://localhost:8443`，並確定您已登入。
+瀏覽過`http://localhost:8443`瀏覽器中，並確定您已登入。
 
-選取 [系統管理員] > [管理文章]，然後選取 [+] 按鈕來新增文章。
+選取**Admin > 管理文件**，然後加入發行項藉由選取 hello  **+**   按鈕。
 
-您現在會看到新的 `Comment` 文字方塊。
+您會看見 hello 新`Comment`現在文字方塊。
 
-![已將註解欄位新增到文章中](./media/app-service-web-tutorial-nodejs-mongodb-app/added-comment-field.png)
+![加入註解欄位 tooArticles](./media/app-service-web-tutorial-nodejs-mongodb-app/added-comment-field.png)
 
-在終端機中，輸入 `Ctrl+C` 以停止 Node.js。 
+在終端機 hello，請輸入，Node.js 停止`Ctrl+C`。 
 
-### <a name="publish-changes-to-azure"></a>將變更發佈至 Azure
+### <a name="publish-changes-tooazure"></a>發行變更 tooAzure
 
-在 Git 中認可您的變更，然後將程式碼變更推送至 Azure。
+認可您的變更在 Git，然後推送 hello 程式碼變更 tooAzure。
 
 ```bash
 git commit -am "added article comment"
 git push azure master
 ```
 
-完成 `git push` 之後，瀏覽至 Azure Web 應用程式，然後嘗試執行新功能。
+一次 hello`git push`已完成，請瀏覽 tooyour Azure web 應用程式並再試一次 hello 新功能。
 
-![發佈至 Azure 的模型和資料庫變更](media/app-service-web-tutorial-nodejs-mongodb-app/added-comment-field-published.png)
+![發行 tooAzure 模型與資料庫的變更。](media/app-service-web-tutorial-nodejs-mongodb-app/added-comment-field-published.png)
 
-如果您先前已新增任何文章，您仍然可以看到它們。 Cosmos DB 中的現有資料不會遺失。 此外，您的變更會更新至資料結構描述，並讓現有資料保留不變。
+如果您先前已新增任何文章，您仍然可以看到它們。 Cosmos DB 中的現有資料不會遺失。 此外，您更新 toohello 資料的結構描述，會保留現有的資料。
 
 ## <a name="stream-diagnostic-logs"></a>資料流診斷記錄 
 
-當 Node.js 應用程式在 Azure App Service 中執行時，您可以使用管線將主控台記錄傳送至終端機。 這樣一來，您就能取得相同的診斷訊息，以協助您偵錯應用程式錯誤。
+Node.js 應用程式執行的 Azure 應用程式服務，而您可以取得 hello 主控台記錄檔傳送的 tooyour 終端機。 這樣一來，您可以取得 hello 相同的診斷訊息 toohelp 您偵錯應用程式錯誤。
 
-請使用 [az webapp log tail](/cli/azure/webapp/log#tail) 命令開始記錄資料流。
+資料流中，使用 hello toostart 記錄[az webapp 記錄結尾](/cli/azure/webapp/log#tail)命令。
 
 ```azurecli-interactive
 az webapp log tail --name <app_name> --resource-group myResourceGroup
 ``` 
 
-開始記錄資料流之後，重新整理瀏覽器中的 Azure Web 應用程式，以取得部分 Web 流量。 您現在會看到使用管線傳送到終端機的主控台記錄。
+記錄檔資料流啟動之後，重新整理在 hello 瀏覽器 tooget Azure web 應用程式一些 web 流量。 您現在可以看到主控台記錄檔經由管道輸出 tooyour 終端機。
 
 您隨時可以輸入 `Ctrl+C` 以停止記錄資料流。 
 
 ## <a name="manage-your-azure-web-app"></a>管理您的 Azure Web 應用程式
 
-請移至 [Azure 入口網站](https://portal.azure.com)，以查看您所建立的 Web 應用程式。
+移 toohello [Azure 入口網站](https://portal.azure.com)toosee hello web 應用程式所建立。
 
-按一下左側功能表中的 [應用程式服務]，然後按一下 Azure Web 應用程式的名稱。
+從 hello 左窗格中，按一下 **應用程式服務**，然後按一下 hello Azure web 應用程式名稱。
 
-![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-tutorial-nodejs-mongodb-app/access-portal.png)
+![入口網站瀏覽 tooAzure web 應用程式](./media/app-service-web-tutorial-nodejs-mongodb-app/access-portal.png)
 
-根據預設，入口網站會顯示 Web 應用程式的 [概觀] 分頁。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 分頁左側的索引標籤會顯示您可開啟的各種設定分頁。
+根據預設，hello 入口網站會顯示 web 應用程式的**概觀**頁面。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 在左邊 hello 頁面 hello hello 索引標籤會顯示 hello 不同的組態頁面，您可以開啟。
 
 ![Azure 入口網站中的 App Service 頁面](./media/app-service-web-tutorial-nodejs-mongodb-app/web-app-blade.png)
 
@@ -606,13 +606,13 @@ az webapp log tail --name <app_name> --resource-group myResourceGroup
 
 > [!div class="checklist"]
 > * 在 Azure 中建立 MongoDB 資料庫
-> * 將 Node.js 應用程式連線至 MongoDB
-> * 將應用程式部署至 Azure
-> * 將資料模型更新並將應用程式重新部署
-> * 將記錄從 Azure 串流到終端機
-> * 在 Azure 入口網站中管理應用程式
+> * 連接 Node.js 應用程式 tooMongoDB
+> * 部署 hello 應用程式 tooAzure
+> * 更新 hello 資料模型，部署 hello 應用程式
+> * 從 Azure tooyour 終端機的資料流記錄檔
+> * 管理 hello hello Azure 入口網站中的應用程式
 
-前往下一個教學課程，了解如何將自訂的 DNS 名稱對應至 Web 應用程式。
+前進 toohello 下一個教學課程 toolearn toomap 自訂的 DNS 名稱 tooyour web 應用程式的方式。
 
 > [!div class="nextstepaction"] 
-> [將現有的自訂 DNS 名稱對應至 Azure Web Apps](app-service-web-tutorial-custom-domain.md)
+> [將現有自訂 DNS 名稱 tooAzure Web 應用程式的對應](app-service-web-tutorial-custom-domain.md)

@@ -1,5 +1,5 @@
 ---
-title: "具有異常登入活動的使用者"
+title: "aaaUsers 具有異常登入活動"
 description: "指出已識別出異常登入活動的所有使用者帳戶的報告。"
 services: active-directory
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: acba4a4d3fa589aa1846f63883e5482e60605b70
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: efc9e21cfc3156b345a84da7527bf749af2b563c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="users-with-anomalous-sign-in-activity"></a>具有異常登入活動的使用者
-這份彙總報告會將來自下列報告的可疑登入合併為一份報告：
+這是彙總報告，結合從下列報表 hello 的可疑登入：
 
 <ul><li>從不明來源登入</li>
 <li>在多次失敗後登入</li>

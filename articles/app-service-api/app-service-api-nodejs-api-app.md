@@ -1,6 +1,6 @@
 ---
-title: "Azure App Service 中的 Node.js API 應用程式 | Microsoft Docs"
-description: "了解如何建立 Node.js RESTful API，並將其部署至 Azure App Service 中的 API 應用程式。"
+title: "Azure App Service 中的 aaaNode.js API 應用程式 |Microsoft 文件"
+description: "深入了解如何 toocreate Node.js rest 式 API 並將它部署在 Azure App Service 中的 tooan API 應用程式。"
 services: app-service\api
 documentationcenter: node
 author: bradygaster
@@ -14,16 +14,16 @@ ms.devlang: nodejs
 ms.topic: get-started-article
 ms.date: 06/13/2017
 ms.author: rachelap
-ms.openlocfilehash: 806585edd43b9d2d678bfa41523e4d9d40af8cba
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3b3229c1453b6ca4d06bef26f476e92afda4e244
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="build-a-nodejs-restful-api-and-deploy-it-to-an-api-app-in-azure"></a>建置 Node.js RESTful API 並將它部署至 Azure 中的 API 應用程式
+# <a name="build-a-nodejs-restful-api-and-deploy-it-tooan-api-app-in-azure"></a>建置 Node.js rest 式 API，並將它部署在 Azure 中的 tooan API 應用程式
 [!INCLUDE [app-service-api-get-started-selector](../../includes/app-service-api-get-started-selector.md)]
 
-本快速入門示範如何在 Azure 上使用 [Swagger](http://swagger.io/) 定義並將其部署為 [API 應用程式](app-service-api-apps-why-best-platform.md)，建立 REST API (以 Node.js [Express](http://expressjs.com/) 撰寫。 您可使用命令列工具建立應用程式、使用 [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) 設定資源，以及使用 Git 部署應用程式。  當您完成後，您必須在 Azure 上執行工作範例 REST API。
+本快速入門示範如何使用 Node.js 撰寫 toocreate REST API， [Express](http://expressjs.com/)，並使用[Swagger](http://swagger.io/)定義，並將它做為部署[API 應用程式](app-service-api-apps-why-best-platform.md)在 Azure 上。 您建立使用命令列工具的 hello 應用程式、 設定資源以 hello [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)，及部署使用 Git hello 應用程式。  當您完成後，您必須在 Azure 上執行工作範例 REST API。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -34,17 +34,17 @@ ms.lasthandoff: 08/18/2017
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇 tooinstall，並在本機上使用 hello CLI，本主題會需要您執行 hello Azure CLI 版本 2.0 或更新版本。 執行`az --version`toofind hello 版本。 如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
 ## <a name="prepare-your-environment"></a>準備您的環境
 
-1. 在終端機視窗中執行下列命令，將範例複製到本機電腦。
+1. 在終端機視窗中，執行下列命令 tooclone hello 範例 tooyour 本機電腦的 hello。
 
     ```bash
     git clone https://github.com/Azure-Samples/app-service-api-node-contact-list
     ```
 
-2. 變更為包含範例程式碼的目錄。
+2. 變更 toohello 目錄，包含 hello 範例程式碼。
 
     ```bash
     cd app-service-api-node-contact-list
@@ -59,9 +59,9 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="generate-nodejs-code"></a>產生 Node.js 程式碼 
 
-在教學課程的這一節當中，會建立 API 開發工作流程的模型，以供您在其中先建立 Swagger 中繼資料，再以此建立 (自動產生) API 伺服器程式碼的結構。 
+本節 hello 教學課程的模型中的方法，您可以先建立 Swagger 中繼資料，並使用該 tooscaffold API 開發工作流程 （自動產生） hello API 伺服端程式碼。 
 
-將目錄變更為 change 資料夾，然後執行 `yo swaggerize`。 Swaggerize 可從 api.json 中的 Swagger 定義，為您的 API 建立 Node.js 專案。
+變更目錄 toohello*啟動*資料夾，然後執行`yo swaggerize`。 Swaggerize 為您的 API，從 hello Swagger 定義中建立 Node.js 專案*api.json*。
 
 ```bash
 cd start
@@ -73,28 +73,28 @@ yo swaggerize --apiPath api.json --framework express
    ```bash
    Swaggerize Generator
    Tell us a bit about your application
-   ? What would you like to call this project: ContactList
+   ? What would you like toocall this project: ContactList
    ? Your name: Francis Totten
    ? Your github user name: fabfrank
    ? Your email: frank@fabrikam.net
    ```
    
-## <a name="customize-the-project-code"></a>自訂專案程式碼
+## <a name="customize-hello-project-code"></a>自訂 hello 專案程式碼
 
-1. 將 lib 資料夾複製到 `yo swaggerize` 所建立的 ContactList 資料夾，然後將目錄變更為 ContactList。
+1. 複製 hello *lib*資料夾 hello *ContactList*所建立的資料夾`yo swaggerize`，然後變更目錄到*ContactList*。
 
     ```bash
     cp -r lib/ ContactList/
     cd ContactList
     ```
 
-2. 安裝 `jsonpath` 和 `swaggerize-ui` NPM 模組。 
+2. 安裝 hello`jsonpath`和`swaggerize-ui`NPM 模組。 
 
     ```bash
     npm install --save jsonpath swaggerize-ui
     ```
 
-3. 以下列程式碼取代 handlers/contacts.js 中的程式碼： 
+3. Hello 中的 hello 程式碼取代*handlers/contacts.js*以下列程式碼的 hello: 
     ```javascript
     'use strict';
 
@@ -106,9 +106,9 @@ yo swaggerize --apiPath api.json --framework express
         }
     };
     ```
-    此程式碼會使用 lib/contactRepository.js 所提供的 lib/contacts.json 中儲存的 JSON 資料。 新的 contacts.js 程式碼會傳回存放庫中的所有連絡人作為 JSON 酬載。 
+    此程式碼使用 hello JSON 資料儲存於*lib/contacts.json*由*lib/contactRepository.js*。 新的 hello *contacts.js*程式碼會傳回所有連絡人 hello 做為 JSON 裝載的儲存機制中。 
 
-4. 以下列程式碼取代 **handlers/contacts/{id}.js** 檔案中的程式碼：
+4. Hello 中的 hello 程式碼取代**handlers/contacts/{id}.js**檔案以下列程式碼的 hello:
 
     ```javascript
     'use strict';
@@ -122,9 +122,9 @@ yo swaggerize --apiPath api.json --framework express
     };
     ```
 
-    此程式碼可讓您使用路徑變數，只傳回具有指定之識別碼的連絡人。
+    此程式碼可讓您使用路徑變數 tooreturn 只有 hello 連絡人，並提供指定的識別碼。
 
-5. 以下列程式碼取代 **server.js** 中的程式碼：
+5. 中的 hello 程式碼取代**立即轉譯 server.js**以下列程式碼的 hello:
 
     ```javascript
     'use strict';
@@ -162,16 +162,16 @@ yo swaggerize --apiPath api.json --framework express
     });
     ```   
 
-    此程式碼會進行一些小變更，讓它能與 Azure App Service 搭配運作，並為您的 API 公開互動式 Web 介面。
+    這個程式碼可讓它與服務搭配使用 Azure 應用程式部分進行小變更 toolet 並公開 api 的互動的 web 介面。
 
-### <a name="test-the-api-locally"></a>在本機測試 API
+### <a name="test-hello-api-locally"></a>測試 hello API 本機
 
-1. 啟動 Node.js 應用程式
+1. 啟動 hello Node.js 應用程式
     ```bash
     npm start
     ```
     
-2. 瀏覽至 http://localhost:8000/contacts 以檢視整份連絡人清單的 JSON。
+2. 瀏覽 toohttp://localhost:8000 / 連絡 tooview hello JSON hello 整個連絡人清單。
    
    ```json
     {
@@ -191,7 +191,7 @@ yo swaggerize --apiPath api.json --framework express
     }
    ```
 
-3. 瀏覽至 http://localhost:8000/contacts/2 以檢視 `id` 為 2 的連絡人。
+3. 瀏覽 toohttp://localhost:8000/連絡人/2 tooview hello 與連絡`id`兩個。
    
     ```json
     { 
@@ -201,21 +201,21 @@ yo swaggerize --apiPath api.json --framework express
     }
     ```
 
-4. 使用 Swagger Web 介面 (位於 http://localhost:8000/docs) 測試 API。
+4. 測試 hello API: //localhost: 8000/文件在使用 hello Swagger web 介面。
    
     ![Swagger Web 介面](media/app-service-api-nodejs-api-app/swagger-ui.png)
 
 ## <a id="createapiapp"></a> 建立 API 應用程式
 
-在本節中，您會使用 Azure CLI 2.0 建立資源，以在 Azure App Service 上裝載 API。 
+在本節中，您可以使用 hello Azure CLI 2.0 toocreate hello 資源 toohost hello API Azure App Service 上。 
 
-1.  使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
+1.  登入 Azure 訂用帳戶以 hello tooyour [az 登入](/cli/azure/#login)命令，並遵循螢幕上指示 hello。
 
     ```azurecli-interactive
     az login
     ```
 
-2. 如果您有多個 Azure 訂用帳戶，請將預設訂用帳戶變更為所需的訂用帳戶。
+2. 如果您有多個 Azure 訂用帳戶時，變更 hello 預設訂用帳戶 toohello 預期其中一個。
 
     ````azurecli-interactive
     az account set --subscription <name or id>
@@ -228,36 +228,36 @@ yo swaggerize --apiPath api.json --framework express
 5. [!INCLUDE [Create API app](../../includes/app-service-api-create-api-app.md)] 
 
 
-## <a name="deploy-the-api-with-git"></a>使用 Git 部署 API
+## <a name="deploy-hello-api-with-git"></a>部署含 Git 的 hello API
 
-將認可從本機 Git 存放庫推送至 Azure App Service，以將您的程式碼部署到 API 應用程式。
+部署應用程式開發介面應用程式程式碼 toohello 推送認可從您本機 Git 儲存機制 tooAzure 應用程式服務。
 
 1. [!INCLUDE [Configure your deployment credentials](../../includes/configure-deployment-user-no-h.md)] 
 
-2. 在 *ContactList* 目錄中初始化新的存放庫。 
+2. 初始化新的儲存機制中 hello *ContactList*目錄。 
 
     ```bash
     git init .
     ```
 
-3. 排除 npm 在本教學課程的先前步驟中從 Git 建立的 *node_modules* 目錄。 在目前的目錄中建立新的 `.gitignore` 檔案，並在檔案中任意新的一行上新增下列文字。
+3. 排除 hello *node_modules* npm 中先前的步驟從 Git hello 教學課程中建立目錄。 建立新`.gitignore`hello 目前目錄中檔案，然後加入 hello hello 檔案中的任何位置在新行上下列文字。
 
     ```
     node_modules/
     ```
-    使用 `git status` 確認忽略 `node_modules` 資料夾。
+    確認 hello`node_modules`與，正在略過資料夾`git status`。
 
-4. 認可對存放庫所做的變更。
+4. 認可 hello 變更 toohello 儲存機制。
     ```bash
     git add .
     git commit -m "initial version"
     ```
 
-5. [!INCLUDE [Push to Azure](../../includes/app-service-api-git-push-to-azure.md)]  
+5. [!INCLUDE [Push tooAzure](../../includes/app-service-api-git-push-to-azure.md)]  
  
-## <a name="test-the-api--in-azure"></a>在 Azure 中測試 API
+## <a name="test-hello-api--in-azure"></a>在 Azure 中的測試 hello 應用程式開發介面
 
-1. 將瀏覽器開啟至 http://app_name.azurewebsites.net/contacts。 您會看到傳回的 JSON 與您稍早在本教學課程中於本機所做的要求相同。
+1. 開啟瀏覽器 toohttp://app_name.azurewebsites.net/contacts。 您會看到相同的 JSON 做為您進行傳回 hello 要求在本機上稍早在 hello 教學課程中的 hello。
 
    ```json
    {
@@ -277,15 +277,15 @@ yo swaggerize --apiPath api.json --framework express
    }
    ```
 
-2. 在瀏覽器中移至 `http://app_name.azurewebsites.net/docs` 端點，試試在 Azure 上執行的 Swagger UI。
+2. 在瀏覽器，移 toohello`http://app_name.azurewebsites.net/docs`端點 tootry 出 hello Swagger UI 在 Azure 上執行。
 
     ![Swagger Ii](media/app-service-api-nodejs-api-app/swagger-azure-ui.png)
 
-    現在只要將認可推送至 Azure Git 存放庫，即可將範例 API 的更新部署至 Azure。
+    您現在可以部署更新 toohello 範例應用程式開發介面 tooAzure 只要推送認可 toohello Azure Git 儲存機制。
 
 ## <a name="clean-up"></a>清除
 
-若要移除在本快速入門中建立的資源，請執行下列 Azure CLI 命令︰
+本快速入門，執行下列 Azure CLI 命令的 hello 建立 hello 資源 tooclean:
 
 ```azurecli-interactive
 az group delete --name myResourceGroup

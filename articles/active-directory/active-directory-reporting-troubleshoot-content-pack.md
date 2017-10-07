@@ -1,6 +1,6 @@
 ---
 title: "對 Azure Active Directory 活動記錄內容套件錯誤進行疑難排解 | Microsoft Docs"
-description: "為您提供 Azure Active Directory 活動內容套件的錯誤訊息清單以及修正它們的步驟。"
+description: "您提供的錯誤訊息的 hello Azure Active Directory 活動內容組件和步驟 toofix 清單它們。"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,56 +15,56 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: c880e9eb6d48bd1e38075fbd867d3906ec67b547
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 325de65ff1572a2f8f8319c0a52350bda03af3de
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-azure-active-directory-activity-logs-content-pack-errors"></a>對 Azure Active Directory 活動記錄內容套件錯誤進行疑難排解 
 
 
-使用適用於 Azure Active Directory 預覽版的 Power BI 內容套件時，可能會遇到下列錯誤： 
+使用 Azure Active Directory preview hello Power BI 內容套件，它時可能遇到下列錯誤 hello: 
 
 - [重新整理失敗](active-directory-reporting-troubleshoot-content-pack.md#refresh-failed) 
-- [無法更新資料來源認證](active-directory-reporting-troubleshoot-content-pack.md#failed-to-update-data-source-credentials) 
+- [失敗的 tooupdate 資料來源認證](active-directory-reporting-troubleshoot-content-pack.md#failed-to-update-data-source-credentials) 
 - [匯入資料的時間太長](active-directory-reporting-troubleshoot-content-pack.md#importing-of-data-is-taking-too-long) 
  
-本主題為您提供可能的原因以及如何修正這些錯誤的相關資訊。
+本主題將提供您 hello 的可能原因的相關資訊及如何 toofix 這些錯誤。
  
 ## <a name="refresh-failed"></a>重新整理失敗 
  
-**此錯誤的呈現方式**：從 Power BI 寄送電子郵件，或是重新整理記錄中的失敗狀態。 
+**此錯誤會顯示如何**： 從 Power BI 或 hello 重新整理記錄中的失敗的狀態的電子郵件。 
 
 
-| 原因 | 修正方式 |
+| 原因 | 如何 toofix |
 | ---   | ---        |
-| 若連線到內容套件的使用者認證已重設，但卻未在內容套件的連線設定中加以更新，即會導致重新整理失敗錯誤。 | 在 Power BI 中，找出對應到 Azure Active Directory 活動記錄儀表板 (Azure Active Directory 活動記錄) 的資料集、選擇 [排程重新整理]，然後輸入您的 Azure AD 認證。 |
-| 重新整理可能會因為基礎內容套件中的資料問題而失敗。 | 提出支援票證。 如需詳細資訊，請參閱[如何取得 Azure Active Directory 支援](active-directory-troubleshooting-support-howto.md)。|
+| 重新整理的失敗時已重設 hello hello 連線的使用者 toohello 內容套件的認證，但不是會在 hello hello hello 內容套件的連接設定更新，可能導致錯誤。 | 在 Power BI 中，找出 hello 資料集對應 toohello Azure Active Directory 活動記錄檔儀表板 （Azure Active Directory 活動記錄檔），選擇 排程重新整理，然後輸入您的 Azure AD 認證。 |
+| 重新整理可能會在基礎內容套件的 hello toodata 問題而失敗。 | 提出支援票證。 如需詳細資訊，請參閱[tooget 如何支援 Azure Active directory](active-directory-troubleshooting-support-howto.md)。|
  
  
-## <a name="failed-to-update-data-source-credentials"></a>無法更新資料來源認證 
+## <a name="failed-tooupdate-data-source-credentials"></a>失敗的 tooupdate 資料來源認證 
  
-**此錯誤的呈現方式**：在 Power BI 中，當您連線到 Azure Active Directory 活動記錄 (預覽) 內容套件時。 
+**此錯誤會顯示如何**： 在 Power BI 中，當您連線 toohello Azure Active Directory 活動記錄 （預覽） 內容套件。 
 
-| 原因 | 修正方式 |
+| 原因 | 如何 toofix |
 | ---   | ---        |
-| 連線的使用者既不是全域系統管理員，也不是安全性讀取者或安全性系統管理員。 | 使用非全域系統管理員或安全性讀取者或安全性系統管理員的帳戶來存取內容套件。 |
-| 您的租用戶不是 Premium 租用戶，或者沒有任何具備 Premium 授權檔案的使用者。 | 提出支援票證。 如需詳細資訊，請參閱[如何取得 Azure Active Directory 支援](active-directory-troubleshooting-support-howto.md)。|
+| hello 連接的使用者是既不是全域管理員也不安全讀取器或安全性管理員。 | 使用全域管理員或安全性讀取器或安全性管理員 tooaccess hello 內容套件的帳戶。 |
+| 您的租用戶不是 Premium 租用戶，或者沒有任何具備 Premium 授權檔案的使用者。 | 提出支援票證。 如需詳細資訊，請參閱[tooget 如何支援 Azure Active directory](active-directory-troubleshooting-support-howto.md)。|
  
 
  
 
 ## <a name="importing-of-data-is-taking-too-long"></a>匯入資料的時間太長 
  
-**此錯誤的呈現方式**：在 Power BI 中，一旦連線到內容套件之後，資料匯入程序就會開始準備您的儀表板以用於 Azure Active Directory 活動記錄。 您會看見下列訊息：「正在匯入資料...」  
+**此錯誤會顯示如何**： 在 Power BI 中，一旦您已經連接您的內容套件 hello 資料匯入程序啟動 tooprepare 儀表板的 Azure Active Directory 活動記錄檔。 您會看到 hello 訊息: 「*匯入資料...*"  
 
-| 原因 | 修正方式 |
+| 原因 | 如何 toofix |
 | ---   | ---        |
-| 根據您的租用戶大小而定，此步驟所需的時間可能從數分鐘到 30 分鐘。 | 請耐心等候。 如果訊息未在一小時內變更以顯示您的儀表板，請提出支援票證。 如需詳細資訊，請參閱[如何取得 Azure Active Directory 支援](active-directory-troubleshooting-support-howto.md)。|
+| 取決於您的租用戶的 hello 規模、 此步驟可能需要幾分鐘 too30 分鐘。 | 請耐心等候。 如果 hello 訊息不會變更 tooshowing 儀表板在一小時內，請提出支援票證。 如需詳細資訊，請參閱[tooget 如何支援 Azure Active directory](active-directory-troubleshooting-support-howto.md)。|
 
 ## <a name="next-steps"></a>後續步驟
 
-若要安裝適用於 Azure Active Directory 預覽版的 Power BI 內容套件，請按一下[這裡](https://powerbi.microsoft.com/en-us/blog/azure-active-directory-meets-power-bi/) \(英文\)。
+按一下 tooinstall hello Azure Active Directory 預覽的 Power BI 內容套件[這裡](https://powerbi.microsoft.com/en-us/blog/azure-active-directory-meets-power-bi/)。
 
 

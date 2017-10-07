@@ -1,5 +1,5 @@
 ---
-title: "如何在 App Service 環境中調整應用程式"
+title: "aaaHow tooScale App Service 環境中的應用程式"
 description: "在 App Service 環境中調整應用程式"
 services: app-service
 documentationcenter: 
@@ -14,59 +14,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/17/2016
 ms.author: ccompy
-ms.openlocfilehash: 240c2486c23b7cd84e2471bf5b2170e08ee1f150
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 08916eac056c46bf8cb6edffbf96285317b32062
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scaling-apps-in-an-app-service-environment"></a>在 App Service 環境中調整應用程式
-在 Azure App Service 中，您通常有三件事可以調整：
+Hello Azure App Service 中有正常三件事您可以調整：
 
 * 定價方案
 * 背景工作角色大小 
 * 執行個體數目。
 
-在 ASE 中不需要選取或變更定價方案。  就功能而言，它已經是 Premium 定價功能層級。  
+在 ase 中沒有定價計劃需要 tooselect 或變更 hello。  就功能而言，它已經是 Premium 定價功能層級。  
 
-關於背景工作角色大小，ASE 系統管理員可以指派要用於每個背景工作角色集區的計算資源大小。  這表示您可以有具 P4 計算資源的背景工作集區 1，以及具 P1 計算資源的背景工作集區 2 (如有需要的話)。  它們並沒有大小順序。  如需大小及其定價的詳細資訊，請參閱此處的文件 [Azure App Service 定價][AppServicePricing]。  以下是 App Service 環境中的 Web 應用程式和 App Service 方案的調整選項：
+尊重 tooworker 大小、 使用 hello ASE 系統管理員可以指派 hello hello 計算資源 toobe 用於每個背景工作集區大小。  這表示您可以有具 P4 計算資源的背景工作集區 1，以及具 P1 計算資源的背景工作集區 2 (如有需要的話)。  它們並沒有 toobe 大小的順序。  如周圍 hello 大小和其定價的詳細資訊，請參閱 hello 文件[Azure 應用程式服務定價][AppServicePricing]。  這會使擴充選項中的 App Service 環境 toobe web 應用程式和應用程式服務方案的 hello:
 
 * 背景工作集區選取
 * 執行個體數目
 
-如需變更任一項目，都可以透過針對 ASE 託管之 App Service 方案所顯示的適用 UI 完成。  
+變更項目透過 hello 完成適當的顯示您 ASE 裝載應用程式服務方案的 UI。  
 
 ![][1]
 
-ASP 相應增加的數量無法超過 ASP 所在背景工作集區中可用的計算資源數量。  如果背景工作集區中需要計算資源，您必須讓 ASE 系統管理員增加資源。  如需重新設定 ASE 的資訊，請閱讀以下資訊：[如何設定 App Service 環境][HowtoConfigureASE]。  您也可能需利用 ASE 自動調整功能，以根據排程或計量增加容量。  若要取得設定 ASE 環境本身自動調整的相關詳細資訊，請參閱[如何設定 App Service 環境的自動調整][ASEAutoscale]。
+您無法向上擴充您 ASP 是中的 hello 背景工作集區中的可執行的運算資源的 hello 數目超過您 ASP。  如果您需要計算該背景工作集區中的資源則需要 tooget 您 ASE 管理員 tooadd 它們。  資訊重新設定您 ASE 閱讀這裡 hello 資訊：[如何 tooConfigure App Service 環境][HowtoConfigureASE]。  您也可以 tootake hello ASE 自動調整規模功能 tooadd 容量根據排程或度量的優點。  設定自動調整規模的 hello ASE 環境本身的更多詳細資料請參閱的 tooget[如何 tooconfigure 自動調整規模的 App Service 環境][ASEAutoscale]。
 
-您可以使用來自不同背景工作集區或相同背景工作集區的計算資源，建立多個 App Service 方案。  例如，如果在背景工作集區 1 中有 (10) 個可用的計算資源，您可以選擇使用 (6) 個計算資源建立一個 App Service 方案，而第二個 App Service 方案使用 (4) 個計算資源。
+您可以建立多個應用程式服務方案使用不同的背景工作集區，從運算資源，或者您可以使用 hello 相同的背景工作集區。  範例如果您在背景工作 (10) 的可執行的運算資源集區 1，則您可以選擇 toocreate 一個應用程式服務計劃使用 (6) 的計算資源，且第二個應用程式服務計劃，則會使用 (4) 的計算資源。
 
-### <a name="scaling-the-number-of-instances"></a>調整執行個體數目
-當您初次在 App Service 環境中建立 Web 應用程式時，它會從 1 個執行個體開始。  您可以再相應放大至其他的執行個體，為應用程式提供額外的計算資源。   
+### <a name="scaling-hello-number-of-instances"></a>調整執行個體的 hello 數目
+當您初次在 App Service 環境中建立 Web 應用程式時，它會從 1 個執行個體開始。  接著，您可以向外延展 tooadditional 執行個體 tooprovide 其他運算資源應用程式。   
 
-如果 ASE 有足夠的容量，這就很簡單。  您可移至具有您要相應增加之站台的 App Service 方案，然後選取 [調整]。  這會開啟 UI，您可以在當中為 ASP 手動設定調整或設定自動調整規則。  若要手動調整應用程式，只需將 [調整依據] 設為 [手動輸入的執行個體計數]。  從這裡拖曳滑桿至所需的數量，或將所需數量輸入滑桿旁邊的方塊。  
+如果 ASE 有足夠的容量，這就很簡單。  您移 tooyour App Service 方案保存您想 tooscale 和選取標尺的 hello 站台。  這會開啟 hello 其中您可以手動設定您的 ASP hello 比例或您 asp 設定自動調整規模規則的 UI。  只要設定您的應用程式的 toomanually 標尺***縮放***太***手動輸入執行個體計數***。  從這裡拖曳 hello 滑桿 toohello 預期數量或是輸入 hello 方塊下一步 toohello 滑桿。  
 
 ![][2] 
 
-在 ASE 中的 ASP 自動調整規則與一般運作方式相同。  您可以選取 [調整依據] 下方的 [CPU 百分比]，根據 CPU 百分比建立 ASP 的自動調整規則，或使用 [排程和效能規則] 建立更複雜的規則。  若要查看有關設定自動調整更完整的詳細資訊，請參閱此處的指南 [Azure App Service 中調整 Web 應用程式規模][AppScale]。 
+如同通常是 ASP 在 ASE 工作中的 hello 自動調整規模規則 hello 相同。  您可以選取 [調整依據] 下方的 [CPU 百分比]，根據 CPU 百分比建立 ASP 的自動調整規則，或使用 [排程和效能規則] 建立更複雜的規則。  toosee 更完成詳細資料，設定自動調整規模使用 hello 指南此處[調整 Azure App Service 中的應用程式][AppScale]。 
 
 ### <a name="worker-pool-selection"></a>背景工作集區選取
-如前所述，背景工作角色集區選項需透過 ASP UI 存取。  開啟您想要調整的 ASP 刀鋒視窗，選取 [背景工作集區]。  您會看到您已在 App Service 環境中設定的所有背景工作集區。  如果您只有一個背景工作集區，您只會看到一個集區列出。  若要變更 ASP 所在的背景工作角色集區，您只需選取 App Service 方案所要移入的背景工作角色集區。  
+如前文所述，從 hello ASP UI 存取 hello 背景工作集區選取範圍。  開啟 hello ASP tooscale 並選取 背景工作集區的 hello 刀鋒視窗。  您會看到所有您已設定您的 App Service 環境中的 hello 背景工作集區。  如果您有只有一個背景工作集區然後您只會看到列出 hello 一個集區。  toochange 哪些背景工作集區您 ASP 中，您只需選取您想要您 App Service 方案 toomove hello 背景工作集區。  
 
 ![][3]
 
-將 ASP 從一個背景工作角色集區移到另一個集區之前，請務必確定您有足夠的容量可容納該 ASP。  在背景工作集區清單中，不只會列出背景工作集區名稱，您也可以查看該背景工作集區中有多少可用的背景工作。  請確定有足夠的執行個體可包含您的 App Service 方案。  如果您需要在背景工作集區中移入更多計算資雲，則必須讓您的 ASE 系統管理員加以新增。  
+從一個背景工作集區 tooanother 移動您 ASP 之前很重要 toomake 確定您將必須針對您 ASP 適當的容量。  在 hello 清單中的背景工作集區，不只列出 hello 背景工作集區名稱，但您也可以查看多少的背景工作的背景工作集區中可用。  請確定有足夠的執行個體可用 toocontain 您 App Service 方案。  如果您需要更多計算 hello 背景工作集區中的資源您想要然後取得您 ASE 管理員 tooadd toomove 它們。  
 
 > [!NOTE]
-> 從一個背景工作集區移出 ASP，會導致該 ASP 中的應用程式冷啟動。  這可能會導致要求的執行速度變慢，因為您的應用程式在新的計算資源上是冷啟動。  使用 Azure App Service 中的[應用程式準備功能][AppWarmup]可以避免冷啟動。  本文所述的應用程式初始化模組對冷啟動也有作用，因為當應用程式在新的計算資源上冷啟動時，也會叫用初始化程序。 
+> 移動 ASP 從一個背景工作集區會導致冷啟動 hello 該 ASP 應用程式。  這可能會導致要求 toorun 緩時變您的應用程式是冷啟動 hello 新的計算資源。  hello 冷啟動可以避免使用 hello[熱機功能的應用程式][ AppWarmup] Azure App Service 中。  hello hello 文章所述的應用程式初始化模組也適用於冷啟動因為 hello 初始化處理程序也會叫用應用程式時冷啟動新的計算資源。 
 > 
 > 
 
 ## <a name="getting-started"></a>開始使用
-若要開始使用 App Service 環境，請參閱[如何建立 App Service 環境][HowtoCreateASE]
+tooget 開始使用應用程式服務環境中，請參閱[如何 tooCreate App Service 環境][HowtoCreateASE]
 
-如需有關 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service][AzureAppService]。
+如需 hello Azure 應用程式服務平台的詳細資訊，請參閱[Azure App Service][AzureAppService]。
 
 <!--Image references-->
 [1]: ./media/app-service-web-scale-a-web-app-in-an-app-service-environment/aseappscale-aspblade.png

@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions 計時器觸發程序 | Microsoft Docs"
-description: "了解如何在 Azure Functions 中使用計時器觸發程序。"
+title: "aaaAzure 函式計時器觸發程序 |Microsoft 文件"
+description: "了解 toouse 計時器觸發程序在 Azure 函式。"
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -17,26 +17,26 @@ ms.workload: na
 ms.date: 02/27/2017
 ms.author: glenga
 ms.custom: 
-ms.openlocfilehash: 6a97ab8508f889b77d064a5da70e3c726d62900c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 17fca22372dbc55d4684c8c099cc97923a7d3cf3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-timer-trigger"></a>Azure Functions 計時器觸發程序
 
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中設定及撰寫計時器觸發程序。 Azure Functions 具有計時器觸發程序繫結，可讓您根據所定義的排程執行函式程式碼。 
+本文說明 tooconfigure 和程式碼的計時器觸發程序在 Azure 函式。 Azure Functions 具有計時器觸發程序繫結，可讓您根據所定義的排程執行函式程式碼。 
 
-計時器觸發程序支援多個執行個體向外延展。特定計時器函式的單一執行個體會對所有執行個體執行。
+hello 計時器觸發程序支援向外延展多重執行個體。特定計時器函式的單一執行個體會對所有執行個體執行。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a id="trigger"></a>
 
 ## <a name="timer-trigger"></a>計時器觸發程序
-函式的計時器觸發程序會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
+hello 計時器觸發程序 tooa 函式會使用下列 JSON 物件中 hello hello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -47,22 +47,22 @@ ms.lasthandoff: 08/29/2017
 }
 ```
 
-`schedule` 的值是包含以下 6 個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)︰ 
+hello 值`schedule`是[CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)包含下列六個欄位： 
 
     {second} {minute} {hour} {day} {month} {day-of-week}
 &nbsp;
 >[!NOTE]   
->您會在線上找到的許多 cron 運算式會省略 `{second}` 欄位。 如果您從中複製一個，您需要對 `{second}` 欄位進行額外調整。 如需特定範例，請參閱以下的[排程範例](#examples)。
+>許多線上找到 hello cron 運算式省略 hello`{second}`欄位。 如果您複製的其中一個，您需要額外的 hello tooadjust`{second}`欄位。 如需特定範例，請參閱以下的[排程範例](#examples)。
 
-CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON 運算式以另一個時區為基礎，請為名為 `WEBSITE_TIME_ZONE` 的函式應用程式建立新的應用程式設定。 將值設定為所需的時區名稱，如 [Microsoft 時區索引](https://msdn.microsoft.com/library/ms912391.aspx)中所示。 
+hello 與 hello CRON 運算式一起使用的預設時間區域是國際標準時間 (UTC)。 toohave CRON 運算式會根據另一個時區，建立名為函式應用程式的新應用程式設定`WEBSITE_TIME_ZONE`。 需要時區組 hello 值 toohello 名稱的 hello hello 中所示[Microsoft 時區索引](https://msdn.microsoft.com/library/ms912391.aspx)。 
 
-例如，*美加東部標準時間*是 UTC-05:00。 若要讓計時器觸發程序在每天上午 10:00 (美加東部標準時間) 觸發，您可以使用說明 UTC 時區的下列 CRON 運算式︰
+例如，*美加東部標準時間*是 UTC-05:00。 toohave 計時器觸發引發在 10:00 AM EST 每一天，下列帳戶 UTC 時區為準的 CRON 運算式使用 hello:
 
 ```json
 "schedule": "0 0 15 * * *",
 ``` 
 
-或者，您可以為名為 `WEBSITE_TIME_ZONE` 的函式應用程式新增新的應用程式設定，並將值設為**美加東部標準時間**。  那麼，下列 CRON 運算式即可用於 EST 上午 10:00： 
+或者，您可以加入新的應用程式設定名為應用程式函式`WEBSITE_TIME_ZONE`並將 hello 值設定為太**美加東部標準時間**。  然後 hello 下列 CRON 運算式無法用於 10:00 AM EST: 
 
 ```json
 "schedule": "0 0 10 * * *",
@@ -72,39 +72,39 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON
 <a name="examples"></a>
 
 ## <a name="schedule-examples"></a>排程範例
-以下是您可以用於 `schedule` 屬性的 CRON 運算式的一些範例。 
+以下是一些您可以使用 hello CRON 運算式的範例`schedule`屬性。 
 
-若要每隔 5 分鐘觸發一次︰
+tootrigger 一次每隔五分鐘：
 
 ```json
 "schedule": "0 */5 * * * *"
 ```
 
-若要在每小時開始時觸發一次︰
+在 hello 頂端每小時執行一次 tootrigger:
 
 ```json
 "schedule": "0 0 * * * *",
 ```
 
-若要每隔 2 小時觸發一次：
+tootrigger 一次每隔兩小時：
 
 ```json
 "schedule": "0 0 */2 * * *",
 ```
 
-若要在上午 9 點到下午 5 點之間每隔一小時觸發一次：
+每小時從上午 9 點 too5 tootrigger PM:
 
 ```json
 "schedule": "0 0 9-17 * * *",
 ```
 
-若要在每天上午 9:30 觸發一次：
+在每一天的上午 9:30 tootrigger:
 
 ```json
 "schedule": "0 30 9 * * *",
 ```
 
-若要在每個工作天上午 9:30 觸發一次：
+在每個工作天的上午 9:30 tootrigger:
 
 ```json
 "schedule": "0 30 9 * * 1-5",
@@ -113,7 +113,7 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON
 <a name="usage"></a>
 
 ## <a name="trigger-usage"></a>觸發程序使用方式
-叫用計時器觸發程序函式時，[計時器物件](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Timers/TimerInfo.cs)會傳遞至函式。 下列 JSON 是計時器物件的範例表示法。 
+當計時器觸發程序函式會叫用時，hello[計時器物件](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Timers/TimerInfo.cs)傳入 hello 函式。 hello 下列 JSON 是 hello 計時器物件的範例表示法。 
 
 ```json
 {
@@ -130,7 +130,7 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON
 <a name="sample"></a>
 
 ## <a name="trigger-sample"></a>觸發程序範例
-假設您的 function.json `bindings` 陣列中有下列計時器觸發程序︰
+假設您有下列計時器觸發程序在 hello hello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -141,7 +141,7 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON
 }
 ```
 
-請參閱可讀取計時器物件，以查看是否晚執行的特定語言範例。
+查看可讀取 hello 計時器物件 toosee 是否正在執行晚期 hello 特定語言的範例。
 
 * [C#](#triggercsharp)
 * [F#](#triggerfsharp)

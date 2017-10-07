@@ -1,6 +1,6 @@
 ---
-title: "Azure AD Connect Health 版本歷程記錄"
-description: "本文件說明 Azure AD Connect Health 的版本和已包含在這些版本中的功能。"
+title: "aaaAzure AD 連線的健全狀況版本歷程記錄"
+description: "本文件說明 Azure AD Connect Health 和已包含在這些版本中的 hello 版本。"
 services: active-directory
 documentationcenter: 
 author: karavar
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 6c990a184d44771c78330f54f518bb4c35a36a35
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a583263e412f5da9af75947f3431de2494042388
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-health-version-release-history"></a>Azure AD Connect Health︰版本發行歷程記錄
-Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Connect Health。 本文列出已發行的版本和功能。
+hello Azure Active Directory 團隊會定期更新 Azure AD Connect Health 的新特色與功能。 本文列出 hello 版本與已發行的功能。
 
 ## <a name="october-2016"></a>2016 年 10 月
 **代理程式更新：**
 
 * 適用於 AD FS 的 Azure AD Connect Health 代理程式 \(2.6.408.0 版\)
   1. 改進在驗證要求中偵測用戶端 IP 位址
-  2. 與警示相關的錯誤修正
+  2. Bug 修正相關 tooAlerts
 * 適用於 AD FS 的 Azure AD Connect Health 代理程式 (2.6.408.0 版)
-  1. 與警示相關的錯誤修正。
+  1. Bug 修正相關 tooAlerts。
 * 隨著 Azure AD Connect 1.1.281.0 版發行的 Azure AD Connect Health Agent for Sync (2.6.353.0 版)
-  1. 提供同步處理錯誤報告所需的資料
-  2. 與警示相關的錯誤修正
+  1. Hello 同步處理錯誤報表提供所需的 hello 資料
+  2. Bug 修正相關 tooAlerts
 
 **新的預覽功能：**
 
@@ -41,7 +41,7 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 
 **新功能︰**
 
-* 適用於 AD FS 的 Azure AD Connect Health - IP 位址欄位可用於報告中大約前 50 位使用者名稱/密碼不正確的使用者。
+* Azure AD Connect Health 的 AD FS 的 IP 位址 欄位是不正確的使用者名稱/密碼的前 50 位使用者有關的 hello 報表中可用。
 
 ## <a name="july-2016"></a>2016 年 7 月
 **新的預覽功能：**
@@ -74,9 +74,9 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 **新功能︰**
 
 * AD FS 的錯誤使用者名稱密碼報告
-* 支援設定未經驗證的 HTTP Proxy
-* 支援在伺服器核心上設定代理程式
-* 改善 AD FS 的警示
+* 支援 tooconfigure Unauthenticated HTTP Proxy
+* 在 Server core 上支援 tooconfigure 代理程式
+* AD FS 的改進 tooAlerts
 * 在適用於 AD FS 的 Azure AD Connect Health 代理程式中改善連線和資料上傳。
 
 **已修正的問題：**
@@ -89,11 +89,11 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 **新功能︰**
 
 * 監視 AD FS 與 AD FS Proxy 伺服器時以電子郵件通知發出警示。
-* 在 AD FS 效能計數器中輕鬆存取 AD FS 拓撲和模式。
+* 輕鬆存取 tooAD FS 拓撲和 AD FS 效能計數器中的模式。
 * 依應用程式、驗證方法、要求網路位置等分組，顯示 AD FS 伺服器上成功權杖要求的趨勢。
 * 依應用程式、錯誤類型等分組，顯示 AD FS 伺服器上失敗要求的趨勢。
 * 使用 Azure AD 全域管理員認證更輕鬆部署代理程式。  
 
 ## <a name="next-steps"></a>後續步驟
-深入了解 [在雲端中監視內部部署身分識別基礎結構和同步處理服務](active-directory-aadconnect-health.md)。
+深入了解[監視您內部部署識別基礎結構和同步處理雲端中的服務 hello](active-directory-aadconnect-health.md)。
 

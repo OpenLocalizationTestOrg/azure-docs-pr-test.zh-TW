@@ -1,6 +1,6 @@
 ---
 title: "教學課程︰以內部部署 Active Directory 和 Azure Active Directory 設定自動化使用者佈建的 Workday | Microsoft Docs"
-description: "了解如何使用 Workday 做為 Active Directory 和 Azure Active Directory 身分識別資料的來源。"
+description: "深入了解如何 toouse Workday 的 Active Directory 和 Azure Active Directory 身分識別資料來源。"
 services: active-directory
 author: asmalser-msft
 documentationcenter: na
@@ -13,77 +13,77 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/26/2017
 ms.author: asmalser
-ms.openlocfilehash: f9cc94ca1fc44d10af19debab49435b265bf6e7c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d4eb3237b8fe7614606c58b39fbefcb44f4060fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configure-workday-for-automatic-user-provisioning-with-on-premises-active-directory-and-azure-active-directory"></a>教學課程︰以內部部署 Active Directory 和 Azure Active Directory 設定自動化使用者佈建的 Workday
-本教學課程的目標是說明將人員從 Workday 匯入 Active Directory 和 Azure Active Directory，以及將某些屬性選擇性回寫至 Workday 需要執行的步驟。 
+本教學課程的 hello 目標是 tooshow hello 到 Active Directory 和 Azure Active Directory，必須使用選擇性的回寫的某些屬性 tooWorkday tooperform tooimport 人從 Workday 步驟。 
 
 
 
 ## <a name="overview"></a>概觀
 
-[Azure Active Directory 使用者佈建服務](active-directory-saas-app-provisioning.md)與 [Workday Human Resources API](https://community.workday.com/sites/default/files/file-hosting/productionapi/Human_Resources/v21.1/Get_Workers.html) 整合以佈建使用者帳戶。 Azure AD 使用此連接啟用下列使用者佈建工作流程：
+hello[佈建服務的 Azure Active Directory 使用者](active-directory-saas-app-provisioning.md)hello 與整合[Workday 人力資源應用程式開發介面](https://community.workday.com/sites/default/files/file-hosting/productionapi/Human_Resources/v21.1/Get_Workers.html)中排序 tooprovision 使用者帳戶。 Azure AD 會使用此連接 tooenable hello 遵循使用者佈建工作流程：
 
-* **將使用者佈建至 Active Directory** - 將選取的使用者集合從 Workday 同步至一或多個 Active Directory 樹系。 
+* **佈建使用者 tooActive 目錄**-到一或多個 Active Directory 樹系同步處理選取的使用者集合將 Workday 中。 
 
-* **將僅限雲端使用者佈建至 Azure Active Directory** - 可以使用 [AAD Connect](connect/active-directory-aadconnect.md)，將存在於 Active Directory 和 Azure Active Directory 的混合式使用者佈建至後者。 不過，可以使用 Azure AD 使用者佈建服務，將僅限雲端使用者從 Workday 直接佈建至 Azure Active Directory。
+* **僅限雲端的使用者 tooAzure Active Directory 佈建**-存在於 Active Directory 和 Azure Active Directory 的混合式使用者可以佈建到 hello 後者使用[AAD Connect](connect/active-directory-aadconnect.md)。 不過，僅限雲端的使用者可以直接從 Workday tooAzure Active Directory 使用 hello 佈建服務的 Azure AD 使用者佈建。
 
-* **將電子郵件地址回寫至 Workday** - Azure AD 使用者佈建服務可以將選取的 Azure AD 使用者屬性回寫至 Workday，例如電子郵件地址。
+* **電子郵件的回寫位址 tooWorkday** -hello Azure AD 使用者佈建服務可以撰寫選取 Azure AD 使用者屬性後的 tooWorkday，例如 hello 電子郵件地址。
 
 ### <a name="scenarios-covered"></a>涵蓋的案例
 
-Azure AD 使用者佈建服務支援的 Workday 使用者佈建工作流程，可啟用下列人力資源和身分識別生命週期管理案例的自動化：
+hello Workday 使用者佈建 hello Azure AD 使用者佈建服務所支援的工作流程可讓 hello 下列人力資源和身分識別生命週期管理案例的自動化：
 
-* **雇用新員工** - 將新員工新增至 Workday 時，系統會在 Active Directory、Azure Active Directory、Office 365 (選擇性) 和 [Azure AD 支援的其他 SaaS 應用程式](active-directory-saas-app-provisioning.md)中自動建立使用者帳戶，並將電子郵件地址回寫至 Workday。
+* **雇用的員工**-tooWorkday，加入新的員工時在 Active Directory、 Azure Active Directory 和 Office 365 （選擇性） 將會自動建立使用者帳戶和[支援 Azure AD 的其他 SaaS 應用程式](active-directory-saas-app-provisioning.md)，寫入 hello 電子郵件地址 tooWorkday 背面。
 
 * **員工屬性和設定檔更新** - 在 Workday 中更新員工記錄時 (例如姓名、職稱或經理)，系統會在 Active Directory、Azure Active Directory、Office 365 (選擇性) 和 [Azure AD 支援的其他 SaaS 應用程式](active-directory-saas-app-provisioning.md)中自動更新其使用者帳戶。
 
 * **員工離職** - 在 Workday 中將員工設定為離職時，系統會在 Active Directory、Azure Active Directory、Office 365 (選擇性) 和 [Azure AD 支援的其他 SaaS 應用程式](active-directory-saas-app-provisioning.md)中自動停用其使用者帳戶。
 
-* **重新雇用員工** - 在 Workday 中重新雇用員工時，系統會自動重新啟用其舊帳戶或將其重新佈建 (取決於您的喜好設定) 至 Active Directory、Azure Active Directory、Office 365 (選擇性) 和 [Azure AD 支援的其他 SaaS 應用程式](active-directory-saas-app-provisioning.md)。
+* **重新雇用的員工**-當員工 rehired workday，舊的帳戶可以自動重新啟動或重新佈建 （取決於您的喜好設定） tooActive 目錄、 Azure Active Directory，並選擇性地 Office 365 和[支援 Azure AD 的其他 SaaS 應用程式](active-directory-saas-app-provisioning.md)。
 
 
 ## <a name="planning-your-solution"></a>規劃您的解決方案
 
-開始進行 Workday 整合之前，請檢查下列必要條件，並閱讀下列有關如何讓目前的 Active Directory 結構和使用者佈建需求與 Azure Active Directory 提供解決方案相符的指導。
+開始之前您的 Workday 整合，確認下列和讀取 hello 下列指引的 hello 必要條件 toomatch 您目前的 Active Directory 架構和使用者佈建需求與 hello 方案提供的 Azure Active目錄。
 
 ### <a name="prerequisites"></a>必要條件
 
-本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程中所述的 hello 案例假設您已擁有 hello 下列項目：
 
 * 具有全域系統管理員存取權的有效 Azure AD Premium P1 訂用帳戶
 * 可供測試和整合之用的 Workday 實作租用戶
-* 可供測試之用的 Workday 系統管理員權限，以建立系統整合使用者和進行變更以測試員工資料
-* 佈建至 Active Directory 的使用者，需要執行 Windows Service 2012 或更新版本的已加入網域伺服器，才能裝載[內部部署同步代理程式](https://go.microsoft.com/fwlink/?linkid=847801)
+* 在 Workday toocreate 系統整合使用者的系統管理員權限和基於測試目的請變更 tootest 員工資料
+* 使用者佈建 tooActive 目錄，2012年或更新版本執行 Windows 服務已加入網域的伺服器是需要的 toohost hello[在內部部署同步處理代理程式](https://go.microsoft.com/fwlink/?linkid=847801)
 * 可在 Active Directory 與 Azure AD 之間同步處理的 [Azure AD Connect](connect/active-directory-aadconnect.md)
 
 > [!NOTE]
-> 如果您的 Azure AD 租用戶位於歐洲，請參閱下列[已知問題](#known-issues)一節。
+> 如果您的 Azure AD 租用戶位於歐洲，請參閱 hello[已知問題](#known-issues)下一節。
 
 
 ### <a name="solution-architecture"></a>方案架構
 
-Azure AD 提供一組豐富的佈建連接器，協助您解決從 Workday 到 Active Directory、Azure AD、SaaS 應用程式等產品的佈建和身分識別生命週期管理。 您將使用的功能和設定解決方案的方法將會視組織環境和需求而有所不同。 您的第一步便是評估組織中存在且已部署下列項目的數量：
+Azure AD 提供一組豐富的佈建連接器 toohelp 解決佈建和身分識別生命週期管理從 Workday tooActive 目錄中，Azure AD，SaaS 應用程式和更新版本。 哪些功能您將使用，而且設定 hello 方案的方式會根據您的組織環境和需求而有所不同。 第一個步驟中，採用 hello 下列數量的確實存在且已部署在組織中的內的建：
 
 * 您正在使用多少 Active Directory 樹系？
 * 您正在使用多少 Active Directory 網域？
 * 有多少 Active Directory 組織單位 (OU) 正在使用？
 * 有多少 Azure Active Directory 租用戶正在使用？
-* 是否需要將任何使用者佈建至 Active Directory 和 Azure Active Directory (例如「混合式」使用者)？
-* 是否需要將任何使用者佈建至 Azure Active Directory，但不需要將其佈建至 Active Directory (例如「僅限雲端」使用者)？
-* 是否需要將使用者電子郵件地址寫回至 Workday？
+* 有需要佈建 toobe tooboth Active Directory 與 Azure Active Directory （例如 「 混合 」 使用者） 的使用者嗎？
+* 有需要佈建 toobe tooAzure Active Directory，但沒有 Active Directory （例如 「 僅限雲端的 「 使用者） 的使用者嗎？
+* 使用者電子郵件地址需要寫回 tooWorkday toobe 嗎？
 
-找到這些問題的答案之後，您便可以依照下列指導來計劃 Workday 佈建部署。
+答案 toothese 問題之後，您可以規劃佈建部署下列 hello 準則工作日。
 
 #### <a name="using-provisioning-connector-apps"></a>使用佈建連接器應用程式
 
 Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式的預先整合佈建連接器。 
 
-其為具有單一來源系統 API 的單一佈建連接器介面，且有助於將資料佈建至單一目標系統。 Azure AD 支援的大部分佈建連接器都適用於單一來源和目標系統 (例如 Azure AD 至 ServiceNow)，且只要從 Azure AD 應用程式庫新增上述應用程式即可輕鬆設定 (例如 ServiceNow)。 
+單一的佈建連接器以單一來源系統的 hello API 介面，並協助佈建資料 tooa 單一目標系統。 大部分 Azure AD 支援的佈建連接器為單一來源和目標系統 (例如 Azure AD tooServiceNow)，可能會安裝程式只需加 hello 應用程式有問題從 hello Azure AD app 資源庫 (例如 ServiceNow)。 
 
 在 Azure AD 中佈建連接器執行個體與應用程式執行個體之間具有一對一關聯性：
 
@@ -92,7 +92,7 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 | Azure AD 租用戶 | SaaS 應用程式 |
 
 
-不過，將 Workday 與 Active Directory 搭配使用時，需要考慮多個來源和目標系統：
+不過，當使用 Workday 和 Active Directory，會視為的多個來源和目標系統 toobe:
 
 | 來源系統 | 目標系統 | 注意事項 |
 | ---------- | ---------- | ---------- |
@@ -101,72 +101,72 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 | Active Directory 樹系 | Azure AD 租用戶 | 目前由 AAD Connect 處理此流程 |
 | Azure AD 租用戶 | Workday | 適用於電子郵件地址的回寫 |
 
-為了讓這些工作流程便利於多個來源和目標系統，Azure AD 提供可以從 Azure AD 應用程式庫新增的多個佈建連接器應用程式：
+toofacilitate 這些多個工作流程 toomultiple 來源和目標系統，Azure AD 提供多個佈建連接器應用程式，您可以從 hello Azure AD app 資源庫加入：
 
 ![AAD 應用程式庫](./media/active-directory-saas-workday-inbound-tutorial/WD_Gallery.PNG)
 
-* **Workday to Active Directory Provisioning** - 此應用程式可協助將使用者帳戶從 Workday 佈建至單一 Active Directory 樹系。 如果您擁有多個樹系，則可以針對要進行佈建的每個 Active Directory 樹系，從 Azure AD 應用程式庫新增此應用程式的執行個體。
+* **目錄佈建的 workday tooActive** -此應用程式可協助從 Workday tooa 單一 Active Directory 樹系佈建的使用者帳戶。 如果您有多個樹系，您可以從每個 Active Directory 樹系需要以 tooprovision hello Azure AD app 資源庫來新增此應用程式的一個執行個體。
 
-* **Workday to Azure AD Provisioning** -雖然應使用 AAD Connect 這項工具將 Active Directory 使用者同步處理至 Azure Active Directory，但此應用程式可用於協助將僅限雲端使用者從 Workday 佈建至單一 Azure Active Directory 租用戶。
+* **Workday tooAzure AD 佈建**-雖然 AAD Connect 是 hello 工具應該使用的 toosynchronize Active Directory 使用者 tooAzure Active Directory，此應用程式可能會使用的 toofacilitate 從 Workday tooa 單一的僅限雲端的使用者佈建Azure Active Directory 租用戶。
 
-* **Workday Writeback** - 此應用程式可協助將使用者的電子郵件地址從 Azure Active Directory 回寫至 Workday。
+* **Workday 的回寫**-此應用程式可協助從 Azure Active Directory tooWorkday 使用者的電子郵件地址的回寫。
 
 > [!TIP]
-> 您可以使用一般「Workday」應用程式設定 Workday 與 Azure Active Directory 之間的單一登入。 
+> hello 規則 」 Workday 」 應用程式用來設定單一登入 Workday 與 Azure Active Directory 之間。 
 
-如何安裝及設定這些特殊佈建連接器應用程式是本教學課程其餘章節的主題。 您選擇要設定的應用程式將取決於需要進行佈建的系統，以及環境中的 Active Directory 樹系和 Azure AD 租用戶數量。
+如何 tooset 安裝及設定這些特殊佈建連接器應用程式 」 是 hello hello 剩餘各節，本教學課程的主題。 哪些應用程式，您可以選擇 tooconfigure 將取決於您的系統上需要 tooprovision，以及多少 Active Directory 樹系與 Azure AD 租用戶不在您的環境中。
 
 ![概觀](./media/active-directory-saas-workday-inbound-tutorial/WD_Overview.PNG)
 
 ## <a name="configure-a-system-integration-user-in-workday"></a>在 Workday 中設定系統整合使用者
-所有 Workday 佈建連接器的常見需求，是其需要 Workday 系統整合帳戶的認證才能連線至 Workday Human Resources API。 本章節說明如何在 Workday 中建立系統整合者帳戶。
+所有 hello Workday 佈建連接器的常見的需求是它們需要認證的 Workday 系統整合帳戶 tooconnect toohello Workday 人力資源應用程式開發介面。 本章節描述 toocreate 系統整合者 Workday 中的帳戶。
 
 > [!NOTE]
-> 您可以略過此程序，改用 Workday 全域系統管理員帳戶做為系統整合帳戶。 這可能會在示範中正常運作，但不建議用於生產環境部署。
+> 它是可能 toobypass 此程序，並以 hello 系統整合帳戶改用 Workday 全域管理員帳戶。 這可能會在示範中正常運作，但不建議用於生產環境部署。
 
 ### <a name="create-an-integration-system-user"></a>建立整合系統使用者
 
-**建立整合系統使用者：**
+**toocreate 整合系統使用者：**
 
-1. 使用系統管理員帳戶登入 Workday 租用戶。 在 [工作日工作台] 中的搜尋方塊輸入 create user，然後按一下 [建立整合系統使用者]。 
+1. 使用系統管理員帳戶登入 Workday 租用戶。 在 hello **Workday Workbench**，輸入在 hello 搜尋方塊中，建立使用者，然後按一下**建立整合系統使用者**。 
    
     ![建立使用者](./media/active-directory-saas-workday-inbound-tutorial/IC750979.png "建立使用者")
-2. 為新的「整合系統使用者」 提供使用者名稱和密碼來完成「建立整合系統使用者」  工作。  
- * 保持 [下次登入時要求新密碼] 選項未核取，因為該使用者會以程式設計的方式登入。 
- * 保持 [工作階段逾時分鐘數] 為預設值 [0]，這會防止使用者的工作階段提早逾時。 
+2. 完整的 hello**建立整合系統使用者**藉由提供使用者名稱和密碼為新的整合系統使用者的工作。  
+ * 保留 hello**在下次登入時要求新密碼**選項未選取，因為這個使用者會登入以程式設計的方式。 
+ * 保留 hello**工作階段逾時分鐘數**其預設值是 0，這可以防止 hello 使用者工作階段提前逾時。 
    
     ![建立整合系統使用者](./media/active-directory-saas-workday-inbound-tutorial/IC750980.png "建立整合系統使用者")
 
 ### <a name="create-a-security-group"></a>建立安全性群組
-您需要建立未受限制的整合系統安全性群組，並將使用者指派到該群組。
+您需要 toocreate 受限的整合系統安全性群組，並指派 hello 使用者 tooit。
 
-**建立安全性群組：**
+**toocreate 安全性群組：**
 
-1. 在搜尋方塊中輸入 create security group，然後按一下 [建立安全性群組] 連結。 
+1. 輸入在 hello 搜尋方塊中，建立安全性群組，然後按一下**建立安全性群組**。 
    
     ![建立安全性群組](./media/active-directory-saas-workday-inbound-tutorial/IC750981.png "建立安全性群組")
-2. 完成**建立安全性群組**工作。  
-3. 從 [租用安全性群組類型] 下拉式清單選取 [整合系統安全性群組—未受限制]。
-4. 建立安全性群組以供明確新增使用者。 
+2. 完整的 hello**建立安全性群組**工作。  
+3. 選取整合系統安全性群組 — 未受限從 hello**類型的安全性群組**下拉式清單。
+4. 建立安全性群組 toowhich 明確加入成員。 
    
     ![建立安全性群組](./media/active-directory-saas-workday-inbound-tutorial/IC750982.png "建立安全性群組")
 
-### <a name="assign-the-integration-system-user-to-the-security-group"></a>將整合系統使用者指派到安全性群組
+### <a name="assign-hello-integration-system-user-toohello-security-group"></a>指派 hello 整合系統使用者 toohello 安全性群組
 
-**指派整合系統使用者：**
+**tooassign hello 整合系統使用者：**
 
-1. 在搜尋方塊中輸入 edit security group，然後按一下 [編輯全性群組] 連結。 
+1. 在 [hello] 搜尋方塊中，輸入編輯安全性群組，然後按一下**編輯安全性群組**。 
    
     ![編輯安全性群組](./media/active-directory-saas-workday-inbound-tutorial/IC750983.png "編輯安全性群組")
-2. 依名稱搜尋新的整合安全性群組，並選取該群組。 
+2. 搜尋，並依名稱選取 hello 新整合的安全性群組。 
    
     ![編輯安全性群組](./media/active-directory-saas-workday-inbound-tutorial/IC750984.png "編輯安全性群組")
-3. 將新的整合系統使用者指派到安全性群組。 
+3. 新增 hello 新整合系統使用者 toohello 新安全性群組。 
    
     ![系統安全性群組](./media/active-directory-saas-workday-inbound-tutorial/IC750985.png "系統安全性群組")  
 
 ### <a name="configure-security-group-options"></a>設定安全性群組選項
-在此步驟中，您授予新的安全性群組，對受下列網域安全性原則保護之物件進行 **Get** 和 **Put** 作業：
+在此步驟中，您將授與 toohello 新的安全群組的權限**取得**和**放**hello 下列網域安全性原則所保護的 hello 物件上的作業：
 
 * 外部帳戶佈建
 * 人員資料：公用人員報告
@@ -174,33 +174,33 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 * 人員資料：目前人員配置資訊
 * 人員資料：人員個人檔案的職稱
 
-**設定安全性群組選項：**
+**tooconfigure 安全性群組選項：**
 
-1. 在搜尋方塊中輸入 domain security policies，然後按一下 [功能區域的網域安全性原則]。  
+1. Hello 搜尋方塊中，輸入網域安全性原則，然後按一下 hello 連結**功能區域的網域安全性原則**。  
    
     ![網域安全性原則](./media/active-directory-saas-workday-inbound-tutorial/IC750986.png "網域安全性原則")  
-2. 搜尋 system 並選取 [系統]  功能區域。  按一下 [確定] 。  
+2. 搜尋系統和選取 hello**系統**功能區域。  按一下 [確定] 。  
    
     ![網域安全性原則](./media/active-directory-saas-workday-inbound-tutorial/IC750987.png "網域安全性原則")  
-3. 在 [系統] 功能區域的安全性原則清單中，展開 [安全性管理]，並選取 [外部帳戶佈建] 網域安全性原則。  
+3. 在 [hello] 清單中的 hello 系統功能區域的安全性原則，依序展開**安全性管理**hello 網域安全性原則並加以選取**外部帳戶佈建**。  
    
     ![網域安全性原則](./media/active-directory-saas-workday-inbound-tutorial/IC750988.png "網域安全性原則")  
-4. 按一下 [編輯權限] 按鈕，然後在 [編輯權限] 畫面上，將新的安全性群組新增具有 **Get** 和 **Put** 整合權限的群組清單。 
+4. 按一下**編輯權限**，然後在 hello**編輯權限**對話方塊頁面上，新增 hello 新安全性群組 toohello 安全性群組清單與**取得**和**放**整合權限。 
    
     ![編輯權限](./media/active-directory-saas-workday-inbound-tutorial/IC750989.png "編輯權限")  
-5. 重複上述步驟 1，以返回選取功能區域的畫面，這次改為搜尋 staffing，然後選取 [人員配置] 功能區域，再按一下 [確定]。
+5. 重複步驟 1 選取的功能區域，tooreturn toohello 螢幕上，再搜尋人員配置，這次選取 hello**人員配置 功能區域**按一下**確定**。
    
     ![網域安全性原則](./media/active-directory-saas-workday-inbound-tutorial/IC750990.png "網域安全性原則")  
-6. 在 [人員配置] 功能區域的安全性原則清單中，展開 [人員資料：人員配置]，並對其餘的各安全性原則重複上述步驟 4：
+6. 在 hello 清單中的 hello 人員配置 功能區域的安全性原則，依序展開**工作者資料： 人員配置**和重複上述步驟 4 的每一種剩餘的安全性原則：
 
    * 人員資料：公用人員報告
    * 人員資料：所有職位
    * 人員資料：目前人員配置資訊
    * 人員資料：人員個人檔案的職稱
    
-7. 重複上述步驟 1，以返回選取功能區域的畫面，這次改為搜尋 **Contact Information**，然後選取 [人員配置] 功能區域，再按一下 [確定]。
+7. 重複步驟 1 所選取的功能區域的 tooreturn toohello 螢幕上，這次搜尋**連絡人資訊**選取 hello 人員配置 功能區域，然後按一下**確定**。
 
-8.  在 [人員配置] 功能區域的安全性原則清單中，展開 [人員資料：公司連絡資訊]，並對下列安全性原則重複上述步驟 4：
+8.  在 hello 清單中的 hello 人員配置 功能區域的安全性原則，依序展開**工作者資料： 工作的連絡資訊**，並重複上述步驟 4 hello 安全性原則下：
 
     * 人員資料：公司電子郵件
 
@@ -208,54 +208,54 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
     
 ### <a name="activate-security-policy-changes"></a>啟用安全性原則變更
 
-**啟用安全性原則變更：**
+**tooactivate 安全性原則變更：**
 
-1. 在搜尋方塊中輸入 activate，然後按一下 [啟用擱置的安全性原則變更] 連結。 
+1. 輸入啟動 hello 搜尋 方塊中，然後按一下 hello 連結**啟動擱置安全性原則變更**。 
    
     ![啟用](./media/active-directory-saas-workday-inbound-tutorial/IC750992.png "啟用") 
-2. 輸入供稽核用的註解並按一下 [確定] 按鈕，以開始「啟用擱置的安全性原則變更」工作。 
+2. 啟動擱置安全性原則變更為稽核用途，輸入註解工作，然後按一下開始 hello**確定**。 
    
     ![啟用擱置的安全性](./media/active-directory-saas-workday-inbound-tutorial/IC750993.png "啟用擱置的安全性")   
-3. 在下一個畫面核取 [確認] 核取方塊，然後按一下 [確定] 以完成工作。 
+3. Hello 藉由檢查 hello 核取方塊的下一個畫面上的完整 hello 工作**確認**，然後按一下**確定**。 
    
     ![啟用擱置的安全性](./media/active-directory-saas-workday-inbound-tutorial/IC750994.png "啟用擱置的安全性")  
 
-## <a name="configuring-user-provisioning-from-workday-to-active-directory"></a>設定將使用者從 Workday 佈建至 Active Directory
-請遵循下列指示來設定將使用者帳戶從 Workday 佈建至需要進行佈建的每個 Active Directory 樹系。
+## <a name="configuring-user-provisioning-from-workday-tooactive-directory"></a>設定使用者佈建從 Workday tooActive 目錄
+請遵循這些指示 tooconfigure 使用者帳戶佈建從 Workday tooeach 您需要佈建的 Active Directory 樹系。
 
-### <a name="part-1-adding-the-provisioning-connector-app-and-creating-the-connection-to-workday"></a>第 1 部分：新增佈建連接器應用程式和建立 Workday 連接
+### <a name="part-1-adding-hello-provisioning-connector-app-and-creating-hello-connection-tooworkday"></a>第 1 部分： 加入 hello 佈建的連接器應用程式和建立 hello 連接 tooWorkday
 
-**若要設定 Workday 至 Active Directory 佈建：**
+**tooconfigure Workday tooActive 目錄佈建：**
 
-1.  移至 <https://portal.azure.com>
+1.  跳過<https://portal.azure.com>
 
-2.  在左側導覽列中，選取 [Azure Active Directory]
+2.  在 hello 左的導覽列中，選取  **Azure Active Directory**
 
 3.  依序選取 [企業應用程式] 和 [所有應用程式]。
 
-4.  選取 [新增應用程式]，然後選取 [全部] 類別。
+4.  選取**新增應用程式**，並選取 hello**所有**類別目錄。
 
-5.  搜尋 **Workday Provisioning to Active Directory**，並從資源庫新增該應用程式。
+5.  搜尋**Workday 佈建 tooActive 目錄**，並從 hello 組件庫中加入該應用程式。
 
-6.  新增應用程式並顯示應用程式詳細資料畫面之後，請選取 [佈建]
+6.  Hello 之後加入的應用程式，而且會顯示 hello 應用程式詳細資料 畫面中，選取**佈建**
 
-7.  將 [佈建模式] 變更為 [自動]
+7.  變更 hello**佈建****模式**太**自動**
 
-8.  完成 [系統管理員認證] 區段，如下所示：
+8.  完整的 hello**系統管理員認證**區段，如下所示：
 
-   * **系統管理員使用者名稱** – 輸入 Workday 整合系統帳戶的使用者名稱，並附加租用戶網域名稱。 **其應該類似於：username@contoso4**
+   * **系統管理員使用者名稱**– 附加 hello 租用戶網域名稱輸入 hello hello Workday 的整合系統帳戶，使用者名稱。 **其應該類似於：username@contoso4**
 
-   * **系統管理員密碼 –** 輸入 Workday 整合系統帳戶的密碼
+   * **系統管理員密碼 –** Enter hello hello Workday 的整合系統帳戶密碼
 
-   * **租用戶 URL –** 輸入租用戶 Workday Web 服務端點的 URL。 其應該類似於：https://wd3-impl-services1.workday.com/ccx/service/contoso4，其中請將 contoso4 取代為正確的租用戶名稱，並將 wd3-impl 取代為正確的環境字串。
+   * **租用戶 URL-**輸入您的租用戶 hello URL toohello Workday web 服務端點。 這應該看起來： https://wd3-impl-services1.workday.com/ccx/service/contoso4 其中 contoso4 會取代您正確租用戶的名稱，而 wd3 impl 取代 hello 正確環境字串。
 
-   * **Active Directory 樹系 -** Get-ADForest powershell commandlet 所傳回 Active Directory 樹系的「名稱」。 此字串通常類似於：*contoso.com*
+   * **Active Directory 樹系-** hello hello Get ADForest powershell 指令程式所傳回的 「 名稱 」 您的 Active Directory 樹系。 此字串通常類似於：*contoso.com*
 
-   * **Active Directory 容器 -** 輸入包含 AD 樹系中所有使用者的容器字串。 範例：*OU=Standard Users,OU=Users,DC=contoso,DC=test*
+   * **Active Directory 容器-**輸入 hello 容器字串，其中包含您的 AD 樹系中的所有使用者。 範例：*OU=Standard Users,OU=Users,DC=contoso,DC=test*
 
    * **電子郵件通知 –** 輸入您的電子郵件地址，然後勾選 [發生失敗時傳送電子郵件] 核取方塊。
 
-   * 按一下 [測試連線] 按鈕。 如果連線測試成功，請按一下頂端的 [儲存] 按鈕。 如果失敗，請仔細檢查 Workday 認證在 Workday 中是否有效。 
+   * 按一下 hello**測試連接** 按鈕。 如果 hello 連接測試成功，按一下 hello**儲存**hello 頂端的按鈕。 如果失敗，請仔細檢查 hello 的 Workday 認證會在 Workday 中有效。 
 
 ![Azure 入口網站](./media/active-directory-saas-workday-inbound-tutorial/WD_1.PNG)
 
@@ -263,11 +263,11 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 
 在本節中，您會設定使用者資料從 Workday 流動至 Active Directory 的方式。
 
-1.  在 [佈建] 索引標籤的 [對應] 下，按一下 [將 Workday 人員同步至內部部署]。
+1.  在 hello 佈建索引標籤下**對應**，按一下 **同步處理新的 Workday 工作者 tooOnPremises**。
 
-2.  在 [來源物件範圍] 欄位中，您可以透過定義一組屬性型篩選，選取應該佈建至 AD 的 Workday 使用者集合範圍。 預設範圍是「Workday 中的所有使用者」。 範例篩選：
+2.  在 hello**來源物件範圍**欄位，您可以選取 在 Workday 中的使用者將應該提供 tooAD，藉由定義一組屬性為基礎的篩選條件的範圍內。 hello 預設範圍為 「 Workday 中的所有使用者 」。 範例篩選：
 
-   * 範例：人員識別碼介於 1000000 到 2000000 之間的使用者範圍
+   * 範例： 範圍 toousers 以背景工作識別碼 2000000 1000000 之間
 
       * 屬性：WorkerID
 
@@ -281,28 +281,28 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 
       * 運算子：IS NOT NULL
 
-3.  在 [目標物件動作] 欄位中，您可以全域篩選允許在 Active Directory 上執行哪些動作。 最常見的動作是 [建立] 和 [更新]。
+3.  在 hello**目標物件動作**欄位，您可以全域篩選允許 toobe Active Directory 上執行哪些動作。 最常見的動作是 [建立] 和 [更新]。
 
-4.  在 [屬性對應] 區段中，您可以定義個別 Workday 屬性如何對應至 Active Directory 屬性。
+4.  在 [hello**屬性對應**] 區段中，您可以定義如何個別 Workday 對應 tooActive 目錄屬性的屬性。
 
-5. 按一下現有的屬性對應以進行更新，或按一下畫面底端的 [新增新對應] 以新增新對應。 個別屬性對應支援下列屬性：
+5. 按一下現有的屬性對應 tooupdate，或是按一下**加入新的對應**底部 hello hello 螢幕 tooadd 新對應。 個別屬性對應支援下列屬性：
 
       * **對應類型**
 
-         * **直接** – 將 Workday 屬性的值寫入 AD 屬性，且不進行變更
+         * **直接**– 寫入 hello hello Workday 屬性 toohello AD 具有屬性值，任何變更
 
-         * **常數** - 將靜態的常數字串值寫入 AD 屬性
+         * **常數**-將靜態、 常數字串值寫入至 hello AD 屬性
 
-         * **運算式** – 可讓您根據一或多個 Workday 屬性，將自訂值寫入 AD 屬性。 [如需詳細資訊，請參閱這篇有關運算式的文章](active-directory-saas-writing-expressions-for-attribute-mappings.md)。
+         * **運算式**– 可讓您 toowrite hello AD 屬性，根據一個或多個新的 Workday 屬性的自訂值。 [如需詳細資訊，請參閱這篇有關運算式的文章](active-directory-saas-writing-expressions-for-attribute-mappings.md)。
 
-      * **來源屬性** - 來自 Workday 的使用者屬性。
+      * **來源屬性**-從 Workday hello 使用者屬性。
 
-      * **預設值** – 選用。 如果來源屬性具有空值，則對應將會改為寫入此值。
-            最常見的設定是將其保留空白。
+      * **預設值** – 選用。 如果 hello 來源屬性的值是空的 hello 對應會改為寫入此值。
+            此空白 tooleave 最常見的組態。
 
-      * **目標屬性** – Active Directory 中的使用者屬性。
+      * **目標屬性**– Active Directory 中的 hello 使用者屬性。
 
-      * **使用此屬性比對物件** – 是否應該將此對應用於唯一識別 Workday 與 Active Directory 之間的使用者。 此設定通常會設定於 Workday 的 [人員識別碼] 欄位，且通常會在 Active Directory 中對應至其中一個員工識別碼屬性。
+      * **符合使用此屬性的物件**– 是否應使用此對應 toouniquely 識別 Workday 與 Active Directory 之間的使用者。 這通常是背景工作 ID 欄位上設定，workday，通常會對應至其中一個 Active Directory 中的 hello 員工識別碼屬性。
 
       * **比對優先順序** – 您可以設定多個比對屬性。 具有多個屬性時，系統會以此欄位定義的順序進行評估。 只要找到相符項目，便不會評估進一步比對屬性。
 
@@ -312,15 +312,15 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 
          * **僅限建立期間** - 僅將此對應套用於使用者建立動作
 
-6. 若要儲存您的對應，請按一下 [屬性對應] 區段頂端的 [儲存]。
+6. toosave 對應時，按一下**儲存**頂端 hello 屬性對應的區段。
 
 ![Azure 入口網站](./media/active-directory-saas-workday-inbound-tutorial/WD_2.PNG)
 
 **下列為 Workday 與 Active Directory 之間的一些範例屬性對應，以及一些常用運算式**
 
--   對應至 parentDistinguishedName AD 屬性的運算式可用於根據一或多個 Workday 來源屬性，將使用者佈建至特定 OU。 此範例會根據使用者在 Workday 中的城市資料，將其置於不同的 OU。
+-   對應 toohello parentDistinguishedName AD 屬性的 hello 運算式可以是使用的 tooprovision 使用者 tooa 特定 OU 根據一個或多個新的 Workday 來源屬性。 此範例會根據使用者在 Workday 中的城市資料，將其置於不同的 OU。
 
--   對應至 userPrincipalName AD 屬性的運算式會建立 firstName.LastName@contoso.com 的 UPN。 其也會取代不合法的特殊字元。
+-   對應 toohello userPrincipalName AD 屬性的 hello 運算式建立的 UPN firstName.LastName@contoso.com。其也會取代不合法的特殊字元。
 
 -   [此為有關撰寫運算式的文件](active-directory-saas-writing-expressions-for-attribute-mappings.md)
 
@@ -353,13 +353,13 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 | **Join("@",Replace(Replace(Replace(Replace(Replace(Replace(Replace( Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace( Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Join(".", [FirstName], [LastName]), , "([Øø])", , "oe", , ), , "[Ææ]", , "ae", , ), , "([äãàâãåáąÄÃÀÂÃÅÁĄA])", , "a", , ), , "([B])", , "b", , ), , "([CçčćÇČĆ])", , "c", , ), , "([ďĎD])", , "d", , ), , "([ëèéêęěËÈÉÊĘĚE])", , "e", , ), , "([F])", , "f", , ), , "([G])", , "g", , ), , "([H])", , "h", , ), , "([ïîìíÏÎÌÍI])", , "i", , ), , "([J])", , "j", , ), , "([K])", , "k", , ), , "([ľłŁĽL])", , "l", , ), , "([M])", , "m", , ), , "([ñńňÑŃŇN])", , "n", , ), , "([öòőõôóÖÒŐÕÔÓO])", , "o", , ), , "([P])", , "p", , ), , "([Q])", , "q", , ), , "([řŘR])", , "r", , ), , "([ßšśŠŚS])", , "s", , ), , "([TŤť])", , "t", , ), , "([üùûúůűÜÙÛÚŮŰU])", , "u", , ), , "([V])", , "v", , ), , "([W])", , "w", , ), , "([ýÿýŸÝY])", , "y", , ), , "([źžżŹŽŻZ])", , "z", , ), " ", , , "", , ), "contoso.com")**   | userPrincipalName     |     | 建立 + 更新                                                   
 | **Switch(\[Municipality\], "OU=Standard Users,OU=Users,OU=Default,OU=Locations,DC=contoso,DC=com", "Dallas", "OU=Standard Users,OU=Users,OU=Dallas,OU=Locations,DC=contoso,DC=com", "Austin", "OU=Standard Users,OU=Users,OU=Austin,OU=Locations,DC=contoso,DC=com", "Seattle", "OU=Standard Users,OU=Users,OU=Seattle,OU=Locations,DC=contoso,DC=com", “London", "OU=Standard Users,OU=Users,OU=London,OU=Locations,DC=contoso,DC=com")**  | parentDistinguishedName     |     |  建立 + 更新 |
   
-### <a name="part-3-configure-the-on-premises-synchronization-agent"></a>第 3 部分：設定內部部署同步代理程式
+### <a name="part-3-configure-hello-on-premises-synchronization-agent"></a>第 3 部分： Hello 在內部部署同步處理代理程式設定
 
-若要佈建至 Active Directory 內部部署，您必須在所需 Active Directory 樹系的已加入網域伺服器上安裝代理程式。 您需要網域系統管理員 (或企業系統管理員) 認證才能完成此程序。
+在訂單 tooprovision tooActive 目錄在內部，必須 hello desire Active Directory 樹系中網域的伺服器上安裝代理程式。 網域系統管理員 （或企業系統管理員） 完成 hello 程序所需的認證。
 
-**[您可以在此處下載內部部署同步代理程式](https://go.microsoft.com/fwlink/?linkid=847801)**
+**[您可以下載 hello 在內部部署同步處理代理程式在此](https://go.microsoft.com/fwlink/?linkid=847801)**
 
-安裝代理程式之後，請執行下列 PowerShell 命令以設定環境的代理程式。
+安裝代理程式之後, 執行以下 tooconfigure hello 代理程式，您的環境的 hello Powershell 命令。
 
 **命令 1**
 
@@ -371,7 +371,7 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 
 > Add-ADSyncAgentActiveDirectoryConfiguration
 
-* 輸入：針對「目錄名稱」輸入 AD 樹系名稱，如第 \#2 部分所輸入
+* 輸入： 針對 [目錄名稱] 輸入 hello AD 樹系名稱，如同部分輸入\#2
 * 輸入：Active Directory 樹系的系統管理員使用者名稱和密碼
 
 **命令 3**
@@ -408,82 +408,82 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 
 > net start aadsyncagent
 
-### <a name="part-4-start-the-service"></a>第 4 部分：啟動服務
-完成第 1-3 部分之後，您可以在 Azure 管理入口網站中重新啟動佈建服務。
+### <a name="part-4-start-hello-service"></a>第 4 部分： 啟動 hello 服務
+當組件 1-3 已完成之後時，您可以開始佈建服務 hello Azure 管理入口網站中的 hello。
 
-1.  在 [佈建] 索引標籤中，將 [佈建狀態] 設定為 [開啟]。
+1.  在 hello**佈建**索引標籤，設定 hello**佈建狀態**至**上**。
 
 2. 按一下 [儲存] 。
 
-3. 這會啟動初始同步，取決於 Workday 中的使用者人數，其可能要花費數小時。
+3. 這會啟動 hello 初始同步處理，這可能要花費數小時取決於使用者人數會 workday。
 
-4. 您可以在 [稽核記錄] 索引標籤中檢視個別同步事件 (例如，正在 Workday 外讀取哪些使用者，然後接著新增或更新至 Active Directory)。 **[請參閱佈建報告指南，瞭解有關如何讀取稽核記錄的詳細指示](active-directory-saas-provisioning-reporting.md)**
+4. 個別同步處理的事件，例如哪些使用者會讀出 Workday，以及之後加入或已更新 tooActive 目錄，然後可以在 hello 檢視**稽核記錄檔** 索引標籤。**[請參閱 hello 佈建上 tooread hello 稽核記錄的方式的詳細指示的報告指南](active-directory-saas-provisioning-reporting.md)**
 
-5.  代理程式電腦上的 Windows 應用程式記錄檔將會顯示透過代理程式執行的所有作業。
+5.  hello hello 代理程式電腦上的 Windows 應用程式記錄檔會顯示透過 hello 代理程式執行的所有作業。
 
 6. 完成之後，其會寫入 [佈建] 索引標籤中的稽核摘要報告內，如下所示。
 
 ![Azure 入口網站](./media/active-directory-saas-workday-inbound-tutorial/WD_3.PNG)
 
 
-## <a name="configuring-user-provisioning-to-azure-active-directory"></a>設定將使用者佈建至 Azure Active Directory
-設定 Azure Active Directory 佈建的方法將取決於佈建需求，如下表所述。
+## <a name="configuring-user-provisioning-tooazure-active-directory"></a>設定使用者佈建 tooAzure Active Directory
+設定佈建 tooAzure Active Directory 的方式將取決於您佈建的需求，在 hello 表中所述。
 
 | 案例 | 方案 |
 | -------- | -------- |
-| **需要佈建至 Active Directory 和 Azure AD 的使用者** | 使用 **[AAD Connect](connect/active-directory-aadconnect.md)** |
-| **只需要佈建至 Active Directory 的使用者** | 使用 **[AAD Connect](connect/active-directory-aadconnect.md)** |
-| **只需要佈建至 Azure AD 的使用者 (僅限雲端)** | 使用應用程式庫中的 **Workday to Azure Active Directory Provisioning** 應用程式 |
+| **使用者需要佈建 toobe tooActive 目錄與 Azure AD** | 使用 **[AAD Connect](connect/active-directory-aadconnect.md)** |
+| **使用者需要佈建 toobe tooActive 目錄只** | 使用 **[AAD Connect](connect/active-directory-aadconnect.md)** |
+| **使用者需要佈建 toobe tooAzure AD 唯一 （僅限雲端）** | 使用 hello **Workday tooAzure Active Directory 佈建**hello 應用程式庫中的應用程式 |
 
-如需有關設定 Azure AD Connect 的指示，請參閱 [Azure AD Connect 文件](connect/active-directory-aadconnect.md)。
+如需設定 Azure AD Connect 的指示，請參閱 hello [Azure AD Connect 文件](connect/active-directory-aadconnect.md)。
 
-下列各節說明如何設定 Workday 與 Azure AD 之間的連接以佈建僅限雲端使用者。
+hello 下列各節描述如何設定 Workday 和 Azure AD tooprovision 僅限雲端的使用者之間的連線。
 
 > [!IMPORTANT]
-> 如果您擁有需要佈建至 Azure AD 的僅限雲端使用者且沒有內部部署 Active Directory，請僅遵循下列程序。
+> 如果您需要佈建 toobe tooAzure AD 和不在內部部署 Active Directory 的僅限雲端的使用者，只能後面 hello 的下列程序。
 
-### <a name="part-1-adding-the-azure-ad-provisioning-connector-app-and-creating-the-connection-to-workday"></a>第 1 部分：新增 Azure AD 佈建連接器應用程式和建立 Workday 連接
+### <a name="part-1-adding-hello-azure-ad-provisioning-connector-app-and-creating-hello-connection-tooworkday"></a>第 1 部分： 加入 hello Azure AD 佈建的連接器應用程式和建立 hello 連接 tooWorkday
 
-**若要針對僅限雲端使用者設定 Workday 至 Azure Active Directory 佈建：**
+**tooconfigure Workday tooAzure Active Directory 佈建為僅限雲端的使用者：**
 
-1.  移至 <https://portal.azure.com>。
+1.  跳過<https://portal.azure.com>。
 
-2.  在左側導覽列中，選取 [Azure Active Directory]
+2.  在 hello 左的導覽列中，選取  **Azure Active Directory**
 
 3.  依序選取 [企業應用程式] 和 [所有應用程式]。
 
-4.  選取 [新增應用程式]，然後選取 [全部] 類別。
+4.  選取**新增應用程式**，然後選取 hello**所有**類別目錄。
 
-5.  搜尋 **Workday to Azure AD Provisioning**，並從資源庫新增該應用程式。
+5.  搜尋**Workday tooAzure AD 佈建**，並從 hello 組件庫中加入該應用程式。
 
-6.  新增應用程式並顯示應用程式詳細資料畫面之後，請選取 [佈建]
+6.  Hello 之後加入的應用程式，而且會顯示 hello 應用程式詳細資料 畫面中，選取**佈建**
 
-7.  將 [佈建模式] 變更為 [自動]
+7.  變更 hello**佈建****模式**太**自動**
 
-8.  完成 [系統管理員認證] 區段，如下所示：
+8.  完整的 hello**系統管理員認證**區段，如下所示：
 
-   * **系統管理員使用者名稱** – 輸入 Workday 整合系統帳戶的使用者名稱，並附加租用戶網域名稱。 其應該類似於：username@contoso4
+   * **系統管理員使用者名稱**– 附加 hello 租用戶網域名稱輸入 hello hello Workday 的整合系統帳戶，使用者名稱。 其應該類似於：username@contoso4
 
-   * **系統管理員密碼 –** 輸入 Workday 整合系統帳戶的密碼
+   * **系統管理員密碼 –** Enter hello hello Workday 的整合系統帳戶密碼
 
-   * **租用戶 URL –** 輸入租用戶 Workday Web 服務端點的 URL。 其應該類似於：https://wd3-impl-services1.workday.com/ccx/service/contoso4，其中請將 contoso4 取代為正確的租用戶名稱，並將 wd3-impl 取代為正確的環境字串 (如有必要)。
+   * **租用戶 URL-**輸入您的租用戶 hello URL toohello Workday web 服務端點。 這應該看起來： https://wd3-impl-services1.workday.com/ccx/service/contoso4 其中 contoso4 會取代您正確租用戶的名稱，而 wd3 impl 會取代 hello 正確環境字串 （如有必要）。
 
    * **電子郵件通知 –** 輸入您的電子郵件地址，然後勾選 [發生失敗時傳送電子郵件] 核取方塊。
 
-   * 按一下 [測試連線] 按鈕。
+   * 按一下 hello**測試連接** 按鈕。
 
-   * 如果連線測試成功，請按一下頂端的 [儲存] 按鈕。 如果失敗，請仔細檢查 Workday URL 和認證在 Workday 中是否有效。
+   * 如果 hello 連接測試成功，按一下 hello**儲存**hello 頂端的按鈕。 如果失敗，，再次該 hello Workday 的 URL 是 Workday 中的有效認證。
 
 
 ### <a name="part-2-configure-attribute-mappings"></a>第 2 部分：設定屬性對應 
 
 在本節中，您會針對僅限雲端使用者設定使用者資料從 Workday 流動至 Azure Active Directory 的方式。
 
-1.  在 [佈建] 索引標籤的 [對應] 下，按一下 [將人員同步至 Azure AD]。
+1.  在 hello 佈建索引標籤下**對應**，按一下 **同步處理的背景工作 tooAzure AD**。
 
-2.   在 [來源物件範圍] 欄位中，您可以透過定義一組屬性型篩選，選取應該佈建至 Azure AD 的 Workday 使用者集合範圍。 預設範圍是「Workday 中的所有使用者」。 範例篩選：
+2.   在 hello**來源物件範圍**欄位，您可以選取 Workday 中的使用者將應該提供 tooAzure AD，藉由定義一組屬性為基礎的篩選條件的範圍內。 hello 預設範圍為 「 Workday 中的所有使用者 」。 範例篩選：
 
-   * 範例：人員識別碼介於 1000000 到 2000000 之間的使用者範圍
+   * 範例： 範圍 toousers 以背景工作識別碼 2000000 1000000 之間
 
       * 屬性：WorkerID
 
@@ -497,28 +497,28 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 
       * 運算子：IS NOT NULL
 
-3.  在 [目標物件動作] 欄位中，您可以全域篩選允許在 Azure AD 上執行哪些動作。 最常見的動作是 [建立] 和 [更新]。
+3.  在 hello**目標物件動作**欄位，您可以全域篩選允許 toobe 在 Azure AD 上執行哪些動作。 最常見的動作是 [建立] 和 [更新]。
 
-4.  在 [屬性對應] 區段中，您可以定義個別 Workday 屬性如何對應至 Active Directory 屬性。
+4.  在 [hello**屬性對應**] 區段中，您可以定義如何個別 Workday 對應 tooActive 目錄屬性的屬性。
 
-5. 按一下現有的屬性對應以進行更新，或按一下畫面底端的 [新增新對應] 以新增新對應。 個別屬性對應支援下列屬性：
+5. 按一下現有的屬性對應 tooupdate，或是按一下**加入新的對應**底部 hello hello 螢幕 tooadd 新對應。 個別屬性對應支援下列屬性：
 
    * **對應類型**
 
-      * **直接** – 將 Workday 屬性的值寫入 AD 屬性，且不進行變更
+      * **直接**– 寫入 hello hello Workday 屬性 toohello AD 具有屬性值，任何變更
 
-      * **常數** - 將靜態的常數字串值寫入 AD 屬性
+      * **常數**-將靜態、 常數字串值寫入至 hello AD 屬性
 
-      * **運算式** – 可讓您根據一或多個 Workday 屬性，將自訂值寫入 AD 屬性。 [如需詳細資訊，請參閱這篇有關運算式的文章](active-directory-saas-writing-expressions-for-attribute-mappings.md)。
+      * **運算式**– 可讓您 toowrite hello AD 屬性，根據一個或多個新的 Workday 屬性的自訂值。 [如需詳細資訊，請參閱這篇有關運算式的文章](active-directory-saas-writing-expressions-for-attribute-mappings.md)。
 
-   * **來源屬性** - 來自 Workday 的使用者屬性。
+   * **來源屬性**-從 Workday hello 使用者屬性。
 
-   * **預設值** – 選用。 如果來源屬性具有空值，則對應將會改為寫入此值。
-            最常見的設定是將其保留空白。
+   * **預設值** – 選用。 如果 hello 來源屬性的值是空的 hello 對應會改為寫入此值。
+            此空白 tooleave 最常見的組態。
 
-   * **目標屬性** – Azure AD 中的使用者屬性。
+   * **目標屬性**– 在 Azure AD 中的 hello 使用者屬性。
 
-   * **使用此屬性比對物件** – 是否應該將此對應用於唯一識別 Workday 與 Azure AD 之間的使用者。 此設定通常會設定於 Workday 的 [人員識別碼] 欄位，且通常會在 Azure AD 中對應至員工識別碼屬性 (新) 或擴充屬性。
+   * **符合使用此屬性的物件**– 是否應使用此對應 toouniquely 識別 Workday 與 Azure AD 之間的使用者。 這通常是背景工作 ID 欄位上設定，workday，通常在 Azure AD 中對應至 hello 員工 ID 屬性 （新） 或延伸模組屬性。
 
    * **比對優先順序** – 您可以設定多個比對屬性。 具有多個屬性時，系統會以此欄位定義的順序進行評估。 只要找到相符項目，便不會評估進一步比對屬性。
 
@@ -528,54 +528,54 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 
      * **僅限建立期間** - 僅將此對應套用於使用者建立動作
 
-6. 若要儲存您的對應，請按一下 [屬性對應] 區段頂端的 [儲存]。
+6. toosave 對應時，按一下**儲存**頂端 hello 屬性對應的區段。
 
-### <a name="part-3-start-the-service"></a>第 3 部分：啟動服務
-完成第 1-2 部分之後，您可以啟動佈建服務。
+### <a name="part-3-start-hello-service"></a>第 3 部分： 啟動 hello 服務
+當組件 1-2 已經完成時，您可以開始佈建服務的 hello。
 
-1.  在 [佈建] 索引標籤中，將 [佈建狀態] 設定為 [開啟]。
+1.  在 hello**佈建**索引標籤，設定 hello**佈建狀態**至**上**。
 
 2. 按一下 [儲存] 。
 
-3. 這會啟動初始同步，取決於 Workday 中的使用者人數，其可能要花費數小時。
+3. 這會啟動 hello 初始同步處理，這可能要花費數小時取決於使用者人數會 workday。
 
-4. 您可以在 [稽核記錄] 索引標籤中檢視個別同步事件。 **[請參閱佈建報告指南，瞭解有關如何讀取稽核記錄的詳細指示](active-directory-saas-provisioning-reporting.md)**
+4. 可以檢視個別的同步處理事件，在 hello**稽核記錄檔** 索引標籤。**[請參閱 hello 佈建上 tooread hello 稽核記錄的方式的詳細指示的報告指南](active-directory-saas-provisioning-reporting.md)**
 
 5. 完成之後，其會寫入 [佈建] 索引標籤中的稽核摘要報告內，如下所示。
 
 
-## <a name="configuring-writeback-of-email-addresses-to-workday"></a>設定將電子郵件地址回寫至 Workday
-請遵循下列指示來設定將使用者電子郵件地址從 Azure Active Directory 回寫至 Workday。
+## <a name="configuring-writeback-of-email-addresses-tooworkday"></a>設定電子郵件地址 tooWorkday 的回寫
+從 Azure Active Directory tooWorkday 遵循這些指示 tooconfigure 回寫的使用者電子郵件地址。
 
-### <a name="part-1-adding-the-provisioning-connector-app-and-creating-the-connection-to-workday"></a>第 1 部分：新增佈建連接器應用程式和建立 Workday 連接
+### <a name="part-1-adding-hello-provisioning-connector-app-and-creating-hello-connection-tooworkday"></a>第 1 部分： 加入 hello 佈建的連接器應用程式和建立 hello 連接 tooWorkday
 
-**若要設定 Workday 至 Active Directory 佈建：**
+**tooconfigure Workday tooActive 目錄佈建：**
 
-1.  移至 <https://portal.azure.com>
+1.  跳過<https://portal.azure.com>
 
-2.  在左側導覽列中，選取 [Azure Active Directory]
+2.  在 hello 左的導覽列中，選取  **Azure Active Directory**
 
 3.  依序選取 [企業應用程式] 和 [所有應用程式]。
 
-4.  選取 [新增應用程式]，然後選取 [全部] 類別。
+4.  選取**新增應用程式**，然後選取 hello**所有**類別目錄。
 
-5.  搜尋 **Workday Writeback**，並從資源庫新增該應用程式。
+5.  搜尋**Workday 回寫**，並從 hello 組件庫中加入該應用程式。
 
-6.  新增應用程式並顯示應用程式詳細資料畫面之後，請選取 [佈建]
+6.  Hello 之後加入的應用程式，而且會顯示 hello 應用程式詳細資料 畫面中，選取**佈建**
 
-7.  將 [佈建模式] 變更為 [自動]
+7.  變更 hello**佈建****模式**太**自動**
 
-8.  完成 [系統管理員認證] 區段，如下所示：
+8.  完整的 hello**系統管理員認證**區段，如下所示：
 
-   * **系統管理員使用者名稱** – 輸入 Workday 整合系統帳戶的使用者名稱，並附加租用戶網域名稱。 其應該類似於：username@contoso4
+   * **系統管理員使用者名稱**– 附加 hello 租用戶網域名稱輸入 hello hello Workday 的整合系統帳戶，使用者名稱。 其應該類似於：username@contoso4
 
-   * **系統管理員密碼 –** 輸入 Workday 整合系統帳戶的密碼
+   * **系統管理員密碼 –** Enter hello hello Workday 的整合系統帳戶密碼
 
-   * **租用戶 URL –** 輸入租用戶 Workday Web 服務端點的 URL。 其應該類似於：https://wd3-impl-services1.workday.com/ccx/service/contoso4，其中請將 contoso4 取代為正確的租用戶名稱，並將 wd3-impl 取代為正確的環境字串 (如有必要)。
+   * **租用戶 URL-**輸入您的租用戶 hello URL toohello Workday web 服務端點。 這應該看起來： https://wd3-impl-services1.workday.com/ccx/service/contoso4 其中 contoso4 會取代您正確租用戶的名稱，而 wd3 impl 會取代 hello 正確環境字串 （如有必要）。
 
    * **電子郵件通知 –** 輸入您的電子郵件地址，然後勾選 [發生失敗時傳送電子郵件] 核取方塊。
 
-   * 按一下 [測試連線] 按鈕。 如果連線測試成功，請按一下頂端的 [儲存] 按鈕。 如果失敗，請仔細檢查 Workday URL 和認證在 Workday 中是否有效。
+   * 按一下 hello**測試連接** 按鈕。 如果 hello 連接測試成功，按一下 hello**儲存**hello 頂端的按鈕。 如果失敗，，再次該 hello Workday 的 URL 是 Workday 中的有效認證。
 
 
 ### <a name="part-2-configure-attribute-mappings"></a>第 2 部分：設定屬性對應 
@@ -583,36 +583,36 @@ Azure Active Directory 支援適用於 Workday 和大量其他 SaaS 應用程式
 
 在本節中，您會設定使用者資料從 Workday 流動至 Active Directory 的方式。
 
-1.  在 [佈建] 索引標籤的 [對應] 下，按一下 [將 Azure AD 使用者同步至 Workday]。
+1.  在 hello 佈建索引標籤下**對應**，按一下 **同步處理 Azure AD 使用者 tooWorkday**。
 
-2.  在 [來源物件範圍] 欄位中，您可以選擇性地篩選應該將電子郵件地址寫回至 Workday 的 Azure Active Directory 使用者集合。 預設範圍是「Azure AD 中的所有使用者」。 
+2.  在 hello**來源物件範圍**欄位，您可以選擇性地篩選將 Azure Active Directory 中的使用者應該擁有電子郵件地址寫回 tooWorkday。 hello 預設範圍為 「 在 Azure AD 中的所有使用者 」。 
 
-3.  在 [屬性對應] 區段中，您可以定義個別 Workday 屬性如何對應至 Active Directory 屬性。 根據預設，存在電子郵件地址的對應。 不過，您必須更新比對識別碼以在 Azure AD 中比對使用者及其在 Workday 中的對應項目。 常用的比對方法是將 Workday 人員識別碼或員工識別碼同步至 Azure AD 中的 extensionAttribute1-15，然後在 Azure AD 中使用此屬性再次比對 Workday 的使用者。
+3.  在 [hello**屬性對應**] 區段中，您可以定義如何個別 Workday 對應 tooActive 目錄屬性的屬性。 沒有預設的 hello 電子郵件地址的對應。 不過，符合識別碼的 hello 必須更新的 toomatch 使用者在其對應的項目與 workday 的 Azure AD 中。 受歡迎的比對方法 toosynchronize hello Workday 背景工作識別碼或員工識別碼在 Azure AD 中為 tooextensionAttribute1 15，然後在 Workday 在 Azure AD toomatch 使用者使用這個屬性。
 
-4.  若要儲存您的對應，請按一下 [屬性對應] 區段頂端的 [儲存]。
+4.  您的對應，按一下 toosave**儲存**頂端 hello hello 屬性對應 > 一節。
 
-### <a name="part-3-start-the-service"></a>第 3 部分：啟動服務
-完成第 1-2 部分之後，您可以啟動佈建服務。
+### <a name="part-3-start-hello-service"></a>第 3 部分： 啟動 hello 服務
+當組件 1-2 已經完成時，您可以開始佈建服務的 hello。
 
-1.  在 [佈建] 索引標籤中，將 [佈建狀態] 設定為 [開啟]。
+1.  在 hello**佈建**索引標籤，設定 hello**佈建狀態**至**上**。
 
 2. 按一下 [儲存] 。
 
-3. 這會啟動初始同步，取決於 Workday 中的使用者人數，其可能要花費數小時。
+3. 這會啟動 hello 初始同步處理，這可能要花費數小時取決於使用者人數會 workday。
 
-4. 您可以在 [稽核記錄] 索引標籤中檢視個別同步事件。 **[請參閱佈建報告指南，瞭解有關如何讀取稽核記錄的詳細指示](active-directory-saas-provisioning-reporting.md)**
+4. 可以檢視個別的同步處理事件，在 hello**稽核記錄檔** 索引標籤。**[請參閱 hello 佈建上 tooread hello 稽核記錄的方式的詳細指示的報告指南](active-directory-saas-provisioning-reporting.md)**
 
 5. 完成之後，其會寫入 [佈建] 索引標籤中的稽核摘要報告內，如下所示。
 
 ## <a name="known-issues"></a>已知問題
 
-* **歐洲地區設定中的稽核記錄** - 發布此技術預覽版本後，已存在[稽核記錄](active-directory-saas-provisioning-reporting.md)的已知問題，如果 Azure AD 租用戶位於歐洲資料中心，則 Workday 連接器應用程式不會顯示於 [Azure 入口網站](https://portal.azure.com)。 我們即將推出此問題的修正。 請於近期再次檢查此空間以取得更新。 
+* **稽核記錄檔在歐洲地區設定中**-因為 hello 本版 technical preview 版本的已知的問題與 hello[稽核記錄檔](active-directory-saas-provisioning-reporting.md)hello Workday 連接器應用程式並未出現在 hello [的Azure入口網站](https://portal.azure.com)如果 hello Azure AD 租用戶位於歐洲的資料中心。 我們即將推出此問題的修正。 請檢查此空間在 hello 附近未來更新一次。 
 
 ## <a name="additional-resources"></a>其他資源
 * [教學課程：設定 Workday 與 Azure Active Directory 之間的單一登入](active-directory-saas-workday-tutorial.md)
-* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [如何教學課程清單 tooIntegrate SaaS 應用程式與 Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
 ## <a name="next-steps"></a>後續步驟
 
-* [瞭解如何針對佈建活動檢閱記錄和取得報告](https://docs.microsoft.com/azure/active-directory/active-directory-saas-provisioning-reporting)
+* [瞭解如何 tooreview 記錄並取得上佈建活動報表](https://docs.microsoft.com/azure/active-directory/active-directory-saas-provisioning-reporting)

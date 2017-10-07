@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C：驗證通訊協定 | Microsoft Docs"
-description: "如何直接使用 Azure Active Directory B2C 支援的通訊協定來建置應用程式"
+description: "如何 toobuild 應用程式是直接使用 hello 通訊協定所支援的 Azure Active Directory B2C"
 services: active-directory-b2c
 documentationcenter: 
 author: dstrockis
@@ -14,69 +14,69 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
-ms.openlocfilehash: 8e7e7bc7633370057f8dc596ad04a3f1d796a7d2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8fa4cbebe711841d410b3ae43b78f893c06d9b63
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # Azure AD B2C：驗證通訊協定
-Azure Active Directory B2C (Azure AD B2C) 支援 OpenID Connect 與 OAuth 2.0 兩種業界標準通訊協定，為您的 app 提供身分識別即服務。 這是符合標準的服務，但是這些通訊協定在任兩個實作之間仍會有些微差異。 
+Azure Active Directory B2C (Azure AD B2C) 支援 OpenID Connect 與 OAuth 2.0 兩種業界標準通訊協定，為您的 app 提供身分識別即服務。 hello 服務符合標準，但是這些通訊協定的任何兩個實作都可以有只有些微的差異。 
 
-若您藉由直接傳送和處理 HTTP 要求來撰寫程式碼，而非使用開放原始碼程式庫，則本指南中的資訊很有用。 建議您在深入探討每個特定通訊協定的詳細資料之前，先閱讀此頁面。 但若您已經熟悉 Azure AD B2C，您可以直接閱讀[通訊協定參考指南](#protocols)。
+本指南中的 hello 資訊非常有用，如果您撰寫程式碼，透過直接傳送和處理 HTTP 要求，而不是使用開放原始碼程式庫。 我們建議您閱讀這個頁面之前您深入了解的每個特定的通訊協定的 hello 詳細資料。 但如果您已熟悉 Azure AD B2C，您可以直接太[hello 通訊協定參考指南](#protocols)。
 
-<!-- TODO: Need link to libraries above -->
+<!-- TODO: Need link toolibraries above -->
 
-## 基本概念
-使用 Azure AD B2C 的每個 app 都必須在 [Azure 入口網站](https://portal.azure.com)內您的 B2C 目錄中註冊。 App 註冊處理序會收集與指派一些值給您的 app：
+## hello 基本概念
+使用 Azure AD B2C 每個應用程式需要 toobe hello B2C 目錄中註冊[Azure 入口網站](https://portal.azure.com)。 hello 應用程式登錄程序會收集，並將幾個值 tooyour 應用程式：
 
 * 可唯一識別應用程式的 **應用程式識別碼** 。
-* 可將回應導回至應用程式的**重新導向 URI**或**套件識別碼**。
-* 其他幾個狀況特定的值。 如需詳細資訊，請了解[如何註冊您的應用程式](active-directory-b2c-app-registration.md)。
+* A**重新導向 URI**或**封裝識別碼**可以使用的 toodirect 回應後 tooyour 應用程式。
+* 其他幾個狀況特定的值。 如需詳細資訊，了解[如何 tooregister 您的應用程式](active-directory-b2c-app-registration.md)。
 
-註冊您的應用程式之後，它會傳送要求給端點，藉此與 Azure Active Directory (Azure AD) 通訊：
+註冊您的應用程式後，通訊與 Azure Active Directory (Azure AD) 傳送要求 toohello 端點：
 
 ```
 https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize
 https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token
 ```
 
-幾乎在所有的 OAuth 和 OpenID Connect 流程中，都包含四個參與交換的合作對象：
+幾乎所有 OAuth 和 OpenID Connect 的流量，四個合作對象都是參與 hello exchange:
 
 ![OAuth 2.0 角色](./media/active-directory-b2c-reference-protocols/protocols_roles.png)
 
-* **授權伺服器**是 Azure AD 端點。 它會安全地處理與使用者資訊和存取相關的任何項目。 它也會處理流程中合作對象之間的信任關係。 其負責驗證使用者的身分識別、授與及撤銷資源存取權，以及核發權杖。 它亦稱為身分識別提供者。
+* hello**授權伺服器**hello Azure AD 端點。 它會安全地處理的任何項目相關的 toouser 資訊和存取。 它也會處理 hello 資料流程中的 hello 合作對象之間的信任關係。 它負責驗證 hello 使用者的身分識別、 授與及撤銷存取 tooresources 以及簽發權杖。 它也稱為是 hello 身分識別提供者。
 
-* **資源擁有者** 通常是使用者。 其是擁有資料的一方，而且有權允許第三方存取該資料或資源。
+* hello**資源擁有者**通常是 hello 終端使用者。 Hello 合作對象擁有 hello 資料，以及它具有 hello 電源 tooallow 第三方 tooaccess 資料或資源。
 
-* **OAuth 用戶端** 是您的應用程式。 它是透過其應用程式識別碼來識別。 它通常是使用者互動的合作對象。 它也會向授權伺服器要求權杖。 資源擁有者必須授與用戶端者授權，才能存取資源。
+* hello **OAuth 用戶端**是您的應用程式。 它是透過其應用程式識別碼來識別。 它通常是與使用者互動的 hello 合作對象。 它也會要求來自 hello 授權伺服器的權杖。 hello 資源擁有者必須授與 hello 用戶端權限 tooaccess hello 資源。
 
-* **資源伺服器** 是資源或資料所在位置。 它會信任授權伺服器，以便安全地驗證和授權 OAuth 用戶端。 它也會使用持有人存取權杖，以確保可授與資源的存取權。
+* hello**資源伺服器**是 hello 資源或資料所在的位置。 信任 hello 授權伺服器 toosecurely 驗證和授權 hello OAuth 用戶端。 它也會使用可以授與存取 tooa 資源的語彙基元 tooensure 的持有人存取權。
 
 ## 原則
-Azure AD B2C 原則可視為服務的最重要功能。 Azure AD B2C 藉由引進原則來延伸標準的 OAuth 2.0 和 OpenID Connect 通訊協定。 這些原則讓 Azure AD B2C 能夠執行簡單驗證與授權以外的更多操作。 
+在論證上，Azure AD B2C 原則是 hello hello 服務最重要功能。 Azure AD B2C 藉由引進原則延伸 hello 標準 OAuth 2.0 和 OpenID Connect 通訊協定。 這些選項可讓 Azure AD B2C tooperform 更多簡單驗證及授權。 
 
 原則可完整描述取用者身分識別體驗，包括註冊、登入及設定檔編輯。 原則可定義於系統管理 UI 中。 您可以在 HTTP 驗證要求中使用特定的查詢參數來執行原則。 
 
-原則並非 OAuth 2.0 和 OpenID Connect 的標準功能，因此您應該花點時間瞭解它們。 如需詳細資訊，請參閱 [Azure AD B2C 原則參考指南](active-directory-b2c-reference-policies.md)。
+原則不是標準功能的 OAuth 2.0 和 OpenID Connect，所以您應該採取 hello 時間 toounderstand 它們。 如需詳細資訊，請參閱 hello [Azure AD B2C 原則參考指南](active-directory-b2c-reference-policies.md)。
 
 ## 權杖
-OAuth 2.0 和 OpenID Connect 的 Azure AD B2C 實作廣泛運用持有人權杖，包括以 JSON Web 權杖 (JWT) 表示的持有人權杖。 持有人權杖是輕巧型安全性權杖，授權「持有人」存取受保護的資源。
+hello Azure AD B2C OAuth 2.0 和 OpenID Connect 實作會大量地使用 bearer 權杖，包括會以 JSON web 權杖 (Jwt) 表示的持有者權杖。 承載權杖是輕巧型的安全性權杖會授與 hello"bearer"存取 tooa 受保護資源。
 
-持有人是可出示權杖的任何一方。 Azure AD 必須先驗證合作對象，才能接收持有人權杖。 但若傳輸和儲存時未採取必要的步驟來保護權杖，它可能會被非預期的一方攔截和使用。
+hello 持有者是指可出示 hello 語彙基元任何一方。 Azure AD 必須先驗證合作對象，才能接收持有人權杖。 但是，它在 hello 必要步驟不會採用 toosecure 傳輸和儲存體中的 hello 語彙基元可以攔截和使用的非預期的合作對象。
 
 某些安全性權杖有內建的機制，可防止未授權的合作對象使用它們，但持有人權杖沒有這項機制。 它們必須在安全的通道 (例如傳輸層安全性 (HTTPS)) 中傳輸。 
 
-如果持有人權杖是在安全通道外部進行傳輸，則惡意人士就能使用攔截式攻擊來取得權杖，未經授權地使用該權杖來存取受保護的資源。 儲存或快取持有人權杖供以後使用時，也適用相同的安全性原則。 務必確定您的應用程式以安全的方式傳輸和儲存持有人權杖。
+持有人權杖傳輸到外部安全通道，如果惡意人士可以使用攔截攻擊 tooacquire hello 語彙基元，並使用它 toogain 未經授權存取 tooa 受保護的資源。 當您儲存或快取供稍後使用持有者權杖時，適用相同的安全性原則的 hello。 務必確定您的應用程式以安全的方式傳輸和儲存持有人權杖。
 
 如需持有人權杖的其他安全性考量，請參閱 [RFC 6750 第 5 節](http://tools.ietf.org/html/rfc6750)。
 
-如需 Azure AD B2C 中所用各種不同權杖類型的詳細資訊，請參閱 [Azure AD 權杖參考](active-directory-b2c-reference-tokens.md)。
+Azure AD B2C 中所使用的語彙基元的 hello 不同類型的相關資訊可用於[hello Azure AD 的權杖參照](active-directory-b2c-reference-tokens.md)。
 
 ## 通訊協定
-當您準備好要檢閱一些範例要求時，您可以開從下列其中一個教學課程開始。 每個教學課程皆對應至特定的驗證情節。 若您在判斷適用的流程時需要協助，請參閱[您可以使用 Azure AD B2C 建置的應用程式類型](active-directory-b2c-apps.md)。
+當您準備好 tooreview 某些範例要求時，就可以開始一個 hello 遵循教學課程。 每一個都對應 tooa 特定的驗證案例。 如果您需要判斷哪一個流程最適合您的協助，請參閱[hello 類型的應用程式，您可以使用 Azure AD B2C 建置](active-directory-b2c-apps.md)。
 
 * [使用 OAuth 2.0 建置行動與原生應用程式](active-directory-b2c-reference-oauth-code.md)
 * [使用 OpenID Connect 建置 Web 應用程式](active-directory-b2c-reference-oidc.md)
-* [使用 OAuth 2.0 隱含流程建置單一頁面應用程式](active-directory-b2c-reference-spa.md)
+* [建置使用 hello OAuth 2.0 隱含流程的單一頁面應用程式](active-directory-b2c-reference-spa.md)
 

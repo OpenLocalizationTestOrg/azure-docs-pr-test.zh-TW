@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用 Application Insights (可延伸的應用程式效能管理服務) 來偵測、分類和診斷 Web 應用程式和服務的問題。"
+title: "aaaAzure 應用程式 Insights 文件-教學課程中，API 參考 |Microsoft 文件"
+description: "了解如何 toouse Application Insights 可延伸應用程式效能管理 toodetect，分類及診斷中的 web 應用程式和服務的問題。"
 services: application-insights
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 1f3fc2431bacd6852c6babc7ebbb07c6a3b74145
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 341ac74463dc44ea477c9f0f7bcf83fed6189f0b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-insights-documentation"></a>Application Insights 文件
 
-了解如何使用 Application Insights，這是適用於 Web 開發人員的可延伸應用程式效能管理服務。 教學課程、API 參考和其他文件會示範如何偵測、分類和診斷 Web 應用程式和服務的問題。
+了解如何 toouse Application Insights，可延伸應用程式效能管理服務的網頁開發人員。 教學課程、 應用程式開發介面參考和其他文件說明您如何 toodetect，分級及診斷中的 web 應用程式和服務的問題。
 
 <ul class="panelContent cardsFTitle">
     <li>

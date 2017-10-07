@@ -14,40 +14,40 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/24/2017
 ms.author: joroja
-ms.openlocfilehash: eb44a0d2234c9ee3801d8b3a1655d877aa2f4fef
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cec6c6e110514a8bbe0e0780f36738ff21ae2f00
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="walkthrough-integrate-rest-api-claims-exchanges-in-your-azure-ad-b2c-user-journey-as-validation-on-user-input"></a>逐步解說︰將 REST API 宣告交換整合到 Azure AD B2C 使用者旅程圖中以作為使用者輸入的驗證
 
-構成 Azure Active Directory B2C (Azure AD B2C) 基礎的識別體驗架構 (IEF)，可讓身分識別開發人員於使用者旅程圖中整合與 RESTful API 的互動。  
+hello 識別體驗架構 (IEF) 構成 Azure Active Directory B2C (Azure AD B2C) 可讓 hello 身分識別開發人員 toointegrate 與 rest 式 API，在使用者之旅互動。  
 
-在本逐步解說結束時，您將能建立與 RESTful 服務互動的 Azure AD B2C 使用者旅程圖。
+在本逐步解說 hello 最後，將無法 toocreate 互動 RESTful 服務的 Azure AD B2C 使用者旅程。
 
-IEF 會在宣告中傳送資料，並在宣告中收到傳回的資料。 與 API 的互動：
+hello IEF 宣告中傳送資料，並接收回宣告中的資料。 hello hello 應用程式開發介面互動：
 
 - 可設計為 REST API 宣告交換，或作為在協調流程步驟內發生的驗證設定檔。
-- 通常會驗證使用者的輸入。 如果系統拒絕使用者輸入的值，使用者可再次試著輸入有效值，但系統可能會傳回錯誤訊息。
+- 通常會驗證來自 hello 使用者輸入。 如果已拒絕來自 hello 使用者 hello 值，hello 使用者可以再試一次 tooenter hello 機會 tooreturn 錯誤訊息的有效值。
 
-您也可以將互動設計為協調流程步驟。 如需詳細資訊，請參閱[逐步解說︰將 REST API 宣告交換整合到 Azure AD B2C 使用者旅程圖中以作為協調流程步驟](active-directory-b2c-rest-api-step-custom.md)。
+您也可以設計一個步驟是協調流程的 hello 互動。 如需詳細資訊，請參閱[逐步解說︰將 REST API 宣告交換整合到 Azure AD B2C 使用者旅程圖中以作為協調流程步驟](active-directory-b2c-rest-api-step-custom.md)。
 
-至於驗證設定檔範例，我們將使用入門套件檔案 ProfileEdit.xml 中的設定檔編輯使用者旅程圖。
+Hello 驗證設定檔範例，我們將使用 hello 設定檔編輯使用者之旅 ProfileEdit.xml hello 入門組件檔案中。
 
-我們可以驗證使用者在設定檔編輯中所提供的名稱不在排除清單中。
+提供由 hello 設定檔中的 hello 使用者編輯不是排除清單的一部分，我們可以確認該 hello 名稱。
 
 ## <a name="prerequisites"></a>必要條件
 
-- 如[開始使用](active-directory-b2c-get-started-custom.md)所述，設定為完成本機帳戶註冊/登入的 Azure AD B2C 租用戶。
-- 要互動的 REST API 端點。 針對這個逐步解說，我們設定了名為 [WingTipGames](https://wingtipgamesb2c.azurewebsites.net/) 的示範網站，其中含有一個 REST API 服務。
+- Sign-up/登入中, 所述的本機帳戶的 Azure AD B2C 租用戶設定 toocomplete[入門](active-directory-b2c-get-started-custom.md)。
+- 使用 REST API 端點 toointeract。 針對這個逐步解說，我們設定了名為 [WingTipGames](https://wingtipgamesb2c.azurewebsites.net/) 的示範網站，其中含有一個 REST API 服務。
 
-## <a name="step-1-prepare-the-rest-api-function"></a>步驟 1：準備 REST API 函式
+## <a name="step-1-prepare-hello-rest-api-function"></a>步驟 1： 準備 hello REST API 函式
 
 > [!NOTE]
-> REST API 函式的設定不在本文討論範圍內。 [Azure Functions](https://docs.microsoft.com/azure/azure-functions/functions-reference) 提供了絕佳的工具組，供您在雲端建立 RESTful 服務。
+> 安裝程式的 REST API 函式是在這篇文章 hello 範圍之外。 [Azure 函數](https://docs.microsoft.com/azure/azure-functions/functions-reference)toocreate hello 雲端中的 rest 式服務提供絕佳的工具組。
 
-我們建立了一個 Azure 函式，來接收它預期作為 `playerTag` 的宣告。 此函式會驗證此宣告是否存在。 您可以在 [GitHub](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples) 中取得完整的 Azure 函式程式碼。
+我們建立了一個 Azure 函式，來接收它預期作為 `playerTag` 的宣告。 hello 函式會驗證是否存在於此宣告。 您可以存取中的 hello 完整的 Azure 函式程式碼[GitHub](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples)。
 
 ```csharp
 if (requestContentAsJObject.playerTag == null)
@@ -65,7 +65,7 @@ if (playerTag == "mcvinny" || playerTag == "msgates123" || playerTag == "revcott
     {
       version = "1.0.0",
       status = (int) HttpStatusCode.Conflict,
-      userMessage = $"The player tag '{requestContentAsJObject.playerTag}' is already used."
+      userMessage = $"hello player tag '{requestContentAsJObject.playerTag}' is already used."
     },
     new JsonMediaTypeFormatter(),
     "application/json");
@@ -74,14 +74,14 @@ if (playerTag == "mcvinny" || playerTag == "msgates123" || playerTag == "revcott
 return request.CreateResponse(HttpStatusCode.OK);
 ```
 
-IEF 預期 Azure 函式會傳回 `userMessage` 宣告。 如果驗證失敗，即會以字串形式為使用者呈現此宣告，例如，當上述範例中傳回 409 衝突狀態時。
+hello IEF 預期 hello`userMessage`宣告該 hello Azure 函式傳回。 這個宣告會以字串 toohello 使用者如果 hello 驗證失敗，例如在上述範例中的 hello 傳回 「 409 衝突 」 狀態時。
 
-## <a name="step-2-configure-the-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworkextensionsxml-file"></a>步驟 2：在 TrustFrameworkExtensions.xml 檔案中，將 RESTful API 宣告交換設為技術設定檔
+## <a name="step-2-configure-hello-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworkextensionsxml-file"></a>步驟 2： 設定 hello RESTful API 宣告交換為技術 TrustFrameworkExtensions.xml 檔案中設定檔
 
-技術設定檔是 RESTful 服務所需之交換的完整設定。 開啟 TrustFrameworkExtensions.xml 檔案，然後在 `<ClaimsProviders>` 元素內加入下列 XML 程式碼片段。
+技術的設定檔是 hello 的 hello exchange 以 hello RESTful 服務所需的完整設定。 開啟 hello TrustFrameworkExtensions.xml 檔案並加入下列 XML 程式碼片段 hello hello`<ClaimsProviders>`項目。
 
 > [!NOTE]
-> 在下列 XML 中，會將 RESTful 提供者 `Version=1.0.0.0` 描述為通訊協定。 請將它視為要與外部服務互動的函式。 <!-- TODO: A full definition of the schema can be found...link to RESTful Provider schema definition>-->
+> 在下列 XML，RESTful 的提供者的 hello`Version=1.0.0.0`即稱為 hello 通訊協定。 將其視為與 hello 外部服務互動的 hello 函式。 <!-- TODO: A full definition of hello schema can be found...link tooRESTful Provider schema definition>-->
 
 ```xml
 <ClaimsProvider>
@@ -109,26 +109,26 @@ IEF 預期 Azure 函式會傳回 `userMessage` 宣告。 如果驗證失敗，�
 </ClaimsProvider>
 ```
 
-`InputClaims` 元素會定義將從 IEF 傳送至 REST 服務的宣告。 在此範例中，會將 `givenName` 宣告的內容傳送至 REST 服務以作為 `playerTag`。 在此範例中，IEF 不會預期傳回的宣告。 相反地，它會等待來自 REST 服務的回應，並根據它接收的狀態碼採取動作。
+hello`InputClaims`項目會定義會將傳送嗨 IEF toohello REST 服務的 hello 宣告。 在此範例中，hello hello 宣告的內容`givenName`傳送 toohello REST 服務，做為`playerTag`。 在此範例中，不預期 IEF hello 回宣告。 相反地，它會等待回應 hello REST 服務，根據它所收到 hello 狀態碼的行為模式。
 
-## <a name="step-3-include-the-restful-service-claims-exchange-in-self-asserted-technical-profile-where-you-want-to-validate-the-user-input"></a>步驟 3：在您想要用來驗證使用者輸入的自我判斷技術設定檔中加入 RESTful 服務宣告交換
+## <a name="step-3-include-hello-restful-service-claims-exchange-in-self-asserted-technical-profile-where-you-want-toovalidate-hello-user-input"></a>步驟 3: Hello RESTful 服務宣告交換納入自我判斷提示技術的設定檔想 toovalidate hello 使用者輸入
 
-驗證步驟最常用於與使用者互動。 使用者應該在其中提供輸入的所有互動就是「自我判斷的技術設定檔」。 在此範例中，我們會將此驗證新增到 Self-Asserted-ProfileUpdate 技術設定檔。 這是信賴憑證者 (RP) 原則檔案 `Profile Edit` 使用的技術設定檔。
+hello hello 驗證步驟的最常見的用法是在 hello 與使用者之間的互動。 Hello 使用者所在預期的 tooprovide 輸入的所有互動都都有*自我判斷提示設定檔技術*。 此範例中，我們將 hello 驗證 toohello 自助 Asserted ProfileUpdate 技術設定檔。 這是 hello 信賴憑證者的合作對象 (RP) 原則檔 hello 技術設定檔`Profile Edit`使用。
 
-在自我判斷的技術設定檔中新增宣告交換：
+自我判斷提示設定檔技術 tooadd hello 宣告 exchange toohello:
 
-1. 開啟 TrustFrameworkBase.xml 檔案，並搜尋 `<TechnicalProfile Id="SelfAsserted-ProfileUpdate">`。
-2. 檢閱此技術設定檔的設定。 觀察與使用者所進行的交換如何定義為向使用者要求的宣告 (輸入宣告)，以及如何定義為應該從自我判斷提供者傳回的宣告 (輸出宣告)。
+1. 開啟 hello TrustFrameworkBase.xml 檔案，並搜尋`<TechnicalProfile Id="SelfAsserted-ProfileUpdate">`。
+2. 檢閱 hello 此技術的設定檔組態。 觀察 hello exchange 與 hello 使用者視為 hello 使用者 （輸入宣告） 的系統會要求的宣告和宣告，就應該從 hello 自我判斷提示提供者 （輸出宣告） 的定義方式。
 3. 搜尋 `TechnicalProfileReferenceId="SelfAsserted-ProfileUpdate`，並注意系統會叫用此設定檔來作為 `<UserJourney Id="ProfileEdit">` 的協調流程步驟 6。
 
-## <a name="step-4-upload-and-test-the-profile-edit-rp-policy-file"></a>步驟 4：上傳和測試設定檔編輯 RP 原則檔案
+## <a name="step-4-upload-and-test-hello-profile-edit-rp-policy-file"></a>步驟 4： 上傳和測試 hello 設定檔編輯 RP 原則檔
 
-1. 上傳新版的 TrustFrameworkExtensions.xml 檔案。
-2. 使用**立即執行**來測試設定檔編輯 RP 原則檔案。
-3. 在 [名字] 欄位中提供一個現有名稱 (例如︰mcvinny) 來測試驗證。 如果一切設定皆正確，您應該會收到訊息，通知使用者，該玩家標記已在使用中。
+1. 上傳 hello hello TrustFrameworkExtensions.xml 檔案新版本。
+2. 使用**立即執行**tootest hello 設定檔編輯 RP 原則檔案。
+3. 藉由提供的其中一個 hello 現有名稱 (例如，mcvinny) 測試 hello 驗證，在 hello**名字**欄位。 如果所有項目已正確設定時，您應該會收到通知 hello 使用者 hello player 標記已在使用的訊息。
 
 ## <a name="next-steps"></a>後續步驟
 
-[修改設定檔編輯和使用者註冊以從使用者收集其他資訊](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)
+[修改 hello 設定檔編輯和使用者註冊 toogather 額外資訊從您的使用者](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)
 
 [逐步解說︰將 REST API 宣告交換整合到 Azure AD B2C 使用者旅程圖中以作為協調流程步驟](active-directory-b2c-rest-api-step-custom.md)

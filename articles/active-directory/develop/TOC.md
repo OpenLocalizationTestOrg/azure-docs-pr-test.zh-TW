@@ -26,7 +26,7 @@
 ### [概觀](active-directory-authentication-scenarios.md#web-application-to-web-api)
 ### [ASP.NET](active-directory-devquickstarts-webapi-dotnet.md)
 ### [NodeJS](active-directory-devquickstarts-webapi-nodejs.md)
-## 服務對服務
+## 服務 tooService
 ### [概觀](active-directory-authentication-scenarios.md#daemon-or-server-application-to-web-api)
 ### [.NET](active-directory-code-samples.md#server-or-daemon-application-to-web-api)
 ### [OAuth 2.0 用戶端認證](active-directory-protocols-oauth-service-to-service.md)
@@ -59,7 +59,7 @@
 ### [開始使用 Visual Studio 已連線服務](vs-active-directory-dotnet-getting-started.md)
 ### [驗證偵測期間發生錯誤](vs-active-directory-error.md)
 ### [開始使用 WebApi](vs-active-directory-webapi-getting-started.md)
-### [我的 Web API 專案發生什麼情形](vs-active-directory-webapi-what-happened.md)
+### [哪些情形的 toomy web API 專案](vs-active-directory-webapi-what-happened.md)
 ## [Windows Server ADFS](https://technet.microsoft.com/windows-server-docs/identity/ad-fs/overview/ad-fs-scenarios-for-developers)
 # 參考
 ## [程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=active-directory)
@@ -69,7 +69,7 @@
 ## [驗證通訊協定](active-directory-authentication-protocols.md)
 ### [OpenID Connect](active-directory-protocols-openid-connect-code.md)
 ### [Oauth](active-directory-protocols-oauth-code.md)
-### [服務對服務呼叫](active-directory-protocols-oauth-service-to-service.md)
+### [服務 tooservice 呼叫](active-directory-protocols-oauth-service-to-service.md)
 ### [代理者流程](active-directory-protocols-oauth-on-behalf-of.md)
 ### [支援的權杖和宣告類型](active-directory-token-and-claims.md)
 ### [簽署金鑰變換](active-directory-signing-key-rollover.md)

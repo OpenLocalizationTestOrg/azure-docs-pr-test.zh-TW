@@ -1,6 +1,6 @@
 ---
-title: "將 Azure Automation DSC 報表資料轉送到 OMS Log Analytics | Microsoft Docs"
-description: "這篇文章示範如何將期望的狀態設定 (DSC) 報表資料傳送到 Microsoft Operations Management Suite Log Analytics，以提供額外的深入解析和管理。"
+title: "Azure 自動化 DSC 報告資料 tooOMS 記錄分析 aaaForward |Microsoft 文件"
+description: "本文示範如何 toosend 預期狀態設定 (DSC) 報告資料 tooMicrosoft Operations Management Suite 記錄分析 toodeliver 見解，並管理。"
 services: automation
 documentationcenter: 
 author: eslesar
@@ -13,16 +13,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/24/2017
 ms.author: eslesar
-ms.openlocfilehash: 316031c5297a0201c8db4a9e177298c78962c673
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 21f78d5549d53ba3d7e237f55d9086f380cf3351
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="forward-azure-automation-dsc-reporting-data-to-oms-log-analytics"></a>將 Azure Automation DSC 報表資料轉送到 OMS Log Analytics
+# <a name="forward-azure-automation-dsc-reporting-data-toooms-log-analytics"></a>轉送 Azure 自動化 DSC 報告資料 tooOMS 記錄分析
 
-自動化可以將 DSC 節點狀態資料傳送到您的 Microsoft Operations Management Suite (OMS) Log Analytics 工作區。  
-節點以及節點設定中個別 DSC 資源的合規性狀態會顯示在 Azure 入口網站中，或使用 PowerShell 顯示。 透過 Log Analytics，您可以：
+自動化可以傳送 DSC 節點狀態資料 tooyour Microsoft Operations Management Suite (OMS) 的記錄分析工作區。  
+相容性狀態會顯示在 hello Azure 入口網站或 PowerShell，針對節點和節點設定中個別的 DSC 資源。 透過 Log Analytics，您可以：
 
 * 取得受管理節點與個別資源的合規性資訊
 * 根據合規性狀態觸發電子郵件或警示
@@ -32,88 +32,88 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="prerequisites"></a>必要條件
 
-若要開始將 Automation DSC 報表傳送到 Log Analytics，您需要：
+toostart 傳送自動化 DSC 報告 tooLog 分析，您需要：
 
-* 2016 年 11 月或更新版本的 [Azure PowerShell](/powershell/azure/overview) (v2.3.0)。
+* hello 2016 年 11 月版或更新版本的版本[Azure PowerShell](/powershell/azure/overview) (v2.3.0)。
 * Azure 自動化帳戶。 如需詳細資訊，請參閱[開始使用 Azure 自動化](automation-offering-get-started.md)。
 * 提供 [自動化與控制] 服務的 Log Analytics 工作區。 如需詳細資訊，請參閱[開始使用 Log Analytics](../log-analytics/log-analytics-get-started.md)。
 * 至少一個 Azure Automation DSC 節點。 如需詳細資訊，請參閱[將機器上架交由 Azure Automation DSC 管理](automation-dsc-onboarding.md)。 
 
 ## <a name="set-up-integration-with-log-analytics"></a>設定與 Log Analytics 整合
 
-若要開始從 Azure Automation DSC 將資料匯入 Log Analytics，請完成下列步驟：
+將資料匯入從 Azure Automation DSC 記錄分析，完成下列步驟的 hello toobegin:
 
-1. 在 PowerShell 中登入您的 Azure 帳戶。 請參閱[使用 Azure PowerShell 登入](https://docs.microsoft.com/en-us/powershell/azure/authenticate-azureps?view=azurermps-4.0.0)
-1. 執行下列 PowerShell 命令以取得自動化帳戶的 _ResourceId_：(如有多個自動化帳戶，請選擇您想要設定的帳戶 _ResourceID_)。
+1. 在 PowerShell 中的 Azure 帳戶登入 tooyour 中。 請參閱[使用 Azure PowerShell 登入](https://docs.microsoft.com/en-us/powershell/azure/authenticate-azureps?view=azurermps-4.0.0)
+1. 取得 hello _ResourceId_您的自動化帳戶執行下列 PowerShell 命令的 hello: (如果您有多個自動化帳戶時，選擇 hello _ResourceID_ hello 您想要的帳戶tooconfigure)。
 
   ```powershell
-  # Find the ResourceId for the Automation Account
+  # Find hello ResourceId for hello Automation Account
   Find-AzureRmResource -ResourceType "Microsoft.Automation/automationAccounts"
   ```
-1. 執行下列 PowerShell 命令以取得 Log Analytics 工作區的 _ResourceId_：(如有多個工作區，請選擇您想要設定的工作區 _ResourceID_)。
+1. 取得 hello _ResourceId_的記錄分析工作區中執行下列 PowerShell 命令的 hello: (如果您有多個工作區中，選擇 hello _ResourceID_ hello 您想要的工作區tooconfigure)。
 
   ```powershell
-  # Find the ResourceId for the Log Analytics workspace
+  # Find hello ResourceId for hello Log Analytics workspace
   Find-AzureRmResource -ResourceType "Microsoft.OperationalInsights/workspaces"
   ```
-1. 執行下列 PowerShell 命令，以前述各步驟的 _ResourceId_ 值取代 `<AutomationResourceId>` 和 `<WorkspaceResourceId>`：
+1. 下列 PowerShell 命令，取代執行的 hello`<AutomationResourceId>`和`<WorkspaceResourceId>`以 hello _ResourceId_ hello 前一步驟的每個值：
 
   ```powershell
   Set-AzureRmDiagnosticSetting -ResourceId <AutomationResourceId> -WorkspaceId <WorkspaceResourceId> -Enabled $true -Categories "DscNodeStatus"
   ```
 
-如果您想要停止從 Azure Automation DSC 將資料匯入 Log Analytics，請執行下列 PowerShell 命令。
+如果您想將資料匯入從 Azure Automation DSC 記錄分析 toostop，執行下列 PowerShell 命令的 hello。
 
 ```powershell
 Set-AzureRmDiagnosticSetting -ResourceId <AutomationResourceId> -WorkspaceId <WorkspaceResourceId> -Enabled $false -Categories "DscNodeStatus"
 ```
 
-## <a name="view-the-dsc-logs"></a>檢視 DSC 記錄檔
+## <a name="view-hello-dsc-logs"></a>檢視 hello DSC 記錄檔
 
-設定 Automation DSC 資料與 Log Analytics 的整合後，自動化帳戶的 [DSC 節點] 刀鋒視窗中就會出現 [記錄搜尋] 按鈕。 按一下 [記錄搜尋] 按鈕以檢視 DSC 節點資料的記錄檔。
+Automation DSC 資料與記錄分析的整合設定之後**記錄搜尋**按鈕將會出現在 hello **DSC 節點**刀鋒視窗中的自動化帳戶。 按一下 hello**記錄搜尋**按鈕 tooview hello 記錄檔以取得 DSC 節點資料。
 
 ![記錄搜尋按鈕](media/automation-dsc-diagnostics/log-search-button.png)
 
-[記錄搜尋] 刀鋒視窗隨即開啟，而且您會在套用到該節點的節點設定中，看到每個 DSC 節點呼叫 **DscNodeStatusData** 作業，和每個 [DSC 資源](https://msdn.microsoft.com/powershell/dsc/resources)呼叫 **DscResourceStatusData** 作業。
+hello**記錄搜尋**刀鋒視窗隨即開啟，而且您看見**DscNodeStatusData**每個 DSC 節點、 作業和**DscResourceStatusData**每個作業[DSC資源](https://msdn.microsoft.com/powershell/dsc/resources)呼叫 hello 節點組態套用的 toothat 節點中。
 
-**DscResourceStatusData** 作業包含所有失敗 DSC 資源的錯誤資訊。
+hello **DscResourceStatusData**作業包含失敗的任何 DSC 資源資訊時發生錯誤。
 
-按一下清單中的每項作業可查看該作業的資料。
+按一下 hello 清單 toosee hello 資料中的每項作業，該作業。
 
-您也可以搜尋 Log Analytics 來檢視記錄檔。 請參閱[使用記錄搜尋尋找資料](../log-analytics/log-analytics-log-searches.md)。
-鍵入下列查詢來尋找 DSC 記錄：`Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category = "DscNodeStatus"`
+您也可以檢視 hello 記錄檔 [記錄分析搜尋。 請參閱[使用記錄搜尋尋找資料](../log-analytics/log-analytics-log-searches.md)。
+型別 hello 下列查詢會 toofind 您 DSC 記錄檔：`Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category = "DscNodeStatus"`
 
-您也可以依作業名稱縮小查詢範圍。 例如：`Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category = "DscNodeStatus" OperationName = "DscNodeStatusData"
+您也可以縮小 hello 查詢 hello 作業名稱。 例如：`Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category = "DscNodeStatus" OperationName = "DscNodeStatusData"
 
 ### <a name="send-an-email-when-a-dsc-compliance-check-fails"></a>DSC 合規性檢查失敗時傳送電子郵件
 
-我們最常從客戶收到的其中一個問題，便是希望系統能在 DSC 設定發生問題時，傳送電子郵件或簡訊通知他們。   
+我們最上層的客戶的要求是針對 hello 能力 toosend 電子郵件或文字時出錯 DSC 設定。   
 
-若要建立警示規則，首先針對應叫用警示的 DSC 報表記錄，建立記錄檔搜尋。  按一下 [警示] 按鈕，以建立並設定警示規則。
+toocreate 警示規則時，它會先建立應叫用 hello 警示的 hello DSC 報表記錄的記錄搜尋。  按一下 hello**警示**按鈕 toocreate 及設定 hello 警示規則。
 
-1. 從 [Log Analytics 概觀] 頁面，按一下 [記錄搜尋]。
-1. 在查詢欄位中鍵入下列搜尋內容來為您的警示建立記錄搜尋查詢：`Type=AzureDiagnostics Category=DscNodeStatus NodeName_s=DSCTEST1 OperationName=DscNodeStatusData ResultType=Failed`。
+1. 從 hello 記錄分析概觀] 頁面上，按一下 [**記錄搜尋**。
+1. 輸入下列搜尋到 hello 查詢欄位中的 hello 建立警示的記錄搜尋查詢：`Type=AzureDiagnostics Category=DscNodeStatus NodeName_s=DSCTEST1 OperationName=DscNodeStatusData ResultType=Failed`
 
-  如果您已將來自多個自動化帳戶或訂用帳戶的記錄設定到您的工作區，就能依訂用帳戶或自動化帳戶來將警示分組。  
-  自動化帳戶名稱可以衍生自 DscNodeStatusData 搜尋的 [資源] 欄位。  
-1. 若要開啟 [新增警示規則] 畫面，按一下頁面頂端的 [警示]。 如需設定警示選項的詳細資訊，請參閱 [Log Analytics 中的警示](../log-analytics/log-analytics-alerts.md#alert-rules)。
+  如果您已將設定從多個自動化帳戶或訂用帳戶 tooyour 工作區的記錄檔，您可以群組您的訂用帳戶和自動化帳戶的警示。  
+  自動化帳戶名稱可以衍生自 DscNodeStatusData hello 搜尋中的 hello 資源欄位。  
+1. tooopen hello**加入警示規則**畫面上，按一下**警示**hello 頁面頂端的 hello。 如需有關 hello 選項 tooconfigure hello 警示的詳細資訊，請參閱[記錄分析中的警示](../log-analytics/log-analytics-alerts.md#alert-rules)。
 
 ### <a name="find-failed-dsc-resources-across-all-nodes"></a>在所有節點間尋找失敗的 DSC 資源
 
 使用 Log Analytics 的優點之一，是您可以在所有節點間搜尋失敗的檢查。
-尋找所有失敗的 DSC 資源執行個體。
+toofind 失敗的 DSC 資源的所有執行個體。
 
-1. 從 [Log Analytics 概觀] 頁面，按一下 [記錄搜尋]。
-1. 在查詢欄位中鍵入下列搜尋內容來為您的警示建立記錄搜尋查詢：`Type=AzureDiagnostics Category=DscNodeStatus OperationName=DscResourceStatusData ResultType=Failed`。
+1. 從 hello 記錄分析概觀] 頁面上，按一下 [**記錄搜尋**。
+1. 輸入下列搜尋到 hello 查詢欄位中的 hello 建立警示的記錄搜尋查詢：`Type=AzureDiagnostics Category=DscNodeStatus OperationName=DscResourceStatusData ResultType=Failed`
 
 ### <a name="view-historical-dsc-node-status"></a>檢視歷程記錄 DSC 節點狀態
 
-最後，您也許想要以視覺化方式呈現一段時間的 DSC 節點狀態歷程記錄。  
-您可以使用此查詢來搜尋 DSC 節點狀態一段時間後的狀態。
+最後，您可能想 toovisualize DSC 節點狀態歷程記錄一段時間。  
+您可以使用這個查詢 toosearch hello 狀態為您 DSC 節點的狀態，經過一段時間。
 
 `Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category=DscNodeStatus NOT(ResultType="started") | measure Count() by ResultType interval 1hour`  
 
-這會顯示一段時間的節點狀態圖表。
+經過一段時間，這會顯示 hello 節點狀態的圖表。
 
 ## <a name="log-analytics-records"></a>Log Analytics 記錄
 
@@ -123,76 +123,76 @@ Set-AzureRmDiagnosticSetting -ResourceId <AutomationResourceId> -WorkspaceId <Wo
 
 | 屬性 | 說明 |
 | --- | --- |
-| TimeGenerated |執行合規性檢查的日期和時間。 |
+| TimeGenerated |日期和時間執行 hello 相容性檢查的時間。 |
 | OperationName |DscNodeStatusData |
-| ResultType |節點是否符合規範。 |
-| NodeName_s |受管理的節點名稱。 |
-| NodeComplianceStatus_s |節點是否符合規範。 |
-| DscReportStatus |合規性檢查是否已順利執行。 |
-| ConfigurationMode | 設定如何套用至節點。 可能的值為 __"ApplyOnly"__、__"ApplyandMonitior"__ 和 __"ApplyandAutoCorrect"__。 <ul><li>__ApplyOnly__：DSC 會套用設定但不執行任何進一步的動作，除非有新的設定發送到目標節點，或從伺服器提取新的設定時。 初始套用新的設定之後，DSC 不會檢查先前設定的狀態是否漂移。 DSC 在 __ApplyOnly__ 生效之前會一直嘗試套用設定，直到成功為止。 </li><li> __ApplyAndMonitor__：這是預設值。 LCM 會套用任何新的設定。 初始套用新設定之後，如果目標節點從所需狀態漂移，DSC 會在記錄檔中報告差異。 DSC 在 __ApplyAndMonitor__ 生效之前會一直嘗試套用設定，直到成功為止。</li><li>__ApplyAndAutoCorrect__：DSC 會套用任何新的設定。 初始套用新設定之後，如果目標節點從所需狀態漂移，DSC 會在記錄檔中報告差異，然後重新套用目前的設定。</li></ul> |
-| HostName_s | 受管理的節點名稱。 |
-| IPAddress | 受管理節點的 IPv4 位址。 |
+| ResultType |Hello 節點是否相容。 |
+| NodeName_s |hello hello 受管理的節點名稱。 |
+| NodeComplianceStatus_s |Hello 節點是否相容。 |
+| DscReportStatus |Hello 相容性檢查是否已順利執行。 |
+| ConfigurationMode | 如何 hello 設定是套用的 toohello 節點。 可能的值為 __"ApplyOnly"__、__"ApplyandMonitior"__ 和 __"ApplyandAutoCorrect"__。 <ul><li>__ApplyOnly__: DSC 會套用 hello 組態，並且不執行進一步除非新的設定已推送 toohello 目標節點，或當從伺服器提取新的設定。 初始套用新的設定之後，DSC 不會檢查先前設定的狀態是否漂移。 DSC 在成功完成之前嘗試 tooapply hello 組態__ApplyOnly__才會生效。 </li><li> __ApplyAndMonitor__： 這是 hello 預設值。 hello LCM 適用於任何新的設定。 初始新設定的應用程式之後, 如果 hello 目標節點偏離預期 hello 狀態，DSC 會報告記錄檔中的 hello 差異。 DSC 在成功完成之前嘗試 tooapply hello 組態__ApplyAndMonitor__才會生效。</li><li>__ApplyAndAutoCorrect__：DSC 會套用任何新的設定。 之後的新設定，如果 hello 目標節點偏離預期 hello 狀態，DSC 會報告記錄檔中的 hello 差異，然後重新套用目前設定的 hello。</li></ul> |
+| HostName_s | hello hello 受管理的節點名稱。 |
+| IPAddress | hello hello IPv4 位址受管理節點。 |
 | 類別 | DscNodeStatus |
-| 資源 | Azure 自動化帳戶的名稱。 |
-| Tenant_g | 識別呼叫端租用戶的 GUID。 |
-| NodeId_g |識別受管理節點的 GUID。 |
-| DscReportId_g |識別報表的 GUID。 |
-| LastSeenTime_t |上一次檢視報表的日期和時間。 |
-| ReportStartTime_t |報表開始的日期和時間。 |
-| ReportEndTime_t |報表完成的日期和時間。 |
-| NumberOfResources_d |在節點套用的設定中呼叫的 DSC 資源數目。 |
-| SourceSystem | Log Analytics 如何收集資料。 針對 Azure 診斷，一律為 Azure 。 |
-| ResourceId |指定 Azure 自動化帳戶。 |
-| ResultDescription | 此作業的描述。 |
-| SubscriptionId | 自動化帳戶的 Azure 訂用帳戶識別碼 (GUID)。 |
-| ResourceGroup | 自動化帳戶的資源群組名稱。 |
+| 資源 | hello hello Azure 自動化帳戶名稱。 |
+| Tenant_g | 識別 hello 呼叫端的 hello 租用戶的 GUID。 |
+| NodeId_g |GUID，識別 hello 受管理的節點。 |
+| DscReportId_g |GUID，識別 hello 報表。 |
+| LastSeenTime_t |日期和上次檢視 hello 報表時的時間。 |
+| ReportStartTime_t |日期和時間啟動 hello 報表時。 |
+| ReportEndTime_t |日期和時間 hello 報表完成時。 |
+| NumberOfResources_d |DSC 資源的 hello 數目稱為 hello 套用設定 toohello 節點中。 |
+| SourceSystem | 記錄分析收集 hello 資料的方式。 針對 Azure 診斷，一律為 Azure 。 |
+| ResourceId |指定 hello Azure 自動化帳戶。 |
+| ResultDescription | hello 描述這項作業。 |
+| SubscriptionId | hello hello 自動化帳戶的 Azure 訂閱識別碼 (GUID)。 |
+| ResourceGroup | Hello 自動化帳戶 hello 資源群組名稱。 |
 | ResourceProvider | MICROSOFT.AUTOMATION |
 | ResourceType | AUTOMATIONACCOUNTS |
-| CorrelationId |為更新狀態報告之相互關聯識別碼的 GUID。 |
+| CorrelationId |為 hello hello 符合性報告的相互關聯識別碼的 GUID。 |
 
 ### <a name="dscresourcestatusdata"></a>DscResourceStatusData
 
 | 屬性 | 說明 |
 | --- | --- |
-| TimeGenerated |執行合規性檢查的日期和時間。 |
+| TimeGenerated |日期和時間執行 hello 相容性檢查的時間。 |
 | OperationName |DscResourceStatusData|
-| ResultType |資源是否符合規範。 |
-| NodeName_s |受管理的節點名稱。 |
+| ResultType |Hello 資源是否相容。 |
+| NodeName_s |hello hello 受管理的節點名稱。 |
 | 類別 | DscNodeStatus |
-| 資源 | Azure 自動化帳戶的名稱。 |
-| Tenant_g | 識別呼叫端租用戶的 GUID。 |
-| NodeId_g |識別受管理節點的 GUID。 |
-| DscReportId_g |識別報表的 GUID。 |
-| DscResourceId_s |DSC 資源執行個體的名稱。 |
-| DscResourceName_s |DSC 資源的名稱。 |
-| DscResourceStatus_s |DSC 資源是否符合規範。 |
-| DscModuleName_s |包含 DSC 資源的 PowerShell 模組名稱。 |
-| DscModuleVersion_s |包含 DSC 資源的 PowerShell 模組版本。 |
-| DscConfigurationName_s |節點套用的設定名稱。 |
-| ErrorCode_s | 資源失敗時的錯誤代碼。 |
-| ErrorMessage_s |資源失敗時的錯誤訊息。 |
-| DscResourceDuration_d |DSC 資源執行的時間，以秒為單位。 |
-| SourceSystem | Log Analytics 如何收集資料。 針對 Azure 診斷，一律為 Azure 。 |
-| ResourceId |指定 Azure 自動化帳戶。 |
-| ResultDescription | 此作業的描述。 |
-| SubscriptionId | 自動化帳戶的 Azure 訂用帳戶識別碼 (GUID)。 |
-| ResourceGroup | 自動化帳戶的資源群組名稱。 |
+| 資源 | hello hello Azure 自動化帳戶名稱。 |
+| Tenant_g | 識別 hello 呼叫端的 hello 租用戶的 GUID。 |
+| NodeId_g |GUID，識別 hello 受管理的節點。 |
+| DscReportId_g |GUID，識別 hello 報表。 |
+| DscResourceId_s |hello hello DSC 資源執行個體名稱。 |
+| DscResourceName_s |hello hello DSC 資源名稱。 |
+| DscResourceStatus_s |Hello DSC 資源是否處於相容性。 |
+| DscModuleName_s |hello hello PowerShell 模組包含 hello DSC 資源的名稱。 |
+| DscModuleVersion_s |hello hello PowerShell 模組包含 hello DSC 資源版本。 |
+| DscConfigurationName_s |hello hello 組態名稱套用 toohello 節點。 |
+| ErrorCode_s | hello 錯誤碼 hello 資源失敗。 |
+| ErrorMessage_s |hello 的錯誤訊息如果 hello 資源失敗。 |
+| DscResourceDuration_d |hello 時間 （秒），執行 hello DSC 資源。 |
+| SourceSystem | 記錄分析收集 hello 資料的方式。 針對 Azure 診斷，一律為 Azure 。 |
+| ResourceId |指定 hello Azure 自動化帳戶。 |
+| ResultDescription | hello 描述這項作業。 |
+| SubscriptionId | hello hello 自動化帳戶的 Azure 訂閱識別碼 (GUID)。 |
+| ResourceGroup | Hello 自動化帳戶 hello 資源群組名稱。 |
 | ResourceProvider | MICROSOFT.AUTOMATION |
 | ResourceType | AUTOMATIONACCOUNTS |
-| CorrelationId |為更新狀態報告之相互關聯識別碼的 GUID。 |
+| CorrelationId |為 hello hello 符合性報告的相互關聯識別碼的 GUID。 |
 
 ## <a name="summary"></a>摘要
 
-只要將 Automation DSC 資料傳送到 Log Analytics，您就可以透過下列方式，更深入了解 Automation DSC 節點的狀態：
+藉由傳送您的自動化 DSC 資料 tooLog 分析，您可以取得更深入 hello 由您 Automation DSC 的節點狀態：
 
-* 設定警示，在發生問題時通知您
-* 使用自訂檢視和搜尋查詢，以視覺化方式檢視您的 Runbook 結果、Runbook 作業狀態，以及其他相關的關鍵指標或計量。  
+* 設定警示 toonotify 您發生問題時
+* 使用自訂檢視和搜尋查詢 toovisualize 您 runbook 結果、 runbook 工作狀態、 和其他相關的主要指標或度量。  
 
-Log Analytics 可以為您的 Automation DSC 資料提供更高的操作可見性，有利於更快處理事件。  
+記錄分析會提供更大的操作的可見性 tooyour Automation DSC 資料，而且可以更快速地協助位址事件。  
 
 ## <a name="next-steps"></a>後續步驟
 
-* 若要深入了解如何建構不同的搜尋查詢，以及使用 Log Analytics 檢閱 Automation DSC 記錄檔，請參閱 [Log Analytics 中的記錄檔搜尋](../log-analytics/log-analytics-log-searches.md)。
-* 若要深入了解使用 Azure Automation DSC，請參閱[開始使用 Azure Automation DSC](automation-dsc-getting-started.md)。
-* 若要深入了解 OMS Log Analytics 和資料收集來源，請參閱 [在 Log Analytics 中收集 Azure 儲存體資料概觀](../log-analytics/log-analytics-azure-storage.md)
+* toolearn 有關 tooconstruct 不同的搜尋查詢，並檢閱 hello Automation DSC 的詳細資訊，記錄和記錄分析，請參閱[中記錄分析記錄搜尋](../log-analytics/log-analytics-log-searches.md)
+* toolearn 進一步了解使用 Azure 自動化 DSC，請參閱[開始使用 Azure 自動化 DSC](automation-dsc-getting-started.md)
+* toolearn 深入了解 OMS 記錄分析和資料集合來源，請參閱[收集 Azure 儲存體中的資料記錄分析概觀](../log-analytics/log-analytics-azure-storage.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 稽核 API 參考 | Microsoft Docs"
-description: "如何開始使用 Azure Active Directory 稽核 API"
+title: "aaaAzure Active Directory 稽核 API 參考 |Microsoft 文件"
+description: "Tooget 以 hello Azure Active Directory 稽核應用程式開發介面的啟動方式"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,22 +15,22 @@ ms.workload: identity
 ms.date: 07/05/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 573e940c5390e7b990d889681eb37b73c5b253d9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5f33b62ede9be445f35704739e328580dc454368
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-audit-api-reference"></a>Azure Active Directory 稽核 API 參考
-本主題是 Azure Active Directory 報告 API 相關主題集合的一部分。  
-Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取稽核資料。
-本主題的範疇是為您提供有關 **稽核 API**的參考資訊。
+本主題是有關 hello Azure Active Directory 的主題集合的一部分報告應用程式開發介面。  
+Azure AD 報告 api 還可讓您的 API tooaccess 稽核資料使用程式碼或相關的工具。
+本主題的 hello 範圍是 tooprovide hello 的相關參考資訊**稽核 API**。
 
 請參閱：
 
 * [稽核記錄](active-directory-reporting-azure-portal.md#activity-reports)以取得詳細概念資訊
 
-* [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md) 以取得報告 API 的詳細資訊。
+* [開始使用 Azure Active Directory 報告 API hello](active-directory-reporting-api-getting-started.md)的 hello reporting API 的詳細資訊。
 
 
 關於：
@@ -40,32 +40,32 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取稽
 - 問題，請[提出支援票證](active-directory-troubleshooting-support-howto.md) 
 
 
-## <a name="who-can-access-the-data"></a>誰可以存取資料？
-* 具有安全性系統管理員或安全性讀取器角色的使用者
+## <a name="who-can-access-hello-data"></a>誰可以存取 hello 資料？
+* Hello 安全性系統管理員或安全性 Reader 角色中的使用者
 * 全域管理員
-* 任何獲得授權存取 API 的應用程式 (只可以根據全域管理員的權限來設定應用程式授權)
+* 任何已授權 tooaccess hello API 的應用程式 （只會根據全域系統管理員權限，應用程式授權可以是安裝程式）
 
 ## <a name="prerequisites"></a>必要條件
-若要透過報告 API 來存取此報告，您必須具有︰
+透過此報告的順序 tooaccess 中 hello Reporting API，您必須具有：
 
 * [Azure Active Directory Free 或更好的版本](active-directory-editions.md)
-* 了解 [存取 Azure AD 報告 API 的必要條件](active-directory-reporting-api-prerequisites.md)。 
+* 已完成的 hello[必要條件 tooaccess hello Azure AD 報告 API](active-directory-reporting-api-prerequisites.md)。 
 
-## <a name="accessing-the-api"></a>存取 API
-您可以透過 [Graph 總管](https://graphexplorer2.cloudapp.net) 或以程式設計方式使用 PowerShell 來存取此 API。 為了讓 PowerShell 正確地解譯 AAD Graph REST 呼叫中使用的 OData 篩選語法，您必須使用倒單引號 (也稱為︰抑音符號) 字元來「逸出」$ 字元。 倒單引號字元可做為 [PowerShell 的逸出字元](https://technet.microsoft.com/library/hh847755.aspx)，讓 PowerShell 進行 $ 字元的常值解譯，並且避免將它與 PowerShell 變數名稱 (例如︰$filter) 搞混。
+## <a name="accessing-hello-api"></a>存取 hello API
+您可以存取此應用程式開發介面透過 hello[圖表總管](https://graphexplorer2.cloudapp.net)或以程式設計方式使用，例如 PowerShell。 PowerShell toocorrectly 解譯 hello AAD Graph REST 呼叫中使用的 OData 篩選器語法的您必須使用 hello 倒單引號 (也稱為： 抑音符號) 字元太 「 逸出"hello $ 字元。 hello 倒單引號字元做為[PowerShell 的逸出字元](https://technet.microsoft.com/library/hh847755.aspx)，讓 PowerShell toodo hello $ 字元，常值解譯，同時避免混淆做為 PowerShell 變數的名稱 (亦即： $filter)。
 
-本主題的重點在於 Graph 總管。 如需 PowerShell 範例，請參閱此 [PowerShell 指令碼](active-directory-reporting-api-audit-samples.md#powershell-script)。
+本主題的 hello 重點是在 hello 圖表總管。 如需 PowerShell 範例，請參閱此 [PowerShell 指令碼](active-directory-reporting-api-audit-samples.md#powershell-script)。
 
 ## <a name="api-endpoint"></a>API 端點
-您可以使用下列 URI 來存取此 API︰  
+您可以存取此應用程式開發介面，使用下列 URI 的 hello:  
 
     https://graph.windows.net/contoso.com/activities/audit?api-version=beta
 
-Azure AD 稽核 API (使用 OData 分頁) 傳回的記錄筆數沒有任何限制。
+Hello hello Azure AD 稽核 API （使用 OData 分頁） 傳回的記錄數目沒有限制。
 如需報告資料的保留限制，請參閱 [報告保留原則](active-directory-reporting-retention.md)。
 
-此呼叫會分批傳回資料。 每個批次的上限為 1000 筆記錄。  
-若要取得下一批記錄，請使用 [下一個] 連結。 從第一組傳回的資料取得 skiptoken 資訊。 略過 Token 位於結果集的結尾。  
+這個呼叫會傳回批次中的 hello 資料。 每個批次的上限為 1000 筆記錄。  
+tooget hello 下一個批次的記錄，以使用 hello 下一步 連結。 收到 hello 第一組傳回的記錄中的 hello skiptoken 資訊。 hello 跳過權杖會在 hello hello 結果集的結尾。  
 
     https://graph.windows.net/contoso.com/activities/audit?api-version=beta&%24skiptoken=-1339686058
 
@@ -73,26 +73,26 @@ Azure AD 稽核 API (使用 OData 分頁) 傳回的記錄筆數沒有任何限�
 
 
 ## <a name="supported-filters"></a>支援的篩選器
-您可以篩選形式縮小 API 呼叫所傳回的記錄筆數。  
-對於登入 API 相關資料，支援下列篩選︰
+您可以縮小 hello 應用程式開發介面所傳回的記錄數目的篩選器的形式呼叫。  
+登入應用程式開發介面支援的相關的資料，下列篩選器的 hello:
 
-* **$top=\<傳回的記錄筆數\>** - 限制傳回的記錄筆數。 這是一項昂貴的作業。 如果您想要傳回數千個物件，則不應該使用此篩選器。     
-* **$filter=\<您的篩選陳述式\>** - 根據支援的篩選欄位，指定您關心的記錄類型
+* **$top =\<傳回的記錄 toobe 數目\>** -toolimit hello 數傳回的記錄。 這是一項昂貴的作業。 如果您想要 tooreturn 數以千計的物件，則不應使用此篩選條件。     
+* **$filter =\<您篩選陳述式\>** -toospecify，hello 為基礎，支援的篩選欄位，您有興趣的資料錄的 hello 類型
 
 ## <a name="supported-filter-fields-and-operators"></a>支援的篩選欄位和運算子
-若要指定您關心的記錄類型，您可以建立一個篩選陳述式，該陳述式可包含下列其中一個篩選欄位或其組合︰
+您有興趣的資料錄 toospecify hello 類型，您可以建置可包含一或多種 hello 下列篩選欄位的篩選陳述式：
 
 * [activityDate](#activitydate) - 定義日期或日期範圍
-* [category](#category) - 定義您想要篩選的類別。
-* [activityStatus](#activitystatus) - 定義活動狀態
-* [activityType](#activitytype) - 定義活動類型
-* [activity](#activity) - 將活動定義為字串  
-* [actor/name](#actorname) - 以動作項目的名稱形式定義動作項目
-* [actor/objectid](#actorobjectid) - 以動作項目的識別碼形式定義動作項目   
-* [actor/upn](#actorupn) - 以動作項目的使用者主體名稱 (UPN) 形式定義動作項目 
-* [target/name](#targetname) - 以動作項目的名稱形式定義目標
-* [target/objectid](#targetobjectid) - 以目標的識別碼形式定義目標  
-* [target/upn](#targetupn) - 以動作項目的使用者主體名稱 (UPN) 形式定義動作項目   
+* [類別](#category)-定義您想要 toofilter hello 分類。
+* [activityStatus](#activitystatus) -定義 hello 活動狀態
+* [activityType](#activitytype) -定義 hello 活動類型
+* [活動](#activity)-hello 活動定義為字串  
+* [動作項目/名稱](#actorname)-hello 演員姓名形式定義 hello 動作項目
+* [動作項目/objectid](#actorobjectid) -hello 的執行者識別碼形式定義 hello 動作項目   
+* [動作項目/upn](#actorupn) -hello 執行者的使用者主要名稱 (UPN) 形式定義 hello 動作項目 
+* [目標/名稱](#targetname)-hello 演員姓名形式定義 hello 目標
+* [目標/objectid](#targetobjectid) -hello 目標識別碼形式定義 hello 目標  
+* [目標/upn](#targetupn) -hello 執行者的使用者主要名稱 (UPN) 形式定義 hello 動作項目   
 
 - - -
 ### <a name="activitydate"></a>signinDateTime
@@ -213,7 +213,7 @@ datetime 應採用 UTC 格式
 **注意**：
 
 * 不區分大小寫
-* 您需要時在查詢 Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.TargetResourceUserEntity 時新增完整的命名空間
+* 查詢 Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.TargetResourceUserEntity 時，需要 tooadd hello 完整的命名空間
 
 - - -
 ### <a name="targetobjectid"></a>target/objectid
@@ -234,10 +234,10 @@ datetime 應採用 UTC 格式
 **注意**：
 
 * 不區分大小寫 
-* 您需要時在查詢 Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.ActorUserEntity 時新增完整的命名空間
+* 查詢 Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.ActorUserEntity 時，需要 tooadd hello 完整的命名空間
 
 - - -
 ## <a name="next-steps"></a>後續步驟
-* 您想要查看篩選過的系統活動範例嗎？ 請查看 [Azure Active Directory 稽核 API 範例](active-directory-reporting-api-audit-samples.md)。
-* 您想要深入了解 Azure AD 報告 API 嗎？ 請參閱 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
+* 您想 toosee 範例篩選的系統活動？ 簽出 hello [Azure Active Directory 稽核 API 範例](active-directory-reporting-api-audit-samples.md)。
+* 您想深入了解 hello Azure AD 報告 API tooknow 嗎？ 請參閱[開始使用 Azure Active Directory 報告 API hello](active-directory-reporting-api-getting-started.md)。
 

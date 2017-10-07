@@ -1,6 +1,6 @@
 ---
-title: "將資料匯入 Azure Application Insights 中的分析 | Microsoft Docs"
-description: "匯入靜態資料以加入應用程式遙測，或匯入個別的資料流以分析查詢。"
+title: "aaaImport Azure Application Insights 中的您資料 tooAnalytics |Microsoft 文件"
+description: "匯入的應用程式遙測的靜態資料 toojoin 或匯入個別的資料流 tooquery 進行分析。"
 services: application-insights
 keywords: "開啟結構描述、匯入資料"
 documentationcenter: 
@@ -13,35 +13,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: bwren
-ms.openlocfilehash: aa855a9050ec4e5e7c5db88b7209b8bb48bdba51
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7a3a3c9155adc1885dd366ddb13dda80bb894adb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="import-data-into-analytics"></a>將資料匯入分析
 
-將任何表格式資料匯入[分析](app-insights-analytics.md)，將它從應用程式加入 [Application Insights](app-insights-overview.md) 遙測，或是讓您可以為個別的資料流進行分析。 分析是適用於分析大量遙測時間戳記資料流的強大查詢語言。
+任何表格式資料匯入[分析](app-insights-analytics.md)，任一 toojoin 它與[Application Insights](app-insights-overview.md)從您的應用程式的遙測，或是讓您可以為不同的資料流分析。 分析是功能強大的查詢語言適合的 tooanalyzing 高容量加上資料流的遙測資料。
 
-您可以使用自己的結構描述將資料匯入分析。 它不需要使用標準 Application Insights 結構描述，例如要求或追蹤。
+您可以使用自己的結構描述將資料匯入分析。 它沒有 toouse hello 標準 Application Insights 結構描述要求或追蹤等。
 
 您可以匯入 JSON 或 DSV (以分隔符號分隔值 - 逗號、分號或定位字元) 檔案。
 
-有三種情況下，匯入至分析會很實用︰
+有三種情況下匯入 tooAnalytics 很有用：
 
-* **加入應用程式遙測。** 例如，您可以匯入將來自您網站的 URL 對應至更容易閱讀之頁面標題的資料表。 在分析中，您可以建立儀表板圖表報表，其會顯示您的網站中十個最常用的頁面。 現在其可以顯示頁面標題，而非 URL。
+* **加入應用程式遙測。** 例如，您可以匯入對應 Url 從您的網站 toomore 可讀取的頁面標題的資料表。 在分析，您可以建立儀表板圖表報表會顯示 hello 十個最受歡迎頁面中您的網站。 現在可以顯示 hello 而不是 hello Url 的頁面標題。
 * **相互關聯應用程式遙測**與其他來源，例如網路流量、伺服器資料或 CDN 記錄檔。
-* **將個別的資料流套用至分析。** Application Insights 分析是強大的工具，可搭配疏鬆、時間戳記資料流 - 在許多情況下遠優於 SQL。 如果您有來自其他來源的資料流，您可以使用分析進行分析。
+* **適用於分析 tooa 不同的資料流。** Application Insights 分析是強大的工具，可搭配疏鬆、時間戳記資料流 - 在許多情況下遠優於 SQL。 如果您有來自其他來源的資料流，您可以使用分析進行分析。
 
-將資料傳送至您的資料來源很簡單。 
+傳送 tooyour 資料來源的資料很容易。 
 
-1. (一次性) 在資料來源中定義資料結構描述。
-2. (定期) 將您的資料上傳至 Azure 儲存體並呼叫 REST API，以通知我們新的資料正在等候擷取。 在幾分鐘內，資料可在分析中供查詢。
+1. （一次）定義 hello 結構描述，'data source' 中的資料。
+2. （定期）上傳資料 tooAzure 儲存體，並呼叫 hello REST API toonotify 我們正在等待擷取新的資料。 在幾分鐘的時間內 hello 資料可在分析中的查詢。
 
-上傳的頻率是由您以及您希望您的資料多快可供查詢來定義。 以較大的區塊上傳是更有效率的方式，但不超過 1 GB。
+hello 的 hello 上傳頻率由您定義和速度您希望您的資料 toobe 可供查詢。 它會更有效率的 tooupload 資料在較大的區塊，但不是會超過 1 GB。
 
 > [!NOTE]
-> *有許多資料來源要分析嗎？* [*請考慮使用 logstash* *以將您的資料傳送至 Application Insights。*](https://github.com/Microsoft/logstash-output-application-insights)
+> *有許多資料來源 tooanalyze 嗎？* [*請考慮使用*logstash *tooship Application Insights 資料。*](https://github.com/Microsoft/logstash-output-application-insights)
 > 
 
 ## <a name="before-you-start"></a>開始之前
@@ -50,52 +50,52 @@ ms.lasthandoff: 08/29/2017
 
 1. Microsoft Azure 中的 Application Insights 資源。
 
- * 如果您想要與其他遙測分開分析您的資料，[建立新的 Application Insights 資源](app-insights-create-new-resource.md)。
- * 如果您要加入或比較從已使用 Application Insights 設定的應用程式遙測之資料，您可以使用該應用程式的資源。
- * 參與者或擁有者存取該資源。
+ * 如果您希望 tooanalyze 分開其他遙測資料[建立新的 Application Insights 資源](app-insights-create-new-resource.md)。
+ * 如果您是聯結或比較與已設定使用 Application Insights 的應用程式的遙測資料，您可以針對該應用程式使用 hello 資源。
+ * 參與者或擁有者存取 toothat 資源。
  
-2. Azure 儲存體中的 Blob。 您上傳至 Azure 儲存體，分析會從該處取得您的資料。 
+2. Azure 儲存體中的 Blob。 您上傳 tooAzure 存放裝置，並分析從該處取得您的資料。 
 
- * 我們建議您針對 blob 建立專用的儲存體帳戶。 如果與其他處理序共用您的 blob，我們的程序會花較長時間來讀取 blob。
+ * 我們建議您針對 blob 建立專用的儲存體帳戶。 如果您的 blob 會共用與其他處理序，會在我們的處理程序 tooread 較長時間您的 blob。
 
 
 ## <a name="define-your-schema"></a>定義結構描述
 
-在您匯入資料之前，您必須定義資料來源，以指定您資料的結構描述。
-在單一 Application Insights 資源中，最多可包含 50 個資料來源
+您可以匯入資料之前，您必須定義*資料來源，*指定 hello 結構描述的資料。
+您可以在單一的 Application Insights 資源 too50 資料來源
 
-1. 啟動資料來源精靈。 使用 [新增資料來源] 按鈕。 或者 - 按一下右上角的 [設定] 按鈕，然後在下拉式功能表中選擇 [資料來源]。
+1. 啟動 hello 資料來源精靈。 使用 [新增資料來源] 按鈕。 或者 - 按一下右上角的 [設定] 按鈕，然後在下拉式功能表中選擇 [資料來源]。
 
     ![新增資料來源](./media/app-insights-analytics-import/add-new-data-source.png)
 
     提供新資料來源的名稱。
 
-2. 定義您要上傳的檔案格式。
+2. 定義您要上傳的 hello 檔案格式。
 
-    您可以手動定義格式，或上傳範例檔案。
+    您可以手動定義 hello 格式，或上傳範例檔。
 
-    如果資料是 CSV 格式，此範例的第一列可以是資料行標頭。 您可以在下一個步驟中變更欄位名稱。
+    如果 hello 資料是以 CSV 格式，hello hello 範例的第一個資料列可以是資料行標頭。 您可以變更 hello hello 下一個步驟中的欄位名稱。
 
-    範例應該包含至少 10 個資料列或資料記錄。
+    hello 範例應該包含至少 10 個資料列或資料的記錄。
 
     資料行或欄位名稱應包含英數字元名稱 (不含空格或標點符號)。
 
     ![上傳範例檔案](./media/app-insights-analytics-import/sample-data-file.png)
 
 
-3. 檢閱精靈已經得到的結構描述。 如果它是從範例推斷出類型，您可能需要調整推斷的資料行類型。
+3. 有 hello 精靈的檢閱 hello 結構描述。 如果範例中的 hello 類型推斷，您可能需要 hello 資料行 tooadjust hello 推斷型別。
 
-    ![檢閱推斷的結構描述](./media/app-insights-analytics-import/data-source-review-schema.png)
+    ![檢閱 hello 推斷結構描述](./media/app-insights-analytics-import/data-source-review-schema.png)
 
- * (選擇性。)上傳結構描述定義。 請看以下的格式。
+ * (選擇性。)上傳結構描述定義。 請參閱下面的 hello 格式。
 
- * 選取時間戳記。 分析中的所有資料都必須都有時間戳記欄位。 必須有 `datetime` 類型，但不必命名為 'timestamp'。 如果您的資料具有包含以 ISO 格式表示之日期和時間的資料行，選擇此選項為時間戳記資料行。 否則，請選擇「資料抵達時」，匯入程序將會新增時間戳記欄位。
+ * 選取時間戳記。 分析中的所有資料都必須都有時間戳記欄位。 型別必須`datetime`，但不含 toobe 名為 'timestamp'。 如果您的資料包含的日期和時間以 ISO 格式的資料行，請選擇此選項為 hello 時間戳記資料行。 否則，請選擇 "做為資料抵達 」，並 hello 匯入程序，將時間戳記欄位。
 
-5. 建立資料來源。
+5. 建立 hello 資料來源。
 
 ### <a name="schema-definition-file-format"></a>結構描述定義檔案格式
 
-不要在 UI 中編輯結構描述，而是從檔案載入結構描述定義。 結構描述定義格式如下︰ 
+而不是編輯 UI 中的 hello 結構描述，您可以從檔案載入 hello 結構描述定義。 hello 結構描述定義格式如下所示： 
 
 以符號分隔的格式 
 ```
@@ -115,34 +115,34 @@ JSON 格式
 ]
 ```
  
-以每個資料行的位置、名稱、類型識別它。 
+每個資料行被識別 hello 位置、 名稱和類型。 
 
-* 位置 - 若為以符號分隔的檔案格式，則是對應值的位置。 若為 JSON 格式，則是對應索引鍵的 jpath。
-* 名稱 - 資料行的顯示名稱。
-* 類型 - 資料行的類型。
+* 位置 – 分隔的檔案格式，它是 hello 對應值的 hello 位置。 JSON 格式，則是 hello jpath hello 對應索引鍵。
+* 名稱 – hello 顯示 hello 資料行的名稱。
+* 類型 – hello 該資料行資料類型。
  
-在使用範例資料、而且檔案格式是符號分隔的情況下，結構描述定義必須對應所有資料行，並在結尾加入新的資料行。 
+如果使用範例資料分隔的檔案格式，必須將所有資料行對應 hello 結構描述定義，然後 hello 結尾處新增新的資料行。 
 
-JSON 允許資料部分對應，因此 JSON 格式的結構描述定義不需要對應範例資料中找到的每個索引鍵。 它也可以對應不屬於範例資料的資料行。 
+JSON 可讓 hello 資料的部分對應，因此 hello 的 JSON 格式的結構描述定義不具有 toomap 範例資料中找到的每個金鑰。 它也可以將對應資料行不是 hello 範例資料的一部分。 
 
 ## <a name="import-data"></a>匯入資料
 
-若要匯入資料，請將它上傳至 Azure 儲存體、建立便捷鍵，然後建立 REST API 呼叫。
+tooimport 資料，您將它上傳 tooAzure 儲存體、 建立便捷鍵，以及然後進行 REST API 呼叫。
 
 ![新增資料來源](./media/app-insights-analytics-import/analytics-upload-process.png)
 
-您可以手動執行下列程序，或設定自動系統定期執行。 您必須依照下列步驟進行每個您要匯入的資料區塊。
+您可以執行 hello 程序之後，手動或自動化的系統 toodo 它固定間隔。 您需要 toofollow 依照您想要的 tooimport 每個資料區塊。
 
-1. 將資料上傳至 [Azure Blob 儲存體](../storage/blobs/storage-dotnet-how-to-use-blobs.md)。 
+1. Hello 資料上傳太[Azure blob 儲存體](../storage/blobs/storage-dotnet-how-to-use-blobs.md)。 
 
- * Blob 未壓縮大小可以達 1 GB 。 從效能觀點來看，數百 MB 的大型 blob 很適合。
- * 可以使用 Gzip 進行壓縮，以改善上傳時間和延遲時間，以便資料可用於查詢。 使用 `.gz` 副檔名。
- * 針對此目的，最好使用個別的儲存體帳戶，以避免來自不同服務的呼叫拖慢效能。
- * 以高頻率 (每幾秒一次) 傳送資料時，基於效能考量，建議使用多個儲存體帳戶。
+ * Blob 可以是任何向上 too1GB 未壓縮大小。 從效能觀點來看，數百 MB 的大型 blob 很適合。
+ * 您可以將它壓縮 Gzip tooimprove 上傳時間與 hello 資料 toobe 可用於查詢的延遲。 使用 hello`.gz`檔案的副檔名。
+ * 基於此目的，從不同的服務會讓效能變 tooavoid 呼叫是最佳 toouse 個別儲存體帳戶。
+ * 傳送資料時在高頻率，每隔幾秒，建議您使用 toouse 多超過一個儲存體帳戶，基於效能的考量。
 
  
-2. [建立 blob 的共用存取簽章](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md). 金鑰應該有一天的到期時間，並提供讀取權限。
-3. 進行 REST 呼叫，以通知 Application Insights 資料正在等候。
+2. [建立 hello blob 的共用存取簽章金鑰](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md)。 hello 金鑰應該具有一天的到期時間，並提供讀取權限。
+3. 請等候資料的 Application Insights REST 呼叫 toonotify。
 
  * 端點：`https://dc.services.visualstudio.com/v2/track`
  * HTTP 方法：POST
@@ -167,32 +167,32 @@ JSON 允許資料部分對應，因此 JSON 格式的結構描述定義不需要
     }
 ```
 
-預留位置是︰
+hello 預留位置是：
 
-* `Blob URI with Shared Access Key`︰從建立機碼程序取得。 它是 blob 特定。
-* `Schema ID`：為已定義的結構描述產生的結構描述識別碼。 此 Blob 中的資料應該與結構描述相符。
-* `DateTime`：送出要求的時間 (UTC)。 我們接受這些格式︰ISO8601 (例如 "2016-01-01 13:45:01")；RFC822 ("Wed, 14 Dec 16 14:57:01 +0000")；RFC850 ("Wednesday, 14-Dec-16 14:57:00 UTC")；RFC1123 ("Wed, 14 Dec 2016 14:57:00 +0000")。
+* `Blob URI with Shared Access Key`： 取得此從 hello 程序建立金鑰。 它是特定 toohello blob。
+* `Schema ID`: hello 您定義的結構描述產生的結構描述識別碼。 此 blob 中的 hello 資料應該符合 toohello 結構描述。
+* `DateTime`: hello 時間在哪一個 hello 提交要求，UTC。 我們接受這些格式︰ISO8601 (例如 "2016-01-01 13:45:01")；RFC822 ("Wed, 14 Dec 16 14:57:01 +0000")；RFC850 ("Wednesday, 14-Dec-16 14:57:00 UTC")；RFC1123 ("Wed, 14 Dec 2016 14:57:00 +0000")。
 * 您 `Instrumentation key` 的 Application Insights 資源。
 
-後幾分鐘可在分析中使用資料。
+hello 資料可在分析後幾分鐘的時間。
 
 ## <a name="error-responses"></a>錯誤回應
 
-* **400 不正確的要求**︰表示要求承載無效。 勾選：
+* **400 要求錯誤**： 指出該 hello 要求裝載無效。 勾選：
  * 修正動態檢測金鑰。
- * 有效的時間值。 它應該是現在的 UTC 時間。
- * 事件的 JSON 符合結構描述。
-* **403 禁止**︰您所傳送的 blob 不能存取。 請確定共用的存取金鑰有效且尚未過期。
+ * 有效的時間值。 它應該是 hello 現在時間-UTC 時間。
+ * JSON 的 hello 事件符合 toohello 結構描述。
+* **403 禁止**： 不能存取您先前曾傳送嗨 blob。 請確定該 hello 共用的存取金鑰無效，而且尚未過期。
 * **404 找不到**：
- * Blob 不存在。
- * 來源識別碼是錯誤的。
+ * hello blob 不存在。
+ * hello sourceId 是錯誤。
 
-回應錯誤訊息中有更詳細的資訊。
+Hello 回應錯誤訊息中使用更詳細的資訊。
 
 
 ## <a name="sample-code"></a>範例程式碼
 
-此程式碼使用 [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/9.0.1) NuGet 封裝。
+此程式碼使用 hello [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/9.0.1) NuGet 封裝。
 
 ### <a name="classes"></a>類別
 
@@ -365,5 +365,5 @@ namespace IngestionClient
 
 ## <a name="next-steps"></a>後續步驟
 
-* [Log Analytics 查詢語言導覽](app-insights-analytics-tour.md)
-* [使用 Logstash 將資料傳送至 Application Insights](https://github.com/Microsoft/logstash-output-application-insights)
+* [教學課程的 hello 記錄分析查詢語言](app-insights-analytics-tour.md)
+* [使用*Logstash* toosend 資料 tooApplication Insights](https://github.com/Microsoft/logstash-output-application-insights)

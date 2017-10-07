@@ -1,5 +1,5 @@
 ---
-title: "Azure Data Factory - 客戶案例研究 | Microsoft Docs"
+title: "Data Factory-客戶案例研究 aaaAzure |Microsoft 文件"
 description: "深入了解我們某些客戶使用 Azure Data Factory 的情況。"
 services: data-factory
 documentationcenter: 
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: c5620a2c02ec4d2abfef40ab5c41bf6ad393a3d9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8787a27c10cb9509d8f0d811b4fed3100595e480
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-factory---customer-case-studies"></a>Azure Data Factory - 客戶案例研究
-Data Factory 是雲端架構資訊管理服務，會自動移動和轉換資料。 許多產業的客戶會使用 Data Factory 和其他 Azure 服務來建置其分析管線以及解決其業務問題。  直接向我們的客戶學習他們使用 Data Factory 的方法和原因。
+Data Factory 是以雲端為基礎的資訊管理服務自動執行 hello 移動和轉換資料。 許多產業的客戶使用 Data Factory 和其他 Azure 服務 toobuild 分析管線，並解決其商務問題。  直接向我們的客戶學習他們使用 Data Factory 的方法和原因。
 
 ## <a name="milliman"></a>明德精算顧問有限公司
-[最頂尖的精算公司改變整個保險產業](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20096)
+[排名最前面的 Actuarial 確實轉換 hello 保險業](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20096)
 
 ## <a name="rockwell-automation"></a>洛克威爾自動化公司
-[工業自動化公司使用巨量資料解決方案節省成本達 90%](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18356)
+[工業自動化公司剪下成本與巨量資料解決方案 too90%](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18356)
 
 ## <a name="ziosk"></a>Ziosk
-[您想將什麼遊戲搭配漢堡一起享用？Ziosk 可能已經知道。](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18294)
+[什麼遊戲您想要使用該漢堡 toogo？Ziosk 可能已經知道。](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18294)
 
 ## <a name="alaska-airlines"></a>阿拉斯加航空公司
-[航空公司使用平板電腦和雲端服務，提供更吸引人的機上娛樂](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=19357)
+[航空公司會使用平板電腦、 雲端服務 tooOffer 更吸引人的進行中娛樂](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=19357)
 
 ## <a name="tacoma-public-schools"></a>塔科馬公立學校
 [使用雲端分析來預測學生中輟風險並增加畢業率](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20703)
 
 ## <a name="real-madrid-fc"></a>皇家馬德里足球俱樂部
-[皇家馬德里使用 Microsoft 雲端服務，為全球 4.5 億球迷帶來最即時的精采賽事](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20522)
+[實際馬德里帶來 hello 場地接近 too450 百萬個風扇周圍 hello 地球，以 hello Microsoft 雲端](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20522)
 
 ## <a name="pier-1-imports"></a>Pier 1 Imports
 [透過雲端機器學習服務尋求更緊密的客戶關係](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=11257)

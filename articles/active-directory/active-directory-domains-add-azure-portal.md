@@ -1,6 +1,6 @@
 ---
-title: "將您的自訂網域名稱新增至 Azure Active Directory | Microsoft Docs"
-description: "如何在 Azure Active Directory 中新增您公司的網域名稱，以及如何確認網域名稱。"
+title: "您的自訂網域名稱 tooAzure Active Directory 的 aaaAdd |Microsoft 文件"
+description: "如何 tooadd 貴公司的網域名稱 tooAzure Active Directory 中，並 tooverify hello 網域名稱的方式。"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,71 +14,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: curtand
-ms.openlocfilehash: ad72f768add7edc1d34a85c27dc2aa1b4e4b3a50
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 88d5f443cd10b098a9a9ffb3137f5e1ca33b6aad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-custom-domain-name-to-azure-active-directory"></a>將自訂網域名稱新增至 Azure Active Directory
+# <a name="add-a-custom-domain-name-tooazure-active-directory"></a>新增自訂網域名稱 tooAzure Active Directory
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-domains-add-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-add-domain.md)
 > 
 
-使用 Azure Active Directory (Azure AD)，您可以將您的公司網域名稱新增到 Azure AD。 您可能會有貴公司營運所用的網域名稱，以及使用貴公司網域名稱登入的使用者。 將網域名稱新增到 Azure AD 可讓您在目錄中指派您使用者熟悉的使用者名稱，例如 ‘alice@contoso.com’。 程序佷簡單：
+使用 Azure Active Directory (Azure AD)，您可以新增您公司網域名稱 tooAzure AD 以及。 該您的組織使用 toodo 商務和使用者使用公司網域名稱登入，您可能必須是網域名稱。 加入 hello 網域名稱 tooAzure AD 可讓您在 hello 目錄 tooassign 使用者名稱，是很熟悉 tooyour 的使用者，例如 'alice@contoso.com。 ' hello 程序很簡單：
 
-1. 在目錄中新增自訂網域名稱
-2. 在網域名稱註冊機構中新增網域名稱的 DNS 項目
-3. 驗證 Azure AD 中的自訂網域名稱
+1. 新增 hello 自訂網域名稱 tooyour 目錄
+2. 在 hello 網域名稱註冊機構新增 hello 網域名稱的 DNS 項目
+3. 在 Azure AD 中驗證 hello 自訂網域名稱
 
 ## <a name="how-do-i-add-a-domain-name"></a>如何新增網域名稱？
-1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
-2. 選取 [更多服務]，在文字方塊中輸入 **Azure Active Directory**，然後選取 **Enter**。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)hello 目錄的全域管理員的帳戶。
+2. 選取**更多服務**，輸入**Azure Active Directory**在 hello 文字方塊中，然後選取  **Enter**。
    
    ![開啟使用者管理](./media/active-directory-domains-add-azure-portal/user-management.png)
-3. 在 [directory-name] 刀鋒視窗上，選取 [網域名稱]。
-4. 在 [*directory-name* - 網域名稱] 刀鋒視窗上，選取 [新增] 命令。
+3. 在 hello***目錄名稱***刀鋒視窗中，選取**網域名稱**。
+4. 在 hello ***目錄名稱*-網域名稱**刀鋒視窗中，選取 hello**新增**命令。
    
-   ![選取 [新增] 命令](./media/active-directory-domains-add-azure-portal/add-command.png)
-5. 在 [網域名稱] 刀鋒視窗上，於方塊中輸入您的自訂網域名稱 (例如 'contoso.com')，然後選取 [新增網域]。 請務必包含 .com、.net 或其他最上層的擴充。
-6. 在 [domainname] 刀鋒視窗 (亦即所開啟且標題中含有新網域名稱的刀鋒視窗) 上，取得 Azure AD 將用來驗證貴組織是否擁有自訂網域名稱的 DNS 項目資訊。
+   ![選取 hello Add 命令](./media/active-directory-domains-add-azure-portal/add-command.png)
+5. 在 hello**網域名稱**刀鋒視窗中，在 hello 方塊中，例如 'contoso.com'，輸入 hello 您的自訂網域名稱，然後選取**新增網域**。 為確定 tooinclude hello.com、.net 或其他最上層的延伸模組。
+6. 在 hello ***domainname***刀鋒視窗 （也就是 hello 刀鋒視窗中開啟 hello 標題中具有新的網域名稱），取得 Azure AD 會將您的組織擁有 hello 自訂網域名稱的 tooverify hello DNS 項目資訊。
    
    ![取得 DNS 項目資訊](./media/active-directory-domains-add-azure-portal/get-dns-info.png)
 
-既然您已新增網域名稱，Azure AD 必須確認您的組織擁有該網域名稱。 您必須先在 DNS 區域檔案中新增該網域名稱的 DNS 項目，Azure AD 才可以進行此確認。 這項工作是在該網域名稱的網域名稱註冊機構網站上進行。
+既然您已經加入 hello 網域名稱，Azure AD 必須確認您的組織擁有 hello 網域名稱。 Azure AD 執行這項驗證之前，您必須在 hello hello 網域名稱的 DNS 區域檔案中新增 DNS 項目。 Hello hello 網域名稱的網域名稱註冊機構的網站上執行此工作。
 
-## <a name="add-the-dns-entry-at-the-domain-name-registrar-for-the-domain"></a>在網域名稱註冊機構中新增網域的 DNS 項目
-利用 Azure AD 使用您自訂網域名稱的下一個步驟，就是更新網域的 DNS 區域檔案。 這可讓 Azure AD 確認您的組織擁有該自訂網域名稱。
+## <a name="add-hello-dns-entry-at-hello-domain-name-registrar-for-hello-domain"></a>在 hello hello 網域的網域名稱註冊機構新增 hello DNS 項目
+hello 您的自訂網域名稱與 Azure AD 下一個步驟 toouse 是 tooupdate hello DNS 區域檔案中的 hello 網域。 這可讓 Azure AD tooverify 貴組織擁有 hello 自訂網域名稱。
 
-1. 登入網域的網域名稱註冊機構。 如果您無法存取以更新 DNS 項目，請要求具有此存取權的人員或小組完成步驟 2 並在完成時通知您。
-2. 透過新增 Azure AD 提供給您的 DNS 項目來更新網域的 DNS 區域檔案。 此 DNS 項目可讓 Azure AD 確認您擁有網域。 DNS 項目不會變更任何行為，例如郵件路由或 Web 裝載。
+1. 登入 toohello hello 網域的網域名稱註冊機構。 如果您沒有存取 tooupdate hello DNS 項目，請要求 hello 個人或團隊具有此存取 toocomplete 步驟 2 和 toolet 您知道它完成時。
+2. 加入 Azure ad 的 hello DNS 項目提供 tooyou，以更新 hello hello 網域的 DNS 區域檔案。 這個 DNS 項目可讓 Azure AD tooverify hello 網域您擁有權。 hello DNS 項目不會變更任何行為，例如郵件路由或 web 裝載。
 
-如需新增此 DNS 項目的說明，請參閱 [在常用 DNS 註冊機構新增 DNS 項目的指示](https://support.office.com/article/Create-DNS-records-for-Office-365-when-you-manage-your-DNS-records-b0f3fdca-8a80-4e8e-9ef3-61e8a2a9ab23/)
+這個新增的 hello DNS 項目說明，請參閱[指示在常用的 DNS 註冊機構加入 DNS 項目](https://support.office.com/article/Create-DNS-records-for-Office-365-when-you-manage-your-DNS-records-b0f3fdca-8a80-4e8e-9ef3-61e8a2a9ab23/)
 
-## <a name="verify-the-domain-name-with-azure-ad"></a>使用 Azure AD 確認網域名稱
-一旦新增了 DNS 項目，您就可以使用 Azure AD 確認網域名稱。
+## <a name="verify-hello-domain-name-with-azure-ad"></a>驗證 Azure AD 與 hello 網域名稱
+一旦您加入 hello DNS 項目，您已準備好 tooverify hello 網域名稱與 Azure AD。
 
-只有在 DNS 記錄傳播完成之後，才能驗證網域名稱。 通常此傳播只需要幾秒鐘，但有時可能需要一個小時以上。 如果驗證第一次不成功，請稍後再試。
+Hello DNS 記錄都已傳播後，才可以驗證網域名稱。 通常此傳播只需要幾秒鐘，但有時可能需要一個小時以上。 如果驗證無法運作 hello 第一次，再試一次。
 
-1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
-2. 選取 [瀏覽]，在文字方塊中輸入「使用者管理」，然後選取 **Enter**。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)hello 目錄的全域管理員的帳戶。
+2. 選取**瀏覽**，在 [hello] 文字方塊中，輸入使用者管理，然後選取**Enter**。
    
    ![開啟使用者管理](./media/active-directory-domains-add-azure-portal/user-management.png)
-3. 在 [使用者管理 - 網域名稱]  刀鋒視窗上，選取您想要驗證的未驗證網域名稱。
-4. 在 [domainname] 刀鋒視窗 (也就是所開啟且標題中含有新網域名稱的刀鋒視窗) 上，選取 [驗證] 來完成驗證。
+3. 在 hello**使用者管理的網域名稱**刀鋒視窗中，您想 tooverify 選取 hello 未經驗證的網域名稱。
+4. 在 hello ***domainname***刀鋒視窗 （也就是 hello 刀鋒視窗中開啟 hello 標題中具有新的網域名稱），選取**確認**toocomplete hello 驗證。
 
 現在您可以[指派包含自訂網域名稱的使用者名稱](active-directory-users-create-azure-portal.md)。
 
 ## <a name="troubleshooting"></a>疑難排解
-如果無法確認自訂網域名稱，請嘗試下列方法。 我們會從最常見的原因來開始逐一介紹到最不常見的原因。
+如果您無法驗證自訂網域名稱，請嘗試下列 hello。 我們將開始 hello 最常見且向 toohello 最常見工作。
 
-1. **等候一小時**。 DNS 記錄必須在 Azure AD 確認網域之後傳播。 這可能需要一個小時以上。
-2. **確定已輸入正確的 DNS 記錄**。 請在該網域的網域名稱註冊機構網站上完成這個步驟。 如果 DNS 項目不在 DNS 區域檔案中，或如果與 Azure AD 提供您的 DNS 項目不完全相符，則 Azure AD 無法確認網域名稱。 如果您無法在網域名稱註冊機構上存取以更新網域的 DNS 記錄，請與組織內具有此存取權的個人或團隊共用 DNS 項目，並請他們新增 DNS 項目。
-3. **從 Azure AD 中的另一個目錄刪除網域名稱**。 網域名稱只能在單一目錄中確認。 如果網域名稱先前在另一個目錄中確認過，則必須先在那裡將其刪除後，才可在新的目錄中確認。 若要了解如何刪除網域名稱，請參閱 [管理自訂網域名稱](active-directory-domains-manage-azure-portal.md)。    
+1. **等候一小時**。 Azure AD 驗證 hello 網域之前 toopropagate 需要 DNS 記錄。 這可能需要一個小時以上。
+2. **確定的 hello 輸入 DNS 記錄，並確認它是否正確**。 完成此步驟在 hello hello hello 網域的網域名稱註冊機構的網站。 Azure AD 無法驗證 hello 網域名稱，如果 hello DNS 項目不存在於 hello DNS 區域檔案，或如果不是完全相符 hello DNS 項目與 Azure AD 提供給您。 如果您沒有在 hello 網域名稱註冊機構的 hello 網域存取 tooupdate DNS 記錄，與 hello 人員或小組在您組織內具有此存取權，共用 hello DNS 項目，並要求他們 tooadd hello DNS 項目。
+3. **從另一個目錄中刪除 hello 網域名稱，在 Azure AD 中**。 網域名稱只能在單一目錄中確認。 如果網域名稱先前在另一個目錄中確認過，則必須先在那裡將其刪除後，才可在新的目錄中確認。 刪除網域名稱的相關 toolearn 讀取[管理自訂網域名稱](active-directory-domains-manage-azure-portal.md)。    
 
 ## <a name="add-more-custom-domain-names"></a>新增更多的自訂網域名稱
-如果您的組織使用多個自訂網域名稱，例如 ‘contoso.com’ 和 ‘contosobank.com’，您最多可以新增 900 個網域名稱。 請使用本文中的相同步驟來新增每個網域名稱。
+如果您的組織使用多個自訂網域名稱，例如 'contoso.com' 和 'contosobank.com'，您可以將其加入 tooa 最大值為 900 的網域名稱註冊。 使用的 hello 這個發行項 tooadd 每個網域名稱中的相同步驟。
 
 ## <a name="next-steps"></a>後續步驟
 [管理自訂網域名稱](active-directory-domains-manage-azure-portal.md)

@@ -1,6 +1,6 @@
 ---
-title: "開始使用 Azure AD Cordova | Microsoft Docs"
-description: "如何建置 Cordova 應用程式來與 Azure AD 整合進行登入，並使用 OAuth 呼叫受 Azure AD 保護的 API。"
+title: "開始使用 AD Cordova aaaAzure |Microsoft 文件"
+description: "如何 toobuild Cordova 應用程式的整合 Azure AD 進行登入及使用 OAuth 呼叫 Azure AD 保護應用程式開發介面。"
 services: active-directory
 documentationcenter: 
 author: vibronet
@@ -15,133 +15,133 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: vittorib
 ms.custom: aaddev
-ms.openlocfilehash: d9f53148787729d29a0a89cce1b8b2b83ba228f8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 573ed638c2180c5231648bcb8c49ceb6f53296f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-azure-ad-with-an-apache-cordova-app"></a>整合 Azure AD 與 Apache Cordova 應用程式
 [!INCLUDE [active-directory-devquickstarts-switcher](../../../includes/active-directory-devquickstarts-switcher.md)]
 
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-您可以使用 Apache Cordova 開發 HTML5/JavaScript 應用程式，在行動裝置上當做一個完備的原生應用程式執行。 Azure Active Directory (Azure AD) 可讓您將企業級的驗證功能加入 Cordova 應用程式中。
+您可以使用 Apache Cordova toodevelop HTML5/JavaScript 應用程式可以在單純的原生應用程式的行動裝置上執行。 與 Azure Active Directory (Azure AD)，您可以加入企業等級驗證功能 tooyour Cordova 應用程式。
 
-iOS、Android、Windows 市集和 Windows Phone 上的 Cordova 外掛程式包裝了 Azure AD 原生 SDK。 使用此外掛程式，可以增強您的應用程式來支援以使用者的 Windows Server Active Director 帳戶登入、存取 Office 365 和 Azure API，甚至保護對您自己自訂的 Web API 的呼叫。
+iOS、Android、Windows 市集和 Windows Phone 上的 Cordova 外掛程式包裝了 Azure AD 原生 SDK。 使用的外掛程式，您可以增強您的應用程式登入與使用者的 Windows Server Active Directory 帳戶、 改善存取 tooOffice 365 及 Azure 應用程式開發介面，而且甚至 toosupport 保護呼叫 tooyour 自己自訂的 web 應用程式開發介面。
 
-在本教學課程中，我們將使用 Active Directory 驗證程式庫 (ADAL) 的 Apache Cordova 外掛程式，加入下列功能來改善一個簡單的應用程式：
+在本教學課程中，我們將藉由新增下列功能的 hello hello Apache Cordova 外掛程式使用的 Active Directory 驗證程式庫 (ADAL) tooimprove 簡單的應用程式：
 
 * 只要短短幾行程式碼，就可驗證使用者並取得權杖。
-* 使用該權杖叫用 Graph API 來查詢目錄，並顯示結果。  
-* 運用 ADAL 權杖快取，將使用者的驗證提示減到最少。
+* 使用該語彙基元 tooinvoke hello Graph API tooquery 該目錄，並顯示 hello 結果。  
+* 使用 hello ADAL 權杖快取 toominimize 驗證提示 hello 使用者。
 
-若要實現這些強化功能，您需要︰
+toomake 這些增強功能，您需要：
 
 1. 向 Azure AD 註冊應用程式。
-2. 在您的應用程式中加入程式碼來要求權杖。
-3. 加入程式碼以使用權杖來查詢 Graph API，並顯示結果。
-4. 使用您想要做為目標的所有平台建立 Cordova 部署專案，新增 Cordova ADAL 外掛程式，並在模擬器中測試解決方案。
+2. 加入程式碼 tooyour 應用程式 toorequest 語彙基元。
+3. 加入程式碼來查詢 Graph API hello toouse hello 語彙基元，並顯示結果。
+4. 建立 hello Cordova 部署專案與所有 hello 平台 tootarget，新增 hello Cordova ADAL 外掛程式，然後在模擬器中測試 hello 方案。
 
 ## <a name="prerequisites"></a>必要條件
-若要完成本教學課程，您需要：
+toocomplete 本教學課程中，您需要：
 
 * Azure AD 租用戶，您在其中有一個帳戶具備應用程式開發權限。
-* 為了使用 Apache Cordova 而設定的開發環境。  
+* 已設定 toouse Apache Cordova 開發環境。  
 
-如果兩者都已齊備，直接跳到步驟 1。
+如果您已經有同時設定，直接繼續 toostep 1。
 
-如果您沒有 Azure AD 租用戶，請使用[如何取得租用戶的指示](active-directory-howto-tenant.md)。
+如果您沒有 Azure AD 租用戶，請使用 hello[指示一個 tooget](active-directory-howto-tenant.md)。
 
-如果您的電腦上沒有安裝 Apache Cordova，請安裝下列項目：
+如果您沒有在您的電腦上設定的 Apache Cordova，安裝 hello 下列：
 
 * [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [Node.js](https://nodejs.org/download/)
 * [Cordova CLI](https://cordova.apache.org/) (可以輕鬆地透過 NPM 封裝管理員來安裝：`npm install -g cordova`)
 
-上述安裝應該在 PC 和 Mac 上都可以執行。
+hello PC 與 hello mac 上，應該運作之前安裝的 hello
 
 每個目標平台各有不同的必要條件：
 
-* 建置和執行適用於 Windows 平板電腦/PC 或 Windows Phone 的應用程式：
+* toobuild 和執行應用程式 Windows 平板電腦或 Windows Phone:
   * 安裝 [Visual Studio 2013 for Windows (含 Update 2) 或更新版本](http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-windows-8) (Express 或其他版本) 或 [Visual Studio 2015](https://www.visualstudio.com/downloads/download-visual-studio-vs#d-community)。
 
-* 建置和執行適用於 iOS 的應用程式：
+* toobuild 並執行 iOS 應用程式：
 
-  * 安裝 Xcode 6.x 或更新版本。 請從 [Apple 開發人員網站](http://developer.apple.com/downloads)或 [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12) 下載。
-  * 安裝 [ios-sim](https://www.npmjs.org/package/ios-sim)。 您可以使用它在 iOS 模擬器中從命令列啟動 iOS 應用程式。 (您可以透過終端機輕鬆地安裝它︰`npm install -g ios-sim`。)
-* 建置和執行適用於 Android 的應用程式：
+  * 安裝 Xcode 6.x 或更新版本。 下載從 hello [Apple 開發人員網站](http://developer.apple.com/downloads)或 hello [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12)。
+  * 安裝 [ios-sim](https://www.npmjs.org/package/ios-sim)。 您可以使用它 toostart iOS 應用程式中 hello 命令列上的 iOS 模擬器。 (您可以輕鬆地將它安裝透過終端機 hello: `npm install -g ios-sim`。)
+* toobuild 和適用於 Android 的應用程式執行：
 
-  * 安裝 [Java Development Kit (JDK) 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 或更新版本。 請確定 `JAVA_HOME` (環境變數) 已根據 JDK 安裝路徑 (例如 C:\Program Files\Java\jdk1.7.0_75) 正確設定。
-  * 安裝 [Android SDK](http://developer.android.com/sdk/installing/index.html?pkg=tools)，並將 `<android-sdk-location>\tools` 位置 (例如 C:\tools\Android\android-sdk\tools) 新增至 `PATH` 環境變數。
-  * 開啟 Android SDK Manager (例如，透過終端機：`android`)，然後安裝：
+  * 安裝 [Java Development Kit (JDK) 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 或更新版本。 請確定`JAVA_HOME`根據 toohello JDK 安裝路徑 (例如，C:\Program Files\Java\jdk1.7.0_75) 正確設定 （環境變數）。
+  * 安裝[Android SDK](http://developer.android.com/sdk/installing/index.html?pkg=tools)和新增 hello`<android-sdk-location>\tools`位置 (例如，C:\tools\Android\android-sdk\tools) tooyour`PATH`環境變數。
+  * 開啟 Android SDK 管理員 (例如，透過終端機 hello: `android`) 並安裝：
     * *Android 5.0.1 (API 21)* 平台 SDK
     * Android SDK Build Tools 19.1.0 版或更新版本
     * *Android Support Repository* (Extras)
 
-  Android SDK 並不提供任何預設模擬器執行個體。 如果您想要在模擬器上執行 Android 應用程式，請從終端機執行 `android avd` 然後選取 [建立]，以建立新的模擬器執行個體。 我們建議 API 層級 19 或更高。 請參閱 Android 網站上的 [AVD Manager](http://developer.android.com/tools/help/avd-manager.html)，取得 Android 模擬器和建立選項的相關資訊。
+  hello Android SDK 不提供任何預設模擬器執行個體。 建立一個執行`android avd`hello 終端機，然後選取 從**建立**，如果您想 toorun hello Android 應用程式在模擬器上的。 我們建議 API 層級 19 或更高。 如需 hello Android 模擬器和建立選項的詳細資訊，請參閱[AVD Manager](http://developer.android.com/tools/help/avd-manager.html) hello Android 網站上。
 
 ## <a name="step-1-register-an-application-with-azure-ad"></a>步驟 1︰向 Azure AD 註冊應用程式
-此為選用步驟。 本教學課程提供預先佈建的值，您可以直接使用，完全不需要在自己的租用戶中佈建，就能看到可運作的範例。 不過，建議您執行這個步驟，並熟悉這個程序，因為當您建立自己的應用程式時，就需要這樣做。
+此為選用步驟。 本教學課程提供您可以使用 toosee 預先佈建的值而不需要執行任何佈建在自己的租用戶 hello 動作中的範例。 不過，我們建議您不要執行這個步驟，並熟悉 hello 程序，因為它會在必要時建立自己的應用程式。
 
-Azure AD 只會發出權杖給已知的應用程式。 您必須先在租用戶中建立應用程式的項目，才能從應用程式使用 Azure AD。 若要在您的租用戶中註冊新的應用程式：
+Azure AD 發出權杖 tooonly 已知的應用程式。 您可以使用 Azure AD 從您的應用程式之前，您需要 toocreate 項目，在您的租用戶。 tooregister 租用戶中新的應用程式：
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在頂端列中，按一下您的帳戶。 在 [目錄] 清單中，選擇您要註冊應用程式的 Azure AD 租用戶。
-3. 按一下左側窗格中的 [更多服務]，然後選取 [Azure Active Directory]。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+2. Hello 頂端列上，按一下您的帳戶。 在 hello**目錄**清單中，選擇您想要 tooregister hello Azure AD 租用戶應用程式。
+3. 按一下**更服務**在 hello 左的窗格，然後選取  **Azure Active Directory**。
 4. 按一下 [應用程式註冊]，然後選取 [新增]。
-5. 遵照提示進行，並建立新的**原生用戶端應用程式**。 (雖然 Cordova 應用程式是 HTML 架構，我們在此要建立的是原生用戶端應用程式。 您必須選取 [原生用戶端應用程式] 選項，否則應用程式將無法運作。)
-  * **名稱**向使用者描述您的應用程式。
-  * **重新導向 URI** 是用來將權杖傳回至您應用程式的 URI。 輸入 **http://MyDirectorySearcherApp**。
+5. 依照 hello 提示，並建立**原生用戶端應用程式**。 (雖然 Cordova 應用程式是 HTML 架構，我們在此要建立的是原生用戶端應用程式。 hello**原生用戶端應用程式**必須選取選項，或 hello 應用程式將無法運作。)
+  * **名稱**描述應用程式 toousers。
+  * **重新導向 URI**為 hello 已使用 tooreturn 語彙基元 tooyour 應用程式的 URI。 輸入 **http://MyDirectorySearcherApp**。
 
-完成註冊之後，Azure AD 會指派唯一的應用程式識別碼給您的應用程式。 您在後續章節中將會用到這個值。 您可以在新建立之應用程式的應用程式索引標籤中找到此值。
+完成註冊之後，Azure AD 會指派唯一的應用程式識別碼 tooyour 應用程式。 您必須以 hello 下一節中的值。 您可以將它找到新建立的應用程式的 hello hello 應用程式 索引標籤上。
 
-為了執行 `DirSearchClient Sample`，請為新建立的應用程式授與可查詢 Azure AD 圖形 API 的權限：
+toorun `DirSearchClient Sample`，授與 hello 新建立的應用程式的權限 tooquery hello Azure AD Graph API:
 
-1. 在 [設定] 頁面中，選取 [必要的權限]，然後選取 [新增]。  
-2. 針對 Azure Active Directory 應用程式，選取 [Microsoft Graph] 作為 API，然後在 [委派權限] 底下新增 [以登入使用者的身分存取目錄] 權限。  這樣做可讓您的應用程式查詢圖形 API 的使用者。
+1. 從 hello**設定**頁面上，選取**必要的使用權限**，然後選取**新增**。  
+2. Hello Azure Active Directory 應用程式中，選取**Microsoft Graph**為 hello 應用程式開發介面，並加入 hello **hello 登入的使用者身分存取 hello 目錄**權限下的**委派權限**。  這可讓使用者您應用程式 tooquery hello Graph API。
 
-## <a name="step-2-clone-the-sample-app-repository"></a>步驟 2︰複製範例應用程式存放庫
-從 Shell 或命令列，輸入下列命令：
+## <a name="step-2-clone-hello-sample-app-repository"></a>步驟 2： 複製 hello 範例應用程式儲存機制
+從殼層或命令列中，輸入下列命令的 hello:
 
     git clone -b skeleton https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-Cordova.git
 
-## <a name="step-3-create-the-cordova-app"></a>步驟 3：建立 Cordova 應用程式
-有多種方式可以建立 Cordova 應用程式。 在本教學課程中，我們使用 Cordova 命令列介面 (CLI)。
+## <a name="step-3-create-hello-cordova-app"></a>步驟 3： 建立 hello Cordova 應用程式
+有多個方式 toocreate Cordova 應用程式。 在本教學課程中，我們將使用 hello Cordova 命令列介面 (CLI)。
 
-1. 從 Shell 或命令列，輸入下列命令：
+1. 從殼層或命令列中，輸入下列命令的 hello:
 
         cordova create DirSearchClient
 
-   這個命令會建立 Cordova 專案的資料夾結構和架構。
+   該命令會建立 hello 資料夾結構和 scaffolding hello Cordova 專案。
 
-2. 移至新的 DirSearchClient 資料夾：
+2. 移動 toohello 新 DirSearchClient 資料夾：
 
         cd .\DirSearchClient
 
-3. 使用檔案管理員或在您的殼層中使用下列命令，將入門專案的內容複製到 www 子資料夾中：
+3. 使用檔案管理員或使用下列命令，在您的 shell 中的 hello hello www 子資料夾中複製 hello hello 入門專案內容：
 
   * Windows：`xcopy ..\NativeClient-MultiTarget-Cordova\DirSearchClient www /E /Y`
   * Mac：`cp -r  ../NativeClient-MultiTarget-Cordova/DirSearchClient/* www`
 
-4. 新增白名單外掛程式。 這是叫用圖形 API 所需的。
+4. 新增 hello 白名單外掛程式。 這是必要的叫用 hello Graph API。
 
         cordova plugin add cordova-plugin-whitelist
 
-5. 新增所有您想要支援的平台。 您至少必須執行下列其中一個命令，才能讓範例運作。 請注意，您無法在 Windows 上模擬 iOS，或在 Mac 上模擬 Windows。
+5. 新增所有您想 toosupport hello 平台。 toohave 工作範例，您需要下列命令的 hello 的 tooexecute 至少一個。 請注意，將不會在 Windows 上的無法 tooemulate iOS 或模擬在 mac 上的 Windows
 
         cordova platform add android
         cordova platform add ios
         cordova platform add windows
 
-6. 將 ADAL for Cordova 外掛程式新增至您的專案：
+6. 加入 Cordova 外掛程式 tooyour 專案 hello ADAL:
 
         cordova plugin add cordova-plugin-ms-adal
 
-## <a name="step-4-add-code-to-authenticate-users-and-obtain-tokens-from-azure-ad"></a>步驟 4︰新增用以驗證使用者的程式碼，並從 AAD 取得權杖
-在本教學課程，您正在開發的應用程式將提供簡單的目錄搜尋功能。 然後使用者可以在目錄中輸入任何使用者的別名，並以視覺化方式檢視一些基本的屬性。 入門專案包含應用程式基本使用者介面的定義 (在 www/index.html 中)，也包含串連基本應用程式事件系列的架構、使用者介面繫結及結果顯示邏輯 (在 www/js/index.js 中)。 您剩下的工作只是加入實作識別工作的邏輯。
+## <a name="step-4-add-code-tooauthenticate-users-and-obtain-tokens-from-azure-ad"></a>步驟 4： 加入程式碼 tooauthenticate 使用者，並從 Azure AD 取得權杖
+在本教學課程，您正在開發的 hello 應用程式會提供簡單的目錄搜尋功能。 hello 使用者即可輸入 hello 目錄中的 hello 別名的任何使用者或以視覺化方式檢視一些基本的屬性。 hello 入門專案包含 hello hello 基本使用者介面 （在 www/index.html) hello 應用程式的定義和基本應用程式事件繫結在一起的 hello scaffolding 循環，使用者介面的繫結，並產生顯示邏輯 （在 www/js/index.js)。 hello 留下您的唯一工作是 tooadd hello 邏輯實作識別工作。
 
-您所要做的第一件事是在程式碼中加入通訊協定值，供 AAD 用於識別您的應用程式和您的目標資源。 稍後會使用這些值來建構權杖要求。 在 Index.js 檔案最上方插入下面程式碼片段：
+hello 第一件事您在程式碼中需要 toodo 是導入 hello Azure AD 來識別您的應用程式所使用的通訊協定值與 hello 您設定為目標的資源。 這些值將在稍後會使用的 tooconstruct hello 權杖要求。 插入下列程式碼片段在 hello hello index.js 檔案最上方的 hello:
 
 ```javascript
 var authority = "https://login.microsoftonline.com/common",
@@ -151,15 +151,15 @@ var authority = "https://login.microsoftonline.com/common",
     graphApiVersion = "2013-11-08";
 ```
 
-`redirectUri` 和 `clientId` 值應該符合 Azure AD 中用於描述您的應用程式的值。 您可以從 Azure 入口網站的 [設定] 索引標籤中找到這些值，如稍早在本教學課程的步驟 1 所述。
+hello`redirectUri`和`clientId`值應符合您的應用程式描述 Azure AD 中的 hello 值。 您可以找到與 hello**設定**hello Azure 入口網站中索引標籤，如稍早在本教學課程步驟 1 中所述。
 
 > [!NOTE]
-> 如果您選擇不在您自己的租用戶中註冊新的應用程式，您可以直接貼上預先設定的值。 然後您會看到範例在執行，但您仍應該為您打算實際執行的應用程式建立您自己的項目。
+> 如果您選擇不在您自己的租用戶中註冊新的應用程式，您只可以貼上 hello 預先設定的值。 您可以看見 hello 範例執行，但您應該一律適用於實際執行的應用程式建立自己的項目。
 
-接下來，新增權杖要求程式碼。 在 `search` 和 `renderData` 定義之間插入下列程式碼片段：
+接下來，加入 hello 權杖要求程式碼。 插入下列程式碼片段之間 hello hello`search`和`renderData`定義：
 
 ```javascript
-    // Shows the user authentication dialog box if required
+    // Shows hello user authentication dialog box if required
     authenticate: function (authCompletedCallback) {
 
         app.context = new Microsoft.ADAL.AuthenticationContext(authority);
@@ -168,13 +168,13 @@ var authority = "https://login.microsoftonline.com/common",
                 authority = items[0].authority;
                 app.context = new Microsoft.ADAL.AuthenticationContext(authority);
             }
-            // Attempt to authorize the user silently
+            // Attempt tooauthorize hello user silently
             app.context.acquireTokenSilentAsync(resourceUri, clientId)
             .then(authCompletedCallback, function () {
-                // We require user credentials, so this triggers the authentication dialog box
+                // We require user credentials, so this triggers hello authentication dialog box
                 app.context.acquireTokenAsync(resourceUri, clientId, redirectUri)
                 .then(authCompletedCallback, function (err) {
-                    app.error("Failed to authenticate: " + err);
+                    app.error("Failed tooauthenticate: " + err);
                 });
             });
         });
@@ -182,9 +182,9 @@ var authority = "https://login.microsoftonline.com/common",
     },
 ```
 讓我們將該函式分成兩個主要部分來檢查一下。
-此範例設計成可搭配任何租用戶，不受限於特定的租用戶。 它使用 "/common" 端點，可讓使用者在驗證時輸入任何帳戶，而且會將要求導向其所屬的租用戶。
+這個範例是設計的 toowork 搭配任何租用戶，但不要的 toobeing 繫結 tooa 特定的。 它會使用 hello"/ 常見"的端點，這可讓 hello 使用者 tooenter 任何帳戶，在驗證階段，並指示 hello 要求 toohello 租用戶所屬的位置。
 
-此方法的第一部分會檢查 ADAL 快取，查看是否已儲存權杖。 如果是，此方法會使用權杖的來源租用戶，用來重新初始化 ADAL。 這是為了避免額外提示而必須執行的動作，因為使用 "/common" 永遠會導致要求使用者輸入新的帳戶。
+Hello 方法的第一部分會檢查 hello ADAL 快取 toosee，如果已儲存的語彙基元。 如果是這樣，hello 方法會使用 hello 租用戶 hello 語彙基元來自何處來重新初始化 ADAL。 這是必要 tooavoid 額外的提示，因為 hello 使用的"/ 常見"永遠會導致詢問 hello 使用者 tooenter 新帳戶。
 
 ```javascript
         app.context = new Microsoft.ADAL.AuthenticationContext(authority);
@@ -194,23 +194,23 @@ var authority = "https://login.microsoftonline.com/common",
                 app.context = new Microsoft.ADAL.AuthenticationContext(authority);
             }
 ```
-此方法的第二個部分會執行適當的權杖要求。 `acquireTokenSilentAsync` 方法會要求 ADAL 傳回指定資源的權杖，而不會顯示任何 UX。 如果快取中已儲存適當的存取權杖，或者如果有重新整理權杖可用來取得新的存取權杖，而不會顯示任何提示，就會發生此情況。 若這個做法失敗，我們就退回到 `acquireTokenAsync` -- 明顯提示使用者進行驗證。
+hello 的 hello 方法的第二個部分執行 hello 適當的權杖要求。 hello`acquireTokenSilentAsync`方法要求 ADAL tooreturn 語彙基元 hello 指定資源不會顯示任何 UX 如果 hello 快取中已經有適當的存取語彙基元儲存，可以發生的如果可以在重新整理權杖用 tooget 新存取權杖，而不會顯示任何提示。 如果該嘗試失敗，我們會切換回`acquireTokenAsync`-這會明顯地提示 hello 使用者 tooauthenticate。
 
 ```javascript
-            // Attempt to authorize the user silently
+            // Attempt tooauthorize hello user silently
             app.context.acquireTokenSilentAsync(resourceUri, clientId)
             .then(authCompletedCallback, function () {
-                // We require user credentials, so this triggers the authentication dialog box
+                // We require user credentials, so this triggers hello authentication dialog box
                 app.context.acquireTokenAsync(resourceUri, clientId, redirectUri)
                 .then(authCompletedCallback, function (err) {
-                    app.error("Failed to authenticate: " + err);
+                    app.error("Failed tooauthenticate: " + err);
                 });
             });
 ```
-既然已取得權杖，我們終於可以叫用圖形 API，並執行我們想要的搜尋查詢。 在 `authenticate` 定義下方，插入下列程式碼片段：
+現在，我們已經 hello 語彙基元，但我們最後會叫用 hello Graph API，並執行 hello 我們想要的搜尋查詢。 插入下列程式碼片段如下 hello hello`authenticate`定義：
 
 ```javascript
-// Makes an API call to receive the user list
+// Makes an API call tooreceive hello user list
     requestData: function (authResult, searchText) {
         var req = new XMLHttpRequest();
         var url = resourceUri + "/" + authResult.tenantId + "/users?api-version=" + graphApiVersion;
@@ -234,60 +234,60 @@ var authority = "https://login.microsoftonline.com/common",
     },
 
 ```
-起始點檔案提供簡易型 UX，可在文字方塊中輸入使用者的別名。 這個方法會使用該值來建構查詢、將它與存取權杖結合、將它傳送到 Microsoft Graph，然後剖析結果。 起始點檔案中已存在的 `renderData` 方法會負責呈現結果。
+hello 起點檔案提供簡單的 UX 在文字方塊中輸入使用者的別名。 這個方法會使用該值 tooconstruct 查詢、 結合 hello 存取語彙基元、 將它送出 tooMicrosoft 圖形，和剖析 hello 結果。 hello`renderData`已經存在於 hello 起點檔案，方法會負責視覺化 hello 結果。
 
-## <a name="step-5-run-the-app"></a>步驟 5：執行應用程式
-終於可以開始執行您的應用程式了。 操作很簡單：啟動應用程式後，輸入您要查閱的使用者的別名，然後按一下按鈕。 系統會提示您進行驗證。 在成功驗證和成功搜尋之後，將會顯示搜尋到的使用者的屬性。
+## <a name="step-5-run-hello-app"></a>步驟 5： 執行 hello 應用程式
+您的應用程式是最後準備 toorun。 作業系統就相當簡單： hello 應用程式啟動時，輸入您想 toolook，hello 使用者 hello 別名，然後再按一下 [hello] 按鈕。 系統會提示您進行驗證。 在驗證成功，成功的搜尋會顯示 hello hello 搜尋使用者屬性。
 
-後續執行只會執行搜尋，不會顯示任何提示，因為先前取得的權杖已存在於快取中。
+後續執行將不會顯示任何提示字元執行 hello 搜尋，這 toohello 與否 hello 先前取得快取中的語彙基元。
 
-執行應用程式的具體步驟隨著平台而不同。
+hello 執行 hello 應用程式的具象步驟會因平台而異。
 
 ### <a name="windows-10"></a>Windows 10
    平板電腦/PC： `cordova run windows --archs=x64 -- --appx=uap`
 
-   行動裝置 (需要連線至 PC 的 Windows10 行動裝置)︰`cordova run windows --archs=arm -- --appx=uap --phone`
+   行動 （需要 Windows 10 行動裝置版 」 裝置連接 tooa PC）：`cordova run windows --archs=arm -- --appx=uap --phone`
 
    > [!NOTE]
-   > 第一次執行期間可能會要求您登入，以取得開發人員授權。 如需詳細資訊，請參閱[開發人員授權](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx)。
+   > 在第一次執行的 hello，可能會要求您在 toosign 的開發人員授權。 如需詳細資訊，請參閱[開發人員授權](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx)。
 
 ### <a name="windows-81-tabletpc"></a>Windows 8.1 平板電腦/PC
    `cordova run windows`
 
    > [!NOTE]
-   > 第一次執行期間可能會要求您登入，以取得開發人員授權。 如需詳細資訊，請參閱[開發人員授權](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx)。
+   > 在第一次執行的 hello，可能會要求您在 toosign 的開發人員授權。 如需詳細資訊，請參閱[開發人員授權](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx)。
 
 ### <a name="windows-phone-81"></a>Windows Phone 8.1
-   在已連線的裝置上執行：`cordova run windows --device -- --phone`
+   toorun 連線的裝置上：`cordova run windows --device -- --phone`
 
-   在預設模擬器上執行：`cordova emulate windows -- --phone`
+   toorun hello 預設模擬器上：`cordova emulate windows -- --phone`
 
-   使用 `cordova run windows --list -- --phone` 查看所有可用的目標，使用 `cordova run windows --target=<target_name> -- --phone` 在特定裝置或模擬器上執行應用程式 (例如，`cordova run windows --target="Emulator 8.1 720P 4.7 inch" -- --phone`)。
+   使用`cordova run windows --list -- --phone`toosee 所有可用的目標和`cordova run windows --target=<target_name> -- --phone`toorun hello 應用程式的特定裝置或模擬器上 (例如， `cordova run windows --target="Emulator 8.1 720P 4.7 inch" -- --phone`)。
 
 ### <a name="android"></a>Android
-   在已連線的裝置上執行：`cordova run android --device`
+   toorun 連線的裝置上：`cordova run android --device`
 
-   在預設模擬器上執行：`cordova emulate android`
+   toorun hello 預設模擬器上：`cordova emulate android`
 
-   請確定您已如稍早＜必要條件＞一節所述，使用 AVD Manager 建立模擬器執行個體。
+   請確定您已使用 AVD Manager 建立的模擬器執行個體，如稍早在 hello < 先決條件 > 一節中所述。
 
-   使用 `cordova run android --list` 查看所有可用的目標，使用 `cordova run android --target=<target_name>` 在特定裝置或模擬器上執行應用程式 (例如，`cordova run android --target="Nexus4_emulator"`)。
+   使用`cordova run android --list`toosee 所有可用的目標和`cordova run android --target=<target_name>`toorun hello 應用程式的特定裝置或模擬器上 (例如， `cordova run android --target="Nexus4_emulator"`)。
 
 ### <a name="ios"></a>iOS
-   在已連線的裝置上執行：`cordova run ios --device`
+   toorun 連線的裝置上：`cordova run ios --device`
 
-   在預設模擬器上執行：`cordova emulate ios`
+   toorun hello 預設模擬器上：`cordova emulate ios`
 
    > [!NOTE]
-   > 請確定您已安裝要在模擬器上執行的 `ios-sim` 套件。 如需詳細資訊，請參閱＜必要條件＞一節。
+   > 請確定您擁有 hello `ios-sim` hello 模擬器上的安裝套件 toorun。 如需詳細資訊，請參閱 hello < 先決條件 > 一節。
 
-    Use `cordova run ios --list` to see all available targets and `cordova run ios --target=<target_name>` to run the application on specific device or emulator (for example, `cordova run android --target="iPhone-6"`).
+    Use `cordova run ios --list` toosee all available targets and `cordova run ios --target=<target_name>` toorun hello application on specific device or emulator (for example, `cordova run android --target="iPhone-6"`).
 
-    Use `cordova run --help` to see additional build and run options.
+    Use `cordova run --help` toosee additional build and run options.
 
 ## <a name="next-steps"></a>後續步驟
-[GitHub](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-Cordova/tree/complete/DirSearchClient) 中有完整的範例供您參考 (不含您的組態值)。
+參考，完成的 hello 範例 （不含您的組態值） 會提供[GitHub](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-Cordova/tree/complete/DirSearchClient)。
 
-您現在可以進入更進階 (且更有趣) 的案例。 您可以嘗試：[使用 Azure AD 保護 Node.js Web API](active-directory-devquickstarts-webapi-nodejs.md)。
+您可以現在移動 toomore 進階 （以及更多有趣） 案例。 您可能會想 tootry:[安全與 Azure AD Node.js Web API](active-directory-devquickstarts-webapi-nodejs.md)。
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]

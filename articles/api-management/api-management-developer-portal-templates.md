@@ -1,6 +1,6 @@
 ---
-title: "使用範本自訂 API 管理開發人員入口網站 - Azure | Microsoft Docs"
-description: "了解如何使用範本自訂 Azure API 管理開發人員入口網站。"
+title: "aaaCustomize hello API 管理開發人員入口網站使用範本-Azure |Microsoft 文件"
+description: "了解如何 toocustomize hello Azure API 管理開發人員入口網站使用範本。"
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 40d25726d31d2018785b77d169a8811c565316bf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b00d5f1534e9466f30ff3920e7aae048feb8b8c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-customize-the-azure-api-management-developer-portal-using-templates"></a>如何使用範本自訂 Azure API 管理開發人員入口網站。
+# <a name="how-toocustomize-hello-azure-api-management-developer-portal-using-templates"></a>如何 toocustomize hello Azure API 管理開發人員入口網站使用範本
 
-在 Azure API 管理中自訂開發人員入口網站的基本方式有三種：
+在 Azure API 管理有三種基本方式 toocustomize hello 開發人員入口網站：
 
-* [編輯靜態頁面和頁面配置元素的內容][modify-content-layout]
-* [更新用於開發人員入口網站上頁面元素的樣式][customize-styles]
-* [修改網站所產生來用於網頁的範本][portal-templates] (本指南會說明)
+* [編輯 hello 內容的靜態網頁和頁面配置項目][modify-content-layout]
+* [更新用於跨 hello 開發人員入口網站的頁面元素的 hello 樣式][customize-styles]
+* [修改用於頁面 hello 入口網站所產生的 hello 範本][ portal-templates] （在本指南說明）
 
-範本可用來自訂系統產生之開發人員入口網站網頁的內容 (例如 API 文件、產品、使用者驗證等)。 使用 [DotLiquid](http://dotliquidmarkup.org/) 語法及一組提供的當地語系化字串資源、圖示和頁面控制項，您可以依照您的想法自由靈活地設定頁面內容。
+範本是使用的 toocustomize hello 系統產生的開發人員入口網站頁面 （例如應用程式開發介面文件、 產品、 使用者驗證等） 的內容。 使用[DotLiquid](http://dotliquidmarkup.org/)語法，與提供的一系列的當地語系化的字串資源、 圖示和頁面控制項適當地，您會有很大的彈性 tooconfigure hello 網頁內容的 hello。
 
 ## <a name="developer-portal-templates-overview"></a>開發人員入口網站範本概觀
-當您以系統管理員身分登入時，可從 [開發人員入口網站] 編輯範本。 若要到達該處，請開啟 Azure 入口網站，然後從 API 管理執行個體的服務工具列按一下 [發行者入口網站]。
+編輯範本由 hello**開發人員入口網站**時以系統管理員身分登入。 那里 tooget 先開啟 hello Azure 入口網站，然後按一下 **發行者入口網站**從 API 管理執行個體的 hello 服務工具列。
 
 ![發行者入口網站][api-management-management-console]
 
-接著按一下右上角的 [開發人員入口網站]。 
+然後按一下 **開發人員入口網站**上 hello 右上方。 
 
 ![開發人員入口網站功能表][api-management-developer-portal-menu]
 
-若要存取開發人員入口網站範本，請按一下左側的自訂圖示，顯示 [自訂] 功能表，然後按一下 [範本] 。
+tooaccess hello 開發人員入口網站範本中，按一下 hello 自訂 hello 左的 toodisplay hello 自訂功能表上的圖示，然後按一下**範本**。
 
 ![開發人員入口網站範本][api-management-customize-menu]
 
-[範本] 清單會顯示數個範本類別，涵蓋開發人員入口網站的不同頁面。 每個範本各不相同，但是編輯和發佈變更的步驟是一樣的。 若要編輯範本，請按一下範本的名稱。
+hello 範本清單會顯示數種類別涵蓋 hello hello 開發人員入口網站中的不同頁面的範本。 每個範本都不同，但 hello 步驟 tooedit 它們和發行 hello 變更 hello 相同。 tooedit 範本，請按一下 hello hello 範本名稱。
 
 ![開發人員入口網站範本][api-management-templates-menu]
 
-按一下範本即會將您帶到可使用該範本自訂的開發人員入口網站頁面。 這個範例會顯示 **產品清單** 範本。 **產品清單** 範本控制的畫面區域會以紅色矩形表示。 
+按一下範本會引導您 toohello 開發人員入口網站頁面是由該範本所自訂的。 在此範例 hello**產品清單**範本會顯示。 hello**產品清單**範本控制項哈囉 」 畫面 hello 紅色矩形所指定的區域。 
 
 ![產品清單範本][api-management-developer-portal-templates-overview]
 
-有些範本，像是 **使用者設定檔** 範本，自訂的是同一頁面的不同部分。 
+某些範本，例如 hello**使用者設定檔**範本自訂 hello 的不同部分相同的頁面。 
 
 ![使用者設定檔範本][api-management-user-profile-templates]
 
-每個開發人員入口網站範本的編輯器都會在頁面底部顯示兩個區段。 左側顯示範本的編輯窗格，右側顯示範本的資料模型。 
+對於每個開發人員入口網站範本的 hello 編輯器具有兩個區段顯示在 hello hello 頁面底部。 hello 左側顯示 hello 編輯 hello 範本 窗格並 hello 右側顯示 hello hello 範本資料模型。 
 
-範本編輯窗格包含的標記，可控制開發人員入口網站中對應頁面的外觀和行為。 範本中的標記會使用 [DotLiquid](http://dotliquidmarkup.org/) 語法。 常用的 DotLiquid 編輯器是 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers)。 在編輯期間對範本進行的任何變更都會即時顯示在瀏覽器中，但您的客戶要到您[儲存](#to-save-a-template)和[發佈](#to-publish-a-template)範本後才看得到。
+hello 樣板編輯 窗格包含可控制 hello 外觀和行為 hello hello 開發人員入口網站中的對應頁面 hello 標記。 hello 範本中的 hello 標記使用 hello [DotLiquid](http://dotliquidmarkup.org/)語法。 常用的 DotLiquid 編輯器是 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers)。 在編輯期間的任何所做的變更 toohello 範本會顯示在即時 hello 瀏覽器，但是不可見的 tooyour 客戶直到您[儲存](#to-save-a-template)和[發行](#to-publish-a-template)hello 範本。
 
 ![範本標記][api-management-template]
 
-[範本資料]  窗格可為能在特定範本中使用的實體，提供有關資料模型的指南。 它提供這份指南的方法是顯示開發人員入口網站中目前顯示的即時資料。 您可以按一下 [範本資料]  窗格右上角的矩形，展開範本窗格。
+hello**範本資料**窗格提供的指引 toohello 資料可供使用特定範本中的 hello 實體模型。 它可提供本指南顯示 hello hello 開發人員入口網站中目前顯示的即時資料。 您可以展開 hello 樣板窗格，依序按一下 hello hello 右上角的矩形中 hello**範本資料**窗格。
 
 ![範本資料模型][api-management-template-data]
 
-上述範例在開發人員入口網站中顯示了兩項產品，擷取自 [範本資料]  窗格顯示的資料，如下例所示。
+Hello 前一個範例中有兩個產品顯示 hello 開發人員入口網站中，擷取自 hello 資料顯示在 hello**範本資料**窗格 hello 下列範例所示。
 
 ```json
 {
@@ -84,7 +84,7 @@ ms.lasthandoff: 07/11/2017
         {
             "Id": "56ec64c380ed850042060001",
             "Title": "Starter",
-            "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",
+            "Description": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",
             "Terms": "",
             "ProductState": 1,
             "AllowMultipleSubscriptions": false,
@@ -93,7 +93,7 @@ ms.lasthandoff: 07/11/2017
         {
             "Id": "56ec64c380ed850042060002",
             "Title": "Unlimited",
-            "Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",
+            "Description": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",
             "Terms": null,
             "ProductState": 1,
             "AllowMultipleSubscriptions": false,
@@ -103,7 +103,7 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-**產品清單** 範本中的標記會處理資料，逐一查看產品集合，顯示每項個別產品的資訊和連結，來提供所需的輸出。 請注意標記中的 `<search-control>` 和 `<page-control>` 元素。 這些控制項會顯示頁面的搜尋和分頁控制項。 `ProductsStrings|PageTitleProducts` 是當地語系化的字串參考，其中包含頁面的 `h2` 標頭文字。 如需字串資源、頁面控制項和開發人員入口網站範本可用圖示的清單，請參閱 [API 管理開發人員入口網站範本參考](api-management-developer-portal-templates-reference.md)。
+hello 中的 hello 標記**產品清單**範本處理程序透過 hello 集合產品 toodisplay 資訊和連結 tooeach 個別產品的反覆 hello 資料 tooprovide hello 預期輸出。 請注意 hello`<search-control>`和`<page-control>`hello 標記中的項目。 這些控制 hello 顯示 hello 搜尋及分頁處理 hello 頁面上的控制項。 `ProductsStrings|PageTitleProducts`是包含 hello 的當地語系化的字串參考`h2`hello 頁面的標頭文字。 如需字串資源、頁面控制項和開發人員入口網站範本可用圖示的清單，請參閱 [API 管理開發人員入口網站範本參考](api-management-developer-portal-templates-reference.md)。
 
 ```html
 <search-control></search-control>
@@ -131,59 +131,59 @@ ms.lasthandoff: 07/11/2017
 </div>
 ```
 
-## <a name="to-save-a-template"></a>儲存範本
-若要儲存範本，請按一下範本編輯器的 [儲存]。
+## <a name="toosave-a-template"></a>toosave 範本
+toosave 範本，請按一下 儲存在 hello 範本編輯器。
 
 ![儲存範本][api-management-save-template]
 
-儲存的變更不會即時顯示在開發人員入口網站中，要發佈後才會顯示。
+在發行後才 hello 開發人員入口網站中儲存的變更。
 
-## <a name="to-publish-a-template"></a>發佈範本
-儲存的範本可以個別或一起發佈。 若要發佈個別的範本，請按一下範本編輯器的 [發佈]。
+## <a name="toopublish-a-template"></a>toopublish 範本
+儲存的範本可以個別或一起發佈。 toopublish 個別範本中，按一下 發佈 hello 範本編輯器中。
 
 ![發佈範本][api-management-publish-template]
 
-按一下 [是]  確認，並讓範本即時顯示在開發人員入口網站中。
+按一下**是**tooconfirm 並進行即時 hello 開發人員入口網站上的 hello 範本。
 
 ![確認發佈][api-management-publish-template-confirm]
 
-若要發佈目前所有尚未發佈的範本版本，請按一下範本清單的 [發佈]。 未發佈的範本會在範本名稱後面標記星號。 本例中要發佈**產品清單**和**產品**範本。
+toopublish 所有目前已取消發佈的範本版本中，按一下**發行**hello 範本清單中。 星號 hello 範本名稱後面指定了未發行的範本。 在此範例中，hello**產品清單**和**產品**正發佈的範本。
 
 ![發佈範本][api-management-publish-templates]
 
-請按一下 [Publish customizations]\(發佈自訂)  確認。
+按一下**發行自訂**tooconfirm。
 
 ![確認發佈][api-management-publish-customizations]
 
-新發佈的範本在開發人員入口網站中會立即生效。
+新發行的範本是立即在 hello 開發人員入口網站中有效。
 
-## <a name="to-revert-a-template-to-the-previous-version"></a>將範本還原成先前的版本
-若要將範本還原為先前發佈的版本，請按一下範本編輯器的 [還原]。
+## <a name="toorevert-a-template-toohello-previous-version"></a>toorevert 範本 toohello 先前的版本
+toorevert 範本 toohello 先前已發佈的版本中，按一下 還原 hello 範本編輯器中。
 
 ![還原範本][api-management-revert-template]
 
-按一下 [ **是** ] 以確認。
+按一下**是**tooconfirm。
 
-![Confirm][api-management-revert-template-confirm]
+![確認][api-management-revert-template-confirm]
 
-還原作業一完成，先前發佈的範本版本就會立即顯示在開發人員入口網站中。
+hello 先前已發行的版的範本位於 hello 開發人員入口網站，一旦 hello 還原作業已完成。
 
-## <a name="to-restore-a-template-to-the-default-version"></a>將範本還原成預設的版本
-將範本還原成預設版本的程序有兩個步驟。 首先必須還原範本，然後一定要發佈還原的版本。
+## <a name="toorestore-a-template-toohello-default-version"></a>toorestore 範本 toohello 預設版本
+還原範本 tootheir 預設版本為兩步驟程序。 必須還原第一個 hello 範本，並還原 hello 版本必須先發行。
 
-若要還原單一範本的預設版本，請按一下範本編輯器的 [還原]。
+toorestore 單一範本 toohello 預設版本中，按一下 還原 hello 範本編輯器中。
 
 ![還原範本][api-management-reset-template]
 
-按一下 [ **是** ] 以確認。
+按一下**是**tooconfirm。
 
-![Confirm][api-management-reset-template-confirm]
+![確認][api-management-reset-template-confirm]
 
-若要還原所有範本的預設版本，請按一下範本清單的 [Restore default templates]\(還原預設範本)  。
+所有的範本 tootheir 預設版本，按一下 toorestore**還原預設範本**hello 範本清單上。
 
 ![還原範本][api-management-restore-templates]
 
-已還原的範本必須個別發佈，或依照 [發佈範本](#to-publish-a-template)的步驟一次全部發佈。
+hello 還原的範本必須再個別或全部由發行中的 hello 步驟[toopublish 範本](#to-publish-a-template)。
 
 ## <a name="next-steps"></a>後續步驟
 如需開發人員入口網站範本、字串資源、圖示和頁面控制項的參考資訊，請參閱 [API 管理開發人員入口網站範本參考](api-management-developer-portal-templates-reference.md)。

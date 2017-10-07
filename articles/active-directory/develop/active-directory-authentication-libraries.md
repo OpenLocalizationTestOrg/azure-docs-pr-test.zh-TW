@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 驗證程式庫 | Microsoft Docs"
-description: "Azure AD 驗證程式庫 (ADAL) 可讓用戶端應用程式開發人員輕鬆地向雲端或內部部署 Active Directory (AD) 驗證使用者，然後取得存取權杖來保護 API 呼叫。"
+title: "aaaAzure Active Directory 驗證程式庫 |Microsoft 文件"
+description: "hello Azure AD 驗證程式庫 (ADAL) 可讓用戶端應用程式開發人員 tooeasily 驗證使用者 toocloud 或在內部部署 Active Directory (AD)，然後取得存取權杖來保護 API 呼叫。"
 services: active-directory
 documentationcenter: 
 author: bryanla
@@ -15,20 +15,20 @@ ms.workload: identity
 ms.date: 08/02/2017
 ms.author: bryanla
 ms.custom: aaddev
-ms.openlocfilehash: 9cf8ca88c9df4082590b18acd5c4a87a91bb1afd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 20fae18807ef03463ab1bc218e5f3548b5bd5717
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-authentication-libraries"></a>Azure Active Directory 驗證程式庫
-Azure Active Directory 驗證程式庫 (ADAL) 可讓用戶端應用程式開發人員輕鬆地向雲端或內部部署 Active Directory (AD) 驗證使用者，並取得存取權杖來保護 API 呼叫。 ADAL 透過下列功能使開發人員更容易驗證：
+hello Azure Active Directory 驗證程式庫 (ADAL) 可讓用戶端應用程式開發人員 tooeasily 驗證使用者 toocloud 或在內部部署 Active Directory (AD)，並取得存取權杖來保護 API 呼叫。 ADAL 透過下列功能使開發人員更容易驗證：
  - 支援非同步方法呼叫
  - 儲存存取權杖和重新整理權杖的可設定權杖快取
  - 存取權杖到期而有重新整理權杖可用時的自動權杖重新整理
  - 還有更多
  
-藉由處理大部分的複雜度，ADAL 可協助開發人員專注從事商務邏輯工作，並輕鬆地保護資源而無須成為安全性方面的專家。
+處理最多的 hello 複雜性，ADAL 可協助開發人員專注於商務邏輯，並輕鬆地保護資源，而不用安全性方面的專家。
 
 ADAL 可用於各種平台上。
 
@@ -44,7 +44,7 @@ ADAL 可用於各種平台上。
 | .NET 用戶端、Windows 市集、Windows Phone 8.1 |ADAL .NET v2 |[NuGet](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/2.28.4) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet/releases/tag/v2.28.4) | [傳統型應用程式](https://github.com/AzureADQuickStarts/NativeClient-DotNet/releases/tag/v2.X) | | 
 | JavaScript |ADAL.js |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-js) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-js) |[單一頁面應用程式](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi) | |
 | iOS、macOS |ADAL |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-objc/releases) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-objc) |[iOS App](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-ios) | [參考](https://cocoapods.org/pods/ADAL)|
-| Android |ADAL |[中央儲存機制](http://search.maven.org/remotecontent?filepath=com/microsoft/aad/adal/) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-android) |[Android App](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-android) | [JavaDocs](http://javadoc.io/doc/com.microsoft.aad/adal/)|
+| Android |ADAL |[hello 中央儲存機制](http://search.maven.org/remotecontent?filepath=com/microsoft/aad/adal/) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-android) |[Android App](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-android) | [JavaDocs](http://javadoc.io/doc/com.microsoft.aad/adal/)|
 | Node.js |ADAL |[npm](https://www.npmjs.com/package/adal-node) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-nodejs) | | |
 | Java |ADAL4J |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-java) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-java) |[Java Web 應用程式](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-webapp-java) | |
 | Python |ADAL |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-python) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-python) | | |
@@ -67,20 +67,20 @@ ADAL 可用於各種平台上。
 
 ### <a name="authenticating-users-of-a-native-client-application-running-on-a-device"></a>驗證在裝置上執行原生用戶端應用程式的使用者 
 
-在此案例中，開發人員會有 WPF 用戶端應用程式，其必須存取由 Azure AD 所保護的遠端資源，例如 Web API。 他有 Azure 訂用帳戶、知道如何叫用下游 Web API，並知道 Web API 使用的 Azure AD 租用戶。 如此一來，他可以使用 ADAL 來協助向 Azure AD 進行驗證，完全將驗證經驗委派給 ADAL 或明確地處理使用者認證。 ADAL 使得驗證使用者變得輕鬆，只要取得存取權杖並對 Azure AD 更新權杖，然後使用該存取權杖向 Web API 提出要求。
+在此案例中，開發人員有 WPF 用戶端應用程式，需要 tooaccess 遠端資源，例如 web API 的 Azure AD 所保護。 他有 Azure 訂閱、 知道如何 tooinvoke hello 下游 web API，而且知道 hello Azure AD 租用戶的 hello web 應用程式開發介面使用。 如此一來，他可以使用 ADAL toofacilitate 驗證 Azure ad 的完全委派給 hello 驗證經驗 tooADAL 或明確地處理使用者認證。 ADAL 可讓您輕鬆 tooauthenticate hello 使用者、 從 Azure AD 取得存取權杖和重新整理權杖，然後使用 hello 存取語彙基元 toomake 要求 toohello web API。
 
-如需示範如何向 Azure AD 進行驗證的程式碼範例，請參閱 [原生用戶端 WPF 應用程式至 Web API](https://github.com/azureadsamples/nativeclient-dotnet)。
+如需示範此案例中使用驗證 tooAzure AD 的程式碼範例，請參閱[原生用戶端 WPF 應用程式 tooWeb API](https://github.com/azureadsamples/nativeclient-dotnet)。
 
 ### <a name="authenticating-a-confidential-client-application-running-on-a-web-server"></a>驗證網頁伺服器上執行的機密用戶端應用程式
 
-在此案例中，開發人員會有在伺服器上執行的應用程式，需要存取由 Azure AD 所保護的遠端資源，例如 Web API。 他有 Azure 訂用帳戶、知道如何叫用下游服務，並知道 Web API 使用的 Azure AD 租用戶。 如此一來，他可以透過明確地處理應用程式的認證，使用 ADAL 來協助向 Azure AD 進行驗證。 ADAL 使得從 Azure AD 擷取權杖變得輕鬆，只需使用應用程式的用戶端認證，然後使用該權杖向 Web API 提出要求。 ADAL 也會處理存取權杖的存留期的管理，方法是快取它並視需要更新。 如需示範此案例的程式碼範例，請參閱[精靈主控台應用程式至 Web API](https://github.com/AzureADSamples/Daemon-DotNet)。
+在此案例中，開發人員有需要 tooaccess 的伺服器上執行遠端資源，例如 web API 的 Azure AD 所保護的應用程式。 他有 Azure 訂閱、 知道如何 tooinvoke hello 下游服務，並且知道 hello Azure AD 租用戶 hello web 應用程式開發介面使用。 如此一來，他也可以明確地處理 hello 應用程式的認證，以使用 ADAL toofacilitate 驗證與 Azure AD。 ADAL 可藉由使用 hello 應用程式的用戶端認證輕鬆 tooretrieve 來自 Azure AD 的權杖，然後再使用該語彙基元 toomake 要求 toohello web API。 ADAL 也管理 hello 存留期的 hello 的控制代碼存取權杖快取它，並視需要更新。 如需示範此案例的程式碼範例，請參閱[精靈主控台應用程式 tooWeb API](https://github.com/AzureADSamples/Daemon-DotNet)。
 
 ### <a name="authenticating-a-confidential-client-application-running-on-a-server-on-behalf-of-a-user"></a>代表使用者，驗證伺服器上執行的機密用戶端應用程式 
 
-在此案例中，開發人員會有在伺服器上執行的應用程式，需要存取由 Azure AD 所保護的遠端資源，例如 Web API。 要求也必須代表 Azure AD 使用者提出。 他有 Azure 訂用帳戶、知道如何叫用下游 Web API，並知道服務使用的 Azure AD 租用戶。 一旦向 Web 應用程式驗證了使用者，應用程式便可以從 Azure AD 取得使用者的授權碼。 然後，Web 應用程式可以使用 ADAL 代表使用者，利用與應用程式相關聯的授權碼和用戶端認證從 Azure AD 取得存取權杖和更新權杖。 在 Web 應用程式取得存取權杖之後，它可以呼叫 Web API，直到權杖到期。 權杖到期時，Web 應用程式可以使用 ADAL 透過先前收到的更新權杖來取得新的存取權杖。 如需示範此案例的程式碼範例，請參閱[原生用戶端至 Web API](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof)。
+在此案例中，開發人員有需要 tooaccess 的伺服器上執行遠端資源，例如 web API 的 Azure AD 所保護的應用程式。 hello 要求也需要 toobe 代表 Azure AD 的使用者發出。 他有 Azure 訂閱、 知道如何 tooinvoke hello 下游 web API，並知道 hello Azure AD 租用戶 hello 服務使用。 一旦 hello 使用者已驗證的 toohello web 應用程式，hello 應用程式可以從 Azure AD 取得授權碼 hello 使用者。 hello web 應用程式可以使用 ADAL tooobtain 存取權杖和重新整理權杖，代表使用 hello 授權碼和用戶端認證從 Azure AD 的 hello 應用程式相關聯的使用者。 一旦 hello web 應用程式已擁有 hello 存取權杖，它可以在 hello 語彙基元到期之前呼叫 hello web API。 Hello 權杖過期時，hello web 應用程式可以利用先前收到 hello 重新整理權杖來使用 ADAL tooget 新存取權杖。 如需示範此案例的程式碼範例，請參閱[原生用戶端應用程式開發介面 tooWeb tooWeb API](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof)。
 
 ## <a name="see-also"></a>另請參閱
 
-- [Azure Active Directory 開發人員指南](active-directory-developers-guide.md)
+- [hello Azure Active Directory 開發人員指南](active-directory-developers-guide.md)
 - [Azure Active Directory 的驗證案例](active-directory-authentication-scenarios.md)
 - [Azure Active Directory 程式碼範例](active-directory-code-samples.md)

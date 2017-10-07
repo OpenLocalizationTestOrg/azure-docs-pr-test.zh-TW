@@ -1,5 +1,5 @@
 ---
-title: "在 Linux 上的 Web 應用程式中使用 .NET Core | Microsoft Docs"
+title: "在 Linux 上的 Web 應用程式的.NET Core aaaUse |Microsoft 文件"
 description: "在 Linux 上的 Web 應用程式中使用 .NET Core。"
 keywords: "azure app service, Web 應用程式, dotnet, core, linux, oss"
 services: app-service
@@ -15,40 +15,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: aelnably;wesmc;mikono;rachelap
-ms.openlocfilehash: 9226dfb90e52ac2cae2cfc4af7c0705a93f56b44
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9b7fb7185dff2c99ed88e7937d455177504937b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-net-core-in-an-azure-web-app-on-linux"></a>在 Linux 上的 Azure Web 應用程式中使用 .NET Core #
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
-Linux 上的 [Web 應用程式](https://docs.microsoft.com/azure/app-service-web/app-service-linux-intro)使用 Linux 作業系統提供可高度擴充、自我修復的 Web 主機服務。 本教學課程包含逐步指示，說明如何在 Linux 上的 Azure web 應用程式上建立 [.NET Core](https://docs.microsoft.com/aspnet/core/) 應用程式。 
+[Web 應用程式](https://docs.microsoft.com/azure/app-service-web/app-service-linux-intro)on Linux 會提供可高度擴充、 自我修補 web 主控服務，使用 hello Linux 作業系統。 本教學課程包含逐步解說顯示如何 toocreate [.NET Core](https://docs.microsoft.com/aspnet/core/) on Linux 的 Azure web 應用程式為基礎的應用程式。 
 
 ![Linux 上的 Web 應用程式][10]
 
-您可以使用 Mac、Windows 或 Linux 電腦，依照下面步驟操作。
+您可以依照下列使用 Mac、 Windows 或 Linux 電腦的 hello 步驟。
 
 ## <a name="prerequisites"></a>必要條件 ##
 
-若要完成本教學課程： 
+toocomplete 本教學課程： 
 
-* 安裝 [.NET Core SDK](https://www.microsoft.com/net/download/core)。
+* 安裝 hello [.NET Core SDK](https://www.microsoft.com/net/download/core)。
 * 安裝 [Git](https://git-scm.com/downloads)。
 
 [!INCLUDE [Free trial note](../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="create-a-local-net-core-application"></a>建立本機 .NET Core 應用程式 ##
 
-啟動新的終端機工作階段。 建立名為 `hellodotnetcore` 的目錄，並將目前的目錄變更為該目錄。 接著輸入下列內容： 
+啟動新的終端機工作階段。 建立名為目錄`hellodotnetcore`，並變更目前目錄 tooit hello。 然後輸入 hello 下列： 
 
 ```
 dotnet new web
 ``` 
 
-  此命令會建立三個檔案 (hellodotnetcore.csproj、Program.cs 和 Startup.cs)，以及在目前的目錄下建立一個空資料夾 (wwwroot/)。 `.csproj` 檔案的內容應如下所示： 
+  此命令會建立三個檔案 (*hellodotnetcore.csproj*， *Program.cs*，和*Startup.cs*) 和一個空的資料夾 (*wwwroot /*)在 hello 目前的目錄。 內容的 hello`.csproj`檔案應該看起來像下列 hello: 
 
 ```xml
   <!-- Empty lines are omitted. -->
@@ -66,11 +66,11 @@ dotnet new web
   </Project>
 ```
 
-由於此應用程式是 Web 應用程式，所以 ASP.NET Core 套件的參考會自動新增至 hellodotnetcore.csproj 檔案。 系統會根據所選的架構設定套件的版本號碼。 因為使用 .NET Core 1.1，所以此範例會參考 ASP.NET Core 1.1.2 版。
+此應用程式是 web 應用程式，因為 ASP.NET Core 套件已自動參考 tooan 加入 toohello *hellodotnetcore.csproj*檔案。 根據選擇 framework toohello 設定 hello 套件 hello 版本號碼。 因為使用 .NET Core 1.1，所以此範例會參考 ASP.NET Core 1.1.2 版。
 
-## <a name="build-and-test-the-application-locally"></a>在本機建置和測試應用程式 ##
+## <a name="build-and-test-hello-application-locally"></a>建置和測試本機 hello 應用程式 ##
 
-您可以使用 `dotnet restore` 命令後面接著 `dotnet run` 命令，建置及執行 .NET Core 應用程式，如下所示：
+您可以建置並執行.NET Core 應用程式以 hello`dotnet restore`命令，接著 hello`dotnet run`命令，如下所示：
 
 ```
 dotnet restore
@@ -78,54 +78,54 @@ dotnet run
 ```
 
 
-當應用程式啟動時，它會顯示一則訊息，指出應用程式正在連接埠接聽連入要求。 
+Hello 應用程式啟動時，它會顯示訊息，指出 hello 應用程式正在接聽連接埠 tooincoming 要求。 
 
 ```bash
 Hosting environment: Production
 Content root path: C:\hellodotnetcore
 Now listening on: http://localhost:5000
-Application started. Press Ctrl+C to shut down.
+Application started. Press Ctrl+C tooshut down.
 ```
 
-測試瀏覽至`http://localhost:5000/`與瀏覽器。 如果一切運作正常，您會看到 "Hello World!" 作為結果文字。
+測試瀏覽過`http://localhost:5000/`與瀏覽器。 如果一切運作正常，您會看到 "Hello World!" 為 hello 結果文字。
 
 ![使用瀏覽器測試][7]
 
-## <a name="create-a-net-core-app-in-the-azure-portal"></a>在 Azure 入口網站中建立 .NET Core 應用程式 ##
+## <a name="create-a-net-core-app-in-hello-azure-portal"></a>在 hello Azure 入口網站中建立.NET Core 應用程式 ##
 
-首先，您必須建立空的 Web 應用程式。 登入 [Azure 入口網站](https://portal.azure.com/)，並[在 Linux 上建立新的 Web 應用程式](https://portal.azure.com/#create/Microsoft.AppSvcLinux)。
+首先，您需要 toocreate 空 web 應用程式。 登入 toohello [Azure 入口網站](https://portal.azure.com/)並建立新[Linux 上的 Web 應用程式](https://portal.azure.com/#create/Microsoft.AppSvcLinux)。
 
 ![建立 Web 應用程式][1]
 
-當 [建立] 頁面開啟時，提供您的 Web 應用程式詳細資料：
+當 hello**建立**頁面開啟時，提供您的 web 應用程式的詳細資料：
 
 ![選擇 .NET Core 執行階段堆疊][2]
 
-使用下表作為指南來填寫 [建立] 頁面，然後選取 [確定] 和 [建立] 來建立應用程式。
+使用 hello 下表作為指南 toofill 出 hello**建立**頁面上，然後選取 **確定**和**建立**toocreate hello 應用程式。
 
 | 設定      | 建議的值  | 說明                                        |
 | ------------ | ---------------- | -------------------------------------------------- |
-| 應用程式名稱 | hellodotnetcore  | 您的應用程式名稱。 此名稱必須是唯一的。 |
-| 訂用帳戶 | 選擇現有的訂用帳戶 | Azure 訂用帳戶。 |
-| 資源群組 | myResourceGroup |  要包含 Web 應用程式的 Azue 資源群組。 |
-| App Service 方案 | 現有的 App Service 方案名稱 |  App Service 方案。  |
-| 設定容器 | .NET Core 1.1 | 此 Web 應用程式的容器類型：內建、Docker 或私人登錄。 |
-| 映像來源  | 內建  |  映像的來源。 |
-| 執行階段堆疊  | .NET Core 1.1  | 執行階段堆疊和版本。  |
+| 應用程式名稱 | hellodotnetcore  | hello 應用程式的名稱。 此名稱必須是唯一的。 |
+| 訂用帳戶 | 選擇現有的訂用帳戶 | hello Azure 訂用帳戶。 |
+| 資源群組 | myResourceGroup |  hello Azure 資源群組 toocontain hello web 應用程式。 |
+| App Service 方案 | 現有的 App Service 方案名稱 |  hello 應用程式服務方案。  |
+| 設定容器 | .NET Core 1.1 | hello 此 web 應用程式的容器類型： 內建、 Docker 或私人登錄中。 |
+| 映像來源  | 內建  |  hello hello 映像的來源。 |
+| 執行階段堆疊  | .NET Core 1.1  | 執行階段堆疊時會 hello 和版本。  |
 
 ## <a name="deploy-your-application-via-git"></a>透過 Get 部署應用程式 ##
 
-使用 Git，在 Linux 上將 .NET Core 應用程式部署至 Azure App Service Web App。
+在 Linux 上使用 Git toodeploy hello.NET Core 應用程式 tooAzure App Service Web 應用程式。
 
-新的 Azure Web 應用程式已設定 Git 部署。 將您的 Web 應用程式名稱插入後，瀏覽至下列 URL 就可以找到 Git 部署 URL︰
+hello 新 Azure web 應用程式已經有 Git 部署設定。 您可以藉由瀏覽下列 URL 並插入您的 web 應用程式名稱的 toohello 找到 hello Git 部署 URL:
 
 ```https://{your web app name}.scm.azurewebsites.net/api/scm/info```
 
-根據您的 web 應用程式名稱，Git URL 具有下列格式︰
+hello Git URL 具有下列根據您的 web 應用程式名稱的 hello:
 
 ```https://{your web app name}.scm.azurewebsites.net/{your web app name}.git```
 
-執行下列命令，將本機應用程式部署至您的 Azure Web 應用程式： 
+執行下列命令 toodeploy hello 本機應用程式 tooyour Azure web 應用程式的 hello: 
  
 ```bash
 git init
@@ -135,9 +135,9 @@ git commit -m "Initial deployment commit"
 git push azure master
 ```
 
-您不需要推送 *bin /* 或 *obj/*目錄之下的任何檔案，因為當應用程式的原始程式檔推送至 Azure 時，會在雲端建置應用程式。 建置程序完成之後，二進位檔案會複製到應用程式的目錄：/home/site/wwwroot/。
+您不需要 toopush 之下任何檔案*bin /*或*obj /*目錄 hello 雲端中建置應用程式，因為當 hello 應用程式的原始程式檔會推入 tooAzure。 Hello 建置程序完成之後，二進位檔案會複製到在 hello 應用程式的目錄*/住家/網站/wwwroot/*。
 
-確認遠端部署作業報告成功。 推送作業可能需要一些時間，因為套件解決方案和建置程序會在雲端中執行。 您會看到數則狀態訊息，包括陳述已複製檔案的訊息。 輸出應如下所示：
+確認 hello 遠端部署作業報告成功。 推入作業可能需要一些時間，因為封裝解析度和建置在 hello 雲端中執行的程序。 您會看到數則狀態訊息，包括陳述已複製檔案的訊息。 hello 輸出應該看起來類似 toohello 下列：
 
 ```bash
 /* some output has been removed for brevity */
@@ -151,14 +151,14 @@ remote: Omitting next output lines...
 remote: Finished successfully.
 remote: Running post deployment commands...
 remote: Deployment successful.
-To https://hellodotnetcore.scm.azurewebsites.net/
+toohttps://hellodotnetcore.scm.azurewebsites.net/
  * [new branch]           master -> master
 
 ```
 
-一旦部署完成後，需重新啟動 Web 應用程式進行部署，才會生效。 若要這麼做，請移至 Azure 入口網站並巡覽至您 Web 應用程式的 [概觀] 頁面。 選取頁面中的 [重新啟動] 按鈕。 快顯視窗出現時，選取 [是] 進行確認。 您可以瀏覽您的 Web 應用程式，如下所示：
+Hello 部署完成後，請重新啟動您的 web 應用程式，hello 部署 tootake 效果。 toodo 這個移 toohello Azure 入口網站及瀏覽 toohello**概觀**web 應用程式頁面。 選取 hello**重新啟動**hello 頁面中的按鈕。 快顯視窗出現時，選取**是**tooconfirm。 您可以瀏覽您的 Web 應用程式，如下所示：
 
-![在 Linux 上瀏覽已部署至 Azure App Service 的 .NET Core 應用程式][10]
+![瀏覽.NET Core 應用程式部署 tooAzure Linux 上的應用程式服務][10]
 
 [!INCLUDE [Clean-up section](../../includes/clean-up-section-portal.md)]
 

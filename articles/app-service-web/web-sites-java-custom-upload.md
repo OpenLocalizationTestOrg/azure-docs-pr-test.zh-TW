@@ -1,6 +1,6 @@
 ---
-title: "將自訂 Java Web 應用程式上傳至 Azure"
-description: "本教學課程說明如何將自訂 Java Web 應用程式上傳至 Azure App Service Web Apps。"
+title: "aaaUpload 自訂 Java web 應用程式 tooAzure"
+description: "本教學課程會示範如何 tooupload 自訂 Java web 應用程式 tooAzure App Service Web 應用程式。"
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
@@ -14,32 +14,32 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: 9c8f9ee7780859f7640ac82d6ebce85082170ad7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0cb4a682bb25d86ff08bfd03628c89795c58451e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-a-custom-java-web-app-to-azure"></a>將自訂 Java Web 應用程式上傳至 Azure
-本主題說明如何將自訂 Java Web 應用程式上傳至 [Azure App Service] Web Apps。 內容包括適用於任何 Java 網站或 Web 應用程式的資訊，以及針對特定應用程式的一些範例。
+# <a name="upload-a-custom-java-web-app-tooazure"></a>上傳自訂 Java web 應用程式 tooAzure
+本主題說明如何 tooupload 自訂 Java web 應用程式太[Azure App Service] Web 應用程式。 包含適用於 tooany Java 網站或 web 應用程式，也是特定應用程式的一些範例的資訊是。
 
-請注意，如同 [在 Azure App Service 中建立 Java Web 應用程式](web-sites-java-get-started.md)中的說明一樣，Azure 提供了使用 Azure 入口網站的組態 UI 和 Azure Marketplace 來建立 Java Web 應用程式的方法。 本教學課程適用於您不打算使用 Azure 入口網站組態 UI 或 Azure Marketplace 的案例。  
+請注意，Azure 提供一種方法建立使用 hello Azure 入口網站的組態 UI，Java web 應用程式和 hello Azure Marketplace 述[Java web 應用程式建立 Azure App Service 中](web-sites-java-get-started.md)。 本教學課程是針對案例中您不想 toouse hello Azure 入口網站組態 UI 或 hello Azure Marketplace。  
 
 ## <a name="configuration-guidelines"></a>組態方針
-下列內容說明在 Azure 上自訂 Java Web 應用程式的預期設定。
+hello 以下說明在 Azure 上自訂 Java web 應用程式所預期的 hello 設定。
 
-* 系統會動態指派 Java 程序所使用的 HTTP 連接埠。  此程序必須使用來自環境變數 `HTTP_PLATFORM_PORT`的連接埠。
-* 您應停用所有的接聽連接埠 (單一 HTTP 接聽程式除外)。  在 Tomcat 中，這包括了關機、HTTPS 和 AJP 連接埠。
-* 僅需針對 IPv4 流量設定容器。
-* 組態中必須設定應用程式的 **startup** 命令。
-* 要求目錄具備寫入權限的應用程式必須位於 Azure Web 應用程式的內容目錄，也就是 **D:\home**。  環境變數 `HOME` 是指 D:\home。  
+* 動態指派 hello hello Java 處理序所使用的 HTTP 連接埠。  hello 程序必須使用 hello 環境變數中的 hello 連接埠`HTTP_PLATFORM_PORT`。
+* 除了 hello 單一 HTTP 接聽程式，應該停用，所有接聽連接埠。  在 Tomcat 中，包含 hello 關機、 HTTPS 及 AJP 連接埠。
+* hello 容器都必須設定為僅 IPv4 流量 toobe。
+* hello**啟動**命令 hello 應用程式必須 toobe hello 組態中設定。
+* 需要使用目錄的寫入權限的應用程式需要位於 hello Azure web 應用程式的內容目錄，也就是 toobe **D:\home**。  hello 環境變數`HOME`參考 tooD:\home。  
 
-您可以在 web.config 檔案中視需要設定環境變數。
+Hello web.config 檔案中，您可以視需要設定環境變數。
 
 ## <a name="webconfig-httpplatform-configuration"></a>web.config httpPlatform 組態
-下列資訊說明 web.config 內的 **httpPlatform** 格式。
+hello 下列資訊描述 hello **httpPlatform**在 web.config 中的格式。
 
-**arguments** (預設值="")。 在 **processPath** 設定中所指定的可執行檔或指令檔的引數。
+**arguments** (預設值="")。 引數 toohello 可執行檔或指令碼指定在 hello **processPath**設定。
 
 範例 (顯示內容包括 **processPath** )：
 
@@ -50,7 +50,7 @@ ms.lasthandoff: 08/29/2017
     arguments="-Djava.net.preferIPv4Stack=true -Djetty.port=%HTTP\_PLATFORM\_PORT% -Djetty.base=&quot;%HOME%\site\wwwroot\bin\jetty-distribution-9.1.0.v20131115&quot; -jar &quot;%HOME%\site\wwwroot\bin\jetty-distribution-9.1.0.v20131115\start.jar&quot;"
 
 
-**processPath** - 將會啟動接聽 HTTP 要求程序的可執行檔或指令檔路徑。
+**processPath** -路徑 toohello 可執行檔或指令碼，將會啟動接聽 HTTP 要求的處理序。
 
 範例：
 
@@ -60,31 +60,31 @@ ms.lasthandoff: 08/29/2017
 
     processPath="%HOME%\site\wwwroot\bin\tomcat\bin\catalina.bat"
 
-**rapidFailsPerMinute** (預設值=10)。**processPath** 中指定程序可容許的每分鐘當機次數。 如果超過此限制， **HttpPlatformHandler** 便會停止在此分鐘剩餘時間內啟動程序。
+**rapidFailsPerMinute** (預設值=10)。次數 hello 中指定的處理序**processPath**允許 toocrash 每分鐘。 如果超過此限制， **HttpPlatformHandler**將會停止啟動 hello hello 分鐘的 hello 剩餘的處理序。
 
-**requestTimeout** (預設值="00:02:00")。**HttpPlatformHandler** 會等待接聽 `%HTTP_PLATFORM_PORT%` 程序回應的持續時間。
+**requestTimeout** (預設值="00:02:00")。持續時間的**HttpPlatformHandler** hello 接聽的處理序的回應將會等到`%HTTP_PLATFORM_PORT%`。
 
-**startupRetryCount** (預設值=10)。**HttpPlatformHandler** 會嘗試啟動 **processPath** 中指定程序的次數。 如需詳細資訊，請參閱 **startupTimeLimit** 。
+**startupRetryCount** (預設值=10)。次數**HttpPlatformHandler**將嘗試 toolaunch hello 處理程序中指定**processPath**。 如需詳細資訊，請參閱 **startupTimeLimit** 。
 
-**startupTimeLimit** (預設值=10 秒)。**HttpPlatformHandler** 會等待可執行檔/指令檔啟動接聽連接埠程序的持續時間。  如果超過此時間限制，**HttpPlatformHandler** 會中止程序，並嘗試將它重新啟動 **startupRetryCount** 次。
+**startupTimeLimit** (預設值=10 秒)。持續時間的**HttpPlatformHandler**會等待 hello 可執行檔/指令碼 toostart hello 連接埠上接聽的處理序。  如果超過此時間限制， **HttpPlatformHandler**會終止 hello 處理序，然後再次嘗試 toolaunch 再試一次**startupRetryCount**時間。
 
-**stdoutLogEnabled** (預設值="true")。如果為 true，則 **processPath** 設定中指定程序的 **stdout** 和 **stderr**會被重新導向至 **stdoutLogFile** 中的指定檔案 (請參閱 **stdoutLogFile** 區段)。
+**stdoutLogEnabled** (預設值="true")。如果為 true， **stdout**和**stderr** hello hello 中指定的處理序**processPath**設定就會重新導向的 toohello 檔案中指定**stdoutLogFile** (請參閱**stdoutLogFile** > 一節)。
 
-**stdoutLogFile** (預設值="d:\home\LogFiles\httpPlatformStdout.log")。**processPath** 中指定程序之 **stdout** 和 **stderr** 的絕對檔案路徑將會被記錄下來。
+**stdoutLogFile** (預設值="d:\home\LogFiles\httpPlatformStdout.log")。絕對檔案路徑的**stdout**和**stderr** hello 程序中指定**processPath**將記錄。
 
 > [!NOTE]
-> `%HTTP_PLATFORM_PORT%` 是個特殊預留位置，它必須以 **arguments** 的一部分或 **httpPlatform** **environmentVariables** 清單的一部分進行指定。 這將會被透過 **HttpPlatformHandler** 內部產生的連接埠取代，以便 **processPath** 所指定的程序可以接聽此連接埠。
+> `%HTTP_PLATFORM_PORT%`是特殊的預留位置，以作為的一部份時需要 toospecified**引數**或做為一部分 hello **httpPlatform** **environmentVariables**清單。 這會取代為由內部產生連接埠**HttpPlatformHandler**以便 hello 程序所指定**processPath**可以接聽此連接埠。
 > 
 > 
 
 ## <a name="deployment"></a>部署
-您可透過與 Internet Information Services (IIS) 架構 Web 應用程式中使用的大部分相同方式，來輕鬆部署 Java 型 Web 應用程式。  FTP、Git 和 Kudu 為支援的部署機制，如同 Web 應用程式的整合式 SCM 功能。 WebDeploy 會以通訊協定的方式運作，不過，由於 Java 不是使用 Visual Studio 開發的，WebDeploy 並不適用於 Java Web 應用程式部署使用案例。
+Java 型 web 應用程式可以透過與 hello 網際網路資訊服務 (IIS) 基礎 web 應用程式搭配使用，大部分的 hello 相同表示輕鬆地部署。  FTP、 Git 和 Kudu 的所有支援部署機制，因為是 hello web 應用程式的整合式的 SCM 功能。 WebDeploy 會以通訊協定的方式運作，不過，由於 Java 不是使用 Visual Studio 開發的，WebDeploy 並不適用於 Java Web 應用程式部署使用案例。
 
 ## <a name="application-configuration-examples"></a>應用程式組態範例
-在下列應用程式中，我們將提供 web.config 檔案和應用程式組態作為範例，說明如何啟用 App Service Web Apps 上的 Java 應用程式。
+下列應用程式、 web.config 檔和 hello hello 應用程式設定依現狀範例 tooshow 如何 tooenable 您 App Service Web 應用程式的 Java 應用程式。
 
 ### <a name="tomcat"></a>Tomcat
-App Service Web Apps 隨附了兩個 Tomcat 變化，但很有可能您仍然可以上傳客戶特定執行個體。 下面是以不同 Java 虛擬機器 (JVM) 安裝 Tomcat 的範例。
+在 Tomcat 上 App Service Web 應用程式提供的兩種變化時，它仍然是很有可能 tooupload 客戶的特定執行個體。 下面是以不同 Java 虛擬機器 (JVM) 安裝 Tomcat 的範例。
 
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
@@ -97,25 +97,25 @@ App Service Web Apps 隨附了兩個 Tomcat 變化，但很有可能您仍然可
           <environmentVariables>
             <environmentVariable name="CATALINA_OPTS" value="-Dport.http=%HTTP_PLATFORM_PORT%" />
             <environmentVariable name="CATALINA_HOME" value="%HOME%\site\wwwroot\bin\tomcat" />
-            <environmentVariable name="JRE_HOME" value="%HOME%\site\wwwroot\bin\java" /> <!-- optional, if not specified, this will default to %programfiles%\Java -->
+            <environmentVariable name="JRE_HOME" value="%HOME%\site\wwwroot\bin\java" /> <!-- optional, if not specified, this will default too%programfiles%\Java -->
             <environmentVariable name="JAVA_OPTS" value="-Djava.net.preferIPv4Stack=true" />
           </environmentVariables>
         </httpPlatform>
       </system.webServer>
     </configuration>
 
-在 Tomcat 端，您必須進行幾個組態變更。 必須編輯 server.xml 以設定下列選項：
+在 hello Tomcat 側邊，有幾個需要 toobe 所做的設定變更。 hello server.xml 需要編輯 toobe tooset:
 
 * 關機連接埠 = -1
 * HTTP 連接器連接埠 = ${port.http}
 * HTTP 連接器位址 = "127.0.0.1"
 * 註解化 HTTPS 和 AJP 連接器
-* 您也可以在 catalina.properties 檔案中進行 IPv4 設定，在此檔案中，您可以新增 `java.net.preferIPv4Stack=true`
+* hello IPv4 設定也可以設定在您可以在其中加入 hello catalina.properties 檔案中`java.net.preferIPv4Stack=true`
 
-App Service Web Apps 不支援 Direct3d 呼叫。 若要將其停用，請新增下列 Java 選項，您的應用程式即可進行下列呼叫： `-Dsun.java2d.d3d=false`
+App Service Web Apps 不支援 Direct3d 呼叫。 toodisable，加入下列 Java 選項應您的應用程式進行這類呼叫 hello:`-Dsun.java2d.d3d=false`
 
 ### <a name="jetty"></a>Jetty
-和 Tomcat 的情況一様，客戶可以上傳他們自己的 Jetty 執行個體。 在執行 Jetty 完整安裝的情況下，組態看來像這樣：
+Tomcat hello 案例一樣，客戶可以 Jetty 的上傳自己的執行個體。 Hello 要執行 hello Jetty 的完整安裝的案例中，在 hello 組態看起來會像這樣：
 
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
@@ -132,10 +132,10 @@ App Service Web Apps 不支援 Direct3d 呼叫。 若要將其停用，請新增
       </system.webServer>
     </configuration>
 
-Jetty 組態必須在 start.ini 中進行變更，進而設定 `java.net.preferIPv4Stack=true`。
+hello Jetty 組態必須變更在 hello start.ini tooset toobe `java.net.preferIPv4Stack=true`。
 
 ### <a name="springboot"></a>Springboot
-若要執行 Springboot 應用程式，您必須上傳 JAR 或 WAR 檔案，並加入下列 web.config 檔案。 Web.config 檔案會移至 wwwroot 資料夾中。 在 web.config 中調整引數以指向您的 JAR 檔案，在下列範例的 JAR 檔案也位於 wwwroot 資料夾中。  
+順序 tooget Springboot 中執行您的應用程式需要 tooupload JAR 或 WAR 檔案，並新增下列 web.config 檔的 hello。 hello web.config 檔案放入 hello wwwroot 資料夾。 在 hello web.config 調整 hello 引數 toopoint tooyour JAR 檔案，在 hello 遵循範例 hello JAR 檔案位於 hello wwwroot 資料夾。  
 
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
@@ -151,11 +151,11 @@ Jetty 組態必須在 start.ini 中進行變更，進而設定 `java.net.preferI
 
 
 ### <a name="hudson"></a>Hudson
-我們的測試使用了 Hudson 3.1.2 war 和預設 Tomcat 7.0.50 執行個體，但沒有使用 UI 進行選項設定。  因為 Hudson 是個軟體建置工具，建議您將它安裝在專屬執行個體上，您可以在專屬執行個體中設定 Web 應用程式的 **AlwaysOn** 旗標。
+我們的測試中使用 hello Hudson 3.1.2 war 和 hello 預設 Tomcat 7.0.50 執行個體但不會使用向上箭號 hello UI tooset 項目。  因為 Hudson 是軟體建置工具，所以建議使用的 tooinstall 它的專用執行個體，其中 hello **AlwaysOn**可以 hello web 應用程式上設定旗標。
 
 1. 在 Web 應用程式的根目錄中 (例如 **d:\home\site\wwwroot**) 建立 **webapps** 目錄 (如果尚未存在)，並將 Hudson.war 放在 **d:\home\site\wwwroot\webapps** 中。
 2. 下載 apache maven 3.0.5 (與 Hudson 相容)，並將它放在 **d:\home\site\wwwroot** 中。
-3. 在 **d:\home\site\wwwroot** 中建立 web.config，並將下列內容貼入 web.config：
+3. 建立 web.config 中的**d:\home\site\wwwroot**和 hello 貼上下列內容：
    
         <?xml version="1.0" encoding="UTF-8"?>
         <configuration>
@@ -177,37 +177,37 @@ Jetty 組態必須在 start.ini 中進行變更，進而設定 `java.net.preferI
           </system.webServer>
         </configuration>
    
-    此時，您可以重新啟動 Web 應用程式以接受變更。  連線至 http://yourwebapp/hudson 以啟動 Hudson。
-4. 在 Hudson 自行設定之後，您應該可以看到下列畫面：
+    此時 hello web 應用程式可以重新啟動的 tootake hello 變更。  連接 toohttp://yourwebapp/hudson toostart Hudson。
+4. Hudson 會將自己設定之後，您應該會看到下列畫面 hello:
    
     ![Hudson](./media/web-sites-java-custom-upload/hudson1.png)
-5. 存取 Hudson 組態頁面：按一下 [Manage Hudson]，再按一下 [設定系統]。
-6. 如下所示設定 JDK：
+5. 存取 hello Hudson 組態 頁面上： 按一下**管理 Hudson**，然後按一下**設定系統**。
+6. 設定 hello JDK，如下所示：
    
     ![Hudson configuration](./media/web-sites-java-custom-upload/hudson2.png)
 7. 如下所示設定 Maven：
    
     ![Maven configuration](./media/web-sites-java-custom-upload/maven.png)
-8. 儲存設定。 Hudson 現在應已設定完成，並且可以開始使用。
+8. 儲存 hello 設定。 Hudson 現在應已設定完成，並且可以開始使用。
 
 如需 Hudson 的其他資訊，請參閱 [http://hudson-ci.org](http://hudson-ci.org)。
 
 ### <a name="liferay"></a>Liferay
-App Service Web Apps 支援 Liferay。 因為 Liferay 需要大量記憶體，Web 應用程式必須在可提供足夠記憶體的中型或大型專用背景工作上執行。 另外，Liferay 需要數分鐘的時間才能啟動。 基於這個理由，建議您將 Web 應用程式設為 [Always On] 。  
+App Service Web Apps 支援 Liferay。 Liferay 可能需要大量記憶體，因為需要由中型或大型專用背景工作，其可提供足夠的記憶體 toorun hello web 應用程式。 Liferay 也會使用數個分鐘 toostart。 因此，建議您設定 hello web 應用程式太**Always On**。  
 
-使用隨附於 Tomcat 的 Liferay 6.1.2 Community Edition GA3 時，下列檔案在下載 Liferay 之後遭到編輯：
+使用 Tomcat Liferay 6.1.2 Community Edition GA3 結合在一起，hello 下列檔案已編輯下載 Liferay 之後：
 
 **Server.xml**
 
-* 關機連接埠變為 -1。
-* 將 HTTP 連接器變更為 `<Connector port="${port.http}" protocol="HTTP/1.1" connectionTimeout="600000" address="127.0.0.1" URIEncoding="UTF-8" />`
-* 註解化 AJP 連接器。
+* 變更關機連接埠太-1。
+* 變更 HTTP 連接器嗎`<Connector port="${port.http}" protocol="HTTP/1.1" connectionTimeout="600000" address="127.0.0.1" URIEncoding="UTF-8" />`
+* 註解 hello AJP 連接器。
 
-在 **liferay\tomcat-7.0.40\webapps\ROOT\WEB-INF\classes** 資料夾中，建立名為 **portal-ext.properties** 的檔案。 此檔案必須包含一行程式碼，如下所示：
+在 hello **liferay\tomcat-7.0.40\webapps\ROOT\WEB-INF\classes**資料夾中，建立名為**入口網站 ext.properties**。 此檔案需要 toocontain 一行，如下所示：
 
     liferay.home=%HOME%/site/wwwroot/liferay
 
-在與 tomcat-7.0.40 資料夾相同的目錄層級中，根據下列內容建立名為 **web.config** 的檔案：
+在 hello hello tomcat 7.0.40 資料夾中，相同的目錄層級建立名為**web.config**以 hello 下列內容：
 
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
@@ -231,11 +231,11 @@ App Service Web Apps 支援 Liferay。 因為 Liferay 需要大量記憶體，We
       </system.webServer>
     </configuration>
 
-在 **httpPlatform** 區塊底下，**requestTimeout** 已設為 “00:10:00”。  您可以降低此值，但如此一來，您很有可能會在啟動載入 Liferay 時看到一些逾時錯誤。  如果此值遭到變更，則 tomcat server.xml 中的 **connectionTimeout** 也會同時進行修改。  
+在 hello **httpPlatform**封鎖 hello **requestTimeout**設定得"00: 10:00"。  可減少，但接著您就有可能 toosee 時一些逾時錯誤 Liferay 啟動載入。  如果此值已變更，然後 hello **connectionTimeout**在 hello tomcat server.xml 也應修改。  
 
-值得一提的是，JRE_HOME 環境變數會在上述的 web.config 中進行指定，並指向 64 位元 JDK。 預設值為 32 位元，但是因為 Liferay 可能需要高階記憶體，建議您使用 64 位元 JDK。
+值得注意的 hello JRE_HOME 環境 varariable 上方 web.config toopoint toohello hello 中指定的是 64 位元 JDK。 hello 預設值為 32 位元，但由於 Liferay 可能需要高的層級的記憶體，因此建議 toouse hello 64 位元 JDK。
 
-進行這些變更之後，請重新啟動執行 Liferay 的 Web 應用程式，然後開啟 http://yourwebapp。 您可以在 Web 應用程式根目錄中找到 Liferay 入口網站。 
+進行這些變更之後，請重新啟動執行 Liferay 的 Web 應用程式，然後開啟 http://yourwebapp。 hello Liferay 入口網站是可從 hello web 應用程式根目錄。 
 
 ## <a name="next-steps"></a>後續步驟
 如需 Liferay 的詳細資訊，請參閱 [http://www.liferay.com](http://www.liferay.com)。

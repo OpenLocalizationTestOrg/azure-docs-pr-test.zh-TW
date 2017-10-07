@@ -1,6 +1,6 @@
 ---
-title: "如何設定 App Service 環境 v1"
-description: "設定、管理和監視 App Service 環境 v1"
+title: "aaaHow tooConfigure App Service 環境 v1"
+description: "設定、 管理和監視的 hello App Service 環境 v1"
 services: app-service
 documentationcenter: 
 author: ccompy
@@ -14,186 +14,186 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: ccompy
-ms.openlocfilehash: ae99f5a412f73cddc28543ba12c66c82f1a7835a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f9539a72517276d8a1e340a408841561e8b8f56d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-an-app-service-environment-v1"></a>設定 App Service 環境 v1
 
 > [!NOTE]
-> 這篇文章是關於 App Service 環境 v1。  有較新版本的 App Service 環境，更易於使用，並且可以在功能更強大的基礎結構上執行。 若要深入了解新版本，請從 [App Service 環境簡介](../app-service/app-service-environment/intro.md)開始。
+> 這篇文章是關於 hello App Service 環境 v1。  沒有 hello App Service 環境更容易 toouse 且功能更強大的基礎結構上執行較新版本。 有關 hello 新版本的詳細資訊以 hello 開頭的 toolearn[簡介 toohello App Service 環境](../app-service/app-service-environment/intro.md)。
 > 
 
 ## <a name="overview"></a>概觀
 Azure App Service Environment 是由數個主要元件所組成：
 
-* 在 Azure App Service 環境託管服務中執行的計算資源
+* 在 hello App Service 環境中執行的計算資源託管服務
 * 儲存體
 * 資料庫
 * 傳統 (V1) 或 Resource Manager(V2) Azure 虛擬網路 (VNet) 
-* Azure App Service 環境託管服務執行所在的子網路
+* 具有執行中的 hello App Service 環境裝載服務之子網路
 
 ### <a name="compute-resources"></a>計算資源
-您可以將計算資源用於您的 4 個資源集區。  每個 App Service 環境 (ASE) 都有一組前端和 3 個可能的背景工作集區。 您不需要 3 個背景工作集區都使用--如果您想要，可以只使用其中一或兩個。
+您可以使用 hello 計算資源您四個資源集區。  每個 App Service 環境 (ASE) 都有一組前端和 3 個可能的背景工作集區。 您不需要 toouse 所有三個背景工作集區-如果您想，您可以只使用一個或兩個。
 
-租用戶無法直接存取資源集區 (前端和背景工作) 中的主機。 您無法使用遠端桌面通訊協定 (RDP) 來連接它們、變更其佈建，或做為其系統管理員。
+hello 資源集區 （「 前端 」 及 「 工作者 」） 中的 hello 主控件不是直接存取 tootenants。 您無法使用遠端桌面通訊協定 (RDP) tooconnect toothem、 變更其佈建或做為它們的系統管理員。
 
 但是您可以設定資源集區的數量和大小。 在 ASE 中，您有 4 個大小選項，標記為 P1 到 P4。 如需大小及其價格的詳細資訊，請參閱 [App Service 價格](../app-service/app-service-value-prop-what-is.md)。
-變更數量或大小的作業稱為調整作業。  一次只能執行一項調整作業。
+變更 hello 數量或大小稱為調整規模作業。  一次只能執行一項調整作業。
 
-**前端**：前端是您保留在 ASE 中之應用程式的 HTTP/HTTPS 端點。 請勿在前端中執行工作負載。
+**前端結束**: hello 前端是您的應用程式保留在您 ASE 中的 hello HTTP/HTTPS 端點。 您不會執行工作負載中 hello 前端。
 
-* ASE 是以兩個 P2 開始，這對於開發/測試工作負載及低階生產工作負載而言已經足夠。 強烈建議針對中度到重度生產工作流程使用 P3。
-* 對於中度到重度生產工作流程而言，建議至少有 4 個 P3 以確保在排定的維護工作開始執行時有足夠的前端在執行中。 排定的維護活動一次會關閉一個前端。 這會減少維護活動期間整體可用的前端容量。
-* 前端最多需要一小時進行佈建。 
-* 如需進一步微調，您應監視前端集區的 CPU 使用百分比、記憶體使用百分比，以及使用中要求計量。 如果執行 P3 時 CPU 或記憶體使用百分比超出 70%，請新增更多前端。 如果每個前端的 [使用中要求] 值平均達到 15,000 至 20,000 個要求，您也應該新增更多前端。 整體目標是在執行 P3 時，將 CPU 和記憶體使用百分比維持在低於 70%，以及將每個前端的使用中要求平均數目維持在低於 15,000 個要求。  
+* ASE 是以兩個 P2 開始，這對於開發/測試工作負載及低階生產工作負載而言已經足夠。 我們強烈建議 P3s 的中等 tooheavy 生產工作負載。
+* 以中度 tooheavy 生產工作負載，我們建議您至少四個 P3s tooensure 有足夠排程的維護期間發生時執行的前端。 排定的維護活動一次會關閉一個前端。 這會減少維護活動期間整體可用的前端容量。
+* 前端可能佔用 tooan 小時 tooprovision。 
+* 您應該進一步微調小數位數，請監視 hello CPU 百分比、 記憶體百分比及 hello 前端集區的使用中要求度量。 若是 hello CPU 或記憶體的百分比超過 70%執行 P3s 時，請加入更多的前端。 如果 hello 作用中的要求值平均 too15、 000 too20、 每秒前端 000 要求，您應該也加入更多的前端。 hello 整體目標是 tookeep CPU 和下一個 70%，平均出 toobelow 前端每 15,000 要求執行 P3s 時的使用中要求的記憶體百分比。  
 
-**背景工作**：背景工作是您的應用程式實際執行之處。 當您相應增加 App Service 方案時，會用完相關聯背景工作集區中的背景工作。
+**工作者**: hello 背景工作可以實際執行應用程式。 當您向上延展您的應用程式服務計劃，會用完 hello 中背景工作相關聯背景工作集區。
 
-* 您無法立即新增背景工作。 最多需要一小時進行佈建。
-* 調整任何集區的計算資源大小時，每個更新網域都將需要 1 小時來完成。 ASE 中有 20 個更新網域。 如果您調整包含 10 個執行個體之背景工作集區的計算大小，可能需要 10 個小時來完成。
-* 如果您變更背景工作集區中使用的計算資源大小，將會導致在該背景工作集區中執行的應用程式冷啟動
+* 您無法立即新增背景工作。 它們可能會佔用 tooan 小時 tooprovision。
+* 調整計算資源的任何集區的 hello 大小需要 < 1 小時內每個更新網域。 ASE 中有 20 個更新網域。 如果您調整 hello 運算大小的 10 個執行個體的背景工作集區時，就無法在 too10 小時 toocomplete。
+* 如果您變更 hello hello 計算資源會以背景工作集區的大小，將會導致執行該背景工作集區中的 hello 應用程式的冷啟動。
 
-變更未執行任何應用程式之背景工作集區計算資源大小的最快方式是：
+hello toochange hello 計算資源未執行任何應用程式的背景工作集區大小的最快速方法是：
 
-* 將背景工作角色數量相應減少為 2。  入口網站中相應減少大小最小值為 2。 這將需要幾分鐘時間來解除配置您的執行個體。 
-* 選取新的計算大小與執行個體數目。 從這裡開始，將需要 2 小時來完成。
+* Hello 數量工作者 too2 調降規模。  hello 最小值向下調整的 hello 入口網站中的大小為 2。 它會花幾分鐘的時間 toodeallocate 您的執行個體。 
+* 選取新運算大小 hello 和執行個體數目。 從這裡開始，它將佔用 too2 小時 toocomplete。
 
-如果您的應用程式需要大型計算資源大小，您就無法利用之前的指引。 您可以改為擴展另一個含有所需大小之背景工作的背景工作集區，並將您的應用程式移到該集區，而不需要變更裝載那些應用程式之背景工作集區的大小。
+如果您的應用程式需要較大的計算資源大小，您無法利用 hello 先前的指引。 而不是變更 hello hello 背景工作集區大小的裝載這類應用程式，您可以擴展工作者 hello 預期大小的另一個背景工作集區，並移 toothat 集區中的應用程式。
 
-* 在另一個背景工作集區中建立所需計算大小的其他執行個體。 將需要 1 小時來完成。
-* 將您需要較大大小之裝載應用程式的 App Service 方案重新指派至新設定的背景工作集區。 這是一項快速作業，應在一分鐘以內即可完成。  
-* 如果您不再需要那些未使用的執行個體，請相應減少第一個背景工作集區。 此作業需要幾分鐘才能完成。
+* 建立 hello hello 計算中另一個背景工作集區大小所需的其他執行個體。 這將佔用 tooan 小時 toocomplete。
+* 重新指派您裝載 hello 應用程式需要較大的大小 toohello 新設定背景工作集區的應用程式服務計劃。 這是快速的作業，花費時間小於一分鐘 toocomplete。  
+* 如果您不再需要這些未使用的執行個體，規模 hello 第一個背景工作集區。 此作業需要幾分鐘的時間 toocomplete。
 
-**自動調整**可協助您管理計算資源耗用狀況的其中一項工具。 您可以針對前端或背景工作集區執行自動調整。 您可以執行下列作業：早上增加任何集區類型的執行個體，而晚上減少執行個體。 或者，可以在背景工作集區中可用的背景工作數目低於特定臨界值時，新增執行個體。
+**自動調整**： 其中一個 hello 工具，可協助您 toomanage 計算的資源耗用量是自動調整。 您可以針對前端或背景工作集區執行自動調整。 您可以在 hello 早上執行像是增加您任何的集區類型的執行個體，並減少 hello 晚上。 或背景工作集區中可用的背景工作的 hello 數目低於特定臨界值時，可能加入執行個體。
 
-如果您想要設定自動調整規則計算資源集區的度量，請記住佈建需要的時間。 如需自動調整 App Service 環境的更多詳細資料，請參閱[如何在 App Service 環境中設定自動調整][ASEAutoscale]。
+如果您想 tooset 自動調整規模規則計算資源集區的度量，則請記得 hello 時間保留該佈建要求。 如需自動調整應用程式服務環境的詳細資訊，請參閱[如何在 App Service 環境中的自動調整規模 tooconfigure][ASEAutoscale]。
 
 ### <a name="storage"></a>儲存體
-每個 ASE 各設有 500 GB 的儲存體。 此空間會用於 ASE 中的所有應用程式。 此儲存空間屬於 ASE 的一部分，且目前無法切換為使用您的儲存空間。 如果您調整虛擬網路路由或安全性，您仍然需要允許存取 Azure 儲存體，否則 ASE 無法運作。
+每個 ASE 各設有 500 GB 的儲存體。 跨所有 hello ASE 中的 hello 應用程式會使用這個空間。 此儲存體空間屬於 hello ASE，目前無法切換的 toouse 您的儲存空間。 如果您正在調整 tooyour 虛擬網路的路由或安全性，您需要 toostill 允許存取 tooAzure 儲存體-或 hello ASE 無法運作。
 
 ### <a name="database"></a>資料庫
-資料庫會保存定義環境的資訊，以及在其中執行之應用程式的詳細資訊。 這也是 Azure 保留的訂用帳戶的一部分。 但是您無法直接加以操作。 如果您調整虛擬網路路由或安全性，您仍然需要允許存取 SQL Azure，否則 ASE 無法運作。
+hello 資料庫會保留定義 hello 環境以及 hello hello 會在其中執行的應用程式的詳細資料的 hello 資訊。 過，這會是 hello 持有的 Azure 訂用帳戶的一部分。 它不是您有直接的能力 toomanipulate 的東西。 如果您正在調整 tooyour 虛擬網路的路由或安全性，您需要 toostill 允許存取 tooSQL Azure--或 hello ASE 無法運作。
 
 ### <a name="network"></a>網路
-與 ASE 搭配使用的 VNet，可以是您在建立 ASE 時所設定的虛擬網路，或是您既有的虛擬網路。 當您在 ASE 建立期間建立子網路，它會強制 ASE 位於和虛擬網路相同的資源群組中。 如果您需要 ASE 所使用的資源群組與 VNet 使用的不同，則需要使用 Resource Manager 範本來建立 ASE。
+hello 與您 ASE 搭配使用 VNet 可以是您建立 hello ASE 時您所做的其中一個或事先您所做的其中一個。 當您在 ASE 建立期間建立 hello 子網路時，它會強制在 hello hello ASE toobe hello 虛擬網路所在的資源群組。 如果您需要使用不同於您的 VNet 您 ASE toobe hello 資源群組，則您需要 toocreate 您 ASE 使用資源管理員範本。
 
-用於 ASE 的虛擬網路有一些限制：
+有一些限制 hello 用於 ase 中的虛擬網路上：
 
-* 虛擬網路必須是區域虛擬網路。
-* 需要有包含 8 個或更多位址且為 ASE 部署所在的子網路。
-* 將子網路用於裝載 ASE 後，就無法變更子網路的位址範圍。 因此，建議子網路至少包含 64 個位置以適應未來 ASE 成長。
-* 除了 ASE 以外，子網路中可能沒有其他項目。
+* hello 虛擬網路必須是區域虛擬網路。
+* 需要 toobe 具有 8 個以上的地址 hello ASE 部署所在之子網路。
+* 子網路是使用的 toohost ase 中之後，就無法變更 hello hello 子網路的位址範圍。 基於這個理由，我們建議 hello 該子包含至少 64 位址 tooaccommodate 未來 ASE 成長。
+* 可以在 hello 子網路但 hello ASE 中的其他內容。
 
-不同於包含 ASE 的託管服務，[虛擬網路][virtualnetwork]和子網路全都在使用者的控制之下。  您可以透過虛擬網路 UI 或 Powershell 管理您的虛擬網路。  ASE 可以部署在傳統或 Resource Manager VNet 中。  傳統和 Resource Manager Vnet 之間的入口網站和 API 經驗會稍有不同，但 ASE 經驗相同。
+不同於包含 hello ASE hello 裝載服務，hello[虛擬網路][ virtualnetwork]和子網路會由使用者控制。  您可以管理虛擬網路透過 hello 虛擬網路 UI 或 PowerShell。  ASE 可以部署在傳統或 Resource Manager VNet 中。  hello 入口網站和 API 體驗有些許不同，傳統與資源管理員 Vnet 之間但 hello ASE 經驗是 hello 相同。
 
-用來裝載 ASE 的 VNet 可以使用私人 RFC1918 IP 位址或使用公用 IP 位址。  如果您想要使用 RFC1918 (10.0.0.0/8、172.16.0.0/12、192.168.0.0/16) 所未涵蓋的 IP 範圍，您必須在建立 ASE 之前，建立 VNet 和子網路以供 ASE 使用。
+hello VNet 使用的 toohost ase 中可以使用其中一個私人 RFC1918 IP 位址，或者它可以使用公用 IP 位址。  如果您想 toouse RFC1918 未涵蓋的 IP 範圍 （10.0.0.0/8、 172.16.0.0/12、 192.168.0.0/16） 則需要由您 ASE 前面 ASE 建立您的 VNet 和子網路 toobe toocreate。
 
-因為這項功能會將 Azure App Service 放入您的虛擬網路，這表示裝載於 ASE 的應用程式現在可以存取直接透過 ExpressRoute 或網站間虛擬網路 (VPN) 提供的資源。 您的 App Service 環境中的應用程式不需要額外的網路功能，即可存取裝載 App Service 環境的虛擬網路可用的資源。 這表示您不需要使用 VNET 整合或混合式連線，即可將資源移入或連接到您的虛擬網路。 但您仍然可以使用這兩個功能，存取網路中未連接到虛擬網路的資源。
+因為這項功能將在您的虛擬網路的 hello Azure 應用程式服務，它表示在您 ASE 中裝載的應用程式現在可以存取可供使用透過 ExpressRoute 或站對站虛擬私人網路 (Vpn) 直接的資源。 App Service 環境中的 hello 應用程式不需要其他網路功能 tooaccess 資源可用 toohello 虛擬網路裝載 App Service 環境。 這表示，您不需要在 toouse VNET 整合或混合式連線 tooget tooresources 或連接的 tooyour 虛擬網路。 您仍然可以使用這兩個這些功能雖然 tooaccess 資源不會有的網路連線 tooyour 虛擬網路。
 
-比方說，您可以使用 VNET 整合，與您的訂用帳戶中未連接到 ASE 所在虛擬網路的虛擬網路整合。 您仍可使用混合式連線來存取其他網路中的資源，一如既往。  
+例如，您可以使用 VNET 整合 toointegrate 與位於您的訂用帳戶，但不連接的 toohello 您 ASE 是中的虛擬網路的虛擬網路。 您仍然也可以使用其他網路，就像您通常可以在混合式連線 tooaccess 資源。  
 
-如果您的虛擬網路設定了 ExpressRoute VPN，則應留意 ASE 的某些路由需求。 某些使用者定義的路由 (UDR) 組態與 ASE 不相容。 如需關於在具有 ExpressRoute 的虛擬網路中執行 ASE 的詳細資訊，請參閱[在具有 ExpressRoute 的虛擬網路中執行 App Service 環境][ExpressRoute]。
+如果您沒有虛擬網路設定與 ExpressRoute VPN，您應該留意某些 hello ase 中具有的路由需求。 某些使用者定義的路由 (UDR) 組態與 ASE 不相容。 如需關於在具有 ExpressRoute 的虛擬網路中執行 ASE 的詳細資訊，請參閱[在具有 ExpressRoute 的虛擬網路中執行 App Service 環境][ExpressRoute]。
 
 #### <a name="securing-inbound-traffic"></a>保護輸入流量
-有兩種主要方法可控制您的 ASE 的輸入流量。  您可以使用網路安全性 (NSG) 來控制哪些 IP 位址可以存取 ASE (請參閱 [如何在 App Service 環境中控制輸入流量](app-service-app-service-environment-control-inbound-traffic.md) )，您也可以使用內部負載平衡器 (ILB) 設定您的 ASE。  如果您要將使用 USG 的存取權限制為您的 ILB ASE，這些功能也可以一起使用。
+有兩個主要方法 toocontrol 輸入流量 tooyour ASE。  您可以使用網路安全性 Groups(NSGs) toocontrol 哪些 IP 位址可以存取您 ASE，如下所述[toocontrol 如何輸入 App Service 環境中的流量](app-service-app-service-environment-control-inbound-traffic.md)，您也可以使用內部的負載來設定您 ASEBalancer(ILB)。  這些功能也可用在一起如果您想要使用 Nsg tooyour ILB ASE toorestrict 存取。
 
 當您建立 ASE 時，它會在您的 VNet 中建立 VIP。  VIP 類型有兩種：外部和內部。  當您使用外部 VIP 建立 ASE 時，可以透過網際網路可路由 IP 位址存取 ASE 中的應用程式。 如果您選取內部，您的 ASE 會使用 ILB 進行設定，將無法透過網際網路直接存取。  ILB ASE 仍需要外部 VIP，但它只用來進行 Azure 管理和維護。  
 
-在 ILB ASE 建立期間，您會提供 ILB ASE 所用的子網域，而且必須針對您所指定的子網域管理自己的 DNS。  因為您設定了子網域名稱，所以也需要管理用於 HTTPS 存取的憑證。  建立 ASE 之後，系統會提示您提供憑證。  若要深入了解如何建立和使用 ILB ASE，請參閱[在 App Service 環境中使用內部負載平衡器][ILBASE]。 
+ILB ASE 建立期間您提供 hello hello ILB ASE 所使用的子網域，而且必須 toomanage hello 您指定的子網域的 DNS。  因為設定 hello 子網域名稱，您也需要使用 HTTPS 存取 toomanage hello 憑證。  ASE 之後您會的建立提示 tooprovide hello 憑證。  深入了解建立和使用 ILB ASE toolearn 讀取[App Service 環境中使用內部負載平衡器][ILBASE]。 
 
 ## <a name="portal"></a>入口網站
-您可以使用 Azure 入口網站中的 UI 來管理和監視 App Service 環境。 如果您有 ASE，則可能會在資訊看板上看到 App Service 符號。 這個符號用來代表 Azure 入口網站中的 App Service 環境：
+您可以管理，並使用 hello UI hello Azure 入口網站中的監視 App Service 環境。 如果您有 ase 中，您便可能 toosee hello App Service 符號資訊看板 上。 這個符號是 hello Azure 入口網站中使用的 toorepresent 應用程式服務環境：
 
 ![App Service 環境符號][1]
 
-若要開啟 UI 以列出您所有的 App Service 環境，您可以使用圖示，或選取資訊看板底部的大於箭號 (">" 符號) 來選取 App Service 環境。 選取其中一個列出的 ASE，會開啟用來監視及管理 ASE 的 UI。
+tooopen hello 列出所有您的應用程式服務環境的 UI，您可以使用 hello 圖示或選取 hello > 形箭號 (">"符號) 在 hello 資訊看板 tooselect 應用程式服務環境的 hello 底部。 選取其中一個列出的 hello ASEs，您可以開啟 hello 使用的 toomonitor 的 UI，並管理它。
 
 ![用於監視和管理 App Service 環境的 UI][2]
 
-這是第一個刀鋒視窗，顯示 ASE 的某些屬性和每個資源集區的計量圖表。 某些顯示於 [基本功能] 區塊中的屬性同時也是超連結，將會開啟與其相關聯的刀鋒視窗。 例如，您可以選取**虛擬網路**名稱，以開啟與您的 ASE 執行所在的虛擬網路相關聯的 UI。 **App Service 方案**和**應用程式**分別會開啟不同的刀鋒視窗，列出位於您 ASE 中的項目。  
+這是第一個刀鋒視窗，顯示 ASE 的某些屬性和每個資源集區的計量圖表。 某些 hello 屬性所顯示的 hello **Essentials**區塊也會與它相關聯的 hello 刀鋒視窗會開啟的超連結。 例如，您可以選取 hello**虛擬網路**名稱 tooopen 向上 hello UI 相關聯 hello ASE 您正在執行中的虛擬網路。 **App Service 方案**和**應用程式**分別會開啟不同的刀鋒視窗，列出位於您 ASE 中的項目。  
 
 ### <a name="monitoring"></a>監視
-圖表可讓您查看每個資源集區中各種不同的效能計量。 對於前端集區，您可以監視平均 CPU 和記憶體使用量。 對於背景工作集區，您可以監視已用和可用的數量。
+hello 圖表可讓您 toosee 各種不同的每個資源集區中的效能度量。 Hello 前端集區，您可以監視 hello 平均 CPU 和記憶體。 背景工作集區，您可以監視用 hello 數量以及所提供的 hello 數量。
 
-多個 App Service 方案可能會使用同一個背景工作角色集區中的背景工作。 工作負載並不是透過和前端伺服器相同的方式散佈，所以 CPU 和記憶體使用量不會提供許多有用的資訊。 更重要的是要追蹤您已使用和可用的背景工作角色數目，特別是在您管理此系統以供他人使用時。  
+計劃可讓多個應用程式服務使用的背景工作集區中的 hello 背景工作。 hello 讓 hello CPU 和記憶體使用量不提供實用資訊的 hello 方式大致相同方式如同 hello 前端伺服器，在分散 hello 工作負載。 它是更重要的 tootrack 多少已使用的背景工作，並且可用於-特別是當您管理此系統的其他人 toouse。  
 
-您也可以使用所有可在圖表中追蹤的計量來設定警示。 在此設定警示的效果與在 App Service 中的其他位置相同。 您可以從 [警示] UI 部分設定警示，或深入探索任何計量 UI 並選取 [新增警示] 來設定。
+您也可以使用所有的可追蹤 hello 圖表 tooset 警示中的 hello 度量。 設定此警示運作方式相同，其他地方 hello App Service 中。 您可以設定警示的任一個 hello**警示**UI 一部分，或者從鑽研 UI 和選取的任何度量**新增警示**。
 
 ![度量 UI][3]
 
-剛剛所討論的計量是 App Service 環境計量。 另外也有可在 App Service 方案層級上使用的計量。 在其中監視 CPU 和記憶體是很合理的作法。
+剛才討論過的 hello 度量是 hello App Service 環境指標。 也有一些可以在 hello App Service 方案層級的度量。 在其中監視 CPU 和記憶體是很合理的作法。
 
-在 ASE 中，所有 App Service 方案都是專用的 App Service 方案。 這表示，只有在配置給該 App Service 方案的主機上執行的應用程式是該 App Service 方案中的應用程式。 若要查看 App Service 方案的詳細資料，請直接從 ASE UI 中的任何清單或藉由 **瀏覽 App Service 方案** (可列出全部的方案)，來顯示您的 App Service 方案。   
+在 ase 中，應用程式服務計劃的 hello 均專用的應用程式服務方案。 這表示，hello 唯一執行的應用程式上 hello 主機配置 toothat App Service 方案 hello 應用程式於該 App Service 方案。 從任何 hello 清單 hello ASE UI 中，或從您 App Service 方案開啟 toosee 詳細資料，在您的應用程式服務方案**瀏覽應用程式服務計劃**（其中會列出所有的）。   
 
 ### <a name="settings"></a>設定
-ASE 刀鋒視窗中有一個包含幾項重要功能的 [設定]  區段：
+在 hello ASE 刀鋒視窗中，**設定**區段，其中包含數項重要功能：
 
-[設定] > [屬性]：[設定] 刀鋒視窗會在您顯示 ASE 刀鋒視窗時自動開啟。 最上方是 [屬性] 。 在這裡會看到許多與 [基本功能] 重複的項目，但 [虛擬 IP 位址] 和 [輸出 IP 位址] 是非常好用的項目。
+**設定** > **屬性**: hello**設定**調出您 ASE 刀鋒視窗時，自動就會開啟刀鋒視窗。 Top 將不在 hello**屬性**。 有許多的項目在這裡您在中看到的多餘 toowhat **Essentials**，是非常有用，但**虛擬 IP 位址**，以及**輸出的 IP 位址**。
 
 ![設定刀鋒視窗和屬性][4]
 
-**設定** > ：當您在 ASE 中建立 IP 安全通訊端層 (SSL) 應用程式時，您需要一個 IP SSL 位址。 若要取得該位址，您的 ASE 需要擁有一些可配置的 IP SSL 位址。 建立 ASE 後，它會有一個 IP SSL 可供此用途使用，但您可以新增更多位址。 額外的 IP SSL 位址需付費，如 [App Service 價格][AppServicePricing] (在 SSL 連線一節中) 所示。 額外的價格是 IP SSL 價格。
+**設定** > ：當您在 ASE 中建立 IP 安全通訊端層 (SSL) 應用程式時，您需要一個 IP SSL 位址。 一個順序 tooobtain，在您 ASE 會需要 IP SSL 位址，它擁有可配置。 建立 ASE 後，它會有一個 IP SSL 可供此用途使用，但您可以新增更多位址。 不需費用針對額外的 IP SSL 位址，如中所示[應用程式服務定價][ AppServicePricing] （位於在 SSL 連線上的 hello 區段）。 hello 其他價格為 hello IP SSL 的價格。
 
-[設定] > [前端集區] / [背景工作集區]：這些資源集區刀鋒視窗每一個都可讓您檢視該資源集區的資訊，以及提供充分調整該資源集區所需的控制。  
+**設定** > **Front End 集區** / **背景工作集區**： 每個資源集區的刀鋒視窗，提供 hello 能力 toosee 資訊只在該資源集區此外 tooproviding 會控制 toofully 縮放該資源集區。  
 
-每個資源集區的基準刀鋒視窗分別會提供一個圖表，內附該資源集區的計量。 就像 ASE 刀鋒視窗中的圖表，您可以進入圖表，並設定所需的警示。 從 ASE 刀鋒視窗為特定的資源集區設定警示，效果等同於從資源集區進行設定。 在背景工作集區的 [設定]  刀鋒視窗中，您可存取在此背景工作集區中執行的所有應用程式或 App Service 方案。
+hello 基底刀鋒視窗中的每個資源集區之資源集區提供計量的圖表。 就像與 hello hello ASE 刀鋒視窗中，圖表可以進入 hello 圖表，而設定所需的警示。 從特定的資源集區的 hello ASE 刀鋒視窗中設定警示未 hello 進行從 hello 資源集區相同的動作。 Hello 背景工作集區從**設定**刀鋒視窗中，您有存取 tooall hello 應用程式或應用程式服務計劃在這個背景工作集區中執行。
 
 ![背景工作集區設定 UI][5]
 
 ### <a name="portal-scale-capabilities"></a>入口網站調整功能
 共有三種調整作業：
 
-* 變更 ASE 中可供 IP SSL 使用的 IP 位址數目。
-* 變更用於資源集區中的計算資源大小。
-* 以手動方式或透過自動調整變更用於資源集區中的計算資源數目。
+* 變更 hello 數目 hello ASE 中的 IP 位址可用於 IP SSL 用法。
+* 使用資源集區中的 hello 計算資源的 hello 大小變更。
+* 變更 hello 數目可以是手動或自動調整資源集區中使用的計算資源。
 
-在入口網站中，有三種方式可以控制資源集區中的伺服器數量：
+在 hello 入口網站中，有三種方式 toocontrol 您的資源集區中有多少部伺服器：
 
-* 從頂端的主要 ASE 刀鋒視窗進行調整作業。 您可以對前端和背景工作集區變更多項調整設定。 它們會以單一作業的方式全部套用。
-* 從個別資源集區 [設定] 下的 [調整] 刀鋒視窗手動進行調整作業。
-* 從個別資源集區的 [調整]  刀鋒視窗設定的自動調整。
+* 從 hello 主要 ASE 刀鋒視窗頂端 hello 調整規模作業。 您可以讓多個小數位數的組態變更 toohello 前端和背景工作集區。 它們會以單一作業的方式全部套用。
+* 手動調整規模作業從 hello 個別的資源集區**標尺**刀鋒視窗中，也就是下**設定**。
+* 自動調整，您將設定從 hello 個別的資源集區**標尺**刀鋒視窗。
 
-若要使用 ASE 刀鋒視窗上的調整作業，請將滑桿拖曳至所需的數量並儲存。 此 UI 也支援變更大小作業。  
+toouse hello 調整規模作業上 hello ASE 刀鋒視窗中，拖曳您想要並儲存 hello 滑桿 toohello 數量。 此 UI 也支援變更 hello 大小。  
 
 ![調整 UI][6]
 
-若要使用特定資源集區中的手動或自動調整估能，請移至適當的 [設定] > [前端集區] / [背景工作集區]。 然後開啟您想要變更的集區。 移至 [設定] > [相應放大] 或 [設定] > [相應增加]。 [相應放大]  刀鋒視窗可讓您控制執行個體數量。  可讓您控制資源大小。  
+toouse hello 手動或自動調整規模功能特定的資源集區，在跳過**設定** > **Front End 集區** / **背景工作集區**為適當的。 然後就會開啟 hello 集區的 toochange。 跳過**設定** > **向外**或**設定** > **向上延展**。 hello**向外**刀鋒視窗可讓您 toocontrol 執行個體數量。 **向外延展**可讓您 toocontrol 資源大小。  
 
 ![調整設定 UI][7]
 
 ## <a name="fault-tolerance-considerations"></a>容錯注意事項
-您可以將 App Service 環境可設定為最多總計使用 55 個計算資源。 在這 55 個計算資源中，只有 50 個可用來裝載工作負載。 其原因有兩個。 前端計算資源的下限為 2 個。  上限可高達 53 個，以支援背景工作集區配置。 為了提供容錯功能，您需要根據下列規則配置額外的計算資源：
+您可以設定的 App Service 環境 toouse too55 總數的計算資源。 這些 55 的計算資源，只有 50 可以使用的 toohost 工作負載。 hello 這個錯誤的原因有兩個。 前端計算資源的下限為 2 個。  還剩下向上 too53 toosupport hello 背景工作集區配置。 在順序 tooprovide 容錯功能，您會需要 toohave 根據下列規則 toohello 配置額外的計算資源：
 
-* 每個背景工作角色集區至少需要 1 個無法被指派工作負載的額外計算資源。
-* 當背景工作角色集區中的計算資源數量超出特定值時，則需要另一個計算資源以進行容錯。 在前端集區中並非如此。
+* 每個背景工作集區必須至少為 1 的額外的計算資源，不是使用 toobe 指派工作負載。
+* 背景工作集區中的計算資源的 hello 數量超出特定值，然後另一個運算資源時需要容錯。 這不是 hello 前端集區中的 hello 案例。
 
-在任何單一背景工作集區中，容錯需求就是指派給背景工作集區的 X 個資源的指定值：
+在任何單一工作者集區中，hello 容錯需求是給定值 X 資源指派 tooa 背景工作集區：
 
-* 如果 X 介於 2 到 20，您可用於工作負載的可用計算資源數量為 X-1。
-* 如果 X 介於 21 到 40，您可用於工作負載的可用計算資源數量為 X-2。
-* 如果 X 介於 41 到 53，您可用於工作負載的可用計算資源數量為 X-3。
+* 如果 X 是介於 2 到 20 之間，可使用的計算資源，您可以使用工作負載的 hello 數量是 X-1。
+* 如果 X 為 21 歲到 40 之間，可使用的計算資源，您可以使用工作負載的 hello 數量是 X-2。
+* 如果 X 是 41 和 53 之間，可使用的計算資源，您可以使用工作負載的 hello 數量是 X-3。
 
-最少的使用量具有 2 個前端伺服器和 2 個背景工作。  以上陳述可用幾個範例加以釐清：  
+hello 最少使用量都有 2 的前端伺服器和 2 個背景工作。  以上述陳述式然後 hello，以下是一些範例 tooclarify:  
 
-* 如果您在單一集區中有 30 個背景工作，則其中有 28 個可用來裝載工作負載。
-* 如果您在單一集區中有 2 個背景工作角色，則有 1 個可用來裝載工作負載。
-* 如果您在單一集區中有 20 個背景工作角色，則有 19 個可用來裝載工作負載。  
-* 如果您在單一集區中有 21 個背景工作角色，則同樣只有 19 個可用來裝載工作負載。  
+* 如果您在單一的集區中有 30 的背景工作，其中 28 可以是使用的 toohost 工作負載。
+* 如果您在單一的集區中有 2 個背景工作，然後 1 可以使用的 toohost 工作負載。
+* 如果您在單一的集區中有 20 工作者，19 可以是使用的 toohost 工作負載。  
+* 如果您在單一的集區中有 21 的背景工作，然後仍 19 只能使用的 toohost 工作負載。  
 
-容錯是很重要的環節，但您在調整超過特定臨界值時必須加以留意。 如果您想要從 20 個執行個體新增更多容量，請調整至 22 或更高，因為 21 並不會額外新增任何容量。 調整為 40 以上時也是一樣，下一個會新增容量的數目為 42。  
+hello 容錯功能方面很重要，但您需要的 tookeep 它為您記住調整超過特定閾值。 如果您想 tooadd 更容量從 20 的執行個體，然後移 too22 或更高版本因為 21 並不會加入更多的容量。 hello 也是如此移 40，上面其中 hello 增加容量的下一個編號 42。  
 
 ## <a name="deleting-an-app-service-environment"></a>刪除 App Service 環境
-如果您要刪除 App Service 環境，只需使用 App Service 環境刀鋒視窗頂端的 [刪除]  動作。 當您這麼做時，系統將提示您輸入 App Service 環境的名稱，以確認您真正想要執行這項操作。 請注意，當您刪除 App Service 環境時，將同時刪除其中包含的所有內容。  
+如果您想 toodelete App Service 環境，然後只使用 hello**刪除**在 hello hello App Service 環境刀鋒視窗頂端的動作。 當您這樣做時，您會確認您是否真的想 toodo 這您 App Service 環境 tooconfirm 提示的 tooenter hello 名稱。 請注意，當您刪除 App Service 環境，您刪除所有 hello 內容以及。  
 
 ![刪除 App Service 環境 UI][9]  
 
 ## <a name="getting-started"></a>開始使用
-若要開始使用 App Service 環境，請參閱 [如何建立 App Service 環境](app-service-web-how-to-create-an-app-service-environment.md)。
+tooget 開始使用應用程式服務環境中，請參閱[如何 toocreate App Service 環境](app-service-web-how-to-create-an-app-service-environment.md)。
 
-如需有關 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。
+如需 hello Azure 應用程式服務平台的詳細資訊，請參閱[Azure App Service](../app-service/app-service-value-prop-what-is.md)。
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

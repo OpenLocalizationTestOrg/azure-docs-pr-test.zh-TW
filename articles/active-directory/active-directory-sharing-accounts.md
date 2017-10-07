@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure AD 共用帳戶 | Microsoft Docs"
-description: "描述 Azure Active Directory 如何讓組織安全地共用內部部署應用程式和取用者雲端服務的帳戶。"
+title: "使用 Azure AD 的 aaaSharing 帳戶 |Microsoft 文件"
+description: "描述 Azure Active Directory 如何讓組織 toosecurely 共用帳戶在內部部署應用程式和取用者雲端服務。"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
-ms.openlocfilehash: b40335eda9dffe75e65d004837a1d67914db15b6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9f98bfa97a6c9ba1566d3f921c1b676d5f3c2a88
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sharing-accounts-with-azure-ad"></a>使用 Azure AD 共用帳戶
-## <a name="overview"></a>Overview
-有時候組織需要針對多人使用單一使用者名稱和密碼。 這通常發生在兩個情況下：
+## <a name="overview"></a>概觀
+有時候組織需要多人 toouse 單一使用者名稱和密碼。 這通常發生在兩個情況下：
 
 * 每個使用者必須使用唯一的登入和密碼存取應用程式時 (無論是內部部署的應用程式或取用者雲端服務，例如公司的社交媒體帳戶)。
-* 建立多個使用者環境時。 您可能有具備較高權限的單一本機帳戶可用來執行核心安裝、管理及復原活動 (例如 Office 365 的本機「全域系統管理員」帳戶或 Salesforce 中的根帳戶)。
+* 建立多個使用者環境時。 您可能需要一個單一的本機帳戶，具有更高的權限，而且可以是使用的 toodo 核心安裝、 管理和復原活動 （例如 hello 本機 「 全域系統管理員 」 帳戶在 Salesforce 中的 Office 365 或 hello 根帳戶）。
 
-傳統上，這些帳戶的共用方式是透過將認證 (使用者名稱/密碼) 散發給適當的人員，或是將認證儲存在多個受信任的代理人可以存取的共用位置。
+傳統上，這些帳戶會共用由散發 hello 認證 （使用者名稱/密碼） toohello 恰當的人員或將其儲存在多個信任的代理程式可以存取它們的共用位置。
 
-傳統共用模型有幾個缺點：
+hello 傳統共用模型有幾個缺點：
 
-* 您必須將認證散發給需要存取新應用程式的所有人，他們才能進行存取。
-* 每個共用的應用程式可能都需要唯一的一組共用認證，使用者必須記住許多組認證。 當使用者必須記住許多認證時，他們會依靠有風險的做法，風險因此會增加。 (例如寫下密碼。)
-* 您不知道誰有權存取應用程式。
+* 啟用存取 toonew 應用程式，需要在需要存取的 toodistribute 認證 tooeveryone。
+* 每個共用的應用程式可能需要它自己組唯一的共用的認證，需要使用者 tooremember 多組認證。 當使用者擁有 tooremember 許多的認證時，hello 風險會增加他們將採用 toorisky 作法。 (例如寫下密碼。)
+* 您無法分辨誰存取 tooan 應用程式。
 * 您不知道誰 *存取* 了應用程式。
-* 當您需要移除某個應用程式的存取權時，您必須更新認證，並將認證重新散發給需要存取該應用程式的所有人。
+* 當您需要 tooremove 存取 tooan 應用程式時，您擁有 tooupdate hello 認證，並且將它們重新發佈 tooeveryone 需要存取 toothat 應用程式。
 
 ## <a name="azure-active-directory-account-sharing"></a>Azure Active Directory 帳戶共用
-Azure AD 提供使用共用帳戶的新方法，可以消除這些缺點。
+Azure AD 提供的新方法可消除這些缺點 toousing 共用帳戶。
 
-透過使用「存取面板」並選擇最適合該應用程式的單一登入類型，Azure AD 系統管理員可以設定使用者可以存取的應用程式。 其中的「密碼單一登入」 類型在該應用程式的登入程序期間，可讓 Azure AD 做為一種「代理程式」。
+hello Azure AD 系統管理員所設定的使用者可以存取使用 hello 存取面板，然後選擇 單一登入該應用程式最適合的 hello 類型的應用程式。 其中一種類型，*密碼型單一登入*，可讓 Azure AD 做為類型的"broker"hello 登入程序期間，應用程式。
 
-使用者使用他們的組織帳戶登入一次。 這與他們平常用來存取桌面或電子郵件的帳戶相同。 他們只能探索和存取指派給他們的那些應用程式。 使用共用帳戶，這份應用程式清單可以包含任何數目的共用認證。 使用者不需記住或寫下多個可能使用的帳戶。
+使用者使用他們的組織帳戶登入一次。 這是 hello 他們經常使用 tooaccess，其桌上型電腦或電子郵件的相同帳戶。 他們只能探索和存取指派給他們的那些應用程式。 使用共用帳戶，這份應用程式清單可以包含任何數目的共用認證。 hello 終端使用者不需要 tooremember 或寫下 hello 各種可能使用的帳戶。
 
-共用帳戶不只增加監督的方便性和改善可用性，也可增強安全性。 具有認證使用權限的使用者看不到共用密碼，而是會在協調的驗證流程當中取得密碼的使用權限。 此外，使用某些密碼 SSO 應用程式時，您可選擇讓 Azure AD 定期使用字元數多的複雜密碼來變換 (更新) 密碼，以提升帳戶安全性。 系統管理員可以輕易地授與或撤銷應用程式的存取權，也可以知道誰有權存取帳戶以及誰曾經存取帳戶。
+共用帳戶不只增加監督的方便性和改善可用性，也可增強安全性。 具有權限 toouse hello 認證的使用者看 hello 共用的密碼，但而取得的權限 toouse hello 密碼當做驗證協調的流程的一部分。 此外，某些密碼 SSO 應用程式中，您擁有 hello 選項 toohave Azure AD 定期變換 （更新） hello 密碼使用大型、 複雜密碼，增加 hello 帳戶安全性。 hello 系統管理員可以輕鬆地授與或撤銷存取 tooan 應用程式，也知道誰有存取 toohello 帳戶，以及誰在存取它在過去的 hello。
 
-Azure AD 支援的共用帳戶適用於任何Enterprise Mobility Suite (EMS)、進階或基本型的授權使用者，含括所有類型的密碼單一登入應用程式。 您可以共用應用程式庫中數千個預先整合的應用程式的帳戶，並可加入含有 [自訂 SSO 應用程式](active-directory-sso-integrate-saas-apps.md)的密碼驗證應用程式。
+Azure AD 支援的共用帳戶適用於任何Enterprise Mobility Suite (EMS)、進階或基本型的授權使用者，含括所有類型的密碼單一登入應用程式。 您可以共用任何數千種預先整合的應用程式在 hello 應用程式庫中的帳戶，並可以加入自己的密碼驗證的應用程式與[自訂 SSO 應用程式](active-directory-sso-integrate-saas-apps.md)。
 
 啟用帳戶共用的 Azure AD 功能包括：
 
@@ -60,14 +60,14 @@ Azure AD 支援的共用帳戶適用於任何Enterprise Mobility Suite (EMS)、�
 * [Active Directory 市集](https://azure.microsoft.com/marketplace/active-directory/all/)
 
 ## <a name="sharing-an-account"></a>共用帳戶
-若要使用 Azure AD 來共用帳戶，您必須：
+Azure AD toouse tooshare 帳戶您必須：
 
 * 新增應用程式[應用程式庫](https://azure.microsoft.com/marketplace/active-directory/)或[自訂應用程式](http://blogs.technet.com/b/ad/archive/2015/06/17/bring-your-own-app-with-azure-ad-self-service-saml-configuration-gt-now-in-preview.aspx)
-* 設定應用程式使用密碼單一登入 (SSO)
-* 使用 [以群組為基礎的指派](active-directory-accessmanagement-group-saasapps.md) ，並選取輸入共用認證的選項
-* 選擇性：在某些應用程式 (例如 Facebook、Twitter 或 LinkedIn) 中，您可以啟用 [Azure AD 自動變換密碼](http://blogs.technet.com/b/ad/archive/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview.aspx)
+* 設定密碼單一登入 (SSO) 的 hello 應用程式
+* 使用[群組為基礎的指派](active-directory-accessmanagement-group-saasapps.md)和選取 hello 選項 tooenter 共用的認證
+* 選擇性： 在某些應用程式，例如 Facebook、 Twitter 或 LinkedIn，您可以啟用 hello 選項[Azure AD 自動密碼變換](http://blogs.technet.com/b/ad/archive/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview.aspx)
 
-使用 Azure AD，可以透過 Multi-Factor Authentication (MFA) 讓您的共用帳戶更安全 (深入了解[使用 Azure AD 保護應用程式](../multi-factor-authentication/multi-factor-authentication-get-started.md))，並可使用 [Azure AD 自助式](active-directory-accessmanagement-self-service-group-management.md)群組管理來委派管理誰有權存取應用程式。
+您也可以讓您共用的帳戶更安全的多重要素驗證 (MFA) (深入了解[保護應用程式與 Azure AD](../multi-factor-authentication/multi-factor-authentication-get-started.md))，您可以將委派 hello 能力 toomanage 擁有存取 toohello 應用程式使用[Azure AD 自助式](active-directory-accessmanagement-self-service-group-management.md)群組管理。
 
 ## <a name="related-articles"></a>相關文章
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)

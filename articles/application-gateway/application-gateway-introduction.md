@@ -1,6 +1,6 @@
 ---
-title: "Azure 應用程式閘道簡介 | Microsoft Docs"
-description: "此頁面提供第 7 層負載平衡的應用程式閘道服務的概觀，包括閘道大小、HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性，以及 SSL 卸載。"
+title: "aaaIntroduction tooAzure 應用程式閘道 |Microsoft 文件"
+description: "此頁面提供概觀 hello 第 7 層負載平衡的應用程式閘道服務包括閘道大小、 HTTP 負載平衡時，cookie 架構工作階段親和性，以及 SSL 卸載。"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -15,34 +15,34 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 07/19/2017
 ms.author: gwallace
-ms.openlocfilehash: 49ca4ed2452d71dec17cedebaf48bbd5ab9e615f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c40c9dba64ab03d9f6f81b3cb8f26c6562ac26c6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-application-gateway"></a>應用程式閘道的概觀
 
-Microsoft Azure 應用程式閘道是專用的虛擬設備，它會以服務形式提供應用程式傳遞控制器 (ADC)。 它會為您的應用程式提供各種第 7 層負載平衡功能。 它會將 CPU 密集 SSL 終止卸載至應用程式閘道，讓客戶最佳化 Web 伺服陣列的產能。 它也提供其他第 7 層路由功能，包括循環配置連入流量、以 Cookie 為基礎的工作階段同質、URL 路徑型路由，以及在單一應用程式閘道背後代管多個網站的能力。 Web 應用程式防火牆 (WAF) 也是提供為應用程式閘道 WAF SKU 的一部分。 這會保護 Web 應用程式免於遭遇常見的 Web 弱點和攻擊。 應用程式閘道可以設定為面向網際網路的閘道、內部專用閘道或兩者混合。 
+Microsoft Azure 應用程式閘道是專用的虛擬設備，它會以服務形式提供應用程式傳遞控制器 (ADC)。 它會為您的應用程式提供各種第 7 層負載平衡功能。 它可讓客戶 toooptimize web 伺服陣列產能卸載 CPU 密集 SSL 終止 toohello 應用程式閘道。 它也提供其他層 7 路由功能，包括循環配置資源發佈的連入流量，cookie 為基礎的工作階段親和性，路徑為基礎的路由 URL，和 hello 能力 toohost 單一應用程式閘道背後的多個網站。 Web 應用程式的防火牆 (WAF) 也會提供 hello 應用程式閘道 WAF SKU 的一部分。 它提供保護 tooweb 應用程式，從一般 web 弱點和破解。 應用程式閘道可以設定為面向網際網路的閘道、內部專用閘道或兩者混合。 
 
 ![案例](./media/application-gateway-introduction/scenario.png)
 
 ## <a name="features"></a>特性
 
-應用程式閘道目前提供下列功能：
+應用程式閘道目前提供下列功能的 hello:
 
 
-* **[Web 應用程式防火牆](application-gateway-webapplicationfirewall-overview.md)** - Azure 應用程式閘道中的 Web 應用程式防火牆 (WAF) 可保護 Web 應用程式，不致遭受常見的 Web 型攻擊，例如 SQL 插入式攻擊、跨網站指令碼攻擊和工作階段攔截。
+* **[Web 應用程式防火牆](application-gateway-webapplicationfirewall-overview.md)** -從網頁型的常見攻擊，例如 SQL 資料隱碼、 跨網站指令碼的攻擊和工作階段倘若 hello web 應用程式中的防火牆 (WAF) Azure 應用程式閘道可保護的 web 應用程式。
 * **HTTP 負載平衡** - 應用程式閘道提供循環配置資源負載平衡。 負載平衡會在第 7 層進行，而且只會用於 HTTP(S) 流量。
-* **以 Cookie 為基礎的工作階段同質性** - 當您想要在同一個後端保留使用者工作階段時，以 Cookie 為基礎的工作階段同質性功能非常有用。 使用受閘道管理的 Cookie，應用程式閘道即可將來自使用者工作階段的後續流量導向至同一個後端進行處理。 當使用者工作階段的工作階段狀態是儲存在後端伺服器本機上時，這項功能很重要。
-* **[安全通訊端層 (SSL) 卸載](application-gateway-ssl-arm.md)** - 這項功能讓您的 Web 伺服器免除將 HTTPS 流量解密的高成本工作。 在應用程式閘道終止 SSL 連線，並將要求轉送到未加密的伺服器，Web 伺服器便不需進行解密。  應用程式閘道會將回應重新加密，再將它傳送回用戶端。 在後端位於與 Azure 中的應用程式閘道相同的安全虛擬網路的情況下，這項功能很有用。
-* **[端對端 SSL](application-gateway-backend-ssl.md)** - 應用程式閘道支援為流量進行端對端加密。 應用程式閘道用來進行此作業的方法是，在應用程式閘道終止 SSL 連線。 閘道接著會對流量套用路由規則、重新加密封包，並根據所定義的路由規則將封包轉送至適當的後端。 任何來自 Web 伺服器的回應都會經歷相同的程序而回到使用者端。
-* **[以 URL 為基礎的內容路由](application-gateway-url-route-overview.md)** - 這項功能能夠使用不同的後端伺服器來處理不同的流量。 不論是 Web 伺服器上的資料夾，或是 CDN，流量均可路由傳送至不同的後端。 此功能可讓不處理特定內容的後端得以減少不必要的負載。
-* **[多網站路由](application-gateway-multi-site-overview.md)** - 應用程式閘道可讓您在單一應用程式閘道上最多合併 20 個網站。
-* **[Websocket 支援](application-gateway-websocket.md)** - 應用程式閘道的另一個絕佳功能就是 Websocket 的原生支援。
-* **[狀況監視](application-gateway-probe-overview.md)** -應用程式閘道提供預設的後端資源狀況監視，以及用來監視較特定案例的自訂探查。
-* **[SSL 原則和加密](application-gateway-ssl-policy-overview.md)** - 這項功能能夠限制所支援的 SSL 通訊協定版本和加密套件，以及其處理順序。
-* **[要求重新導向](application-gateway-redirect-overview.md)** -這項功能可讓您將 HTTP 要求重新導向至 HTTPS 接聽程式。
+* **Cookie 架構工作階段親和性**-hello cookie 架構工作階段親和性功能十分有用，當您想 tookeep hello 上的使用者工作階段時相同的後端。 使用閘道管理 cookie，hello 應用程式閘道會從使用者工作階段 toohello 無法 toodirect 後續流量相同後端處理。 這項功能，請務必在工作階段狀態儲存在本機 hello 後端伺服器的使用者工作階段的情況下。
+* **[安全通訊端層 (SSL) 卸載](application-gateway-ssl-arm.md)** -這項功能會採用 hello 最密切相關的工作，解密關閉您的 web 伺服器的 HTTPS 流量。 所終止 hello hello 應用程式閘道和轉送 hello 要求 toohello 伺服器未加密的 SSL 連線，是由解密 unburdened hello web 伺服器。  應用程式閘道重新加密 hello 回應，再將它傳送後 toohello 用戶端。 此功能十分有用 hello 後端所在位置的案例中的 hello 相同保護虛擬網路 hello Azure 中的應用程式閘道。
+* **[結束 tooEnd SSL](application-gateway-backend-ssl.md)**  -應用程式閘道支援結束 tooend 加密的流量。 應用程式閘道會終止在 hello 應用程式閘道的 hello SSL 連線。 hello 閘道會接著套用 hello 路由規則 toohello 流量重新加密 hello 封包，並將轉送 hello 封包 toohello 適當的後端基礎 hello 路由定義的規則。 Hello web 伺服器的任何回應 hello 會經歷相同的處理序後 toohello 終端使用者。
+* **[URL 為基礎的內容路由傳送](application-gateway-url-route-overview.md)** -這項功能提供了 hello 功能 toouse 不同的後端伺服器不同的流量。 可以路由的 tooa 不同後端 hello web 伺服器上的資料夾或 CDN 的流量。 此功能可讓不處理特定內容的後端得以減少不必要的負載。
+* **[多站台路由](application-gateway-multi-site-overview.md)** -tooconsolidate too20 網站上的單一應用程式閘道註冊可讓應用程式閘道。
+* **[Websocket 支援](application-gateway-websocket.md)** -應用程式閘道的另一項絕佳功能是提供 Websocket hello 原生支援。
+* **[健全狀況監視](application-gateway-probe-overview.md)** -應用程式閘道提供預設健全狀況監視的後端資源和自訂探查 toomonitor 更具體的案例。
+* **[SSL 政策和加密](application-gateway-ssl-policy-overview.md)** ： 這項功能提供的 hello 能力 toolimit hello SSL 通訊協定版本和 hello 這類編碼器 hello 的處理的順序與支援的套件。
+* **[要求重新導向](application-gateway-redirect-overview.md)** -這項功能提供 hello 功能 tooredirect HTTP 要求 tooan HTTPS 接聽程式。
 * **[多租用戶後端支援](application-gateway-web-app-overview.md)** - 應用程式閘道支援將多租用戶後端服務 (例如 App Web Apps 和 API 閘道) 設定為後端集區成員。 
 * **[進階診斷](application-gateway-diagnostics.md)** - 應用程式閘道提供完整的診斷和存取記錄檔。 防火牆記錄檔可供已啟用 WAF 的應用程式閘道資源使用。
 
@@ -50,16 +50,16 @@ Microsoft Azure 應用程式閘道是專用的虛擬設備，它會以服務形�
 
 應用程式閘道對於下列項目很實用：
 
-* 需要要求來自相同使用者/用戶端工作階段，才能到達相同後端虛擬機器的應用程式。 這些應用程式的範例包括購物車應用程式和網頁郵件伺服器。
+* 需要要求的應用程式從 hello 相同的使用者/用戶端工作階段 tooreach hello 相同後端的虛擬機器。 這些應用程式的範例包括購物車應用程式和網頁郵件伺服器。
 * 移除 Web 伺服器陣列的 SSL 終止負荷。
-* 在同一個長時間執行的 TCP 連線上必須要有多個 HTTP 要求才能路由傳送至或負載平衡至不同後端伺服器的應用程式 (例如內容傳遞網路)。
+* 應用程式，例如內容傳遞網路，這需要的 hello 長時間執行相同的 TCP 連線 toobe 路由或負載平衡的 toodifferent 後端伺服器上的多個 HTTP 要求。
 * 支援 Websocket 流量的應用程式
 * 保護 Web 應用程式不致遭受常見的 Web 型攻擊，例如 SQL 插入式攻擊、跨網站指令碼攻擊和工作階段攔截。
 * 以不同路由準則 (例如 url 路徑或網域標頭) 為基礎的邏輯流量分配。
 
-應用程式閘道完全由 Azure 管理、可調整且可用性極高。 它提供一組豐富的診斷和記錄功能，很好管理。 當您建立應用程式閘道時，將會有一個端點 (公用 VIP 或內部 ILB IP) 形成關聯，並用於輸入網路流量。 此 VIP 或 ILB IP 由 Azure Load Balancer 提供，此負載平衡器在傳輸層級 (TCP/UDP) 運作，並將所有連入的網路流量平均分散到應用程式閘道背景工作角色執行個體。 接著，應用程式閘道會根據其組態 (無論是虛擬機器、雲端服務、內部或外部 IP 位址) 路由傳送 HTTP/HTTPS 流量。
+應用程式閘道完全由 Azure 管理、可調整且可用性極高。 它提供一組豐富的診斷和記錄功能，很好管理。 當您建立應用程式閘道時，將會有一個端點 (公用 VIP 或內部 ILB IP) 形成關聯，並用於輸入網路流量。 此 VIP 或 ILB IP 係由 Azure 負載平衡器在 hello 傳輸層級 (TCP/UDP) 處理，並具備正在背景工作執行個體的負載平衡的 toohello 應用程式閘道的所有連入網路流量。 hello 應用程式閘道，然後路由 hello HTTP/HTTPS 流量是否為虛擬機器，根據其設定雲端服務，內部或外部 IP 位址。
 
-應用程式閘道負載平衡為 Azure 管理服務，可允許將第 7 層負載平衡器佈建在 Azure 軟體負載平衡器之後。 流量管理員可用來完成如下圖所示的案例，其中的流量管理員會提供不同區域中多個應用程式閘道資源流量的重新導向和可用性，而應用程式閘道會提供跨區域的第 7 層負載平衡。 此案例的範例位於︰[在 Azure 雲端使用負載平衡服務](../traffic-manager/traffic-manager-load-balancing-azure.md)
+應用程式閘道的負載平衡作為 Azure 受管理的服務，以允許 hello hello Azure 軟體負載平衡器後方的第 7 層負載平衡器佈建。 流量管理員可以使用的 toocomplete hello 案例中，下列映像，其中 Traffic Manager 提供重新導向和可用性的流量 toomultiple 應用程式閘道資源在不同的區域，而應用程式閘道所提供的 hello 中所見跨區域第 7 層負載平衡。 此案例的範例，請參閱在：[使用負載平衡中 hello Azure 雲端服務](../traffic-manager/traffic-manager-load-balancing-azure.md)
 
 ![流量管理員和應用程式閘道案例](./media/application-gateway-introduction/tm-lb-ag-scenario.png)
 
@@ -69,9 +69,9 @@ Microsoft Azure 應用程式閘道是專用的虛擬設備，它會以服務形�
 
 應用程式閘道目前提供三種大小：**小型**、**中型**和**大型**。 小型執行個體大小是針對開發和測試案例。
 
-每一訂用帳戶您可以建立最多 50 個應用程式閘道，而且每一應用程式閘道最多可以有 10 個執行個體。 每個應用程式閘道可以包含 20 個 http 接聽程式。 如需應用程式閘道限制的完整清單，請瀏覽[應用程式閘道服務限制](../azure-subscription-service-limits.md?toc=%2fazure%2fapplication-gateway%2ftoc.json#application-gateway-limits)。
+您可以建立每個訂閱，too50 應用程式閘道上，且每個應用程式閘道可以 too10 執行個體每一個。 每個應用程式閘道可以包含 20 個 http 接聽程式。 如需應用程式閘道限制的完整清單，請瀏覽[應用程式閘道服務限制](../azure-subscription-service-limits.md?toc=%2fazure%2fapplication-gateway%2ftoc.json#application-gateway-limits)。
 
-下表顯示每個應用程式閘道執行個體，在啟用 SSL 卸載時的平均效能輸送量：
+hello 下表顯示啟用 SSL 卸載，每個應用程式閘道執行個體的平均效能輸送量：
 
 | 後端頁面回應 | 小型 | 中型 | 大型 |
 | --- | --- | --- | --- |
@@ -79,21 +79,21 @@ Microsoft Azure 應用程式閘道是專用的虛擬設備，它會以服務形�
 | 100K |35 Mbps |100 Mbps |200 Mbps |
 
 > [!NOTE]
-> 這些值是應用程式閘道輸送量的近似值。 實際的輸送量會依據不同的環境詳細資料而有所不同，例如平均頁面大小、後端執行個體位置，以及提供一個頁面所需的處理時間。 如需實際效能數字，您需自行執行測試。 這些值僅供容量規劃指引使用。
+> 這些值是應用程式閘道輸送量的近似值。 hello 實際輸送量取決於各種不同的環境詳細資料，例如平均頁面大小後, 端執行個體和處理時間 tooserve 頁面的位置。 如需實際效能數字，您需自行執行測試。 這些值僅供容量規劃指引使用。
 
 ## <a name="health-monitoring"></a>健康狀況監視
 
-Azure 應用程式閘道會透過基本或自訂健全狀態探測，自動監視後端執行個體的健全狀態。 藉由使用健康情況探查，即可確保只有狀況良好的主機回應流量。 如需詳細資訊，請參閱 [應用程式閘道健全狀況監視概觀](application-gateway-probe-overview.md)。
+Azure 應用程式閘道會自動監視透過基本或自訂的健全狀況探查的 hello hello 後端執行個體的健全狀況。 藉由使用健全狀況探查，它可確保只有狀況良好的主機回應 tootraffic。 如需詳細資訊，請參閱 [應用程式閘道健全狀況監視概觀](application-gateway-probe-overview.md)。
 
 ## <a name="configuring-and-managing"></a>設定和管理
 
-對於其端點，應用程式閘道可以有公用 IP、私人 IP 或兩者 (若已設定)。 應用程式閘道會設定於自己的子網路中的虛擬網路內。 應用程式閘道建立或使用的子網路不能包含任何其他類型的資源，子網路中唯獨允許的資源是其他應用程式閘道。 若要保護後端資源，您可以將後端伺服器包含在與應用程式閘道相同之虛擬網路中的不同子網路內。 後端應用程式不需要這個子網路。 只要應用程式閘道可以連線到 IP 位址，應用程式閘道就能為後端伺服器提供 ADC 功能。 
+對於其端點，應用程式閘道可以有公用 IP、私人 IP 或兩者 (若已設定)。 應用程式閘道會設定於自己的子網路中的虛擬網路內。 建立或使用應用程式閘道的 hello 子網路不能包含任何其他類型的資源，hello 唯一資源 hello 子網路中允許的其他應用程式閘道。 您的後端資源，hello 後端伺服器可以包含在不同的子網路中 hello toosecure hello 應用程式閘道相同的虛擬網路。 Hello 後端應用程式不需要此子網路。 只要 hello 應用程式閘道可以到達 hello ip 位址，應用程式閘道會是能 tooprovide ADC hello 後端伺服器的功能。 
 
-您可以藉由使用 REST API、PowerShell Cmdlet、Azure CLI 或 [Azure 入口網站](https://portal.azure.com/)來建立和管理應用程式閘道。 如有應用程式閘道的其他問題，請造訪[應用程式閘道常見問題集](application-gateway-faq.md)以檢視常見問題清單。
+您可以藉由使用 REST API、PowerShell Cmdlet、Azure CLI 或 [Azure 入口網站](https://portal.azure.com/)來建立和管理應用程式閘道。 如需應用程式閘道上的其他問題請造訪[應用程式閘道常見問題集](application-gateway-faq.md)tooview 的常見清單常見問題集。
 
 ## <a name="pricing"></a>價格
 
-價格是以每小時的閘道器執行個體費用和資料處理費用為基礎。 WAF SKU 的每小時閘道價格不同於標準 SKU 費用。 您可在[應用程式閘道價格詳細資料](https://azure.microsoft.com/pricing/details/application-gateway/)找到此價格資訊。 資料處理費用維持不變。
+價格是以每小時的閘道器執行個體費用和資料處理費用為基礎。 每小時定價 hello WAF SKU 的閘道是不同於標準 SKU 費用。 您可在[應用程式閘道價格詳細資料](https://azure.microsoft.com/pricing/details/application-gateway/)找到此價格資訊。 資料處理費用保持 hello 相同。
 
 ## <a name="faq"></a>常見問題集
 
@@ -101,8 +101,8 @@ Azure 應用程式閘道會透過基本或自訂健全狀態探測，自動監�
 
 ## <a name="next-steps"></a>後續步驟
 
-了解應用程式閘道之後，您可以[建立應用程式閘道](application-gateway-create-gateway-portal.md)，或是[建立應用程式閘道 SSL 卸載](application-gateway-ssl-arm.md)來為 HTTPS 連線進行負載平衡。
+了解應用程式閘道之後, 您就能[建立應用程式閘道](application-gateway-create-gateway-portal.md)或您可以[建立 SSL 卸載應用程式閘道](application-gateway-ssl-arm.md)tooload 平衡 HTTPS 連線。
 
-若要了解如何使用 URL 型內容路由來建立應用程式閘道，請移至 [使用 URL 型路由建立應用程式閘道](application-gateway-create-url-route-arm-ps.md) 以取得詳細資訊。
+toolearn 如何 toocreate 應用程式閘道使用的 URL 為基礎內容的路由，跳過[建立應用程式閘道使用的 URL 為基礎的路由](application-gateway-create-url-route-arm-ps.md)如需詳細資訊。
 
-若要深入了解 Azure 的一些其他重要網路功能，請參閱 [Azure 網路功能](../networking/networking-overview.md)。
+有關某些 toolearn hello 其他網路功能的 Azure 功能的金鑰，請參閱[Azure 網路](../networking/networking-overview.md)。

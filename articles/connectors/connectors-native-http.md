@@ -1,5 +1,5 @@
 ---
-title: "透過 HTTP - Azure Logic Apps 與任何端點通訊 | Microsoft Docs"
+title: "透過 HTTP-Azure 邏輯應用程式的任何端點與 aaaCommunicate |Microsoft 文件"
 description: "建立可以透過 HTTP 與任何端點通訊的邏輯應用程式"
 services: logic-apps
 author: jeffhollan
@@ -15,39 +15,39 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/15/2016
 ms.author: jehollan; LADocs
-ms.openlocfilehash: d422a07a27ffa62a673bd2d471ae4fc837251dee
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9793601839437a2b880bdb81e15881270cacc963
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-http-action"></a>開始使用 HTTP 動作
+# <a name="get-started-with-hello-http-action"></a>開始使用 hello HTTP 動作
 
-您可以利用 HTTP 動作來延伸組織的工作流程，並透過 HTTP 與任何端點通訊。
+以 hello HTTP 動作，您可以擴充工作流程，為您的組織，並透過 HTTP 通訊 tooany 端點。
 
 您可以：
 
 * 建立會在您管理的網站故障時啟動 (觸發程序) 的邏輯應用程式工作流程。
-* 透過 HTTP 與任何端點通訊，將工作流程延伸至其他服務。
+* Tooany 與端點通訊透過 HTTP tooextend 您的工作流程至其他服務。
 
-若要使用邏輯應用程式中的 HTTP 動作來開始作業，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
+請參閱 < 開始使用邏輯應用程式中的 hello HTTP 動作 tooget[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
-## <a name="use-the-http-trigger"></a>使用 HTTP 觸發程序
-觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。 [深入了解觸發程序](connectors-overview.md)。
+## <a name="use-hello-http-trigger"></a>使用 hello HTTP 觸發程序
+觸發程序是可以使用的 toostart hello 工作流程邏輯應用程式中所定義的事件。 [深入了解觸發程序](connectors-overview.md)。
 
-以下是如何在邏輯應用程式設計工具中設定 HTTP 觸發程序的範例順序。
+以下是總 hello HTTP tooset 觸發程序在 hello 邏輯應用程式的設計工具中的範例順序。
 
-1. 在邏輯應用程式中新增 HTTP 觸發程序。
-2. 為想要輪詢的 HTTP 端點填入參數。
-3. 修改其輪詢頻率的循環間隔。
+1. 邏輯應用程式中加入 hello HTTP 觸發程序。
+2. 填入您想 toopoll hello HTTP 端點的 hello 參數。
+3. 修改 hello 循環間隔，在它輪詢的頻率。
 
-   邏輯應用程式現在會在每個檢查期間傳回任何內容時引發。
+   hello 邏輯應用程式現在就會引發與每個檢查期間，會傳回任何內容。
 
    ![HTTP 觸發程序](./media/connectors-native-http/using-trigger.png)
 
-### <a name="how-the-http-trigger-works"></a>HTTP 觸發程序的運作方式
+### <a name="how-hello-http-trigger-works"></a>Hello HTTP 觸發程序的運作方式
 
-HTTP 觸發程序會以循環間隔呼叫 HTTP 端點。 依預設，任何低於 300 的 HTTP 回應碼都會執行邏輯應用程式。 若要指定是否應該觸發邏輯應用程式，您可以在程式碼檢視中編輯邏輯應用程式，並新增條件以在 HTTP 呼叫之後進行評估。 以下是 HTTP 觸發程序的範例，它會在每次傳回的狀態碼大於或等於 `400` 時觸發。
+hello HTTP 觸發程序會呼叫 tooHTTP 端點傳送以週期性間隔。 根據預設，會低於 300 任何 HTTP 回應碼會導致邏輯應用程式 toorun。 toospecify 是否應該引發 hello 邏輯應用程式，您可以編輯程式碼檢視中的 hello 邏輯應用程式，並加入條件來評估 hello 之後 HTTP 呼叫。 以下是範例 HTTP 觸發程序引發時 hello 傳回狀態碼是否大於或等於太`400`。
 
 ```javascript
 "Http":
@@ -72,57 +72,57 @@ HTTP 觸發程序會以循環間隔呼叫 HTTP 端點。 依預設，任何低�
 }
 ```
 
-如需關於 HTTP 觸發程序參數的詳細資料，可在 [MSDN](https://msdn.microsoft.com/library/azure/mt643939.aspx#HTTP-trigger)取得。
+關於 hello HTTP 觸發程序參數的完整詳細資料位於[MSDN](https://msdn.microsoft.com/library/azure/mt643939.aspx#HTTP-trigger)。
 
-## <a name="use-the-http-action"></a>使用 HTTP 動作
+## <a name="use-hello-http-action"></a>使用 hello HTTP 動作
 
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 
+動作是由定義在邏輯應用程式中的 hello 工作流程執行的作業。 
 [深入了解動作](connectors-overview.md)。
 
 1. 選擇 [新增步驟] > [新增動作]。
-3. 在動作搜尋方塊中，輸入 **http** 以列出 HTTP 動作。
+3. 在 hello 動作搜尋方塊中，輸入**http** toolist hello HTTP 動作。
    
-    ![選取 HTTP 動作](./media/connectors-native-http/using-action-1.png)
+    ![選取 hello HTTP 動作](./media/connectors-native-http/using-action-1.png)
 
-4. 新增任何必要參數以呼叫 HTTP。
+4. 新增 hello HTTP 呼叫的任何必要的參數。
    
-    ![完成 HTTP 動作](./media/connectors-native-http/using-action-2.png)
+    ![完成 hello HTTP 動作](./media/connectors-native-http/using-action-2.png)
 
-5. 在程式設計工具的工具列上，按一下 [儲存]。 系統已儲存您的邏輯應用程式並在同一時間發佈 (啟動)。
+5. Hello 設計工具工具列上，按一下**儲存**。 儲存並發行位置 （啟用） 在 hello 邏輯應用程式相同的時間。
 
 ## <a name="http-trigger"></a>HTTP 觸發程序
-以下是此連接器所支援觸發程序的詳細資料。 HTTP 連接器有一個觸發程序。
+以下是 hello hello 觸發程序，此連接器支援的詳細資料。 hello HTTP 連接器有一個觸發程序。
 
 | 觸發程序 | 說明 |
 | --- | --- |
-| http |進行 HTTP 呼叫並傳回回應內容。 |
+| HTTP |執行 HTTP 呼叫而傳回 hello 回應內容。 |
 
 ## <a name="http-action"></a>HTTP 動作
-以下是此連接器所支援動作的詳細資料。 HTTP 連接器有一個可能的動作。
+以下是此連接器支援的 hello 動作的 hello 詳細資料。 hello HTTP 連接器有一個可能的動作。
 
 | 動作 | 說明 |
 | --- | --- |
-| http |進行 HTTP 呼叫並傳回回應內容。 |
+| HTTP |執行 HTTP 呼叫而傳回 hello 回應內容。 |
 
 ## <a name="http-details"></a>HTTP 詳細資料
-下表說明動作的必要與選擇性輸入欄位，以及與使用動作相關聯的對應輸出詳細資料。
+hello 下列表格說明必要的 hello 與 hello 動作和 hello 對應輸出的詳細資料與使用 hello 動作相關聯的選擇性輸入的欄位。
 
 #### <a name="http-request"></a>HTTP 要求
-以下是動作的輸入欄位，可進行 HTTP 輸出要求。
+hello 如下 hello 動作，使外送 HTTP 要求的輸入的欄位。
 標示 * 代表必要欄位。
 
 | 顯示名稱 | 屬性名稱 | 說明 |
 | --- | --- | --- |
-| 方法 * |method |要使用的 HTTP 指令動詞 |
-| URI* |uri |HTTP 要求的 URI |
-| 標頭 |標頭 |要包含的 HTTP 標頭的 JSON 物件 |
-| 內文 |內文 |HTTP 要求本文 |
-| 驗證 |驗證 |詳細資料在 [驗證](#authentication) 一節中 |
+| 方法 * |method |hello HTTP 指令動詞 toouse |
+| URI* |uri |hello URI hello HTTP 要求 |
+| headers |headers |HTTP 標頭 tooinclude 的 JSON 物件 |
+| 內文 |body |hello HTTP 要求主體 |
+| 驗證 |驗證 |詳細資料中 hello[驗證](#authentication)區段 |
 
 <br>
 
 #### <a name="output-details"></a>輸出詳細資料
-以下是 HTTP 回應的輸出詳細資料。
+hello 以下是輸出 hello HTTP 回應的詳細資料。
 
 | 屬性名稱 | 資料類型 | 說明 |
 | --- | --- | --- |
@@ -131,7 +131,7 @@ HTTP 觸發程序會以循環間隔呼叫 HTTP 端點。 依預設，任何低�
 | Status Code |整數 |HTTP 狀態碼 |
 
 ## <a name="authentication"></a>驗證
-Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您可以將此驗證搭配 **HTTP**、**[HTTP + Swagger](connectors-native-http-swagger.md)** 及 **[HTTP Webhook](connectors-native-webhook.md)** 連接器使用。 下列是可設定的驗證類型︰
+hello Logic Apps 功能可讓您 toouse 不同類型的 HTTP 端點的驗證。 您可以使用這項驗證以 hello **HTTP**，  **[HTTP + Swagger](connectors-native-http-swagger.md)**，和 **[HTTP Webhook](connectors-native-webhook.md)** 連接器。 hello 下列類型是驗證的可設定：
 
 * [基本驗證](#basic-authentication)
 * [用戶端憑證驗證](#client-certificate-authentication)
@@ -139,17 +139,17 @@ Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您�
 
 #### <a name="basic-authentication"></a>基本驗證
 
-以下是基本驗證所需的驗證物件。
+hello 接驗證物件所需的基本驗證。
 標示 * 代表必要欄位。
 
 | 屬性名稱 | 資料類型 | 說明 |
 | --- | --- | --- |
 | 類型* |type |驗證類型 (若為基本驗證必須是 `Basic` ) |
-| 使用者名稱* |username |要驗證的使用者名稱 |
-| 密碼* |password |要驗證的密碼 |
+| 使用者名稱* |username |使用者名稱 tooauthenticate |
+| 密碼* |password |密碼 tooauthenticate |
 
 > [!TIP]
-> 如果您要使用無法從定義中擷取的密碼，請使用 `securestring` 參數和 `@parameters()` 
+> 如果您想 toouse 無法從 hello 定義擷取密碼時，使用`securestring`參數與 hello `@parameters()`  
 > [工作流程定義函式](http://aka.ms/logicappdocs)。
 
 例如：
@@ -164,16 +164,16 @@ Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您�
 
 #### <a name="client-certificate-authentication"></a>用戶端憑證驗證
 
-以下是用戶端憑證驗證需要的驗證物件。 標示 * 代表必要欄位。
+hello 下列驗證物件所需的用戶端憑證驗證。 標示 * 代表必要欄位。
 
 | 屬性名稱 | 資料類型 | 說明 |
 | --- | --- | --- |
-| 類型* |type |驗證類型 (若為 SSL 用戶端憑證，必須是 `ClientCertificate` ) |
-| PFX* |pfx |Base 64 編碼的個人資訊交換 (PFX) 檔案內容 |
-| 密碼* |password |存取 PFX 檔案的密碼 |
+| 類型* |類型 |hello 的驗證類型 (必須是`ClientCertificate`進行 SSL 用戶端憑證) |
+| PFX* |pfx |hello hello 個人資訊交換 (PFX) 檔案的 Base64 編碼內容 |
+| 密碼* |password |hello 密碼 tooaccess hello PFX 檔案 |
 
 > [!TIP]
-> 若要在儲存邏輯應用程式後，使用無法在定義中讀取的參數，您可以使用 `securestring` 參數和 `@parameters()`  
+> toouse 將不會讀取儲存 hello 邏輯應用程式之後的 hello 定義中的參數，您可以使用`securestring`參數與 hello `@parameters()`  
 > [工作流程定義函式](http://aka.ms/logicappdocs)。
 
 例如：
@@ -187,18 +187,18 @@ Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您�
 ```
 
 #### <a name="azure-ad-oauth-authentication"></a>Azure AD OAuth 驗證
-以下是 Azure AD OAuth 驗證所需的驗證物件。 標示 * 代表必要欄位。
+hello 接驗證物件所需的 Azure AD 的 OAuth 驗證。 標示 * 代表必要欄位。
 
 | 屬性名稱 | 資料類型 | 說明 |
 | --- | --- | --- |
-| 類型* |type |驗證類型 (若為 Azure AD OAuth 必須是 `ActiveDirectoryOAuth` ) |
-| 租用戶* |tenant |Azure AD 租用戶的租用戶識別碼 |
-| 對象* |audience |您要求授權使用的資源。 例如：`https://management.core.windows.net/` |
-| 用戶端識別碼* |clientId |Azure AD 應用程式的用戶端識別碼 |
-| 密碼* |secret |要求權杖之用戶端的密碼 |
+| 類型* |類型 |hello 的驗證類型 (必須是`ActiveDirectoryOAuth`for Azure AD OAuth) |
+| 租用戶* |tenant |hello hello Azure AD 租用戶的租用戶識別碼 |
+| 對象* |audience |您要求授權 toouse hello 資源。 例如：`https://management.core.windows.net/` |
+| 用戶端識別碼* |clientId |hello hello Azure AD 應用程式的用戶端識別碼 |
+| 密碼* |secret |hello 用戶端要求 hello 語彙基元的 hello 密碼 |
 
 > [!TIP]
-> 使用 `securestring` 參數和 `@parameters()` [工作流程定義函式](http://aka.ms/logicappdocs)，您就能在儲存後使用無法在定義中讀取的參數。
+> 您可以使用`securestring`參數與 hello `@parameters()` [工作流程定義函式](http://aka.ms/logicappdocs)toouse 將不會在儲存之後 hello 定義可讀取的參數。
 > 
 > 
 
@@ -215,5 +215,5 @@ Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您�
 ```
 
 ## <a name="next-steps"></a>後續步驟
-立即試用平台和 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索 Logic Apps 中其他可用的連接器。
+現在，試用 hello 平台和[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 您可以瀏覽 hello 邏輯應用程式中其他可用的連接器，藉由查看我們[Api 清單](apis-list.md)。
 

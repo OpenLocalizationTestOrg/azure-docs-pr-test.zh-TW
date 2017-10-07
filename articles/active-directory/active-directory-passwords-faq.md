@@ -16,19 +16,19 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: b3fab99ff9fab5bc67fa70113dc5b06fac775b09
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d04a9efeb3b35421aa605cadb2aa25f656a4d515
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="password-management-frequently-asked-questions"></a>密碼管理常見問題集
 
-以下是與密碼重設相關之所有事項的一些常見問題。
+hello 下列是一些常見問題的一切相關 toopassword 重設。
 
-如果您有關於 Azure AD 和自助式密碼重設的一般問題，但在這裡找不到答案，您可以在 [Azure Ad 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WindowsAzureAD)尋求社群協助。 社群的成員包括工程師、產品經理、MVP 和 IT 專業人員。
+如果您有關於 Azure AD 的一般問題和自助式密碼重設，未在此處找到答案，您可以要求 hello 社群協助在 hello [Azure Ad 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WindowsAzureAD)。 Hello 社群的成員包括工程師，產品經理、 professional，Mvp 和夥伴 IT 專業人員。
 
-此常見問題集分成下列各節：
+此常見問題集分成下列各節的 hello:
 
 * [**密碼重設註冊的相關問題**](#password-reset-registration)
 * [**密碼重設的相關問題**](#password-reset)
@@ -39,12 +39,12 @@ ms.lasthandoff: 08/03/2017
 ## <a name="password-reset-registration"></a>密碼重設註冊
 * **問：我的使用者是否可以註冊自己的密碼重設資料？**
 
-  > **答：**是，只要已啟用密碼重設功能且使用者已獲得授權，他們就可以前往位於 http://aka.ms/ssprsetup 的「密碼重設註冊」入口網站來註冊其驗證資訊。 使用者也可以前往位於 http://myapps.microsoft.com 的存取面板，按一下 [設定檔] 索引標籤，然後按一下 [註冊密碼重設] 選項，來進行註冊。
+  > **答：**是的只要已啟用密碼重設，且他們已獲得授權，他們可以移 toohello 密碼重設註冊入口網站則位於 http://aka.ms/ssprsetup tooregister 其驗證資訊。 按一下 hello 設定檔 索引標籤，然後按一下 hello 註冊密碼重設選項移 toohello 存取面板 http://myapps.microsoft.com，也可以註冊使用者。
   >
   >
 * **問：我是否可以代表我的使用者定義密碼重設資料？**
 
-  > **答：**是，您可以透過 Azure AD Connect、PowerShell、[Azure 入口網站](https://portal.azure.com) 或 Office Admin 入口網站來進行此動作。 如需詳細資訊，請參閱 [Azure AD 自助式密碼重設所用的資料](active-directory-passwords-data.md)一文。
+  > **答：**是，您可以使用 Azure AD Connect，PowerShell hello [Azure 入口網站](https://portal.azure.com)，或 hello Office 管理入口網站。 如需詳細資訊，請參閱 hello 文章[使用 Azure AD 自助式密碼重設資料](active-directory-passwords-data.md)。
   >
   >
 * **問：我是否可以從內部部署環境同步處理安全性問題的資料？**
@@ -54,57 +54,57 @@ ms.lasthandoff: 08/03/2017
   >
 * **問：我的使用者是否可以用讓其他使用者看不到資料的方式來註冊該資料？**
 
-  > **答：**是，當使用者使用「密碼重設註冊入口網站」來註冊資料時，該資料會儲存到私密的驗證欄位中，只有「全域管理員」和使用者能夠看見。
+  > **答：**是的當使用者註冊使用 hello 密碼重設註冊入口網站儲存到，才會顯示由全域管理員和 hello 使用者的私用的驗證欄位的資料。
     >
     > [!NOTE]
-    > 如果 **Azure 系統管理員帳戶**註冊其驗證電話號碼，該號碼也會填入行動電話欄位中並顯示出來。
+    > 如果**Azure 系統管理員帳戶**註冊它也會填入 hello 行動電話欄位，並會顯示其驗證電話號碼。
     >
   >
   >
-* **問：我的使用者是否必須先註冊才能使用密碼重設？**
+* **問： 我的使用者沒有 toobe 註冊才能使用密碼重設嗎？**
 
-  > **答：**否，如果您代表使用者定義足夠的驗證資訊，使用者就不需要註冊。 只要您已正確地格式化儲存在目錄中適當欄位的資料，密碼重設就能運作。
+  > **答：**否，如果您定義足夠驗證的資訊代表它們時，使用者不需要 tooregister。 密碼重設運作，只要您已正確格式化 hello hello 目錄中的適當欄位中儲存的資料。
   >
   >
-* **問：我是否可以代表我的使用者同步處理或設定驗證電話、驗證電子郵件或備用驗證電話欄位？**
+* **問： 可以同步處理或代表使用者設定 hello 驗證電話、 驗證電子郵件或 備用驗證電話欄位？**
 
   > **答：** 目前無法這麼做。
   >
   >
-* **問：註冊入口網站如何得知要對我的使用者顯示哪些選項？**
+* **問： 如何 hello 註冊入口網站知道哪些選項 tooshow 我的使用者？**
 
-  > **答：**密碼重設註冊入口網站只會顯示您為使用者啟用的選項。 在目錄的 [設定] 索引標籤的 [使用者密碼重設原則] 區段之下可以找到這些選項。 例如，這表示如果您未啟用安全性問題，使用者便無法註冊該選項。
+  > **答：** hello 密碼重設註冊入口網站，只顯示 hello 使用者啟用的選項。 下 hello 您目錄中的 設定 索引標籤的 使用者密碼重設原則 > 一節找到這些選項。比方說，這表示，如果尚未啟用安全性問題，使用者便不能 tooregister 該選項。
   >
   >
 * **問：使用者何時會被視為已註冊？**
 
-  > **答︰**使用者至少已註冊您在 [Azure 入口網站](https://portal.azure.com)中設定的 [重設所需的方法數目]，才算完成 SSPR 註冊。
+  > **答：**使用者已註冊 SSPR 時完成註冊會視為至少 hello**方法需要 tooreset 數目**您已設定在 hello [Azure 入口網站](https://portal.azure.com)。
   >
   >
 ## <a name="password-reset"></a>密碼重設
-* **問：密碼重設之後，我應該等待多久才能收到電子郵件、SMS 或來電？**
+* **問： 要我等候 tooreceive 電子郵件、 簡訊或電話，從密碼重設？**
 
-  > **答：**電子郵件、SMS 訊息及電話應該在 1 分鐘內即可送達，正常的情形下為 5-20 秒。
-    >如果您未在此時間範圍內收到通知︰
+  > **答：**電子郵件、 簡訊和電話應該與 hello 一般案例 5-20 秒到達在一分鐘。
+    >如果您沒有在此時段中收到 hello 通知：
         > * 檢查您的垃圾郵件資料夾。
-        > * 檢查正在聯繫的數字或電子郵件是您預期的項目。
-        > * 檢查目錄中的驗證資料是否正確地格式化。
+        > * 核取 hello 號碼或電子郵件連絡是您預期一個 hello。
+        > * 請檢查 hello 目錄中的 hello 驗證資料已正確地格式化。
                 >     * 範例："+1 4255551234" 或 "user@contoso.com"
   >
   >
 * **問：密碼重設支援哪些語言？**
 
-  > **答：**密碼重設 UI、SMS 訊息及語音通話都已採用 Office 365 支援的相同語言當地語系化。
+  > **答：** hello 密碼重設 UI、 簡訊及語音電話已當地語系化 hello Office 365 中支援的語言相同。
   >
   >
-* **問：當我在目錄的 [設定] 索引標籤中設定組織商標時，哪個密碼重設體驗部分會有商標？**
+* **問： hello 密碼重設體驗的哪些部分取得品牌時設定組織商標我的目錄中的 [設定] 索引標籤嗎？**
 
-  > **答：**密碼重設入口網站會顯示您的組織商標，並且讓您設定「連絡您的系統管理員」連結以指向自訂的電子郵件或 URL。 密碼重設所傳送的任何電子郵件都會包含您的組織商標、顏色、電子郵件內文中的名稱，以及自訂的寄件者名稱。
+  > **答：** hello 密碼重設入口網站會顯示您組織的標誌，並可讓您 tooconfigure hello，請連絡系統管理員連結 toopoint tooa 自訂電子郵件或 URL。 密碼重設所傳送的任何電子郵件 hello 電子郵件、 hello 主體中包含您組織的標誌、 色彩、 名稱和自訂的名稱。
   >
   >
-* **問：如何教育我的使用者要在哪裡重設其密碼？**
+* **問： 如何引導使用者有關在哪裡 toogo tooreset 他們的密碼？**
 
-  > **答：**您可以將使用者直接帶往 https://passwordreset.microsoftonline.com ，也可以指示他們按一下可在任何工作或學校登入頁面上找到的「無法存取您的帳戶」連結。 您也可以在使用者方便存取的地方發佈這些連結。
+  > **答：**您可以直接傳送使用者 toohttps://passwordreset.microsoftonline.com 或指示 tooclick hello**無法存取您的帳戶連結**任何工作或學校登入頁面上找到。 您也可以在進行更容易存取 tooyour 使用者發佈這些連結。
   >
   >
 * **問：我是否可以從行動裝置使用此頁面？**
@@ -119,7 +119,7 @@ ms.lasthandoff: 08/03/2017
   >
 * **問：我要如何將密碼重設直接整合到我使用者的桌面登入體驗？**
 
-  > **答：**如果您是 Azure AD Premium 客戶，您不需要額外成本即可安裝 Microsoft Identity Manager，並且部署內部部署密碼重設解決方案，以符合這項需求。
+  > **答：**如果您是 Azure AD Premium 客戶，您可以安裝 Microsoft Identity Manager 不需額外成本，並部署 hello 在內部部署密碼重設解決方案 toomeet 這項需求。
   >
   >
 * **問：我是否可以針對不同的地區設定，設定不同的安全性問題？**
@@ -127,9 +127,9 @@ ms.lasthandoff: 08/03/2017
   > **答：** 目前無法這麼做。
   >
   >
-* **問：我們可以為安全性問題驗證選項設定多少問題？**
+* **問： 如何許多問題我們可以設定 hello 安全性問題驗證選項？**
 
-  > **答：**您可以在 [Azure 入口網站](https://portal.azure.com)中設定最多 20 個自訂安全性問題。
+  > **答：** hello too20 自訂安全性問題，您可以設定[Azure 入口網站](https://portal.azure.com)。
   >
   >
 * **問：安全性問題的長度限制為何？**
@@ -137,105 +137,105 @@ ms.lasthandoff: 08/03/2017
   > **答：** 安全性問題的長度可以介於 3 到 200 個字元之間。
   >
   >
-* **問：安全性問題答案的長度限制為何？**
+* **問： 保留時間長度可能答案 toosecurity 問題？**
 
-  > **答：** 答案的長度可以介於 3 到 40 個字元之間。
+  > **答：**答案可能是 3 too40 個字元長。
   >
   >
-* **問：重複的安全性問題答案是否會遭到拒絕？**
+* **問： 會拒絕重複回答 toosecurity 問題嗎？**
 
-  > **答：** 是，我們會拒絕重複的安全性問題答案。
+  > **答：**是，我們會拒絕重複回答 toosecurity 問題。
   >
   >
-* **問：使用者是否可以多次註冊相同的安全性問題？**
+* **問： 可能是使用者在暫存 hello 相同的安全性問題一次以上嗎？**
 
   > **答：**否，使用者註冊一旦特定的問題，便不可以再次註冊該問題。
   >
   >
-* **問：是否可以針對註冊和重設設定安全性問題的最小限制？**
+* **問： 是否可能 tooset 最低限制的註冊和重設的安全性問題？**
 
   > **答：** 是，可以針對註冊設定一個限制，針對重設設定另一個限制。 註冊可能需要 3-5 個安全性問題，重設也需要 3-5 個安全性問題。
   >
   >
-* **問：如果使用者註冊的問題數目超過重設所需的問題數目上限，在重設期間會如何選取安全性問題？**
+* **問： 如果使用者已註冊多個 hello 問題需要 tooreset 數目上限，如何選取安全性問題重設期間？**
 
-  > **答：**會在使用者已註冊的問題總數當中隨機選取 N 個安全性問題，其中 N 是 [重設所需的問題數目]。 例如，如果使用者已註冊 5 個安全性問題，但是重設只需要 3 個，則會在 5 個問題當中隨機選取 3 個並且在重設時顯示。 如果使用者回答問題的答案錯誤，則選取程序會重新發生以避免問題 Hammering。
+  > **答：** N 安全性問題中隨機選取超出 hello 問題總數，使用者所註冊的其中 N 是 hello**問題需要 tooreset 數目**。 例如，如果使用者具有 5 個安全性問題註冊，但只有 3 需要的 tooreset，hello 5 的 3 會隨機選取，並顯示在重設。 如果 hello 使用者 hello 答案 toohello 問題錯誤，又重新出現 hello 選取程序 tooprevent 問題被破解。
   >
   >
 * **問：您是否禁止使用者在短時間內嘗試多次密碼重設？**
 
-  > **答：**是，密碼重設有一些內建的安全性功能，以防止濫用。 使用者在一個小時之內只能嘗試 5 次密碼重設，否則會鎖定 24 小時。 使用者在一個小時之內只能嘗試驗證電話號碼 5 次，否則會鎖定 24 小時。 使用者在一個小時之內只能嘗試單一驗證方法 5 次，否則會鎖定 24 小時。
+  > **答：**是，有密碼重設 tooprotect 免遭不當使用內建的安全性功能。 使用者在一個小時之內只能嘗試 5 次密碼重設，否則會鎖定 24 小時。 使用者只能嘗試 toovalidate 電話號碼 5 次，一小時就會被鎖定 24 小時內。 使用者在一個小時之內只能嘗試單一驗證方法 5 次，否則會鎖定 24 小時。
   >
   >
-* **問：電子郵件和 SMS 單次密碼的有效期限是多久？**
+* **問： 為何 hello 電子郵件和簡訊的單次密碼有效？**
 
-  > **答：** 密碼重設的工作階段存留期為 105 分鐘。 從密碼重設作業開始，使用者有 105 分鐘可以重設其密碼。 這段時間之後，電子郵件和 SMS 單次密碼就會無效。
+  > **答：** hello 密碼重設工作階段存留期為 105 分鐘。 從 hello hello 開頭密碼重設作業、 hello 使用者 105 分鐘 tooreset 他們的密碼。 hello 電子郵件和簡訊的單次密碼是無效的這段時間之後。
   >
   >
 
 ## <a name="password-change"></a>密碼變更
-* **問︰我的使用者應該到何處變更密碼？**
+* **問： 我的使用者應 toochange 他們的密碼？**
 
-  > **答︰**使用者可以在出現個人資料圖片或圖示的任何位置變更密碼 (例如操作 [Office 365](https://portal.office.com) 或[存取面板](https://myapps.microsoft.com)時的右上角)。 使用者可以從[存取面板個人資料頁面](https://account.activedirectory.windowsazure.com/r#/profile)變更密碼。 如果使用者的密碼已過期，Azure AD 登入畫面也可能自動要求使用者變更密碼。 最後，如果使用者想要變更密碼，可以直接瀏覽至 [Azure AD 密碼變更入口網站](https://account.activedirectory.windowsazure.com/ChangePassword.aspx)。
+  > **答：**使用者可能會變更其密碼任何位置看到他們的設定檔圖片或圖示 (如同在 hello 右上角的其[Office 365](https://portal.office.com)或[存取面板](https://myapps.microsoft.com)發生。 使用者可能會變更其密碼，從 hello[存取面板設定檔頁面](https://account.activedirectory.windowsazure.com/r#/profile)。 使用者也可能要求 toochange 他們的密碼會自動在 hello Azure AD 登入畫面，如果他們的密碼已過期。 最後，使用者可能瀏覽 toohello [Azure AD 密碼變更入口網站](https://account.activedirectory.windowsazure.com/ChangePassword.aspx)直接如果他們想 toochange 他們的密碼。
   >
   >
-* **問︰當使用者的內部部署密碼過期時，Office 入口網站會加以通知嗎？**
+* **問： 是否可以我的使用者通知的 hello Office 入口網站在內部部署密碼到期時？**
 
-  > **答︰**如果您使用 ADFS，依照此處的指示進行就會收到通知：[使用 ADFS 傳送密碼原則宣告](https://technet.microsoft.com/windows-server-docs/identity/ad-fs/operations/configure-ad-fs-to-send-password-expiry-claims?f=255&MSPPError=-2147217396)。 如果您使用密碼雜湊同步處理，則目前還不可能。 這是因為我們不會從內部部署來同步處理密碼原則，所以無法在雲端操作過程中發佈到期通知。 在任一情況下，也可以[使用 PowerShell 通知使用者密碼即將到期](https://social.technet.microsoft.com/wiki/contents/articles/23313.notify-active-directory-users-about-password-expiry-using-powershell.aspx)。
+  > **答：**這是可能今天如果您使用 ADFS hello 遵循指示：[傳送密碼原則宣告使用 ADFS](https://technet.microsoft.com/windows-server-docs/identity/ad-fs/operations/configure-ad-fs-to-send-password-expiry-claims?f=255&MSPPError=-2147217396)。 如果您使用密碼雜湊同步處理，則目前還不可能。 這是因為我們無法同步處理從內部部署密碼原則，所以不讓我們 toopost 到期通知 toocloud 遇到。 在任一情況下，也可能會太[通知的使用者其密碼即將使用 PowerShell tooexpire](https://social.technet.microsoft.com/wiki/contents/articles/23313.notify-active-directory-users-about-password-expiry-using-powershell.aspx)。
   >
   >
 
 ## <a name="password-management-reports"></a>密碼管理報告
-* **問：資料需要多久的時間才會顯示在密碼管理報告上？**
+* **問： 如何花費時間的總 hello 密碼管理報表上的資料 tooshow？**
 
-  > **答：** 資料應該會在 5-10 分鐘內顯示在密碼管理報告上。 某些情況下，可能會花費多達一小時才顯示。
+  > **答：**資料應該在 hello 密碼管理報表上會出現在 5-10 分鐘內。 它可能佔用 tooan 小時 tooappear 某些執行個體。
   >
   >
-* **問：我要如何篩選密碼管理報告？**
+* **問： 如何可以篩選 hello 密碼管理報表？**
 
-  > **答：**您可以在接近報告頂端處，按一下欄標籤最右邊的小放大鏡圖示，以篩選密碼管理報告。 如果您想要做更豐富的篩選，您可以將報告下載到 excel，並建立樞紐分析表。
+  > **答：**您可以按一下 hello hello 報表頂端附近的 hello 資料行標籤的 hello 小型的放大鏡 toohello 最右側，以篩選 hello 密碼管理報表。 如果您想 toodo 更複雜的篩選，您可以下載 hello 報表 tooexcel 並建立樞紐分析表。
   >
   >
-* **問：密碼管理報告中最多可以儲存多少事件？**
+* **問： 什麼是 hello 最大事件數目會儲存在 hello 密碼管理報表？**
 
-  > **答：**密碼管理報告中最多可以儲存 75,000 個密碼重設或密碼重設註冊事件，最多可回溯 30 天。  我們正在擴展此數目，以包含更多的事件。
+  > **答：**向上 too75，000 密碼重設或密碼重設註冊事件會儲存在 hello 密碼管理報表跨越備份 too30 天。  我們正在 tooexpand 這個數字 tooinclude 更多的事件。
   >
   >
-* **問：密碼管理報告可以回溯到多久以前？**
+* **問： 如何久 hello 密碼管理報表怎麼做？**
 
-  > **答：** 密碼管理報告會顯示過去 30 天內發生的作業。 現在，如果您需要封存這項資料，您可以定期下載報告並將它們儲存在不同的位置。
+  > **答：** hello 密碼管理報告 hello 中發生的過去 30 天內顯示作業。 現在，如果您需要 tooarchive 這項資料，您可以定期下載 hello 報表並將它們儲存在不同的位置。
   >
   >
-* **問：密碼管理報告可以顯示的資料列是否有數目上限？**
+* **問： 是否有可能會出現在 hello 密碼管理報表的資料列的數目上限？**
 
-  > **答：**是，不論是在 UI 中顯示或是下載，任一密碼管理報告最多只能顯示 75,000 個資料列。
+  > **答：**是，75000 資料列最多可能會出現在 hello 密碼管理報表，其中是否顯示在 hello UI 或透過下載。
   >
   >
-* **問：是否有可用來存取密碼重設或註冊報告資料的 API？**
+* **問： 是否有應用程式開發介面 tooaccess hello 密碼重設或註冊報表資料？**
 
-  > **答：**是，請參閱下列文件，以了解如何存取密碼重設報告資料流。  [了解如何以程式設計方式存取密碼重設報告事件](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent)。
+  > **答：** [是]，請參閱 hello 下列文件 toolearn 如何存取 hello 密碼重設報表的資料流。  [了解如何 tooaccess 密碼重設報告事件以程式設計方式](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent)。
   >
   >
 
 ## <a name="password-writeback"></a>密碼回寫
-* **問：密碼回寫如何在幕後運作？**
+* **問： 密碼回寫如何 hello 幕後運作？**
 
-  > **答：**請參閱[密碼回寫的運作方式](active-directory-passwords-writeback.md)，以了解啟用「密碼回寫」時會發生的情況，以及資料如何透過系統回流到您的內部部署環境。
+  > **答：**看到[密碼回寫的運作方式](active-directory-passwords-writeback.md)進行說明內容後，當您啟用密碼回寫，以及資料流動的方式透過 hello 系統回到內部部署環境。
   >
   >
-* **問：密碼回寫需要多久時間才會運作？是否有像是使用密碼雜湊同步處理的同步處理延遲？**
+* **問： 如何長密碼回寫會採用 toowork？是否有像是使用密碼雜湊同步處理的同步處理延遲？**
 
-  > **答：**密碼回寫會立即進行。 它是同步管線，基本上的運作與密碼雜湊同步處理不同。 密碼回寫可以讓使用者即時取得密碼重設或變更作業成功的回應。 成功回寫密碼的平均時間低於 500 毫秒。
+  > **答：**密碼回寫會立即進行。 它是同步管線，基本上的運作與密碼雜湊同步處理不同。 密碼回寫可讓的使用者 tooget 即時意見 hello 成功的密碼重設或變更作業。 hello 的密碼成功回寫的平均時間不超過 500 毫秒。
   >
   >
 * **問︰如果我的內部部署帳戶已停用，這對我的雲端帳戶/存取有何影響？**
 
-  > **答︰**如果您的內部部署識別碼已停用，您的雲端識別碼/存取也會透過 AAD Connect 在下一個同步處理間隔 (預設每隔 30 分鐘) 停用。
+  > **答：**已停用您在內部部署的識別碼，就也在 hello 下一個同步處理間隔透過 AAD Connect byt 預設停用識別碼/存取您雲端這是每隔 30 分鐘。
   >
   >
-* **問︰如果我的內部部署帳戶受到內部部署 Active Directory 密碼原則限制，則當我變更密碼時 SSPR 是否會遵守此原則時？**
+* **問： 如果我在內部部署的帳戶由內部部署 Active Directory 密碼原則限制，沒有 SSPR 遵守此原則時變更 hello 密碼嗎？**
 
-  > **答︰**是，SSPR 會依循並遵守內部部署 AD 密碼原則，包括一般的 AD 網域密碼原則，以及任何以特定使用者為目標而定義的細微密碼原則。
+  > **答：** SSPR 依賴的是，並遵守 hello 內部部署 AD 密碼原則，包括一般的 AD 網域密碼原則，以及任何已定義更細緻的密碼原則目標 tooa 指定使用者。
   >
   >
 * **問：密碼回寫適用於哪些類型的帳戶？**
@@ -250,21 +250,21 @@ ms.lasthandoff: 08/03/2017
   >
 * **問：密碼回寫是否安全？我要如何確定不會受到駭客入侵？**
 
-  > **答：**是，密碼回寫很安全。 若要進一步了解密碼回寫服務所實作的 4 層安全性，請參閱＜密碼回寫的運作方式＞中的[密碼回寫的安全性模型](active-directory-passwords-writeback.md#password-writeback-security-model)一節。
+  > **答：**是，密碼回寫很安全。 hello 密碼回寫服務所實作的 tooread 深入了解 hello 四個層級的安全性，請簽出 hello[密碼回寫安全性模型](active-directory-passwords-writeback.md#password-writeback-security-model)密碼回寫的運作方式 > 一節。
   >
   >
 
 ## <a name="next-steps"></a>後續步驟
 
-下列連結提供有關使用 Azure AD 重設密碼的其他資訊
+hello 下列連結提供有關密碼重設使用 Azure AD 的其他資訊
 
 * [**快速入門**](active-directory-passwords-getting-started.md) - 開始執行 Azure AD 自助式密碼管理 
 * [**授權**](active-directory-passwords-licensing.md) - 設定 Azure AD 授權
-* [**資料**](active-directory-passwords-data.md) -了解所需的資料以及如何將它使用於密碼管理
-* [**推出**](active-directory-passwords-best-practices.md) - 使用此處提供的指引來規劃 SSPR 並將它部署至使用者
-* [**自訂**](active-directory-passwords-customize.md) - 為您的公司自訂 SSPR 體驗的外觀與風格。
+* [**資料**](active-directory-passwords-data.md) -了解所需的 hello 資料及如何使用密碼管理
+* [**首度發行**](active-directory-passwords-best-practices.md) -計劃和部署 SSPR tooyour 使用者 hello 指引，請參閱
+* [**自訂**](active-directory-passwords-customize.md) -自訂的 hello SSPR 體驗您的公司 hello 外觀與風格。
 * [**報告**](active-directory-passwords-reporting.md) - 探索您的使用者是否、何時、何地存取 SSPR 功能
 * [**原則**](active-directory-passwords-policy.md) - 了解並設定 Azure AD 密碼原則
-* [**密碼回寫**](active-directory-passwords-writeback.md) - 密碼回寫如何用在您的內部部署目錄
-* [**技術性深入探討**](active-directory-passwords-how-it-works.md) - 深入探索以了解其運作方式
-* [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何解決我們看到的 SSPR 常見問題
+* [**密碼回寫**](active-directory-passwords-writeback.md) - 密碼回寫如何使用您的內部部署目錄
+* [**技術的深入探討**](active-directory-passwords-how-it-works.md) -hello 帘 toounderstand 後方移它的運作方式
+* [**疑難排解**](active-directory-passwords-troubleshoot.md) -了解如何 tooresolve 常見問題，我們會看到與 SSPR

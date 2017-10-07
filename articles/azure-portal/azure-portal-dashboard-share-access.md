@@ -1,6 +1,6 @@
 ---
-title: "使用 RBAC 共用 Azure 入口網站儀表板 | Microsoft Docs"
-description: "本文說明如何在 Azure 入口網站中使用角色型存取控制來共用儀表板。"
+title: "aaaShare Azure 入口網站的儀表板使用 RBAC |Microsoft 文件"
+description: "本文說明 tooshare 儀表板中的 hello Azure 入口網站使用以角色為基礎的存取控制的方式。"
 services: azure-portal
 documentationcenter: 
 author: tfitzmac
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/01/2016
 ms.author: tomfitz
-ms.openlocfilehash: ea0cf7ad074f95c2b49a92f9a8e32270a1d39b3a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b12f9f8582596ee14aa8bfdfb4772cc139e3bf45
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="share-azure-dashboards-by-using-role-based-access-control"></a>使用角色型存取控制來共用 Azure 儀表板
-設定儀表板之後，您可以將它發佈，並與組織中的其他使用者共用。 使用 Azure [角色型存取控制](../active-directory/role-based-access-control-configure.md)，您可允許其他人檢視您的儀表板。 您可以將一名使用者或一群使用者指派給某個角色，該角色就會定義這些使用者可以檢視或修改已發佈的儀表板。 
+設定儀表板之後，您可以將它發佈，並與組織中的其他使用者共用。 允許其他人 tooview 透過 Azure 儀表板[角色型存取控制](../active-directory/role-based-access-control-configure.md)。 您指派使用者或群組的使用者 tooa 角色，而該角色定義這些使用者可以檢視或修改 hello 已發行的儀表板。 
 
 所有已發佈的儀表板會實作為 Azure 資源，這表示它們是做為您訂用帳戶內可管理的項目而存在，並且會包含在資源群組中。  從存取控制的觀點來看，儀表板與其他資源 (例如虛擬機器或儲存體帳戶) 並無不同。
 
 > [!TIP]
-> 儀表板上的個別圖格會根據其顯示的資源，強制執行自己的存取控制需求。  因此，您可以設計一個廣泛共用且同時仍會保護個別圖格上資料的儀表板。
+> 個別的圖格 hello 儀表板上強制執行自己根據它們顯示 hello 資源的存取控制需求。  因此，您可以設計 hello 個別的磚上的資料仍受到保護時廣泛共用的儀表板。
 > 
 > 
 
 ## <a name="understanding-access-control-for-dashboards"></a>了解儀表板的存取控制
-若使用角色型存取控制 (RBAC)，您可以將使用者指派給三個不同範圍層級的角色︰
+使用角色型存取控制 (RBAC)，您可以指派使用者 tooroles 三個不同的範圍層級：
 
 * 訂用帳戶
 * 資源群組
-* 資源
+* resource
 
-您指派的權限會從訂用帳戶往下繼承到資源。 發佈的儀表板是一種資源。 因此，您可能已將使用者指派給訂用帳戶的角色，而這也對已發佈的儀表板有效。 
+您指派的 hello 權限被繼承自 toohello 資源下的訂用帳戶。 hello 已發行的儀表板是資源。 因此，您可能已經有 hello 訂用帳戶的使用者指派 tooroles 這也適用於 hello 已發行的儀表板。 
 
-範例如下。  假設您有 Azure 訂用帳戶，而且已為小組各種成員指派訂用帳戶的**擁有者**、**參與者**或**讀取者**角色。 身為擁有者或參與者的使用者能夠列出、檢視、建立、修改或刪除訂用帳戶內的儀表板。  身為讀取者的使用者能夠列出和檢視儀表板，但無法進行修改或刪除。  具有讀取者存取權的使用者能夠對已發佈的儀表板進行本機編輯 (例如在針對問題進行疑難排解時)，但無法將這些變更發佈回伺服器。  他們會有為自己製作儀表板的私人複本的選項。
+範例如下。  假設您有 Azure 訂用帳戶，並已指派不同的成員，您的小組 hello 角色**擁有者**，**參與者**，或**讀取器**hello 訂用帳戶。 使用者是擁有者或參與者都可以 toolist，檢視、 建立、 修改或刪除儀表板 hello 訂用帳戶內。  讀取器的使用者都能 toolist 和檢視儀表板，但無法修改或刪除它們。  讀取器存取的使用者都能 toomake 本機編輯 tooa 發行儀表板 (例如，對問題進行疑難排解時)，但您不能 toopublish 這些變更後 toohello 伺服器。  將自己擁有 hello 選項 toomake hello 儀表板的私用複本
 
-不過，您也可以指派權限給包含數個儀表板的資源群組或指派給個別儀表板。 例如，您可能會決定，一群使用者應具有有限的訂用帳戶權限，但對特定儀表板則具有更大範圍的存取權。 您可以將這些使用者指派給該儀表板的角色。 
+不過，您也可以指派包含數個儀表板或 tooan 個別儀表板的權限 toohello 資源群組。 例如，您可能會決定，一群使用者應具有有限的權限跨 hello 訂用帳戶，但大於存取 tooa 特定儀表板。 您指派這些使用者 tooa 角色，該儀表板。 
 
 ## <a name="publish-dashboard"></a>發佈儀表板
-讓我們假設您已完成設定想要與訂用帳戶中的一群使用者共用的儀表板。 下列步驟描述稱為「儲存體管理員」的自訂群組，但您可以將您的群組命名為任何您喜歡的名稱。 如需建立 Active Directory 群組和將使用者新增至該群組的相關資訊，請參閱 [在 Azure Active Directory 中管理群組](../active-directory/active-directory-accessmanagement-manage-groups.md)。
+讓我們假設您已完成設定您想 tooshare 要與使用者群組之前，您的訂用帳戶中的儀表板。 hello 步驟描繪一個稱為 「 存放裝置管理員的自訂的群組，但您可以命名您的群組您想要的任何內容。 如需建立 Active Directory 群組並加入使用者 toothat 群組資訊，請參閱[管理 Azure Active Directory 中的群組](../active-directory/active-directory-accessmanagement-manage-groups.md)。
 
-1. 在儀表板中選取 [共用] 。
+1. 在 hello 儀表板中，選取 **共用**。
    
      ![選取共用](./media/azure-portal-dashboard-share-access/select-share.png)
-2. 在指派存取權之前，您必須先發佈儀表板。 根據預設，儀表板會發佈到名為 **儀表板**的資源群組。 選取 [發佈] 。
+2. 再指派存取權，您必須發佈 hello 儀表板。 根據預設，hello 儀表板將會發行的 tooa 資源群組名稱**儀表板**。 選取 [發佈] 。
    
      ![publish](./media/azure-portal-dashboard-share-access/publish.png)
 
-儀表板現已發佈。 如果繼承自訂用帳戶的權限合適，則不需要再執行任何動作。 組織中的其他使用者將可以根據其訂用帳戶層級的角色來存取和修改儀表板。 不過，在本教學課程中，讓我們將一群使用者指派給該儀表板的角色。
+儀表板現已發佈。 如果適合 hello 繼承自 hello 訂用帳戶的權限，您不需要 toodo 任何資料。 您組織中的其他使用者將會無法 tooaccess 並修改其訂用帳戶層級的角色為基礎的 hello 儀表板。 不過，本教學課程，讓我們指定使用者 tooa 角色，該儀表板的群組。
 
-## <a name="assign-access-to-a-dashboard"></a>指派儀表板存取權
-1. 在發佈儀表板之後，選取 [管理使用者] 。
+## <a name="assign-access-tooa-dashboard"></a>指派存取 tooa 儀表板
+1. 發行之後 hello 儀表板，選取**管理使用者**。
    
      ![管理使用者](./media/azure-portal-dashboard-share-access/manage-users.png)
-2. 您會看到已對其指派此儀表板角色的現有使用者清單。 您的現有使用者清單會不同於下面的影像。 指派很可能是繼承自訂用帳戶。 若要新增使用者或群組，請選取 [新增] 。
+2. 您會看到已對其指派此儀表板角色的現有使用者清單。 您的現有使用者清單會不同於下面的 hello 影像。 最可能的原因 hello 分派被繼承自 hello 訂用帳戶。 tooadd 新的使用者或群組，請選取**新增**。
    
      ![新增使用者](./media/azure-portal-dashboard-share-access/existing-users.png)
-3. 選取代表您想要授與之權限的角色。 在此範例中，請選取 [參與者] 。
+3. 選取代表您想要 toogrant hello 權限的 hello 角色。 在此範例中，請選取 [參與者] 。
    
      ![選取角色](./media/azure-portal-dashboard-share-access/select-role.png)
-4. 選取想要指派給角色的使用者或群組。 如果您在清單中沒有看見要尋找的使用者或群組，請使用搜尋方塊。 您的可用群組清單取決於您已在 Active Directory 中建立的群組。
+4. 選取 hello 使用者或群組，您會希望 tooassign toohello 角色。 如果您看不 hello 使用者或群組，您要尋找 hello 清單中，使用 hello [搜尋] 方塊。 您可以使用群組的清單取決於您建立 Active Directory 中的 hello 群組。
    
      ![選取使用者](./media/azure-portal-dashboard-share-access/select-user.png) 
 5. 使用者或群組新增完成時，請選取 [確定] 。 
-6. 新的指派就會加入至使用者清單。 請注意，其**存取權**會列為 [已指派] 而非 [已繼承]。
+6. hello 新作業加入 toohello 使用者清單。 請注意，其**存取權**會列為 [已指派] 而非 [已繼承]。
    
      ![指派的角色](./media/azure-portal-dashboard-share-access/assigned-roles.png)
 
 ## <a name="next-steps"></a>後續步驟
 * 如需角色清單，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
-* 若要了解如何管理資源，請參閱 [透過入口網站管理 Azure 資源](resource-group-portal.md)。
+* toolearn 關於管理資源，請參閱[透過入口網站管理 Azure 資源](resource-group-portal.md)。
 

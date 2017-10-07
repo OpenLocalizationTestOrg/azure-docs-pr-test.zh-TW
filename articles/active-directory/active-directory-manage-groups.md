@@ -1,6 +1,6 @@
 ---
-title: "使用群組來管理 Azure Active Directory 中的資源存取權 | Microsoft Docs"
-description: "如何使用 Azure Active Directory 中的群組來管理內部部署、雲端應用程式與資源的使用者存取權。"
+title: "aaaUse 群組在 Azure Active Directory toomanage 存取 tooresources |Microsoft 文件"
+description: "如何在 Azure Active Directory toomanage 使用者 toouse 群組存取 tooon 內部部署和雲端應用程式和資源。"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,66 +15,66 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: cd8125eda7643f0b190d35cbb89edf8b7b4eca30
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 876a356c8095505432e9346721f35c7943819e9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-access-to-resources-with-azure-active-directory-groups"></a>使用 Azure Active Directory 群組來管理資源的存取權
-Azure Active Directory (Azure AD) 是一個身分識別與存取管理的綜合性解決方案，提供許多強大的功能來管理內部部署和雲端應用程式和資源的存取權，包括如 Office 365 的 Microsoft 線上服務，以及非 Microsoft 的 SaaS 應用程式。 本文會提供概觀，但如果您要立即開始使用 Azure AD 群組，請遵循 [在 Azure AD 中管理安全性群組](active-directory-accessmanagement-manage-groups.md)的指示。 如果您想要看看如何使用 PowerShell 管理 Azure Active directory 中的群組，則可以在 [適用於群組管理的 Azure Active Directory Cmdlet](active-directory-accessmanagement-groups-settings-v2-cmdlets.md)中深入了解。
+# <a name="manage-access-tooresources-with-azure-active-directory-groups"></a>使用 Azure Active Directory 群組管理存取 tooresources
+Azure Active Directory (Azure AD) 是完整身分識別和存取管理解決方案，提供一組強固的功能 toomanage 存取 tooon 內部部署和雲端應用程式和資源包括如 Office 365 等 Microsoft online services 和許多非 Microsoft SaaS 應用程式。 本文章提供概觀，但如果您想使用 Azure AD 的 toostart 現在分組，請依照下列中的 hello 指示[在 Azure AD 中管理安全性群組](active-directory-accessmanagement-manage-groups.md)。 如果您想 toosee 如何使用 PowerShell toomanage 您可以深入了解 Azure Active directory 中的群組[群組管理的 Azure Active Directory cmdlet](active-directory-accessmanagement-groups-settings-v2-cmdlets.md)。
 
 > [!NOTE]
-> 若要使用 Azure Active Directory，您需要 Azure 帳戶。 如果您沒有帳戶，您可以 [註冊免費的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+> toouse Azure Active Directory，您需要 Azure 帳戶。 如果您沒有帳戶，您可以 [註冊免費的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 >
 >
 
-Azure AD 的其中一項主要功能是管理資源的存取權。 這些資源可以是目錄的一部分，例如透過目錄中的角色或目錄外部的資源 (例如 SaaS 應用程式、Azure 服務以及 SharePoint 網站或內部部署資源) 管理物件的權限。 有四種方式可以指派使用者存取資源的權限：
+在 Azure AD 中，其中一個 hello 主要功能是 hello 能力 toomanage 存取 tooresources。 這些資源可以是 hello 目錄中，如同透過角色在 hello 目錄或外部 toohello 目錄，例如 SaaS 應用程式、 Azure services 和 SharePoint 網站或內部部署資源的權限 toomanage 物件 hello 案例的一部分資源。 有四種方式，可指定使用者存取權限 tooa 資源：
 
 1. 直接指派
 
-    資源的擁有者可以直接指派使用者存取資源。
+    可以將使用者指派直接 tooa 資源 hello 該資源的擁有者。
 2. 群組成員資格
 
-    資源擁有者可以指派群組存取資源，透過這種方式，授與該群組成員存取資源。 群組的擁有者就可以管理群組的成員資格。 實際上，資源擁有者是委派權限給群組的擁有者，以指派使用者存取其資源。
+    群組只能指派 tooa 資源 hello 資源擁有者，並透過這種方式，授與該群組存取 toohello 資源 hello 成員。 Hello 群組的成員資格然後受 hello hello 群組擁有者。 實際上，hello 資源擁有者委派 hello 權限 tooassign 使用者 tootheir 資源 toohello 群組的擁有者 hello。
 3. 以規則為基礎
 
-    資源擁有者可以使用規則來表示應指派哪些使用者存取資源。 規則的結果取決於該規則中使用的屬性，以及針對特定使用者的值，透過這種方式，資源擁有者實際上是根據規則中所使用的屬性，委派給授權的來源來管理其資源的存取權。 資源擁有者仍可管理規則本身，並決定哪些屬性與值提供其資源的存取權。
+    hello 資源擁有者可以使用規則 tooexpress 存取 tooa 資源應該指派的使用者。 hello 規則的 hello 結果取決於特定的使用者，該規則和它們的值中所使用的 hello 屬性和透過這種方式，hello 資源擁有者有效地委派 hello 右 toomanage 存取 tootheir 資源 toohello 授權來源 hellohello 規則中使用的屬性。 hello 資源擁有者仍管理 hello 規則本身，並決定哪些屬性和值提供存取 tootheir 資源。
 4. 外部授權單位
 
-    資源的存取權從外部來源衍生而來，例如從授權來源 (例如內部部署目錄或如 WorkDay 的 SaaS 應用程式) 同步處理的群組。 資源擁有者指派群組以提供資源存取權，外部來源管理群組的成員。
+    hello 存取 tooa 資源被衍生自外部來源;例如，從授權的來源，例如在內部部署目錄或例如 WorkDay 的 SaaS 應用程式同步處理群組。 hello 資源擁有者指派 hello 群組 tooprovide 存取 toohello 資源，並 hello 外部來源管理 hello hello 群組成員。
 
    ![存取管理圖表的概觀](./media/active-directory-access-management-groups/access-management-overview.png)
 
 ## <a name="watch-a-video-that-explains-access-management"></a>觀看說明存取管理的影片
 您可以在此觀賞說明與此相關的短片：
 
-**Azure AD：群組的動態成員資格簡介**
+**Azure AD： 群組的簡介 toodynamic 成員資格**
 
 > [!VIDEO https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Azure-AD--Introduction-to-Dynamic-Memberships-for-Groups/player]
 >
 >
 
 ## <a name="how-does-access-management-in-azure-active-directory-work"></a>存取管理在 Azure Active Directory 中如何運作？
-Azure AD 存取管理解決方案的重點是安全性群組。 使用安全性群組來管理資源的存取權是著名的範例，方法彈性而且容易理解，可以針對想要的使用者群組提供資源的存取權。 資源擁有者 (或目錄的系統管理員) 可以指派群組，對所擁有的資源提供特定的存取權限。 群組的成員會取得存取權，而資源擁有者可以委派管理群組成員清單的權限給其他人，例如部門經理或技術服務管理員。
+在 hello hello Azure AD 存取管理解決方案的中心是 hello 安全性群組。 使用安全性群組 toomanage 存取 tooresources 是知名的範例，可讓 hello 適合使用者群組的彈性且易於了解的方式 tooprovide 存取 tooa 資源。 hello 資源擁有者 （或 hello hello 目錄管理員） 可以指派群組 tooprovide 特定存取權限 toohello 資源他們所擁有。 hello 群組成員的 hello 提供 hello 存取和 hello 資源擁有者可以將委派的 else，例如部門經理或技術支援系統管理員群組 toosomeone hello 右 toomanage hello 成員清單。
 
 ![Azure Active Directory 存取管理圖表](./media/active-directory-access-management-groups/active-directory-access-management-works.png)
 
-群組的擁有者也可以讓該群組供自助式服務要求使用。 如此一來，使用者可以搜尋和尋找群組並提出要求加入，就可以尋求權限以存取透過群組所管理的資源。 群組的擁有者可以設定群組，自動核准加入的要求，或者需要經過群組的擁有者核准。 當使用者提出加入群組的要求時，加入要求會轉送給群組的擁有者。 如果其中一個擁有者核准要求，提出要求的使用者會收到通知，並且加入群組。 如果其中一個擁有者拒絕要求，提出要求的使用者會收到通知，但不會加入群組。
+hello 群組擁有者也可以讓該群組可供自助服務要求。 在此情況下，使用者可以搜尋和尋找 hello 群組，以要求 toojoin，有效地搜尋透過 hello 群組所管理的權限 tooaccess hello 資源。 hello hello 群組擁有者可以設定 hello 群組，以便自動核准加入要求，或需要 hello 群組的 hello 擁有者核准。 當使用者要求 toojoin 群組，hello 聯結要求轉送 toohello hello 群組擁有者。 如果其中 hello 擁有者核准 hello 要求，hello 提出要求的使用者會收到通知，而 hello 使用者是聯結的 toohello 群組。 如果其中 hello 擁有者拒絕 hello 要求，hello 提出要求的使用者會收到通知，但未加入 toohello 群組。
 
 ## <a name="getting-started-with-access-management"></a>開始使用存取管理
-準備好開始了嗎？ 您可以嘗試一些可以使用 Azure AD 群組進行的基本工作。 使用這些功能，針對組織中的不同資源，提供特殊存取權給不同群組的人員。 以下是基本的首要步驟清單。
+準備好 tooget 啟動嗎？ 您應該嘗試一些 hello 基本的工作，您可以使用 Azure AD 群組。 使用這些功能 tooprovide 特製化存取 toodifferent 一群人的組織中不同資源。 以下是基本的首要步驟清單。
 
-* [建立簡單的規則，設定群組的動態成員資格](active-directory-accessmanagement-manage-groups.md#how-can-i-manage-the-membership-of-a-group-dynamically)
-* [使用群組來管理 SaaS 應用程式的存取權](active-directory-accessmanagement-group-saasapps.md)
+* [建立簡單的規則群組 tooconfigure 動態成員資格](active-directory-accessmanagement-manage-groups.md#how-can-i-manage-the-membership-of-a-group-dynamically)
+* [使用群組 toomanage 存取 tooSaaS 應用程式](active-directory-accessmanagement-group-saasapps.md)
 * [提供可供一般使用者自助服務的群組](active-directory-accessmanagement-self-service-group-management.md)
-* [使用 Azure AD Connect 將內部部署群組同步處理至 Azure](active-directory-aadconnect.md)
+* [使用 Azure AD Connect 的內部群組 tooAzure 正在同步處理](active-directory-aadconnect.md)
 * [管理群組的擁有者](active-directory-accessmanagement-managing-group-owners.md)
 
 ## <a name="next-steps"></a>後續步驟
-如果您已經了解存取管理的基本概念，以下是一些 Azure Active Directory 中可用的其他進階功能，可以管理您的應用程式和資源的存取權。
+既然您已了解 hello 存取管理基本概念，以下是某些額外的進階的功能可用在 Azure Active Directory 中管理存取 tooyour 應用程式和資源。
 
-* [使用屬性來建立進階規則](active-directory-accessmanagement-groups-with-advanced-rules.md)
+* [使用屬性 toocreate 進階規則](active-directory-accessmanagement-groups-with-advanced-rules.md)
 * [在 Azure AD 中管理安全性群組](active-directory-accessmanagement-manage-groups.md)
 * [在 Azure AD 中設定專用的群組](active-directory-accessmanagement-dedicated-groups.md)
 * [群組的圖形 API 參考](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/groups-operations#GroupFunctions)

@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions 儲存體資料表繫結 | Microsoft Docs"
-description: "了解如何在 Azure Functions 中使用 Azure 儲存體繫結。"
+title: "aaaAzure 函式儲存體資料表繫結 |Microsoft 文件"
+description: "了解如何 toouse Azure 函式中的 Azure 儲存體繫結。"
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,32 +16,32 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/28/2016
 ms.author: chrande
-ms.openlocfilehash: bb01be3ee044f60376e0c9c2de7b3dd34f3b7aca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 90c2a73329139d4ab3504bc0e2c90370133158bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-storage-table-bindings"></a>Azure Functions 儲存體資料表繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-本文說明如何在 Azure Functions 中為 Azure 儲存體資料表繫結進行設定及撰寫程式碼。 Azure Functions 支援 Azure 儲存體資料表的輸入和輸出繫結。
+本文說明如何 tooconfigure 和程式碼的 Azure 儲存體資料表 Azure 函式中的繫結。 Azure Functions 支援 Azure 儲存體資料表的輸入和輸出繫結。
 
-儲存體資料表繫結支援下列案例：
+hello 儲存體資料表繫結支援下列案例的 hello:
 
-* **讀取 C# 或 Node 函式中的單一資料列** - 設定 `partitionKey` 和 `rowKey`。 此案例中不使用 `filter` 和 `take` 屬性。
-* **讀取 C# 函式中的多個資料列** - Functions 執行階段會提供一個繫結至資料表的 `IQueryable<T>` 物件。 類型 `T` 必須衍生自 `TableEntity` 或實作 `ITableEntity`。 此案例中不使用 `partitionKey`、`rowKey`、`filter` 和 `take`屬性；您可以使用 `IQueryable` 物件來執行任何所需的篩選。 
-* **讀取 Node 函式中的多個資料列** - 設定 `filter` 和 `take` 屬性。 請勿設定 `partitionKey` 或 `rowKey`。
-* **在 C# 函式中寫入一或多個資料列** - Functions 執行階段會提供一個繫結至資料表的 `ICollector<T>` 或 `IAsyncCollector<T>`，其中 `T` 指定您想要新增之實體的結構描述。 一般而言，類型 `T` 會衍生自 `TableEntity` 或實作 `ITableEntity`，但不一定如此。 此案例中不使用 `partitionKey`、`rowKey`、`filter` 和 `take` 屬性。
+* **讀取 C# 或 Node 函式中的單一資料列** - 設定 `partitionKey` 和 `rowKey`。 hello`filter`和`take`屬性不適用於在此案例中。
+* **讀取的 C# 函式中的多個資料列**-hello 函式執行階段提供`IQueryable<T>`物件繫結 toohello 資料表。 類型 `T` 必須衍生自 `TableEntity` 或實作 `ITableEntity`。 hello `partitionKey`， `rowKey`， `filter`，和`take`屬性不適用於在此案例中，您可以使用 hello`IQueryable`物件 toodo 所需的任何篩選。 
+* **讀取中節點函式的多個資料列**-設定的 hello`filter`和`take`屬性。 請勿設定 `partitionKey` 或 `rowKey`。
+* **C# 函式中寫入一或多個資料列**-hello 函式執行階段提供`ICollector<T>`或`IAsyncCollector<T>`繫結的 toohello 資料表，其中`T`指定 hello 結構描述要 tooadd 的 hello 實體。 一般而言，類型 `T` 會衍生自 `TableEntity` 或實作 `ITableEntity`，但不一定如此。 hello `partitionKey`， `rowKey`， `filter`，和`take`屬性不適用於在此案例中。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="input"></a>
 
 ## <a name="storage-table-input-binding"></a>儲存體資料表輸入繫結
-Azure 儲存體資料表輸入繫結可讓您在您的函式中使用儲存資料表。 
+hello Azure 儲存體資料表的輸入繫結可讓您 toouse 函式中的儲存體資料表。 
 
-函式的儲存體資料表輸入會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
+hello 儲存資料表輸入的 tooa 函式會使用下列 JSON 物件中 hello hello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -49,28 +49,28 @@ Azure 儲存體資料表輸入繫結可讓您在您的函式中使用儲存資�
     "type": "table",
     "direction": "in",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to read - see below>",
-    "rowKey": "<RowKey of table entity to read - see below>",
-    "take": "<Maximum number of entities to read in Node.js - optional>",
+    "partitionKey": "<PartitionKey of table entity tooread - see below>",
+    "rowKey": "<RowKey of table entity tooread - see below>",
+    "take": "<Maximum number of entities tooread in Node.js - optional>",
     "filter": "<OData filter expression for table input in Node.js - optional>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-請注意： 
+請注意 hello 下列： 
 
-* 一起使用 `partitionKey` 和 `rowKey` 來讀取單一實體。 這些屬性是選擇性的。 
-* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 您也可以[手動進行此應用程式設定](functions-how-to-use-azure-function-app-settings.md#settings)。  
+* 使用`partitionKey`和`rowKey`一起 tooread 單一實體。 這些屬性是選擇性的。 
+* `connection`必須包含 hello 包含儲存體連接字串的應用程式設定名稱。 Hello Azure 入口網站，在 hello 標準編輯器中 hello**整合**您建立儲存體帳戶，或是選取現有的索引標籤會設定此應用程式設定。 您也可以[手動進行此應用程式設定](functions-how-to-use-azure-function-app-settings.md#settings)。  
 
 <a name="inputusage"></a>
 
 ## <a name="input-usage"></a>輸入使用方式
-在 C# 函式中，您使用在您函式簽章中的具名參數 (例如 `<T> <name>`) 繫結至資料表實體 (或多個實體)。
-其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [輸入繫結](#input) 中指定的名稱。 在 Node.js 函式中，您會使用 `context.bindings.<name>` 來存取輸入資料表實體 (或多個實體)。
+在 C# 函數中，您使用繫結 toohello 輸入資料表實體 （或實體） 具名的參數，在您的函式簽章，like `<T> <name>`。
+其中`T`是 hello 資料類型的 toodeserialize hello 資料分割，以及`paramName`是您在 hello 中指定的 hello 名稱[輸入繫結](#input)。 Node.js 函式，在您存取 hello 輸入資料表實體 （或實體） 使用`context.bindings.<name>`。
 
-可以在 Node.js 或 C# 函式中將輸入資料還原序列化。 還原序列化的物件具有 `RowKey` 和 `PartitionKey` 屬性。
+Node.js 或 C# 的函式中可還原序列化 hello 輸入的資料。 還原序列化的 hello 物件具有`RowKey`和`PartitionKey`屬性。
 
-在 C# 函式中，您也可以繫結至下列任何類型，Functions 的執行階段會嘗試使用該類型還原序列化資料表資料︰
+在 C# 函數中，您也可以繫結 tooany 的 hello 下列類型，和執行階段會嘗試的 hello 函式太還原序列化 hello 使用該類型的資料表資料：
 
 * 實作 `ITableEntity` 的任何類型
 * `IQueryable<T>`
@@ -78,8 +78,8 @@ Azure 儲存體資料表輸入繫結可讓您在您的函式中使用儲存資�
 <a name="inputsample"></a>
 
 ## <a name="input-sample"></a>輸入範例
-假設您有下列 function.json，其使用佇列觸發程序來讀取單一資料表資料列。 JSON 會指定 `PartitionKey` 
-`RowKey`。 `"rowKey": "{queueTrigger}"` 表示資料列索引鍵來自佇列訊息字串。
+假設您擁有 hello 遵循 function.json，會使用佇列觸發程序 tooread 單一資料表資料列。 hello JSON 指定`PartitionKey`  
+ `RowKey`。 `"rowKey": "{queueTrigger}"`表示該 hello 資料列索引鍵來自 hello 佇列的訊息字串。
 
 ```json
 {
@@ -105,7 +105,7 @@ Azure 儲存體資料表輸入繫結可讓您在您的函式中使用儲存資�
 }
 ```
 
-請參閱可讀取單一資料表實體的特定語言範例。
+請參閱 hello 讀取單一資料表實體的特定語言的範例。
 
 * [C#](#inputcsharp)
 * [F#](#inputfsharp)
@@ -159,9 +159,9 @@ module.exports = function (context, myQueueItem) {
 <a name="output"></a>
 
 ## <a name="storage-table-output-binding"></a>儲存體資料表輸出繫結
-Azure 儲存體資料表輸出繫結可讓您在函式中將實體寫入儲存體資料表。 
+hello Azure 儲存體資料表輸出繫結可讓您 toowrite 實體 tooa 函式中的儲存體資料表。 
 
-函式的儲存體資料表輸出會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
+hello 儲存體資料表輸出的函式使用下列 JSON 物件中 hello hello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -169,33 +169,33 @@ Azure 儲存體資料表輸出繫結可讓您在函式中將實體寫入儲存�
     "type": "table",
     "direction": "out",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to write - see below>",
-    "rowKey": "<RowKey of table entity to write - see below>",
+    "partitionKey": "<PartitionKey of table entity toowrite - see below>",
+    "rowKey": "<RowKey of table entity toowrite - see below>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-請注意： 
+請注意 hello 下列： 
 
-* 一起使用 `partitionKey` 和 `rowKey` 來寫入單一實體。 這些屬性是選擇性的。 在您的函式程式碼中建立實體物件時，您也可以指定 `PartitionKey` 和 `RowKey`。
-* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 您也可以[手動進行此應用程式設定](functions-how-to-use-azure-function-app-settings.md#settings)。 
+* 使用`partitionKey`和`rowKey`一起 toowrite 單一實體。 這些屬性是選擇性的。 您也可以指定`PartitionKey`和`RowKey`當您建立 hello 實體物件函式程式碼中。
+* `connection`必須包含 hello 包含儲存體連接字串的應用程式設定名稱。 Hello Azure 入口網站，在 hello 標準編輯器中 hello**整合**您建立儲存體帳戶，或是選取現有的索引標籤會設定此應用程式設定。 您也可以[手動進行此應用程式設定](functions-how-to-use-azure-function-app-settings.md#settings)。 
 
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>輸出使用方式
-在 C# 函式中，您使用函式簽章中名為 `out` 的參數 (例如 `out <T> <name>`) 繫結至資料表輸出，其中 `T` 是您想要用來序列化資料的資料類型，而 `paramName` 是您在 [輸出繫結](#output) 中指定的名稱。 在 Node.js 函式中，您會使用 `context.bindings.<name>` 來存取資料表輸出。
+在 C# 函數中，您使用繫結 toohello 資料表輸出名為 hello`out`函式簽章中的參數要`out <T> <name>`，其中`T`是 hello 資料類型的 tooserialize hello 資料分割，和`paramName`是 hello 名稱指定在 hello[輸出繫結](#output)。 在 Node.js 函數中，您可以存取 hello 資料表輸出使用`context.bindings.<name>`。
 
-您可以在 Node.js 或 C# 函式中將物件序列化。 在 C# 函式中，您也可以繫結至下列類型︰
+您可以在 Node.js 或 C# 函式中將物件序列化。 在 C# 函數中，您也可以繫結 toohello 下列類型：
 
 * 實作 `ITableEntity` 的任何類型
-* `ICollector<T>` (可輸出多個實體。 請參閱[範例](#outcsharp)。)
+* `ICollector<T>`(toooutput 多個實體。 請參閱[範例](#outcsharp)。)
 * `IAsyncCollector<T>` (`ICollector<T>` 的非同步版本)
-* `CloudTable` (使用「Azure 儲存體 SDK」。 請參閱[範例](#readmulti)。)
+* `CloudTable`（使用 hello Azure 儲存體 SDK。 請參閱[範例](#readmulti)。)
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>輸出範例
-下列 *function.json* 和 *run.csx* 範例示範如何在 C# 中撰寫多個資料表實體。
+hello 下列*function.json*和*run.csx*範例會示範如何 toowrite 多個資料表實體。
 
 ```json
 {
@@ -217,7 +217,7 @@ Azure 儲存體資料表輸出繫結可讓您在函式中將實體寫入儲存�
 }
 ```
 
-請參閱可建立多個資料表實體的特定語言範例。
+請參閱 hello 建立多個資料表實體的特定語言的範例。
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -262,7 +262,7 @@ type Person = {
 }
 
 let Run(input: string, tableBinding: ICollector<Person>, log: TraceWriter) =
-    for i = 1 to 10 do
+    for i = 1 too10 do
         log.Info(sprintf "Adding Person entity %d" i)
         tableBinding.Add(
             { PartitionKey = "Test"
@@ -293,7 +293,7 @@ module.exports = function (context) {
 <a name="readmulti"></a>
 
 ## <a name="sample-read-multiple-table-entities-in-c"></a>範例：讀取 C# 中的多個資料表實體  #
-下列「function.json」  和 C# 程式碼範例會讀取佇列訊息中指定的資料分割金鑰的實體。
+hello 下列*function.json*和 C# 程式碼範例會讀取 hello 佇列訊息中指定資料分割索引鍵的實體。
 
 ```json
 {
@@ -317,7 +317,7 @@ module.exports = function (context) {
 }
 ```
 
-C# 程式碼會新增對「Azure 儲存體 SDK」的參考，讓實體類型可以衍生自 `TableEntity`。
+hello C# 程式碼會將參考 toohello Azure 儲存體 SDK，使得 hello 實體類型可以衍生自`TableEntity`。
 
 ```csharp
 #r "Microsoft.WindowsAzure.Storage"

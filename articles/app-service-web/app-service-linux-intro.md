@@ -1,5 +1,5 @@
 ---
-title: "Linux 上的 Azure Web 應用程式簡介 | Microsoft Docs"
+title: "aaaIntroduction tooAzure Linux 上的 Web 應用程式 |Microsoft 文件"
 description: "深入了解 Linux 上的 Azure Web 應用程式。"
 keywords: azure app service, linux, oss
 services: app-service
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 0870f811845ec7c705da13f08abdfa762d25b209
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 43b9865ade251909a77429eb3e18fe0bcaac3bde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-azure-web-app-on-linux"></a>Linux 上的 Azure Web 應用程式簡介
+# <a name="introduction-tooazure-web-app-on-linux"></a>簡介 tooAzure Linux 上的 Web 應用程式
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 ## <a name="overview"></a>概觀
-針對支援的應用程式堆疊，客戶可以使用 Linux 上的 Web 應用程式，以原生方式將 Web Apps 裝載於 Linux。 下節列出目前支援的應用程式堆疊。 
+客戶可以使用 Web 應用程式原生 Linux 上的 Linux toohost web 應用程式支援的應用程式堆疊。 hello 下節列出 hello 目前支援的應用程式堆疊。 
 
 ## <a name="features"></a>特性
-Linux 上的 Web 應用程式目前支援下列應用程式堆疊︰
+Web 應用程式，在 Linux 上目前支援下列應用程式堆疊的 hello:
 
 * Node.js
     * 4.4
@@ -59,10 +59,10 @@ Linux 上的 Web 應用程式目前支援下列應用程式堆疊︰
 
 調整應用程式大小︰
 
-* 客戶可以變更 App Service 方案中的階層，即可相應增加和減少 Web 應用程式的規模
-* 客戶可以將應用程式相應放大，在其 SKU 的範圍內執行多個應用程式執行個體
+* 客戶可以向上和向下調整 web 應用程式，藉由變更其 App Service 方案的 hello 層
+* 客戶可以擴充應用程式及執行多個應用程式的執行個體 hello 範圍內的 SKU
 
-針對 Kudu，有一些基本功能︰
+如 Kudu hello 基本功能：
 
 * 環境
 * 部署
@@ -75,11 +75,11 @@ Linux 上的 Web 應用程式目前支援下列應用程式堆疊︰
 * ACR 和 DockerHub CI/CD
 
 ## <a name="limitations"></a>限制
-Azure 入口網站只會顯示 Linux 上的 Web 應用程式目前可用的功能，並隱藏其餘部分。 隨著我們啟用更多功能，您會在入口網站中看到它們。
+hello Azure 入口網站會顯示目前在 Linux 上的 Web 應用程式適用的唯一功能，並隱藏 hello rest。 因為我們啟用更多的功能，就會看見 hello 入口網站上。
 
-某些功能尚無法使用，例如虛擬網路整合、Azure Active Directory/第三方驗證或 Kudu 網站擴充功能。 一旦這些功能提供使用後，我們將會在文件和部落格中更新關於變更的消息。
+某些功能尚無法使用，例如虛擬網路整合、Azure Active Directory/第三方驗證或 Kudu 網站擴充功能。 一旦這些功能可供使用，我們將會更新我們的文件和部落格有關 hello 變更。
 
-目前只在下列區域提供此公開預覽版本：
+這個公用預覽了目前僅限用於 hello 下列區域：
 
 * 美國西部
 * 美國東部
@@ -94,25 +94,25 @@ Azure 入口網站只會顯示 Linux 上的 Web 應用程式目前可用的功�
 * 巴西南部
 * 印度南部
 
-Linux 上的 Web Apps 只在「專用」App Service 方案中才支援，而且沒有「免費」或「共用」層。 此外，一般和 Linux Web 應用程式的 App Service 方案互斥，因此，您無法在非 Linux App Service 方案中建立 Linux Web 應用程式。
+Web 應用程式，在 Linux 上 hello 專用的 app service 方案中才支援，而且沒有免費或共用層。 此外，一般和 Linux Web 應用程式的 App Service 方案互斥，因此，您無法在非 Linux App Service 方案中建立 Linux Web 應用程式。
 
-只有同一區域沒有非 Linux Web Apps 的資源群組中，才能建立 Linux 上的 Web Apps。
+Web 應用程式，在 Linux 上必須建立資源群組不包含非 Linux hello 的 web 應用程式中相同的區域。
 
 ## <a name="troubleshooting"></a>疑難排解 ##
 
-當您的應用程式無法啟動或您想要檢查應用程式的記錄時，請檢查 LogFiles 目錄中的 Docker 記錄。 您可以透過 SCM 網站或 FTP 來存取此目錄。
-若要從您的容器記錄 `stdout` 和 `stderr`，您必須啟用 [診斷記錄] 下的 [Docker 容器記錄]。
+當您的應用程式失敗 toostart 或您想 toocheck hello 記錄從您的應用程式時，請檢查的 hello Docker 記錄 hello LogFiles 目錄中。 您可以透過 SCM 網站或 FTP 來存取此目錄。
+toolog hello`stdout`和`stderr`從您的容器，您需要 tooenable **Docker 容器記錄**下**診斷記錄檔**。
 
 ![啟用記錄][2]
 
-![Using Kudu to view Docker logs][1]
+![使用 Kudu tooview Docker 記錄檔][1]
 
-您可以在 [開發工具] 功能表中從 [進階工具] 存取 SCM 網站。
+您可以存取 hello SCM 站台從**進階工具**在 hello**開發工具**功能表。
 
 ## <a name="next-steps"></a>後續步驟
-請參閱下列連結以開始使用 Linux 上的 App Service。 您可以在[我們的論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazurewebsitespreview)張貼問題和疑難。
+請參閱下列連結 tooget 開始使用 Linux 上的應用程式服務的 hello。 您可以在[我們的論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazurewebsitespreview)張貼問題和疑難。
 
-* [如何針對 Linux 上的 Azure Web 應用程式使用自訂 Docker 映像](app-service-linux-using-custom-docker-image.md)
+* [Toouse 自訂的 Docker 的 Linux 上的 Azure Web 應用程式的映像](app-service-linux-using-custom-docker-image.md)
 * [在 Linux 上的 Azure Web 應用程式中使用適用於 Node.js 的 PM2 組態](app-service-linux-using-nodejs-pm2.md)
 * [在 Linux 上的 Azure App Service Web 應用程式中使用 .NET Core](app-service-linux-using-dotnetcore.md)
 * [在 Linux 上的 Azure App Service Web 應用程式中使用 Ruby](app-service-linux-ruby-get-started.md)

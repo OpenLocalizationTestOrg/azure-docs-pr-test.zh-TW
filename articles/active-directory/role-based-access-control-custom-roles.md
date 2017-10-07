@@ -1,6 +1,6 @@
 ---
-title: "建立 Azure RBAC 的自訂角色 | Microsoft Docs"
-description: "了解如何使用 Azure 角色型存取控制來定義自訂角色，以在您的 Azure 訂用帳戶中進行更精確的身分識別管理。"
+title: "aaaCreate Azure rbac 進行的自訂角色 |Microsoft 文件"
+description: "深入了解如何 toodefine 自訂角色所有存取控制與您 Azure 訂用帳戶中的更精確識別管理。"
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -15,18 +15,18 @@ ms.date: 07/11/2017
 ms.author: andredm
 ms.reviewer: rqureshi
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8e72f2c8095d13c4b6df3c6576bd58806a3c0f2f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 60df12632ef6c086d5feeb1809196d7c4ee5e021
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-custom-roles-for-azure-role-based-access-control"></a>建立 Azure 角色型存取控制的自訂角色
-如果內建角色都不符合您的特定存取需求，請在 Azure 角色型存取控制 (RBAC) 中建立自訂角色。 使用 [Azure PowerShell](role-based-access-control-manage-access-powershell.md)、[Azure 命令列介面](role-based-access-control-manage-access-azure-cli.md) (CLI) 和 [REST API](role-based-access-control-manage-access-rest.md)，可以建立自訂角色。 就像內建角色一樣，您可以將自訂角色指派給訂用帳戶、資源群組和資源範圍的使用者、群組和應用程式。 自訂角色會儲存在 Azure AD 租用戶中，而且可在訂用帳戶之間共用。
+如果 hello 內建角色都不符合您的特定存取需求，建立自訂安全性角色中所有存取控制 (RBAC)。 您可以使用建立自訂角色[Azure PowerShell](role-based-access-control-manage-access-powershell.md)， [Azure 命令列介面](role-based-access-control-manage-access-azure-cli.md)(CLI)，和 hello [REST API](role-based-access-control-manage-access-rest.md)。 如同內建的角色，您可以指派自訂角色 toousers、 群組和應用程式在訂用帳戶、 資源群組和資源的範圍。 自訂角色會儲存在 Azure AD 租用戶中，而且可在訂用帳戶之間共用。
 
-每個租用戶可以建立最多 2000 個自訂角色。 
+每個租用戶可以建立註冊 too2000 自訂角色。 
 
-以下範例示範可監視和重新啟動虛擬機器的自訂角色：
+hello 下列範例示範自訂安全性角色的監視，並重新啟動虛擬機器：
 
 ```
 {
@@ -57,15 +57,15 @@ ms.lasthandoff: 08/29/2017
 }
 ```
 ## <a name="actions"></a>動作
-自訂角色的 **Actions** 屬性會指定角色授與存取權的 Azure 作業。 它是識別 Azure 資源提供者的安全性實體作業的作業字串集合。 作業字串遵循 `Microsoft.<ProviderName>/<ChildResourceType>/<action>` 的格式。 包含萬用字元 (\*) 的作業字串會授與符合作業字串的所有作業的存取權。 例如：
+hello**動作**的自訂安全性角色的屬性會指定 hello Azure 操作 toowhich hello 角色會授與的存取。 它是識別 Azure 資源提供者的安全性實體作業的作業字串集合。 操作字串 hello 的遵照格式`Microsoft.<ProviderName>/<ChildResourceType>/<action>`。 作業包含萬用字元的字串 (\*) 授與存取權的比對 hello 作業字串 tooall 作業。 例如：
 
-* `*/read` 授與所有 Azure 資源提供者的所有資源類型的讀取作業的存取權。
-* `Microsoft.Compute/*` 可授與對 Microsoft.Compute 資源提供者中所有資源類型之所有作業的存取權。
-* `Microsoft.Network/*/read` 授與 Azure 的 Microsoft.Network 資源提供者的所有資源類型的讀取作業的存取權。
-* `Microsoft.Compute/virtualMachines/*` 授與虛擬機器和其子系資源類型的所有作業的存取權。
-* `Microsoft.Web/sites/restart/Action` 授與重新啟動網站的存取權。
+* `*/read`授與存取 tooread 作業的所有 Azure 資源提供者的所有資源類型。
+* `Microsoft.Compute/*`授與存取 tooall hello Microsoft.Compute 資源提供者中的所有資源類型的作業。
+* `Microsoft.Network/*/read`授與存取 tooread hello Microsoft.Network 資源提供者中所有的資源類型，Azure 的作業。
+* `Microsoft.Compute/virtualMachines/*`授與存取虛擬機器和及其子系的資源類型 tooall 作業。
+* `Microsoft.Web/sites/restart/Action`授與存取 toorestart 網站。
 
-使用 `Get-AzureRmProviderOperation` (在 PowerShell 中) 或 `azure provider operations show` (在 Azure CLI 中) 來列出 Azure 資源提供者的作業。 您也可以使用這些命令以確認作業字串有效，以及展開萬用字元作業字串。
+使用`Get-AzureRmProviderOperation`（以 PowerShell) 或`azure provider operations show`（在 Azure CLI) toolist 作業的 Azure 資源提供者。 您也可以使用這些命令 tooverify 作業字串有效和 tooexpand 萬用字元操作字串。
 
 ```
 Get-AzureRMProviderOperation Microsoft.Compute/virtualMachines/*/action | FT Operation, OperationName
@@ -84,21 +84,21 @@ azure provider operations show "Microsoft.Network/*"
 ![Azure CLI 螢幕擷取畫面 - azure 提供者作業顯示 "Microsoft.Compute/virtualMachines/\*/action" ](./media/role-based-access-control-configure/1-azure-provider-operations-show.png)
 
 ## <a name="notactions"></a>NotActions
-如果排除限制的作業可更輕鬆地定義您要允許的作業集合，請使用 **NotActions** 屬性。 自訂角色授與的存取權是藉由從 **Actions** 作業中去掉 **NotActions** 作業來計算。
+使用 hello **NotActions**如果 hello 一組作業，您會希望 tooallow 更輕鬆地定義限制的作業中排除的屬性。 hello 自訂安全性角色授與存取權的計算方式是減去 hello **NotActions**作業 hello**動作**作業。
 
 > [!NOTE]
-> 如果為使用者指派會排除 **NotActions** 中作業的角色，並指派授與相同作業存取權的第二個角色，即會允許使用者執行該作業。 **NotActions** 不是拒絕規則 – 它只是一個便利的方式，可以在需要排除特定作業時建立允許作業集。
+> 如果指派使用者角色中的作業中排除**NotActions**，並指派第二個角色，授與存取相同的作業，hello 使用者是的 toohello 允許 tooperform 該作業。 **NotActions**不是拒絕規則 – 它時，只是方便 toocreate 一組允許的作業需要 toobe 排除特定的作業。
 >
 >
 
 ## <a name="assignablescopes"></a>AssignableScopes
-自訂角色的 **AssignableScopes** 屬性會指定自訂角色可供指派的範圍 (訂用帳戶、資源群組或資源)。 您可以讓自訂角色僅指派給需要它的訂用帳戶或資源群組，不會干擾其餘訂用帳戶或資源群組的使用者體驗。
+hello **AssignableScopes** hello 自訂角色屬性會指定 hello 範圍 （訂用帳戶、 資源群組或資源） 中的 hello 自訂的角色是指派的可用。 您可以在 hello 自訂角色指派的可用只有 hello 訂閱或資源群組需要它，而不混亂的情形使用者體驗 hello 其餘 hello 訂用帳戶或資源群組。
 
 有效的可指派範圍範例包括：
 
-* “/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e”, “/subscriptions/e91d47c4-76f3-4271-a796-21b4ecfe3624” - 讓角色可用於兩個訂用帳戶中的指派。
-* “/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e” - 讓角色可用於單一訂用帳戶中的指派。
-* “/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e/resourceGroups/Network” - 讓角色僅可用於網路資源群組中的指派。
+* "/ 訂用帳戶/c276fc76-9cd4-44c9-99a7-4fd71546436e"，"/ 訂用帳戶/e91d47c4-76f3-4271-a796-21b4ecfe3624"-讓 hello 角色可供指派兩個訂用帳戶中。
+* "/ 訂用帳戶/c276fc76-9cd4-44c9-99a7-4fd71546436e"-讓 hello 角色可供指派單一訂用帳戶中。
+* "/ 訂用帳戶/c276fc76-9cd4-44c9-99a7-4fd71546436e/resourceGroups/網路 」-讓 hello 分派只在 hello 網路資源群組中可用的角色。
 
 > [!NOTE]
 > 您至少必須使用一個訂用帳戶、資源群組或資源識別碼。
@@ -106,20 +106,20 @@ azure provider operations show "Microsoft.Network/*"
 >
 
 ## <a name="custom-roles-access-control"></a>自訂角色存取控制
-自訂角色的 **AssignableScopes** 屬性也會控制誰可以檢視、修改和刪除角色。
+hello **AssignableScopes** hello 自訂角色的內容也會控制誰可以檢視、 修改和刪除 hello 角色。
 
 * 誰可以建立自訂角色？
     訂用帳戶、資源群組和資源的擁有者 (和使用者存取管理員) 可以建立自訂角色以在這些範圍中使用。
-    建立角色的使用者必須能夠對角色的所有 **AssignableScopes** 執行 `Microsoft.Authorization/roleDefinition/write` 作業。
+    hello 使用者建立 hello 角色需要 toobe 無法 tooperform`Microsoft.Authorization/roleDefinition/write`作業上所有的 hello **AssignableScopes**的 hello 角色。
 * 誰可以修改自訂角色？
-    訂用帳戶、資源群組和資源的擁有者 (和使用者存取管理員) 可以在這些範圍中修改自訂角色。 使用者必須能夠對自訂角色的所有 **AssignableScopes** 執行 `Microsoft.Authorization/roleDefinition/write` 作業。
+    訂用帳戶、資源群組和資源的擁有者 (和使用者存取管理員) 可以在這些範圍中修改自訂角色。 使用者需要 toobe 無法 tooperform hello`Microsoft.Authorization/roleDefinition/write`作業上所有的 hello **AssignableScopes**的自訂安全性角色。
 * 誰可以檢視自訂角色？
-    Azure RBAC 中的所有內建角色允許檢視可用於指派的角色。 可以在範圍中執行 `Microsoft.Authorization/roleDefinition/read` 作業的使用者，可以檢視可用於在該範圍中指派的 RBAC 角色。
+    Azure RBAC 中的所有內建角色允許檢視可用於指派的角色。 使用者可以執行 hello`Microsoft.Authorization/roleDefinition/read`在範圍內的作業可以檢視 hello RBAC 角色可供在該範圍的指派。
 
 ## <a name="see-also"></a>另請參閱
-* [角色型存取控制](role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。
-* 了解如何使用下列各項管理存取權：
+* [Role Based Access Control](role-based-access-control-configure.md)： 開始使用 RBAC hello Azure 入口網站中。
+* 了解 toomanage 與的存取方式：
   * [PowerShell](role-based-access-control-manage-access-powershell.md)
   * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
   * [REST API](role-based-access-control-manage-access-rest.md)
-* [內建角色](role-based-access-built-in-roles.md)︰取得有關 RBAC 中標準角色的詳細資訊。
+* [內建角色](role-based-access-built-in-roles.md)： 取得標準中 RBAC 的 hello 角色的相關詳細資料。

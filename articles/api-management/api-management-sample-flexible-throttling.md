@@ -1,6 +1,6 @@
 ---
-title: "以 Azure API 管理進行進階要求節流"
-description: "了解如何使用 Azure API 管理來建立及套用彈性配額和速率限制原則。"
+title: "使用 Azure API 管理節流 aaaAdvanced 要求"
+description: "深入了解如何 toocreate 套用彈性配額及限制使用 Azure API 管理原則的速率。"
 services: api-management
 documentationcenter: 
 author: darrelmiller
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 35375e599891a9443a91c4c3a8657e8c9c48c7b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ac87f83118a37bd587fddf044e5c2d6fc2af9031
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advanced-request-throttling-with-azure-api-management"></a>以 Azure API 管理進行進階要求節流
-能夠節流傳入要求是 Azure API 管理的重要角色。 藉由控制要求的速率或傳輸的要求/資料總量，API 管理讓 API 提供者能夠保護其 API 不被濫用，並建立不同 API 產品層級的價值。
+無法 toothrottle 傳入要求是 Azure API 管理的重要角色。 藉由控制 hello 速率要求或 hello 總計要求/資料的傳輸，API 管理可讓應用程式開發介面的提供者 tooprotect 濫用從其應用程式開發介面，並建立不同的應用程式開發介面產品層級的值。
 
 ## <a name="product-based-throttling"></a>依產品節流
-到目前為止，速率節流功能侷限於特定產品訂閱的限定範圍 (基本上是索引鍵)，是在 API 管理發行者入口網站中定義。 這可用來讓 API 提供者將限制套用至註冊使用其 API 的開發人員，不過，舉例來說，它無法協助節流 API 的個別使用者。 想讓開發人員的應用程式的單一使用者取用整個配額，並讓開發人員的其他客戶無法使用應用程式，是有可能的。 同樣的，數個產生大量要求的客戶可能會限制偶爾使用者的存取權。
+toodate，hello 速率的節流功能已有限範圍的 toobeing tooa 特定產品的訂閱 （基本上是索引鍵），定義在 hello API 管理發行者入口網站。 這可用於 hello API 提供者 tooapply 限制 hello 開發人員已註冊 toouse 其應用程式開發介面，不過，它也沒有用，例如，在節流的 hello API 的個別使用者。 它有可能在單一使用者的 hello 開發人員應用程式 tooconsume hello 整個配額，然後防止 hello 開發人員的其他客戶可以 toouse hello 應用程式。 此外，可能會產生大量的要求數個客戶可能會限制存取 toooccasional 使用者。
 
 ## <a name="custom-key-based-throttling"></a>依自訂索引鍵節流
-新的 [rate-limit-by-key](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRateByKey) 和 [quota-by-key](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuotaByKey) 原則提供明顯更有彈性的流量控制解決方案。 這些新原則可讓您定義運算式，以識別將用來追蹤流量使用的索引鍵。 其運作的方式用範例來說明最簡單。 
+新的 hello[速率與限制由-鍵](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRateByKey)和[配額的索引鍵](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuotaByKey)原則提供大幅更有彈性的方案 tootraffic 控制項。 這些新原則可讓您 toodefine 運算式 tooidentify hello 金鑰將會使用的 tootrack 流量使用方式。 簡單範例說明 hello 這個運作的方式。 
 
 ## <a name="ip-address-throttling"></a>IP 位址節流
-下列原則會限制單一用戶端 IP 位址每一分鐘只有 10 個呼叫，等於每個月總數為 1,000,000 個呼叫和 10,000 KB 頻寬。 
+hello 下列原則會限制單一用戶端 IP 位址 tooonly 10 呼叫每隔一分鐘，具有總計的 1000000 呼叫和 10000 kb 為單位的每個月的頻寬。 
 
 ```xml
 <rate-limit-by-key  calls="10"
@@ -43,7 +43,7 @@ ms.lasthandoff: 07/11/2017
           counter-key="@(context.Request.IpAddress)" />
 ```
 
-如果網際網路上的所有用戶端皆使用唯一 IP 位址，這是可能是限制使用者使用量的有效方式。 不過，很有可能多個使用者共用單一公用 IP 位址，因為他們透過 NAT 裝置存取網際網路。 儘管如此，對允許未驗證存取的 API 來說， `IpAddress` 可能是最佳選項。
+如果所有的用戶端 hello 網際網路上使用唯一的 IP 位址，這可能是限制使用者所使用的有效方式。 不過，就有很多個使用者會共用單一公用 IP 位址到期 toothem 存取 hello 網際網路，透過 NAT 裝置。 儘管這 Api，可讓未授權的存取 hello`IpAddress`可能 hello 最佳選項。
 
 ## <a name="user-identity-throttling"></a>使用者身分識別節流
 如果使用者經過驗證，則可以根據該名使用者的唯一身分識別產生節流索引鍵。
@@ -54,13 +54,13 @@ ms.lasthandoff: 07/11/2017
     counter-key="@(context.Request.Headers.GetValueOrDefault("Authorization","").AsJwt()?.Subject)" />
 ```
 
-在此範例中，我們要擷取授權的標頭，將它轉換成 `JWT` 物件，並使用權杖的主體來識別使用者，並使用它做速率限制索引鍵。 如果使用者身分識別是儲存在 `JWT` 中做為其中一個宣告，則該值可用於它的位置。
+在此範例中我們擷取 hello 授權標頭，將它轉換太`JWT`物件和使用 hello 主旨的 hello 語彙基元 tooidentify hello 使用者用來做為 hello 速率限制索引鍵。 如果 hello 使用者識別會儲存在 hello`JWT`為其中一個其他 hello 然後宣告值無法用於它的位置。
 
 ## <a name="combined-policies"></a>結合的原則
-雖然新的節流原則比現有節流原則提供更多的控制，但仍會有結合兩種功能的值。 依產品訂用帳戶金鑰 ([依訂用帳戶限制呼叫率](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate)和[依訂用帳戶設定使用量配額](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota)) 進行節流是一種根據使用量層級收費、讓 API 創造獲利的絕佳方式。 更精細的依使用者控制節流則和其互補，並防止一位使用者的行為降低另一位使用者的體驗。 
+雖然 hello 新節流原則提供更多的控制，比 hello 現有節流原則，但仍會有值結合這兩個功能。 節流的訂用帳戶的產品金鑰 ([訂用帳戶限制呼叫率](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate)和[訂用帳戶所設定使用量配額](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota)) 是由充電 tooenable monetizing 應用程式開發介面的基礎使用層級的好方法。 hello 精細地的控制要由使用者所能 toothrottle 互補並防止某個使用者的行為 hello 體驗，另一個導致效能變差。 
 
 ## <a name="client-driven-throttling"></a>用戶端導向節流
-若使用 [原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)定義節流索引鍵，則是由 API 提供者選擇如何設定節流的範圍。 不過，開發人員可能想要控制他們對自己的客戶的速率限制。 API 提供者可以藉由導入自訂標頭來做到這一點，以允許開發人員的用戶端應用程式與 API 通訊索引鍵。
+定義 hello 節流索引鍵時使用[原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)，這時就選擇如何範圍 hello 節流的 hello API 提供者。 不過，開發人員可能會想的 toocontrol 它們的評等限制他們自己的客戶。 這可以藉由引進自訂標頭 tooallow hello 開發人員的用戶端應用程式 toocommunicate hello 金鑰 toohello API 啟用 hello API 提供者。
 
 ```xml
 <rate-limit-by-key calls="100"
@@ -68,16 +68,16 @@ ms.lasthandoff: 07/11/2017
           counter-key="@(request.Headers.GetValueOrDefault("Rate-Key",""))"/>
 ```
 
-這可讓開發人員的用戶端應用程式選擇要如何建立速率限制索引鍵。 加上一些巧思，用戶端開發人員可以透過配置索引鍵組給使用者和輪流使用索引鍵，建立自己的速率層。
+這可讓開發人員 hello 用戶端應用程式 toochoose 他們要如何 toocreate hello 速率限制索引鍵。 一點的技巧與用戶端開發人員可以建立自己的速率層配置組的索引鍵 toousers 和旋轉 hello 金鑰使用方式。
 
-## <a name="summary"></a>Summary
-Azure API 管理提供速率和配額節流，不但能保護您的 API 服務，並為您的 API 服務增加價值。 新的節流原則與自訂範圍規則，可讓您更精細的控制這些原則，進而讓您的客戶建置更好的應用程式。 本文中的範例示範如何使用這些新原則，分別使用用戶端 IP 位址、使用者身分識別及用戶端產生值來製造速率限制索引鍵。 不過，訊息中還有許多其他部份可以利用，例如使用者代理程式、URL 路徑片段、訊息大小。
+## <a name="summary"></a>摘要
+Azure API 管理提供速率和引號節流 tooboth 保護，然後加入值 tooyour API 服務。 hello 新節流原則與自訂範圍規則可讓您進行更細微的更細緻的控制這些原則 tooenable 客戶 toobuild 更好應用程式。 本文中的 hello 範例示範這些新原則的 hello 使用製造速率限制用戶端 IP 位址、 使用者識別與用戶端產生值的索引鍵。 不過，還有 hello 訊息，例如使用者代理程式、 URL 的路徑片段、 訊息大小也可使用的許多其他組件。
 
 ## <a name="next-steps"></a>後續步驟
-敬請不吝賜教在 Disqus 的本主題系列中提供意見。 我們很想知道其他在您的案例中是合理選擇的可能索引鍵值。
+請提供您的意見 hello Disqus 執行緒在這個主題。 將有關其他可能的索引鍵值已邏輯的選擇，在您的案例的絕佳 toohear。
 
 ## <a name="watch-a-video-overview-of-these-policies"></a>觀看這些原則的影片概觀
-如需有關本文中所涵蓋的 [rate-limit-by-key](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRateByKey) 和 [quota-by-key](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuotaByKey) 原則的詳細資訊，請觀看以下影片。
+如需有關 hello[速率與限制由-鍵](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRateByKey)和[配額的索引鍵](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuotaByKey)原則涵蓋在本文中，請密切注意 hello 下列視訊。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Advanced-Request-Throttling-with-Azure-API-Management/player]
 > 

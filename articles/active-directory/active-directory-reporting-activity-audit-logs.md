@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 入口網站中的稽核活動報告 | Microsoft Docs"
-description: "介紹 Azure Active Directory 入口網站中的稽核活動報告"
+title: "aaaAudit 活動報告會在 hello Azure Active Directory 入口網站 |Microsoft 文件"
+description: "簡介 toohello 稽核 hello Azure Active Directory 入口網站中的活動報告"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,66 +15,66 @@ ms.workload: identity
 ms.date: 07/19/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: f2d0332d815c82d7d47625e020de2e9c5099deeb
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1567673f5030fc707b017c069f2ba7587962e5cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="audit-activity-reports-in-the-azure-active-directory-portal"></a>Azure Active Directory 入口網站中的稽核活動報告 
+# <a name="audit-activity-reports-in-hello-azure-active-directory-portal"></a>稽核 hello Azure Active Directory 入口網站中的活動報告 
 
-透過 Azure Active Directory 中的報告，您可以取得判斷您的環境執行狀況所需的資訊。
+您可以使用 Azure Active Directory (Azure AD) 中的報表，取得您需要您的環境執行的方式 toodetermine hello 資訊。
 
-Azure AD 中的報告架構包含下列元件：
+hello Azure AD 中的報表架構包含下列元件的 hello:
 
 - **活動** 
-    - **登入活動** – 受管理應用程式和使用者登入活動的使用情況相關資訊
+    - **登入活動**– hello 使用量資訊的受管理的應用程式和使用者登入活動
     - **稽核記錄** - 關於使用者和群組管理、受管理應用程式和目錄活動的系統活動資訊。
 - **安全性** 
-    - **有風險的登入** - 有風險的登入表示非使用者帳戶合法擁有者的某人嘗試登入。 如需詳細資訊，請參閱＜有風險的登入＞。
+    - **高風險的登入**-有風險的登入是可能執行的人不是合法 hello 的使用者帳戶擁有者的登入嘗試的指標。 如需詳細資訊，請參閱＜有風險的登入＞。
     - **標幟為有風險的使用者** - 有風險的使用者表示可能被盜用的使用者帳戶。 如需詳細資訊，請參閱＜標幟為有風險的使用者＞。
 
-本主題提供稽核活動的概觀。
+本主題提供 hello 稽核活動的概觀。
  
-## <a name="who-can-access-the-data"></a>誰可以存取資料？
-* 具有安全性系統管理員或安全性讀取器角色的使用者
+## <a name="who-can-access-hello-data"></a>誰可以存取 hello 資料？
+* Hello 安全性系統管理員或安全性 Reader 角色中的使用者
 * 全域管理員
 * 個別使用者 (非系統管理員) 可以看到自己的活動
 
 
-## <a name="audit-logs"></a>稽核記錄
+## <a name="audit-logs"></a>稽核記錄檔
 
-Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記錄。  
-所有稽核資料的第一個進入點是 [Azure Active Directory] 的 [活動] 區段中的 [稽核記錄]。
+Azure Active Directory 中的 hello 稽核記錄檔提供的相容性的系統活動記錄。  
+稽核資料您第一個項目點 tooall 是**稽核記錄檔**在 hello**活動**區段**Azure Active Directory**。
 
-![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/61.png "稽核記錄檔")
+![稽核記錄](./media/active-directory-reporting-activity-audit-logs/61.png "稽核記錄")
 
 稽核記錄的預設清單檢視顯示︰
 
-- 發生時間與日期
-- 活動的啟動器/動作項目 (對象) 
-- 活動 (項目) 
-- 目標
+- hello 日期和時間 hello 出現項目
+- hello 啟動器 / 動作項目 (*人員*) 的活動 
+- hello 活動 (*什麼*) 
+- hello 目標
 
-![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/18.png "稽核記錄檔")
+![稽核記錄](./media/active-directory-reporting-activity-audit-logs/18.png "稽核記錄")
 
-您可以按一下工具列中的 [資料行] 來自訂清單檢視。
+您可以自訂 hello 清單檢視中，依序按一下**資料行**hello 工具列中。
 
-![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/19.png "稽核記錄檔")
+![稽核記錄](./media/active-directory-reporting-activity-audit-logs/19.png "稽核記錄")
 
-這可讓您顯示其他欄位，或移除已顯示的欄位。
+這可讓您 toodisplay 其他欄位，或移除已顯示的欄位。
 
-![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/21.png "稽核記錄檔")
+![稽核記錄](./media/active-directory-reporting-activity-audit-logs/21.png "稽核記錄")
 
 
-按一下清單檢視中的項目，即可取得所有可用的詳細資料。
+依序按一下 hello 清單檢視中的項目，您會取得所有可用的詳細資訊。
 
-![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/22.png "稽核記錄檔")
+![稽核記錄](./media/active-directory-reporting-activity-audit-logs/22.png "稽核記錄")
 
 
 ## <a name="filtering-audit-logs"></a>篩選稽核記錄檔
 
-若要將報告的資料縮小至您適用的層級，您可以使用下列欄位篩選稽核資料︰
+向下 hello toonarrow 報告資料 tooa 層級，適用於您，您可以篩選 hello 稽核資料，使用下列欄位的 hello:
 
 - 日期範圍
 - 啟動者 (執行者)
@@ -82,10 +82,10 @@ Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記
 - 活動資源類型
 - 活動
 
-![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/23.png "稽核記錄檔")
+![稽核記錄](./media/active-directory-reporting-activity-audit-logs/23.png "稽核記錄")
 
 
-**日期範圍**篩選條件可讓您定義傳回資料的時間範圍。  
+hello**日期範圍**篩選器可讓 tooyou toodefine hello 的時間範圍內傳回的資料。  
 可能的值包括：
 
 - 1 個月
@@ -95,9 +95,9 @@ Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記
 
 當您選取自訂時間範圍時，可以設定開始時間和結束時間。
 
-**啟動者**篩選條件可讓您定義執行者的名稱或其萬用主體名稱 (UPN)。
+hello**由起始**篩選器可讓您 toodefine 演員姓名或其通用主要名稱 (UPN)。
 
-**類別**篩選條件可讓您選取下列其中一個篩選條件︰
+hello**類別**篩選器可讓您的下列篩選器的 hello tooselect 其中一個：
 
 - 全部
 - 核心類別
@@ -110,7 +110,7 @@ Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記
 - 身分識別保護
 - B2C
 
-**活動資源類型**篩選條件可讓您選取下列其中一個篩選條件︰
+hello**活動資源類型**篩選器可讓您 tooselect hello 下列其中一種篩選：
 
 - 全部 
 - 群組
@@ -121,29 +121,29 @@ Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記
 - 裝置
 - 其他
 
-當您選取 [群組] 作為 [活動資源類型] 時，會取得可讓您也提供**來源**的額外篩選條件類別：
+當您選取**群組**為**活動資源類型**，tooalso 取得額外的篩選條件分類，可讓您提供**來源**:
 
 - Azure AD
 - O365
 
 
-**活動**篩選條件是根據您類別和您選取的活動資源類型。 您可以選取您想要查看的特定活動或選擇全部。 
+hello**活動**篩選根據 hello 類別和活動資源類型進行的選取項目。 您可以選取您想要 toosee 或選擇所有的特定活動。 
 
-您可以使用圖形 API https://graph.windows.net/$tenantdomain/activities/auditActivityTypes?api-version=beta 來取得所有稽核活動的清單 (其中，$tenantdomain 是網域名稱)，或請參閱[稽核報告事件](active-directory-reporting-audit-events.md)一文。
+您可以取得所有的稽核活動 hello 清單使用 auditActivityTypes/tenantdomain/活動 hello Graph API https://graph.windows.net/$？ api 版本 = beta，其中 $tenantdomain = 網域名稱，或參閱 toohello 文章[稽核報告事件](active-directory-reporting-audit-events.md)。
 
 
 ## <a name="audit-logs-shortcuts"></a>稽核記錄快速鍵
 
-除了 **Azure Active Directory** 之外，Azure 入口網站可提供您稽核資料的兩個額外進入點︰
+此外太**Azure Active Directory**，hello Azure 入口網站為您提供兩個其他的進入點 tooaudit 資料：
 
 - 使用者和群組
 - 企業應用程式
 
 ### <a name="users-and-groups-audit-logs"></a>使用者和群組稽核記錄檔
 
-透過以使用者和群組為基礎的稽核報告，可以取得下列問題的解答︰
+與使用者和群組為基礎的稽核報表，您可以取得答案 tooquestions，例如：
 
-- 使用者已套用哪些類型的更新？
+- 哪些類型的更新已套用的 hello 使用者？
 
 - 有多少使用者已變更？
 
@@ -151,38 +151,38 @@ Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記
 
 - 系統管理員已在目錄中執行哪些作業？
 
-- 已新增的群組為何？
+- 已加入的 hello 群組有哪些？
 
 - 群組有成員資格變更嗎？
 
-- 群組的擁有者已變更嗎？
+- 已變更群組的 hello 擁有者嗎？
 
-- 指派給群組或使用者的授權為何？
+- Tooa 群組或使用者已指派給哪些授權？
 
-如果您只想檢閱使用者和群組相關的稽核資料，您可以在 [使用者和群組] 的 [活動] 區段中的 [稽核記錄] 之下找到篩選過的檢視。 此進入點將 [使用者和群組] 作為預先選取的 [活動資源類型]。
+如果您只想 tooreview 稽核相關的 toousers 和群組的資料，您可以找到篩選過的檢視之下**稽核記錄檔**在 hello**活動**區段 hello**使用者和群組**. 此進入點將 [使用者和群組] 作為預先選取的 [活動資源類型]。
 
 ![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/93.png "稽核記錄檔")
 
 ### <a name="enterprise-applications-audit-logs"></a>企業應用程式稽核記錄
 
-透過以應用程式為基礎的稽核報告，可以取得下列問題的解答︰
+與應用程式為基礎的稽核報告，您可以取得答案 tooquestions，例如：
 
-* 已新增或更新的應用程式為何？
-* 已移除的應用程式為何？
+* 已新增或更新的 hello 應用程式有哪些？
+* 已移除的 hello 應用程式有哪些？
 * 應用程式的服務原則已變更嗎？
-* 應用程式的名稱已變更嗎？
-* 誰已同意應用程式？
+* Hello 應用程式名稱已經變更？
+* 使用者提供同意 tooan 應用程式？
 
-如果您只想檢閱應用程式相關的稽核資料，您可以在 [企業應用程式] 刀鋒視窗的 [活動] 區段中的 [稽核記錄] 之下找到篩選過的檢視。 此進入點將 [企業應用程式] 當作預先選取的 [活動資源類型]。
+如果您只想 tooreview 稽核相關的 tooyour 應用程式的資料，您可以找到篩選過的檢視之下**稽核記錄檔**在 hello**活動**區段 hello**企業應用程式**刀鋒視窗。 此進入點將 [企業應用程式] 當作預先選取的 [活動資源類型]。
 
-![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/134.png "稽核記錄檔")
+![稽核記錄](./media/active-directory-reporting-activity-audit-logs/134.png "稽核記錄")
 
-您可以將此檢視進一步向下篩選為只有 [群組] 或只有 [使用者]。
+您可以篩選此檢視進一步向下 toojust**群組**或簡稱**使用者**。
 
-![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/25.png "稽核記錄檔")
+![稽核記錄](./media/active-directory-reporting-activity-audit-logs/25.png "稽核記錄")
 
 
 ## <a name="next-steps"></a>後續步驟
 
-如需報告概觀，請參閱 [Azure Active Directory 報告](active-directory-reporting-azure-portal.md)。
+如需報告的概觀，請參閱 hello [Azure Active Directory 報告](active-directory-reporting-azure-portal.md)。
 

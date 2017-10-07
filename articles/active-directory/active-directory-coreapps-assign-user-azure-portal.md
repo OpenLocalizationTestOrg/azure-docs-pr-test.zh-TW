@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Active Directory 中將使用者或群組指派給企業應用程式 | Microsoft Docs"
-description: "如何在 Azure Active Directory 中選取企業應用程式以將使用者或群組指派給它"
+title: "aaaAssign 的使用者或群組 tooan 企業應用程式在 Azure Active Directory |Microsoft 文件"
+description: "如何在 Azure Active Directory 使用者或群組 tooit 企業應用程式 tooassign tooselect"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
-ms.openlocfilehash: ee784704ada9238b5cd048f99aaa4cb192ec7d57
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 86c11f19892b9c947a5331677c17759178ed2806
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="assign-a-user-or-group-to-an-enterprise-app-in-azure-active-directory"></a>在 Azure Active Directory 中將使用者或群組指派給企業應用程式
-在 Azure Active Directory (Azure AD) 中，您可以輕鬆將使用者或群組指派給您的企業應用程式。 您必須具備適當的權限，才能管理企業應用程式，而且必須是目錄的全域管理員。
+# <a name="assign-a-user-or-group-tooan-enterprise-app-in-azure-active-directory"></a>指派的使用者或群組 tooan 企業應用程式在 Azure Active Directory
+它是簡單 tooassign 使用者或群組 tooyour 企業應用程式的 Azure Active Directory (Azure AD)。 您必須擁有 hello 適當的權限 toomanage hello 企業應用程式，，您必須是全域管理員的 hello 目錄。
 
-## <a name="how-do-i-assign-user-access-to-an-enterprise-app"></a>如何將企業應用程式的存取權指派給使用者？
-1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
-2. 選取 [更多服務]，在文字方塊中輸入 Azure Active Directory，然後選取 **Enter**。
-3. 在 [Azure Active Directory - directoryname] 刀鋒視窗 (也就是您所管理目錄的 Azure AD 刀鋒視窗) 上，選取 [企業應用程式]。
+## <a name="how-do-i-assign-user-access-tooan-enterprise-app"></a>如何指派使用者存取 tooan 企業應用程式？
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)hello 目錄的全域管理員的帳戶。
+2. 選取**更多服務**，在 [hello] 文字方塊中，輸入 Azure Active Directory，然後選取**Enter**。
+3. 在 hello **Azure Active Directory- *directoryname*** 刀鋒視窗 （也就是 hello Azure AD 刀鋒視窗中您所管理的 hello 目錄），選取**企業應用程式**。
 
     ![開啟企業應用程式](./media/active-directory-coreapps-assign-user-azure-portal/open-enterprise-apps.png)
-4. 在 [企業應用程式] 刀鋒視窗上，選取 [所有應用程式]。 您將會看到一份您可以管理的應用程式清單。
-5. 在 [企業應用程式 - 所有應用程式]  刀鋒視窗上，選取一個應用程式。
-6. 在 [***appname***] 刀鋒視窗 (亦即標題中含有所選應用程式名稱的刀鋒視窗) 上，選取 [使用者和群組]。
+4. 在 hello**企業應用程式**刀鋒視窗中，選取**所有應用程式**。 您會看到一份可以管理的 hello 應用程式。
+5. 在 hello**企業應用程式的所有應用程式**刀鋒視窗中，選取一個應用程式。
+6. 在 hello ***appname***刀鋒視窗 （也就是 hello 刀鋒視窗中的 hello hello 標題中的 hello 選應用程式的名稱），選取**使用者和群組**。
 
-    ![選取所有應用程式命令](./media/active-directory-coreapps-assign-user-azure-portal/select-app-users.png)
-7. 在 [***appname*** - 使用者和群組指派] 刀鋒視窗上，選取 [新增] 命令。
-8. 在 [新增指派] 刀鋒視窗上，選取 [使用者和群組]。
+    ![選取 hello 所有應用程式的命令](./media/active-directory-coreapps-assign-user-azure-portal/select-app-users.png)
+7. 在 hello ***appname*** **-使用者和群組指派**刀鋒視窗中，選取 hello**新增**命令。
+8. 在 hello**將作業加入**刀鋒視窗中，選取**使用者和群組**。
 
-    ![將使用者或群組指派給應用程式](./media/active-directory-coreapps-assign-user-azure-portal/assign-users.png)
-9. 在 [使用者和群組] 刀鋒視窗上，從清單中選取一或多個使用者或群組，然後選取刀鋒視窗底部的 [選取] 按鈕。
-10. 在 [新增指派] 刀鋒視窗上，選取 [角色]。 然後，在 [選取角色] 刀鋒視窗上，選取要套用到所選使用者或群組的角色，然後選取刀鋒視窗底部的 [確定] 按鈕。
-11. 在 [新增指派] 刀鋒視窗上，選取刀鋒視窗底部的 [指派] 按鈕。 受指派的使用者或群組將會具備此企業應用程式的所選角色所定義的權限。
+    ![指派使用者或群組的 toohello 應用程式](./media/active-directory-coreapps-assign-user-azure-portal/assign-users.png)
+9. 在 hello**使用者和群組**刀鋒視窗中，選取一或多個使用者或群組從 hello 清單，然後選取 hello**選取**在 hello hello 刀鋒視窗底部的按鈕。
+10. 在 hello**將作業加入**刀鋒視窗中，選取**角色**。 然後，在 hello**選取角色**刀鋒視窗中，選取角色 tooapply toohello 選取使用者或群組，然後選取 hello**確定**在 hello hello 刀鋒視窗底部的按鈕。
+11. 在 hello**將作業加入**刀鋒視窗中，選取 hello**指派**在 hello hello 刀鋒視窗底部的按鈕。 hello 指派使用者或群組將具有所選取的角色 hello 這個企業應用程式定義的 hello 權限。
 
 ## <a name="next-steps"></a>後續步驟
 * [查看我的所有群組](active-directory-groups-view-azure-portal.md)
 * [從企業應用程式中移除使用者或群組指派](active-directory-coreapps-remove-assignment-azure-portal.md)
 * [停用企業應用程式的使用者登入](active-directory-coreapps-disable-app-azure-portal.md)
-* [變更企業應用程式的名稱或標誌](active-directory-coreapps-change-app-logo-user-azure-portal.md)
+* [變更 hello 名稱或企業應用程式的標誌](active-directory-coreapps-change-app-logo-user-azure-portal.md)

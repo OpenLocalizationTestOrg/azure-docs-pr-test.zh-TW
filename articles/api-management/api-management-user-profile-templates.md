@@ -1,6 +1,6 @@
 ---
-title: "Azure API 管理中的使用者設定檔範本 | Microsoft Docs"
-description: "了解如何在 Azure API 管理中自訂開發人員入口網站中的 [使用者設定檔] 頁面內容。"
+title: "aaa\"在 Azure API 管理的使用者設定檔範本 |Microsoft 文件 」"
+description: "了解 hello 開發人員入口網站在 Azure API 管理中的 hello 使用者設定檔的 toocustomize hello 內容頁面的方式。"
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 9a11bd5800068a5725ab2f099043993bff0b28d8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c8f153b310221164809acf58e4af236928ceb41d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="user-profile-templates-in-azure-api-management"></a>Azure API 管理中的使用者設定檔範本
-「Azure API 管理」可讓您使用一組可設定開發人員入口網站頁面內容的範本，來自訂那些頁面的內容。 使用這些範本時，您可以運用 [DotLiquid](http://dotliquidmarkup.org/) 語法和您選擇的編輯器 (例如 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers))，以及一組提供的當地語系化[字串資源](api-management-template-resources.md#strings)、[字符資源](api-management-template-resources.md#glyphs)和[頁面控制項](api-management-page-controls.md)，依照您的想法自由靈活地設定頁面內容。  
+Azure API 管理提供 hello 能力 toocustomize hello 網頁內容的開發人員入口網站使用的一組設定其內容的範本。 使用[DotLiquid](http://dotliquidmarkup.org/)語法和 hello 您選擇的編輯器例如[針對設計人員 DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers)，和一組提供的當地語系化[字串資源](api-management-template-resources.md#strings)， [字符資源](api-management-template-resources.md#glyphs)，和[頁面控制項](api-management-page-controls.md)，視使用這些範本，您會有很大的彈性 tooconfigure hello 網頁內容的 hello。  
   
- 本節的範本可讓您自訂開發人員入口網站中 [使用者設定檔] 頁面的內容。  
+ 本節中的 hello 範本允許您 toocustomize hello 網頁內容的 hello 使用者設定檔在 hello 開發人員入口網站中。  
   
 -   [設定檔](#Profile)  
   
@@ -34,10 +34,10 @@ ms.lasthandoff: 07/11/2017
 -   [更新帳戶資訊](#UpdateAccountInfo)  
   
 > [!NOTE]
->  下列文件中包含範例預設範本，但範本可能會因持續進行的改善而有變更。 您可以瀏覽至想要的個別範本，來檢視開發人員入口網站中的即時預設範本。 如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。  
+>  預設範本範例隨附的 hello 下列文件，但主旨 toochange 到期 toocontinuous 增強功能。 您可以檢視 hello 開發人員入口網站中的 hello 即時預設範本，藉由瀏覽 toohello 需要個別的範本。 如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。  
   
 ##  <a name="Profile"></a> 設定檔  
- **設定檔**範本可讓您自訂開發人員入口網站中 [使用者設定檔] 頁面的使用者設定檔區段。  
+ hello**設定檔**範本可讓您在 hello 開發人員入口網站中的 hello 使用者設定檔頁面的 toocustomize hello 使用者設定檔區段。  
   
  ![使用者設定檔頁面](./media/api-management-user-profile-templates/APIM-User-Profile-Page.png "APIM 使用者設定檔頁面")  
   
@@ -99,21 +99,21 @@ ms.lasthandoff: 07/11/2017
 ### <a name="data-model"></a>資料模型  
   
 > [!NOTE]
->  [設定檔](#Profile)、[應用程式](#Applications)、[訂用帳戶](#Subscriptions)範本共用相同的資料模型，並接收相同的範本資料。  
+>  hello[設定檔](#Profile)，[應用程式](#Applications)，和[訂閱](#Subscriptions)範本會共用相同的資料模型，並收到 hello hello 相同的範本資料。  
   
 |屬性|類型|說明|  
 |--------------|----------|-----------------|  
-|firstName|字串|目前使用者的名字。|  
-|lastName|字串|目前使用者的姓氏。|  
-|companyName|字串|目前使用者的公司名稱。|  
-|addresserEmail|字串|目前使用者的電子郵件地址。|  
-|developersUsageStatisticsLinkk|字串|相對 URL，可前往檢視目前使用者的分析。|  
-|subscriptions|[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。|目前使用者的訂用帳戶。|  
-|應用程式所需|[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。|目前使用者的應用程式。|  
-|changePasswordUrl|字串|相對 URL，可前往變更目前使用者的密碼。|  
-|changeNameOrEmailUrl|字串|相對 URL，可前往變更目前使用者的名稱和電子郵件。|  
-|canChangePassword|布林值|目前使用者是否可以變更其密碼。|  
-|isSystemUser|布林值|目前使用者是否是其中一個內建[群組](api-management-key-concepts.md#groups)的成員。|  
+|firstName|字串|Hello 目前使用者的名字。|  
+|lastName|字串|Hello 目前使用者的姓氏。|  
+|companyName|字串|hello hello 目前使用者的公司名稱。|  
+|addresserEmail|字串|Hello 目前使用者的電子郵件地址。|  
+|developersUsageStatisticsLinkk|字串|Hello 目前使用者的相對 URL tooview 分析。|  
+|subscriptions|[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。|hello hello 目前使用者的訂閱。|  
+|應用程式所需|[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。|hello 目前使用者的 hello 應用程式。|  
+|changePasswordUrl|字串|hello 相對 URL toochange hello 目前使用者的密碼。|  
+|changeNameOrEmailUrl|字串|hello 相對 URL toochange hello 名稱與 hello 目前使用者的電子郵件。|  
+|canChangePassword|布林值|是否 hello 目前的使用者可以變更其密碼。|  
+|isSystemUser|布林值|Hello 目前使用者是否為其中一個 hello 內建成員[群組](api-management-key-concepts.md#groups)。|  
   
 ### <a name="sample-template-data"></a>範例範本資料  
   
@@ -130,7 +130,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -153,7 +153,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -182,7 +182,7 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ##  <a name="Subscriptions"></a> 訂用帳戶  
- **訂用帳戶**範本可讓您自訂開發人員入口網站中 [使用者設定檔] 頁面的訂用帳戶區段。  
+ hello**訂閱**範本可讓您 toocustomize hello 訂閱 區段中的 hello 開發人員入口網站中的 hello 使用者設定檔頁面。  
   
  ![使用者訂用帳戶頁面](./media/api-management-user-profile-templates/APIM-User-Subscription-Page.png "APIM 使用者訂用帳戶頁面")  
   
@@ -313,28 +313,28 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ### <a name="controls"></a>控制  
- 此範本可能會使用下列[頁面控制項](api-management-page-controls.md)。  
+ 此範本可能會使用 hello 下列[頁面控制項](api-management-page-controls.md)。  
   
 -   [subscription-cancel](api-management-page-controls.md#subscription-cancel)  
   
 ### <a name="data-model"></a>資料模型  
   
 > [!NOTE]
->  [設定檔](#Profile)、[應用程式](#Applications)、[訂用帳戶](#Subscriptions)範本共用相同的資料模型，並接收相同的範本資料。  
+>  hello[設定檔](#Profile)，[應用程式](#Applications)，和[訂閱](#Subscriptions)範本會共用相同的資料模型，並收到 hello hello 相同的範本資料。  
   
 |屬性|類型|說明|  
 |--------------|----------|-----------------|  
-|firstName|字串|目前使用者的名字。|  
-|lastName|字串|目前使用者的姓氏。|  
-|companyName|字串|目前使用者的公司名稱。|  
-|addresserEmail|字串|目前使用者的電子郵件地址。|  
-|developersUsageStatisticsLinkk|字串|相對 URL，可前往檢視目前使用者的分析。|  
-|subscriptions|[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。|目前使用者的訂用帳戶。|  
-|應用程式所需|[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。|目前使用者的應用程式。|  
-|changePasswordUrl|字串|相對 URL，可前往變更目前使用者的密碼。|  
-|changeNameOrEmailUrl|字串|相對 URL，可前往變更目前使用者的名稱和電子郵件。|  
-|canChangePassword|布林值|目前使用者是否可以變更其密碼。|  
-|isSystemUser|布林值|目前使用者是否是其中一個內建[群組](api-management-key-concepts.md#groups)的成員。|  
+|firstName|字串|Hello 目前使用者的名字。|  
+|lastName|字串|Hello 目前使用者的姓氏。|  
+|companyName|字串|hello hello 目前使用者的公司名稱。|  
+|addresserEmail|字串|Hello 目前使用者的電子郵件地址。|  
+|developersUsageStatisticsLinkk|字串|Hello 目前使用者的相對 URL tooview 分析。|  
+|subscriptions|[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。|hello hello 目前使用者的訂閱。|  
+|應用程式所需|[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。|hello 目前使用者的 hello 應用程式。|  
+|changePasswordUrl|字串|hello 相對 URL toochange hello 目前使用者的密碼。|  
+|changeNameOrEmailUrl|字串|hello 相對 URL toochange hello 名稱與 hello 目前使用者的電子郵件。|  
+|canChangePassword|布林值|是否 hello 目前的使用者可以變更其密碼。|  
+|isSystemUser|布林值|Hello 目前使用者是否為其中一個 hello 內建成員[群組](api-management-key-concepts.md#groups)。|  
   
 ### <a name="sample-template-data"></a>範例範本資料  
   
@@ -351,7 +351,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -374,7 +374,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -403,7 +403,7 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ##  <a name="Applications"></a> 應用程式  
- **應用程式**範本可讓您自訂開發人員入口網站中 [使用者設定檔] 頁面的訂用帳戶區段。  
+ hello**應用程式**範本可讓您 toocustomize hello 訂閱 區段中的 hello 開發人員入口網站中的 hello 使用者設定檔頁面。  
   
  ![使用者帳戶的應用程式頁面](./media/api-management-user-profile-templates/APIM-User-Account-Applications-Page.png "APIM 使用者帳戶的應用程式頁面")  
   
@@ -476,28 +476,28 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ### <a name="controls"></a>控制  
- 此範本可能會使用下列[頁面控制項](api-management-page-controls.md)。  
+ 此範本可能會使用 hello 下列[頁面控制項](api-management-page-controls.md)。  
   
 -   [app-actions](api-management-page-controls.md#app-actions)  
   
 ### <a name="data-model"></a>資料模型  
   
 > [!NOTE]
->  [設定檔](#Profile)、[應用程式](#Applications)、[訂用帳戶](#Subscriptions)範本共用相同的資料模型，並接收相同的範本資料。  
+>  hello[設定檔](#Profile)，[應用程式](#Applications)，和[訂閱](#Subscriptions)範本會共用相同的資料模型，並收到 hello hello 相同的範本資料。  
   
 |屬性|類型|說明|  
 |--------------|----------|-----------------|  
-|firstName|字串|目前使用者的名字。|  
-|lastName|字串|目前使用者的姓氏。|  
-|companyName|字串|目前使用者的公司名稱。|  
-|addresserEmail|字串|目前使用者的電子郵件地址。|  
-|developersUsageStatisticsLinkk|字串|相對 URL，可前往檢視目前使用者的分析。|  
-|subscriptions|[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。|目前使用者的訂用帳戶。|  
-|應用程式所需|[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。|目前使用者的應用程式。|  
-|changePasswordUrl|字串|相對 URL，可前往變更目前使用者的密碼。|  
-|changeNameOrEmailUrl|字串|相對 URL，可前往變更目前使用者的名稱和電子郵件。|  
-|canChangePassword|布林值|目前使用者是否可以變更其密碼。|  
-|isSystemUser|布林值|目前使用者是否是其中一個內建[群組](api-management-key-concepts.md#groups)的成員。|  
+|firstName|字串|Hello 目前使用者的名字。|  
+|lastName|字串|Hello 目前使用者的姓氏。|  
+|companyName|字串|hello hello 目前使用者的公司名稱。|  
+|addresserEmail|字串|Hello 目前使用者的電子郵件地址。|  
+|developersUsageStatisticsLinkk|字串|Hello 目前使用者的相對 URL tooview 分析。|  
+|subscriptions|[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。|hello hello 目前使用者的訂閱。|  
+|應用程式所需|[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。|hello 目前使用者的 hello 應用程式。|  
+|changePasswordUrl|字串|hello 相對 URL toochange hello 目前使用者的密碼。|  
+|changeNameOrEmailUrl|字串|hello 相對 URL toochange hello 名稱與 hello 目前使用者的電子郵件。|  
+|canChangePassword|布林值|是否 hello 目前的使用者可以變更其密碼。|  
+|isSystemUser|布林值|Hello 目前使用者是否為其中一個 hello 內建成員[群組](api-management-key-concepts.md#groups)。|  
   
 ### <a name="sample-template-data"></a>範例範本資料  
   
@@ -514,7 +514,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -537,7 +537,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -566,7 +566,7 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ##  <a name="UpdateAccountInfo"></a> 更新帳戶資訊  
- **更新帳戶資訊**範本可讓您自訂開發人員入口網站中的 [更新帳戶資訊] 頁面。  
+ hello **Uodate 帳戶資訊**範本可讓您 toocustomize hello**更新帳戶資訊**hello 開發人員入口網站中的頁面。  
   
  ![使用者帳戶資訊頁面開發人員入口網站範本](./media/api-management-user-profile-templates/APIM-User-Account-Info-Page-Developer-Portal-Templates.png "APIM 使用者帳戶資訊頁面開發人員入口網站範本")  
   
@@ -623,4 +623,4 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="next-steps"></a>後續步驟
-如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](api-management-developer-portal-templates.md)。
+如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](api-management-developer-portal-templates.md)。

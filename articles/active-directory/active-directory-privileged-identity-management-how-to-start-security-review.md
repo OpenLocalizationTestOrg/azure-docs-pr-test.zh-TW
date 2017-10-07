@@ -1,6 +1,6 @@
 ---
-title: "如何開始存取權檢閱 | Microsoft Docs"
-description: "了解如何使用 Azure Privileged Identity Management 應用程式為特殊權限身分識別建立存取權檢閱。"
+title: "aaaHow toostart 存取檢閱 |Microsoft 文件"
+description: "了解如何 toocreate 存取檢閱特殊權限的身分識別與 hello Azure Privileged Identity Management 的應用程式。"
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,69 +15,69 @@ ms.workload: identity
 ms.date: 05/04/2017
 ms.author: billmath
 ms.custom: pim
-ms.openlocfilehash: 2b516e2f05aa883c5e37f5864e5ee8a2b37d3a46
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 24feac307f77c69b5d68d6ae0623dbcb52416b01
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-start-an-access-review-in-azure-ad-privileged-identity-management"></a>如何在 Azure AD Privileged Identity Management 中開始存取權檢閱
-當使用者擁有不再需要的特殊存取權時，角色指派就會變成「過時」。 為了降低與這些過時的角色指派相關聯的風險，特殊權限角色管理員應該定期檢閱使用者獲授與的角色。 本文件涵蓋在 Azure AD Privileged Identity Management (PIM) 中開始存取權檢閱的步驟。
+# <a name="how-toostart-an-access-review-in-azure-ad-privileged-identity-management"></a>如何 toostart 存取檢閱在 Azure AD Privileged Identity Management
+當使用者擁有不再需要的特殊存取權時，角色指派就會變成「過時」。 在這些過時的角色指派與相關訂單 tooreduce hello 風險，特殊權限的角色系統管理員應該定期檢閱 hello 角色已獲得使用者。 本文件涵蓋 hello 存取檢閱啟動 Azure AD Privileged Identity Management (PIM) 中的步驟。
 
 ## <a name="start-an-access-review"></a>開始存取權檢閱
 > [!NOTE]
-> 如果您尚未在 Azure 入口網站的儀表板中新增 PIM 應用程式，請參閱[開始使用 Azure AD Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md) 中的步驟。
+> 如果您沒有在 hello Azure 入口網站中加入 hello PIM 應用程式 tooyour 儀表板，請參閱中的 hello 步驟[開始使用 Azure Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md)
 > 
 > 
 
-在 PIM 應用程式的主頁面，有三種方式可以開始存取權檢閱︰
+從 hello PIM 應用程式主頁面上，有三種方式 toostart 存取檢閱：
 
 * [存取權檢閱] > [新增]
 * [角色] > [檢閱] 按鈕
-* 從角色清單中選取要檢閱的特定角色 > [檢閱] 按鈕
+* 選取 hello 特定角色 toobe 檢閱從 hello 角色清單 >**檢閱**按鈕
 
-按一下 [檢閱] 按鈕時，隨即會顯示 [開始存取檢閱] 刀鋒視窗。 您將在此刀鋒視窗上為檢閱設定名稱和時間限制、選擇要檢閱的角色，以及決定將由誰執行檢閱。
+當您按一下 hello**檢閱**按鈕，hello**開始存取檢閱**刀鋒視窗隨即出現。 在這個刀鋒視窗中，您正在進行 tooconfigure hello 檢閱的名稱和時間限制選擇角色 tooreview，並且決定誰可以執行 hello 檢閱。
 
 ![開始存取權檢閱 - 螢幕擷取畫面][1]
 
-### <a name="configure-the-review"></a>設定檢閱
-若要建立存取權檢閱，您需要為它命名並設定開始和結束日期。
+### <a name="configure-hello-review"></a>設定 hello 檢閱
+toocreate 存取檢閱，您需要 tooname 它並設為開始和結束日期。
 
 ![設定檢閱 - 螢幕擷取畫面][2]
 
-為檢閱設定足夠的時間長度，以便讓使用者能夠完成檢閱。 如果您在結束日期之前即完成檢閱，您一律可以提早停止檢閱。
+請檢閱久，使用者 toocomplete hello hello 長度。 如果您完成 hello 結束日期之前，您可以一律停駐 hello 檢閱早期。
 
-### <a name="choose-a-role-to-review"></a>選取要檢閱的角色
-每個檢閱只針對一個角色。 除非您是從特定的角色刀鋒視窗開始存取權檢閱，否則您現在將必須選擇一個角色。
+### <a name="choose-a-role-tooreview"></a>選擇角色 tooreview
+每個檢閱只針對一個角色。 除非您從特定的角色 刀鋒視窗中啟動 hello 存取檢閱，您將現在需要 toochoose 角色。
 
-1. 瀏覽至 [檢閱角色成員資格] 
+1. 瀏覽過**檢視角色成員資格**
    
     ![檢閱角色成員資格 - 螢幕擷取畫面][3]
-2. 從清單中選擇一個角色。
+2. Hello 清單中選擇一個角色。
 
-### <a name="decide-who-will-perform-the-review"></a>決定將由誰執行檢閱
-執行檢閱的選項有三個。 您可以將檢閱指派給其他人來完成、可以自行進行檢閱，或者可以讓每個使用者檢閱自己的存取權。
+### <a name="decide-who-will-perform-hello-review"></a>決定誰可以執行 hello 檢閱
+執行檢閱的選項有三個。 您可以指派 hello 檢閱 toosomeone else toocomplete，您可以自行操作，或您可以檢閱其本身存取每位使用者。
 
-1. 瀏覽至 [選取檢閱者] 
+1. 瀏覽過**選取檢閱者**
    
     ![選取檢閱者 - 螢幕擷取畫面][4]
-2. 選擇其中一個選項：
+2. 選擇其中一個 hello 選項：
    
-   * **選取檢閱者**︰如果您不知道誰需要存取權，請使用此選項。 使用此選項，您可以指派資源擁有者或群組管理員完成檢閱。
-   * **我**︰如果您想要預覽存取權檢閱如何運作，或是想要代表無法檢閱的人員執行檢閱，此選項會相當有用。
-   * **成員自我檢閱**：若要讓使用者檢閱自己的角色指派，請使用此選項。
+   * **選取檢閱者**︰如果您不知道誰需要存取權，請使用此選項。 使用此選項，您可以指派 hello 檢閱 tooa 資源擁有者或群組管理員 toocomplete。
+   * **我**： 如果您想 toopreview 如何存取檢閱工作，或您想 tooreview 代表人員無法。
+   * **成員檢閱本身**： 使用這個選項 toohave hello 使用者檢閱他們自己的角色指派。
 
-### <a name="start-the-review"></a>開始檢閱
-最後，您可以選擇是否要要求使用者在核准其存取權時提供原因。 請依喜好新增檢閱描述，然後選取 [開始] 。
+### <a name="start-hello-review"></a>開始 hello 檢閱
+最後，您擁有 hello 選項 toorequire 使用者提供的原因，如果他們同意其存取權。 如果需要，新增 hello 檢閱的描述，然後選取**啟動**。
 
-請確定讓使用者知道有等待他們執行的存取權檢閱，並示範 [如何執行存取權檢閱](active-directory-privileged-identity-management-how-to-perform-security-review.md)。
+請確定您讓使用者知道，正在等候存取檢閱，並顯示它們[如何 tooperform 存取檢閱](active-directory-privileged-identity-management-how-to-perform-security-review.md)。
 
-## <a name="manage-the-access-review"></a>管理存取權檢閱
-當檢閱者在完成其檢閱時，您可以在 Azure AD PIM 儀表板的 [存取權檢閱] 區段中追蹤其進度。 在 [完成檢閱](active-directory-privileged-identity-management-how-to-complete-review.md)之前，不會變更目錄中的任何存取權限。
+## <a name="manage-hello-access-review"></a>管理 hello 存取檢閱
+Hello 檢閱者完成 hello Azure AD PIM 儀表板中的檢視時，您可以追蹤 hello 進度，在 hello 存取檢閱 > 一節。 沒有存取權限將會變更在 hello 目錄，直到[hello 檢閱完成](active-directory-privileged-identity-management-how-to-complete-review.md)。
 
-在檢閱期間結束之前，您都可以提醒使用者完成其檢閱，或是從 [存取權檢閱] 區段提前停止檢閱。
+直到 hello 檢閱時間已經結束，您可以提醒使用者 toocomplete 他們檢閱，或停止 hello 檢閱早期 hello 存取從檢閱 > 一節。
 
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
+<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
 ## <a name="pim-table-of-contents"></a>PIM 目錄
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 

@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/17/2016
 ms.author: magoedte
-ms.openlocfilehash: 7c6365b729d73f1c5b9bc57952b1723255d9e9f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 513a90d144e7ade9c21cd7f3b718578989702c25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="hybrid-runbook-worker-a-runbook-job-terminates-with-a-status-of-suspended"></a>Hybrid Runbook Worker：Runbook 作業在暫止狀態下終止
 ## <a name="summary"></a>摘要
-Runbook 在嘗試執行三次後會馬上暫止。 在某些情況下，Runbook 可能會因為受到干擾而無法順利完成，而相關的錯誤訊息卻不含任何指出原因的詳細資訊。 本文提供 Hybrid Runbook Worker Runbook 執行失敗之相關問題的疑難排解步驟。
+您的 runbook 會暫停嘗試 tooexecute 後，馬上它三次。 可能會干擾 hello runbook 無法順利完成的情況，而且 hello 相關的錯誤訊息不包含任何表示原因的詳細資訊。 本文章提供問題相關的 toohello Hybrid Runbook Worker runbook 執行失敗的疑難排解步驟。
 
-若本文中未提及您的 Azure 問題，請造訪 [MSDN 及 Stack Overflow 上的 Azure 論壇](https://azure.microsoft.com/support/forums/)。 您可以在這些論壇上張貼您的問題，或將問題貼到 Twitter [@AzureSupport上的](https://twitter.com/AzureSupport) 。 此外，您也可以選取 [Azure 支援](https://azure.microsoft.com/support/options/)網站上的 [取得支援]，來提出 Azure 支援要求。
+如果這份文件中並未提及您的 Azure 問題，請瀏覽 hello Azure 論壇上[MSDN 和 hello 堆疊溢位](https://azure.microsoft.com/support/forums/)。 您可以在這些論壇張貼您的問題或太[@AzureSupport Twitter 上](https://twitter.com/AzureSupport)。 此外，您可以藉由選取檔案 Azure 支援人員要求**取得支援**上 hello [Azure 支援](https://azure.microsoft.com/support/options/)站台。
 
 ## <a name="symptom"></a>徵狀
-Runbook 執行失敗且傳回的錯誤是「作業動作 'Activate' 無法執行，因為處理序意外停止。 作業動作已嘗試 3 次」。
+Runbook 執行會失敗並會傳回錯誤的 hello，"hello 作業動作 'Activate' 無法執行，因為 hello 處理序意外停止。 hello 工作動作嘗試 3 次。 」
 
 ## <a name="cause"></a>原因
-這個錯誤的可能原因有幾個，包括︰ 
+有幾個 hello 錯誤可能原因： 
 
-1. Hybrid Worker 位於 Proxy 或防火牆後方
-2. Hybrid Worker 執行所在的電腦未滿足最低硬體 [需求](automation-hybrid-runbook-worker.md#hybrid-runbook-worker-requirements) 
-3. Runbook 無法使用本機資源驗證
+1. hello 混合式背景工作會在 proxy 或防火牆後面
+2. hello 電腦 hello 混合式背景工作上執行小於比 hello 最低硬體[需求](automation-hybrid-runbook-worker.md#hybrid-runbook-worker-requirements) 
+3. hello runbook 無法向本機資源
 
 ## <a name="cause-1-hybrid-runbook-worker-is-behind-proxy-or-firewall"></a>原因 1︰Hybrid Runbook Worker 位在 Proxy 或防火牆後方
-Hybrid Runbook Worker 執行所在的電腦位於防火牆或 Proxy 伺服器後方，因此輸出網路存取未獲得允許或設定錯誤。
+混合式 Runbook 背景工作執行的 hello 電腦 hello 位於防火牆或 proxy 伺服器並不能允許或正確設定傳出的網路存取。
 
 ### <a name="solution"></a>方案
-確認電腦可透過連接埠 443、9354 及 30000-30199 輸出存取 *.cloudapp.net。 
+請確認 hello 電腦有 too*.cloudapp 對外存取連接埠 443、 9354 和 30000 30199 上的.net。 
 
 ## <a name="cause-2-computer-has-less-than-minimum-hardware-requirements"></a>原因 2︰電腦未滿足最低硬體需求
-執行 Hybrid Runbook Worker 的電腦應滿足最低硬體需求，您才能指派它來裝載這項功能。 否則，根據其他背景處理序的資源使用率和 Runbook 在執行期間造成的競爭，電腦可能會變得過度使用，導致 Runbook 作業延遲或逾時。 
+執行的 hello 應該符合 Hybrid Runbook Worker 的電腦 hello 最低硬體需求，再指定它 toohost 這項功能。 否則，根據 hello 資源使用的其他背景處理序和執行期間，runbook 所造成的競爭情形，hello 電腦會變得過度使用，並會造成 runbook 作業延遲或逾時。 
 
 ### <a name="solution"></a>方案
-先確認指派來執行 Hybrid Runbook Worker 功能的電腦滿足最低硬體需求。  如果滿足最低硬體需求，請監視 CPU 和記憶體使用率，判斷 Hybrid Runbook Worker 處理序之效能和 Windows 之間是否有任何相互關聯。  如果有記憶體或 CPU 壓力，這表示電腦可能需要升級或增加額外處理器，或增加記憶體來解決資源瓶頸及解決錯誤。 您也可以選擇其他可支援最低需求，也能在工作負載需求指出需要增加資源時擴充的計算資源。         
+先確認 hello 電腦指定 toorun hello Hybrid Runbook Worker 的功能符合 hello 最低硬體需求。  若是如此，監視 CPU 和記憶體使用率 toodetermine Windows hello 的混合式 Runbook 背景工作處理序的效能之間的任何相互關聯。  如果沒有記憶體或 CPU 不足的壓力，這可能表示 hello 需要 tooupgrade 或加入額外的處理器或增加記憶體 tooaddress hello 資源瓶頸並解決 hello 錯誤。 或者，選取不同的計算資源可支援 hello 最小需求並縮放工作負載需求指出是必要的增加時。         
 
 ## <a name="cause-3-runbooks-cannot-authenticate-with-local-resources"></a>原因 3：Runbook 無法使用本機資源驗證
 ### <a name="solution"></a>方案
-查閱 **Microsoft-SMA** 事件記錄檔，找出描述為「Win32 處理序結束，代碼為 [4294967295]」的對應事件。  此錯誤的原因是您尚未在 Runbook 中設定驗證，或尚未指定混合式背景工作角色群組的執行身分認證。  請檢閱 [Runbook 權限](automation-hybrid-runbook-worker.md#runbook-permissions) ，確認 Runbook 的驗證設定正確無誤。  
+檢查 hello **Microsoft SMA**事件記錄檔中描述的對應事件*Win32 處理序已結束，代碼 [4294967295]*。  hello 這個錯誤的原因是您未在 runbook 中設定驗證或未指定 hello 執行身分認證的 hello Hybrid worker 群組。  請檢閱[Runbook 權限](automation-hybrid-runbook-worker.md#runbook-permissions)tooconfirm 您已正確設定驗證您的 runbook。  
 

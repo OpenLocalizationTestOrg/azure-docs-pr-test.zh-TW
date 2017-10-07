@@ -1,6 +1,6 @@
 ---
-title: "Azure AD Connect Sync Service Manager Metaverse 搜尋| Microsoft Docs'"
-description: "了解 Azure AD Connect 的 Synchronization Service Manager 中的 [Metaverse 搜尋] 索引標籤。"
+title: "aaaThe Azure AD Connect 同步處理服務管理員 Metaverse 搜尋 |Microsoft 文件 '"
+description: "了解 Azure AD Connect hello hello 同步處理服務管理員中的 Metaverse 搜尋 索引標籤。"
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: faf66f19ab1fe5c38273b22c1ff8aeff4d26f1ea
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5cc115344255ecbb3d13d11eaa4bbe95bdbefe22
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sync-service-manager-metaverse-search"></a>Sync Service Manager Metaverse 搜尋
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/mvsearch.png)
 
-排解資料相關的疑難問題時，[Metaverse 搜尋] 索引標籤相當有用。 您可以在上半部中，根據屬性組合建立查詢。 當您滿意查詢時，按一下 [搜尋] 。 結果會顯示於底部格線中。 您可以利用 [資料行設定] ，來選取應顯示哪些資料行。
+hello metaverse 搜尋 索引標籤可用於疑難排解資料相關的問題。 在 hello 上半部，您可以建立查詢，根據屬性的組合。 當您滿意查詢時，按一下 [搜尋] 。 hello 結果中會顯示 hello 下方的方格。 您可以利用 [資料行設定] ，來選取應顯示哪些資料行。
 
-在搜尋結果中，選取物件再選取 [屬性]  來查看 [metaverse 物件屬性](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md#metaverse-object-properties)。
+在 hello 搜尋結果中，選取物件和**屬性**toosee hello [metaverse 物件屬性](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md#metaverse-object-properties)。
 
 ## <a name="next-steps"></a>後續步驟
-深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。
+深入了解 hello [Azure AD Connect 同步處理](active-directory-aadconnectsync-whatis.md)組態。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。

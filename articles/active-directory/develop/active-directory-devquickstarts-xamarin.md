@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Azure AD Xamarin | Microsoft Docs"
+title: "aaaAzure AD Xamarin 使用者入門 |Microsoft 文件"
 description: "建置 Xamarin 應用程式來與 Azure AD 整合進行登入，並使用 OAuth 呼叫受 Azure AD 保護的 API。"
 services: active-directory
 documentationcenter: xamarin
@@ -15,55 +15,55 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: 54ee403f283bc5dc79911e2e813dd513ff595828
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a0d189648b7071558ac1cf2b908808668960a4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-azure-ad-with-xamarin-apps"></a>將 Azure AD 整合至 Xamarin 應用程式
 [!INCLUDE [active-directory-devquickstarts-switcher](../../../includes/active-directory-devquickstarts-switcher.md)]
 
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-Xamarin 可讓您使用 C# 撰寫可在 iOS、Android 和 Windows (行動裝置和電腦) 上執行的行動應用程式。 如果您正在建置使用 Xamarin 的應用程式，Azure Active Directory (Azure AD) 可讓您簡單地以其 Azure AD 帳戶驗證使用者。 應用程式也可以安全地使用任何受 Azure AD 保護的 Web API，例如 Office 365 API 或 Azure API。
+Xamarin 可讓您使用 C# 撰寫可在 iOS、Android 和 Windows (行動裝置和電腦) 上執行的行動應用程式。 如果您要建置 xamarin 應用程式，Azure Active Directory (Azure AD)，使其具有其 Azure AD 帳戶的簡單 tooauthenticate 使用者。 hello 應用程式安全地也可以使用任何受 Azure AD，例如 Office 365 Api hello 或 hello Azure 應用程式開發介面的 web 應用程式開發介面。
 
-對於需要存取受保護資源的 Xamarin 應用程式，Azure AD 提供 Active Directory 驗證程式庫 (ADAL)。 ADAL 的唯一目的是為了讓應用程式輕鬆取得存取權杖。 為了示範有多麼容易，本文說明如何建置 DirectorySearcher 應用程式︰
+針對需要 tooaccess 受保護資源的 Xamarin 應用程式，Azure AD 提供 hello Active Directory 驗證程式庫 (ADAL)。 hello 的 ADAL 的唯一目的是 toomake 輕鬆的應用程式 tooget 存取權杖。 是，本文將說明如何輕鬆 toodemonstrate 如何 toobuild DirectorySearcher 應用程式的：
 
 * 可在 iOS、Android、Windows 桌面、Windows Phone 和 Windows 市集上執行。
-* 使用單一可攜式類別庫 (PCL) 來驗證使用者並取得 Azure AD Graph API 的權杖。
+* 使用單一的可攜式類別庫 (PCL) tooauthenticate 使用者，並取得 hello Azure AD Graph API 的語彙基元。
 * 搜尋目錄以尋找具有指定 UPN 的使用者。
 
 ## <a name="before-you-get-started"></a>開始之前
-* 下載[基本架構專案](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/skeleton.zip)或下載[完整的範例](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip)。 每一個下載都是 Visual Studio 2013 解決方案。
-* 您還需要一個可以建立使用者並註冊應用程式的 Azure AD 租用戶。 如果您還沒有租用戶， [了解如何取得租用戶](active-directory-howto-tenant.md)。
+* 下載 hello[基本架構專案](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/skeleton.zip)，或下載 hello[完成的範例](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip)。 每一個下載都是 Visual Studio 2013 解決方案。
+* 您也需要哪些 toocreate 使用者和註冊 hello 應用程式中的 Azure AD 租用戶。 如果您還沒有租用戶，[深入了解如何 tooget 一個](active-directory-howto-tenant.md)。
 
-當您準備就緒，請遵循接下來四個章節的程序。
+當您準備好時，後續 hello 程序在 hello 接下來四個區段。
 
 ## <a name="step-1-set-up-your-xamarin-development-environment"></a>步驟 1：設定您的 Xamarin 開發環境
-因為本教學課程包含 iOS、Android 和 Windows 專案，所以您需要 Visual Studio 和 Xamarin。 若要建立必要的環境，請完成 MSDN 上[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) 的處理。 這些指示包含的資料，可供您於等待安裝完成時檢閱，以深入了解 Xamarin。
+因為本教學課程包含 iOS、Android 和 Windows 專案，所以您需要 Visual Studio 和 Xamarin。 toocreate hello 所需的環境，完成 hello 程序中[設定及安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) MSDN 上。 hello 指示包含正在等待 hello 安裝 toobe 完成時，您可以檢閱 toolearn 深入了解 Xamarin 的資料。
 
-完成設定之後，您可以在 Visual Studio 中開啟解決方案。 您會在其中看到六個專案：五個平台特定專案和一個 PCL，DirectorySearcher.cs，可跨所有平台共用。
+Hello 安裝程式完成之後，請在 Visual Studio 中開啟 hello 方案。 您會在其中看到六個專案：五個平台特定專案和一個 PCL，DirectorySearcher.cs，可跨所有平台共用。
 
-## <a name="step-2-register-the-directorysearcher-app"></a>步驟 2：註冊 DirectorySearcher 應用程式
-若要讓應用程式取得權杖，您必須先在 Azure AD 租用戶中註冊這個應用程式，並授權它存取 Azure AD Graph API。 方式如下：
+## <a name="step-2-register-hello-directorysearcher-app"></a>步驟 2： 註冊 hello DirectorySearcher 應用程式
+tooenable hello 應用程式 tooget 語彙基元，您必須先 tooregister 在您的 Azure AD 租用戶，並授與權限 tooaccess hello Azure AD Graph API。 方式如下：
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在頂端列中，按一下您的帳戶。 然後，在 [目錄] 清單下，選取您要註冊應用程式的 Active Directory 租用戶。
-3. 按一下左側窗格中的 [更多服務]，然後選取 [Azure Active Directory]。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+2. Hello 頂端列上，按一下您的帳戶。 然後，在 hello**目錄**清單中，選取 hello Active Directory 租用戶想 tooregister hello 應用程式。
+3. 按一下**更服務**在 hello 左的窗格，然後選取  **Azure Active Directory**。
 4. 按一下 [應用程式註冊]，然後選取 [新增]。
-5. 若要建立新的**原生用戶端應用程式**，請遵照提示進行。
-  * [名稱] 向使用者說明該應用程式。
-  * [重新導向 URI] 是配置和字串的組合，Azure AD 可用它來傳回權杖回應。 輸入值，(例如， http://DirectorySearcher )。
-6. 完成註冊之後，Azure AD 會為應用程式指派唯一的應用程式識別碼。 從 [應用程式] 索引標籤複製值，因為稍後將會需要它。
-7. 在 [設定] 頁面中，選取 [必要的權限]，然後選取 [新增]。
-8. 選取 [Microsoft Graph] 做為 API。 在 [委派的權限] 下，新增 [讀取目錄資料] 權限。  
-這個動作可讓應用程式查詢使用者的圖形 API。
+5. 新的 toocreate**原生用戶端應用程式**，依照 hello 提示。
+  * **名稱**描述 hello 應用程式 toousers。
+  * **重新導向 URI**是配置和字串的組合，Azure AD 使用 tooreturn 權杖回應。 輸入值，(例如， http://DirectorySearcher )。
+6. 完成註冊之後，Azure AD 會指派給 hello 應用程式是唯一的應用程式識別碼。 從 hello 複製 hello 值**應用程式**索引標籤上，因為您將需要更新版本。
+7. 在 hello**設定**頁面上，選取**必要的使用權限**，然後選取**新增**。
+8. 選取**Microsoft Graph**為 hello 應用程式開發介面。 在下**委派的權限**，新增 hello**讀取目錄資料**權限。  
+這個動作可讓 hello 應用程式 tooquery hello Graph API 的使用者。
 
 ## <a name="step-3-install-and-configure-adal"></a>步驟 3：安裝及設定 ADAL
-既然您在 Azure AD 中已經擁有應用程式，您可以安裝 ADAL，並撰寫身分識別相關程式碼。 若要讓 ADAL 與 Azure AD 進行通訊，請提供它一些應用程式註冊相關資訊。
+既然您在 Azure AD 中已有應用程式，您現在便可安裝 ADAL，並撰寫身分識別相關程式碼。 tooenable ADAL toocommunicate 與 Azure AD，不妨 hello 應用程式註冊的一些資訊。
 
-1. 使用 Package Manager Console 將 ADAL 新增到 DirectorySearcher 專案中。
+1. 使用 Package Manager Console hello 新增 ADAL toohello DirectorySearcher 專案。
 
     `
     PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -ProjectName DirectorySearcherLib
@@ -85,27 +85,27 @@ Xamarin 可讓您使用 C# 撰寫可在 iOS、Android 和 Windows (行動裝置�
     PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -ProjectName DirSearchClient-Universal
     `
 
-    請注意，每個專案會新增兩個程式庫參考：ADAL 的 PCL 部分和平台特定部分。
-2. 在 DirectorySearcherLib 專案中，開啟 DirectorySearcher.cs。
-3. 將類別成員值取代為您在 Azure 入口網站中輸入的值。 每當使用 ADAL 時，您的程式碼便會參考這些值。
+    請注意這兩個程式庫參考會加入 tooeach 專案： hello PCL 部分 ADAL 與平台專屬部分。
+2. 在 hello DirectorySearcherLib 專案中，開啟 DirectorySearcher.cs。
+3. Hello 類別成員值取代為您輸入 hello Azure 入口網站中的 hello 值。 您的程式碼是指 toothese 值，每當它會使用 ADAL。
 
-  * *tenant* 是您 Azure AD 租用戶的網域 (例如 contoso.onmicrosoft.com)。
-  * ClientId 是您從入口網站複製的應用程式用戶端識別碼。
-  * ReturnUri 是您在入口網站中輸入的重新導向 URI (例如， http://DirectorySearcher )。
+  * hello*租用戶*hello 網域，您的 Azure AD 租用戶 (例如 contoso.onmicrosoft.com)。
+  * hello *clientId* hello hello 應用程式，您所複製 hello 入口網站的用戶端識別碼。
+  * hello *returnUri*是 hello 重新導向在 hello 入口網站 (例如，http://DirectorySearcher) 中所輸入的 URI。
 
-## <a name="step-4-use-adal-to-get-tokens-from-azure-ad"></a>步驟 4：使用 ADAL 來取得 Azure AD 的權杖
-幾乎所有應用程式的驗證邏輯採用 `DirectorySearcher.SearchByAlias(...)`。 平台特定專案所需的只是將內容參數傳遞至 `DirectorySearcher` PCL。
+## <a name="step-4-use-adal-tooget-tokens-from-azure-ad"></a>從 Azure AD 的步驟 4： 使用 ADAL tooget 語彙基元
+幾乎所有的 hello 應用程式的驗證邏輯在於`DirectorySearcher.SearchByAlias(...)`。 所有 hello 平台專屬專案中，必須是 toopass 內容參數 toohello `DirectorySearcher` PCL。
 
-1. 開啟DirectorySearcher.cs，然後將新的參數新增至 `SearchByAlias(...)` 方法。 `IPlatformParameters` 是個內容參數，其中包含 ADAL 必須執行驗證的平台特定物件。
+1. 開啟 DirectorySearcher.cs，，然後加入新的參數 toohello`SearchByAlias(...)`方法。 `IPlatformParameters`是 hello 封裝 hello 平台專屬的內容參數物件 ADAL 的需求 tooperform hello 驗證。
 
     ```C#
     public static async Task<List<User>> SearchByAlias(string alias, IPlatformParameters parent)
     {
     ```
 
-2. 初始化 `AuthenticationContext`，這是 ADAL 的主要類別。  
-這個動作會傳遞它與 Azure AD 通訊所需的 ADAL 座標。
-3. 呼叫 `AcquireTokenAsync(...)`，它可接受 `IPlatformParameters` 物件，並叫用將權杖傳回應用程式所需的驗證流程。
+2. 初始化`AuthenticationContext`，這是 hello 的 ADAL 的主要類別。  
+此動作將 ADAL hello 協調其需求 toocommunicate 與 Azure AD。
+3. 呼叫`AcquireTokenAsync(...)`，它會接受 hello`IPlatformParameters`物件，並叫用 hello 是必要的 tooreturn 語彙基元 toohello 應用程式的驗證流程。
 
     ```C#
     ...
@@ -123,8 +123,8 @@ Xamarin 可讓您使用 C# 撰寫可在 iOS、Android 和 Windows (行動裝置�
     ...
     ```
 
-    `AcquireTokenAsync(...)` 會先嘗試為要求的資源 (在此範例中會是圖形 API) 傳回權杖，而不提示使用者輸入其認證 (透過快取或重新整理舊的權杖)。 必要時，它才會在取得要求的權杖之前，對使用者顯示 Azure AD 登入頁面。
-4. 將存取權杖附加至**授權**標頭中的圖形 API 要求：
+    `AcquireTokenAsync(...)`第一次嘗試 tooreturn hello 的語彙基元要求而不提示使用者 tooenter 其認證 （透過快取，或重新整理舊的權杖） 的資源 (在本例中的 hello Graph API)。 在必要時，它會顯示使用者 hello Azure AD 登入頁面之前取得 hello 要求的語彙基元。
+4. 附加 hello 存取語彙基元 toohello Graph API 要求中 hello**授權**標頭：
 
     ```C#
     ...
@@ -132,15 +132,15 @@ Xamarin 可讓您使用 C# 撰寫可在 iOS、Android 和 Windows (行動裝置�
     ...
     ```
 
-`DirectorySearcher` PCL 和應用程式的身分識別相關程式碼到此告一段落。 剩下的工作只是在每個平台檢視中呼叫 `SearchByAlias(...)` 方法，並在必要的地方新增程式碼以便正確地處理 UI 生命週期。
+這就是 hello `DirectorySearcher` PCL 和 hello 應用程式的身分識別相關的程式碼。 剩下的就是 toocall hello`SearchByAlias(...)`每個平台檢視中的方法和 tooadd 正確處理程式碼在需要時，hello UI 生命週期。
 
 ### <a name="android"></a>Android
-1. 在 MainActivity.cs 中，在按鈕點擊處理常式中新增 `SearchByAlias(...)` 的呼叫：
+1. Weatherapp，在加入呼叫太`SearchByAlias(...)`hello 按鈕中按一下 處理常式：
 
     ```C#
     List<User> results = await DirectorySearcher.SearchByAlias(searchTermText.Text, new PlatformParameters(this));
     ```
-2. 覆寫 `OnActivityResult` 生命週期方法，將任何驗證重新導向轉送回到適當的方法。 ADAL 針對 Android 中的此項作業提供協助程式方法：
+2. 覆寫 hello`OnActivityResult`存留週期方法 tooforward 任何驗證重新導向後 toohello 適當的方法。 ADAL 針對 Android 中的此項作業提供協助程式方法：
 
     ```C#
     ...
@@ -153,7 +153,7 @@ Xamarin 可讓您使用 C# 撰寫可在 iOS、Android 和 Windows (行動裝置�
     ```
 
 ### <a name="windows-desktop"></a>Windows 桌面
-在 MainWindow.xaml.cs 中，只需進行 `SearchByAlias(...)` 呼叫，即可在桌面的 `PlatformParameters` 物件中傳遞 `WindowInteropHelper`：
+將 MainWindow.xaml.cs 中, 進行呼叫太`SearchByAlias(...)`藉由傳遞`WindowInteropHelper`hello desktop`PlatformParameters`物件：
 
 ```C#
 List<User> results = await DirectorySearcher.SearchByAlias(
@@ -162,7 +162,7 @@ List<User> results = await DirectorySearcher.SearchByAlias(
 ```
 
 #### <a name="ios"></a>iOS
-在 DirSearchClient_iOSViewController.cs 中，iOS `PlatformParameters` 物件會參考檢視控制器︰
+在 DirSearchClient_iOSViewController.cs，hello iOS`PlatformParameters`物件會使用參考 toohello 檢視控制器：
 
 ```C#
 List<User> results = await DirectorySearcher.SearchByAlias(
@@ -171,7 +171,7 @@ List<User> results = await DirectorySearcher.SearchByAlias(
 ```
 
 ### <a name="windows-universal"></a>Windows Universal
-在 Windows 通用中，開啟 MainPage.xaml.cs，然後實作 `Search` 方法。 此方法會使用共用專案中的協助程式方法，視需要更新 UI。
+在 Windows 通用，開啟 MainPage.xaml.cs，然後實作 hello`Search`方法。 這個方法會視需要共用的專案 tooupdate UI 中使用的 helper 方法。
 
 ```C#
 ...
@@ -182,15 +182,15 @@ List<User> results = await DirectorySearcherLib.DirectorySearcher.SearchByAlias(
 ## <a name="whats-next"></a>後續步驟
 您現在擁有一個能夠在五個不同平台之間驗證使用者並使用 OAuth 2.0 安全地呼叫 Web API 的運作中 Xamarin 應用程式。
 
-如果您還沒有這麼做，現在是將使用者植入租用戶的時候。
+如果您沒有已填入您的租用戶與使用者，現在是 hello 時間 toodo 因此。
 
-1. 執行 DirectorySearcher 應用程式，然後使用其中一個使用者來登入。
+1. 執行 DirectorySearcher 應用程式，然後使用其中一個 hello 使用者登入。
 2. 根據 UPN 搜尋其他使用者。
 
-ADAL 可讓您輕鬆地將常見的身分識別功能納入應用程式。 它會為您處理一切麻煩的事，包括快取管理、OAuth 通訊協定支援、向使用者顯示登入 UI，以及重新整理過期權杖。 您只需要知道單一 API 呼叫 `authContext.AcquireToken*(…)`。
+ADAL 可讓一般身分識別功能輕鬆 tooincorporate 到 hello 應用程式。 它會負責所有 hello dirty 工作，例如快取管理、 OAuth 通訊協定支援，呈現 hello 使用者與登入 UI，並重新整理過期語彙基元。 您需要 tooknow 單一 API 呼叫`authContext.AcquireToken*(…)`。
 
-如需參考資料，請下載[完整的範例](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip) (不含您的組態值)。
+如需參考，下載 hello[完成的範例](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip)（不含您的組態值）。
 
-您現在可以繼續其他身分識別案例。 例如，嘗試[使用 Azure AD 來保護 .NET Web API](active-directory-devquickstarts-webapi-dotnet.md)。
+您現在可以移動 tooadditional 身分識別案例。 例如，嘗試[使用 Azure AD 來保護 .NET Web API](active-directory-devquickstarts-webapi-dotnet.md)。
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]

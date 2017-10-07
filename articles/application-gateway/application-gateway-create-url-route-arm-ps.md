@@ -1,6 +1,6 @@
 ---
-title: "使用 URL 路由規則建立應用程式閘道 |Microsoft Docs"
-description: "本頁面提供使用 URL 路由規則建立和設定 Azure 應用程式閘道的指示。"
+title: "應用程式閘道使用的 URL 路由規則的 aaaCreate |Microsoft 文件"
+description: "本頁面提供的指示 toocreate、 設定 Azure 應用程式閘道使用的 URL 路由規則"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/03/2017
 ms.author: gwallace
-ms.openlocfilehash: ba756d3262b9780c5701e69faad860ba32bba08b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 54fcccc39e48a933576968ce3d8160518c0d0b7e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-application-gateway-using-path-based-routing"></a>使用路徑型路由建立應用程式閘道
 
@@ -27,62 +27,62 @@ ms.lasthandoff: 08/18/2017
 > * [Azure Resource Manager PowerShell](application-gateway-create-url-route-arm-ps.md)
 > * [Azure CLI 2.0](application-gateway-create-url-route-cli.md)
 
-以 URL 路徑為基礎的路由可讓您根據 Http 要求的 URL 路徑來關聯路由。 它會檢查應用程式閘道中是否有路由指向 URL 設定的後端集區。 然後將網路流量傳送到已定義的後端集區。 URL 型路由的常見用法是將不同內容類型的要求負載平衡至不同的後端伺服器集區。
+路徑為基礎的路由 URL 可讓您 tooassociate 路由根據 hello 的 Http 要求的 URL 路徑。 它會檢查是否有設定 hello 應用程式閘道中的 hello URL 路由 tooa 後端集區。 接著會傳送 hello 網路流量 toohello 定義後端集區。 URL 為基礎的路由的常見用法是不同的內容類型 toodifferent 後端伺服器集區的 tooload 平衡要求。
 
-URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘道具有 2 種規則類型：基本和 PathBasedRouting。 基本規則類型會針對後端集區提供循環配置資源服務，而 PathBasedRouting 除了循環配置資源發佈之外也會在選擇後端集區時將要求 URL 的路徑模式納入考慮。
+URL 為基礎的路由導入了新的規則類型 tooapplication 閘道。 應用程式閘道具有 2 種規則類型：基本和 PathBasedRouting。 基本規則類型提供循環配置資源服務的 hello 後端集區時 PathBasedRouting 此外 tooround 循環配置資源發佈，也會考量 hello 要求 URL 的路徑模式並選擇 hello 後端集區。
 
 ## <a name="scenario"></a>案例
 
-在下列範例中，應用程式閘道會利用兩個後端伺服器集區來為 contoso.com 提供流量：視訊伺服器集區和映像伺服器集區。
+在下列範例的 hello，應用程式閘道為 contoso.com 的流量提供兩個後端伺服器集區： 視訊的伺服器集區及影像伺服器集區。
 
-對 http://contoso.com/image* 的要求會路由傳送至影像伺服器集區 (pool1)，而 http://contoso.com/video* 則會路由傳送至影片伺服器集區 (pool2)。 如果沒有任何路徑模式相符，則會選取預設的伺服器集區 (pool1)。
+要求 http://contoso.com/image * 會路由傳送 tooimage 伺服器集區 (pool1)，及 http://contoso.com/video * 會路由傳送 toovideo 伺服器集區 (pool2)。 如果沒有 hello 路徑模式符合，會選取預設的伺服器集區 (pool1)。
 
 ![URL 路由](./media/application-gateway-create-url-route-arm-ps/figure1.png)
 
 ## <a name="before-you-begin"></a>開始之前
 
-1. 使用 Web Platform Installer 安裝最新版的 Azure PowerShell Cmdlet。 您可以從 **下載頁面** 的 [Windows PowerShell](https://azure.microsoft.com/downloads/)區段下載並安裝最新版本。
-2. 您會建立應用程式閘道的虛擬網路和子網路。 請確定沒有虛擬機器或是雲端部署正在使用子網路。 應用程式閘道必須單獨位於虛擬網路子網路中。
-3. 加入後端集區以使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是指派公用 IP/VIP。
+1. 使用 hello Web Platform Installer 安裝 hello hello Azure PowerShell cmdlet 的最新版本。 您可以從下載並安裝最新版本的 hello hello **Windows PowerShell**區段 hello[下載頁面](https://azure.microsoft.com/downloads/)。
+2. 您會建立應用程式閘道的虛擬網路和子網路。 請確定沒有虛擬機器或雲端部署使用 hello 子網路。 hello 應用程式閘道必須單獨在虛擬網路子網路。
+3. hello 伺服器加入 toohello 後端集區 toouse hello 應用程式閘道必須存在，或其端點建立 hello 虛擬網路中或與公用 IP/VIP 指派。
 
-## <a name="what-is-required-to-create-an-application-gateway"></a>建立應用程式閘道需要什麼？
+## <a name="what-is-required-toocreate-an-application-gateway"></a>什麼是必要的 toocreate 應用程式閘道？
 
-* **後端伺服器集區：** 後端伺服器的 IP 位址清單。 列出的 IP 位址應屬於虛擬網路子網路或是公用 IP/VIP。
-* **後端伺服器集區設定：** 每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。 這些設定會繫結至集區，並套用至集區內所有伺服器。
-* **前端連接埠：** 此連接埠是在應用程式閘道上開啟的公用連接埠。 流量會到達此連接埠，然後重新導向至其中一個後端伺服器。
-* **接聽程式：** 接聽程式具有前端連接埠、通訊協定 (Http 或 Https，這些值都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。
-* **規則：** 規則會繫結接聽程式和後端伺服器集區，並定義流量達到特定接聽程式時應該導向至哪個後端伺服器集區。
+* **後端伺服器集區：** hello hello 後端伺服器的 IP 位址清單。 列出 hello IP 位址應該是屬於 toohello 虛擬網路子網路，或應該是公用 IP/VIP。
+* **後端伺服器集區設定：** 每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。 這些設定會繫結的 tooa 集區，並套用的 tooall hello 集區內的伺服器。
+* **前端連接埠：**此連接埠是開啟 hello 應用程式閘道上的 hello 公用連接埠。 流量叫用這個連接埠，然後再取得重新導向 tooone 的 hello 後端伺服器。
+* **接聽程式：** hello 接聽程式有前端連接埠的通訊協定 （Http 或 Https，這些值會區分大小寫），與 hello 的 SSL 憑證名稱 （如果有設定 SSL 卸載）。
+* **規則：** hello 規則繫結 hello 接聽程式，hello 後端伺服器集區，並定義哪一個後端伺服器集區 hello 流量應導向的 toowhen 配接器特定接聽程式。
 
 ## <a name="create-an-application-gateway"></a>建立應用程式閘道
 
-使用「Azure 傳統」和「Azure Resource Manager」的差別，在於您建立應用程式閘道和需設定項目的順序。
+使用 Azure 傳統和 Azure 資源管理員的 hello 差別在於 hello 順序建立 hello 應用程式閘道，必須設定 toobe hello 項目。
 
-透過 Resource Manager，組成應用程式閘道的所有項目會個別進行設定，然後一併建立應用程式閘道資源。
+使用資源管理員，讓應用程式閘道的所有項目個別設定，然後放置在一起 toocreate hello 應用程式閘道資源。
 
-以下是建立應用程式閘道所需的步驟：
+以下是需要的 toocreate 應用程式閘道的 hello 步驟：
 
 1. 建立資源管理員的資源群組。
-2. 建立應用程式閘道的虛擬網路、子網路和公用 IP。
+2. 建立虛擬網路、 子網路和 hello 應用程式閘道的公用 IP。
 3. 建立應用程式閘道組態物件。
 4. 建立應用程式閘道資源。
 
 ## <a name="create-a-resource-group-for-resource-manager"></a>建立資源管理員的資源群組
 
-確定您使用最新版本的 Azure PowerShell。 如需詳細資訊，請參閱 [搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)。
+請確定您使用 Azure PowerShell hello 最新版本。 如需詳細資訊，請參閱 [搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)。
 
 ### <a name="step-1"></a>步驟 1
 
-登入 Azure
+登入 tooAzure
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-系統會提示使用您的認證進行驗證。<BR>
+您必須提示的 tooauthenticate 和您的認證。<BR>
 
 ### <a name="step-2"></a>步驟 2
 
-檢查帳戶的訂用帳戶。
+請檢查 hello hello 帳戶的訂用帳戶。
 
 ```powershell
 Get-AzureRmSubscription
@@ -90,7 +90,7 @@ Get-AzureRmSubscription
 
 ### <a name="step-3"></a>步驟 3
 
-選擇要使用哪一個 Azure 訂用帳戶。 <BR>
+選擇 Azure 訂用帳戶 toouse。 <BR>
 
 ```powershell
 Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
@@ -110,22 +110,22 @@ $resourceGroup = New-AzureRmResourceGroup -Name appgw-RG -Location "West US"
 $resourceGroup = New-AzureRmResourceGroup -Name appgw-RG -Location "West US" -Tags @{Name = "testtag"; Value = "Application Gateway URL routing"} 
 ```
 
-Azure Resource Manager 需要所有的資源群組指定一個位置。 此資源群組用來作為該資源群組中資源的預設位置。 請確定所有用來建立應用程式閘道的命令都使用同一個資源群組。
+Azure Resource Manager 需要所有的資源群組指定一個位置。 此資源群組用做 hello 預設位置，該資源群組中的資源。 請確定所有命令 toocreate 應用程式閘道使用 hello 相同的資源群組。
 
-在上述範例中，我們建立名為 "appgw-RG" 的資源群組，且位置為美國西部 ("West US")。
+在 hello 上述範例中，我們會建立資源群組，稱為 「 appgw RG 」 和 「 美國西部 」 的位置。
 
 > [!NOTE]
-> 如果您需要為應用程式閘道設定自訂探查，請參閱 [使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-ps.md)。 請參閱 [自訂探查和健全狀況監視](application-gateway-probe-overview.md) 以取得詳細資訊。
+> 如果您需要 tooconfigure 自訂探查您應用程式閘道，請參閱[使用 PowerShell 建立應用程式閘道與自訂探查](application-gateway-create-probe-ps.md)。 請參閱 [自訂探查和健全狀況監視](application-gateway-probe-overview.md) 以取得詳細資訊。
 > 
 > 
 
-## <a name="create-a-virtual-network-and-a-subnet-for-the-application-gateway"></a>建立應用程式閘道的虛擬網路和子網路
+## <a name="create-a-virtual-network-and-a-subnet-for-hello-application-gateway"></a>建立虛擬網路和 hello 應用程式閘道的子網路
 
-下面的範例說明如何使用資源管理員建立虛擬網路。 這個範例會建立應用程式閘道的 VNET。 應用程式閘道需要自己的子網路，因此針對應用程式閘道建立的子網路會小於 VNET 位址空間。 這允許其他資源，包括但不限於要在相同 VNET 中設定的 Web 伺服器。
+下列範例會示範如何 hello toocreate 使用資源管理員的虛擬網路。 這個範例會建立 hello 應用程式閘道的 VNET。 應用程式閘道需要它自己的子網路，因此 hello 子網路建立的應用程式閘道 hello 小於 hello VNET 位址空間。 這可讓其他資源，包括但不是限於的 tooweb 伺服器 toobe 設定 hello 中相同的 VNET。
 
 ### <a name="step-1"></a>步驟 1
 
-指派用於建立虛擬網路的位址範圍 10.0.0.0/24 給子網路變數。  這會為下一個範例使用的應用程式閘道建立子網路設定物件。
+指派 hello 位址範圍 10.0.0.0/24 toohello 子網路使用的變數 toobe toocreate 虛擬網路。  這會建立 hello hello hello 下一個範例中使用的應用程式閘道的子網路設定物件。
 
 ```powershell
 $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10.0.0.0/24
@@ -133,7 +133,7 @@ $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10
 
 ### <a name="step-2"></a>步驟 2
 
-使用前置詞 10.0.0.0/16 搭配子網路 10.0.0.0/24，在美國西部 (West US) 區域的 **appgw-rg** 資源群組中建立名為 **appgwvnet** 的虛擬網路。 這樣就完成 VNET 的設定，有單一子網路放置應用程式閘道。
+建立虛擬網路，名為**appgwvnet**資源群組中**appgw rg** hello 前置詞 10.0.0.0/16 使用子網路 10.0.0.0/24 hello 美國西部地區。 如此即完成 hello hello VNET 與 hello 應用程式閘道 tooreside 的單一子網路設定。
 
 ```powershell
 $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-RG -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet
@@ -141,29 +141,29 @@ $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-RG -L
 
 ### <a name="step-3"></a>步驟 3
 
-指派後續步驟的子網路變數，這會在未來的步驟中傳遞至 `New-AzureRMApplicationGateway` Cmdlet。
+將 hello 子網路變數指派下一個步驟，這會傳遞 toohello`New-AzureRMApplicationGateway`指令程式在後續步驟。
 
 ```powershell
 $subnet=$vnet.Subnets[0]
 ```
 
-## <a name="create-a-public-ip-address-for-the-front-end-configuration"></a>建立前端組態的公用 IP 位址
+## <a name="create-a-public-ip-address-for-hello-front-end-configuration"></a>建立 hello 前端組態的公用 IP 位址
 
-在美國西部區域的 **appgw-rg** 資源群組中建立公用 IP 資源 **publicIP01**。 應用程式閘道可以使用公用 IP 位址、內部 IP 位址或兩者來接收進行負載平衡的要求。  此範例中僅使用公用 IP 位址。 在下列範例中，未設定 DNS 名稱以建立公用 IP 位址。  應用程式閘道在不支援公用 IP 位址上自訂 DNS 名稱。  如果公用端點需要自訂名稱，應該建立 CNAME 記錄以指向針對公用 IP 位址自動產生的 DNS 名稱。
+建立公用 IP 資源**publicIP01**資源群組中**appgw rg** hello 美國西部地區。 應用程式閘道可以使用的公用 IP 位址、 內部 IP 位址或兩個 tooreceive 要求進行負載平衡。  此範例中僅使用公用 IP 位址。 在下列範例的 hello，沒有 DNS 名稱已針對建立 hello 公用 IP 位址。  應用程式閘道在不支援公用 IP 位址上自訂 DNS 名稱。  如果需要 hello 公用端點的自訂名稱，CNAME 記錄應建立 hello 公用 IP 位址的 toopoint toohello 自動產生 DNS 名稱。
 
 ```powershell
 $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -name publicIP01 -location "West US" -AllocationMethod Dynamic
 ```
 
-在服務啟動時，系統會將 IP 位址指派至應用程式閘道。
+Hello 服務啟動時，會指派 toohello 應用程式閘道 IP 位址。
 
 ## <a name="create-application-gateway-configuration"></a>建立應用程式閘道組態
 
-建立應用程式閘道之前，必須先設定所有組態項目。 下列步驟會建立應用程式閘道資源所需的組態項目。
+所有設定項目必須都設定才能建立 hello 應用程式閘道。 hello 下列步驟建立 hello 組態項目所需的應用程式閘道資源。
 
 ### <a name="step-1"></a>步驟 1
 
-建立名為 **gatewayIP01** 的應用程式閘道 IP 組態。 當「應用程式閘道」啟動時，它會從已設定的子網路取得 IP 位址，再將網路流量路由傳送到後端 IP 集區中的 IP 位址。 請記住，每個執行個體需要一個 IP 位址。
+建立名為 **gatewayIP01** 的應用程式閘道 IP 組態。 應用程式閘道啟動時，它會挑選設定 hello 子網路的 IP 位址，並傳送 hello 後端 IP 集區中的網路流量 toohello IP 位址。 請記住，每個執行個體需要一個 IP 位址。
 
 ```powershell
 $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $subnet
@@ -171,7 +171,7 @@ $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Sub
 
 ### <a name="step-2"></a>步驟 2
 
-設定名為 **pool01** 和 **pool2** 的後端 IP 位址集區，並指定 **pool1** 和 **pool2** 的 IP 位址。 這些 IP 位址是託管 Web 應用程式 (由應用程式閘道保護) 之資源的 IP 位址。 這些後端集區成員都由探查 (無論是基本探查或自訂探查) 驗證為健康狀態。  當要求進入應用程式閘道時，流量便會路由至它們。 後端集區可在應用程式閘道內供多個規則使用，這表示一個後端集區可用於位在相同主機上的多個 web 應用程式。
+設定 hello 後端 IP 位址集區名稱為**pool01**和**pool2** IP 位址與**pool1**和**pool2**。 這些 IP 位址是裝載 hello hello 應用程式閘道所保護的 web 應用程式 toobe hello 資源 hello IP 位址。 這些後端集區成員是所有驗證的 toobe 良好探查，無論是基本的探查 」 或 「 自訂探查。  接著路由傳送流量 toothem 當要求進入 hello 應用程式閘道。 後端集區可供多個規則內 hello 應用程式閘道，這表示一個後端集區無法用於相同位於 hello 的多個 web 應用程式主機。
 
 ```powershell
 $pool1 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221, 134.170.185.50
@@ -179,11 +179,11 @@ $pool1 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIP
 $pool2 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool02 -BackendIPAddresses 134.170.186.47, 134.170.189.222, 134.170.186.51
 ```
 
-此範例中有兩個後端集區，根據 URL 路徑路由傳送網路流量。 有一個集區會接收來自 URL 路徑 "/video" 的流量，而另一個集區會接收來自路徑 "/image" 的流量。 取代上述 IP 位址來新增自己的應用程式 IP 位址端點。 
+在此範例中，有兩個後端集區 tooroute 網路流量 hello URL 路徑。 有一個集區會接收來自 URL 路徑 "/video" 的流量，而另一個集區會接收來自路徑 "/image" 的流量。 取代先前您自己的應用程式的 IP 位址端點的 IP 位址 tooadd hello。 
 
 ### <a name="step-3"></a>步驟 3
 
-針對後端集區中負載平衡的網路流量，設定應用程式閘道設定 **poolsetting01** 和 **poolsetting02**。 在此範例中，您會針對後端集區設定不同的後端集區設定。 每個後端集區都可以有它自己的後端集區設定。  規則會使用後端 HTTP 設定，將流量路由傳送至正確的後端集區成員。 這會決定將流量傳送至後端集區成員時使用的通訊協定和連接埠。 Cookie 型工作階段也是由後端 HTTP 設定決定。  啟用時，Cookie 型工作階段親和性會如每個封包的先前要求將流量至相同的後端。
+設定應用程式閘道設定**poolsetting01**和**poolsetting02** hello hello 後端集區中，負載平衡網路流量。 在此範例中，您可以設定不同的後端集區設定 hello 後端集區。 每個後端集區都可以有它自己的後端集區設定。  後端 HTTP 設定使用規則 tooroute 流量 toohello 正確的後端集區成員。 這會決定 hello 通訊協定和連接埠傳送流量 toohello 後端集區成員時所使用。 Cookie 架構工作階段，也取決於 hello 後端 HTTP 設定。  Cookie 架構工作階段相似性啟用時，會傳送流量 toohello 相同的後端，為每個封包的先前要求。
 
 ```powershell
 $poolSetting01 = New-AzureRmApplicationGatewayBackendHttpSettings -Name "besetting01" -Port 80 -Protocol Http -CookieBasedAffinity Disabled -RequestTimeout 120
@@ -193,7 +193,7 @@ $poolSetting02 = New-AzureRmApplicationGatewayBackendHttpSettings -Name "besetti
 
 ### <a name="step-4"></a>步驟 4
 
-利用公用 IP 端點設定前端 IP。 接聽程式會使用前端 IP 設定物件，將對外 IP 位址與接聽程式相關聯。
+設定公用 IP 端點 hello 前端 IP。 hello 前端 IP 組態物件會使用接聽程式 toorelate hello 向外面對 hello 接聽程式 IP 位址。
 
 ```powershell
 $fipconfig01 = New-AzureRmApplicationGatewayFrontendIPConfig -Name "frontend1" -PublicIPAddress $publicip
@@ -201,7 +201,7 @@ $fipconfig01 = New-AzureRmApplicationGatewayFrontendIPConfig -Name "frontend1" -
 
 ### <a name="step-5"></a>步驟 5
 
-設定應用程式閘道的前端連接埠。 接聽程式會使用前端連接埠組態物件來定義應用程式閘道會接聽哪個連接埠以取得接聽程式上的流量。
+設定應用程式閘道 hello 前端連接埠。 hello 前端連接埠組態物件會使用接聽程式 toodefine 哪些連接埠 hello 應用程式閘道接聽 hello 接聽程式上的流量。
 
 ```powershell
 $fp01 = New-AzureRmApplicationGatewayFrontendPort -Name "fep01" -Port 80
@@ -209,7 +209,7 @@ $fp01 = New-AzureRmApplicationGatewayFrontendPort -Name "fep01" -Port 80
 
 ### <a name="step-6"></a>步驟 6
 
-設定接聽程式。 這個步驟會針對用來接收連入網路流量的公用 IP 位址和連接埠設定接聽程式。 下列範例會採用先前設定的前端 IP 組態、前端連接埠組態及通訊協定 (http 或 https)，並設定接聽程式。 在此範例中，接聽程式會接聽稍早建立的公用 IP 位址上連接埠 80 的 HTTP 流量。
+Hello 接聽程式設定。 此步驟會設定 hello hello 公用 IP 位址的接聽程式，以及使用 tooreceive 連入網路流量的連接埠。 hello 下列範例會使用前端 IP 組態之前設定的 hello、 前端連接埠組態和通訊協定 （http 或 https），並設定 hello 接聽程式。 在此範例中，hello 接聽 tooHTTP hello 公用 IP 位址上稍早建立的連接埠 80 上的流量。
 
 ```powershell
 $listener = New-AzureRmApplicationGatewayHttpListener -Name "listener01" -Protocol Http -FrontendIPConfiguration $fipconfig01 -FrontendPort $fp01
@@ -217,12 +217,12 @@ $listener = New-AzureRmApplicationGatewayHttpListener -Name "listener01" -Protoc
 
 ### <a name="step-7"></a>步驟 7
 
-設定後端集區的 URL 規則路徑。 這個步驟會設定應用程式閘道所使用的相對路徑，並定義 URL 路徑和已指派的後端集區之間的對應，以處理傳入流量。
+設定 URL 規則路徑 hello 後端集區。 這個步驟會設定應用程式閘道所使用的 hello 相對路徑，並定義 hello hello URL 路徑與指派 toohandle hello 連入流量的 hello 後端集區之間的對應。
 
 > [!IMPORTANT]
-> 每個路徑都必須以 / 開頭，而且只有結尾允許使用 "\*"。 有效範例包括 /xyz、/xyz* 或 /xyz/*。 傳送給路徑比對器的字串未在第一個 "?" 或 "#" 之後包含任何文字，而這些字元是不允許的。 
+> 每個路徑開頭必須 / 和 hello 唯一地方"\*」 允許，則在 hello 結束。 有效範例包括 /xyz、/xyz* 或 /xyz/*。 hello fed toohello 路徑比對器的字串不包含任何文字 hello 之後第一次"？"或"#"，且這些字元不得使用。 
 
-下列範例會建立兩個規則：一個適用於將流量路由傳送到後端 "pool1" 的 "/image/" 路徑，另一個則適用於將流量路由傳送到後端 "pool2" 的 "/video/" 路徑。 這些規則確保每一組 url 的流量都路由傳送至後端。 例如，http://contoso.com/image/figure1.jpg 會傳送至 pool1，http://contoso.com/video/example.mp4 會傳送至 pool2。
+hello 下列範例會建立兩個規則： 一個用於 「 / 影像 /"路徑路由流量 tooback 端"pool1"和另一種用於 「 / 視訊 /"路徑路由流量 tooback 端"pool2。 」 這些規則可確保每一組 url 的流量會路由的 toohello 後端。 例如，http://contoso.com/image/figure1.jpg 進入 toopool1 到 http://contoso.com/video/example.mp4 進入 toopool2。
 
 ```powershell
 $imagePathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule1" -Paths "/image/*" -BackendAddressPool $pool1 -BackendHttpSettings $poolSetting01
@@ -230,7 +230,7 @@ $imagePathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule1" -
 $videoPathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule2" -Paths "/video/*" -BackendAddressPool $pool2 -BackendHttpSettings $poolSetting02
 ```
 
-如果路徑不符合任何預先定義的路徑規則，規則路徑對應組態也會設定預設的後端位址集區。 例如，http://contoso.com/shoppingcart/test.html 會傳送至 pool1，因為它定義為不相符流量的預設集區。
+如果 hello 路徑不符合任何 hello 預先定義的路徑規則，hello 規則路徑對應設定也會設定預設的後端位址集區。 比方說，http://contoso.com/shoppingcart/test.html 會 toopool1，因為它定義為 hello 預設集區不相符的流量。
 
 ```powershell
 $urlPathMap = New-AzureRmApplicationGatewayUrlPathMapConfig -Name "urlpathmap" -PathRules $videoPathRule, $imagePathRule -DefaultBackendAddressPool $pool1 -DefaultBackendHttpSettings $poolSetting02
@@ -238,7 +238,7 @@ $urlPathMap = New-AzureRmApplicationGatewayUrlPathMapConfig -Name "urlpathmap" -
 
 ### <a name="step-8"></a>步驟 8
 
-建立規則設定。 這個步驟會設定應用程式閘道來使用 URL 路徑型路由。 稍早步驟中定義的 `$urlPathMap` 變數，現在用來建立以路徑為基礎的規則。 在此步驟中，我們將規則與接聽程式和稍早建立的 url 路徑對應相關聯。
+建立規則設定。 此步驟會設定 hello 應用程式閘道 toouse URL 路徑為基礎的路由。 hello`$urlPathMap`變數定義在 hello 先前的步驟是現在使用的 toocreate hello 路徑為基礎的規則。 在此步驟中，我們建立 hello 規則關聯的接聽程式與 hello 稍早建立的 url 路徑對應。
 
 ```powershell
 $rule01 = New-AzureRmApplicationGatewayRequestRoutingRule -Name "rule1" -RuleType PathBasedRouting -HttpListener $listener -UrlPathMap $urlPathMap
@@ -246,7 +246,7 @@ $rule01 = New-AzureRmApplicationGatewayRequestRoutingRule -Name "rule1" -RuleTyp
 
 ### <a name="step-9"></a>步驟 9
 
-設定執行個體數目和應用程式閘道的大小。
+設定 hello 數量的執行個體和 hello 應用程式閘道的大小。
 
 ```powershell
 $sku = New-AzureRmApplicationGatewaySku -Name "Standard_Small" -Tier Standard -Capacity 2
@@ -254,7 +254,7 @@ $sku = New-AzureRmApplicationGatewaySku -Name "Standard_Small" -Tier Standard -C
 
 ## <a name="create-application-gateway"></a>建立應用程式閘道
 
-利用上述步驟中的所有組態物件來建立應用程式閘道。
+建立應用程式閘道與 hello 先前步驟中的所有組態物件。
 
 ```powershell
 $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-RG -Location "West US" -BackendAddressPools $pool1,$pool2 -BackendHttpSettingsCollection $poolSetting01, $poolSetting02 -FrontendIpConfigurations $fipconfig01 -GatewayIpConfigurations $gipconfig -FrontendPorts $fp01 -HttpListeners $listener -UrlPathMaps $urlPathMap -RequestRoutingRules $rule01 -Sku $sku
@@ -262,7 +262,7 @@ $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-
 
 ## <a name="get-application-gateway-dns-name"></a>取得應用程式閘道 DNS 名稱
 
-建立閘道之後，下一步是設定通訊的前端。 當使用公用 IP 時，應用程式閘道需要動態指派的 DNS 名稱 (不易記住)。 為了確保使用者可以叫用應用程式閘道，可使用 CNAME 記錄來指向應用程式閘道的公用端點。 [在 Azure 中設定自訂網域名稱](../cloud-services/cloud-services-custom-domain-name-portal.md)。 若要設定前端 IP CNAME 記錄，使用連接至應用程式閘道的 PublicIPAddress 元素，擷取應用程式閘道的詳細資料及其關聯的 IP/DNS 名稱。 應用程式閘道的 DNS 名稱應該用於建立 CNAME 記錄。 不建議使用 A-records，因為重新啟動應用程式閘道時，VIP 可能會變更。
+一旦建立 hello 閘道，hello 下一個步驟是 tooconfigure hello 前端進行通訊。 當使用公用 IP 時，應用程式閘道需要動態指派的 DNS 名稱 (不易記住)。 tooensure 終端使用者可以叫用 hello 應用程式閘道，CNAME 記錄可使用的 toopoint toohello 公用端點的 hello 應用程式閘道。 [在 Azure 中設定自訂網域名稱](../cloud-services/cloud-services-custom-domain-name-portal.md)。 tooconfigure hello 前端 IP CNAME 記錄，擷取 hello 應用程式閘道和其相關聯的 IP/DNS 名稱，使用 hello PublicIPAddress 項目附加的 toohello 應用程式閘道的詳細資料。 hello 應用程式閘道的 DNS 名稱應該使用的 toocreate CNAME 記錄。 不建議 hello 使用 A 記錄，因為可能會在重新啟動應用程式閘道變更 hello VIP。
 
 ```powershell
 Get-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -Name publicIP01
@@ -292,5 +292,5 @@ DnsSettings              : {
 
 ## <a name="next-steps"></a>後續步驟
 
-如果您想要了解「安全通訊端層」(SSL) 卸載，請參閱 [設定適用於 SSL 卸載的應用程式閘道](application-gateway-ssl-arm.md)。
+如果您想的 toolearn Secure Sockets Layer (SSL) 卸載時，請參閱[設定 SSL 卸載的應用程式閘道](application-gateway-ssl-arm.md)。
 

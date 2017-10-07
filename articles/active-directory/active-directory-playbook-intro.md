@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory PoC 腳本簡介 | Microsoft Docs"
+title: "aaaAzure Active Directory PoC 腳本簡介 |Microsoft 文件"
 description: "探索並快速實作身分識別和存取管理案例"
 services: active-directory
 keywords: "azure active directory, 腳本, 概念證明, PoC"
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 4/12/2017
 ms.author: dstefan
-ms.openlocfilehash: 567f3373594bc53435e8c0bd0a3445dd318af1cd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 655524e9692de46e831fc68e1636e6c20d41958f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-proof-of-concept-playbook-introduction"></a>Azure Active Directory 概念證明腳本：簡介
 
-這篇文章提供在概念證明 (PoC) 中探索不同 Azure AD 功能的指導方針。 本文件的目標對象是身分識別架構設計人員、IT 專業人員和系統整合者
+本文章提供概念證明 (PoC) 中的 tooexplore 不同的 Azure AD 功能的指導方針。 hello 適合此文件的適用對象是識別架構設計人員、 IT 專業人員和系統整合者
 
-## <a name="how-to-use-this-playbook"></a>如何使用這個腳本
+## <a name="how-toouse-this-playbook"></a>如何 toouse 這個腳本
 
-1. 使用[佈景主題](active-directory-playbook-ingredients.md#theme)區段，然後根據您的需求選取感興趣的區域。  
-2. 藉由選取與您的商務目標一致的案例，來設定 PoC 的範圍。 愈短愈好。 我們建議這麼做是因為越簡潔越能將價值傳達給專案關係人，同時將實現作業的複雜度降至最低。  
-3. 使用[實作](active-directory-playbook-implementation.md)區段以了解案例，以及它們對於您的環境有什麼意義。 在每個案例中，我們會說明如何設定 (所謂的[建置組塊](active-directory-playbook-building-blocks.md))，以及如何瀏覽案例。 
-4. 每個建置區塊均會說明所需的必要條件，以及完成的大約時間。 這可以在計劃程序期間協助您。 
-5. 根據上述的 1-3，定義要在其中執行的[環境](active-directory-playbook-ingredients.md#environment)。 我們鼓勵尋求生產環境，為使用者取得良好的經驗。 
+1. 使用 hello[佈景主題](active-directory-playbook-ingredients.md#theme)區段，然後挑選您的需求為基礎的感興趣的 hello box-decoration-break。  
+2. 範圍 hello PoC 選擇符合商務目標的 hello 案例。 hello 短 hello 更好。 我們建議您這麼做為短和精簡做為可能 tooconvey hello 值降至最低 toohello 專案關係人 hello 複雜性 toorealize 它。  
+3. 使用 hello[實作](active-directory-playbook-implementation.md)區段 toounderstand hello 情節，以及其代表意義為您的環境。 在每個案例中，我們說明如何 tooset 它 (我們所謂[建置組塊](active-directory-playbook-building-blocks.md))，及如何 toonavigate hello 案例。 
+4. 每個建置組塊說明 hello 必要元件所需，以及大約時間 toocomplete。 這可協助您規劃程序的 hello 期間。 
+5. 根據上述的 1-3，定義 hello[環境](active-directory-playbook-ingredients.md#environment)哪些 tooexecute 中。 我們建議實際執行環境 tooget hello 使用者體驗很好風格的 toostrive。 
 6. 當需求有衝突的時候，請使用這個實用的取捨矩陣 
    * 以佈景主題為主的顯示值  
-   * 準備、設定及執行案例的流暢度 
-   * 執行目標案例的最少時間 
-   * 在您的限制之內儘可能接近生產 
+   * 平滑度 tooprepare、 tooset 和 tooexecute hello 案例 
+   * 最短時間 tooexecute hello 目標情況 
+   * 做為您的條件約束中關閉 tooproduction 
 
 >[!NOTE]
 > 在本文中，您會看到一些特定第三方應用程式和產品，以便作為範例。 Azure AD 支援我們的[應用程式庫](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps)中數千個應用程式，您可以根據需求和環境加以使用。 

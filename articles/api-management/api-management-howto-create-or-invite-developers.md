@@ -1,6 +1,6 @@
 ---
-title: "如何在 Azure API 管理中管理使用者帳戶 | Microsoft Docs"
-description: "了解如何在 Azure API 管理中建立或邀請使用者"
+title: "aaaHow 管理使用者帳戶，在 Azure API 管理 |Microsoft 文件"
+description: "深入了解如何在 Azure API 管理 toocreate 或邀請使用者"
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,72 +14,72 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: d3a50f6d22cbf1797f580078bc0d2cc9cefe5064
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3966f4454e29621d7c615beefee352ec91b48b2e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-user-accounts-in-azure-api-management"></a>如何在 Azure API 管理中管理使用者帳戶
-在 API 管理中，開發人員是指您使用 API 管理所公開之 API 的使用者。 本指南示範如何建立並邀請開發人員使用您以 API 管理執行個體提供給他們的 API 和產品。 如需以程式設計方式管理使用者帳戶的相關資訊，請參閱 [API 管理 REST](https://msdn.microsoft.com/library/azure/dn776326.aspx) 參考中的[使用者實體](https://msdn.microsoft.com/library/azure/dn776330.aspx)文件。
+# <a name="how-toomanage-user-accounts-in-azure-api-management"></a>如何 toomanage 使用者帳戶在 Azure API 管理
+在 API 管理開發人員會是 hello hello Api 公開使用 API 管理使用者。 此指南示範 toohow toocreate 和邀請開發人員 toouse hello 應用程式開發介面和可用 toothem 利用您的 API 管理執行個體的產品。 如需以程式設計方式管理使用者帳戶資訊，請參閱 hello[使用者實體](https://msdn.microsoft.com/library/azure/dn776330.aspx)文件以 hello [API 管理 REST](https://msdn.microsoft.com/library/azure/dn776326.aspx)參考。
 
 ## <a name="create-developer"> </a>建立新的開發人員
-若要建立新的開發人員，請在您「API 管理」服務的「Azure 入口網站」中按一下 [發行者入口網站]。 這會帶您前往 API 管理發行者入口網站。 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。
+按一下 新的開發人員，toocreate**發行者入口網站**API 管理服務的 hello Azure 入口網站中。 這會帶您 toohello API 管理發行者入口網站。 如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][ Create an API Management service instance]在 hello[開始使用 Azure API 管理][Get started with Azure API Management]教學課程。
 
 ![發行者入口網站][api-management-management-console]
 
-從左邊的 [API 管理] 功能表中按一下 [使用者]，然後按一下 [使用者]。
+按一下**使用者**從 hello **API 管理**hello 左、，然後按一下功能表**將使用者加入**。
 
 ![Create developer][api-management-create-developer]
 
-輸入新開發人員的 [電子郵件]、[密碼] 和 [名稱]，然後按一下 [儲存]。
+輸入 hello**電子郵件**，**密碼**，和**名稱**hello 新的開發人員，然後按一下**儲存**。
 
 ![Create developer][api-management-add-new-user]
 
-依預設，新建立的開發人員帳戶為 [作用中]，且與 [開發人員] 群組相關聯。
+根據預設，會建立新的開發人員帳戶**Active**，與 hello 與**開發人員**群組。
 
 ![New developer][api-management-new-developer]
 
-處於「作用中」  狀態的開發人員帳戶可用來存取擁有訂用帳戶的所有 API。 若要將新建立的開發人員與其他群組建立關聯，請參閱 [如何將群組與開發人員建立關聯][How to associate groups with developers]。
+中的開發人員帳戶**active**狀態可以是使用的 tooaccess 所有 hello Api 他們擁有的訂閱。 tooassociate hello 新建立的開發人員與其他群組，請參閱[tooassociate 與開發人員的群組方式][How tooassociate groups with developers]。
 
 ## <a name="invite-developer"> </a>邀請開發人員
-若要邀請開發人員，請從左邊的 [API 管理] 功能表中按一下 [使用者]，然後按一下 [邀請使用者]。
+tooinvite 為開發人員，按一下**使用者**從 hello **API 管理**hello 左、，然後按一下功能表**邀請使用者**。
 
 ![Invite developer][api-management-invite-developer]
 
-輸入開發人員的名稱和電子郵件地址，然後按一下 [邀請] 。
+輸入 hello 名稱和電子郵件地址 hello 開發人員，然後按一下 **邀請**。
 
 ![Invite developer][api-management-invite-developer-window]
 
-這時會顯示確認訊息，但剛獲邀的開發人員在尚未接受邀請之前，都不會出現在清單中。 
+會顯示確認訊息，但新邀請 hello 開發人員不會顯示在 hello 清單，直到他們接受 hello 邀請之後。 
 
 ![Invite confirmation][api-management-invite-developer-confirmation]
 
-邀請開發人員時，有一封電子郵件會傳送給開發人員。 此電子郵件是以範本產生，可自訂。 如需詳細資訊，請參閱 [設定電子郵件範本][Configure email templates]。
+當開發人員會受邀時，電子郵件傳送 toohello 開發人員。 此電子郵件是以範本產生，可自訂。 如需詳細資訊，請參閱 [設定電子郵件範本][Configure email templates]。
 
-接受邀請時，帳戶就會變成作用中。
+一旦接受 hello 邀請，hello 帳戶變成作用中。
 
 ## <a name="block-developer"> </a> 停用或重新啟用開發人員帳戶
-依預設，新建立或邀請的開發人員帳戶為「作用中」 。 若要停用開發人員帳戶，請按一下 [封鎖] 。 若要重新啟用已封鎖的開發人員帳戶，請按一下 [啟用] 。 已封鎖的開發人員帳戶無法存取開發人員入口網站或呼叫任何 API。 若要刪除使用者帳戶，請按一下 [刪除] 。
+依預設，新建立或邀請的開發人員帳戶為「作用中」 。 toodeactivate 開發人員帳戶，按一下**區塊**。 tooreactivate 封鎖的開發人員帳戶，按一下**Activate**。 已封鎖的開發人員帳戶無法存取 hello 開發人員入口網站，或呼叫任何 Api。 toodelete 使用者帳戶，按一下**刪除**。
 
 ![Block developer][api-management-new-developer]
 
 ## <a name="reset-a-user-password"></a>重設使用者密碼
-若要重設使用者帳戶的密碼，請按一下帳戶的名稱。
+tooreset hello 使用者帳戶密碼，按一下 hello hello 帳戶名稱。
 
 ![重設密碼][api-management-view-developer]
 
-按一下 [重設密碼]  連結可傳送連結給使用者，以便重設其密碼。
+按一下**重設密碼**toosend 連結 toohello 使用者 tooreset 他們的密碼。
 
 ![重設密碼][api-management-reset-password]
 
-若要以程式設計方式使用使用者帳戶，請參閱 [API 管理 REST](https://msdn.microsoft.com/library/azure/dn776326.aspx) 參考中的[使用者實體](https://msdn.microsoft.com/library/azure/dn776330.aspx)文件。 若要將使用者帳戶密碼重設為特定值，您可以使用 [更新使用者](https://msdn.microsoft.com/library/azure/dn776330.aspx#UpdateUser) 作業並指定所要的密碼。
+tooprogrammatically 使用使用者帳戶，請參閱 hello[使用者實體](https://msdn.microsoft.com/library/azure/dn776330.aspx)文件以 hello [API 管理 REST](https://msdn.microsoft.com/library/azure/dn776326.aspx)參考。 tooreset 使用者帳戶密碼 tooa 特定值，您可以使用 hello[更新使用者](https://msdn.microsoft.com/library/azure/dn776330.aspx#UpdateUser)作業並指定 hello 所需的密碼。
 
 ## <a name="pending-verification"></a>擱置驗證
 ![擱置驗證][api-management-pending-verification]
 
 ## <a name="next-steps"> </a>後續步驟
-建立開發人員帳戶之後，您可以將它與角色建立關聯，並讓它訂閱產品和 API。 如需詳細資訊，請參閱[如何建立和使用群組][How to create and use groups]。
+開發人員帳戶建立之後，您可以將它與角色關聯，並訂閱 tooproducts 和 Api。 如需詳細資訊，請參閱[如何 toocreate 和使用群組][How toocreate and use groups]。
 
 [api-management-management-console]: ./media/api-management-howto-create-or-invite-developers/api-management-management-console.png
 [api-management-add-new-user]: ./media/api-management-howto-create-or-invite-developers/api-management-add-new-user.png
@@ -97,8 +97,8 @@ ms.lasthandoff: 07/11/2017
 [Invite a developer]: #invite-developer
 [Deactivate or reactivate a developer account]: #block-developer
 [Next steps]: #next-steps
-[How to create and use groups]: api-management-howto-create-groups.md
-[How to associate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
+[How toocreate and use groups]: api-management-howto-create-groups.md
+[How tooassociate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
 
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance

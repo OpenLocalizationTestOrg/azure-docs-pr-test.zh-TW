@@ -1,6 +1,6 @@
 ---
-title: " 使用自動化 Runbook 補救 Azure VM 警示 | Microsoft Docs"
-description: "本文示範如何使用 Azure 自動化 Runbook 整合 Azure 虛擬機器警示，並自動補救問題"
+title: "aaa\"補救自動化 runbook 的 Azure VM 警示 |Microsoft 文件 」"
+description: "本文示範如何使用 Azure 自動化 runbook 警示 toointegrate Azure 虛擬機器的方式並自動補救問題"
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,70 +14,70 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/14/2016
 ms.author: csand;magoedte
-ms.openlocfilehash: 738959b8e1ee5da989bb996d1ce8148cbf912781
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c226368a5c4c51fbfb331f4b97f7f2f239e701c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-automation-scenario---remediate-azure-vm-alerts"></a>Azure 自動化案例 - 補救 Azure VM 警示
-Azure 自動化和 Azure 虛擬機器發行了一項新功能，可讓您設定虛擬機器 (VM) 警示以便執行自動化 Runbook。 這項新功能可讓您自動執行標準補救以回應 VM 警示，例如重新啟動或停止 VM。
+Azure 自動化和 Azure 虛擬機器已發行的新功能，可讓您 tooconfigure 虛擬機器 (VM) 警示 toorun 自動化 runbook。 這項新功能可讓您 tooautomatically 回應 tooVM 警示，例如重新啟動或停止 hello VM 中執行標準的修復。
 
-先前，在建立 VM 警示規則期間，您能夠 [指定自動化 Webhook](https://azure.microsoft.com/blog/using-azure-automation-to-take-actions-on-azure-alerts/) 給 Runbook，以便在觸發警示時執行 Runbook。 不過，您需要進行建立 Runbook 的工作，為 Runbook 建立 Webhook，然後在警示規則建立期間複製並貼上 Webhook。 使用這個新版本，此程序會更加容易，因為您可以在警示規則建立期間直接從清單中選擇 Runbook，而且可以選擇將執行 Runbook 或輕鬆建立帳戶的自動化帳戶。
+先前，在警示規則建立 VM 時您仍可太[指定自動化 webhook](https://azure.microsoft.com/blog/using-azure-automation-to-take-actions-on-azure-alerts/) tooa hello 警示觸發時順序 toorun hello runbook 中的 runbook。 不過，這需要您建立 hello runbook、 建立 hello webhook hello runbook，然後複製和貼上 hello webhook 警示規則建立期間 toodo hello 工作。 使用這個新的版本，因為您可以直接 runbook 從清單中選擇的警示規則建立期間，您可以選擇將執行 hello runbook 或輕鬆地建立帳戶的自動化帳戶，會比較容易 hello 程序。
 
-在本文中，我們將說明設定 Azure VM 警示以及設定在警示觸發時所要執行的自動化 Runbook 有多麼容易。 範例案例包括：當記憶體使用量由於 VM 上的應用程式有記憶體流失而超過某個臨界值時重新啟動 VM，或是當 CPU 使用者時間在過去一小時已低於 1% 且不在使用中時停止 VM。 我們也將說明在您的自動化帳戶中自動建立服務主體，如何簡化在 Azure 警示補救中使用 Runbook。
+在本文中，即將顯示是多麼的輕鬆 tooset 向上 Azure VM 警示及設定自動化 runbook toorun 每當 hello 警示觸發程序。 範例案例包括 hello 記憶體使用量超過 tooan 應用程式上 hello VM 有記憶體流失，因為某些閾值時，請重新啟動 VM，或停止 VM，hello CPU 使用者時間已低於 1%過去一小時，而且沒有使用中時。 我們也將說明如何 hello 自動建立服務主體，在您的自動化帳戶可簡化 hello Azure 警示補救中的 runbook 使用。
 
 ## <a name="create-an-alert-on-a-vm"></a>在 VM 上建立警示
-執行下列步驟來設定警示，以在符合其臨界值時啟動 Runbook。
+執行下列步驟 tooconfigure 警示 toolaunch runbook，在達到臨界值時的 hello。
 
 > [!NOTE]
 > 在此版本中，我們只支援 V2 虛擬機器，即將新增傳統 VM 的支援。  
 > 
 > 
 
-1. 登入 Azure 入口網站，然後按一下 [虛擬機器] 。  
-2. 選取其中一部虛擬機器。  將會出現虛擬機器儀表板刀鋒視窗，而 [設定]  刀鋒視窗會出現在其右邊。  
-3. 在 [設定] 刀鋒視窗的 [監視] 區段之下，選取 [警示規則]。
-4. 在 [警示規則] 刀鋒視窗上，按一下 [加入警示]。
+1. 登入 toohello Azure 入口網站，然後按一下**虛擬機器**。  
+2. 選取其中一部虛擬機器。  hello 虛擬機器儀表板刀鋒視窗會顯示與 hello**設定**刀鋒視窗 tooits 權限。  
+3. 從 hello**設定**刀鋒視窗中的，在 hello 監視 區段選取**警示規則**。
+4. 在 hello**警示規則**刀鋒視窗中，按一下 **新增警示**。
 
-這會開啟 [加入警示規則]  刀鋒視窗，您可以在此設定警示的條件，並選擇下列其中一個或所有選項︰傳送電子郵件給某人、使用 Webhook 將警示轉寄至另一個系統，及/或執行自動化 Runbook 以回應修補問題的嘗試。
+這會開啟 hello**加入警示規則**刀鋒視窗中，您可以在此設定 hello hello 警示的條件，並選擇其中一個或所有這些選項： 傳送電子郵件 toosomeone，請使用 webhook tooforward hello 警示 tooanother 系統，和 （或)自動化 runbook 執行回應嘗試 tooremediate hello 問題。
 
 ## <a name="configure-a-runbook"></a>設定 Runbook
-若要設定 Runbook 以在符合 VM 警示臨界值時執行，請選取 [自動化 Runbook] 。 在 [設定 Runbook]  刀鋒視窗中，您可以選取要執行的 Runbook 以及用來執行 Runbook 的自動化帳戶。
+選取當符合 hello VM 警示臨界值時，runbook toorun tooconfigure**自動化 Runbook**。 在 hello**設定 runbook**刀鋒視窗中，您可以選取 hello runbook toorun 和 hello 自動化帳戶 toorun hello runbook 中的。
 
 ![設定自動化 Runbook 並建立新的自動化帳戶](media/automation-azure-vm-alert-integration/ConfigureRunbookNewAccount.png)
 
 > [!NOTE]
-> 在此版本中，您可以從服務所提供的三個 Runbook 進行選擇 – 重新啟動 VM、停止 VM 或移除 VM (刪除它)。  在未來版本中將提供選取其他 Runbook 或您自己的其中一個 Runbook 的功能。
+> 此版本中，您可以選擇三個 runbook 的 hello 服務所提供 – 重新啟動 VM、 停止 VM 或移除的 VM （刪除）。  hello 能力 tooselect 其他 runbook，或您自己的 runbook 的其中一個將可在未來的版本。
 > 
 > 
 
-![可從中選擇的 Runbook](media/automation-azure-vm-alert-integration/RunbooksToChoose.png)
+![從 Runbook toochoose](media/automation-azure-vm-alert-integration/RunbooksToChoose.png)
 
-在您選取其中一個可用的 Runbook 之後，[自動化帳戶]  下拉式清單隨即出現，以便您選取用來執行 Runbook 的自動化帳戶。 Runbook 必須在您的 Azure 訂用帳戶中的 [自動化帳戶](automation-security-overview.md) 內容中執行。 您可以選取已經建立的自動化帳戶，也可以為自己建立新的自動化帳戶。
+您選取其中一個 hello 三個可用之 runbook 之後，hello**自動化帳戶**下拉式清單隨即出現，而且您可以選取自動化帳戶 hello runbook 將會當做執行。 Runbook 需要 hello 內容中的 toorun[自動化帳戶](automation-security-overview.md)位於您的 Azure 訂用帳戶。 您可以選取已經建立的自動化帳戶，也可以為自己建立新的自動化帳戶。
 
-所提供的 Runbook 會使用服務主體進行Azure 驗證。 如果您選擇在其中一個現有的自動化帳戶中執行 Runbook，我們將會自動為您建立服務主體。 如果您選擇建立新的自動化帳戶，則我們會自動建立帳戶和服務主體。 在這兩種情況下，也會在自動化帳戶中建立兩項資產 – 名為 **AzureRunAsCertificate** 的憑證資產和名為 **AzureRunAsConnection** 的連接資產。 Runbook 將使用 **AzureRunAsConnection** 進行 Azure 驗證，以便對 VM 執行管理動作。
+所提供的 hello runbook 驗證 tooAzure 使用服務主體。 如果您選擇 toorun hello runbook 中的其中一個現有的自動化帳戶時，我們會自動建立 hello 服務主體為您。 如果您選擇 toocreate 新的自動化帳戶，然後我們會自動建立 hello 帳戶和 hello 服務主體。 在這兩種情況下，兩個資產也會建立在 hello 自動化帳戶 – 名為憑證資產**AzureRunAsCertificate**和名為連線資產**AzureRunAsConnection**。 hello 的 runbook 會使用**AzureRunAsConnection** tooauthenticate 與 Azure 中針對 hello VM order tooperform hello 管理動作。
 
 > [!NOTE]
-> 服務主體會建立於訂用帳戶範圍並獲得參與者角色。 需要此角色，有權執行自動化 Runbook 的帳戶才能管理 Azure VM。  建立自動化帳戶及/或服務主體是一次性事件。 一旦建立，您可以使用該帳戶來對其他 Azure VM 警示執行 Runbook。
+> hello 服務主體建立 hello 訂用帳戶範圍中，且 hello 參與者角色指派。 為了讓 hello 帳戶 toohave 權限 toorun 自動化 runbook toomanage Azure Vm 需要此角色。  hello 建立自動化帳戶及/或服務主體是一次性的活動。 一旦建立，您可以使用 toorun runbook 的帳戶的其他 Azure VM 的警示。
 > 
 > 
 
-當您按一下 [確定]  時，便會設定警示，如果您選取要建立新的自動化帳戶的選項，則會隨著服務主體一起建立。  這可能需要幾秒鐘才會完成。  
+當您按一下**確定**hello 警示設定，如果您選取 hello 選項 toocreate 新的自動化帳戶時，就會建立以及 hello 服務主體。  這可能需要幾秒鐘的時間 toocomplete。  
 
 ![正在設定的 Runbook](media/automation-azure-vm-alert-integration/RunbookBeingConfigured.png)
 
-完成設定之後，您會看到 Runbook 名稱出現在 [加入警示規則]  刀鋒視窗中。
+Hello 組態完成後即會出現在 hello hello runbook hello 名稱**加入警示規則**刀鋒視窗。
 
 ![已設定的 Runbook](media/automation-azure-vm-alert-integration/RunbookConfigured.png)
 
-按一下 [加入警示規則]  in the  ，如果虛擬機器處於執行中狀態，則會建立並啟動警示規則。
+按一下**確定**在 hello**加入警示規則**刀鋒視窗，然後 hello 警示的規則將會建立並啟用如果 hello 虛擬機器處於執行中狀態。
 
 ### <a name="enable-or-disable-a-runbook"></a>啟用或停用 Runbook
-如果您有針對警示設定的 Runbook，您可以將它停用，而不需移除 Runbook 組態。 這可讓警示保持執行中，而且您或許可測試某些警示規則，稍後重新啟用 Runbook。
+如果您有設定警示的 runbook，您可以不會移除 hello runbook 設定停用它。 這可讓您執行 tookeep hello 警示可能是測試一些 hello 警示規則，並之後再重新啟用 hello runbook。
 
 ## <a name="create-a-runbook-that-works-with-an-azure-alert"></a>建立與 Azure 警示搭配運作的 Runbook
-當您選擇 Runbook 做為 Azure 警示規則的一部分時，Runbook 內必須有負責管理所收到之警示資料的邏輯。  在警示規則中設定 Runbook 時，便會為 Runbook 建立 Webhook；該 Webhook 接著會在每次觸發警示時用來啟動 Runbook。  實際用來啟動 Runbook 的呼叫是 Webhook URL 的 HTTP POST 要求。 POST 要求的本文包含 JSON 格式的物件，此物件中包含與警示相關的實用屬性。  如下面所見，警示資料包含 subscriptionID、resourceGroupName、resourceName 和 resourceType 等詳細資料。
+當您選擇 runbook 做為 Azure 的警示規則的一部分時，hello runbook 必須 toohave 邏輯 toomanage hello 警示傳遞的資料 tooit。  Hello runbook; 警示規則中設定 runbook 時，建立 webhook使用的 toostart hello runbook 每個時間 hello 警示觸發程序，則該 webhook。  hello 實際呼叫 toostart hello runbook 是 HTTP POST 要求 toohello webhook URL。 hello hello POST 要求主體包含 JSON 格式的物件，其中包含有用的屬性相關的 toohello 警示。  您可以看到下面，hello 警示資料就會包含訂用帳戶 Id、 資源群組名稱、 resourceName 和 resourceType 等詳細資料。
 
 ### <a name="example-of-alert-data"></a>警示資料的範例
 ```
@@ -115,11 +115,11 @@ Azure 自動化和 Azure 虛擬機器發行了一項新功能，可讓您設定�
 }
 ```
 
-當自動化 Webhook 服務收到 HTTP POST 時，它會擷取警示資料，並將它傳遞給 WebhookData Runbook 輸入參數中的 Runbook。  以下範例 Runbook 會示範如何使用 WebhookData 參數，以及擷取警示資料並用它來管理觸發警示的 Azure 資源。
+Hello 自動化 webhook 服務收到 hello HTTP POST 時它會擷取 hello 警示的資料，並將其 hello WebhookData runbook 輸入參數中傳遞 toohello runbook。  以下是範例 runbook 會顯示 toouse hello WebhookData 參數，將擷取 hello 警示資料並使用它 toomanage hello 觸發 hello 警示的 Azure 資源的方式。
 
 ### <a name="example-runbook"></a>範例 Runbook
 ```
-#  This runbook will restart an ARM (V2) VM in response to an Azure VM alert.
+#  This runbook will restart an ARM (V2) VM in response tooan Azure VM alert.
 
 [OutputType("PSAzureOperationResponse")]
 
@@ -127,54 +127,54 @@ param ( [object] $WebhookData )
 
 if ($WebhookData)
 {
-    # Get the data object from WebhookData
+    # Get hello data object from WebhookData
     $WebhookBody = (ConvertFrom-Json -InputObject $WebhookData.RequestBody)
 
-    # Assure that the alert status is 'Activated' (alert condition went from false to true)
-    # and not 'Resolved' (alert condition went from true to false)
+    # Assure that hello alert status is 'Activated' (alert condition went from false tootrue)
+    # and not 'Resolved' (alert condition went from true toofalse)
     if ($WebhookBody.status -eq "Activated")
     {
-        # Get the info needed to identify the VM
+        # Get hello info needed tooidentify hello VM
         $AlertContext = [object] $WebhookBody.context
         $ResourceName = $AlertContext.resourceName
         $ResourceType = $AlertContext.resourceType
         $ResourceGroupName = $AlertContext.resourceGroupName
         $SubId = $AlertContext.subscriptionId
 
-        # Assure that this is the expected resource type
+        # Assure that this is hello expected resource type
         Write-Verbose "ResourceType: $ResourceType"
         if ($ResourceType -eq "microsoft.compute/virtualmachines")
         {
             # This is an ARM (V2) VM
 
-            # Authenticate to Azure with service principal and certificate
+            # Authenticate tooAzure with service principal and certificate
             $ConnectionAssetName = "AzureRunAsConnection"
             $Conn = Get-AutomationConnection -Name $ConnectionAssetName
             if ($Conn -eq $null) {
-                throw "Could not retrieve connection asset: $ConnectionAssetName. Check that this asset exists in the Automation account."
+                throw "Could not retrieve connection asset: $ConnectionAssetName. Check that this asset exists in hello Automation account."
             }
             Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint | Write-Verbose
             Set-AzureRmContext -SubscriptionId $SubId -ErrorAction Stop | Write-Verbose
 
-            # Restart the VM
+            # Restart hello VM
             Restart-AzureRmVM -Name $ResourceName -ResourceGroupName $ResourceGroupName
         } else {
             Write-Error "$ResourceType is not a supported resource type for this runbook."
         }
     } else {
-        # The alert status was not 'Activated' so no action taken
+        # hello alert status was not 'Activated' so no action taken
         Write-Verbose ("No action taken. Alert status: " + $WebhookBody.status)
     }
 } else {
-    Write-Error "This runbook is meant to be started from an Azure alert only."
+    Write-Error "This runbook is meant toobe started from an Azure alert only."
 }
 ```
 
 ## <a name="summary"></a>摘要
-當您在 Azure VM 上設定警示時，您現在能夠輕鬆地設定自動化 Runbook，以在警示觸發時自動執行補救動作。 在此版本中，您可以根據您的警示情況，從 Runbook 中選擇重新啟動、停止或刪除 VM。 這只是讓您用來控制警示觸發時會自動採取的動作 (通知、疑難排解、補救) 的案例開頭。
+當您在 Azure VM 上設定警示時，您現在可以有 hello 能力 tooeasily 設定自動化 runbook tooautomatically hello 警示觸發時，執行修復動作。 此版本中，您可以選擇從 runbook toorestart 停止或刪除 VM，以根據警示的案例。 這是讓您用來控制警示觸發時自動執行的 hello 動作 （通知，進行疑難排解，補救） 的案例只 hello 開頭。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要開始使用圖形化 Runbook，請參閱 [我的第一個圖形化 Runbook](automation-first-runbook-graphical.md)
-* 若要開始使用 PowerShell 工作流程 Runbook，請參閱 [我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
-* 若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
+* tooget 開始使用圖形化 runbook，請參閱[我的第一個圖形化 runbook](automation-first-runbook-graphical.md)
+* tooget 開始使用 PowerShell 工作流程 runbook，請參閱[我的第一個 PowerShell 工作流程 runbook](automation-first-runbook-textual.md)
+* toolearn 深入了解 runbook 類型、 其優點和限制，請參閱[Azure 自動化 runbook 類型](automation-runbook-types.md)
 

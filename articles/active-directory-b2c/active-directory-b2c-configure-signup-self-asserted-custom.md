@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C︰修改自訂原則中的註冊並設定自我判斷提示提供者"
-description: "逐步解說如何在註冊中新增宣告並設定使用者輸入"
+description: "逐步解說中的加入宣告 toosign 註冊及設定 hello 使用者輸入"
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,30 +14,30 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/29/2017
 ms.author: joroja
-ms.openlocfilehash: 64b9d904d7d070052e125b479f4719d208c9ff85
-ms.sourcegitcommit: b0af2a2cf44101a1b1ff41bd2ad795eaef29612a
+ms.openlocfilehash: c31d737263fef3e771bdf451b809b0ca522c8fe0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-active-directory-b2c-modify-sign-up-to-add-new-claims-and-configure-user-input"></a>Azure Active Directory B2C︰修改註冊以新增宣告並設定使用者輸入。
+# <a name="azure-active-directory-b2c-modify-sign-up-tooadd-new-claims-and-configure-user-input"></a>Azure Active Directory B2C： 修改註冊 tooadd 新宣告，並設定使用者輸入。
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-在本文中，您會在您的註冊使用者旅程中新增使用者所提供的輸入 (宣告)。  您會將輸入設定為下拉式清單，並定義它是否為必要項目。
+在本文中，您將加入新使用者提供項目 （宣告） tooyour 註冊使用者的旅程。  您將為下拉式清單中，設定 hello 項目，並定義在必要時。
 
-編輯 Sipi 觸發測試遞交。
+編輯 Sipi tootrigger 測試遞交。
 
 ## <a name="prerequisites"></a>必要條件
 
-* 完成[開始使用自訂原則](active-directory-b2c-get-started-custom.md)一文中的步驟。  測試註冊/登入使用者旅程以註冊新的本機帳戶，再繼續進行。
+* Hello 文件中的步驟完成 hello[開始使用自訂原則](active-directory-b2c-get-started-custom.md)。  測試 hello 註冊/登入使用者之旅 toosignup 新的本機帳戶，才能繼續。
 
 
-透過註冊/登入就能從使用者收集初始資料。  其他宣告則可在稍後透過設定檔編輯使用者旅程來收集。 每當 Azure AD B2C 以互動方式直接從使用者收集資訊時，身分識別體驗架構會使用其 `selfasserted provider`。 只要使用此提供者就適用下列步驟。
+透過註冊/登入就能從使用者收集初始資料。  其他宣告則可在稍後透過設定檔編輯使用者旅程來收集。 Azure AD B2C 收集資訊直接 hello 使用者以互動方式，每當 hello 身分識別體驗架構會使用其`selfasserted provider`。 hello 步驟套用隨時使用此提供者。
 
 
-## <a name="define-the-claim-its-display-name-and-the-user-input-type"></a>定義宣告、其顯示名稱和使用者輸入類型
-讓我們要求使用者輸入他們的所在城市。  在 TrustFrameWorkExtensions 原則檔的 `<ClaimsSchema>` 元素中新增下列元素︰
+## <a name="define-hello-claim-its-display-name-and-hello-user-input-type"></a>定義 hello 宣告、 顯示名稱和 hello 使用者輸入類型
+可讓 hello 使用者尋求他們的城市。  新增下列項目 toohello hello `<ClaimsSchema>` hello TrustFrameWorkExtensions 原則檔中的項目：
 
 ```xml
 <ClaimType Id="city">
@@ -47,13 +47,13 @@ ms.lasthandoff: 09/28/2017
   <UserInputType>TextBox</UserInputType>
 </ClaimType>
 ```
-您也可以在這裡進行其他選擇以自訂宣告。  如需完整的結構描述，請參閱**身分識別體驗架構技術參考指南**。  本指南很快就會發佈到參考區段中。
+有其他選擇，您可以在此處 toocustomize hello 宣告。  針對完整的結構描述，請參閱 toohello**識別體驗架構技術參照指南**。  本指南即將發行在 hello 參考一節。
 
-* `<DisplayName>` 是一個字串，會定義使用者端的「標籤」
+* `<DisplayName>`是字串，定義使用者互動 hello*標籤*
 
-* `<UserHelpText>` 可協助使用者了解所需項目
+* `<UserHelpText>`有助於了解什麼是必要的 hello 使用者
 
-* `<UserInputType>` 有下面四個特別點出的選項︰
+* `<UserInputType>`hello 下列四個選項反白顯示如下：
     * `TextBox`
 ```xml
 <ClaimType Id="city">
@@ -78,7 +78,7 @@ ms.lasthandoff: 09/28/2017
 </ClaimType>
 ```
 
-    * `DropdownSingleSelect` - 只允許選取有效值。
+    * `DropdownSingleSelect`-允許 hello 選取有效的值。
 
 ![下拉式清單選項的螢幕擷取畫面](./media/active-directory-b2c-configure-signup-self-asserted-custom/dropdown-menu-example.png)
 
@@ -97,7 +97,7 @@ ms.lasthandoff: 09/28/2017
 ```
 
 
-* `CheckboxMultiSelect` 允許選取一個或多個值。
+* `CheckboxMultiSelect`允許的一個或多個值的 hello 選取範圍。
 
 ![多重選取選項的螢幕擷取畫面](./media/active-directory-b2c-configure-signup-self-asserted-custom/multiselect-menu-example.png)
 
@@ -115,9 +115,9 @@ ms.lasthandoff: 09/28/2017
 </ClaimType>
 ```
 
-## <a name="add-the-claim-to-the-sign-upsign-in-user-journey"></a>將宣告新增至在使用者旅程的註冊/登入
+## <a name="add-hello-claim-toohello-sign-upsign-in-user-journey"></a>新增 hello 宣告 toohello 登向上/登入使用者之旅
 
-1. 以 `<OutputClaim ClaimTypeReferenceId="city"/>` 的形式將宣告新增至 TechnicalProfile `LocalAccountSignUpWithLogonEmail` (可在 TrustFrameworkBase 原則檔中找到)。  請注意，此 TechnicalProfile 使用 SelfAssertedAttributeProvider。
+1. 新增 hello 的宣告則為`<OutputClaim ClaimTypeReferenceId="city"/>`toohello TechnicalProfile `LocalAccountSignUpWithLogonEmail` （hello TrustFrameworkBase 原則檔中找到）。  請注意此 TechnicalProfile 使用 hello SelfAssertedAttributeProvider。
 
   ```xml
   <TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">
@@ -142,7 +142,7 @@ ms.lasthandoff: 09/28/2017
       <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
       <OutputClaim ClaimTypeReferenceId="authenticationSource" />
       <OutputClaim ClaimTypeReferenceId="newUser" />
-      <!-- Optional claims, to be collected from the user -->
+      <!-- Optional claims, toobe collected from hello user -->
       <OutputClaim ClaimTypeReferenceId="givenName" />
       <OutputClaim ClaimTypeReferenceId="surName" />
       <OutputClaim ClaimTypeReferenceId="city"/>
@@ -154,7 +154,7 @@ ms.lasthandoff: 09/28/2017
   </TechnicalProfile>
   ```
 
-2. 以 `<PersistedClaim ClaimTypeReferenceId="city" />` 的形式將宣告新增至 AAD-UserWriteUsingLogonEmail，以在收集使用者的宣告後將宣告寫入到 AAD 目錄。 如果您不想在目錄中保留宣告以供日後使用，則可略過此步驟。
+2. 加入做為 hello 宣告 toohello AAD UserWriteUsingLogonEmail `<PersistedClaim ClaimTypeReferenceId="city" />` toowrite hello 宣告 toohello AAD 目錄之後收集來自 hello 使用者。 如果您偏好不 toopersist hello 宣告 hello 目錄中的供日後使用，您可能會略過此步驟。
 
   ```xml
   <!-- Technical profiles for local accounts -->
@@ -190,14 +190,14 @@ ms.lasthandoff: 09/28/2017
   </TechnicalProfile>
   ```
 
-3. 以 `<OutputClaim ClaimTypeReferenceId="city" />` 的形式將宣告新增至 TechnicalProfile，以在使用者登入時從目錄中讀取此宣告
+3. 新增 hello 宣告 toohello TechnicalProfile 讀取 hello 目錄中，當使用者登入為`<OutputClaim ClaimTypeReferenceId="city" />`
 
   ```xml
   <TechnicalProfile Id="AAD-UserReadUsingEmailAddress">
     <Metadata>
       <Item Key="Operation">Read</Item>
       <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
-      <Item Key="UserMessageIfClaimsPrincipalDoesNotExist">An account could not be found for the provided user ID.</Item>
+      <Item Key="UserMessageIfClaimsPrincipalDoesNotExist">An account could not be found for hello provided user ID.</Item>
     </Metadata>
     <IncludeInSso>false</IncludeInSso>
     <InputClaims>
@@ -218,7 +218,7 @@ ms.lasthandoff: 09/28/2017
   </TechnicalProfile>
   ```
 
-4. 將 `<OutputClaim ClaimTypeReferenceId="city" />` 新增至 RP 原則檔案 SignUporSignIn.xml，讓系統在使用者旅程成功後將這個宣告傳送至權杖中的應用程式。
+4. 新增 hello `<OutputClaim ClaimTypeReferenceId="city" />` toohello RP 原則檔讓此宣告 toohello 應用程式中傳送 hello 語彙基元後成功的使用者之旅 SignUporSignIn.xml。
 
   ```xml
   <RelyingParty>
@@ -240,17 +240,17 @@ ms.lasthandoff: 09/28/2017
   </RelyingParty>
   ```
 
-## <a name="test-the-custom-policy-using-run-now"></a>使用 [立即執行] 測試自訂原則
+## <a name="test-hello-custom-policy-using-run-now"></a>測試 hello 「 立即執行 」 使用的自訂原則
 
-1. 開啟 [Azure AD B2C] 刀鋒視窗，然後巡覽至 [識別體驗架構] > [自訂原則]。
-2. 選取您上傳的自訂原則，按一下 [立即執行] 按鈕。
-3. 您應該可以使用電子郵件地址註冊。
+1. 開啟 hello **Azure AD B2C 刀鋒視窗**並瀏覽過**身分識別體驗架構 > 自訂原則**。
+2. 選取您上傳，hello 自訂原則，然後按一下 hello**立即執行** 按鈕。
+3. 您應該能夠 toosign 使用電子郵件地址。
 
-測試模式中的註冊畫面看起來應該像這樣：
+在測試模式中的 hello 註冊畫面應該看起來類似 toothis:
 
 ![修改過的註冊選項螢幕擷取畫面](./media/active-directory-b2c-configure-signup-self-asserted-custom/signup-with-city-claim-dropdown-example.png)
 
-  傳回到應用程式的權杖現在會包含 `city` 宣告，如下所示
+  hello 語彙基元後 tooyour 應用程式現在包含 hello`city`宣告如下所示
 ```json
 {
   "exp": 1493596822,
@@ -273,16 +273,16 @@ ms.lasthandoff: 09/28/2017
 
 ## <a name="optional-remove-email-verification-from-signup-journey"></a>選擇性：移除註冊旅程中的電子郵件驗證
 
-若要略過電子郵件驗證，原則的作者可以選擇移除 `PartnerClaimType="Verified.Email"`。 除非您移除 “Required” = true，否則電子郵件地址雖為必要項目，但不會進行驗證。  請仔細想清楚此選項是否適用於您的使用案例！
+tooskip 電子郵件驗證，hello 原則作者可選擇 tooremove `PartnerClaimType="Verified.Email"`。 hello 電子郵件地址將所需但未經過驗證，除非 「 要求 」 = true 會移除。  請仔細想清楚此選項是否適用於您的使用案例！
 
-入門套件中 TrustFrameworkBase 原則檔案的 `<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">` 預設會啟用驗證的電子郵件︰
+驗證預設會在 hello 啟用電子郵件`<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">`hello 入門組件中的 hello TrustFrameworkBase 原則檔中：
 ```xml
 <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
 ```
 
 ## <a name="next-steps"></a>後續步驟
 
-藉由變更下列 TechnicalProfiles，將新的宣告新增至社交帳戶登入的的流程。 社交/同盟帳戶登入會使用這些項目，以 alternativeSecurityId 作為定位器來寫入和讀取使用者資料。
+藉由變更 TechnicalProfiles 下面所列的 hello 加入 hello 新宣告 toohello 流程社交帳戶登入。 這些是使用社交/同盟帳戶登入 toowrite，讀取使用 hello alternativeSecurityId hello 定位器 hello 使用者資料。
 ```xml
 <TechnicalProfile Id="AAD-UserWriteUsingAlternativeSecurityId">
 <TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">

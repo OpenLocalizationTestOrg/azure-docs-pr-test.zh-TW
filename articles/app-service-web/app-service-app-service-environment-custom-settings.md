@@ -1,5 +1,5 @@
 ---
-title: "App Service 環境的自訂設定"
+title: "應用程式服務環境的 aaaCustom 設定"
 description: "App Service 環境的自訂組態設定"
 services: app-service
 documentationcenter: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/22/2016
 ms.author: stefsch
-ms.openlocfilehash: 687475fae0c90713c15e8abbb92b71059eae81c0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3d140688c88b389e71bfdd465c418339cccab3a6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="custom-configuration-settings-for-app-service-environments"></a>App Service 環境的自訂組態設定
-## <a name="overview"></a>Overview
-因為 App Service 環境對單一客戶是隔離的，所以有某些專門套用到 App Service 環境的組態設定。 本文記錄各種可供 App Service 環境使用的特定自訂。
+## <a name="overview"></a>概觀
+由於應用程式服務環境隔離的 tooa 單一客戶，有一些組態設定可以套用專門 tooApp 服務環境。 此文件編號 hello 各種可用的應用程式服務環境的特定自訂。
 
-如果您沒有 App Service 環境，請參閱 [如何建立 App Service 環境](app-service-web-how-to-create-an-app-service-environment.md)。
+如果您沒有 App Service 環境，請參閱[如何 tooCreate App Service 環境](app-service-web-how-to-create-an-app-service-environment.md)。
 
-您可以使用新 **clusterSettings** 屬性的陣列儲存 App Service 環境自訂。 這個屬性是在 *hostingEnvironments* Azure Resource Manager 實體的「屬性」字典中找到的。
+您可以將 App Service 環境的自訂內容儲存利用陣列中的 hello 新**clusterSettings**屬性。 這個屬性的 hello 的 hello 「 屬性 」 目錄中找到*hostingEnvironments* Azure 資源管理員實體。
 
-下列縮寫的 Resource Manager 範本程式碼片段顯示 **clusterSettings** 屬性︰
+hello 下列縮寫的資源管理員範本程式碼片段示範 hello **clusterSettings**屬性：
 
     "resources": [
     {
@@ -48,25 +48,25 @@ ms.lasthandoff: 07/11/2017
        }
     }
 
-**clusterSettings** 屬性可以包含在 Resource Manager 範本中，以更新 App Service 環境。
+hello **clusterSettings**屬性可以包含在資源管理員範本 tooupdate hello App Service 環境。
 
-## <a name="use-azure-resource-explorer-to-update-an-app-service-environment"></a>使用 Azure 資源總管更新 App Service 環境
-或者，您可以使用 [Azure 資源總管](https://resources.azure.com)更新 App Service 環境。  
+## <a name="use-azure-resource-explorer-tooupdate-an-app-service-environment"></a>使用 Azure 資源總管 tooupdate App Service 環境
+或者，您可以藉由更新 App Service 環境的 hello [Azure 資源總管](https://resources.azure.com)。  
 
-1. 在 [資源總管] 中，移至 App Service 環境的節點 ([訂用帳戶] > [resourceGroups] > [提供者] > [Microsoft.Web] > [hostingEnvironments])。 接著，按一下您想要更新的特定 App Service 環境。
-2. 按一下右窗格上方工具列中的 [讀取/寫入]  ，允許在資源總管中進行互動式編輯。  
-3. 按一下藍色的 [編輯]  按鈕，開放編輯 Resource Manager 範本。
-4. 向下捲動到右窗格底部。 **clusterSettings** 屬性位在最底部，您可以在此輸入或更新其值。
-5. 輸入 (或複製並貼上) 您希望 **clusterSettings** 屬性出現的組態值陣列。  
-6. 按一下右窗格上方的綠色 [PUT]  按鈕，確認 App Service 環境的變更。
+1. 在資源總管中，請移至 App Service 環境的 hello toohello 節點 (**訂閱** > **resourceGroups** > **提供者** > **Microsoft.Web** > **hostingEnvironments**)。 然後按一下 hello 想 tooupdate 特定 App Service 環境。
+2. Hello 右窗格中，按一下 **讀/寫**hello 上方工具列 tooallow 互動式編輯在 資源總管 中。  
+3. 按一下藍色 hello**編輯**按鈕 toomake hello 資源管理員範本可編輯。
+4. 捲動 toohello hello 右窗格的底部。 hello **clusterSettings**屬性位於 hello 最底部，您可以在其中輸入或更新其值。
+5. 您想在 hello 的組態值的類型 （或複製和貼上） hello 陣列**clusterSettings**屬性。  
+6. 按一下綠色的 hello**放**按鈕，在 hello 右窗格 toocommit hello 變更 toohello App Service 環境的 hello 頂端找到。
 
-不過，送出變更後，約需 30 分鐘乘以 App Service 環境中前端數量的時間，變更才會生效。
-例如，如果 App Service 環境有四個前端，大約需要兩個小時才能完成組態更新。 實行組態變更時，App Service 環境上就不會進行其他調整作業或組態變更作業。
+不過您送出 hello 變更時，所花大約 30 分鐘乘以前端 hello App Service 環境的 hello 變更 tootake 作用中的 hello 數目。
+例如，如果 App Service 環境有四個前端，它會使用 hello 組態更新 toofinish 約兩小時後。 雖然 hello 組態變更正在推出，沒有其他的縮放作業或組態變更作業可能需要 hello App Service 環境中的位置。
 
 ## <a name="disable-tls-10"></a>停用 TLS 1.0
-客戶的常見問題是，尤其是處理 PCI 規範稽核的客戶，如何明確停用其應用程式的 TLS 1.0。
+來自客戶的週期性問題，特別是在處理的 PCI 合規性客戶稽核，是如何 tooexplicitly 停用 TLS 1.0 的自己的應用程式。
 
-透過下列 **clusterSettings** 項目可以停用 TLS 1.0︰
+您可以停用 TLS 1.0 透過 hello 下列**clusterSettings**項目：
 
         "clusterSettings": [
             {
@@ -76,7 +76,7 @@ ms.lasthandoff: 07/11/2017
         ],
 
 ## <a name="change-tls-cipher-suite-order"></a>變更 TLS 加密套件順序
-來自客戶的另一個問題是，他們是否可以修改由其伺服器交涉的加密的清單，而這可透過修改 **clusterSettings** 來達成，如下所示。 您可以從[此 MSDN 文章](https://msdn.microsoft.com/library/windows/desktop/aa374757\(v=vs.85\).aspx)擷取可用加密套件的清單。
+來自客戶的另一個問題就是它們可以修改其伺服器所交涉的加密方式 hello 清單，並且這可藉由修改 hello **clusterSettings**如下所示。 可以從擷取可用的加密套件 hello 清單[MSDN 本文](https://msdn.microsoft.com/library/windows/desktop/aa374757\(v=vs.85\).aspx)。
 
         "clusterSettings": [
             {
@@ -86,12 +86,12 @@ ms.lasthandoff: 07/11/2017
         ],
 
 > [!WARNING]
-> 如果對安全通道無法了解的加密套件設定了不正確的值，對您的伺服器的所有 TLS 通訊可能會停止運作。 在這種情況下，您必須從 **clusterSettings** 移除 FrontEndSSLCipherSuiteOrder 項目，並提交更新的 Resource Manager 範本以還原回預設的加密套件設定。  請謹慎使用這項功能。
+> 安全通道不了解的 hello 加密套件設定不正確的值，如果所有 TLS 通訊 tooyour 伺服器可能會都停止運作。 在此情況下，您將需要 tooremove hello *FrontEndSSLCipherSuiteOrder*項目從**clusterSettings**並送出 hello 更新資源管理員範本 toorevert 後 toohello 預設加密套件設定。  請謹慎使用這項功能。
 > 
 > 
 
 ## <a name="get-started"></a>開始使用
-Azure 快速入門 Resource Manager 範本網站包含具有 [建立 App Service 環境](https://azure.microsoft.com/documentation/templates/201-web-app-ase-create/)基本定義的範本。
+hello Azure 快速入門資源管理員範本站台包含具有 hello 基底定義的範本[建立 App Service 環境](https://azure.microsoft.com/documentation/templates/201-web-app-ase-create/)。
 
 <!-- LINKS -->
 

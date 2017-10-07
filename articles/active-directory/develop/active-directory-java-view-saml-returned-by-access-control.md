@@ -1,6 +1,6 @@
 ---
-title: "檢視存取控制服務 (Java) 所傳回的 SAML"
-description: "了解如何在裝載於 Azure 上的 Java 應用程式中，檢視存取控制服務所傳回的 SAML。"
+title: "aaaView SAML 傳回由 hello 存取控制服務 (Java)"
+description: "了解如何在 Java 應用程式中的 hello 存取控制服務所傳回的 SAML tooview 裝載於 Azure。"
 services: active-directory
 documentationcenter: java
 author: rmcmurray
@@ -15,40 +15,40 @@ ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
 ms.custom: aaddev
-ms.openlocfilehash: 1552e624a4703138ab82f7133ceaec3dbd04e1db
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b6733bc98b505cfa89a4ce456f368ee15da11427
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-view-saml-returned-by-the-azure-access-control-service"></a>如何檢視 Azure 存取控制服務傳回的 SAML
-本指南說明如何檢視 Azure 存取控制服務 (ACS) 傳回給應用程式的基本安全性聲明標記語言 (SAML)。 本指南是以[如何使用 Eclipse 搭配 Azure 存取控制服務來驗證 Web 使用者](active-directory-java-authenticate-users-access-control-eclipse.md)主題為基礎，提供可顯示 SAML 資訊的程式碼。 完成後的應用程式如下所示：
+# <a name="how-tooview-saml-returned-by-hello-azure-access-control-service"></a>Tooview SAML hello Azure 存取控制服務所傳回的方式
+本指南將說明 tooview hello 基礎安全性聲明標記語言 (SAML) 式 hello Azure 存取控制服務 (ACS) 傳回 tooyour 應用程式的方式。 hello 指南是根據 hello[如何 tooAuthenticate Eclipse 向 Azure 存取控制服務使用的 Web 使用者](active-directory-java-authenticate-users-access-control-eclipse.md)主題，提供顯示 hello SAML 資訊的程式碼。 hello 完成應用程式看起來類似 toohello 下列。
 
 ![Example SAML output][saml_output]
 
-如需 ACS 的詳細資訊，請參閱 [後續步驟](#next_steps) 一節。
+如需有關 ACS 的詳細資訊，請參閱 hello[後續步驟](#next_steps)> 一節。
 
 > [!NOTE]
-> Azure Access Services Control Filter 是社群技術預覽。 由於是發行前軟體，Microsoft 尚未提供正式支援。
+> hello Azure 存取服務控制篩選是 community technology preview。 由於是發行前軟體，Microsoft 尚未提供正式支援。
 > 
 > 
 
 ## <a name="prerequisites"></a>必要條件
-若要完成本指南中的工作，請完成[如何使用 Eclipse 搭配 Azure 存取控制服務來驗證 Web 使用者](active-directory-java-authenticate-users-access-control-eclipse.md)中的範例，並使用它作為本教學課程的起點。
+完成本指南中的 toocomplete hello 工作 hello 範例：[如何 tooAuthenticate Eclipse 向 Azure 存取控制服務使用的 Web 使用者](active-directory-java-authenticate-users-access-control-eclipse.md)並以其為開始點就本教學課程中的 hello。
 
-## <a name="add-the-jspwriter-library-to-your-build-path-and-deployment-assembly"></a>將 JspWriter 程式庫加入至組建路徑和部署組件
-將含有 **javax.servlet.jsp.JspWriter** 類別的程式庫加入至組建路徑和部署組件。 如果使用的是 Tomcat，則程式庫會是位於 Apache [lib] 資料夾中的 **jsp-api.jar**。
+## <a name="add-hello-jspwriter-library-tooyour-build-path-and-deployment-assembly"></a>新增 hello JspWriter 庫 tooyour 組建路徑和部署組件
+加入包含 hello hello 文件庫**javax.servlet.jsp.JspWriter**類別 tooyour 建置的路徑和部署組件。 如果您使用 Tomcat，hello 程式庫是**jsp api.jar**，位於 hello Apache **lib**資料夾。
 
-1. 在 Eclipse 的 [Project Explorer] \(專案總管) 中，於 [MyACSHelloWorld] 上按一下滑鼠右鍵，然後依序按一下 [Build Path] \(組建路徑)、[Configure Build Path] \(設定組建路徑)、[Libraries] \(程式庫) 索引標籤，以及 [Add External JARs] \(新增外部 JAR)。
-2. 在 [JAR Selection] \(JAR 選擇) 對話方塊中，瀏覽至所需的 JAR 並選取它，然後按一下 [Open] \(開啟)。
-3. 在 [Properties for MyACSHelloWorld] \(MyACSHelloWorld 的屬性) 對話方塊仍開啟的情況下，按一下 [Deployment Assembly] \(部署組件)。
-4. 在 [Web Deployment Assembly] \(Web 部署組件) 對話方塊中，按一下 [Add] \(加入)。
-5. 在 [New Assembly Directive] \(新增組件指示詞) 對話方塊中，按一下 [Java Build Path Entries] \(Java 組建路徑項目)，然後按 [Next] \(下一步)。
-6. 選取適當的程式庫，然後按一下 [完成] 。
-7. 按一下 [OK] \(確定) 以關閉 [Properties for MyACSHelloWorld] \(MyACSHelloWorld 的屬性) 對話方塊。
+1. 在 Eclipse 的專案總管 中，以滑鼠右鍵按一下**MyACSHelloWorld**，按一下 **組建路徑**，按一下 **設定組建路徑**，按一下 hello **程式庫**索引標籤，然後再按一下**新增外部 Jar**。
+2. 在 hello **JAR 選取** 對話方塊中，瀏覽 toohello 必要 JAR，並加以選取，然後按一下**開啟**。
+3. 以 hello**屬性 MyACSHelloWorld**對話方塊仍開啟時，按一下**部署組件**。
+4. 在 hello **Web 部署組件** 對話方塊中，按一下 **新增**。
+5. 在 hello**新組件指示詞** 對話方塊中，按一下**Java 建置路徑項目**，然後按一下**下一步**。
+6. 選取 hello 適當的程式庫，然後按一下**完成**。
+7. 按一下**確定**tooclose hello**屬性 MyACSHelloWorld**對話方塊。
 
-## <a name="modify-the-jsp-file-to-display-saml"></a>修改 JSP 檔案來顯示 SAML
-修改 **index.jsp** 來使用下列程式碼。
+## <a name="modify-hello-jsp-file-toodisplay-saml"></a>修改 hello JSP 檔案 toodisplay SAML
+修改**index.jsp** toouse hello 下列程式碼。
 
     <%@ page language="java" contentType="text/html; charset=UTF-8"
         pageEncoding="UTF-8"%>
@@ -100,14 +100,14 @@ ms.lasthandoff: 07/11/2017
                           if (nChild > 0)
                           {                    
 
-                                 // If it is a text node, just print the text.
+                                 // If it is a text node, just print hello text.
                                  if (list.item(0).getNodeName() == "#text")
                                  {
                                      out.println("Text value: <b>" + list.item(0).getTextContent() + "</b><br>");
                                  }
                                  else
                                  {
-                                     // Print out the child node names.
+                                     // Print out hello child node names.
                                      out.print("Contains " + nChild + " child node(s): ");   
                                         for (i=0; i < nChild; i++)
                                      {
@@ -116,19 +116,19 @@ ms.lasthandoff: 07/11/2017
                                         out.print("<b>" + temp.getNodeName() + "</b>");
                                         if (i < nChild - 1)
                                         {
-                                            // Separate the names.
+                                            // Separate hello names.
                                             out.print(", ");
                                         }
                                         else
                                         {
-                                            // Finish the sentence.
+                                            // Finish hello sentence.
                                             out.print(".");
                                         }
 
                                      }
                                      out.println("<br>");
 
-                                     // Process the child nodes.
+                                     // Process hello child nodes.
                                      for (i=0; i < nChild; i++)
                                      {
                                         Node temp = list.item(i);
@@ -162,7 +162,7 @@ ms.lasthandoff: 07/11/2017
             doc = docBuilder.parse(in);
             doc.getDocumentElement().normalize();
 
-            // Iterate the child nodes of the doc.
+            // Iterate hello child nodes of hello doc.
             NodeList list = doc.getChildNodes();
 
             for (int i=0; i < list.getLength(); i++)
@@ -180,18 +180,18 @@ ms.lasthandoff: 07/11/2017
     </body>
     </html>
 
-## <a name="run-the-application"></a>執行應用程式
-1. 使用[如何使用 Eclipse 搭配 Azure 存取控制服務來驗證 Web 使用者](active-directory-java-authenticate-users-access-control-eclipse.md)中記載的步驟，在電腦模擬器中執行您的應用程式，或部署到 Azure。
-2. 啟動瀏覽器並開啟您的 Web 應用程式。 登入應用程式之後，您會看到 SAML 資訊，包括身分識別提供者所提供的安全性聲明。
+## <a name="run-hello-application"></a>執行 hello 應用程式
+1. Hello 電腦模擬器中執行您的應用程式或部署 tooAzure，使用記錄在 hello 步驟[如何 tooAuthenticate Eclipse 向 Azure 存取控制服務使用的 Web 使用者](active-directory-java-authenticate-users-access-control-eclipse.md)。
+2. 啟動瀏覽器並開啟您的 Web 應用程式。 登入 tooyour 應用程式之後，您會看到 SAML 資訊，包括 hello hello 身分識別提供者所提供的安全性判斷提示。
 
 ## <a name="next-steps"></a>後續步驟
-若要進一步探索 ACS 功能及試試其他更精緻的案例，請參閱 [存取控制服務 2.0][Access Control Service 2.0]。
+toofurther 瀏覽 ACS 的功能和 tooexperiment 更趨精密完美的情況，請參閱[Access Control Service 2.0][Access Control Service 2.0]。
 
 [Prerequisites]: #pre
-[Modify the JSP file to display SAML]: #modify_jsp
-[Add the JspWriter library to your build path and deployment assembly]: #add_library
-[Run the application]: #run_application
+[Modify hello JSP file toodisplay SAML]: #modify_jsp
+[Add hello JspWriter library tooyour build path and deployment assembly]: #add_library
+[Run hello application]: #run_application
 [Next steps]: #next_steps
 [Access Control Service 2.0]: http://go.microsoft.com/fwlink/?LinkID=212360
-[How to Authenticate Web Users with Azure Access Control Service Using Eclipse]: active-directory-java-authenticate-users-access-control-eclipse
+[How tooAuthenticate Web Users with Azure Access Control Service Using Eclipse]: active-directory-java-authenticate-users-access-control-eclipse
 [saml_output]: ./media/active-directory-java-view-saml-returned-by-access-control/SAML_Output.png

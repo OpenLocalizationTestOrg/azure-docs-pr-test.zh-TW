@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: cbf8f729d0ebfb271bb0d8702ac043442b42c262
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bcfc710861b19d8f86f094ced0d1c691e0911f08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="more-details-about-features-in-preview"></a>有關預覽中之功能的其他詳細資料
-本主題描述如何使用預覽中目前的功能。
+本主題描述如何 toouse 功能目前在預覽中。
 
 ## <a name="group-writeback"></a>群組回寫
-選用功能中的群組回寫選項可讓您將「Office 365 群組」回寫至已安裝 Exchange 的樹系。 這是一律在雲端中控制的群組。 如果您有 Exchange 內部部署，則可以將這些群組回寫到內部部署，讓具有內部部署 Exchange 信箱的使用者可以從這些群組傳送和接收電子郵件。
+hello 選項用於群組回寫中的選擇性功能可讓您 toowriteback **Office 365 群組**tooa 樹系安裝 exchange。 這是永遠 hello 雲端中受控制的群組。 如果您有 Exchange 內部部署，然後您可以撰寫回這些群組 tooon 單位以便與在內部部署 Exchange 信箱的使用者可以傳送和接收電子郵件從這些群組。
 
-如需有關 Office 365 群組及其使用方式的詳細資訊，可在 [這裡](http://aka.ms/O365g)找到。
+Office 365 群組和如何 toouse 它們可以找到詳細資訊[這裡](http://aka.ms/O365g)。
 
-Office 365 群組將會在內部部署 AD DS 中顯示為通訊群組。 您的內部部署 Exchange 伺服器必須是 Exchange 2013 累積更新 8 (2015 年 3 月發行) 或 Exchange 2016，才能辨識這個新的群組類型。
+Office 365 群組將會在內部部署 AD DS 中顯示為通訊群組。 在內部部署 Exchange 伺服器必須在 Exchange 2013 累積更新 8 （2015 年 3 月發行） 或 Exchange 2016 toorecognize 這個新的群組類型。
 
-**預覽期間的注意事項**
+**Hello 預覽期間的附註**
 
-* 目前在預覽中不會填入通訊錄屬性。 若沒有此屬性，群組就不會顯示在 GAL 中。 若要填入此屬性，最簡單的方法是使用 Exchange PowerShell Cmdlet `update-recipient`。
-* 只有使用 Exchange 結構描述的樹系才是群組的有效目標。 如果沒有偵測到 Exchange，則會無法啟用群組回寫功能。
-* 目前只支援單一樹系 Exchange 組織部署。 如果您的內部部署環境中有多個 Exchange 組織，則需要擁有內部部署 GALSync 解決方案才能讓這些群組出現在其他樹系中。
-* 群組回寫功能無法處理安全性群組或通訊群組。
+* 目前不在 hello 預覽中才會填入 hello 地址通訊錄屬性。 沒有這個屬性，hello 群組不是顯示在 hello GAL。 hello 最簡單的方式 toopopulate 這個屬性是 toouse hello Exchange PowerShell cmdlet `update-recipient`。
+* 只有 hello Exchange 結構描述的樹系是有效的目標群組。 如果不偵測到任何 Exchange，然後群組回寫是不可能 tooenable。
+* 目前只支援單一樹系 Exchange 組織部署。 如果您有一個以上的 Exchange 組織內部，然後您需要在內部部署 GALSync 解決方案的這些群組 tooappear 其他樹系中。
+* 安全性群組或通訊群組，並不會處理 hello 群組回寫功能。
 
 > [!NOTE]
-> 需要 Azure AD Premium 的訂用帳戶才能使用群組回寫功能。
+> 用於群組回寫需要訂用帳戶 tooAzure AD Premium。
 > 
 >
 
 ## <a name="user-writeback"></a>使用者回寫
 > [!IMPORTANT]
-> 在 Azure AD Connect 的 2015 年 8 月更新中，已移除使用者的回寫預覽功能。 如果已啟用它，則您應該停用這個功能。
+> hello 使用者回寫預覽功能已移除 hello 2015 年 8 月更新 tooAzure AD Connect。 如果已啟用它，則您應該停用這個功能。
 >
 >
 

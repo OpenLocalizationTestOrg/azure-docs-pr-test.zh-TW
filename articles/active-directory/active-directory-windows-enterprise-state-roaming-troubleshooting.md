@@ -1,6 +1,6 @@
 ---
 title: "針對 Azure Active Directory 中的企業狀態漫遊設定進行疑難排解 | Microsoft Docs"
-description: "回答 IT 系統管理員可能會遇到的設定和應用程式資料同步處理的一些問題。"
+description: "提供有關設定和應用程式資料同步可能答案 toosome 問題 IT 系統管理員。"
 services: active-directory
 keywords: "企業狀態漫遊設定, windows 雲端, 企業狀態漫遊常見問題集"
 documentationcenter: 
@@ -15,104 +15,104 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/08/2017
 ms.author: markvi
-ms.openlocfilehash: 5d6b0869d2cf0e90b7b81b2304d95e01d1937925
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4636d016983426e30d696459f54167b8ad2babcd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="troubleshooting-enterprise-state-roaming-settings-in-azure-active-directory"></a>針對 Azure Active Directory 中的企業狀態漫遊設定進行疑難排解
 
-本主題提供有關如何針對企業狀態漫遊問題進行疑難排解及診斷的資訊，並提供已知問題的清單。
+本主題提供如何的相關資訊 tootroubleshoot 和診斷企業狀態漫遊的問題，並提供的已知問題清單。
 
 ## <a name="preliminary-steps-for-troubleshooting"></a>疑難排解的預備步驟 
-在開始進行疑難排解之前，請先確認使用者和裝置已正確設定，且裝置和使用者符合企業狀態漫遊的所有需求。 
+開始之前疑難排解確認，hello 使用者和裝置已設定正確，且裝置 hello 和 hello 使用者符合所有 hello 需求的企業狀態漫遊。 
 
-1. 裝置上已安裝 Windows 10，包含最新更新且最低版本為 1511 (作業系統組建 10586 或更新版本)。 
-2. 裝置已經加入 Azure AD，或已經加入網域並在 Azure AD 註冊。
-3. 在 Azure Active Directory 入口網站中，已在 [設定] > [裝置] > [使用者可以同步設定及企業應用程式資料] 底下啟用 [企業狀態漫遊]。 已選取所有使用者，或已允許使用者透過所選選項進行同步處理且已將該使用者包括在安全性群組中。
-4. 已指派 Azure Active Directory Premium 訂用帳戶給使用者。  
-5. 裝置已經重新啟動，且使用者已經在企業狀態漫遊啟用之後登入。
+1. Hello 裝置上安裝 Windows 10 與 hello 最新的更新和最小版本 1511 （作業系統組建 10586 或更新版本）。 
+2. hello 裝置已加入，或已加入網域並向 Azure AD 註冊的 Azure AD。
+3. 在 hello Azure Active Directory 入口網站**企業狀態漫遊**hello 目錄下啟用**設定** > **裝置** > **使用者可以同步設定及企業應用程式資料**。 選取所有的使用者，或是 hello 使用者是用於透過 hello 選取選項的同步處理已啟用，而且包含在 hello 安全性群組。
+4. hello 使用者具有 Azure Active Directory Premium 訂閱指派 toothem。  
+5. hello 裝置已重新啟動，並啟用企業狀態漫遊之後 hello 使用者登入。
 
-## <a name="information-to-include-when-you-need-help"></a>您需要協助時應包含的資訊
-如果在進行過下列指導方針後仍無法解決問題，請連絡我們的支援工程師。 當您與他們連絡時，建議您包含下列資訊：
+## <a name="information-tooinclude-when-you-need-help"></a>當您需要協助的資訊 tooinclude
+如果您無法解決您的問題與下列 hello 指引，您可以連絡我們的支援工程師。 當您與他們連絡時，我們建議 tooinclude hello 下列資訊：
 
-- **錯誤的一般描述** – 使用者已看到錯誤訊息嗎？ 如果沒有任何錯誤訊息，請詳細說明您所注意到的未預期行為。 已允許哪些功能進行同步處理，以及使用者預期同步處理哪些項目？ 是否有多項功能未同步處理，或已將功能隔離以個別同步處理？
+- **Hello 錯誤的一般描述**– 有 hello 使用者看見的錯誤訊息？ 如果不發生任何錯誤訊息，說明 hello 未預期的行為，您會注意到，在詳細資料。 哪些功能可供同步和是預期 toosync hello 使用者？ 多項功能不會同步，或者是隔離的 it tooone？
 - **受影響的使用者** – 是有一位還是多位使用者的同步處理成功/失敗？ 每個使用者涉及多少裝置？ 它們是否都沒有同步處理，或它們之間部分已同步處理，部分沒有同步處理？
-- **使用者相關資訊** – 使用者是使用什麼身分識別登入裝置？ 使用者如何登入裝置？ 它們是否屬於允許同步處理的所選安全性群組中的裝置？ 
-- **裝置相關資訊** – 此裝置是否已經加入 Azure AD 或已經加入網域？ 此裝置使用哪一個組建？ 最新的更新是？
-- **日期/時間/時區** – 您看到錯誤時的精確日期和時間 (包含時區)。
+- **Hello 使用者資訊**– 何種身分識別是使用 toolog toohello 裝置中的 hello 使用者嗎？ Hello 使用者如何記錄 toohello 裝置？ 它們屬於選取的安全性群組，允許 toosync 嗎？ 
+- **Hello 裝置的相關資訊**– 此裝置加入 Azure AD 之或已加入網域？ 哪些組建是 hello 的裝置上？ Hello 最新的更新有哪些？
+- **日期 / 時間 / 時區**– hello 確切的日期和的時間看到 hello 錯誤 （包含 hello 時區）？
 - 包含這項資訊有助於我們盡快為您解決問題。
 
 ## <a name="troubleshooting-and-diagnosing-issues"></a>疑難排解和診斷問題
-本節提供有關如何針對企業狀態漫遊相關問題進行疑難排解及診斷的建議。
+本節提供如何建議 tootroubleshoot 及診斷問題的相關的 tooEnterprise 漫遊狀態。
 
-## <a name="verify-sync-and-the-sync-your-settings-settings-page"></a>確認同步處理，以及 [同步您的設定] 設定頁面 
+## <a name="verify-sync-and-hello-sync-your-settings-settings-page"></a>確認同步處理，並 hello"同步您的設定 」 設定 頁面 
 
-1. 將您的 Windows 10 電腦加入已設定為允許企業狀態漫遊的網域之後，使用您的公司帳戶登入。 移至 [設定] > [帳戶] > [同步您的設定]，並確認同步處理和個別設定都已啟用，且設定頁面頂端指示您正使用公司帳戶進行同步處理。 確認您在 [設定] > [帳戶] > [您的資訊] 中也是使用相同帳戶作為登入帳戶。 
-2. 透過在原始電腦上進行一些變更 (例如將工作列移至畫面右側或頂端)，來確認同步處理可跨多部電腦運作。 監看變更是否在 5 分鐘內傳送至第二部電腦。 
- - 將畫面鎖定和解除鎖定 (Win + L) 有助於觸發同步處理。
- - 您必須在兩部電腦上使用相同的登入帳戶，同步處理才能運作 – 因為「企業狀態漫遊」是繫結至使用者帳戶而不是電腦帳戶。
+1. 加入 Windows 10 電腦 tooa 之後網域設定 tooallow 企業狀態漫遊，請使用您的工作帳戶登入。 跳過**設定** > **帳戶** > **同步處理您的設定**，並確認同步處理和 hello 個別的設定，和該 hello 頂端hello 設定頁面會指出您正在使用工作帳戶同步處理。 確認在您登入帳戶也會使用相同帳戶的 hello**設定** > **帳戶** > **您資訊**。 
+2. 確認同步處理運作跨多部機器 hello 原始電腦，例如移動 hello 工作列 toohello 靠右或最上層的一端囉 」 畫面上，進行一些變更。 觀賞 hello 變更五分鐘內傳播 toohello 第二部電腦。 
+ - 鎖定和解除鎖定囉 」 畫面 （Win + L） 可協助您在同步處理觸發程序。
+ - 您必須使用 hello 的同步處理 toowork – 這兩種電腦上的相同登入帳戶，因為企業狀態漫遊是繫結的 toohello 使用者帳戶和 hello 電腦帳戶。
 
-**可能的問題**：設定頁面的切換功能顯示為灰色，且您看不到帳戶，而是看到「只有當您使用 Microsoft 帳戶或公司帳戶時，某些 Windows 功能才能使用。」文字。 當裝置設定成已加入網域，或者已在 Azure AD 註冊卻尚未成功向 Azure AD 驗證時，可能就會發生這個問題。 可能的原因是必須套用裝置原則，但這個套用作業是非同步的，而且可能會延遲幾個小時。 若要確認此問題，請依照確認裝置註冊狀態中的步驟，來檢查是否是因為這個原因。
+**可能的問題**: hello 設定 頁面上有呈灰色，hello 切換，而不是查看帳戶，您看到 hello 文字"一些 Windows 功能才會出現您使用 Microsoft 帳戶或工作帳戶 」。 針對已設定 toobe 的裝置已加入網域並註冊 tooAzure AD，但是 hello 裝置已成功驗證 tooAzure AD，可能會發生此問題。 可能的原因是必須套用 hello 裝置原則，但此應用程式會以非同步的方式，而且可能會因為幾小時的時間延遲。 這個問題，請依照中的 hello 步驟確認的 tooverify hello 裝置登錄狀態 toocheck 如果 hello 這樣的狀況。
 
-### <a name="verify-the-device-registration-status"></a>確認裝置註冊狀態
-企業狀態漫遊需要在 Azure AD 註冊裝置。 雖然並非針對企業狀態漫遊，但遵循下列指示有助於確認 Windows 10 用戶端是否已經註冊，並確認憑證指紋、Azure AD 設定 URL、NGC 狀態及其他資訊。
+### <a name="verify-hello-device-registration-status"></a>確認 hello 裝置登錄狀態
+企業狀態漫遊需要 hello 裝置 toobe 向 Azure AD 註冊。 雖然不是特定 tooEnterprise 狀態漫遊，遵循下列指示 hello 可以幫助確認該 hello 註冊 Windows 10 用戶端，並確認憑證指紋，Azure AD 設定 URL，NGC 狀態，以及其他資訊。
 
-1.  在未提高權限的情況下開啟命令提示字元。 若要在 Windows 中執行此操作，請開啟「執行」啟動程式 (Win + R) 並輸入 "cmd" 來開啟。
-2.  命令提示字元開啟後，輸入 *dsregcmd.exe /status*。
-3.  若要獲得預期的輸出，[AzureAdJoined] 欄位值應該是 [YES]、[WamDefaultSet] 欄位值應該是 [YES]，而 [WamDefaultGUID] 欄位值則應該是一個結尾為 “(AzureAd)” 的 GUID。
+1.  開啟 hello 命令提示字元停權。 這在 Windows 中，開啟 toodo hello 執行啟動器 （Win + R），並輸入"cmd"tooopen。
+2.  一旦開啟 hello 命令提示字元，輸入 「*dsregcmd.exe /status*"。
+3.  預期的輸出，如 hello **AzureAdJoined**欄位值應該是"YES"， **WamDefaultSet**欄位值應該是"YES"，並且 hello **WamDefaultGUID**欄位值應該是GUID"(azure Ad)"hello 結尾。
 
-**可能的原因**：**WamDefaultSet** 和 **AzureAdJoined** 的欄位值都是 [NO]、裝置已經加入網域且已經在 Azure AD 註冊，以及裝置沒有同步處理。 如果顯示此問題，表示裝置可能需要等待原則套用，或裝置在連線至 Azure AD 時驗證失敗。 使用者可能需等待幾個小時來等待原則套用。 其他疑難排解步驟可能包括透過登出並重新登入來重試自動註冊，或在工作排程器中啟動工作。 在某些情況下，於已提升權限的命令提示字元視窗中執行 *dsregcmd.exe /leave*、重新開機，然後再試一次註冊，可能有助於解決此問題。
+**可能的問題**: **WamDefaultSet**和**AzureAdJoined** hello 欄位值中有 「 否 」，hello 裝置已加入網域且已註冊使用 Azure AD，和 hello 裝置不會同步。如果顯示這個，hello 裝置可能需要套用的原則 toobe toowait 或 hello hello 裝置連線 tooAzure AD 時發生失敗的驗證。 hello 使用者有 toowait hello 原則 toobe 套用的幾個小時。 其他疑難排解步驟可能包含由簽署 out 與中，或啟動工作排程器中的 hello 工作重試自動註冊。 在某些情況下，於已提升權限的命令提示字元視窗中執行 *dsregcmd.exe /leave*、重新開機，然後再試一次註冊，可能有助於解決此問題。
 
 
-**可能的原因**：**AzureAdSettingsUrl** 的欄位空白且裝置沒有同步處理。 使用者上次登入裝置的時間可能是在於 Azure Active Directory 入口網站中啟用企業狀態漫遊之前。 重新啟動裝置並讓使用者登入。 (選擇性) 在入口網站中，嘗試停用 IT 系統管理員，然後重新啟用「使用者可以同步設定及企業應用程式資料」。 重新啟用之後，請重新啟動裝置並讓使用者登入。 如果這樣做無法解決問題，錯誤裝置憑證中的 **AzureAdSettingsUrl** 可能是空的。 在此情況下，於已提升權限的命令提示字元視窗中執行 *dsregcmd.exe /leave*、重新開機，然後再試一次註冊，可能有助於解決此問題。
+**可能的問題**: hello 欄位**AzureAdSettingsUrl**是空白的然後 hello 裝置不同步。 hello 使用者可能已上次登入 toohello 裝置 hello Azure Active 中啟用企業狀態漫遊之前目錄入口網站。 重新啟動 hello 裝置並擁有 hello 使用者登入。 （選擇性） 在 hello 入口網站，再試一次需要的 hello IT 系統管理員停用並重新啟用的使用者可能會同步處理設定及企業應用程式資料。 一旦重新啟用，重新啟動 hello 裝置，而且擁有 hello 使用者登入。 如果這樣做無法解決 hello 問題**AzureAdSettingsUrl**可能是空的不正確的裝置憑證 hello 案例。 在此情況下，於已提升權限的命令提示字元視窗中執行 *dsregcmd.exe /leave*、重新開機，然後再試一次註冊，可能有助於解決此問題。
 
 ## <a name="enterprise-state-roaming-and-multi-factor-authentication"></a>企業狀態漫遊與 Multi-Factor Authentication 
-在某些情況下，如果設定了 Azure Multi-Factor Authentication，「企業狀態漫遊」可能會無法同步處理資料。 如需有關這些徵兆的其他詳細資料，請參閱支援文件 [KB3193683](https://support.microsoft.com/kb/3193683)。 
+某些狀況下，企業狀態漫遊可能會失敗 toosync 資料如果 Azure Multi-factor Authentication Server 設定。 如需這些徵狀的其他詳細資訊，請參閱 hello 支援文件[KB3193683](https://support.microsoft.com/kb/3193683)。 
 
-**可能的原因**：如果您的裝置已設定為在 Azure Active Directory 入口網站上需要 Multi-Factor Authentication，則使用密碼登入 Windows 10 裝置時，可能無法同步處理設定。 這類型的 Multi-Factor Authentication 組態是用來保護 Azure 系統管理員帳戶。 系統管理員使用者仍然能夠藉由使用 Microsoft Passport for Work PIN 登入他們的 Windows 10 裝置，或藉由在存取其他 Azure 服務 (例如 Office 365) 時完成 Multi-Factor Authentication，來進行同步處理。
+**可能的問題**： 如果您的裝置 hello Azure Active Directory 入口網站上的設定的 toorequire Multi-factor Authentication，您可能會失敗 toosync 設定時登入 tooa Windows 10 裝置使用的密碼。 這種類型的 Multi-factor Authentication 設定是預定的 tooprotect Azure 系統管理員帳戶。 系統管理員使用者仍然可能無法 toosync 簽署 tootheir Windows 10 裝置與他們的 Microsoft Passport for Work 的 PIN，或藉由存取其他 Azure 服務，例如 Office 365 時完成多重要素驗證。
 
-**可能的原因**：如果系統管理員設定 Active Directory Federation Services Multi-Factor Authentication 條件式存取原則，而裝置上的存取權杖到期，則同步處理可能會失敗。 務必使用 Microsoft Passport for Work PIN 來登入和登出，或在存取其他 Azure 服務 (例如 Office 365) 時完成 Multi-Factor Authentication。
+**可能的問題**： 如果 hello 系統管理員設定 hello Active Directory 同盟服務多重要素驗證條件式存取原則和 hello hello 裝置上的存取權杖到期，同步處理可能會失敗。 請確認您登入和登出使用 hello Microsoft Passport for Work 的 PIN 或存取其他 Azure 服務，例如 Office 365 時完成多重要素驗證。
 
 ###<a name="event-viewer"></a>事件檢視器
-進行進階疑難排解時，可以使用「事件檢視器」來找出特定錯誤。 這些錯誤記載在下面的表格中。 您可以在 [事件檢視器] > [應用程式及服務紀錄檔] > [Microsoft] > [Windows] > [SettingSync] 底下找到事件，和身分識別有關的問題則可以透過同步處理 [Microsoft] > [Windows] > [Azure AD] 來找到。
+對進階疑難排解，事件檢視器可以使用的 toofind 特定錯誤。 這些案例記載在 hello 表中。 您可以在事件檢視器找到 hello 事件 > 應用程式及服務記錄檔 > **Microsoft** > **Windows** > **SettingSync**和針對與同步處理身分識別相關的問題**Microsoft** > **Windows** > **Azure AD**。
 
 
 ## <a name="known-issues"></a>已知問題
 
 ### <a name="sync-does-not-work-on-devices-that-have-apps-side-loaded-using-mdm-software"></a>同步處理在使用 MDM 軟體側載應用程式的裝置上無法運作
 
-會影響執行 Windows 10 年度更新版 (版本 1607) 的裝置。 在 [事件檢視器] 中的 [SettingSync-Azure 記錄] 底下，常會看到事件識別碼 6013 與錯誤 80070259。
+執行會影響裝置 hello Windows 10 年度更新 (版本 1607)。 在 hello SettingSync Azure 記錄檔事件檢視器，經常會看到錯誤 80070259 hello 事件識別碼 6013。
 
 **建議的動作**  
-確定 Windows 10 v1607 用戶端具有 2016 年 ８ 月 23 日累積更新 ([KB3176934](https://support.microsoft.com/kb/3176934) 作業系統組建 14393.82)。 
+請確定 Windows 10 hello v1607 用戶端具有 hello 2016 年 8 月 23 日累計更新 ([KB3176934](https://support.microsoft.com/kb/3176934) OS 建置 14393.82)。 
 
 ---
 
 ### <a name="internet-explorer-favorites-do-not-sync"></a>Internet Explorer 我的最愛不會同步
 
-會影響執行 Windows 10 11 月更新版 (版本 1511) 的裝置。
+執行會影響裝置 hello Windows 10 11 月更新 (版本 1511)。
 
 **建議的動作**  
-確定 Windows 10 v1511 用戶端具有 2016 年 7 月累積更新 ([KB3172985](https://support.microsoft.com/kb/3172985) 作業系統組建 10586.494)。
+請確定 Windows 10 hello v1511 用戶端具有 hello 2016 年 7 月累計更新 ([KB3172985](https://support.microsoft.com/kb/3172985) OS 建置 10586.494)。
 
 ---
 
 ### <a name="theme-is-not-syncing-as-well-as-data-protected-with-windows-information-protection"></a>佈景主題和使用「Windows 資訊保護」保護的資料不會同步處理 
 
-爲防止資料外洩，使用 [Windows 資訊保護 (英文)](https://technet.microsoft.com/itpro/windows/keep-secure/protect-enterprise-data-using-wip) 保護的資料不會透過使用 Windows 10 年度更新版之裝置的企業狀態漫遊來進行同步處理。
+tooprevent 資料外洩，與受保護的資料[Windows 資訊保護](https://technet.microsoft.com/itpro/windows/keep-secure/protect-enterprise-data-using-wip)將不會同步透過企業狀態漫遊的裝置使用 hello Windows 10 年度更新。
 
 
 
 **建議的動作**  
-無。 未來的 Windows 更新可能會解決這個問題。
+無。 未來的更新 tooWindows 可解決此問題。
 
 ---
 
 ### <a name="date-time-and-region-settings-do-not-sync-on-domain-joined-device"></a>已加入網域的裝置上不會同步處理日期、時間及地區設定 
   
-已加入網域的裝置將不會同步處理日期、時間及地區：自動時間設定。 使用自動時間可能會複寫其他日期、時間及地區設定，並導致那些設定不會同步處理。 
+加入網域的裝置不會經歷 hello 日期、 時間和地區設定的同步處理： 自動的時間。 使用自動時間可能會覆寫 hello 其他日期、 時間和地區設定和導致不 toosync 這些設定。 
 
 **建議的動作**  
 無。 
@@ -121,62 +121,62 @@ ms.lasthandoff: 07/11/2017
 
 ### <a name="uac-prompts-when-syncing-passwords"></a>同步密碼時出現 UAC 提示
 
-會影響執行 Windows 10 11 月更新版 (版本 1511) 並具備無線 NIC 且已設定為同步處理密碼的裝置。
+會影響裝置執行 hello Windows 10 11 月更新 (版本 1511) 與無線 NIC 設定 toosync 密碼。
 
 **建議的動作**  
-確定 Windows 10 v1511 用戶端具有累積更新 ([KB3140743](https://support.microsoft.com/kb/3140743) 作業系統組建 10586.494)。
+請確定 Windows 10 hello v1511 用戶端具有 hello 累計更新 ([KB3140743](https://support.microsoft.com/kb/3140743) OS 建置 10586.494)。
 
 ---
 
 ### <a name="sync-does-not-work-on-devices-that-use-smart-card-for-login"></a>同步處理不會在使用智慧卡登入的裝置上運作
-如果您嘗試使用智慧卡或虛擬智慧卡來登入您的 Windows 裝置，設定同步處理將會停止運作。     
+如果您嘗試 toosign tooyour Windows 裝置使用智慧卡或虛擬智慧卡中的，設定同步處理將會停止運作。     
 
 **建議的動作**  
-無。 未來的 Windows 更新可能會解決這個問題。
+無。 未來的更新 tooWindows 可解決此問題。
 
 ---
 
 ### <a name="domain-joined-device-is-not-syncing-after-leaving-corporate-network"></a>已加入網域的裝置不會在離開公司網路後同步處理     
-如果已加入網域並已向 Azure AD 註冊的裝置離站很長的時間，同步處理可能會失敗且無法完成網域驗證。
+已加入網域的裝置註冊的 tooAzure AD 如果 hello 裝置是很長的時間，且位於異地，因此無法完成網域驗證，可能會發生同步處理失敗。
 
 **建議的動作**  
-請將裝置連線到公司網路，以便讓同步處理能夠繼續執行。
+Hello 裝置 tooa 公司網路連線，以便可以繼續同步處理。
 
 ---
 
- ### <a name="azure-ad-joined-device-is-not-syncing-and-the-user-has-a-mixed-case-user-principal-name"></a>Azure AD 聯結裝置未同步處理，而且使用者的使用者主體名稱混用大小寫。
- 如果使用者有混用大小寫的 UPN (例如 UserName 而不是 username)，而且使用者在已從 Windows 10 組建 10586 升級至 14393 的 Azure AD 聯結裝置上，使用者的裝置可能無法同步處理。 
+ ### <a name="azure-ad-joined-device-is-not-syncing-and-hello-user-has-a-mixed-case-user-principal-name"></a>Azure AD 聯結裝置無法同步處理而且 hello 使用者混合大小寫的使用者主體名稱。
+ Hello 使用者具有混合大小寫字母的 UPN （例如使用者名稱而不是使用者名稱） 而 hello 使用者是已經升級，從 Windows 10 組建 10586 too14393 加入 Azure AD 之裝置上，如果 hello 使用者的裝置可能會失敗 toosync。 
 
 **建議的動作**  
-使用者必須退出裝置並重新加入到雲端。 若要這樣做，請以本機系統管理員使用者的身分登入，並移至 [設定]  >  [系統]  >  [關於]，然後選取 [管理或中斷連線公司或學校帳戶] 以退出裝置。 清除下列檔案，在 [設定]  >  [系統]  >  [關於] 中選取 [連線到公司或學校]，Azure AD 就會再次加入裝置。 繼續將裝置加入 Azure Active Directory，並完成流程。
+將需要 toounjoin hello 使用者，並將它重新加入 hello 裝置 toohello 雲端。 toodo hello 本機系統管理員使用者身分，登入和移過退出 hello 裝置**設定** > **系統** > **有關**並選取"管理者或中斷與工作或學校 」。 清除 hello 以下檔案，然後按一下 Azure AD Join hello 裝置一次在**設定** > **系統** > **有關**，然後選取 連線tooWork 或學校 」。 繼續 toojoin hello 裝置 tooAzure Active Directory 和完整 hello 流程。
 
-在清除步驟中，清除下列檔案︰
+在 hello 清除步驟中，清除 hello 下列檔案：
 - `C:\Users\<Username>\AppData\Local\Packages\Microsoft.AAD.BrokerPlugin_cw5n1h2txyewy\Settings\` 中的 Settings.dat
-- 資料夾 `C:\Users\<Username>\AppData\Local\Packages\Microsoft.AAD.BrokerPlugin_cw5n1h2txyewy\AC\TokenBroker\Account` 下的所有檔案
+- 所有 hello hello 資料夾下的檔案`C:\Users\<Username>\AppData\Local\Packages\Microsoft.AAD.BrokerPlugin_cw5n1h2txyewy\AC\TokenBroker\Account`
 
 ---
 
 ### <a name="event-id-6065-80070533-this-user-cant-sign-in-because-this-account-is-currently-disabled"></a>事件識別碼 6065：80070533 此使用者無法登入，因為此帳戶目前已停用  
-在「事件檢視器」的 SettingSync/Debug 記錄檔底下，當使用者的認證過期時，可能會看到此錯誤。 此外，當租用戶未自動佈建 AzureRMS 時，可能會發生此錯誤。 
+在 hello SettingSync/偵錯記錄檔事件檢視器，可以 hello 使用者的認證已過期時會出現此錯誤。 此外，它可能發生在 hello 租用戶自動沒有 AzureRMS 佈建。 
 
 **建議的動作**  
-在第一個案例中，讓使用者更新其認證，並使用新的認證登入到裝置。 若要解決 AzureRMS 問題，請繼續執行 [KB3193791](https://support.microsoft.com/kb/3193791) 中列出的步驟。 
+在 hello 第一個案例中，有 hello 使用者更新其認證和登入 toohello 裝置 hello 新的認證。 中所列的 hello 步驟繼續 toosolve hello AzureRMS 問題[KB3193791](https://support.microsoft.com/kb/3193791)。 
 
 ---
 
 ### <a name="event-id-1098-error-0xcaa5001c-token-broker-operation-failed"></a>事件識別碼 1098：錯誤：0xCAA5001C 權杖代理人操作失敗  
-在「事件檢視器」中的 AAD/作業記錄底下，可能會在事件 1104：AAD 雲端 AP 外掛程式呼叫 Get token 但傳回錯誤：0xC000005F 時看到此錯誤。 如果缺少權限或擁有權屬性，就會發生這個問題。  
+在 hello AAD/操作記錄檔事件檢視器，可能會出現此錯誤與事件 1104年: AAD 雲端 AP 外掛程式呼叫 Get 語彙基元傳回錯誤： 0xC000005F。 如果缺少權限或擁有權屬性，就會發生這個問題。    
 
 **建議的動作**  
-請繼續執行 [KB3196528](https://support.microsoft.com/kb/3196528) 中列出的步驟。  
+繼續進行列出的 hello 步驟[KB3196528](https://support.microsoft.com/kb/3196528)。  
 
 
 
 ## <a name="next-steps"></a>後續步驟
 
-- 利用[使用者心聲論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/158658-enterprise-state-roaming)來提供意見並提出如何改善企業狀態漫遊的建議。
+- 使用 hello[使用者之聲論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/158658-enterprise-state-roaming)tooprovide 意見反應，讓的建議方式 tooimprove 企業狀態漫遊。
 
-- 如需詳細資訊，請參閱[企業狀態漫遊概觀](active-directory-windows-enterprise-state-roaming-overview.md)。 
+- 如需詳細資訊，請參閱 hello[企業狀態漫遊概觀](active-directory-windows-enterprise-state-roaming-overview.md)。 
 
 ## <a name="related-topics"></a>相關主題
 * [企業狀態漫遊概觀](active-directory-windows-enterprise-state-roaming-overview.md)

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure AD App Proxy 發佈遠端桌面 | Microsoft Docs"
-description: "涵蓋 Azure AD 應用程式 Proxy 連接器的基本概念。"
+title: "使用 Azure AD 應用程式 Proxy 的遠端桌面 aaaPublish |Microsoft 文件"
+description: "涵蓋有關 Azure AD 應用程式 Proxy 連接器 hello 基本概念。"
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -16,77 +16,77 @@ ms.date: 06/11/2017
 ms.author: kgremban
 ms.custom: it-pro
 ms.reviewer: harshja
-ms.openlocfilehash: 785bb4f893cf6861ef3b090d99780fd9b6b08c0e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1174161d0b5ef1157c334970f00ef4f0702a9545
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="publish-remote-desktop-with-azure-ad-application-proxy"></a>使用 Azure AD 應用程式 Proxy 發佈遠端桌面
 
-本文說明如何使用應用程式 Proxy 來部署遠端桌面服務 (RDS)，讓遠端使用者仍可創造生產力。
+本文件涵蓋如何 toodeploy 應用程式 proxy 的遠端桌面服務 (RDS)，讓遠端使用者仍能提高生產力。
 
-本文的目標對象是︰
-- 目前的 Azure AD 應用程式 Proxy 客戶，想要透過遠端桌面服務發佈內部部署應用程式，以提供更多使用者應用程式。
-- 目前的遠端桌面服務客戶，想要使用 Azure AD 應用程式 Proxy 來減少其部署的 Attack Surface。 這種情況下，會向 RDS 提供一組有限的雙步驟驗證和條件式存取控制。
+hello 想要針對這個發行項的對象：
+- 目前 Azure AD Application Proxy 客戶希望 toooffer 多個應用程式 tootheir 使用者藉由發行內部應用程式，透過遠端桌面服務。
+- 目前遠端桌面服務的客戶想使用 Azure AD Application Proxy 部署 tooreduce hello 受攻擊面。 此案例提供一組有限的雙步驟驗證和條件式存取控制 tooRDS。
 
-## <a name="how-application-proxy-fits-in-the-standard-rds-deployment"></a>應用程式 Proxy 如何放入標準 RDS 部署中
+## <a name="how-application-proxy-fits-in-hello-standard-rds-deployment"></a>應用程式 Proxy 如何納入 hello 標準 RDS 部署
 
-標準 RDS 部署包含 Windows Server 上執行的各種遠端桌面角色服務。 查看[遠端桌面服務架構](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/desktop-hosting-logical-architecture)，有多個部署選項。 [使用 Azure AD 應用程式 Proxy 的 RDS 部署](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/desktop-hosting-logical-architecture) (如下圖所示) 和其他部署選項最明顯的差異，就是應用程式 Proxy 案例具有執行連接器服務之伺服器的永久輸出連線。 其他部署會透過負載平衡器保留開啟的輸入連線。
+標準 RDS 部署包含 Windows Server 上執行的各種遠端桌面角色服務。 查看 hello[遠端桌面服務架構](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/desktop-hosting-logical-architecture)，有多個部署選項。 hello 最明顯差異 hello [RDS 部署與 Azure AD Application Proxy](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/desktop-hosting-logical-architecture) （hello 下列圖表所示） 和 hello 其他部署選項是該 hello 應用程式 Proxy 案例已永久的輸出從執行 hello 連接器服務的 hello 伺服器連接。 其他部署會透過負載平衡器保留開啟的輸入連線。
 
-![應用程式 Proxy 位於 RDS VM 與公用網際網路之間](./media/application-proxy-publish-remote-desktop/rds-with-app-proxy.png)
+![Hello RDS VM 和 hello 公用網際網路之間的應用程式 Proxy 位於](./media/application-proxy-publish-remote-desktop/rds-with-app-proxy.png)
 
-在 RDS 部署中，RD Web 角色和 RD 閘道角色是在網際網路對應的電腦上執行。 這些端點是公開的，原因如下︰
-- RD Web 會向使用者提供公用端點，可用來登入及檢視他們可以存取的各種內部部署應用程式和桌上型電腦。 在選取資源時，會使用作業系統上的原生應用程式來建立 RDP 連線。
-- 一旦使用者啟動 RDP 連線後，RD 閘道就會派上用場。 RD 閘道會處理來自網際網路的加密 RDP 流量，並將它轉譯為使用者所連線的內部部署伺服器。 在此案例中，RD 閘道正在接收的流量是來自 Azure AD 應用程式 Proxy。
+在 RDS 部署中，hello RD Web 角色和 hello RD 閘道角色網際網路對向在機器上執行。 這些端點會公開下列原因 hello:
+- RD Web 提供 hello 使用者的公用端點 toosign 中，並檢視 hello 各種內部部署應用程式和桌面他們可以存取。 在選取的資源，RDP 連線會使用 hello OS 上的 hello 原生應用程式所建立的。
+- RD 閘道進入 hello 圖片，一旦使用者啟動 hello RDP 連接。 hello RD 閘道處理 hello 網際網路透過傳入的 hello 加密 RDP 流量，並將它轉譯的 toohello hello 使用者的內部部署伺服器連線到。 在此案例中，RD 閘道收到 hello 流量 hello 來自 hello Azure AD Application Proxy。
 
 >[!TIP]
->如果您之前從未部署過 RDS，或在您開始前需要更多資訊，請了解如何[使用 Azure Resource Manager 和 Azure Marketplace 順暢地部署 RDS](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/rds-in-azure)。
+>如果您尚未部署之前，RDS，或想要的詳細資訊，在您開始前，了解如何太[順暢地部署與 Azure 資源管理員和 Azure Marketplace 的 RDS](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/rds-in-azure)。
 
 ## <a name="requirements"></a>需求
 
-- RD Web 和 RD 閘道端點必須位於相同的電腦上，並具有一般的根。 將發佈 RD Web 和 RD 閘道作為單一應用程式，因此您可以在這兩個應用程式之間擁有單一登入的體驗。
+- 同時 hello RD Web 和 RD 閘道必須位於端點 hello 相同電腦，以及常見的根目錄。 RD Web 和 RD 閘道將做為單一的應用程式發行，因此您可以擁有單一登入體驗 hello 兩個應用程式之間。
 
 - 您應該已經[部署 RDS](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/rds-in-azure) 並[啟用應用程式 Proxy](active-directory-application-proxy-enable.md)。
 
-- 此案例假設您的終端使用者在透過 RD 網頁連線的 Windows 7 或 Windows 10 桌上型電腦上使用 Internet Explorer。 如果您需要支援其他作業系統，請參閱[其他用戶端設定的支援](#support-for-other-client-configurations)。
+- 此案例假設您的使用者移到 Internet Explorer 在 hello RD 網頁進行連接的 Windows 7 或 Windows 10 桌上型電腦上。 如果您需要 toosupport 其他作業系統，請參閱[其他用戶端設定的支援](#support-for-other-client-configurations)。
 
   >[!NOTE]
   >目前不支援 Windows 10 Creator's Update。
 
-- 在 Internet Explorer 上，啟用 RDS ActiveX 附加元件。
+- 在 Internet Explorer 中，啟用 hello RDS ActiveX 附加元件。
 
-## <a name="deploy-the-joint-rds-and-application-proxy-scenario"></a>部署聯合 RDS 和應用程式 Proxy 案例
+## <a name="deploy-hello-joint-rds-and-application-proxy-scenario"></a>部署 hello 聯合 RDS 和應用程式 Proxy 案例
 
-為您的環境設定 RDS 與 Azure AD 應用程式 Proxy 之後，請遵循步驟將兩種解決方案結合。 這些步驟會逐步解說發佈兩個 Web 對向 RDS 端點 (RD Web 和 RD 閘道) 作為應用程式，然後將您 RDS 上的流量導向以通過應用程式 Proxy。
+設定好 RDS 和 Azure AD Application Proxy 為您的環境之後，請遵循 hello 步驟 toocombine hello 這兩個方案。 這些步驟逐步解說發行 hello 兩個 web 面對 RDS 端點 （RD Web 和 RD 閘道） 做為應用程式，並再將流量導向您透過應用程式 Proxy 的 RDS toogo 上。
 
-### <a name="publish-the-rd-host-endpoint"></a>發佈 RD 主機端點
+### <a name="publish-hello-rd-host-endpoint"></a>發行 hello RD 主應用程式端點
 
-1. 使用下列值[發佈新的應用程式 Proxy 應用程式](application-proxy-publish-azure-portal.md)︰
-   - 內部 URL：https://\<rdhost\>.com/，其中 \<rdhost\> 是 RD Web 和 RD 閘道共用的共同根。
-   - 外部 URL︰會根據應用程式名稱自動填入這個欄位，但您可以修改它。 您的使用者在存取 RDS 時，將會移到此 URL。
+1. [將新的應用程式 Proxy 應用程式發行](application-proxy-publish-azure-portal.md)以 hello 下列值：
+   - 內部 URL: https://\<rdhost\>.com /，其中\<rdhost\>是 hello 常見的根目錄 RD Web 和 RD 閘道的共用。
+   - 外部 URL： 這個欄位會自動擴展根據 hello hello 應用程式名稱，但您可以修改它。 您的使用者將會移 toothis URL 存取.rds 時
    - 預先驗證方法︰Azure Active Directory
    - 轉譯 URL 標頭：否
-2. 將使用者指派給已發佈 RD 應用程式。 並請確定它們都可存取 RDS。
-3. 保留應用程式的單一登入方法，因為 **Azure AD 單一登入已停用**。 系統會要求您的使用者分別驗證一次 Azure AD 及 RD Web，但可單一登入 RD 閘道。
-4. 移至 [Azure Active Directory] > [應用程式註冊] > [您的應用程式] > [設定]。
-5. 選取 [內容] 並更新 [首頁 URL] 欄位，以指向 RD Web 端點 (例如 https://\<rdhost\>.com/RDWeb)。
+2. 將使用者指派 toohello RD 應用程式發行。 請確定它們都有存取 tooRDS 太。
+3. 保留 hello 單一登入方法 hello 應用程式做為**Azure AD 單一登入已停用**。 您的使用者要求 tooauthenticate 一旦 tooAzure AD，另一次 tooRD Web，但沒有單一登入 tooRD 閘道。
+4. 跳過**Azure Active Directory** > **應用程式註冊** > *您的應用程式* > **設定**.
+5. 選取**屬性**和更新 hello**首頁的 URL**欄位 toopoint tooyour RD Web 端點 (例如 https://\<rdhost\>.com/RDWeb)。
 
-### <a name="direct-rds-traffic-to-application-proxy"></a>將 RDS 資料流導向應用程式 Proxy
+### <a name="direct-rds-traffic-tooapplication-proxy"></a>直接 RDS 流量 tooApplication Proxy
 
-以系統管理員身分連線至 RDS 部署，並變更部署的 RD 閘道伺服器名稱。 這可確保連線經過 Azure AD 應用程式 Proxy。
+Toohello RDS 部署，以系統管理員身分連接，並變更 hello 部署的 hello RD 閘道伺服器名稱。 這可確保連接經過 hello Azure AD Application Proxy。
 
-1. 連線到執行 RD 連線代理人角色的 RDS 伺服器。
+1. 連接執行 hello RD 連線代理人角色 toohello RDS 伺服器。
 2. 啟動**伺服器管理員**。
-3. 選取左窗格中的 [遠端桌面服務]。
+3. 選取**遠端桌面服務**hello hello 左側窗格中。
 4. 選取 [概觀]。
-5. 在 [部署概觀] 區段中，選取下拉式選單，然後選擇 [編輯部署內容]。
-6. 在 [RD 閘道] 索引標籤中，將 [伺服器名稱] 變更為您在應用程式 Proxy 中所設定之 RD 主機端點的外部 URL。
-7. 將 [登入方法] 欄位變更為 [密碼驗證]。
+5. 在 hello 部署概觀 區段中，選取 hello 下拉功能表並選擇**編輯部署屬性**。
+6. 在 hello RD 閘道索引標籤上，變更 hello**伺服器名稱**欄位 toohello 您為應用程式 Proxy 中的 hello RD 主機端點的外部 URL。
+7. 變更 hello**登入方法**欄位太**密碼驗證**。
 
   ![在 RDS 上部署內容畫面](./media/application-proxy-publish-remote-desktop/rds-deployment-properties.png)
 
-8. 針對每個集合，執行下列命令。 使用您自己的資訊來取代 *\<yourcollectionname\>* 和 *\<proxyfrontendurl\>*。 此命令會啟用 RD Web 和 RD 閘道之間的單一登入，並將效能最佳化︰
+8. 針對每個集合中，執行下列命令的 hello。 使用您自己的資訊來取代 *\<yourcollectionname\>* 和 *\<proxyfrontendurl\>*。 此命令會啟用 RD Web 和 RD 閘道之間的單一登入，並將效能最佳化︰
 
    ```
    Set-RDSessionCollectionConfiguration -CollectionName "<yourcollectionname>" -CustomRdpProperty "pre-authentication server address:s:<proxyfrontendurl>`nrequire pre-authentication:i:1"
@@ -97,38 +97,38 @@ ms.lasthandoff: 08/18/2017
    Set-RDSessionCollectionConfiguration -CollectionName "QuickSessionCollection" -CustomRdpProperty "pre-authentication server address:s:https://gateway.contoso.msappproxy.net/`nrequire pre-authentication:i:1"
    ```
 
-9. 若要確認自訂 RDP 屬性的修改，以及檢視將會針對此集合從 RDWeb 下載的 RDP 檔案內容，請執行下列命令：
+9. tooverify hello 自訂 RDP 屬性，以及檢視 hello RDP 檔案內容，將會針對此集合中，執行下列命令的 hello RDWeb 從下載的 hello 修改：
     ```
     (get-wmiobject -Namespace root\cimv2\terminalservices -Class Win32_RDCentralPublishedRemoteDesktop).RDPFileContents
     ```
 
-現在您已設定遠端桌面，Azure AD 應用程式 Proxy 已接管作為 RDS 的網際網路對應元件。 您可以將 RD Web 和 RD 閘道機器上的其他公用網際網路對應端點移除。
+既然您已經設定遠端桌面，Azure AD 應用程式 Proxy 已花費為.rds hello 網際網路對向元件 您可以移除 hello RD Web 和 RD 閘道的機器上的其他公用網際網路對向端點。
 
-## <a name="test-the-scenario"></a>測試案例
+## <a name="test-hello-scenario"></a>測試 hello 情節
 
-在 Windows 7 或 10 電腦上使用 Internet Explorer 來測試案例。
+測試與 Windows 7 或 10 的電腦上的 Internet Explorer 的 hello 案例。
 
-1. 移至您所設定的外部 URL，或在 [MyApps 面板](https://myapps.microsoft.com)中尋找您的應用程式。
-2. 系統會要求您向 Azure Active Directory 進行驗證。 使用您指派給應用程式的帳戶。
-3. 系統會要求您向 RD Web 進行驗證。
-4. 一旦 RDS 驗證成功後，您可以選取所需的桌上型電腦或應用程式，然後開始使用。
+1. 移 toohello 外部 URL 設定，或您的應用程式在 hello [MyApps 面板](https://myapps.microsoft.com)。
+2. 系統會詢問 tooauthenticate tooAzure Active Directory。 使用您指派 toohello 應用程式的帳戶。
+3. 系統會詢問 tooauthenticate tooRD Web。
+4. RDS 驗證成功後，您可以選取 hello 桌面或應用程式，並開始使用。
 
 ## <a name="support-for-other-client-configurations"></a>其他用戶端設定的支援
 
-本文中所述的設定是針對具有 Internet Explorer 和 RDS ActiveX 附加元件之 Windows 7 或 10 上的使用者。 不過，如果需要，您可以支援其他作業系統或瀏覽器。 差異在於您所使用的驗證方法。
+這篇文章所述的 hello 設定是在 Windows 7 或 10、 Internet Explorer 再加上 hello RDS ActiveX 附加元件與使用者。 不過，如果需要，您可以支援其他作業系統或瀏覽器。 hello 差異是在您使用的 hello 驗證方法。
 
 | 驗證方法 | 支援的用戶端設定 |
 | --------------------- | ------------------------------ |
 | 預先驗證    | 使用 Internet Explorer + RDS ActiveX 附加元件的 Windows 7/10 |
-| 通道 | 支援 Microsoft 遠端桌面應用程式的任何其他作業系統 |
+| 通道 | 任何其他作業系統支援 hello Microsoft 遠端桌面應用程式 |
 
-預先驗證流程的安全性優點多於通道流程。 使用預先驗證，您可以利用內部部署資源的 Azure AD 驗證功能，例如單一登入、條件式存取和雙步驟驗證。 您也可以確定只有驗證過的流量到達您的網路。
+hello 預先驗證流程好處也較多的安全性比 hello 通過資料流程。 使用預先驗證，您可以利用內部部署資源的 Azure AD 驗證功能，例如單一登入、條件式存取和雙步驟驗證。 您也可以確定只有驗證過的流量到達您的網路。
 
-若要使用通道驗證，只需要對本文中所列的步驟進行兩項修改：
-1. 在 [Publish the RD host endpoint] (發佈 RD 主機端點)[](#publish-the-rd-host-endpoint) 步驟 1 中，請將預先驗證方法設為 [通道]。
-2. 在 [Direct RDS traffic to Application Proxy] (將 RDS 流量導向應用程式 Proxy)[](#direct-rds-traffic-to-application-proxy) 中，完全略過步驟 8。
+toouse 通過驗證，那里兩個修改 toohello 步驟所述這篇文章：
+1. 在[發行 hello RD 主機端點](#publish-the-rd-host-endpoint)步驟 1，以設定 hello 預先驗證方法太**通過**。
+2. 在[直接 RDS 流量 tooApplication Proxy](#direct-rds-traffic-to-application-proxy)，完全略過步驟 8。
 
 ## <a name="next-steps"></a>後續步驟
 
-[使用 Azure AD 應用程式 Proxy 啟用 SharePoint 的遠端存取](application-proxy-enable-remote-access-sharepoint.md)  
+[啟用與 Azure AD Application Proxy 的遠端存取 tooSharePoint](application-proxy-enable-remote-access-sharepoint.md)  
 [使用 Azure AD 應用程式 Proxy 遠端存取應用程式的安全性考量](application-proxy-security-considerations.md)

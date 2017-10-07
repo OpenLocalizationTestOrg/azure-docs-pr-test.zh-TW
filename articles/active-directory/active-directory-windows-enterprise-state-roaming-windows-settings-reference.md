@@ -1,6 +1,6 @@
 ---
-title: "Windows 10 漫遊設定參考 | Microsoft Docs"
-description: "在 Windows 10 中進行漫遊或備份的所有設定的完整清單。"
+title: "aaaWindows 10 漫遊設定參考 |Microsoft 文件"
+description: "所有的 hello 設定將會漫遊或在 Windows 10 中備份的完整清單。"
 services: active-directory
 keywords: "企業狀態漫遊, windows 雲端"
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/08/2017
 ms.author: markvi
-ms.openlocfilehash: 5082ed8d2f41e72fa979b978e2ac0b0840fdcdac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 381e2220b698bb0e477c207984ff96c03ed132ca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-10-roaming-settings-reference"></a>Windows 10 漫遊設定參考
-以下是在 Windows 10 中進行漫遊或備份的所有設定的完整清單。 
+hello 以下是所有 hello 設定將會漫遊或在 Windows 10 中備份的完整清單。 
 
 ## <a name="devices-and-endpoints"></a>裝置和端點
-請參閱下表以取得 Windows 10 中同步處理、備份及還原架構支援的裝置和帳戶類型的摘要。
+請參閱下表摘要 hello 裝置和備份、 同步 hello 處理所支援的帳戶類型的 hello 和還原 Windows 10 中的架構。
 
 | 帳戶類型和作業 | 桌上型 | 行動 |
 | --- | --- | --- |
@@ -35,10 +35,10 @@ ms.lasthandoff: 07/11/2017
 | Microsoft 帳戶：備份/還原 |否 |是 |
 
 ## <a name="what-is-backup"></a>什麼是備份？
-根據預設，Windows 設定一般會同步處理，但是某些設定只能備份，例如裝置上已安裝應用程式的清單。 備份僅適用於行動裝置，目前不適用企業狀態漫遊使用者。 備份會使用 Microsoft 帳戶，並將設定和應用程式資料儲存到 OneDrive。 如果使用者使用 [設定] 應用程式在裝置上停用同步處理，通常可以同步處理的應用程式資料會變成只能備份。 備份資料在新裝置第一次執行期間，只能透過還原作業存取。 備份可以透過裝置設定停用，並且能透過使用者的 OneDrive 帳戶管理及刪除。
+根據預設，通常同步 Windows 設定，但某些設定只能備份，例如 hello 裝置上安裝應用程式清單。 備份僅適用於行動裝置，目前不適用企業狀態漫遊使用者。 備份使用 Microsoft 帳戶，並將 hello 設定和應用程式資料儲存到 OneDrive。 如果使用者停用同步處理 hello 裝置上使用 hello 設定應用程式，通常是同步的應用程式資料會成為備份只。 備份資料只在透過 hello 還原作業期間第一次執行經驗來新增裝置 hello 中存取。 備份可以停用透過 hello 裝置設定，並可以受到管理，並且透過 hello 使用者的 OneDrive 帳戶刪除。
 
 ## <a name="windows-settings-overview"></a>Windows 設定概觀
-下列設定群組可供使用者啟用/停用 Windows 10 裝置上的設定同步處理。
+hello 下列設定群組可供使用者 tooenable/停用設定同步處理 Windows 10 裝置上。
 
 * 佈景主題：桌面背景、使用者圖格、工作列位置等 
 * Internet Explorer 設定：瀏覽歷程記錄、輸入的 URL、我的最愛等 
@@ -54,12 +54,12 @@ ms.lasthandoff: 07/11/2017
 ![](./media/active-directory-enterprise-state-roaming/active-directory-enterprise-state-roaming-sync-content.png)
 
 ## <a name="windows-settings-details"></a>Windows 設定詳細資料
-在下表中，[設定群組] 資料行中的 [其他] 項目是指您可以移至 [設定] > [帳戶] > [同步處理您的設定] > [其他 Windows 設定] 停用的設定。 
+在下表的 hello，hello 設定群組的資料行中的其他項目是指可以停用移 tooSettings toosettings > 帳戶 > 同步您的設定 > 其他 Windows 設定。 
 
-[設定群組] 資料行中的 [內部] 項目是指只能從應用程式本身的同步處理停用，或藉由使用行動裝置管理 (MDM) 或群組原則設定停用的設定和應用程式。
-不會漫遊的設定或同步處理不屬於一個群組。
+Toosettings 和應用程式，可以只停用從同步處理 hello 應用程式本身內，或是停用使用行動裝置管理 (MDM)] 或 [群組原則設定的 hello 整個裝置的同步處理，請參閱內部 hello 設定群組的資料行中的項目。
+不會漫遊的設定或同步處理將不屬於 tooa 群組。
 
-| Settings | 桌上型 | 行動 | 群組 |
+| 設定 | 桌上型 | 行動 | 群組 |
 | --- | --- | --- | --- |
 | **帳戶**：帳戶圖片 |sync |X |佈景主題 |
 | **帳戶**：其他帳戶設定 |X |X | |
@@ -85,16 +85,16 @@ ms.lasthandoff: 07/11/2017
 | **桌面個人化**：投影片放映底色圖案 |sync |X |佈景主題 |
 | **桌面個人化**：工作列設定 (位置、自動隱藏等) |sync |X |佈景主題 |
 | **桌面個人化**：開始畫面版面配置 |X |backup | |
-| **裝置**：您已連接的共用印表機 |X |X |其他 |
+| **裝置**： 共用過，您已連接的印表機|X |X |其他 |
 | **Edge 瀏覽器**：閱讀清單 |sync |sync |內部 |
 | **Edge 瀏覽器**：我的最愛 |sync |sync |內部 |
 | **Edge 瀏覽器**：熱門網站 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
 | **Edge 瀏覽器**：輸入的 URL <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
 | **Edge 瀏覽器**：我的最愛列設定 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
-| **Edge 瀏覽器**：顯示 [首頁] 按鈕 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**： 顯示 hello [首頁] 按鈕<sup> [[1]](#footnote-1)</sup> |sync |sync |內部 |
 | **Edge 瀏覽器**：封鎖快顯 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
-| **Edge 瀏覽器**：詢問我要如何處理每個下載的項目 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
-| **Edge 瀏覽器**：提供儲存密碼 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**： 詢問每個下載使用何種 toodo <sup> [[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**： 提供 toosave 密碼<sup> [[1]](#footnote-1)</sup> |sync |sync |內部 |
 | **Edge 瀏覽器**：傳送「不要追蹤」要求 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
 | **Edge 瀏覽器**：儲存表單項目 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
 | **Edge 瀏覽器**：在我輸入的同時顯示搜尋與網站建議 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
@@ -127,7 +127,7 @@ ms.lasthandoff: 07/11/2017
 | **語言**：CHS QWERTY - C/E 切換鍵，shift 鍵 |sync |X |語言 |
 | **語言**：CHS QWERTY - C/E 切換鍵，Ctrl 鍵 |sync |X |語言 |
 | **語言**：CHS WUBI - 單一字元輸入模式 |sync |X |語言 |
-| **語言**：CHS WUBI - 顯示候選項目的剩餘編碼 |sync |X |語言 |
+| **語言**： 簡體中文 WUBI-顯示 hello 剩餘 hello 候選的編碼 |sync |X |語言 |
 | **語言**：CHS WUBI - 4-coding 無效時發出嗶聲 |sync |X |語言 |
 | **語言**：CHT 注音符號 - 包括 CJK Ext-A |sync |X |語言 |
 | **語言**：日文輸入法 - 預測輸入和自訂文字 |sync |sync |語言 |
@@ -139,11 +139,11 @@ ms.lasthandoff: 07/11/2017
 | **鎖定畫面**：所有鎖定畫面設定 |X |X | |
 | **放大鏡**：開啟或關閉 (主切換) |X |X |輕鬆存取 |
 | **放大鏡**：開啟或關閉反轉色彩 (預設為關閉) |sync |X |輕鬆存取 |
-| **放大鏡**：追蹤 - 跟隨鍵盤焦點 |sync |X |輕鬆存取 |
-| **放大鏡**：追蹤 - 跟隨滑鼠游標 |sync |X |輕鬆存取 |
+| **[放大鏡]**： 追蹤-遵循 hello 鍵盤焦點 |sync |X |輕鬆存取 |
+| **[放大鏡]**： 追蹤-遵循 hello 滑鼠游標 |sync |X |輕鬆存取 |
 | **放大鏡**：當使用者登入時啟動 (預設為關閉) |sync |X |輕鬆存取 |
-| **滑鼠**：變更滑鼠游標的大小 |sync |X |其他 |
-| **滑鼠**：變更滑鼠游標的色彩 |sync |X |其他 |
+| **滑鼠**： 將滑鼠游標的 hello 大小變更 |sync |X |其他 |
+| **滑鼠**： 將滑鼠游標 hello 色彩變更 |sync |X |其他 |
 | **滑鼠**：所有其他設定 |X |X | |
 | **朗讀程式**：快速啟動 |sync |X |輕鬆存取 |
 | **朗讀程式**：使用者可以變更朗讀程式朗讀音調 |sync |X |輕鬆存取 |
@@ -153,8 +153,8 @@ ms.lasthandoff: 07/11/2017
 | **朗讀程式**：在朗讀程式之後有插入游標 (預設為開啟) |sync |X |輕鬆存取 |
 | **朗讀程式**：啟用朗讀程式的游標視覺反白顯示 (預設為開啟) |sync |X |輕鬆存取 |
 | **朗讀程式**：播放音訊提示 (預設為開啟) |sync |X |輕鬆存取 |
-| **朗讀程式**：舉起手指時啟用觸控式鍵盤上的按鍵 (預設為關閉) |sync |X |輕鬆存取 |
-| **輕鬆存取**：設定閃爍游標的寬度 |sync |X |輕鬆存取 |
+| **[朗讀程式]**： 啟動 hello 觸控鍵盤上的按 enter 鍵時將手指 （預設為關閉） |sync |X |輕鬆存取 |
+| **輕鬆存取**： 設定 hello 閃爍的游標 hello 粗細 |sync |X |輕鬆存取 |
 | **輕鬆存取**：移除背景影像 (預設為關閉) |sync |X |輕鬆存取 |
 | **電源與睡眠**：所有設定 |X |X | |
 | **開始畫面個人化**：輔色 (僅限手機) |X |sync |佈景主題 |
@@ -163,8 +163,8 @@ ms.lasthandoff: 07/11/2017
 | **輸入**：醒目提示拼錯的單字 |sync |backup |語言 |
 | **輸入**：在我輸入時顯示文字建議 |sync |backup |語言 |
 | **輸入**：在我選擇文字建議後加上空格 |sync |backup |語言 |
-| **輸入**：在我點兩下空格鍵後加上句號 |sync |backup |語言 |
-| **輸入**：每個句子的第一個字母大寫 |sync |backup |語言 |
+| **輸入**： 加上句號之後我點選 hello 空格鍵 |sync |backup |語言 |
+| **輸入**: hello 的每個句子的第一個字母大寫 |sync |backup |語言 |
 | **輸入**：在我點兩下 Shift 鍵時全部使用大寫字母 |sync |backup |語言 |
 | **輸入**：在我輸入時播放按鍵音 |sync |backup |語言 |
 | **輸入**：觸控式鍵盤的個人化資料 |sync |backup |語言 |

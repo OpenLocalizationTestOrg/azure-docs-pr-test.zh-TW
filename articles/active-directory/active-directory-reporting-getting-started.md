@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory 報告：開始使用 | Microsoft Docs"
-description: "在 Azure Active Directory 報告列出各種可用的報告"
+description: "列出 hello 各種可用的報表，在 Azure Active Directory 報告"
 services: active-directory
 documentationcenter: 
 author: dhanyahk
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/16/2017
 ms.author: dhanyahk;markvi
-ms.openlocfilehash: 5cd1ae6196d9cd63f97dc9d302442280ece23e40
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f47875708398391dd7f3efdc56a741fdba273b76
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-azure-active-directory-reporting"></a>開始使用 Azure Active Directory 報告
 ## <a name="what-it-is"></a>內容
-Azure Active Directory (Azure AD) 包括您的目錄的安全性、活動和稽核報告。 以下是包含的報告清單：
+Azure Active Directory (Azure AD) 包括您的目錄的安全性、活動和稽核報告。 以下是一份包含 hello 報表：
 
 ### <a name="security-reports"></a>安全性報告
 * 從不明來源登入
@@ -54,18 +54,18 @@ Azure Active Directory (Azure AD) 包括您的目錄的安全性、活動和稽�
 
 ## <a name="how-it-works"></a>運作方式
 ### <a name="reporting-pipeline"></a>報告管線
-報告管線包含三個主要步驟。 每次使用者登入或進行驗證時，就會發生以下狀況：
+hello 報告管線包含三個主要步驟。 每次使用者登入，或進行驗證，hello 會發生下列狀況：
 
-* 首先，使用者會經過驗證 (成功或失敗)，結果會儲存在 Azure Active Directory 服務資料庫。
+* 首先，hello 使用者已驗證 （成功或失敗），並 hello 結果會儲存在 hello Azure Active Directory 服務資料庫。
 * 每隔一段固定時間，就會處理所有最近的登入。 此時，我們的安全性和異常活動演算法會搜尋所有最近的登入找出是否有可疑的活動。
-* 處理之後，就會寫入報告、快取報告，然後在 Azure 傳統入口網站中提供報告。
+* 經過處理後，hello 報表會寫入、 快取，而且在 hello Azure 傳統入口網站中提供。
 
 ### <a name="report-generation-times"></a>報告產生時間
-由於 Azure AD 平台需處理大量的驗證和登入，所處理的最近登入平均而言為過去一小時。 在罕見的情況下，可能需要花費多達 8 小時處理最近的登入。
+Toohello 大型磁碟區的驗證與登入處理 hello Azure AD 的平台，因為 hello 最近登入處理的平均，1 小時前。 在罕見的情況下，它可能會佔用 too8 小時 tooprocess hello 最近登入。
 
-您可以查看每個報告頂端的說明文字，找到最近處理的登入。
+您可以藉由檢查 hello 說明文字，每個報表的 hello 頂端找到 hello 最近處理登入。
 
-![每個報告頂端的說明文字](./media/active-directory-reporting-getting-started/reportingWatermark.PNG)
+![在每個報表 hello 最上方的說明文字](./media/active-directory-reporting-getting-started/reportingWatermark.PNG)
 
 > [!TIP]
 > 如需有關 Azure AD 報告的更多文件，請參閱 [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)。
@@ -73,25 +73,25 @@ Azure Active Directory (Azure AD) 包括您的目錄的安全性、活動和稽�
 > 
 
 ## <a name="getting-started"></a>開始使用
-### <a name="sign-into-the-azure-classic-portal"></a>登入 Azure 傳統入口網站
-首先，您必須以全域或相容性管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。 您也必須是 Azure 訂用帳戶服務管理員或共同管理員，或使用「存取 Azure AD」的 Azure 訂用帳戶。
+### <a name="sign-into-hello-azure-classic-portal"></a>登入 hello Azure 傳統入口網站
+首先，您將需要 toosign 到 hello [Azure 傳統入口網站](https://manage.windowsazure.com)身為全域或相容性的系統管理員。 您也必須有 Azure 訂用帳戶服務管理員或共同管理員，或使用 hello 」 存取 tooAzure AD"Azure 訂用帳戶。
 
-### <a name="navigate-to-reports"></a>瀏覽至報告
-若要檢視報告，請瀏覽至目錄頂端的 [報告] 索引標籤。
+### <a name="navigate-tooreports"></a>瀏覽 tooReports
+tooview 報表瀏覽 toohello 在 hello 頂端目錄的 [報告] 索引標籤。
 
-如果這是您第一次檢視報告，您必須先同意對話方塊，才能檢視報告。 這是為了確保在您的組織中可接受讓管理員檢視這項資料，在某些國家/地區，這些資料可能會被視為隱私資訊。
+如果這是您第一次檢視 hello 報表，您必須 tooagree tooa 對話方塊之前，您可以檢視 hello 報告。 這是已接受您的組織 tooview 中的管理員 tooensure 這項資料可能會被視為一些國家/地區的私人資訊。
 
 ![對話方塊](./media/active-directory-reporting-getting-started/dialogBox.png)
 
 ### <a name="explore-each-report"></a>瀏覽每個報告
-瀏覽每個報告以查看收集的資料，以及處理的登入。 您可以 [在此找到所有報告的清單](active-directory-reporting-guide.md)。
+收集每個報表 toosee hello 資料瀏覽，再處理 hello 登入。 您可以找到[所有 hello 報告以下清單](active-directory-reporting-guide.md)。
 
 ![所有報告](./media/active-directory-reporting-getting-started/reportsMain.png)
 
-### <a name="download-the-reports-as-csv"></a>下載報告為 CSV
-每個報告可以下載為 CSV (逗號分隔值) 檔案。 您可以在 Excel、PowerBI 或協力廠商分析程式中使用這些檔案，進一步分析您的資料。
+### <a name="download-hello-reports-as-csv"></a>Hello 報表下載為 CSV
+每個報告可以下載為 CSV (逗號分隔值) 檔案。 您可以使用 Excel、 power Bi 或協力廠商架構分析程式 toofurther 分析資料中的這些檔案。
 
-若要下載任何報告為 CSV，請瀏覽至報告並按一下底部的 [下載]。
+toodownload 任何報告以 csv 格式中，瀏覽 toohello 報表，然後按一下 [下載] 底部 hello。
 
 ![[下載] 按鈕](./media/active-directory-reporting-getting-started/downloadButton.png)
 
@@ -102,23 +102,23 @@ Azure Active Directory (Azure AD) 包括您的目錄的安全性、活動和稽�
 
 ## <a name="next-steps"></a>後續步驟
 ### <a name="customize-alerts-for-anomalous-sign-in-activity"></a>自訂異常登入活動的警示
-瀏覽至您目錄的 [設定] 索引標籤。
+瀏覽您的目錄 toohello 「 設定 」 索引標籤。
 
-捲動到 [通知] 區段。
+捲動 toohello 「 通知 」 一節。
 
-啟用或停用 [惡意登入的電子郵件通知] 區段。
+啟用或停用 hello [異常的登入的電子郵件通知] 區段。
 
-![[通知] 區段](./media/active-directory-reporting-getting-started/notificationsSection.png)
+![hello 通知 區段](./media/active-directory-reporting-getting-started/notificationsSection.png)
 
-### <a name="integrate-with-the-azure-ad-reporting-api"></a>與 Azure AD 報告 API 整合
-請參閱 [開始使用報告 API](active-directory-reporting-api-getting-started.md)。
+### <a name="integrate-with-hello-azure-ad-reporting-api"></a>Hello 與整合 Azure AD 報告 API
+請參閱[入門 hello Reporting API](active-directory-reporting-api-getting-started.md)。
 
 ### <a name="engage-multi-factor-authentication-on-users"></a>對使用者採取 Multi-Factor Authentication
 在報告中選取使用者。
 
-按一下畫面底部的 [啟用 MFA] 按鈕。
+按一下 在 hello 囉 」 畫面底部的 hello 」 啟用 MFA 」 按鈕。
 
-![畫面底部的 [Multi-Factor Authentication] 按鈕](./media/active-directory-reporting-getting-started/mfaButton.png)
+![在 hello 囉 」 畫面底部的 hello Multi-factor Authentication 按鈕](./media/active-directory-reporting-getting-started/mfaButton.png)
 
 > [!TIP]
 > 如需有關 Azure AD 報告的更多文件，請參閱 [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)。
@@ -127,10 +127,10 @@ Azure Active Directory (Azure AD) 包括您的目錄的安全性、活動和稽�
 
 ## <a name="learn-more"></a>詳細資訊
 ### <a name="audit-events"></a>稽核事件
-如需了解目錄中的哪些事件會進行稽核，請參閱 [Azure Active Directory 報告稽核事件](active-directory-reporting-audit-events.md)。
+深入了解哪些事件稽核 hello 目錄中[Azure Active Directory 報告稽核事件](active-directory-reporting-audit-events.md)。
 
 ### <a name="api-integration"></a>API 整合
-請參閱[開始使用報告 API](active-directory-reporting-api-getting-started.md) 和 [API 參考文件](https://msdn.microsoft.com/library/azure/mt126081.aspx)。
+請參閱[入門 hello Reporting API](active-directory-reporting-api-getting-started.md)和 hello [API 參考文件](https://msdn.microsoft.com/library/azure/mt126081.aspx)。
 
 ### <a name="get-in-touch"></a>取得聯繫
 如有任何意見回饋、需要說明，或有任何問題，請寄送電子郵件到 [aadreportinghelp@microsoft.com](mailto:aadreportinghelp@microsoft.com) 。

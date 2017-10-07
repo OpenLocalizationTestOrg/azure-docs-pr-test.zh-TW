@@ -1,6 +1,6 @@
 ---
-title: "Azure AD Java 命令列入門 | Microsoft Docs"
-description: "如何建立一個將使用者登入以存取 API 的Java 命令列應用程式。"
+title: "aaaAzure AD Java 命令列開始使用 |Microsoft 文件"
+description: "如何 toobuild Java 命令列應用程式簽署 tooaccess 應用程式開發介面中的使用者。"
 services: active-directory
 documentationcenter: java
 author: navyasric
@@ -15,51 +15,51 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 91e4a7b2ac454465d5cce4948a4d5f0b542d2b55
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9ba1d1e794928a39ca1f091bd0e6eba57ce3d6aa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-java-command-line-app-to-access-an-api-with-azure-ad"></a>使用 Java 命令列應用程式存取具有 Azure AD 的 API
+# <a name="using-java-command-line-app-tooaccess-an-api-with-azure-ad"></a>使用 Java 命令列應用程式 tooAccess API 與 Azure AD
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直接，只需幾行的程式碼便可提供單一登入和登出。  在 Java Web 應用程式中，您可以使用 Microsoft 的 ADAL4J 社群導向實作來完成這項作業。
+Azure AD 可讓簡單又直接 toooutsource web 應用程式的身分識別管理，提供單一登入和登出只有幾行程式碼。  在 Java web 應用程式，您可以完成這項作業使用 Microsoft hello 社群導向 ADAL4J 實作。
 
   我們將在此處使用 ADAL4J 來執行下列動作：
 
-* 使用 Azure AD 做為身分識別提供者，將使用者登入應用程式。
-* 顯示使用者的一些相關資訊。
-* 讓使用者登出 App。
+* 登入 hello hello 身分識別提供者以使用 Azure AD 的應用程式 hello 使用者。
+* 顯示 hello 使用者的一些資訊。
+* 符號 hello 使用者登出 hello 應用程式。
 
-為執行此作業，您必須執行下列動作：
+在順序 toodo 這樣，您將需要：
 
 1. 向 Azure AD 註冊應用程式
-2. 設定您的應用程式以使用 ADAL4J 程式庫。
-3. 使用 ADAL4J 程式庫向 Azure AD 發出登入和登出要求。
-4. 列印出使用者的相關資料。
+2. 設定您的應用程式 toouse hello ADAL4J 程式庫。
+3. 使用 hello ADAL4J 文件庫 tooissue 登入和登出要求 tooAzure AD。
+4. 列印出 hello 使用者的相關資料。
 
-若要開始使用，請[下載應用程式基本架構](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/skeleton.zip)或[下載完整的範例](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect\\/archive/complete.zip)。  您還需要一個可以註冊應用程式的 Azure AD 租用戶。  如果您還沒有租用戶， [了解如何取得租用戶](active-directory-howto-tenant.md)。
+啟動，tooget[下載 hello 應用程式的基本架構](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/skeleton.zip)或[下載完成的 hello 範例](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect\\/archive/complete.zip)。  您還需要哪些 tooregister 中的 Azure AD 租用戶應用程式。  如果沒有，[深入了解如何 tooget 一個](active-directory-howto-tenant.md)。
 
 ## <a name="1--register-an-application-with-azure-ad"></a>1.向 Azure AD 註冊應用程式
-若要啟用應用程式來驗證使用者，您必須先要在您的租用戶中註冊這個新的應用程式。
+tooenable 您 tooauthenticate 應用程式的使用者，您必須先 tooregister 新的應用程式在您的租用戶。
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在頂端列上按一下您的帳戶，然後在 [目錄] 清單底下，選擇您要註冊應用程式的 Active Directory 租用戶。
-3. 按一下左側瀏覽區中的 [更多服務]，然後選擇 [Azure Active Directory]。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+2. Hello 頂端列上，按一下您的帳戶，並在 hello**目錄**清單中，選擇您希望 tooregister 您的應用程式的 hello Active Directory 租用戶。
+3. 按一下**更服務**在 hello 左側瀏覽，然後選擇  **Azure Active Directory**。
 4. 按一下 [應用程式註冊]，然後選擇 [新增]。
-5. 遵照提示進行，並建立新的 **Web 應用程式和/或 WebAPI**。
-  * 應用程式的 [ **名稱** ] 將對使用者說明您的應用程式
-  * [ **登入 URL** ] 是指應用程式的基底 URL。  基本架構的預設值是 `http://localhost:8080/adal4jsample/`。
-6. 完成註冊後，AAD 會為您的應用程式指派唯一的應用程式識別碼。  您會在後續小節中用到這個值，所以請從應用程式索引標籤中複製此值。
-7. 從應用程式的 [設定]  ->  [屬性] 頁面，更新應用程式識別碼 URI。 [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。  慣例會使用 `https://<tenant-domain>/<app-name>`，例如：`http://localhost:8080/adal4jsample/`。
+5. 依照 hello 提示，並建立新**Web 應用程式和/或 WebAPI**。
+  * hello**名稱**hello 的應用程式將會描述您應用程式 tooend 使用者
+  * hello**登入 URL**是 hello 基底 URL 的應用程式。  hello 基本架構的預設值是`http://localhost:8080/adal4jsample/`。
+6. 完成註冊後，AAD 會為您的應用程式指派唯一的應用程式識別碼。  您將需要此值在 hello 下一步 區段中，因此將它複製從 hello 應用程式 索引標籤。
+7. 從 hello**設定** -> **屬性**應用程式頁面上，更新 hello 應用程式識別碼 URI。 hello**應用程式識別碼 URI**是您的應用程式的唯一識別碼。  hello 慣例是 toouse `https://<tenant-domain>/<app-name>`，例如`http://localhost:8080/adal4jsample/`。
 
-進入應用程式的入口網站後，從應用程式的 [設定] 頁面建立 [金鑰]，然後複製下來。  稍後您將會用到此資訊。
+一次在 hello 入口網站應用程式建立**金鑰**從 hello**設定**您的應用程式頁面，並將它複製下來。  稍後您將會用到此資訊。
 
-## <a name="2-set-up-your-app-to-use-adal4j-library-and-prerequisites-using-maven"></a>2.使用 Maven 設定您的應用程式以使用 ADAL4J 程式庫和必要條件
-在這裡，我們將設定 ADAL4J 以使用 OpenID Connect 驗證通訊協定。  ADAL4J 將用來發出登入和登出要求、管理使用者的工作階段，以及取得使用者相關資訊等其他作業。
+## <a name="2-set-up-your-app-toouse-adal4j-library-and-prerequisites-using-maven"></a>2.設定您的應用程式 toouse ADAL4J 程式庫和使用 Maven 的必要條件
+在這裡，我們會將設定 ADAL4J toouse hello OpenID Connect 驗證通訊協定。  ADAL4J 將會使用的 tooissue 登入和登出要求、 管理 hello 使用者工作階段，以及取得 hello 使用者，在其他項目之間的相關資訊。
 
-* 在您的專案根目錄中，開啟/建立 `pom.xml` 並找到 `// TODO: provide dependencies for Maven`，然後以下列取代：
+* Hello 根目錄中您的專案，開啟/建立`pom.xml`並找出 hello`// TODO: provide dependencies for Maven`並取代 hello 下列：
 
 ```Java
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -181,10 +181,10 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 
 
 
-## <a name="3-create-the-java-publicclient-file"></a>3.建立 Java PublicClient 檔案
-如以上所述，我們將使用圖形 API 來取得有關所登入使用者的資料。 為了讓我們順利進行，我們應該建立一個代表**目錄物件**的檔案以及一個代表**使用者**的個別檔案，如此便可以使用 Java 的 OO 模式。
+## <a name="3-create-hello-java-publicclient-file"></a>3.建立 hello Java PublicClient 檔案
+如前文所述，我們將使用 hello Graph API tooget hello 登入的使用者資料。 我們應針對此 toobe 容易讓我們來建立這兩個檔案 toorepresent**目錄物件**和個別檔案 toorepresent hello**使用者**以便 hello OO 模式的 Java 可用。
 
-* 建立名為 `DirectoryObject.java` 的檔案，我們將用它來儲存有關任何 DirectoryObject 的基本資料 (您稍後可以隨意使用它執行任何其他圖形查詢)。 您可以從下面剪下/貼上：
+* 建立一個叫做檔案`DirectoryObject.java`我們將會使用 toostore 有關任何 DirectoryObject （您可能感覺受到總公司可用 toouse 這稍後可能會執行任何其他圖形查詢） 的基本資料。 您可以從下面剪下/貼上：
 
 ```Java
 import java.io.BufferedReader;
@@ -248,24 +248,24 @@ public class PublicClient {
 ```
 
 
-## <a name="compile-and-run-the-sample"></a>編譯並執行範例
-變更回根目錄，並執行下列命令來建置您剛剛使用 `maven`組成的範例。 這將會使用您針對相依性所撰寫的 `pom.xml` 檔案。
+## <a name="compile-and-run-hello-sample"></a>編譯並執行 hello 範例
+寫出 tooyour 根目錄變更，然後執行下列命令 toobuild hello 範例，您只要將放在一起使用的 hello `maven`。 此選項會使用 hello`pom.xml`您所撰寫的相依性的檔案。
 
 `$ mvn package`
 
-您的 `/targets` 目錄中現在應包含 `adal4jsample.war` 檔案。 您可以在 Tomcat 容器中部署該檔案並造訪 URL 
+您的 `/targets` 目錄中現在應包含 `adal4jsample.war` 檔案。 您可能會部署在 Tomcat 容器中，瀏覽 hello URL 
 
 `http://localhost:8080/adal4jsample/`
 
 > [!NOTE]
-> 使用最新的 Tomcat 伺服器部署 WAR 非常容易。 只要瀏覽至 `http://localhost:8080/manager/` 並遵循上傳您的 adal4jsample.war 檔案的指示即可。 它會為您自動部署正確的端點。
+> 它是很容易 toodeploy WAR 與 hello 最新的 Tomcat 伺服器。 直接瀏覽過`http://localhost:8080/manager/`並上傳遵循 hello 指示您 ' adal4jsample.war' 檔案。 它會為您的 autodeploy 與 hello 正確端點。
 > 
 > 
 
 ## <a name="next-steps"></a>後續步驟
-恭喜！ 您現在有一個可運作的 Java 應用程式，能夠驗證使用者、使用 OAuth 2.0 安全地呼叫 Web API，以及取得使用者的基本資訊。  如果您還沒有這麼做，現在是將一些使用者植入租用戶的時候。
+恭喜！ 您現在擁有可運作的 Java 應用程式具有 hello 能力 tooauthenticate 使用者、 安全地呼叫 Web Api 使用 OAuth 2.0，並取得 hello 使用者的基本資訊。  如果您還沒有這麼做，現在是 hello 時間 toopopulate 與某些使用者的租用戶。
 
-如需參考， [此處以 .zip 格式提供](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/complete.zip)完整範例 (不含您的組態值)，您也可以從 GitHub 將其複製：
+如需參考，hello 完成 （不含您的組態值） 的範例[依現狀的.zip](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/complete.zip)，或您可以將其複製從 GitHub:
 
 ```git clone --branch complete https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect.git```
 

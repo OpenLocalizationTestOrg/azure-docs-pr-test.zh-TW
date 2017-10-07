@@ -1,6 +1,6 @@
 ---
-title: "使用 MongoChef 連絡 Azure Cosmos DB | Microsoft Docs"
-description: "了解如何使用 MongoChef 搭配 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶"
+title: "aaaUse for Azure Cosmos DB MongoChef |Microsoft 文件"
+description: "深入了解如何搭配 Azure Cosmos DB MongoChef toouse: MongoDB 帳戶的 API"
 keywords: MongoChef
 services: cosmos-db
 author: AndrewHoh
@@ -15,57 +15,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: anhoh
-ms.openlocfilehash: 54c9799bd646b827f602e2ea2f9a15a4fc853f00
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b047797b231c34ccc6f2ed02416525c6228d596
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-mongochef-with-an-azure-cosmos-db-api-for-mongodb-account"></a>使用 MongoChef 搭配 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶
 
-若要連線到 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶，您必須︰
+tooconnect tooan Azure Cosmos DB: MongoDB 帳戶的 API，您必須：
 
 * 下載並安裝 [MongoChef](http://3t.io/mongochef)
 * 具備您的 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶[連接字串](connect-mongodb-account.md)資訊
 
-## <a name="create-the-connection-in-mongochef"></a>在 MongoChef 中建立連接
-若要將 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶新增至 MongoChef 連線管理員，請執行下列步驟。
+## <a name="create-hello-connection-in-mongochef"></a>在 MongoChef 中建立 hello 連接
+tooadd Azure Cosmos DB: API MongoDB 帳戶 toohello MongoChef 連接管理員 中，執行下列步驟的 hello。
 
-1. 使用[這裡](connect-mongodb-account.md)的指示來擷取 Azure Cosmos DB：適用於 MongoDB 的 API 的連線資訊。
+1. 擷取您的 Azure Cosmos DB： 如需使用 hello 指示 MongoDB 連接資訊的應用程式開發介面[這裡](connect-mongodb-account.md)。
 
-    ![[連接字串] 刀鋒視窗的螢幕擷取畫面](./media/mongodb-mongochef/ConnectionStringBlade.png)
-2. 按一下 [連接] 以開啟 [連接管理員]，然後按一下 [新增連線]
+    ![Hello 連接字串 刀鋒視窗的螢幕擷取畫面](./media/mongodb-mongochef/ConnectionStringBlade.png)
+2. 按一下**連接**tooopen hello 連接管理員，然後按一下**新連線**
 
-    ![[MongoChef 連接管理員] 的螢幕擷取畫面](./media/mongodb-mongochef/ConnectionManager.png)
-3. 在 [新增連線]視窗中，在 [伺服器] 索引標籤上輸入 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶的主機 (FQDN) 和連接埠。
+    ![Hello MongoChef 連接管理員的螢幕擷取畫面](./media/mongodb-mongochef/ConnectionManager.png)
+3. 在 hello**新的連接**視窗的 hello**伺服器**索引標籤上，輸入 hello 主機 (FQDN) 的 hello Azure Cosmos DB: MongoDB 帳戶與 hello 通訊埠的應用程式開發介面。
 
-    ![[MongoChef 連接管理員伺服器] 索引標籤的螢幕擷取畫面](./media/mongodb-mongochef/ConnectionManagerServerTab.png)
-4. 在 [新增連線] 視窗中，請在 [驗證] 索引標籤上選擇驗證模式 [標準 (MONGODB-CR 或 SCARM-SHA-1)]，並輸入使用者名稱和密碼。  接受預設的驗證資料庫 (管理員)，或提供您自己的值。
+    ![Hello MongoChef 連接管理員伺服器 索引標籤的螢幕擷取畫面](./media/mongodb-mongochef/ConnectionManagerServerTab.png)
+4. 在 hello**新連線**視窗的 hello**驗證**索引標籤上，選擇驗證模式**（MONGODB CR 或 SCARM SHA 1） 的標準**，然後輸入 hello 使用者名稱和密碼。  接受 hello 預設驗證 db （管理員），或提供您自己的值。
 
-    ![[MongoChef 連接管理員驗證] 索引標籤的螢幕擷取畫面](./media/mongodb-mongochef/ConnectionManagerAuthenticationTab.png)
-5. 在 [新增連接] 視窗的 [SSL] 索引標籤上，勾選 [使用 SSL 通訊協定連接] 核取方塊和 [接受自我簽署的 SSL 憑證] 選項按鈕。
+    ![Hello MongoChef 連線管理員驗證索引標籤的螢幕擷取畫面](./media/mongodb-mongochef/ConnectionManagerAuthenticationTab.png)
+5. 在 hello**新連線**視窗的 hello **SSL**索引標籤上，檢查 hello**使用 SSL 通訊協定 tooconnect**核取方塊和 hello**接受伺服器自我簽署的 SSL憑證**選項按鈕。
 
-    ![[MongoChef 連接管理員 SSL] 索引標籤的螢幕擷取畫面](./media/mongodb-mongochef/ConnectionManagerSSLTab.png)
-6. 按一下 [測試連接] 按鈕以驗證連接資訊，按一下 [確定] 以返回 [新增連線] 視窗，然後按一下 [儲存]。
+    ![Hello MongoChef 連接管理員 SSL 索引標籤的螢幕擷取畫面](./media/mongodb-mongochef/ConnectionManagerSSLTab.png)
+6. 按一下 hello**測試連接**按鈕 toovalidate hello 連接資訊，請按一下**確定**tooreturn toohello 新連線 視窗，然後按一下**儲存**。
 
-    ![[MongoChef 測試連接] 視窗的螢幕擷取畫面](./media/mongodb-mongochef/TestConnectionResults.png)
+    ![Hello MongoChef 測試連線 視窗的螢幕擷取畫面](./media/mongodb-mongochef/TestConnectionResults.png)
 
-## <a name="use-mongochef-to-create-a-database-collection-and-documents"></a>使用 MongoChef 以建立資料庫、集合和文件
-若要使用 MongoChef 建立資料庫、集合和文件，請執行下列步驟。
+## <a name="use-mongochef-toocreate-a-database-collection-and-documents"></a>使用 MongoChef toocreate 資料庫、 集合和文件
+toocreate 資料庫、 集合和文件使用 MongoChef，執行下列步驟的 hello。
 
-1. 在 [連接管理員] 中，反白顯示連接，然後按一下 [連接]。
+1. 在**連線管理員**，反白顯示 hello 連線，然後按一下**連接**。
 
-    ![[MongoChef 連接管理員] 的螢幕擷取畫面](./media/mongodb-mongochef/ConnectToAccount.png)
-2. 以滑鼠右鍵按一下主機，然後選擇 [新增資料庫] 。  提供資料庫名稱，然後按一下 [確定] 。
+    ![Hello MongoChef 連接管理員的螢幕擷取畫面](./media/mongodb-mongochef/ConnectToAccount.png)
+2. 以滑鼠右鍵按一下 hello 主機，然後選擇**將資料庫加入**。  提供資料庫名稱，然後按一下 [確定] 。
 
-    ![[MongoChef 新增資料庫] 選項的螢幕擷取畫面](./media/mongodb-mongochef/AddDatabase1.png)
-3. 以滑鼠右鍵按一下資料庫，然後選擇 [新增集合] 。  提供集合名稱，然後按一下 [建立] 。
+    ![Hello MongoChef 新增資料庫選項的螢幕擷取畫面](./media/mongodb-mongochef/AddDatabase1.png)
+3. 以滑鼠右鍵按一下 hello 資料庫，然後選擇**新增集合**。  提供集合名稱，然後按一下 [建立] 。
 
-    ![[MongoChef 新增集合] 選項的螢幕擷取畫面](./media/mongodb-mongochef/AddCollection.png)
-4. 按一下 [集合] 功能表項目，然後按一下 [新增文件]。
+    ![Hello MongoChef 新增集合選項的螢幕擷取畫面](./media/mongodb-mongochef/AddCollection.png)
+4. 按一下 hello**集合**功能表項目，然後按一下**加入文件**。
 
-    ![[MongoChef 新增文件] 功能表項目的螢幕擷取畫面](./media/mongodb-mongochef/AddDocument1.png)
-5. 在 [新增文件] 對話方塊中，貼上下列項目，然後按一下 [新增文件] 。
+    ![Hello MongoChef 加入文件功能表項目的螢幕擷取畫面](./media/mongodb-mongochef/AddDocument1.png)
+5. 在 hello 加入文件 對話方塊中，貼上下列 hello，然後按一下**加入文件**。
 
         {
         "_id": "AndersenFamily",
@@ -83,7 +83,7 @@ ms.lasthandoff: 07/11/2017
         "address": { "state": "WA", "county": "King", "city": "seattle" },
         "isRegistered": true
         }
-6. 新增其他文件，這次使用下列內容。
+6. 增加其他文件以 hello 內容之後此時間。
 
         {
         "_id": "WakefieldFamily",
@@ -110,7 +110,7 @@ ms.lasthandoff: 07/11/2017
         "address": { "state": "NY", "county": "Manhattan", "city": "NY" },
         "isRegistered": false
         }
-7. 執行範例查詢。 例如，搜尋姓氏 'Andersen' 的家族，並傳回父母和州欄位。
+7. 執行範例查詢。 例如，系列 hello 姓氏 'Andersen' 傳回 hello 父系和狀態欄位與搜尋。
 
     ![Mongo Chef 查詢結果的螢幕擷取畫面](./media/mongodb-mongochef/QueryDocument1.png)
 

@@ -1,5 +1,5 @@
 ---
-title: "在 Azure App Service 中使用混合式連線存取內部部署資源"
+title: "使用 Azure App Service 中的混合式連線的 aaaAccess 在內部部署資源"
 description: "在 Azure App Service 中的 Web 應用程式和使用靜態 TCP 連接埠的內部部署資源之間建立連線"
 services: app-service
 documentationcenter: 
@@ -14,59 +14,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2016
 ms.author: cephalin
-ms.openlocfilehash: fbd22e6e285c5ddaef2a473671d4a06a97384b4a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: de7c57b94f4bd6250a93757817178e8455daae4a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="access-on-premises-resources-using-hybrid-connections-in-azure-app-service"></a>在 Azure App Service 中使用混合式連線存取內部部署資源
-您可以將 Azure App Service 應用程式連接到任何使用靜態 TCP 連接埠 (例如 SQL Server、MySQL、HTTP Web API 和大部分自訂 Web 服務) 的內部部署資源。 本文章示範如何在 App Service 和內部部署的 SQL Server 資料庫之間建立混合式連線。
+您可以連接會使用靜態 TCP 連接埠，例如 SQL Server、 MySQL、 HTTP 的 Web Api 和大部分的自訂 Web 服務的 Azure App Service 應用程式 tooany 在內部部署資源。 本文章將示範如何 toocreate 應用程式服務與內部部署 SQL Server 資料庫之間的混合式連接。
 
 > [!NOTE]
-> 「混合式連線」功能的 Web Apps 部分僅適用於 [Azure 入口網站](https://portal.azure.com)。 若要在 BizTalk 服務中建立連線，請參閱 [混合式連線](http://go.microsoft.com/fwlink/p/?LinkID=397274)。 
+> hello 混合式連線功能 hello Web 應用程式部分是只用於 hello [Azure 入口網站](https://portal.azure.com)。 請參閱 toocreate BizTalk 服務中的連接[混合式連線](http://go.microsoft.com/fwlink/p/?LinkID=397274)。 
 > 
-> 此內容也適用於 Azure App Service 中的 Mobile Apps。 
+> 此內容也適用於 Azure App Service 中的 tooMobile 應用程式。 
 > 
 > 
 
 ## <a name="prerequisites"></a>必要條件
 * Azure 訂閱。 若要取得免費訂閱，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
   
-    如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
-* 若要透過混合式連線使用內部部署 SQL Server 或 SQL Server Express 資料庫，必須在靜態連接埠上啟用 TCP/IP。 建議在 SQL Server 上使用預設執行個體，因為其使用靜態連接埠 1433。 如需安裝及設定 SQL Server Express 以搭配混合式連線使用的相關資訊，請參閱 [使用混合式連線從 Azure 網站連線到內部部署 SQL Server](http://go.microsoft.com/fwlink/?LinkID=397979)。
-* 本文稍後將會針對安裝內部部署混合式連線管理員代理程式的電腦加以說明：
+    如果您想 tooget 之前註冊 Azure 帳戶與 Azure 應用程式服務啟動時，請移至太[再試一次應用程式服務](https://azure.microsoft.com/try/app-service/)，可以立即存留較短的入門的 web 應用程式中建立應用程式服務。 不需要信用卡；沒有承諾。
+* toouse 在內部部署 SQL Server 或 SQL Server Express 的混合式連接的資料庫，TCP/IP 需要 toobe 靜態連接埠上啟用。 建議在 SQL Server 上使用預設執行個體，因為其使用靜態連接埠 1433。 如需安裝及設定 SQL Server Express 用於混合式連接的資訊，請參閱[連接 tooan 內部部署 SQL Server 從使用混合式連線的 Azure 網站](http://go.microsoft.com/fwlink/?LinkID=397979)。
+* 您安裝 hello 在內部部署混合式連線管理員說明的代理程式 」 在本文稍後的 hello 電腦：
   
-  * 必須能夠透過連接埠 5671 連線到 Azure
-  * 必須能夠連繫內部部署資源的 *hostname*上：*portnumber* 。 
+  * 透過連接埠 5671 必須能夠 tooconnect tooAzure
+  * 必須是能夠 tooreach hello *hostname*:*portnumber*的內部部署資源。 
 
 > [!NOTE]
-> 本文中的步驟假設您使用將主控內部部署混合式連線代理程式之電腦中的瀏覽器。
+> 本文章中的 hello 步驟假設您使用 hello 瀏覽器從 hello 主控 hello 在內部部署混合式連接的代理程式的電腦。
 > 
 > 
 
-## <a name="create-a-web-app-in-the-azure-portal"></a>在 Azure 入口網站中建立 Web 應用程式
+## <a name="create-a-web-app-in-hello-azure-portal"></a>在 hello Azure 入口網站中建立 web 應用程式
 > [!NOTE]
-> 如果您已在 Azure 入口網站中建立本教學課程要使用的 Web 應用程式或行動應用程式後端，則您可以直接跳到 [建立混合式連線和 BizTalk 服務](#CreateHC) ，並從那裡開始操作。
+> 如果您已經在 hello 的 toouse 本教學課程中的 Azure 入口網站中建立的 web 應用程式或行動裝置應用程式後端，您可以向前跳過[建立混合式連接和 BizTalk 服務](#CreateHC)並從該處開始。
 > 
 > 
 
-1. 在 [Azure 入口網站](https://portal.azure.com)左上角，依序按一下 [新增] > [Web + 行動] > [Web 應用程式]。
+1. Hello 左上角的 hello [Azure 入口網站](https://portal.azure.com)，按一下 **新增** > **Web + 行動** > **Web 應用程式**。
    
     ![新 Web 應用程式][NewWebsite]
-2. 在 [Web 應用程式] 刀鋒視窗上，提供 URL，然後按一下 [建立]。 
+2. 在 hello **Web 應用程式**刀鋒視窗中，提供 URL，然後按一下 **建立**。 
    
     ![Website name][WebsiteCreationBlade]
-3. 經過一段時間之後，Web 應用程式會建立，並顯示它的 Web 應用程式分頁。 此分頁是垂直捲動的儀表板，可供您管理網站。
+3. 在幾分鐘之後, 建立 hello web 應用程式和其 web 應用程式 刀鋒視窗隨即出現。 hello 刀鋒視窗中是可垂直捲動的儀表板可讓您管理您的網站。
    
     ![Website running][WebSiteRunningBlade]
-4. 若要確認網站是否已上線啟用，您可以按一下 [瀏覽]  圖示以顯示預設頁面。
+4. 是即時的 tooverify hello 站台，您可以按一下 hello**瀏覽**圖示 toodisplay hello 預設頁面。
    
-    ![按一下 [瀏覽] 以查看您的 Web 應用程式][Browse]
+    ![按一下瀏覽 toosee 您 web 應用程式][Browse]
    
     ![預設 Web 應用程式頁面][DefaultWebSitePage]
 
-接著，您將為 Web 應用程式建立混合式連線和 BizTalk 服務。
+接下來，您將建立混合式連接和 hello web 應用程式的 BizTalk 服務。
 
 <a name="CreateHC"></a>
 
@@ -74,97 +74,97 @@ ms.lasthandoff: 07/11/2017
 1. 在您的 [Web 應用程式] 刀鋒視窗中按一下 [所有設定] > [網路] > [設定混合式連接端點]。
    
     ![混合式連線][CreateHCHCIcon]
-2. 在 [混合式連線] 分頁上，按一下 [新增] 。
+2. 在 hello 混合式連線刀鋒視窗中，按一下 **新增**。
    
     <!-- ![Add a hybrid connnection][CreateHCAddHC]
    -->
-3. [新增混合式連線]  分頁隨即開啟。  由於這是您的第一個混合式連線，因此會預先選取 [新增混合式連線] 選項，並為您開啟 [建立混合式連線] 刀鋒視窗。
+3. hello**新增混合式連接**刀鋒視窗隨即開啟。  由於這是您第一次的混合式連線，hello**新混合式連接**選項預設選取與 hello**建立混合式連接**刀鋒視窗會為您開啟。
    
     ![Create a hybrid connection][TwinCreateHCBlades]
    
-    在 [建立混合式連線分頁] 上：
+    在 hello**建立混合式連線刀鋒視窗**:
    
-   * 在 [名稱] 中，提供連線的名稱。
-   * 在 [主機名稱] 中，輸入主控資源的內部部署電腦名稱。
-   * 在 [連接埠] 中，輸入內部部署資源使用的連接埠號碼 (若是 SQL Server 預設執行個體，請輸入 1433)。
+   * 如**名稱**，提供 hello 連接的名稱。
+   * 如**Hostname**，輸入 hello hello 在內部部署電腦裝載您的資源名稱。
+   * 如**連接埠**，輸入您在內部部署的資源使用 (SQL Server 預設執行個體 1433) 的 hello 連接埠號碼。
    * 按一下 [Biz Talk 服務] 
-4. [建立 BizTalk 服務]  分頁隨即開啟。 輸入 BizTalk 服務的名稱，然後按一下 [確定] 。
+4. hello**建立 BizTalk 服務**刀鋒視窗隨即開啟。 輸入 hello BizTalk 服務的名稱，然後按一下**確定**。
    
     ![Create BizTalk service][CreateHCCreateBTS]
    
-    [建立 BizTalk 服務] 刀鋒視窗隨即關閉，而您會回到 [建立混合式連線] 刀鋒視窗。
-5. 在 [建立混合式連線] 分頁上，按一下 [確定] 。 
+    hello**建立 BizTalk 服務**關閉刀鋒視窗中，您將返回 toohello**建立混合式連接**刀鋒視窗。
+5. 在 hello 建立混合式連線刀鋒視窗中，按一下 **確定**。 
    
     ![Click OK][CreateBTScomplete]
-6. 當程序完成時，入口網站中的通知區域會通知您已成功建立連線。
+6. Hello 程序完成時，hello 入口網站中的 hello 通知區域會通知您已成功建立 hello 連線。
    
     <!--- TODO
    
-    Everything fails at this step. I can't create a BizTalk service in the dogfood portal. I switch to the classic portal
-    (full portal) and created the BizTalk service but it doesn't seem to let you connnect them - When you finish the
-    Create hybrid conn step, you get the following error
-    Failed to create hybrid connection RelecIoudHC. The 
-    resource type could not be found in the namespace 
+    Everything fails at this step. I can't create a BizTalk service in hello dogfood portal. I switch toohello classic portal
+    (full portal) and created hello BizTalk service but it doesn't seem toolet you connnect them - When you finish the
+    Create hybrid conn step, you get hello following error
+    Failed toocreate hybrid connection RelecIoudHC. hello 
+    resource type could not be found in hello namespace 
     'Microsoft.BizTaIkServices for api version 2014-06-01'.
    
-    The error indicates it couldn't find the type, not the instance.
+    hello error indicates it couldn't find hello type, not hello instance.
     ![Success notification][CreateHCSuccessNotification]
     -->
-7. 在 Web 應用程式的刀鋒視窗上，[混合式連線]  圖示現在會顯示已建立 1 個混合式連線。
+7. Hello web 應用程式的刀鋒視窗中，在 hello**混合式連線**圖示現在會顯示已建立 1 的混合式連接。
    
     ![One hybrid connection created][CreateHCOneConnectionCreated]
 
-至此，您已完成雲端混合式連線基礎結構的重要部分。 接下來，您將建立對應的內部部署部分。
+此時，您已完成 hello 雲端混合式連接的基礎結構的重要部分。 接下來，您將建立對應的內部部署部分。
 
 <a name="InstallHCM"></a>
 
-## <a name="install-the-on-premises-hybrid-connection-manager-to-complete-the-connection"></a>安裝內部部署混合式連線管理員以完成連線
-1. 在 [Web 應用程式] 刀鋒視窗中按一下 [所有設定] > [網路] > [設定混合式連接端點]。 
+## <a name="install-hello-on-premises-hybrid-connection-manager-toocomplete-hello-connection"></a>安裝 hello 在內部部署混合式連線管理員 toocomplete hello 連線
+1. 在 hello web 應用程式的刀鋒視窗中，按一下 **所有設定** > **網路** > **設定您的混合式連接端點**。 
    
     ![Hybrid connections icon][HCIcon]
-2. 在 [混合式連線] 刀鋒視窗上，最近新增之端點的 [狀態] 欄會顯示為 [未連線]。 請按一下連線加以設定。
+2. 在 hello**混合式連線**刀鋒視窗，hello**狀態**hello 的資料行最近新增端點顯示**未連接**。 按一下 hello 連接 tooconfigure 它。
    
     ![Not connected][NotConnected]
    
-    [混合式連線] 分頁隨即開啟。
+    hello 混合式連線刀鋒視窗隨即開啟。
    
     ![NotConnectedBlade][NotConnectedBlade]
-3. 在此分頁上，按一下 [Listener Setup] 。
+3. 在 hello 刀鋒視窗中，按一下 **接聽程式的安裝程式**。
    
     ![Click Listener Setup][ClickListenerSetup]
-4. [混合式連線屬性]  刀鋒視窗隨即開啟。 在 [內部部署混合式連線管理員] 下，選擇 [按一下此處進行安裝]。
+4. hello**混合式連接屬性**刀鋒視窗隨即開啟。 在下**在內部部署混合式連線管理員**，選擇**按一下這裡 tooinstall**。
    
-    ![Click here to install][ClickToInstallHCM]
-5. 在 [應用程式執行] 安全性警告對話方塊中，選擇 [執行]  以繼續作業。
+    ![按一下這裡 tooinstall][ClickToInstallHCM]
+5. 在 hello 應用程式執行安全性警告對話方塊中，選擇 **執行**toocontinue。
    
-    ![Choose Run to continue][ApplicationRunWarning]
-6. 在 [使用者帳戶控制] 對話方塊中，選擇 [是]。
+    ![選擇執行 toocontinue][ApplicationRunWarning]
+6. 在 [hello**使用者帳戶控制**] 對話方塊中，選擇**是**。
    
    ![Choose Yes][UAC]
-7. 系統會為您下載並安裝混合式連線管理員。 
+7. 下載並安裝您 hello 混合式連線管理員時。 
    
     ![安裝][HCMInstalling]
-8. 安裝完成後，請按一下 [關閉] 。
+8. Hello 安裝完成時，按一下**關閉**。
    
     ![Click Close][HCMInstallComplete]
    
-    在 [混合式連線] 刀鋒視窗上，[狀態] 欄此時會顯示為 [未連線]。 
+    在 hello**混合式連線**刀鋒視窗，hello**狀態**資料行現在會顯示**已連接**。 
    
     ![Connected Status][HCStatusConnected]
 
-現在，您已完成混合式連線基礎結構，您可以使用它來建立混合式應用程式。 
+現在該 hello 混合式連接基礎結構已完成，您可以建立混合式應用程式使用它。 
 
 > [!NOTE]
-> 下列各節示範如何搭配 Mobile Apps .NET 後端專案使用混合式連線。
+> hello 下列各節說明您如何 toouse 與行動應用程式的.NET 後端專案的混合式連接。
 > 
 > 
 
-## <a name="configure-the-mobile-app-net-backend-project-to-connect-to-the-sql-server-database"></a>設定行動應用程式 .NET 後端專案以連線到 SQL Server 資料庫
-在 App Service 中，Mobile Apps .NET 後端專案只是一個已安裝並初始化其他 Mobile Apps SDK 的 ASP.NET Web 應用程式。 若要使用 Web 應用程式做為 Mobile Apps 後端，您必須 [下載並初始化 Mobile Apps .NET 後端 SDK](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#install-sdk)。  
+## <a name="configure-hello-mobile-app-net-backend-project-tooconnect-toohello-sql-server-database"></a>設定 hello 行動應用程式的.NET 後端專案 tooconnect toohello SQL Server 資料庫
+在 App Service 中，Mobile Apps .NET 後端專案只是一個已安裝並初始化其他 Mobile Apps SDK 的 ASP.NET Web 應用程式。 toouse 的行動應用程式後端 web 應用程式，您必須[下載，並初始化 hello 行動應用程式的.NET 後端 SDK](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#install-sdk)。  
 
-針對 Mobile Apps，您也需要定義內部部署資料庫的連接字串與修改後端，以使用此連線。 
+針對行動裝置應用程式，您也需要 toodefine 連接字串 hello 在內部部署資料庫，並修改 hello 後端 toouse 此連線。 
 
-1. 在 [Visual Studio 方案總管] 中開啟您的行動應用程式 .NET 後端的 Web.config 檔案，並找出 **connectionStrings** 區段，然後新增會指向內部部署 SQL Server 資料庫的 SqlClient 項目，如下所示：
+1. 在 Visual Studio 中，您的行動應用程式的.NET 後端開啟 hello Web.config 檔案中的 [方案總管] 中找出 hello **connectionStrings**區段中，新增類似 hello 下列，哪一個點 toohello 內部部署 SQL SqlClient 項目伺服器資料庫：
    
         <add name="OnPremisesDBConnection"
          connectionString="Data Source=OnPremisesServer,1433;
@@ -174,15 +174,15 @@ ms.lasthandoff: 07/11/2017
          MultipleActiveResultSets=True"
          providerName="System.Data.SqlClient" />
    
-    請記得將此字串中的 `<**secure_password**>` 取代為您為 HybridConnectionLogin 建立的密碼。
-2. 在 Visual Studio 中按一下 [儲存]  ，以儲存 Web.config 檔案。
+    請記住 tooreplace `<**secure_password**>` hello 密碼為您建立與這個字串中*HybridConnectionLogin*。
+2. 按一下**儲存**Visual Studio toosave hello Web.config 檔案中。
    
    > [!NOTE]
-   > 在本機電腦上執行時，會使用此連線設定。 在 Azure 中執行時，則會以入口網站中所定義的連線設定覆寫這個設定。
+   > Hello 本機電腦上執行時，會使用此連線設定。 Azure 中執行時，這個設定會定義在 hello 入口網站中的 hello 連接設定所覆寫。
    > 
    > 
-3. 展開 **Models** 資料夾，然後開啟以 *Context.cs*結尾的資料模型檔案。
-4. 修改 **DbContext** 執行個體建構函式，以將 `OnPremisesDBConnection` 值傳遞至類似下列程式碼片段的基底 **DbContext** 建構函式：
+3. 展開 hello**模型**資料夾和開啟 hello 資料模型檔案，在為結束*Context.cs*。
+4. 修改 hello **DbContext**執行個體建構函式 toopass hello 值`OnPremisesDBConnection`toohello 基底**DbContext**建構函式，類似下列程式碼片段的 toohello:
    
         public class hybridService1Context : DbContext
         {
@@ -192,25 +192,25 @@ ms.lasthandoff: 07/11/2017
             }
         }
    
-    現在，服務將會使用新的 SQL Server 資料庫連線。
+    hello 服務現在將使用 hello 新連線 toohello SQL Server 資料庫。
 
-## <a name="update-the-mobile-app-backend-to-use-the-on-premises-connection-string"></a>更新行動應用程式後端，以使用內部部署連接字串
-接下來，您必須為這個新的連接字串新增應用程式設定，以便能夠從 Azure 使用。  
+## <a name="update-hello-mobile-app-backend-toouse-hello-on-premises-connection-string"></a>更新 hello 行動裝置應用程式後端 toouse hello 在內部部署連接字串
+接下來，您需要 tooadd 應用程式設定這個新的連接字串，使其可以從 Azure 用。  
 
-1. 回到 [Azure 入口網站](https://portal.azure.com)，在行動應用程式的 Web 應用程式後端程式碼中，按一下 [所有設定] > [應用程式設定]。
-2. 在 [Web 應用程式設定] 刀鋒視窗中，向下捲動至 [連接字串]，然後以 `Server=OnPremisesServer,1433;Database=OnPremisesDB;User ID=HybridConnectionsLogin;Password=<**secure_password**>` 之類的值新增名稱為 `OnPremisesDBConnection` 的新 **SQL Server** 連接字串。
+1. 在 hello [Azure 入口網站](https://portal.azure.com)hello web 應用程式後端程式碼中您的行動裝置應用程式，按一下 **所有設定**，然後**應用程式設定**。
+2. 在 hello **Web 應用程式設定**刀鋒視窗中，向下捲動太**連接字串**並加入新**SQL Server**名為連接字串`OnPremisesDBConnection`值會類似`Server=OnPremisesServer,1433;Database=OnPremisesDB;User ID=HybridConnectionsLogin;Password=<**secure_password**>`.
    
-    將 `<**secure_password**>` 替換為您內部部署資料庫的安全密碼。
+    取代`<**secure_password**>`hello 安全密碼在內部部署資料庫。
    
     ![Connection string for on-premises database](./media/web-sites-hybrid-connection-get-started/set-sql-server-database-connection.png)
-3. 按下 [ **儲存** ]，以儲存您剛剛建立的混合式連線和連接字串。
+3. 按**儲存**toosave hello 混合式連接和連接字串您剛建立。
 
-現在可以重新發佈伺服器專案，並測試與現有的 Mobile Apps 用戶端之間的新連線。 將會使用混合式連線，讀取內部部署資料庫中的資料並寫入。
+此時，您可以重新發佈 hello 伺服器專案，並與現有的行動應用程式用戶端測試 hello 新的連接。 資料會讀取並寫入 toohello 在內部部署資料庫使用 hello 混合式連接。
 
 <a name="NextSteps"></a>
 
 ## <a name="next-steps"></a>後續步驟
-* 如需建立使用混合式連線的 ASP.NET Web 應用程式相關資訊，請參閱 [使用混合式連線從 Azure 網站連線到內部部署 SQL Server](http://go.microsoft.com/fwlink/?LinkID=397979)。 
+* 如需建立 ASP.NET web 應用程式使用混合式連接的資訊，請參閱[連接 tooan 內部部署 SQL Server 從使用混合式連線的 Azure 網站](http://go.microsoft.com/fwlink/?LinkID=397979)。 
 
 ### <a name="additional-resources"></a>其他資源
 [混合式連線概觀](http://go.microsoft.com/fwlink/p/?LinkID=397274)
@@ -223,10 +223,10 @@ ms.lasthandoff: 07/11/2017
 
 [透過絕佳的應用程式可攜性建置真實的混合式雲端 (第 9 頻道視訊)](http://channel9.msdn.com/events/TechEd/NorthAmerica/2014/DCIM-B323#fbid=)
 
-[使用混合式連線從 Azure 行動服務連線到內部部署 SQL Server (第 9 頻道視訊)](http://channel9.msdn.com/Series/Windows-Azure-Mobile-Services/Connect-to-an-on-premises-SQL-Server-from-Azure-Mobile-Services-using-Hybrid-Connections)
+[連接 tooan 內部部署 SQL Server 與 Azure 行動服務使用混合式連線 （Channel 9 影片）](http://channel9.msdn.com/Series/Windows-Azure-Mobile-Services/Connect-to-an-on-premises-SQL-Server-from-Azure-Mobile-Services-using-Hybrid-Connections)
 
 ## <a name="whats-changed"></a>變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
+* 從網站 tooApp 服務變更如指南 toohello: [Azure 應用程式服務和其對影響現有的 Azure 服務](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- IMAGES -->
 [New]:./media/web-sites-hybrid-connection-get-started/B01New.png

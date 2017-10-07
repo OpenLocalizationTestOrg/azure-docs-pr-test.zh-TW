@@ -1,6 +1,6 @@
 ---
-title: "將 CDN 新增至 Azure App Service | Microsoft Docs"
-description: "將內容傳遞網路 (CDN) 新增至 Azure App Service，以從您在世界各地的客戶附近的伺服器快取和傳遞靜態檔案。"
+title: "aaaAdd CDN tooan Azure App Service |Microsoft 文件"
+description: "加入內容傳遞網路 (CDN) tooan Azure App Service toocache，並從伺服器關閉 tooyour hello 世界各地的客戶提供靜態檔案。"
 services: app-service\web
 author: syntaxc4
 ms.author: cfowler
@@ -10,17 +10,17 @@ ms.service: app-service-web
 manager: erikre
 ms.workload: web
 ms.custom: mvc
-ms.openlocfilehash: 257b75d01f3904661c1a188a2d53ffcb74f48f06
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 88b7fd884517279064472b804a6d1dc2921cbd24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-content-delivery-network-cdn-to-an-azure-app-service"></a>將內容傳遞網路 (CDN) 新增至 Azure App Service
+# <a name="add-a-content-delivery-network-cdn-tooan-azure-app-service"></a>將內容傳遞網路 (CDN) tooan Azure App Service
 
-[Azure 內容傳遞網路 (CDN)](../cdn/cdn-overview.md) 會在策略性放置的位置上快取靜態 Web 內容，以提供最大輸送量來將內容傳遞給使用者。 CDN 也可降低您的 Web 應用程式的伺服器負載。 本教學課程說明如何將 Azure CDN 新增至 [Azure App Service 中的 Web 應用程式](app-service-web-overview.md)。 
+[Azure 內容傳遞網路 (CDN)](../cdn/cdn-overview.md)會在策略性放置的位置傳遞內容 toousers tooprovide 最大輸送量的靜態網頁內容快取。 hello CDN 也會減少伺服器負載 web 應用程式上。 本教學課程示範如何 tooadd Azure CDN tooa [Azure App Service 中的 web 應用程式](app-service-web-overview.md)。 
 
-以下是您將使用的範例靜態 HTML 網站首頁︰
+以下是 hello hello 範例靜態 HTML 網站首頁，您將使用：
 
 ![範例應用程式首頁](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page.png)
 
@@ -29,63 +29,63 @@ ms.lasthandoff: 08/29/2017
 > [!div class="checklist"]
 > * 建立 CDN 端點。
 > * 重新整理快取的資產。
-> * 使用查詢字串來控制快取的版本。
-> * 使用 CDN 端點的自訂網域。
+> * 使用查詢字串快取 toocontrol 版本。
+> * 使用自訂網域 hello CDN 端點。
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本教學課程：
+toocomplete 本教學課程：
 
 - [安裝 Git](https://git-scm.com/)
 - [安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="create-the-web-app"></a>建立 Web 應用程式
+## <a name="create-hello-web-app"></a>建立 hello web 應用程式
 
-若要建立您將使用的 Web 應用程式，請遵循[靜態 HTML 快速入門](app-service-web-get-started-html.md)的**瀏覽至應用程式**步驟。
+toocreate hello web 應用程式，您會使用後續 hello[靜態 HTML 快速入門](app-service-web-get-started-html.md)透過 hello**瀏覽 toohello 應用程式**步驟。
 
 ### <a name="have-a-custom-domain-ready"></a>備妥自訂網域
 
-若要完成本教學課程的自訂網域步驟，您需要擁有自訂網域並且具有網域提供者 (例如 GoDaddy) 的 DNS 登錄存取權。 例如，若要為 `contoso.com` 和 `www.contoso.com` 新增 DNS 項目，您必須有權設定 `contoso.com` 根網域的 DNS 設定。
+toocomplete hello 自訂網域步驟本教學課程中，您需要 tooown 自訂網域，並存取 tooyour DNS 登錄的網域提供者 （例如 GoDaddy)。 例如，tooadd DNS 項目`contoso.com`和`www.contoso.com`，您必須擁有存取 tooconfigure hello 的 DNS 設定 hello`contoso.com`根網域。
 
-如果您還沒有網域名稱，請考慮遵循 [App Service 網域教學課程](custom-dns-web-site-buydomains-web-app.md)的作法，使用 Azure 入口網站來購買網域。 
+如果您還沒有網域名稱，請考慮下列 hello[應用程式服務網域教學課程](custom-dns-web-site-buydomains-web-app.md)toopurchase 網域使用 hello Azure 入口網站。 
 
-## <a name="log-in-to-the-azure-portal"></a>登入 Azure 入口網站
+## <a name="log-in-toohello-azure-portal"></a>登入 toohello Azure 入口網站
 
-開啟瀏覽器並瀏覽至 [Azure 入口網站](https://portal.azure.com)。
+開啟瀏覽器並瀏覽 toohello [Azure 入口網站](https://portal.azure.com)。
 
 ## <a name="create-a-cdn-profile-and-endpoint"></a>建立 CDN 設定檔和端點
 
-在左側導覽中，選取 [應用程式服務]，然後選取您在[靜態 HTML 快速入門](app-service-web-get-started-html.md)中建立的應用程式。
+在左瀏覽 hello，選取**應用程式服務**，然後選取 hello 應用程式，您可以在 hello[靜態 HTML 快速入門](app-service-web-get-started-html.md)。
 
-![在入口網站中選取 App Service 應用程式](media/app-service-web-tutorial-content-delivery-network/portal-select-app-services.png)
+![選取在 hello 入口網站 App Service 應用程式](media/app-service-web-tutorial-content-delivery-network/portal-select-app-services.png)
 
-在 [App Service] 頁面的 [設定] 區段中，選取 [網路] > [設定您應用程式的 Azure CDN]。
+在 hello **App Service**  頁面的 hello**設定**區段中，選取**網路 > 設定您的應用程式的 Azure CDN**。
 
-![在入口網站中選取 CDN](media/app-service-web-tutorial-content-delivery-network/portal-select-cdn.png)
+![選取在 hello 入口網站中的 CDN](media/app-service-web-tutorial-content-delivery-network/portal-select-cdn.png)
 
-在 [Azure 內容傳遞網路] 頁面中，提供表格中所指定的 [新端點] 設定。
+在 hello **Azure 內容傳遞網路**頁面上，提供 hello**新端點**hello 資料表中所指定的設定。
 
-![在入口網站中建立設定檔和端點](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint.png)
+![在 hello 入口網站中建立設定檔和端點](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint.png)
 
 | 設定 | 建議的值 | 說明 |
 | ------- | --------------- | ----------- |
-| **CDN 設定檔** | myCDNProfile | 選取 [新建] 以建立 CDN 設定檔。 CDN 設定檔是定價層相同的 CDN 端點集合。 |
-| **定價層** | 標準 Akamai | [定價層](../cdn/cdn-overview.md#azure-cdn-features)指定提供者和可用的功能。 在本教學課程中，我們會使用標準 Akamai。 |
-| **CDN 端點名稱** | azureedge.net 網域中任何唯一的名稱 | 您可在網域 *\<endpointname>.azureedge.net* 存取快取的資源。
+| **CDN 設定檔** | myCDNProfile | 選取**建立新**toocreate CDN 設定檔。 CDN 設定檔是以 hello 的 CDN 端點的集合，相同的定價層。 |
+| **定價層** | 標準 Akamai | hello[定價層](../cdn/cdn-overview.md#azure-cdn-features)指定 hello 提供者和可用的功能。 在本教學課程中，我們會使用標準 Akamai。 |
+| **CDN 端點名稱** | 任何在 hello azureedge.net 網域中為唯一的名稱 | 存取您快取的資源在 hello 網域*\<端點名稱 >。 azureedge.net*。
 
 選取 [ **建立**]。
 
-Azure 會建立設定檔和端點。 新端點會出現在相同頁面上的 [端點] 清單中，而且其佈建後的狀態為 [執行中]。
+Azure 會建立 hello 設定檔和端點。 hello 新端點會出現在 hello**端點**清單 hello 相同頁面上，而且已佈建時 hello 狀態**執行**。
 
 ![清單中的新端點](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint-in-list.png)
 
-### <a name="test-the-cdn-endpoint"></a>測試 CDN 端點
+### <a name="test-hello-cdn-endpoint"></a>測試 hello CDN 端點
 
 如果您選取了 Verizon 定價層，通常需要大約 90 分鐘的時間進行端點傳播。 若為 Akamai，傳播需要幾分鐘的時間
 
-範例應用程式有 `index.html` 檔案以及包含其他靜態資產的 css、img 和 js 資料夾。 在 CDN 端點上，上述所有檔案的內容路徑都相同。 例如，下列 URL 可存取 css 資料夾中的 bootstrap.css 檔案︰
+hello 範例應用程式具有`index.html`檔案和*css*， *img*，和*js*包含其他靜態資產的資料夾。 內容的所有這些檔案的路徑是 hello hello 相同在 hello CDN 端點。 例如，這兩個 hello 下列 Url 存取 hello *bootstrap.css*檔案在 hello *css*資料夾：
 
 ```
 http://<appname>.azurewebsites.net/css/bootstrap.css
@@ -95,7 +95,7 @@ http://<appname>.azurewebsites.net/css/bootstrap.css
 http://<endpointname>.azureedge.net/css/bootstrap.css
 ```
 
-在瀏覽器中瀏覽至下列 URL：
+瀏覽下列 URL 的瀏覽器 toohello:
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -103,36 +103,36 @@ http://<endpointname>.azureedge.net/index.html
 
 ![CDN 提供的範例應用程式首頁](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page-cdn.png)
 
- 您會看到與您稍早在 Azure Web 應用程式中執行的相同分頁。 Azure CDN 已擷取原始 Web 應用程式的資產，並從 CDN 端點提供這些資產
+ 您會看到的 hello 相同頁面上您先前在 Azure web 應用程式中執行。 Azure CDN 已擷取 hello 來源 web 應用程式的資產，並為從 hello CDN 端點服務
 
-若要確保此頁面已在 CDN 中快取，請重新整理此頁面。 CDN 有時需要相同資產的兩個要求，才能快取所要求的內容。
+tooensure hello CDN，重新整理 hello 頁面中，此頁面會快取。 兩個要求的 hello 相同資產有時候是必要的 hello CDN toocache hello 要求的內容。
 
 如需建立 Azure CDN 設定檔和端點的詳細資訊，請參閱[開始使用 Azure CDN](../cdn/cdn-create-new-endpoint.md)。
 
-## <a name="purge-the-cdn"></a>清除 CDN
+## <a name="purge-hello-cdn"></a>清除 hello CDN
 
-CDN 會根據存留時間 (TTL) 組態，從原始 web 應用程式定期重新整理其資源。 預設 TTL 為 7 天。
+hello CDN 會定期重新整理其資源與 hello 來源 web 應用程式根據 hello 存留時間 (TTL) 設定。 hello 預設 TTL 是七天。
 
-有時候，您可能需要在 TTL 到期日之前重新整理CDN 更新的內容部署至 web 應用程式時，-例如，。 若要觸發重新整理，您可以手動清除 CDN 資源。 
+有時候您可能需要 toorefresh hello CDN 之前 hello TTL 到期-比方說，當您部署更新的內容 toohello web 應用程式。 tootrigger 重新整理，您可以手動清除 hello CDN 資源。 
 
-在本節的教學課程中，您會將變更部署到 Web 應用程式並清除 CDN，進而觸發 CDN 重新整理其快取。
+在本節中的 hello 教學課程，您可以部署變更 toohello web 應用程式，並清除 hello CDN tootrigger hello CDN toorefresh 其快取。
 
-### <a name="deploy-a-change-to-the-web-app"></a>將變更部署到 Web 應用程式
+### <a name="deploy-a-change-toohello-web-app"></a>部署變更 toohello web 應用程式
 
-開啟 `index.html` 檔案並將 "- V2" 新增至 H1 標題，如下列範例所示︰ 
+開啟 hello`index.html`檔案，然後加入"-V2"toohello H1 標題，hello 下列範例所示： 
 
 ```
 <h1>Azure App Service - Sample Static HTML Site - V2</h1>
 ```
 
-認可您的變更並將它部署至 Web 應用程式。
+認可您的變更，並將它部署 toohello web 應用程式。
 
 ```bash
 git commit -am "version 2"
 git push azure master
 ```
 
-完成部署後，瀏覽至 Web 應用程式 URL，您會看到變更。
+部署完成後，請瀏覽 toohello web 應用程式 URL，並請參閱變更 hello。
 
 ```
 http://<appname>.azurewebsites.net/index.html
@@ -140,7 +140,7 @@ http://<appname>.azurewebsites.net/index.html
 
 ![Web 應用程式標題中的 V2](media/app-service-web-tutorial-content-delivery-network/v2-in-web-app-title.png)
 
-瀏覽至首頁的 CDN 端點 URL，因為 CDN 中快取的版本尚未到期，所以您不會看到變更。 
+瀏覽 URL hello 首頁上和您看不到變更，因為 hello hello CDN 中快取的版本尚未到期的 hello toohello CDN 端點。 
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -148,35 +148,35 @@ http://<endpointname>.azureedge.net/index.html
 
 ![CDN 標題中沒有 V2](media/app-service-web-tutorial-content-delivery-network/no-v2-in-cdn-title.png)
 
-### <a name="purge-the-cdn-in-the-portal"></a>在入口網站中清除 CDN
+### <a name="purge-hello-cdn-in-hello-portal"></a>清除 hello 入口網站中的 hello CDN
 
-若要觸發 CDN 更新其快取的版本，請清除 CDN。
+tootrigger hello CDN tooupdate 快取的版本中，清除 hello CDN。
 
-在入口網站的左側導覽中，選取 [資源群組]，然後選取您為 Web 應用程式 (myResourceGroup) 建立的資源群組。
+在 hello 入口網站的左側瀏覽選取**資源群組**，然後選取您為您的 web 應用程式 (myResourceGroup) 建立的 hello 資源群組。
 
 ![選取資源群組](media/app-service-web-tutorial-content-delivery-network/portal-select-group.png)
 
-在資源清單中，選取您的 CDN 端點。
+在 [hello] 清單中的資源，選取您的 CDN 端點。
 
 ![選取端點](media/app-service-web-tutorial-content-delivery-network/portal-select-endpoint.png)
 
-在 [端點] 頁面的頂端，按一下 [清除]。
+頂端的 hello hello**端點**頁面上，按一下**清除**。
 
 ![選取清除](media/app-service-web-tutorial-content-delivery-network/portal-select-purge.png)
 
-輸入您想要清除的內容路徑。 您可以傳遞完整檔案路徑來清除個別檔案，也可以傳遞路徑區段來清除並重新整理資料夾中的所有內容。 因為您變更了 `index.html`，請確定這是其中一個路徑。
+輸入您想 toopurge hello 內容路徑。 您可以將個別檔案或路徑區段 toopurge 所傳遞的完整檔案路徑 toopurge，並重新整理資料夾中的所有內容。 因為您變更`index.html`，確定其中一個 hello 路徑。
 
-選取頁面底部的 [清除]。
+在 hello hello 頁面底部，選取**清除**。
 
 ![清除頁面](media/app-service-web-tutorial-content-delivery-network/app-service-web-purge-cdn.png)
 
-### <a name="verify-that-the-cdn-is-updated"></a>確認 CDN 已更新
+### <a name="verify-that-hello-cdn-is-updated"></a>確認 CDN 會更新該 hello
 
-等到清除要求完成處理，通常需要幾分鐘的時間。 若要查看目前的狀態，請選取頁面頂端的鈴鐺圖示。 
+等候 hello 的清除要求完成處理時，通常需要幾分鐘。 toosee hello 目前狀態，在 hello hello 頁面最上方的 hello 選取鈴鐺圖示。 
 
 ![清除通知](media/app-service-web-tutorial-content-delivery-network/portal-purge-notification.png)
 
-瀏覽至 `index.html` 的 CDN 端點 URL，您現在會看到已新增至首頁標題的 V2。 這會顯示已重新整理的 CDN 快取。
+瀏覽 toohello CDN 端點 URL `index.html`，現在您會看見 hello V2 hello 首頁上，加入 toohello 標題和。 這會顯示 hello CDN 快取重新整理。
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -186,23 +186,23 @@ http://<endpointname>.azureedge.net/index.html
 
 如需詳細資訊，請參閱[清除 Azure CDN 端點](../cdn/cdn-purge-endpoint.md)。 
 
-## <a name="use-query-strings-to-version-content"></a>使用查詢字串來控制內容版本
+## <a name="use-query-strings-tooversion-content"></a>使用查詢字串 tooversion 內容
 
-Azure CDN 提供下列快取行為選項︰
+hello Azure CDN 提供 hello 下列快取行為的選項：
 
 * 忽略查詢字串
 * 略過查詢字串的快取
 * 快取每個唯一的 URL 
 
-上述第一個選項是預設值，這表示不管 URL 中的查詢字串為何，資產都只有一個快取的版本。 
+第一次 hello 這些是 hello 預設，這表示不論 hello 查詢字串 hello URL 中的資產只能有一個快取的版本。 
 
-在本節的教學課程中，您可將快取行為變更為快取每個唯一 URL。
+在本節中的 hello 教學課程，您可以變更 hello 快取行為 toocache 每個唯一的 URL。
 
-### <a name="change-the-cache-behavior"></a>變更快取行為
+### <a name="change-hello-cache-behavior"></a>變更 hello 快取行為
 
-在 Azure 入口網站的 [CDN 端點] 頁面中，選取 [快取]。
+在 Azure 入口網站 hello **CDN 端點**頁面上，選取**快取**。
 
-從 [查詢字串快取行為] 下拉式清單中，選取 [快取每個唯一 URL]。
+選取**快取每個唯一的 URL**從 hello**查詢字串快取行為**下拉式清單。
 
 選取 [ **儲存**]。
 
@@ -210,24 +210,24 @@ Azure CDN 提供下列快取行為選項︰
 
 ### <a name="verify-that-unique-urls-are-cached-separately"></a>確認唯一的 URL 會分開快取
 
-在瀏覽器中，瀏覽至 CDN 端點首頁，但包含查詢字串︰ 
+在瀏覽器中，瀏覽 toohello 首頁上，在 hello CDN 端點，但包含查詢字串： 
 
 ```
 http://<endpointname>.azureedge.net/index.html?q=1
 ```
 
-CDN 會傳回目前的 Web 應用程式內容，其標題中包含 "V2"。 
+hello CDN 傳回 hello 目前 web 應用程式內容，其中包含 「 V2"hello 標題中。 
 
-若要確保此頁面已在 CDN 中快取，請重新整理此頁面。 
+tooensure hello CDN，重新整理 hello 頁面中，此頁面會快取。 
 
-開啟 `index.html` 並將 "V2" 變更為 "V3"，然後部署變更。 
+開啟`index.html`也變更 「 V2"和"V3"，並將部署的 hello 變更。 
 
 ```bash
 git commit -am "version 3"
 git push azure master
 ```
 
-在瀏覽器中，移至含有新查詢字串 (例如`q=2`) 的 CDN 端點 URL。 CDN 會取得目前的 `index.html` 檔案並顯示 "V3"。  但是，如果您瀏覽至含有 `q=1` 查詢字串的 CDN 端點，您會看到 "V2"。
+在瀏覽器，移 toohello CDN 端點 URL 」 包含新的查詢字串例如`q=2`。 目前的 hello CDN 取得 hello`index.html`檔並且顯示"V3"。  但是，如果您瀏覽 toohello CDN 端點以 hello`q=1`查詢字串，您會看到 「 V2"。
 
 ```
 http://<endpointname>.azureedge.net/index.html?q=2
@@ -244,49 +244,49 @@ http://<endpointname>.azureedge.net/index.html?q=1
 此輸出會顯示每個查詢字串是以不同方式處理：
 
 * 以前使用 q=1，因此會傳回快取內容 (V2)。
-* q=2 是新的，因此會擷取及傳回最新的 Web 應用程式內容 (V3)。
+* q = 2 是新的因此 hello 最新的 web 應用程式內容都會擷取並傳回 (V3)。
 
 如需詳細資訊，請參閱[使用查詢字串控制 Azure CDN 快取行為](../cdn/cdn-query-string.md)。
 
-## <a name="map-a-custom-domain-to-a-cdn-endpoint"></a>將自訂網域對應至 CDN 端點
+## <a name="map-a-custom-domain-tooa-cdn-endpoint"></a>對應的自訂網域 tooa CDN 端點
 
-您會建立 CNAME 記錄，以將自訂網域對應至 CDN 端點。 CNAME 記錄是將來源網域對應至目的地網域的 DNS 功能。 例如，您可能會將 `cdn.contoso.com` 或 `static.contoso.com` 對應到 `contoso.azureedge.net`。
+您會藉由建立一筆 CNAME 記錄對應您的自訂網域 tooyour CDN 端點。 CNAME 記錄是一種 DNS 功能，將來源網域 tooa 目的地定義域對應。 例如，您可能會將對應`cdn.contoso.com`或`static.contoso.com`太`contoso.azureedge.net`。
 
-如果您沒有自訂網域，請考慮遵循 [App Service 網域教學課程](custom-dns-web-site-buydomains-web-app.md)的作法，使用 Azure 入口網站來購買網域。 
+如果您沒有自訂網域，請考慮下列 hello[應用程式服務網域教學課程](custom-dns-web-site-buydomains-web-app.md)toopurchase 網域使用 hello Azure 入口網站。 
 
-### <a name="find-the-hostname-to-use-with-the-cname"></a>尋找要搭配 CNAME 使用的主機名稱
+### <a name="find-hello-hostname-toouse-with-hello-cname"></a>尋找 hello hostname toouse 以 hello CNAME
 
-在 Azure 入口網站的 [端點] 頁面中，確定已選取左側導覽中的 [概觀]，然後選取頁面頂端的 [+ 自訂網域] 按鈕。
+Hello Azure 入口網站中**端點**頁面上，確定**概觀**已選取左瀏覽，，然後選取 hello hello **+ 自訂網域**hello hello 頁頂端的按鈕。
 
 ![選取新增自訂網域](media/app-service-web-tutorial-content-delivery-network/portal-select-add-domain.png)
 
-在 [新增自訂網域] 頁面中，您會看到要用於建立 CNAME 記錄的端點主機名稱。 主機名稱衍生自 CDN 端點 URL：**&lt;EndpointName>.azureedge.net**。 
+在 [hello**加入自訂網域**] 頁面上，您會看到 hello 端點主機名稱 toouse 中建立 CNAME 記錄。 hello 主機名稱衍生自您的 CDN 端點 URL: **&lt;端點名稱 >。 azureedge.net**。 
 
 ![新增網域頁面](media/app-service-web-tutorial-content-delivery-network/portal-add-domain.png)
 
-### <a name="configure-the-cname-with-your-domain-registrar"></a>透過您的網域註冊機構設定 CNAME
+### <a name="configure-hello-cname-with-your-domain-registrar"></a>設定向網域註冊機構 hello CNAME
 
-瀏覽至您網域註冊機構的網站，並找出用於建立 DNS 記錄的區段。 您可能會在 **Domain Name**、**DNS** 或 **Name Server Management** 等區段中發現此頁面。
+瀏覽 tooyour 網域註冊機構的網站，並找出 hello 區段，用於建立 DNS 記錄。 您可能會在 **Domain Name**、**DNS** 或 **Name Server Management** 等區段中發現此頁面。
 
-尋找管理 CNAME 的區段。 您可能需要移至進階設定頁面，並尋找 CNAME、Alias 或 Subdomains 單字。
+用於管理 Cname 尋找 hello > 一節。 您可能會有 toogo tooan 進階的設定 頁面上，並尋找 hello 文字 CNAME、 別名或子網域。
 
-建立 CNAME 記錄，將您選擇的子網域 (例如 **static** 或 **cdn**) 對應到入口網站中稍早顯示的 [端點主機名稱]。 
+建立 CNAME 記錄對應您所選擇的子網域 (例如，**靜態**或**cdn**) toohello**端點主機名稱**hello 入口網站中稍早所示。 
 
-### <a name="enter-the-custom-domain-in-azure"></a>在 Azure 中輸入自訂網域
+### <a name="enter-hello-custom-domain-in-azure"></a>輸入在 Azure 中的 hello 自訂網域
 
-返回 [新增自訂網域]  頁面，在對話方塊中輸入您的自訂網域 (包括子網域)。 例如，輸入 `cdn.contoso.com`。   
+傳回 toohello**加入自訂網域**頁面，然後輸入您的自訂網域，包括 hello 子網域，在 [hello] 對話方塊中。 例如，輸入 `cdn.contoso.com`。   
    
-Azure 會確認您所輸入的網域名稱存在 CNAME 記錄。 如果 CNAME 正確，您的自訂網域就會驗證。
+Azure 會確認 hello CNAME 記錄存在您所輸入的 hello 網域名稱。 如果 hello CNAME 正確無誤，則會驗證您的自訂網域。
 
-可能需要時間讓 CNAME 記錄傳播到網際網路上的名稱伺服器。 如果您的網域不會立即驗證，請稍候幾分鐘，然後再試一次。
+可能需要 hello CNAME 記錄 toopropagate tooname 伺服器 hello 網際網路上的時間。 如果您的網域不會立即驗證，請稍候幾分鐘，然後再試一次。
 
-### <a name="test-the-custom-domain"></a>測試自訂網域
+### <a name="test-hello-custom-domain"></a>測試 hello 自訂網域
 
-在瀏覽器中，使用自訂網域 (例如 `cdn.contoso.com/index.html`) 瀏覽至 `index.html` 檔案，確認結果與您直接移至 `<endpointname>azureedge.net/index.html` 時相同。
+在瀏覽器中，瀏覽 toohello`index.html`檔案使用自訂網域 (例如， `cdn.contoso.com/index.html`) tooverify hello 結果是相同 hello 做為當您移直接太`<endpointname>azureedge.net/index.html`。
 
 ![使用自訂網域 URL 的範例應用程式首頁](media/app-service-web-tutorial-content-delivery-network/home-page-custom-domain.png)
 
-如需詳細資訊，請參閱[將 Azure CDN 內容對應至自訂網域](../cdn/cdn-map-content-to-custom-domain.md)。
+如需詳細資訊，請參閱[對應 Azure CDN 內容 tooa 自訂網域](../cdn/cdn-map-content-to-custom-domain.md)。
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 
@@ -297,10 +297,10 @@ Azure 會確認您所輸入的網域名稱存在 CNAME 記錄。 如果 CNAME �
 > [!div class="checklist"]
 > * 建立 CDN 端點。
 > * 重新整理快取的資產。
-> * 使用查詢字串來控制快取的版本。
-> * 使用 CDN 端點的自訂網域。
+> * 使用查詢字串快取 toocontrol 版本。
+> * 使用自訂網域 hello CDN 端點。
 
-在下列文章中了解如何將 CDN 效能最佳化：
+了解下列 hello toooptimize CDN 效能的文件：
 
 > [!div class="nextstepaction"]
 > [在 Azure CDN 中壓縮檔案以改善效能](../cdn/cdn-improve-performance.md)

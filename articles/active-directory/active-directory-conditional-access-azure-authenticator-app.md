@@ -1,6 +1,6 @@
 ---
-title: "適用於 Android 的 Azure Authenticator | Microsoft Docs"
-description: "Microsoft Azure Authenticator 應用程式可用來登入以存取工作資源。 Azure Authenticator 應用程式會對您的行動裝置顯示警示，以通知您有一個擱置的雙因素驗證要求。"
+title: "aaaAzure 適用於 Android 的驗證器 |Microsoft 文件"
+description: "Microsoft Azure Authenticator 應用程式可以使用的 toosign 中 tooaccess 工作資源。 hello Azure Authenticator 應用程式會通知您有暫止的雙因素驗證要求顯示警示 tooyour 行動裝置。"
 services: active-directory
 documentationcenter: 
 author: femila
@@ -15,107 +15,107 @@ ms.topic: article
 ms.date: 05/16/2017
 ms.author: femila
 ROBOTS: NOINDEX, NOFOLLOW
-ms.openlocfilehash: 60a5cc2ecc550c76ca3cb1f1d4d20070b3e3b035
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d6cc5c2f6a3a67847ae4076424746f73d7f48411
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-authenticator-for-android"></a>適用於 Android 的 Azure Authenticator
-IT 系統管理員可能曾建議您使用 Microsoft Azure Authenticator 進行登入以存取您的工作資源。 此應用程式提供下列兩個登入選項：
+IT 系統管理員可能會建議您 toouse hello tooaccess toosign 在 Microsoft Azure Authenticator 您的工作資源。 此應用程式提供下列兩個登入選項：
 
-* Multi-Factor Authentication 可讓您透過兩個步驟的驗證來保護您的公司或學校帳戶。 使用您知道的某個事物 (例如密碼) 進行登入，並以您擁有的某個事物 (這個應用程式提供的安全性金鑰) 更進一步地保護帳戶。 Azure Authenticator 應用程式會對您的行動裝置顯示警示，以通知您有一個擱置的雙因素驗證要求。 您只需在應用程式中檢視此要求並點選驗證或取消。 或者，系統可能會提示您輸入應用程式中顯示的密碼。
-* 工作帳戶可讓您將 Android 手機或平板電腦轉換成受信任的裝置，並提供公司應用程式的單一登入 (SSO)。 IT 系統管理員可能會要求您新增一個工作帳戶，以便存取公司資源。 SSO 可讓您立即登入並自動登入您的公司提供給您的所有應用程式。
+* Multi-factor Authentication 可讓您 toosecure 具有雙步驟驗證的公司或學校帳戶。 您登入使用您知道 （例如，您的密碼），並保護 hello 帳戶更進一步的項目與您有 （與這個應用程式的安全性金鑰）。 hello Azure Authenticator 應用程式會通知您有暫止的雙因素驗證要求顯示警示 tooyour 行動裝置。 您需要在 hello toosimply 檢視 hello 要求應用程式，點選 確認或取消。 或者，您可能會顯示 hello 應用程式中的提示的 tooenter hello 密碼。
+* 工作帳戶可讓您 tooturn Android 手機或平板成信任的裝置，並提供單一登入 (SSO) toocompany 應用程式。 IT 系統管理員可能需要您 tooadd 工作中的帳戶順序 tooaccess 公司資源。 SSO 可讓您登入一次，並自動登入的所有應用程式透過您公司的逾時做了可用 tooyou。
 
-## <a name="installing-the-azure-authenticator-app"></a>安裝 Azure Authenticator 應用程式
-您可以從 Google Play 商店安裝 Azure Authenticator 應用程式。
-從 Samsung Android 裝置與非 Samsung Android 裝置新增工作帳戶的指示稍有不同。 兩者的指示如下所列。
+## <a name="installing-hello-azure-authenticator-app"></a>安裝 hello Azure Authenticator 應用程式
+您可以從 Google Play 商店安裝 hello Azure Authenticator 應用程式。
+從 Samsung Android 裝置 vs hello 指示 tooadd 工作帳戶非 Samsung Android 裝置有些許不同。 兩個 hello 指示如下所示。
 
-## <a name="adding-the-work-account-from-samsung-android-device"></a>從 Samsung Android 裝置新增工作帳戶
-### <a name="adding-the-work-account-through-the-app-home-screen"></a>透過應用程式主畫面新增工作帳戶
-下列指示適用於 Samsung GS3 以上的電話或 Note2 以上的平板電腦。
+## <a name="adding-hello-work-account-from-samsung-android-device"></a>從 Samsung Android 裝置加入 hello 工作帳戶
+### <a name="adding-hello-work-account-through-hello-app-home-screen"></a>加入透過 hello 應用程式主畫面 hello 工作帳戶
+hello 以下指示會適用 tooSamsung GS3 上方手機或 Note2 和平板電腦上。
 
-1. 在應用程式的主畫面上，接受使用者授權合約 (EULA)。
-2. 在 [啟用帳戶] 畫面上，按一下右邊的內容功能表，然後選取 [工作帳戶] 。
-3. 在新增帳戶畫面上，選取 * * 工作帳戶 * *。
+1. 在 hello hello 應用程式的主畫面上，接受 hello 使用者授權合約 (EULA)。
+2. Hello 啟動帳戶畫面上，按一下向右鍵和選取的 hello hello 內容功能表**工作帳戶**。
+3. 在 hello 新增帳戶畫面上，選取 * * 工作帳戶 * *。
 4. 在 [啟動裝置管理員] 畫面上，按一下 [啟動] 。
-5. 在 [隱私權原則] 畫面上，選取此核取方塊並按一下 [確認] 。
-6. 在 [加入工作場所] 畫面上，輸入您的組織所提供的 userID，然後按一下 [加入] 。
-7. 若要登入 Azure Authenticator 應用程式，請輸入您的組織帳戶和密碼，然後按一下 [登入] 。
-8. 下一個畫面會顯示 Multi-Factor Authentication (MFA) 的相關資訊，這是為了增加安全性的選擇性畫面。 如果您的公司或學校要求次要因素驗證才能建立工作帳戶，您將會看到這個畫面。 它會提供進一步驗證帳戶的指示。
-9. [加入工作場所] 畫面會顯示「**正在加入您的工作場所**」訊息。 Azure Authenticator 應用程式會嘗試將您的裝置加入至您的工作場所。
-10. 您應該會在下一個畫面上看到「已加入工作場所」訊息。
+5. 在 hello 隱私權原則畫面上，選取 [hello] 核取方塊，然後按一下**確認**。
+6. Hello 加入工作地點在畫面上，輸入您的組織與按一下所提供的 hello userID**聯結**。
+7. toosign toohello Azure Authenticator 應用程式中，輸入您組織 * * * ccount 和密碼並按**登入**。
+8. hello 顯示 multi-factor authentication (MFA) 的相關資訊的下一個畫面為了加強安全性，而且是選擇性。 如果您的公司或學校要求次要因素驗證才能建立工作帳戶，您將會看到這個畫面。 本節提供指示 toofurther 驗證您的帳戶。
+9. hello 場所 畫面會顯示 hello 訊息，「**加入您的工作場所**"。 hello Azure authenticator 應用程式正在嘗試 toojoin 裝置 tooyour 工作地點。
+10. 您應該會看到 hello 場所 訊息上 hello 接下來的畫面。
 
 > [!NOTE]
 > 您可以在您的裝置上有單一工作帳戶。
 > 
 > 
 
-### <a name="adding-the-work-account-from-the-settings-menu"></a>從設定功能表新增工作帳戶
-安裝 Azure Authenticator 應用程式之後，您也可以從 Android 帳戶管理員建立工作帳戶。
+### <a name="adding-hello-work-account-from-hello-settings-menu"></a>加入 hello 設定 功能表中的 hello 工作帳戶
+您已安裝 hello Azure Authenticator 應用程式之後，您也可以從 hello Android 帳戶管理員建立工作帳戶。
 
-1. 從 [設定] 功能表瀏覽至 [帳戶]，然後按一下 [新增帳戶]。
-2. 請依照「透過應用程式主畫面新增工作帳戶」程序中的步驟 3-10，新增工作帳戶。
+1. Hello 設定 功能表中，瀏覽過**帳戶**按一下**新增帳戶**。
+2. 請遵循步驟 3-10 在 hello 程序，透過 hello 應用程式主畫面，tooadd 工作帳戶加入 hello 工作帳戶。
 
-## <a name="adding-the-work-account-from-a-non-samsung-android-device"></a>從非 Samsung Android 裝置新增工作帳戶
-### <a name="adding-the-work-account-through-the-app-home-screen"></a>透過應用程式主畫面新增工作帳戶
-1. 在應用程式的主畫面上，接受使用者授權合約 (EULA)。
-2. 在 [啟用帳戶] 畫面上，按一下右邊的內容功能表，然後選取 [工作帳戶] 。
-3. 在 [帳戶] 畫面上，按一下 [新增帳戶] 。
-4. 如果您看到 [帳戶] 畫面，請按一下 [新增帳戶]。 如果先前已建立工作帳戶，您會看到 [同步處理] 畫面顯示現有的工作帳戶。 您只需點選主畫面的上一頁箭頭，即可保留此工作帳戶。 或者，您可以選擇移除此帳戶並重建新的工作帳戶。在 [加入工作場所] 畫面上，輸入您的組織所提供的 userID，然後按一下 [加入]。
-5. 若要登入 Azure Authenticator 應用程式，請輸入您的組織帳戶和密碼，然後按一下 [登入] 。
-6. 下一個畫面會顯示 Multi-Factor Authentication (MFA) 的相關資訊，這是為了增加安全性的選擇性畫面。 如果您的公司或學校要求次要因素驗證才能建立工作帳戶，您將會看到這個畫面。 它會提供進一步驗證帳戶的指示。
-7. 在下一個畫面上按一下 [確定]。 請勿變更憑證名稱。
-   「正在加入您的工作場所」訊息。 Azure Authenticator 應用程式會嘗試將您的裝置加入至您的工作場所。
-   您應該會在下一個畫面上看到「已加入工作場所」訊息。
+## <a name="adding-hello-work-account-from-a-non-samsung-android-device"></a>從非 Samsung Android 裝置加入 hello 工作帳戶
+### <a name="adding-hello-work-account-through-hello-app-home-screen"></a>加入透過 hello 應用程式主畫面 hello 工作帳戶
+1. 在 hello hello 應用程式的主畫面上，接受 hello 使用者授權合約 (EULA)。
+2. Hello 啟動帳戶畫面上，按一下向右鍵和選取的 hello hello 內容功能表**工作帳戶**。
+3. 在 hello 帳戶 畫面上，按一下 **新增帳戶**。
+4. 如果您看到 hello 帳戶 畫面中，按一下 **將帳戶加入**。 如果先前已建立工作帳戶，您會看到同步畫面，顯示 hello 現有的工作帳戶。 您可以藉由只需點選 hello 上一頁 箭頭 toohello 主畫面保留 hello 工作帳戶。 或者，您可以選取 hello 帳戶 tooremove 並重新建立新的工作帳戶 hello 場所 畫面上，輸入 hello 貴組織所提供的使用者識別碼，然後按一下聯結。
+5. toosign toohello Azure Authenticator 應用程式中，輸入您的組織帳戶和密碼，然後按一下**登入**。
+6. hello 顯示 multi-factor authentication (MFA) 的相關資訊的下一個畫面為了加強安全性，而且是選擇性。 如果您的公司或學校要求次要因素驗證才能建立工作帳戶，您將會看到這個畫面。 本節提供指示 toofurther 驗證您的帳戶。
+7. 按一下**確定**hello 下一個畫面。 請勿變更 hello 憑證名稱。
+   「 加入工作場所 」 的 hello 訊息。 hello Azure authenticator 應用程式正在嘗試 toojoin 裝置 tooyour 工作地點。
+   您應該會看到 hello 場所 訊息上 hello 接下來的畫面。
 
 > [!NOTE]
 > 您可以在您的裝置上有單一工作帳戶。
 > 
 > 
 
-安裝 Azure Authenticator 應用程式之後，您也可以從 Android 帳戶管理員建立工作帳戶。
+您已安裝 hello Azure Authenticator 應用程式之後，您也可以從 hello Android 帳戶管理員建立工作帳戶。
 
-1. 從 [設定] 功能表瀏覽至 [帳戶]，然後按一下 [新增帳戶]。
-2. 請依照「透過應用程式主畫面新增工作帳戶」程序中的步驟 2-7，新增工作帳戶。
+1. 從 hello**設定**功能表上，瀏覽 tooAccounts，然後按一下**新增帳戶**。
+2. 步驟 2-7 在 hello 程序，透過 hello 應用程式主畫面 * *，tooadd 工作帳戶加入 hello 工作帳戶。
 
-### <a name="how-to-find-out-which-version-is-installed"></a>如何找出所安裝的版本
-1. 您可以找出您的裝置上所安裝 Azure Authenticator 應用程式版本和相關聯的服務版本。
-2. 從快顯功能表按一下 [關於] 。
-3. [關於] 畫面會顯示應用程式的服務和裝置上所安裝的版本。
+### <a name="how-toofind-out-which-version-is-installed"></a>Toofind 出哪些版本的安裝方式
+1. 您可以找出 hello Azure Authenticator 應用程式的版本，您的裝置上已安裝相關聯的服務版本。
+2. 從 hello 顯功能表上，按一下 **有關**。
+3. hello 關於畫面會顯示 hello hello 應用程式，並且 hello 版本安裝在您的裝置上的服務。
 
-### <a name="sending-log-files-to-report-issues"></a>傳送記錄檔以回報問題
-1. 遵循 Microsoft 支援上的指引，以回報 Azure Authenticator 應用程式相關事件、取得事件號碼，以及針對指定的事件號碼傳送記錄檔，如下所示：
-2. 從快顯功能表按一下 [記錄] 。
-3. 如果您有未結案的 Microsoft 支援事件，請記下事件號碼 (後面的步驟需要使用它)。 如果您尚未建立支援事件並想要獲得協助，請依照 [Microsoft 支援](https://support.microsoft.com/en-us/contactus)的指引來開啟新的事件。
-4. 在 [記錄] 畫面上按一下 [立即傳送] 。
-5. 選取您想要使用的電子郵件提供者。
-6. 如果您已有未結案的 Microsoft 支援事件，請連絡針對您的問題所指派的支援工程師，以了解如何傳送記錄檔資料並讓它與您的事件產生關聯。 支援工程師會提供給您電子郵件地址和主旨行的資訊。 如果您尚未有支援事件，請依照 Microsoft 支援的指引來開啟新的事件。
-7. 以 Microsoft 支援服務提供給您的資訊，編輯 [收件者] 行和 [主旨] 行。
-8. Azure Authenticator 應用程式會將記錄檔附加至您要傳送的電子郵件。 描述您所遇到的問題、更新收件者清單 (選擇性)，以及傳送電子郵件。
+### <a name="sending-log-files-tooreport-issues"></a>傳送記錄檔 tooreport 問題
+1. 遵循 Microsoft 支援服務 tooreport hello Azure Authenticator 應用程式事件上 hello 指引取得事件編號，並傳送 hello 針對記錄檔中指派事件編號，如下所示：
+2. 從 hello 顯功能表上，按一下 **記錄**。
+3. 如果您有未結案的事件，向 Microsoft 支援，請記下 hello 事件編號 （您將需要它後面的步驟）。 如果您尚未建立支援事件，而且想要尋求協助，請依照下列指引 hello [Microsoft 支援服務](https://support.microsoft.com/en-us/contactus)tooopen 新事件。
+4. Hello 記錄在畫面上，按一下 **立即傳送**。
+5. 選取您想要 toouse hello 電子郵件提供者。
+6. 如果您已經有未結案事件 Microsoft 支援服務，請連絡 hello 分派 tooyour 問題 toofind 出 toosend hello 記錄資料的方式，並讓它與您的事件相關聯的支援工程師。 hello 支援工程師會提供 hello 電子郵件地址和主旨行的資訊。 如果您還沒有支援事件，請依照 Microsoft 支援服務 tooopen 新事件 hello 指引。
+7. 編輯 hello**至**線條和**主旨**您收到來自 Microsoft 支援服務的 hello 資訊列。
+8. hello Azure Authenticator 應用程式會將附加 hello 記錄檔案 toohello 電子郵件傳送。 請描述您遇到的 hello 問題，更新收件者清單 （選用），並傳送嗨電子郵件。
 
-### <a name="deleting-the-work-account-and-leaving-your-workplace"></a>刪除工作帳戶並離開您的工作場所
-您可以隨時移除您所建立的工作帳戶，如下所示：
+### <a name="deleting-hello-work-account-and-leaving-your-workplace"></a>刪除 hello 工作帳戶並離開工作場所
+您可以移除 hello 工作帳戶，您建立在任何時間，如下所示：
 
-**從設定功能表刪除工作帳戶**
+**toodelete hello 工作 hello 設定 功能表中的帳戶**
 
-1. 從 [帳戶管理員] 選取 [工作帳戶] 。
-2. 在 [工作帳戶] 畫面的 [一般設定] 中，選取 [帳戶設定 – 離開您的工作場所網路]。
-3. 在 [工作場所聯結] 畫面上選取 [離開]。
-4. 當「您確定要離開工作場所嗎」訊息顯示時，按一下 [確定]  。
+1. 從 hello 帳戶管理員中，選取**工作帳戶**。
+2. Hello 工作帳戶在畫面上，在**一般設定**，選取**帳戶設定 – 離開工作地點網路**。
+3. 選取**保留**上 hello**工作地點加入**螢幕。
+4. 按一下**確定**hello 訊息 「 確定您想要 tooleave 工作場所 」 會顯示。
 5. 這可確保您已從工作場所中刪除您的工作帳戶。
 
 > [!NOTE]
-> 建議您不要使用 [移除帳戶] 選項來刪除工作帳戶，因為此選項在某些舊版的 Android 中可能無法運作。
+> 建議您不要使用工作帳戶做為這個選項可能不適用於某些舊版的 Android hello 移除帳戶選項 toodelete。
 > 
 > 
 
-## <a name="uninstalling-the-app"></a>解除安裝應用程式
-在 Samsung Android 裝置上，必須先如下所示移除裝置系統管理員權限，才能解除安裝。 
+## <a name="uninstalling-hello-app"></a>解除安裝 hello 應用程式
+在 Samsung Android 裝置上，裝置系統管理員權限必須已移除，如下所示先前 toouninstalling hello 
 
 1. 從 [設定] 的 [系統] 底下，選取 [安全性]。
-2. 在 [裝置管理] 中按一下 [裝置系統管理員]。 確定已清除 [Azure Authenticator]  旁邊的核取方塊。
+2. 在 [裝置管理] 中按一下 [裝置系統管理員]。 請確定該 hello 核取方塊旁太**Azure Authenticator**已清除。
 
 ## <a name="troubleshooting"></a>疑難排解
-如果您看到 [金鑰存放區錯誤]，這可能是因為您未使用 PIN 設定鎖定畫面。 若要解決這個問題，請將 Azure Authenticator 應用程式解除安裝、設定鎖定螢幕的 PIN，以及重新安裝應用程式。
+如果您看到 hello **Keystore 錯誤**，這可能是因為您不需要 hello 鎖定畫面設定總上使用 PIN。 解決此問題，toowork 解除 hello Azure Authenticator 應用程式、 設定的 PIN 鎖定螢幕，並重新安裝 hello 應用程式。
 

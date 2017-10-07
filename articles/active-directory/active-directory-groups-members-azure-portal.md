@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Active Directory 中管理群組的成員 | Microsoft Docs"
-description: "如何在 Azure Active Directory 的群組中新增或移除使用者和裝置"
+title: "aaaManage hello 群組成員的 Azure Active Directory 中 |Microsoft 文件"
+description: "如何 tooadd 或從 Azure Active Directory 中的群組移除使用者和裝置"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,36 +15,36 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 044e88f95712e1cc5b5532f5492c78d711a8d858
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4cb16ee63828003da251423a04736f7174dd4896
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-group-membership-for-users-in-your-azure-active-directory-tenant"></a>管理 Azure Active Directory 租用戶中使用者的群組成員資格
-本文說明如何在 Azure Active Directory (Azure AD) 中管理群組的成員。
+本文說明如何 toomanage hello Azure Active Directory (Azure AD) 中之群組的成員。
 
-## <a name="how-do-i-find-the-members-and-manage-them"></a>如何尋找成員及管理這些成員？
-1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
-2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
+## <a name="how-do-i-find-hello-members-and-manage-them"></a>如何尋找 hello 成員和進行管理？
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)hello 目錄的全域管理員的帳戶。
+2. 選取**更多服務**，輸入**使用者和群組**在 hello 文字方塊中，然後選取  **Enter**。
 
    ![開啟使用者管理](./media/active-directory-groups-members-azure-portal/search-user-management.png)
-3. 在 [使用者和群組] 刀鋒視窗上，選取 [所有群組]。
+3. 在 hello**使用者和群組**刀鋒視窗中，選取**所有群組**。
 
-   ![開啟群組刀鋒視窗](./media/active-directory-groups-members-azure-portal/view-groups-blade.png)
-4. 在 [使用者和群組 - 所有群組]  刀鋒視窗上，選取一個群組。
-5. 在 [群組- *groupname*] 刀鋒視窗上，選取 [成員]。
+   ![開啟 hello 群組刀鋒視窗](./media/active-directory-groups-members-azure-portal/view-groups-blade.png)
+4. 在 hello**使用者和群組的所有群組**刀鋒視窗中，選取一個群組。
+5. 在 hello**群組- *groupname*** 刀鋒視窗中，選取**成員**。
 
-   ![開啟 [成員] 刀鋒視窗](./media/active-directory-groups-members-azure-portal/view-group-members.png)
-6. 若要將成員新增到群組中，請在 [群組 - 成員] 刀鋒視窗上，選取 [新增成員]。
+   ![開啟 hello 成員刀鋒視窗](./media/active-directory-groups-members-azure-portal/view-group-members.png)
+6. 在 hello，tooadd 成員 toohello 群組**群組-成員**刀鋒視窗中，選取**新增成員**。
 
    ![[新增成員] 命令](./media/active-directory-groups-members-azure-portal/add-group-members-command.png)
-7. 在 [成員] 刀鋒視窗上，選取一或多個要新增到群組中的使用者或裝置，然後選取刀鋒視窗底部的 [選取] 按鈕來將它們新增到群組中。 [使用者]  方塊會根據將您的輸入內容與使用者或裝置名稱的任何部分進行比對來篩選顯示。 該方塊中不接受任何萬用字元。
-8. 若要從群組中移除成員，請在 [群組 - 成員]  刀鋒視窗上，選取一個成員。
-9. 在 [***membername***] 刀鋒視窗上，選取 [移除] 命令，並在出現提示時確認您的選擇。
+7. 在 hello**成員**刀鋒視窗中，選取其中一個或多個使用者或裝置 tooadd toohello 群組則選取 hello**選取**按鈕在 hello 底部 hello 刀鋒視窗 tooadd 它們 toohello 群組。 hello**使用者**方塊篩選 hello 顯示根據比對您的使用者或裝置名稱的項目 tooany 部分。 該方塊中不接受任何萬用字元。
+8. 從 hello 群組 hello tooremove 成員**群組-成員**刀鋒視窗中，選取的成員。
+9. 在 hello ***membername***刀鋒視窗中，選取 hello**移除**命令，然後確認您選擇在 hello 提示字元。
 
    ![[移除成員] 命令](./media/active-directory-groups-members-azure-portal/remove-group-members-command.png)
-10. 完成變更群組的成員時，選取 [儲存] 。
+10. 當您完成變更 hello 群組的成員時，選取**儲存**。
 
 ## <a name="additional-information"></a>其他資訊
 這些文章提供有關 Azure Active Directory 的其他資訊。

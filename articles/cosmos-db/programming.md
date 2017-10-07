@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB 的伺服器端 JavaScript 程式設計 | Microsoft Docs"
-description: "了解如何使用 Azure Cosmos DB 來撰寫 JavaScript 預存程序、資料庫觸發程序和使用者定義函數 (UDF)。 取得資料庫程式設計秘訣等等。"
+title: "Azure Cosmos DB 的 aaaServer 端 JavaScript 程式設計 |Microsoft 文件"
+description: "了解如何 toouse Azure Cosmos DB toowrite 預存程序、 資料庫觸發程序，以及使用者定義函數 (Udf) 在 JavaScript 中。 取得資料庫程式設計秘訣等等。"
 keywords: "資料庫觸發程序, 預存程序, 預存程序, 資料庫程式, sproc, documentdb, azure, Microsoft azure"
 services: cosmos-db
 documentationcenter: 
@@ -15,47 +15,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2016
 ms.author: andrl
-ms.openlocfilehash: 8cddc7a8c9aa677b9c93bee3a7e05c226cc1f655
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5a011d1c4b0b5908d5de73607a1bc328ed1711d0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-server-side-programming-stored-procedures-database-triggers-and-udfs"></a>Azure Cosmos DB 伺服器端程式設計：預存程序、資料庫觸發程序和 UDF
-了解 Azure Cosmos DB 的語言整合式、交易式 JavaScript 執行如何讓開發人員使用 [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/) JavaScript 以原生方式撰寫**預存程序**、**觸發程序**及**使用者定義函數 (UDF)**。 這一特點可讓您得以撰寫能直接在資料庫儲存體資料分割上傳送和執行的資料庫程式應用程式邏輯。 
+了解 Azure Cosmos DB 的語言整合式、交易式 JavaScript 執行如何讓開發人員使用 [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/) JavaScript 以原生方式撰寫**預存程序**、**觸發程序**及**使用者定義函數 (UDF)**。 這可讓您 toowrite 資料庫程式應用程式邏輯出貨並直接在 hello 資料庫儲存體磁碟分割上執行。 
 
-我們建議使用者從觀看下列影片開始入門，Andrew Liu 在其中提供了 Cosmos DB 的伺服器端資料庫程式設計模型的簡介。 
+我們建議您取得啟動下列看 hello 視訊，Andrew Liu 其中提供簡單介紹 tooCosmos DB 的資料庫伺服器端程式設計模型。 
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-Demo-A-Quick-Intro-to-Azure-DocumentDBs-Server-Side-Javascript/player]
 > 
 > 
 
-然後，回到這篇文章，您可在此找到下列問題的答案：  
+然後，傳回 toothis 發行項，您將在此學習 hello 答案 toohello 下列問題：  
 
 * 如何使用 JavaScript 撰寫預存程序、觸發程序或 UDF？
 * Cosmos DB 如何提供 ACID 保證？
 * 如何在 Cosmos DB 中執行交易工作？
 * 什麼是預先觸發程序和後續觸發程序？其撰寫方法為何？
 * 如何註冊及使用 HTTP 以 RESTful 方式執行預存程序、觸發程序或 UDF？
-* 哪些 Cosmos DB SDK 可用來建立及執行預存程序、觸發程序和 UDF？
+* 可以使用哪些 Cosmos DB Sdk 可用 toocreate 或執行預存程序、 觸發程序和 Udf？
 
-## <a name="introduction-to-stored-procedure-and-udf-programming"></a>預存程序和 UDF 程式設計簡介
-這種「 *以 JavaScript 做為新式 T-SQL* 」的方式，可讓應用程式開發人員不必傷腦筋處理複雜的類型系統不符問題和物件關聯式對應技術。 此外，它本身還有一些可加以利用以便建置豐富應用程式的優勢：  
+## <a name="introduction-toostored-procedure-and-udf-programming"></a>簡介 tooStored 程序和 UDF 程式設計
+這種方法的*"做為現代天 T-SQL JavaScript"* hello 變得複雜型別系統不符和物件關聯式對應之技術的應用程式開發人員會釋出。 它也有一些優點可以利用的 toobuild 豐富的應用程式的內建函式：  
 
-* **程序邏輯** ：以 JavaScript 做為高階程式設計語言，可提供豐富且常見的介面來表示商務邏輯。 您可以用更接近資料的方式執行一連串的複雜作業。
+* **程序的邏輯：** JavaScript 做為高層級的程式設計語言，提供豐富且熟悉的介面 tooexpress 商務邏輯。 您可以執行複雜的作業更接近 toohello 資料的順序。
 * **不可部分完成的交易**：Cosmos DB 可確保在單一預存程序或觸發程序內執行的資料庫作業成為不可部分完成的作業。 這可讓應用程式合併單一批次中的相關作業，讓所有作業不是一起成功就是一起失敗。 
-* **效能**：由於 JSON 本身就對應至 Javascript 語言類型系統並同時是 Cosmos DB 中儲存體基本單位，因此可提供許多最佳化功能，例如在緩衝集區中對 JSON 文件執行滯後具體化，並讓執行中程式碼可以依需求使用這些文件。 除此之外，還有其它與傳送商務邏輯至資料庫相關聯的效能優點：
+* **效能：** hello 緩衝區中的 hello 事實 JSON 是在本質上對應的 toohello Javascript 語言類型系統，而且也可讓數個最佳化類似 JSON 的延遲具體化 hello Cosmos DB 中的儲存空間的基本單位文件集區，使其可以使用點播 toohello 執行程式碼。 有多個傳送的商務邏輯 toohello 資料庫相關聯的效能優勢：
   
-  * 批次處理 - 開發人員可以群組多個作業 (例如插入)，大量進行提交。 因此，網路流量延遲成本以及建立個別交易的額外儲存負荷得以大幅降低。 
-  * 預先編譯 - Cosmos DB 會預先編譯預存程序、觸發程序和使用者定義函數 (UDF)，以避免每次叫用的 JavaScript 編譯成本。 因此，建置程序邏輯位元組程式碼的額外負荷已降到最低。
-  * 排序 - 許多作業都需要副作用 (「觸發程序」)，其可能涉及執行一項或多項次要儲存作業。 除了不可部分完成的作業之外，這在移至伺服器時會有更好的效能。 
-* **封裝** ：預存程序可以用來將商務邏輯群組在一個位置。 這有兩個優點：
-  * 它會在未經處理的資料上方新增抽象層，讓資料架構設計人員發展其應用程式，而不會動到資料。 這在資料無結構描述時特別有用，因為暫時的假設是，如果它們需要直接處理資料，則可能需要編譯成應用程式。  
-  * 這個抽象層讓企業得以透過指令碼簡化存取來確保資料安全。  
+  * 批次處理 - 開發人員可以群組多個作業 (例如插入)，大量進行提交。 hello 網路流量延遲成本，並大幅降低 hello 存放區負擔 toocreate 個別交易。 
+  * 先行編譯-Cosmos DB 先行編譯預存程序、 觸發程序和使用者定義函數 (Udf) tooavoid 每次叫用 JavaScript 編譯成本。 hello hello 程序邏輯建置 hello 位元組的程式碼的額外負荷分期固定 tooa 最小值。
+  * 排序 - 許多作業都需要副作用 (「觸發程序」)，其可能涉及執行一項或多項次要儲存作業。 除了不可部份完成性，這是更好的效能時移動 toohello 伺服器。 
+* **封裝：**預存程序可能會在一個地方使用的 toogroup 商務邏輯。 這有兩個優點：
+  * 它會加入抽象層之上 hello 未經處理資料，可讓資料架構設計人員 tooevolve hello 資料獨立於其應用程式。 無結構描述，因為可能需要 toobe 本意 hello 應用程式，如果有與資料 toodeal 直接 toohello 脆弱假設 hello 資料時，這是特別有用。  
+  * 這個抽象層可讓企業 hello 指令碼中的 hello 存取可簡化程序，確保資料安全。  
 
-許多平台 (包括 .NET、Node.js 和 JavaScript) 都透過 [REST API](/rest/api/documentdb/)、[Azure DocumentDB Studio](https://github.com/mingaliu/DocumentDBStudio/releases) 和 [用戶端 SDK](documentdb-sdk-dotnet.md) 來支援建立和執行資料庫觸發程序、預存程序及自訂查詢運算子。
+hello 建立和執行資料庫觸發程序、 預存程序和自訂查詢運算子透過支援 hello [REST API](/rest/api/documentdb/)， [Azure DocumentDB Studio](https://github.com/mingaliu/DocumentDBStudio/releases)，和[用戶端 Sdk](documentdb-sdk-dotnet.md)用於多種平台包括.NET、 Node.js 和 JavaScript。
 
-本教學課程使用 [Node.js SDK 搭配 Q Promises](http://azure.github.io/azure-documentdb-node-q/) 來說明預存程序、觸發程序及 UDF 的語法和用法。   
+本教學課程使用 hello [Q 承諾 Node.js SDK](http://azure.github.io/azure-documentdb-node-q/) tooillustrate 語法和使用方式的預存程序、 觸發程序和 Udf。   
 
 ## <a name="stored-procedures"></a>預存程序
 ### <a name="example-write-a-simple-stored-procedure"></a>範例：撰寫簡易預存程序
@@ -72,9 +72,9 @@ ms.lasthandoff: 08/03/2017
     }
 
 
-預存程序是按照集合來註冊，而且可以作用於該集合中現有的文件和附件。 下列程式碼片段說明如何向集合註冊 helloWorld 預存程序。 
+預存程序是按照集合來註冊，而且可以作用於該集合中現有的文件和附件。 hello 下列程式碼片段示範如何 tooregister hello helloWorld 預存程序集合。 
 
-    // register the stored procedure
+    // register hello stored procedure
     var createdStoredProcedure;
     client.createStoredProcedureAsync('dbs/testdb/colls/testColl', helloWorldStoredProc)
         .then(function (response) {
@@ -85,9 +85,9 @@ ms.lasthandoff: 08/03/2017
         });
 
 
-註冊好預存程序後，即可針對集合執行，並將結果讀取回用戶端。 
+Hello 預存程序註冊後，我們可以執行對 hello 集合，以了解回在 hello 用戶端的 hello 結果。 
 
-    // execute the stored procedure
+    // execute hello stored procedure
     client.executeStoredProcedureAsync('dbs/testdb/colls/testColl/sprocs/helloWorld')
         .then(function (response) {
             console.log(response.result); // "Hello, World"
@@ -96,12 +96,12 @@ ms.lasthandoff: 08/03/2017
         });
 
 
-內容物件提供可對 Cosmos DB 儲存體執行之所有作業的存取權，以及要求和回應物件的存取權。 在此例中，我們使用回應物件來設定傳回給用戶端的回應本文。 如需詳細資料，請參閱 [Azure Cosmos DB JavaScript 伺服器 SDK 文件 (英文)](http://azure.github.io/azure-documentdb-js-server/)。  
+hello 內容物件提供存取 tooall 作業可對 Cosmos 資料庫儲存體，以及存取 toohello 要求和回應物件。 在此情況下，我們使用 hello 回應物件 tooset hello 主體送出後 toohello 用戶端 hello 回應。 如需詳細資訊，請參閱 toohello [Azure Cosmos DB JavaScript 伺服器 SDK 文件](http://azure.github.io/azure-documentdb-js-server/)。  
 
-讓我們擴大這個範例，並對預存程序新增更多資料庫相關功能。 預存程序可以建立、更新、讀取、查詢與刪除集合內的文件和附件。    
+讓我們延伸此範例，並加入多個資料庫相關的功能 toohello 預存程序。 預存程序可以建立、 更新、 讀取、 查詢及刪除文件與 hello 集合內的附件。    
 
-### <a name="example-write-a-stored-procedure-to-create-a-document"></a>範例：撰寫建立文件的預存程序
-下一個程式碼片段說明如何使用內容物件來與 Cosmos DB 資源互動。
+### <a name="example-write-a-stored-procedure-toocreate-a-document"></a>範例： 撰寫預存程序 toocreate 文件
+hello 的下一個程式碼片段顯示 toouse hello 內容物件 toointeract Cosmos DB 資源的方式。
 
     var createDocumentStoredProc = {
         id: "createMyDocument",
@@ -120,19 +120,19 @@ ms.lasthandoff: 08/03/2017
     }
 
 
-此預存程序將 documentToCreate (要在目前集合中建立的文件本文) 做為輸入。 所有這類作業都是非同步的，而且需仰賴 JavaScript 函數回呼。 回呼函數有兩個參數，一個用於作業失敗時的錯誤物件，一個用於已建立的物件。 在回呼內，使用者可以處理例外狀況或擲回錯誤。 如果未提供回呼，而且發生錯誤，則 Azure Cosmos DB 執行階段會擲回錯誤。   
+這個預存程序會當做輸入 documentToCreate，hello 目前集合中建立文件 toobe hello 主體。 所有這類作業都是非同步的，而且需仰賴 JavaScript 函數回呼。 hello 作業失敗，而且建立物件的一個 hello 回呼函式會有兩個參數，一個用於 hello 物件時發生錯誤。 在 hello 回呼的使用者可以處理 hello 例外狀況，或擲回錯誤。 假如未提供的回呼，但發生錯誤，hello Azure Cosmos DB 執行階段會擲回錯誤。   
 
-在上面的範例中，回呼會在作業失敗時擲回錯誤。 否則，會將已建立之文件的 ID 設定為用戶端回應的本文。 此預存程序與輸入參數搭配執行的方式如下。
+Hello 上述範例中，在 hello 回呼擲回錯誤，如果 hello 作業失敗。 否則，它會設定 hello 識別碼 hello 做為 hello 回應 toohello 用戶端 hello 主體建立文件。 此預存程序與輸入參數搭配執行的方式如下。
 
-    // register the stored procedure
+    // register hello stored procedure
     client.createStoredProcedureAsync('dbs/testdb/colls/testColl', createDocumentStoredProc)
         .then(function (response) {
             var createdStoredProcedure = response.resource;
 
-            // run stored procedure to create a document
+            // run stored procedure toocreate a document
             var docToCreate = {
                 id: "DocFromSproc",
-                book: "The Hitchhiker’s Guide to the Galaxy",
+                book: "hello Hitchhiker’s Guide toohello Galaxy",
                 author: "Douglas Adams"
             };
 
@@ -148,16 +148,16 @@ ms.lasthandoff: 08/03/2017
     });
 
 
-請注意，您可以修改此預存程序，將一批文件本文做為輸入，並將這些本文全都建立在相同的預存程序執行內，而不是用多個網路要求個別建立這些本文。 您可以用這種方式來實作有效率的 Cosmos DB 大量匯入工具 (本教學課程稍後會有討論)。   
+請注意，這個預存程序可修改的 tootake 文件本文的陣列作為輸入及建立它們全都在 hello 相同預存程序執行，而不是多個網路要求 toocreate 每個個別。 這可以是使用的 tooimplement Cosmos 資料庫 （在本教學課程後面討論） 的有效率的大量匯入工具。   
 
-上面描述的範例已示範如何使用預存程序。 本教學課程稍後會討論觸發程序和使用者定義函數 (UDF)。
+所述的 hello 範例示範如何 toouse 預存程序。 我們將稍後在 hello 教學課程涵蓋觸發程序和使用者定義函數 (Udf)。
 
 ## <a name="database-program-transactions"></a>資料庫程式交易
 一般資料庫中的交易可以定義為以單一工作邏輯單位執行的一連串作業。 每個交易都提供「ACID 保證」 。 ACID 是著名的縮寫，代表四個屬性：不可部分完成性 (Atomicity)、一致性 (Consistency)、隔離性 (Isolation) 及耐用性 (Durability)。  
 
-簡言之，不可部分完成的作業保證會將交易內完成的所有工作視為單一單位，所有工作不是全部認可就是一個都不認可。 「一致性」確保資料在交易中一律處於良好內部狀態。 「隔離」保證兩個交易不會彼此干擾；一般而言，大部分的商業系統都會提供多個可以根據應用程式的需要來使用的隔離等級。 「持久性」確保資料庫中所認可的任何變更一律會存在。   
+簡言之，不可部分完成性保證完成交易內的所有 hello 工作會被都視為單一單位其中任一個全部都是認可或 none。 一致性可確保 hello 資料處於一律良好的內部狀態之間的交易。 隔離保證，任何兩個交易互相干擾 – 通常，大多數的商業系統提供多個可用的隔離層級根據 hello 應用程式需求。 持久性可確保一定會出現任何 hello 資料庫中認可的變更。   
 
-在 Cosmos DB 中，會在與資料庫相同的記憶體空間中裝載 JavaScript。 因此，在預存程序和觸發程序內提出的要求會在資料庫工作階段的相同範圍中執行。 這讓 Cosmos DB 能夠為屬於單一預存程序/觸發程序的所有作業提供 ACID 保證。 我們看一下下列預存程序定義：
+在 Cosmos DB 中，JavaScript 會裝載在 hello 與 hello 資料庫相同的記憶體空間。 因此，在預存程序和觸發程序所做的要求執行 hello 中相同的資料庫工作階段的範圍。 這可讓屬於單一預存程序/觸發程序的所有作業的 Cosmos DB tooguarantee ACID。 請考慮 hello 下列預存程序定義：
 
     // JavaScript source code
     var exchangeItemsSproc = {
@@ -175,24 +175,24 @@ ms.lasthandoff: 08/03/2017
                 function (err, documents, responseOptions) {
                     if (err) throw new Error("Error" + err.message);
 
-                    if (documents.length != 1) throw "Unable to find both names";
+                    if (documents.length != 1) throw "Unable toofind both names";
                     player1Document = documents[0];
 
                     var filterQuery2 = 'SELECT * FROM Players p where p.id = "' + playerId2 + '"';
                     var accept2 = collection.queryDocuments(collection.getSelfLink(), filterQuery2, {},
                         function (err2, documents2, responseOptions2) {
                             if (err2) throw new Error("Error" + err2.message);
-                            if (documents2.length != 1) throw "Unable to find both names";
+                            if (documents2.length != 1) throw "Unable toofind both names";
                             player2Document = documents2[0];
                             swapItems(player1Document, player2Document);
                             return;
                         });
-                    if (!accept2) throw "Unable to read player details, abort ";
+                    if (!accept2) throw "Unable tooread player details, abort ";
                 });
 
-            if (!accept) throw "Unable to read player details, abort ";
+            if (!accept) throw "Unable tooread player details, abort ";
 
-            // swap the two players’ items
+            // swap hello two players’ items
             function swapItems(player1, player2) {
                 var player1ItemSave = player1.item;
                 player1.item = player2.item;
@@ -200,91 +200,91 @@ ms.lasthandoff: 08/03/2017
 
                 var accept = collection.replaceDocument(player1._self, player1,
                     function (err, docReplaced) {
-                        if (err) throw "Unable to update player 1, abort ";
+                        if (err) throw "Unable tooupdate player 1, abort ";
 
                         var accept2 = collection.replaceDocument(player2._self, player2,
                             function (err2, docReplaced2) {
-                                if (err) throw "Unable to update player 2, abort"
+                                if (err) throw "Unable tooupdate player 2, abort"
                             });
 
-                        if (!accept2) throw "Unable to update player 2, abort";
+                        if (!accept2) throw "Unable tooupdate player 2, abort";
                     });
 
-                if (!accept) throw "Unable to update player 1, abort";
+                if (!accept) throw "Unable tooupdate player 1, abort";
             }
         }
     }
 
-    // register the stored procedure in Node.js client
+    // register hello stored procedure in Node.js client
     client.createStoredProcedureAsync(collection._self, exchangeItemsSproc)
         .then(function (response) {
             var createdStoredProcedure = response.resource;
         }
     );
 
-此預存程序使用遊戲應用程式內的交易，透過單一作業讓兩位玩家交易項目。 預存程序嘗試讀取兩份文件，這兩份文件各自對應到以引數形式傳入的玩家 ID。 如果有找到這兩份玩家文件，則預存程序會透過交換他們的項目來更新文件。 如果過程中發生任何錯誤，則會擲回以隱含方式中止交易的 JavaScript 例外狀況。
+這個預存程序會使用兩個播放程式在單一作業中之間 tootrade 遊戲應用程式項目內的交易。 hello 預存程序嘗試 tooread 兩份文件中傳遞做為引數的每個對應的 toohello 播放程式識別碼。 如果找不到這兩個播放程式文件，hello 預存程序會更新 hello 文件交換及其項目。 如果發生任何錯誤 hello 方式，就會擲回隱含中止 hello 交易的 JavaScript 例外狀況。
 
-如果預存程序註冊的集合是單一分割集合，則交易的範圍為集合中的所有文件。 如果集合已分割，則預存程序會在單一分割索引鍵的交易範圍內執行。 然後每個預存程序執行必須包含分割索引鍵值，該值對應至必須在其下執行交易的範圍。 如需詳細資訊，請參閱 [Azure Cosmos DB 資料分割](partition-data.md)。
+如果 hello 集合 hello 預存程序註冊針對單一資料分割集合，則 hello 交易是已設定領域的 tooall hello 集合中的 hello 文件。 如果已分割 hello 集合，預存程序會執行 hello 交易範圍中的單一資料分割索引鍵。 每個預存程序執行必須再包含必須在對應的 toohello 範圍 hello 交易下執行的資料分割索引鍵的值。 如需詳細資訊，請參閱 [Azure Cosmos DB 資料分割](partition-data.md)。
 
 ### <a name="commit-and-rollback"></a>認可和回復
-交易原本就深入整合至 Cosmos DB 的 JavaScript 程式設計模型。 在 JavaScript 函數內，會將所有作業自動包裝在單一交易內。 如果 JavaScript 完成，而且沒有任何例外狀況，就會認可資料庫作業。 在 Cosmos DB 中，關聯式資料庫中的 "BEGIN TRANSACTION" 和 "COMMIT TRANSACTION" 陳述式實際上是隱含的。  
+交易原本就深入整合至 Cosmos DB 的 JavaScript 程式設計模型。 在 JavaScript 函數內，會將所有作業自動包裝在單一交易內。 如果 hello JavaScript 完成而沒有任何例外狀況，就無法認可 hello operations toohello 資料庫。 作用中，關聯式資料庫中的 hello"BEGIN TRANSACTION"和"COMMIT TRANSACTION"陳述式是 Cosmos DB 中隱含轉換。  
 
-如果有任何透過指令碼傳播的例外狀況，則 Cosmos DB 的 JavaScript 執行階段將會復原整個交易。 如稍早的範例所示，擲回例外狀況的作用等同於 Cosmos DB 中的 "ROLLBACK TRANSACTION"。
+如果沒有從 hello 指令碼會傳播任何例外狀況，Cosmos DB JavaScript 執行階段將會回復儲存 hello 整個交易。 如稍早所示 hello 範例中，擲回例外狀況是有效等同 tooa Cosmos DB 中的 「 復原交易 」。
 
 ### <a name="data-consistency"></a>資料一致性
-預存程序和觸發程序一律會在 Azure Cosmos DB 容器的主要複本上執行。 這確保從預存程序讀取的資料有強式一致性。 使用「使用者定義函數」的查詢可以在主要或任何次要複本上執行，但是我們透過選擇適當的複本，確保符合所要求的一致性層級。
+一律 hello Azure Cosmos DB 容器 hello 主要複本上執行預存程序和觸發程序。 這確保從預存程序讀取的資料有強式一致性。 使用使用者定義函數的查詢可以執行在 hello 主要或任何次要複本，但我們確定 toomeet hello 要求一致性層級選擇 hello 適當複本。
 
 ## <a name="bounded-execution"></a>界限執行
-所有 Cosmos DB 作業都必須在伺服器指定的要求逾時期間內完成。 此條件約束也適用於 JavaScript 函數 (預存程序、觸發程序和使用者定義函數)。 如果作業未在該時限內完成，則會回復交易。 JavaScript 函數必須在此時限內完成，或必須實作接續式模型來批次處理/繼續執行。  
+所有 Cosmos DB 作業必須在指定的 hello 伺服器內都完成要求逾時持續期間。 這個條件約束也適用於 tooJavaScript 函式 （預存程序、 觸發程序和使用者定義函數）。 如果作業未完成的時間限制，hello 會復原交易。 JavaScript 函式必須在 hello 時間限制內完成，或實作基礎的接續模型 toobatch/繼續執行。  
 
-若要簡化預存程序和觸發程序的開發流程以因應此時限，集合物件下的所有函數 (用於建立、讀取、取代與刪除文件和附件) 都會傳回布林值，以指出該作業是否會完成。 如果此值是 false，則表示即將到達時限，該程序必須包裝執行作業。  如果預存程序及時完成，而且佇列中已無其他要求，則在第一個不被接受之儲存作業之前排入佇列的作業保證會完成。  
+在訂單 toosimplify 開發中的預存程序和觸發程序 toohandle 時間限制，hello 集合物件 （適用於建立、 讀取、 取代型和刪除的文件和附件） 底下的所有函式會傳回布林值，表示是否，將會完成作業。 如果此值為 false，就表示 hello 時間限制是關於 tooexpire，和該 hello 程序必須結語執行。  作業排入佇列的先前 toohello 第一項不被接受的存放區作業一定 toocomplete 如果 hello 預存程序完成的時間，不佇列任何要求。  
 
-JavaScript 函數能使用的資源也受到限制。 Cosmos DB 會根據所佈建的資料庫帳戶大小預留每個集合的輸送量。 輸送量是以 CPU、記憶體和 IO 使用量的標準單位 (稱為要求單位或 RU) 來表示。 JavaScript 函數有可能會在短時間內使用大量 RU，如果達到集合限制，速率便會受到限制。 需要使用大量資源的預存程序也可能會遭到隔離，以確保基本資料庫作業的可用性。  
+JavaScript 函數能使用的資源也受到限制。 Cosmos 資料庫會保留每個集合的資料庫帳戶的佈建的 hello 大小為基礎的輸送量。 輸送量是以 CPU、記憶體和 IO 使用量的標準單位 (稱為要求單位或 RU) 來表示。 JavaScript 函式可能可能佔用大量的俄文短的時間內，並可能會收到速率限制會在達到 hello 集合的限制時。 資源密集的預存程序可能也會隔離的 tooensure 可用性的基本資料庫作業。  
 
 ### <a name="example-bulk-importing-data-into-a-database-program"></a>範例：將大量資料匯入資料庫程式
-以下的預存程序範例，其撰寫目的是要將文件大量匯入集合之中。 請注意預存程序如何透過檢查 createDocument 所傳回的布林值處理界限執行，然後使用每次叫用預存程序時所插入的文件計數來追蹤和繼續各批次的進度。
+以下是集合中會寫入文件 toobulk 匯入的預存程序的範例。 注意如何 hello 儲存程序控制代碼繫結的執行方式是檢查 hello 布林值會傳回值 createDocument，以及使用然後 hello 的整個批次插入的 hello 預存程序 tootrack 並繼續進行的每個引動過程中的文件計數。
 
     function bulkImport(docs) {
         var collection = getContext().getCollection();
         var collectionLink = collection.getSelfLink();
 
-        // The count of imported docs, also used as current doc index.
+        // hello count of imported docs, also used as current doc index.
         var count = 0;
 
         // Validate input.
-        if (!docs) throw new Error("The array is undefined or null.");
+        if (!docs) throw new Error("hello array is undefined or null.");
 
         var docsLength = docs.length;
         if (docsLength == 0) {
             getContext().getResponse().setBody(0);
         }
 
-        // Call the create API to create a document.
+        // Call hello create API toocreate a document.
         tryCreate(docs[count], callback);
 
         // Note that there are 2 exit conditions:
-        // 1) The createDocument request was not accepted. 
-        //    In this case the callback will not be called, we just call setBody and we are done.
-        // 2) The callback was called docs.length times.
-        //    In this case all documents were created and we don’t need to call tryCreate anymore. Just call setBody and we are done.
+        // 1) hello createDocument request was not accepted. 
+        //    In this case hello callback will not be called, we just call setBody and we are done.
+        // 2) hello callback was called docs.length times.
+        //    In this case all documents were created and we don’t need toocall tryCreate anymore. Just call setBody and we are done.
         function tryCreate(doc, callback) {
             var isAccepted = collection.createDocument(collectionLink, doc, callback);
 
-            // If the request was accepted, callback will be called.
-            // Otherwise report current count back to the client, 
-            // which will call the script again with remaining set of docs.
+            // If hello request was accepted, callback will be called.
+            // Otherwise report current count back toohello client, 
+            // which will call hello script again with remaining set of docs.
             if (!isAccepted) getContext().getResponse().setBody(count);
         }
 
-        // This is called when collection.createDocument is done in order to process the result.
+        // This is called when collection.createDocument is done in order tooprocess hello result.
         function callback(err, doc, options) {
             if (err) throw err;
 
-            // One more document has been inserted, increment the count.
+            // One more document has been inserted, increment hello count.
             count++;
 
             if (count >= docsLength) {
-                // If we created all documents, we are done. Just set the response.
+                // If we created all documents, we are done. Just set hello response.
                 getContext().getResponse().setBody(count);
             } else {
                 // Create next document.
@@ -295,7 +295,7 @@ JavaScript 函數能使用的資源也受到限制。 Cosmos DB 會根據所佈�
 
 ## <a id="trigger"></a> 資料庫觸發程序
 ### <a name="database-pre-triggers"></a>資料庫預先觸發程序
-Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您可以在建立文件時指定預先觸發程序；此預先觸發程序會在建立文件之前執行。 下列範例說明如何使用預先觸發程序來驗證所建立文件的屬性：
+Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 比方說，您可以指定前的觸發程序，當您建立文件-這個前置觸發程序會在執行之前建立 hello 文件。 hello 以下是如何前置觸發程序可以是使用的 toovalidate hello 屬性所建立的文件的範例：
 
     var validateDocumentContentsTrigger = {
         id: "validateDocumentContents",
@@ -303,7 +303,7 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
             var context = getContext();
             var request = context.getRequest();
 
-            // document to be created in the current operation
+            // document toobe created in hello current operation
             var documentToCreate = request.getBody();
 
             // validate properties
@@ -312,7 +312,7 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
                 documentToCreate["my timestamp"] = ts.getTime();
             }
 
-            // update the document that will be created
+            // update hello document that will be created
             request.setBody(documentToCreate);
         },
         triggerType: TriggerType.Pre,
@@ -320,7 +320,7 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
     }
 
 
-以及觸發程序的對應 Node.js 用戶端註冊程式碼：
+和 hello 對應 hello 觸發程序的 Node.js 註冊用戶端程式碼：
 
     // register pre-trigger
     client.createTriggerAsync(collection.self, validateDocumentContentsTrigger)
@@ -347,9 +347,9 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
     });
 
 
-預先觸發程序不能有任何輸入參數。 要求物件可以用來操作與作業相關聯的要求訊息。 在這裡，預先觸發程序會在建立文件時執行，而且要求訊息本文包含要以 JSON 格式建立的文件。   
+預先觸發程序不能有任何輸入參數。 hello 要求物件可以是使用的 toomanipulate hello 要求訊息與 hello 作業相關聯。 在這裡，hello 建立的文件，以執行 hello 前置觸發程序和 hello 要求訊息內文包含 hello 文件 toobe 以 JSON 格式來建立。   
 
-註冊觸發程序時，使用者可以指定與之搭配執行的作業。 此觸發程序是使用 TriggerOperation.Create 所建立，這表示不允許下列作業。
+當觸發程序所註冊時，使用者可以指定執行時的 hello 作業。 這個觸發程序被建立 TriggerOperation.Create，這表示不允許下列 hello。
 
     var options = { preTriggerInclude: "validateDocumentContents" };
 
@@ -364,9 +364,9 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
     // Fails, can’t use a create trigger in a replace operation
 
 ### <a name="database-post-triggers"></a>資料庫後續觸發程序
-後續觸發程序與預先觸發程序類以，都與文件上的作業相關聯，且未採用任何輸入參數。 它們是在作業完成「之後」  執行，而且可以存取傳送給用戶端的回應訊息。   
+後續觸發程序與預先觸發程序類以，都與文件上的作業相關聯，且未採用任何輸入參數。 您會看到執行**之後**hello 作業已完成，並具有存取 toohello 回應訊息傳送 toohello 用戶端。   
 
-下列範例說明起作用的後續觸發程序：
+hello 下列範例會顯示作用中的後置觸發程序：
 
     var updateMetadataTrigger = {
         id: "updateMetadata",
@@ -382,11 +382,11 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
             var filterQuery = 'SELECT * FROM root r WHERE r.id = "_metadata"';
             var accept = collection.queryDocuments(collection.getSelfLink(), filterQuery,
                 updateMetadataCallback);
-            if(!accept) throw "Unable to update metadata, abort";
+            if(!accept) throw "Unable tooupdate metadata, abort";
 
             function updateMetadataCallback(err, documents, responseOptions) {
                 if(err) throw new Error("Error" + err.message);
-                         if(documents.length != 1) throw 'Unable to find metadata document';
+                         if(documents.length != 1) throw 'Unable toofind metadata document';
 
                          var metadataDocument = documents[0];
 
@@ -395,9 +395,9 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
                          metadataDocument.createdNames += " " + createdDocument.id;
                          var accept = collection.replaceDocument(metadataDocument._self,
                                metadataDocument, function(err, docReplaced) {
-                                      if(err) throw "Unable to update metadata, abort";
+                                      if(err) throw "Unable tooupdate metadata, abort";
                                });
-                         if(!accept) throw "Unable to update metadata, abort";
+                         if(!accept) throw "Unable tooupdate metadata, abort";
                          return;                    
             }                                                                                            
         },
@@ -406,14 +406,14 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
     }
 
 
-觸發程序可以如下列範例所示進行註冊。
+hello 下列範例所示，您可以註冊 hello 觸發程序。
 
     // register post-trigger
     client.createTriggerAsync('dbs/testdb/colls/testColl', updateMetadataTrigger)
         .then(function(createdTrigger) { 
             var docToCreate = { 
                 name: "artist_profile_1023",
-                artist: "The Band",
+                artist: "hello Band",
                 albums: ["Hellujah", "Rotators", "Spinning Top"]
             };
 
@@ -432,14 +432,14 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
     });
 
 
-此觸發程序會查詢中繼資料文件，並使用新建立之文件的詳細資料加以更新。  
+這個觸發程序查詢 hello 中繼資料文件，並更新 hello 新建立的文件的相關詳細資料。  
 
-有一點務必要注意，那就是在 Cosmos DB 中觸發程序的「交易式」執行。 此後續觸發程序會在與建立原始文件時的相同交易過程中執行。 因此，如果從後續觸發程序擲出例外狀況 (例如，如果我們無法更新中繼資料文件的話)，則整個交易會失敗並予以回復。 此時不會建立任何文件，並且會傳回例外狀況。  
+一件事，是很重要 toonote hello**異動**Cosmos DB 中的觸發程序執行。 這個後置觸發程序執行的 hello hello 建立 hello 原始文件相同的交易。 因此，我們會發生例外狀況擲回從 hello 後置觸發程序 （例如如果我們無法 tooupdate hello 中繼資料文件） 時，如果 hello 整筆交易將會失敗，而且會回復。 此時不會建立任何文件，並且會傳回例外狀況。  
 
 ## <a id="udf"></a>使用者定義函數
-使用者定義函數 (UDF) 可用來擴充 DocumentDB API SQL 查詢語言文法及實作自訂商務邏輯。 UDF 只能從內部查詢進行呼叫。 它們無法存取內容物件，只能做為計算用途的 JavaScript。 因此，UDF 可以在 Cosmos DB 服務的次要複本上執行。  
+使用者定義函數 (Udf) 包含使用的 tooextend hello DocumentDB API SQL 查詢語言文法，及實作自訂商務邏輯。 UDF 只能從內部查詢進行呼叫。 他們沒有存取 toohello 內容物件，而且為了 toobe 做為計算僅限 JavaScript。 因此，Udf 可以 hello Cosmos DB 服務之次要複本上執行。  
 
-下列範例會建立 UDF，根據各種收入級距的稅率計算所得稅，然後在查詢內使用它來尋找繳稅超過 $20,000 的所有人員。
+hello 下列範例會建立根據速率的各種收入方括號，UDF toocalculate 所得稅，然後使用它內查詢 toofind 支付 $ 20,000 名以上稅金中的所有人。
 
     var taxUdf = {
         id: "tax",
@@ -458,7 +458,7 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
     }
 
 
-此 UDF 之後可以用於如下列範例所示的查詢中：
+hello UDF 後續用於查詢在下列範例中的 hello:
 
     // register UDF
     client.createUserDefinedFunctionAsync('dbs/testdb/colls/testColl', taxUdf)
@@ -479,12 +479,12 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
     });
 
 ## <a name="javascript-language-integrated-query-api"></a>JavaScript Language Integrated Query API
-除了使用 DocumentDB 的 SQL 文法發出查詢，伺服器端 SDK 可讓您使用流暢的 JavaScript 介面執行最佳化查詢，不需具備任何 SQL 的知識。 JavaScript 的查詢 API 使用 ECMAScript5 陣列內建和受歡迎的 JavaScript 程式庫如 lodash 所熟悉的語法，將述詞函式傳遞至可鏈結式函式呼叫，藉此以程式設計方式建立查詢。 JavaScript 執行階段會剖析查詢，以使用 Azure Cosmos DB 的索引有效地執行該查詢。
+除了使用 DocumentDB 的 SQL 文法 tooissuing 查詢，hello 伺服器端 SDK 可讓您使用 fluent 應用程式開發的 JavaScript 介面，而不知道任何 SQL tooperform 最佳化查詢。 hello JavaScript 查詢 API 可讓您 tooprogrammatically 建置查詢將述詞函式傳遞至可鏈結函式呼叫，與語法熟悉 tooECMAScript5 陣列內建像 lodash 受歡迎的 JavaScript 程式庫。 Hello 有效率地使用 Azure Cosmos DB 的索引執行的 JavaScript 執行階段 toobe 由剖析查詢。
 
 > [!NOTE]
-> `__` (雙底線) 是 `getContext().getCollection()` 的別名。
+> `__`（雙底線） 太別名`getContext().getCollection()`。
 > <br/>
-> 換句話說，您可以使用 `__` 或 `getContext().getCollection()` 來存取 JavaScript 查詢 API。
+> 換句話說，您可以使用`__`或`getContext().getCollection()`tooaccess hello JavaScript 查詢 API。
 > 
 > 
 
@@ -503,7 +503,7 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
 <b>filter(predicateFunction [, options] [, callback])</b>
 <ul>
 <li>
-使用述詞函式篩選輸入，它會傳回 true/false 以將 in/out 輸入文件篩選至結果集。 此行為類似 SQL 中的 WHERE 子句。
+篩選使用述詞的函式會傳回成 hello 結果集的順序 toofilter 輸入/輸出輸入文件中的 true/false 輸入 hello。 這種行為與類似 tooa SQL 中的 WHERE 子句。
 </li>
 </ul>
 </li>
@@ -511,7 +511,7 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
 <b>map(transformationFunction [, options] [, callback])</b>
 <ul>
 <li>
-適用於所指定的轉換函式將每個輸入項目對應至 JavaScript 物件或值的投影。 此行為類似 SQL 中的 SELECT 子句。
+適用於投影，指定對應的每個輸入項目 tooa JavaScript 物件或值的轉換函式。 這種行為與類似的 tooa SELECT 子句中 SQL。
 </li>
 </ul>
 </li>
@@ -519,7 +519,7 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
 <b>pluck([propertyName] [, options] [, callback])</b>
 <ul>
 <li>
-這是從每個輸入項目擷取單一屬性值的對應捷徑。
+這是從每個輸入項目擷取單一屬性的 hello 值對應的捷徑。
 </li>
 </ul>
 </li>
@@ -527,7 +527,7 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
 <b>flatten([isShallow] [, options] [, callback])</b>
 <ul>
 <li>
-合併並且壓平每個輸入項目的陣列成為單一陣列。 此行為類似 LINQ 中的 SelectMany。
+結合，並將陣列 tooa 單一陣列中每個輸入項目。 這種行為與類似 tooSelectMany LINQ 中。
 </li>
 </ul>
 </li>
@@ -535,7 +535,7 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
 <b>sortBy([predicate] [, options] [, callback])</b>
 <ul>
 <li>
-使用指定述詞以遞增順序排序輸入文件串流中的文件，產生一組新的文件。 此行為類似 SQL 中的 ORDER BY 子句。
+透過排序 hello 文件，以遞增順序，使用指定的述詞的 hello hello 輸入文件資料流中會產生一組新的文件。 這種行為與類似 tooa ORDER BY 子句在 SQL 中。
 </li>
 </ul>
 </li>
@@ -543,34 +543,34 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
 <b>sortByDescending([predicate] [, options] [, callback])</b>
 <ul>
 <li>
-使用指定述詞以遞減順序排序輸入文件串流中的文件，產生一組新的文件。 此行為類似 SQL 中的 ORDER BY x DESC 子句。
+透過排序 hello 文件，以遞減順序，使用指定的述詞的 hello hello 輸入文件資料流中會產生一組新的文件。 這種行為與 SQL 類似 tooa x DESC ORDER BY 子句。
 </li>
 </ul>
 </li>
 </ul>
 
 
-當裡面包含述詞和/或選取器函式時，下列 JavaScript 建構會自動取得最佳化，以便直接在 Azure Cosmos DB 索引上執行：
+包含述詞和 （或） 選取器函式內，hello 下列 JavaScript 建構自動最佳化的 toorun 直接在取得 Azure Cosmos DB 索引：
 
 * 簡單運算子：= + - * / % | ^ &amp; == != === !=== &lt; &gt; &lt;= &gt;= || &amp;&amp; &lt;&lt; &gt;&gt; &gt;&gt;&gt;! ~
-* 常值，包括 literal: {} 物件
+* 常值，包括 hello 物件常值: {}
 * var、return
 
-下列 JavaScript 建構不會取得 Azure Cosmos DB 索引的最佳化：
+下列 JavaScript 建構的 hello 不會針對 Azure Cosmos DB 索引取得最佳化：
 
 * 控制流程 (例如 if、for、while)
 * 函式呼叫
 
 如需詳細資訊，請參閱我們的 [伺服器端 JSDocs](http://azure.github.io/azure-documentdb-js-server/)。
 
-### <a name="example-write-a-stored-procedure-using-the-javascript-query-api"></a>範例：使用 JavaScript 查詢 API 撰寫預存程序
-下列程式碼範例示範 JavaScript 查詢 API 如何運用於預存程序的背景下。 預存程序會依照指定的輸入參數插入文件，然後使用 `__.filter()` 方法根據輸入文件的大小屬性，以 minSize、maxSize 和 totalSize 來更新中繼資料文件。
+### <a name="example-write-a-stored-procedure-using-hello-javascript-query-api"></a>範例： 撰寫預存程序使用 hello JavaScript 查詢 API
+下列程式碼範例的 hello 是如何使用 hello JavaScript 查詢 API，hello 預存程序內容中的範例。 hello 預存程序插入文件中，所輸入的參數，指定並更新中繼資料文件中，使用 hello`__.filter()`方法，並有 minSize、 maxSize 和 totalSize 依據 hello 輸入文件的大小屬性。
 
     /**
      * Insert actual doc and update metadata doc: minSize, maxSize, totalSize based on doc.size.
      */
     function insertDocumentAndUpdateMetadata(doc) {
-      // HTTP error codes sent to our callback funciton by DocDB server.
+      // HTTP error codes sent tooour callback funciton by DocDB server.
       var ErrorCode = {
         RETRY_WITH: 449,
       }
@@ -578,22 +578,22 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
       var isAccepted = __.createDocument(__.getSelfLink(), doc, {}, function(err, doc, options) {
         if (err) throw err;
 
-        // Check the doc (ignore docs with invalid/zero size and metaDoc itself) and call updateMetadata.
+        // Check hello doc (ignore docs with invalid/zero size and metaDoc itself) and call updateMetadata.
         if (!doc.isMetadata && doc.size > 0) {
-          // Get the meta document. We keep it in the same collection. it's the only doc that has .isMetadata = true.
+          // Get hello meta document. We keep it in hello same collection. it's hello only doc that has .isMetadata = true.
           var result = __.filter(function(x) {
             return x.isMetadata === true
           }, function(err, feed, options) {
             if (err) throw err;
 
             // We assume that metadata doc was pre-created and must exist when this script is called.
-            if (!feed || !feed.length) throw new Error("Failed to find the metadata document.");
+            if (!feed || !feed.length) throw new Error("Failed toofind hello metadata document.");
 
-            // The metadata document.
+            // hello metadata document.
             var metaDoc = feed[0];
 
             // Update metaDoc.minSize:
-            // for 1st document use doc.Size, for all the rest see if it's less than last min.
+            // for 1st document use doc.Size, for all hello rest see if it's less than last min.
             if (metaDoc.minSize == 0) metaDoc.minSize = doc.size;
             else metaDoc.minSize = Math.min(metaDoc.minSize, doc.size);
 
@@ -603,12 +603,12 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
             // Update metaDoc.totalSize.
             metaDoc.totalSize += doc.size;
 
-            // Update/replace the metadata document in the store.
+            // Update/replace hello metadata document in hello store.
             var isAccepted = __.replaceDocument(metaDoc._self, metaDoc, function(err) {
               if (err) throw err;
-              // Note: in case concurrent updates causes conflict with ErrorCode.RETRY_WITH, we can't read the meta again 
-              //       and update again because due to Snapshot isolation we will read same exact version (we are in same transaction).
-              //       We have to take care of that on the client side.
+              // Note: in case concurrent updates causes conflict with ErrorCode.RETRY_WITH, we can't read hello meta again 
+              //       and update again because due tooSnapshot isolation we will read same exact version (we are in same transaction).
+              //       We have tootake care of that on hello client side.
             });
             if (!isAccepted) throw new Error("replaceDocument(metaDoc) returned false.");
           });
@@ -618,8 +618,8 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
       if (!isAccepted) throw new Error("createDocument(actual doc) returned false.");
     }
 
-## <a name="sql-to-javascript-cheat-sheet"></a>SQL 到 Javascript 的速查表
-下列表格包含各種不同的 SQL 查詢和相對應的 JavaScript 查詢。
+## <a name="sql-toojavascript-cheat-sheet"></a>SQL tooJavascript 祕技
+hello 下表顯示各種 SQL 查詢和 hello 對應 JavaScript 的查詢。
 
 使用 SQL 查詢時，文件屬性索引鍵 (例如 `doc.id`) 會區分大小寫。
 
@@ -632,26 +632,26 @@ Cosmos DB 提供作業在文件上執行或觸發的觸發程序。 例如，您
 |SELECT docs.id, docs.message AS msg<br>FROM docs<br>WHERE docs.id="X998_Y998"|__.chain()<br>&nbsp;&nbsp;&nbsp;&nbsp;.filter(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return doc.id ==="X998_Y998";<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;.map(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: doc.id,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg: doc.message<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>.value();|5|
 |SELECT VALUE tag<br>FROM docs<br>JOIN tag IN docs.Tags<br>ORDER BY docs._ts|__.chain()<br>&nbsp;&nbsp;&nbsp;&nbsp;.filter(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return doc.Tags && Array.isArray(doc.Tags);<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;.sortBy(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return doc._ts;<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;.pluck("Tags")<br>&nbsp;&nbsp;&nbsp;&nbsp;.flatten()<br>&nbsp;&nbsp;&nbsp;&nbsp;.value()|6|
 
-以下說明解說上表中的每個查詢。
+hello 下列說明解釋 hello 上表中的每個查詢。
 1. 所有文件中的結果 (使用連續權杖分頁)。
-2. 投射識別碼、訊息 (別名為 msg)，和所有文件中的動作。
-3. 使用 predicate: id = "X998_Y998" 查詢文件。
-4. 查詢具有 Tags 屬性的文件，且 Tags 是包含值 123 的陣列。
-5. 使用 predicate, id = "X998_Y998" 查詢文件，然後投射識別碼和訊息 (別名為 msg)。
-6. 篩選具有陣列屬性 Tags 的文件，並且依據 _ts 時間戳記系統屬性排序結果文件，然後投射 + 壓平 Tags 陣列。
+2. 專案 hello 識別碼、 訊息 (別名 toomsg) 和所有文件中的動作。
+3. 文件以 hello 述詞的查詢： 識別碼 ="X998_Y998"。
+4. 查詢具有標記屬性和標記的文件是包含 hello 值 123 的陣列。
+5. 查詢述詞的文件識別碼 ="X998_Y998 」，而且然後專案 hello 識別碼和訊息 (別名 toomsg)。
+6. 有一個陣列的屬性標記的文件會篩選和 hello _ts 時間戳記系統屬性，依排序 hello 產生文件，然後專案 + 簡維 hello 標記的陣列。
 
 
 ## <a name="runtime-support"></a>執行階段支援
-[DocumentDB JavaScript 伺服器端 API](http://azure.github.io/azure-documentdb-js-server/) 支援以 [ECMA-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm) 作為標準的大部分主流 JavaScript 語言功能。
+[DocumentDB JavaScript 伺服器端應用程式開發介面](http://azure.github.io/azure-documentdb-js-server/)hello 提供支援大部分的 hello 主流 JavaScript 語言功能，以標準化的[ecma-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm)。
 
 ### <a name="security"></a>安全性
-JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料庫層級的快照交易隔離機制，否則某個指令碼的效果不會傳遞到另一個指令碼。 每次執行之後，都會對執行階段環境進行集區化處理，但會清除內容。 因此，環境與環境彼此之間絕對不會有任何未預期的副作用。
+JavaScript 預存程序和觸發程序是沙箱化，讓一個指令碼的 hello 效果不會流失 toohello 其他沒有經過 hello 資料庫層級的 hello 快照集交易隔離。 hello 執行階段環境管理的集區，但之後每次執行清除的 hello 內容。 因此，它們會保證 toobe 彼此安全的任何非預期的副作用。
 
 ### <a name="pre-compilation"></a>預先編譯
-預存程序、觸發程序和 UDF 會隱含地預先編譯為位元組程式碼格式，以避免掉每次叫用指令碼時的編譯成本。 這種作法可確保能夠快速叫用預存程序，且只需耗費少量資源。
+預存程序、 觸發程序和 Udf 於 hello 時間的每個指令碼引動過程順序 tooavoid 編譯成本隱含先行編譯的 toohello 位元組程式碼的格式。 這種作法可確保能夠快速叫用預存程序，且只需耗費少量資源。
 
 ## <a name="client-sdk-support"></a>用戶端 SDK 支援
-除了適用於 [Node.js](documentdb-sdk-node.md) 用戶端的 DocumentDB API 之外，Azure Cosmos DB 也具有適用於 DocumentDB API 的 [.NET](documentdb-sdk-dotnet.md)、[.NET Core](documentdb-sdk-dotnet-core.md)、[Java](documentdb-sdk-java.md)、[JavaScript](http://azure.github.io/azure-documentdb-js/) 和 [Python SDK](documentdb-sdk-python.md)。 使用上述任何 SDK，也可以建立和執行預存程序、觸發程序和 UDF。 下列範例說明如何使用 .NET 用戶端建立和執行預存程序。 請注意 .NET 類型是如何在預存程序中以 JSON 形式傳入及讀回。
+中的加法 toohello DocumentDB API [Node.js](documentdb-sdk-node.md)用戶端，Azure Cosmos DB [.NET](documentdb-sdk-dotnet.md)， [.NET Core](documentdb-sdk-dotnet-core.md)， [Java](documentdb-sdk-java.md)， [JavaScript](http://azure.github.io/azure-documentdb-js/)，和[Python Sdk](documentdb-sdk-python.md) hello DocumentDB API。 使用上述任何 SDK，也可以建立和執行預存程序、觸發程序和 UDF。 下列範例會示範如何 hello toocreate 和執行預存程序使用 hello.NET 用戶端。 請注意 hello.NET 型別如何傳入 hello 預存程序，為 JSON，並讀回。
 
     var markAntiquesSproc = new StoredProcedure
     {
@@ -684,7 +684,7 @@ JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料
     Document createdDocument = await client.ExecuteStoredProcedureAsync<Document>(UriFactory.CreateStoredProcedureUri("db", "coll", "sproc"), document, 1920);
 
 
-此範例示範如何使用 [DocumentDB .NET API](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) 建立預先觸發程序以及建立已啟用觸發程序的文件。 
+這個範例示範如何 toouse hello [DocumentDB.NET API](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) toocreate 前置觸發程序和建立文件以 hello 觸發程序啟用。 
 
     Trigger preTrigger = new Trigger()
     {
@@ -705,7 +705,7 @@ JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料
         });
 
 
-下列範例則說明如何建立使用者定義函數 (UDF) 並將它用於 [DocumentDB API SQL 查詢](documentdb-sql-query.md)中。
+和 hello 下列範例顯示如何 toocreate 使用者定義函數 (UDF)，並使用它在[DocumentDB API SQL 查詢](documentdb-sql-query.md)。
 
     UserDefinedFunction function = new UserDefinedFunction()
     {
@@ -723,7 +723,7 @@ JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料
     }
 
 ## <a name="rest-api"></a>REST API
-所有 Azure Cosmos DB 作業都可以用 RESTful 方式來執行。 使用 HTTP POST，就可以將預存程序、觸發程序和使用者定義函數註冊至某個集合下。 下列是如何註冊預存程序的範例：
+所有 Azure Cosmos DB 作業都可以用 RESTful 方式來執行。 使用 HTTP POST，就可以將預存程序、觸發程序和使用者定義函數註冊至某個集合下。 hello 以下是如何的範例 tooregister 預存程序：
 
     POST https://<url>/sprocs/ HTTP/1.1
     authorization: <<auth>>
@@ -746,7 +746,7 @@ JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料
     }
 
 
-預存程序的註冊方式是使用包含要建立的預存程序的本文，對 URI dbs/testdb/colls/testColl/sprocs 執行 POST 要求。 觸發程序和 UDF可以透過分別發出 /triggers 和 /udfs 的 POST 要求，以類似方式進行註冊。
+hello 預存程序註冊執行 POST 要求，針對 hello URI dbs/testdb/colls/testColl/sprocs hello 主體包含有 hello toocreate 預存程序。 觸發程序和 UDF可以透過分別發出 /triggers 和 /udfs 的 POST 要求，以類似方式進行註冊。
 您可以接著對其資源連結發出 POST 要求來執行這個預存程序：
 
     POST https://<url>/sprocs/<sproc> HTTP/1.1
@@ -754,16 +754,16 @@ JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料
     x-ms-date: Thu, 07 Aug 2014 03:43:20 GMT
 
 
-    [ { "name": "TestDocument", "book": "Autumn of the Patriarch"}, "Price", 200 ]
+    [ { "name": "TestDocument", "book": "Autumn of hello Patriarch"}, "Price", 200 ]
 
 
-在這裡，預存程序的輸入會傳入要求本文中。 請注意，輸入會以 JSON 輸入參數陣列的形式傳遞。 預存程序會將第一個輸入做為文件 (即回應本文)。 我們收到的回應如下：
+在這裡，hello 輸入的 toohello 預存程序會傳遞 hello 要求主體中。 請注意，hello 輸入被當做輸入參數的 JSON 陣列。 hello 預存程序會採用 hello 第一個輸入，是回應主體的文件。 我們收到 hello 回應如下所示：
 
     HTTP/1.1 200 OK
 
     { 
       name: 'TestDocument',
-      book: ‘Autumn of the Patriarch’,
+      book: ‘Autumn of hello Patriarch’,
       id: ‘V7tQANV3rAkDAAAAAAAAAA==‘,
       ts: 1407830727,
       self: ‘dbs/V7tQAA==/colls/V7tQANV3rAk=/docs/V7tQANV3rAkDAAAAAAAAAA==/’,
@@ -773,7 +773,7 @@ JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料
     }
 
 
-觸發程序與預存程序不同，無法直接執行， 而是在對文件執行作業時執行。 我們可以使用 HTTP 標頭指定要與要求搭配執行的觸發程序。 下列是建立文件的要求。
+觸發程序與預存程序不同，無法直接執行， 而是在對文件執行作業時執行。 我們可以使用 HTTP 標頭，透過要求指定 hello 觸發程序 toorun。 hello 以下是要求 toocreate 文件。
 
     POST https://<url>/docs/ HTTP/1.1
     authorization: <<auth>>
@@ -784,23 +784,23 @@ JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料
 
     {
        "name": "newDocument",
-       “title”: “The Wizard of Oz”,
+       “title”: “hello Wizard of Oz”,
        “author”: “Frank Baum”,
        “pages”: 92
     }
 
 
-在這裏，要與要求搭配執行的預先觸發程序指定於 x-ms-documentdb-pre-trigger-include 標頭中。 相對應地，後續觸發程序則是指定於 x-ms-documentdb-post-trigger-include 標頭中。 請注意，您可以指定給定要求的預先和後續觸發程序。
+這裡 hello 前置觸發程序 toobe 與 hello 要求執行 hello x-ms-documentdb-pre-trigger-include 標頭中指定。 相對的任何後續觸發程序可以在 hello x-ms-documentdb-post-trigger-include 標頭中。 請注意，您可以指定給定要求的預先和後續觸發程序。
 
 ## <a name="sample-code"></a>範例程式碼
 您可以在我們的 [GitHub 存放庫](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples)上找到更多的伺服器端程式碼範例 (包括 [bulk-delete](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples/stored-procedures/bulkDelete.js) 和 [update](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples/stored-procedures/update.js))。
 
-想要共用您絕佳的預存程序嗎？ 請傳送提取要求給我們！ 
+想 tooshare 實用的預存程序？ 請傳送提取要求給我們！ 
 
 ## <a name="next-steps"></a>後續步驟
-一旦您建立一或多個預存程序、觸發程序和使用者定義函數，您可以使用資料總管在 Azure 入口網站中載入並檢視這些項目。
+一旦您擁有一個或多個預存程序、 觸發程序和使用者定義函式建立，您可以將它們載入並 hello Azure 入口網站使用的資料檔案總管中檢視這些檔案。
 
-您還可以在您的路徑中找到下列有用的參考和資源，以深入了解 Azure Cosmos DB 伺服器端程式設計：
+您也可能會發現 hello 下列參考與資源有助於您深入了解 Azure Cosmos dB 伺服器端程式設計的路徑 toolearn:
 
 * [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md)
 * [DocumentDB Studio](https://github.com/mingaliu/DocumentDBStudio/releases)
@@ -808,5 +808,5 @@ JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料
 * [JavaScript ECMA-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm)
 * [安全和可攜式資料庫擴充性](http://dl.acm.org/citation.cfm?id=276339) 
 * [服務導向資料庫架構](http://dl.acm.org/citation.cfm?id=1066267&coll=Portal&dl=GUIDE) 
-* [在 Microsoft SQL Server 中託管 .NET 執行階段](http://dl.acm.org/citation.cfm?id=1007669)
+* [裝載 Microsoft SQL server 中的 hello.NET 執行階段](http://dl.acm.org/citation.cfm?id=1007669)
 

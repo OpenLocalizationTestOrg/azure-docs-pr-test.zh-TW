@@ -1,5 +1,5 @@
 ---
-title: "開發人員適用的 Azure Active Directory | Microsoft Docs"
+title: "適用於開發人員的 Active Directory aaaAzure |Microsoft 文件"
 description: "本文提供使用 Azure Active Directory 登入 Microsoft 工作和學校帳戶的概觀。"
 services: active-directory
 author: dstrockis
@@ -14,22 +14,22 @@ ms.workload: identity
 ms.date: 04/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: dce813b885d492343428428056a2e8aada27b461
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4dbbea6c1e0b8a70c0c36ddd1caec5658130a003
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-for-developers"></a>開發人員適用的 Azure Active Directory
-Azure Active Directory 是一項雲端識別服務，可讓開發人員使用 Microsoft 所支援的工作或學校帳戶安全地讓任何使用者登入。  此處的文件說明如何使用業界標準驗證通訊協定 (OAuth 和 OpenID Connect)，將 Azure AD 支援新增至您的應用程式。
+Azure Active Directory 是可讓開發人員 toosecurely 登入工作或學校帳戶具有的任何使用者受到 Microsoft 的雲端身分識別服務。  hello 文件會顯示如何 tooadd Azure AD 支援使用業界標準驗證通訊協定，OAuth 和 OpenID Connect tooyour 應用程式。
 
 | | |
 | --- | --- |
-|[驗證基本概念](active-directory-authentication-scenarios.md) | 使用 Azure AD 進行驗證的簡介 |
-|[應用程式類型](active-directory-authentication-scenarios.md#application-types-and-scenarios) | Azure AD 所支援的驗證案例概觀 |                                
+|[驗證基本概念](active-directory-authentication-scenarios.md) | 使用 Azure AD 簡介 tooauthentication |
+|[應用程式類型](active-directory-authentication-scenarios.md#application-types-and-scenarios) | Azure AD 支援的 hello 驗證案例概觀 |                                
                                                                               
 ## <a name="get-started"></a>開始使用
-這些引導式安裝程式會逐步引導您使用我們的驗證程式庫讓 Azure Active Directory 使用者登入。
+這些 「 引導式的安裝將會引導您完成使用我們的驗證程式庫 toosign 中 Azure Active Directory 使用者。
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -40,13 +40,13 @@ Azure Active Directory 是一項雲端識別服務，可讓開發人員使用 Mi
 | <center>![服務對服務](./media/active-directory-developers-guide/Service_App.png)<br />服務對服務</center> | [概觀](active-directory-authentication-scenarios.md#daemon-or-server-application-to-web-api)<br /><br />[.NET](active-directory-code-samples.md#server-or-daemon-application-to-web-api)<br /><br />[OAuth 2.0 用戶端認證](active-directory-protocols-oauth-service-to-service.md) |  |
 
 ## <a name="guides"></a>手冊
-這些文章說明如何使用 Azure Active Directory 執行一般工作。
+這些文件就會通知您與 Azure Active Directory tooperform 一般工作的方式。
 
 |                                                                           |  |
 |---------------------------------------------------------------------------| --- |
-|[應用程式註冊](active-directory-integrating-applications.md)           | 如何在 Azure AD 中註冊應用程式 |
-|[多租用戶應用程式](active-directory-devhowto-multi-tenant-overview.md)    | 如何登入任何 Microsoft 工作帳戶 |
-|[OAuth 和 OpenID Connect](active-directory-protocols-openid-connect-code.md)| 如何使用我們的新式驗證通訊協定讓使用者登入並呼叫 Web API |
+|[應用程式註冊](active-directory-integrating-applications.md)           | 如何 tooregister 在 Azure AD 中的應用程式 |
+|[多租用戶應用程式](active-directory-devhowto-multi-tenant-overview.md)    | 如何在任何 Microsoft toosign 工作帳戶 |
+|[OAuth 和 OpenID Connect](active-directory-protocols-openid-connect-code.md)| 如何 toosign 中使用者和呼叫 web Api 使用我們的新式驗證通訊協定 |
 |[更多指南...](active-directory-developers-guide-index.md#guides)        |     |
 
 ## <a name="reference"></a>參考
@@ -54,13 +54,13 @@ Azure Active Directory 是一項雲端識別服務，可讓開發人員使用 Mi
 
 |                                                                                   | |
 | ----------------------------------------------------------------------------------| --- |
-| [驗證程式庫 (ADAL)](active-directory-authentication-libraries.md)   | Azure AD 所提供的程式庫和 SDK 概觀 |
+| [驗證程式庫 (ADAL)](active-directory-authentication-libraries.md)   | Hello 程式庫和 Azure AD 所提供的 Sdk 的概觀 |
 | [程式碼範例](active-directory-code-samples.md)                                  | 所有 Azure AD 程式碼範例的清單 |
 | [詞彙](active-directory-dev-glossary.md)                                      | 本文件中使用的術語和文字定義 |
 | [更多參考資料...](active-directory-developers-guide-index.md#reference)|     |
 
 ## <a name="help--support"></a>說明及支援
-以下是取得在 Azure Active Directory 開發之協助的最佳位置。
+這些是 hello 最佳地方 tooget 說明與 Azure Active Directory 上進行開發。
 
 |  |  
 |---|
@@ -71,4 +71,4 @@ Azure Active Directory 是一項雲端識別服務，可讓開發人員使用 Mi
 <br />
 
 > [!NOTE]
-> 如果您需要登入 Microsoft 個人帳戶，您可能要考慮使用 [Azure AD v2.0 端點](active-directory-appmodel-v2-overview.md)。  Azure AD v2.0 端點可將 Microsoft 個人帳戶和 Microsoft 工作帳戶 (來自 Azure AD) 統一成單一驗證系統。
+> 如果您需要 toosign 中 Microsoft 個人帳戶時，您可以使用 hello tooconsider [Azure AD v2.0 端點](active-directory-appmodel-v2-overview.md)。  Microsoft 個人帳戶 （& s） （來自 Azure AD) 的 Microsoft 工作帳戶的單一驗證系統的 hello 統一 hello Azure AD v2.0 端點。

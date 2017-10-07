@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 憑證式驗證 | Microsoft Docs"
-description: "了解如何在環境中設定憑證式驗證"
+title: "開始使用 Active Directory 憑證型驗證-aaaAzure |Microsoft 文件"
+description: "深入了解如何在您的環境中的 tooconfigure 憑證式驗證"
 author: MarkusVi
 documentationcenter: na
 manager: femila
@@ -13,71 +13,71 @@ ms.workload: identity
 ms.date: 08/02/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 8ebc6f2dd7502fd75ffdd4d5d68338382cb1a46b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3c73bdf56018c0716085c923a61e9560dbe4004c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-certificate-based-authentication-in-azure-active-directory"></a>開始在 Azure Active Directory 中使用憑證式驗證
 
-在將您的 Exchange Online 帳戶連線到下列各項時，憑證式驗證可讓您由 Azure Active Directory 透過用戶端憑證在 Windows、Android 或 iOS 裝置上驗證您的身分︰ 
+憑證型驗證可讓您連接至您 Exchange online 帳戶時，由 Azure Active Directory 驗證 Windows、 Android 或 iOS 裝置上的用戶端憑證的 toobe: 
 
 - Office 行動應用程式，例如 Microsoft Outlook 與 Microsoft Word   
 
 - Exchange ActiveSync (EAS) 用戶端 
 
-設定這項功能之後，就不需要在行動裝置上的特定郵件和 Microsoft Office 應用程式中，輸入使用者名稱和密碼的組合。 
+設定此功能可減少 hello 需要 tooenter 使用者名稱和密碼組合成特定郵件和行動裝置上的 Microsoft Office 應用程式。 
 
 本主題內容：
 
-- 提供為 Office 365 企業版、商務版、教育版、美國政府方案的租用戶使用者，設定和使用憑證式驗證的步驟。 在 Office 365 China、US Government Defense 及 US Government Federal 方案中，這項功能處於預覽版。 
+- 提供您以 hello 步驟 tooconfigure，並且使用憑證型驗證的使用者的租用戶在 Office 365 企業版、 企業、 教育版和美國政府計劃。 在 Office 365 China、US Government Defense 及 US Government Federal 方案中，這項功能處於預覽版。 
 
 - 假設您已經設定[公開金鑰基礎結構 (PKI)](https://go.microsoft.com/fwlink/?linkid=841737) 和 [AD FS](connect/active-directory-aadconnectfed-whatis.md)。    
 
 
 ## <a name="requirements"></a>需求
 
-若要設定憑證式驗證，必須符合以下要件：  
+tooconfigure 憑證式驗證 hello 下列必須為真：  
 
-- 只有瀏覽器應用程式或使用新式驗證 (ADAL) 之原生用戶端的同盟環境才支援憑證式驗證 (CBA)。 唯一的例外狀況是適用於 EXO 的 Exchange Active Sync (EAS)，可以用於同盟和受管理兩種帳戶。 
+- 只有瀏覽器應用程式或使用新式驗證 (ADAL) 之原生用戶端的同盟環境才支援憑證式驗證 (CBA)。 hello 一個例外狀況是 Exchange Active Sync (EAS)，如 EXO 可以用於兩者，同盟和受管理的帳戶。 
 
-- 務必要在 Azure Active Directory 中設定根憑證授權單位和任何中繼憑證授權單位。  
+- hello 根憑證授權單位和任何中繼憑證授權單位必須設定 Azure Active Directory 中。  
 
 - 每個憑證授權單位都必須有一份可透過網際網路對應 URL 來參考的憑證撤銷清單 (CRL)。  
 
-- 您至少必須在 Azure Active Directory 中設定一個憑證授權單位。 您可以在[設定憑證授權單位](#step-2-configure-the-certificate-authorities)一節中找到相關步驟。  
+- 您至少必須在 Azure Active Directory 中設定一個憑證授權單位。 您可以在 hello 找到相關的步驟[設定 hello 憑證授權單位](#step-2-configure-the-certificate-authorities)> 一節。  
 
-- (僅 Exchange ActiveSync 用戶端適用) 用戶端憑證必須將 Exchange Online 中可路由傳送的使用者電子郵件地址，放在 [主體別名] 欄位的 [主體名稱] 或 [RFC822 名稱] 值中。 Azure Active Directory 要將 RFC822 值對應到目錄中的 [Proxy 位址] 屬性。  
+- Exchange ActiveSync 用戶端，hello 用戶端憑證必須具有 hello 使用者路由傳送電子郵件中任一 hello 主體名稱位址在 Exchange online 或 hello RFC822 名稱值中的 hello 主體別名 欄位。 Azure Active Directory 對應 hello RFC822 值 toohello Proxy 位址屬性 hello 目錄中。  
 
-- 您的用戶端裝置必須至少可以存取一個發出用戶端憑證的憑證授權單位。  
+- 用戶端裝置必須存取 tooat 至少有一個憑證授權單位所簽發用戶端憑證。  
 
-- 用於戶端驗證的用戶端憑證必須已經發給您的用戶端。  
+- 用戶端驗證的用戶端憑證必須已發出 tooyour 用戶端。  
 
 
 
 
 ## <a name="step-1-select-your-device-platform"></a>步驟 1︰選取裝置平台
 
-第一個步驟中，針對您要處理的裝置平台，您需要檢閱下列項目︰
+第一個步驟是針對 hello 裝置平台，您有興趣，您需要 tooreview hello 下列：
 
-- Office 行動應用程式支援 
-- 特定的實作需求  
+- hello Office 行動應用程式支援 
+- hello 特定的實作需求  
 
-下列裝置平台有相關的資訊︰
+hello 與相關的資訊有下列裝置平台的 hello:
 
 - [Android](active-directory-certificate-based-authentication-android.md)
 - [iOS](active-directory-certificate-based-authentication-ios.md)
 
 
-## <a name="step-2-configure-the-certificate-authorities"></a>步驟 2︰設定憑證授權單位 
+## <a name="step-2-configure-hello-certificate-authorities"></a>步驟 2： 設定 hello 憑證授權單位 
 
-若要在 Azure Active Directory 中設定您的憑證授權單位，為每個憑證授權單位下載下列項目： 
+tooconfigure 在 Azure Active Directory 中，為每個憑證授權單位，您憑證授權單位上傳下列 hello: 
 
-* 憑證的公開部分 (「.cer」  格式) 
-* 憑證撤銷清單 (CRl) 所在的網際網路對應 URL
+* 在 hello hello 憑證公開部分*.cer*格式 
+* hello 網際網路對向的 Url，其中 hello 憑證撤銷清單 (Crl) 位於
 
-憑證授權單位的結構描述看起來像這樣︰ 
+憑證授權單位的 hello 結構描述看起來如下： 
 
     class TrustedCAsForPasswordlessAuth 
     { 
@@ -101,34 +101,34 @@ ms.lasthandoff: 08/18/2017
         IntermediateAuthority = 1 
     } 
 
-設定時，您可以使用 [Azure Active Directory PowerShell 第 2 版](/powershell/azure/install-adv2?view=azureadps-2.0)：  
+Hello 設定，您可以使用 hello [Azure Active Directory PowerShell 版本 2](/powershell/azure/install-adv2?view=azureadps-2.0):  
 
 1. 以系統管理員權限啟動 Windows PowerShell。 
-2. 安裝 Azure AD 模組。 您必須安裝 [2.0.0.33 ](https://www.powershellgallery.com/packages/AzureAD/2.0.0.33) 版或更新版本。  
+2. 安裝 hello Azure AD 模組。 您需要 tooinstall 版本[2.0.0.33](https://www.powershellgallery.com/packages/AzureAD/2.0.0.33)或更高版本。  
    
         Install-Module -Name AzureAD –RequiredVersion 2.0.0.33 
 
-設定的第一個步驟，您需要與您的租用戶建立連線。 一旦您與租用戶的連線存在，您可以檢閱、新增、刪除、修改在您的目錄中定義的受信任的憑證授權單位。 
+在第一個組態步驟中，您會需要 tooestablish 連接與您的租用戶。 只要有連接 tooyour 租用戶，您可以檢閱、 新增、 刪除和修改您的目錄中所定義的 hello 受信任憑證授權單位。 
 
 ### <a name="connect"></a>連線
 
-若要與您的租用戶建立連線，使用 [Connect-AzureAD](/powershell/module/azuread/connect-azuread?view=azureadps-2.0) Cmdlet︰
+tooestablish 連接與您的租用戶使用 hello[連接 azure Ad](/powershell/module/azuread/connect-azuread?view=azureadps-2.0) cmdlet:
 
     Connect-AzureAD 
 
 
 ### <a name="retrieve"></a>擷取 
 
-若要擷取您的目錄中所定義的受信任的憑證授權單位，使用 [Get-AzureADTrustedCertificateAuthority](/powershell/module/azuread/get-azureadtrustedcertificateauthority?view=azureadps-2.0) Cmdlet。 
+tooretrieve hello 受信任憑證授權單位會定義在目錄中，使用 hello [Get AzureADTrustedCertificateAuthority](/powershell/module/azuread/get-azureadtrustedcertificateauthority?view=azureadps-2.0) cmdlet。 
 
     Get-AzureADTrustedCertificateAuthority 
  
 
 ### <a name="add"></a>加
 
-若要建立受信任的憑證授權單位，使用 [New-AzureADTrustedCertificateAuthority](/powershell/module/azuread/new-azureadtrustedcertificateauthority?view=azureadps-2.0) Cmdlet 並將 **crlDistributionPoint** 屬性設為正確值： 
+toocreate 受信任的憑證授權單位使用 hello[新增 AzureADTrustedCertificateAuthority](/powershell/module/azuread/new-azureadtrustedcertificateauthority?view=azureadps-2.0) cmdlet 和設定 hello **crlDistributionPoint**屬性 tooa 正確的值： 
    
-    $cert=Get-Content -Encoding byte "[LOCATION OF THE CER FILE]" 
+    $cert=Get-Content -Encoding byte "[LOCATION OF hello CER FILE]" 
     $new_ca=New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation 
     $new_ca.AuthorityType=0 
     $new_ca.TrustedCertificate=$cert 
@@ -138,7 +138,7 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="remove"></a>移除
 
-若要移除受信任的憑證授權單位，使用 [Remove-AzureADTrustedCertificateAuthority](/powershell/module/azuread/remove-azureadtrustedcertificateauthority?view=azureadps-2.0) Cmdlet。
+tooremove 受信任的憑證授權單位使用 hello[移除 AzureADTrustedCertificateAuthority](/powershell/module/azuread/remove-azureadtrustedcertificateauthority?view=azureadps-2.0) cmdlet:
    
     $c=Get-AzureADTrustedCertificateAuthority 
     Remove-AzureADTrustedCertificateAuthority -CertificateAuthorityInformation $c[2] 
@@ -146,7 +146,7 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="modfiy"></a>修改
 
-若要修改受信任的憑證授權單位，使用 [Set-AzureADTrustedCertificateAuthority](/powershell/module/azuread/set-azureadtrustedcertificateauthority?view=azureadps-2.0) Cmdlet。
+toomodify 受信任的憑證授權單位使用 hello[組 AzureADTrustedCertificateAuthority](/powershell/module/azuread/set-azureadtrustedcertificateauthority?view=azureadps-2.0) cmdlet:
 
     $c=Get-AzureADTrustedCertificateAuthority 
     $c[0].AuthorityType=1 
@@ -155,71 +155,71 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="step-3-configure-revocation"></a>步驟 3︰設定撤銷
 
-若要撤銷用戶端憑證，Azure Active Directory 會從和憑證授權單位資訊一起上傳的 URL 中，擷取憑證撤銷清單 (CRL) 並加以快取。 在 CRL 中，上次發佈的時間戳記 ([生效日期] 屬性) 是用來確保 CRL 依然有效。 定期參考 CRL 以撤銷對清單所列憑證的存取權。
+用戶端憑證，Azure Active Directory toorevoke 提取 hello 憑證撤銷清單 (CRL) hello Url 中的憑證授權單位資訊的過程中上傳並快取。 hello 上次發行的時間戳記 (**生效日期**屬性) 中使用 CRL 的 hello tooensure hello CRL 是否仍然有效。 hello CRL 會定期參考的 toorevoke 存取 toocertificates 屬於 hello 清單。
 
-如果需要立即撤銷 (例如，使用者遺失裝置)，可以讓使用者的授權權杖失效。 使用 Windows PowerShell 設定這位特定使用者的 **StsRefreshTokenValidFrom** 欄位，即可讓授權權杖失效。 您必須為想要撤銷其存取權的每位使用者更新其 **StsRefreshTokenValidFrom** 欄位。
+如果需要 （例如，如果使用者遺失裝置） 更立即撤銷，可能會無效 hello 的 hello 使用者的授權權杖。 tooinvalidate hello 授權權杖，將 hello **StsRefreshTokenValidFrom**欄位以供這個特定的使用者使用 Windows PowerShell。 您必須更新 hello **StsRefreshTokenValidFrom**欄位以供您想要針對 toorevoke 存取每位使用者。
 
-為了確保撤銷持續有效，您必須將 CRL 的 [生效日期] 設定為 **StsRefreshTokenValidFrom** 所設值之後的日期，並確保有問題的憑證位於 CRL 中。
+hello 撤銷保存 tooensure，您必須設定 hello**生效日期**hello CRL tooa 日期之後所設定的 hello 值的**StsRefreshTokenValidFrom**並確認 hello 憑證有問題hello CRL。
 
-下列步驟概述藉由設定 **StsRefreshTokenValidFrom** 欄位，來更新授權權杖並讓它失效的程序。 
+hello 更新，以及所設定的 hello 失效 hello 授權權杖的步驟大綱 hello 程序之後**StsRefreshTokenValidFrom**欄位。 
 
-**設定撤銷：** 
+**tooconfigure 撤銷：** 
 
-1. 使用管理員認證連線到 MSOL 服務： 
+1. 連線管理員認證 toohello MSOL 服務： 
    
         $msolcred = get-credential 
         connect-msolservice -credential $msolcred 
 
-2. 擷取使用者目前的 StsRefreshTokensValidFrom 值︰ 
+2. 擷取使用者 hello 目前 StsRefreshTokensValidFrom 值： 
    
         $user = Get-MsolUser -UserPrincipalName test@yourdomain.com` 
         $user.StsRefreshTokensValidFrom 
 
-3. 將目前的時間戳記設定為使用者新的 StsRefreshTokensValidFrom 值︰ 
+3. 設定新的 StsRefreshTokensValidFrom hello 使用者等於 toohello 目前時間戳記值： 
    
         Set-MsolUser -UserPrincipalName test@yourdomain.com -StsRefreshTokensValidFrom ("03/05/2016")
 
-您設定的日期必須是未來的日期。 如果不是未來的日期，則不會設定 **StsRefreshTokensValidFrom** 屬性。 如果是未來的日期，才會將 **StsRefreshTokensValidFrom** 設定為目前的時間 (而非 Set-MsolUser 命令指示的日期)。 
+您所設定的 hello 日期必須在未來的 hello。 如果 hello 日期不是在未來的 hello，hello **StsRefreshTokensValidFrom**屬性未設定。 Hello 日期是否在未來，hello **StsRefreshTokensValidFrom**設定 toohello 目前時間 （而非 hello 日期 Set-msoluser 指令所指示）。 
 
 
 ## <a name="step-4-test-your-configuration"></a>步驟 4︰測試組態
 
 ### <a name="testing-your-certificate"></a>測試您的憑證
 
-您應該試著使用您**裝置上的瀏覽器**登入 [Outlook Web Access](https://outlook.office365.com) 或 [SharePoint Online](https://microsoft.sharepoint.com)，這是第一個組態測試。
+做為第一個組態測試，您應該試著在 toosign 太[Outlook Web Access](https://outlook.office365.com)或[SharePoint Online](https://microsoft.sharepoint.com)使用您**裝置上瀏覽器**。
 
 如果登入成功，您便知道︰
 
-- 使用者憑證已佈建到您的測試裝置
+- 已佈建的 tooyour 測試裝置 hello 使用者憑證。
 - AD FS 已正確設定  
 
 
 ### <a name="testing-office-mobile-applications"></a>測試 Office 行動應用程式
 
-**在您的行動 Office 應用程式上測試憑證式驗證︰** 
+**tootest 憑證式驗證您的 Office 行動應用程式上：** 
 
 1. 在您的測試裝置上，安裝 Office 行動應用程式 (例如 OneDrive)。
-3. 啟動應用程式。 
-4. 輸入您的使用者名稱，然後選取想要使用的使用者憑證。 
+3. 啟動 hello 應用程式。 
+4. 輸入您的使用者名稱，然後選取您想要 toouse hello 使用者憑證。 
 
 您應該可以順利登入。 
 
 ### <a name="testing-exchange-activesync-client-applications"></a>測試 Exchange ActiveSync 用戶端應用程式
 
-若要透過憑證式驗證來存取 Exchange ActiveSync (EAS)，必須要有包含用戶端憑證的 EAS 設定檔供應用程式使用。 
+透過使用憑證式驗證，其中包含 hello 用戶端憑證的 EAS 設定檔的 Exchange ActiveSync (EAS) tooaccess 必須可用 toohello 應用程式。 
 
-EAS 設定檔必須包含下列資訊：
+hello EAS 設定檔必須包含下列資訊的 hello:
 
-- 要用於驗證的使用者憑證 
+- hello 用於驗證的使用者憑證 toobe 
 
-- EAS 端點 (例如，outlook.office365.com)
+- hello EAS 端點 (例如，outlook.office365.com)
 
-您可以用行動裝置管理 (MDM)，例如 Intune，在裝置上設定和放置 EAS 設定檔，或以手動方式將憑證放在裝置的 EAS 設定檔中。  
+EAS 設定檔可以設定，並放在透過行動裝置管理 (MDM) 與 Intune 等，或以手動方式將 hello 憑證放入 hello hello 裝置上的 EAS 設定檔中的 hello 善用 hello 裝置中。  
 
 ### <a name="testing-eas-client-applications-on-android"></a>在 Android 上測試 EAS 用戶端應用程式
 
-**測試憑證驗證：**  
+**tootest 憑證驗證：**  
 
-1. 設定應用程式中符合上述需求的 EAS 設定檔。  
-2. 開啟應用程式，然後確認正在同步處理郵件。 
+1. Hello 滿足上述 hello 需求的應用程式中設定的 EAS 設定檔。  
+2. 開啟 hello 應用程式，並確認郵件正在同步處理。 
 

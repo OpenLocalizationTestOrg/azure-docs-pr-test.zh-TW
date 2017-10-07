@@ -1,5 +1,5 @@
 ---
-title: "Azure AD v2 Windows Desktop 快速入門 | Microsoft Docs"
+title: "使用者入門 aaaAzure AD v2 的 Windows 桌面 |Microsoft 文件"
 description: "Windows Desktop .NET (XAML) 應用程式可取得存取權杖，以及呼叫受 Azure Active Directory v2 端點保護之 API 的方法。"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,11 +15,11 @@ ms.workload: identity
 ms.date: 07/05/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 3017165ad58e93b582fb5364d54ca3e64ea9e35d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 02e07e0d986519eb2ff5146aab07cbb17ba90ccc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [1. Introduction](active-directory-mobileanddesktopapp-windowsdesktop-introduction.md)]
 [!INCLUDE [2. Setup](active-directory-mobileanddesktopapp-windowsdesktop-setup.md)]

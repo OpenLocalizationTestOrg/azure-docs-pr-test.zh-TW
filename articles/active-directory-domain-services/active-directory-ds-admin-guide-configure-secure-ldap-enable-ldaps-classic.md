@@ -1,5 +1,5 @@
 ---
-title: "在 Azure AD Domain Services 中設定安全的 LDAP (LDAPS) | Microsoft Docs"
+title: "aaaConfigure 安全 LDAP (LDAPS) 在 Azure AD 網域服務中 |Microsoft 文件"
 description: "針對 Azure AD 網域服務受管理網域設定安全的 LDAP (LDAPS)"
 services: active-directory-ds
 documentationcenter: 
@@ -14,116 +14,116 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: maheshu
-ms.openlocfilehash: 3aafe209aad7383cd0610d147b5fdba673023c93
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a0d6e2faf474b1f0cbe157fb4ae2754b1d521ef9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-secure-ldap-ldaps-for-an-azure-ad-domain-services-managed-domain"></a>針對 Azure AD 網域服務受管理網域設定安全的 LDAP (LDAPS)
 
 ## <a name="before-you-begin"></a>開始之前
-確定您已完成[工作 2 - 將安全的 LDAP 憑證匯出到 .PFX 檔案](active-directory-ds-admin-guide-configure-secure-ldap-export-pfx.md)。
+請確定您已完成[工作 2-匯出 hello 安全 LDAP 的憑證 tooa。PFX 檔案](active-directory-ds-admin-guide-configure-secure-ldap-export-pfx.md)。
 
-選擇要使用預覽 Azure 入口網站體驗或 Azure 傳統入口網站來完成這項工作。
+選擇 toouse hello 預覽 Azure 入口網站體驗或 hello Azure 傳統入口網站 toocomplete 這項工作。
 > [!div class="op_single_selector"]
-> * **Azure 入口網站 (預覽)**：[使用 Azure 入口網站啟用安全 LDAP](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps.md)
-> * **Azure 傳統入口網站**：[使用傳統 Azure 入口網站啟用安全 LDAP](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps-classic.md)
+> * **Azure 入口網站 （預覽）**:[啟用安全 LDAP 使用 hello Azure 入口網站](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps.md)
+> * **Azure 傳統入口網站**:[啟用安全 LDAP 使用 hello 傳統 Azure 入口網站](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps-classic.md)
 >
 >
 
 
-## <a name="task-3---enable-secure-ldap-for-the-managed-domain-using-the-classic-azure-portal"></a>工作 3 - 使用傳統 Azure 入口網站為受管理的網域啟用安全 LDAP
-若要啟用安全的 LDAP，請執行下列設定步驟：
+## <a name="task-3---enable-secure-ldap-for-hello-managed-domain-using-hello-classic-azure-portal"></a>工作 3-啟用安全 LDAP 的 hello 受管理的網域，使用 hello 傳統 Azure 入口網站
+tooenable 安全 LDAP 資訊，請執行下列組態步驟的 hello:
 
-1. 瀏覽至 **[Azure 傳統入口網站](https://manage.windowsazure.com)**。
-2. 在左窗格中，選取 [Active Directory]  節點。
-3. 選取已啟用 Azure AD 網域服務的 Azure AD 目錄 (也稱為「租用戶」)。
+1. 瀏覽 toohello  **[Azure 傳統入口網站](https://manage.windowsazure.com)**。
+2. 選取 hello **Active Directory** hello 左窗格上的節點。
+3. 選取 hello Azure AD 目錄 (也參考 tooas 'tenant')，您必須啟用 Azure AD 網域服務。
 
     ![選取 Azure AD 目錄](./media/active-directory-domain-services-getting-started/select-aad-directory.png)
-4. 按一下 [設定]  索引標籤。
+4. 按一下 hello**設定** 索引標籤。
 
     ![設定目錄的索引標籤](./media/active-directory-domain-services-getting-started/configure-tab.png)
-5. 向下捲動到標題為 [網域服務] 的區段。 您應該會看到標題為 [安全 LDAP (LDAPS)]  的選項，如下列螢幕擷取畫面所示：
+5. 捲動 toohello 節**網域服務**。 您應該會看到標題為選項**安全 LDAP (LDAPS)** hello 下列螢幕擷取畫面所示：
 
     ![網域服務組態區段](./media/active-directory-domain-services-admin-guide/secure-ldap-start.png)
-6. 按一下 [設定憑證...] 按鈕以顯示 [設定安全 LDAP 的憑證] 對話方塊。
+6. 按一下 hello**設定憑證...** hello 向上按鈕 toobring**設定安全 LDAP 的憑證**對話方塊。
 
     ![設定安全 LDAP 的憑證](./media/active-directory-domain-services-admin-guide/secure-ldap-configure-cert-page.png)
-7. 按一下 [含有憑證的 PFX 檔案] 後面的資料夾圖示，指定要用於對受管理網域進行安全 LDAP 存取之憑證所在的 PFX 檔案。 此外，也請輸入將憑證匯出到 PFX 檔案時所指定的密碼。 然後，按一下底部的完成按鈕。
+7. 按一下 hello 資料夾圖示下列**使用憑證 PFX 檔案**toospecify hello PFX 檔案，其中包含您想針對安全 LDAP 存取 toohello toouse hello 憑證管理網域。 也請輸入 hello 匯出 hello 憑證 toohello PFX 檔案時所指定的密碼。 然後，按一下 hello 完成 hello 下方的按鈕。
 
     ![指定安全 LDAP 的 PFX 檔案和密碼](./media/active-directory-domain-services-admin-guide/secure-ldap-specify-pfx.png)
-8. [設定] 索引標籤的 [網域服務] 區段應該會變成灰色，而且有幾分鐘的時間處在 [擱置...] 狀態。 在此期間，LDAPS 憑證會進行驗證以確認是否正確，並為受管理的網域設定安全 LDAP。
+8. hello**網域服務**區段 hello**設定**應該取得灰色 索引標籤，並在 hello**暫止...**狀態幾分鐘的時間。 在這段期間，hello LDAPS 憑證會經過驗證的精確度，並設定安全 LDAP 的受管理的網域。
 
     ![安全 LDAP - 擱置中狀態](./media/active-directory-domain-services-admin-guide/secure-ldap-pending-state.png)
 
    > [!NOTE]
-   > 為受管理的網域啟用安全 LDAP 需要約 10 到 15 分鐘的時間。 如果提供的安全 LDAP 憑證不符合所需的準則，則不會為您的目錄啟用安全 LDAP，而且您會看到失敗。 例如，網域名稱不正確、憑證已到期或即將到期等。
+   > 只需要大約 10 個 too15 分鐘 tooenable 安全 LDAP 的受管理的網域。 如果 hello 提供安全 LDAP 的憑證不符合 hello 所需的準則，您的目錄未啟用安全 LDAP，您看到失敗。 例如，hello 網域名稱不正確，hello 憑證已到期或即將過期。
    >
    >
 
-9. 在為受管理的網域成功啟用安全 LDAP 後，[擱置...]  訊息應該會消失。 您應該會看到已顯示憑證的指紋。
+9. 當受管理的網域已成功啟用安全 LDAP 時，hello**暫止...**訊息應該就會消失。 您應該會看到 hello 顯示 hello 憑證指紋。
 
     ![安全 LDAP 已啟用](./media/active-directory-domain-services-admin-guide/secure-ldap-enabled.png)
 
 <br>
 
-## <a name="task-4---enable-secure-ldap-access-over-the-internet"></a>工作 4 - 透過網際網路啟用安全 LDAP 存取
-**選擇性工作** - 如果您不打算使用 LDAPS 來透過網際網路存取受管理的網域，請略過這項設定工作。
+## <a name="task-4---enable-secure-ldap-access-over-hello-internet"></a>工作 4-hello 透過啟用安全 LDAP 存取網際網路
+**選擇性的工作**-如果您不打算使用 LDAPS tooaccess hello 受管理的網域超過 hello 網際網路、 略過這項組態工作。
 
-開始這項工作之前，請先確定您已完成 [工作 3](#task-3---enable-secure-ldap-for-the-managed-domain-using-the-classic-azure-portal)中所述的步驟。
+在開始這項工作之前，請確定您已完成 hello 中所述的步驟[工作 3](#task-3---enable-secure-ldap-for-the-managed-domain-using-the-classic-azure-portal)。
 
-1. 您應該會在 [設定] 頁面的 [網域服務] 區段中看到 [透過網際網路啟用安全 LDAP 存取] 的選項。 此選項會設定為 [否]  ，因為依預設會停用透過安全 LDAP 對受管理網域的網際網路存取。
+1. 您應該看到的選項太**啟用安全 LDAP 存取透過 hello 網際網路**在 hello**網域服務**區段 hello**設定**頁面。 此選項設定得**否**預設因為管理網際網路存取 toohello 透過安全 LDAP 的網域預設會停用。
 
     ![安全 LDAP 已啟用](./media/active-directory-domain-services-admin-guide/secure-ldap-enabled2.png)
-2. 將 [透過網際網路啟用安全 LDAP 存取] 切換為 [是]。 按一下底部面板上的 [儲存]  按鈕。
+2. 切換**啟用安全 LDAP 存取透過 hello 網際網路**太**是**。 按一下 hello**儲存**hello 下方面板上的按鈕。
     ![安全 LDAP 已啟用](./media/active-directory-domain-services-admin-guide/secure-ldap-enable-internet-access.png)
-3. [設定] 索引標籤的 [網域服務] 區段應該會變成灰色，而且有幾分鐘的時間處在 [擱置...] 狀態。 稍後會啟用透過安全 LDAP 對受管理網域的網際網路存取。
+3. hello**網域服務**區段 hello**設定**應該取得灰色 索引標籤，並在 hello**暫止...**狀態幾分鐘的時間。 一段時間後，會啟用透過安全 LDAP 的網際網路存取 tooyour 受管理的網域。
 
     ![安全 LDAP - 擱置中狀態](./media/active-directory-domain-services-admin-guide/secure-ldap-enable-internet-access-pending-state.png)
 
    > [!NOTE]
-   > 為受管理網域啟用透過安全 LDAP 的網際網路存取需要約 10 分鐘的時間。
+   > 它需要大約 10 分鐘 tooenable 網際網路存取，透過安全 LDAP 的受管理的網域。
    >
    >
-4. 在成功啟用透過網際網路對受管理網域進行安全 LDAP 存取後，[擱置...]  訊息應該會消失。 您應該會在 [LDAPS 存取的外部 IP 位址] 欄位中，看到可用來透過 LDAPS 存取您目錄的外部 IP 位址。
+4. 已成功啟用網際網路的 hello 透過安全 LDAP 存取 tooyour 受管理的網域時, hello**暫止...**訊息應該就會消失。 您應該會看見 hello 外部 IP 位址，可以使用的 tooaccess hello 欄位中利用 ldaps 是您目錄**外部 IP 位址的 LDAPS 存取**。
 
     ![安全 LDAP 已啟用](./media/active-directory-domain-services-admin-guide/secure-ldap-internet-access-enabled.png)
 
 <br>
 
-## <a name="task-5---configure-dns-to-access-the-managed-domain-from-the-internet"></a>工作 5 - 設定 DNS 以從網際網路存取受管理的網域
-**選擇性工作** - 如果您不打算使用 LDAPS 來透過網際網路存取受管理的網域，請略過這項設定工作。
+## <a name="task-5---configure-dns-tooaccess-hello-managed-domain-from-hello-internet"></a>工作 5-設定 DNS tooaccess hello 受管理的網域從 hello 網際網路
+**選擇性的工作**-如果您不打算使用 LDAPS tooaccess hello 受管理的網域超過 hello 網際網路、 略過這項組態工作。
 
-開始這項工作之前，請先確定您已完成 [工作 4](#task-4---enable-secure-ldap-access-over-the-internet)中所述的步驟。
+在開始這項工作之前，請確定您已完成 hello 中所述的步驟[工作 4](#task-4---enable-secure-ldap-access-over-the-internet)。
 
-為受管理的網域啟用了透過網際網路的安全 LDAP 存取後，您需要更新 DNS 以便用戶端電腦可以找到此受管理網域。 在工作 4 的最後階段，[設定] 索引標籤的 [LDAPS 存取的外部 IP 位址] 中會顯示外部 IP 位址。
+透過啟用安全 LDAP 存取之後 hello 網際網路的受管理的網域中，您需要 tooupdate DNS，讓用戶端電腦可以找到此受管理的網域。 在工作 4 hello 結尾，外部 IP 位址會顯示在 hello**設定**索引標籤中**外部 IP 位址的 LDAPS 存取**。
 
-請設定外部 DNS 提供者，讓受管理網域的 DNS 名稱 (例如 'ldaps.contoso100.com') 指向這個外部 IP 位址。 在我們的範例中，我們需要建立下列 DNS 項目︰
+設定外部的 DNS 提供者，讓該 hello DNS 名稱的 hello 管理網域 (例如，' ldaps.contoso100.com') 點 toothis 外部 IP 位址。 在本例中，我們需要 toocreate hello 下列 DNS 項目：
 
     ldaps.contoso100.com  -> 52.165.38.113
 
-這樣就大功告成了。您現在已準備好可使用安全 LDAP 透過網際網路連線到受管理網域。
+就這麼簡單： 現在您已經準備就緒 tooconnect toohello 受管理網域使用透過安全 LDAP hello 網際網路。
 
 > [!WARNING]
-> 請記住，用戶端電腦必須信任 LDAPS 憑證的簽發者，才能成功使用 LDAPS 連線到受管理網域。 如果您使用企業憑證授權單位或公開的受信任憑證授權單位，您不需要採取任何動作，因為用戶端電腦會信任這些憑證簽發者。 如果您使用自我簽署憑證，則必須在用戶端電腦的受信任憑證存放區中安裝自我簽署憑證的公開部分。
+> 請記住，用戶端電腦必須信任 hello LDAPS 憑證 toobe 無法 tooconnect hello 簽發者成功 toohello 管理使用 LDAPS 網域。 如果您使用企業憑證授權單位或公開受信任的憑證授權單位，您不需要 toodo 任何項目因為用戶端電腦會信任這些憑證簽發者。 如果您使用自我簽署的憑證，您需要 tooinstall hello 公開部分的 hello 自我簽署憑證到 hello hello 用戶端電腦上的受信任的憑證存放區。
 >
 >
 
 
-## <a name="lock-down-ldaps-access-to-your-managed-domain-over-the-internet"></a>鎖定透過網際網路對於受管理網域的安全 LDAP 存取
+## <a name="lock-down-ldaps-access-tooyour-managed-domain-over-hello-internet"></a>鎖定 LDAPS 存取 tooyour 受管理的網域 hello 透過網際網路
 > [!NOTE]
-> **選擇性工作** - 如果您尚未啟用透過網際網路對於受管理的網域之 LDAPS 存取，請略過這項設定工作。
+> **選擇性的工作**-如果您未啟用 LDAPS 存取 toohello 受管理的網域超過 hello 網際網路、 略過這項組態工作。
 >
 >
 
-開始這項工作之前，請先確定您已完成 [工作 4](#task-4---enable-secure-ldap-access-over-the-internet)中所述的步驟。
+在開始這項工作之前，請確定您已完成 hello 中所述的步驟[工作 4](#task-4---enable-secure-ldap-access-over-the-internet)。
 
-公開受管理的網域透過網際網路進行 LDAPS 存取，代表著安全性威脅。 受管理的網域可以從用於安全 LDAP 之通訊埠的網際網路 (也就是連接埠 636) 存取。 因此，您可以選擇將受管理的網域存取限制為特定已知 IP 位址。 為了提升安全性，建立網路安全性群組 (NSG)，並將它與您已啟用 Azure AD Domain Services 的子網路產生關聯。
+透過 hello 公開您透過 LDAPS 存取的受管理的網域網際網路代表安全性威脅。 hello 受管理的網域是從此 hello 連線到網際網路上使用安全 ldap 的 hello 通訊埠 （也就是連接埠 636）。 因此，您可以選擇 toorestrict 存取受管理的 toohello 網域 toospecific 已知的 IP 位址。 為了提升安全性，建立網路安全性群組 (NSG)，並將它與您已在此啟用 Azure AD 網域服務的 hello 子網路產生關聯。
 
-下表說明您可以設定的範例 NSG，以鎖定透過網際網路的安全 LDAP 存取。 NSG 包含一組規則，允許僅從一組指定 IP 位址透過 TCP 連接埠 636 的輸入 LDAPS 存取。 預設 'DenyAll' 規則適用於來自網際網路的所有其他輸入流量。 允許從指定的 IP 位址透過網際網路之 LDAPS 存取的 NSG 規則，其優先順序高於 DenyAll NSG 規則。
+hello 下表說明您可以設定時，NSG toolock hello 透過安全 LDAP 存取範例網際網路。 hello NSG 包含一組規則，允許對內的 LDAPS 存取透過 TCP 連接埠 636 只能從一組指定的 IP 位址。 hello 預設 'DenyAll' 規則套用 tooall 其他輸入的流量的 hello 網際網路。 hello NSG 規則 tooallow LDAPS 存取 hello 透過網際網路從指定的 IP 位址的優先順序高於 hello DenyAll NSG 規則。
 
-![透過網際網路之安全 LDAP 存取的範例 NSG](./media/active-directory-domain-services-admin-guide/secure-ldap-sample-nsg.png)
+![透過範例 NSG toosecure LDAPS 存取 hello 網際網路](./media/active-directory-domain-services-admin-guide/secure-ldap-sample-nsg.png)
 
 **詳細資訊** - [網路安全性群組](../virtual-network/virtual-networks-nsg.md)。
 

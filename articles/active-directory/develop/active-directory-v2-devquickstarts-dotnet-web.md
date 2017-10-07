@@ -1,6 +1,6 @@
 ---
-title: "Azure AD v2.0 .NET Web 應用程式登入入門 | Microsoft Docs"
-description: "如何建置可使用個人 Microsoft 帳戶及工作或學校帳戶登入使用者的 .NET MVC Web 應用程式。"
+title: "aaaAzure AD v2.0.NET web 應用程式登入使用者入門 |Microsoft 文件"
+description: "如何 toobuild.NET MVC Web 應用程式的使用者使用簽署兩個人的 Microsoft 帳戶和工作或學校帳戶。"
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,45 +15,45 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: ba5bdf7daba6086b70aec54ebe25d4445fa708c3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 241e9c90bd752fbecc3696ce4f1bed3f9772189d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-sign-in-to-an-net-mvc-web-app"></a>將登入新增至 .NET MVC Web 應用程式
-v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時支援個人 Microsoft 帳戶以及工作或學校帳戶。  在 ASP.NET Web 應用程式中，您可以使用隨附於 .NET Framework 4.5 的 Microsoft OWIN 中介軟體來完成此項作業。
+# <a name="add-sign-in-tooan-net-mvc-web-app"></a>新增登入 tooan.NET MVC web 應用程式
+與 hello v2.0 端點，您可以快速加入具有兩個個人 Microsoft 帳戶的支援，以及工作或學校帳戶的驗證 tooyour web 應用程式。  在 ASP.NET Web 應用程式中，您可以使用隨附於 .NET Framework 4.5 的 Microsoft OWIN 中介軟體來完成此項作業。
 
 > [!NOTE]
-> v2.0 端點並非支援每個 Azure Active Directory 案例和功能。  如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
+> 並非所有的 Azure Active Directory 案例和功能都受到 hello v2.0 端點。  toodetermine 如果應該使用 hello v2.0 端點，閱讀有關[v2.0 限制](active-directory-v2-limitations.md)。
 >
 >
 
- 現在，我們將組建使用 OWIN 將使用者登入、顯示使用者的部分相關資訊，以及將使用者登出應用程式的 Web 應用程式。
+ 這裡我們會建置 web 應用程式使用 OWIN toosign hello 使用者顯示中的 hello 使用者的一些資訊和符號 hello 使用者登出 hello 應用程式。
 
 ## <a name="download"></a>下載
-本教學課程的程式碼保留在 [GitHub](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet)上。  若要遵循執行，您可以 [用 .zip 格式下載應用程式的基本架構](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip) ，或複製基本架構：
+此教學課程中的 hello 程式碼會維護[GitHub 上](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet)。  您可以沿著 toofollow，[下載為.zip 的 hello 應用程式的基本架構](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip)或再製 hello 基本架構：
 
 ```git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet.git```
 
-本教學課程最後也會提供完整的應用程式。
+在本教學課程的 hello 結尾處提供 hello 完成應用程式。
 
 ## <a name="register-an-app"></a>註冊應用程式
 在 [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) 建立新的應用程式，或遵循下列[詳細步驟](active-directory-v2-app-registration.md)。  請確定：
 
-* 將指派給您應用程式的 **應用程式識別碼** 複製起來，您很快會需要用到這些識別碼。
-* 為您的應用程式新增 **Web** 平台。
-* 輸入正確的 **重新導向 URI**。 重新導向 URI 會向 Azure AD 指出驗證回應應導向的位置，本教學課程的預設為 `https://localhost:44326/`。
+* 複製下 hello**應用程式識別碼**指派 tooyour 應用程式，您將需要它過期。
+* 新增 hello **Web**平台應用程式。
+* 輸入正確的 hello**重新導向 URI**。 hello 重新導向 uri 表示的 tooAzure AD 其中應該導向驗證回應-此教學課程中的 hello 預設為`https://localhost:44326/`。
 
 ## <a name="install--configure-owin-authentication"></a>安裝及設定 OWIN 驗證
-在這裡，我們將設定 OWIN 中介軟體使用 OpenID Connect 驗證通訊協定。  OWIN 將用來發出登入和登出要求、管理使用者的工作階段，以及取得使用者相關資訊等其他作業。
+在這裡，我們會將設定 hello OWIN 中介軟體 toouse hello OpenID Connect 驗證通訊協定。  OWIN 將會使用的 tooissue 登入和登出要求、 管理 hello 使用者工作階段，以及取得 hello 使用者，在其他項目之間的相關資訊。
 
-1. 若要開始，請開啟專案根目錄中的 `web.config` 檔案，並在 `<appSettings>` 區段中輸入應用程式的組態值。
+1. toobegin，開啟 hello `web.config` hello hello 專案根目錄中的檔案，並在 hello 中輸入您的應用程式組態值`<appSettings>`> 一節。
 
-  * `ida:ClientId` 是在註冊入口網站中指派給應用程式的 **應用程式識別碼** 。
-  * `ida:RedirectUri` 是您在入口網站中輸入的 **重新導向 URI** 。
+  * hello`ida:ClientId`為 hello**應用程式識別碼**指派 tooyour hello 註冊入口網站中的應用程式。
+  * hello`ida:RedirectUri`為 hello**重新導向 Uri** hello 入口網站中輸入。
 
-2. 接下來，使用 Package Manager Console 將Next, add the OWIN 中介軟體 NuGet 套件新增到專案中。
+2. 接下來，加入 hello OWIN 中介軟體 NuGet 封裝 toohello 專案使用 Package Manager Console hello。
 
         ```
         PM> Install-Package Microsoft.Owin.Security.OpenIdConnect
@@ -61,8 +61,8 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
         PM> Install-Package Microsoft.Owin.Host.SystemWeb
         ```  
 
-3. 將「OWIN 啟動類別」新增至名為 `Startup.cs` 的專案。以滑鼠右鍵按一下專案 --> [新增]  -->  [新增項目] --> 搜尋 "OWIN"。  OWIN 中介軟體將會在應用程式啟動時叫用 `Configuration(...)` 方法。
-4. 將類別宣告變更為 `public partial class Startup` ，我們已為您在另一個檔案中實作了此類別的一部分。  在 `Configuration(...)` 方法中，請呼叫 ConfigureAuth(...)，為您的 Web 應用程式設定驗證。  
+3. 新增 < OWIN 啟動類別 > toohello 專案呼叫`Startup.cs`右 hello 專案上的按一下-->**新增** --> **新項目**--> 搜尋"OWIN"。  hello OWIN 中介軟體將會叫用 hello`Configuration(...)`方法，當您啟動應用程式。
+4. 也變更 hello 類別宣告`public partial class Startup`-我們已實作了此類別的一部分，另一個檔案中。  在 hello`Configuration(...)`方法，請呼叫 tooConfigureAuth(...) tooset 向上驗證 web 應用程式  
 
         ```C#
         [assembly: OwinStartup(typeof(Startup))]
@@ -79,7 +79,7 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
         }
         ```
 
-5. 開啟檔案 `App_Start\Startup.Auth.cs` 並實作 `ConfigureAuth(...)` 方法。  您在 `OpenIdConnectAuthenticationOptions` 中所提供的參數將會做為您的應用程式與 Azure AD 進行通訊的座標使用。  您還必須設定 Cookie 驗證，OpenID Connect 中介軟體會在表面下使用 Cookie。
+5. 開啟 hello 檔案`App_Start\Startup.Auth.cs`並實作 hello`ConfigureAuth(...)`方法。  hello 的參數中提供`OpenIdConnectAuthenticationOptions`將做為您的應用程式 toocommunicate 與 Azure AD 的座標。  您也必須設定的 Cookie 驗證 tooset-hello OpenID Connect 中介軟體會使用 cookie hello 涵蓋下方。
 
         ```C#
         public void ConfigureAuth(IAppBuilder app)
@@ -91,9 +91,9 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
                              app.UseOpenIdConnectAuthentication(
                                      new OpenIdConnectAuthenticationOptions
                                      {
-                                             // The `Authority` represents the v2.0 endpoint - https://login.microsoftonline.com/common/v2.0
-                                             // The `Scope` describes the permissions that your app will need.  See https://azure.microsoft.com/documentation/articles/active-directory-v2-scopes/
-                                             // In a real application you could use issuer validation for additional checks, like making sure the user's organization has signed up for your app, for instance.
+                                             // hello `Authority` represents hello v2.0 endpoint - https://login.microsoftonline.com/common/v2.0
+                                             // hello `Scope` describes hello permissions that your app will need.  See https://azure.microsoft.com/documentation/articles/active-directory-v2-scopes/
+                                             // In a real application you could use issuer validation for additional checks, like making sure hello user's organization has signed up for your app, for instance.
         
                                              ClientId = clientId,
                                              Authority = String.Format(CultureInfo.InvariantCulture, aadInstance, "common", "/v2.0"),
@@ -114,9 +114,9 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
         ```
 
 ## <a name="send-authentication-requests"></a>傳送驗證要求
-您的應用程式現在已正確設定，將使用 OpenID Connect 驗證通訊協定與 v2.0 端點通訊。  OWIN 已經處理所有製作驗證訊息、驗證 Azure AD 的權杖和維護使用者工作階段的瑣碎詳細資料。  剩餘的工作就是提供使用者一個登入和登出的方式。
+您的應用程式已正確設定的 toocommunicate 與 hello v2.0 端點使用 hello OpenID Connect 的驗證通訊協定。  OWIN 已處理所有 hello 醜陋詳細的製作驗證訊息、 驗證 Azure ad 的權杖和維護使用者工作階段。  所有會維持為您的使用者是 toogive 方式 toosign 中的並登出。
 
-- 您可以在控制器中使用授權標籤，要求使用者在存取特定頁面時登入。  開啟 `Controllers\HomeController.cs`，並在 [關於] 控制器中加入 `[Authorize]` 標籤。
+- 您可以使用授權標記中控制站 toorequire 使用者登入時存取某一頁之前。  開啟`Controllers\HomeController.cs`，並加入 hello`[Authorize]`標記 toohello 有關控制站。
         
         ```C#
         [Authorize]
@@ -125,7 +125,7 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
           ...
         ```
 
-- 您也可以使用 OWIN 從程式碼中直接發出驗證要求。  開啟 `Controllers\AccountController.cs`。  在 SignIn() 和 SignOut() 動作中，將分別發出 OpenID Connect 挑戰和登出要求。
+- 您也可以在程式碼中使用從 OWIN toodirectly 發出驗證要求。  開啟 `Controllers\AccountController.cs`。  在 hello SignIn() 和 Signout 動作，會發出 OpenID Connect 的挑戰和登出要求，分別。
 
         ```C#
         public void SignIn()
@@ -137,7 +137,7 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
             }
         }
         
-        // BUGBUG: Ending a session with the v2.0 endpoint is not yet supported.  Here, we just end the session with the web app.  
+        // BUGBUG: Ending a session with hello v2.0 endpoint is not yet supported.  Here, we just end hello session with hello web app.  
         public void SignOut()
         {
             // Send an OpenID Connect sign-out request.
@@ -146,7 +146,7 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
         }
         ```
 
-- 現在，請開啟 `Views\Shared\_LoginPartial.cshtml`。  這裡是您向使用者顯示應用程式的登入和登出連結，以及在檢視中列印出使用者名稱的位置。
+- 現在，請開啟 `Views\Shared\_LoginPartial.cshtml`。  這是您將在其中顯示 hello 使用者在您的應用程式登入和登出連結，並列印出檢視中的 hello 使用者的名稱。
 
         ```HTML
         @if (Request.IsAuthenticated)
@@ -155,7 +155,7 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
                 <ul class="nav navbar-nav navbar-right">
                     <li class="navbar-text">
         
-                        @*The 'preferred_username' claim can be used for showing the user's primary way of identifying themselves.*@
+                        @*hello 'preferred_username' claim can be used for showing hello user's primary way of identifying themselves.*@
         
                         Hello, @(System.Security.Claims.ClaimsPrincipal.Current.FindFirst("preferred_username").Value)!
                     </li>
@@ -174,9 +174,9 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
         ```
 
 ## <a name="display-user-information"></a>顯示使用者資訊
-使用 OpenID Connect 來驗證使用者時，v2.0 端點會將 id_token 傳回給包含使用者相關宣告或判斷提示的應用程式。  您可以使用這些宣告來個人化應用程式：
+驗證時使用 OpenID Connect 使用者，hello v2.0 端點會傳回包含宣告或有關 hello 使用者判斷提示的 id_token toohello 應用程式。  您可以使用這些宣告 toopersonalize 您的應用程式：
 
-- 開啟 `Controllers\HomeController.cs` 檔案。  您可以透過 `ClaimsPrincipal.Current` 安全性主體物件來存取控制器中的使用者宣告。
+- 開啟 hello`Controllers\HomeController.cs`檔案。  您可以在 hello 透過您控制站存取 hello 使用者宣告`ClaimsPrincipal.Current`安全性主體物件。
 
         ```C#
         [Authorize]
@@ -184,14 +184,14 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
         {
             ViewBag.Name = ClaimsPrincipal.Current.FindFirst("name").Value;
         
-            // The object ID claim will only be emitted for work or school accounts at this time.
+            // hello object ID claim will only be emitted for work or school accounts at this time.
             Claim oid = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier");
             ViewBag.ObjectId = oid == null ? string.Empty : oid.Value;
         
-            // The 'preferred_username' claim can be used for showing the user's primary way of identifying themselves
+            // hello 'preferred_username' claim can be used for showing hello user's primary way of identifying themselves
             ViewBag.Username = ClaimsPrincipal.Current.FindFirst("preferred_username").Value;
         
-            // The subject or nameidentifier claim can be used to uniquely identify the user
+            // hello subject or nameidentifier claim can be used toouniquely identify hello user
             ViewBag.Subject = ClaimsPrincipal.Current.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value;
         
             return View();
@@ -199,21 +199,21 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
         ```
 
 ## <a name="run"></a>執行
-最後，建置並執行您的應用程式！   使用個人 Microsoft 帳戶或工作或學校帳戶登入，並注意上方導覽列中使用者身分識別的反映狀態。  您的 Web 應用程式現在使用業界標準的通訊協定保護，可以使用個人與工作/學校帳戶來驗證使用者。
+最後，建置並執行您的應用程式！   使用個人 Microsoft 帳戶或工作或學校帳戶，登入，並注意 hello 使用者的身分識別會反映在 hello 上方導覽列中的方式。  您的 Web 應用程式現在使用業界標準的通訊協定保護，可以使用個人與工作/學校帳戶來驗證使用者。
 
-如需參考， [此處以 .zip 格式提供](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/complete.zip)完整範例 (不含您的組態值)，您也可以從 GitHub 將其複製：
+如需參考，hello 完成 （不含您的組態值） 的範例[依現狀的.zip](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/complete.zip)，或您可以將其複製從 GitHub:
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet.git```
 
 ## <a name="next-steps"></a>後續步驟
-您現在可以進入更進階的主題。  您可以嘗試：
+您現在可以進入更進階的主題。  您可能想 tootry:
 
-[使用 v2.0 端點保護 Web API >>](active-directory-devquickstarts-webapi-dotnet.md)
+[保護 Web Api</與 hello hello v2.0 端點 >>](active-directory-devquickstarts-webapi-dotnet.md)
 
 如需其他資源，請參閱：
 
-* [v2.0 開發人員指南 >>](active-directory-appmodel-v2-overview.md)
+* [hello v2.0 開發人員指南 >>](active-directory-appmodel-v2-overview.md)
 * [StackOverflow "azure-active-directory" 標籤 >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
 ## <a name="get-security-updates-for-our-products"></a>取得產品的安全性更新
-我們鼓勵您造訪 [此頁面](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
+我們建議您造訪的安全性事件發生時的 tooget 通知[本頁](https://technet.microsoft.com/security/dd252948)及訂閱 tooSecurity 諮詢警示。

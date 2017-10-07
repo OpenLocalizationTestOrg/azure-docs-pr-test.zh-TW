@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 登入活動報告 API 範例 | Microsoft Docs"
-description: "如何開始使用 Azure Active Directory 報告 API"
+title: "aaaAzure Active Directory 登入活動報表 API 範例 |Microsoft 文件"
+description: "如何 tooget 入門 hello Azure Active Directory 報告 API"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,28 +15,28 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 7fc2b59fe37ed2ffe85925c457300ef8fd83c3c7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d4fbbea95fe0b52828673b997681ae37481e21bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-sign-in-activity-report-api-samples"></a>Azure Active Directory 登入活動報告 API 範例
-本主題是 Azure Active Directory 報告 API 相關主題集合的一部分。  
-Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登入活動資料。  
-本主題的範疇是為您提供 **登入活動 API**的範例程式碼。
+本主題是有關 hello Azure Active Directory 的主題集合的一部分報告應用程式開發介面。  
+Azure AD 報告 api 還可讓您的 API tooaccess 登入活動資料使用程式碼或相關的工具。  
+hello 本主題的範圍是您的範例程式碼 hello tooprovide**登入活動 API**。
 
 請參閱：
 
 * [稽核記錄](active-directory-reporting-azure-portal.md#activity-reports)以取得詳細概念資訊
-* [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md) 以取得報告 API 的詳細資訊。
+* [開始使用 Azure Active Directory 報告 API hello](active-directory-reporting-api-getting-started.md)的 hello reporting API 的詳細資訊。
 
 
 ## <a name="prerequisites"></a>必要條件
-您必須先完成 [存取 Azure AD 報告 API 的必要條件](active-directory-reporting-api-prerequisites.md)，才能使用本主題中的範例。  
+您可以使用本主題中的 hello 範例之前，您需要 toocomplete hello[必要條件 tooaccess hello Azure AD 報告 API](active-directory-reporting-api-prerequisites.md)。  
 
 ## <a name="powershell-script"></a>PowerShell 指令碼
-    # This script will require the Web Application and permissions setup in Azure Active Directory
+    # This script will require hello Web Application and permissions setup in Azure Active Directory
     $ClientID       = "<clientId>"             # Should be a ~35 character string insert your info here
     $ClientSecret   = "<clientSecret>"         # Should be a ~44 character string insert your info here
     $loginURL       = "https://login.microsoftonline.com/"
@@ -63,7 +63,7 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
     Do{
         Write-Output "Fetching data using Uri: $url"
         $myReport = (Invoke-WebRequest -UseBasicParsing -Headers $headerParams -Uri $url)
-        Write-Output "Save the output to a file SigninActivities$i.json"
+        Write-Output "Save hello output tooa file SigninActivities$i.json"
         Write-Output "---------------------------------------------"
         $myReport.Content | Out-File -FilePath SigninActivities$i.json -Force
         $url = ($myReport.Content | ConvertFrom-Json).'@odata.nextLink'
@@ -78,13 +78,13 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
 
 
 
-## <a name="executing-the-script"></a>執行指令碼
-完成指令碼編輯後，加以執行並確認從稽核記錄報告傳回預期的資料。
+## <a name="executing-hello-script"></a>執行 hello 指令碼
+一次您編輯 hello 指令碼完成、 執行並確認該 hello 預期會傳回從 hello 稽核記錄報告資料。
 
-指令碼會以 JSON 格式傳回登入報告的輸出。 它也會建立具有相同輸出的 `SigninActivities.json` 檔案。 您可透過修改指令碼以從其他報告傳回資料來進行實驗，以及取消註解您不需要的輸出格式。
+hello 指令碼會傳回輸出 hello 登入 JSON 格式的報表。 它也會建立`SigninActivities.json`檔案以 hello 相同輸出。 您可以嘗試藉由修改 hello 指令碼 tooreturn 資料從其他報表和註解，您不需要 hello 輸出格式。
 
 ## <a name="next-steps"></a>後續步驟
-* 您要自訂本主題中的範例嗎？ 請查看 [Azure Active Directory 登入活動 API 參考](active-directory-reporting-api-sign-in-activity-reference.md)。 
-* 如果您想要查看使用 Azure Active Directory 報告 API 的完整概觀，請參閱 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
-* 如果您想要深入了解 Azure Active Directory 報告，請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。  
+* 您希望 toocustomize 本主題中的 hello 範例？ 簽出 hello[登入 Azure Active Directory 活動 API 參考](active-directory-reporting-api-sign-in-activity-reference.md)。 
+* 如果您想要使用的完整概觀 toosee hello Azure Active Directory 報告 API，請參閱[入門 hello Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
+* 如果您想要深入了解 Azure Active Directory 報告 toofind，請參閱 hello [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。  
 

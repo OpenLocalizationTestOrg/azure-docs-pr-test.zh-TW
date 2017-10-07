@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中建立第一個 Java Web 應用程式"
-description: "藉由部署基本 Java 應用程式，了解如何在 App Service 中執行 Web 應用程式。"
+title: "aaaCreate 您第一次在 Azure 中的 Java web 應用程式"
+description: "了解如何 toorun web 部署基本的 Java 應用程式的 App Service 中的應用程式。"
 services: app-service\web
 documentationcenter: 
 author: rmcmurray
@@ -15,24 +15,24 @@ ms.topic: quickstart
 ms.date: 6/7/2017
 ms.author: cephalin;robmcm
 ms.custom: mvc
-ms.openlocfilehash: b91b9bde5eb8ea0d7e2196056b635fe54095e748
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 81315c07b5aa84cbec50a17b2cb3914927b19c00
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-first-java-web-app-in-azure"></a>在 Azure 中建立第一個 Java Web 應用程式
 
-[Azure App Service](../app-service/app-service-value-prop-what-is.md) 的 [Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) 功能提供可高度擴充、自我修復的 Web 主機服務。 本快速入門示範如何使用 [Eclipse IDE for Java EE Developers](http://www.eclipse.org/) 將 Java Web 應用程式部署到 App Service。
+hello [Web 應用程式](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)功能[Azure App Service](../app-service/app-service-value-prop-what-is.md)提供可高度擴充、 自我修補 web 主控服務。 本快速入門示範 toodeploy Java web 應用程式 tooApp 服務使用 hello [Eclipse IDE for Java EE Developers](http://www.eclipse.org/)。
 
 !["Hello Azure!" 範例 web 應用程式](./media/app-service-web-get-started-java/browse-web-app-1.png)
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本快速入門，請安裝：
+toocomplete 本快速入門中，安裝：
 
-* 免費的 [Eclipse IDE for Java EE Developers](http://www.eclipse.org/downloads/)。 本快速入門使用 Eclipse Neon。
-* [適用於 Eclipse 的 Azure 工具組](/azure/azure-toolkit-for-eclipse-installation)。
+* 可用的 hello [Eclipse IDE for Java EE Developers](http://www.eclipse.org/downloads/)。 本快速入門使用 Eclipse Neon。
+* hello [Azure Toolkit for Eclipse](/azure/azure-toolkit-for-eclipse-installation)。
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
@@ -40,7 +40,7 @@ ms.lasthandoff: 08/18/2017
 
 在 Eclipse 中，選取 [檔案] > [新增] > [Dynamic Web Project]。
 
-在 [新增動態 Web 專案] 對話方塊中，將專案命名為 **MyFirstJavaOnAzureWebApp**，然後選取 [完成]。
+在 hello**新動態 Web 專案**對話方塊中，名稱 hello 專案**MyFirstJavaOnAzureWebApp**，然後選取**完成**。
    
 ![新增動態 Web 專案對話方塊](./media/app-service-web-get-started-java/new-dynamic-web-project-dialog-box.png)
 
@@ -50,19 +50,19 @@ ms.lasthandoff: 08/18/2017
 
 ![適用於 Eclipse 的 Java EE 工作區](./media/app-service-web-get-started-java/pe.png)
 
-在 [專案總管] 中，展開 **MyFirstJavaOnAzureWebApp** 專案。
+在 專案總管 中，展開 hello **MyFirstJavaOnAzureWebApp**專案。
 在 [WebContent] 上按一下滑鼠右鍵，然後選取 [新增] > [JSP 檔案]。
 
 ![專案總管中新 JSP 檔案的功能表](./media/app-service-web-get-started-java/new-jsp-file-menu.png)
 
-在 [新增 JSP 檔案] 對話方塊中：
+在 hello**新增 JSP 檔案**對話方塊：
 
-* 將檔案命名為 **index.jsp**。
+* 名稱 hello 檔**index.jsp**。
 * 選取 [完成]。
 
   ![[新增 JSP 檔案] 對話方塊](./media/app-service-web-get-started-java/new-jsp-file-dialog-box-page-1.png)
 
-在 index.jsp 檔案中，以下列標記取代 `<body></body>` 元素：
+在 hello index.jsp 檔案，取代 hello `<body></body>` hello 下列標記的項目：
 
 ```jsp
 <body>
@@ -70,21 +70,21 @@ ms.lasthandoff: 08/18/2017
 </body>
 ```
 
-儲存變更。
+儲存 hello 的變更。
 
-## <a name="publish-the-web-app-to-azure"></a>將 Web 應用程式發佈至 Azure
+## <a name="publish-hello-web-app-tooazure"></a>發行 hello web 應用程式 tooAzure
 
-在 [專案總管] 中，以滑鼠右鍵按一下專案名稱，然後選取 [Azure] > [發佈為 Azure Web 應用程式]。
+在 專案總管 hello 專案中，以滑鼠右鍵按一下，然後選取**Azure** > **發佈 Azure Web 應用程式為**。
 
 ![[發佈為 Azure Web 應用程式] 內容功能表](./media/app-service-web-get-started-java/publish-as-azure-web-app-context-menu.png)
 
-在 [Azure 登入] 對話方塊中，保留 [互動式]，然後選取 [登入]。
+在 hello **Azure 登入**對話方塊中，保留 hello**互動式**選項，然後再選取**登入**。
 
-遵循登入指示進行。
+請遵循 hello 登入指示。
 
 ### <a name="deploy-web-app-dialog-box"></a>部署 Web 應用程式對話方塊
 
-在您登入 Azure 帳戶後，[部署 Web 應用程式] 對話方塊隨即出現。
+您登入 tooyour Azure 帳戶之後，hello**部署 Web 應用程式** 對話方塊隨即出現。
 
 選取 [ **建立**]。
 
@@ -92,20 +92,20 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="create-app-service-dialog-box"></a>建立 App Service 對話方塊
 
-顯示的 [建立 App Service] 對話方塊會包含預設值。 下圖中顯示的數字 **170602185241** 不同於您的對話方塊。
+hello**建立 App Service**對話方塊會顯示預設值。 hello 數目**170602185241**示 hello 下列映像在對話方塊中會不同。
 
 ![建立 App Service 對話方塊](./media/app-service-web-get-started-java/cas1.png)
 
-在 [建立 App Service] 對話方塊中：
+在 hello**建立 App Service**對話方塊：
 
-* 保留針對 Web 應用程式產生的名稱。 此名稱在整個 Azure 中必須是唯一的。 名稱是 Web 應用程式 URL 位址的一部分。 例如：如果 Web 應用程式名稱是 **MyJavaWebApp**，URL 是 *myjavawebapp.azurewebsites.net*。
-* 保留預設 Web 容器。
+* 保留產生 hello hello web 應用程式的名稱。 此名稱在整個 Azure 中必須是唯一的。 hello 名稱是 hello hello web 應用程式的 URL 位址的一部分。 例如： 如果 hello web 應用程式名稱是**MyJavaWebApp**，URL 是的 hello *myjavawebapp.azurewebsites.net*。
+* 保留 hello 預設網站容器。
 * 選取 Azure 訂用帳戶。
-* 在 [App Service 方案] 索引標籤上：
+* 在 [hello**應用程式服務方案**] 索引標籤：
 
-  * **新建**：保留預設值，這是 App Service 方案的名稱。
+  * **建立新**： 保留 hello 預設值，這是 hello hello App Service 方案名稱。
   * **位置**︰選取 [西歐]，或您附近的區域。
-  * **定價層**：選取免費選項。 如需詳細資訊，請參閱 [App Service 價格](https://azure.microsoft.com/pricing/details/app-service/)。
+  * **定價層**： 選取 hello 可用的選項。 如需詳細資訊，請參閱 [App Service 價格](https://azure.microsoft.com/pricing/details/app-service/)。
 
    ![建立 App Service 對話方塊](./media/app-service-web-get-started-java/create-app-service-dialog-box.png)
 
@@ -113,7 +113,7 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="resource-group-tab"></a>資源群組索引標籤
 
-選取 [資源群組] 索引標籤。保留針對資源群組產生的預設值。
+選取 hello**資源群組** 索引標籤。保留 hello 資源群組的 hello 產生的預設值。
 
 ![資源群組索引標籤](./media/app-service-web-get-started-java/create-app-service-resource-group.png)
 
@@ -122,38 +122,38 @@ ms.lasthandoff: 08/18/2017
 選取 [ **建立**]。
 
 <!--
-### The JDK tab
+### hello JDK tab
 
-Select the **JDK** tab. Keep the default, and then select **Create**.
+Select hello **JDK** tab. Keep hello default, and then select **Create**.
 
 ![Create App Service plan](./media/app-service-web-get-started-java/create-app-service-specify-jdk.png)
 -->
 
-Azure Toolkit 會建立 Web 應用程式並顯示進度對話方塊。
+hello Azure Toolkit 建立 hello web 應用程式，並顯示進度對話方塊。
 
 ![建立 App Service 進度對話方塊](./media/app-service-web-get-started-java/create-app-service-progress-bar.png)
 
 ### <a name="deploy-web-app-dialog-box"></a>部署 Web 應用程式對話方塊
 
-在 [部署 Web 應用程式] 對話方塊中，選取 [部署至根目錄]。 如果您有位於 wingtiptoys.azurewebsites.net 的應用程式服務，而您未將它部署至根目錄，則命名為 **MyFirstJavaOnAzureWebApp** 的 Web 應用程式會部署至 wingtiptoys.azurewebsites.net/MyFirstJavaOnAzureWebApp。
+在 hello**部署 Web 應用程式**對話方塊中，選取**部署 tooroot**。 如果您有應用程式服務在*wingtiptoys.azurewebsites.net*和您不應部署 toohello 根，hello web 應用程式名為**MyFirstJavaOnAzureWebApp**太部署*wingtiptoys.azurewebsites.net/MyFirstJavaOnAzureWebApp*。
 
 ![部署 Web 應用程式對話方塊](./media/app-service-web-get-started-java/deploy-web-app-to-root.png)
 
-此對話方塊會顯示 Azure、JDK 和 Web 容器選取項目。
+hello 對話方塊所示 hello Azure、 JDK 和 web 容器選取項目。
 
-選取 [部署] 將 Web 應用程式發佈至 Azure。
+選取**部署**toopublish hello web 應用程式 tooAzure。
 
-當發佈完成時，選取 [Azure 活動記錄] 對話方塊中的 [已發佈] 連結。
+Hello 發行完成時，選取 hello**發佈**hello 中的連結**Azure 活動記錄檔** 對話方塊。
 
 ![Azure 活動記錄對話方塊](./media/app-service-web-get-started-java/aal.png)
 
-恭喜！ 您已成功將 Web 應用程式部署至 Azure。 
+恭喜！ 您已成功部署您的 web 應用程式 tooAzure。 
 
 !["Hello Azure!" 範例 web 應用程式](./media/app-service-web-get-started-java/browse-web-app-1.png)
 
-## <a name="update-the-web-app"></a>更新 Web 應用程式
+## <a name="update-hello-web-app"></a>更新 hello web 應用程式
 
-將範例 JSP 程式碼變更為不同的訊息。
+變更 hello 範例 JSP 程式碼 tooa 不同的訊息。
 
 ```jsp
 <body>
@@ -161,35 +161,35 @@ Azure Toolkit 會建立 Web 應用程式並顯示進度對話方塊。
 </body>
 ```
 
-儲存變更。
+儲存 hello 的變更。
 
-在 [專案總管] 中，以滑鼠右鍵按一下專案名稱，然後選取 [Azure] > [發佈為 Azure Web 應用程式]。
+在 專案總管 hello 專案中，以滑鼠右鍵按一下，然後選取**Azure** > **發佈 Azure Web 應用程式為**。
 
-[部署 Web 應用程式] 對話方塊隨即出現，並顯示您先前建立的應用程式服務。 
+hello**部署 Web 應用程式**對話方塊隨即出現並顯示 hello 您先前建立的應用程式服務。 
 
 > [!NOTE]
-> 每次發佈時都選取 [部署至根目錄]。
+> 選取**部署 tooroot**每次發佈。
 >
 
-選取 Web 應用程式，然後選取 [部署] 來發佈變更。
+選取 hello web 應用程式，然後選取**部署**，將發佈 hello 變更。
 
-當 [發佈] 連結出現時，請加以選取來瀏覽至 Web 應用程式並查看變更。
+當 hello**發行**連結出現時，請選取它 toobrowse toohello web 應用程式看到 hello 的變更。
 
-## <a name="manage-the-web-app"></a>管理 Web 應用程式
+## <a name="manage-hello-web-app"></a>管理 hello web 應用程式
 
-請移至 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>，以查看您所建立的 Web 應用程式。
+移 toohello <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>toosee hello web 應用程式所建立。
 
-從左功能表，選取 [資源群組]。
+從 hello 左窗格中，選取**資源群組**。
 
-![入口網站瀏覽至資源群組](media/app-service-web-get-started-java/rg.png)
+![入口網站瀏覽 tooresource 群組](media/app-service-web-get-started-java/rg.png)
 
-選取資源群組。 此頁面會顯示您在本快速入門中建立的資源。
+選取 hello 資源群組。 hello 頁面會顯示您在本快速入門中建立的 hello 資源。
 
 ![資源群組 myResourceGroup](media/app-service-web-get-started-java/rg2.png)
 
-選取 Web 應用程式 (上圖中的 **webapp 170602193915**)。
+選取 hello web 應用程式 (**webapp 170602193915**在上述映像的 hello)。
 
-[概觀] 頁面隨即出現。 此頁面可讓您檢視應用程式的執行方式。 您可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 頁面左側的索引標籤會顯示您可以開啟的各種組態。 
+hello**概觀**頁面隨即出現。 此頁面可讓您檢視 hello 應用程式執行的動作。 您可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 hello 上 hello hello 頁面左側的索引標籤會顯示 hello 不同的組態，您可以開啟。 
 
 ![Azure 入口網站中的 App Service 頁面](media/app-service-web-get-started-java/web-app-blade.png)
 

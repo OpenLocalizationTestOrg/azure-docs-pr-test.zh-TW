@@ -1,6 +1,6 @@
 ---
-title: "使用應用程式 Proxy 應用程式時發生「無法存取此企業應用程式」錯誤 | Microsoft Docs"
-description: "如何解決使用 Azure AD 應用程式 Proxy 應用程式時常見的存取問題。"
+title: "aaa\"時使用的應用程式 Proxy 應用程式無法存取此公司的應用程式錯誤 |Microsoft 文件 」"
+description: "如何與 Azure AD Application Proxy 應用程式問題 tooresolve 一般存取。"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,101 +13,101 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 78ff8763a461162cbcfa04c6a86123973271928a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 490b106b7d774ee43fc076cc5d082997a1df85e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cant-access-this-corporate-application-error-when-using-an-application-proxy-application"></a>使用 Application Proxy 應用程式時發生「無法存取此企業應用程式」錯誤
 
-這篇文章可協助您為在 Azure AD Application Proxy 應用程式上看到「無法存取此企業應用程式」錯誤時所面臨的常見問題疑難排解。
+本文將協助您 tootroubleshoot 您 Azure AD Application Proxy 應用程式上看到 「 無法存取此公司應用程式 」 的錯誤時所面對的常見問題。
 
 ## <a name="overview"></a>概觀
-當您看見此錯誤時，頁面也會顯示狀態碼。 狀態碼可能代表下列其中一種狀態：
+當您看到這個錯誤時，hello 頁面也會共用狀態碼。 該程式碼，可能是之一 hello 下列：
 
--   **閘道逾時**：Application Proxy 服務會無法連線到連接器。 這通常表示連接器指派、連接器本身，或連接器相關的網路規則有問題。
+-   **閘道器逾時而**: hello 應用程式 Proxy 服務是無法 tooreach hello 連接器。 這通常表示 hello 連接器指派、 連接器本身或網路規則 hello 連接器 hello 的問題。
 
--   **不正確的閘道**︰ 連接器無法連線到後端應用程式。 這表示應用程式的設定不正確。
+-   **不正確的閘道**: hello 連接器是無法 tooreach hello 後端應用程式。 這可能表示 hello 應用程式的設定不正確。
 
--   **禁止**︰使用者未獲授權存取應用程式。 當未將使用者指派至 Azure Active Directory 中的應用程式，或者使用者在後端沒有存取應用程式的權限，便會發生此狀態。
+-   **禁止**: hello 使用者不是授權的 tooaccess hello 應用程式。 這可能發生 hello 使用者未指派 toohello 應用程式在 Azure Active Directory，或如果 hello 後端 hello 使用者沒有權限 tooaccess hello 應用程式。
 
-若要尋找狀態碼，請在錯誤訊息底端的文字中找到「狀態碼」欄位。 此外也可以在頁面最底端找到任何有其他秘訣的註解。
+toofind hello 程式碼，看看 hello hello 左下方 hello hello 狀態 」 欄位的錯誤訊息文字。 也請尋找任何附註在 hello 最底部 hello 頁面的其他秘訣。
 
    ![閘道逾時錯誤](./media/application-proxy/connection-problem.png)
 
-如需如何為這些錯誤的根本原因疑難排解的詳細資訊，以及建議的修正程式詳細資料，請參閱下方對應的章節。
+如需如何 tootroubleshoot hello 根本原因，這些錯誤和建議的修正上更多詳細資料的詳細資訊，請參閱 hello 對應下一節。
 
 ## <a name="gateway-timeout-errors"></a>閘道逾時錯誤
 
-當服務嘗試連線到連接器時，若無法在逾時時間範圍內連線，即發生閘道逾時。 這通常是因為指派至連接器群組的應用程式沒有運作中的連接器，或連接器所需的某些連接埠並未開啟所造成的。
+當 hello 服務會嘗試 tooreach hello 連接器，並且無法 toowithin hello 逾時時間範圍時，就會發生閘道逾時。 這通常因為透過指派 tooa 沒有使用連接器與連接器群組的應用程式，或某些 hello 連接器所需的連接埠未開啟。
 
 
 ## <a name="bad-gateway-errors"></a>閘道錯誤
 
-不正確的閘道是指連接器無法連線到後端應用程式。 請確定您所發佈的是正確的應用程式。 造成此錯誤的常見過失︰
+不正確的閘道錯誤表示該 hello 連接器無法 tooreach hello 後端應用程式。 請確定您已發行 hello 正確的應用程式。 造成此錯誤的常見過失︰
 
--   打字錯誤或內部 URL 不正確
+-   印刷樣式或 hello 內部 URL 中的錯誤
 
--   未發佈應用程式的根目錄。 例如，發佈的是 <http://expenses/reimbursement>，但嘗試存取 <http://expenses>
+-   不會發佈 hello 應用程式的根目錄 hello。 例如，發行<http://expenses/reimbursement>但是 tooaccess <http://expenses>
 
--   Kerberos 限制委派 (KCD) 組態有問題
+-   Hello Kerberos 限制委派 (KCD) 組態的問題
 
--   後端應用程式有問題
+-   Hello 後端應用程式的問題
 
 ## <a name="forbidden-errors"></a>禁止錯誤
 
-如果您看到禁止錯誤，則表示使用者尚未指派至該應用程式。 這可能發生在 Azure Active Directory 或後端應用程式。
+如果您看到 「 禁止 」 錯誤，hello 使用者尚未指派 toohello 應用程式。 這可能是 Azure Active Directory 中或在 hello 後端應用程式。
 
-若要了解如何將使用者指派至 Azure 中的應用程式，請參閱[組態文件](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal#add-a-test-user)。
+toolearn 如何 tooassign 使用者 toohello 應用程式在 Azure 中，請參閱 hello[設定文件，](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal#add-a-test-user)。
 
-如果您確認使用者已指派至 Azure 中的應用程式，請在後端應用程式中檢查使用者組態。 如果您使用的是 Kerberos 限制委派/整合式 Windows 驗證，您可以在我們的 [KCD 疑難排解] 頁面上看到部分指導方針。
+如果您確認 hello 使用者獲指派 toohello Azure 中的應用程式，請檢查 hello hello 後端應用程式中的使用者設定。 如果您使用的是 Kerberos 限制委派/整合式 Windows 驗證，您可以在我們的 [KCD 疑難排解] 頁面上看到部分指導方針。
 
-## <a name="check-the-applications-internal-url"></a>檢查應用程式的內部 URL
+## <a name="check-hello-applications-internal-url"></a>核取 hello 應用程式的內部 URL
 
-第一個快速步驟就是反覆檢查內部 URL 並加以修正，做法是透過 [企業應用程式] 開啟應用程式，然後選取 [Application Proxy] 功能表。 確認內部 URL 正確無誤，亦即從您的內部網路用於存取應用程式的 URL。
+第一個的快速步驟，檢查檢查及修正 hello 內部 URL 開啟 hello 應用程式透過**企業應用程式**，再選取 hello**應用程式 Proxy**功能表。 請確認這是 hello 內部 URL 正確，從您內部網路 tooaccess hello 應用程式使用一個 hello。
 
-## <a name="check-the-application-is-assigned-to-a-working-connector-group"></a>確認應用程式已指派至運作中的連接器群組
+## <a name="check-hello-application-is-assigned-tooa-working-connector-group"></a>請使用連接器群組的 tooa 指派 hello 應用程式
 
-若要確認應用程式已指派至運作中的連接器群組：
+tooverify hello 應用程式都會獲指派使用連接器群組的 tooa:
 
-1.  移至 [Azure Active Directory]，然後依序按一下 [企業應用程式]、[所有應用程式]，以開啟入口網站中的應用程式。 開啟應用程式，然後選取左側功能表中的 [Application Proxy]。
+1.  Hello 入口網站中開啟 hello 應用程式移過**Azure Active Directory**、 按一下**企業應用程式**，然後**所有應用程式。** 開啟 hello 應用程式，然後選取 **應用程式 Proxy** hello 左側功能表中。
 
-2.  找到 [連接器群組] 欄位。 如果群組中沒有作用中的連接器，您會看到一則警告。 如果您沒有看到任何警告，請進一步「確認所有必要的連接埠皆在允許清單中」。
+2.  查看 hello 連接器群組欄位。 如果 hello 群組中沒有任何作用中的連接器，您會看到一個警告。 如果您沒有看到任何警告，在移動過 「 請確認所有必要的連接埠會在允許清單 」。
 
-3.  如果這是錯誤的連接器群組，請使用下拉清單選取正確的群組，並確認未再出現任何警告。 如果這是所需的連接器群組，請按一下警告訊息以開啟含連接器管理資訊的頁面。
+3.  如果這是 hello 錯誤的連接器群組使用 hello 下拉式 tooselect hello 正確群組，並確認您不會再看見的任何警告。 如果這是 hello 用連接器群組，按一下 hello 警告訊息 tooopen hello 頁面與連接器管理。
 
-4.  此頁面提供數種方法可進一步向下切入：
+4.  從這裡開始，有幾種方式 toodrill 中的進一步：
 
-  * 將作用中連接器移至群組中：如果您有應該屬於群組的作用中連接器，而且能直接看到目標後端應用程式，您就可以將連接器移入指派的群組。 若要這麼做，請按一下連接器。 在 [連接器群組] 欄位中，使用下拉式清單選取正確的群組，然後按一下 [儲存]。
+  * 將 active 的連接器移到 hello 群組： 如果您有使用中的連接器應隸屬於 toothis 群組且具有的視野 toohello 目標後端應用程式，您可以將 hello 連接器移到 hello 分派群組。 toodo，請按一下 hello 連接器。 在 hello 「 連接器群組 」 欄位中，使用 hello 下拉式 tooselect hello 正確的群組，然後按一下 [儲存]。
 
-  * 下載該群組的新連接器：此頁面上有連結可讓您[下載新連接器](https://download.msappproxy.net/Subscription/d3c8b69d-6bf7-42be-a529-3fe9c2e70c90/Connector/Download)。 連接器必須安裝在可直接看到後端應用程式的電腦上，而且通常會位於與應用程式相同的伺服器上。 使用下載連接器連結，將連接器下載到目標電腦上。 接著按一下連接器，然後使用 [連接器群組] 下拉式清單確定它屬於正確的群組。
+  * 下載該群組的新連接器： 從這個頁面上，就可以 hello 連結太[下載新的連接器](https://download.msappproxy.net/Subscription/d3c8b69d-6bf7-42be-a529-3fe9c2e70c90/Connector/Download)。 hello 連接器需求 toobe 直接視線 toohello 後端應用程式的電腦上安裝，且通常會放在 hello 與 hello 應用程式相同的伺服器。 使用 hello 下載連接器連結 toodownload hello 目標電腦上的連接器。 接下來，按一下 hello 連接器，並使用 hello 「 連接器群組 」 下拉式 toomake 確定其所屬 toohello 正確的群組。
 
-  * 調查非作用中連接器︰如果連接器會顯示為非作用中，則表示它無法連線到服務。 這通常是因為某些必要連接埠遭到封鎖造成的。 若要解決此問題，請進一步「確認所有必要的連接埠皆在允許清單中」。
+  * 調查作用中的連接器： 連接器會顯示為非作用中，如果它是無法 tooreach hello 服務。 這通常是因為 toosome 所需的連接埠遭到封鎖。 toosolve 這個問題，請移動上太 「 請確認所有必要的連接埠會在允許清單 」。
 
-在使用這些步驟確認應用程式已指派至有運作中連接器的群組後，請再次測試應用程式。 如果仍然無法運作，繼續進行下一節。
+使用下列步驟之後 tooensure hello 應用程式是使用連接器，一次測試 hello 應用程式指派的 tooa 群組。 如果它仍然無法運作，繼續 toohello 下一節。
 
 ## <a name="check-all-required-ports-are-whitelisted"></a>檢查所有必要連接埠皆在允許清單中
 
-若要確認所有必要連接埠皆已開啟，請參閱我們有關開啟連接埠的文件。 如果所有必要連接埠皆已開啟，請移至下一節。
+tooverify 所有必要的連接埠已開啟，請參閱我們的文件開啟的連接埠。 如果已開啟 hello 所需的所有連接埠，就會移 toohello 下一節。
 
 ## <a name="check-for-other-connector-errors"></a>檢查有無其他連接器錯誤
 
-如果上述方法都無法解決此問題，下一步就是找出連接器本身的問題或錯誤。 您可以在[疑難排解文件](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-troubleshoot#connector-errors)中看見一些常見錯誤。 
+若無 hello 上述解決 hello 問題，hello 下一個步驟是 toolook 問題或錯誤以 hello 連接器本身。 您可以看到在 hello 一些常見錯誤[疑難排解文件](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-troubleshoot#connector-errors)。 
 
-您也可以直接查看連接器記錄檔，以找出任何錯誤。 我們的錯誤訊息中有許多能夠分享更具體的修正程式建議。 若要了解如何檢視記錄檔，請參閱[連接器文件](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors#under-the-hood)。
+您也可以查看直接 hello 連接器記錄 tooidentify 任何錯誤。 許多錯誤訊息是無法 tooshare 修正的較特定建議事項。 如何 tooview hello 記錄，請參閱 < 的 toolearn[連接器文件](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors#under-the-hood)。
 
 ## <a name="additional-resolutions"></a>其他解決方式
 
-如果上述方法皆無法修正問題，有幾個不同的可能原因。 若要找出問題︰
+如果上述 hello 沒有修正 hello 問題，有幾個不同的可能原因。 tooidentify hello 問題：
 
-如果您的應用程式是設定為使用整合式 Windows 驗證 (IWA)，請在未單一登入的情況下測試應用程式。 如果不是，請移至下一段。 若要在未單一登入的情況下檢查應用程式，請透過 [企業應用程式] 開啟您的應用程式，然後移至 [單一登入] 功能表。 將下拉式清單從 [整合式 Windows 驗證] 變更為 [Azure AD single sign-on disabled (Azure AD 單一登入已停用)]。 
+如果您的應用程式設定的 toouse 整合式 Windows 驗證 (IWA)，沒有單一登入的測試 hello 應用程式。 如果沒有，則移動 toohello 下一個段落。 toocheck hello 應用程式沒有單一登入，開啟您的應用程式，透過**企業應用程式，**並移 toohello**單一登入**功能表。 變更 hello 下拉式清單從 「 整合式 Windows 驗證 」 太 「 Azure AD 單一登入停用 」。 
 
-現在開啟瀏覽器，然後再次嘗試存取應用程式。 系統應該會提示您輸入驗證並進入應用程式。 如果可進入，則問題出在啟用單一登入的 Kerberos 限制委派 (KCD) 組態。 請參閱 [KCD 疑難排解] 頁面。
+現在開啟瀏覽器，然後再試一次 tooaccess hello 應用程式。 您應該會提示您進行驗證，並進入 hello 應用程式。 如果可行，hello Kerberos 限制委派 (KCD) 設定，可讓 hello 單一登入將會是 hello 問題。 請參閱 hello KCD 疑難排解頁面。
 
-如果您繼續看到此錯誤，請移到已安裝連接器的電腦，開啟瀏覽器，並嘗試連線到應用程式使用的內部 URL。 連接器就像同一台電腦中的另一個用戶端。 如果您無法連線到應用程式，請調查為何該電腦無法連線到應用程式，或使用能夠存取應用程式之伺服器上的連接器。
+如果您繼續 toosee hello 錯誤，請移 toohello 機器其中 hello 連接器安裝後，開啟瀏覽器，並嘗試 tooreach hello 內部 URL 用於 hello 應用程式。 hello 連接器就像是另一個用戶端 hello 從同一部電腦。 如果您無法連線到 hello 應用程式、 調查為何該機器已無法 tooreach hello 應用程式，或可以在伺服器上使用連接器 tooaccess hello 應用程式。
 
-如果您可以從電腦連線到應用程式，請找出連接器本身的問題或錯誤。 您可以在[疑難排解文件](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-troubleshoot#connector-errors)中看見一些常見錯誤。 您也可以直接查看連接器記錄檔，以找出任何錯誤。 我們的錯誤訊息中有許多能夠分享更具體的修正程式建議。 若要了解如何檢視記錄檔，請參閱[連接器文件](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors#under-the-hood)。
+如果您可以連線到從該電腦，問題或錯誤以 hello 連接器本身 toolook hello 應用程式。 您可以看到在 hello 一些常見錯誤[疑難排解文件](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-troubleshoot#connector-errors)。 您也可以查看直接 hello 連接器記錄 tooidentify 任何錯誤。 許多錯誤訊息是無法 tooshare 修正的較特定建議事項。 如何 tooview hello 記錄，請參閱 < 的 toolearn[連接器文件](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors#under-the-hood)。
 
 ## <a name="next-steps"></a>後續步驟
 [了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)

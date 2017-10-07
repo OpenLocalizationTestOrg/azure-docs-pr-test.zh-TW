@@ -1,6 +1,6 @@
 ---
-title: "編譯 Azure 自動化 DSC 中的組態 | Microsoft Docs"
-description: "此文章說明如何針對 Azure 自動化編譯期望狀態設定 (DSC) 組態。"
+title: "在 Azure Automation DSC aaaCompiling 組態 |Microsoft 文件"
+description: "本文說明如何 toocompile 預期狀態設定 (DSC) 設定 Azure 自動化。"
 services: automation
 documentationcenter: na
 author: eslesar
@@ -13,20 +13,20 @@ ms.tgt_pltfrm: powershell
 ms.workload: na
 ms.date: 02/07/2017
 ms.author: magoedte; eslesar
-ms.openlocfilehash: 1aadd604e676659475f00760af3b0bdfb13a4792
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b195311318a2d7431c4d6b29f4b9a5f3a0a0a9a5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compiling-configurations-in-azure-automation-dsc"></a>編譯 Azure 自動化 DSC 中的組態
 
-使用 Azure 自動化時有兩種方式可以編譯「期望狀態設定 (DSC)」組態：在 Azure 入口網站中，以及使用 Windows PowerShell。 下表將協助您根據方法的特性判斷何時應使用哪種方法：
+您可以編譯為預期狀態設定 (DSC) 設定與 Azure 自動化有兩種： hello Azure 入口網站，並使用 Windows PowerShell。 hello 下列表格可協助您判斷何時 toouse 哪一種方法會根據每個 hello 特性：
 
 ### <a name="azure-portal"></a>Azure 入口網站
 
 * 互動式使用者介面的最簡單方法
-* 提供簡單參數值的表單
+* 表單 tooprovide 簡單的參數值
 * 輕鬆追蹤工作狀態
 * 使用 Azure 登入資訊驗證存取
 
@@ -36,29 +36,29 @@ ms.lasthandoff: 07/11/2017
 * 可以包含在具有多個步驟的自動化解決方案中
 * 提供簡單和複雜的參數值
 * 追蹤工作狀態
-* 支援 PowerShell Cmdlet 所需的用戶端
+* 所需的用戶端 toosupport PowerShell cmdlet
 * 傳遞 ConfigurationData
 * 編譯使用認證的組態
 
-在您決定編譯方法後，您可以依照下列個別的程序開始編譯。
+一旦您決定編譯方法上，您可以依照以下 toostart 編譯 hello 個別的程序。
 
-## <a name="compiling-a-dsc-configuration-with-the-azure-portal"></a>使用 Azure 入口網站編譯 DSC 組態
+## <a name="compiling-a-dsc-configuration-with-hello-azure-portal"></a>編譯 DSC 設定以 hello Azure 入口網站
 
 1. 從您的自動化帳戶中，按一下 [DSC 組態]。
-2. 按一下組態以開啟其刀鋒視窗。
+2. 按一下 設定 tooopen 其刀鋒視窗。
 3. 按一下 [編譯] 。
-4. 如果組態沒有參數，系統會提示您確認是否要加以編譯。 如果組態有參數，即會開啟 [編譯組態] 刀鋒視窗，讓您可以提供參數值。 如需參數的進一步詳細資訊，請參閱以下的[**基本參數**](#basic-parameters)一節。
-5. [編譯工作]  刀鋒視窗隨即開啟，供您追蹤編譯工作的狀態，以及因為此工作而放在 Azure 自動化 DSC 提取伺服器上的節點組態 (MOF 組態文件)。
+4. 如果 hello 設定沒有任何參數，則會提示的 tooconfirm 是否要將 toocompile 它。 如果 hello 組態有參數，hello**編譯組態**刀鋒視窗會開啟，以便您可以提供參數值。 請參閱 hello [**基本參數**](#basic-parameters)下面章節以取得參數的詳細資料。
+5. hello**編譯工作**刀鋒視窗中開啟，讓您可以追蹤 hello 編譯作業的狀態，並 hello 節點組態 （MOF 設定文件） 則因為 toobe 置於 hello Azure Automation DSC 提取伺服器。
 
 ## <a name="compiling-a-dsc-configuration-with-windows-powershell"></a>使用 Windows PowerShell 編譯 DSC 組態
 
-您可以在 Windows PowerShell 中使用 [`Start-AzureRmAutomationDscCompilationJob`](/powershell/module/azurerm.automation/start-azurermautomationdsccompilationjob) 開始編譯。 下列範例程式碼會啟動 DSC 組態 **SampleConfig**的編譯。
+您可以使用[ `Start-AzureRmAutomationDscCompilationJob` ](/powershell/module/azurerm.automation/start-azurermautomationdsccompilationjob) toostart 編譯使用 Windows PowerShell。 下列範例程式碼的 hello 啟動編譯 DSC 設定，稱為**SampleConfig**。
 
 ```powershell
 Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -AutomationAccountName "MyAutomationAccount" -ConfigurationName "SampleConfig"
 ```
 
-`Start-AzureRmAutomationDscCompilationJob` 會傳回可用來追蹤工作狀態的編譯工作物件。 接著，您可以使用此編譯工作物件與 [`Get-AzureRmAutomationDscCompilationJob`](/powershell/module/azurerm.automation/get-azurermautomationdsccompilationjob) 來判斷編譯工作的狀態，並使用 [`Get-AzureRmAutomationDscCompilationJobOutput`](/powershell/module/azurerm.automation/get-azurermautomationdsccompilationjoboutput) 來檢視其串流 (輸出)。 下列範例程式碼會啟動 **SampleConfig** 組態的編譯，並在編譯完成後顯示其串流。
+`Start-AzureRmAutomationDscCompilationJob`傳回編譯作業，您可以使用 tootrack 其狀態的物件。 然後，您可以使用此編譯作業物件搭配[ `Get-AzureRmAutomationDscCompilationJob` ](/powershell/module/azurerm.automation/get-azurermautomationdsccompilationjob) hello 編譯工作，toodetermine hello 狀態和[ `Get-AzureRmAutomationDscCompilationJobOutput` ](/powershell/module/azurerm.automation/get-azurermautomationdsccompilationjoboutput) tooview 其資料流 （輸出）。 下列範例程式碼的 hello 啟動的 hello 編譯**SampleConfig**組態中，等候直到它已完成，並接著會顯示其資料流。
 
 ```powershell
 $CompilationJob = Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -AutomationAccountName "MyAutomationAccount" -ConfigurationName "SampleConfig"
@@ -73,9 +73,9 @@ $CompilationJob | Get-AzureRmAutomationDscCompilationJobOutput –Stream Any
 ```
 
 ## <a name="basic-parameters"></a>基本參數
-DSC 組態中的參數宣告 (包括參數類型和屬性) 的運作方式與 Azure 自動化 Runbook 中相同。 若要深入了解 Runbook 參數，請參閱 [在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md) 。
+在 DSC 設定，包含參數型別和運作的內容中的參數宣告 hello 相同如同 Azure 自動化 runbook。 請參閱[Azure 自動化中啟動 runbook](automation-starting-a-runbook.md) toolearn 深入了解 runbook 參數。
 
-下列範例使用兩個名為 **FeatureName** 和 **IsPresent** 的參數，來判斷在編譯期間產生的 **ParametersExample.sample** 節點組態中的屬性值。
+hello 下列範例會使用兩個參數呼叫**FeatureName**和**IsPresent**，toodetermine hello 中 hello 屬性值**ParametersExample.sample**節點設定中，在編譯期間產生。
 
 ```powershell
 Configuration ParametersExample
@@ -106,17 +106,17 @@ Configuration ParametersExample
 }
 ```
 
-您可以在 Azure Automation DSC 入口網站或 Azure PowerShell 中編譯使用基本參數的 DSC 組態：
+您可以編譯 DSC 設定在 hello Azure Automation DSC 入口網站或 Azure PowerShell，使用基本參數：
 
 ### <a name="portal"></a>入口網站
 
-在入口網站中，您可以在按一下 [編譯] 後輸入參數值。
+在 hello 入口網站中，您可以輸入參數值之後按**編譯**。
 
 ![替代文字](./media/automation-dsc-compile/DSC_compiling_1.png)
 
 ### <a name="powershell"></a>PowerShell
 
-PowerShell 會要求您將參數放入 [hashtable](http://technet.microsoft.com/library/hh847780.aspx) 中，且其中的索引鍵必須符合參數名稱，值等於參數值。
+PowerShell 要求中的參數[雜湊表](http://technet.microsoft.com/library/hh847780.aspx)hello 索引鍵符合 hello 參數名稱，而 hello 值等於 hello 參數值。
 
 ```powershell
 $Parameters = @{
@@ -130,12 +130,12 @@ Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -A
 如需如何將 PSCredentials 傳入作為參數的相關資訊，請參閱下方的 <a href="#credential-assets">**認證資產**</a> 。
 
 ## <a name="configurationdata"></a>ConfigurationData
-**ConfigurationData** 可讓您在使用 PowerShell DSC 時區隔結構化組態與任何環境特定組態。 請參閱 [區隔 PowerShell DSC 中的 "What" 與 "Where"](http://blogs.msdn.com/b/powershell/archive/2014/01/09/continuous-deployment-using-dsc-with-minimal-change.aspx) ，以深入了解 **ConfigurationData**。
+**ConfigurationData**可讓您從任何環境的特定設定時使用的 PowerShell DSC tooseparate 結構化設定。 請參閱[「 什麼 」 隔開"Where"PowerShell dsc](http://blogs.msdn.com/b/powershell/archive/2014/01/09/continuous-deployment-using-dsc-with-minimal-change.aspx) toolearn 更多關於**ConfigurationData**。
 
 > [!NOTE]
-> 使用 Azure PowerShell 在 Azure 自動化 DSC 中進行編譯時可以使用 **ConfigurationData** ，但使用 Azure 入口網站時則否。
+> 您可以使用**ConfigurationData**編譯中使用 Azure PowerShell 的 Azure 自動化 DSC，但不是在 hello Azure 入口網站時。
 
-下列範例 DSC 組態會透過 **$ConfigurationData** 和 **$AllNodes** 關鍵字來使用 **ConfigurationData**。 在此範例中也需要 [**xWebAdministration** 模組](https://www.powershellgallery.com/packages/xWebAdministration/)：
+hello 下列範例 DSC 設定使用**ConfigurationData**透過 hello **$ConfigurationData**和**$AllNodes**關鍵字。 您還需要 hello [ **xWebAdministration**模組](https://www.powershellgallery.com/packages/xWebAdministration/)此範例中：
 
 ```powershell
 Configuration ConfigurationDataSample
@@ -156,7 +156,7 @@ Configuration ConfigurationDataSample
 }
 ```
 
-您可以使用 PowerShell 編譯上述 DSC 組態。 PowerShell 會將以下兩個節點組態新增至 Azure Automation DSC 提取伺服器：**ConfigurationDataSample.MyVM1** 和 **ConfigurationDataSample.MyVM3**：
+您可以編譯上述使用 PowerShell 的 hello DSC 設定。 hello PowerShell 底下加入兩個節點組態 toohello Azure Automation DSC 提取伺服器： **ConfigurationDataSample.MyVM1**和**ConfigurationDataSample.MyVM3**:
 
 ```powershell
 $ConfigData = @{
@@ -183,9 +183,9 @@ $ConfigData = @{
 Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -AutomationAccountName "MyAutomationAccount" -ConfigurationName "ConfigurationDataSample" -ConfigurationData $ConfigData
 ```
 
-## <a name="assets"></a>資產
+## <a name="assets"></a>Assets
 
-Azure 自動化 DSC 組態和 Runbook 中的資產參考是相同的。 如需詳細資訊，請參閱下列主題：
+資產的參考是 hello Azure 自動化 DSC 設定和 runbook 中相同。 Hello 下列如需詳細資訊，請參閱：
 
 * [憑證](automation-certificates.md)
 * [連線](automation-connections.md)
@@ -194,13 +194,13 @@ Azure 自動化 DSC 組態和 Runbook 中的資產參考是相同的。 如需�
 
 ### <a name="credential-assets"></a>認證資產
 
-雖然 Azure 自動化中的 DSC 組態可以使用 **Get-AzureRmAutomationCredential**參考認證資產，但如有需要，也可以透過參數傳入認證資產。 如果組態採用屬於 **PSCredential** 類型的參數，您必須將 Azure 自動化認證資產的字串名稱傳遞為該參數的值，而不是 PSCredential 物件。 具有該名稱的 Azure 自動化認證資產會在背景中被擷取，並傳遞至組態。
+雖然 Azure 自動化中的 DSC 組態可以使用 **Get-AzureRmAutomationCredential**參考認證資產，但如有需要，也可以透過參數傳入認證資產。 如果組態使用的參數**PSCredential**類型，則您需要 Azure 自動化認證資產 toopass hello 字串名稱做為該參數的值，而不是 PSCredential 物件。 Hello 幕後 hello Azure 自動化認證資產具有該名稱將會擷取和傳遞 toohello 組態。
 
-要在節點組態 (MOF 組態文件) 中保持認證的安全性，需要在節點組態 MOF 檔案中為認證加密。 Azure 自動化會進一步執行此步驟，而加密整個 MOF 檔案。 不過，目前您必須告知 PowerShell DSC 在節點組態 MOF 產生期間以純文字形式輸出認證是可行的，因為 PowerShell DSC 並不知道在透過編譯工作產生 MOF 檔案之後 Azure 自動化會加密整個檔案。
+保留認證安全節點組態 （MOF 設定文件） 需要加密 hello 節點設定 MOF 檔案中的 hello 認證。 Azure 自動化會進一步採用此步驟，並且加密 hello 整個 MOF 檔案。 不過，目前必須告知 PowerShell DSC 沒有關係的節點設定 MOF 在產生期間，輸出以純文字認證 toobe 因為 PowerShell DSC 並不知道 Azure 自動化會加密後的 hello 整個 MOF 檔案及其產生透過編譯工作。
 
-您可以告知 PowerShell DSC，使用 [**ConfigurationData**](#configurationdata)。 您應針對每個出現在 DSC 組態中且使用認證的節點區塊名稱，透過 **ConfigurationData** 傳遞 `PSDscAllowPlainTextPassword = $true`。
+您可以告訴 PowerShell DSC 是否可以供輸出中產生的 hello 節點設定 Mof 內的純文字認證 toobe 使用[ **ConfigurationData**](#configurationdata)。 您應該傳遞`PSDscAllowPlainTextPassword = $true`透過**ConfigurationData** hello DSC 組態中會出現，並使用認證的每個節點區塊的名稱。
 
-下列範例說明使用自動化認證資產的 DSC 組態。
+hello 下列範例顯示使用自動化認證資產的 DSC 設定。
 
 ```powershell
 Configuration CredentialSample
@@ -219,7 +219,7 @@ Configuration CredentialSample
 }
 ```
 
-您可以使用 PowerShell 編譯上述 DSC 組態。 PowerShell 會將以下兩個節點組態新增至 Azure Automation DSC 提取伺服器：**CredentialSample.MyVM1** 和 **CredentialSample.MyVM2**。
+您可以編譯上述使用 PowerShell 的 hello DSC 設定。 hello PowerShell 底下加入兩個節點組態 toohello Azure Automation DSC 提取伺服器： **CredentialSample.MyVM1**和**CredentialSample.MyVM2**。
 
 ```powershell
 $ConfigData = @{
@@ -243,31 +243,31 @@ Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -A
 ## <a name="importing-node-configurations"></a>匯入節點組態
 
 您也可以匯入在 Azure 外部完成編譯的節點組態 (MOF)。 這樣做的優點之一就是可以簽署節點組態。
-DSC 代理程式會在受管理的節點上本機驗證簽署的節點組態，確保套用到節點的組態來自經授權之來源。
+帶正負號的節點驗證的設定在本機上受管理的節點 hello DSC 代理程式，確保正在套用的 toohello 節點該 hello 組態來自授權來源。
 
 > [!NOTE]
 > 您可以將簽署的組態匯入到您的 Azure 自動化帳戶，但 Azure 自動化目前不支援編譯簽署的組態。
 
 > [!NOTE]
-> 節點組態檔不得大於 1 MB，才能匯入到 Azure 自動化。
+> 節點組態檔必須是不能大於 1 MB tooallow 它 toobe 匯入到 Azure 自動化。
 
-如需了解如何簽署節點組態，請參閱 https://msdn.microsoft.com/en-us/powershell/wmf/5.1/dsc-improvements#how-to-sign-configuration-and-module。
+您可以了解如何在 https://msdn.microsoft.com/en-us/powershell/wmf/5.1/dsc-improvements#how-to-sign-configuration-and-module toosign 節點設定。
 
-### <a name="importing-a-node-configuration-in-the-azure-portal"></a>在 Azure 入口網站中匯入節點組態
+### <a name="importing-a-node-configuration-in-hello-azure-portal"></a>匯入 hello Azure 入口網站中的節點設定
 
 1. 從您的自動化帳戶中，按一下 [DSC 節點組態]。
 
     ![DSC 節點組態](./media/automation-dsc-compile/node-config.png)
-2. 在 [DSC 節點組態] 刀鋒視窗上，按一下 [新增節點組態]。
-3. 在 [匯入] 刀鋒視窗中，按一下資料夾圖示旁的 [節點組態檔] 文字方塊，以瀏覽本機電腦上的節點組態檔 (MOF)。
+2. 在 hello **DSC 節點組態**刀鋒視窗中，按一下 **新增 NodeConfiguration**。
+3. 在 hello**匯入**刀鋒視窗中，按一下 hello 資料夾圖示的 下一步 toohello**節點組態檔**節點組態檔 (MOF) 在本機電腦上的文字方塊中 toobrowse。
 
     ![瀏覽本機檔案](./media/automation-dsc-compile/import-browse.png)
-4. 在 [組態名稱]文字方塊中輸入名稱。 此名稱必須符合已編譯節點組態的組態名稱。
+4. 輸入的名稱在 hello**組態名稱**文字方塊。 此名稱必須符合 hello hello 組態從中編譯 hello 節點組態名稱。
 5. 按一下 [確定] 。
 
 ### <a name="importing-a-node-configuration-with-powershell"></a>使用 PowerShell 匯入節點組態
 
-您可以使用 [Import-AzureRmAutomationDscNodeConfiguration](/powershell/module/azurerm.automation/import-azurermautomationdscnodeconfiguration) Cmdlet，將節點組態匯入到您的自動化帳戶。
+您可以使用 hello[匯入 AzureRmAutomationDscNodeConfiguration](/powershell/module/azurerm.automation/import-azurermautomationdscnodeconfiguration) cmdlet tooimport 到您的自動化帳戶的節點設定。
 
 ```powershell
 Import-AzureRmAutomationDscNodeConfiguration -AutomationAccountName "MyAutomationAccount" -ResourceGroupName "MyResourceGroup" -ConfigurationName "MyNodeConfiguration" -Path "C:\MyConfigurations\TestVM1.mof"

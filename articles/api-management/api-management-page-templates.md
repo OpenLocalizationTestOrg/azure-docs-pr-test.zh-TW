@@ -1,6 +1,6 @@
 ---
-title: "Azure API 管理中的頁面範本 | Microsoft Docs"
-description: "了解如何使用「Azure API 管理」中的一組範本來自訂開發人員入口網站頁面的內容。"
+title: "在 Azure API 管理 aaaPage 範本 |Microsoft 文件"
+description: "了解如何 toocustomize hello 使用一組範本，在 Azure API 管理開發人員入口網站頁面的內容。"
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 7f9ef37a694bce786b6acaa428df83f0cb23c2dc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 84bd971ad4bcacfdd36c2ebbe05b16063f2a547b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="page-templates-in-azure-api-management"></a>Azure API 管理中的頁面範本
-「Azure API 管理」可讓您使用一組可設定開發人員入口網站頁面內容的範本，來自訂那些頁面的內容。 使用這些範本時，您可以運用 [DotLiquid](http://dotliquidmarkup.org/) 語法和您選擇的編輯器 (例如 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers))，以及一組提供的當地語系化[字串資源](api-management-template-resources.md#strings)、[字符資源](api-management-template-resources.md#glyphs)和[頁面控制項](api-management-page-controls.md)，依照您的想法自由靈活地設定頁面內容。  
+Azure API 管理提供 hello 能力 toocustomize hello 網頁內容的開發人員入口網站使用的一組設定其內容的範本。 使用[DotLiquid](http://dotliquidmarkup.org/)語法和 hello 您選擇的編輯器例如[針對設計人員 DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers)，和一組提供的當地語系化[字串資源](api-management-template-resources.md#strings)， [字符資源](api-management-template-resources.md#glyphs)，和[頁面控制項](api-management-page-controls.md)，視使用這些範本，您會有很大的彈性 tooconfigure hello 網頁內容的 hello。  
   
- 本節中的範本可讓您自訂開發人員入口網站中下列頁面的內容：登入、註冊及找不到頁面。  
+ 本節中的 hello 範本可讓您 toocustomize hello 內容 hello 登入，登，以及頁面中找不到頁面 hello 開發人員入口網站。  
   
 -   [登入](#SignIn)  
   
@@ -32,10 +32,10 @@ ms.lasthandoff: 07/11/2017
 -   [找不到頁面](#PageNotFound)  
   
 > [!NOTE]
->  下列文件中包含範例預設範本，但範本可能會因持續進行的改善而有變更。 您可以瀏覽至想要的個別範本，來檢視開發人員入口網站中的即時預設範本。 如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。  
+>  預設範本範例隨附的 hello 下列文件，但主旨 toochange 到期 toocontinuous 增強功能。 您可以檢視 hello 開發人員入口網站中的 hello 即時預設範本，藉由瀏覽 toohello 需要個別的範本。 如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。  
   
 ##  <a name="SignIn"></a> 登入  
- 「登入」範本可讓您自訂開發人員入口網站中的登入頁面。  
+ hello**登入**範本可讓您 toocustomize hello 登在 hello 開發人員入口網站 頁面中。  
   
  ![登入頁面](./media/api-management-page-templates/APIM-Sign-In-Page-Developer-Portal-Templates.png "APIM 登入頁面開發人員入口網站範本")  
   
@@ -96,7 +96,7 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ### <a name="controls"></a>控制  
- 此範本可能會使用下列[頁面控制項](api-management-page-controls.md)。  
+ 此範本可能會使用 hello 下列[頁面控制項](api-management-page-controls.md)。  
   
 -   [basic-signin](api-management-page-controls.md#basic-signin)  
   
@@ -134,7 +134,7 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ##  <a name="SignUp"></a> 註冊  
- 「註冊」範本可讓您自訂開發人員入口網站中的註冊頁面。  
+ hello**註冊**範本可讓您 toocustomize hello 登入頁面 hello 開發人員入口網站中。  
   
  ![註冊頁面](./media/api-management-page-templates/APIM-Sign-Up-Page-Developer-Portal-Templates.png "APIM 註冊頁面開發人員入口網站範本")  
   
@@ -155,7 +155,7 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ### <a name="controls"></a>控制  
- 此範本可能會使用下列[頁面控制項](api-management-page-controls.md)。  
+ 此範本可能會使用 hello 下列[頁面控制項](api-management-page-controls.md)。  
   
 -   [sign-up](api-management-page-controls.md#sign-up)  
   
@@ -182,7 +182,7 @@ ms.lasthandoff: 07/11/2017
 ```  
   
 ##  <a name="PageNotFound"></a> 找不到頁面  
- 「找不到頁面」範本可讓您自訂開發人員入口網站中的「找不到頁面」頁面。  
+ hello**找不到頁面**範本可讓您 toocustomize hello 找不到頁面頁面 hello 開發人員入口網站中。  
   
  ![找不到頁面](./media/api-management-page-templates/APIM-Not-Found-Page-Developer-Portal-Templates.png "APIM 找不到頁面開發人員入口網站範本")  
   
@@ -225,11 +225,11 @@ ms.lasthandoff: 07/11/2017
   
 |屬性|類型|說明|  
 |--------------|----------|-----------------|  
-|referenceCode|字串|因發生內部錯誤而顯示此頁面時所產生的代碼。|  
-|errorCode|字串|因發生內部錯誤而顯示此頁面時所產生的代碼。|  
-|emailBody|字串|因發生內部錯誤而顯示此頁面時所產生的電子郵件本文。|  
-|requestedUrl|字串|找不到頁面時所要求的 URL。|  
-|referrerUrl|字串|所要求 URL 的查閱者 URL。|  
+|referenceCode|字串|如果此頁面顯示 hello 發生內部錯誤導致產生的程式碼。|  
+|errorCode|字串|如果此頁面顯示 hello 發生內部錯誤導致產生的程式碼。|  
+|emailBody|字串|如果此頁面顯示 hello 發生內部錯誤導致產生的內文的電子郵件。|  
+|requestedUrl|字串|hello 時找不到 hello 頁面要求的 URL。|  
+|referrerUrl|字串|hello 查閱者 URL toohello 要求的 URL。|  
   
 ### <a name="sample-template-data"></a>範例範本資料  
   
@@ -244,4 +244,4 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="next-steps"></a>後續步驟
-如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](api-management-developer-portal-templates.md)。
+如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](api-management-developer-portal-templates.md)。

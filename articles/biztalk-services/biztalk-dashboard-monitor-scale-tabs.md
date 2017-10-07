@@ -1,6 +1,6 @@
 ---
-title: "BizTalk 服務中的儀表板、監視、調整、設定和混合式連接 | Microsoft Docs"
-description: "深入了解控制項，以及監視 BizTalk 服務的傳統入口網站索引標籤的效能：儀表板、監視、級別、設定和混合式連接。 MABS，WABS"
+title: "aaaDashboard 監視器、 小數位數、 設定和 BizTalk 服務的混合式連線 |Microsoft 文件"
+description: "深入了解 hello 控制項和監視效能 hello 傳統入口網站 索引標籤上的 BizTalk 服務： 儀表板、 監視器、 小數位數、 設定和混合式連線。 MABS，WABS"
 services: biztalk-services
 documentationcenter: 
 author: MandiOhlinger
@@ -14,329 +14,329 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-ms.openlocfilehash: 4ec88d9a681a5692b31f7e3990d1c153296b18ed
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9fafdad20489571ee3849bbacd2c2b10933154f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="review-the-dashboard-monitor-scale-configure-and-hybrid-connection-tabs"></a>檢閱儀表板、監視器、調整、設定和混合式連線索引標籤
+# <a name="review-hello-dashboard-monitor-scale-configure-and-hybrid-connection-tabs"></a>檢閱 hello 儀表板、 監視器、 小數位數、 設定和混合式連接索引標籤
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
-在您建立 BizTalk 服務和部署應用程式之後，您可以變更某些 BizTalk 服務設定和監視應用程式效能。 
+建立 BizTalk 服務和部署您的應用程式之後，您可以變更某些 hello BizTalk 服務設定和監視 hello 應用程式效能。 
 
-當您開啟 Azure 傳統入口網站時，會自動進入 [ **所有項目** ] 索引標籤。 若要檢視 BizTalk 服務，請在 [所有項目] 索引標籤中選取 BizTalk 服務，或選取 [BIZTALK 服務] 索引標籤，然後選取您的 BizTalk 服務名稱。
+當您開啟 hello Azure 傳統入口網站時，系統會自動引導您前往 hello**所有項目** 索引標籤 tooview BizTalk 服務中，選取您的 BizTalk 服務中 hello**所有項目** 索引標籤或選取 hello **BIZTALK 服務**索引標籤上;，然後選取 BizTalk 服務名稱。
 
-這樣會開啟新視窗並顯示下列索引標籤。 本主題說明這些索引標籤。
+這會開啟新視窗以 hello 下列索引標籤。 本主題說明這些索引標籤。
 
 ## <a name="quickstart-quickstartquickstart"></a>快速入門 (![快速入門][Quickstart])
-部分 BizTalk 服務版本可能並未提供下列所有選項。 
+根據 hello BizTalk 服務版本，可能無法使用所有列出的選項。 
 
 <table border="1">
     <tr>
-        <td><strong>取得工具</strong></td>
-        <td>下載 BizTalk 服務 SDK，將 Visual Studio 專案範本安裝到內部部署開發電腦上。 這些範本會建立 <strong>BizTalk 服務</strong> (橋接)，以及可部署至 BizTalk 服務的 <strong>BizTalk 服務成品</strong> (轉換) Visual Studio 專案。
+        <td><strong>取得 hello 工具</strong></td>
+        <td>下載 hello BizTalk 服務 SDK tooinstall hello Visual Studio 專案範本在內部部署開發電腦上。 這些範本會建立 hello <strong>BizTalk 服務</strong>(bridge) 和 hello <strong>BizTalk 服務成品</strong>部署的 tooyour BizTalk 服務的 （轉換） Visual Studio 專案。
         <br/><br/>
-        <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302335">如何開始使用 Azure BizTalk 服務 SDK</a> 和<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=241589">安裝 Azure BizTalk 服務 SDK</a> 列出開始進行的步驟。
+        <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302335">開始使用我該如何 hello Azure BizTalk 服務 SDK</a>和<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=241589">安裝 hello Azure BizTalk 服務 SDK</a>清單 hello 步驟 tooget 啟動。
         </td>
     </tr>
     <tr>
         <td><strong>建立夥伴協議</strong></td>
-        <td>開啟裝載於 Azure 的 Azure BizTalk 服務入口網站，以加入夥伴並建立 X12、AS2 和 EDIFACT EDI 協議。
+        <td>開啟 hello Azure BizTalk 服務入口網站裝載於 Azure，讓您加入夥伴和建立 X12、 AS2 和 EDIFACT EDI 協議。
         <br/><br/>
-        <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">在 BizTalk 服務入口網站上設定 EDI 訊息的元件</a>列出開始進行的步驟。
+        <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">設定元件的 BizTalk 服務入口網站上的 EDI 傳訊</a>清單 hello 步驟 tooget 啟動。
         </td>
     </tr>
 
 <tr>
         <td><strong>深入了解 BizTalk 服務</strong></td>
-        <td>前往<a HREF="http://azure.microsoft.com/documentation/services/biztalk-services/">學習中心</a>以深入了解 Azure BizTalk 服務。</td>
+        <td>移 toohello<a HREF="http://azure.microsoft.com/documentation/services/biztalk-services/">學習中心</a>toolearn 更多關於 Azure BizTalk 服務。</td>
 </tr>
 </table>
 
 
-在底部的工作列上，您可以：
+在底部 hello hello 工作列，您可以：
 
 <table border="1">
 
 <tr>
 <td><strong>管理</strong>應用程式部署</td>
-<td>開啟 Azure BizTalk 服務入口網站。 BizTalk 服務入口網站是 EDI 組態的入口，包括加入夥伴及建立 X12、AS2 和 EDIFACT 協議。
+<td>開啟 hello Azure BizTalk 服務入口網站。 hello BizTalk 服務入口網站是 hello 進入 tooEDI 的設定，包括加入夥伴和建立 X12、 AS2 和 EDIFACT 協議。
 <br/><br/>
-這與 [快速入門]<strong></strong> 索引標籤上的 [建立夥伴合約]<strong></strong> 相同。
+這是與相同 hello<strong>建立夥伴協議</strong>上 hello<strong>快速入門</strong> 索引標籤。
 <br/><br/>
-<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">在 BizTalk 服務入口網站上設定 EDI 訊息的元件</a>提供 BizTalk 服務入口網站的詳細資訊。</td>
+<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">設定元件的 BizTalk 服務入口網站上的 EDI 傳訊</a>hello BizTalk 服務入口網站上提供的詳細資訊。</td>
 </tr>
 
 <tr>
-<td>存取控制命名空間的<strong>連線資訊</strong></td>
-<td>選取 [連線資訊] 時會顯示 [存取控制命名空間]、[預設核發者] 和 [預設金鑰]。 您可以複製這些值。
+<td><strong>連接資訊</strong>的 hello 存取控制命名空間</td>
+<td>當您選取的連接資訊時，然後 hello 存取控制命名空間、 預設簽發者，並且顯示預設索引鍵。 您可以複製這些值。
 <br/><br/>
-您也可以開啟存取控制入口網站。 <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=285670">建立存取控制命名空間</a>提供了存取控制入口網站的詳細資訊。</td>
+您也可以開啟 hello 存取控制入口網站。 <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=285670">建立存取控制命名空間</a>hello 存取控制入口網站上提供的詳細資訊。</td>
 </tr>
 
 <tr>
-<td>儲存體帳戶內的<strong>同步金鑰</strong></td>
-<td>當建立儲存體帳戶時，會自動建立主要金鑰和次要金鑰。 這些加密金鑰可控制儲存體帳戶的存取。 BizTalk 服務會自動使用主要金鑰。 <strong>同步金鑰</strong>可讓使用者在主要金鑰和次要金鑰之間切換，而不會中斷 BizTalk 服務。
+<td><strong>同步索引鍵</strong>hello 儲存體帳戶中</td>
+<td>當建立儲存體帳戶時，會自動建立主要金鑰和次要金鑰。 這些加密金鑰控制存取 tooyour 儲存體帳戶。 您的 BizTalk 服務會自動使用 hello 主索引鍵。 <strong>同步索引鍵</strong>啟用使用者 tooswitch hello 主索引鍵與 hello 次要索引鍵之間，而不會中斷 hello BizTalk 服務。
 <br/><br/>
-例如，您希望 BizTalk 服務對儲存體帳戶使用新的主要金鑰。 作法：
+例如，您會想 hello BizTalk 服務 toouse hello 儲存體帳戶的新主索引鍵。 toodo 這樣：
 <br/><br/>
 <ol>
-<li>選取 BizTalk 服務，再選取 [同步金鑰]<strong></strong>。 選取次要金鑰。 這時，BizTalk 服務就會開始使用次要金鑰。</li>
-<li>在 Azure 傳統入口網站中，選取您的儲存體帳戶並重新產生主要金鑰。 記住，BizTalk 服務現在使用次要金鑰。</li>
-<li>選取 BizTalk 服務，再選取 [同步金鑰]<strong></strong>。 現在，選取主要金鑰。 這是您重新產生的新主要金鑰。</li>
-<li>在 Azure 傳統入口網站中，選取您的儲存體帳戶並重新產生次要金鑰。</li>
+<li>選取 BizTalk 服務，再選取 [同步金鑰]<strong></strong>。 選取 hello 次要金鑰。 當您這樣做時，hello BizTalk 服務使用啟動 hello 次要金鑰。</li>
+<li>在 hello Azure 傳統入口網站，選取儲存體帳戶並重新產生 hello 主索引鍵。 請記住，您的 BizTalk 服務使用 hello 次要金鑰。</li>
+<li>選取 BizTalk 服務，再選取 [同步金鑰]<strong></strong>。 現在，選取 hello 主索引鍵。 這是新 hello 您重新產生的主索引鍵。</li>
+<li>在 hello Azure 傳統入口網站，選取儲存體帳戶，然後重新產生次要金鑰 hello。</li>
 </ol>
 <br/>
-此程序稱為「換用金鑰」。 目的是讓使用者在主要金鑰和次要金鑰之間切換，而不會中斷 BizTalk 服務。</td>
+此程序稱為「換用金鑰」。 hello 目的是 tooenable 使用者 tooswitch hello 主索引鍵與 hello 次要索引鍵之間，而不會中斷 hello BizTalk 服務。</td>
 </tr>
 
 <tr>
 <td><strong>刪除</strong>應用程式</td>
-<td>選取 [刪除] 會移除 BizTalk 服務及已部署到它的所有項目。</td>
+<td>當您選取 刪除 BizTalk 服務和所有部署的項目 tooit 會移除。</td>
 </tr>
 </table>
 
 
 ## <a name="dashboard"></a>儀表板
-部分 BizTalk 服務版本可能並未提供下列所有選項。 
+根據 hello BizTalk 服務版本，可能無法使用所有列出的選項。 
 
-選取 BizTalk 服務名稱時會顯示 [儀表板] 索引標籤。 在 [儀表板] 裡，您可以：
+當您選取 BizTalk 服務名稱時，則會顯示 hello 儀表板 索引標籤。 在 [儀表板] 裡，您可以：
 
-##### <a name="usage-overview-shows-the-number-of-used-hybrid-connections"></a>使用量概觀：顯示已使用的混合式連線數量
-資料使用量 (單位為 GB) 也會顯示。 
+##### <a name="usage-overview-shows-hello-number-of-used-hybrid-connections"></a>使用量概觀： 會顯示 hello 使用混合式連接的數目
+以 gb 為單位，也會顯示 hello 資料使用量。 
 
 ##### <a name="metric-graph-shows-a-fixed-list-of-performance-metrics"></a>度量圖：顯示固定的效能度量清單。
-這些度量提供 BizTalk 服務健全狀況的即時值。 您也可以選擇 [相對] 值或 [絕對] 值，以及圖表上顯示的度量時間範圍 [間隔]。 
+這些度量會提供有關 hello hello BizTalk 服務健全狀況的即時值。 您也可以選擇 hello**相對**或**絕對**值和 hello 時間範圍**間隔**的 hello 圖形中顯示的 hello 度量。 
 
-如需這些效能度量的說明，請移至本主題的 [可用的度量](#Metrics) 。
+如需這些效能度量的說明，請移至太[可用的度量](#Metrics)本主題中。
 
 ##### <a name="quick-glance-lists-your-biztalk-service-properties"></a>快速瀏覽：列出 BizTalk 服務屬性
 <table border="1">
 
 <tr>
 <td><strong>更新追蹤資料庫認證</strong></td>
-<td>變更用於登入追蹤資料庫的使用者名稱和密碼。</td>
+<td>變更 hello 使用者名稱和密碼來 toolog hello 追蹤資料庫。</td>
 </tr>
 <tr>
 <td><strong>更新 SSL 憑證</strong></td>
-<td>可更新 BizTalk 服務來使用不同的 SSL 憑證。 在您<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">建立 BizTalk 服務</a>時，自我簽署 SSL 憑證會自動建立。</td>
+<td>可以更新 hello BizTalk 服務 toouse 不同的 SSL 憑證。 自我簽署的 SSL 憑證時，會自動建立您<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">建立 BizTalk 服務的 hello</a>。</td>
 </tr>
 <tr>
 <td><strong>下載憑證</strong></td>
-<td>您可以將 BizTalk 服務所使用的 SSL 憑證下載到本機電腦上。</td>
+<td>您可以下載 BizTalk 服務 tooa 本機電腦所使用的 hello SSL 憑證。</td>
 </tr>
 <tr>
 <td><strong>狀態</strong></td>
-<td>顯示 BizTalk 服務的目前狀態。 請參閱 <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=329870">BizTalk 服務：服務狀態圖</a> (英文)。 </td>
+<td>顯示 hello BizTalk 服務的目前狀態。 請參閱 <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=329870">BizTalk 服務：服務狀態圖</a> (英文)。 </td>
 </tr>
 <tr>
 <td><strong>服務 URL</strong></td>
-<td>您 BizTalk 服務的 URL。 這與建立您的 BizTalk 服務時所輸入的<strong>網域 URL</strong> 相同。</td>
+<td>您的 BizTalk 服務的 hello URL。 這是為 hello hello 相同<strong>網域 URL</strong>輸入建立 BizTalk 服務時。</td>
 </tr>
 <tr>
 <td><strong>公用虛擬 IP (VIP) 位址</strong></td>
-<td>此 IP 位址指派給您的 BizTalk 服務。 它用於所有輸入端點，也是輸出流量的來源位址。 此 IP 位址屬於您建立的 BizTalk 服務。 若您刪除 BizTalk 服務，則此 IP 位址會指派給其他 BizTalk 服務。</td>
+<td>hello IP 位址指派 tooyour BizTalk 服務。 它用於所有的輸入端點，而且是 hello 輸出流量的來源位址。 此 IP 位址所屬 tooyour BizTalk 服務，只要它會建立。 如果您刪除 hello BizTalk 服務，hello IP 位址指派 tooanother BizTalk 服務。</td>
 </tr>
 <tr>
 <td><strong>ACS 命名空間</strong></td>
-<td>向 BizTalk 服務驗證。</td>
+<td>向 hello BizTalk 服務。</td>
 </tr>
 <tr>
 <td><strong>版本</strong></td>
-<td>列出建立 BizTalk 服務時所輸入的版本。</td>
+<td>列出版本建立 hello BizTalk 服務時所輸入的 hello。</td>
 </tr>
 <tr>
 <td><strong>位置</strong></td>
-<td>顯示裝載 BizTalk 服務的地理區域。</td>
+<td>顯示 hello 主控 BizTalk 服務的地理區域。</td>
 </tr>
 <tr>
 <td><strong>建立時間</strong></td>
-<td>顯示建立 BizTalk 服務的日期和時間。</td>
+<td>建立 BizTalk 服務顯示 hello 日期和時間 hello。</td>
 </tr>
 <tr>
 <td><strong>追蹤資料庫</strong></td>
-<td>儲存 BizTalk 服務所使用之追蹤資料表的 Azure SQL Database 名稱。 
+<td>儲存追蹤資料表，您的 BizTalk 服務所使用的 hello hello Azure SQL Database 名稱。 
 <br/><br/>
-<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">需求說明</a>提供追蹤資料庫的詳細資料。</td>
+<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">需求說明</a>提供 hello 追蹤資料庫的詳細資訊。</td>
 </tr>
 <tr>
 <td><strong>監視/封存儲存體</strong></td>
-<td>儲存 BizTalk 服務之監視輸出的 Azure 儲存體帳戶名稱。
+<td>儲存監視 BizTalk 服務的輸出 hello hello Azure 儲存體帳戶名稱。
 <br/><br/>
-<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">需求說明</a>提供儲存體帳戶的詳細資料。</td>
+<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">需求說明</a>提供 hello 儲存體帳戶的詳細資訊。</td>
 </tr>
 <tr>
 <td><strong>訂用帳戶名稱</strong></td>
-<td>列出裝載 BizTalk 服務的訂用帳戶名稱。 訂用帳戶掌管對 Azure 傳統入口網站的存取權。</td>
+<td>列出裝載您的 BizTalk 服務的 hello 訂用帳戶。 hello 訂閱控管存取 toohello Azure 傳統入口網站。</td>
 </tr>
 <tr>
 <td><strong>訂用帳戶識別碼</strong></td>
-<td>建立訂用帳戶時，會自動產生訂用帳戶識別碼。 使用 REST API 時，您可能需要輸入訂閱識別碼。</td>
+<td>建立訂用帳戶時，會自動產生訂用帳戶識別碼。 當使用 REST Api，您可能需要 tooenter hello 訂用帳戶識別碼。</td>
 </tr>
 </table>
 
-[BizTalk 服務：使用 Azure 傳統入口網站進行佈建](http://go.microsoft.com/fwlink/p/?LinkID=302280) 列出建立 BizTalk 服務的步驟。
+[BizTalk 服務： 佈建使用 Azure 傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=302280)清單 hello 步驟 toocreate BizTalk 服務。
 
-##### <a name="manage-connection-information-sync-keys-and-delete-in-the-task-bar"></a>工作列中的管理、連線資訊、同步金鑰和刪除：
+##### <a name="manage-connection-information-sync-keys-and-delete-in-hello-task-bar"></a>管理連接資訊，同步金鑰及 hello 工作列中刪除：
 <table border="1">
 
 <tr>
 <td><strong>管理</strong>應用程式部署</td>
-<td>開啟 Azure BizTalk 服務入口網站。 BizTalk 服務入口網站是 EDI 組態的入口，包括加入夥伴及建立 X12、AS2 和 EDIFACT 協議。
+<td>開啟 hello Azure BizTalk 服務入口網站。 hello BizTalk 服務入口網站是 hello 進入 tooEDI 的設定，包括加入夥伴和建立 X12、 AS2 和 EDIFACT 協議。
 <br/><br/>
-這與 [快速入門]<strong></strong> 索引標籤上的 [建立夥伴合約]<strong></strong> 相同。
+這是與相同 hello<strong>建立夥伴協議</strong>上 hello<strong>快速入門</strong> 索引標籤。
 <br/><br/>
-<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">在 BizTalk 服務入口網站上設定 EDI 訊息的元件</a>提供 BizTalk 服務入口網站的詳細資訊。</td>
+<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">設定元件的 BizTalk 服務入口網站上的 EDI 傳訊</a>hello BizTalk 服務入口網站上提供的詳細資訊。</td>
 </tr>
 <tr>
-<td>存取控制命名空間的<strong>連線資訊</strong></td>
-<td>顯示 Access Control 命名空間、預設核發者和預設金鑰值，供您複製。
+<td><strong>連接資訊</strong>的 hello 存取控制命名空間</td>
+<td>顯示 hello 存取控制命名空間、 預設簽發者和預設金鑰值。這可以複製。
 <br/><br/>
-您也可以開啟存取控制入口網站。 此存取控制入口網站的功用就與使用左側導覽窗格中的 [Active Directory] 選項一樣。
+您也可以開啟 hello 存取控制入口網站。 此存取控制入口網站是 hello 與 hello 左側的導覽窗格中使用 hello Active Directory 選項相同。
 <br/><br/>
-<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=285670">管理您的 ACS 命名空間</a>提供存取控制入口網站的詳細資訊。</td>
+<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=285670">管理您的 ACS 命名空間</a>hello 存取控制入口網站上提供的詳細資訊。</td>
 </tr>
 <tr>
-<td>儲存體帳戶內的<strong>同步金鑰</strong></td>
-<td>當建立儲存體帳戶時，會自動建立主要金鑰和次要金鑰。 這些加密金鑰可控制儲存體帳戶的存取。 BizTalk 服務會自動使用主要金鑰。 <strong>同步金鑰</strong>可讓使用者在主要金鑰和次要金鑰之間切換，而不會中斷 BizTalk 服務。
+<td><strong>同步索引鍵</strong>hello 儲存體帳戶中</td>
+<td>當建立儲存體帳戶時，會自動建立主要金鑰和次要金鑰。 這些加密金鑰控制存取 tooyour 儲存體帳戶。 您的 BizTalk 服務會自動使用 hello 主索引鍵。 <strong>同步索引鍵</strong>啟用使用者 tooswitch hello 主索引鍵與 hello 次要索引鍵之間，而不會中斷 hello BizTalk 服務。
 <br/><br/>
-例如，您希望 BizTalk 服務對儲存體帳戶使用新的主要金鑰。 作法：
+例如，您會想 hello BizTalk 服務 toouse hello 儲存體帳戶的新主索引鍵。 toodo 這樣：
 <br/><br/>
 <ol>
-<li>選取 BizTalk 服務，再選取 [同步金鑰]<strong></strong>。 選取次要金鑰。 這時，BizTalk 服務就會開始使用次要金鑰。</li>
-<li>在 Azure 傳統入口網站中，選取您的儲存體帳戶並重新產生主要金鑰。 記住，BizTalk 服務現在使用次要金鑰。</li>
-<li>選取 BizTalk 服務，再選取 [同步金鑰]<strong></strong>。 現在，選取主要金鑰。 這是您重新產生的新主要金鑰。</li>
-<li>在 Azure 傳統入口網站中，選取您的儲存體帳戶並重新產生次要金鑰。</li>
+<li>選取 BizTalk 服務，再選取 [同步金鑰]<strong></strong>。 選取 hello 次要金鑰。 當您這樣做時，hello BizTalk 服務使用啟動 hello 次要金鑰。</li>
+<li>在 hello Azure 傳統入口網站，選取儲存體帳戶並重新產生 hello 主索引鍵。 請記住，您的 BizTalk 服務使用 hello 次要金鑰。</li>
+<li>選取 BizTalk 服務，再選取 [同步金鑰]<strong></strong>。 現在，選取 hello 主索引鍵。 這是新 hello 您重新產生的主索引鍵。</li>
+<li>在 hello Azure 傳統入口網站，選取儲存體帳戶，然後重新產生次要金鑰 hello。</li>
 </ol>
 <br/>
-此程序稱為「換用金鑰」。 目的是讓使用者在主要金鑰和次要金鑰之間切換，而不會中斷 BizTalk 服務。</td>
+此程序稱為「換用金鑰」。 hello 目的是 tooenable 使用者 tooswitch hello 主索引鍵與 hello 次要索引鍵之間，而不會中斷 hello BizTalk 服務。</td>
 </tr>
 
 <tr>
 <td><strong>刪除</strong>應用程式</td>
-<td>已移除 BizTalk 服務與部署至服務的所有項目。</td>
+<td>您的 BizTalk 服務和所有部署的項目 tooit 被移除。</td>
 </tr>
 </table>
 
 
 ## <a name="monitor"></a>監視
-不適用於免費版本。
+不會套用 toohello 免費版本。
 
-選取 BizTalk 服務名稱後，即可使用 [監視] 索引標籤且會顯示下列資訊：
+當您選取 BizTalk 服務名稱時，hello 監視 索引標籤使用，並顯示 hello 下列：
 
-##### <a name="metric-graph-displays-the-selected-performance-metrics"></a>度量圖：顯示已選取的效能度量
-這些度量提供 BizTalk 服務健全狀況的即時值。 請選擇要顯示哪些效能度量。 一次最多同時顯示六個效能度量。 
+##### <a name="metric-graph-displays-hello-selected-performance-metrics"></a>顯示 hello 選取效能度量的度量的圖表：
+這些度量會提供有關 hello hello BizTalk 服務健全狀況的即時值。 請選擇要顯示哪些效能度量。 一次最多同時顯示六個效能度量。 
 
-您也可以選擇 [相對] 值或 [絕對] 值，以及所顯示的度量時間範圍 [間隔]。 
+您也可以選擇 hello**相對**或**絕對**值和 hello 時間範圍**間隔**的 hello 度量資訊會顯示。 
 
-##### <a name="to-remove-or-display-metrics-in-the-graph"></a>在圖表中移除或顯示度量：
-1. 選取 [ **監視** ] 索引標籤。
-2. 選取工作列中的 [加入度量]：  
+##### <a name="tooremove-or-display-metrics-in-hello-graph"></a>hello 圖形中 tooremove 或顯示度量：
+1. 選取 hello**監視器** 索引標籤。
+2. 選取**加入度量**hello 工作列中：  
    ![選取 [新增度量]][AddMetrics]
-3. 勾選您要顯示的效能度量。
-4. 選取勾選記號以回到 [ **監視** ] 索引標籤。
-5. 選取度量旁邊的圓圈，將該度量的值顯示在圖表中。  
+3. 請檢查您想要 toodisplay hello 效能度量。
+4. 選取 hello 核取記號 tooreturn toohello**監視器** 索引標籤。
+5. 選取該度量值 hello 圓形下一步 toohello 度量 toodisplay hello 圖形中。  
    
-    例如，[CPU 使用率] 度量呈現灰色，其輸出不會出現在圖表中：  
+    例如，hello **CPU 使用量**度量呈現灰色，則其輸出不會顯示在 hello 圖形：  
    ![CPU 使用量度量呈現灰色][GrayedMetric]  
    
-    選取灰色的圓圈以啟用 [CPU 使用率] 度量，將其輸出顯示在圖表中：  
+    選取 hello 灰色圓形 tooenable hello **CPU 使用量**度量 toodisplay hello 圖形中的其輸出：  
    ![CPU 使用量度量已啟用][EnabledMetric]
-6. 若要從顯示圖表和清單中移除度量，請選取工作列中的 [ **移除度量** ]。 若要將度量加回到清單中，請選取工作列的 [加入度量]，勾選度量，然後選取勾選記號以回到 [監視] 索引標籤。 選取灰色圓圈以啟用度量。
+6. tooremove hello 顯示圖形與 hello 清單中，度量選取**刪除度量**hello 工作列中。 tooadd hello 度量後 toohello 清單中，選取**加入度量**在 hello 工作列上，核取 hello 度量，並選取 hello 核取記號 tooreturn toohello**監視器** 索引標籤。選取 hello 圓形 tooenable hello 度量呈現灰色。
 
 ## <a name="Metrics"></a>可用的度量
-以下是可用的效能計數器/度量：
+下列效能計數器度量的 hello 可用：
 
 <table border="1">
 
 <tr>
 <td><strong>往返延遲</strong></td>
-<td>顯示從收到訊息起，到 BizTalk 服務跨所有橋接器完全處理完為止，處理訊息所花費的平均時間，以毫秒為單位 (ms)。 只會計算成功處理的訊息。<br/><br/>
-發生下列事件時會建立時間戳記：
+<td>顯示 hello 的平均使用時間 （毫秒） （毫秒） tooprocess 跨所有橋接器 hello BizTalk 服務所完全處理 hello 訊息之前收到來自 hello 時間 hello 訊息的訊息。 只會計算成功處理的訊息。<br/><br/>
+Hello 下列事件發生時，會建立時間戳記：
 <ul>
-<li>訊息進入閘道</li>
-<li>訊息已路由傳送至目的地</li>
+<li>訊息進入 hello 閘道</li>
+<li>訊息是路由的 toohello 目的地</li>
 <li>收到目的地回應</li>
-<li>目的地認可回應已傳送至閘道</li>
+<li>目的地通知傳送回應 toohello 閘道</li>
 </ul>
 <br/>
-此度量顯示下列計算的結果：
+此標準會顯示 hello 結果 hello 下列計算：
 <br/><br/>
-[目的地認可回應已傳送至閘道] - [訊息進入閘道]</td>
+[目的地通知傳送回應 toohello gateway]-[訊息進入 hello 閘道]</td>
 </tr>
 <tr>
 <td><strong>來源失敗</strong></td>
-<td>顯示從來源端點提取訊息時，BizTalk 服務無法處理的訊息總數。</td>
+<td>顯示 hello 總數失敗的訊息所 hello 提取從 hello 來源端點的訊息時，BizTalk 服務。</td>
 </tr>
 <tr>
 <td><strong>CPU 使用率</strong></td>
-<td>列出所有角色執行個體的平均 % 處理器時間。</td>
+<td>列出 hello 平均處理器時間百分比的所有角色執行個體。</td>
 </tr>
 <tr>
 <td><strong>處理延遲</strong></td>
-<td>顯示 BizTalk 服務跨所有橋接器來處理某個訊息所花費的平均時間，不包括在目的地所花費的時間，以毫秒為單位 (ms)。 只會計算成功處理的訊息。<br/><br/>
-發生下列每一個事件時會建立時間戳記：
+<td>顯示 hello 中跨所有橋接器，但不包括 hello 時間 hello BizTalk 服務的訊息目的地所花費的毫秒 (ms) tooprocess 所花費的平均時間。 只會計算成功處理的訊息。<br/><br/>
+每個 hello 下列事件發生時，會建立時間戳記：
 
 <ul>
-<li>訊息進入閘道</li>
-<li>訊息已路由傳送至目的地</li>
+<li>訊息進入 hello 閘道</li>
+<li>訊息是路由的 toohello 目的地</li>
 <li>收到目的地回應</li>
-<li>目的地認可回應已傳送至閘道</li>
+<li>目的地通知傳送回應 toohello 閘道</li>
 </ul>
-<br/>此度量顯示下列計算的結果：<br/><br/>
-[目的地認可回應已傳送至閘道] - [訊息進入閘道] - [收到目的地回應] + [訊息已路由傳送至目的地]</td>
+<br/>此標準會顯示 hello 結果 hello 下列計算：<br/><br/>
+[目的地通知傳送回應 toohello gateway]-[訊息進入 hello 閘道]-[目的地未收到回應時] + [訊息是路由的 toohello 目的地]</td>
 </tr>
 <tr>
 <td><strong>處理時失敗</strong></td>
-<td>顯示在一段時間內，BizTalk 服務跨所有橋接器處理訊息時失敗的訊息總數。</td>
+<td>顯示 hello 總數無法在處理期間由跨所有 hello 橋接器 hello BizTalk 服務的時間間隔內的訊息。</td>
 </tr>
 <tr>
 <td><strong>已傳送的訊息</strong></td>
-<td>顯示在一段時間內，BizTalk 服務跨所有橋接器傳送的訊息總數。 當管線傳送的訊息抵達路由目的地時，此度量會遞增。 此度量不表示已成功處理訊息。<br/><br/>
-在要求回覆案例中，當路由目的地將收到認可傳回至管線時，此度量會遞增。</td>
+<td>顯示 hello 跨所有橋接器 hello BizTalk 服務所傳送的時間間隔內的訊息總數。 此標準會在從管線所傳送的訊息到達 hello 路由目的地時累加。 此度量不表示已成功處理訊息。<br/><br/>
+在要求-回覆案例中，當 hello 路由目的地傳送回條認可後 toohello 管線時，就會遞增 hello 度量。</td>
 </tr>
 <tr>
 <td><strong>已接收的訊息</strong></td>
-<td>顯示在一段時間內，BizTalk 服務跨所有橋接器接收的訊息總數。 當管線收到新的訊息時，此度量會遞增。</td>
+<td>顯示 hello 跨所有橋接器 hello BizTalk 服務的時間間隔內接收的訊息總數。 Hello 管線收到一封新郵件時，就會遞增此標準。</td>
 </tr>
 <tr>
 <td><strong>處理中的訊息</strong></td>
-<td>顯示 BizTalk 服務在一段時間內正在處理的訊息總數。</td>
+<td>顯示 hello 目前正在處理的 hello BizTalk 服務的時間間隔內的訊息總數。</td>
 </tr>
 <tr>
 <td><strong>已處理的訊息</strong></td>
-<td>顯示在一段時間內，BizTalk 服務跨所有橋接器成功處理的訊息總數。 當訊息由管線成功接收且成功地路由傳送至目的地時，此度量會遞增。</td>
+<td>顯示 hello 順利處理的時間間隔內跨所有橋接器 hello BizTalk 服務的訊息總數。 訊息已成功收到 hello 管線 」 和 「 已成功路由的 toohello 目的地時，就會遞增此標準。</td>
 </tr>
 </table>
 
 
 ## <a name="scale"></a>調整
-在 [調整] 索引標籤中，您可以增加或減少 BizTalk 服務使用的單位數。 依預設已設定一個單位。 您可以將更多單位加入至 BizTalk 服務。 增加規模時，也會增量輸送量。 資源數量也會增加，包括部署的橋接器、協議、LOB 連接和處理能力。 例如，將規模從 1 單位增加為 2 單位。 在此情況下，您可以部署兩倍的橋接器、兩倍的協議、兩倍的 LOB 連接，以及兩倍的處理能力。
+Hello 調整 索引標籤中，您可以加入或減去 hello BizTalk 服務所使用的單位數目。 依預設已設定一個單位。 額外的單位可以加入 tooscale BizTalk 服務。 當您增加 hello 標尺時，您正在提高輸送量。 資源的 hello 數量也會增加，包括已部署的橋接器、 合約、 LOB 連線和處理能力。 例如，您會增加 hello 小數位數，從 1 單位 too2 單位。 在此情況下，您可以部署雙 hello 橋接器、 double hello 協議，double hello LOB 連接數目，以及雙 hello 的處理能力。
 
-有些 BizTalk 版本不提供調整選項。 在此情況下，只允許一個單位。 若要判斷您的版本可調整的單位數，請參閱「 [BizTalk 服務：版本圖表](biztalk-editions-feature-chart.md)」。
+有些 BizTalk 版本不提供調整選項。 在此情況下，只允許一個單位。 toodetermine 多少單位可以調整您的版本，參閱太[BizTalk 服務： 版本圖表](biztalk-editions-feature-chart.md)。
 
-增加單位數可能會影響定價。 如果增加單位，選取 **[儲存]** 會出現訊息，告知您計費是否受影響。 您可以選擇繼續。 增加單位數時，BizTalk 服務狀態會從 [作用中] 變更為 [正在更新]。 在更新狀態下，BizTalk 服務會繼續執行。
+增加 hello 單位數目可能會影響定價。 如果您增加 hello 單位，則選取**儲存**會顯示訊息，告訴您計費會受到影響。 然後，您可以選擇在 toocontinue。 當您增加 hello 單位數目時，hello BizTalk 服務的狀態會從作用中 tooUpdating 變更。 在 hello 更新狀態，您的 BizTalk 服務會繼續 toorun。
 
 [BizTalk 服務：版本圖表](biztalk-editions-feature-chart.md) 定義「單位」。
 
 ## <a name="configure"></a>設定
-不適用於混合式連線。
+不適用 tooHybrid 連線。
 
-將 [備份狀態] 設為 [無] 或 [自動]。 設為 [無] 時不會自動建立備份。 設為 [自動] 時需設定備份位置、備份頻率和備份檔案的保留時間。 
+Hello 備份狀態 tooNone] 或 [自動設定。 當設定 tooNone，備份會自動建立。 當設定 tooAutomatic，您可以設定 hello 備份位置、 hello 頻率 hello 備份，以及多久 tookeep hello 備份檔案。 
 
-[BizTalk 服務：備份與還原](biztalk-backup-restore.md) 提供詳細資料。 
+[BizTalk 服務： 備份和還原](biztalk-backup-restore.md)提供 hello 詳細資料。 
 
 ## <a name="HybridConnections"></a>混合式連線
-混合式連線可將 Azure 應用程式 (例如 Azure App Service 中的 Web Apps 或 Mobile Apps) 連線到使用靜態 TCP 連接埠的內部部署資源，例如 SQL Server、MySQL、HTTP Web API 及大部分的自訂 Web 服務。 您可以在 Azure 傳統入口網站內的 BizTalk 服務中管理混合式連接。
+混合式連接連接 Azure 應用程式，例如 Web 應用程式或行動應用程式在 Azure 應用程式服務中，使用靜態 TCP 連接埠，例如 SQL Server、 MySQL、 HTTP 的 Web Api 和最自訂的 Web 服務的 tooan 在內部部署資源。 BizTalk 服務的 hello Azure 傳統入口網站中管理混合式連接。
 
-若要在 Azure App Service 中建立混合式連線，請參閱[在 Azure App Service 中使用混合式連線存取內部部署資源](../app-service-web/web-sites-hybrid-connection-get-started.md)。
+toocreate 混合式連線，在 Azure 應用程式服務，請參閱[存取內部部署混合式連線使用 Azure App Service 中的資源](../app-service-web/web-sites-hybrid-connection-get-started.md)。
 
-若要在 Azure BizTalk 服務內建立或管理混合式連線，請參閱 [混合式連線](integration-hybrid-connection-overview.md)。
+toocreate 或管理在 Azure BizTalk 服務混合式連線，請參閱[混合式連線](integration-hybrid-connection-overview.md)。
 
 ## <a name="next"></a>下一步
-現在，您已熟悉不同的索引標籤，您可以繼續深入了解 Azure BizTalk 服務的功能：
+既然您已熟悉 hello 不同索引標籤，您可以深入了解 hello Azure BizTalk 服務的功能：
 
 * [BizTalk 服務：節流](biztalk-throttling-thresholds.md)  
 * [BizTalk 服務：簽發者名稱和簽發者金鑰](biztalk-issuer-name-issuer-key.md)  
@@ -347,7 +347,7 @@ ms.lasthandoff: 07/11/2017
 * [BizTalk 服務：開發人員、基本、標準和高級版本圖表](biztalk-editions-feature-chart.md)  
 * [BizTalk 服務：使用 Azure 傳統入口網站進行佈建](biztalk-provision-services.md)  
 * [BizTalk 服務：BizTalk 服務狀態圖](biztalk-service-state-chart.md)  
-* [如何開始使用 Azure BizTalk 服務 SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)
+* [開始使用我要如何 hello Azure BizTalk 服務 SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 
 [Quickstart]: ./media/biztalk-dashboard-monitor-scale-tabs/QuickStartIcon.png
 [AddMetrics]: ./media/biztalk-dashboard-monitor-scale-tabs/WABS_AddMetrics.png

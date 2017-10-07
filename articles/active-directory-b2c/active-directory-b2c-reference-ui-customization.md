@@ -1,6 +1,6 @@
 ---
 title: "使用者介面 (UI) 自訂 - Azure AD B2C | Microsoft Docs"
-description: "有關 Azure Active Directory B2C 中的使用者介面 (UI) 自訂功能的主題"
+description: "在 hello 使用者介面 (UI) 的自訂功能在 Azure Active Directory B2C 的主題"
 services: active-directory-b2c
 documentationcenter: 
 author: saeedakhter-msft
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/16/2017
 ms.author: saeedakhter-msft
-ms.openlocfilehash: 122fa997ea11b369aae3c59edf0043ab19d21aea
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 04f8c5f1277f8d4409cd10971d22a0ebd2024785
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-active-directory-b2c-customize-the-azure-ad-b2c-user-interface-ui"></a>Azure Active Directory B2C：自訂 Azure AD B2C 使用者介面 (UI)
+# <a name="azure-active-directory-b2c-customize-hello-azure-ad-b2c-user-interface-ui"></a>Azure Active Directory B2C： 自訂 hello Azure AD B2C 使用者介面 (UI)
 
-使用者經驗是客戶面向應用程式中最重要的。  運用品牌外觀及風格來打造使用者經驗，從而擴大您的客戶群。 Azure Active Directory B2C (Azure AD B2C) 可讓您以精準的像素控制來自訂註冊、登入、設定檔編輯和密碼重設頁面。
+使用者經驗是客戶面向應用程式中最重要的。  製作與 hello 的外觀與您的品牌的使用者經驗時，擴大客戶群。 Azure Active Directory B2C (Azure AD B2C) 可讓您以精準的像素控制來自訂註冊、登入、設定檔編輯和密碼重設頁面。
 
 > [!NOTE]
-> 本文中所述的網頁 UI 自訂功能並不適用於唯登入原則、其伴隨的密碼重設頁面，以及驗證電子郵件。  反之，這些功能會使用[公司品牌功能](../active-directory/active-directory-add-company-branding.md)。
+> 只有原則登入 toohello、 其隨附的密碼重設頁面，以及驗證電子郵件，則不適用本文中所述的 hello 頁 UI 自訂功能。  這些功能會使用 hello[公司品牌功能](../active-directory/active-directory-add-company-branding.md)改為。
 >
 
-本文章涵蓋下列主題：
+本文涵蓋下列主題中的 hello:
 
-* 頁面 UI 自訂功能。
-* 用於將 HTML 內容上傳至 Azure Blob 儲存體，以搭配使用頁面 UI 自訂功能的工具。
-* 您可以使用階層式樣式表 (CSS) 來進行自訂的 Azure AD B2C 所使用之 UI 元素。
+* hello 頁 UI 自訂功能。
+* 用於上傳 HTML 內容 tooAzure Blob 儲存體，hello 頁 UI 自訂功能搭配使用的工具。
+* 您可以使用階層式樣式表 (CSS) 來進行自訂的 Azure AD B2C 所使用的 hello UI 項目。
 * 執行這項功能時的最佳做法。
 
-## <a name="the-page-ui-customization-feature"></a>頁面 UI 自訂功能
+## <a name="hello-page-ui-customization-feature"></a>hello 頁 UI 自訂功能
 
-您可以自訂客戶註冊、登入、密碼重設及設定檔編輯頁面的外觀和風格 (藉由設定 [原則](active-directory-b2c-reference-policies.md))。 客戶在您的應用程式與 Azure AD B2C 所提供的頁面之間瀏覽時，將會有順暢的體驗。
+您可以自訂 hello 的外觀及客戶註冊、 登入密碼重設和設定檔編輯頁面 (藉由設定[原則](active-directory-b2c-reference-policies.md))。 客戶在您的應用程式與 Azure AD B2C 所提供的頁面之間瀏覽時，將會有順暢的體驗。
 
-不同於 UI 選項的其他服務，Azure AD B2C 會使用簡單且現代的方法來自訂 UI。
+不同於其他 UI 選項，Azure AD B2C 使用簡單和現代要很接近 tooUI 自訂服務。
 
-運作方式如下：Azure AD B2C 會在客戶的瀏覽器中執行程式碼並使用稱為[跨原始資源共用 (CORS)](http://www.w3.org/TR/cors/) 的新式方法。  在執行階段中，會從您在原則中指定的 URL 載入內容。 您可以對不同的頁面指定不同的 URL。 從您 URL 載入的內容與從 Azure AD B2C 插入的 HTML 片段合併之後，就會向您的客戶顯示頁面。 您只需要：
+運作方式如下：Azure AD B2C 會在客戶的瀏覽器中執行程式碼並使用稱為[跨原始資源共用 (CORS)](http://www.w3.org/TR/cors/) 的新式方法。  在執行階段中，會從您在原則中指定的 URL 載入內容。 您可以對不同的頁面指定不同的 URL。 從您的 URL 載入的內容會與從 Azure AD B2C 插入的 HTML 片段合併之後，hello 頁面會顯示的 tooyour 客戶。 您只需要 toodo 是：
 
-1. 建立格式正確的 HTML5 內容，其中的空白 `<div id="api"></div>` 元素位於 `<body>` 中的某處。 這個元素會標記插入 Azure AD B2C 內容的地方。
+1. 建立具有空白內容語式正確的 HTML5`<div id="api"></div>`項目處 hello `<body>`。 此項目標記，插入 hello Azure AD B2C 內容的位置。
 1. 將您的內容裝載於 HTTPS 端點 (允許 CORS)。 請注意，設定 CORS 時，必須同時啟用 GET 和 OPTIONS 要求方法。
-1. 使用 CSS 為 Azure AD B2C 所插入的 UI 項目設定樣式。
+1. 使用 CSS toostyle hello UI 項目，Azure AD B2C 插入。
 
 ### <a name="a-basic-example-of-customized-html"></a>自訂 HTML 的基本範例
 
-下列範例是可用來測試此功能的最基本 HTML 內容。 請使用[協助程式工具](active-directory-b2c-reference-ui-customization-helper-tool.md)，在 Azure Blob 儲存體上傳和設定此內容。 接著，您可以確認每個頁面上的無風格基本按鈕和表單欄位是否會顯示且功能正常。
+下列範例中的 hello 是 hello 最基本的 HTML 內容，您可以使用 tootest 這項功能。 使用 hello [helper 工具](active-directory-b2c-reference-ui-customization-helper-tool.md)tooupload 和您的 Azure Blob 儲存體設定此內容。 接著，您可以確認 hello 基本的非稍許按鈕與每個頁面上的表單欄位會顯示並可運作。
 
 ```HTML
 <!DOCTYPE html>
@@ -63,21 +63,21 @@ ms.lasthandoff: 08/29/2017
 </html>
 ```
 
-## <a name="test-out-the-ui-customization-feature"></a>測試 UI 自訂功能
+## <a name="test-out-hello-ui-customization-feature"></a>Hello UI 自訂功能測試
 
-想要使用我們的範例 HTML 和 CSS 內容來嘗試 UI 自訂功能嗎？  我們提供了[協助程式工具](active-directory-b2c-reference-ui-customization-helper-tool.md)，讓您上傳範例內容，並在您的 Azure Blob 儲存體帳戶上進行設定。
+使用我們的範例 HTML 和 CSS 內容想 tootry 出 hello UI 自訂功能？  我們提供了[協助程式工具](active-directory-b2c-reference-ui-customization-helper-tool.md)，讓您上傳範例內容，並在您的 Azure Blob 儲存體帳戶上進行設定。
 
 > [!NOTE]
-> 您可以將 UI 內容裝載於任何地方︰Web 伺服器、CDN、AWS S3、檔案共用系統等。只要內容是裝載在公開的 HTTPS 端點並啟用 CORS 就行。 我們使用 Azure Blob 儲存體只是為了示範。
+> 您可以將 UI 內容裝載於任何地方︰Web 伺服器、CDN、AWS S3、檔案共用系統等。只要 hello 內容裝載於公開可用的 HTTPS 端點以啟用 CORS 時，您都是很好的 toogo。 我們使用 Azure Blob 儲存體只是為了示範。
 >
 
-## <a name="the-ui-fragments-embedded-by-azure-ad-b2c"></a>Azure AD B2C 內嵌的 UI 片段
+## <a name="hello-ui-fragments-embedded-by-azure-ad-b2c"></a>內嵌的 Azure AD B2C hello UI 片段
 
-下列各節會列出 Azure AD B2C 合併至 `<div id="api"></div>` 元素 (位於您的內容中) 的 HTML5 片段範例。 **請勿將這些片段插入 HTML 5 內容中。** Azure AD B2C 服務會在執行階段插入。 設計您的階層式樣式表 (CSS) 時，請使用這些片段作為參考。
+hello 下列各節列出 Azure AD B2C 合併至 hello 的 hello HTML5 片段`<div id="api"></div>`項目位於您的內容。 **請勿將這些片段插入 HTML 5 內容中。** hello Azure AD B2C 服務會在執行階段中插入。 設計您的階層式樣式表 (CSS) 時，請使用這些片段作為參考。
 
-### <a name="fragment-inserted-into-the-identity-provider-selection-page"></a>插入「識別提供者選取頁面」中的片段
+### <a name="fragment-inserted-into-hello-identity-provider-selection-page"></a>Hello 身分識別提供者選取項目頁面 」 所插入片段
 
-此頁面包含使用者可以在註冊或登入期間選擇的身分識別提供者清單。 這些按鈕包括社交識別提供者 (如 Facebook 和 Google+) 或本機帳戶 (以電子郵件地址或使用者名稱作為基礎)。
+此頁面包含一份 hello 使用者的提供者註冊或登入期間，可以選擇從身分識別。 這些按鈕包括社交識別提供者 (如 Facebook 和 Google+) 或本機帳戶 (以電子郵件地址或使用者名稱作為基礎)。
 
 ```HTML
 <div id="api" data-name="IdpSelections">
@@ -101,18 +101,18 @@ ms.lasthandoff: 08/29/2017
 </div>
 ```
 
-### <a name="fragment-inserted-into-the-local-account-sign-up-page"></a>插入「本機帳戶註冊頁面」中的片段
+### <a name="fragment-inserted-into-hello-local-account-sign-up-page"></a>Hello 本機帳戶註冊頁面 」 所插入片段
 
-此頁面包含的表單，可供以電子郵件地址或使用者名稱作為基礎的本機帳戶註冊。 此表單可以包含不同的輸入控制項，例如文字輸入方塊、密碼輸入方塊、選項按鈕、單選下拉式清單方塊和多選核取方塊。
+此頁面包含的表單，可供以電子郵件地址或使用者名稱作為基礎的本機帳戶註冊。 hello 表單可以包含不同的輸入的控制項，例如文字輸入的方塊、 密碼輸入方塊、 選項按鈕、 單一選取下拉式清單方塊中和多重選取的核取方塊。
 
 ```HTML
 <div id="api" data-name="SelfAsserted">
     <div class="intro">
-        <p>Create your account by providing the following details</p>
+        <p>Create your account by providing hello following details</p>
     </div>
 
     <div id="attributeVerification">
-        <div class="errorText" id="passwordEntryMismatch" style="display: none;">The password entry fields do not match. Please enter the same password in both fields and try again.</div>
+        <div class="errorText" id="passwordEntryMismatch" style="display: none;">hello password entry fields do not match. Please enter hello same password in both fields and try again.</div>
         <div class="errorText" id="requiredFieldMissing" style="display: none;">A required field is missing. Please fill out all required fields and try again.</div>
         <div class="errorText" id="fieldIncorrect" style="display: none;">One or more fields are filled out incorrectly. Please check your entries and try again.</div>
         <div class="errorText" id="claimVerificationServerError" style="display: none;"></div>
@@ -122,17 +122,17 @@ ms.lasthandoff: 08/29/2017
                     <div class="attrEntry validate">
                         <div>
                             <div class="verificationInfoText" id="email_intro" style="display: inline;">Verification is necessary. Please click Send button.</div>
-                            <div class="verificationInfoText" id="email_info" style="display:none">Verification code has been sent to your inbox. Please copy it to the input box below.</div>
+                            <div class="verificationInfoText" id="email_info" style="display:none">Verification code has been sent tooyour inbox. Please copy it toohello input box below.</div>
                             <div class="verificationSuccessText" id="email_success" style="display:none">E-mail address verified. You can now continue.</div>
                             <div class="verificationErrorText" id="email_fail_retry" style="display:none">Incorrect code, try again.</div>
-                            <div class="verificationErrorText" id="email_fail_no_retry" style="display:none">Exceeded number of retries you need to send new code.</div>
+                            <div class="verificationErrorText" id="email_fail_no_retry" style="display:none">Exceeded number of retries you need toosend new code.</div>
                             <div class="verificationErrorText" id="email_fail_server" style="display:none">Server error, please try again</div>
                             <div class="verificationErrorText" id="email_incorrect_format" style="display:none">Incorect format.</div>
                         </div>
 
                     <div class="helpText show">This information is required</div>
                         <label>Email</label>
-                        <input id="email" class="textInput" type="text" placeholder="Email" required="" autofocus=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('Email address that can be used to contact you.');" class="tiny">What is this?</a>
+                        <input id="email" class="textInput" type="text" placeholder="Email" required="" autofocus=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('Email address that can be used toocontact you.');" class="tiny">What is this?</a>
 
                     <div class="buttons verify" claim_id="email">
                         <div id="email_ver_wait" class="working" style="display: none;"></div>
@@ -148,9 +148,9 @@ ms.lasthandoff: 08/29/2017
                 </li>
                 <li>
                     <div class="attrEntry">
-                        <div class="helpText">8-16 characters, containing 3 out of 4 of the following: Lowercase characters, uppercase characters, digits (0-9), and one or more of the following symbols: @ # $ % ^ &amp; * - _ + = [ ] { } | \ : ' , ? / ` ~ " ( ) ; .This information is required</div>
+                        <div class="helpText">8-16 characters, containing 3 out of 4 of hello following: Lowercase characters, uppercase characters, digits (0-9), and one or more of hello following symbols: @ # $ % ^ &amp; * - _ + = [ ] { } | \ : ' , ? / ` ~ " ( ) ; .This information is required</div>
                         <label>Enter password</label>
-                        <input id="password" class="textInput" type="password" placeholder="Enter password" pattern="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" title="8-16 characters, containing 3 out of 4 of the following: Lowercase characters, uppercase characters, digits (0-9), and one or more of the following symbols: @ # $ % ^ &amp; * - _ + = [ ] { } | \ : ' , ? / ` ~ &quot; ( ) ; ." required=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('Enter password');" class="tiny">What is this?</a>
+                        <input id="password" class="textInput" type="password" placeholder="Enter password" pattern="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" title="8-16 characters, containing 3 out of 4 of hello following: Lowercase characters, uppercase characters, digits (0-9), and one or more of hello following symbols: @ # $ % ^ &amp; * - _ + = [ ] { } | \ : ' , ? / ` ~ &quot; ( ) ; ." required=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('Enter password');" class="tiny">What is this?</a>
                     </div>
                 </li>
                 <li>
@@ -202,7 +202,7 @@ ms.lasthandoff: 08/29/2017
                     <div class="attrEntry">
                         <div class="helpText">This information is required</div>
                         <label>Zip code</label>
-                        <input id="postalCode" class="textInput" type="text" placeholder="Zip code" required=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('The postal code of your address.');" class="tiny">What is this?</a>
+                        <input id="postalCode" class="textInput" type="text" placeholder="Zip code" required=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('hello postal code of your address.');" class="tiny">What is this?</a>
                     </div>
                 </li>
             </ul>
@@ -216,11 +216,11 @@ ms.lasthandoff: 08/29/2017
 </div>
 ```
 
-### <a name="fragment-inserted-into-the-social-account-sign-up-page"></a>插入「社交帳戶註冊頁面」中的片段
+### <a name="fragment-inserted-into-hello-social-account-sign-up-page"></a>片段插入 hello""社交帳戶註冊頁面"
 
-在使用社交識別提供者 (例如 Facebook 或 Google+) 的現有帳戶註冊時，可能會顯示此頁面。  必須向使用註冊表單之使用者收集其他資訊時需要使用它。 此頁面類似於本機帳戶註冊頁面 (如前一節所示)，但密碼輸入欄位除外。
+在使用社交識別提供者 (例如 Facebook 或 Google+) 的現有帳戶註冊時，可能會顯示此頁面。  它必須從 hello 終端使用者使用註冊表單收集其他資訊時使用。 此頁面是類似 toohello 本機帳戶註冊頁面 （hello 前一節中所示），hello 密碼輸入欄位的 hello 例外狀況。
 
-### <a name="fragment-inserted-into-the-unified-sign-up-or-sign-in-page"></a>插入「統一註冊或登入頁面」中的片段
+### <a name="fragment-inserted-into-hello-unified-sign-up-or-sign-in-page"></a>Hello 統一註冊或登入頁面 」 所插入片段
 
 此頁面可處理客戶的註冊和登入，這些客戶可使用社交識別提供者 (例如 Facebook 或 Google+) 或本機帳戶。
 
@@ -273,7 +273,7 @@ ms.lasthandoff: 08/29/2017
 </div>
 ```
 
-### <a name="fragment-inserted-into-the-multi-factor-authentication-page"></a>插入「多重要素驗證頁面」中的片段
+### <a name="fragment-inserted-into-hello-multi-factor-authentication-page"></a>Hello multi-factor authentication 頁面 」 所插入片段
 
 在此頁面上，使用者可以在註冊或登入期間驗證其電話號碼 (使用文字或語音)。
 
@@ -281,7 +281,7 @@ ms.lasthandoff: 08/29/2017
 <div id="api" data-name="Phonefactor">
     <div id="phonefactor_initial">
         <div class="intro">
-            <p>Enter a number below that we can send a code via SMS or phone to authenticate you.</p>
+            <p>Enter a number below that we can send a code via SMS or phone tooauthenticate you.</p>
         </div>
         <div class="errorText" id="errorMessage" style="display:none"></div>
         <div class="phoneEntry" id="phoneEntry">
@@ -317,31 +317,31 @@ ms.lasthandoff: 08/29/2017
 </div>
 ```
 
-### <a name="fragment-inserted-into-the-error-page"></a>插入「錯誤頁面」中的片段
+### <a name="fragment-inserted-into-hello-error-page"></a>Hello 」 錯誤頁面 」 所插入片段
 
 ```HTML
 <div id="api" class="error-page-content" data-name="GlobalException">
     <h2>Sorry, but we're having trouble signing you in.</h2>
-    <div class="error-page-help">We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, please try again.</div>
+    <div class="error-page-help">We track these errors automatically, but if hello problem persists feel free toocontact us. In hello meantime, please try again.</div>
     <div class="error-page-messagedetails">Your administrator hasn't provided any contact details.</div>
     <div class="error-page-messagedetails">
         <div class="error-page-correlationid">Correlation ID:1c4f0397-c6e4-4afe-bf74-42f488f2f15f</div>
         <div>Timestamp:2015-09-14 23:22:35Z</div>
-        <div class="error-page-detail">AADB2C90065: A B2C client-side error 'Access is denied.' has occurred requesting the remote resource.</div>
+        <div class="error-page-detail">AADB2C90065: A B2C client-side error 'Access is denied.' has occurred requesting hello remote resource.</div>
     </div>
 </div>
 ```
 
 ## <a name="localizing-your-html-content"></a>將 HTML 內容當地語系化
 
-您可以開啟[「語言自訂」](active-directory-b2c-reference-language-customization.md)，將 HTML 內容當地語系化。  啟用此功能會讓 Azure AD B2C 將 Open ID Connect 參數 `ui-locales` 轉送給端點。  內容伺服器可以使用這個參數來提供語言特定的自訂 HTML 頁面。
+您可以開啟[「語言自訂」](active-directory-b2c-reference-language-customization.md)，將 HTML 內容當地語系化。  啟用這項功能可讓 Azure AD B2C tooforward hello 開啟連接的識別碼參數， `ui-locales`，tooyour 端點。  到內容伺服器可以使用這個語言特定的參數 tooprovide 自訂 HTML 網頁。
 
-## <a name="things-to-remember-when-building-your-own-content"></a>建置自己的內容時的注意事項
+## <a name="things-tooremember-when-building-your-own-content"></a>建置您自己的內容時，項目 tooremember
 
-如果您打算使用頁面 UI 自訂功能，請檢閱以下最佳做法：
+如果您打算 toouse hello 頁 UI 自訂功能，請檢閱下列最佳作法的 hello:
 
-* 請勿複製 Azure AD B2C 的預設內容來嘗試修改。 最好是從頭建置您的 HTML5 內容，將預設範本當作參考即可。
-* 基於安全性理由，我們不允許您在內容中包含任何 JavaScript。 您所需的大多數功能應可立即使用。 如果沒有，請使用 [User Voice (使用者心聲)](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c) 來要求新功能。
+* 不要複製 hello Azure AD B2C 的預設內容中，然後嘗試 toomodify 它。 它是最佳 toobuild 從平滑和 toouse 預設內容做為參考您 HTML5 的內容。
+* 基於安全性理由，我們不允許您 tooinclude 任何在您的內容中的 JavaScript。 所需的大部分應該可以使用現成 hello。 如果沒有，請使用[User Voice](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c) toorequest 新功能。
 * 支援的瀏覽器版本︰
   * Internet Explorer 11、10、Edge
   * 對 Internet Explorer 9、8 提供有限支援

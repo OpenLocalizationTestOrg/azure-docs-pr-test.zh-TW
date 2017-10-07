@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 條件式存取的技術參考 | Microsoft Docs"
-description: "透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。 一旦符合這些條件，就會驗證使用者並允許存取應用程式。"
+title: "Active Directory 條件式存取的技術參考 aaaAzure |Microsoft 文件"
+description: "條件式存取控制與 Azure Active Directory 檢查 hello 您挑選驗證 hello 使用者時，才能允許存取 toohello 應用程式特定的條件。 一旦符合這些條件，hello 使用者已驗證，而且允許存取 toohello 應用程式。"
 services: active-directory.
 documentationcenter: 
 author: MarkusVi
@@ -14,11 +14,11 @@ ms.workload: identity
 ms.date: 08/22/2017
 ms.author: markvi
 ms.reviewer: calebb
-ms.openlocfilehash: ca16a5399f94fd1ab267e0798cade3fd83f75b13
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ee201405d1d17f130607a95bf455b60cd222dd0c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-conditional-access-technical-reference"></a>Azure Active Directory 條件式存取的技術參考
 
@@ -27,16 +27,16 @@ ms.lasthandoff: 08/29/2017
 各種 Azure AD 應用程式類型都支援「條件式存取」規則。 此清單包括：
 
 
-* 已向 Azure 應用程式 Proxy 註冊的應用程式
+* 應用程式註冊以 hello Azure 應用程式 Proxy
 * Azure 遠端應用程式
 * 已開發並已向 Azure AD 註冊的企業營運及多租用戶應用程式
 * Dynamics CRM
-* 來自 Azure AD 應用程式庫的同盟應用程式
+* 同盟的應用程式從 hello Azure AD 應用程式庫
 * Microsoft Office 365 Yammer
 * Microsoft Office 365 Exchange Online
 * Microsoft Office 365 SharePoint Online (包括商務用 OneDrive)
 * Microsoft Power BI 
-* 來自 Azure AD 應用程式庫的密碼 SSO 應用程式
+* 密碼 SSO 應用程式從 hello Azure AD 應用程式庫
 * Visual Studio Team Services
 * Microsoft Teams
 
@@ -49,43 +49,43 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="enable-access-rules"></a>啟用存取規則
-您可以依據個別應用程式來啟用或停用每個規則。 當規則為 **ON** 時，系統將會針對存取應用程式的使用者啟用並強制執行這些規則。 當規則為 **OFF** 時，系統就不會使用這些規則，也就不會影響使用者的登入體驗。
+您可以依據個別應用程式來啟用或停用每個規則。 當規則是**ON**會啟用並強制執行存取 hello 應用程式的使用者。 何時**OFF**它們不會使用並會影響 hello 使用者登入體驗。
 
-## <a name="applying-rules-to-specific-users"></a>將規則套用到特定的使用者
-您可以透過設定 [套用對象] ，根據安全性群組，將規則套用到特定的幾組使用者。 [套用對象] 可以設定為 [所有使用者] 或 [群組]。 設定為 [所有使用者]  時，會將規則套用到任何可以存取應用程式的使用者。 [群組]  選項可允許選取特定的安全性和通訊群組，系統將只會針對這些群組強制執行規則。
+## <a name="applying-rules-toospecific-users"></a>套用規則 toospecific 使用者
+規則可能會藉由設定為基礎的安全性群組的使用者集合套用的 toospecific**套用到**。 **套用到**可以設定得**所有使用者**或**群組**。 當設定太**所有使用者**hello 規則會套用與應用程式存取 toohello tooany 使用者。 hello**群組**選項可讓特定的安全性以及發佈群組 toobe 選取，將只針對這些群組強制執行規則。
 
-部署規則時，通常會先將它套用到一組有限的使用者，即試驗群組的成員。 完成後，規則就可以套用至 [所有使用者] 。 這會造成規則對組織中的所有使用者強制執行。
+在部署規則時，常會 toofirst 套用一組有限的使用者，試驗群組的成員。 一旦完成 hello 規則套用太**所有使用者**。 這會導致 hello 規則 toobe 強制執行 hello 組織中的所有使用者。
 
-您也可以使用 [例外]  選項來免除對選取的群組套用原則。 這些群組的任何成員即使出現在包含群組中，也不必套用原則。
+選取群組也可能會豁免原則使用 hello**除了**選項。 這些群組的任何成員即使出現在包含群組中，也不必套用原則。
 
 ## <a name="at-work-networks"></a>「工作時」網路
-使用「工作時」網路的條件式存取規則會依賴 Azure AD 中已設定的可信任 IP 位址範圍，或者從 AD FS 中使用「公司網路內部」宣告。 這些規則包含：
+使用"At 工作 」 網路的條件式存取規則仰賴受信任的 IP 位址範圍已在 Azure AD 中設定或使用 「 內部公司網路 」 hello 來自 AD FS 宣告。 這些規則包含：
 
 * 不在工作時需要多重要素驗證
 * 不工作時封鎖存取
 
 用於指定「工作時」網路的選項
 
-1. 在 [Multi-Factor Authentication 組態頁面](../multi-factor-authentication/multi-factor-authentication-whats-next.md)中設定可信任的 IP位址範圍。 「條件式存取」原則會在每個驗證要求和權杖發行上使用已設定的範圍來評估規則。 
-2. 設定使用公司網路內部的宣告，您可以使用 AD FS，將此選項與同盟目錄搭配使用。 若要深入了解公司網路內部宣告，請參閱[信任的 IP](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips)。
+1. 在 hello 中設定受信任的 IP 位址範圍[多因素驗證設定頁面](../multi-factor-authentication/multi-factor-authentication-whats-next.md)。 條件式存取原則會在每個驗證發行 tooevaluate 要求和語彙基元規則上使用 hello 設定範圍。 
+2. 設定 hello corpnet 宣告內的使用方式，這個選項可以搭配使用 AD FS 同盟目錄。 toolearn 深入了解 hello 內部公司網路的宣告，請參閱[Tusted Ip](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips)。
 
 
 ## <a name="rules-based-on-application-sensitivity"></a>根據應用程式敏感性的規則
-規則是依據個別應用程式來設定，以允許對高價值服務進行保護，而不影響對其他服務的存取。 條件式存取規則可以在應用程式的 [設定]  索引標籤上設定。 
+規則是每個允許 hello 高價值的服務 toobe 而不會影響存取 tooother 服務保護的應用程式設定。 可以設定條件式存取規則，在 hello**設定**hello 應用程式 索引標籤。 
 
 目前提供的規則︰
 
 * **需要多重要素驗證**
   
-  * 所有套用了這個原則的使用者都必須透過 Multi-Factor Authentication 至少驗證一次。
+  * 此原則會套用的 toowill 的所有使用者都是必要的 tooauthenticate 透過多重要素驗證至少一次。
 * **不在工作時需要多重要素驗證**
   
-  * 如果套用了這個原則，所有使用者如果是從非工作遠端位置存取服務，都必須至少執行一次 Multi-Factor Authentication。 如果他們從工作位置移到遠端位置，則在存取服務時，就必須執行 Multi-Factor Authentication。
+  * 如果套用此原則，所有使用者都都需要的 toohave 執行多重要素驗證至少一次只要從非工作遠端位置存取 hello 服務。 如果它們從工作 tooremote 位置，就會需要的 tooperform 多重要素驗證時存取 hello 服務。
 * **不工作時封鎖存取** 
   
-  * 當使用者從工作位置移至遠端位置時，如果套用了 [不工作時封鎖存取] 原則，他們就會被封鎖。  當他們回到工作位置時，就會再次允許他們存取。
+  * 當使用者移動工作 tooa 遠端位置時，請他們即將遭到封鎖時 hello 「 封鎖存取不在工作時 」 原則套用的 toothem。  當他們回到工作位置時，就會再次允許他們存取。
 
 ## <a name="related-topics"></a>相關主題
-* [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
+* [保護存取 tooOffice 365 和其他應用程式連接 tooAzure Active Directory](active-directory-conditional-access.md)
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 

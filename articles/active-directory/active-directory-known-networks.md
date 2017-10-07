@@ -1,6 +1,6 @@
 ---
-title: "Azure 傳統入口網站中的已知網路 | Microsoft Docs"
-description: "藉由設定已知的網路，您可以避免貴組織擁有的 IP 位址包含在「從多個地理區域登入」和「從具有可疑活動的 IP 位址登入」報告中。"
+title: "hello Azure 傳統入口網站中的 aaaKnown 網路 |Microsoft 文件"
+description: "藉由設定已知的網路，您可以避免必須包含在 hello 從多個地理位置登入 」 和 「 從具有可疑活動報告的 IP 位址登入您組織所擁有的 IP 位址。"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
-ms.openlocfilehash: e4d51d1d2f09fca34d749879e21d49f785eac35c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ec636cdda172cd3baeb1e606dd8d6e1949fbc63b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="known-networks"></a>已知的網路
 
@@ -29,38 +29,38 @@ ms.lasthandoff: 07/11/2017
 > 
 
 
-您可以使用 Azure Active Directory 的存取和使用情況報告來了解貴組織的目錄完整性和安全性。 利用此資訊，目錄管理員更能夠判斷可能發生安全性風險的位置，以便適當地規劃來減輕這些風險。
+您可以使用 Azure Active Directory 的存取和使用方式報表 toogain 掌握 hello 完整性與安全性貴組織的目錄。 利用此資訊，目錄管理員更能夠判斷可能發生安全性風險的地方，讓他們做充裕的計畫 toomitigate 這些風險。
 
-「從多個地理區域登入」和「從具有可疑活動的 IP 位址登入」可能會不正確地報告貴組織實際擁有的旗標 IP 位址。 
+它有可能在 hello"*從多個地理位置登入*"和"*來自 IP 位址的登入具有可疑活動*」 報告不正確的旗標實際擁有的 IP 位址您組織。 
 
 比方說，這可以發生在下列情形： 
 
-* 在波士頓辦公室的使用者已從遠端登入您在舊金山的資料中心，觸發了「從多個地理區域登入」的報告 
-* 貴組織的使用者多次嘗試以不正確的密碼登入，觸發了「從具有可疑活動的 IP 位址登入」的報告 
+* 波士頓辦公室中的使用者登入遠端 tooyour 資料中心 San Francisco 觸發程序 hello 「 從多個地理位置登入 」 報告中 
+* 您組織的使用者嘗試 toosign 入數次以不正確的密碼觸發程序 hello 「 從具有可疑活動的 IP 位址的登入 」 報告 
 
-若要避免這些情況下產生誤導的安全性報告，您應該在貴組織的公用 IP 位址清單中新增已知的 IP 位址範圍。    
+tooprevent 這種情況下，從產生誤導安全性報告，您應該加入已知的 IP 位址範圍 toohello 清單貴組織的公用 IP 位址。    
 
-### <a name="to-add-your-organizations-public-ip-address-ranges-perform-the-following-steps"></a>若要新增貴組織的公用 IP 位址範圍，請執行下列步驟：
+### <a name="tooadd-your-organizations-public-ip-address-ranges-perform-hello-following-steps"></a>tooadd 貴組織的公用 IP 位址範圍，請執行下列步驟的 hello:
 
-1. 登入 [Azure 管理入口網站](https://manage.windowsazure.com)。
+1. 登入 toohello [Azure 管理入口網站](https://manage.windowsazure.com)。
 
-2. 在左窗格中，按一下 [Active Directory] 。 
+2. 在 hello 左窗格中，按一下  **Active Directory**。 
 
     ![已知的網路](./media/active-directory-known-networks/known-netwoks-01.png)
 
-3. 在 [目錄]  索引標籤上，選取您的目錄。
+3. 在 hello**目錄**索引標籤上，選取您的目錄。
 
-4. 在頂端的功能表中，按一下 [設定] 。 
+4. 在 hello 最上層顯示 hello 功能表上，按一下**設定**。 
 
     ![已知的網路](./media/active-directory-known-networks/known-netwoks-02.png)
 
-5. 在 [組態] 索引標籤上，移至 [貴組織公用 IP 位址範圍] 
+5. Hello 設定索引標籤上，前往 太**您組織公用 IP 位址範圍** 
 
     ![已知的網路](./media/active-directory-known-networks/known-netwoks-03.png)
 
 6. 按一下 新增已知的 IP 位址範圍 。
 
-7. 在出現的對話方塊中新增位址範圍，然後在完成時按一下核取按鈕。 
+7. 在 hello 對話方塊出現，新增您的位址範圍，然後按一下 hello 核取記號按鈕完成時。 
 
     ![已知的網路](./media/active-directory-known-networks/known-netwoks-04.png)
 
