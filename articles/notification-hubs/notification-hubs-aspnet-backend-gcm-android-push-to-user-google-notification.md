@@ -1,6 +1,6 @@
 ---
-title: "Azure 通知中樞透過 .NET 後端通知 Android 使用者"
-description: "了解如何在 Azure 中將推播通知傳送給使用者。 程式碼範例是以適用於 Android 的 Java 撰寫。"
+title: "與.NET 後端 aaaAzure 通知中樞通知使用者 for Android"
+description: "了解如何 toosend 推播通知 toousers 在 Azure 中。 程式碼範例是以適用於 Android 的 Java 撰寫。"
 documentationcenter: android
 services: notification-hubs
 author: ysxu
@@ -14,32 +14,32 @@ ms.devlang: java
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 418a4b638dfaa3fee33a7a7242433699205c79f7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b042d2e6fb7f7c861c378526a8a0d59ab75beef9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-notification-hubs-notify-users-for-android-with-net-backend"></a><span data-ttu-id="51c07-104">Azure 通知中樞透過 .NET 後端通知 Android 使用者</span><span class="sxs-lookup"><span data-stu-id="51c07-104">Azure Notification Hubs Notify Users for Android with .NET backend</span></span>
+# <a name="azure-notification-hubs-notify-users-for-android-with-net-backend"></a><span data-ttu-id="fb32c-104">Azure 通知中樞透過 .NET 後端通知 Android 使用者</span><span class="sxs-lookup"><span data-stu-id="fb32c-104">Azure Notification Hubs Notify Users for Android with .NET backend</span></span>
 [!INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
-## <a name="overview"></a><span data-ttu-id="51c07-105">Overview</span><span class="sxs-lookup"><span data-stu-id="51c07-105">Overview</span></span>
-<span data-ttu-id="51c07-106">Azure 中的推播通知支援可讓您存取易於使用、多重平台的大規模推播基礎結構，而大幅簡化消費者和企業應用程式在行動平台上的推播通知實作。</span><span class="sxs-lookup"><span data-stu-id="51c07-106">Push notification support in Azure enables you to access an easy-to-use, multiplatform, and scaled-out push infrastructure, which greatly simplifies the implementation of push notifications for both consumer and enterprise applications for mobile platforms.</span></span> <span data-ttu-id="51c07-107">本教學課程將示範如何使用 Azure 通知中心，來將推播通知傳送到特定裝置上的特定應用程式使用者。</span><span class="sxs-lookup"><span data-stu-id="51c07-107">This tutorial shows you how to use Azure Notification Hubs to send push notifications to a specific app user on a specific device.</span></span> <span data-ttu-id="51c07-108">ASP.NET WebAPI 後端可用來驗證用戶端並產生通知，如指引主題[從您的應用程式後端註冊](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend)中所示。</span><span class="sxs-lookup"><span data-stu-id="51c07-108">An ASP.NET WebAPI backend is used to authenticate clients and to generate notifications, as shown in the guidance topic [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="51c07-109">本教學課程以您在 [開始使用通知中樞 (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) 教學課程中建立的通知中樞為基礎。</span><span class="sxs-lookup"><span data-stu-id="51c07-109">This tutorial builds on the notification hub that you created in the [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial.</span></span>
+## <a name="overview"></a><span data-ttu-id="fb32c-105">概觀</span><span class="sxs-lookup"><span data-stu-id="fb32c-105">Overview</span></span>
+<span data-ttu-id="fb32c-106">在 Azure 中的推播通知支援可讓您 tooaccess 方便使用、 多平台，並向外延展推播基礎結構，可大幅簡化 hello 實作消費者和企業行動應用程式的應用程式的推播通知平台。</span><span class="sxs-lookup"><span data-stu-id="fb32c-106">Push notification support in Azure enables you tooaccess an easy-to-use, multiplatform, and scaled-out push infrastructure, which greatly simplifies hello implementation of push notifications for both consumer and enterprise applications for mobile platforms.</span></span> <span data-ttu-id="fb32c-107">本教學課程會示範如何 toouse Azure 通知中樞 toosend 推播通知 tooa 特定的應用程式使用者在特定的裝置上。</span><span class="sxs-lookup"><span data-stu-id="fb32c-107">This tutorial shows you how toouse Azure Notification Hubs toosend push notifications tooa specific app user on a specific device.</span></span> <span data-ttu-id="fb32c-108">ASP.NET WebAPI 後端使用的 tooauthenticate 用戶端和 toogenerate 通知中所示 hello 指引主題[從您的應用程式後端註冊](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend)。</span><span class="sxs-lookup"><span data-stu-id="fb32c-108">An ASP.NET WebAPI backend is used tooauthenticate clients and toogenerate notifications, as shown in hello guidance topic [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="fb32c-109">本教學課程是您在 hello hello 通知中樞[開始使用通知中心 (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md)教學課程。</span><span class="sxs-lookup"><span data-stu-id="fb32c-109">This tutorial builds on hello notification hub that you created in hello [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="51c07-110">本教學課程假設您已建立並設定通知中樞，如 [開始使用通知中樞 (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md)中所述。</span><span class="sxs-lookup"><span data-stu-id="51c07-110">This tutorial assumes that you have created and configured your notification hub as described in [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).</span></span>
+> <span data-ttu-id="fb32c-110">本教學課程假設您已建立並設定通知中樞，如 [開始使用通知中樞 (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md)中所述。</span><span class="sxs-lookup"><span data-stu-id="fb32c-110">This tutorial assumes that you have created and configured your notification hub as described in [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).</span></span>
 > 
 > 
 
 [!INCLUDE [notification-hubs-aspnet-backend-notifyusers](../../includes/notification-hubs-aspnet-backend-notifyusers.md)]
 
-## <a name="create-the-android-project"></a><span data-ttu-id="51c07-111">建立 Android 專案</span><span class="sxs-lookup"><span data-stu-id="51c07-111">Create the Android Project</span></span>
-<span data-ttu-id="51c07-112">下一個步驟說明如何建立 Android 應用程式。</span><span class="sxs-lookup"><span data-stu-id="51c07-112">The next step is to create the Android application.</span></span>
+## <a name="create-hello-android-project"></a><span data-ttu-id="fb32c-111">建立 hello Android 專案</span><span class="sxs-lookup"><span data-stu-id="fb32c-111">Create hello Android Project</span></span>
+<span data-ttu-id="fb32c-112">hello 下一個步驟是 toocreate hello Android 應用程式。</span><span class="sxs-lookup"><span data-stu-id="fb32c-112">hello next step is toocreate hello Android application.</span></span>
 
-1. <span data-ttu-id="51c07-113">依照 [開始使用通知中心 (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) 教學課程來建立並設定您的應用程式，以接收來自 GCM 的推播通知。</span><span class="sxs-lookup"><span data-stu-id="51c07-113">Follow the [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial to create and configure your app to receive push notifications from GCM.</span></span>
-2. <span data-ttu-id="51c07-114">開啟您的 **res/layout/activity_main.xml** 檔案，並以下列內容定義取代。</span><span class="sxs-lookup"><span data-stu-id="51c07-114">Open your **res/layout/activity_main.xml** file, replace the with the following content definitions.</span></span>
+1. <span data-ttu-id="fb32c-113">請遵循 hello[開始使用通知中心 (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md)教學課程 toocreate 及設定應用程式 tooreceive 推播通知從 GCM。</span><span class="sxs-lookup"><span data-stu-id="fb32c-113">Follow hello [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial toocreate and configure your app tooreceive push notifications from GCM.</span></span>
+2. <span data-ttu-id="fb32c-114">開啟您**res/layout/activity_main.xml**檔案時，請取代下列內容定義的 hello hello。</span><span class="sxs-lookup"><span data-stu-id="fb32c-114">Open your **res/layout/activity_main.xml** file, replace hello with hello following content definitions.</span></span>
    
-    <span data-ttu-id="51c07-115">這會加入新的 EditText 控制項，以便以使用者身分登入。</span><span class="sxs-lookup"><span data-stu-id="51c07-115">This adds new EditText controls for logging in as a user.</span></span> <span data-ttu-id="51c07-116">此外，也會針對將成為您傳送的通知一部分的使用者名稱標記加入欄位：</span><span class="sxs-lookup"><span data-stu-id="51c07-116">Also a field is added for a username tag that will be part of notifications you send:</span></span>
+    <span data-ttu-id="fb32c-115">這會加入新的 EditText 控制項，以便以使用者身分登入。</span><span class="sxs-lookup"><span data-stu-id="fb32c-115">This adds new EditText controls for logging in as a user.</span></span> <span data-ttu-id="fb32c-116">此外，也會針對將成為您傳送的通知一部分的使用者名稱標記加入欄位：</span><span class="sxs-lookup"><span data-stu-id="fb32c-116">Also a field is added for a username tag that will be part of notifications you send:</span></span>
    
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -122,7 +122,7 @@ ms.lasthandoff: 07/11/2017
             android:layout_below="@+id/editTextNotificationMessage"
             android:layout_centerHorizontal="true" />
         </RelativeLayout>
-3. <span data-ttu-id="51c07-117">開啟 **res/values/strings.xml** 檔案，並以下列幾行程式碼取代 `send_button` 定義，這幾行程式碼可重新定義 `send_button` 的字串並新增其他控制項的字串：</span><span class="sxs-lookup"><span data-stu-id="51c07-117">Open your **res/values/strings.xml** file and replace the `send_button` definition with the following lines that redefine the string for the `send_button` and add strings for the other controls:</span></span>
+3. <span data-ttu-id="fb32c-117">開啟您**res/values/strings.xml**檔案，並將 hello`send_button`定義 hello 下列各行重新定義 hello 字串 hello`send_button`並加入其他控制項的字串 hello:</span><span class="sxs-lookup"><span data-stu-id="fb32c-117">Open your **res/values/strings.xml** file and replace hello `send_button` definition with hello following lines that redefine hello string for hello `send_button` and add strings for hello other controls:</span></span>
    
         <string name="usernameHint">Username</string>
         <string name="passwordHint">Password</string>
@@ -132,10 +132,10 @@ ms.lasthandoff: 07/11/2017
             Recipient username tag
         </string>
    
-    <span data-ttu-id="51c07-118">您的 main_activity.xml 圖形版面配置此時應如下所示：</span><span class="sxs-lookup"><span data-stu-id="51c07-118">Your main_activity.xml graphical layout should now look like this:</span></span>
+    <span data-ttu-id="fb32c-118">您的 main_activity.xml 圖形版面配置此時應如下所示：</span><span class="sxs-lookup"><span data-stu-id="fb32c-118">Your main_activity.xml graphical layout should now look like this:</span></span>
    
     ![][A1]
-4. <span data-ttu-id="51c07-119">在與 `MainActivity` 類別相同的套件中，建立名為 **RegisterClient** 的新類別。</span><span class="sxs-lookup"><span data-stu-id="51c07-119">Create a new class named **RegisterClient** in the same package as your `MainActivity` class.</span></span> <span data-ttu-id="51c07-120">將下列程式碼使用於新的類別檔案。</span><span class="sxs-lookup"><span data-stu-id="51c07-120">Use the code below for the new class file.</span></span>
+4. <span data-ttu-id="fb32c-119">建立新的類別，名為**RegisterClient**相同封裝中 hello 做為您`MainActivity`類別。</span><span class="sxs-lookup"><span data-stu-id="fb32c-119">Create a new class named **RegisterClient** in hello same package as your `MainActivity` class.</span></span> <span data-ttu-id="fb32c-120">下列程式碼會 hello hello 新類別檔案使用。</span><span class="sxs-lookup"><span data-stu-id="fb32c-120">Use hello code below for hello new class file.</span></span>
    
         import java.io.IOException;
         import java.io.UnsupportedEncodingException;
@@ -240,15 +240,15 @@ ms.lasthandoff: 07/11/2017
             }
         }
    
-    <span data-ttu-id="51c07-121">為註冊推播通知，此元件會實作連絡應用程式後端所需的 REST 呼叫。</span><span class="sxs-lookup"><span data-stu-id="51c07-121">This component implements the REST calls required to contact the app backend, in order to register for push notifications.</span></span> <span data-ttu-id="51c07-122">它也會在本機儲存通知中心所建立的 *registrationIds* ，如 [從您的應用程式後端註冊](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend)中的詳細說明。</span><span class="sxs-lookup"><span data-stu-id="51c07-122">It also locally stores the *registrationIds* created by the Notification Hub as detailed in [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="51c07-123">請注意，當您按一下 [ **登入** ] 按鈕時，系統便會使用儲存在本機儲存體中的授權權杖。</span><span class="sxs-lookup"><span data-stu-id="51c07-123">Note that it uses an authorization token stored in local storage when you click the **Log in** button.</span></span>
-5. <span data-ttu-id="51c07-124">在 `MainActivity` 類別中，針對 `NotificationHub` 移除或註解排除您的私用欄位，並對 `RegisterClient` 類別新增一個欄位，以及對 ASP.NET 後端端點新增一個字串。</span><span class="sxs-lookup"><span data-stu-id="51c07-124">In your `MainActivity` class remove or comment out your private field for `NotificationHub`, and add a field for the `RegisterClient` class and a string for your ASP.NET backend's endpoint.</span></span> <span data-ttu-id="51c07-125">請務必使用先前取得的實際後端端點來取代 `<Enter Your Backend Endpoint>`：</span><span class="sxs-lookup"><span data-stu-id="51c07-125">Be sure to replace `<Enter Your Backend Endpoint>` with the your actual backend endpoint obtained previously.</span></span> <span data-ttu-id="51c07-126">例如， `http://mybackend.azurewebsites.net`。</span><span class="sxs-lookup"><span data-stu-id="51c07-126">For example, `http://mybackend.azurewebsites.net`.</span></span>
+    <span data-ttu-id="fb32c-121">此元件會實作推播通知的順序 tooregister hello REST 呼叫需要的 toocontact hello 應用程式後端。</span><span class="sxs-lookup"><span data-stu-id="fb32c-121">This component implements hello REST calls required toocontact hello app backend, in order tooregister for push notifications.</span></span> <span data-ttu-id="fb32c-122">它也在本機儲存 hello *Registrationid*中所述的通知中樞建立 hello[從您的應用程式後端註冊](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend)。</span><span class="sxs-lookup"><span data-stu-id="fb32c-122">It also locally stores hello *registrationIds* created by hello Notification Hub as detailed in [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="fb32c-123">請注意，它會使用儲存在本機儲存體，當您按一下 hello 授權權杖**登入** 按鈕。</span><span class="sxs-lookup"><span data-stu-id="fb32c-123">Note that it uses an authorization token stored in local storage when you click hello **Log in** button.</span></span>
+5. <span data-ttu-id="fb32c-124">在您`MainActivity`類別移除或註解您的私用欄位來`NotificationHub`，並加入一個欄位 hello`RegisterClient`類別和您的 ASP.NET 後端端點的字串。</span><span class="sxs-lookup"><span data-stu-id="fb32c-124">In your `MainActivity` class remove or comment out your private field for `NotificationHub`, and add a field for hello `RegisterClient` class and a string for your ASP.NET backend's endpoint.</span></span> <span data-ttu-id="fb32c-125">要確定 tooreplace `<Enter Your Backend Endpoint>` hello 與實際的後端端點先前取得。</span><span class="sxs-lookup"><span data-stu-id="fb32c-125">Be sure tooreplace `<Enter Your Backend Endpoint>` with hello your actual backend endpoint obtained previously.</span></span> <span data-ttu-id="fb32c-126">例如： `http://mybackend.azurewebsites.net`。</span><span class="sxs-lookup"><span data-stu-id="fb32c-126">For example, `http://mybackend.azurewebsites.net`.</span></span>
 
         //private NotificationHub hub;
         private RegisterClient registerClient;
         private static final String BACKEND_ENDPOINT = "<Enter Your Backend Endpoint>";
 
 
-1. <span data-ttu-id="51c07-127">在 `MainActivity` 類別的 `onCreate` 方法中，移除或註解排除 `hub` 欄位的初始化和 `registerWithNotificationHubs` 方法的呼叫。</span><span class="sxs-lookup"><span data-stu-id="51c07-127">In your `MainActivity` class, in the `onCreate` method, remove or comment out the initialization of the `hub` field and the call to the `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="51c07-128">然後加入程式碼以初始化 `RegisterClient` 類別的執行個體。</span><span class="sxs-lookup"><span data-stu-id="51c07-128">Then add code to initialize an instance of the `RegisterClient` class.</span></span> <span data-ttu-id="51c07-129">此方法應包含下列程式碼行：</span><span class="sxs-lookup"><span data-stu-id="51c07-129">The method should contain the following lines:</span></span>
+1. <span data-ttu-id="fb32c-127">在您`MainActivity`類別，在 hello`onCreate`方法中，移除或註解的 hello hello 初始化`hub`欄位和 hello 呼叫 toohello`registerWithNotificationHubs`方法。</span><span class="sxs-lookup"><span data-stu-id="fb32c-127">In your `MainActivity` class, in hello `onCreate` method, remove or comment out hello initialization of hello `hub` field and hello call toohello `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="fb32c-128">然後加入程式碼 tooinitialize hello 的執行個體`RegisterClient`類別。</span><span class="sxs-lookup"><span data-stu-id="fb32c-128">Then add code tooinitialize an instance of hello `RegisterClient` class.</span></span> <span data-ttu-id="fb32c-129">hello 方法應該包含下列行 hello:</span><span class="sxs-lookup"><span data-stu-id="fb32c-129">hello method should contain hello following lines:</span></span>
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -265,8 +265,8 @@ ms.lasthandoff: 07/11/2017
    
             setContentView(R.layout.activity_main);
         }
-2. <span data-ttu-id="51c07-130">在 `MainActivity` 類別中，刪除或註解排除整個 `registerWithNotificationHubs` 方法。</span><span class="sxs-lookup"><span data-stu-id="51c07-130">In your `MainActivity` class, delete or comment out the entire `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="51c07-131">本教學課程不會使用此方法。</span><span class="sxs-lookup"><span data-stu-id="51c07-131">It will not be used in this tutorial.</span></span>
-3. <span data-ttu-id="51c07-132">在 **MainActivity.java** 檔案中新增下列 `import` 陳述式。</span><span class="sxs-lookup"><span data-stu-id="51c07-132">Add the following `import` statements to your **MainActivity.java** file.</span></span>
+2. <span data-ttu-id="fb32c-130">在您`MainActivity`類別、 刪除或標記為註解整個 hello`registerWithNotificationHubs`方法。</span><span class="sxs-lookup"><span data-stu-id="fb32c-130">In your `MainActivity` class, delete or comment out hello entire `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="fb32c-131">本教學課程不會使用此方法。</span><span class="sxs-lookup"><span data-stu-id="fb32c-131">It will not be used in this tutorial.</span></span>
+3. <span data-ttu-id="fb32c-132">新增下列 hello`import`陳述式 tooyour **MainActivity.java**檔案。</span><span class="sxs-lookup"><span data-stu-id="fb32c-132">Add hello following `import` statements tooyour **MainActivity.java** file.</span></span>
    
         import android.widget.Button;
         import java.io.UnsupportedEncodingException;
@@ -276,7 +276,7 @@ ms.lasthandoff: 07/11/2017
         import org.apache.http.client.ClientProtocolException;
         import java.io.IOException;
         import org.apache.http.HttpStatus;
-4. <span data-ttu-id="51c07-133">然後，新增下列方法來處理 [ **登入** ] 按鈕 click 事件及傳送推播通知。</span><span class="sxs-lookup"><span data-stu-id="51c07-133">Then, add the following methods to handle the **Log in** button click event and sending push notifications.</span></span>
+4. <span data-ttu-id="fb32c-133">然後，加入下列方法 toohandle hello hello**登入**按鈕點選事件及傳送推播通知。</span><span class="sxs-lookup"><span data-stu-id="fb32c-133">Then, add hello following methods toohandle hello **Log in** button click event and sending push notifications.</span></span>
    
         @Override
         protected void onStart() {
@@ -296,7 +296,7 @@ ms.lasthandoff: 07/11/2017
                         String regid = gcm.register(SENDER_ID);
                         registerClient.register(regid, new HashSet<String>());
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed to register", e.getMessage());
+                        DialogNotify("MainActivity - Failed tooregister", e.getMessage());
                         return e;
                     }
                     return null;
@@ -320,15 +320,15 @@ ms.lasthandoff: 07/11/2017
         }
    
         /**
-         * This method calls the ASP.NET WebAPI backend to send the notification message
-         * to the platform notification service based on the pns parameter.
+         * This method calls hello ASP.NET WebAPI backend toosend hello notification message
+         * toohello platform notification service based on hello pns parameter.
          *
-         * @param pns     The platform notification service to send the notification message to. Must
-         *                be one of the following ("wns", "gcm", "apns").
-         * @param userTag The tag for the user who will receive the notification message. This string
+         * @param pns     hello platform notification service toosend hello notification message to. Must
+         *                be one of hello following ("wns", "gcm", "apns").
+         * @param userTag hello tag for hello user who will receive hello notification message. This string
          *                must not contain spaces or special characters.
-         * @param message The notification message string. This string must include the double quotes
-         *                to be used as JSON content.
+         * @param message hello notification message string. This string must include hello double quotes
+         *                toobe used as JSON content.
          */
         public void sendPush(final String pns, final String userTag, final String message)
                 throws ClientProtocolException, IOException {
@@ -354,7 +354,7 @@ ms.lasthandoff: 07/11/2017
                             throw new RuntimeException("Error sending notification");
                         }
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed to send " + pns + " notification ", e.getMessage());
+                        DialogNotify("MainActivity - Failed toosend " + pns + " notification ", e.getMessage());
                         return e;
                     }
    
@@ -363,17 +363,17 @@ ms.lasthandoff: 07/11/2017
             }.execute(null, null, null);
         }
 
-    <span data-ttu-id="51c07-134">[登入] 按鈕的 `login` 處理常式會使用輸入使用者名稱和密碼 (請注意，這代表驗證結構描述使用的任何權杖) 產生基本驗證權杖，然後使用 `RegisterClient` 呼叫後端進行註冊。</span><span class="sxs-lookup"><span data-stu-id="51c07-134">The `login` handler for the **Log in** button generates a basic authentication token using on the input username and password (note that this represents any token your authentication scheme uses), then it uses `RegisterClient` to call the backend for registration.</span></span>
+    <span data-ttu-id="fb32c-134">hello `login` hello 的處理常式**登入**按鈕會產生基本驗證語彙基元 using hello 輸入使用者名稱和密碼 （注意，這表示您的驗證配置會使用語彙基元），然後它會使用`RegisterClient`toocall hello 後的端註冊。</span><span class="sxs-lookup"><span data-stu-id="fb32c-134">hello `login` handler for hello **Log in** button generates a basic authentication token using on hello input username and password (note that this represents any token your authentication scheme uses), then it uses `RegisterClient` toocall hello backend for registration.</span></span>
 
-    <span data-ttu-id="51c07-135">`sendPush` 方法會呼叫後端，以根據使用者標記觸發使用者的安全通知。</span><span class="sxs-lookup"><span data-stu-id="51c07-135">The `sendPush` method calls the backend to trigger a secure notification to the user based on the user tag.</span></span> <span data-ttu-id="51c07-136">`sendPush` 鎖定目標的平台通知服務取決於傳入的 `pns` 字串。</span><span class="sxs-lookup"><span data-stu-id="51c07-136">The platform notification service that `sendPush` targets depends on the `pns` string passed in.</span></span>
+    <span data-ttu-id="fb32c-135">hello`sendPush`方法呼叫 hello 後端 tootrigger 安全通知 toohello 使用者根據 hello 使用者標記。</span><span class="sxs-lookup"><span data-stu-id="fb32c-135">hello `sendPush` method calls hello backend tootrigger a secure notification toohello user based on hello user tag.</span></span> <span data-ttu-id="fb32c-136">hello 平台通知服務`sendPush`目標取決於 hello`pns`傳入的字串。</span><span class="sxs-lookup"><span data-stu-id="fb32c-136">hello platform notification service that `sendPush` targets depends on hello `pns` string passed in.</span></span>
 
-1. <span data-ttu-id="51c07-137">在 `MainActivity` 類別中，更新 `sendNotificationButtonOnClick` 方法以透過使用者選取的平台通知服務呼叫 `sendPush` 方法，如下所示。</span><span class="sxs-lookup"><span data-stu-id="51c07-137">In your `MainActivity` class, update the `sendNotificationButtonOnClick` method to call the `sendPush` method with the user's selected platform notification services as follows.</span></span>
+1. <span data-ttu-id="fb32c-137">在您`MainActivity`類別，更新 hello`sendNotificationButtonOnClick`方法 toocall hello`sendPush`方法與 hello 使用者選取的平台通知服務，如下所示。</span><span class="sxs-lookup"><span data-stu-id="fb32c-137">In your `MainActivity` class, update hello `sendNotificationButtonOnClick` method toocall hello `sendPush` method with hello user's selected platform notification services as follows.</span></span>
    
        /**
-        * Send Notification button click handler. This method sends the push notification
-        * message to each platform selected.
+        * Send Notification button click handler. This method sends hello push notification
+        * message tooeach platform selected.
         *
-        * @param v The view
+        * @param v hello view
         */
        public void sendNotificationButtonOnClick(View v)
                throws ClientProtocolException, IOException {
@@ -400,16 +400,16 @@ ms.lasthandoff: 07/11/2017
            }
        }
 
-## <a name="run-the-application"></a><span data-ttu-id="51c07-138">執行應用程式</span><span class="sxs-lookup"><span data-stu-id="51c07-138">Run the Application</span></span>
-1. <span data-ttu-id="51c07-139">在使用 Android Studio 的裝置或模擬器上執行應用程式。</span><span class="sxs-lookup"><span data-stu-id="51c07-139">Run the application on a device or an emulator using Android Studio.</span></span>
-2. <span data-ttu-id="51c07-140">在 Android 應用程式中，輸入使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="51c07-140">In the Android app, enter a username and password.</span></span> <span data-ttu-id="51c07-141">兩者必須是相同的字串值，而且不得包含空格或特殊字元。</span><span class="sxs-lookup"><span data-stu-id="51c07-141">They must both be the same string value and they must not contain spaces or special characters.</span></span>
-3. <span data-ttu-id="51c07-142">在 Android 應用程式中，按一下 [ **登入**]。</span><span class="sxs-lookup"><span data-stu-id="51c07-142">In the Android app, click **Log in**.</span></span> <span data-ttu-id="51c07-143">等待快顯訊息出現，指出 [ **已登入並註冊**]。</span><span class="sxs-lookup"><span data-stu-id="51c07-143">Wait for a toast message that states **Logged in and registered**.</span></span> <span data-ttu-id="51c07-144">這會啟用 [ **傳送通知** ] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="51c07-144">This will enable the **Send Notification** button.</span></span>
+## <a name="run-hello-application"></a><span data-ttu-id="fb32c-138">執行 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="fb32c-138">Run hello Application</span></span>
+1. <span data-ttu-id="fb32c-139">裝置或使用 Android Studio 模擬器上執行 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="fb32c-139">Run hello application on a device or an emulator using Android Studio.</span></span>
+2. <span data-ttu-id="fb32c-140">在 hello Android 應用程式中，輸入使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="fb32c-140">In hello Android app, enter a username and password.</span></span> <span data-ttu-id="fb32c-141">兩者都是 hello 相同字串值，而且它們不能包含空格或特殊字元。</span><span class="sxs-lookup"><span data-stu-id="fb32c-141">They must both be hello same string value and they must not contain spaces or special characters.</span></span>
+3. <span data-ttu-id="fb32c-142">在 hello Android 應用程式中，按一下 **登入**。</span><span class="sxs-lookup"><span data-stu-id="fb32c-142">In hello Android app, click **Log in**.</span></span> <span data-ttu-id="fb32c-143">等待快顯訊息出現，指出 [ **已登入並註冊**]。</span><span class="sxs-lookup"><span data-stu-id="fb32c-143">Wait for a toast message that states **Logged in and registered**.</span></span> <span data-ttu-id="fb32c-144">這會讓 hello**傳送通知** 按鈕。</span><span class="sxs-lookup"><span data-stu-id="fb32c-144">This will enable hello **Send Notification** button.</span></span>
    
     ![][A2]
-4. <span data-ttu-id="51c07-145">按一下切換按鈕，啟用您已執行應用程式並註冊使用者的所有平台。</span><span class="sxs-lookup"><span data-stu-id="51c07-145">Click the toggle buttons to enable all platforms where you have ran the app and registered a user.</span></span>
-5. <span data-ttu-id="51c07-146">輸入將會收到通知訊息的使用者名稱。</span><span class="sxs-lookup"><span data-stu-id="51c07-146">Enter the user's name that will receive the notification message.</span></span> <span data-ttu-id="51c07-147">該使用者必須在目標裝置上註冊通知。</span><span class="sxs-lookup"><span data-stu-id="51c07-147">That user must be registered for notifications on the target devices.</span></span>
-6. <span data-ttu-id="51c07-148">輸入做為推播通知訊息的訊息，以便使用者接收。</span><span class="sxs-lookup"><span data-stu-id="51c07-148">Enter a message for the user to receive as a push notification message.</span></span>
-7. <span data-ttu-id="51c07-149">按一下 [ **傳送通知**]。</span><span class="sxs-lookup"><span data-stu-id="51c07-149">Click **Send Notification**.</span></span>  <span data-ttu-id="51c07-150">每個具有相符使用者名稱標記之註冊的裝置都會收到推播通知。</span><span class="sxs-lookup"><span data-stu-id="51c07-150">Each device that has a registration with the matching username tag will receive the push notification.</span></span>
+4. <span data-ttu-id="fb32c-145">按一下 hello 切換按鈕 tooenable 您擁有的所有平台執行 hello 應用程式和註冊的使用者。</span><span class="sxs-lookup"><span data-stu-id="fb32c-145">Click hello toggle buttons tooenable all platforms where you have ran hello app and registered a user.</span></span>
+5. <span data-ttu-id="fb32c-146">輸入將會收到 hello 通知訊息的 hello 使用者的名稱。</span><span class="sxs-lookup"><span data-stu-id="fb32c-146">Enter hello user's name that will receive hello notification message.</span></span> <span data-ttu-id="fb32c-147">該使用者必須註冊 hello 目標裝置上的通知。</span><span class="sxs-lookup"><span data-stu-id="fb32c-147">That user must be registered for notifications on hello target devices.</span></span>
+6. <span data-ttu-id="fb32c-148">輸入 hello 使用者 tooreceive 為推播通知訊息的訊息。</span><span class="sxs-lookup"><span data-stu-id="fb32c-148">Enter a message for hello user tooreceive as a push notification message.</span></span>
+7. <span data-ttu-id="fb32c-149">按一下 [ **傳送通知**]。</span><span class="sxs-lookup"><span data-stu-id="fb32c-149">Click **Send Notification**.</span></span>  <span data-ttu-id="fb32c-150">每個 hello 比對的使用者名稱標記的已註冊的裝置將會收到 hello 推播通知。</span><span class="sxs-lookup"><span data-stu-id="fb32c-150">Each device that has a registration with hello matching username tag will receive hello push notification.</span></span>
 
 [A1]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users.png
 [A2]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users-enter-password.png

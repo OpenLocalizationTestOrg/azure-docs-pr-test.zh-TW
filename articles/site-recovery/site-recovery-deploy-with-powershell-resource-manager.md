@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 與 Azure Resource Manager 來複寫 Hyper-V VM | Microsoft Docs"
-description: "使用 PowerShell 和 Azure Resource Manager，透過 Azure Site Recovery 將 Hyper-V VM 至 Azure 的複寫自動化。"
+title: "使用 PowerShell 和 Azure 資源管理員的 HYPER-V Vm aaaReplicate |Microsoft 文件"
+description: "使用 PowerShell 和 Azure 資源管理員的 Azure Site recovery 自動化 HYPER-V Vm tooAzure hello 的複寫。"
 services: site-recovery
 documentationcenter: 
 author: bsiva
@@ -14,179 +14,179 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/31/2017
 ms.author: bsiva
-ms.openlocfilehash: dbd562b73b0caecd0feb993bd6fb796dddb0438c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4fb15ce2e9ad54f1dd6f54ff769eb912aa4b0272
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replicate-between-on-premises-hyper-v-virtual-machines-and-azure-by-using-powershell-and-azure-resource-manager"></a><span data-ttu-id="aac3e-103">使用 PowerShell 和 Azure Resource Manager 在內部部署 Hyper-V 虛擬機器與 Azure 之間複寫</span><span class="sxs-lookup"><span data-stu-id="aac3e-103">Replicate between on-premises Hyper-V virtual machines and Azure by using PowerShell and Azure Resource Manager</span></span>
+# <a name="replicate-between-on-premises-hyper-v-virtual-machines-and-azure-by-using-powershell-and-azure-resource-manager"></a><span data-ttu-id="33098-103">使用 PowerShell 和 Azure Resource Manager 在內部部署 Hyper-V 虛擬機器與 Azure 之間複寫</span><span class="sxs-lookup"><span data-stu-id="33098-103">Replicate between on-premises Hyper-V virtual machines and Azure by using PowerShell and Azure Resource Manager</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="aac3e-104">Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="aac3e-104">Azure Portal</span></span>](site-recovery-hyper-v-site-to-azure.md)
-> * [<span data-ttu-id="aac3e-105">PowerShell - 資源管理員</span><span class="sxs-lookup"><span data-stu-id="aac3e-105">PowerShell - Resource Manager</span></span>](site-recovery-deploy-with-powershell-resource-manager.md)
-> * [<span data-ttu-id="aac3e-106">傳統入口網站</span><span class="sxs-lookup"><span data-stu-id="aac3e-106">Classic Portal</span></span>](site-recovery-hyper-v-site-to-azure-classic.md)
+> * [<span data-ttu-id="33098-104">Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="33098-104">Azure Portal</span></span>](site-recovery-hyper-v-site-to-azure.md)
+> * [<span data-ttu-id="33098-105">PowerShell - 資源管理員</span><span class="sxs-lookup"><span data-stu-id="33098-105">PowerShell - Resource Manager</span></span>](site-recovery-deploy-with-powershell-resource-manager.md)
+> * [<span data-ttu-id="33098-106">傳統入口網站</span><span class="sxs-lookup"><span data-stu-id="33098-106">Classic Portal</span></span>](site-recovery-hyper-v-site-to-azure-classic.md)
 >
 >
 
-## <a name="overview"></a><span data-ttu-id="aac3e-107">Overview</span><span class="sxs-lookup"><span data-stu-id="aac3e-107">Overview</span></span>
-<span data-ttu-id="aac3e-108">Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容錯移轉及復原，為您的商務持續性與災害復原做出貢獻。</span><span class="sxs-lookup"><span data-stu-id="aac3e-108">Azure Site Recovery contributes to your business continuity and disaster recovery strategy by orchestrating replication, failover, and recovery of virtual machines in a number of deployment scenarios.</span></span> <span data-ttu-id="aac3e-109">如需完整的部署案例清單，請參閱 [Azure Site Recovery 概觀](site-recovery-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="aac3e-109">For a full list of deployment scenarios, see the [Azure Site Recovery overview](site-recovery-overview.md).</span></span>
+## <a name="overview"></a><span data-ttu-id="33098-107">概觀</span><span class="sxs-lookup"><span data-stu-id="33098-107">Overview</span></span>
+<span data-ttu-id="33098-108">Azure Site Recovery 提供 tooyour 業務續航力和災害復原策略可藉由協調複寫、 容錯移轉，以及一些部署案例中的虛擬機器的復原。</span><span class="sxs-lookup"><span data-stu-id="33098-108">Azure Site Recovery contributes tooyour business continuity and disaster recovery strategy by orchestrating replication, failover, and recovery of virtual machines in a number of deployment scenarios.</span></span> <span data-ttu-id="33098-109">如需部署案例的完整清單，請參閱 hello [Azure 站台復原概觀](site-recovery-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="33098-109">For a full list of deployment scenarios, see hello [Azure Site Recovery overview](site-recovery-overview.md).</span></span>
 
-<span data-ttu-id="aac3e-110">Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows PowerShell 管理 Azure。</span><span class="sxs-lookup"><span data-stu-id="aac3e-110">Azure PowerShell is a module that provides cmdlets to manage Azure through Windows PowerShell.</span></span> <span data-ttu-id="aac3e-111">它可以搭配兩種模組類型使用：Azure 設定檔模組或 Azure Resource Manager 模組。</span><span class="sxs-lookup"><span data-stu-id="aac3e-111">It can work with two types of modules: the Azure Profile module, or the Azure Resource Manager module.</span></span>
+<span data-ttu-id="33098-110">Azure PowerShell 是提供 cmdlet toomanage 透過 Windows PowerShell 的 Azure 模組。</span><span class="sxs-lookup"><span data-stu-id="33098-110">Azure PowerShell is a module that provides cmdlets toomanage Azure through Windows PowerShell.</span></span> <span data-ttu-id="33098-111">它可以使用兩種類型的模組： hello Azure 設定檔模組或 hello Azure 資源管理員模組。</span><span class="sxs-lookup"><span data-stu-id="33098-111">It can work with two types of modules: hello Azure Profile module, or hello Azure Resource Manager module.</span></span>
 
-<span data-ttu-id="aac3e-112">Azure PowerShell for Azure Resource Manager 提供的 Site Recovery PowerShell Cmdlet 可讓您在 Azure 中保護與復原伺服器。</span><span class="sxs-lookup"><span data-stu-id="aac3e-112">Site Recovery PowerShell cmdlets, available with Azure PowerShell for Azure Resource Manager, help you protect and recover your servers in Azure.</span></span>
+<span data-ttu-id="33098-112">Azure PowerShell for Azure Resource Manager 提供的 Site Recovery PowerShell Cmdlet 可讓您在 Azure 中保護與復原伺服器。</span><span class="sxs-lookup"><span data-stu-id="33098-112">Site Recovery PowerShell cmdlets, available with Azure PowerShell for Azure Resource Manager, help you protect and recover your servers in Azure.</span></span>
 
-<span data-ttu-id="aac3e-113">本文說明如何搭配 Azure Resource Manager 使用 Windows PowerShell 來部署 Site Recovery，以設定及協調 Azure 的伺服器保護。</span><span class="sxs-lookup"><span data-stu-id="aac3e-113">This article describes how to use Windows PowerShell, together with Azure Resource Manager, to deploy Site Recovery to configure and orchestrate server protection to Azure.</span></span> <span data-ttu-id="aac3e-114">本文中所用的範例會說明如何使用 Azure PowerShell 和 Azure Resource Manager 保護、容錯移轉及復原 Hyper-V 主機上的虛擬機器至 Azure。</span><span class="sxs-lookup"><span data-stu-id="aac3e-114">The example used in this article shows you how to protect, fail over, and recover virtual machines on a Hyper-V host to Azure, by using Azure PowerShell with Azure Resource Manager.</span></span>
+<span data-ttu-id="33098-113">本文說明如何 toouse Windows PowerShell，以及 Azure 資源管理員，toodeploy Site Recovery tooconfigure 以及協調伺服器保護 tooAzure。</span><span class="sxs-lookup"><span data-stu-id="33098-113">This article describes how toouse Windows PowerShell, together with Azure Resource Manager, toodeploy Site Recovery tooconfigure and orchestrate server protection tooAzure.</span></span> <span data-ttu-id="33098-114">在本文中使用的 hello 範例將示範如何 tooprotect，容錯移轉和復原虛擬機器上的 HYPER-V 主機 tooAzure，使用 Azure PowerShell 的 Azure 資源管理員。</span><span class="sxs-lookup"><span data-stu-id="33098-114">hello example used in this article shows you how tooprotect, fail over, and recover virtual machines on a Hyper-V host tooAzure, by using Azure PowerShell with Azure Resource Manager.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="aac3e-115">Site Recovery PowerShell Cmdlet 目前可讓您設定下列各項︰從一個 Virtual Machine Manager 網站到另一個、Virtual Machine Manager 到 Azure 及 Hyper-V 網站至 Azure。</span><span class="sxs-lookup"><span data-stu-id="aac3e-115">The Site Recovery PowerShell cmdlets currently allow you to configure the following: one Virtual Machine Manager site to another, a Virtual Machine Manager site to Azure, and a Hyper-V site to Azure.</span></span>
+> <span data-ttu-id="33098-115">hello 站台復原 PowerShell cmdlet 目前可讓您遵循 tooconfigure hello： 一個 Virtual Machine Manager 的站台 tooanother、 Virtual Machine Manager 網站 tooAzure 及 HYPER-V 站台 tooAzure。</span><span class="sxs-lookup"><span data-stu-id="33098-115">hello Site Recovery PowerShell cmdlets currently allow you tooconfigure hello following: one Virtual Machine Manager site tooanother, a Virtual Machine Manager site tooAzure, and a Hyper-V site tooAzure.</span></span>
 >
 >
 
-<span data-ttu-id="aac3e-116">您不需要是 PowerShell 專家也能使用本文，但您必須了解模組、Cmdlet 和工作階段等基本概念。</span><span class="sxs-lookup"><span data-stu-id="aac3e-116">You don't need to be a PowerShell expert to use this article, but you do need to understand the basic concepts, such as modules, cmdlets, and sessions.</span></span> <span data-ttu-id="aac3e-117">如需 Windows PowerShell 的詳細資訊，請參閱 [開始使用 Windows PowerShell](http://technet.microsoft.com/library/hh857337.aspx)(英文)。</span><span class="sxs-lookup"><span data-stu-id="aac3e-117">For more information about Windows PowerShell, see [Getting Started with Windows PowerShell](http://technet.microsoft.com/library/hh857337.aspx).</span></span>
+<span data-ttu-id="33098-116">您不需要 toobe PowerShell 專家 toouse 本文中，但您需要 toounderstand hello 基本概念，例如模組、 cmdlet 和工作階段。</span><span class="sxs-lookup"><span data-stu-id="33098-116">You don't need toobe a PowerShell expert toouse this article, but you do need toounderstand hello basic concepts, such as modules, cmdlets, and sessions.</span></span> <span data-ttu-id="33098-117">如需 Windows PowerShell 的詳細資訊，請參閱 [開始使用 Windows PowerShell](http://technet.microsoft.com/library/hh857337.aspx)(英文)。</span><span class="sxs-lookup"><span data-stu-id="33098-117">For more information about Windows PowerShell, see [Getting Started with Windows PowerShell](http://technet.microsoft.com/library/hh857337.aspx).</span></span>
 
-<span data-ttu-id="aac3e-118">您也可以參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md)。</span><span class="sxs-lookup"><span data-stu-id="aac3e-118">You can also read more about [Using Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md).</span></span>
+<span data-ttu-id="33098-118">您也可以參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md)。</span><span class="sxs-lookup"><span data-stu-id="33098-118">You can also read more about [Using Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="aac3e-119">屬於雲端方案提供者 (CSP) 計畫的 Microsoft 合作夥伴，可以在其客戶各自的 CSP 訂用帳戶 (租用戶訂用帳戶) 設定和管理客戶的伺服器保護。</span><span class="sxs-lookup"><span data-stu-id="aac3e-119">Microsoft partners that are part of the Cloud Solution Provider (CSP) program can configure and manage protection of their customers' servers to their customers' respective CSP subscriptions (tenant subscriptions).</span></span>
+> <span data-ttu-id="33098-119">屬於 hello 雲端方案提供者 (CSP) 程式的 Microsoft 合作夥伴可以設定及管理其客戶的伺服器的保護個別 CSP 訂閱 tootheir 客戶 （租用戶訂閱）。</span><span class="sxs-lookup"><span data-stu-id="33098-119">Microsoft partners that are part of hello Cloud Solution Provider (CSP) program can configure and manage protection of their customers' servers tootheir customers' respective CSP subscriptions (tenant subscriptions).</span></span>
 >
 >
 
-## <a name="before-you-start"></a><span data-ttu-id="aac3e-120">開始之前</span><span class="sxs-lookup"><span data-stu-id="aac3e-120">Before you start</span></span>
-<span data-ttu-id="aac3e-121">確認您已備妥這些必要條件：</span><span class="sxs-lookup"><span data-stu-id="aac3e-121">Make sure you have these prerequisites in place:</span></span>
+## <a name="before-you-start"></a><span data-ttu-id="33098-120">開始之前</span><span class="sxs-lookup"><span data-stu-id="33098-120">Before you start</span></span>
+<span data-ttu-id="33098-121">確認您已備妥這些必要條件：</span><span class="sxs-lookup"><span data-stu-id="33098-121">Make sure you have these prerequisites in place:</span></span>
 
-* <span data-ttu-id="aac3e-122">[Microsoft Azure](https://azure.microsoft.com/) 帳戶。</span><span class="sxs-lookup"><span data-stu-id="aac3e-122">A [Microsoft Azure](https://azure.microsoft.com/) account.</span></span> <span data-ttu-id="aac3e-123">您可以從 [免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。</span><span class="sxs-lookup"><span data-stu-id="aac3e-123">You can start with a [free trial](https://azure.microsoft.com/pricing/free-trial/).</span></span> <span data-ttu-id="aac3e-124">此外，您可以參閱 [Azure Site Recovery 管理員價格](https://azure.microsoft.com/pricing/details/site-recovery/)。</span><span class="sxs-lookup"><span data-stu-id="aac3e-124">In addition, you can read about [Azure Site Recovery Manager pricing](https://azure.microsoft.com/pricing/details/site-recovery/).</span></span>
-* <span data-ttu-id="aac3e-125">Azure PowerShell 1.0。</span><span class="sxs-lookup"><span data-stu-id="aac3e-125">Azure PowerShell 1.0.</span></span> <span data-ttu-id="aac3e-126">如需有關此版本以及如何安裝的資訊，請參閱 [Azure PowerShell 1.0。](https://azure.microsoft.com/)</span><span class="sxs-lookup"><span data-stu-id="aac3e-126">For information about this release and how to install it, see [Azure PowerShell 1.0.](https://azure.microsoft.com/)</span></span>
-* <span data-ttu-id="aac3e-127">[AzureRM.SiteRecovery](https://www.powershellgallery.com/packages/AzureRM.SiteRecovery/) 和 [AzureRM.RecoveryServices](https://www.powershellgallery.com/packages/AzureRM.RecoveryServices/) 模組。</span><span class="sxs-lookup"><span data-stu-id="aac3e-127">The [AzureRM.SiteRecovery](https://www.powershellgallery.com/packages/AzureRM.SiteRecovery/) and [AzureRM.RecoveryServices](https://www.powershellgallery.com/packages/AzureRM.RecoveryServices/) modules.</span></span> <span data-ttu-id="aac3e-128">您可以從 [PowerShell](https://www.powershellgallery.com/)</span><span class="sxs-lookup"><span data-stu-id="aac3e-128">You can get the latest versions of these modules from the [PowerShell gallery](https://www.powershellgallery.com/)</span></span>
+* <span data-ttu-id="33098-122">[Microsoft Azure](https://azure.microsoft.com/) 帳戶。</span><span class="sxs-lookup"><span data-stu-id="33098-122">A [Microsoft Azure](https://azure.microsoft.com/) account.</span></span> <span data-ttu-id="33098-123">您可以從 [免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。</span><span class="sxs-lookup"><span data-stu-id="33098-123">You can start with a [free trial](https://azure.microsoft.com/pricing/free-trial/).</span></span> <span data-ttu-id="33098-124">此外，您可以參閱 [Azure Site Recovery 管理員價格](https://azure.microsoft.com/pricing/details/site-recovery/)。</span><span class="sxs-lookup"><span data-stu-id="33098-124">In addition, you can read about [Azure Site Recovery Manager pricing](https://azure.microsoft.com/pricing/details/site-recovery/).</span></span>
+* <span data-ttu-id="33098-125">Azure PowerShell 1.0。</span><span class="sxs-lookup"><span data-stu-id="33098-125">Azure PowerShell 1.0.</span></span> <span data-ttu-id="33098-126">如需有關此版本資訊和如何 tooinstall，請參閱[Azure PowerShell 1.0。](https://azure.microsoft.com/)</span><span class="sxs-lookup"><span data-stu-id="33098-126">For information about this release and how tooinstall it, see [Azure PowerShell 1.0.](https://azure.microsoft.com/)</span></span>
+* <span data-ttu-id="33098-127">hello [AzureRM.SiteRecovery](https://www.powershellgallery.com/packages/AzureRM.SiteRecovery/)和[AzureRM.RecoveryServices](https://www.powershellgallery.com/packages/AzureRM.RecoveryServices/)模組。</span><span class="sxs-lookup"><span data-stu-id="33098-127">hello [AzureRM.SiteRecovery](https://www.powershellgallery.com/packages/AzureRM.SiteRecovery/) and [AzureRM.RecoveryServices](https://www.powershellgallery.com/packages/AzureRM.RecoveryServices/) modules.</span></span> <span data-ttu-id="33098-128">您可以從 hello 取得 hello 最新版本，這些模組[PowerShell 資源庫](https://www.powershellgallery.com/)</span><span class="sxs-lookup"><span data-stu-id="33098-128">You can get hello latest versions of these modules from hello [PowerShell gallery](https://www.powershellgallery.com/)</span></span>
 
-<span data-ttu-id="aac3e-129">本文會說明如何使用 Azure Powershell 與 Azure Resource Manager 來設定及管理伺服器保護。</span><span class="sxs-lookup"><span data-stu-id="aac3e-129">This article illustrates how to use Azure Powershell with Azure Resource Manager to configure and manage protection of your servers.</span></span> <span data-ttu-id="aac3e-130">本文中所用的範例會示範如何在 Hyper-V 主機執行保護 Azure 的虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="aac3e-130">The example used in this article shows you how to protect a virtual machine, running on a Hyper-V host, to Azure.</span></span> <span data-ttu-id="aac3e-131">下列必要條件為本範例專用。</span><span class="sxs-lookup"><span data-stu-id="aac3e-131">The following prerequisites are specific to this example.</span></span> <span data-ttu-id="aac3e-132">如需一組更完整的各種 Site Recovery 案例需求，請參閱各案例文件。</span><span class="sxs-lookup"><span data-stu-id="aac3e-132">For a more comprehensive set of requirements for the various Site Recovery scenarios, refer to the documentation pertaining to that scenario.</span></span>
+<span data-ttu-id="33098-129">本文將說明如何使用 Azure Resource Manager tooconfigure toouse Azure Powershell 及管理您伺服器的保護。</span><span class="sxs-lookup"><span data-stu-id="33098-129">This article illustrates how toouse Azure Powershell with Azure Resource Manager tooconfigure and manage protection of your servers.</span></span> <span data-ttu-id="33098-130">在本文中使用的 hello 範例將示範如何為虛擬機器，主機上執行 HYPER-V，tooAzure tooprotect。</span><span class="sxs-lookup"><span data-stu-id="33098-130">hello example used in this article shows you how tooprotect a virtual machine, running on a Hyper-V host, tooAzure.</span></span> <span data-ttu-id="33098-131">hello 下列必要條件是特定 toothis 範例。</span><span class="sxs-lookup"><span data-stu-id="33098-131">hello following prerequisites are specific toothis example.</span></span> <span data-ttu-id="33098-132">一組更完整的需求的 hello 各種站台復原案例，請參閱相關 toothat 案例 toohello 文件。</span><span class="sxs-lookup"><span data-stu-id="33098-132">For a more comprehensive set of requirements for hello various Site Recovery scenarios, refer toohello documentation pertaining toothat scenario.</span></span>
 
-* <span data-ttu-id="aac3e-133">執行 Windows Server 2012 R2 或 Microsoft Hyper-V Server 2012 R2 且包含一或多部虛擬機器的 Hyper-V 主機。</span><span class="sxs-lookup"><span data-stu-id="aac3e-133">A Hyper-V host running Windows Server 2012 R2 or Microsoft Hyper-V Server 2012 R2 containing one or more virtual machines.</span></span>
-* <span data-ttu-id="aac3e-134">直接或透過 Proxy 連接到網際網路的 Hyper-V 伺服器。</span><span class="sxs-lookup"><span data-stu-id="aac3e-134">Hyper-V servers connected to the Internet, either directly or through a proxy.</span></span>
-* <span data-ttu-id="aac3e-135">您想要保護的虛擬機器應符合 [虛擬機器必要條件](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。</span><span class="sxs-lookup"><span data-stu-id="aac3e-135">The virtual machines you want to protect should conform with [Virtual Machine prerequisites](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).</span></span>
+* <span data-ttu-id="33098-133">執行 Windows Server 2012 R2 或 Microsoft Hyper-V Server 2012 R2 且包含一或多部虛擬機器的 Hyper-V 主機。</span><span class="sxs-lookup"><span data-stu-id="33098-133">A Hyper-V host running Windows Server 2012 R2 or Microsoft Hyper-V Server 2012 R2 containing one or more virtual machines.</span></span>
+* <span data-ttu-id="33098-134">HYPER-V 伺服器連接網際網路，toohello 直接或透過 proxy。</span><span class="sxs-lookup"><span data-stu-id="33098-134">Hyper-V servers connected toohello Internet, either directly or through a proxy.</span></span>
+* <span data-ttu-id="33098-135">hello 想 tooprotect 的虛擬機器都應該符合[虛擬機器必要條件](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。</span><span class="sxs-lookup"><span data-stu-id="33098-135">hello virtual machines you want tooprotect should conform with [Virtual Machine prerequisites](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).</span></span>
 
-## <a name="step-1-sign-in-to-your-azure-account"></a><span data-ttu-id="aac3e-136">步驟 1：登入您的 Azure 帳戶</span><span class="sxs-lookup"><span data-stu-id="aac3e-136">Step 1: Sign in to your Azure account</span></span>
-1. <span data-ttu-id="aac3e-137">開啟 PowerShell 主控台並執行這個命令，登入您的 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="aac3e-137">Open a PowerShell console and run this command to sign in to your Azure account.</span></span> <span data-ttu-id="aac3e-138">此 cmdlet 會開啟網頁，提示您輸入您的帳戶認證。</span><span class="sxs-lookup"><span data-stu-id="aac3e-138">The cmdlet brings up a web page that will prompt you for your account credentials.</span></span>
+## <a name="step-1-sign-in-tooyour-azure-account"></a><span data-ttu-id="33098-136">步驟 1： 登入 tooyour Azure 帳戶</span><span class="sxs-lookup"><span data-stu-id="33098-136">Step 1: Sign in tooyour Azure account</span></span>
+1. <span data-ttu-id="33098-137">開啟 PowerShell 主控台並執行此命令 toosign tooyour Azure 帳戶中。</span><span class="sxs-lookup"><span data-stu-id="33098-137">Open a PowerShell console and run this command toosign in tooyour Azure account.</span></span> <span data-ttu-id="33098-138">hello cmdlet 就會開啟一個網頁，會提示您輸入您的帳戶認證。</span><span class="sxs-lookup"><span data-stu-id="33098-138">hello cmdlet brings up a web page that will prompt you for your account credentials.</span></span>
 
         Login-AzureRmAccount
 
-    <span data-ttu-id="aac3e-139">或者，您也可以使用 `-Credential` 參數，以參數形式將您的帳戶認證加入 `Login-AzureRmAccount` Cmdlet。</span><span class="sxs-lookup"><span data-stu-id="aac3e-139">Alternately, you could also include your account credentials as a parameter to the `Login-AzureRmAccount` cmdlet, by using the `-Credential` parameter.</span></span>
+    <span data-ttu-id="33098-139">或者，加入您的帳戶認證為參數 toohello `Login-AzureRmAccount` cmdlet，利用 hello`-Credential`參數。</span><span class="sxs-lookup"><span data-stu-id="33098-139">Alternately, you could also include your account credentials as a parameter toohello `Login-AzureRmAccount` cmdlet, by using hello `-Credential` parameter.</span></span>
 
-    <span data-ttu-id="aac3e-140">如果您是代表租用戶工作的 CSP 合作夥伴，請使用客戶的 tenantID 或租用戶主要網域名稱將客戶指定為租用戶。</span><span class="sxs-lookup"><span data-stu-id="aac3e-140">If you are CSP partner working on behalf of a tenant, specify the customer as a tenant, by using their tenantID or tenant primary domain name.</span></span>
+    <span data-ttu-id="33098-140">如果您是使用代表租用戶的 CSP 夥伴時，指定為租用戶，hello 客戶使用其 tenantID 或租用戶的主要網域名稱。</span><span class="sxs-lookup"><span data-stu-id="33098-140">If you are CSP partner working on behalf of a tenant, specify hello customer as a tenant, by using their tenantID or tenant primary domain name.</span></span>
 
         Login-AzureRmAccount -Tenant "fabrikam.com"
-2. <span data-ttu-id="aac3e-141">一個帳戶可以有多個訂用帳戶，因此您應該建立要使用的訂用帳戶和帳戶的關聯性。</span><span class="sxs-lookup"><span data-stu-id="aac3e-141">An account can have several subscriptions, so you should associate the subscription you want to use with the account.</span></span>
+2. <span data-ttu-id="33098-141">帳戶可以有數個訂閱，所以您應該將您想要與 hello 帳戶 toouse hello 訂用帳戶產生關聯。</span><span class="sxs-lookup"><span data-stu-id="33098-141">An account can have several subscriptions, so you should associate hello subscription you want toouse with hello account.</span></span>
 
         Select-AzureRmSubscription -SubscriptionName $SubscriptionName
-3. <span data-ttu-id="aac3e-142">使用下列命令確認您的訂用帳戶已註冊使用 Azure 復原服務提供者和 Site Recovery：</span><span class="sxs-lookup"><span data-stu-id="aac3e-142">Verify that your subscription is registered to use the Azure providers for Recovery Services and Site Recovery, by using the following commands:</span></span>
+3. <span data-ttu-id="33098-142">請確認您的訂用帳戶註冊的 toouse 復原服務與站台復原 hello Azure 提供者，使用下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="33098-142">Verify that your subscription is registered toouse hello Azure providers for Recovery Services and Site Recovery, by using hello following commands:</span></span>
 
    * `Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.RecoveryServices`
    * `Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.SiteRecovery`
 
-   <span data-ttu-id="aac3e-143">如果 **RegistrationState** 在上述這些命令的輸出中設為 [已註冊]，您可以繼續執行步驟 2。</span><span class="sxs-lookup"><span data-stu-id="aac3e-143">In the output of these commands, if the **RegistrationState** is set to **Registered**, you can proceed to Step 2.</span></span> <span data-ttu-id="aac3e-144">如果未設定，訂用帳戶中應該註冊遺漏的提供者。</span><span class="sxs-lookup"><span data-stu-id="aac3e-144">If not, you should register the missing provider in your subscription.</span></span>
+   <span data-ttu-id="33098-143">Hello 輸出中的這些命令，如果 hello **RegistrationState**設定得**註冊**，您可以繼續 tooStep 2。</span><span class="sxs-lookup"><span data-stu-id="33098-143">In hello output of these commands, if hello **RegistrationState** is set too**Registered**, you can proceed tooStep 2.</span></span> <span data-ttu-id="33098-144">如果沒有，您應該註冊您的訂用帳戶中的 hello 遺漏提供者。</span><span class="sxs-lookup"><span data-stu-id="33098-144">If not, you should register hello missing provider in your subscription.</span></span>
 
-   <span data-ttu-id="aac3e-145">若要註冊 Site Recovery 和復原服務的 Azure 提供者，請執行下列命令：</span><span class="sxs-lookup"><span data-stu-id="aac3e-145">To register the Azure provider for Site Recovery and Recovery Services, run the following commands:</span></span>
+   <span data-ttu-id="33098-145">tooregister hello Azure 提供者站台復原和復原服務，請執行下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="33098-145">tooregister hello Azure provider for Site Recovery and Recovery Services, run hello following commands:</span></span>
 
        Register-AzureRmResourceProvider -ProviderNamespace Microsoft.SiteRecovery
        Register-AzureRmResourceProvider -ProviderNamespace Microsoft.RecoveryServices
 
-   <span data-ttu-id="aac3e-146">確認提供者成功使用 `Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.RecoveryServices` 和 `Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.SiteRecovery` 命令註冊。</span><span class="sxs-lookup"><span data-stu-id="aac3e-146">Verify that the providers registered successfully by using the following commands: `Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.RecoveryServices` and `Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.SiteRecovery`.</span></span>
+   <span data-ttu-id="33098-146">請確認 hello 提供者已成功註冊使用下列命令的 hello:`Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.RecoveryServices`和`Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.SiteRecovery`。</span><span class="sxs-lookup"><span data-stu-id="33098-146">Verify that hello providers registered successfully by using hello following commands: `Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.RecoveryServices` and `Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.SiteRecovery`.</span></span>
 
-## <a name="step-2-set-up-the-recovery-services-vault"></a><span data-ttu-id="aac3e-147">步驟 2：設定復原服務保存庫</span><span class="sxs-lookup"><span data-stu-id="aac3e-147">Step 2: Set up the Recovery Services vault</span></span>
-1. <span data-ttu-id="aac3e-148">建立您將在其中建立保存庫的 Azure Resource Manager 資源群組，或使用現有的資源群組。</span><span class="sxs-lookup"><span data-stu-id="aac3e-148">Create an Azure Resource Manager resource group in which you'll create the vault, or use an existing resource group.</span></span> <span data-ttu-id="aac3e-149">您可以使用下列命令建立新的資源群組：</span><span class="sxs-lookup"><span data-stu-id="aac3e-149">You can create a new resource group by using the following command:</span></span>
+## <a name="step-2-set-up-hello-recovery-services-vault"></a><span data-ttu-id="33098-147">步驟 2： 設定復原服務保存庫的 hello</span><span class="sxs-lookup"><span data-stu-id="33098-147">Step 2: Set up hello Recovery Services vault</span></span>
+1. <span data-ttu-id="33098-148">建立 Azure 資源管理員資源群組中，您將建立 hello 保存庫，或使用現有的資源群組。</span><span class="sxs-lookup"><span data-stu-id="33098-148">Create an Azure Resource Manager resource group in which you'll create hello vault, or use an existing resource group.</span></span> <span data-ttu-id="33098-149">您可以使用下列命令的 hello，以建立新的資源群組：</span><span class="sxs-lookup"><span data-stu-id="33098-149">You can create a new resource group by using hello following command:</span></span>
 
         New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Geo  
 
-    <span data-ttu-id="aac3e-150">$ResourceGroupName 變數包含您想要建立的資源群組名稱，而 $Geo 變數包含要在其中建立資源群組的 Azure 區域 (例如：巴西南部)。</span><span class="sxs-lookup"><span data-stu-id="aac3e-150">where the $ResourceGroupName variable contains the name of the resource group you want to create, and the $Geo variable contains the Azure region in which to create the resource group (for example, "Brazil South").</span></span>
+    <span data-ttu-id="33098-150">hello $ResourceGroupName 變數包含 hello hello 資源群組名稱在您想 toocreate，而且 hello $Geo 變數包含 hello Azure 區域中哪一個 toocreate hello 資源群組 （例如，"巴西南部 」）。</span><span class="sxs-lookup"><span data-stu-id="33098-150">where hello $ResourceGroupName variable contains hello name of hello resource group you want toocreate, and hello $Geo variable contains hello Azure region in which toocreate hello resource group (for example, "Brazil South").</span></span>
 
-    <span data-ttu-id="aac3e-151">您可以使用 `Get-AzureRmResourceGroup` Cmdlet 在訂用帳戶中取得資源群組的清單。</span><span class="sxs-lookup"><span data-stu-id="aac3e-151">You can obtain a list of resource groups in your subscription by using the `Get-AzureRmResourceGroup` cmdlet.</span></span>
-2. <span data-ttu-id="aac3e-152">建立新的 Azure 復原服務保存庫，如下所示：</span><span class="sxs-lookup"><span data-stu-id="aac3e-152">Create a new Azure Recovery Services vault as follows:</span></span>
+    <span data-ttu-id="33098-151">您也可以使用 hello 您訂用帳戶中取得一份資源群組`Get-AzureRmResourceGroup`cmdlet。</span><span class="sxs-lookup"><span data-stu-id="33098-151">You can obtain a list of resource groups in your subscription by using hello `Get-AzureRmResourceGroup` cmdlet.</span></span>
+2. <span data-ttu-id="33098-152">建立新的 Azure 復原服務保存庫，如下所示：</span><span class="sxs-lookup"><span data-stu-id="33098-152">Create a new Azure Recovery Services vault as follows:</span></span>
 
         $vault = New-AzureRmRecoveryServicesVault -Name <string> -ResourceGroupName <string> -Location <string>
 
-    <span data-ttu-id="aac3e-153">您可以使用 `Get-AzureRmRecoveryServicesVault` Cmdlet 擷取現有保存庫的清單。</span><span class="sxs-lookup"><span data-stu-id="aac3e-153">You can retrieve a list of existing vaults by using the `Get-AzureRmRecoveryServicesVault` cmdlet.</span></span>
+    <span data-ttu-id="33098-153">您可以擷取一份現有保存庫使用 hello `Get-AzureRmRecoveryServicesVault` cmdlet。</span><span class="sxs-lookup"><span data-stu-id="33098-153">You can retrieve a list of existing vaults by using hello `Get-AzureRmRecoveryServicesVault` cmdlet.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="aac3e-154">如果您想要使用傳統入口網站或 Azure 服務管理 PowerShell 模組在建立的 Site Recovery 保存庫上執行作業，您可以使用 `Get-AzureRmSiteRecoveryVault` Cmdlet 擷取這些保存庫的清單。</span><span class="sxs-lookup"><span data-stu-id="aac3e-154">If you wish to perform operations on Site Recovery vaults created using the classic portal or the Azure Service Management PowerShell module, you can retrieve a list of such vaults by using the `Get-AzureRmSiteRecoveryVault` cmdlet.</span></span> <span data-ttu-id="aac3e-155">您應該為所有的新作業建立新的復原服務保存庫。</span><span class="sxs-lookup"><span data-stu-id="aac3e-155">You should create a new Recovery Services vault for all new operations.</span></span> <span data-ttu-id="aac3e-156">您稍早建立的 Site Recovery 保存庫仍會受到支援，但不會有最新的功能。</span><span class="sxs-lookup"><span data-stu-id="aac3e-156">The Site Recovery vaults you've created earlier are supported, but don't have the latest features.</span></span>
+> <span data-ttu-id="33098-154">如果您想使用 hello 傳統入口網站或 hello Azure Service Management PowerShell 模組所建立的站台復原保存庫 tooperform 作業時，您可以擷取一份這類保存庫使用 hello `Get-AzureRmSiteRecoveryVault` cmdlet。</span><span class="sxs-lookup"><span data-stu-id="33098-154">If you wish tooperform operations on Site Recovery vaults created using hello classic portal or hello Azure Service Management PowerShell module, you can retrieve a list of such vaults by using hello `Get-AzureRmSiteRecoveryVault` cmdlet.</span></span> <span data-ttu-id="33098-155">您應該為所有的新作業建立新的復原服務保存庫。</span><span class="sxs-lookup"><span data-stu-id="33098-155">You should create a new Recovery Services vault for all new operations.</span></span> <span data-ttu-id="33098-156">您稍早建立的 hello Site Recovery 保存庫支援，但是沒有 hello 最新的功能。</span><span class="sxs-lookup"><span data-stu-id="33098-156">hello Site Recovery vaults you've created earlier are supported, but don't have hello latest features.</span></span>
 >
 >
 
-## <a name="step-3-set-the-recovery-services-vault-context"></a><span data-ttu-id="aac3e-157">步驟 3：設定復原服務保存庫內容</span><span class="sxs-lookup"><span data-stu-id="aac3e-157">Step 3: Set the Recovery Services vault context</span></span>
-1. <span data-ttu-id="aac3e-158">執行下列命令來設定保存庫內容：</span><span class="sxs-lookup"><span data-stu-id="aac3e-158">Set the vault context by running the following command:</span></span>
+## <a name="step-3-set-hello-recovery-services-vault-context"></a><span data-ttu-id="33098-157">步驟 3： 設定 hello 復原服務保存庫內容</span><span class="sxs-lookup"><span data-stu-id="33098-157">Step 3: Set hello Recovery Services vault context</span></span>
+1. <span data-ttu-id="33098-158">執行下列命令的 hello 設定 hello 保存庫的內容：</span><span class="sxs-lookup"><span data-stu-id="33098-158">Set hello vault context by running hello following command:</span></span>
 
        Set-AzureRmSiteRecoveryVaultSettings -ARSVault $vault
 
-## <a name="step-4-create-a-hyper-v-site-and-generate-a-new-vault-registration-key-for-the-site"></a><span data-ttu-id="aac3e-159">步驟 4：建立 Hyper-V 網站，並產生網站的新保存庫註冊金鑰。</span><span class="sxs-lookup"><span data-stu-id="aac3e-159">Step 4: Create a Hyper-V site and generate a new vault registration key for the site.</span></span>
-1. <span data-ttu-id="aac3e-160">建立新的 Hyper-V 站台，如下所示：</span><span class="sxs-lookup"><span data-stu-id="aac3e-160">Create a new Hyper-V site as follows:</span></span>
+## <a name="step-4-create-a-hyper-v-site-and-generate-a-new-vault-registration-key-for-hello-site"></a><span data-ttu-id="33098-159">步驟 4： 建立 HYPER-V 站台，並產生新的保存庫註冊金鑰 hello 站台。</span><span class="sxs-lookup"><span data-stu-id="33098-159">Step 4: Create a Hyper-V site and generate a new vault registration key for hello site.</span></span>
+1. <span data-ttu-id="33098-160">建立新的 Hyper-V 站台，如下所示：</span><span class="sxs-lookup"><span data-stu-id="33098-160">Create a new Hyper-V site as follows:</span></span>
 
         $sitename = "MySite"                #Specify site friendly name
         New-AzureRmSiteRecoverySite -Name $sitename
 
-    <span data-ttu-id="aac3e-161">這個 Cmdlet 會啟動 Site Recovery 作業來建立網站，並傳回 Site Recovery 作業物件。</span><span class="sxs-lookup"><span data-stu-id="aac3e-161">This cmdlet starts a Site Recovery job to create the site, and returns a Site Recovery job object.</span></span> <span data-ttu-id="aac3e-162">等待作業完成，並確認作業已成功完成。</span><span class="sxs-lookup"><span data-stu-id="aac3e-162">Wait for the job to complete and verify that the job completed successfully.</span></span>
+    <span data-ttu-id="33098-161">此 cmdlet 會啟動站台復原作業 toocreate hello 站台，並傳回站台復原工作物件。</span><span class="sxs-lookup"><span data-stu-id="33098-161">This cmdlet starts a Site Recovery job toocreate hello site, and returns a Site Recovery job object.</span></span> <span data-ttu-id="33098-162">等候 hello 作業 toocomplete，並確認該 hello 工作順利完成。</span><span class="sxs-lookup"><span data-stu-id="33098-162">Wait for hello job toocomplete and verify that hello job completed successfully.</span></span>
 
-    <span data-ttu-id="aac3e-163">您可以擷取作業物件，並使用 Get-AzureRmSiteRecoveryJob Cmdlet 檢查目前的作業狀態。</span><span class="sxs-lookup"><span data-stu-id="aac3e-163">You can retrieve the job object, and thereby check the current status of the job, by using the Get-AzureRmSiteRecoveryJob cmdlet.</span></span>
-2. <span data-ttu-id="aac3e-164">產生並下載網站的註冊金鑰，如下所示：</span><span class="sxs-lookup"><span data-stu-id="aac3e-164">Generate and download a registration key for the site, as follows:</span></span>
+    <span data-ttu-id="33098-163">您可以擷取 hello 工作物件，並藉此使用 hello Get AzureRmSiteRecoveryJob cmdlet 檢查 hello hello 作業目前狀態。</span><span class="sxs-lookup"><span data-stu-id="33098-163">You can retrieve hello job object, and thereby check hello current status of hello job, by using hello Get-AzureRmSiteRecoveryJob cmdlet.</span></span>
+2. <span data-ttu-id="33098-164">產生並下載註冊金鑰 hello 網站，如下所示：</span><span class="sxs-lookup"><span data-stu-id="33098-164">Generate and download a registration key for hello site, as follows:</span></span>
 
         $SiteIdentifier = Get-AzureRmSiteRecoverySite -Name $sitename | Select -ExpandProperty SiteIdentifier
         Get-AzureRmRecoveryServicesVaultSettingsFile -Vault $vault -SiteIdentifier $SiteIdentifier -SiteFriendlyName $sitename -Path $Path
 
-    <span data-ttu-id="aac3e-165">將下載的金鑰複製到 Hyper-V 主機。</span><span class="sxs-lookup"><span data-stu-id="aac3e-165">Copy the downloaded key to the Hyper-V host.</span></span> <span data-ttu-id="aac3e-166">您需要金鑰向網站註冊 Hyper-V 主機。</span><span class="sxs-lookup"><span data-stu-id="aac3e-166">You need the key to register the Hyper-V host to the site.</span></span>
+    <span data-ttu-id="33098-165">複製 hello 下載金鑰 toohello HYPER-V 主機。</span><span class="sxs-lookup"><span data-stu-id="33098-165">Copy hello downloaded key toohello Hyper-V host.</span></span> <span data-ttu-id="33098-166">您需要 hello 金鑰 tooregister hello HYPER-V 主機 toohello 站台。</span><span class="sxs-lookup"><span data-stu-id="33098-166">You need hello key tooregister hello Hyper-V host toohello site.</span></span>
 
-## <a name="step-5-install-the-azure-site-recovery-provider-and-azure-recovery-services-agent-on-your-hyper-v-host"></a><span data-ttu-id="aac3e-167">步驟 5：在 Hyper-V 主機上安裝 Azure Site Recovery 提供者和 Azure 復原服務代理程式</span><span class="sxs-lookup"><span data-stu-id="aac3e-167">Step 5: Install the Azure Site Recovery provider and Azure Recovery Services Agent on your Hyper-V host</span></span>
-1. <span data-ttu-id="aac3e-168">從 [Microsoft](https://aka.ms/downloaddra)下載最新版提供者的安裝程式。</span><span class="sxs-lookup"><span data-stu-id="aac3e-168">Download the installer for the latest version of the provider from [Microsoft](https://aka.ms/downloaddra).</span></span>
-2. <span data-ttu-id="aac3e-169">在 Hyper-V 主機上執行安裝程式，然後在安裝結尾繼續註冊步驟。</span><span class="sxs-lookup"><span data-stu-id="aac3e-169">Run the installer on your Hyper-V host, and at the end of the installation continue to the registration step.</span></span>
-3. <span data-ttu-id="aac3e-170">當系統提示時提供下載的網站註冊金鑰，並完成網站的 Hyper-V 主機註冊。</span><span class="sxs-lookup"><span data-stu-id="aac3e-170">When prompted, provide the downloaded site registration key, and complete registration of the Hyper-V host to the site.</span></span>
-4. <span data-ttu-id="aac3e-171">確認 Hyper-V 主機使用下列命令向網站註冊：</span><span class="sxs-lookup"><span data-stu-id="aac3e-171">Verify that the Hyper-V host is registered to the site by using the following command:</span></span>
+## <a name="step-5-install-hello-azure-site-recovery-provider-and-azure-recovery-services-agent-on-your-hyper-v-host"></a><span data-ttu-id="33098-167">步驟 5: Hello Azure Site Recovery provider 和 Azure Recovery Services Agent 安裝在 HYPER-V 主機上</span><span class="sxs-lookup"><span data-stu-id="33098-167">Step 5: Install hello Azure Site Recovery provider and Azure Recovery Services Agent on your Hyper-V host</span></span>
+1. <span data-ttu-id="33098-168">下載 hello hello hello 提供者，從最新版本的安裝程式[Microsoft](https://aka.ms/downloaddra)。</span><span class="sxs-lookup"><span data-stu-id="33098-168">Download hello installer for hello latest version of hello provider from [Microsoft](https://aka.ms/downloaddra).</span></span>
+2. <span data-ttu-id="33098-169">Hello 執行安裝程式在 HYPER-V 主機上，並在 hello hello 安裝結尾繼續 toohello 註冊的步驟。</span><span class="sxs-lookup"><span data-stu-id="33098-169">Run hello installer on your Hyper-V host, and at hello end of hello installation continue toohello registration step.</span></span>
+3. <span data-ttu-id="33098-170">出現提示時，提供 hello 下載站台的註冊金鑰，並完成註冊的 hello HYPER-V 主機 toohello 站台。</span><span class="sxs-lookup"><span data-stu-id="33098-170">When prompted, provide hello downloaded site registration key, and complete registration of hello Hyper-V host toohello site.</span></span>
+4. <span data-ttu-id="33098-171">確認該 hello HYPER-V 主機已註冊的 toohello 站台使用下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="33098-171">Verify that hello Hyper-V host is registered toohello site by using hello following command:</span></span>
 
         $server =  Get-AzureRmSiteRecoveryServer -FriendlyName $server-friendlyname
 
-## <a name="step-6-create-a-replication-policy-and-associate-it-with-the-protection-container"></a><span data-ttu-id="aac3e-172">步驟 6：建立複寫原則，並建立其與保護容器的關聯</span><span class="sxs-lookup"><span data-stu-id="aac3e-172">Step 6: Create a replication policy and associate it with the protection container</span></span>
-1. <span data-ttu-id="aac3e-173">建立複寫原則，如下所示︰</span><span class="sxs-lookup"><span data-stu-id="aac3e-173">Create a replication policy as follows:</span></span>
+## <a name="step-6-create-a-replication-policy-and-associate-it-with-hello-protection-container"></a><span data-ttu-id="33098-172">步驟 6： 建立複寫原則，並將它與 hello 保護容器關聯</span><span class="sxs-lookup"><span data-stu-id="33098-172">Step 6: Create a replication policy and associate it with hello protection container</span></span>
+1. <span data-ttu-id="33098-173">建立複寫原則，如下所示︰</span><span class="sxs-lookup"><span data-stu-id="33098-173">Create a replication policy as follows:</span></span>
 
         $ReplicationFrequencyInSeconds = "300";        #options are 30,300,900
         $PolicyName = “replicapolicy”
-        $Recoverypoints = 6                    #specify the number of recovery points
+        $Recoverypoints = 6                    #specify hello number of recovery points
         $storageaccountID = Get-AzureRmStorageAccount -Name "mystorea" -ResourceGroupName "MyRG" | Select -ExpandProperty Id
 
         $PolicyResult = New-AzureRmSiteRecoveryPolicy -Name $PolicyName -ReplicationProvider “HyperVReplicaAzure” -ReplicationFrequencyInSeconds $ReplicationFrequencyInSeconds  -RecoveryPoints $Recoverypoints -ApplicationConsistentSnapshotFrequencyInHours 1 -RecoveryAzureStorageAccountId $storageaccountID
 
-    <span data-ttu-id="aac3e-174">請檢查傳回的作業，以確保複寫原則建立成功。</span><span class="sxs-lookup"><span data-stu-id="aac3e-174">Check the returned job to ensure that the replication policy creation succeeds.</span></span>
+    <span data-ttu-id="33098-174">傳回 hello 複寫原則建立成功的作業 tooensure 核取 hello。</span><span class="sxs-lookup"><span data-stu-id="33098-174">Check hello returned job tooensure that hello replication policy creation succeeds.</span></span>
 
    > [!IMPORTANT]
-   > <span data-ttu-id="aac3e-175">指定的儲存體帳戶應與您的復原服務保存庫位於相同的 Azure 區域中，而且應該啟用異地複寫。</span><span class="sxs-lookup"><span data-stu-id="aac3e-175">The storage account specified should be in the same Azure region as your Recovery Services vault, and should have geo-replication enabled.</span></span>
+   > <span data-ttu-id="33098-175">hello 指定儲存體帳戶應在 hello 與您的復原服務保存庫相同的 Azure 區域，而且應啟用地理複寫。</span><span class="sxs-lookup"><span data-stu-id="33098-175">hello storage account specified should be in hello same Azure region as your Recovery Services vault, and should have geo-replication enabled.</span></span>
    >
-   > * <span data-ttu-id="aac3e-176">如果指定的復原儲存體帳戶屬於 Azure Storage (Classic) 類型，受保護機器的容錯移轉會將機器復原到 Azure IaaS (Classic)。</span><span class="sxs-lookup"><span data-stu-id="aac3e-176">If the specified Recovery storage account is of type Azure Storage (Classic), failover of the protected machines recover the machine to Azure IaaS (Classic).</span></span>
-   > * <span data-ttu-id="aac3e-177">如果指定的復原儲存體帳戶屬於 Azure Storage (Azure Resource Manager) 類型，受保護機器的容錯移轉會將機器復原到 Azure IaaS (Azure Resource Manager)。</span><span class="sxs-lookup"><span data-stu-id="aac3e-177">If the specified Recovery storage account is of type Azure Storage (Azure Resource Manager), failover of the protected machines recover the machine to Azure IaaS (Azure Resource Manager).</span></span>
+   > * <span data-ttu-id="33098-176">如果 hello 指定儲存體帳戶屬於型別 Azure 儲存體 （傳統） 的復原，容錯移轉的 hello 受保護機器復原 hello 機器 tooAzure IaaS （傳統）。</span><span class="sxs-lookup"><span data-stu-id="33098-176">If hello specified Recovery storage account is of type Azure Storage (Classic), failover of hello protected machines recover hello machine tooAzure IaaS (Classic).</span></span>
+   > * <span data-ttu-id="33098-177">如果 hello 指定復原儲存體帳戶屬於 Azure 儲存體 (Azure Resource Manager) 的型別，hello 的容錯移轉受保護機器復原 hello 機器 tooAzure IaaS (Azure Resource Manager)。</span><span class="sxs-lookup"><span data-stu-id="33098-177">If hello specified Recovery storage account is of type Azure Storage (Azure Resource Manager), failover of hello protected machines recover hello machine tooAzure IaaS (Azure Resource Manager).</span></span>
    >
    >
-2. <span data-ttu-id="aac3e-178">取得對應至網站的保護容器，如下所示：</span><span class="sxs-lookup"><span data-stu-id="aac3e-178">Get the protection container corresponding to the site, as follows:</span></span>
+2. <span data-ttu-id="33098-178">取得 hello 保護容器對應 toohello 站台，如下所示：</span><span class="sxs-lookup"><span data-stu-id="33098-178">Get hello protection container corresponding toohello site, as follows:</span></span>
 
         $protectionContainer = Get-AzureRmSiteRecoveryProtectionContainer
-3. <span data-ttu-id="aac3e-179">啟動保護容器與複寫原則的關聯，如下所示：</span><span class="sxs-lookup"><span data-stu-id="aac3e-179">Start the association of the protection container with the replication policy, as follows:</span></span>
+3. <span data-ttu-id="33098-179">開始 hello 關聯 hello 保護容器 hello 複寫原則，如下所示：</span><span class="sxs-lookup"><span data-stu-id="33098-179">Start hello association of hello protection container with hello replication policy, as follows:</span></span>
 
-     <span data-ttu-id="aac3e-180">$Policy = Get-AzureRmSiteRecoveryPolicy -FriendlyName $PolicyName   $associationJob  = Start-AzureRmSiteRecoveryPolicyAssociationJob -Policy $Policy -PrimaryProtectionContainer $protectionContainer</span><span class="sxs-lookup"><span data-stu-id="aac3e-180">$Policy = Get-AzureRmSiteRecoveryPolicy -FriendlyName $PolicyName   $associationJob  = Start-AzureRmSiteRecoveryPolicyAssociationJob -Policy $Policy -PrimaryProtectionContainer $protectionContainer</span></span>
+     <span data-ttu-id="33098-180">$Policy = Get-AzureRmSiteRecoveryPolicy -FriendlyName $PolicyName   $associationJob  = Start-AzureRmSiteRecoveryPolicyAssociationJob -Policy $Policy -PrimaryProtectionContainer $protectionContainer</span><span class="sxs-lookup"><span data-stu-id="33098-180">$Policy = Get-AzureRmSiteRecoveryPolicy -FriendlyName $PolicyName   $associationJob  = Start-AzureRmSiteRecoveryPolicyAssociationJob -Policy $Policy -PrimaryProtectionContainer $protectionContainer</span></span>
 
-   <span data-ttu-id="aac3e-181">等待關聯作業完成，並確保成功完成。</span><span class="sxs-lookup"><span data-stu-id="aac3e-181">Wait for the association job to complete, and ensure that it completed successfully.</span></span>
+   <span data-ttu-id="33098-181">等候 hello 關聯作業 toocomplete，並請確定已成功完成。</span><span class="sxs-lookup"><span data-stu-id="33098-181">Wait for hello association job toocomplete, and ensure that it completed successfully.</span></span>
 
-## <a name="step-7-enable-protection-for-virtual-machines"></a><span data-ttu-id="aac3e-182">步驟 7：對虛擬機器啟用保護</span><span class="sxs-lookup"><span data-stu-id="aac3e-182">Step 7: Enable protection for virtual machines</span></span>
-1. <span data-ttu-id="aac3e-183">取得對應至您想要保護之 VM 的保護實體，如下所示：</span><span class="sxs-lookup"><span data-stu-id="aac3e-183">Get the protection entity corresponding to the VM you want to protect, as follows:</span></span>
+## <a name="step-7-enable-protection-for-virtual-machines"></a><span data-ttu-id="33098-182">步驟 7：對虛擬機器啟用保護</span><span class="sxs-lookup"><span data-stu-id="33098-182">Step 7: Enable protection for virtual machines</span></span>
+1. <span data-ttu-id="33098-183">收到 hello 保護實體對應 toohello VM 想 tooprotect，，如下所示：</span><span class="sxs-lookup"><span data-stu-id="33098-183">Get hello protection entity corresponding toohello VM you want tooprotect, as follows:</span></span>
 
-        $VMFriendlyName = "Fabrikam-app"                    #Name of the VM
+        $VMFriendlyName = "Fabrikam-app"                    #Name of hello VM
         $protectionEntity = Get-AzureRmSiteRecoveryProtectionEntity -ProtectionContainer $protectionContainer -FriendlyName $VMFriendlyName
-2. <span data-ttu-id="aac3e-184">停止保護虛擬機器，如下所示：</span><span class="sxs-lookup"><span data-stu-id="aac3e-184">Start protecting the virtual machine, as follows:</span></span>
+2. <span data-ttu-id="33098-184">開始保護 hello 虛擬機器，如下所示：</span><span class="sxs-lookup"><span data-stu-id="33098-184">Start protecting hello virtual machine, as follows:</span></span>
 
         $Ostype = "Windows"                                 # "Windows" or "Linux"
         $DRjob = Set-AzureRmSiteRecoveryProtectionEntity -ProtectionEntity $protectionEntity -Policy $Policy -Protection Enable -RecoveryAzureStorageAccountId $storageaccountID  -OS $OStype -OSDiskName $protectionEntity.Disks[0].Name
 
    > [!IMPORTANT]
-   > <span data-ttu-id="aac3e-185">指定的儲存體帳戶應與您的復原服務保存庫位於相同的 Azure 區域中，而且應該啟用異地複寫。</span><span class="sxs-lookup"><span data-stu-id="aac3e-185">The storage account specified should be in the same Azure region as your Recovery Services vault, and should have geo-replication enabled.</span></span>
+   > <span data-ttu-id="33098-185">hello 指定儲存體帳戶應在 hello 與您的復原服務保存庫相同的 Azure 區域，而且應啟用地理複寫。</span><span class="sxs-lookup"><span data-stu-id="33098-185">hello storage account specified should be in hello same Azure region as your Recovery Services vault, and should have geo-replication enabled.</span></span>
    >
-   > * <span data-ttu-id="aac3e-186">如果指定的復原儲存體帳戶屬於 Azure Storage (Classic) 類型，受保護機器的容錯移轉會將機器復原到 Azure IaaS (Classic)。</span><span class="sxs-lookup"><span data-stu-id="aac3e-186">If the specified Recovery storage account is of type Azure Storage (Classic), failover of the protected machines recover the machine to Azure IaaS (Classic).</span></span>
-   > * <span data-ttu-id="aac3e-187">如果指定的復原儲存體帳戶屬於 Azure Storage (Azure Resource Manager) 類型，受保護機器的容錯移轉會將機器復原到 Azure IaaS (Azure Resource Manager)。</span><span class="sxs-lookup"><span data-stu-id="aac3e-187">If the specified Recovery storage account is of type Azure Storage (Azure Resource Manager), failover of the protected machines recover the machine to Azure IaaS (Azure Resource Manager).</span></span>
+   > * <span data-ttu-id="33098-186">如果 hello 指定儲存體帳戶屬於型別 Azure 儲存體 （傳統） 的復原，容錯移轉的 hello 受保護機器復原 hello 機器 tooAzure IaaS （傳統）。</span><span class="sxs-lookup"><span data-stu-id="33098-186">If hello specified Recovery storage account is of type Azure Storage (Classic), failover of hello protected machines recover hello machine tooAzure IaaS (Classic).</span></span>
+   > * <span data-ttu-id="33098-187">如果 hello 指定復原儲存體帳戶屬於 Azure 儲存體 (Azure Resource Manager) 的型別，hello 的容錯移轉受保護機器復原 hello 機器 tooAzure IaaS (Azure Resource Manager)。</span><span class="sxs-lookup"><span data-stu-id="33098-187">If hello specified Recovery storage account is of type Azure Storage (Azure Resource Manager), failover of hello protected machines recover hello machine tooAzure IaaS (Azure Resource Manager).</span></span>
    >
-   > <span data-ttu-id="aac3e-188">如果您要保護的 VM 有多個連接到它的磁碟，請使用 OSDiskName  參數指定作業系統磁碟。</span><span class="sxs-lookup"><span data-stu-id="aac3e-188">If the VM you are protecting has more than one disk attached to it, specify the operating system disk by using the *OSDiskName* parameter.</span></span>
+   > <span data-ttu-id="33098-188">如果您要保護的 VM hello 有多個磁碟附加的 tooit，使用 hello 指定 hello 作業系統磁碟*OSDiskName*參數。</span><span class="sxs-lookup"><span data-stu-id="33098-188">If hello VM you are protecting has more than one disk attached tooit, specify hello operating system disk by using hello *OSDiskName* parameter.</span></span>
    >
    >
-3. <span data-ttu-id="aac3e-189">在初始複寫後，等待虛擬機器達到受保護的狀態。</span><span class="sxs-lookup"><span data-stu-id="aac3e-189">Wait for the virtual machines to reach a protected state after the initial replication.</span></span> <span data-ttu-id="aac3e-190">所需時間長短，受到要複寫的資料量和可用的 Azure 上游頻寬等因素影響。</span><span class="sxs-lookup"><span data-stu-id="aac3e-190">This can take a while, depending on factors such as the amount of data to be replicated and the available upstream bandwidth to Azure.</span></span> <span data-ttu-id="aac3e-191">當 VM 達到受保護的狀態時，作業的 State 和 StateDescription 就會更新，如下所示。</span><span class="sxs-lookup"><span data-stu-id="aac3e-191">The job State and StateDescription are updated as follows, upon the VM reaching a protected state.</span></span>
+3. <span data-ttu-id="33098-189">等候 hello 虛擬機器 tooreach 受保護的狀態 hello 初始複寫之後。</span><span class="sxs-lookup"><span data-stu-id="33098-189">Wait for hello virtual machines tooreach a protected state after hello initial replication.</span></span> <span data-ttu-id="33098-190">這可以使用一段時間，取決於複寫資料 toobe hello 量等因素，並 hello tooAzure 上游的可用頻寬。</span><span class="sxs-lookup"><span data-stu-id="33098-190">This can take a while, depending on factors such as hello amount of data toobe replicated and hello available upstream bandwidth tooAzure.</span></span> <span data-ttu-id="33098-191">hello 工作狀態和 StateDescription，則會在 hello VM 達到受保護的狀態時，如下所示，更新。</span><span class="sxs-lookup"><span data-stu-id="33098-191">hello job State and StateDescription are updated as follows, upon hello VM reaching a protected state.</span></span>
 
         PS C:\> $DRjob = Get-AzureRmSiteRecoveryJob -Job $DRjob
 
@@ -195,7 +195,7 @@ ms.lasthandoff: 07/11/2017
 
         PS C:\> $DRjob | Select-Object -ExpandProperty StateDescription
         Completed
-4. <span data-ttu-id="aac3e-192">更新 VM 角色大小等復原屬性，以及在容錯移轉時要附加虛擬機器網路介面卡的 Azure 網路。</span><span class="sxs-lookup"><span data-stu-id="aac3e-192">Update recovery properties, such as the VM role size, and the Azure network to attach the virtual machine's network interface cards to upon failover.</span></span>
+4. <span data-ttu-id="33098-192">更新修復屬性，例如 hello VM 角色大小和 hello Azure 網路 tooattach hello 虛擬機器的網路介面卡 tooupon 容錯移轉。</span><span class="sxs-lookup"><span data-stu-id="33098-192">Update recovery properties, such as hello VM role size, and hello Azure network tooattach hello virtual machine's network interface cards tooupon failover.</span></span>
 
         PS C:\> $nw1 = Get-AzureRmVirtualNetwork -Name "FailoverNw" -ResourceGroupName "MyRG"
 
@@ -214,7 +214,7 @@ ms.lasthandoff: 07/11/2017
                            s/MyVault/replicationJobs/b8a647e0-2cb9-40d1-84c4-d0169919e2c5
         Type             : Microsoft.RecoveryServices/vaults/replicationJobs
         JobType          : UpdateVmProperties
-        DisplayName      : Update the virtual machine
+        DisplayName      : Update hello virtual machine
         ClientRequestId  : 805a22a3-be86-441c-9da8-f32685673112-2015-12-10 17:55:51Z-P
         State            : Succeeded
         StateDescription : Completed
@@ -229,18 +229,18 @@ ms.lasthandoff: 07/11/2017
 
 
 
-## <a name="step-8-run-a-test-failover"></a><span data-ttu-id="aac3e-193">步驟 8：執行測試容錯移轉</span><span class="sxs-lookup"><span data-stu-id="aac3e-193">Step 8: Run a test failover</span></span>
-1. <span data-ttu-id="aac3e-194">執行測試容錯移轉作業，如下所示：</span><span class="sxs-lookup"><span data-stu-id="aac3e-194">Run a test failover job, as follows:</span></span>
+## <a name="step-8-run-a-test-failover"></a><span data-ttu-id="33098-193">步驟 8：執行測試容錯移轉</span><span class="sxs-lookup"><span data-stu-id="33098-193">Step 8: Run a test failover</span></span>
+1. <span data-ttu-id="33098-194">執行測試容錯移轉作業，如下所示：</span><span class="sxs-lookup"><span data-stu-id="33098-194">Run a test failover job, as follows:</span></span>
 
         $nw = Get-AzureRmVirtualNetwork -Name "TestFailoverNw" -ResourceGroupName "MyRG" #Specify Azure vnet name and resource group
 
         $protectionEntity = Get-AzureRmSiteRecoveryProtectionEntity -FriendlyName $VMFriendlyName -ProtectionContainer $protectionContainer
 
         $TFjob = Start-AzureRmSiteRecoveryTestFailoverJob -ProtectionEntity $protectionEntity -Direction PrimaryToRecovery -AzureVMNetworkId $nw.Id
-2. <span data-ttu-id="aac3e-195">確認已在 Azure 中建立測試 VM。</span><span class="sxs-lookup"><span data-stu-id="aac3e-195">Verify that the test VM is created in Azure.</span></span> <span data-ttu-id="aac3e-196">(在 Azure 中建立測試 VM 之後，測試容錯移轉作業已經暫停。</span><span class="sxs-lookup"><span data-stu-id="aac3e-196">(The test failover job is suspended, after creating the test VM in Azure.</span></span> <span data-ttu-id="aac3e-197">作業會藉由清除繼續進行作業時建立的成品來完成，如下一個步驟所示。)</span><span class="sxs-lookup"><span data-stu-id="aac3e-197">The job completes by cleaning up the created artefacts upon resuming the job, as illustrated in the next step.)</span></span>
-3. <span data-ttu-id="aac3e-198">完成測試容錯移轉，如下所示：</span><span class="sxs-lookup"><span data-stu-id="aac3e-198">Complete the test failover, as follows:</span></span>
+2. <span data-ttu-id="33098-195">請確認 VM 在 Azure 中建立該 hello 測試。</span><span class="sxs-lookup"><span data-stu-id="33098-195">Verify that hello test VM is created in Azure.</span></span> <span data-ttu-id="33098-196">（hello 測試容錯移轉作業已暫停之後在 Azure 中建立 hello 測試 VM。</span><span class="sxs-lookup"><span data-stu-id="33098-196">(hello test failover job is suspended, after creating hello test VM in Azure.</span></span> <span data-ttu-id="33098-197">hello 作業的完成作業清除已完成時繼續 hello 工作建立 hello artefacts hello 下一個步驟中所示。）</span><span class="sxs-lookup"><span data-stu-id="33098-197">hello job completes by cleaning up hello created artefacts upon resuming hello job, as illustrated in hello next step.)</span></span>
+3. <span data-ttu-id="33098-198">完成 hello 測試容錯移轉的如下所示：</span><span class="sxs-lookup"><span data-stu-id="33098-198">Complete hello test failover, as follows:</span></span>
 
         $TFjob = Resume-AzureRmSiteRecoveryJob -Job $TFjob
 
-## <a name="next-steps"></a><span data-ttu-id="aac3e-199">後續步驟</span><span class="sxs-lookup"><span data-stu-id="aac3e-199">Next Steps</span></span>
-<span data-ttu-id="aac3e-200">[閱讀更多](https://msdn.microsoft.com/library/azure/mt637930.aspx) 使用 Azure Resource Manager PowerShell Cmdlet 進行 Azure Site Recovery 的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="aac3e-200">[Read more](https://msdn.microsoft.com/library/azure/mt637930.aspx) about Azure Site Recovery with Azure Resource Manager PowerShell cmdlets.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="33098-199">後續步驟</span><span class="sxs-lookup"><span data-stu-id="33098-199">Next Steps</span></span>
+<span data-ttu-id="33098-200">[閱讀更多](https://msdn.microsoft.com/library/azure/mt637930.aspx) 使用 Azure Resource Manager PowerShell Cmdlet 進行 Azure Site Recovery 的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="33098-200">[Read more](https://msdn.microsoft.com/library/azure/mt637930.aspx) about Azure Site Recovery with Azure Resource Manager PowerShell cmdlets.</span></span>

@@ -1,6 +1,6 @@
 ---
-title: "部署 Azure 資源的多個執行個體 | Microsoft Docs"
-description: "使用「Azure 資源管理員」範本中的複製作業和陣列，並在部署資源時多次逐一執行。"
+title: "aaaDeploy Azure 資源的多個執行個體 |Microsoft 文件"
+description: "複製作業時使用和陣列中的 Azure Resource Manager 範本 tooiterate 多次部署資源。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/26/2017
 ms.author: tomfitz
-ms.openlocfilehash: ed8e3081d2b2e07938d7cf3aa5f95f6dde81bc66
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a3bd42f694053317c30b639c33dc4efae41a9a9b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-multiple-instances-of-a-resource-or-property-in-azure-resource-manager-templates"></a><span data-ttu-id="72e3c-103">在 Azure Resource Manager 範本中部署資源或屬性的多個執行個體</span><span class="sxs-lookup"><span data-stu-id="72e3c-103">Deploy multiple instances of a resource or property in Azure Resource Manager templates</span></span>
-<span data-ttu-id="72e3c-104">此主題說明如何逐一查看您的 Azure Resource Manager 範本，以建立資源的多個執行個體，或資源屬性的多個執行個體。</span><span class="sxs-lookup"><span data-stu-id="72e3c-104">This topic shows you how to iterate in your Azure Resource Manager template to create multiple instances of a resource, or multiple instances of a property on a resource.</span></span>
+# <a name="deploy-multiple-instances-of-a-resource-or-property-in-azure-resource-manager-templates"></a><span data-ttu-id="625ae-103">在 Azure Resource Manager 範本中部署資源或屬性的多個執行個體</span><span class="sxs-lookup"><span data-stu-id="625ae-103">Deploy multiple instances of a resource or property in Azure Resource Manager templates</span></span>
+<span data-ttu-id="625ae-104">本主題說明如何在您的 Azure Resource Manager 範本 toocreate tooiterate 多個執行個體的資源或多個執行個體的資源上的屬性。</span><span class="sxs-lookup"><span data-stu-id="625ae-104">This topic shows you how tooiterate in your Azure Resource Manager template toocreate multiple instances of a resource, or multiple instances of a property on a resource.</span></span>
 
-<span data-ttu-id="72e3c-105">如果您需要將邏輯新增至您的範本，讓您指定是否已部署資源，請參閱[有條件地部署資源](#conditionally-deploy-resource)。</span><span class="sxs-lookup"><span data-stu-id="72e3c-105">If you need to add logic to your template that enables you to specify whether a resource is deployed, see [Conditionally deploy resource](#conditionally-deploy-resource).</span></span>
+<span data-ttu-id="625ae-105">如果需要可讓您 toospecify tooadd 邏輯 tooyour 範本是否已部署的資源，請參閱[有條件地部署資源](#conditionally-deploy-resource)。</span><span class="sxs-lookup"><span data-stu-id="625ae-105">If you need tooadd logic tooyour template that enables you toospecify whether a resource is deployed, see [Conditionally deploy resource](#conditionally-deploy-resource).</span></span>
 
-## <a name="resource-iteration"></a><span data-ttu-id="72e3c-106">資源反覆項目</span><span class="sxs-lookup"><span data-stu-id="72e3c-106">Resource iteration</span></span>
-<span data-ttu-id="72e3c-107">若要建立多個資源類型的執行個體，請將 `copy` 元素新增至資源類型。</span><span class="sxs-lookup"><span data-stu-id="72e3c-107">To create multiple instances of a resource type, add a `copy` element to the resource type.</span></span> <span data-ttu-id="72e3c-108">在複製元素中，您可以指定反覆項目的數目以及此迴圈的名稱。</span><span class="sxs-lookup"><span data-stu-id="72e3c-108">In the copy element, you specify the number of iterations and a name for this loop.</span></span> <span data-ttu-id="72e3c-109">計數值必須為不超過 800 的正整數。</span><span class="sxs-lookup"><span data-stu-id="72e3c-109">The count value must be a positive integer and cannot exceed 800.</span></span> <span data-ttu-id="72e3c-110">Resource Manager 會以平行方式建立資源。</span><span class="sxs-lookup"><span data-stu-id="72e3c-110">Resource Manager creates the resources in parallel.</span></span> <span data-ttu-id="72e3c-111">因此，不保證資源會循序建立。</span><span class="sxs-lookup"><span data-stu-id="72e3c-111">Therefore, the order in which they are created is not guaranteed.</span></span> <span data-ttu-id="72e3c-112">若要在序列中建立反覆執行的資源，請參閱[序列複製](#serial-copy)。</span><span class="sxs-lookup"><span data-stu-id="72e3c-112">To create iterated resources in sequence, see [Serial copy](#serial-copy).</span></span> 
+## <a name="resource-iteration"></a><span data-ttu-id="625ae-106">資源反覆項目</span><span class="sxs-lookup"><span data-stu-id="625ae-106">Resource iteration</span></span>
+<span data-ttu-id="625ae-107">toocreate 資源類型的多個執行個體加入`copy`元素 toohello 資源類型。</span><span class="sxs-lookup"><span data-stu-id="625ae-107">toocreate multiple instances of a resource type, add a `copy` element toohello resource type.</span></span> <span data-ttu-id="625ae-108">在 hello 複製項目，您可以指定 hello 反覆項目與名稱，此迴圈的數目。</span><span class="sxs-lookup"><span data-stu-id="625ae-108">In hello copy element, you specify hello number of iterations and a name for this loop.</span></span> <span data-ttu-id="625ae-109">hello 計數值必須是正整數，而且不能超過 800。</span><span class="sxs-lookup"><span data-stu-id="625ae-109">hello count value must be a positive integer and cannot exceed 800.</span></span> <span data-ttu-id="625ae-110">資源管理員會以平行方式建立 hello 資源。</span><span class="sxs-lookup"><span data-stu-id="625ae-110">Resource Manager creates hello resources in parallel.</span></span> <span data-ttu-id="625ae-111">因此，不保證它們建立所在的 hello 順序。</span><span class="sxs-lookup"><span data-stu-id="625ae-111">Therefore, hello order in which they are created is not guaranteed.</span></span> <span data-ttu-id="625ae-112">依序逐一查看 toocreate 資源，請參閱[序列複製](#serial-copy)。</span><span class="sxs-lookup"><span data-stu-id="625ae-112">toocreate iterated resources in sequence, see [Serial copy](#serial-copy).</span></span> 
 
-<span data-ttu-id="72e3c-113">建立多個時間的資源需使用下列格式：</span><span class="sxs-lookup"><span data-stu-id="72e3c-113">The resource to create multiple times takes the following format:</span></span>
+<span data-ttu-id="625ae-113">hello 資源 toocreate 多次採用下列格式的 hello:</span><span class="sxs-lookup"><span data-stu-id="625ae-113">hello resource toocreate multiple times takes hello following format:</span></span>
 
 ```json
 {
@@ -55,31 +55,31 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="72e3c-114">請注意，每個資源的名稱均包含 `copyIndex()` 函式，並會傳回目前的反覆項目迴圈。</span><span class="sxs-lookup"><span data-stu-id="72e3c-114">Notice that the name of each resource includes the `copyIndex()` function, which returns the current iteration in the loop.</span></span> <span data-ttu-id="72e3c-115">`copyIndex()`是以零為基礎。</span><span class="sxs-lookup"><span data-stu-id="72e3c-115">`copyIndex()` is zero-based.</span></span> <span data-ttu-id="72e3c-116">因此，下列範例：</span><span class="sxs-lookup"><span data-stu-id="72e3c-116">So, the following example:</span></span>
+<span data-ttu-id="625ae-114">請注意該 hello 的每個資源名稱包含 hello`copyIndex()`函式，以傳回 hello 迴圈中的 hello 目前反覆項目。</span><span class="sxs-lookup"><span data-stu-id="625ae-114">Notice that hello name of each resource includes hello `copyIndex()` function, which returns hello current iteration in hello loop.</span></span> <span data-ttu-id="625ae-115">`copyIndex()`是以零為基礎。</span><span class="sxs-lookup"><span data-stu-id="625ae-115">`copyIndex()` is zero-based.</span></span> <span data-ttu-id="625ae-116">下列範例是，hello:</span><span class="sxs-lookup"><span data-stu-id="625ae-116">So, hello following example:</span></span>
 
 ```json
 "name": "[concat('storage', copyIndex())]",
 ```
 
-<span data-ttu-id="72e3c-117">會建立這些名稱︰</span><span class="sxs-lookup"><span data-stu-id="72e3c-117">Creates these names:</span></span>
+<span data-ttu-id="625ae-117">會建立這些名稱︰</span><span class="sxs-lookup"><span data-stu-id="625ae-117">Creates these names:</span></span>
 
-* <span data-ttu-id="72e3c-118">storage0</span><span class="sxs-lookup"><span data-stu-id="72e3c-118">storage0</span></span>
-* <span data-ttu-id="72e3c-119">storage1</span><span class="sxs-lookup"><span data-stu-id="72e3c-119">storage1</span></span>
-* <span data-ttu-id="72e3c-120">storage2.</span><span class="sxs-lookup"><span data-stu-id="72e3c-120">storage2.</span></span>
+* <span data-ttu-id="625ae-118">storage0</span><span class="sxs-lookup"><span data-stu-id="625ae-118">storage0</span></span>
+* <span data-ttu-id="625ae-119">storage1</span><span class="sxs-lookup"><span data-stu-id="625ae-119">storage1</span></span>
+* <span data-ttu-id="625ae-120">storage2.</span><span class="sxs-lookup"><span data-stu-id="625ae-120">storage2.</span></span>
 
-<span data-ttu-id="72e3c-121">若要位移索引值，您可以傳遞 copyIndex() 函式中的值。</span><span class="sxs-lookup"><span data-stu-id="72e3c-121">To offset the index value, you can pass a value in the copyIndex() function.</span></span> <span data-ttu-id="72e3c-122">要執行的反覆項目數仍然在複製項目中指定，但 copyIndex 的值會由指定的值位移。</span><span class="sxs-lookup"><span data-stu-id="72e3c-122">The number of iterations to perform is still specified in the copy element, but the value of copyIndex is offset by the specified value.</span></span> <span data-ttu-id="72e3c-123">因此，下列範例：</span><span class="sxs-lookup"><span data-stu-id="72e3c-123">So, the following example:</span></span>
+<span data-ttu-id="625ae-121">toooffset hello 索引值時，您可以在 hello copyIndex() 函式中傳遞的值。</span><span class="sxs-lookup"><span data-stu-id="625ae-121">toooffset hello index value, you can pass a value in hello copyIndex() function.</span></span> <span data-ttu-id="625ae-122">hello tooperform 反覆項目數目仍中指定 hello 複製項目，但依指定的 hello copyIndex hello 值位移值。</span><span class="sxs-lookup"><span data-stu-id="625ae-122">hello number of iterations tooperform is still specified in hello copy element, but hello value of copyIndex is offset by hello specified value.</span></span> <span data-ttu-id="625ae-123">下列範例是，hello:</span><span class="sxs-lookup"><span data-stu-id="625ae-123">So, hello following example:</span></span>
 
 ```json
 "name": "[concat('storage', copyIndex(1))]",
 ```
 
-<span data-ttu-id="72e3c-124">會建立這些名稱︰</span><span class="sxs-lookup"><span data-stu-id="72e3c-124">Creates these names:</span></span>
+<span data-ttu-id="625ae-124">會建立這些名稱︰</span><span class="sxs-lookup"><span data-stu-id="625ae-124">Creates these names:</span></span>
 
-* <span data-ttu-id="72e3c-125">storage1</span><span class="sxs-lookup"><span data-stu-id="72e3c-125">storage1</span></span>
-* <span data-ttu-id="72e3c-126">storage2</span><span class="sxs-lookup"><span data-stu-id="72e3c-126">storage2</span></span>
-* <span data-ttu-id="72e3c-127">storage3</span><span class="sxs-lookup"><span data-stu-id="72e3c-127">storage3</span></span>
+* <span data-ttu-id="625ae-125">storage1</span><span class="sxs-lookup"><span data-stu-id="625ae-125">storage1</span></span>
+* <span data-ttu-id="625ae-126">storage2</span><span class="sxs-lookup"><span data-stu-id="625ae-126">storage2</span></span>
+* <span data-ttu-id="625ae-127">storage3</span><span class="sxs-lookup"><span data-stu-id="625ae-127">storage3</span></span>
 
-<span data-ttu-id="72e3c-128">使用陣列時，複製作業會有幫助，因為您可以逐一查看陣列中的每個項目。</span><span class="sxs-lookup"><span data-stu-id="72e3c-128">The copy operation is helpful when working with arrays because you can iterate through each element in the array.</span></span> <span data-ttu-id="72e3c-129">使用陣列上的 `length` 函式指定反覆運算的計數，並使用 `copyIndex` 來擷取陣列中目前的索引。</span><span class="sxs-lookup"><span data-stu-id="72e3c-129">Use the `length` function on the array to specify the count for iterations, and `copyIndex` to retrieve the current index in the array.</span></span> <span data-ttu-id="72e3c-130">因此，下列範例：</span><span class="sxs-lookup"><span data-stu-id="72e3c-130">So, the following example:</span></span>
+<span data-ttu-id="625ae-128">使用陣列，因為您可以逐一 hello 陣列中每個項目時，很有幫助 hello 複製作業。</span><span class="sxs-lookup"><span data-stu-id="625ae-128">hello copy operation is helpful when working with arrays because you can iterate through each element in hello array.</span></span> <span data-ttu-id="625ae-129">使用 hello `length` hello 陣列 toospecify hello 計數反覆項目上的函式和`copyIndex`tooretrieve hello 目前陣列中的索引 hello。</span><span class="sxs-lookup"><span data-stu-id="625ae-129">Use hello `length` function on hello array toospecify hello count for iterations, and `copyIndex` tooretrieve hello current index in hello array.</span></span> <span data-ttu-id="625ae-130">下列範例是，hello:</span><span class="sxs-lookup"><span data-stu-id="625ae-130">So, hello following example:</span></span>
 
 ```json
 "parameters": { 
@@ -104,17 +104,17 @@ ms.lasthandoff: 07/11/2017
 ]
 ```
 
-<span data-ttu-id="72e3c-131">會建立這些名稱︰</span><span class="sxs-lookup"><span data-stu-id="72e3c-131">Creates these names:</span></span>
+<span data-ttu-id="625ae-131">會建立這些名稱︰</span><span class="sxs-lookup"><span data-stu-id="625ae-131">Creates these names:</span></span>
 
-* <span data-ttu-id="72e3c-132">storagecontoso</span><span class="sxs-lookup"><span data-stu-id="72e3c-132">storagecontoso</span></span>
-* <span data-ttu-id="72e3c-133">storagefabrikam</span><span class="sxs-lookup"><span data-stu-id="72e3c-133">storagefabrikam</span></span>
-* <span data-ttu-id="72e3c-134">storagecoho</span><span class="sxs-lookup"><span data-stu-id="72e3c-134">storagecoho</span></span>
+* <span data-ttu-id="625ae-132">storagecontoso</span><span class="sxs-lookup"><span data-stu-id="625ae-132">storagecontoso</span></span>
+* <span data-ttu-id="625ae-133">storagefabrikam</span><span class="sxs-lookup"><span data-stu-id="625ae-133">storagefabrikam</span></span>
+* <span data-ttu-id="625ae-134">storagecoho</span><span class="sxs-lookup"><span data-stu-id="625ae-134">storagecoho</span></span>
 
-## <a name="serial-copy"></a><span data-ttu-id="72e3c-135">序列副本</span><span class="sxs-lookup"><span data-stu-id="72e3c-135">Serial copy</span></span>
+## <a name="serial-copy"></a><span data-ttu-id="625ae-135">序列副本</span><span class="sxs-lookup"><span data-stu-id="625ae-135">Serial copy</span></span>
 
-<span data-ttu-id="72e3c-136">當您使用複製元素來建立多個資源類型的執行個體時，根據預設，Resource Manager 會平行部署這些執行個體。</span><span class="sxs-lookup"><span data-stu-id="72e3c-136">When you use the copy element to create multiple instances of a resource type, Resource Manager, by default, deploys those instances in parallel.</span></span> <span data-ttu-id="72e3c-137">不過，建議您指定將資源部署在序列中。</span><span class="sxs-lookup"><span data-stu-id="72e3c-137">However, you may want to specify that the resources are deployed in sequence.</span></span> <span data-ttu-id="72e3c-138">例如，在更新生產環境時，您可以錯開更新，因此任何一次就只會更新特定數目。</span><span class="sxs-lookup"><span data-stu-id="72e3c-138">For example, when updating a production environment, you may want to stagger the updates so only a certain number are updated at any one time.</span></span>
+<span data-ttu-id="625ae-136">當您使用 hello 複製項目 toocreate 多個執行個體的資源類型，資源管理員 中，依預設，會將部署這些執行個體，以平行方式。</span><span class="sxs-lookup"><span data-stu-id="625ae-136">When you use hello copy element toocreate multiple instances of a resource type, Resource Manager, by default, deploys those instances in parallel.</span></span> <span data-ttu-id="625ae-137">不過，您可能想 toospecify 該資源會部署在順序中的 hello。</span><span class="sxs-lookup"><span data-stu-id="625ae-137">However, you may want toospecify that hello resources are deployed in sequence.</span></span> <span data-ttu-id="625ae-138">例如，在更新生產環境時，您可能想 toostagger hello 更新，只讓特定數目會更新一次。</span><span class="sxs-lookup"><span data-stu-id="625ae-138">For example, when updating a production environment, you may want toostagger hello updates so only a certain number are updated at any one time.</span></span>
 
-<span data-ttu-id="72e3c-139">Resource Manager 會提供複製元素的屬性，可讓您以序列方式部署多個執行個體。</span><span class="sxs-lookup"><span data-stu-id="72e3c-139">Resource Manager provides properties on the copy element that enable you to serially deploy multiple instances.</span></span> <span data-ttu-id="72e3c-140">在複製元素中，將 `mode` 設定至 **序列**以及將 `batchSize` 設定為一次要部署的執行個體數目。</span><span class="sxs-lookup"><span data-stu-id="72e3c-140">In the copy element, set `mode` to **serial** and `batchSize` to the number of instances to deploy at a time.</span></span> <span data-ttu-id="72e3c-141">透過序列模式，Resource Manager 會在迴圈先前的執行個體上建立相依性，因此前一批次完成之前，它不會啟動一個批次。</span><span class="sxs-lookup"><span data-stu-id="72e3c-141">With serial mode, Resource Manager creates a dependency on earlier instances in the loop, so it does not start one batch until the previous batch completes.</span></span>
+<span data-ttu-id="625ae-139">資源管理員提供 hello 複製項目上的屬性，讓您 tooserially 部署多個執行個體。</span><span class="sxs-lookup"><span data-stu-id="625ae-139">Resource Manager provides properties on hello copy element that enable you tooserially deploy multiple instances.</span></span> <span data-ttu-id="625ae-140">在 hello 複製項目，設定`mode`太**序列**和`batchSize`toohello 一次的執行個體 toodeploy 數目。</span><span class="sxs-lookup"><span data-stu-id="625ae-140">In hello copy element, set `mode` too**serial** and `batchSize` toohello number of instances toodeploy at a time.</span></span> <span data-ttu-id="625ae-141">序列模式中，資源管理員會在 hello 迴圈中，先前的執行個體上建立相依性，讓它不會啟動一個批次，直到 hello 前一個批次完成。</span><span class="sxs-lookup"><span data-stu-id="625ae-141">With serial mode, Resource Manager creates a dependency on earlier instances in hello loop, so it does not start one batch until hello previous batch completes.</span></span>
 
 ```json
 "copy": {
@@ -125,9 +125,9 @@ ms.lasthandoff: 07/11/2017
 },
 ```
 
-<span data-ttu-id="72e3c-142">mode 屬性也接受**平行**，這是預設值。</span><span class="sxs-lookup"><span data-stu-id="72e3c-142">The mode property also accepts **parallel**, which is the default value.</span></span>
+<span data-ttu-id="625ae-142">hello 模式屬性也會接受**平行**，這是 hello 預設值。</span><span class="sxs-lookup"><span data-stu-id="625ae-142">hello mode property also accepts **parallel**, which is hello default value.</span></span>
 
-<span data-ttu-id="72e3c-143">若要測試序列副本而不建立實際的資源，請使用下列部署空白巢狀範本的範本︰</span><span class="sxs-lookup"><span data-stu-id="72e3c-143">To test serial copy without creating actual resources, use the following template that deploys empty nested templates:</span></span>
+<span data-ttu-id="625ae-143">tootest 序列複製而不需要建立實際的資源，使用下列範本，將空的巢狀的範本部署的 hello:</span><span class="sxs-lookup"><span data-stu-id="625ae-143">tootest serial copy without creating actual resources, use hello following template that deploys empty nested templates:</span></span>
 
 ```json
 {
@@ -170,11 +170,11 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="72e3c-144">在部署歷程記錄中，請注意，會在序列中處理巢狀部署。</span><span class="sxs-lookup"><span data-stu-id="72e3c-144">In the deployment history, notice that the nested deployments are processed in sequence.</span></span>
+<span data-ttu-id="625ae-144">在 hello 部署歷程記錄，請注意，hello 巢狀的部署處理順序。</span><span class="sxs-lookup"><span data-stu-id="625ae-144">In hello deployment history, notice that hello nested deployments are processed in sequence.</span></span>
 
 ![序列部署](./media/resource-group-create-multiple/serial-copy.png)
 
-<span data-ttu-id="72e3c-146">在更真實的案例中，下列範例會從巢狀範本一次部署兩個 Linux VM 的執行個體︰</span><span class="sxs-lookup"><span data-stu-id="72e3c-146">For a more realistic scenario, the following example deploys two instances at a time of a Linux VM from a nested template:</span></span>
+<span data-ttu-id="625ae-146">比較實際的案例中，hello 下列範例會將兩個執行個體部署 Linux VM 從巢狀樣板一次：</span><span class="sxs-lookup"><span data-stu-id="625ae-146">For a more realistic scenario, hello following example deploys two instances at a time of a Linux VM from a nested template:</span></span>
 
 ```json
 {
@@ -184,19 +184,19 @@ ms.lasthandoff: 07/11/2017
         "adminUsername": {
             "type": "string",
             "metadata": {
-                "description": "User name for the Virtual Machine."
+                "description": "User name for hello Virtual Machine."
             }
         },
         "adminPassword": {
             "type": "securestring",
             "metadata": {
-                "description": "Password for the Virtual Machine."
+                "description": "Password for hello Virtual Machine."
             }
         },
         "dnsLabelPrefix": {
             "type": "string",
             "metadata": {
-                "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
+                "description": "Unique DNS Name for hello Public IP used tooaccess hello Virtual Machine."
             }
         },
         "ubuntuOSVersion": {
@@ -209,7 +209,7 @@ ms.lasthandoff: 07/11/2017
                 "16.04.0-LTS"
             ],
             "metadata": {
-                "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version."
+                "description": "hello Ubuntu version for hello VM. This will pick a fully patched image of this given Ubuntu version."
             }
         }
     },
@@ -256,15 +256,15 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-## <a name="property-iteration"></a><span data-ttu-id="72e3c-147">屬性反覆運算</span><span class="sxs-lookup"><span data-stu-id="72e3c-147">Property iteration</span></span>
+## <a name="property-iteration"></a><span data-ttu-id="625ae-147">屬性反覆運算</span><span class="sxs-lookup"><span data-stu-id="625ae-147">Property iteration</span></span>
 
-<span data-ttu-id="72e3c-148">若要未資源屬性建立多個值，請在 properties 元素中新增 `copy` 陣列。</span><span class="sxs-lookup"><span data-stu-id="72e3c-148">To create multiple values for a property on a resource, add a `copy` array in the properties element.</span></span> <span data-ttu-id="72e3c-149">此陣列包含物件，且每個物件具有下列屬性：</span><span class="sxs-lookup"><span data-stu-id="72e3c-149">This array contains objects, and each object has the following properties:</span></span>
+<span data-ttu-id="625ae-148">toocreate 屬性的資源上的多個值加入`copy`hello 屬性項目中的陣列。</span><span class="sxs-lookup"><span data-stu-id="625ae-148">toocreate multiple values for a property on a resource, add a `copy` array in hello properties element.</span></span> <span data-ttu-id="625ae-149">這個陣列包含的物件，且每個物件具有下列屬性的 hello:</span><span class="sxs-lookup"><span data-stu-id="625ae-149">This array contains objects, and each object has hello following properties:</span></span>
 
-* <span data-ttu-id="72e3c-150">name - 要建立多個值的屬性名稱</span><span class="sxs-lookup"><span data-stu-id="72e3c-150">name - the name of the property to create multiple values for</span></span>
-* <span data-ttu-id="72e3c-151">count - 要建立的值數目</span><span class="sxs-lookup"><span data-stu-id="72e3c-151">count - the number of values to create</span></span>
-* <span data-ttu-id="72e3c-152">input - 包含要指派給屬性之值的物件</span><span class="sxs-lookup"><span data-stu-id="72e3c-152">input - an object that contains the values to assign to the property</span></span>  
+* <span data-ttu-id="625ae-150">名稱-hello 名稱 hello 屬性 toocreate 的多個值</span><span class="sxs-lookup"><span data-stu-id="625ae-150">name - hello name of hello property toocreate multiple values for</span></span>
+* <span data-ttu-id="625ae-151">計數-hello 值 toocreate 數目</span><span class="sxs-lookup"><span data-stu-id="625ae-151">count - hello number of values toocreate</span></span>
+* <span data-ttu-id="625ae-152">輸入層包含 hello 值 tooassign toohello 屬性的物件</span><span class="sxs-lookup"><span data-stu-id="625ae-152">input - an object that contains hello values tooassign toohello property</span></span>  
 
-<span data-ttu-id="72e3c-153">下列範例示範如何將 `copy` 套用至虛擬機器的 dataDisks 屬性：</span><span class="sxs-lookup"><span data-stu-id="72e3c-153">The following example shows how to apply `copy` to the dataDisks property on a virtual machine:</span></span>
+<span data-ttu-id="625ae-153">下列範例會示範如何 hello tooapply `copy` toohello dataDisks 屬性在虛擬機器上：</span><span class="sxs-lookup"><span data-stu-id="625ae-153">hello following example shows how tooapply `copy` toohello dataDisks property on a virtual machine:</span></span>
 
 ```json
 {
@@ -285,9 +285,9 @@ ms.lasthandoff: 07/11/2017
       ...
 ```
 
-<span data-ttu-id="72e3c-154">請注意，在屬性反覆運算內使用 `copyIndex` 時，您必須提供反覆運算的名稱。</span><span class="sxs-lookup"><span data-stu-id="72e3c-154">Notice that when using `copyIndex` inside a property iteration, you must provide the name of the iteration.</span></span> <span data-ttu-id="72e3c-155">搭配資源反覆運算使用時，您不必提供名稱。</span><span class="sxs-lookup"><span data-stu-id="72e3c-155">You do not have to provide the name when used with resource iteration.</span></span>
+<span data-ttu-id="625ae-154">請注意，當使用`copyIndex`內屬性的反覆項目，您必須提供 hello hello 反覆項目名稱。</span><span class="sxs-lookup"><span data-stu-id="625ae-154">Notice that when using `copyIndex` inside a property iteration, you must provide hello name of hello iteration.</span></span> <span data-ttu-id="625ae-155">您沒有 tooprovide hello 名稱與資源的反覆項目搭配使用時。</span><span class="sxs-lookup"><span data-stu-id="625ae-155">You do not have tooprovide hello name when used with resource iteration.</span></span>
 
-<span data-ttu-id="72e3c-156">Resource Manager 會在部署期間展開 `copy` 陣列。</span><span class="sxs-lookup"><span data-stu-id="72e3c-156">Resource Manager expands the `copy` array during deployment.</span></span> <span data-ttu-id="72e3c-157">陣列名稱會變成屬性名稱。</span><span class="sxs-lookup"><span data-stu-id="72e3c-157">The name of the array becomes the name of the property.</span></span> <span data-ttu-id="72e3c-158">輸入值會變成物件屬性。</span><span class="sxs-lookup"><span data-stu-id="72e3c-158">The input values become the object properties.</span></span> <span data-ttu-id="72e3c-159">已部署的範本會變成：</span><span class="sxs-lookup"><span data-stu-id="72e3c-159">The deployed template becomes:</span></span>
+<span data-ttu-id="625ae-156">資源管理員會展開 hello`copy`在部署期間的陣列。</span><span class="sxs-lookup"><span data-stu-id="625ae-156">Resource Manager expands hello `copy` array during deployment.</span></span> <span data-ttu-id="625ae-157">hello hello 陣列名稱會變成 hello hello 屬性名稱。</span><span class="sxs-lookup"><span data-stu-id="625ae-157">hello name of hello array becomes hello name of hello property.</span></span> <span data-ttu-id="625ae-158">hello 輸入的值會變成 hello 物件屬性。</span><span class="sxs-lookup"><span data-stu-id="625ae-158">hello input values become hello object properties.</span></span> <span data-ttu-id="625ae-159">部署的 hello 範本會變成：</span><span class="sxs-lookup"><span data-stu-id="625ae-159">hello deployed template becomes:</span></span>
 
 ```json
 {
@@ -316,7 +316,7 @@ ms.lasthandoff: 07/11/2017
       ...
 ```
 
-<span data-ttu-id="72e3c-160">您可以一起使用資源和屬性反覆運算。</span><span class="sxs-lookup"><span data-stu-id="72e3c-160">You can use resource and property iteration together.</span></span> <span data-ttu-id="72e3c-161">依名稱參考屬性反覆運算。</span><span class="sxs-lookup"><span data-stu-id="72e3c-161">Reference the property iteration by name.</span></span>
+<span data-ttu-id="625ae-160">您可以一起使用資源和屬性反覆運算。</span><span class="sxs-lookup"><span data-stu-id="625ae-160">You can use resource and property iteration together.</span></span> <span data-ttu-id="625ae-161">參考 hello 屬性反覆項目名稱。</span><span class="sxs-lookup"><span data-stu-id="625ae-161">Reference hello property iteration by name.</span></span>
 
 ```json
 {
@@ -350,7 +350,7 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="72e3c-162">在每個資源的屬性中，您只可以包含一個 copy 元素。</span><span class="sxs-lookup"><span data-stu-id="72e3c-162">You can only include one copy element in the properties for each resource.</span></span> <span data-ttu-id="72e3c-163">若要指定多個屬性的反覆運算迴圈，請在 copy 陣列中定義多個物件。</span><span class="sxs-lookup"><span data-stu-id="72e3c-163">To specify an iteration loop for more than one property, define multiple objects in the copy array.</span></span> <span data-ttu-id="72e3c-164">每個物件會分開反覆運算。</span><span class="sxs-lookup"><span data-stu-id="72e3c-164">Each object is iterated separately.</span></span> <span data-ttu-id="72e3c-165">例如，若要在負載平衡器上建立 `frontendIPConfigurations` 屬性和 `loadBalancingRules` 屬性的多個執行個體，請在單一 copy 元素中定義這兩個物件：</span><span class="sxs-lookup"><span data-stu-id="72e3c-165">For example, to create multiple instances of both the `frontendIPConfigurations` property and the `loadBalancingRules` property on a load balancer, define both objects in a single copy element:</span></span> 
+<span data-ttu-id="625ae-162">您只可包含一個複製項目中的每個資源的 hello 屬性。</span><span class="sxs-lookup"><span data-stu-id="625ae-162">You can only include one copy element in hello properties for each resource.</span></span> <span data-ttu-id="625ae-163">toospecify 的反覆項目迴圈，針對多個屬性，定義 hello 複製陣列中的多個物件。</span><span class="sxs-lookup"><span data-stu-id="625ae-163">toospecify an iteration loop for more than one property, define multiple objects in hello copy array.</span></span> <span data-ttu-id="625ae-164">每個物件會分開反覆運算。</span><span class="sxs-lookup"><span data-stu-id="625ae-164">Each object is iterated separately.</span></span> <span data-ttu-id="625ae-165">比方說，toocreate 多個執行個體的兩個 hello`frontendIPConfigurations`屬性和 hello`loadBalancingRules`負載平衡器上的屬性會定義這兩個物件中的單一複本項目：</span><span class="sxs-lookup"><span data-stu-id="625ae-165">For example, toocreate multiple instances of both hello `frontendIPConfigurations` property and hello `loadBalancingRules` property on a load balancer, define both objects in a single copy element:</span></span> 
 
 ```json
 {
@@ -397,8 +397,8 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-## <a name="depend-on-resources-in-a-loop"></a><span data-ttu-id="72e3c-166">依迴圈中的資源而定</span><span class="sxs-lookup"><span data-stu-id="72e3c-166">Depend on resources in a loop</span></span>
-<span data-ttu-id="72e3c-167">您可以透過使用 `dependsOn` 元素，讓某個資源在另一個資源之後才部署。</span><span class="sxs-lookup"><span data-stu-id="72e3c-167">You specify that a resource is deployed after another resource by using the `dependsOn` element.</span></span> <span data-ttu-id="72e3c-168">若要部署相依於迴圈中資源集合的資源時，請在 dependsOn 元素中提供複製迴圈的名稱。</span><span class="sxs-lookup"><span data-stu-id="72e3c-168">To deploy a resource that depends on the collection of resources in a loop, provide the name of the copy loop in the dependsOn element.</span></span> <span data-ttu-id="72e3c-169">下列範例示範如何在部署虛擬機器之前部署三個儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="72e3c-169">The following example shows how to deploy three storage accounts before deploying the Virtual Machine.</span></span> <span data-ttu-id="72e3c-170">不會顯示完整的虛擬機器定義。</span><span class="sxs-lookup"><span data-stu-id="72e3c-170">The full Virtual Machine definition is not shown.</span></span> <span data-ttu-id="72e3c-171">請注意，複製元素將名稱設定為 `storagecopy`，並將虛擬機器的 dependsOn 元素設定為 `storagecopy`。</span><span class="sxs-lookup"><span data-stu-id="72e3c-171">Notice that the copy element has name set to `storagecopy` and the dependsOn element for the Virtual Machines is also set to `storagecopy`.</span></span>
+## <a name="depend-on-resources-in-a-loop"></a><span data-ttu-id="625ae-166">依迴圈中的資源而定</span><span class="sxs-lookup"><span data-stu-id="625ae-166">Depend on resources in a loop</span></span>
+<span data-ttu-id="625ae-167">您可以指定資源部署另一個資源之後，使用 hello`dependsOn`項目。</span><span class="sxs-lookup"><span data-stu-id="625ae-167">You specify that a resource is deployed after another resource by using hello `dependsOn` element.</span></span> <span data-ttu-id="625ae-168">toodeploy 取決於 hello 集合的資源在迴圈中，資源會提供 hello dependsOn 元素中的 hello 複製迴圈 hello 名稱。</span><span class="sxs-lookup"><span data-stu-id="625ae-168">toodeploy a resource that depends on hello collection of resources in a loop, provide hello name of hello copy loop in hello dependsOn element.</span></span> <span data-ttu-id="625ae-169">hello 下列範例會示範如何在部署之前 toodeploy 三個儲存體帳戶 hello 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="625ae-169">hello following example shows how toodeploy three storage accounts before deploying hello Virtual Machine.</span></span> <span data-ttu-id="625ae-170">不會顯示 hello 完整的虛擬機器定義。</span><span class="sxs-lookup"><span data-stu-id="625ae-170">hello full Virtual Machine definition is not shown.</span></span> <span data-ttu-id="625ae-171">請注意該 hello 複製項目沒有名稱設定得`storagecopy`和 hello 虛擬機器的 hello dependsOn 元素也會設定太`storagecopy`。</span><span class="sxs-lookup"><span data-stu-id="625ae-171">Notice that hello copy element has name set too`storagecopy` and hello dependsOn element for hello Virtual Machines is also set too`storagecopy`.</span></span>
 
 ```json
 {
@@ -433,10 +433,10 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-## <a name="create-multiple-instances-of-a-child-resource"></a><span data-ttu-id="72e3c-172">為子資源建立多個執行個體</span><span class="sxs-lookup"><span data-stu-id="72e3c-172">Create multiple instances of a child resource</span></span>
-<span data-ttu-id="72e3c-173">您無法為子資源使用複製迴圈。</span><span class="sxs-lookup"><span data-stu-id="72e3c-173">You cannot use a copy loop for a child resource.</span></span> <span data-ttu-id="72e3c-174">若要為通常定義為巢狀在另一個資源內的資源建立多個執行個體，您必須改為將該資源建立為最上層資源。</span><span class="sxs-lookup"><span data-stu-id="72e3c-174">To create multiple instances of a resource that you typically define as nested within another resource, you must instead create that resource as a top-level resource.</span></span> <span data-ttu-id="72e3c-175">您可以透過類型和名稱屬性，定義和父資源之間的關聯性。</span><span class="sxs-lookup"><span data-stu-id="72e3c-175">You define the relationship with the parent resource through the type and name properties.</span></span>
+## <a name="create-multiple-instances-of-a-child-resource"></a><span data-ttu-id="625ae-172">為子資源建立多個執行個體</span><span class="sxs-lookup"><span data-stu-id="625ae-172">Create multiple instances of a child resource</span></span>
+<span data-ttu-id="625ae-173">您無法為子資源使用複製迴圈。</span><span class="sxs-lookup"><span data-stu-id="625ae-173">You cannot use a copy loop for a child resource.</span></span> <span data-ttu-id="625ae-174">toocreate 通常定義為資源的多個執行個體巢狀方式置於另一個資源，您必須改為建立該資源為最上層資源。</span><span class="sxs-lookup"><span data-stu-id="625ae-174">toocreate multiple instances of a resource that you typically define as nested within another resource, you must instead create that resource as a top-level resource.</span></span> <span data-ttu-id="625ae-175">您定義 hello 與 hello 透過 hello 類型和名稱屬性的父資源的關聯性。</span><span class="sxs-lookup"><span data-stu-id="625ae-175">You define hello relationship with hello parent resource through hello type and name properties.</span></span>
 
-<span data-ttu-id="72e3c-176">例如，假設您通常將資料集定義為 Data Factory 中的子資源。</span><span class="sxs-lookup"><span data-stu-id="72e3c-176">For example, suppose you typically define a dataset as a child resource within a data factory.</span></span>
+<span data-ttu-id="625ae-176">例如，假設您通常將資料集定義為 Data Factory 中的子資源。</span><span class="sxs-lookup"><span data-stu-id="625ae-176">For example, suppose you typically define a dataset as a child resource within a data factory.</span></span>
 
 ```json
 "resources": [
@@ -456,11 +456,11 @@ ms.lasthandoff: 07/11/2017
 }]
 ```
 
-<span data-ttu-id="72e3c-177">若要為資料集建立多個執行個體，請在其移至 Data Factory 外。</span><span class="sxs-lookup"><span data-stu-id="72e3c-177">To create multiple instances of data sets, move it outside of the data factory.</span></span> <span data-ttu-id="72e3c-178">資料集必須位於和 Data Factory 相同的層級，但它仍是 Data Factory 的子資源。</span><span class="sxs-lookup"><span data-stu-id="72e3c-178">The dataset must be at the same level as the data factory, but it is still a child resource of the data factory.</span></span> <span data-ttu-id="72e3c-179">您可以透過類型和名稱屬性保留資料集與資料處理站之間的關聯性。</span><span class="sxs-lookup"><span data-stu-id="72e3c-179">You preserve the relationship between data set and data factory through the type and name properties.</span></span> <span data-ttu-id="72e3c-180">由於無法再從類型位於範本中的位置來推斷類型，您必須以此格式提供完整的類型︰`{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`。</span><span class="sxs-lookup"><span data-stu-id="72e3c-180">Since type can no longer be inferred from its position in the template, you must provide the fully qualified type in the format: `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`.</span></span>
+<span data-ttu-id="625ae-177">toocreate 多個執行個體的資料集，將它移之外 hello 資料 factory。</span><span class="sxs-lookup"><span data-stu-id="625ae-177">toocreate multiple instances of data sets, move it outside of hello data factory.</span></span> <span data-ttu-id="625ae-178">hello 資料集必須位於相同層級為 hello 的 data factory，hello，但它仍然是 hello data factory 的子資源。</span><span class="sxs-lookup"><span data-stu-id="625ae-178">hello dataset must be at hello same level as hello data factory, but it is still a child resource of hello data factory.</span></span> <span data-ttu-id="625ae-179">您保留 hello 資料集和資料處理站，透過 hello 類型和名稱屬性之間的關聯性。</span><span class="sxs-lookup"><span data-stu-id="625ae-179">You preserve hello relationship between data set and data factory through hello type and name properties.</span></span> <span data-ttu-id="625ae-180">從其 hello 範本中的位置不再能夠推斷類型，因為您必須提供完整的 hello hello 格式類型： `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`。</span><span class="sxs-lookup"><span data-stu-id="625ae-180">Since type can no longer be inferred from its position in hello template, you must provide hello fully qualified type in hello format: `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`.</span></span>
 
-<span data-ttu-id="72e3c-181">若要建立與 Data Factory 執行個體的父/子關聯性，請提供包含父資源名稱之資料集的名稱。</span><span class="sxs-lookup"><span data-stu-id="72e3c-181">To establish a parent/child relationship with an instance of the data factory, provide a name for the data set that includes the parent resource name.</span></span> <span data-ttu-id="72e3c-182">使用格式︰`{parent-resource-name}/{child-resource-name}`。</span><span class="sxs-lookup"><span data-stu-id="72e3c-182">Use the format: `{parent-resource-name}/{child-resource-name}`.</span></span>  
+<span data-ttu-id="625ae-181">tooestablish 父子式關聯性與 hello 的 data factory，執行個體提供 hello 包含 hello 父資源名稱的資料集的名稱。</span><span class="sxs-lookup"><span data-stu-id="625ae-181">tooestablish a parent/child relationship with an instance of hello data factory, provide a name for hello data set that includes hello parent resource name.</span></span> <span data-ttu-id="625ae-182">使用 hello 格式： `{parent-resource-name}/{child-resource-name}`。</span><span class="sxs-lookup"><span data-stu-id="625ae-182">Use hello format: `{parent-resource-name}/{child-resource-name}`.</span></span>  
 
-<span data-ttu-id="72e3c-183">下列範例顯示實作：</span><span class="sxs-lookup"><span data-stu-id="72e3c-183">The following example shows the implementation:</span></span>
+<span data-ttu-id="625ae-183">hello 下列範例顯示 hello 實作：</span><span class="sxs-lookup"><span data-stu-id="625ae-183">hello following example shows hello implementation:</span></span>
 
 ```json
 "resources": [
@@ -483,9 +483,9 @@ ms.lasthandoff: 07/11/2017
 }]
 ```
 
-## <a name="conditionally-deploy-resource"></a><span data-ttu-id="72e3c-184">有條件地部署資源</span><span class="sxs-lookup"><span data-stu-id="72e3c-184">Conditionally deploy resource</span></span>
+## <a name="conditionally-deploy-resource"></a><span data-ttu-id="625ae-184">有條件地部署資源</span><span class="sxs-lookup"><span data-stu-id="625ae-184">Conditionally deploy resource</span></span>
 
-<span data-ttu-id="72e3c-185">若要指定是否已部署資源，請使用 `condition` 元素。</span><span class="sxs-lookup"><span data-stu-id="72e3c-185">To specify whether a resource is deployed, use the `condition` element.</span></span> <span data-ttu-id="72e3c-186">此元素的值會解析為 true 或 false。</span><span class="sxs-lookup"><span data-stu-id="72e3c-186">The value for this element resolves to true or false.</span></span> <span data-ttu-id="72e3c-187">若此值為 true，便已部署資源。</span><span class="sxs-lookup"><span data-stu-id="72e3c-187">When the value is true, the resource is deployed.</span></span> <span data-ttu-id="72e3c-188">若此值為 false，則未部署資源。</span><span class="sxs-lookup"><span data-stu-id="72e3c-188">When the value is false, the resource is not deployed.</span></span> <span data-ttu-id="72e3c-189">例如，若要指定要部署新的儲存體帳戶或使用現有的儲存體帳戶，請使用：</span><span class="sxs-lookup"><span data-stu-id="72e3c-189">For example, to specify whether a new storage account is deployed or an existing storage account is used, use:</span></span>
+<span data-ttu-id="625ae-185">toospecify 部署資源時，是否使用 hello`condition`項目。</span><span class="sxs-lookup"><span data-stu-id="625ae-185">toospecify whether a resource is deployed, use hello `condition` element.</span></span> <span data-ttu-id="625ae-186">此項目的 hello 值解析 tootrue 或 false。</span><span class="sxs-lookup"><span data-stu-id="625ae-186">hello value for this element resolves tootrue or false.</span></span> <span data-ttu-id="625ae-187">當 hello 值為 true 時，部署 hello 資源。</span><span class="sxs-lookup"><span data-stu-id="625ae-187">When hello value is true, hello resource is deployed.</span></span> <span data-ttu-id="625ae-188">當 hello 值為 false 時，未部署 hello 資源。</span><span class="sxs-lookup"><span data-stu-id="625ae-188">When hello value is false, hello resource is not deployed.</span></span> <span data-ttu-id="625ae-189">比方說，toospecify 是否已部署新的儲存體帳戶，或使用現有的儲存體帳戶時，使用：</span><span class="sxs-lookup"><span data-stu-id="625ae-189">For example, toospecify whether a new storage account is deployed or an existing storage account is used, use:</span></span>
 
 ```json
 {
@@ -502,11 +502,11 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="72e3c-190">如需使用新的或現有資源的範例，請參閱[新的或現有條件範本](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResources.NewOrExisting.json)。</span><span class="sxs-lookup"><span data-stu-id="72e3c-190">For an example of using a new or existing resource, see [New or existing condition template](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResources.NewOrExisting.json).</span></span>
+<span data-ttu-id="625ae-190">如需使用新的或現有資源的範例，請參閱[新的或現有條件範本](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResources.NewOrExisting.json)。</span><span class="sxs-lookup"><span data-stu-id="625ae-190">For an example of using a new or existing resource, see [New or existing condition template](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResources.NewOrExisting.json).</span></span>
 
-<span data-ttu-id="72e3c-191">如需使用密碼或 SSH 金鑰來部署虛擬機器的範例，請參閱[使用者名稱或 SSH 條件範本](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json)。</span><span class="sxs-lookup"><span data-stu-id="72e3c-191">For an example of using a password or SSH key to deploy virtual machine, see [Username or SSH condition template](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).</span></span>
+<span data-ttu-id="625ae-191">如需使用密碼或 SSH 金鑰 toodeploy 虛擬機器的範例，請參閱[使用者名稱或 SSH 條件範本](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json)。</span><span class="sxs-lookup"><span data-stu-id="625ae-191">For an example of using a password or SSH key toodeploy virtual machine, see [Username or SSH condition template](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="72e3c-192">後續步驟</span><span class="sxs-lookup"><span data-stu-id="72e3c-192">Next steps</span></span>
-* <span data-ttu-id="72e3c-193">若要了解範本區段的相關資訊，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。</span><span class="sxs-lookup"><span data-stu-id="72e3c-193">If you want to learn about the sections of a template, see [Authoring Azure Resource Manager Templates](resource-group-authoring-templates.md).</span></span>
-* <span data-ttu-id="72e3c-194">若要了解如何部署範本，請參閱 [使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。</span><span class="sxs-lookup"><span data-stu-id="72e3c-194">To learn how to deploy your template, see [Deploy an application with Azure Resource Manager Template](resource-group-template-deploy.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="625ae-192">後續步驟</span><span class="sxs-lookup"><span data-stu-id="625ae-192">Next steps</span></span>
+* <span data-ttu-id="625ae-193">如果您想 toolearn 關於 hello 區段的範本，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。</span><span class="sxs-lookup"><span data-stu-id="625ae-193">If you want toolearn about hello sections of a template, see [Authoring Azure Resource Manager Templates](resource-group-authoring-templates.md).</span></span>
+* <span data-ttu-id="625ae-194">toolearn 如何 toodeploy 您的範本，請參閱[部署應用程式使用 Azure Resource Manager 範本](resource-group-template-deploy.md)。</span><span class="sxs-lookup"><span data-stu-id="625ae-194">toolearn how toodeploy your template, see [Deploy an application with Azure Resource Manager Template](resource-group-template-deploy.md).</span></span>
 

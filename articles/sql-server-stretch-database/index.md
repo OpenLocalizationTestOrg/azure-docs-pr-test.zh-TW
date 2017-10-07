@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Server Stretch Database 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用 SQL Server Stretch Database，在無需變更佇列或應用程式的情況下安全地將原始資料移轉至 Azure。 教學課程和其他文件。"
+title: "aaaAzure SQL Server Stretch Database 文件-教學課程 |Microsoft 文件"
+description: "了解如何 toouse SQL Server Stretch Database toomigrate 冷資料安全地 tooAzure 而不需要變更查詢或應用程式。 教學課程和其他文件。"
 services: sql-server-stretch-database
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: bb5e0fa9981133a77c235a42be369b3bbacb4ac0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2b009d80224a62d940ec8b11de22ad8c0865d869
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="sql-server-stretch-database-documentation"></a>SQL Server Stretch Database 文件
 
-了解如何使用 SQL Server Stretch Database 明確地將原始資料安全地移轉到 Azure 雲端。 教學課程及其他文件可協助您搭配不常使用的資料來設定資料庫可用性以節省成本，無需變更現有的佇列或應用程式。
+深入了解如何 toouse SQL Server Stretch 資料庫 toomigrate 冷資料以透明的方式和安全地 toohello Azure 雲端。 教學課程和其他不常設定符合成本效益的可用性，具有資料庫的文件說明使用資料，而不需要變更 tooexisting 查詢或應用程式。
 
 
 <ul class="panelContent cardsFTitle">
@@ -89,7 +89,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>開始使用 SQL Server Stretch Database 精靈</h3>
+                        <h3>開始使用 hello SQL Server Stretch Database 精靈</h3>
                     </div>
                 </div>
             </div>

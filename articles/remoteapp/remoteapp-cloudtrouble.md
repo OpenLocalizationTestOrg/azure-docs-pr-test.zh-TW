@@ -1,6 +1,6 @@
 ---
-title: "RemoteApp 雲端集合疑難排解 - 建立 | Microsoft Docs"
-description: "了解如何疑難排解 RemoteApp 雲端集合建立失敗"
+title: "aaaTroubleshoot RemoteApp 雲端集合建立 |Microsoft 文件"
+description: "了解如何 tootroubleshoot RemoteApp 雲端集合建立失敗"
 services: remoteapp
 documentationcenter: 
 author: vkbucha
@@ -13,36 +13,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 304ba7c5057b27c459bccbb75d3a711567757675
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9484ecbdb048ede8df725215b313e049cc7648f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-creating-remoteapp-cloud-collections"></a><span data-ttu-id="ac927-103">建立 RemoteApp 雲端集合疑難排解</span><span class="sxs-lookup"><span data-stu-id="ac927-103">Troubleshoot creating RemoteApp cloud collections</span></span>
+# <a name="troubleshoot-creating-remoteapp-cloud-collections"></a><span data-ttu-id="b09bd-103">建立 RemoteApp 雲端集合疑難排解</span><span class="sxs-lookup"><span data-stu-id="b09bd-103">Troubleshoot creating RemoteApp cloud collections</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="ac927-104">Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。</span><span class="sxs-lookup"><span data-stu-id="ac927-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="ac927-105">如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。</span><span class="sxs-lookup"><span data-stu-id="ac927-105">Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
+> <span data-ttu-id="b09bd-104">Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。</span><span class="sxs-lookup"><span data-stu-id="b09bd-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="b09bd-105">讀取 hello[公告](https://go.microsoft.com/fwlink/?linkid=821148)如需詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="b09bd-105">Read hello [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
 > 
 > 
 
-<span data-ttu-id="ac927-106">如果建立雲端集合遇到問題，請查看下列資訊。</span><span class="sxs-lookup"><span data-stu-id="ac927-106">If you are having problems creating a cloud collection, check out the following information.</span></span>
+<span data-ttu-id="b09bd-106">若您有建立雲端集合的問題，請查看下列資訊的 hello。</span><span class="sxs-lookup"><span data-stu-id="b09bd-106">If you are having problems creating a cloud collection, check out hello following information.</span></span>
 
-## <a name="your-image-is-invalid"></a><span data-ttu-id="ac927-107">您的映像無效</span><span class="sxs-lookup"><span data-stu-id="ac927-107">Your image is invalid</span></span>
-<span data-ttu-id="ac927-108">如果您在等候 Azure 佈建集合時，看到如「GoldImageInvalid」的訊息，表示範本映像不符合 [已定義的映像需求](remoteapp-imagereqs.md)。</span><span class="sxs-lookup"><span data-stu-id="ac927-108">If you see a message like, "GoldImageInvalid" when you are waiting for Azure to provision your collection, it means that your template image doesn't meet the [defined image requirements](remoteapp-imagereqs.md).</span></span> <span data-ttu-id="ac927-109">因此，請閱讀 [需求](remoteapp-imagereqs.md)並修正映像，然後再嘗試重新建立集合。</span><span class="sxs-lookup"><span data-stu-id="ac927-109">So, go read those [requirements](remoteapp-imagereqs.md), fix your image, and try to create your collection again.</span></span>
+## <a name="your-image-is-invalid"></a><span data-ttu-id="b09bd-107">您的映像無效</span><span class="sxs-lookup"><span data-stu-id="b09bd-107">Your image is invalid</span></span>
+<span data-ttu-id="b09bd-108">如果您正在等候 Azure tooprovision 您的集合時，您會看到類似 「 GoldImageInvalid 」 的訊息，表示您的範本映像不符合 hello[定義映像需求](remoteapp-imagereqs.md)。</span><span class="sxs-lookup"><span data-stu-id="b09bd-108">If you see a message like, "GoldImageInvalid" when you are waiting for Azure tooprovision your collection, it means that your template image doesn't meet hello [defined image requirements](remoteapp-imagereqs.md).</span></span> <span data-ttu-id="b09bd-109">因此，請移讀取這些[需求](remoteapp-imagereqs.md)，修正您的映像，然後再試 toocreate 集合一次。</span><span class="sxs-lookup"><span data-stu-id="b09bd-109">So, go read those [requirements](remoteapp-imagereqs.md), fix your image, and try toocreate your collection again.</span></span>
 
-## <a name="common-errors-seen-in-the-azure-management-portal"></a><span data-ttu-id="ac927-110">Azure 管理入口網站中的常見錯誤</span><span class="sxs-lookup"><span data-stu-id="ac927-110">Common errors seen in the Azure Management portal</span></span>
+## <a name="common-errors-seen-in-hello-azure-management-portal"></a><span data-ttu-id="b09bd-110">在 hello Azure 管理入口網站中看到的常見錯誤</span><span class="sxs-lookup"><span data-stu-id="b09bd-110">Common errors seen in hello Azure Management portal</span></span>
     DNS server could not be reached
     ProvisioningTimeout
 
-<span data-ttu-id="ac927-111">雲端集合通常會因為您在建立期間使用自訂映像而失敗。</span><span class="sxs-lookup"><span data-stu-id="ac927-111">Cloud collections often fail during creation because of you are using custom images.</span></span>  <span data-ttu-id="ac927-112">如果您看到上述其中一個錯誤，而且您正在使用自訂映像來建立集合，請檢查下列事項：</span><span class="sxs-lookup"><span data-stu-id="ac927-112">If you see one of the above errors and you are using a custom image to create the collection, please check the following things:</span></span>
+<span data-ttu-id="b09bd-111">雲端集合通常會因為您在建立期間使用自訂映像而失敗。</span><span class="sxs-lookup"><span data-stu-id="b09bd-111">Cloud collections often fail during creation because of you are using custom images.</span></span>  <span data-ttu-id="b09bd-112">如果您看到上述錯誤 hello 的而且您使用自訂映像 toocreate hello 集合，請參閱 hello 下列事項：</span><span class="sxs-lookup"><span data-stu-id="b09bd-112">If you see one of hello above errors and you are using a custom image toocreate hello collection, please check hello following things:</span></span>
 
-* <span data-ttu-id="ac927-113">確定上傳的自訂映像符合映像需求。</span><span class="sxs-lookup"><span data-stu-id="ac927-113">Ensure that the custom image you uploaded meets image requirements.</span></span>
-* <span data-ttu-id="ac927-114">最常見的問題是映像的 Sysprep 處理不正確。</span><span class="sxs-lookup"><span data-stu-id="ac927-114">Most often the common problem is that the image was not properly syspreped.</span></span>  
-* <span data-ttu-id="ac927-115">確認映像可以在 HYPER-V 內開機，或嘗試直接在 Azure 訂用帳戶中使用映像建立 IAAS VM。</span><span class="sxs-lookup"><span data-stu-id="ac927-115">Verify the image can boot within Hyper-V or try creating an IAAS VM directly in your Azure subscription using the image.</span></span> <span data-ttu-id="ac927-116">如果 VM 無法開機且未啟動，則通常表示未正確準備自訂映像。</span><span class="sxs-lookup"><span data-stu-id="ac927-116">If the VM fails to boot and not start, then this usually indicates that the custom image was not prepared correctly.</span></span>  <span data-ttu-id="ac927-117">請遵循＜如何為 RemoteApp 建立自訂範本映像＞來確認已建立自訂映像</span><span class="sxs-lookup"><span data-stu-id="ac927-117">Verify the custom image was built following the How to create a custom template image for RemoteApp</span></span>
+* <span data-ttu-id="b09bd-113">確定您已上傳該 hello 自訂映像符合映像需求。</span><span class="sxs-lookup"><span data-stu-id="b09bd-113">Ensure that hello custom image you uploaded meets image requirements.</span></span>
+* <span data-ttu-id="b09bd-114">最常 hello 常見的問題是該 hello 映像未正確 syspreped。</span><span class="sxs-lookup"><span data-stu-id="b09bd-114">Most often hello common problem is that hello image was not properly syspreped.</span></span>  
+* <span data-ttu-id="b09bd-115">確認 hello 映像可以開機 HYPER-V 中，或嘗試直接在您使用 hello 映像的 Azure 訂用帳戶中建立的 IAAS VM。</span><span class="sxs-lookup"><span data-stu-id="b09bd-115">Verify hello image can boot within Hyper-V or try creating an IAAS VM directly in your Azure subscription using hello image.</span></span> <span data-ttu-id="b09bd-116">如果 hello VM 失敗 tooboot 並不會啟動，則這通常表示該 hello 自訂映像未準備正確。</span><span class="sxs-lookup"><span data-stu-id="b09bd-116">If hello VM fails tooboot and not start, then this usually indicates that hello custom image was not prepared correctly.</span></span>  <span data-ttu-id="b09bd-117">確認 hello 自訂映像已建立下列 hello 如何 toocreate 自訂的範本映像的 RemoteApp</span><span class="sxs-lookup"><span data-stu-id="b09bd-117">Verify hello custom image was built following hello How toocreate a custom template image for RemoteApp</span></span>
 
-<span data-ttu-id="ac927-118">如果您使用訂用帳戶隨附的其中一個 Microsoft 映像，請嘗試再次建立集合。</span><span class="sxs-lookup"><span data-stu-id="ac927-118">If you are using one of the Microsoft images included with your subscription, try to create the collection again.</span></span> <span data-ttu-id="ac927-119">如果問題仍存在，請連絡 Microsoft 支援。</span><span class="sxs-lookup"><span data-stu-id="ac927-119">If the issue persists then please contact Microsoft support.</span></span>
+<span data-ttu-id="b09bd-118">如果您使用其中一個 hello Microsoft 映像包含您訂用帳戶，請嘗試再次 toocreate hello 集合。</span><span class="sxs-lookup"><span data-stu-id="b09bd-118">If you are using one of hello Microsoft images included with your subscription, try toocreate hello collection again.</span></span> <span data-ttu-id="b09bd-119">如果 hello 問題持續發生請連絡 Microsoft 支援。</span><span class="sxs-lookup"><span data-stu-id="b09bd-119">If hello issue persists then please contact Microsoft support.</span></span>
 
     PlatformImageTrialModeOnly
 
-<span data-ttu-id="ac927-120">如果看到這個錯誤，通常表示您已經升級至付費帳戶，但您正在嘗試使用 Microsoft 提供的映像，而該映像只在服務的試用模式期間有效。</span><span class="sxs-lookup"><span data-stu-id="ac927-120">If you see this error this usually means that you been upgraded to a paid account but you are trying to use a Microsoft provided image that is valid only during the trial mode of the service.</span></span> <span data-ttu-id="ac927-121">在此情況下，請嘗試再次建立您的雲端集合，但務必指定正確的映像。</span><span class="sxs-lookup"><span data-stu-id="ac927-121">In this case, try to create your cloud collection again, but be sure to specify the correct image.</span></span>
+<span data-ttu-id="b09bd-120">如果您看到此錯誤通常表示尚未升級的 tooa 付費帳戶，但您嘗試 toouse 在 hello hello 服務試用模式期間才是有效的 Microsoft 提供的映像。</span><span class="sxs-lookup"><span data-stu-id="b09bd-120">If you see this error this usually means that you been upgraded tooa paid account but you are trying toouse a Microsoft provided image that is valid only during hello trial mode of hello service.</span></span> <span data-ttu-id="b09bd-121">在此情況下，嘗試 toocreate 您雲端的集合，但會確定 toospecify hello 正確的映像。</span><span class="sxs-lookup"><span data-stu-id="b09bd-121">In this case, try toocreate your cloud collection again, but be sure toospecify hello correct image.</span></span>
 

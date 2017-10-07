@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Active Directory 與 API 管理保護 Web API 後端 | Microsoft Docs"
-description: "了解如何使用 Azure Active Directory 與 API 管理保護 Web API 後端。"
+title: "aaaProtect Web API 後端 API 管理 Azure Active Directory 與 |Microsoft 文件"
+description: "深入了解如何 tooprotect Web API 後端 API 管理與 Azure Active Directory。"
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,79 +14,79 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 0dfb4102904c2e972e6617fd3851fb1c50147357
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f4b323034354aa09579c643bade47257fbf1e5c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-protect-a-web-api-backend-with-azure-active-directory-and-api-management"></a><span data-ttu-id="d8f06-103">如何使用 Azure Active Directory 與 API 管理保護 Web API 後端</span><span class="sxs-lookup"><span data-stu-id="d8f06-103">How to protect a Web API backend with Azure Active Directory and API Management</span></span>
-<span data-ttu-id="d8f06-104">下列視訊示範如何使用 OAuth 2.0 通訊協定搭配 Azure Active Directory 與 API 管理建置 Web API 後端並加以保護。</span><span class="sxs-lookup"><span data-stu-id="d8f06-104">The following video shows how to build a Web API backend and protect it using OAuth 2.0 protocol with Azure Active Directory and API Management.</span></span>  <span data-ttu-id="d8f06-105">本文提供概觀以及視訊中步驟的其他資訊。</span><span class="sxs-lookup"><span data-stu-id="d8f06-105">This article provides an overview and additional information for the steps in the video.</span></span> <span data-ttu-id="d8f06-106">這段 24 分鐘的視訊示範如何：</span><span class="sxs-lookup"><span data-stu-id="d8f06-106">This 24 minute video shows you how to:</span></span>
+# <a name="how-tooprotect-a-web-api-backend-with-azure-active-directory-and-api-management"></a><span data-ttu-id="a078d-103">如何 tooprotect Web API 後端，使用 Azure Active Directory 與 API 管理</span><span class="sxs-lookup"><span data-stu-id="a078d-103">How tooprotect a Web API backend with Azure Active Directory and API Management</span></span>
+<span data-ttu-id="a078d-104">hello 下列影片示範如何 toobuild Web API 後端，然後使用 Azure Active Directory 與 API 管理使用 OAuth 2.0 通訊協定加以保護。</span><span class="sxs-lookup"><span data-stu-id="a078d-104">hello following video shows how toobuild a Web API backend and protect it using OAuth 2.0 protocol with Azure Active Directory and API Management.</span></span>  <span data-ttu-id="a078d-105">本文章提供概觀和步驟 hello 視訊中的 hello 的其他資訊。</span><span class="sxs-lookup"><span data-stu-id="a078d-105">This article provides an overview and additional information for hello steps in hello video.</span></span> <span data-ttu-id="a078d-106">這段 24 分鐘的視訊示範如何：</span><span class="sxs-lookup"><span data-stu-id="a078d-106">This 24 minute video shows you how to:</span></span>
 
-* <span data-ttu-id="d8f06-107">使用 AAD 建置 Web API 後端以及保護安全 - 從 1:30 開始</span><span class="sxs-lookup"><span data-stu-id="d8f06-107">Build a Web API backend and secure it with AAD - starting at 1:30</span></span>
-* <span data-ttu-id="d8f06-108">將 API 匯入 API 管理 - 從 7:10 開始</span><span class="sxs-lookup"><span data-stu-id="d8f06-108">Import the API into API Management - starting at 7:10</span></span>
-* <span data-ttu-id="d8f06-109">設定開發人員入口網站呼叫 API - 從 9:09 開始</span><span class="sxs-lookup"><span data-stu-id="d8f06-109">Configure the Developer portal to call the API - starting at 9:09</span></span>
-* <span data-ttu-id="d8f06-110">設定桌面應用程式呼叫 API - 從 18:08 開始</span><span class="sxs-lookup"><span data-stu-id="d8f06-110">Configure a desktop application to call the API - starting at 18:08</span></span>
-* <span data-ttu-id="d8f06-111">設定 JWT 驗證原則來預先授權要求 - 從 20:47 開始</span><span class="sxs-lookup"><span data-stu-id="d8f06-111">Configure a JWT validation policy to pre-authorize requests - starting at 20:47</span></span>
+* <span data-ttu-id="a078d-107">使用 AAD 建置 Web API 後端以及保護安全 - 從 1:30 開始</span><span class="sxs-lookup"><span data-stu-id="a078d-107">Build a Web API backend and secure it with AAD - starting at 1:30</span></span>
+* <span data-ttu-id="a078d-108">Hello API 匯入 API 管理-開始 7:10</span><span class="sxs-lookup"><span data-stu-id="a078d-108">Import hello API into API Management - starting at 7:10</span></span>
+* <span data-ttu-id="a078d-109">設定 hello 開發人員入口網站 toocall hello API-開始 9:09</span><span class="sxs-lookup"><span data-stu-id="a078d-109">Configure hello Developer portal toocall hello API - starting at 9:09</span></span>
+* <span data-ttu-id="a078d-110">設定桌面應用程式 toocall hello API-開始 18:08</span><span class="sxs-lookup"><span data-stu-id="a078d-110">Configure a desktop application toocall hello API - starting at 18:08</span></span>
+* <span data-ttu-id="a078d-111">設定 JWT 驗證原則 toopre-授權要求數-開始 20:47</span><span class="sxs-lookup"><span data-stu-id="a078d-111">Configure a JWT validation policy toopre-authorize requests - starting at 20:47</span></span>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Protecting-Web-API-Backend-with-Azure-Active-Directory-and-API-Management/player]
 > 
 > 
 
-## <a name="create-an-azure-ad-directory"></a><span data-ttu-id="d8f06-112">建立 Azure AD 目錄</span><span class="sxs-lookup"><span data-stu-id="d8f06-112">Create an Azure AD directory</span></span>
-<span data-ttu-id="d8f06-113">若要使用 Azure Active Directory 保護您的 Web API 後端，您必須先具備 AAD 租用戶。</span><span class="sxs-lookup"><span data-stu-id="d8f06-113">To secure your Web API backed using Azure Active Directory you must first have a an AAD tenant.</span></span> <span data-ttu-id="d8f06-114">在這段視訊中，使用名為 **APIMDemo** 的租用戶。</span><span class="sxs-lookup"><span data-stu-id="d8f06-114">In this video a tenant named **APIMDemo** is used.</span></span> <span data-ttu-id="d8f06-115">若要建立 AAD 租用戶，請登入 [Azure 傳統入口網站](https://manage.windowsazure.com)，按一下 [新增] -> [應用程式服務] -> [Active Directory] -> [目錄] -> [自訂建立]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-115">To create an AAD tenant, sign-in to the [Azure Classic Portal](https://manage.windowsazure.com) and click **New**->**App Services**->**Active Directory**->**Directory**->**Custom Create**.</span></span> 
+## <a name="create-an-azure-ad-directory"></a><span data-ttu-id="a078d-112">建立 Azure AD 目錄</span><span class="sxs-lookup"><span data-stu-id="a078d-112">Create an Azure AD directory</span></span>
+<span data-ttu-id="a078d-113">使用 Azure Active Directory 必須先備份您的 Web API 的 toosecure AAD 租用戶。</span><span class="sxs-lookup"><span data-stu-id="a078d-113">toosecure your Web API backed using Azure Active Directory you must first have a an AAD tenant.</span></span> <span data-ttu-id="a078d-114">在這段視訊中，使用名為 **APIMDemo** 的租用戶。</span><span class="sxs-lookup"><span data-stu-id="a078d-114">In this video a tenant named **APIMDemo** is used.</span></span> <span data-ttu-id="a078d-115">toocreate AAD 租用戶登入 toohello [Azure 傳統入口網站](https://manage.windowsazure.com)按一下**新增**->**應用程式服務**->**Active目錄**->**目錄**->**自訂建立**。</span><span class="sxs-lookup"><span data-stu-id="a078d-115">toocreate an AAD tenant, sign-in toohello [Azure Classic Portal](https://manage.windowsazure.com) and click **New**->**App Services**->**Active Directory**->**Directory**->**Custom Create**.</span></span> 
 
 ![Azure Active Directory][api-management-create-aad-menu]
 
-<span data-ttu-id="d8f06-117">此範例會一同建立名為 **APIMDemo** 的目錄與名為 **DemoAPIM.onmicrosoft.com** 的預設網域。</span><span class="sxs-lookup"><span data-stu-id="d8f06-117">In this example a directory named **APIMDemo** is created with a default domain named **DemoAPIM.onmicrosoft.com**.</span></span> <span data-ttu-id="d8f06-118">在整段視訊中都會使用這個目錄。</span><span class="sxs-lookup"><span data-stu-id="d8f06-118">This directory is used throughout the video.</span></span>
+<span data-ttu-id="a078d-117">此範例會一同建立名為 **APIMDemo** 的目錄與名為 **DemoAPIM.onmicrosoft.com** 的預設網域。這個目錄會使用整個 hello 視訊。</span><span class="sxs-lookup"><span data-stu-id="a078d-117">In this example a directory named **APIMDemo** is created with a default domain named **DemoAPIM.onmicrosoft.com**. This directory is used throughout hello video.</span></span>
 
 ![Azure Active Directory][api-management-create-aad]
 
-## <a name="create-a-web-api-service-secured-by-azure-active-directory"></a><span data-ttu-id="d8f06-120">建立由 Azure Active Directory 保護的 Web API 服務</span><span class="sxs-lookup"><span data-stu-id="d8f06-120">Create a Web API service secured by Azure Active Directory</span></span>
-<span data-ttu-id="d8f06-121">在此步驟中，Web API 後端會使用 Visual Studio 2013 建立。</span><span class="sxs-lookup"><span data-stu-id="d8f06-121">In this step, a Web API backend is created using Visual Studio 2013.</span></span> <span data-ttu-id="d8f06-122">這個步驟的視訊從 1:30 開始。</span><span class="sxs-lookup"><span data-stu-id="d8f06-122">This step of the video starts at 1:30.</span></span> <span data-ttu-id="d8f06-123">若要在 Visual Studio 中建立 Web API 後端專案，請按一下 [檔案] -> [新增] -> [專案]，然後從 [Web] 範本清單中選擇 [ASP.NET Web 應用程式]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-123">To create Web API backend project in Visual Studio click **File**->**New**->**Project**, and choose **ASP.NET Web Application** from the **Web** templates list.</span></span> <span data-ttu-id="d8f06-124">在此影片中，專案的名稱為 **APIMAADDemo**。</span><span class="sxs-lookup"><span data-stu-id="d8f06-124">In this video the project is named **APIMAADDemo**.</span></span> <span data-ttu-id="d8f06-125">按一下 [確定]  以建立專案。</span><span class="sxs-lookup"><span data-stu-id="d8f06-125">Click **OK** to create the project.</span></span> 
+## <a name="create-a-web-api-service-secured-by-azure-active-directory"></a><span data-ttu-id="a078d-119">建立由 Azure Active Directory 保護的 Web API 服務</span><span class="sxs-lookup"><span data-stu-id="a078d-119">Create a Web API service secured by Azure Active Directory</span></span>
+<span data-ttu-id="a078d-120">在此步驟中，Web API 後端會使用 Visual Studio 2013 建立。</span><span class="sxs-lookup"><span data-stu-id="a078d-120">In this step, a Web API backend is created using Visual Studio 2013.</span></span> <span data-ttu-id="a078d-121">Hello 視訊的這個步驟會在 1:30。</span><span class="sxs-lookup"><span data-stu-id="a078d-121">This step of hello video starts at 1:30.</span></span> <span data-ttu-id="a078d-122">toocreate Web API 後端專案在 Visual Studio 中，按一下**檔案**->**新增**->**專案**，然後選擇  **ASP.NET 網頁應用程式**從 hello **Web**範本清單。</span><span class="sxs-lookup"><span data-stu-id="a078d-122">toocreate Web API backend project in Visual Studio click **File**->**New**->**Project**, and choose **ASP.NET Web Application** from hello **Web** templates list.</span></span> <span data-ttu-id="a078d-123">在這個視訊 hello 專案命名為**APIMAADDemo**。</span><span class="sxs-lookup"><span data-stu-id="a078d-123">In this video hello project is named **APIMAADDemo**.</span></span> <span data-ttu-id="a078d-124">按一下**確定**toocreate hello 專案。</span><span class="sxs-lookup"><span data-stu-id="a078d-124">Click **OK** toocreate hello project.</span></span> 
 
 ![Visual Studio][api-management-new-web-app]
 
-<span data-ttu-id="d8f06-127">從 [選取範本清單] 按一下 [Web API] 來建立 Web API 專案。</span><span class="sxs-lookup"><span data-stu-id="d8f06-127">Click **Web API** from the **Select a template list** to create a Web API project.</span></span> <span data-ttu-id="d8f06-128">若要設定 Azure Directory 驗證，請按一下 [變更驗證] 。</span><span class="sxs-lookup"><span data-stu-id="d8f06-128">To configure Azure Directory Authentication click **Change Authentication**.</span></span>
+<span data-ttu-id="a078d-126">按一下**Web API**從 hello**從範本清單中選取**toocreate Web API 專案。</span><span class="sxs-lookup"><span data-stu-id="a078d-126">Click **Web API** from hello **Select a template list** toocreate a Web API project.</span></span> <span data-ttu-id="a078d-127">按一下 Azure Directory Authentication tooconfigure**變更驗證**。</span><span class="sxs-lookup"><span data-stu-id="a078d-127">tooconfigure Azure Directory Authentication click **Change Authentication**.</span></span>
 
 ![新增專案][api-management-new-project]
 
-<span data-ttu-id="d8f06-130">按一下 [組織帳戶]，並指定您 AAD 租用戶的 [網域]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-130">Click **Organizational Accounts**, and specify the **Domain** of your AAD tenant.</span></span> <span data-ttu-id="d8f06-131">此範例中的網域是 **DemoAPIM.onmicrosoft.com**。</span><span class="sxs-lookup"><span data-stu-id="d8f06-131">In this example the domain is **DemoAPIM.onmicrosoft.com**.</span></span> <span data-ttu-id="d8f06-132">您可以從目錄的 [網域] 索引標籤取得您目錄的網域。</span><span class="sxs-lookup"><span data-stu-id="d8f06-132">The domain of your directory can be obtained from the **Domains** tab of your directory.</span></span>
+<span data-ttu-id="a078d-129">按一下**組織帳戶**，並指定 hello**網域**的 AAD 租用戶。</span><span class="sxs-lookup"><span data-stu-id="a078d-129">Click **Organizational Accounts**, and specify hello **Domain** of your AAD tenant.</span></span> <span data-ttu-id="a078d-130">在此範例 hello 網域是**DemoAPIM.onmicrosoft.com**。 您可以從 hello 取得您目錄中的 hello 網域**網域**您目錄的索引標籤。</span><span class="sxs-lookup"><span data-stu-id="a078d-130">In this example hello domain is **DemoAPIM.onmicrosoft.com**. hello domain of your directory can be obtained from hello **Domains** tab of your directory.</span></span>
 
 ![網域][api-management-aad-domains]
 
-<span data-ttu-id="d8f06-134">在 [變更驗證] 對話方塊中設定所需的設定，並按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-134">Configure the desired settings in the **Change Authentication** dialog box and click **OK**.</span></span>
+<span data-ttu-id="a078d-132">在 hello 中設定所需的 hello**變更驗證**對話方塊，按一下**確定**。</span><span class="sxs-lookup"><span data-stu-id="a078d-132">Configure hello desired settings in hello **Change Authentication** dialog box and click **OK**.</span></span>
 
 ![變更驗證][api-management-change-authentication]
 
-<span data-ttu-id="d8f06-136">按下 [確定]  之後，Visual Studio 將會嘗試使用您的 Azure AD 目錄註冊您的應用程式，Visual Studio 會提示您登入。</span><span class="sxs-lookup"><span data-stu-id="d8f06-136">When you click **OK** Visual Studio will attempt to register your application with your Azure AD directory and you may be prompted to sign in by Visual Studio.</span></span> <span data-ttu-id="d8f06-137">使用您目錄的系統管理帳戶登入。</span><span class="sxs-lookup"><span data-stu-id="d8f06-137">Sign in using an administrative account for your directory.</span></span>
+<span data-ttu-id="a078d-134">當您按一下**確定**Visual Studio 將會嘗試 tooregister 應用程式與 Azure AD 目錄，而且可能會提示的 toosign 中由 Visual Studio。</span><span class="sxs-lookup"><span data-stu-id="a078d-134">When you click **OK** Visual Studio will attempt tooregister your application with your Azure AD directory and you may be prompted toosign in by Visual Studio.</span></span> <span data-ttu-id="a078d-135">使用您目錄的系統管理帳戶登入。</span><span class="sxs-lookup"><span data-stu-id="a078d-135">Sign in using an administrative account for your directory.</span></span>
 
-![登入 Visual Studio][api-management-sign-in-vidual-studio]
+![登入 tooVisual Studio][api-management-sign-in-vidual-studio]
 
-<span data-ttu-id="d8f06-139">若要設定此專案為 Azure Web API，請核取 [在雲端中主控] 的方塊，然後按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-139">To configure this project as an Azure Web API check the box for **Host in the cloud** and then click **OK**.</span></span>
+<span data-ttu-id="a078d-137">tooconfigure 這個專案與 Azure Web 應用程式開發介面檢查 hello 方塊**hello 雲端中的主機**，然後按一下**確定**。</span><span class="sxs-lookup"><span data-stu-id="a078d-137">tooconfigure this project as an Azure Web API check hello box for **Host in hello cloud** and then click **OK**.</span></span>
 
 ![新增專案][api-management-new-project-cloud]
 
-<span data-ttu-id="d8f06-141">系統可能會提示您登入 Azure，接著您就可以設定 Web 應用程式。</span><span class="sxs-lookup"><span data-stu-id="d8f06-141">You may be prompted to sign in to Azure, and then you can configure the Web App.</span></span>
+<span data-ttu-id="a078d-139">您可能會提示的 toosign tooAzure 中,，然後您可以設定 hello Web 應用程式。</span><span class="sxs-lookup"><span data-stu-id="a078d-139">You may be prompted toosign in tooAzure, and then you can configure hello Web App.</span></span>
 
 ![設定][api-management-configure-web-app]
 
-<span data-ttu-id="d8f06-143">此範例指定了一個名為 **APIMAADDemo** 的新 **App Service 方案**。</span><span class="sxs-lookup"><span data-stu-id="d8f06-143">In this example a new **App Service plan** named **APIMAADDemo** is specified.</span></span>
+<span data-ttu-id="a078d-141">此範例指定了一個名為 **APIMAADDemo** 的新 **App Service 方案**。</span><span class="sxs-lookup"><span data-stu-id="a078d-141">In this example a new **App Service plan** named **APIMAADDemo** is specified.</span></span>
 
-<span data-ttu-id="d8f06-144">按一下 [確定]  設定 Web 應用程式和建立專案。</span><span class="sxs-lookup"><span data-stu-id="d8f06-144">Click **OK** to configure the Web App and create the project.</span></span>
+<span data-ttu-id="a078d-142">按一下**確定**tooconfigure hello Web 應用程式，並建立 hello 專案。</span><span class="sxs-lookup"><span data-stu-id="a078d-142">Click **OK** tooconfigure hello Web App and create hello project.</span></span>
 
-## <a name="add-the-code-to-the-web-api-project"></a><span data-ttu-id="d8f06-145">將程式碼加入 Web API 專案</span><span class="sxs-lookup"><span data-stu-id="d8f06-145">Add the code to the Web API project</span></span>
-<span data-ttu-id="d8f06-146">視訊中的下一個步驟會將程式碼加入 Web API 專案。</span><span class="sxs-lookup"><span data-stu-id="d8f06-146">The next step in the video adds the code to the Web API project.</span></span> <span data-ttu-id="d8f06-147">這個步驟從 4:35 開始。</span><span class="sxs-lookup"><span data-stu-id="d8f06-147">This step starts at 4:35.</span></span>
+## <a name="add-hello-code-toohello-web-api-project"></a><span data-ttu-id="a078d-143">新增 hello 程式碼 toohello Web API 專案</span><span class="sxs-lookup"><span data-stu-id="a078d-143">Add hello code toohello Web API project</span></span>
+<span data-ttu-id="a078d-144">hello hello 視訊中的下一個步驟將加入 hello 程式碼 toohello Web API 專案。</span><span class="sxs-lookup"><span data-stu-id="a078d-144">hello next step in hello video adds hello code toohello Web API project.</span></span> <span data-ttu-id="a078d-145">這個步驟從 4:35 開始。</span><span class="sxs-lookup"><span data-stu-id="a078d-145">This step starts at 4:35.</span></span>
 
-<span data-ttu-id="d8f06-148">此範例中的 Web API 使用模型和控制器實作基本的計算機服務。</span><span class="sxs-lookup"><span data-stu-id="d8f06-148">The Web API in this example implements a basic calculator service using a model and a controller.</span></span> <span data-ttu-id="d8f06-149">若要新增服務的模型，請以滑鼠右鍵按一下 [方案總管] 中的 [模型]，然後選擇 [新增][類別]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-149">To add the model for the service, right-click **Models** in **Solution Explorer** and choose **Add**, **Class**.</span></span> <span data-ttu-id="d8f06-150">將類別命名為 `CalcInput`，然後按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-150">Name the class `CalcInput` and click **Add**.</span></span>
+<span data-ttu-id="a078d-146">在此範例中的 hello Web API 實作使用模型和控制器的基本計算機服務。</span><span class="sxs-lookup"><span data-stu-id="a078d-146">hello Web API in this example implements a basic calculator service using a model and a controller.</span></span> <span data-ttu-id="a078d-147">tooadd hello 模型 hello 服務，以滑鼠右鍵按一下**模型**中**方案總管 中**選擇**新增**，**類別**。</span><span class="sxs-lookup"><span data-stu-id="a078d-147">tooadd hello model for hello service, right-click **Models** in **Solution Explorer** and choose **Add**, **Class**.</span></span> <span data-ttu-id="a078d-148">Hello 類別命名`CalcInput`按一下**新增**。</span><span class="sxs-lookup"><span data-stu-id="a078d-148">Name hello class `CalcInput` and click **Add**.</span></span>
 
-<span data-ttu-id="d8f06-151">在 `CalcInput.cs` 檔案的開頭處新增下列 `using` 陳述式。</span><span class="sxs-lookup"><span data-stu-id="d8f06-151">Add the following `using` statement to the top of the `CalcInput.cs` file.</span></span>
+<span data-ttu-id="a078d-149">新增下列 hello`using`陳述式 toohello 頂端 hello`CalcInput.cs`檔案。</span><span class="sxs-lookup"><span data-stu-id="a078d-149">Add hello following `using` statement toohello top of hello `CalcInput.cs` file.</span></span>
 
 ```c#
 using Newtonsoft.Json;
 ```
 
-<span data-ttu-id="d8f06-152">將產生的類別取代為下列程式碼。</span><span class="sxs-lookup"><span data-stu-id="d8f06-152">Replace the generated class with the following code.</span></span>
+<span data-ttu-id="a078d-150">取代下列程式碼的 hello hello 產生類別。</span><span class="sxs-lookup"><span data-stu-id="a078d-150">Replace hello generated class with hello following code.</span></span>
 
 ```c#
 public class CalcInput
@@ -99,11 +99,11 @@ public class CalcInput
 }
 ```
 
-<span data-ttu-id="d8f06-153">以滑鼠右鍵按一下 [方案總管] 中的 [控制器]，然後選擇 [新增] -> [控制器]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-153">Right-click **Controllers** in **Solution Explorer** and choose **Add**->**Controller**.</span></span> <span data-ttu-id="d8f06-154">按一下 [Web API 2 控制器 - 空白]，然後按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-154">Choose **Web API 2 Controller - Empty** and click **Add**.</span></span> <span data-ttu-id="d8f06-155">輸入 **CalcController** 做為控制器名稱，然後按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-155">Type **CalcController** for the Controller name and click **Add**.</span></span>
+<span data-ttu-id="a078d-151">以滑鼠右鍵按一下 [方案總管] 中的 [控制器]，然後選擇 [新增] -> [控制器]。</span><span class="sxs-lookup"><span data-stu-id="a078d-151">Right-click **Controllers** in **Solution Explorer** and choose **Add**->**Controller**.</span></span> <span data-ttu-id="a078d-152">按一下 [Web API 2 控制器 - 空白]，然後按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="a078d-152">Choose **Web API 2 Controller - Empty** and click **Add**.</span></span> <span data-ttu-id="a078d-153">型別**CalcController** hello 控制器命名，然後按一下**新增**。</span><span class="sxs-lookup"><span data-stu-id="a078d-153">Type **CalcController** for hello Controller name and click **Add**.</span></span>
 
 ![新增控制器][api-management-add-controller]
 
-<span data-ttu-id="d8f06-157">在 `CalcController.cs` 檔案的開頭處新增下列 `using` 陳述式。</span><span class="sxs-lookup"><span data-stu-id="d8f06-157">Add the following `using` statement to the top of the `CalcController.cs` file.</span></span>
+<span data-ttu-id="a078d-155">新增下列 hello`using`陳述式 toohello 頂端 hello`CalcController.cs`檔案。</span><span class="sxs-lookup"><span data-stu-id="a078d-155">Add hello following `using` statement toohello top of hello `CalcController.cs` file.</span></span>
 
 ```c#
 using System.IO;
@@ -111,7 +111,7 @@ using System.Web;
 using APIMAADDemo.Models;
 ```
 
-<span data-ttu-id="d8f06-158">將產生的控制器類別取代為下列程式碼。</span><span class="sxs-lookup"><span data-stu-id="d8f06-158">Replace the generated controller class with the following code.</span></span> <span data-ttu-id="d8f06-159">此程式碼實作基本計算機 API 的 `Add`、`Subtract`、`Multiply` 以及 `Divide` 運算。</span><span class="sxs-lookup"><span data-stu-id="d8f06-159">This code implements the `Add`, `Subtract`, `Multiply`, and `Divide` operations of the Basic Calculator API.</span></span>
+<span data-ttu-id="a078d-156">取代下列程式碼的 hello hello 產生控制器類別。</span><span class="sxs-lookup"><span data-stu-id="a078d-156">Replace hello generated controller class with hello following code.</span></span> <span data-ttu-id="a078d-157">此程式碼會實作 hello `Add`， `Subtract`， `Multiply`，和`Divide`hello 基本計算機 API 的作業。</span><span class="sxs-lookup"><span data-stu-id="a078d-157">This code implements hello `Add`, `Subtract`, `Multiply`, and `Divide` operations of hello Basic Calculator API.</span></span>
 
 ```c#
 [Authorize]
@@ -159,41 +159,41 @@ public class CalcController : ApiController
 }
 ```
 
-<span data-ttu-id="d8f06-160">按下 **F6** 來建置和驗證方案。</span><span class="sxs-lookup"><span data-stu-id="d8f06-160">Press **F6** to build and verify the solution.</span></span>
+<span data-ttu-id="a078d-158">按**F6** toobuild 及驗證 hello 解決方案。</span><span class="sxs-lookup"><span data-stu-id="a078d-158">Press **F6** toobuild and verify hello solution.</span></span>
 
-## <a name="publish-the-project-to-azure"></a><span data-ttu-id="d8f06-161">將專案發佈到 Azure</span><span class="sxs-lookup"><span data-stu-id="d8f06-161">Publish the project to Azure</span></span>
-<span data-ttu-id="d8f06-162">在此步驟中，Visual Studio 專案會發佈到 Azure。</span><span class="sxs-lookup"><span data-stu-id="d8f06-162">In this step the Visual Studio project is published to Azure.</span></span> <span data-ttu-id="d8f06-163">這個步驟的視訊從 5:45 開始。</span><span class="sxs-lookup"><span data-stu-id="d8f06-163">This step of the video starts at 5:45.</span></span>
+## <a name="publish-hello-project-tooazure"></a><span data-ttu-id="a078d-159">發行 hello 專案 tooAzure</span><span class="sxs-lookup"><span data-stu-id="a078d-159">Publish hello project tooAzure</span></span>
+<span data-ttu-id="a078d-160">這個步驟 hello Visual Studio 專案是發行的 tooAzure。</span><span class="sxs-lookup"><span data-stu-id="a078d-160">In this step hello Visual Studio project is published tooAzure.</span></span> <span data-ttu-id="a078d-161">此步驟的視訊 hello 開頭 5:45。</span><span class="sxs-lookup"><span data-stu-id="a078d-161">This step of hello video starts at 5:45.</span></span>
 
-<span data-ttu-id="d8f06-164">若要將專案發佈到 Azure，請以滑鼠右鍵按一下 Visual Studio 中的 [APIMAADDemo] 專案，然後選擇 [發佈]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-164">To publish the project to Azure, right-click the **APIMAADDemo** project in Visual Studio and choose **Publish**.</span></span> <span data-ttu-id="d8f06-165">保留 [發佈 Web] 對話方塊中的預設值，然後按一下 [發佈]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-165">Keep the default settings in the **Publish Web** dialog box and click **Publish**.</span></span>
+<span data-ttu-id="a078d-162">toopublish hello 專案 tooAzure、 以滑鼠右鍵按一下 hello **APIMAADDemo**專案在 Visual Studio 中，選擇**發行**。</span><span class="sxs-lookup"><span data-stu-id="a078d-162">toopublish hello project tooAzure, right-click hello **APIMAADDemo** project in Visual Studio and choose **Publish**.</span></span> <span data-ttu-id="a078d-163">保持 hello hello 預設設定**發行 Web**對話方塊，按一下**發行**。</span><span class="sxs-lookup"><span data-stu-id="a078d-163">Keep hello default settings in hello **Publish Web** dialog box and click **Publish**.</span></span>
 
 ![Web 發佈][api-management-web-publish]
 
-## <a name="grant-permissions-to-the-azure-ad-backend-service-application"></a><span data-ttu-id="d8f06-167">授與權限給 Azure AD 後端服務應用程式</span><span class="sxs-lookup"><span data-stu-id="d8f06-167">Grant permissions to the Azure AD backend service application</span></span>
-<span data-ttu-id="d8f06-168">設定和發佈您的 Web API 專案時，您的 Azure AD 目錄中會建立一個新的應用程式用於後端服務。</span><span class="sxs-lookup"><span data-stu-id="d8f06-168">A new application for the backend service is created in your Azure AD directory as part of the configuring and publishing process of your Web API project.</span></span> <span data-ttu-id="d8f06-169">這個步驟會授與權限給 Web API 後端，從視訊的 6:13 開始。</span><span class="sxs-lookup"><span data-stu-id="d8f06-169">In this step of the video, starting at 6:13, permissions are granted to the Web API backend.</span></span>
+## <a name="grant-permissions-toohello-azure-ad-backend-service-application"></a><span data-ttu-id="a078d-165">授與權限 toohello Azure AD 後端服務應用程式</span><span class="sxs-lookup"><span data-stu-id="a078d-165">Grant permissions toohello Azure AD backend service application</span></span>
+<span data-ttu-id="a078d-166">Hello 後端服務的新應用程式會建立在 Azure AD 目錄 hello 設定的一部分，以及發佈的 Web API 專案的程序。</span><span class="sxs-lookup"><span data-stu-id="a078d-166">A new application for hello backend service is created in your Azure AD directory as part of hello configuring and publishing process of your Web API project.</span></span> <span data-ttu-id="a078d-167">在此步驟中的 hello 視訊，開始 6:13，權限會授與 toohello Web API 後端。</span><span class="sxs-lookup"><span data-stu-id="a078d-167">In this step of hello video, starting at 6:13, permissions are granted toohello Web API backend.</span></span>
 
 ![應用程式][api-management-aad-backend-app]
 
-<span data-ttu-id="d8f06-171">按一下要設定必要權限的應用程式名稱。</span><span class="sxs-lookup"><span data-stu-id="d8f06-171">Click the name of the application to configure the required permissions.</span></span> <span data-ttu-id="d8f06-172">瀏覽到 [設定] 索引標籤，向下捲動到 [其他應用程式的權限] 區段。</span><span class="sxs-lookup"><span data-stu-id="d8f06-172">Navigate to the **Configure** tab and scroll down to the **permissions to other applications** section.</span></span> <span data-ttu-id="d8f06-173">按一下 [Windows Azure Active Directory] 旁邊的 [應用程式權限] 下拉式清單，核取 [讀取目錄資料] 的方塊，然後按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-173">Click the **Application Permissions** drop-down beside **Windows** **Azure Active Directory**, check the box for **Read directory data**, and click **Save**.</span></span>
+<span data-ttu-id="a078d-169">按一下 hello hello 應用程式 tooconfigure hello 所需的權限名稱。</span><span class="sxs-lookup"><span data-stu-id="a078d-169">Click hello name of hello application tooconfigure hello required permissions.</span></span> <span data-ttu-id="a078d-170">瀏覽 toohello**設定** 索引標籤並捲動 toohello**權限 tooother 應用程式**> 一節。</span><span class="sxs-lookup"><span data-stu-id="a078d-170">Navigate toohello **Configure** tab and scroll down toohello **permissions tooother applications** section.</span></span> <span data-ttu-id="a078d-171">按一下 hello**應用程式權限**旁邊的下拉式清單**Windows** **Azure Active Directory**，核取方塊 hello**讀取目錄資料**，然後按一下**儲存**。</span><span class="sxs-lookup"><span data-stu-id="a078d-171">Click hello **Application Permissions** drop-down beside **Windows** **Azure Active Directory**, check hello box for **Read directory data**, and click **Save**.</span></span>
 
 ![新增權限][api-management-aad-add-permissions]
 
 > [!NOTE]
-> <span data-ttu-id="d8f06-175">如果 [Windows Azure Active Directory] 並未列在 [其他應用程式的權限] 之下，請按一下 [新增應用程式] 從清單將其新增。</span><span class="sxs-lookup"><span data-stu-id="d8f06-175">If **Windows** **Azure Active Directory** is not listed under permissions to other applications, click **Add application** and add it from the list.</span></span>
+> <span data-ttu-id="a078d-173">如果**Windows** **Azure Active Directory**是並未列在 權限 tooother 應用程式之下，按一下**新增應用程式**並將它加入從 hello 清單。</span><span class="sxs-lookup"><span data-stu-id="a078d-173">If **Windows** **Azure Active Directory** is not listed under permissions tooother applications, click **Add application** and add it from hello list.</span></span>
 > 
 > 
 
-<span data-ttu-id="d8f06-176">請記下 [應用程式識別碼 URI]  供後續為 API 管理開發人員入口網站設定 Azure AD 應用程式的步驟時使用。</span><span class="sxs-lookup"><span data-stu-id="d8f06-176">Make a note of the **App Id URI** for use in a subsequent step when an Azure AD application is configured for the API Management developer portal.</span></span>
+<span data-ttu-id="a078d-174">請記下 hello**應用程式識別碼 URI** hello API 管理開發人員入口網站設定 Azure AD 應用程式時，在後續步驟中使用。</span><span class="sxs-lookup"><span data-stu-id="a078d-174">Make a note of hello **App Id URI** for use in a subsequent step when an Azure AD application is configured for hello API Management developer portal.</span></span>
 
 ![App 識別碼 URI][api-management-aad-sso-uri]
 
-## <a name="import-the-web-api-into-api-management"></a><span data-ttu-id="d8f06-178">將 Web API 匯入 API 管理</span><span class="sxs-lookup"><span data-stu-id="d8f06-178">Import the Web API into API Management</span></span>
-<span data-ttu-id="d8f06-179">API 經由 API 發佈者入口網站進行設定，您可以透過 Azure 入口網站存取此入口網站。</span><span class="sxs-lookup"><span data-stu-id="d8f06-179">APIs are configured from the API publisher portal, which is accessed through the Azure Portal.</span></span> <span data-ttu-id="d8f06-180">若要觸達它，請從 API 管理服務的工具列按一下 [發佈者入口網站]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-180">To reach it, click **Publisher portal** from the toolbar of your API Management service.</span></span> <span data-ttu-id="d8f06-181">如果您尚未建立 API 管理服務執行個體，請參閱[管理您的第一個 API][Manage your first API] 教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-181">If you have not yet created an API Management service instance, see [Create an API Management service instance][Create an API Management service instance] in the [Manage your first API][Manage your first API] tutorial.</span></span>
+## <a name="import-hello-web-api-into-api-management"></a><span data-ttu-id="a078d-176">Hello Web 應用程式開發介面匯入 API 管理</span><span class="sxs-lookup"><span data-stu-id="a078d-176">Import hello Web API into API Management</span></span>
+<span data-ttu-id="a078d-177">應用程式開發介面會在 hello API 發行者入口網站，可從 hello Azure 入口網站存取設定。</span><span class="sxs-lookup"><span data-stu-id="a078d-177">APIs are configured from hello API publisher portal, which is accessed through hello Azure Portal.</span></span> <span data-ttu-id="a078d-178">tooreach，按一下 **發行者入口網站**從您的 API 管理服務的 hello 工具列。</span><span class="sxs-lookup"><span data-stu-id="a078d-178">tooreach it, click **Publisher portal** from hello toolbar of your API Management service.</span></span> <span data-ttu-id="a078d-179">如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][ Create an API Management service instance]在 hello[管理您的第一個應用程式開發介面][Manage your first API]教學課程。</span><span class="sxs-lookup"><span data-stu-id="a078d-179">If you have not yet created an API Management service instance, see [Create an API Management service instance][Create an API Management service instance] in hello [Manage your first API][Manage your first API] tutorial.</span></span>
 
 ![發行者入口網站][api-management-management-console]
 
-<span data-ttu-id="d8f06-183">您可以將運算 [手動加入 API](api-management-howto-add-operations.md)，也可以匯入運算。</span><span class="sxs-lookup"><span data-stu-id="d8f06-183">Operations can be [added to APIs manually](api-management-howto-add-operations.md), or they can be imported.</span></span> <span data-ttu-id="d8f06-184">在這段視訊中從 6:40 開始，運算會以 Swagger 格式匯入。</span><span class="sxs-lookup"><span data-stu-id="d8f06-184">In this video, operations are imported in Swagger format starting at 6:40.</span></span>
+<span data-ttu-id="a078d-181">作業可以是[手動加入 tooAPIs](api-management-howto-add-operations.md)，或可以匯入。</span><span class="sxs-lookup"><span data-stu-id="a078d-181">Operations can be [added tooAPIs manually](api-management-howto-add-operations.md), or they can be imported.</span></span> <span data-ttu-id="a078d-182">在這段視訊中從 6:40 開始，運算會以 Swagger 格式匯入。</span><span class="sxs-lookup"><span data-stu-id="a078d-182">In this video, operations are imported in Swagger format starting at 6:40.</span></span>
 
-<span data-ttu-id="d8f06-185">以下列內容建立名為 `calcapi.json` 的檔案，然後將檔案儲存到您的電腦。</span><span class="sxs-lookup"><span data-stu-id="d8f06-185">Create a file named `calcapi.json` with following contents and save it to your computer.</span></span> <span data-ttu-id="d8f06-186">確定 `host` 屬性指向您的 Web API 後端。</span><span class="sxs-lookup"><span data-stu-id="d8f06-186">Ensure that the `host` attribute points to your Web API backend.</span></span> <span data-ttu-id="d8f06-187">在此範例中使用 `"host": "apimaaddemo.azurewebsites.net"` 。</span><span class="sxs-lookup"><span data-stu-id="d8f06-187">In this example `"host": "apimaaddemo.azurewebsites.net"` is used.</span></span>
+<span data-ttu-id="a078d-183">建立名為`calcapi.json`與下列內容，並將它儲存 tooyour 電腦。</span><span class="sxs-lookup"><span data-stu-id="a078d-183">Create a file named `calcapi.json` with following contents and save it tooyour computer.</span></span> <span data-ttu-id="a078d-184">請確定該 hello`host`屬性指向 tooyour Web API 後端。</span><span class="sxs-lookup"><span data-stu-id="a078d-184">Ensure that hello `host` attribute points tooyour Web API backend.</span></span> <span data-ttu-id="a078d-185">在此範例中使用 `"host": "apimaaddemo.azurewebsites.net"` 。</span><span class="sxs-lookup"><span data-stu-id="a078d-185">In this example `"host": "apimaaddemo.azurewebsites.net"` is used.</span></span>
 
 ```json
 {
@@ -337,166 +337,166 @@ public class CalcController : ApiController
 }
 ```
 
-<span data-ttu-id="d8f06-188">若要匯入計算機 API，請從左邊的 [API 管理] 功能表中按一下 [API]，然後按一下 [匯入 API]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-188">To import the calculator API, click **APIs** from the **API Management** menu on the left, and then click **Import API**.</span></span>
+<span data-ttu-id="a078d-186">tooimport hello 計算機 API 中，按一下**Api**從 hello **API 管理**hello 左、，然後按一下功能表**匯入 API**。</span><span class="sxs-lookup"><span data-stu-id="a078d-186">tooimport hello calculator API, click **APIs** from hello **API Management** menu on hello left, and then click **Import API**.</span></span>
 
 ![匯入 API 按鈕][api-management-import-api]
 
-<span data-ttu-id="d8f06-190">執行下列步驟以設定計算機 API。</span><span class="sxs-lookup"><span data-stu-id="d8f06-190">Perform the following steps to configure the calculator API.</span></span>
+<span data-ttu-id="a078d-188">執行下列步驟 tooconfigure hello [小算盤] 應用程式開發介面的 hello。</span><span class="sxs-lookup"><span data-stu-id="a078d-188">Perform hello following steps tooconfigure hello calculator API.</span></span>
 
-1. <span data-ttu-id="d8f06-191">按一下 [從檔案]，瀏覽到您儲存的 `calculator.json` 檔案，然後按一下 [Swagger] 選項按鈕。</span><span class="sxs-lookup"><span data-stu-id="d8f06-191">Click **From file**, browse to the `calculator.json` file you saved, and click the **Swagger** radio button.</span></span>
-2. <span data-ttu-id="d8f06-192">在 [Web API URL 尾碼] 文字方塊中輸入 **calc**。</span><span class="sxs-lookup"><span data-stu-id="d8f06-192">Type **calc** into the **Web API URL suffix** textbox.</span></span>
-3. <span data-ttu-id="d8f06-193">按一下 [產品 (選擇性)] 方塊，然後選擇 [入門]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-193">Click in the **Products (optional)** box and choose **Starter**.</span></span>
-4. <span data-ttu-id="d8f06-194">按一下 [ **儲存** ] 匯入 API。</span><span class="sxs-lookup"><span data-stu-id="d8f06-194">Click **Save** to import the API.</span></span>
+1. <span data-ttu-id="a078d-189">按一下**檔案從**，瀏覽 toohello`calculator.json`檔案儲存，然後按一下 hello **Swagger**選項按鈕。</span><span class="sxs-lookup"><span data-stu-id="a078d-189">Click **From file**, browse toohello `calculator.json` file you saved, and click hello **Swagger** radio button.</span></span>
+2. <span data-ttu-id="a078d-190">型別**calc**到 hello **Web API URL 尾碼**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="a078d-190">Type **calc** into hello **Web API URL suffix** textbox.</span></span>
+3. <span data-ttu-id="a078d-191">按一下 hello**產品 （選擇性）**方塊，然後選擇**入門**。</span><span class="sxs-lookup"><span data-stu-id="a078d-191">Click in hello **Products (optional)** box and choose **Starter**.</span></span>
+4. <span data-ttu-id="a078d-192">按一下**儲存**tooimport hello 應用程式開發介面。</span><span class="sxs-lookup"><span data-stu-id="a078d-192">Click **Save** tooimport hello API.</span></span>
 
 ![Add new API][api-management-import-new-api]
 
-<span data-ttu-id="d8f06-196">匯入 API 之後，API 的摘要頁面隨即會顯示在發行者入口網站中。</span><span class="sxs-lookup"><span data-stu-id="d8f06-196">Once the API is imported, the summary page for the API is displayed in the publisher portal.</span></span>
+<span data-ttu-id="a078d-194">一旦匯入 hello API 時，hello hello api 摘要頁面會顯示 hello 發行者入口網站中。</span><span class="sxs-lookup"><span data-stu-id="a078d-194">Once hello API is imported, hello summary page for hello API is displayed in hello publisher portal.</span></span>
 
-## <a name="call-the-api-unsuccessfully-from-the-developer-portal"></a><span data-ttu-id="d8f06-197">從開發人員入口網站無法成功呼叫 API</span><span class="sxs-lookup"><span data-stu-id="d8f06-197">Call the API unsuccessfully from the developer portal</span></span>
-<span data-ttu-id="d8f06-198">現在，API 已經匯入 API 管理，但是還無法從開發人員入口網站成功呼叫，因為使用 Azure AD 驗證保護後端服務。</span><span class="sxs-lookup"><span data-stu-id="d8f06-198">At this point, the API has been imported into API Management, but cannot yet be called successfully from the developer portal because the backend service is protected with Azure AD authentication.</span></span> <span data-ttu-id="d8f06-199">這會從視訊的 7:40 開始使用下列步驟示範。</span><span class="sxs-lookup"><span data-stu-id="d8f06-199">This is demonstrated in the video starting at 7:40 using the following steps.</span></span>
+## <a name="call-hello-api-unsuccessfully-from-hello-developer-portal"></a><span data-ttu-id="a078d-195">從 hello 開發人員入口網站未順利呼叫 hello API</span><span class="sxs-lookup"><span data-stu-id="a078d-195">Call hello API unsuccessfully from hello developer portal</span></span>
+<span data-ttu-id="a078d-196">此時，hello 應用程式開發介面已匯入 API 管理，但無法尚未成功從呼叫 hello 開發人員入口網站是 Azure AD 驗證受到 hello 後端服務。</span><span class="sxs-lookup"><span data-stu-id="a078d-196">At this point, hello API has been imported into API Management, but cannot yet be called successfully from hello developer portal because hello backend service is protected with Azure AD authentication.</span></span> <span data-ttu-id="a078d-197">這示範於 hello 視訊開始使用 hello 步驟 7:40。</span><span class="sxs-lookup"><span data-stu-id="a078d-197">This is demonstrated in hello video starting at 7:40 using hello following steps.</span></span>
 
-<span data-ttu-id="d8f06-200">從發佈者入口網站的右上角，按一下 [開發人員入口網站]  。</span><span class="sxs-lookup"><span data-stu-id="d8f06-200">Click **Developer portal** from the top-right side of the publisher portal.</span></span>
+<span data-ttu-id="a078d-198">按一下**開發人員入口網站**從 hello 右上方 hello 發行者入口網站。</span><span class="sxs-lookup"><span data-stu-id="a078d-198">Click **Developer portal** from hello top-right side of hello publisher portal.</span></span>
 
 ![開發人員入口網站][api-management-developer-portal-menu]
 
-<span data-ttu-id="d8f06-202">按一下 [API]，然後按一下 [計算機] API。</span><span class="sxs-lookup"><span data-stu-id="d8f06-202">Click **APIs** and click the **Calculator** API.</span></span>
+<span data-ttu-id="a078d-200">按一下**Api**按一下 hello**計算機**應用程式開發介面。</span><span class="sxs-lookup"><span data-stu-id="a078d-200">Click **APIs** and click hello **Calculator** API.</span></span>
 
 ![開發人員入口網站][api-management-dev-portal-apis]
 
-<span data-ttu-id="d8f06-204">按一下 [試試看] 。</span><span class="sxs-lookup"><span data-stu-id="d8f06-204">Click **Try it**.</span></span>
+<span data-ttu-id="a078d-202">按一下 [試試看] 。</span><span class="sxs-lookup"><span data-stu-id="a078d-202">Click **Try it**.</span></span>
 
 ![試試看][api-management-dev-portal-try-it]
 
-<span data-ttu-id="d8f06-206">按一下 [傳送]，注意回應狀態為 [401 未授權]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-206">Click **Send** and note the response status of **401 Unauthorized**.</span></span>
+<span data-ttu-id="a078d-204">按一下**傳送**並記下的 hello 回應狀態**401 未授權**。</span><span class="sxs-lookup"><span data-stu-id="a078d-204">Click **Send** and note hello response status of **401 Unauthorized**.</span></span>
 
 ![傳送][api-management-dev-portal-send-401]
 
-<span data-ttu-id="d8f06-208">因為後端 API 受到 Azure Active Directory 的保護，所以要求未獲授權。</span><span class="sxs-lookup"><span data-stu-id="d8f06-208">The request is unauthorized because the backend API is protected by Azure Active Directory.</span></span> <span data-ttu-id="d8f06-209">在成功呼叫 API 之前，必須先使用 OAuth 2.0 設定開發人員入口網站以授權開發人員。</span><span class="sxs-lookup"><span data-stu-id="d8f06-209">Before successfully calling the API the developer portal must be configured to authorize developers using OAuth 2.0.</span></span> <span data-ttu-id="d8f06-210">下列各節將說明這個程序。</span><span class="sxs-lookup"><span data-stu-id="d8f06-210">This process is described in the following sections.</span></span>
+<span data-ttu-id="a078d-206">hello 要求是未經授權的因為 hello 後端 API 受到 Azure Active Directory。</span><span class="sxs-lookup"><span data-stu-id="a078d-206">hello request is unauthorized because hello backend API is protected by Azure Active Directory.</span></span> <span data-ttu-id="a078d-207">在之前成功呼叫 hello API hello 開發人員入口網站必須先設定的 tooauthorize 開發人員使用 OAuth 2.0。</span><span class="sxs-lookup"><span data-stu-id="a078d-207">Before successfully calling hello API hello developer portal must be configured tooauthorize developers using OAuth 2.0.</span></span> <span data-ttu-id="a078d-208">Hello 下列各節說明此程序。</span><span class="sxs-lookup"><span data-stu-id="a078d-208">This process is described in hello following sections.</span></span>
 
-## <a name="register-the-developer-portal-as-an-aad-application"></a><span data-ttu-id="d8f06-211">將開發人員入口網站註冊為 AAD 應用程式</span><span class="sxs-lookup"><span data-stu-id="d8f06-211">Register the developer portal as an AAD application</span></span>
-<span data-ttu-id="d8f06-212">使用 OAuth 2.0 設定開發人員入口網站來授權開發人員的第一個步驟是將開發人員入口網站註冊為 AAD 應用程式。</span><span class="sxs-lookup"><span data-stu-id="d8f06-212">The first step in configuring the developer portal to authorize developers using OAuth 2.0 is to register the developer portal as an AAD application.</span></span> <span data-ttu-id="d8f06-213">這會從視訊的 8:27 開始示範。</span><span class="sxs-lookup"><span data-stu-id="d8f06-213">This is demonstrated starting at 8:27 in the video.</span></span>
+## <a name="register-hello-developer-portal-as-an-aad-application"></a><span data-ttu-id="a078d-209">Hello 開發人員入口網站註冊為 AAD 應用程式</span><span class="sxs-lookup"><span data-stu-id="a078d-209">Register hello developer portal as an AAD application</span></span>
+<span data-ttu-id="a078d-210">設定 hello 開發人員入口網站 tooauthorize 開發人員使用 OAuth 2.0 hello 第一個步驟是 tooregister hello 開發人員入口網站為 AAD 應用程式。</span><span class="sxs-lookup"><span data-stu-id="a078d-210">hello first step in configuring hello developer portal tooauthorize developers using OAuth 2.0 is tooregister hello developer portal as an AAD application.</span></span> <span data-ttu-id="a078d-211">這示範開始 8:27 hello 視訊中。</span><span class="sxs-lookup"><span data-stu-id="a078d-211">This is demonstrated starting at 8:27 in hello video.</span></span>
 
-<span data-ttu-id="d8f06-214">這段視訊第一個步驟是瀏覽到 Azure AD 租用戶，在此範例中是 **APIMDemo**，然後瀏覽到 [應用程式] 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="d8f06-214">Navigate to the Azure AD tenant from the first step of this video, in this example **APIMDemo** and navigate to the **Applications** tab.</span></span>
+<span data-ttu-id="a078d-212">瀏覽 toohello Azure AD 租用戶的這段影片中，在此範例中的 hello 第一個步驟中**APIMDemo**並瀏覽 toohello**應用程式** 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="a078d-212">Navigate toohello Azure AD tenant from hello first step of this video, in this example **APIMDemo** and navigate toohello **Applications** tab.</span></span>
 
 ![新增應用程式][api-management-aad-new-application-devportal]
 
-<span data-ttu-id="d8f06-216">按一下 [新增] 按鈕來建立新 Azure Active Directory 應用程式，並選擇 [新增我的組織正在開發的應用程式]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-216">Click the **Add** button to create a new Azure Active Directory application, and choose **Add an application my organization is developing**.</span></span>
+<span data-ttu-id="a078d-214">按一下 hello**新增**按鈕 toocreate 新的 Azure Active Directory 應用程式，然後選擇**加入我組織正在開發的應用程式**。</span><span class="sxs-lookup"><span data-stu-id="a078d-214">Click hello **Add** button toocreate a new Azure Active Directory application, and choose **Add an application my organization is developing**.</span></span>
 
 ![新增應用程式][api-management-new-aad-application-menu]
 
-<span data-ttu-id="d8f06-218">選擇 [Web 應用程式和/或 Web API]、輸入名稱，然後按下一步箭頭。</span><span class="sxs-lookup"><span data-stu-id="d8f06-218">Choose **Web application and/or Web API**, enter a name, and click the next arrow.</span></span> <span data-ttu-id="d8f06-219">在此範例中使用 **APIMDeveloperPortal**。</span><span class="sxs-lookup"><span data-stu-id="d8f06-219">In this example **APIMDeveloperPortal** is used.</span></span>
+<span data-ttu-id="a078d-216">選擇**Web 應用程式和/或 Web API**，輸入名稱，然後按一下 hello 下一步箭頭。</span><span class="sxs-lookup"><span data-stu-id="a078d-216">Choose **Web application and/or Web API**, enter a name, and click hello next arrow.</span></span> <span data-ttu-id="a078d-217">在此範例中使用 **APIMDeveloperPortal**。</span><span class="sxs-lookup"><span data-stu-id="a078d-217">In this example **APIMDeveloperPortal** is used.</span></span>
 
 ![新增應用程式][api-management-aad-new-application-devportal-1]
 
-<span data-ttu-id="d8f06-221">對 [登入 URL] 輸入您 API 管理服務的 URL，並且附加 `/signin`。</span><span class="sxs-lookup"><span data-stu-id="d8f06-221">For **Sign-on URL** enter the URL of your API Management service and append `/signin`.</span></span> <span data-ttu-id="d8f06-222">在此範例中使用 `https://contoso5.portal.azure-api.net/signin` 。</span><span class="sxs-lookup"><span data-stu-id="d8f06-222">In this example `https://contoso5.portal.azure-api.net/signin` is used.</span></span>
+<span data-ttu-id="a078d-219">如**登入 URL**輸入您的 API 管理服務的 hello URL，然後附加`/signin`。</span><span class="sxs-lookup"><span data-stu-id="a078d-219">For **Sign-on URL** enter hello URL of your API Management service and append `/signin`.</span></span> <span data-ttu-id="a078d-220">在此範例中使用 `https://contoso5.portal.azure-api.net/signin` 。</span><span class="sxs-lookup"><span data-stu-id="a078d-220">In this example `https://contoso5.portal.azure-api.net/signin` is used.</span></span>
 
-<span data-ttu-id="d8f06-223">對 [應用程式識別碼 URL] 輸入您 API 管理服務的 URL，並且附加一些唯一字元。</span><span class="sxs-lookup"><span data-stu-id="d8f06-223">For **App Id URL** enter the URL of your API Management service and append some unique characters.</span></span> <span data-ttu-id="d8f06-224">這些字元可以是任何想要的字元，在此範例中使用 `https://contoso5.portal.azure-api.net/dp`。</span><span class="sxs-lookup"><span data-stu-id="d8f06-224">These can be any desired characters and in this example `https://contoso5.portal.azure-api.net/dp` is used.</span></span> <span data-ttu-id="d8f06-225">設定想要的 [應用程式屬性] 之後，按一下核取記號以建立應用程式。</span><span class="sxs-lookup"><span data-stu-id="d8f06-225">When the  desired **App properties** are configured, click the check mark to create the application.</span></span>
+<span data-ttu-id="a078d-221">如**應用程式識別碼 URL**輸入您的 API 管理服務的 hello URL，然後附加一些獨特的字元。</span><span class="sxs-lookup"><span data-stu-id="a078d-221">For **App Id URL** enter hello URL of your API Management service and append some unique characters.</span></span> <span data-ttu-id="a078d-222">這些字元可以是任何想要的字元，在此範例中使用 `https://contoso5.portal.azure-api.net/dp`。</span><span class="sxs-lookup"><span data-stu-id="a078d-222">These can be any desired characters and in this example `https://contoso5.portal.azure-api.net/dp` is used.</span></span> <span data-ttu-id="a078d-223">當 hello 預期**應用程式屬性**所設定，請按一下 hello 核取記號 toocreate hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="a078d-223">When hello  desired **App properties** are configured, click hello check mark toocreate hello application.</span></span>
 
 ![新增應用程式][api-management-aad-new-application-devportal-2]
 
-## <a name="configure-an-api-management-oauth-20-authorization-server"></a><span data-ttu-id="d8f06-227">設定 API 管理 OAuth 2.0 授權伺服器</span><span class="sxs-lookup"><span data-stu-id="d8f06-227">Configure an API Management OAuth 2.0 authorization server</span></span>
-<span data-ttu-id="d8f06-228">下一步是在 API 管理中設定 OAuth 2.0 授權伺服器。</span><span class="sxs-lookup"><span data-stu-id="d8f06-228">The next step is to configure an OAuth 2.0 authorization server in API Management.</span></span> <span data-ttu-id="d8f06-229">這個步驟會從視訊的 9:43 開始示範。</span><span class="sxs-lookup"><span data-stu-id="d8f06-229">This step is demonstrated in the video starting at 9:43.</span></span>
+## <a name="configure-an-api-management-oauth-20-authorization-server"></a><span data-ttu-id="a078d-225">設定 API 管理 OAuth 2.0 授權伺服器</span><span class="sxs-lookup"><span data-stu-id="a078d-225">Configure an API Management OAuth 2.0 authorization server</span></span>
+<span data-ttu-id="a078d-226">hello 下一個步驟是 tooconfigure API 管理中的 OAuth 2.0 授權伺服器。</span><span class="sxs-lookup"><span data-stu-id="a078d-226">hello next step is tooconfigure an OAuth 2.0 authorization server in API Management.</span></span> <span data-ttu-id="a078d-227">此步驟會示範 hello 視訊開始 9:43。</span><span class="sxs-lookup"><span data-stu-id="a078d-227">This step is demonstrated in hello video starting at 9:43.</span></span>
 
-<span data-ttu-id="d8f06-230">從左側的 [API 管理] 功能表按一下 [安全性]，然後依序按一下 [OAuth 2.0] 和 [新增授權伺服器]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-230">Click **Security** from the API Management menu on the left, click **OAuth 2.0**, and then click **Add authorization** server.</span></span>
+<span data-ttu-id="a078d-228">按一下**安全性**hello API 管理 hello 左側，按一下功能表**OAuth 2.0**，然後按一下**新增授權**伺服器。</span><span class="sxs-lookup"><span data-stu-id="a078d-228">Click **Security** from hello API Management menu on hello left, click **OAuth 2.0**, and then click **Add authorization** server.</span></span>
 
 ![新增授權伺服器][api-management-add-authorization-server]
 
-<span data-ttu-id="d8f06-232">在 [名稱] 和 [說明] 欄位中輸入名稱和選擇性的說明。</span><span class="sxs-lookup"><span data-stu-id="d8f06-232">Enter a name and an optional description in the **Name** and **Description** fields.</span></span> <span data-ttu-id="d8f06-233">這些欄位是用來在 API 管理服務執行個體中識別 OAuth 2.0 授權伺服器。</span><span class="sxs-lookup"><span data-stu-id="d8f06-233">These fields are used to identify the OAuth 2.0 authorization server within the API Management service instance.</span></span> <span data-ttu-id="d8f06-234">在此範例中使用**授權伺服器示範**。</span><span class="sxs-lookup"><span data-stu-id="d8f06-234">In this example **Authorization server demo** is used.</span></span> <span data-ttu-id="d8f06-235">稍後當您指定要用於 API 驗證的 OAuth 2.0 伺服器時，您要選取這個名稱。</span><span class="sxs-lookup"><span data-stu-id="d8f06-235">Later when you specify an OAuth 2.0 server to be used for authentication for an API, you will select this name.</span></span>
+<span data-ttu-id="a078d-230">中輸入名稱和選擇性描述 hello**名稱**和**描述**欄位。</span><span class="sxs-lookup"><span data-stu-id="a078d-230">Enter a name and an optional description in hello **Name** and **Description** fields.</span></span> <span data-ttu-id="a078d-231">這些欄位是 hello API 管理服務執行個體內使用的 tooidentify hello OAuth 2.0 授權伺服器。</span><span class="sxs-lookup"><span data-stu-id="a078d-231">These fields are used tooidentify hello OAuth 2.0 authorization server within hello API Management service instance.</span></span> <span data-ttu-id="a078d-232">在此範例中使用**授權伺服器示範**。</span><span class="sxs-lookup"><span data-stu-id="a078d-232">In this example **Authorization server demo** is used.</span></span> <span data-ttu-id="a078d-233">稍後當您指定用來驗證應用程式開發介面的 OAuth 2.0 伺服器 toobe，您會選取此名稱。</span><span class="sxs-lookup"><span data-stu-id="a078d-233">Later when you specify an OAuth 2.0 server toobe used for authentication for an API, you will select this name.</span></span>
 
-<span data-ttu-id="d8f06-236">針對 [用戶端註冊頁面 URL]**`http://localhost` 輸入如** 的預留位置值。</span><span class="sxs-lookup"><span data-stu-id="d8f06-236">For the **Client registration page URL** enter a placeholder value such as `http://localhost`.</span></span>  <span data-ttu-id="d8f06-237">[用戶端註冊頁面 URL] 指向使用者可用來建立和設定其對 OAuth 2.0 提供者之專屬帳戶的頁面，而提供者支援使用者帳戶管理。</span><span class="sxs-lookup"><span data-stu-id="d8f06-237">The **Client registration page URL** points to the page that users can use to create and configure their own accounts for OAuth 2.0 providers that support user management of accounts.</span></span> <span data-ttu-id="d8f06-238">在此範例中，使用者沒有建立和設定自己的帳戶，因此使用預留位置。</span><span class="sxs-lookup"><span data-stu-id="d8f06-238">In this example users do not create and configure their own accounts so a placeholder is used.</span></span>
+<span data-ttu-id="a078d-234">Hello**用戶端註冊頁面 URL**輸入預留位置的值，例如`http://localhost`。</span><span class="sxs-lookup"><span data-stu-id="a078d-234">For hello **Client registration page URL** enter a placeholder value such as `http://localhost`.</span></span>  <span data-ttu-id="a078d-235">hello**用戶端註冊頁面 URL**點 toohello 頁面上的使用者可以使用 toocreate 並且支援帳戶的使用者管理的 OAuth 2.0 提供者設定自己的帳戶。</span><span class="sxs-lookup"><span data-stu-id="a078d-235">hello **Client registration page URL** points toohello page that users can use toocreate and configure their own accounts for OAuth 2.0 providers that support user management of accounts.</span></span> <span data-ttu-id="a078d-236">在此範例中，使用者沒有建立和設定自己的帳戶，因此使用預留位置。</span><span class="sxs-lookup"><span data-stu-id="a078d-236">In this example users do not create and configure their own accounts so a placeholder is used.</span></span>
 
 ![新增授權伺服器][api-management-add-authorization-server-1]
 
-<span data-ttu-id="d8f06-240">接著，指定 [授權端點 URL] 和 [權杖端點 URL]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-240">Next, specify **Authorization endpoint URL** and **Token endpoint URL**.</span></span>
+<span data-ttu-id="a078d-238">接著，指定 [授權端點 URL] 和 [權杖端點 URL]。</span><span class="sxs-lookup"><span data-stu-id="a078d-238">Next, specify **Authorization endpoint URL** and **Token endpoint URL**.</span></span>
 
 ![授權伺服器][api-management-add-authorization-server-1a]
 
-<span data-ttu-id="d8f06-242">這些值可以從您為開發人員入口網站建立的 AAD 應用程式的 [App 端點]  頁面擷取。</span><span class="sxs-lookup"><span data-stu-id="d8f06-242">These values can be retrieved from the **App Endpoints** page of the AAD application you created for the developer portal.</span></span> <span data-ttu-id="d8f06-243">若要存取端點，請瀏覽到 AAD 應用程式的 [設定] 索引標籤，然後按一下 [檢視端點]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-243">To access the endpoints navigate to the **Configure** tab for the AAD application and click **View endpoints**.</span></span>
+<span data-ttu-id="a078d-240">這些值可以取自 hello**應用程式端點**hello hello 開發人員入口網站建立 AAD 應用程式頁面。</span><span class="sxs-lookup"><span data-stu-id="a078d-240">These values can be retrieved from hello **App Endpoints** page of hello AAD application you created for hello developer portal.</span></span> <span data-ttu-id="a078d-241">tooaccess hello 端點瀏覽 toohello**設定**hello AAD 應用程式索引標籤上，按一下 **檢視端點**。</span><span class="sxs-lookup"><span data-stu-id="a078d-241">tooaccess hello endpoints navigate toohello **Configure** tab for hello AAD application and click **View endpoints**.</span></span>
 
 ![應用程式][api-management-aad-devportal-application]
 
 ![檢視端點][api-management-aad-view-endpoints]
 
-<span data-ttu-id="d8f06-246">複製 [OAuth 2.0 授權端點] 並貼到 [授權端點 URL] 文字方塊中。</span><span class="sxs-lookup"><span data-stu-id="d8f06-246">Copy the **OAuth 2.0 authorization endpoint** and paste it into the **Authorization endpoint URL** textbox.</span></span>
+<span data-ttu-id="a078d-244">複製 hello **OAuth 2.0 授權端點**並將它貼到 hello**授權端點 URL**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="a078d-244">Copy hello **OAuth 2.0 authorization endpoint** and paste it into hello **Authorization endpoint URL** textbox.</span></span>
 
 ![新增授權伺服器][api-management-add-authorization-server-2]
 
-<span data-ttu-id="d8f06-248">複製 [OAuth 2.0 權杖端點] 並貼到 [權杖端點 URL] 文字方塊中。</span><span class="sxs-lookup"><span data-stu-id="d8f06-248">Copy the **OAuth 2.0 token endpoint** and paste it into the **Token endpoint URL** textbox.</span></span>
+<span data-ttu-id="a078d-246">複製 hello **OAuth 2.0 權杖端點**並將它貼到 hello**語彙基元端點 URL**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="a078d-246">Copy hello **OAuth 2.0 token endpoint** and paste it into hello **Token endpoint URL** textbox.</span></span>
 
 ![新增授權伺服器][api-management-add-authorization-server-2a]
 
-<span data-ttu-id="d8f06-250">除了貼上權杖端點，請新增名為 **resource** 的其他主體參數，值則使用發佈 Visual Studio 專案時建立的後端服務的 AAD 應用程式的 [應用程式識別碼 URI]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-250">In addition to pasting in the token endpoint, add an additional body parameter named **resource** and for the value use the **App Id URI** from the AAD application for the backend service that was created when the Visual Studio project was published.</span></span>
+<span data-ttu-id="a078d-248">此外 toopasting hello 權杖端點，新增名為的其他主體參數**資源**並用 hello 值 hello**應用程式識別碼 URI**從 hello hello 後端服務的 AAD 應用程式建立發行 hello Visual Studio 專案時。</span><span class="sxs-lookup"><span data-stu-id="a078d-248">In addition toopasting in hello token endpoint, add an additional body parameter named **resource** and for hello value use hello **App Id URI** from hello AAD application for hello backend service that was created when hello Visual Studio project was published.</span></span>
 
 ![App 識別碼 URI][api-management-aad-sso-uri]
 
-<span data-ttu-id="d8f06-252">接著，指定用戶端認證。</span><span class="sxs-lookup"><span data-stu-id="d8f06-252">Next, specify the client credentials.</span></span> <span data-ttu-id="d8f06-253">這些是您想要存取之資源 (在此案例中是開發人員入口網站) 的認證。</span><span class="sxs-lookup"><span data-stu-id="d8f06-253">These are the credentials for the resource you want to access, in this case the developer portal.</span></span>
+<span data-ttu-id="a078d-250">接下來，指定 hello 用戶端認證。</span><span class="sxs-lookup"><span data-stu-id="a078d-250">Next, specify hello client credentials.</span></span> <span data-ttu-id="a078d-251">這些是您想要的 hello 資源的 hello 認證 tooaccess，在此情況下 hello 開發人員入口網站。</span><span class="sxs-lookup"><span data-stu-id="a078d-251">These are hello credentials for hello resource you want tooaccess, in this case hello developer portal.</span></span>
 
 ![用戶端認證][api-management-client-credentials]
 
-<span data-ttu-id="d8f06-255">若要取得 [用戶端識別碼]，請瀏覽到開發人員入口網站之 AAD 應用程式的 [設定] 索引標籤，然後複製 [用戶端識別碼]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-255">To get the **Client Id**, navigate to the **Configure** tab of the AAD application for the developer portal and copy the **Client Id**.</span></span>
+<span data-ttu-id="a078d-253">tooget hello**用戶端識別碼**，瀏覽 toohello**設定**hello hello 開發人員入口網站和複製 hello 的 AAD 應用程式 索引標籤**用戶端識別碼**。</span><span class="sxs-lookup"><span data-stu-id="a078d-253">tooget hello **Client Id**, navigate toohello **Configure** tab of hello AAD application for hello developer portal and copy hello **Client Id**.</span></span>
 
-<span data-ttu-id="d8f06-256">若要取得 [用戶端密碼]，請按一下 [金鑰] 區段中的 [選取持續時間] 下拉式清單，然後指定間隔。</span><span class="sxs-lookup"><span data-stu-id="d8f06-256">To get the **Client Secret** click the **Select duration** drop-down in the **Keys** section and specify an interval.</span></span> <span data-ttu-id="d8f06-257">在此範例中使用 1 年。</span><span class="sxs-lookup"><span data-stu-id="d8f06-257">In this example 1 year is used.</span></span>
+<span data-ttu-id="a078d-254">tooget hello**用戶端密碼**按一下 hello**選取持續時間**下拉式清單中 hello**金鑰**區段，並指定間隔。</span><span class="sxs-lookup"><span data-stu-id="a078d-254">tooget hello **Client Secret** click hello **Select duration** drop-down in hello **Keys** section and specify an interval.</span></span> <span data-ttu-id="a078d-255">在此範例中使用 1 年。</span><span class="sxs-lookup"><span data-stu-id="a078d-255">In this example 1 year is used.</span></span>
 
 ![用戶端識別碼][api-management-aad-client-id]
 
-<span data-ttu-id="d8f06-259">按一下 [ **儲存** ] 以儲存組態並顯示金鑰。</span><span class="sxs-lookup"><span data-stu-id="d8f06-259">Click **Save** to save the configuration and display the key.</span></span> 
+<span data-ttu-id="a078d-257">按一下**儲存**toosave hello 組態和顯示 hello 金鑰。</span><span class="sxs-lookup"><span data-stu-id="a078d-257">Click **Save** toosave hello configuration and display hello key.</span></span> 
 
 > [!IMPORTANT]
-> <span data-ttu-id="d8f06-260">記下此金鑰。</span><span class="sxs-lookup"><span data-stu-id="d8f06-260">Make a note of this key.</span></span> <span data-ttu-id="d8f06-261">關閉 Azure Active Directory 組態視窗之後，即無法再次顯示金鑰。</span><span class="sxs-lookup"><span data-stu-id="d8f06-261">Once you close the Azure Active Directory configuration window, the key cannot be displayed again.</span></span>
+> <span data-ttu-id="a078d-258">記下此金鑰。</span><span class="sxs-lookup"><span data-stu-id="a078d-258">Make a note of this key.</span></span> <span data-ttu-id="a078d-259">一旦您關閉 hello Azure Active Directory 設定 視窗中，無法再次顯示 hello 索引鍵。</span><span class="sxs-lookup"><span data-stu-id="a078d-259">Once you close hello Azure Active Directory configuration window, hello key cannot be displayed again.</span></span>
 > 
 > 
 
-<span data-ttu-id="d8f06-262">將金鑰複製到剪貼簿、切換回發佈者入口網站、將金鑰貼入 [用戶端密碼] 文字方塊中，然後按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-262">Copy the key to the clipboard, switch back to the publisher portal, paste the key into the **Client Secret** textbox, and click **Save**.</span></span>
+<span data-ttu-id="a078d-260">複製 hello 金鑰 toohello 剪貼簿，交換器後 toohello 發行者入口網站將 hello 金鑰貼至 hello**用戶端密碼**文字方塊中，按一下 **儲存**。</span><span class="sxs-lookup"><span data-stu-id="a078d-260">Copy hello key toohello clipboard, switch back toohello publisher portal, paste hello key into hello **Client Secret** textbox, and click **Save**.</span></span>
 
 ![新增授權伺服器][api-management-add-authorization-server-3]
 
-<span data-ttu-id="d8f06-264">緊接在用戶端認證後面的是授權碼授與。</span><span class="sxs-lookup"><span data-stu-id="d8f06-264">Immediately following the client credentials is an authorization code grant.</span></span> <span data-ttu-id="d8f06-265">複製此授權碼並切換回 Azure AD 開發人員入口網站應用程式設定頁面，將授權授與貼入 [回覆 URL] 欄位，然後再按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-265">Copy this authorization code and switch back to your Azure AD developer portal application configure page, and paste the authorization grant into the **Reply URL** field, and click **Save** again.</span></span>
+<span data-ttu-id="a078d-262">緊接 hello 用戶端認證是授權碼授與。</span><span class="sxs-lookup"><span data-stu-id="a078d-262">Immediately following hello client credentials is an authorization code grant.</span></span> <span data-ttu-id="a078d-263">複製此授權程式碼和參數後 tooyour Azure AD 開發人員入口網站應用程式設定 頁面上，並將 hello 授權授與貼入 hello**回覆 URL**欄位，然後按一下**儲存**一次。</span><span class="sxs-lookup"><span data-stu-id="a078d-263">Copy this authorization code and switch back tooyour Azure AD developer portal application configure page, and paste hello authorization grant into hello **Reply URL** field, and click **Save** again.</span></span>
 
 ![回覆 URL][api-management-aad-reply-url]
 
-<span data-ttu-id="d8f06-267">下一步是設定開發人員入口網站 AAD 應用程式的權限。</span><span class="sxs-lookup"><span data-stu-id="d8f06-267">The next step is to configure the permissions for the developer portal AAD application.</span></span> <span data-ttu-id="d8f06-268">按一下 [應用程式權限]，然後核取 [讀取目錄資料] 的方塊。</span><span class="sxs-lookup"><span data-stu-id="d8f06-268">Click **Application Permissions** and check the box for **Read directory data**.</span></span> <span data-ttu-id="d8f06-269">按一下 [儲存] 以儲存這項變更，然後按一下 [新增應用程式]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-269">Click **Save** to save this change, and then click **Add application**.</span></span>
+<span data-ttu-id="a078d-265">hello 下一個步驟是 tooconfigure hello hello 開發人員入口網站 AAD 應用程式權限。</span><span class="sxs-lookup"><span data-stu-id="a078d-265">hello next step is tooconfigure hello permissions for hello developer portal AAD application.</span></span> <span data-ttu-id="a078d-266">按一下**應用程式權限**和核取方塊 hello**讀取目錄資料**。</span><span class="sxs-lookup"><span data-stu-id="a078d-266">Click **Application Permissions** and check hello box for **Read directory data**.</span></span> <span data-ttu-id="a078d-267">按一下**儲存**toosave 這變更此項目，然後再按一下**新增應用程式**。</span><span class="sxs-lookup"><span data-stu-id="a078d-267">Click **Save** toosave this change, and then click **Add application**.</span></span>
 
 ![新增權限][api-management-add-devportal-permissions]
 
-<span data-ttu-id="d8f06-271">按一下搜尋圖示，在 [開頭為] 方塊中輸入 **APIM**，選取 [APIMAADDemo]，然後按一下核取記號儲存。</span><span class="sxs-lookup"><span data-stu-id="d8f06-271">Click the search icon, type **APIM** into the Starting with box, select **APIMAADDemo**, and click the check mark to save.</span></span>
+<span data-ttu-id="a078d-269">按一下 hello 搜尋圖示，型別**APIM** hello 到開頭 方塊中，選取**APIMAADDemo**，按一下 hello 核取記號 toosave。</span><span class="sxs-lookup"><span data-stu-id="a078d-269">Click hello search icon, type **APIM** into hello Starting with box, select **APIMAADDemo**, and click hello check mark toosave.</span></span>
 
 ![新增權限][api-management-aad-add-app-permissions]
 
-<span data-ttu-id="d8f06-273">按一下 [APIMAADDemo] 的 [委派權限]，核取 [存取 APIMAADDemo] 的方塊，然後按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-273">Click **Delegated Permissions** for **APIMAADDemo** and check the box for **Access APIMAADDemo**, and click **Save**.</span></span> <span data-ttu-id="d8f06-274">這樣就允許開發人員入口網站應用程式存取後端服務。</span><span class="sxs-lookup"><span data-stu-id="d8f06-274">This allows the developer portal application to access the backend service.</span></span>
+<span data-ttu-id="a078d-271">按一下**委派的權限**如**APIMAADDemo**和核取方塊 hello**存取 APIMAADDemo**，然後按一下**儲存**。</span><span class="sxs-lookup"><span data-stu-id="a078d-271">Click **Delegated Permissions** for **APIMAADDemo** and check hello box for **Access APIMAADDemo**, and click **Save**.</span></span> <span data-ttu-id="a078d-272">這可讓 hello 開發人員入口網站應用程式 tooaccess hello 後端服務。</span><span class="sxs-lookup"><span data-stu-id="a078d-272">This allows hello developer portal application tooaccess hello backend service.</span></span>
 
 ![新增權限][api-management-aad-add-delegated-permissions]
 
-## <a name="enable-oauth-20-user-authorization-for-the-calculator-api"></a><span data-ttu-id="d8f06-276">啟用計算機 API 的 OAuth 2.0 使用者授權</span><span class="sxs-lookup"><span data-stu-id="d8f06-276">Enable OAuth 2.0 user authorization for the Calculator API</span></span>
-<span data-ttu-id="d8f06-277">現在已經設定好 OAuth 2.0 伺服器，您可以在安全性設定中為您的 API 指定此伺服器。</span><span class="sxs-lookup"><span data-stu-id="d8f06-277">Now that the OAuth 2.0 server is configured, you can specify it in the security settings for your API.</span></span> <span data-ttu-id="d8f06-278">這個步驟會從視訊的 14:30 開始示範。</span><span class="sxs-lookup"><span data-stu-id="d8f06-278">This step is demonstrated in the video starting at 14:30.</span></span>
+## <a name="enable-oauth-20-user-authorization-for-hello-calculator-api"></a><span data-ttu-id="a078d-274">啟用 hello [小算盤] 應用程式開發介面的 OAuth 2.0 使用者授權</span><span class="sxs-lookup"><span data-stu-id="a078d-274">Enable OAuth 2.0 user authorization for hello Calculator API</span></span>
+<span data-ttu-id="a078d-275">既然 hello OAuth 2.0 的伺服器設定，您可以指定它在您的應用程式開發介面的 hello 安全性設定。</span><span class="sxs-lookup"><span data-stu-id="a078d-275">Now that hello OAuth 2.0 server is configured, you can specify it in hello security settings for your API.</span></span> <span data-ttu-id="a078d-276">此步驟會示範 hello 視訊開始： 14:30。</span><span class="sxs-lookup"><span data-stu-id="a078d-276">This step is demonstrated in hello video starting at 14:30.</span></span>
 
-<span data-ttu-id="d8f06-279">按一下左側功能表中的 [API]，然後按一下 [計算機] 來檢視和設定其設定。</span><span class="sxs-lookup"><span data-stu-id="d8f06-279">Click **APIs** in the left menu, and click  **Calculator** to view and configure its settings.</span></span>
+<span data-ttu-id="a078d-277">按一下**Api**在 hello 左的窗格中，然後按一下**計算機**tooview 並設定其設定。</span><span class="sxs-lookup"><span data-stu-id="a078d-277">Click **APIs** in hello left menu, and click  **Calculator** tooview and configure its settings.</span></span>
 
 ![計算機 API][api-management-calc-api]
 
-<span data-ttu-id="d8f06-281">瀏覽到 [安全性] 索引標籤，核取 [OAuth 2.0] 核取方塊，從 [授權伺服器] 下拉式清單選取想要的授權伺服器，然後按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-281">Navigate to the **Security** tab, check the **OAuth 2.0** checkbox, select the desired authorization server from the **Authorization server** drop-down, and click **Save**.</span></span>
+<span data-ttu-id="a078d-279">瀏覽 toohello**安全性**索引標籤上，檢查 hello **OAuth 2.0**核取方塊，選取 hello 所需的授權伺服器從 hello**授權伺服器**下拉式清單中，按一下**儲存**。</span><span class="sxs-lookup"><span data-stu-id="a078d-279">Navigate toohello **Security** tab, check hello **OAuth 2.0** checkbox, select hello desired authorization server from hello **Authorization server** drop-down, and click **Save**.</span></span>
 
 ![計算機 API][api-management-enable-aad-calculator]
 
-## <a name="successfully-call-the-calculator-api-from-the-developer-portal"></a><span data-ttu-id="d8f06-283">從開發人員入口網站成功呼叫計算機 API</span><span class="sxs-lookup"><span data-stu-id="d8f06-283">Successfully call the Calculator API from the developer portal</span></span>
-<span data-ttu-id="d8f06-284">現在已經在 API 上設定好 OAuth 2.0 授權，就可以從開發人員中心成功呼叫其運算。</span><span class="sxs-lookup"><span data-stu-id="d8f06-284">Now that the OAuth 2.0 authorization is configured on the API, its operations can be successfully called from the developer center.</span></span> <span data-ttu-id="d8f06-285">這個步驟會從視訊的 15:00 開始示範。</span><span class="sxs-lookup"><span data-stu-id="d8f06-285">THis step is demonstrated in the video starting at 15:00.</span></span>
+## <a name="successfully-call-hello-calculator-api-from-hello-developer-portal"></a><span data-ttu-id="a078d-281">已成功從 hello 開發人員入口網站中呼叫 hello [小算盤] 應用程式開發介面</span><span class="sxs-lookup"><span data-stu-id="a078d-281">Successfully call hello Calculator API from hello developer portal</span></span>
+<span data-ttu-id="a078d-282">既然 hello 應用程式開發介面上設定了 hello OAuth 2.0 授權，其作業可以順利呼叫從 hello 開發人員中心。</span><span class="sxs-lookup"><span data-stu-id="a078d-282">Now that hello OAuth 2.0 authorization is configured on hello API, its operations can be successfully called from hello developer center.</span></span> <span data-ttu-id="a078d-283">此步驟會示範 hello 視訊開始 15:00。</span><span class="sxs-lookup"><span data-stu-id="a078d-283">THis step is demonstrated in hello video starting at 15:00.</span></span>
 
-<span data-ttu-id="d8f06-286">瀏覽回到開發人員入口網站中計算機服務的 [相加兩個整數] 運算，然後按一下 [試試看]。</span><span class="sxs-lookup"><span data-stu-id="d8f06-286">Navigate back to the **Add two integers** operation of the calculator service in the developer portal and click **Try it**.</span></span> <span data-ttu-id="d8f06-287">請注意，在 [授權]  區段中的新項目對應到您剛才加入的授權伺服器。</span><span class="sxs-lookup"><span data-stu-id="d8f06-287">Note the new item in the **Authorization** section corresponding to the authorization server you just added.</span></span>
+<span data-ttu-id="a078d-284">瀏覽後 toohello**加入兩個整數**hello 計算機服務中的 hello 開發人員入口網站按一下 操作的**試試**。</span><span class="sxs-lookup"><span data-stu-id="a078d-284">Navigate back toohello **Add two integers** operation of hello calculator service in hello developer portal and click **Try it**.</span></span> <span data-ttu-id="a078d-285">請注意 hello 中的新項目 hello**授權**區段您剛才加入的對應 toohello 授權伺服器。</span><span class="sxs-lookup"><span data-stu-id="a078d-285">Note hello new item in hello **Authorization** section corresponding toohello authorization server you just added.</span></span>
 
 ![計算機 API][api-management-calc-authorization-server]
 
-<span data-ttu-id="d8f06-289">從授權下拉式清單選取 [授權碼]  ，然後輸入要使用的帳戶認證。</span><span class="sxs-lookup"><span data-stu-id="d8f06-289">Select **Authorization code** from the authorization drop-down list and enter the credentials of the account to use.</span></span> <span data-ttu-id="d8f06-290">如果您已經使用帳戶登入，就不會提示您。</span><span class="sxs-lookup"><span data-stu-id="d8f06-290">If you are already signed in with the account you may not be prompted.</span></span>
+<span data-ttu-id="a078d-287">選取**授權碼**從 hello 授權下拉式清單，然後輸入 hello 帳戶 toouse hello 認證。</span><span class="sxs-lookup"><span data-stu-id="a078d-287">Select **Authorization code** from hello authorization drop-down list and enter hello credentials of hello account toouse.</span></span> <span data-ttu-id="a078d-288">如果您已經登入 hello 可能不會提示您的帳戶。</span><span class="sxs-lookup"><span data-stu-id="a078d-288">If you are already signed in with hello account you may not be prompted.</span></span>
 
 ![計算機 API][api-management-devportal-authorization-code]
 
-<span data-ttu-id="d8f06-292">按一下 [傳送]，注意 [回應狀態] 為 [200 確定]，以及回應內容中的運算結果。</span><span class="sxs-lookup"><span data-stu-id="d8f06-292">Click **Send** and note the **Response status** of **200 OK** and the results of the operation in the response content.</span></span>
+<span data-ttu-id="a078d-290">按一下**傳送**和附註 hello**回應狀態**的**200 確定**和 hello hello 回應的內容中的 hello 作業的結果。</span><span class="sxs-lookup"><span data-stu-id="a078d-290">Click **Send** and note hello **Response status** of **200 OK** and hello results of hello operation in hello response content.</span></span>
 
 ![計算機 API][api-management-devportal-response]
 
-## <a name="configure-a-desktop-application-to-call-the-api"></a><span data-ttu-id="d8f06-294">設定桌面應用程式呼叫 API</span><span class="sxs-lookup"><span data-stu-id="d8f06-294">Configure a desktop application to call the API</span></span>
-<span data-ttu-id="d8f06-295">視訊中的下一個程序從 16:30 開始，設定簡單的桌面應用程式呼叫 API。</span><span class="sxs-lookup"><span data-stu-id="d8f06-295">The next procedure in the video starts at 16:30 and configures a simple desktop application to call the API.</span></span> <span data-ttu-id="d8f06-296">第一個步驟是在 Azure AD 中註冊桌面應用程式，並且讓它能夠存取目錄和後端服務。</span><span class="sxs-lookup"><span data-stu-id="d8f06-296">The first step is to register the desktop application in Azure AD and give it access to the directory and to the backend service.</span></span> <span data-ttu-id="d8f06-297">在 18:25 處示範桌面應用程式呼叫計算機 API 的運算。</span><span class="sxs-lookup"><span data-stu-id="d8f06-297">At 18:25 there is a demonstration of the desktop application calling an operation on the calculator API.</span></span>
+## <a name="configure-a-desktop-application-toocall-hello-api"></a><span data-ttu-id="a078d-292">設定桌面應用程式 toocall hello 應用程式開發介面</span><span class="sxs-lookup"><span data-stu-id="a078d-292">Configure a desktop application toocall hello API</span></span>
+<span data-ttu-id="a078d-293">hello hello 視訊中的下一個程序會從 16:30，然後設定簡單的桌面應用程式 toocall hello 應用程式開發介面。</span><span class="sxs-lookup"><span data-stu-id="a078d-293">hello next procedure in hello video starts at 16:30 and configures a simple desktop application toocall hello API.</span></span> <span data-ttu-id="a078d-294">hello 第一個步驟是 tooregister hello 桌面應用程式在 Azure AD 中的，並提供存取 toohello 目錄和 toohello 後端服務。</span><span class="sxs-lookup"><span data-stu-id="a078d-294">hello first step is tooregister hello desktop application in Azure AD and give it access toohello directory and toohello backend service.</span></span> <span data-ttu-id="a078d-295">18:25 在沒有呼叫 hello [小算盤] 應用程式開發介面作業 hello 桌面應用程式的示範。</span><span class="sxs-lookup"><span data-stu-id="a078d-295">At 18:25 there is a demonstration of hello desktop application calling an operation on hello calculator API.</span></span>
 
-## <a name="configure-a-jwt-validation-policy-to-pre-authorize-requests"></a><span data-ttu-id="d8f06-298">設定 JWT 驗證原則來預先授權要求</span><span class="sxs-lookup"><span data-stu-id="d8f06-298">Configure a JWT validation policy to pre-authorize requests</span></span>
-<span data-ttu-id="d8f06-299">最後的程序從視訊的 20:48 開始，示範如何使用 [驗證 JWT](https://msdn.microsoft.com/library/azure/034febe3-465f-4840-9fc6-c448ef520b0f#ValidateJWT) 原則，藉由驗證每個傳入要求的存取權杖來預先授權要求。</span><span class="sxs-lookup"><span data-stu-id="d8f06-299">The final procedure in the video starts at 20:48 and shows you how to use the [Validate JWT](https://msdn.microsoft.com/library/azure/034febe3-465f-4840-9fc6-c448ef520b0f#ValidateJWT) policy to pre-authorize requests by validating the access tokens of each incoming request.</span></span> <span data-ttu-id="d8f06-300">如果要求沒有經過「驗證 JWT」原則驗證，要求就會被 API 管理封鎖而不會傳入後端。</span><span class="sxs-lookup"><span data-stu-id="d8f06-300">If the request is not validated by the Validate JWT policy, the request is blocked by API Management and is not passed along to the backend.</span></span>
+## <a name="configure-a-jwt-validation-policy-toopre-authorize-requests"></a><span data-ttu-id="a078d-296">設定 JWT 驗證原則 toopre-授權要求</span><span class="sxs-lookup"><span data-stu-id="a078d-296">Configure a JWT validation policy toopre-authorize requests</span></span>
+<span data-ttu-id="a078d-297">hello hello 視訊中的最後一個程序會從 20:48，然後為您示範如何 toouse hello[驗證 JWT](https://msdn.microsoft.com/library/azure/034febe3-465f-4840-9fc6-c448ef520b0f#ValidateJWT)原則 toopre-驗證每個傳入要求的 hello 存取權杖，以授權要求。</span><span class="sxs-lookup"><span data-stu-id="a078d-297">hello final procedure in hello video starts at 20:48 and shows you how toouse hello [Validate JWT](https://msdn.microsoft.com/library/azure/034febe3-465f-4840-9fc6-c448ef520b0f#ValidateJWT) policy toopre-authorize requests by validating hello access tokens of each incoming request.</span></span> <span data-ttu-id="a078d-298">如果 hello 要求未經過驗證的 JWT 原則 hello，hello 要求封鎖的 API 管理，並不會傳遞 toohello 後端。</span><span class="sxs-lookup"><span data-stu-id="a078d-298">If hello request is not validated by hello Validate JWT policy, hello request is blocked by API Management and is not passed along toohello backend.</span></span>
 
 ```xml
 <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
@@ -509,11 +509,11 @@ public class CalcController : ApiController
 </validate-jwt>
 ```
 
-<span data-ttu-id="d8f06-301">如需設定和使用此原則的另一個示範，請觀賞 [Cloud Cover Episode 177: More API Management Features](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) ，向前快轉到 13:50。</span><span class="sxs-lookup"><span data-stu-id="d8f06-301">For another demonstration of configuring and using this policy, see [Cloud Cover Episode 177: More API Management Features](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) and fast-forward to 13:50.</span></span> <span data-ttu-id="d8f06-302">向前快轉到 15:00 可看到在原則編輯器中設定的原則，再到 18:50 可以看到一個示範，從開發人員入口網站 (使用和不使用必要的授權權杖) 呼叫運算。</span><span class="sxs-lookup"><span data-stu-id="d8f06-302">Fast forward to 15:00 to see the policies configured in the policy editor and then to 18:50 for a demonstration of calling an operation from the developer portal both with and without the required authorization token.</span></span>
+<span data-ttu-id="a078d-299">如需的設定和使用此原則的另一個示範，請參閱[雲端涵蓋的時段 177： 更 API 管理功能](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)和 too13:50 向前快轉。</span><span class="sxs-lookup"><span data-stu-id="a078d-299">For another demonstration of configuring and using this policy, see [Cloud Cover Episode 177: More API Management Features](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) and fast-forward too13:50.</span></span> <span data-ttu-id="a078d-300">向前快轉 too15:00 toosee hello 原則在 hello 原則編輯器中設定，然後示範從 hello 開發人員入口網站及 hello 未呼叫作業的 too18:50 所需授權權杖。</span><span class="sxs-lookup"><span data-stu-id="a078d-300">Fast forward too15:00 toosee hello policies configured in hello policy editor and then too18:50 for a demonstration of calling an operation from hello developer portal both with and without hello required authorization token.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="d8f06-303">後續步驟</span><span class="sxs-lookup"><span data-stu-id="d8f06-303">Next steps</span></span>
-* <span data-ttu-id="d8f06-304">查看更多有關 API 管理的 [視訊](https://azure.microsoft.com/documentation/videos/index/?services=api-management) 。</span><span class="sxs-lookup"><span data-stu-id="d8f06-304">Check out more [videos](https://azure.microsoft.com/documentation/videos/index/?services=api-management) about API Management.</span></span>
-* <span data-ttu-id="d8f06-305">如需其他保護後端服務的方式，請參閱[相互憑證驗證](api-management-howto-mutual-certificates.md)。</span><span class="sxs-lookup"><span data-stu-id="d8f06-305">For other ways to secure your backend service, see [Mutual Certificate authentication](api-management-howto-mutual-certificates.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a078d-301">後續步驟</span><span class="sxs-lookup"><span data-stu-id="a078d-301">Next steps</span></span>
+* <span data-ttu-id="a078d-302">查看更多有關 API 管理的 [視訊](https://azure.microsoft.com/documentation/videos/index/?services=api-management) 。</span><span class="sxs-lookup"><span data-stu-id="a078d-302">Check out more [videos](https://azure.microsoft.com/documentation/videos/index/?services=api-management) about API Management.</span></span>
+* <span data-ttu-id="a078d-303">針對其他方式 toosecure 後端服務，請參閱[相互憑證驗證](api-management-howto-mutual-certificates.md)。</span><span class="sxs-lookup"><span data-stu-id="a078d-303">For other ways toosecure your backend service, see [Mutual Certificate authentication](api-management-howto-mutual-certificates.md).</span></span>
 
 [api-management-management-console]: ./media/api-management-howto-protect-backend-with-aad/api-management-management-console.png
 

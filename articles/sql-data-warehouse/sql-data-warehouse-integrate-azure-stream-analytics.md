@@ -1,5 +1,5 @@
 ---
-title: "搭配使用 Azure 串流分析與 SQL 資料倉儲 | Microsoft Docs"
+title: "SQL 資料倉儲與 Azure Stream Analytics aaaUse |Microsoft 文件"
 description: "搭配使用 Azure 串流分析與 SQL 資料倉儲以便開發解決方案的秘訣。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,65 +15,65 @@ ms.workload: data-services
 ms.custom: integrate
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 14783f0464764a11d7f03a5db1c2d63728a4cb50
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1278197a6764864124fd92fc672de00b83ec343f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-stream-analytics-with-sql-data-warehouse"></a><span data-ttu-id="099b0-103">搭配使用 Azure 串流分析與 SQL 資料倉儲</span><span class="sxs-lookup"><span data-stu-id="099b0-103">Use Azure Stream Analytics with SQL Data Warehouse</span></span>
-<span data-ttu-id="099b0-104">Azure 串流分析是完全受管理的服務，可用來對雲端中的串流資料進行低延遲、高可用性、可延展的複雜事件處理。</span><span class="sxs-lookup"><span data-stu-id="099b0-104">Azure Stream Analytics is a fully managed service providing low-latency, highly available, scalable complex event processing over streaming data in the cloud.</span></span> <span data-ttu-id="099b0-105">如需基本概念，請參閱 [Azure 串流分析簡介][Introduction to Azure Stream Analytics]。</span><span class="sxs-lookup"><span data-stu-id="099b0-105">You can learn the basics by reading [Introduction to Azure Stream Analytics][Introduction to Azure Stream Analytics].</span></span> <span data-ttu-id="099b0-106">您可以接著依照[開始使用 Azure 串流分析][Get started using Azure Stream Analytics]教學課程，了解如何使用串流分析建立端對端解決方案。</span><span class="sxs-lookup"><span data-stu-id="099b0-106">You can then learn how to create an end-to-end solution with Stream Analytics by following the [Get started using Azure Stream Analytics][Get started using Azure Stream Analytics] tutorial.</span></span>
+# <a name="use-azure-stream-analytics-with-sql-data-warehouse"></a><span data-ttu-id="a7968-103">搭配使用 Azure 串流分析與 SQL 資料倉儲</span><span class="sxs-lookup"><span data-stu-id="a7968-103">Use Azure Stream Analytics with SQL Data Warehouse</span></span>
+<span data-ttu-id="a7968-104">Azure Stream Analytics 是完全受管理的服務，透過 hello 雲端中的資料流提供低延遲、 高可用性、 可擴充的複雜事件處理。</span><span class="sxs-lookup"><span data-stu-id="a7968-104">Azure Stream Analytics is a fully managed service providing low-latency, highly available, scalable complex event processing over streaming data in hello cloud.</span></span> <span data-ttu-id="a7968-105">您可以藉由讀取了解 hello 基本概念[簡介 tooAzure Stream Analytics][Introduction tooAzure Stream Analytics]。</span><span class="sxs-lookup"><span data-stu-id="a7968-105">You can learn hello basics by reading [Introduction tooAzure Stream Analytics][Introduction tooAzure Stream Analytics].</span></span> <span data-ttu-id="a7968-106">您接著可以學 toocreate 依照資料流分析的端對端解決方案如何 hello[開始使用 Azure Stream Analytics] [ Get started using Azure Stream Analytics]教學課程。</span><span class="sxs-lookup"><span data-stu-id="a7968-106">You can then learn how toocreate an end-to-end solution with Stream Analytics by following hello [Get started using Azure Stream Analytics][Get started using Azure Stream Analytics] tutorial.</span></span>
 
-<span data-ttu-id="099b0-107">在本文中，您將學習如何使用 Azure SQL 資料倉儲資料庫做為串流分析工作的輸出接收器。</span><span class="sxs-lookup"><span data-stu-id="099b0-107">In this article, you will learn how to use your Azure SQL Data Warehouse database as an output sink for your Steam Analytics jobs.</span></span>
+<span data-ttu-id="a7968-107">在本文中，您將學習如何 toouse Azure SQL 資料倉儲資料庫做為您的資料流分析工作的輸出來源。</span><span class="sxs-lookup"><span data-stu-id="a7968-107">In this article, you will learn how toouse your Azure SQL Data Warehouse database as an output sink for your Steam Analytics jobs.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="099b0-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="099b0-108">Prerequisites</span></span>
-<span data-ttu-id="099b0-109">首先，執行[開始使用 Azure 串流分析][Get started using Azure Stream Analytics]教學課程中的下列步驟。</span><span class="sxs-lookup"><span data-stu-id="099b0-109">First, run through the following steps in the [Get started using Azure Stream Analytics][Get started using Azure Stream Analytics] tutorial.</span></span>  
+## <a name="prerequisites"></a><span data-ttu-id="a7968-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="a7968-108">Prerequisites</span></span>
+<span data-ttu-id="a7968-109">首先，執行透過下列步驟在 hello hello[開始使用 Azure Stream Analytics] [ Get started using Azure Stream Analytics]教學課程。</span><span class="sxs-lookup"><span data-stu-id="a7968-109">First, run through hello following steps in hello [Get started using Azure Stream Analytics][Get started using Azure Stream Analytics] tutorial.</span></span>  
 
-1. <span data-ttu-id="099b0-110">建立事件中樞輸入</span><span class="sxs-lookup"><span data-stu-id="099b0-110">Create an Event Hub input</span></span>
-2. <span data-ttu-id="099b0-111">設定並啟動事件產生器應用程式</span><span class="sxs-lookup"><span data-stu-id="099b0-111">Configure and start event generator application</span></span>
-3. <span data-ttu-id="099b0-112">佈建資料流分析工作</span><span class="sxs-lookup"><span data-stu-id="099b0-112">Provision a Stream Analytics job</span></span>
-4. <span data-ttu-id="099b0-113">指定工作輸入和查詢</span><span class="sxs-lookup"><span data-stu-id="099b0-113">Specify job input and query</span></span>
+1. <span data-ttu-id="a7968-110">建立事件中樞輸入</span><span class="sxs-lookup"><span data-stu-id="a7968-110">Create an Event Hub input</span></span>
+2. <span data-ttu-id="a7968-111">設定並啟動事件產生器應用程式</span><span class="sxs-lookup"><span data-stu-id="a7968-111">Configure and start event generator application</span></span>
+3. <span data-ttu-id="a7968-112">佈建資料流分析工作</span><span class="sxs-lookup"><span data-stu-id="a7968-112">Provision a Stream Analytics job</span></span>
+4. <span data-ttu-id="a7968-113">指定工作輸入和查詢</span><span class="sxs-lookup"><span data-stu-id="a7968-113">Specify job input and query</span></span>
 
-<span data-ttu-id="099b0-114">接著，建立 Azure SQL 資料倉儲資料庫</span><span class="sxs-lookup"><span data-stu-id="099b0-114">Then, create an Azure SQL Data Warehouse database</span></span>
+<span data-ttu-id="a7968-114">接著，建立 Azure SQL 資料倉儲資料庫</span><span class="sxs-lookup"><span data-stu-id="a7968-114">Then, create an Azure SQL Data Warehouse database</span></span>
 
-## <a name="specify-job-output-azure-sql-data-warehouse-database"></a><span data-ttu-id="099b0-115">指定工作輸出：Azure SQL 資料倉儲資料庫</span><span class="sxs-lookup"><span data-stu-id="099b0-115">Specify job output: Azure SQL Data Warehouse database</span></span>
-### <a name="step-1"></a><span data-ttu-id="099b0-116">步驟 1</span><span class="sxs-lookup"><span data-stu-id="099b0-116">Step 1</span></span>
-<span data-ttu-id="099b0-117">在串流分析工作中，按一下頁面上方的 [輸出]，然後按一下 [新增輸出]。</span><span class="sxs-lookup"><span data-stu-id="099b0-117">In your Stream Analytics job click **OUTPUT** from the top of the page, and then click **ADD OUTPUT**.</span></span>
+## <a name="specify-job-output-azure-sql-data-warehouse-database"></a><span data-ttu-id="a7968-115">指定工作輸出：Azure SQL 資料倉儲資料庫</span><span class="sxs-lookup"><span data-stu-id="a7968-115">Specify job output: Azure SQL Data Warehouse database</span></span>
+### <a name="step-1"></a><span data-ttu-id="a7968-116">步驟 1</span><span class="sxs-lookup"><span data-stu-id="a7968-116">Step 1</span></span>
+<span data-ttu-id="a7968-117">在資料流分析工作按一下**輸出**hello 頁面上，然後再按一下 hello 由上至下**加入輸出**。</span><span class="sxs-lookup"><span data-stu-id="a7968-117">In your Stream Analytics job click **OUTPUT** from hello top of hello page, and then click **ADD OUTPUT**.</span></span>
 
-### <a name="step-2"></a><span data-ttu-id="099b0-118">步驟 2</span><span class="sxs-lookup"><span data-stu-id="099b0-118">Step 2</span></span>
-<span data-ttu-id="099b0-119">選取 SQL Database，然後按一下 [下一步]。</span><span class="sxs-lookup"><span data-stu-id="099b0-119">Select SQL Database and click next.</span></span>
+### <a name="step-2"></a><span data-ttu-id="a7968-118">步驟 2</span><span class="sxs-lookup"><span data-stu-id="a7968-118">Step 2</span></span>
+<span data-ttu-id="a7968-119">選取 SQL Database，然後按一下 [下一步]。</span><span class="sxs-lookup"><span data-stu-id="a7968-119">Select SQL Database and click next.</span></span>
 
 ![][add-output]
 
-### <a name="step-3"></a><span data-ttu-id="099b0-120">步驟 3</span><span class="sxs-lookup"><span data-stu-id="099b0-120">Step 3</span></span>
-<span data-ttu-id="099b0-121">在下一頁輸入下列值：</span><span class="sxs-lookup"><span data-stu-id="099b0-121">Enter the following values on the next page:</span></span>
+### <a name="step-3"></a><span data-ttu-id="a7968-120">步驟 3</span><span class="sxs-lookup"><span data-stu-id="a7968-120">Step 3</span></span>
+<span data-ttu-id="a7968-121">輸入下列值 hello 下一個頁面上的 hello:</span><span class="sxs-lookup"><span data-stu-id="a7968-121">Enter hello following values on hello next page:</span></span>
 
-* <span data-ttu-id="099b0-122">*輸出別名*：輸入此工作輸出的易記名稱。</span><span class="sxs-lookup"><span data-stu-id="099b0-122">*Output Alias*: Enter a friendly name for this job output.</span></span>
-* <span data-ttu-id="099b0-123">訂用帳戶：</span><span class="sxs-lookup"><span data-stu-id="099b0-123">*Subscription*:</span></span>
-  * <span data-ttu-id="099b0-124">如果 SQL 資料倉儲資料庫是在與此資料流分析工作相同的訂用帳戶中，則請選取 [使用目前訂用帳戶的 SQL Database]。</span><span class="sxs-lookup"><span data-stu-id="099b0-124">If your SQL Data Warehouse database is in the same subscription as the Stream Analytics job, select Use SQL Database from Current Subscription.</span></span>
-  * <span data-ttu-id="099b0-125">如果您的資料庫是在不同的訂用帳戶中，請選取 [使用其他訂用帳戶的 SQL Database]。</span><span class="sxs-lookup"><span data-stu-id="099b0-125">If your database is in a different subscription, select Use SQL Database from Another Subscription.</span></span>
-* <span data-ttu-id="099b0-126">資料庫：指定目的地資料庫的名稱。</span><span class="sxs-lookup"><span data-stu-id="099b0-126">*Database*: Specify the name of a destination database.</span></span>
-* <span data-ttu-id="099b0-127">伺服器名稱：為您剛指定的資料庫指定伺服器名稱。</span><span class="sxs-lookup"><span data-stu-id="099b0-127">*Server Name*: Specify the server name for the database you just specified.</span></span> <span data-ttu-id="099b0-128">您可以使用 Azure 傳統入口網站進行搜尋。</span><span class="sxs-lookup"><span data-stu-id="099b0-128">You can use the Azure Classic Portal to find this.</span></span>
+* <span data-ttu-id="a7968-122">*輸出別名*：輸入此工作輸出的易記名稱。</span><span class="sxs-lookup"><span data-stu-id="a7968-122">*Output Alias*: Enter a friendly name for this job output.</span></span>
+* <span data-ttu-id="a7968-123">訂用帳戶：</span><span class="sxs-lookup"><span data-stu-id="a7968-123">*Subscription*:</span></span>
+  * <span data-ttu-id="a7968-124">如果您的 SQL 資料倉儲資料庫在 hello 相同訂用帳戶 hello 資料流分析工作，從目前的訂用帳戶中選取 使用 SQL 資料庫。</span><span class="sxs-lookup"><span data-stu-id="a7968-124">If your SQL Data Warehouse database is in hello same subscription as hello Stream Analytics job, select Use SQL Database from Current Subscription.</span></span>
+  * <span data-ttu-id="a7968-125">如果您的資料庫是在不同的訂用帳戶中，請選取 [使用其他訂用帳戶的 SQL Database]。</span><span class="sxs-lookup"><span data-stu-id="a7968-125">If your database is in a different subscription, select Use SQL Database from Another Subscription.</span></span>
+* <span data-ttu-id="a7968-126">*資料庫*： 指定 hello 目的地資料庫名稱。</span><span class="sxs-lookup"><span data-stu-id="a7968-126">*Database*: Specify hello name of a destination database.</span></span>
+* <span data-ttu-id="a7968-127">*伺服器名稱*： 指定 hello hello 您剛才指定的資料庫伺服器名稱。</span><span class="sxs-lookup"><span data-stu-id="a7968-127">*Server Name*: Specify hello server name for hello database you just specified.</span></span> <span data-ttu-id="a7968-128">您可以使用 hello Azure 傳統入口網站 toofind 這個。</span><span class="sxs-lookup"><span data-stu-id="a7968-128">You can use hello Azure Classic Portal toofind this.</span></span>
 
 ![][server-name]
 
-* <span data-ttu-id="099b0-129">使用者名稱：指定具有資料庫寫入權限的帳戶的使用者名稱。</span><span class="sxs-lookup"><span data-stu-id="099b0-129">*User Name*: Specify the user name of an account that has write permissions for the database.</span></span>
-* <span data-ttu-id="099b0-130">密碼：提供指定之使用者帳戶的密碼。</span><span class="sxs-lookup"><span data-stu-id="099b0-130">*Password*: Provide the password for the specified user account.</span></span>
-* <span data-ttu-id="099b0-131">資料表：指定資料庫中目標資料表的名稱。</span><span class="sxs-lookup"><span data-stu-id="099b0-131">*Table*: Specify the name of the target table in the database.</span></span>
+* <span data-ttu-id="a7968-129">*使用者名稱*： 指定 hello 擁有 hello 資料庫的寫入權限的帳戶使用者名稱。</span><span class="sxs-lookup"><span data-stu-id="a7968-129">*User Name*: Specify hello user name of an account that has write permissions for hello database.</span></span>
+* <span data-ttu-id="a7968-130">*密碼*： 提供 hello hello 密碼指定使用者帳戶。</span><span class="sxs-lookup"><span data-stu-id="a7968-130">*Password*: Provide hello password for hello specified user account.</span></span>
+* <span data-ttu-id="a7968-131">*資料表*： 指定 hello 資料庫中的 hello hello 目標資料表名稱。</span><span class="sxs-lookup"><span data-stu-id="a7968-131">*Table*: Specify hello name of hello target table in hello database.</span></span>
 
 ![][add-database]
 
-### <a name="step-4"></a><span data-ttu-id="099b0-132">步驟 4</span><span class="sxs-lookup"><span data-stu-id="099b0-132">Step 4</span></span>
-<span data-ttu-id="099b0-133">按一下核取按鈕以新增此工作輸出，並確認串流分析可成功連接到資料庫。</span><span class="sxs-lookup"><span data-stu-id="099b0-133">Click the check button to add this job output and to verify that Stream Analytics can successfully connect to the database.</span></span>
+### <a name="step-4"></a><span data-ttu-id="a7968-132">步驟 4</span><span class="sxs-lookup"><span data-stu-id="a7968-132">Step 4</span></span>
+<span data-ttu-id="a7968-133">此工作輸出和 tooverify 資料流分析可以成功連線 toohello 資料庫，請按一下 hello 核取按鈕 tooadd。</span><span class="sxs-lookup"><span data-stu-id="a7968-133">Click hello check button tooadd this job output and tooverify that Stream Analytics can successfully connect toohello database.</span></span>
 
 ![][test-connection]
 
-<span data-ttu-id="099b0-134">成功連接到資料庫時，您將會在入口網站的底部看到通知。</span><span class="sxs-lookup"><span data-stu-id="099b0-134">When the connection to the database succeeds, you will see a notification at the bottom of the portal.</span></span> <span data-ttu-id="099b0-135">您可以按一下底部的 [測試連線]，以測試資料庫的連線。</span><span class="sxs-lookup"><span data-stu-id="099b0-135">You can click Test Connection at the bottom to test the connection to the database.</span></span>
+<span data-ttu-id="a7968-134">Hello 連線 toohello 資料庫成功時，您會看到在 hello hello 入口網站底部的通知。</span><span class="sxs-lookup"><span data-stu-id="a7968-134">When hello connection toohello database succeeds, you will see a notification at hello bottom of hello portal.</span></span> <span data-ttu-id="a7968-135">在 hello 底部 tootest hello 連線 toohello 資料庫，您可以按一下測試連接。</span><span class="sxs-lookup"><span data-stu-id="a7968-135">You can click Test Connection at hello bottom tootest hello connection toohello database.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="099b0-136">後續步驟</span><span class="sxs-lookup"><span data-stu-id="099b0-136">Next steps</span></span>
-<span data-ttu-id="099b0-137">如需整合概觀，請參閱 [SQL 資料倉儲整合概觀][SQL Data Warehouse integration overview]。</span><span class="sxs-lookup"><span data-stu-id="099b0-137">For an overview of integration, see [SQL Data Warehouse integration overview][SQL Data Warehouse integration overview].</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a7968-136">後續步驟</span><span class="sxs-lookup"><span data-stu-id="a7968-136">Next steps</span></span>
+<span data-ttu-id="a7968-137">如需整合概觀，請參閱 [SQL 資料倉儲整合概觀][SQL Data Warehouse integration overview]。</span><span class="sxs-lookup"><span data-stu-id="a7968-137">For an overview of integration, see [SQL Data Warehouse integration overview][SQL Data Warehouse integration overview].</span></span>
 
-<span data-ttu-id="099b0-138">如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL Data Warehouse development overview]。</span><span class="sxs-lookup"><span data-stu-id="099b0-138">For more development tips, see [SQL Data Warehouse development overview][SQL Data Warehouse development overview].</span></span>
+<span data-ttu-id="a7968-138">如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL Data Warehouse development overview]。</span><span class="sxs-lookup"><span data-stu-id="a7968-138">For more development tips, see [SQL Data Warehouse development overview][SQL Data Warehouse development overview].</span></span>
 
 <!--Image references-->
 
@@ -84,7 +84,7 @@ ms.lasthandoff: 07/11/2017
 
 <!--Article references-->
 
-[Introduction to Azure Stream Analytics]: ../stream-analytics/stream-analytics-introduction.md
+[Introduction tooAzure Stream Analytics]: ../stream-analytics/stream-analytics-introduction.md
 [Get started using Azure Stream Analytics]: ../stream-analytics/stream-analytics-real-time-fraud-detection.md
 [SQL Data Warehouse development overview]:  ./sql-data-warehouse-overview-develop.md
 [SQL Data Warehouse integration overview]:  ./sql-data-warehouse-overview-integrate.md

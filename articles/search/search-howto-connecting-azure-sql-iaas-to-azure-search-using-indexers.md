@@ -1,6 +1,6 @@
 ---
-title: "SQL VM 到 Azure 搜尋服務的連線 | Microsoft Docs"
-description: "啟用加密的連線並設定防火牆，以允許在 Azure 虛擬機器 (VM) 上從 Azure 搜尋服務的索引子連接到 SQL Server。"
+title: "aaaSQL VM 連接 tooAzure 搜尋 |Microsoft 文件"
+description: "啟用加密的連接和 Azure 虛擬機器 (VM) 從 Azure 搜尋索引子上設定 hello 防火牆 tooallow 連線 tooSQL 伺服器。"
 services: search
 documentationcenter: 
 author: HeidiSteen
@@ -14,77 +14,77 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 01/23/2017
 ms.author: heidist
-ms.openlocfilehash: bb61330ba5511955e0da16dcd5b8b19529d0e44b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1f0db8a2812b0a7d012e58bb873c4b2b29fa1338
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-a-connection-from-an-azure-search-indexer-to-sql-server-on-an-azure-vm"></a>在 Azure VM 上設定從 Azure 搜尋服務索引子到 SQL Server 的連線
-如[使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md#faq)中所述，Azure 搜尋服務支援針對 **Azure VM 上的 SQL Server** (或簡稱 **SQL Azure VM**) 建立索引子，但必須先處理幾個安全性相關的必要條件。 
+# <a name="configure-a-connection-from-an-azure-search-indexer-toosql-server-on-an-azure-vm"></a>在 Azure VM 上設定來自 Azure 搜尋索引子 tooSQL 伺服器的連接
+如中所述[連接 Azure SQL Database tooAzure 搜尋使用索引子](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md#faq)，建立針對索引子**Azure Vm 上的 SQL Server** (或**SQL Azure Vm**縮寫) 是Azure 搜尋所支援但有一些安全性相關的必要條件 tootake care of 第一個。 
 
-**工作持續時間︰** 約 30 分鐘，假設您已經在 VM 上安裝憑證。
+**工作持續時間：**約 30 分鐘，假設您已經 hello VM 上安裝憑證。
 
 ## <a name="enable-encrypted-connections"></a>啟用加密的連線
-Azure 搜尋服務會針對透過公用網際網路連接的所有索引子要求加密的通道。 本節列出執行這項工作的步驟。
+Azure 搜尋服務會針對透過公用網際網路連接的所有索引子要求加密的通道。 此區段會列出 hello 步驟 toomake 這項工作。
 
-1. 檢查憑證的屬性，以驗證主體名稱為 Azure VM 的完整網域名稱 (FQDN)。 您可以使用 CertUtils 之類的工具或憑證嵌入式管理單元來檢視屬性。 您可以在 [Azure 入口網站](https://portal.azure.com/)的 [公用 IP 位址/DNS 名稱標籤] 欄位中，從 VM 服務刀鋒視窗的 [程式集] 區段中取得 FQDN。
+1. 檢查 hello hello 憑證 tooverify hello 主體名稱屬性的 hello Azure VM 的 hello 完整的網域名稱 (FQDN)。 您可以使用這類工具 CertUtils 或 hello 憑證嵌入式管理單元 tooview hello 屬性。 您可以從 hello VM 服務刀鋒視窗的基本資訊區段中，在 hello 取得 hello FQDN**公用 IP 位址 /DNS 名稱標籤**欄位中，以 hello [Azure 入口網站](https://portal.azure.com/)。
    
-   * 對於使用較新的 **Resource Manager** 範本建立的 VM，FQDN 的格式為 `<your-VM-name>.<region>.cloudapp.azure.com`。 
-   * 對於建立為**傳統** VM 的較舊 VM，FQDN 的格式為 `<your-cloud-service-name.cloudapp.net>`。 
-2. 使用登錄編輯器 (regedit) 設定 SQL Server 以使用憑證。 
+   * 對於使用 hello 較新建立的 Vm**資源管理員**hello FQDN 會格式化為範本， `<your-VM-name>.<region>.cloudapp.azure.com`。 
+   * 對於較舊的 Vm 建立為**傳統**VM，hello FQDN 格式為`<your-cloud-service-name.cloudapp.net>`。 
+2. 設定 SQL Server toouse hello 憑證使用 hello 登錄編輯程式 (regedit)。 
    
-    雖然通常會在這項工作中使用 SQL Server 組態管理員，但您在此案例中無法使用它。 它不會尋找匯入的憑證，因為在 Azure 上 VM 的 FQDN 不符合由 VM 所決定的 FQDN (它會將網域識別為本機電腦或其已加入的網路網域)。 當名稱不相符時，使用 regedit 來指定憑證。
+    雖然通常會在這項工作中使用 SQL Server 組態管理員，但您在此案例中無法使用它。 它不會尋找 hello 匯入憑證，因為 hello hello Azure 上的 VM 的 FQDN 不符合 hello 由 hello （它會識別為 hello 本機電腦或它所聯結的 hello 網路網域 toowhich hello 網域） 的 VM 的 FQDN。 名稱不相符，當使用 regedit toospecify hello 憑證。
    
-   * 在 regedit 中，瀏覽此登錄金鑰︰`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\[MSSQL13.MSSQLSERVER]\MSSQLServer\SuperSocketNetLib\Certificate`。
+   * 在 regedit 中瀏覽 toothis 登錄機碼： `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\[MSSQL13.MSSQLSERVER]\MSSQLServer\SuperSocketNetLib\Certificate`。
      
-     `[MSSQL13.MSSQLSERVER]` 部分將視版本和執行個體名稱而有所不同。 
-   * 將**憑證**金鑰的值設定為您匯入 VM 的 SSL 憑證**指紋**。
+     hello`[MSSQL13.MSSQLSERVER]`一部分視版本和執行個體名稱。 
+   * 設定 hello hello 值**憑證**金鑰 toohello**指紋**hello toohello VM 已匯入的 SSL 憑證。
      
-     有數種方式可以取得指紋，有些方式較其他的更好。 如果您將它從 MMC 中的 **憑證** 嵌入式管理單元進行複製，您可能會挑選不可見的開頭字元 ( [如本支援文章中所述](https://support.microsoft.com/kb/2023869/))，如此當您嘗試連接時便會導致錯誤。 有數個因應措施可修正此問題。 最簡單的方法是按退格鍵，然後重新輸入指紋的第一個字元，在 regedit 中移除金鑰值欄位中的開頭字元。 或者，您可以使用不同的工具來複製指紋。
-3. 授與權限給服務帳戶。 
+     一些較有數種方式 tooget hello 指紋。 如果複製 hello**憑證**嵌入式管理單元 MMC 中，您可能拾取不可見的前置字元[支援本文中所述](https://support.microsoft.com/kb/2023869/)，當您嘗試時導致錯誤連接。 有數個因應措施可修正此問題。 最簡單的 hello toobackspace 透過且然後重新輸入 hello 的 hello 指紋 tooremove hello 前置字元在 regedit hello 索引鍵的值欄位中的第一個字元。 或者，您可以使用不同的工具 toocopy hello 指紋。
+3. 授與權限 toohello 服務帳戶。 
    
-    務必要將 SSL 憑證私密金鑰的適當權限授與 SQL Server 服務帳戶。 如果您忽略此步驟，SQL Server 將會無法啟動。 針對這項工作，您可以使用**憑證**嵌入式管理單元或 **CertUtils**。
-4. 重新啟動 SQL Server 服務。
+    請確定 hello SQL Server 服務帳戶會授與適當的權限 hello 私密金鑰 hello SSL 憑證。 如果您忽略此步驟，SQL Server 將會無法啟動。 您可以使用 hello**憑證**嵌入式管理單元或**CertUtils**這項工作。
+4. 重新啟動 hello SQL Server 服務。
 
-## <a name="configure-sql-server-connectivity-in-the-vm"></a>在 VM 中設定 SQL Server 連線
-在您設定由 Azure 搜尋服務所要求的加密連接之後，Azure VM 上的 SQL Server 內建函式會有額外設定步驟。 如果您尚未這麼做，則下一個步驟是使用這些文件其中之一來完成設定︰
+## <a name="configure-sql-server-connectivity-in-hello-vm"></a>在 hello VM 中設定 SQL Server 連線
+您 hello 加密連接 Azure 搜尋所需的設定之後，有額外的設定步驟內建 tooSQL Azure Vm 上的伺服器。 如果還沒有這麼做，hello 下一個步驟是使用其中一個這些文件 toofinish 組態：
 
-* 若為 **Resource Manager** VM，請參閱 [使用 Resource Manager 連接到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/windows/sql/virtual-machines-windows-sql-connect.md)。 
-* 若為 **傳統** VM，請參閱 [連線到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/windows/classic/sql-connect.md)。
+* 如**資源管理員**VM，請參閱[連接 tooa 使用資源管理員的 Azure 上的 SQL Server 虛擬機器](../virtual-machines/windows/sql/virtual-machines-windows-sql-connect.md)。 
+* 如**傳統**VM，請參閱[連接 SQL Server 虛擬機器，在 Azure 傳統 tooa](../virtual-machines/windows/classic/sql-connect.md)。
 
-特別是，檢閱每個文章中的「透過網際網路連接」一節。
+特別是，檢閱 hello > 一節中的每一個發行項"透過連線 hello 網際網路"。
 
-## <a name="configure-the-network-security-group-nsg"></a>設定網路安全性群組 (NSG)
-設定 NSG 與相對應的 Azure 端點或存取控制清單 (ACL)，讓他人能夠存取您的 Azure VM。 您很可能過去已完成此設定，允許自己的應用程式邏輯連接至您的 SQL Azure VM。 這和 Azure 搜尋服務連線至 SQL Azure VM 並無不同。 
+## <a name="configure-hello-network-security-group-nsg"></a>設定網路安全性群組 (NSG) hello
+不是異常 tooconfigure hello NSG 和對應的 Azure 端點或存取控制清單 (ACL) toomake 您 Azure VM 存取 tooother 合作對象。 有可能是您完成此動作之前 tooallow 您自己的應用程式邏輯 tooconnect tooyour SQL Azure VM。 它是相同的 Azure 搜尋連線 tooyour SQL Azure VM。 
 
-下列連結提供 VM 部署的 NSG 組態相關指示。 使用下列 Azure 搜尋服務端點根據其 IP 位址的 ACL 指示。
+hello 下列連結提供 NSG VM 部署組態的指示。 使用這些指示 tooACL Azure 搜尋端點根據其 IP 位址。
 
 > [!NOTE]
 > 若為背景，請參閱 [什麼是網路安全性群組？](../virtual-network/virtual-networks-nsg.md)
 > 
 > 
 
-* 若為 **Resource Manager** VM，請參閱 [如何針對 ARM 部署建立 NSG](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)。 
-* 若為 **傳統** VM，請參閱 [如何針對傳統部署建立 NSG](../virtual-network/virtual-networks-create-nsg-classic-ps.md)。
+* 如**資源管理員**VM，請參閱[如何 toocreate Nsg ARM 部署](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)。 
+* 如**傳統**VM，請參閱[如何 toocreate Nsg 傳統部署](../virtual-network/virtual-networks-create-nsg-classic-ps.md)。
 
-IP 位址可能會造成一些挑戰，如果您知道問題和可能的因應措施則可輕易克服。 其餘各節提供與 ACL 中的 IP 位址相關的問題處理建議。
+IP 位址，可能會造成會容易克服，如果您知道的 hello 問題和可能的因應措施的一些挑戰。 hello 其餘各節提供處理問題相關的 tooIP 位址 hello ACL 中的建議。
 
-#### <a name="restrict-access-to-the-search-service-ip-address"></a>限制對搜尋服務 IP 位址的存取
-強烈建議您在 ACL 中限制對搜尋服務 IP 位址的存取，而不是讓 SQL Azure VM 對任何連接要求來者不拒。 您可以 Ping 搜尋服務的 FQDN (例如， `<your-search-service-name>.search.windows.net`)，輕鬆地找出 IP 位址。
+#### <a name="restrict-access-toohello-search-service-ip-address"></a>限制存取 toohello 搜尋服務 IP 位址
+我們強烈建議您限制您 hello ACL 中的搜尋服務的 hello 存取 toohello IP 位址，而不是做出寬開啟 tooany 連線要求您 SQL Azure Vm。 您可以輕鬆地找出 hello IP 位址 ping hello FQDN (例如， `<your-search-service-name>.search.windows.net`) 的搜尋服務。
 
 #### <a name="managing-ip-address-fluctuations"></a>管理 IP 位址的變動
-如果您的搜尋服務只有一個搜尋單位 (也就是有一個複本和一個分割區)，在例行服務重新啟動期間，IP 位址會變更，使用您搜尋服務的 IP 位址讓現有的 ACL 失效。
+如果您的搜尋服務有只有一個搜尋單位 （也就是一個複本和一個資料分割），hello IP 位址將會變更期間常式服務重新啟動時，讓失效搜尋服務的 IP 位址與現有 ACL 中。
 
-要避免後續連線能力錯誤的方法之一，是在 Azure 搜尋服務中使用多個複本和一個資料分割。 這樣做會增加成本，但它也可以解決 IP 位址的問題。 在 Azure 搜尋服務中，當您有多個搜尋單位時，IP 位址不會變更。
+其中一種方式 tooavoid hello 後續連線錯誤是 toouse 超過一個複本和 Azure 搜尋中的一個資料分割。 這樣做會增加 hello 成本，但它也可以解決 hello IP 位址的問題。 在 Azure 搜尋服務中，當您有多個搜尋單位時，IP 位址不會變更。
 
-第二個方法是讓連線失敗，然後再重新設定 NSG 中的 ACL。 平均而言，您可以預期 IP 位址每隔幾週會進行變更。 對於頻繁地進行控制編製索引的客戶，此方法可能可行。
+第二種方法是 tooallow hello 連接 toofail，，然後再重新設定 hello NSG 中的 hello Acl。 平均而言，您可以預期 IP 位址 toochange 每隔幾週。 對於頻繁地進行控制編製索引的客戶，此方法可能可行。
 
-第三個可行 (但並不特別安全) 的方法，是針對搜尋服務佈建所在的 Azure 區域，指定 IP 位址範圍。 將公用 IP 位址配置給 Azure 資源的 IP 範圍清單已發佈於 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)。 
+第三個可行的 （但不是 hello 的特別安全的） 方法是 hello 的 toospecify hello IP 位址範圍搜尋服務 hello 的佈建的 Azure 區域。 hello IP 範圍清單的公用 IP 位址配置 tooAzure 資源從中發行在[Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)。 
 
-#### <a name="include-the-azure-search-portal-ip-addresses"></a>包含 Azure 搜尋服務入口網站 IP 位址
-如果您使用 Azure 入口網站建立索引子，Azure 搜尋服務入口網站邏輯也需要在建立期間存取您的 SQL Azure VM。 Ping `stamp2.search.ext.azure.com`，即可找到 Azure 搜尋服務入口網站 IP 位址。
+#### <a name="include-hello-azure-search-portal-ip-addresses"></a>包括 hello Azure 搜尋入口網站的 IP 位址
+如果您使用 hello Azure 入口網站 toocreate 索引子，Azure 搜尋入口網站的邏輯會建立期間也需要存取 tooyour SQL Azure VM。 Ping `stamp2.search.ext.azure.com`，即可找到 Azure 搜尋服務入口網站 IP 位址。
 
 ## <a name="next-steps"></a>後續步驟
-解決組態之後，您現在就可以在 Azure VM 指定 SQL Server 作為 Azure 搜尋服務索引子的資料來源。 如需詳細資訊，請參閱 [使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) 。
+使用超出 hello 方式設定時，您現在可以指定 SQL Server 在 Azure VM 上 hello Azure 搜尋索引子的資料來源。 請參閱[連接 Azure SQL Database tooAzure 搜尋使用索引子](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)如需詳細資訊。
 

@@ -1,6 +1,6 @@
 ---
-title: "建立索引 (REST API - Azure 搜尋服務) | Microsoft Docs"
-description: "使用 Azure 搜尋服務 HTTP REST API 在程式碼中建立索引。"
+title: "aaa\"建立索引 (REST API 的 Azure 搜尋) |Microsoft 文件 」"
+description: "使用 hello Azure 搜尋 HTTP 的 REST API 的程式碼中建立索引。"
 services: search
 documentationcenter: 
 author: ashmaka
@@ -15,13 +15,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 12/08/2016
 ms.author: ashmaka
-ms.openlocfilehash: 9a64d1436471e406b7d9b700257d3dd96b5edcde
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 117ab64a9874a443351a8a02a9b959b8f7beb7c1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-azure-search-index-using-the-rest-api"></a>使用 REST API 建立 Azure 搜尋服務索引
+# <a name="create-an-azure-search-index-using-hello-rest-api"></a>建立 Azure 搜尋索引使用 hello REST API
 > [!div class="op_single_selector"]
 >
 > * [概觀](search-what-is-an-index.md)
@@ -31,33 +31,33 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-本文將逐步引導您完成使用 Azure 搜尋服務 REST API 建立 Azure 搜尋服務 [索引](https://docs.microsoft.com/rest/api/searchservice/Create-Index) 的程序。
+本文將逐步引導您建立 Azure 搜尋的 hello 程序[索引](https://docs.microsoft.com/rest/api/searchservice/Create-Index)使用 hello Azure 搜尋 REST API。
 
 在按照本指南進行並建立索引錢，請先 [建立好 Azure 搜尋服務](search-create-service-portal.md)。
 
-若要使用 REST API 建立 Azure 搜尋服務索引，您將會發出單一 HTTP POST 要求到 Azure 搜尋服務的 URL 端點。 索引定義會以正確格式之 JSON 內容的形式包含在要求主體中。
+toocreate Azure 搜尋索引，使用 hello REST API，您將發行單一 HTTP POST 要求 tooyour Azure 搜尋服務的 URL 端點。 索引定義會包含在 hello 要求主體中，做為格式正確的 JSON 內容。
 
 ## <a name="identify-your-azure-search-services-admin-api-key"></a>識別 Azure 搜尋服務的系統管理 API 金鑰
-既然您已佈建好 Azure 搜尋服務，您接著可以針對使用 REST API 的服務 URL 端點發出 HTTP 要求。 所有 API 要求都必須包含針對您佈建的搜尋服務所產生的 API 金鑰。 擁有有效的金鑰就能為每個要求在傳送要求之應用程式與處理要求之服務間建立信任。
+既然您已佈建 Azure 搜尋服務，您可以發出對使用 hello REST API 服務的 URL 端點的 HTTP 要求。 *所有*API 要求中必須包含 hello api 金鑰 hello 您佈建的搜尋服務所產生。 擁有有效的索引鍵建立信任關係，針對每個要求，hello 應用程式正在傳送嗨要求和處理它的 hello 服務之間。
 
-1. 若要尋找服務的 API 金鑰，您必須登入 [Azure 入口網站](https://portal.azure.com/)
-2. 前往 Azure 搜尋服務的刀鋒視窗。
-3. 按一下 [金鑰] 圖示。
+1. toofind 服務的 api 金鑰您必須登入 hello [Azure 入口網站](https://portal.azure.com/)
+2. 移 tooyour Azure 搜尋服務的刀鋒視窗
+3. 按一下 hello 「 金鑰 」 圖示
 
 服務會有系統管理金鑰和查詢金鑰。
 
-* 主要和次要系統管理金鑰  會授與所有作業的完整權限，包括管理服務以及建立和刪除索引、索引子與資料來源的能力。 由於有兩個金鑰，因此如果您決定重新產生主要金鑰，您可以繼續使用次要金鑰，反之亦然。
-* 查詢金鑰  會授與索引和文件的唯讀存取權，且通常會分派給發出搜尋要求的用戶端應用程式。
+* 您的主要和次要*系統管理金鑰*tooall 作業，包括 hello 能力 toomanage hello 服務授與的完整權限、 建立和刪除索引、 索引子和資料來源。 有兩個索引鍵，讓您可以繼續 toouse hello 次要索引鍵，如果您決定 tooregenerate hello 主索引鍵，反之亦然。
+* 您*查詢索引鍵*授與唯讀存取 tooindexes 和文件，並發出搜尋要求的 tooclient 通常分散式應用程式。
 
-主要或次要系統管理金鑰都可用於建立索引。
+基於 hello 建立索引，您可以使用主要或次要管理金鑰。
 
 ## <a name="define-your-azure-search-index-using-well-formed-json"></a>使用正確格式的 JSON 定義 Azure 搜尋服務索引
-針對服務提出單一 HTTP POST 要求就會建立索引。 HTTP POST 要求主體會包含單一 JSON 物件以定義 Azure 搜尋服務索引。
+單一 HTTP POST 要求 tooyour 服務將建立您的索引。 hello HTTP POST 要求主體會包含單一 JSON 物件，定義您的 Azure 搜尋索引。
 
-1. 此 JSON 物件的第一個屬性是索引名稱。
-2. 此 JSON 物件的第二個屬性是名為 `fields` 的 JSON 陣列，其針對索引中的每個欄位各包含一個 JSON 物件。 每個 JSON 物件都針對每個欄位屬性 (包括 [名稱]、[類型] 等) 包含多個名稱/值組。
+1. hello 這個 JSON 物件的第一個屬性是 hello 索引名稱。
+2. hello 這個 JSON 物件的第二個屬性是名為 JSON 陣列`fields`，其中包含您的索引中每個欄位個別的 JSON 物件。 每個 JSON 物件包含多個名稱/值組的 hello 欄位屬性，包括 「 名稱 」、 「 類型 」，每個等等。
 
-由於必須為每個欄位指派 [適當屬性](https://docs.microsoft.com/rest/api/searchservice/Create-Index)，因此在設計索引時，請務必牢記搜尋服務使用者體驗和商務需求。 這些屬性可控制要對哪些欄位套用哪些搜尋功能 (篩選、面向設定、排序全文檢索搜尋等)。 對於未指定的屬性，除非您明確停用，否則其預設值是啟用對應的搜尋功能。
+很重要時，設計您的索引，因為每個欄位必須指派 hello 您搜尋的使用者經驗和商務需求謹記在心[適當屬性](https://docs.microsoft.com/rest/api/searchservice/Create-Index)。 這些屬性控制的搜尋功能 （篩選、 排序等全文檢索搜尋的 faceting） 套用 toowhich 欄位。 您沒有指定任何屬性，hello 預設值將是 tooenable hello 對應搜尋功能，除非您明確停用。
 
 在我們的範例中，我們已將索引命名為 "hotels"，並將欄位定義如下：
 
@@ -81,30 +81,30 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-我們已根據欄位在應用程式中的可能使用方式仔細選擇其各自的索引屬性。 例如，`hotelId` 是搜尋飯店的使用者可能不會知道的唯一索引鍵，因此我們將 `searchable` 設定為 `false` 以停用該欄位的全文檢索搜尋，以節省索引中的空間。
+我們已仔細選擇根據我們認為將用於應用程式的方式每個欄位的 hello 索引屬性。 例如，`hotelId`是唯一的索引鍵搜尋飯店可能不會知道，因此我們停用該欄位的全文檢索搜尋設定該人員`searchable`太`false`，以節省空間 hello 索引中。
 
-請注意，`Edm.String` 類型的索引中必須有一個欄位 (且只有一個) 指定為 'key' 欄位。
+請注意在類型的索引中剛好只有一個欄位`Edm.String`必須 hello 指定為 hello 'key' 欄位。
 
-`description_fr` 欄位會用來儲存法文文字，因此上述索引定義會對此欄位使用語言分析器。 如需語言分析器的詳細資訊，請參閱[語言支援主題](https://docs.microsoft.com/rest/api/searchservice/Language-support)以及對應的[部落格文章](https://azure.microsoft.com/blog/language-support-in-azure-search/)。
+上述的 hello 索引定義會使用語言分析器 hello`description_fr`欄位，因為它是預定的 toostore 法文文字。 請參閱[hello 語言支援主題](https://docs.microsoft.com/rest/api/searchservice/Language-support)以及 hello 對應[部落格文章](https://azure.microsoft.com/blog/language-support-in-azure-search/)如需語言分析器的詳細資訊。
 
-## <a name="issue-the-http-request"></a>發出 HTTP 要求
-1. 請使用索引定義做為要求主體來對 Azure 搜尋服務端點 URL 發出 HTTP POST 要求。 在 URL 中，請務必使用服務名稱做為主機名稱，然後放置適當的 `api-version` 做為查詢字串參數 (本文件發行時的最新 API 版本是 `2016-09-01`)。
-2. 在要求標頭中，指定 `Content-Type` 做為 `application/json`。 您也必須提供您在步驟 I 中於 `api-key` 標頭所識別的服務系統管理金鑰。
+## <a name="issue-hello-http-request"></a>問題 hello HTTP 要求
+1. 使用索引定義以 hello 要求主體，發出 HTTP POST 要求 tooyour Azure 搜尋服務端點 URL。 Hello URL 中是確定 toouse hello 主機名稱，為您的服務名稱，並將適當的 hello`api-version`做為查詢字串參數 (hello 目前的 API 版本是`2016-09-01`次發行本文件的 hello)。
+2. 在 hello 要求標頭，指定 hello`Content-Type`為`application/json`。 您也需要 tooprovide 您的服務管理金鑰，您在步驟 1 所識別在 hello`api-key`標頭。
 
-您必須提供自己的服務名稱和 API 金鑰來發出以下要求︰
+您必須 tooprovide 自己服務名稱和 api 金鑰 tooissue hello 要求如下：
 
     POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
     Content-Type: application/json
     api-key: [api-key]
 
 
-若要求成功，您應該會看到狀態碼 201 (已建立)。 如需透過 REST API 建立索引的詳細資訊，請瀏覽[此處的 API 參考](https://docs.microsoft.com/rest/api/searchservice/Create-Index)。 如需失敗時可能傳回的其他 HTTP 狀態碼詳細資訊，請參閱 [HTTP 狀態碼 (Azure 搜尋服務)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes)。
+若要求成功，您應該會看到狀態碼 201 (已建立)。 如需有關建立 hello REST API 透過索引的詳細資訊，請瀏覽 hello[這裡 API 參考](https://docs.microsoft.com/rest/api/searchservice/Create-Index)。 如需失敗時可能傳回的其他 HTTP 狀態碼詳細資訊，請參閱 [HTTP 狀態碼 (Azure 搜尋服務)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes)。
 
-索引已使用完畢而想要將其刪除時，請直接發出 HTTP DELETE 要求。 例如，以下是我們刪除 "hotels" 索引的方式：
+當您完成時具有索引，且想 toodelete 它時，就會發出 HTTP DELETE 要求。 比方說，這是我們會 delete hello 「 旅館"索引的方式：
 
     DELETE https://[service name].search.windows.net/indexes/hotels?api-version=2016-09-01
     api-key: [api-key]
 
 
 ## <a name="next-steps"></a>後續步驟
-建立 Azure 搜尋服務索引後，您就可以 [將內容上傳到索引](search-what-is-data-import.md) ，以便開始搜尋資料。
+建立 Azure 搜尋索引之後, 您就可以開始太[將內容上傳到 hello 索引](search-what-is-data-import.md)這樣就可以搜尋您的資料。

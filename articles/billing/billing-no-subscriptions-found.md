@@ -1,6 +1,6 @@
 ---
-title: "嘗試登入 Azure 入口網站或 Azure 帳戶中心時，未在訂用帳戶中找到任何錯誤 | Microsoft Docs"
-description: "針對登入 Azure 入口網站或 Azure 帳戶中心時，未在訂用帳戶中找到任何錯誤這個問題，提供解決方案。"
+title: "aaaNo 訂用帳戶中找到的錯誤時再試一次 toosign tooAzure 入口網站或 Azure 帳戶中心 |Microsoft 文件"
+description: "提供 hello 方案中沒有訂用帳戶會找到錯誤，就會發生問題時登入 tooAzure 入口網站或 Azure 帳戶中心。"
 services: 
 documentationcenter: 
 author: genlin
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: genli
-ms.openlocfilehash: a4ce9b219c05f8469379c2aac5241fcfffd16033
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: def4d4a1f883dd948fe8132f2d85abc4c23ae624
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="no-subscriptions-found-error-in-azure-portal-or-azure-account-center"></a><span data-ttu-id="918f5-103">在 Azure 入口網站或 Azure 帳戶中心內，未於訂用帳戶中找到任何錯誤</span><span class="sxs-lookup"><span data-stu-id="918f5-103">No subscriptions found error in Azure portal or Azure account center</span></span>
-<span data-ttu-id="918f5-104">當您嘗試登入 [Azure 入口網站](https://portal.azure.com/)或 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)時，可能會收到「找不到訂用帳戶」的錯誤訊息。</span><span class="sxs-lookup"><span data-stu-id="918f5-104">You might receive a "No subscriptions found" error message when you try to sign in to the [Azure portal](https://portal.azure.com/) or the [Azure account center](https://account.windowsazure.com/Subscriptions).</span></span> <span data-ttu-id="918f5-105">本文會提供此問題的解決方案。</span><span class="sxs-lookup"><span data-stu-id="918f5-105">This article provides a solution for this problem.</span></span>
+# <a name="no-subscriptions-found-error-in-azure-portal-or-azure-account-center"></a><span data-ttu-id="1df33-103">在 Azure 入口網站或 Azure 帳戶中心內，未於訂用帳戶中找到任何錯誤</span><span class="sxs-lookup"><span data-stu-id="1df33-103">No subscriptions found error in Azure portal or Azure account center</span></span>
+<span data-ttu-id="1df33-104">您可能會收到 「 找不到訂閱 」 錯誤訊息，當您嘗試在 toohello toosign [Azure 入口網站](https://portal.azure.com/)或 hello [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。</span><span class="sxs-lookup"><span data-stu-id="1df33-104">You might receive a "No subscriptions found" error message when you try toosign in toohello [Azure portal](https://portal.azure.com/) or hello [Azure account center](https://account.windowsazure.com/Subscriptions).</span></span> <span data-ttu-id="1df33-105">本文會提供此問題的解決方案。</span><span class="sxs-lookup"><span data-stu-id="1df33-105">This article provides a solution for this problem.</span></span>
 
-## <a name="symptom"></a><span data-ttu-id="918f5-106">徵狀</span><span class="sxs-lookup"><span data-stu-id="918f5-106">Symptom</span></span>
+## <a name="symptom"></a><span data-ttu-id="1df33-106">徵狀</span><span class="sxs-lookup"><span data-stu-id="1df33-106">Symptom</span></span>
 
-<span data-ttu-id="918f5-107">當您嘗試登入 [Azure 入口網站](https://portal.azure.com/)或 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)時，會收到下列錯誤訊息：「找不到訂用帳戶」。</span><span class="sxs-lookup"><span data-stu-id="918f5-107">When you try to sign in to the [Azure portal](https://portal.azure.com/) or the [Azure account center](https://account.windowsazure.com/Subscriptions), you receive the following error message: "No subscriptions found".</span></span>
+<span data-ttu-id="1df33-107">當您嘗試在 toohello toosign [Azure 入口網站](https://portal.azure.com/)或 hello [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)，您會收到下列錯誤訊息的 hello: 「 找不到訂閱 」。</span><span class="sxs-lookup"><span data-stu-id="1df33-107">When you try toosign in toohello [Azure portal](https://portal.azure.com/) or hello [Azure account center](https://account.windowsazure.com/Subscriptions), you receive hello following error message: "No subscriptions found".</span></span>
 
-## <a name="cause"></a><span data-ttu-id="918f5-108">原因</span><span class="sxs-lookup"><span data-stu-id="918f5-108">Cause</span></span>
+## <a name="cause"></a><span data-ttu-id="1df33-108">原因</span><span class="sxs-lookup"><span data-stu-id="1df33-108">Cause</span></span>
 
-<span data-ttu-id="918f5-109">如果您的帳戶沒有足夠的權限，就會發生這個問題。</span><span class="sxs-lookup"><span data-stu-id="918f5-109">This problem occurs if your account doesn’t have sufficient permissions.</span></span> 
+<span data-ttu-id="1df33-109">如果您的帳戶沒有足夠的權限，就會發生這個問題。</span><span class="sxs-lookup"><span data-stu-id="1df33-109">This problem occurs if your account doesn’t have sufficient permissions.</span></span> 
 
-## <a name="solution"></a><span data-ttu-id="918f5-110">方案</span><span class="sxs-lookup"><span data-stu-id="918f5-110">Solution</span></span>
+## <a name="solution"></a><span data-ttu-id="1df33-110">方案</span><span class="sxs-lookup"><span data-stu-id="1df33-110">Solution</span></span>
 
-<span data-ttu-id="918f5-111">請確定您是以正確的系統管理員身分登入。</span><span class="sxs-lookup"><span data-stu-id="918f5-111">Make sure that you log in as the correct administrator.</span></span> <span data-ttu-id="918f5-112">帳戶管理員只能存取帳戶中心。</span><span class="sxs-lookup"><span data-stu-id="918f5-112">An Account Administrator can access only the Account Center.</span></span> <span data-ttu-id="918f5-113">服務管理員 (SA) 和共同管理員 (CA) 只有存取 Azure 入口網站或 Azure 傳統入口網站的權限。</span><span class="sxs-lookup"><span data-stu-id="918f5-113">Service Administrators (SA) and Co-Administrators (CA) have access permission only to the Azure portal or the Azure classic portal.</span></span>
+<span data-ttu-id="1df33-111">請確定您在 hello 正確的系統管理員身分登入。</span><span class="sxs-lookup"><span data-stu-id="1df33-111">Make sure that you log in as hello correct administrator.</span></span> <span data-ttu-id="1df33-112">帳戶系統管理員可以存取 hello 帳戶中心。</span><span class="sxs-lookup"><span data-stu-id="1df33-112">An Account Administrator can access only hello Account Center.</span></span> <span data-ttu-id="1df33-113">服務系統管理員 (SA) 和共同管理員 (CA) 的存取權限只有 toohello Azure 入口網站或 hello Azure 傳統入口網站。</span><span class="sxs-lookup"><span data-stu-id="1df33-113">Service Administrators (SA) and Co-Administrators (CA) have access permission only toohello Azure portal or hello Azure classic portal.</span></span>
 
-### <a name="scenario-1-error-message-is-received-in-the-azure-portalhttpsportalazurecom"></a><span data-ttu-id="918f5-114">情節 1：在 [Azure 入口網站](https://portal.azure.com)收到錯誤訊息</span><span class="sxs-lookup"><span data-stu-id="918f5-114">Scenario 1: Error message is received in the [Azure portal](https://portal.azure.com)</span></span>
+### <a name="scenario-1-error-message-is-received-in-hello-azure-portalhttpsportalazurecom"></a><span data-ttu-id="1df33-114">案例 1: Hello 中收到錯誤訊息[Azure 入口網站](https://portal.azure.com)</span><span class="sxs-lookup"><span data-stu-id="1df33-114">Scenario 1: Error message is received in hello [Azure portal](https://portal.azure.com)</span></span>
 
-<span data-ttu-id="918f5-115">若要修正此問題：</span><span class="sxs-lookup"><span data-stu-id="918f5-115">To fix this issue:</span></span>
+<span data-ttu-id="1df33-115">toofix 此問題：</span><span class="sxs-lookup"><span data-stu-id="1df33-115">toofix this issue:</span></span>
 
-* <span data-ttu-id="918f5-116">確定您已選取正確的 Azure 目錄，方法是按一下右上角的帳戶。</span><span class="sxs-lookup"><span data-stu-id="918f5-116">Make sure that the correct Azure directory is selected by clicking your account at the top right.</span></span>
+* <span data-ttu-id="1df33-116">請確定該 hello 正確依序按一下您的帳戶在 hello 右上方選取 Azure 目錄。</span><span class="sxs-lookup"><span data-stu-id="1df33-116">Make sure that hello correct Azure directory is selected by clicking your account at hello top right.</span></span>
 
-  ![選取 Azure 入口網站右上角的目錄](./media/billing-no-subscriptions-found/directory-switch.png)
+  ![選取 hello 目錄 hello hello Azure 入口網站的右上方](./media/billing-no-subscriptions-found/directory-switch.png)
 
-* <span data-ttu-id="918f5-118">若已選取正確的 Azure 目錄，但您仍收到錯誤訊息，請[將您的帳戶新增為擁有者](billing-add-change-azure-subscription-administrator.md)。</span><span class="sxs-lookup"><span data-stu-id="918f5-118">If the right Azure directory is selected but you still receive the error message, [have your account added as an Owner](billing-add-change-azure-subscription-administrator.md).</span></span>
+* <span data-ttu-id="1df33-118">如果 hello 右 Azure 選取目錄，但是您仍然收到 hello 錯誤訊息，[將您的帳戶作為擁有者加入](billing-add-change-azure-subscription-administrator.md)。</span><span class="sxs-lookup"><span data-stu-id="1df33-118">If hello right Azure directory is selected but you still receive hello error message, [have your account added as an Owner](billing-add-change-azure-subscription-administrator.md).</span></span>
 
-### <a name="scenario-2-error-message-is-received-in-the-azure-account-centerhttpsaccountwindowsazurecomsubscriptions"></a><span data-ttu-id="918f5-119">情節 2：在 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)收到錯誤訊息</span><span class="sxs-lookup"><span data-stu-id="918f5-119">Scenario 2: Error message is received in the [Azure account center](https://account.windowsazure.com/Subscriptions)</span></span>
+### <a name="scenario-2-error-message-is-received-in-hello-azure-account-centerhttpsaccountwindowsazurecomsubscriptions"></a><span data-ttu-id="1df33-119">案例 2: Hello 中收到錯誤訊息[Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)</span><span class="sxs-lookup"><span data-stu-id="1df33-119">Scenario 2: Error message is received in hello [Azure account center](https://account.windowsazure.com/Subscriptions)</span></span>
 
-<span data-ttu-id="918f5-120">請檢查您所使用的帳戶是否為帳戶管理員。</span><span class="sxs-lookup"><span data-stu-id="918f5-120">Check whether the account that you used is the Account Administrator.</span></span> <span data-ttu-id="918f5-121">若要確認誰是帳戶管理員，請依照下列步驟操作︰</span><span class="sxs-lookup"><span data-stu-id="918f5-121">To verify who the Account Administrator is, follow these steps:</span></span>
+<span data-ttu-id="1df33-120">檢查您所使用的 hello 帳戶是否 hello 帳戶系統管理員。</span><span class="sxs-lookup"><span data-stu-id="1df33-120">Check whether hello account that you used is hello Account Administrator.</span></span> <span data-ttu-id="1df33-121">tooverify 人員 hello 帳戶系統管理員，請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="1df33-121">tooverify who hello Account Administrator is, follow these steps:</span></span>
 
-1. <span data-ttu-id="918f5-122">登入 [Azure 入口網站](https://portal.azure.com)。</span><span class="sxs-lookup"><span data-stu-id="918f5-122">Sign in to the [Azure portal](https://portal.azure.com).</span></span>
-2. <span data-ttu-id="918f5-123">在 [中樞] 功能表中，選取 [訂用帳戶] 。</span><span class="sxs-lookup"><span data-stu-id="918f5-123">On the Hub menu, select **Subscription**.</span></span>
-3. <span data-ttu-id="918f5-124">選取您想要檢查的訂用帳戶，然後選取 [設定] 。</span><span class="sxs-lookup"><span data-stu-id="918f5-124">Select the subscription that you want to check, and then select **Settings**.</span></span>
-4. <span data-ttu-id="918f5-125">選取 [屬性] 。</span><span class="sxs-lookup"><span data-stu-id="918f5-125">Select **Properties**.</span></span> <span data-ttu-id="918f5-126">該訂用帳戶的帳戶管理員會顯示在 [帳戶管理員]  方塊中。</span><span class="sxs-lookup"><span data-stu-id="918f5-126">The account administrator of the subscription is displayed in the **Account Admin** box.</span></span>
+1. <span data-ttu-id="1df33-122">登入 toohello [Azure 入口網站](https://portal.azure.com)。</span><span class="sxs-lookup"><span data-stu-id="1df33-122">Sign in toohello [Azure portal](https://portal.azure.com).</span></span>
+2. <span data-ttu-id="1df33-123">在 hello 中樞功能表中，選取 **訂用帳戶**。</span><span class="sxs-lookup"><span data-stu-id="1df33-123">On hello Hub menu, select **Subscription**.</span></span>
+3. <span data-ttu-id="1df33-124">選取您想 toocheck，，然後選取 hello 訂閱**設定**。</span><span class="sxs-lookup"><span data-stu-id="1df33-124">Select hello subscription that you want toocheck, and then select **Settings**.</span></span>
+4. <span data-ttu-id="1df33-125">選取 [屬性] 。</span><span class="sxs-lookup"><span data-stu-id="1df33-125">Select **Properties**.</span></span> <span data-ttu-id="1df33-126">hello hello 訂用帳戶的帳戶管理員會顯示在 hello**帳戶管理員**方塊。</span><span class="sxs-lookup"><span data-stu-id="1df33-126">hello account administrator of hello subscription is displayed in hello **Account Admin** box.</span></span>
 
-## <a name="need-help-contact-support"></a><span data-ttu-id="918f5-127">需要協助嗎？</span><span class="sxs-lookup"><span data-stu-id="918f5-127">Need help?</span></span> <span data-ttu-id="918f5-128">請連絡支援人員。</span><span class="sxs-lookup"><span data-stu-id="918f5-128">Contact support.</span></span>
-<span data-ttu-id="918f5-129">如果仍需要協助，請[連絡支援人員](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)以快速解決您的問題。</span><span class="sxs-lookup"><span data-stu-id="918f5-129">If you still need help, [contact support](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409) to get your issue resolved quickly.</span></span> 
+## <a name="need-help-contact-support"></a><span data-ttu-id="1df33-127">需要協助嗎？</span><span class="sxs-lookup"><span data-stu-id="1df33-127">Need help?</span></span> <span data-ttu-id="1df33-128">請連絡支援人員。</span><span class="sxs-lookup"><span data-stu-id="1df33-128">Contact support.</span></span>
+<span data-ttu-id="1df33-129">如果您仍需要協助，[連絡支援人員](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)tooget 快速解決您的問題。</span><span class="sxs-lookup"><span data-stu-id="1df33-129">If you still need help, [contact support](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409) tooget your issue resolved quickly.</span></span> 

@@ -1,6 +1,6 @@
 ---
-title: "調整 Azure Container Service 叢集 | Microsoft Docs"
-description: "如何使用 Azure CLI 或 Azure 入口網站來調整 Azure Container Service 中 DC/OS、Docker Swarm 或 Kubernetes 叢集中的代理程式節點。"
+title: "aaaScale Azure 容器服務叢集 |Microsoft 文件"
+description: "如何使用 Azure 容器服務的 DC/OS、 Docker Swarm，或 Kubernetes 叢集中的 tooscale 代理程式節點 hello Azure CLI 或 Azure 入口網站。"
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -17,10 +17,10 @@ ms.workload: na
 ms.date: 03/01/2017
 ms.author: saudas
 ms.custom: H1Hack27Feb2017, mvc
-ms.openlocfilehash: cf04cc45bde16af54afdbb3fa01b7a8ad6ab141f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 21e644bceee3c418e565323ab5f2484e3c565316
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [container-service-scale.md](../../../includes/container-service-scale.md)]

@@ -1,6 +1,6 @@
 ---
-title: "所有 Azure 匯入/匯出作業的清單 | MicrosoftDocs"
-description: "了解如何列出訂用帳戶中所有「Azure 匯入/匯出」服務作業的清單。"
+title: "aaaList 所有的 Azure 匯入/匯出工作 |MicrosoftDocs"
+description: "深入了解如何 toolist hello Azure 匯入/匯出服務的所有訂用帳戶中的工作。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 1977bfc0e516088310f45ecdd960287eeed2c2d8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0e12bf3dc3f2084a1987ac362cf8d1041059543c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enumerating-jobs-in-the-azure-importexport-service"></a><span data-ttu-id="8ef0b-103">列舉 Azure 匯入/匯出服務中的作業</span><span class="sxs-lookup"><span data-stu-id="8ef0b-103">Enumerating jobs in the Azure Import/Export service</span></span>
-<span data-ttu-id="8ef0b-104">若要列舉訂用帳戶中的所有作業，請呼叫 [List Jobs](/rest/api/storageimportexport/jobs#Jobs_List)作業。</span><span class="sxs-lookup"><span data-stu-id="8ef0b-104">To enumerate all jobs in a subscription, call the [List Jobs](/rest/api/storageimportexport/jobs#Jobs_List) operation.</span></span> <span data-ttu-id="8ef0b-105">`List Jobs` 會傳回一份作業以及下列屬性︰</span><span class="sxs-lookup"><span data-stu-id="8ef0b-105">`List Jobs` returns a list of jobs as well as the following attributes:</span></span>
+# <a name="enumerating-jobs-in-hello-azure-importexport-service"></a><span data-ttu-id="6c7f5-103">列舉 hello Azure 匯入/匯出服務中的工作</span><span class="sxs-lookup"><span data-stu-id="6c7f5-103">Enumerating jobs in hello Azure Import/Export service</span></span>
+<span data-ttu-id="6c7f5-104">tooenumerate 所有作業中的訂用帳戶中，而呼叫 hello[列出工作](/rest/api/storageimportexport/jobs#Jobs_List)作業。</span><span class="sxs-lookup"><span data-stu-id="6c7f5-104">tooenumerate all jobs in a subscription, call hello [List Jobs](/rest/api/storageimportexport/jobs#Jobs_List) operation.</span></span> <span data-ttu-id="6c7f5-105">`List Jobs`傳回清單的工作，以及下列屬性的 hello:</span><span class="sxs-lookup"><span data-stu-id="6c7f5-105">`List Jobs` returns a list of jobs as well as hello following attributes:</span></span>
 
--   <span data-ttu-id="8ef0b-106">作業的類型 (匯入或匯出)</span><span class="sxs-lookup"><span data-stu-id="8ef0b-106">The type of job (Import or Export)</span></span>
+-   <span data-ttu-id="6c7f5-106">hello （匯入或匯出） 的工作類型</span><span class="sxs-lookup"><span data-stu-id="6c7f5-106">hello type of job (Import or Export)</span></span>
 
--   <span data-ttu-id="8ef0b-107">目前的作業狀態</span><span class="sxs-lookup"><span data-stu-id="8ef0b-107">The current job state</span></span>
+-   <span data-ttu-id="6c7f5-107">hello 目前的工作狀態</span><span class="sxs-lookup"><span data-stu-id="6c7f5-107">hello current job state</span></span>
 
--   <span data-ttu-id="8ef0b-108">作業的相關聯儲存體帳戶</span><span class="sxs-lookup"><span data-stu-id="8ef0b-108">The job's associated storage account</span></span>
+-   <span data-ttu-id="6c7f5-108">hello 作業相關聯的儲存體帳戶</span><span class="sxs-lookup"><span data-stu-id="6c7f5-108">hello job's associated storage account</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="8ef0b-109">後續步驟</span><span class="sxs-lookup"><span data-stu-id="8ef0b-109">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="6c7f5-109">後續步驟</span><span class="sxs-lookup"><span data-stu-id="6c7f5-109">Next steps</span></span>
 
-* [<span data-ttu-id="8ef0b-110">使用匯入/匯出服務 REST API</span><span class="sxs-lookup"><span data-stu-id="8ef0b-110">Using the Import/Export service REST API</span></span>](storage-import-export-using-the-rest-api.md)
+* [<span data-ttu-id="6c7f5-110">使用 hello 匯入/匯出服務 REST API</span><span class="sxs-lookup"><span data-stu-id="6c7f5-110">Using hello Import/Export service REST API</span></span>](storage-import-export-using-the-rest-api.md)

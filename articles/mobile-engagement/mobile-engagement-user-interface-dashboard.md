@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement 使用者介面 - 儀表板"
-description: "了解如何使用 Azure Mobile Engagement 檢視和管理應用程式的資料圖表"
+title: "aaaAzure Mobile Engagement 使用者介面的儀表板"
+description: "深入了解如何 tooview 和管理使用 Azure Mobile Engagement 應用程式的相關資料的圖表"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: eaf5a2f9fdfcec33e8b4e2ddf77505980cd37c5e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d834c01cb748a962d50006398b75b381fa6d8cef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-view-and-manage-charts-of-data-about-your-application"></a><span data-ttu-id="13ad4-103">如何檢視和管理應用程式的資料圖表</span><span class="sxs-lookup"><span data-stu-id="13ad4-103">How to view and manage charts of data about your application</span></span>
-<span data-ttu-id="13ad4-104">UI 的 [儀表板] 區段可讓客戶藉由提供想要的確切資訊，而不是在 [分析] 區段中搜尋，來建立自訂的圖表以節省時間。</span><span class="sxs-lookup"><span data-stu-id="13ad4-104">The Dashboard section of the UI allows customers to create customized charts to maximize their time by providing the exact information they want instead of searching for it in the analytics section.</span></span> <span data-ttu-id="13ad4-105">儀表板會顯示在指定的一段時間內 (小時/日/週/月/自訂)，應用程式和不同應用程式版本的 [作用中使用者計數] 趨勢。</span><span class="sxs-lookup"><span data-stu-id="13ad4-105">A dashboard shows the trends of your application and the Active User Counts for the different versions of your application during a given time (hour/day/week/month/customized).</span></span> <span data-ttu-id="13ad4-106">顯示的趨勢是以過去 7 天為基礎。</span><span class="sxs-lookup"><span data-stu-id="13ad4-106">The trends shown are based on the last 7 days.</span></span>
+# <a name="how-tooview-and-manage-charts-of-data-about-your-application"></a><span data-ttu-id="dee45-103">如何 tooview 和管理的應用程式的相關資料的圖表</span><span class="sxs-lookup"><span data-stu-id="dee45-103">How tooview and manage charts of data about your application</span></span>
+<span data-ttu-id="dee45-104">hello hello UI 可供客戶 toocreate 自訂儀表板區段圖 toomaximize 它們藉由提供 hello 正確的資訊，而不是在 hello 分析區段搜尋它想要的時間。</span><span class="sxs-lookup"><span data-stu-id="dee45-104">hello Dashboard section of hello UI allows customers toocreate customized charts toomaximize their time by providing hello exact information they want instead of searching for it in hello analytics section.</span></span> <span data-ttu-id="dee45-105">儀表板會顯示應用程式與 hello 不同版本的應用程式在指定的時間 （小時/日/週/月/自訂） 的作用中執行使用者計數的 hello hello 趨勢。</span><span class="sxs-lookup"><span data-stu-id="dee45-105">A dashboard shows hello trends of your application and hello Active User Counts for hello different versions of your application during a given time (hour/day/week/month/customized).</span></span> <span data-ttu-id="dee45-106">顯示 hello 趨勢會根據 hello 過去 7 天。</span><span class="sxs-lookup"><span data-stu-id="dee45-106">hello trends shown are based on hello last 7 days.</span></span>
 
-### <a name="see-also"></a><span data-ttu-id="13ad4-107">另請參閱</span><span class="sxs-lookup"><span data-stu-id="13ad4-107">See also</span></span>
-* <span data-ttu-id="13ad4-108">[疑難排解指南 - 分析][Link 21]</span><span class="sxs-lookup"><span data-stu-id="13ad4-108">[Troubleshooting Guide - Analytics][Link 21]</span></span>
+### <a name="see-also"></a><span data-ttu-id="dee45-107">另請參閱</span><span class="sxs-lookup"><span data-stu-id="dee45-107">See also</span></span>
+* <span data-ttu-id="dee45-108">[疑難排解指南 - 分析][Link 21]</span><span class="sxs-lookup"><span data-stu-id="dee45-108">[Troubleshooting Guide - Analytics][Link 21]</span></span>
 
-## <a name="dashboard"></a><span data-ttu-id="13ad4-109">儀表板</span><span class="sxs-lookup"><span data-stu-id="13ad4-109">Dashboard</span></span>
-* <span data-ttu-id="13ad4-110">您可以在 UI 的 [分析] 區段中，於任何圖表的齒輪功能表選擇 [傳送至儀表板] 動作，將想要在儀表板上看到的圖表新增至空白儀表板。</span><span class="sxs-lookup"><span data-stu-id="13ad4-110">You can add charts to an empty dashboard by choosing the "Send to dashboard" action from the gear menu of any chart in the Analytics section of the UI that you'd like to see on a dashboard.</span></span>
+## <a name="dashboard"></a><span data-ttu-id="dee45-109">儀表板</span><span class="sxs-lookup"><span data-stu-id="dee45-109">Dashboard</span></span>
+* <span data-ttu-id="dee45-110">您可以選擇 toodashboard hello 「 傳送 」 動作功能表中的 hello 齒輪的 hello UI 您想要在儀表板 toosee hello 分析一節中的任何圖表之新增圖表 tooan 空白的儀表板。</span><span class="sxs-lookup"><span data-stu-id="dee45-110">You can add charts tooan empty dashboard by choosing hello "Send toodashboard" action from hello gear menu of any chart in hello Analytics section of hello UI that you'd like toosee on a dashboard.</span></span>
 
-## <a name="-add-a-dashboard"></a><span data-ttu-id="13ad4-111">+ (新增儀表板)</span><span class="sxs-lookup"><span data-stu-id="13ad4-111">+ (Add a Dashboard)</span></span>
-* <span data-ttu-id="13ad4-112">您可以使用 "+" 功能區功能表項目，建立顯示在功能區功能表上的新儀表板。</span><span class="sxs-lookup"><span data-stu-id="13ad4-112">You can use the "+" ribbon menu item to create a new dashboard that will show on the ribbon menu.</span></span>
+## <a name="-add-a-dashboard"></a><span data-ttu-id="dee45-111">+ (新增儀表板)</span><span class="sxs-lookup"><span data-stu-id="dee45-111">+ (Add a Dashboard)</span></span>
+* <span data-ttu-id="dee45-112">您可以使用 hello"+"功能區功能表項目 toocreate hello 功能區功能表會顯示新儀表板。</span><span class="sxs-lookup"><span data-stu-id="dee45-112">You can use hello "+" ribbon menu item toocreate a new dashboard that will show on hello ribbon menu.</span></span>
 
-## <a name="gear-menu"></a><span data-ttu-id="13ad4-113">齒輪功能表</span><span class="sxs-lookup"><span data-stu-id="13ad4-113">Gear Menu</span></span>
-* <span data-ttu-id="13ad4-114">您可以使用儀表板的齒輪功能表來刪除、重新命名、共用或排程 (以電子郵件接收) 儀表板。</span><span class="sxs-lookup"><span data-stu-id="13ad4-114">You can use the gear menu of a dashboard to Delete, Rename, Share, or Schedule (E-mail Reception) of your dashboard.</span></span> <span data-ttu-id="13ad4-115">您可以使用 [排程] 選項來定義想要透過電子郵件接收自訂儀表板的排程。</span><span class="sxs-lookup"><span data-stu-id="13ad4-115">You can use the Schedule option to define the schedule at which you would like to receive your custom dashboard by email.</span></span> <span data-ttu-id="13ad4-116">您可以排程每日、每週或每個月接收它。</span><span class="sxs-lookup"><span data-stu-id="13ad4-116">You can schedule to receive it daily, weekly, or monthly.</span></span> <span data-ttu-id="13ad4-117">您可以選擇要在一天的幾點、一週的星期幾或一個月的哪一天接收電子郵件。</span><span class="sxs-lookup"><span data-stu-id="13ad4-117">You can choose the time of the day, and the day of the week, or day of the month when you would like to receive the e-mail.</span></span> <span data-ttu-id="13ad4-118">您的電子郵件地址和時區會取決於您在 UI 上 [我的帳戶] 區段中的設定。</span><span class="sxs-lookup"><span data-stu-id="13ad4-118">Your e-mail address and time zone are based on the settings you have configured in the My Account section of the UI.</span></span>
+## <a name="gear-menu"></a><span data-ttu-id="dee45-113">齒輪功能表</span><span class="sxs-lookup"><span data-stu-id="dee45-113">Gear Menu</span></span>
+* <span data-ttu-id="dee45-114">您可以使用 hello 齒輪功能表的 [儀表板 tooDelete、 重新命名、 共用或儀表板的排程 （電子郵件接收）。</span><span class="sxs-lookup"><span data-stu-id="dee45-114">You can use hello gear menu of a dashboard tooDelete, Rename, Share, or Schedule (E-mail Reception) of your dashboard.</span></span> <span data-ttu-id="dee45-115">您可以透過電子郵件使用 hello 排程選項 toodefine hello 排程在您想要 tooreceive 自訂儀表板。</span><span class="sxs-lookup"><span data-stu-id="dee45-115">You can use hello Schedule option toodefine hello schedule at which you would like tooreceive your custom dashboard by email.</span></span> <span data-ttu-id="dee45-116">您可以在其每日、 每週或每月排程 tooreceive。</span><span class="sxs-lookup"><span data-stu-id="dee45-116">You can schedule tooreceive it daily, weekly, or monthly.</span></span> <span data-ttu-id="dee45-117">您可以選擇 hello hello 當日時間，與 hello hello 一週天數或當您想要 tooreceive hello 電子郵件的 hello 月份天數。</span><span class="sxs-lookup"><span data-stu-id="dee45-117">You can choose hello time of hello day, and hello day of hello week, or day of hello month when you would like tooreceive hello e-mail.</span></span> <span data-ttu-id="dee45-118">您的電子郵件地址和時區根據您已設定 hello 我的帳戶 hello UI 段中的 hello 設定。</span><span class="sxs-lookup"><span data-stu-id="dee45-118">Your e-mail address and time zone are based on hello settings you have configured in hello My Account section of hello UI.</span></span>
   
   ![dashboard1][34]
 

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 匯入/匯出來設定屬性和中繼資料 | Microsoft Docs"
-description: "了解執行 Azure 匯入/匯出工具準備磁碟機時，如何指定要在目的地 blob 上設定的屬性和中繼資料。"
+title: "aaaSetting 屬性和中繼資料，使用 Azure 匯入/匯出 |Microsoft 文件"
+description: "了解如何 toospecify 屬性和中繼資料 toobe 設定 hello 目的地 blob 上執行您的磁碟機的 hello Azure 匯入/匯出工具 tooprepare 時。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 1ba6d157402fae0c7d7bf841d2b4e4f6b1ee1084
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c763237160f0e4b72ce88fd31e2958994bfe8e50
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="setting-properties-and-metadata-during-the-import-process"></a><span data-ttu-id="468c4-103">在匯入程序期間設定屬性和中繼資料</span><span class="sxs-lookup"><span data-stu-id="468c4-103">Setting properties and metadata during the import process</span></span>
+# <a name="setting-properties-and-metadata-during-hello-import-process"></a><span data-ttu-id="ff636-103">設定屬性及 hello 期間的中繼資料匯入程序</span><span class="sxs-lookup"><span data-stu-id="ff636-103">Setting properties and metadata during hello import process</span></span>
 
-<span data-ttu-id="468c4-104">當您執行 Microsoft Azure 匯入/匯出工具準備磁碟機時，可以指定要在目的地 blob 上設定的屬性和中繼資料。</span><span class="sxs-lookup"><span data-stu-id="468c4-104">When you run the Microsoft Azure Import/Export Tool to prepare your drives, you can specify properties and metadata to be set on the destination blobs.</span></span> <span data-ttu-id="468c4-105">請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="468c4-105">Follow these steps:</span></span>
+<span data-ttu-id="ff636-104">當您執行 hello Microsoft Azure 匯入/匯出工具 tooprepare 您的磁碟機時，您可以指定屬性和中繼資料 toobe hello 目的地 blob 上設定。</span><span class="sxs-lookup"><span data-stu-id="ff636-104">When you run hello Microsoft Azure Import/Export Tool tooprepare your drives, you can specify properties and metadata toobe set on hello destination blobs.</span></span> <span data-ttu-id="ff636-105">請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="ff636-105">Follow these steps:</span></span>
 
-1.  <span data-ttu-id="468c4-106">若要設定 blob 屬性，建立本機電腦上指定屬性名稱和值的文字檔案。</span><span class="sxs-lookup"><span data-stu-id="468c4-106">To set blob properties, create a text file on your local computer that specifies property names and values.</span></span>
-2.  <span data-ttu-id="468c4-107">若要設定 blob 中繼資料，建立本機電腦上指定中繼資料名稱和值的文字檔案。</span><span class="sxs-lookup"><span data-stu-id="468c4-107">To set blob metadata, create a text file on your local computer that specifies metadata names and values.</span></span>
-3.  <span data-ttu-id="468c4-108">將完整路徑傳遞至一或兩個 Azure 匯入/匯出工具，做為 `PrepImport` 作業的一部分。</span><span class="sxs-lookup"><span data-stu-id="468c4-108">Pass the full path to one or both of these files to the Azure Import/Export Tool as part of the `PrepImport` operation.</span></span>
+1.  <span data-ttu-id="ff636-106">tooset blob 屬性，建立指定屬性名稱和值在本機電腦上的文字檔。</span><span class="sxs-lookup"><span data-stu-id="ff636-106">tooset blob properties, create a text file on your local computer that specifies property names and values.</span></span>
+2.  <span data-ttu-id="ff636-107">tooset blob 中繼資料時，建立指定的中繼資料名稱和值在本機電腦上的文字檔。</span><span class="sxs-lookup"><span data-stu-id="ff636-107">tooset blob metadata, create a text file on your local computer that specifies metadata names and values.</span></span>
+3.  <span data-ttu-id="ff636-108">Hello 一部分傳遞 hello 完整路徑 tooone 或多個這些檔案 toohello Azure 匯入/匯出工具`PrepImport`作業。</span><span class="sxs-lookup"><span data-stu-id="ff636-108">Pass hello full path tooone or both of these files toohello Azure Import/Export Tool as part of hello `PrepImport` operation.</span></span>
 
 > [!NOTE]
->  <span data-ttu-id="468c4-109">當您指定屬性或中繼資料檔案做為複製工作階段的一部分時，會設定每個做為該複製工作階段一部分的 blob 之屬性或中繼資料。</span><span class="sxs-lookup"><span data-stu-id="468c4-109">When you specify a properties or metadata file as part of a copy session, those properties or metadata are set for every blob that is imported as part of that copy session.</span></span> <span data-ttu-id="468c4-110">如果您想要指定要匯入之 blob 部分的一組不同的屬性或中繼資料，您必須使用不同的屬性或中繼資料檔案建立個別複製工作階段。</span><span class="sxs-lookup"><span data-stu-id="468c4-110">If you want to specify a different set of properties or metadata for some of the blobs being imported, you'll need to create a separate copy session with different properties or metadata files.</span></span>
+>  <span data-ttu-id="ff636-109">當您指定屬性或中繼資料檔案做為複製工作階段的一部分時，會設定每個做為該複製工作階段一部分的 blob 之屬性或中繼資料。</span><span class="sxs-lookup"><span data-stu-id="ff636-109">When you specify a properties or metadata file as part of a copy session, those properties or metadata are set for every blob that is imported as part of that copy session.</span></span> <span data-ttu-id="ff636-110">如果您正在匯入的 hello blob 的某些想 toospecify 一組不同的屬性或中繼資料，您將需要的 toocreate 個別複製工作階段不同的屬性或中繼資料檔案。</span><span class="sxs-lookup"><span data-stu-id="ff636-110">If you want toospecify a different set of properties or metadata for some of hello blobs being imported, you'll need toocreate a separate copy session with different properties or metadata files.</span></span>
 
-## <a name="specify-blob-properties-in-a-text-file"></a><span data-ttu-id="468c4-111">在文字檔案中指定 blob 屬性</span><span class="sxs-lookup"><span data-stu-id="468c4-111">Specify blob properties in a text file</span></span>
+## <a name="specify-blob-properties-in-a-text-file"></a><span data-ttu-id="ff636-111">在文字檔案中指定 blob 屬性</span><span class="sxs-lookup"><span data-stu-id="ff636-111">Specify blob properties in a text file</span></span>
 
-<span data-ttu-id="468c4-112">若要指定 blob 屬性，建立本機文字檔，並包含指定屬性名稱做為元素的 XML 以及做為值的屬性值。</span><span class="sxs-lookup"><span data-stu-id="468c4-112">To specify blob properties, create a local text file, and include XML that specifies property names as elements, and property values as values.</span></span> <span data-ttu-id="468c4-113">以下是指定一些屬性值的範例︰</span><span class="sxs-lookup"><span data-stu-id="468c4-113">Here's an example that specifies some property values:</span></span>
+<span data-ttu-id="ff636-112">toospecify blob 屬性，建立本機文字檔，並包含指定屬性名稱做為元素、 屬性值做為值的 XML。</span><span class="sxs-lookup"><span data-stu-id="ff636-112">toospecify blob properties, create a local text file, and include XML that specifies property names as elements, and property values as values.</span></span> <span data-ttu-id="ff636-113">以下是指定一些屬性值的範例︰</span><span class="sxs-lookup"><span data-stu-id="ff636-113">Here's an example that specifies some property values:</span></span>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -44,11 +44,11 @@ ms.lasthandoff: 08/29/2017
 </Properties>
 ```
 
-<span data-ttu-id="468c4-114">將檔案儲存至本機位置，例如 `C:\WAImportExport\ImportProperties.txt`。</span><span class="sxs-lookup"><span data-stu-id="468c4-114">Save the file to a local location like `C:\WAImportExport\ImportProperties.txt`.</span></span>
+<span data-ttu-id="ff636-114">儲存 hello 檔案 tooa 本機位置，例如`C:\WAImportExport\ImportProperties.txt`。</span><span class="sxs-lookup"><span data-stu-id="ff636-114">Save hello file tooa local location like `C:\WAImportExport\ImportProperties.txt`.</span></span>
 
-## <a name="specify-blob-metadata-in-a-text-file"></a><span data-ttu-id="468c4-115">指定文字檔案中的 blob 中繼資料</span><span class="sxs-lookup"><span data-stu-id="468c4-115">Specify blob metadata in a text file</span></span>
+## <a name="specify-blob-metadata-in-a-text-file"></a><span data-ttu-id="ff636-115">指定文字檔案中的 blob 中繼資料</span><span class="sxs-lookup"><span data-stu-id="ff636-115">Specify blob metadata in a text file</span></span>
 
-<span data-ttu-id="468c4-116">同樣地，若要指定 blob 中繼資料，建立指定中繼資料名稱做為項目的本機文字檔，以及做為值的中繼資料值。</span><span class="sxs-lookup"><span data-stu-id="468c4-116">Similarly, to specify blob metadata, create a local text file that specifies metadata names as elements, and metadata values as values.</span></span> <span data-ttu-id="468c4-117">以下是指定一些中繼資料值的範例︰</span><span class="sxs-lookup"><span data-stu-id="468c4-117">Here's an example that specifies some metadata values:</span></span>
+<span data-ttu-id="ff636-116">同樣地，toospecify blob 中繼資料，並建立本機文字檔，指定中繼資料名稱做為項目，並做為值的中繼資料值。</span><span class="sxs-lookup"><span data-stu-id="ff636-116">Similarly, toospecify blob metadata, create a local text file that specifies metadata names as elements, and metadata values as values.</span></span> <span data-ttu-id="ff636-117">以下是指定一些中繼資料值的範例︰</span><span class="sxs-lookup"><span data-stu-id="ff636-117">Here's an example that specifies some metadata values:</span></span>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -59,9 +59,9 @@ ms.lasthandoff: 08/29/2017
 </Metadata>
 ```
 
-<span data-ttu-id="468c4-118">將檔案儲存至本機位置，例如 `C:\WAImportExport\ImportMetadata.txt`。</span><span class="sxs-lookup"><span data-stu-id="468c4-118">Save the file to a local location like `C:\WAImportExport\ImportMetadata.txt`.</span></span>
+<span data-ttu-id="ff636-118">儲存 hello 檔案 tooa 本機位置，例如`C:\WAImportExport\ImportMetadata.txt`。</span><span class="sxs-lookup"><span data-stu-id="ff636-118">Save hello file tooa local location like `C:\WAImportExport\ImportMetadata.txt`.</span></span>
 
-## <a name="add-the-path-to-properties-and-metadata-files-in-datasetcsv"></a><span data-ttu-id="468c4-119">在 dataset.csv 中新增屬性和中繼資料檔案的路徑</span><span class="sxs-lookup"><span data-stu-id="468c4-119">Add the path to properties and metadata files in dataset.csv</span></span>
+## <a name="add-hello-path-tooproperties-and-metadata-files-in-datasetcsv"></a><span data-ttu-id="ff636-119">加入在 dataset.csv hello 路徑 tooproperties 和中繼資料檔案</span><span class="sxs-lookup"><span data-stu-id="ff636-119">Add hello path tooproperties and metadata files in dataset.csv</span></span>
 
 ```
 BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile
@@ -71,6 +71,6 @@ K:\Temp\FavoriteVideo.ISO,https://mystorageaccount.blob.core.windows.net/favorit
 \\myshare\john\music\,https://mystorageaccount.blob.core.windows.net/music/,BlockBlob,rename,None,H:\mydirectory\properties.xml
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="468c4-120">後續步驟</span><span class="sxs-lookup"><span data-stu-id="468c4-120">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ff636-120">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ff636-120">Next steps</span></span>
 
-* [<span data-ttu-id="468c4-121">匯入/匯出服務中繼資料和屬性檔案格式</span><span class="sxs-lookup"><span data-stu-id="468c4-121">Import/Export service metadata and properties file format</span></span>](../storage-import-export-file-format-metadata-and-properties.md)
+* [<span data-ttu-id="ff636-121">匯入/匯出服務中繼資料和屬性檔案格式</span><span class="sxs-lookup"><span data-stu-id="ff636-121">Import/Export service metadata and properties file format</span></span>](../storage-import-export-file-format-metadata-and-properties.md)

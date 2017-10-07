@@ -1,6 +1,6 @@
 ---
-title: "使用 MongoDB API 建置 Azure Cosmos DB 應用程式 | Microsoft Docs"
-description: "使用適用於 MongoDB 的 Azure Cosmos DB API 建立線上資料庫的教學課程。"
+title: "aaaUse MongoDB Api toobuild Azure Cosmos DB 應用程式 |Microsoft 文件"
+description: "建立線上資料庫使用 MongoDB hello Azure Cosmos DB Api 教學課程。"
 keywords: "mongodb 範例"
 services: cosmos-db
 author: AndrewHoh
@@ -15,33 +15,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: anhoh
-ms.openlocfilehash: 433d2e585c884a10e7e923a0b27c179a95410d01
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 09be4362fe3aac02e0163325f958210be9598383
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="build-an-azure-cosmos-db-api-for-mongodb-app-using-nodejs"></a><span data-ttu-id="f3ed0-104">使用 Node.js 建置 Azure Cosmos DB：適用於 MongoDB 的 API 應用程式</span><span class="sxs-lookup"><span data-stu-id="f3ed0-104">Build an Azure Cosmos DB: API for MongoDB app using Node.js</span></span>
+# <a name="build-an-azure-cosmos-db-api-for-mongodb-app-using-nodejs"></a><span data-ttu-id="00b80-104">使用 Node.js 建置 Azure Cosmos DB：適用於 MongoDB 的 API 應用程式</span><span class="sxs-lookup"><span data-stu-id="00b80-104">Build an Azure Cosmos DB: API for MongoDB app using Node.js</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="f3ed0-105">.NET</span><span class="sxs-lookup"><span data-stu-id="f3ed0-105">.NET</span></span>](documentdb-get-started.md)
-> * [<span data-ttu-id="f3ed0-106">.NET Core</span><span class="sxs-lookup"><span data-stu-id="f3ed0-106">.NET Core</span></span>](documentdb-dotnetcore-get-started.md)
-> * [<span data-ttu-id="f3ed0-107">Java</span><span class="sxs-lookup"><span data-stu-id="f3ed0-107">Java</span></span>](documentdb-java-get-started.md)
-> * [<span data-ttu-id="f3ed0-108">Node.js for MongoDB</span><span class="sxs-lookup"><span data-stu-id="f3ed0-108">Node.js for MongoDB</span></span>](mongodb-samples.md)
-> * [<span data-ttu-id="f3ed0-109">Node.js</span><span class="sxs-lookup"><span data-stu-id="f3ed0-109">Node.js</span></span>](documentdb-nodejs-get-started.md)
-> * [<span data-ttu-id="f3ed0-110">C++</span><span class="sxs-lookup"><span data-stu-id="f3ed0-110">C++</span></span>](documentdb-cpp-get-started.md)
+> * [<span data-ttu-id="00b80-105">.NET</span><span class="sxs-lookup"><span data-stu-id="00b80-105">.NET</span></span>](documentdb-get-started.md)
+> * [<span data-ttu-id="00b80-106">.NET Core</span><span class="sxs-lookup"><span data-stu-id="00b80-106">.NET Core</span></span>](documentdb-dotnetcore-get-started.md)
+> * [<span data-ttu-id="00b80-107">Java</span><span class="sxs-lookup"><span data-stu-id="00b80-107">Java</span></span>](documentdb-java-get-started.md)
+> * [<span data-ttu-id="00b80-108">Node.js for MongoDB</span><span class="sxs-lookup"><span data-stu-id="00b80-108">Node.js for MongoDB</span></span>](mongodb-samples.md)
+> * [<span data-ttu-id="00b80-109">Node.js</span><span class="sxs-lookup"><span data-stu-id="00b80-109">Node.js</span></span>](documentdb-nodejs-get-started.md)
+> * [<span data-ttu-id="00b80-110">C++</span><span class="sxs-lookup"><span data-stu-id="00b80-110">C++</span></span>](documentdb-cpp-get-started.md)
 >  
 >
 
-<span data-ttu-id="f3ed0-111">此範例將示範如何使用 Node.js 建置 Azure Cosmos DB：適用於 MongoDB 的 API 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="f3ed0-111">This example shows you how to build an Azure Cosmos DB: API for MongoDB console app using Node.js.</span></span>
+<span data-ttu-id="00b80-111">此範例將示範如何 toobuild Azure Cosmos DB： 使用 Node.js MongoDB 主控台應用程式的 API。</span><span class="sxs-lookup"><span data-stu-id="00b80-111">This example shows you how toobuild an Azure Cosmos DB: API for MongoDB console app using Node.js.</span></span>
 
-<span data-ttu-id="f3ed0-112">若要使用此範例，您必須︰</span><span class="sxs-lookup"><span data-stu-id="f3ed0-112">To use this example, you must:</span></span>
+<span data-ttu-id="00b80-112">toouse 此範例中，您必須：</span><span class="sxs-lookup"><span data-stu-id="00b80-112">toouse this example, you must:</span></span>
 
-* <span data-ttu-id="f3ed0-113">[建立](create-mongodb-dotnet.md#create-account) Azure Cosmos DB：適用於 MongoDB 的 API 帳戶。</span><span class="sxs-lookup"><span data-stu-id="f3ed0-113">[Create](create-mongodb-dotnet.md#create-account) an Azure Cosmos DB: API for MongoDB account.</span></span>
-* <span data-ttu-id="f3ed0-114">擷取 MongoDB [連接字串](connect-mongodb-account.md)資訊。</span><span class="sxs-lookup"><span data-stu-id="f3ed0-114">Retrieve your MongoDB [connection string](connect-mongodb-account.md) information.</span></span>
+* <span data-ttu-id="00b80-113">[建立](create-mongodb-dotnet.md#create-account) Azure Cosmos DB：適用於 MongoDB 的 API 帳戶。</span><span class="sxs-lookup"><span data-stu-id="00b80-113">[Create](create-mongodb-dotnet.md#create-account) an Azure Cosmos DB: API for MongoDB account.</span></span>
+* <span data-ttu-id="00b80-114">擷取 MongoDB [連接字串](connect-mongodb-account.md)資訊。</span><span class="sxs-lookup"><span data-stu-id="00b80-114">Retrieve your MongoDB [connection string](connect-mongodb-account.md) information.</span></span>
 
-## <a name="create-the-app"></a><span data-ttu-id="f3ed0-115">建立應用程式</span><span class="sxs-lookup"><span data-stu-id="f3ed0-115">Create the app</span></span>
+## <a name="create-hello-app"></a><span data-ttu-id="00b80-115">建立 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="00b80-115">Create hello app</span></span>
 
-1. <span data-ttu-id="f3ed0-116">建立 *app.js* 檔案，複製並貼上下列程式碼。</span><span class="sxs-lookup"><span data-stu-id="f3ed0-116">Create a *app.js* file and copy & paste the code below.</span></span>
+1. <span data-ttu-id="00b80-116">建立*app.js*檔以及複製與貼上下列程式碼 hello。</span><span class="sxs-lookup"><span data-stu-id="00b80-116">Create a *app.js* file and copy & paste hello code below.</span></span>
 
     ```nodejs
     var MongoClient = require('mongodb').MongoClient;
@@ -66,7 +66,7 @@ ms.lasthandoff: 08/03/2017
             "address": { "country": "USA", "state": "WA", "city": "Seattle" }
         }, function(err, result) {
         assert.equal(err, null);
-        console.log("Inserted a document into the families collection.");
+        console.log("Inserted a document into hello families collection.");
         callback();
     });
     };
@@ -122,13 +122,13 @@ ms.lasthandoff: 08/03/2017
     });
     ```
 
-2. <span data-ttu-id="f3ed0-117">在 *app.js* 中根據每個帳戶設定 (了解如何尋找您的[連接字串](connect-mongodb-account.md)) 修改下列變數：</span><span class="sxs-lookup"><span data-stu-id="f3ed0-117">Modify the following variables in the *app.js* file per your account settings (Learn how to find your [connection string](connect-mongodb-account.md)):</span></span>
+2. <span data-ttu-id="00b80-117">修改下列 hello 中的變數的 hello *app.js*您的帳戶設定之每個檔案 (深入了解如何 toofind 您[連接字串](connect-mongodb-account.md)):</span><span class="sxs-lookup"><span data-stu-id="00b80-117">Modify hello following variables in hello *app.js* file per your account settings (Learn how toofind your [connection string](connect-mongodb-account.md)):</span></span>
    
     ```nodejs
     var url = 'mongodb://<endpoint>:<password>@<endpoint>.documents.azure.com:10255/?ssl=true';
     ```
      
-3. <span data-ttu-id="f3ed0-118">開啟您最愛的終端機，執行 **npm install mongodb --save**，然後使用 **node app.js** 執行您的應用程式</span><span class="sxs-lookup"><span data-stu-id="f3ed0-118">Open your favorite terminal, run **npm install mongodb --save**, then run your app with **node app.js**</span></span>
+3. <span data-ttu-id="00b80-118">開啟您最愛的終端機，執行 **npm install mongodb --save**，然後使用 **node app.js** 執行您的應用程式</span><span class="sxs-lookup"><span data-stu-id="00b80-118">Open your favorite terminal, run **npm install mongodb --save**, then run your app with **node app.js**</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="f3ed0-119">後續步驟</span><span class="sxs-lookup"><span data-stu-id="f3ed0-119">Next steps</span></span>
-* <span data-ttu-id="f3ed0-120">了解如何[使用 MongoChef](mongodb-mongochef.md) 搭配您的 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶。</span><span class="sxs-lookup"><span data-stu-id="f3ed0-120">Learn how to [use MongoChef](mongodb-mongochef.md) with your Azure Cosmos DB: API for MongoDB account.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="00b80-119">後續步驟</span><span class="sxs-lookup"><span data-stu-id="00b80-119">Next steps</span></span>
+* <span data-ttu-id="00b80-120">了解如何太[使用 MongoChef](mongodb-mongochef.md)與您 Azure Cosmos DB: MongoDB 帳戶的 API。</span><span class="sxs-lookup"><span data-stu-id="00b80-120">Learn how too[use MongoChef](mongodb-mongochef.md) with your Azure Cosmos DB: API for MongoDB account.</span></span>

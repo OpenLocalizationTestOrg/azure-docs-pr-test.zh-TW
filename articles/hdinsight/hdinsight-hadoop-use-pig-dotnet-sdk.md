@@ -1,6 +1,6 @@
 ---
-title: "使用 .NET SDK for Hadoop 執行 Apache Pig 工作 - Azure HDInsight | Microsoft Docs"
-description: "了解如何使用 .NET SDK for Hadoop 將 Pig 工作提交至 HDInsight 上的 Hadoop。"
+title: "aaaRun Apache Pig 工作 Hadoop-Azure HDInsight.NET sdk |Microsoft 文件"
+description: "了解如何 toouse hello.NET SDK 上 HDInsight Hadoop toosubmit Pig 工作 tooHadoop。"
 services: hdinsight
 documentationcenter: .net
 author: Blackmist
@@ -16,54 +16,54 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/15/2017
 ms.author: larryfr
-ms.openlocfilehash: e40d152821b36852c447d5a3adfd39114edbbace
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1d4ceebd7c168372d23fe29a088f04676686de30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-pig-jobs-using-the-net-sdk-for-hadoop-in-hdinsight"></a><span data-ttu-id="079e1-103">在 HDInsight 中使用 .NET SDK for Hadoop 執行 Pig 工作</span><span class="sxs-lookup"><span data-stu-id="079e1-103">Run Pig jobs using the .NET SDK for Hadoop in HDInsight</span></span>
+# <a name="run-pig-jobs-using-hello-net-sdk-for-hadoop-in-hdinsight"></a><span data-ttu-id="e6f36-103">執行 hello.NET SDK 用於 HDInsight 中的 Hadoop Pig 工作</span><span class="sxs-lookup"><span data-stu-id="e6f36-103">Run Pig jobs using hello .NET SDK for Hadoop in HDInsight</span></span>
 
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-<span data-ttu-id="079e1-104">了解如何使用 .NET SDK for Hadoop 將 Apache Pig 工作提交至 Azure HDInsight 上的 Hadoop。</span><span class="sxs-lookup"><span data-stu-id="079e1-104">Learn how to use the .NET SDK for Hadoop to submit Apache Pig jobs to Hadoop on Azure HDInsight.</span></span>
+<span data-ttu-id="e6f36-104">了解 toouse hello.NET SDK 的 Hadoop toosubmit Apache Pig 工作 tooHadoop Azure HDInsight 上的方式。</span><span class="sxs-lookup"><span data-stu-id="e6f36-104">Learn how toouse hello .NET SDK for Hadoop toosubmit Apache Pig jobs tooHadoop on Azure HDInsight.</span></span>
 
-<span data-ttu-id="079e1-105">HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="079e1-105">The HDInsight .NET SDK provides .NET client libraries that makes it easier to work with HDInsight clusters from .NET.</span></span> <span data-ttu-id="079e1-106">Pig 可讓您透過建立一系列資料轉換的模型，來建立 MapReduce 作業。</span><span class="sxs-lookup"><span data-stu-id="079e1-106">Pig allows you to create MapReduce operations by modeling a series of data transformations.</span></span> <span data-ttu-id="079e1-107">在本文件中，您會學習如何使用基本 C# 應用程式將 Pig 作業提交至 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="079e1-107">In this document, you learn how to use a basic C# application to submit a Pig job to an HDInsight cluster.</span></span>
+<span data-ttu-id="e6f36-105">hello HDInsight.NET SDK 提供可讓您更輕鬆 toowork 與 HDInsight 叢集與.NET 的.NET 用戶端程式庫。</span><span class="sxs-lookup"><span data-stu-id="e6f36-105">hello HDInsight .NET SDK provides .NET client libraries that makes it easier toowork with HDInsight clusters from .NET.</span></span> <span data-ttu-id="e6f36-106">Pig 可讓您 toocreate MapReduce 作業依照模型化一系列的資料轉換。</span><span class="sxs-lookup"><span data-stu-id="e6f36-106">Pig allows you toocreate MapReduce operations by modeling a series of data transformations.</span></span> <span data-ttu-id="e6f36-107">在本文件中，您學會如何 toouse 基本 C# 應用程式 toosubmit Pig 工作 tooan HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="e6f36-107">In this document, you learn how toouse a basic C# application toosubmit a Pig job tooan HDInsight cluster.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="079e1-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="079e1-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="e6f36-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="e6f36-108">Prerequisites</span></span>
 
-<span data-ttu-id="079e1-109">若要完成這篇文章中的步驟，您需要下列項目。</span><span class="sxs-lookup"><span data-stu-id="079e1-109">To complete the steps in this article, you need the following.</span></span>
+<span data-ttu-id="e6f36-109">toocomplete hello 本文中的步驟，您需要下列 hello。</span><span class="sxs-lookup"><span data-stu-id="e6f36-109">toocomplete hello steps in this article, you need hello following.</span></span>
 
-* <span data-ttu-id="079e1-110">Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Windows 或 Linux 型)。</span><span class="sxs-lookup"><span data-stu-id="079e1-110">An Azure HDInsight (Hadoop on HDInsight) cluster (either Windows or Linux-based).</span></span>
+* <span data-ttu-id="e6f36-110">Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Windows 或 Linux 型)。</span><span class="sxs-lookup"><span data-stu-id="e6f36-110">An Azure HDInsight (Hadoop on HDInsight) cluster (either Windows or Linux-based).</span></span>
 
   > [!IMPORTANT]
-  > <span data-ttu-id="079e1-111">Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。</span><span class="sxs-lookup"><span data-stu-id="079e1-111">Linux is the only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="079e1-112">如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。</span><span class="sxs-lookup"><span data-stu-id="079e1-112">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
+  > <span data-ttu-id="e6f36-111">Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。</span><span class="sxs-lookup"><span data-stu-id="e6f36-111">Linux is hello only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="e6f36-112">如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。</span><span class="sxs-lookup"><span data-stu-id="e6f36-112">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
 
-* <span data-ttu-id="079e1-113">Visual Studio 2012、2013、2015 或 2017。</span><span class="sxs-lookup"><span data-stu-id="079e1-113">Visual Studio 2012, 2013, 2015 or 2017.</span></span>
+* <span data-ttu-id="e6f36-113">Visual Studio 2012、2013、2015 或 2017。</span><span class="sxs-lookup"><span data-stu-id="e6f36-113">Visual Studio 2012, 2013, 2015 or 2017.</span></span>
 
-## <a name="create-the-application"></a><span data-ttu-id="079e1-114">建立應用程式</span><span class="sxs-lookup"><span data-stu-id="079e1-114">Create the application</span></span>
+## <a name="create-hello-application"></a><span data-ttu-id="e6f36-114">建立 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="e6f36-114">Create hello application</span></span>
 
-<span data-ttu-id="079e1-115">HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="079e1-115">The HDInsight .NET SDK provides .NET client libraries, which makes it easier to work with HDInsight clusters from .NET.</span></span>
+<span data-ttu-id="e6f36-115">hello HDInsight.NET SDK 提供.NET 用戶端程式庫，使其更容易 toowork 與.net 的 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="e6f36-115">hello HDInsight .NET SDK provides .NET client libraries, which makes it easier toowork with HDInsight clusters from .NET.</span></span>
 
-1. <span data-ttu-id="079e1-116">從 Visual Studio 的 [檔案] 功能表中，選取 [新增]，然後選取 [專案]。</span><span class="sxs-lookup"><span data-stu-id="079e1-116">From the **File** menu in Visual Studio, select **New** and then select **Project**.</span></span>
+1. <span data-ttu-id="e6f36-116">從 hello**檔案**在 Visual Studio 中，選取功能表**新增**，然後選取 **專案**。</span><span class="sxs-lookup"><span data-stu-id="e6f36-116">From hello **File** menu in Visual Studio, select **New** and then select **Project**.</span></span>
 
-2. <span data-ttu-id="079e1-117">對於新的專案，輸入或選取下列值：</span><span class="sxs-lookup"><span data-stu-id="079e1-117">For the new project, type or select the following values:</span></span>
+2. <span data-ttu-id="e6f36-117">Hello 新專案中，類型或選取 hello 下列值：</span><span class="sxs-lookup"><span data-stu-id="e6f36-117">For hello new project, type or select hello following values:</span></span>
 
-   | <span data-ttu-id="079e1-118">屬性</span><span class="sxs-lookup"><span data-stu-id="079e1-118">Property</span></span> | <span data-ttu-id="079e1-119">值</span><span class="sxs-lookup"><span data-stu-id="079e1-119">Value</span></span> |
+   | <span data-ttu-id="e6f36-118">屬性</span><span class="sxs-lookup"><span data-stu-id="e6f36-118">Property</span></span> | <span data-ttu-id="e6f36-119">值</span><span class="sxs-lookup"><span data-stu-id="e6f36-119">Value</span></span> |
    | ------ | ------ |
-   | <span data-ttu-id="079e1-120">類別</span><span class="sxs-lookup"><span data-stu-id="079e1-120">Category</span></span> | <span data-ttu-id="079e1-121">範本/Visual C#/Windows</span><span class="sxs-lookup"><span data-stu-id="079e1-121">Templates/Visual C#/Windows</span></span> |
-   | <span data-ttu-id="079e1-122">範本</span><span class="sxs-lookup"><span data-stu-id="079e1-122">Template</span></span> | <span data-ttu-id="079e1-123">主控台應用程式</span><span class="sxs-lookup"><span data-stu-id="079e1-123">Console Application</span></span> |
-   | <span data-ttu-id="079e1-124">名稱</span><span class="sxs-lookup"><span data-stu-id="079e1-124">Name</span></span> | <span data-ttu-id="079e1-125">SubmitPigJob</span><span class="sxs-lookup"><span data-stu-id="079e1-125">SubmitPigJob</span></span> |
+   | <span data-ttu-id="e6f36-120">類別</span><span class="sxs-lookup"><span data-stu-id="e6f36-120">Category</span></span> | <span data-ttu-id="e6f36-121">範本/Visual C#/Windows</span><span class="sxs-lookup"><span data-stu-id="e6f36-121">Templates/Visual C#/Windows</span></span> |
+   | <span data-ttu-id="e6f36-122">範本</span><span class="sxs-lookup"><span data-stu-id="e6f36-122">Template</span></span> | <span data-ttu-id="e6f36-123">主控台應用程式</span><span class="sxs-lookup"><span data-stu-id="e6f36-123">Console Application</span></span> |
+   | <span data-ttu-id="e6f36-124">名稱</span><span class="sxs-lookup"><span data-stu-id="e6f36-124">Name</span></span> | <span data-ttu-id="e6f36-125">SubmitPigJob</span><span class="sxs-lookup"><span data-stu-id="e6f36-125">SubmitPigJob</span></span> |
 
-3. <span data-ttu-id="079e1-126">按一下 [確定]  以建立專案。</span><span class="sxs-lookup"><span data-stu-id="079e1-126">Click **OK** to create the project.</span></span>
+3. <span data-ttu-id="e6f36-126">按一下**確定**toocreate hello 專案。</span><span class="sxs-lookup"><span data-stu-id="e6f36-126">Click **OK** toocreate hello project.</span></span>
 
-4. <span data-ttu-id="079e1-127">從 [工具] 功能表中，選取 [程式庫封裝管理員] 或 [Nuget 封裝管理員]，然後選取 [封裝管理員主控台]。</span><span class="sxs-lookup"><span data-stu-id="079e1-127">From the **Tools** menu, select **Library Package Manager** or **Nuget Package Manager**, and then select **Package Manager Console**.</span></span>
+4. <span data-ttu-id="e6f36-127">從 hello**工具**功能表上，選取**程式庫套件管理員**或**Nuget 套件管理員**，然後選取**Package Manager Console**。</span><span class="sxs-lookup"><span data-stu-id="e6f36-127">From hello **Tools** menu, select **Library Package Manager** or **Nuget Package Manager**, and then select **Package Manager Console**.</span></span>
 
-5. <span data-ttu-id="079e1-128">若要安裝 .NET SDK 封裝，請使用下列命令︰</span><span class="sxs-lookup"><span data-stu-id="079e1-128">To install the .NET SDK packages, use the following command:</span></span>
+5. <span data-ttu-id="e6f36-128">tooinstall hello.NET SDK 封裝，請使用下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="e6f36-128">tooinstall hello .NET SDK packages, use hello following command:</span></span>
 
         Install-Package Microsoft.Azure.Management.HDInsight.Job
 
-6. <span data-ttu-id="079e1-129">在 [方案總管] 中，按兩下 **Program.cs** 加以開啟。</span><span class="sxs-lookup"><span data-stu-id="079e1-129">From Solution Explorer, double-click **Program.cs** to open it.</span></span> <span data-ttu-id="079e1-130">將現有程式碼取代為下者。</span><span class="sxs-lookup"><span data-stu-id="079e1-130">Replace the existing code with the following.</span></span>
+6. <span data-ttu-id="e6f36-129">從 方案總管 中，按兩下  **Program.cs** tooopen 它。</span><span class="sxs-lookup"><span data-stu-id="e6f36-129">From Solution Explorer, double-click **Program.cs** tooopen it.</span></span> <span data-ttu-id="e6f36-130">取代 hello 下列 hello 現有程式碼。</span><span class="sxs-lookup"><span data-stu-id="e6f36-130">Replace hello existing code with hello following.</span></span>
 
     ```csharp
     using Microsoft.Azure.Management.HDInsight.Job;
@@ -83,14 +83,14 @@ ms.lasthandoff: 08/18/2017
 
             static void Main(string[] args)
             {
-                System.Console.WriteLine("The application is running ...");
+                System.Console.WriteLine("hello application is running ...");
 
                 var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = ExistingClusterUsername, Password = ExistingClusterPassword };
                 _hdiJobManagementClient = new HDInsightJobManagementClient(ExistingClusterUri, clusterCredentials);
 
                 SubmitPigJob();
 
-                System.Console.WriteLine("Press ENTER to continue ...");
+                System.Console.WriteLine("Press ENTER toocontinue ...");
                 System.Console.ReadLine();
             }
 
@@ -107,32 +107,32 @@ ms.lasthandoff: 08/18/2017
                                 DUMP RESULT;"
                 };
 
-                System.Console.WriteLine("Submitting the Pig job to the cluster...");
+                System.Console.WriteLine("Submitting hello Pig job toohello cluster...");
                 var response = _hdiJobManagementClient.JobManagement.SubmitPigJob(parameters);
-                System.Console.WriteLine("Validating that the response is as expected...");
+                System.Console.WriteLine("Validating that hello response is as expected...");
                 System.Console.WriteLine("Response status code is " + response.StatusCode);
-                System.Console.WriteLine("Validating the response object...");
+                System.Console.WriteLine("Validating hello response object...");
                 System.Console.WriteLine("JobId is " + response.JobSubmissionJsonResponse.Id);
             }
         }
     }
     ```
 
-7. <span data-ttu-id="079e1-131">若要啟動應用程式，請按 **F5**。</span><span class="sxs-lookup"><span data-stu-id="079e1-131">To start the application, press **F5**.</span></span>
+7. <span data-ttu-id="e6f36-131">toostart hello 應用程式，請按**F5**。</span><span class="sxs-lookup"><span data-stu-id="e6f36-131">toostart hello application, press **F5**.</span></span>
 
-8. <span data-ttu-id="079e1-132">若要結束應用程式，請按 **ENTER**。</span><span class="sxs-lookup"><span data-stu-id="079e1-132">To exit the application, press **ENTER**.</span></span>
+8. <span data-ttu-id="e6f36-132">tooexit hello 應用程式，請按**ENTER**。</span><span class="sxs-lookup"><span data-stu-id="e6f36-132">tooexit hello application, press **ENTER**.</span></span>
 
-## <a name="summary"></a><span data-ttu-id="079e1-133">摘要</span><span class="sxs-lookup"><span data-stu-id="079e1-133">Summary</span></span>
+## <a name="summary"></a><span data-ttu-id="e6f36-133">摘要</span><span class="sxs-lookup"><span data-stu-id="e6f36-133">Summary</span></span>
 
-<span data-ttu-id="079e1-134">如您所見，.NET SDK for Hadoop 可讓您建立 .NET 應用程式，以將 Pig 作業提交至 HDInsight 叢集，以及監視作業狀態。</span><span class="sxs-lookup"><span data-stu-id="079e1-134">As you can see, the .NET SDK for Hadoop allows you to create .NET applications that submit Pig jobs to an HDInsight cluster, and monitor the job status.</span></span>
+<span data-ttu-id="e6f36-134">如您所見，hello Hadoop 的.NET SDK 可讓您 toocreate.NET 應用程式，提交 Pig 工作 tooan HDInsight 叢集，並監控 hello 工作狀態。</span><span class="sxs-lookup"><span data-stu-id="e6f36-134">As you can see, hello .NET SDK for Hadoop allows you toocreate .NET applications that submit Pig jobs tooan HDInsight cluster, and monitor hello job status.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="079e1-135">後續步驟</span><span class="sxs-lookup"><span data-stu-id="079e1-135">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e6f36-135">後續步驟</span><span class="sxs-lookup"><span data-stu-id="e6f36-135">Next steps</span></span>
 
-<span data-ttu-id="079e1-136">如需 HDInsight 中 Pig 的詳細資訊，請參閱[搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)。</span><span class="sxs-lookup"><span data-stu-id="079e1-136">For information on Pig in HDInsight, see [Use Pig with Hadoop on HDInsight](hdinsight-use-pig.md).</span></span>
+<span data-ttu-id="e6f36-136">如需 HDInsight 中 Pig 的詳細資訊，請參閱[搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)。</span><span class="sxs-lookup"><span data-stu-id="e6f36-136">For information on Pig in HDInsight, see [Use Pig with Hadoop on HDInsight](hdinsight-use-pig.md).</span></span>
 
-<span data-ttu-id="079e1-137">如需在 HDInsight 上使用 Hadoop 的詳細資訊，請參閱下列文件：</span><span class="sxs-lookup"><span data-stu-id="079e1-137">For more information on using Hadoop on HDInsight, see the following documents:</span></span>
+<span data-ttu-id="e6f36-137">如需有關使用 HDInsight Hadoop 的詳細資訊，請參閱下列文件的 hello:</span><span class="sxs-lookup"><span data-stu-id="e6f36-137">For more information on using Hadoop on HDInsight, see hello following documents:</span></span>
 
-* [<span data-ttu-id="079e1-138">搭配使用 Hive 與 HDInsight 上的 Hadoop</span><span class="sxs-lookup"><span data-stu-id="079e1-138">Use Hive with Hadoop on HDInsight</span></span>](hdinsight-use-hive.md)
-* [<span data-ttu-id="079e1-139">搭配使用 MapReduce 與 HDInsight 上的 Hadoop</span><span class="sxs-lookup"><span data-stu-id="079e1-139">Use MapReduce with Hadoop on HDInsight</span></span>](hdinsight-use-mapreduce.md)
+* [<span data-ttu-id="e6f36-138">搭配使用 Hive 與 HDInsight 上的 Hadoop</span><span class="sxs-lookup"><span data-stu-id="e6f36-138">Use Hive with Hadoop on HDInsight</span></span>](hdinsight-use-hive.md)
+* [<span data-ttu-id="e6f36-139">搭配使用 MapReduce 與 HDInsight 上的 Hadoop</span><span class="sxs-lookup"><span data-stu-id="e6f36-139">Use MapReduce with Hadoop on HDInsight</span></span>](hdinsight-use-mapreduce.md)
 
 [preview-portal]: https://portal.azure.com/

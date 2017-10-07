@@ -1,6 +1,6 @@
 ---
-title: "建立私人 Docker 容器登錄 - Azure CLI | Microsoft Docs"
-description: "使用 Azure CLI 2.0 開始建立及管理私人 Docker 容器登錄"
+title: "aaaCreate 私用 Docker 容器登錄中的 Azure CLI |Microsoft 文件"
+description: "開始建立及管理私人 Docker 容器登錄以 hello Azure CLI 2.0"
 services: container-registry
 documentationcenter: 
 author: neilpeterson
@@ -17,46 +17,46 @@ ms.workload: na
 ms.date: 07/11/2017
 ms.author: nepeters
 ms.custom: na
-ms.openlocfilehash: c7cdb1b13bf32388d18c2a25af28337a81861c1e
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 2cadf42db0681a09c95486510f1e65c6f87c5280
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-managed-container-registry-using-the-azure-cli"></a><span data-ttu-id="51b9a-103">使用 Azure CLI 建立受管理的容器登錄</span><span class="sxs-lookup"><span data-stu-id="51b9a-103">Create a managed container registry using the Azure CLI</span></span>
+# <a name="create-a-managed-container-registry-using-hello-azure-cli"></a><span data-ttu-id="34187-103">建立受管理的容器登錄中使用 Azure CLI hello</span><span class="sxs-lookup"><span data-stu-id="34187-103">Create a managed container registry using hello Azure CLI</span></span>
 
-<span data-ttu-id="51b9a-104">Azure Container Registry 是用於儲存私用 Docker 容器映像的受管理 Docker 容器登錄服務。</span><span class="sxs-lookup"><span data-stu-id="51b9a-104">Azure Container Registry is a managed Docker container registry service used for storing private Docker container images.</span></span> <span data-ttu-id="51b9a-105">本指南詳述如何使用 Azure CLI 建立受管理的 Azure Container Registry 執行個體。</span><span class="sxs-lookup"><span data-stu-id="51b9a-105">This guide details creating a managed Azure Container Registry instance using the Azure CLI.</span></span>
+<span data-ttu-id="34187-104">Azure Container Registry 是用於儲存私用 Docker 容器映像的受管理 Docker 容器登錄服務。</span><span class="sxs-lookup"><span data-stu-id="34187-104">Azure Container Registry is a managed Docker container registry service used for storing private Docker container images.</span></span> <span data-ttu-id="34187-105">本指南詳述建立受管理的 Azure 容器登錄中執行個體使用 hello Azure CLI。</span><span class="sxs-lookup"><span data-stu-id="34187-105">This guide details creating a managed Azure Container Registry instance using hello Azure CLI.</span></span>
 
-<span data-ttu-id="51b9a-106">受管理 Azure 容器登錄為預覽版本，並不適用於所有區域。</span><span class="sxs-lookup"><span data-stu-id="51b9a-106">Managed Azure container registries are in preview and not available in all regions.</span></span>
+<span data-ttu-id="34187-106">受管理 Azure 容器登錄為預覽版本，並不適用於所有區域。</span><span class="sxs-lookup"><span data-stu-id="34187-106">Managed Azure container registries are in preview and not available in all regions.</span></span>
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="51b9a-107">如果您選擇在本機安裝和使用 CLI，本快速入門會要求您執行 Azure CLI 2.0.4 版或更新版本。</span><span class="sxs-lookup"><span data-stu-id="51b9a-107">If you choose to install and use the CLI locally, this quickstart requires that you are running the Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="51b9a-108">執行 `az --version` 以尋找版本。</span><span class="sxs-lookup"><span data-stu-id="51b9a-108">Run `az --version` to find the version.</span></span> <span data-ttu-id="51b9a-109">如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。</span><span class="sxs-lookup"><span data-stu-id="51b9a-109">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
+<span data-ttu-id="34187-107">如果您選擇 tooinstall，並在本機上使用 hello CLI，本快速入門會要求執行 hello Azure CLI 版本 2.0.4 或更新版本。</span><span class="sxs-lookup"><span data-stu-id="34187-107">If you choose tooinstall and use hello CLI locally, this quickstart requires that you are running hello Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="34187-108">執行`az --version`toofind hello 版本。</span><span class="sxs-lookup"><span data-stu-id="34187-108">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="34187-109">如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。</span><span class="sxs-lookup"><span data-stu-id="34187-109">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
 
-## <a name="create-a-resource-group"></a><span data-ttu-id="51b9a-110">建立資源群組</span><span class="sxs-lookup"><span data-stu-id="51b9a-110">Create a resource group</span></span>
+## <a name="create-a-resource-group"></a><span data-ttu-id="34187-110">建立資源群組</span><span class="sxs-lookup"><span data-stu-id="34187-110">Create a resource group</span></span>
 
-<span data-ttu-id="51b9a-111">使用 [az group create](/cli/azure/group#create) 命令來建立資源群組。</span><span class="sxs-lookup"><span data-stu-id="51b9a-111">Create a resource group with the [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="51b9a-112">Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。</span><span class="sxs-lookup"><span data-stu-id="51b9a-112">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> 
+<span data-ttu-id="34187-111">建立資源群組以 hello [az 群組建立](/cli/azure/group#create)命令。</span><span class="sxs-lookup"><span data-stu-id="34187-111">Create a resource group with hello [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="34187-112">Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。</span><span class="sxs-lookup"><span data-stu-id="34187-112">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> 
 
-<span data-ttu-id="51b9a-113">下列範例會在 *westcentralus* 位置建立名為 *myResourceGroup* 的資源群組。</span><span class="sxs-lookup"><span data-stu-id="51b9a-113">The following example creates a resource group named *myResourceGroup* in the *westcentralus* location.</span></span>
+<span data-ttu-id="34187-113">hello 下列範例會建立名為的資源群組*myResourceGroup*在 hello *westcentralus*位置。</span><span class="sxs-lookup"><span data-stu-id="34187-113">hello following example creates a resource group named *myResourceGroup* in hello *westcentralus* location.</span></span>
 
 ```azurecli-interactive 
 az group create --name myResourceGroup --location westcentralus
 ```
 
-## <a name="create-a-container-registry"></a><span data-ttu-id="51b9a-114">建立容器登錄庫</span><span class="sxs-lookup"><span data-stu-id="51b9a-114">Create a container registry</span></span>
+## <a name="create-a-container-registry"></a><span data-ttu-id="34187-114">建立容器登錄庫</span><span class="sxs-lookup"><span data-stu-id="34187-114">Create a container registry</span></span>
 
-<span data-ttu-id="51b9a-115">使用 [az acr create](/cli/azure/acr#create) 命令，以建立 ACR 執行個體。</span><span class="sxs-lookup"><span data-stu-id="51b9a-115">Create an ACR instance using the [az acr create](/cli/azure/acr#create) command.</span></span>
+<span data-ttu-id="34187-115">建立使用 hello ACR 執行個體[az acr 建立](/cli/azure/acr#create)命令。</span><span class="sxs-lookup"><span data-stu-id="34187-115">Create an ACR instance using hello [az acr create](/cli/azure/acr#create) command.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="51b9a-116">當您建立登錄庫時，請指定含有字母和數字的全域唯一最上層網域名稱。</span><span class="sxs-lookup"><span data-stu-id="51b9a-116">When you create a registry, specify a globally unique top-level domain name, containing only letters and numbers.</span></span>
+> <span data-ttu-id="34187-116">當您建立登錄庫時，請指定含有字母和數字的全域唯一最上層網域名稱。</span><span class="sxs-lookup"><span data-stu-id="34187-116">When you create a registry, specify a globally unique top-level domain name, containing only letters and numbers.</span></span>
 
- <span data-ttu-id="51b9a-117">範例中的登錄名稱是 *myContainerRegistry1*，請替換成您自己的唯一名稱。</span><span class="sxs-lookup"><span data-stu-id="51b9a-117">The registry name in the example is *myContainerRegistry1*, substitute a unique name of your own.</span></span>
+ <span data-ttu-id="34187-117">hello 範例中的 hello 登錄名稱是*myContainerRegistry1*，以取代您自己的唯一名稱。</span><span class="sxs-lookup"><span data-stu-id="34187-117">hello registry name in hello example is *myContainerRegistry1*, substitute a unique name of your own.</span></span>
 
 ```azurecli
 az acr create --name myContainerRegistry1 --resource-group myResourceGroup --sku Managed_Standard
 ```
 
-<span data-ttu-id="51b9a-118">建立登錄時，輸出大致如下：</span><span class="sxs-lookup"><span data-stu-id="51b9a-118">When the registry is created, the output is similar to the following:</span></span>
+<span data-ttu-id="34187-118">建立 hello 登錄時，hello 輸出會是類似 toohello 下列：</span><span class="sxs-lookup"><span data-stu-id="34187-118">When hello registry is created, hello output is similar toohello following:</span></span>
 
 ```azurecli
 {
@@ -78,44 +78,44 @@ az acr create --name myContainerRegistry1 --resource-group myResourceGroup --sku
 }
 ```
 
-## <a name="log-in-to-acr-instance"></a><span data-ttu-id="51b9a-119">登入 ACR 執行個體</span><span class="sxs-lookup"><span data-stu-id="51b9a-119">Log in to ACR instance</span></span>
+## <a name="log-in-tooacr-instance"></a><span data-ttu-id="34187-119">登入 tooACR 執行個體</span><span class="sxs-lookup"><span data-stu-id="34187-119">Log in tooACR instance</span></span>
 
-<span data-ttu-id="51b9a-120">發送和提取容器映像之前，您必須登入 ACR 執行個體。</span><span class="sxs-lookup"><span data-stu-id="51b9a-120">Before pushing and pulling container images, you must log in to the ACR instance.</span></span> <span data-ttu-id="51b9a-121">若要這樣做，請使用 [az acr login](/cli/azure/acr#login) 命令。</span><span class="sxs-lookup"><span data-stu-id="51b9a-121">To do so, use the [az acr login](/cli/azure/acr#login) command.</span></span>
+<span data-ttu-id="34187-120">然後再推送和提取容器映像，您必須登入 toohello ACR 執行個體。</span><span class="sxs-lookup"><span data-stu-id="34187-120">Before pushing and pulling container images, you must log in toohello ACR instance.</span></span> <span data-ttu-id="34187-121">因此，使用 toodo 的 hello [az acr 登入](/cli/azure/acr#login)命令。</span><span class="sxs-lookup"><span data-stu-id="34187-121">toodo so, use hello [az acr login](/cli/azure/acr#login) command.</span></span>
 
 ```azurecli-interactive
 az acr login --name myAzureContainerRegistry1
 ```
 
-<span data-ttu-id="51b9a-122">此命令在完成之後會傳回「登入成功」訊息。</span><span class="sxs-lookup"><span data-stu-id="51b9a-122">The command returns a 'Login Succeeded' message once completed.</span></span>
+<span data-ttu-id="34187-122">hello 命令會傳回 「 已成功登入 」 的訊息，一旦完成後。</span><span class="sxs-lookup"><span data-stu-id="34187-122">hello command returns a 'Login Succeeded' message once completed.</span></span>
 
-## <a name="use-azure-container-registry"></a><span data-ttu-id="51b9a-123">使用 Azure Container Registry</span><span class="sxs-lookup"><span data-stu-id="51b9a-123">Use Azure Container Registry</span></span>
+## <a name="use-azure-container-registry"></a><span data-ttu-id="34187-123">使用 Azure Container Registry</span><span class="sxs-lookup"><span data-stu-id="34187-123">Use Azure Container Registry</span></span>
 
-### <a name="list-container-images"></a><span data-ttu-id="51b9a-124">列出容器映像</span><span class="sxs-lookup"><span data-stu-id="51b9a-124">List container images</span></span>
+### <a name="list-container-images"></a><span data-ttu-id="34187-124">列出容器映像</span><span class="sxs-lookup"><span data-stu-id="34187-124">List container images</span></span>
 
-<span data-ttu-id="51b9a-125">使用 `az acr` CLI 命令來查詢儲存機制中的映像和標籤。</span><span class="sxs-lookup"><span data-stu-id="51b9a-125">Use the `az acr` CLI commands to query the images and tags in a repository.</span></span>
+<span data-ttu-id="34187-125">使用 hello `az acr` CLI 命令 tooquery hello 映像儲存機制中的標記。</span><span class="sxs-lookup"><span data-stu-id="34187-125">Use hello `az acr` CLI commands tooquery hello images and tags in a repository.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="51b9a-126">目前，容器登錄庫不支援用 `docker search` 命令查詢映像和標籤。</span><span class="sxs-lookup"><span data-stu-id="51b9a-126">Currently, Container Registry does not support the `docker search` command to query for images and tags.</span></span>
+> <span data-ttu-id="34187-126">目前，容器登錄中不支援 hello`docker search`命令 tooquery 映像和標記。</span><span class="sxs-lookup"><span data-stu-id="34187-126">Currently, Container Registry does not support hello `docker search` command tooquery for images and tags.</span></span>
 
-### <a name="list-repositories"></a><span data-ttu-id="51b9a-127">列出儲存機制</span><span class="sxs-lookup"><span data-stu-id="51b9a-127">List repositories</span></span>
+### <a name="list-repositories"></a><span data-ttu-id="34187-127">列出儲存機制</span><span class="sxs-lookup"><span data-stu-id="34187-127">List repositories</span></span>
 
-<span data-ttu-id="51b9a-128">下列範例會以 JSON (JavaScript 物件標記法) 格式列出登錄庫中的儲存機制︰</span><span class="sxs-lookup"><span data-stu-id="51b9a-128">The following example lists the repositories in a registry, in JSON (JavaScript Object Notation) format:</span></span>
+<span data-ttu-id="34187-128">hello 下列範例會列出在登錄中，JSON （JavaScript 物件標記法） 格式的 hello 儲存機制：</span><span class="sxs-lookup"><span data-stu-id="34187-128">hello following example lists hello repositories in a registry, in JSON (JavaScript Object Notation) format:</span></span>
 
 ```azurecli
 az acr repository list -n myContainerRegistry1 -o json
 ```
 
-### <a name="list-tags"></a><span data-ttu-id="51b9a-129">列出標籤</span><span class="sxs-lookup"><span data-stu-id="51b9a-129">List tags</span></span>
+### <a name="list-tags"></a><span data-ttu-id="34187-129">列出標籤</span><span class="sxs-lookup"><span data-stu-id="34187-129">List tags</span></span>
 
-<span data-ttu-id="51b9a-130">下列範例會以 JSON 格式列出 **samples/nginx** 儲存機制上的標籤：</span><span class="sxs-lookup"><span data-stu-id="51b9a-130">The following example lists the tags on the **samples/nginx** repository, in JSON format:</span></span>
+<span data-ttu-id="34187-130">hello 下列範例會列出在 hello hello 標記**範例/nginx**儲存機制，以 JSON 格式：</span><span class="sxs-lookup"><span data-stu-id="34187-130">hello following example lists hello tags on hello **samples/nginx** repository, in JSON format:</span></span>
 
 ```azurecli
 az acr repository show-tags -n myContainerRegistry1 --repository samples/nginx -o json
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="51b9a-131">後續步驟</span><span class="sxs-lookup"><span data-stu-id="51b9a-131">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="34187-131">後續步驟</span><span class="sxs-lookup"><span data-stu-id="34187-131">Next steps</span></span>
 
-<span data-ttu-id="51b9a-132">在本快速入門中，您已使用 Azure CLI 建立受管理的 Azure Container Registry 執行個體。</span><span class="sxs-lookup"><span data-stu-id="51b9a-132">In this quick start, you've created a managed Azure Container Registry instance using the Azure CLI.</span></span>
+<span data-ttu-id="34187-132">在這個快速入門中，您已建立受管理的 Azure 容器登錄中執行個體，使用 Azure CLI hello。</span><span class="sxs-lookup"><span data-stu-id="34187-132">In this quick start, you've created a managed Azure Container Registry instance using hello Azure CLI.</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="51b9a-133">使用 Docker CLI 推送您的第一個映像</span><span class="sxs-lookup"><span data-stu-id="51b9a-133">Push your first image using the Docker CLI</span></span>](container-registry-get-started-docker-cli.md)
+> [<span data-ttu-id="34187-133">推入第一個映像使用 Docker CLI hello</span><span class="sxs-lookup"><span data-stu-id="34187-133">Push your first image using hello Docker CLI</span></span>](container-registry-get-started-docker-cli.md)

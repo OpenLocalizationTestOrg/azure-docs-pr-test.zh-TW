@@ -1,6 +1,6 @@
 ---
-title: "Azure Key Vault 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用金鑰保存庫來建立及維護金鑰，以便存取和加密您的雲端資源、應用程式和解決方案。 教學課程、API 參考等等。"
+title: "aaaAzure 金鑰保存庫文件-教學課程中，API 參考 |Microsoft 文件"
+description: "深入了解如何 toouse 金鑰保存庫 toocreate 及維護索引鍵，以存取並加密您的雲端資源，應用程式和方案。 教學課程、API 參考等等。"
 services: key-vault
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 41db3ea23bc1e9895893201078b1ada3297418cb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a7fbebf94b3f345731ccba0ab788c83efa4c021e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="key-vault-documentation"></a>金鑰保存庫文件
 
-了解如何使用 Azure 金鑰保存庫來保護及管理雲端應用程式和服務所使用的密碼編譯金鑰和密碼。 教學課程、API 參考和其他文件會示範如何建立及維護金鑰，以便存取和加密您的資源和解決方案。
+深入了解如何 toouse 金鑰保存庫 toosafeguard 和管理密碼編譯金鑰和雲端應用程式和服務所使用的密碼。 教學課程、 應用程式開發介面參考和其他文件會顯示您如何 toocreate 及維護索引鍵，以存取並加密您的資源和方案。
 
 <ul class="panelContent cardsFTitle">
     <li>
