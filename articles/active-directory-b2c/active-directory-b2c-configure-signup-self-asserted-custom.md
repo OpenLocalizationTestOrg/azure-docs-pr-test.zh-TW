@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C︰修改自訂原則中的註冊並設定自我判斷提示提供者"
-description: "逐步解說如何在註冊中新增宣告並設定使用者輸入"
+description: "逐步解說中的加入宣告 toosign 註冊及設定 hello 使用者輸入"
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,30 +14,30 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/29/2017
 ms.author: joroja
-ms.openlocfilehash: 64b9d904d7d070052e125b479f4719d208c9ff85
-ms.sourcegitcommit: b0af2a2cf44101a1b1ff41bd2ad795eaef29612a
+ms.openlocfilehash: c31d737263fef3e771bdf451b809b0ca522c8fe0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-active-directory-b2c-modify-sign-up-to-add-new-claims-and-configure-user-input"></a><span data-ttu-id="7a9f2-103">Azure Active Directory B2C︰修改註冊以新增宣告並設定使用者輸入。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-103">Azure Active Directory B2C: Modify sign up to add new claims and configure user input.</span></span>
+# <a name="azure-active-directory-b2c-modify-sign-up-tooadd-new-claims-and-configure-user-input"></a><span data-ttu-id="9d78f-103">Azure Active Directory B2C： 修改註冊 tooadd 新宣告，並設定使用者輸入。</span><span class="sxs-lookup"><span data-stu-id="9d78f-103">Azure Active Directory B2C: Modify sign up tooadd new claims and configure user input.</span></span>
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-<span data-ttu-id="7a9f2-104">在本文中，您會在您的註冊使用者旅程中新增使用者所提供的輸入 (宣告)。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-104">In this article, you will add a new user provided entry (a claim) to your signup user journey.</span></span>  <span data-ttu-id="7a9f2-105">您會將輸入設定為下拉式清單，並定義它是否為必要項目。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-105">You will configure the entry as a dropdown, and define if it is required.</span></span>
+<span data-ttu-id="9d78f-104">在本文中，您將加入新使用者提供項目 （宣告） tooyour 註冊使用者的旅程。</span><span class="sxs-lookup"><span data-stu-id="9d78f-104">In this article, you will add a new user provided entry (a claim) tooyour signup user journey.</span></span>  <span data-ttu-id="9d78f-105">您將為下拉式清單中，設定 hello 項目，並定義在必要時。</span><span class="sxs-lookup"><span data-stu-id="9d78f-105">You will configure hello entry as a dropdown, and define if it is required.</span></span>
 
-<span data-ttu-id="7a9f2-106">編輯 Sipi 觸發測試遞交。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-106">Edited by Sipi to trigger test handoff.</span></span>
+<span data-ttu-id="9d78f-106">編輯 Sipi tootrigger 測試遞交。</span><span class="sxs-lookup"><span data-stu-id="9d78f-106">Edited by Sipi tootrigger test handoff.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="7a9f2-107">必要條件</span><span class="sxs-lookup"><span data-stu-id="7a9f2-107">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="9d78f-107">必要條件</span><span class="sxs-lookup"><span data-stu-id="9d78f-107">Prerequisites</span></span>
 
-* <span data-ttu-id="7a9f2-108">完成[開始使用自訂原則](active-directory-b2c-get-started-custom.md)一文中的步驟。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-108">Complete the steps in the article [Getting Started with Custom Policies](active-directory-b2c-get-started-custom.md).</span></span>  <span data-ttu-id="7a9f2-109">測試註冊/登入使用者旅程以註冊新的本機帳戶，再繼續進行。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-109">Test the signup/signin user journey to signup a new local account before proceeding.</span></span>
-
-
-<span data-ttu-id="7a9f2-110">透過註冊/登入就能從使用者收集初始資料。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-110">Gathering initial data from your users is achieved via signup/signin.</span></span>  <span data-ttu-id="7a9f2-111">其他宣告則可在稍後透過設定檔編輯使用者旅程來收集。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-111">Additional claims can be gathered later via profile edit user journeys.</span></span> <span data-ttu-id="7a9f2-112">每當 Azure AD B2C 以互動方式直接從使用者收集資訊時，身分識別體驗架構會使用其 `selfasserted provider`。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-112">Anytime Azure AD B2C gathers information directly from the user interactively, the Identity Experience Framework uses its `selfasserted provider`.</span></span> <span data-ttu-id="7a9f2-113">只要使用此提供者就適用下列步驟。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-113">The steps below apply anytime this provider is used.</span></span>
+* <span data-ttu-id="9d78f-108">Hello 文件中的步驟完成 hello[開始使用自訂原則](active-directory-b2c-get-started-custom.md)。</span><span class="sxs-lookup"><span data-stu-id="9d78f-108">Complete hello steps in hello article [Getting Started with Custom Policies](active-directory-b2c-get-started-custom.md).</span></span>  <span data-ttu-id="9d78f-109">測試 hello 註冊/登入使用者之旅 toosignup 新的本機帳戶，才能繼續。</span><span class="sxs-lookup"><span data-stu-id="9d78f-109">Test hello signup/signin user journey toosignup a new local account before proceeding.</span></span>
 
 
-## <a name="define-the-claim-its-display-name-and-the-user-input-type"></a><span data-ttu-id="7a9f2-114">定義宣告、其顯示名稱和使用者輸入類型</span><span class="sxs-lookup"><span data-stu-id="7a9f2-114">Define the claim, its display name and the user input type</span></span>
-<span data-ttu-id="7a9f2-115">讓我們要求使用者輸入他們的所在城市。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-115">Lets ask the user for their city.</span></span>  <span data-ttu-id="7a9f2-116">在 TrustFrameWorkExtensions 原則檔的 `<ClaimsSchema>` 元素中新增下列元素︰</span><span class="sxs-lookup"><span data-stu-id="7a9f2-116">Add the following element to the `<ClaimsSchema>` element in the TrustFrameWorkExtensions policy file:</span></span>
+<span data-ttu-id="9d78f-110">透過註冊/登入就能從使用者收集初始資料。</span><span class="sxs-lookup"><span data-stu-id="9d78f-110">Gathering initial data from your users is achieved via signup/signin.</span></span>  <span data-ttu-id="9d78f-111">其他宣告則可在稍後透過設定檔編輯使用者旅程來收集。</span><span class="sxs-lookup"><span data-stu-id="9d78f-111">Additional claims can be gathered later via profile edit user journeys.</span></span> <span data-ttu-id="9d78f-112">Azure AD B2C 收集資訊直接 hello 使用者以互動方式，每當 hello 身分識別體驗架構會使用其`selfasserted provider`。</span><span class="sxs-lookup"><span data-stu-id="9d78f-112">Anytime Azure AD B2C gathers information directly from hello user interactively, hello Identity Experience Framework uses its `selfasserted provider`.</span></span> <span data-ttu-id="9d78f-113">hello 步驟套用隨時使用此提供者。</span><span class="sxs-lookup"><span data-stu-id="9d78f-113">hello steps below apply anytime this provider is used.</span></span>
+
+
+## <a name="define-hello-claim-its-display-name-and-hello-user-input-type"></a><span data-ttu-id="9d78f-114">定義 hello 宣告、 顯示名稱和 hello 使用者輸入類型</span><span class="sxs-lookup"><span data-stu-id="9d78f-114">Define hello claim, its display name and hello user input type</span></span>
+<span data-ttu-id="9d78f-115">可讓 hello 使用者尋求他們的城市。</span><span class="sxs-lookup"><span data-stu-id="9d78f-115">Lets ask hello user for their city.</span></span>  <span data-ttu-id="9d78f-116">新增下列項目 toohello hello `<ClaimsSchema>` hello TrustFrameWorkExtensions 原則檔中的項目：</span><span class="sxs-lookup"><span data-stu-id="9d78f-116">Add hello following element toohello `<ClaimsSchema>` element in hello TrustFrameWorkExtensions policy file:</span></span>
 
 ```xml
 <ClaimType Id="city">
@@ -47,13 +47,13 @@ ms.lasthandoff: 09/28/2017
   <UserInputType>TextBox</UserInputType>
 </ClaimType>
 ```
-<span data-ttu-id="7a9f2-117">您也可以在這裡進行其他選擇以自訂宣告。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-117">There are additional choices you can make here to customize the claim.</span></span>  <span data-ttu-id="7a9f2-118">如需完整的結構描述，請參閱**身分識別體驗架構技術參考指南**。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-118">For a full schema, refer to the **Identity Experience Framework Technical Reference Guide**.</span></span>  <span data-ttu-id="7a9f2-119">本指南很快就會發佈到參考區段中。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-119">This guide will be published soon in the reference section.</span></span>
+<span data-ttu-id="9d78f-117">有其他選擇，您可以在此處 toocustomize hello 宣告。</span><span class="sxs-lookup"><span data-stu-id="9d78f-117">There are additional choices you can make here toocustomize hello claim.</span></span>  <span data-ttu-id="9d78f-118">針對完整的結構描述，請參閱 toohello**識別體驗架構技術參照指南**。</span><span class="sxs-lookup"><span data-stu-id="9d78f-118">For a full schema, refer toohello **Identity Experience Framework Technical Reference Guide**.</span></span>  <span data-ttu-id="9d78f-119">本指南即將發行在 hello 參考一節。</span><span class="sxs-lookup"><span data-stu-id="9d78f-119">This guide will be published soon in hello reference section.</span></span>
 
-* <span data-ttu-id="7a9f2-120">`<DisplayName>` 是一個字串，會定義使用者端的「標籤」</span><span class="sxs-lookup"><span data-stu-id="7a9f2-120">`<DisplayName>` is a string that defines the user-facing *label*</span></span>
+* <span data-ttu-id="9d78f-120">`<DisplayName>`是字串，定義使用者互動 hello*標籤*</span><span class="sxs-lookup"><span data-stu-id="9d78f-120">`<DisplayName>` is a string that defines hello user-facing *label*</span></span>
 
-* <span data-ttu-id="7a9f2-121">`<UserHelpText>` 可協助使用者了解所需項目</span><span class="sxs-lookup"><span data-stu-id="7a9f2-121">`<UserHelpText>` helps the user understand what is required</span></span>
+* <span data-ttu-id="9d78f-121">`<UserHelpText>`有助於了解什麼是必要的 hello 使用者</span><span class="sxs-lookup"><span data-stu-id="9d78f-121">`<UserHelpText>` helps hello user understand what is required</span></span>
 
-* <span data-ttu-id="7a9f2-122">`<UserInputType>` 有下面四個特別點出的選項︰</span><span class="sxs-lookup"><span data-stu-id="7a9f2-122">`<UserInputType>` has the following four options highlighted below:</span></span>
+* <span data-ttu-id="9d78f-122">`<UserInputType>`hello 下列四個選項反白顯示如下：</span><span class="sxs-lookup"><span data-stu-id="9d78f-122">`<UserInputType>` has hello following four options highlighted below:</span></span>
     * `TextBox`
 ```xml
 <ClaimType Id="city">
@@ -64,7 +64,7 @@ ms.lasthandoff: 09/28/2017
 </ClaimType>
 ```
 
-    * <span data-ttu-id="7a9f2-123">`RadioSingleSelectduration` - 強制讓您只能選取單一項目。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-123">`RadioSingleSelectduration` - Enforces a single selection.</span></span>
+    * <span data-ttu-id="9d78f-123">`RadioSingleSelectduration` - 強制讓您只能選取單一項目。</span><span class="sxs-lookup"><span data-stu-id="9d78f-123">`RadioSingleSelectduration` - Enforces a single selection.</span></span>
 ```xml
 <ClaimType Id="city">
   <DisplayName>city where you work</DisplayName>
@@ -78,7 +78,7 @@ ms.lasthandoff: 09/28/2017
 </ClaimType>
 ```
 
-    * <span data-ttu-id="7a9f2-124">`DropdownSingleSelect` - 只允許選取有效值。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-124">`DropdownSingleSelect` - Allows the selection of only valid value.</span></span>
+    * <span data-ttu-id="9d78f-124">`DropdownSingleSelect`-允許 hello 選取有效的值。</span><span class="sxs-lookup"><span data-stu-id="9d78f-124">`DropdownSingleSelect` - Allows hello selection of only valid value.</span></span>
 
 ![下拉式清單選項的螢幕擷取畫面](./media/active-directory-b2c-configure-signup-self-asserted-custom/dropdown-menu-example.png)
 
@@ -97,7 +97,7 @@ ms.lasthandoff: 09/28/2017
 ```
 
 
-* <span data-ttu-id="7a9f2-126">`CheckboxMultiSelect` 允許選取一個或多個值。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-126">`CheckboxMultiSelect` Allows for the selection of one or more values.</span></span>
+* <span data-ttu-id="9d78f-126">`CheckboxMultiSelect`允許的一個或多個值的 hello 選取範圍。</span><span class="sxs-lookup"><span data-stu-id="9d78f-126">`CheckboxMultiSelect` Allows for hello selection of one or more values.</span></span>
 
 ![多重選取選項的螢幕擷取畫面](./media/active-directory-b2c-configure-signup-self-asserted-custom/multiselect-menu-example.png)
 
@@ -115,9 +115,9 @@ ms.lasthandoff: 09/28/2017
 </ClaimType>
 ```
 
-## <a name="add-the-claim-to-the-sign-upsign-in-user-journey"></a><span data-ttu-id="7a9f2-128">將宣告新增至在使用者旅程的註冊/登入</span><span class="sxs-lookup"><span data-stu-id="7a9f2-128">Add the claim to the sign up/sign in user journey</span></span>
+## <a name="add-hello-claim-toohello-sign-upsign-in-user-journey"></a><span data-ttu-id="9d78f-128">新增 hello 宣告 toohello 登向上/登入使用者之旅</span><span class="sxs-lookup"><span data-stu-id="9d78f-128">Add hello claim toohello sign up/sign in user journey</span></span>
 
-1. <span data-ttu-id="7a9f2-129">以 `<OutputClaim ClaimTypeReferenceId="city"/>` 的形式將宣告新增至 TechnicalProfile `LocalAccountSignUpWithLogonEmail` (可在 TrustFrameworkBase 原則檔中找到)。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-129">Add the claim as an `<OutputClaim ClaimTypeReferenceId="city"/>` to the TechnicalProfile `LocalAccountSignUpWithLogonEmail` (found in the TrustFrameworkBase policy file).</span></span>  <span data-ttu-id="7a9f2-130">請注意，此 TechnicalProfile 使用 SelfAssertedAttributeProvider。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-130">Note this TechnicalProfile uses the SelfAssertedAttributeProvider.</span></span>
+1. <span data-ttu-id="9d78f-129">新增 hello 的宣告則為`<OutputClaim ClaimTypeReferenceId="city"/>`toohello TechnicalProfile `LocalAccountSignUpWithLogonEmail` （hello TrustFrameworkBase 原則檔中找到）。</span><span class="sxs-lookup"><span data-stu-id="9d78f-129">Add hello claim as an `<OutputClaim ClaimTypeReferenceId="city"/>` toohello TechnicalProfile `LocalAccountSignUpWithLogonEmail` (found in hello TrustFrameworkBase policy file).</span></span>  <span data-ttu-id="9d78f-130">請注意此 TechnicalProfile 使用 hello SelfAssertedAttributeProvider。</span><span class="sxs-lookup"><span data-stu-id="9d78f-130">Note this TechnicalProfile uses hello SelfAssertedAttributeProvider.</span></span>
 
   ```xml
   <TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">
@@ -142,7 +142,7 @@ ms.lasthandoff: 09/28/2017
       <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
       <OutputClaim ClaimTypeReferenceId="authenticationSource" />
       <OutputClaim ClaimTypeReferenceId="newUser" />
-      <!-- Optional claims, to be collected from the user -->
+      <!-- Optional claims, toobe collected from hello user -->
       <OutputClaim ClaimTypeReferenceId="givenName" />
       <OutputClaim ClaimTypeReferenceId="surName" />
       <OutputClaim ClaimTypeReferenceId="city"/>
@@ -154,7 +154,7 @@ ms.lasthandoff: 09/28/2017
   </TechnicalProfile>
   ```
 
-2. <span data-ttu-id="7a9f2-131">以 `<PersistedClaim ClaimTypeReferenceId="city" />` 的形式將宣告新增至 AAD-UserWriteUsingLogonEmail，以在收集使用者的宣告後將宣告寫入到 AAD 目錄。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-131">Add the claim to the AAD-UserWriteUsingLogonEmail as a `<PersistedClaim ClaimTypeReferenceId="city" />` to write the claim to the AAD directory after collecting it from the user.</span></span> <span data-ttu-id="7a9f2-132">如果您不想在目錄中保留宣告以供日後使用，則可略過此步驟。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-132">You may skip this step if you prefer not to persist the claim in the directory for future use.</span></span>
+2. <span data-ttu-id="9d78f-131">加入做為 hello 宣告 toohello AAD UserWriteUsingLogonEmail `<PersistedClaim ClaimTypeReferenceId="city" />` toowrite hello 宣告 toohello AAD 目錄之後收集來自 hello 使用者。</span><span class="sxs-lookup"><span data-stu-id="9d78f-131">Add hello claim toohello AAD-UserWriteUsingLogonEmail as a `<PersistedClaim ClaimTypeReferenceId="city" />` toowrite hello claim toohello AAD directory after collecting it from hello user.</span></span> <span data-ttu-id="9d78f-132">如果您偏好不 toopersist hello 宣告 hello 目錄中的供日後使用，您可能會略過此步驟。</span><span class="sxs-lookup"><span data-stu-id="9d78f-132">You may skip this step if you prefer not toopersist hello claim in hello directory for future use.</span></span>
 
   ```xml
   <!-- Technical profiles for local accounts -->
@@ -190,14 +190,14 @@ ms.lasthandoff: 09/28/2017
   </TechnicalProfile>
   ```
 
-3. <span data-ttu-id="7a9f2-133">以 `<OutputClaim ClaimTypeReferenceId="city" />` 的形式將宣告新增至 TechnicalProfile，以在使用者登入時從目錄中讀取此宣告</span><span class="sxs-lookup"><span data-stu-id="7a9f2-133">Add the claim to the TechnicalProfile that reads from the directory when a user logs in as an `<OutputClaim ClaimTypeReferenceId="city" />`</span></span>
+3. <span data-ttu-id="9d78f-133">新增 hello 宣告 toohello TechnicalProfile 讀取 hello 目錄中，當使用者登入為`<OutputClaim ClaimTypeReferenceId="city" />`</span><span class="sxs-lookup"><span data-stu-id="9d78f-133">Add hello claim toohello TechnicalProfile that reads from hello directory when a user logs in as an `<OutputClaim ClaimTypeReferenceId="city" />`</span></span>
 
   ```xml
   <TechnicalProfile Id="AAD-UserReadUsingEmailAddress">
     <Metadata>
       <Item Key="Operation">Read</Item>
       <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
-      <Item Key="UserMessageIfClaimsPrincipalDoesNotExist">An account could not be found for the provided user ID.</Item>
+      <Item Key="UserMessageIfClaimsPrincipalDoesNotExist">An account could not be found for hello provided user ID.</Item>
     </Metadata>
     <IncludeInSso>false</IncludeInSso>
     <InputClaims>
@@ -218,7 +218,7 @@ ms.lasthandoff: 09/28/2017
   </TechnicalProfile>
   ```
 
-4. <span data-ttu-id="7a9f2-134">將 `<OutputClaim ClaimTypeReferenceId="city" />` 新增至 RP 原則檔案 SignUporSignIn.xml，讓系統在使用者旅程成功後將這個宣告傳送至權杖中的應用程式。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-134">Add the `<OutputClaim ClaimTypeReferenceId="city" />` to the RP policy file SignUporSignIn.xml so this claim is sent to the application in the token after a successful user journey.</span></span>
+4. <span data-ttu-id="9d78f-134">新增 hello `<OutputClaim ClaimTypeReferenceId="city" />` toohello RP 原則檔讓此宣告 toohello 應用程式中傳送 hello 語彙基元後成功的使用者之旅 SignUporSignIn.xml。</span><span class="sxs-lookup"><span data-stu-id="9d78f-134">Add hello `<OutputClaim ClaimTypeReferenceId="city" />` toohello RP policy file SignUporSignIn.xml so this claim is sent toohello application in hello token after a successful user journey.</span></span>
 
   ```xml
   <RelyingParty>
@@ -240,17 +240,17 @@ ms.lasthandoff: 09/28/2017
   </RelyingParty>
   ```
 
-## <a name="test-the-custom-policy-using-run-now"></a><span data-ttu-id="7a9f2-135">使用 [立即執行] 測試自訂原則</span><span class="sxs-lookup"><span data-stu-id="7a9f2-135">Test the custom policy using "Run Now"</span></span>
+## <a name="test-hello-custom-policy-using-run-now"></a><span data-ttu-id="9d78f-135">測試 hello 「 立即執行 」 使用的自訂原則</span><span class="sxs-lookup"><span data-stu-id="9d78f-135">Test hello custom policy using "Run Now"</span></span>
 
-1. <span data-ttu-id="7a9f2-136">開啟 [Azure AD B2C] 刀鋒視窗，然後巡覽至 [識別體驗架構] > [自訂原則]。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-136">Open the **Azure AD B2C Blade** and navigate to **Identity Experience Framework > Custom policies**.</span></span>
-2. <span data-ttu-id="7a9f2-137">選取您上傳的自訂原則，按一下 [立即執行] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-137">Select the custom policy that you uploaded, and click the **Run now** button.</span></span>
-3. <span data-ttu-id="7a9f2-138">您應該可以使用電子郵件地址註冊。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-138">You should be able to sign up using an email address.</span></span>
+1. <span data-ttu-id="9d78f-136">開啟 hello **Azure AD B2C 刀鋒視窗**並瀏覽過**身分識別體驗架構 > 自訂原則**。</span><span class="sxs-lookup"><span data-stu-id="9d78f-136">Open hello **Azure AD B2C Blade** and navigate too**Identity Experience Framework > Custom policies**.</span></span>
+2. <span data-ttu-id="9d78f-137">選取您上傳，hello 自訂原則，然後按一下 hello**立即執行** 按鈕。</span><span class="sxs-lookup"><span data-stu-id="9d78f-137">Select hello custom policy that you uploaded, and click hello **Run now** button.</span></span>
+3. <span data-ttu-id="9d78f-138">您應該能夠 toosign 使用電子郵件地址。</span><span class="sxs-lookup"><span data-stu-id="9d78f-138">You should be able toosign up using an email address.</span></span>
 
-<span data-ttu-id="7a9f2-139">測試模式中的註冊畫面看起來應該像這樣：</span><span class="sxs-lookup"><span data-stu-id="7a9f2-139">The signup screen in test mode should look similar to this:</span></span>
+<span data-ttu-id="9d78f-139">在測試模式中的 hello 註冊畫面應該看起來類似 toothis:</span><span class="sxs-lookup"><span data-stu-id="9d78f-139">hello signup screen in test mode should look similar toothis:</span></span>
 
 ![修改過的註冊選項螢幕擷取畫面](./media/active-directory-b2c-configure-signup-self-asserted-custom/signup-with-city-claim-dropdown-example.png)
 
-  <span data-ttu-id="7a9f2-141">傳回到應用程式的權杖現在會包含 `city` 宣告，如下所示</span><span class="sxs-lookup"><span data-stu-id="7a9f2-141">The token back to your application will now include the `city` claim as shown below</span></span>
+  <span data-ttu-id="9d78f-141">hello 語彙基元後 tooyour 應用程式現在包含 hello`city`宣告如下所示</span><span class="sxs-lookup"><span data-stu-id="9d78f-141">hello token back tooyour application will now include hello `city` claim as shown below</span></span>
 ```json
 {
   "exp": 1493596822,
@@ -271,18 +271,18 @@ ms.lasthandoff: 09/28/2017
 }
 ```
 
-## <a name="optional-remove-email-verification-from-signup-journey"></a><span data-ttu-id="7a9f2-142">選擇性：移除註冊旅程中的電子郵件驗證</span><span class="sxs-lookup"><span data-stu-id="7a9f2-142">Optional: Remove email verification from signup journey</span></span>
+## <a name="optional-remove-email-verification-from-signup-journey"></a><span data-ttu-id="9d78f-142">選擇性：移除註冊旅程中的電子郵件驗證</span><span class="sxs-lookup"><span data-stu-id="9d78f-142">Optional: Remove email verification from signup journey</span></span>
 
-<span data-ttu-id="7a9f2-143">若要略過電子郵件驗證，原則的作者可以選擇移除 `PartnerClaimType="Verified.Email"`。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-143">To skip email verification, the policy author can choose to remove `PartnerClaimType="Verified.Email"`.</span></span> <span data-ttu-id="7a9f2-144">除非您移除 “Required” = true，否則電子郵件地址雖為必要項目，但不會進行驗證。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-144">The email address will be required but not verified, unless “Required” = true is removed.</span></span>  <span data-ttu-id="7a9f2-145">請仔細想清楚此選項是否適用於您的使用案例！</span><span class="sxs-lookup"><span data-stu-id="7a9f2-145">Carefully consider if this option is right for your use cases!</span></span>
+<span data-ttu-id="9d78f-143">tooskip 電子郵件驗證，hello 原則作者可選擇 tooremove `PartnerClaimType="Verified.Email"`。</span><span class="sxs-lookup"><span data-stu-id="9d78f-143">tooskip email verification, hello policy author can choose tooremove `PartnerClaimType="Verified.Email"`.</span></span> <span data-ttu-id="9d78f-144">hello 電子郵件地址將所需但未經過驗證，除非 「 要求 」 = true 會移除。</span><span class="sxs-lookup"><span data-stu-id="9d78f-144">hello email address will be required but not verified, unless “Required” = true is removed.</span></span>  <span data-ttu-id="9d78f-145">請仔細想清楚此選項是否適用於您的使用案例！</span><span class="sxs-lookup"><span data-stu-id="9d78f-145">Carefully consider if this option is right for your use cases!</span></span>
 
-<span data-ttu-id="7a9f2-146">入門套件中 TrustFrameworkBase 原則檔案的 `<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">` 預設會啟用驗證的電子郵件︰</span><span class="sxs-lookup"><span data-stu-id="7a9f2-146">Verified email is enabled by default in the `<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">` in the TrustFrameworkBase policy file in the starter pack:</span></span>
+<span data-ttu-id="9d78f-146">驗證預設會在 hello 啟用電子郵件`<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">`hello 入門組件中的 hello TrustFrameworkBase 原則檔中：</span><span class="sxs-lookup"><span data-stu-id="9d78f-146">Verified email is enabled by default in hello `<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">` in hello TrustFrameworkBase policy file in hello starter pack:</span></span>
 ```xml
 <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="7a9f2-147">後續步驟</span><span class="sxs-lookup"><span data-stu-id="7a9f2-147">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="9d78f-147">後續步驟</span><span class="sxs-lookup"><span data-stu-id="9d78f-147">Next steps</span></span>
 
-<span data-ttu-id="7a9f2-148">藉由變更下列 TechnicalProfiles，將新的宣告新增至社交帳戶登入的的流程。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-148">Add the new claim to the flows for social account logins by changing the TechnicalProfiles listed below.</span></span> <span data-ttu-id="7a9f2-149">社交/同盟帳戶登入會使用這些項目，以 alternativeSecurityId 作為定位器來寫入和讀取使用者資料。</span><span class="sxs-lookup"><span data-stu-id="7a9f2-149">These are used by social/federated account logins to write and read the user data using the alternativeSecurityId as the locator.</span></span>
+<span data-ttu-id="9d78f-148">藉由變更 TechnicalProfiles 下面所列的 hello 加入 hello 新宣告 toohello 流程社交帳戶登入。</span><span class="sxs-lookup"><span data-stu-id="9d78f-148">Add hello new claim toohello flows for social account logins by changing hello TechnicalProfiles listed below.</span></span> <span data-ttu-id="9d78f-149">這些是使用社交/同盟帳戶登入 toowrite，讀取使用 hello alternativeSecurityId hello 定位器 hello 使用者資料。</span><span class="sxs-lookup"><span data-stu-id="9d78f-149">These are used by social/federated account logins toowrite and read hello user data using hello alternativeSecurityId as hello locator.</span></span>
 ```xml
 <TechnicalProfile Id="AAD-UserWriteUsingAlternativeSecurityId">
 <TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">

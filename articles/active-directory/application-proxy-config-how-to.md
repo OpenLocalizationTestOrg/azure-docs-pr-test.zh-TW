@@ -1,6 +1,6 @@
 ---
-title: "如何設定應用程式 Proxy 應用程式 | Microsoft Docs"
-description: "了解如何使用幾個簡單步驟來建立及設定應用程式 Proxy 應用程式"
+title: "aaaHow tooconfigure 應用程式 Proxy 應用程式 |Microsoft 文件"
+description: "深入了解如何 toocreate 設定應用程式 Proxy 中的應用程式一些簡單的步驟"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,63 +13,63 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: c8f98536048a85ebb3f061d840457130579196d9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c64019098fc124e4fe10b8288830bcd2b7239d3d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-an-application-proxy-application"></a><span data-ttu-id="89c94-103">如何設定應用程式 Proxy 應用程式</span><span class="sxs-lookup"><span data-stu-id="89c94-103">How to configure an Application Proxy application</span></span>
+# <a name="how-tooconfigure-an-application-proxy-application"></a><span data-ttu-id="14e8d-103">如何 tooconfigure 應用程式 Proxy 應用程式</span><span class="sxs-lookup"><span data-stu-id="14e8d-103">How tooconfigure an Application Proxy application</span></span>
 
-<span data-ttu-id="89c94-104">本文協助您了解如何在 Azure AD 內設定應用程式 Proxy 應用程式，以向雲端公開您的內部部署應用程式。</span><span class="sxs-lookup"><span data-stu-id="89c94-104">This article help you to understand how to configure an Application Proxy application within Azure AD to expose your on-premises applications to the cloud.</span></span>
+<span data-ttu-id="14e8d-104">本文將協助您 toounderstand 如何 tooconfigure tooexpose Azure AD 應用程式 Proxy 應用程式在內部部署應用程式 toohello 雲端。</span><span class="sxs-lookup"><span data-stu-id="14e8d-104">This article help you toounderstand how tooconfigure an Application Proxy application within Azure AD tooexpose your on-premises applications toohello cloud.</span></span>
 
-## <a name="recommended-documents"></a><span data-ttu-id="89c94-105">建議的文件</span><span class="sxs-lookup"><span data-stu-id="89c94-105">Recommended documents</span></span> 
+## <a name="recommended-documents"></a><span data-ttu-id="14e8d-105">建議的文件</span><span class="sxs-lookup"><span data-stu-id="14e8d-105">Recommended documents</span></span> 
 
-<span data-ttu-id="89c94-106">若要深入了解應用程式 Proxy 應用程式透過管理入口網站的初始設定與建立，請遵循[使用 Azure AD 應用程式 Proxy 發佈應用程式](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal)。</span><span class="sxs-lookup"><span data-stu-id="89c94-106">To learn about the initial configurations and creation of an Application Proxy application through the Admin Portal, follow the [Publish applications using Azure AD Application Proxy](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal).</span></span>
+<span data-ttu-id="14e8d-106">hello 初始設定及應用程式 Proxy 應用程式透過 hello 管理員入口網站中建立相關 toolearn 遵循 hello[使用 Azure AD Application Proxy 發行應用程式](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal)。</span><span class="sxs-lookup"><span data-stu-id="14e8d-106">toolearn about hello initial configurations and creation of an Application Proxy application through hello Admin Portal, follow hello [Publish applications using Azure AD Application Proxy](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal).</span></span>
 
-<span data-ttu-id="89c94-107">如需設定連接器的詳細資料，請參閱[在 Azure 入口網站中啟用應用程式 Proxy](active-directory-application-proxy-enable.md)。</span><span class="sxs-lookup"><span data-stu-id="89c94-107">For details on configuring Connectors, see [Enable Application Proxy in the Azure portal](active-directory-application-proxy-enable.md).</span></span>
+<span data-ttu-id="14e8d-107">如需有關設定連接器的詳細資訊，請參閱[hello Azure 入口網站中啟用應用程式 Proxy](active-directory-application-proxy-enable.md)。</span><span class="sxs-lookup"><span data-stu-id="14e8d-107">For details on configuring Connectors, see [Enable Application Proxy in hello Azure portal](active-directory-application-proxy-enable.md).</span></span>
 
-<span data-ttu-id="89c94-108">如需上傳憑證和使用自訂網域的詳細資訊，請參閱[使用 Azure AD 應用程式 Proxy 中的自訂網域](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains)。</span><span class="sxs-lookup"><span data-stu-id="89c94-108">For information on uploading certificates and using custom domains, see [Working with custom domains in Azure AD Application Proxy](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains).</span></span>
+<span data-ttu-id="14e8d-108">如需上傳憑證和使用自訂網域的詳細資訊，請參閱[使用 Azure AD 應用程式 Proxy 中的自訂網域](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains)。</span><span class="sxs-lookup"><span data-stu-id="14e8d-108">For information on uploading certificates and using custom domains, see [Working with custom domains in Azure AD Application Proxy](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains).</span></span>
 
-## <a name="create-the-applicationsetting-the-urls"></a><span data-ttu-id="89c94-109">建立應用程式/設定 URL</span><span class="sxs-lookup"><span data-stu-id="89c94-109">Create the Application/Setting the URLs</span></span>
+## <a name="create-hello-applicationsetting-hello-urls"></a><span data-ttu-id="14e8d-109">建立 hello 應用程式/設定 hello Url</span><span class="sxs-lookup"><span data-stu-id="14e8d-109">Create hello Application/Setting hello URLs</span></span>
 
-<span data-ttu-id="89c94-110">如果您依照[使用 Azure AD 應用程式 Proxy 發佈應用程式](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal)文件中的步驟，並在建立應用程式時發生錯誤，請查看錯誤詳細資料，以取得修正應用程式的資訊及建議。</span><span class="sxs-lookup"><span data-stu-id="89c94-110">If you are following the steps in the [Publish applications using Azure AD Application Proxy](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal) documentation and are getting an error creating the application, see the error details for information and suggestions for how to fix the application.</span></span> <span data-ttu-id="89c94-111">大部分的錯誤訊息都包含建議的修正。</span><span class="sxs-lookup"><span data-stu-id="89c94-111">Most error messages include a suggested fix.</span></span> <span data-ttu-id="89c94-112">若要避免常見的錯誤，請確認：</span><span class="sxs-lookup"><span data-stu-id="89c94-112">To avoid common errors, verify:</span></span>
+<span data-ttu-id="14e8d-110">如果您要遵照 hello 步驟 hello[使用 Azure AD Application Proxy 發行應用程式](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal)文件且 hello 錯誤詳細資料的資訊和建議的方式取得錯誤建立 hello 應用程式，請參閱toofix hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="14e8d-110">If you are following hello steps in hello [Publish applications using Azure AD Application Proxy](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal) documentation and are getting an error creating hello application, see hello error details for information and suggestions for how toofix hello application.</span></span> <span data-ttu-id="14e8d-111">大部分的錯誤訊息都包含建議的修正。</span><span class="sxs-lookup"><span data-stu-id="14e8d-111">Most error messages include a suggested fix.</span></span> <span data-ttu-id="14e8d-112">tooavoid 常見的錯誤，請確認：</span><span class="sxs-lookup"><span data-stu-id="14e8d-112">tooavoid common errors, verify:</span></span>
 
--   <span data-ttu-id="89c94-113">您是具有建立應用程式 Proxy 應用程式權限的系統管理員</span><span class="sxs-lookup"><span data-stu-id="89c94-113">You are an administrator with permission to create an Application Proxy application</span></span>
+-   <span data-ttu-id="14e8d-113">您是系統管理員的權限 toocreate 應用程式 Proxy 應用程式</span><span class="sxs-lookup"><span data-stu-id="14e8d-113">You are an administrator with permission toocreate an Application Proxy application</span></span>
 
--   <span data-ttu-id="89c94-114">內部 URL 是唯一的</span><span class="sxs-lookup"><span data-stu-id="89c94-114">The internal URL is unique</span></span>
+-   <span data-ttu-id="14e8d-114">是唯一的 hello 內部 URL</span><span class="sxs-lookup"><span data-stu-id="14e8d-114">hello internal URL is unique</span></span>
 
--   <span data-ttu-id="89c94-115">外部 URL 是唯一的</span><span class="sxs-lookup"><span data-stu-id="89c94-115">The external URL is unique</span></span>
+-   <span data-ttu-id="14e8d-115">hello 外部 URL 是唯一的</span><span class="sxs-lookup"><span data-stu-id="14e8d-115">hello external URL is unique</span></span>
 
--   <span data-ttu-id="89c94-116">URL 開頭為 http 或 https，且結尾為 “/”</span><span class="sxs-lookup"><span data-stu-id="89c94-116">The URLs start with http or https, and end with a “/”</span></span>
+-   <span data-ttu-id="14e8d-116">hello http 或 https 的 Url 開頭和結尾為"/"</span><span class="sxs-lookup"><span data-stu-id="14e8d-116">hello URLs start with http or https, and end with a “/”</span></span>
 
--   <span data-ttu-id="89c94-117">URL 應該是網域名稱，而非 IP 位址</span><span class="sxs-lookup"><span data-stu-id="89c94-117">The URL should be a domain name, not an IP address</span></span>
+-   <span data-ttu-id="14e8d-117">hello URL 應該是網域名稱，不是 IP 位址</span><span class="sxs-lookup"><span data-stu-id="14e8d-117">hello URL should be a domain name, not an IP address</span></span>
 
-<span data-ttu-id="89c94-118">當您建立應用程式時，錯誤訊息應該會在右上角顯示。</span><span class="sxs-lookup"><span data-stu-id="89c94-118">The error message should display in the top right corner when you create the application.</span></span> <span data-ttu-id="89c94-119">您也可以選取通知圖示來查看錯誤訊息。</span><span class="sxs-lookup"><span data-stu-id="89c94-119">You can also select the notification icon to see the error messages.</span></span>
+<span data-ttu-id="14e8d-118">當您建立 hello 應用程式時應該顯示 hello 右上角 hello 錯誤訊息。</span><span class="sxs-lookup"><span data-stu-id="14e8d-118">hello error message should display in hello top right corner when you create hello application.</span></span> <span data-ttu-id="14e8d-119">您也可以選取 hello 通知圖示 toosee hello 錯誤訊息。</span><span class="sxs-lookup"><span data-stu-id="14e8d-119">You can also select hello notification icon toosee hello error messages.</span></span>
 
    ![通知提示](./media/application-proxy-config-how-to/error-message.png)
 
-## <a name="configure-connectorsconnector-groups"></a><span data-ttu-id="89c94-121">設定連接器/連接器群組</span><span class="sxs-lookup"><span data-stu-id="89c94-121">Configure connectors/connector groups</span></span>
+## <a name="configure-connectorsconnector-groups"></a><span data-ttu-id="14e8d-121">設定連接器/連接器群組</span><span class="sxs-lookup"><span data-stu-id="14e8d-121">Configure connectors/connector groups</span></span>
 
-<span data-ttu-id="89c94-122">如果您因為連接器和連接器群組的警告而無法設定應用程式，請參閱啟用應用程式 Proxy 的指示，以取得下載連接器的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="89c94-122">If you are having difficulty configuring your application because of warning about the connectors and connector groups, see instructions on enabling Application Proxy for details on how to download connectors.</span></span> <span data-ttu-id="89c94-123">如果您想要深入了解連接器，請參閱[連接器文件](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors)。</span><span class="sxs-lookup"><span data-stu-id="89c94-123">If you want to learn more about connectors, see the [connectors documentation](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors).</span></span>
+<span data-ttu-id="14e8d-122">如果您無法設定您的應用程式，因為 hello 連接器與連接器群組的相關警告，請參閱指示啟用應用程式 Proxy 的詳細資料 toodownload 連接器。</span><span class="sxs-lookup"><span data-stu-id="14e8d-122">If you are having difficulty configuring your application because of warning about hello connectors and connector groups, see instructions on enabling Application Proxy for details on how toodownload connectors.</span></span> <span data-ttu-id="14e8d-123">如果您想深入了解連接器 toolearn，請參閱 hello[連接器文件](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors)。</span><span class="sxs-lookup"><span data-stu-id="14e8d-123">If you want toolearn more about connectors, see hello [connectors documentation](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors).</span></span>
 
-<span data-ttu-id="89c94-124">如果您的連接器處於非作用中狀態，這表示它們無法連線到服務。</span><span class="sxs-lookup"><span data-stu-id="89c94-124">If your connectors are inactive, this means that they are unable to reach the service.</span></span> <span data-ttu-id="89c94-125">這通常是因為沒有開啟所有必要的連接埠。</span><span class="sxs-lookup"><span data-stu-id="89c94-125">This is often because all the required ports are not open.</span></span> <span data-ttu-id="89c94-126">若要查看必要連接埠的清單，請參閱《啟用應用程式 Proxy》文件的＜必要條件＞一節。</span><span class="sxs-lookup"><span data-stu-id="89c94-126">To see a list of required ports, see the pre-requisites section of the enabling Application Proxy documentation.</span></span>
+<span data-ttu-id="14e8d-124">如果您的連接器處於非使用狀態，這表示它們是無法 tooreach hello 服務。</span><span class="sxs-lookup"><span data-stu-id="14e8d-124">If your connectors are inactive, this means that they are unable tooreach hello service.</span></span> <span data-ttu-id="14e8d-125">這通常是因為 hello 所需的所有連接埠未開啟。</span><span class="sxs-lookup"><span data-stu-id="14e8d-125">This is often because all hello required ports are not open.</span></span> <span data-ttu-id="14e8d-126">toosee 必要的連接埠的清單，請參閱啟用應用程式 Proxy 的文件的 hello hello 必要條件一節。</span><span class="sxs-lookup"><span data-stu-id="14e8d-126">toosee a list of required ports, see hello pre-requisites section of hello enabling Application Proxy documentation.</span></span>
 
-## <a name="upload-certificates-for-custom-domains"></a><span data-ttu-id="89c94-127">上傳自訂網域的憑證</span><span class="sxs-lookup"><span data-stu-id="89c94-127">Upload certificates for custom domains</span></span>
+## <a name="upload-certificates-for-custom-domains"></a><span data-ttu-id="14e8d-127">上傳自訂網域的憑證</span><span class="sxs-lookup"><span data-stu-id="14e8d-127">Upload certificates for custom domains</span></span>
 
-<span data-ttu-id="89c94-128">自訂網域可讓您指定外部 URL 的網域。</span><span class="sxs-lookup"><span data-stu-id="89c94-128">Custom Domains allow you to specify the domain of your external URLs.</span></span> <span data-ttu-id="89c94-129">若要使用自訂網域，您需要上傳該網域的憑證。</span><span class="sxs-lookup"><span data-stu-id="89c94-129">To use custom domains, you need to upload the certificate for that domain.</span></span> <span data-ttu-id="89c94-130">如需使用自訂網域和憑證的詳細資訊，請參閱[使用 Azure AD 應用程式 Proxy 中的自訂網域](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains)。</span><span class="sxs-lookup"><span data-stu-id="89c94-130">For information on using custom domains and certificates, see [Working with custom domains in Azure AD Application Proxy](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains).</span></span> 
+<span data-ttu-id="14e8d-128">自訂網域可讓您對外部 Url 的 toospecify hello 網域。</span><span class="sxs-lookup"><span data-stu-id="14e8d-128">Custom Domains allow you toospecify hello domain of your external URLs.</span></span> <span data-ttu-id="14e8d-129">toouse 自訂網域，您會需要 tooupload hello 憑證該網域。</span><span class="sxs-lookup"><span data-stu-id="14e8d-129">toouse custom domains, you need tooupload hello certificate for that domain.</span></span> <span data-ttu-id="14e8d-130">如需使用自訂網域和憑證的詳細資訊，請參閱[使用 Azure AD 應用程式 Proxy 中的自訂網域](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains)。</span><span class="sxs-lookup"><span data-stu-id="14e8d-130">For information on using custom domains and certificates, see [Working with custom domains in Azure AD Application Proxy](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains).</span></span> 
 
-<span data-ttu-id="89c94-131">如果您在上傳憑證時遇到問題，請尋找入口網站中的錯誤訊息以取得憑證問題的其他資訊。</span><span class="sxs-lookup"><span data-stu-id="89c94-131">If you are encountering issues uploading your certificate, look for the error messages in the portal for additional information on the problem with the certificate.</span></span> <span data-ttu-id="89c94-132">常見的憑證問題包括：</span><span class="sxs-lookup"><span data-stu-id="89c94-132">Common certificate problems include:</span></span>
+<span data-ttu-id="14e8d-131">如果您遇到問題上, 傳您的憑證，尋找 hello hello hello hello 憑證問題的其他資訊的入口網站中的錯誤訊息。</span><span class="sxs-lookup"><span data-stu-id="14e8d-131">If you are encountering issues uploading your certificate, look for hello error messages in hello portal for additional information on hello problem with hello certificate.</span></span> <span data-ttu-id="14e8d-132">常見的憑證問題包括：</span><span class="sxs-lookup"><span data-stu-id="14e8d-132">Common certificate problems include:</span></span>
 
--   <span data-ttu-id="89c94-133">過期的憑證</span><span class="sxs-lookup"><span data-stu-id="89c94-133">Expired certificate</span></span>
+-   <span data-ttu-id="14e8d-133">過期的憑證</span><span class="sxs-lookup"><span data-stu-id="14e8d-133">Expired certificate</span></span>
 
--   <span data-ttu-id="89c94-134">憑證為自我簽署</span><span class="sxs-lookup"><span data-stu-id="89c94-134">Certificate is self-signed</span></span>
+-   <span data-ttu-id="14e8d-134">憑證為自我簽署</span><span class="sxs-lookup"><span data-stu-id="14e8d-134">Certificate is self-signed</span></span>
 
--   <span data-ttu-id="89c94-135">憑證沒有私密金鑰</span><span class="sxs-lookup"><span data-stu-id="89c94-135">Certificate is missing the private key</span></span>
+-   <span data-ttu-id="14e8d-135">遺漏 hello 私密金鑰憑證。</span><span class="sxs-lookup"><span data-stu-id="14e8d-135">Certificate is missing hello private key</span></span>
 
-<span data-ttu-id="89c94-136">當您嘗試上傳憑證時，錯誤訊息會顯示在右上角。</span><span class="sxs-lookup"><span data-stu-id="89c94-136">The error message display in the top right corner as you try to upload the certificate.</span></span> <span data-ttu-id="89c94-137">您也可以選取通知圖示來查看錯誤訊息。</span><span class="sxs-lookup"><span data-stu-id="89c94-137">You can also select the notification icon to see the error messages.</span></span>
+<span data-ttu-id="14e8d-136">在右下角，當您嘗試 tooupload hello 憑證 hello 最佳 hello 錯誤訊息顯示。</span><span class="sxs-lookup"><span data-stu-id="14e8d-136">hello error message display in hello top right corner as you try tooupload hello certificate.</span></span> <span data-ttu-id="14e8d-137">您也可以選取 hello 通知圖示 toosee hello 錯誤訊息。</span><span class="sxs-lookup"><span data-stu-id="14e8d-137">You can also select hello notification icon toosee hello error messages.</span></span>
 
    ![通知提示](./media/application-proxy-config-how-to/error-message2.png)
 
-## <a name="next-steps"></a><span data-ttu-id="89c94-139">後續步驟</span><span class="sxs-lookup"><span data-stu-id="89c94-139">Next steps</span></span>
-[<span data-ttu-id="89c94-140">使用 Azure AD 應用程式 Proxy 發佈應用程式</span><span class="sxs-lookup"><span data-stu-id="89c94-140">Publish applications using Azure AD Application Proxy</span></span>](application-proxy-publish-azure-portal.md)
+## <a name="next-steps"></a><span data-ttu-id="14e8d-139">後續步驟</span><span class="sxs-lookup"><span data-stu-id="14e8d-139">Next steps</span></span>
+[<span data-ttu-id="14e8d-140">使用 Azure AD 應用程式 Proxy 發佈應用程式</span><span class="sxs-lookup"><span data-stu-id="14e8d-140">Publish applications using Azure AD Application Proxy</span></span>](application-proxy-publish-azure-portal.md)

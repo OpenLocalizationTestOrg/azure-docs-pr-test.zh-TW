@@ -1,6 +1,6 @@
 ---
-title: "Azure App Service 安全性"
-description: "了解如何在 Azure App Service 中保護 Web、Mobile、API 和 Logic Apps。"
+title: "aaaAzure 應用程式服務安全性"
+description: "深入了解如何在 Azure App Service 中的 toosecure Web、 Mobile、 API 和邏輯應用程式。"
 services: app-service
 documentationcenter: 
 author: naziml
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/16/2015
 ms.author: naziml
-ms.openlocfilehash: 7d26d52ad04bd4158a1450ae0f49fc7c1f8a04e8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8a0bff7d9665abadd70c1cfd07dca265ea057596
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-app-service-security"></a><span data-ttu-id="846c0-103">Azure App Service 安全性</span><span class="sxs-lookup"><span data-stu-id="846c0-103">Azure App Service Security</span></span>
-<span data-ttu-id="846c0-104">Azure App Service 符合產業對於安全性和可靠性的重要標準，可為我們的客戶提供安全的平台。</span><span class="sxs-lookup"><span data-stu-id="846c0-104">Azure App Services complies with the key industry standards for security and reliability to provide our customers a secure platform.</span></span> <span data-ttu-id="846c0-105">我們有幾項簡單易用的功能，可協助保護您的應用程式的輸入和輸出流量。</span><span class="sxs-lookup"><span data-stu-id="846c0-105">We have several easy-to-use features to help secure both inbound and outbound traffic for your app.</span></span> <span data-ttu-id="846c0-106">我們也藉由外部提供的功能來掃描您 Web 應用程式的弱點，協助客戶保護他們的應用程式程式碼。</span><span class="sxs-lookup"><span data-stu-id="846c0-106">We also help customers secure their application code by providing externally provided functionality to scan your web application for vulnerabilities.</span></span>
+# <a name="azure-app-service-security"></a><span data-ttu-id="2b90a-103">Azure App Service 安全性</span><span class="sxs-lookup"><span data-stu-id="2b90a-103">Azure App Service Security</span></span>
+<span data-ttu-id="2b90a-104">Azure 應用程式服務符合安全性和可靠性 tooprovide hello 索引鍵的業界標準客戶安全平台。</span><span class="sxs-lookup"><span data-stu-id="2b90a-104">Azure App Services complies with hello key industry standards for security and reliability tooprovide our customers a secure platform.</span></span> <span data-ttu-id="2b90a-105">我們有幾個簡單好用功能 toohelp 保護您的應用程式的輸入和輸出流量。</span><span class="sxs-lookup"><span data-stu-id="2b90a-105">We have several easy-to-use features toohelp secure both inbound and outbound traffic for your app.</span></span> <span data-ttu-id="2b90a-106">我們也會協助安全藉由外部應用程式程式碼提供的功能 tooscan 弱點 web 應用程式的客戶。</span><span class="sxs-lookup"><span data-stu-id="2b90a-106">We also help customers secure their application code by providing externally provided functionality tooscan your web application for vulnerabilities.</span></span>
 
 [!INCLUDE [app-service-blueprint-security](../../includes/app-service-blueprint-security.md)]
 
-<span data-ttu-id="846c0-107">Azure App Service 會使用 Azure 雲端服務和虛擬機器使用的相同反惡意程式碼方案。</span><span class="sxs-lookup"><span data-stu-id="846c0-107">Azure App Service uses the same Antimalware solution used by Azure Cloud Services and Virtual Machines.</span></span> <span data-ttu-id="846c0-108">若要深入了解此方案，請參閱 [反惡意程式碼文件](../security/azure-security-antimalware.md)。</span><span class="sxs-lookup"><span data-stu-id="846c0-108">To learn more about this refer to our [Antimalware documentation](../security/azure-security-antimalware.md).</span></span> 
+<span data-ttu-id="2b90a-107">Azure 應用程式服務會使用 hello 相同 Azure 雲端服務和虛擬機器所使用的反惡意程式碼方案。</span><span class="sxs-lookup"><span data-stu-id="2b90a-107">Azure App Service uses hello same Antimalware solution used by Azure Cloud Services and Virtual Machines.</span></span> <span data-ttu-id="2b90a-108">進一步了解這 toolearn 參考 tooour[反惡意程式碼文件](../security/azure-security-antimalware.md)。</span><span class="sxs-lookup"><span data-stu-id="2b90a-108">toolearn more about this refer tooour [Antimalware documentation](../security/azure-security-antimalware.md).</span></span> 
 

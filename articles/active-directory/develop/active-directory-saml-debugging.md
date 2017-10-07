@@ -1,6 +1,6 @@
 ---
-title: "如何針對 Azure Active Directory 中的 SAML 型應用程式單一登入進行偵錯 | Microsoft Docs"
-description: "了解如何偵錯 SAML 型單一登入 Azure Active Directory 中的應用程式  "
+title: "aaaHow toodebug SAML 型單一登入 tooapplications Azure Active Directory 中 |Microsoft 文件"
+description: "深入了解如何 toodebug SAML 型單一登入 tooapplications Azure Active Directory 中 "
 services: active-directory
 author: asmalser-msft
 documentationcenter: na
@@ -15,27 +15,27 @@ ms.date: 07/20/2017
 ms.author: asmalser
 ms.custom: aaddev
 ms.reviewer: dastrock
-ms.openlocfilehash: 31447d597296bac57481dc2acb4a95ee3a104161
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 846c7b3497c8842947c5b406f4362b9e06785b14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-debug-saml-based-single-sign-on-to-applications-in-azure-active-directory"></a><span data-ttu-id="b3855-103">如何偵錯 SAML 型單一登入 Azure Active Directory 中的應用程式</span><span class="sxs-lookup"><span data-stu-id="b3855-103">How to debug SAML-based single sign-on to applications in Azure Active Directory</span></span>
-<span data-ttu-id="b3855-104">當偵錯 SAML 型的應用程式整合時，使用 [Fiddler](http://www.telerik.com/fiddler) 之類的工具查看 SAML 要求、SAML 回應和發行給應用程式實際的 SAML 權杖，通常很有幫助。</span><span class="sxs-lookup"><span data-stu-id="b3855-104">When debugging a SAML-based application integration, it is often helpful to use a tool like [Fiddler](http://www.telerik.com/fiddler) to see the SAML request, the SAML response, and the actual SAML token that is issued to the application.</span></span> <span data-ttu-id="b3855-105">您可以藉由檢查 SAML 權杖，確保所有必要的屬性、SAML 主體中的使用者名稱和簽發者 URI 都能如預期通過。</span><span class="sxs-lookup"><span data-stu-id="b3855-105">By examining the SAML token, you can ensure that all of the required attributes, the username in the SAML subject, and the issuer URI are coming through as expected.</span></span>
+# <a name="how-toodebug-saml-based-single-sign-on-tooapplications-in-azure-active-directory"></a><span data-ttu-id="6f2c8-103">如何 toodebug SAML 型單一登入 tooapplications Azure Active Directory 中</span><span class="sxs-lookup"><span data-stu-id="6f2c8-103">How toodebug SAML-based single sign-on tooapplications in Azure Active Directory</span></span>
+<span data-ttu-id="6f2c8-104">偵錯 SAML 型應用程式整合時，通常很有幫助 toouse 這類工具[Fiddler](http://www.telerik.com/fiddler) toosee hello SAML 要求、 hello SAML 回應和 hello 實際 SAML 權杖中發出 toohello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="6f2c8-104">When debugging a SAML-based application integration, it is often helpful toouse a tool like [Fiddler](http://www.telerik.com/fiddler) toosee hello SAML request, hello SAML response, and hello actual SAML token that is issued toohello application.</span></span> <span data-ttu-id="6f2c8-105">藉由檢查 hello SAML 權杖中，您可以確保所有 hello 必要屬性、 hello hello SAML 主旨中的使用者名稱和 hello 如預期般，透過全都來自 URI 的簽發者。</span><span class="sxs-lookup"><span data-stu-id="6f2c8-105">By examining hello SAML token, you can ensure that all of hello required attributes, hello username in hello SAML subject, and hello issuer URI are coming through as expected.</span></span>
 
 ![][1]
 
-<span data-ttu-id="b3855-106">包含 SAML 權杖的 Azure AD 回應，通常是 HTTP 302 從 https://login.windows.net 重新導向並傳送至已設定的應用程式**回覆 URL** 後，發生的那一個。</span><span class="sxs-lookup"><span data-stu-id="b3855-106">The response from Azure AD that contains the SAML token is typically the one that occurs after an HTTP 302 redirect from https://login.windows.net, and is sent to the configured **Reply URL** of the application.</span></span> 
+<span data-ttu-id="6f2c8-106">hello 回應從 Azure AD 包含 hello SAML 權杖通常是 hello https://login.windows.net，從 HTTP 302 重新導向之後發生的其中一個，而且已傳送的 toohello**回覆 URL** hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="6f2c8-106">hello response from Azure AD that contains hello SAML token is typically hello one that occurs after an HTTP 302 redirect from https://login.windows.net, and is sent toohello configured **Reply URL** of hello application.</span></span> 
 
-<span data-ttu-id="b3855-107">您可以選取這一行，然後在右窗格中選取 [偵測器] > [WebForms]，檢視 SAML 權杖。</span><span class="sxs-lookup"><span data-stu-id="b3855-107">You can view the SAML token by selecting this line and then selecting the **Inspectors > WebForms** tab in the right panel.</span></span> <span data-ttu-id="b3855-108">在這裡以滑鼠右鍵按一下 [SAMLResponse] 值並選取 [傳送至 TextWizard]。</span><span class="sxs-lookup"><span data-stu-id="b3855-108">From there, right-click the **SAMLResponse** value and select **Send to TextWizard**.</span></span> <span data-ttu-id="b3855-109">然後選取 [轉換] 功能表的 [從 Base64]，解碼權杖並查看其內容。</span><span class="sxs-lookup"><span data-stu-id="b3855-109">Then select **From Base64** from the **Transform** menu to decode the token and see its contents.</span></span>
+<span data-ttu-id="6f2c8-107">您可以檢視 hello SAML 權杖中選取這一行，然後選取 hello**偵測器 > WebForms** hello 右面板中的索引標籤。</span><span class="sxs-lookup"><span data-stu-id="6f2c8-107">You can view hello SAML token by selecting this line and then selecting hello **Inspectors > WebForms** tab in hello right panel.</span></span> <span data-ttu-id="6f2c8-108">從該處，以滑鼠右鍵按一下 hello **SAMLResponse**值，並選取**傳送 tooTextWizard**。</span><span class="sxs-lookup"><span data-stu-id="6f2c8-108">From there, right-click hello **SAMLResponse** value and select **Send tooTextWizard**.</span></span> <span data-ttu-id="6f2c8-109">然後選取**從 Base64**從 hello**轉換**功能表 toodecode hello 語彙基元，並檢視其內容。</span><span class="sxs-lookup"><span data-stu-id="6f2c8-109">Then select **From Base64** from hello **Transform** menu toodecode hello token and see its contents.</span></span>
 
-<span data-ttu-id="b3855-110">**注意**：為查看這個 HTTP 要求的內容，Fiddler 可能會提示您設定解密 HTTPS 流量，請務必這麼做。</span><span class="sxs-lookup"><span data-stu-id="b3855-110">**Note**: To see the contents of this HTTP request, Fiddler may prompt you to configure decryption of HTTPS traffic, which you will need to do.</span></span>
+<span data-ttu-id="6f2c8-110">**請注意**: toosee hello 內容的此 HTTP 要求，Fiddler 可能會提示您的 HTTPS 流量，您將需要 tooconfigure 解密 toodo。</span><span class="sxs-lookup"><span data-stu-id="6f2c8-110">**Note**: toosee hello contents of this HTTP request, Fiddler may prompt you tooconfigure decryption of HTTPS traffic, which you will need toodo.</span></span>
 
-## <a name="related-articles"></a><span data-ttu-id="b3855-111">相關文章</span><span class="sxs-lookup"><span data-stu-id="b3855-111">Related Articles</span></span>
-* [<span data-ttu-id="b3855-112">Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)</span><span class="sxs-lookup"><span data-stu-id="b3855-112">Article Index for Application Management in Azure Active Directory</span></span>](../active-directory-apps-index.md)
-* [<span data-ttu-id="b3855-113">設定對不在 Azure Active Directory 應用程式庫中的應用程式的單一登入</span><span class="sxs-lookup"><span data-stu-id="b3855-113">Configuring single sign-on to applications that are not in the Azure Active Directory application gallery</span></span>](../active-directory-saas-custom-apps.md)
-* [<span data-ttu-id="b3855-114">如何為預先整合的應用程式自訂在 SAML 權杖中發出的宣告</span><span class="sxs-lookup"><span data-stu-id="b3855-114">How to Customize Claims Issued in the SAML Token for Pre-Integrated Apps</span></span>](active-directory-saml-claims-customization.md)
+## <a name="related-articles"></a><span data-ttu-id="6f2c8-111">相關文章</span><span class="sxs-lookup"><span data-stu-id="6f2c8-111">Related Articles</span></span>
+* [<span data-ttu-id="6f2c8-112">Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)</span><span class="sxs-lookup"><span data-stu-id="6f2c8-112">Article Index for Application Management in Azure Active Directory</span></span>](../active-directory-apps-index.md)
+* [<span data-ttu-id="6f2c8-113">設定單一登入 tooapplications 不在 hello Azure Active Directory 應用程式庫</span><span class="sxs-lookup"><span data-stu-id="6f2c8-113">Configuring single sign-on tooapplications that are not in hello Azure Active Directory application gallery</span></span>](../active-directory-saas-custom-apps.md)
+* [<span data-ttu-id="6f2c8-114">如何 tooCustomize 中發出的宣告 hello SAML 權杖 Pre-Integrated 應用程式</span><span class="sxs-lookup"><span data-stu-id="6f2c8-114">How tooCustomize Claims Issued in hello SAML Token for Pre-Integrated Apps</span></span>](active-directory-saml-claims-customization.md)
 
 <!--Image references-->
 [1]: ../media/active-directory-saml-debugging/fiddler.png

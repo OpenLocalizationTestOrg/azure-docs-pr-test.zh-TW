@@ -1,6 +1,6 @@
 ---
-title: "建立連接到 Azure 服務的函式 | Microsoft Docs"
-description: "使用 Azure Functions 來建立連接至其他 Azure 服務的無伺服器應用程式。"
+title: "aaaCreate 連接 tooAzure 服務的函式 |Microsoft 文件"
+description: "使用 Azure 函式 toocreate 連接 tooother Azure 的無伺服器應用程式服務。"
 services: functions
 documentationcenter: dev-center-name
 author: yochay
@@ -17,49 +17,49 @@ ms.workload: na
 ms.date: 03/01/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 65964a322f0adab4f648fb350bedb77b46bf9054
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9d1f7d3b236f8d2c1a404c76aee410f6d458fb7a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-functions-to-create-a-function-that-connects-to-other-azure-services"></a><span data-ttu-id="62c96-104">使用 Azure Functions 來建立連接至其他 Azure 服務的函式</span><span class="sxs-lookup"><span data-stu-id="62c96-104">Use Azure Functions to create a function that connects to other Azure services</span></span>
+# <a name="use-azure-functions-toocreate-a-function-that-connects-tooother-azure-services"></a><span data-ttu-id="dc6c1-104">使用 Azure 函式 toocreate 函式連接 tooother Azure 服務</span><span class="sxs-lookup"><span data-stu-id="dc6c1-104">Use Azure Functions toocreate a function that connects tooother Azure services</span></span>
 
-<span data-ttu-id="62c96-105">本主題說明如何在 Azure Functions 中建立函式，以接聽 Azure 儲存體佇列上的訊息，以及將訊息複製到 Azure 儲存體資料表中的資料列。</span><span class="sxs-lookup"><span data-stu-id="62c96-105">This topic shows you how to create a function in Azure Functions that listens to messages on an Azure Storage queue and copies the messages to rows in an Azure Storage table.</span></span> <span data-ttu-id="62c96-106">計時器觸發函式用將訊息載入佇列中。</span><span class="sxs-lookup"><span data-stu-id="62c96-106">A timer triggered function is used to load messages into the queue.</span></span> <span data-ttu-id="62c96-107">第二個函式會從佇列讀取並將訊息寫入資料表中。</span><span class="sxs-lookup"><span data-stu-id="62c96-107">A second function reads from the queue and writes messages to the table.</span></span> <span data-ttu-id="62c96-108">Azure Functions 會根據繫結定義為您建立佇列和資料表。</span><span class="sxs-lookup"><span data-stu-id="62c96-108">Both the queue and the table are created for you by Azure Functions based on the binding definitions.</span></span> 
+<span data-ttu-id="dc6c1-105">本主題說明如何 toocreate 會接聽在 Azure 儲存體佇列和複製 hello toomessages 的 Azure 功能中的函式訊息 toorows Azure 儲存體資料表中。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-105">This topic shows you how toocreate a function in Azure Functions that listens toomessages on an Azure Storage queue and copies hello messages toorows in an Azure Storage table.</span></span> <span data-ttu-id="dc6c1-106">計時器觸發函式是使用的 tooload 到 hello 佇列的訊息。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-106">A timer triggered function is used tooload messages into hello queue.</span></span> <span data-ttu-id="dc6c1-107">第二個函式會從 hello 佇列讀取，並將訊息 toohello 資料表。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-107">A second function reads from hello queue and writes messages toohello table.</span></span> <span data-ttu-id="dc6c1-108">Hello 佇列和 hello 資料表建立您的 Azure hello 繫結定義為基礎的函式。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-108">Both hello queue and hello table are created for you by Azure Functions based on hello binding definitions.</span></span> 
 
-<span data-ttu-id="62c96-109">更有趣的做法是以 JavaScript 撰寫一個函式，並另以 C# 指令碼撰寫另一個函式。</span><span class="sxs-lookup"><span data-stu-id="62c96-109">To make things more interesting, one function is written in JavaScript and the other is written in C# script.</span></span> <span data-ttu-id="62c96-110">這可示範函式應用程式如何擁有使用不同語言的函式。</span><span class="sxs-lookup"><span data-stu-id="62c96-110">This demonstrates how a function app can have functions in various languages.</span></span> 
+<span data-ttu-id="dc6c1-109">更有趣的 toomake 項目，一個函式以 JavaScript 撰寫並 hello 其他以 C# 指令碼。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-109">toomake things more interesting, one function is written in JavaScript and hello other is written in C# script.</span></span> <span data-ttu-id="dc6c1-110">這可示範函式應用程式如何擁有使用不同語言的函式。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-110">This demonstrates how a function app can have functions in various languages.</span></span> 
 
-<span data-ttu-id="62c96-111">您可以看到 [Channel 9 影片](https://channel9.msdn.com/Series/Windows-Azure-Web-Sites-Tutorials/Create-an-Azure-Function-which-binds-to-an-Azure-service/player)中示範的這個案例。</span><span class="sxs-lookup"><span data-stu-id="62c96-111">You can see this scenario demonstrated in a [video on Channel 9](https://channel9.msdn.com/Series/Windows-Azure-Web-Sites-Tutorials/Create-an-Azure-Function-which-binds-to-an-Azure-service/player).</span></span>
+<span data-ttu-id="dc6c1-111">您可以看到 [Channel 9 影片](https://channel9.msdn.com/Series/Windows-Azure-Web-Sites-Tutorials/Create-an-Azure-Function-which-binds-to-an-Azure-service/player)中示範的這個案例。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-111">You can see this scenario demonstrated in a [video on Channel 9](https://channel9.msdn.com/Series/Windows-Azure-Web-Sites-Tutorials/Create-an-Azure-Function-which-binds-to-an-Azure-service/player).</span></span>
 
-## <a name="create-a-function-that-writes-to-the-queue"></a><span data-ttu-id="62c96-112">建立可寫入佇列的函式</span><span class="sxs-lookup"><span data-stu-id="62c96-112">Create a function that writes to the queue</span></span>
+## <a name="create-a-function-that-writes-toohello-queue"></a><span data-ttu-id="dc6c1-112">建立將寫入 toohello 佇列的函式</span><span class="sxs-lookup"><span data-stu-id="dc6c1-112">Create a function that writes toohello queue</span></span>
 
-<span data-ttu-id="62c96-113">您必須先建立可載入訊息佇列的函式，才可以連接到儲存體佇列。</span><span class="sxs-lookup"><span data-stu-id="62c96-113">Before you can connect to a storage queue, you need to create a function that loads the message queue.</span></span> <span data-ttu-id="62c96-114">這個 JavaScript 函式使用計時器觸發程序，每隔 10 秒將訊息寫入佇列。</span><span class="sxs-lookup"><span data-stu-id="62c96-114">This JavaScript function uses a timer trigger that writes a message to the queue every 10 seconds.</span></span> <span data-ttu-id="62c96-115">如果您沒有 Azure 帳戶，請查看[試用 Azure Functions](https://functions.azure.com/try) 體驗，或[建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)。</span><span class="sxs-lookup"><span data-stu-id="62c96-115">If you don't already have an Azure account, check out the [Try Azure Functions](https://functions.azure.com/try) experience, or [create your free Azure account](https://azure.microsoft.com/free/).</span></span>
+<span data-ttu-id="dc6c1-113">您可以連接 tooa 儲存體佇列之前，您會需要 toocreate 載入 hello 訊息佇列的函式。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-113">Before you can connect tooa storage queue, you need toocreate a function that loads hello message queue.</span></span> <span data-ttu-id="dc6c1-114">這個 JavaScript 函式會使用計時器觸發程序會寫入訊息 toohello 佇列每隔 10 秒。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-114">This JavaScript function uses a timer trigger that writes a message toohello queue every 10 seconds.</span></span> <span data-ttu-id="dc6c1-115">如果您還沒有 Azure 帳戶，請參閱 hello[再試一次 Azure 函式](https://functions.azure.com/try)體驗，或[建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-115">If you don't already have an Azure account, check out hello [Try Azure Functions](https://functions.azure.com/try) experience, or [create your free Azure account](https://azure.microsoft.com/free/).</span></span>
 
-1. <span data-ttu-id="62c96-116">移至 Azure 入口網站，並找出您的函式應用程式。</span><span class="sxs-lookup"><span data-stu-id="62c96-116">Go to the Azure portal and locate your function app.</span></span>
+1. <span data-ttu-id="dc6c1-116">請 toohello Azure 入口網站，並找出您的函式應用程式。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-116">Go toohello Azure portal and locate your function app.</span></span>
 
-2. <span data-ttu-id="62c96-117">按一下 [新增函式] > [TimerTrigger JavaScript]。</span><span class="sxs-lookup"><span data-stu-id="62c96-117">Click **New Function** > **TimerTrigger-JavaScript**.</span></span> 
+2. <span data-ttu-id="dc6c1-117">按一下 [新增函式] > [TimerTrigger JavaScript]。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-117">Click **New Function** > **TimerTrigger-JavaScript**.</span></span> 
 
-3. <span data-ttu-id="62c96-118">將函式命名為 **FunctionsBindingsDemo1**，針對 [排程] 輸入 cron 運算式值 `0/10 * * * * *`，然後按一下 [建立]。</span><span class="sxs-lookup"><span data-stu-id="62c96-118">Name the function **FunctionsBindingsDemo1**, enter a cron expression value of `0/10 * * * * *` for **Schedule**, and then click **Create**.</span></span>
+3. <span data-ttu-id="dc6c1-118">命名 hello 函式**FunctionsBindingsDemo1**，輸入 cron 運算式值為`0/10 * * * * *`如**排程**，然後按一下**建立**。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-118">Name hello function **FunctionsBindingsDemo1**, enter a cron expression value of `0/10 * * * * *` for **Schedule**, and then click **Create**.</span></span>
    
     ![新增計時器觸發函式](./media/functions-create-an-azure-connected-function/new-trigger-timer-function.png)
 
-    <span data-ttu-id="62c96-120">您現在已建立會每隔 10 秒執行一次的計時器觸發函式。</span><span class="sxs-lookup"><span data-stu-id="62c96-120">You have now created a timer triggered function that runs every 10 seconds.</span></span>
+    <span data-ttu-id="dc6c1-120">您現在已建立會每隔 10 秒執行一次的計時器觸發函式。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-120">You have now created a timer triggered function that runs every 10 seconds.</span></span>
 
-5. <span data-ttu-id="62c96-121">在 [開發] 索引標籤上，按一下 [記錄檔] 並檢視記錄檔中的活動。</span><span class="sxs-lookup"><span data-stu-id="62c96-121">On the **Develop** tab, click **Logs** and view the activity in the log.</span></span> <span data-ttu-id="62c96-122">您會看到每隔 10 秒寫入的記錄檔項目。</span><span class="sxs-lookup"><span data-stu-id="62c96-122">You see a log entry written every 10 seconds.</span></span>
+5. <span data-ttu-id="dc6c1-121">在 hello**開發**索引標籤上，按一下 **記錄檔**及檢視 hello 記錄檔中的 hello 活動。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-121">On hello **Develop** tab, click **Logs** and view hello activity in hello log.</span></span> <span data-ttu-id="dc6c1-122">您會看到每隔 10 秒寫入的記錄檔項目。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-122">You see a log entry written every 10 seconds.</span></span>
    
-    ![檢視記錄檔以確認函式可運作](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-view-log.png)
+    ![檢視 hello 記錄 tooverify hello 函式運作方式](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-view-log.png)
 
-## <a name="add-a-message-queue-output-binding"></a><span data-ttu-id="62c96-124">新增訊息佇列輸出繫結</span><span class="sxs-lookup"><span data-stu-id="62c96-124">Add a message queue output binding</span></span>
+## <a name="add-a-message-queue-output-binding"></a><span data-ttu-id="dc6c1-124">新增訊息佇列輸出繫結</span><span class="sxs-lookup"><span data-stu-id="dc6c1-124">Add a message queue output binding</span></span>
 
-1. <span data-ttu-id="62c96-125">在 [整合] 索引標籤上，選擇 [新增輸出] > [Azure 佇列儲存體] > [選取]。</span><span class="sxs-lookup"><span data-stu-id="62c96-125">On the **Integrate** tab, choose **New Output** > **Azure Queue Storage** > **Select**.</span></span>
+1. <span data-ttu-id="dc6c1-125">在 hello**整合**索引標籤上，選擇**新輸出** > **Azure 佇列儲存體** > **選取**。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-125">On hello **Integrate** tab, choose **New Output** > **Azure Queue Storage** > **Select**.</span></span>
 
     ![新增觸發計時器函式](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab.png)
 
-2. <span data-ttu-id="62c96-127">輸入 `myQueueItem` 做為 [訊息參數名稱] 以及輸入 `functions-bindings` 做為 [佇列名稱]，選取現有的 [儲存體帳戶連線]，或按一下 [新增] 以建立儲存體帳戶連線，然後按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="62c96-127">Enter `myQueueItem` for **Message parameter name** and `functions-bindings` for **Queue name**, select an existing **Storage account connection** or click **new** to create a storage account connection, and then click **Save**.</span></span>  
+2. <span data-ttu-id="dc6c1-127">輸入`myQueueItem`如**訊息參數名稱**和`functions-bindings`如**佇列名稱**，選取現有**儲存體帳戶連接**或按一下**新**toocreate 儲存體帳戶連接，然後按一下**儲存**。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-127">Enter `myQueueItem` for **Message parameter name** and `functions-bindings` for **Queue name**, select an existing **Storage account connection** or click **new** toocreate a storage account connection, and then click **Save**.</span></span>  
 
-    ![建立儲存體佇列的輸出繫結](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab2.png)
+    ![建立 hello 輸出繫結 toohello 儲存體佇列](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab2.png)
 
-1. <span data-ttu-id="62c96-129">回到 [開發] 索引標籤，將下列程式碼附加至函式︰</span><span class="sxs-lookup"><span data-stu-id="62c96-129">Back in the **Develop** tab, append the following code to the function:</span></span>
+1. <span data-ttu-id="dc6c1-129">在 hello**開發**索引標籤上，新增下列程式碼 toohello 函式的 hello:</span><span class="sxs-lookup"><span data-stu-id="dc6c1-129">Back in hello **Develop** tab, append hello following code toohello function:</span></span>
    
     ```javascript
    
@@ -72,7 +72,7 @@ ms.lasthandoff: 08/29/2017
     }
    
     ```
-2. <span data-ttu-id="62c96-130">找出 if 陳述式 (大約在函式的第 9 行)，並在該陳述式之後插入下列程式碼。</span><span class="sxs-lookup"><span data-stu-id="62c96-130">Locate the *if* statement around line 9 of the function, and insert the following code after that statement.</span></span>
+2. <span data-ttu-id="dc6c1-130">找出 hello*如果*陳述式的大約行 9 hello 函式，並插入 hello 下列程式碼會在該陳述式之後。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-130">Locate hello *if* statement around line 9 of hello function, and insert hello following code after that statement.</span></span>
    
     ```javascript
    
@@ -82,55 +82,55 @@ ms.lasthandoff: 08/29/2017
    
     ```  
    
-    <span data-ttu-id="62c96-131">此程式碼會建立 **myQueueItem**，並將其 [時間] 屬性設定為目前的 timeStamp。</span><span class="sxs-lookup"><span data-stu-id="62c96-131">This code creates a **myQueueItem** and sets its **time** property to the current timeStamp.</span></span> <span data-ttu-id="62c96-132">然後，它會將新的佇列項目新增至內容的 **myQueueItem** 繫結。</span><span class="sxs-lookup"><span data-stu-id="62c96-132">It then adds the new queue item to the context's **myQueueItem** binding.</span></span>
+    <span data-ttu-id="dc6c1-131">此程式碼建立**myQueueItem**並設定其**時間**屬性 toohello 目前時間戳記。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-131">This code creates a **myQueueItem** and sets its **time** property toohello current timeStamp.</span></span> <span data-ttu-id="dc6c1-132">接著它會加入 hello 新佇列項目 toohello 內容的**myQueueItem**繫結。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-132">It then adds hello new queue item toohello context's **myQueueItem** binding.</span></span>
 
-3. <span data-ttu-id="62c96-133">按一下 [儲存並執行]。</span><span class="sxs-lookup"><span data-stu-id="62c96-133">Click **Save and Run**.</span></span>
+3. <span data-ttu-id="dc6c1-133">按一下 [儲存並執行]。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-133">Click **Save and Run**.</span></span>
 
-## <a name="view-storage-updates-by-using-storage-explorer"></a><span data-ttu-id="62c96-134">使用儲存體總管來檢視儲存體更新</span><span class="sxs-lookup"><span data-stu-id="62c96-134">View storage updates by using Storage Explorer</span></span>
-<span data-ttu-id="62c96-135">您可以檢視您所建立的佇列中的訊息，以確認您的函式運作正常。</span><span class="sxs-lookup"><span data-stu-id="62c96-135">You can verify that your function is working by viewing messages in the queue you created.</span></span>  <span data-ttu-id="62c96-136">您可以使用 Visual Studio 中的雲端總管連接到您的儲存體佇列。</span><span class="sxs-lookup"><span data-stu-id="62c96-136">You can connect to your storage queue by using Cloud Explorer in Visual Studio.</span></span> <span data-ttu-id="62c96-137">不過，透過入口網站即可輕鬆使用 Microsoft Azure 儲存體總管連接到儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="62c96-137">However, the portal makes it easy to connect to your storage account by using Microsoft Azure Storage Explorer.</span></span>
+## <a name="view-storage-updates-by-using-storage-explorer"></a><span data-ttu-id="dc6c1-134">使用儲存體總管來檢視儲存體更新</span><span class="sxs-lookup"><span data-stu-id="dc6c1-134">View storage updates by using Storage Explorer</span></span>
+<span data-ttu-id="dc6c1-135">您可以確認您的函式正在檢視您所建立的 hello 佇列中的訊息。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-135">You can verify that your function is working by viewing messages in hello queue you created.</span></span>  <span data-ttu-id="dc6c1-136">您可以使用 Visual Studio 中的 Cloud Explorer 來連線 tooyour 儲存體佇列。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-136">You can connect tooyour storage queue by using Cloud Explorer in Visual Studio.</span></span> <span data-ttu-id="dc6c1-137">不過，hello 入口網站可讓您輕鬆 tooconnect tooyour 儲存體帳戶使用 Microsoft Azure 儲存體總管。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-137">However, hello portal makes it easy tooconnect tooyour storage account by using Microsoft Azure Storage Explorer.</span></span>
 
-1. <span data-ttu-id="62c96-138">在 [整合] 索引標籤中，按一下您的佇列輸出繫結 > [文件]，然後取消隱儲存體帳戶的藏連接字串並複製該值。</span><span class="sxs-lookup"><span data-stu-id="62c96-138">In the **Integrate** tab, click your queue output binding > **Documentation**, then unhide the Connection String for your storage account and copy the value.</span></span> <span data-ttu-id="62c96-139">您可以使用此值來連接到您的儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="62c96-139">You use this value to connect to your storage account.</span></span>
+1. <span data-ttu-id="dc6c1-138">在 hello**整合**索引標籤上，按一下您的佇列輸出繫結 >**文件**，然後取消隱藏 hello 連接字串儲存體帳戶，並複製 hello 值。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-138">In hello **Integrate** tab, click your queue output binding > **Documentation**, then unhide hello Connection String for your storage account and copy hello value.</span></span> <span data-ttu-id="dc6c1-139">您使用此值 tooconnect tooyour 儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-139">You use this value tooconnect tooyour storage account.</span></span>
 
     ![下載 Azure 儲存體總管](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab3.png)
 
 
-2. <span data-ttu-id="62c96-141">如果您還沒有這麼做，請下載並安裝 [Microsoft Azure 儲存體總管](http://storageexplorer.com)。</span><span class="sxs-lookup"><span data-stu-id="62c96-141">If you haven't already done so, download and install [Microsoft Azure Storage Explorer](http://storageexplorer.com).</span></span> 
+2. <span data-ttu-id="dc6c1-141">如果您還沒有這麼做，請下載並安裝 [Microsoft Azure 儲存體總管](http://storageexplorer.com)。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-141">If you haven't already done so, download and install [Microsoft Azure Storage Explorer](http://storageexplorer.com).</span></span> 
  
-3. <span data-ttu-id="62c96-142">在儲存體總管中，按一下連接到 Azure 儲存體圖示，在欄位中貼上連接字串，並完成精靈。</span><span class="sxs-lookup"><span data-stu-id="62c96-142">In Storage Explorer, click the connect to Azure Storage icon, paste the connection string in the field, and complete the wizard.</span></span>
+3. <span data-ttu-id="dc6c1-142">按一下 [儲存體總管] 中的 hello 連接 tooAzure 儲存體圖示、 在 hello 欄位中，貼上 hello 連接字串並完成 hello 精靈。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-142">In Storage Explorer, click hello connect tooAzure Storage icon, paste hello connection string in hello field, and complete hello wizard.</span></span>
 
     ![儲存體總管新增連接](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-storage-explorer.png)
 
-4. <span data-ttu-id="62c96-144">在 [本機和附加] 之下，展開 [儲存體帳戶] > 您的儲存體帳戶 > [佇列] > [functions-bindings]，並確認訊息會寫入佇列。</span><span class="sxs-lookup"><span data-stu-id="62c96-144">Under **Local and attached**, expand **Storage Accounts** > your storage account > **Queues** > **functions-bindings** and verify that messages are written to the queue.</span></span>
+4. <span data-ttu-id="dc6c1-144">在下**本機和附加**，依序展開**儲存體帳戶**> 儲存體帳戶 >**佇列** > **函式繫結**並確認訊息會寫入 toohello 佇列。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-144">Under **Local and attached**, expand **Storage Accounts** > your storage account > **Queues** > **functions-bindings** and verify that messages are written toohello queue.</span></span>
 
-    ![佇列中的訊息檢視](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer.png)
+    ![Hello 佇列中訊息的檢視](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer.png)
 
-    <span data-ttu-id="62c96-146">如果佇列不存在或是空的，很可能是您的函式繫結或程式碼有問題。</span><span class="sxs-lookup"><span data-stu-id="62c96-146">If the queue does not exist or is empty, there is most likely a problem with your function binding or code.</span></span>
+    <span data-ttu-id="dc6c1-146">如果 hello 佇列不存在，或為空白，則最有可能您函式繫結或程式碼發生問題。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-146">If hello queue does not exist or is empty, there is most likely a problem with your function binding or code.</span></span>
 
-## <a name="create-a-function-that-reads-from-the-queue"></a><span data-ttu-id="62c96-147">建立可從佇列讀取訊息的函式</span><span class="sxs-lookup"><span data-stu-id="62c96-147">Create a function that reads from the queue</span></span>
+## <a name="create-a-function-that-reads-from-hello-queue"></a><span data-ttu-id="dc6c1-147">建立從 hello 佇列讀取的函式</span><span class="sxs-lookup"><span data-stu-id="dc6c1-147">Create a function that reads from hello queue</span></span>
 
-<span data-ttu-id="62c96-148">您已將訊息新增至佇列，您可以建立另一個函式，以便從佇列讀取訊息並將訊息永久寫入 Azure 儲存體資料表。</span><span class="sxs-lookup"><span data-stu-id="62c96-148">Now that you have messages being added to the queue, you can create another function that reads from the queue and writes the messages permanently to an Azure Storage table.</span></span>
+<span data-ttu-id="dc6c1-148">既然您已加入 toohello 佇列的訊息時，您可以建立另一個函式會從 hello 佇列讀取和寫入 hello 訊息永久 tooan Azure 儲存體資料表。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-148">Now that you have messages being added toohello queue, you can create another function that reads from hello queue and writes hello messages permanently tooan Azure Storage table.</span></span>
 
-1. <span data-ttu-id="62c96-149">按一下 [新增函式] > [QueueTrigger-CSharp]。</span><span class="sxs-lookup"><span data-stu-id="62c96-149">Click **New Function** > **QueueTrigger-CSharp**.</span></span> 
+1. <span data-ttu-id="dc6c1-149">按一下 [新增函式] > [QueueTrigger-CSharp]。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-149">Click **New Function** > **QueueTrigger-CSharp**.</span></span> 
  
-2. <span data-ttu-id="62c96-150">將函式命名為 `FunctionsBindingsDemo2`，在 [佇列名稱] 欄位中輸入 **functions-bindings**，選取現有的儲存體帳戶或加以建立，然後按一下 [建立]。</span><span class="sxs-lookup"><span data-stu-id="62c96-150">Name the function `FunctionsBindingsDemo2`, enter **functions-bindings** in the **Queue name** field, select an existing storage account or create one, and then click **Create**.</span></span>
+2. <span data-ttu-id="dc6c1-150">命名 hello 函式`FunctionsBindingsDemo2`，輸入**函式繫結**在 hello**佇列名稱**欄位中，選取現有的儲存體帳戶或建立一個，，然後按一下**建立**.</span><span class="sxs-lookup"><span data-stu-id="dc6c1-150">Name hello function `FunctionsBindingsDemo2`, enter **functions-bindings** in hello **Queue name** field, select an existing storage account or create one, and then click **Create**.</span></span>
 
     ![新增輸出佇列計時器函式](./media/functions-create-an-azure-connected-function/function-demo2-new-function.png) 
 
-3. <span data-ttu-id="62c96-152">(選擇性) 您可以如先前一樣在儲存體總管中檢視新的佇列，以確認新的函式運作正常。</span><span class="sxs-lookup"><span data-stu-id="62c96-152">(Optional) You can verify that the new function works by viewing the new queue in Storage Explorer as before.</span></span> <span data-ttu-id="62c96-153">您也可以使用 Visual Studio 中的雲端總管。</span><span class="sxs-lookup"><span data-stu-id="62c96-153">You can also use Cloud Explorer in Visual Studio.</span></span>  
+3. <span data-ttu-id="dc6c1-152">（選擇性）您可以確認 hello 新函式運作方式是在做為之前的存放裝置總管 中檢視 hello 新佇列。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-152">(Optional) You can verify that hello new function works by viewing hello new queue in Storage Explorer as before.</span></span> <span data-ttu-id="dc6c1-153">您也可以使用 Visual Studio 中的雲端總管。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-153">You can also use Cloud Explorer in Visual Studio.</span></span>  
 
-4. <span data-ttu-id="62c96-154">(選擇性) 重新整理 **functions-bindings** 佇列，並請注意已從佇列中移除項目。</span><span class="sxs-lookup"><span data-stu-id="62c96-154">(Optional) Refresh the **functions-bindings** queue and notice that items have been removed from the queue.</span></span> <span data-ttu-id="62c96-155">發生移除的原因是函式已繫結至 **functions-bindings** 佇列做為輸入觸發程序，而且此函式會讀取佇列。</span><span class="sxs-lookup"><span data-stu-id="62c96-155">The removal occurs because the function is bound to the **functions-bindings** queue as an input trigger and the function reads the queue.</span></span> 
+4. <span data-ttu-id="dc6c1-154">（選擇性）重新整理 hello**函式繫結**排入佇列，並注意從 hello 佇列已經移除項目。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-154">(Optional) Refresh hello **functions-bindings** queue and notice that items have been removed from hello queue.</span></span> <span data-ttu-id="dc6c1-155">hello 移除會發生 hello 函式繫結的 toohello**函式繫結**輸入觸發程序和 hello 函式讀取 hello 佇列的佇列。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-155">hello removal occurs because hello function is bound toohello **functions-bindings** queue as an input trigger and hello function reads hello queue.</span></span> 
  
-## <a name="add-a-table-output-binding"></a><span data-ttu-id="62c96-156">新增資料表輸出繫結</span><span class="sxs-lookup"><span data-stu-id="62c96-156">Add a table output binding</span></span>
+## <a name="add-a-table-output-binding"></a><span data-ttu-id="dc6c1-156">新增資料表輸出繫結</span><span class="sxs-lookup"><span data-stu-id="dc6c1-156">Add a table output binding</span></span>
 
-1. <span data-ttu-id="62c96-157">在 FunctionsBindingsDemo2 中，按一下 [整合] > [新增輸出] > [Azure 資料表儲存體] > [選取]。</span><span class="sxs-lookup"><span data-stu-id="62c96-157">In FunctionsBindingsDemo2, click **Integrate** > **New Output** > **Azure Table Storage** > **Select**.</span></span>
+1. <span data-ttu-id="dc6c1-157">在 FunctionsBindingsDemo2 中，按一下 [整合] > [新增輸出] > [Azure 資料表儲存體] > [選取]。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-157">In FunctionsBindingsDemo2, click **Integrate** > **New Output** > **Azure Table Storage** > **Select**.</span></span>
 
-    ![將繫結新增至 Azure 儲存體資料表](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab.png) 
+    ![新增繫結 tooan Azure 儲存體資料表](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab.png) 
 
-2. <span data-ttu-id="62c96-159">輸入 `functionbindings` 做為 [資料表名稱] 以及輸入 `myTable` 做為 [資料表參數名稱]，選擇 [儲存體帳戶連線] 或建立新的連線，然後按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="62c96-159">Enter `functionbindings` for **Table name** and `myTable` for **Table parameter name**, choose a **Storage account connection** or create a new one, and then click **Save**.</span></span>
+2. <span data-ttu-id="dc6c1-159">輸入 `functionbindings` 做為 資料表名稱 以及輸入 `myTable` 做為 資料表參數名稱，選擇 儲存體帳戶連線 或建立新的連線，然後按一下儲存。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-159">Enter `functionbindings` for **Table name** and `myTable` for **Table parameter name**, choose a **Storage account connection** or create a new one, and then click **Save**.</span></span>
 
-    ![設定儲存體資料表繫結](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab2.png)
+    ![設定 hello 儲存體資料表繫結](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab2.png)
    
-3. <span data-ttu-id="62c96-161">在 [開發] 索引標籤中，以下列程式碼取代現有的函式程式碼︰</span><span class="sxs-lookup"><span data-stu-id="62c96-161">In the **Develop** tab, replace the existing function code with the following:</span></span>
+3. <span data-ttu-id="dc6c1-161">在 hello**開發**索引標籤上，hello 現有函式程式碼取代 hello 下列：</span><span class="sxs-lookup"><span data-stu-id="dc6c1-161">In hello **Develop** tab, replace hello existing function code with hello following:</span></span>
    
     ```cs
     
@@ -147,7 +147,7 @@ ms.lasthandoff: 08/29/2017
             OriginalTime = myQueueItem.Time    
         };
         
-        // Add the item to the table binding collection.
+        // Add hello item toohello table binding collection.
         myTable.Add(myItem);
     
         log.Verbose($"C# Queue trigger function processed: {myItem.RowKey} | {myItem.Msg} | {myItem.Time}");
@@ -168,27 +168,27 @@ ms.lasthandoff: 08/29/2017
         public string Time { get; set;}
     }
     ```
-    <span data-ttu-id="62c96-162">**TableItem** 類別代表儲存體資料表中的資料列，而且您將此項目新增至 **TableItem** 物件的 `myTable` 集合。</span><span class="sxs-lookup"><span data-stu-id="62c96-162">The **TableItem** class represents a row in the storage table, and you add the item to the `myTable` collection of **TableItem** objects.</span></span> <span data-ttu-id="62c96-163">您必須設定 **PartitionKey** 和 **RowKey** 屬性，才能插入資料表中。</span><span class="sxs-lookup"><span data-stu-id="62c96-163">You must set the **PartitionKey** and **RowKey** properties to be able to insert into the table.</span></span>
+    <span data-ttu-id="dc6c1-162">hello **TableItem**類別代表 hello 儲存體資料表中的資料列並加入 hello 項目 toohello`myTable`集合**TableItem**物件。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-162">hello **TableItem** class represents a row in hello storage table, and you add hello item toohello `myTable` collection of **TableItem** objects.</span></span> <span data-ttu-id="dc6c1-163">您必須設定 hello **PartitionKey**和**RowKey**屬性 toobe 無法 tooinsert hello 資料表。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-163">You must set hello **PartitionKey** and **RowKey** properties toobe able tooinsert into hello table.</span></span>
 
-4. <span data-ttu-id="62c96-164">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="62c96-164">Click **Save**.</span></span>  <span data-ttu-id="62c96-165">(選擇性) 您可以在儲存體總管或 Visual Studio 雲端總管中檢視資料表，以確認此函式運作正常。</span><span class="sxs-lookup"><span data-stu-id="62c96-165">Finally, you can verify the function works by viewing the table in Storage explorer or Visual Studio Cloud Explorer.</span></span>
+4. <span data-ttu-id="dc6c1-164">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-164">Click **Save**.</span></span>  <span data-ttu-id="dc6c1-165">最後，您可以藉由檢視儲存體總管或 Visual Studio Cloud Explorer 中的 hello 資料表來確認 hello 函式可運作。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-165">Finally, you can verify hello function works by viewing hello table in Storage explorer or Visual Studio Cloud Explorer.</span></span>
 
-5. <span data-ttu-id="62c96-166">(選擇性) 在儲存體總管中您的儲存體帳戶中，展開 [資料表] >  [functionsbindings]，並確認資料列已新增到資料表。</span><span class="sxs-lookup"><span data-stu-id="62c96-166">(Optional) In your storage account in Storage Explorer, expand **Tables** > **functionsbindings** and verify that rows are added to the table.</span></span> <span data-ttu-id="62c96-167">您可以在 Visual Studio 的雲端總管中執行相同作業。</span><span class="sxs-lookup"><span data-stu-id="62c96-167">You can do the same in Cloud Explorer in Visual Studio.</span></span>
+5. <span data-ttu-id="dc6c1-166">（選擇性）在儲存體帳戶在儲存體總管 中，依序展開**資料表** > **functionsbindings**並確認資料列會加入 toohello 資料表。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-166">(Optional) In your storage account in Storage Explorer, expand **Tables** > **functionsbindings** and verify that rows are added toohello table.</span></span> <span data-ttu-id="dc6c1-167">您可以在 Visual Studio 中的 Cloud Explorer 中 hello 相同。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-167">You can do hello same in Cloud Explorer in Visual Studio.</span></span>
 
-    ![資料表中的資料列檢視](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer2.png)
+    ![Hello 資料表中資料列的檢視](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer2.png)
 
-    <span data-ttu-id="62c96-169">如果資料表不存在或是空的，很可能是您的函式繫結或程式碼有問題。</span><span class="sxs-lookup"><span data-stu-id="62c96-169">If the table does not exist or is empty, there is most likely a problem with your function binding or code.</span></span> 
+    <span data-ttu-id="dc6c1-169">如果 hello 資料表不存在，或為空白，則最有可能您函式繫結或程式碼發生問題。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-169">If hello table does not exist or is empty, there is most likely a problem with your function binding or code.</span></span> 
  
 [!INCLUDE [More binding information](../../includes/functions-bindings-next-steps.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="62c96-170">後續步驟</span><span class="sxs-lookup"><span data-stu-id="62c96-170">Next steps</span></span>
-<span data-ttu-id="62c96-171">如需 Azure Functions 的詳細資訊，請參閱下列主題：</span><span class="sxs-lookup"><span data-stu-id="62c96-171">For more information about Azure Functions, see the following topics:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="dc6c1-170">後續步驟</span><span class="sxs-lookup"><span data-stu-id="dc6c1-170">Next steps</span></span>
+<span data-ttu-id="dc6c1-171">如需 Azure 函式的詳細資訊，請參閱下列主題中的 hello:</span><span class="sxs-lookup"><span data-stu-id="dc6c1-171">For more information about Azure Functions, see hello following topics:</span></span>
 
-* [<span data-ttu-id="62c96-172">Azure Functions 開發人員參考</span><span class="sxs-lookup"><span data-stu-id="62c96-172">Azure Functions developer reference</span></span>](functions-reference.md)  
-  <span data-ttu-id="62c96-173">可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。</span><span class="sxs-lookup"><span data-stu-id="62c96-173">Programmer reference for coding functions and defining triggers and bindings.</span></span>
-* [<span data-ttu-id="62c96-174">測試 Azure Functions</span><span class="sxs-lookup"><span data-stu-id="62c96-174">Testing Azure Functions</span></span>](functions-test-a-function.md)  
-  <span data-ttu-id="62c96-175">說明可用於測試函式的各種工具和技巧。</span><span class="sxs-lookup"><span data-stu-id="62c96-175">Describes various tools and techniques for testing your functions.</span></span>
-* [<span data-ttu-id="62c96-176">如何調整 Azure 函式</span><span class="sxs-lookup"><span data-stu-id="62c96-176">How to scale Azure Functions</span></span>](functions-scale.md)  
-  <span data-ttu-id="62c96-177">討論 Azure Functions 可用的服務方案，包括使用情況主控方案，以及如何選擇正確的方案。</span><span class="sxs-lookup"><span data-stu-id="62c96-177">Discusses service plans available with Azure Functions, including the Consumption hosting plan, and how to choose the right plan.</span></span> 
+* [<span data-ttu-id="dc6c1-172">Azure Functions 開發人員參考</span><span class="sxs-lookup"><span data-stu-id="dc6c1-172">Azure Functions developer reference</span></span>](functions-reference.md)  
+  <span data-ttu-id="dc6c1-173">可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-173">Programmer reference for coding functions and defining triggers and bindings.</span></span>
+* [<span data-ttu-id="dc6c1-174">測試 Azure Functions</span><span class="sxs-lookup"><span data-stu-id="dc6c1-174">Testing Azure Functions</span></span>](functions-test-a-function.md)  
+  <span data-ttu-id="dc6c1-175">說明可用於測試函式的各種工具和技巧。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-175">Describes various tools and techniques for testing your functions.</span></span>
+* [<span data-ttu-id="dc6c1-176">如何 tooscale Azure 函式</span><span class="sxs-lookup"><span data-stu-id="dc6c1-176">How tooscale Azure Functions</span></span>](functions-scale.md)  
+  <span data-ttu-id="dc6c1-177">討論適用於 Azure 函式，包括 hello 耗用量主控方案，以及如何 toochoose hello 右計劃的服務方案。</span><span class="sxs-lookup"><span data-stu-id="dc6c1-177">Discusses service plans available with Azure Functions, including hello Consumption hosting plan, and how toochoose hello right plan.</span></span> 
 
 [!INCLUDE [Getting help note](../../includes/functions-get-help.md)]
 

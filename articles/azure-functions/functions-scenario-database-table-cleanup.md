@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Functions 執行資料庫清除工作 | Microsoft Docs"
-description: "使用 Azure Functions 排程可連接到 Azure SQL Database 以定期清除資料列的工作。"
+title: "aaaUse Azure 函式 tooperform 資料庫清除工作 |Microsoft 文件"
+description: "使用 Azure 函式 tooschedule 連接 tooAzure SQL Database tooperiodically 工作清除的資料列。"
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -15,76 +15,76 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/22/2017
 ms.author: glenga
-ms.openlocfilehash: 6fd0e32374827b249f5aba1cbfc39117c88c6272
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 063a25fe8d14a75d54e9b72cec9fc1e25fa3ff44
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-functions-to-connect-to-an-azure-sql-database"></a><span data-ttu-id="738e2-103">使用 Azure Functions 連接到 Azure SQL Database</span><span class="sxs-lookup"><span data-stu-id="738e2-103">Use Azure Functions to connect to an Azure SQL Database</span></span>
-<span data-ttu-id="738e2-104">本主題示範如何使用 Azure Functions 建立可清除 Azure SQL Database 資料表中資料列的排程作業。</span><span class="sxs-lookup"><span data-stu-id="738e2-104">This topic shows you how to use Azure Functions to create a scheduled job that cleans up rows in a table in an Azure SQL Database.</span></span> <span data-ttu-id="738e2-105">新的 C# 函數是根據 Azure 入口網站中預先定義的計時器觸發程序範本所建立。</span><span class="sxs-lookup"><span data-stu-id="738e2-105">The new C# function is created based on a pre-defined timer trigger template in the Azure portal.</span></span> <span data-ttu-id="738e2-106">若要支援此案例，您也必須在函數應用程式中設定資料庫連接字串作為設定。</span><span class="sxs-lookup"><span data-stu-id="738e2-106">To support this scenario, you must also set a database connection string as a setting in the function app.</span></span> <span data-ttu-id="738e2-107">此案例會對資料庫使用大量作業。</span><span class="sxs-lookup"><span data-stu-id="738e2-107">This scenario uses a bulk operation against the database.</span></span> <span data-ttu-id="738e2-108">若要讓您的函數程序在 Mobile Apps 資料表中進行個別的 CRUD 作業，您應該改用 [Mobile Apps 繫結](functions-bindings-mobile-apps.md)。</span><span class="sxs-lookup"><span data-stu-id="738e2-108">To have your function process individual CRUD operations in a Mobile Apps table, you should instead use [Mobile Apps bindings](functions-bindings-mobile-apps.md).</span></span>
+# <a name="use-azure-functions-tooconnect-tooan-azure-sql-database"></a><span data-ttu-id="67378-103">使用 Azure 函式 tooconnect tooan Azure SQL Database</span><span class="sxs-lookup"><span data-stu-id="67378-103">Use Azure Functions tooconnect tooan Azure SQL Database</span></span>
+<span data-ttu-id="67378-104">本主題說明您如何 toouse Azure 函式 toocreate 排程的作業清除 Azure SQL Database 中的資料表中的資料列。</span><span class="sxs-lookup"><span data-stu-id="67378-104">This topic shows you how toouse Azure Functions toocreate a scheduled job that cleans up rows in a table in an Azure SQL Database.</span></span> <span data-ttu-id="67378-105">hello 新 C# 的函式會根據 hello Azure 入口網站中的預先定義的計時器觸發程序範本所建立。</span><span class="sxs-lookup"><span data-stu-id="67378-105">hello new C# function is created based on a pre-defined timer trigger template in hello Azure portal.</span></span> <span data-ttu-id="67378-106">toosupport 此案例中，您也必須設定資料庫連接字串為 hello 函式應用程式中的設定。</span><span class="sxs-lookup"><span data-stu-id="67378-106">toosupport this scenario, you must also set a database connection string as a setting in hello function app.</span></span> <span data-ttu-id="67378-107">此案例使用大量作業對 hello 資料庫。</span><span class="sxs-lookup"><span data-stu-id="67378-107">This scenario uses a bulk operation against hello database.</span></span> <span data-ttu-id="67378-108">toohave 您函式處理個別 CRUD 作業行動應用程式資料表中的，您應該改為使用[行動應用程式繫結](functions-bindings-mobile-apps.md)。</span><span class="sxs-lookup"><span data-stu-id="67378-108">toohave your function process individual CRUD operations in a Mobile Apps table, you should instead use [Mobile Apps bindings](functions-bindings-mobile-apps.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="738e2-109">必要條件</span><span class="sxs-lookup"><span data-stu-id="738e2-109">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="67378-109">必要條件</span><span class="sxs-lookup"><span data-stu-id="67378-109">Prerequisites</span></span>
 
-+ <span data-ttu-id="738e2-110">本主題使用計時器觸發的函數。</span><span class="sxs-lookup"><span data-stu-id="738e2-110">This topic uses a timer triggered function.</span></span> <span data-ttu-id="738e2-111">完成主題[在 Azure 中建立由計時器觸發的函數](functions-create-scheduled-function.md)中的步驟，以建立此函數的 C# 版本。</span><span class="sxs-lookup"><span data-stu-id="738e2-111">Complete the steps in the topic [Create a function in Azure that is triggered by a timer](functions-create-scheduled-function.md) to create a C# version of this function.</span></span>   
++ <span data-ttu-id="67378-110">本主題使用計時器觸發的函數。</span><span class="sxs-lookup"><span data-stu-id="67378-110">This topic uses a timer triggered function.</span></span> <span data-ttu-id="67378-111">Hello 主題中的步驟完成 hello[計時器所觸發的 Azure 中建立的函式](functions-create-scheduled-function.md)toocreate C# 版本，此函式。</span><span class="sxs-lookup"><span data-stu-id="67378-111">Complete hello steps in hello topic [Create a function in Azure that is triggered by a timer](functions-create-scheduled-function.md) toocreate a C# version of this function.</span></span>   
 
-+ <span data-ttu-id="738e2-112">本主題將示範在 AdventureWorksLT 範例資料庫的 **SalesOrderHeader** 資料表中執行大量清除作業的 Transact-SQL 命令。</span><span class="sxs-lookup"><span data-stu-id="738e2-112">This topic demonstrates a Transact-SQL command that executes a bulk cleanup operation in the **SalesOrderHeader** table in the AdventureWorksLT sample database.</span></span> <span data-ttu-id="738e2-113">若要建立 AdventureWorksLT 範例資料庫，請完成本主題[在 Azure 入口網站中建立 Azure SQL 資料庫](../sql-database/sql-database-get-started-portal.md)中的步驟。</span><span class="sxs-lookup"><span data-stu-id="738e2-113">To create the AdventureWorksLT sample database, complete the steps in the topic [Create an Azure SQL database in the Azure portal](../sql-database/sql-database-get-started-portal.md).</span></span> 
++ <span data-ttu-id="67378-112">本主題示範 hello 中執行大量的清除作業的 TRANSACT-SQL 命令**SalesOrderHeader** hello 有提供 AdventureWorksLT 範例資料庫中的資料表。</span><span class="sxs-lookup"><span data-stu-id="67378-112">This topic demonstrates a Transact-SQL command that executes a bulk cleanup operation in hello **SalesOrderHeader** table in hello AdventureWorksLT sample database.</span></span> <span data-ttu-id="67378-113">hello 主題中步驟的 toocreate hello 有提供 AdventureWorksLT 範例資料庫，完整 hello [hello Azure 入口網站中建立 Azure SQL database](../sql-database/sql-database-get-started-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="67378-113">toocreate hello AdventureWorksLT sample database, complete hello steps in hello topic [Create an Azure SQL database in hello Azure portal](../sql-database/sql-database-get-started-portal.md).</span></span> 
 
-## <a name="get-connection-information"></a><span data-ttu-id="738e2-114">取得連線資訊</span><span class="sxs-lookup"><span data-stu-id="738e2-114">Get connection information</span></span>
+## <a name="get-connection-information"></a><span data-ttu-id="67378-114">取得連線資訊</span><span class="sxs-lookup"><span data-stu-id="67378-114">Get connection information</span></span>
 
-<span data-ttu-id="738e2-115">完成[在 Azure 入口網站中建立 Azure SQL 資料庫](../sql-database/sql-database-get-started-portal.md)時，您必須取得所建立之資料庫的連接字串。</span><span class="sxs-lookup"><span data-stu-id="738e2-115">You need to get the connection string for the database you created when you completed [Create an Azure SQL database in the Azure portal](../sql-database/sql-database-get-started-portal.md).</span></span>
+<span data-ttu-id="67378-115">當您完成時，您所建立的 hello 資料庫所需 tooget hello 連接字串[hello Azure 入口網站中建立 Azure SQL database](../sql-database/sql-database-get-started-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="67378-115">You need tooget hello connection string for hello database you created when you completed [Create an Azure SQL database in hello Azure portal](../sql-database/sql-database-get-started-portal.md).</span></span>
 
-1. <span data-ttu-id="738e2-116">登入 [Azure 入口網站](https://portal.azure.com/)。</span><span class="sxs-lookup"><span data-stu-id="738e2-116">Log in to the [Azure portal](https://portal.azure.com/).</span></span>
+1. <span data-ttu-id="67378-116">登入 toohello [Azure 入口網站](https://portal.azure.com/)。</span><span class="sxs-lookup"><span data-stu-id="67378-116">Log in toohello [Azure portal](https://portal.azure.com/).</span></span>
  
-3. <span data-ttu-id="738e2-117">從左側功能表中選取 [SQL Database]，然後選取 [SQL 資料庫] 頁面上的資料庫。</span><span class="sxs-lookup"><span data-stu-id="738e2-117">Select **SQL Databases** from the left-hand menu, and select your database on the **SQL databases** page.</span></span>
+3. <span data-ttu-id="67378-117">選取**SQL 資料庫**從 hello 左側功能表中，選取您的資料庫上 hello **SQL 資料庫**頁面。</span><span class="sxs-lookup"><span data-stu-id="67378-117">Select **SQL Databases** from hello left-hand menu, and select your database on hello **SQL databases** page.</span></span>
 
-4. <span data-ttu-id="738e2-118">選取 [顯示資料庫連接字串]，然後複製完整的 **ADO.NET** 連接字串。</span><span class="sxs-lookup"><span data-stu-id="738e2-118">Select **Show database connection strings** and copy the complete **ADO.NET** connection string.</span></span>
+4. <span data-ttu-id="67378-118">選取**顯示資料庫的連接字串**及完成複製 hello **ADO.NET**連接字串。</span><span class="sxs-lookup"><span data-stu-id="67378-118">Select **Show database connection strings** and copy hello complete **ADO.NET** connection string.</span></span>
 
-    ![複製 ADO.NET 連接字串。](./media/functions-scenario-database-table-cleanup/adonet-connection-string.png)
+    ![複製 hello ADO.NET 連接字串。](./media/functions-scenario-database-table-cleanup/adonet-connection-string.png)
 
-## <a name="set-the-connection-string"></a><span data-ttu-id="738e2-120">設定連接字串</span><span class="sxs-lookup"><span data-stu-id="738e2-120">Set the connection string</span></span> 
+## <a name="set-hello-connection-string"></a><span data-ttu-id="67378-120">設定 hello 連接字串</span><span class="sxs-lookup"><span data-stu-id="67378-120">Set hello connection string</span></span> 
 
-<span data-ttu-id="738e2-121">函式應用程式可在 Azure 中主控函式的執行。</span><span class="sxs-lookup"><span data-stu-id="738e2-121">A function app hosts the execution of your functions in Azure.</span></span> <span data-ttu-id="738e2-122">在函數應用程式設定中儲存連接字串和其他機密資料是最佳做法。</span><span class="sxs-lookup"><span data-stu-id="738e2-122">It is a best practice to store connection strings and other secrets in your function app settings.</span></span> <span data-ttu-id="738e2-123">使用應用程式設定可避免意外洩露連接字串與您的程式碼。</span><span class="sxs-lookup"><span data-stu-id="738e2-123">Using application settings prevents accidental disclosure of the connection string with your code.</span></span> 
+<span data-ttu-id="67378-121">函式應用程式裝載函式在 Azure 中的 hello 執行。</span><span class="sxs-lookup"><span data-stu-id="67378-121">A function app hosts hello execution of your functions in Azure.</span></span> <span data-ttu-id="67378-122">它是最佳的作法 toostore 連接字串和函式應用程式設定中的其他密碼。</span><span class="sxs-lookup"><span data-stu-id="67378-122">It is a best practice toostore connection strings and other secrets in your function app settings.</span></span> <span data-ttu-id="67378-123">使用應用程式設定可避免無意間洩露的 hello 與您的程式碼的連接字串。</span><span class="sxs-lookup"><span data-stu-id="67378-123">Using application settings prevents accidental disclosure of hello connection string with your code.</span></span> 
 
-1. <span data-ttu-id="738e2-124">瀏覽至您建立的函數應用程式。[在 Azure 中建立由計時器觸發的函數](functions-create-scheduled-function.md)。</span><span class="sxs-lookup"><span data-stu-id="738e2-124">Navigate to your function app you created [Create a function in Azure that is triggered by a timer](functions-create-scheduled-function.md).</span></span>
+1. <span data-ttu-id="67378-124">瀏覽您所建立的 tooyour 函式應用程式[計時器所觸發的 Azure 中建立的函式](functions-create-scheduled-function.md)。</span><span class="sxs-lookup"><span data-stu-id="67378-124">Navigate tooyour function app you created [Create a function in Azure that is triggered by a timer](functions-create-scheduled-function.md).</span></span>
 
-2. <span data-ttu-id="738e2-125">選取 [平台功能] > [應用程式設定]。</span><span class="sxs-lookup"><span data-stu-id="738e2-125">Select **Platform features** > **Application settings**.</span></span>
+2. <span data-ttu-id="67378-125">選取 [平台功能] > [應用程式設定]。</span><span class="sxs-lookup"><span data-stu-id="67378-125">Select **Platform features** > **Application settings**.</span></span>
    
-    ![函數應用程式的應用程式設定。](./media/functions-scenario-database-table-cleanup/functions-app-service-settings.png)
+    ![Hello 函式應用程式的應用程式設定。](./media/functions-scenario-database-table-cleanup/functions-app-service-settings.png)
 
-2. <span data-ttu-id="738e2-127">向下捲動至 [連接字串]，然後使用資料表中指定的設定來新增連接字串。</span><span class="sxs-lookup"><span data-stu-id="738e2-127">Scroll down to **Connection strings** and add a connection string using the settings as specified in the table.</span></span>
+2. <span data-ttu-id="67378-127">向下捲動太**連接字串**並加入使用 hello 設定 hello 資料表中所指定的連接字串。</span><span class="sxs-lookup"><span data-stu-id="67378-127">Scroll down too**Connection strings** and add a connection string using hello settings as specified in hello table.</span></span>
    
-    ![將連接字串新增至函數應用程式設定。](./media/functions-scenario-database-table-cleanup/functions-app-service-settings-connection-strings.png)
+    ![加入連接字串 toohello 函式應用程式設定。](./media/functions-scenario-database-table-cleanup/functions-app-service-settings-connection-strings.png)
 
-    | <span data-ttu-id="738e2-129">設定</span><span class="sxs-lookup"><span data-stu-id="738e2-129">Setting</span></span>       | <span data-ttu-id="738e2-130">建議的值</span><span class="sxs-lookup"><span data-stu-id="738e2-130">Suggested value</span></span> | <span data-ttu-id="738e2-131">說明</span><span class="sxs-lookup"><span data-stu-id="738e2-131">Description</span></span>             | 
+    | <span data-ttu-id="67378-129">設定</span><span class="sxs-lookup"><span data-stu-id="67378-129">Setting</span></span>       | <span data-ttu-id="67378-130">建議的值</span><span class="sxs-lookup"><span data-stu-id="67378-130">Suggested value</span></span> | <span data-ttu-id="67378-131">說明</span><span class="sxs-lookup"><span data-stu-id="67378-131">Description</span></span>             | 
     | ------------ | ------------------ | --------------------- | 
-    | <span data-ttu-id="738e2-132">**名稱**</span><span class="sxs-lookup"><span data-stu-id="738e2-132">**Name**</span></span>  |  <span data-ttu-id="738e2-133">sqldb_connection</span><span class="sxs-lookup"><span data-stu-id="738e2-133">sqldb_connection</span></span>  | <span data-ttu-id="738e2-134">用於存取函數程式碼的預存連接字串。</span><span class="sxs-lookup"><span data-stu-id="738e2-134">Used to access the stored connection string in your function code.</span></span>    |
-    | <span data-ttu-id="738e2-135">**值**</span><span class="sxs-lookup"><span data-stu-id="738e2-135">**Value**</span></span> | <span data-ttu-id="738e2-136">複製的字串</span><span class="sxs-lookup"><span data-stu-id="738e2-136">Copied string</span></span>  | <span data-ttu-id="738e2-137">貼上您在上一節中複製的連接字串。</span><span class="sxs-lookup"><span data-stu-id="738e2-137">Past the connection string you copied in the previous section.</span></span> |
-    | <span data-ttu-id="738e2-138">**類型**</span><span class="sxs-lookup"><span data-stu-id="738e2-138">**Type**</span></span> | <span data-ttu-id="738e2-139">SQL Database</span><span class="sxs-lookup"><span data-stu-id="738e2-139">SQL Database</span></span> | <span data-ttu-id="738e2-140">使用預設的 SQL Database 連接。</span><span class="sxs-lookup"><span data-stu-id="738e2-140">Use the default SQL Database connection.</span></span> |   
+    | <span data-ttu-id="67378-132">**名稱**</span><span class="sxs-lookup"><span data-stu-id="67378-132">**Name**</span></span>  |  <span data-ttu-id="67378-133">sqldb_connection</span><span class="sxs-lookup"><span data-stu-id="67378-133">sqldb_connection</span></span>  | <span data-ttu-id="67378-134">使用的 tooaccess hello 函式程式碼中儲存連接字串。</span><span class="sxs-lookup"><span data-stu-id="67378-134">Used tooaccess hello stored connection string in your function code.</span></span>    |
+    | <span data-ttu-id="67378-135">**值**</span><span class="sxs-lookup"><span data-stu-id="67378-135">**Value**</span></span> | <span data-ttu-id="67378-136">複製的字串</span><span class="sxs-lookup"><span data-stu-id="67378-136">Copied string</span></span>  | <span data-ttu-id="67378-137">過去的 hello 連接字串中複製 hello 上一節。</span><span class="sxs-lookup"><span data-stu-id="67378-137">Past hello connection string you copied in hello previous section.</span></span> |
+    | <span data-ttu-id="67378-138">**類型**</span><span class="sxs-lookup"><span data-stu-id="67378-138">**Type**</span></span> | <span data-ttu-id="67378-139">SQL Database</span><span class="sxs-lookup"><span data-stu-id="67378-139">SQL Database</span></span> | <span data-ttu-id="67378-140">使用 hello 預設 SQL 資料庫連接。</span><span class="sxs-lookup"><span data-stu-id="67378-140">Use hello default SQL Database connection.</span></span> |   
 
-3. <span data-ttu-id="738e2-141">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="738e2-141">Click **Save**.</span></span>
+3. <span data-ttu-id="67378-141">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="67378-141">Click **Save**.</span></span>
 
-<span data-ttu-id="738e2-142">現在，您可以加入 C# 函數程式碼來連接到 SQL Database。</span><span class="sxs-lookup"><span data-stu-id="738e2-142">Now, you can add the C# function code that connects to your SQL Database.</span></span>
+<span data-ttu-id="67378-142">現在，您可以加入 hello C# 函式程式碼連接 tooyour SQL 資料庫。</span><span class="sxs-lookup"><span data-stu-id="67378-142">Now, you can add hello C# function code that connects tooyour SQL Database.</span></span>
 
-## <a name="update-your-function-code"></a><span data-ttu-id="738e2-143">更新函數程式碼</span><span class="sxs-lookup"><span data-stu-id="738e2-143">Update your function code</span></span>
+## <a name="update-your-function-code"></a><span data-ttu-id="67378-143">更新函數程式碼</span><span class="sxs-lookup"><span data-stu-id="67378-143">Update your function code</span></span>
 
-1. <span data-ttu-id="738e2-144">在函數應用程式中，選取計時器觸發的函數。</span><span class="sxs-lookup"><span data-stu-id="738e2-144">In your function app, select the timer-triggered function.</span></span>
+1. <span data-ttu-id="67378-144">在應用程式的函式，選取 hello 計時器觸發函式。</span><span class="sxs-lookup"><span data-stu-id="67378-144">In your function app, select hello timer-triggered function.</span></span>
  
-3. <span data-ttu-id="738e2-145">在現有函數程式碼頂端新增下列組件參考：</span><span class="sxs-lookup"><span data-stu-id="738e2-145">Add the following assembly references at the top of the existing function code:</span></span>
+3. <span data-ttu-id="67378-145">新增下列頂端 hello hello 現有函式程式碼的組件參考的 hello:</span><span class="sxs-lookup"><span data-stu-id="67378-145">Add hello following assembly references at hello top of hello existing function code:</span></span>
 
     ```cs
     #r "System.Configuration"
     #r "System.Data"
     ```
 
-3. <span data-ttu-id="738e2-146">將下列 `using` 陳述式加入至函數：</span><span class="sxs-lookup"><span data-stu-id="738e2-146">Add the following `using` statements to the function:</span></span>
+3. <span data-ttu-id="67378-146">新增下列 hello`using`陳述式 toohello 函式：</span><span class="sxs-lookup"><span data-stu-id="67378-146">Add hello following `using` statements toohello function:</span></span>
     ```cs
     using System.Configuration;
     using System.Data.SqlClient;
     using System.Threading.Tasks;
     ```
 
-4. <span data-ttu-id="738e2-147">使用下列程式碼來取代現有的 **Run** 函數：</span><span class="sxs-lookup"><span data-stu-id="738e2-147">Replace the existing **Run** function with the following code:</span></span>
+4. <span data-ttu-id="67378-147">取代現有的 hello**執行**以下列程式碼的 hello 函式：</span><span class="sxs-lookup"><span data-stu-id="67378-147">Replace hello existing **Run** function with hello following code:</span></span>
     ```cs
     public static async Task Run(TimerInfo myTimer, TraceWriter log)
     {
@@ -97,7 +97,7 @@ ms.lasthandoff: 07/11/2017
 
             using (SqlCommand cmd = new SqlCommand(text, conn))
             {
-                // Execute the command and log the # rows affected.
+                // Execute hello command and log hello # rows affected.
                 var rows = await cmd.ExecuteNonQueryAsync();
                 log.Info($"{rows} rows were updated");
             }
@@ -105,22 +105,22 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-    <span data-ttu-id="738e2-148">此範例命令會根據出貨日期來更新 **Status** 資料行。</span><span class="sxs-lookup"><span data-stu-id="738e2-148">This sample command updates the **Status** column based on the ship date.</span></span> <span data-ttu-id="738e2-149">其應該會更新 32 個資料列。</span><span class="sxs-lookup"><span data-stu-id="738e2-149">It should update 32 rows of data.</span></span>
+    <span data-ttu-id="67378-148">此範例命令會更新 hello**狀態**hello 出貨日期為基礎的資料行。</span><span class="sxs-lookup"><span data-stu-id="67378-148">This sample command updates hello **Status** column based on hello ship date.</span></span> <span data-ttu-id="67378-149">其應該會更新 32 個資料列。</span><span class="sxs-lookup"><span data-stu-id="67378-149">It should update 32 rows of data.</span></span>
 
-5. <span data-ttu-id="738e2-150">按一下 [儲存]、針對下一個函數執行監看 [記錄] 視窗，然後記下 **SalesOrderHeader** 資料表中更新的資料列數目。</span><span class="sxs-lookup"><span data-stu-id="738e2-150">Click **Save**, watch the **Logs** windows for the next function execution, then note the number of rows updated in the **SalesOrderHeader** table.</span></span>
+5. <span data-ttu-id="67378-150">按一下**儲存**，監看式 hello**記錄**windows hello 接下來函式執行，則請注意 hello hello 中更新資料列數目**SalesOrderHeader**資料表。</span><span class="sxs-lookup"><span data-stu-id="67378-150">Click **Save**, watch hello **Logs** windows for hello next function execution, then note hello number of rows updated in hello **SalesOrderHeader** table.</span></span>
 
-    ![檢視函數記錄。](./media/functions-scenario-database-table-cleanup/functions-logs.png)
+    ![檢視 hello 函式記錄檔。](./media/functions-scenario-database-table-cleanup/functions-logs.png)
 
-## <a name="next-steps"></a><span data-ttu-id="738e2-152">後續步驟</span><span class="sxs-lookup"><span data-stu-id="738e2-152">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="67378-152">後續步驟</span><span class="sxs-lookup"><span data-stu-id="67378-152">Next steps</span></span>
 
-<span data-ttu-id="738e2-153">接下來，了解如何將 Functions 與 Logic Apps 搭配使用以與其他服務整合。</span><span class="sxs-lookup"><span data-stu-id="738e2-153">Next, learn how to use Functions with Logic Apps to integrate with other services.</span></span>
+<span data-ttu-id="67378-153">接下來，深入了解如何 toouse 函式與 Logic Apps toointegrate 與其他服務。</span><span class="sxs-lookup"><span data-stu-id="67378-153">Next, learn how toouse Functions with Logic Apps toointegrate with other services.</span></span>
 
 > [!div class="nextstepaction"] 
-> [<span data-ttu-id="738e2-154">建立與 Logic Apps 整合的函數</span><span class="sxs-lookup"><span data-stu-id="738e2-154">Create a function that integrates with Logic Apps</span></span>](functions-twitter-email.md)
+> [<span data-ttu-id="67378-154">建立與 Logic Apps 整合的函數</span><span class="sxs-lookup"><span data-stu-id="67378-154">Create a function that integrates with Logic Apps</span></span>](functions-twitter-email.md)
 
-<span data-ttu-id="738e2-155">如需有關 Functions 的詳細資訊，請參閱下列主題：</span><span class="sxs-lookup"><span data-stu-id="738e2-155">For more information about Functions, see the following topics:</span></span>
+<span data-ttu-id="67378-155">如需函式的詳細資訊，請參閱下列主題中的 hello:</span><span class="sxs-lookup"><span data-stu-id="67378-155">For more information about Functions, see hello following topics:</span></span>
 
-* [<span data-ttu-id="738e2-156">Azure Functions 開發人員參考</span><span class="sxs-lookup"><span data-stu-id="738e2-156">Azure Functions developer reference</span></span>](functions-reference.md)  
-  <span data-ttu-id="738e2-157">可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。</span><span class="sxs-lookup"><span data-stu-id="738e2-157">Programmer reference for coding functions and defining triggers and bindings.</span></span>
-* [<span data-ttu-id="738e2-158">測試 Azure Functions</span><span class="sxs-lookup"><span data-stu-id="738e2-158">Testing Azure Functions</span></span>](functions-test-a-function.md)  
-  <span data-ttu-id="738e2-159">說明可用於測試函式的各種工具和技巧。</span><span class="sxs-lookup"><span data-stu-id="738e2-159">Describes various tools and techniques for testing your functions.</span></span>  
+* [<span data-ttu-id="67378-156">Azure Functions 開發人員參考</span><span class="sxs-lookup"><span data-stu-id="67378-156">Azure Functions developer reference</span></span>](functions-reference.md)  
+  <span data-ttu-id="67378-157">可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。</span><span class="sxs-lookup"><span data-stu-id="67378-157">Programmer reference for coding functions and defining triggers and bindings.</span></span>
+* [<span data-ttu-id="67378-158">測試 Azure Functions</span><span class="sxs-lookup"><span data-stu-id="67378-158">Testing Azure Functions</span></span>](functions-test-a-function.md)  
+  <span data-ttu-id="67378-159">說明可用於測試函式的各種工具和技巧。</span><span class="sxs-lookup"><span data-stu-id="67378-159">Describes various tools and techniques for testing your functions.</span></span>  

@@ -1,6 +1,6 @@
 ---
 title: "教學課程：Azure Active Directory 與 Infor Retail – Information Management 整合 | Microsoft Docs"
-description: "了解如何設定 Azure Active Directory 與 Infor Retail – Information Management 之間的單一登入。"
+description: "了解 tooconfigure 的單一登入 Azure Active Directory 與這些零售 – 資訊管理之間。"
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,207 +14,207 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: jeedes
-ms.openlocfilehash: 1ab8b7e98324ba4f4ae95775f89df0461058fe4b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9cd8ab65d41d01832e0611f7f8254aa257120508
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-infor-retail--information-management"></a><span data-ttu-id="61535-103">教學課程：Azure Active Directory 與 Infor Retail – Information Management 整合</span><span class="sxs-lookup"><span data-stu-id="61535-103">Tutorial: Azure Active Directory integration with Infor Retail – Information Management</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-infor-retail--information-management"></a><span data-ttu-id="a356b-103">教學課程：Azure Active Directory 與 Infor Retail – Information Management 整合</span><span class="sxs-lookup"><span data-stu-id="a356b-103">Tutorial: Azure Active Directory integration with Infor Retail – Information Management</span></span>
 
-<span data-ttu-id="61535-104">在本教學課程中，您將了解如何整合 Infor Retail – Information Management 與 Azure Active Directory (Azure AD)。</span><span class="sxs-lookup"><span data-stu-id="61535-104">In this tutorial, you learn how to integrate Infor Retail – Information Management with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="a356b-104">在此教學課程中，您學會如何 toointegrate 資訊零售 – 資訊管理與 Azure Active Directory (Azure AD)。</span><span class="sxs-lookup"><span data-stu-id="a356b-104">In this tutorial, you learn how toointegrate Infor Retail – Information Management with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="61535-105">整合 Infor Retail – Information Management 與 Azure AD 可以提供下列優點：</span><span class="sxs-lookup"><span data-stu-id="61535-105">Integrating Infor Retail – Information Management with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="a356b-105">整合這些零售 – 資訊管理與 Azure AD 可以提供下列優點 hello:</span><span class="sxs-lookup"><span data-stu-id="a356b-105">Integrating Infor Retail – Information Management with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="61535-106">您可以在 Azure AD 中控制可存取 Infor Retail – Information Management 的人員。</span><span class="sxs-lookup"><span data-stu-id="61535-106">You can control in Azure AD who has access to Infor Retail – Information Management.</span></span>
-- <span data-ttu-id="61535-107">您可以讓使用者透過其 Azure AD 帳戶自動登入 Infor Retail – Information Management (單一登入)。</span><span class="sxs-lookup"><span data-stu-id="61535-107">You can enable your users to automatically get signed-on to Infor Retail – Information Management (Single Sign-On) with their Azure AD accounts.</span></span>
-- <span data-ttu-id="61535-108">您可以在 Azure 入口網站中集中管理您的帳戶。</span><span class="sxs-lookup"><span data-stu-id="61535-108">You can manage your accounts in one central location - the Azure portal.</span></span>
+- <span data-ttu-id="a356b-106">您可以控制存取 tooInfor 零售 – 資訊管理 Azure AD 中。</span><span class="sxs-lookup"><span data-stu-id="a356b-106">You can control in Azure AD who has access tooInfor Retail – Information Management.</span></span>
+- <span data-ttu-id="a356b-107">您可以啟用您的使用者 tooautomatically get 登入 tooInfor 零售 – 使用其 Azure AD 帳戶的資訊管理 （單一登入）。</span><span class="sxs-lookup"><span data-stu-id="a356b-107">You can enable your users tooautomatically get signed-on tooInfor Retail – Information Management (Single Sign-On) with their Azure AD accounts.</span></span>
+- <span data-ttu-id="a356b-108">您可以管理您的帳戶，在單一中央位置-hello Azure 入口網站。</span><span class="sxs-lookup"><span data-stu-id="a356b-108">You can manage your accounts in one central location - hello Azure portal.</span></span>
 
-<span data-ttu-id="61535-109">如果您想要了解有關 SaaS 應用程式與 Azure AD 之整合的更多詳細資料，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。</span><span class="sxs-lookup"><span data-stu-id="61535-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="a356b-109">如果您想 tooknow 詳細與 Azure AD SaaS 應用程式整合，請參閱[什麼是應用程式存取和單一登入與 Azure Active Directory](active-directory-appssoaccess-whatis.md)。</span><span class="sxs-lookup"><span data-stu-id="a356b-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="61535-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="61535-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="a356b-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="a356b-110">Prerequisites</span></span>
 
-<span data-ttu-id="61535-111">若要設定 Azure AD 與 Infor Retail – Information Management 的整合，您需要下列項目：</span><span class="sxs-lookup"><span data-stu-id="61535-111">To configure Azure AD integration with Infor Retail – Information Management, you need the following items:</span></span>
+<span data-ttu-id="a356b-111">tooconfigure 資訊零售 – 資訊管理與 Azure AD 整合您需要下列項目 hello:</span><span class="sxs-lookup"><span data-stu-id="a356b-111">tooconfigure Azure AD integration with Infor Retail – Information Management, you need hello following items:</span></span>
 
-- <span data-ttu-id="61535-112">Azure AD 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="61535-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="61535-113">已啟用 Infor Retail – Information Management 單一登入的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="61535-113">An Infor Retail – Information Management single-sign on enabled subscription</span></span>
+- <span data-ttu-id="a356b-112">Azure AD 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="a356b-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="a356b-113">已啟用 Infor Retail – Information Management 單一登入的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="a356b-113">An Infor Retail – Information Management single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="61535-114">若要測試本教學課程中的步驟，我們不建議使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="61535-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="a356b-114">本教學課程中的步驟 tootest hello，不建議使用實際執行環境。</span><span class="sxs-lookup"><span data-stu-id="a356b-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="61535-115">若要測試本教學課程中的步驟，您應該遵循這些建議：</span><span class="sxs-lookup"><span data-stu-id="61535-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="a356b-115">在本教學課程 tootest hello 步驟，您應該遵循這些建議：</span><span class="sxs-lookup"><span data-stu-id="a356b-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="61535-116">除非必要，否則請勿使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="61535-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="61535-117">如果您沒有 Azure AD 試用環境，您可以[取得一個月試用](https://azure.microsoft.com/pricing/free-trial/)。</span><span class="sxs-lookup"><span data-stu-id="61535-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="a356b-116">除非必要，否則請勿使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="a356b-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="a356b-117">如果您沒有 Azure AD 試用環境，您可以[取得一個月試用](https://azure.microsoft.com/pricing/free-trial/)。</span><span class="sxs-lookup"><span data-stu-id="a356b-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="61535-118">案例描述</span><span class="sxs-lookup"><span data-stu-id="61535-118">Scenario description</span></span>
-<span data-ttu-id="61535-119">在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="61535-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="61535-120">本教學課程中說明的案例由二個主要建置組塊組成：</span><span class="sxs-lookup"><span data-stu-id="61535-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="a356b-118">案例描述</span><span class="sxs-lookup"><span data-stu-id="a356b-118">Scenario description</span></span>
+<span data-ttu-id="a356b-119">在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="a356b-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="a356b-120">本教學課程所述的 hello 案例包含兩個主要建置組塊：</span><span class="sxs-lookup"><span data-stu-id="a356b-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="61535-121">從資源庫新增 Infor Retail – Information Management</span><span class="sxs-lookup"><span data-stu-id="61535-121">Adding Infor Retail – Information Management from the gallery</span></span>
-2. <span data-ttu-id="61535-122">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="61535-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="a356b-121">新增這些零售 – 從 hello 組件庫的資訊管理</span><span class="sxs-lookup"><span data-stu-id="a356b-121">Adding Infor Retail – Information Management from hello gallery</span></span>
+2. <span data-ttu-id="a356b-122">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="a356b-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-infor-retail--information-management-from-the-gallery"></a><span data-ttu-id="61535-123">從資源庫新增 Infor Retail – Information Management</span><span class="sxs-lookup"><span data-stu-id="61535-123">Adding Infor Retail – Information Management from the gallery</span></span>
-<span data-ttu-id="61535-124">若要設定將 Infor Retail – Information Management 整合到 Azure AD 中，您需要從資源庫把 Infor Retail – Information Management 新增到受管理的 SaaS 應用程式清單。</span><span class="sxs-lookup"><span data-stu-id="61535-124">To configure the integration of Infor Retail – Information Management into Azure AD, you need to add Infor Retail – Information Management from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-infor-retail--information-management-from-hello-gallery"></a><span data-ttu-id="a356b-123">新增這些零售 – 從 hello 組件庫的資訊管理</span><span class="sxs-lookup"><span data-stu-id="a356b-123">Adding Infor Retail – Information Management from hello gallery</span></span>
+<span data-ttu-id="a356b-124">tooconfigure hello 整合的資訊零售 – 資訊管理到 Azure AD，您需要 tooadd 資訊零售 – hello 圖庫 tooyour 清單中的受管理的 SaaS 應用程式的資訊管理。</span><span class="sxs-lookup"><span data-stu-id="a356b-124">tooconfigure hello integration of Infor Retail – Information Management into Azure AD, you need tooadd Infor Retail – Information Management from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="61535-125">**若要從資源庫新增 Infor Retail – Information Management，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="61535-125">**To add Infor Retail – Information Management from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="a356b-125">**tooadd 資訊零售 – hello 庫、 資訊管理執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="a356b-125">**tooadd Infor Retail – Information Management from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="61535-126">在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。</span><span class="sxs-lookup"><span data-stu-id="61535-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="a356b-126">在 hello  **[Azure 入口網站](https://portal.azure.com)**，請在 hello 左邊的導覽面板中按一下**Azure Active Directory**圖示。</span><span class="sxs-lookup"><span data-stu-id="a356b-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
-    ![Azure Active Directory 按鈕][1]
+    ![hello Azure Active Directory 按鈕][1]
 
-2. <span data-ttu-id="61535-128">瀏覽至 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="61535-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="61535-129">然後移至 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="61535-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="a356b-128">瀏覽過**企業應用程式**。</span><span class="sxs-lookup"><span data-stu-id="a356b-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="a356b-129">然後跳過**所有應用程式**。</span><span class="sxs-lookup"><span data-stu-id="a356b-129">Then go too**All applications**.</span></span>
 
-    ![企業應用程式刀鋒視窗][2]
+    ![hello 企業應用程式 刀鋒視窗][2]
     
-3. <span data-ttu-id="61535-131">若要新增新的應用程式，請按一下對話方塊頂端的 [新增應用程式] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="61535-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="a356b-131">tooadd 新應用程式中，按一下 **新的應用程式**上 hello 對話方塊上方的按鈕。</span><span class="sxs-lookup"><span data-stu-id="a356b-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
-    ![新增應用程式按鈕][3]
+    ![hello 新應用程式按鈕][3]
 
-4. <span data-ttu-id="61535-133">在搜尋方塊中，輸入 **Infor Retail – Information Management**，從結果面板中選取 [Infor Retail – Information Management]，然後按一下 [新增] 按鈕以新增應用程式。</span><span class="sxs-lookup"><span data-stu-id="61535-133">In the search box, type **Infor Retail – Information Management**, select **Infor Retail – Information Management** from result panel then click **Add** button to add the application.</span></span>
+4. <span data-ttu-id="a356b-133">在 hello 搜尋方塊中，輸入**資訊零售 – 資訊管理**，選取**資訊零售 – 資訊管理**然後按一下 從結果面板**新增**按鈕 tooadd hello應用程式。</span><span class="sxs-lookup"><span data-stu-id="a356b-133">In hello search box, type **Infor Retail – Information Management**, select **Infor Retail – Information Management** from result panel then click **Add** button tooadd hello application.</span></span>
 
-    ![結果清單中的 Infor Retail – Information Management](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_addfromgallery.png)
+    ![這些零售 – hello [結果] 清單中的資訊管理](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_addfromgallery.png)
 
-## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="61535-135">設定和測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="61535-135">Configure and test Azure AD single sign-on</span></span>
+## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="a356b-135">設定和測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="a356b-135">Configure and test Azure AD single sign-on</span></span>
 
-<span data-ttu-id="61535-136">在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Infor Retail – Information Management 搭配運作的 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="61535-136">In this section, you configure and test Azure AD single sign-on with Infor Retail – Information Management based on a test user called "Britta Simon".</span></span>
+<span data-ttu-id="a356b-136">在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Infor Retail – Information Management 搭配運作的 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="a356b-136">In this section, you configure and test Azure AD single sign-on with Infor Retail – Information Management based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="61535-137">若要讓單一登入能夠運作，Azure AD 必須知道 Infor Retail – Information Management 與 Azure AD 中互相對應的使用者。</span><span class="sxs-lookup"><span data-stu-id="61535-137">For single sign-on to work, Azure AD needs to know what the counterpart user in Infor Retail – Information Management is to a user in Azure AD.</span></span> <span data-ttu-id="61535-138">換句話說，必須要建立某位 Azure AD 使用者與 Infor Retail – Information Management 中相關使用者之間的連結關聯性。</span><span class="sxs-lookup"><span data-stu-id="61535-138">In other words, a link relationship between an Azure AD user and the related user in Infor Retail – Information Management needs to be established.</span></span>
+<span data-ttu-id="a356b-137">針對單一登入 toowork，Azure AD 需要 tooknow hello 的對等項目的使用者在這些零售-資訊管理是 tooa 使用者在 Azure AD 中。</span><span class="sxs-lookup"><span data-stu-id="a356b-137">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Infor Retail – Information Management is tooa user in Azure AD.</span></span> <span data-ttu-id="a356b-138">換句話說，Azure AD 使用者與 hello 資訊零售 – 資訊管理相關的使用者之間的連結關聯性需要 toobe 建立。</span><span class="sxs-lookup"><span data-stu-id="a356b-138">In other words, a link relationship between an Azure AD user and hello related user in Infor Retail – Information Management needs toobe established.</span></span>
 
-<span data-ttu-id="61535-139">在 Infor Retail – Information Management 中，將 Azure AD 中**使用者名稱**的值指派為 **Username** 的值，以建立連結關聯性。</span><span class="sxs-lookup"><span data-stu-id="61535-139">In Infor Retail – Information Management, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="a356b-139">在這些零售 – Information Management 指派 hello hello 值**使用者名稱**做為 hello hello 值的 Azure AD 中**Username** tooestablish hello 連結關聯性。</span><span class="sxs-lookup"><span data-stu-id="a356b-139">In Infor Retail – Information Management, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="61535-140">若要設定及測試與 Infor Retail – Information Management 搭配運作的 Azure AD 單一登入，您需要完成下列建置組塊：</span><span class="sxs-lookup"><span data-stu-id="61535-140">To configure and test Azure AD single sign-on with Infor Retail – Information Management, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="a356b-140">tooconfigure 和測試 Azure AD 單一登入資訊零售 – 資訊管理與您需要遵循的建置組塊 toocomplete hello:</span><span class="sxs-lookup"><span data-stu-id="a356b-140">tooconfigure and test Azure AD single sign-on with Infor Retail – Information Management, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="61535-141">**[設定 Azure AD 單一登入](#configure-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。</span><span class="sxs-lookup"><span data-stu-id="61535-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="61535-142">**[建立 Azure AD 測試使用者](#create-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="61535-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="61535-143">**[建立 Infor Retail – Information Management 測試使用者](#create-an-infor-retail--information-management-test-user)** - 使 Infor Retail – Information Management 中對應的 Britta Simon 連結到該使用者在 Azure AD 中的代表項目。</span><span class="sxs-lookup"><span data-stu-id="61535-143">**[Create an Infor Retail – Information Management test user](#create-an-infor-retail--information-management-test-user)** - to have a counterpart of Britta Simon in Infor Retail – Information Management that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="61535-144">**[指派 Azure AD 測試使用者](#assign-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="61535-144">**[Assign the Azure AD test user](#assign-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="61535-145">**[測試單一登入](#test-single-sign-on)**，驗證組態是否能運作。</span><span class="sxs-lookup"><span data-stu-id="61535-145">**[Test single sign-on](#test-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="a356b-141">**[設定 Azure AD 單一登入](#configure-azure-ad-single-sign-on)** -tooenable 使用者 toouse 這項功能。</span><span class="sxs-lookup"><span data-stu-id="a356b-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="a356b-142">**[建立 Azure AD 的測試使用者](#create-an-azure-ad-test-user)** -tootest Azure AD 單一登入與許 Simon。</span><span class="sxs-lookup"><span data-stu-id="a356b-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="a356b-143">**[建立這些零售 – 資訊管理測試使用者](#create-an-infor-retail--information-management-test-user)** -toohave 許 Simon 資訊零售中對應項目 – 是表示連結的 toohello Azure AD 使用者的資訊管理。</span><span class="sxs-lookup"><span data-stu-id="a356b-143">**[Create an Infor Retail – Information Management test user](#create-an-infor-retail--information-management-test-user)** - toohave a counterpart of Britta Simon in Infor Retail – Information Management that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="a356b-144">**[指派給 Azure AD hello 測試使用者](#assign-the-azure-ad-test-user)** -tooenable 許 Simon toouse Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="a356b-144">**[Assign hello Azure AD test user](#assign-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="a356b-145">**[測試單一登入](#test-single-sign-on)** -tooverify 是否 hello 組態工作。</span><span class="sxs-lookup"><span data-stu-id="a356b-145">**[Test single sign-on](#test-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="61535-146">設定 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="61535-146">Configure Azure AD single sign-on</span></span>
+### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="a356b-146">設定 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="a356b-146">Configure Azure AD single sign-on</span></span>
 
-<span data-ttu-id="61535-147">在本節中，您會於 Azure 入口網站啟用 Azure AD 單一登入，然後在您的 Infor Retail – Information Management 應用程式中設定單一登入。</span><span class="sxs-lookup"><span data-stu-id="61535-147">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Infor Retail – Information Management application.</span></span>
+<span data-ttu-id="a356b-147">在本節中，您要啟用 Azure AD 單一登入 hello Azure 入口網站中，並在您的資訊零售 – 資訊管理應用程式設定單一登入。</span><span class="sxs-lookup"><span data-stu-id="a356b-147">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Infor Retail – Information Management application.</span></span>
 
-<span data-ttu-id="61535-148">**若要設定 Azure AD 單一登入與 Infor Retail – Information Management，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="61535-148">**To configure Azure AD single sign-on with Infor Retail – Information Management, perform the following steps:**</span></span>
+<span data-ttu-id="a356b-148">**這些零售 – 資訊管理與 Azure AD 單一登入 tooconfigure 執行 hello 下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="a356b-148">**tooconfigure Azure AD single sign-on with Infor Retail – Information Management, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="61535-149">在 Azure 入口網站的 [Infor Retail – Information Management] 應用程式整合頁面上，按一下 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="61535-149">In the Azure portal, on the **Infor Retail – Information Management** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="a356b-149">在 Azure 入口網站上 hello hello**資訊零售 – 資訊管理**應用程式整合頁面上，按一下 **單一登入**。</span><span class="sxs-lookup"><span data-stu-id="a356b-149">In hello Azure portal, on hello **Infor Retail – Information Management** application integration page, click **Single sign-on**.</span></span>
 
     ![設定單一登入連結][4]
 
-2. <span data-ttu-id="61535-151">在 [單一登入] 對話方塊上，於 [模式] 選取 [SAML 登入]，以啟用單一登入。</span><span class="sxs-lookup"><span data-stu-id="61535-151">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="a356b-151">在 hello**單一登入**對話方塊中，選取**模式**為**SAML 型登入**tooenable 單一登入。</span><span class="sxs-lookup"><span data-stu-id="a356b-151">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![單一登入對話方塊](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_samlbase.png)
 
-3. <span data-ttu-id="61535-153">如果您想要以 IDP 起始模式設定應用程式，請在 [Infor Retail – Information Management 網域與 URL] 區段上執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="61535-153">On the **Infor Retail – Information Management Domain and URLs** section, perform the following steps if you wish to configure the application in IDP initiated mode:</span></span>
+3. <span data-ttu-id="a356b-153">在 hello**資訊零售 – 資訊管理網域和 Url**區段中，執行下列步驟，如果您想在 IDP tooconfigure hello 應用程式起始模式 hello:</span><span class="sxs-lookup"><span data-stu-id="a356b-153">On hello **Infor Retail – Information Management Domain and URLs** section, perform hello following steps if you wish tooconfigure hello application in IDP initiated mode:</span></span>
 
     ![Infor Retail – Information Management 網域與 URL 單一登入資訊 IDP](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_url.png)
 
-    <span data-ttu-id="61535-155">a.</span><span class="sxs-lookup"><span data-stu-id="61535-155">a.</span></span> <span data-ttu-id="61535-156">在 [識別碼] 文字方塊中，使用下列模式輸入 URL：</span><span class="sxs-lookup"><span data-stu-id="61535-156">In the **Identifier** textbox, type a URL using the following patterns:</span></span> 
+    <span data-ttu-id="a356b-155">a.</span><span class="sxs-lookup"><span data-stu-id="a356b-155">a.</span></span> <span data-ttu-id="a356b-156">在 hello**識別碼**文字方塊中，輸入 URL，使用下列的 hello 模式：</span><span class="sxs-lookup"><span data-stu-id="a356b-156">In hello **Identifier** textbox, type a URL using hello following patterns:</span></span> 
     |   |
     | -- |
     | `https://<company name>.mingle.infor.com` |
     | `http://<company name>.mingledev.infor.com` |
 
-    <span data-ttu-id="61535-157">b.</span><span class="sxs-lookup"><span data-stu-id="61535-157">b.</span></span> <span data-ttu-id="61535-158">在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<company name>.mingle.infor.com/sp/ACS.saml2`</span><span class="sxs-lookup"><span data-stu-id="61535-158">In the **Reply URL** textbox, type a URL using the following pattern: `https://<company name>.mingle.infor.com/sp/ACS.saml2`</span></span>
+    <span data-ttu-id="a356b-157">b.</span><span class="sxs-lookup"><span data-stu-id="a356b-157">b.</span></span> <span data-ttu-id="a356b-158">在 hello**回覆 URL**文字方塊中，輸入 URL，使用下列模式的 hello:`https://<company name>.mingle.infor.com/sp/ACS.saml2`</span><span class="sxs-lookup"><span data-stu-id="a356b-158">In hello **Reply URL** textbox, type a URL using hello following pattern: `https://<company name>.mingle.infor.com/sp/ACS.saml2`</span></span>
 
-4. <span data-ttu-id="61535-159">如果您想要以 **SP** 起始模式設定應用程式，請勾選 [顯示進階 URL 設定]，然後執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="61535-159">Check **Show advanced URL settings** and perform the following step if you wish to configure the application in **SP** initiated mode:</span></span>
+4. <span data-ttu-id="a356b-159">請檢查**顯示進階的 URL 設定**並執行下列步驟，如果您想 tooconfigure hello 應用程式中的 hello **SP**初始模式：</span><span class="sxs-lookup"><span data-stu-id="a356b-159">Check **Show advanced URL settings** and perform hello following step if you wish tooconfigure hello application in **SP** initiated mode:</span></span>
 
     ![Infor Retail – Information Management 網域與 URL 單一登入資訊 SP](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_url1.png)
 
-    <span data-ttu-id="61535-161">在 [登入 URL] 文字方塊中，使用下列模式輸入 URL︰`https://<company name>.mingle.infor.com/<company code>`</span><span class="sxs-lookup"><span data-stu-id="61535-161">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<company name>.mingle.infor.com/<company code>`</span></span>
+    <span data-ttu-id="a356b-161">在 hello**登入 URL**文字方塊中，輸入 URL，使用下列模式的 hello:`https://<company name>.mingle.infor.com/<company code>`</span><span class="sxs-lookup"><span data-stu-id="a356b-161">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<company name>.mingle.infor.com/<company code>`</span></span>
      
     > [!NOTE] 
-    > <span data-ttu-id="61535-162">這些都不是真正的值。</span><span class="sxs-lookup"><span data-stu-id="61535-162">These values are not real.</span></span> <span data-ttu-id="61535-163">使用實際的識別碼、回覆 URL 和登入 URL 來更新這些值。</span><span class="sxs-lookup"><span data-stu-id="61535-163">Update these values with the actual Identifier, Reply URL, and Sign-On URL.</span></span> <span data-ttu-id="61535-164">請連絡 [Infor Retail – Information Management 用戶端支援小組](mailto:innovate@infor.com)以取得這些值。</span><span class="sxs-lookup"><span data-stu-id="61535-164">Contact [Infor Retail – Information Management Client support team](mailto:innovate@infor.com) to get these values.</span></span> 
+    > <span data-ttu-id="a356b-162">這些都不是真正的值。</span><span class="sxs-lookup"><span data-stu-id="a356b-162">These values are not real.</span></span> <span data-ttu-id="a356b-163">更新這些值與實際的 hello，識別項、 回覆 URL 和登入 URL。</span><span class="sxs-lookup"><span data-stu-id="a356b-163">Update these values with hello actual Identifier, Reply URL, and Sign-On URL.</span></span> <span data-ttu-id="a356b-164">請連絡[資訊零售 – 資訊管理用戶端支援小組](mailto:innovate@infor.com)tooget 這些值。</span><span class="sxs-lookup"><span data-stu-id="a356b-164">Contact [Infor Retail – Information Management Client support team](mailto:innovate@infor.com) tooget these values.</span></span> 
 
-5. <span data-ttu-id="61535-165">在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將中繼資料檔案儲存在您的電腦上。</span><span class="sxs-lookup"><span data-stu-id="61535-165">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+5. <span data-ttu-id="a356b-165">在 hello **SAML 簽章憑證**區段中，按一下**中繼資料 XML**然後儲存您的電腦上的 hello 中繼資料檔案。</span><span class="sxs-lookup"><span data-stu-id="a356b-165">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
-    ![憑證下載連結](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_certificate.png) 
+    ![hello 憑證下載連結](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_certificate.png) 
 
-6. <span data-ttu-id="61535-167">按一下 [儲存]  按鈕。</span><span class="sxs-lookup"><span data-stu-id="61535-167">Click **Save** button.</span></span>
+6. <span data-ttu-id="a356b-167">按一下 [儲存]  按鈕。</span><span class="sxs-lookup"><span data-stu-id="a356b-167">Click **Save** button.</span></span>
 
     ![設定單一登入儲存按鈕](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_general_400.png)
     
-7. <span data-ttu-id="61535-169">若要在 **Infor Retail – Information Management** 端設定單一登入，您必須將已下載的中繼資料 XML 傳送給 [Infor Retail – Information Management 支援小組](mailto:innovate@infor.com)。</span><span class="sxs-lookup"><span data-stu-id="61535-169">To configure single sign-on on **Infor Retail – Information Management** side, you need to send the downloaded **Metadata XML** to [Infor Retail – Information Management support team](mailto:innovate@infor.com).</span></span> <span data-ttu-id="61535-170">他們會進行此設定，讓兩端的 SAML SSO 連線都設定正確。</span><span class="sxs-lookup"><span data-stu-id="61535-170">They set this setting to have the SAML SSO connection set properly on both sides.</span></span>
+7. <span data-ttu-id="a356b-169">tooconfigure 單一登入上**資訊零售 – 資訊管理**端，您需要下載 toosend hello**中繼資料 XML**太[資訊零售 – 資訊管理支援小組](mailto:innovate@infor.com).</span><span class="sxs-lookup"><span data-stu-id="a356b-169">tooconfigure single sign-on on **Infor Retail – Information Management** side, you need toosend hello downloaded **Metadata XML** too[Infor Retail – Information Management support team](mailto:innovate@infor.com).</span></span> <span data-ttu-id="a356b-170">設定此設定 toohave hello SAML SSO 連線兩端上正確設定這些欄位。</span><span class="sxs-lookup"><span data-stu-id="a356b-170">They set this setting toohave hello SAML SSO connection set properly on both sides.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="61535-171">現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！</span><span class="sxs-lookup"><span data-stu-id="61535-171">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="61535-172">從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。</span><span class="sxs-lookup"><span data-stu-id="61535-172">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="61535-173">您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="61535-173">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="a356b-171">您現在可以讀取這些指示在 hello 的精簡版本[Azure 入口網站](https://portal.azure.com)，而您要設定 hello 應用程式 ！</span><span class="sxs-lookup"><span data-stu-id="a356b-171">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="a356b-172">加入此應用程式從 hello 之後**Active Directory > 企業應用程式**區段中，只要按一下 hello**單一登入** 索引標籤和存取 hello 內嵌文件，透過 hello **組態**hello 底部的區段。</span><span class="sxs-lookup"><span data-stu-id="a356b-172">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="a356b-173">閱讀更多有關 hello embedded 文件功能： [Azure AD 的內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="a356b-173">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="61535-174">建立 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="61535-174">Create an Azure AD test user</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="a356b-174">建立 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="a356b-174">Create an Azure AD test user</span></span>
 
-<span data-ttu-id="61535-175">本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。</span><span class="sxs-lookup"><span data-stu-id="61535-175">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+<span data-ttu-id="a356b-175">hello 本節目標在於 toocreate hello 呼叫許 Simon 的 Azure 入口網站中的測試使用者。</span><span class="sxs-lookup"><span data-stu-id="a356b-175">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
    ![建立 Azure AD 測試使用者][100]
 
-<span data-ttu-id="61535-177">**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="61535-177">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="a356b-177">**toocreate 測試使用者在 Azure AD 中，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="a356b-177">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="61535-178">在 Azure 入口網站的左窗格中，按一下 [Azure Active Directory] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="61535-178">In the Azure portal, in the left pane, click the **Azure Active Directory** button.</span></span>
+1. <span data-ttu-id="a356b-178">在 hello Azure 入口網站，hello 左窗格中，按一下 hello **Azure Active Directory**  按鈕。</span><span class="sxs-lookup"><span data-stu-id="a356b-178">In hello Azure portal, in hello left pane, click hello **Azure Active Directory** button.</span></span>
 
-    ![Azure Active Directory 按鈕](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_01.png)
+    ![hello Azure Active Directory 按鈕](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_01.png)
 
-2. <span data-ttu-id="61535-180">若要顯示使用者清單，請移至 [使用者和群組]，然後按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="61535-180">To display the list of users, go to **Users and groups**, and then click **All users**.</span></span>
+2. <span data-ttu-id="a356b-180">toodisplay hello 使用者清單，請移過**使用者和群組**，然後按一下**所有使用者**。</span><span class="sxs-lookup"><span data-stu-id="a356b-180">toodisplay hello list of users, go too**Users and groups**, and then click **All users**.</span></span>
 
-    ![[使用者和群組] 與 [所有使用者] 連結](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_02.png)
+    ![hello 「 使用者和群組 」 和 「 所有使用者 」 連結](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_02.png)
 
-3. <span data-ttu-id="61535-182">若要開啟 [使用者] 對話方塊，按一下 [所有使用者] 對話方塊頂端的 [新增]。</span><span class="sxs-lookup"><span data-stu-id="61535-182">To open the **User** dialog box, click **Add** at the top of the **All Users** dialog box.</span></span>
+3. <span data-ttu-id="a356b-182">tooopen hello**使用者**對話方塊中，按一下 [**新增**頂端的 hello hello**所有使用者**] 對話方塊。</span><span class="sxs-lookup"><span data-stu-id="a356b-182">tooopen hello **User** dialog box, click **Add** at hello top of hello **All Users** dialog box.</span></span>
 
-    ![[新增] 按鈕](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_03.png)
+    ![hello [新增] 按鈕](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_03.png)
 
-4. <span data-ttu-id="61535-184">在 [使用者] 對話方塊中，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="61535-184">In the **User** dialog box, perform the following steps:</span></span>
+4. <span data-ttu-id="a356b-184">在 hello**使用者**對話方塊方塊中，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="a356b-184">In hello **User** dialog box, perform hello following steps:</span></span>
 
-    ![[使用者] 對話方塊](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_04.png)
+    ![hello [使用者] 對話方塊](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_04.png)
 
-    <span data-ttu-id="61535-186">a.</span><span class="sxs-lookup"><span data-stu-id="61535-186">a.</span></span> <span data-ttu-id="61535-187">在 [名稱] 方塊中，輸入 **BrittaSimon**。</span><span class="sxs-lookup"><span data-stu-id="61535-187">In the **Name** box, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="a356b-186">a.</span><span class="sxs-lookup"><span data-stu-id="a356b-186">a.</span></span> <span data-ttu-id="a356b-187">在 hello**名稱**方塊中，輸入**BrittaSimon**。</span><span class="sxs-lookup"><span data-stu-id="a356b-187">In hello **Name** box, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="61535-188">b.</span><span class="sxs-lookup"><span data-stu-id="61535-188">b.</span></span> <span data-ttu-id="61535-189">在 [使用者名稱] 方塊中，輸入使用者 Britta Simon 的電子郵件地址。</span><span class="sxs-lookup"><span data-stu-id="61535-189">In the **User name** box, type the email address of user Britta Simon.</span></span>
+    <span data-ttu-id="a356b-188">b.</span><span class="sxs-lookup"><span data-stu-id="a356b-188">b.</span></span> <span data-ttu-id="a356b-189">在 hello**使用者名**方塊中，使用者許 Simon 類型 hello 電子郵件地址。</span><span class="sxs-lookup"><span data-stu-id="a356b-189">In hello **User name** box, type hello email address of user Britta Simon.</span></span>
 
-    <span data-ttu-id="61535-190">c.</span><span class="sxs-lookup"><span data-stu-id="61535-190">c.</span></span> <span data-ttu-id="61535-191">選取 [顯示密碼] 核取方塊，然後記下 [密碼] 方塊中顯示的值。</span><span class="sxs-lookup"><span data-stu-id="61535-191">Select the **Show Password** check box, and then write down the value that's displayed in the **Password** box.</span></span>
+    <span data-ttu-id="a356b-190">c.</span><span class="sxs-lookup"><span data-stu-id="a356b-190">c.</span></span> <span data-ttu-id="a356b-191">選取 hello**顯示密碼**核取方塊，並寫下 hello 值，會顯示在 hello**密碼**方塊。</span><span class="sxs-lookup"><span data-stu-id="a356b-191">Select hello **Show Password** check box, and then write down hello value that's displayed in hello **Password** box.</span></span>
 
-    <span data-ttu-id="61535-192">d.</span><span class="sxs-lookup"><span data-stu-id="61535-192">d.</span></span> <span data-ttu-id="61535-193">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="61535-193">Click **Create**.</span></span>
+    <span data-ttu-id="a356b-192">d.</span><span class="sxs-lookup"><span data-stu-id="a356b-192">d.</span></span> <span data-ttu-id="a356b-193">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="a356b-193">Click **Create**.</span></span>
  
-### <a name="create-an-infor-retail--information-management-test-user"></a><span data-ttu-id="61535-194">建立 Infor Retail – Information Management 測試使用者</span><span class="sxs-lookup"><span data-stu-id="61535-194">Create an Infor Retail – Information Management test user</span></span>
+### <a name="create-an-infor-retail--information-management-test-user"></a><span data-ttu-id="a356b-194">建立 Infor Retail – Information Management 測試使用者</span><span class="sxs-lookup"><span data-stu-id="a356b-194">Create an Infor Retail – Information Management test user</span></span>
 
-<span data-ttu-id="61535-195">在本節中，您要在 Infor Retail – Information Management 中建立名為 Britta Simon 的使用者。</span><span class="sxs-lookup"><span data-stu-id="61535-195">In this section, you create a user called Britta Simon in Infor Retail – Information Management.</span></span> <span data-ttu-id="61535-196">請與 [Infor Retail – Information Management 支援小組](mailto:innovate@infor.com)合作，將該使用者新增到 Infor Retail – Information Management 平台。</span><span class="sxs-lookup"><span data-stu-id="61535-196">Please work with [Infor Retail – Information Management support team](mailto:innovate@infor.com) to add the users in the Infor Retail – Information Management platform.</span></span>
+<span data-ttu-id="a356b-195">在本節中，您要在 Infor Retail – Information Management 中建立名為 Britta Simon 的使用者。</span><span class="sxs-lookup"><span data-stu-id="a356b-195">In this section, you create a user called Britta Simon in Infor Retail – Information Management.</span></span> <span data-ttu-id="a356b-196">請使用[資訊零售 – 資訊管理支援小組](mailto:innovate@infor.com)tooadd hello hello 資訊零售 – 資訊管理平台的使用者。</span><span class="sxs-lookup"><span data-stu-id="a356b-196">Please work with [Infor Retail – Information Management support team](mailto:innovate@infor.com) tooadd hello users in hello Infor Retail – Information Management platform.</span></span>
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="61535-197">指派 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="61535-197">Assign the Azure AD test user</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="a356b-197">指派給 Azure AD hello 測試使用者</span><span class="sxs-lookup"><span data-stu-id="a356b-197">Assign hello Azure AD test user</span></span>
 
-<span data-ttu-id="61535-198">在本節中，您會將 Infor Retail – Information Management 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。</span><span class="sxs-lookup"><span data-stu-id="61535-198">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Infor Retail – Information Management.</span></span>
+<span data-ttu-id="a356b-198">本節中，您可以授與存取 tooInfor 零售 – 資訊管理啟用了許 Simon toouse Azure 單一登入。</span><span class="sxs-lookup"><span data-stu-id="a356b-198">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooInfor Retail – Information Management.</span></span>
 
-![指派使用者角色][200] 
+![指派 hello 使用者角色][200] 
 
-<span data-ttu-id="61535-200">**若要將 Britta Simon 指派至 Infor Retail – Information Management，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="61535-200">**To assign Britta Simon to Infor Retail – Information Management, perform the following steps:**</span></span>
+<span data-ttu-id="a356b-200">**tooassign 許 Simon tooInfor 零售 – 資訊管理執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="a356b-200">**tooassign Britta Simon tooInfor Retail – Information Management, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="61535-201">在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="61535-201">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="a356b-201">在 hello Azure 入口網站，開啟 hello 應用程式檢視，然後導覽 toohello 目錄檢視，並跳過**企業應用程式**然後按一下 **所有應用程式**。</span><span class="sxs-lookup"><span data-stu-id="a356b-201">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![指派使用者][201] 
 
-2. <span data-ttu-id="61535-203">在應用程式清單中，選取 [Infor Retail – Information Management]。</span><span class="sxs-lookup"><span data-stu-id="61535-203">In the applications list, select **Infor Retail – Information Management**.</span></span>
+2. <span data-ttu-id="a356b-203">在 [hello] 應用程式清單中，選取**資訊零售 – 資訊管理**。</span><span class="sxs-lookup"><span data-stu-id="a356b-203">In hello applications list, select **Infor Retail – Information Management**.</span></span>
 
-    ![應用程式清單中的 Infor Retail – Information Management 連結](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_app.png)  
+    ![hello 應用程式清單中的 hello 資訊零售 – 資訊管理連結](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_app.png)  
 
-3. <span data-ttu-id="61535-205">在左側功能表中，按一下 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="61535-205">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="a356b-205">在左側 hello hello 功能表上，按一下**使用者和群組**。</span><span class="sxs-lookup"><span data-stu-id="a356b-205">In hello menu on hello left, click **Users and groups**.</span></span>
 
-    ![[使用者和群組] 連結][202]
+    ![hello 「 使用者和群組 」 的連結][202]
 
-4. <span data-ttu-id="61535-207">按一下 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="61535-207">Click **Add** button.</span></span> <span data-ttu-id="61535-208">然後選取 [新增指派] 對話方塊上的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="61535-208">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="a356b-207">按一下 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="a356b-207">Click **Add** button.</span></span> <span data-ttu-id="a356b-208">然後選取 [新增指派] 對話方塊上的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="a356b-208">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
-    ![[新增指派] 窗格][203]
+    ![hello 將作業加入窗格][203]
 
-5. <span data-ttu-id="61535-210">在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。</span><span class="sxs-lookup"><span data-stu-id="61535-210">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="a356b-210">在**使用者和群組**對話方塊中，選取**許 Simon** hello 使用者 清單中。</span><span class="sxs-lookup"><span data-stu-id="a356b-210">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="61535-211">按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="61535-211">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="a356b-211">按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="a356b-211">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="61535-212">按一下 [新增指派] 對話方塊上的 [指派] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="61535-212">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="a356b-212">按一下 [新增指派] 對話方塊上的 [指派] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="a356b-212">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="test-single-sign-on"></a><span data-ttu-id="61535-213">測試單一登入</span><span class="sxs-lookup"><span data-stu-id="61535-213">Test single sign-on</span></span>
+### <a name="test-single-sign-on"></a><span data-ttu-id="a356b-213">測試單一登入</span><span class="sxs-lookup"><span data-stu-id="a356b-213">Test single sign-on</span></span>
 
-<span data-ttu-id="61535-214">在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。</span><span class="sxs-lookup"><span data-stu-id="61535-214">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="a356b-214">在本節中，您可以測試您 Azure AD 單一登入的組態 hello 存取面板。</span><span class="sxs-lookup"><span data-stu-id="a356b-214">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="61535-215">當您在存取面板中按一下 [Infor Retail – Information Management] 圖格時，應該會自動登入您的 Infor Retail – Information Management 應用程式。</span><span class="sxs-lookup"><span data-stu-id="61535-215">When you click the Infor Retail – Information Management tile in the Access Panel, you should get automatically signed-on to your Infor Retail – Information Management application.</span></span>
-<span data-ttu-id="61535-216">如需「存取面板」的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。</span><span class="sxs-lookup"><span data-stu-id="61535-216">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
+<span data-ttu-id="a356b-215">當您按一下 hello 資訊零售 – hello 存取面板中的資訊管理圖格時，您應該取得自動登入 tooyour 資訊零售 – 資訊管理應用程式。</span><span class="sxs-lookup"><span data-stu-id="a356b-215">When you click hello Infor Retail – Information Management tile in hello Access Panel, you should get automatically signed-on tooyour Infor Retail – Information Management application.</span></span>
+<span data-ttu-id="a356b-216">如需有關存取面板的詳細資訊，請參閱[簡介 toohello 存取面板](active-directory-saas-access-panel-introduction.md)。</span><span class="sxs-lookup"><span data-stu-id="a356b-216">For more information about the Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="61535-217">其他資源</span><span class="sxs-lookup"><span data-stu-id="61535-217">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="a356b-217">其他資源</span><span class="sxs-lookup"><span data-stu-id="a356b-217">Additional resources</span></span>
 
-* [<span data-ttu-id="61535-218">如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單</span><span class="sxs-lookup"><span data-stu-id="61535-218">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="61535-219">什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？</span><span class="sxs-lookup"><span data-stu-id="61535-219">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="a356b-218">如何教學課程清單 tooIntegrate SaaS 應用程式與 Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="a356b-218">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="a356b-219">什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？</span><span class="sxs-lookup"><span data-stu-id="a356b-219">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

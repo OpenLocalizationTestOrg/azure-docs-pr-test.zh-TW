@@ -1,6 +1,6 @@
 ---
-title: "應用程式如何出現在存取面板上 | Microsoft Docs"
-description: "針對應用程式為什麼出現在存取面板上進行疑難排解"
+title: "hello 存取面板上出現 aaaHow 應用程式 |Microsoft 文件"
+description: "應用程式會出現在 hello 存取面板進行疑難排解"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -14,141 +14,141 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
 ms.reviewr: japere
-ms.openlocfilehash: f8ccf2cf66b49940bc7f2b9f4764020efc04838e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 14ee732c4ed5260cba878e949cf9d90877aee67e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-applications-appear-on-the-access-panel"></a><span data-ttu-id="316a4-103">應用程式如何出現在存取面板上</span><span class="sxs-lookup"><span data-stu-id="316a4-103">How applications appear on the access panel</span></span>
+# <a name="how-applications-appear-on-hello-access-panel"></a><span data-ttu-id="e9392-103">應用程式如何 hello 存取面板上顯示</span><span class="sxs-lookup"><span data-stu-id="e9392-103">How applications appear on hello access panel</span></span>
 
-<span data-ttu-id="316a4-104">存取面板是網頁型入口網站，可讓在 Azure Active Directory (Azure AD) 中具有公司或學校帳戶的使用者，檢視和啟動 Azure AD 系統管理員已授權他們存取的雲端式應用程式。</span><span class="sxs-lookup"><span data-stu-id="316a4-104">The Access Panel is a web-based portal which enables a user with a work or school account in Azure Active Directory (Azure AD) to view and start cloud-based applications that the Azure AD administrator has granted them access to.</span></span> <span data-ttu-id="316a4-105">在 Azure AD 入口網站中可代表使用者設定這些應用程式。</span><span class="sxs-lookup"><span data-stu-id="316a4-105">These applications are configured on behalf of the user in the Azure AD portal.</span></span> <span data-ttu-id="316a4-106">系統管理員可以直接將應用程式佈建給使用者，或使用者所屬的群組，而讓應用程式出現在使用者的存取面板上。</span><span class="sxs-lookup"><span data-stu-id="316a4-106">The admin can provision the application to the user directly or to a group a user is part of resulting in the application appearing on the user’s Access Panel.</span></span>
+<span data-ttu-id="e9392-104">hello 存取面板是網頁型的入口網站，可讓使用者使用工作或學校帳戶，Azure Active Directory (Azure AD) tooview 並啟動雲端架構應用程式中的 hello Azure AD 系統管理員已授與它們存取權。</span><span class="sxs-lookup"><span data-stu-id="e9392-104">hello Access Panel is a web-based portal which enables a user with a work or school account in Azure Active Directory (Azure AD) tooview and start cloud-based applications that hello Azure AD administrator has granted them access to.</span></span> <span data-ttu-id="e9392-105">這些應用程式會代表 hello Azure AD 入口網站中的 hello 使用者設定。</span><span class="sxs-lookup"><span data-stu-id="e9392-105">These applications are configured on behalf of hello user in hello Azure AD portal.</span></span> <span data-ttu-id="e9392-106">hello 系統管理員可以佈建 hello 應用程式 toohello 使用者直接或 tooa 群組的使用者是導致 hello hello 使用者的存取面板上顯示的應用程式的一部分。</span><span class="sxs-lookup"><span data-stu-id="e9392-106">hello admin can provision hello application toohello user directly or tooa group a user is part of resulting in hello application appearing on hello user’s Access Panel.</span></span>
 
-## <a name="general-issues-to-check-first"></a><span data-ttu-id="316a4-107">首先檢查的一般問題</span><span class="sxs-lookup"><span data-stu-id="316a4-107">General issues to check first</span></span>
+## <a name="general-issues-toocheck-first"></a><span data-ttu-id="e9392-107">一般會先發出 toocheck</span><span class="sxs-lookup"><span data-stu-id="e9392-107">General issues toocheck first</span></span>
 
--   <span data-ttu-id="316a4-108">如果才剛從使用者或使用者所屬的群組移除應用程式，請在幾分鐘之後嘗試登入並再次登出使用者的存取面板，查明是否已移除該應用程式。</span><span class="sxs-lookup"><span data-stu-id="316a4-108">If an application was just removed from a user or group the user is a member of, try to sign in and out again into the user’s Access Panel after a few minutes to see if the application is removed.</span></span>
+-   <span data-ttu-id="e9392-108">如果應用程式就已從使用者或群組 hello 使用者的成員，toosign 入和登出再試一次到 hello 使用者的存取面板後幾分鐘的時間 toosee 如果 hello 應用程式中移除。</span><span class="sxs-lookup"><span data-stu-id="e9392-108">If an application was just removed from a user or group hello user is a member of, try toosign in and out again into hello user’s Access Panel after a few minutes toosee if hello application is removed.</span></span>
 
--   <span data-ttu-id="316a4-109">如果才剛從使用者或使用者所屬群組移除授權，則根據群組的大小和複雜度而定，可能要經過一段很長的時間，變更才會生效。</span><span class="sxs-lookup"><span data-stu-id="316a4-109">If a license was just removed from a user or group the user is a member of this may take a long time, depending on the size and complexity of the group for changes to be made.</span></span> <span data-ttu-id="316a4-110">登入存取面板之前，請多等一些時間。</span><span class="sxs-lookup"><span data-stu-id="316a4-110">Allow for extra time before signing into the Access Panel.</span></span>
+-   <span data-ttu-id="e9392-109">授權就已從使用者或群組 hello 使用者隸屬這可能需要很長的時間，取決於 hello 大小和複雜度所做的變更 toobe hello 群組。</span><span class="sxs-lookup"><span data-stu-id="e9392-109">If a license was just removed from a user or group hello user is a member of this may take a long time, depending on hello size and complexity of hello group for changes toobe made.</span></span> <span data-ttu-id="e9392-110">允許額外的時間才能登入存取面板 hello。</span><span class="sxs-lookup"><span data-stu-id="e9392-110">Allow for extra time before signing into hello Access Panel.</span></span>
 
-## <a name="problems-related-to-assigning-applications-to-users"></a><span data-ttu-id="316a4-111">將應用程式指派給使用者的相關問題</span><span class="sxs-lookup"><span data-stu-id="316a4-111">Problems related to assigning applications to users</span></span>
+## <a name="problems-related-tooassigning-applications-toousers"></a><span data-ttu-id="e9392-111">問題相關的 tooassigning 應用程式 toousers</span><span class="sxs-lookup"><span data-stu-id="e9392-111">Problems related tooassigning applications toousers</span></span>
 
-<span data-ttu-id="316a4-112">使用者可能因為先前已指派至應用程式，而在存取面板上看見該應用程式。</span><span class="sxs-lookup"><span data-stu-id="316a4-112">A user may be seeing an application on their Access Panel because they had been previously assigned to it.</span></span> <span data-ttu-id="316a4-113">以下是一些檢查方法︰</span><span class="sxs-lookup"><span data-stu-id="316a4-113">Below are some ways to check:</span></span>
+<span data-ttu-id="e9392-112">使用者會看見應用程式存取面板上因為其已被先前指派 tooit。</span><span class="sxs-lookup"><span data-stu-id="e9392-112">A user may be seeing an application on their Access Panel because they had been previously assigned tooit.</span></span> <span data-ttu-id="e9392-113">以下是一些方式 toocheck:</span><span class="sxs-lookup"><span data-stu-id="e9392-113">Below are some ways toocheck:</span></span>
 
--   [<span data-ttu-id="316a4-114">檢查使用者是否已指派至應用程式</span><span class="sxs-lookup"><span data-stu-id="316a4-114">Check if a user is assigned to the application</span></span>](#check-if-a-user-is-assigned-to-the-application)
+-   [<span data-ttu-id="e9392-114">檢查 toohello 應用程式時，是否要指派使用者</span><span class="sxs-lookup"><span data-stu-id="e9392-114">Check if a user is assigned toohello application</span></span>](#check-if-a-user-is-assigned-to-the-application)
 
--   [<span data-ttu-id="316a4-115">檢查使用者是否獲得應用程式相關的授權</span><span class="sxs-lookup"><span data-stu-id="316a4-115">Check if a user is under a license related to the application</span></span>](#check-if-a-user-is-under-a-license-related-to-the-application)
+-   [<span data-ttu-id="e9392-115">檢查是否授權使用者相關 toohello 應用程式</span><span class="sxs-lookup"><span data-stu-id="e9392-115">Check if a user is under a license related toohello application</span></span>](#check-if-a-user-is-under-a-license-related-to-the-application)
 
 
-### <a name="check-if-a-user-is-assigned-to-the-application"></a><span data-ttu-id="316a4-116">檢查使用者是否已指派至應用程式</span><span class="sxs-lookup"><span data-stu-id="316a4-116">Check if a user is assigned to the application</span></span>
+### <a name="check-if-a-user-is-assigned-toohello-application"></a><span data-ttu-id="e9392-116">檢查 toohello 應用程式時，是否要指派使用者</span><span class="sxs-lookup"><span data-stu-id="e9392-116">Check if a user is assigned toohello application</span></span>
 
-<span data-ttu-id="316a4-117">若要檢查是否已將使用者指派給應用程式，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="316a4-117">To check if a user is assigned to the application, follow the steps below:</span></span>
+<span data-ttu-id="e9392-117">toocheck 如果使用者被指派 toohello 應用程式，請遵循 hello 執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="e9392-117">toocheck if a user is assigned toohello application, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="316a4-118">開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="316a4-118">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="e9392-118">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**</span><span class="sxs-lookup"><span data-stu-id="e9392-118">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="316a4-119">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="316a4-119">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="e9392-119">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="e9392-119">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="316a4-120">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="316a4-120">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="e9392-120">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="e9392-120">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="316a4-121">從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="316a4-121">click **Enterprise Applications** from the Azure Active Directory left hand navigation menu.</span></span>
+4.  <span data-ttu-id="e9392-121">按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。</span><span class="sxs-lookup"><span data-stu-id="e9392-121">click **Enterprise Applications** from hello Azure Active Directory left hand navigation menu.</span></span>
 
-5.  <span data-ttu-id="316a4-122">按一下 [所有應用程式]，以檢視所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="316a4-122">click **All Applications** to view a list of all your applications.</span></span>
+5.  <span data-ttu-id="e9392-122">按一下**所有應用程式**tooview 所有應用程式的清單。</span><span class="sxs-lookup"><span data-stu-id="e9392-122">click **All Applications** tooview a list of all your applications.</span></span>
 
-6.  <span data-ttu-id="316a4-123">**搜尋**相關應用程式的名稱。</span><span class="sxs-lookup"><span data-stu-id="316a4-123">**Search** for the name of the application in question.</span></span>
+6.  <span data-ttu-id="e9392-123">**搜尋**hello hello 有問題的應用程式名稱。</span><span class="sxs-lookup"><span data-stu-id="e9392-123">**Search** for hello name of hello application in question.</span></span>
 
-7.  <span data-ttu-id="316a4-124">按一下 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="316a4-124">click **Users and groups**.</span></span>
+7.  <span data-ttu-id="e9392-124">按一下 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="e9392-124">click **Users and groups**.</span></span>
 
-8.  <span data-ttu-id="316a4-125">檢查使用者是否已指派至應用程式。</span><span class="sxs-lookup"><span data-stu-id="316a4-125">Check to see if your user is assigned to the application.</span></span>
+8.  <span data-ttu-id="e9392-125">如果您的使用者被指派 toohello 應用程式，請檢查 toosee。</span><span class="sxs-lookup"><span data-stu-id="e9392-125">Check toosee if your user is assigned toohello application.</span></span>
 
-  * <span data-ttu-id="316a4-126">如果您想要從應用程式移除使用者，請**按一下使用者的資料列**，然後選取 [刪除]。</span><span class="sxs-lookup"><span data-stu-id="316a4-126">If you want to remove the user from the application, **click the row** of the user and select **delete**.</span></span>
+  * <span data-ttu-id="e9392-126">如果您想從 hello 應用程式、 tooremove hello 使用者**按一下 hello 列**hello 使用者，然後選取**刪除**。</span><span class="sxs-lookup"><span data-stu-id="e9392-126">If you want tooremove hello user from hello application, **click hello row** of hello user and select **delete**.</span></span>
 
-### <a name="check-if-a-user-is-under-a-license-related-to-the-application"></a><span data-ttu-id="316a4-127">檢查使用者是否獲得應用程式相關的授權</span><span class="sxs-lookup"><span data-stu-id="316a4-127">Check if a user is under a license related to the application</span></span>
+### <a name="check-if-a-user-is-under-a-license-related-toohello-application"></a><span data-ttu-id="e9392-127">檢查是否授權使用者相關 toohello 應用程式</span><span class="sxs-lookup"><span data-stu-id="e9392-127">Check if a user is under a license related toohello application</span></span>
 
-<span data-ttu-id="316a4-128">若要檢查指派給使用者的授權，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="316a4-128">To check a user’s assigned licenses, follow the steps below:</span></span>
+<span data-ttu-id="e9392-128">toocheck 使用者的指派授權，後續 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="e9392-128">toocheck a user’s assigned licenses, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="316a4-129">開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="316a4-129">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="e9392-129">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**</span><span class="sxs-lookup"><span data-stu-id="e9392-129">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="316a4-130">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="316a4-130">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="e9392-130">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="e9392-130">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="316a4-131">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="316a4-131">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="e9392-131">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="e9392-131">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="316a4-132">按一下瀏覽功能表中的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="316a4-132">click **Users and groups** in the navigation menu.</span></span>
+4.  <span data-ttu-id="e9392-132">按一下**使用者和群組**hello 瀏覽功能表中。</span><span class="sxs-lookup"><span data-stu-id="e9392-132">click **Users and groups** in hello navigation menu.</span></span>
 
-5.  <span data-ttu-id="316a4-133">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="316a4-133">click **All users**.</span></span>
+5.  <span data-ttu-id="e9392-133">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="e9392-133">click **All users**.</span></span>
 
-6.  <span data-ttu-id="316a4-134">**搜尋**您感興趣的使用者，**按一下資料列**選取該使用者。</span><span class="sxs-lookup"><span data-stu-id="316a4-134">**Search** for the user you are interested in and **click the row** to select.</span></span>
+6.  <span data-ttu-id="e9392-134">**搜尋**hello 您感興趣的使用者和**按一下 hello 列**tooselect。</span><span class="sxs-lookup"><span data-stu-id="e9392-134">**Search** for hello user you are interested in and **click hello row** tooselect.</span></span>
 
-7.  <span data-ttu-id="316a4-135">按一下 [授權]，以查看目前已指派給使用者的授權。</span><span class="sxs-lookup"><span data-stu-id="316a4-135">click **Licenses** to see which licenses the user currently has assigned.</span></span>
+7.  <span data-ttu-id="e9392-135">按一下**授權**toosee 授權 hello 使用者目前已指派。</span><span class="sxs-lookup"><span data-stu-id="e9392-135">click **Licenses** toosee which licenses hello user currently has assigned.</span></span>
 
-   * <span data-ttu-id="316a4-136">如果使用者已指派至 Office 授權，這會讓第一方 Office 應用程式出現在使用者的存取面板上。</span><span class="sxs-lookup"><span data-stu-id="316a4-136">If the user is assigned to an Office license this enable First Party Office applications to appear on the user’s Access Panel.</span></span>
+   * <span data-ttu-id="e9392-136">如果這啟用第一個合作對象 Office 應用程式 tooappear tooan Office 授權指派給 hello 使用者 hello 使用者的存取面板。</span><span class="sxs-lookup"><span data-stu-id="e9392-136">If hello user is assigned tooan Office license this enable First Party Office applications tooappear on hello user’s Access Panel.</span></span>
 
-## <a name="problems-related-to-assigning-applications-to-groups"></a><span data-ttu-id="316a4-137">指派應用程式給群組的相關問題</span><span class="sxs-lookup"><span data-stu-id="316a4-137">Problems related to assigning applications to groups</span></span>
+## <a name="problems-related-tooassigning-applications-toogroups"></a><span data-ttu-id="e9392-137">問題相關的 tooassigning 應用程式 toogroups</span><span class="sxs-lookup"><span data-stu-id="e9392-137">Problems related tooassigning applications toogroups</span></span>
 
-<span data-ttu-id="316a4-138">使用者可能因為屬於已被指派應用程式的群組，所以能在存取面板上看見該應用程式。</span><span class="sxs-lookup"><span data-stu-id="316a4-138">A user may be seeing an application on their Access Panel because they are part of a group that has been assigned the application.</span></span> <span data-ttu-id="316a4-139">以下是一些檢查方法：</span><span class="sxs-lookup"><span data-stu-id="316a4-139">Below are some ways to check:</span></span>
+<span data-ttu-id="e9392-138">使用者會看見應用程式存取面板上因為它們已被指派 hello 應用程式群組的一部分。</span><span class="sxs-lookup"><span data-stu-id="e9392-138">A user may be seeing an application on their Access Panel because they are part of a group that has been assigned hello application.</span></span> <span data-ttu-id="e9392-139">以下是一些方式 toocheck:</span><span class="sxs-lookup"><span data-stu-id="e9392-139">Below are some ways toocheck:</span></span>
 
--   [<span data-ttu-id="316a4-140">檢查使用者的群組成員資格</span><span class="sxs-lookup"><span data-stu-id="316a4-140">Check a user’s group memberships</span></span>](#check-a-users-group-memberships)
+-   [<span data-ttu-id="e9392-140">檢查使用者的群組成員資格</span><span class="sxs-lookup"><span data-stu-id="e9392-140">Check a user’s group memberships</span></span>](#check-a-users-group-memberships)
 
--   [<span data-ttu-id="316a4-141">檢查使用者是否屬於指派至授權的群組</span><span class="sxs-lookup"><span data-stu-id="316a4-141">Check if a user is a member of a group assigned to a license</span></span>](#check-if-a-user-is-a-member-of-a-group-assigned-to-a-license)
+-   [<span data-ttu-id="e9392-141">檢查使用者是否 tooa 授權指派給群組的成員</span><span class="sxs-lookup"><span data-stu-id="e9392-141">Check if a user is a member of a group assigned tooa license</span></span>](#check-if-a-user-is-a-member-of-a-group-assigned-to-a-license)
 
-### <a name="check-a-users-group-memberships"></a><span data-ttu-id="316a4-142">檢查使用者的群組成員資格</span><span class="sxs-lookup"><span data-stu-id="316a4-142">Check a user’s group memberships</span></span>
+### <a name="check-a-users-group-memberships"></a><span data-ttu-id="e9392-142">檢查使用者的群組成員資格</span><span class="sxs-lookup"><span data-stu-id="e9392-142">Check a user’s group memberships</span></span>
 
-<span data-ttu-id="316a4-143">若要檢查群組的成員資格，請依照下列步驟執行：</span><span class="sxs-lookup"><span data-stu-id="316a4-143">To check a group’s membership, follow the steps below:</span></span>
+<span data-ttu-id="e9392-143">toocheck 群組的成員資格，後續 hello 步驟：</span><span class="sxs-lookup"><span data-stu-id="e9392-143">toocheck a group’s membership, follow hello steps below:</span></span>
 
-1.  <span data-ttu-id="316a4-144">開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="316a4-144">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="e9392-144">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**</span><span class="sxs-lookup"><span data-stu-id="e9392-144">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="316a4-145">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="316a4-145">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="e9392-145">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="e9392-145">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="316a4-146">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="316a4-146">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="e9392-146">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="e9392-146">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="316a4-147">按一下瀏覽功能表中的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="316a4-147">click **Users and groups** in the navigation menu.</span></span>
+4.  <span data-ttu-id="e9392-147">按一下**使用者和群組**hello 瀏覽功能表中。</span><span class="sxs-lookup"><span data-stu-id="e9392-147">click **Users and groups** in hello navigation menu.</span></span>
 
-5.  <span data-ttu-id="316a4-148">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="316a4-148">click **All users**.</span></span>
+5.  <span data-ttu-id="e9392-148">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="e9392-148">click **All users**.</span></span>
 
-6.  <span data-ttu-id="316a4-149">**搜尋**您感興趣的使用者，**按一下資料列**選取該使用者。</span><span class="sxs-lookup"><span data-stu-id="316a4-149">**Search** for the user you are interested in and **click the row** to select.</span></span>
+6.  <span data-ttu-id="e9392-149">**搜尋**hello 您感興趣的使用者和**按一下 hello 列**tooselect。</span><span class="sxs-lookup"><span data-stu-id="e9392-149">**Search** for hello user you are interested in and **click hello row** tooselect.</span></span>
 
-7.  <span data-ttu-id="316a4-150">按一下 [群組]。</span><span class="sxs-lookup"><span data-stu-id="316a4-150">click **Groups.**</span></span>
+7.  <span data-ttu-id="e9392-150">按一下 [群組]。</span><span class="sxs-lookup"><span data-stu-id="e9392-150">click **Groups.**</span></span>
 
-8.  <span data-ttu-id="316a4-151">檢查使用者是否屬於已指派至應用程式的群組。</span><span class="sxs-lookup"><span data-stu-id="316a4-151">Check to see if your user is part of a Group assigned to the application.</span></span>
+8.  <span data-ttu-id="e9392-151">如果您的使用者屬於群組的核取 toosee 指派 toohello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="e9392-151">Check toosee if your user is part of a Group assigned toohello application.</span></span>
 
-   * <span data-ttu-id="316a4-152">如果您想要從群組移除使用者，請**按一下群組的資料列**，然後選取 [刪除]。</span><span class="sxs-lookup"><span data-stu-id="316a4-152">If you want to remove the user from the group, **click the row** of the group and select delete.</span></span>
+   * <span data-ttu-id="e9392-152">如果您想從 hello 群組 tooremove hello 使用者**按一下 hello 列**hello 群組和選取的刪除。</span><span class="sxs-lookup"><span data-stu-id="e9392-152">If you want tooremove hello user from hello group, **click hello row** of hello group and select delete.</span></span>
 
-### <a name="check-if-a-user-is-a-member-of-a-group-assigned-to-a-license"></a><span data-ttu-id="316a4-153">檢查使用者是否屬於指派至授權的群組</span><span class="sxs-lookup"><span data-stu-id="316a4-153">Check if a user is a member of a group assigned to a license</span></span>
+### <a name="check-if-a-user-is-a-member-of-a-group-assigned-tooa-license"></a><span data-ttu-id="e9392-153">檢查使用者是否 tooa 授權指派給群組的成員</span><span class="sxs-lookup"><span data-stu-id="e9392-153">Check if a user is a member of a group assigned tooa license</span></span>
 
-1.  <span data-ttu-id="316a4-154">開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**身分登入。</span><span class="sxs-lookup"><span data-stu-id="316a4-154">Open the [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
+1.  <span data-ttu-id="e9392-154">開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**</span><span class="sxs-lookup"><span data-stu-id="e9392-154">Open hello [**Azure Portal**](https://portal.azure.com/) and sign in as a **Global Administrator.**</span></span>
 
-2.  <span data-ttu-id="316a4-155">按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。</span><span class="sxs-lookup"><span data-stu-id="316a4-155">Open the **Azure Active Directory Extension** by clicking **More services** at the bottom of the main left hand navigation menu.</span></span>
+2.  <span data-ttu-id="e9392-155">開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。</span><span class="sxs-lookup"><span data-stu-id="e9392-155">Open hello **Azure Active Directory Extension** by clicking **More services** at hello bottom of hello main left hand navigation menu.</span></span>
 
-3.  <span data-ttu-id="316a4-156">在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。</span><span class="sxs-lookup"><span data-stu-id="316a4-156">Type in **“Azure Active Directory**” in the filter search box and select the **Azure Active Directory** item.</span></span>
+3.  <span data-ttu-id="e9392-156">在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。</span><span class="sxs-lookup"><span data-stu-id="e9392-156">Type in **“Azure Active Directory**” in hello filter search box and select hello **Azure Active Directory** item.</span></span>
 
-4.  <span data-ttu-id="316a4-157">按一下瀏覽功能表中的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="316a4-157">click **Users and groups** in the navigation menu.</span></span>
+4.  <span data-ttu-id="e9392-157">按一下**使用者和群組**hello 瀏覽功能表中。</span><span class="sxs-lookup"><span data-stu-id="e9392-157">click **Users and groups** in hello navigation menu.</span></span>
 
-5.  <span data-ttu-id="316a4-158">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="316a4-158">click **All users**.</span></span>
+5.  <span data-ttu-id="e9392-158">按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="e9392-158">click **All users**.</span></span>
 
-6.  <span data-ttu-id="316a4-159">**搜尋**您感興趣的使用者，**按一下資料列**選取該使用者。</span><span class="sxs-lookup"><span data-stu-id="316a4-159">**Search** for the user you are interested in and **click the row** to select.</span></span>
+6.  <span data-ttu-id="e9392-159">**搜尋**hello 您感興趣的使用者和**按一下 hello 列**tooselect。</span><span class="sxs-lookup"><span data-stu-id="e9392-159">**Search** for hello user you are interested in and **click hello row** tooselect.</span></span>
 
-7.  <span data-ttu-id="316a4-160">按一下 [群組]。</span><span class="sxs-lookup"><span data-stu-id="316a4-160">click **Groups.**</span></span>
+7.  <span data-ttu-id="e9392-160">按一下 [群組]。</span><span class="sxs-lookup"><span data-stu-id="e9392-160">click **Groups.**</span></span>
 
-8.  <span data-ttu-id="316a4-161">按一下特定群組的資料列。</span><span class="sxs-lookup"><span data-stu-id="316a4-161">click the row of a specific group.</span></span>
+8.  <span data-ttu-id="e9392-161">按一下 特定群組的 hello 資料列。</span><span class="sxs-lookup"><span data-stu-id="e9392-161">click hello row of a specific group.</span></span>
 
-9.  <span data-ttu-id="316a4-162">按一下 [授權]，以查看已指派給群組的授權。</span><span class="sxs-lookup"><span data-stu-id="316a4-162">click **Licenses** to see which licenses the group has assigned to it.</span></span>
+9.  <span data-ttu-id="e9392-162">按一下**授權**toosee 授權 hello 群組已指派 tooit。</span><span class="sxs-lookup"><span data-stu-id="e9392-162">click **Licenses** toosee which licenses hello group has assigned tooit.</span></span>
 
-  * <span data-ttu-id="316a4-163">如果群組已指派至 Office 授權，這可能會讓某些第一方 Office 應用程式出現在使用者的存取面板上。</span><span class="sxs-lookup"><span data-stu-id="316a4-163">If the group is assigned to an Office license this may enable certain First Party Office applications to appear on the user’s Access Panel.</span></span>
+  * <span data-ttu-id="e9392-163">如果這可能會讓特定的第一個合作對象 Office 應用程式 tooappear tooan Office 授權指派給 hello 群組 hello 使用者的存取面板。</span><span class="sxs-lookup"><span data-stu-id="e9392-163">If hello group is assigned tooan Office license this may enable certain First Party Office applications tooappear on hello user’s Access Panel.</span></span>
 
 
-## <a name="if-these-troubleshooting-steps-do-not-the-resolve-the-issue"></a><span data-ttu-id="316a4-164">如果這些疑難排解步驟無法解決問題</span><span class="sxs-lookup"><span data-stu-id="316a4-164">If these troubleshooting steps do not the resolve the issue</span></span>
+## <a name="if-these-troubleshooting-steps-do-not-hello-resolve-hello-issue"></a><span data-ttu-id="e9392-164">如果不執行 hello 這些疑難排解步驟解決 hello 問題</span><span class="sxs-lookup"><span data-stu-id="e9392-164">If these troubleshooting steps do not hello resolve hello issue</span></span>
 
-<span data-ttu-id="316a4-165">使用下列資訊 (若有的話) 開啟支援票證︰</span><span class="sxs-lookup"><span data-stu-id="316a4-165">open a support ticket with the following information if available:</span></span>
+<span data-ttu-id="e9392-165">開啟支援票證以 hello 如果有的話，下列資訊：</span><span class="sxs-lookup"><span data-stu-id="e9392-165">open a support ticket with hello following information if available:</span></span>
 
--   <span data-ttu-id="316a4-166">相互關聯錯誤 ID</span><span class="sxs-lookup"><span data-stu-id="316a4-166">Correlation error ID</span></span>
+-   <span data-ttu-id="e9392-166">相互關聯錯誤 ID</span><span class="sxs-lookup"><span data-stu-id="e9392-166">Correlation error ID</span></span>
 
--   <span data-ttu-id="316a4-167">UPN (使用者電子郵件地址)</span><span class="sxs-lookup"><span data-stu-id="316a4-167">UPN (user email address)</span></span>
+-   <span data-ttu-id="e9392-167">UPN (使用者電子郵件地址)</span><span class="sxs-lookup"><span data-stu-id="e9392-167">UPN (user email address)</span></span>
 
--   <span data-ttu-id="316a4-168">租用戶識別碼</span><span class="sxs-lookup"><span data-stu-id="316a4-168">Tenant ID</span></span>
+-   <span data-ttu-id="e9392-168">租用戶識別碼</span><span class="sxs-lookup"><span data-stu-id="e9392-168">Tenant ID</span></span>
 
--   <span data-ttu-id="316a4-169">瀏覽器類型</span><span class="sxs-lookup"><span data-stu-id="316a4-169">Browser type</span></span>
+-   <span data-ttu-id="e9392-169">瀏覽器類型</span><span class="sxs-lookup"><span data-stu-id="e9392-169">Browser type</span></span>
 
--   <span data-ttu-id="316a4-170">錯誤發生期間的時區和時間/時間範圍</span><span class="sxs-lookup"><span data-stu-id="316a4-170">Time zone and time/timeframe during error occurs</span></span>
+-   <span data-ttu-id="e9392-170">錯誤發生期間的時區和時間/時間範圍</span><span class="sxs-lookup"><span data-stu-id="e9392-170">Time zone and time/timeframe during error occurs</span></span>
 
--   <span data-ttu-id="316a4-171">Fiddler 追蹤</span><span class="sxs-lookup"><span data-stu-id="316a4-171">Fiddler traces</span></span>
+-   <span data-ttu-id="e9392-171">Fiddler 追蹤</span><span class="sxs-lookup"><span data-stu-id="e9392-171">Fiddler traces</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="316a4-172">後續步驟</span><span class="sxs-lookup"><span data-stu-id="316a4-172">Next steps</span></span>
-[<span data-ttu-id="316a4-173">使用 Azure Active Directory 管理應用程式</span><span class="sxs-lookup"><span data-stu-id="316a4-173">Managing Applications with Azure Active Directory</span></span>](active-directory-enable-sso-scenario.md)
+## <a name="next-steps"></a><span data-ttu-id="e9392-172">後續步驟</span><span class="sxs-lookup"><span data-stu-id="e9392-172">Next steps</span></span>
+[<span data-ttu-id="e9392-173">使用 Azure Active Directory 管理應用程式</span><span class="sxs-lookup"><span data-stu-id="e9392-173">Managing Applications with Azure Active Directory</span></span>](active-directory-enable-sso-scenario.md)

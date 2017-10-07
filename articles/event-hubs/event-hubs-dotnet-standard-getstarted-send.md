@@ -1,6 +1,6 @@
 ---
-title: "使用 .NET Standard 傳送事件至 Azure 事件中樞 | Microsoft Docs"
-description: "開始在 .NET Standard 中傳送事件至事件中樞"
+title: "aaaSend 事件 tooAzure 使用標準.NET 的事件中心 |Microsoft 文件"
+description: "以.NET 標準 tooEvent 中樞傳送事件開始"
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/27/2017
 ms.author: sethm
-ms.openlocfilehash: 8af9d70965c1c9ad8c49b7d2bb04244fc207058d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: caa9747a8a72aa8e7aea1348a116f6e4b406460e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-sending-messages-to-azure-event-hubs-in-net-standard"></a><span data-ttu-id="c4f85-103">開始在 .NET Standard 中傳送訊息至 Azure 事件中樞</span><span class="sxs-lookup"><span data-stu-id="c4f85-103">Get started sending messages to Azure Event Hubs in .NET Standard</span></span>
+# <a name="get-started-sending-messages-tooazure-event-hubs-in-net-standard"></a><span data-ttu-id="3bf4c-103">開始傳送訊息的.NET 標準 tooAzure 事件中心</span><span class="sxs-lookup"><span data-stu-id="3bf4c-103">Get started sending messages tooAzure Event Hubs in .NET Standard</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="c4f85-104">您可在 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) 上取得此範例。</span><span class="sxs-lookup"><span data-stu-id="c4f85-104">This sample is available on [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender).</span></span>
+> <span data-ttu-id="3bf4c-104">您可在 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) 上取得此範例。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-104">This sample is available on [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender).</span></span>
 
-<span data-ttu-id="c4f85-105">本教學課程說明如何撰寫一個 .NET Core 主控台應用程式，以將一組訊息傳送到事件中樞。</span><span class="sxs-lookup"><span data-stu-id="c4f85-105">This tutorial shows how to write a .NET Core console application that sends a set of messages to an event hub.</span></span> <span data-ttu-id="c4f85-106">您可以依現狀執行 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) 解決方案，其中以您事件中樞的值來取代 `EhConnectionString` 和 `EhEntityPath` 字串。</span><span class="sxs-lookup"><span data-stu-id="c4f85-106">You can run the [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) solution as-is, replacing the `EhConnectionString` and `EhEntityPath` strings with your event hub values.</span></span> <span data-ttu-id="c4f85-107">或者，您可以遵循本教學課程中的步驟，來建立自己的解決方案。</span><span class="sxs-lookup"><span data-stu-id="c4f85-107">Or you can follow the steps in this tutorial to create your own.</span></span>
+<span data-ttu-id="3bf4c-105">本教學課程會示範如何 toowrite.NET Core 主控台應用程式所傳送的一組訊息 tooan 事件中心。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-105">This tutorial shows how toowrite a .NET Core console application that sends a set of messages tooan event hub.</span></span> <span data-ttu-id="3bf4c-106">您可以執行 hello [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender)做為方案層，就取代 hello`EhConnectionString`和`EhEntityPath`字串以您的事件中樞值。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-106">You can run hello [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) solution as-is, replacing hello `EhConnectionString` and `EhEntityPath` strings with your event hub values.</span></span> <span data-ttu-id="3bf4c-107">您可以遵循 hello 步驟在本教學課程 toocreate 自己。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-107">Or you can follow hello steps in this tutorial toocreate your own.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="c4f85-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="c4f85-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="3bf4c-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="3bf4c-108">Prerequisites</span></span>
 
-* <span data-ttu-id="c4f85-109">[Microsoft Visual Studio 2015 或 2017](http://www.visualstudio.com)。</span><span class="sxs-lookup"><span data-stu-id="c4f85-109">[Microsoft Visual Studio 2015 or 2017](http://www.visualstudio.com).</span></span> <span data-ttu-id="c4f85-110">本教學課程中的範例使用 Visual Studio 2017，但也支援 Visual Studio 2015。</span><span class="sxs-lookup"><span data-stu-id="c4f85-110">The examples in this tutorial use Visual Studio 2017, but Visual Studio 2015 is also supported.</span></span>
-* <span data-ttu-id="c4f85-111">[.NET Core Visual Studio 2015 或 2017 工具](http://www.microsoft.com/net/core)。</span><span class="sxs-lookup"><span data-stu-id="c4f85-111">[.NET Core Visual Studio 2015 or 2017 tools](http://www.microsoft.com/net/core).</span></span>
-* <span data-ttu-id="c4f85-112">Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="c4f85-112">An Azure subscription.</span></span>
-* <span data-ttu-id="c4f85-113">事件中樞命名空間。</span><span class="sxs-lookup"><span data-stu-id="c4f85-113">An event hub namespace.</span></span>
+* <span data-ttu-id="3bf4c-109">[Microsoft Visual Studio 2015 或 2017](http://www.visualstudio.com)。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-109">[Microsoft Visual Studio 2015 or 2017](http://www.visualstudio.com).</span></span> <span data-ttu-id="3bf4c-110">也支援在此教學課程使用 Visual Studio 2017，hello 範例，但 Visual Studio 2015。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-110">hello examples in this tutorial use Visual Studio 2017, but Visual Studio 2015 is also supported.</span></span>
+* <span data-ttu-id="3bf4c-111">[.NET Core Visual Studio 2015 或 2017 工具](http://www.microsoft.com/net/core)。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-111">[.NET Core Visual Studio 2015 or 2017 tools](http://www.microsoft.com/net/core).</span></span>
+* <span data-ttu-id="3bf4c-112">Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-112">An Azure subscription.</span></span>
+* <span data-ttu-id="3bf4c-113">事件中樞命名空間。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-113">An event hub namespace.</span></span>
 
-<span data-ttu-id="c4f85-114">為了將訊息傳送到事件中樞，我們將使用 Visual Studio 來撰寫一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="c4f85-114">To send messages to an event hub, we will use Visual Studio to write a C# console application.</span></span>
+<span data-ttu-id="3bf4c-114">toosend 訊息 tooan 事件中樞，我們將使用 Visual Studio toowrite C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-114">toosend messages tooan event hub, we will use Visual Studio toowrite a C# console application.</span></span>
 
-## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a><span data-ttu-id="c4f85-115">建立事件中樞命名空間和事件中樞</span><span class="sxs-lookup"><span data-stu-id="c4f85-115">Create an Event Hubs namespace and an event hub</span></span>
+## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a><span data-ttu-id="3bf4c-115">建立事件中樞命名空間和事件中樞</span><span class="sxs-lookup"><span data-stu-id="3bf4c-115">Create an Event Hubs namespace and an event hub</span></span>
 
-<span data-ttu-id="c4f85-116">第一個步驟是使用 [Azure 入口網站](https://portal.azure.com)來建立事件中樞類型的命名空間，然後取得您應用程式與事件中樞進行通訊所需的管理認證。</span><span class="sxs-lookup"><span data-stu-id="c4f85-116">The first step is to use the [Azure portal](https://portal.azure.com) to create a namespace for the event hub type, and obtain the management credentials that your application needs to communicate with the event hub.</span></span> <span data-ttu-id="c4f85-117">若要建立命名空間和事件中樞，請依照[這篇文章](event-hubs-create.md)中的程序操作，然後繼續進行下列步驟。</span><span class="sxs-lookup"><span data-stu-id="c4f85-117">To create a namespace and an event hub, follow the procedure in [this article](event-hubs-create.md), and then proceed with the following steps.</span></span>
+<span data-ttu-id="3bf4c-116">hello 第一個步驟是 toouse hello [Azure 入口網站](https://portal.azure.com)toocreate hello 事件中樞的類型、 命名空間，並取得 hello 應用程式需要 toocommunicate 與 hello 事件中心的管理認證。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-116">hello first step is toouse hello [Azure portal](https://portal.azure.com) toocreate a namespace for hello event hub type, and obtain hello management credentials that your application needs toocommunicate with hello event hub.</span></span> <span data-ttu-id="3bf4c-117">toocreate 的命名空間和事件中心，請依照下列中的 hello 程序[本文](event-hubs-create.md)，再繼續執行步驟的 hello。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-117">toocreate a namespace and an event hub, follow hello procedure in [this article](event-hubs-create.md), and then proceed with hello following steps.</span></span>
 
-## <a name="create-a-console-application"></a><span data-ttu-id="c4f85-118">建立主控台應用程式</span><span class="sxs-lookup"><span data-stu-id="c4f85-118">Create a console application</span></span>
+## <a name="create-a-console-application"></a><span data-ttu-id="3bf4c-118">建立主控台應用程式</span><span class="sxs-lookup"><span data-stu-id="3bf4c-118">Create a console application</span></span>
 
-<span data-ttu-id="c4f85-119">啟動 Visual Studio。</span><span class="sxs-lookup"><span data-stu-id="c4f85-119">Start Visual Studio.</span></span> <span data-ttu-id="c4f85-120">從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。</span><span class="sxs-lookup"><span data-stu-id="c4f85-120">From the **File** menu, click **New**, and then click **Project**.</span></span> <span data-ttu-id="c4f85-121">建立 .NET Core 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="c4f85-121">Create a .NET Core console application.</span></span>
+<span data-ttu-id="3bf4c-119">啟動 Visual Studio。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-119">Start Visual Studio.</span></span> <span data-ttu-id="3bf4c-120">從 hello**檔案**功能表上，按一下 **新增**，然後按一下**專案**。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-120">From hello **File** menu, click **New**, and then click **Project**.</span></span> <span data-ttu-id="3bf4c-121">建立 .NET Core 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-121">Create a .NET Core console application.</span></span>
 
 ![新增專案][1]
 
-## <a name="add-the-event-hubs-nuget-package"></a><span data-ttu-id="c4f85-123">新增事件中樞 NuGet 封裝</span><span class="sxs-lookup"><span data-stu-id="c4f85-123">Add the Event Hubs NuGet package</span></span>
+## <a name="add-hello-event-hubs-nuget-package"></a><span data-ttu-id="3bf4c-123">加入 hello 事件中心 NuGet 封裝</span><span class="sxs-lookup"><span data-stu-id="3bf4c-123">Add hello Event Hubs NuGet package</span></span>
 
-<span data-ttu-id="c4f85-124">遵循下列幾個步驟，將 [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) .NET 標準程式庫 NuGet 套件新增至您的專案：</span><span class="sxs-lookup"><span data-stu-id="c4f85-124">Add the [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) .NET Standard library NuGet package to your project by following these steps:</span></span> 
+<span data-ttu-id="3bf4c-124">新增 hello [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) .NET 標準程式庫 NuGet 封裝 tooyour 專案依照下列步驟：</span><span class="sxs-lookup"><span data-stu-id="3bf4c-124">Add hello [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) .NET Standard library NuGet package tooyour project by following these steps:</span></span> 
 
-1. <span data-ttu-id="c4f85-125">以滑鼠右鍵按一下新建立的專案，然後選取 [管理 NuGet 套件]。</span><span class="sxs-lookup"><span data-stu-id="c4f85-125">Right-click the newly created project and select **Manage NuGet Packages**.</span></span>
-2. <span data-ttu-id="c4f85-126">按一下 [瀏覽] 索引標籤，然後搜尋「Microsoft.Azure.EventHubs」並選取 [Microsoft.Azure.EventHubs] 套件。</span><span class="sxs-lookup"><span data-stu-id="c4f85-126">Click the **Browse** tab, then search for "Microsoft.Azure.EventHubs" and select the **Microsoft.Azure.EventHubs** package.</span></span> <span data-ttu-id="c4f85-127">按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。</span><span class="sxs-lookup"><span data-stu-id="c4f85-127">Click **Install** to complete the installation, then close this dialog box.</span></span>
+1. <span data-ttu-id="3bf4c-125">Hello 新建立的專案上按一下滑鼠右鍵，然後選取**管理 NuGet 封裝**。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-125">Right-click hello newly created project and select **Manage NuGet Packages**.</span></span>
+2. <span data-ttu-id="3bf4c-126">按一下 hello**瀏覽** 索引標籤，然後搜尋 「 Microsoft.Azure.EventHubs 」 和選取 hello **Microsoft.Azure.EventHubs**封裝。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-126">Click hello **Browse** tab, then search for "Microsoft.Azure.EventHubs" and select hello **Microsoft.Azure.EventHubs** package.</span></span> <span data-ttu-id="3bf4c-127">按一下**安裝**toocomplete hello 安裝，然後關閉此對話方塊。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-127">Click **Install** toocomplete hello installation, then close this dialog box.</span></span>
 
-## <a name="write-some-code-to-send-messages-to-the-event-hub"></a><span data-ttu-id="c4f85-128">撰寫一些程式碼以將訊息傳送到事件中樞</span><span class="sxs-lookup"><span data-stu-id="c4f85-128">Write some code to send messages to the event hub</span></span>
+## <a name="write-some-code-toosend-messages-toohello-event-hub"></a><span data-ttu-id="3bf4c-128">撰寫一些程式碼 toosend 訊息 toohello 事件中樞</span><span class="sxs-lookup"><span data-stu-id="3bf4c-128">Write some code toosend messages toohello event hub</span></span>
 
-1. <span data-ttu-id="c4f85-129">在 Program.cs 檔案開頭處加入 `using` 陳述式。</span><span class="sxs-lookup"><span data-stu-id="c4f85-129">Add the following `using` statements to the top of the Program.cs file.</span></span>
+1. <span data-ttu-id="3bf4c-129">新增下列 hello `using` hello Program.cs 檔案的陳述式 toohello 頂端。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-129">Add hello following `using` statements toohello top of hello Program.cs file.</span></span>
 
     ```csharp
     using Microsoft.Azure.EventHubs;
@@ -63,7 +63,7 @@ ms.lasthandoff: 07/11/2017
     using System.Threading.Tasks;
     ```
 
-2. <span data-ttu-id="c4f85-130">針對「事件中樞」連接字串和實體路徑 (個別事件中樞名稱)，將常數新增到 `Program` 類別。</span><span class="sxs-lookup"><span data-stu-id="c4f85-130">Add constants to the `Program` class for the Event Hubs connection string and entity path (individual event hub name).</span></span> <span data-ttu-id="c4f85-131">以建立事件中樞時所取得的適當值取代方括號中的預留位置。</span><span class="sxs-lookup"><span data-stu-id="c4f85-131">Replace the placeholders in brackets with the proper values that were obtained when creating the event hub.</span></span>
+2. <span data-ttu-id="3bf4c-130">新增常數 toohello `Program` hello 事件中樞連接字串和實體路徑 （個別的事件中樞名稱） 的類別。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-130">Add constants toohello `Program` class for hello Event Hubs connection string and entity path (individual event hub name).</span></span> <span data-ttu-id="3bf4c-131">方括號中的 hello 預留位置取代為 hello 建立 hello 事件中心時取得的適當值。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-131">Replace hello placeholders in brackets with hello proper values that were obtained when creating hello event hub.</span></span>
 
     ```csharp
     private static EventHubClient eventHubClient;
@@ -71,14 +71,14 @@ ms.lasthandoff: 07/11/2017
     private const string EhEntityPath = "{Event Hub path/name}";
     ```
 
-3. <span data-ttu-id="c4f85-132">將名為 `MainAsync` 的新方法新增到 `Program` 類別，如下所示：</span><span class="sxs-lookup"><span data-stu-id="c4f85-132">Add a new method named `MainAsync` to the `Program` class, as follows:</span></span>
+3. <span data-ttu-id="3bf4c-132">新增名為方法`MainAsync`toohello`Program`類別，如下所示：</span><span class="sxs-lookup"><span data-stu-id="3bf4c-132">Add a new method named `MainAsync` toohello `Program` class, as follows:</span></span>
 
     ```csharp
     private static async Task MainAsync(string[] args)
     {
-        // Creates an EventHubsConnectionStringBuilder object from the connection string, and sets the EntityPath.
-        // Typically, the connection string should have the entity path in it, but for the sake of this simple scenario
-        // we are using the connection string from the namespace.
+        // Creates an EventHubsConnectionStringBuilder object from hello connection string, and sets hello EntityPath.
+        // Typically, hello connection string should have hello entity path in it, but for hello sake of this simple scenario
+        // we are using hello connection string from hello namespace.
         var connectionStringBuilder = new EventHubsConnectionStringBuilder(EhConnectionString)
         {
             EntityPath = EhEntityPath
@@ -90,15 +90,15 @@ ms.lasthandoff: 07/11/2017
 
         await eventHubClient.CloseAsync();
 
-        Console.WriteLine("Press ENTER to exit.");
+        Console.WriteLine("Press ENTER tooexit.");
         Console.ReadLine();
     }
     ```
 
-4. <span data-ttu-id="c4f85-133">將名為 `SendMessagesToEventHub` 的新方法新增到 `Program` 類別，如下所示：</span><span class="sxs-lookup"><span data-stu-id="c4f85-133">Add a new method named `SendMessagesToEventHub` to the `Program` class, as follows:</span></span>
+4. <span data-ttu-id="3bf4c-133">新增名為方法`SendMessagesToEventHub`toohello`Program`類別，如下所示：</span><span class="sxs-lookup"><span data-stu-id="3bf4c-133">Add a new method named `SendMessagesToEventHub` toohello `Program` class, as follows:</span></span>
 
     ```csharp
-    // Creates an event hub client and sends 100 messages to the event hub.
+    // Creates an event hub client and sends 100 messages toohello event hub.
     private static async Task SendMessagesToEventHub(int numMessagesToSend)
     {
         for (var i = 0; i < numMessagesToSend; i++)
@@ -121,13 +121,13 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-5. <span data-ttu-id="c4f85-134">將下列程式碼行新增至 `Program` 類別中的 `Main` 方法。</span><span class="sxs-lookup"><span data-stu-id="c4f85-134">Add the following code to the `Main` method in the `Program` class.</span></span>
+5. <span data-ttu-id="3bf4c-134">新增下列程式碼 toohello hello`Main`方法在 hello`Program`類別。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-134">Add hello following code toohello `Main` method in hello `Program` class.</span></span>
 
     ```csharp
     MainAsync(args).GetAwaiter().GetResult();
     ```
 
-   <span data-ttu-id="c4f85-135">Program.cs 看起來應該會像下面這樣。</span><span class="sxs-lookup"><span data-stu-id="c4f85-135">Here is what your Program.cs should look like.</span></span>
+   <span data-ttu-id="3bf4c-135">Program.cs 看起來應該會像下面這樣。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-135">Here is what your Program.cs should look like.</span></span>
 
     ```csharp
     namespace SampleSender
@@ -150,9 +150,9 @@ ms.lasthandoff: 07/11/2017
 
             private static async Task MainAsync(string[] args)
             {
-                // Creates an EventHubsConnectionStringBuilder object from the connection string, and sets the EntityPath.
-                // Typically, the connection string should have the entity path in it, but for the sake of this simple scenario
-                // we are using the connection string from the namespace.
+                // Creates an EventHubsConnectionStringBuilder object from hello connection string, and sets hello EntityPath.
+                // Typically, hello connection string should have hello entity path in it, but for hello sake of this simple scenario
+                // we are using hello connection string from hello namespace.
                 var connectionStringBuilder = new EventHubsConnectionStringBuilder(EhConnectionString)
                 {
                     EntityPath = EhEntityPath
@@ -164,11 +164,11 @@ ms.lasthandoff: 07/11/2017
 
                 await eventHubClient.CloseAsync();
 
-                Console.WriteLine("Press ENTER to exit.");
+                Console.WriteLine("Press ENTER tooexit.");
                 Console.ReadLine();
             }
 
-            // Creates an event hub client and sends 100 messages to the event hub.
+            // Creates an event hub client and sends 100 messages toohello event hub.
             private static async Task SendMessagesToEventHub(int numMessagesToSend)
             {
                 for (var i = 0; i < numMessagesToSend; i++)
@@ -193,16 +193,16 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-6. <span data-ttu-id="c4f85-136">執行程式，並確定沒有任何錯誤。</span><span class="sxs-lookup"><span data-stu-id="c4f85-136">Run the program, and ensure that there are no errors.</span></span>
+6. <span data-ttu-id="3bf4c-136">執行 hello 程式，並確定沒有任何錯誤。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-136">Run hello program, and ensure that there are no errors.</span></span>
 
-<span data-ttu-id="c4f85-137">恭喜！</span><span class="sxs-lookup"><span data-stu-id="c4f85-137">Congratulations!</span></span> <span data-ttu-id="c4f85-138">您現在已將傳送訊息到事件中樞。</span><span class="sxs-lookup"><span data-stu-id="c4f85-138">You have now sent messages to an event hub.</span></span>
+<span data-ttu-id="3bf4c-137">恭喜！</span><span class="sxs-lookup"><span data-stu-id="3bf4c-137">Congratulations!</span></span> <span data-ttu-id="3bf4c-138">現在您已送出訊息 tooan 事件中心。</span><span class="sxs-lookup"><span data-stu-id="3bf4c-138">You have now sent messages tooan event hub.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="c4f85-139">後續步驟</span><span class="sxs-lookup"><span data-stu-id="c4f85-139">Next steps</span></span>
-<span data-ttu-id="c4f85-140">您可以造訪下列連結以深入了解事件中樞︰</span><span class="sxs-lookup"><span data-stu-id="c4f85-140">You can learn more about Event Hubs by visiting the following links:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="3bf4c-139">後續步驟</span><span class="sxs-lookup"><span data-stu-id="3bf4c-139">Next steps</span></span>
+<span data-ttu-id="3bf4c-140">您可以進一步了解事件中心瀏覽下列連結查看 hello:</span><span class="sxs-lookup"><span data-stu-id="3bf4c-140">You can learn more about Event Hubs by visiting hello following links:</span></span>
 
-* [<span data-ttu-id="c4f85-141">從事件中樞接收事件</span><span class="sxs-lookup"><span data-stu-id="c4f85-141">Receive events from Event Hubs</span></span>](event-hubs-dotnet-standard-getstarted-receive-eph.md)
-* [<span data-ttu-id="c4f85-142">事件中樞概觀</span><span class="sxs-lookup"><span data-stu-id="c4f85-142">Event Hubs overview</span></span>](event-hubs-what-is-event-hubs.md)
-* [<span data-ttu-id="c4f85-143">建立事件中樞</span><span class="sxs-lookup"><span data-stu-id="c4f85-143">Create an event hub</span></span>](event-hubs-create.md)
-* [<span data-ttu-id="c4f85-144">事件中樞常見問題集</span><span class="sxs-lookup"><span data-stu-id="c4f85-144">Event Hubs FAQ</span></span>](event-hubs-faq.md)
+* [<span data-ttu-id="3bf4c-141">從事件中樞接收事件</span><span class="sxs-lookup"><span data-stu-id="3bf4c-141">Receive events from Event Hubs</span></span>](event-hubs-dotnet-standard-getstarted-receive-eph.md)
+* [<span data-ttu-id="3bf4c-142">事件中樞概觀</span><span class="sxs-lookup"><span data-stu-id="3bf4c-142">Event Hubs overview</span></span>](event-hubs-what-is-event-hubs.md)
+* [<span data-ttu-id="3bf4c-143">建立事件中樞</span><span class="sxs-lookup"><span data-stu-id="3bf4c-143">Create an event hub</span></span>](event-hubs-create.md)
+* [<span data-ttu-id="3bf4c-144">事件中樞常見問題集</span><span class="sxs-lookup"><span data-stu-id="3bf4c-144">Event Hubs FAQ</span></span>](event-hubs-faq.md)
 
 [1]: ./media/event-hubs-dotnet-standard-getstarted-send/netcore.png

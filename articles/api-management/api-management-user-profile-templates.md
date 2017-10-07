@@ -1,6 +1,6 @@
 ---
-title: "Azure API 管理中的使用者設定檔範本 | Microsoft Docs"
-description: "了解如何在 Azure API 管理中自訂開發人員入口網站中的 [使用者設定檔] 頁面內容。"
+title: "aaa\"在 Azure API 管理的使用者設定檔範本 |Microsoft 文件 」"
+description: "了解 hello 開發人員入口網站在 Azure API 管理中的 hello 使用者設定檔的 toocustomize hello 內容頁面的方式。"
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,34 +14,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 9a11bd5800068a5725ab2f099043993bff0b28d8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c8f153b310221164809acf58e4af236928ceb41d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="user-profile-templates-in-azure-api-management"></a><span data-ttu-id="0aec2-103">Azure API 管理中的使用者設定檔範本</span><span class="sxs-lookup"><span data-stu-id="0aec2-103">User profile templates in Azure API Management</span></span>
-<span data-ttu-id="0aec2-104">「Azure API 管理」可讓您使用一組可設定開發人員入口網站頁面內容的範本，來自訂那些頁面的內容。</span><span class="sxs-lookup"><span data-stu-id="0aec2-104">Azure API Management provides you the ability to customize the content of developer portal pages using a set of templates that configure their content.</span></span> <span data-ttu-id="0aec2-105">使用這些範本時，您可以運用 [DotLiquid](http://dotliquidmarkup.org/) 語法和您選擇的編輯器 (例如 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers))，以及一組提供的當地語系化[字串資源](api-management-template-resources.md#strings)、[字符資源](api-management-template-resources.md#glyphs)和[頁面控制項](api-management-page-controls.md)，依照您的想法自由靈活地設定頁面內容。</span><span class="sxs-lookup"><span data-stu-id="0aec2-105">Using [DotLiquid](http://dotliquidmarkup.org/) syntax and the editor of your choice, such as [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), and a provided set of localized [String resources](api-management-template-resources.md#strings), [Glyph resources](api-management-template-resources.md#glyphs), and [Page controls](api-management-page-controls.md), you have great flexibility to configure the content of the pages as you see fit using these templates.</span></span>  
+# <a name="user-profile-templates-in-azure-api-management"></a><span data-ttu-id="80e4f-103">Azure API 管理中的使用者設定檔範本</span><span class="sxs-lookup"><span data-stu-id="80e4f-103">User profile templates in Azure API Management</span></span>
+<span data-ttu-id="80e4f-104">Azure API 管理提供 hello 能力 toocustomize hello 網頁內容的開發人員入口網站使用的一組設定其內容的範本。</span><span class="sxs-lookup"><span data-stu-id="80e4f-104">Azure API Management provides you hello ability toocustomize hello content of developer portal pages using a set of templates that configure their content.</span></span> <span data-ttu-id="80e4f-105">使用[DotLiquid](http://dotliquidmarkup.org/)語法和 hello 您選擇的編輯器例如[針對設計人員 DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers)，和一組提供的當地語系化[字串資源](api-management-template-resources.md#strings)， [字符資源](api-management-template-resources.md#glyphs)，和[頁面控制項](api-management-page-controls.md)，視使用這些範本，您會有很大的彈性 tooconfigure hello 網頁內容的 hello。</span><span class="sxs-lookup"><span data-stu-id="80e4f-105">Using [DotLiquid](http://dotliquidmarkup.org/) syntax and hello editor of your choice, such as [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), and a provided set of localized [String resources](api-management-template-resources.md#strings), [Glyph resources](api-management-template-resources.md#glyphs), and [Page controls](api-management-page-controls.md), you have great flexibility tooconfigure hello content of hello pages as you see fit using these templates.</span></span>  
   
- <span data-ttu-id="0aec2-106">本節的範本可讓您自訂開發人員入口網站中 [使用者設定檔] 頁面的內容。</span><span class="sxs-lookup"><span data-stu-id="0aec2-106">The templates in this section allow you to customize the content of the User profile pages in the developer portal.</span></span>  
+ <span data-ttu-id="80e4f-106">本節中的 hello 範本允許您 toocustomize hello 網頁內容的 hello 使用者設定檔在 hello 開發人員入口網站中。</span><span class="sxs-lookup"><span data-stu-id="80e4f-106">hello templates in this section allow you toocustomize hello content of hello User profile pages in hello developer portal.</span></span>  
   
--   [<span data-ttu-id="0aec2-107">設定檔</span><span class="sxs-lookup"><span data-stu-id="0aec2-107">Profile</span></span>](#Profile)  
+-   [<span data-ttu-id="80e4f-107">設定檔</span><span class="sxs-lookup"><span data-stu-id="80e4f-107">Profile</span></span>](#Profile)  
   
--   [<span data-ttu-id="0aec2-108">訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="0aec2-108">Subscriptions</span></span>](#Subscriptions)  
+-   [<span data-ttu-id="80e4f-108">訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="80e4f-108">Subscriptions</span></span>](#Subscriptions)  
   
--   [<span data-ttu-id="0aec2-109">應用程式</span><span class="sxs-lookup"><span data-stu-id="0aec2-109">Applications</span></span>](#Applications)  
+-   [<span data-ttu-id="80e4f-109">應用程式</span><span class="sxs-lookup"><span data-stu-id="80e4f-109">Applications</span></span>](#Applications)  
   
--   [<span data-ttu-id="0aec2-110">更新帳戶資訊</span><span class="sxs-lookup"><span data-stu-id="0aec2-110">Update account info</span></span>](#UpdateAccountInfo)  
+-   [<span data-ttu-id="80e4f-110">更新帳戶資訊</span><span class="sxs-lookup"><span data-stu-id="80e4f-110">Update account info</span></span>](#UpdateAccountInfo)  
   
 > [!NOTE]
->  <span data-ttu-id="0aec2-111">下列文件中包含範例預設範本，但範本可能會因持續進行的改善而有變更。</span><span class="sxs-lookup"><span data-stu-id="0aec2-111">Sample default templates are included in the following documentation, but are subject to change due to continuous improvements.</span></span> <span data-ttu-id="0aec2-112">您可以瀏覽至想要的個別範本，來檢視開發人員入口網站中的即時預設範本。</span><span class="sxs-lookup"><span data-stu-id="0aec2-112">You can view the live default templates in the developer portal by navigating to the desired individual templates.</span></span> <span data-ttu-id="0aec2-113">如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。</span><span class="sxs-lookup"><span data-stu-id="0aec2-113">For more information about working with templates, see [How to customize the API Management developer portal using templates](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).</span></span>  
+>  <span data-ttu-id="80e4f-111">預設範本範例隨附的 hello 下列文件，但主旨 toochange 到期 toocontinuous 增強功能。</span><span class="sxs-lookup"><span data-stu-id="80e4f-111">Sample default templates are included in hello following documentation, but are subject toochange due toocontinuous improvements.</span></span> <span data-ttu-id="80e4f-112">您可以檢視 hello 開發人員入口網站中的 hello 即時預設範本，藉由瀏覽 toohello 需要個別的範本。</span><span class="sxs-lookup"><span data-stu-id="80e4f-112">You can view hello live default templates in hello developer portal by navigating toohello desired individual templates.</span></span> <span data-ttu-id="80e4f-113">如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/)。</span><span class="sxs-lookup"><span data-stu-id="80e4f-113">For more information about working with templates, see [How toocustomize hello API Management developer portal using templates](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).</span></span>  
   
-##  <span data-ttu-id="0aec2-114"><a name="Profile"></a> 設定檔</span><span class="sxs-lookup"><span data-stu-id="0aec2-114"><a name="Profile"></a> Profile</span></span>  
- <span data-ttu-id="0aec2-115">**設定檔**範本可讓您自訂開發人員入口網站中 [使用者設定檔] 頁面的使用者設定檔區段。</span><span class="sxs-lookup"><span data-stu-id="0aec2-115">The **profile** template allows you to customize the user profile section of the user profile page in the developer portal.</span></span>  
+##  <span data-ttu-id="80e4f-114"><a name="Profile"></a> 設定檔</span><span class="sxs-lookup"><span data-stu-id="80e4f-114"><a name="Profile"></a> Profile</span></span>  
+ <span data-ttu-id="80e4f-115">hello**設定檔**範本可讓您在 hello 開發人員入口網站中的 hello 使用者設定檔頁面的 toocustomize hello 使用者設定檔區段。</span><span class="sxs-lookup"><span data-stu-id="80e4f-115">hello **profile** template allows you toocustomize hello user profile section of hello user profile page in hello developer portal.</span></span>  
   
- <span data-ttu-id="0aec2-116">![使用者設定檔頁面](./media/api-management-user-profile-templates/APIM-User-Profile-Page.png "APIM 使用者設定檔頁面")</span><span class="sxs-lookup"><span data-stu-id="0aec2-116">![User Profile Page](./media/api-management-user-profile-templates/APIM-User-Profile-Page.png "APIM User Profile Page")</span></span>  
+ <span data-ttu-id="80e4f-116">![使用者設定檔頁面](./media/api-management-user-profile-templates/APIM-User-Profile-Page.png "APIM 使用者設定檔頁面")</span><span class="sxs-lookup"><span data-stu-id="80e4f-116">![User Profile Page](./media/api-management-user-profile-templates/APIM-User-Profile-Page.png "APIM User Profile Page")</span></span>  
   
-### <a name="default-template"></a><span data-ttu-id="0aec2-117">預設範本</span><span class="sxs-lookup"><span data-stu-id="0aec2-117">Default template</span></span>  
+### <a name="default-template"></a><span data-ttu-id="80e4f-117">預設範本</span><span class="sxs-lookup"><span data-stu-id="80e4f-117">Default template</span></span>  
   
 ```xml  
 <div class="pull-right">  
@@ -93,29 +93,29 @@ ms.lasthandoff: 07/11/2017
 </div>  
 ```  
   
-### <a name="controls"></a><span data-ttu-id="0aec2-118">控制</span><span class="sxs-lookup"><span data-stu-id="0aec2-118">Controls</span></span>  
- <span data-ttu-id="0aec2-119">此範本可能不使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="0aec2-119">This template may not use any [page controls](api-management-page-controls.md).</span></span>  
+### <a name="controls"></a><span data-ttu-id="80e4f-118">控制</span><span class="sxs-lookup"><span data-stu-id="80e4f-118">Controls</span></span>  
+ <span data-ttu-id="80e4f-119">此範本可能不使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="80e4f-119">This template may not use any [page controls](api-management-page-controls.md).</span></span>  
   
-### <a name="data-model"></a><span data-ttu-id="0aec2-120">資料模型</span><span class="sxs-lookup"><span data-stu-id="0aec2-120">Data model</span></span>  
+### <a name="data-model"></a><span data-ttu-id="80e4f-120">資料模型</span><span class="sxs-lookup"><span data-stu-id="80e4f-120">Data model</span></span>  
   
 > [!NOTE]
->  <span data-ttu-id="0aec2-121">[設定檔](#Profile)、[應用程式](#Applications)、[訂用帳戶](#Subscriptions)範本共用相同的資料模型，並接收相同的範本資料。</span><span class="sxs-lookup"><span data-stu-id="0aec2-121">The [Profile](#Profile), [Applications](#Applications), and [Subscriptions](#Subscriptions) templates share the same data model and receive the same template data.</span></span>  
+>  <span data-ttu-id="80e4f-121">hello[設定檔](#Profile)，[應用程式](#Applications)，和[訂閱](#Subscriptions)範本會共用相同的資料模型，並收到 hello hello 相同的範本資料。</span><span class="sxs-lookup"><span data-stu-id="80e4f-121">hello [Profile](#Profile), [Applications](#Applications), and [Subscriptions](#Subscriptions) templates share hello same data model and receive hello same template data.</span></span>  
   
-|<span data-ttu-id="0aec2-122">屬性</span><span class="sxs-lookup"><span data-stu-id="0aec2-122">Property</span></span>|<span data-ttu-id="0aec2-123">類型</span><span class="sxs-lookup"><span data-stu-id="0aec2-123">Type</span></span>|<span data-ttu-id="0aec2-124">說明</span><span class="sxs-lookup"><span data-stu-id="0aec2-124">Description</span></span>|  
+|<span data-ttu-id="80e4f-122">屬性</span><span class="sxs-lookup"><span data-stu-id="80e4f-122">Property</span></span>|<span data-ttu-id="80e4f-123">類型</span><span class="sxs-lookup"><span data-stu-id="80e4f-123">Type</span></span>|<span data-ttu-id="80e4f-124">說明</span><span class="sxs-lookup"><span data-stu-id="80e4f-124">Description</span></span>|  
 |--------------|----------|-----------------|  
-|<span data-ttu-id="0aec2-125">firstName</span><span class="sxs-lookup"><span data-stu-id="0aec2-125">firstName</span></span>|<span data-ttu-id="0aec2-126">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-126">string</span></span>|<span data-ttu-id="0aec2-127">目前使用者的名字。</span><span class="sxs-lookup"><span data-stu-id="0aec2-127">First name of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-128">lastName</span><span class="sxs-lookup"><span data-stu-id="0aec2-128">lastName</span></span>|<span data-ttu-id="0aec2-129">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-129">string</span></span>|<span data-ttu-id="0aec2-130">目前使用者的姓氏。</span><span class="sxs-lookup"><span data-stu-id="0aec2-130">Last name of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-131">companyName</span><span class="sxs-lookup"><span data-stu-id="0aec2-131">companyName</span></span>|<span data-ttu-id="0aec2-132">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-132">string</span></span>|<span data-ttu-id="0aec2-133">目前使用者的公司名稱。</span><span class="sxs-lookup"><span data-stu-id="0aec2-133">The company name of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-134">addresserEmail</span><span class="sxs-lookup"><span data-stu-id="0aec2-134">addresserEmail</span></span>|<span data-ttu-id="0aec2-135">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-135">string</span></span>|<span data-ttu-id="0aec2-136">目前使用者的電子郵件地址。</span><span class="sxs-lookup"><span data-stu-id="0aec2-136">Email address of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-137">developersUsageStatisticsLinkk</span><span class="sxs-lookup"><span data-stu-id="0aec2-137">developersUsageStatisticsLinkk</span></span>|<span data-ttu-id="0aec2-138">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-138">string</span></span>|<span data-ttu-id="0aec2-139">相對 URL，可前往檢視目前使用者的分析。</span><span class="sxs-lookup"><span data-stu-id="0aec2-139">Relative URL to view analytics for the current user.</span></span>|  
-|<span data-ttu-id="0aec2-140">subscriptions</span><span class="sxs-lookup"><span data-stu-id="0aec2-140">subscriptions</span></span>|<span data-ttu-id="0aec2-141">[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="0aec2-141">Collection of [Subscription](api-management-template-data-model-reference.md#Subscription) entities.</span></span>|<span data-ttu-id="0aec2-142">目前使用者的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="0aec2-142">The subscriptions for the current user.</span></span>|  
-|<span data-ttu-id="0aec2-143">應用程式所需</span><span class="sxs-lookup"><span data-stu-id="0aec2-143">applications</span></span>|<span data-ttu-id="0aec2-144">[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="0aec2-144">Collection of [Application](api-management-template-data-model-reference.md#Application) entities.</span></span>|<span data-ttu-id="0aec2-145">目前使用者的應用程式。</span><span class="sxs-lookup"><span data-stu-id="0aec2-145">The applications of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-146">changePasswordUrl</span><span class="sxs-lookup"><span data-stu-id="0aec2-146">changePasswordUrl</span></span>|<span data-ttu-id="0aec2-147">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-147">string</span></span>|<span data-ttu-id="0aec2-148">相對 URL，可前往變更目前使用者的密碼。</span><span class="sxs-lookup"><span data-stu-id="0aec2-148">The relative URL to change the current user's password.</span></span>|  
-|<span data-ttu-id="0aec2-149">changeNameOrEmailUrl</span><span class="sxs-lookup"><span data-stu-id="0aec2-149">changeNameOrEmailUrl</span></span>|<span data-ttu-id="0aec2-150">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-150">string</span></span>|<span data-ttu-id="0aec2-151">相對 URL，可前往變更目前使用者的名稱和電子郵件。</span><span class="sxs-lookup"><span data-stu-id="0aec2-151">The relative URL to change the name and email for the current user.</span></span>|  
-|<span data-ttu-id="0aec2-152">canChangePassword</span><span class="sxs-lookup"><span data-stu-id="0aec2-152">canChangePassword</span></span>|<span data-ttu-id="0aec2-153">布林值</span><span class="sxs-lookup"><span data-stu-id="0aec2-153">boolean</span></span>|<span data-ttu-id="0aec2-154">目前使用者是否可以變更其密碼。</span><span class="sxs-lookup"><span data-stu-id="0aec2-154">Whether the current user can change their password.</span></span>|  
-|<span data-ttu-id="0aec2-155">isSystemUser</span><span class="sxs-lookup"><span data-stu-id="0aec2-155">isSystemUser</span></span>|<span data-ttu-id="0aec2-156">布林值</span><span class="sxs-lookup"><span data-stu-id="0aec2-156">boolean</span></span>|<span data-ttu-id="0aec2-157">目前使用者是否是其中一個內建[群組](api-management-key-concepts.md#groups)的成員。</span><span class="sxs-lookup"><span data-stu-id="0aec2-157">Whether the current user is a member of one of the built-in [groups](api-management-key-concepts.md#groups).</span></span>|  
+|<span data-ttu-id="80e4f-125">firstName</span><span class="sxs-lookup"><span data-stu-id="80e4f-125">firstName</span></span>|<span data-ttu-id="80e4f-126">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-126">string</span></span>|<span data-ttu-id="80e4f-127">Hello 目前使用者的名字。</span><span class="sxs-lookup"><span data-stu-id="80e4f-127">First name of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-128">lastName</span><span class="sxs-lookup"><span data-stu-id="80e4f-128">lastName</span></span>|<span data-ttu-id="80e4f-129">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-129">string</span></span>|<span data-ttu-id="80e4f-130">Hello 目前使用者的姓氏。</span><span class="sxs-lookup"><span data-stu-id="80e4f-130">Last name of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-131">companyName</span><span class="sxs-lookup"><span data-stu-id="80e4f-131">companyName</span></span>|<span data-ttu-id="80e4f-132">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-132">string</span></span>|<span data-ttu-id="80e4f-133">hello hello 目前使用者的公司名稱。</span><span class="sxs-lookup"><span data-stu-id="80e4f-133">hello company name of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-134">addresserEmail</span><span class="sxs-lookup"><span data-stu-id="80e4f-134">addresserEmail</span></span>|<span data-ttu-id="80e4f-135">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-135">string</span></span>|<span data-ttu-id="80e4f-136">Hello 目前使用者的電子郵件地址。</span><span class="sxs-lookup"><span data-stu-id="80e4f-136">Email address of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-137">developersUsageStatisticsLinkk</span><span class="sxs-lookup"><span data-stu-id="80e4f-137">developersUsageStatisticsLinkk</span></span>|<span data-ttu-id="80e4f-138">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-138">string</span></span>|<span data-ttu-id="80e4f-139">Hello 目前使用者的相對 URL tooview 分析。</span><span class="sxs-lookup"><span data-stu-id="80e4f-139">Relative URL tooview analytics for hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-140">subscriptions</span><span class="sxs-lookup"><span data-stu-id="80e4f-140">subscriptions</span></span>|<span data-ttu-id="80e4f-141">[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="80e4f-141">Collection of [Subscription](api-management-template-data-model-reference.md#Subscription) entities.</span></span>|<span data-ttu-id="80e4f-142">hello hello 目前使用者的訂閱。</span><span class="sxs-lookup"><span data-stu-id="80e4f-142">hello subscriptions for hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-143">應用程式所需</span><span class="sxs-lookup"><span data-stu-id="80e4f-143">applications</span></span>|<span data-ttu-id="80e4f-144">[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="80e4f-144">Collection of [Application](api-management-template-data-model-reference.md#Application) entities.</span></span>|<span data-ttu-id="80e4f-145">hello 目前使用者的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="80e4f-145">hello applications of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-146">changePasswordUrl</span><span class="sxs-lookup"><span data-stu-id="80e4f-146">changePasswordUrl</span></span>|<span data-ttu-id="80e4f-147">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-147">string</span></span>|<span data-ttu-id="80e4f-148">hello 相對 URL toochange hello 目前使用者的密碼。</span><span class="sxs-lookup"><span data-stu-id="80e4f-148">hello relative URL toochange hello current user's password.</span></span>|  
+|<span data-ttu-id="80e4f-149">changeNameOrEmailUrl</span><span class="sxs-lookup"><span data-stu-id="80e4f-149">changeNameOrEmailUrl</span></span>|<span data-ttu-id="80e4f-150">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-150">string</span></span>|<span data-ttu-id="80e4f-151">hello 相對 URL toochange hello 名稱與 hello 目前使用者的電子郵件。</span><span class="sxs-lookup"><span data-stu-id="80e4f-151">hello relative URL toochange hello name and email for hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-152">canChangePassword</span><span class="sxs-lookup"><span data-stu-id="80e4f-152">canChangePassword</span></span>|<span data-ttu-id="80e4f-153">布林值</span><span class="sxs-lookup"><span data-stu-id="80e4f-153">boolean</span></span>|<span data-ttu-id="80e4f-154">是否 hello 目前的使用者可以變更其密碼。</span><span class="sxs-lookup"><span data-stu-id="80e4f-154">Whether hello current user can change their password.</span></span>|  
+|<span data-ttu-id="80e4f-155">isSystemUser</span><span class="sxs-lookup"><span data-stu-id="80e4f-155">isSystemUser</span></span>|<span data-ttu-id="80e4f-156">布林值</span><span class="sxs-lookup"><span data-stu-id="80e4f-156">boolean</span></span>|<span data-ttu-id="80e4f-157">Hello 目前使用者是否為其中一個 hello 內建成員[群組](api-management-key-concepts.md#groups)。</span><span class="sxs-lookup"><span data-stu-id="80e4f-157">Whether hello current user is a member of one of hello built-in [groups](api-management-key-concepts.md#groups).</span></span>|  
   
-### <a name="sample-template-data"></a><span data-ttu-id="0aec2-158">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="0aec2-158">Sample template data</span></span>  
+### <a name="sample-template-data"></a><span data-ttu-id="80e4f-158">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="80e4f-158">Sample template data</span></span>  
   
 ```json  
 {  
@@ -130,7 +130,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -153,7 +153,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -181,12 +181,12 @@ ms.lasthandoff: 07/11/2017
 }  
 ```  
   
-##  <span data-ttu-id="0aec2-159"><a name="Subscriptions"></a> 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="0aec2-159"><a name="Subscriptions"></a> Subscriptions</span></span>  
- <span data-ttu-id="0aec2-160">**訂用帳戶**範本可讓您自訂開發人員入口網站中 [使用者設定檔] 頁面的訂用帳戶區段。</span><span class="sxs-lookup"><span data-stu-id="0aec2-160">The **Subscriptions** template allows you to customize the subscriptions section of the user profile page in the developer portal.</span></span>  
+##  <span data-ttu-id="80e4f-159"><a name="Subscriptions"></a> 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="80e4f-159"><a name="Subscriptions"></a> Subscriptions</span></span>  
+ <span data-ttu-id="80e4f-160">hello**訂閱**範本可讓您 toocustomize hello 訂閱 區段中的 hello 開發人員入口網站中的 hello 使用者設定檔頁面。</span><span class="sxs-lookup"><span data-stu-id="80e4f-160">hello **Subscriptions** template allows you toocustomize hello subscriptions section of hello user profile page in hello developer portal.</span></span>  
   
- <span data-ttu-id="0aec2-161">![使用者訂用帳戶頁面](./media/api-management-user-profile-templates/APIM-User-Subscription-Page.png "APIM 使用者訂用帳戶頁面")</span><span class="sxs-lookup"><span data-stu-id="0aec2-161">![User Subscription Page](./media/api-management-user-profile-templates/APIM-User-Subscription-Page.png "APIM User Subscription Page")</span></span>  
+ <span data-ttu-id="80e4f-161">![使用者訂用帳戶頁面](./media/api-management-user-profile-templates/APIM-User-Subscription-Page.png "APIM 使用者訂用帳戶頁面")</span><span class="sxs-lookup"><span data-stu-id="80e4f-161">![User Subscription Page](./media/api-management-user-profile-templates/APIM-User-Subscription-Page.png "APIM User Subscription Page")</span></span>  
   
-### <a name="default-template"></a><span data-ttu-id="0aec2-162">預設範本</span><span class="sxs-lookup"><span data-stu-id="0aec2-162">Default template</span></span>  
+### <a name="default-template"></a><span data-ttu-id="80e4f-162">預設範本</span><span class="sxs-lookup"><span data-stu-id="80e4f-162">Default template</span></span>  
   
 ```xml  
 <div class="ap-account-subscriptions">  
@@ -312,31 +312,31 @@ ms.lasthandoff: 07/11/2017
 </div>  
 ```  
   
-### <a name="controls"></a><span data-ttu-id="0aec2-163">控制</span><span class="sxs-lookup"><span data-stu-id="0aec2-163">Controls</span></span>  
- <span data-ttu-id="0aec2-164">此範本可能會使用下列[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="0aec2-164">This template may use the following [page controls](api-management-page-controls.md).</span></span>  
+### <a name="controls"></a><span data-ttu-id="80e4f-163">控制</span><span class="sxs-lookup"><span data-stu-id="80e4f-163">Controls</span></span>  
+ <span data-ttu-id="80e4f-164">此範本可能會使用 hello 下列[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="80e4f-164">This template may use hello following [page controls](api-management-page-controls.md).</span></span>  
   
--   [<span data-ttu-id="0aec2-165">subscription-cancel</span><span class="sxs-lookup"><span data-stu-id="0aec2-165">subscription-cancel</span></span>](api-management-page-controls.md#subscription-cancel)  
+-   [<span data-ttu-id="80e4f-165">subscription-cancel</span><span class="sxs-lookup"><span data-stu-id="80e4f-165">subscription-cancel</span></span>](api-management-page-controls.md#subscription-cancel)  
   
-### <a name="data-model"></a><span data-ttu-id="0aec2-166">資料模型</span><span class="sxs-lookup"><span data-stu-id="0aec2-166">Data model</span></span>  
+### <a name="data-model"></a><span data-ttu-id="80e4f-166">資料模型</span><span class="sxs-lookup"><span data-stu-id="80e4f-166">Data model</span></span>  
   
 > [!NOTE]
->  <span data-ttu-id="0aec2-167">[設定檔](#Profile)、[應用程式](#Applications)、[訂用帳戶](#Subscriptions)範本共用相同的資料模型，並接收相同的範本資料。</span><span class="sxs-lookup"><span data-stu-id="0aec2-167">The [Profile](#Profile), [Applications](#Applications), and [Subscriptions](#Subscriptions) templates share the same data model and receive the same template data.</span></span>  
+>  <span data-ttu-id="80e4f-167">hello[設定檔](#Profile)，[應用程式](#Applications)，和[訂閱](#Subscriptions)範本會共用相同的資料模型，並收到 hello hello 相同的範本資料。</span><span class="sxs-lookup"><span data-stu-id="80e4f-167">hello [Profile](#Profile), [Applications](#Applications), and [Subscriptions](#Subscriptions) templates share hello same data model and receive hello same template data.</span></span>  
   
-|<span data-ttu-id="0aec2-168">屬性</span><span class="sxs-lookup"><span data-stu-id="0aec2-168">Property</span></span>|<span data-ttu-id="0aec2-169">類型</span><span class="sxs-lookup"><span data-stu-id="0aec2-169">Type</span></span>|<span data-ttu-id="0aec2-170">說明</span><span class="sxs-lookup"><span data-stu-id="0aec2-170">Description</span></span>|  
+|<span data-ttu-id="80e4f-168">屬性</span><span class="sxs-lookup"><span data-stu-id="80e4f-168">Property</span></span>|<span data-ttu-id="80e4f-169">類型</span><span class="sxs-lookup"><span data-stu-id="80e4f-169">Type</span></span>|<span data-ttu-id="80e4f-170">說明</span><span class="sxs-lookup"><span data-stu-id="80e4f-170">Description</span></span>|  
 |--------------|----------|-----------------|  
-|<span data-ttu-id="0aec2-171">firstName</span><span class="sxs-lookup"><span data-stu-id="0aec2-171">firstName</span></span>|<span data-ttu-id="0aec2-172">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-172">string</span></span>|<span data-ttu-id="0aec2-173">目前使用者的名字。</span><span class="sxs-lookup"><span data-stu-id="0aec2-173">First name of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-174">lastName</span><span class="sxs-lookup"><span data-stu-id="0aec2-174">lastName</span></span>|<span data-ttu-id="0aec2-175">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-175">string</span></span>|<span data-ttu-id="0aec2-176">目前使用者的姓氏。</span><span class="sxs-lookup"><span data-stu-id="0aec2-176">Last name of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-177">companyName</span><span class="sxs-lookup"><span data-stu-id="0aec2-177">companyName</span></span>|<span data-ttu-id="0aec2-178">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-178">string</span></span>|<span data-ttu-id="0aec2-179">目前使用者的公司名稱。</span><span class="sxs-lookup"><span data-stu-id="0aec2-179">The company name of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-180">addresserEmail</span><span class="sxs-lookup"><span data-stu-id="0aec2-180">addresserEmail</span></span>|<span data-ttu-id="0aec2-181">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-181">string</span></span>|<span data-ttu-id="0aec2-182">目前使用者的電子郵件地址。</span><span class="sxs-lookup"><span data-stu-id="0aec2-182">Email address of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-183">developersUsageStatisticsLinkk</span><span class="sxs-lookup"><span data-stu-id="0aec2-183">developersUsageStatisticsLinkk</span></span>|<span data-ttu-id="0aec2-184">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-184">string</span></span>|<span data-ttu-id="0aec2-185">相對 URL，可前往檢視目前使用者的分析。</span><span class="sxs-lookup"><span data-stu-id="0aec2-185">Relative URL to view analytics for the current user.</span></span>|  
-|<span data-ttu-id="0aec2-186">subscriptions</span><span class="sxs-lookup"><span data-stu-id="0aec2-186">subscriptions</span></span>|<span data-ttu-id="0aec2-187">[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="0aec2-187">Collection of [Subscription](api-management-template-data-model-reference.md#Subscription) entities.</span></span>|<span data-ttu-id="0aec2-188">目前使用者的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="0aec2-188">The subscriptions for the current user.</span></span>|  
-|<span data-ttu-id="0aec2-189">應用程式所需</span><span class="sxs-lookup"><span data-stu-id="0aec2-189">applications</span></span>|<span data-ttu-id="0aec2-190">[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="0aec2-190">Collection of [Application](api-management-template-data-model-reference.md#Application) entities.</span></span>|<span data-ttu-id="0aec2-191">目前使用者的應用程式。</span><span class="sxs-lookup"><span data-stu-id="0aec2-191">The applications of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-192">changePasswordUrl</span><span class="sxs-lookup"><span data-stu-id="0aec2-192">changePasswordUrl</span></span>|<span data-ttu-id="0aec2-193">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-193">string</span></span>|<span data-ttu-id="0aec2-194">相對 URL，可前往變更目前使用者的密碼。</span><span class="sxs-lookup"><span data-stu-id="0aec2-194">The relative URL to change the current user's password.</span></span>|  
-|<span data-ttu-id="0aec2-195">changeNameOrEmailUrl</span><span class="sxs-lookup"><span data-stu-id="0aec2-195">changeNameOrEmailUrl</span></span>|<span data-ttu-id="0aec2-196">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-196">string</span></span>|<span data-ttu-id="0aec2-197">相對 URL，可前往變更目前使用者的名稱和電子郵件。</span><span class="sxs-lookup"><span data-stu-id="0aec2-197">The relative URL to change the name and email for the current user.</span></span>|  
-|<span data-ttu-id="0aec2-198">canChangePassword</span><span class="sxs-lookup"><span data-stu-id="0aec2-198">canChangePassword</span></span>|<span data-ttu-id="0aec2-199">布林值</span><span class="sxs-lookup"><span data-stu-id="0aec2-199">boolean</span></span>|<span data-ttu-id="0aec2-200">目前使用者是否可以變更其密碼。</span><span class="sxs-lookup"><span data-stu-id="0aec2-200">Whether the current user can change their password.</span></span>|  
-|<span data-ttu-id="0aec2-201">isSystemUser</span><span class="sxs-lookup"><span data-stu-id="0aec2-201">isSystemUser</span></span>|<span data-ttu-id="0aec2-202">布林值</span><span class="sxs-lookup"><span data-stu-id="0aec2-202">boolean</span></span>|<span data-ttu-id="0aec2-203">目前使用者是否是其中一個內建[群組](api-management-key-concepts.md#groups)的成員。</span><span class="sxs-lookup"><span data-stu-id="0aec2-203">Whether the current user is a member of one of the built-in [groups](api-management-key-concepts.md#groups).</span></span>|  
+|<span data-ttu-id="80e4f-171">firstName</span><span class="sxs-lookup"><span data-stu-id="80e4f-171">firstName</span></span>|<span data-ttu-id="80e4f-172">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-172">string</span></span>|<span data-ttu-id="80e4f-173">Hello 目前使用者的名字。</span><span class="sxs-lookup"><span data-stu-id="80e4f-173">First name of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-174">lastName</span><span class="sxs-lookup"><span data-stu-id="80e4f-174">lastName</span></span>|<span data-ttu-id="80e4f-175">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-175">string</span></span>|<span data-ttu-id="80e4f-176">Hello 目前使用者的姓氏。</span><span class="sxs-lookup"><span data-stu-id="80e4f-176">Last name of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-177">companyName</span><span class="sxs-lookup"><span data-stu-id="80e4f-177">companyName</span></span>|<span data-ttu-id="80e4f-178">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-178">string</span></span>|<span data-ttu-id="80e4f-179">hello hello 目前使用者的公司名稱。</span><span class="sxs-lookup"><span data-stu-id="80e4f-179">hello company name of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-180">addresserEmail</span><span class="sxs-lookup"><span data-stu-id="80e4f-180">addresserEmail</span></span>|<span data-ttu-id="80e4f-181">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-181">string</span></span>|<span data-ttu-id="80e4f-182">Hello 目前使用者的電子郵件地址。</span><span class="sxs-lookup"><span data-stu-id="80e4f-182">Email address of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-183">developersUsageStatisticsLinkk</span><span class="sxs-lookup"><span data-stu-id="80e4f-183">developersUsageStatisticsLinkk</span></span>|<span data-ttu-id="80e4f-184">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-184">string</span></span>|<span data-ttu-id="80e4f-185">Hello 目前使用者的相對 URL tooview 分析。</span><span class="sxs-lookup"><span data-stu-id="80e4f-185">Relative URL tooview analytics for hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-186">subscriptions</span><span class="sxs-lookup"><span data-stu-id="80e4f-186">subscriptions</span></span>|<span data-ttu-id="80e4f-187">[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="80e4f-187">Collection of [Subscription](api-management-template-data-model-reference.md#Subscription) entities.</span></span>|<span data-ttu-id="80e4f-188">hello hello 目前使用者的訂閱。</span><span class="sxs-lookup"><span data-stu-id="80e4f-188">hello subscriptions for hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-189">應用程式所需</span><span class="sxs-lookup"><span data-stu-id="80e4f-189">applications</span></span>|<span data-ttu-id="80e4f-190">[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="80e4f-190">Collection of [Application](api-management-template-data-model-reference.md#Application) entities.</span></span>|<span data-ttu-id="80e4f-191">hello 目前使用者的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="80e4f-191">hello applications of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-192">changePasswordUrl</span><span class="sxs-lookup"><span data-stu-id="80e4f-192">changePasswordUrl</span></span>|<span data-ttu-id="80e4f-193">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-193">string</span></span>|<span data-ttu-id="80e4f-194">hello 相對 URL toochange hello 目前使用者的密碼。</span><span class="sxs-lookup"><span data-stu-id="80e4f-194">hello relative URL toochange hello current user's password.</span></span>|  
+|<span data-ttu-id="80e4f-195">changeNameOrEmailUrl</span><span class="sxs-lookup"><span data-stu-id="80e4f-195">changeNameOrEmailUrl</span></span>|<span data-ttu-id="80e4f-196">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-196">string</span></span>|<span data-ttu-id="80e4f-197">hello 相對 URL toochange hello 名稱與 hello 目前使用者的電子郵件。</span><span class="sxs-lookup"><span data-stu-id="80e4f-197">hello relative URL toochange hello name and email for hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-198">canChangePassword</span><span class="sxs-lookup"><span data-stu-id="80e4f-198">canChangePassword</span></span>|<span data-ttu-id="80e4f-199">布林值</span><span class="sxs-lookup"><span data-stu-id="80e4f-199">boolean</span></span>|<span data-ttu-id="80e4f-200">是否 hello 目前的使用者可以變更其密碼。</span><span class="sxs-lookup"><span data-stu-id="80e4f-200">Whether hello current user can change their password.</span></span>|  
+|<span data-ttu-id="80e4f-201">isSystemUser</span><span class="sxs-lookup"><span data-stu-id="80e4f-201">isSystemUser</span></span>|<span data-ttu-id="80e4f-202">布林值</span><span class="sxs-lookup"><span data-stu-id="80e4f-202">boolean</span></span>|<span data-ttu-id="80e4f-203">Hello 目前使用者是否為其中一個 hello 內建成員[群組](api-management-key-concepts.md#groups)。</span><span class="sxs-lookup"><span data-stu-id="80e4f-203">Whether hello current user is a member of one of hello built-in [groups](api-management-key-concepts.md#groups).</span></span>|  
   
-### <a name="sample-template-data"></a><span data-ttu-id="0aec2-204">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="0aec2-204">Sample template data</span></span>  
+### <a name="sample-template-data"></a><span data-ttu-id="80e4f-204">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="80e4f-204">Sample template data</span></span>  
   
 ```json  
 {  
@@ -351,7 +351,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -374,7 +374,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -402,12 +402,12 @@ ms.lasthandoff: 07/11/2017
 }  
 ```  
   
-##  <span data-ttu-id="0aec2-205"><a name="Applications"></a> 應用程式</span><span class="sxs-lookup"><span data-stu-id="0aec2-205"><a name="Applications"></a> Applications</span></span>  
- <span data-ttu-id="0aec2-206">**應用程式**範本可讓您自訂開發人員入口網站中 [使用者設定檔] 頁面的訂用帳戶區段。</span><span class="sxs-lookup"><span data-stu-id="0aec2-206">The **Applications** template allows you to customize the subscriptions section of the user profile page in the developer portal.</span></span>  
+##  <span data-ttu-id="80e4f-205"><a name="Applications"></a> 應用程式</span><span class="sxs-lookup"><span data-stu-id="80e4f-205"><a name="Applications"></a> Applications</span></span>  
+ <span data-ttu-id="80e4f-206">hello**應用程式**範本可讓您 toocustomize hello 訂閱 區段中的 hello 開發人員入口網站中的 hello 使用者設定檔頁面。</span><span class="sxs-lookup"><span data-stu-id="80e4f-206">hello **Applications** template allows you toocustomize hello subscriptions section of hello user profile page in hello developer portal.</span></span>  
   
- <span data-ttu-id="0aec2-207">![使用者帳戶的應用程式頁面](./media/api-management-user-profile-templates/APIM-User-Account-Applications-Page.png "APIM 使用者帳戶的應用程式頁面")</span><span class="sxs-lookup"><span data-stu-id="0aec2-207">![User Account Applications Page](./media/api-management-user-profile-templates/APIM-User-Account-Applications-Page.png "APIM User Account Applications Page")</span></span>  
+ <span data-ttu-id="80e4f-207">![使用者帳戶的應用程式頁面](./media/api-management-user-profile-templates/APIM-User-Account-Applications-Page.png "APIM 使用者帳戶的應用程式頁面")</span><span class="sxs-lookup"><span data-stu-id="80e4f-207">![User Account Applications Page](./media/api-management-user-profile-templates/APIM-User-Account-Applications-Page.png "APIM User Account Applications Page")</span></span>  
   
-### <a name="default-template"></a><span data-ttu-id="0aec2-208">預設範本</span><span class="sxs-lookup"><span data-stu-id="0aec2-208">Default template</span></span>  
+### <a name="default-template"></a><span data-ttu-id="80e4f-208">預設範本</span><span class="sxs-lookup"><span data-stu-id="80e4f-208">Default template</span></span>  
   
 ```xml  
 <div class="ap-account-applications">  
@@ -475,31 +475,31 @@ ms.lasthandoff: 07/11/2017
 </div>  
 ```  
   
-### <a name="controls"></a><span data-ttu-id="0aec2-209">控制</span><span class="sxs-lookup"><span data-stu-id="0aec2-209">Controls</span></span>  
- <span data-ttu-id="0aec2-210">此範本可能會使用下列[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="0aec2-210">This template may use the following [page controls](api-management-page-controls.md).</span></span>  
+### <a name="controls"></a><span data-ttu-id="80e4f-209">控制</span><span class="sxs-lookup"><span data-stu-id="80e4f-209">Controls</span></span>  
+ <span data-ttu-id="80e4f-210">此範本可能會使用 hello 下列[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="80e4f-210">This template may use hello following [page controls](api-management-page-controls.md).</span></span>  
   
--   [<span data-ttu-id="0aec2-211">app-actions</span><span class="sxs-lookup"><span data-stu-id="0aec2-211">app-actions</span></span>](api-management-page-controls.md#app-actions)  
+-   [<span data-ttu-id="80e4f-211">app-actions</span><span class="sxs-lookup"><span data-stu-id="80e4f-211">app-actions</span></span>](api-management-page-controls.md#app-actions)  
   
-### <a name="data-model"></a><span data-ttu-id="0aec2-212">資料模型</span><span class="sxs-lookup"><span data-stu-id="0aec2-212">Data model</span></span>  
+### <a name="data-model"></a><span data-ttu-id="80e4f-212">資料模型</span><span class="sxs-lookup"><span data-stu-id="80e4f-212">Data model</span></span>  
   
 > [!NOTE]
->  <span data-ttu-id="0aec2-213">[設定檔](#Profile)、[應用程式](#Applications)、[訂用帳戶](#Subscriptions)範本共用相同的資料模型，並接收相同的範本資料。</span><span class="sxs-lookup"><span data-stu-id="0aec2-213">The [Profile](#Profile), [Applications](#Applications), and [Subscriptions](#Subscriptions) templates share the same data model and receive the same template data.</span></span>  
+>  <span data-ttu-id="80e4f-213">hello[設定檔](#Profile)，[應用程式](#Applications)，和[訂閱](#Subscriptions)範本會共用相同的資料模型，並收到 hello hello 相同的範本資料。</span><span class="sxs-lookup"><span data-stu-id="80e4f-213">hello [Profile](#Profile), [Applications](#Applications), and [Subscriptions](#Subscriptions) templates share hello same data model and receive hello same template data.</span></span>  
   
-|<span data-ttu-id="0aec2-214">屬性</span><span class="sxs-lookup"><span data-stu-id="0aec2-214">Property</span></span>|<span data-ttu-id="0aec2-215">類型</span><span class="sxs-lookup"><span data-stu-id="0aec2-215">Type</span></span>|<span data-ttu-id="0aec2-216">說明</span><span class="sxs-lookup"><span data-stu-id="0aec2-216">Description</span></span>|  
+|<span data-ttu-id="80e4f-214">屬性</span><span class="sxs-lookup"><span data-stu-id="80e4f-214">Property</span></span>|<span data-ttu-id="80e4f-215">類型</span><span class="sxs-lookup"><span data-stu-id="80e4f-215">Type</span></span>|<span data-ttu-id="80e4f-216">說明</span><span class="sxs-lookup"><span data-stu-id="80e4f-216">Description</span></span>|  
 |--------------|----------|-----------------|  
-|<span data-ttu-id="0aec2-217">firstName</span><span class="sxs-lookup"><span data-stu-id="0aec2-217">firstName</span></span>|<span data-ttu-id="0aec2-218">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-218">string</span></span>|<span data-ttu-id="0aec2-219">目前使用者的名字。</span><span class="sxs-lookup"><span data-stu-id="0aec2-219">First name of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-220">lastName</span><span class="sxs-lookup"><span data-stu-id="0aec2-220">lastName</span></span>|<span data-ttu-id="0aec2-221">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-221">string</span></span>|<span data-ttu-id="0aec2-222">目前使用者的姓氏。</span><span class="sxs-lookup"><span data-stu-id="0aec2-222">Last name of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-223">companyName</span><span class="sxs-lookup"><span data-stu-id="0aec2-223">companyName</span></span>|<span data-ttu-id="0aec2-224">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-224">string</span></span>|<span data-ttu-id="0aec2-225">目前使用者的公司名稱。</span><span class="sxs-lookup"><span data-stu-id="0aec2-225">The company name of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-226">addresserEmail</span><span class="sxs-lookup"><span data-stu-id="0aec2-226">addresserEmail</span></span>|<span data-ttu-id="0aec2-227">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-227">string</span></span>|<span data-ttu-id="0aec2-228">目前使用者的電子郵件地址。</span><span class="sxs-lookup"><span data-stu-id="0aec2-228">Email address of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-229">developersUsageStatisticsLinkk</span><span class="sxs-lookup"><span data-stu-id="0aec2-229">developersUsageStatisticsLinkk</span></span>|<span data-ttu-id="0aec2-230">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-230">string</span></span>|<span data-ttu-id="0aec2-231">相對 URL，可前往檢視目前使用者的分析。</span><span class="sxs-lookup"><span data-stu-id="0aec2-231">Relative URL to view analytics for the current user.</span></span>|  
-|<span data-ttu-id="0aec2-232">subscriptions</span><span class="sxs-lookup"><span data-stu-id="0aec2-232">subscriptions</span></span>|<span data-ttu-id="0aec2-233">[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="0aec2-233">Collection of [Subscription](api-management-template-data-model-reference.md#Subscription) entities.</span></span>|<span data-ttu-id="0aec2-234">目前使用者的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="0aec2-234">The subscriptions for the current user.</span></span>|  
-|<span data-ttu-id="0aec2-235">應用程式所需</span><span class="sxs-lookup"><span data-stu-id="0aec2-235">applications</span></span>|<span data-ttu-id="0aec2-236">[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="0aec2-236">Collection of [Application](api-management-template-data-model-reference.md#Application) entities.</span></span>|<span data-ttu-id="0aec2-237">目前使用者的應用程式。</span><span class="sxs-lookup"><span data-stu-id="0aec2-237">The applications of the current user.</span></span>|  
-|<span data-ttu-id="0aec2-238">changePasswordUrl</span><span class="sxs-lookup"><span data-stu-id="0aec2-238">changePasswordUrl</span></span>|<span data-ttu-id="0aec2-239">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-239">string</span></span>|<span data-ttu-id="0aec2-240">相對 URL，可前往變更目前使用者的密碼。</span><span class="sxs-lookup"><span data-stu-id="0aec2-240">The relative URL to change the current user's password.</span></span>|  
-|<span data-ttu-id="0aec2-241">changeNameOrEmailUrl</span><span class="sxs-lookup"><span data-stu-id="0aec2-241">changeNameOrEmailUrl</span></span>|<span data-ttu-id="0aec2-242">字串</span><span class="sxs-lookup"><span data-stu-id="0aec2-242">string</span></span>|<span data-ttu-id="0aec2-243">相對 URL，可前往變更目前使用者的名稱和電子郵件。</span><span class="sxs-lookup"><span data-stu-id="0aec2-243">The relative URL to change the name and email for the current user.</span></span>|  
-|<span data-ttu-id="0aec2-244">canChangePassword</span><span class="sxs-lookup"><span data-stu-id="0aec2-244">canChangePassword</span></span>|<span data-ttu-id="0aec2-245">布林值</span><span class="sxs-lookup"><span data-stu-id="0aec2-245">boolean</span></span>|<span data-ttu-id="0aec2-246">目前使用者是否可以變更其密碼。</span><span class="sxs-lookup"><span data-stu-id="0aec2-246">Whether the current user can change their password.</span></span>|  
-|<span data-ttu-id="0aec2-247">isSystemUser</span><span class="sxs-lookup"><span data-stu-id="0aec2-247">isSystemUser</span></span>|<span data-ttu-id="0aec2-248">布林值</span><span class="sxs-lookup"><span data-stu-id="0aec2-248">boolean</span></span>|<span data-ttu-id="0aec2-249">目前使用者是否是其中一個內建[群組](api-management-key-concepts.md#groups)的成員。</span><span class="sxs-lookup"><span data-stu-id="0aec2-249">Whether the current user is a member of one of the built-in [groups](api-management-key-concepts.md#groups).</span></span>|  
+|<span data-ttu-id="80e4f-217">firstName</span><span class="sxs-lookup"><span data-stu-id="80e4f-217">firstName</span></span>|<span data-ttu-id="80e4f-218">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-218">string</span></span>|<span data-ttu-id="80e4f-219">Hello 目前使用者的名字。</span><span class="sxs-lookup"><span data-stu-id="80e4f-219">First name of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-220">lastName</span><span class="sxs-lookup"><span data-stu-id="80e4f-220">lastName</span></span>|<span data-ttu-id="80e4f-221">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-221">string</span></span>|<span data-ttu-id="80e4f-222">Hello 目前使用者的姓氏。</span><span class="sxs-lookup"><span data-stu-id="80e4f-222">Last name of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-223">companyName</span><span class="sxs-lookup"><span data-stu-id="80e4f-223">companyName</span></span>|<span data-ttu-id="80e4f-224">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-224">string</span></span>|<span data-ttu-id="80e4f-225">hello hello 目前使用者的公司名稱。</span><span class="sxs-lookup"><span data-stu-id="80e4f-225">hello company name of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-226">addresserEmail</span><span class="sxs-lookup"><span data-stu-id="80e4f-226">addresserEmail</span></span>|<span data-ttu-id="80e4f-227">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-227">string</span></span>|<span data-ttu-id="80e4f-228">Hello 目前使用者的電子郵件地址。</span><span class="sxs-lookup"><span data-stu-id="80e4f-228">Email address of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-229">developersUsageStatisticsLinkk</span><span class="sxs-lookup"><span data-stu-id="80e4f-229">developersUsageStatisticsLinkk</span></span>|<span data-ttu-id="80e4f-230">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-230">string</span></span>|<span data-ttu-id="80e4f-231">Hello 目前使用者的相對 URL tooview 分析。</span><span class="sxs-lookup"><span data-stu-id="80e4f-231">Relative URL tooview analytics for hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-232">subscriptions</span><span class="sxs-lookup"><span data-stu-id="80e4f-232">subscriptions</span></span>|<span data-ttu-id="80e4f-233">[訂用帳戶](api-management-template-data-model-reference.md#Subscription)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="80e4f-233">Collection of [Subscription](api-management-template-data-model-reference.md#Subscription) entities.</span></span>|<span data-ttu-id="80e4f-234">hello hello 目前使用者的訂閱。</span><span class="sxs-lookup"><span data-stu-id="80e4f-234">hello subscriptions for hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-235">應用程式所需</span><span class="sxs-lookup"><span data-stu-id="80e4f-235">applications</span></span>|<span data-ttu-id="80e4f-236">[應用程式](api-management-template-data-model-reference.md#Application)實體的集合。</span><span class="sxs-lookup"><span data-stu-id="80e4f-236">Collection of [Application](api-management-template-data-model-reference.md#Application) entities.</span></span>|<span data-ttu-id="80e4f-237">hello 目前使用者的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="80e4f-237">hello applications of hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-238">changePasswordUrl</span><span class="sxs-lookup"><span data-stu-id="80e4f-238">changePasswordUrl</span></span>|<span data-ttu-id="80e4f-239">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-239">string</span></span>|<span data-ttu-id="80e4f-240">hello 相對 URL toochange hello 目前使用者的密碼。</span><span class="sxs-lookup"><span data-stu-id="80e4f-240">hello relative URL toochange hello current user's password.</span></span>|  
+|<span data-ttu-id="80e4f-241">changeNameOrEmailUrl</span><span class="sxs-lookup"><span data-stu-id="80e4f-241">changeNameOrEmailUrl</span></span>|<span data-ttu-id="80e4f-242">字串</span><span class="sxs-lookup"><span data-stu-id="80e4f-242">string</span></span>|<span data-ttu-id="80e4f-243">hello 相對 URL toochange hello 名稱與 hello 目前使用者的電子郵件。</span><span class="sxs-lookup"><span data-stu-id="80e4f-243">hello relative URL toochange hello name and email for hello current user.</span></span>|  
+|<span data-ttu-id="80e4f-244">canChangePassword</span><span class="sxs-lookup"><span data-stu-id="80e4f-244">canChangePassword</span></span>|<span data-ttu-id="80e4f-245">布林值</span><span class="sxs-lookup"><span data-stu-id="80e4f-245">boolean</span></span>|<span data-ttu-id="80e4f-246">是否 hello 目前的使用者可以變更其密碼。</span><span class="sxs-lookup"><span data-stu-id="80e4f-246">Whether hello current user can change their password.</span></span>|  
+|<span data-ttu-id="80e4f-247">isSystemUser</span><span class="sxs-lookup"><span data-stu-id="80e4f-247">isSystemUser</span></span>|<span data-ttu-id="80e4f-248">布林值</span><span class="sxs-lookup"><span data-stu-id="80e4f-248">boolean</span></span>|<span data-ttu-id="80e4f-249">Hello 目前使用者是否為其中一個 hello 內建成員[群組](api-management-key-concepts.md#groups)。</span><span class="sxs-lookup"><span data-stu-id="80e4f-249">Whether hello current user is a member of one of hello built-in [groups](api-management-key-concepts.md#groups).</span></span>|  
   
-### <a name="sample-template-data"></a><span data-ttu-id="0aec2-250">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="0aec2-250">Sample template data</span></span>  
+### <a name="sample-template-data"></a><span data-ttu-id="80e4f-250">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="80e4f-250">Sample template data</span></span>  
   
 ```json  
 {  
@@ -514,7 +514,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -537,7 +537,7 @@ ms.lasthandoff: 07/11/2017
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -565,12 +565,12 @@ ms.lasthandoff: 07/11/2017
 }  
 ```  
   
-##  <span data-ttu-id="0aec2-251"><a name="UpdateAccountInfo"></a> 更新帳戶資訊</span><span class="sxs-lookup"><span data-stu-id="0aec2-251"><a name="UpdateAccountInfo"></a> Update account info</span></span>  
- <span data-ttu-id="0aec2-252">**更新帳戶資訊**範本可讓您自訂開發人員入口網站中的 [更新帳戶資訊] 頁面。</span><span class="sxs-lookup"><span data-stu-id="0aec2-252">The **Uodate account info** template allows you to customize the **Update account information** page in the developer portal.</span></span>  
+##  <span data-ttu-id="80e4f-251"><a name="UpdateAccountInfo"></a> 更新帳戶資訊</span><span class="sxs-lookup"><span data-stu-id="80e4f-251"><a name="UpdateAccountInfo"></a> Update account info</span></span>  
+ <span data-ttu-id="80e4f-252">hello **Uodate 帳戶資訊**範本可讓您 toocustomize hello**更新帳戶資訊**hello 開發人員入口網站中的頁面。</span><span class="sxs-lookup"><span data-stu-id="80e4f-252">hello **Uodate account info** template allows you toocustomize hello **Update account information** page in hello developer portal.</span></span>  
   
- <span data-ttu-id="0aec2-253">![使用者帳戶資訊頁面開發人員入口網站範本](./media/api-management-user-profile-templates/APIM-User-Account-Info-Page-Developer-Portal-Templates.png "APIM 使用者帳戶資訊頁面開發人員入口網站範本")</span><span class="sxs-lookup"><span data-stu-id="0aec2-253">![User Account Info Page Developer Portal Templates](./media/api-management-user-profile-templates/APIM-User-Account-Info-Page-Developer-Portal-Templates.png "APIM User Account Info Page Developer Portal Templates")</span></span>  
+ <span data-ttu-id="80e4f-253">![使用者帳戶資訊頁面開發人員入口網站範本](./media/api-management-user-profile-templates/APIM-User-Account-Info-Page-Developer-Portal-Templates.png "APIM 使用者帳戶資訊頁面開發人員入口網站範本")</span><span class="sxs-lookup"><span data-stu-id="80e4f-253">![User Account Info Page Developer Portal Templates](./media/api-management-user-profile-templates/APIM-User-Account-Info-Page-Developer-Portal-Templates.png "APIM User Account Info Page Developer Portal Templates")</span></span>  
   
-### <a name="default-template"></a><span data-ttu-id="0aec2-254">預設範本</span><span class="sxs-lookup"><span data-stu-id="0aec2-254">Default template</span></span>  
+### <a name="default-template"></a><span data-ttu-id="80e4f-254">預設範本</span><span class="sxs-lookup"><span data-stu-id="80e4f-254">Default template</span></span>  
   
 ```xml  
 <div class="row">  
@@ -602,13 +602,13 @@ ms.lasthandoff: 07/11/2017
 </a>  
 ```  
   
-### <a name="controls"></a><span data-ttu-id="0aec2-255">控制</span><span class="sxs-lookup"><span data-stu-id="0aec2-255">Controls</span></span>  
- <span data-ttu-id="0aec2-256">此範本可能不使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="0aec2-256">This template may not use any [page controls](api-management-page-controls.md).</span></span>  
+### <a name="controls"></a><span data-ttu-id="80e4f-255">控制</span><span class="sxs-lookup"><span data-stu-id="80e4f-255">Controls</span></span>  
+ <span data-ttu-id="80e4f-256">此範本可能不使用任何[頁面控制項](api-management-page-controls.md)。</span><span class="sxs-lookup"><span data-stu-id="80e4f-256">This template may not use any [page controls](api-management-page-controls.md).</span></span>  
   
-### <a name="data-model"></a><span data-ttu-id="0aec2-257">資料模型</span><span class="sxs-lookup"><span data-stu-id="0aec2-257">Data model</span></span>  
- <span data-ttu-id="0aec2-258">[使用者帳戶資訊](api-management-template-data-model-reference.md#UserAccountInfo)實體。</span><span class="sxs-lookup"><span data-stu-id="0aec2-258">[User account info](api-management-template-data-model-reference.md#UserAccountInfo) entity.</span></span>  
+### <a name="data-model"></a><span data-ttu-id="80e4f-257">資料模型</span><span class="sxs-lookup"><span data-stu-id="80e4f-257">Data model</span></span>  
+ <span data-ttu-id="80e4f-258">[使用者帳戶資訊](api-management-template-data-model-reference.md#UserAccountInfo)實體。</span><span class="sxs-lookup"><span data-stu-id="80e4f-258">[User account info](api-management-template-data-model-reference.md#UserAccountInfo) entity.</span></span>  
   
-### <a name="sample-template-data"></a><span data-ttu-id="0aec2-259">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="0aec2-259">Sample template data</span></span>  
+### <a name="sample-template-data"></a><span data-ttu-id="80e4f-259">範例範本資料</span><span class="sxs-lookup"><span data-stu-id="80e4f-259">Sample template data</span></span>  
   
 ```json  
 {  
@@ -622,5 +622,5 @@ ms.lasthandoff: 07/11/2017
 }  
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="0aec2-260">後續步驟</span><span class="sxs-lookup"><span data-stu-id="0aec2-260">Next steps</span></span>
-<span data-ttu-id="0aec2-261">如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](api-management-developer-portal-templates.md)。</span><span class="sxs-lookup"><span data-stu-id="0aec2-261">For more information about working with templates, see [How to customize the API Management developer portal using templates](api-management-developer-portal-templates.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="80e4f-260">後續步驟</span><span class="sxs-lookup"><span data-stu-id="80e4f-260">Next steps</span></span>
+<span data-ttu-id="80e4f-261">如需有關使用範本的詳細資訊，請參閱[toocustomize hello API 管理開發人員入口網站使用範本的方式](api-management-developer-portal-templates.md)。</span><span class="sxs-lookup"><span data-stu-id="80e4f-261">For more information about working with templates, see [How toocustomize hello API Management developer portal using templates](api-management-developer-portal-templates.md).</span></span>

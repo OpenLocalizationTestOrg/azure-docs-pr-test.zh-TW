@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure AD v2.0 隱含流程保護單一頁面應用程式的安全 | Microsoft Docs"
-description: "使用針對單一頁面應用程式的隱含流程的 Azure AD v2.0 實作，建置 Web 應用程式。"
+title: "使用 Azure AD hello v2.0 隱含流程 aaaSecure 單一頁面應用程式 |Microsoft 文件"
+description: "建立 web 應用程式的單一頁面應用程式中使用 Azure AD 的 v2.0 實作 hello 隱含流程。"
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,37 +15,37 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 3bd8256814036a357b30b69286da6bb7c974162f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2cdce4eee88be4af54966d15204b79fa4992a58e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# 2.0 通訊協定 - 使用隱含流程的 SPA
-使用 v2.0 端點，您可以讓具有 Microsoft 的個人和工作/學校帳戶的使用者登入您的單一頁面 app。  主要在瀏覽器上執行的單一頁面和其他 JavaScript 應用程式，在驗證時會面臨一些有趣的挑戰：
+# 2.0 版通訊協定-SPAs 使用 hello 隱含流程
+與 hello v2.0 端點，您可以登入您的單一頁面應用程式與個人和工作/學校帳戶，從 Microsoft 的使用者。  單一網頁和其他 JavaScript 應用程式中執行的主要是有趣的一些挑戰時的瀏覽器字體它有 tooauthentication:
 
-* 這些應用程式的安全性特性與傳統的伺服器架構 Web 應用程式大不相同。
+* 這些應用程式的 hello 安全性特性會明顯不同於傳統伺服器為基礎的 web 應用程式。
 * 許多授權伺服器與身分識別提供者不支援 CORS 要求。
-* 重新導向離開應用程式的完整網頁瀏覽器變得對使用者經驗特別有侵入性。
+* 完整的網頁瀏覽器重新導向遠離 hello 應用程式變得特別侵入性功能 toohello 使用者經驗。
 
-對於這些應用程式 (AngularJS、Ember.js、React.js 等)，Azure AD 支援 OAuth 2.0 隱含授權流程。  隱含流程相關說明，請參閱 [OAuth 2.0 規格](http://tools.ietf.org/html/rfc6749#section-4.2)。  其主要優點是它可讓應用程式從 Azure AD 取得權杖，不需要執行後端伺服器認證交換。  這可讓應用程式登入使用者、維護工作階段，並且取得用戶端 JavaScript 程式碼中所有其他 Web API 的權杖。  使用隱含流程時有幾個重要的安全性考量 - 特別是關於[用戶端](http://tools.ietf.org/html/rfc6749#section-10.3)和[使用者模擬](http://tools.ietf.org/html/rfc6749#section-10.3)。
+這些應用程式 (認為： AngularJS、 Ember.js、 React.js，等等) Azure AD 支援 hello OAuth 2.0 隱含授予流程。  hello 隱含流程述 hello [OAuth 2.0 規格](http://tools.ietf.org/html/rfc6749#section-4.2)。  其主要的好處是，它可讓 hello 應用程式 tooget 語彙基元從 Azure AD 而不需執行後端伺服器的認證交換。  這可以讓使用者 hello hello 應用程式 toosign、 維護工作階段，以及取得全部都在 hello 用戶端 JavaScript 程式碼內的語彙基元 tooother web Api。  特別是大約使用隱含流程 hello-時，並納入考量的幾個重要的安全性考量 tootake[用戶端](http://tools.ietf.org/html/rfc6749#section-10.3)和[使用者模擬](http://tools.ietf.org/html/rfc6749#section-10.3)。
 
-如果您想要使用隱含流程與 Azure AD 將驗證新增至 JavaScript 應用程式，建議您使用我們的開放原始碼 JavaScript 程式庫， [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js)。  [這裡](active-directory-appmodel-v2-overview.md#getting-started) 有幾個 AngularJS 教學課程可以幫助您入門。  
+如果您希望 toouse hello 隱含流程和 Azure AD tooadd 驗證 tooyour JavaScript 應用程式，我們建議您使用我們的開放原始碼 JavaScript 程式庫， [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js)。  有幾個 AngularJS 教學課程[這裡](active-directory-appmodel-v2-overview.md#getting-started)toohelp 您立即開始。  
 
-不過，如果您不想使用單一頁面應用程式中的程式庫，並且自行傳送通訊協定訊息，請遵循下列一般步驟。
+不過，如果您想使用 toouse 文件庫中單一頁面應用程式，並將傳送通訊協定訊息自己，請遵循 hello 下列的一般步驟。
 
 > [!NOTE]
-> v2.0 端點並非支援每個 Azure Active Directory 案例和功能。  若要判斷是否應該使用 v2.0 端點，請閱讀相關的 [v2.0 限制](active-directory-v2-limitations.md)。
+> 並非所有的 Azure Active Directory 案例和功能都受到 hello v2.0 端點。  toodetermine 如果應該使用 hello v2.0 端點，閱讀有關[v2.0 限制](active-directory-v2-limitations.md)。
 > 
 > 
 
 ## 通訊協定圖表
-整個隱含登入流程看起來類似下列圖表 - 以下將詳細說明每個步驟。
+hello 整個隱含的登入流程看起來類似下面的-hello 步驟詳述於下面的詳細資料。
 
 ![OpenId Connect 區隔線](../../media/active-directory-v2-flows/convergence_scenarios_implicit.png)
 
-## 傳送登入要求
-若要一開始將使用者登入您的應用程式，您可以傳送 [OpenID Connect](active-directory-v2-protocols-oidc.md) 授權要求，以及從 v2.0 端點取得 `id_token`：
+## 傳送 hello 登入要求
+tooinitially 登入您的應用程式 hello 使用者，您可以傳送[OpenID Connect](active-directory-v2-protocols-oidc.md)授權要求，以及如何取得`id_token`從 hello v2.0 端點：
 
 ```
 // Line breaks for legibility only
@@ -61,31 +61,31 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 > [!TIP]
-> 按一下下面的連結以執行此要求！ 登入之後，您的瀏覽器應重新導向至在位址列中有 `id_token` 的 `https://localhost/myapp/`。
+> 按一下下方 tooexecute hello 連結，此要求 ！ 登入之後，您的瀏覽器應該重新導向太`https://localhost/myapp/`與`id_token`hello 網址列中。
 > <a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=id_token+token&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&scope=openid%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&response_mode=fragment&state=12345&nonce=678910" target="_blank">https://login.microsoftonline.com/common/oauth2/v2.0/authorize...</a>
 > 
 > 
 
 | 參數 |  | 說明 |
 | --- | --- | --- |
-| tenant |必要 |要求路徑中的 `{tenant}` 值可用來控制可登入應用程式的人員。  允許的值為 `common`、`organizations`、`consumers` 及租用戶識別碼。  如需更多詳細資訊，請參閱 [通訊協定基本概念](active-directory-v2-protocols.md#endpoints)。 |
-| client_id |必要 |註冊入口網站 ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) 指派給應用程式的應用程式識別碼。 |
-| response_type |必要 |必須包含 OpenID Connect 登入的 `id_token` 。  它也可能包含 response_type `token`。 這裡使用 `token` ，讓您的應用程式能夠立即從授權端點接收存取權杖，而不需要向授權端點進行第二次要求。  如果您使用 `token` response_type，`scope` 參數必須包含範圍，以指出要對哪個資源發出權杖。 |
-| redirect_uri |建議使用 |應用程式的 redirect_uri，您的應用程式可在此傳送及接收驗證回應。  其必須完全符合您在入口網站中註冊的其中一個 redirect_uris，不然就必須得是編碼的 url。 |
-| scope |必要 |範圍的空格分隔清單。  針對 OpenID Connect，即必須包含範圍 `openid`，其會在同意 UI 中轉譯成「讓您登入」權限。  (選擇性) 建議您也可以納入 `email` 或 `profile` [範圍](active-directory-v2-scopes.md)，以授與其他使用者資料的存取權。  您也可以在此要求中包含其他範圍，以要求同意各種資源。 |
-| response_mode |建議使用 |指定將產生的權杖送回到應用程式所應該使用的方法。  對於隱含流程應該是 `fragment` 。 |
-| state |建議使用 |同樣會隨權杖回應傳回之要求中所包含的值。  其可以是您想要之任何內容的字串。  隨機產生的唯一值通常用於 [防止跨站台要求偽造攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。  此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
-| nonce |必要 |由應用程式產生且包含在要求中的值，會以宣告方式包含在產生的 id_token 中。  應用程式接著便可確認此值，以減少權杖重新執行攻擊。  此值通常是隨機的唯一字串，可用以識別要求的來源。 |
-| prompt |選用 |表示需要的使用者互動類型。  此時的有效值為「登入」、「無」和「同意」。  `prompt=login` 會強制使用者在該要求上輸入認證，否定單一登入。  `prompt=none` 則相反 - 它會確保不會對使用者顯示任何互動式提示。  如果要求無法透過單一登入以無訊息方式完成，v2.0 端點會傳回錯誤。  `prompt=consent` 會在使用者登入之後觸發 OAuth 同意對話方塊，詢問使用者是否要授與權限給應用程式。 |
-| login_hint |選用 |如果您事先知道其使用者名稱，可用來預先填入使用者登入頁面的使用者名稱/電子郵件地址欄位。  通常應用程式會在重新驗證期間使用此參數，已經使用 `preferred_username` 宣告從上一個登入擷取使用者名稱。 |
-| domain_hint |選用 |可以是 `consumers` 或 `organizations` 其中一個。  如果包含，它會略過使用者在 v2.0 登入頁面上經歷的以電子郵件為基礎的探索程序，導致稍微更佳流暢的使用者經驗。  通常應用程式會在重新驗證期間使用此參數，方法是從 id_token 擷取 `tid` 宣告。  如果 `tid` 宣告值是 `9188040d-6c67-4c5b-b112-36a304b66dad`，您應該使用 `domain_hint=consumers`。  否則，使用 `domain_hint=organizations`。 |
+| tenant |必要 |hello `{tenant}` hello hello 要求路徑中的值可以是使用的 toocontrol 可以登入 hello 應用程式。  hello 允許的值為`common`， `organizations`， `consumers`，和租用戶識別碼。  如需更多詳細資訊，請參閱 [通訊協定基本概念](active-directory-v2-protocols.md#endpoints)。 |
+| client_id |必要 |hello 該 hello 註冊入口網站的應用程式識別碼 ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) 指派給您的應用程式。 |
+| response_type |必要 |必須包含 OpenID Connect 登入的 `id_token` 。  它也可以包含 hello response_type `token`。 使用`token`這裡可讓您的應用程式 tooreceive hello 立即存取權杖授權端點，而不需要的 toomake 第二個要求 toohello 授權端點。  如果您使用 hello `token` response_type，hello`scope`參數必須包含範圍，指出哪些資源 tooissue hello 語彙基元。 |
+| redirect_uri |建議使用 |hello redirect_uri 應用程式，可以傳送及接收您的應用程式驗證回應。  它必須完全符合其中一個 hello redirect_uris 您註冊 hello 入口網站，但它必須是 url 編碼。 |
+| scope |必要 |範圍的空格分隔清單。  OpenID Connect，它必須包含 hello 範圍`openid`，會轉譯為 hello 同意 UI 中的 toohello 「 將您登入 」 權限。  （選擇性） 您可能也想 tooinclude hello`email`或`profile`[範圍](active-directory-v2-scopes.md)獲得存取 tooadditional 使用者資料。  您也可能要求同意 toovarious 資源在此要求中包含其他範圍。 |
+| response_mode |建議使用 |指定應該使用的 toosend hello 產生語彙基元後 tooyour 應用程式的 hello 方法。  應該是`fragment`hello 隱含流程。 |
+| state |建議使用 |Hello 權杖回應中也會傳回的 hello 要求中包含一個值。  其可以是您想要之任何內容的字串。  隨機產生的唯一值通常用於 [防止跨站台偽造要求攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。  之前發生 hello 驗證要求，例如 hello 頁面或檢視上 hello 狀態也會使用的 tooencode hello 應用程式中的 hello 使用者狀態資訊。 |
+| nonce |必要 |值，包含在 hello 要求中，將會包含在宣告的形式 hello 產生 id_token hello 應用程式所產生。  hello 應用程式然後確認此值 toomitigate 權杖重新執行攻擊。  hello 值通常是隨機的唯一字串，可以使用的 tooidentify hello 原點的 hello 要求。 |
+| prompt |選用 |指出 hello 類型所需使用者互動。  只有在這個階段的有效值為 'none'、 '登入' hello' 表示同意 '。  `prompt=login`強制 hello 使用者 tooenter 將該要求時，停止單一登入認證。  `prompt=none`是 hello 相反-它可確保該 hello 使用者不提供任何互動式提示恕不另行通知。  如果 hello 無法完成要求，以無訊息方式透過單一登入，hello v2.0 端點會傳回錯誤。  `prompt=consent`將觸發程序 hello OAuth 同意對話方塊之後 hello 使用者登入時，要求 hello 使用者 toogrant 權限 toohello 應用程式。 |
+| login_hint |選用 |可以是使用的 toopre 填滿 hello 使用者名稱/電子郵件地址欄位的 hello 登入頁面 hello 使用者，如果您知道事先其使用者名稱。  通常應用程式會使用此參數重新在驗證期間，從先前的登入需要擷取 hello 使用者名稱使用 hello`preferred_username`宣告。 |
+| domain_hint |選用 |可以是 `consumers` 或 `organizations` 其中一個。  如果包含，它會略過 hello 電子郵件為基礎的探索程序的使用者經歷了在 hello v2.0 登入頁面上，導致 tooa 稍微簡化使用者經驗。  通常應用程式會使用重新在驗證期間，此參數以擷取 hello `tid` hello id_token 將來自宣告。  如果 hello`tid`宣告值是`9188040d-6c67-4c5b-b112-36a304b66dad`，您應該使用`domain_hint=consumers`。  否則，使用 `domain_hint=organizations`。 |
 
-此時，會要求使用者輸入其認證並完成驗證。  v2.0 端點也會確保使用者已經同意 `scope` 查詢參數所示的權限。  如果使用者未曾同意這些權限的任何一項，就會要求使用者同意要求的權限。  [這裡提供權限、同意與多租用戶應用程式](active-directory-v2-scopes.md)的詳細資料。
+Hello 使用者將會在此時，系統要求 tooenter 其認證和驗證完成 hello。  hello v2.0 端點也會確保該 hello 使用者同意 toohello hello 中指出的權限`scope`查詢參數。  如果 hello 使用者不同意 tooany 權限，它會要求 hello 使用者 tooconsent toohello 所需的權限。  [這裡提供權限、同意與多租用戶應用程式](active-directory-v2-scopes.md)的詳細資料。
 
-一旦使用者驗證並同意，v2.0 端點就會使用 `response_mode` 參數中指定的方法，將回應傳回至位於指定所在 `redirect_uri` 的應用程式。
+一旦 hello 使用者驗證，並授與同意，hello v2.0 端點會傳回回應 tooyour 應用程式，在指出的 hello `redirect_uri`，使用 hello 中指定的 hello 方法`response_mode`參數。
 
 #### 成功回應
-使用 `response_mode=fragment` 和 `response_type=id_token+token` 的成功回應如下所示 (內含換行符號以利閱讀)：
+成功的回應使用`response_mode=fragment`和`response_type=id_token+token`hello 下列程式碼，分行符號以利閱讀看起來像：
 
 ```
 GET https://localhost/myapp/#
@@ -99,15 +99,15 @@ access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZnl0aEV1Q..
 
 | 參數 | 說明 |
 | --- | --- |
-| access_token |如果 `response_type` 包含 `token` 則納入。 應用程式要求的存取權杖，在此案例中為 Microsoft Graph 的存取權杖。  存取權杖不得進行解碼或檢查，可被視為不透明的字串。 |
+| access_token |如果 `response_type` 包含 `token` 則納入。 hello hello 要求，應用程式的存取權杖在此情況下的 hello Microsoft Graph。  hello 存取權杖不應解碼或檢查，可以將它視為不透明的字串。 |
 | token_type |如果 `response_type` 包含 `token` 則納入。  一律為 `Bearer`。 |
-| expires_in |如果 `response_type` 包含 `token` 則納入。  表示權杖有效的秒數 (針對快取目的)。 |
-| scope |如果 `response_type` 包含 `token` 則納入。  表示在 access_token 的有效範圍。 |
-| id_token |應用程式要求的 id_token。 您可以使用 id_token 確認使用者的身分識別，並以使用者開始工作階段。  如需 id_token 及其內容的詳細資訊，請參閱 [v2.0 端點權杖參考](active-directory-v2-tokens.md)。 |
-| state |如果要求中包含狀態參數，回應中就應該出現相同的值。 應用程式應確認要求和回應中的狀態值完全相同。 |
+| expires_in |如果 `response_type` 包含 `token` 則納入。  指出 hello hello 權杖是有效的快取用途的秒數。 |
+| scope |如果 `response_type` 包含 `token` 則納入。  指出 hello 範圍的 hello access_token 才有效。 |
+| id_token |hello id_token hello 要求的應用程式。 您可以使用 hello id_token tooverify hello 使用者的身分識別，並開始與 hello 使用者工作階段。  Id_tokens 和其內容的更多詳細資料包含在 hello [v2.0 端點權杖參照](active-directory-v2-tokens.md)。 |
+| state |如果在 hello 要求中，相同的值應該會出現在 hello 回應 hello 包含狀態參數。 hello 應用程式應該確認 hello 要求和回應中的 hello 狀態值完全相同。 |
 
 #### 錯誤回應
-錯誤回應可能也會傳送至 `redirect_uri` ，讓應用程式可以適當地處理：
+錯誤回應也可能會傳送 toohello`redirect_uri`讓 hello 應用程式可以適當地處理：
 
 ```
 GET https://localhost/myapp/#
@@ -117,29 +117,29 @@ error=access_denied
 
 | 參數 | 說明 |
 | --- | --- |
-| 錯誤 |用以分類發生的錯誤類型與回應錯誤的錯誤碼字串。 |
-| error_description |協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
+| 錯誤 |錯誤的程式碼字串是使用的 tooclassify 類型之錯誤的發生，且可以使用的 tooreact tooerrors。 |
+| error_description |特定的錯誤訊息，可協助開發人員會識別 hello 的驗證錯誤的根本原因。 |
 
-## 驗證 id_token
-僅接收 id_token 不足以驗證使用者，您必須驗證 id_token 簽章，並依照應用程式的需求確認權杖中的宣告。  v2.0 端點使用 [JSON Web Tokens (JWT)](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html) 和公開金鑰加密簽署權杖及驗證其是否有效。
+## 驗證 hello id_token
+只接收 id_token 不足夠 tooauthenticate hello 使用者;您必須驗證 hello id_token 簽章，並確認每個應用程式需求的 hello 權杖中的 hello 宣告。  hello v2.0 端點會使用[JSON Web 權杖 (Jwt)](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)和公用金鑰密碼編譯 toosign 語彙基元，並確認都有效。
 
-您可以選擇驗證用戶端程式碼中的 `id_token`，但是常見的作法是將 `id_token` 傳送至後端伺服器，並且在那裡執行驗證。  一旦驗證了 id_token 的簽章，就會有數項宣告需要驗證。  如需詳細資訊，請參閱 [v2.0 權杖參考](active-directory-v2-tokens.md)，其中包括[驗證權杖](active-directory-v2-tokens.md#validating-tokens)和[有關簽署金鑰變換的重要資訊](active-directory-v2-tokens.md#validating-tokens)。  我們建議利用程式庫來剖析和驗證權杖 - 對於大部分語言和平台至少有一個可用。
-<!--TODO: Improve the information on this-->
+您可以選擇 toovalidate hello`id_token`中用戶端程式碼，但常見作法是將 toosend hello `id_token` tooa 後端伺服器並執行那里 hello 驗證。  一旦您已驗證的 hello id_token hello 簽章，有幾個您將會需要的 tooverify 的宣告。  請參閱 hello [v2.0 權杖參照](active-directory-v2-tokens.md)如需詳細資訊，包括[驗證語彙基元](active-directory-v2-tokens.md#validating-tokens)和[重要資訊有關簽署金鑰變換](active-directory-v2-tokens.md#validating-tokens)。  我們建議利用程式庫來剖析和驗證權杖 - 對於大部分語言和平台至少有一個可用。
+<!--TODO: Improve hello information on this-->
 
-您可能也希望根據自己的案例驗證其他宣告。  一些常見的驗證包括：
+您可能也想 toovalidate 宣告的其他宣告根據您的案例。  一些常見的驗證包括：
 
-* 確保使用者/組織已註冊應用程式。
-* 確保使用者擁有正確的授權/權限
+* 確保 hello 使用者組織已註冊 hello 應用程式。
+* 確保以下人員 hello 使用者擁有適當的授權/權限
 * 確保驗證具有特定強度，例如多重要素驗證。
 
-如需 id_token 中的宣告詳細資訊，請參閱 [v2.0 端點權杖參考](active-directory-v2-tokens.md)。
+如需有關在 id_token hello 宣告的詳細資訊，請參閱 hello [v2.0 端點權杖參照](active-directory-v2-tokens.md)。
 
-一旦驗證完畢 id_token，即可利用使用者開始工作階段，並使用 id_token 中的宣告來取得應用程式中的使用者相關資訊。  這項資訊可以用於顯示、記錄、授權等等。
+一旦您已完全驗證 hello id_token，您可以開始與 hello 使用者工作階段，並使用 hello id_token tooobtain hello 使用者資訊中的 hello 宣告，在您的應用程式。  這項資訊可以用於顯示、記錄、授權等等。
 
 ## 取得存取權杖
-您已經將使用者註冊到單一頁面應用程式，您可以取得存取權杖以呼叫受到 Azure AD 保護的 Web API，例如 [Microsoft Graph](https://graph.microsoft.io)。  即使您已經收到使用 `token` response_type 的權杖，仍可使用此方法來取得其他資源的權杖，而不需重新導向使用者進行再次登入。
+既然您已簽署 hello 使用者到單一頁面應用程式，您可以取得存取權杖呼叫 web Api 受到 Azure AD，例如 hello [Microsoft Graph](https://graph.microsoft.io)。  即使您已經收到的權杖使用 hello `token` response_type，您可以使用此方法 tooacquire 語彙基元 tooadditional 資源不用 tooredirect hello 使用者 toosign 一次。
 
-在正常的 OpenID Connect/OAuth 流程中，您可以藉由對 v2.0 `/token` 端點進行要求來完成這個操作。  不過，v2.0 端點不支援 CORS 要求，因此進行 AJAX 呼叫以取得和重新整理權杖是不可能的。  相反地，您可以在隱藏的 iframe 中使用隱含流程，為其他 Web API 取得新權杖： 
+在 hello 正常 OpenID Connect/OAuth 流程中，您需要執行此動作藉由要求 toohello v2.0`/token`端點。  不過，hello v2.0 端點會不支援 CORS 要求，因此讓 AJAX 呼叫 tooget 並重新整理語彙基元超出 hello 問題。  相反地，您可以使用隱藏的 iframe tooget 新權杖中的 hello 隱含流程，其他 web 應用程式開發介面： 
 
 ```
 // Line breaks for legibility only
@@ -156,7 +156,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 > [!TIP]
-> 請嘗試將下列要求貼至瀏覽器！ (別忘了以您的使用者的正確值取代 `domain_hint` 和 `login_hint` 值)
+> 嘗試複製和貼入瀏覽器索引標籤下方要求 hello ！ (請不要忘記 tooreplace hello`domain_hint`和 hello `login_hint` hello 與值可修正您的使用者的值)
 > 
 > 
 
@@ -166,19 +166,19 @@ https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de7
 
 | 參數 |  | 說明 |
 | --- | --- | --- |
-| tenant |必要 |要求路徑中的 `{tenant}` 值可用來控制可登入應用程式的人員。  允許的值為 `common`、`organizations`、`consumers` 及租用戶識別碼。  如需更多詳細資訊，請參閱 [通訊協定基本概念](active-directory-v2-protocols.md#endpoints)。 |
-| client_id |必要 |註冊入口網站 ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) 指派給應用程式的應用程式識別碼。 |
+| tenant |必要 |hello `{tenant}` hello hello 要求路徑中的值可以是使用的 toocontrol 可以登入 hello 應用程式。  hello 允許的值為`common`， `organizations`， `consumers`，和租用戶識別碼。  如需更多詳細資訊，請參閱 [通訊協定基本概念](active-directory-v2-protocols.md#endpoints)。 |
+| client_id |必要 |hello 該 hello 註冊入口網站的應用程式識別碼 ([apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)) 指派給您的應用程式。 |
 | response_type |必要 |必須包含 OpenID Connect 登入的 `id_token` 。  它也可能包含其他 response_types，例如 `code`。 |
-| redirect_uri |建議使用 |應用程式的 redirect_uri，您的應用程式可在此傳送及接收驗證回應。  其必須完全符合您在入口網站中註冊的其中一個 redirect_uris，不然就必須得是編碼的 url。 |
-| scope |必要 |範圍的空格分隔清單。  若要取得權杖，請包含您感興趣資源要求的所有 [範圍](active-directory-v2-scopes.md) 。 |
-| response_mode |建議使用 |指定將產生的權杖送回到應用程式所應該使用的方法。  可以是 `query`、`form_post` 或 `fragment` 其中一個。 |
-| state |建議使用 |同樣會隨權杖回應傳回之要求中所包含的值。  其可以是您想要之任何內容的字串。  隨機產生的唯一值通常用於防止跨站台要求偽造攻擊。  此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
-| nonce |必要 |由應用程式產生且包含在要求中的值，會以宣告方式包含在產生的 id_token 中。  應用程式接著便可確認此值，以減少權杖重新執行攻擊。  此值通常是隨機的唯一字串，可用以識別要求的來源。 |
-| prompt |必要 |若要重新整理並取得隱藏 iframe 中的權杖，您應該使用 `prompt=none` 以確保 iframe 不會懸置在 v2.0 登入頁面上，並立即返回。 |
-| login_hint |必要 |如需重新整理並取得隱藏 iframe 中的權杖，您必須在此提示中包含使用者的使用者名稱，以便區分使用者在特定時間點可能具有的多個工作階段。 您可以使用 `preferred_username` 宣告擷取先前登入的使用者名稱。 |
-| domain_hint |必要 |可以是 `consumers` 或 `organizations` 其中一個。  若要重新整理並取得隱藏 iframe 中的權杖，您必須在要求中包含 domain_hint。  您應該從先前登入的 id_token 擷取 `tid` 宣告，以判斷要使用哪一個值。  如果 `tid` 宣告值是 `9188040d-6c67-4c5b-b112-36a304b66dad`，您應該使用 `domain_hint=consumers`。  否則，使用 `domain_hint=organizations`。 |
+| redirect_uri |建議使用 |hello redirect_uri 應用程式，可以傳送及接收您的應用程式驗證回應。  它必須完全符合其中一個 hello redirect_uris 您註冊 hello 入口網站，但它必須是 url 編碼。 |
+| scope |必要 |範圍的空格分隔清單。  如需入門語彙基元，包含所有[範圍](active-directory-v2-scopes.md)感興趣的 hello 資源所需。 |
+| response_mode |建議使用 |指定應該使用的 toosend hello 產生語彙基元後 tooyour 應用程式的 hello 方法。  可以是 `query`、`form_post` 或 `fragment` 其中一個。 |
+| state |建議使用 |Hello 權杖回應中也會傳回的 hello 要求中包含一個值。  其可以是您想要之任何內容的字串。  隨機產生的唯一值通常用於防止跨站台要求偽造攻擊。  之前發生 hello 驗證要求，例如 hello 頁面或檢視上 hello 狀態也會使用的 tooencode hello 應用程式中的 hello 使用者狀態資訊。 |
+| nonce |必要 |值，包含在 hello 要求中，將會包含在宣告的形式 hello 產生 id_token hello 應用程式所產生。  hello 應用程式然後確認此值 toomitigate 權杖重新執行攻擊。  hello 值通常是隨機的唯一字串，可以使用的 tooidentify hello 原點的 hello 要求。 |
+| prompt |必要 |重新整理 （& s） 在隱藏的 iframe 中取得權杖，您應該使用`prompt=none`hello iframe 的 tooensure 不在 hello v2.0 登入頁面上，不會停止回應，並立即傳回。 |
+| login_hint |必要 |重新整理 （& s） 在隱藏的 iframe 中取得權杖，您必須包含 hello hello 使用者名稱中 hello 使用者在時間中，可能會有特定時點的多個工作階段之間的順序 toodistinguish 此提示中。 您可以擷取 hello 使用者名稱，從先前的登入使用 hello`preferred_username`宣告。 |
+| domain_hint |必要 |可以是 `consumers` 或 `organizations` 其中一個。  重新整理 （& s） 在隱藏的 iframe 中取得權杖，您必須包含 hello domain_hint hello 要求中。  您應該擷取 hello`tid`從先前的登入 toodetermine 的 hello id_token 哪些值 toouse 的宣告。  如果 hello`tid`宣告值是`9188040d-6c67-4c5b-b112-36a304b66dad`，您應該使用`domain_hint=consumers`。  否則，使用 `domain_hint=organizations`。 |
 
-由於 `prompt=none` 參數，此要求會立即成功或失敗，並且傳回給您的應用程式。  會使用 `response_mode` 參數中指定的方法，將成功的回應傳送至指定的 `redirect_uri` 給您的應用程式。
+謝謝 toohello`prompt=none`參數，此要求會是成功或失敗立即，並傳回 tooyour 應用程式。  成功的回應將 tooyour 應用程式傳送 hello 指示在`redirect_uri`，使用 hello 中指定的 hello 方法`response_mode`參數。
 
 #### 成功回應
 使用 `response_mode=fragment` 的成功回應如下所示：
@@ -194,14 +194,14 @@ access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZnl0aEV1Q..
 
 | 參數 | 說明 |
 | --- | --- |
-| access_token |應用程式要求的權杖。 |
+| access_token |hello hello 應用程式要求的語彙基元。 |
 | token_type |一律為 `Bearer`。 |
-| state |如果要求中包含狀態參數，回應中就應該出現相同的值。 應用程式應確認要求和回應中的狀態值完全相同。 |
-| expires_in |存取權杖的有效期 (以秒為單位)。 |
-| scope |存取權杖有效的範圍。 |
+| state |如果在 hello 要求中，相同的值應該會出現在 hello 回應 hello 包含狀態參數。 hello 應用程式應該確認 hello 要求和回應中的 hello 狀態值完全相同。 |
+| expires_in |多久 hello 存取權杖是有效 （以秒為單位）。 |
+| scope |hello 存取權杖的 hello 範圍無效。 |
 
 #### 錯誤回應
-錯誤回應可能也會傳送至 `redirect_uri` ，讓應用程式可以適當地處理。  如果是 `prompt=none`，預期的錯誤為：
+錯誤回應也可能會傳送 toohello`redirect_uri`讓 hello 應用程式可以適當地處理。  中的 hello 案例`prompt=none`，將會發生預期的錯誤：
 
 ```
 GET https://localhost/myapp/#
@@ -211,16 +211,16 @@ error=user_authentication_required
 
 | 參數 | 說明 |
 | --- | --- |
-| 錯誤 |用以分類發生的錯誤類型與回應錯誤的錯誤碼字串。 |
-| error_description |協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
+| 錯誤 |錯誤的程式碼字串是使用的 tooclassify 類型之錯誤的發生，且可以使用的 tooreact tooerrors。 |
+| error_description |特定的錯誤訊息，可協助開發人員會識別 hello 的驗證錯誤的根本原因。 |
 
-如果您在 iframe 要求中收到此錯誤，使用者必須再次以互動方式登入以擷取新的權杖。  您可以選擇對於您的應用程式合理的任何方式處理這種情況。
+如果您收到這個錯誤 hello iframe 要求中，hello 使用者必須以互動方式登入一次 tooretrieve 新權杖。  您可以選擇 toohandle 此情況下，無論最適合您的應用程式中。
 
 ## 重新整理權杖
-`id_token` 和 `access_token` 馬上就會到期，因此您的應用程式必須準備好定期重新整理這些權杖。  若要重新整理其中任何一個類型的權杖，您可以使用 `prompt=none` 參數來控制 Azure AD 的行為，執行上述的相同隱藏的 iframe 要求。  如果您想要收到新的 `id_token`，務必使用 `response_type=id_token` 和 `scope=openid`，以及 `nonce` 參數。
+同時`id_token`s 和`access_token`s 會在一段時間後過期，因此您的應用程式必須準備 toorefresh 這些語彙基元定期。  輸入的語彙基元 toorefresh，您可以執行 hello corresponding 使用 hello 的同一個隱藏的 iframe 要求`prompt=none`參數 toocontrol Azure AD 的行為。  如果您想要新 tooreceive `id_token`，是確定 toouse`response_type=id_token`和`scope=openid`，以及`nonce`參數。
 
 ## 傳送登出要求
-OpenIdConnect `end_session_endpoint` 允許您的應用程式向 v2.0 端點傳送要求，以結束使用者的工作階段及清除 v2.0 端點設定的 Cookie。  若要將使用者從 Web 應用程式完全登出，您的應用程式應結束自己和使用者之間的工作階段 (通常是透過清除權杖快取或卸除 Cookie)，然後將瀏覽器重新導向至：
+hello OpenIdConnect`end_session_endpoint`可讓您的應用程式 toosend hello v2.0 端點所設定的使用者工作階段和清除 cookie 要求 toohello v2.0 端點 tooend。  toofully 登入將使用者登出 web 應用程式，您的應用程式應該結束自己的工作階段與 hello 使用者 （通常是藉由清除 權杖快取或卸除 cookie），並再重新導向至 hello 瀏覽器：
 
 ```
 https://login.microsoftonline.com/{tenant}/oauth2/v2.0/logout?post_logout_redirect_uri=https://localhost/myapp/
@@ -228,5 +228,5 @@ https://login.microsoftonline.com/{tenant}/oauth2/v2.0/logout?post_logout_redire
 
 | 參數 |  | 說明 |
 | --- | --- | --- |
-| tenant |必要 |要求路徑中的 `{tenant}` 值可用來控制可登入應用程式的人員。  允許的值為 `common`、`organizations`、`consumers` 及租用戶識別碼。  如需更多詳細資訊，請參閱 [通訊協定基本概念](active-directory-v2-protocols.md#endpoints)。 |
-| post_logout_redirect_uri | 建議使用 | 使用者在完成登出之後應該要返回的 URL。 這個值必須符合為應用程式註冊的其中一個重新導向 URI。 如果未包含，v2.0 端點會向使用者顯示一般訊息。 |
+| tenant |必要 |hello `{tenant}` hello hello 要求路徑中的值可以是使用的 toocontrol 可以登入 hello 應用程式。  hello 允許的值為`common`， `organizations`， `consumers`，和租用戶識別碼。  如需更多詳細資訊，請參閱 [通訊協定基本概念](active-directory-v2-protocols.md#endpoints)。 |
+| post_logout_redirect_uri | 建議使用 | hello，hello 使用者應該傳回 URL，tooafter 登出完成。 此值必須符合其中一個 hello 重新導向 Uri 註冊 hello 應用程式。 如果未包含，hello 使用者將會顯示一般訊息 hello v2.0 端點。 |

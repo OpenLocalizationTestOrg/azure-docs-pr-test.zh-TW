@@ -1,6 +1,6 @@
 ---
 title: "教學課程：Azure Active Directory 與 BlueJeans 整合 | Microsoft Docs"
-description: "了解如何設定 Azure Active Directory 與 BlueJeans 之間的單一登入。"
+description: "了解 tooconfigure 的單一登入 Azure Active Directory 與 BlueJeans 之間。"
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,263 +13,263 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: jeedes
-ms.openlocfilehash: 03bf65852b8d3cf14aebf155891a028db86e78d0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 67613303a9f854afbf4619418cc1607d329caf94
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-bluejeans"></a><span data-ttu-id="91858-103">教學課程：Azure Active Directory 與 BlueJeans 整合</span><span class="sxs-lookup"><span data-stu-id="91858-103">Tutorial: Azure Active Directory integration with BlueJeans</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-bluejeans"></a><span data-ttu-id="7815d-103">教學課程：Azure Active Directory 與 BlueJeans 整合</span><span class="sxs-lookup"><span data-stu-id="7815d-103">Tutorial: Azure Active Directory integration with BlueJeans</span></span>
 
-<span data-ttu-id="91858-104">在本教學課程中，您會了解如何將 BlueJeans 與 Azure Active Directory (Azure AD) 整合。</span><span class="sxs-lookup"><span data-stu-id="91858-104">In this tutorial, you learn how to integrate BlueJeans with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="7815d-104">在此教學課程中，您學會如何 toointegrate BlueJeans 與 Azure Active Directory (Azure AD)。</span><span class="sxs-lookup"><span data-stu-id="7815d-104">In this tutorial, you learn how toointegrate BlueJeans with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="91858-105">將 BlueJeans 與 Azure AD 整合可提供下列優點：</span><span class="sxs-lookup"><span data-stu-id="91858-105">Integrating BlueJeans with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="7815d-105">整合 Azure AD 與 BlueJeans 可以提供下列優點 hello:</span><span class="sxs-lookup"><span data-stu-id="7815d-105">Integrating BlueJeans with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="91858-106">您可以在 Azure AD 中控制可存取 BlueJeans 的人員</span><span class="sxs-lookup"><span data-stu-id="91858-106">You can control in Azure AD who has access to BlueJeans</span></span>
-- <span data-ttu-id="91858-107">您可以讓使用者使用他們的 Azure AD 帳戶自動登入 BlueJeans (單一登入)</span><span class="sxs-lookup"><span data-stu-id="91858-107">You can enable your users to automatically get signed-on to BlueJeans (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="91858-108">您可以在 Azure 入口網站中集中管理您的帳戶</span><span class="sxs-lookup"><span data-stu-id="91858-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="7815d-106">您可以控制存取 tooBlueJeans Azure AD 中</span><span class="sxs-lookup"><span data-stu-id="7815d-106">You can control in Azure AD who has access tooBlueJeans</span></span>
+- <span data-ttu-id="7815d-107">您可以啟用您的使用者 tooautomatically get 登入 tooBlueJeans （單一登入） 具有其 Azure AD 帳戶</span><span class="sxs-lookup"><span data-stu-id="7815d-107">You can enable your users tooautomatically get signed-on tooBlueJeans (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="7815d-108">您可以管理您的帳戶，在單一中央位置-hello Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="7815d-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="91858-109">如果您想要了解有關 SaaS 應用程式與 Azure AD 之整合的更多詳細資料，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。</span><span class="sxs-lookup"><span data-stu-id="91858-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="7815d-109">如果您想 tooknow 詳細與 Azure AD SaaS 應用程式整合，請參閱[什麼是應用程式存取和單一登入與 Azure Active Directory](active-directory-appssoaccess-whatis.md)。</span><span class="sxs-lookup"><span data-stu-id="7815d-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="91858-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="91858-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="7815d-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="7815d-110">Prerequisites</span></span>
 
-<span data-ttu-id="91858-111">若要設定 Azure AD 與 BlueJeans 的整合，您需要下列項目：</span><span class="sxs-lookup"><span data-stu-id="91858-111">To configure Azure AD integration with BlueJeans, you need the following items:</span></span>
+<span data-ttu-id="7815d-111">tooconfigure Azure AD 與 BlueJeans 的整合，您需要下列項目 hello:</span><span class="sxs-lookup"><span data-stu-id="7815d-111">tooconfigure Azure AD integration with BlueJeans, you need hello following items:</span></span>
 
-- <span data-ttu-id="91858-112">Azure AD 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="91858-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="91858-113">已啟用 BlueJeans 單一登入功能的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="91858-113">A BlueJeans single-sign on enabled subscription</span></span>
+- <span data-ttu-id="7815d-112">Azure AD 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="7815d-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="7815d-113">已啟用 BlueJeans 單一登入功能的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="7815d-113">A BlueJeans single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="91858-114">若要測試本教學課程中的步驟，我們不建議使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="91858-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="7815d-114">本教學課程中的步驟 tootest hello，不建議使用實際執行環境。</span><span class="sxs-lookup"><span data-stu-id="7815d-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="91858-115">若要測試本教學課程中的步驟，您應該遵循這些建議：</span><span class="sxs-lookup"><span data-stu-id="91858-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="7815d-115">在本教學課程 tootest hello 步驟，您應該遵循這些建議：</span><span class="sxs-lookup"><span data-stu-id="7815d-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="91858-116">除非必要，否則請勿使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="91858-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="91858-117">如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。</span><span class="sxs-lookup"><span data-stu-id="91858-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="7815d-116">除非必要，否則請勿使用生產環境。</span><span class="sxs-lookup"><span data-stu-id="7815d-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="7815d-117">如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。</span><span class="sxs-lookup"><span data-stu-id="7815d-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="91858-118">案例描述</span><span class="sxs-lookup"><span data-stu-id="91858-118">Scenario description</span></span>
-<span data-ttu-id="91858-119">在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="91858-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="91858-120">本教學課程中說明的案例由二個主要建置組塊組成：</span><span class="sxs-lookup"><span data-stu-id="91858-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="7815d-118">案例描述</span><span class="sxs-lookup"><span data-stu-id="7815d-118">Scenario description</span></span>
+<span data-ttu-id="7815d-119">在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="7815d-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="7815d-120">本教學課程所述的 hello 案例包含兩個主要建置組塊：</span><span class="sxs-lookup"><span data-stu-id="7815d-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="91858-121">從資源庫新增 BlueJeans</span><span class="sxs-lookup"><span data-stu-id="91858-121">Adding BlueJeans from the gallery</span></span>
-2. <span data-ttu-id="91858-122">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="91858-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="7815d-121">從 hello 圖庫加入 BlueJeans</span><span class="sxs-lookup"><span data-stu-id="7815d-121">Adding BlueJeans from hello gallery</span></span>
+2. <span data-ttu-id="7815d-122">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="7815d-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-bluejeans-from-the-gallery"></a><span data-ttu-id="91858-123">從資源庫新增 BlueJeans</span><span class="sxs-lookup"><span data-stu-id="91858-123">Adding BlueJeans from the gallery</span></span>
-<span data-ttu-id="91858-124">若要設定將 BlueJeans 整合到 Azure AD 中，您需要從資源庫將 BlueJeans 新增到受管理的 SaaS 應用程式清單。</span><span class="sxs-lookup"><span data-stu-id="91858-124">To configure the integration of BlueJeans into Azure AD, you need to add BlueJeans from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-bluejeans-from-hello-gallery"></a><span data-ttu-id="7815d-123">從 hello 圖庫加入 BlueJeans</span><span class="sxs-lookup"><span data-stu-id="7815d-123">Adding BlueJeans from hello gallery</span></span>
+<span data-ttu-id="7815d-124">tooconfigure hello 整合 BlueJeans 的 Azure AD，您需要從受管理的 SaaS 應用程式的 hello 圖庫 tooyour 清單 tooadd BlueJeans。</span><span class="sxs-lookup"><span data-stu-id="7815d-124">tooconfigure hello integration of BlueJeans into Azure AD, you need tooadd BlueJeans from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="91858-125">**若要從資源庫新增 BlueJeans，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="91858-125">**To add BlueJeans from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="7815d-125">**tooadd BlueJeans 從 hello 組件庫中，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="7815d-125">**tooadd BlueJeans from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="91858-126">在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。</span><span class="sxs-lookup"><span data-stu-id="91858-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="7815d-126">在 hello  **[Azure 入口網站](https://portal.azure.com)**，請在 hello 左邊的導覽面板中按一下**Azure Active Directory**圖示。</span><span class="sxs-lookup"><span data-stu-id="7815d-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="91858-128">瀏覽至 [企業應用程式]。</span><span class="sxs-lookup"><span data-stu-id="91858-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="91858-129">然後移至 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="91858-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="7815d-128">瀏覽過**企業應用程式**。</span><span class="sxs-lookup"><span data-stu-id="7815d-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="7815d-129">然後跳過**所有應用程式**。</span><span class="sxs-lookup"><span data-stu-id="7815d-129">Then go too**All applications**.</span></span>
 
     ![應用程式][2]
     
-3. <span data-ttu-id="91858-131">若要新增新的應用程式，請按一下對話方塊頂端的 [新增應用程式] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="91858-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="7815d-131">tooadd 新應用程式中，按一下 **新的應用程式**上 hello 對話方塊上方的按鈕。</span><span class="sxs-lookup"><span data-stu-id="7815d-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![應用程式][3]
 
-4. <span data-ttu-id="91858-133">在搜尋方塊中，輸入 **BlueJeans**。</span><span class="sxs-lookup"><span data-stu-id="91858-133">In the search box, type **BlueJeans**.</span></span>
+4. <span data-ttu-id="7815d-133">在 [hello] 搜尋方塊中，輸入**BlueJeans**。</span><span class="sxs-lookup"><span data-stu-id="7815d-133">In hello search box, type **BlueJeans**.</span></span>
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-bluejeans-tutorial/tutorial_bluejeans_search.png)
 
-5. <span data-ttu-id="91858-135">在結果面板中，選取 [BlueJeans]，然後按一下 [新增] 按鈕以新增該應用程式。</span><span class="sxs-lookup"><span data-stu-id="91858-135">In the results panel, select **BlueJeans**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="7815d-135">在 hello 結果 窗格中，選取  **BlueJeans**，然後按一下**新增**按鈕 tooadd hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="7815d-135">In hello results panel, select **BlueJeans**, and then click **Add** button tooadd hello application.</span></span>
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-bluejeans-tutorial/tutorial_bluejeans_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="91858-137">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="91858-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="91858-138">在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 BlueJeans 搭配運作的 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="91858-138">In this section, you configure and test Azure AD single sign-on with BlueJeans based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="7815d-137">設定並測試 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="7815d-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="7815d-138">在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 BlueJeans 搭配運作的 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="7815d-138">In this section, you configure and test Azure AD single sign-on with BlueJeans based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="91858-139">若要讓單一登入能夠運作，Azure AD 必須知道 BlueJeans 與 Azure AD 中互相對應的使用者。</span><span class="sxs-lookup"><span data-stu-id="91858-139">For single sign-on to work, Azure AD needs to know what the counterpart user in BlueJeans is to a user in Azure AD.</span></span> <span data-ttu-id="91858-140">換句話說，必須在 Azure AD 使用者與 BlueJeans 中的相關使用者之間建立連結關聯性。</span><span class="sxs-lookup"><span data-stu-id="91858-140">In other words, a link relationship between an Azure AD user and the related user in BlueJeans needs to be established.</span></span>
+<span data-ttu-id="7815d-139">單一登入 toowork，Azure AD 需要 tooknow hello 的對等項目的使用者在 BlueJeans 中是 tooa 使用者在 Azure AD 中。</span><span class="sxs-lookup"><span data-stu-id="7815d-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in BlueJeans is tooa user in Azure AD.</span></span> <span data-ttu-id="7815d-140">換句話說，Azure AD 使用者與 hello BlueJeans 中相關的使用者之間的連結關聯性需要 toobe 建立。</span><span class="sxs-lookup"><span data-stu-id="7815d-140">In other words, a link relationship between an Azure AD user and hello related user in BlueJeans needs toobe established.</span></span>
 
-<span data-ttu-id="91858-141">在 BlueJeans 中，將 [Username] 的值指派為 Azure AD 中 [使用者名稱] 的值，以建立連結關聯性。</span><span class="sxs-lookup"><span data-stu-id="91858-141">In BlueJeans, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="7815d-141">在 BlueJeans 中，將指派的 hello hello 值**使用者名**做為 hello hello 值的 Azure AD 中**Username** tooestablish hello 連結關聯性。</span><span class="sxs-lookup"><span data-stu-id="7815d-141">In BlueJeans, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="91858-142">若要設定及測試與 BlueJeans 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：</span><span class="sxs-lookup"><span data-stu-id="91858-142">To configure and test Azure AD single sign-on with BlueJeans, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="7815d-142">tooconfigure 及測試 Azure AD 單一登入 BlueJeans，您必須遵循的建置組塊 toocomplete hello:</span><span class="sxs-lookup"><span data-stu-id="7815d-142">tooconfigure and test Azure AD single sign-on with BlueJeans, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="91858-143">**[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。</span><span class="sxs-lookup"><span data-stu-id="91858-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="91858-144">**[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="91858-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="91858-145">**[建立 BlueJeans 測試使用者](#creating-a-bluejeans-test-user)** - 在 BlueJeans 中建立一個與 Azure AD 中代表 Britta Simon 之項目連結的 Britta Simon 對應項目。</span><span class="sxs-lookup"><span data-stu-id="91858-145">**[Creating a BlueJeans test user](#creating-a-bluejeans-test-user)** - to have a counterpart of Britta Simon in BlueJeans that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="91858-146">**[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="91858-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="91858-147">**[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。</span><span class="sxs-lookup"><span data-stu-id="91858-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="7815d-143">**[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** -tooenable 使用者 toouse 這項功能。</span><span class="sxs-lookup"><span data-stu-id="7815d-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="7815d-144">**[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** -tootest Azure AD 單一登入與許 Simon。</span><span class="sxs-lookup"><span data-stu-id="7815d-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="7815d-145">**[建立測試使用者 BlueJeans](#creating-a-bluejeans-test-user)**  -toohave 是連結的 toohello Azure AD 使用者表示法的許 Simon BlueJeans 中對應項目。</span><span class="sxs-lookup"><span data-stu-id="7815d-145">**[Creating a BlueJeans test user](#creating-a-bluejeans-test-user)** - toohave a counterpart of Britta Simon in BlueJeans that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="7815d-146">**[指派 hello Azure AD 的測試使用者](#assigning-the-azure-ad-test-user)** -tooenable 許 Simon toouse Azure AD 單一登入。</span><span class="sxs-lookup"><span data-stu-id="7815d-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="7815d-147">**[測試單一登入](#testing-single-sign-on)** -tooverify 是否 hello 組態工作。</span><span class="sxs-lookup"><span data-stu-id="7815d-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="91858-148">設定 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="91858-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="7815d-148">設定 Azure AD 單一登入</span><span class="sxs-lookup"><span data-stu-id="7815d-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="91858-149">在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，然後在您的 BlueJeans 應用程式中設定單一登入。</span><span class="sxs-lookup"><span data-stu-id="91858-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your BlueJeans application.</span></span>
+<span data-ttu-id="7815d-149">在本節中，您可以啟用 Azure AD 單一登入 hello Azure 入口網站中，並設定單一登入 BlueJeans 的應用程式中。</span><span class="sxs-lookup"><span data-stu-id="7815d-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your BlueJeans application.</span></span>
 
-<span data-ttu-id="91858-150">**若要設定與 BlueJeans 搭配運作的 Azure AD 單一登入，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="91858-150">**To configure Azure AD single sign-on with BlueJeans, perform the following steps:**</span></span>
+<span data-ttu-id="7815d-150">**tooconfigure Azure AD 單一登入 BlueJeans，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="7815d-150">**tooconfigure Azure AD single sign-on with BlueJeans, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="91858-151">在 Azure 入口網站的 [BlueJeans] 應用程式整合頁面上，按一下 [單一登入]。</span><span class="sxs-lookup"><span data-stu-id="91858-151">In the Azure portal, on the **BlueJeans** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="7815d-151">在 Azure 入口網站上 hello hello **BlueJeans**應用程式整合頁面上，按一下 **單一登入**。</span><span class="sxs-lookup"><span data-stu-id="7815d-151">In hello Azure portal, on hello **BlueJeans** application integration page, click **Single sign-on**.</span></span>
 
     ![設定單一登入][4]
 
-2. <span data-ttu-id="91858-153">在 [單一登入] 對話方塊上，於 [模式] 選取 [SAML 登入]，以啟用單一登入。</span><span class="sxs-lookup"><span data-stu-id="91858-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="7815d-153">在 hello**單一登入**對話方塊中，選取**模式**為**SAML 型登入**tooenable 單一登入。</span><span class="sxs-lookup"><span data-stu-id="7815d-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![設定單一登入](./media/active-directory-saas-bluejeans-tutorial/tutorial_bluejeans_samlbase.png)
 
-3. <span data-ttu-id="91858-155">在 [BlueJeans 網域及 URL] 區段上，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="91858-155">On the **BlueJeans Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="7815d-155">在 hello **BlueJeans 網域和 Url**區段中，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="7815d-155">On hello **BlueJeans Domain and URLs** section, perform hello following steps:</span></span>
 
     ![設定單一登入](./media/active-directory-saas-bluejeans-tutorial/tutorial_bluejeans_url.png)
 
-    <span data-ttu-id="91858-157">a.</span><span class="sxs-lookup"><span data-stu-id="91858-157">a.</span></span> <span data-ttu-id="91858-158">在 [登入 URL] 文字方塊中，使用下列模式輸入 URL︰`https://<companyname>.BlueJeans.com`</span><span class="sxs-lookup"><span data-stu-id="91858-158">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<companyname>.BlueJeans.com`</span></span>
+    <span data-ttu-id="7815d-157">a.</span><span class="sxs-lookup"><span data-stu-id="7815d-157">a.</span></span> <span data-ttu-id="7815d-158">在 hello**登入 URL**文字方塊中，輸入 URL，使用下列模式的 hello:`https://<companyname>.BlueJeans.com`</span><span class="sxs-lookup"><span data-stu-id="7815d-158">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<companyname>.BlueJeans.com`</span></span>
 
-    <span data-ttu-id="91858-159">b.</span><span class="sxs-lookup"><span data-stu-id="91858-159">b.</span></span> <span data-ttu-id="91858-160">在 [識別碼] 文字方塊中，使用下列模式輸入 URL：`https://<companyname>.BlueJeans.com`</span><span class="sxs-lookup"><span data-stu-id="91858-160">In the **Identifier** textbox, type a URL using the following pattern: `https://<companyname>.BlueJeans.com`</span></span>
+    <span data-ttu-id="7815d-159">b.</span><span class="sxs-lookup"><span data-stu-id="7815d-159">b.</span></span> <span data-ttu-id="7815d-160">在 hello**識別碼**文字方塊中，輸入 URL，使用下列模式的 hello:`https://<companyname>.BlueJeans.com`</span><span class="sxs-lookup"><span data-stu-id="7815d-160">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<companyname>.BlueJeans.com`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="91858-161">這些都不是真正的值。</span><span class="sxs-lookup"><span data-stu-id="91858-161">These values are not real.</span></span> <span data-ttu-id="91858-162">使用實際的「登入 URL」及「識別碼」來更新這些值。</span><span class="sxs-lookup"><span data-stu-id="91858-162">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="91858-163">請連絡 [BlueJeans 用戶端支援小組](https://support.bluejeans.com/contact)以取得這些值。</span><span class="sxs-lookup"><span data-stu-id="91858-163">Contact [BlueJeans Client support team](https://support.bluejeans.com/contact) to get these values.</span></span> 
+    > <span data-ttu-id="7815d-161">這些都不是真正的值。</span><span class="sxs-lookup"><span data-stu-id="7815d-161">These values are not real.</span></span> <span data-ttu-id="7815d-162">更新這些值與實際的 hello 登入 URL 和識別項。</span><span class="sxs-lookup"><span data-stu-id="7815d-162">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="7815d-163">請連絡[BlueJeans 用戶端支援小組](https://support.bluejeans.com/contact)tooget 這些值。</span><span class="sxs-lookup"><span data-stu-id="7815d-163">Contact [BlueJeans Client support team](https://support.bluejeans.com/contact) tooget these values.</span></span> 
  
-4. <span data-ttu-id="91858-164">在 [SAML 簽署憑證] 區段上，按一下 [憑證 (Base64)]，然後將憑證檔案儲存在您的電腦上。</span><span class="sxs-lookup"><span data-stu-id="91858-164">On the **SAML Signing Certificate** section, click **Certificate(Base64)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="7815d-164">在 hello **SAML 簽章憑證**區段中，按一下**Certificate(Base64)**然後儲存您的電腦上的 hello 憑證檔案。</span><span class="sxs-lookup"><span data-stu-id="7815d-164">On hello **SAML Signing Certificate** section, click **Certificate(Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![設定單一登入](./media/active-directory-saas-bluejeans-tutorial/tutorial_bluejeans_certificate.png) 
 
-5. <span data-ttu-id="91858-166">按一下 [儲存]  按鈕。</span><span class="sxs-lookup"><span data-stu-id="91858-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="7815d-166">按一下 [儲存]  按鈕。</span><span class="sxs-lookup"><span data-stu-id="7815d-166">Click **Save** button.</span></span>
 
     ![設定單一登入](./media/active-directory-saas-bluejeans-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="91858-168">在 [BlueJeans 組態] 區段上，按一下 [設定 BlueJeans] 以開啟 [設定登入] 視窗。</span><span class="sxs-lookup"><span data-stu-id="91858-168">On the **BlueJeans Configuration** section, click **Configure BlueJeans** to open **Configure sign-on** window.</span></span> <span data-ttu-id="91858-169">從 [快速參考] 區段中複製「登出 URL」、「變更密碼 URL」及「SAML 單一登入服務 URL」。</span><span class="sxs-lookup"><span data-stu-id="91858-169">Copy the **Sign-Out URL, Change Password URL and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="7815d-168">在 hello **BlueJeans 組態**區段中，按一下**設定 BlueJeans** tooopen**設定登入**視窗。</span><span class="sxs-lookup"><span data-stu-id="7815d-168">On hello **BlueJeans Configuration** section, click **Configure BlueJeans** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="7815d-169">複製 hello**登出 URL、 變更密碼 URL 和 SAML 單一登入服務 URL**從 hello**快速參考 > 一節。**</span><span class="sxs-lookup"><span data-stu-id="7815d-169">Copy hello **Sign-Out URL, Change Password URL and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![設定單一登入](./media/active-directory-saas-bluejeans-tutorial/tutorial_bluejeans_configure.png) 
 
-7. <span data-ttu-id="91858-171">在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 **BlueJeans** 公司網站。</span><span class="sxs-lookup"><span data-stu-id="91858-171">In a different web browser window, log in to your **BlueJeans** company site as an administrator.</span></span>
+7. <span data-ttu-id="7815d-171">在不同的網頁瀏覽器視窗中，登入 tooyour **BlueJeans**系統管理員身分的公司網站。</span><span class="sxs-lookup"><span data-stu-id="7815d-171">In a different web browser window, log in tooyour **BlueJeans** company site as an administrator.</span></span>
 
-8. <span data-ttu-id="91858-172">移至 [管理] \> [群組設定] \> > [安全性]。</span><span class="sxs-lookup"><span data-stu-id="91858-172">Go to **ADMIN \> Group Settings \> Security**.</span></span>
+8. <span data-ttu-id="7815d-172">跳過**ADMIN\>群組設定\>安全性**。</span><span class="sxs-lookup"><span data-stu-id="7815d-172">Go too**ADMIN \> Group Settings \> Security**.</span></span>
    
-   <span data-ttu-id="91858-173">![管理](./media/active-directory-saas-bluejeans-tutorial/IC785868.png "管理")</span><span class="sxs-lookup"><span data-stu-id="91858-173">![Admin](./media/active-directory-saas-bluejeans-tutorial/IC785868.png "Admin")</span></span>
+   <span data-ttu-id="7815d-173">![管理](./media/active-directory-saas-bluejeans-tutorial/IC785868.png "管理")</span><span class="sxs-lookup"><span data-stu-id="7815d-173">![Admin](./media/active-directory-saas-bluejeans-tutorial/IC785868.png "Admin")</span></span>
 
-9. <span data-ttu-id="91858-174">在 [安全性] 區段中，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="91858-174">In the **Security** section, perform the following steps:</span></span>
+9. <span data-ttu-id="7815d-174">在 hello**安全性**區段中，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="7815d-174">In hello **Security** section, perform hello following steps:</span></span>
    
-   <span data-ttu-id="91858-175">![SAML 單一登入](./media/active-directory-saas-bluejeans-tutorial/IC785869.png "SAML 單一登入")</span><span class="sxs-lookup"><span data-stu-id="91858-175">![SAML Single Sign On](./media/active-directory-saas-bluejeans-tutorial/IC785869.png "SAML Single Sign On")</span></span>   
+   <span data-ttu-id="7815d-175">![SAML 單一登入](./media/active-directory-saas-bluejeans-tutorial/IC785869.png "SAML 單一登入")</span><span class="sxs-lookup"><span data-stu-id="7815d-175">![SAML Single Sign On](./media/active-directory-saas-bluejeans-tutorial/IC785869.png "SAML Single Sign On")</span></span>   
    
-   <span data-ttu-id="91858-176">a.</span><span class="sxs-lookup"><span data-stu-id="91858-176">a.</span></span> <span data-ttu-id="91858-177">選取 [SAML 單一登入] 。</span><span class="sxs-lookup"><span data-stu-id="91858-177">Select **SAML Single Sign On**.</span></span>
+   <span data-ttu-id="7815d-176">a.</span><span class="sxs-lookup"><span data-stu-id="7815d-176">a.</span></span> <span data-ttu-id="7815d-177">選取 [SAML 單一登入] 。</span><span class="sxs-lookup"><span data-stu-id="7815d-177">Select **SAML Single Sign On**.</span></span>
   
-   <span data-ttu-id="91858-178">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="91858-178">b.</span></span> <span data-ttu-id="91858-179">選取 [啟用自動佈建] 。</span><span class="sxs-lookup"><span data-stu-id="91858-179">Select **Enable automatic provisioning**.</span></span>
+   <span data-ttu-id="7815d-178">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="7815d-178">b.</span></span> <span data-ttu-id="7815d-179">選取 [啟用自動佈建] 。</span><span class="sxs-lookup"><span data-stu-id="7815d-179">Select **Enable automatic provisioning**.</span></span>
 
-10. <span data-ttu-id="91858-180">繼續執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="91858-180">Move on with the following steps:</span></span>
+10. <span data-ttu-id="7815d-180">繼續以 hello 下列步驟：</span><span class="sxs-lookup"><span data-stu-id="7815d-180">Move on with hello following steps:</span></span>
 
-    <span data-ttu-id="91858-181">![憑證路徑](./media/active-directory-saas-bluejeans-tutorial/IC785870.png "憑證路徑")</span><span class="sxs-lookup"><span data-stu-id="91858-181">![Certificate Path](./media/active-directory-saas-bluejeans-tutorial/IC785870.png "Certificate Path")</span></span>
+    <span data-ttu-id="7815d-181">![憑證路徑](./media/active-directory-saas-bluejeans-tutorial/IC785870.png "憑證路徑")</span><span class="sxs-lookup"><span data-stu-id="7815d-181">![Certificate Path](./media/active-directory-saas-bluejeans-tutorial/IC785870.png "Certificate Path")</span></span>
     
-    <span data-ttu-id="91858-182">a.</span><span class="sxs-lookup"><span data-stu-id="91858-182">a.</span></span> <span data-ttu-id="91858-183">按一下 [選擇檔案] ，然後上傳下載的憑證。</span><span class="sxs-lookup"><span data-stu-id="91858-183">Click **Choose File**, and then upload the downloaded certificate.</span></span>
+    <span data-ttu-id="7815d-182">a.</span><span class="sxs-lookup"><span data-stu-id="7815d-182">a.</span></span> <span data-ttu-id="7815d-183">按一下**選擇檔案**，然後再上傳 hello 下載憑證。</span><span class="sxs-lookup"><span data-stu-id="7815d-183">Click **Choose File**, and then upload hello downloaded certificate.</span></span>
    
-    <span data-ttu-id="91858-184">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="91858-184">b.</span></span> <span data-ttu-id="91858-185">將「SAML 單一登入服務 URL」貼到 [登入 URL] 文字方塊中。</span><span class="sxs-lookup"><span data-stu-id="91858-185">Paste **SAML Single Sign-On Service URL** into the **Login URL** textbox.</span></span>
+    <span data-ttu-id="7815d-184">b.</span><span class="sxs-lookup"><span data-stu-id="7815d-184">b.</span></span> <span data-ttu-id="7815d-185">貼上**SAML 單一登入服務 URL**到 hello**登入 URL**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="7815d-185">Paste **SAML Single Sign-On Service URL** into hello **Login URL** textbox.</span></span>
    
-    <span data-ttu-id="91858-186">c.</span><span class="sxs-lookup"><span data-stu-id="91858-186">c.</span></span> <span data-ttu-id="91858-187">將「變更密碼 URL」貼到 [密碼變更 URL] 文字方塊中。</span><span class="sxs-lookup"><span data-stu-id="91858-187">Paste **Change Password URL** into the **Password Change URL** textbox.</span></span>
+    <span data-ttu-id="7815d-186">c.</span><span class="sxs-lookup"><span data-stu-id="7815d-186">c.</span></span> <span data-ttu-id="7815d-187">貼上**變更密碼 URL**到 hello**變更密碼 URL**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="7815d-187">Paste **Change Password URL** into hello **Password Change URL** textbox.</span></span>
    
-    <span data-ttu-id="91858-188">d.</span><span class="sxs-lookup"><span data-stu-id="91858-188">d.</span></span> <span data-ttu-id="91858-189">將「登出 URL」貼到 [登出 URL] 文字方塊中。</span><span class="sxs-lookup"><span data-stu-id="91858-189">Paste **Sign-Out URL** into the **Logout URL** textbox.</span></span>
+    <span data-ttu-id="7815d-188">d.</span><span class="sxs-lookup"><span data-stu-id="7815d-188">d.</span></span> <span data-ttu-id="7815d-189">貼上**登出 URL**到 hello**登出 URL**文字方塊。</span><span class="sxs-lookup"><span data-stu-id="7815d-189">Paste **Sign-Out URL** into hello **Logout URL** textbox.</span></span>
 
-11. <span data-ttu-id="91858-190">繼續執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="91858-190">Move on with the following steps:</span></span>
+11. <span data-ttu-id="7815d-190">繼續以 hello 下列步驟：</span><span class="sxs-lookup"><span data-stu-id="7815d-190">Move on with hello following steps:</span></span>
     
-    <span data-ttu-id="91858-191">![儲存變更](./media/active-directory-saas-bluejeans-tutorial/IC785874.png "儲存變更")</span><span class="sxs-lookup"><span data-stu-id="91858-191">![Save Changes](./media/active-directory-saas-bluejeans-tutorial/IC785874.png "Save Changes")</span></span>
+    <span data-ttu-id="7815d-191">![儲存變更](./media/active-directory-saas-bluejeans-tutorial/IC785874.png "儲存變更")</span><span class="sxs-lookup"><span data-stu-id="7815d-191">![Save Changes](./media/active-directory-saas-bluejeans-tutorial/IC785874.png "Save Changes")</span></span>
     
-    <span data-ttu-id="91858-192">a.</span><span class="sxs-lookup"><span data-stu-id="91858-192">a.</span></span> <span data-ttu-id="91858-193">在 [使用者識別碼] 文字方塊中，輸入 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`。</span><span class="sxs-lookup"><span data-stu-id="91858-193">In the **User id** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`.</span></span>
+    <span data-ttu-id="7815d-192">a.</span><span class="sxs-lookup"><span data-stu-id="7815d-192">a.</span></span> <span data-ttu-id="7815d-193">在 hello**使用者識別碼**文字方塊中，輸入`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`。</span><span class="sxs-lookup"><span data-stu-id="7815d-193">In hello **User id** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`.</span></span>
    
-    <span data-ttu-id="91858-194">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="91858-194">b.</span></span> <span data-ttu-id="91858-195">在 [電子郵件] 文字方塊中，輸入 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`。</span><span class="sxs-lookup"><span data-stu-id="91858-195">In the **Email** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`.</span></span>
+    <span data-ttu-id="7815d-194">b.</span><span class="sxs-lookup"><span data-stu-id="7815d-194">b.</span></span> <span data-ttu-id="7815d-195">在 hello**電子郵件**文字方塊中，輸入`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`。</span><span class="sxs-lookup"><span data-stu-id="7815d-195">In hello **Email** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`.</span></span>
    
-    <span data-ttu-id="91858-196">c.</span><span class="sxs-lookup"><span data-stu-id="91858-196">c.</span></span> <span data-ttu-id="91858-197">按一下 [儲存變更] 。</span><span class="sxs-lookup"><span data-stu-id="91858-197">Click **Save Changes**.</span></span>
+    <span data-ttu-id="7815d-196">c.</span><span class="sxs-lookup"><span data-stu-id="7815d-196">c.</span></span> <span data-ttu-id="7815d-197">按一下 [儲存變更] 。</span><span class="sxs-lookup"><span data-stu-id="7815d-197">Click **Save Changes**.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="91858-198">現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！</span><span class="sxs-lookup"><span data-stu-id="91858-198">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="91858-199">從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。</span><span class="sxs-lookup"><span data-stu-id="91858-199">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="91858-200">您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="91858-200">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="7815d-198">您現在可以讀取這些指示在 hello 的精簡版本[Azure 入口網站](https://portal.azure.com)，而您要設定 hello 應用程式 ！</span><span class="sxs-lookup"><span data-stu-id="7815d-198">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="7815d-199">加入此應用程式從 hello 之後**Active Directory > 企業應用程式**區段中，只要按一下 hello**單一登入** 索引標籤和存取 hello 內嵌文件，透過 hello **組態**hello 底部的區段。</span><span class="sxs-lookup"><span data-stu-id="7815d-199">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="7815d-200">閱讀更多有關 hello embedded 文件功能： [Azure AD 的內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="7815d-200">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="91858-201">建立 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="91858-201">Creating an Azure AD test user</span></span>
-<span data-ttu-id="91858-202">本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。</span><span class="sxs-lookup"><span data-stu-id="91858-202">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="7815d-201">建立 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="7815d-201">Creating an Azure AD test user</span></span>
+<span data-ttu-id="7815d-202">hello 本節目標在於 toocreate hello 呼叫許 Simon 的 Azure 入口網站中的測試使用者。</span><span class="sxs-lookup"><span data-stu-id="7815d-202">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![建立 Azure AD 使用者][100]
 
-<span data-ttu-id="91858-204">**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="91858-204">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="7815d-204">**toocreate 測試使用者在 Azure AD 中，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="7815d-204">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="91858-205">在 **Azure 入口網站**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。</span><span class="sxs-lookup"><span data-stu-id="91858-205">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="7815d-205">在 hello **Azure 入口網站**，在 hello 左側的導覽窗格中，按一下**Azure Active Directory**圖示。</span><span class="sxs-lookup"><span data-stu-id="7815d-205">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-bluejeans-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="91858-207">若要顯示使用者清單，請移至 [使用者和群組]，然後按一下 [所有使用者]。</span><span class="sxs-lookup"><span data-stu-id="91858-207">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="7815d-207">toodisplay hello 使用者清單，請移過**使用者和群組**按一下**所有使用者**。</span><span class="sxs-lookup"><span data-stu-id="7815d-207">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-bluejeans-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="91858-209">若要開啟 [使用者] 對話方塊，按一下對話方塊頂端的 [新增]。</span><span class="sxs-lookup"><span data-stu-id="91858-209">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="7815d-209">tooopen hello**使用者**] 對話方塊中，按一下 [**新增**上 hello hello 對話方塊的頂端。</span><span class="sxs-lookup"><span data-stu-id="7815d-209">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-bluejeans-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="91858-211">在 [使用者]  對話頁面上，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="91858-211">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="7815d-211">在 hello**使用者**對話方塊頁面上，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="7815d-211">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-bluejeans-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="91858-213">a.</span><span class="sxs-lookup"><span data-stu-id="91858-213">a.</span></span> <span data-ttu-id="91858-214">在 [名稱] 文字方塊中，輸入 **BrittaSimon**。</span><span class="sxs-lookup"><span data-stu-id="91858-214">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="7815d-213">a.</span><span class="sxs-lookup"><span data-stu-id="7815d-213">a.</span></span> <span data-ttu-id="7815d-214">在 hello**名稱**文字方塊中，輸入**BrittaSimon**。</span><span class="sxs-lookup"><span data-stu-id="7815d-214">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="91858-215">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="91858-215">b.</span></span> <span data-ttu-id="91858-216">在 [使用者名稱] 文字方塊中，輸入 BrittaSimon 的**電子郵件地址**。</span><span class="sxs-lookup"><span data-stu-id="91858-216">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="7815d-215">b.</span><span class="sxs-lookup"><span data-stu-id="7815d-215">b.</span></span> <span data-ttu-id="7815d-216">在 hello**使用者名**文字方塊中，型別 hello**電子郵件地址**BrittaSimon。</span><span class="sxs-lookup"><span data-stu-id="7815d-216">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="91858-217">c.</span><span class="sxs-lookup"><span data-stu-id="91858-217">c.</span></span> <span data-ttu-id="91858-218">選取 [顯示密碼] 並記下 [密碼] 的值。</span><span class="sxs-lookup"><span data-stu-id="91858-218">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="7815d-217">c.</span><span class="sxs-lookup"><span data-stu-id="7815d-217">c.</span></span> <span data-ttu-id="7815d-218">選取**顯示密碼**記下 hello hello 值**密碼**。</span><span class="sxs-lookup"><span data-stu-id="7815d-218">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="91858-219">d.</span><span class="sxs-lookup"><span data-stu-id="91858-219">d.</span></span> <span data-ttu-id="91858-220">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="91858-220">Click **Create**.</span></span>
+    <span data-ttu-id="7815d-219">d.</span><span class="sxs-lookup"><span data-stu-id="7815d-219">d.</span></span> <span data-ttu-id="7815d-220">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="7815d-220">Click **Create**.</span></span>
  
-### <a name="creating-a-bluejeans-test-user"></a><span data-ttu-id="91858-221">建立 BlueJeans 測試使用者</span><span class="sxs-lookup"><span data-stu-id="91858-221">Creating a BlueJeans test user</span></span>
+### <a name="creating-a-bluejeans-test-user"></a><span data-ttu-id="7815d-221">建立 BlueJeans 測試使用者</span><span class="sxs-lookup"><span data-stu-id="7815d-221">Creating a BlueJeans test user</span></span>
 
-<span data-ttu-id="91858-222">若要讓 Azure AD 使用者能夠登入 BlueJeans，必須將他們佈建到 BlueJeans。</span><span class="sxs-lookup"><span data-stu-id="91858-222">To enable Azure AD users to log in to BlueJeans, they must be provisioned into BlueJeans.</span></span>  
+<span data-ttu-id="7815d-222">tooenable Azure AD 使用者 toolog 中 tooBlueJeans，它們必須佈建到 BlueJeans。</span><span class="sxs-lookup"><span data-stu-id="7815d-222">tooenable Azure AD users toolog in tooBlueJeans, they must be provisioned into BlueJeans.</span></span>  
 
-<span data-ttu-id="91858-223">就 BlueJeans 而言，需以手動方式佈建。</span><span class="sxs-lookup"><span data-stu-id="91858-223">In case of BlueJeans, provisioning is a manual task.</span></span>
+<span data-ttu-id="7815d-223">就 BlueJeans 而言，需以手動方式佈建。</span><span class="sxs-lookup"><span data-stu-id="7815d-223">In case of BlueJeans, provisioning is a manual task.</span></span>
 
-<span data-ttu-id="91858-224">**若要佈建使用者帳戶，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="91858-224">**To provision a user accounts, perform the following steps:**</span></span>
+<span data-ttu-id="7815d-224">**tooprovision 使用者帳戶，執行下列步驟 hello:**</span><span class="sxs-lookup"><span data-stu-id="7815d-224">**tooprovision a user accounts, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="91858-225">以系統管理員身分登入您的 **BlueJeans** 公司網站。</span><span class="sxs-lookup"><span data-stu-id="91858-225">Log in to your **BlueJeans** company site as an administrator.</span></span>
+1. <span data-ttu-id="7815d-225">登入 tooyour **BlueJeans**系統管理員身分的公司網站。</span><span class="sxs-lookup"><span data-stu-id="7815d-225">Log in tooyour **BlueJeans** company site as an administrator.</span></span>
 
-2. <span data-ttu-id="91858-226">移至 [管理] \> [管理使用者] \> [加入使用者]。</span><span class="sxs-lookup"><span data-stu-id="91858-226">Go to **ADMIN \> Manage Users \> Add User**.</span></span>
+2. <span data-ttu-id="7815d-226">跳過**ADMIN\>管理使用者\>新增使用者**。</span><span class="sxs-lookup"><span data-stu-id="7815d-226">Go too**ADMIN \> Manage Users \> Add User**.</span></span>
    
-   <span data-ttu-id="91858-227">![管理](./media/active-directory-saas-bluejeans-tutorial/IC785877.png "管理")</span><span class="sxs-lookup"><span data-stu-id="91858-227">![Admin](./media/active-directory-saas-bluejeans-tutorial/IC785877.png "Admin")</span></span>
+   <span data-ttu-id="7815d-227">![管理](./media/active-directory-saas-bluejeans-tutorial/IC785877.png "管理")</span><span class="sxs-lookup"><span data-stu-id="7815d-227">![Admin](./media/active-directory-saas-bluejeans-tutorial/IC785877.png "Admin")</span></span>
    
    >[!IMPORTANT]
-   ><span data-ttu-id="91858-228">只有在未核取 [安全性] 索引標籤中的 [啟用自動佈建] 時，才能使用 [加入使用者] 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="91858-228">The **Add User** tab is only available if, in the **Security tab**, **Enable automatic provisioning** is unchecked.</span></span> 
+   ><span data-ttu-id="7815d-228">hello**新增使用者** 索引標籤上，才可以使用如果在 hello**安全性 索引標籤**，**啟用自動佈建**為未選取狀態。</span><span class="sxs-lookup"><span data-stu-id="7815d-228">hello **Add User** tab is only available if, in hello **Security tab**, **Enable automatic provisioning** is unchecked.</span></span> 
    
-3. <span data-ttu-id="91858-229">在 [加入使用者] 區段中，執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="91858-229">In the **Add User** section, perform the following steps:</span></span>
+3. <span data-ttu-id="7815d-229">在 hello**新增使用者**區段中，執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="7815d-229">In hello **Add User** section, perform hello following steps:</span></span>
 
-    <span data-ttu-id="91858-230">![新增使用者](./media/active-directory-saas-bluejeans-tutorial/IC785886.png "新增使用者")</span><span class="sxs-lookup"><span data-stu-id="91858-230">![Add User](./media/active-directory-saas-bluejeans-tutorial/IC785886.png "Add User")</span></span>
+    <span data-ttu-id="7815d-230">![新增使用者](./media/active-directory-saas-bluejeans-tutorial/IC785886.png "新增使用者")</span><span class="sxs-lookup"><span data-stu-id="7815d-230">![Add User](./media/active-directory-saas-bluejeans-tutorial/IC785886.png "Add User")</span></span>
     
-    <span data-ttu-id="91858-231">a.</span><span class="sxs-lookup"><span data-stu-id="91858-231">a.</span></span> <span data-ttu-id="91858-232">在相關的文字方塊中，輸入您想要佈建之有效 AAD 帳戶的 [BlueJeans 使用者名稱]、[電子郵件地址]、[BlueJeans 會議識別碼]、[仲裁者密碼]、[全名]、[公司]。</span><span class="sxs-lookup"><span data-stu-id="91858-232">Type a **BlueJeans Username**, an **Email address**, a **BlueJeans Meeting ID**, a **Moderator Passcode**, a **Full Name**, the **Company** of a valid AAD account you want to provision into the related textboxes.</span></span>
+    <span data-ttu-id="7815d-231">a.</span><span class="sxs-lookup"><span data-stu-id="7815d-231">a.</span></span> <span data-ttu-id="7815d-232">輸入**BlueJeans 使用者名稱**、**電子郵件地址**、 **BlueJeans 會議 ID**、**仲裁者密碼**、**完整名稱**，hello**公司**的想成 hello tooprovision 的有效 AAD 帳戶相關的文字方塊。</span><span class="sxs-lookup"><span data-stu-id="7815d-232">Type a **BlueJeans Username**, an **Email address**, a **BlueJeans Meeting ID**, a **Moderator Passcode**, a **Full Name**, hello **Company** of a valid AAD account you want tooprovision into hello related textboxes.</span></span>
     
-    <span data-ttu-id="91858-233">b.這是另一個 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="91858-233">b.</span></span> <span data-ttu-id="91858-234">按一下 [加入使用者] 。</span><span class="sxs-lookup"><span data-stu-id="91858-234">Click **Add User**.</span></span>
+    <span data-ttu-id="7815d-233">b.</span><span class="sxs-lookup"><span data-stu-id="7815d-233">b.</span></span> <span data-ttu-id="7815d-234">按一下 [加入使用者] 。</span><span class="sxs-lookup"><span data-stu-id="7815d-234">Click **Add User**.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="91858-235">您可以使用任何其他的 BlueJeans 使用者帳戶建立工具或 BlueJeans 提供的 API 來佈建 AAD 使用者帳戶。</span><span class="sxs-lookup"><span data-stu-id="91858-235">You can use any other BlueJeans user account creation tools or APIs provided by BlueJeans to provision AAD user accounts.</span></span> 
+><span data-ttu-id="7815d-235">您可以使用任何其他 BlueJeans 使用者帳戶建立工具或 Api 提供 BlueJeans tooprovision AAD 使用者帳戶。</span><span class="sxs-lookup"><span data-stu-id="7815d-235">You can use any other BlueJeans user account creation tools or APIs provided by BlueJeans tooprovision AAD user accounts.</span></span> 
 > 
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="91858-236">指派 Azure AD 測試使用者</span><span class="sxs-lookup"><span data-stu-id="91858-236">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="7815d-236">指派 hello Azure AD 的測試使用者</span><span class="sxs-lookup"><span data-stu-id="7815d-236">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="91858-237">在本節中，您會將 BlueJeans 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。</span><span class="sxs-lookup"><span data-stu-id="91858-237">In this section, you enable Britta Simon to use Azure single sign-on by granting access to BlueJeans.</span></span>
+<span data-ttu-id="7815d-237">在本節中，您可以授與存取 tooBlueJeans 啟用許 Simon toouse Azure 單一登入。</span><span class="sxs-lookup"><span data-stu-id="7815d-237">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooBlueJeans.</span></span>
 
 ![指派使用者][200] 
 
-<span data-ttu-id="91858-239">**若要將 Britta Simon 指派給 BlueJeans，請執行下列步驟：**</span><span class="sxs-lookup"><span data-stu-id="91858-239">**To assign Britta Simon to BlueJeans, perform the following steps:**</span></span>
+<span data-ttu-id="7815d-239">**tooassign 許 Simon tooBlueJeans，執行下列步驟的 hello:**</span><span class="sxs-lookup"><span data-stu-id="7815d-239">**tooassign Britta Simon tooBlueJeans, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="91858-240">在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。</span><span class="sxs-lookup"><span data-stu-id="91858-240">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="7815d-240">在 hello Azure 入口網站，開啟 hello 應用程式檢視，然後導覽 toohello 目錄檢視，並跳過**企業應用程式**然後按一下 **所有應用程式**。</span><span class="sxs-lookup"><span data-stu-id="7815d-240">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![指派使用者][201] 
 
-2. <span data-ttu-id="91858-242">在應用程式清單中，選取 [BlueJeans]。</span><span class="sxs-lookup"><span data-stu-id="91858-242">In the applications list, select **BlueJeans**.</span></span>
+2. <span data-ttu-id="7815d-242">在 [hello] 應用程式清單中，選取**BlueJeans**。</span><span class="sxs-lookup"><span data-stu-id="7815d-242">In hello applications list, select **BlueJeans**.</span></span>
 
     ![設定單一登入](./media/active-directory-saas-bluejeans-tutorial/tutorial_bluejeans_app.png) 
 
-3. <span data-ttu-id="91858-244">在左側功能表中，按一下 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="91858-244">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="7815d-244">在左側 hello hello 功能表上，按一下**使用者和群組**。</span><span class="sxs-lookup"><span data-stu-id="7815d-244">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![指派使用者][202] 
 
-4. <span data-ttu-id="91858-246">按一下 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="91858-246">Click **Add** button.</span></span> <span data-ttu-id="91858-247">然後選取 [新增指派] 對話方塊上的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="91858-247">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="7815d-246">按一下 [新增] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="7815d-246">Click **Add** button.</span></span> <span data-ttu-id="7815d-247">然後選取 [新增指派] 對話方塊上的 [使用者和群組]。</span><span class="sxs-lookup"><span data-stu-id="7815d-247">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![指派使用者][203]
 
-5. <span data-ttu-id="91858-249">在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。</span><span class="sxs-lookup"><span data-stu-id="91858-249">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="7815d-249">在**使用者和群組**對話方塊中，選取**許 Simon** hello 使用者 清單中。</span><span class="sxs-lookup"><span data-stu-id="7815d-249">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="91858-250">按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="91858-250">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="7815d-250">按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="7815d-250">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="91858-251">按一下 [新增指派] 對話方塊上的 [指派] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="91858-251">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="7815d-251">按一下 [新增指派] 對話方塊上的 [指派] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="7815d-251">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="91858-252">測試單一登入</span><span class="sxs-lookup"><span data-stu-id="91858-252">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="7815d-252">測試單一登入</span><span class="sxs-lookup"><span data-stu-id="7815d-252">Testing single sign-on</span></span>
 
-<span data-ttu-id="91858-253">在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。</span><span class="sxs-lookup"><span data-stu-id="91858-253">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="7815d-253">在本節中，您可以測試您 Azure AD 單一登入的組態 hello 存取面板。</span><span class="sxs-lookup"><span data-stu-id="7815d-253">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="91858-254">當您在「存取面板」中按一下 [BlueJeans] 圖格時，應該會看到 BlueJeans 應用程式的登入頁面。</span><span class="sxs-lookup"><span data-stu-id="91858-254">When you click the BlueJeans tile in the Access Panel, you should get login page of BlueJeans application.</span></span>
-<span data-ttu-id="91858-255">如需「存取面板」的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。</span><span class="sxs-lookup"><span data-stu-id="91858-255">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
+<span data-ttu-id="7815d-254">當您按一下的 hello BlueJeans 磚 hello 存取面板中時，您應該取得 BlueJeans 的應用程式的登入頁面。</span><span class="sxs-lookup"><span data-stu-id="7815d-254">When you click hello BlueJeans tile in hello Access Panel, you should get login page of BlueJeans application.</span></span>
+<span data-ttu-id="7815d-255">如需 hello 存取面板的詳細資訊，請參閱[簡介 toohello 存取面板](active-directory-saas-access-panel-introduction.md)。</span><span class="sxs-lookup"><span data-stu-id="7815d-255">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="91858-256">其他資源</span><span class="sxs-lookup"><span data-stu-id="91858-256">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="7815d-256">其他資源</span><span class="sxs-lookup"><span data-stu-id="7815d-256">Additional resources</span></span>
 
-* [<span data-ttu-id="91858-257">如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單</span><span class="sxs-lookup"><span data-stu-id="91858-257">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="91858-258">什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？</span><span class="sxs-lookup"><span data-stu-id="91858-258">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="7815d-257">如何教學課程清單 tooIntegrate SaaS 應用程式與 Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="7815d-257">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="7815d-258">什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？</span><span class="sxs-lookup"><span data-stu-id="7815d-258">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

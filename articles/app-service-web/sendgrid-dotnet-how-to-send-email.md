@@ -1,6 +1,6 @@
 ---
-title: "如何使用 SendGrid 電子郵件服務 (.NET) (.NET) | Microsoft Docs"
-description: "了解如何在 Azure 使用 SendGrid 電子郵件服務傳送電子郵件。 程式碼範例是以 C# 撰寫並使用 .NET API。"
+title: "aaaHow toouse hello SendGrid 電子郵件服務 (.NET) |Microsoft 文件"
+description: "深入了解如何在 Azure 上傳送電子郵件以 hello SendGrid 電子郵件服務。 以 C# 和使用 hello.NET API 撰寫的程式碼範例。"
 services: app-service-web
 documentationcenter: .net
 author: thinkingserious
@@ -14,66 +14,66 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 02/15/2017
 ms.author: dx@sendgrid.com
-ms.openlocfilehash: b3a48b3c838763b022a18e55817ec7455fe94c85
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b3d77bb67898b991c7293e6b9086b263f6bcb755
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-send-email-using-sendgrid-with-azure"></a><span data-ttu-id="915ae-104">如何在 Azure 上使用 SendGrid 傳送電子郵件</span><span class="sxs-lookup"><span data-stu-id="915ae-104">How to Send Email Using SendGrid with Azure</span></span>
-## <a name="overview"></a><span data-ttu-id="915ae-105">概觀</span><span class="sxs-lookup"><span data-stu-id="915ae-105">Overview</span></span>
-<span data-ttu-id="915ae-106">本指南示範如何在 Azure 上透過 SendGrid 電子郵件服務執行常見程式設計工作。</span><span class="sxs-lookup"><span data-stu-id="915ae-106">This guide demonstrates how to perform common programming tasks with the SendGrid email service on Azure.</span></span> <span data-ttu-id="915ae-107">這些範例均以 C\# 撰寫，且支援 .NET Standard 1.3。</span><span class="sxs-lookup"><span data-stu-id="915ae-107">The samples are written in C\# and supports .NET Standard 1.3.</span></span> <span data-ttu-id="915ae-108">涵蓋的案例包括建構電子郵件、傳送電子郵件、新增附件以及啟用各種郵件和追蹤設定。</span><span class="sxs-lookup"><span data-stu-id="915ae-108">The scenarios covered include constructing email, sending email, adding attachments, and enabling various mail and tracking settings.</span></span> <span data-ttu-id="915ae-109">如需有關 SendGrid 及傳送電子郵件的詳細資訊，請參閱[後續步驟][Next steps]一節。</span><span class="sxs-lookup"><span data-stu-id="915ae-109">For more information on SendGrid and sending email, see the [Next steps][Next steps] section.</span></span>
+# <a name="how-toosend-email-using-sendgrid-with-azure"></a><span data-ttu-id="30def-104">如何使用 Azure 的電子郵件使用 SendGrid tooSend</span><span class="sxs-lookup"><span data-stu-id="30def-104">How tooSend Email Using SendGrid with Azure</span></span>
+## <a name="overview"></a><span data-ttu-id="30def-105">概觀</span><span class="sxs-lookup"><span data-stu-id="30def-105">Overview</span></span>
+<span data-ttu-id="30def-106">本指南示範如何 tooperform 常見的程式設計工作使用 SendGrid 傳送電子郵件在 Azure 上的服務。</span><span class="sxs-lookup"><span data-stu-id="30def-106">This guide demonstrates how tooperform common programming tasks with the SendGrid email service on Azure.</span></span> <span data-ttu-id="30def-107">hello 範例以 C 撰寫\#並且支援.NET 標準 1.3。</span><span class="sxs-lookup"><span data-stu-id="30def-107">hello samples are written in C\# and supports .NET Standard 1.3.</span></span> <span data-ttu-id="30def-108">涵蓋的 hello 案例包括建構的電子郵件、 傳送電子郵件、 加入附件，並啟用各種 mail 和追蹤設定。</span><span class="sxs-lookup"><span data-stu-id="30def-108">hello scenarios covered include constructing email, sending email, adding attachments, and enabling various mail and tracking settings.</span></span> <span data-ttu-id="30def-109">如需有關 SendGrid 和傳送電子郵件的詳細資訊，請參閱 hello[後續步驟][ Next steps] > 一節。</span><span class="sxs-lookup"><span data-stu-id="30def-109">For more information on SendGrid and sending email, see hello [Next steps][Next steps] section.</span></span>
 
-## <a name="what-is-the-sendgrid-email-service"></a><span data-ttu-id="915ae-110">什麼是 SendGrid 電子郵件服務？</span><span class="sxs-lookup"><span data-stu-id="915ae-110">What is the SendGrid Email Service?</span></span>
-<span data-ttu-id="915ae-111">SendGrid 是 [雲端架構電子郵件服務]，能提供可靠的 [交易式電子郵件傳遞]、擴充性和即時分析，以及有彈性的 API 來輕鬆進行自訂整合。</span><span class="sxs-lookup"><span data-stu-id="915ae-111">SendGrid is a [cloud-based email service] that provides reliable [transactional email delivery], scalability, and real-time analytics along with flexible APIs that make custom integration easy.</span></span> <span data-ttu-id="915ae-112">常見的 SendGrid 使用案例包括︰</span><span class="sxs-lookup"><span data-stu-id="915ae-112">Common SendGrid use cases include:</span></span>
+## <a name="what-is-hello-sendgrid-email-service"></a><span data-ttu-id="30def-110">什麼是 hello SendGrid 電子郵件服務？</span><span class="sxs-lookup"><span data-stu-id="30def-110">What is hello SendGrid Email Service?</span></span>
+<span data-ttu-id="30def-111">SendGrid 是 [雲端架構電子郵件服務]，能提供可靠的 [交易式電子郵件傳遞]、擴充性和即時分析，以及有彈性的 API 來輕鬆進行自訂整合。</span><span class="sxs-lookup"><span data-stu-id="30def-111">SendGrid is a [cloud-based email service] that provides reliable [transactional email delivery], scalability, and real-time analytics along with flexible APIs that make custom integration easy.</span></span> <span data-ttu-id="30def-112">常見的 SendGrid 使用案例包括︰</span><span class="sxs-lookup"><span data-stu-id="30def-112">Common SendGrid use cases include:</span></span>
 
-* <span data-ttu-id="915ae-113">自動將收據或採購確認傳送給客戶。</span><span class="sxs-lookup"><span data-stu-id="915ae-113">Automatically sending receipts or purchase confirmations to customers.</span></span>
-* <span data-ttu-id="915ae-114">管理通訊群組清單，以便將每月傳單和促銷傳送給客戶。</span><span class="sxs-lookup"><span data-stu-id="915ae-114">Administering distribution lists for sending customers monthly fliers and promotions.</span></span>
-* <span data-ttu-id="915ae-115">收集封鎖的電子郵件和客戶參與情形等項目的即時計量。</span><span class="sxs-lookup"><span data-stu-id="915ae-115">Collecting real-time metrics for things like blocked email and customer engagement.</span></span>
-* <span data-ttu-id="915ae-116">轉寄客戶查詢。</span><span class="sxs-lookup"><span data-stu-id="915ae-116">Forwarding customer inquiries.</span></span>
-* <span data-ttu-id="915ae-117">處理內送電子郵件。</span><span class="sxs-lookup"><span data-stu-id="915ae-117">Processing incoming emails.</span></span>
+* <span data-ttu-id="30def-113">自動將資料傳送回條或採購確認 toocustomers。</span><span class="sxs-lookup"><span data-stu-id="30def-113">Automatically sending receipts or purchase confirmations toocustomers.</span></span>
+* <span data-ttu-id="30def-114">管理通訊群組清單，以便將每月傳單和促銷傳送給客戶。</span><span class="sxs-lookup"><span data-stu-id="30def-114">Administering distribution lists for sending customers monthly fliers and promotions.</span></span>
+* <span data-ttu-id="30def-115">收集封鎖的電子郵件和客戶參與情形等項目的即時計量。</span><span class="sxs-lookup"><span data-stu-id="30def-115">Collecting real-time metrics for things like blocked email and customer engagement.</span></span>
+* <span data-ttu-id="30def-116">轉寄客戶查詢。</span><span class="sxs-lookup"><span data-stu-id="30def-116">Forwarding customer inquiries.</span></span>
+* <span data-ttu-id="30def-117">處理內送電子郵件。</span><span class="sxs-lookup"><span data-stu-id="30def-117">Processing incoming emails.</span></span>
 
-<span data-ttu-id="915ae-118">如需詳細資訊，請造訪 [https://sendgrid.com](https://sendgrid.com) 或 SendGrid 的 [C# 程式庫][sendgrid-csharp] GitHub 儲存機制。</span><span class="sxs-lookup"><span data-stu-id="915ae-118">For more information, visit [https://sendgrid.com](https://sendgrid.com) or SendGrid's [C# library][sendgrid-csharp] GitHub repo.</span></span>
+<span data-ttu-id="30def-118">如需詳細資訊，請造訪 [https://sendgrid.com](https://sendgrid.com) 或 SendGrid 的 [C# 程式庫][sendgrid-csharp] GitHub 儲存機制。</span><span class="sxs-lookup"><span data-stu-id="30def-118">For more information, visit [https://sendgrid.com](https://sendgrid.com) or SendGrid's [C# library][sendgrid-csharp] GitHub repo.</span></span>
 
-## <a name="create-a-sendgrid-account"></a><span data-ttu-id="915ae-119">建立 SendGrid 帳戶</span><span class="sxs-lookup"><span data-stu-id="915ae-119">Create a SendGrid Account</span></span>
+## <a name="create-a-sendgrid-account"></a><span data-ttu-id="30def-119">建立 SendGrid 帳戶</span><span class="sxs-lookup"><span data-stu-id="30def-119">Create a SendGrid Account</span></span>
 [!INCLUDE [sendgrid-sign-up](../../includes/sendgrid-sign-up.md)]
 
-## <a name="reference-the-sendgrid-net-class-library"></a><span data-ttu-id="915ae-120">參考 SendGrid .NET 類別庫</span><span class="sxs-lookup"><span data-stu-id="915ae-120">Reference the SendGrid .NET Class Library</span></span>
-<span data-ttu-id="915ae-121">[SendGrid NuGet 封裝](https://www.nuget.org/packages/Sendgrid) 是取得 SendGrid API 及透過所有相依性設定應用程式的最簡單方式。</span><span class="sxs-lookup"><span data-stu-id="915ae-121">The [SendGrid NuGet package](https://www.nuget.org/packages/Sendgrid) is the easiest way to get the SendGrid API and to configure your application with all dependencies.</span></span> <span data-ttu-id="915ae-122">NuGet 是 Microsoft Visual Studio 2015 和更新版本隨附的 Visual Studio 擴充，能輕鬆地安裝及更新程式庫和工具。</span><span class="sxs-lookup"><span data-stu-id="915ae-122">NuGet is a Visual Studio extension included with Microsoft Visual Studio 2015 and above that makes it easy to install and update libraries and tools.</span></span>
+## <a name="reference-hello-sendgrid-net-class-library"></a><span data-ttu-id="30def-120">參考 hello SendGrid.NET 類別庫</span><span class="sxs-lookup"><span data-stu-id="30def-120">Reference hello SendGrid .NET Class Library</span></span>
+<span data-ttu-id="30def-121">hello [SendGrid NuGet 套件](https://www.nuget.org/packages/Sendgrid)是最簡單方式 tooget hello hello SendGrid API 和 tooconfigure 所有相依性的應用程式。</span><span class="sxs-lookup"><span data-stu-id="30def-121">hello [SendGrid NuGet package](https://www.nuget.org/packages/Sendgrid) is hello easiest way tooget hello SendGrid API and tooconfigure your application with all dependencies.</span></span> <span data-ttu-id="30def-122">NuGet 是 Visual Studio 擴充功能包含 Microsoft Visual Studio 2015 或更新版本，可輕鬆 tooinstall 和更新的程式庫和工具。</span><span class="sxs-lookup"><span data-stu-id="30def-122">NuGet is a Visual Studio extension included with Microsoft Visual Studio 2015 and above that makes it easy tooinstall and update libraries and tools.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="915ae-123">如果您是執行 Visual Studio 2015 之前的 Visual Studio 版本，若要安裝 NuGet，請造訪 [http://www.nuget.org](http://www.nuget.org)，然後按一下 **安裝 NuGet** 按鈕。</span><span class="sxs-lookup"><span data-stu-id="915ae-123">To install NuGet if you are running a version of Visual Studio earlier than Visual Studio 2015, visit [http://www.nuget.org](http://www.nuget.org), and click the **Install NuGet** button.</span></span>
+> <span data-ttu-id="30def-123">tooinstall NuGet 如果您正在 Visual Studio 的版本早於 Visual Studio 2015，請瀏覽[http://www.nuget.org](http://www.nuget.org)，然後按一下 hello**安裝 NuGet**  按鈕。</span><span class="sxs-lookup"><span data-stu-id="30def-123">tooinstall NuGet if you are running a version of Visual Studio earlier than Visual Studio 2015, visit [http://www.nuget.org](http://www.nuget.org), and click hello **Install NuGet** button.</span></span>
 >
 >
 
-<span data-ttu-id="915ae-124">若要在應用程式中安裝 SendGrid NuGet 封裝，請執行下列動作：</span><span class="sxs-lookup"><span data-stu-id="915ae-124">To install the SendGrid NuGet package in your application, do the following:</span></span>
+<span data-ttu-id="30def-124">tooinstall hello SendGrid NuGet 封裝，應用程式中 hello 遵循：</span><span class="sxs-lookup"><span data-stu-id="30def-124">tooinstall hello SendGrid NuGet package in your application, do hello following:</span></span>
 
-1. <span data-ttu-id="915ae-125">按一下 [新增專案]，然後選取 [範本]。</span><span class="sxs-lookup"><span data-stu-id="915ae-125">Click on **New Project** and select a **Template**.</span></span>
+1. <span data-ttu-id="30def-125">按一下 [新增專案]，然後選取 [範本]。</span><span class="sxs-lookup"><span data-stu-id="30def-125">Click on **New Project** and select a **Template**.</span></span>
 
    ![建立新專案][create-new-project]
-2. <span data-ttu-id="915ae-127">在 [方案總管] 中，以滑鼠右鍵按一下 [參考]，然後按一下 [管理 NuGet 套件]。</span><span class="sxs-lookup"><span data-stu-id="915ae-127">In **Solution Explorer**, right-click **References**, then click **Manage NuGet Packages**.</span></span>
+2. <span data-ttu-id="30def-127">在 [方案總管] 中，以滑鼠右鍵按一下 [參考]，然後按一下 [管理 NuGet 套件]。</span><span class="sxs-lookup"><span data-stu-id="30def-127">In **Solution Explorer**, right-click **References**, then click **Manage NuGet Packages**.</span></span>
 
    ![SendGrid NuGet 封裝][SendGrid-NuGet-package]
-3. <span data-ttu-id="915ae-129">搜尋 **SendGrid**，然後選取結果清單中的 [SendGrid] 項目。</span><span class="sxs-lookup"><span data-stu-id="915ae-129">Search for **SendGrid** and select the **SendGrid** item in the results list.</span></span>
-4. <span data-ttu-id="915ae-130">從版本下拉式清單中選取 Nuget 套件的最新穩定版本，以搭配本文示範的物件模型和 API 共同使用。</span><span class="sxs-lookup"><span data-stu-id="915ae-130">Select the latest stable version of the Nuget package from the version dropdown to be able to work with the object model and APIs demonstrated in this article.</span></span>
+3. <span data-ttu-id="30def-129">搜尋**SendGrid**和選取 hello **SendGrid**結果清單中的項目。</span><span class="sxs-lookup"><span data-stu-id="30def-129">Search for **SendGrid** and select hello **SendGrid** item in the results list.</span></span>
+4. <span data-ttu-id="30def-130">選取從 hello 版本下拉式清單中 toobe 無法 toowork hello 物件模型與應用程式開發介面，在本文中示範的 hello 最新穩定版本 hello Nuget 封裝。</span><span class="sxs-lookup"><span data-stu-id="30def-130">Select hello latest stable version of hello Nuget package from hello version dropdown toobe able toowork with hello object model and APIs demonstrated in this article.</span></span>
 
    ![SendGrid 套件][sendgrid-package]
-5. <span data-ttu-id="915ae-132">按一下 [安裝]  完成安裝，然後關閉此對話方塊。</span><span class="sxs-lookup"><span data-stu-id="915ae-132">Click **Install** to complete the installation, and then close this dialog.</span></span>
+5. <span data-ttu-id="30def-132">按一下**安裝**toocomplete hello 安裝，並關閉此對話方塊。</span><span class="sxs-lookup"><span data-stu-id="30def-132">Click **Install** toocomplete hello installation, and then close this dialog.</span></span>
 
-<span data-ttu-id="915ae-133">SendGrid 的 .NET 類別庫稱為 **SendGrid**。</span><span class="sxs-lookup"><span data-stu-id="915ae-133">SendGrid's .NET class library is called **SendGrid**.</span></span> <span data-ttu-id="915ae-134">其中包含下列命名空間：</span><span class="sxs-lookup"><span data-stu-id="915ae-134">It contains the following namespaces:</span></span>
+<span data-ttu-id="30def-133">SendGrid 的 .NET 類別庫稱為 **SendGrid**。</span><span class="sxs-lookup"><span data-stu-id="30def-133">SendGrid's .NET class library is called **SendGrid**.</span></span> <span data-ttu-id="30def-134">它包含下列命名空間的 hello:</span><span class="sxs-lookup"><span data-stu-id="30def-134">It contains hello following namespaces:</span></span>
 
-* <span data-ttu-id="915ae-135">**SendGrid** 用以與 SendGrid 的 API 進行通訊。</span><span class="sxs-lookup"><span data-stu-id="915ae-135">**SendGrid** for communicating with SendGrid’s API.</span></span>
-* <span data-ttu-id="915ae-136">**SendGrid.Helpers.Mail** 讓協助程式方法可以輕鬆建立 SendGridMessage 物件，以指定如何傳送電子郵件。</span><span class="sxs-lookup"><span data-stu-id="915ae-136">**SendGrid.Helpers.Mail** for helper methods to easily create SendGridMessage objects that specify how to send emails.</span></span>
+* <span data-ttu-id="30def-135">**SendGrid** 用以與 SendGrid 的 API 進行通訊。</span><span class="sxs-lookup"><span data-stu-id="30def-135">**SendGrid** for communicating with SendGrid’s API.</span></span>
+* <span data-ttu-id="30def-136">**SendGrid.Helpers.Mail**協助程式方法 tooeasily 建立 SendGridMessage 物件，以指定 toosend 的電子郵件。</span><span class="sxs-lookup"><span data-stu-id="30def-136">**SendGrid.Helpers.Mail** for helper methods tooeasily create SendGridMessage objects that specify how toosend emails.</span></span>
 
-<span data-ttu-id="915ae-137">將下列程式碼命名空間宣告，新增至您想要在其中以程式設計方式存取 SendGrid 電子郵件服務之任何 C# 檔案內的頂端。</span><span class="sxs-lookup"><span data-stu-id="915ae-137">Add the following code namespace declarations to the top of any C# file in which you want to programmatically access the SendGrid email service.</span></span>
+<span data-ttu-id="30def-137">新增下列程式碼命名空間宣告 toohello 上您想要在其中任何 C# 檔案 tooprogrammatically 存取 hello SendGrid 電子郵件服務的 hello。</span><span class="sxs-lookup"><span data-stu-id="30def-137">Add hello following code namespace declarations toohello top of any C# file in which you want tooprogrammatically access hello SendGrid email service.</span></span>
 
     using SendGrid;
     using SendGrid.Helpers.Mail;
 
-## <a name="how-to-create-an-email"></a><span data-ttu-id="915ae-138">如何：建立電子郵件</span><span class="sxs-lookup"><span data-stu-id="915ae-138">How to: Create an Email</span></span>
-<span data-ttu-id="915ae-139">使用 **SendGridMessage** 物件來建立電子郵件訊息。</span><span class="sxs-lookup"><span data-stu-id="915ae-139">Use the **SendGridMessage** object to create an email message.</span></span> <span data-ttu-id="915ae-140">建立訊息物件後，即可設定屬性和方法，包括電子郵件寄件者、電子郵件收件者以及電子郵件的主旨和本文。</span><span class="sxs-lookup"><span data-stu-id="915ae-140">Once the message object is created, you can set properties and methods, including the email sender, the email recipient, and the subject and body of the email.</span></span>
+## <a name="how-to-create-an-email"></a><span data-ttu-id="30def-138">如何：建立電子郵件</span><span class="sxs-lookup"><span data-stu-id="30def-138">How to: Create an Email</span></span>
+<span data-ttu-id="30def-139">使用 hello **SendGridMessage**物件 toocreate 電子郵件訊息。</span><span class="sxs-lookup"><span data-stu-id="30def-139">Use hello **SendGridMessage** object toocreate an email message.</span></span> <span data-ttu-id="30def-140">Hello 訊息物件建立之後，您可以設定屬性和方法，包括 hello 電子郵件寄件者、 hello 電子郵件收件者和 hello 主旨和本文 hello 電子郵件。</span><span class="sxs-lookup"><span data-stu-id="30def-140">Once hello message object is created, you can set properties and methods, including hello email sender, hello email recipient, and hello subject and body of hello email.</span></span>
 
-<span data-ttu-id="915ae-141">下列範例示範如何建立完全填入的電子郵件物件：</span><span class="sxs-lookup"><span data-stu-id="915ae-141">The following example demonstrates how to create a fully populated email object:</span></span>
+<span data-ttu-id="30def-141">hello 下列範例會示範如何 toocreate 完整擴展的電子郵件物件：</span><span class="sxs-lookup"><span data-stu-id="30def-141">hello following example demonstrates how toocreate a fully populated email object:</span></span>
 
     var msg = new SendGridMessage();
 
@@ -87,28 +87,28 @@ ms.lasthandoff: 08/18/2017
     };
     msg.AddTos(recipients);
 
-    msg.SetSubject("Testing the SendGrid C# Library");
+    msg.SetSubject("Testing hello SendGrid C# Library");
 
     msg.AddContent(MimeType.Text, "Hello World plain text!");
     msg.AddContent(MimeType.Html, "<p>Hello World!</p>");
 
-<span data-ttu-id="915ae-142">如需 **SendGrid** 類型支援的所有屬性和方法的詳細資訊，請參閱 GitHub 上的 [sendgrid-csharp][sendgrid-csharp]。</span><span class="sxs-lookup"><span data-stu-id="915ae-142">For more information on all properties and methods supported by the **SendGrid** type, see [sendgrid-csharp][sendgrid-csharp] on GitHub.</span></span>
+<span data-ttu-id="30def-142">如需 **SendGrid** 類型支援的所有屬性和方法的詳細資訊，請參閱 GitHub 上的 [sendgrid-csharp][sendgrid-csharp]。</span><span class="sxs-lookup"><span data-stu-id="30def-142">For more information on all properties and methods supported by the **SendGrid** type, see [sendgrid-csharp][sendgrid-csharp] on GitHub.</span></span>
 
-## <a name="how-to-send-an-email"></a><span data-ttu-id="915ae-143">如何：傳送電子郵件</span><span class="sxs-lookup"><span data-stu-id="915ae-143">How to: Send an Email</span></span>
-<span data-ttu-id="915ae-144">建立電子郵件訊息之後，您可以使用 SendGrid 的 API 進行傳送。</span><span class="sxs-lookup"><span data-stu-id="915ae-144">After creating an email message, you can send it using SendGrid's API.</span></span> <span data-ttu-id="915ae-145">或者，您也可以使用 [.NET 的內建程式庫][NET-library]。</span><span class="sxs-lookup"><span data-stu-id="915ae-145">Alternatively, you may use [.NET's built in library][NET-library].</span></span>
+## <a name="how-to-send-an-email"></a><span data-ttu-id="30def-143">如何：傳送電子郵件</span><span class="sxs-lookup"><span data-stu-id="30def-143">How to: Send an Email</span></span>
+<span data-ttu-id="30def-144">建立電子郵件訊息之後，您可以使用 SendGrid 的 API 進行傳送。</span><span class="sxs-lookup"><span data-stu-id="30def-144">After creating an email message, you can send it using SendGrid's API.</span></span> <span data-ttu-id="30def-145">或者，您也可以使用 [.NET 的內建程式庫][NET-library]。</span><span class="sxs-lookup"><span data-stu-id="30def-145">Alternatively, you may use [.NET's built in library][NET-library].</span></span>
 
-<span data-ttu-id="915ae-146">傳送電子郵件需要您提供 SendGrid API 金鑰。</span><span class="sxs-lookup"><span data-stu-id="915ae-146">Sending email requires that you supply your SendGrid API Key.</span></span> <span data-ttu-id="915ae-147">如需有關如何設定 API 金鑰的詳細資訊，請參閱 SendGrid 的 API 金鑰[文件][documentation]。</span><span class="sxs-lookup"><span data-stu-id="915ae-147">If you need details about how to configure API Keys, please visit SendGrid's API Keys [documentation][documentation].</span></span>
+<span data-ttu-id="30def-146">傳送電子郵件需要您提供 SendGrid API 金鑰。</span><span class="sxs-lookup"><span data-stu-id="30def-146">Sending email requires that you supply your SendGrid API Key.</span></span> <span data-ttu-id="30def-147">如果您需要詳細瞭解 tooconfigure API 金鑰，請瀏覽 SendGrid 的 API 金鑰[文件][documentation]。</span><span class="sxs-lookup"><span data-stu-id="30def-147">If you need details about how tooconfigure API Keys, please visit SendGrid's API Keys [documentation][documentation].</span></span>
 
-<span data-ttu-id="915ae-148">您可以透過 Azure 入口網站儲存這些認證，只要按一下 [應用程式設定]，並在 [應用程式設定] 下新增金鑰/值組。</span><span class="sxs-lookup"><span data-stu-id="915ae-148">You may store these credentials via your Azure Portal by clicking Application settings and adding the key/value pairs under App settings.</span></span>
+<span data-ttu-id="30def-148">您可能會儲存這些認證，透過 Azure 入口網站的 應用程式設定和 應用程式設定的新增 hello 索引鍵/值組。</span><span class="sxs-lookup"><span data-stu-id="30def-148">You may store these credentials via your Azure Portal by clicking Application settings and adding hello key/value pairs under App settings.</span></span>
 
  ![Azure 應用程式設定][azure_app_settings]
 
- <span data-ttu-id="915ae-150">然後，您可以使用下列方式進行存取：</span><span class="sxs-lookup"><span data-stu-id="915ae-150">Then, you may access them as follows:</span></span>
+ <span data-ttu-id="30def-150">然後，您可以使用下列方式進行存取：</span><span class="sxs-lookup"><span data-stu-id="30def-150">Then, you may access them as follows:</span></span>
 
     var apiKey = System.Environment.GetEnvironmentVariable("SENDGRID_APIKEY");
     var client = new SendGridClient(apiKey);
 
-<span data-ttu-id="915ae-151">下列範例顯示如何使用 Web API 傳送郵件。</span><span class="sxs-lookup"><span data-stu-id="915ae-151">The following examples show how to send a message using the Web API.</span></span>
+<span data-ttu-id="30def-151">hello 遵循範例顯示如何使用 toosend hello Web API。</span><span class="sxs-lookup"><span data-stu-id="30def-151">hello following examples show how toosend a message using hello Web API.</span></span>
 
     using System;
     using System.Threading.Tasks;
@@ -131,7 +131,7 @@ ms.lasthandoff: 08/18/2017
                 var msg = new SendGridMessage()
                 {
                     From = new EmailAddress("test@example.com", "DX Team"),
-                    Subject = "Hello World from the SendGrid CSharp SDK!",
+                    Subject = "Hello World from hello SendGrid CSharp SDK!",
                     PlainTextContent = "Hello, Email!",
                     HtmlContent = "<strong>Hello, Email!</strong>"
                 };
@@ -141,8 +141,8 @@ ms.lasthandoff: 08/18/2017
         }
     }
 
-## <a name="how-to-add-an-attachment"></a><span data-ttu-id="915ae-152">如何：新增附件</span><span class="sxs-lookup"><span data-stu-id="915ae-152">How to: Add an attachment</span></span>
-<span data-ttu-id="915ae-153">呼叫 **AddAttachment** 方法並最小指定您要附加的檔案名稱和 Base64 編碼內容，即可將附件新增至訊息。</span><span class="sxs-lookup"><span data-stu-id="915ae-153">Attachments can be added to a message by calling the **AddAttachment** method and minimally specifying the file name and Base64 encoded content you want to attach.</span></span> <span data-ttu-id="915ae-154">您可以對想要附加的每個檔案呼叫一次此方法，或是使用 **AddAttachments** 方法，即可包含多個附件。</span><span class="sxs-lookup"><span data-stu-id="915ae-154">You can include multiple attachments by calling this method once for each file you wish to attach or by using the **AddAttachments** method.</span></span> <span data-ttu-id="915ae-155">下列範例示範如何將附件新增至郵件：</span><span class="sxs-lookup"><span data-stu-id="915ae-155">The following example demonstrates adding an attachment to a message:</span></span>
+## <a name="how-to-add-an-attachment"></a><span data-ttu-id="30def-152">如何：新增附件</span><span class="sxs-lookup"><span data-stu-id="30def-152">How to: Add an attachment</span></span>
+<span data-ttu-id="30def-153">附件可以加入 tooa 訊息呼叫 hello **AddAttachment**方法並使用最低限度指定 hello 檔案名稱和 Base64 編碼內容想 tooattach。</span><span class="sxs-lookup"><span data-stu-id="30def-153">Attachments can be added tooa message by calling hello **AddAttachment** method and minimally specifying hello file name and Base64 encoded content you want tooattach.</span></span> <span data-ttu-id="30def-154">您可以包含多個附件，藉由呼叫這個方法，一旦您想在每個檔案 tooattach 或使用 hello **AddAttachments**方法。</span><span class="sxs-lookup"><span data-stu-id="30def-154">You can include multiple attachments by calling this method once for each file you wish tooattach or by using hello **AddAttachments** method.</span></span> <span data-ttu-id="30def-155">hello 下列範例示範如何將附件 tooa 訊息：</span><span class="sxs-lookup"><span data-stu-id="30def-155">hello following example demonstrates adding an attachment tooa message:</span></span>
 
     var banner2 = new Attachment()
     {
@@ -154,39 +154,39 @@ ms.lasthandoff: 08/18/2017
     };
     msg.AddAttachment(banner2);
 
-## <a name="how-to-use-mail-settings-to-enable-footers-tracking-and-analytics"></a><span data-ttu-id="915ae-156">如何：使用郵件設定來啟用頁尾、追蹤和分析</span><span class="sxs-lookup"><span data-stu-id="915ae-156">How to: Use mail settings to enable footers, tracking, and analytics</span></span>
-<span data-ttu-id="915ae-157">透過使用郵件設定和追蹤設定，SendGrid 提供了其他電子郵件功能。</span><span class="sxs-lookup"><span data-stu-id="915ae-157">SendGrid provides additional email functionality through the use of mail settings and tracking settings.</span></span> <span data-ttu-id="915ae-158">這些設定可新增至電子郵件訊息以啟用特定功能，例如點選追蹤、Google 分析、訂用帳戶追蹤等等。</span><span class="sxs-lookup"><span data-stu-id="915ae-158">These settings can be added to an email message to enable specific functionality such as click tracking, Google analytics, subscription tracking, and so on.</span></span> <span data-ttu-id="915ae-159">如需應用程式的完整清單，請參閱[設定文件][settings-documentation]。</span><span class="sxs-lookup"><span data-stu-id="915ae-159">For a full list of apps, see the [Settings Documentation][settings-documentation].</span></span>
+## <a name="how-to-use-mail-settings-tooenable-footers-tracking-and-analytics"></a><span data-ttu-id="30def-156">如何： 使用郵件設定 tooenable 頁尾、 追蹤和分析</span><span class="sxs-lookup"><span data-stu-id="30def-156">How to: Use mail settings tooenable footers, tracking, and analytics</span></span>
+<span data-ttu-id="30def-157">SendGrid 提供其他電子郵件功能，透過 hello 使用郵件設定和追蹤設定。</span><span class="sxs-lookup"><span data-stu-id="30def-157">SendGrid provides additional email functionality through hello use of mail settings and tracking settings.</span></span> <span data-ttu-id="30def-158">這些設定可以加入 tooan 電子郵件訊息 tooenable 特定功能，例如點選追蹤、 Google analytics、 追蹤、 訂用帳戶和等等。</span><span class="sxs-lookup"><span data-stu-id="30def-158">These settings can be added tooan email message tooenable specific functionality such as click tracking, Google analytics, subscription tracking, and so on.</span></span> <span data-ttu-id="30def-159">如需完整的應用程式清單，請參閱 hello[設定文件集][settings-documentation]。</span><span class="sxs-lookup"><span data-stu-id="30def-159">For a full list of apps, see hello [Settings Documentation][settings-documentation].</span></span>
 
-<span data-ttu-id="915ae-160">使用與 **SendGridMessage** 類別一起實作的方法，即可將應用程式套用至 **SendGrid** 電子郵件訊息。</span><span class="sxs-lookup"><span data-stu-id="915ae-160">Apps can be applied to **SendGrid** email messages using methods implemented as part of the **SendGridMessage** class.</span></span> <span data-ttu-id="915ae-161">下列範例示範頁尾和點選追蹤篩選器：</span><span class="sxs-lookup"><span data-stu-id="915ae-161">The following examples demonstrate the footer and click tracking filters:</span></span>
+<span data-ttu-id="30def-160">應用程式都可以套用太**SendGrid**電子郵件訊息的方式實作的 hello 一部分**SendGridMessage**類別。</span><span class="sxs-lookup"><span data-stu-id="30def-160">Apps can be applied too**SendGrid** email messages using methods implemented as part of hello **SendGridMessage** class.</span></span> <span data-ttu-id="30def-161">hello 下列範例示範 hello 頁尾，並按一下 追蹤篩選器：</span><span class="sxs-lookup"><span data-stu-id="30def-161">hello following examples demonstrate hello footer and click tracking filters:</span></span>
 
-<span data-ttu-id="915ae-162">下列範例示範頁尾和點選追蹤篩選器：</span><span class="sxs-lookup"><span data-stu-id="915ae-162">The following examples demonstrate the footer and click tracking filters:</span></span>
+<span data-ttu-id="30def-162">hello 下列範例示範 hello 頁尾，並按一下 追蹤篩選器：</span><span class="sxs-lookup"><span data-stu-id="30def-162">hello following examples demonstrate hello footer and click tracking filters:</span></span>
 
-### <a name="footer-settings"></a><span data-ttu-id="915ae-163">頁尾設定</span><span class="sxs-lookup"><span data-stu-id="915ae-163">Footer settings</span></span>
+### <a name="footer-settings"></a><span data-ttu-id="30def-163">頁尾設定</span><span class="sxs-lookup"><span data-stu-id="30def-163">Footer settings</span></span>
     msg.SetFooterSetting(
                          true,
                          "Some Footer HTML",
                          "<strong>Some Footer Text</strong>");
 
-### <a name="click-tracking"></a><span data-ttu-id="915ae-164">點選追蹤</span><span class="sxs-lookup"><span data-stu-id="915ae-164">Click tracking</span></span>
+### <a name="click-tracking"></a><span data-ttu-id="30def-164">點選追蹤</span><span class="sxs-lookup"><span data-stu-id="30def-164">Click tracking</span></span>
     msg.SetClickTracking(true);
 
-## <a name="how-to-use-additional-sendgrid-services"></a><span data-ttu-id="915ae-165">如何：使用其他 SendGrid 服務</span><span class="sxs-lookup"><span data-stu-id="915ae-165">How to: Use Additional SendGrid Services</span></span>
-<span data-ttu-id="915ae-166">SendGrid 提供多個 API 與 Webhook，可供您在 Azure 應用程式中運用其他功能。</span><span class="sxs-lookup"><span data-stu-id="915ae-166">SendGrid offers several APIs and webhooks that you can use to leverage additional functionality within your Azure application.</span></span> <span data-ttu-id="915ae-167">如需詳細資訊，請參閱 [SendGrid API 參考][SendGrid API documentation]。</span><span class="sxs-lookup"><span data-stu-id="915ae-167">For more details, see the [SendGrid API Reference][SendGrid API documentation].</span></span>
+## <a name="how-to-use-additional-sendgrid-services"></a><span data-ttu-id="30def-165">如何：使用其他 SendGrid 服務</span><span class="sxs-lookup"><span data-stu-id="30def-165">How to: Use Additional SendGrid Services</span></span>
+<span data-ttu-id="30def-166">SendGrid 提供數個應用程式開發介面和 webhook 您可以在 Azure 應用程式內使用 tooleverage 額外的功能。</span><span class="sxs-lookup"><span data-stu-id="30def-166">SendGrid offers several APIs and webhooks that you can use tooleverage additional functionality within your Azure application.</span></span> <span data-ttu-id="30def-167">如需詳細資訊，請參閱 hello [SendGrid API 參考][SendGrid API documentation]。</span><span class="sxs-lookup"><span data-stu-id="30def-167">For more details, see hello [SendGrid API Reference][SendGrid API documentation].</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="915ae-168">後續步驟</span><span class="sxs-lookup"><span data-stu-id="915ae-168">Next steps</span></span>
-<span data-ttu-id="915ae-169">了解 SendGrid 電子郵件服務的基本概念後，請參考下列連結以取得更多資訊。</span><span class="sxs-lookup"><span data-stu-id="915ae-169">Now that you've learned the basics of the SendGrid Email service, follow these links to learn more.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="30def-168">後續步驟</span><span class="sxs-lookup"><span data-stu-id="30def-168">Next steps</span></span>
+<span data-ttu-id="30def-169">既然您已經學會 hello 的 hello SendGrid 電子郵件服務的基本概念，請遵循這些連結 toolearn 更多。</span><span class="sxs-lookup"><span data-stu-id="30def-169">Now that you've learned hello basics of hello SendGrid Email service, follow these links toolearn more.</span></span>
 
-* <span data-ttu-id="915ae-170">SendGrid C\# 程式庫儲存機制：[sendgrid-csharp][sendgrid-csharp]</span><span class="sxs-lookup"><span data-stu-id="915ae-170">SendGrid C\# library repo: [sendgrid-csharp][sendgrid-csharp]</span></span>
-* <span data-ttu-id="915ae-171">SendGrid API 文件︰<https://sendgrid.com/docs></span><span class="sxs-lookup"><span data-stu-id="915ae-171">SendGrid API documentation: <https://sendgrid.com/docs></span></span>
+* <span data-ttu-id="30def-170">SendGrid C\# 程式庫儲存機制：[sendgrid-csharp][sendgrid-csharp]</span><span class="sxs-lookup"><span data-stu-id="30def-170">SendGrid C\# library repo: [sendgrid-csharp][sendgrid-csharp]</span></span>
+* <span data-ttu-id="30def-171">SendGrid API 文件︰<https://sendgrid.com/docs></span><span class="sxs-lookup"><span data-stu-id="30def-171">SendGrid API documentation: <https://sendgrid.com/docs></span></span>
 
 [Next steps]: #next-steps
-[What is the SendGrid Email Service?]: #whatis
+[What is hello SendGrid Email Service?]: #whatis
 [Create a SendGrid Account]: #createaccount
-[Reference the SendGrid .NET Class Library]: #reference
+[Reference hello SendGrid .NET Class Library]: #reference
 [How to: Create an Email]: #createemail
 [How to: Send an Email]: #sendemail
 [How to: Add an Attachment]: #addattachment
-[How to: Use Filters to Enable Footers, Tracking, and Analytics]: #usefilters
+[How to: Use Filters tooEnable Footers, Tracking, and Analytics]: #usefilters
 [How to: Use Additional SendGrid Services]: #useservices
 
 [create-new-project]: ./media/sendgrid-dotnet-how-to-send-email/new-project.png
@@ -201,6 +201,6 @@ ms.lasthandoff: 08/18/2017
 [documentation]: https://sendgrid.com/docs/Classroom/Send/api_keys.html
 [settings-documentation]: https://sendgrid.com/docs/API_Reference/SMTP_API/apps.html
 
-<span data-ttu-id="915ae-172">[雲端架構電子郵件服務]: https://sendgrid.com/solutions</span><span class="sxs-lookup"><span data-stu-id="915ae-172">[cloud-based email service]: https://sendgrid.com/solutions</span></span>
-<span data-ttu-id="915ae-173">[交易式電子郵件傳遞]: https://sendgrid.com/use-cases/transactional-email</span><span class="sxs-lookup"><span data-stu-id="915ae-173">[transactional email delivery]: https://sendgrid.com/use-cases/transactional-email</span></span>
+[雲端架構電子郵件服務]: https://sendgrid.com/solutions
+[交易式電子郵件傳遞]: https://sendgrid.com/use-cases/transactional-email
 

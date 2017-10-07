@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: cbf8f729d0ebfb271bb0d8702ac043442b42c262
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bcfc710861b19d8f86f094ced0d1c691e0911f08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="more-details-about-features-in-preview"></a><span data-ttu-id="e4cca-103">有關預覽中之功能的其他詳細資料</span><span class="sxs-lookup"><span data-stu-id="e4cca-103">More details about features in preview</span></span>
-<span data-ttu-id="e4cca-104">本主題描述如何使用預覽中目前的功能。</span><span class="sxs-lookup"><span data-stu-id="e4cca-104">This topic describes how to use features currently in preview.</span></span>
+# <a name="more-details-about-features-in-preview"></a><span data-ttu-id="f3a25-103">有關預覽中之功能的其他詳細資料</span><span class="sxs-lookup"><span data-stu-id="f3a25-103">More details about features in preview</span></span>
+<span data-ttu-id="f3a25-104">本主題描述如何 toouse 功能目前在預覽中。</span><span class="sxs-lookup"><span data-stu-id="f3a25-104">This topic describes how toouse features currently in preview.</span></span>
 
-## <a name="group-writeback"></a><span data-ttu-id="e4cca-105">群組回寫</span><span class="sxs-lookup"><span data-stu-id="e4cca-105">Group writeback</span></span>
-<span data-ttu-id="e4cca-106">選用功能中的群組回寫選項可讓您將「Office 365 群組」回寫至已安裝 Exchange 的樹系。</span><span class="sxs-lookup"><span data-stu-id="e4cca-106">The option for group writeback in optional features allows you to writeback **Office 365 Groups** to a forest with Exchange installed.</span></span> <span data-ttu-id="e4cca-107">這是一律在雲端中控制的群組。</span><span class="sxs-lookup"><span data-stu-id="e4cca-107">This is a group that is always mastered in the cloud.</span></span> <span data-ttu-id="e4cca-108">如果您有 Exchange 內部部署，則可以將這些群組回寫到內部部署，讓具有內部部署 Exchange 信箱的使用者可以從這些群組傳送和接收電子郵件。</span><span class="sxs-lookup"><span data-stu-id="e4cca-108">If you have Exchange on-premises, then you can write back these groups to on-premises so users with an on-premises Exchange mailbox can send and receive emails from these groups.</span></span>
+## <a name="group-writeback"></a><span data-ttu-id="f3a25-105">群組回寫</span><span class="sxs-lookup"><span data-stu-id="f3a25-105">Group writeback</span></span>
+<span data-ttu-id="f3a25-106">hello 選項用於群組回寫中的選擇性功能可讓您 toowriteback **Office 365 群組**tooa 樹系安裝 exchange。</span><span class="sxs-lookup"><span data-stu-id="f3a25-106">hello option for group writeback in optional features allows you toowriteback **Office 365 Groups** tooa forest with Exchange installed.</span></span> <span data-ttu-id="f3a25-107">這是永遠 hello 雲端中受控制的群組。</span><span class="sxs-lookup"><span data-stu-id="f3a25-107">This is a group that is always mastered in hello cloud.</span></span> <span data-ttu-id="f3a25-108">如果您有 Exchange 內部部署，然後您可以撰寫回這些群組 tooon 單位以便與在內部部署 Exchange 信箱的使用者可以傳送和接收電子郵件從這些群組。</span><span class="sxs-lookup"><span data-stu-id="f3a25-108">If you have Exchange on-premises, then you can write back these groups tooon-premises so users with an on-premises Exchange mailbox can send and receive emails from these groups.</span></span>
 
-<span data-ttu-id="e4cca-109">如需有關 Office 365 群組及其使用方式的詳細資訊，可在 [這裡](http://aka.ms/O365g)找到。</span><span class="sxs-lookup"><span data-stu-id="e4cca-109">More information about Office 365 Groups and how to use them can be found [here](http://aka.ms/O365g).</span></span>
+<span data-ttu-id="f3a25-109">Office 365 群組和如何 toouse 它們可以找到詳細資訊[這裡](http://aka.ms/O365g)。</span><span class="sxs-lookup"><span data-stu-id="f3a25-109">More information about Office 365 Groups and how toouse them can be found [here](http://aka.ms/O365g).</span></span>
 
-<span data-ttu-id="e4cca-110">Office 365 群組將會在內部部署 AD DS 中顯示為通訊群組。</span><span class="sxs-lookup"><span data-stu-id="e4cca-110">An Office 365 group is represented as a distribution group in on-premises AD DS.</span></span> <span data-ttu-id="e4cca-111">您的內部部署 Exchange 伺服器必須是 Exchange 2013 累積更新 8 (2015 年 3 月發行) 或 Exchange 2016，才能辨識這個新的群組類型。</span><span class="sxs-lookup"><span data-stu-id="e4cca-111">Your on-premises Exchange server must be on Exchange 2013 cumulative update 8 (released in March 2015) or Exchange 2016 to recognize this new group type.</span></span>
+<span data-ttu-id="f3a25-110">Office 365 群組將會在內部部署 AD DS 中顯示為通訊群組。</span><span class="sxs-lookup"><span data-stu-id="f3a25-110">An Office 365 group is represented as a distribution group in on-premises AD DS.</span></span> <span data-ttu-id="f3a25-111">在內部部署 Exchange 伺服器必須在 Exchange 2013 累積更新 8 （2015 年 3 月發行） 或 Exchange 2016 toorecognize 這個新的群組類型。</span><span class="sxs-lookup"><span data-stu-id="f3a25-111">Your on-premises Exchange server must be on Exchange 2013 cumulative update 8 (released in March 2015) or Exchange 2016 toorecognize this new group type.</span></span>
 
-<span data-ttu-id="e4cca-112">**預覽期間的注意事項**</span><span class="sxs-lookup"><span data-stu-id="e4cca-112">**Notes during the preview**</span></span>
+<span data-ttu-id="f3a25-112">**Hello 預覽期間的附註**</span><span class="sxs-lookup"><span data-stu-id="f3a25-112">**Notes during hello preview**</span></span>
 
-* <span data-ttu-id="e4cca-113">目前在預覽中不會填入通訊錄屬性。</span><span class="sxs-lookup"><span data-stu-id="e4cca-113">The address book attribute is currently not populated in the preview.</span></span> <span data-ttu-id="e4cca-114">若沒有此屬性，群組就不會顯示在 GAL 中。</span><span class="sxs-lookup"><span data-stu-id="e4cca-114">Without this attribute, the group is not visible in the GAL.</span></span> <span data-ttu-id="e4cca-115">若要填入此屬性，最簡單的方法是使用 Exchange PowerShell Cmdlet `update-recipient`。</span><span class="sxs-lookup"><span data-stu-id="e4cca-115">The easiest way to populate this attribute is to use the Exchange PowerShell cmdlet `update-recipient`.</span></span>
-* <span data-ttu-id="e4cca-116">只有使用 Exchange 結構描述的樹系才是群組的有效目標。</span><span class="sxs-lookup"><span data-stu-id="e4cca-116">Only forests with the Exchange schema are valid targets for groups.</span></span> <span data-ttu-id="e4cca-117">如果沒有偵測到 Exchange，則會無法啟用群組回寫功能。</span><span class="sxs-lookup"><span data-stu-id="e4cca-117">If no Exchange was detected, then group writeback is not possible to enable.</span></span>
-* <span data-ttu-id="e4cca-118">目前只支援單一樹系 Exchange 組織部署。</span><span class="sxs-lookup"><span data-stu-id="e4cca-118">Only single-forest Exchange organization deployments are currently supported.</span></span> <span data-ttu-id="e4cca-119">如果您的內部部署環境中有多個 Exchange 組織，則需要擁有內部部署 GALSync 解決方案才能讓這些群組出現在其他樹系中。</span><span class="sxs-lookup"><span data-stu-id="e4cca-119">If you have more than one Exchange organization on-premises, then you need an on-premises GALSync solution for these groups to appear in your other forests.</span></span>
-* <span data-ttu-id="e4cca-120">群組回寫功能無法處理安全性群組或通訊群組。</span><span class="sxs-lookup"><span data-stu-id="e4cca-120">The Group writeback feature does not handle security groups or distribution groups.</span></span>
+* <span data-ttu-id="f3a25-113">目前不在 hello 預覽中才會填入 hello 地址通訊錄屬性。</span><span class="sxs-lookup"><span data-stu-id="f3a25-113">hello address book attribute is currently not populated in hello preview.</span></span> <span data-ttu-id="f3a25-114">沒有這個屬性，hello 群組不是顯示在 hello GAL。</span><span class="sxs-lookup"><span data-stu-id="f3a25-114">Without this attribute, hello group is not visible in hello GAL.</span></span> <span data-ttu-id="f3a25-115">hello 最簡單的方式 toopopulate 這個屬性是 toouse hello Exchange PowerShell cmdlet `update-recipient`。</span><span class="sxs-lookup"><span data-stu-id="f3a25-115">hello easiest way toopopulate this attribute is toouse hello Exchange PowerShell cmdlet `update-recipient`.</span></span>
+* <span data-ttu-id="f3a25-116">只有 hello Exchange 結構描述的樹系是有效的目標群組。</span><span class="sxs-lookup"><span data-stu-id="f3a25-116">Only forests with hello Exchange schema are valid targets for groups.</span></span> <span data-ttu-id="f3a25-117">如果不偵測到任何 Exchange，然後群組回寫是不可能 tooenable。</span><span class="sxs-lookup"><span data-stu-id="f3a25-117">If no Exchange was detected, then group writeback is not possible tooenable.</span></span>
+* <span data-ttu-id="f3a25-118">目前只支援單一樹系 Exchange 組織部署。</span><span class="sxs-lookup"><span data-stu-id="f3a25-118">Only single-forest Exchange organization deployments are currently supported.</span></span> <span data-ttu-id="f3a25-119">如果您有一個以上的 Exchange 組織內部，然後您需要在內部部署 GALSync 解決方案的這些群組 tooappear 其他樹系中。</span><span class="sxs-lookup"><span data-stu-id="f3a25-119">If you have more than one Exchange organization on-premises, then you need an on-premises GALSync solution for these groups tooappear in your other forests.</span></span>
+* <span data-ttu-id="f3a25-120">安全性群組或通訊群組，並不會處理 hello 群組回寫功能。</span><span class="sxs-lookup"><span data-stu-id="f3a25-120">hello Group writeback feature does not handle security groups or distribution groups.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="e4cca-121">需要 Azure AD Premium 的訂用帳戶才能使用群組回寫功能。</span><span class="sxs-lookup"><span data-stu-id="e4cca-121">A subscription to Azure AD Premium is required for group writeback.</span></span>
+> <span data-ttu-id="f3a25-121">用於群組回寫需要訂用帳戶 tooAzure AD Premium。</span><span class="sxs-lookup"><span data-stu-id="f3a25-121">A subscription tooAzure AD Premium is required for group writeback.</span></span>
 > 
 >
 
-## <a name="user-writeback"></a><span data-ttu-id="e4cca-122">使用者回寫</span><span class="sxs-lookup"><span data-stu-id="e4cca-122">User writeback</span></span>
+## <a name="user-writeback"></a><span data-ttu-id="f3a25-122">使用者回寫</span><span class="sxs-lookup"><span data-stu-id="f3a25-122">User writeback</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="e4cca-123">在 Azure AD Connect 的 2015 年 8 月更新中，已移除使用者的回寫預覽功能。</span><span class="sxs-lookup"><span data-stu-id="e4cca-123">The user writeback preview feature was removed in the August 2015 update to Azure AD Connect.</span></span> <span data-ttu-id="e4cca-124">如果已啟用它，則您應該停用這個功能。</span><span class="sxs-lookup"><span data-stu-id="e4cca-124">If you have enabled it, then you should disable this feature.</span></span>
+> <span data-ttu-id="f3a25-123">hello 使用者回寫預覽功能已移除 hello 2015 年 8 月更新 tooAzure AD Connect。</span><span class="sxs-lookup"><span data-stu-id="f3a25-123">hello user writeback preview feature was removed in hello August 2015 update tooAzure AD Connect.</span></span> <span data-ttu-id="f3a25-124">如果已啟用它，則您應該停用這個功能。</span><span class="sxs-lookup"><span data-stu-id="f3a25-124">If you have enabled it, then you should disable this feature.</span></span>
 >
 >
 
-## <a name="next-steps"></a><span data-ttu-id="e4cca-125">後續步驟</span><span class="sxs-lookup"><span data-stu-id="e4cca-125">Next steps</span></span>
-<span data-ttu-id="e4cca-126">繼續[自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)。</span><span class="sxs-lookup"><span data-stu-id="e4cca-126">Continue your [Custom installation of Azure AD Connect](active-directory-aadconnect-get-started-custom.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="f3a25-125">後續步驟</span><span class="sxs-lookup"><span data-stu-id="f3a25-125">Next steps</span></span>
+<span data-ttu-id="f3a25-126">繼續[自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)。</span><span class="sxs-lookup"><span data-stu-id="f3a25-126">Continue your [Custom installation of Azure AD Connect](active-directory-aadconnect-get-started-custom.md).</span></span>
 
-<span data-ttu-id="e4cca-127">深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。</span><span class="sxs-lookup"><span data-stu-id="e4cca-127">Learn more about [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).</span></span>
+<span data-ttu-id="f3a25-127">深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。</span><span class="sxs-lookup"><span data-stu-id="f3a25-127">Learn more about [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).</span></span>

@@ -1,6 +1,6 @@
 ---
-title: "佈建使用 SQL Database 的 Web 應用程式"
-description: "使用 Azure 資源管理員範本來部署 Web 應用程式，其中包含 SQL Database。"
+title: "aaaProvision 使用 SQL Database 的 web 應用程式"
+description: "使用 Azure Resource Manager 範本 toodeploy 包括 SQL Database 的 web 應用程式。"
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,72 +14,72 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2016
 ms.author: cephalin
-ms.openlocfilehash: cc34f684f8c50e95a62cb7b04fd2ddce5deb68d6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 189c0122d201e88f15013bf241d66652ef23df4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="provision-a-web-app-with-a-sql-database"></a><span data-ttu-id="13f76-103">佈建 Web 應用程式與 SQL Database</span><span class="sxs-lookup"><span data-stu-id="13f76-103">Provision a web app with a SQL Database</span></span>
-<span data-ttu-id="13f76-104">在本主題中，您將學習如何建立 Azure 資源管理員範本，以部署 Web 應用程式與 SQL Database。</span><span class="sxs-lookup"><span data-stu-id="13f76-104">In this topic, you will learn how to create an Azure Resource Manager template that deploys a web app and SQL Database.</span></span> <span data-ttu-id="13f76-105">您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。</span><span class="sxs-lookup"><span data-stu-id="13f76-105">You will learn how to define which resources are deployed and how to define parameters that are specified when the deployment is executed.</span></span> <span data-ttu-id="13f76-106">您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。</span><span class="sxs-lookup"><span data-stu-id="13f76-106">You can use this template for your own deployments, or customize it to meet your requirements.</span></span>
+# <a name="provision-a-web-app-with-a-sql-database"></a><span data-ttu-id="07db2-103">佈建 Web 應用程式與 SQL Database</span><span class="sxs-lookup"><span data-stu-id="07db2-103">Provision a web app with a SQL Database</span></span>
+<span data-ttu-id="07db2-104">在本主題中，您將學習如何 toocreate 部署 web 應用程式和 SQL Database 的 Azure Resource Manager 範本。</span><span class="sxs-lookup"><span data-stu-id="07db2-104">In this topic, you will learn how toocreate an Azure Resource Manager template that deploys a web app and SQL Database.</span></span> <span data-ttu-id="07db2-105">您將學習如何 toodefine 部署的資源，以及如何 toodefine 參數指定當 hello 執行部署。</span><span class="sxs-lookup"><span data-stu-id="07db2-105">You will learn how toodefine which resources are deployed and how toodefine parameters that are specified when hello deployment is executed.</span></span> <span data-ttu-id="07db2-106">您可以使用此範本為您自己的部署，或自訂它 toomeet 您的需求。</span><span class="sxs-lookup"><span data-stu-id="07db2-106">You can use this template for your own deployments, or customize it toomeet your requirements.</span></span>
 
-<span data-ttu-id="13f76-107">如需關於建立範本的詳細資訊，請參閱 [編寫 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)。</span><span class="sxs-lookup"><span data-stu-id="13f76-107">For more information about creating templates, see [Authoring Azure Resource Manager Templates](../azure-resource-manager/resource-group-authoring-templates.md).</span></span>
+<span data-ttu-id="07db2-107">如需關於建立範本的詳細資訊，請參閱 [編寫 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)。</span><span class="sxs-lookup"><span data-stu-id="07db2-107">For more information about creating templates, see [Authoring Azure Resource Manager Templates](../azure-resource-manager/resource-group-authoring-templates.md).</span></span>
 
-<span data-ttu-id="13f76-108">如需有關部署應用程式的詳細資訊，請參閱 [透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)。</span><span class="sxs-lookup"><span data-stu-id="13f76-108">For more information about deploying apps, see [Deploy a complex application predictably in Azure](app-service-deploy-complex-application-predictably.md).</span></span>
+<span data-ttu-id="07db2-108">如需有關部署應用程式的詳細資訊，請參閱 [透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)。</span><span class="sxs-lookup"><span data-stu-id="07db2-108">For more information about deploying apps, see [Deploy a complex application predictably in Azure](app-service-deploy-complex-application-predictably.md).</span></span>
 
-<span data-ttu-id="13f76-109">如需完整的範本，請參閱 [Web 應用程式與 SQL Database 範本](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json)。</span><span class="sxs-lookup"><span data-stu-id="13f76-109">For the complete template, see [Web App With SQL Database template](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json).</span></span>
+<span data-ttu-id="07db2-109">Hello 完成範本，請參閱[與 SQL Database Web 應用程式範本](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json)。</span><span class="sxs-lookup"><span data-stu-id="07db2-109">For hello complete template, see [Web App With SQL Database template](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json).</span></span>
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-## <a name="what-you-will-deploy"></a><span data-ttu-id="13f76-110">部署內容</span><span class="sxs-lookup"><span data-stu-id="13f76-110">What you will deploy</span></span>
-<span data-ttu-id="13f76-111">在此範本中，您將部署：</span><span class="sxs-lookup"><span data-stu-id="13f76-111">In this template, you will deploy:</span></span>
+## <a name="what-you-will-deploy"></a><span data-ttu-id="07db2-110">部署內容</span><span class="sxs-lookup"><span data-stu-id="07db2-110">What you will deploy</span></span>
+<span data-ttu-id="07db2-111">在此範本中，您將部署：</span><span class="sxs-lookup"><span data-stu-id="07db2-111">In this template, you will deploy:</span></span>
 
-* <span data-ttu-id="13f76-112">Web 應用程式</span><span class="sxs-lookup"><span data-stu-id="13f76-112">a web app</span></span>
-* <span data-ttu-id="13f76-113">SQL Database 伺服器</span><span class="sxs-lookup"><span data-stu-id="13f76-113">SQL Database server</span></span>
-* <span data-ttu-id="13f76-114">SQL Database</span><span class="sxs-lookup"><span data-stu-id="13f76-114">SQL Database</span></span>
-* <span data-ttu-id="13f76-115">自動調整設定</span><span class="sxs-lookup"><span data-stu-id="13f76-115">AutoScale settings</span></span>
-* <span data-ttu-id="13f76-116">警示規則</span><span class="sxs-lookup"><span data-stu-id="13f76-116">Alert rules</span></span>
-* <span data-ttu-id="13f76-117">應用程式情資</span><span class="sxs-lookup"><span data-stu-id="13f76-117">App Insights</span></span>
+* <span data-ttu-id="07db2-112">Web 應用程式</span><span class="sxs-lookup"><span data-stu-id="07db2-112">a web app</span></span>
+* <span data-ttu-id="07db2-113">SQL Database 伺服器</span><span class="sxs-lookup"><span data-stu-id="07db2-113">SQL Database server</span></span>
+* <span data-ttu-id="07db2-114">SQL Database</span><span class="sxs-lookup"><span data-stu-id="07db2-114">SQL Database</span></span>
+* <span data-ttu-id="07db2-115">自動調整設定</span><span class="sxs-lookup"><span data-stu-id="07db2-115">AutoScale settings</span></span>
+* <span data-ttu-id="07db2-116">警示規則</span><span class="sxs-lookup"><span data-stu-id="07db2-116">Alert rules</span></span>
+* <span data-ttu-id="07db2-117">應用程式情資</span><span class="sxs-lookup"><span data-stu-id="07db2-117">App Insights</span></span>
 
-<span data-ttu-id="13f76-118">若要自動執行部署，請按一下下列按鈕：</span><span class="sxs-lookup"><span data-stu-id="13f76-118">To run the deployment automatically, click the following button:</span></span>
+<span data-ttu-id="07db2-118">toorun 自動 hello 部署，請按一下下列按鈕 hello:</span><span class="sxs-lookup"><span data-stu-id="07db2-118">toorun hello deployment automatically, click hello following button:</span></span>
 
-<span data-ttu-id="13f76-119">[![部署至 Azure](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)</span><span class="sxs-lookup"><span data-stu-id="13f76-119">[![Deploy to Azure](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)</span></span>
+<span data-ttu-id="07db2-119">[![部署 tooAzure](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)</span><span class="sxs-lookup"><span data-stu-id="07db2-119">[![Deploy tooAzure](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)</span></span>
 
-## <a name="parameters-to-specify"></a><span data-ttu-id="13f76-120">要指定的參數</span><span class="sxs-lookup"><span data-stu-id="13f76-120">Parameters to specify</span></span>
+## <a name="parameters-toospecify"></a><span data-ttu-id="07db2-120">參數 toospecify</span><span class="sxs-lookup"><span data-stu-id="07db2-120">Parameters toospecify</span></span>
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
-### <a name="administratorlogin"></a><span data-ttu-id="13f76-121">administratorLogin</span><span class="sxs-lookup"><span data-stu-id="13f76-121">administratorLogin</span></span>
-<span data-ttu-id="13f76-122">資料庫伺服器系統管理員要使用的帳戶名稱。</span><span class="sxs-lookup"><span data-stu-id="13f76-122">The account name to use for the database server administrator.</span></span>
+### <a name="administratorlogin"></a><span data-ttu-id="07db2-121">administratorLogin</span><span class="sxs-lookup"><span data-stu-id="07db2-121">administratorLogin</span></span>
+<span data-ttu-id="07db2-122">hello hello 資料庫伺服器管理員的帳戶名稱 toouse。</span><span class="sxs-lookup"><span data-stu-id="07db2-122">hello account name toouse for hello database server administrator.</span></span>
 
     "administratorLogin": {
       "type": "string"
     }
 
-### <a name="administratorloginpassword"></a><span data-ttu-id="13f76-123">administratorLoginPassword</span><span class="sxs-lookup"><span data-stu-id="13f76-123">administratorLoginPassword</span></span>
-<span data-ttu-id="13f76-124">資料庫伺服器系統管理員要使用的密碼。</span><span class="sxs-lookup"><span data-stu-id="13f76-124">The password to use for the database server administrator.</span></span>
+### <a name="administratorloginpassword"></a><span data-ttu-id="07db2-123">administratorLoginPassword</span><span class="sxs-lookup"><span data-stu-id="07db2-123">administratorLoginPassword</span></span>
+<span data-ttu-id="07db2-124">hello 密碼 toouse hello 資料庫伺服器管理員。</span><span class="sxs-lookup"><span data-stu-id="07db2-124">hello password toouse for hello database server administrator.</span></span>
 
     "administratorLoginPassword": {
       "type": "securestring"
     }
 
-### <a name="databasename"></a><span data-ttu-id="13f76-125">databaseName</span><span class="sxs-lookup"><span data-stu-id="13f76-125">databaseName</span></span>
-<span data-ttu-id="13f76-126">要建立之新資料庫的名稱。</span><span class="sxs-lookup"><span data-stu-id="13f76-126">The name of the new database to create.</span></span>
+### <a name="databasename"></a><span data-ttu-id="07db2-125">databaseName</span><span class="sxs-lookup"><span data-stu-id="07db2-125">databaseName</span></span>
+<span data-ttu-id="07db2-126">新資料庫 toocreate hello hello 名稱。</span><span class="sxs-lookup"><span data-stu-id="07db2-126">hello name of hello new database toocreate.</span></span>
 
     "databaseName": {
       "type": "string",
       "defaultValue": "sampledb"
     }
 
-### <a name="collation"></a><span data-ttu-id="13f76-127">collation</span><span class="sxs-lookup"><span data-stu-id="13f76-127">collation</span></span>
-<span data-ttu-id="13f76-128">用來管理字元適當用法的資料庫定序。</span><span class="sxs-lookup"><span data-stu-id="13f76-128">The database collation to use for governing the proper use of characters.</span></span>
+### <a name="collation"></a><span data-ttu-id="07db2-127">collation</span><span class="sxs-lookup"><span data-stu-id="07db2-127">collation</span></span>
+<span data-ttu-id="07db2-128">適當的控管 hello 資料庫定序 toouse 使用的字元。</span><span class="sxs-lookup"><span data-stu-id="07db2-128">hello database collation toouse for governing hello proper use of characters.</span></span>
 
     "collation": {
       "type": "string",
       "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
     }
 
-### <a name="edition"></a><span data-ttu-id="13f76-129">edition</span><span class="sxs-lookup"><span data-stu-id="13f76-129">edition</span></span>
-<span data-ttu-id="13f76-130">要建立的資料庫類型。</span><span class="sxs-lookup"><span data-stu-id="13f76-130">The type of database to create.</span></span>
+### <a name="edition"></a><span data-ttu-id="07db2-129">edition</span><span class="sxs-lookup"><span data-stu-id="07db2-129">edition</span></span>
+<span data-ttu-id="07db2-130">資料庫 toocreate hello 型別。</span><span class="sxs-lookup"><span data-stu-id="07db2-130">hello type of database toocreate.</span></span>
 
     "edition": {
       "type": "string",
@@ -90,20 +90,20 @@ ms.lasthandoff: 07/11/2017
         "Premium"
       ],
       "metadata": {
-        "description": "The type of database to create."
+        "description": "hello type of database toocreate."
       }
     }
 
-### <a name="maxsizebytes"></a><span data-ttu-id="13f76-131">maxSizeBytes</span><span class="sxs-lookup"><span data-stu-id="13f76-131">maxSizeBytes</span></span>
-<span data-ttu-id="13f76-132">資料庫的大小上限 (位元組)。</span><span class="sxs-lookup"><span data-stu-id="13f76-132">The maximum size, in bytes, for the database.</span></span>
+### <a name="maxsizebytes"></a><span data-ttu-id="07db2-131">maxSizeBytes</span><span class="sxs-lookup"><span data-stu-id="07db2-131">maxSizeBytes</span></span>
+<span data-ttu-id="07db2-132">hello 大小上限，以位元組為單位，hello 資料庫。</span><span class="sxs-lookup"><span data-stu-id="07db2-132">hello maximum size, in bytes, for hello database.</span></span>
 
     "maxSizeBytes": {
       "type": "string",
       "defaultValue": "1073741824"
     }
 
-### <a name="requestedserviceobjectivename"></a><span data-ttu-id="13f76-133">requestedServiceObjectiveName</span><span class="sxs-lookup"><span data-stu-id="13f76-133">requestedServiceObjectiveName</span></span>
-<span data-ttu-id="13f76-134">與版本的效能等級對應的名稱。</span><span class="sxs-lookup"><span data-stu-id="13f76-134">The name corresponding to the performance level for edition.</span></span> 
+### <a name="requestedserviceobjectivename"></a><span data-ttu-id="07db2-133">requestedServiceObjectiveName</span><span class="sxs-lookup"><span data-stu-id="07db2-133">requestedServiceObjectiveName</span></span>
+<span data-ttu-id="07db2-134">hello 名稱對應 toohello 效能層級的版本。</span><span class="sxs-lookup"><span data-stu-id="07db2-134">hello name corresponding toohello performance level for edition.</span></span> 
 
     "requestedServiceObjectiveName": {
       "type": "string",
@@ -118,12 +118,12 @@ ms.lasthandoff: 07/11/2017
         "P3"
       ],
       "metadata": {
-        "description": "Describes the performance level for Edition"
+        "description": "Describes hello performance level for Edition"
       }
     }
 
-## <a name="variables-for-names"></a><span data-ttu-id="13f76-135">名稱的變數</span><span class="sxs-lookup"><span data-stu-id="13f76-135">Variables for names</span></span>
-<span data-ttu-id="13f76-136">這個範本包括建構範本所用名稱的變數。</span><span class="sxs-lookup"><span data-stu-id="13f76-136">This template includes variables that construct names used in the template.</span></span> <span data-ttu-id="13f76-137">變數值會使用 **uniqueString** 函式從資源群組識別碼產生名稱。</span><span class="sxs-lookup"><span data-stu-id="13f76-137">The variable values use the **uniqueString** function to generate a name from the resource group id.</span></span>
+## <a name="variables-for-names"></a><span data-ttu-id="07db2-135">名稱的變數</span><span class="sxs-lookup"><span data-stu-id="07db2-135">Variables for names</span></span>
+<span data-ttu-id="07db2-136">此範本包括建構 hello 範本中使用的名稱的變數。</span><span class="sxs-lookup"><span data-stu-id="07db2-136">This template includes variables that construct names used in hello template.</span></span> <span data-ttu-id="07db2-137">hello 變數的值使用 hello **uniqueString**函式 toogenerate hello 資源群組識別碼的名稱。</span><span class="sxs-lookup"><span data-stu-id="07db2-137">hello variable values use hello **uniqueString** function toogenerate a name from hello resource group id.</span></span>
 
     "variables": {
         "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -132,9 +132,9 @@ ms.lasthandoff: 07/11/2017
     },
 
 
-## <a name="resources-to-deploy"></a><span data-ttu-id="13f76-138">要部署的資源</span><span class="sxs-lookup"><span data-stu-id="13f76-138">Resources to deploy</span></span>
-### <a name="sql-server-and-database"></a><span data-ttu-id="13f76-139">SQL Server 和資料庫</span><span class="sxs-lookup"><span data-stu-id="13f76-139">SQL Server and Database</span></span>
-<span data-ttu-id="13f76-140">建立新的 SQL Server 和資料庫。</span><span class="sxs-lookup"><span data-stu-id="13f76-140">Creates a new SQL Server and database.</span></span> <span data-ttu-id="13f76-141">**serverName** 參數中指定伺服器名稱，**serverLocation** 參數中指定位置。</span><span class="sxs-lookup"><span data-stu-id="13f76-141">The name of the server is specified in the **serverName** parameter and the location specified in the **serverLocation** parameter.</span></span> <span data-ttu-id="13f76-142">在建立新的伺服器時，您必須提供資料庫伺服器系統管理員的登入名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="13f76-142">When creating the new server, you must provide a login name and password for the database server administrator.</span></span> 
+## <a name="resources-toodeploy"></a><span data-ttu-id="07db2-138">資源 toodeploy</span><span class="sxs-lookup"><span data-stu-id="07db2-138">Resources toodeploy</span></span>
+### <a name="sql-server-and-database"></a><span data-ttu-id="07db2-139">SQL Server 和資料庫</span><span class="sxs-lookup"><span data-stu-id="07db2-139">SQL Server and Database</span></span>
+<span data-ttu-id="07db2-140">建立新的 SQL Server 和資料庫。</span><span class="sxs-lookup"><span data-stu-id="07db2-140">Creates a new SQL Server and database.</span></span> <span data-ttu-id="07db2-141">hello hello 伺服器名稱會指定在 hello **serverName** hello 中指定的參數和 hello 位置**分別為 serverLocation**參數。</span><span class="sxs-lookup"><span data-stu-id="07db2-141">hello name of hello server is specified in hello **serverName** parameter and hello location specified in hello **serverLocation** parameter.</span></span> <span data-ttu-id="07db2-142">在建立 hello 新的伺服器時，您必須提供登入名稱和 hello 資料庫伺服器系統管理員密碼。</span><span class="sxs-lookup"><span data-stu-id="07db2-142">When creating hello new server, you must provide a login name and password for hello database server administrator.</span></span> 
 
     {
       "name": "[variables('sqlserverName')]",
@@ -185,7 +185,7 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
-### <a name="web-app"></a><span data-ttu-id="13f76-143">Web 應用程式</span><span class="sxs-lookup"><span data-stu-id="13f76-143">Web app</span></span>
+### <a name="web-app"></a><span data-ttu-id="07db2-143">Web 應用程式</span><span class="sxs-lookup"><span data-stu-id="07db2-143">Web app</span></span>
     {
       "apiVersion": "2015-08-01",
       "name": "[variables('webSiteName')]",
@@ -221,7 +221,7 @@ ms.lasthandoff: 07/11/2017
     },
 
 
-### <a name="autoscale"></a><span data-ttu-id="13f76-144">自動調整</span><span class="sxs-lookup"><span data-stu-id="13f76-144">AutoScale</span></span>
+### <a name="autoscale"></a><span data-ttu-id="07db2-144">自動調整</span><span class="sxs-lookup"><span data-stu-id="07db2-144">AutoScale</span></span>
     {
       "apiVersion": "2014-04-01",
       "name": "[concat(variables('hostingPlanName'), '-', resourceGroup().name)]",
@@ -290,7 +290,7 @@ ms.lasthandoff: 07/11/2017
     },
 
 
-### <a name="alert-rules-for-status-codes-403-and-500s-high-cpu-and-http-queue-length"></a><span data-ttu-id="13f76-145">狀態碼 403、狀態碼 500、高 CPU 和 HTTP 佇列長度的警示規則</span><span class="sxs-lookup"><span data-stu-id="13f76-145">Alert rules for status codes 403 and 500's, High CPU, and HTTP Queue Length</span></span>
+### <a name="alert-rules-for-status-codes-403-and-500s-high-cpu-and-http-queue-length"></a><span data-ttu-id="07db2-145">狀態碼 403、狀態碼 500、高 CPU 和 HTTP 佇列長度的警示規則</span><span class="sxs-lookup"><span data-stu-id="07db2-145">Alert rules for status codes 403 and 500's, High CPU, and HTTP Queue Length</span></span>
     {
       "apiVersion": "2014-04-01",
       "name": "[concat('ServerErrors ', variables('webSiteName'))]",
@@ -373,7 +373,7 @@ ms.lasthandoff: 07/11/2017
       },
       "properties": {
         "name": "[concat('CPUHigh ', variables('hostingPlanName'))]",
-        "description": "[concat('The average CPU is high across all the instances of ', variables('hostingPlanName'))]",
+        "description": "[concat('hello average CPU is high across all hello instances of ', variables('hostingPlanName'))]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
@@ -407,7 +407,7 @@ ms.lasthandoff: 07/11/2017
       },
       "properties": {
         "name": "[concat('LongHttpQueue ', variables('hostingPlanName'))]",
-        "description": "[concat('The HTTP queue for the instances of ', variables('hostingPlanName'), ' has a large number of pending requests.')]",
+        "description": "[concat('hello HTTP queue for hello instances of ', variables('hostingPlanName'), ' has a large number of pending requests.')]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
@@ -428,7 +428,7 @@ ms.lasthandoff: 07/11/2017
       }
     },
 
-### <a name="app-insights"></a><span data-ttu-id="13f76-146">應用程式情資</span><span class="sxs-lookup"><span data-stu-id="13f76-146">App Insights</span></span>
+### <a name="app-insights"></a><span data-ttu-id="07db2-146">應用程式情資</span><span class="sxs-lookup"><span data-stu-id="07db2-146">App Insights</span></span>
     {
       "apiVersion": "2014-04-01",
       "name": "[concat('AppInsights', variables('webSiteName'))]",
@@ -446,22 +446,22 @@ ms.lasthandoff: 07/11/2017
       }
     }
 
-## <a name="commands-to-run-deployment"></a><span data-ttu-id="13f76-147">執行部署的命令</span><span class="sxs-lookup"><span data-stu-id="13f76-147">Commands to run deployment</span></span>
+## <a name="commands-toorun-deployment"></a><span data-ttu-id="07db2-147">命令 toorun 部署</span><span class="sxs-lookup"><span data-stu-id="07db2-147">Commands toorun deployment</span></span>
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
-### <a name="powershell"></a><span data-ttu-id="13f76-148">PowerShell</span><span class="sxs-lookup"><span data-stu-id="13f76-148">PowerShell</span></span>
+### <a name="powershell"></a><span data-ttu-id="07db2-148">PowerShell</span><span class="sxs-lookup"><span data-stu-id="07db2-148">PowerShell</span></span>
     New-AzureRmResourceGroupDeployment -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json
 
-### <a name="azure-cli"></a><span data-ttu-id="13f76-149">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="13f76-149">Azure CLI</span></span>
+### <a name="azure-cli"></a><span data-ttu-id="07db2-149">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="07db2-149">Azure CLI</span></span>
 
     azure config mode arm
     azure group deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json
 
-### <a name="azure-cli-20"></a><span data-ttu-id="13f76-150">Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="13f76-150">Azure CLI 2.0</span></span>
+### <a name="azure-cli-20"></a><span data-ttu-id="07db2-150">Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="07db2-150">Azure CLI 2.0</span></span>
 
     az resource deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json --parameters '@azuredeploy.parameters.json'
 
 > [!NOTE]
-> <span data-ttu-id="13f76-151">如需參數 JSON 檔案的內容，請參閱 [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json)。</span><span class="sxs-lookup"><span data-stu-id="13f76-151">For content of the parameters JSON file, see [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json).</span></span>
+> <span data-ttu-id="07db2-151">如需 hello 參數 JSON 檔案的內容，請參閱[azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json)。</span><span class="sxs-lookup"><span data-stu-id="07db2-151">For content of hello parameters JSON file, see [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json).</span></span>
 >
 >
