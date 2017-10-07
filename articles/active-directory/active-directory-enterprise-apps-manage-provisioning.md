@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 中企業應用程式的使用者佈建管理 |Microsoft Docs"
-description: "了解如何使用 Azure Active Directory 管理企業應用程式的使用者帳戶佈建"
+title: "佈建的 hello Azure Active Directory 中的企業應用程式管理的 aaaUser |Microsoft 文件"
+description: "了解如何 toomanage 使用者帳戶佈建為使用 hello Azure Active Directory 的企業應用程式"
 services: active-directory
 documentationcenter: 
 author: asmalser
@@ -15,70 +15,70 @@ ms.workload: identity
 ms.date: 07/26/2017
 ms.author: asmalser
 ms.reviewer: asmalser
-ms.openlocfilehash: 220f938e5c890554cd596e2b14492782ed829a5d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a613f844c8f51e04b92e62b488313a78ab85f7ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="managing-user-account-provisioning-for-enterprise-apps-in-the-azure-portal"></a>在 Azure 入口網站中管理企業應用程式的使用者帳戶佈建
-這篇文章說明如何使用 [Azure 入口網站](https://portal.azure.com)來自動化管理使用者帳戶的佈建和解除佈建，以用於支援它的應用程式，尤其是透過 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)的「精選」類別新增的應用程式。 如需深入了解自動化使用者佈建，請參閱 [自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建](active-directory-saas-app-provisioning.md)。
+# <a name="managing-user-account-provisioning-for-enterprise-apps-in-hello-azure-portal"></a>管理企業中的應用程式 hello Azure 入口網站佈建使用者帳戶
+本文說明如何 toouse hello [Azure 入口網站](https://portal.azure.com)toomanage 自動使用者帳戶佈建和解除佈建的應用程式，支援它，特別是已從 hello 加入 「 熱門 」 的類別hello [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)。 toolearn 深入了解使用者自動帳戶佈建和它的運作方式，請參閱[自動化使用者佈建和取消佈建 tooSaaS 應用程式與 Azure Active Directory](active-directory-saas-app-provisioning.md)。
 
-## <a name="finding-your-apps-in-the-portal"></a>在入口網站中尋找您的應用程式
-目錄管理員使用 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)為目錄中單一登入設定的所有應用程式，可以在 [Azure 入口網站](https://portal.azure.com)中檢視和管理。 這些應用程式可在入口網站的 [更多服務] &gt; [企業應用程式] 區段中找到。 企業應用程式是您組織內部署和使用的應用程式。
+## <a name="finding-your-apps-in-hello-portal"></a>在 hello 入口網站中尋找您的應用程式
+所有應用程式，已針對單一登入在目錄中，目錄管理員使用 hello [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)，可以檢視及管理在 hello [Azure 入口網站](https://portal.azure.com). hello 應用程式可以在 hello**更服務** &gt; **企業應用程式**hello 入口網站的區段。 企業應用程式是您組織內部署和使用的應用程式。
 
 ![企業應用程式刀鋒視窗][0]
 
-選取左側的 [所有應用程式]  連結會顯示已設定的所有應用程式的清單，包括已從資源庫新增的應用程式。 選取應用程式會載入該應用程式的資源刀鋒視窗，您可以在其中檢視該應用程式的報告，且可管理各種設定。
+選取 hello**所有應用程式**hello 左側的連結會顯示所有已設定，包括已加入從 hello 組件庫的應用程式的應用程式清單。 選取應用程式載入 hello 資源刀鋒視窗，該應用程式，其中可以檢視報告，該應用程式，且可管理各種不同的設定。
 
-選取左側的 [佈建]  可以管理使用者帳戶的佈建設定。
+佈建設定的使用者帳戶可管理所選取**佈建**hello 左側。
 
 ![應用程式資源刀鋒視窗][1]
 
 ## <a name="provisioning-modes"></a>佈建模式
-[佈建] 刀鋒視窗的最前方是 [模式] 功能表，會顯示企業應用程式支援哪些佈建模式，並可以設定它們。 可用的選項包括：
+hello**佈建**刀鋒視窗開頭**模式**功能表上，這會顯示哪些佈建模式支援企業應用程式，並允許它們 toobe 設定。 hello 可用的選項包括：
 
-* **自動** - 如果 Azure AD 支援對此應用程式進行使用者帳戶的 API 型自動佈建和/或解除佈建，就會出現此選項。 選取此模式會顯示一介面，引導管理員設定 Azure AD 連接到應用程式的使用者管理 API、建立帳戶對應和工作流程定義 (定義使用者帳戶資料如何在 Azure AD 與應用程式之間的流動)、以及管理 Azure AD 佈建服務。
-* **手動** - 如果 Azure AD 不支援對此應用程式自動佈建使用者帳戶，就會出現此選項。 此選項表示，必須根據該應用程式提供的使用者管理和佈建功能 (可包括 SAML Just-In-Time 佈建)，使用外部程序來管理儲存在應用程式中的使用者帳戶記錄。
+* **自動**-當 Azure AD 支援自動 API 為基礎的佈建及/或解除佈建使用者帳戶 toothis 應用程式會出現這個選項。 選取此模式會顯示引導系統管理員可以透過設定 Azure AD tooconnect toohello 應用程式的使用者管理 API、 建立帳戶對應和定義使用者帳戶資料的 Azure AD 之間的流程為何的工作流程的介面和hello 應用程式，以及管理 hello Azure AD 佈建服務。
+* **手動**-是否 Azure AD 不支援自動佈建使用者帳戶 toothis 應用程式顯示這個選項。 此選項表示必須使用外部處理序，根據 hello 使用者管理和佈建所提供的功能 （其中包含 SAML Just-In-Time 佈建） 該應用程式來管理儲存在 hello 應用程式的使用者帳戶記錄。
 
 ## <a name="configuring-automatic-user-account-provisioning"></a>設定使用者帳戶自動佈建
-選取 **自動** 選項會顯示分成四個部分的畫面︰
+選取 hello**自動**選項會顯示的畫面，分成四個區段：
 
 ### <a name="admin-credentials"></a>管理員認證
-可在這個地方輸入 Azure AD 連接到應用程式的使用者管理 API 所需的認證。 所需的輸入依應用程式而有所不同。 若要深入了解認證類型，以及針對特定應用程式的需求，請參閱 [針對該特定應用程式的設定教學課程](active-directory-saas-app-provisioning.md#list-of-apps-that-support-automated-user-provisioning)。
+這是其中輸入 hello Azure AD tooconnect toohello 應用程式的使用者管理 API 所需的認證。 所需的 hello 輸入 hello 應用程式而有所不同。 toolearn 有關 hello 認證類型和特定的應用程式的需求，請參閱 「 hello[設定該特定應用程式的教學課程](active-directory-saas-app-provisioning.md#list-of-apps-that-support-automated-user-provisioning)。
 
-選取 [測試連線]  按鈕，會讓 Azure AD 使用提供的認證嘗試連接到應用程式的佈建應用程式，可測試認證。
+選取 hello**測試連接**按鈕可讓您 tootest hello 認證，讓 Azure AD 嘗試 tooconnect toohello 應用程式的佈建應用程式使用 hello 提供認證。
 
 ### <a name="mappings"></a>對應
-管理員可在這個地方檢視及編輯 Azure AD 和目標應用程式之間可流動哪些使用者屬性，以及使用者帳戶何時佈建或更新。
+這是系統管理員可以檢視和編輯 Azure AD 之間的哪些使用者屬性流程的位置和 hello 目標應用程式，當使用者帳戶佈建或更新時。
 
-在 Azure AD 使用者物件和每個 SaaS 應用程式的使用者物件之間，有一組預先設定的對應。 有些 app 則管理其他類型的物件，例如群組或連絡人。 選取資料表中這些對應的其中一個，會在右側顯示對應編輯器，可在此處檢視和自訂對應。
+在 Azure AD 使用者物件和每個 SaaS 應用程式的使用者物件之間，有一組預先設定的對應。 有些 app 則管理其他類型的物件，例如群組或連絡人。 在 hello 資料表中選取其中一個這些對應顯示 hello 對應編輯器 」 toohello 右側，其中他們可以檢視和自訂。
 
 ![應用程式資源刀鋒視窗][2]
 
 支援的自訂項目包含：
 
-* 啟用和停用特定物件的對應，例如 Azure AD 使用者物件對應至 SaaS 應用程式的使用者物件。
-* 編輯哪些屬性會從 Azure AD 使用者物件流向應用程式的使用者物件。 如需有關屬性對應的詳細資訊，請參閱 [了解屬性對應類型](active-directory-saas-customizing-attribute-mappings.md#understanding-attribute-mapping-types)。
-* 篩選 Azure AD 在目標應用程式上執行的佈建動作。 您不需要讓 Azure AD 完全同步處理物件，可以限制執行的動作。 例如，只選取 **更新**，Azure AD 只會更新應用程式中的現有使用者帳戶，不會建立新的。 只有選取 **建立**，Azure 只會建立新的使用者帳戶，但不會更新現有的。 這項功能可讓管理員為帳戶建立和更新工作流程建立不同的對應。
+* 啟用和停用特定物件，例如 hello Azure AD 使用者物件 toohello SaaS 應用程式的使用者物件的對應。
+* 編輯的屬性流程從 hello Azure AD 使用者物件 toohello 應用程式的使用者物件。 如需有關屬性對應的詳細資訊，請參閱 [了解屬性對應類型](active-directory-saas-customizing-attribute-mappings.md#understanding-attribute-mapping-types)。
+* 佈建 Azure AD 在 hello 所執行的動作篩選條件 hello 應用程式為目標。 您不需要完整同步處理物件的 Azure AD，您可以限制 hello 執行的動作。 例如，只選取 **更新**，Azure AD 只會更新應用程式中的現有使用者帳戶，不會建立新的。 只有選取 **建立**，Azure 只會建立新的使用者帳戶，但不會更新現有的。 這項功能可讓系統管理員帳戶 toocreate 不同對應建立和更新的工作流程。
 
 ### <a name="settings"></a>設定
-這個部分可讓管理員為所選的應用程式啟動和停止 Azure AD 佈建服務，以及選擇性地清除佈建快取並重新啟動服務。
+這個區段可讓系統管理員 」 toostart 並停止 hello hello 選取應用程式，以及選擇性地清除 hello 佈建的 Azure AD 佈建服務快取和重新啟動 hello 服務。
 
-如果是初次為應用程式啟用佈建，將 [佈建狀態] 變更為 [開啟] 即可開啟服務。 這會導致 Azure AD 佈建服務執行初始同步處理，此程序會讀取 [使用者和群組] 區段中指派的使用者，查詢他們的目標應用程式，並接著執行在 Azure AD [對應] 區段中定義的佈建動作。 在此程序中，佈建服務會儲存快取的資料 (有關管理哪些使用者帳戶)，所以不曾在指派範圍中的目標應用程式內的非受管理帳戶，不會受到解除佈建作業的影響。 初始同步處理之後，每隔十分鐘佈建服務會自動同步處理使用者和群組物件。
+佈建已啟用 hello 應用程式的第一次，如果開啟變更 hello hello 服務**佈建狀態**太**上**。 這會導致 hello Azure AD 佈建服務 tooperform 初始同步處理，它會讀取 hello 中獲指派的 hello 使用者**使用者和群組** 區段中，查詢 hello 目標應用程式，並接著執行 hello 佈建在 hello Azure AD 中定義的動作**對應**> 一節。 在此過程中，佈建服務的 hello 會儲存管理，哪些使用者帳戶的相關的快取的資料，因此永遠不會在指派的範圍中的 hello 目標應用程式內的非受管理的帳戶不受解除佈建作業。 後 hello 初始同步處理，會自動佈建服務的 hello，請在 10 分鐘間隔同步使用者和群組物件。
 
-將 [佈建狀態] 變更為 [關閉] 只會暫停佈建服務。 在此狀態下，Azure 不會建立、更新或移除應用程式中的任何使用者或群組物件。 將狀態變更回開啟，服務會從停止的地方繼續。
+變更 hello**佈建狀態**太**關閉**只要暫停 hello 佈建的服務。 在這個狀態下，Azure 不會不建立、 更新或移除 hello 應用程式中的任何使用者或群組物件。 變更 hello 狀態回復 tooon 會導致 hello 服務 toopick 向上中斷的位置。
 
-選取 [清除目前的狀態，並重新啟動同步處理]  核取方塊然後儲存，會停止佈建服務，拋棄有關 Azure AD 管理哪些帳戶的快取資料，重新啟動服務，並再次執行初始同步處理。 此選項可讓管理員重新啟動佈建部署程序。
+選取 hello**清除目前的狀態，並重新啟動同步處理**核取方塊，並儲存停駐點 hello 佈建服務、 傾印 hello 快取資料有關哪些 Azure AD 的帳戶來管理，hello 服務重新啟動且執行 hello一次初始同步處理。 此選項可讓系統管理員 」 toostart hello 重新佈建部署程序。
 
 ### <a name="synchronization-details"></a>同步處理詳細資料
-這個部分提供佈建服務作業的詳細資訊，包括對應用程式執行佈建服務的第一次和最後一次時間，以及管理多少個使用者和群組物件。
+本節提供新增的佈建服務的 hello hello 作業詳細資料，包括 hello 第一個和最後一個時間 hello 佈建服務中，執行對 hello 應用程式，以及受管理使用者和群組物件的數目。
 
-這裡提供**佈建活動報表**的連結，以提供 Azure AD 和目標應用程式之間已建立、更新、移除的所有使用者和群組的記錄檔，以及提供**佈建錯誤報表**的連結，以針對無法讀取、建立、更新或移除的使用者和群組物件提供更詳細的錯誤訊息。 
+會提供連結 toohello**佈建活動報表**，這樣會提供記錄檔的所有使用者和群組建立、 更新與移除之間的 Azure AD hello 目標應用程式，並 toohello**佈建錯誤報表**文中提供更多詳細的錯誤訊息，使用者和群組物件的讀取、 建立、 更新或移除該失敗的 toobe。 
 
 ##<a name="feedback"></a>意見反應
 
-我們希望您喜歡您的 Azure AD 經驗。 請繼續提供意見反應！ 請將您的意見反應和改進想法張貼在我們的[意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal)的**管理員入口網站**區段中。  我們每天都很期待發展酷炫的新功能，並依照您的指導來塑造和定義我們接下來所要發展的項目。
+我們希望您喜歡您的 Azure AD 經驗。 請保留來自 hello 意見反應 ！ 將張貼到您的意見反應與改進的想法 hello**管理入口**區段我們[意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal)。  我們正在興奮建置新很棒的每一天，和使用指引 tooshape 作業，並定義什麼接下來要建立。
 
 
 [0]: ./media/active-directory-enterprise-apps-manage-provisioning/enterprise-apps-blade.PNG

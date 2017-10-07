@@ -1,5 +1,5 @@
 ---
-title: "Azure 匯入/匯出工具匯入作業命令的快速參考 | Microsoft Docs"
+title: "Azure 匯入/匯出工具匯入作業命令的 aaaQuick 參考 |Microsoft 文件"
 description: "適用於常用匯入作業命令的 Azure 匯入/匯出工具命令參考。"
 author: muralikk
 manager: syadav
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: e9377e0c5001cf5be220e19e06ff96c1e058e853
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0a615aed938e5e1b52d55a340aa6b48fa0744367
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="quick-reference-for-frequently-used-commands-for-import-jobs"></a>匯入作業的常用命令快速參考
 
@@ -48,7 +48,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2 /AbortSession
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#3 /ResumeSession
 ```
 
-## <a name="add-drives-to-latest-session"></a>將磁碟機加入最近的工作階段
+## <a name="add-drives-toolatest-session"></a>新增磁碟機 toolatest 工作階段
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#3 /AdditionalDriveSet:driveset-2.csv
@@ -56,4 +56,4 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#3 /AdditionalDriveS
 
 ## <a name="next-steps"></a>後續步驟
 
-* [針對匯入作業準備硬碟的簡單工作流程](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)
+* [匯入工作的範例工作流程 tooprepare 硬碟機](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)

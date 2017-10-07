@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中從受控 VM 映像建立 VM | Microsoft Docs"
-description: "在 Resource Manager 部署模型中使用 Azure PowerShell，從一般化受控 VM 映像建立 Windows 虛擬機器。"
+title: "從受管理的 VM 映像，在 Azure 中的 VM aaaCreate |Microsoft 文件"
+description: "從通用 managed VM 映像在 hello Resource Manager 部署模型中使用 Azure PowerShell 中建立 Windows 虛擬機器。"
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: cynthn
-ms.openlocfilehash: 2bb2d66271178a64ec0f4642e46b23f5618a56d9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5036ef1533c144a9a328e94599b359e0166f337d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-vm-from-a-managed-image"></a>從 Managed 映像建立 VM
 
-您可以在 Azure 中從受控 VM 映像建立多個 VM。 受控 VM 映像包含建立 VM 所需的資訊，包括 OS 和資料磁碟。 組成映像的 VHD (包括 OS 磁碟和任何資料磁碟) 會儲存為受控磁碟。 
+您可以在 Azure 中從受控 VM 映像建立多個 VM。 受管理的 VM 映像包含 hello 資訊必要 toocreate VM，包括 hello OS 和資料磁碟。 hello hello 映像，包括 hello OS 磁碟和任何資料磁碟所組成，會儲存成受管理的磁碟的 Vhd。 
 
 
 ## <a name="prerequisites"></a>必要條件
 
-您必須已經[建立受控 VM 映像](capture-image-resource.md)，才能用來建立新的 VM。 
+您必須已經 toohave[建立受管理的 VM 映像](capture-image-resource.md)toouse 建立 hello 新的 VM。 
 
-請確定您擁有最新版的 AzureRM.Compute 和 AzureRM.Network PowerShell 模組。 以系統管理員身分開啟 PowerShell 命令提示字元，執行下列命令安裝它們。
+請確定您已擁有 hello hello AzureRM.Compute 和 AzureRM.Network PowerShell 模組最新版本。 開啟以系統管理員的 PowerShell 命令提示字元，然後執行下列命令 tooinstall hello 它們。
 
 ```powershell
 Install-Module AzureRM.Compute,AzureRM.Network
@@ -39,9 +39,9 @@ Install-Module AzureRM.Compute,AzureRM.Network
 
 
 
-## <a name="collect-information-about-the-image"></a>收集映像相關資訊
+## <a name="collect-information-about-hello-image"></a>收集 hello 映像的相關資訊
 
-首先，我們需要收集映像的基本資訊，並建立映像的變數。 這個範例使用名為 **myImage** 的受控 VM 映像，其位於**美國中西部**位置的 **myResourceGroup** 資源群組中。 
+首先我們需要 toogather hello 映像相關資訊的基本資訊，並針對 hello 映像建立的變數。 這個範例會使用名為受管理的 VM 映像**myImage**也就是在 hello **myResourceGroup** hello 中的資源群組**中央美國西部**位置。 
 
 ```powershell
 $rgName = "myResourceGroup"
@@ -51,15 +51,15 @@ $image = Get-AzureRMImage -ImageName $imageName -ResourceGroupName $rgName
 ```
 
 ## <a name="create-a-virtual-network"></a>建立虛擬網路
-建立[虛擬網路](../../virtual-network/virtual-networks-overview.md)的 vNet 和子網路。
+建立 hello vNet 和子網路的 hello[虛擬網路](../../virtual-network/virtual-networks-overview.md)。
 
-1. 建立子網路。 這個範例會建立名為 **mySubnet** 且具有位址首碼 **10.0.0.0/24** 的子網路。  
+1. 建立 hello 子網路。 這個範例會建立名為的子網路**mySubnet** hello 位址前置詞與**10.0.0.0/24**。  
    
     ```powershell
     $subnetName = "mySubnet"
     $singleSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix 10.0.0.0/24
     ```
-2. 建立虛擬網路 這個範例會建立名為 **myVnet** 且具有位址首碼 **10.0.0.0/16** 的虛擬網路。  
+2. 建立 hello 虛擬網路。 這個範例會建立虛擬網路，名為**myVnet** hello 位址前置詞與**10.0.0.0/16**。  
    
     ```powershell
     $vnetName = "myVnet"
@@ -69,7 +69,7 @@ $image = Get-AzureRMImage -ImageName $imageName -ResourceGroupName $rgName
 
 ## <a name="create-a-public-ip-address-and-network-interface"></a>建立公用 IP 位址和網路介面
 
-若要能夠與虛擬網路中的虛擬機器進行通訊，您需要 [公用 IP 位址](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) 和網路介面。
+tooenable 與 hello hello 虛擬網路中的虛擬機器的通訊，您需要[公用 IP 位址](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)和網路介面。
 
 1. 建立公用 IP 位址。 此範例會建立名為 **myPip** 的公用 IP 位址。 
    
@@ -78,7 +78,7 @@ $image = Get-AzureRMImage -ImageName $imageName -ResourceGroupName $rgName
     $pip = New-AzureRmPublicIpAddress -Name $ipName -ResourceGroupName $rgName -Location $location `
         -AllocationMethod Dynamic
     ```       
-2. 建立 NIC。 此範例會建立名為 **myNic** 的 NIC。 
+2. 建立 hello nic。 此範例會建立名為 **myNic** 的 NIC。 
    
     ```powershell
     $nicName = "myNic"
@@ -86,11 +86,11 @@ $image = Get-AzureRMImage -ImageName $imageName -ResourceGroupName $rgName
         -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
     ```
 
-## <a name="create-the-network-security-group-and-an-rdp-rule"></a>建立網路安全性群組和 RDP 規則
+## <a name="create-hello-network-security-group-and-an-rdp-rule"></a>建立網路安全性群組 hello 和 RDP 規則
 
-若要能夠使用 RDP 登入 VM，您必須有可在連接埠 3389 上允許 RDP 存取的網路安全性規則 (NSG)。 
+toobe 無法 toolog tooyour 中的使用 RDP 的 VM，您需要 toohave 網路安全性規則 (NSG)，允許連接埠 3389 RDP 存取權。 
 
-此範例會建立名為 **myNsg** 的 NSG，其包含的規則 **myRdpRule** 可允許透過連接埠 3389 的 RDP 流量。 如需 NSG 的詳細資訊，請參閱[使用 PowerShell 對 Azure 中的 VM 開啟連接埠](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+此範例會建立名為 **myNsg** 的 NSG，其包含的規則 **myRdpRule** 可允許透過連接埠 3389 的 RDP 流量。 如需 Nsg 的詳細資訊，請參閱[使用 PowerShell 在 Azure 中開啟連接埠 tooa VM](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ```powershell
 $nsgName = "myNsg"
@@ -105,54 +105,54 @@ $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $rgName -Location $loc
 ```
 
 
-## <a name="create-a-variable-for-the-virtual-network"></a>建立虛擬網路的變數
+## <a name="create-a-variable-for-hello-virtual-network"></a>針對 hello 虛擬網路建立的變數
 
-為已完成的虛擬網路建立變數。 
+建立 hello 完成虛擬網路的變數。 
 
 ```powershell
 $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $rgName -Name $vnetName
 
 ```
 
-## <a name="get-the-credentials-for-the-vm"></a>取得 VM 的認證
+## <a name="get-hello-credentials-for-hello-vm"></a>取得 hello VM hello 認證
 
-下列 Cmdlet 會開啟視窗，讓您輸入新的使用者名稱和密碼，作為從遠端存取 VM 時使用的本機管理員帳戶。 
+hello 下列 cmdlet 會開啟的視窗，您就會在輸入新的使用者名稱和密碼 toouse hello 的本機 administrator 帳戶從遠端存取 hello VM。 
 
 ```powershell
 $cred = Get-Credential
 ```
 
-## <a name="set-variables-for-the-vm-name-computer-name-and-the-size-of-the-vm"></a>設定 VM 名稱、電腦名稱和 VM 大小的變數
+## <a name="set-variables-for-hello-vm-name-computer-name-and-hello-size-of-hello-vm"></a>Hello VM 設定的變數名稱，電腦名稱，而且 hello hello VM 的大小
 
-1. 建立 VM 名稱和電腦名稱的變數。 此範例將 VM 名稱設定為 **myVM**，將電腦名稱設定為 **myComputer**。
+1. 建立 hello VM 名稱與電腦名稱的變數。 此範例會設定為 hello VM 名稱**myVM**和 hello 電腦名稱與**myComputer**。
 
     ```powershell
     $vmName = "myVM"
     $computerName = "myComputer"
     ```
-2. 設定虛擬機器的大小。 這個範例會建立 **Standard_DS1_v2** 大小的 VM。 如需詳細資訊，請參閱 [VM 大小](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/)文件。
+2. 設定 hello hello 虛擬機器大小。 這個範例會建立 **Standard_DS1_v2** 大小的 VM。 請參閱 hello [VM 大小](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/)文件的詳細資訊。
 
     ```powershell
     $vmSize = "Standard_DS1_v2"
     ```
 
-3. 將 VM 名稱和大小新增至 VM 設定。
+3. 加入 hello VM 名稱和大小 toohello VM 組態。
 
 ```powershell
 $vm = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize
 ```
 
-## <a name="set-the-vm-image-as-source-image-for-the-new-vm"></a>將 VM 映像設定為新 VM 的來源映像
+## <a name="set-hello-vm-image-as-source-image-for-hello-new-vm"></a>集 hello VM 映像 hello 的來源映像為新的 VM
 
-使用受控 VM 映像的識別碼設定來源影像。
+設定使用受管理的 hello VM 映像的 hello 識別碼 hello 來源映像。
 
 ```powershell
 $vm = Set-AzureRmVMSourceImage -VM $vm -Id $image.Id
 ```
 
-## <a name="set-the-os-configuration-and-add-the-nic"></a>設定 OS 組態並新增 NIC。
+## <a name="set-hello-os-configuration-and-add-hello-nic"></a>設定 hello 作業系統設定以及新增 hello nic。
 
-輸入儲存體類型 (PremiumLRS 或 StandardLRS) 和 OS 磁碟的大小。 這個範例將帳戶類型設定為 **PremiumLRS**、將磁碟大小設定為 **128GB**，並將磁碟快取設定為 **ReadWrite**。
+輸入 hello 儲存類型 （PremiumLRS 或 StandardLRS） 和 hello hello 作業系統磁碟大小。 此範例會設定 hello 帳戶類型太**PremiumLRS**，太 hello 磁碟大小**128 GB**和磁碟快取太**ReadWrite**。
 
 ```powershell
 $vm = Set-AzureRmVMOSDisk -VM $vm  -StorageAccountType PremiumLRS -DiskSizeInGB 128 `
@@ -164,16 +164,16 @@ $vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $computerName 
 $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 ```
 
-## <a name="create-the-vm"></a>建立 VM
+## <a name="create-hello-vm"></a>建立 hello VM
 
-使用我們已建立並儲存在 **$vm** 變數中的組態來建立新 VM。
+建立新的 Vm 使用 hello 組態，我們已建立及儲存在 hello 的 hello **$vm**變數。
 
 ```powershell
 New-AzureRmVM -VM $vm -ResourceGroupName $rgName -Location $location
 ```
 
-## <a name="verify-that-the-vm-was-created"></a>確認已建立 VM
-完成時，在 [Azure 入口網站](https://portal.azure.com)的 [瀏覽] > [虛擬機器] 底下，或是使用下列 PowerShell 命令，應該就可以看到新建立的 VM：
+## <a name="verify-that-hello-vm-was-created"></a>請確認 VM 已建立該 hello
+完成時，您應該會看到新建立的 VM 中 hello hello [Azure 入口網站](https://portal.azure.com)下**瀏覽** > **虛擬機器**，或使用 hello 下列PowerShell 命令：
 
 ```powershell
     $vmList = Get-AzureRmVM -ResourceGroupName $rgName
@@ -181,5 +181,5 @@ New-AzureRmVM -VM $vm -ResourceGroupName $rgName -Location $location
 ```
 
 ## <a name="next-steps"></a>後續步驟
-若要使用 PowerShell 來管理您的新虛擬機器，請參閱[使用 Azure PowerShell 模組來建立和管理 Windows VM](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+toomanage 新的虛擬機器使用 Azure PowerShell，請參閱[建立及管理 Windows Vm hello Azure PowerShell 模組](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 

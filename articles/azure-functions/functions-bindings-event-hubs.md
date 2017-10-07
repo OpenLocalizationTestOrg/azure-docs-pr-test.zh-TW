@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions 事件中樞繫結 | Microsoft Docs"
-description: "了解如何在 Azure Functions 中使用 Azure 事件中樞繫結。"
+title: "aaaAzure 函式的事件中心繫結 |Microsoft 文件"
+description: "了解如何在 Azure 函式 toouse Azure 事件中心繫結。"
 services: functions
 documentationcenter: na
 author: wesmc7777
@@ -16,55 +16,55 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 06/20/2017
 ms.author: wesmc
-ms.openlocfilehash: 19021bef8b7156b3049f43b0275c0ed0c6b22514
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e864f032ad5ac58d318c9843c3844b5642733a70
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-event-hubs-bindings"></a>Azure Functions 事件中樞繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-本文說明如何針對 Azure Functions 設定及使用 [Azure 事件中樞](../event-hubs/event-hubs-what-is-event-hubs.md)繫結。
+這篇文章說明如何 tooconfigure 並用[Azure 事件中心](../event-hubs/event-hubs-what-is-event-hubs.md)Azure 函式繫結。
 Azure Functions 支援事件中樞的觸發程序和輸出繫結。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-如果您對 Azure 事件中樞並不熟悉，請參閱[事件中樞概述](../event-hubs/event-hubs-what-is-event-hubs.md)。
+如果您是新 tooAzure 事件中心時，請參閱 hello[事件中心概觀](../event-hubs/event-hubs-what-is-event-hubs.md)。
 
 <a name="trigger"></a>
 
 ## <a name="event-hub-trigger"></a>事件中樞觸發程序
-使用事件中樞觸發程序將回應傳送至事件中樞事件資料流。 您必須具有事件中樞的讀取存取權，才能設定觸發程序。
+使用 hello 事件中心觸發 toorespond tooan 事件傳送 tooan 事件中樞事件資料流。 您必須擁有讀取權限 toohello 事件中樞 tooset hello 觸發程序。
 
-事件中樞函式觸發程序會使用 function.json 之 `bindings` 陣列中的下列 JSON 物件︰
+hello 事件中心函式觸發程序會使用下列 JSON 物件中 hello hello `bindings` function.json 的陣列：
 
 ```json
 {
     "type": "eventHubTrigger",
     "name": "<Name of trigger parameter in function signature>",
     "direction": "in",
-    "path": "<Name of the event hub>",
-    "consumerGroup": "Consumer group to use - see below",
+    "path": "<Name of hello event hub>",
+    "consumerGroup": "Consumer group toouse - see below",
     "connection": "<Name of app setting with connection string - see below>"
 }
 ```
 
-`consumerGroup` 是選擇性屬性，可設定用來訂閱中樞內事件的[取用者群組](../event-hubs/event-hubs-features.md#event-consumers)。 如果省略，則會使用 `$Default` 取用者群組。  
-`connection` 必須是應用程式設定的名稱，包含事件中樞命名空間的連接字串。
-按一下*命名空間*的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。 此連接字串至少必須具備讀取權限，才能啟動觸發程序。
+`consumerGroup`為使用的選擇性屬性 tooset hello[取用者群組](../event-hubs/event-hubs-features.md#event-consumers)toosubscribe tooevents 用於 hello 中樞。 如果省略，hello`$Default`使用取用者群組。  
+`connection`必須是 hello 包含 hello 連接字串 toohello 事件中心的命名空間的應用程式設定名稱。
+複製這個連接字串，請按一下 hello**連接資訊**按鈕 hello*命名空間*，不 hello 事件中心本身。 這個連接字串必須至少具有讀取權限 tooactivate hello 觸發程序。
 
-可以在 host.json 檔案中提供[其他設定](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)來進一步微調事件中樞觸發程序。  
+[其他設定](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)可以用來在 host.json 檔案 toofurther 正常微調事件中心觸發程序。  
 
 <a name="triggerusage"></a>
 
 ## <a name="trigger-usage"></a>觸發程序使用方式
-事件中樞觸發程序函式觸發時，觸發它的訊息會以字串形式傳遞至函式。
+觸發的事件中心的觸發程序函式時，它會觸發的 hello 訊息傳入 hello 函式做為字串。
 
 <a name="triggersample"></a>
 
 ## <a name="trigger-sample"></a>觸發程序範例
-假設您的 function.json 之 `bindings` 陣列中有下列事件中樞觸發程序︰
+假設您有下列事件中心觸發 hello 中的 hello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -76,7 +76,7 @@ Azure Functions 支援事件中樞的觸發程序和輸出繫結。
 }
 ```
 
-請參閱記錄事件中樞的觸發程序的訊息本文的語言特定範例。
+請參閱 hello 記錄 hello 訊息本文的 hello 事件中樞觸發程序的特定語言的範例。
 
 * [C#](#triggercsharp)
 * [F#](#triggerfsharp)
@@ -95,7 +95,7 @@ public static void Run(string myEventHubMessage, TraceWriter log)
 }
 ```
 
-您也能以 [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) 物件的形式接收事件，該物件能為您提供事件中繼資料的存取權。
+您也可以收到 hello 事件做[EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata)物件，可讓您存取 toohello 事件中繼資料。
 
 ```cs
 #r "Microsoft.ServiceBus"
@@ -108,7 +108,7 @@ public static void Run(EventData myEventHubMessage, TraceWriter log)
 }
 ```
 
-若要以批次接收事件，請將方法簽章變更為 `string[]` 或 `EventData[]`。
+tooreceive 批次中的事件變更 hello 方法簽章太`string[]`或`EventData[]`。
 
 ```cs
 public static void Run(string[] eventHubMessages, TraceWriter log)
@@ -143,9 +143,9 @@ module.exports = function (context, myEventHubMessage) {
 <a name="output"></a>
 
 ## <a name="event-hubs-output-binding"></a>事件中樞輸出繫結
-使用事件中樞輸出繫結將事件寫入事件中樞事件資料流。 您必須具備事件中樞的傳送權限，才能將事件寫入其中。
+使用 hello 事件中心輸出繫結 toowrite 事件 tooan 事件中樞事件資料流。 您必須擁有傳送權限 tooan 事件中樞 toowrite 事件 tooit。
 
-輸出繫結會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
+hello 輸出繫結會使用下列 JSON 物件中 hello hello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -157,22 +157,22 @@ module.exports = function (context, myEventHubMessage) {
 }
 ```
 
-`connection` 必須是應用程式設定的名稱，包含事件中樞命名空間的連接字串。
-按一下*命名空間*的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。 此連接字串必須具有傳送權限，才能將訊息傳送至事件資料流。
+`connection`必須是 hello 包含 hello 連接字串 toohello 事件中心的命名空間的應用程式設定名稱。
+複製這個連接字串，請按一下 hello**連接資訊**按鈕 hello*命名空間*，不 hello 事件中心本身。 這個連接字串必須傳送權限 toosend hello 訊息 toohello 事件資料流。
 
 ## <a name="output-usage"></a>輸出使用方式
-本節說明如何在您的函式程式碼中使用「事件中樞」輸出繫結。
+本節說明如何 toouse 事件中心輸出繫結函式程式碼中。
 
-您可以使用下列參數類型，將訊息輸出至已設定的事件中樞︰
+您可以使用下列參數類型的 hello 輸出訊息 toohello 設定事件中心：
 
 * `out string`
-* `ICollector<string>` (輸出多個訊息)
+* `ICollector<string>`(toooutput 多個訊息)
 * `IAsyncCollector<string>` (`ICollector<T>` 的非同步版本)
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>輸出範例
-假設您的 function.json 之 `bindings` 陣列中有下列事件中樞輸出繫結︰
+假設您有 hello 下列事件中心輸出繫結中 hello `bindings` function.json 的陣列：
 
 ```json
 {
@@ -184,7 +184,7 @@ module.exports = function (context, myEventHubMessage) {
 }
 ```
 
-請參閱會將事件寫入事件資料流的特定語言範例。
+請參閱 hello 寫入事件 toohello 甚至是資料流的特定語言的範例。
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -205,7 +205,7 @@ public static void Run(TimerInfo myTimer, out string outputEventHubMessage, Trac
 }
 ```
 
-或者，若要建立多個訊息：
+或者，toocreate 多則訊息：
 
 ```cs
 public static void Run(TimerInfo myTimer, ICollector<string> outputEventHubMessage, TraceWriter log)
@@ -241,7 +241,7 @@ module.exports = function (context, myTimer) {
 };
 ```
 
-或者，若要傳送多個訊息，
+或者，toosend 多則訊息，
 
 ```javascript
 module.exports = function(context) {

@@ -1,6 +1,6 @@
 ---
-title: "Wingtip SaaS - Azure SQL Database 多租用戶應用程式簡介 | Microsoft Docs"
-description: "藉由使用採用 Azure SQL Database - Wingtip SaaS 應用程式的範例多租用戶應用程式來學習"
+title: "aaaIntro Wingtip SaaS-Azure SQL Database 多租用戶應用程式 |Microsoft 文件"
+description: "使用範例多租用戶應用程式使用 Azure SQL Database，hello Wingtip SaaS 應用程式，了解"
 keywords: SQL Database Azure
 services: sql-database
 author: stevestein
@@ -13,31 +13,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/09/2017
 ms.author: sstein
-ms.openlocfilehash: 6d4a5df599137e95ca5458fae74b8daa565b0338
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: daeed293116fca22718831b780533be6ef2ad178
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-the-wingtip-saas-application"></a>Wingtip SaaS 應用程式簡介
+# <a name="introduction-toohello-wingtip-saas-application"></a>簡介 toohello Wingtip SaaS 應用程式
 
-Wingtip SaaS 應用程式是一個多租用戶應用程式範例，可示範 SQL Database 的獨特優點。 此應用程式使用租用戶各有資料庫的 SaaS 應用程式模式來維護多租用戶。 此應用程式是設計成用來展示支援 SaaS 案例 (包括數個 SaaS 設計和管理模式) 的 Azure SQL Database 功能。 為了快速啟動並執行，五分鐘內就會部署 Wingtip SaaS 應用程式！
+hello *Wingtip SaaS*應用程式是範例多租用戶應用程式，示範 hello 的 SQL Database 的獨特好處。 hello 應用程式會使用資料庫的各個租用戶，SaaS 應用程式模式 tooservice 多個租用戶。 hello 應用程式是 Azure SQL Database 的設計的 tooshowcase 功能可讓 SaaS 案例，包括數個 SaaS 設計和管理模式。 tooquickly 啟動和執行，請在五分鐘內部署 hello Wingtip SaaS 應用程式 ！
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) GitHub 存放庫可取得應用程式原始程式碼和管理指令碼。 若要執行指令碼，請[將 Learning Modules 資料夾](#download-and-unblock-the-wingtip-saas-scripts)下載到您的本機電腦。
+應用程式來源的程式碼和管理指令碼位於 hello [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) github 儲存機制。 toorun hello 指令碼，[下載 hello 學習模組資料夾](#download-and-unblock-the-wingtip-saas-scripts)tooyour 本機電腦。
 
 ## <a name="sql-database-wingtip-saas-tutorials"></a>SQL Database Wingtip SaaS 教學課程
 
-部署應用程式之後，請瀏覽在初始部署時建立的下列教學課程。 這些教學課程會探索常見 SaaS 模式，其利用 SQL Database、SQL 資料倉儲和其他 Azure 服務的內建功能。 教學課程包含 PowerShell 指令碼，以及可大幅簡化理解的詳細說明，並且在您的應用程式中實作相同的 SaaS 管理模式。
+部署之後 hello 應用程式，請瀏覽 hello 遵循 hello 初始部署為基礎的教學課程。 這些教學課程會探索常見 SaaS 模式，其利用 SQL Database、SQL 資料倉儲和其他 Azure 服務的內建功能。 教學課程包含詳細的說明，大幅簡化了解，以 PowerShell 指令碼，並實作 hello 在應用程式中的相同 SaaS 管理模式。
 
 
 | 教學課程 | 說明 |
 |:--|:--|
-|[部署及探索 Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)| **從這裡開始！** 將 Wingtip SaaS 應用程式部署至 Azure 訂用帳戶並加以探索。 |
-|[佈建租用戶並在目錄中註冊](sql-database-saas-tutorial-provision-and-catalog.md)| 了解應用程式如何使用目錄資料庫連線至租用戶，以及目錄如何將租用戶對應至其資料。 |
-|[監視及管理效能](sql-database-saas-tutorial-performance-monitoring.md)| 了解如何使用 SQL Database 的監視功能，以及如何設定超過效能閾值時的警示。 |
-|[透過 Log Analytics (OMS) 監視](sql-database-saas-tutorial-log-analytics.md) | 了解如何使用 [Log Analytics](../log-analytics/log-analytics-overview.md) 來監視跨多個集區的大量資源。 |
-|[還原單一租用戶](sql-database-saas-tutorial-restore-single-tenant.md)| 了解如何將租用戶資料庫還原到先前的時間點。 同時包含還原到平行資料庫 (讓現有的租用戶資料庫留在線上) 的步驟。 |
-|[管理租用結構描述](sql-database-saas-tutorial-schema-management.md)| 了解如何更新結構描述，以及更新跨所有 Wingtip SaaS 租用戶的參考資料。 |
+|[部署及瀏覽 hello Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)| **從這裡開始！** 部署及瀏覽 hello Wingtip SaaS 應用程式 tooyour Azure 訂用帳戶。 |
+|[佈建租用戶並在目錄中註冊](sql-database-saas-tutorial-provision-and-catalog.md)| Hello 應用程式如何連接 tootenants 使用類別目錄資料庫，了解，以及如何 hello 目錄對應的租用戶 tootheir 資料。 |
+|[監視及管理效能](sql-database-saas-tutorial-performance-monitoring.md)| 了解如何 toouse 監視功能的 SQL Database 和如何 tooset 警示時超出效能臨界值。 |
+|[透過 Log Analytics (OMS) 監視](sql-database-saas-tutorial-log-analytics.md) | 了解如何使用[記錄分析](../log-analytics/log-analytics-overview.md)toomonitor 大量的資源，跨多個集區。 |
+|[還原單一租用戶](sql-database-saas-tutorial-restore-single-tenant.md)| 了解如何 toorestore 租用戶資料庫 tooa 先前時間點。 步驟 toorestore tooa 平行資料庫，讓 hello 現有租用戶資料庫上線，也會包含。 |
+|[管理租用結構描述](sql-database-saas-tutorial-schema-management.md)| 了解如何 tooupdate 結構描述，並更新參考資料，跨所有 Wingtip SaaS 租用戶。 |
 |[執行臨機操作分析](sql-database-saas-tutorial-adhoc-analytics.md) | 建立臨機操作分析資料庫並對所有租用戶執行即時分散式查詢。  |
 |[執行租用戶分析](sql-database-saas-tutorial-tenant-analytics.md) | 將租用戶資料擷取到分析資料庫或資料倉儲中，以便執行離線分析查詢。 |
 
@@ -45,69 +45,69 @@ Wingtip SaaS 應用程式是一個多租用戶應用程式範例，可示範 SQL
 
 ## <a name="application-architecture"></a>應用程式架構
 
-Wingtip SaaS 應用程式會使用「各租用戶資料庫」模型，並使用 SQL 彈性集區將效率最大化。 若要將租用戶佈建和對應至其資料，則會使用目錄資料庫。 核心 Wingtip SaaS 應用程式會使用具有三個範例租用戶的集區，再加上目錄資料庫。 完成許多 Wingtip SaaS 教學課程，可藉由引進分析資料庫、跨資料庫結構描述管理等等，造成初始部署的附加元件。
+hello Wingtip SaaS 應用程式使用 hello 資料庫每個租用戶模型，並使用 SQL 彈性集區 toomaximize 效率。 佈建及租用戶 tootheir 資料對應，目錄會使用資料庫。 hello 核心 Wingtip SaaS 應用程式，使用具有三個範例租用戶，再加上 hello 類別目錄資料庫集區。 完成許多 hello Wingtip SaaS 教學課程會導致附加元件 toohello 初始部署後，藉由引進分析資料庫，跨資料庫結構描述管理等等。
 
 
 ![Wingtip SaaS 架構](media/sql-database-wtp-overview/app-architecture.png)
 
 
-在進行教學課程並使用應用程式時，務必將焦點放在與資料層相關的 SaaS 模式。 換句話說，著重於資料層，且不要過度分析應用程式本身。 了解這些 SaaS 模式的實作方式是在應用程式中實作這些模式的關鍵，同時考慮針對您特定的業務需求進行任何必要的修改。
+時經過 hello 教學課程和使用 hello 應用程式，它會是重要 toofocus hello SaaS 模式會彼此 toohello 資料層。 換句話說，著重於 hello 資料層，而不要超過分析 hello 應用程式本身。 了解這些 SaaS 模式 hello 實作是金鑰 tooimplementing 這些模式，在應用程式中的，同時考慮到特定的業務需求的任何必要的修改。
 
-## <a name="download-and-unblock-the-wingtip-saas-scripts"></a>下載並解除封鎖 Wingtip SaaS 指令碼
+## <a name="download-and-unblock-hello-wingtip-saas-scripts"></a>下載並解除封鎖 hello Wingtip SaaS 指令碼
 
-從外部來源下載 zip 檔案並進行解壓縮時，Windows 可能會封鎖可執行的內容 (指令碼、dll)。 從 zip 檔案解壓縮指令碼時，***請遵循下列步驟先解除封鎖 .zip 檔案，再進行解壓縮***。 這可確保允許執行指令碼。
+從外部來源下載 zip 檔案並進行解壓縮時，Windows 可能會封鎖可執行的內容 (指令碼、dll)。 從 zip 檔案解壓縮 hello 指令碼時***步驟 hello 下方 toounblock hello.zip 檔案，然後才能擷取***。 這可確保會允許 toorun hello 指令碼。
 
-1. 瀏覽至 [Wingtip SaaS github 存放庫](https://github.com/Microsoft/WingtipSaaS)。
+1. 瀏覽過[hello Wingtip SaaS github 儲存機制](https://github.com/Microsoft/WingtipSaaS)。
 1. 按一下 [複製或下載]。
-1. 按一下 [下載 ZIP]，並儲存檔案。
-1. 以滑鼠右鍵按一下 **WingtipSaaS-master.zip** 檔案，然後選取 [內容]。
-1. 在 [一般] 索引標籤上，選取 [解除封鎖]。
+1. 按一下**Download ZIP**儲存 hello 檔案。
+1. 以滑鼠右鍵按一下 hello **WingtipSaaS master.zip**檔案，然後選取**屬性**。
+1. 在 hello**一般**索引標籤上，選取**解除封鎖**。
 1. 按一下 [確定] 。
-1. 將檔案解壓縮。
+1. Hello 檔案解壓縮。
 
-指令碼位於 *..\\WingtipSaaS-master\\Learning Modules* 資料夾中。
+指令碼位於 hello *...\\WingtipSaaS master\\學習模組*資料夾。
 
 
-## <a name="working-with-the-wingtip-saas-powershell-scripts"></a>使用 Wingtip SaaS PowerShell 指令碼
+## <a name="working-with-hello-wingtip-saas-powershell-scripts"></a>使用 hello Wingtip SaaS PowerShell 指令碼
 
-若要充分利用此範例，您必須深入了解所提供的指令碼。 使用中斷點和逐步執行指令碼，並檢查不同 SaaS 模式的實作方式詳細資料。 若要輕鬆地逐步執行所提供的指令碼和模組，以獲得充分瞭解，我們建議使用 [PowerShell ISE](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/introducing-the-windows-powershell-ise)。
+tooget hello 最 hello 範例超出您需要 toodive hello 提供指令碼。 使用中斷點和逐步執行 hello 指令碼，檢查 hello hello SaaS 模式不同的實作方式的詳細資料。 tooeasily 逐步執行 hello 提供指令碼和模組 hello 最好了解，我們建議您使用 hello [PowerShell ISE](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/introducing-the-windows-powershell-ise)。
 
-### <a name="update-the-configuration-file-for-your-deployment"></a>更新部署的組態檔
+### <a name="update-hello-configuration-file-for-your-deployment"></a>更新您的部署的 hello 設定檔
 
-使用您在部署期間設定的資源群組和使用者值，編輯 **UserConfig.psm1** 檔案：
+編輯 hello **UserConfig.psm1** hello 資源群組和使用者值與您在部署期間設定的檔案：
 
-1. 開啟 PowerShell ISE 並載入...\\Learning Modules\\*UserConfig.psm1* 
-1. 將 ResourceGroupName 和 Name 更新為您部署的特定值 (只在第 10 行和第 11 行)。
-1. 儲存變更！
+1. 開啟 hello *PowerShell ISE*並載入...\\學習模組\\*UserConfig.psm1* 
+1. 更新*ResourceGroupName*和*名稱*（位於行 10 和 11 只） 部署的 hello 特定值。
+1. 儲存 hello 變更 ！
 
-在這裏設定這些值，只是要讓您必須更新每個指令碼中的這些部署特有值。
+這裡設定這些值只可防止您在每個指令碼中具有 tooupdate 這些部署專屬的值。
 
 ### <a name="execute-scripts-by-pressing-f5"></a>按 F5 執行指令碼
 
-數個指令碼會使用 $PSScriptRoot 來瀏覽資料夾，而只有在按 F5 執行指令碼時才會評估 $PSScriptRoot。  醒目提示並執行選取項目 (**F8**) 可能會導致錯誤，因此請在執行指令碼時按 **F5**。
+使用數個指令碼*$PSScriptRoot* toonavigate 資料夾和*$PSScriptRoot*藉由按下執行指令碼時，才會評估**F5**。  醒目提示並執行選取項目 (**F8**) 可能會導致錯誤，因此請在執行指令碼時按 **F5**。
 
-### <a name="step-through-the-scripts-to-examine-the-implementation"></a>逐步執行指令碼來檢查實作
+### <a name="step-through-hello-scripts-tooexamine-hello-implementation"></a>逐步執行 hello 指令碼 tooexamine hello 實作
 
-瞭解指令碼的最佳方法是逐步執行它們以了解其作用。 查看包含的 **Demo-** 指令碼，其可呈現輕鬆遵循的高階工作流程。 **Demo-** 指令碼會顯示完成每個工作所需的步驟，所以設定中斷點並且更深入探詢個別的呼叫，以查看不同 SaaS 模式的實作詳細資料。
+hello 最佳方式 toounderstand hello 指令碼會透過逐步執行它們 toosee 它們執行的動作。 簽出 hello 包含**示範-**呈現輕鬆 toofollow 高階工作流程的指令碼。 hello**示範-**指令碼顯示 hello 步驟需要的 tooaccomplish 每項工作，因此設定中斷點，而且會鑽研更深入 hello 個別呼叫 toosee 實作細節 hello SaaS 模式不同。
 
 探索及逐步執行 PowerShell 指令碼的秘訣：
 
-* 在 PowerShell ISE 中開啟 **Demo-** 指令碼。
+* 開啟**示範-** hello PowerShell ISE 中的指令碼。
 * 執行或繼續使用 **F5** (不建議使用 **F8**，因為在執行指令碼的選取項目時不會評估 $PSScriptRoot)。
 * 按一下或選取一行，然後按 **F9** 放置中斷點。
 * 使用 **F10** 不進入函式或指令碼呼叫。
 * 使用 **F11** 逐步執行函式或指令碼呼叫。
-* 使用 **Shift + F11** 跳離目前的函式或指令碼呼叫。
+* 跳離 hello 目前函式或指令碼呼叫使用**Shift + F11**。
 
 
 ## <a name="explore-database-schema-and-execute-sql-queries-using-ssms"></a>使用 SSMS 瀏覽資料庫結構描述並執行 SQL 查詢
 
-使用 [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms) 來連線及瀏覽應用程式伺服器和資料庫。
+使用[SQL Server Management Studio (SSMS)](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms) tooconnect 並瀏覽 hello 應用程式伺服器和資料庫。
 
-部署一開始有兩部可連線的 SQL Database 伺服器 - *tenants1-&lt;User&gt;* 伺服器和 *catalog-&lt;User&gt;* 伺服器。 若要確保示範連線成功，這兩部伺服器都有允許所有 IP 通過的[防火牆規則](sql-database-firewall-configure.md)。
+hello 部署一開始會有兩個 SQL Database 伺服器 tooconnect 太-hello *tenants1-&lt;使用者&gt;*伺服器和 hello*目錄-&lt;使用者&gt;*伺服器。 tooensure 成功示範連接，這兩部伺服器具有[防火牆規則](sql-database-firewall-configure.md)允許透過所有 Ip。
 
 
-1. 開啟 SSMS 並連線到 tenants1-*&lt;User&gt;.database.windows.net* 伺服器。
+1. 開啟*SSMS*並連接 toohello *tenants1-&lt;使用者&gt;。.database.windows.net*伺服器。
 1. 按一下 [連線] > **[資料庫引擎...]**：
 
    ![目錄伺服器](media/sql-database-wtp-overview/connect.png)
@@ -116,9 +116,9 @@ Wingtip SaaS 應用程式會使用「各租用戶資料庫」模型，並使用 
 
    ![connection](media\sql-database-wtp-overview\tenants1-connect.png)
 
-1. 重複步驟 2-3 並連線到 catalog-&lt;User&gt;.database.windows.net 伺服器。
+1. 重複步驟 2-3，並連接 toohello*目錄-&lt;使用者&gt;。.database.windows.net*伺服器。
 
-成功連線之後，您會看到這兩部伺服器。 視您已佈建的租用戶而定，您的資料庫清單可能有所不同：
+成功連線之後，您會看到這兩部伺服器。 您的資料庫清單可能會有所不同，您已佈建的 hello 租用戶：
 
 ![物件總管](media/sql-database-wtp-overview/object-explorer.png)
 
@@ -126,4 +126,4 @@ Wingtip SaaS 應用程式會使用「各租用戶資料庫」模型，並使用 
 
 ## <a name="next-steps"></a>後續步驟
 
-[部署 Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)
+[部署 hello Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)

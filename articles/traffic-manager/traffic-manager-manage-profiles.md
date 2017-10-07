@@ -1,5 +1,5 @@
 ---
-title: "管理 Azure 流量管理員設定檔 | Microsoft Docs"
+title: "aaaManage Azure Traffic Manager 設定檔 |Microsoft 文件"
 description: "本文會協助您建立、停用、啟用及刪除 Azure 流量管理員設定檔。"
 services: traffic-manager
 documentationcenter: 
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/10/2017
 ms.author: kumud
-ms.openlocfilehash: a5164282264124835692bc72a4ab61891aa7af9d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0c6ab0c451581d039514a9de0b525b3937e45a85
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-an-azure-traffic-manager-profile"></a>管理 Azure 流量管理員設定檔
 
-流量管理員設定檔會使用流量路由方法來控制分散到您雲端服務或網站端點的流量。 本文說明如何建立及管理這些設定檔。
+Traffic Manager 設定檔使用流量 tooyour 雲端服務或網站端點的流量路由方法 toocontrol hello 分佈。 這篇文章說明如何 toocreate 和管理這些設定檔。
 
 ## <a name="create-a-traffic-manager-profile"></a>建立流量管理員設定檔
 
-您可以使用 Azure 入口網站來建立流量管理員設定檔。 建立設定檔之後，您就可以在 Azure 入口網站中設定端點、監視及其他設定。 流量管理員每個設定檔最多支援 200 個端點。 不過，大部分的使用案例僅需要少量的端點。
+您可以使用 hello Azure 入口網站來建立流量管理員設定檔。 建立您的設定檔之後, 您可以在 hello Azure 入口網站中設定端點、 監視和其他設定。 Traffic Manager 支援個 too200 端點，每個設定檔。 不過，大部分的使用案例僅需要少量的端點。
 
-### <a name="to-create-a-traffic-manager-profile"></a>若要建立流量管理員設定檔
+### <a name="toocreate-a-traffic-manager-profile"></a>toocreate Traffic Manager 設定檔
 
-1. 從瀏覽器登入 [Azure 入口網站](http://portal.azure.com)。 如果您沒有帳戶，您可以註冊[免費試用一個月](https://azure.microsoft.com/free/)。 
-2. 在 [中樞] 功能表中，按一下 [新增] > [網路] > [查看全部]**，然後按一下 [流量管理員]****設定檔，以開啟 [建立流量管理員設定檔]** 刀鋒視窗。
-3. 在 [建立流量管理員設定檔] 刀鋒視窗上，如下所示操作：
-    1. 在 [名稱]中，提供設定檔的名稱。 此名稱在 trafficmanager.net 區域內必須是唯一的，而且會產生 DNS 名稱 <name>, trafficmanager.net，用以存取您的流量管理員設定檔。
-    2. 在 [路由方法] 中，選取 [優先順序]路由方法。
-    3. 在 [訂用帳戶] 中，選取您要用來建立此設定檔的訂用帳戶
-    4. 在 [資源群組]中，建立新的資源群組來放置此設定檔。
-    5. 在 [資源群組位置] 中，選取資源群組的位置。 這項設定是指資源群組的位置，完全不影響將部署到全球的流量管理員設定檔。
+1. 從瀏覽器中，登入 toohello [Azure 入口網站](http://portal.azure.com)。 如果您沒有帳戶，您可以註冊[免費試用一個月](https://azure.microsoft.com/free/)。 
+2. 在 hello**中樞**功能表上，按一下**新增** > **網路** > **查看所有**，按一下**流量管理員**設定檔 tooopen hello**建立 Traffic Manager 設定檔**刀鋒視窗中，然後按一下**建立**。
+3. 在 hello**建立 Traffic Manager 設定檔**刀鋒視窗中，完成，如下所示：
+    1. 在 [名稱]中，提供設定檔的名稱。 此名稱必須 toobe hello trafficmanager.net 區域內的唯一和 hello DNS 名稱會導致<name>，trafficmanager.net 所使用的 tooaccess 您的 Traffic Manager 設定檔。
+    2. 在**路由方法**，選取 hello**優先順序**路由方法。
+    3. 在**訂用帳戶**，選取您想在此設定檔 toocreate hello 訂用帳戶
+    4. 在**資源群組**，建立新的資源群組 tooplace 下的這個設定檔。
+    5. 在**資源群組位置**，選取 hello hello 資源群組的位置。 此設定是指 toohello hello 資源群組、 位置及 hello 將全域部署的流量管理員設定檔沒有任何影響。
     6. 按一下 [建立] 。
-    7. 當流量管理員設定檔的全球部署完成時，它會列為個別資源群組的其中一個資源。
+    7. Hello 全域部署，您的 Traffic Manager 設定檔完成時，它是個別資源群組中顯示為 hello 資源的其中一個。
 
 ## <a name="disable-enable-or-delete-a-profile"></a>停用、啟用或刪除設定檔
 
-您可以停用現有的設定檔，流量管理員就不會將使用者要求轉介到設定的端點。 當您停用流量管理員設定檔時，設定檔和設定檔內含的資訊將保持不變，而且可在流量管理員介面中進行編輯。  當您重新啟用設定檔時，就會繼續轉介。 當您在 Azure 入口網站中建立流量管理員設定檔時，它會自動啟用。 如果您決定不再需要某個設定檔，可以將它刪除。
+您可以停用現有的設定檔，讓 Traffic Manager 不是指使用者要求 toohello 設定端點。 當您停用流量管理員設定檔時，hello 設定檔與 hello hello 設定檔中包含的資訊仍維持不變，可以在 hello Traffic Manager 介面中進行編輯。  當您重新啟用 hello 設定檔，就會繼續轉介。 當您在 hello Azure 入口網站中建立流量管理員設定檔時，它會自動啟用。 如果您決定不再需要某個設定檔，可以將它刪除。
 
-### <a name="to-disable-a-profile"></a>停用設定檔
+### <a name="toodisable-a-profile"></a>toodisable 設定檔
 
-1. 如果您使用的是自訂網域名稱，則變更網際網路 DNS 伺服器上的 CNAME 記錄，它就不會再指向流量管理員設定檔。
-2. 流量會停止導向至透過流量管理員設定檔設定的端點。
-3. 從瀏覽器登入 [Azure 入口網站](http://portal.azure.com)。
-2. 在入口網站的搜尋列中，搜尋您想要修改的**流量管理員設定檔**名稱，然後按一下結果中顯示的流量管理員設定檔。
-3. 在 [流量管理員設定檔] 刀鋒視窗中，按一下 [概觀]，在 [概觀] 刀鋒視窗中按一下 [停用]，然後確認停用流量管理員設定檔。
+1. 如果您使用自訂網域名稱，變更您的網際網路 DNS 伺服器上的 hello CNAME 記錄，使它不再指向 tooyour Traffic Manager 設定檔。
+2. 流量會停止正在執行導向 toohello hello Traffic Manager 設定檔所設定的端點。
+3. 從瀏覽器中，登入 toohello [Azure 入口網站](http://portal.azure.com)。
+2. 在 hello 入口網站的 搜尋 列，搜尋 hello **Traffic Manager 設定檔**您想 toomodify，，，然後按一下hello hello Traffic Manager 設定檔的名稱會顯示該 hello。
+3. 在 hello **Traffic Manager 設定檔**刀鋒視窗中，按一下**概觀**，hello 概觀刀鋒視窗中按一下**停用**，然後確認 toodisable hello Traffic Manager 設定檔。
 
-### <a name="to-enable-a-profile"></a>啟用設定檔
+### <a name="tooenable-a-profile"></a>tooenable 設定檔
 
-1. 從瀏覽器登入 [Azure 入口網站](http://portal.azure.com)。
-2. 在入口網站的搜尋列中，搜尋您想要修改的**流量管理員設定檔**名稱，然後按一下結果中顯示的流量管理員設定檔。
-3. 在 [流量管理員設定檔] 刀鋒視窗中，按一下 [概觀]，然後在 [概觀] 刀鋒視窗中按一下 [啟用]。
-5. 如果您使用的是自訂網域名稱，請在網際網路 DNS 伺服器上建立 CNAME 資源記錄，以指向流量管理員設定檔的網域名稱。
-6. 流量會再次導向至各端點。
+1. 從瀏覽器中，登入 toohello [Azure 入口網站](http://portal.azure.com)。
+2. 在 hello 入口網站的 搜尋 列，搜尋 hello **Traffic Manager 設定檔**您想 toomodify，，，然後按一下hello hello Traffic Manager 設定檔的名稱會顯示該 hello。
+3. 在 hello **Traffic Manager 設定檔**刀鋒視窗中，按一下**概觀**，然後在 hello 概觀刀鋒視窗中按一下**啟用**。
+5. 如果您使用自訂網域名稱，請對您網際網路 DNS 伺服器 toopoint toohello 網域名稱 Traffic Manager 設定檔建立的 CNAME 資源記錄。
+6. 流量會導向的 toohello 端點的一次。
 
-### <a name="to-delete-a-profile"></a>刪除設定檔
+### <a name="toodelete-a-profile"></a>toodelete 設定檔
 
-1. 請確定網際網路 DNS 伺服器上的 DNS 資源記錄所使用的 CNAME 資源記錄，不再指向流量管理員設定檔的網域名稱。
-2. 在入口網站的搜尋列中，搜尋您想要修改的**流量管理員設定檔**名稱，然後按一下結果中顯示的流量管理員設定檔。
-3. 在 [流量管理員設定檔] 刀鋒視窗中，按一下 [概觀]，在 [概觀] 刀鋒視窗中按一下 [刪除]，然後確認刪除流量管理員設定檔。
+1. 請確定您的網際網路 DNS 伺服器上的 hello DNS 資源記錄不會再使用的 CNAME 資源記錄指向 Traffic Manager 設定檔 toohello 網域名稱。
+2. 在 hello 入口網站的 搜尋 列，搜尋 hello **Traffic Manager 設定檔**您想 toomodify，，，然後按一下hello hello Traffic Manager 設定檔的名稱會顯示該 hello。
+3. 在 hello **Traffic Manager 設定檔**刀鋒視窗中，按一下**概觀**，hello 概觀刀鋒視窗中按一下**刪除**，然後確認 toodelete hello Traffic Manager 設定檔。
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure CDN 規則引擎條件運算式 | Microsoft Docs"
+title: "aaaAzure CDN 規則引擎的條件運算式 |Microsoft 文件"
 description: "Azure CDN 規則引擎比對條件和功能的參考文件。"
 services: cdn
 documentationcenter: 
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: rli
-ms.openlocfilehash: 57e56c38e003cb83dcf44f455c4451d159db8a59
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 39d0754c34a577f77ca87b6fd92e2b6a9e4ff8fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cdn-rules-engine-conditional-expressions"></a>Azure CDN 規則引擎條件運算式
-本主題會針對 Azure 內容傳遞網路 (CDN) [規則引擎](cdn-rules-engine.md)的條件運算式列出詳細說明。
+本主題列出的詳細的描述 hello 條件運算式的 Azure 內容傳遞網路 (CDN)[規則引擎](cdn-rules-engine.md)。
 
-規則的第一個部分是條件運算式。
+規則 hello 第一個部分是 hello 條件運算式。
 
 條件運算式 | 說明
 -----------------------|-------------
-IF | IF 運算式永遠是規則中第一個陳述式的一部分。 像所有其他條件運算式一樣，此 IF 陳述式必須與符合項目相關聯。 如果未定義其他條件運算式，則此相符項目會決定在將一組功能套用至要求之前必須符合的準則。
-AND IF | AND IF 運算式只能在下列類型的條件運算式之後新增︰IF、AND IF。 它表示針對初始 IF 陳述式有必須符合的另一個條件。
-ELSE IF| ELSE IF 運算式會指定其他條件，必須在此 ELSE IF 陳述式特定的一組功能發生之前符合。 有 ELSE IF 陳述式表示前一個陳述式的結尾。 可以放在 ELSE IF 陳述式之後的條件運算式是另一個 ELSE IF 陳述式。 這表示 ELSE IF 陳述式只能用來指定必須符合的單一其他條件。
+IF | 如果運算式永遠是 hello 規則中的第一個陳述式的一部分。 像所有其他條件運算式一樣，此 IF 陳述式必須與符合項目相關聯。 如果不定義了任何額外的條件運算式，這個比對會決定一組功能可能會套用的 tooa 要求之前，必須符合的 hello 準則。
+AND IF | 表示運算式只能加入下列類型的條件運算式： 如果，表示 hello 之後。 就表示另一個 hello 初始 IF 陳述式必須符合的條件。
+ELSE IF| ELSE IF 運算式指定的替代進行一組功能特定 toothis ELSE 的 IF 陳述式之前必須符合的條件。 hello 存在 ELSE 的 IF 陳述式表示 hello hello 前一個陳述式結尾。 可能會放在 ELSE 的 IF 陳述式之後的 hello 只有條件式運算式是另一個 ELSE IF 陳述式。 這表示 ELSE 的 IF 陳述式只可以使用的 toospecify 單一具有 toobe 符合其他條件。
 
 **範例**：![CDN 相符條件](./media/cdn-rules-engine-reference/cdn-rules-engine-conditional-expression.png)
 
  > [!TIP]
-   > 後一項規則可能會覆寫前一項規則所指定的動作。 範例︰全面涵蓋規則會保護所有透過以權杖為基礎的驗證要求。 可以直接在它底下建立另一個規則，對特定類型的要求產生例外狀況。
+   > 後續的規則可能會覆寫先前規則所指定的 hello 動作。 範例︰全面涵蓋規則會保護所有透過以權杖為基礎的驗證要求。 另一個規則可能會建立它的下方 toomake 某些類型的要求的例外狀況。
 
 ### <a name="next-steps"></a>後續步驟
 * [Azure CDN 概觀](cdn-overview.md)
 * [規則引擎參考](cdn-rules-engine-reference.md)
 * [規則引擎比對條件](cdn-rules-engine-reference-match-conditions.md)
 * [規則引擎功能](cdn-rules-engine-reference-features.md)
-* [使用規則引擎覆寫預設的 HTTP 行為](cdn-rules-engine.md)
+* [覆寫使用 hello 規則引擎的預設 HTTP 行為](cdn-rules-engine.md)

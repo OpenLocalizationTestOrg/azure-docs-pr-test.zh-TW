@@ -1,6 +1,6 @@
 ---
-title: "了解 Azure Active Directory 應用程式資訊清單 | Microsoft Docs"
-description: "詳細說明 Azure Active Directory 應用程式資訊清單；此資訊清單代表應用程式在 Azure AD 租用戶中的身分識別組態，可用來協助進行 OAuth 授權、同意體驗等等。"
+title: "Azure Active Directory 應用程式資訊清單的 aaaUnderstanding hello |Microsoft 文件"
+description: "Hello Azure Active Directory 應用程式資訊清單，代表在 Azure AD 租用戶的應用程式的身分識別設定，並且是使用的 toofacilitate OAuth 授權、 同意體驗，以及更多詳細的涵蓋範圍。"
 services: active-directory
 documentationcenter: 
 author: sureshja
@@ -16,87 +16,87 @@ ms.date: 07/20/2017
 ms.author: sureshja
 ms.custom: aaddev
 ms.reviewer: elisol
-ms.openlocfilehash: d5e18f41d6eb69ccb7eafaa4de2646c4c38df5e2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 096c9d5501edbfc08731fea670cee559d4442ad1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="understanding-the-azure-active-directory-application-manifest"></a>了解 Azure Active Directory 應用程式資訊清單
-與 Azure Active Directory (AD) 整合的應用程式必須向 Azure AD 租用戶註冊，提供應用程式的持續性身分識別組態。 在執行階段參考此組態，啟用允許應用程式透過 Azure AD 外部和代理驗證/授權的案例。 如需 Azure AD 應用程式模型的詳細資訊，請參閱[新增、更新及移除應用程式][ADD-UPD-RMV-APP]一文。
+# <a name="understanding-hello-azure-active-directory-application-manifest"></a>了解 hello Azure Active Directory 應用程式資訊清單
+整合與 Azure Active Directory (AD) 的應用程式必須向 Azure AD 租用戶，提供 hello 應用程式的持續性識別組態。 此組態會參考在執行階段，啟用 允許應用程式 toooutsource 和 broker 驗證/授權透過 Azure AD 的案例。 如需 hello Azure AD 應用程式模型的詳細資訊，請參閱 hello[加入、 更新和移除應用程式][ ADD-UPD-RMV-APP]發行項。
 
 ## <a name="updating-an-applications-identity-configuration"></a>更新應用程式的身分識別組態
-實際上有多個可用的選項可更新應用程式的身分識別組態屬性，隨著功能與困難度而有所不同，包括下列選項：
+有可用於更新的功能和程度的困難，包括 hello 下列不同的 hello 屬性在應用程式的身分識別設定中，實際的多個選項：
 
-* **[Azure 入口網站][AZURE-PORTAL] 的 Web 使用者介面** 可讓您更新應用程式的最常見屬性。 這是更新應用程式屬性最快速且最不容易有錯誤的方法，但無法提供您所有屬性的完整存取權，如同下面兩個方法。
-* 對於更進階的案例 (您在其中必須更新 Azure 傳統入口網站中未公開的屬性)，您可以修改 **應用程式資訊清單**。 這是本文的重點，並且會在下一節中開始詳細討論。
-* 它也可**撰寫使用[圖形 API][GRAPH-API] 的應用程式**來更新您的應用程式，這樣是最費力的。 如果您要撰寫管理軟體或需要自動定期更新應用程式屬性，這可能是個不錯的選擇。
+* hello  **[Azure 入口網站][ AZURE-PORTAL] Web 使用者介面**可讓您的應用程式 tooupdate hello 最常見內容。 這是最快的 hello 和最小錯誤容易出錯方式更新您的應用程式屬性，但並不會讓您完整存取 tooall 屬性，例如 hello 下面兩個方法。
+* 對於進階案例中，您需要 tooupdate 屬性未公開在 hello Azure 傳統入口網站中，您可以修改 hello**應用程式資訊清單**。 這是 hello 這篇文章的焦點，且啟動 hello 下一節中詳細討論。
+* 此外，也可以太**撰寫的應用程式使用 hello [Graph API] [ GRAPH-API]**  tooupdate 應用程式，這需要 hello 大部分投入時間。 不過，如果您要撰寫管理軟體，或需要定期以自動化方式 tooupdate 應用程式屬性，這可能是一個不錯的選擇。
 
-## <a name="using-the-application-manifest-to-update-an-applications-identity-configuration"></a>使用應用程式資訊清單來更新應用程式的身分識別組態
-透過 [Azure 入口網站][AZURE-PORTAL]，您可以使用內嵌資訊清單編輯器更新應用程式資訊清單，藉此管理應用程式的身分識別組態。 您也可以下載和上傳 JSON 檔案形式的應用程式資訊清單。 沒有任何實際檔案會儲存在目錄中。 應用程式資訊清單只是「Azure AD Graph API 應用程式」實體上的 HTTP GET 作業，而上傳則是「應用程式」實體上的 HTTP PATCH 作業。
+## <a name="using-hello-application-manifest-tooupdate-an-applications-identity-configuration"></a>使用 hello 應用程式資訊清單 tooupdate 應用程式的身分識別設定
+透過 hello [Azure 入口網站][AZURE-PORTAL]，您可以藉由更新 hello 應用程式資訊清單使用 hello 內嵌資訊清單編輯器來管理您的應用程式識別組態。 您也可以下載並上傳 hello 成為 JSON 檔案的應用程式資訊清單。 沒有實際的檔案會儲存在 hello 目錄。 hello 應用程式資訊清單是只是 HTTP GET 作業上 hello Azure AD Graph API 應用程式的實體，而 hello 上載 HTTP PATCH 操作上 hello 應用程式的實體。
 
-因此，若要了解應用程式資訊清單的格式和屬性，您必須參考圖形 API [應用程式實體][APPLICATION-ENTITY]文件。 可透過應用程式資訊清單上傳執行的更新範例包括：
+如此一來，在順序 toounderstand hello 格式和內容 hello 應用程式資訊清單，您將需要 tooreference hello Graph API[應用程式的實體][ APPLICATION-ENTITY]文件。 可透過應用程式資訊清單上傳執行的更新範例包括：
 
-* **宣告您的 Web API 所公開的權限範圍 (oauth2Permissions)** 。 如需有關使用 oauth2Permissions 委派權限範圍來實作使用者模擬的資訊，請參閱[整合應用程式與 Azure Active Directory][INTEGRATING-APPLICATIONS-AAD]中的＜向其他應用程式公開 Web API＞主題。 如先前所述，應用程式實體屬性都記錄在圖形 API [實體和複雜類型][APPLICATION-ENTITY]參考文章中，包括屬於 [OAuth2Permission][APPLICATION-ENTITY-OAUTH2-PERMISSION] 類型之集合的 oauth2Permissions 屬性。
-* **宣告您的應用程式所公開的應用程式角色 (appRoles)**。 應用程式實體的 appRole 屬性是 [AppRole][APPLICATION-ENTITY-APP-ROLE] 類型的集合。 請參閱[雲端應用程式中使用 Azure AD 的角色型存取控制][RBAC-CLOUD-APPS-AZUREAD]一文以取得實作範例。
-* **宣告已知的用戶端應用程式 (knownClientApplications)**，可讓您以邏輯方式將指定用戶端應用程式的同意繫結至資源/Web API。
-* **要求 Azure AD 對登入使用者發出群組成員資格宣告 (groupMembershipClaims)** 。  這也可以設定為發出有關使用者目錄角色成員資格的宣告。 請參閱[雲端應用程式中使用 AD 群組的授權][AAD-GROUPS-FOR-AUTHORIZATION]一文以取得實作範例。
-* **可讓您的應用程式支援 OAuth 2.0 隱含授權** 流程 (oauth2AllowImplicitFlow)。 此類型的授權流程可用於內嵌的 JavaScript 網頁或單一頁面應用程式 (SPA)。 如需有關隱含授權授與的詳細資訊，請參閱[了解 Azure Active Directory 中的 OAuth2 隱含授與流程][IMPLICIT-GRANT]。
-* **啟用 X509 憑證做為秘密金鑰** (keyCredentials)。 如需實作範例，請參閱[在 Office 365 中建置服務與精靈應用程式][O365-SERVICE-DAEMON-APPS]和[利用 Azure Resource Manager API 進行驗證開發人員指南][DEV-GUIDE-TO-AUTH-WITH-ARM]等文章。
-* 為應用程式**新增應用程式識別碼 URI** (identifierURIs[])。 「應用程式識別碼 URI」可用來在應用程式的 Azure AD 租用戶內 (或針對透過已驗證的自訂網域來限定資格的多租用戶案例，則可跨多個 Azure AD 租用戶)，唯一識別該應用程式。 在要求資源應用程式的權限或取得資源應用程式的存取權杖時，就會使用這些 URI。 當您更新此元素時，相同的更新也會套用到對應之服務主體的 servicePrincipalNames[] 集合 (位於應用程式的主要租用戶中)。
+* **宣告您的 Web API 所公開的權限範圍 (oauth2Permissions)** 。 請參閱中的 hello"公開 Web Api tooOther 應用程式 」 主題[整合應用程式與 Azure Active Directory] [ INTEGRATING-APPLICATIONS-AAD]如需實作使用 hello 的使用者模擬資訊oauth2Permissions 委派權限範圍。 如先前所述，應用程式實體屬性都記錄於 hello Graph API[實體和複雜型別][ APPLICATION-ENTITY]參考文件，包括 hello oauth2Permissions 屬性型別的集合[OAuth2Permission][APPLICATION-ENTITY-OAUTH2-PERMISSION]。
+* **宣告您的應用程式所公開的應用程式角色 (appRoles)**。 hello 應用程式的實體 appRoles 屬性為集合型別的[AppRole][APPLICATION-ENTITY-APP-ROLE]。 請參閱 hello[角色型存取控制雲端應用程式使用 Azure AD 中的][ RBAC-CLOUD-APPS-AZUREAD]發行項的實作範例。
+* **宣告已知的用戶端應用程式 (knownClientApplications)**，可讓您 toologically tie hello 同意的 hello 指定用戶端應用程式 toohello 資源/web API。
+* **要求 Azure AD tooissue 群組成員資格宣告**hello 登入的使用者 (groupMembershipClaims)。  這也可以設定的 tooissue hello 使用者的目錄角色成員資格有關的宣告。 請參閱 hello[使用 AD 群組的雲端應用程式中的授權][ AAD-GROUPS-FOR-AUTHORIZATION]發行項的實作範例。
+* **允許您的應用程式 toosupport OAuth 2.0 隱含授予**流程 (oauth2AllowImplicitFlow)。 此類型的授權流程可用於內嵌的 JavaScript 網頁或單一頁面應用程式 (SPA)。 如需有關 hello 隱含授權授與的詳細資訊，請參閱[了解 hello OAuth2 隱含授予 Azure Active Directory 中的資料流程][IMPLICIT-GRANT]。
+* **啟用使用 X509 憑證 hello 祕密金鑰**(keyCredentials)。 請參閱 hello[建置在 Office 365 中的服務和服務精靈應用程式][ O365-SERVICE-DAEMON-APPS]和[使用 Azure 資源管理員 API 的開發人員指南 tooauth] [ DEV-GUIDE-TO-AUTH-WITH-ARM]如需實作範例的文件。
+* 為應用程式**新增應用程式識別碼 URI** (identifierURIs[])。 應用程式識別碼 Uri 可用 toouniquely 識別應用程式在其 Azure AD 租用戶 （或跨多個 Azure AD 租用戶，為多租用戶案例限定透過驗證的自訂網域時）。 要求權限 tooa 資源應用程式時，它們會使用或取得資源的應用程式的存取權杖。 當您更新此項目時，hello 相同的更新是由 toohello 對應服務主體的 servicePrincipalNames [] 集合，其位於 hello 應用程式的主要租用戶。
 
-應用程式資訊清單也會提供追蹤應用程式註冊狀態的好方法。 因為它可供 JSON 格式使用，所以檔案表示法可以簽入您的原始檔控制，以及應用程式的原始程式碼。
+hello 應用程式資訊清單也會提供很好的方式 tootrack hello 的應用程式註冊狀態。 因為它使用 JSON 格式，hello 檔案表示法可以簽入到您的原始檔控制，以及您的應用程式的原始程式碼。
 
 ## <a name="step-by-step-example"></a>逐步執行範例
-現在可逐步了解透過應用程式資訊清單更新您的應用程式身分識別組態所需的步驟： 我們會加強說明上述其中一個範例，示範如何在資源應用程式上宣告一個新的權限範圍：
+現在可讓逐步解說 hello 步驟需要 tooupdate 透過 hello 應用程式資訊清單的應用程式的身分識別組態。 我們會反白顯示 hello 前面的範例，其中顯示如何 toodeclare 新權限範圍資源應用程式上：
 
-1. 登入 [Azure 入口網站][AZURE-PORTAL]。
-2. 驗證後，在頁面右上角選取您的 Azure AD 租用戶。
-3. 選取左邊的導覽面板中的 [Azure Active Directory] 擴充，按一下 [應用程式註冊]。
-4. 找到您要在清單中更新的應用程式並按一下它。
-5. 按一下應用程式頁面中的 [資訊清單]，以開啟內嵌資訊清單編輯器。 
-6. 您可以使用此編輯器直接編輯資訊清單。 請注意，資訊清單遵循我們先前提到的[應用程式實體][APPLICATION-ENTITY]結構描述：例如，假設我們想要在資源應用程式 (API) 上實作/公開名為 "Employees.Read.All" 的新權限，您只需將新的/第二個元素新增至 oauth2Permissions 集合即可，即：
+1. 登入 toohello [Azure 入口網站][AZURE-PORTAL]。
+2. 已通過驗證之後，選擇您的 Azure AD 租用戶從 hello 右上角的 hello 頁面中選取它。
+3. 選取**Azure Active Directory** hello 剩餘的導覽面板，然後按一下延伸**應用程式註冊**。
+4. 尋找您想要在清單中的 hello tooupdate 並加以點選 「 hello 」 應用程式。
+5. 從 hello 應用程式] 頁面上，按一下 [**資訊清單**tooopen hello 內嵌資訊清單編輯器。 
+6. 您可以直接編輯使用此編輯器的 hello 資訊清單。 請注意該 hello 資訊清單會遵循 hello hello 結構描述[應用程式的實體][ APPLICATION-ENTITY]如前所述： 例如，假設我們想要 tooimplement 公開新的權限呼叫 「 Employees.Read.All"在我們資源的應用程式 (API)，您只可以 ie 加入秒新項目 toohello oauth2Permissions 集合：
    
         "oauth2Permissions": [
         {
-        "adminConsentDescription": "Allow the application to access MyWebApplication on behalf of the signed-in user.",
+        "adminConsentDescription": "Allow hello application tooaccess MyWebApplication on behalf of hello signed-in user.",
         "adminConsentDisplayName": "Access MyWebApplication",
         "id": "aade5b35-ea3e-481c-b38d-cba4c78682a0",
         "isEnabled": true,
         "type": "User",
-        "userConsentDescription": "Allow the application to access MyWebApplication on your behalf.",
+        "userConsentDescription": "Allow hello application tooaccess MyWebApplication on your behalf.",
         "userConsentDisplayName": "Access MyWebApplication",
         "value": "user_impersonation"
         },
         {
-        "adminConsentDescription": "Allow the application to have read-only access to all Employee data.",
-        "adminConsentDisplayName": "Read-only access to Employee records",
+        "adminConsentDescription": "Allow hello application toohave read-only access tooall Employee data.",
+        "adminConsentDisplayName": "Read-only access tooEmployee records",
         "id": "2b351394-d7a7-4a84-841e-08a6a17e4cb8",
         "isEnabled": true,
         "type": "User",
-        "userConsentDescription": "Allow the application to have read-only access to your Employee data.",
-        "userConsentDisplayName": "Read-only access to your Employee records",
+        "userConsentDescription": "Allow hello application toohave read-only access tooyour Employee data.",
+        "userConsentDisplayName": "Read-only access tooyour Employee records",
         "value": "Employees.Read.All"
         }
         ],
    
-    項目必須是唯一的，因此您必須為 `"id"` 屬性產生新的全域唯一識別碼 (GUID)。 在此情況下，由於我們已指定 `"type": "User"`，因此任何已由資源/API 應用程式註冊所在的 Azure AD 租用戶驗證的帳戶都可以對此權限表示同意。 這會授與用戶端應用程式代表帳戶存取它的權限。 在同意期間會使用說明和顯示名稱字串，並且顯示在 Azure 入口網站中。
-6. 當您完成資訊清單更新時，按一下 [儲存] 儲存資訊清單。  
+    hello 項目必須是唯一的並因此，您必須產生新全域唯一識別碼 (GUID) hello`"id"`屬性。 在此情況下，因為我們指定`"type": "User"`，此權限可以是已獲得同意的 tooby hello Azure AD 租用戶中的 hello 註冊資源/API 應用程式的任何帳戶驗證。 此授與 hello 用戶端應用程式的權限 tooaccess hello 帳戶代表它。 決定同意期間和 hello Azure 入口網站中顯示的資料，會使用 hello 描述和顯示名稱的字串。
+6. 當您完成更新 hello 資訊清單時，按一下 **儲存**toosave hello 資訊清單。  
    
-既然已儲存資訊清單，您便可以授權已註冊的用戶端應用程式存取我們在上面新增的權限。 此時，您可以使用 Azure 入口網站的 Web UI，而不是編輯用戶端應用程式的資訊清單：  
+既然 hello 資訊清單會儲存，您可以提供已註冊的用戶端應用程式存取 toohello 新權限上述我們新增。 您可以使用這個時間 hello Azure 入口網站 Web UI，而不是編輯 hello 用戶端應用程式的資訊清單：  
 
-1. 首先，移至要新增新 API 之存取權的用戶端應用程式的 [設定] 刀鋒視窗，按一下 [必要的權限]，然後選擇 [選取 API]。
-2. 畫面中會顯示租用戶中已註冊的資源應用程式 (API) 的清單。 按一下資源應用程式以選取它，或在搜尋方塊中輸入應用程式的名稱。 當您找到該應用程式時，按一下 [選取]。  
-3. 這會將您帶到 [選取權限] 頁面，其中顯示該資源應用程式可使用的 [應用程式權限] 和 [委派權限] 的清單。 選取新的權限，以將其新增至用戶端要求的權限清單。 這個新的權限會儲存在用戶端應用程式身分識別組態的 "requiredResourceAccess" 集合屬性中。
+1. 先前往 toohello**設定**刀鋒視窗中的 hello 按一下您想 tooadd 存取 toohello 新 API，用戶端應用程式 toowhich**必要的使用權限**選擇**選取應用程式開發介面**.
+2. 然後您會有 hello hello 租用戶中登錄的資源應用程式 (Api) 清單。 它，或型別 hello 名稱 hello 應用程式 hello 搜尋] 方塊中，按一下 [hello 資源應用程式 tooselect。 當您發現 hello 應用程式時，按一下**選取**。  
+3. 這會帶您 toohello**選取權限**頁面上，將會顯示 hello 的應用程式權限和委派權限，可用於 hello 資源應用程式的清單。 選取 hello tooadd 順序中的新權限它 toohello 用戶端的要求的權限清單。 這個新權限會儲存在 hello"requiredResourceAccess 」 集合屬性中的 hello 用戶端應用程式的身分識別組態。
 
 
 就這麼簡單。 現在，您的應用程式將會使用其新的身分識別組態來執行。
 
 ## <a name="next-steps"></a>後續步驟
-* 如需有關應用程式之「應用程式」和「服務主體」物件之間關係的詳細資訊，請參閱 [Azure AD 中的應用程式和服務主體物件][AAD-APP-OBJECTS]。
-* 如需核心 Azure Active Directory (AD) 開發人員概念的一些定義，請參閱 [Azure AD 開發人員詞彙][AAD-DEVELOPER-GLOSSARY]。
+* 如需有關 hello 應用程式的應用程式和服務主體物件之間的關聯性的詳細資訊，請參閱[應用程式和服務主體物件，在 Azure AD 中的][AAD-APP-OBJECTS]。
+* 請參閱 hello [Azure AD 開發人員詞彙][ AAD-DEVELOPER-GLOSSARY]一些 hello 核心 Azure Active Directory (AD) 開發人員概念的定義。
 
-請使用下方的註解區段來提供意見反應，並協助我們改善及設計我們的內容。
+請使用以下 tooprovide 意見反應 hello 註解區段，然後幫助我們改善並圖形內容。
 
 <!--article references -->
 [AAD-APP-OBJECTS]: active-directory-application-objects.md

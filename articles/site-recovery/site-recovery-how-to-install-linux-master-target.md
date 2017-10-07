@@ -1,6 +1,6 @@
 ---
-title: "如何安裝 Linux 主要目標伺服器以從 Azure 容錯移轉至內部部署 | Microsoft Docs"
-description: "在重新保護 Linux 虛擬機器之前，您必須先有 Linux 主要目標伺服器。 了解如何進行安裝。"
+title: "aaaHow tooinstall 從 Azure tooon 內部部署容錯移轉的 Linux 主要目標伺服器 |Microsoft 文件"
+description: "在重新保護 Linux 虛擬機器之前，您必須先有 Linux 主要目標伺服器。 深入了解如何 tooinstall 其中一個。"
 services: site-recovery
 documentationcenter: 
 author: ruturaj
@@ -14,61 +14,61 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 08/11/2017
 ms.author: ruturajd
-ms.openlocfilehash: 5341e3e56e0c366079958dd9a885f6ee3e8436cb
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d7c55d115712b9862414979f89efb1f177c5f0dd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-a-linux-master-target-server"></a>安裝 Linux 主要目標伺服器
-您可以在容錯移轉虛擬機器之後，將虛擬機器容錯回復至內部部署網站。 若要進行容錯回復，您需要在從 Azure 到內部部署網站的過程中重新保護虛擬機器。 針對此程序，您需要內部部署的主要目標伺服器以接收流量。 
+您虛擬機器容錯移轉之後，您可以容錯回復 hello 虛擬機器 toohello 在內部部署站台。 toofail 上一步，您需要從 Azure toohello 在內部部署站台 tooreprotect hello 虛擬機器。 此程序，您需要在內部部署主要目標伺服器 tooreceive hello 流量。 
 
-如果受保護的虛擬機器是 Windows 虛擬機器，您需要 Windows 主要目標。 若是 Linux 虛擬機器，您需要 Linux 主要目標。 請參閱下列步驟，以了解如何建立和安裝 Linux 主要目標。
+如果受保護的虛擬機器是 Windows 虛擬機器，您需要 Windows 主要目標。 若是 Linux 虛擬機器，您需要 Linux 主要目標。 讀取 hello 下列步驟 toolearn toocreate 並安裝 Linux 主要目標。
 
 > [!IMPORTANT]
-> 從主要目標伺服器的 9.10.0 版本開始，最新的主要目標伺服器只能安裝在 Ubuntu 16.04 伺服器上。 CentOS6.6 伺服器上不允許安裝新的主要目標。 不過，您可以使用 9.10.0 版本繼續升級舊的主要目標伺服器。
+> 從 hello 9.10.0 主要目標伺服器的版本開始，hello 最新的主要目標伺服器可以只安裝 Ubuntu 16.04 伺服器上。 CentOS6.6 伺服器上不允許安裝新的主要目標。 不過，您可以繼續 tooupgrade 舊的主要目標伺服器使用 hello 9.10.0 版本。
 
 ## <a name="overview"></a>概觀
-本文提供如何安裝 Linux 主要目標的指示。
+本文說明如何 tooinstall Linux 主要目標。
 
-在本文末尾或 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 中張貼意見或問題。
+將註解或問題張貼結尾 hello 這份文件或在 hello [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
 ## <a name="prerequisites"></a>必要條件
 
-* 若要選擇要在其中部署主要目標的主機，請確定容錯回復的目的地是現有內部部署虛擬機器還是新的虛擬機器。 
-    * 若是現有虛擬機器，主要目標的主機應該要能存取虛擬機器的資料存放區。
-    * 如果內部部署虛擬機器不存在，容錯回復虛擬機器會建立在作為主要目標的相同主機上。 您可以選擇任何 ESXi 主機來安裝主要目標。
-* 主要目標應位於可與處理序伺服器及組態伺服器通訊的網路上。
-* 主要目標的版本必須等於或早於處理序伺服器和組態伺服器的版本。 例如，若組態伺服器的版本是 9.4，則主要目標的版本可以是 9.4 或 9.3，但不能是 9.5。
-* 主要目標只能是 VMware 虛擬機器，不能是實體伺服器。
+* toochoose hello 主機上的 toodeploy hello 的主要目標，判斷 toobe tooan 現有內部部署虛擬機器或 tooa 新的虛擬機器時，是否要將 hello 容錯回復。 
+    * 現有的虛擬機器 hello 主要目標的 hello 主機應該具有存取 toohello 資料存放區的 hello 虛擬機器。
+    * 如果 hello 在內部部署虛擬機器不存在，hello 相同裝載為 hello 主要目標上建立 hello 容錯回復虛擬機器。 您可以選擇任何 ESXi 主機 tooinstall hello 主要目標。
+* hello 主要目標應該是可以與 hello 處理序伺服器和 hello 組態伺服器通訊的網路上。
+* hello 版本 hello 主要目標必須等於 tooor 早於 hello hello 處理序伺服器和伺服器 hello 組態版本。 例如，9.4 hello 組態伺服器的 hello 版本時，hello hello 主要的目標版本可以 9.4 或 9.3 不 9.5。
+* hello 主要目標只能是 VMware 虛擬機器而不是實體的伺服器。
 
-## <a name="create-the-master-target-according-to-the-sizing-guidelines"></a>根據大小配置準則建立主要目標
+## <a name="create-hello-master-target-according-toohello-sizing-guidelines"></a>建立 hello 主要的目標，根據 toohello 調整大小的指導方針
 
-建立符合下列大小配置準則的主要目標：
+建立根據調整大小的指導方針的 hello hello 主要目標：
 - **RAM**：6 GB 或更多
-- **OS 磁碟大小**：100 GB 或更多 (以安裝 CentOS6.6)
+- **作業系統磁碟大小**: 100 GB 或更多的 (tooinstall CentOS6.6)
 - **用於保留磁碟機的額外磁碟大小**：1 TB
 - **CPU 核心**：4 核心或更多
 
-支援下列受支援的 Ubuntu 核心。
+hello 下列支援的 Ubuntu 支援核心。
 
 
-|核心系列  |最多支援  |
+|核心系列  |支援註冊太 |
 |---------|---------|
 |4.4      |4.4.0-81-generic         |
 |4.8      |4.8.0-56-generic         |
 |4.10     |4.10.0-24-generic        |
 
 
-## <a name="deploy-the-master-target-server"></a>部署主要目標伺服器
+## <a name="deploy-hello-master-target-server"></a>部署 hello 主要目標伺服器
 
 ### <a name="install-ubuntu-16042-minimal"></a>安裝 Ubuntu 16.04.2 極簡版
 
-請依循下列步驟以安裝 Ubuntu 16.04.2 64 位元作業系統。
+需要 hello 遵循 hello 步驟 tooinstall hello Ubuntu 16.04.2 64 位元作業系統。
 
-**步驟 1：**前往[下載連結](https://www.ubuntu.com/download/server/thank-you?version=16.04.2&architecture=amd64)，並選擇最接近的鏡像以從中下載 Ubuntu 16.04.2 極簡版 64 位元 ISO。
+**步驟 1:**移 toohello[下載連結](https://www.ubuntu.com/download/server/thank-you?version=16.04.2&architecture=amd64)選擇 hello 最接近鏡像從其下載 Ubuntu 16.04.2 最小 64 位元 ISO。
 
-將 Ubuntu 16.04.2 極簡版 64 位元 ISO 放在 DVD 光碟機中，並啟動系統。
+保留最小 64 位元 ISO Ubuntu 16.04.2 hello DVD 光碟機中並啟動 hello 系統。
 
 **步驟2：**選取 [English]\(英文\) 作為慣用語言，然後按 **Enter**。
 
@@ -82,237 +82,237 @@ ms.lasthandoff: 08/18/2017
 
 ![選取 English 作為慣用語言](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image3.png)
 
-**步驟 5：**從 [Time Zone]\(時區\) 選項清單中選取適當的選項，然後按 **Enter**。
+**步驟 5:**選取 hello 適當的選項，從 hello**時區**選項清單，然後選取**Enter**。
 
-![選取正確的時區](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image4.png)
+![選取 hello 正確設定的時區](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image4.png)
 
-**步驟 6：**選取 [No]\(否\)(預設選項)，然後按 **Enter**。
+**步驟 6:**選取**否**(hello 預設選項)，然後選取**Enter**。
 
 
-![設定鍵盤](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image5.png)
+![Hello 鍵盤設定](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image5.png)
 
-**步驟 7：**選取 [English (US)]\(英文 (美國)\) 作為鍵盤的國家/地區，然後按 **Enter**。
+**步驟 7:**選取**英文 （美國）**為 hello 國家的 hello 鍵盤的來源，然後選取**Enter**。
 
-![選取美國作為國家/地區](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image6.png)
+![選取 hello 國家/地區為美國](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image6.png)
 
-**步驟 8：**選取 [English (US)]\(英文 (美國)\) 作為鍵盤配置，然後按 **Enter**。
+**步驟 8:**選取**英文 （美國）**作為 hello 鍵盤配置，然後選取**Enter**。
 
-![選取美式英文作為鍵盤配置](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image7.png)
+![做為 hello 鍵盤配置中選取 英文 （美國）](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image7.png)
 
-**步驟 9：**在 [Hostname]\(主機名稱\) 方塊中輸入伺服器的主機名稱，然後選取 [Continue]\(繼續\)。
+**步驟 9:**輸入您的伺服器 hello hello 主機名稱**Hostname**方塊，並選取**繼續**。
 
-![輸入伺服器的主機名稱](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image8.png)
+![輸入您的伺服器 hello 主機名稱](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image8.png)
 
-**步驟 10：**若要建立使用者帳戶，請輸入使用者名稱，然後選取 [Continue]\(繼續\)。
+**步驟 10:** toocreate 使用者帳戶，輸入 hello 使用者名稱，然後選取**繼續**。
 
 ![建立使用者帳戶](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image9.png)
 
-**步驟 11：**輸入新使用者帳戶的密碼，然後選取 [Continue]\(繼續\)。
+**步驟 11:** hello 新的使用者帳戶，請輸入 hello 密碼，然後選取**繼續**。
 
-![輸入密碼](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image10.png)
+![輸入 hello 密碼](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image10.png)
 
-**步驟 12：**確認新使用者的密碼，然後選取 [Continue]\(繼續\)。
+**步驟 12:**確認 hello hello 新使用者的密碼，然後選取 **繼續**。
 
-![確認密碼](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image11.png)
+![確認 hello 密碼](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image11.png)
 
-**步驟 13：**選取 [No]\(否\) (預設選項)，然後按 **Enter**。
+**步驟 13:**選取**否**(hello 預設選項)，然後選取**Enter**。
 
 ![設定使用者和密碼](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image12.png)
 
-**步驟 14：**如果顯示的時區是正確的，選取 [Yes]\(是\) (預設選項)，然後按 **Enter**。
+**步驟 14:**顯示 hello 時區是正確的如果選取**是**(hello 預設選項)，然後選取**Enter**。
 
-若要重新設定您的時區，選取 [No]\(否\)。
+tooreconfigure 您的時區，選取**否**。
 
-![設定時鐘](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image13.png)
+![設定 hello 時鐘](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image13.png)
 
-**步驟 15：**從磁碟分割方法選項中選取 [Guided - Use entire disk]\(引導式 - 使用整個磁碟\)，然後按 **Enter**。
+**步驟 15:** hello 分割方式選項，從選取**指引-使用完整磁碟**，然後選取**Enter**。
 
-![選取資料分割方法選項](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image14.png)
+![選取資料分割方法選項 hello](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image14.png)
 
-**步驟 16：**從 [select disk to partition]\(選取要分割的磁碟\) 選項中選擇適當的磁碟，然後按 **Enter**。
+**步驟 16:**選取 hello 適當的磁碟與 hello**選取磁碟 toopartition**選項，然後選取**Enter**。
 
 
-![選取磁碟](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image15.png)
+![選取 hello 磁碟](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image15.png)
 
-**步驟 17：**選取 [Yes]\(是\) 以將變更寫入至磁碟，然後按 **Enter**。
+**步驟 17:**選取**是**toowrite hello 變更 toodisk，然後選取  **Enter**。
 
-![將變更寫入磁碟](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image16.png)
+![寫入 hello 變更 toodisk](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image16.png)
 
-**步驟 18：**選取預設選項，選取 [Continue]\(繼續\)，然後按 **Enter**。
+**步驟 18:**選取 hello 預設選項，請選取**繼續**，然後選取**Enter**。
 
-![選取預設選項](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image17.png)
+![選取 hello 預設選項](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image17.png)
 
-**步驟 19：**選取適當的選項來管理您系統上的升級，然後按 **Enter**。
+**步驟 19:**選取 hello 適當的選項，來管理您的系統上的升級，然後選取**Enter**。
 
-![選取如何管理升級](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image18.png)
+![選取 toomanage 如何升級](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image18.png)
 
 > [!WARNING]
-> 由於 Azure Site Recovery 主要目標伺服器需要非常特定版本的 Ubuntu，因此您需要確認已停用虛擬機器核心升級。 如果啟用，任何一般升級都將導致主要目標伺服器故障。 請確定您選取 [No automatic updates]\(不自動更新\) 選項。
+> Hello Azure Site Recovery 的主要目標伺服器需要非常特定的 hello Ubuntu 版本，因此您需要 tooensure 升級已停用該 hello 核心 hello 虛擬機器。 如果有啟用，任何規則的升級會造成 hello 主要目標伺服器 toomalfunction。 請確定您選取 hello**沒有自動更新**選項。
 
 
-**步驟 20：**選取預設選項。 如果您想要使用 openSSH 進行 SSH 連線，請選取 [OpenSSH server]\(OpenSSH 伺服器\) 選項，然後選取 [Continue]\(繼續\)。
+**步驟 20：**選取預設選項。 如果您想 openSSH，SSH 連線，請選取 hello **OpenSSH 伺服器**選項，然後再選取**繼續**。
 
 ![選取軟體](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image19.png)
 
 **步驟 21：**選取 [Yes](是\)，然後按 **Enter**。
 
-![安裝 GRUB 開機載入器](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image20.png)
+![安裝 hello 幼蟲開機載入器](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image20.png)
 
-**步驟 22：**選取適當的裝置以安裝開機載入器 (最好是 **/dev/sda**)，然後按 **Enter**。
+**步驟 22:**選取 hello hello 開機載入器安裝適當的裝置 (最好是**/開發/sda**)，然後選取**Enter**。
 
 ![選取裝置以安裝開機載入器](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image21.png)
 
-**步驟 23：**選取 [Continue]\(繼續\)，然後按 **Enter** 以完成安裝。
+**步驟 23:**選取**繼續**，然後選取**Enter** toofinish hello 安裝。
 
-![完成安裝](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image22.png)
+![完成 hello 安裝](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image22.png)
 
-安裝完成後，請使用新的使用者認證登入 VM。 (如需詳細資訊，請參閱**步驟 10**。)
+Hello 安裝完成之後，登入 toohello VM 與 hello 新的使用者認證。 (請參閱太**步驟 10**如需詳細資訊。)
 
-請依循下列螢幕擷取畫面中的描述，設定根使用者的密碼。 然後以根使用者的身分登入。
+採取 hello 步驟所述的下列螢幕擷取畫面 tooset hello 根 hello 使用者密碼。 然後以根使用者的身分登入。
 
-![設定根使用者的密碼](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image23.png)
+![設定 hello 根使用者密碼](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image23.png)
 
 
-### <a name="prepare-the-machine-for-configuration-as-a-master-target-server"></a>準備要設定為主要目標伺服器的機器
-接下來，準備要設定為主要目標伺服器的機器。
+### <a name="prepare-hello-machine-for-configuration-as-a-master-target-server"></a>做為主要目標伺服器準備 hello 機器組態
+接下來，做為主要目標伺服器準備 hello 機器組態。
 
-若要取得 Linux 虛擬機器中每個 SCSI 硬碟的識別碼，請啟用 **disk.EnableUUID = TRUE** 參數。
+在 Linux 虛擬機器中，每個 SCSI 磁碟 tooget hello 識別碼啟用 hello**磁碟。EnableUUID = TRUE**參數。
 
-若要啟用此參數，請依循下列步驟︰
+tooenable 這個參數，採用 hello 下列步驟：
 
 1. 關閉虛擬機器。
 
-2. 以滑鼠右鍵按一下左窗格中的虛擬機器項目，然後選取 [Edit Settings] /(編輯設定/)。
+2. Hello hello hello 左窗格中的虛擬機器的項目上按一下滑鼠右鍵，然後選取**編輯設定**。
 
-3. 選取 [選項] 索引標籤。
+3. 選取 hello**選項** 索引標籤。
 
-4. 在左窗格中，選取 [進階]  >  [一般]，然後選取畫面右下方的 [組態參數] 按鈕。
+4. Hello 左窗格中，選取**進階** > **一般**，然後選取 hello**組態參數**hello 右下方的組件的囉 」 畫面上的按鈕。
 
     ![[選項] 索引標籤](./media/site-recovery-how-to-install-linux-master-target/media/image20.png)
 
-    [組態參數] 選項在機器執行時無法使用。 若要啟用此索引標籤，請關閉虛擬機器。
+    hello**組態參數**hello 機器執行時，並非可使用選項。 toomake 作用中，此索引標籤的 hello 虛擬機器關機。
 
 5. 查看含有 [disk.EnableUUID] 的資料列是否已經存在。
 
-    - 如果該值存在，而且設定為 [False]，請將該值變更為 [True]。 (值不區分大小寫。)
+    - 如果 hello 值存在而且設定得**False**，也變更 hello 值**True**。 （hello 值是不區分大小寫）。
 
-    - 如果該值存在，而且設定為 [True]，請按一下 [取消]。
+    - 如果 hello 值存在而且設定得**True**，選取**取消**。
 
-    - 如果該值不存在，請選取 [新增資料列]。
+    - 如果 hello 值不存在，請選取**加入資料列**。
 
-    - 在名稱欄位中新增 **disk.EnableUUID**，然後將值設定為 [TRUE]。
+    - 在 hello 名稱 欄位加入**磁碟。EnableUUID**，然後將 hello 值設定太**TRUE**。
 
     ![檢查 disk.EnableUUID 是否已存在](./media/site-recovery-how-to-install-linux-master-target/media/image21.png)
 
 #### <a name="disable-kernel-upgrades"></a>停用核心升級
 
-Azure Site Recovery 主要目標伺服器需要非常特定版本的 Ubuntu，因此請確認已停用虛擬機器的核心升級。
+Azure Site Recovery 的主要目標伺服器需要非常特定的 hello Ubuntu 版本，請確定 hello 核心升級已停用 hello 虛擬機器。
 
-如果啟用核心升級，則任何一般升級都將導致主要目標伺服器故障。
+如果已啟用核心升級，任何規則的升級會造成 hello 主要目標伺服器 toomalfunction。
 
 #### <a name="download-and-install-additional-packages"></a>下載並安裝其他套件
 
 > [!NOTE]
-> 請確定您有網際網路連線以便下載並安裝其他套件。 若沒有網際網路連線，則必須以手動方式尋找這些 RPM 套件並加以安裝。
+> 請確定您有網際網路連線 toodownload，並安裝其他的封裝。 如果您沒有網際網路連線，您需要 toomanually 尋找這些 RPM 套件並安裝它們。
 
 ```
 apt-get install -y multipath-tools lsscsi python-pyasn1 lvm2 kpartx
 ```
 
-### <a name="get-the-installer-for-setup"></a>取得安裝程式
+### <a name="get-hello-installer-for-setup"></a>取得安裝程式中的 hello 安裝程式
 
-如果您的主要目標有網際網路連線，您可以使用下列步驟下載安裝程式。 否則，您可以從處理序伺服器複製安裝程式並加以安裝。
+如果您的主要目標有網際網路連線，您可以使用下列步驟 toodownload hello installer hello。 或者，您可以複製 hello installer 從 hello 處理序伺服器，然後再安裝它。
 
-#### <a name="download-the-master-target-installation-packages"></a>下載主要目標安裝套件
+#### <a name="download-hello-master-target-installation-packages"></a>下載 hello 主要目標安裝封裝
 
-[下載最新的 Linux 主要目標安裝位元](https://aka.ms/latestlinuxmobsvc)。
+[下載 hello 最新 Linux 主要目標安裝 bits](https://aka.ms/latestlinuxmobsvc)。
 
-若要使用 Linux 下載它，請輸入：
+toodownload 它使用 Linux，類型：
 
 ```
 wget https://aka.ms/latestlinuxmobsvc -O latestlinuxmobsvc.tar.gz
 ```
 
-請務必在主目錄中下載並解壓縮安裝程式。 如果您解壓縮至 **/usr/Local**，安裝將會失敗。
+請確定您下載並解壓縮您的主目錄中的 hello 安裝程式。 如果您將解壓縮太**/usr/本機**，則 hello 安裝會失敗。
 
 
-#### <a name="access-the-installer-from-the-process-server"></a>從處理序伺服器存取安裝程式
+#### <a name="access-hello-installer-from-hello-process-server"></a>從 hello 處理序伺服器存取 hello 安裝程式
 
-1. 在處理序伺服器上，移至 **C:\Program Files (x86)\Microsoft Azure Site Recovery\home\svsystems\pushinstallsvc\repository**。
+1. Hello 程序在伺服器上，前往 太**C:\Program Files (x86) \Microsoft Azure Site Recovery\home\svsystems\pushinstallsvc\repository**。
 
-2. 從處理序伺服器複製必要的安裝程式檔案，並在主目錄中將其儲存為 **latestlinuxmobsvc.tar.gz**。
+2. 將 hello 必要的安裝程式檔案複製從 hello 處理序伺服器，並將它儲存成**latestlinuxmobsvc.tar.gz**主目錄中。
 
 
 ### <a name="apply-custom-configuration-changes"></a>套用自訂組態變更
 
-若要套用自訂組態變更，請使用下列步驟︰
+下列步驟使用 hello tooapply 自訂組態變更：
 
 
-1. 執行下列命令來解壓縮二進位檔。
+1. 執行下列命令 toountar hello 二進位 hello。
     ```
     tar -zxvf latestlinuxmobsvc.tar.gz
     ```
-    ![所執行命令的螢幕擷取畫面](./media/site-recovery-how-to-install-linux-master-target/image16.png)
+    ![Hello 命令 toorun 的螢幕擷取畫面](./media/site-recovery-how-to-install-linux-master-target/image16.png)
 
-2. 執行下列命令來授與權限。
+2. 執行下列命令 toogive 權限的 hello。
     ```
     chmod 755 ./ApplyCustomChanges.sh
     ```
 
-3. 執行下列命令來執行指令碼。
+3. 執行下列命令 toorun hello 指令碼的 hello。
     ```
     ./ApplyCustomChanges.sh
     ```
 > [!NOTE]
-> 只需在伺服器上執行指令碼一次。 關閉伺服器。 然後，如下節中所述新增磁碟後，重新啟動伺服器。
+> Hello 伺服器上執行一次 hello 指令碼。 關閉 hello 伺服器。 然後重新啟動伺服器 hello 之後新增磁碟，hello 下一節中所述。
 
-### <a name="add-a-retention-disk-to-the-linux-master-target-virtual-machine"></a>將保留磁碟新增至 Linux 主要目標虛擬機器
+### <a name="add-a-retention-disk-toohello-linux-master-target-virtual-machine"></a>加入保留磁碟 toohello Linux 主要目標虛擬機器
 
-使用下列步驟來建立保留磁碟：
+使用下列步驟 toocreate 保留磁碟的 hello:
 
-1. 將新的 1-TB 磁碟連結至 Linux 主要目標虛擬機器，然後啟動機器。
+1. 附加新 1 TB 磁碟 toohello Linux 主要目標虛擬機器，然後再啟動 hello 機器。
 
-2. 使用 **multipath -ll** 命令以便得知保留磁碟的多重路徑識別碼。
+2. 使用 hello**多重路徑 ll**命令 toolearn hello 多重路徑磁碟的識別碼 hello 保留。
 
     ```
     multipath -ll
     ```
-    ![保留磁碟的多重路徑識別碼](./media/site-recovery-how-to-install-linux-master-target/media/image22.png)
+    ![hello hello 保留磁碟多重路徑識別碼](./media/site-recovery-how-to-install-linux-master-target/media/image22.png)
 
-3. 格式化磁碟機，並在新的磁碟機上建立檔案系統。
+3. 格式化 hello 磁碟機，並再建立 hello 新磁碟機上的 檔案系統。
 
     ```
     mkfs.ext4 /dev/mapper/<Retention disk's multipath id>
     ```
-    ![在磁碟機上建立檔案系統](./media/site-recovery-how-to-install-linux-master-target/media/image23.png)
+    ![Hello 磁碟機上建立檔案系統](./media/site-recovery-how-to-install-linux-master-target/media/image23.png)
 
-4. 建立檔案系統之後，掛接保留磁碟。
+4. 建立 hello 檔案系統之後，掛接 hello 保留磁碟。
     ```
     mkdir /mnt/retention
     mount /dev/mapper/<Retention disk's multipath id> /mnt/retention
     ```
-    ![掛接保留磁碟](./media/site-recovery-how-to-install-linux-master-target/media/image24.png)
+    ![掛接 hello 保留磁碟](./media/site-recovery-how-to-install-linux-master-target/media/image24.png)
 
-5. 建立 **fstab** 項目，以便在每次啟動系統時掛接保留磁碟機。
+5. 建立 hello **fstab**項目 toomount hello 保留磁碟機每次 hello 系統啟動時啟動。
     ```
     vi /etc/fstab
     ```
-    按 **Insert** 鍵來開始編輯檔案。 建立新的一行，並插入下列文字。 根據前一個命令中醒目提示的多重路徑識別碼，編輯磁碟多重路徑識別碼。
+    選取**插入**toobegin 編輯 hello 檔案。 建立新的一行，然後再 hello 文字之後。 編輯 hello 磁碟多重路徑識別碼根據 hello 反白顯示 hello 前一個命令從多重路徑的識別碼。
 
     **/dev/mapper/<Retention disks multipath id> /mnt/retention ext4 rw 0 0**
 
-    按 **Esc** 鍵，然後輸入 **:wq** (寫入和結束)，以關閉編輯器視窗。
+    選取**Esc**，然後輸入**: wq** （寫入及結束） tooclose hello 編輯器 視窗。
 
-### <a name="install-the-master-target"></a>安裝主要目標
+### <a name="install-hello-master-target"></a>安裝主要目標的 hello
 
 > [!IMPORTANT]
-> 主要目標伺服器的版本必須等於或早於處理序伺服器和組態伺服器的版本。 如果不符合此條件，重新保護會成功，但複寫會失敗。
+> hello hello 主要目標伺服器版本必須等於 tooor 早於 hello 版本 hello 處理序伺服器和伺服器 hello 組態。 如果不符合此條件，重新保護會成功，但複寫會失敗。
 
 
 > [!NOTE]
-> 在安裝主要目標伺服器之前，請確認虛擬機器上的 **/etc/hosts** 檔案包含會將本機主機名稱對應到所有網路介面卡相關 IP 位址的項目。
+> 安裝 hello 主要目標伺服器之前，請檢查該 hello **/etc/hosts 主機**hello 虛擬機器上的檔案包含對應 hello 本機主機名稱 toohello IP 位址與所有網路介面卡相關聯的項目。
 
-1. 在組態伺服器上從 **C:\ProgramData\Microsoft Azure Site Recovery\private\connection.passphrase** 複製複雜密碼。 然後執行下列命令，將其儲存在同個本機目錄中的 **passphrase.txt**：
+1. 複製 hello 複雜密碼**C:\ProgramData\Microsoft Azure 站台 Recovery\private\connection.passphrase** hello 組態伺服器上。 然後將它儲存成**passphrase.txt** hello 中執行相同的本機目錄 hello 下列命令：
 
     ```
     echo <passphrase> >passphrase.txt
@@ -323,9 +323,9 @@ wget https://aka.ms/latestlinuxmobsvc -O latestlinuxmobsvc.tar.gz
     echo itUx70I47uxDuUVY >passphrase.txt
     ```
 
-2. 記下組態伺服器的 IP 位址。 您在下一步需要用到它。
+2. 請注意 hello 組態伺服器的 IP 位址。 您需要在 hello 下一個步驟。
 
-3. 執行下列命令來安裝主要目標伺服器，並向組態伺服器註冊伺服器。
+3. 執行下列命令 tooinstall hello 主要目標伺服器 hello 和伺服器 hello hello 組態伺服器註冊。
 
     ```
     ./install -q -d /usr/local/ASR -r MT -v VmWare
@@ -338,26 +338,26 @@ wget https://aka.ms/latestlinuxmobsvc -O latestlinuxmobsvc.tar.gz
     /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i 104.40.75.37 -P passphrase.txt
     ```
 
-    等候指令碼完成。 如果主要目標註冊成功，主要目標會列在入口網站的 [Site Recovery 基礎結構] 頁面上。
+    等候 hello 指令碼完成。 如果主要目標的 hello 註冊成功，hello 主要目標列在 hello **Site Recovery 基礎結構**hello 入口網站頁面。
 
 
-#### <a name="install-the-master-target-by-using-interactive-installation"></a>使用互動式安裝來安裝主要目標
+#### <a name="install-hello-master-target-by-using-interactive-installation"></a>使用互動式安裝來安裝 hello 主要目標
 
-1. 執行下列命令來安裝主要目標。 選擇 [Master Target]\(主要目標\) 作為代理程式角色。
+1. 執行下列命令 tooinstall hello 主要目標的 hello。 對於 hello 代理程式角色，請選擇**主要目標**。
 
     ```
     ./install
     ```
 
-2. 選擇預設安裝位置，然後按 **Enter** 以繼續。
+2. 選擇 hello 預設安裝位置，然後選取**Enter** toocontinue。
 
     ![選擇主要目標的預設安裝位置](./media/site-recovery-how-to-install-linux-master-target/image17.png)
 
-安裝完成之後，使用命令列來註冊組態伺服器。
+Hello 安裝完成之後，請使用 hello 命令列註冊 hello 組態伺服器。
 
-1. 記下組態伺服器的 IP 位址。 您在下一步需要用到它。
+1. 請注意 hello hello 組態伺服器 IP 位址。 您需要在 hello 下一個步驟。
 
-2. 執行下列命令來安裝主要目標伺服器，並向組態伺服器註冊伺服器。
+2. 執行下列命令 tooinstall hello 主要目標伺服器 hello 和伺服器 hello hello 組態伺服器註冊。
 
     ```
     ./install -q -d /usr/local/ASR -r MT -v VmWare
@@ -369,34 +369,34 @@ wget https://aka.ms/latestlinuxmobsvc -O latestlinuxmobsvc.tar.gz
     /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i 104.40.75.37 -P passphrase.txt
     ```
 
-   等候指令碼完成。 如果主要目標註冊成功，主要目標會列在入口網站的 [Site Recovery 基礎結構] 頁面上。
+   等候 hello 指令碼完成。 如果 hello 主要目標是已登錄的成功，hello 主要目標列在 hello **Site Recovery 基礎結構**hello 入口網站頁面。
 
 
-### <a name="upgrade-the-master-target"></a>升級主要目標
+### <a name="upgrade-hello-master-target"></a>升級 hello 主要目標
 
-執行安裝程式。 它會自動偵測主要目標上是否已安裝代理程式。 選取 [Y]\(是\) 進行升級。安裝完成之後，您可以使用下列命令來檢查所安裝的主要目標版本。
+執行 hello 安裝程式。 它會自動偵測 hello 主要目標上安裝該 hello 代理程式。 選取 tooupgrade **Y**。Hello 安裝完成之後，請檢查 hello 版本 hello 使用 hello 下列命令來安裝的主要目標。
 
     ```
     cat /usr/local/.vx_version
     ```
 
-您可以看到 [VERSION]\(版本\) 欄位中提供的主要目標版本號碼。
+您可以看到該 hello**版本**欄位提供的 hello 主要目標的 hello 版本號碼。
 
-### <a name="install-vmware-tools-on-the-master-target-server"></a>在主要目標伺服器上安裝 VMware 工具
+### <a name="install-vmware-tools-on-hello-master-target-server"></a>Hello 主要目標伺服器上安裝 VMware 工具
 
-您必須將 VMware 工具安裝在主要目標上，以便其探索資料存放區。 如果未安裝工具，重新保護畫面就不會列出資料存放區。 安裝 VMware 工具之後，您必須重新開機。
+您需要 tooinstall hello 主要目標上的 VMware 工具，讓它可以找出 hello 資料存放區。 如果未安裝 hello 工具，重新保護囉 」 畫面未列在 hello 資料存放區。 安裝之後 hello VMware 工具，您需要 toorestart。
 
 ## <a name="next-steps"></a>後續步驟
-在主要目標完成安裝和註冊之後，您可以看到主要目標出現在 [Site Recovery 基礎結構] 中的 [主要目標] 區段 (在組態伺服器概觀下)。
+Hello 安裝和註冊 hello 主要目標有 finsihed 之後，您可以查看 hello 主要目標出現在 hello**主要目標**一節中**Site Recovery 基礎結構**，底下 hello設定伺服器的概觀。
 
 您現在可以繼續[重新保護](site-recovery-how-to-reprotect.md)，接著進行容錯回復。
 
 ## <a name="common-issues"></a>常見問題
 
-* 請確定您未在任何管理元件 (例如主要目標) 上啟動 Storage vMotion。 如果在成功重新保護之後主要目標有移動，則無法中斷連結虛擬機器磁碟 (VMDK)。 在此情況下，容錯回復會失敗。
+* 請確定您未在任何管理元件 (例如主要目標) 上啟動 Storage vMotion。 如果 hello 主要目標移動成功的重新保護之後，就無法卸離 hello 虛擬機器磁碟 (Vmdk)。 在此情況下，容錯回復會失敗。
 
-* 主要目標在虛擬機器上不應該有任何快照集。 如果有快照集，容錯回復會失敗。
+* hello 主要目標不應該有 hello 虛擬機器上的任何快照集。 如果有快照集，容錯回復會失敗。
 
-* 由於某些客戶會有一些自訂 NIC 組態，因此啟動期間會停用網路介面，導致主要目標代理程式無法初始化。 請確定已正確設定下列屬性。 在乙太網路卡檔案的 /etc/sysconfig/network-scripts/ifcfg-eth* 中檢查這些屬性。
+* 由於 toosome 自訂 NIC 上設定某些客戶，hello 網路介面已停用在啟動期間，與 hello 主要目標代理程式無法初始化。 請確定已正確設定下列屬性的 hello。 請檢查這些屬性在 hello 乙太網路介面卡檔案的 /etc/sysconfig/network-scripts/ifcfg-eth *。
     * BOOTPROTO=dhcp
     * ONBOOT=yes

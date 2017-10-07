@@ -1,6 +1,6 @@
 ---
-title: "Azure 計費企業版 API - PriceSheet| Microsoft Docs"
-description: "了解可讓企業 Azure 客戶以程式設計方式提取使用情況資料的報告 API。"
+title: "aaaAzure 計費企業應用程式開發介面層 PriceSheet |Microsoft 文件"
+description: "深入了解 hello 報告 Api 以程式設計的方式讓企業 Azure 客戶 toopull 耗用量資料。"
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: 2e7d6e883abe4cee13bc5f684baf2a1ea9c6c397
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4cfe694c63fba266d117054b046d9caacb3b7197
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---price-sheet"></a>適用於企業客戶的報告 API - PriceSheet
 
-價位表 API 可針對指定註冊和計費週期的每個計量提供適用的費率。
+hello 價位表 API 提供 hello 註冊和帳單週期的每個計量表 hello 適用的速率。
 
 ##<a name="request"></a>要求
-需要新增的常見標頭屬性在[這裡](billing-enterprise-api.md)詳述。 如果未指定計費週期，則會傳回目前計費週期的資料。
+指定需要 toobe 加入通用標頭屬性[這裡](billing-enterprise-api.md)。 如果未指定計費期間內，則資料 hello 目前計費週期內會傳回。
 
 |方法 | 要求 URI|
 |-|-|
@@ -34,7 +34,7 @@ ms.lasthandoff: 08/03/2017
 |GET|https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/pricesheet|
 
 > [!Note]
-> 若要使用 API 的預覽版本，請將上述 URL 中的 v2 取代為 v1。
+> toouse hello 預覽版 API，取代 v2 v1 hello 上述 URL 中。
 >
 
 ## <a name="response"></a>Response
@@ -68,22 +68,22 @@ ms.lasthandoff: 08/03/2017
     
 
 > [!Note]
->如果您使用的是預覽版 API，就無法使用 meterId 欄位。
+>如果您使用 hello 預覽應用程式開發介面，就無法使用 meterId 欄位。
 >
 
 **回應屬性定義**
 
 |屬性名稱| 類型| 說明
 |-|-|-|
-|id| string| 表示特定 PriceSheet 項目的唯一識別碼 (依計費週期的計量)|
-|billingPeriodId| string| 表示特定計費週期的唯一識別碼|
-|meterId| 字串| 計量的識別碼。 它可以對應至使用量 meterId。|
-|meterName| 字串| 計量名稱|
-|unitOfMeasure| 字串| 測量服務的度量單位|
+|id| 字串| hello 代表特定 PriceSheet 項目 （由計費週期的計量表） 的唯一識別碼|
+|billingPeriodId| 字串| hello 代表特定的計費週期的唯一識別碼|
+|meterId| 字串| hello 識別碼 hello 計量表。 它可以是對應的 toohello 使用量 meterId。|
+|meterName| 字串| hello 計量表名稱|
+|unitOfMeasure| 字串| hello 的度量單位來測量 hello 服務|
 |includedQuantity| decimal| 包含的數量 |
-|partNumber| string| 與計量相關聯的組件編號|
-|unitPrice| decimal| 計量的單價|
-|currencyCode| 字串| unitPrice 的貨幣代碼|
+|partNumber| 字串| hello 計量表相關聯的 hello 零件編號|
+|unitPrice| decimal| hello 單價的 hello 計量表|
+|currencyCode| 字串| hello unitPrice 的 hello 貨幣代碼|
 <br/>
 ## <a name="see-also"></a>另請參閱
 

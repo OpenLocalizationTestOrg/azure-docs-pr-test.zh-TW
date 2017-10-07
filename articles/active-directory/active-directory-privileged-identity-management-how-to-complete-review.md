@@ -1,6 +1,6 @@
 ---
-title: "如何完成存取權檢閱 | Microsoft Docs"
-description: "在您於 Azure AD Privileged Identity Management 中開始存取權檢閱之後，了解如何完成它並檢視結果"
+title: "aaaHow toocomplete 存取檢閱 |Microsoft 文件"
+description: "您在 Azure AD Privileged Identity Management 啟動存取檢閱後，了解如何 toocomplete 它並檢視 hello 結果"
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,43 +15,43 @@ ms.workload: identity
 ms.date: 06/06/2017
 ms.author: kgremban
 ms.custom: pim
-ms.openlocfilehash: ca2a1c7c287e4cf6b1b50cfb0068861b6f525596
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f99ddf3ebcf80b51110326064d584f33d8e1679a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-complete-an-access-review-in-azure-ad-privileged-identity-management"></a>如何在 Azure AD Privileged Identity Management 中完成存取權檢閱
-在 [開始安全性檢閱](active-directory-privileged-identity-management-how-to-start-security-review.md)之後，特殊權限角色管理員就可以檢閱特殊權限存取權。 Azure AD Privileged Identity Management (PIM) 會自動傳送電子郵件，提示使用者檢閱其存取權。 如果使用者未收到電子郵件，您可以將 [Azure AD Privileged Identity Management：如何執行安全性檢閱](active-directory-privileged-identity-management-how-to-perform-security-review.md)中的指示傳送給他們。
+# <a name="how-toocomplete-an-access-review-in-azure-ad-privileged-identity-management"></a>如何 toocomplete 存取檢閱在 Azure AD Privileged Identity Management
+在 [開始安全性檢閱](active-directory-privileged-identity-management-how-to-start-security-review.md)之後，特殊權限角色管理員就可以檢閱特殊權限存取權。 Azure AD Privileged Identity Management (PIM) 將會自動傳送電子郵件提示使用者 tooreview 其存取權。 如果使用者未取得電子郵件，您可以傳送 hello 說明[如何 tooperform 安全性檢閱](active-directory-privileged-identity-management-how-to-perform-security-review.md)。
 
-安全性檢閱時間結束後，或所有使用者都已完成其自我檢閱後，請遵循本文的步驟管理檢閱並查看結果。
+Hello 安全性檢閱時間已經結束，或 hello 的所有使用者都完成其自我檢閱之後，請遵循在這個發行項 toomanage hello 檢閱中的 hello 步驟，並查看 hello 結果。
 
 ## <a name="manage-security-reviews"></a>管理安全性檢閱
-1. 移至 [Azure 入口網站](https://portal.azure.com/)，然後在儀表板上選取 [Azure AD Privileged Identity Management] 應用程式。
-2. 選取儀表板的 [存取權檢閱]  區段。
-3. 選取您想要管理的存取權檢閱。
+1. 移 toohello [Azure 入口網站](https://portal.azure.com/)和選取 hello **Azure AD Privileged Identity Management**儀表板上的應用程式。
+2. 選取 hello**存取檢閱**hello 儀表板的區段。
+3. 選取您想 toomanage hello 存取檢閱。
 
-在存取權檢閱的詳細資料刀鋒視窗上，有一些可管理該檢閱的選項。
+Hello 存取檢閱的詳細資料 刀鋒視窗中，有數字的選項，來管理該檢閱。
 
 ![PIM 存取權檢閱按鈕 - 螢幕擷取畫面][1]
 
 ### <a name="remind"></a>提醒
-如果將存取權檢閱設定成讓使用者自我檢閱，[提醒]  按鈕就會傳送通知。 
+如果設定存取檢閱使 hello 使用者檢閱本身，hello**提醒**按鈕送出通知。 
 
 ### <a name="stop"></a>停止
-所有的存取權檢閱都有結束日期，但是您可以使用 [停止]  按鈕來提早結束檢閱。 如果此時有任何使用者尚未受到檢閱，在您停止檢閱之後，他們將無法受到檢閱。 在停止檢閱之後，即無法重新開始該檢閱。
+所有存取檢閱都有結束日期，但是您可以使用 hello**停止**按鈕 toofinish 早期它。 如果尚未經過這次檢閱任何使用者，他們不是能 tooafter 停止 hello 檢閱。 在停止檢閱之後，即無法重新開始該檢閱。
 
 ### <a name="apply"></a>套用
-在存取權檢閱因您已達到結束日期或手動停止它而完成之後，[套用]  按鈕就會實作該檢閱的結果。 如果使用者的存取權在檢閱中被拒絕，則在這個步驟就會將其角色指派移除。  
+存取檢閱已完成之後，是因為您達到 hello 結束日期，或手動停止它 hello**套用**按鈕實作 hello hello 檢閱結果。 如果使用者的存取被拒 hello 檢閱中，這會是 hello 步驟，將會移除其角色指派。  
 
 ### <a name="export"></a>匯出
-如果想要手動套用安全性檢閱的結果，您可以匯出檢閱。 [匯出]  按鈕會開始下載 CSV 檔案。 您可以在 Excel 或開啟 CSV 檔案的其他程式中管理結果。
+若要手動 tooapply hello hello 安全性檢閱結果，您可以匯出 hello 檢閱。 hello**匯出**按鈕開始下載 CSV 檔案。 您可以管理在 Excel 或其他程式，開啟 CSV 檔案中的 hello 結果。
 
 ### <a name="delete"></a>刪除
-如果對檢閱不再有任何興趣，請刪除它。 [刪除]  按鈕會將檢閱從 PIM 應用程式中移除。
+如果您不感興趣 hello 進一步檢閱任何，將它刪除。 hello**刪除**按鈕會移除 hello PIM 應用程式中的 hello 檢閱。
 
 > [!IMPORTANT]
-> 刪除執行前，您不會收到警告，因此請務必確定您想要刪除該檢閱。 
+> 您不會收到警告，就會刪除之前，因此請確定您想要檢閱的 toodelete。 
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]

@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Azure 服務匯流排配額和限制 | Microsoft Docs"
+title: "aaaMicrosoft Azure Service Bus 配額和限制 |Microsoft 文件"
 description: "尋找 Azure 服務匯流排的限制和配額。"
 services: service-bus-messaging
 documentationcenter: na
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/28/2017
 ms.author: sethm
-ms.openlocfilehash: 9a364adad3342b211a647eb743776a47812b75f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 707793da776d7cb1f7df1dfcae3c24452c93eb54
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-bus-quotas"></a>服務匯流排配額
 本節列出 Microsoft Azure 服務匯流排訊息中的基本配額和節流閾值。

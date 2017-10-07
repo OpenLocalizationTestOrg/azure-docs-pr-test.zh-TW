@@ -1,25 +1,7 @@
 ---
-title: "Azure Analysis Services 教學課程第 3 課：標記為日期資料表 | Microsoft Docs"
-description: "說明如何在 Azure Analysis Services 教學課程專案中標記日期資料表。"
-services: analysis-services
-documentationcenter: 
-author: minewiskan
-manager: erikre
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 06/01/2017
-ms.author: owend
-ms.openlocfilehash: c62f2726fef5219155a08b70c61162c914600d1d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.translationtype: MT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+標題： aaa"Azure Analysis Services 教學課程第 3 課： 標記為日期資料表 |Microsoft 文件"描述： 描述如何 toomark 日期資料表 hello Azure Analysis Services 教學課程專案中。 服務： analysis services documentationcenter: '作者： minewiskan 管理員： erikre 編輯器:' 標記: '
+
+ms.assetid: ms.service: analysis services ms.devlang: NA ms.topic: get 啟動文章 ms.tgt_pltfrm: NA ms.workload: na ms.date: 06/01/2017 ms.author: owend
 ---
 # <a name="lesson-3-mark-as-date-table"></a>第 3 課：標記為日期資料表
 
@@ -29,29 +11,29 @@ ms.lasthandoff: 07/11/2017
   
 每當您使用 DAX 時間智慧函式時 (像是稍後您建立量值時)，您必須指定一些屬性，其中包括「日期資料表」和該資料表中的唯一識別碼「日期資料行」。
   
-在這堂課中，您會將 DimDate 資料表標記為「日期資料表」，並將 Date 資料行 (在 Date 資料表中) 標記為「日期資料行」 (唯一識別碼)。  
+在這一課，您將標示為 hello hello DimDate 資料表*日期資料表*和 hello 日期資料行 （在 hello Date 資料表） 做為 hello*日期資料行*（唯一識別碼）。  
 
-在標記日期資料表和日期資料行之前，最好稍微整理一下，讓您的模型更容易懂。 請注意 DimDate 資料表中名為 **FullDateAlternateKey** 的資料行。 對於資料表內含的每個日曆年度中的每一天，此資料行都包含一個資料列。 您在量值公式和報告中常會用到此資料行。 但是，FullDateAlternateKey 並不是此資料行的理想識別項。 您會將它重新命名為 **Date**，使其更容易識別和納入公式中。 可能的話，最好重新命名物件，例如資料表和資料行，以更容易在 SSDT 和用戶端報告應用程式 (例如 Power BI 和 Excel) 中識別。 
+Hello 日期資料表和日期資料行標示之前，它會是您的模型更容易 toounderstand 有點例行性 toomake 恰好 toodo。 請注意，在 hello DimDate 資料表的資料行**FullDateAlternateKey**。 此資料行包含一個資料列包含 hello 資料表中每個日曆年度中每一天。 您在量值公式和報告中常會用到此資料行。 但是，FullDateAlternateKey 並不是此資料行的理想識別項。 您將它重新命名過**日期**，讓它更容易 tooidentify，並在公式中包含。 可能的話，它是個不錯的主意 toorename 物件如資料表和資料行 toomake 它們更容易 tooidentify SSDT 和用戶端報表應用程式，例如 Power BI 與 Excel 中的。 
   
-這堂課的預估完成時間：**3 分鐘**  
+本課程的估計時間 toocomplete:**三分鐘**  
   
 ## <a name="prerequisites"></a>必要條件  
-本主題是表格式模型教學課程的一部分，請依序完成。 在這堂課中執行工作之前，您必須已完成上一堂課︰[第 2 課︰取得資料](../tutorials/aas-lesson-2-get-data.md)。 
+本主題是表格式模型教學課程的一部分，請依序完成。 在執行之前 hello 工作在這一課，您應已完成上一課 hello:[第 2 課： 取得資料](../tutorials/aas-lesson-2-get-data.md)。 
 
-### <a name="to-rename-the-fulldatealternatekey-column"></a>重新命名 FullDateAlternateKey 資料行
+### <a name="toorename-hello-fulldatealternatekey-column"></a>toorename hello FullDateAlternateKey 資料行
 
-1.  在模型設計師中，按一下 [DimDate] 資料表。
+1.  在 hello 模型設計師中，按一下 hello **DimDate**資料表。
 
-2.  按兩下 [FullDateAlternateKey] 資料行的標頭，然後將它重新命名為 **Date**。
+2.  按兩下 hello hello 標頭**FullDateAlternateKey**資料行，然後重新命名過**日期**。
 
   
-### <a name="to-set-mark-as-date-table"></a>設定標記為日期資料表  
+### <a name="tooset-mark-as-date-table"></a>tooset 標記為日期資料表  
   
-1.  選取 [Date] 資料行，然後在 [屬性] 視窗的 [資料類型] 下方，確定已選取 [日期]。  
+1.  選取 hello**日期**資料行，然後在 hello**屬性**視窗底下**資料型別**，請確定**日期**已選取。  
   
-2.  依序按一下 [資料表] 功能表、[日期]和 [標記為日期資料表]。  
+2.  按一下 hello**資料表**功能表，然後按一下**日期**，然後按一下**標記為日期資料表**。  
   
-3.  在 [標記為日期資料表] 對話方塊中，在 [日期] 清單方塊中選取 [Date] 資料行當作唯一識別碼。 依預設通常會選取它。 按一下 [確定] 。 
+3.  在 hello**標記為日期資料表**對話方塊中的，在 hello**日期**清單方塊中，選取 hello**日期**hello 唯一識別碼資料行。 依預設通常會選取它。 按一下 [確定] 。 
 
     ![aas-lesson3-date-table](../tutorials/media/aas-lesson3-date-table.png)
   

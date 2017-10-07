@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager 範本函式 - 陣列和物件 | Microsoft Docs"
-description: "描述 Azure Resource Manager 範本中用來使用陣列和物件的函式。"
+title: "aaaAzure Resource Manager 範本函式-陣列和物件 |Microsoft 文件"
+description: "描述使用陣列和物件的 Azure Resource Manager 範本中的 hello 函式 toouse。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: tomfitz
-ms.openlocfilehash: 0bd9ec41761c9ce575f3bcf4d1f8e8578b83e01c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e5f1a9b2a71039562eae7e48c2474a1fa59a7bea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="array-and-object-functions-for-azure-resource-manager-templates"></a>Azure Resource Manager 範本的陣列和物件函式 
 
@@ -42,20 +42,20 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 * [take](#take)
 * [union](#union)
 
-若要取得以值分隔的字串值陣列，請參閱 [分割](resource-group-template-functions-string.md#split)。
+請參閱 tooget 值，以分隔的字串值的陣列[分割](resource-group-template-functions-string.md#split)。
 
 <a id="array" />
 
 ## <a name="array"></a>array
 `array(convertToArray)`
 
-將值轉換為陣列。
+將轉換 hello 值 tooan 陣列。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| convertToArray |是 |整數、字串、陣列或物件 |要轉換為陣列的值。 |
+| convertToArray |是 |整數、字串、陣列或物件 |hello 值 tooconvert tooan 陣列。 |
 
 ### <a name="return-value"></a>傳回值
 
@@ -63,7 +63,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何使用不同類型的陣列函式。
+hello 下列範例顯示如何 toouse hello 與不同類型的陣列函式。
 
 ```json
 {
@@ -102,7 +102,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -115,22 +115,22 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="coalesce"></a>coalesce
 `coalesce(arg1, arg2, arg3, ...)`
 
-從參數中傳回第一個非 null 值。 空白字串、空白陣列和空白物件不是 null。
+從 hello 參數中傳回第一個非 null 值。 空白字串、空白陣列和空白物件不是 null。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| arg1 |是 |整數、字串、陣列或物件 |要測試是否為 null 的第一個值。 |
-| 其他引數 |否 |整數、字串、陣列或物件 |要測試是否為 null 的其他值。 |
+| arg1 |是 |整數、字串、陣列或物件 |hello 第一個值 tootest 為 null 的。 |
+| 其他引數 |否 |整數、字串、陣列或物件 |將 tootest 額外的值為 null 的。 |
 
 ### <a name="return-value"></a>傳回值
 
-第一個非 null 參數的值，此值可為字串、整數、陣列或物件。 如果所有參數都是 null，則傳回 null。 
+hello hello 第一個非 null 參數值，它可以是字串、 int、 陣列或物件。 如果所有參數都是 null，則傳回 null。 
 
 ### <a name="example"></a>範例
 
-下列範例顯示不同的聯合用法所得到的輸出。
+hello 下列範例顯示不同用法 coalesce hello 輸出。
 
 ```json
 {
@@ -176,7 +176,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -191,23 +191,23 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="concat"></a>concat
 `concat(arg1, arg2, arg3, ...)`
 
-結合多個陣列並傳回串連陣列，或結合多個字串值並傳回串連字串。 
+結合多個陣列並傳回串連的 hello 陣列，或結合多個字串值，並傳回 hello 串連字串。 
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| arg1 |是 |陣列或字串 |串連的第一個陣列或字串。 |
+| arg1 |是 |陣列或字串 |hello 第一個陣列或字串串連。 |
 | 其他引數 |否 |陣列或字串 |串連的其他陣列或字串 (循序順序)。 |
 
-此函式可以接受任意數目的引數，並且可針對參數接受字串或陣列。
+此函式可以接受任意數目的引數，並且可以接受字串或陣列以進行 hello 參數。
 
 ### <a name="return-value"></a>傳回值
 串連值的字串或陣列。
 
 ### <a name="example"></a>範例
 
-下一個範例顯示如何結合兩個陣列。
+hello 下列範例顯示兩個 toocombine 的陣列。
 
 ```json
 {
@@ -242,13 +242,13 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
 | return | 陣列 | ["1-1", "1-2", "1-3", "2-1", "2-2", "2-3"] |
 
-下列範例顯示如何結合兩個字串值並傳回串連字串。
+hello 下列範例將說明如何 toocombine 兩個字串值，並傳回串連的字串。
 
 ```json
 {
@@ -270,7 +270,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -287,16 +287,16 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| container |是 |陣列、物件或字串 |其中包含要尋找之值的值。 |
-| itemToFind |是 |字串或整數 |要尋找的值。 |
+| container |是 |陣列、物件或字串 |包含 hello 值 toofind hello 值。 |
+| itemToFind |是 |字串或整數 |hello 值 toofind。 |
 
 ### <a name="return-value"></a>傳回值
 
-找到項目則傳回 **True**，否則會傳回 **False**。
+**True** hello 項目是否找到則為**False**。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何使用不同類型的 contains：
+hello 下列範例顯示如何 toouse 包含與不同類型：
 
 ```json
 {
@@ -347,7 +347,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -363,14 +363,14 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="createarray"></a>createarray
 `createArray (arg1, arg2, arg3, ...)`
 
-從參數建立陣列。
+建立從 hello 參數的陣列。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| arg1 |是 |字串、整數、陣列或物件 |陣列中的第一個值。 |
-| 其他引數 |否 |字串、整數、陣列或物件 |陣列中的其他值。 |
+| arg1 |是 |字串、整數、陣列或物件 |hello hello 陣列中的第一個值。 |
+| 其他引數 |否 |字串、整數、陣列或物件 |Hello 陣列中的其他值。 |
 
 ### <a name="return-value"></a>傳回值
 
@@ -378,7 +378,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何使用不同類型的 createArray：
+下列範例會示範如何 hello toouse createArray 與不同類型：
 
 ```json
 {
@@ -417,7 +417,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -438,15 +438,15 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| itemToTest |是 |陣列、物件或字串 |要檢查其是否為空白的值。 |
+| itemToTest |是 |陣列、物件或字串 |hello 值 toocheck，如果是空白。 |
 
 ### <a name="return-value"></a>傳回值
 
-如果值空白則傳回 **True**，否則會傳回 **False**。
+傳回**True** hello 值是空的否則如果**False**。
 
 ### <a name="example"></a>範例
 
-下列範例會檢查陣列、物件和字串是否空白。
+下列範例會檢查是否是空的陣列、 物件和字串 hello。
 
 ```json
 {
@@ -485,7 +485,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -498,21 +498,21 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="first"></a>first
 `first(arg1)`
 
-傳回陣列的第一個元素或字串的第一個字元。
+傳回 hello hello 陣列的第一個項目或 hello 字串的第一個字元。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| arg1 |是 |陣列或字串 |要擷取其第一個元素或字元的值。 |
+| arg1 |是 |陣列或字串 |hello 值 tooretrieve hello 第一個項目或字元。 |
 
 ### <a name="return-value"></a>傳回值
 
-陣列中第一個元素的類型 (字串、整數、陣列或物件) 或字串的第一個字元。
+hello hello 在陣列中，第一個項目類型 （字串、 int、 陣列或物件） 或 hello 第一個字元的字串。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何搭配使用 first 函式與陣列和字串。
+hello 下列範例顯示如何 toouse hello 與陣列和字串的第一個函式。
 
 ```json
 {
@@ -539,7 +539,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -551,23 +551,23 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="intersection"></a>交集
 `intersection(arg1, arg2, arg3, ...)`
 
-從參數中傳回具有共同元素的單一陣列或物件。
+從 hello 參數中傳回的單一陣列或物件 hello 通用項目。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| arg1 |是 |陣列或物件 |要用來尋找共同元素的第一個值。 |
-| arg2 |是 |陣列或物件 |要用來尋找共同元素的第二個值。 |
-| 其他引數 |否 |陣列或物件 |要用來尋找共同元素的其他值。 |
+| arg1 |是 |陣列或物件 |hello 第一個值 toouse 尋找通用項目。 |
+| arg2 |是 |陣列或物件 |hello 第二個值 toouse 尋找通用項目。 |
+| 其他引數 |否 |陣列或物件 |其他值 toouse 尋找通用項目。 |
 
 ### <a name="return-value"></a>傳回值
 
-具有共同元素的陣列或物件。
+陣列或物件與 hello 通用項目。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何搭配使用 intersection 與陣列和物件︰
+下列範例會顯示與 toouse 交集的陣列和物件 hello:
 
 ```json
 {
@@ -606,7 +606,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -623,16 +623,16 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| arg1 |是 |字串 |要轉換成 JSON 的值。 |
+| arg1 |是 |字串 |hello 值 tooconvert tooJSON。 |
 
 
 ### <a name="return-value"></a>傳回值
 
-來自指定字串的 JSON 物件，或指定 **null** 時為空物件。
+字串或空的物件，指定從 hello 的 hello JSON 物件時**null**指定。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何搭配使用 intersection 與陣列和物件︰
+下列範例會顯示與 toouse 交集的陣列和物件 hello:
 
 ```json
 {
@@ -653,7 +653,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -665,21 +665,21 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="last"></a>last
 `last (arg1)`
 
-傳回陣列的最後一個元素或字串的最後一個字元。
+傳回 hello hello 陣列的最後一個項目或 hello 字串的最後一個字元。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| arg1 |是 |陣列或字串 |要擷取其最後一個元素或字元的值。 |
+| arg1 |是 |陣列或字串 |hello 值 tooretrieve hello 最後一個項目或字元。 |
 
 ### <a name="return-value"></a>傳回值
 
-陣列中最後一個元素的類型 (字串、整數、陣列或物件) 或字串的最後一個字元。
+hello hello 在陣列中，最後一個項目類型 （字串、 int、 陣列或物件） 或 hello 最後一個字元的字串。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何搭配使用 last 函式與陣列和字串。
+hello 下列範例顯示如何 toouse hello 與陣列和字串的最後一個函式。
 
 ```json
 {
@@ -706,7 +706,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -718,13 +718,13 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="length"></a>length
 `length(arg1)`
 
-傳回陣列中的元素數目或字串中的字元數目。
+傳回 hello 的元素數目，為陣列或字串中的字元。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| arg1 |是 |陣列或字串 |要用來取得元素數目的陣列，或用來取得字元數目的字串。 |
+| arg1 |是 |陣列或字串 |hello 取得 hello 元素數的陣列 toouse 或 hello 字串 toouse 取得 hello 的字元數。 |
 
 ### <a name="return-value"></a>傳回值
 
@@ -732,7 +732,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何搭配使用 length 與陣列和字串：
+下列範例會示範如何 hello toouse 與陣列和字串的長度：
 
 ```json
 {
@@ -766,14 +766,14 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
 | arrayLength | int | 3 |
 | stringLength | int | 13 |
 
-建立資源時，您可在陣列中使用此函式指定反覆運算的數量。 下列範例中，參數 **siteNames** 會參考在建立網站時要使用的名稱陣列。
+建立資源時，您可以使用此函式以陣列 toospecify hello 的反覆項目數目。 在下列範例的 hello，hello 參數**siteNames**建立 hello 網站時，會參考名稱 toouse tooan 陣列。
 
 ```json
 "copy": {
@@ -789,21 +789,21 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="min"></a>Min
 `min(arg1)`
 
-傳回整數陣列的最小值，或以逗號分隔的整數清單。
+傳回 hello 從整數的陣列或以逗號分隔的整數清單的最小值。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| arg1 |是 |整數的陣列，或以逗號分隔的整數清單 |要用來取得最小值的集合。 |
+| arg1 |是 |整數的陣列，或以逗號分隔的整數清單 |hello 集合 tooget hello 最小值。 |
 
 ### <a name="return-value"></a>傳回值
 
-代表最小值的整數。
+整數，代表 hello 最小值。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何搭配使用 min 與陣列和整數清單：
+下列範例會示範如何 hello toouse 最小值與整數清單和陣列：
 
 ```json
 {
@@ -829,7 +829,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -841,21 +841,21 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="max"></a>max
 `max(arg1)`
 
-傳回整數陣列的最大值，或以逗號分隔的整數清單。
+傳回 hello 從整數的陣列或以逗號分隔的整數清單的最大值。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| arg1 |是 |整數的陣列，或以逗號分隔的整數清單 |要用來取得最大值的集合。 |
+| arg1 |是 |整數的陣列，或以逗號分隔的整數清單 |hello 集合 tooget hello 最大值。 |
 
 ### <a name="return-value"></a>傳回值
 
-代表最大值的整數。
+整數，代表 hello 最大值。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何搭配使用 max 與陣列和整數清單：
+下列範例會示範如何 hello toouse 陣列與整數清單的最大值：
 
 ```json
 {
@@ -881,7 +881,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -899,8 +899,8 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| startingInteger |是 |int |陣列中的第一個整數。 |
-| numberofElements |是 |int |陣列中的整數數目。 |
+| startingInteger |是 |int |hello hello 陣列中的第一個整數。 |
+| numberofElements |是 |int |hello hello 陣列中的整數數目。 |
 
 ### <a name="return-value"></a>傳回值
 
@@ -908,7 +908,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何使用 range 函式：
+hello 下列範例顯示如何 toouse hello 範圍函式：
 
 ```json
 {
@@ -934,7 +934,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -945,14 +945,14 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="skip"></a>skip
 `skip(originalValue, numberToSkip)`
 
-傳回陣列中位於指定數字之後的所有元素所形成的陣列，或傳回字串中位於指定數字之後的所有字元所組成的字串。
+Hello hello 陣列中指定數目或 hello hello 字串中指定數字之後會傳回所有 hello 字元的字串之後，傳回所有 hello 元素的陣列。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| originalValue |是 |陣列或字串 |要用於略過的陣列或字串。 |
-| numberToSkip |是 |int |要略過的元素或字元數。 如果此值為 0 或更小的值，則會傳回值內的所有元素或字元。 如果此值大於陣列或字串的長度，則會傳回空白陣列或字串。 |
+| originalValue |是 |陣列或字串 |hello 陣列或字串 toouse 跳過。 |
+| numberToSkip |是 |int |hello tooskip 項目或字元數目。 如果此值為 0 或更少，所有 hello 項目，或傳回 hello 值中的字元。 如果大於 hello hello 陣列或字串的長度，就會傳回空陣列或字串。 |
 
 ### <a name="return-value"></a>傳回值
 
@@ -960,7 +960,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 ### <a name="example"></a>範例
 
-下列範例會略過陣列中指定的元素數目，以及字串中指定的字元數。
+下列範例會略過 hello hello hello 陣列中指定的項目數目和 hello 的字串中指定的字元數。
 
 ```json
 {
@@ -1002,7 +1002,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -1014,14 +1014,14 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="take"></a>take
 `take(originalValue, numberToTake)`
 
-傳回由陣列開頭的指定元素數目所組成的陣列，或傳回由字串開頭的指定字元數目所形成的字串。
+傳回以 hello 陣列指定的項目數從 hello hello 陣列的開頭或字串 hello 與指定的 hello hello 字串的開頭字元數。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| originalValue |是 |陣列或字串 |要從其中擷取元素的陣列或字串。 |
-| numberToTake |是 |int |要擷取的元素或字元數。 如果此值為 0 或更小的值，則會傳回空白陣列或字串。 如果此值大於給定陣列或字串的長度，則會傳回陣列或字串中的所有元素。 |
+| originalValue |是 |陣列或字串 |hello 陣列或字串 tootake hello 中的項目。 |
+| numberToTake |是 |int |hello tootake 項目或字元數目。 如果此值為 0 或更小的值，則會傳回空白陣列或字串。 如果它大於指定之陣列或字串 hello hello 長度，則會傳回所有 hello 陣列或字串中的 hello 項目。 |
 
 ### <a name="return-value"></a>傳回值
 
@@ -1029,7 +1029,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 ### <a name="example"></a>範例
 
-下列範例會從陣列中取得指定的元素數目，以及從字串中取得指定的字元數目。
+下列範例會採用 hello hello 指定 hello 陣列中的項目和從字串的字元數目。
 
 ```json
 {
@@ -1071,7 +1071,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -1083,15 +1083,15 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ## <a name="union"></a>union
 `union(arg1, arg2, arg3, ...)`
 
-從參數中傳回具有所有元素的單一陣列或物件。 重複的值或索引鍵只會納入一次。
+從 hello 參數中傳回的單一陣列或物件的所有項目。 重複的值或索引鍵只會納入一次。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| arg1 |是 |陣列或物件 |用來聯結元素的第一個值。 |
-| arg2 |是 |陣列或物件 |用來聯結元素的第二個值。 |
-| 其他引數 |否 |陣列或物件 |用來聯結元素的其他值。 |
+| arg1 |是 |陣列或物件 |hello 第一個值 toouse 加入項目。 |
+| arg2 |是 |陣列或物件 |hello 第二個值 toouse 加入項目。 |
+| 其他引數 |否 |陣列或物件 |其他值 toouse 加入項目。 |
 
 ### <a name="return-value"></a>傳回值
 
@@ -1099,7 +1099,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何搭配使用 union 與陣列和物件︰
+下列範例所示 toouse 聯集的陣列和物件 hello:
 
 ```json
 {
@@ -1138,7 +1138,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-上述範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -1146,8 +1146,8 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 | arrayOutput | 陣列 | ["one", "two", "three", "four"] |
 
 ## <a name="next-steps"></a>後續步驟
-* 如需有關 Azure Resource Manager 範本中各區段的說明，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
-* 若要合併多個範本，請參閱[透過 Azure Resource Manager 使用連結的範本](resource-group-linked-templates.md)。
-* 若要依指定的次數重複建立資源類型，請參閱 [在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
-* 若要了解如何部署已建立的範本，請參閱[使用 Azure Resource Manager 範本部署應用程式](resource-group-template-deploy.md)。
+* 如需 Azure Resource Manager 範本中的 hello 各節的說明，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
+* toomerge 多個範本，請參閱[使用連結的範本與 Azure 資源管理員](resource-group-linked-templates.md)。
+* tooiterate 指定次數時建立的資源類型，請參閱[Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
+* toosee 如何 toodeploy hello 範本建立之後，請參閱[部署應用程式使用 Azure Resource Manager 範本](resource-group-template-deploy.md)。
 

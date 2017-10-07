@@ -1,6 +1,6 @@
 ---
-title: "Azure 計費企業版 API - 餘額與摘要| Microsoft Docs"
-description: "了解 Azure 計費使用情況和 RateCard API，其可用來提供 Azure 資源耗用量和趨勢的見解。"
+title: "aaaAzure 計費企業應用程式開發介面的平衡和摘要 |Microsoft 文件"
+description: "深入了解 Azure 計費的使用量與 RateCard Api，也就是使用的 tooprovide 深入了解 Azure 資源耗用量和趨勢。"
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: f6b149f0e656d2263705048aa5b644f5bb4a5712
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b031de2c347e5abeacd11743cc96024434518918
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---balance-and-summary"></a>適用於企業客戶的報告 API - 餘額與摘要
 
-餘額與摘要 API 可提供餘額、新購買、Azure Marketplace 服務費用、調整及超額部分費用的每月摘要資訊。
+hello 平衡和摘要的應用程式開發介面提供了每月餘額、 購買、 Azure Marketplace 服務費用、 調整和 overage 費用的詳細資訊的摘要。
 
 
 ##<a name="request"></a>要求 
-需要新增的常見標頭屬性在[這裡](billing-enterprise-api.md)詳述。 如果未指定計費週期，則會傳回目前計費週期的資料。
+指定需要 toobe 加入通用標頭屬性[這裡](billing-enterprise-api.md)。 如果未指定計費期間內，則資料 hello 目前計費週期內會傳回。
 
 |方法 | 要求 URI|
 |-|-|
@@ -35,10 +35,10 @@ ms.lasthandoff: 08/03/2017
 |GET| https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/balancesummary|
 
 > [!Note]
-> 若要使用 API 的預覽版本，請將上述 URL 中的 v2 取代為 v1。
+> toouse hello 預覽版 API，取代 v2 v1 hello 上述 URL 中。
 >
 
-## <a name="response"></a>回應
+## <a name="response"></a>Response
 
         {
             "id": "enrollments/100/billingperiods/201507/balancesummaries",
@@ -77,11 +77,11 @@ ms.lasthandoff: 08/03/2017
 
 |屬性名稱| 類型| 說明
 |-|-|-|
-|id|字串|特定計費週期和註冊的唯一識別碼|
-|billingPeriodId|string |計費週期識別碼|
-|currencyCode|字串 |貨幣代碼|
-|beginningBalance|decimal| 計費週期的開始餘額|
-|endingBalance|decimal| 計費週期的結算餘額 (此值在開放期間內會每天更新)|
+|id|字串|hello 特定計費期和註冊的唯一識別碼|
+|billingPeriodId|字串 |hello 計費週期的識別碼|
+|currencyCode|字串 |hello 貨幣代碼|
+|beginningBalance|decimal| hello 計費期的 hello 開始的餘額|
+|endingBalance|decimal| hello hello （適用於開啟期間，這將會每日更新） 的計費期的期末餘額|
 |newPurchases|decimal| 新購買總數|
 |adjustments|decimal| 總調整量|
 |utilized|decimal| 總承諾用量|

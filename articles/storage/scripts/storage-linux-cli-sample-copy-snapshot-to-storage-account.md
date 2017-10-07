@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 指令碼範例 - 將快照集匯出/複製成不同區域儲存體帳戶的 VHD | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 將快照集匯出/複製成相同或不同訂用帳戶之儲存體帳戶的 VHD"
+title: "CLI 指令碼範例做為不同的區域中的 VHD tooa 儲存體帳戶匯出/複製快照集 aaaAzure |Microsoft 文件"
+description: "Azure CLI 指令碼範例-匯出/複製快照集，與相同或不同的訂用帳戶中的 VHD tooa 儲存體帳戶"
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: ramankum
-ms.openlocfilehash: fafb74af5f02f74036c770934c5e33f1b8a5593e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 027c5e588c4f10d64d125c17f4c78a7d8e1ef060
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="exportcopy-managed-snapshots-as-vhd-to-a-storage-account-in-different-region-with-cli"></a>使用 CLI 將受管理的快照集匯出/複製到不同區域的儲存體帳戶當做 VHD
+# <a name="exportcopy-managed-snapshots-as-vhd-tooa-storage-account-in-different-region-with-cli"></a>匯出/受管理的快照集以複製 VHD tooa 儲存體帳戶中不同的區域與 CLI
 
-此指令碼會將受管理的快照集匯出到不同區域的儲存體帳戶。 它會先產生快照集的 SAS URI，然後用它來將快照集複製到不同區域的儲存體帳戶。 使用此指令碼維護不同區域中受控磁碟的備份，以進行災害復原。 
+此指令碼匯出不同的區域中的受管理的快照集 tooa 儲存體帳戶。 它第一次會產生 hello hello 快照集的 SAS URI，然後使用它 toocopy 它 tooa 不同地區中的儲存體帳戶。 此指令碼 toomaintain 中使用備份的受管理的磁碟不同地區的災害復原。 
 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
@@ -32,17 +32,17 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-azurecli[主要](../../../cli_scripts/storage/copy-snapshots-to-storage-account/copy-snapshots-to-storage-account.sh "複製快照集")]
+[!code-azurecli[main](../../../cli_scripts/storage/copy-snapshots-to-storage-account/copy-snapshots-to-storage-account.sh "Copy snapshot")]
 
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼會使用下列命令來產生受控快照集的 SAS URI，並使用 SAS URI 將快照集複製到儲存體帳戶。 下表中的每個命令都會連結至命令特定的文件。
+此指令碼，會使用下列命令 toogenerate managed 快照和複本 hello 的 SAS URI 的快照集使用 SAS URI tooa 儲存體帳戶。 Hello 資料表連結 toocommand 特定文件中的每個命令。
 
 | 命令 | 注意事項 |
 |---|---|
-| [az snapshot grant-access](https://docs.microsoft.com/cli/azure/snapshot#grant-access) | 產生唯讀 SAS，用來將基礎 VHD 檔案複製到儲存體帳戶，或將它下載到內部部署。  |
-| [az storage blob copy start](https://docs.microsoft.com/en-us/cli/azure/storage/blob/copy#start) | 以非同步方式在儲存體帳戶間複製 blob |
+| [az snapshot grant-access](https://docs.microsoft.com/cli/azure/snapshot#grant-access) | 產生已使用的 toocopy 基礎 VHD 檔案 tooa 儲存體帳戶，或下載它的唯讀 SAS tooon 內部部署  |
+| [az storage blob copy start](https://docs.microsoft.com/en-us/cli/azure/storage/blob/copy#start) | 以非同步方式將 blob 複製從一個儲存體帳戶 tooanother |
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -50,6 +50,6 @@ ms.lasthandoff: 08/03/2017
 
 [從受控磁碟建立虛擬機器](./../../virtual-machines/scripts/virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fcli%2fmodule%2ftoc.json)
 
-如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
+如需有關 Azure CLI hello 的詳細資訊，請參閱[Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 
-您可以在 [Azure Linux VM 文件](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)中找到其他的虛擬機器和受控磁碟 CLI 指令碼範例。
+其他虛擬機器和受管理的磁碟 CLI 指令碼範例可以在 hello [Azure Linux VM 文件](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。

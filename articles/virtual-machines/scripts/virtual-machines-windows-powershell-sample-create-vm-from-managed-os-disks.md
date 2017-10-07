@@ -1,5 +1,5 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 連結受控磁碟作為 OS 磁碟以建立 VM | Microsoft Docs"
+title: "aaaAzure PowerShell 指令碼範例-建立 VM，藉由附加為作業系統磁碟的受管理的磁碟 |Microsoft 文件"
 description: "Azure PowerShell 指令碼範例 - 連結受控磁碟作為 OS 磁碟以建立 VM"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
@@ -16,11 +16,11 @@ ms.workload: infrastructure
 ms.date: 05/10/2017
 ms.author: ramankum
 ms.custom: mvc
-ms.openlocfilehash: ec532811e94647c8a04b9faf9474f6749969f83e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8ae5b14df3977a4af91b92692cb925199cfb8058
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-virtual-machine-using-an-existing-managed-os-disk-with-powershell"></a>使用現有受控 OS 磁碟搭配 PowerShell 以建立虛擬機器
 
@@ -35,11 +35,11 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[main](../../../powershell_scripts/virtual-machine/create-vm-from-snapshot/create-vm-from-snapshot.ps1 "從快照集建立 VM")]
+[!code-powershell[main](../../../powershell_scripts/virtual-machine/create-vm-from-snapshot/create-vm-from-snapshot.ps1 "Create VM from snapshot")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-執行下列命令來移除資源群組、VM 和所有相關資源。
+執行下列命令 tooremove hello 資源群組、 VM 和所有相關的資源的 hello。
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup
@@ -47,13 +47,13 @@ Remove-AzureRmResourceGroup -Name myResourceGroup
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼會使用下列命令來取得受控磁碟屬性、將受控磁碟連結至新的 VM，以及建立 VM。 下表中的每個項目都會連結至命令特定的文件。
+此指令碼會使用下列命令 tooget 管理磁碟屬性中的 hello、 附加受管理的磁碟 tooa 新的 VM，並建立 VM。 Hello 資料表中的每個項目連結 toocommand 特定文件。
 
 | 命令 | 注意事項 |
 |---|---|
-| [Get-AzureRmDisk](/powershell/module/azurerm.compute/Get-AzureRmDisk) | 根據磁碟的名稱和資源群組取得磁碟物件。 傳回物件的 Id 屬性用來將磁碟連結至新的 VM |
-| [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig) | 建立 VM 組態。 此組態包括 VM 名稱、作業系統和系統管理認證等資訊。 建立 VM 時會使用此組態。 |
-| [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk) | 使用磁碟的 Id 屬性將受控磁碟當作 OS 磁碟連結至新的虛擬機器 |
+| [Get-AzureRmDisk](/powershell/module/azurerm.compute/Get-AzureRmDisk) | 取得根據 hello 名稱和 hello 資源群組的磁碟的磁碟物件。 Hello id 屬性會傳回磁碟物件是使用的 tooattach hello 磁碟 tooa 新的 VM |
+| [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig) | 建立 VM 組態。 此組態包括 VM 名稱、作業系統和系統管理認證等資訊。 在建立 VM 時，會使用 hello 組態。 |
+| [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk) | 附加的受管理的磁碟，做為作業系統磁碟 tooa 新虛擬機器使用 hello 磁碟 hello Id 屬性 |
 | [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress) | 建立公用 IP 位址。 |
 | [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface) | 建立網路介面。 |
 | [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm) | 建立虛擬機器。 |
@@ -61,6 +61,6 @@ Remove-AzureRmResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>後續步驟
 
-如需有關 Azure PowerShell 模組的詳細資訊，請參閱 [Azure PowerShell 文件](/powershell/azure/overview)。
+如需有關 hello Azure PowerShell 模組的詳細資訊，請參閱[Azure PowerShell 文件](/powershell/azure/overview)。
 
-您可以在 [Azure Windows VM 文件](../windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中找到其他的虛擬機器 PowerShell 指令碼範例。
+其他虛擬機器的 PowerShell 指令碼範例可以在 hello [Azure Windows VM 文件](../windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。

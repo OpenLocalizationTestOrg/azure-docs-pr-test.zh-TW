@@ -1,6 +1,6 @@
 ---
-title: "使用 Java 建立您的第一個動作項目型 Azure 微服務 | Microsoft Docs"
-description: "本教學課程將引導您使用 Service Fabric Reliable Actors，建立、偵錯及部署簡易動作項目型服務的步驟。"
+title: "aaaCreate 您第一次行動為基礎 Azure 微服務在 Java 中的 |Microsoft 文件"
+description: "本教學課程將引導您完成建立、 偵錯和部署簡單動作項目為基礎的服務使用服務網狀架構 Reliable Actors hello 步驟。"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/04/2017
 ms.author: vturecek
-ms.openlocfilehash: 288f1ed1016f50031065e66444d2562427194dc7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 24718a8d7034360c53597f139169580f1a6ce732
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-reliable-actors"></a>開始使用 Reliable Actors
 > [!div class="op_single_selector"]
@@ -27,37 +27,37 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-本文說明 Azure Service Fabric Reliable Actors 的基本概念，並將逐步引導您在 Java 中建立及部署簡單的 Reliable Actors 應用程式。
+本文章說明 Azure Service Fabric Reliable Actors hello 基本概念，並將告訴您如何建立和部署簡單的 Reliable Actor 應用程式在 Java 中。
 
 ## <a name="installation-and-setup"></a>安裝與設定
-開始之前，確定機器上已設定 Service Fabric 開發環境。
-如果您需要加以設定，請移至[在 Mac 上開始使用](service-fabric-get-started-mac.md)或[在 Linux 上開始使用](service-fabric-get-started-linux.md)。
+開始之前，請確定您擁有 hello Service Fabric 開發環境設定您的電腦上。
+如果您需要 tooset 總太移[Mac 上開始使用](service-fabric-get-started-mac.md)或[開始使用 Linux](service-fabric-get-started-linux.md)。
 
 ## <a name="basic-concepts"></a>基本概念
-若要開始使用 Reliable Actors，您只需要了解幾個基本概念：
+tooget 入門 Reliable Actors，您只需要 toounderstand 某些基本概念：
 
-* **動作項目服務**。 Reliable Actors 封裝在可在 Service Fabric 基礎結構內部署的 Reliable Services 中。 動作項目執行個體會在指定的服務執行個體中啟動。
-* **動作項目註冊**。 和 Reliable Services 一樣，Reliable Actor 服務必須向 Service Fabric 執行階段註冊。 此外，動作項目類型必須向 Actor 執行階段註冊。
-* **動作項目介面**。 動作項目介面用於定義動作項目的強型別公用介面。 在 Reliable Actor 模型術語中，動作項目介面定義動作項目可以了解並處理的訊息類型。 其他的動作項目或用戶端應用程式會使用動作項目介面將訊息「傳送」(非同步) 給動作項目。 Reliable Actors 可實作多個介面。
-* **ActorProxy 類別**。 用戶端應用程式會使用 ActorProxy 類別來叫用透過動作項目介面公開的方法。 ActorProxy 類別提供兩個重要的功能：
+* **動作項目服務**。 Reliable Actors 被封裝在可靠的服務，可以部署在 hello 服務網狀架構基礎結構。 動作項目執行個體會在指定的服務執行個體中啟動。
+* **動作項目註冊**。 為使用可靠的服務，Reliable Actor 服務需要 toobe 向 hello Service Fabric 執行階段。 此外，hello 動作項目類型必須 toobe 向 hello 動作項目執行階段。
+* **動作項目介面**。 hello 執行者介面是使用的 toodefine 執行者的強型別的公用介面。 在 hello Reliable Actor 模型術語，hello 執行者介面會定義的 hello hello 執行者的訊息類型可以了解並處理。 hello 執行者介面由其他的動作，用戶端應用程式太 「 傳送 」 （非同步） 訊息 toohello 動作項目。 Reliable Actors 可實作多個介面。
+* **ActorProxy 類別**。 hello ActorProxy 類別由用戶端應用程式 tooinvoke hello hello 執行者介面透過公開的方法。 hello ActorProxy 類別提供兩個重要功能：
   
-  * 名稱解析︰它能夠在叢集中找到動作項目 (尋找裝載動作項目的叢集節點)。
-  * 處理失敗：它可以重試方法叫用並重新解析動作項目位置，例如在需要動作項目重新定位至叢集中另一個節點失敗後進行。
+  * 名稱解析： 它是無法 toolocate hello hello 叢集 （尋找 hello hello 叢集節點的裝載位置） 中的動作項目。
+  * 錯誤處理： 它可以重試方法引動過程，和重新解析 hello 動作項目位置之後、 需要 hello 執行者 toobe 失敗，例如重新定位 tooanother hello 叢集中的節點。
 
-值得一提的是下列與動作項目介面相關的規則︰
+下列規則的相關 tooactor 介面 hello 是值得一提的是：
 
 * 動作項目介面方法無法多載。
 * 動作項目介面方法不能有 out、ref 或選擇性參數。
 * 不支援泛型介面。
 
 ## <a name="create-an-actor-service"></a>建立動作項目服務
-以建立新 Service Fabric 應用程式的方式開始。 適用於 Linux 的 Service Fabric SDK 包含 Yeoman 產生器，可提供具無狀態服務之 Service Fabric 應用程式的樣板。 執行下列 Yeoman 命令開始作業：
+以建立新 Service Fabric 應用程式的方式開始。 hello Service Fabric SDK for Linux 包含 Yeoman Service Fabric 應用程式與無狀態服務的產生器 tooprovide hello scaffolding。 開始執行 hello Yeoman 下列命令：
 
 ```bash
 $ yo azuresfjava
 ```
 
-遵循指示建立 **Reliable Actors 服務**。 本教學課程中，將應用程式命名為 HelloWorldActorApplication，將動作項目命名為 HelloWorldActor。 將會建立下列樣板：
+請遵循 hello 指示 toocreate **Reliable Actor Service**。 本教學課程中，命名 hello 應用程式"HelloWorldActorApplication 」 和 hello 執行者 」 HelloWorldActor。 」 將建立下列 scaffolding hello:
 
 ```bash
 HelloWorldActorApplication/
@@ -100,10 +100,10 @@ HelloWorldActorApplication/
 ```
 
 ## <a name="reliable-actors-basic-building-blocks"></a>Reliable Actors 項目基本建置組塊
-稍早所述的基本概念轉化為 Reliable Actors 服務的基本建置組塊。
+hello 稍早所述的基本概念會轉譯為 hello 基本建置組塊 Reliable Actor 服務。
 
 ### <a name="actor-interface"></a>動作項目介面
-包含動作項目的介面定義。 這個介面定義由動作項目實作與呼叫動作項目的用戶端所共用的動作項目合約，因此通常適合在不同於動作項目實作的地方定義該合約，並可由多個其他服務或用戶端應用程式共用。
+這包含 hello 執行者的 hello 介面定義。 這個介面會定義 hello 動作項目實作和呼叫 hello 動作項目，因此它通常會建立它的位置中分隔與 hello 動作項目實作，並且可由多個其他共用的意義上 toodefine hello 用戶端共用的 hello 執行者合約服務或用戶端應用程式。
 
 `HelloWorldActorInterface/src/reliableactor/HelloWorldActor.java`：
 
@@ -117,7 +117,7 @@ public interface HelloWorldActor extends Actor {
 ```
 
 ### <a name="actor-service"></a>動作項目服務
-這包含您的動作項目實作和動作項目註冊碼。 動作項目類別會實作動作項目介面。 這是您的動作項目工作之處。
+這包含您的動作項目實作和動作項目註冊碼。 hello 動作項目類別實作 hello 動作項目介面。 這是您的動作項目工作之處。
 
 `HelloWorldActor/src/reliableactor/HelloWorldActorImpl`：
 
@@ -148,7 +148,7 @@ public class HelloWorldActorImpl extends ReliableActor implements HelloWorldActo
 ```
 
 ### <a name="actor-registration"></a>動作項目註冊
-必須在 Service Fabric 執行階段中以某個服務類型註冊動作項目服務。 為了讓動作項目服務執行您的動作項目執行個體，也必須向動作項目服務註冊動作項目類型。 `ActorRuntime` 註冊方法會替動作項目執行這項工作。
+hello actor 服務必須向 hello Service Fabric 執行階段中的服務類型。 在順序 hello Actor 服務 toorun 您的動作項目執行個體，動作項目類型也必須向 hello 動作項目服務。 hello`ActorRuntime`註冊方法為執行者執行這項工作。
 
 `HelloWorldActor/src/reliableactor/HelloWorldActorHost`：
 
@@ -171,14 +171,14 @@ public class HelloWorldActorHost {
 ```
 
 ### <a name="test-client"></a>Test client
-這是簡單的測試用戶端應用程式，可以和 Service Fabric 應用程式分開執行，以測試您的動作項目服務。 這是 ActorProxy 可用來啟動和與動作項目執行個體通訊的位置範例。 它不會與您的服務一同部署。
+這是簡單的測試用戶端應用程式，您可以分開執行 hello Service Fabric 應用程式 tootest 動作項目服務。 這是範例的位置 hello ActorProxy 可以使用的 tooactivate 和動作項目執行個體進行通訊。 它不會與您的服務一同部署。
 
-### <a name="the-application"></a>應用程式
-最後，應用程式會將動作項目服務以及您未來可能會加入的其他任何服務封裝在一起以便部署。 它包含了 ApplicationManifest.xml 以及動作項目服務套件的預留位置。
+### <a name="hello-application"></a>hello 應用程式
+最後，hello 應用程式套件 hello 動作項目服務和任何其他您可能會在未來一起部署的 hello 新增的服務。 它包含 hello *ApplicationManifest.xml*和 hello actor 服務封裝的預留位置。
 
-## <a name="run-the-application"></a>執行應用程式
+## <a name="run-hello-application"></a>執行 hello 應用程式
 
-Yeoman 樣板包含可建置應用程式的 gradle 指令碼，以及可部署和移除應用程式的 bash 指令碼。 若要部署應用程式，請先使用 gradle 來建置應用程式︰
+hello Yeoman scaffolding 包含 gradle 指令碼 toobuild hello 應用程式和 bash 指令碼 toodeploy 和移除應用程式。 toodeploy hello 應用程式，第一個使用 gradle 的組建 hello 應用程式：
 
 ```bash
 $ gradle
@@ -188,8 +188,8 @@ $ gradle
 
 ### <a name="deploy-service-fabric-cli"></a>部署 Service Fabric CLI
 
-Install.sh 指令碼包含部署應用程式封裝所需的 Service Fabric CLI (sfctl) 命令。
-請執行 install.sh 指令碼來部署應用程式。
+hello 為 install.sh 指令碼包含 hello 所需服務網狀架構 CLI (sfctl) 命令 toodeploy hello 應用程式套件。
+執行 hello 為 install.sh 指令碼 toodeploy hello 應用程式。
 
 ```bash
 $ ./install.sh

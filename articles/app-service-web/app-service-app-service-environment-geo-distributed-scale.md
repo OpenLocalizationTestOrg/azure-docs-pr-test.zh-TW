@@ -1,6 +1,6 @@
 ---
-title: "App Service 環境的異地分散調整"
-description: "了解如何透過流量管理員和 App Service 環境，使用異地分散功能水平調整應用程式。"
+title: "aaaGeo 分散式應用程式服務環境的小數位數"
+description: "了解 toohorizontally 調整與流量管理員和應用程式服務環境中使用地理分散的應用程式的規模。"
 services: app-service
 documentationcenter: 
 author: stefsch
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/07/2016
 ms.author: stefsch
-ms.openlocfilehash: 505301b2650c9b8bafdad352055f30e55148ab0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9b441f637d8b7f679b3d83240baf99b8ee57e8f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="geo-distributed-scale-with-app-service-environments"></a>App Service 環境的異地分散調整
 ## <a name="overview"></a>概觀
-需要極高延展性的應用程式案例，可能會超過單一應用程式部署可用的運算資源容量。  例如，投票應用程式、體育活動及電視娛樂活動，都屬於需要極高延展性的案例。 只要對單一區域內和跨區域的多個應用程式部署進行應用程式的水平相應放大，即可達到高延展性需求，以處理極高的負載需求。
+應用程式案例都會需要極高的小數位數可以超過 hello 計算資源容量可用 tooa 單一部署的應用程式。  例如，投票應用程式、體育活動及電視娛樂活動，都屬於需要極高延展性的案例。 水平向外延展應用程式，具有多個應用程式部署在單一區域中，以及跨區域 toohandle 極端負載需求進行，可以滿足大規模需求。
 
-App Service 環境是水平相應放大的理想平台。  在選取可支援已知要求率的 App Service 環境組態後，開發人員即可透過「千篇一律」的方式部署其他 App Service 環境，以獲得所需的尖峰負載容量。
+App Service 環境是水平相應放大的理想平台。一旦選取 App Service 環境設定，可支援已知的要求速率，開發人員可以部署其他應用程式服務環境中 「 cookie 裁切器 」 的方式 tooattain 所需的尖峰負載容量。
 
-例如，假設在 App Service 環境組態上執行的應用程式已經過測試，每秒可處理 20K 個要求 (RPS)。  如果所需的尖峰負載容量是 100K RPS，則可以建立並設定五 (5) 個 App Service 環境，以確保應用程式能夠處理最大預測負載。
+例如假設 App Service 環境組態上所執行的應用程式已經過測試的 toohandle 20k 每秒要求數 (RPS)。  如果 hello 所需的尖峰負載容量是 100k RPS、 然後可以建立五 （5） 應用程式服務環境以及設定的 tooensure hello 應用程式可以處理 hello 預計的負載上限。
 
-由於客戶通常會使用自訂 (或虛名) 網域存取應用程式，因此開發人員必須要有將應用程式要求分散到所有 App Service 環境執行個體的方法。  使用 [Azure 流量管理員設定檔][AzureTrafficManagerProfile]解析自訂網域是不錯的方式。  流量管理員設定檔可設定為指向所有個別的 App Service 環境。  流量管理員會根據流量管理員設定檔中的負載平衡設定，自動將客戶分散到所有的 App Service 環境間。  無論所有的 App Service 環境是部署在單一 Azure 區域，還是跨多個 Azure 區域部署於世界各地，此方法都可運作。
+因為客戶通常存取使用自訂 （或虛名） 網域，開發人員需要應用程式的方式 toodistribute 應用程式會透過 hello App Service 環境的執行個體的所有要求。  這是很好的方法 tooaccomplish tooresolve hello 自訂網域使用[Azure 流量管理員設定檔][AzureTrafficManagerProfile]。  hello Traffic Manager 設定檔可在所有的設定的 toopoint hello 個別的應用程式服務環境。  Traffic Manager 將會自動處理在所有應用程式服務環境根據 hello 負載平衡設定 hello Traffic Manager 設定檔中的 hello 分散的客戶。  這個方法適用於無論 hello 應用程式服務環境的所有會部署在單一 Azure 區域中，或是部署到多個 Azure 區域在全球各地。
 
-此外，由於客戶是透過虛名網域存取應用程式的，因此無從得知執行應用程式的 App Service 環境數目。  因此，開發人員可以根據觀察到的流量負載，快速且輕鬆地新增和移除 App Service 環境。
+此外，由於客戶透過 hello 虛名網域存取應用程式，客戶不知道執行應用程式的應用程式服務環境的 hello 數量。  因此，開發人員可以根據觀察到的流量負載，快速且輕鬆地新增和移除 App Service 環境。
 
-下方的概念圖表說明在單一區域內以水平方式相應放大至三個 App Service 環境的應用程式。
+hello 下的概念圖描繪在單一區域內的三個應用程式服務環境水平延展的應用程式。
 
 ![概念性架構][ConceptualArchitecture] 
 
-本主題的其餘部分將逐步解說使用多個 App Service 環境為範例應用程式設定分散式拓撲所需的步驟。
+hello 本主題剩下的逐步解說設定使用多個應用程式服務環境的 hello 範例應用程式在分散式拓撲所需的 hello 步驟。
 
-## <a name="planning-the-topology"></a>規劃拓樸
-在建置分散式應用程式的使用量之前，最好先備妥幾項資訊。
+## <a name="planning-hello-topology"></a>規劃 hello 拓樸
+建立分散式應用程式使用量時之前, 它有助於 toohave 事先少數的片段資訊。
 
-* **應用程式的自訂網域：** 客戶將用來存取應用程式的自訂網域名稱為何？  範例應用程式的自訂網域名稱是 *www.scalableasedemo.com*
-* **流量管理員網域：**建立 [Azure 流量管理員設定檔][AzureTrafficManagerProfile]時必須選擇網域名稱。  此名稱會與 *trafficmanager.net* 尾碼結合，以註冊流量管理員所管理的網域項目。  就範例應用程式而言，選擇的名稱是 *scalable-ase-demo*。  因此，流量管理員所管理的完整網域名稱是 *scalable-ase-demo.trafficmanager.net*。
-* **調整應用程式使用量的策略：** 應用程式使用量是否會分散到單一區域中的多個 App Service 環境？  多個區域嗎？  兩種方法混合搭配使用嗎？  決策依據應來自於客戶流量的來源位置，以及其餘應用程式的支援後端基礎結構的可調整性。  例如，對於 100% 無狀態的應用程式，可以使用每一 Azure 區域多個 App Service 環境的組合，乘以跨多個 Azure 區域部署的 App Service 環境數，來大幅調整應用程式。  由於有 15 個以上的公用 Azure 區域可供選擇，客戶將可真正建置全球性超高延展性的應用程式使用量。  在本文所使用的範例應用程式中，有三個 App Service 環境建立在單一 Azure 區域 (美國中南部) 中。
-* **App Service 環境的命名慣例：** 每個 App Service 環境都需要唯一名稱。  有兩個或更多 App Service 環境時，命名慣例將有助於識別每個 App Service 環境。  範例應用程式中使用簡單的命名慣例。  三個 App Service 環境的名稱分別是 fe1ase、fe2ase 和 fe3ase。
-* **應用程式的命名慣例：** 由於將會部署多個應用程式執行個體，每個部署的應用程式執行個體都要有名稱。  有一項鮮為人知、但非常方便的 App Service 環境功能，是多個 App Service 環境可以使用相同的應用程式名稱。  由於每個 App Service 環境都有唯一的網域尾碼，開發人員可以選擇在每個環境中重複使用相同的應用程式名稱。  例如，開發人員可以將應用程式命名如下：myapp.foo1.p.azurewebsites.net、myapp.foo2.p.azurewebsites.net、myapp.foo3.p.azurewebsites.net，依此類推。但範例應用程式的每個應用程式執行個體也都有唯一名稱。  所使用的應用程式執行個體名稱是 webfrontend1、webfrontend2 和 webfrontend3。
+* **Hello 應用程式的自訂網域：** hello 客戶將會使用 tooaccess hello 應用程式的自訂網域名稱為何？  Hello 範例應用程式 hello 自訂網域名稱是*www.scalableasedemo.com*
+* **Traffic Manager 網域：**網域名稱必須選擇建立時的 toobe [Azure 流量管理員設定檔][AzureTrafficManagerProfile]。  此名稱將會結合 hello *trafficmanager.net*尾碼 tooregister Traffic Manager 所管理的網域項目。  Hello 範例應用程式中，為 hello 名稱選擇*可擴充 ase 示範*。  如此一來 hello Traffic Manager 所管理的完整網域名稱是*可擴充 ase demo.trafficmanager.net*。
+* **縮放比例 hello 應用程式使用量的策略：**將 hello 應用程式使用量會分佈在單一區域中的多個應用程式服務環境嗎？  多個區域嗎？  兩種方法混合搭配使用嗎？  hello 決策應該根據預期客戶流量將產生的位置，以及如何以及 hello rest 應用程式的支援後端基礎結構可以調整。  例如，對於 100% 無狀態的應用程式，可以使用每一 Azure 區域多個 App Service 環境的組合，乘以跨多個 Azure 區域部署的 App Service 環境數，來大幅調整應用程式。  透過從 15 + 公用 Azure 地區可用 toochoose，客戶可以真正建置全球大規模應用程式使用量。  Hello 範例應用程式中使用這個發行項，單一 Azure 區域 （美國中南部） 中建立三個應用程式服務環境。
+* **Hello 應用程式服務環境的命名慣例：**每個 App Service 環境名稱必須是唯一。  一或兩個應用程式服務環境之外，它是很有幫助 toohave 命名慣例 toohelp 識別每個 App Service 環境。  Hello 範例應用程式使用簡單的命名慣例。  hello hello 三個應用程式服務環境的名稱是*fe1ase*， *fe2ase*，和*fe3ase*。
+* **Hello 應用程式的命名慣例：**將部署的 hello 應用程式的多個執行個體，因為每個執行個體部署的 hello 應用程式需要名稱。  應用程式服務環境的一項小已知但很方便功能是相同的應用程式名稱可跨多個應用程式服務環境的 hello。  因為每個應用程式服務環境都有唯一的網域尾碼，開發人員可以選擇 toore 使用 hello 完全相同的應用程式的名稱，每個環境中。  例如，開發人員可以將應用程式命名如下：myapp.foo1.p.azurewebsites.net、myapp.foo2.p.azurewebsites.net、myapp.foo3.p.azurewebsites.net，依此類推。Hello 範例應用程式透過每個應用程式執行個體也都有唯一名稱。  hello 所使用的應用程式執行個體名稱是*webfrontend1*， *webfrontend2*，和*webfrontend3*。
 
-## <a name="setting-up-the-traffic-manager-profile"></a>設定流量管理員設定檔
-將應用程式的多個執行個體部署在多個 App Service 環境上之後，可以使用流量管理員來註冊個別的應用程式執行個體。  就範例應用程式而言， *scalable-ase-demo.trafficmanager.net* 必須要有流量管理員設定檔，以將客戶路由傳送至任何下列已部署的應用程式執行個體：
+## <a name="setting-up-hello-traffic-manager-profile"></a>Hello Traffic Manager 設定檔設定
+一旦應用程式的多個執行個體部署在多個應用程式服務環境，hello 個別的應用程式執行個體可以註冊使用 Traffic Manager。  Hello 範例應用程式流量管理員設定檔所需的*可擴充 ase demo.trafficmanager.net* ，可以路由傳送客戶部署的 hello 遵循 tooany 應用程式執行個體：
 
-* **webfrontend1.fe1ase.p.azurewebsites.net：** 部署在第一個 App Service 環境上的範例應用程式執行個體。
-* **webfrontend2.fe2ase.p.azurewebsites.net：** 部署在第二個 App Service 環境上的範例應用程式執行個體。
-* **webfrontend3.fe3ase.p.azurewebsites.net：** 部署在第三個 App Service 環境上的範例應用程式執行個體。
+* **webfrontend1.fe1ase.p.azurewebsites.net:** hello 範例應用程式上部署的執行個體 hello 第一個 App Service 環境。
+* **webfrontend2.fe2ase.p.azurewebsites.net:** hello 範例應用程式上部署的執行個體 hello 第二個 App Service 環境。
+* **webfrontend3.fe3ase.p.azurewebsites.net:** hello 範例應用程式上部署的執行個體 hello 第三個的 App Service 環境。
 
-如果要註冊多個 Azure App Service 端點 (全都在**相同的** Azure 區域中執行)，最簡單的方式是使用 Powershell [Azure Resource Manager 流量管理員支援][ARMTrafficManager]。  
+多個 Azure 應用程式服務端點，皆執行於 hello hello 最簡單的方式 tooregister**相同**Azure 區域中，是以 hello Powershell [Azure 資源管理員 Traffic Manager 支援][ARMTrafficManager].  
 
-第一個步驟是建立 Azure 流量管理員設定檔。  下列程式碼說明如何為範例應用程式建立設定檔：
+hello 第一個步驟是 toocreate Azure Traffic Manager 設定檔。  下列程式碼 hello 顯示 hello 設定檔的建立 hello 範例應用程式的方式：
 
     $profile = New-AzureTrafficManagerProfile –Name scalableasedemo -ResourceGroupName yourRGNameHere -TrafficRoutingMethod Weighted -RelativeDnsName scalable-ase-demo -Ttl 30 -MonitorProtocol HTTP -MonitorPort 80 -MonitorPath "/"
 
-請留意 RelativeDnsName 參數如何設為 scalable-ase-demo。  這會說明網域名稱 *scalable-ase-demo.trafficmanager.net* 是如何建立，並與流量管理員設定檔相關聯的。
+請注意如何 hello *RelativeDnsName*參數已設定太*可擴充 ase 示範*。  這是如何 hello 網域名稱*可擴充 ase demo.trafficmanager.net*建立並與流量管理員設定檔相關聯。
 
-*TrafficRoutingMethod* 參數會定義負載平衡原則，供流量管理員用來判斷如何將客戶負載分散到所有可用的端點。  此範例中選擇了 [加權]  方法。  這會使客戶要求根據與每個端點相關聯的相對加權，分散到所有已註冊的應用程式端點間。 
+hello *TrafficRoutingMethod*參數會定義 hello 負載平衡的原則 Traffic Manager 將使用的 toodetermine toospread 客戶如何載入所有 hello 可用的端點。  在此範例 hello*加權*選擇的方法。  這將導致客戶的要求會分散在所有的 hello 與每個端點相關聯的相對加權為基礎的 hello 註冊應用程式端點。 
 
-在建立設定檔後，每個應用程式執行個體都會新增至設定檔做為原生 Azure 端點。  下列程式碼會擷取每個前端 Web 應用程式的參考，然後透過「TargetResourceId」  參數將每個應用程式新增為流量管理員端點。
+建立 hello 設定檔，每個應用程式執行個體就會以原生的 Azure 端點加入 toohello 設定檔。  hello 的下列程式碼會擷取參考 tooeach 前端 web 應用程式，並將每個應用程式為透過 hello Traffic Manager 端點*TargetResourceId*參數。
 
     $webapp1 = Get-AzureRMWebApp -Name webfrontend1
     Add-AzureTrafficManagerEndpointConfig –EndpointName webfrontend1 –TrafficManagerProfile $profile –Type AzureEndpoints -TargetResourceId $webapp1.Id –EndpointStatus Enabled –Weight 10
@@ -77,44 +77,44 @@ App Service 環境是水平相應放大的理想平台。  在選取可支援已
 
     Set-AzureTrafficManagerProfile –TrafficManagerProfile $profile
 
-請留意，對於每個應用程式執行個體分別會有一個 *Add-AzureTrafficManagerEndpointConfig* 呼叫。  每個 Powershell 命令的「TargetResourceId」  參數會參考三個已部署的應用程式執行個體的其中一個。  流量管理員設定檔會將負載分散在設定檔中所註冊的所有三個端點上。
+請注意一個呼叫太*新增 AzureTrafficManagerEndpointConfig*每個個別的應用程式執行個體。  hello *TargetResourceId*參數在每個 Powershell 命令參考其中一個 hello 三個已部署的應用程式執行個體。  hello Traffic Manager 設定檔會將負載分散在 hello 設定檔中註冊的所有三個端點。
 
-三個端點都會使用相同的值 (10) 做為 *Weight* 參數。  這會使流量管理員將客戶要求較平均地分散在所有的三個應用程式執行個體間。 
+所有的三個端點使用的 hello hello 相同的值 (10) hello*加權*參數。  這會使流量管理員將客戶要求較平均地分散在所有的三個應用程式執行個體間。 
 
-## <a name="pointing-the-apps-custom-domain-at-the-traffic-manager-domain"></a>將應用程式的自訂網域指向流量管理員網域
-最後一個必要步驟是將應用程式的自訂網域指向流量管理員網域。  就範例應用程式而言，這意味著將 www.scalableasedemo.com 指向 scalable-ase-demo.trafficmanager.net。  此步驟必須以管理自訂網域的網域註冊機構來完成。  
+## <a name="pointing-hello-apps-custom-domain-at-hello-traffic-manager-domain"></a>指在 hello Traffic Manager 網域 hello 應用程式的自訂網域
+hello 所需的最後一個步驟是 toopoint hello 自訂網域的 hello 應用程式在 hello Traffic Manager 網域。  這表示 hello 範例應用程式指向*www.scalableasedemo.com*在*可擴充 ase demo.trafficmanager.net*。  此步驟需要 toobe 已完成，但 hello 網域註冊機構管理 hello 自訂網域。  
 
-若使用註冊機構的網域管理工具，必須建立一個將自訂網域指向流量管理員網域的 CNAME 記錄。  下圖顯示此 CNAME 組態的範例：
+CNAME 記錄需求 toobe 使用您的註冊機構的網域管理工具，在 hello Traffic Manager 網域建立的點 hello 自訂網域。  hello 圖示範此 CNAME 組態看起來像：
 
 ![自訂網域的 CNAME][CNAMEforCustomDomain] 
 
-雖然本主題並未說明，但請記住，每個應用程式執行個體也都需要註冊其自訂網域。  否則，在對應用程式執行個體發出要求時，如果應用程式並未註冊應用程式的自訂網域，要求將會失敗。  
+雖然未涵蓋在本主題中，請記住每個個別的應用程式執行個體必須已向它註冊以及 toohave hello 自訂網域。  否則要求可讓 tooan 應用程式執行個體，並 hello 應用程式沒有 hello hello 應用程式註冊的自訂網域，如果 hello 要求將會失敗。  
 
-在此範例中，自訂網域是 *www.scalableasedemo.com*，且每個應用程式執行個體都有其相關聯的自訂網域。
+在此範例 hello 自訂網域是*www.scalableasedemo.com*，且每個應用程式執行個體具有 hello 與它相關聯的自訂網域。
 
 ![自訂網域][CustomDomain] 
 
-如需向 Azure App Service 應用程式註冊自訂網域的概述，請參閱下列有關[註冊自訂網域][RegisterCustomDomain]的文章。
+向 Azure App Service 應用程式註冊自訂網域的概述，請參閱下列文章 hello[註冊自訂網域][RegisterCustomDomain]。
 
-## <a name="trying-out-the-distributed-topology"></a>嘗試使用分散式拓撲
-使用流量管理員及 DNS 組態的最終結果，是 *www.scalableasedemo.com* 的要求會歷經下列順序的流程：
+## <a name="trying-out-hello-distributed-topology"></a>試用 hello 分散式拓撲
+hello hello Traffic Manager 和 DNS 設定最終結果是，要求*www.scalableasedemo.com*將通過 hello 下列順序：
 
 1. 瀏覽器或裝置執行 *www.scalableasedemo.com*
-2. 網域註冊機構上的 CNAME 項目使 DNS 查閱重新導向至 Azure 流量管理員。
-3. 對其中一個 Azure 流量管理員 DNS 伺服器執行 *scalable-ase-demo.trafficmanager.net* 的 DNS 查閱。
-4. 根據負載平衡原則 (稍早建立流量管理員設定檔時所使用的 *TrafficRoutingMethod* 參數)，流量管理員會選取其中一個已設定的端點，並將該端點的 FQDN 傳回至瀏覽器或裝置。
-5. 由於端點的 FQDN 是在 App Service 環境上執行的應用程式執行個體的 URL，因此瀏覽器或裝置會要求 Microsoft Azure DNS 伺服器將 FQDN 解析為 IP 位址。 
-6. 瀏覽器或裝置會將 HTTP/S 要求傳送至此 IP 位址。  
-7. 要求會送達在其中一個 App Service 環境上執行的應用程式執行個體之一。
+2. hello hello 網域註冊機構的 CNAME 項目會導致 hello DNS 查閱重新導向 toobe tooAzure Traffic Manager。
+3. 針對提出 DNS 查閱*可擴充 ase demo.trafficmanager.net* hello Azure Traffic Manager DNS 伺服器的其中之一。
+4. 根據 hello 負載平衡原則 (hello *TrafficRoutingMethod*建立 hello Traffic Manager 設定檔時，請使用稍早的參數)，Traffic Manager 就會選取其中一個 hello 設定端點，並且傳回 hello 的 FQDN端點 toohello 瀏覽器或裝置。
+5. 由於 hello hello 端點的 FQDN 是 hello 的 App Service 環境上執行的應用程式執行個體的 Url，hello 瀏覽器或裝置會要求 Microsoft Azure DNS 伺服器 tooresolve hello FQDN tooan IP 位址。 
+6. hello 瀏覽器或裝置將會傳送 hello HTTP/S 要求 toohello IP 位址。  
+7. hello 要求會抵達其中一個 hello 部 hello 應用程式服務環境上執行的應用程式執行個體。
 
-下列主控台圖片顯示範例應用程式自訂網域的 DNS 查閱；該網域已成功解析為在三個範例 App Service 環境之一 (在此案例中圍三個 App Service 環境中的第二個) 上執行的應用程式執行個體：
+hello 主控台圖會顯示 hello 範例應用程式的自訂網域已成功解析 tooan 應用程式執行個體上 hello 三個範例應用程式服務環境的其中一個執行的 DNS 查閱 (在此情況下 hello hello 三個應用程式服務環境的第二個):
 
 ![DNS 查閱][DNSLookup] 
 
 ## <a name="additional-links-and-information"></a>其他連結和資訊
-您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+所有發行項以及-的應用程式服務環境的 hello[讀我檔案的應用程式服務環境](../app-service/app-service-app-service-environments-readme.md)。
 
-Powershell [Azure Resource Manager 流量管理員支援][ARMTrafficManager]的相關文件。  
+文件上 hello Powershell [Azure 資源管理員 Traffic Manager 支援][ARMTrafficManager]。  
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

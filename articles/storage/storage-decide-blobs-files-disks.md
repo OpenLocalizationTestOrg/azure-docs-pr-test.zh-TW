@@ -1,6 +1,6 @@
 ---
-title: "決定何時使用 Azure Blob、Azure 檔案或 Azure 資料磁碟"
-description: "深入了解在 Azure 中儲存和存取資料的不同方法，協助您決定使用哪種技術。"
+title: "aaaDeciding 時 toouse Azure Blob、 Azure 或 Azure 資料磁碟"
+description: "了解 hello 不同的方式 toostore 及存取資料在 Azure toohelp 決定哪些技術 toouse。"
 services: storage
 documentationcenter: 
 author: robinsh
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: robinsh
-ms.openlocfilehash: e282a8a7bec1cb6e48110e7c9859a3a19ab8a11e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6109affe41e98ed459616a4f91064ded0c74428d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deciding-when-to-use-azure-blobs-azure-files-or-azure-data-disks"></a>決定何時使用 Azure Blob、Azure 檔案或 Azure 資料磁碟
+# <a name="deciding-when-toouse-azure-blobs-azure-files-or-azure-data-disks"></a>決定當 toouse Azure Blob、 Azure 檔案或 Azure 資料磁碟
 
-Microsoft Azure 在 Azure 儲存體中提供數種功能，用以在雲端儲存和存取資料。 此文章涵蓋 Azure 檔案、Blob 和資料磁碟，並設計來協助從這些功能中選擇想要的功能。
+Microsoft Azure 提供數種功能，在 Azure 儲存體來儲存和存取您 hello 雲端中的資料。 本文章涵蓋 Azure 檔案、 Blob 和資料磁碟，並為您選擇這些功能的設計的 toohelp。
 
 ## <a name="scenarios"></a>案例
 
-下表對檔案、Blob 和資料磁碟進行比較，並顯示適用於各項的範例案例。
+hello 下表比較檔案、 Blob 和資料磁碟，並顯示適用於每個範例案例。
 
-| 功能 | 描述  | 使用時機 |
+| 功能 | 說明 | 當 toouse |
 |--------------|-------------|-------------|
-| **Azure 檔案** | 提供 SMB 介面、用戶端程式庫和 [REST 介面](/rest/api/storageservices/file-service-rest-api)，允許從任何位置存取儲存的檔案。 | 您想要將應用程式「隨即轉移」到雲端，該應用程式已使用原生檔案系統 API 來在它與在 Azure 中執行的其他應用程式之間共用資料。<br/><br/>您想要儲存需要從許多虛擬機器存取的開發和偵錯工具。 |
-| **Azure Blob** | 提供用戶端程式庫和 [REST 介面](/rest/api/storageservices/blob-service-rest-api)，允許在區塊 Blob 中大規模地儲存及存取非結構化資料 。 | 您想要應用程式支援串流及隨機存取案例。<br/><br/>您想要能夠從任何位置存取應用程式資料。 |
-| **Azure 資料磁碟** | 提供用戶端程式庫和 [REST 介面](/rest/api/compute/virtualmachines/virtualmachines-create-or-update)，允許持續從連結的虛擬硬碟儲存和存取資料。 | 您想要隨即轉移使用原生檔案系統 API 讀取及寫入資料至永續性磁碟的應用程式。<br/><br/>您想要儲存不需要從連結磁碟的虛擬機器之外存取的資料。 |
+| **Azure 檔案** | 提供 SMB 介面，用戶端程式庫，和[REST 介面](/rest/api/storageservices/file-service-rest-api)toostored 檔案允許從任何地方存取。 | 您想太 「 提起和 shift 」 應用程式 toohello 雲端已經使用 hello 原生檔案系統 Api tooshare 之間的資料並在 Azure 中執行其他應用程式。<br/><br/>您想 toostore 開發和偵錯工具需要 toobe 從多個虛擬機器存取。 |
+| **Azure Blob** | 提供用戶端程式庫和[REST 介面](/rest/api/storageservices/blob-service-rest-api)，可讓非結構化的資料太儲存或存取大規模區塊 blob 中。 | 您想要您的應用程式 toosupport 串流和隨機存取案例。<br/><br/>您想從任何地方 toobe 無法 tooaccess 應用程式資料。 |
+| **Azure 資料磁碟** | 提供用戶端程式庫和[REST 介面](/rest/api/compute/virtualmachines/virtualmachines-create-or-update)，可讓資料 toobe 持續儲存和存取從連接的虛擬硬碟。 | 您希望 toolift，和應用程式，使用原生檔案系統 Api tooread 和寫入資料 toopersistent 磁碟。<br/><br/>您不需要從外部 hello 虛擬機器 toowhich hello 磁碟存取的 toobe toostore 資料會附加。 |
 
 ## <a name="comparison-files-and-blobs"></a>比較：檔案和 Blob
 
-下表對 Azure 檔案和 Azure Blob 進行比較。  
+hello 下表比較 Azure 檔案和 Azure Blob。  
   
 ||||  
 |-|-|-|  
@@ -47,35 +47,35 @@ Microsoft Azure 在 Azure 儲存體中提供數種功能，用以在雲端儲存
 |端點|`http://myaccount.blob.core.windows.net/mycontainer/myblob`|`\\myaccount.file.core.windows.net\myshare\myfile.txt`<br /><br /> `http://myaccount.file.core.windows.net/myshare/myfile.txt`|  
 |目錄|一般命名空間|真實目錄物件|  
 |名稱區分大小寫|區分大小寫|不區分大小寫，但保留大小寫|  
-|容量|最大 500 TB 的容器|5 TB 檔案共用|  
-|輸送量|每個區塊 Blob 最大每秒 60 MB|每個共用最大每秒 60 MB|  
-|物件大小|最大 200 GB/區塊 Blob|最大 1TB/檔案|  
+|容量|向上 too500 500TB 的容器|5 TB 檔案共用|  
+|Throughput|向上 too60 MB/s 每個區塊 blob|向上 too60 MB/s 每個共用|  
+|物件大小|向上 too200 GB/區塊 blob|Too1TB/檔案|  
 |計費的容量|根據寫入的位元組|根據檔案大小|  
 |用戶端程式庫|多種語言|多種語言|  
   
 ## <a name="comparison-files-and-data-disks"></a>比較：檔案和資料磁碟
 
-Azure 檔案可補強 Azure 資料磁碟。 資料磁碟一次只能連結到一部 Azure 虛擬機器。 資料磁碟是固定格式的 VHD，它在 Azure 儲存體中儲存為分頁 Blob，並由虛擬機器用來儲存持久資料。 Azure 檔案中的檔案共用可透過與存取本機磁碟 (使用原生檔案系統 API) 一樣的方式存取，並可跨許多部虛擬機器共用。  
+Azure 檔案可補強 Azure 資料磁碟。 資料磁碟一次只能附加的 tooone Azure 虛擬機器。 資料磁碟 hello 虛擬機器 toostore 持久資料所使用，且都儲存為分頁 blob 在 Azure 儲存體，固定格式 Vhd。 可以存取 Azure 檔案中的檔案共用中 hello 相同方式與 hello 本機磁碟存取 （透過使用原生檔案系統 Api），並可以橫跨多個虛擬機器。  
  
-下表對 Azure 檔案和 Azure 資料磁碟進行比較。  
+hello 下表比較 Azure 檔案和 Azure 資料磁碟。  
  
 ||||  
 |-|-|-|  
 |**屬性**|**Azure 資料磁碟**|**Azure 檔案**|  
-|範圍|單一虛擬機器專用|跨多部虛擬機器的共用存取|  
+|Scope|獨佔 tooa 單一虛擬機器|跨多部虛擬機器的共用存取|  
 |快照與複製|是|否|  
-|組態|在啟動虛擬機器時連線|在虛擬機器啟動之後連線|  
+|組態|在啟動 hello 虛擬機器的連線|連接 hello 虛擬機器啟動之後|  
 |驗證|內建|使用 net use 設定|  
 |清除|自動|手動|  
-|使用 REST 存取|無法存取 VHD 內的檔案|可以存取儲存在共用中的檔案|  
+|使用 REST 存取|無法存取檔案內 hello VHD|可以存取儲存在共用中的檔案|  
 |大小上限|1 TB 磁碟|5 TB 檔案共用和 1 TB 共用內的檔案|  
 |最大 8KB IOps|500 IOps|1000 IOps|  
-|輸送量|每個磁碟最大每秒 60 MB|每個檔案共用最大每秒 60 MB|  
+|Throughput|Too60 MB/s 每個磁碟設定|向上 too60 MB/s 每個檔案共用|  
 
 ## <a name="next-steps"></a>後續步驟
 
-決定如何儲存及存取資料時，您也應考慮牽涉的成本。 如需詳細資訊，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)。
+當制定有關如何儲存和存取您的資料，您也應該考慮 hello 成本相關。 如需詳細資訊，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)。
   
-某些 SMB 功能並不適用於雲端。 如需詳細資訊，請參閱 [Azure 檔案服務不支援的功能](/rest/api/storageservices/features-not-supported-by-the-azure-file-service)。
+某些 SMB 功能不適用 toohello 雲端。 如需詳細資訊，請參閱[不支援的 hello Azure 檔案服務功能](/rest/api/storageservices/features-not-supported-by-the-azure-file-service)。
   
-如需有關資料磁碟的詳細資訊，請參閱[管理磁碟及映像](storage-about-disks-and-vhds-linux.md)和[如何將資料磁碟連結到 Windows 虛擬機器](../virtual-machines/windows/classic/attach-disk.md)。
+如需有關資料磁碟的詳細資訊，請參閱[管理磁碟及映像](storage-about-disks-and-vhds-linux.md)和[如何 tooAttach Windows 虛擬機器的資料磁碟 tooa](../virtual-machines/windows/classic/attach-disk.md)。

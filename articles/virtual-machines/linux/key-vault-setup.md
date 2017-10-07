@@ -1,6 +1,6 @@
 ---
-title: "設定 Linux VM 的 Azure Key Vault | Microsoft Docs"
-description: "如何使用 CLI 2.0 設定要與 Azure Resource Manager 虛擬機器搭配使用的 Key Vault。"
+title: "適用於 Linux Vm 的 Azure 金鑰保存庫註冊 aaaSet |Microsoft 文件"
+description: "如何搭配使用 Azure 資源管理員虛擬機器使用金鑰保存庫註冊 tooset hello CLI 2.0。"
 services: virtual-machines-linux
 documentationcenter: 
 author: singhkays
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: vm-linux
 ms.topic: article
 ms.date: 02/24/2017
 ms.author: singhkay
-ms.openlocfilehash: 2cc9b4c978e9a4deb0c8443c4b0f9e301a7cf492
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a5dc1fbe59a71b4456ba5b9bbacdb90440064757
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-set-up-key-vault-for-virtual-machines-with-the-azure-cli-20"></a>如何使用 Azure CLI 2.0 設定虛擬機器的金鑰保存庫
+# <a name="how-tooset-up-key-vault-for-virtual-machines-with-hello-azure-cli-20"></a>設定金鑰保存庫使用的虛擬機器的 tooset hello Azure CLI 2.0 的方式
 
-在 Azure Resource Manager 堆疊中，密碼/憑證會被塑造成 Key Vault 所提供的資源。 若要深入了解「Azure 金鑰保存庫」，請參閱 [什麼是 Azure 金鑰保存庫？](../../key-vault/key-vault-whatis.md) 為了讓 Key Vault 能與 Azure Resource Manager VM 搭配使用，必須將「金鑰保存庫」上的 *EnabledForDeployment* 屬性設定為 true。 本文說明如何使用 Azure CLI 2.0 設定要與 Azure 虛擬機器 (VM) 搭配使用的 Key Vault。 您也可以使用 [Azure CLI 1.0](key-vault-setup-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。
+Hello Azure Resource Manager 堆疊中的密碼/憑證會模型化為金鑰保存庫所提供的資源。 toolearn 進一步了解 Azure 金鑰保存庫，請參閱[何謂 Azure Key Vault？](../../key-vault/key-vault-whatis.md) 若要讓 Azure 資源管理員 Vm 搭配使用的金鑰保存庫 toobe，hello *EnabledForDeployment* tootrue 必須設定金鑰保存庫上的屬性。 本文章將示範如何搭配使用 Azure 虛擬機器 (Vm) 使用金鑰保存庫註冊 tooset hello Azure CLI 2.0。 您也可以執行下列步驟以 hello [Azure CLI 1.0](key-vault-setup-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-若要執行這些步驟，您需要安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
+tooperform 這些步驟，您需要 hello 最新[Azure CLI 2.0](/cli/azure/install-az-cli2)安裝並登入 tooan Azure 帳戶使用[az 登入](/cli/azure/#login)。
 
 ## <a name="create-a-key-vault"></a>建立金鑰保存庫
-使用 [az keyvault create](/cli/azure/keyvault#create) 建立金鑰保存庫並指派部署原則。 下列範例會在 `myResourceGroup` 資源群組中建立名為 `myKeyVault` 的金鑰保存庫：
+建立金鑰保存庫並指派 hello 部署原則與[az keyvault 建立](/cli/azure/keyvault#create)。 hello 下列範例會建立名為金鑰保存庫`myKeyVault`在 hello`myResourceGroup`資源群組：
 
 ```azurecli
 az keyvault create -l westus -n myKeyVault -g myResourceGroup --enabled-for-deployment true
 ```
 
 ## <a name="update-a-key-vault-for-use-with-vms"></a>更新要與 VM 搭配使用的 Key Vault
-使用 [az keyvault update](/cli/azure/keyvault#update) 對現有的金鑰保存庫設定部署原則。 下列範例會更新 `myResourceGroup` 資源群組中名為 `myKeyVault` 的金鑰保存庫：
+使用現有的金鑰保存庫上設定 hello 部署原則[az keyvault 更新](/cli/azure/keyvault#update)。 hello 下列更新 hello 名為金鑰保存庫`myKeyVault`在 hello`myResourceGroup`資源群組：
 
 ```azurecli
 az keyvault update -n myKeyVault -g myResourceGroup --set properties.enabledForDeployment=true
 ```
 
-## <a name="use-templates-to-set-up-key-vault"></a>使用範本來設定金鑰保存庫
-當您使用範本時，您需要針對 Key Vault 資源將 `enabledForDeployment` 屬性設定為 `true`，如下所示︰
+## <a name="use-templates-tooset-up-key-vault"></a>使用金鑰保存庫註冊的範本 tooset
+當您使用範本時，您需要 tooset hello`enabledForDeployment`屬性太`true`hello 金鑰保存庫資源，如下所示：
 
 ```json
 {

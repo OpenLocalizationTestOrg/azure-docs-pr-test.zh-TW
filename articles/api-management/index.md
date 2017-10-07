@@ -1,6 +1,6 @@
 ---
-title: "Azure API 管理文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用 API 管理功能，大規模且安全地發佈 API。 文件會示範如何建立現有後端服務的新式 API 閘道。"
+title: "aaaAzure API 管理文件-教學課程中，API 參考 |Microsoft 文件"
+description: "深入了解如何 toouse API 管理 toopublish Api 安全且依比例。 文件顯示如何 toocreate 現有的後端服務的現代應用程式開發介面閘道。"
 services: api-management
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 09eb558a4e4b32fa6e1094c55f321db8ce008d4d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2bd5d7dc7c6df3ad01a704fdd28c9437d39a04b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-documentation"></a>API 管理文件
 
-了解如何使用 API 管理功能，大規模且安全地向外部、合作夥伴和員工開發人員發佈 API。 教學課程、API 參考和其他文件會顯示如何建立及管理隨處裝載之現有後端服務的新式 API 閘道。
+深入了解如何 toouse API 管理 toopublish Api tooexternal、 夥伴與員工的開發人員安全且依比例。 教學課程、 應用程式開發介面參考和其他文件會顯示您如何 toocreate 和現有的後端服務可以裝載任何地方管理現代應用程式開發介面的閘道。
 
 <ul class="panelContent cardsFTitle">
     <li>

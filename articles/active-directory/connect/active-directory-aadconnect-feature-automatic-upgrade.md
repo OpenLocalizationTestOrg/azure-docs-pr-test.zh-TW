@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect：自動升級 | Microsoft Docs"
-description: "本主題說明 Azure AD Connect 同步處理中內建的自動升級功能。"
+description: "本主題描述 hello 內建自動升級功能在 Azure AD Connect 同步處理。"
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,88 +14,88 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 15dcfff0a5b10eb0565b450664406ba3f4a8de10
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 70d15eb3adf7758d8a43d278157daa504e059a98
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-automatic-upgrade"></a>Azure AD Connect：自動升級
 此功能是隨組建 1.1.105.0 (於 2016 年 2 月發行) 一起導入。
 
-## <a name="overview"></a>Overview
-使用「自動升級」  功能是可確保您 Azure AD Connect 安裝永遠維持在最新狀態的最簡單方式。 此功能預設為啟用，以供進行快速安裝及 DirSync 升級。 新版本發行時，您的安裝會自動升級。
+## <a name="overview"></a>概觀
+確定您 Azure AD Connect 的安裝狀態永遠為 toodate 上從未如此輕鬆以 hello**自動升級**功能。 此功能預設為啟用，以供進行快速安裝及 DirSync 升級。 新版本發行時，您的安裝會自動升級。
 
-預設會針對下列情況啟用自動升級：
+Hello 下列預設會啟用自動升級：
 
 * 快速設定安裝和 DirSync 升級。
 * 使用 SQL Express LocalDB (這是「快速設定」一律使用的)。 使用 SQL Express 的 DirSync 也會使用 LocalDB。
-* AD 帳戶是「快速設定」和 DirSync 所建立的預設 MSOL_ 帳戶。
-* Metaverse 中的物件少於 100,000 個
+* hello AD 帳戶是快速設定與 DirSync 所建立的 hello 預設 MSOL_ 帳戶。
+* Hello metaverse 中有 100,000 個物件。
 
-您可以使用 PowerShell Cmdlet `Get-ADSyncAutoUpgrade`來檢視目前的自動升級狀態。 其狀態如下：
+使用 「 hello PowerShell cmdlet，可以檢視 hello 的目前狀態的自動升級`Get-ADSyncAutoUpgrade`。 它有下列狀態的 hello:
 
 | State | 註解 |
 | --- | --- |
 | 已啟用 |已啟用自動升級。 |
-| 暫止 |只有系統才能設定。 系統已不再能夠接收自動升級。 |
+| 暫止 |只有 hello 系統設定。 hello 系統已不再符合資格 tooreceive 自動升級。 |
 | 已停用 |已停用自動升級。 |
 
-您可以使用 `Set-ADSyncAutoUpgrade` 在 [已啟用] 與 [已停用] 之間進行變更。 應該只有系統才能設定 [已暫止] 狀態。
+您可以使用 `Set-ADSyncAutoUpgrade` 在 [已啟用] 與 [已停用] 之間進行變更。 只有 hello 系統應該設定 hello 狀態**Suspended**。
 
-自動升級使用 Azure AD Connect Health 做為升級基礎結構。 為了讓自動升級能夠運作，請確定您已依照 **Office 365 URL 與 IP 位址範圍** 中的記載，在您 Proxy 伺服器中開啟 [Azure AD Connect Health](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)的 URL。
+自動升級為使用 Azure AD Connect Health hello 升級基礎結構。 自動升級 toowork，請確定您已開啟您的 proxy 伺服器的 hello Url **Azure AD Connect Health**如中所述[Office 365 Url 與 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)。
 
-如果伺服器上正在執行 **Synchronization Service Manager** UI，則會暫止升級，直到 UI 關閉為止。
+如果 hello**同步處理服務管理員**hello 伺服器上執行 UI 然後 hello 升級會暫停，直到 hello UI 已關閉。
 
 ## <a name="troubleshooting"></a>疑難排解
-如果您的 Connect 安裝未如預期般自動升級，請遵循下列步驟來找出可能的錯誤。
+如果您連接的安裝不會升級本身如預期般，請依照下列出功能可能是錯誤，這些步驟 toofind。
 
-首先，不建議您在新版本發行的第一天就自動升級。 由於升級前有刻意設計的隨機性，因此不用擔心您的安裝沒有立即升級。
+首先，您不應預期 hello 嘗試自動升級 toobe hello 發行新版本的第一天。 由於升級前有刻意設計的隨機性，因此不用擔心您的安裝沒有立即升級。
 
-如果您認為有問題，請先執行 `Get-ADSyncAutoUpgrade` 確保已啟用自動升級。
+如果您認為有不正確，然後第一次執行`Get-ADSyncAutoUpgrade`tooensure 自動升級已啟用。
 
-然後，確定您已在您的 Proxy 或防火牆中開啟所需的 URL。 自動更新會如 [概觀](#overview)所述使用 Azure AD Connect Health。 如果您使用 Proxy，請確定 Health 已設定為使用 [roxy 伺服器](../connect-health/active-directory-aadconnect-health-agent-install.md#configure-azure-ad-connect-health-agents-to-use-http-proxy)。 而且測試對 Azure AD 的 [Health 連線](../connect-health/active-directory-aadconnect-health-agent-install.md#test-connectivity-to-azure-ad-connect-health-service) 。
+然後，請確定您在 proxy 或防火牆中開啟 hello 所需的 Url。 自動更新為使用 Azure AD Connect Health，如下所示 hello[概觀](#overview)。 如果您使用的 proxy，請確定健全狀況已設定的 toouse [proxy 伺服器](../connect-health/active-directory-aadconnect-health-agent-install.md#configure-azure-ad-connect-health-agents-to-use-http-proxy)。 也測試 hello[健康情況連線](../connect-health/active-directory-aadconnect-health-agent-install.md#test-connectivity-to-azure-ad-connect-health-service)tooAzure AD。
 
-透過對已驗證 Azure AD 的連線，即可查看事件記錄檔。 啟動事件檢視器，並查看 **應用程式** 事件記錄。 新增來源 **Azure AD Connect 升級**的事件記錄篩選以及事件識別碼範圍 **300-399**。  
+Hello 連線 tooAzure AD 驗證，因此很時間 toolook 到 hello 事件記錄檔。 啟動 hello 事件檢視器，並查看 hello**應用程式**事件記錄檔。 新增事件記錄檔篩選器 hello 來源**連線升級 Azure AD**和 hello 事件識別碼範圍**300 399**。  
 ![自動升級的事件記錄篩選](./media/active-directory-aadconnect-feature-automatic-upgrade/eventlogfilter.png)  
 
-您現在可以看到與自動升級狀態關聯的事件記錄。  
+您現在可以看到 hello 與自動升級的 hello 狀態相關聯的事件記錄檔。  
 ![自動升級的事件記錄篩選](./media/active-directory-aadconnect-feature-automatic-upgrade/eventlogresult.png)  
 
-結果碼前面會有包含狀態概觀的前置詞。
+hello 結果程式碼具有的前置詞 hello 狀態的概觀。
 
 | 結果碼前置詞 | 說明 |
 | --- | --- |
-| 成功 |安裝已順利升級。 |
-| UpgradeAborted |發生暫時狀況導致升級停止。 它將會重試一次，而且預期稍後成功。 |
-| UpgradeNotSupported |系統具有封鎖自動升級系統的組態。 它將會重試以查看狀態是否已變更，但預期情況是系統必須手動升級。 |
+| 成功 |hello 安裝已順利升級。 |
+| UpgradeAborted |暫時的狀況停止 hello 升級。 它將會重試一次，hello 預期是稍後成功。 |
+| UpgradeNotSupported |hello 系統已封鎖 hello 系統會自動升級的組態。 它會重試的 toosee hello 狀態已變更，但 hello 預期是 hello 系統都必須以手動方式升級。 |
 
-以下是最常見的訊息清單。 清單不完整，但結果訊息應該清楚顯示問題所在。
+以下是一份 hello 您找到最常見的訊息。 不會列出所有項目，但 hello 結果訊息應該清除與 hello 問題。
 
 | 結果訊息 | 說明 |
 | --- | --- |
 | **UpgradeAborted** | |
-| UpgradeAbortedCouldNotSetUpgradeMarker |無法寫入登錄。 |
-| UpgradeAbortedInsufficientDatabasePermissions |內建的系統管理員群組沒有資料庫的權限。 請手動升級至最新版的 Azure AD Connect 來解決此問題。 |
-| UpgradeAbortedInsufficientDiskSpace |沒有足夠的光碟空間，以支援升級。 |
-| UpgradeAbortedSecurityGroupsNotPresent |找不到且無法解析同步處理引擎使用的所有安全性群組。 |
-| UpgradeAbortedServiceCanNotBeStarted |NT 服務 **Microsoft Azure AD Sync** 無法啟動。 |
-| UpgradeAbortedServiceCanNotBeStopped |NT 服務 **Microsoft Azure AD Sync** 無法停止。 |
-| UpgradeAbortedServiceIsNotRunning |NT 服務 **Microsoft Azure AD Sync** 並未執行。 |
-| UpgradeAbortedSyncCycleDisabled |[排程器](active-directory-aadconnectsync-feature-scheduler.md) 中的 SyncCycle 選項已停用。 |
-| UpgradeAbortedSyncExeInUse |伺服器上的 [Synchronization Service Manager UI](active-directory-aadconnectsync-service-manager-ui.md) 為開啟。 |
-| UpgradeAbortedSyncOrConfigurationInProgress |安裝精靈正在執行或排程器外部已排定同步處理。 |
+| UpgradeAbortedCouldNotSetUpgradeMarker |無法寫入 toohello 登錄。 |
+| UpgradeAbortedInsufficientDatabasePermissions |hello 內建的系統管理員群組沒有權限 toohello 資料庫。 手動升級 toohello 最新版本的 Azure AD Connect tooaddress 此問題。 |
+| UpgradeAbortedInsufficientDiskSpace |沒有足夠的光碟空間 toosupport 升級。 |
+| UpgradeAbortedSecurityGroupsNotPresent |無法尋找和解決 hello 同步處理引擎所使用的所有安全性群組。 |
+| UpgradeAbortedServiceCanNotBeStarted |hello NT 服務**Microsoft Azure AD Sync**失敗 toostart。 |
+| UpgradeAbortedServiceCanNotBeStopped |hello NT 服務**Microsoft Azure AD Sync**失敗 toostop。 |
+| UpgradeAbortedServiceIsNotRunning |hello NT 服務**Microsoft Azure AD Sync**並未執行。 |
+| UpgradeAbortedSyncCycleDisabled |hello SyncCycle 選項在 hello[排程器](active-directory-aadconnectsync-feature-scheduler.md)已停用。 |
+| UpgradeAbortedSyncExeInUse |hello[同步處理服務管理員 UI](active-directory-aadconnectsync-service-manager-ui.md) hello 伺服器上開啟。 |
+| UpgradeAbortedSyncOrConfigurationInProgress |hello 安裝精靈正在執行，或在同步處理已排程之外 hello 排程器。 |
 | **UpgradeNotSupported** | |
-| UpgradeNotSupportedCustomizedSyncRules |您已將自己的自訂規則加入組態。 |
-| UpgradeNotSupportedDeviceWritebackEnabled |您已啟用 [裝置回寫](active-directory-aadconnect-feature-device-writeback.md) 功能。 |
-| UpgradeNotSupportedGroupWritebackEnabled |您已啟用 [群組回寫](active-directory-aadconnect-feature-preview.md#group-writeback) 功能。 |
-| UpgradeNotSupportedInvalidPersistedState |安裝不是快速設定或 DirSync 升級。 |
-| UpgradeNotSupportedMetaverseSizeExceeeded |Metaverse 中的物件超過 100,000 個。 |
-| UpgradeNotSupportedMultiForestSetup |您正連接到多個樹系。 快速安裝只會連接到一個樹系。 |
+| UpgradeNotSupportedCustomizedSyncRules |您已加入您自己的自訂規則 toohello 組態。 |
+| UpgradeNotSupportedDeviceWritebackEnabled |您已啟用 hello[裝置回寫](active-directory-aadconnect-feature-device-writeback.md)功能。 |
+| UpgradeNotSupportedGroupWritebackEnabled |您已啟用 hello[群組回寫](active-directory-aadconnect-feature-preview.md#group-writeback)功能。 |
+| UpgradeNotSupportedInvalidPersistedState |hello 安裝不是 Express 設定或 DirSync 升級。 |
+| UpgradeNotSupportedMetaverseSizeExceeeded |您 hello metaverse 中有 100,000 個以上的物件。 |
+| UpgradeNotSupportedMultiForestSetup |您要連接 toomore 比一個樹系。 快速安裝只連接 tooone 樹系。 |
 | UpgradeNotSupportedNonLocalDbInstall |您不是使用 SQL Server Express LocalDB 資料庫。 |
-| UpgradeNotSupportedNonMsolAccount |[AD 連接器帳戶](active-directory-aadconnect-accounts-permissions.md#active-directory-account)已不再是預設的 MSOL_ 帳戶。 |
-| UpgradeNotSupportedStagingModeEnabled |伺服器設定為 [預備模式](active-directory-aadconnectsync-operations.md#staging-mode)。 |
-| UpgradeNotSupportedUserWritebackEnabled |您已啟用 [使用者回寫](active-directory-aadconnect-feature-preview.md#user-writeback) 功能。 |
+| UpgradeNotSupportedNonMsolAccount |hello [AD 連接器帳戶](active-directory-aadconnect-accounts-permissions.md#active-directory-account)已 hello 預設 MSOL_ 帳戶不再。 |
+| UpgradeNotSupportedStagingModeEnabled |hello 伺服器中設定 toobe[預備模式](active-directory-aadconnectsync-operations.md#staging-mode)。 |
+| UpgradeNotSupportedUserWritebackEnabled |您已啟用 hello[使用者回寫](active-directory-aadconnect-feature-preview.md#user-writeback)功能。 |
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。

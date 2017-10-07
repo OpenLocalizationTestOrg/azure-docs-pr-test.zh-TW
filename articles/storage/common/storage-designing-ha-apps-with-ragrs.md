@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 讀取權限異地備援儲存體 (RA-GRS) 設計高可用性應用程式 | Microsoft Docs"
-description: "如何使用 Azure RA-GRS 儲存體來設計高可用性應用程式的架構，使其有足夠的彈性來處理中斷。"
+title: "aaaDesigning 高度可用的應用程式使用 Azure 讀取存取異地備援儲存體 (RA-GRS) |Microsoft 文件"
+description: "如何 toouse Azure RA-GRS 儲存體 tooarchitect 彈性的高可用性應用程式足夠 toohandle 中斷。"
 services: storage
 documentationcenter: .net
 author: robinsh
@@ -14,93 +14,93 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 1/19/2017
 ms.author: robinsh
-ms.openlocfilehash: adc7e23d8c9f869f2951490020e3d0f1a2b2e81c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e4a9fe7ef33eecd894408b3c1ef59920a248d1bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="designing-highly-available-applications-using-ra-grs"></a>使用 RA-GRS 設計高可用性應用程式
 
-雲端式基礎結構的常見功能是提供高可用性平台來裝載應用程式。 雲端式應用程式的開發人員必須仔細考慮如何運用此平台，來為使用者提供高可用性應用程式。 本文特別著重於開發人員如何利用 Azure 儲存體讀取權限異地備援儲存體 (RA-GRS)，來提高其應用程式的可用性。
+雲端式基礎結構的常見功能是提供高可用性平台來裝載應用程式。 以雲端為基礎的應用程式的開發人員必須考慮如何仔細 tooleverage 這個平台 toodeliver 高可用性應用程式 tootheir 使用者。 本文著重的特別開發人員如何使用 hello Azure 儲存體讀取權限地理備援儲存體 (RA-GRS) toomake 他們更多可用的應用程式。
 
-有四種備援選項 - LRS (本地備援儲存體)、ZRS (區域備援儲存體)、GRS (異地備援儲存體) 和 RA-GRS (讀取權限異地備援儲存體)。 我們將在本文中討論 GRS 和 RA-GRS。 使用 GRS 時，會在您設定儲存體帳戶時選取的主要區域中保留三份您的資料。 另外會以非同步方式在 Azure 所指定的次要區域中保留三個額外複本。 除了您具備次要複本的讀取權限之外，RA-GRS 與 GRS 一樣。 如需各種 Azure 儲存體備援選項的詳細資訊，請參閱 [Azure 儲存體複寫](https://docs.microsoft.com/en-us/azure/storage/storage-redundancy)。 該複寫文章也會示範主要和次要區域的配對。
+有四種備援選項 - LRS (本地備援儲存體)、ZRS (區域備援儲存體)、GRS (異地備援儲存體) 和 RA-GRS (讀取權限異地備援儲存體)。 我們 toodiscuss GRS 和 RA-GRS 本文中。 使用 GRS 時，三份資料會保留在 hello 設定 hello 儲存體帳戶時，您選取的主要區域。 另外會以非同步方式在 Azure 所指定的次要區域中保留三個額外複本。 RA-GRS 是 hello GRS 相同的動作，差別在於您具有讀取權限 toohello 次要複本。 如需 hello 不同的 Azure 儲存體備援選項的詳細資訊，請參閱[Azure 儲存體複寫](https://docs.microsoft.com/en-us/azure/storage/storage-redundancy)。 hello 複寫發行項也會顯示 hello 配對的 hello 主要和次要區域。
 
-本文提供一些程式碼片段，並在結尾處提供完整範例的連結，可供您下載並執行。
+有包含在本文中和連結 tooa 完整的範例，您可以下載並執行 hello 端的程式碼片段。
 
 ## <a name="key-features-of-ra-grs"></a>RA-GRS 的主要功能
 
-在討論如何使用 RA-GRS 儲存體之前，讓我們先談論它的屬性和行為。
+我們會討論如何之前 toouse RA-GRS 存放裝置，我們來談談其屬性和行為。
 
-* Azure 儲存體會在次要區域中保留一份您儲存於主要區域之資料的唯讀複本；如前所述，儲存體服務會判斷次要區域的位置。
+* Azure 儲存體維護的唯讀副本儲存在次要區域; 主要區域中的 hello 資料如先前所述，hello 儲存體服務位置決定的 hello 的 hello 次要區域。
 
-* 唯讀複本與主要區域中的資料是[最終一致](https://en.wikipedia.org/wiki/Eventual_consistency)的。
+* hello 唯讀複本是[最終一致](https://en.wikipedia.org/wiki/Eventual_consistency)hello hello 主要區域中的資料。
 
-* 針對 Blob、資料表和佇列，您可以查詢次要區域來取得 [上次同步處理時間] 值，讓您知道上次從主要區域複寫到次要區域是在何時發生 (Azure 檔案儲存體不支援此動作，它目前沒有 RA-GRS 備援)。
+* Blob、 資料表和佇列，您可以查詢 hello 次要區域*上次同步處理時間*會告訴您發生 hello hello 主要 toohello 次要區域中的最後一個複寫的值。 (Azure 檔案儲存體不支援此動作，它目前沒有 RA-GRS 備援)。
 
-* 您可以使用儲存體用戶端程式庫，來與主要或次要區域中的資料進行互動。 如果對主要區域的讀取要求逾時，您也可以將讀取要求自動重新導向到次要區域。
+* 您可以使用 hello 儲存體用戶端程式庫 toointeract hello 任一 hello 主要或次要區域中的資料。 您也可以重新導向讀取要求自動 toohello 次要區域如果逾時，讀取的要求 toohello 主要區域。
 
-* 如果產生會影響主要區域中資料可存取性的主要問題，Azure 團隊可能會觸發異地複寫容錯移轉，此時指向主要區域的 DNS 項目將會變更為指向次要區域。
+* 如果沒有主要的問題會影響 hello hello 主要區域中的 hello 資料存取範圍，hello Azure 團隊可能會觸發地理容錯移轉，此時 hello 指向 toohello 主要區域的 DNS 項目將會變更的 toopoint toohello 次要區域。
 
-* 發生異地複寫容錯移轉時，Azure 將會選取新的次要位置並將資料複寫到該位置，然後將次要 DNS 項目指向它。 次要端點要到儲存體帳戶複寫完成之後才能使用。 如需詳細資訊，請參閱[如果 Azure 儲存體發生中斷怎麼辦](https://docs.microsoft.com/en-us/azure/storage/storage-disaster-recovery-guidance)。
+* 發生地理容錯移轉時，Azure 將會選取新的次要位置和複寫 toothat hello 資料的位置，然後指向次要 DNS 項目 tooit hello。 hello 次要端點將無法使用，直到 hello 儲存體帳戶已完成複寫。 如需詳細資訊，請參閱[如果 Azure 儲存體中斷，就會發生何種 toodo](https://docs.microsoft.com/en-us/azure/storage/storage-disaster-recovery-guidance)。
 
 ## <a name="application-design-considerations-when-using-ra-grs"></a>使用 RA-GRS 時的應用程式設計考量
 
-本文的主要目的是示範如何設計即使主要資料中心發生重大災害，仍能繼續運作 (儘管容量有限) 的應用程式。 為了達成此目的，您可以讓應用程式在發生問題切換到從次要區域讀取，然後在主要區域再次可用時切換回來，藉以處理暫時性或長時間執行的問題。
+這篇文章 hello 主要用途是 tooshow 您如何 toodesign 的應用程式，將會繼續 toofunction （雖然中容量有限） 即使在 hello 事件的重大的災害，在 hello 主要資料中心。 您可以切換 tooread hello 次要區域中，而有問題，並 hello 主要區域再次可用時，切換回具有您的應用程式 toohandle 暫時性或長時間執行的問題。
 
 ### <a name="using-eventually-consistent-data"></a>使用最終一致的資料
 
-這個建議的解決方案假設可以將可能過時的資料傳回呼叫的應用程式。 由於次要資料最終會維持一致，因此有可能已將資料寫入主要區域，但對次要區域的更新因為主要區域變成不可存取而無法完成複寫。
+此建議的解決方案假設它是關係 tooreturn 可能過時資料 toohello 呼叫應用程式。 Hello 次要資料是最終一致的所以 hello 資料已寫入 toohello 主要，但是 hello 更新 toohello 次要已完成複寫時 hello 主要區域變成無法存取。
 
-例如，您的客戶成功提交更新，接著主要區域在將該更新傳播到次要區域時當機。 在此情況下，如果客戶接著要求讀回資料，則他會接收到過時的資料，而不是更新的資料。 您必須決定是否可接受此情況，如果可以，您該如何傳達給為客戶。 您將在本文後續內容中看到如何檢查次要資料的上次同步處理時間，以查看該次要資料是否為最新狀態。
+例如，客戶無法提交成功時，更新，然後 hello 主要可能會當機前 hello 更新傳播的 toohello 次要。 在此情況下，如果 hello 客戶會接著詢問 tooread hello 資料後備，他會收到 hello 過時資料，而非 hello 更新資料。 您必須決定這是否可接受的而且如果是，您將訊息 hello 客戶的方式。 您會看到如何 toocheck hello 上次同步處理時間稍後在本文章 toosee 中的 hello 次要資料如果 hello 次要處於最新狀態。
 
 ### <a name="handling-services-separately-or-all-together"></a>個別處理服務或一併處理所有服務
 
-儘管不太可能，但某一個服務可能會在其他服務仍可完全運作時變成無法使用。 您可以針對每個服務 (Blob、佇列、資料表) 個別處理重試和唯讀模式，或者以一般方式一併處理所有儲存體服務的重試。
+雖然不太可能，它可能會無法使用的一項服務 toobecome hello 其他服務仍然是完全正常運作時。 您可以控制代碼 hello 重試次數和唯讀模式，每個服務分開 （blob、 佇列、 資料表），或您可以同時處理的所有 hello 儲存體服務以一般方式重試次數。
 
-例如，如果您在應用程式中使用佇列和 Blob，您就能決定放入不同程式碼來處理這其中每一個項目的可重試錯誤。 接著，如果您從 Blob 服務進行重試，但佇列服務仍在運作，則只有處理 Blob 的應用程式組件會受到影響。 如果您決定要以一般方式處理所有儲存體服務重試，而且對 Blob 服務的呼叫會傳回可重試的錯誤，則對 Blob 服務和佇列服務的要求都將受到影響。
+比方說，如果您在應用程式中使用佇列和 blob，您可能決定 tooput toohandle 可重試錯誤時，不同的程式碼中的每一種。 然後重試收到 hello blob 服務，但仍然正常 hello 佇列服務，如果只有 hello 部分處理 blob 的應用程式都會受到影響。 如果您決定的 toohandle 所有儲存體服務會重試以一般方式並呼叫 toohello blob 服務傳回重試錯誤，然後要求 tooboth hello blob 服務和 hello 佇列服務將會受到影響。
 
-這最終取決於應用程式的複雜性。 在您偵測到主要區域中發生任何儲存體服務的問題時，您可能會決定不要處理服務所造成的失敗，而是改為將所有儲存體服務的讀取要求重新導向到次要區域，並在唯讀模式中執行應用程式。
+最後，這取決於您的應用程式的 hello 複雜性。 您可以決定 toohandle hello 失敗服務，但改為 tooredirect 讀取所有儲存體服務 toohello 次要區域的要求時您 hello 主要區域中偵測到任何儲存體服務的問題，請在唯讀模式中執行 hello 應用程式。
 
 ### <a name="other-considerations"></a>其他考量
 
-以下是我們將在本文其餘內容中討論的其他考量。
+這些是 hello hello 本文其餘部分中，我們將討論其他考量。
 
-*   使用斷路器模式處理讀取要求的重試
+*   處理重試讀取要求，使用 hello 斷路器模式
 
-*   最終一致的資料和上次同步處理時間
+*   最終一致的資料和 hello 上次同步處理時間
 
 *   測試
 
 ## <a name="running-your-application-in-read-only-mode"></a>在唯讀模式中執行您的應用程式
 
-若要使用 RA-GRS 儲存體，您必須能夠同時處理失敗的讀取要求和失敗的更新要求 (透過更新，在此案例中表示插入、更新和刪除)。 如果主要資料中心失敗，可將讀取要求重新導向到次要資料中心，但由於次要資料中心是唯讀的，所以無法對更新要求執行此動作。 基於這個理由，您必須想辦法在唯讀模式中執行您的應用程式。
+toouse RA-GRS 儲存體，您必須是能夠 toohandle 這兩個無法讀取的要求，失敗更新要求 （在此情況下這表示插入、 更新和刪除的更新）。 如果 hello 主要資料中心失敗，讀取要求的可重新導向的 toohello 次要資料中心，但因為 hello 次要唯讀狀態，無法更新要求。 基於這個理由，您需要某些方式 toorun 唯讀模式中的應用程式。
 
-例如，您可以設定旗標，在將任何更新提交到儲存體服務之前先加以檢查。 當其中一個更新要求傳入時，您可以略過它，並將適當的回應傳回給客戶。 您甚至可以在問題解決之前完全停用某些功能，並通知使用者，這些功能暫時無法使用。
+例如，您可以設定將送出的任何更新要求 toohello 儲存體服務之前檢查的旗標。 其中一個 hello 更新要求時，您可以略過它，並傳回適當的回應 toohello 客戶。 您甚至可能會想 toodisable 特定功能完全 hello 問題解決之前，並通知使用者這些功能會暫時無法使用。
 
-如果您決定要個別處理每個服務的錯誤，也需要處理服務在唯讀模式中執行您應用程式的能力。 您可以針對每個可啟用和停用的服務設定唯讀旗標，然後在程式碼的適當位置處理適當的旗標。
+如果您分別決定 toohandle 錯誤，以取得每個服務，您也必須 toohandle hello 能力 toorun 唯讀模式中的應用程式服務。 您可能會有唯讀旗標，為每個服務可啟用和停用和控制代碼 hello hello 程式碼中的適當位置中的適當旗標。
 
-能夠在唯讀模式中執行您的應用程式有另一個好處 - 這讓您能夠在主要應用程式升級期間確保有限的功能。 您可以觸發應用程式在唯讀模式中執行並指向次要資料中心，確保當您進行升級時，不會有人正在存取主要區域中的資料。
+正在 toorun 無法在唯讀模式下的應用程式具有另一個好處 – 可讓您在進行主要應用程式升級期間 hello 能力 tooensure 有限的功能。 您可以觸發唯讀模式和點 toohello 次要資料中心，您的應用程式 toorun 確保沒有人正在存取 hello hello 主要區域中的資料時要進行升級。
 
 ## <a name="handling-updates-when-running-in-read-only-mode"></a>在唯讀模式中執行時處理更新
 
-有許多方法可在唯讀模式中執行時處理更新要求。 我們不會全面討論此問題，但一般來說，有一些模式是您需要考量的。
+有很多種 toohandle 更新要求時在唯讀模式下執行。 我們不會全面討論此問題，但一般來說，有一些模式是您需要考量的。
 
-1.  您可以回應您的使用者，並告訴他們，您目前不會接收更新。 例如，連絡人管理系統能夠讓客戶存取連絡人資訊，但無法進行更新。
+1.  您可以回應 tooyour 使用者，告訴他們您目前沒有接收更新。 例如，連絡人管理系統無法啟用客戶 tooaccess 連絡資訊，但無法進行更新。
 
-2.  您可以將更新加入其他區域中的佇列。 在此情況下，您會將擱置中的更新要求寫入不同區域中的佇列，然後想辦法在主要資料中心再次上線之後處理這些要求。 在此案例中，您應該讓客戶知道已將要求的更新排入佇列，以供稍後處理。
+2.  您可以將更新加入其他區域中的佇列。 在此情況下，您會在不同區域中，撰寫您的待更新要求 tooa 佇列，然後的方式 tooprocess 這些要求，hello 主要資料中心再次上線之後。 在此案例中，您應該讓 hello 客戶知道 hello 更新要求會排入佇列供稍後處理。
 
-3.  您可以將更新寫入其他區域中的儲存體帳戶。 然後在主要資料中心再度上線時，您就能根據資料結構，想辦法將這些更新合併到主要資料。 例如，如果您建立了名稱中含有日期/時間戳記的不同檔案，就能將這些檔案複製回主要區域。 這適用於某些工作負載，例如記錄和 iOT 資料。
+3.  您可以撰寫您的更新 tooa 儲存體帳戶，另一個區域中。 接著當 hello 主要資料中心再次上線，您可以讓方式 toomerge 為 hello 主要資料，根據 hello hello 資料結構的更新。 例如，如果您要建立個別的檔案與 hello 名稱中的日期/時間戳記，您可以複製這些檔案後 toohello 主要區域。 這適用於某些工作負載，例如記錄和 iOT 資料。
 
 ## <a name="handling-retries"></a>處理重試
 
-您如何知道哪些錯誤是可重試的？ 這取決於儲存體用戶端程式庫。 例如，404 錯誤 (找不到資源) 是不可重試的，因為重試很可能不會順利完成。 相反地，500 錯誤是可重試的，因為它是伺服器錯誤，而且可能只是暫時性問題。 如需詳細資訊，請參閱 .NET 儲存體用戶端程式庫中的 [ExponentialRetry 類別的開放原始程式碼 (英文)](https://github.com/Azure/azure-storage-net/blob/87b84b3d5ee884c7adc10e494e2c7060956515d0/Lib/Common/RetryPolicies/ExponentialRetry.cs) (尋找 ShouldRetry 方法)。
+您如何知道哪些錯誤是可重試的？ 這取決於 hello 儲存體用戶端程式庫。 例如，404 錯誤 （找不到資源） 不是可重試因為重試一次它不可能 tooresult 成功。 Hello 相反地，500 錯誤是發生可重試因為伺服器發生錯誤，而且也可能只是暫時性的問題。 如需詳細資訊，請參閱 hello[開啟 hello ExponentialRetry 類別原始程式碼](https://github.com/Azure/azure-storage-net/blob/87b84b3d5ee884c7adc10e494e2c7060956515d0/Lib/Common/RetryPolicies/ExponentialRetry.cs)hello.NET 儲存體用戶端程式庫。 （尋找 hello ShouldRetry 方法）。
 
 ### <a name="read-requests"></a>讀取要求
 
-如果主要儲存體發生問題，就可以將讀取要求重新導向到次要儲存體。 如前面[最終使用一致的資料](#using-eventually-consistent-data)中所述，您的應用程式必須可以接受可能讀取到過時的資料。 如果您使用儲存體用戶端程式庫來存取 RA-GRS 資料，就可以藉由將 **LocationMode** 屬性值設為下列其中一個值來指定讀取要求的重試行為：
+如果沒有發生問題的主要儲存體讀取要求的可重新導向的 toosecondary 儲存體。 如前面所述在[最終使用一致的資料](#using-eventually-consistent-data)，它必須是可接受應用程式 toopotentially 閱讀過時資料。 如果您使用 hello 儲存體用戶端程式庫 tooaccess RA-GRS 資料，您可以設定 hello 的值來指定的讀取要求的 hello 重試行**LocationMode**屬性 tooone hello 以下的：
 
-*   **PrimaryOnly** (預設值)
+*   **Primaryonly 啟動**  (hello 預設值)
 
 *   **PrimaryThenSecondary**
 
@@ -108,54 +108,54 @@ ms.lasthandoff: 08/29/2017
 
 *   **SecondaryThenPrimary**
 
-當您將 **LocationMode** 設為 **PrimaryThenSecondary** 時，如果對主要端點的最初讀取要求失敗且產生可重試的錯誤，則用戶端會自動對次要端點提出另一個讀取要求。 如果錯誤是伺服器逾時，則用戶端在接收到服務所提供的可重試錯誤之前，必須等候逾時到期。
+當您將 hello **LocationMode**太**PrimaryThenSecondary**，如果 hello 初始讀取要求 toohello 主要端點失敗，發生可重試的錯誤、 hello 用戶端會自動將另一次讀取要求 toohello 次要端點。 如果伺服器逾時是 hello 錯誤，則 hello 用戶端將有 hello 逾時 tooexpire 的 toowait 才從 hello 服務收到可重試的錯誤。
 
-當您決定如何回應可重試的錯誤時，基本上有兩種情況需要考量：
+有兩個基本上案例 tooconsider 當您決定如何 toorespond tooa 重試錯誤：
 
-*   這是一個獨立的問題，而對主要端點的後續要求將不會傳回可重試的錯誤。 舉例來說，這可能發生在有暫時性網路錯誤時。
+*   這是隔離的問題，而且 toohello 主要端點時，後續要求將不會傳回可重試的錯誤。 舉例來說，這可能發生在有暫時性網路錯誤時。
 
-    在此案例中，將 **LocationMode** 設為 **PrimaryThenSecondary** 並不會對效能產生顯著的負面影響，因為這很少發生。
+    在此案例中，沒有顯著的效能負面影響中沒有具有**LocationMode**設定得**PrimaryThenSecondary**因為這只會發生很少。
 
-*   這是一個與主要區域中至少一個儲存體服務相關的問題，而對主要區域中該服務的所有後續要求很可能會在一段時間內傳回可重試的錯誤。 如果主要區域完全無法存取，即為一例。
+*   這是與 hello hello 主要區域中的儲存體服務中至少一個問題，而且 hello 主要區域中的所有後續要求 toothat 服務可能 tooreturn 可重試錯誤，一段時間。 舉例來說，這是 hello 主要區域是否完全無法存取。
 
-    在此案例中，會對效能產生負面影響，因為您的所有讀取要求都會先嘗試主要端點、等候逾時到期，然後切換到次要端點。
+    在此案例中，會對效能帶來負面影響因為您所有的讀取的要求會先嘗試 hello 主要端點，請等候 hello 逾時 tooexpire，然後切換 toohello 次要端點。
 
-針對這些情況，您應該確認主要端點會持續發生問題，並藉由將 **LocationMode** 屬性設為 **SecondaryOnly**，直接將所有讀取要求傳送到次要端點。 此時，您也應該將應用程式變更為在唯讀模式中執行。 這種方法稱為[斷路器模式 (英文)](https://msdn.microsoft.com/library/dn589784.aspx)。
+針對這些案例，您應該識別可那里 hello 主要端點進行中的問題，並傳送所有讀取要求直接 toohello 次要端點，藉由設定 hello **LocationMode**屬性太**SecondaryOnly**。 此時，您也應該變更 hello 應用程式 toorun 以唯讀模式。 這種方法稱為 hello[斷路器模式](https://msdn.microsoft.com/library/dn589784.aspx)。
 
 ### <a name="update-requests"></a>更新要求
 
-斷路器模式也適用於更新要求。 不過，無法將更新要求重新導向到唯讀的次要儲存體。 針對這些要求，您應該讓 **LocationMode**屬性維持 **PrimaryOnly** (預設值) 的設定。 若要處理這些錯誤，您可以將計量套用到這些要求 (例如，一列 10 個失敗)，並在到達臨界值時，將應用程式切換回唯讀模式。 您可以使用與下一個關於斷路器模式的小節中所述的相同方法來返回更新模式。
+hello 斷路器模式也可以套用的 tooupdate 要求。 不過，更新的要求不可重新導向的 toosecondary 儲存區，這是唯讀的。 這些要求，您應該保留 hello **LocationMode**屬性設定太**primaryonly 啟動**  (hello 預設值)。 toohandle 這些錯誤，您可以套用度量 toothese 要求 – 例如在一個資料列 – 10 失敗，並符合您的閾值時，切換到唯讀模式的 hello 應用程式。 您可以使用 hello 相同方法來傳回 tooupdate 模式所需 hello 斷路器模式的 hello 下一節中，如下所述。
 
 ## <a name="circuit-breaker-pattern"></a>斷路器模式
 
-在您的應用程式中使用斷路器模式，可防止重複重試很可能會失敗的作業。 它可以讓應用程式繼續執行，而不會在以指數方式重試作業時佔用時間。 它也會偵測到已修正錯誤的時間，應用程式可於該時間點再次重試此作業。
+應用程式中使用 hello 斷路器模式可以防止它的作業可能 toofail 重複重試一次。 它可讓 hello 應用程式 toocontinue toorun，而非佔用 hello 作業會以指數方式重試時的時間。 它也會偵測 hello 錯誤已修正，此時時間 hello 應用程式可以 hello 再次嘗試操作。
 
-### <a name="how-to-implement-the-circuit-breaker-pattern"></a>如何實作斷路器模式
+### <a name="how-tooimplement-hello-circuit-breaker-pattern"></a>如何 tooimplement hello 斷路器模式
 
-若要確認主要端點持續發生問題，您可以監視用戶端發生可重試錯誤的頻率。 由於每個案例不同，因此，您必須決定要用於決定切換到次要端點，並在唯讀模式中執行應用程式的臨界值。 例如，如果沒有成功的資料列中有 10 個錯誤，則您可能決定執行切換。 另一個範例是假設 2 分鐘內有 90 % 的要求失敗，就進行切換。
+tooidentify 持續性的問題與主要端點，您可以監視 hello 用戶端發生可重試錯誤的頻率。 由於每個案例有不同，您會有 toodecide hello 臨界值想 toouse hello 決策 tooswitch toohello 次要端點，並在唯讀模式下執行 hello 應用程式。 比方說，您可以決定 tooperform hello 參數，如果不成功的資料列中有 10 個錯誤。 另一個例子是 tooswitch 如果 90 %2 分鐘內的 hello 要求失敗。
 
-針對第一個案例，您只需保留失敗的計數，而且如果在到達最大值之前成功，則會將計數設定為零。 針對第二個案例，有一個實作它的方式是使用 MemoryCache 物件 (在 .NET 中)。 針對每個要求，將 CacheItem 新增到快取、將值設為成功 (1) 或失敗 (0)，然後將到期時間設定為從目前開始 2 分鐘 (或任何時間限制)。 到達項目的到期時間時，即會自動移除項目。 這將會為您提供一個 2 分鐘循環的視窗。 每當您對儲存體服務提出要求時，您要先跨 MemoryCache 物件使用 Linq 查詢，藉由加總這些值並除以計數來計算成功百分比。 當成功百分比低於某個臨界值 (例如 10%) 時，將讀取要求的 **LocationMode** 屬性設為 **SecondaryOnly**，並將應用程式切換到唯讀模式，然後再繼續。
+Hello 第一個案例中，您可以只保留的 hello 失敗計數，如果沒有到達之前成功 hello toozero 後的最大值、 設定 hello 計數。 Hello 第二個案例中，它是 toouse 的其中一種方式 tooimplement hello MemoryCache 物件 （在.NET)。 每個要求都將加入 CacheItem toohello 快取、 設定 hello 值 toosuccess (1) 或失敗 (0)，並設定 hello 到期時間 too2 分鐘從現在 （或是指定任何時間限制）。 當達到的項目到期時間時，會自動移除 hello 項目。 這將會為您提供一個 2 分鐘循環的視窗。 請要求 toohello 對儲存體服務，每次您先使用 Linq 查詢跨 hello MemoryCache 物件 toocalculate hello 成功百分比方式加總 hello 值，並除以 hello 計數。 當 hello 成功百分比低於某個閾值 （如 10%) 時，設定 hello **LocationMode**屬性讀取要求太**SecondaryOnly**並切換到唯讀模式之前 hello 應用程式繼續進行。
 
-用來判斷何時要進行切換的錯誤臨界值可能會因應用程式中的服務不同而有所差異，因此您應該考慮讓它們成為可設定的參數。 這也是您決定個別處理每個服務之可重試錯誤的地方 (或當成一個來處理)，如先前所述。
+錯誤的 hello 臨界值時 toomake hello 參數可能因服務 tooservice 在您的應用程式，因此您應該考慮讓它們可設定參數，請使用 toodetermine。 這也是以在該處您分別決定每個服務 toohandle 可重試錯誤，或成為其中一員，如先前所討論。
 
-另一個考量是如何處理應用程式的多個執行個體，以及當您在每個執行個體中偵測到可重試的錯誤時該怎麼辦。 例如，您可能有 20 個 VM 正載入相同的應用程式來執行。 您要個別處理每個執行個體嗎？ 如果有一個執行個體開始發生問題，您想要將回應只限制在該執行個體，或者您要在一個執行個體發生問題時，嘗試以相同方式回應所有執行個體？ 個別處理執行個體會比嘗試在它們之間協調回應更簡單，但該如何做則取決於您的應用程式架構。
+另一個考量是如何 toohandle 多個執行個體的應用程式，以及哪些 toodo，當您在每個執行個體中偵測可重試的錯誤。 例如，您可能有 20 的 Vm 執行以相同的應用程式載入的 hello。 您要個別處理每個執行個體嗎？ 如果一個執行個體啟動問題、 是否要 toolimit hello 回應 toojust 這個執行個體，或您想 tootry toohave 所有執行個體在回應 hello 相同一個執行個體發生問題時？ 分別處理 hello 執行個體，會比嘗試 toocoordinate hello 回應跨，更簡單，但做法取決於您的應用程式架構。
 
-### <a name="options-for-monitoring-the-error-frequency"></a>監視錯誤頻率的選項
+### <a name="options-for-monitoring-hello-error-frequency"></a>監視 hello 錯誤頻率的選項
 
-您有三個主要選項可用來監視主要區域中的重試頻率，以判斷何時要切換到次要區域，並將應用程式變更為在唯讀模式中執行。
+您有三個主要選項時透過 toohello 次要區域和變更 tooswitch hello 唯讀模式中的應用程式 toorun 監視的重試次數 hello toodetermine 順序中的主要區域中的 hello 頻率。
 
-*   針對您傳遞到儲存體要求的 [**OperationContext**](http://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.operationcontext.aspx) 物件上的 [**Retrying**](http://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.operationcontext.retrying.aspx) 事件新增處理常式 - 這是本文所示的方法，並會在隨附的範例中使用。 每當用戶端重試要求時，這些事件即會觸發，讓您能夠追蹤用戶端在主要端點上發生可重試錯誤的頻率。
+*   加入的處理常式 hello [**正在重試**](http://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.operationcontext.retrying.aspx)事件 hello [ **OperationContext** ](http://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.operationcontext.aspx)物件傳遞 tooyour 儲存體要求 – 這是 hello方法會顯示在這份文件，而且 hello 隨附的範例中使用。 每當 hello 用戶端重試要求時，會引發這些事件，讓您 tootrack 頻率 hello 用戶端發生可重試錯誤上主要端點。
 
     ```csharp 
     operationContext.Retrying += (sender, arguments) =>
     {
-        // Retrying in the primary region
+        // Retrying in hello primary region
         if (arguments.Request.Host == primaryhostname)
             ...
     };
     ```
 
-*   在自訂重試原則的 [**Evaluate**](http://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.evaluate.aspx) 方法中，您可以在每次進行重試時執行自訂程式碼。 除了記錄重試發生的時間，這也能讓您有機會修改重試行為。
+*   在 hello [**評估**](http://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.evaluate.aspx)方法中的自訂重試原則，您可以執行自訂程式碼，每當重試會發生。 加法 toorecording 重試發生失敗時，這也可讓您 hello 機會 toomodify 重試行中。
 
     ```csharp 
     public RetryInfo Evaluate(RetryContext retryContext,
@@ -172,7 +172,7 @@ ms.lasthandoff: 08/29/2017
             return null;
         }
 
-        // Monitor retries in the primary location
+        // Monitor retries in hello primary location
         ...
 
         // Determine RetryInterval and TargetLocation
@@ -183,37 +183,37 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-*   第三個方法是在持續使用虛設的讀取要求 (例如讀取小型 blob) 來 ping 您主要儲存體端點的應用程式中，實作自訂的監視元件來判斷其健康狀態。 這會佔用某些資源，但時間不是很長。 在探索到達到您臨界值的問題時，您接著可以執行切換到 **SecondaryOnly** 和唯讀模式。
+*   hello 第三種方法是 tooimplement 持續偵測您的主要儲存體端點與虛擬應用程式中的自訂監視元件讀取要求 （例如讀取小型 blob） toodetermine 其健全狀況。 這會佔用某些資源，但時間不是很長。 當探索問題時，達到臨界值時，您會接著執行 hello 參數太**SecondaryOnly**和唯讀模式。
 
-您會想要在某個時間點切換回來，以使用主要端點並允許更新。 如果使用上述前兩個方法的其中一個，您可能只需切換回主要端點，並在執行任意選取的時間量或作業數目之後啟用更新模式。 您接著可以讓它重新進行重試邏輯。 如果已修正問題，它將會繼續使用主要端點，並允許更新。 如果仍有問題，它會在無法達到您所設定的準則時，再次切換回次要端點和唯讀模式。
+在某些時候，您會想 tooswitch 後 toousing hello 主要端點，並允許更新。 如果使用其中一種 hello 上面所列的前兩個方法，只要無法切換後 toohello 主要端點，並執行可任意所選的時間內或作業的數目之後啟用更新模式。 您可以讓它再次瀏覽 hello 重試邏輯。 如果已修正 hello 問題，它將繼續 toouse hello 主要端點，並允許更新。 如果仍有問題，會一次後失敗的已設定的 hello 準則切換後 toohello 次要端點和唯讀模式。
 
-針對第三個案例，當 ping 主要儲存體端點再度變為成功時，您就能觸發切換回 **PrimaryOnly**，並繼續允許更新。
+Hello 第三個案例中，當執行 ping hello 主要儲存體端點再次變為無法成功，您可以觸發 hello 切換回太**primaryonly 啟動** 並繼續允許更新。
 
 ## <a name="handling-eventually-consistent-data"></a>處理最終一致的資料
 
-RA-GRS 的運作方式是將交易從主要區域複寫到次要區域。 此複寫程序可保證次要區域中的資料是*最終一致*的。 這表示，主要區域中的所有交易最終都會出現在次要區域中，但有可能會延遲出現，而且不保證交易會以原本在主要區域中套用它們的相同順序到達次要區域。 如果您的交易不按順序到達次要區域，則您可能要考慮讓次要區域中的資料處於不一致狀態，直到服務更新為止。
+RA-GRS 運作方式是從 hello 主要 toohello 次要區域複寫的交易。 此複寫程序可以確保 hello hello 次要區域中的資料將會*最終一致*。 這表示，所有 hello 主要區域中的 hello 交易最後會都出現在 hello 次要區域中，但可能會有延隔時間才會都出現，而且沒有任何的保證 hello 交易到達的 hello 相同順序中的 hello 次要區域可在其中它們當初套用 hello 主要區域中。 如果您的交易到達 hello 次要區域不按順序，您*可能*hello 服務趕上之前，請考慮您的資料不一致的狀態中的 hello 次要區域 toobe。
 
-下表所示的範例是，當您更新員工的詳細資料，使她成為「系統管理員」角色的成員時，可能會發生什麼情況。 基於此範例，這會要求您更新**員工**實體，並利用系統管理員總數的計數來更新**系統管理員角色**實體。 請注意，如何在次要區域中不按順序套用更新。
+hello 下表顯示當您更新的員工 toomake hello 詳細資料時，可能會發生什麼情況的範例她的 hello 成員*管理員*角色。 對於此範例中的 hello 起見，這需要您更新 hello**員工**實體並更新**系統管理員角色**實體系統管理員的 hello 總數的計數。 請注意 hello 套用更新的順序 hello 次要區域中。
 
 | <bpt id="p1">**</bpt>Time<ept id="p1">**</ept> | **交易**                                            | **複寫**                       | **上次同步處理時間** | **結果** |
 |----------|------------------------------------------------------------|---------------------------------------|--------------------|------------| 
-| T0       | 交易 A： <br> 會在主要區域中 <br> 插入員工實體 |                                   |                    | 交易 A 已插入至主要區域，<br> 但尚未複寫。 |
-| T1       |                                                            | 交易 A <br> 已複寫到<br> 次要區域 | T1 | 交易 A 已複寫到次要區域。 <br>已更新上次同步處理時間。    |
-| T2       | 交易 B：<br>更新<br> 主要區域中的<br> 員工實體  |                                | T1                 | 交易 B 已寫入主要區域，<br> 但尚未複寫。  |
-| T3       | 交易 C：<br> 更新 <br>administrator<br>角色實體，位於<br>primary |                    | T1                 | 交易 C 已寫入主要區域，<br> 但尚未複寫。  |
-| *T4*     |                                                       | 交易 C <br>已複寫到<br> 次要區域 | T1         | 交易 C 已複寫到次要區域。<br>無法更新 LastSyncTime，因為 <br>尚未複寫交易 B。|
-| *T5*     | 從次要區域 <br>讀取實體                           |                                  | T1                 | 您取得員工實體的過時值， <br> 因為交易 B 尚未 <br> 複寫。 您取得系統管理員角色實體<br> 的新值，因為 C<br> 已複寫。 上次同步處理時間仍然尚未<br> 更新，因為交易 B<br> 尚未複寫。 您可以說<br>系統管理員角色實體不一致， <br>因為實體日期/時間是在 <br>上次同步處理時間之後。 |
+| T0       | 交易 A： <br> 會在主要區域中 <br> 插入員工實體 |                                   |                    | 交易 A 插入 tooprimary，<br> 但尚未複寫。 |
+| T1       |                                                            | 交易 A <br> 已複寫到<br> 次要區域 | T1 | 交易 A 複寫 toosecondary。 <br>已更新上次同步處理時間。    |
+| T2       | 交易 B：<br>更新<br> 主要區域中的<br> 員工實體  |                                | T1                 | 交易 B 寫入 tooprimary，<br> 但尚未複寫。  |
+| T3       | 交易 C：<br> 更新 <br>administrator<br>角色實體，位於<br>primary |                    | T1                 | 交易寫入 tooprimary C<br> 但尚未複寫。  |
+| *T4*     |                                                       | 交易 C <br>已複寫到<br> 次要區域 | T1         | C 的交易複寫 toosecondary。<br>無法更新 LastSyncTime，因為 <br>尚未複寫交易 B。|
+| *T5*     | 從次要區域 <br>讀取實體                           |                                  | T1                 | 取得 hello 員工過時的值 <br> 因為交易 B 尚未 <br> 複寫。 取得 hello 新值<br> 的新值，因為 C<br> 已複寫。 上次同步處理時間仍然尚未<br> 更新，因為交易 B<br> 尚未複寫。 您可以說<br>系統管理員角色實體不一致， <br>因為 hello 實體日期/時間是之後 <br>hello 上次同步處理時間。 |
 | *T6*     |                                                      | 交易 B<br> 已複寫到<br> 次要區域 | T6                 | *T6* - 透過 C 的所有交易都 <br>已複寫，上次同步處理時間<br> 已更新。 |
 
-在此範例中，假設用戶端會在 T5 從次要區域切換到讀取。 它可以在此時順利讀取**系統管理員角色**實體，但實體包含的系統管理員計數值與**員工**實體數目不一致，後者在此時標示為次要區域中的系統管理員。 您的用戶端可能只會顯示此值，存有資訊不一致的風險。 或者，用戶端可能嘗試判斷**系統管理員角色**處於可能不一致的狀態，因為更新並未按順序進行，然後通知使用者此一事實。
+在此範例中，假設 hello 用戶端參數 tooreading 從 T5 hello 次要區域。 可順利讀取 hello**系統管理員角色**實體，在這個階段，但 hello 實體包含的系統管理員與 hello 數目不一致的 hello 計數的值**員工**實體此時標示為 hello 次要區域中的管理員。 您的用戶端可能只會顯示這個值，與 hello 風險，它是不一致的資訊。 或者，hello 用戶端無法嘗試 toodetermine 該 hello**系統管理員角色**處於可能不一致的狀態，因此 hello 更新是按順序，然後通知 hello 使用者，此事實。
 
-若要辨識其中可能含有不一致的資料，用戶端可以使用「上次同步處理時間」的值，你可以隨時查詢儲存體服務來取得此值。 這會告訴您次要區域中的資料上次保持一致的時間，以及在此時間點之前服務套用所有交易的時間。 在上述範例中，當服務在次要區域中插入**員工**實體之後，就會將上次同步處理時間設為 *T1*。 它會保持在 *T1*，直到將其設為 *T6* 之後，服務更新次要區域中的**員工**實體為止。 如果用戶端會在其讀取 *T5* 上的實體時擷取上次同步處理時間，就能與實體上的時間戳記進行比較。 如果實體上的時間戳記晚於上次同步處理時間，則該實體可能會處於不一致狀態，而您就能針對應用程式採取適當的動作。 您必須知道上次對主要區域完成更新的時間，才能使用此欄位。
+toorecognize 有潛在的不一致的資料，hello 用戶端可以使用 hello hello 值*上次同步處理時間*，就可以隨時藉由查詢儲存體服務。 這會告訴您 hello 次要區域中的 hello 資料上次 hello 時間一致和時套用 hello 服務所有 hello 交易先前 toothat 點的時間。 在 hello 範例中，如上所示之後 hello 服務插入 hello,**員工**hello 次要區域中的實體，hello 上次同步處理時間設定太*T1*。 它會保持*T1*直到 hello 服務更新 hello**員工**時設定太 hello 次要區域中的實體*T6*。 如果 hello 用戶端會擷取 hello 上次同步處理時間，它會讀取位於 hello 實體*T5*，它可以比較它與 hello hello 實體上的時間戳記。 Hello hello 實體上的時間戳記必須晚於 hello 上次同步處理時間，然後 hello 實體是潛在的不一致的狀態，且您可以採取任何是 hello 適當的動作，您的應用程式。 使用此欄位必須了解當 hello 上次更新 toohello 主要已完成。
 
 ## <a name="testing"></a>測試
 
-請務必測試應用程式在發生可重試的錯誤時會如預期般運作。 例如，您需要測試應用程式會在偵測到問題時切換到次要區域並進入唯讀模式，然後在主要區域再度變成可供使用時切換回來。 若要這樣做，您需要想辦法模擬可重試的錯誤，並控制其發生頻率。
+應用程式的行為如預期般發生可重試的錯誤時的重要 tootest 它。 例如，您需要 hello 應用程式切換 toohello 次要的 tootest 而且到唯讀模式時偵測到問題，並切換回 hello 主要區域何時可供使用一次。 toodo，您需要的方式 toosimulate 可重試錯誤，並控制在發生的頻率。
 
-您可以使用 [Fiddler (英文)](http://www.telerik.com/fiddler)，來攔截與修改指令碼中的 HTTP 回應。 此指令碼可以識別來自您主要端點的回應，並將 HTTP 狀態碼變更為儲存體用戶端程式庫可辨識為可重試錯誤的狀態碼。 此程式碼片段示範一個簡單的 Fiddler 指令碼範例，來攔截對 **employeedata** 資料表之讀取要求的回應，以傳回 502 狀態：
+您可以使用[Fiddler](http://www.telerik.com/fiddler) toointercept 和修改指令碼中的 HTTP 回應。 此指令碼可以識別來自主要端點的回應，並變更 hello HTTP 狀態碼 tooone 該 hello 儲存體用戶端程式庫會辨識為可重試的錯誤。 這個程式碼片段會示範會攔截對 hello 回應 tooread 要求 Fiddler 指令碼的簡單範例**employeedata**資料表 tooreturn 502 狀態：
 
 ```java
 static function OnBeforeResponse(oSession: Session) {
@@ -225,12 +225,12 @@ static function OnBeforeResponse(oSession: Session) {
 }
 ```
 
-您可以擴充此範例，以攔截範圍較大的要求，而且只需變更其中的 **responseCode**，就能進一步模擬真實世界的案例。 如需自訂 Fiddler 指令碼的詳細資訊，請參閱 Fiddler 文件中的[修改要求或回應 (英文)](http://docs.telerik.com/fiddler/KnowledgeBase/FiddlerScript/ModifyRequestOrResponse)。
+您無法擴充此範例 toointercept 廣泛的要求，而且只變更 hello **responseCode**上其中部分 toobetter 模擬真實世界的實例。 如需自訂 Fiddler 指令碼的詳細資訊，請參閱[修改要求或回應](http://docs.telerik.com/fiddler/KnowledgeBase/FiddlerScript/ModifyRequestOrResponse)hello Fiddler 文件中。
 
-如果您已讓可用來將應用程式切換到唯讀模式的臨界值變成可設定的，就能更輕易地使用非實際執行的交易量來測試此行為。
+如果您做了 hello 切換您的應用程式僅限 tooread 模式可設定的臨界值，它將會更容易 tootest hello 行為與非實際執行的交易量。
 
 ## <a name="next-steps"></a>後續步驟
 
-* 如需讀取存取異地備援的詳細資訊 (包括另一個如何設定 LastSyncTime 的範例)，請參閱 [Microsoft Azure 儲存體備援選項與讀取權限異地備援儲存體 (英文)](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/)。
+* 如需有關讀取存取異地備援，包括如何設定 hello LastSyncTime，另一個範例，請參閱[Windows Azure 儲存體備援選項和讀取權限地理備援儲存體](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/)。
 
-* 如需示範如何在主要和次要端點之間來回切換的完整範例，請參閱 [Azure 範例 - 搭配 RA-GRS 儲存體使用斷路器模式 (英文)](https://github.com/Azure-Samples/storage-dotnet-circuit-breaker-pattern-ha-apps-using-ra-grs)。
+* 如需完整範例，顯示如何 toomake hello hello 主要和次要端點之間來回切換，請參閱[Azure 範例-使用 RA-GRS 儲存體與 hello 斷路器模式](https://github.com/Azure-Samples/storage-dotnet-circuit-breaker-pattern-ha-apps-using-ra-grs)。

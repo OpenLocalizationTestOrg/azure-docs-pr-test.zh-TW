@@ -1,6 +1,6 @@
 ---
-title: "如何將專案升級為目前版本的 Azure Tools | Microsoft Docs"
-description: "了解如何在 Visual Studio 中將 Azure 專案升級至目前版本的 Azure Tools"
+title: "aaaHow tooupgrade 專案 toohello 目前版本的 hello Azure tools |Microsoft 文件"
+description: "了解如何 tooupgrade Azure 專案的 Visual Studio toohello 目前版本的 hello Azure tools"
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 11/18/2016
 ms.author: kraigb
-ms.openlocfilehash: 9a35de7ca0e7161468181b21709e1bd9915d566f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c89ba43af0f2fd9db46ce0c90f0da3d70dc1510b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-upgrade-projects-to-the-current-version-of-the-azure-tools-for-visual-studio"></a>如何將專案升級為目前版本的 Azure Tools for Visual Studio
-## <a name="overview"></a>Overview
-安裝目前版本的 Azure Tools (或是比 1.6 版更新的舊版) 之後，任何使用 1.6 版 (2011 年 11 月) 以前的 Azure Tools 所建立的專案，在您開啟時會立即自動升級。 如果您使用這些工具的 1.6 版 (2011 年 11 月) 建立專案，且仍然安裝該版本，您可以在較舊版本中開啟這些專案，稍後再決定是否要將它們升級。
+# <a name="how-tooupgrade-projects-toohello-current-version-of-hello-azure-tools-for-visual-studio"></a>Tooupgrade 專案 toohello 最新版 hello Azure Tools for Visual Studio 的方式
+## <a name="overview"></a>概觀
+使用 Azure Tools 所建立的任何專案安裝 hello hello Azure Tools （或之前的版本比 1.6 版本更新） 的目前版本之後，早於 1.6 版 (11 月版 2011) 將會自動升級在您開啟。 如果您使用建立專案 hello 1.6 (11 月版 2011) 版本的工具和您仍然必須安裝該版本，您可以在 hello 較舊版本中開啟這些專案，並在稍後決定是否 tooupgrade 它們。
 
 ## <a name="how-your-project-changes-when-you-upgrade-it"></a>專案升級時有何變更
-如果專案自動升級，或您指定要將它升級，您的專案會修改為使用目前版本的某些組件，某些屬性也會變更，如本節所述。 如果您的專案需要其他變更，才能與較新版本的工具相容，您必須手動進行這些變更。
+如果專案會自動升級，或者您指定您要它，您的專案是的 tooupgrade 修改 toowork 與目前版本的特定組件，和某些屬性也會變更，如本節所述。 如果您的專案需要其他變更 toobe 相容 hello 工具 hello 較新版本，您必須手動進行這些變更。
 
-* Web 角色的 web.config 檔案和背景工作角色的 app.config 檔案會更新為參考較新版的 Microsoft.WindowsAzure.Diagnostics.DiagnosticMonitoirTraceListener.dll。
-* Microsoft.WindowsAzure.StorageClient.dll、Microsoft.WindowsAzure.Diagnostics.dll 和 Microsoft.WindowsAzure.ServiceRuntime.dll 組件會升級至新的版本。
-* 已儲存在 Azure 專案檔 (.ccproj) 的發佈設定檔，將會移到 **Publish** 子目錄中的另一個檔案，副檔名為 .azurePubXml。
-* 發佈設定檔中的某些屬性會更新為支援新的和變更的功能。 **AllowUpgrade** 會取代為 **DeploymentReplacementMethod**，因為您可以同時或以累加方式更新已部署的雲端服務。
-* 屬性 **UseIISExpressByDefault** 會加入並設為 false，使得用於偵錯的 Web 伺服器不會自動從網際網路資訊服務 (IIS) 切換為 IIS Express。 IIS Express 是由較新版本的工具所建立之專案的預設 Web 伺服器。
-* 如果 Azure 快取裝載於一或多個專案的角色，當專案升級時，服務組態 (.cscfg 檔) 和服務定義 (.csdef 檔) 中的某些屬性會變更。 如果專案使用 Azure 快取 NuGet 封裝，專案會升級到最新版的封裝。 您應該開啟 web.config 檔案，並確認用戶端組態在升級程序期間已妥善維護。 如果您加入 Azure 快取用戶端組件的參考，而未使用 NuGet 封裝，則不會更新這些組件。您必須手動更新對於新版本的參考。
+* hello web.config 檔案的 web 角色和背景工作角色的 hello app.config 檔案會更新的 tooreference hello 較新版的 Microsoft.WindowsAzure.Diagnostics.DiagnosticMonitoirTraceListener.dll。
+* hello Microsoft.WindowsAzure.StorageClient.dll、 Microsoft.WindowsAzure.Diagnostics.dll 和 microsoft.windowsazure.serviceruntime.dll 等組件會升級的 toohello 新版本。
+* 儲存在 hello Azure 專案檔 (.ccproj) 中的發行設定檔會移動的 tooa 個別檔案，與 hello 副檔名為.azurePubXml 且位於 hello**發行**子目錄。
+* Hello 中的某些屬性將發行設定檔的更新的 toosupport 新增和變更功能。 **AllowUpgrade** 會取代為 **DeploymentReplacementMethod**，因為您可以同時或以累加方式更新已部署的雲端服務。
+* hello 屬性**UseIISExpressByDefault**加入並設定 toofalse hello 用來偵錯的網頁伺服器將不會自動將變更網際網路資訊服務 (IIS) tooIIS Express。 IIS Express 是 hello 與 hello 工具 hello 較新版本所建立專案的預設 web 伺服器。
+* Azure 快取裝載在一或多個專案的角色，如果升級專案時，會變更 hello 服務組態 （.cscfg 檔） 和服務定義 （.csdef 檔） 中的某些屬性。 如果 hello 專案使用 hello Azure Caching NuGet 封裝，hello 專案是升級的 toohello hello 封裝最新版本。 您應該開啟 hello web.config 檔案，並確認 hello 用戶端組態已 hello 升級程序期間適當維護。 如果您沒有使用 hello NuGet 套件加入 hello 參考 tooAzure Caching 用戶端組件，這些組件不會更新。您必須手動更新這些參考 toohello 新版本。
 
 > [!IMPORTANT]
-> 在 F# 專案中，您必須手動更新 Azure 組件的參考，使它們參考這些組件的較新版本。
+> F # 專案，您必須手動更新參考 tooAzure 組件，使其參考這些組件的 hello 較新版本。
 > 
 > 
 
-### <a name="how-to-upgrade-an-azure-project-to-the-current-release"></a>如何將 Azure 專案升級至目前版本
-1. 將目前版本的 Azure tools 安裝到您想要用於升級專案的 Visual Studio 安裝，然後開啟您想要升級的專案。 如果專案是使用 1.6 版 (2011 年 11 月) 以前的 Azure Tools 建立，專案會自動升級至目前版本。 如果專案是使用 2011 年 11 月版本建立，且仍然安裝該版本，則會在該版本中開啟專案。
-2. 在 [方案總管] 中，開啟專案節點的捷徑功能表，選擇 [屬性]，然後在出現的對話方塊中選擇 [應用程式] 索引標籤。
+### <a name="how-tooupgrade-an-azure-project-toohello-current-release"></a>如何 tooupgrade Azure 專案 toohello 目前版本
+1. 安裝 hello 目前版本的 Visual Studio 的 hello 安裝到 hello Azure Tools 的 toouse hello 升級專案，以及您想 tooupgrade hello 然後開啟專案。 如果使用 Azure Tools 所建立 hello 專案早於 1.6 版 (2011 年 11 月)，hello 專案會自動升級的 toohello 目前版本。 如果 hello 專案已建立 hello 2011 年 11 月發行的仍安裝的版本，hello 專案會開啟該版本。
+2. 在 方案總管 中，開啟 hello hello 的專案節點的捷徑功能表選擇 **屬性**，然後選擇 hello**應用程式**hello 會出現對話方塊索引標籤。
    
-    [應用程式]  索引標籤會顯示與專案相關聯的工具版本。 如果出現目前版本的 Azure Tools，表示已經升級專案。 如果您已安裝的工具版本比索引標籤顯示的版本更新，則會出現 [升級]  按鈕。
-3. 選擇 [升級]  按鈕，將專案升級為目前版本的工具。
-4. 建置專案，然後解決因為 API 變更而造成的任何錯誤。 如需如何針對新版本來修改程式碼的相關資訊，請參閱特定 API 的文件。
+    hello**應用程式**索引標籤會顯示 hello 與 hello 專案相關聯的工具版本。 如果出現 hello 目前版本的 Azure Tools，已經升級 hello 專案。 如果您已安裝較新版的 hello 工具哪些 hello 索引標籤會顯示，比**升級**按鈕隨即顯示。
+3. 選擇 hello**升級**按鈕 tooupgrade hello tools 專案 toohello 目前版本。
+4. 建置 hello 專案，然後處理 API 變更而造成的任何錯誤。 如需如何 toomodify 您的程式碼 hello 新版本，請參閱 hello 文件 hello 特定 API。
 

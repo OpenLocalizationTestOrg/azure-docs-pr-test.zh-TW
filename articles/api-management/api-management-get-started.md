@@ -1,6 +1,6 @@
 ---
-title: "在 Azure API 管理中管理您的第一個 API | Microsoft Docs"
-description: "了解如何建立 API、加入作業，以及開始使用 API 管理。"
+title: "aaaManage 您在 Azure API 管理中的第一個 API |Microsoft 文件"
+description: "了解如何 toocreate 應用程式開發介面，加入作業，並開始使用 API 管理。"
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,67 +14,67 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 6e76d1ee08f804637999ef2ebf5d25becf6a0408
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7d43f33aa359c4d1e605e9fb41e43d323ca6a777
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-your-first-api-in-azure-api-management"></a>在 Azure API 管理中管理您的第一個 API
 ## <a name="overview"> </a>概觀
-本指南示範如何快速開始使用 Azure API 管理，以及進行您的第一個 API 呼叫。
+本指南也說明如何開始使用 Azure API 管理中的 tooquickly，並進行第一次的 API 呼叫。
 
 ## <a name="concepts"> </a>什麼是 Azure API 管理？
-您可以使用 Azure API 管理來取得任何後端，並根據該後端來啟用完善的 API 方案。
+您可以使用 Azure API 管理 tootake 任何後端，並啟動它為基礎的完整功能 API 程式。
 
 常見案例包括：
 
 * **保護行動基礎結構** 。
-* **促成 ISV 合作夥伴生態系統** 。
-* **執行內部 API 方案** 。
+* **啟用 ISV 合作夥伴生態系統**藉由提供快速的夥伴上架 hello 開發人員透過入口網站和建立從內部實作應用程式開發介面外觀 toodecouple 不敞開夥伴耗用量。
+* **執行內部的 API 程式**藉由提供集中式的位置，如 hello 組織 toocommunicate hello 可用性和最新相關變更 tooAPIs，控制組織的帳戶為基礎的存取為基礎之間的安全通道hello API 閘道和 hello 後端。
 
-系統是由下列元件所組成：
+hello 系統是由下列元件的 hello 所組成：
 
-* **API 閘道** 是可執行以下作業的端點：
+* hello **API 閘道**hello 端點的：
   
-  * 接受 API 呼叫，並將這些呼叫路由傳送到您的後端。
+  * 接受應用程式開發介面呼叫，並將其傳送 tooyour 後端。
   * 驗證 API 金鑰、JWT 權杖、憑證和其他認證。
   * 強制採用使用量配額和頻率限制。
-  * 即時轉換您的 API 且不需修改程式碼。
+  * 會將您的 API，而不需修改程式碼的 hello 立即轉換。
   * 快取設定的後端回應。
   * 記錄呼叫中繼資料以供分析使用。
-* **發行者入口網站** 是您設定 API 方案的管理介面。 使用方式：
+* hello**發行者入口網站**hello 系統管理介面設定您應用程式開發介面的程式。 使用方式：
   
   * 定義或匯入 API 結構描述。
   * 將 API 封裝至產品。
-  * 設定原則，例如 API 的配額或轉換。
+  * 設定原則，例如配額或 hello 應用程式開發介面上的轉換。
   * 從分析中取得見解。
   * 管理使用者。
-* **開發人員入口網站** 是供開發人員執行以下作業的主要網站空間：
+* hello**開發人員入口網站**做 hello 主要 web 存在為開發人員而言，它們可以在其中：
   
   * 閱讀 API 文件。
-  * 透過互動式主控台試用 API。
-  * 建立帳戶，並訂閱以取得 API 金鑰。
+  * 嘗試透過 hello 互動式主控台應用程式開發介面。
+  * 建立帳戶和訂閱 tooget API 金鑰。
   * 存取他們的使用量分析資料。
 
 ## <a name="create-service-instance"> </a>建立 API 管理執行個體
 > [!NOTE]
-> 若要完成此教學課程，您需要 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][Azure Free Trial]。
+> toocomplete 本教學課程中，您需要 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][Azure Free Trial]。
 > 
 > 
 
-使用 API 管理的第一個步驟是建立服務執行個體。 登入 [Azure 入口網站][Azure Portal]，然後按一下 [新增]、[Web + 行動]、[API 管理]。
+使用 API 管理中的 hello 第一個步驟是 toocreate 服務執行個體。 登入 toohello [Azure 入口網站][ Azure Portal]按一下**新增**， **Web + 行動**， **API 管理**。
 
 ![API Management new instance][api-management-create-instance-menu]
 
-針對 [名稱]，指定要用於服務 URL 的唯一子網域名稱。
+如**名稱**，指定唯一的子網域名稱 toouse hello 服務 url。
 
-針對您的服務執行個體，選擇需要的 [訂用帳戶]、[資源群組] 和 [位置]。
+選擇所需的 hello**訂用帳戶**，**資源群組**和**位置**服務執行個體。
 
-輸入 **Contoso Ltd.** 做為 [組織名稱]，然後在 [管理員電子郵件] 欄位中輸入您的電子郵件地址。
+輸入**Contoso Ltd.** hello**組織名稱**，並輸入您的電子郵件地址中 hello**系統管理員電子郵件**欄位。
 
 > [!NOTE]
-> 此電子郵件地址將用於自 API 管理系統傳送通知。 如需詳細資訊，請參閱[如何在 Azure API 管理中設定通知和電子郵件範本][How to configure notifications and email templates in Azure API Management]。
+> 此電子郵件地址用於從 hello API 管理系統的通知。 如需詳細資訊，請參閱[如何 tooconfigure 通知和電子郵件範本，在 Azure API 管理][How tooconfigure notifications and email templates in Azure API Management]。
 > 
 > 
 
@@ -83,40 +83,40 @@ ms.lasthandoff: 07/11/2017
 API 管理服務執行個體共有三種層次：開發人員、標準和高階。
 
 > [!NOTE]
-> 開發人員階層可用來針對不注重高可用性的 API 程式進行開發、測試及試驗。 在「標準」和「高階」層次中，您可以調整保留的單位計數以處理更多流量。 「標準」和「高階」層次可為您的 API 管理服務提供最高的處理能力和效能。 您可以使用任何階層來完成本教學課程。 如需關於 API 管理層次的詳細資訊，請參閱 [API 管理價格][API Management pricing]。
+> hello 開發人員層適用於開發、 測試及試驗 API 方案，高可用性不是問題。 在 hello Standard 和 Premium 層，您可以調整您的保留的單元計數 toohandle 更多流量。 hello Standard 和 Premium 層提供 API 管理服務以 hello 大部分處理能力和效能。 您可以使用任何階層來完成本教學課程。 如需關於 API 管理層次的詳細資訊，請參閱 [API 管理價格][API Management pricing]。
 > 
 > 
 
-按一下 [建立] 以開始佈建您的服務執行個體。
+按一下**建立**toostart 佈建您的服務執行個體。
 
 ![New API Management service][api-management-instance-created]
 
-建立服務執行個體之後，下一步是建立或匯入 API。
+一旦建立 hello 服務執行個體，hello 下一個步驟是 toocreate，或匯入應用程式開發介面。
 
 ## <a name="create-api"> </a>匯入 API
-API 包含可自用戶端應用程式叫用的一組作業。 API 作業會代理到現有的 Web 服務。
+API 包含可自用戶端應用程式叫用的一組作業。 應用程式開發介面作業會代理 tooexisting web 服務。
 
-您可以手動建立 API (並可加入作業)，或是匯入這兩者。 在本教學課程中，我們將針對由 Microsoft 所提供且裝載在 Azure 上的範例計算機 Web 服務來匯入 API。
+您可以手動建立 API (並可加入作業)，或是匯入這兩者。 在本教學課程中，我們將匯入範例計算機 web 服務由 Microsoft 提供，裝載於 Azure 的 hello 應用程式開發介面。
 
 > [!NOTE]
-> 如需建立 API 和手動新增作業的指引，請參閱[如何建立 API](api-management-howto-create-apis.md) 和[如何將作業新增至 API](api-management-howto-add-operations.md)。
+> 如需建立應用程式開發介面和手動加入作業的指示，請參閱[如何 toocreate Api](api-management-howto-create-apis.md)和[如何 tooadd 作業 tooan API](api-management-howto-add-operations.md)。
 > 
 > 
 
-API 是從發佈者入口網站進行設定。 若要觸達它，請從服務工具列按一下 [發佈者入口網站]。
+應用程式開發介面會在 hello 發行者入口網站設定。 tooreach，按一下 **發行者入口網站**從 hello 服務工具列。
 
 ![發行者入口網站][api-management-management-console]
 
-若要匯入計算機 API，請從左邊的 [API 管理] 功能表中按一下 [API]，然後按一下 [匯入 API]。
+tooimport hello 計算機 API 中，按一下**Api**從 hello **API 管理**hello 左、，然後按一下功能表**匯入 API**。
 
 ![匯入 API 按鈕][api-management-import-api]
 
-執行下列步驟來設定計算機 API：
+執行下列步驟 tooconfigure hello [小算盤] 應用程式開發介面的 hello:
 
-1. 按一下 [從 URL]，在 [規格文件 URL] 文字方塊中輸入 **http://calcapi.cloudapp.net/calcapi.json**，然後按一下 [Swagger] 選項按鈕。
-2. 在 [Web API URL 尾碼] 文字方塊中，輸入 **calc**。
-3. 按一下 [產品 (選擇性)] 方塊，然後選擇 [入門]。
-4. 按一下 [ **儲存** ] 匯入 API。
+1. 按一下**From URL**，輸入**http://calcapi.cloudapp.net/calcapi.json**到 hello**規格文件 URL**文字方塊，然後按一下 hello **Swagger**選項按鈕。
+2. 型別**calc**到 hello **Web API URL 尾碼**文字方塊。
+3. 按一下 hello**產品 （選擇性）**方塊，然後選擇**入門**。
+4. 按一下**儲存**tooimport hello 應用程式開發介面。
 
 ![Add new API][api-management-import-new-api]
 
@@ -125,95 +125,95 @@ API 是從發佈者入口網站進行設定。 若要觸達它，請從服務工
 > 
 > 
 
-匯入 API 之後，API 的摘要頁面隨即會顯示在發行者入口網站中。
+一旦匯入 hello API 時，hello hello api 摘要頁面會顯示 hello 發行者入口網站中。
 
 ![API summary][api-management-imported-api-summary]
 
-API 區段有一些索引標籤。 [摘要]  索引標籤會顯示 API 的基本度量和相關資訊。 [設定](api-management-howto-create-apis.md#configure-api-settings) 索引標籤可用來檢視和編輯 API 的組態。 [作業](api-management-howto-add-operations.md) 索引標籤可用來管理 API 的作業。 [安全性] 索引標籤可用來將後端伺服器的閘道驗證設定為使用基本驗證或[相互憑證驗證](api-management-howto-mutual-certificates.md)，以及用來設定[使用 OAuth 2.0 的使用者授權](api-management-howto-oauth2.md)。  [問題]  索引標籤是用來檢視使用您 API 的開發人員所報告的問題。 [產品]  索引標籤是用來設定包含此 API 的產品。
+hello 應用程式開發介面 > 一節中有數個索引標籤。 hello**摘要**索引標籤會顯示有關 hello API 基本度量和資訊。 hello[設定](api-management-howto-create-apis.md#configure-api-settings) 索引標籤是應用程式開發介面的使用的 tooview 和編輯 hello 組態。 hello[作業](api-management-howto-add-operations.md) 索引標籤是使用的 toomanage hello API 的作業。 hello**安全性** 索引標籤可以 hello 後端伺服器的使用的 tooconfigure 閘道驗證使用基本驗證或[相互憑證驗證](api-management-howto-mutual-certificates.md)，和 tooconfigure [使用 OAuth 2.0 的使用者授權](api-management-howto-oauth2.md)。  hello**問題** 索引標籤是使用的 tooview hello 開發人員使用您 Api 所報告的問題。 hello**產品** 索引標籤會包含此應用程式開發介面使用的 tooconfigure hello 產品。
 
 依預設，每個 API 管理執行個體會隨附兩個範例產品：
 
 * **入門**
 * **無限制**
 
-在本教學課程中，Basic Calculator API 已在匯入 API 時加入至「入門」產品。
+在本教學課程中，當 hello 應用程式開發介面已匯入 hello 基本計算機 API 時，已加入 toohello Starter 產品。
 
-若要呼叫 API，開發人員必須先訂閱能夠讓他們存取 API 的產品。 開發人員可以在開發人員入口網站中訂閱產品，或者管理員也可以在發行者入口網站中為開發人員訂閱產品。 由於您在先前的教學課程步驟中建立了 API 管理執行個體，因此您是管理員，且已根據預設訂閱了所有產品。
+在訂單 toomake 呼叫 tooan API 中，開發人員必須先訂閱，他們存取 tooit tooa 產品。 開發人員可以訂閱 tooproducts 在 hello 開發人員入口網站或系統管理員可以訂閱 hello 發行者入口網站中的開發人員 tooproducts。 由於您已建立 hello API 管理執行個體 hello 中先前的步驟在 hello 教學課程中，讓您已訂閱的 tooevery 產品，根據預設，您是系統管理員。
 
-## <a name="call-operation"> </a>從開發人員入口網站呼叫作業
-您可以從開發人員入口網站直接呼叫作業，以便檢視和測試 API 的操作。 在本教學課程步驟中，您將會呼叫 Basic Calculator API 的 **Add two integers** 作業。 從發行者入口網站右上角的功能表中，按一下 [ **開發人員入口網站** ]。
+## <a name="call-operation"></a>從 hello 開發人員入口網站呼叫作業
+作業可以直接從 hello 開發人員入口網站，可提供便利的方式 tooview 呼叫，並測試應用程式開發介面的 hello 作業。 在此教學課程步驟中，您會呼叫 hello 基本計算機 API**加入兩個整數**作業。 按一下**開發人員入口網站**功能表在 hello hello hello 發行者入口網站的右上方。
 
 ![開發人員入口網站][api-management-developer-portal-menu]
 
-按一下頂端功能表中的 [API]，然後按一下 [Basic Calculator] 來查看可用作業。
+按一下**Api**從 hello 最上層功能表，然後再按一下**基本計算機**toosee hello 可用的作業。
 
 ![開發人員入口網站][api-management-developer-portal-calc-api]
 
-請記下和 API 及作業一起匯入的範例說明與參數，為要使用此作業的開發人員提供文件。 手動加入作業時，也可以加入這些說明。
+請注意 hello 範例描述和匯入以及 hello 應用程式開發介面和作業，提供文件以 hello 開發人員會使用這項作業的參數。 手動加入作業時，也可以加入這些說明。
 
-若要呼叫 **Add two integers** 作業，請按一下 [試試看]。
+toocall hello**加入兩個整數**作業中，按一下 **試試**。
 
 ![試試看][api-management-developer-portal-calc-api-console]
 
-您可以輸入部分參數值或保留預設值，然後按一下 [傳送] 。
+您可以輸入 hello 參數的某些值或保留 hello 的預設值，然後按一下**傳送**。
 
 ![HTTP Get][api-management-invoke-get]
 
-叫用作業之後，開發人員入口網站會顯示 [回應狀態]、[回應標頭]，以及任何的 [回應內容]。
+叫用作業之後，hello 開發人員入口網站會顯示 hello**回應狀態**，hello**回應標頭**，和任何**回應內容**。
 
 ![Response][api-management-invoke-get-response]
 
 ## <a name="view-analytics"> </a>檢視分析
-若要檢視 Basic Calculator 的分析，可從開發人員入口網站右上角的功能表中選取 [管理]  ，以切換回發行者入口網站。
+基本計算機，藉由選取的參數後 toohello 發行者入口網站的 tooview 分析**管理**功能表在 hello hello hello 開發人員入口網站的右上方。
 
 ![管理][api-management-manage-menu]
 
-發行者入口網站的預設檢視為 **儀表板**，其中提供您 API 管理執行個體的概觀。
+hello hello 發行者入口網站的預設檢視為 hello**儀表板**，這樣會提供您的 API 管理執行個體的概觀。
 
 ![儀表板][api-management-dashboard]
 
-將滑鼠游標移到 **Basic Calculator** 的圖表上，以查看指定時段中 API 使用量的特定度量。
+Hello 停留 hello 圖表**基本計算機**toosee hello 特定的衡量標準 hello hello 應用程式開發介面的指定的時段內使用。
 
 > [!NOTE]
-> 如果您在圖表上看不見任何線條，請切換回開發人員入口網站，並對 API 進行一些呼叫，等候片刻，然後返回儀表板。
+> 如果您沒有看到任何線條在圖表上，切換後 toohello 開發人員入口網站和某些 hello API 呼叫、 稍待片刻，並再回來 toohello 儀表板。
 > 
 > 
 
-按一下 [檢視詳細資料]  來檢視 API 的摘要頁面，包括已顯示度量的較大版本。
+按一下**檢視詳細資料**hello 應用程式開發介面，包括放大顯示 hello 度量的 tooview hello 摘要頁面。
 
 ![Analytics][api-management-mouse-over]
 
 ![摘要][api-management-api-summary-metrics]
 
-如需詳細度量和報告，請從左側的 [API 管理] 功能表按一下 [分析]。
+對於詳細的計量和報表，按一下 **分析**從 hello **API 管理**hello 左邊功能表上的。
 
-![Overview][api-management-analytics-overview]
+![概觀][api-management-analytics-overview]
 
-[分析]  區段具有下列四個索引標籤：
+hello**分析**區段具有下列四個索引標籤的 hello:
 
-*  提供整體的使用量和健康情況度量，以及名列前茅的開發人員、產品、API 和作業等相關資訊。
+* **一眼**提供整體使用量和健全狀況度量，以及 hello 最上層的開發人員、 最上層的產品、 最上層應用程式開發介面和最上層的作業。
 *  提供 API 呼叫和頻寬的深入檢視，包括地理區域的呈現。
 * **Health** 著重在狀態碼、快取成功率、回應時間，以及 API 與服務回應時間。
-* **Activity** 提供的報告依開發人員、產品、API 和作業向下鑽研特定活動。
+* **活動**提供 hello 的開發人員、 產品、 API 和作業的特定活動的向下鑽研報表。
 
 ## <a name="next-steps"> </a>後續步驟
-* 了解 [以頻率限制保護您的 API](api-management-howto-product-with-rules.md)。
+* 了解如何太[保護您的 API 與速率限制](api-management-howto-product-with-rules.md)。
 
 [Azure Free Trial]: http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=api_management_hero_a
 
 [Create an API Management instance]: #create-service-instance
 [Create an API]: #create-api
 [Add an operation]: #add-operation
-[Add the new API to a product]: #add-api-to-product
-[Subscribe to the product that contains the API]: #subscribe
-[Call an operation from the Developer Portal]: #call-operation
+[Add hello new API tooa product]: #add-api-to-product
+[Subscribe toohello product that contains hello API]: #subscribe
+[Call an operation from hello Developer Portal]: #call-operation
 [View analytics]: #view-analytics
 [Next steps]: #next-steps
 
 
-[How to manage developer accounts in Azure API Management]: api-management-howto-create-or-invite-developers.md
+[How toomanage developer accounts in Azure API Management]: api-management-howto-create-or-invite-developers.md
 [Configure API settings]: api-management-howto-create-apis.md#configure-api-settings
-[How to configure notifications and email templates in Azure API Management]: api-management-howto-configure-notifications.md
+[How tooconfigure notifications and email templates in Azure API Management]: api-management-howto-configure-notifications.md
 [Responses]: api-management-howto-add-operations.md#responses
 [How create and publish a product]: api-management-howto-add-products.md
 [API Management pricing]: http://azure.microsoft.com/pricing/details/api-management/

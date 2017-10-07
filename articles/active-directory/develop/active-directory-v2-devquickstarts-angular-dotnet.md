@@ -1,6 +1,6 @@
 ---
-title: "Azure AD v2.0 .NET AngularJS 單一頁面應用程式入門 | Microsoft Docs"
-description: "如何建置可在個人 Microsoft 帳戶及工作或學校帳戶登入使用者的 Angular JS 單一頁面應用程式。"
+title: "aaaAzure AD v2.0.NET AngularJS 單一頁面應用程式使用者入門 |Microsoft 文件"
+description: "如何 toobuild 角度 JS 單一頁面應用程式登入使用者使用個人 Microsoft 帳戶和工作或學校帳戶。"
 services: active-directory
 documentationcenter: 
 author: jmprieur
@@ -15,54 +15,54 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: c68180c0ecabf5c0732f0db77ef1f3cc93be965b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bd3fc8dce91eb0bedcbfed47a9b3ef52c5568c6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-sign-in-to-an-angularjs-single-page-app---net"></a>將登入新增至 AngularJS 單一頁面應用程式 - .NET
-在本文中，我們將使用 Azure Active Directory v2.0 端點，將 Microsoft 帳戶的登入新增至 AngularJS 應用程式。  v2.0 端點可讓您在您的應用程式中執行單一整合，以及以個人和工作/學校帳戶驗證使用者。
+# <a name="add-sign-in-tooan-angularjs-single-page-app---net"></a>新增登入 tooan AngularJS 單一頁面應用程式的.NET
+在本文中，我們會將新增使用電源的 Microsoft 帳戶 tooan AngularJS 應用程式使用 hello Azure Active Directory v2.0 端點登入。  hello v2.0 端點可讓您 tooperform 地整合在單一應用程式中，而且驗證使用者使用個人和工作/學校帳戶。
 
-這個範例是簡單的待辦事項清單單一頁面應用程式，在後端 REST API 儲存工作、使用 .NET 4.5 MVC 架構撰寫，並且使用 Azure AD 的 OAuth 持有人權杖進行保護。  AngularJS 應用程式會使用我們的開放原始碼 JavaScript 驗證程式庫 [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) 以處理整個登入程序，並且取得用以呼叫 REST API 的權杖。  可以套用這個相同的模式以驗證其他 REST API，例如 [Microsoft Graph](https://graph.microsoft.com)。
+這個範例是簡單的待辦事項清單單一頁面應用程式，會將工作儲存在後端 REST API，使用 hello.NET 4.5 MVC 架構所撰寫並以保護從 Azure AD 的 OAuth 承載語彙基元。  hello AngularJS 應用程式會使用我們的開放原始碼 JavaScript 驗證程式庫[adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) toohandle hello 整個登入程序，並取得呼叫 hello REST API 的語彙基元。  hello 相同的模式可以是套用的 tooauthenticate tooother REST Api，像是 hello [Microsoft Graph](https://graph.microsoft.com)。
 
 > [!NOTE]
-> v2.0 端點並非支援每個 Azure Active Directory 案例和功能。  如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
+> 並非所有的 Azure Active Directory 案例和功能都受到 hello v2.0 端點。  toodetermine 如果應該使用 hello v2.0 端點，閱讀有關[v2.0 限制](active-directory-v2-limitations.md)。
 > 
 > 
 
 ## <a name="download"></a>下載
-若要開始，您必須下載並安裝 Visual Studio。  然後您可以複製或 [下載](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/skeleton.zip) 基本架構應用程式：
+tooget 啟動，您將需要 toodownload 並安裝 Visual Studio。  然後您可以複製或 [下載](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/skeleton.zip) 基本架構應用程式：
 
 ```
 git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet.git
 ```
 
-基本架構應用程式包含簡單的 AngularJS 應用程式的重複使用程式碼，但是會遺漏所有身分識別相關的部分。  如果您不想要跟著做，您可以改為複製或 [下載](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/complete.zip) 完成的範例。
+hello 基本架構應用程式包含簡單的 AngularJS 應用程式中，所有 hello 未定案程式碼，但是遺漏之所有 hello 身分識別相關的片段。  若您不想沿著 toofollow，可改為複製或[下載](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-DotNet/archive/complete.zip)hello 完成範例。
 
 ```
 git clone https://github.com/AzureADSamples/SinglePageApp-AngularJS-DotNet.git
 ```
 
 ## <a name="register-an-app"></a>註冊應用程式
-首先，在[應用程式註冊入口網站](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)中建立應用程式，或者遵循下列[詳細步驟](active-directory-v2-app-registration.md)。  請確定：
+首先，建立應用程式在 hello[應用程式註冊入口網站](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)，或請遵循這些[詳細步驟](active-directory-v2-app-registration.md)。  請確定：
 
-* 為您的應用程式新增 **Web** 平台。
-* 輸入正確的 **重新導向 URI**。 此範例的預設值是 `https://localhost:44326/`。
-* 保留 [允許隱含流程]  核取方塊啟用。 
+* 新增 hello **Web**平台應用程式。
+* 輸入正確的 hello**重新導向 URI**。 此範例的 hello 預設值是`https://localhost:44326/`。
+* 保留 hello**允許隱含流程**啟用的核取方塊。 
 
-將指派給您應用程式的「應用程式識別碼」  複製起來，您很快會需要用到這些識別碼。 
+複製下 hello**應用程式識別碼**指派的 tooyour 應用程式，您將在稍後需要。 
 
 ## <a name="install-adaljs"></a>安裝 adal.js
-若要開始，請瀏覽至您下載並安裝 adal.js 的專案。  如果您已安裝 [bower](http://bower.io/) ，您只要執行這個命令即可。  對於任何相依性版本不符，請選擇較高的版本。
+toostart，瀏覽的 tooproject 您下載並安裝 adal.js。  如果您已安裝 [bower](http://bower.io/) ，您只要執行這個命令即可。  任何相依性版本不符，只要選擇 hello 更高的版本。
 
 ```
 bower install adal-angular#experimental
 ```
 
-或者，您可以手動下載 [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js) 和 [adal-angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js)。  將這兩個檔案新增至 `TodoSPA` 專案的 `app/lib/adal-angular-experimental/dist` 目錄。
+或者，您可以手動下載 [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js) 和 [adal-angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js)。  加入兩個檔案 toohello`app/lib/adal-angular-experimental/dist`目錄 hello`TodoSPA`專案。
 
-現在在 Visual Studio 中開啟專案，並且在主頁面本文的結尾處載入 adal.js：
+現在開啟 hello 專案在 Visual Studio 中，並載入 adal.js hello hello 主頁面的本文結尾處：
 
 ```html
 <!--index.html-->
@@ -75,8 +75,8 @@ bower install adal-angular#experimental
 ...
 ```
 
-## <a name="set-up-the-rest-api"></a>設定 REST API
-在我們進行設定的同時，讓後端 REST API 運作。  在專案根目錄中，開啟 `web.config`，並且取代 `audience` 值。  REST API 會使用此值來驗證在 AJAX 要求時從 Angular 應用程式收到的權杖。
+## <a name="set-up-hello-rest-api"></a>設定 hello REST API
+雖然我們正在進行設定，讓我們取得 hello 後端 REST API 可以運作。  Hello hello 專案根目錄中開啟`web.config`和取代 hello`audience`值。  hello REST API 將會使用在收到 hello 角度應用程式的 AJAX 要求此值 toovalidate 語彙基元。
 
 ```xml
 <!--web.config-->
@@ -90,10 +90,10 @@ bower install adal-angular#experimental
 ...
 ```
 
-這是我們討論 REST API 運作方式所花費的所有時間。  您可以自由摸索程式碼，但是如果您想要深入了解使用 Azure AD 保護 Web API，請參閱 [這篇文章](active-directory-v2-devquickstarts-dotnet-api.md)。 
+這就是我們要討論 hello REST API 的運作方式的 toospend hello 時間。  感覺的免費 toopoke hello 程式碼中，但如果您想 toolearn 深入了解保護的 web Api 與 Azure AD，請參閱[本文](active-directory-v2-devquickstarts-dotnet-api.md)。 
 
 ## <a name="sign-users-in"></a>將使用者登入
-撰寫一些身分識別程式碼。  您可能已經發現 adal.js 包含 AngularJS 提供者，它運用 Angular 路由機制相當良好。  從將 adal 模組新增至應用程式開始：
+時間 toowrite 一些識別程式碼。  您可能已經發現 adal.js 包含 AngularJS 提供者，它運用 Angular 路由機制相當良好。  啟動新增 hello adal 模組 toohello 應用程式：
 
 ```js
 // app/scripts/app.js
@@ -105,7 +105,7 @@ angular.module('todoApp', ['ngRoute','AdalAngular'])
 ...
 ```
 
-您現在可以使用您的應用程式識別碼初始化 `adalProvider` ：
+您現在可以初始化 hello`adalProvider`以您的應用程式 ID:
 
 ```js
 // app/scripts/app.js
@@ -114,22 +114,22 @@ angular.module('todoApp', ['ngRoute','AdalAngular'])
 
 adalProvider.init({
 
-        // Use this value for the public instance of Azure AD
+        // Use this value for hello public instance of Azure AD
         instance: 'https://login.microsoftonline.com/', 
 
-        // The 'common' endpoint is used for multi-tenant applications like this one
+        // hello 'common' endpoint is used for multi-tenant applications like this one
         tenant: 'common',
 
-        // Your application id from the registration portal
+        // Your application id from hello registration portal
         clientId: '<Your-application-id>',
 
-        // If you're using IE, uncommment this line - the default HTML5 sessionStorage does not work for localhost.
+        // If you're using IE, uncommment this line - hello default HTML5 sessionStorage does not work for localhost.
         //cacheLocation: 'localStorage',
 
     }, $httpProvider);
 ```
 
-太棒了，現在 adal.js 有了保護您的應用程式並且登入使用者所需的所有資訊。  若要對應用程式中的特定路由強制登入，它只需要一行程式碼：
+太好，現在 adal.js 具有 hello 的所有資訊需要 toosecure 中您的應用程式並登入的使用者。  將登入 tooforce 的 hello，應用程式中所有所需的特定路由是一行程式碼：
 
 ```js
 // app/scripts/app.js
@@ -139,29 +139,29 @@ adalProvider.init({
 }).when("/TodoList", {
     controller: "todoListCtrl",
     templateUrl: "/static/views/TodoList.html",
-    requireADLogin: true, // Ensures that the user must be logged in to access the route
+    requireADLogin: true, // Ensures that hello user must be logged in tooaccess hello route
 })
 
 ...
 ```
 
-現在，當使用者按一下 `TodoList` 連結時，需要的話，adal.js 會自動重新導向至 Azure AD 進行登入。  您也可以藉由在控制器中叫用 adal.js，明確傳送登入和登出要求：
+現在當使用者按一下 hello`TodoList`連結，adal.js 會自動重新導向 tooAzure AD 登入必要的。  您也可以藉由在控制器中叫用 adal.js，明確傳送登入和登出要求：
 
 ```js
 // app/scripts/homeCtrl.js
 
 angular.module('todoApp')
-// Load adal.js the same way for use in controllers and views   
+// Load adal.js hello same way for use in controllers and views   
 .controller('homeCtrl', ['$scope', 'adalAuthenticationService','$location', function ($scope, adalService, $location) {
     $scope.login = function () {
 
-        // Redirect the user to sign in
+        // Redirect hello user toosign in
         adalService.login();
 
     };
     $scope.logout = function () {
 
-        // Redirect the user to log out    
+        // Redirect hello user toolog out    
         adalService.logOut();
 
     };
@@ -169,7 +169,7 @@ angular.module('todoApp')
 ```
 
 ## <a name="display-user-info"></a>顯示使用者資訊
-現在使用者已登入，您可能需要存取您的應用程式中已登入使用者的驗證資料。  Adal.js 會在 `userInfo` 物件中為您公開這項資訊。  若要在檢視中存取此物件，首先將 adal.js 新增至對應控制器的根範圍：
+既然 hello 使用者登入，您可能需要 tooaccess hello 登入使用者的驗證資料在應用程式中。  Adal.js 會公開這項資訊在 hello`userInfo`物件。  tooaccess 在檢視中，這個物件會先加入 adal.js toohello 根範圍 hello 相對應的控制項：
 
 ```js
 // app/scripts/userDataCtrl.js
@@ -179,14 +179,14 @@ angular.module('todoApp')
 .controller('userDataCtrl', ['$scope', 'adalAuthenticationService', function ($scope, adalService) {}]);
 ```
 
-然後您可以直接在檢視中定址 `userInfo` 物件： 
+然後您可以直接定址 hello`userInfo`在檢視中的物件： 
 
 ```html
 <!--app/views/UserData.html-->
 
 ...
 
-    <!--Get the user's profile information from the ADAL userInfo object-->
+    <!--Get hello user's profile information from hello ADAL userInfo object-->
     <tr ng-repeat="(key, value) in userInfo.profile">
         <td>{{key}}</td>
         <td>{{value}}</td>
@@ -194,14 +194,14 @@ angular.module('todoApp')
 ...
 ```
 
-您也可以使用 `userInfo` 物件，以判斷使用者登入或登出。
+您也可以使用 hello`userInfo`物件 toodetermine 如果 hello 使用者登入與否。
 
 ```html
 <!--index.html-->
 
 ...
 
-    <!--Use the ADAL userInfo object to show the right login/logout button-->
+    <!--Use hello ADAL userInfo object tooshow hello right login/logout button-->
     <ul class="nav navbar-nav navbar-right">
         <li><a class="btn btn-link" ng-show="userInfo.isAuthenticated" ng-click="logout()">Logout</a></li>
         <li><a class="btn btn-link" ng-hide="userInfo.isAuthenticated" ng-click="login()">Login</a></li>
@@ -209,12 +209,12 @@ angular.module('todoApp')
 ...
 ```
 
-## <a name="call-the-rest-api"></a>呼叫 REST API
-最後，取得某些權杖並且呼叫 REST API，以建立、讀取、更新和刪除工作。  您知道嗎？  您「什麼事」 都不必做。  Adal.js 會自動為您取得、快取和重新整理權杖。  它也會將這些權杖附加至您傳送至 REST API 的傳出 AJAX 要求。  
+## <a name="call-hello-rest-api"></a>呼叫 hello REST API
+最後，它是時間 tooget 某些語彙基元並呼叫 hello REST API toocreate、 讀取、 更新和刪除的工作。  您知道嗎？  您不需要 toodo*事*。  Adal.js 會自動為您取得、快取和重新整理權杖。  它也會負責的附加 toooutgoing AJAX 要求您傳送 toohello REST API 的語彙基元。  
 
-到底是如何運作的呢？ 都是因為神奇的 [AngularJS 攔截器](https://docs.angularjs.org/api/ng/service/$http)，它可讓 adal.js 轉換傳出和傳入的 http 訊息。  此外，adal.js 會假設傳送至相同網域做為視窗的任何要求，應該使用適用於相同應用程式識別碼的權杖做為 AngularJS 應用程式。  這就是為什麼我們在 Angular 應用程式和 NodeJS REST API 中使用相同的應用程式識別碼。  當然，您可以覆寫這個行為，並且視需要告知 adal.js 取得其他 REST API 的權杖 - 但是對於這個簡單的案例，使用預設值即可。
+到底是如何運作的呢？ 它是所有的感謝您 toohello 魔力[AngularJS 攔截器](https://docs.angularjs.org/api/ng/service/$http)，可讓 adal.js tootransform 傳出和傳入的 http 訊息。  此外，adal.js 會假設任何要求傳送 toohello 相同的網域為 hello 視窗應該使用適用於語彙基元 hello 相同的應用程式識別碼為 hello AngularJS 應用程式。  這就是為什麼我們使用 hello hello NodeJS REST API 和這兩個 hello 角度的應用程式中的相同應用程式識別碼。  當然，您可以覆寫這個行為，並告訴 adal.js tooget 語彙基元的其他 REST Api，如有必要-但這個簡單案例 hello 將進行的預設值。
 
-以下是程式碼片段，說明從 Azure AD 傳送具有持有人權杖的要求有多輕鬆：
+以下是示範是多麼的輕鬆 toosend 要求，以從 Azure AD 的承載權杖的程式碼片段：
 
 ```js
 // app/scripts/todoListSvc.js
@@ -224,14 +224,14 @@ return $http.get('/api/tasks');
 ...
 ```
 
-恭喜！  您的 Azure AD 整合式單一頁面應用程式現在已完成。  佩服吧！  它可以驗證使用者、使用 OpenID Connect 安全地呼叫其後端 REST API，以及取得使用者的基本資訊。  根據預設，它支援來自 Azure AD 具有個人 Microsoft 帳戶或工作/學校帳戶的任何使用者。  執行應用程式，並且在瀏覽器中瀏覽至 `https://localhost:44326/`。  使用個人 Microsoft 帳戶或工作/學校帳戶登入。  將工作新增至使用者待辦事項清單，然後登出。  嘗試使用其他類型的帳戶登入。 如果您需要 Azure AD 租用戶以建立工作/學校使用者， [在這裡了解如何取得](active-directory-howto-tenant.md) (免費)。
+恭喜！  您的 Azure AD 整合式單一頁面應用程式現在已完成。  佩服吧！  它可以驗證使用者、 安全地呼叫它的後端 REST API 使用 OpenID Connect，並取得 hello 使用者的基本資訊。  預設 hello 方塊中，它可支援具有個人 Microsoft 帳戶或工作/學校帳戶向 Azure AD 的任何使用者。  執行 hello 應用程式，並在瀏覽器中瀏覽過`https://localhost:44326/`。  使用個人 Microsoft 帳戶或工作/學校帳戶登入。  新增工作 toohello 使用者的待辦事項清單，並登出。再試一次登入的 hello 其他類型的帳戶。 如果您需要 Azure AD 租用戶 toocreate 工作/學校 users，[深入了解如何 tooget 一個這裡](active-directory-howto-tenant.md)（它是免費的）。
 
-如果要繼續了解 v2.0 端點，請返回我們的《 [v2.0 開發人員指南](active-directory-appmodel-v2-overview.md)》。  如需其他資源，請參閱：
+深入了解 hello v2.0 端點標頭後 tooour toocontinue [v2.0 開發人員指南](active-directory-appmodel-v2-overview.md)。  如需其他資源，請參閱：
 
 * [GitHub 上的 Azure 範例 >>](https://github.com/Azure-Samples)
 * [Stack Overflow 上的 Azure AD >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
 * [Azure.com 上的 Azure AD 文件 >>](https://azure.microsoft.com/documentation/services/active-directory/)
 
 ## <a name="get-security-updates-for-our-products"></a>取得產品的安全性更新
-我們鼓勵您造訪 [此頁面](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
+我們建議您造訪的安全性事件發生時的 tooget 通知[本頁](https://technet.microsoft.com/security/dd252948)及訂閱 tooSecurity 諮詢警示。
 

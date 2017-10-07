@@ -1,94 +1,76 @@
 ---
-title: "Azure Analysis Services 教學課程第 6 課：建立量值 | Microsoft Docs"
-description: "說明如何在 Azure Analysis Services 教學課程專案中建立量值。"
-services: analysis-services
-documentationcenter: 
-author: minewiskan
-manager: erikre
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 06/01/2017
-ms.author: owend
-ms.openlocfilehash: 90833fa9744eac298b0da82cd3d12f27cc237510
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.translationtype: MT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+標題： aaa"Azure Analysis Services 教學課程第 6 課： 建立量值 |Microsoft 文件"描述： 描述 toocreate hello Azure Analysis Services 教學課程專案中的量值。 服務： analysis services documentationcenter: '作者： minewiskan 管理員： erikre 編輯器:' 標記: '
+
+ms.assetid: ms.service: analysis services ms.devlang: NA ms.topic: get 啟動文章 ms.tgt_pltfrm: NA ms.workload: na ms.date: 06/01/2017 ms.author: owend
 ---
 # <a name="lesson-6-create-measures"></a>第 6 課：建立量值
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-在這堂課中，您將會建立要加入模型中的量值。 類似於您所建立的計算結果欄，量值是利用 DAX 公式所建立的計算結果。 不過，與計算結果欄不同，量值評估是根據使用者選取的「篩選條件」。 例如，在樞紐分析表的 [資料列標籤] 欄位中新增的特定資料行或交叉分析篩選器。 然後會以套用的量值，計算篩選條件中每個資料格的值。 量值是功能強大又靈活的計算，在幾乎所有表格式模型中都會派上用場，可以對數值資料執行動態計算。 若要深入了解，請參閱[量值](https://docs.microsoft.com/sql/analysis-services/tabular-models/measures-ssas-tabular)。
+在這一課，您可以建立包含在模型中的量值 toobe。 類似 toohello 計算您所建立的資料行、 量值是透過使用 DAX 公式所建立的計算。 不過，與計算結果欄不同，量值評估是根據使用者選取的「篩選條件」。 例如，特定資料行或交叉分析篩選器 toohello 資料列標籤欄位加入樞紐分析表中。 Hello 篩選中的每個儲存格的值則會計算所套用的 hello 量值中。 量值是功能強大、 有彈性的計算，您想 tooinclude 中幾乎所有表格式模型 tooperform 動態計算數值資料上。 詳細資訊，請參閱 toolearn[量值](https://docs.microsoft.com/sql/analysis-services/tabular-models/measures-ssas-tabular)。
   
-若要建立量值，您需要使用「量值方格」。 根據預設，每個資料表都有一個空白量值方格；不過，您通常不會為每個資料表建立量值。 在資料檢視中，量值方格中會出現在模型設計師中的資料表下方。 若要隱藏或顯示資料表的量值方格，請按一下 [資料表] 功能表，然後按一下 [顯示量值方格]。  
+toocreate 量值，使用 hello*量值方格*。 根據預設，每個資料表都有一個空白量值方格；不過，您通常不會為每個資料表建立量值。 hello 量值方格隨即出現在資料檢視中的 hello 模型設計師中的資料表下方。 toohide 或顯示 hello 量值方格資料表中，按一下 hello**資料表**功能表，然後再按一下**顯示量值方格**。  
   
-若要建立量值，您可以按一下量值方格中的空資料格，然後在公式列中輸入 DAX 公式。 當您按 ENTER 完成公式時，量值就會出現在資料格中。 您也可以按一下資料行，然後按一下工具列上的 [自動加總] 按鈕 (**∑**)，利用標準彙總函式建立量值。 使用「自動加總」功能所建立的量值會出現在資料行正下方的量值方格資料格中，但是可以移動。  
+您可以按一下 hello 量值方格中的空資料格，然後再 hello 公式列中輸入 DAX 公式建立量值。 當您按一下 ENTER toocomplete hello 公式，hello 量值，則會顯示 hello 資料格中。 您也可以建立資料行，即可使用標準彙總函式的量值，然後按一下 hello 加總 按鈕 (**∑**) hello 工具列上。 使用 hello 自動加總 功能建立的量值會出現在 hello 量值方格資料格正下方 hello 資料行，但是可以移動。  
   
-在這堂課中，您會在公式列中輸入 DAX 公式和使用「自動加總」功能來建立量值。  
+在這一課，您會建立量值在 hello 公式列中，這兩個輸入 DAX 公式，而藉由使用 hello 自動加總功能。  
   
-這堂課的預估完成時間：**30 分鐘**  
+本課程的估計時間 toocomplete: **30 分鐘**  
   
 ## <a name="prerequisites"></a>必要條件  
-本主題是表格式模型教學課程的一部分，請依序完成。 在這堂課中執行工作之前，您必須已完成上一堂課︰[第 5 課︰建立計算結果欄](../tutorials/aas-lesson-5-create-calculated-columns.md)。  
+本主題是表格式模型教學課程的一部分，請依序完成。 在執行之前 hello 工作在這一課，您應已完成上一課 hello:[第 5 課： 建立導出資料行](../tutorials/aas-lesson-5-create-calculated-columns.md)。  
   
 ## <a name="create-measures"></a>建立量值  
   
-#### <a name="to-create-a-dayscurrentquartertodate-measure-in-the-dimdate-table"></a>在 DimDate 資料表中建立 DaysCurrentQuarterToDate 量值  
+#### <a name="toocreate-a-dayscurrentquartertodate-measure-in-hello-dimdate-table"></a>toocreate DaysCurrentQuarterToDate 中的量值 hello DimDate 資料表  
   
-1.  在模型設計師中，按一下 [DimDate] 資料表。  
+1.  在 hello 模型設計師中，按一下 hello **DimDate**資料表。  
   
-2.  在量值方格中，按一下左上方的空資料格。  
+2.  在 hello 量值方格中，按一下 hello 左上方的空資料格。  
   
-3.  在公式列中，輸入下列公式︰  
+3.  Hello 公式列中輸入下列公式的 hello:  
   
     ```
     DaysCurrentQuarterToDate:=COUNTROWS( DATESQTD( 'DimDate'[Date])) 
     ```
   
-    請注意，左上方的資料格現在包含量值名稱 **DaysCurrentQuarterToDate**，後面接著結果 **92**。
+    請注意 hello 左上資料格現在包含量值名稱， **DaysCurrentQuarterToDate**，後面接著 hello 結果**92**。
     
       ![aas 第 6 課新增量值](../tutorials/media/aas-lesson6-newmeasure.png) 
     
-    不同於計算結果欄，量值公式可讓您輸入量值名稱，後面接著一個冒號，最後再接著公式運算式。
+    不同於導出資料行，量值公式與您可以輸入 hello 量值名稱，後面接著冒號，後面接著 hello 公式的運算式。
 
   
-#### <a name="to-create-a-daysincurrentquarter-measure-in-the-dimdate-table"></a>在 DimDate 資料表中建立 DaysInCurrentQuarter 量值  
+#### <a name="toocreate-a-daysincurrentquarter-measure-in-hello-dimdate-table"></a>toocreate DaysInCurrentQuarter 中的量值 hello DimDate 資料表  
   
-1.  在模型設計師中繼續使用 **DimDate** 資料表，然後在量值方格中，按一下您建立之量值下方的空資料格。  
+1.  以 hello **DimDate**資料表仍為使用中 hello 量值方格中的 hello 模型設計師中，按一下 hello hello 您建立的量值下方的空資料格。  
   
-2.  在公式列中，輸入下列公式︰  
+2.  Hello 公式列中輸入下列公式的 hello:  
   
     ```
     DaysInCurrentQuarter:=COUNTROWS( DATESBETWEEN( 'DimDate'[Date], STARTOFQUARTER( LASTDATE('DimDate'[Date])), ENDOFQUARTER('DimDate'[Date])))
     ```
   
-    在一個不完整期間與前一個期間之間建立比率時， 此公式必須計算該期間已流逝的比例，並與前一個期間的相同比例做比較。 在此案例中，[DaysCurrentQuarterToDate]/[DaysInCurrentQuarter] 計算出目前期間已流逝的比例。  
+    在前一個期間建立一個不完整期間與 hello 之間的比率。 hello 公式必須計算 hello hello 期間已經過的比例，並比較它 toohello 相同比例 hello 中前一個期間。 在這種情況下，[DaysCurrentQuarterToDate] / [DaysInCurrentQuarter] 提供 hello 比例經過 hello 中目前的期間。  
   
-#### <a name="to-create-an-internetdistinctcountsalesorder-measure-in-the-factinternetsales-table"></a>在 FactInternetSales 資料表中建立 InternetDistinctCountSalesOrder 量值  
+#### <a name="toocreate-an-internetdistinctcountsalesorder-measure-in-hello-factinternetsales-table"></a>toocreate hello FactInternetSales 資料表中的 InternetDistinctCountSalesOrder 量值  
   
-1.  按一下 [FactInternetSales] 資料表。   
+1.  按一下 hello **FactInternetSales**資料表。   
   
-2.  按一下 [SalesOrderNumber] 資料行標題。  
+2.  按一下 hello **SalesOrderNumber**資料行標題。  
   
-3.  在工具列上，按一下 [自動加總] \(**∑**) 按鈕旁的向下箭號，然後選取 [DistinctCount]。  
+3.  Hello 工具列上，按一下 hello 向下一步 toohello 自動加總 (**∑**) 按鈕，然後再選取**DistinctCount**。  
   
-    「自動加總」功能會使用 DistinctCount 標準彙總公式，自動為選取的資料行建立量值。  
+    hello 自動加總功能自動建立 hello 選資料行使用 hello DistinctCount 標準彙總公式的量值。  
     
        ![aas 第 6 課新增量值 2](../tutorials/media/aas-lesson6-newmeasure2.png)
   
-4.  在量值方格中，按一下新量值，然後在 [屬性] 視窗的 [量值名稱] 中，將量值重新命名為 **InternetDistinctCountSalesOrder**。 
+4.  在 hello 量值方格中，按一下 hello 新量值，然後在 hello**屬性**視窗，請在**量值名稱**，hello 量值重新命名過**InternetDistinctCountSalesOrder**。 
  
   
-#### <a name="to-create-additional-measures-in-the-factinternetsales-table"></a>在 FactInternetSales 資料表中建立其他量值  
+#### <a name="toocreate-additional-measures-in-hello-factinternetsales-table"></a>toocreate hello FactInternetSales 資料表中的其他量值  
   
-1.  使用「自動加總」功能建立並命名下列量值︰  
+1.  使用 hello 自動加總功能，建立並命名下列量值的 hello:  
 
     |資料欄|量值名稱|自動加總 (∑)|公式|  
     |----------------|----------|-----------------|-----------|  
@@ -101,7 +83,7 @@ ms.lasthandoff: 07/11/2017
     |TaxAmt|InternetTotalTaxAmt|總和|=SUM([TaxAmt])|  
     |Freight|InternetTotalFreight|總和|=SUM([Freight])|  
   
-2.  按一下量值方格中的空資料格並使用公式列，依序建立和命名下列量值︰  
+2.  按一下空白儲存格在 hello 量值方格中，而藉由使用 hello 公式列中建立，並中順序的名稱 hello 下列量值：  
   
       ```
       InternetPreviousQuarterMargin:=CALCULATE([InternetTotalMargin],PREVIOUSQUARTER('DimDate'[Date]))
@@ -127,7 +109,7 @@ ms.lasthandoff: 07/11/2017
       InternetPreviousQuarterSalesProportionToQTD:=[InternetPreviousQuarterSales]*([DaysCurrentQuarterToDate]/[DaysInCurrentQuarter])
       ```
   
-針對 FactInternetSales 資料表所建立的量值可用來分析重要財務資料，例如，使用者選取的篩選條件所定義之商品的銷售額、成本和獲利率。  
+針對 hello FactInternetSales 資料表所建立的量值也可以使用的 tooanalyze 重大財務資料，例如銷售額、 成本與 hello 使用者選取的篩選所定義的項目獲利率。  
   
 ## <a name="whats-next"></a>後續步驟
 [第 7 課：建立關鍵效能指標](../tutorials/aas-lesson-7-create-key-performance-indicators.md)。  

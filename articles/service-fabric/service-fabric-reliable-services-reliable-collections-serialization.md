@@ -1,5 +1,5 @@
 ---
-title: "Azure Service Fabric 中的 Reliable Collection 物件序列化 | Microsoft Docs"
+title: "Azure Service Fabric 中的集合物件序列化 aaaReliable |Microsoft 文件"
 description: "Azure Service Fabric Reliable Collections 物件序列化"
 services: service-fabric
 documentationcenter: .net
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/8/2017
 ms.author: mcoskun
-ms.openlocfilehash: c14794b71ce7340d9e90a56d781c712e247ded06
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 248defbe0ae6f65b4ac5dc7c74e80d8f1152ce94
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reliable-collection-object-serialization-in-azure-service-fabric"></a>Azure Service Fabric 中的 Reliable Collection 物件序列化
-Reliable Collections 會複寫並保存其項目，以確保在電腦發生失敗和電力中斷時能持續保留這些項目。
-不論是要複寫還是保存項目，Reliable Collections 都必須將它們序列化。
+可靠集合複寫，並將保存其項目 toomake 確認他們的電腦故障和電力中斷等跨持久。
+Tooreplicate 和 toopersist 項目、 可靠集合需要 tooserialize 它們。
 
-Reliable Collections 會從 Reliable State Manager 為指定的類型取得適當的序列化程式。
-Reliable State Manager 包含內建的序列化程式，並允許為指定的類型註冊自訂序列化程式。
+可靠的集合取得可靠狀態管理員從指定的型別 hello 適當的序列化程式。
+Reliable 狀態管理員包含內建的序列化程式，以及可讓自訂序列化程式 toobe 註冊指定的型別。
 
 ## <a name="built-in-serializers"></a>內建的序列化程式
 
-Reliable State Manager 包含一些常見類型的內建序列化程式，以便透過預設方式有效率地將這些類型序列化。 針對其他類型，Reliable State Manager 會回復為使用 [DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer(v=vs.110).aspx)。
-內建的序列化程式較有效率，因為它們知道它們的類型無法變更，所以不需要包含類型的相關資訊 (例如其類型名稱)。
+Reliable State Manager 包含一些常見類型的內建序列化程式，以便透過預設方式有效率地將這些類型序列化。 對於其他類型，可靠的狀態管理員就會回到 toouse hello [DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer(v=vs.110).aspx)。
+內建的序列化程式會更有效率，因為他們知道無法變更其類型，而且它們不需要 tooinclude hello 型別，其型別名稱類似的資訊。
 
 Reliable State Manager 具有下列類型的內建序列化程式： 
 - Guid
@@ -52,9 +52,9 @@ Reliable State Manager 具有下列類型的內建序列化程式：
 
 ## <a name="custom-serialization"></a>自訂序列化
 
-自訂序列化程式通常是用來提升效能，或是透過網路和在磁碟上加密資料。 自訂序列化程式通常比一般序列化程式更有效率，最主要的原因是因為它們不需要將類型的相關資訊序列化。 
+自訂序列化程式是常用的 tooincrease 效能或 tooencrypt hello 資料上 hello 傳輸，而在磁碟上。 其中一個原因，自訂序列化程式是比一般的序列化程式通常更有效率，因為它們不需要 tooserialize hello 類型的資訊。 
 
-[IReliableStateManager.TryAddStateSerializer<T>](https://docs.microsoft.com/dotnet/api/microsoft.servicefabric.data.ireliablestatemanager.tryaddstateserializer--1?Microsoft_ServiceFabric_Data_IReliableStateManager_TryAddStateSerializer__1_Microsoft_ServiceFabric_Data_IStateSerializer___0__) 可用來為指定的類型 T 註冊自訂序列化程式。您應該在建構 StatefulServiceBase 時進行這項註冊，以確保在開始復原之前，所有 Reliable Collections 都能存取相關的序列化程式以讀取其保存資料。
+[IReliableStateManager.TryAddStateSerializer<T> ](https://docs.microsoft.com/dotnet/api/microsoft.servicefabric.data.ireliablestatemanager.tryaddstateserializer--1?Microsoft_ServiceFabric_Data_IReliableStateManager_TryAddStateSerializer__1_Microsoft_ServiceFabric_Data_IStateSerializer___0__) hello 類型 t 的自訂序列化程式是使用的 tooregister此註冊應該在 hello StatefulServiceBase tooensure hello 建構復原啟動之前，所有可靠集合都具有存取 toohello 相關的序列化程式 tooread 保存的資料。
 
 ```C#
 public StatefulBackendService(StatefulServiceContext context)
@@ -62,17 +62,17 @@ public StatefulBackendService(StatefulServiceContext context)
   {
     if (!this.StateManager.TryAddStateSerializer(new OrderKeySerializer()))
     {
-      throw new InvalidOperationException("Failed to set OrderKey custom serializer");
+      throw new InvalidOperationException("Failed tooset OrderKey custom serializer");
     }
   }
 ```
 
 > [!NOTE]
-> 自訂序列化程式的優先順序高於內建的序列化程式。 例如，在為 int 註冊自訂序列化程式之後，系統就會使用它將整數序列化，而不會使用 int 的內建序列化程式。
+> 自訂序列化程式的優先順序高於內建的序列化程式。 例如，int 的自訂序列化程式註冊時，它是使用的 tooserialize 整數而不是 int 的 hello 在內建序列化程式
 
-### <a name="how-to-implement-a-custom-serializer"></a>如何實作自訂序列化程式
+### <a name="how-tooimplement-a-custom-serializer"></a>如何 tooimplement 自訂序列化程式
 
-自訂序列化程式需要實作 [IStateSerializer<T>](https://docs.microsoft.com/dotnet/api/microsoft.servicefabric.data.istateserializer-1) 介面。
+自訂序列化程式需要 tooimplement hello [IStateSerializer<T> ](https://docs.microsoft.com/dotnet/api/microsoft.servicefabric.data.istateserializer-1)介面。
 
 > [!NOTE]
 > IStateSerializer<T> 包含會接受額外 T (稱為基底值) 的 Write 和 Read 多載。 此 API 適用於差異序列化。 目前並未公開差異序列化功能。 因此，將等到公開並啟用差異序列化之後，才會呼叫這兩個多載。
@@ -135,17 +135,17 @@ public class OrderKeySerializer : IStateSerializer<OrderKey>
 ```
 
 ## <a name="upgradability"></a>可升級性
-在 [輪流應用程式升級](service-fabric-application-upgrade.md)中，升級會套用至節點的子集，一次一個升級網域。 在此過程中，某些升級網域會比您的應用程式版本新，而某些升級網域會比您的應用程式的版本舊。 在首度發行期間，新版的應用程式必須能夠讀取舊版的資料，而舊版的應用程式必須能夠讀取新版的資料。 如果資料格式沒有向前及向後相容，升級便可能會失敗，或是發生更糟糕的狀況，像是資料可能會遺失或損毀。
+在[復原應用程式升級](service-fabric-application-upgrade.md)，hello 升級已套用的 tooa 節點的子集，一次一個升級網域。 在此過程中，某些升級網域會 hello 較新版本的應用程式，而且某些升級網域會在 hello 較舊版本的應用程式。 Hello 首展期間 hello 新版本的應用程式必須是能夠 tooread hello 舊版本的資料，而且 hello 舊版本的應用程式必須能夠 tooread hello 新版本的資料。 如果 hello 資料格式不是向前和向後相容，hello 升級可能會失敗，或更糟的是，資料可能遺失或損毀。
 
-如果您使用的是內建序列化程式，就不需要擔心相容性。
-不過，如果您使用的是自訂序列化程式或 DataContractSerializer，資料就必須無限地往前和往後相容。
-換句話說，每個還原序列化版本都必須能夠將該類型的任何版本序列化或還原序列化。
+如果您使用的在內建序列化程式，表示您沒有 tooworry 有關相容性。
+不過，如果您使用自訂序列化程式或 hello DataContractSerializer，hello 資料有 toobe 無限回溯，往後相容性。
+換句話說，每個版本的序列化程式需要 toobe 無法 tooserialize 和還原序列化 hello 類型的任何版本。
 
-「資料合約」使用者應該依照妥善定義的版本控制規則來新增、移除及變更欄位。 「資料合約」也支援處理未知欄位、連結到序列化和還原序列化程序，以及處理類別繼承。 如需詳細資訊，請參閱 [使用資料合約](https://msdn.microsoft.com/library/ms733127.aspx)。
+資料合約使用者應遵循新增、 移除和變更欄位的 hello 妥善定義的版本控制規則。 資料合約也有支援處理具有未知的欄位、 攔截到 hello 序列化和還原序列化程序，和處理的類別繼承。 如需詳細資訊，請參閱 [使用資料合約](https://msdn.microsoft.com/library/ms733127.aspx)。
 
-自訂序列化程式使用者應該遵守所使用序列化程式的準則，以確保能夠往前和往後相容。
-支援所有版本的常見方式是在開頭新增大小資訊，並且只新增選用的屬性。
-如此一來，每個版本便可儘可能地讀取資料，然後跳過資料流的其餘部分。
+自訂序列化程式的使用者均應遵守 toohello hello 他們使用 toomake 確定回溯，而且往後相容性的序列化程式的指導方針。
+支援所有版本的常見方式在 hello 開頭，並只加入選擇性的屬性加入大小資訊。
+這種方式可以讀取每個版本最多可以並跳過 hello hello 資料流的其餘部分。
 
 ## <a name="next-steps"></a>後續步驟
   * [序列化與升級](service-fabric-application-upgrade-data-serialization.md)
@@ -153,5 +153,5 @@ public class OrderKeySerializer : IStateSerializer<OrderKey>
   * [使用 Visual Studio 升級您的應用程式](service-fabric-application-upgrade-tutorial.md) 將引導您完成使用 Visual Studio 進行應用程式升級的步驟。
   * [使用 PowerShell 升級您的應用程式](service-fabric-application-upgrade-tutorial-powershell.md) 將引導您完成使用 PowerShell 進行應用程式升級的步驟。
   * 使用 [升級參數](service-fabric-application-upgrade-parameters.md)來控制您應用程式的升級方式。
-  * 參考 [進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
-  * 參考 [疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
+  * 了解 toouse 把太升級您的應用程式時所進階的功能[進階主題](service-fabric-application-upgrade-advanced.md)。
+  * 藉由參考 toohello 步驟中的修正應用程式升級的一般問題[疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)。

@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中建置 Docker Python 和 PostgreSQL Web 應用程式 | Microsoft Docs"
-description: "了解如何取得在 Azure 中運作的 Docker Python 應用程式，並連線至 PostgreSQL 資料庫。"
+title: "aaaBuild Docker Python 和 PostgreSQL web 應用程式在 Azure 中 |Microsoft 文件"
+description: "深入了解如何 tooget Docker Python 應用程式使用 Azure，以連接 tooa PostgreSQL 資料庫。"
 services: app-service\web
 documentationcenter: python
 author: berndverst
@@ -15,23 +15,23 @@ ms.topic: tutorial
 ms.date: 05/03/2017
 ms.author: beverst
 ms.custom: mvc
-ms.openlocfilehash: e70f85a1eb4a6e1a81e0ca4fae228ca97deca6fe
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e594ef9ec8c04ef2bf725e5f998691f3fb8cf815
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-docker-python-and-postgresql-web-app-in-azure"></a>在 Azure 中建置 Docker Python 和 PostgreSQL Web 應用程式
 
-Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 本教學課程會示範如何在 Azure 中建立基本的 Docker Python Web 應用程式。 您會將此應用程式連線至 PostgreSQL 資料庫。 完成之後，您在 [Azure App Service Web Apps](app-service-web-overview.md) 上就會有 Docker 容器內執行的 Python Flask 應用程式。
+Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 本教學課程會示範如何 toocreate 基本的 Docker Python web 應用程式在 Azure 中。 您要連接此應用程式 tooa PostgreSQL 資料庫。 完成之後，您在 [Azure App Service Web Apps](app-service-web-overview.md) 上就會有 Docker 容器內執行的 Python Flask 應用程式。
 
 ![Azure App Service 中的 Docker Python Flask 應用程式](./media/app-service-web-tutorial-docker-python-postgresql-app/docker-flask-in-azure.png)
 
-您可以在 Mac OS 上依照下列步驟進行。 Linux 和 Windows 指示在大部分情況下都相同，本教學課程對差異不加詳述。
+您可以依照下列步驟來 hello macOS 上。 Linux 和 Windows 的指示是在大部分情況下，hello 相同但 hello 差異不詳述於本教學課程。
  
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本教學課程：
+toocomplete 本教學課程：
 
 1. [安裝 Git](https://git-scm.com/)
 1. [安裝 Python](https://www.python.org/downloads/)
@@ -42,38 +42,38 @@ Azure Web Apps 提供可高度擴充、自我修復的 Web 主機服務。 本�
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇 tooinstall，並在本機上使用 hello CLI，本主題會需要您執行 hello Azure CLI 版本 2.0 或更新版本。 執行`az --version`toofind hello 版本。 如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
 ## <a name="test-local-postgresql-installation-and-create-a-database"></a>測試本機 PostgreSQL 安裝並建立資料庫
 
-開啟終端機視窗，然後執行 `psql postgres` 來連線至本機 PostgreSQL 伺服器。
+開啟 hello 終端機視窗，然後執行`psql postgres`tooconnect tooyour 本機 PostgreSQL 伺服器。
 
 ```bash
 psql postgres
 ```
 
-如果連線成功，則您的 PostgreSQL 資料庫就已在執行中。 如果沒有，請確定您的本機 PostgresQL 資料庫已遵循[下載 - PostgresQL 核心散發](https://www.postgresql.org/download/)中的步驟來啟動。
+如果連線成功，則您的 PostgreSQL 資料庫就已在執行中。 如果沒有，請確定您的本機 PostgresQL 資料庫已啟動在 hello 步驟[下載-PostgreSQL 核心發佈](https://www.postgresql.org/download/)。
 
 建立名為 eventregistration 的資料庫，並且設定名為 manager、密碼為 supersecretpass 的個別資料庫使用者。
 
 ```bash
 CREATE DATABASE eventregistration;
 CREATE USER manager WITH PASSWORD 'supersecretpass';
-GRANT ALL PRIVILEGES ON DATABASE eventregistration TO manager;
+GRANT ALL PRIVILEGES ON DATABASE eventregistration toomanager;
 ```
-輸入 \q 來結束 PostgreSQL 用戶端。 
+型別*\q* tooexit hello PostgreSQL 用戶端。 
 
 <a name="step2"></a>
 
 ## <a name="create-local-python-flask-application"></a>建立本機 Python Flask 應用程式
 
-在此步驟中，您要設定本機 Python Flask 專案。
+在此步驟中，您會將設定 hello 本機 Python 酒瓶專案。
 
-### <a name="clone-the-sample-application"></a>複製範例應用程式
+### <a name="clone-hello-sample-application"></a>複製 hello 範例應用程式
 
-開啟終端機視窗，然後 `CD` 至工作目錄。  
+開啟 hello 終端機視窗，和`CD`tooa 工作目錄。  
 
-執行下列命令來複製範例存放庫，然後前往 0.1-initialapp 版本。
+Hello 執行的下列命令 tooclone hello 範例儲存機制，然後移至 toohello *0.1 initialapp*版本。
 
 ```bash
 git clone https://github.com/Azure-Samples/docker-flask-postgres.git
@@ -83,12 +83,12 @@ git checkout tags/0.1-initialapp
 
 此範例存放庫包含 [Flask](http://flask.pocoo.org/) 應用程式。 
 
-### <a name="run-the-application"></a>執行應用程式
+### <a name="run-hello-application"></a>執行 hello 應用程式
 
 > [!NOTE] 
-> 在稍後步驟中簡化這個程序，方法是建立可與生產環境資料庫搭配使用的 Docker 容器。
+> 在稍後步驟中您會藉由建置 Docker 容器 toouse 與 hello 生產資料庫簡化這個程序。
 
-安裝必要的封裝，然後啟動應用程式。
+安裝所需的 hello 封裝並啟動 hello 應用程式。
 
 ```bash
 pip install virtualenv
@@ -100,31 +100,31 @@ FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" 
 FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" DBPASS="supersecretpass" flask run
 ```
 
-當應用程式完全載入時，您會看到類似下列的訊息：
+完全載入 hello 應用程式時，您會看到下列訊息類似 toohello:
 
 ```bash
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
 INFO  [alembic.runtime.migration] Running upgrade  -> 791cd7d80402, empty message
  * Serving Flask app "app"
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C tooquit)
 ```
 
-在瀏覽器中，瀏覽至 http://127.0.0.1:5000 。 按一下 [註冊!] 並且建立測試使用者。
+瀏覽 toohttp://127.0.0.1:5000 瀏覽器中。 按一下 [註冊!] 並且建立測試使用者。
 
 ![在本機執行的 Python Flask 應用程式](./media/app-service-web-tutorial-docker-python-postgresql-app/local-app.png)
 
-Flask 範例應用程式會將使用者資料儲存於資料庫中。 如果您成功註冊使用者，您的應用程式會將資料寫入本機 PostgreSQL 資料庫。
+hello 酒瓶範例應用程式會將使用者資料儲存在 hello 資料庫。 如果您成功註冊使用者時，您的應用程式會撰寫資料 toohello 本機 PostgreSQL 資料庫。
 
-如需隨時停止 Flask 伺服器，請在終端機上輸入 Ctrl+C。 
+在任何時候、 toostop hello 酒瓶伺服器 hello 終端機中，輸入 Ctrl + C。 
 
 ## <a name="create-a-production-postgresql-database"></a>建立生產環境 PostgreSQL 資料庫
 
-在此步驟中，您要在 Azure 中建立 PostgreSQL 資料庫。 當您的應用程式部署至 Azure 時，它會使用此雲端資料庫。
+在此步驟中，您要在 Azure 中建立 PostgreSQL 資料庫。 已部署的 tooAzure 您的應用程式時，它會使用此雲端的資料庫。
 
-### <a name="log-in-to-azure"></a>登入 Azure
+### <a name="log-in-tooazure"></a>登入 tooAzure
 
-您即將使用 Azure CLI 2.0，來建立在 Azure App Service 中裝載 Python 應用程式所需的資源。  使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。 
+您正在進行 toouse hello Azure CLI 2.0 toocreate hello 資源所需 toohost Python 應用程式在 Azure App Service 中。  登入 Azure 訂用帳戶以 hello tooyour [az 登入](/cli/azure/#login)命令，並遵循螢幕上指示 hello。 
 
 ```azurecli
 az login 
@@ -132,29 +132,29 @@ az login
    
 ### <a name="create-a-resource-group"></a>建立資源群組
 
-使用 [az group create](../azure-resource-manager/resource-group-overview.md) 來建立[資源群組](/cli/azure/group#create)。 
+建立[資源群組](../azure-resource-manager/resource-group-overview.md)以 hello [az 群組建立](/cli/azure/group#create)。 
 
 [!INCLUDE [Resource group intro](../../includes/resource-group.md)]
 
-下列範例會在美國西部區域中建立一個資源群組：
+hello 下列範例會建立資源群組 hello 美國西部區域中：
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location "West US"
 ```
 
-使用 [az appservice list-locations](/cli/azure/appservice#list-locations) Azure CLI 命令以列出可用的位置。
+使用 hello [az appservice 列出位置](/cli/azure/appservice#list-locations)Azure CLI 命令 toolist 可用的位置。
 
 ### <a name="create-an-azure-database-for-postgresql-server"></a>建立適用於 PostgreSQL 的 Azure 資料庫伺服器
 
-使用 [az postgres server create](/cli/azure/documentdb#create) 命令來建立 PostgreSQL 伺服器。
+建立以 hello PostgreSQL 伺服器[az postgres 伺服器建立](/cli/azure/documentdb#create)命令。
 
-在下列命令中，使用唯一的伺服器名稱取代 \<postgresql_name> 預留位置，以及用使用者名稱取代 \<admin_username> 預留位置。 這個伺服器名稱會用來作為 PostgreSQL 端點 (`https://<postgresql_name>.postgres.database.azure.com`) 的一部分，所以在 Azure 的所有伺服器中必須是唯一的名稱。 使用者名稱是用於初始資料庫管理使用者帳戶。 系統會提示您選取此使用者的密碼。
+在 hello 下列命令，以取代 hello 的唯一的伺服器名稱 *\<postgresql_name >*預留位置和 hello 的使用者名稱 *\<admin_username >*預留位置. hello 的伺服器名稱會做為 PostgreSQL 端點的一部分 (`https://<postgresql_name>.postgres.database.azure.com`)，因此 hello 名稱需要 toobe 唯一在 Azure 中的所有伺服器。 hello 使用者名稱為 hello 初始資料庫管理員使用者帳戶。 您必須提示的 toopick 這位使用者的密碼。
 
 ```azurecli-interactive
 az postgres server create --resource-group myResourceGroup --name <postgresql_name> --admin-user <admin_username>
 ```
 
-建立適用於 PostgreSQL 的 Azure 資料庫伺服器後，Azure CLI 會顯示類似下列範例的資訊：
+PostgreSQL 伺服器 hello Azure 資料庫建立時，hello Azure CLI 顯示資訊的類似 toohello 下列範例：
 
 ```json
 {
@@ -180,15 +180,15 @@ az postgres server create --resource-group myResourceGroup --name <postgresql_na
 }
 ```
 
-### <a name="create-a-firewall-rule-for-the-azure-database-for-postgresql-server"></a>建立適用於 PostgreSQL 的 Azure 資料庫伺服器防火牆規則
+### <a name="create-a-firewall-rule-for-hello-azure-database-for-postgresql-server"></a>建立 PostgreSQL 伺服器 hello Azure 資料庫的防火牆規則
 
-執行下列 Azure CLI 命令，允許從所有 IP 位址存取資料庫。
+執行的所有 IP 位址中的下列 Azure CLI 命令 tooallow access toohello 資料庫 hello。
 
 ```azurecli-interactive
 az postgres server firewall-rule create --resource-group myResourceGroup --server-name <postgresql_name> --start-ip-address=0.0.0.0 --end-ip-address=255.255.255.255 --name AllowAllIPs
 ```
 
-Azure CLI 確認防火牆規則建立，具有類似下列範例的輸出：
+hello Azure CLI 使用下列範例的輸出類似 toohello 確認 hello 防火牆規則的建立：
 
 ```json
 {
@@ -201,69 +201,69 @@ Azure CLI 確認防火牆規則建立，具有類似下列範例的輸出：
 }
 ```
 
-## <a name="connect-your-python-flask-application-to-the-database"></a>將 Python Flask 應用程式連線至資料庫
+## <a name="connect-your-python-flask-application-toohello-database"></a>連接您的 Python 酒瓶應用程式 toohello 資料庫
 
-在此步驟中，您要將 Python Flask 範例應用程式連線至適用於您所建立之適用於 PostgreSQL 的 Azure 資料庫伺服器。
+在此步驟中，您可以連接您所建立的 PostgreSQL 伺服器您 Python 酒瓶範例應用程式 toohello Azure 資料庫。
 
 ### <a name="create-an-empty-database-and-set-up-a-new-database-application-user"></a>建立空的資料庫並設定新的資料庫應用程式使用者
 
-建立資料庫使用者，並僅提供單一資料庫的存取權。 您將會使用這些認證以避免將伺服器的完整存取權給予應用程式。
+存取 tooa 單一資料庫只能建立資料庫使用者。 您將使用這些認證 tooavoid，給予 hello 應用程式的完整存取 toohello 伺服器。
 
-連線至資料庫 (系統會提示您輸入管理員密碼)。
+連接 toohello 資料庫 （系統提示您輸入系統管理員密碼）。
 
 ```bash
 psql -h <postgresql_name>.postgres.database.azure.com -U <my_admin_username>@<postgresql_name> postgres
 ```
 
-從 PostgreSQL CLI 建立資料庫和使用者。
+從 PostgreSQL CLI hello 建立 hello 資料庫和使用者。
 
 ```bash
 CREATE DATABASE eventregistration;
 CREATE USER manager WITH PASSWORD 'supersecretpass';
-GRANT ALL PRIVILEGES ON DATABASE eventregistration TO manager;
+GRANT ALL PRIVILEGES ON DATABASE eventregistration toomanager;
 ```
 
-輸入 \q 來結束 PostgreSQL 用戶端。
+型別*\q* tooexit hello PostgreSQL 用戶端。
 
-### <a name="test-the-application-locally-against-the-azure-postgresql-database"></a>針對 Azure PostgreSQL 資料庫本機測試應用程式 
+### <a name="test-hello-application-locally-against-hello-azure-postgresql-database"></a>測試本機 hello hello Azure PostgreSQL 資料庫應用程式 
 
-現在回到複製的 Github 存放庫 app 資料夾，您只要更新資料庫環境變數，就可以執行 Python Flask 應用程式。
+返回現在 toohello*應用程式*hello 資料夾複製 Github 儲存機制，您可以藉由更新 hello 資料庫環境變數執行 hello Python 酒瓶應用程式。
 
 ```bash
 FLASK_APP=app.py DBHOST="<postgresql_name>.postgres.database.azure.com" DBUSER="manager@<postgresql_name>" DBNAME="eventregistration" DBPASS="supersecretpass" flask db upgrade
 FLASK_APP=app.py DBHOST="<postgresql_name>.postgres.database.azure.com" DBUSER="manager@<postgresql_name>" DBNAME="eventregistration" DBPASS="supersecretpass" flask run
 ```
 
-當應用程式完全載入時，您會看到類似下列的訊息：
+完全載入 hello 應用程式時，您會看到下列訊息類似 toohello:
 
 ```bash
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
 INFO  [alembic.runtime.migration] Running upgrade  -> 791cd7d80402, empty message
  * Serving Flask app "app"
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C tooquit)
 ```
 
-在瀏覽器中，瀏覽至 http://127.0.0.1:5000 。 按一下 [註冊!] 並且建立測試註冊。 現在您要將資料寫入 Azure 中的資料庫。
+瀏覽 toohttp://127.0.0.1:5000 瀏覽器中。 按一下 [註冊!] 並且建立測試註冊。 您現在要在 Azure 中，撰寫資料 toohello 資料庫。
 
 ![在本機執行的 Python Flask 應用程式](./media/app-service-web-tutorial-docker-python-postgresql-app/local-app.png)
 
-### <a name="running-the-application-from-a-docker-container"></a>從 Docker 容器執行應用程式
+### <a name="running-hello-application-from-a-docker-container"></a>執行 Docker 容器中的 hello 應用程式
 
-建置 Docker 容器映像。
+建置 hello Docker 容器映像。
 
 ```bash
 cd ..
 docker build -t flask-postgresql-sample .
 ```
 
-Docker 會顯示已成功建立容器的確認。
+Docker 顯示確認訊息已成功建立 it hello 容器。
 
 ```bash
 Successfully built 7548f983a36b
 ```
 
-將資料庫環境變數新增至環境變數檔案 db.env。 應用程式會連線至 Azure 中的 PostgreSQL 生產環境資料庫。
+新增資料庫環境變數 tooan 環境變數檔*db.env*。 hello 應用程式會連接 toohello PostgreSQL 生產資料庫，在 Azure 中。
 
 ```text
 DBHOST="<postgresql_name>.postgres.database.azure.com"
@@ -272,32 +272,32 @@ DBNAME="eventregistration"
 DBPASS="supersecretpass"
 ```
 
-從 Docker 容器內執行應用程式。 下列命令會指定環境變數檔案，並將預設 Flask 連接埠 5000 對應至本機連接埠 5000。
+執行從 hello Docker 容器中的 hello 應用程式。 hello 下列命令會指定 hello 環境變數的檔案並將對應 hello 預設酒瓶連接埠 5000 toolocal port 5000。
 
 ```bash
 docker run -it --env-file db.env -p 5000:5000 flask-postgresql-sample
 ```
 
-輸出類似您稍早所見的範例。 不過，不再需要執行初始資料庫移轉，因此會予以略過。
+hello 輸出是您稍早所看到的類似 toowhat。 不過，hello 初始資料庫移轉不需要再 toobe 執行，因此已略過。
 
 ```bash
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
  * Serving Flask app "app"
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C tooquit)
 ```
 
-資料庫已包含您先前建立的註冊。
+hello 資料庫已經包含您先前建立的 hello 註冊。
 
 ![以 Docker 容器為基礎在本機執行的 Python Flask 應用程式](./media/app-service-web-tutorial-docker-python-postgresql-app/local-docker.png)
 
-## <a name="upload-the-docker-container-to-a-container-registry"></a>將 Docker 容器上傳至容器登錄
+## <a name="upload-hello-docker-container-tooa-container-registry"></a>上傳 hello Docker 容器 tooa 容器登錄中
 
-在此步驟中，將 Docker 容器上傳至容器登錄。 您將會使用 Azure Container Registry，但是您也可以使用 Docker Hub 等其他熱門的項目。
+在此步驟中，您上傳 hello Docker 容器 tooa 容器登錄中。 您將會使用 Azure Container Registry，但是您也可以使用 Docker Hub 等其他熱門的項目。
 
 ### <a name="create-an-azure-container-registry"></a>建立 Azure Container Registry
 
-在下列命令中，建立容器登錄，將 \<registry_name> 取代為您選擇的唯一 Azure Container Registry 名稱。
+在下列命令 toocreate 容器登錄中的 hello 取代 *\<registry_name >*與您所選擇的 Azure 容器登錄名稱。
 
 ```azurecli-interactive
 az acr create --name <registry_name> --resource-group myResourceGroup --location "West US" --sku Basic
@@ -325,16 +325,16 @@ az acr create --name <registry_name> --resource-group myResourceGroup --location
 }
 ```
 
-### <a name="retrieve-the-registry-credentials-for-pushing-and-pulling-docker-images"></a>擷取用來推送及提取 Docker 映像的登錄認證
+### <a name="retrieve-hello-registry-credentials-for-pushing-and-pulling-docker-images"></a>擷取推送及提取的 Docker 映像的 hello 登錄憑證
 
-若要顯示登錄認證，請先啟用管理員模式。
+tooshow 登錄認證，可先讓系統管理員模式。
 
 ```azurecli-interactive
 az acr update --name <registry_name> --admin-enabled true
 az acr credential show -n <registry_name>
 ```
 
-您會看到兩個密碼。 請記下使用者名稱和第一個密碼。
+您會看到兩個密碼。 請記下 hello 使用者名稱和 hello 第一個密碼。
 
 ```json
 {
@@ -352,7 +352,7 @@ az acr credential show -n <registry_name>
 }
 ```
 
-### <a name="upload-your-docker-container-to-azure-container-registry"></a>將 Docker 容器上傳至 Azure Container Registry
+### <a name="upload-your-docker-container-tooazure-container-registry"></a>上傳您的 Docker 容器 tooAzure 容器登錄中
 
 ```bash
 docker login <registry_name>.azurecr.io -u <registry_name> -p "<registry_password>"
@@ -360,23 +360,23 @@ docker tag flask-postgresql-sample <registry_name>.azurecr.io/flask-postgresql-s
 docker push <registry_name>.azurecr.io/flask-postgresql-sample
 ```
 
-## <a name="deploy-the-docker-python-flask-application-to-azure"></a>將 Docker Python Flask 應用程式部署至 Azure
+## <a name="deploy-hello-docker-python-flask-application-tooazure"></a>部署 hello Docker Python 酒瓶應用程式 tooAzure
 
-在此步驟中，您可以將以 Docker 容器為基礎的 Python Flask 應用程式部署至 Azure App Service。
+在此步驟中，您可以部署您 Docker 容器基礎 Python 酒瓶應用程式 tooAzure 應用程式服務。
 
 ### <a name="create-an-app-service-plan"></a>建立應用程式服務方案
 
-使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令來建立 App Service 方案。 
+建立應用程式服務方案以 hello [az 應用程式服務方案建立](/cli/azure/appservice/plan#create)命令。 
 
 [!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
-下列範例會使用 S1 定價層，建立名為 myAppServicePlan 之以 Linux 為基礎的 App Service 方案：
+hello 下列範例會建立名為 Linux 為基礎的應用程式服務方案*myAppServicePlan*使用 hello S1 定價層：
 
 ```azurecli-interactive
 az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku S1 --is-linux
 ```
 
-建立 App Service 方案後，Azure CLI 會顯示類似下列範例的資訊：
+建立 hello 應用程式服務方案時，hello Azure CLI 顯示資訊的類似 toohello 下列範例：
 
 ```json 
 {
@@ -416,17 +416,17 @@ az appservice plan create --name myAppServicePlan --resource-group myResourceGro
 
 ### <a name="create-a-web-app"></a>建立 Web 應用程式
 
-使用 [az webapp create](/cli/azure/webapp#create) 命令，在 myAppServicePlan App Service 方案中建立 Web 應用程式。 
+建立 web 應用程式在 hello *myAppServicePlan*應用程式服務方案以 hello [az webapp 建立](/cli/azure/webapp#create)命令。 
 
-Web 應用程式會為您提供裝載空間來部署程式碼，以及提供 URL 讓您能夠檢視已部署的應用程式。 用來建立 Web 應用程式。 
+hello web 應用程式可讓您裝載空間 toodeploy 您的程式碼和為您提供 URL tooview hello 部署應用程式。 使用 toocreate hello web 應用程式。 
 
-在下列命令中，將 \<app_name> 預留位置取代為唯一的應用程式名稱。 這個名稱是 Web 應用程式預設 URL 的一部分，因此，這個名稱在 Azure App Service 的所有應用程式中必須是唯一的。 
+在 hello 下列命令，將取代 hello  *\<app_name >*具有唯一的應用程式名稱的預留位置。 這個名稱是 hello hello web 應用程式，預設 URL 的一部分，因此 hello 名稱需要 toobe 唯一跨 Azure App Service 中的所有應用程式。 
 
 ```azurecli
 az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
 ```
 
-建立 Web 應用程式後，Azure CLI 會顯示類似下列範例的資訊： 
+Hello web 應用程式建立後，hello Azure CLI 顯示資訊的類似 toohello 下列範例： 
 
 ```json 
 {
@@ -443,13 +443,13 @@ az webapp create --name <app_name> --resource-group myResourceGroup --plan myApp
 }
 ```
 
-### <a name="configure-the-database-environment-variables"></a>設定資料庫環境變數
+### <a name="configure-hello-database-environment-variables"></a>設定 hello 資料庫環境變數
 
-稍早在本教學課程中，您定義了環境變數來連線至 PostgreSQL 資料庫。
+稍早在 hello 教學課程中，您可以定義環境變數 tooconnect tooyour PostgreSQL 資料庫。
 
-在 App Service 中，您可以使用 [az webapp config appsettings set](/cli/azure/webapp/config#set) 命令將環境變數設定為「應用程式設定」。 
+在應用程式服務中，您設定環境變數為_應用程式設定_使用 hello [az webapp config appsettings 組](/cli/azure/webapp/config#set)命令。 
 
-下列範例會指定資料庫連線詳細資料作為應用程式設定。 它也會使用 PORT 變數，將 Docker 容器上的連接埠 5000 對應至接收連接埠 80 上的 HTTP 流量。
+hello 下列範例指定 hello 資料庫連接詳細資料為應用程式設定。 它也會使用 hello*連接埠*變數 toomap PORT 5000 從您在連接埠 80 上的 Docker 容器 tooreceive HTTP 流量。
 
 ```azurecli-interactive
 az webapp config appsettings set --name <app_name> --resource-group myResourceGroup --settings DBHOST="<postgresql_name>.postgres.database.azure.com" DBUSER="manager@<postgresql_name>" DBPASS="supersecretpass" DBNAME="eventregistration" PORT=5000
@@ -463,23 +463,23 @@ AppService 會自動下載及執行 Docker 容器。
 az webapp config container set --resource-group myResourceGroup --name <app_name> --docker-registry-server-user "<registry_name>" --docker-registry-server-password "<registry_password>" --docker-custom-image-name "<registry_name>.azurecr.io/flask-postgresql-sample" --docker-registry-server-url "https://<registry_name>.azurecr.io"
 ```
 
-每當您更新 Docker 容器或變更設定時，重新啟動應用程式。 重新啟動可確保套用所有設定，以及從登錄提取最新容器。
+每當您更新 hello Docker 容器，或變更 hello 設定，重新啟動 hello 應用程式。 重新啟動，可確保套用所有的設定，以及從 hello 登錄提取 hello 最新的容器。
 
 ```azurecli-interactive
 az webapp restart --resource-group myResourceGroup --name <app_name>
 ```
 
-### <a name="browse-to-the-azure-web-app"></a>瀏覽至 Azure Web 應用程式 
+### <a name="browse-toohello-azure-web-app"></a>瀏覽 toohello Azure web 應用程式 
 
-使用 Web 瀏覽器，瀏覽至已部署的 Web 應用程式。 
+瀏覽使用網頁瀏覽器 toohello 部署 web 應用程式。 
 
 ```bash 
 http://<app_name>.azurewebsites.net 
 ```
 > [!NOTE]
-> Web 應用程式載入的時間較久，因為在容器設定變更之後，必須下載及啟動容器。
+> hello web 應用程式需要較長的 tooload 因為 hello 容器具有 toobe 下載及啟動 hello 容器組態變更之後。
 
-您會看到先前已註冊的來賓，儲存至上一個步驟中的 Azure 生產環境資料庫。
+您會看到先前註冊的來賓 hello 上一個步驟中儲存 toohello Azure 生產資料庫。
 
 ![以 Docker 容器為基礎在本機執行的 Python Flask 應用程式](./media/app-service-web-tutorial-docker-python-postgresql-app/docker-app-deployed.png)
 
@@ -487,15 +487,15 @@ http://<app_name>.azurewebsites.net
 
 ## <a name="update-data-model-and-redeploy"></a>更新資料模型並重新部署
 
-在此步驟中，您會更新來賓模式，將出席者的人數新增至每個事件註冊。
+在此步驟中，您可以加入 hello 數目出席者 tooeach 事件註冊藉由更新 hello 客體模型。
 
-請使用下列 git 命令查看 0.2-migration 版本：
+簽出 hello *0.2 移轉*版本與 hello 下列 git 命令：
 
 ```bash
 git checkout tags/0.2-migration
 ```
 
-此版本已對檢視、控制器及模型進行必要變更。 它也會包含透過 alembic (`flask db migrate`) 產生的資料庫移轉。 您可以看到透過下列 git 命令所進行的所有變更：
+此版本中已經完成 hello 必要的變更 tooviews、 控制站，以及模型。 它也會包含透過 alembic (`flask db migrate`) 產生的資料庫移轉。 您可以看到所有透過 hello 下列 git 命令進行的變更：
 
 ```bash
 git diff 0.1-initialapp 0.2-migration
@@ -503,7 +503,7 @@ git diff 0.1-initialapp 0.2-migration
 
 ### <a name="test-your-changes-locally"></a>本機測試您的變更
 
-透過執行 Flask 伺服器，可執行下列命令在本機測試您的變更。
+下列命令 tootest hello 您的變更在本機執行所執行的 hello 酒瓶伺服器。
 
 Mac / Linux：
 ```bash
@@ -513,13 +513,13 @@ FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" 
 FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" DBPASS="supersecretpass" flask run
 ```
 
-在瀏覽器中瀏覽至 http://127.0.0.1:5000 可檢視變更。 建立測試註冊。
+瀏覽在您的瀏覽器 tooview hello 變更 toohttp://127.0.0.1:5000。 建立測試註冊。
 
 ![以 Docker 容器為基礎在本機執行的 Python Flask 應用程式](./media/app-service-web-tutorial-docker-python-postgresql-app/local-app-v2.png)
 
-### <a name="publish-changes-to-azure"></a>將變更發佈至 Azure
+### <a name="publish-changes-tooazure"></a>發行變更 tooAzure
 
-建立新的 Docker 映像、將其推送至容器登錄，並重新啟動應用程式。
+建置 hello 新的 docker 映像，直接將其推 toohello 容器登錄中，然後重新啟動 hello 應用程式。
 
 ```bash
 docker build -t flask-postgresql-sample .
@@ -528,7 +528,7 @@ docker push <registry_name>.azurecr.io/flask-postgresql-sample
 az appservice web restart --resource-group myResourceGroup --name <app_name>
 ```
 
-瀏覽至 Azure Web 應用程式，然後再次嘗試執行新功能。 建立另一個事件註冊。
+瀏覽 tooyour Azure web 應用程式，然後再試 hello 新功能。 建立另一個事件註冊。
 
 ```bash 
 http://<app_name>.azurewebsites.net 
@@ -538,19 +538,19 @@ http://<app_name>.azurewebsites.net
 
 ## <a name="manage-your-azure-web-app"></a>管理您的 Azure Web 應用程式
 
-請移至 [Azure 入口網站](https://portal.azure.com)，以查看您所建立的 Web 應用程式。
+移 toohello [Azure 入口網站](https://portal.azure.com)toosee hello web 應用程式所建立。
 
-按一下左側功能表中的 [應用程式服務]，然後按一下 Azure Web 應用程式的名稱。
+從 hello 左窗格中，按一下 **應用程式服務**，然後按一下 hello Azure web 應用程式名稱。
 
-![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-tutorial-docker-python-postgresql-app/app-resource.png)
+![入口網站瀏覽 tooAzure web 應用程式](./media/app-service-web-tutorial-docker-python-postgresql-app/app-resource.png)
 
-根據預設，入口網站會顯示 Web 應用程式的 [概觀] 分頁。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 分頁左側的索引標籤會顯示您可開啟的各種設定分頁。
+根據預設，hello 入口網站會顯示 web 應用程式的**概觀**頁面。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 在左邊 hello 頁面 hello hello 索引標籤會顯示 hello 不同的組態頁面，您可以開啟。
 
 ![Azure 入口網站中的 App Service 頁面](./media/app-service-web-tutorial-docker-python-postgresql-app/app-mgmt.png)
 
 ## <a name="next-steps"></a>後續步驟
 
-前往下一個教學課程，了解如何將自訂的 DNS 名稱對應至 Web 應用程式。
+前進 toohello 下一個教學課程 toolearn toomap 自訂的 DNS 名稱 tooyour web 應用程式的方式。
 
 > [!div class="nextstepaction"] 
-> [將現有的自訂 DNS 名稱對應至 Azure Web Apps](app-service-web-tutorial-custom-domain.md)
+> [將現有自訂 DNS 名稱 tooAzure Web 應用程式的對應](app-service-web-tutorial-custom-domain.md)

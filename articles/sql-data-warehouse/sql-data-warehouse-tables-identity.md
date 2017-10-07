@@ -1,6 +1,6 @@
 ---
-title: "使用 IDENTITY 建立 Surrogate 索引鍵 |Microsoft Docs"
-description: "了解如何使用 IDENTITY 在資料表上建立 Surrogate 索引鍵。"
+title: "aaaCreate surrogate 索引鍵使用的識別 |Microsoft 文件"
+description: "了解 toouse 識別 toocreate 代理程式資料表上的索引鍵。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: jrowlandjones
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 06/13/2017
 ms.author: jrj;barbkess
-ms.openlocfilehash: 3ab5d159e6eaeb830135fe134e108b0e4de4b7d6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 502cdd2b510b229b2a19c1f78b11862a7386ae3b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-surrogate-keys-by-using-identity"></a>使用 IDENTITY 建立 Surrogate 索引鍵
 > [!div class="op_single_selector"]
@@ -33,10 +33,10 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-許多資料製造模型者在設計資料倉儲模型時，都喜歡在其資料表上建立 Surrogate 索引鍵。 您可以使用 IDENTITY 屬性，在不影響載入效能的情況下，以簡單又有效的方式達成此目標。 
+它們在設計資料倉儲模型時，許多資料建模者喜歡 toocreate surrogate 索引鍵，其資料表上。 您可以使用 hello 識別屬性 tooachieve 此目標只是和有效率的方法而不會影響載入效能。 
 
 ## <a name="get-started-with-identity"></a>開始使用 IDENTITY
-您在初次建立資料表時，可以使用類似下列陳述式的語法，將資料表定義為具有 IDENTITY 屬性：
+您可以將資料表定義為具有 hello IDENTITY 屬性，當您初次建立 hello 資料表使用 「 類似 toohello 後面的陳述式的語法：
 
 ```sql
 CREATE TABLE dbo.T1
@@ -50,15 +50,15 @@ WITH
 ;
 ```
 
-然後，您可以使用 `INSERT..SELECT` 來填入資料表。
+然後您可以使用`INSERT..SELECT`toopopulate hello 資料表。
 
 ## <a name="behavior"></a>行為
-IDENTITY 屬性的設計，可在不影響載入效能的情況下，於資料倉儲的所有發佈上進行相應放大。 因此，IDENTITY 的實作便是為了達成這些目標。 本節會重點說明此實作的細節，以協助您更全面地了解它們。  
+hello 識別屬性是設計出 tooscale 跨所有 hello 分佈，而不會影響載入效能 hello 資料倉儲中。 因此，身分識別的 hello 實作會導向達成這些目標。 本章節強調 hello 細節的 hello 實作 toohelp 您瞭解這些更完整。  
 
 ### <a name="allocation-of-values"></a>值的配置
-IDENTITY 屬性並不會保證 Surrogate 值的配置順序，這會反映出 SQL Server 和 Azure SQL Database 行為。 不過，在 Azure SQL 資料倉儲中，此保證的不存在則更為明顯。 
+hello IDENTITY 屬性並不保證 hello 順序中的 hello 配置 surrogate 值，其會反映的 SQL Server 和 Azure SQL Database 的 hello 行為。 不過，在 Azure SQL 資料倉儲中，更唸成 hello 缺乏保證。 
 
-下列範例將做出說明：
+hello 下列範例會示範：
 
 ```sql
 CREATE TABLE dbo.T1
@@ -83,29 +83,29 @@ FROM dbo.T1;
 DBCC PDW_SHOWSPACEUSED('dbo.T1');
 ```
 
-在上述範例中，有兩個資料列落在發佈 1 中。 第一個資料列在資料行 `C1` 中具有 1 的 Surrogate 值，而第二個資料列則具有 61 的 Surrogate 值。 這兩個值都是由 IDENTITY 屬性所產生。 不過，值的配置並不是連續的。 這是設計的行為。
+在上述範例中的 hello，兩個資料列處於發佈 1。 hello 第一個資料列資料行有 hello surrogate 值為 1 `C1`，而且 hello 第二個資料列 61 hello surrogate 值。 兩個這些值所產生的 hello IDENTITY 屬性。 不過，不是連續的 hello 值 hello 配置。 這是設計的行為。
 
 ### <a name="skewed-data"></a>偏斜資料 
-資料類型的值範圍會平均分散於發佈上。 如果分散式資料表受到偏斜資料的影響，則可供資料類型使用的值範圍可能會提前耗盡。 例如，如果所有資料最後都位於單一發佈中，則該資料表實際上將只能存取該資料類型六十分之一的值。 因此，IDENTITY 屬性僅限用於 `INT` 和 `BIGINT` 資料類型。
+hello hello 資料類型的值範圍會平均分散 hello 分佈。 如果資料的誤用因分散式的資料表，然後 hello 可用 toohello 資料型別可能會耗盡不當的值範圍。 比方說，如果所有的 hello 資料最後會在單一通訊中，然後有效 hello 資料表有存取 tooonly 一個 sixtieth hello hello 資料類型值。 基於這個理由，hello IDENTITY 屬性太有限`INT`和`BIGINT`資料型別。
 
 ### <a name="selectinto"></a>SELECT..INTO
-將現有的 IDENTITY 資料行選取至新的資料表時，新的資料行會繼承 IDENTITY 屬性，除非下列其中一項條件成立：
-- SELECT 陳述式包含聯結。
+到新的資料表選取現有的身分識別資料行時，hello 新資料行就會繼承 hello IDENTITY 屬性，除非其中一個 hello 下列條件成立：
+- hello SELECT 陳述式包含聯結。
 - 多個 SELECT 陳述式使用 UNION 進行聯結。
-- IDENTITY 資料行在 SELECT 清單中列出多次。
-- IDENTITY 資料行是運算式的一部分。
+- hello 身分識別資料行被列一次以上 hello 選取清單中。
+- hello 身分識別資料行是運算式的一部分。
     
-如果這些條件的其中之一成立，資料行會建立為「非 NULL」，而不是繼承 IDENTITY 屬性。
+如果任何一個條件為 true，hello 資料行建立成 NOT NULL 而非繼承 hello IDENTITY 屬性。
 
 ### <a name="create-table-as-select"></a>CREATE TABLE AS SELECT
-CREATE TABLE AS SELECT (CTAS) 會遵循針對 SELECT..INTO 記錄的相同 SQL Server 行為。 不過，您無法在陳述式 `CREATE TABLE` 部分的資料行定義中指定 IDENTITY 屬性。 您也無法在 CTAS 的 `SELECT` 部分使用 IDENTITY 函式。 若要填入資料表，您必須使用 `CREATE TABLE` 來定義資料表，接著使用 `INSERT..SELECT` 來填入它。
+建立資料表 AS 選取 (CTAS) 如下所示 hello 相同的 SQL Server 行為，以便進行 SELECT 記錄...到。 不過，您無法 hello hello 資料行定義中指定的 IDENTITY 屬性`CREATE TABLE`hello 陳述式的一部分。 您也無法使用 hello IDENTITY 函數在 hello `SELECT` hello CTAS 的一部分。 toopopulate 資料表，您需要 toouse `CREATE TABLE` toodefine hello 表格後面`INSERT..SELECT`toopopulate 它。
 
 ## <a name="explicitly-insert-values-into-an-identity-column"></a>明確地將值插入 IDENTITY 資料行 
-SQL 資料倉儲支援 `SET IDENTITY_INSERT <your table> ON|OFF` 語法。 您可以使用此語法來明確地將值插入 IDENTITY 資料行。
+SQL 資料倉儲支援 `SET IDENTITY_INSERT <your table> ON|OFF` 語法。 您可以使用此語法 tooexplicitly 插入值到 hello 識別資料行。
 
-許多資料製造模型者喜歡在其維度的特定資料列中使用預先定義的負數值。 其中一個範例為 -1 或「未知的成員」資料列。 
+許多資料建模者像 toouse 預先定義的負值特定值維度中的資料列。 例如，-1 hello 或 「 未知的成員 」 資料列。 
 
-下一個指令碼會示範如何使用 SET IDENTITY_INSERT 明確地加入此資料列：
+hello 下一個指令碼會示範 tooexplicitly 利用 SET IDENTITY_INSERT 所新增的這個資料列：
 
 ```sql
 SET IDENTITY_INSERT dbo.T1 ON;
@@ -126,12 +126,12 @@ FROM    dbo.T1
 
 ## <a name="load-data-into-a-table-with-identity"></a>使用 IDENTITY 將資料載入資料表
 
-IDENTITY 屬性的存在會對您的資料載入程式碼造成一些影響。 本節會重點說明使用 IDENTITY 將資料載入資料表的一些基本模式。 
+hello 的 hello IDENTITY 屬性的目前狀態有某些含意 tooyour 資料載入程式碼。 本節會重點說明使用 IDENTITY 將資料載入資料表的一些基本模式。 
 
 ### <a name="load-data-with-polybase"></a>使用 PolyBase 載入資料
-若要使用 IDENTITY 將資料載入資料表並產生 Surrogate 索引鍵，請建立資料表，然後使用 INSERT..SELECT 或 INSERT..VALUES 來執行載入。
+tooload 資料到資料表和產生 surrogate 索引鍵使用的識別、 建立 hello 資料表，然後使用 INSERT...SELECT 或 INSERT...值 tooperform hello 負載。
 
-下列範例會重點說明基本模式：
+hello 下列範例會反白顯示 hello 基本模式：
  
 ```sql
 --CREATE TABLE with IDENTITY
@@ -145,7 +145,7 @@ WITH
 )
 ;
 
---Use INSERT..SELECT to populate the table from an external table
+--Use INSERT..SELECT toopopulate hello table from an external table
 INSERT INTO dbo.T1
 (C2)
 SELECT  C2
@@ -160,28 +160,28 @@ DBCC PDW_SHOWSPACEUSED('dbo.T1');
 ```
 
 > [!NOTE] 
-> 目前在使用 IDENTITY 資料行將資料載入資料表時，並無法使用 `CREATE TABLE AS SELECT`。
+> 不可能 toouse`CREATE TABLE AS SELECT`目前時將資料載入資料表之 IDENTITY 資料行。
 > 
 
-如需使用大量複製程式 (BCP) 工具載入資料的詳細資訊，請參閱下列文章：
+如需有關使用 hello 大量複製程式 (BCP) 工具來載入資料的詳細資訊，請參閱下列文章 hello:
 
 - [使用 PolyBase 載入][]
 - [PolyBase 最佳做法][]
 
 ### <a name="load-data-with-bcp"></a>使用 BCP 載入資料
-BCP 是一種命令列工具，您可以用來將資料載入 SQL 資料倉儲。 它的其中一個參數 (-E) 可控制使用 IDENTITY 資料行將資料載入資料表時的 BCP 行為。 
+BCP 就會是命令列工具，您可以使用 tooload 資料到 SQL 資料倉儲。 其中一個參數 (-E) 將資料載入資料表之 IDENTITY 資料行時，控制項 hello BCP 的行為。 
 
-指定 -E 時，保留在具 IDENTITY 之資料行的輸入檔案中的值將會被保留下來。 如果「未」指定 -E，系統會忽略此資料行中的值。 如果沒有包含 IDENTITY 資料行，則會以正常方式載入資料。 值會根據屬性的增量和種子原則產生。
+指定-E 時，識別持有 hello hello 資料行的輸入檔中的 hello 值都會保留下來。 如果-E 是*不*指定，則會忽略此資料行中的 hello 值。 如果不包含 hello 識別資料行，則 hello 資料被載入以正常的。 hello 值會產生根據 toohello 遞增和種子原則 hello 屬性。
 
-如需使用 BCP 載入資料的詳細資訊，請參閱下列文章：
+如需有關使用 BCP 來載入資料的詳細資訊，請參閱下列文章 hello:
 
 - [使用 BCP 載入][]
 - [MSDN 中的 BCP][]
 
 ## <a name="catalog-views"></a>目錄檢視
-SQL 資料倉儲支援 `sys.identity_columns` 目錄檢視。 此檢視可以用來識別具有 IDENTITY 屬性的資料行。
+SQL 資料倉儲支援 hello`sys.identity_columns`目錄檢視。 這個檢視可以使用的 tooidentify 具有 hello IDENTITY 屬性的資料行。
 
-為了協助您深入了解資料庫結構描述，此範例示範如何整合 `sys.identity_columns` 與其他系統目錄檢視：
+toohelp 深入了解 hello 資料庫結構描述，這個範例會示範如何 toointegrate`sys.identity_columns`與其他系統目錄檢視：
 
 ```sql
 SELECT  sm.name
@@ -202,12 +202,12 @@ AND     tb.name = 'T1'
 ```
 
 ## <a name="limitations"></a>限制
-下列案例不能使用 IDENTITY 屬性：
-- 資料行資料類型不是 INT 或 BIGINT
-- 資料行也是散發索引鍵
-- 資料表為外部資料表 
+hello 識別屬性不能在下列案例的 hello:
+- 其中 hello 資料行資料類型不是 INT 或 BIGINT
+- 其中 hello 資料行也是 hello 散發索引鍵
+- Hello 資料表所在的外部資料表 
 
-SQL 資料倉儲中不支援下列相關函式：
+SQL 資料倉儲中不支援下列相關函式的 hello:
 
 - [IDENTITY()][]
 - [@@IDENTITY][]
@@ -219,22 +219,22 @@ SQL 資料倉儲中不支援下列相關函式：
 
 ## <a name="tasks"></a>工作
 
-本節提供一些範例程式碼，可在您使用 IDENTITY 資料行時用來執行一般工作。
+本節提供範例程式碼，當您使用識別欄位時，您可以使用 tooperform 一般工作。
 
 > [!NOTE] 
-> 在下列所有工作中，資料行 C1 都會是 IDENTITY。
+> 資料行 C1 是在下列工作的所有 hello hello 身分識別。
 > 
  
-### <a name="find-the-highest-allocated-value-for-a-table"></a>找出資料表的最大配置值
-使用 `MAX()` 函式來判斷針對分散式資料表所配置的最大值：
+### <a name="find-hello-highest-allocated-value-for-a-table"></a>找到資料表的配置 hello 最高值
+使用 hello`MAX()`函式的分散式資料表配置 toodetermine hello 最大值：
 
 ```sql
 SELECT  MAX(C1)
 FROM    dbo.T1
 ``` 
 
-### <a name="find-the-seed-and-increment-for-the-identity-property"></a>找出 IDENTITY 屬性的種子和增量
-您可以透過下列查詢，來使用目錄檢視以探索資料表的識別值增量和種子設定值： 
+### <a name="find-hello-seed-and-increment-for-hello-identity-property"></a>尋找 hello 種子和遞增值 hello IDENTITY 屬性
+您可以使用 hello 目錄檢視 toodiscover hello 識別遞增和種子組態值的資料表使用下列查詢的 hello: 
 
 ```sql
 SELECT  sm.name
@@ -254,7 +254,7 @@ AND     tb.name = 'T1'
 
 ## <a name="next-steps"></a>後續步驟
 
-* 若要深入了解開發資料表，請參閱[資料表概觀][Overview]、[資料表的資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[分割資料表][Partition]和[暫存資料表][Temporary]。 
+* toolearn 進一步了解開發資料表，請參閱[資料表概觀][Overview]，[資料表的資料型別][Data Types]，[散發資料表][ Distribute]，[索引資料表][Index]，[分割資料表][Partition]，和[暫存資料表][Temporary]。 
 * 如需最佳做法的詳細資訊，請參閱 [SQL 資料倉儲最佳做法][SQL Data Warehouse Best Practices]。  
 
 <!--Image references-->

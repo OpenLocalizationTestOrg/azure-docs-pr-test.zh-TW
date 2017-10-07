@@ -1,6 +1,6 @@
 ---
-title: "StorSimple Snapshot Manager 備份工作 | Microsoft Docs"
-description: "描述如何使用 StorSimple Snapshot Manager MMC 嵌入式管理單元來檢視和管理已排程、目前執行中和已完成的備份作業。"
+title: "aaaStorSimple Snapshot Manager 備份工作 |Microsoft 文件"
+description: "描述如何 toouse hello StorSimple Snapshot Manager MMC 嵌入式管理單元 tooview 及管理排程、 目前執行中和已完成的備份工作。"
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,76 +14,76 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: v-sharos
-ms.openlocfilehash: 03e306b62250f2bb033cc14e856a59760b5406c3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3dba0a2aa527d17d67130f537bcdce5722b05a76
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-storsimple-snapshot-manager-to-view-and-manage-backup-jobs"></a>使用 StorSimple Snapshot Manager 來檢視和管理備份作業
+# <a name="use-storsimple-snapshot-manager-tooview-and-manage-backup-jobs"></a>使用 StorSimple Snapshot Manager tooview 及管理備份工作
 
 ## <a name="overview"></a>概觀
-[範圍] 窗格中的 [作業] 節點會顯示您以互動方式或透過已設定之原則起始的 [已排程]、[過去 24 小時] 和 [執行中] 備份工作。 
+hello**作業**節點 hello**範圍** 窗格會顯示 hello**排程**，**過去 24 小時**，和**執行**的備份工作，您起始了以互動方式或依據設定的原則。 
 
-本教學課程說明如何使用 [ **作業** ] 節點，以顯示已排程、最近和目前執行中之備份作業的相關資訊。 (作業清單和對應資訊會出現在 [結果] 窗格中)。此外，您也可以以滑鼠右鍵按一下列出的作業，並查看內容功能表，其中列出可用的動作。
+本教學課程說明如何使用 hello**作業**節點 toodisplay 資訊已排程、 最近，和目前執行的備份工作。 (hello 清單作業和對應的資訊會出現在 hello**結果**窗格。)此外，您也可以以滑鼠右鍵按一下列出的作業，並查看內容功能表，其中列出可用的動作。
 
 ## <a name="view-scheduled-jobs"></a>檢視已排程的作業
-請使用下列程序來檢視已排程的備份作業。
+使用下列程序 tooview 的 hello 排定的備份工作。
 
-#### <a name="to-view-scheduled-jobs"></a>若要檢視已排程的作業
-1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。 
-2. 在 [範圍] 窗格中，展開 [作業] 節點，然後按一下 [已排程]。 下列資訊會出現在 [ **結果** ] 窗格中：
+#### <a name="tooview-scheduled-jobs"></a>tooview 排程工作
+1. 按一下 hello 桌面圖示 toostart StorSimple Snapshot Manager。 
+2. 在 [hello**範圍**] 窗格中，展開 hello**作業**節點，然後按一下**排程**。 hello 下列資訊會出現在 hello**結果**窗格：
    
-   * **名稱**  – 已排定之快照的名稱
-   * **下次執行**  – 下次排定之快照的日期和時間
-   * **上次執行**  – 最新排定之快照的日期和時間
+   * **名稱**– hello hello 排定之快照的名稱
+   * **接下來執行**– hello 的日期和時間 hello 下一個排程的快照集
+   * **上次執行**– hello 的日期和時間 hello 最新的排程快照集
      
      > [!NOTE]
-     > 若為僅一次快照，[下次執行] 和 [上次執行] 將相同。
+     > 僅一次快照，如 hello **下次執行**和**上次執行**將 hello 相同。
      
      ![排定的備份工作](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_scheduled.png) 
-3. 若要在特定工作上執行其他動作，請以滑鼠右鍵按一下 [ **結果** ] 窗格中的作業名稱，然後選取功能表選項。
+3. tooperform 其他動作的特定作業，以滑鼠右鍵按一下 hello 工作名稱在 hello**結果**窗格，然後選取從 hello 功能表選項。
 
 ## <a name="view-recent-jobs"></a>檢視最近的作業
-請使用下列程序，來檢視過去 24 小時內完成的備份和還原作業。
+使用下列程序 tooview 備份 hello 和還原作業中完成之 hello 過去 24 小時。
 
-#### <a name="to-view-recent-jobs"></a>若要檢視最近的作業
-1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
-2. 在 [範圍] 窗格中，展開 [作業] 節點，然後按一下 [過去 24 小時]。 [ **結果** ] 窗格會顯示過去 24 小時的備份作業 (最多可顯示 64 個作業)。 下列資訊會出現在 [結果] 窗格中，視您指定的 [檢視] 選項而定：
+#### <a name="tooview-recent-jobs"></a>tooview 最近工作
+1. 按一下 hello 桌面圖示 toostart StorSimple Snapshot Manager。
+2. 在 [hello**範圍**] 窗格中，展開 hello**作業**節點，然後按一下**過去 24 小時**。 hello**結果** 窗格會顯示備份作業的 hello 過去 24 小時 （tooa 最多 64 個工作中）。 hello 下列資訊會出現在 hello**結果** 窗格中的，根據 hello**檢視**您指定的選項：
    
-   * **名稱**  – 已排定之快照的名稱。
-   * **已啟動**  – 快照開始的日期和時間。
-   * **已停止**  – 快照完成或已終止的日期和時間。
-   * [經過時間] – [已啟動] 時間與 [已停止] 時間之間的時間量。
-   * **狀態**  – 最近完成之工作的狀態。 **成功**  指出已順利建立備份。 **失敗**  指出作業並未成功執行。
-   * **資訊**  – 失敗的原因。
-   * **已處理的位元組數 (MB)**  – 來自磁碟區群組已處理的資料量 (以 MB 為單位)。 
+   * **名稱**– hello hello 排定之快照的名稱。
+   * **啟動**– hello 開始日期和時間時 hello 快照集。
+   * **停止**– hello 或日期和時間時 hello 快照集完成已終止。
+   * **經過**– hello 一段時間之間 hello**已啟動**和**已停止**時間。
+   * **狀態**– hello hello 最近完成的作業的狀態。 **成功**指出該 hello 備份已成功建立。 **無法**指出 hello 工作執行成功。
+   * **資訊**– hello hello 失敗原因。
+   * **已處理的位元組 (MB)** – hello 數量 （以 mb 為單位） 已處理的 hello 磁碟區群組中的資料。 
      
-     ![過去 24 小時內執行的工作](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_Last_24_hours.png) 
-3. 若要在特定工作上執行其他動作，請以滑鼠右鍵按一下 [ **結果** ] 窗格中的作業名稱，然後選取功能表選項。
+     ![執行在 hello 過去 24 小時內的工作](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_Last_24_hours.png) 
+3. tooperform 其他動作的特定作業，以滑鼠右鍵按一下 hello 工作名稱在 hello**結果**窗格，然後選取從 hello 功能表選項。
    
     ![刪除工作](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Delete_backup.png)
 
 ## <a name="view-currently-running-jobs"></a>檢視目前執行中的作業
-請使用下列程序來檢視目前執行中的作業。
+使用下列程序 tooview 作業目前正在執行的 hello。
 
-#### <a name="to-view-currently-running-jobs"></a>若要檢視目前執行中的工作
-1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
-2. 在 [範圍] 窗格中，展開 [作業] 節點，然後按一下 [執行中]。 視您指定的 [檢視] 選項而定，下列資訊會出現在 [結果] 窗格中：
+#### <a name="tooview-currently-running-jobs"></a>tooview 目前執行的工作
+1. 按一下 hello 桌面圖示 toostart StorSimple Snapshot Manager。
+2. 在 [hello**範圍**] 窗格中，展開 hello**作業**節點，然後按一下**執行**。 根據 hello**檢視**選項指定，hello 下列資訊會出現在 hello**結果**窗格：
    
-   * **名稱**  – 已排定之快照的名稱。
-   * **已啟動**  – 快照開始的日期和時間。
-   * **檢查點**  – 備份的目前動作。
-   * **狀態**  – 完成百分比。
-   * **經過時間**  – 從備份開始後所經過的時間量。 
-   * **平均輸送量 (MB)** – 處理的總資料位元組與處理所花時間的比率 (以 MB 為單位)。
+   * **名稱**– hello hello 排定之快照的名稱。
+   * **啟動**– hello 開始日期和時間時 hello 快照集。
+   * **檢查點**– hello 的 hello 備份目前的動作。
+   * **狀態**– hello 完成百分比。
+   * **經過**– hello hello 備份開始後經過的時間量。 
+   * **平均輸送量 (MB)** – 處理 (MBs) 所花費的時間總計的資料處理 toothat 的位元組總數的比率。
    * **處理的位元組 (MB)** – 處理的總資料位元組 (以 MB 為單位)。
-   * **寫入的位元組 (MB)** – 寫入的總資料位元組 (以 MB 為單位)。 它包含資料以及中繼資料，因此通常大於處理的位元組。
+   * **寫入的位元組 (MB)** – 寫入的總資料位元組 (以 MB 為單位)。 它包含 hello 資料以及 hello 中繼資料，並因此大於通常 hello 處理的位元組。
      
      ![目前執行中的工作](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_running.png)
-3. 若要在特定工作上執行其他動作，請以滑鼠右鍵按一下 [ **結果** ] 窗格中的作業名稱，然後選取功能表選項。
+3. tooperform 其他動作的特定作業，以滑鼠右鍵按一下 hello 工作名稱在 hello**結果**窗格，然後選取從 hello 功能表選項。
 
 ## <a name="next-steps"></a>後續步驟
-* 了解如何 [使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
-* 了解如何 [使用 StorSimple Snapshot Manager 管理備份目錄](storsimple-snapshot-manager-manage-backup-catalog.md)。
+* 了解如何太[使用您的 StorSimple 解決方案的 StorSimple Snapshot Manager tooadminister](storsimple-snapshot-manager-admin.md)。
+* 了解如何太[使用 StorSimple Snapshot Manager toomanage hello 備份類別目錄](storsimple-snapshot-manager-manage-backup-catalog.md)。
 

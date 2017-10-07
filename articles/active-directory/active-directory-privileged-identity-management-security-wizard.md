@@ -1,6 +1,6 @@
 ---
-title: "Azure AD Privileged Identity Management 安全性精靈"
-description: "第一次使用 Azure Active Directory Privileged Identity Management 擴充功能時，您將會看到安全性精靈。 本文說明使用精靈的步驟。"
+title: "aaaThe Azure AD Privileged Identity Management 安全性精靈"
+description: "hello 第一次使用 hello Azure Active Directory Privileged Identity Management 延伸模組，您會有安全性精靈 」。 本文說明 hello 使用 hello 精靈的步驟。"
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,30 +15,30 @@ ms.workload: identity
 ms.date: 02/27/2017
 ms.author: billmath
 ms.custom: pim ; H1Hack27Feb2017
-ms.openlocfilehash: 260d178f3d8158411b3ad266e3b0d15edbebc722
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0b3019134d3c7cfac33b3acfcf430b4d4f67b119
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-security-wizard-in-azure-ad-privileged-identity-management"></a>在 Azure AD Privileged Identity Management 中使用安全性精靈 
-如果您是貴組織中執行 Azure Privileged Identity Management (PIM) 的第一個人，您就會看到精靈。 精靈會協助您了解特殊權限身分識別的安全性風險，以及如何使用 PIM 來降低這些風險。 如果您想要稍後再進行變更，就不需要在精靈中對現有的角色指派進行任何變更。
+# <a name="using-hello-security-wizard-in-azure-ad-privileged-identity-management"></a>使用 Azure AD Privileged Identity Management 中的 hello 安全性精靈 
+如果您是第一個人 toorun hello Azure Privileged Identity Management (PIM) 為您的組織，您會使用精靈。 hello 精靈可協助您了解的特殊權限的身分識別的 hello 安全性風險以及如何 toouse PIM tooreduce 這些風險。 您不需要 toomake hello 精靈中的任何變更 tooexisting 角色指派的話 toodo 於稍後。
 
-## <a name="what-to-expect"></a>未來展望
-在貴組織開始使用 PIM 之前，所有的角色指派都是永久的︰即使使用者目前不需要其權限，他們都一直保有這些角色。  精靈的第一個步驟會顯示高特殊權限角色的清單，以及這些角色中目前有多少使用者。 如果不清楚一或多個角色，您可以向內切入某個特定角色來深入了解使用者。
+## <a name="what-tooexpect"></a>哪些 tooexpect
+您的組織開始使用 PIM 之前，會變成永久變更的所有角色指派： hello 使用者一律都會在這些角色即使目前不需要其權限。  hello hello 精靈第一個步驟會顯示高特殊權限角色的清單，且使用者人數目前在這些角色。 您可以鑽研 tooa 進一步了解使用者的特定角色 toolearn 如果其中一個或多個不熟悉。
 
-精靈的第二個步驟會讓您有機會變更系統管理員的角色指派。  
+hello 第二個步驟的 hello 精靈可讓您有機會 toochange 系統管理員的角色指派。  
 
 > [!WARNING]
-> 您必須至少有一個全域系統管理員，這一點很重要，而且要有多個具備組織帳戶 (而非 Microsoft 帳戶) 的特殊權限角色管理員。 如果只有一個特殊權限角色管理員，若該帳戶遭到刪除，組織就無法管理 PIM。
-> 此外，如果使用者擁有 Microsoft 帳戶 (他們用來登入 Skype 和 Outlook.com 這類 Microsoft 服務的帳戶)，請將角色指派設為永久。 如果您打算要求必須執行 MFA 才能啟用該角色，該使用者將會遭到封鎖。
+> 您必須至少有一個全域系統管理員，這一點很重要，而且要有多個具備組織帳戶 (而非 Microsoft 帳戶) 的特殊權限角色管理員。 如果只有一個特殊權限的角色系統管理員，hello 組織將無法能 toomanage PIM 如果刪除該帳戶。
+> 此外，保留角色指派永久如果使用者具有 Microsoft 帳戶 （如 Skype 和 Outlook.com tooMicrosoft 服務中使用 toosign 帳戶）。 如果您計劃 toorequire MFA 啟用該角色，該使用者會遭到鎖定。
 > 
 > 
 
-進行變更之後，將不會再次顯示精靈。 下次當您或其他特殊權限角色管理員使用 PIM 時，您將會看到 PIM 儀表板。  
+您所做的變更之後，將不會再顯示 hello 精靈。 hello 下次您或其他特殊權限的角色系統管理員使用 PIM，您會看到 hello PIM 儀表板。  
 
-* 如果您想要從角色新增或移除使用者，或將指派從永久變更為符合資格，請參閱 [如何新增或移除使用者的角色](active-directory-privileged-identity-management-how-to-add-role-to-user.md)。
-* 如果您想要讓更多使用者存取管理 PIM，請參閱 [How to give access to manage Azure AD Privileged Identity Management (如何授與存取權以管理 Azure AD Privileged Identity Management)](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)。
+* 如果您會喜歡 tooadd 或從角色移除使用者，或從永久性 tooeligible 變更指派，閱讀更多在[如何 tooadd 或移除使用者角色](active-directory-privileged-identity-management-how-to-add-role-to-user.md)。
+* 如果您想要 toogive 更多使用者存取 toomanage PIM，深入了解在[toogive 如何存取在 PIM toomanage](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)。
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]

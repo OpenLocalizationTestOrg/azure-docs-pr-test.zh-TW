@@ -1,6 +1,6 @@
 ---
-title: "Azure AD 應用程式 Proxy - 開始安裝連接器 | Microsoft Docs"
-description: "在 Azure 入口網站中開啟應用程式 Proxy，並安裝反向 Proxy 的連接器。"
+title: "aaaAzure AD 應用程式 Proxy-快速入門安裝連接器 |Microsoft 文件"
+description: "Hello Azure 入口網站中開啟應用程式 Proxy，並安裝 hello hello 反向 proxy 連接器。"
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,94 +15,94 @@ ms.date: 08/02/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 77acb23f33fd656a12c27107cb159613a8b2aec4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ea79ffa92fa223584be04f49019fd31a0bfd8358
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-application-proxy-and-install-the-connector"></a>開始使用應用程式 Proxy 並安裝連接器
-本文將逐步引導您完成為 Azure AD 中的雲端目錄啟用 Microsoft Azure AD 應用程式 Proxy 的步驟。
+# <a name="get-started-with-application-proxy-and-install-hello-connector"></a>開始使用應用程式 Proxy 並安裝 hello 連接器
+本文將告訴您透過 hello 步驟 tooenable Microsoft Azure AD 應用程式 Proxy 為您的雲端目錄，在 Azure AD 中。
 
-如果您還不知道應用程式 Proxy 為您的組織帶來的安全性和生產力優勢，請深入了解[如何為內部部署應用程式提供安全的遠端存取](active-directory-application-proxy-get-started.md)。
+如果您不知道 hello 安全性和產能優勢的應用程式 Proxy 將 tooyour 組織，請深入了解[如何 tooprovide 安全的遠端存取 tooon 內部部署應用程式](active-directory-application-proxy-get-started.md)。
 
 ## <a name="application-proxy-prerequisites"></a>應用程式 Proxy 先決條件
-您可以啟用並使用應用程式 Proxy 服務之前，必須具備：
+您可以啟用及使用應用程式 Proxy 服務之前，您會需要 toohave:
 
 * Microsoft Azure AD [基本或進階訂用帳戶](active-directory-editions.md) 以及您是全域管理員的 Azure AD 目錄。
-* 您可以在執行 Windows Server 2012 R2 或 2016 的伺服器上，安裝應用程式 Proxy 連接器。 伺服器必須能夠連線至雲端中的應用程式 Proxy 服務，以及您所發佈的內部部署應用程式。
-  * 如需使用 Kerberos 限制委派單一登入已發佈的應用程式，這部電腦應該會加入與您要發佈的應用程式相同的 AD 網域中。 如需詳細資訊，請參閱[使用應用程式 Proxy 進行單一登入的 KCD](active-directory-application-proxy-sso-using-kcd.md)。
+* 執行 Windows Server 2012 R2 或 2016，您可以安裝 hello 應用程式 Proxy 連接器的伺服器。 hello 伺服器需要 toobe 無法 tooconnect toohello hello 雲端中的應用程式 Proxy 服務而 hello 內部部署您發行的應用程式。
+  * 針對單一登入 tooyour 已發行的應用程式使用 Kerberos 限制委派，這部電腦應該被網域的 hello 相同的 AD 網域中做為您要發行的 hello 應用程式。 如需詳細資訊，請參閱[使用應用程式 Proxy 進行單一登入的 KCD](active-directory-application-proxy-sso-using-kcd.md)。
 
-如果您的組織使用 Proxy 伺服器來連線至網際網路，請參閱[使用現有的內部部署 Proxy 伺服器](application-proxy-working-with-proxy-servers.md)，以取得如何在開始使用應用程式 Proxy 之前設定伺服器的詳細資訊。
+如果您的組織使用 proxy 伺服器 tooconnect toohello 網際網路，讀取[使用現有的內部 proxy 伺服器](application-proxy-working-with-proxy-servers.md)如需詳細資訊如何 tooconfigure 它們才能取得啟動應用程式 proxy。
 
 ## <a name="open-your-ports"></a>開啟您的連接埠
 
-若要準備適合 Azure AD 應用程式 Proxy 的環境，您需要先啟用 Azure 資料中心的通訊。 如果路徑中有防火牆，請確定防火牆已開啟，以便連接器可以對應用程式 Proxy 提出 HTTPS (TCP) 要求。
+tooprepare 環境針對 Azure AD Application Proxy，您必須先 tooenable 通訊 tooAzure 資料中心。 如果 hello 路徑中有防火牆，請確認它已開啟，因此該連接器可以進行 HTTPS (TCP) 的 hello 要求 toohello 應用程式 Proxy。
 
-1. 開啟下列連接埠以**輸出**流量：
+1. 開啟 hello siguientes puertos 太**輸出**流量：
 
    | 連接埠號碼 | 使用方式 |
    | --- | --- |
-   | 80 | 下載憑證撤銷清單 (CRL) 時驗證 SSL 憑證 |
-   | 443 | 應用程式 Proxy 服務的所有傳出通訊 |
+   | 80 | 下載憑證撤銷清單 (Crl) 時驗證 hello SSL 憑證 |
+   | 443 | 所有的連出通訊以 hello 應用程式 Proxy 服務 |
 
-   如果您的防火牆根據原始使用者強制執行流量，請針對來自當作網路服務執行之 Windows 服務的流量，開放這些連接埠。
+   如果您的防火牆，強制執行根據 toooriginating 使用者流量，開啟這些連接埠的流量從做為網路服務執行的 Windows 服務。
 
    > [!IMPORTANT]
-   > 下表反映連接器 1.5.132.0 版及更新版本的連接埠需求。 如果仍有舊版的連接器，您也需要啟用除了80 和 443 以外的下列連接埠：5671、8080、9090、9091、9350、9352、10100–10120。
+   > hello 反映出 hello 連接器版本 1.5.132.0 的連接埠需求及更新版本。 如果仍有舊版的連接器，您也需要 tooenable hello 9350，下列連接埠在加法 too80 和 443: 5671、 8080，9090 9091，則為 9352 10100 – 10120。
    >
-   >如需將連接器更新至最新版本的詳細資訊，請參閱[了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md#automatic-updates)。
+   >如需更新連接器 toohello 的最新版本的相關資訊，請參閱[了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md#automatic-updates)。
 
-2. 如果您的防火牆或 Proxy 允許建立 DNS 白名單，您可以建立 msappProxy.net 和 servicebus.windows.net 的白名單連線。 如果不是，您需要允許對每週更新的 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)的存取。
+2. 如果您的防火牆或 proxy 可讓 DNS 允許清單，您可以允許清單連接 toomsappproxy.net 和.servicebus.windows.net 的支援。 如果沒有，您需要 tooallow 存取 toohello [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)，這會更新每週。
 
-3. Microsoft 使用四個位址來驗證憑證。 請允許存取下列 URL (若尚未允許其他產品存取)：
+3. Microsoft 會使用四個位址 tooverify 憑證。 允許存取 toohello 如果您尚未這樣做其他產品的下列 Url:
    * mscrl.microsoft.com:80
    * crl.microsoft.com:80
    * ocsp.msocsp.com:80
    * www.microsoft.com:80
 
-4. 您的連接器必須為了註冊程序存取 login.windows.net 和 login.microsoftonline.net。
+4. 您的連接器需要存取 toologin.windows.net 和 login.microsoftonline.net 的 hello 註冊程序。
 
-5. 請使用 [Azure AD 應用程式 Proxy 連接器連接埠測試工具](https://aadap-portcheck.connectorporttest.msappproxy.net/)，來確認您的連接器是否能夠連線到「應用程式 Proxy」服務。 至少，請確定「美國中部」區域及離您最近的區域都具有綠色勾選記號。 除此之外，綠色勾選記號越多代表恢復能力越佳。
+5. 使用 hello [Azure AD 應用程式 Proxy 連接器連接埠測試工具](https://aadap-portcheck.connectorporttest.msappproxy.net/)tooverify 連接器可達到 hello 應用程式 Proxy 服務。 最少，請確定 hello 美國中部地區和 hello 區域最接近 tooyou 具有所有綠色的核取記號。 除此之外，綠色勾選記號越多代表恢復能力越佳。
 
 ## <a name="install-and-register-a-connector"></a>安裝並註冊連接器
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，以系統管理員身分登入。
-2. 您目前的目錄會顯示在右上角的使用者名稱之下。 如果您需要變更目錄，請選取該圖示。
-3. 移至 [Azure Active Directory] > [應用程式 Proxy]。
+1. Hello 中的系統管理員身分登入[Azure 入口網站](https://portal.azure.com/)。
+2. 您目前的目錄會出現在 hello 右上角的 在您的使用者名稱。 如果您需要 toochange 目錄，請選取該圖示。
+3. 跳過**Azure Active Directory** > **應用程式 Proxy**。
 
-   ![瀏覽至 [應用程式 Proxy]](./media/active-directory-application-proxy-enable/app_proxy_navigate.png)
+   ![瀏覽 tooApplication Proxy](./media/active-directory-application-proxy-enable/app_proxy_navigate.png)
 
 4. 選取 [下載連接器]。
 
    ![下載連接器](./media/active-directory-application-proxy-enable/download_connector.png)
 
-5. 在您根據必要條件所準備好的伺服器上執行 **AADApplicationProxyConnectorInstaller.exe** 。
-6. 依照精靈中的指示進行安裝。 在安裝期間，系統將提示您向 Azure AD 租用戶的應用程式 Proxy 註冊連接器。
+5. 執行**AADApplicationProxyConnectorInstaller.exe** hello 伺服器上您備妥相應 toohello 必要條件。
+6. 遵循 hello 精靈 tooinstall hello 指示進行。 在安裝期間，您必須提示的 tooregister hello hello 的 Azure AD 租用戶的應用程式 Proxy 連接器。
 
    * 提供您的 Azure AD 全域管理員認證。 您的全域管理員租用戶可能與您的 Microsoft Azure 認證不同。
-   * 請確定註冊連接器的系統管理員與您啟用應用程式 Proxy 服務的位置在相同的目錄中。 例如，如果租用戶網域為 contoso.com，則系統管理員應該是 admin@contoso.com ，或該網域上的其他別名。
-   * 如果 [IE 增強式安全性組態] 在您要安裝連接器的伺服器上設定為 [開啟]，您可能看不到註冊畫面。 若要取得存取權，請依照錯誤訊息中的指示。 請確定已停用 [Internet Explorer 增強式安全性]。
+   * 請確定暫存器 hello 連接器處於 hello 相同的目錄已啟用 hello 管理員 hello 應用程式 Proxy 服務。 例如，如果 hello 租用戶網域為 contoso.com，hello admin 應該是admin@contoso.com或在該網域上的任何其他別名。
+   * 如果**IE 增強式安全性設定**設定得**上**hello 在伺服器上安裝 hello 連接器，您可能無法看見 hello 註冊 畫面中。 tooget 存取權，遵循 hello hello 錯誤訊息中的指示。 請確定已停用 [Internet Explorer 增強式安全性]。
 
 為了實現高可用性，您應該至少部署兩個連接器。 每個連接器都必須分別進行註冊。
 
-## <a name="test-that-the-connector-installed-correctly"></a>測試連接器是否安裝正確
+## <a name="test-that-hello-connector-installed-correctly"></a>測試已正確安裝該 hello 連接器
 
-您可以在 Azure 入口網站中或在您的伺服器上檢查新的連接器，以確認它是否安裝正確。 
+您可以確認新的連接器，檢查它在任一個 hello Azure 入口網站或伺服器上正確安裝。 
 
-在 Azure 入口網站中，登入您的租用戶並巡覽至 [Azure Active Directory] > [應用程式 Proxy]。 所有的連接器與連接器群組都會出現在此頁面上。 選取連接器，以查看其詳細資料，或將它移至不同的連接器群組。 
+在 hello Azure 入口網站、 登入 tooyour 租用戶和瀏覽過**Azure Active Directory** > **應用程式 Proxy**。 所有的連接器與連接器群組都會出現在此頁面上。 選取連接器 toosee 其詳細資料，或將它移至不同的連接器群組。 
 
-在您的伺服器上，檢查連接器與連接器更新程式的作用中服務清單。 這兩項服務應該立即開始執行，但非如此，請加以啟動： 
+在您的伺服器，請檢查 hello 清單 hello 連接器與 hello 連接器更新程式的作用中服務。 hello 兩個服務應該立即，開始執行，但如果沒有，請加以啟動： 
 
    * **Microsoft AAD 應用程式 Proxy 連接器** 可啟用連線
 
-   * **Microsoft AAD 應用程式 Proxy 連接器更新程式**是自動更新服務。 更新程式會檢查連接器的新版本，並且視需要更新連接器。
+   * **Microsoft AAD 應用程式 Proxy 連接器更新程式**是自動更新服務。 hello updater 會檢查新版本的 hello 連接器，並且更新 hello 連接器，視需要。
 
    ![應用程式 Proxy 連接器服務 - 螢幕擷取畫面](./media/active-directory-application-proxy-enable/app_proxy_services.png)
 
-如需有關連接器以及其如何保持最新狀態的詳細資訊，請參閱[了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)。
+如需連接器和方式，就會維持 toodate 註冊資訊，請參閱[了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)。
 
 
 ## <a name="next-steps"></a>後續步驟
-您現在已經準備好 [使用應用程式 Proxy 發佈應用程式](application-proxy-publish-azure-portal.md)。
+現在您已經準備就緒太[發行應用程式 Proxy](application-proxy-publish-azure-portal.md)。
 
-如果您有位於不同網路或不同位置上的應用程式，請使用連接器群組將不同的連接器組織成邏輯單元。 深入了解 [使用應用程式 Proxy 連接器](active-directory-application-proxy-connectors-azure-portal.md)。
+如果您有個別的網路或不同的位置上的應用程式，使用連接器，將邏輯單元分 tooorganize hello 不同連接器。 深入了解 [使用應用程式 Proxy 連接器](active-directory-application-proxy-connectors-azure-portal.md)。

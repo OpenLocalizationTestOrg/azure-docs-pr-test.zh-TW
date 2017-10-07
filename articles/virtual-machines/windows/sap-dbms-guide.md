@@ -1,5 +1,5 @@
 ---
-title: "Azure VM 上的 SAP NetWeaver - DBMS 部署指南 | Microsoft Docs"
+title: "aaaSAP NetWeaver on Azure Vm – 的 DBMS 部署指南 |Microsoft 文件"
 description: "Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南"
 services: virtual-machines-windows,virtual-network,storage
 documentationcenter: 
@@ -17,11 +17,11 @@ ms.workload: infrastructure-services
 ms.date: 11/08/2016
 ms.author: sedusch
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: cc7c85382d8f8183ef3eb3cc7496b012808148e5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a56b8f6b3b26fa10e01a25a251a3e4a7bfc77e2b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sap-netweaver-on-azure-windows-virtual-machines-vms--dbms-deployment-guide"></a>Azure Windows 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南
 [767598]:https://launchpad.support.sap.com/#/notes/767598
@@ -257,7 +257,7 @@ ms.lasthandoff: 07/11/2017
 [virtual-machines-azure-resource-manager-architecture]:../../resource-manager-deployment-model.md
 [virtual-machines-azurerm-versus-azuresm]:../../resource-manager-deployment-model.md
 [virtual-machines-windows-classic-configure-oracle-data-guard]:../virtual-machines-windows-classic-configure-oracle-data-guard.md
-[virtual-machines-linux-cli-deploy-templates]:../linux/cli-deploy-templates.md (Deploy and manage virtual machines by using Azure Resource Manager templates and the Azure CLI)
+[virtual-machines-linux-cli-deploy-templates]:../linux/cli-deploy-templates.md (Deploy and manage virtual machines by using Azure Resource Manager templates and hello Azure CLI)
 [virtual-machines-deploy-rmtemplates-powershell]:../virtual-machines-windows-ps-manage.md (Manage virtual machines using Azure Resource Manager and PowerShell)
 [virtual-machines-linux-agent-user-guide]:../linux/agent-user-guide.md
 [virtual-machines-linux-agent-user-guide-command-line-options]:../linux/agent-user-guide.md#command-line-options
@@ -303,42 +303,42 @@ ms.lasthandoff: 07/11/2017
 [xplat-cli]:../../cli-install-nodejs.md
 [xplat-cli-azure-resource-manager]:../../xplat-cli-azure-resource-manager.md
 
-本指南是在 Microsoft Azure 上實作和部署 SAP 軟體之文件的一部分。 閱讀本指南之前，請先閱讀[規劃和實作指南][planning-guide]。 本文說明如何在 Microsoft Azure 虛擬機器 (VM) 上，使用 Azure 基礎結構即服務 (IaaS) 功能搭配 SAP，來部署各種關聯式資料庫管理系統 (RDBMS) 及相關產品。
+本指南是 hello 文件中實作及部署 Microsoft Azure 上的 hello SAP 軟體的一部分。 之後，再閱讀本指南，請閱讀 hello[計劃與實作指南][planning-guide]。 本文件涵蓋 hello 部署各種關聯式資料庫管理系統 (RDBMS) 和使用 hello Azure 基礎結構即服務 (IaaS) 功能搭配 Microsoft Azure 虛擬機器 (Vm) 上的 SAP 相關的產品。
 
-本白皮書會對 SAP 安裝文件和 SAP 附註進行補充說明，指出用來在指定平台上安裝和部署 SAP 軟體的主要資源。
+指定平台 hello 紙張補充 hello SAP 安裝文件集和 SAP 附註 」 包含 hello 安裝和部署上的 SAP 軟體的主要資源
 
 ## <a name="general-considerations"></a>一般考量
-本章將說明在 Azure VM 中執行 SAP 相關 DBMS 系統的考量。 有數個對於本章中特定 DBMS 系統的參考資料。 在本白皮書內，改為在本章之後討論特定的 DBMS 系統。
+本章將說明在 Azure VM 中執行 SAP 相關 DBMS 系統的考量。 有幾個參考 toospecific DBMS 系統在本章中。 改為 hello 特定 DBMS 系統是由處理本文件，會在本章之後。
 
 ### <a name="definitions-upfront"></a>預先定義
-我們將在本文件中使用下列詞彙︰
+在 hello 文件中，我們將使用下列詞彙的 hello:
 
 * IaaS：基礎結構即服務。
 * PaaS：平台即服務。
 * SaaS：軟體即服務。
 * SAP 元件︰個別的 SAP 應用程式，例如 ECC、BW、Solution Manager 或 EP。  SAP 元件可以傳統 ABAP 或 Java 技術為基礎，或以非 NetWeaver 應用程式 (例如商務物件) 為基礎。
-* SAP 環境 (SAP Environment)︰一或多個以邏輯方式分組的 SAP 元件，可執行像是開發、QAS、訓練、DR 或生產等商務功能。
-* SAP 架構 (SAP Landscape)︰這是指客戶 IP 環境中的整個 SAP 資產。 SAP 架構包含所有生產和非生產的環境。
-* SAP 系統︰DBMS 層和應用程式層的組合，例如，SAP ERP 開發系統、SAP BW 測試系統、SAP CRM 生產系統等。在 Azure 部署中，不支援在內部部署與 Azure 之間分割這兩種層級。 這表示 SAP 系統可在內部部署或在 Azure 部署。 不過，您可以將具 SAP 結構的不同系統部署於 Azure 或內部部署。 例如，您可以在 Azure 部署 SAP CRM 開發和測試系統，但在內部部署 SAP CRM 生產系統。
-* 僅限雲端的部署︰在此部署中，Azure 訂用帳戶並未透過站對站或 ExpressRoute 連線，連接到內部部署網路基礎結構。 在一般 Azure 文件中，這類部署也會描述為「僅限雲端」的部署。 以此方法部署的虛擬機器可透過網際網路和指派給 Azure 中 VM 的公用網際網路端點來存取。 內部部署 Active Directory (AD) 和 DNS 不會在這些部署類型中擴充到 Azure。 因此，VM 不是內部部署 Active Directory 的一部分。 附註：僅限雲端的部署在本文中定義為在 Azure 中以獨佔方式執行的完整 SAP 架構，不會將 Active Directory 或名稱解析從內部部署擴充到公用雲端。 在 Azure 上裝載的 SAP 系統與位於內部部署的資源之間必須使用 SAP STMS 或其他內部部署資源的情況下，SAP 生產系統或組態不支援僅限雲端的組態
-* 跨單位：描述將 VM 部署到 Azure 訂用帳戶的案例，該訂用帳戶在內部部署資料中心與 Azure 之間具有站對站、多站台或 ExpressRoute 連線能力。 在一般 Azure 文件中，這類部署也會描述為「跨單位」案例。 連線的原因是為了將內部部署網域、內部部署 Active Directory 和內部部署 DNS 擴充到 Azure。 內部部署的架構會擴充到訂用帳戶的 Azure 資產。 在此擴充下，VM 可以是內部部署網域的一部分。 內部部署網域的網域使用者可以存取伺服器，並且可在這些 VM 上執行服務 (例如 DBMS 服務)。 您可以在內部部署的 VM 與 Azure 中部署的 VM 之間進行通訊與名稱解析。 我們預期這是在 Azure 上部署 SAP 資產最常見的案例。 如需詳細資訊，請參閱[這篇文章][vpn-gateway-cross-premises-options]和[這個主題][vpn-gateway-site-to-site-create]。
+* SAP 環境： 一或多個 SAP 元件以邏輯方式分組 tooperform 商務功能，例如開發、 QAS、 訓練、 DR 或生產環境。
+* SAP 版圖： 這是指 toohello 整個 SAP 資產中客戶的 IT 環境。 hello SAP 版圖包括所有生產和非生產環境。
+* SAP 系統： hello 組合的 DBMS 層和應用程式層，例如 SAP ERP 開發系統、 SAP BW 測試系統、 SAP CRM 生產系統等。在 Azure 中不支援的部署 toodivide 這些內部部署與 Azure 之間的兩個層級。 這表示 SAP 系統可以在內部部署或在 Azure 部署。 不過，您可以部署在 Azure 或內部部署 SAP 版圖的 hello 不同系統。 例如，您可以部署 hello SAP CRM 開發和測試系統在 Azure 中的，但是 hello SAP CRM 生產系統在內部。
+* 僅限雲端部署： 部署其中 hello Azure 訂用帳戶未連線透過網站的站台或 ExpressRoute 連線 toohello 內部部署網路基礎結構。 在一般 Azure 文件中，這類部署也會描述為「僅限雲端」的部署。 採用這種方法部署的虛擬機器透過 hello 網際網路存取，而且公用網際網路端點指派 toohello Vm 在 Azure 中。 hello 內部部署 Active Directory (AD) 和 DNS 未延伸 tooAzure 在這些類型的部署。 因此 hello Vm 不屬於 hello 內部部署 Active Directory。 附註：僅限雲端的部署在本文中定義為在 Azure 中以獨佔方式執行的完整 SAP 架構，不會將 Active Directory 或名稱解析從內部部署擴充到公用雲端。 針對實際執行 SAP 系統或 SAP STMS 或其他內部部署資源需要 toobe 裝載在 Azure 與位於內部部署資源上的 SAP 系統之間使用的組態不支援僅限雲端的組態。
+* 跨單位： 說明的案例，當 Vm 是已部署的 tooan Azure 訂用帳戶具有站台間，多站台或 ExpressRoute hello 在內部部署資料中心與 Azure 之間的連線能力。 在一般 Azure 文件中，這類部署也會描述為跨單位案例。 hello hello 連線的原因是 tooextend 在內部部署網域、 在內部部署 Active Directory 和內部部署 DNS 至 Azure。 hello 內部橫向是擴充的 toohello hello 訂用帳戶的 Azure 資產。 透過這樣延伸，hello Vm 可以是 hello 在內部部署網域的一部分。 Hello 在內部部署網域的網域使用者可以存取 hello 伺服器，並且可以執行服務那些 Vm （例如 DBMS 服務）。 您可以在內部部署的 VM 與 Azure 中部署的 VM 之間進行通訊與名稱解析。 我們預期此 toobe hello 最常見的案例部署在 Azure 上的 SAP 資產。 如需詳細資訊，請參閱[這篇文章][vpn-gateway-cross-premises-options]和[這個主題][vpn-gateway-site-to-site-create]。
 
 > [!NOTE]
-> SAP 生產系統支援跨單位部署 SAP 系統，其中執行 SAP 系統的 Azure 虛擬機器是內部部署網域的成員。 支援跨單位組態，以便將部分或完整的 SAP 架構部署到 Azure。 即使在 Azure 中執行完整的 SAP 架構，也會要求這些 VM 隸屬於內部部署網域和 ADS。 在本文件的先前版本中，我們曾談到混合式 IT 案例，其中「混合式」一詞基本上是指內部部署與 Azure 之間有跨單位連線能力。 在此案例中，「混合式」也表示 Azure 中的 VM 是內部部署 Active Directory 的一部分。
+> SAP 生產系統支援跨單位部署 SAP 系統，其中執行 SAP 系統的 Azure 虛擬機器是內部部署網域的成員。 支援跨單位組態，以便將部分或完整的 SAP 架構部署到 Azure。 即使在 Azure 中執行 hello 完整的 SAP 環境，則需要具有這些 Vm 屬於內部部署網域和廣告。 Hello 文件的先前版本中我們剛才討論過混合式 IT 案例，其中 hello 詞彙 '混合' 已進行 root 破解 hello 事實會在內部部署與 Azure 之間的跨單位連線。 在此情況下 '混合' 也表示，在 Azure 中的 hello Vm 屬於 hello 內部部署 Active Directory。
 >
 >
 
-有些 Microsoft 文件描述跨單位案例的方式稍有不同，尤其是 DBMS HA 組態。 在 SAP 相關的文件中，跨單位案例會直接縮減為站對站或私人 (ExpressRoute) 連線能力，以及實際上 SAP 架構會分散至內部部署與 Azure 之間。
+有些 Microsoft 文件在描述跨單位案例時稍有不同，特別是針對 DBMS HA 組態。 在 hello 的 hello SAP 案例相關的文件、 hello 跨內部部署案例只分布 toohaving 站對站或私人 (ExpressRoute) 連線和 toohello 事實 hello SAP 版圖分散在內部部署和 Azure。
 
 ### <a name="resources"></a>資源
-針對在 Azure 上部署 SAP 的主題，以下是可用的指南︰
+hello 下列指南可供 Azure 上 SAP 部署的 hello 主題：
 
 * [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]
 * [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南][deployment-guide]
 * [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南 (本文件)][dbms-guide]
 * [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 高可用性部署指南][ha-guide]
 
-下列 SAP 附註與 Azure 上的 SAP 主題相關︰
+Azure 上的 SAP 相關的 toohello 主題 hello 遵循 SAP 附註︰
 
 | 附註編號 | 課程名稱 |
 | --- | --- |
@@ -348,65 +348,65 @@ ms.lasthandoff: 07/11/2017
 | [2178632] |Microsoft Azure 上的 SAP 主要監視度量 |
 | [1409604] |Windows 上的虛擬化︰增強型監視功能 |
 | [2191498] |Linux 和 Azure 上的 SAP：增強型監視功能 |
-| [2039619] |Microsoft Azure 上使用 Oracle 資料庫的 SAP 應用程式︰支援的產品和版本 |
+| [2039619] |使用 Microsoft Azure 的 SAP 應用程式 hello Oracle 資料庫： 支援的產品和版本 |
 | [2233094] |DB6︰Azure 上使用 IBM DB2 for Linux, UNIX, and Windows 的應用程式 - 其他資訊 |
 | [2243692] |Microsoft Azure (IaaS) VM 上的 Linux：SAP 授權問題 |
 | [1984787] |SUSE LINUX Enterprise Server 12：安裝注意事項 |
 | [2002167] |Red Hat Enterprise Linux 7.x：安裝和升級 |
 
-另請閱讀 [SCN Wiki](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) ，其中包含適用於 Linux 的所有 SAP 附註。
+也請閱讀 hello [SCN Wiki](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) for Linux 包含所有 SAP 附註。
 
-您應該具備有關 Microsoft Azure 架構以及如何部署和操作 Microsoft Azure 虛擬機器的有效知識。 您可以在以下位置找到更多資訊：<https://azure.microsoft.com/documentation/>
+您應該使用 hello Microsoft Azure 架構與如何部署和操作 Microsoft Azure 虛擬機器的相關知識。 您可以在以下位置找到更多資訊：<https://azure.microsoft.com/documentation/>
 
 > [!NOTE]
-> 我們將「不」討論「Microsoft Azure 平台」的「Microsoft Azure 平台即服務」(PaaS) 產品。 本白皮書的內容是關於如何在 Microsoft Azure 虛擬機器 (IaaS) 上執行資料庫管理系統 (DBMS)，就像在內部部署環境中執行 DBMS 一樣。 這兩個產品之間所提供的資料庫性能與功能差異極大，不應混用彼此。 另請參閱︰<https://azure.microsoft.com/services/sql-database/>
+> 我們**不**討論 Microsoft Azure 平台為 hello Microsoft Azure 平台的服務 (PaaS)。 這份文件會說明如何執行資料庫管理系統 (DBMS) 在 Microsoft Azure 虛擬機器 (IaaS)，就像您會在內部部署環境中執行 hello DBMS。 這兩個產品之間所提供的資料庫性能與功能差異極大，不應混用彼此。 另請參閱︰<https://azure.microsoft.com/services/sql-database/>
 >
 >
 
-由於我們所討論的是 IaaS，因此，一般而言，Windows、Linux 和 DBMS 的安裝和組態基本上與您要安裝內部部署的任何虛擬機器或裸機機器相同。 不過，有一些架構和系統管理實作決策會與使用 IaaS 時的不同。 本文件的目的是說明您在使用 IaaS 時必須備妥的特定架構和系統管理差異。
+因為我們討論的 IaaS，一般而言 hello Windows、 Linux 和 DBMS 的安裝和組態會基本上 hello 與任何虛擬機器或裸機機器會與內部部署安裝相同。 不過，有一些架構和系統管理實作決策會與使用 IaaS 時的不同。 本文件的 hello 目的是 tooexplain hello 特定架構和系統管理差異，您必須準備使用 IaaS 時。
 
-一般而言，本白皮書將討論的整體差異範圍如下：
+一般情況下，hello 的本文將討論的差異層面大致如下：
 
-* 為 SAP 系統規劃適當的 VM/VHD 配置，以確保您會有適當的資料檔案配置，而且可達到足夠的 IOPS 供您的工作負載使用。
+* 規劃的 SAP 系統 tooensure hello 正確 VM/VHD 配置您擁有 hello 適當的資料檔案配置，並且用於您的工作負載時可以達成足夠的 IOPS。
 * 使用 IaaS 時的網路功能考量。
-* 用來最佳化資料庫配置的特定資料庫功能。
+* 特定的資料庫功能 toouse 順序 toooptimize hello 資料庫配置中。
 * IaaS 的備份和還原考量。
 * 使用不同類型的映像進行部署。
 * Azure IaaS 中的高可用性。
 
 ## <a name="65fa79d6-a85f-47ee-890b-22e794f51a64"></a>RDBMS 部署結構
-為了依循本章內容，必須了解[部署指南][deployment-guide]的[這個][deployment-guide-3]章節所提供的內容。 閱讀本章之前，必須先了解並熟悉有關不同的 VM 系列及其差異，以及 Azure 標準和進階儲存體之差異的知識。
+為了遵循這一章，就什麼出示中必要 toounderstand[這][ deployment-guide-3] hello 一章[部署指南 》][deployment-guide]。 相關知識 hello 不同的 VM 系列，其差異和 Azure 標準和高階儲存體的差異應該了解並已知再讀取這一章。
 
-在 2015 年 3 月之前，包含作業系統的 Azure VHD 大小限制為 127 GB。 這項限制在 2015 年 3 月解除 (如需詳細資訊，請參閱 <https://azure.microsoft.com/blog/2015/03/25/azure-vm-os-drive-limit-octupled/>)。 從那時起，在包含作業系統的 VHD 上，其大小就與任何其他 VHD 一樣。 不過，我們仍然偏好部署的結構如下：作業系統、DBMS 和最終的 SAP 二進位檔會與資料庫檔案分隔開來。 因此，我們預期在 Azure 虛擬機器上執行的 SAP 系統將會使用作業系統、資料庫管理系統可執行檔和 SAP 可執行檔來安裝基底 VM (或 VHD)。 DBMS 資料和記錄檔將儲存於 Azure 儲存體 (標準或進階儲存體)，並以邏輯磁碟形式連接到原始的 Azure 作業系統映像 VM。
+2015 年 3 月中，直到 Azure Vhd 包含作業系統的有限的 too127 GB 的大小。 這項限制在 2015 年 3 月解除 (如需詳細資訊，請參閱 <https://azure.microsoft.com/blog/2015/03/25/azure-vm-os-drive-limit-octupled/>)。 從該處 Vhd 上包含 hello 作業系統可以有 hello 相同的大小為任何其他 VHD。 不過，我們仍然偏好 hello 作業系統、 DBMS 和最終 SAP 二進位檔所在位置 hello 資料庫檔案不同的部署結構。 因此，我們預期 hello 基底 VM （或 VHD） 與 hello 作業系統一起安裝，資料庫管理系統可執行檔和 SAP 執行檔，都在 Azure 虛擬機器中執行的 SAP 系統。 hello DBMS 資料和記錄檔會儲存在 Azure 儲存體 （Standard 或 Premium 儲存體） 單獨的 VHD 檔案，並在附加為邏輯磁碟 toohello 原始 Azure 作業系統映像 VM。
 
-根據利用的是「Azure 標準儲存體」還是「進階儲存體」(例如，使用 DS 系列或 GS 系列的 VM) 而定，Azure 中還有其他的配額 (請參閱[這裡][virtual-machines-sizes]的記載)。 規劃 Azure VHD 時，您必須找到適用於下列各項的配額最佳平衡︰
+取決於有 （例如藉由使用 hello DS 系列或 GS 系列 Vm） 利用 Azure 標準或高階儲存體是 Azure 中記載的其他配額[這裡][virtual-machines-sizes]。 當計劃 Azure Vhd，您將需要 toofind hello 取得最佳平衡 hello 配額 hello 下列：
 
-* 資料檔案數量。
-* 包含檔案的 VHD 數目。
-* 單一 VHD 的 IOPS 配額。
-* 每個 VHD 的資料輸送量。
-* 每個 VM 大小可能的額外 VHD 數目。
-* VM 可提供的整體儲存體輸送量。
+* hello 資料檔案數目。
+* hello 包含 hello 檔案的 Vhd 數目。
+* hello 單一 vhd 的 IOPS 配額。
+* 每個 VHD 的 hello 資料輸送量。
+* 每個 VM 大小的額外 Vhd 可能的 hello 數目。
+* hello 整體儲存體輸送量 VM 可以提供。
 
-Azure 將針對每個 VHD 磁碟機強制執行 IOPS 配額。 這些配額與 Azure 標準儲存體和進階儲存體上裝載的 VHD 不同。 在這兩個進階儲存體傳遞因素比 I/O 延遲更好的儲存體類型之間，I/O 延遲也很不一樣。 不同 VM 類型的每一個可提供來讓您連接的 VHD 數目有限。 另一個限制是只有特定的 VM 類型可以利用 Azure 進階儲存體。 這表示適用於特定 VM 類型的決策可能不只受到 CPU 和記憶體需求影響，而且也會受到 IOPS、延遲及磁碟輸送量需求影響，這些需求通常是利用 VHD 數目或進階儲存體磁碟的類型來調整。 特別是進階儲存體，VHD 的大小可能也會受到每個 VHD 需要到達的 IOPS 數目和輸送量所支配。
+Azure 將針對每個 VHD 磁碟機強制執行 IOPS 配額。 這些配額與 Azure 標準儲存體和進階儲存體上裝載的 VHD 不同。 I/O 延遲也會提供更好的 I/O 延遲因素的進階儲存體 hello 兩個儲存體類型之間非常不同。 每個 hello 不同 VM 類型具有有限的 Vhd，您都可以 tooattach 時。 另一個限制是只有特定的 VM 類型可以利用 Azure 進階儲存體。 這表示使用某種 VM 類型的 hello 決策可能不只重點 hello CPU 和記憶體需求也的 hello IOPS、 延遲和磁碟輸送量需求通常與 hello Vhd 數目縮放或 hello 高階儲存體磁碟類型。 特別是在進階儲存體 hello 之 vhd 的大小也可能會取決於 hello IOPS 及輸送量需要 toobe 達成每個 VHD 數目。
 
-實際將整體 IOPS 速率、掛接的 VHD 數目及 VM 大小全都綁在一起，可能導致 SAP 系統的 Azure 組態與其內部部署產生差異。 每個 LUN 的 IOPS 限制通常可在內部部署中加以設定。 然而使用 Azure 儲存體時，根據磁碟類型而定，這些限制可以是固定的，或者與進階儲存體相同。 因此在內部部署中，我們看到資料庫伺服器的客戶組態會針對特定的可執行檔 (例如 SAP 和 DBMS) 使用許多不同的磁碟區，或者針對暫存資料庫或資料表空間使用特定的磁碟區。 將這類內部部署系統移至 Azure 時，可能會因為針對未執行任何或沒有很多 IOPS 的可執行檔或資料庫浪費了一個 VHD，因而可能產生 IOPS 頻寬的浪費。 所以，在 Azure VM 中，我們建議盡可能將 DBMS 和 SAP 的可執行檔安裝於作業系統磁碟上。
+hello 事實的 hello 整體 IOPS 速率、 hello 掛接的 Vhd 數目和 hello 的 hello VM 因素環環相扣，大小可能會導致不同於其內部部署 SAP 系統 toobe 的 Azure 組態。 每個 LUN 的 hello IOPS 限制是內部部署中通常可以設定。 而與 Azure 儲存體這些限制是固定的或如高階儲存體相依 hello 磁碟類型上所示。 因此，與內部部署我們看到客戶組態的資料庫伺服器使用許多不同的磁碟區的特殊的可執行檔，如 SAP 和 DBMS 或特殊磁碟區來存放暫存資料庫或資料表空間 hello。 這類內部部署系統時移動的 tooAzure 時，可能會浪費 tooa IOPS 頻寬所浪費的可執行檔或資料庫不會執行任何或不大量 IOPS 的 VHD。 因此，在 Azure Vm 中建議盡可能該 hello DBMS 和 SAP 執行檔安裝在 hello 作業系統磁碟。
 
-資料庫檔案和記錄檔的位置以及所使用的 Azure 儲存體類型應該依據 IOPS、延遲和輸送量需求來定義。 為了有足夠的 IOPS 可供交易記錄使用，您可能被迫針對交易記錄檔利用多個 VHD 或使用更大的進階儲存體磁碟。 在這種情況下，只需使用將包含交易記錄的 VHD 來建置軟體 RAID (例如，如果是 Windows，即為「Windows 儲存集區」，或如果是 Linux，則為 MDADM 和 LVM (邏輯磁碟區管理員)) 即可。
+hello hello 資料庫檔案和記錄檔以及 hello 型別使用，Azure 儲存體的位置應該定義 IOPS、 延遲和輸送量需求。 在訂單 toohave 足夠的 IOPS 供 hello 交易記錄檔，您可能會強制的 tooleverage hello 交易記錄檔的多個 Vhd 檔案，或使用較大的進階儲存體磁碟。 在這種情況下其中一項只會建置軟體會 RAID （例如 Windows 儲存體集區的 Windows 或 MDADM 和適用於 Linux LVM （邏輯磁碟區管理員）） 以 hello Vhd hello 交易記錄檔。
 
 - - -
 > ![Windows][Logo_Windows] Windows
 >
-> Azure VM 中的磁碟機 D:\ 不是永續性磁碟機，而是由 Azure 計算節點上的一些本機磁碟所組成。 由於它不是永續性的，這表示當 VM 重新開機時，即會遺失對 D:\ 磁碟機的內容所做的任何變更。 「任何變更」的意思是已儲存的檔案、已建立的目錄、已安裝的應用程式等。
+> 在 Azure VM 的 D:\ 磁碟機是由某些本機的磁碟備份 hello Azure 計算節點非持續性磁碟機。 由於非持續性，這表示 hello VM 重新開機時，在 hello D:\ 磁碟機上任何所做的變更 toohello 內容都會遺失。 「任何變更」的意思是已儲存的檔案、已建立的目錄、已安裝的應用程式等。
 >
 > ![Linux][Logo_Linux] Linux
 >
-> Linux Azure VM 會在 /mnt/resource 上自動掛接磁碟機，這個非永續性磁碟機會利用 Azure 計算節點上的本機磁碟來備份。 由於它不是永續性的，這表示當 VM 重新開機時，會遺失對 /mnt/resource 的內容所做的任何變更。 「任何變更」的意思是已儲存的檔案、已建立的目錄、已安裝的應用程式等。
+> Linux 的 Azure Vm 中自動掛接磁碟機時 /mnt/resource 這是本機磁碟的 hello Azure 計算節點上支援非持續性磁碟機。 由於非持續性，這表示 hello VM 重新開機時，在 /mnt/resource 任何所做的變更 toocontent 都會遺失。 「任何變更」的意思是已儲存的檔案、已建立的目錄、已安裝的應用程式等。
 >
 >
 
 - - -
-根據 Azure VM 系列而定，計算節點上的本機磁碟會顯示可以如下方式分類的不同效能：
+相依於 hello Azure VM 系列，hello hello 上的本機磁碟計算節點顯示不同效能可以像分類：
 
 * A0-A7︰非常有限的效能。 無法使用 Windows 分頁檔以外的項目
 * A8-A11︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
@@ -415,45 +415,45 @@ Azure 將針對每個 VHD 磁碟機強制執行 IOPS 配額。 這些配額與 A
 * G 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
 * GS 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
 
-以上陳述均適用於通過 SAP 認證的 VM 類型。 具有絕佳 IOPS 和輸送量的 VM 系列符合某些 DBMS 功能的使用資格，例如，tempdb 或暫存資料表空間。
+上述陳述式會套用 toohello 經過驗證和 SAP 的 VM 類型。 絕佳的 IOPS 及輸送量與 hello VM 系列部分的 DBMS 功能，例如 tempdb 或暫存資料表空間限定的運用。
 
 ### <a name="c7abf1f0-c927-4a7c-9c1d-c7b5b3b7212f"></a>VM 和 VHD 的快取
-當我們透過入口網站建立這些磁碟/VHD，或在將上傳的 VHD 掛接到 VM 時，可以選擇是否要快取在 VM 和位於 Azure 儲存體之 VHD 間的 I/O 流量。 Azure 標準和進階儲存體會針對這種快取類型使用兩種不同技術。 在這兩個案例中，快取本身會在 VM 的暫存磁碟 (Windows 上的 D:\ 或 Linux 上的 /mnt/resource) 所使用的同一個磁碟機上進行磁碟備份。
+當我們建立透過 hello 入口網站，或當掛接已上傳的 Vhd tooVMs 那些磁碟 /vhd 時，我們可以選擇是否要快取 hello VM 與 Azure 儲存體中那些 Vhd 間的 hello I/O 流量。 Azure 標準和進階儲存體會針對這種快取類型使用兩種不同技術。 在這兩種情況下 hello 快取本身會在磁碟支援上使用相同的磁碟機的 hello hello 暫存磁碟 (Windows 上的 D:\) 或 /mnt/resource Linux 上的 hello VM。
 
-針對 Azure 標準儲存體，可能的快取類型如下︰
+Azure 標準儲存體 hello 可能快取類型為：
 
 * 無快取
 * 讀取快取
 * 讀取和寫入快取
 
-為了取得一致且具決定性的效能，您應該在「Azure 標準儲存體」上，針對包含 **DBMS 相關資料檔、記錄檔和資料表空間的所有 VHD，將快取設定為「無」**。 VM 的快取可以保留預設值。
+順序 tooget 一致且具有決定性效能，您應該設定 hello 快取 Azure 標準儲存體上的所有 Vhd 包含**DBMS 相關資料檔案、 記錄檔和資料表空間 too'NONE'**。 hello 快取的 hello VM 仍可使用 hello 預設值。
 
-針對 Azure 進階儲存體，提供下列快取選項︰
+Azure 高階儲存體 hello 下列快取的選項有：
 
 * 無快取
 * 讀取快取
 
-對於「Azure 進階儲存體」的建議是利用 SAP 資料庫的「資料檔案讀取快取」，並選擇「不對記錄檔的 VHD 進行快取」。
+建議 Azure 高階儲存體是 tooleverage**讀取資料檔的快取**的 hello SAP 資料庫，並選擇**hello VHD(s) 記錄檔的無快取**。
 
 ### <a name="c8e566f9-21b7-4457-9f7f-126036971a91"></a>軟體 RAID
-如上所述，您需要在可設定 VHD 數目，以及 Azure VM 將針對每個 VHD 或進階儲存體磁碟類型提供的最大 IOPS 數目之間，平衡資料檔所需的 IOPS 數目。 處理 VHD 上 IOPS 負載的最簡單方式是在不同的 VHD 上建置軟體 RAID。 然後在劃分出軟體 RAID 的 LUN 上放置多個 SAP DBMS 的資料檔。 根據需求，因為這三個不同進階儲存體磁碟的其中兩個會提供比以標準儲存體為基礎的 VHD 更高的 IOPS 配額，所以您可能也要考慮使用進階儲存體。 除了明顯變好之外，Azure 進階儲存體還提供 I/O 延遲。
+所述之已上方，您需要 IOPS 的 toobalance hello 數目所需 hello 資料庫檔案，您可以設定的 Vhd 和 hello hello 數目之間的最大 IOPS Azure VM 將會提供每個 VHD 或 Premium 儲存體磁碟類型。 最簡單的方法以載入到 Vhd 的 IOPS 的 hello toodeal 位於 toobuild 軟體 RAID hello 不同 Vhd。 然後置於的 hello LUN 劃分出 hello 軟體 RAID 的 hello SAP DBMS 的資料檔案數目。 相依於 hello 需求，您可能會想 tooconsider hello 使用量的進階儲存體以及自兩個 hello 三個不同的進階儲存體磁碟提供更高版本比標準儲存體為基礎的 Vhd 的 IOPS 配額。 除了 hello 重大 I/O 延遲 Azure 高階儲存體所提供的更好。
 
-同樣適用於不同 DBMS 系統的交易記錄檔。 大量使用它們，由於 DBMS 系統一次只會寫入其中一個檔案，因此只新增更多 Tlog 檔案是毫無助益的。 如果需要的 IOPS 速率比以單一標準儲存體為基礎的 VHD 可提供的速率更高，您可以等量劃分多個標準儲存體 VHD，或者可以使用遠超過 IOPS 速率的更大型進階儲存體磁碟類型，其也可以將降低寫入 I/O 延遲的因素傳遞至交易記錄。
+這同樣適不同 DBMS 系統 hello toohello 交易記錄的檔。 具有大量它們只要加入更多 Tlog 檔案不會協助因為 hello DBMS 系統一次只能寫入一個 hello 檔案。 如果需要更高 IOPS 速率比單一標準儲存體為基礎 VHD 可以傳遞，您可以等量分割至多個標準儲存體的 Vhd 或您可以使用較大的進階儲存體磁碟類型，高 IOPS 速率超過也提供低延遲因素 hello 寫入我 /Os 到 hello 交易記錄檔。
 
 以下是在 Azure 部署中使用優先軟體 RAID 時所遇到的情況：
 
 * 交易記錄/重做記錄需要的 IOPS 數目比 Azure 針對單一 VHD 所提供的還多。 如前所述，解決此問題的方式是在多個 VHD上使用軟體 RAID 來建置 LUN。
-* 在 SAP 資料庫的不同資料檔之間 I/O 工作負載分配不平均。 在這種情況下，會遇到某個資料檔到達配額的頻率比平常更高的狀況。 而其他資料檔甚至還未接近單一 VHD 的 IOPS 配額。 在這種情況下，最簡單的解決方案是在多個 VHD 上使用軟體 RAID 來建置一個 LUN。
-* 您不知道每個資料檔確切的 I/O 工作負載，大約只知道以 DBMS 為根據的整體 IOPS 工作負載。 執行此動作的最簡單方式是透過軟體 RAID 的協助來建置一個 LUN。 之後，位於這個 LUN 後方的多個 VHD 配額總和應可滿足已知的 IOPS 速率。
+* I/O 工作負載透過 hello 不同資料檔案的分配 hello SAP 資料庫。 在此情況下一個可能會遇到一個資料檔，而是會經常遇到 hello 配額。 而其他資料檔案甚至不會進行關閉 toohello 單一 vhd 的 IOPS 配額。 在這種情況下 hello 最簡單的解決方案是一個 toobuild 使用軟體 RAID 的多個 Vhd 上的 LUN。
+* 您不知道哪些 hello 確切的 I/O 工作負載每個資料檔案且只大致了解什麼 hello 整體 IOPS hello DBMS 工作負載會。 最簡單的 toodo 是軟體的的 toobuild hello 與一個 LUN 協助 RAID。 這個 LUN 背後的多個 Vhd 的配額 hello 總和然後應該滿足 hello 已知 IOPS 速率。
 
 - - -
 > ![Windows][Logo_Windows] Windows
 >
-> 最好使用 Windows Server 2012 或更高的儲存空間，因為它比舊版 Windows 的 Windows 等量更有效率。 請留意，當您使用 Windows Server 2012 做為作業系統時，可能需要透過 PowerShell 命令來建立 Windows 儲存體集區和儲存空間。 PowerShell 命令可以在以下位置找到：<https://technet.microsoft.com/library/jj851254.aspx>
+> 最好使用 Windows Server 2012 或更高的儲存空間，因為它比舊版 Windows 的 Windows 等量更有效率。 請注意，您可能需要 toocreate hello Windows 儲存集區和儲存空間的 PowerShell 命令時使用 Windows Server 2012 做為作業系統。 hello PowerShell 命令可以在這裡找到<https://technet.microsoft.com/library/jj851254.aspx>
 >
 > ![Linux][Logo_Linux] Linux
 >
-> 只支援使用 MDADM 和 LVM (邏輯磁碟區管理員) 在 Linux 上建立軟體 RAID。 如需詳細資訊，請參閱下列文章：
+> 只有 MDADM 和 LVM （邏輯磁碟區管理員） 是支援的 toobuild RAID Linux 上的軟體。 如需詳細資訊，請閱讀下列文件的 hello:
 >
 > * [在 Linux 上設定軟體 RAID][virtual-machines-linux-configure-raid] (適用於 MDADM)
 > * [在 Azure 中的 Linux VM 上設定 LVM][virtual-machines-linux-configure-lvm]
@@ -461,261 +461,261 @@ Azure 將針對每個 VHD 磁碟機強制執行 IOPS 配額。 這些配額與 A
 >
 
 - - -
-利用 VM 系列 (這些系列通常能夠與 Azure 進階儲存體搭配使用) 的考量如下︰
+是運用 VM 系列通常是無法 toowork 與 Azure 高階儲存體的考量：
 
-* 要接近 SAN/NAS 裝置所傳遞的 I/O 延遲需求。
+* 要求 I/O 延遲關閉 toowhat SAN/NAS 裝置傳送。
 * 比 Azure 標準儲存體可傳遞的 I/O 延遲更好的因素需求。
 * 對於可根據特定 VM 類型使用多個標準儲存體 VHD 來達成的每個 VM 提供更高的 IOPS。
 
-由於基礎的 Azure 儲存體會將每個 VHD 複寫到至少三個儲存體節點，因此可以使用簡單的 RAID 0 等量。 不需要實作 RAID5 或 RAID1。
+因為 hello 基礎 Azure 儲存體複寫每個 VHD tooat 至少三個儲存體節點簡單的 RAID 0 等量配置可用。 沒有任何需要 tooimplement RAID5 或 RAID1。
 
 ### <a name="10b041ef-c177-498a-93ed-44b3441ab152"></a>Microsoft Azure 儲存體
-Microsoft Azure 儲存體會將基底 VM (含作業系統) 以及 VHD 或 BLOB 儲存到至少 3 個不同的儲存體節點。 建立儲存體帳戶時，有一個保護選項，如下所示：
+Microsoft Azure 儲存體會將 hello （含 OS) 的基底 VM 和 Vhd 或 Blob tooat 至少 3 不同儲存體節點。 建立儲存體帳戶時，有一個保護選項，如下所示：
 
 ![針對 Azure 儲存體帳戶啟用異地複寫][dbms-guide-figure-100]
 
-Azure 儲存體本機複寫 (本地備援) 會根據因為少數客戶提供來部署的基礎結構失敗而導致的資料遺失來提供保護層級。 如上所示，有 4 個不同的選項，第 5 個則是前三個其中之一的變化。 仔細查看我們區分它們的方式︰
+Azure 儲存體本機複寫 （本機備援） 可提供少數客戶可以放心 toodeploy tooinfrastructure 失敗原因會遺失資料的保護層級。 如上所示搭配第五個的其中一個 hello 變化前三個有 4 個不同的選項。 仔細查看我們區分它們的方式︰
 
-* **進階本地備援儲存體 (LRS)**：針對執行需要大量 I/O 之工作負載的虛擬機器，「Azure 進階儲存體」提供高效能、低延遲的磁碟支援。 在 Azure 區域的同一個 Azure 資料中心內有 3 個資料複本。 複本將位於不同的「容錯網域」和「升級網域」中 (如需相關概念，請參閱[規劃指南][planning-guide]中的[這個][planning-guide-3.2]章節)。 萬一資料複本因為儲存體節點失敗或磁碟失敗而停止服務，即會自動產生新的複本。
-* **本地備援儲存體 (LRS)**：在此案例中，在 Azure 區域的同一個 Azure 資料中心內會有 3 個資料複本。 複本將位於不同的「容錯網域」和「升級網域」中 (如需相關概念，請參閱[規劃指南][planning-guide]中的[這個][planning-guide-3.2]章節)。 萬一資料複本因為儲存體節點失敗或磁碟失敗而停止服務，即會自動產生新的複本。
-* **異地備援儲存體 (GRS)**︰在此案例中，會有一個非同步複寫，此複寫會在另一個 Azure 區域中饋送額外 3 個資料複本，而在大部分情況下，此區域會在同一個地理區域內 (例如，北歐和西歐)。 這將會產生 3 個額外的複本，因此總共有 6 個複本。 這個變化讓您能夠基於讀取目的來使用異地複寫之 Azure 區域中的資料 (讀取權限異地備援)。
-* **區域備援儲存體 (ZRS)**︰在此案例中，3 個資料複本會保留於同一個 Azure 區域中。 如[規劃指南][planning-guide]的[這個][planning-guide-3.1]章節所述，一個 Azure 區域可以是相近的一些資料中心。 在 LRS 的案例中，複本可以分散至組成一個 Azure 區域的不同資料中心。
+* **進階本地備援儲存體 (LRS)**：針對執行需要大量 I/O 之工作負載的虛擬機器，「Azure 進階儲存體」提供高效能、低延遲的磁碟支援。 有 3 個複本的 hello hello 資料相同的 Azure 地區的 Azure 資料中心。 hello 複本會以不同的容錯和升級網域中 (如概念，請參閱[這][ planning-guide-3.2]章節 hello[規劃指南 》][planning-guide])。 發生或從到期 tooa 存放裝置節點失敗或磁碟失敗的服務傳送的 hello 資料的複本，會自動產生新的複本。
+* **本機備援儲存體 (LRS)**： 在此情況下有 3 個複本的 hello hello 資料相同的 Azure 地區的 Azure 資料中心。 hello 複本會以不同的容錯和升級網域中 (如概念，請參閱[這][ planning-guide-3.2]章節 hello[規劃指南 》][planning-guide])。 發生或從到期 tooa 存放裝置節點失敗或磁碟失敗的服務傳送的 hello 資料的複本，會自動產生新的複本。
+* **地理備援儲存體 (GRS)**： 在此情況下沒有將摘要額外的非同步複寫 3 個複本的大部分 hello 中的案例中的另一個 Azure 區域中的 hello 資料 hello 相同的地理區域 （例如北歐和美國西部歐洲）。 這將會產生 3 個額外的複本，因此總共有 6 個複本。 這一種是 「 hello 地理複寫的 Azure 區域中的 hello 資料，用於讀取 （讀取權限的地理備援） 的用途。
+* **區域備援儲存體 (ZRS)**： 在此情況下的資料保留在 hello hello 3 複本 hello 相同 Azure 區域。 中所述[這][ planning-guide-3.1] hello 一章[規劃指南 》] [ planning-guide] Azure 地區可以非常接近的數字的資料中心。 LRS hello 案例 hello 複本會分散 hello 不同的資料中心，讓一個 Azure 區域。
 
 如需詳細資訊，請參閱[這裡][storage-redundancy]。
 
 > [!NOTE]
-> 針對 DBMS 部署，不建議使用異地備援儲存體
+> 不建議的 DBMS 部署 hello 的地理備援儲存體的使用方式
 >
-> Azure 儲存體異地複寫是非同步的。 複寫已掛接到單一 VM 的個別 VHD，不會在鎖定步驟中進行同步處理。 因此，不適合複寫已分散至不同 VHD 的 DBMS 檔案，或者根據以不同 VHD 為基礎的軟體 RAID 來部署的 DBMS 檔案。 DBMS 軟體要求永續性磁碟儲存體在不同的 LUN 和基礎磁碟/VHD/磁針上準確地進行同步處理。 DBMS 軟體會使用各種適用於 IO 寫入活動順序的機制，即使有幾毫秒的變化，DBMS 都將報告複寫的目標磁碟儲存體已損毀。 因此，如果您真的想要讓資料庫組態中的其中一個資料庫延展到多個異地複寫的 VHD，則需要使用資料庫方法和功能來執行這類複寫。 您不應該依賴 Azure 儲存體異地複寫來執行此工作。
+> Azure 儲存體異地複寫是非同步的。 單一 VM 未同步處理在鎖定步驟中的個別 Vhd 掛接 tooa 複寫。 因此，它不是適合 tooreplicate DBMS 檔案分散至不同的 Vhd，或是針對根據多個 Vhd 的 RAID 軟體部署。 DBMS 軟體需要 hello 永續性磁碟儲存體精確地同步處理跨不同的 Lun 和基礎磁碟/Vhd/主軸。 DBMS 軟體使用各種機制 toosequence IO 寫入活動，DBMS 將會報告 hello 磁碟儲存體的 hello 複寫目標已損毀，如果這些因甚至幾毫秒。 因此如果您真的想資料庫組態對資料庫延展到多個 Vhd 進行地理複寫，這類複寫需要 toobe 執行使用資料庫方法和功能。 其中一個不應依賴 Azure 儲存體地理複寫 tooperform 這項作業。
 >
-> 最簡單的方式是使用範例系統來說明此問題。 假設您已將 SAP 系統上傳至 Azure，其中有 8 個 VHD 包含 DBMS 的資料檔，加上一個包含交易記錄檔的 VHD。 在這 9 個 VHD 中，不論資料是否要寫入資料檔或交易記錄檔，每一個 VHD 都會根據 DBMS，以一致性方式將資料寫入其中。
+> hello 問題是使用範例系統最簡單的 tooexplain。 例如，假設您已上傳至 Azure，其具有 8 個含有 hello DBMS 的資料檔案，以及一個 VHD 包含 hello 交易記錄檔將 SAP 系統。 這些 9 Vhd 的每個將有一致的方式根據 toohello DBMS，撰寫 toothem 是否 hello 資料寫入 toohello 資料或交易記錄檔的資料。
 >
-> 若要針對資料正確地進行異地複寫並維護一致的資料庫映像，這九個 VHD 的內容全都必須以 I/O 作業根據這九個不同 VHD 執行的正確順序進行異地複寫。 不過，Azure 儲存體異地複寫不允許宣告 VHD 之間的相依性。 這表示 Microsoft Azure 儲存體異地複寫不會知道這九個不同 VHD 中的內容是彼此相關的，而且只有在複寫是以 I/O 作業在這 9 個 VHD 上發生的順序進行時，資料變更才會是一致的。
+> 順序 tooproperly 地理複寫 hello 資料及維護一致的資料庫映像、 hello 內容 9 個 vhd 會有 toobe hello 順序 hello I/O 作業中進行地理複寫針對執行 hello 九個不同的 Vhd。 不過，Azure 儲存體地理複寫不允許 toodeclare Vhd 之間的相依性。 這表示這些 9 個不同 Vhd 中的 hello 內容的其他相關的 tooeach 而且 hello 資料變更時，都是一致只複寫 hello 順序 hello I/O 作業中發生的 hello 事實不知道 Microsoft Azure 儲存體地理複寫跨所有 hello 9 Vhd。
 >
-> 除了案例中的異地複寫映像不會提供一致的資料庫映像的可能性很高，還會有效能負面影響，這是透過可嚴重影響效能的異地備援儲存體來顯示。 總之，請勿針對 DBMS 類型的工作負載使用這個類型的儲存體備援。
+> 除了過高，在 hello 案例中的 hello 進行地理複寫映像不會提供一致的資料庫映像，也沒有可造成嚴重的地理備援儲存體和一同顯示對效能帶來負面影響的機會會影響效能。 總之，請勿針對 DBMS 類型的工作負載使用這個類型的儲存體備援。
 >
 >
 
 #### <a name="mapping-vhds-into-azure-virtual-machine-service-storage-accounts"></a>將 VHD 對應至 Azure 虛擬機器服務儲存體帳戶
-Azure 儲存體帳戶不只是一個系統管理的建構，而且還是限制的緣由。 然而，限制會根據我們討論的是 Azure 標準儲存體或 Azure 進階儲存體帳戶而有所不同。 如需了解確切的功能和限制，請參閱[這裡][storage-scalability-targets]
+Azure 儲存體帳戶不只是一個系統管理的建構，而且還是限制的緣由。 而 hello 限制會隨著談論 Azure 標準儲存體帳戶或 Azure 高階儲存體帳戶。 列出 hello 確切功能和限制[這裡][storage-scalability-targets]
 
-因此，就「Azure 標準儲存體」而言，要特別注意每個儲存體帳戶都有 IOPS 限制 ([這篇文章][storage-scalability-targets]中包含「總要求率」的資料列)。 此外，每個 Azure 訂用帳戶的「儲存體帳戶」初始限制為 100 個 (自 2015 年 7 月起)。 因此，建議在使用 Azure 標準儲存體時，平衡多個儲存體帳戶之間 VM 的 IOPS。 另一方面，單一 VM 最好盡可能使用一個儲存體帳戶。 因此，如果我們談到 DBMS 部署，其中每個裝載於 Azure 標準儲存體的 VHD 會到達其配額限制時，您應該只針對每個使用 Azure 標準儲存體的 Azure 儲存體帳戶部署 30-40 個 VHD。 相反地，如果您利用 Azure 進階儲存體，並且想要儲存大型資料庫磁碟區，您在 IOPS 方面可能不會遇到問題。 但是，Azure 進階儲存體帳戶在資料磁碟區方面會比 Azure 標準儲存體帳戶更嚴格。 因此，在到達資料磁碟區限制之前，您只能在 Azure 進階儲存體帳戶內部署有限的 VHD 數目。 最後，將 Azure 儲存體帳戶想像為「虛擬 SAN」，其在 IOPS 和/或容量中的功能有限。 因此，工作將會保留 (如同在內部部署中)，以便在不同的「虛構 SAN 裝置」或 Azure 儲存體帳戶上定義不同 SAP 系統的 VHD 配置。
+因此您很重要的 toonote Azure 標準儲存體上每個儲存體帳戶的 IOPS hello 沒有限制 (中的資料列包含 '總要求率' [hello 文章][storage-scalability-targets])。 此外，每個 Azure 訂用帳戶的「儲存體帳戶」初始限制為 100 個 (自 2015 年 7 月起)。 因此，建議您使用多個儲存體帳戶時使用 Azure 標準儲存體之間 toobalance IOPS 的 Vm。 另一方面，單一 VM 最好盡可能使用一個儲存體帳戶。 因此，如果我們談到 DBMS 部署，其中每個裝載於 Azure 標準儲存體的 VHD 會到達其配額限制時，您應該只針對每個使用 Azure 標準儲存體的 Azure 儲存體帳戶部署 30-40 個 VHD。 上 hello 另一方面，如果您利用 Azure 高階儲存體，並想 toostore 大型資料庫的磁碟區，您可能會根據 IOPS 來沒問題。 但是，Azure 進階儲存體帳戶在資料磁碟區方面會比 Azure 標準儲存體帳戶更嚴格。 如此一來，您只可以部署有限的數目的 Azure 高階儲存體帳戶內的 Vhd 才按下 hello 資料磁碟區限制。 在 hello 結束考慮為 「 虛擬 SAN 」 的 Azure 儲存體帳戶，具有有限的功能在 IOPS 及/或容量。 如此一來，hello 工作仍會留，如同內部部署，透過 hello 不同 「 虛構 SAN 裝置' hello 不同 SAP 系統的 Vhd 或 Azure 儲存體帳戶的 hello toodefine hello 版面配置。
 
-就「Azure 標準儲存體」而言，建議儘量不要對單一 VM 呈現來自不同儲存體帳戶的儲存體。
+Azure 不建議從不同的儲存體帳戶 tooa toopresent 儲存體的標準儲存體盡可能單一 VM。
 
-不過，使用 DS 或 GS 系列的 Azure VM 時，則可以掛接來自「Azure 標準儲存體帳戶」和「進階儲存體帳戶」的 VHD。 像是將備份寫入標準儲存體備份的 VHD，使其在進階儲存體上具有 DBMS 資料和記錄檔的使用案例，會在腦海中浮現可在何處利用這類異質儲存體的想法。
+而使用 hello DS 或 GS 系列的 Azure Vm，則很可能 toomount Vhd 從 Azure 標準儲存體帳戶和 Premium 儲存體帳戶。 使用案例，例如寫入到標準儲存體的備份會備份 Vhd 而 DBMS 的資料，並在高階儲存體上的記錄檔有 toomind 無法運用這類異質儲存區的位置。
 
-根據客戶部署和測試，大約可在單一 Azure 標準儲存體帳戶上，利用可接受的效能來佈建 30 到 40 個含有資料庫資料檔和記錄檔的 VHD。 如先前所述，Azure 進階儲存體帳戶的限制很可能是它可持有的資料容量，而不是 IOPS。
+根據客戶的部署及測試大約 30 too40 包含資料庫資料檔案和記錄檔的 Vhd 可以佈建單一 Azure 標準儲存體帳戶與可接受的效能。 如先前所述，Azure 高階儲存體帳戶的 hello 限制是它能容納可能 toobe hello 資料容量和不 IOPS。
 
-使用內部部署的 SAN 裝置，共用需要一些監視，以便最終能夠偵測到 Azure 儲存體帳戶上的瓶頸。 適用於 SAP 的 Azure 監視擴充功能和 Azure 入口網站等工具可用來偵測可能提供次佳 IO 效能的忙碌 Azure 儲存體帳戶。  如果偵測到這種情況，則建議將忙碌的 VM 移到另一個 Azure 儲存體帳戶。 如需有關如何啟用 SAP 主機監視功能的詳細資訊，請參閱[部署指南][deployment-guide]。
+為透過 SAN 裝置在內部，共用所需的某些監視順序 tooeventually 中偵測到 Azure 儲存體帳戶上的瓶頸。 hello Azure Monitoring Extension for SAP 和 hello Azure 入口網站是可使用的 toodetect 的工具忙碌未能提供最佳 IO 效能的 Azure 儲存體帳戶。  如果已偵測到這種情況下，建議 toomove 忙碌 Vm tooanother Azure 儲存體帳戶。 請參閱 toohello[部署指南 》] [ deployment-guide]如如何 tooactivate hello SAP 主機監視功能的詳細資訊。
 
 您可以在下列網址中，找到另一篇摘要說明「Azure 標準儲存體」和「Azure 標準儲存體帳戶」最佳做法的文章：<https://blogs.msdn.com/b/mast/archive/2014/10/14/configuring-azure-virtual-machines-for-optimal-storage-performance.aspx>
 
-#### <a name="moving-deployed-dbms-vms-from-azure-standard-storage-to-azure-premium-storage"></a>將部署的 DBMS VM 從 Azure 標準儲存體移至 Azure 進階儲存體
-我們遇到了相當多客戶想要將部署的 VM 從 Azure 標準儲存體移至 Azure 進階儲存體的案例。 這不可能在沒有實際移動資料的情況下完成。 有數種方法能夠達成此目標：
+#### <a name="moving-deployed-dbms-vms-from-azure-standard-storage-tooazure-premium-storage"></a>移動 Azure 標準儲存體 tooAzure 高階儲存體從部署 DBMS Vm
+我們會遇到一段的案例中，您為客戶 toomove 從 Azure 標準儲存體 VM 已部署到 Azure 進階儲存體。 這是不可能沒有實際移動 hello 資料。 有數種方式 tooachieve hello 目標：
 
-* 您只需將所有的 VHD、基底 VHD 以及資料 VHD 複製到新的 Azure 進階儲存體帳戶。 很多時候，您在 Azure 標準儲存體中選擇 VHD 數目不是因為您需要資料磁碟區。 但是，您需要這麼多 VHD 是因為 IOPS 的緣故。 現在，您移至 Azure 進階儲存體，您可以採用較少 VHD 數目的方式來達到某些 IOPS 輸送量。 事實上，在 Azure 標準儲存體中，您是針對使用的資料而不是名義上的磁碟大小來付費，因此，VHD 的數目真的與成本無關。 不過，使用 Azure 進階儲存體，您就要支付名義上的磁碟大小。 因此，大部分的客戶嘗試將進階儲存體中 Azure VHD 的數目保留為達到 IOPS 輸送量所需的數目。 所以，大多數客戶會根據簡單的 1:1 複製方式進行決策。
-* 如果尚未掛接，您要掛接單一 VHD，其中可包含 SAP 資料庫的資料庫備份。 備份之後，您要取消掛接所有包括含有備份之 VHD 的 VHD，以及將基底 VHD 和含有備份的 VHD 複製到 Azure 進階儲存體帳戶。 然後根據基底 VHD 部署 VM，並掛接含有備份的 VHD。 現在您可以針對用來還原資料庫的目標 VM，建立額外的空白進階儲存體磁碟。 這會假設 DBMS 可讓您變更資料和記錄檔的路徑，以做為還原程序的一部分。
-* 另一個可能性是先前程序的變化，您只會將備份 VHD 複製到 Azure 進階儲存體，然後根據您最新部署與安裝的 VM 來連接它。
-* 當您需要變更資料庫的資料檔數目時，會選擇第四個可能性。 在這種情況下，您會使用匯出/匯入來執行 SAP 同質性系統複製。 將這些匯出檔案放到 VHD (已複製到 Azure 進階儲存體帳戶)，然後將它連接到您用來執行匯入程序的 VM。 主要是在客戶想要減少資料檔數目時，才會使用這個可能性。
+* 您只需將所有的 VHD、基底 VHD 以及資料 VHD 複製到新的 Azure 進階儲存體帳戶。 通常您已選擇 hello Vhd 數目在 Azure 標準儲存體不是因為您所需的 hello 資料磁碟區的 hello 事實。 但您需要許多 Vhd，因為 hello IOPS。 既然您移動 tooAzure 高階儲存體，您無法搭配的方式較少的 Vhd tooachieve hello 一些 IOPS 輸送量。 指定您需支付 hello Azure 標準儲存體中使用的資料和非 hello 名義上的磁碟大小的 hello 事實，hello Vhd 數目未不真的很重要方面成本。 不過，Azure 高階儲存體，您將支付 hello 名義上的磁碟大小。 因此，大部分的 hello 客戶嘗試 tookeep hello Azure Vhd 數目高階儲存體中 hello 數字所需的 tooachieve hello IOPS 輸送量必要。 因此，大部分的客戶決定針對簡單 1:1 的 hello 方式複製。
+* 如果尚未掛接，您要掛接單一 VHD，其中可包含 SAP 資料庫的資料庫備份。 Hello 備份後卸載所有 Vhd 包括 hello VHD 包含 hello 備份和複製 hello 基底 VHD 和 hello 與 hello 備份的 VHD 到 Azure 進階儲存體帳戶。 然後，您會部署的 hello hello 基底 VHD 和掛接 hello VHD hello 備份為基礎的 VM。 現在您可以建立其他空高階儲存體磁碟 hello VM 所使用的 toorestore hello 資料庫。 這是假設該 hello DBMS 可讓您 toochange 路徑 toohello 資料和記錄檔 hello 還原程序的一部分。
+* 另一個可能性是一種 hello 先前程序，其中只需要將 hello 備份 VHD 複製到 Azure 進階儲存體，並將它附加對新部署和安裝的 VM。
+* hello 第四個可能性您可以選擇當您需要資料庫的資料檔案的 toochange hello 數目。 在這種情況下，您會使用匯出/匯入來執行 SAP 同質性系統複製。 放入與匯出到複製到 Azure 進階儲存體帳戶的 VHD 檔案，並將它附加 tooa VM，您會使用 toorun hello 匯入處理程序。 客戶在主要是要 toodecrease hello 數目的資料檔案時，才使用這種可能性。
 
 ### <a name="deployment-of-vms-for-sap-in-azure"></a>在 Azure 中部署適用於 SAP 的 VM
-Microsoft Azure 提供多種方法來部署 VM 和相關聯的磁碟。 因此，請務必了解這些差異，因為 VM 的準備工作可能會因部署方法而異。 我們通常會查看下列章節中所描述的案例。
+Microsoft Azure 提供的多種 toodeploy Vm 和相關聯的磁碟。 因此就非常重要的 toounderstand hello 差異因為 hello Vm 的準備工作可能會與不同部署的 hello 方式而定。 一般情況下，我們探討 hello hello 後面章節所述的案例。
 
-#### <a name="deploying-a-vm-from-the-azure-marketplace"></a>從 Azure Marketplace 部署 VM
-您想要從 Azure Marketplace 使用 Microsoft 或協力廠商提供的映像來部署 VM。 在 Azure 中部署您的 VM 之後，您可以遵循相同的指導方針和工具在 VM 中安裝 SAP 軟體，就像在內部部署環境中所做的一樣。 若要在 Azure VM 中安裝 SAP 軟體，SAP 和 Microsoft 建議將 SAP 安裝媒體上傳並儲存到 Azure VHD，或建立做為「檔案伺服器」並包含所有必要 SAP 安裝媒體的 Azure VM。
+#### <a name="deploying-a-vm-from-hello-azure-marketplace"></a>部署的 hello Azure Marketplace 中的 VM
+您喜歡 tootake Microsoft 或第 3 個合作對象提供的映像 hello Azure Marketplace toodeploy 從您的 VM。 部署在 Azure VM 之後，請依照 hello 相同的指導方針和工具 tooinstall hello SAP 軟體，在 VM 內像您一樣在內部部署環境中。 安裝 Azure VM hello hello SAP 軟體，SAP 和 Microsoft 建議 tooupload hello SAP 安裝媒體或中與儲存 Azure Vhd toocreate Azure VM 以 「 檔案伺服器 」 包含所有 hello 所需的 SAP 安裝媒體。
 
 #### <a name="deploying-a-vm-with-a-customer-specific-generalized-image"></a>使用客戶特定的一般化映像部署 VM
-因為您的作業系統或 DBMS 版本的相關特定修補程式需求，所以 Azure Marketplace 中提供的映像可能不符合您的需求。 因此，您可能必須使用自己「私人」的 OS/DBMS VM 映像建立 VM，之後即可多次部署此映像。 若要準備這類「私人」映像以供複製，您必須在內部部署 VM 上將作業系統一般化。 如需有關如何將 VM 一般化的詳細資訊，請參閱[部署指南][deployment-guide]。
+Toospecific 修補程式需求方面 tooyour OS 或 DBMS 版本中，因為提供的 hello hello Azure Marketplace 中的映像可能不適合您的需求。 因此，您可能需要 toocreate 使用您自己 'private' 的 OS/DBMS VM 映像之後數次可部署的 VM。 tooprepare 這類的 'private' 映像進行複製，在 hello 一般化作業系統的 hello 內部部署 VM。 請參閱 toohello[部署指南 》] [ deployment-guide]的詳細資料 toogeneralize VM。
 
-如果您已在內部部署 VM (特別是針對 2 層系統) 中安裝 SAP 內容，您可以在部署 Azure VM 之後，透過 SAP Software Provisioning Manager 支援的執行個體重新命名程序來調整 SAP 系統設定 (SAP 附註 [1619720])。 否則，您稍後可以在部署 Azure VM 之後安裝 SAP 軟體。
+如果您已在內部部署 VM （特別是 2 層系統） 中安裝 SAP 內容，hello 部署的 hello Azure VM 透過 hello 執行個體重新命名程序支援 hello SAP 軟體佈建之後，您可以調整 hello SAP 系統設定管理員 (SAP 附註[1619720])。 否則，您可以 hello 部署的 hello Azure VM 之後再安裝 hello SAP 軟體。
 
-正如 SAP 應用程式所使用的資料庫內容，您可以透過 SAP 安裝產生全新的內容，或者可以使用 VHD 搭配 DBMS 資料庫備份，或是利用 DBMS 的功能直接備份至 Microsoft Azure 儲存體，來將內容匯入 Azure。 在此情況下，您可以也備妥 VHD 以及內部部署的 DBMS 資料檔和記錄檔，然後將它們當成磁碟匯入 Azure。 但是，傳輸從內部部署載入 Azure 的 DBMS 資料，會在需要於內部部署中備妥的 VHD 磁碟上運作。
+為準，hello hello SAP 應用程式所使用的資料庫內容，您可以產生 hello 內容全新由 SAP 安裝或使用包含 DBMS 資料庫備份的 VHD，或運用 hello DBMS toodirectly 的功能，您可以會匯入您的內容至 Azure備份至 Microsoft Azure 儲存體。 在此情況下，可以也準備 Vhd，以 hello DBMS 資料和記錄檔案內部，然後將磁碟以匯入至 Azure。 但 hello 載入從內部部署 tooAzure DBMS 資料傳輸會透過需要 toobe 準備內部部署的 VHD 磁碟運作。
 
-#### <a name="moving-a-vm-from-on-premises-to-azure-with-a-non-generalized-disk"></a>使用非一般化磁碟將 VM 從內部部署移至 Azure
-您打算將特定的 SAP 系統從內部部署移至 Azure (提升與轉變)。 這可藉由將包含作業系統、SAP 二進位檔和最終 DBMS 二進位檔的 VHD，以及包含 DBMS 資料和記錄檔的 VHD 上傳至 Azure 來完成。 相對於上述的案例 2，您可以在 Azure VM 中保留主機名稱、SAP SID 和 SAP 使用者帳戶，因為這些項目已設定於內部部署環境中。 因此，不需要將映像一般化。 此情況最適用於跨單位案例，其中 SAP 架構的一部分是在內部部署執行，其餘部分則在 Azure 上執行。
+#### <a name="moving-a-vm-from-on-premises-tooazure-with-a-non-generalized-disk"></a>將 VM 從內部部署 tooAzure 使用非一般化磁碟
+您計劃 toomove 特定 SAP 系統從內部部署 tooAzure （「 增益 」 和 「 shift 」）。 這可藉由來上傳 VHD，含 hello OS hello、 hello SAP 二進位檔和最終 DBMS 二進位檔加上 Vhd hello 與 hello hello DBMS tooAzure 的資料和記錄檔。 相反的 tooscenario #2 以上版本，則讓 hello 主機名稱、 SAP SID 和 SAP 使用者帳戶 hello Azure VM 中為 hello 在內部部署環境中設定。 因此，將一般化 hello 映像不需要。 此情況下最適合用於 hello SAP 環境的一部分執行的內部部署和組件在 Azure 上的跨內部部署案例。
 
 ## <a name="871dfc27-e509-4222-9370-ab1de77021c3"></a>Azure VM 的相關高可用性和災害復原
-Azure 提供下列高可用性 (HA) 和災害復原 (DR) 功能，這些功能可以套用至我們用來進行 SAP 和 DBMS 部署的不同元件
+Azure 提供下列高可用性 (HA) 和災害復原 (DR) 功能套用 toodifferent 元件，我們會使用適用於 SAP 和 DBMS 部署的 hello
 
 ### <a name="vms-deployed-on-azure-nodes"></a>部署於 Azure 節點上的 VM
-Azure 平台不會針對部署的 VM 提供像是即時移轉等功能。 這表示，如果部署 VM 的伺服器叢集上需要維護，該 VM 就必須停止並重新啟動。 Azure 中的維護作業是在伺服器叢集內使用升級網域來執行。 一次只會維護一個升級網域。 在執行這類重新啟動期間，當 VM 關閉、執行維護，以及 VM 重新啟動時，服務將會中斷。 不過，大部分的 DBMS 廠商都不會提供高可用性和災害復原功能，此功能將會在主要節點無法使用時，在另一個節點上快速重新啟動 DBMS 服務。 Azure 平台提供將 VM、儲存體及其他 Azure 服務分散到升級網域的功能，以確保預計的維護或基礎結構故障只會影響一小部分的 VM 或服務。  透過謹慎的規劃，就可以達到相當於內部部署基礎結構的可用性層級。
+hello Azure 平台不提供功能，例如即時移轉的已部署的 Vm。 這表示如果在部署 VM 的伺服器叢集上沒有維護所需，hello VM 需要 tooget 停止並重新啟動。 Azure 中的維護作業是在伺服器叢集內使用升級網域來執行。 一次只會維護一個升級網域。 在重新啟動期間將會中斷服務，而關閉 VM 的 hello、 進行維護然後重新啟動 VM。 大部分 DBMS 廠商都不過提供高可用性和災害復原功能，就會迅速重新啟動另一個節點上的 hello DBMS 服務如果 hello 主要節點無法使用。 hello Azure 平台提供了功能 toodistribute Vm、 儲存體和其他 Azure 服務規劃維護或基礎結構失敗的升級網域 tooensure 跨只會影響 Vm 或服務的小型子集。  計劃很可能 tooachieve 可用性層級比較 tooon 內部部署基礎結構。
 
-「Microsoft Azure 可用性設定組」是 VM 或「服務」的邏輯群組，可確保 VM 和其他服務會分散到叢集內不同的「容錯網域」和「升級網域」，使得在任何時間點都只有一個節點會被關閉 (如需更多詳細資料，請參閱[這篇][virtual-machines-manage-availability]文章)。
+Microsoft Azure 可用性設定組是 Vm 的邏輯群組或服務，可確保 Vm 和其他服務是分散式的 toodifferent 容錯和升級網域，並在叢集內，只能有一個節點關閉任何一處 （讀取的時間[這][ virtual-machines-manage-availability]文件以取得更多詳細資料)。
 
-推出 VM 時，必須依用途來設定，如下所示：
+它需要 toobe 推出如下所示的 Vm 時設定的用途：
 
 ![適用於 DBMS HA 組態的可用性設定組定義][dbms-guide-figure-200]
 
-如果想要建立 DBMS 部署的高可用性組態 (而不是個別使用 DBMS HA 功能)，則 DBMS VM 需要︰
+如果我們想 toocreate 的 DBMS 部署 （的 hello 個別 DBMS HA 功能使用獨立） 的高可用性組態，hello DBMS Vm 需要：
 
-* 將 VM 新增至相同的 Azure 虛擬網路 (<https://azure.microsoft.com/documentation/services/virtual-network/>)
-* HA 組態的 VM 也應該位於相同的子網路中。 不同子網路之間的名稱解析無法在僅限雲端的部署中運作，只有 IP 解析才能正常運作。 針對跨單位部署使用站對站或 ExpressRoute 連線能力，就已經建立了至少含有一個子網路的網路。 名稱解析是根據內部部署 AD 原則和網路基礎結構來完成。
+* 新增 hello Vm toohello 相同 Azure 虛擬網路 (<https://azure.microsoft.com/documentation/services/virtual-network/>)
+* hello hello HA 組態的 Vm 也應該在 hello 相同子網路。 Hello 不同子網路之間的名稱解析無法在僅限雲端部署中，只有 IP 解析正常運作。 針對跨單位部署使用站對站或 ExpressRoute 連線能力，就已經建立了至少含有一個子網路的網路。 名稱解析都是根據 toohello 內部部署 AD 原則和網路基礎結構。
 
 [comment]: <> (MSSedusch TODO 測試在 ARM 中是否仍為 true)
 
 #### <a name="ip-addresses"></a>IP 位址
-強烈建議使用彈性方式來設定 HA 組態的 VM。 除非使用靜態 IP 位址，否則，在 Azure 中依賴 IP 位址來處理 HA 組態內的 HA 夥伴並不可靠。 Azure 中有兩種「關閉」概念︰
+強烈建議 toosetup hello Vm HA 組態的彈性的方式。 依賴 IP 位址 tooaddress hello HA 夥伴 hello HA 組態內不可靠，在 Azure 中使用靜態 IP 位址。 Azure 中有兩種「關閉」概念︰
 
-* 透過 Azure 入口網站或 Azure PowerShell Cmdlet Stop-AzureRmVM 來關閉︰在此情況下，會關閉虛擬機器並取消配置。 之後將不會在針對此 VM 向您的 Azure 帳戶收取費用，因此，只有在使用儲存體時才會向您收費。 不過，如果網路介面的私人 IP 位址不是靜態的，即會發行該 IP 位址，但不保證在重新啟動 VM 之後，會再次將舊的 IP 位址指派給網路介面。 透過 Azure 入口網站或透過呼叫 Stop-AzureRmVM 來執行關閉，將會自動取消配置。 如果您不希望使用 Stop-AzureRmVM -StayProvisioned 取消配置該機器
-* 如果您從作業系統層級關閉 VM，該 VM 即會關閉且不會取消配置。 不過，在此情況下，仍會向您的 Azure 帳戶收取 VM 的費用，儘管它已經關閉也一樣。 在這種情況下，將 IP 位址指派給停止運作的 VM 仍將維持不變。 從中關閉 VM 將不會自動強制取消配置。
+* 關閉透過 Azure 入口網站或 Azure PowerShell cmdlet 停止 AzureRmVM: hello 虛擬機器在此情況下會關閉和取消配置。 因此 hello 唯一要收費會致使其 hello 存放裝置使用，您的 Azure 帳戶不再計費此 vm。 不過，如果 hello 網路介面的 hello 私人 IP 位址不是靜態的 hello IP address 已釋放，而且不保證該 hello 網路介面取得 hello 分派 hello VM 重新啟動之後，再次舊 IP 位址。 執行 hello hello Azure 入口網站透過關閉，或藉由呼叫停止 AzureRmVM 會自動導致取消配置。 如果您不想停止 AzureRmVM StayProvisioned toodeallocat hello 機器使用
+* 如果您關閉 hello 作業系統層級中的 VM，hello VM 取得關閉，無法取消配置。 不過，在此情況下，您的 Azure 帳戶將仍然支付 hello VM，儘管它已經關閉的 hello 事實。 在這種情況下，hello 分派的 hello IP 位址 tooa 已停止的 VM 將會維持不變。 正在關閉 hello 從 VM 內不會自動強制取消配置。
 
-實際上對於跨內部部署案例而言，關閉和取消配置預設都表示要從 VM 中取消 IP 位址的指派，即使 DHCP 設定中的內部部署原則不同也一樣。
+即使對於跨內部部署案例中，依預設關閉和取消配置都表示取消指派的 hello hello VM，IP 位址即使 DHCP 設定中的內部部署原則不同。
 
-* 有一個例外狀況，就是如果您如[這裡][virtual-networks-reserved-private-ip]所述，將靜態 IP 位址指派給網路介面。
-* 在這種情況下，只要網路介面未遭到刪除，IP 位址就會保持固定。
+* hello 例外狀況如果其中一個會指派靜態 IP 位址 tooa 網路介面做為說明[這裡][virtual-networks-reserved-private-ip]。
+* 在這種情況下 hello IP 位址會保持固定，只要 hello 網路介面不會刪除。
 
 > [!IMPORTANT]
-> 為了讓整個部署保持簡單且容易管理，明確的建議是在 Azure 的 DBMS HA 或 DR 組態中設定 VM 合夥，方法是在所涉及的不同 VM 之間提供正常運作的名稱解析。
+> 順序 tookeep hello 整個部署簡單且容易管理，在清除建議 toosetup hello hello Vm 合作 DBMS HA 或 DR 組態中在 Azure 中的 hello 牽涉到不同的 Vm 之間沒有正常運作的名稱解析的方式。
 >
 >
 
 ## <a name="deployment-of-host-monitoring"></a>部署主機監視功能
-若要使 Azure 虛擬機器中的 SAP 應用程式以具生產力的方式運作，SAP 需要能夠從執行 Azure 虛擬機器的實際主機取得主機監視資料。 需要有特定的 SAP HostAgent 修補程式等級，才能在 SAPOSCOL 和 SAP HostAgent 中啟用此功能。 確切的修補程式等級記載於 SAP 附註 [1409604]。
+具生產力的 SAP 應用程式在 Azure 虛擬機器使用量和 SAP 需要 hello 能力 tooget 主機監視 hello 執行 hello Azure 虛擬機器的實體主機的資料。 需要有特定的 SAP HostAgent 修補程式等級，才能在 SAPOSCOL 和 SAP HostAgent 中啟用此功能。 hello 確切的修補程式層級記載於 SAP Note [1409604]。
 
-如需了解如何部署將主機資料傳遞給 SAPOSCOL 和 SAPHostAgent 的元件及這些元件的生命週期管理，請參閱[部署指南][deployment-guide]
+關於部署元件，以便將主機資料 tooSAPOSCOL 和 SAPHostAgent 和 hello 該等元件的生命週期管理的 hello 詳細資訊，請參閱 toohello[部署指南][deployment-guide]
 
-## <a name="3264829e-075e-4d25-966e-a49dad878737"></a>Microsoft SQL Server 專屬的詳細資料
+## <a name="3264829e-075e-4d25-966e-a49dad878737"></a>細節 tooMicrosoft SQL Server
 ### <a name="sql-server-iaas"></a>SQL Server IaaS
-從 Microsoft Azure 開始，您就能輕易地將建置於 Windows Server 平台上現有的 SQL Server 應用程式移轉至 Azure 虛擬機器。 虛擬機器中的 SQL Server 可讓您輕鬆地將這些應用程式移轉到 Microsoft Azure，藉以減少部署、管理和維護企業級應用程式的擁有權總成本。 透過 Azure 虛擬機器中的 SQL Server，系統管理員和開發人員仍然可以使用可在內部部署使用的相同開發和管理工具。
+開始使用 Microsoft Azure，您可以輕鬆地移轉現有 SQL Server 建立的應用程式在 Windows Server 平台 tooAzure 虛擬機器上。 虛擬機器中 SQL Server 可讓您 tooreduce hello 擁有權總成本的部署、 管理和維護的企業廣度應用程式，輕鬆地將移轉這些應用程式 tooMicrosoft Azure。 透過 SQL Server 在 Azure 虛擬機器，系統管理員和開發人員仍然可以使用的 hello 可用的相同開發和管理工具內部。
 
 > [!IMPORTANT]
-> 請注意，我們不討論 Microsoft Azure SQL Database，此為 Microsoft Azure 平台的「平台即服務」產品。 本白皮書中討論的是如何執行 SQL Server 產品 (已知適用於 Azure 虛擬機器中的內部部署)，以及如何運用 Azure 的「基礎架構即為服務」功能。 這兩個產品之間所提供的資料庫性能與功能並不相同，不應混用彼此。 另請參閱︰<https://azure.microsoft.com/services/sql-database/>
+> 請注意，我們不會討論 Microsoft Azure SQL Database 即平台為 hello Microsoft Azure 平台的服務供應項目。 本白皮書中的 hello 討論是 azure 的有關所知的內部部署在 Azure 虛擬機器，運用 hello 基礎結構即服務功能執行 hello SQL Server 產品。 這兩個產品之間所提供的資料庫性能與功能並不相同，不應混用彼此。 另請參閱︰<https://azure.microsoft.com/services/sql-database/>
 >
 >
 
-強烈建議您先檢閱[這份][virtual-machines-sql-server-infrastructure-services]文件之後再繼續。
+強烈建議 tooreview[這][ virtual-machines-sql-server-infrastructure-services]文件，然後再繼續。
 
-在下列章節中，將會彙總並提及上述連結下方之文件的某些部分。 也會提到 SAP 專屬的詳細資料，並更深入說明一些概念。 不過，強烈建議您完整閱讀該文件，然後再閱讀 SQL Server 專屬的文件。
+Hello 中將彙總而提及部分上方連結 hello hello 文件的下列各節片段。 也會提到 SAP 專屬的詳細資料，並更深入說明一些概念。 不過，強烈建議 toowork 透過上述第一個再讀取 hello SQL Server 特定文件的 hello 文件。
 
 繼續之前，您應該先了解一些 IaaS 中 SQL Server 專屬的資訊：
 
 * **虛擬機器 SLA**：如需適用於在 Azure 中執行之「虛擬機器」的 SLA，請參閱：<https://azure.microsoft.com/support/legal/sla/>  
-* **SQL 版本支援**︰針對 SAP 客戶，我們在「Microsoft Azure 虛擬機器」上支援 SQL Server 2008 R2 和更新版本。 不支援舊版。 如需更多詳細資料，請檢閱這份通用的 [支援聲明](https://support.microsoft.com/kb/956893) 。 請注意，Microsoft 通常也支援 SQL Server 2008。 不過，由於適用於 SAP 的重大功能是透過 SQL Server 2008 R2 所引進，因此 SQL Server 2008 R2 是適用於 SAP 的最低版本。 請記住，SQL Server 2012 和 2014 已擴充來與 IaaS 案例進行更深入整合 (例如，直接對 Azure 儲存體進行備份)。 因此，我們將本白皮書範圍限制為 SQL Server 2012 和 2014 及其適用於 Azure 的最新修補程式等級。
-* **SQL 功能支援**︰「Microsoft Azure 虛擬機器」上支援大部分的 SQL Server 功能，但有一些例外。 **不支援使用共用磁碟的 SQL Server 容錯移轉叢集**。  單一 Azure 區域內支援分散式技術 (例如，資料庫鏡像、AlwaysOn 可用性群組、複寫、記錄傳送，以及 Service Broker)。 SQL Server AlwaysOn 也在不同 Azure 區域之間受到支援，如以下文件所述︰<https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>。  如需更多詳細資料，請檢閱這份 [支援聲明](https://support.microsoft.com/kb/956893) 。 如需有關如何部署 AlwaysOn 組態的範例，請參閱[這篇][virtual-machines-workload-template-sql-alwayson]文章。 此外，也請參閱[這裡][virtual-machines-sql-server-infrastructure-services]所記載的最佳做法。
-* **SQL 效能**︰相較於其他公用雲端虛擬化產品，我們確信 Microsoft Azure 裝載的「虛擬機器」會有非常好的表現，但個別結果可能有所不同。 請參閱[這篇][virtual-machines-sql-server-performance-best-practices]文章。
-* **使用來自 Azure Marketplace 的映像**︰部署新 Microsoft Azure VM 的最快方式就是使用來自 Azure Marketplace 的映像。 Azure Marketplace 中提供包含 SQL Server 的映像。 已經安裝 SQL Server 的映像不能立即用於 SAP NetWeaver 應用程式。 原因是預設的 SQL Server 定序是安裝於這些映像內，而不是 SAP NetWeaver 系統所需的定序。 若要使用這類映像，請參閱[使用來自 Microsoft Azure Marketplace 的 SQL Server 映像][dbms-guide-5.6]一章中記載的步驟。
-* 如需詳細資訊，請參閱 [定價詳細資料](https://azure.microsoft.com/pricing/) 。 [SQL Server 2012 授權指南](https://download.microsoft.com/download/7/3/C/73CAD4E0-D0B5-4BE5-AB49-D5B886A5AE00/SQL_Server_2012_Licensing_Reference_Guide.pdf)和 [SQL Server 2014 授權指南](https://download.microsoft.com/download/B/4/E/B4E604D9-9D38-4BBA-A927-56E4C872E41C/SQL_Server_2014_Licensing_Guide.pdf)也是相當重要的資源。
+* **SQL 版本支援**︰針對 SAP 客戶，我們在「Microsoft Azure 虛擬機器」上支援 SQL Server 2008 R2 和更新版本。 不支援舊版。 如需更多詳細資料，請檢閱這份通用的 [支援聲明](https://support.microsoft.com/kb/956893) 。 請注意，Microsoft 通常也支援 SQL Server 2008。 不過，與 SQL Server 2008 R2 引進 SAP toosignificant 功能，因為 SQL Server 2008 R2 為 hello 適用於 SAP 的最低版本。 請記住，SQL Server 2012 和 2014年收到 hello IaaS 案例 （例如，直接對 Azure 儲存體備份） 的更深入整合與擴充。 因此，我們會限制此紙張 tooSQL Server 2012 和 2014 其最新修補程式等級，適用於 Azure。
+* **SQL 功能支援**︰「Microsoft Azure 虛擬機器」上支援大部分的 SQL Server 功能，但有一些例外。 **不支援使用共用磁碟的 SQL Server 容錯移轉叢集**。  單一 Azure 區域內支援分散式技術 (例如，資料庫鏡像、AlwaysOn 可用性群組、複寫、記錄傳送，以及 Service Broker)。 SQL Server AlwaysOn 也在不同 Azure 區域之間受到支援，如以下文件所述︰<https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>。  檢閱 hello[支援聲明](https://support.microsoft.com/kb/956893)如需詳細資訊。 有關如何 toodeploy AlwaysOn 組態所示的範例[這][ virtual-machines-workload-template-sql-alwayson]發行項。 此外，請參閱 hello 記載的最佳作法[這裡][virtual-machines-sql-server-infrastructure-services]
+* **SQL 效能**： 我們確信 Microsoft Azure 代管的虛擬機器將會執行地很好比較 tooother 公用雲端虛擬化方案，但是個別結果中，可能會不同。 請參閱[這篇][virtual-machines-sql-server-performance-best-practices]文章。
+* **使用 Azure marketplace 的映像**: hello 最快方式 toodeploy 新的 Microsoft Azure VM 是 toouse hello Azure Marketplace 中的影像。 有含有 SQL Server hello Azure Marketplace 映像。 SQL Server 已安裝的 hello 映像不能立即用於 SAP NetWeaver 應用程式。 hello 原因是 hello 預設 SQL Server 定序會安裝這些映像或不 SAP NetWeaver 系統所需的 hello 定序中。 在排序 toouse 這類映像，請檢查 hello 章節所述的步驟[超出 hello Microsoft Azure Marketplace 使用 SQL Server 映像][dbms-guide-5.6]。
+* 如需詳細資訊，請參閱 [定價詳細資料](https://azure.microsoft.com/pricing/) 。 hello [SQL Server 2012 授權指南](https://download.microsoft.com/download/7/3/C/73CAD4E0-D0B5-4BE5-AB49-D5B886A5AE00/SQL_Server_2012_Licensing_Reference_Guide.pdf)和[SQL Server 2014 授權指南](https://download.microsoft.com/download/B/4/E/B4E604D9-9D38-4BBA-A927-56E4C872E41C/SQL_Server_2014_Licensing_Guide.pdf)也是相當重要的資源。
 
 ### <a name="sql-server-configuration-guidelines-for-sap-related-sql-server-installations-in-azure-vms"></a>在 Azure VM 中安裝 SAP 相關之 SQL Server 的 SQL Server 組態指導方針
 #### <a name="recommendations-on-vmvhd-structure-for-sap-related-sql-server-deployments"></a>適用於 SAP 相關之 SQL Server 部署的 VM/VHD 結構建議
-根據一般的描述，SQL Server 可執行檔應該位於或安裝於 VM 基底 VHD 的系統磁碟機 (磁碟機 C:\))。  一般而言，依照 SAP NetWeaver 工作負載，大部分的 SQL Server 系統資料庫都不會在高等級中使用。 因此，SQL Server 的系統資料庫 (master、msdb 和 model) 也可以保留於 C:\ 磁碟機。 有一個例外狀況是 tempdb，在某些 SAP ERP 和所有 BW 工作負載中，可能需要較高的資料量或 I/O 作業量，以致於不適合放在原始 VM 中。 針對這類系統，應該執行下列步驟︰
+Hello 一般描述，根據 SQL Server 可執行檔應該位於或安裝到 hello hello VM 基本 vhd 的系統磁碟機 (磁碟機 c:\)。  一般而言，大部分的 hello SQL Server 系統資料庫不會使用高層次的 SAP NetWeaver 工作量。 因此 hello 系統資料庫 （master、 msdb 和 model） 的 SQL server 可留在 hello C:\ 磁碟機上。 例外狀況可能是 tempdb，這在 hello 案例中的某些 SAP ERP 和所有 BW 工作量可能需要較高的資料量或 I/O 作業量，無法放入 hello 原始 VM。 這類系統，應該執行下列步驟的 hello:
 
-* 將主要 tempdb 資料檔移至與 SAP 資料庫的主要資料檔相同的邏輯磁碟機。
-* 將任何其他 tempdb 資料檔新增到其他包含 SAP 使用者資料庫之資料檔的邏輯磁碟區。
-* 將 tempdb 記錄檔新增到包含使用者資料庫記錄檔的邏輯磁碟機。
-* **(僅適用於計算節點上使用本機 SSD 的 VM 類型)** tempdb 資料檔和記錄檔可以放在 D:\ 磁碟機上。 不過，可能會建議使用多個 tempdb 資料檔。 請注意，D:\ 磁碟機磁碟區會根據 VM 類型而不同。
+* 移動 hello 主要 tempdb 資料檔案 toohello hello 主要資料檔案中的 hello SAP 資料庫的相同邏輯磁碟機。
+* 新增 hello 的任何其他的 tempdb 資料檔案 tooeach 其他包含 hello SAP 使用者資料庫的資料檔案的邏輯磁碟機。
+* 新增 hello tempdb 記錄檔 toohello 邏輯磁碟機包含 hello 使用者資料庫的記錄檔。
+* **專用的 VM 類型可使用本機 Ssd** hello 計算節點 tempdb 資料和記錄檔可能會放在 hello D:\ 磁碟機上。 不過，它可能會建議 toouse 多個 tempdb 資料檔案。 請注意 D:\ 磁碟機的磁碟區都不同 hello VM 類型為基礎。
 
-這些組態讓 tempdb 所耗用的空間比系統磁碟機能夠提供的還多。 若要判斷正確的 tempdb 大小，使用者可以在內部部署中執行的現有系統上檢查 tempdb 大小。 此外，這類組態可針對無法使用系統磁碟機來提供的 tempdb 啟用 IOPS 數目。 同樣地，在內部部署執行的系統可用於監視 tempdb 的 I/O 工作負載，讓您可以衍生出預期要在 tempdb 上看到的 IOPS 數目。
+這些設定可讓 tempdb tooconsume 空間 hello 系統磁碟機無法 tooprovide 還要多。 順序 toodetermine hello 正確的 tempdb 大小，使用者可以檢查現有的系統執行內部部署的 hello tempdb 大小。 此外，這種組態會啟用對 tempdb 無法隨附 hello 系統磁碟機的 IOPS 數目。 同樣地，在內部部署執行的系統可以針對 tempdb 使用的 toomonitor I/O 工作負載，讓您可以衍生預期在 tempdb 上 toosee hello IOPS 數目。
 
-執行含有 SAP 資料庫的 SQL Server 且 tempdb 資料和 tempdb 記錄檔放置於 D:\ 磁碟機的 VM 組態應該像這樣︰
+執行 SQL Server 與 SAP 資料庫和 tempdb 資料和 tempdb 記錄檔放置在 hello D:\ 磁碟機上的 VM 組態應該像這樣：
 
 ![適用於 SAP 之 Azure IaaS VM 的參考組態][dbms-guide-figure-300]
 
-請注意，根據 VM 類型而定，D:\ 磁碟機會有不同的大小。 根據 tempdb 的大小需求而定，萬一 D:\ 磁碟機太小，可能要強制您將 tempdb 資料和記錄檔與 SAP 資料庫資料和記錄檔進行配對。
+請注意該 hello D:\ 磁碟機具有不同大小 hello VM 類型而定。 相依於 tempdb hello 大小需求可能會強制的 toopair tempdb 資料和記錄檔以 hello SAP 資料庫資料和記錄檔中的情況下，D:\ 磁碟機太小。
 
-#### <a name="formatting-the-vhds"></a>格式化 VHD
-針對 SQL Server，適用於包含 SQL Server 資料和記錄檔的 NTFS 區塊大小應該是 64 K。 不需要將 D:\ 磁碟機格式化。 此磁碟機已預先格式化。
+#### <a name="formatting-hello-vhds"></a>格式化 hello Vhd
+SQL Server hello NTFS 區塊大小的 Vhd，含 SQL Server 資料和記錄檔案應該是 64k。 沒有任何需要 tooformat hello D:\ 磁碟機。 此磁碟機已預先格式化。
 
-若要確定還原或建立資料庫不會藉由清空檔案的內容來初始化資料檔，您應該確定 SQL Server 服務執行所在的使用者內容具有特定的權限。 通常，Windows 系統管理員群組中的使用者會擁有這些權限。 在非 Windows 系統管理員使用者的使用者內容中執行 SQL Server 服務時，您需要為該使用者指派「執行磁碟區維護工作」的使用者權限。  請參閱這篇「Microsoft 知識庫文章」中的詳細資料︰<https://support.microsoft.com/kb/2574695>
+在確定 hello 還原或建立的資料庫不會初始化 hello 資料檔案所清空 hello hello 檔案內容，您應該確定的順序 toomake hello 使用者內容 hello SQL Server 服務正在執行具有特定權限。 Hello Windows 系統管理員群組中的使用者通常會有這些權限。 Hello SQL Server 服務執行於非 Windows 系統管理員使用者 hello 使用者內容，如果您需要 tooassign 該使用者 hello '執行磁碟區維護工作' 的使用者權限。  請參閱 Microsoft 知識庫文件中的 hello 詳細資料： <https://support.microsoft.com/kb/2574695>
 
 #### <a name="impact-of-database-compression"></a>資料庫壓縮的影響
-在 I/O 頻寬可能變成限制因素的組態中，減少 IOPS 的每個量值可能都有助於延展您可以在類似 Azure 的 IaaS 案例中執行的工作負載。 因此，如果尚未這麼做，SAP 和 Microsoft 強烈建議您套用 SQL Server 頁面壓縮，然後再將現有的 SAP 資料庫上傳至 Azure。
+在組態中的 I/O 頻寬可能會變成限制因素，每個量值可減少 IOPS 可能有助於 toostretch hello 工作負載一次可以執行像是 Azure IaaS 案例中。 因此，如果尚未這樣做，套用 SQL Server PAGE 壓縮強烈建議 SAP 和 Microsoft 之前上傳現有 SAP 資料庫 tooAzure。
 
-在上傳至 Azure 之前執行資料庫壓縮的建議是出自下列兩項因素︰
+再上傳 tooAzure hello 建議 tooperform 資料庫壓縮是出於兩個原因：
 
-* 降低要上傳的資料量。
-* 假設您可以使用功能更強大的硬體，其在內部部署中使用更多 CPU 或更高 I/O 頻寬或更少 I/O 延遲，則執行壓縮的持續時間較短。
-* 較小的資料庫大小可能會使磁碟配置的成本降低
+* 上傳資料 toobe hello 量較低。
+* 假設有更多的 Cpu 或更高 I/O 頻寬或更少的 I/O 延遲內部部署可以使用更強的硬體較短的 hello 壓縮執行 hello 持續時間。
+* 較小的資料庫大小可能會導致 tooless 成本進行磁碟配置
 
-資料庫壓縮也可以在 Azure 虛擬機器中運作，如同它在內部部署中的運作方式。 如需有關如何壓縮現有 SAP SQL Server 資料庫的更多詳細資料，請參閱︰<https://blogs.msdn.com/b/saponsqlserver/archive/2010/10/08/compressing-an-sap-database-using-report-msscompress.aspx>
+資料庫壓縮也可以在 Azure 虛擬機器中運作，如同它在內部部署中的運作方式。 如需有關如何 toocompress 現有 SAP SQL Server 資料庫，請參閱以下： <https://blogs.msdn.com/b/saponsqlserver/archive/2010/10/08/compressing-an-sap-database-using-report-msscompress.aspx>
 
 ### <a name="sql-server-2014--storing-database-files-directly-on-azure-blog-storage"></a>SQL Server 2014 – 將資料庫檔案直接儲存於 Azure Blog 儲存體上
-SQL Server 2014 開放將資料庫檔案直接儲存於 Azure Blob 儲存體上的可能性，而不需在其周圍使用 VHD 的「包裝函式」。 特別是在使用標準 Azure 儲存體或較小的 VM 類型時，這讓您可以在其中克服 IOPS 的限制，此限制是透過可以掛接到某些較小型 VM 類型的有限 VHD 數目來強制執行。 不過，這適用於 SQL Server 的使用者資料庫，而不適用於系統資料庫。 這也適用於 SQL server 的資料和記錄檔。 如果您想要使用此方式部署 SAP SQL Server 資料庫，而不是將它「包裝」到 VHD，請記住下列資訊︰
+SQL Server 2014 開啟 hello 可能性 toostore 直接在 Azure Blob 存放區沒有 hello '的包裝函式' 周圍的 VHD 上的資料庫檔案。 特別是在使用標準的 Azure 儲存體或較小的 VM 類型這可讓您可以在其中克服 hello 有限數目的可掛接的 toosome 較小的 VM 類型的 Vhd 的 IOPS 會強制執行限制的案例。 不過，這適用於 SQL Server 的使用者資料庫，而不適用於系統資料庫。 這也適用於 SQL server 的資料和記錄檔。 如果您想要 toodeploy SAP 的 SQL Server 資料庫中而不是這種方式 '前後' 到 Vhd，請記住下列 hello:
 
-* 所使用之儲存體帳戶所在的 Azure 區域必須與用來部署 SQL Server 執行所在之 VM 的相同。
-* 稍早列出關於將 VHD 分散到不同 Azure 儲存體帳戶的考量也適用於這種部署方法。 表示對 Azure 儲存體帳戶限制的 I/O 作業計數。
+* 中的 hello 使用儲存體帳戶的需求 toobe hello 相同 Azure 區域為 hello 為使用的 toodeploy hello VM 的 SQL Server 正在執行中的其中一個。
+* 先前所述有關 toodistribute Vhd 透過不同的 Azure 儲存體帳戶的考量適用於這個部署同樣的方法。 表示 hello hello 限制 hello Azure 儲存體帳戶的 I/O 作業數目。
 
 [comment]: <> (MSSedusch TODO 但這將會使用網路頻寬而非儲存體頻寬，不是嗎？)
 
 這種部署類型的詳細資料如下︰<https://msdn.microsoft.com/library/dn385720.aspx>
 
-若要將 SQL Server 資料檔直接儲存在「Azure 進階儲存體」上，您必須具備下列網址所記載的最基本 SQL Server 2014 修補程式版本： <https://support.microsoft.com/kb/3063054>。 將 SQL Server 資料檔儲存於 Azure 標準儲存體上，利用 SQL Server 2014 的發行版本來運作。 不過，相同的修補程式包含另一個系列的修正程式，其可以更可靠的方式針對 SQL Server 資料檔和備份使用 Azure Blob 儲存體。 因此，我們通常建議使用這些修補程式。
+在訂單 toostore SQL Server 資料檔案直接在 Azure 高階儲存體上，您需要 toohave 最小的 SQL Server 2014 修補程式版本，請參閱： <https://support.microsoft.com/kb/3063054>。 儲存在 Azure 標準儲存體的 SQL Server 資料檔案會與 hello 發行版本的 SQL Server 2014 運作。 不過，hello 完全相同的修補程式包含修正程式，這會導致 hello 直接使用 Azure Blob 儲存體的 SQL Server 資料檔案和備份更可靠的另一個的數列。 因此我們建議 toouse 這些修補程式一般。
 
-### <a name="sql-server-2014-buffer-pool-extension"></a>SQL Server 2014 緩衝集區延伸模組
-SQL Server 2014 引進的新功能，稱為「緩衝集區延伸模組」。 此功能會延伸 SQL Server 的緩衝集區，使用第二層快取將其保留於記憶體中，此快取是透過伺服器或 VM 的本機 SSD 來支援。 這可在「記憶體內部」保留更大型的資料工作集。 相較於存取 Azure 標準儲存體，基於許多因素，存取儲存於 Azure VM 之本機 SSD 上的緩衝集區延伸模組的速度更快。  因此，利用具有絕佳 IOPS 和輸送量之 VM 類型的本機 D:\ 磁碟機可能是一個非常合理的方式，可降低對於 Azure 儲存體的 IOPS 負載，並大幅提升查詢的回應時間。 這特別適用於未使用進階儲存體時。 在進階儲存體以及使用計算節點上的進階 Azure 讀取快取中，對於資料檔的建議，和預期的沒有太大差異。 原因在於這兩個快取 (SQL Server 緩衝集區延伸模組和進階儲存體讀取快取) 都是使用計算節點的本機磁碟。
+### <a name="sql-server-2014-buffer-pool-extension"></a>SQL Server 2014 緩衝集區延伸
+SQL Server 2014 引進的新功能，稱為「緩衝集區延伸模組」。 這個功能擴展了 hello 緩衝集區的保留記憶體中的第二個層級快取伺服器的本機 Ssd 或 VM 所支援的 SQL Server。 這可讓 tookeep 大的工作集的 'in '的記憶體資料。 比較的 tooaccessing 成 hello 擴充功能，並儲存在 Azure VM 的本機 Ssd 上 hello 緩衝集區的標準儲存體 Azure hello 存取將會更快許多因素而定。  因此，利用 hello 本機 D:\ 磁碟機有絕佳的 IOPS 及輸送量的 hello VM 類型可能是非常合理方式 tooreduce hello IOPS 載入對 Azure 儲存體，並大幅改善查詢回應時間。 這特別適用於未使用進階儲存體時。 高階儲存體和 hello 使用方式的 hello Premium Azure 讀取快取 hello 計算節點上，如果資料檔案的建議，預期不大的差異。 原因是這兩個快取 （SQL Server 緩衝集區延伸模組和 Premium 儲存體讀取快取） 會使用 hello 的 hello 運算節點的本機磁碟。
 如需有關此功能的更多詳細資料，請參閱這份文件︰<https://msdn.microsoft.com/library/dn133176.aspx>
 
 ### <a name="backuprecovery-considerations-for-sql-server"></a>SQL Server 的備份/復原考量
-將 SQL Server 部署至 Azure 時，必須檢閱您的備份方法。 即使系統不是生產系統，還是必須定期備份 SQL Server 所裝載的 SAP 資料庫。 由於 Azure 儲存體會保留三個映像，因此在補償儲存體損毀方面，備份現在已變得較不重要。 優先維護適當備份和復原方案的原因是，您可以藉由提供時間點復原功能來補償邏輯/手動錯誤。 因此，目標是使用備份來將資料庫還原回到某個時間點，或者藉由複製現有的資料庫，在 Azure 中使用備份來植入另一個系統。 例如，您可以藉由還原備份，從 2 層 SAP 組態轉移到同一個系統的 3 層系統設定。
+將 SQL Server 部署至 Azure 時，必須檢閱您的備份方法。 即使 hello 系統不是生產系統，由 SQL Server 託管的 hello SAP 資料庫必須定期備份。 因為 Azure 儲存體會保留三個影像，備份現在是較不重要，尤其是尊重 toocompensating 儲存體損毀。 維護適當的備份和復原計劃 hello 優先順序原因是，您可以藉由提供時間復原功能的中點補償邏輯/手動錯誤有更多。 因此 hello 的目標是 tooeither 使用備份 toorestore hello 資料庫備份 tooa 特定點 Azure tooseed 中的時間或 toouse hello 備份中另一個系統複製 hello 現有的資料庫。 例如，您無法從傳輸的 2 層 SAP 組態 tooa 3 層系統設定 hello 相同系統還原的備份。
 
-有三種不同方式可將 SQL Server 備份至 Azure 儲存體︰
+有三個不同的方式 toobackup SQL Server tooAzure 儲存體：
 
-1. SQL Server 2012 CU4 和更新版本可以原生方式將資料庫備份至 URL。 下列部落格有詳細說明： [New functionality in SQL Server 2014 – Part 5 – Backup/Restore Enhancements (SQL Server 2014 的新功能 – 第 5 部分 – 備份/還原增強功能)](https://blogs.msdn.com/b/saponsqlserver/archive/2014/02/15/new-functionality-in-sql-server-2014-part-5-backup-restore-enhancements.aspx)。 請參閱 [SQL Server 2012 SP1 CU4 和更新版本][dbms-guide-5.5.1]一章。
-2. SQL 2012 CU4 之前的 SQL Server 版本可以使用重新導向功能來備份到 VHD，而且寫入串流基本上會流向已設定的 Azure 儲存體位置。 請參閱 [SQL Server 2012 SP1 CU3 和舊版][dbms-guide-5.5.2]一章。
-3. 最後一個方法是在 VHD 磁碟裝置上執行傳統 SQL Server 備份到磁碟的命令。  這與內部部署模式完全相同，但不會在本文中詳細討論。
+1. SQL Server 2012 CU4 和更高版本可以原生備份資料庫 tooa URL。 Hello 部落格有詳細說明[中 SQL Server 2014 – 第 5 部分 – 備份/還原增強功能的新功能](https://blogs.msdn.com/b/saponsqlserver/archive/2014/02/15/new-functionality-in-sql-server-2014-part-5-backup-restore-enhancements.aspx)。 請參閱 [SQL Server 2012 SP1 CU4 和更新版本][dbms-guide-5.5.1]一章。
+2. SQL Server 版本先前 tooSQL 2012 CU4 可以使用重新導向功能 toobackup tooa VHD，基本上再 hello 寫入串流移往已設定的 Azure 儲存體位置。 請參閱 [SQL Server 2012 SP1 CU3 和舊版][dbms-guide-5.5.2]一章。
+3. hello 最後一種方法是 tooperform 傳統的 SQL Server 備份 toodisk 命令至 VHD 磁碟裝置。  這是相同的 toohello 在內部部署的部署模式，而且不會在這份文件中詳細討論。
 
 #### <a name="0fef0e79-d3fe-4ae2-85af-73666a6f7268"></a>SQL Server 2012 SP1 CU4 和更新版本
-此功能可讓您直接備份到 Azure BLOB 儲存體。 如果沒有這個方法，您必須備份到其他 Azure VHD，因而會耗用 VHD 和 IOPS 容量。 以下為基本概念：
+這項功能可讓您 toodirectly 備份 tooAzure BLOB 儲存體。 如果沒有這個方法中，您必須備份 tooother Azure Vhd，因而耗用 VHD 和 IOPS 容量。 hello 基本上想法如下：
 
- ![使用 SQL Server 2012 備份至 Microsoft Azure 儲存體 BLOB][dbms-guide-figure-400]
+ ![使用 SQL Server 2012 備份 tooMicrosoft Azure 儲存體 BLOB][dbms-guide-figure-400]
 
-此案例的優點是您不需要耗用 VHD 來儲存 SQL Server 備份。 因此，所配置的 VHD 較少，而且可以針對資料和記錄檔使用 VHD IOPS 的整個頻寬。 請注意，如下列文章的＜限制＞一節所記載，備份的大小上限是 1 TB︰<https://msdn.microsoft.com/library/dn435916.aspx#limitations>。 如果在使用「SQL Server 備份」壓縮的情況下，備份大小仍然會超過 1 TB，就需要使用本文件的 [SQL Server 2012 SP1 CU3 和舊版][dbms-guide-5.5.2]一章中所述的功能。
+hello 優點在此情況下會是不需要 toospend Vhd toostore SQL Server 備份上。 因此，有較少的 Vhd 配置，hello 的 VHD IOPS 的整個頻寬可用於資料和記錄檔。 請注意 hello 備份的大小上限是有限的 tooa 上限為 1 TB，如本文中的 hello 一節 < 限制 > 中所述： <https://msdn.microsoft.com/library/dn435916.aspx#limitations>。 如果 hello 備份的大小，即使使用 SQL Server 備份壓縮的大小超過 1 TB，hello 章節所述的功能[SQL Server 2012 SP1 CU3 和更舊版本][ dbms-guide-5.5.2]在這份文件，也需要使用 toobe。
 
-描述從「Azure Blob 存放區」之備份還原資料庫的[相關文件](https://msdn.microsoft.com/library/dn449492.aspx)建議在備份大於 25 GB 的情況下，不要直接從 Azure BLOB 存放區還原。 本文中的建議只以效能考量為依據，並未將功能限制納入考量。 因此，隨著案例的不同，可能會發生不同的狀況。
+[相關文件](https://msdn.microsoft.com/library/dn449492.aspx)描述 hello 還原的資料庫從 Azure Blob 存放區中的備份，建議您無法直接從 Azure BLOB 存放區 toorestore hello 備份是否 > 25 GB。 本文章中的 hello 建議只根據效能考量，並不因為 toofunctional 限制。 因此，隨著案例的不同，可能會發生不同的狀況。
 
 如需有關如何設定和利用此備份類型的說明，請參閱 [這個](https://msdn.microsoft.com/library/dn466438.aspx) 教學課程
 
-您可以在 [這裡](https://msdn.microsoft.com/library/dn435916.aspx)找到一系列步驟的範例。
+可以讀取的一連串步驟 hello 範例[這裡](https://msdn.microsoft.com/library/dn435916.aspx)。
 
-自動備份，最重要的就是確定每個備份的 BLOB 都是以不同方式命名。 否則，它們將遭到覆寫且還原鏈會中斷。
+自動備份，為最高的重要性 toomake 確定每個備份的 hello Blob 的名稱不同。 否則將會覆寫，而且 hello restore 鏈已中斷。
 
-為了避免混用這 3 種不同的備份類型，建議您在用來備份的儲存體帳戶底下建立不同的容器。 容器可以僅供 VM 使用，也可以供 VM 和備份類型使用。 結構描述看起來如下︰
+為了不 toomix hello 3 之備份的不同類型的項目上時，它是建議 toocreate 不同的容器下方 hello 做為備份用途的儲存體帳戶。 hello 容器可以是只有 VM 或 VM 和備份類型。 hello 結構描述如下：
 
- ![使用 SQL Server 2012 備份至 Microsoft Azure 儲存體 BLOB – 個別儲存體帳戶中的不同容器][dbms-guide-figure-500]
+ ![使用 SQL Server 2012 備份 tooMicrosoft Azure 儲存體 BLOB-個別儲存體帳戶不同的容器][dbms-guide-figure-500]
 
-在上述範例中，備份不會執行到部署 VM 的相同儲存體帳戶。 有專用於備份的新儲存體帳戶。 在儲存體帳戶內，會有使用備份類型和 VM 名稱的組合所建立的不同容器。 這種細分方式將可讓您輕鬆地管理不同 VM 的備份。
+Hello 備份不會執行到相同的儲存體帳戶在 hello hello hello 上述範例中所部署 Vm。 有新的儲存體帳戶，特別針對 hello 備份。 內 hello 儲存體帳戶，會建立不同的備份與 hello VM 名稱 hello 型矩陣的容器。 這類分割可讓您更輕鬆 tooadministrate hello 備份 hello 不同的 Vm。
 
-直接寫入備份的 BLOB，不會納入 VM 的 VHD 計數。 因此，您可以將適用於資料和交易記錄檔之特定 VM SKU 且已掛接的 VHD 數目上限最大化，並且仍能針對儲存體容器執行備份。
+其中一個直接寫入 hello 備份 hello Blob 不會加入 toohello hello VM 的 Vhd 數目。 因此可以最大化 hello hello 資料的 hello 特定 VM SKU 的掛接 Vhd 上限和交易記錄檔，並仍然執行備份，以對儲存體容器。
 
 #### <a name="f9071eff-9d72-4f47-9da4-1852d782087b"></a>SQL Server 2012 SP1 CU3 和舊版
-若要直接封存「Azure 儲存體」的備份，您必須執行的第一個步驟就是下載連結到 [這篇](https://www.microsoft.com/download/details.aspx?id=40740) KBA 文章的 msi。
+您必須執行順序 tooachieve 中備份，直接對 Azure 儲存體的 hello 第一個步驟就是連結太 toodownload hello msi[這](https://www.microsoft.com/download/details.aspx?id=40740)KBA 文章。
 
-下載 x64 安裝檔案和文件。 此檔案將會安裝下列程式：‘Microsoft SQL Server Backup to Microsoft Azure Tool’。 請仔細閱讀產品文件。  此工具基本上會以下列方式運作︰
+下載 hello x64 安裝檔案和 hello 文件。 hello 檔案會安裝程式: 'Microsoft SQL Server Backup tooMicrosoft Azure 工具'。 徹底閱讀 hello hello 產品文件。  hello 工具基本上可以下列方式 hello:
 
-* 從 SQL Server 端，定義 SQL Server 備份的磁碟位置 (請勿針對此工具使用 D:\ 磁碟機)。
-* 此工具將可讓您定義可用來將不同備份類型導向至不同 Azure 儲存體容器的規則。
-* 一旦規則準備就緒，此工具就會將備份的寫入串流重新導向至稍早定義之 Azure 儲存體位置的其中一個 VHD/磁碟。
-* 此工具將會在針對 SQL Server 備份定義的 VHD/磁碟上，保留數個 KB 大小的小型 stub 檔案。 **此檔案應該保留在儲存體位置上，因為它需要再次從 Azure 儲存體還原。**
-  * 如果您遺失了 stub 檔案 (例如，因為遺失了包含 stub 檔案的儲存媒體)，而您選擇了備份到 Microsoft Azure 儲存體帳戶，則您可能會透過 Microsoft Azure 儲存體，從放置 stub 檔案的儲存體容器中下載它，藉以復原該檔案。 接著，如果加密會與原始規則搭配使用，則您應該將 stub 檔案放置於本機電腦上的資料夾中，並已在其中設定此工具，使用相同的加密密碼來偵測並上傳至同一個容器。
+* Hello SQL Server 端，從定義 hello SQL Server 備份的磁碟位置 （請勿這個使用 hello D:\ 磁碟機）。
+* hello 工具可讓您可使用的 toodirect 不同類型的備份 toodifferent Azure 儲存體容器 toodefine 規則。
+* 一旦 hello 規則準備就緒，hello 工具將會重新導向 hello 備份 tooone hello Vhd/磁碟 toohello 先前所定義 Azure 儲存體位置的 hello 寫入資料的流。
+* hello 工具會導致 hello VHD/磁碟所定義的 hello SQL Server 上的一個數 KB 大小的小型的虛設常式檔案備份。 **此檔案應該留在 hello 儲存位置，因為它是必要的 toorestore 再次從 Azure 儲存體。**
+  * 如果您遺失 hello stub 檔案 （例如，透過遺失 hello 包含 hello stub 檔案的儲存媒體），而且您已選擇備份 tooa Microsoft Azure 儲存體帳戶的 hello 選項，您可能會復原 hello stub 檔案透過 Microsoft Azure 儲存體從放置的 hello 儲存體容器下載。 您應該然後將 hello stub 檔案放在其中 hello 工具是設定的 toodetect 和上傳 toohello hello 本機電腦上資料夾相同的容器以 hello 如果加密搭配 hello 原始規則使用相同的加密密碼。
 
-這表示上述適用於較新版 SQL Server 的結構描述也適用於不允許直接處理 Azure 儲存體位置的 SQL Server 版本。
+這表示 hello 結構描述可以也可供 SQL Server 版本不允許直接定址 Azure 儲存體位置放置與上述針對較新版的 SQL Server。
 
-此方法不應與較新版的 SQL Server 搭配使用，這些版本支援以原生方式備份 Azure 儲存體。 例外狀況是對 Azure 的原生備份限制會封鎖對 Azure 執行原生備份。
+此方法不應與較新版的 SQL Server 搭配使用，這些版本支援以原生方式備份 Azure 儲存體。 例外狀況是其中的 hello 原生備份至 Azure 的限制會封鎖 Azure 原生備份執行。
 
-#### <a name="other-possibilities-to-backup-sql-server-databases"></a>備份 SQL Server 資料庫的其他可能性
-備份資料庫的其他可能性是將其他 VHD 連結到您用來儲存備份的 VM。 在這種情況下，您必須確認 VHD 並未完整執行。 如果是這種情況，您必須取消掛接 VHD，也就是所謂的「封存」它，然後使用新的空白 VHD 來取代它。 如果您執行此動作，就會想要將這些 VHD 保留於個別的 Azure 儲存體帳戶中 (不同於具有含資料庫檔案之 VHD 的帳戶)。
+#### <a name="other-possibilities-toobackup-sql-server-databases"></a>其他可能性 toobackup SQL Server 資料庫
+其他可能性 toobackup 資料庫是其他 Vhd tooa tooattach VM 上使用 toostore 備份。 在這類情況下，您必須 toomake 確定該 hello Vhd 正在不完整。 在 hello 情形下，您需要 toounmount hello VHD，因此 toospeak '' 將它封存，並取代為新的空白 VHD。 如果您向該路徑下，您要 tookeep hello 的 hello 與 hello 資料庫檔案的 Vhd 從不同的 Azure 儲存體帳戶中的這些 Vhd。
 
-第二種可能性是使用可以連接許多 VHD 的大型 VM。 例如 有 32 個 VHD 的 D14。 使用儲存空間來建立有彈性的環境，您可以在其中建置共用，之後用來做為不同 DBMS 伺服器的備份目標。
+第二種可能性是 toouse 可以有許多 Vhd 附加的大型 VM。 例如 有 32 個 VHD 的 D14。 使用儲存空間 toobuild 彈性的環境，您無法建立共用，會再做為備份目標 hello 不同 DBMS 伺服器使用。
 
 [這裡](https://blogs.msdn.com/b/sqlcat/archive/2015/02/26/large-sql-server-database-backup-on-an-azure-vm-and-archiving.aspx) 也記載了一些最佳做法。
 
 #### <a name="performance-considerations-for-backupsrestores"></a>備份/還原的效能考量
-如同裸機部署，備份/還原效能取決於可以平行讀取的磁碟區數目，以及這些磁碟區可能的輸送量。 此外，備份壓縮所使用的 CPU 耗用量可能會在最多只有 8 個 CPU 執行緒的 VM 上扮演重要的角色。 因此，您可以假設︰
+裸機部署，如同備份/還原效能是取決於磁碟區數目可以讀取以平行方式，而且這些磁碟區的哪些 hello 輸送量可能。 此外，hello 備份壓縮所使用的 CPU 耗用量可能相當重要的角色上播放的 Vm 只向上 too8 CPU 執行緒。 因此，您可以假設︰
 
-* 用來儲存資料檔的 VHD 數目越少，讀取的整體輸送量就越小。
-* VM 中 CPU 執行緒數目越小，備份壓縮的影響就越嚴重。
-* 要寫入備份的目標 (BLOB 或 VHD) 越少，輸送量就越低。
-* VM 大小越小，從 Azure 儲存體寫入和讀取的儲存體輸送量配額就越小。 無關於是否要將備份直接儲存於 Azure Blob 上，或者是否要將它們儲存在再次儲存於 Azure Blob 的 VHD 上。
+* hello 較少的 Vhd hello 數目使用 toostore hello 資料檔案，hello 較小 hello 中讀取的整體輸送量。
+* hello 數目較少 hello hello VM 中的 CPU 執行緒，hello 更嚴重 hello 備份壓縮的影響。
+* hello 較少的目標 （Blob 或 Vhd） toowrite hello 來備份、 hello 較小者 hello 輸送量。
+* hello 小 hello VM 大小，hello 小 hello 儲存體輸送量配額寫入和讀取從 Azure 儲存體。 Hello 備份是否直接儲存在 Azure Blob 上或儲存在一次在 Azure Blob 中儲存的 Vhd 是否與無關。
 
-在較新版本中使用 Microsoft Azure 儲存體 BLOB 做為備份目標時，您就只能針對每個特定備份指定一個 URL 目標。
+時使用 Microsoft Azure 儲存體 BLOB 做為較新版本中的 hello 備份目標，您必須針對每個特定的備份限制的 toodesignating 只有一個 URL 目標。
 
-但是，在舊版中使用 ‘Microsoft SQL Server Backup to Microsoft Azure Tool’ 時，您可以定義多個檔案目標。 使用多個目標，就可以調整備份且備份的輸送量會更高。 這接著也會在 Azure 儲存體帳戶中產生多個檔案。 在我們的測試中，使用多個檔案目的地，絕對可以達到輸送量，而您可以藉由從 SQL Server 2012 SP1 CU4 實作備份延伸模組來達成。 您也不會遭到 1 TB 限制所封鎖，就像在 Azure 的原生備份一樣。
+但當使用 hello 'Microsoft SQL Server Backup tooMicrosoft Azure 工具' 中的較舊版本中，您可以定義多個檔案目標。 具有多個目標，hello 備份規模和 hello hello 備份的輸送量較高。 這會導致再也在 hello Azure 儲存體帳戶中的多個檔案。 在我們的測試，使用其中一個絕對可以達到 hello 輸送量達到使用 hello 備份延伸模組的多個檔案目的地實作從 SQL Server 2012 SP1 CU4 上。 您也不會封鎖 hello 1 TB 限制與 hello 原生備份至 Azure。
 
-不過，請記住，輸送量也會取決於您用來備份的 Azure 儲存體帳戶位置。 最好是將儲存體帳戶放置於執行 VM 以外的不同區域中。 例如 您在西歐執行 VM 組態，但將您用來備份的儲存體帳戶放在北歐。 這當然會對備份輸送量產生影響，而且很可能不會產生每秒 150MB 的輸送量，因為看似會發生目標儲存體和 VM在同一個區域資料中心內執行的情況。
+不過，請記住，hello 輸送量也取決於 hello hello hello 備份所使用的 Azure 儲存體帳戶位置。 了解可能 toolocate hello 儲存體帳戶以外的不同區域 hello Vm 正在執行中。 例如 您會在西歐，執行 hello VM 組態，但將 hello 對付 tooback 用於北歐的儲存體帳戶。 一定會有影響 hello 備份輸送量和似乎 toobe hello 目標儲存體，而且 hello Vm 可能在 hello 中執行的每秒 150MB 的輸送量是不可能 toogenerate 相同地區資料中心。
 
 #### <a name="managing-backup-blobs"></a>管理備份 BLOB
-若要自行管理備份，有一個需求。 由於經常執行交易記錄備份將會建立多個 Blob 是預期狀況，所以，這些 Blob 的系統管理員很容易就會使 Azure 入口網站過度負載。 因此，建議使用 Azure 儲存體總管。 有數個好工具可用來協助管理 Azure 儲存體帳戶
+沒有自己的需求 toomanage hello 備份。 由於 hello 預期的情況下，將透過執行頻繁的交易記錄備份中建立許多 blob，管理 blob 輕鬆可以運作 hello Azure 入口網站。 因此，它是時 tooleverage Azure 儲存體總管。 有數個類好工具可用，可協助 toomanage Azure 儲存體帳戶
 
 * 安裝 Azure SDK 的 Microsoft Visual Studio (<https://azure.microsoft.com/downloads/>)
 * Microsoft Azure 儲存體總管 (<https://azure.microsoft.com/downloads/>)
@@ -723,77 +723,77 @@ SQL Server 2014 引進的新功能，稱為「緩衝集區延伸模組」。 此
 
 [comment]: <> (在 ARM 上尚不支援)
 [comment]: <> (#### Azure VM 備份)
-[comment]: <> (SAP 系統內的 VM 可以使用「Azure 虛擬機器備份」功能來進行備份。Azure 虛擬機器備份是在 2015 年初所引進，也就是目前在 Azure 中備份完整 VM 的標準方法。「Azure 備份」會將備份儲存在 Azure 中，並允許再次還原 VM。)
-[comment]: <> (如果 DBMS 系統支援 Windows VSS (磁碟區陰影複製) 服務 <https://msdn.microsoft.com/library/windows/desktop/bb968832.aspx> 就像 SQL Server 一樣，則也可以用一致的方式備份執行資料庫的 VM。因此，使用 Azure VM 備份，可能是取得 SAP 資料庫可還原備份的方法。不過請注意，您無法以資料庫的 Azure VM 備份還原時間點為基礎。因此，建議您使用 DBMS 功能來執行資料庫的備份，而不要依賴「Azure VM 備份」。)
-[comment]: <> (若要熟悉「Azure 虛擬機器備份」，請從這裡開始著手：<https://azure.microsoft.com/documentation/services/backup/>)
+[comment]: <> (Hello SAP 系統內的 Vm 可以備份使用 Azure 虛擬機器備份功能。Azure 虛擬機器備份及早在 hello 2015 年引進，並同時是標準方法 toobackup 完成 VM 在 Azure 中。Azure 備份儲存在 Azure 中的 hello 備份，並允許虛擬機器還原一次。)
+[comment]: <> (執行的資料庫可以備份以一致的方式以及如果 hello DBMS 系統支援 hello Windows VSS 磁碟區陰影複製服務的 Vm < 沒有 https://msdn.microsoft.com/library/windows/desktop/bb968832.aspx> 與 SQL Server。因此使用 Azure VM 的備份可以是可還原的已方式 tooget tooa SAP 資料庫的備份。不過請注意，您無法以資料庫的 Azure VM 備份還原時間點為基礎。因此，hello 建議 tooperform DBMS 功能，而不是依賴 Azure VM 備份的資料庫備份。)
+[comment]: <> (熟悉 Azure 虛擬機器備份 tooget 請從這裡開始 < https://azure.microsoft.com/documentation/services/backup/>)
 
-### <a name="1b353e38-21b3-4310-aeb6-a77e7c8e81c8"></a>使用來自 Microsoft Azure Marketplace 的 SQL Server 映像
-Microsoft 在 Azure Marketplace 中提供已經包含 SQL Server 版本的 VM。 對於需要 SQL Server 和 Windows 授權的 SAP 客戶，這可能是透過組織已安裝 SQL Server 的 VM，大致涵蓋授權需求的機會。 若要針對 SAP 使用這類映像，必須進行下列考量︰
+### <a name="1b353e38-21b3-4310-aeb6-a77e7c8e81c8"></a>使用 Microsoft Azure Marketplace hello 超出 SQL Server 映像
+Microsoft 提供 hello 已經包含 SQL Server 版本的 Azure Marketplace 中的 Vm。 對於需要 SQL Server 和 Windows 的授權的 SAP 客戶，這可能是由已安裝的 SQL server Vm，大致授權機會 toobasically 封面 hello 需求。 在訂單 toouse for SAP，這類映像 hello 下列考量需要 toobe 進行：
 
-* SQL Server 非評估版本的取得成本高於只從 Azure Marketplace 部署的「僅限 Windows」VM。 請參閱下列文章來比較價格︰<https://azure.microsoft.com/pricing/details/virtual-machines/> 和 <https://azure.microsoft.com/pricing/details/virtual-machines/#Sql>。
+* hello SQL Server 非評估版取得的成本會高於只 ' 僅限 Windows' 部署的 VM 從 Azure Marketplace。 這些文章 toocompare 價格，請參閱： <https://azure.microsoft.com/pricing/details/virtual-machines/>和<https://azure.microsoft.com/pricing/details/virtual-machines/#Sql>。
 * 您只能使用 SAP 支援的 SQL Server 版本，例如 SQL Server 2012。
-* 安裝於 Azure Marketplace 中提供之 VM 上的 SQL Server 執行個體定序，並不是 SAP NetWeaver 要求執行之 SQL Server 執行個體的定序。 不過您可以利用下一節的指示來變更定序。
+* hello SQL Server 執行個體安裝在 hello hello Azure Marketplace 中提供的 Vm 中的 hello 定序不是 hello 定序的 SAP NetWeaver 需要 hello SQL Server 執行個體 toorun。 您可以變更 hello 定序，但仍有 hello hello 之後 > 一節中的指示進行。
 
-#### <a name="changing-the-sql-server-collation-of-a-microsoft-windowssql-server-vm"></a>變更 Microsoft Windows/SQL Server VM 的 SQL Server 定序
-因為 Azure Marketplace 中的 SQL Server 映像不是設定來使用 SAP NetWeaver 應用程式所需的定序，所以需要在部署之後立即變更。 針對 SQL Server 2012，一旦部署 VM 且系統管理員能夠登入已部署的 VM 之後，就能夠使用下列步驟來完成此動作：
+#### <a name="changing-hello-sql-server-collation-of-a-microsoft-windowssql-server-vm"></a>變更 hello 的 Microsoft Windows/SQL Server VM 的 SQL Server 定序
+Hello hello Azure Marketplace 中的 SQL Server 映像未設定 toouse hello 定序所需的 SAP NetWeaver 應用程式，因為它需要 toobe hello 部署之後立即變更。 SQL Server 2012，作法是以 hello 下列步驟儘速 hello 已部署 VM，並且系統管理員可以到 hello toolog 部署 VM:
 
 * 以「系統管理員身分」開啟 Windows 命令視窗。
-* 將目錄變更為 C:\Program Files\Microsoft SQL Server\110\Setup Bootstrap\SQLServer2012。
-* 執行命令︰Setup.exe /QUIET /ACTION=REBUILDDATABASE /INSTANCENAME=MSSQLSERVER /SQLSYSADMINACCOUNTS=`<local_admin_account_name`> /SQLCOLLATION=SQL_Latin1_General_Cp850_BIN2   
-  * `<local_admin_account_name`> 是第一次透過資源庫部署 VM 時定義為系統管理員帳戶的帳戶。
+* 變更 hello 目錄 tooC:\Program Files\Microsoft SQL Server\110\Setup Bootstrap\SQLServer2012。
+* 執行 hello 命令： Setup.exe /QUIET /ACTION = REBUILDDATABASE /INSTANCENAME = MSSQLSERVER /SQLSYSADMINACCOUNTS =`<local_admin_account_name`> /SQLCOLLATION = SQL_Latin1_General_Cp850_BIN2   
+  * `<local_admin_account_name`> 是 hello 帳戶透過 hello 圖庫的第一次部署的 hello hello VM 時定義為 hello 系統管理員帳戶。
 
-此程序應該只需要幾分鐘的時間。 若要確定此步驟最終是否會有正確的結果，請執行下列步驟：
+hello 程序應該只需要幾分鐘的時間。 確定的順序 toomake 中 hello 步驟結果 hello 正確的結果，是否，請執行下列步驟的 hello:
 
 * 開啟 SQL Server Management Studio。
 * 開啟查詢視窗。
-* 在 SQL Server master 資料庫中，執行 sp_helpsort 命令。
+* Hello SQL Server master 資料庫中，執行 sp_helpsort hello 命令。
 
-所需的結果應該看起來如下：
+hello 預期的結果應該如下：
 
     Latin1-General, binary code point comparison sort for Unicode Data, SQL Server Sort Order 40 on Code Page 850 for non-Unicode Data
 
-如果這不是結果，請停止部署 SAP，並調查為什麼安裝命令並未如預期般運作。 「不」  支援將 SAP NetWeaver 應用程式部署到 SQL Server 字碼頁與上述提及之字碼頁不同的 SQL Server 執行個體。
+如果這不是 hello 結果，停止 」 部署 SAP，並調查為什麼 hello setup 命令未正常運作。 部署到具有不同的 SQL Server 字碼頁之 SQL Server 執行個體上的 SAP NetWeaver 應用程式比 hello 上面所述的其中一個是**不**支援。
 
 ### <a name="sql-server-high-availability-for-sap-in-azure"></a>SQL Server 在 Azure 中適用於 SAP 的高可用性
-如本文稍早所述，您無法建立使用最舊 SQL Server 高可用性功能所需的共用儲存體。 此功能會在 Windows Server 容錯移轉叢集 (WSFC) 中針對使用者資料庫 (以及最終的 tempdb) 使用共用磁碟，來安裝兩個以上的 SQL Server 執行個體。 這是 SAP 也支援的長期標準高可用性方法。 由於 Azure 不支援共用儲存體，所以無法實現具有共用磁碟叢集組態的 SQL Server 高可用性組態。 不過，仍有許多其他高可用性方法，如下列各節所述。
+如本文稍早所述，沒有任何所需 hello hello 最舊的 SQL Server 高可用性功能使用方式的可能性 toocreate 共用存放裝置。 這項功能會安裝在 Windows Server 容錯移轉叢集 (WSFC) hello 使用者資料庫 （以及最終 tempdb） 使用的共用的磁碟的兩個或多個 SQL Server 執行個體。 這是 SAP 也支援 hello 很長的時間標準的高可用性方法。 由於 Azure 不支援共用儲存體，所以無法實現具有共用磁碟叢集組態的 SQL Server 高可用性組態。 不過，許多其他高可用性方法仍可能發生而且 hello 下列各節所述。
 
-[comment]: <> (文件仍然是與 ASM 相關)
-[comment]: <> (閱讀可針對 Azure 中 SQL Server 使用的各種不同特定高可用性技術之前，[這裡][virtual-machines-sql-server-high-availability-and-disaster-recovery-solutions]有一份非常好的文件，當中提供更多的詳細資料和指標)
+[comment]: <> (仍在參考 tooASM 發行項。)
+[comment]: <> (閱讀 hello 不同特定高可用性技術可使用 Azure 中的 SQL Server 之前, 有是很好的文件提供更多詳細資料和指標 [這裡] [virtual-machines-sql-server-high-availability-and-disaster-recovery-solutions])
 
 #### <a name="sql-server-log-shipping"></a>SQL Server 記錄傳送
-高可用性 (HA) 的方法之一是 SQL Server 記錄傳送。 如果參與 HA 組態的 VM 具有運作中的名稱解析，就不會發生問題，而 Azure 中的設定與內部部署中完成的任何設定並無任何差別。 不建議只依賴 IP 解析。 如需設定記錄傳送和記錄傳送原則的相關事宜，請參閱這份文件︰
+其中一個高可用性 (HA) hello 方法是 SQL Server 記錄傳送。 如果 hello 參與 hello HA 組態的 Vm 具有運作中的名稱解析，沒有任何問題，並在 Azure 中的 hello 安裝程式沒有差別是在內部部署的任何設定。 不建議 toorely 上只有 IP 解析。 設定記錄傳送和 hello 記錄傳送原則的相關事宜 toosetting，請參閱這份文件：
 
 <https://technet.microsoft.com/library/ms187103.aspx>
 
-為了實際達成任何高可用性，您需要部署位於這類記錄傳送組態內的 VM，使其位於相同的 Azure 可用性設定組內。
+順序 tooreally 達成任何高可用性，您需要 toodeploy hello 是中的這類記錄傳送組態 toobe 內 hello 相同 Azure 可用性設定組的 Vm。
 
 #### <a name="database-mirroring"></a>資料庫鏡像
-SAP 支援的「資料庫鏡像」(請參閱 SAP 附註 [965908]) 有賴於在 SAP 連接字串中定義容錯移轉夥伴。 針對跨單位案例，我們假設這兩個 VM 位於相同網域，且這兩個 SQL Server 執行個體執行所在的使用者內容也是網域使用者，而且在所涉及的這兩個 SQL Server 執行個體中具備足夠的權限。 因此，在 Azure 中設定資料庫鏡像，在一般內部部署設定/組態之間並無任何差別。
+SAP 支援的資料庫鏡像 (請參閱 SAP 附註[965908]) 依賴定義 hello SAP 連接字串中的容錯移轉夥伴。 Hello 跨單位的情況下，我們假設兩個 Vm 位於 hello 該 hello 相同的網域下執行 hello 使用者內容 hello 兩個 SQL Server 執行個體，網域使用者，以及和是相關的 hello 兩個 SQL Server 執行個體中有足夠的權限。 因此，資料庫鏡像在 Azure 中的 hello 安裝程式會相同典型的內部部署安裝程式組態。
 
-至於僅限雲端的部署，最簡單的方式是在 Azure 中設定另一個網域，以便讓這些 DBMS VM (最好專屬於 SAP VM) 位於一個網域。
+為僅限雲端部署的 hello 簡單的方法是 toohave 另一個網域安裝程式在 Azure toohave 那些 DBMS Vm （和最好是專用的 SAP Vm） 單一網域內。
 
-如果網域不可行，您也可以如以下網址所述，針對資料庫鏡像端點使用憑證︰<https://technet.microsoft.com/library/ms191477.aspx>
+如果網域不可行，其中也可以使用憑證 hello 資料庫鏡像端點，如下所述： <https://technet.microsoft.com/library/ms191477.aspx>
 
-在 Azure 中設定資料庫鏡像的教學課程可在下列網址中找到︰<https://technet.microsoft.com/library/ms189852.aspx>
+教學課程 tooset 向上資料庫鏡像在 Azure 中可以在這裡找到： <https://technet.microsoft.com/library/ms189852.aspx>
 
 #### <a name="alwayson"></a>AlwaysOn
-由於針對內部部署的 SAP 支援 AlwaysOn (請參閱 SAP 附註 [1772688])，因此支援將它與 Azure 中的 SAP 搭配使用。 事實上，您無法在 Azure 中建立共用磁碟，但這不表示您無法在不同 VM 之間建立 AlwaysOn Windows Server 容錯移轉叢集 (WSFC) 組態。 這只表示您不能在叢集組態中使用共用磁碟做為仲裁。 因此您可以在 Azure 中建置 AlwaysOn WSFC 組態，而且不需選取利用共用磁碟的仲裁類型。 部署這些 VM 的 Azure 環境應該會依名稱解析 VM，而 VM 應該位於同一個網域。 這適用於僅限 Azure 和跨單位部署。 有一些關於 SQL Server 可用性群組接聽程式 (請勿與 Azure 可用性設定組混淆) 的特殊考量，因為 Azure 可能在內部部署中，所以目前不允許只建立 AD/DNS 物件。 因此，需要有一些不同的安裝步驟來克服 Azure 的特定行為。
+因為 SAP 內部部署環境支援 AlwaysOn (請參閱 SAP 附註[1772688])，它是用於結合，以在 Azure 中 SAP 支援的 toobe。 您不能共用的 toocreate 磁碟在 Azure 中的 hello 事實並不表示其中一個無法建立 AlwaysOn Windows Server 容錯移轉叢集 (WSFC) 之間的設定不同的 Vm。 這只表示，您不需要 hello 可能性 toouse 共用的磁碟做為仲裁 hello 叢集組態中。 因此您可以建置在 Azure 中的 AlwaysOn WSFC 組態和只要不選取利用共用的磁碟的 hello 仲裁類型。 hello Azure 環境來部署那些 Vm 中依名稱 hello Vm 再 hello Vm 應該在 hello 應該可以解決相同的網域。 這適用於僅限 Azure 和跨單位部署。 有一些特殊考量部署 hello SQL Server 可用性群組接聽程式 (不 toobe 與 hello Azure 可用性設定組混淆) 因為 toosimply 因為 Azure 在此時間點不允許建立 AD/DNS 物件內部部署。 因此，執行一些不同的安裝步驟是必要 tooovercome Azure 的 hello 特定行為。
 
 以下是使用可用性群組接聽程式的一些考量︰
 
-* 使用可用性群組接聽程式，只能使用 Windows Server 2012 或 Windows Server 2012 R2 做為 VM 的客體作業系統。 針對 Windows Server 2012，您必須確定套用這個修補程式︰<https://support.microsoft.com/kb/2854082>
-* 針對 Windows Server 2008 R2，則沒有這個修補程式，必須以和使用「資料庫鏡像」相同的方式使用 AlwaysOn，方法是在連接字串中指定容錯移轉夥伴 (透過 SAP default.pfl 參數 dbs/mss/server 來完成 – 請參閱 SAP 附註 [965908])。
-* 使用可用性群組接聽程式時，資料庫 VM 需要連接到專用的負載平衡器。 僅限雲端部署中的名稱解析可能會要求 SAP 系統的所有 VM (應用程式伺服器、DBMS 伺服器及 (A)SCS 伺服器) 位於同一個虛擬網路，或者從 SAP 應用程式層要求維護 etc\host 檔案，以解析 SQL Server VM 的 VM 名稱。 為了避免 Azure 在這兩個 VM 意外關閉的情況下指派新的 IP 位址，您應該在 AlwaysOn 組態中為這些 VM 的網路介面指派靜態 IP 位址 (如需了解如何定義靜態 IP 位址，請參閱[這篇][virtual-networks-reserved-private-ip]文章)
+* 使用可用性群組接聽程式只適用於 Windows Server 2012 或 Windows Server 2012 R2 做為客體作業系統的 hello VM。 適用於 Windows Server 2012 中，您必須確保已套用這個修補程式 toomake: <https://support.microsoft.com/kb/2854082>
+* 針對 Windows Server 2008 R2 本修補檔不存在，且必須 AlwaysOn toobe 用於 hello 相同做為資料庫鏡像的方式指定 hello 連接字串中的容錯移轉夥伴 （完成透過 hello SAP default.pfl 參數 dbs/mss/server – 請參閱 SAP 附註[965908])。
+* 當使用可用性群組接聽程式、 hello 資料庫 Vm 需要連接 toobe tooa 專用負載平衡器。 名稱解析，僅限雲端部署中的可能會需要 SAP 系統的所有 Vm （應用程式伺服器、 DBMS 伺服器和 (A) SCS 伺服器） 是在 hello 相同虛擬網路，或都需要從 hello etc\host 檔案中的 SAP 應用程式層 hello 維護順序 tooget hello VM 的名稱解析的 hello SQL Server Vm。 順序 tooavoid Azure 指派新的 IP 位址，在其中兩個 Vm 都關機的情況下，在其中一個應該指派靜態 IP 位址 （定義靜態 IP 位址所述的 hello AlwaysOn 組態中的那些 Vm toohello 網路介面[這][ virtual-networks-reserved-private-ip]文章)
 
 [comment]: <> (舊部落格)
 [comment]: <> (<https://blogs.msdn.com/b/alwaysonpro/archive/2014/08/29/recommendations-and-best-practices-when-deploying-sql-server-alwayson-availability-groups-in-windows-azure-iaas.aspx>, <https://blogs.technet.com/b/rmilne/archive/2015/07/27/how-to-set-static-ip-on-azure-vm.aspx>)
-* 建置叢集需要指派特定 IP 位址的 WSFC 叢集組態時需要特殊的步驟，因為具有其目前功能的 Azure 會為叢集名稱指派與叢集建立所在的節點相同的 IP 位址。 這表示必須執行手動步驟，為叢集指派不同的 IP 位址。
-* 可用性群組接聽程式將建立於具備 TCP/IP 端點的 Azure 中，這些端點會指派給執行可用性群組之主要和次要複本的 VM。
-* 可能需要使用 ACL 保護這些端點。
+* 不需要建置 hello WSFC 叢集組態中的 hello 叢集需要特殊的 IP 位址指派時，因為 Azure 及其目前功能會指派 hello 叢集名稱的特殊步驟 hello hello 節點 hello 叢集相同的 IP 位址上建立。 這表示手動步驟必須是執行的 tooassign 不同的 IP 位址 toohello 叢集。
+* hello 可用性群組接聽程式正在 toobe 在 Azure 中建立具有 TCP/IP 端點指派 toohello Vm 執行 hello hello 可用性群組的主要和次要複本。
+* 可能有需要 toosecure 這些端點，其中包含 Acl。
 
 [comment]: <> (TODO 舊部落格)
-[comment]: <> (若要了解在 Azure 上安裝 AlwaysOn 組態的詳細步驟和必要條件，最佳體驗方式就是逐步完成[這裡][virtual-machines-windows-classic-ps-sql-alwayson-availability-groups]提供的教學課程)
-[comment]: <> (透過 Azure 資源庫 <https://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx> 執行之預先設定的 AlwaysOn 設定)
+[comment]: <> (hello 詳細的步驟和逐步解說 hello 教學課程可以使用 [here][virtual-machines-windows-classic-ps-sql-alwayson-availability-groups] 時，最佳遇到必要條件安裝在 Azure 上的 AlwaysOn 組態)
+[comment]: <> (預先設定透過 hello Azure 組件庫的 AlwaysOn 安裝程式 < https://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx>)
 [comment]: <> ([這個][virtual-machines-windows-classic-ps-sql-int-listener] 教學課程提供建立「可用性群組接聽程式」的最佳說明)
 [comment]: <> (以下提供使用 ACL 來保護網路端點的最佳說明：)
 [comment]: <> (*    <https://michaelwasham.com/windows-azure-powershell-reference-guide/network-access-control-list-capability-in-windows-azure-powershell/>)
@@ -801,21 +801,21 @@ SAP 支援的「資料庫鏡像」(請參閱 SAP 附註 [965908]) 有賴於在 S
 [comment]: <> (*    <https://blogs.technet.com/b/heyscriptingguy/archive/2013/09/01/weekend-scripter-creating-acls-for-windows-azure-endpoints-part-2-of-2.aspx>)  
 [comment]: <> (*    <https://blogs.technet.com/b/heyscriptingguy/archive/2013/09/18/creating-acls-for-windows-azure-endpoints.aspx>)
 
-您也可以在不同的 Azure 區域上部署 SQL Server AlwaysOn 可用性群組。 此功能會利用 Azure VNet 對 Vnet 連接 ([更多詳細資料][virtual-networks-configure-vnet-to-vnet-connection])。
+透過不同的 Azure 區域也是可能 toodeploy SQL Server AlwaysOn 可用性群組。 這項功能將會利用 hello Azure 是 「 VNet 對 Vnet 連線能力 ([詳細][virtual-networks-configure-vnet-to-vnet-connection])。
 
 [comment]: <> (TODO 舊部落格)
-[comment]: <> (以下提供在這類案例中設定「SQL Server AlwaysOn 可用性群組」的說明：<https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>。)
+[comment]: <> (此處所述的 SQL Server AlwaysOn 可用性群組在此案例中的 hello 安裝程式： < https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>。)
 
 #### <a name="summary-on-sql-server-high-availability-in-azure"></a>Azure 中 SQL Server 高可用性的摘要
-由於 Azure 儲存體會保護內容，因此沒有理由堅持要有熱待命映像。 這表示您的高可用性案例只需要在下列情況中提供保護：
+指定 Azure 儲存體會保護 hello 內容 hello 事實，沒有一個較少因此 tooinsist 熱待命映像。 這表示您的高可用性案例需要 tooonly 防範 hello 下列案例：
 
-* 因為在 Azure 的伺服器叢集上進行維護或其他理由而導致 VM 完全無法使用
-* SQL Server 執行個體中的軟體問題
+* 因為在 Azure 中的 hello 伺服器叢集上 toomaintenance 或其他原因整個 hello VM 無法使用
+* Hello SQL Server 執行個體中的軟體問題
 * 防止發生資料遭到刪除而需要進行時間點復原的手動錯誤
 
-尋找相符的技術，您可能認為前兩個案例可以使用資料庫鏡像或 AlwaysOn 來解決，但第三個案例僅能使用記錄傳送來解決。
+尋找符合綜觀 hello 前兩個案例可以依照資料庫鏡像或 AlwaysOn，而第三個案例的 hello 只可以涵蓋記錄傳送的技術。
 
-相較於資料庫鏡像，您必須利用 AlwaysOn 來平衡更複雜的 AlwaysOn 設定。 以下列出這些優點︰
+您將需要 toobalance hello 更複雜的設定 AlwaysOn，比較 tooDatabase 的鏡像，與 hello AlwaysOn 的優點。 以下列出這些優點︰
 
 * 可讀取的次要複本。
 * 來自次要複本的備份。
@@ -823,80 +823,80 @@ SAP 支援的「資料庫鏡像」(請參閱 SAP 附註 [965908]) 有賴於在 S
 * 一個以上的次要複本。
 
 ### <a name="9053f720-6f3b-4483-904d-15dc54141e30"></a>適用於 Azure 上 SAP 的一般 SQL Server 摘要
-本指南中提供許多建議，而我們建議您在規劃 Azure 部署之前，多次閱讀本指南。 但是，一般而言，請務必在 Azure 特定點上遵循前十個一般的 DBMS︰
+本指南中提供許多建議，而我們建議您在規劃 Azure 部署之前，多次閱讀本指南。 一般情況下，不過，是確定 toofollow hello Azure 的特定點上的前十個一般 DBMS:
 
 [comment]: <> (2.3 輸送量比什麼更高？比一個 VHD 高？)
-1. 使用最新的 DBMS 版本 (例如 SQL Server 2014) ，其在 Azure 中最具優勢。 針對 SQL Server，這是 SQL Server 2012 SP1 CU4，其中包含對 Azure 儲存體進行備份的功能。 不過，若要與 SAP 合併，我們建議至少要有 SQL Server 2014 SP1 CU1 或 SQL Server 2012 SP2 和最新的 CU。
-2. 在 Azure 中仔細規劃您的 SAP 系統架構，以平衡資料檔案配置和 Azure 限制︰
-   * 不要有太多 VHD，但必須足以確保您可以連線到所需的 IOPS。
+1. 使用 hello 最新 DBMS 版本中的，像是 SQL Server 2014 中，在 Azure 中具有 hello 大部分優點。 SQL Server，這是備份的 SQL Server 2012 SP1 CU4 會包括 hello 與 Azure 儲存體功能。 不過，與 SAP 一起建議至少 SQL Server 2014 SP1 CU1 或 SQL Server 2012 SP2 和 hello 的最新 CU。
+2. 請仔細規劃 SAP 系統版圖中 Azure toobalance hello 資料檔案配置和 Azure 限制：
+   * 不需要太多 Vhd，但有足夠 tooensure 可以連線到您所需的 IOPS。
    * 請記住，每個「Azure 儲存體帳戶」也都有 IOPS 限制，而且「儲存體帳戶」在每個 Azure 訂用帳戶內是有限的 ([更多詳細資料][azure-subscription-service-limits])。
-   * 只有在您需要達到更高的輸送量時，才需在 VHD 上劃分等量磁碟區。
-3. 永遠不要在 D:\ 磁碟機上安裝軟體或放置任何需要永久保留的檔案，因為它不是永久性的，此磁碟機上的一切會在 Windows 重新開機時遺失。
+   * 只有等量磁碟區跨 Vhd，如果您需要 tooachieve 較高的輸送量。
+3. 永不安裝軟體，或將需要 hello D:\ 磁碟機上的持續性，因為它是不是永久性，而且此磁碟機上的任何項目將會遺失在重新啟動 Windows 之後的任何檔案。
 4. 不要針對 Azure 標準儲存體使用 Azure VHD 快取。
 5. 不要使用 Azure 異地備援的儲存體帳戶。  針對 DBMS 工作負載使用本機備援。
-6. 使用 DBMS 廠商的 HA/DR 解決方案來複寫資料庫資料。
+6. 使用 DBMS 廠商的 HA/DR 解決方案 tooreplicate 資料庫資料。
 7. 一律使用名稱解析，不要依賴 IP 位址。
-8. 盡可能使用最高度的資料庫壓縮。 針對 SQL Server 而言，此為頁面壓縮。
-9. 請務必謹慎使用來自 Azure Marketplace 的 SQL Server 映像。 如果您使用 SQL Server 的映像，就必須變更執行個體定序，才能在其上安裝任何 SAP NetWeaver 系統。
-10. 依照[部署指南][deployment-guide]所述，安裝並設定適用於 Azure 的 SAP 主機監視功能。
+8. 使用 hello 高的資料庫壓縮可能。 針對 SQL Server 而言，此為頁面壓縮。
+9. 請小心使用 SQL Server 映像從 hello Azure Marketplace。 如果您使用 hello 其中一個 SQL Server，您必須變更 hello 執行個體定序，才能在其上安裝任何 SAP NetWeaver 系統。
+10. 安裝及設定中所述的 SAP Host Monitoring for Azure 的 hello[部署指南 》][deployment-guide]。
 
-## <a name="specifics-to-sap-ase-on-windows"></a>Windows 上 SAP ASE 專屬的詳細資料
-從 Microsoft Azure 開始，您就能輕易地將現有的 SAP ASE 應用程式移轉至 Azure 虛擬機器。 虛擬機器中的 SAP ASE 可讓您輕鬆地將這些應用程式移轉到 Microsoft Azure，藉以減少部署、管理和維護企業級應用程式的擁有權總成本。 透過 Azure 虛擬機器中的 SAP ASE，系統管理員和開發人員仍然可以使用可在內部部署使用的相同開發和管理工具。
+## <a name="specifics-toosap-ase-on-windows"></a>細節 tooSAP Windows 上 ASE
+開始使用 Microsoft Azure，您可以輕鬆地移轉您現有的 SAP ASE 應用程式 tooAzure 虛擬機器。 虛擬機器中的 SAP ASE 可輕鬆地將移轉這些應用程式 tooMicrosoft Azure 讓您 tooreduce hello 擁有權總成本的部署、 管理和維護的企業廣度應用程式。 透過 SAP ASE Azure 虛擬機器中，系統管理員和開發人員仍然可以使用的 hello 可用的相同開發和管理工具內部。
 
-有 Azure 虛擬機器的 SLA，可以在下列位置中找到：<https://azure.microsoft.com/support/legal/sla>
+Hello 可以在這裡找到 Azure 虛擬機器的 sla: <https://azure.microsoft.com/support/legal/sla>
 
-相較於其他公用雲端虛擬化產品，我們確信 Microsoft Azure 裝載的虛擬機器將執行得非常順利，但產生的個別結果可能不同。 如需不同 SAP 認證之 VM SKU 的 SAP 大小調整 SAPS 數目，請參閱個別的 SAP 附註 [1928533]。
+我們確信 Microsoft Azure 代管的虛擬機器將會執行地很好比較 tooother 公用雲端虛擬化方案，但是個別結果中，可能會不同。 SAP 調整大小的 SAPS 數字的不同 SAP 認證中個別的 SAP 附註將會提供 VM Sku 的 hello [1928533]。
 
-關於 Azure 儲存體使用方式、部署 SAP VM 或 SAP 監視的陳述與建議適用於搭配 SAP 應用程式來部署 SAP ASE，如本文件前四章所述。
+陳述式和 Azure 儲存體、 SAP 部署 Vm 或 SAP Monitoring 的建議考慮 toohello 使用量套用 toodeployments 的 SAP ASE 搭配述整個 hello 的這份文件的前四個章節的 SAP 應用程式。
 
 ### <a name="sap-ase-version-support"></a>SAP ASE 版本支援
-SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用。 不論是適用於 SAP ASE 伺服器的所有更新，還是要與「SAP 商務套件」產品搭配使用的 JDBC 和 ODBC 驅動程式，都只會透過 SAP Service Marketplace 來提供，網址：<https://support.sap.com/swdc>。
+SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用。 SAP ASE 伺服器、 或 JDBC 和 ODBC 驅動程式 toobe SAP Business Suite 等作業只透過所提供的產品搭配使用的所有更新都 hello 在 SAP 服務 Marketplace: <https://support.sap.com/swdc>。
 
-如同內部部署安裝，不要直接從 Sybase 網站下載適用於 SAP ASE 伺服器或適用於 JDBC 和 ODBC 驅動程式的更新。 如需在內部部署和 Azure 虛擬機器中支援與 SAP 商務套件產品搭配使用之修補程式的詳細資訊，請參閱下列 SAP 附註：
+安裝與內部部署，不要直接從 Sybase 網站下載更新 hello SAP ASE 伺服器或 hello JDBC 和 ODBC 驅動程式。 支援使用 SAP Business Suite 產品在內部部署與 Azure 虛擬機器中的修補程式的詳細資訊，請參閱下列 「 SAP 附註的 hello:
 
 * [1590719]
 * [1973241]
 
-如需有關在 SAP ASE 上執行「SAP 商務套件」的一般資訊，請參閱 [SCN](https://scn.sap.com/community/ase)
+SAP ASE 上執行 SAP Business Suite 的一般資訊位於 hello [SCN](https://scn.sap.com/community/ase)
 
 ### <a name="sap-ase-configuration-guidelines-for-sap-related-sap-ase-installations-in-azure-vms"></a>在 Azure VM 中安裝 SAP 相關之 SAP ASE 的 SAP ASE 組態指導方針
-#### <a name="structure-of-the-sap-ase-deployment"></a>SAP ASE 部署結構
-根據一般的描述，SAP ASE 可執行檔應該位於或安裝於 VM 基底 VHD 的系統磁碟機 (磁碟機 c:\)。 通常，SAP NetWeaver 工作負載在運用大部分的 SAP ASE 系統和工具資料庫時並不會很費力。 因此，系統和工具資料庫 (master、model、saptools、sybmgmtdb、sybsystemdb) 也可以保留於 C:\ 磁碟機上。
+#### <a name="structure-of-hello-sap-ase-deployment"></a>Hello SAP ASE 部署的結構
+Hello 一般描述，根據 SAP ASE 可執行檔應該位於或安裝到 hello hello VM 基本 vhd 的系統磁碟機 (磁碟機 c:\)。 一般而言，大部分的 hello SAP ASE 系統和工具資料庫可不真的利用硬 SAP NetWeaver 工作量。 因此 hello 系統和工具的資料庫 （master、 model、 saptools、 sybmgmtdb、 sybsystemdb） 可留在 hello C:\drive 上。
 
-有一個例外狀況可能是暫存資料庫包含 SAP ASE 建立的所有工作資料表和暫存資料表，萬一某些 SAP ERP 和所有 BW 工作負載可能要求更高的資料量或 I/O 作業量，而其無法符合原始 VM 的基底 VH (磁碟機 c:\)，就會發生此情況。
+例外狀況可能是包含所有的工作資料表和暫存資料表建立的 SAP ASE 其中發生某些 SAP ERP 和所有 BW 工作量可能需要較高的資料量或 I/O 作業量，無法放入 hello 原始 hello 暫存資料庫VM 的基底 VHD (磁碟機 c:\)。
 
-根據用來安裝系統的 SAPInst/SWPM 版本，資料庫可能包含︰
+根據 hello SAPInst/SWPM 使用新版 tooinstall hello 系統、 hello 資料庫可能包含：
 
 * 安裝 SAP ASE 時建立單一的 SAP ASE tempdb
-* 安裝 SAP ASE 時建立的 SAP ASE tempdb，以及 SAP 安裝常式所建立的其他 saptempdb
-* 透過安裝 SAP ASE 來建立的 SAP ASE tempdb，以及手動建立 (例如依照 SAP 附註 [1752266]) 來符合 ERP/BW 特定 tempdb 需求的其他 tempdb
+* 建立藉由安裝 SAP ASE 和建立 hello SAP 安裝常式的其他 saptempdb SAP ASE tempdb
+* 建立藉由安裝 SAP ASE 和手動建立額外的 tempdb SAP ASE tempdb (例如下列 「 SAP 附註[1752266]) toomeet ERP/BW 特定 tempdb 需求
 
-特定的 ERP 或所有 BW 工作量 native-push，則很合理，方面將 tempdb 的裝置 （SWPM 或手動） 此外建立 tempdb 以外 C:\ 磁碟機上的效能。 如果沒有其他 tempdb 存在，則建議您建立一個 (SAP 附註 [1752266])。
+如果發生特定 ERP 或所有 BW 工作量合理，不管 tooperformance tookeep hello tempdb 裝置 hello 另外建立 tempdb （SWPM 或手動） 以外 C:\ 磁碟機上。 如果沒有其他的 tempdb 已存在，則建議一個 toocreate (SAP 附註[1752266])。
 
-針對這類系統，應該針對另外建立的 tempdb 執行下列步驟︰
+這類系統 hello 應該 hello 另外建立 tempdb 上執行下列步驟：
 
-* 將第一個 tempdb 裝置移至 SAP 資料庫的第一個裝置
-* 將 tempdb 裝置新增至每個包含 SAP 資料庫裝置的 VHD
+* 移動 hello 第一個 tempdb toohello 第一個裝置的 hello SAP 資料庫
+* 新增 tempdb 裝置 tooeach 的 hello Vhd，含 hello SAP 資料庫的裝置
 
-這個組態讓 tempdb 所耗用的空間比系統磁碟機能夠提供的還多。 做為參考，您可以在內部部署執行的現有系統上檢查 tempdb 裝置的大小。 或者，這類組態可針對無法使用系統磁碟機來提供的 tempdb 啟用 IOPS 數目。 再次提醒，內部部署執行的系統可以用來監視 tempdb 的 I/O 工作負載。
+此設定可讓 tempdb tooeither 耗用較多的空間，比可以 tooprovide hello 系統磁碟機。 做為參考其中一個可以檢查現有的系統執行內部部署的 hello tempdb 裝置大小。 或者，這種組態會啟用對 tempdb 無法隨附 hello 系統磁碟機的 IOPS 數目。 再次執行內部部署的系統可以針對 tempdb 使用的 toomonitor I/O 工作負載。
 
-永遠不要將任何 SAP ASE 裝置放入 VM 的 D:\ 磁碟機。 這也適用於 tempdb，即使 tempdb 中保留的物件只是暫時性的。
+永遠不會將任何 SAP ASE 裝置放置到 hello hello VM 的 D:\ 磁碟機。 即使保留在 hello tempdb 中的 hello 物件只是暫時性的這也適用於 toohello tempdb。
 
 #### <a name="impact-of-database-compression"></a>資料庫壓縮的影響
-在 I/O 頻寬可能變成限制因素的組態中，減少 IOPS 的每個量值可能都有助於延展您可以在類似 Azure 的 IaaS 案例中執行的工作負載。 因此，強烈建議您在將現有的 SAP 資料庫上傳至 Azure 之前，確定已使用 SAP ASE 壓縮。
+在組態中的 I/O 頻寬可能會變成限制因素，每個量值可減少 IOPS 可能有助於 toostretch hello 工作負載一次可以執行像是 Azure IaaS 案例中。 因此，強烈建議 toomake 確定 SAP ASE 壓縮會使用上傳現有的 SAP 資料庫 tooAzure 之前。
 
-建議在上傳至 Azure 之前執行壓縮，如果尚未實作，可能是因為下列數種因素所導致：
+如果未實作上傳 tooAzure 之前 hello 建議 tooperform 壓縮是出於多種原因所造成：
 
-* 降低要上傳至 Azure 的資料量
-* 假設您可以使用功能更強大的硬體，其在內部部署中使用更多 CPU 或更高 I/O 頻寬或更少 I/O 延遲，則執行壓縮的持續時間較短
-* 較小的資料庫大小可能會使磁碟配置的成本降低
+* 資料上傳 toobe tooAzure hello 量較低
+* hello hello 壓縮執行持續時間較短，假設有更多的 Cpu 或更高 I/O 頻寬或更少的 I/O 延遲內部部署可以使用更強的硬體
+* 較小的資料庫大小可能會導致 tooless 成本進行磁碟配置
 
-資料壓縮和 LOB 壓縮可以在 Azure 虛擬機器上裝載的 VM 中運作，如同它在內部部署中的運作方式。 如需有關如何檢查在現有 SAP ASE 資料庫中是否已經使用壓縮的更多詳細資料，請參閱 SAP 附註 [1750510]。
+資料壓縮和 LOB 壓縮可以在 Azure 虛擬機器上裝載的 VM 中運作，如同它在內部部署中的運作方式。 如需有關如何 toocheck 如果壓縮已在使用中現有的 SAP ASE 資料庫請檢查 SAP Note [1750510]。
 
-#### <a name="using-dbacockpit-to-monitor-database-instances"></a>使用 DBACockpit 監視資料庫執行個體
-針對使用 SAP ASE 做為資料庫平台的 SAP 系統，可以存取 DBACockpit 做為交易 DBACockpit 中內嵌的瀏覽器視窗或做為 Webdynpro。 不過，監視和管理資料庫的完整功能只能在 DBACockpit 的 Webdynpro 實作中取得。
+#### <a name="using-dbacockpit-toomonitor-database-instances"></a>使用 DBACockpit toomonitor 資料庫執行個體
+適用於 SAP 系統做為資料庫平台使用 SAP ASE hello DBACockpit 存取。 為交易 DBACockpit 中內嵌的瀏覽器視窗或 Webdynpro 不過 hello 完整功能，以監視並管理 hello 資料庫可用於只 hello DBACockpit hello Webdynpro 實作。
 
-做為內部部署系統，需要使用數個步驟，才能啟用 DBACockpit 之 Webdynpro 實作所使用的所有 SAP NetWeaver 功能。 請依照 SAP 附註 [1245200] 來啟用 Webdynpro 的使用，以及產生所需的 Webdynpro。 遵循上述附註中的指示時，您也可以設定網際網路通訊管理員 (icm) 以及針對 http 和 https 連線所使用的連接埠。 Http 的預設設定看起來如下︰
+在內部部署與執行數個步驟的系統必須 tooenable hello DBACockpit hello Webdynpro 實作所使用的所有 SAP NetWeaver 功能。 請依照 SAP Note [1245200] tooenable hello webdynpros 的使用方式，並產生 hello 必要的。 當上述資訊，您也會設定 hello 網際網路通訊管理員 (icm) 以及 hello 連接埠 toobe hello 中的下列 hello 指示用於 http 和 https 連線。 hello http 的預設設定看起來像這樣：
 
 > icm/server_port_0 = PROT=HTTP,PORT=8000,PROCTIMEOUT=600,TIMEOUT=600
 >
@@ -904,7 +904,7 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 >
 >
 
-而且在交易 DBACockpit 中產生的連結看起來如下︰
+和產生交易 DBACockpit 中的 hello 連結看起來類似 toothis:
 
 > https://`<fullyqualifiedhostname`>:44300/sap/bc/webdynpro/sap/dba_cockpit
 >
@@ -912,17 +912,17 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 >
 >
 
-取決於裝載 SAP 系統的 Azure 虛擬機器是否以及如何透過站對站、多重網站或 ExpressRoute (跨單位部署) 來連接，您需要確定 ICM 會使用完整的主機名稱，此名稱可在您嘗試從中開啟 DBACockpit 的電腦上加以解析。 請參閱 SAP 附註 [773830] 以了解 ICM 如何根據設定檔參數決定完整的主機名稱，並於必要時明確設定 icm/host_name_full 參數。
+取決於如何 hello Azure 虛擬機器裝載 hello SAP 系統連接的網站，透過多站台或 ExpressRoute （跨單位部署），您需要確定 toomake 該 ICM 可解析的完整主機名稱上使用 hello電腦嘗試 tooopen hello DBACockpit 從。 請參閱 SAP 附註[773830] toounderstand ICM 如何決定 hello 取決於設定檔參數和 icm host_name_full 方式設定參數的完整的主機名稱明確必要。
 
-如果您在僅限雲端的案例中部署 VM，而不需要在內部部署與 Azure 之間跨單位的連線能力，您需要定義一個公用 IP 位址和一個 domainlabel。 然後 VM 的公用 DNS 名稱格式將看起來如下︰
+如果您部署的 hello VM 在僅限雲端的情況下，不在內部部署與 Azure 之間的跨單位連線，您需要 toodefine，公用 IP 位址和 domainlabel 也一樣。 hello hello 公用 DNS 名稱格式 hello VM 然後看起來像這樣：
 
 > `<custom domainlabel`>.`<azure region`>.cloudapp.azure.com
 >
 >
 
-如需有關 DNS 名稱的更多詳細資料，請參閱[這裡][virtual-machines-azurerm-versus-azuresm]。
+可以找到 toohello DNS 名稱相關的更多詳細資料[這裡][virtual-machines-azurerm-versus-azuresm]。
 
-將 SAP 設定檔參數 icm/host_name_full 設定為 Azure VM 的 DNS 名稱，其連結看起來可能如下︰
+設定 hello SAP 設定檔參數 icm/host_name_full toohello hello Azure VM hello 連結的 DNS 名稱可能類似於：
 
 > https://mydomainlabel.westeurope.cloudapp.net:44300/sap/bc/webdynpro/sap/dba_cockpit
 >
@@ -930,18 +930,18 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 >
 >
 
-在此情況下，您需要確定︰
+在此情況下您需要 toomake 務必：
 
-* 在 Azure 入口網站中，針對用來與 ICM 通訊的 TCP/IP 連接埠，將輸入規則新增至網路安全性群組
-* 針對用來與 ICM 通訊的 TCP/IP 連接埠，將輸入規則新增至 Windows 防火牆組態
+* 新增輸入的規則 toohello 網路安全性群組中的 hello TCP/IP 通訊埠的 hello Azure 入口網站使用 icm toocommunicate
+* 新增輸入的規則以 hello ICM hello TCP/IP 連接埠使用 toocommunicate 的 toohello Windows 防火牆設定
 
-針對自動匯入所有可用修正的功能，建議定期套用適用於您 SAP 版本的修正集合 SAP 附註︰
+建議您使用自動匯入的所有可用的更正，tooperiodically 套用 hello 更正集合 SAP 附註適用於 tooyour SAP 版本：
 
 * [1558958]
 * [1619967]
 * [1882376]
 
-您可以在下列 SAP 附註中找到適用於 SAP ASE 之 DBA Cockpit 的進一步資訊︰
+針對 SAP ASE DBA Cockpit 的進一步資訊位於下列 SAP 附註的 hello:
 
 * [1605680]
 * [1757924]
@@ -953,103 +953,103 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 * [1956005]
 
 #### <a name="backuprecovery-considerations-for-sap-ase"></a>SAP ASE 的備份/復原考量
-將 SAP ASE 部署至 Azure 時，必須檢閱您的備份方法。 即使系統不是生產系統，還是必須定期備份 SAP ASE 所裝載的 SAP 資料庫。 由於 Azure 儲存體會保留三個映像，因此在補償儲存體損毀方面，備份現在已變得較不重要。 維護適當備份和還原方案的主要原因是，您可以藉由提供時間點復原功能來補償邏輯/手動錯誤。 因此，目標是使用備份來將資料庫還原回到某個時間點，或者藉由複製現有的資料庫，在 Azure 中使用備份來植入另一個系統。 例如，您可以藉由還原備份，從 2 層 SAP 組態轉移到同一個系統的 3 層系統設定。
+將 SAP ASE 部署至 Azure 時，必須檢閱您的備份方法。 即使 hello 系統不是生產系統，SAP ASE 所裝載的 hello SAP 資料庫必須定期備份。 因為 Azure 儲存體會保留三個影像，備份現在是較不重要，尤其是尊重 toocompensating 儲存體損毀。 hello 維護適當的備份與還原計劃的主要原因是，您可以藉由提供時間復原功能的中點補償邏輯/手動錯誤有更多。 因此 hello 的目標是 tooeither 使用備份 toorestore hello 資料庫備份 tooa 特定點 Azure tooseed 中的時間或 toouse hello 備份中另一個系統複製 hello 現有的資料庫。 例如，您無法從傳輸的 2 層 SAP 組態 tooa 3 層系統設定 hello 相同系統還原的備份。
 
-在 Azure 中備份和還原資料庫的運作方式，與內部部署中的運作方式一樣。 請參閱 SAP 附註︰
+備份和還原 Azure 運作中的資料庫 hello 相同方式就如同內部部署。 請參閱 SAP 附註︰
 
 * [1588316]
 * [1585981]
 
-以取得建立傾印組態和排程備份的詳細資料。 根據您的策略和需求，您可以在其中一個現有的 VHD 上將資料庫和記錄傾印設定至磁碟，或者新增其他 VHD 以供備份使用。  為了減少在發生錯誤時產生資料遺失的風險，建議使用 VHD (不會有任何資料庫裝置位於其中)。
+以取得建立傾印組態和排程備份的詳細資料。 根據您的策略和需求，您可以設定資料庫和記錄檔傾印到其中一個現有的 Vhd 的 hello toodisk 或加入的額外 VHD hello 備份。  tooreduce hello 危險資料遺失，就會發生錯誤的建議 toouse 沒有資料庫裝置所在位置的 VHD。
 
-除了資料壓縮與 LOB 壓縮之外，SAP ASE 也會提供備份壓縮。 若要讓資料庫和記錄傾印佔用較少的空間，建議使用備份壓縮。 如需詳細資訊，請參閱 SAP 附註 [1588316] 。 如果您打算從 Azure 虛擬機器將備份或包含備份傾印的 VHD 下載至內部部署，則壓縮備份對於降低要傳輸的資料量來說也很重要。
+除了資料壓縮與 LOB 壓縮之外，SAP ASE 也會提供備份壓縮。 與 hello 資料庫和記錄空間小於 toooccupy 傾印它建議 toouse 備份壓縮。 如需詳細資訊，請參閱 SAP 附註 [1588316] 。 壓縮 hello 備份也是重要的 tooreduce hello 數量資料 toobe 傳輸，如果您計劃 toodownload 備份或包含備份的傾印從 hello tooon 內部部署 Azure 虛擬機器的 Vhd。
 
 請勿使用磁碟機 D:\ 做為資料庫或記錄傾印目的地。
 
 #### <a name="performance-considerations-for-backupsrestores"></a>備份/還原的效能考量
-如同裸機部署，備份/還原效能取決於可以平行讀取的磁碟區數目，以及這些磁碟區可能的輸送量。 此外，備份壓縮所使用的 CPU 耗用量可能會在最多只有 8 個 CPU 執行緒的 VM 上扮演重要的角色。 因此，您可以假設︰
+裸機部署，如同備份/還原效能是取決於磁碟區數目可以讀取以平行方式，而且這些磁碟區的哪些 hello 輸送量可能。 此外，hello 備份壓縮所使用的 CPU 耗用量可能相當重要的角色上播放的 Vm 只向上 too8 CPU 執行緒。 因此，您可以假設︰
 
-* 用來儲存資料庫裝置的 VHD 數目越少，讀取的整體輸送量就越小
-* VM 中 CPU 執行緒數目越小，備份壓縮的影響就越嚴重
-* 要寫入備份的目標 (等量目錄、VHD) 越少，輸送量就越低
+* hello 較少的 Vhd hello 數目使用 toostore hello 資料庫裝置 hello 較小 hello 整體讀取輸送量
+* hello 數目較少 hello hello VM 中的 CPU 執行緒、 hello 更嚴重 hello 備份壓縮的影響
+* hello 較少 （等量磁碟區的目錄、 Vhd） 的目標 toowrite hello 備份、 hello 較小者 hello 輸送量
 
-若要增加要寫入的目標數目，根據您的需求，有兩個選項可以使用/相結合：
+目標 toowrite toothere tooincrease hello 數目是它可以是根據您的需求使用/結合兩個選項：
 
-* 在多個掛接的 VHD 上等量劃分備份目標磁碟區，以改善該等量磁碟區上的 IOPS 輸送量
-* 在 SAP ASE 層級上建立傾印組態，該層級會使用一個以上的目標目錄來寫入傾印
+* 透過順序 tooimprove hello IOPS 輸送量該等量磁碟區上的多個已掛接 Vhd 的條狀配置 hello 備份目標磁碟區
+* 使用多個目標目錄 toowrite hello 傾印至 SAP ASE 層級建立的傾印組態
 
-本指南的先前內容中已討論過在多個掛接的 VHD 上等量劃分磁碟區的方式。 如需有關在 SAP ASE 傾印組態中使用多個目錄的詳細資訊，請參閱 sp_config_dump 預存程序的相關文件，此預存程序可用來在 [Sybase Infocenter](http://infocenter.sybase.com/help/index.jsp) 上建立傾印組態。
+本指南的先前內容中已討論過在多個掛接的 VHD 上等量劃分磁碟區的方式。 如需有關使用 hello SAP ASE 傾印組態中的多個目錄，請參閱 toohello 文件，也就是使用的 toocreate hello 傾印組態上 hello 預存程序 sp_config_dump 上[Sybase 資訊中心](http://infocenter.sybase.com/help/index.jsp).
 
 ### <a name="disaster-recovery-with-azure-vms"></a>使用 Azure VM 的災害復原
 #### <a name="data-replication-with-sap-sybase-replication-server"></a>利用 SAP Sybase 複寫伺服器的資料複寫
-利用 SAP Sybase 複寫伺服器 (SRS)，SAP ASE 可提供暖待命的解決方案，以非同步方式將資料庫交易傳輸到遠端位置。
+以 hello SAP Sybase 複寫伺服器 (SRS) SAP ASE 提供暖待命方案 tootransfer 資料庫交易 tooa 遠方位置，以非同步方式。
 
-安裝及操作 SRS 也可以在 Azure 虛擬機器中裝載的 VM 上運作，就像它在內部部署的運作方式。
+hello 安裝及操作 SRS 的運作方式也會在內部部署，在 Azure 虛擬機器服務中裝載的 VM 中的功能。
 
 預計未來會發行透過 SAP 複寫伺服器的 ASE HADR 版本。 一旦該版本可供使用之後，就會立即進行測試並針對 Microsoft Azure 平台加以發行。
 
-## <a name="specifics-to-sap-ase-on-linux"></a>Linux 上 SAP ASE 專屬的詳細資料
-從 Microsoft Azure 開始，您就能輕易地將現有的 SAP ASE 應用程式移轉至 Azure 虛擬機器。 虛擬機器中的 SAP ASE 可讓您輕鬆地將這些應用程式移轉到 Microsoft Azure，藉以減少部署、管理和維護企業級應用程式的擁有權總成本。 透過 Azure 虛擬機器中的 SAP ASE，系統管理員和開發人員仍然可以使用可在內部部署使用的相同開發和管理工具。
+## <a name="specifics-toosap-ase-on-linux"></a>在 Linux 上的細節 tooSAP ASE
+開始使用 Microsoft Azure，您可以輕鬆地移轉您現有的 SAP ASE 應用程式 tooAzure 虛擬機器。 虛擬機器中的 SAP ASE 可輕鬆地將移轉這些應用程式 tooMicrosoft Azure 讓您 tooreduce hello 擁有權總成本的部署、 管理和維護的企業廣度應用程式。 透過 SAP ASE Azure 虛擬機器中，系統管理員和開發人員仍然可以使用的 hello 可用的相同開發和管理工具內部。
 
-若要部署 Azure VM，請務必了解官方 SLA，請參閱 <https://azure.microsoft.com/support/legal/sla>
+部署 Azure Vm 的重要 tooknow hello 正式的 Sla，可以在這裡找到： <https://azure.microsoft.com/support/legal/sla>
 
 SAP 附註 [1928533]將會提供 SAP 大小調整資訊和 SAP 認證的 VM SKU 清單。 Azure 虛擬機器的額外 SAP 調整大小文件可以在下列網址中找到：<http://blogs.msdn.com/b/saponsqlserver/archive/2015/06/19/how-to-size-sap-systems-running-on-azure-vms.aspx> 和 <http://blogs.msdn.com/b/saponsqlserver/archive/2015/12/01/new-white-paper-on-sizing-sap-solutions-on-azure-public-cloud.aspx>
 
-關於 Azure 儲存體使用方式、部署 SAP VM 或 SAP 監視的陳述與建議適用於搭配 SAP 應用程式來部署 SAP ASE，如本文件前四章所述。
+陳述式和 Azure 儲存體、 SAP 部署 Vm 或 SAP Monitoring 的建議考慮 toohello 使用量套用 toodeployments 的 SAP ASE 搭配述整個 hello 的這份文件的前四個章節的 SAP 應用程式。
 
-下列這兩個 SAP 附註會提供有關 Linux 上的 ASE 以及雲端中 ASE 的通用資訊：
+hello 下列兩個 SAP 附註上 Linux 和 ASE ASE 的一般資訊中包含 hello 雲端：
 
 * [2134316]
 * [1941500]
 
 ### <a name="sap-ase-version-support"></a>SAP ASE 版本支援
-SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用。 不論是適用於 SAP ASE 伺服器的所有更新，還是要與「SAP 商務套件」產品搭配使用的 JDBC 和 ODBC 驅動程式，都只會透過 SAP Service Marketplace 來提供，網址：<https://support.sap.com/swdc>。
+SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用。 SAP ASE 伺服器、 或 JDBC 和 ODBC 驅動程式 toobe SAP Business Suite 等作業只透過所提供的產品搭配使用的所有更新都 hello 在 SAP 服務 Marketplace: <https://support.sap.com/swdc>。
 
-如同內部部署安裝，不要直接從 Sybase 網站下載適用於 SAP ASE 伺服器或適用於 JDBC 和 ODBC 驅動程式的更新。 如需在內部部署和 Azure 虛擬機器中支援與 SAP 商務套件產品搭配使用之修補程式的詳細資訊，請參閱下列 SAP 附註：
+安裝與內部部署，不要直接從 Sybase 網站下載更新 hello SAP ASE 伺服器或 hello JDBC 和 ODBC 驅動程式。 支援使用 SAP Business Suite 產品在內部部署與 Azure 虛擬機器中的修補程式的詳細資訊，請參閱下列 「 SAP 附註的 hello:
 
 * [1590719]
 * [1973241]
 
-如需有關在 SAP ASE 上執行「SAP 商務套件」的一般資訊，請參閱 [SCN](https://scn.sap.com/community/ase)
+SAP ASE 上執行 SAP Business Suite 的一般資訊位於 hello [SCN](https://scn.sap.com/community/ase)
 
 ### <a name="sap-ase-configuration-guidelines-for-sap-related-sap-ase-installations-in-azure-vms"></a>在 Azure VM 中安裝 SAP 相關之 SAP ASE 的 SAP ASE 組態指導方針
-#### <a name="structure-of-the-sap-ase-deployment"></a>SAP ASE 部署結構
-根據一般的描述，SAP ASE 可執行檔應該位於或安裝於 VM 的根檔案系統 ( /sybase ) 上。 通常，SAP NetWeaver 工作負載在運用大部分的 SAP ASE 系統和工具資料庫時並不會很費力。 因此，系統和工具資料庫 (master、model、saptools、sybmgmtdb、sybsystemdb) 也可以保留於根檔案系統上。
+#### <a name="structure-of-hello-sap-ase-deployment"></a>Hello SAP ASE 部署的結構
+Hello 一般描述，根據 SAP ASE 可執行檔應該位於或安裝到 VM (/sybase) hello hello 根檔案系統。 一般而言，大部分的 hello SAP ASE 系統和工具資料庫可不真的利用硬 SAP NetWeaver 工作量。 因此 hello 系統和工具的資料庫 （master、 model、 saptools、 sybmgmtdb、 sybsystemdb） 可留在 hello 根檔案系統上。
 
-有一個例外狀況可能是暫存資料庫包含 SAP ASE 建立的所有工作資料表和暫存資料表，萬一某些 SAP ERP 和所有 BW 工作負載可能要求更高的資料量或 I/O 作業量，而其無法符合原始 VM 的作業系統磁碟，就會發生此情況。
+例外狀況可能是包含所有的工作資料表和暫存資料表建立的 SAP ASE 其中發生某些 SAP ERP 和所有 BW 工作量可能需要較高的資料量或 I/O 作業量，無法放入 hello 原始 hello 暫存資料庫VM 之 OS 磁碟。
 
-根據用來安裝系統的 SAPInst/SWPM 版本，資料庫可能包含︰
+根據 hello SAPInst/SWPM 使用新版 tooinstall hello 系統、 hello 資料庫可能包含：
 
 * 安裝 SAP ASE 時建立單一的 SAP ASE tempdb
-* 安裝 SAP ASE 時建立的 SAP ASE tempdb，以及 SAP 安裝常式所建立的其他 saptempdb
-* 透過安裝 SAP ASE 來建立的 SAP ASE tempdb，以及手動建立 (例如依照 SAP 附註 [1752266]) 來符合 ERP/BW 特定 tempdb 需求的其他 tempdb
+* 建立藉由安裝 SAP ASE 和建立 hello SAP 安裝常式的其他 saptempdb SAP ASE tempdb
+* 建立藉由安裝 SAP ASE 和手動建立額外的 tempdb SAP ASE tempdb (例如下列 「 SAP 附註[1752266]) toomeet ERP/BW 特定 tempdb 需求
 
-萬一發生特定的 ERP 或所有 BW 工作負載，就能基於效能因素，在個別的檔案系統上保留另外建立之 tempdb (透過 SWPM 或手動) 的 tempdb 裝置，該檔案系統可以利用單一 Azure 資料磁碟或橫跨多個 Azure 資料磁碟的 Linux RAID 來表示。 如果沒有其他 tempdb 存在，則建議您建立一個 (SAP 附註 [1752266])。
+如果發生特定 ERP 或所有 BW 工作量合理，不管 tooperformance tookeep hello tempdb 裝置 hello 另外建立 tempdb （SWPM 或手動） 可以由單一 Azure 資料磁碟或 Linux RAID 的個別的檔案系統上的跨越多個 Azure 資料磁碟。 如果沒有其他的 tempdb 已存在，則建議一個 toocreate (SAP 附註[1752266])。
 
-針對這類系統，應該針對另外建立的 tempdb 執行下列步驟︰
+這類系統 hello 應該 hello 另外建立 tempdb 上執行下列步驟：
 
-* 將第一個 tempdb 目錄移至 SAP 資料庫的第一個檔案系統
-* 將 tempdb 目錄新增至每個包含 SAP 資料庫檔案系統的 VHD
+* 移動 hello 第一次 tempdb 目錄 toohello 第一個檔案系統的 hello SAP 資料庫
+* 新增 hello Vhd，含 hello SAP 資料庫的檔案系統的 tempdb 目錄的 tooeach
 
-這個組態讓 tempdb 所耗用的空間比系統磁碟機能夠提供的還多。 做為參考，您可以在內部部署執行的現有系統上檢查 tempdb 目錄的大小。 或者，這類組態可針對無法使用系統磁碟機來提供的 tempdb 啟用 IOPS 數目。 再次提醒，內部部署執行的系統可以用來監視 tempdb 的 I/O 工作負載。
+此設定可讓 tempdb tooeither 耗用較多的空間，比可以 tooprovide hello 系統磁碟機。 做為參考其中一個可以檢查現有的系統執行內部部署的 hello tempdb 目錄大小。 或者，這種組態會啟用對 tempdb 無法隨附 hello 系統磁碟機的 IOPS 數目。 再次執行內部部署的系統可以針對 tempdb 使用的 toomonitor I/O 工作負載。
 
-永遠不要將任何 SAP ASE 目錄放置於 VM 的 /mnt 或 /mnt/resource 上。 這也適用於 tempdb，即使保留於 tempdb 中的物件只是暫時性的也一樣，因為 /mnt 或 /mnt/resource 是非永續性的預設 Azure VM 暫存空間。 如需有關 Azure VM 暫存空間的更多詳細資料，請參閱[這篇文章][virtual-machines-linux-how-to-attach-disk]
+永遠不會放入 /mnt 或 /mnt/resource 的 hello VM 的任何 SAP ASE 目錄。 即使 hello 物件保留在 hello tempdb 中只有暫時因為 /mnt 或 /mnt/resource 預設 Azure VM 暫存空間這不是永久性的這也適用於 toohello tempdb。 位於 hello Azure VM 的暫存空間更多詳細[這篇文章][virtual-machines-linux-how-to-attach-disk]
 
 #### <a name="impact-of-database-compression"></a>資料庫壓縮的影響
-在 I/O 頻寬可能變成限制因素的組態中，減少 IOPS 的每個量值可能都有助於延展您可以在類似 Azure 的 IaaS 案例中執行的工作負載。 因此，強烈建議您在將現有的 SAP 資料庫上傳至 Azure 之前，確定已使用 SAP ASE 壓縮。
+在組態中的 I/O 頻寬可能會變成限制因素，每個量值可減少 IOPS 可能有助於 toostretch hello 工作負載一次可以執行像是 Azure IaaS 案例中。 因此，強烈建議 toomake 確定 SAP ASE 壓縮會使用上傳現有的 SAP 資料庫 tooAzure 之前。
 
-建議在上傳至 Azure 之前執行壓縮，如果尚未實作，可能是因為下列數種因素所導致：
+如果未實作上傳 tooAzure 之前 hello 建議 tooperform 壓縮是出於多種原因所造成：
 
-* 降低要上傳至 Azure 的資料量
-* 假設您可以使用功能更強大的硬體，其在內部部署中使用更多 CPU 或更高 I/O 頻寬或更少 I/O 延遲，則執行壓縮的持續時間較短
-* 較小的資料庫大小可能會使磁碟配置的成本降低
+* 資料上傳 toobe tooAzure hello 量較低
+* hello hello 壓縮執行持續時間較短，假設有更多的 Cpu 或更高 I/O 頻寬或更少的 I/O 延遲內部部署可以使用更強的硬體
+* 較小的資料庫大小可能會導致 tooless 成本進行磁碟配置
 
-資料壓縮和 LOB 壓縮可以在 Azure 虛擬機器上裝載的 VM 中運作，如同它在內部部署中的運作方式。 如需有關如何檢查在現有 SAP ASE 資料庫中是否已經使用壓縮的更多詳細資料，請參閱 SAP 附註 [1750510]。 另請參閱 SAP 附註 [2121797] ，以取得有關資料庫壓縮的其他資訊。
+資料壓縮和 LOB 壓縮可以在 Azure 虛擬機器上裝載的 VM 中運作，如同它在內部部署中的運作方式。 如需有關如何 toocheck 如果壓縮已在使用中現有的 SAP ASE 資料庫請檢查 SAP Note [1750510]。 另請參閱 SAP 附註 [2121797] ，以取得有關資料庫壓縮的其他資訊。
 
-#### <a name="using-dbacockpit-to-monitor-database-instances"></a>使用 DBACockpit 監視資料庫執行個體
-針對使用 SAP ASE 做為資料庫平台的 SAP 系統，可以存取 DBACockpit 做為交易 DBACockpit 中內嵌的瀏覽器視窗或做為 Webdynpro。 不過，監視和管理資料庫的完整功能只能在 DBACockpit 的 Webdynpro 實作中取得。
+#### <a name="using-dbacockpit-toomonitor-database-instances"></a>使用 DBACockpit toomonitor 資料庫執行個體
+適用於 SAP 系統做為資料庫平台使用 SAP ASE hello DBACockpit 存取。 為交易 DBACockpit 中內嵌的瀏覽器視窗或 Webdynpro 不過 hello 完整功能，以監視並管理 hello 資料庫可用於只 hello DBACockpit hello Webdynpro 實作。
 
-做為內部部署系統，需要使用數個步驟，才能啟用 DBACockpit 之 Webdynpro 實作所使用的所有 SAP NetWeaver 功能。 請依照 SAP 附註 [1245200] 來啟用 Webdynpro 的使用，以及產生所需的 Webdynpro。 遵循上述附註中的指示時，您也可以設定網際網路通訊管理員 (icm) 以及針對 http 和 https 連線所使用的連接埠。 Http 的預設設定看起來如下︰
+在內部部署與執行數個步驟的系統必須 tooenable hello DBACockpit hello Webdynpro 實作所使用的所有 SAP NetWeaver 功能。 請依照 SAP Note [1245200] tooenable hello webdynpros 的使用方式，並產生 hello 必要的。 當上述資訊，您也會設定 hello 網際網路通訊管理員 (icm) 以及 hello 連接埠 toobe hello 中的下列 hello 指示用於 http 和 https 連線。 hello http 的預設設定看起來像這樣：
 
 > icm/server_port_0 = PROT=HTTP,PORT=8000,PROCTIMEOUT=600,TIMEOUT=600
 >
@@ -1057,7 +1057,7 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 >
 >
 
-而且在交易 DBACockpit 中產生的連結看起來如下︰
+和產生交易 DBACockpit 中的 hello 連結看起來類似 toothis:
 
 > https://`<fullyqualifiedhostname`>:44300/sap/bc/webdynpro/sap/dba_cockpit
 >
@@ -1065,17 +1065,17 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 >
 >
 
-取決於裝載 SAP 系統的 Azure 虛擬機器是否以及如何透過站對站、多重網站或 ExpressRoute (跨單位部署) 來連接，您需要確定 ICM 會使用完整的主機名稱，此名稱可在您嘗試從中開啟 DBACockpit 的電腦上加以解析。 請參閱 SAP 附註 [773830] 以了解 ICM 如何根據設定檔參數決定完整的主機名稱，並於必要時明確設定 icm/host_name_full 參數。
+取決於如何 hello Azure 虛擬機器裝載 hello SAP 系統連接的網站，透過多站台或 ExpressRoute （跨單位部署），您需要確定 toomake 該 ICM 可解析的完整主機名稱上使用 hello電腦嘗試 tooopen hello DBACockpit 從。 請參閱 SAP 附註[773830] toounderstand ICM 如何決定 hello 取決於設定檔參數和 icm host_name_full 方式設定參數的完整的主機名稱明確必要。
 
-如果您在僅限雲端的案例中部署 VM，而不需要在內部部署與 Azure 之間跨單位的連線能力，您需要定義一個公用 IP 位址和一個 domainlabel。 然後 VM 的公用 DNS 名稱格式將看起來如下︰
+如果您部署的 hello VM 在僅限雲端的情況下，不在內部部署與 Azure 之間的跨單位連線，您需要 toodefine，公用 IP 位址和 domainlabel 也一樣。 hello hello 公用 DNS 名稱格式 hello VM 然後看起來像這樣：
 
 > `<custom domainlabel`>.`<azure region`>.cloudapp.azure.com
 >
 >
 
-如需有關 DNS 名稱的更多詳細資料，請參閱[這裡][virtual-machines-azurerm-versus-azuresm]。
+可以找到 toohello DNS 名稱相關的更多詳細資料[這裡][virtual-machines-azurerm-versus-azuresm]。
 
-將 SAP 設定檔參數 icm/host_name_full 設定為 Azure VM 的 DNS 名稱，其連結看起來可能如下︰
+設定 hello SAP 設定檔參數 icm/host_name_full toohello hello Azure VM hello 連結的 DNS 名稱可能類似於：
 
 > https://mydomainlabel.westeurope.cloudapp.net:44300/sap/bc/webdynpro/sap/dba_cockpit
 >
@@ -1083,18 +1083,18 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 >
 >
 
-在此情況下，您需要確定︰
+在此情況下您需要 toomake 務必：
 
-* 在 Azure 入口網站中，針對用來與 ICM 通訊的 TCP/IP 連接埠，將輸入規則新增至網路安全性群組
-* 針對用來與 ICM 通訊的 TCP/IP 連接埠，將輸入規則新增至 Windows 防火牆組態
+* 新增輸入的規則 toohello 網路安全性群組中的 hello TCP/IP 通訊埠的 hello Azure 入口網站使用 icm toocommunicate
+* 新增輸入的規則以 hello ICM hello TCP/IP 連接埠使用 toocommunicate 的 toohello Windows 防火牆設定
 
-針對自動匯入所有可用修正的功能，建議定期套用適用於您 SAP 版本的修正集合 SAP 附註︰
+建議您使用自動匯入的所有可用的更正，tooperiodically 套用 hello 更正集合 SAP 附註適用於 tooyour SAP 版本：
 
 * [1558958]
 * [1619967]
 * [1882376]
 
-您可以在下列 SAP 附註中找到適用於 SAP ASE 之 DBA Cockpit 的進一步資訊︰
+針對 SAP ASE DBA Cockpit 的進一步資訊位於下列 SAP 附註的 hello:
 
 * [1605680]
 * [1757924]
@@ -1106,54 +1106,54 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 * [1956005]
 
 #### <a name="backuprecovery-considerations-for-sap-ase"></a>SAP ASE 的備份/復原考量
-將 SAP ASE 部署至 Azure 時，必須檢閱您的備份方法。 即使系統不是生產系統，還是必須定期備份 SAP ASE 所裝載的 SAP 資料庫。 由於 Azure 儲存體會保留三個映像，因此在補償儲存體損毀方面，備份現在已變得較不重要。 維護適當備份和還原方案的主要原因是，您可以藉由提供時間點復原功能來補償邏輯/手動錯誤。 因此，目標是使用備份來將資料庫還原回到某個時間點，或者藉由複製現有的資料庫，在 Azure 中使用備份來植入另一個系統。 例如，您可以藉由還原備份，從 2 層 SAP 組態轉移到同一個系統的 3 層系統設定。
+將 SAP ASE 部署至 Azure 時，必須檢閱您的備份方法。 即使 hello 系統不是生產系統，SAP ASE 所裝載的 hello SAP 資料庫必須定期備份。 因為 Azure 儲存體會保留三個影像，備份現在是較不重要，尤其是尊重 toocompensating 儲存體損毀。 hello 維護適當的備份與還原計劃的主要原因是，您可以藉由提供時間復原功能的中點補償邏輯/手動錯誤有更多。 因此 hello 的目標是 tooeither 使用備份 toorestore hello 資料庫備份 tooa 特定點 Azure tooseed 中的時間或 toouse hello 備份中另一個系統複製 hello 現有的資料庫。 例如，您無法從傳輸的 2 層 SAP 組態 tooa 3 層系統設定 hello 相同系統還原的備份。
 
-在 Azure 中備份和還原資料庫的運作方式，與內部部署中的運作方式一樣。 請參閱 SAP 附註︰
+備份和還原 Azure 運作中的資料庫 hello 相同方式就如同內部部署。 請參閱 SAP 附註︰
 
 * [1588316]
 * [1585981]
 
-以取得建立傾印組態和排程備份的詳細資料。 根據您的策略和需求，您可以在其中一個現有的 VHD 上將資料庫和記錄傾印設定至磁碟，或者新增其他 VHD 以供備份使用。  為了減少在發生錯誤時產生資料遺失的風險，建議使用 VHD (不會有任何資料庫目錄/檔案位於其中)。
+以取得建立傾印組態和排程備份的詳細資料。 根據您的策略和需求，您可以設定資料庫和記錄檔傾印到其中一個現有的 Vhd 的 hello toodisk 或加入的額外 VHD hello 備份。  tooreduce hello 危險資料遺失，就會發生錯誤的建議 toouse 沒有資料庫目錄/檔案所在位置的 VHD。
 
-除了資料壓縮與 LOB 壓縮之外，SAP ASE 也會提供備份壓縮。 若要讓資料庫和記錄傾印佔用較少的空間，建議使用備份壓縮。 如需詳細資訊，請參閱 SAP 附註 [1588316] 。 如果您打算從 Azure 虛擬機器將備份或包含備份傾印的 VHD 下載至內部部署，則壓縮備份對於降低要傳輸的資料量來說也很重要。
+除了資料壓縮與 LOB 壓縮之外，SAP ASE 也會提供備份壓縮。 與 hello 資料庫和記錄空間小於 toooccupy 傾印它建議 toouse 備份壓縮。 如需詳細資訊，請參閱 SAP 附註 [1588316] 。 壓縮 hello 備份也是重要的 tooreduce hello 數量資料 toobe 傳輸，如果您計劃 toodownload 備份或包含備份的傾印從 hello tooon 內部部署 Azure 虛擬機器的 Vhd。
 
-不要使用 Azure VM 暫存空間 /mnt 或 /mnt/resource 做為資料庫或記錄傾印目的地。
+請勿使用 hello Azure VM 的暫存空間 /mnt 或 /mnt/resource 做為資料庫或記錄檔傾印目的地。
 
 #### <a name="performance-considerations-for-backupsrestores"></a>備份/還原的效能考量
-如同裸機部署，備份/還原效能取決於可以平行讀取的磁碟區數目，以及這些磁碟區可能的輸送量。 此外，備份壓縮所使用的 CPU 耗用量可能會在最多只有 8 個 CPU 執行緒的 VM 上扮演重要的角色。 因此，您可以假設︰
+裸機部署，如同備份/還原效能是取決於磁碟區數目可以讀取以平行方式，而且這些磁碟區的哪些 hello 輸送量可能。 此外，hello 備份壓縮所使用的 CPU 耗用量可能相當重要的角色上播放的 Vm 只向上 too8 CPU 執行緒。 因此，您可以假設︰
 
-* 用來儲存資料庫裝置的 VHD 數目越少，讀取的整體輸送量就越小
-* VM 中 CPU 執行緒數目越小，備份壓縮的影響就越嚴重
-* 要寫入備份的目標 (Linux 軟體 RAID、VHD) 越少，輸送量就越低
+* hello 較少的 Vhd hello 數目使用 toostore hello 資料庫裝置 hello 較小 hello 整體讀取輸送量
+* hello 數目較少 hello hello VM 中的 CPU 執行緒、 hello 更嚴重 hello 備份壓縮的影響
+* hello 較少的目標 （Linux 軟體 RAID Vhd） toowrite hello 來備份、 hello 較小者 hello 輸送量
 
-若要增加要寫入的目標數目，根據您的需求，有兩個選項可以使用/相結合：
+目標 toowrite toothere tooincrease hello 數目是它可以是根據您的需求使用/結合兩個選項：
 
-* 在多個掛接的 VHD 上等量劃分備份目標磁碟區，以改善該等量磁碟區上的 IOPS 輸送量
-* 在 SAP ASE 層級上建立傾印組態，該層級會使用一個以上的目標目錄來寫入傾印
+* 透過順序 tooimprove hello IOPS 輸送量該等量磁碟區上的多個已掛接 Vhd 的條狀配置 hello 備份目標磁碟區
+* 使用多個目標目錄 toowrite hello 傾印至 SAP ASE 層級建立的傾印組態
 
-本指南的先前內容中已討論過在多個掛接的 VHD 上等量劃分磁碟區的方式。 如需有關在 SAP ASE 傾印組態中使用多個目錄的詳細資訊，請參閱 sp_config_dump 預存程序的相關文件，此預存程序可用來在 [Sybase Infocenter](http://infocenter.sybase.com/help/index.jsp) 上建立傾印組態。
+本指南的先前內容中已討論過在多個掛接的 VHD 上等量劃分磁碟區的方式。 如需有關使用 hello SAP ASE 傾印組態中的多個目錄，請參閱 toohello 文件，也就是使用的 toocreate hello 傾印組態上 hello 預存程序 sp_config_dump 上[Sybase 資訊中心](http://infocenter.sybase.com/help/index.jsp).
 
 ### <a name="disaster-recovery-with-azure-vms"></a>使用 Azure VM 的災害復原
 #### <a name="data-replication-with-sap-sybase-replication-server"></a>利用 SAP Sybase 複寫伺服器的資料複寫
-利用 SAP Sybase 複寫伺服器 (SRS)，SAP ASE 可提供暖待命的解決方案，以非同步方式將資料庫交易傳輸到遠端位置。
+以 hello SAP Sybase 複寫伺服器 (SRS) SAP ASE 提供暖待命方案 tootransfer 資料庫交易 tooa 遠方位置，以非同步方式。
 
-安裝及操作 SRS 也可以在 Azure 虛擬機器中裝載的 VM 上運作，就像它在內部部署的運作方式。
+hello 安裝及操作 SRS 的運作方式也會在內部部署，在 Azure 虛擬機器服務中裝載的 VM 中的功能。
 
-目前不支援透過 SAP 複寫伺服器的 ASE HADR。 未來可能會進行測試並針對 Microsoft Azure 平台加以發行。
+目前不支援透過 SAP 複寫伺服器的 ASE HADR。 它可能會進行測試並發行中 hello 未來的 Microsoft Azure 平台。
 
-## <a name="specifics-to-oracle-database-on-windows"></a>Windows 上 Oracle 資料庫專屬的詳細資料
-自 2013 年中開始，Oracle 支援 Oracle 軟體可在 Microsoft Windows HYPER-V 和 Azure 上執行。 請閱讀下列文章，以取得有關 Oracle 所提供之 Windows Hyper-V 和 Azure 一般支援的更多詳細資料︰<https://blogs.oracle.com/cloud/entry/oracle_and_microsoft_join_forces>
+## <a name="specifics-toooracle-database-on-windows"></a>細節 tooOracle Windows 上的資料庫
+因為 midyear 2013，Microsoft Windows HYPER-V 和 Azure 的 Oracle toorun 支援 Oracle 軟體。 請閱讀此文章 tooget hello 一般支援 Windows HYPER-V 和 Azure 的 Oracle 上更多詳細資料： <https://blogs.oracle.com/cloud/entry/oracle_and_microsoft_join_forces>
 
-遵循一般支援，也支援利用 Oracle 資料庫的 SAP 應用程式特定案例。 詳細資料已在文件的這個部分中命名。
+下列 hello 一般支援，是也支援 hello 的 SAP 應用程式利用 Oracle 資料庫的特定案例。 這一部分 hello 文件中命名詳細資料。
 
 ### <a name="oracle-version-support"></a>Oracle 版本支援
-如需有關在「Azure 虛擬機器」上的 Oracle 執行 SAP 時，所支援的 Oracle 版本及對應之作業系統版本的所有詳細資料，請參閱下列 SAP 附註： [2039619]
+Oracle 版本和對應可以找到下列 SAP 附註的 hello 中的 Oracle 在 Azure 虛擬機器上執行 SAP 支援的作業系統版本的所有詳細[2039619]
 
 如需有關在 Oracle 上執行「SAP 商務套件」的一般資訊，請參閱 SCN：<https://scn.sap.com/community/oracle>
 
 ### <a name="oracle-configuration-guidelines-for-sap-installations-in-azure-vms"></a>在 Azure VM 中安裝 SAP 的 Oracle 組態指導方針
 #### <a name="storage-configuration"></a>儲存體組態
-只支援 Oracle 使用 NTFS 格式化磁碟的單一執行個體。 所有的資料庫檔案都必須儲存於以 VHD 磁碟為基礎的 NTFS 檔案系統上。 這些 VHD 掛接到 Azure VM，並且根據 Azure 分頁 Blob 儲存體 (<https://msdn.microsoft.com/library/azure/ee691964.aspx>)。
+只支援 Oracle 使用 NTFS 格式化磁碟的單一執行個體。 所有資料庫檔案必須都儲存 VHD 磁碟為基礎的 hello NTFS 檔案系統上。 這些 Vhd 掛接的 toohello Azure VM 作業，而且根據 Azure 分頁 BLOB 儲存體 (<https://msdn.microsoft.com/library/azure/ee691964.aspx>)。
 任何類型的網路磁碟機或遠端共用 (例如 Azure 檔案服務)：
 
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx>
@@ -1161,78 +1161,78 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 
 就 Oracle 資料庫檔案而言，都「不」  支援使用！
 
-根據「Azure 分頁 BLOB 儲存體」使用 Azure VHD 時，本文件的 [VM 和 VHD 的快取][dbms-guide-2.1]及 [Microsoft Azure 儲存體][dbms-guide-2.3]章節中所做的陳述也適用於利用 Oracle 資料庫所做的部署。
+使用根據 Azure 分頁 BLOB 儲存體的 Azure Vhd，hello 的文件章節中所做的陳述式[Vm 和 Vhd 的快取][ dbms-guide-2.1]和[Microsoft Azure 儲存體][dbms-guide-2.3]套用 toodeployments 以 hello 以及 Oracle 資料庫。
 
-如同先前在文件通用部分中所述，適用於 Azure VHD 的 IOPS 輸送量上有配額存在。 確切的配額會根據使用的 VM 類型而定。 如需 VM 類型及其配額的清單，請參閱[這裡][virtual-machines-sizes]
+如同稍早在 hello hello 文件的一般組件中所說明，存在 Azure Vhd 的 IOPS 輸送量的配額。 hello 確切配額會根據 hello VM 類型使用。 如需 VM 類型及其配額的清單，請參閱[這裡][virtual-machines-sizes]
 
-若要找出支援的 Azure VM 類型，請參閱 SAP 附註 [1928533]
+tooidentify hello 支援的 Azure VM 類型，請參閱 tooSAP 注意[1928533]
 
-只要每個磁碟上目前的 IOPS 配額能滿足需求，就可以將所有 DB 檔案儲存於單一已掛接的 Azure VHD 上。
+每個磁碟 hello 目前 IOPS 配額滿足 hello 需求，因為它是可能 toostore 上的所有 hello DB 檔案一個單一掛接 Azure VHD。
 
-如果需要更多 IOPS，強烈建議使用 Windows 儲存集區 (僅適用於 Windows Server 2012 和更新版本) 或適用於 Windows 2008 R2 的 Windows 等量，透過多個已掛接的 VHD 磁碟來建立一個大型邏輯裝置。 另請參閱本文件的[軟體 RAID][dbms-guide-2.2] 一章。 這種方法可以簡化系統管理負荷來管理磁碟空間，並避免將檔案手動分散到多個已掛接的 VHD。
+如果需要更多的 IOPS，強烈建議 toouse 視窗儲存集區 （只可用在 Windows Server 2012 和更新版本） 或 Windows 等量的 Windows 2008 R2 toocreate 一個大的邏輯裝置透過多個已掛接的 VHD 磁碟。 另請參閱本文件的[軟體 RAID][dbms-guide-2.2] 一章。 這種方法可以簡化 hello 管理負擔 toomanage hello 磁碟空間，並避免 hello 投入時間 toomanually 散佈到多個已掛接的 Vhd 檔案。
 
 #### <a name="backup--restore"></a>備份 / 還原
-針對備份 / 還原功能，利用與標準 Windows Server 作業系統和 Hyper-V 上所做的相同方式來支援 SAP BR*Tools for Oracle。 Oracle 復原管理員 (RMAN) 也支援備份至磁碟，以及從磁碟還原。
+備份 / 還原功能、 hello SAP BR * 工具支援 Oracle 為 hello 相同方式與在標準的 Windows 伺服器作業系統和 HYPER-V。 Toodisk 備份與還原自磁碟也支援 oracle 復原管理員 (RMAN)。
 
 #### <a name="high-availability"></a>高可用性
-[comment]: <> (連結是與 ASM 相關)
+[comment]: <> (連結會參考 tooASM)
 基於高可用性和災害復原目的支援 Oracle Data Guard。 如需詳細資料，請參閱[這份][virtual-machines-windows-classic-configure-oracle-data-guard]文件。
 
 #### <a name="other"></a>其他
-所有其他一般主題 (例如「Azure 可用性設定組」或 SAP 監視) 也適用於使用 Oracle 資料庫來部署 VM 的情況，如本文件的前三章中所述。
+此文件以 hello 以及 Oracle 資料庫的 Vm 部署的前三個章節述 hello 適用於所有其他的一般主題如同 Azure 可用性設定組或 SAP 的監視。
 
-## <a name="specifics-for-the-sap-maxdb-database-on-windows"></a>Windows 上 SAP MaxDB 資料庫專屬的詳細資料
+## <a name="specifics-for-hello-sap-maxdb-database-on-windows"></a>環境的 hello Windows 上的 SAP MaxDB 資料庫
 ### <a name="sap-maxdb-version-support"></a>SAP MaxDB 版本支援
-SAP 目前支援 SAP MaxDB 版本 7.9，以便與 Azure 中 SAP NetWeaver 架構的產品搭配使用。 不論是適用於 SAP MaxDB 伺服器的所有更新，還是要與 SAP NetWeaver 架構的產品搭配使用的 JDBC 和 ODBC 驅動程式，都只會透過 SAP Service Marketplace 來提供，網址：<https://support.sap.com/swdc>。
+SAP 目前支援 SAP MaxDB 版本 7.9，以便與 Azure 中 SAP NetWeaver 架構的產品搭配使用。 在 SAP 服務商場提供 SAP MaxDB 伺服器、 或 JDBC 和 ODBC 驅動程式 toobe SAP NetWeaver 架構的產品搭配使用的所有更新等作業只透過 hello <https://support.sap.com/swdc>。
 如需有關在 SAP MaxDB 上執行 SAP NetWeaver 的一般資訊，請參閱 <https://scn.sap.com/community/maxdb>。
 
 ### <a name="supported-microsoft-windows-versions-and-azure-vm-types-for-sap-maxdb-dbms"></a>針對 SAP MaxDB DBMS 支援的 Microsoft Windows 版本和 Azure VM 類型
-若要尋找在 Azure 上支援 SAP MaxDB DBMS 的 Microsoft Windows 版本，請參閱︰
+在 Azure 上 SAP MaxDB DBMS toofind hello 支援 Microsoft Windows 版本，請參閱：
 
 * [SAP 產品可用性對照表 (PAM)][sap-pam]
 * SAP 附註 [1928533]
 
-強烈建議使用最新版本的作業系統 Microsoft Windows，也就是 Microsoft Windows 2012 R2。
+強烈建議 toouse hello 最新版本的 hello 作業系統 Microsoft Windows 中，這是 Microsoft Windows 2012 R2。
 
 ### <a name="available-sap-maxdb-documentation"></a>可用的 SAP MaxDB 文件
-您可以在下列 SAP 附註中找到已更新的 SAP MaxDB 文件清單： [767598]
+您可以找到下列 SAP 附註的 hello hello 更新 SAP MaxDB 文件清單[767598]
 
 ### <a name="sap-maxdb-configuration-guidelines-for-sap-installations-in-azure-vms"></a>在 Azure VM 中安裝 SAP 的 SAP MaxDB 組態指導方針
 #### <a name="b48cfe3b-48e9-4f5b-a783-1d29155bd573"></a>儲存體組態
-適用於 SAP MaxDB 的 Azure 儲存體最佳做法是依照 [RDBMS 部署結構][dbms-guide-2]一章中所提到的一般建議。
+SAP MaxDB 的 azure 儲存體最佳作法，請依照下列章節中所述的 hello 一般建議[RDBMS 部署結構][dbms-guide-2]。
 
 > [!IMPORTANT]
-> 如同其他資料庫，SAP MaxDB 也有資料和記錄檔。 不過，在 SAP MaxDB 術語中，正確的詞彙是「磁碟區」(不是「檔案」)。 例如，有 SAP MaxDB 資料磁碟區和記錄磁碟區。 請勿與作業系統磁碟區混淆。
+> 如同其他資料庫，SAP MaxDB 也有資料和記錄檔。 不過，在 SAP MaxDB 用語 hello 正確詞彙是 「 磁碟區 」 （非 「 檔案 」）。 例如，有 SAP MaxDB 資料磁碟區和記錄磁碟區。 請勿與作業系統磁碟區混淆。
 >
 >
 
 簡單地說，您必須︰
 
-* 如 [Microsoft Azure 儲存體][dbms-guide-2.3]一章所指定，將保有 SAP MaxDB 資料和記錄磁碟區 (也就是檔案) 的 Azure 儲存體帳戶設定為 [本機備援儲存體 (LRS)]。
-* 將 SAP MaxDB 資料磁碟區 (也就是檔案) 的 IO 路徑，與記錄磁碟區 (也就是檔案) 的 IO 路徑分隔開來。 這表示 SAP MaxDB 資料磁碟區 (也就是檔案) 必須安裝於一個邏輯磁碟機上，而 SAP MaxDB 記錄磁碟區 (也就是檔案) 必須安裝於另一個邏輯磁碟機上。
-* 如 [VM 的快取][dbms-guide-2.1]一章所述，根據您是要針對 SAP MaxDB 資料還是記錄磁碟區 (也就是檔案) 使用檔案快取，以及您使用的是「Azure 標準儲存體」還是「Azure 進階儲存體」而定，為每個 Azure Blob 設定適當的檔案快取。
-* 只要每個磁碟上目前的 IOPS 配額可滿足需求，就能夠將所有資料磁碟區儲存於單一掛接的 Azure VHD 上，而且也會將所有資料庫記錄磁碟區儲存於另一個單一掛接的 Azure VHD 上。
-* 如果需要更多 IOPS 和/或空間，強烈建議使用 Microsoft Windows 儲存集區 (僅適用於 Microsoft Windows Server 2012 和更新版本) 或適用於 Microsoft Windows 2008 R2 的 Microsoft Windows 等量，透過多個已掛接的 VHD 磁碟來建立一個大型邏輯裝置。 另請參閱本文件的[軟體 RAID][dbms-guide-2.2] 一章。 這種方法可以簡化系統管理負荷來管理磁碟空間，並避免將檔案手動分散到多個掛接的 VHD。
-* 針對最高的 IOPS 需求，您可以使用 Azure 進階儲存體，這可以在 DS 系列和 GS 系列 VM 上使用。
+* 設定太保存 hello SAP MaxDB 資料和記錄磁碟區 （也就是檔案） 的 hello Azure 儲存體帳戶**本機備援儲存體 (LRS)**章節中所指定[Microsoft Azure 儲存體][ dbms-guide-2.3].
+* 從記錄檔磁碟區 （也就是檔案） 的 hello IO 路徑 SAP MaxDB 資料磁碟區 （也就是檔案） 的個別 hello IO 路徑。 這表示 SAP MaxDB 資料磁碟區 （也就是檔案） 有一個邏輯磁碟機上安裝的 toobe，而且 SAP MaxDB 記錄磁碟區 （也就是檔案） 有 toobe 安裝在另一個邏輯磁碟機。
+* 設定 hello 適當的檔案快取每一個 Azure blob，是否使用它的 SAP MaxDB 資料或記錄檔磁碟區 （也就是 「 檔案 」），以及您是否使用標準 Azure 或 Azure 高階儲存體，根據的章節中所述[Vm 的快取][dbms-guide-2.1].
+* 只要每個磁碟 hello 目前 IOPS 配額滿足 hello 需求，可能 toostore 所有 hello 資料磁碟區，在單一的掛接 Azure VHD，並也儲存在另一個單一掛接 Azure VHD 上的所有資料庫記錄檔磁碟區。
+* 如果需要更多的 IOPS 及/或空格，強烈建議 toouse Microsoft 視窗儲存集區 （只用於 Microsoft Windows Server 2012 和更新版本） 或 Microsoft Windows 的 Microsoft Windows 2008 R2 toocreate 的條狀配置一個大型的邏輯裝置透過多個已掛接的 VHD 磁碟。 另請參閱本文件的[軟體 RAID][dbms-guide-2.2] 一章。 這種方法可以簡化 hello 管理負擔 toomanage hello 磁碟空間，並避免 hello 投入時間的手動將檔案分散到多個已掛接的 Vhd。
+* 如需最高 IOPS 需求 hello，您可以使用 Azure 高階儲存體，DS 系列和 GS 系列 Vm 上。
 
 ![適用於 SAP MaxDB DBMS 之 Azure IaaS VM 的參考組態][dbms-guide-figure-600]
 
 #### <a name="23c78d3b-ca5a-4e72-8a24-645d141a3f5d"></a>備份與還原
-將 SAP MaxDB 部署至 Azure 時，您必須檢閱備份方法。 即使系統不是生產系統，還是必須定期備份 SAP MaxDB 所裝載的 SAP 資料庫。 由於 Azure 儲存體會保留三個映像，因此在保護系統以免發生儲存體失敗以及更重要的操作或系統管理失敗方面，備份現在已變得較不重要。 維護適當備份和還原方案的主要原因是，讓您可以藉由提供時間點復原功能來補償邏輯/手動錯誤。 因此，目標是使用備份來將資料庫還原到某個時間點，或者藉由複製現有的資料庫，在 Azure 中使用備份來植入另一個系統。 例如，您可以藉由還原備份，從 2 層 SAP 組態轉移到同一個系統的 3 層系統設定。
+將 SAP MaxDB 部署至 Azure 時，您必須檢閱備份方法。 即使 hello 系統不是生產系統，SAP MaxDB 所裝載的 hello SAP 資料庫必須定期備份。 由於 Azure 儲存體會保留三個映像，因此在保護系統以免發生儲存體失敗以及更重要的操作或系統管理失敗方面，備份現在已變得較不重要。 hello 維護適當的備份與還原計劃的主要原因是，讓您可以藉由提供時間點復原功能的邏輯或手動錯誤補償。 Hello 的目標是讓 tooeither 使用備份 toorestore hello 資料庫 tooa 特定點 Azure tooseed 中的時間或 toouse hello 備份中的另一個系統複製 hello 現有的資料庫。 例如，您無法從傳輸的 2 層 SAP 組態 tooa 3 層系統設定 hello 相同系統還原的備份。
 
-在 Azure 中備份和還原資料庫的運作方式與針對內部部署系統所做的一樣，因此您可以使用標準的 SAP MaxDB 備份/還原工具，這些工具的說明位於 SAP 附註 [767598]中所列的其中一份 SAP MaxDB 文件內。
+備份和還原 Azure works hello 相同方式如同對內部部署系統，因此您可以使用標準的 SAP MaxDB 備份/還原工具，如下所述其中 hello SAP MaxDB 文件集文件中的資料庫所列於 SAP Note [767598].
 
 #### <a name="77cd2fbb-307e-4cbf-a65f-745553f72d2c"></a>備份與還原的效能考量
-如同裸機部署，備份和還原效能取決於可以平行讀取的磁碟區數目，以及這些磁碟區的輸送量。 此外，備份壓縮所使用的 CPU 耗用量在最多有 8 個 CPU 執行緒的 VM 上扮演重要的角色。 因此，您可以假設︰
+與裸機部署備份和還原效能是取決於磁碟區數目可以讀取這些磁碟區的平行和 hello 輸送量。 此外，備份壓縮所使用的 CPU 耗用量 hello 可以播放相當重要的角色與 Vm 上 too8 CPU 執行緒。 因此，您可以假設︰
 
-* 用來儲存資料庫裝置的 VHD 數目越少，整體的讀取輸送量就越小
-* VM 中 CPU 執行緒數目越小，備份壓縮的影響就越嚴重
-* 要寫入備份的目標 (等量目錄、VHD) 越少，輸送量就越低
+* hello 使用 Vhd toostore hello 資料庫裝置的較少 hello 數目、 hello 較低的 hello 整體讀取輸送量
+* hello 數目較少 hello hello VM 中的 CPU 執行緒、 hello 更嚴重 hello 備份壓縮的影響
+* hello 較少 （等量磁碟區的目錄、 Vhd） 的目標 toowrite hello 備份至 hello hello 輸送量更低
 
-若要增加要寫入的目標數目，根據您的需求，有兩個選項可以使用 (可能是在組合中)：
+tooincrease hello 數目為目標來 toowrite，有兩個選項，您可以使用，可能是在組合中，根據您的需求：
 
 * 專門用來備份的個別磁碟區
-* 在多個掛接的 VHD 上等量劃分備份目標磁碟區，以改善該等量磁碟區上的 IOPS 輸送量
+* 透過順序 tooimprove hello IOPS 輸送量等量的磁碟區上的多個已掛接 Vhd 的條狀配置 hello 備份目標磁碟區
 * 有適用於下列各項的個別專用邏輯磁碟裝置︰
   * SAP MaxDB 備份磁碟區 (也就是檔案)
   * SAP MaxDB 資料磁碟區 (也就是檔案)
@@ -1241,8 +1241,8 @@ SAP 目前支援 SAP MaxDB 版本 7.9，以便與 Azure 中 SAP NetWeaver 架構
 關於在多個掛接的 VHD 上等量劃分磁碟區，先前在本文件的[軟體 RAID][dbms-guide-2.2] 一章中已討論過。
 
 #### <a name="f77c1436-9ad8-44fb-a331-8671342de818"></a>其他
-所有其他一般主題 (例如「Azure 可用性設定組」或 SAP 監視) 也適用於使用 SAP MaxDB 資料庫來部署 VM 的情況，如本文件的前三章中所述。
-其他 SAP MaxDB 特定設定對 Azure VM 而言是在背景運作的，在 SAP 附註 [767598] 及下列 SAP 附註所列的不同文件中，都有提供這些設定的說明︰
+中所述 hello 與 hello SAP MaxDB 資料庫的 Vm 部署此文件的前三個章節，也適用於所有其他的一般主題例如 Azure 可用性設定組或 SAP 的監視。
+其他 SAP MaxDB 特定設定透明 tooAzure vm，而且不同於 SAP Note 列出的文件中描述[767598]和在這些 SAP 附註：
 
 * [826037]
 * [1139904]
@@ -1253,39 +1253,39 @@ SAP 目前支援 SAP MaxDB 版本 7.9，以便與 Azure 中 SAP NetWeaver 架構
 「Azure 虛擬機器」中支援的 SAP liveCache 最低版本是針對 **EhP 2 for SAP SCM 7.0** 和更新版本發行的 **SAP LC/LCAPPS 10.0 SP 25** (包括 **liveCache 7.9.08.31** 和 **LCA-Build 25**)。
 
 ### <a name="supported-microsoft-windows-versions-and-azure-vm-types-for-sap-livecache-dbms"></a>針對 SAP liveCache DBMS 支援的 Microsoft Windows 版本和 Azure VM 類型
-若要尋找在 Azure 上支援 SAP liveCache 的 Microsoft Windows 版本，請參閱︰
+在 Azure 上 SAP liveCache toofind hello 支援 Microsoft Windows 版本，請參閱：
 
 * [SAP 產品可用性對照表 (PAM)][sap-pam]
 * SAP 附註 [1928533]
 
-強烈建議使用最新版本的作業系統 Microsoft Windows，也就是 Microsoft Windows 2012 R2。
+強烈建議 toouse hello 最新版本的 hello 作業系統 Microsoft Windows 中，這是 Microsoft Windows 2012 R2。
 
 ### <a name="sap-livecache-configuration-guidelines-for-sap-installations-in-azure-vms"></a>在 Azure VM 中安裝 SAP 的 SAP liveCache 組態指導方針
 #### <a name="recommended-azure-vm-types"></a>建議的 Azure VM 類型
-因為 SAP liveCache 是執行大量計算的應用程式，所以 RAM 與 CPU 的數量和速度會對 SAP liveCache 效能產生主要影響。
+因為 SAP liveCache 是執行大量計算的應用程式，hello 容量和速度的 RAM 與 CPU 會有對 SAP liveCache 效能的主要影響。
 
-以 SAP 所支援的 Azure VM 類型 (SAP 附註 [1928533]) 來說，配置給 VM 的所有虛擬 CPU 資源都是以 Hypervisor 的專用實體 CPU 資源為後盾。 不會產生過度佈建 (因此不會產生 CPU 資源競爭)。
+針對 SAP 所支援的 hello Azure VM 類型 (SAP 附註[1928533])，所有的虛擬 CPU 資源配置的 toohello VM 都由專用的 hello hypervisor 實體的 CPU 資源。 不會產生過度佈建 (因此不會產生 CPU 資源競爭)。
 
-同樣地，針對 SAP 支援的所有 Azure VM 執行個體類型，VM 記憶體會完全對應到實體記憶體 – 例如，不會使用過度佈建 (過度使用)。
+同樣地，SAP 支援的所有 Azure VM 執行個體類型，hello VM 記憶體都是對應的 100 %toohello 實體記憶體 – 過度佈建 （超額認可），例如，未使用。
 
-從這個觀點來看，強烈建議使用新的 D 系列或 DS 系列 (搭配 Azure 進階儲存體) 的 Azure VM 類型，因為它們所擁有的處理器速度比 A 系列快上 60 %。 針對最高的 RAM 與 CPU 負載，您可以使用 G 系列和 GS 系列 (搭配 Azure 進階儲存體) 的 VM，其中配備最新的 Intel® Xeon® 處理器 E5 v3 系列，具有兩倍的記憶體以及四倍的 D/DS 系列固態硬碟儲存體 (SSD)。
+從這個觀點來看強烈建議 toouse hello 新 D 系列或 DS 系列 （以與 Azure 高階儲存體一起使用） 的 Azure VM 類型，因為它們有 60%更快的處理器比 hello A 系列。 Hello 最高的 RAM 和 CPU 負載，您可以使用 G 系列和最新 Intel® Xeon® 處理器 hello E5 v3 系列兩次 hello 記憶體，而且四次 hello 固態磁碟機 (Ssd) 的儲存 hello D （在搭配 Azure 高階儲存體） 的 GS 系列 Vm /DS 系列。
 
 #### <a name="storage-configuration"></a>儲存體組態
-由於 SAP liveCache 是以 SAP MaxDB 技術為基礎，因此[儲存體組態][dbms-guide-8.4.1]一章中針對 SAP MaxDB 提到的所有 Azure 儲存體最佳做法建議也適用於 SAP liveCache。
+因為 SAP liveCache 根據 SAP MaxDB 技術，所有 hello Azure 儲存體的最佳作法建議章節中所述的 SAP MaxDB[儲存體設定][ dbms-guide-8.4.1]也都適用於 SAP liveCache。
 
 #### <a name="dedicated-azure-vm-for-livecache"></a>liveCache 專用的 Azure VM
-因為 SAP liveCache 會密集使用運算能力，所以針對可提高生產力的使用方式，強烈建議部署於專用的 Azure 虛擬機器上。
+因為 SAP liveCache 密集使用計算能力，正式上線使用強烈建議 toodeploy 專用 Azure 虛擬機器上。
 
 ![適用於具生產力使用案例的 liveCache 專用的 Azure VM][dbms-guide-figure-700]
 
 #### <a name="backup-and-restore"></a>備份與還原
-備份與還原 (包括效能考量) 已經在相關的 SAP MaxDB 章節[備份與還原][dbms-guide-8.4.2]和[備份與還原的效能考量][dbms-guide-8.4.3]中做過說明。
+備份和還原，包括效能考量，已詳述於 hello 相關的 SAP MaxDB 章節[備份和還原][ dbms-guide-8.4.2]和[備份的效能考量還原和][dbms-guide-8.4.3]。
 
 #### <a name="other"></a>其他
-所有其他一般主題已經在[這個][dbms-guide-8.4.4]相關的 SAP MaxDB 章節中做過說明。
+其他一般的主題已詳述於 hello 相關 SAP MaxDB[這][ dbms-guide-8.4.4]章節。
 
-## <a name="specifics-for-the-sap-content-server-on-windows"></a>Windows 上 SAP 內容伺服器專用的詳細資料
-SAP 內容伺服器是個別的伺服器架構元件，可以不同格式儲存內容，例如電子文件。 SAP 內容伺服器是透過技術開發來提供，可針對任何 SAP 應用程式跨應用程式加以使用。 它會安裝於不同的系統上。 典型的內容是來自 Knowledge Warehouse 的訓練材料和文件，或者源自 mySAP PLM 文件管理系統的技術繪圖。
+## <a name="specifics-for-hello-sap-content-server-on-windows"></a>環境的 hello Windows 上的 SAP 內容伺服器
+hello SAP 內容伺服器是個別伺服器元件 toostore 內容，例如以不同格式的電子文件。 hello SAP 內容伺服器提供所開發的技術，而且只使用 toobe 跨應用程式的任何 SAP 應用程式。 它會安裝於不同的系統上。 一般內容定型資料和從知識倉儲或技術的繪圖源自 hello mySAP PLM 文件管理系統的文件。
 
 ### <a name="sap-content-server-version-support"></a>SAP 內容伺服器版本支援
 SAP 目前支援：
@@ -1294,107 +1294,107 @@ SAP 目前支援：
 * **SAP MaxDB 版本 7.9**
 * **Microsoft IIS (網際網路資訊伺服器) 版本 8.0 (和更新版本)**
 
-強烈建議使用最新版的「SAP 內容伺服器」(在撰寫本文件時為 **6.50 SP4**)，以及最新版的 **Microsoft IIS 8.5**。
+強烈建議 toouse hello 最新版本的 SAP 內容伺服器，這在撰寫本文件的 hello 階段是**6.50 SP4**，與 hello 最新版本的**Microsoft IIS 8.5**。
 
-請從 [SAP 產品可用性對照表 (PAM)][sap-pam] 中，查看支援的 SAP Content Server 與 Microsoft IIS 最新版本。
+檢查 SAP 內容伺服器與 Microsoft IIS 的最新支援的 hello 版本 hello [SAP 產品可用性矩陣 」 (PAM)][sap-pam]。
 
 ### <a name="supported-microsoft-windows-and-azure-vm-types-for-sap-content-server"></a>針對 SAP 內容伺服器支援的 Microsoft Windows 和 Azure VM 類型
-若要找出在 Azure 上支援 SAP 內容伺服器的 Windows 版本，請參閱︰
+toofind 支援的 Windows 版本，在 Azure 上 SAP 內容伺服器時，請參閱：
 
 * [SAP 產品可用性對照表 (PAM)][sap-pam]
 * SAP 附註 [1928533]
 
-強烈建議使用最新版的 Microsoft Windows (在撰寫本文件時為 **Windows Server 2012 R2**)。
+強烈建議 toouse hello 最新版本的 Microsoft Windows，這在撰寫本文件的 hello 階段是**Windows Server 2012 R2**。
 
 ### <a name="sap-content-server-configuration-guidelines-for-sap-installations-in-azure-vms"></a>在 Azure VM 中安裝 SAP 的 SAP 內容伺服器組態指導方針
 #### <a name="storage-configuration"></a>儲存體組態
-如果您將「SAP 內容伺服器」設定成將檔案儲存在 SAP MaxDB 資料庫中，則[儲存體組態][dbms-guide-8.4.1]一章中針對 SAP MaxDB 提到的所有 Azure 儲存體最佳做法建議也適用於「SAP 內容伺服器」案例。
+如果您設定 SAP 內容伺服器 toostore 檔案 hello SAP MaxDB 資料庫中，所有 Azure 儲存體最佳作法建議章節中所述的 SAP MaxDB[儲存體設定][ dbms-guide-8.4.1]也適用於 hello SAP 內容伺服器案例。
 
-如果您設定 SAP 內容伺服器來將檔案儲存於檔案系統中，建議使用專用的邏輯磁碟機。 使用儲存空間可讓您一併增加邏輯磁碟大小和 IOPS 輸送量，如[軟體 RAID][dbms-guide-2.2] 一章所述。
+如果您設定 SAP 內容伺服器 toostore 檔案 hello 檔案系統中，則建議 toouse 專屬的邏輯磁碟機。 使用儲存空間可讓您 tooalso 增加邏輯磁碟的大小和 IOPS 輸送量中所述章節中[軟體 RAID][dbms-guide-2.2]。
 
 #### <a name="sap-content-server-location"></a>SAP 內容伺服器位置
-SAP 內容伺服器必須部署於部署 SAP 系統的相同 Azure 區域和 Azure VNET 中。 您可以自行決定是否要在專用的 Azure VM 上或 SAP 系統執行所在的相同 VM 上部署 SAP 內容伺服器元件。
+SAP 內容伺服器已部署在 hello toobe 相同的 Azure 地區和 hello SAP 系統部署所在的 Azure VNET。 您是否想 toodeploy SAP 內容伺服器元件專用的 Azure VM 上或在 hello hello SAP 系統執行所在的相同 VM，就可用 toodecide。
 
 ![SAP 內容伺服器專用的 Azure VM][dbms-guide-figure-800]
 
 #### <a name="sap-cache-server-location"></a>SAP 快取伺服器位置
-SAP 快取伺服器是一個額外的伺服器架構元件，可提供在本機存取 (快取) 文件的權限。 SAP 快取伺服器會快取 SAP 內容伺服器的文件。 如果必須從不同位置擷取文件一次以上，這樣可將網路流量最佳化。 一般規則是 SAP 快取伺服器實際上必須接近可存取 SAP 快取伺服器的用戶端。
+hello SAP 快取伺服器是額外的伺服器端元件 tooprovide 存取 too(cached) 文件在本機。 hello SAP 快取伺服器快取 SAP 內容伺服器 hello 文的件。 如果文件 toobe 擷取一次以上，從不同位置，這會是 toooptimize 網路流量。 hello 一般規則是該 hello SAP 快取伺服器必須存取 SAP 快取伺服器 hello toobe 實際關閉 toohello 用戶端。
 
 您有兩個選擇：
 
-1. **用戶端是後端 SAP 系統** - 如果已設定後端 SAP 系統來存取「SAP 內容伺服器」，則該 SAP 系統就是用戶端。 由於 SAP 系統和 SAP 內容伺服器都會部署於同一個 Azure 區域 (在相同的 Azure 資料中心)，所以它們實際上是彼此接近的。 因此，不需要有專用的 SAP 快取伺服器。 SAP UI 用戶端 (SAP GUI 或 Web 瀏覽器) 可直接存取 SAP 系統，而 SAP 系統會從 SAP 內容伺服器擷取文件。
-2. **用戶端是內部部署的 Web 瀏覽器** - 可以將「SAP 內容伺服器」設定成供 Web 瀏覽器直接存取。 在此情況下，在內部部署執行的 Web 瀏覽器就是 SAP 內容伺服器的用戶端。 內部部署的資料中心與 Azure 資料中心位於不同的實體位置 (最好彼此接近)。 您的內部部署資料中心是透過 Azure 站對站 VPN 或 ExpressRoute 連接到 Azure。 雖然這兩個選項提供安全的 VPN 網路連線至 Azure，但站對站網路連接不會在內部部署的資料中心與 Azure 資料中心之間提供網路頻寬和延遲 SLA。 若要加快文件的存取，您可以執行下列其中一項︰
-   1. 安裝內部部署的「SAP 快取伺服器」，使其靠近內部部署的 Web 瀏覽器 ([這張][dbms-guide-900-sap-cache-server-on-premises]圖中的選項)
+1. **用戶端是後端 SAP 系統**如果設定的 tooaccess SAP 內容伺服器後端 SAP 系統，SAP 系統是一個用戶端。 SAP 系統和 SAP 內容伺服器部署在 hello 相同 Azure 地區 – hello 中的相同的 Azure 資料中心 – 它們是實際關閉 tooeach 其他。 因此，沒有任何需要 toohave 專用的 SAP 快取伺服器。 SAP UI （SAP GUI 或 web 瀏覽器） 的用戶端存取 hello SAP 系統直接與 hello SAP 系統從 hello SAP 內容伺服器的擷取文件。
+2. **用戶端是在內部部署 web 瀏覽器**hello SAP 內容伺服器可以設定的 toobe 由 hello 網頁瀏覽器直接存取。 在此情況下，執行內部的網頁瀏覽器的用戶端 hello SAP 內容伺服器。 在內部部署資料中心與 Azure 資料中心會放置在不同實體位置 (其他理想的情況下關閉 tooeach) 中。 您的內部部署資料中心是透過 Azure 站台對站台 VPN 或 ExpressRoute 連線的 tooAzure。 雖然這兩個選項可提供安全的 VPN 網路連線 tooAzure，站台對站台網路連線不提供 hello 在內部部署資料中心與 hello Azure 資料中心之間的網路頻寬和延遲 SLA。 總存取 toodocuments toospeed，您可以執行 hello 下列其中一種：
+   1. 安裝 SAP 快取伺服器在內部，請關閉 toohello 內部 web 瀏覽器 (選項[這][ dbms-guide-900-sap-cache-server-on-premises]圖)
    2. 設定 Azure ExpressRoute，提供內部部署的資料中心與 Azure 資料中心之間高速且低延遲的專用網路連接。
 
-![安裝內部部署 SAP 快取伺服器的選項][dbms-guide-figure-900]
+![選項 tooinstall SAP 快取伺服器在內部部署][dbms-guide-figure-900]
 <a name="642f746c-e4d4-489d-bf63-73e80177a0a8"></a>
 
 #### <a name="backup--restore"></a>備份 / 還原
-如果您將「SAP 內容伺服器」設定成將檔案儲存在 SAP MaxDB 資料庫中，請參閱 SAP MaxDB 的[備份與還原][dbms-guide-8.4.2]一章及[備份與還原的效能考量][dbms-guide-8.4.3]一章中已提供的備份/還原程序和效能考量。
+如果您設定 hello SAP 內容伺服器 toostore 檔案 hello SAP MaxDB 資料庫中，hello 備份/還原程序和效能考量已詳述於 SAP MaxDB 章[備份和還原][dbms-guide-8.4.2]和章節[的備份和還原效能考量][dbms-guide-8.4.3]。
 
-如果您設定 SAP 內容伺服器來將檔案儲存於檔案系統中，有一個選項是針對文件所在的整個檔案結構執行手動備份/還原。 與 SAP MaxDB 備份/還原類似，基於備份目的，建議要有專用的磁碟區。
+如果您設定 hello 檔案系統中的 hello SAP 內容伺服器 toostore 檔案，其中一個選項是 tooexecute 手動備份/還原 hello 整個檔案結構的 hello 文件的所在位置。 它是類似 tooSAP MaxDB 備份/還原，建議使用 toohave 專用的磁碟區備份的目的。
 
 #### <a name="other"></a>其他
-其他 SAP 內容伺服器特定的設定對於 Azure VM 是顯而易見的，相關說明請見各種文件和 SAP 附註︰
+其他 SAP 內容伺服器的特定設定透明 tooAzure vm 和各種文件和 SAP 附註所述：
 
 * <https://service.sap.com/contentserver>
 * SAP 附註 [1619726]  
 
-## <a name="specifics-to-ibm-db2-for-luw-on-windows"></a>Windows 上 IBM DB2 for LUW 專屬的詳細資料
-使用 Microsoft Azure，您可以輕鬆地將目前在 IBM DB2 for Linux、UNIX 及 Windows (LUW) 上執行的 SAP 應用程式移轉至 Azure 虛擬機器。 透過 IBM DB2 for LUW 上的 SAP，系統管理員和開發人員仍然可以使用可在內部部署使用的相同開發和管理工具。
-如需有關在 IBM DB2 for LUW 上執行「SAP 商務套件」的一般資訊，請參閱「SAP 社群網路」(SCN)，網址：<https://scn.sap.com/community/db2-for-linux-unix-windows>。
+## <a name="specifics-tooibm-db2-for-luw-on-windows"></a>細節 tooIBM DB2 for luw 會在 Windows 上
+使用 Microsoft Azure，您可以輕鬆地移轉現有 SAP 執行的應用程式在 IBM DB2 for Linux、 UNIX 和 Windows (LUW) tooAzure 虛擬機器。 透過在 IBM DB2 for luw 會 SAP、 管理員和開發人員仍然可以使用的 hello 可用的相同開發和管理工具內部。
+一般資訊執行 SAP Business Suite IBM DB2 for luw 會位在 hello SAP 社群網路 (SCN) 在<https://scn.sap.com/community/db2-for-linux-unix-windows>。
 
 如需有關 Azure 中 DB2 for LUW 上 SAP 的其他資訊和更新，請參閱 SAP 附註 [2233094]。
 
 ### <a name="ibm-db2-for-linux-unix-and-windows-version-support"></a>IBM DB2 for Linux, UNIX, and Windows 支援版本
 當 DB2 版本為 10.5 時，支援 Microsoft Azure 虛擬機器中 IBM DB2 for LUW 上的 SAP。
 
-如需有關支援之 SAP 產品和 Azure VM 類型的資訊，請參閱 SAP 附註 [1928533]。
+如需支援的 SAP 產品和 Azure VM 類型資訊，請參閱 tooSAP 注意[1928533]。
 
 ### <a name="ibm-db2-for-linux-unix-and-windows-configuration-guidelines-for-sap-installations-in-azure-vms"></a>在 Azure VM 中安裝 SAP 的 IBM DB2 for Linux, UNIX, and Windows 組態指導方針
 #### <a name="storage-configuration"></a>儲存體組態
-所有的資料庫檔案都必須儲存於以 VHD 磁碟為基礎的 NTFS 檔案系統上。 這些 VHD 掛接到 Azure VM，並且根據 Azure 分頁 Blob 儲存體 (<https://msdn.microsoft.com/library/azure/ee691964.aspx>)。
-針對資料庫檔案，「不」  支援任何類型的網路磁碟機或遠端共用 (例如下列的 Azure 檔案服務)︰
+所有資料庫檔案必須都儲存 VHD 磁碟為基礎的 hello NTFS 檔案系統上。 這些 Vhd 會掛接的 toohello Azure VM，並以 Azure 分頁 BLOB 儲存體 (<https://msdn.microsoft.com/library/azure/ee691964.aspx>)。
+任何種類的網路磁碟機或遠端共用像下列 Azure 檔案服務的 hello 就**不**支援資料庫檔案：
 
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx>
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx>
 
-如果您是根據「Azure 分頁 BLOB 儲存體」使用 Azure VHD，則本文件的 [RDBMS 部署結構][dbms-guide-2]一章中所做的陳述也適用於利用「IBM DB2 for LUW 資料庫」所做的部署。
+如果您使用根據 Azure 分頁 BLOB 儲存體的 Azure Vhd，hello 的文件章節中所做的陳述式[RDBMS 部署結構][ dbms-guide-2]也套用 toodeployments 以 hello IBM DB2 for luw 會資料庫。
 
-如同先前在文件通用部分中所述，適用於 Azure VHD 的 IOPS 輸送量上有配額存在。 確切的配額會根據使用的 VM 類型而定。 如需 VM 類型及其配額的清單，請參閱[這裡][virtual-machines-sizes]
+如同稍早在 hello hello 文件的一般組件中所說明，存在 Azure Vhd 的 IOPS 輸送量的配額。 hello 確切的配額取決於 hello VM 類型使用。 如需 VM 類型及其配額的清單，請參閱[這裡][virtual-machines-sizes]
 
-只要每個磁碟上目前有足夠的 IOPS 配額，就可以將所有資料庫檔案儲存於單一已掛接的 Azure VHD 上。
+只要每個磁碟 hello 目前 IOPS 配額已足夠，它是所有 hello 資料庫檔案可能 toostore 一個單一掛接 Azure VHD。
 
-針對效能考量，也請參閱 SAP 安裝指南中的＜適用於資料庫目錄的資料安全性和效能考量＞章節。
+效能考量也會參照 toochapter 資料安全性和效能考量的資料庫目錄 SAP 安裝指南中。
 
-或者，您也可以使用「Windows 儲存集區」(僅適用於 Windows Server 2012 和更新版本) 或適用於 Windows 2008 R2 的 Windows 等量分割 (如本文件的[軟體 RAID][dbms-guide-2.2] 一章所述)，在多個已掛接的 VHD 磁碟上建立一個大型邏輯裝置。
-如果磁碟包含適用於您 sapdata 和 saptmp 目錄的 DB2 儲存路徑，您必須將實體磁碟磁區大小指定為 512 KB。 使用 Windows 儲存集區時，您必須透過命令列介面，使用參數 „-LogicalSectorSizeDefault“，以手動方式建立儲存集區。 如需詳細資訊，請參閱 <https://technet.microsoft.com/library/hh848689.aspx>。
+或者，您可以使用 Windows 儲存集區 （只可用在 Windows Server 2012 和更新版本） 或 Windows 2008 R2 的 Windows 條狀配置章節所述[軟體 RAID] [ dbms-guide-2.2]的這份文件toocreate 一個大邏輯裝置透過多個已掛接的 VHD 磁碟。
+包含針對 sapdata 和 saptmp 目錄 hello DB2 儲存體路徑 hello 磁碟，您必須指定實體磁碟磁區大小為 512 KB。 使用 Windows 儲存集區，您必須建立 hello 存放集區以手動方式透過命令列介面使用 hello 參數"-LogicalSectorSizeDefault"。 如需詳細資訊，請參閱 <https://technet.microsoft.com/library/hh848689.aspx>。
 
 #### <a name="backuprestore"></a>備份/還原
-針對 IBM DB2 for LUW 的備份/還原功能，是利用與標準 Windows Server 作業系統和 Hyper-V 上所做的相同方式來支援。
+hello 備份/還原功能，對於 IBM DB2 for luw 會支援 hello 相同方式與在標準的 Windows 伺服器作業系統和 HYPER-V。
 
 您必須確定您擁有恰當且有效的資料庫備份策略。
 
-如同裸機部署，備份/還原效能取決於可以平行讀取的磁碟區數目，以及這些磁碟區可能的輸送量。 此外，備份壓縮所使用的 CPU 耗用量可能會在最多只有 8 個 CPU 執行緒的 VM 上扮演重要的角色。 因此，您可以假設︰
+裸機部署，如同備份/還原效能取決於磁碟區數目可以讀取以平行方式，而且這些磁碟區的哪些 hello 輸送量可能。 此外，hello 備份壓縮所使用的 CPU 耗用量可能相當重要的角色上播放的 Vm 只向上 too8 CPU 執行緒。 因此，您可以假設︰
 
-* 用來儲存資料庫裝置的 VHD 數目越少，讀取的整體輸送量就越小
-* VM 中 CPU 執行緒數目越小，備份壓縮的影響就越嚴重
-* 要寫入備份的目標 (等量目錄、VHD) 越少，輸送量就越低
+* hello 較少的 Vhd hello 數目使用 toostore hello 資料庫裝置 hello 較小 hello 整體讀取輸送量
+* hello 數目較少 hello hello VM 中的 CPU 執行緒、 hello 更嚴重 hello 備份壓縮的影響
+* hello 較少 （等量磁碟區的目錄、 Vhd） 的目標 toowrite hello 備份至 hello hello 輸送量更低
 
-若要增加要寫入的目標數目，根據您的需求，有兩個選項可以使用/相結合：
+tooincrease hello 數到目標 toowrite，兩個選項可以根據需求使用/合併：
 
-* 在多個掛接的 VHD 上等量劃分備份目標磁碟區，以改善該等量磁碟區上的 IOPS 輸送量
-* 使用一個以上的目標目錄來寫入備份
+* 透過順序 tooimprove hello IOPS 輸送量該等量磁碟區上的多個已掛接 Vhd 的條狀配置 hello 備份目標磁碟區
+* 使用多個目標目錄 toowrite hello 備份至
 
 #### <a name="high-availability-and-disaster-recovery"></a>高可用性和災害復原
 不支援 Microsoft Cluster Server (MSCS)。
 
-支援 DB2 高可用性災害復原 (HADR)。 如果 HA 組態的虛擬機器具有運作中的名稱解析，則 Azure 中的設定與內部部署中完成的任何設定並無任何差別。 不建議只依賴 IP 解析。
+支援 DB2 高可用性災害復原 (HADR)。 如有 hello 的 hello HA 組態的虛擬機器使用名稱解析，Azure 中的 hello 設定沒有差別是在內部部署的任何設定。 不建議 toorely 上只有 IP 解析。
 
-請勿使用 Azure 市集異地複寫。 如需進一步的資訊，請參閱 [Microsoft Azure 儲存體][dbms-guide-2.3]一章和 [Azure VM 的相關高可用性和災害復原][dbms-guide-3]一章。
+請勿使用 Azure 市集異地複寫。 如需詳細資訊，請參閱 toochapter [Microsoft Azure 儲存體][ dbms-guide-2.3]和章節[高可用性和災害復原與 Azure Vm 搭配][ dbms-guide-3].
 
 #### <a name="other"></a>其他
-所有其他一般主題 (例如「Azure 可用性設定組」或 SAP 監視) 也適用於使用 IBM DB2 for LUW 來部署 VM 的情況，如本文件的前三章中所述。
+前三個章節的這份文件，以及部署的 Vm 與 IBM DB2 for luw 會述 hello 適用於所有其他的一般主題如同 Azure 可用性設定組或 SAP 的監視。
 
-另請參閱[適用於 Azure 上 SAP 的一般 SQL Server 摘要][dbms-guide-5.8]。
+也請參閱 toochapter [SAP on Azure 摘要的 SQL Server 一般][dbms-guide-5.8]。

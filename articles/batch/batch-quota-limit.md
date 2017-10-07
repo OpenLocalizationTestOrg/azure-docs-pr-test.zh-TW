@@ -1,6 +1,6 @@
 ---
-title: "Azure Batch 的服務配額和限制 | Microsoft Docs"
-description: "了解預設的 Azure Batch 配額、限制和條件約束，以及如何要求增加配額"
+title: "aaaService 的 Azure Batch 配額與限制 |Microsoft 文件"
+description: "深入了解預設 Azure Batch 配額、 限制和條件約束，及如何 toorequest 配額，以提升"
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,21 +15,21 @@ ms.topic: article
 ms.date: 06/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f3f69ed8d3a985afe07e648e7512a88b25278ced
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6035d1c7618cfe97ebca3780e02a4ee34f54e534
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="batch-service-quotas-and-limits"></a>Batch 服務配額和限制
 
-如同使用其他 Azure 服務，對於與 Batch 服務相關聯的特定資源有一些限制。 這其中有許多限制是 Azure 在訂用帳戶或帳戶層級上所套用的預設配額。 本文將討論這些預設值，以及如何申請加大配額。
+做為與其他 Azure 服務，會有限制某些 hello 批次服務相關聯的資源。 許多這些限制會套用由 Azure hello 訂用帳戶或帳戶層級的預設配額。 本文將討論這些預設值，以及如何申請加大配額。
 
-當您設計和相應增加您的 Batch 工作負載時，請記住這些配額。 例如，如果您的集區未觸達您所指定的計算節點目標數目，您可能已達到 Batch 帳戶的核心配額限制，或是您訂用帳戶的地區 VM 核心配額。
+當您設計和相應增加您的 Batch 工作負載時，請記住這些配額。 比方說，如果您的集區未達到您所指定的運算節點的 hello 目標數目，您可能已達到 hello 核心配額限制您的 Batch 帳戶或區域的 VM 核心配額訂用帳戶。
 
-您可以在單一 Batch 帳戶中執行多個 Batch 工作負載，或在相同訂用帳戶 (但不同 Azure 區域) 的 Batch 帳戶之間散佈工作負載。
+您可以在單一批次帳戶，執行多個批次工作負載或散發您的工作負載中 hello 的批次帳戶中相同的訂用帳戶，但位於不同的 Azure 區域。
 
-如果您計劃在 Batch 中執行生產工作負載，您可能需要增加一或多個高於預設值的配額。 若要加大配額，您可以開啟線上 [客戶支援要求](#increase-a-quota) ，不另外加收費用。
+如果您計劃 toorun 生產工作負載，批次中的，您可能需要 tooincrease 一或多個上述 hello 預設 hello 配額。 如果您想 tooraise 配額時，您可以開啟線上[客戶支援要求](#increase-a-quota)不收費。
 
 > [!NOTE]
 > 配額是一種信用限制，不是容量保證。 如果您有大規模的容量需求，請連絡 Azure 支援。
@@ -41,9 +41,9 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="quotas-in-user-subscription-mode"></a>使用者訂用帳戶模式中的配額
 
-針對集區配置模式設定為**使用者訂用帳戶**的 Batch 帳戶，當集區建立時，Batch VM 和其他資源 (例如儲存體帳戶) 會直接建立在訂用帳戶中。 Azure Batch 核心配額不適用於在此模式中建立的帳戶。 相反地，會套用您在地區計算核心和其他資源之訂用帳戶中的配額。 深入了解 [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)中的配額。
+批次帳戶集區配置模式下設定得**使用者訂用帳戶**、 批次 Vm 和其他資源，例如儲存體帳戶、 建立集區時，直接在您的訂用帳戶中建立。 hello Azure 批次核心配額不適用 tooan 帳戶在此模式中建立。 相反地，會套用您地區計算核心和其他資源的訂用帳戶中的 hello 配額。 深入了解 [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)中的配額。
 
-在規劃以使用者訂用帳戶模式所建立的帳戶之資源使用狀況時，請注意每 40 個 Linux VM 或 20 個 Windows VM 就需要下列 Batch 資源 (除了計算核心)：
+在規劃資源使用狀況，在使用者訂用帳戶模式中建立的帳戶時，注意 hello 下列批次 （在加法 toocompute 核心） 的資源所需每 40 Linux Vm 或 20 Windows Vm:
 
 | 資源 | 配額 | 提供者 |
 | --- | ---| --- |
@@ -54,9 +54,9 @@ ms.lasthandoff: 07/11/2017
 | 一個虛擬機器擴展集 | 虛擬機器擴展集 | Microsoft.Compute | 
 | 一個負載平衡器 | 負載平衡器 | Microsoft.Network | 
 
-區域層級或每個 VM 系列的核心配額應根據您的 Batch 集區或集區所需的 VM 大小來設定︰
+在地區層級或每個 VM 系列 hello 核心配額應該集相應 toohello VM 大小所需的程式批次集區或集區：
 
-| 配額 | 提供者 |
+| Quota | 提供者 |
 | --- | ---- |
 | 地區核心總數 | Microsoft.Compute |
 | … 系列的核心 | Microsoft.Compute |
@@ -76,32 +76,32 @@ ms.lasthandoff: 07/11/2017
 <sup>2</sup> 包含資源檔案和環境變數
 
 ## <a name="view-batch-quotas"></a>檢視 Batch 配額
-在 [Azure 入口網站][portal]中檢視您的 Batch 帳戶配額。
+檢視您的批次帳戶配額在 hello [Azure 入口網站][portal]。
 
-1. 在入口網站中選取 [Batch 帳戶]  ，然後選取您感興趣的 Batch 帳戶。
-2. 在 Batch 帳戶的功能表刀鋒視窗上選取 [屬性]。
-3. [屬性] 刀鋒視窗會顯示目前套用至 Batch 帳戶的「配額」 
+1. 選取**批次帳戶**hello 入口網站，然後選取您感興趣的 hello Batch 帳戶。
+2. 選取**屬性**hello 批次帳戶的 [功能表] 刀鋒視窗。
+3. hello 屬性刀鋒視窗會顯示 hello**配額**目前套用 toohello 批次帳戶
    
     ![Batch 帳戶配額][account_quotas]
 
-針對在使用者訂用帳戶模式中建立的 Batch 帳戶，可在 Azure 入口網站中檢視相關的訂用帳戶配額。
+對於批次建立的帳戶使用者訂用帳戶模式中，檢視 hello 與相關 hello Azure 入口網站中的訂用帳戶配額。
 
-1. 選取 [訂用帳戶]，然後選取您要用於 Batch 帳戶的訂用帳戶。
+1. 選取**訂閱**，選取您要用於 hello 批次帳戶的 hello 訂用帳戶。
 
-2. 在 [訂用帳戶] 刀鋒視窗中，選取 [使用量 + 配額]。
+2. 在 hello**訂用帳戶**刀鋒視窗中，選取**使用量 + 配額**。
 
 
 
 ## <a name="increase-a-quota"></a>增加配額
-使用 [Azure 入口網站][portal]，遵循下列步驟來要求增加您 Batch 帳戶或訂用帳戶的配額。 增加配額的類型取決於您 Batch 帳戶的集區配置模式。
+請遵循這些步驟 toorequest，配額增加您的 Batch 帳戶或訂用帳戶使用 hello [Azure 入口網站][portal]。 hello 的類型增加配額取決於您的 Batch 帳戶 hello 集區配置模式。
 
 ### <a name="increase-a-batch-cores-quota"></a>增加 Batch 的核心配額 
 
-如果您是在 **Batch 服務**模式中建立 Batch 帳戶，請遵循下列步驟來要求增加 Batch 的核心配額︰
+如果您的 Batch 帳戶中建立**批次服務**模式中，請遵循這些步驟 toorequest 批次核心配額增加：
 
-1. 選取入口網站儀表板上的 [說明 + 支援] 圖格或入口網站右上角的問號 (**？**)。
+1. 選取 hello**說明 + 支援**入口網站儀表板、 磚或 hello 問號 (**？**) 中的 hello 入口網站的 hello 右上角。
 2. 選取 [新增支援要求] > [基本]。
-3. 在 [基本]  刀鋒視窗上：
+3. 在 hello**基本概念**刀鋒視窗中：
    
     a. **問題類型** > **配額**
    
@@ -112,22 +112,22 @@ ms.lasthandoff: 07/11/2017
     d. **支援方案** > **配額支援 - 已包含**
    
     按一下 [下一步] 。
-4. 在 [問題]  刀鋒視窗上：
+4. 在 hello**問題**刀鋒視窗中：
    
-    a. 根據[商業影響][support_sev]選取 [嚴重性]。
+    a. 選取**嚴重性**根據 tooyour[業務衝擊][support_sev]。
    
-    b.這是另一個 C# 主控台應用程式。 在 [詳細資料] 中，指定每個您想要變更的配額、Batch 帳戶名稱和新限制。
+    b. 在**詳細資料**，指定您想要 toochange、 hello 批次帳戶名稱和 hello 新限制每個配額。
    
     按一下 [下一步] 。
-5. 在 [連絡資訊]  刀鋒視窗上：
+5. 在 hello**連絡資訊**刀鋒視窗中：
    
     a. 選取 [偏好的連絡方式]。
    
-    b. 確認並輸入必要的連絡人詳細資料。
+    b. 請確認，然後輸入所需的 hello 連絡人詳細資料。
    
-    按一下 [建立]  提交支援要求。
+    按一下**建立**toosubmit hello 支援要求。
 
-一旦您上傳支援要求，Azure 支援會與您連絡。 請注意，完成要求最多需要花費 2 個工作天。
+一旦您上傳支援要求，Azure 支援會與您連絡。 請注意，完成 hello 要求可以佔用 too2 工作日。
 
 ### <a name="increase-a-subscription-cores-quota"></a>增加訂用帳戶核心配額
 
@@ -136,7 +136,7 @@ ms.lasthandoff: 07/11/2017
 
 
 ## <a name="related-topics"></a>相關主題
-* [使用 Azure 入口網站建立 Azure Batch 帳戶](batch-account-create-portal.md)
+* [建立使用 hello Azure 入口網站的 Azure Batch 帳戶](batch-account-create-portal.md)
 * [Azure Batch 功能概觀](batch-api-basics.md)
 * [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)
 

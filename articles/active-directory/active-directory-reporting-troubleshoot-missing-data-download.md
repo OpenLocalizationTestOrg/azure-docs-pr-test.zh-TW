@@ -1,6 +1,6 @@
 ---
-title: "疑難排解︰已下載的 Azure Active Directory 活動記錄中的遺漏資料 | Microsoft Docs"
-description: "提供您已下載的 Azure Active Directory 活動記錄中遺漏資料的解決方案。"
+title: "疑難排解： 下載 Azure Active Directory 活動記錄在 hello 遺漏資料 |Microsoft 文件"
+description: "您提供下載的 Azure Active Directory 活動記錄檔中解析 toomissing 資料。"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,30 +15,30 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 3d56f89035da4d1a0074256b165663f81fc2b01e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 027b70e6efc570f81d3c836f50ee52aaa89be71a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="i-cant-find-any-data-in-the-azure-active-directory-activity-logs-i-have-downloaded"></a>我在已下載的 Azure Active Directory 活動記錄中找不到任何資料
+# <a name="i-cant-find-any-data-in-hello-azure-active-directory-activity-logs-i-have-downloaded"></a>我找不到任何資料已下載的 hello Azure Active Directory 活動記錄檔中
 
 
 ## <a name="symptoms"></a>徵兆
 
-我已下載活動記錄 (稽核或登入)，卻沒看到我所選擇時間的所有記錄。 原因為何？ 
+我下載 hello 活動記錄檔 （稽核或登入），而且我沒看到所有 hello 記錄 hello 我所選擇的時間。 原因為何？ 
 
  ![報告](./media/active-directory-reporting-troubleshoot-missing-data-download/01.png)
  
 
 ## <a name="cause"></a>原因
 
-當您在 Azure 入口網站中下載活動記錄時，我們會將級別限制為 120K 筆記錄，依最新記錄排序。 
+當您下載 hello Azure 入口網站中的活動記錄檔時，我們會限制 hello 標尺 too120K 記錄，依照最新。 
 
 ## <a name="resolution"></a>解決方案
 
-您可以利用 [Azure AD 報告 API](active-directory-reporting-api-getting-started.md) 在任何指定時間點擷取最多一萬筆記錄。 我們建議的方法是定期執行指令碼，呼叫報告 API 以增量方式來擷取一段時間的記錄 (例如，每天或每週)。
+您可以利用[Azure AD 報告 Api](active-directory-reporting-api-getting-started.md) toofetch tooa 百萬個記錄，在任何給定時間點。 我們建議的方法是的 toorun 上呼叫 hello 報告 Api toofetch 以排程為基礎的指令碼以增量方式記錄一段時間 （例如，每日或每週）。
 
 ## <a name="next-steps"></a>後續步驟
-請參閱 [Azure Active Directory 報告常見問題集](active-directory-reporting-faq.md)。
+請參閱 hello [reporting 常見問題集的 Azure Active Directory](active-directory-reporting-faq.md)。
 

@@ -1,6 +1,6 @@
 ---
-title: "如何為內部部署應用程式提供安全的遠端存取"
-description: "涵蓋如何使用 Azure AD 應用程式 Proxy 為您的內部部署應用程式提供安全的遠端存取。"
+title: "aaaHow tooprovide 安全遠端存取 tooon 內部部署應用程式"
+description: "涵蓋如何 toouse Azure AD Application Proxy tooprovide 安全遠端存取 tooyour 內部部署應用程式。"
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,71 +15,71 @@ ms.date: 08/04/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 67f7f5b8d411d11c97a8666d1bfc3c0c5f1174ce
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 289e970ed0596fcd06ccf6b2ad92203366fbb494
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-provide-secure-remote-access-to-on-premises-applications"></a>如何為內部部署應用程式提供安全的遠端存取
+# <a name="how-tooprovide-secure-remote-access-tooon-premises-applications"></a>如何 tooprovide 安全的遠端存取 tooon 內部部署應用程式
 
-現今的員工想要隨時隨地都能在任何裝置發揮生產力。 他們想要在自己的裝置上工作，不論這些裝置是平板電腦、手機或膝上型電腦。 而且他們期望能夠存取其所有的應用程式︰雲端中的 SaaS 應用程式以及內部部署的公司應用程式。 傳統上，提供內部部署應用程式的存取權會涉及虛擬私人網路 (VPN) 或非軍事區 (DMZ)。 這些解決方案不僅複雜且難以確保安全，而且設定及管理成本也很高。
+員工目前想 toobe 產能在任何位置，在任何時間，以及從任何裝置。 不管它們是平板電腦、 電話或膝上型電腦，他們想 toowork 自己的裝置上。 以及他們希望 toobe 無法 tooaccess 其應用程式，內部 hello 雲端中的 SaaS 應用程式和公司應用程式。 提供存取 tooon 內部部署應用程式的傳統上會涉及虛擬私人網路 (Vpn) 或非軍事區域 (Dmz)。 不是安全的這些解決方案複雜且困難 toomake 只他們是昂貴的 tooset 及管理。
 
 還有更好的辦法！
 
-在行動至上、雲端至上的世界裡，現代化的員工需要現代化的遠端存取解決方案。 Azure AD 應用程式 Proxy 是 Azure Active Directory 的一項功能，並提供遠端存取做為服務。 這表示它很容易部署、使用和管理。
+Hello 行動優先 （contract-first） 中的現代員工，雲端優先世界需要現代的遠端存取解決方案。 Azure AD 應用程式 Proxy 是 Azure Active Directory 的一項功能，並提供遠端存取做為服務。 這表示它是簡單 toodeploy、 使用和管理。
 
 [!INCLUDE [identity](../../includes/azure-ad-licenses.md)]
 
 ## <a name="what-is-azure-active-directory-application-proxy"></a>什麼是 Azure Active Directory 應用程式 Proxy？
-Azure AD 應用程式 Proxy 針對 Web 應用程式託管的內部部署，提供單一登入 (SSO) 及安全的遠端存取。 您想要發佈的部份應用程式包括 SharePoint 網站、Outlook Web Access 或您擁有的其他任何 LOB Web 應用程式。 這些內部部署 Web 應用程式會與 Azure AD (O365 所使用的相同身分識別和控制平台) 整合。 終端使用者可以使用和 O365 以及其他與 Azure AD 整合之 SaaS 應用程式相同的存取方式，來存取內部部署應用程式。 您不需要變更網路基礎結構，或需要 VPN 才能為使用者提供此解決方案。
+Azure AD 應用程式 Proxy 針對 Web 應用程式託管的內部部署，提供單一登入 (SSO) 及安全的遠端存取。 您會想 toopublish 某些應用程式包含 SharePoint 網站、 Outlook Web Access 中或任何其他 LOB web 應用程式必須。 這些應用程式與 Azure AD 整合的內部部署 web hello 相同的識別，並控制由 O365 的平台。 使用者可以存取您在內部部署應用程式 hello 與 Azure AD 整合他們存取 O365 和其他 SaaS 應用程式的方式相同。 您不需要 toochange hello 網路基礎結構，或為您的使用者需要 VPN tooprovide 此解決方案。
 
 ## <a name="why-is-application-proxy-a-better-solution"></a>為什麼應用程式 Proxy 是較佳的解決方案？
-Azure AD 應用程式 Proxy 可對所有內部部署應用程式提供簡單、安全且符合成本效益的遠端存取解決方案。
+Azure AD 應用程式 Proxy 提供簡單、 安全且符合成本效益的遠端存取解決方案 tooall 在內部部署應用程式。
 
 Azure AD 應用程式 Proxy：
 
 * **簡單**
-   * 您不需要變更或更新應用程式，即可使用應用程式 Proxy。 
-   * 使用者享有一致的驗證體驗。 使用者可以使用 MyApps 入口網站，對於雲端中的 SaaS 應用程式和內部部署的應用程式取得單一登入。 
+   * 您不需要 toochange 或更新您的應用程式 toowork 應用程式 proxy。 
+   * 使用者享有一致的驗證體驗。 他們可以使用 hello 雲端和您的應用程式內部部署中的 hello MyApps tooget 入口網站單一登入 tooboth SaaS 應用程式。 
 * **安全**
-   * 當您使用 Azure AD 應用程式 Proxy 發佈應用程式時，您可以利用 Azure 中豐富的授權控制項和安全性分析。 您會取得雲端級別安全性和 Azure 安全性功能，例如條件式存取和雙步驟驗證。
-   * 您不需要開啟透過防火牆的任何輸入連線，為使用者提供遠端存取。 
+   * 當您發行應用程式使用 Azure AD Application Proxy 時，您可以利用的 hello 豐富的授權控制項和安全性分析在 Azure 中。 您會取得雲端級別安全性和 Azure 安全性功能，例如條件式存取和雙步驟驗證。
+   * 您不需要 tooopen 任何輸入的連線透過防火牆 toogive 您使用者的遠端存取。 
 * **符合成本效益**
-   * 應用程式 Proxy 在雲端中運作，因此可以節省時間和金錢。 內部部署解決方案則一般需要您設定及維護 DMZ、Edge Server 或其他複雜的基礎結構。  
+   * 應用程式 Proxy 可 hello 雲端中，因此可以節省時間和金錢。 在內部部署解決方案通常需要您 tooset 組成，而維護 Dmz 中，邊緣的伺服器或其他複雜的基礎結構。  
 
 ## <a name="what-kind-of-applications-work-with-application-proxy"></a>哪種應用程式可與應用程式 Proxy 搭配運作？
 透過 Azure AD 應用程式 Proxy，您可以存取不同類型的內部應用程式︰
 
 * 使用[整合式 Windows 驗證](active-directory-application-proxy-sso-using-kcd.md)來進行驗證的 Web 應用程式  
 * 使用表單架構或[標頭型](application-proxy-ping-access.md)存取的 Web 應用程式  
-* 您想要公開給不同裝置上豐富應用程式的 Web API  
+* Web 應用程式開發介面，您想要在不同裝置上的 tooexpose toorich 應用程式  
 * 裝載在[遠端桌面閘道](application-proxy-publish-remote-desktop.md)之後的應用程式  
-* 與 Active Directory Authentication Library (ADAL) 整合的豐富型用戶端應用程式
+* 豐富型用戶端應用程式與 hello Active Directory 驗證程式庫 (ADAL) 整合
 
 ## <a name="how-does-application-proxy-work"></a>Application Proxy 的運作方式為何？
-需要設定才能使 Application Proxy 運作的兩個元件：連接器和外部端點。 
+您需要 tooconfigure toomake 應用程式 Proxy 工作的兩個元件： 連接器和外部端點。 
 
-連接器是位於網路內部 Windows 伺服器上的輕量型代理程式。 連接器有助於從雲端中的 Application Proxy 服務到應用程式內部部署的流量流程。 連接器僅使用輸出連線，因此您不需要開啟任何輸入連接埠，或在 DMZ 中放置任何物件。 連接器是無狀態的，且在必要時會從雲端提取資訊。 如需連接器的詳細資訊，例如如何負載平衡和驗證，請參閱[了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)。 
+hello 連接器是輕量型的代理程式位於內部網路的 Windows 伺服器上。 hello 連接器有助於 hello 流量從 hello hello 雲端 tooyour 應用程式在內部部署中的應用程式 Proxy 服務。 它只會使用輸出連線，因此您尚未 tooopen 任何輸入連接埠，或將任何項目放在 hello 周邊網路。 hello 連接器是無狀態，並視 hello 雲端提取資訊。 如需連接器的詳細資訊，例如如何負載平衡和驗證，請參閱[了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)。 
 
-外部端點是使用者在網路外部聯繫應用程式的方式。 外部端點可以直接存取您決定的外部 URL，也可以透過 MyApps 入口網站存取應用程式。 使用者存取這些端點的其中一個時，會在 Azure AD 中進行驗證，然後透過連接器路由至內部部署應用程式。
+hello 外部端點會是您的使用者如何到達您的應用程式網路外部。 它們可以是瀏覽直接 tooan 外部 URL，以決定時，或它們可以透過 hello MyApps 入口網站存取 hello 應用程式。 當使用者前往 tooone 這些端點時，它們在 Azure AD 進行驗證，然後透過進行路由傳送嗨連接器 toohello 在內部部署應用程式。
 
  ![Azure AD 應用程式 Proxy 圖表](./media/active-directory-application-proxy-get-started/azureappproxxy.png)
 
-1. 使用者會透過應用程式 Proxy 服務存取應用程式，然後被導向 Azure AD 登入頁面進行驗證。
-2. 成功登入之後，系統會產生權杖並傳送給用戶端裝置。
-3. 用戶端會將權杖傳送至應用程式 Proxy 服務，該服務會取出權杖的使用者主體名稱 (UPN) 和安全性主體名稱 (SPN)，然後將要求導向至應用程式 Proxy 連接器。
-4. 如果您已設定單一登入，則連接器會代表使用者執行其他任何所需的驗證。
-5. 連接器會將要求傳送至內部部署應用程式。  
-6. 回應會透過應用程式 Proxy 服務與連接器傳送給使用者。
+1. hello 使用者存取透過 hello 應用程式 Proxy 服務的 hello 應用程式，並會導向的 toohello Azure AD 登入頁面 tooauthenticate。
+2. 在成功登入之後，會產生語彙基元，並將其傳送 toohello 用戶端裝置中。
+3. hello 用戶端會傳送 hello 語彙基元 toohello 應用程式 Proxy 服務，擷取 hello 使用者主要名稱 (UPN) 和安全性主體名稱 (SPN)，從 hello 權杖，然後會引導 hello 要求 toohello 應用程式 Proxy 連接器。
+4. 如果您已設定單一登入，hello 連接器執行代表 hello 使用者所需的任何其他驗證。
+5. hello 連接器會傳送 hello 要求 toohello 在內部部署應用程式。  
+6. 透過應用程式 Proxy 服務和連接器 toohello 使用者會傳送 hello 回應。
 
 ### <a name="single-sign-on"></a>單一登入
-Azure AD 應用程式 Proxy 會針對使用整合式 Windows 驗證 (IWA) 的應用程式或宣告感知應用程式提供單一登入 (SSO)。 如果您的應用程式使用 IWA，應用程式 Proxy 會模擬使用 Kerberos 限制委派的使用者來提供 SSO。 如果您具有信任 Azure Active Directory 的宣告感知應用程式，則可以使用 SSO，因為使用者已由 Azure AD 驗證。
+Azure AD 應用程式 Proxy 提供單一登入 (SSO) tooapplications 使用整合式 Windows 驗證 (IWA) 」 或 「 宣告感知應用程式。 如果您的應用程式使用 IWA，應用程式 Proxy 會模擬使用 Kerberos 限制委派 tooprovide SSO hello 使用者。 如果您有 Azure Active Directory 的信任的宣告感知應用程式時，SSO 運作，因為已由 Azure AD 驗證 hello 使用者。
 
-如需有關 Kerberos 的詳細資訊，請參閱[有關 Kerberos 限制委派 (KCD) 您想要知道的一切](https://blogs.technet.microsoft.com/applicationproxyblog/2015/09/21/all-you-want-to-know-about-kerberos-constrained-delegation-kcd)。
+如需有關 Kerberos 的詳細資訊，請參閱[所有您想要關於 Kerberos 限制委派 (KCD) tooknow](https://blogs.technet.microsoft.com/applicationproxyblog/2015/09/21/all-you-want-to-know-about-kerberos-constrained-delegation-kcd)。
 
 ### <a name="managing-apps"></a>管理應用程式
-應用程式隨同 Application Proxy 發佈後，即可管理該應用程式，如同管理 Azure 入口網站中的其他任何企業應用程式一般。 您可以使用 Azure Active Directory 安全性功能，例如條件式存取和雙步驟驗證、控制使用者權限，以及自訂您應用程式的商標。 
+其中一個應用程式發佈應用程式 proxy 時，您可以像是其他任何企業應用程式在 hello Azure 入口網站中加以管理。 您可以使用 Azure Active Directory 安全性功能，例如條件式存取和兩步驟驗證、 控制使用者的權限，以及自訂應用程式的商標 hello。 
 
 ## <a name="get-started"></a>開始使用
 
@@ -87,8 +87,8 @@ Azure AD 應用程式 Proxy 會針對使用整合式 Windows 驗證 (IWA) 的應
 
 開始使用 Application Proxy 有兩個步驟：
 
-1. [啟用應用程式 Proxy 並設定連接器](active-directory-application-proxy-enable.md)。    
-2. [發佈應用程式](active-directory-application-proxy-publish.md) ：使用快速且簡單的精靈發佈內部部署應用程式並提供遠端存取。
+1. [啟用應用程式 Proxy 及設定 hello 連接器](active-directory-application-proxy-enable.md)。    
+2. [發行應用程式](active-directory-application-proxy-publish.md)-使用 hello 快速、 簡易的精靈 tooget 已發行，而且可存取您在內部部署應用程式從遠端。
 
 ## <a name="whats-next"></a>後續步驟
 您發佈第一個應用程式後，應用程式 Proxy 還有其他更多用途：
@@ -99,5 +99,5 @@ Azure AD 應用程式 Proxy 會針對使用整合式 Windows 驗證 (IWA) 的應
 * [使用現有的內部部署 Proxy 伺服器](application-proxy-working-with-proxy-servers.md) 
 * [設定自訂首頁](application-proxy-office365-app-launcher.md)
 
-如需最新消息，請查閱 [應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
+如 hello 最新消息和更新，請參閱 hello[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 

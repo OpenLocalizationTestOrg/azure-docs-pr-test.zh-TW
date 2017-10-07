@@ -1,5 +1,5 @@
 ---
-title: "Azure Stack 儲存體適用的工具"
+title: "aaaTools 堆疊 Azure 儲存體"
 description: "了解 Azure Stack 儲存體資料傳輸工具"
 services: azure-stack
 documentationcenter: 
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 8/16/2017
 ms.author: xiaofmao
-ms.openlocfilehash: 01069b8b7488ae0caaec4ae608c36b0f361e544c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 184a1a51b4267e913aae823df31df3704d8e7b72
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tools-for-azure-stack-storage"></a>Azure Stack 儲存體適用的工具
 
-Microsoft Azure Stack 提供磁碟、Blob、資料表、佇列和帳戶管理功能適用的一組儲存體服務。 如果您要管理資料、將資料移動至 Azure Stack 儲存體，或從 Azure Stack 儲存體移動資料，就可以使用一組 Azure 儲存體工具。 本文提供可用工具的快速概觀。
+Microsoft Azure 堆疊提供一組 hello 儲存體服務，如磁碟、 blob、 資料表、 佇列和帳戶管理功能。 如果您想 toomanage 或移動資料 tooor 從 Azure 堆疊儲存體，您可以使用一組 Azure 儲存體工具。 本文章提供可用的 hello 工具的快速概觀。
 
-最適合您的工具取決於您的需求：
+最適合您的 hello 工具取決於您的需求：
 * [AzCopy](#azcopy)
 
-    可下載的儲存體專用命令列公用程式，能夠從儲存體帳戶內或是在儲存體帳戶之間，從一個物件複製資料到另一個物件。
+    儲存區特定命令列公用程式，您可以下載 toocopy 資料從一個物件 tooanother 儲存體帳戶內或之間的儲存體帳戶。
 
 * [Azure PowerShell](#azure-powershell)
 
@@ -35,57 +35,57 @@ Microsoft Azure Stack 提供磁碟、Blob、資料表、佇列和帳戶管理功
 
 * [Azure CLI](#azure-cli)
 
-    開放原始碼、跨平台的工具，可提供一組運用在 Azure 和 Azure Stack 平台上的命令。
+    可提供一組命令使用 hello Azure 和 Azure 堆疊平台的開放原始碼、 跨平台工具。
 
 * [Microsoft 儲存體總管 (預覽)](#microsoft-azure-storage-explorer)
 
-    具有使用者介面且易於使用的獨立應用程式。
+    輕鬆 toouse 獨立應用程式，但使用者介面。
 
-由於 Azure 和 Azure Stack 的儲存體服務有所不同，因此下列各節所述的各項工具可能會有一些特定的需求。 如需 Azure Stack 儲存體和 Azure 儲存體之間的比較，請參閱 [Azure Stack 儲存體：差異與注意事項](azure-stack-acs-differences.md)。
+由於 toohello Azure 和 Azure 堆疊之間的儲存體服務存在差異，可能會有一些特定的需求，每個工具 hello 下列各節中所述。 如需 Azure Stack 儲存體和 Azure 儲存體之間的比較，請參閱 [Azure Stack 儲存體：差異與注意事項](azure-stack-acs-differences.md)。
 
 
 ## <a name="azcopy"></a>AzCopy
-AzCopy 是一個命令列公用程式，可以使用簡單命令高效率地將資料複製到和複製自 Microsoft Azure Blob 和資料表儲存體。 您可以從儲存體帳戶內或是在儲存體帳戶之間，從一個物件複製資料到另一個物件。 AzCopy 有兩個版本：Windows 上的 AzCopy 和 Linux 上的 AzCopy。 Azure Stack 僅支援 Windows 版本。 
+AzCopy 是從 Microsoft Azure Blob 和資料表儲存體使用簡單的命令，以獲得最佳效能的設計的命令列公用程式 toocopy 資料 tooand。 儲存體帳戶內或之間的儲存體帳戶，您可以從一個物件 tooanother 複製資料。 有兩個版本的 hello AzCopy： 在 Windows 和 Linux 上的 AzCopy 上 AzCopy。 Azure 堆疊只支援 Windows hello 的版本。 
  
 ### <a name="download-and-install-azcopy"></a>下載並安裝 AzCopy 
-[下載](https://aka.ms/azcopyforazurestack) Azure Stack 支援的 Windows 版 AzCopy。 在 Azure Stack 和在 Azure 上安裝與使用 AzCopy 的方式一樣。 若要深入了解，請參閱[使用 AzCopy 命令列公用程式傳輸資料](../storage/common/storage-use-azcopy.md)。 
+[下載](https://aka.ms/azcopyforazurestack)Azure 堆疊的 AzCopy hello 支援 Windows 版本。 您可以安裝和使用 AzCopy 上 Azure 堆疊 hello Azure 與相同的方式。 詳細資訊，請參閱 toolearn [hello AzCopy 命令列公用程式使用傳輸資料](../storage/common/storage-use-azcopy.md)。 
 
 ### <a name="azcopy-command-examples-for-data-transfer"></a>資料傳輸適用的 AzCopy 命令範例
-下列範例會示範一些將資料複製至 Azure Stack Blob 以及從 Azure Stack Blob 複製資料的典型案例。 若要深入了解，請參閱[使用 AzCopy 命令列公用程式傳輸資料](../storage/storage-use-azcopy.md)。 
-#### <a name="download-all-blobs-to-local-disk"></a>將所有 Blob 下載至本機磁碟
+hello 遵循範例示範如何從 Azure 堆疊 blob 複製資料 tooand 的一些典型狀況。 詳細資訊，請參閱 toolearn [hello AzCopy 命令列公用程式使用傳輸資料](../storage/storage-use-azcopy.md)。 
+#### <a name="download-all-blobs-toolocal-disk"></a>下載所有 blob toolocal 磁碟
 ```azcopy
 AzCopy.exe /source:https://myaccount.blob.local.azurestack.external/mycontainer /dest:C:\myfolder /sourcekey:<key> /S
 ```
-#### <a name="upload-single-file-to-virtual-directory"></a>上傳單一檔案到虛擬目錄 
+#### <a name="upload-single-file-toovirtual-directory"></a>單一檔案上傳 toovirtual 目錄 
 ```azcopy
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.local.azurestack.external/mycontainer/vd /DestKey:key /Pattern:abc.txt
 ```
 #### <a name="move-data-between-azure-and-azure-stack-storage"></a>在 Azure 和 Azure Stack 儲存體之間移動資料 
-不支援在 Azure 儲存體和 Azure Stack 之間的非同步資料傳輸。 您必須使用 `/SyncCopy` 選項來指定傳輸。 
+不支援在 Azure 儲存體和 Azure Stack 之間的非同步資料傳輸。 您需要 toospecify hello 傳輸以 hello`/SyncCopy`選項。 
 ```azcopy 
 Azcopy /Source:https://myaccount.blob.local.azurestack.external/mycontainer /Dest:https://myaccount2.blob.core.windows.net/mycontainer2 /SourceKey:AzSKey /DestKey:Azurekey /S /SyncCopy
 ```
 
 ### <a name="azcopy-known-issues"></a>Azcopy 的已知問題
 * 檔案儲存體還無法在 Azure Stack 中使用，因此檔案儲存體上沒有任何可用的 AzCopy 作業。
-* 不支援在 Azure 儲存體和 Azure Stack 之間的非同步資料傳輸。 您可以使用 `/SyncCopy` 選項指定傳輸來複製資料。
-* Azure Stack 儲存體不支援 Linux 版本的 Azcopy。 
+* 不支援在 Azure 儲存體和 Azure Stack 之間的非同步資料傳輸。 您可以指定 hello 傳輸以 hello`/SyncCopy`選項 toocopy hello 資料。
+* Azcopy hello Linux 版本不支援 Azure 堆疊儲存體。 
 
 ## <a name="azure-powershell"></a>Azure PowerShell
 Azure PowerShell 是一個模組，可提供管理 Azure 和 Azure Stack 上服務的 Cmdlet。 此模組為工作型的命令列 Shell 與指令碼語言，專為系統管理所設計。
 
 ### <a name="install-and-configure-powershell-for-azure-stack"></a>安裝及設定用於 Azure Stack 的 PowerShell
-您需要與 Azure Stack 相容的 Azure PowerShell 模組，才能搭配 Azure Stack 使用。 如需詳細資訊，請參閱[安裝適用於 Azure Stack 的 PowerShell](azure-stack-powershell-install.md) 和[設定 Azure Stack 使用者的 PowerShell 環境](azure-stack-powershell-configure-user.md)以深入了解。
+Azure 堆疊相容 Azure PowerShell 模組是與 Azure 堆疊的必要的 toowork。 如需詳細資訊，請參閱[安裝 PowerShell Azure 堆疊以](azure-stack-powershell-install.md)和[設定 hello Azure 堆疊使用者的 PowerShell 環境](azure-stack-powershell-configure-user.md)toolearn 更多。
 
 ### <a name="powershell-sample-script-for-azure-stack"></a>適用於 Azure Stack 的 PowerShell 範例指令碼 
-此範例假設您已成功[安裝適用於 Azure Stack 的 PowerShell](azure-stack-powershell-install.md)。 此指令碼將協助您完成設定，並要求您的 Azure Stack 租用戶認證，以便將帳戶新增至本機 PowerShell 環境。 接著，指令碼將設定預設的 Azure 訂用帳戶、在 Azure 中建立新的儲存體帳戶、在這個新的儲存體帳戶中建立新容器，並將現有的映像檔案 (Blob) 上傳至該容器。 指令碼列出該容器中的所有 Blob 之後，它會在本機電腦中建立新的目的地目錄並下載映像檔。
+此範例假設您已成功[安裝適用於 Azure Stack 的 PowerShell](azure-stack-powershell-install.md)。 此指令碼會協助您 conplete hello 組態，並要求您的 Azure 堆疊租用戶認證 tooadd 您帳戶 toohello 本機 PowerShell environemnt。 然後，hello 指令碼會設定 hello 預設 Azure 訂用帳戶，在 Azure 中建立新的儲存體帳戶，在這個新的儲存體帳戶中建立新的容器並上傳現有的映像檔案 (blob) toothat 容器。 Hello 指令碼會列出該容器中的所有 blob 之後，它會在本機電腦中建立新的目的地目錄，並下載 hello 映像檔案。
 
 1. 安裝 [Azure Stack 相容的 Azure PowerShell 模組](azure-stack-powershell-install.md)。  
-2. 下載[與 Azure Stack 搭配運作所需的工具](azure-stack-powershell-download.md)。  
-3. 開啟 [Windows PowerShell ISE] 和 [以系統管理員​​身分執行]，按一下 **[檔案]** > **[新增]**，以建立新的指令碼檔案。
-4. 複製下列指令碼並貼到新的指令碼檔案中。
-5. 根據您的組態設定，更新指令碼變數。 
-6. 注意：此指令碼必須在下載的 **AzureStack_Tools** 根目錄下執行。 
+2. 下載 hello [Azure 堆疊的工具需要的 toowork](azure-stack-powershell-download.md)。  
+3. 開啟**Windows PowerShell ISE**和**系統管理員身分執行**，按一下 **檔案** > **新增**toocreate 新的指令碼檔。
+4. 複製下列 hello 指令碼並貼上 toohello 新指令碼檔。
+5. 更新您的組態設定為基礎的 hello 指令碼變數。 
+6. 注意： 此指令碼有執行 hello 根目錄下的 toobe 下載**AzureStack_Tools**。 
 
 ```PowerShell 
 # begin
@@ -95,23 +95,23 @@ $ARMEndPoint = "https://management.local.azurestack.external"
 $GraphAudiance = "https://graph.windows.net/" 
 $AADTenantName = "<myDirectoryTenantName>.onmicrosoft.com" 
 
-$SubscriptionName = "basic" # Update with the name of your subscription.
-$ResourceGroupName = "myTestRG" # Give a name to your new resource group.
-$StorageAccountName = "azsblobcontainer" # Give a name to your new storage account. It must be lowercase!
+$SubscriptionName = "basic" # Update with hello name of your subscription.
+$ResourceGroupName = "myTestRG" # Give a name tooyour new resource group.
+$StorageAccountName = "azsblobcontainer" # Give a name tooyour new storage account. It must be lowercase!
 $Location = "Local" # Choose "Local" as an example.
-$ContainerName = "photo" # Give a name to your new container.
+$ContainerName = "photo" # Give a name tooyour new container.
 $ImageToUpload = "C:\temp\Hello.jpg" # Prepare an image file and a source directory in your local computer.
 $DestinationFolder = "C:\temp\downlaod" # A destination directory in your local computer.
 
-# Import the Connect PowerShell module"
+# Import hello Connect PowerShell module"
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 Import-Module .\Connect\AzureStack.Connect.psm1
 
-# Configure the PowerShell environment
+# Configure hello PowerShell environment
 # Register an AzureRM environment that targets your Azure Stack instance
 Add-AzureRmEnvironment -Name $ARMEvnName -ARMEndpoint $ARMEndPoint 
 
-# Set the GraphEndpointResourceId value
+# Set hello GraphEndpointResourceId value
 Set-AzureRmEnvironment -Name $ARMEvnName -GraphEndpoint $GraphAudiance
 
 # Login
@@ -139,23 +139,23 @@ Set-AzureStorageBlobContent -Container $ContainerName -File $ImageToUpload
 # List all blobs in a container.
 Get-AzureStorageBlob -Container $ContainerName
 
-# Download blobs from the container:
-# Get a reference to a list of all blobs in a container.
+# Download blobs from hello container:
+# Get a reference tooa list of all blobs in a container.
 $blobs = Get-AzureStorageBlob -Container $ContainerName
 
-# Create the destination directory.
+# Create hello destination directory.
 New-Item -Path $DestinationFolder -ItemType Directory -Force  
 
-# Download blobs into the local destination directory.
+# Download blobs into hello local destination directory.
 $blobs | Get-AzureStorageBlobContent –Destination $DestinationFolder
 
 # end
 ```
 
 ### <a name="powershell-known-issues"></a>PowerShell 的已知問題 
-Azure Stack 目前相容的 Azure PowerShell 模組版本是 1.2.10。 此版本與最新版的 Azure PowerShell 不同。 此差異會影響儲存體服務作業：
+hello 目前相容 Azure PowerShell 模組版本的 Azure 堆疊是 1.2.10。 它與不同的 Azure PowerShell hello 最新版本。 此差異會影響儲存體服務作業：
 
-* `Get-AzureRmStorageAccountKey` 在 1.2.10 版的傳回值格式有兩個屬性：`Key1` 和 `Key2`，而目前的 Azure 版本則會傳回包含所有帳戶金鑰的陣列。
+* hello 的傳回值格式`Get-AzureRmStorageAccountKey`版本 1.2.10 有兩個屬性：`Key1`和`Key2`，而目前 Azure 版本以 hello 傳回陣列，其中包含所有 hello account 索引鍵。
    ```
    # This command gets a specific key for a Storage account, 
    # and works for Azure PowerShell version 1.4, and later versions.
@@ -171,19 +171,19 @@ Azure Stack 目前相容的 Azure PowerShell 模組版本是 1.2.10。 此版本
    如需詳細資訊，請參閱 [Get-AzureRmStorageAccountKey](https://docs.microsoft.com/en-us/powershell/module/azurerm.storage/Get-AzureRmStorageAccountKey?view=azurermps-4.1.0)。
 
 ## <a name="azure-cli"></a>Azure CLI
-Azure CLI 是管理 Azure 資源的 Azure 命令列體驗。 您可以將它安裝在 macOS、Linux 及 Windows 上，並從命令列來執行。 
+hello Azure CLI 是 Azure 的命令列體驗來管理 Azure 資源。 您可以將它安裝在 macOS、 Linux 及 Windows，並從 hello 命令列執行。 
 
-Azure CLI 已針對以下作業進行最佳化：從命令列管理 Azure 資源進行，以及建置可用於 Azure Resource Manager 的自動化指令碼。 它提供許多與 Azure Stack 入口網站相同的功能，包括眾多資料存取功能。
+Azure CLI 最適合用於與從 hello 命令列管理 Azure 資源和建置工作針對 hello Azure 資源管理員的自動化指令碼。 它會提供許多 hello hello Azure 堆疊入口網站，包括存取大量資料中找到的相同函式。
 
-Azure Stack 需要有 Azure CLI 2.0 版。 如需有關安裝和設定用於 Azure Stack 的 Azure CLI 詳細資訊，請參閱[安裝和設定 Azure Stack CLI](azure-stack-connect-cli.md)。 如需有關如何搭配 Azure Stack 儲存體帳戶中的資源使用 Azure CLI 2.0 執行多種工作的詳細資訊，請參閱[使用 Azure CLI2.0 搭配 Azure 儲存體](../storage/storage-azure-cli.md)
+Azure Stack 需要有 Azure CLI 2.0 版。 如需有關安裝和設定用於 Azure Stack 的 Azure CLI 詳細資訊，請參閱[安裝和設定 Azure Stack CLI](azure-stack-connect-cli.md)。 如需有關如何 toouse hello Azure CLI 2.0 tooperform 數個工作使用您的 Azure 堆疊儲存體帳戶中的資源，請參閱[使用 hello Azure CLI2.0 與 Azure 儲存體](../storage/storage-azure-cli.md)
 
 ### <a name="azure-cli-sample-script-for-azure-stack"></a>適用於 Azure Stack 的 Azure CLI 範例指令碼 
-完成 CLI 的安裝和設定之後，您就可以嘗試下列步驟，使用一個小殼層範例指令碼來與 Azure Stack 儲存體資源進行互動。 此指令碼會先在您的儲存體帳戶中建立一個新容器，然後將現有的檔案 (以 Blob 的形式) 上傳至該容器、列出容器中的所有 Blob，最後再將檔案下載到本機電腦上您指定的目的地。 執行此指令碼之前，請確定您已成功連線並登入目標 Azure Stack。 
-1. 開啟您喜愛的文字編輯器，然後複製上述指令碼並貼入編輯器中。
-2. 更新指令碼的變數以反映您的組態設定。 
-3. 在您更新必要變數之後，請儲存指令碼並結束編輯器。 後續步驟假設您已將指令碼命名為 my_storage_sample.sh。
-4. 如有必要，請將指令碼標示為可執行檔︰`chmod +x my_storage_sample.sh`
-5. 執行指令碼。 例如，在 Bash 中：`./my_storage_sample.sh`
+一旦您完成 hello CLI 安裝與設定，您可以嘗試下列與使用 Azure 堆疊儲存體資源的小殼層範例指令碼 toointeract 步驟 toowork hello。 hello 指令碼會在儲存體帳戶，會先建立新的容器，然後上傳現有的檔案 （以 blob 的形式） toothat 容器、 列出 hello 容器中的所有 blob 和最後，下載 hello 檔案 tooa 目的地，您指定在本機電腦上的資料。 執行這個指令碼之前，請確定您已成功連接和登入 toohello 目標 Azure 堆疊。 
+1. 開啟您偏好的文字編輯器 中，然後複製並貼到 hello 編輯器上述指令碼的 hello。
+2. 更新 hello 指令碼變數 tooreflect 組態設定。 
+3. 更新 hello 必要變數之後，儲存 hello 指令碼，並結束編輯器。 hello 接下來的步驟假設您已為指令碼 my_storage_sample.sh 命名。
+4. 如有必要，請標示 hello 做為可執行檔的指令碼：`chmod +x my_storage_sample.sh`
+5. 執行 hello 指令碼。 例如，在 Bash 中：`./my_storage_sample.sh`
 
 ```bash
 #!/bin/bash
@@ -197,22 +197,22 @@ export AZURESTACK_STORAGE_BLOB_NAME=<blob_name>
 export FILE_TO_UPLOAD=<file_to_upload>
 export DESTINATION_FILE=<destination_file>
 
-echo "Creating the resource group..."
+echo "Creating hello resource group..."
 az group create --name $AZURESTACK_RESOURCE_GROUP --location $AZURESTACK_RG_LOCATION
 
-echo "Creating the storage account..."
+echo "Creating hello storage account..."
 az storage account create --name $AZURESTACK_STORAGE_ACCOUNT_NAME --resource-group $AZURESTACK_RESOURCE_GROUP --account-type Standard_LRS
 
-echo "Creating the blob container..."
+echo "Creating hello blob container..."
 az storage container create --name $AZURESTACK_STORAGE_CONTAINER_NAME --account-name $AZURESTACK_STORAGE_ACCOUNT_NAME
 
-echo "Uploading the file..."
+echo "Uploading hello file..."
 az storage blob upload --container-name $AZURESTACK_STORAGE_CONTAINER_NAME --file $FILE_TO_UPLOAD --name $AZURESTACK_STORAGE_BLOB_NAME --account-name $AZURESTACK_STORAGE_ACCOUNT_NAME
 
-echo "Listing the blobs..."
+echo "Listing hello blobs..."
 az storage blob list --container-name $AZURESTACK_STORAGE_CONTAINER_NAME --account-name $AZURESTACK_STORAGE_ACCOUNT_NAME --output table
 
-echo "Downloading the file..."
+echo "Downloading hello file..."
 az storage blob download --container-name $AZURESTACK_STORAGE_CONTAINER_NAME --account-name $AZURESTACK_STORAGE_ACCOUNT_NAME --name $AZURESTACK_STORAGE_BLOB_NAME --file $DESTINATION_FILE --output table
 
 echo "Done"
@@ -220,15 +220,15 @@ echo "Done"
 
 ## <a name="microsoft-azure-storage-explorer"></a>Microsoft Azure 儲存體總管
 
-Microsoft Azure 儲存體總管是 Windows 提供的獨立應用程式。 此工具可讓您在 Windows、MacOS 和 Linux 上輕鬆處理 Azure 儲存體和 Azure Stack 儲存體的資料。 如果想要輕鬆地管理您的 Azure Stack 儲存體資料，請考慮使用 Microsoft Azure 儲存體總管。
+Microsoft Azure 儲存體總管是 Windows 提供的獨立應用程式。 它可讓您 tooeasily 使用在 Windows、 macOS 和 Linux 的 Azure 儲存體和 Azure 堆疊儲存體資料。 如果您想要輕鬆 toomanage Azure 堆疊儲存資料，請考慮使用 Microsoft Azure 儲存體總管。
 
-如需有關設定 Azure 儲存體總管來處理 Azure Stack 的詳細資訊，請參閱[將儲存體總管連線到 Azure Stack 訂用帳戶](azure-stack-storage-connect-se.md)。
+如需設定 Azure 儲存體總管 toowork Azure 堆疊的詳細資訊，請參閱[連接儲存體總管 tooan 堆疊 Azure 訂用帳戶](azure-stack-storage-connect-se.md)。
 
 如需有關 Microsoft Azure 儲存體總管的詳細資訊，請參閱[開始使用儲存體總管 (預覽)](../vs-azure-tools-storage-manage-with-storage-explorer.md)
 
 ## <a name="next-steps"></a>後續步驟
-* [將儲存體總管連線到 Azure Stack 訂用帳戶](azure-stack-storage-connect-se.md)
+* [連接儲存體總管 tooan 堆疊 Azure 訂用帳戶](azure-stack-storage-connect-se.md)
 * [開始使用儲存體總管 (預覽)](../vs-azure-tools-storage-manage-with-storage-explorer.md)
 * [與 Azure 一致的儲存體：差異與注意事項](azure-stack-acs-differences.md)
-* [Microsoft Azure 儲存體簡介](../storage/common/storage-introduction.md)
+* [簡介 tooMicrosoft Azure 儲存體](../storage/common/storage-introduction.md)
 

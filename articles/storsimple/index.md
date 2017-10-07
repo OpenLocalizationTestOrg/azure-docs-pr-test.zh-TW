@@ -1,6 +1,6 @@
 ---
-title: "Azure storSimple 文件 - 教學課程 | Microsoft Docs"
-description: "了解如何使用 Azure StorSimple，這是一個整合式儲存體解決方案，可管理內部部署裝置與 Azure 雲端儲存體之間的儲存體工作。"
+title: "aaaAzure StorSimple 文件-教學課程 |Microsoft 文件"
+description: "了解 toouse Azure StorSimple、 整合式儲存體解決方案，可管理儲存在內部部署裝置與 Azure 雲端儲存體之間的工作。"
 services: storsimple
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 21f24f387e96ac763419c37eeb16c75eab0bc452
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9768c17118e8d5eecbd6791ef1be42afb1286c9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="storsimple-documentation"></a>StorSimple 文件
 
-了解如何使用 Azure StorSimple，這是一個整合式儲存體解決方案，可管理內部部署裝置與 Azure 雲端儲存體之間的儲存體工作。 教學課程和其他文件會示範如何設定儲存體管理、與位置無關的備份及災害復原。
+了解 toouse Azure StorSimple、 整合式儲存體解決方案，可管理儲存在內部部署裝置與 Azure 雲端儲存體之間的工作。 教學課程和其他文件會示範如何設定儲存體管理、與位置無關的備份及災害復原。
 
 <ul class="panelContent cardsFTitle">
      <li>

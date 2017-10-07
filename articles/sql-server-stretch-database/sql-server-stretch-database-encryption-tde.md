@@ -1,5 +1,5 @@
 ---
-title: "為 Stretch Database 啟用透明資料加密- Azure | Microsoft Docs"
+title: "透明資料加密，以使用 Stretch Database-Azure aaaEnable |Microsoft 文件"
 description: "為 Azure 上的 SQL Server Stretch Database 啟用透明資料加密 (TDE)"
 services: sql-server-stretch-database
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2016
 ms.author: douglasl
-ms.openlocfilehash: ceb355d2ba872ed5d3886c6dc82ca75b1854db0a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d6bff455030ac8851b2184c1e8097afd61361d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-transparent-data-encryption-tde-for-stretch-database-on-azure"></a>為 Azure 上的 Stretch Database 啟用透明資料加密 (TDE)
 > [!div class="op_single_selector"]
@@ -27,26 +27,26 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-透明資料加密 (TDE) 可在不需變更應用程式的情況下，對靜止的資料庫、相關聯的備份和交易記錄檔執行即時加密和解密，協助防止惡意活動的威脅。
+透明資料加密 (TDE) 可協助防範惡意活動的 hello 威脅，藉由執行 hello 資料庫、 相關聯的備份和靜止的交易記錄檔的即時加密與解密，而不需要變更 toohello應用程式。
 
-TDE 會使用稱為資料庫加密金鑰的對稱金鑰來加密整個資料庫的儲存體。 資料庫加密金鑰是由內建伺服器憑證保護。 內建伺服器憑證對每個 Azure 伺服器都是唯一的。 Microsoft 至少每 90 天會自動替換這些憑證。 如需 TDE 的一般描述，請參閱 [透明資料加密 (TDE)]。
+TDE 會使用對稱金鑰的呼叫的 hello 資料庫加密金鑰將整個資料庫的 hello 儲存體。 hello 資料庫加密金鑰受到由內建的伺服器憑證。 hello 內建伺服器憑證是唯一的每個 Azure 伺服器。 Microsoft 至少每 90 天會自動替換這些憑證。 如需 TDE 的一般描述，請參閱 [透明資料加密 (TDE)]。
 
 ## <a name="enabling-encryption"></a>啟用加密
-若要為 Azure 資料庫 (儲存從已啟用 Stretch 之 SQL Server 料庫移轉的資料) 啟用 TDE，請執行下列步驟：
+正在儲存從已啟用 Stretch 的 SQL Server 資料庫，移轉資料的 hello Azure 資料庫的 TDE tooenable hello 下列事項：
 
-1. 在 [Azure 入口網站](https://portal.azure.com)
-2. 在資料庫刀鋒視窗中，按一下 [設定]  按鈕
-3. 選取 [透明資料加密]  選項 ![][1]
-4. 選取 **[開啟]** 設定，然後選取 **[儲存]**
+1. 開啟 hello 資料庫在 hello [Azure 入口網站](https://portal.azure.com)
+2. 在 hello 資料庫刀鋒視窗中，按一下 hello**設定**按鈕
+3. 選取 hello**透明資料加密**選項![][1]
+4. 選取 hello**上**設定，然後再選取**儲存**
    ![][2]
 
 ## <a name="disabling-encryption"></a>停用加密
-若要為 Azure 資料庫 (儲存從已啟用 Stretch 之 SQL Server 料庫移轉的資料) 停用 TDE，請執行下列步驟：
+正在儲存從已啟用 Stretch 的 SQL Server 資料庫，移轉資料的 hello Azure 資料庫的 TDE toodisable hello 下列事項：
 
-1. 在 [Azure 入口網站](https://portal.azure.com)
-2. 在資料庫刀鋒視窗中，按一下 [設定]  按鈕
-3. 選取 [透明資料加密]  選項
-4. 選取 [關閉] 設定，然後選取 [儲存]
+1. 開啟 hello 資料庫在 hello [Azure 入口網站](https://portal.azure.com)
+2. 在 hello 資料庫刀鋒視窗中，按一下 hello**設定**按鈕
+3. 選取 hello**透明資料加密**選項
+4. 選取 hello**關閉**設定，然後再選取**儲存**
 
 <!--Anchors-->
 [透明資料加密 (TDE)]: https://msdn.microsoft.com/library/bb934049.aspx

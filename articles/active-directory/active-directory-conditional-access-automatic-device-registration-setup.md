@@ -1,6 +1,6 @@
 ---
-title: "如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊 | Microsoft Docs"
-description: "設定讓已加入網域的 Windows 裝置以自動和無訊息方式向 Azure Active Directory 註冊。"
+title: "aaaHow tooconfigure 自動註冊的 Windows 網域的裝置與 Azure Active Directory |Microsoft 文件"
+description: "設定您已加入網域的 Windows 裝置 tooregister 自動且無訊息地與 Azure Active Directory。"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,70 +15,70 @@ ms.topic: article
 ms.date: 06/16/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: dccd7df6a5f85df4179c7ea7cfc476cfb57f48c0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6a1aab753f5456ed06ba7979ab05f70f29b4ddee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-automatic-registration-of-windows-domain-joined-devices-with-azure-active-directory"></a>如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊
+# <a name="how-tooconfigure-automatic-registration-of-windows-domain-joined-devices-with-azure-active-directory"></a>如何 tooconfigure 自動註冊的 Windows 網域的裝置與 Azure Active Directory
 
-若要使用 [Azure Active Directory 裝置型條件式存取](active-directory-conditional-access-azure-portal.md)，電腦必須向 Azure Active Directory (Azure AD) 註冊。 您可以在 [Azure Active Directory PowerShell 模組](/powershell/azure/install-msonlinev1?view=azureadps-2.0) 中使用 [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) Cmdlet，以取得您組織中已註冊的裝置清單。 
+toouse [Azure Active Directory 裝置型條件式存取](active-directory-conditional-access-azure-portal.md)，您的電腦必須向 Azure Active Directory (Azure AD)。 您可以在組織中取得一份已註冊的裝置使用 hello [Get MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice)指令程式在 hello [Azure Active Directory PowerShell 模組](/powershell/azure/install-msonlinev1?view=azureadps-2.0)。 
 
-本文會提供可供設定讓已加入網域的 Windows 裝置自動向組織中之 Azure AD 註冊的相關步驟。
+本文章提供您 hello 步驟來設定與 Azure AD 組織中的 hello 自動註冊的 Windows 網域的裝置。
 
 
 如需下列詳細資訊︰
 
 - 有關條件式存取，請參閱 [Azure Active Directory 裝置型條件式存取](active-directory-conditional-access-azure-portal.md)。 
-- 有關工作場所中的 Windows 10 裝置以及向 Azure AD 註冊後的進階體驗，請參閱[適合企業使用的 Windows 10：使用裝置處理工作](active-directory-azureadjoin-windows10-devices-overview.md)。
-- CSP 中的 Windows 10 企業版 E3，請參閱 [CSP 中的 Windows 10 企業版 E3 概觀](https://docs.microsoft.com/en-us/windows/deployment/windows-10-enterprise-e3-overview)。
+- Windows 10 裝置 hello 工作地點和增強的 hello 體驗時向 Azure AD，請參閱[hello 企業版的 Windows 10： 使用工作用裝置](active-directory-azureadjoin-windows10-devices-overview.md)。
+- Windows 10 企業版 E3 中的 CSP，請參閱 hello [CSP 概觀中的 Windows 10 企業版 E3](https://docs.microsoft.com/en-us/windows/deployment/windows-10-enterprise-e3-overview)。
 
 
 ## <a name="before-you-begin"></a>開始之前
 
-開始在您的環境中設定自動註冊已加入網域的 Windows 裝置之前，您應該先熟悉支援的案例和條件約束。  
+開始設定您的環境中的 hello 自動註冊的 Windows 網域的裝置之前，您應該熟悉 hello 支援案例和 hello 條件約束。  
 
-為了改善說明的可讀性，本主題使用下列詞彙︰ 
+tooimprove hello 可讀性的 hello 描述，本主題會使用下列詞彙的 hello: 
 
-- **現行 Windows 裝置** - 這個詞彙是指執行 Windows 10 或 Windows Server 2016 之已加入網域的裝置。
-- **舊版 Windows 裝置** - 這個詞彙是指並非執行 Windows 10 或 Windows Server 2016 之所有**支援的**已加入網域 Windows 裝置。  
+- **目前的 Windows 裝置**-此一詞是指 toodomain 聯結的裝置執行 Windows 10 或 Windows Server 2016。
+- **舊版的 Windows 裝置**-此一詞是指 tooall**支援**加入網域的 Windows 裝置的非執行 Windows 10 或 Windows Server 2016。  
 
 
 ### <a name="windows-current-devices"></a>現行 Windows 裝置
 
-- 對於執行 Windows 桌面作業系統的裝置，我們建議使用 Windows 10 年度更新版 (版本 1607) 或更新版本。 
-- 非同盟的環境**支援**現行 Windows 裝置註冊，例如密碼雜湊同步處理組態。  
+- 對於執行 hello Windows 桌面作業系統的裝置，我們建議使用 Windows 10 年度更新 （版本 1607年） 或更新版本。 
+- hello Windows 目前裝置的註冊**是**支援在非同盟的環境，例如密碼雜湊同步處理設定。  
 
 
 ### <a name="windows-down-level-devices"></a>舊版 Windows 裝置
 
-- 以下是支援的舊版 Windows Server 裝置：
+- 支援下列舊版的 Windows 裝置 hello:
     - Windows 8.1
     - Windows 7
     - Windows Server 2012 R2
     - Windows Server 2012
     - Windows Server 2008 R2
-- 在非同盟環境中，**支援**透過無縫單一登入 [Azure Active Directory 無縫單一登入](https://aka.ms/hybrid/sso)來註冊舊版 Windows 裝置。
-- 對於使用漫遊設定檔的裝置，**不支援**註冊舊版 Windows 裝置。 如果您倚賴設定檔或設定的漫遊，請使用 Windows 10。
+- hello 舊版的 Windows 裝置的註冊**是**透過無接縫單一登入的非同盟環境中支援[Azure Active Directory 無接縫單一登入](https://aka.ms/hybrid/sso)。
+- hello 舊版的 Windows 裝置的註冊**不**支援使用漫遊設定檔的裝置。 如果您倚賴設定檔或設定的漫遊，請使用 Windows 10。
 
 
 
 ## <a name="prerequisites"></a>必要條件
 
-開始啟用自動註冊組織中已加入網域的裝置之前，您必須先確定執行最新版的 Azure AD connect。
+開始啟用 hello 自動登錄的組織中已加入網域的裝置之前，您需要確定您正在執行最新版的 Azure AD toomake 連接。
 
 Azure AD Connect：
 
-- 保持內部部署 Active Directory (AD) 中的電腦帳戶和 Azure AD 中的裝置物件之間的關聯。 
+- 會保留在內部部署 Active Directory (AD) 和 Azure AD 中的 hello 裝置物件中的 hello 電腦帳戶的 hello 關聯。 
 - 啟用其他裝置相關功能，例如 Windows Hello 企業版。
 
 
 
 ## <a name="configuration-steps"></a>組態步驟
 
-本主題包含所有一般組態案例所需的步驟。  
-使用下表來取得您的案例所需步驟的概觀︰  
+本主題包含所有的一般組態案例的 hello 必要步驟。  
+使用下列資料表 tooget 您案例所需的 hello 步驟的概觀的 hello:  
 
 
 
@@ -94,20 +94,20 @@ Azure AD Connect：
 
 ## <a name="step-1-configure-service-connection-point"></a>步驟 1︰設定服務連接點
 
-您的裝置會在註冊期間使用服務連接點 (SCP) 物件來探索 Azure AD 租用戶資訊。 在內部部署 Active Directory (AD) 中，用於自動註冊已加入網域裝置的 SCP 物件必須存在於電腦樹系的組態命名內容資料分割中。 每個樹系只有一個組態命名內容。 在多樹系 Active Directory 組態中，服務連接點必須存在於包含已加入網域電腦的所有樹系中。
+在 hello 註冊 toodiscover Azure AD 租用戶資訊期間使用您的裝置 hello 服務連線點 (SCP) 物件。 在您內部部署 Active Directory (AD)、 hello 自動登錄的裝置已加入網域的 hello SCP 物件必須存在於 hello 設定命名內容分割 hello 電腦樹系。 每個樹系只有一個組態命名內容。 在多樹系 Active Directory 組態中，包含已加入網域的電腦的所有樹系中必須有 hello 服務連接點。
 
-您可以使用 [**Get-ADRootDSE**](https://technet.microsoft.com/library/ee617246.aspx) Cmdlet 來擷取樹系的組態命名內容。  
+您可以使用 hello [ **Get ADRootDSE** ](https://technet.microsoft.com/library/ee617246.aspx) cmdlet tooretrieve hello 設定命名內容的樹系。  
 
-如果樹系的 Active Directory 網域名稱為 fabrikam.com，則組態命名內容為：
+Hello Active Directory 網域名稱與為樹系*fabrikam.com*，hello 設定命名內容為：
 
 `CN=Configuration,DC=fabrikam,DC=com`
 
-在您的樹系中，用於自動註冊已加入網域裝置的 SCP 物件位於︰  
+在您的樹系中 hello 自動登錄的裝置已加入網域的 hello SCP 物件位於：  
 
 `CN=62a0ff2e-97b9-4513-943f-0d221bd30080,CN=Device Registration Configuration,CN=Services,[Your Configuration Naming Context]`
 
-視您部署 Azure AD Connect 的方式而定，可能已經設定 SCP 物件。
-您可以使用下列 Windows PowerShell 指令碼，確認物件是否存在並擷取探索值︰ 
+根據您如何部署 Azure AD Connect，hello SCP 物件可能已設定。
+您可以確認 hello hello 物件存在，以及擷取使用下列 Windows PowerShell 指令碼的 hello hello 探索值： 
 
     $scp = New-Object System.DirectoryServices.DirectoryEntry;
 
@@ -115,19 +115,19 @@ Azure AD Connect：
 
     $scp.Keywords;
 
-**$scp.Keywords** 的輸出會顯示 Azure AD 租用戶資訊，例如：
+hello **$scp。關鍵字**輸出會顯示 hello Azure AD 租用戶的資訊，例如：
 
     azureADName:microsoft.com
     azureADId:72f988bf-86f1-41af-91ab-2d7cd011db47
 
-如果服務連接點不存在，請在 Azure AD Connect 伺服器上執行 `Initialize-ADSyncDomainJoinedComputerSync` Cmdlet 加以建立。 需要企業系統管理員認證才能執行此 Cmdlet。  
-此 Cmdlet：
+如果 hello 服務連接點不存在，可以建立執行 hello`Initialize-ADSyncDomainJoinedComputerSync`您 Azure AD Connect 的伺服器上的 cmdlet。 企業系統管理員認證是必要的 toorun 這個指令程式。  
+hello cmdlet:
 
-- 在 Azure AD Connect 連線到的 Active Directory 樹系中建立服務連接點。 
-- 要求您指定 `AdConnectorAccount` 參數。 這是在 Azure AD Connect 中設定為 Active Directory 連接器帳戶的帳戶。 
+- 建立 hello 連接到 Azure AD Connect 的 Active Directory 樹系中的 hello 服務連接點。 
+- 您需要 toospecify hello`AdConnectorAccount`參數。 這是設定為 Active Directory 連接器帳戶，在 Azure AD 中的連接的 hello 帳戶。 
 
 
-以下指令碼顯示使用此 Cmdlet 的範例。 在此指令碼中，`$aadAdminCred = Get-Credential` 會要求您輸入使用者名稱。 您必須提供使用者主體名稱 (UPN) 格式 (`user@example.com`) 的使用者名稱。 
+hello 下列指令碼範例示範使用 hello cmdlet。 此指令碼，在`$aadAdminCred = Get-Credential`需要您 tootype 使用者名稱。 您需要在 hello 使用者主要名稱 (UPN) 格式的 tooprovide hello 使用者名稱 (`user@example.com`)。 
 
 
     Import-Module -Name "C:\Program Files\Microsoft Azure Active Directory Connect\AdPrep\AdSyncPrep.psm1";
@@ -136,14 +136,14 @@ Azure AD Connect：
 
     Initialize-ADSyncDomainJoinedComputerSync –AdConnectorAccount [connector account name] -AzureADCredentials $aadAdminCred;
 
-`Initialize-ADSyncDomainJoinedComputerSync` Cmdlet：
+hello `Initialize-ADSyncDomainJoinedComputerSync` cmdlet:
 
-- 使用 Active Directory PowerShell 模組，此模組依賴網域控制站上執行的 Active Directory Web 服務。 執行 Windows Server 2008 R2 和更新版本的網域控制站可支援 Active Directory Web 服務。
-- 只有 **MSOnline PowerShell 模組 1.1.166.0 版**才支援。 若要下載此模組，請使用這個[連結](http://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185)。   
+- 使用 hello Active Directory PowerShell 模組，而這需依賴 Active Directory Web 服務的網域控制站上執行。 執行 Windows Server 2008 R2 和更新版本的網域控制站可支援 Active Directory Web 服務。
+- 只支援 hello **MSOnline PowerShell 模組版本 1.1.166.0**。 toodownload 這個模組中使用這個[連結](http://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185)。   
 
-對於執行 Windows Server 2008 或更早版本的網域控制站，請使用下列指令碼來建立服務連接點。
+執行 Windows Server 2008 或更早版本的網域控制站，使用下列 toocreate hello 服務連接點的 hello 指令碼。
 
-在多樹系組態中，您應該使用下列指令碼在電腦所在的樹系中建立服務連接點︰
+在多樹系組態中，您應該使用下列指令碼 toocreate hello 服務連接點電腦所在的每個樹系中的 hello:
  
     $verifiedDomain = "contoso.com"    # Replace this with any of your verified domain names in Azure AD
     $tenantID = "72f988bf-86f1-41af-91ab-2d7cd011db47"    # Replace this with you tenant ID
@@ -164,42 +164,42 @@ Azure AD Connect：
 
 ## <a name="step-2-setup-issuance-of-claims"></a>步驟 2︰設定宣告的發行
 
-在同盟 Azure AD 組態中，裝置倚賴 Active Directory Federation Services (AD FS) 或協力廠商內部部署同盟伺服器向 Azure AD 進行驗證。 裝置會進行驗證以取得向 Azure Active Directory 裝置註冊服務 (Azure ADS) 註冊的存取權杖。
+在同盟的 Azure AD 設定裝置依賴 Active Directory Federation Services (AD FS)，或第 3 個合作對象在內部部署同盟服務 tooauthenticate tooAzure AD。 裝置驗證 tooget 存取語彙基元 tooregister 針對 hello Azure Active Directory 裝置註冊服務 (Azure DRS)。
 
-現行 Windows 裝置會使用整合式 Windows 驗證向內部部署同盟服務所裝載的作用中 WS-Trust 端點 (1.3 或 2005 版) 進行驗證。
+使用整合式 Windows 驗證 tooan active Ws-trust （1.3 或 2005年版） 裝載端點 hello 內部 federation service 進行驗證的目前裝置的 Windows。
 
 > [!NOTE]
-> 使用 AD FS 時，必須啟用 **adfs/services/trust/13/windowstransport** 或 **adfs/services/trust/2005/windowstransport**。 如果您使用 Web 驗證 Proxy，也需確定已透過 Proxy 發佈此端點。 您可以在 AD FS 管理主控台的 [服務] > [端點] 底下看到已啟用的端點。
+> 使用 AD FS 時，必須啟用 **adfs/services/trust/13/windowstransport** 或 **adfs/services/trust/2005/windowstransport**。 如果您使用 hello Web 驗證 Proxy，也請確定此端點會透過 hello proxy 發佈。 您可以看到哪些端點會透過 hello AD FS 管理主控台的 啟用**服務 > 端點**。
 >
->如果您沒有以 AD FS 做為您的內部部署同盟伺服器，請依照廠商的指示來確定支援 WS-Trust 1.3 或 2005 端點，而這些端點是透過中繼資料交換檔 (MEX) 發佈。
+>如果您沒有為您在內部部署的 federation service AD FS，請依照 您確定它們支援 Ws-trust 1.3 或 2005年端點，這些會發佈到 hello 的檔案中繼資料交換 (MEX) 的廠商 toomake hello 指示進行。
 
-下列宣告必須存在於 Azure DRS 所收到的權杖中，才能完成裝置註冊。 Azure DRS 會使用其中一些資訊在 Azure AD 中建立裝置物件，而 Azure AD Connect 接著會使用此資訊將新建立的裝置物件與內部部署電腦帳戶建立關聯。
+hello 下列宣告必須存在於 Azure DRS 的裝置註冊 toocomplete 收到 hello 語彙基元。 Azure DRS 會在某些這項資訊接著 hello 電腦帳戶在內部部署與 Azure AD Connect tooassociate hello 新建立的裝置物件所使用的 Azure AD 中建立裝置物件。
 
 * `http://schemas.microsoft.com/ws/2012/01/accounttype`
 * `http://schemas.microsoft.com/identity/claims/onpremobjectguid`
 * `http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid`
 
-如果您有多個經過驗證的網域名稱，您必須為電腦提供下列宣告︰
+如果您有多個已驗證的網域名稱，您需要下列宣告電腦的 tooprovide hello:
 
 * `http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid`
 
-如果您已發出 ImmutableID 宣告 (例如，替代登入 ID)，您必須為電腦提供一個對應宣告：
+如果您已發行的 ImmutableID 的宣告 （例如，替代登入識別碼） 會需要 tooprovide 一個對應的宣告的電腦：
 
 * `http://schemas.microsoft.com/LiveID/Federation/2008/05/ImmutableID`
 
-在下列各節中，您可找到下列相關資訊：
+在 hello 下列各節，尋找的相關資訊：
  
-- 每個宣告應該具有的值
+- 每個宣告應該有 hello 值
 - 定義在 AD FS 中看起來如何
 
-此定義可協助您確認值是否存在，或者您是否需要加以建立。
+hello 定義可協助您 tooverify hello 值是否存在，或如果您需要 toocreate 它們。
 
 > [!NOTE]
-> 如果您未將 AD FS 用於您的內部部署同盟伺服器，請依照廠商的指示來建立適當組態以發出這些宣告。
+> 如果您不使用 AD FS 進行您在內部部署的同盟伺服器，請遵循廠商的指示 toocreate hello 適當的組態 tooissue 這些宣告。
 
 ### <a name="issue-account-type-claim"></a>發出帳戶類型宣告
 
-**`http://schemas.microsoft.com/ws/2012/01/accounttype`** - 此宣告必須包含 **DJ** 這個值，此值可將裝置識別為已加入網域的電腦。 在 AD FS 中，您可以新增發行轉換規則，如下所示︰
+**`http://schemas.microsoft.com/ws/2012/01/accounttype`**-此宣告必須包含值為**DJ**，其可識別 hello 裝置做為已加入網域的電腦。 在 AD FS 中，您可以新增發行轉換規則，如下所示︰
 
     @RuleName = "Issue account type for domain-joined computers"
     c:[
@@ -212,9 +212,9 @@ Azure AD Connect：
         Value = "DJ"
     );
 
-### <a name="issue-objectguid-of-the-computer-account-on-premises"></a>發出內部部署電腦帳戶的 objectGUID
+### <a name="issue-objectguid-of-hello-computer-account-on-premises"></a>發出 objectGUID hello 電腦帳戶在內部
 
-**`http://schemas.microsoft.com/identity/claims/onpremobjectguid`** - 此宣告必須包含內部電腦帳戶的 **objectGUID** 值。 在 AD FS 中，您可以新增發行轉換規則，如下所示︰
+**`http://schemas.microsoft.com/identity/claims/onpremobjectguid`**-此宣告必須包含 hello **objectGUID** hello 的值在內部部署電腦帳戶。 在 AD FS 中，您可以新增發行轉換規則，如下所示︰
 
     @RuleName = "Issue object GUID for domain-joined computers"
     c1:[
@@ -234,9 +234,9 @@ Azure AD Connect：
         param = c2.Value
     );
  
-### <a name="issue-objectsid-of-the-computer-account-on-premises"></a>發出內部部署電腦帳戶的 objectSID
+### <a name="issue-objectsid-of-hello-computer-account-on-premises"></a>發出 hello 電腦帳戶在內部的 objectSID
 
-**`http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid`** - 此宣告必須包含內部電腦帳戶的 **objectSid** 值。 在 AD FS 中，您可以新增發行轉換規則，如下所示︰
+**`http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid`**-此宣告必須包含 hello hello **objectSid** hello 的值在內部部署電腦帳戶。 在 AD FS 中，您可以新增發行轉換規則，如下所示︰
 
     @RuleName = "Issue objectSID for domain-joined computers"
     c1:[
@@ -253,9 +253,9 @@ Azure AD Connect：
 
 ### <a name="issue-issuerid-for-computer-when-multiple-verified-domain-names-in-azure-ad"></a>當 Azure AD 中有多個經過驗證的網域名稱時，發出電腦的 issuerID
 
-**`http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid`** - 此宣告必須包含與發行權杖的內部部署同盟服務 (AD FS 或協力廠商) 連線之任何已驗證網域名稱的統一資源識別項 (URI)。 在 AD FS 中，您可以在上述內容之後，以該特定順序新增如下所示的發行轉換規則。 請注意，需要有一個規則可為使用者明確發出此規則。 下列規則中會新增用來識別使用者與電腦驗證的優先規則。
+**`http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid`**-此宣告必須包含的 hello 任何 hello 的統一資源識別元 (URI) 驗證網域名稱與 hello 連接內部部署同盟服務 （AD FS 或第 3 個合作對象） 發行 hello 語彙基元。 在 AD FS 中，您可以加入發行轉換規則看起來像是 hello 的下方之後, 的特定順序 hello 的上方。 請使用者為必要，注意，一個 tooexplicitly 問題 hello 規則。 在下列 hello 規則，會加入第一個規則，用來識別使用者與電腦驗證。
 
-    @RuleName = "Issue account type with the value User when its not a computer"
+    @RuleName = "Issue account type with hello value User when its not a computer"
     NOT EXISTS(
     [
         Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", 
@@ -267,7 +267,7 @@ Azure AD Connect：
         Value = "User"
     );
     
-    @RuleName = "Capture UPN when AccountType is User and issue the IssuerID"
+    @RuleName = "Capture UPN when AccountType is User and issue hello IssuerID"
     c1:[
         Type == "http://schemas.xmlsoap.org/claims/UPN"
     ]
@@ -297,15 +297,15 @@ Azure AD Connect：
     );
 
 
-在上述宣告中，
+在上述的 hello 宣告
 
-- `$<domain>` 是 AD FS 服務 URL
-- `<verified-domain-name>` 是您要使用您在 Azure AD 中的其中一個已驗證網域名稱來取代的預留位置
+- `$<domain>`hello AD FS 服務 url
+- `<verified-domain-name>`是您需要使用其中一個已驗證的網域名稱 tooreplace 在 Azure AD 中的預留位置
 
 
 
-如需已驗證之網域名稱的詳細資料，請參閱[將自訂網域名稱新增至 Azure Active Directory](active-directory-add-domain.md)。  
-若要取得已驗證之公司網域的清單，您可以使用 [Get-MsolDomain](/powershell/module/msonline/get-msoldomain?view=azureadps-1.0) Cmdlet。 
+如需有關驗證的網域名稱的詳細資訊，請參閱[新增自訂網域名稱 tooAzure Active Directory](active-directory-add-domain.md)。  
+tooget 已驗證的公司網域的清單，您可以使用 hello [Get-msoldomain](/powershell/module/msonline/get-msoldomain?view=azureadps-1.0) cmdlet。 
 
 ![Get-MsolDomain](./media/active-directory-conditional-access-automatic-device-registration-setup/01.png)
 
@@ -331,9 +331,9 @@ Azure AD Connect：
         param = c2.Value
     );
 
-### <a name="helper-script-to-create-the-ad-fs-issuance-transform-rules"></a>建立 AD FS 發行轉換規則的協助程式指令碼
+### <a name="helper-script-toocreate-hello-ad-fs-issuance-transform-rules"></a>協助程式指令碼 toocreate hello AD FS 發行轉換規則
 
-下列指令碼可協助您建立上面所述的發行轉換規則。
+hello 下列指令碼可協助您建立 hello hello 發行轉換規則上面所述。
 
     $multipleVerifiedDomainNames = $false
     $immutableIDAlreadyIssuedforUsers = $false
@@ -383,7 +383,7 @@ Azure AD Connect：
 
     $rule4 = ''
     if ($multipleVerifiedDomainNames -eq $true) {
-    $rule4 = '@RuleName = "Issue account type with the value User when it is not a computer"
+    $rule4 = '@RuleName = "Issue account type with hello value User when it is not a computer"
     NOT EXISTS(
     [
         Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", 
@@ -395,7 +395,7 @@ Azure AD Connect：
         Value = "User"
     );
     
-    @RuleName = "Capture UPN when AccountType is User and issue the IssuerID"
+    @RuleName = "Capture UPN when AccountType is User and issue hello IssuerID"
     c1:[
         Type == "http://schemas.xmlsoap.org/claims/UPN"
     ]
@@ -456,129 +456,129 @@ Azure AD Connect：
 
 ### <a name="remarks"></a>備註 
 
-- 此指令碼會將規則附加至現有的規則。 請勿執行此指令碼兩次，因為會新增這組規則兩次。 先確定這些宣告沒有對應的規則存在 (在對應的條件下)，才能再次執行指令碼。
+- 此指令碼會附加 hello 規則 toohello 現有規則。 不會執行 hello 指令碼兩次，因為 hello 設定的規則將會新增兩次。 請確定沒有對應的規則存在這些宣告 （hello 對應在情況下），才能再次執行 hello 指令碼。
 
-- 如果您有多個經過驗證的網域名稱 (如 Azure AD 入口網站中所示，或透過 Get-MsolDomains cmdlet)，將指令碼中 **$multipleVerifiedDomainNames** 的值設定為 **$true**。 此外，也務必移除經由 Azure AD Connect 或透過其他方式所建立的任何現有 issuerid 宣告。 此規則的範例如下︰
+- 如果您有多個已驗證的網域名稱 （如所示 hello Azure AD 入口網站或透過 hello Get MsolDomains cmdlet），來設定 hello 值**$multipleVerifiedDomainNames** hello 中編寫的指令碼太**$true**。 此外，也務必移除經由 Azure AD Connect 或透過其他方式所建立的任何現有 issuerid 宣告。 此規則的範例如下︰
 
 
         c:[Type == "http://schemas.xmlsoap.org/claims/UPN"]
         => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, ".+@(?<domain>.+)",  "http://${domain}/adfs/services/trust/")); 
 
-- 如果您已對使用者帳戶發出 **ImmutableID** 宣告，請將指令碼中 **$immutableIDAlreadyIssuedforUsers** 的值設定為 **$true**。
+- 如果您已經發出**ImmutableID**宣告的使用者帳戶，來設定 hello 值**$immutableIDAlreadyIssuedforUsers** hello 中編寫的指令碼太**$true**。
 
 ## <a name="step-3-enable-windows-down-level-devices"></a>步驟 3：啟用舊版 Windows 裝置
 
 如果有些已加入網域的裝置是舊版 Windows 裝置，您需要︰
 
-- 在 Azure AD 中設定原則，讓使用者可以註冊裝置。
+- 在 Azure AD tooenable 使用者 tooregister 裝置設定的原則。
  
-- 設定內部部署同盟服務來發出宣告，以支援**整合式 Windows 驗證 (IWA)** 來進行裝置註冊。
+- 設定您在內部部署同盟服務 tooissue 宣告 toosupport**整合式 Windows 驗證 (IWA)**註冊的裝置。
  
-- 將 Azure AD 裝置驗證端點新增至近端內部網路區域，以避免在驗證裝置時出現憑證提示。
+- 新增 hello Azure AD 裝置驗證端點 toohello 本機內部網路區域驗證 hello 裝置時，會提示 tooavoid 憑證。
 
-### <a name="set-policy-in-azure-ad-to-enable-users-to-register-devices"></a>在 Azure AD 中設定原則，讓使用者可以註冊裝置
+### <a name="set-policy-in-azure-ad-tooenable-users-tooregister-devices"></a>在 Azure AD tooenable 中使用者 tooregister 裝置設定原則
 
-若要註冊舊版 Windows 裝置，您需要確定已設定可允許使用者在 Azure AD 中註冊裝置的設定。 在 Azure 入口網站中，您可以在底下找到此設定：
+tooregister Windows 下層裝置，您需要確定已設定該設定 tooallow 使用者 tooregister 裝置在 Azure AD 中的 hello toomake。 在 hello Azure 入口網站，您可以找到此設定下：
 
 `Azure Active Directory > Users and groups > Device settings`
     
-下列原則必須設定為 [全部]：**使用者可以向 Azure AD 註冊其裝置**
+hello 下列原則必須設定太**所有**:**使用者可以向 Azure AD 註冊其裝置**
 
 ![註冊裝置](./media/active-directory-conditional-access-automatic-device-registration-setup/23.png)
 
 
 ### <a name="configure-on-premises-federation-service"></a>設定內部部署同盟服務 
 
-內部部署同盟服務必須支援在收到對 Azure AD 信賴憑證者 (持有 resouce_params 參數且編碼值如下所示) 的驗證要求時發出 **authenticationmehod** 和 **wiaormultiauthn** 宣告︰
+您在內部部署的同盟服務必須支援發行 hello **authenticationmehod**和**wiaormultiauthn**宣告時收到的驗證要求保留 toohello Azure AD 信賴憑證者合作對象resouce_params 參數編碼值，以顯示下列：
 
     eyJQcm9wZXJ0aWVzIjpbeyJLZXkiOiJhY3IiLCJWYWx1ZSI6IndpYW9ybXVsdGlhdXRobiJ9XX0
 
     which decoded is {"Properties":[{"Key":"acr","Value":"wiaormultiauthn"}]}
 
-收到這類要求時，內部部署同盟服務必須先使用整合式 Windows 驗證來驗證使用者，並且在成功時發出下列兩個宣告︰
+這類要求時，hello 內部同盟服務必須驗證 hello 使用者使用整合式 Windows 驗證，並成功時，它必須發出下列兩個宣告的 hello:
 
     http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/windows
     http://schemas.microsoft.com/claims/wiaormultiauthn
 
-在 AD FS 中，您必須新增可傳遞驗證方法的發行轉換規則。  
+在 AD FS 中，您必須加入該階段透過 hello 驗證方法的發行轉換規則。  
 
-**若要新增此規則︰**
+**tooadd 此規則：**
 
-1. 在 AD FS 管理主控台中，移至 `AD FS > Trust Relationships > Relying Party Trusts`。
-2. 在 [Microsoft Office 365 身分識別平台] 信賴憑證者信任物件上按一下滑鼠右鍵，然後選取 [編輯宣告規則]。
-3. 在 [發佈轉換規則] 索引標籤上，選取 [新增規則]。
-4. 在 [宣告規則] 範本清單中，選取 [使用自訂規則傳送宣告]。
+1. 在 hello AD FS 管理主控台中，移過`AD FS > Trust Relationships > Relying Party Trusts`。
+2. Hello Microsoft Office 365 識別平台信賴憑證者信任物件，以滑鼠右鍵按一下，然後選取**編輯宣告規則**。
+3. 在 hello**發行轉換規則**索引標籤上，選取**加入規則**。
+4. 在 hello**宣告規則**範本清單中，選取**使用自訂規則傳送宣告**。
 5. 選取 [下一步] 。
-6. 在 [宣告規則名稱] 方塊中，輸入**驗證方法宣告規則**。
-7. 在 [宣告規則] 方塊中，輸入下列規則︰
+6. 在 hello**宣告規則名稱**方塊中，輸入**驗證方法宣告規則**。
+7. 在 [hello**宣告規則**] 方塊中，下列規則類型 hello:
 
     `c:[Type == "http://schemas.microsoft.com/claims/authnmethodsreferences"] => issue(claim = c);`
 
-8. 在同盟伺服器上，以 Azure AD 信賴憑證者信任物件的信賴憑證者物件名稱取代 **\<RPObjectName\>** 之後，輸入下列 PowerShell 命令。 此物件通常名為「Microsoft Office 365 身分識別平台」。
+8. 在同盟伺服器上，輸入下面的 hello PowerShell 命令來取代之後 **\<RPObjectName\>** 與 hello 信賴憑證者合作對象的物件名稱您 Azure AD 信賴憑證者信任物件。 此物件通常名為「Microsoft Office 365 身分識別平台」。
    
     `Set-AdfsRelyingPartyTrust -TargetName <RPObjectName> -AllowedAuthenticationClassReferences wiaormultiauthn`
 
-### <a name="add-the-azure-ad-device-authentication-end-point-to-the-local-intranet-zones"></a>將 Azure AD 裝置驗證端點新增至近端內部網路區域
+### <a name="add-hello-azure-ad-device-authentication-end-point-toohello-local-intranet-zones"></a>新增 hello Azure AD 裝置驗證端點 toohello 近端內部網路區域
 
-若要避免在註冊裝置中的使用者向 Azure AD 進行驗證時出現憑證提示時，您可以將原則推送到已加入網域的裝置，進而將下列 URL 新增至 Internet Explorer 的近端內部網路區域︰
+註冊裝置中的使用者驗證 tooAzure 可以是您推送下列 URL toohello 近端內部網路區域，在 Internet Explorer 原則 tooyour 已加入網域裝置 tooadd hello AD 時，會提示 tooavoid 憑證：
 
 `https://device.login.microsoftonline.com`
 
 ## <a name="step-4-control-deployment-and-rollout"></a>步驟 4︰控制部署與導入
 
-當您完成所需的步驟時，已加入網域的裝置即可自動向 Azure AD 註冊。 所有已加入網域且執行 Windows 10 年度更新版和 Windows Server 2016 的裝置會在裝置重新啟動或使用者登入時自動向 Azure AD 註冊。 在完成加入網域作業之後，新裝置會在重新啟動時向 Azure AD 註冊。
+當您完成 hello 所需的步驟時，加入網域的裝置會準備 tooautomatically 向 Azure AD。 所有已加入網域且執行 Windows 10 年度更新版和 Windows Server 2016 的裝置會在裝置重新啟動或使用者登入時自動向 Azure AD 註冊。 Hello 網域聯結作業執行完成之後 hello 裝置將重新啟動時的 Azure AD 中註冊新裝置。
 
-先前由工作場所加入 Azure AD 的裝置 (例如 Intune) 會轉換成「已加入網域，AAD 已登錄」。不過，由於網域和使用者活動的一般流程，在所有裝置上完成此程序需要一些時間。
+過了先前的工作地方聯結 tooAzure AD （例如針對 Intune) 轉換的裝置 」*已加入網域，AAD 已登錄*"; 不過花一些時間的這個程序 toocomplete 到期 toohello 標準的所有裝置上網域和使用者活動流程。
 
 ### <a name="remarks"></a>備註
 
-- 您可以使用「群組原則」物件來控制已加入網域之 Windows 10 和 Windows Server 2016 電腦的自動註冊導入。
+- 您可以使用群組原則物件 toocontrol hello 首度發行的 Windows 10 和 Windows Server 2016 網域的電腦自動註冊。
 
-- **只有**已設定導入群組原則物件的情況下，Windows 10 2015 年 11 月更新才會自動向 Azure AD 註冊。
+- Windows 10 11 月版 2015年更新自動暫存器與 Azure AD**只**如果 hello 首度發行的群組原則物件設定。
 
-- 若要導入舊版 Windows 電腦的自動註冊，您可以將 [Windows Installer 套件](#windows-installer-packages-for-non-windows-10-computers)部署到您所選的電腦。
+- 您可以部署 toorollout hello 自動註冊的 Windows 下層電腦[Windows Installer 套件](#windows-installer-packages-for-non-windows-10-computers)toocomputers 您選取。
 
-- 如果您將群組原則物件推送到已加入網域的 Windows 8.1 裝置，將會嘗試註冊。不過，建議您使用 [Windows Installer 套件](#windows-installer-packages-for-non-windows-10-computers)來註冊所有的舊版 Windows 裝置。 
+- 如果您推送 hello 群組原則物件 tooWindows 8.1 已加入網域的裝置，就會嘗試註冊;不過最好是您使用 hello [Windows Installer 套件](#windows-installer-packages-for-non-windows-10-computers)tooregister 所有 Windows 下層裝置。 
 
 ### <a name="create-a-group-policy-object"></a>建立群組原則物件 
 
-若要控制現行 Windows 電腦的自動註冊導入，您應將 [將已加入網域的電腦註冊為裝置] 群組原則物件部署到您要註冊的裝置。 例如，您可以將此原則部署到組織單位或安全性群組。
+toocontrol hello 首度發行目前的 Windows 電腦的自動註冊，您應該部署 hello**做為裝置註冊加入網域的電腦**想 tooregister 的群組原則物件 toohello 裝置。 例如，您可以部署 hello 原則 tooan 組織單位或 tooa 安全性群組。
 
-**若要設定原則︰**
+**tooset hello 原則：**
 
-1. 開啟 [伺服器管理員]，然後移至 `Tools > Group Policy Management`。
-2. 移至您要啟用自動註冊現行 Windows 電腦的網域所對應的網域節點。
+1. 開啟**伺服器管理員**，然後前往太`Tools > Group Policy Management`。
+2. 請移至 toohello 網域節點對應 toohello 想 tooactivate 自動登錄，目前的 Windows 電腦的網域。
 3. 在 [群組原則物件] 上按一下滑鼠右鍵，然後選取 [新增]。
-4. 輸入群組原則物件的名稱。 例如，「自動向 Azure AD 註冊」。 選取 [確定] 。
+4. 輸入群組原則物件的名稱。 例如，*自動註冊 tooAzure AD*。 選取 [確定] 。
 5. 以滑鼠右鍵按一下新的群組原則物件，然後選取 [編輯]。
-6. 移至 [電腦設定]  >  [原則]  >  [系統管理範本]  >  [Windows 元件]  >  [裝置註冊]。 以滑鼠右鍵按一下 [將已加入網域的電腦註冊為裝置]，然後選取 [編輯]。
+6. 跳過**電腦設定** > **原則** > **系統管理範本** > **Windows元件** > **裝置註冊**。 以滑鼠右鍵按一下 [將已加入網域的電腦註冊為裝置]，然後選取 [編輯]。
    
    > [!NOTE]
-   > 此「群組原則」範本已從舊版 [群組原則管理] 主控台重新命名。 如果您使用舊版的主控台，請移至 `Computer Configuration > Policies > Administrative Templates > Windows Components > Workplace Join > Automatically workplace join client computers`。 
+   > 此群組原則範本已從舊版的 hello 群組原則管理主控台中重新命名。 如果您使用舊版的 hello 主控台，請移至太`Computer Configuration > Policies > Administrative Templates > Windows Components > Workplace Join > Automatically workplace join client computers`。 
 
 7. 選取 [已啟用]，然後選取 [套用]。
 8. 選取 [確定] 。
-9. 將群組原則物件連結到您選擇的位置。 例如，您可以將它連結到特定組織單位。 也可以將它連結到會向 Azure AD 自動註冊的特定電腦安全性群組。 若要為貴組織中所有已加入網域的 Windows 10 和 Windows Server 2016 電腦設定此原則，請將「群組原則」物件連結至網域。
+9. 連結 hello 群組原則物件 tooa 您選擇的位置。 例如，您可以將它連結 tooa 特定組織單位。 您也可以將它連結 tooa 特定安全性群自動向 Azure AD 的電腦。 tooset 此原則中的所有已加入網域的 Windows 10 和 Windows Server 2016 電腦組織連結 hello 群組原則物件 toohello 網域。
 
 ### <a name="windows-installer-packages-for-non-windows-10-computers"></a>非 Windows 10 電腦的 Windows Installer 套件
 
-若要在同盟環境中註冊已加入網域的舊版 Windows 電腦，您可以從下載中心的 [適用於非 Windows 10 電腦的 Microsoft Workplace Join](https://www.microsoft.com/en-us/download/details.aspx?id=53554) 頁面下載並安裝下列 Windows Installer 套件 (.msi)。
+tooregister 加入網域的 Windows 下層電腦在同盟環境中，您可以下載並安裝從下載中心取得這些 Windows Installer 套件 (.msi)，在 hello[非 Windows 10 電腦的Microsoft工作地方聯結](https://www.microsoft.com/en-us/download/details.aspx?id=53554)頁面。
 
-您可以使用軟體發佈系統 (例如 System Center Configuration Manager) 來部署此套件。 此套件使用 quiet 參數來支援標準的無訊息安裝選項。 System Center Configuration Manager Current Branch 提供額外的舊版好處，例如能夠追蹤已完成的註冊。 如需詳細資訊，請參閱 [System Center Configuration Manager](https://www.microsoft.com/cloud-platform/system-center-configuration-manager)。
+您可以使用軟體分派系統像 System Center Configuration Manager 部署 hello 封裝。 hello 封裝支援 hello 標準的無訊息安裝選項以 hello*安靜*參數。 System Center Configuration Manager 最新分支會提供額外的好處，從較早的版本，例如 hello 能力 tootrack 完成註冊。 如需詳細資訊，請參閱 [System Center Configuration Manager](https://www.microsoft.com/cloud-platform/system-center-configuration-manager)。
 
-安裝程式會在系統上建立排定的工作，此工作是在使用者的內容中執行。 此工作會在使用者登入 Windows 時觸發。 此工作會在使用整合式 Windows 驗證進行驗證之後，使用使用者認證以無訊息方式向 Azure AD 註冊裝置。 若要查看裝置中排定的工作，請移至 [Microsoft] > [Workplace Join]，然後移至工作排程器程式庫。
+hello installer hello hello 使用者內容中執行的系統上建立排定的工作。 hello 使用者登入時 tooWindows 觸發 hello 工作。 hello 工作以無訊息方式註冊 hello 裝置與 Azure AD 與 hello 使用者認證驗證使用整合式 Windows 驗證之後。 toosee hello 排程的工作，請在 hello 裝置跳過**Microsoft** > **工作地點加入**，並前往 toohello 工作排程器程式庫。
 
 ## <a name="step-5-verify-registered-devices"></a>步驟 5︰驗證已註冊的裝置
 
-您可以在 [Azure Active Directory PowerShell 模組](/powershell/azure/install-msonlinev1?view=azureadps-2.0) 中使用 [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) Cmdlet，以查看您組織中已註冊成功的裝置。
+您也可以使用 hello 您組織中查看已註冊的裝置成功[Get MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice)指令程式在 hello [Azure Active Directory PowerShell 模組](/powershell/azure/install-msonlinev1?view=azureadps-2.0)。
 
-此 Cmdlet 的輸出會顯示 Azure AD 中已註冊的裝置。 若要取得所有裝置，請使用 **-All** 參數，然後使用 **deviceTrustType** 屬性進行篩選。 已加入網域的裝置具有**已加入網域**這個值。
+此 cmdlet 的 hello 輸出會顯示在 Azure AD 中註冊的裝置。 tooget 所有裝置，都使用 hello **-所有**參數，然後再篩選它們使用 hello **deviceTrustType**屬性。 已加入網域的裝置具有**已加入網域**這個值。
 
 ## <a name="next-steps"></a>後續步驟
 
 * [自動裝置註冊常見問題集](active-directory-device-registration-faq.md)
-* [針對已加入 Azure AD 網域之電腦的自動註冊進行疑難排解 – Windows 10 和 Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md)
-* [針對向 Azure AD 自動註冊已加入網域的電腦進行疑難排解 - 非 Windows 10](active-directory-device-registration-troubleshoot-windows-legacy.md)
+* [疑難排解自動登錄的網域加入電腦 tooAzure AD – Windows 10 和 Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md)
+* [疑難排解自動登錄的網域加入電腦 tooAzure AD – 非 Windows 10](active-directory-device-registration-troubleshoot-windows-legacy.md)
 * [Azure Active Directory 條件式存取](active-directory-conditional-access-azure-portal.md)
 
 

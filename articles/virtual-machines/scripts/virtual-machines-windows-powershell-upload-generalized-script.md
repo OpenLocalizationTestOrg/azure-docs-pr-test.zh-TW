@@ -1,6 +1,6 @@
 ---
-title: "將通用 VHD 上傳至 Azure 的 PowerShell 指令碼範例 | Microsoft Docs"
-description: "使用 Resource Manager 部署模型和受控磁碟，將通用 VHD 上傳至 Azure 並新建 VM 的 PowerShell 範例指令碼。"
+title: "aaaUpload 一般化的 VHD tooAzure PowerShell 指令碼範例 |Microsoft 文件"
+description: "PowerShell 範例指令碼 tooupload 一般化的 VHD tooAzure，並建立新的 VM 使用 hello 資源管理員部署模型和受管理的磁碟。"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: cynthn
@@ -16,15 +16,15 @@ ms.workload: infrastructure
 ms.date: 05/18/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: cd3d87bb4384971e28d3330cd5c1a3d351129036
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 72b4ff09eb7a6ba1604b9d5cbac51e60eded7545
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sample-script-to-upload-a-vhd-to-azure-and-create-a-new-vm"></a>將 VHD 上傳至 Azure 並新建 VM 的範例指令碼
+# <a name="sample-script-tooupload-a-vhd-tooazure-and-create-a-new-vm"></a>範例指令碼 tooupload VHD tooAzure 並建立新的 VM
 
-此指令碼會使用來自通用 VM 的本機 .vhd 檔案，將其上傳到 Azure，再建立受控磁碟映像，並新建 VM。
+此指令碼會將本機的.vhd 檔從一般化 VM 和 tooAzure 上傳、 建立受管理的磁碟映像和使用 hello toocreate 新的 VM。
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
@@ -33,7 +33,7 @@ ms.lasthandoff: 07/11/2017
 ## <a name="sample-script"></a>範例指令碼
 
 ```powershell
-# Provide values for the variables
+# Provide values for hello variables
 $resourceGroup = 'myResourceGroup'
 $location = 'EastUS'
 $storageaccount = 'mystorageaccount'
@@ -54,12 +54,12 @@ $vmName = 'myVM'
 $computerName = 'myComputerName'
 $vmSize = 'Standard_DS1_v2'
 
-# Get the username and password to be used for the administrators account on the VM. 
-# This is used when connecting to the VM using RDP.
+# Get hello username and password toobe used for hello administrators account on hello VM. 
+# This is used when connecting toohello VM using RDP.
 
 $cred = Get-Credential
 
-# Upload the VHD
+# Upload hello VHD
 New-AzureRmResourceGroup -Name $resourceGroup -Location $location
 New-AzureRmStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount -Location $location `
     -SkuName $storageType -Kind "Storage"
@@ -67,15 +67,15 @@ $urlOfUploadedImageVhd = ('https://' + $storageaccount + '.blob.core.windows.net
 Add-AzureRmVhd -ResourceGroupName $resourceGroup -Destination $urlOfUploadedImageVhd `
     -LocalFilePath $localPath
 
-# Note: Uploading the VHD may take awhile!
+# Note: Uploading hello VHD may take awhile!
 
-# Create a managed image from the uploaded VHD 
+# Create a managed image from hello uploaded VHD 
 $imageConfig = New-AzureRmImageConfig -Location $location
 $imageConfig = Set-AzureRmImageOsDisk -Image $imageConfig -OsType Windows -OsState Generalized `
     -BlobUri $urlOfUploadedImageVhd
 $image = New-AzureRmImage -ImageName $imageName -ResourceGroupName $resourceGroup -Image $imageConfig
  
-# Create the networking resources
+# Create hello networking resources
 $singleSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix 10.0.0.0/24
 $vnet = New-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $resourceGroup -Location $location `
     -AddressPrefix 10.0.0.0/16 -Subnet $singleSubnet
@@ -90,22 +90,22 @@ $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $resourceGroup -Locati
     -Name $nsgName -SecurityRules $rdpRule
 $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $resourceGroup -Name $vnetName
 
-# Start building the VM configuration
+# Start building hello VM configuration
 $vm = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize
 
-# Set the VM image as source image for the new VM
+# Set hello VM image as source image for hello new VM
 $vm = Set-AzureRmVMSourceImage -VM $vm -Id $image.Id
 
-# Finish the VM configuration and add the NIC.
+# Finish hello VM configuration and add hello NIC.
 $vm = Set-AzureRmVMOSDisk -VM $vm  -DiskSizeInGB $diskSizeGB -CreateOption FromImage -Caching ReadWrite
 $vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $computerName -Credential $cred `
     -ProvisionVMAgent -EnableAutoUpdate
 $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 
-# Create the VM
+# Create hello VM
 New-AzureRmVM -VM $vm -ResourceGroupName $resourceGroup -Location $location
 
-# Verify that the VM was created
+# Verify that hello VM was created
 $vmList = Get-AzureRmVM -ResourceGroupName $resourceGroup
 $vmList.Name
 
@@ -118,7 +118,7 @@ $vmList.Name
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-執行下列命令來移除資源群組、VM 和所有相關資源。
+執行下列命令 tooremove hello 資源群組、 VM 和所有相關的資源的 hello。
 
 ```powershell
 Remove-AzureRmResourceGroup -Name $resourceGroup
@@ -126,33 +126,33 @@ Remove-AzureRmResourceGroup -Name $resourceGroup
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼會使用下列命令來建立部署。 下表中的每個項目都會連結至命令特定的文件。
+此指令碼會使用下列命令 toocreate hello 部署的 hello。 Hello 資料表中的每個項目連結 toocommand 特定文件。
 
 | 命令                                                                                                             | 注意事項                                                                                                                                                                                |
 |---------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup)                           | 建立用來存放所有資源的資源群組。                                                                                                                          |
 | [New-AzureRmStorageAccount](/powershell/module/azurerm.resources/new-azurermstorageaccount)                         | 建立儲存體帳戶。                                                                                                                                                           |
-| [Add-AzureRmVhd](/powershell/module/azurerm.resources/add-azurermvhd)                                               | 將虛擬硬碟從內部部署虛擬機器上傳至 Azure 雲端儲存體帳戶中的 Blob。                                                                       |
+| [Add-AzureRmVhd](/powershell/module/azurerm.resources/add-azurermvhd)                                               | 上傳從內部部署虛擬機器 tooa blob 在 Azure 中的雲端儲存體帳戶中的虛擬硬碟。                                                                       |
 | [New-AzureRmImageConfig](/powershell/module/azurerm.resources/new-azurermimageconfig)                               | 建立可設定的映像物件。                                                                                                                                                 |
-| [Set-AzureRmImageOsDisk](/powershell/module/azurerm.resources/set-azurermimageosdisk)                               | 設定映像物件上的作業系統磁碟屬性。                                                                                                                        |
+| [Set-AzureRmImageOsDisk](/powershell/module/azurerm.resources/set-azurermimageosdisk)                               | 映像物件上設定 hello 作業系統磁碟屬性。                                                                                                                        |
 | [New-AzureRmImage](/powershell/module/azurerm.resources/new-azurermimage)                                           | 建立新的映像。                                                                                                                                                                 |
-| [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.resources/new-azurermvirtualnetworksubnetconfig) | 建立子網路組態。 此組態可使用於虛擬網路建立程序。                                                                                |
+| [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.resources/new-azurermvirtualnetworksubnetconfig) | 建立子網路組態。 此設定可搭配 hello 虛擬網路建立程序。                                                                                |
 | [New-AzureRmVirtualNetwork](/powershell/module/azurerm.resources/new-azurermvirtualnetwork)                         | 建立虛擬網路。                                                                                                                                                           |
 | [New-AzureRmPublicIpAddress](/powershell/module/azurerm.resources/new-azurermpublicipaddress)                       | 建立公用 IP 位址。                                                                                                                                                         |
 | [New-AzureRmNetworkInterface](/powershell/module/azurerm.resources/new-azurermnetworkinterface)                     | 建立網路介面。                                                                                                                                                         |
-| [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.resources/new-azurermnetworksecurityruleconfig)   | 建立網路安全性群組規則組態。 建立 NSG 時，此組態用來建立 NSG 規則。                                                       |
+| [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.resources/new-azurermnetworksecurityruleconfig)   | 建立網路安全性群組規則組態。 此設定時，使用的 toocreate NSG 規則建立 hello NSG。                                                       |
 | [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.resources/new-azurermnetworksecuritygroup)             | 建立網路安全性群組。                                                                                                                                                    |
 | [Get-AzureRmVirtualNetwork](/powershell/module/azurerm.resources/get-azurermvirtualnetwork)                         | 取得資源群組中的虛擬網路。                                                                                                                                          |
-| [New-AzureRmVMConfig](/powershell/module/azurerm.resources/new-azurermvmconfig)                                     | 建立 VM 組態。 此組態包括 VM 名稱、作業系統和系統管理認證等資訊。 建立 VM 時會使用此組態。 |
+| [New-AzureRmVMConfig](/powershell/module/azurerm.resources/new-azurermvmconfig)                                     | 建立 VM 組態。 此組態包括 VM 名稱、作業系統和系統管理認證等資訊。 在建立 VM 時，會使用 hello 組態。 |
 | [Set-AzureRmVMSourceImage](/powershell/module/azurerm.resources/set-azurermvmsourceimage)                           | 指定虛擬機器的映像。                                                                                                                                            |
-| [Set-AzureRmVMOSDisk](/powershell/module/azurerm.resources/set-azurermvmosdisk)                                     | 設定虛擬機器上的作業系統磁碟屬性。                                                                                                                      |
-| [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.resources/set-azurermvmoperatingsystem)                   | 設定虛擬機器上的作業系統磁碟屬性。                                                                                                                      |
-| [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.resources/add-azurermvmnetworkinterface)                 | 將網路介面新增至虛擬機器。                                                                                                                                       |
+| [Set-AzureRmVMOSDisk](/powershell/module/azurerm.resources/set-azurermvmosdisk)                                     | 虛擬機器上設定 hello 作業系統磁碟屬性。                                                                                                                      |
+| [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.resources/set-azurermvmoperatingsystem)                   | 虛擬機器上設定 hello 作業系統磁碟屬性。                                                                                                                      |
+| [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.resources/add-azurermvmnetworkinterface)                 | 新增網路介面 tooa 虛擬機器。                                                                                                                                       |
 | [New-AzureRmVM](/powershell/module/azurerm.resources/new-azurermvm)                                                 | 建立虛擬機器。                                                                                                                                                            |
 | [Remove-AzureRmResourceGroup](/powershell/module/azurerm.resources/remove-azurermresourcegroup)                     | 移除資源群組及其內含的所有資源。                                                                                                                         |
 
 ## <a name="next-steps"></a>後續步驟
 
-如需有關 Azure PowerShell 模組的詳細資訊，請參閱 [Azure PowerShell 文件](/powershell/azure/overview)。
+如需有關 hello Azure PowerShell 模組的詳細資訊，請參閱[Azure PowerShell 文件](/powershell/azure/overview)。
 
-您可以在 [Azure Windows VM 文件](../windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中找到其他的虛擬機器 PowerShell 指令碼範例。
+其他虛擬機器的 PowerShell 指令碼範例可以在 hello [Azure Windows VM 文件](../windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。

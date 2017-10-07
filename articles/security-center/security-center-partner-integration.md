@@ -1,6 +1,6 @@
 ---
-title: "Azure 資訊安全中心中的夥伴整合 | Microsoft Docs"
-description: "了解 Azure 資訊安全中心如何與夥伴整合，以提高您 Azure 資源的整體安全性。"
+title: "aaaPartner 整合 Azure 資訊安全中心 |Microsoft 文件"
+description: "深入了解 Azure 資訊安全中心如何與夥伴 tooenhance 整合您的 Azure 資源的整體安全性。"
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: yurid
-ms.openlocfilehash: 44beafeff5cbe58ac8ca37632879f6ffc2b67e53
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3621335730a076721cb3c23788a47be50aa8fc73
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="partner-integration-in-azure-security-center"></a>Azure 資訊安全中心中的夥伴整合
 
-在本文中，我們將說明 Azure 資訊安全中心如何與夥伴整合，以協助您提高整體安全性。 資訊安全中心在 Azure 中提供整合體驗，並利用 Azure Marketplace 進行夥伴認證和計費。
+在本文中，我們說明如何與夥伴 toohelp 整合 Azure 資訊安全中心增強整體安全性。 資訊安全中心提供了整合式的體驗，在 Azure 中，並利用 hello Azure Marketplace 夥伴憑證和計費。
 
 > [!NOTE] 
-> 從 2017 年 6 月開始，資訊安全中心會使用 Microsoft Monitoring Agent 來收集和儲存資料。 如需詳細資訊，請參閱 [Azure 資訊安全中心平台移轉](security-center-platform-migration.md)。 本文中的資訊說明轉換至 Microsoft Monitoring Agent 後的資訊安全中心功能。
+> 為準，年 6 月 2017年資訊安全中心會使用 hello Microsoft Monitoring Agent toocollect 和存放區資料。 如需詳細資訊，請參閱 [Azure 資訊安全中心平台移轉](security-center-platform-migration.md)。 本文章中的 hello 資訊表示資訊安全中心功能之後轉換 toohello Microsoft Monitoring Agent。
 >
 
 ## <a name="why-deploy-partner-solutions-from-security-center"></a>為什麼要從資訊安全中心部署夥伴解決方案
 
-運用資訊安全中心中的夥伴整合有四個主要原因：
+有四個主要原因 tooleverage 夥伴資訊安全中心整合：
 
-- **部署方式簡單**。 依照資訊安全中心的建議來部署夥伴解決方案更加容易。 使用預設的安裝和網路拓撲，可以全面自動化部署程序。 或者，客戶可以選擇半自動的選項以取得更多彈性和自訂。
-- **整合偵測**。 來自夥伴解決方案的安全性事件會自動收集、彙總以及顯示為資訊安全中心警示和事件的一部分。 這些事件也會與來自其他來源的偵測整合，以提供進階的威脅偵測功能。
-- **統一的健康情況監視與管理**。 客戶可使用整合式的健全狀況事件，一眼監視所有夥伴解決方案。 提供基本管理功能，而且可以讓您輕鬆使用夥伴解決方案存取進階設定。
-- **匯出至 SIEM**。 客戶現在可以使用 Azure log integration (預覽)，以 Common Event Format (CEF) 格式將所有資訊安全中心與夥伴的警示匯出至內部部署 Security Information and Event Management (SIEM) 系統中。
+- **部署方式簡單**。 下列 hello 資訊安全中心建議部署協力廠商方案就能更輕鬆。 使用預設的安裝程式和網路拓撲，可以全面自動化 hello 部署程序。 或者，客戶可以選擇半自動的選項以取得更多彈性和自訂。
+- **整合偵測**。 來自夥伴解決方案的安全性事件會自動收集、彙總以及顯示為資訊安全中心警示和事件的一部分。 這些事件也被 fused 進階威脅偵測功能，其他來源 tooprovide 的偵測結果。
+- **統一的健康情況監視與管理**。 客戶可以使用整合式健全狀況事件 toomonitor 所有協力廠商解決方案一目了然。 使用，讓您輕鬆存取 tooadvanced 安裝程式使用 hello 協力廠商解決方案的基本管理。
+- **匯出 tooSIEM**。 客戶可以匯出所有的資訊安全中心，並且夥伴警示通用事件格式 (CEF) tooon 內部部署安全性資訊和事件管理 (SIEM) 系統使用 Azure 記錄檔整合 （預覽）。
 
 
 ## <a name="partners-that-integrate-with-security-center"></a>與資訊安全中心整合的夥伴
@@ -47,11 +47,11 @@ ms.lasthandoff: 08/29/2017
 - 新一代防火牆 ([Check Point](https://www.checkpoint.com/products/vsec-microsoft-azure/)、[Barracuda](https://campus.barracuda.com/product/nextgenfirewallf/article/NGF/AzureDeployment/)、[Fortinet](http://docs.fortinet.com/d/fortigate-fortios-handbook-the-complete-guide-to-fortios-5.2) 和 [Cisco](http://www.cisco.com/c/en/us/td/docs/security/firepower/quick_start/azure/ftdv-azure-qsg.html)) 
 - 弱點評估 ([Qualys](https://www.qualys.com/public-clouds/microsoft-azure/))  
 
-資訊安全中心會隨時間擴展這些類別內夥伴的數目，並加入新的類別。 
+經過一段時間，將展開 hello 在這些分類中中的夥伴數目的資訊安全中心，並將其加入新的類別目錄中。 
 
 ## <a name="deploy-a-partner-solution"></a>部署夥伴解決方案
 
-根據您的 Azure 環境設定和您定義的安全性原則，資訊安全中心可能會建議您部署夥伴解決方案。 此資訊安全中心建議將引導您完成選取和安裝夥伴解決方案的程序。 整體部署體驗可能會根據您使用的解決方案類型和夥伴而有所不同。 如需詳細資訊，請參閱下列文章。
+根據 hello Azure 環境的 hello 安全性原則所定義的設定資訊安全中心可能會建議您部署協力廠商解決方案。 hello 資訊安全中心建議會引導您完成選取並安裝協力廠商解決方案 hello 程序。 hello 整體部署經驗可能有所不同，hello 的方案和您使用協力廠商的型別。 如需詳細資訊，請參閱下列文章 hello:
 
 - [安裝端點保護](security-center-install-endpoint-protection.md)
 - [新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md)
@@ -60,22 +60,22 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="manage-partner-solutions"></a>管理夥伴解決方案
 
-在部署後，若要檢視解決方案的健康情況相關資訊並執行基本管理工作，請在 [資訊安全中心] 刀鋒視窗中，選取 [夥伴解決方案] 選項。 如需管理資訊安全中心中合作夥伴解決方案的相關資訊，請參閱[透過 Azure 資訊安全中心監視夥伴解決方案](security-center-partner-solutions.md)。
+部署之後，tooview 有關 hello hello 方案的健全狀況與資訊的基本管理工作，對 hello**資訊安全中心**刀鋒視窗中，選取 hello**合作夥伴解決方案**選項。 如需管理資訊安全中心中合作夥伴解決方案的相關資訊，請參閱[透過 Azure 資訊安全中心監視夥伴解決方案](security-center-partner-solutions.md)。
 
 ![夥伴整合](./media/security-center-partner-integration/security-center-partner-integration-fig1-new2.png)
 
 > [!NOTE]
-> Symantec Endpoint Protection 支援僅限於探索。 無法使用健康情況警示。
+> Symantec endpoint protection 支援是有限的 toodiscovery。 無法使用健康情況警示。
 >
 
 ## <a name="see-also"></a>另請參閱
 
-在本文中，您已了解如何在 Azure 資訊安全中心中整合夥伴解決方案。 如要深入了解資訊安全中心，請參閱下列文章：
+在本文中，您學會如何 toointegrate 合作夥伴 Azure 資訊安全中心中的解決方案。 toolearn 有關資訊安全中心的詳細資訊，請參閱下列文章 hello:
 
 * [資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md)
-* [在資訊安全中心管理和回應安全性警示](security-center-managing-and-responding-alerts.md)
+* [管理及回應 toosecurity 警示資訊安全中心](security-center-managing-and-responding-alerts.md)
 * [資訊安全中心不同類型的安全性警示](security-center-alerts-type.md)
-* [資訊安全中心的安全性健康情況監視](security-center-monitoring.md)。 了解如何監視 Azure 資源的健全狀況。
-* [使用資訊安全中心監視夥伴解決方案](security-center-partner-solutions.md)。 了解如何監視合作夥伴解決方案的健全狀態。
-* [Azure 資訊安全中心常見問題](security-center-faq.md)。 取得有關使用服務常見問題的答案。
+* [資訊安全中心的安全性健康情況監視](security-center-monitoring.md)。 了解如何 toomonitor hello 您的 Azure 資源的健全狀況。
+* [使用資訊安全中心監視夥伴解決方案](security-center-partner-solutions.md)。 了解如何 toomonitor hello 的協力廠商解決方案的健全狀況狀態。
+* [Azure 資訊安全中心常見問題](security-center-faq.md)。 取得使用 hello 服務的相關常見問題的解答 toofrequently。
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)。 尋找有關 Azure 安全性與相容性的部落格文章。

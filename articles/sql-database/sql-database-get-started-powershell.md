@@ -1,6 +1,6 @@
 ---
 title: "Azure PowerShell︰建立 SQL Database | Microsoft Docs"
-description: "了解如何在 Azure 入口網站中，建立 SQL Database 邏輯伺服器、伺服器層級防火牆規則和資料庫。"
+description: "了解 toocreate SQL Database 邏輯伺服器、 伺服器層級防火牆規則和資料庫中的 hello Azure 入口網站。"
 keywords: "sql database 教學課程, 建立 sql database"
 services: sql-database
 documentationcenter: 
@@ -16,23 +16,23 @@ ms.devlang: PowerShell
 ms.topic: hero-article
 ms.date: 04/17/2017
 ms.author: carlrab
-ms.openlocfilehash: 44ed4a603977617c898315c4fc0b2d3dd3a8f16a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e89f68b44083a3b64e61f95117dbbedfa6647ccb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-single-azure-sql-database-using-powershell"></a>使用 PowerShell 建立單一 Azure SQL Database
 
-PowerShell 可用來從命令列或在指令碼中建立和管理 Azure 資源。 本指南詳述如何使用 PowerShell 在 [Azure SQL Database 邏輯伺服器](sql-database-features.md)的 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)中部署 Azure SQL Database。
+PowerShell 是使用的 toocreate，並從 hello 命令列或指令碼中管理的 Azure 資源。 此指南使用 PowerShell toodeploy 詳細資料中的 Azure SQL database [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)中[Azure SQL Database 邏輯伺服器](sql-database-features.md)。
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/) 。
 
-本教學課程需要 Azure PowerShell 模組 4.0 版或更新版本。 執行 ` Get-Module -ListAvailable AzureRM` 找出版本。 如果您需要安裝或升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。 
+本教學課程需要 hello Azure PowerShell 模組版本 4.0 或更新版本。 執行` Get-Module -ListAvailable AzureRM`toofind hello 版本。 如果您需要 tooinstall 或升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。 
 
-## <a name="log-in-to-azure"></a>登入 Azure
+## <a name="log-in-tooazure"></a>登入 tooAzure
 
-使用 [Add-AzureRmAccount](/powershell/module/azurerm.profile/add-azurermaccount) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
+登入 tooyour Azure 訂用帳戶使用 hello[新增 AzureRmAccount](/powershell/module/azurerm.profile/add-azurermaccount)命令，並遵循螢幕上指示 hello。
 
 ```powershell
 Add-AzureRmAccount
@@ -40,35 +40,35 @@ Add-AzureRmAccount
 
 ## <a name="create-variables"></a>建立變數
 
-定義變數以便使用於本快速入門中的指令碼。
+在這個快速入門中的 hello 指令碼中定義使用的變數。
 
 ```powershell
-# The data center and resource name for your resources
+# hello data center and resource name for your resources
 $resourcegroupname = "myResourceGroup"
 $location = "WestEurope"
-# The logical server name: Use a random value or replace with your own value (do not capitalize)
+# hello logical server name: Use a random value or replace with your own value (do not capitalize)
 $servername = "server-$(Get-Random)"
 # Set an admin login and password for your database
-# The login information for the server
+# hello login information for hello server
 $adminlogin = "ServerAdmin"
 $password = "ChangeYourAdminPassword1"
-# The ip address range that you want to allow to access your server - change as appropriate
+# hello ip address range that you want tooallow tooaccess your server - change as appropriate
 $startip = "0.0.0.0"
 $endip = "0.0.0.0"
-# The database name
+# hello database name
 $databasename = "mySampleDatabase"
 ```
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 
-使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 命令建立 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)。 資源群組是在其中以群組方式部署與管理 Azure 資源的邏輯容器。 下列範例會在 `westeurope` 位置建立名為 `myResourceGroup` 的資源群組。
+建立[Azure 資源群組](../azure-resource-manager/resource-group-overview.md)使用 hello[新增 AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup)命令。 資源群組是在其中以群組方式部署與管理 Azure 資源的邏輯容器。 hello 下列範例會建立名為的資源群組`myResourceGroup`在 hello`westeurope`位置。
 
 ```powershell
 New-AzureRmResourceGroup -Name $resourcegroupname -Location $location
 ```
 ## <a name="create-a-logical-server"></a>建立邏輯伺服器
 
-使用 [New-AzureRmSqlServer](/powershell/module/azurerm.sql/new-azurermsqlserver) 命令建立 [Azure SQL Database 邏輯伺服器](sql-database-features.md)。 邏輯伺服器包含一組當作群組管理的資料庫。 下列範例會使用名為 `ServerAdmin` 的系統管理員登入和密碼 `ChangeYourAdminPassword1` 在資源群組中建立隨機命名的伺服器。 視需要取代這些預先定義的值。
+建立[Azure SQL Database 邏輯伺服器](sql-database-features.md)使用 hello[新增 AzureRmSqlServer](/powershell/module/azurerm.sql/new-azurermsqlserver)命令。 邏輯伺服器包含一組當作群組管理的資料庫。 hello 下列範例會建立隨機命名的伺服器資源群組中具有系統管理員登入名為`ServerAdmin`且密碼為`ChangeYourAdminPassword1`。 視需要取代這些預先定義的值。
 
 ```powershell
 New-AzureRmSqlServer -ResourceGroupName $resourcegroupname `
@@ -79,7 +79,7 @@ New-AzureRmSqlServer -ResourceGroupName $resourcegroupname `
 
 ## <a name="configure-a-server-firewall-rule"></a>設定伺服器防火牆規則
 
-使用 [New-AzureRmSqlServerFirewallRule](/powershell/module/azurerm.sql/new-azurermsqlserverfirewallrule) 命令建立 [Azure SQL Database 伺服器層級防火牆規則](sql-database-firewall-configure.md)。 伺服器層級防火牆規則可讓外部應用程式 (例如 SQL Server Management Studio 或 SQLCMD 公用程式) 穿過 SQL Database 服務防火牆連線到 SQL Database。 在下列範例中，只會針對其他 Azure 資源開啟防火牆。 若要啟用外部連線，請將 IP 位址變更為適合您環境的地址。 若要開啟所有 IP 位址，請使用 0.0.0.0 做為起始 IP 位址，並使用 255.255.255.255 做為結束位址。
+建立[Azure SQL Database 伺服器層級防火牆規則](sql-database-firewall-configure.md)使用 hello[新增 AzureRmSqlServerFirewallRule](/powershell/module/azurerm.sql/new-azurermsqlserverfirewallrule)命令。 伺服器層級防火牆規則可讓外部應用程式，例如 SQL Server Management Studio 或 hello SQLCMD 公用程式 tooconnect tooa SQL database 透過 hello SQL Database 服務防火牆。 在下列範例的 hello，hello 開啟防火牆會僅針對其他 Azure 資源。 tooenable 外部連線，變更 hello IP 位址 tooan 適當的位址，為您的環境。 tooopen 所有 IP 位址，都作為 hello 起始 IP 位址和 255.255.255.255 hello 結束位址為 0.0.0.0。
 
 ```powershell
 New-AzureRmSqlServerFirewallRule -ResourceGroupName $resourcegroupname `
@@ -88,12 +88,12 @@ New-AzureRmSqlServerFirewallRule -ResourceGroupName $resourcegroupname `
 ```
 
 > [!NOTE]
-> SQL Database 會透過連接埠 1433 通訊。 如果您嘗試從公司網路進行連線，您網路的防火牆可能不允許透過連接埠 1433 的輸出流量。 若是如此，除非 IT 部門開啟連接埠 1433，否則將無法連線至 Azure SQL Database 伺服器。
+> SQL Database 會透過連接埠 1433 通訊。 如果您嘗試 tooconnect 從公司網路內，由您的網路防火牆可能不允許透過通訊埠 1433年的輸出流量。 如果是的話，就能 tooconnect tooyour Azure SQL Database 伺服器除非您的 IT 部門會開啟通訊埠 1433年。
 >
 
-## <a name="create-a-database-in-the-server-with-sample-data"></a>在伺服器中建立資料庫與範例資料
+## <a name="create-a-database-in-hello-server-with-sample-data"></a>以範例資料的 hello 伺服器中建立資料庫
 
-在伺服器中使用 [New-AzureRmSqlDatabase](/powershell/module/azurerm.sql/new-azurermsqldatabase) 命令來建立 [S0 效能等級](sql-database-service-tiers.md)的資料庫。 下列範例會建立名為 `mySampleDatabase` 的資料庫，並將 AdventureWorksLT 範例資料載入此資料庫。 視需要取代這些預先定義的值 (本集合中的其他快速入門會建置在本快速入門中的值)。
+建立與資料庫[S0 的效能層級](sql-database-service-tiers.md)hello 伺服器使用 hello[新增 AzureRmSqlDatabase](/powershell/module/azurerm.sql/new-azurermsqldatabase)命令。 hello 下列範例會建立一個稱為資料庫`mySampleDatabase`和載入 hello 有提供 AdventureWorksLT 範例資料到此資料庫。 這些預先定義的取代值，則為所需 （在這個快速入門中的 hello 值的這個集合組建中其他快速開始）。
 
 ```powershell
 New-AzureRmSqlDatabase  -ResourceGroupName $resourcegroupname `
@@ -108,7 +108,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName $resourcegroupname `
 此集合中的其他快速入門會建置在本快速入門。 
 
 > [!TIP]
-> 如果您打算繼續進行後續的快速入門，請勿清除在此快速入門中建立的資源。 如果您不打算繼續，請使用下列步驟，在 Azure 入口網站中刪除本快速入門所建立的所有資源。
+> 如果您計劃 toocontinue toowork 與後續的快速入門，請不要清除 hello 資源建立在這個快速開始。 如果您不打算 toocontinue，使用 hello 本快速入門 hello Azure 入口網站中的下列步驟 toodelete 建立所有資源。
 >
 
 ```powershell

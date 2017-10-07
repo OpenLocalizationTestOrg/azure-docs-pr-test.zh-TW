@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 在 Azure 中設定 Application Insights | Microsoft Docs"
-description: "自動設定 Azure 診斷以透過管道傳送至 Application Insights。"
+title: "aaaUsing PowerShell toosetup 在 Azure 中的 Application Insights |Microsoft 文件"
+description: "設定 Azure 診斷 toopipe tooApplication Insights 會自動執行。"
 services: application-insights
 documentationcenter: .net
 author: sbtron
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/17/2015
 ms.author: bwren
-ms.openlocfilehash: 3b6da89cc33cda713b483a2af3cbb493a03d6bec
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c48a5d8eb23df162522860935af876063aaa6976
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-powershell-to-set-up-application-insights-for-an-azure-web-app"></a>使用 PowerShell 為 Azure Web 應用程式設定 Application Insights
-[Microsoft Azure](https://azure.com) 可以[設定為傳送 Azure 診斷](app-insights-azure-diagnostics.md)至 [Azure Application Insights](app-insights-overview.md)。 診斷與 Azure 雲端服務和 Azure VM 相關。 可輔助您從應用程式使用 Application Insights SDK 傳送的遙測資料。 在 Azure 中自動建立新資源的程序中，您可以使用 PowerShell 設定診斷。
+# <a name="using-powershell-tooset-up-application-insights-for-an-azure-web-app"></a>Azure web 應用程式中使用 PowerShell tooset 向上 Application Insights
+[Microsoft Azure](https://azure.com)可以[設定 toosend Azure 診斷](app-insights-azure-diagnostics.md)太[Azure Application Insights](app-insights-overview.md)。 hello 診斷關聯 tooAzure 雲端服務和 Azure Vm。 搭配您從傳送 hello 應用程式使用 hello Application Insights SDK 中的 hello 遙測。 一部分的自動化 hello 程序在 Azure 中建立新的資源，您可以設定使用 PowerShell 的診斷。
 
 ## <a name="azure-template"></a>Azure 範本
-如果 Web 應用程式位於 Azure 內，而且您使用 Azure Resource Manager 範本建立資源，您可以透過將以下內容新增到資源節點來設定 Application Insights：
+如果是在 Azure 中的 hello web 應用程式，並建立您使用 Azure Resource Manager 範本的資源，您可以設定 Application Insights 加入此 toohello 資源節點：
 
     {
       resources: [
@@ -42,11 +42,11 @@ ms.lasthandoff: 08/18/2017
        ]
      } 
 
-* `nameOfAIAppResource` - Application Insights 資源的名稱
-* `myWebAppName` - Web 應用程式的識別碼
+* `nameOfAIAppResource`-hello Application Insights 資源名稱
+* `myWebAppName`-hello hello web 應用程式識別碼
 
 ## <a name="enable-diagnostics-extension-as-part-of-deploying-a-cloud-service"></a>啟用診斷延伸模組做為部署雲端服務的一部分
-`New-AzureDeployment` Cmdlet 具有 `ExtensionConfiguration` 參數，其採用診斷組態的陣列。 使用 `New-AzureServiceDiagnosticsExtensionConfig` Cmdlet 建立可以診斷組態。 例如：
+hello `New-AzureDeployment` cmdlet 有一個參數`ExtensionConfiguration`，其可接受的診斷組態的陣列。 可以建立使用 hello `New-AzureServiceDiagnosticsExtensionConfig` cmdlet。 例如：
 
 ```ps
 
@@ -123,9 +123,9 @@ ms.lasthandoff: 08/18/2017
     Remove-AzureServiceDiagnosticsExtension -ServiceName "MyService"
 ```
 
-如果您在未使用 Role 參數的情況下使用 `Set-AzureServiceDiagnosticsExtension` 或 `New-AzureServiceDiagnosticsExtensionConfig` 啟用診斷延伸模組，則您可以在未使用 Role 參數的情況下使用 `Remove-AzureServiceDiagnosticsExtension` 移除延伸模組。 如果啟用延伸模組時使用了 Role 參數，則移除延伸模組時也必須使用該參數。
+如果您啟用 hello 診斷延伸模組使用`Set-AzureServiceDiagnosticsExtension`或`New-AzureServiceDiagnosticsExtensionConfig`沒有 hello 角色參數，您就可以移除 hello 延伸模組使用`Remove-AzureServiceDiagnosticsExtension`沒有 hello 角色參數。 如果啟用 hello 延伸模組時，使用 hello 角色參數然後就必須也採用時移除 hello 延伸模組。
 
-若要從每個個別的角色移除診斷延伸模組：
+tooremove 每個個別的角色中的 hello 診斷延伸模組：
 
 ```ps
 
@@ -135,6 +135,6 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="see-also"></a>另請參閱
 * [使用 Application Insights 監視 Azure 雲端服務應用程式](app-insights-cloudservices.md)
-* [將 Azure 診斷傳送至 Application Insights](app-insights-azure-diagnostics.md)
+* [傳送 Azure 診斷 tooApplication Insights](app-insights-azure-diagnostics.md)
 * [自動化設定警示](app-insights-powershell-alerts.md)
 

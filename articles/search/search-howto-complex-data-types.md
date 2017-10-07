@@ -1,5 +1,5 @@
 ---
-title: "如何在 Azure 搜尋服務中模型化複雜資料類型 | Microsoft Docs"
+title: "在 Azure 搜尋 aaaHow toomodel 複雜資料型別 |Microsoft 文件"
 description: "在 Azure 搜尋服務索引中，可以使用扁平化資料列集和 Collections 資料類型來模型化巢狀或階層式資料結構。"
 services: search
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 05/01/2017
 ms.author: liamca
-ms.openlocfilehash: d576fd7bb267ae7a100589413185b595e3b2be42
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b330c5b322f4f33123a454be11733b977684b9e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-model-complex-data-types-in-azure-search"></a>如何在 Azure 搜尋服務中模型化複雜資料類型
-用來填入 Azure 搜尋服務索引的外部資料集，有時包含不會整齊細分成表格式資料列集的階層式或巢狀子結構。 這類結構的範例可能包含單一客戶的多個位置和電話號碼、單一 SKU 的多種色彩和大小、單一書籍的多位作者等等。 就模型化而論，您可能會看到這些結構稱之為「複雜資料類型」、「複合資料類型」、「合成資料類型」或「彙總資料類型」等等。
+# <a name="how-toomodel-complex-data-types-in-azure-search"></a>如何 toomodel 複雜資料類型在 Azure 搜尋
+外部資料集使用的 toopopulate Azure 搜尋索引有時會包括階層式或巢狀執行不細分整齊為表格式資料列集的子結構。 這類結構的範例可能包含單一客戶的多個位置和電話號碼、單一 SKU 的多種色彩和大小、單一書籍的多位作者等等。 在模型化詞彙，您可能會看到這些結構稱為 tooas*複雜資料型別*，*複合資料型別*，*複合資料類型*，或*彙總資料型別*，幾 tooname。
 
-Azure 搜尋服務中原先不支援複雜資料類型，但經過實證的因應措施包括結構扁平化的程序 (包含兩個步驟)，然後使用 **Collection** 資料類型來重新構成內部結構。 遵循本文所述的技巧，以便搜尋、Facet 處理、篩選和排序內容。
+在 Azure 搜尋中，原生不支援複雜資料型別，但是經過證實的因應措施包括扁平化 hello 結構，然後使用兩步驟程序**集合**資料型別 tooreconstitute hello 內部結構。 遵循本文章中所描述的 hello 技術可讓 hello 內容 toobe 搜尋、 多面向，排序和篩選。
 
 ## <a name="example-of-a-complex-data-structure"></a>複雜資料結構的範例
-一般而言，有問題的資料會以一組 JSON 或 XML 文件的形式存在，或以項目形式存在於 NoSQL 存放區 (例如 Azure Cosmos DB)。 在結構上，挑戰源自於有多個需要搜尋和篩選的子項目。  在說明因應措施時，請首先採用下列 JSON 文件，其中列出一組連絡人做為範例︰
+一般而言，有問題的 hello 資料位於為一組 JSON 或 XML 文件或 NoSQL 存放區，例如 Azure Cosmos DB 中的項目。 從結構來說，hello 挑戰源自於具有多個子項目需要 toobe 搜尋和篩選。  做為起點圖解 hello 因應措施，採取下列 JSON 文件，其中列出一組連絡人做為範例的 hello:
 
 ~~~~~
 [
@@ -63,22 +63,22 @@ Azure 搜尋服務中原先不支援複雜資料類型，但經過實證的因�
 }]
 ~~~~~
 
-雖然名為 ‘id’、‘name’ 和 ‘company’ 的欄位可以輕易地逐一對應成 Azure 搜尋服務索引中的欄位，但 ‘locations’ 欄位包含位置陣列，並有一組位置識別碼以及位置描述。 假設 Azure 搜尋服務沒有支援此方法的資料類型，我們需要在 Azure 搜尋服務中進行模型化的不同方法。 
+雖然 hello 欄位分別名為 'id'，'name' 和 '公司' 可以輕易地對應一對一 Azure 搜尋索引內的欄位，hello 'locations' 欄位包含陣列的位置，這兩個一組的位置識別碼為位置的描述。 鑑於 Azure 搜尋並沒有支援的資料類型，我們需要不同的方式 toomodel 這在 Azure 搜尋中。 
 
 > [!NOTE]
-> Kirk Evans 也會在部落格文章 [Indexing DocumentDB with Azure Search](https://blogs.msdn.microsoft.com/kaevans/2015/03/09/indexing-documentdb-with-azure-seach/) 中說明這個技巧，文中顯示稱為「資料扁平化」的技巧，因此您會有稱為 `locationsID` 和 `locationsDescription` 的欄位 (兩者皆為 [collections](https://msdn.microsoft.com/library/azure/dn798938.aspx) (或字串陣列))。   
+> 這項技術也描述 Kirk Evans 部落格文章中[使用 Azure 搜尋索引的 DocumentDB](https://blogs.msdn.microsoft.com/kaevans/2015/03/09/indexing-documentdb-with-azure-seach/)，其中顯示稱為 「 簡維 hello 資料 」，讓您必須呼叫欄位的技術`locationsID`和`locationsDescription`兩者都可[集合](https://msdn.microsoft.com/library/azure/dn798938.aspx)（或字串陣列）。   
 > 
 > 
 
-## <a name="part-1-flatten-the-array-into-individual-fields"></a>第 1 部分︰將陣列壓平成為個別的欄位
-若要建立可容納此資料集的 Azure 搜尋服務索引，請為巢狀子結構建立個別的欄位︰資料類型為 [collections](https://msdn.microsoft.com/library/azure/dn798938.aspx) (或字串陣列) 的 `locationsID` 和 `locationsDescription`。 在這些欄位中，您會將值 '1' 和 '2' 的索引編製成 John Smith 的 `locationsID` 欄位，將值 '3' 和 '4' 的索引編製成 Jen Campbell 的 `locationsID` 欄位。  
+## <a name="part-1-flatten-hello-array-into-individual-fields"></a>第 1 部分： Hello 陣列扁平化成個別的欄位
+toocreate Azure 搜尋索引，此資料集，以提供可建立 hello 巢狀的子結構的個別欄位：`locationsID`和`locationsDescription`資料類型為[集合](https://msdn.microsoft.com/library/azure/dn798938.aspx)（或字串陣列）。 這些欄位中您會在中的索引 hello 值 '1' 與 '2' hello `locationsID` '3' 和 '4' 到 hello John Smith 和 hello 值欄位`locationsID`Jen Campbell 欄位。  
 
 Azure 搜尋服務中的資料如下所示︰ 
 
 ![範例資料，2 個資料列](./media/search-howto-complex-data-types/sample-data.png)
 
-## <a name="part-2-add-a-collection-field-in-the-index-definition"></a>第 2 部分︰在索引定義中加入 collection 欄位
-在索引結構描述中，欄位定義看起來類似此範例。
+## <a name="part-2-add-a-collection-field-in-hello-index-definition"></a>第 2 部分： Hello 索引定義中加入的集合欄位
+Hello 的索引結構描述中 hello 欄位定義看起來類似 toothis 範例。
 
 ~~~~
 var index = new Index()
@@ -95,18 +95,18 @@ var index = new Index()
 };
 ~~~~
 
-## <a name="validate-search-behaviors-and-optionally-extend-the-index"></a>驗證搜尋行為並選擇性地擴充索引
-假設您已建立索引並載入資料，您現在即可測試解決方案，以驗證對資料集執行的搜尋查詢。 每個 **collection** 欄位都應該**可搜尋**、**可篩選**和**可 Facet 處理**。 您應該能夠執行下列查詢︰
+## <a name="validate-search-behaviors-and-optionally-extend-hello-index"></a>驗證搜尋行為，並選擇性地擴充 hello 索引
+假設您建立的 hello 索引和載入的 hello 資料，您現在可以測試 hello 方案 tooverify 搜尋針對查詢執行 hello 資料集。 每個 **collection** 欄位都應該**可搜尋**、**可篩選**和**可 Facet 處理**。 您應該能夠 toorun 查詢：
 
-* 尋找所有在 ‘Adventureworks Headquarters’ 工作的人員。
-* 取得在「家庭辦公室」工作的人員計數。  
-* 在「家庭辦公室」工作的人員中，顯示他們在其他哪些辦公室工作以及每個位置的人員計數。  
+* 尋找所有在 hello 'Adventureworks 總部' 工作的人。
+* 取得使用者都會在家庭辦公室 ' 中的 hello 數目計數。  
+* 人員在家庭辦公室 ' hello 人員，顯示其運作的每個位置中的 hello 人員計數以及哪些其他辦公室。  
 
-當您需要進行結合位置識別碼和位置描述的搜尋時，這個技巧就不管用。 例如：
+這項技術，不過落的位置是當您需要 toodo 結合 hello 位置識別碼以及 hello 位置描述的搜尋。 例如：
 
 * 尋找所有具有「家庭辦公室」且位置識別碼為 4 的人員。  
 
-如果您還記得原始內容看起來如下︰
+如果您還記得 hello 原始內容看起來像這樣：
 
 ~~~~
    {
@@ -115,9 +115,9 @@ var index = new Index()
    }
 ~~~~
 
-不過，既然我們已將資料分成個別的欄位，我們便無法得知 Jen Campbell 的家庭辦公室是否與 `locationsID 3` 或 `locationsID 4` 相關。  
+不過，現在，我們有 hello 資料分成個別的欄位中，我們有無從得知如果 hello Jen Campbell 的家庭辦公室與太有關`locationsID 3`或`locationsID 4`。  
 
-若要處理這種情況，請在索引中定義另一個可將所有資料結合成單一集合的欄位。  此範例中，我們將此欄位稱為 `locationsCombined` 並將以 `||` 分隔內容，雖然您可以為您的內容選擇任何您認為是一組獨特字元的分隔符號。 例如： 
+toohandle 這種情況下，定義另一個欄位 hello 索引中，將所有 hello 資料結合成單一集合。  範例中，我們會呼叫此欄位`locationsCombined`，我們將不同 hello 內容`||`雖然您可以選擇任何分隔符號，您將會是一組唯一的字元為您的內容。 例如： 
 
 ![範例資料，含分隔符號的 2 個資料列](./media/search-howto-complex-data-types/sample-data-2.png)
 
@@ -129,12 +129,12 @@ var index = new Index()
 ## <a name="limitations"></a>限制
 這個技巧可用於許多案例，但並不適用於每個案例。  例如：
 
-1. 如果您的複雜資料類型中沒有一組靜態欄位，而且沒有辦法將所有可能的類型對應至單一欄位。 
-2. 更新巢狀物件時需要一些額外的工作，才能精確地判斷需要在 Azure 搜尋服務索引中更新的內容
+1. 如果複雜資料型別中沒有一組靜態欄位，而且沒有任何方式 toomap 所有 hello 可能都類型 tooa 單一欄位。 
+2. 更新 hello 巢狀物件，將需要一些額外的工作 toodetermine 確實需要什麼 toobe hello Azure 搜尋索引中更新
 
 ## <a name="sample-code"></a>範例程式碼
-您可以看到範例說明如何在 Azure 搜尋服務中編製複雜 JSON 資料集的索引，並且在 [GitHub 儲存機制](https://github.com/liamca/AzureSearchComplexTypes)對此資料集執行多項查詢。
+您可以如何 tooindex 複雜的 JSON 資料設定成 Azure 搜尋中查看範例，並透過此資料集的這個執行的查詢數目[GitHub 儲存機制](https://github.com/liamca/AzureSearchComplexTypes)。
 
 ## <a name="next-step"></a>後續步驟
-[票選複雜資料類型的原生支援](https://feedback.azure.com/forums/263029-azure-search) ，並提供您希望我們對於功能實作考量的任何其他輸入。 您也可以直接在 Twitter 上透過 @liamca 聯繫我。
+[複雜資料類型的原生支援的投票](https://feedback.azure.com/forums/263029-azure-search)hello Azure 搜尋 UserVoice 在頁面上，並提供任何其他輸入您想要我們 tooconsider 有關功能的實作。 您也可以將與直接在 Twitter 上 toome @liamca。
 

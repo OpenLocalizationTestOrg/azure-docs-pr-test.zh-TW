@@ -1,6 +1,6 @@
 ---
-title: "安全地從 App Service 環境連接到後端資源"
-description: "了解如何安全地從 App Service 環境連接到後端資源。"
+title: "aaaSecurely 連接 tooBackEnd App Service 環境的資源"
+description: "深入了解 toosecurely 從 App Service 環境連接 toobackend 資源的方式。"
 services: app-service
 documentationcenter: 
 author: stefsch
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: stefsch
-ms.openlocfilehash: 0b6d3a47dc429c469b37c2c74f546cfeca580358
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6311d3fc301512ea3c4ed8f14f268f75755aa415
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="securely-connecting-to-backend-resources-from-an-app-service-environment"></a>安全地從 App Service 環境連接到後端資源
+# <a name="securely-connecting-toobackend-resources-from-an-app-service-environment"></a>安全地連接 tooBackend App Service 環境的資源
 ## <a name="overview"></a>概觀
-因為 App Service 環境一律會在 Azure Resource Manager 虛擬網路或者傳統式部署模型[虛擬網路][virtualnetwork]兩者之一中建立，從 App Service 環境傳出至其他後端資源的連線可以獨佔方式透過虛擬網路傳送。  在 2016 年 6 月所進行的最新變更之後，ASE 也可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是 私人位址) 的虛擬網路。  
+因為永遠建立 App Service 環境**任一**Azure 資源管理員的虛擬網路，**或**傳統部署模型[虛擬網路][ virtualnetwork]，App Service 環境 tooother 後端資源的傳出連線以獨佔方式可以經過 hello 虛擬網路。  在 2016 年 6 月所進行的最新變更之後，ASE 也可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。  
 
-例如，SQL Server 可能會在已鎖定連接埠 1433 的虛擬機器叢集上執行。  此端點可能已納入 ACL，只允許從相同虛擬網路上的其他資源進行存取。  
+例如，SQL Server 可能會在已鎖定連接埠 1433 的虛擬機器叢集上執行。  hello 端點可能是的 ACLd tooonly 允許從其他資源的存取 hello 相同虛擬網路。  
 
-另一個例子則是，敏感性端點可能會執行內部部署並透過[站台對站台][SiteToSite]或 [Azure ExpressRoute][ExpressRoute] 連線至 Azure。  因此，只有虛擬網路中連接到站台對站台或 ExpressRoute 通道的資源能夠存取內部部署端點。
+另舉一例，機密端點可能在內部部署執行，且不連線的 tooAzure 經由下列[站對站][ SiteToSite]或[Azure ExpressRoute] [ ExpressRoute]連線。  如此一來，只有在虛擬網路中的資源連接 toohello 站對站或 ExpressRoute 通道將會無法 tooaccess 內部端點。
 
-在上述這些案例中，在 App Service 環境上執行的應用程式將能夠安全地連接到各種伺服器和資源。  從 App Service 環境中執行之應用程式送至相同虛擬網路中私密端點 (或連接到相同的虛擬網路) 的輸出流量，只會透過虛擬網路傳送。  送至私密端點的輸出流量不會透過公用網際網路傳送。
+針對所有這些情況下，App Service 環境上執行應用程式將無法 toosecurely 連接 toohello 各種伺服器和資源。  從執行中 hello App Service 環境 tooprivate 端點中的應用程式的輸出流量相同虛擬網路 (或連接 toohello 相同虛擬網路)，將只流程 hello 虛擬網路上。  端點不會透過輸出流量 tooprivate hello 公用網際網路。
 
-從 App Service 環境輸出至虛擬網路內端點的流量有一點值得注意。  App Service 環境無法連線到與 App Service 環境位於「相同」  子網路的虛擬機器端點。  只要 App Service 環境是部署到保留給 App Service 環境專用的子網路中，這通常應該不致於構成問題。
+必須注意套用虛擬網路內的 App Service 環境 tooendpoints toooutbound 流量。  應用程式服務環境無法連線到端點的虛擬機器位於 hello**相同**為 hello App Service 環境的子網路。  這通常不應該有問題，只要應用程式服務環境已部署到保留給專用 hello App Service 環境的子網路。
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="outbound-connectivity-and-dns-requirements"></a>輸出連線和 DNS 需求
-為了讓 App Service 環境正確運作，它需要不同端點的輸出存取權。 [ExpressRoute 的網路組態](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity) 文章的＜需要的網路連線＞一節中有提供 ASE 所使用的外部端點完整清單。
+App Service 環境 toofunction 正常運作，它需要對外存取 toovarious 端點。 Hello hello 」 所需的網路連接性 」 一節中的 hello ase 中所使用的外部端點的完整清單位於[expressroute 的網路組態](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity)發行項。
 
-App Service 環境需要針對虛擬網路設定的有效 DNS 基礎結構。  如果 DNS 設定在建立 App Service 環境之後因為任何原因而變更，開發人員可以強制 App Service 環境挑選新的 DNS 組態。  使用位於入口網站中 [App Service 環境管理] 刀鋒視窗頂端的 [重新啟動] 圖示觸發輪流環境重新開機，會導致環境挑選新的 DNS 組態。
+App Service 環境需要有效的 DNS 基礎結構，設定 hello 虛擬網路。  如果任何原因 hello DNS 設定會變更在建立 App Service 環境之後，開發人員可以強制的 App Service 環境 toopick hello 新的 DNS 設定。  觸發輪流的環境重新開機，使用位於頂端 hello hello App Service 環境的 hello 「 重新啟動 」 圖示 hello 入口網站中的管理刀鋒視窗，將會導致 hello 環境 toopick hello 新的 DNS 設定。
 
-也建議事先在虛擬網路上設定任何自訂 DNS 伺服器，再建立 App Service 環境。  如果在建立 App Service 環境時變更虛擬網路的 DNS 組態，則會導致 App Service 環境建立程序失敗。  同樣地，若自訂 DNS 伺服器存在於 VPN 閘道的另一端，且 DNS 伺服器無法連線或使用，則 App Service 環境建立程序也會失敗。
+也建議 hello vnet 上的任何自訂 DNS 伺服器會預先時間先前 toocreating App Service 環境的安裝程式。  如果在建立 App Service 環境期間變更虛擬網路的 DNS 設定，，因而造成 hello App Service 環境建立程序失敗。  同樣地，如果自訂的 DNS 伺服器 hello 存在於另一端的 VPN 閘道和 hello DNS 伺服器會為無法連線到或無法使用，hello App Service 環境的建立程序也會失敗。
 
-## <a name="connecting-to-a-sql-server"></a>連接至 SQL Server
+## <a name="connecting-tooa-sql-server"></a>連接 SQL Server tooa
 常見的 SQL Server 組態會有在連接埠 1433 上接聽的端點：
 
 ![SQL Server 端點][SqlServerEndpoint]
 
-有兩種方法可限制送至此端點的流量：
+有兩種方法來限制流量 toothis 端點：
 
 * [網路存取控制清單][NetworkAccessControlLists] (網路 ACL)
 * [網路安全性群組][NetworkSecurityGroups]
 
 ## <a name="restricting-access-with-a-network-acl"></a>利用網路 ACL 限制存取
-使用網路存取控制清單可以保護連接埠 1433。  下列範例將源自虛擬網路內部的用戶端位址列入白名單，並封鎖對所有其他用戶端的存取。
+使用網路存取控制清單可以保護連接埠 1433。  白名單用戶端的 hello 下例源自內虛擬網路，並封鎖存取 tooall 其他用戶端。
 
 ![網路存取控制清單範例][NetworkAccessControlListExample]
 
-在與 SQL Server 相同虛擬網路的 App Service 環境中執行的所有應用程式，都將能夠使用 SQL Server 虛擬機器的 **VNet 內部** IP 位址連接到 SQL Server 執行個體。  
+中的 App Service 環境中執行的任何應用程式 hello 相同虛擬網路，當 hello SQL Server 將會無法 tooconnect toohello SQL Server 執行個體使用 hello **VNet 內部**hello SQL Server 虛擬機器的 IP 位址。  
 
-下列連接字串範例會使用其私密 IP 位址參考 SQL Server。
+下面參考 hello 範例連接字串 hello 使用其私人 IP 位址的 SQL Server。
 
     Server=tcp:10.0.1.6;Database=MyDatabase;User ID=MyUser;Password=PasswordHere;provider=System.Data.SqlClient
 
-雖然虛擬機器也有公用端點，但使用公用 IP 位址的連接嘗試將會因為網路 ACL 而遭到拒絕。 
+雖然 hello 虛擬機器有為公用的端點，但是使用 hello 公用 IP 位址的連接嘗試會遭到拒絕因為 hello 網路 ACL。 
 
 ## <a name="restricting-access-with-a-network-security-group"></a>利用網路安全性群組限制存取
-另一種保護存取安全的方法是利用網路安全性群組。  網路安全性群組可以套用到個別的虛擬機器，或含有虛擬機器的子網路。
+另一種保護存取安全的方法是利用網路安全性群組。  套用的 tooindividual 虛擬機器或包含虛擬機器的 tooa 子網路，可以是網路安全性群組。
 
-首先需要建立網路安全性群組：
+第一次網路安全性小組需要建立 toobe:
 
     New-AzureNetworkSecurityGroup -Name "testNSGexample" -Location "South Central US" -Label "Example network security group for an app service environment"
 
-利用網路安全性群組來限制僅只存取 VNet 內部流量極為容易。  網路安全性群組中的預設規則只允許從相同虛擬網路中的其他網路用戶端存取。
+限制存取 tooonly VNet 內部流量是非常簡單的網路安全性群組。  網路安全性群組中的 hello 預設規則僅允許存取網路中其他用戶端 hello 從相同虛擬網路。
 
-因此鎖定 SQL Server 的存取權，就如同將網路安全性群組及其預設規則套用到執行 SQL Server 的虛擬機器或含有虛擬機器的子網路一樣簡單。
+如此一來鎖定存取 tooSQL 伺服器很簡單，只套用其預設規則 tooeither hello 與虛擬機器搭配執行 SQL Server 或包含 hello 虛擬機器的 hello 子網路的網路安全性群組。
 
-下列範例將網路安全性群組套用至包含的子網路：
+以下的 hello 範例適用於安全性群組 toohello 包含子網路：
 
     Get-AzureNetworkSecurityGroup -Name "testNSGExample" | Set-AzureNetworkSecurityGroupToSubnet -VirtualNetworkName 'testVNet' -SubnetName 'Subnet-1'
 
-最終結果是一組可封鎖外部存取，同時允許 VNet 內部存取的安全性規則：
+hello 最終結果是一組區塊外部存取，同時允許 VNet 內部存取的安全性規則：
 
 ![預設網路安全性規則][DefaultNetworkSecurityRules]
 
 ## <a name="getting-started"></a>開始使用
-您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+所有發行項以及-的應用程式服務環境的 hello[讀我檔案的應用程式服務環境](../app-service/app-service-app-service-environments-readme.md)。
 
-若要開始使用 App Service Environment，請參閱 [App Service Environment 簡介][IntroToAppServiceEnvironment]
+tooget 開始使用應用程式服務環境中，請參閱[簡介 tooApp Service 環境][IntroToAppServiceEnvironment]
 
-如需控制 App Service 環境輸入流量的詳細資訊，請參閱[控制 App Service 環境的輸入流量][ControlInboundASE]
+如需周圍控制輸入的流量 tooyour App Service 環境的詳細資訊，請參閱[控制輸入的流量 tooan App Service 環境][ControlInboundASE]
 
-如需有關 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service][AzureAppService]。
+如需 hello Azure 應用程式服務平台的詳細資訊，請參閱[Azure App Service][AzureAppService]。
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "身分識別同步處理和重複屬性恢復功能 | Microsoft Docs"
-description: "在目錄同步處理期間如何使用 Azure AD Connect 來處理具有 UPN 或 ProxyAddress 衝突之物件的新行為。"
+title: "aaaIdentity 同步處理和重複項目屬性的恢復功能 |Microsoft 文件"
+description: "新的 UPN 或 ProxyAddress 衝突 toohandle 物件在使用 Azure AD Connect 目錄同步作業期間如何行為。"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,66 +14,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
-ms.openlocfilehash: 7a8700e70f64851a0c5e5e8c6b31ec7a6884a96c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e27dcbf9d71f83fa9566cae2fd99350297d1cd9a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="identity-synchronization-and-duplicate-attribute-resiliency"></a>身分識別同步處理和重複屬性恢復功能
 「重複屬性恢復功能」是 Azure Active Directory 中的一項功能，可在執行 Microsoft 的其中一個同步處理工具時，用來消除 **UserPrincipalName** 和 **ProxyAddress** 衝突所造成的不便。
 
-在指定之 Azure Active Directory 租用戶的所有「使用者」、「群組」或「連絡人」物件中，這兩個屬性通常必須是唯一的。
+所有之間這兩個屬性都是唯一通常需要的 toobe**使用者**，**群組**，或**連絡人**給定的 Azure Active Directory 租用戶中的物件。
 
 > [!NOTE]
 > 只有使用者可以擁有 UPN。
 > 
 > 
 
-這項功能賦予了同步管線雲端部分的新行為，因此對於任何 Microsoft 同步處理產品 (包括 Azure AD Connect、DirSync 和 MIM + 連接器) 而言，此功能不限於特定用戶端並與用戶端相關。 在本文件中，通用詞彙「同步用戶端」將用來代表上述任何一項產品。
+hello 新行為，這項功能可讓 hello 雲端部份 hello 同步管線中，因此它是無從驗證，包括 Azure AD Connect、 DirSync 和 MIM + 連接器任何 Microsoft 同步處理產品相關的用戶端。 hello 泛型的詞彙 「 同步處理用戶端 」 用於此文件 toorepresent 這些產品的任何一個。
 
 ## <a name="current-behavior"></a>目前的行為
-如果嘗試佈建的新物件具有違反此唯一性條件約束的 UPN 或 ProxyAddress 值，則 Azure Active Directory 不會建立該物件。 同樣地，如果以非唯一的 UPN 或 ProxyAddress 更新物件，則更新會失敗。 同步用戶端會在每個匯出週期重試佈建嘗試或更新，在衝突解決前會繼續失敗。 每次嘗試時都會產生錯誤報告電子郵件，並由同步用戶端記錄一個錯誤。
+如果沒有嘗試 tooprovision UPN 或 ProxyAddress 值違反了這個唯一性條件約束新的物件，Azure Active Directory 會封鎖來自建立該物件。 同樣地，如果更新物件時具有非唯一的 UPN 或 ProxyAddress，hello 更新將會失敗。 佈建嘗試或更新的 hello hello 同步用戶端時每個匯出循環中，會重試，並繼續 toofail，hello 衝突解決之前。 在每次嘗試時產生錯誤報表電子郵件和 hello 同步用戶端會將錯誤記錄。
 
 ## <a name="behavior-with-duplicate-attribute-resiliency"></a>重複屬性恢復功能的行為
-Azure Active Directory 並不是完全無法佈建或更新具有重複屬性的物件，而是會「隔離」違反唯一性條件約束的重複屬性。 如果佈建時需要此屬性 (例如 UserPrincipalName)，則服務會指派預留位置值。 這些暫存值的格式為  
+而不完全失敗 tooprovision 或更新且重複的屬性，Azure Active Directory 「 隔離 」 hello 重複的屬性會違反 hello 唯一性條件約束的物件。 如果這是必要的佈建，例如 UserPrincipalName 屬性 hello 服務指派的預留位置值。 這些暫存值 hello 格式  
 “***<OriginalPrefix>+<4DigitNumber>@<InitialTenantDomain>.onmicrosoft.com***”。  
-如果不需要此屬性 (例如 **ProxyAddress**)，Azure Active Directory 就會隔離衝突屬性，然後繼續建立或更新物件。
+如果 hello 屬性不是必要的如**ProxyAddress**，Azure Active Directory 只要隔離 hello 衝突的屬性，並繼續處理 hello 物件建立或更新。
 
-隔離屬性時，衝突相關資訊會以舊版行為中使用的相同錯誤報告電子郵件傳送。 不過，此資訊只會出現在錯誤報告中一次，發生隔離時，將不會繼續記錄在未來的電子郵件中。 此外，此物件已成功匯出，所以同步用戶端不會記錄錯誤，而且不會在後續的同步週期中重試建立 / 更新作業。
+在隔離 hello 屬性，hello 衝突的相關資訊會在 hello 使用相同的錯誤報表電子郵件傳送 hello 舊的行為。 不過，此資訊只會出現在 hello 錯誤報告一次，hello 隔離發生失敗時，它不會繼續 toobe 未來記錄電子郵件。 此外，因為此物件的 hello 匯出成功，hello 同步用戶端不會記錄錯誤並不重試 hello 建立 / 更新作業，在後續同步處理循環時。
 
-為了支援此行為，[使用者]、[群組] 和 [連絡人] 物件類別已加入新屬性︰  
+此行為的新屬性已被的 toosupport 加入 toohello 使用者、 群組和連絡人物件類別：  
 **DirSyncProvisioningErrors**
 
-這是多重值的屬性，用來儲存正常新增時會違反唯一性條件約束的衝突屬性。 Azure Active Directory 中已啟用背景計時器工作，該工作會每小時執行以尋找已解決的重複屬性衝突，然後從隔離區中自動移除上述屬性。
+這是使用的 toostore hello 衝突的屬性會違反 hello 唯一性條件約束應該將它們加入通常在多重值的屬性。 執行有重複的屬性衝突已經解決，且會自動從隔離區移除有問題的 hello 屬性每個小時 toolook 的 Azure Active Directory 中已啟用背景計時器工作。
 
 ### <a name="enabling-duplicate-attribute-resiliency"></a>啟用重複屬性恢復功能
-「重複屬性恢復功能」將會是所有 Azure Active Directory 租用戶的新預設行為。 針對所有在 2016 年 8 月 22 日或之後第一次啟用同步處理的租用戶，預設都會開啟這項功能。 在此日期之前啟用同步功能的租用戶則會分批啟用此功能。 這項功能推出將從 2016 年 9 月開始，每個租用戶的技術通知連絡人將會收到電子郵件通知，其中會指出啟用功能的特定日期。
+重複的屬性恢復功能會在所有的 Azure Active Directory 租用戶之間 hello 新的預設行為。 它會預設啟用的同步處理 hello 於 2016 年 8 月 22 日，或更新版本的第一次的所有租用戶上。 啟用同步處理先前 toothis 日期的租用戶會有已啟用批次中的 hello 功能。 本次首度發行的 2016 年 9 月開始，會傳送電子郵件通知 tooeach 租用戶的技術通知接觸 hello hello 功能會啟用時的特定日期。
 
 > [!NOTE]
 > 一旦開啟「重複屬性恢復功能」，即無法予以停用。
 
-若要檢查是否已為您的租用戶啟用此功能，只要下載最新版的 Azure Active Directory PowerShell 模組並執行下列程式碼即可︰
+如果您的租用戶啟用 hello 功能 toocheck，您可以下載 hello hello Azure Active Directory PowerShell 模組最新版本，執行：
 
 `Get-MsolDirSyncFeatures -Feature DuplicateUPNResiliency`
 
 `Get-MsolDirSyncFeatures -Feature DuplicateProxyAddressResiliency`
 
 > [!NOTE]
-> 在為租用戶開啟該功能之前，您無法再使用 Set-MsolDirSyncFeature Cmdlet 來主動啟用重複屬性復原功能。 若要測試該功能，您需要建立新的 Azure Active Directory 租用戶。
+> 它已為您的租用戶之前，無法再使用 Set-msoldirsyncfeature cmdlet tooproactively 啟用 hello 重複屬性恢復功能。 toobe 無法 tootest hello 功能，您將需要 toocreate 新的 Azure Active Directory 租用戶。
 
 ## <a name="identifying-objects-with-dirsyncprovisioningerrors"></a>識別具有 DirSyncProvisioningErrors 的物件
-目前有兩個方法可識別因為重複屬性衝突而發生錯誤的物件：Azure Active Directory PowerShell 和 Office 365 系統管理入口網站。 未來計劃擴充其他以入口網站為基礎的報告。
+這些錯誤，因為 tooduplicate 屬性衝突，Azure Active Directory PowerShell 和 Office 365 系統管理入口網站 hello tooidentify 物件有目前兩種方法。 有計劃 tooextend tooadditional 入口網站基礎 hello 未來中的報告。
 
 ### <a name="azure-active-directory-powershell"></a>Azure Active Directory PowerShell
-對於本主題中的 PowerShell Cmdlet，下列項目為真︰
+Hello 本主題中的 PowerShell cmdlet，hello 下列條件為真：
 
-* 下列所有 Cmdlet 都會區分大小寫。
-* 一律包含 **–ErrorCategory PropertyConflict** 。 目前沒有其他類型的 **ErrorCategory**，但可能會在未來加以擴充。
+* 下列指令程式的 hello 都區分大小寫。
+* hello **– ErrorCategory PropertyConflict**必須永遠包含在內。 目前沒有任何其他類型**ErrorCategory**，但可能會在 hello 未來擴充。
 
 首先，執行 **Connect-MsolService** 並輸入租用戶系統管理員的認證。
 
-接著，使用下列 Cmdlet 和運算子，以不同的方式檢視錯誤︰
+然後，使用下列 cmdlet 和運算子 tooview 錯誤以不同方式的 hello:
 
 1. [檢視全部](#see-all)
 2. [依屬性類型](#by-property-type)
@@ -83,15 +83,15 @@ Azure Active Directory 並不是完全無法佈建或更新具有重複屬性的
 6. [以有限的數量或全部](#in-a-limited-quantity-or-all)
 
 #### <a name="see-all"></a>檢視全部
-連線之後，若要查看租用戶執行中屬性佈建錯誤的一般清單︰
+一旦連接之後，toosee 一般佈建錯誤 hello 租用戶中的屬性清單執行：
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict`
 
-這會產生如下所示的結果︰  
+這會產生類似 hello 下列結果：  
  ![Get MsolDirSyncProvisioningError](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/1.png "Get MsolDirSyncProvisioningError")  
 
 #### <a name="by-property-type"></a>依屬性類型
-若要依屬性類型查看錯誤，請搭配 **UserPrincipalName** 或 **ProxyAddresses** 引數新增 **-PropertyName** 旗標︰
+依屬性類型的 toosee 錯誤新增 hello **-PropertyName**旗標以 hello **UserPrincipalName**或**ProxyAddresses**引數：
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -PropertyName UserPrincipalName`
 
@@ -100,73 +100,73 @@ Azure Active Directory 並不是完全無法佈建或更新具有重複屬性的
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -PropertyName ProxyAddresses`
 
 #### <a name="by-conflicting-value"></a>依衝突的值
-若要查看與特定屬性相關的錯誤，請新增 **-PropertyValue** 旗標 (新增此旗標時，必須一併使用 **-PropertyName**)：
+toosee 錯誤相關 tooa 特定屬性新增 hello **-PropertyValue**旗標 (**-PropertyName**加入這個旗標時必須一併使用):
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -PropertyValue User@domain.com -PropertyName UserPrincipalName`
 
 #### <a name="using-a-string-search"></a>使用字串搜尋
-若要進行廣泛的字串搜尋，請使用 **-SearchString** 旗標。 此旗標可以與上述所有旗標獨立使用，但一律為必要項目的 **-ErrorCategory PropertyConflict**除外︰
+toodo 廣泛的字串搜尋使用 hello **-SearchString**旗標。 這適用於獨立從所有旗標，但 hello 的例外是上述 hello **-ErrorCategory PropertyConflict**，永遠是必要項：
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -SearchString User`
 
 #### <a name="in-a-limited-quantity-or-all"></a>以有限的數量或全部
-1. **MaxResults <Int>** 可用來將查詢的值數量限制為特定數目。
-2. **All** 可用於確保在有大量錯誤的情況下擷取所有的結果。
+1. **MaxResults <Int>** 可以是使用 toolimit hello 查詢 tooa 特定數目的值。
+2. **所有**可以是使用的 tooensure 大量錯誤存在的 hello 案例中擷取所有結果。
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -MaxResults 5`
 
 ## <a name="office-365-admin-portal"></a>Office 365 系統管理入口網站
-您可以在 Office 365 系統管理中心檢視目錄同步處理錯誤。 Office 365 入口網站中的報告只會顯示有這些錯誤的 **User** 物件。 並不會顯示「群組」和「連絡人」之間的衝突相關資訊。
+您可以在 hello Office 365 系統管理中心檢視目錄同步作業錯誤。 hello hello Office 365 入口網站只會顯示在報表**使用者**發生這些錯誤的物件。 並不會顯示「群組」和「連絡人」之間的衝突相關資訊。
 
 ![作用中使用者](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/1234.png "作用中使用者")
 
-如需有關如何在 Office 365 系統管理中心檢視目錄同步處理錯誤的指示，請參閱[在 Office 365 中識別目錄同步處理錯誤](https://support.office.com/en-us/article/Identify-directory-synchronization-errors-in-Office-365-b4fc07a5-97ea-4ca6-9692-108acab74067)。
+如需如何 tooview 目錄同步作業錯誤的 hello Office 365 admin center 指示，請參閱[識別 Office 365 中的目錄同步作業錯誤](https://support.office.com/en-us/article/Identify-directory-synchronization-errors-in-Office-365-b4fc07a5-97ea-4ca6-9692-108acab74067)。
 
 ### <a name="identity-synchronization-error-report"></a>身分識別同步處理錯誤報告
-當利用這個新行為處理具有重複屬性衝突的物件時，通知會包含在標準身分識別同步處理錯誤報告電子郵件中，而該電子郵件回傳送給租用戶的技術通知連絡人。 不過，此行為有一項重大變更。 在過去，重複屬性衝突的相關資訊會包含在每個後續的錯誤報告中，直到解決衝突為止。 利用這個新行為，給定衝突的錯誤通知只會出現一次 - 在衝突的屬性遭到隔離時。
+當具有重複的屬性發生衝突的物件會處理與通知包含在這個新行為 hello 標準識別身分同步處理錯誤報告的電子郵件，會傳送 hello 租用戶的 toohello 通知技術連絡人。 不過，此行為有一項重大變更。 在過去 hello，重複的屬性發生衝突的相關資訊會包含在每個後續的錯誤報告之前 hello 衝突已解決。 使用這個新的行為，指定衝突的 hello 錯誤通知未只能出現一次-次 hello hello 衝突的屬性會被隔離。
 
-ProxyAddress 衝突的電子郵件通知範例如下所示︰  
+哪些 hello 電子郵件通知看起來像 ProxyAddress 衝突的範例如下：  
     ![作用中使用者](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/6.png "作用中使用者")  
 
 ## <a name="resolving-conflicts"></a>解決衝突
-這些錯誤的疑難排解策略和解決技巧不得與過去處理重複屬性錯誤的方式不同。 唯一的差別在於計時器工作將會掃掠服務端上的租用戶，以在衝突解決後，自動將有問題的屬性新增至適當的物件。
+疑難排解這些錯誤的策略與解決策略不應該從 hello hello 過去中的重複屬性錯誤處理的方式不同。 hello 唯一的差異是，透過在 hello 服務端 tooautomatically hello 租用戶的 hello 計時器工作掃掠加入 hello 屬性問題 toohello 適當物件中一旦 hello 衝突的解決。
 
-下列文章概述各種疑難排解和解決策略︰ [重複或無效的屬性會防止在 Office 365 中進行目錄同步作業](https://support.microsoft.com/kb/2647098)。
+hello 下列文件概述各種疑難排解和解決方式：[重複或無效的屬性會讓 Office 365 中的目錄同步作業](https://support.microsoft.com/kb/2647098)。
 
 ## <a name="known-issues"></a>已知問題
-沒有任何已知問題會導致資料遺失或服務降級。 其中有幾個是美觀的問題，其他問題會導致擲回標準「恢復前」重複屬性錯誤，而不是隔離衝突屬性，而別的問題會導致特定錯誤需要額外的手動修復。
+沒有任何已知問題會導致資料遺失或服務降級。 其中幾個美觀，其他人會導致標準 「*前的恢復功能*"重複的屬性而不是隔離 hello 衝突的屬性，而另一個會擲回的錯誤 toobe 會造成特定錯誤 toorequire 額外的手動 v-table 修正。
 
 **核心行為︰**
 
-1. 具有特定屬性組態的物件會繼續收到匯出錯誤，而不是將重複屬性隔離。  
+1. 具有特定的屬性設定的物件相對於的 toohello 重複屬性被隔離繼續 tooreceive 匯出錯誤。  
    例如：
    
     a. 新使用者會在 AD 中以 UPN 為 **Joe@contoso.com**、ProxyAddress 為 **smtp:Joe@contoso.com** 的方式建立
    
-    b. 此物件的屬性會與 ProxyAddress 為 **SMTP:Joe@contoso.com** 的現有「群組」發生衝突。
+    b. hello 這個物件屬性發生衝突與現有的群組，其中是 ProxyAddress  **SMTP:Joe@contoso.com** 。
    
-    c. 匯出時，會擲回「ProxyAddress 衝突」 錯誤，而不是將衝突屬性隔離。 此作業會在每個後續的同步處理週期中重試，就如同在啟用恢復功能之前一樣。
-2. 如果在內部部署上建立兩個具有相同 SMTP 位址的群組，則會在第一次嘗試時佈建失敗並發生標準的重複 **ProxyAddress** 錯誤。 不過，重複值會在下一個同步處理週期時被適當隔離。
+    c. 在匯出時**ProxyAddress 衝突**而不需要隔離 hello 衝突的屬性會擲回錯誤。 hello 作業是在每個後續同步處理循環中，重試，因為它可能已啟用 hello 恢復功能之前。
+2. 如果在建立兩個群組會在內部以 hello 相同 SMTP 位址，一個失敗 tooprovision hello 第一次嘗試重複的標準**ProxyAddress**錯誤。 不過，hello 重複的值是適當隔離時 hello 下一個同步處理循環。
 
 **Office 入口網站報告**：
 
-1. UPN 衝突集中兩個物件的詳細錯誤訊息是相同的。 這表示它們都已變更 / 隔離 UPN，當事實上只有其中一個變更了資料。
-2. UPN 衝突的詳細錯誤訊息會對已變更/隔離其 UPN 的使用者，顯示錯誤的 displayName。 例如：
+1. UPN 衝突集合中的兩個物件的 hello 詳細的錯誤訊息是 hello 相同。 這表示它們都已變更 / 隔離 UPN，當事實上只有其中一個變更了資料。
+2. hello UPN 衝突的詳細的錯誤訊息會顯示 hello 錯誤 displayName 的使用者已變更/隔離其 UPN。 例如：
    
     a. **User A** 會先與 **UPN = User@contoso.com** 同步。
    
-    b. 接著，會嘗試將 **User B** 與 User@contoso.comUPN =  同步。
+    b. **使用者 B**嘗試的 toobe 同步處理與接**UPN = User@contoso.com** 。
    
-    c. **User B** 的 UPN 會變更為 **User1234@contoso.onmicrosoft.com**，而 **User@contoso.com** 會新增至 **DirSyncProvisioningErrors**。
+    c. **使用者 B 的**UPN 變更太**User1234@contoso.onmicrosoft.com** 和 **User@contoso.com** 太加入**DirSyncProvisioningErrors**。
    
-    d. **User B** 的錯誤訊息應指出 **User A** 已經有 **User@contoso.com** 作為 UPN，但顯示的卻是 **User B** 自己的 displayName。
+    d. hello 錯誤訊息，取得**使用者 B**應該指出**使用者 A**已經有 **User@contoso.com**  UPN，但它示**使用者 B**自己顯示名稱。
 
 **身分識別同步處理錯誤報告**：
 
-「如何解決此問題的步驟」的連結不正確：  
+hello 連結*步驟 tooresolve 此問題*不正確：  
     ![作用中使用者](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/6.png "作用中使用者")  
 
-它應該指向 [https://aka.ms/duplicateattributeresiliency](https://aka.ms/duplicateattributeresiliency)。
+它應該太點[https://aka.ms/duplicateattributeresiliency](https://aka.ms/duplicateattributeresiliency)。
 
 ## <a name="see-also"></a>另請參閱
 * [Azure AD Connect 同步處理](active-directory-aadconnectsync-whatis.md)

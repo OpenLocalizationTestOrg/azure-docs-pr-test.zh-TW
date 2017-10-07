@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中使用 Docker Compose 連接至 Linux VM | Microsoft Docs"
-description: "如何透過 Azure CLI 在 Linux 虛擬機器上使用 Docker 和 Compose"
+title: "在 Azure 中的 Linux VM 上的 Docker Compose aaaUse |Microsoft 文件"
+description: "Toouse Docker 和 Linux 的虛擬機器上撰寫 hello Azure CLI"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 541722cb02dd991228726e62a2304b49cdd806f2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: cf7254ad4813ccdc641fcacbb06ed1514a93cee5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-docker-and-compose-to-define-and-run-a-multi-container-application-in-azure"></a>在 Azure 中開始使用 Docker 和 Compose 定義並執行多容器應用程式
-藉由 [Compose](http://github.com/docker/compose)，您將可以使用簡單的文字檔來定義由多個 Docker 容器所組成的應用程式。 接著，您可以透過單一命令來啟動應用程式，此命令會執行所需的一切準備工作，以部署您的已定義環境。 舉例來說，本文將說明如何藉由 Ubuntu VM 上的後端 MariaDB SQL 資料庫來快速設定 WordPress 部落格。 您也可以使用 Compose 來設定更複雜的應用程式。
+# <a name="get-started-with-docker-and-compose-toodefine-and-run-a-multi-container-application-in-azure"></a>取得開始使用 Docker 和撰寫 toodefine 並在 Azure 中執行多個容器應用程式
+與[撰寫](http://github.com/docker/compose)，您可以使用簡單的文字檔案 toodefine 組成的多個 Docker 容器應用程式。 然後加速您的應用程式中的單一命令的一切 toodeploy 您定義的環境。 例如，本文章將示範如何 tooquickly WordPress 部落格與後端 MariaDB SQL 資料庫上設定 Ubuntu VM。 您也可以使用撰寫 tooset 組成更複雜的應用程式。
 
 
 ## <a name="set-up-a-linux-vm-as-a-docker-host"></a>設定 Linux VM 做為 Docker 主機
-您可以使用 Azure Marketplace 中的各種 Azure 程序和可用映像或 Resource Manager 範本來建立 Linux VM，並將其設定為 Docker 主機。 例如，請參閱[使用 Docker VM 擴充功能來部署您的環境](dockerextension.md)，以使用[快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)藉由 Azure Docker VM 擴充功能建立 Ubuntu VM。 
+您可以在 hello Azure Marketplace toocreate Linux VM 中使用各種 Azure 的程序和可用的映像或資源管理員範本，並將它設定為 Docker 主機。 例如，請參閱[使用您環境的 hello Docker VM 擴充功能 toodeploy](dockerextension.md) tooquickly Ubuntu VM 以 hello Azure Docker VM 延伸模組建立使用[快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)。 
 
-當您使用 Docker VM 擴充功能時，您的 VM 會自動設為 Docker 主機，並已安裝 Compose。
+當您使用 hello Docker VM 擴充功能時，您的 VM 會自動設定為 Docker 主機，且已安裝撰寫。
 
 
 ### <a name="create-docker-host-with-azure-cli-20"></a>使用 Azure CLI 2.0 建立 Docker 主機
-請安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
+最新安裝 hello [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure 帳戶使用登入和[az 登入](/cli/azure/#login)。
 
-首先，使用 [az group create](/cli/azure/group#create) 建立 Docker 環境的資源群組。 下列範例會在 westus 位置建立名為 myResourceGroup 的資源群組：
+首先，使用 [az group create](/cli/azure/group#create) 建立 Docker 環境的資源群組。 hello 下列範例會建立名為的資源群組*myResourceGroup*在 hello *uswest*位置：
 
 ```azurecli
 az group create --name myResourceGroup --location westus
 ```
 
-接下來，使用 [az group deployment create](/cli/azure/group/deployment#create) 來部署 VM，其中包含來自 [GitHub 上此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)的 Azure Docker VM 擴充功能。 針對 newStorageAccountName、adminUsername、adminPassword 和 dnsNameForPublicIP 提供您自己的值：
+接下來，部署具有 VM [az 群組部署建立](/cli/azure/group/deployment#create)包含 hello Azure Docker VM 擴充功能，從[GitHub 上的此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)。 針對 newStorageAccountName、adminUsername、adminPassword 和 dnsNameForPublicIP 提供您自己的值：
 
 ```azurecli
 az group deployment create --resource-group myResourceGroup \
@@ -51,9 +51,9 @@ az group deployment create --resource-group myResourceGroup \
   --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/docker-simple-on-ubuntu/azuredeploy.json
 ```
 
-需要幾分鐘的時間才能完成部署。 部署完成後，[移至下一個步驟](#verify-that-compose-is-installed)以透過 SSH 連接到您的 VM。 
+花幾分鐘，讓 hello 部署 toofinish。 在 hello 部署完成時，[移動 toonext 步驟](#verify-that-compose-is-installed)tooSSH tooyour VM。 
 
-(選擇性) 若要將控制權交回給提示字元，並且讓部署繼續在背景中執行，請將 `--no-wait` 旗標新增至上述命令。 此程序可讓您在部署繼續執行數分鐘時，在 CLI 中執行其他工作。 您可以接著使用 [az vm show](/cli/azure/vm#show)，檢視有關 Docker 主機狀態的詳細資訊。 下列範例會在名為 myResourceGroup 的資源群組中檢查名為 myDockerVM 的 VM 狀態 (範本的預設名稱 - 請勿變更這個名稱)：
+（選擇性） tooinstead 傳回控制 toohello 提示與 hello 可讓的部署於 hello 背景繼續執行新增 hello `--no-wait` toohello 命令的前面加上旗標。 此程序可讓您 tooperform hello CLI 時在幾分鐘後會繼續進行 hello 部署中的其他工作。 然後，您可以檢視與 hello Docker 主機狀態的詳細[az vm 顯示](/cli/azure/vm#show)。 hello 下列範例會檢查 hello 狀態 hello 名為 VM *myDockerVM* （hello hello 範本中的預設名稱-不要變更這個名稱） 在 hello 資源群組中名為*myResourceGroup*:
 
 ```azurecli
 az vm show \
@@ -63,44 +63,44 @@ az vm show \
     --output tsv
 ```
 
-當此命令傳回 Succeeded 時，即表示部署已完成，您可以在下列步驟中透過 SSH 連線到 VM。
+此命令會傳回當*Succeeded*hello 部署已完成，您可以在 hello 步驟之後的 SSH toohello VM。
 
 
 ## <a name="verify-that-compose-is-installed"></a>確認已安裝 Compose
-部署完成之後，請使用您在部署期間提供的 DNS 名稱，透過 SSH 連接到新的 Docker 主機。 您可以使用 `az vm show -g myResourceGroup -n myDockerVM -d --query [fqdns] -o tsv` 檢視您 VM 的詳細資料，包括 DNS 名稱。
+在 hello 部署完成時，SSH tooyour 新 Docker 主機使用 hello DNS 名稱提供您在部署期間。 您可以使用`az vm show -g myResourceGroup -n myDockerVM -d --query [fqdns] -o tsv`tooview 詳細資料，您的 VM，包括 hello DNS 名稱。
 
 ```bash
 ssh azureuser@mypublicdns.westus.cloudapp.azure.com
 ```
 
-若要檢查 Compose 是否已安裝在 VM 上，請執行下列命令：
+撰寫的 toocheck 被安裝在 hello VM，執行下列命令的 hello:
 
 ```bash
 docker-compose --version
 ```
 
-您會看見類型「docker-compose 1.6.2, build 4d72027」的輸出結果。
+您會看到類似的輸出太*docker 撰寫 1.6.2、 組建 4d 72027*。
 
 > [!TIP]
-> 如果您使用另一種方法來建立 Docker 主機而需要自行安裝 Compose，請參閱 [Compose 文件](https://github.com/docker/compose/blob/882dc673ce84b0b29cd59b6815cb93f74a6c4134/docs/install.md)。
+> 如果您使用另一個方法 toocreate Docker 主機，而需要的 tooinstall 撰寫您自己，請參閱 hello[撰寫文件](https://github.com/docker/compose/blob/882dc673ce84b0b29cd59b6815cb93f74a6c4134/docs/install.md)。
 
 
 ## <a name="create-a-docker-composeyml-configuration-file"></a>建立 docker-compose.yml 組態檔
-接下來，您需建立 `docker-compose.yml` 檔案，這只是一個文字組態檔，用來定義要在 VM 上執行的 Docker 容器。 此檔案會指定要在每個容器上執行的映像 (或可能是來自 Dockerfile 的組建)、必要的環境變數和相依性、連接埠，以及容器之間的連結。 如需有關 yml 檔案語法的詳細資料，請參閱 [Compose file reference (Compose 檔案參考)](https://docs.docker.com/compose/compose-file/)。
+接下來您建立`docker-compose.yml`不只是文字組態檔，toodefine hello Docker 容器 toorun hello VM 上的檔案。 hello 檔案指定 hello 映像 toorun 上每個容器 （或可能是來自 Dockerfile），必要的環境變數和相依性、 連接埠和 hello 容器之間的連結。 如需有關 yml 檔案語法的詳細資料，請參閱 [Compose file reference (Compose 檔案參考)](https://docs.docker.com/compose/compose-file/)。
 
-建立 docker-compose.yml 檔案，如下所示：
+建立 hello *docker compose.yml*檔案，如下所示：
 
 ```bash
 touch docker-compose.yml
 ```
 
-使用慣用的文字編輯器將一些資料新增至檔案。 下列範例使用 vi 編輯器：
+使用您慣用的文字編輯器 tooadd toohello 的一些資料檔案。 hello 下列範例會使用 hello *vi*編輯器：
 
 ```bash
 vi docker-compose.yml
 ```
 
-將下列範例貼入文字檔案。 此組態會使用來自 [DockerHub 登錄](https://registry.hub.docker.com/_/wordpress/) 的映像，安裝 WordPress (開放原始碼部落格和內容管理系統) 和連結的後端 MariaDB SQL 資料庫。 輸入您自已的 MYSQL_ROOT_PASSWORD，如下所示：
+下列範例文字檔案到貼上 hello。 這種設定使用映像從 hello [DockerHub 登錄](https://registry.hub.docker.com/_/wordpress/)tooinstall WordPress （hello 開放原始碼部落格和內容管理系統） 和連結的後端 MariaDB SQL 資料庫。 輸入您自已的 MYSQL_ROOT_PASSWORD，如下所示：
 
 ```sh
 wordpress:
@@ -116,14 +116,14 @@ db:
     MYSQL_ROOT_PASSWORD: <your password>
 ```
 
-## <a name="start-the-containers-with-compose"></a>以 Compose 啟動容器
-在與您 docker-compose.yml 檔案相同的目錄中，執行下列命令 (根據您的環境，您可能需要使用 `sudo` 執行 `docker-compose`)：
+## <a name="start-hello-containers-with-compose"></a>Hello 容器開頭撰寫
+在 hello 相同目錄做為您*docker compose.yml*檔案中，執行下列命令的 hello (根據您的環境，您可能需要 toorun`docker-compose`使用`sudo`):
 
 ```bash
 docker-compose up -d
 ```
 
-這個命令會啟動 docker-compose.yml 中指定的 Docker 容器。 此步驟需要幾分鐘的時間來完成。 您會看到類似以下範例的輸出：
+此命令會啟動 hello Docker 容器中指定*docker compose.yml*。 花一分鐘，或兩個進行此步驟 toocomplete。 您會看到下列範例的輸出類似 toohello:
 
 ```bash
 Creating wordpress_db_1...
@@ -132,10 +132,10 @@ Creating wordpress_wordpress_1...
 ```
 
 > [!NOTE]
-> 請務必在啟動時使用 **-d** 選項，讓容器在背景持續執行。
+> 要確定 toouse hello **-d**啟動選項，使 hello 容器連續執行 hello 背景。
 
 
-若要確認容器是否已啟動，請輸入 `docker-compose ps`。 您應該會看到如下的內容：
+hello 容器已啟動的 tooverify 類型`docker-compose ps`。 您應該會看到如下的內容：
 
 ```bash
         Name                       Command               State         Ports
@@ -144,14 +144,14 @@ azureuser_db_1          docker-entrypoint.sh mysqld      Up      3306/tcp
 azureuser_wordpress_1   docker-entrypoint.sh apach ...   Up      0.0.0.0:80->80/tcp
 ```
 
-您現在可以在 VM 的連接埠 80 上直接連線到 WordPress。 開啟網頁瀏覽器並輸入您 VM 的 DNS 名稱 (例如 `http://mypublicdns.westus.cloudapp.azure.com`)。 您現在應該會看到 WordPress 起始畫面，您可以在其中完成安裝，然後開始使用此應用程式。
+您現在可以連接 tooWordPress 直接在 hello 連接埠 80 上的 VM 上。 開啟網頁瀏覽器並輸入您 VM hello DNS 名稱 (例如`http://mypublicdns.westus.cloudapp.azure.com`)。 您現在應該會看到的 hello WordPress 開始畫面上，您會完成 hello 安裝，並開始使用 hello 應用程式。
 
 ![WordPress 起始畫面][wordpress_start]
 
 ## <a name="next-steps"></a>後續步驟
-* 如需了解在 Docker VM 中設定 Docker 和 Compose 的更多選項，請移至 [Docker VM 擴充功能使用者指南](https://github.com/Azure/azure-docker-extension/blob/master/README.md) 。 例如，其中一個選項是將 Compose yml 檔案 (轉換為 JSON) 直接置於 Docker VM 延伸模組的組態中。
-* 如需更多建置和部署多容器應用程式的範例，請參閱 [Compose command-line reference (Compose 命令列參考)](http://docs.docker.com/compose/reference/) 和[使用者指南](http://docs.docker.com/compose/)。
-* 使用 Azure 資源管理員範本 (您自己的範本或 [社群](https://azure.microsoft.com/documentation/templates/)提供的範本) 部署包含 Docker 的 Azure VM，以及使用 Compose 設定的應用程式。 例如， [以 Docker 部署 WordPress 部落格](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-wordpress-mysql) 範本使用 Docker 和 Compose，藉由 Ubuntu VM 上的 MySQL 後端快速部署 WordPress。
+* 移 toohello [Docker VM 延伸模組使用者指南](https://github.com/Azure/azure-docker-extension/blob/master/README.md)更多選項 tooconfigure Docker 和 Docker VM 中的撰寫。 例如，其中一個選項是 tooput hello 撰寫 yml 檔案 (轉換後 tooJSON) 直接在 hello hello Docker VM 擴充功能組態。
+* 簽出 hello[撰寫命令列參照](http://docs.docker.com/compose/reference/)和[使用者指南](http://docs.docker.com/compose/)建置及部署多個容器應用程式的相關範例。
+* 使用 Azure 資源管理員範本，或是您自己或其中一個由 hello[社群](https://azure.microsoft.com/documentation/templates/)，toodeploy Docker 和應用程式與 Azure VM 與撰寫設定。 例如，hello[部署使用 Docker WordPress 部落格](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-wordpress-mysql)範本使用 Docker，並撰寫 tooquickly 使用 MySQL 後端 Ubuntu 虛擬機器上部署 WordPress。
 * 嘗試整合 Docker Compose 與 Docker Swarm 叢集。 如需案例，請參閱[搭配使用 Compose 與 Swarm (英文)](https://docs.docker.com/compose/swarm/)。
 
 <!--Image references-->

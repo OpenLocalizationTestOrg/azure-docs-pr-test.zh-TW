@@ -16,86 +16,86 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: ba7b36e654aa0bf3b74d42a2b0ae96ae2a9b6241
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: af65b9be1e00c2819431694a5b0064b97b9e1867
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-options-for-azure-ad-password-management"></a>Azure AD 密碼管理的報告選項
 
-部署後，許多組織想要知道如何或是否真的使用 SSPR。 Azure AD 會提供報告功能，協助您使用現成的報告回答問題，而如果您已獲得適當授權，則可讓您建立自訂查詢。
+許多組織想 tooknow 方式，或如果真正使用 SSPR 部署後。 Azure AD 提供報表功能，協助您使用 tooanswer 問題 canned 報表，如果適當地取得授權，可讓您 toocreate 自訂查詢。
 
-存在於 [Azure 入口網站] (https://portal.azure.com/) 中的報告可以回答下列問題。
+hello 下列問題可獲得解答存在於 hello [Azure 入口網站] 中的報表 (https://portal.azure.com/)。
 
 > [!NOTE]
-> 您必須是[全域管理員](active-directory-assign-admin-roles.md#assign-or-remove-administrator-roles)且至少必須已瀏覽一次報告索引標籤或稽核記錄，以決定代表您的組織蒐集此資料。 在此之前，不會為您的組織收集資料。
+> 您必須是[全域管理員](active-directory-assign-admin-roles.md#assign-or-remove-administrator-roles)，並必須選擇這個資料 toobe 蒐集代表貴組織所造訪 hello 報告] 索引標籤或稽核記錄檔至少一次。 在此之前，不會為您的組織收集資料。
 
 * 有多少人已註冊密碼重設？
 * 有誰已註冊密碼重設？
 * 什麼資料是人員註冊？
-* 有多少人在過去 7 天內重設密碼？
-* 使用者或系統管理員用來重設其密碼最常見的方法是什麼？
-* 當使用者或系統管理員嘗試使用密碼重設時所面臨的常見問題是什麼？
+* 很多人重設其密碼，在 hello 過去七天？
+* 什麼是 hello 最常見方法的使用者或系統管理員使用 tooreset 他們的密碼？
+* 什麼是常見發出使用者或系統管理員面對嘗試 toouse 密碼重設嗎？
 * 哪些系統管理員經常重設自己的密碼？
 * 密碼重設時是否有任何可疑的活動？
 
-## <a name="how-to-view-password-management-reports-in-the-azure-portal"></a>如何在 Azure 入口網站中檢視密碼管理報告
+## <a name="how-tooview-password-management-reports-in-hello-azure-portal"></a>Tooview 密碼管理報告的方式，在 hello Azure 入口網站
 
-從 Azure 入口網站體驗中，我們找到更好的方式來檢視密碼重設和密碼重設註冊活動。  請遵循下列步驟，尋找密碼重設和密碼重設註冊事件：
+在 hello Azure 入口網站體驗，我們有改善的方式 tooview 密碼重設和密碼重設註冊活動。  請遵循以下 toofind hello 密碼重設和密碼重設註冊事件 hello 步驟：
 
-1. 瀏覽至 [**portal.azure.com**](https://portal.azure.com)
-2. 在 Azure 入口網站的左側主要導覽中，按一下 [更多服務] 功能表
-3. 在服務清單中搜尋並選取 **Azure Active Directory**
-4. 從 Azure Active Directory 導覽功能表中，按一下 [使用者和群組]
-5. 從 [使用者和群組] 導覽功能表中，按一下 [稽核記錄] 導覽項目。 這會顯示目錄中所有使用者發生的稽核事件。 您也可以篩選此檢視，查看密碼相關的所有事件。
-6. 若要篩選此檢視而只顯示密碼重設相關事件，請按一下刀鋒視窗頂端的 [篩選] 按鈕。
-7. 從 [篩選] 功能表中，選取 [類別] 下拉式清單中，然後變更為 [自助式密碼管理] 類別類型。
-8. 另可選擇您有興趣的特定 [活動]，以進一步篩選清單
+1. 瀏覽過[**portal.azure.com**](https://portal.azure.com)
+2. 按一下 hello**更多服務**hello 主要 Azure 入口網站左側的導覽功能表
+3. 搜尋**Azure Active Directory**在 hello 服務清單，並加以選取
+4. 按一下**使用者和群組**hello Azure Active Directory 瀏覽功能表中
+5. 按一下 hello**稽核記錄檔**hello 使用者和群組瀏覽功能表中的 [瀏覽項目。 這會顯示您所有的 hello 稽核事件，對您目錄中的所有 hello 使用者發生。 您可以篩選此檢視 toosee 所有 hello 密碼相關的事件，以及。
+6. toofilter 此檢視 tooonly hello 密碼重設相關的事件，請按一下 hello**篩選**在 hello hello 刀鋒視窗頂端的按鈕。
+7. 從 hello**篩選**功能表中，選取 hello**類別**下拉式清單中，並將它變更 toohello**自助密碼管理**類別目錄類型。
+8. （選擇性） 進一步篩選 hello 清單中的選擇 hello 特定**活動**您感興趣
 
-## <a name="how-to-retrieve-password-management-events-from-the-azure-ad-reports-and-events-api"></a>如何從 Azure AD 報告和事件 API 擷取密碼管理事件
+## <a name="how-tooretrieve-password-management-events-from-hello-azure-ad-reports-and-events-api"></a>如何從 tooretrieve 密碼管理事件 hello Azure AD 報告和事件 API
 
-Azure AD 報告和事件 API 支援擷取密碼重設和密碼重設註冊報告中包含的所有資訊。 您可以使用此 API 下載個別的密碼重設和密碼重設註冊事件，以便與您選擇的報告技術整合。
+hello Azure AD 報告和事件 API 支援擷取密碼重設和密碼重設註冊報表中所包含的所有 hello 資訊。 藉由使用此 API，您可以下載個別的密碼重設和密碼重設註冊事件整合以 hello 報告您選擇的技術。
 
-### <a name="how-to-get-started-with-the-reporting-api"></a>如何開始使用報告 API
+### <a name="how-tooget-started-with-hello-reporting-api"></a>如何 tooget 入門 hello 報告 API
 
-若要存取此資料，您必須撰寫小型的應用程式或指令碼，以從我們的伺服器擷取資料。 [了解如何開始使用 Azure AD Reporting API](active-directory-reporting-api-getting-started.md)。
+tooaccess 這項資料，您需要 toowrite 小型應用程式或指令碼 tooretrieve 從我們的伺服器。 [了解如何 tooget 入門 hello Azure AD 報告 API](active-directory-reporting-api-getting-started.md)。
 
-一旦您擁有有效的指令碼，您接下來要檢查您可以擷取密碼重設和註冊事件以滿足您的案例。
+工作的指令碼之後，您會接下來想 tooexamine hello 密碼重設和註冊事件，您可以擷取 toomeet 您的案例。
 
-* [SsprActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent)：列出密碼重設事件可用的資料行
-* [SsprRegistrationActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprRegistrationActivityEvent)：列出密碼重設註冊事件可用的資料行
+* [SsprActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent)： 密碼重設事件會列出可用的 hello 資料行
+* [SsprRegistrationActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprRegistrationActivityEvent)： 密碼重設註冊事件會列出可用的 hello 資料行
 
 ### <a name="reporting-api-data-retrieval-limitations"></a>報告 API 資料擷取限制
 
-目前，Azure AD 報告和事件 API 會從**過去 30 天**內，擷取 [SsprActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent) 和 [SsprRegistrationActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprRegistrationActivityEvent) 類型最多 **75,000 個個別事件**。
+目前，hello Azure AD 報告和事件 API 會擷取向上太**75000 個別事件**的 hello [SsprActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent)和[SsprRegistrationActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprRegistrationActivityEvent)類型跨越 hello**過去 30 天內**。
 
-如果您需要擷取或儲存比這個期間更早的資料，建議將資料保存在外部資料庫，並利用 API 來查詢產生的差異。 我們的建議是在組織中開始使用 SSPR 時，就開始擷取此資料，並保存在外部，然後從這一點開始持續追蹤差異。
+如果您需要 tooretrieve，或儲存超過此視窗的資料，則建議您保存在外部資料庫，並使用 hello API tooquery hello 差異所導致。 我們建議 toobegin 擷取這項資料，當開始在您的組織中使用 SSPR、 將它保存在外部，然後再從這個點 tootrack hello 差異的向前復原。
 
-## <a name="how-to-download-password-reset-registration-events-quickly-with-powershell"></a>如何使用 PowerShell 快速下載密碼重設註冊事件
+## <a name="how-toodownload-password-reset-registration-events-quickly-with-powershell"></a>如何 toodownload 密碼重設註冊事件使用 PowerShell
 
-除了直接使用 Azure AD 報告和事件 API，您也可以使用下列 PowerShell 指令碼，擷取目錄中最近的註冊事件。 如果您想要查看最近是誰註冊，或想要確保密碼重設如預期般展開，這非常有用。
+此外 toousing hello Azure AD 報告和事件 API 直接，您也可以使用下列 PowerShell 指令碼 toorecent 註冊事件 hello 目錄中。 這會很有用，如果您想 toosee 最近，已註冊，或想要如預期般發生 tooensure 密碼重設首度發行。
 
 * [Azure AD SSPR 註冊活動 PowerShell 指令碼](https://gallery.technet.microsoft.com/scriptcenter/azure-ad-self-service-e31b8aee)
 
 ### <a name="description-of-report-columns-in-azure-portal"></a>Azure 入口網站中報告資料行的說明
 
-下列清單詳細說明每個報告資料行：
+hello 下列清單說明每個 hello 報表中的資料行詳細資料：
 
-* **使用者** – 嘗試進行密碼重設註冊作業的使用者。
-* **角色** – 使用者在目錄中的角色。
-* **日期和時間** – 嘗試的日期和時間。
-* **已註冊資料** – 使用者在密碼重設註冊期間提供哪些驗證資料。
+* **使用者**– hello 使用者嘗試進行密碼重設註冊作業。
+* **角色**– hello hello 目錄中的 hello 使用者角色。
+* **日期和時間**– hello 的日期和時間 hello 嘗試。
+* **註冊資料**– 密碼過程中提供的驗證資料 hello 使用者重設註冊。
 
 ### <a name="description-of-report-values-in-azure-portal"></a>Azure 入口網站中報告值的說明
 
-下表描述每個資料行允許的不同值：
+hello 下表描述 hello 允許每個資料行不同的值：
 
-| 欄 | 允許的值及其意義 |
+| 資料欄 | 允許的值及其意義 |
 | --- | --- |
-| 已註冊資料 |**備用電子郵件** – 使用者用來驗證的備用電子郵件或驗證電子郵件<p><p>**辦公室電話** – 使用者用來驗證的辦公室電話<p>**行動電話** – 使用者用來驗證的行動電話或驗證電話<p>**安全性問題** – 使用者用來驗證的安全性問題<p>**屬於上述任何組合 (例如替代電子郵件 + 行動電話)** – 當指定 2 個閘道原則時會發生這種情況，且會顯示使用者用來驗證其密碼重設要求的兩種方法。 |
+| 已註冊資料 |**替代電子郵件**– 使用者使用替代電子郵件或驗證電子郵件 tooauthenticate<p><p>**辦公室電話**– 使用辦公室電話 tooauthenticate 使用者。<p>**行動電話**-使用者使用行動電話或驗證電話 tooauthenticate<p>**安全性問題**– 使用者使用安全性問題 tooauthenticate<p>**Hello 上方 （例如替代電子郵件 + 行動電話） 的任何組合**– 2 閘道原則指定顯示哪兩種方式 hello tooauthentication 用使用者時，就會發生密碼重設要求。 |
 
-## <a name="view-password-reset-activity-in-the-classic-portal"></a>在傳統入口網站中檢視密碼重設活動
+## <a name="view-password-reset-activity-in-hello-classic-portal"></a>檢視密碼重設 hello 傳統入口網站中的活動
 
 此報告會顯示您的組織中發生的所有密碼重設嘗試。
 
@@ -105,173 +105,173 @@ Azure AD 報告和事件 API 支援擷取密碼重設和密碼重設註冊報告
 
 ### <a name="description-of-report-columns-in-azure-classic-portal"></a>Azure 傳統入口網站中報告資料行的說明
 
-下列清單詳細說明每個報告資料行：
+hello 下列清單說明每個 hello 報表中的資料行詳細資料：
 
-1. **使用者** – 嘗試密碼重設作業的使用者 (根據使用者重設密碼時提供的 [使用者識別碼] 欄位)。
-2. **角色** – 使用者在目錄中的角色。
-3. **日期和時間** – 嘗試的日期和時間。
-4. **使用的方法** – 使用者用於此重設作業的驗證方法。
-5. **結果** – 密碼重設作業的結果。
-6. **詳細資料** – 為什麼密碼重設會導致所產生的值的詳細資料。  也包含任何防範措施，您可能會採取以解決未預期的錯誤。
+1. **使用者**– hello 使用者嘗試進行密碼重設作業 （根據 hello hello 使用者到達 tooreset 密碼時提供的使用者識別碼欄位）。
+2. **角色**– hello hello 目錄中的 hello 使用者角色。
+3. **日期和時間**– hello 的日期和時間 hello 嘗試。
+4. **方法用於**– 哪種驗證方法 hello 使用者使用此重設作業。
+5. **結果**– hello 結果的 hello 密碼重設作業。
+6. **詳細資料**– hello 的為什麼 hello 密碼重設的詳細資料，產生 hello 值一樣。  也包含您可能需要 tooresolve 未預期的錯誤的任何安全防護步驟。
 
 ### <a name="description-of-report-values-in-azure-classic-portal"></a>Azure 傳統入口網站中報告值的說明
 
-下表描述每個資料行允許的不同值：
+hello 下表描述 hello 允許每個資料行不同的值：
 
-| 欄 | 允許的值及其意義 |
+| 資料欄 | 允許的值及其意義 |
 | --- | --- |
-| 使用方法 |**備用電子郵件** – 使用者用來驗證的備用電子郵件或驗證電子郵件<p>**辦公室電話** – 使用者用來驗證的辦公室電話<p>**行動電話** – 使用者用來驗證的行動電話或驗證電話<p>**安全性問題** – 使用者用來驗證的安全性問題<p>**屬於上述任何組合 (例如替代電子郵件 + 行動電話)** – 當指定 2 個閘道原則時會發生這種情況，且會顯示使用者用來驗證其密碼重設要求的兩種方法。 |
-| 結果 |**已放棄** – 使用者開始重設密碼，但是又中途停止而未完成<p>**已封鎖** – 由於在 24 小時期間內嘗試使用密碼重設頁面或單一密碼重設閘道太多次，因此已防止使用者帳戶使用密碼重設<p>**已取消** – 使用者開始重設密碼，但是隨後按一下 [取消] 按鈕，在中途取消工作階段 <p>**已聯絡管理員** – 使用者在其工作階段期間有無法解決的問題，所以使用者按一下 [請連絡您的系統管理員] 連結，而不是完成密碼重設流程<p>**失敗** – 使用者無法重設密碼，可能是因為未設定讓使用者使用該功能 (例如，沒有授權、遺失驗證資訊、在內部部署環境管理密碼但已關閉回寫)。<p>**成功** – 密碼重設成功。 |
+| 使用方法 |**替代電子郵件**– 使用者使用替代電子郵件或驗證電子郵件 tooauthenticate<p>**辦公室電話**– 使用辦公室電話 tooauthenticate 使用者。<p>**行動電話**– 使用者使用行動電話或驗證電話 tooauthenticate<p>**安全性問題**– 使用者使用安全性問題 tooauthenticate<p>**Hello 上方 （例如替代電子郵件 + 行動電話） 的任何組合**– 2 閘道原則指定顯示哪兩種方式 hello tooauthentication 用使用者時，就會發生密碼重設要求。 |
+| 結果 |**已放棄** – 使用者開始重設密碼，但是又中途停止而未完成<p>**封鎖**– 使用者的帳戶已予以防止的 toouse 密碼重設到期 tooattempting toouse hello 密碼重設頁面或單一密碼重設閘道太多次 24 小時<p>**取消**– 使用者已開始密碼重設，但按 hello 取消] 5d; 按鈕 toocancel hello 工作階段中途透過 <p>**連絡系統管理員**– 使用者在他無法解決的工作階段期間發生了問題，因此 hello 使用者已按下 hello 「 連絡您的系統管理員 」 連結而未完成 hello 密碼重設流程<p>**無法**– 使用者不能 tooreset 密碼，可能因為 hello 使用者無法設定的 toouse hello 功能 （例如沒有授權、 缺少驗證資訊、 密碼管理內部但回寫為關閉）。<p>**成功** – 密碼重設成功。 |
 | 詳細資料 |請參閱下表 |
 
 ### <a name="allowed-values-for-details-column"></a>允許的詳細資料資料行的值
 
-以下是使用密碼重設活動報告時，您預期的結果類型清單：
+以下是使用 hello 密碼重設活動報表時，您可能預期的結果型別 hello 清單：
 
 | 詳細資料 | 結果類型 |
 | --- | --- |
-| 在完成電子郵件驗證選項之後使用者已放棄 |Abandoned |
-| 在完成行動 SMS 驗證選項之後使用者已放棄 |Abandoned |
-| 在完成行動語音通話驗證選項之後使用者已放棄 |Abandoned |
-| 在完成辦公室語音通話驗證選項之後使用者已放棄 |Abandoned |
-| 在完成安全性問題選項之後使用者已放棄 |Abandoned |
+| 使用者在完成 hello 電子郵件驗證選項之後放棄 |Abandoned |
+| 使用者在完成 hello 行動電話 SMS 驗證選項之後放棄 |Abandoned |
+| 使用者在完成 hello 行動電話語音通話驗證選項之後放棄 |Abandoned |
+| 使用者在完成 hello 辦公室語音通話驗證選項之後放棄 |Abandoned |
+| 使用者在完成 hello 安全性問題選項後放棄。 |Abandoned |
 | 在輸入其使用者識別碼之後使用者已放棄 |Abandoned |
-| 在開始電子郵件驗證選項之後使用者已放棄 |Abandoned |
-| 在開始行動 SMS 驗證選項之後使用者已放棄 |Abandoned |
-| 在開始行動語音通話驗證選項之後使用者已放棄 |Abandoned |
-| 在開始辦公室語音通話驗證選項之後使用者已放棄 |Abandoned |
-| 在開始安全性問題選項之後使用者已放棄 |Abandoned |
+| 使用者在開始 hello 電子郵件驗證選項之後放棄 |Abandoned |
+| 使用者在開始 hello 行動電話 SMS 驗證選項之後放棄 |Abandoned |
+| 使用者在開始 hello 行動電話語音通話驗證選項之後放棄 |Abandoned |
+| 使用者在開始 hello 辦公室語音通話驗證選項之後放棄 |Abandoned |
+| 使用者在開始 hello 安全性問題選項後放棄。 |Abandoned |
 | 選取新密碼之前使用者已放棄 |Abandoned |
 | 選取新密碼之際使用者已放棄 |Abandoned |
 | 使用者輸入太多無效的 SMS 驗證碼，因此封鎖 24 小時 |Blocked |
 | 使用者嘗試行動電話語音驗證太多次，因此封鎖 24 小時 |Blocked |
 | 使用者嘗試辦公室電話語音驗證太多次，因此封鎖 24 小時 |Blocked |
-| 使用者嘗試回答安全性問題太多次，因此封鎖 24 小時 |Blocked |
-| 使用者嘗試驗證電話號碼太多次，因此封鎖 24 小時 |Blocked |
-| 在傳遞必要的驗證方法之前使用者已取消 |Canceled |
+| 使用者因嘗試太多次 tooanswer 安全性問題而被封鎖 24 小時 |Blocked |
+| 使用者因嘗試太多次 tooverify 電話號碼而被封鎖 24 小時 |Blocked |
+| 使用者已取消之前傳遞 hello 所需的驗證方法 |Canceled |
 | 在提交新密碼之前使用者已取消 |Canceled |
-| 在嘗試電子郵件驗證選項之後使用者連絡系統管理員 |Contacted admin |
-| 在嘗試行動 SMS 驗證選項之後使用者連絡系統管理員 |Contacted admin |
-| 在嘗試行動語音通話驗證選項之後使用者連絡系統管理員 |Contacted admin |
-| 在嘗試辦公室語音通話驗證選項之後使用者連絡系統管理員 |Contacted admin |
-| 在嘗試安全性問題驗證選項之後使用者連絡系統管理員 |Contacted admin |
-| 這位使用者未啟用密碼重設。 在 [設定] 索引標籤底下啟用密碼重設以解決此問題 |Failed |
-| 使用者沒有授權。 您可以新增授權給使用者以解決此問題 |Failed |
-| 使用者嘗試從未啟用 cookie 的裝置重設 |Failed |
-| 使用者的帳戶已定義驗證方法不足。 新增驗證資訊以解決此問題 |Failed |
-| 使用者的密碼是在內部部署進行管理。 您可以啟用密碼回寫以解決此問題 |Failed |
+| 使用者在嘗試 hello 電子郵件驗證選項之後連絡管理員 |Contacted admin |
+| 使用者在嘗試 hello 行動電話 SMS 驗證選項之後連絡管理員 |Contacted admin |
+| 使用者在嘗試 hello 行動電話語音通話驗證選項之後連絡管理員 |Contacted admin |
+| 使用者在嘗試 hello 辦公室語音通話驗證選項之後連絡管理員 |Contacted admin |
+| 使用者在嘗試 hello 安全性問題驗證選項之後連絡管理員 |Contacted admin |
+| 這位使用者未啟用密碼重設。 啟用密碼重設下 hello] 索引標籤 tooresolve 進行此設定 |Failed |
+| 使用者沒有授權。 您可以加入授權 toohello 使用者 tooresolve |Failed |
+| 使用者嘗試從裝置 tooreset 未啟用 cookie |Failed |
+| 使用者的帳戶已定義驗證方法不足。 新增驗證資訊 tooresolve |Failed |
+| 使用者的密碼是在內部部署進行管理。 這啟用密碼回寫 tooresolve |Failed |
 | 我們無法取得您的內部部署密碼重設服務。 請檢查您的同步處理電腦的事件記錄檔 |Failed |
-| 我們在重設使用者的內部部署密碼時發現問題。 請檢查您的同步處理電腦的事件記錄檔 |Failed |
-| 此使用者不是密碼重設使用者群組的成員。 將此使用者加入至該群組中以解決此問題。 |Failed |
-| 已針對此租用戶完全停用密碼重設。 若要解決這個問題，請參閱 [這裡](http://aka.ms/ssprtroubleshoot) 。 |Failed |
+| 我們發現重設 hello 使用者在內部部署密碼時發生的問題。 請檢查您的同步處理電腦的事件記錄檔 |Failed |
+| 此使用者不是 hello 密碼重設使用者群組的成員。 加入此使用者 toothat 群組 tooresolve。 |Failed |
+| 已針對此租用戶完全停用密碼重設。 請參閱[這裡](http://aka.ms/ssprtroubleshoot)tooresolve 這。 |Failed |
 | 使用者成功重設密碼 |Succeeded |
 
 ## <a name="self-service-password-management-activity-types"></a>自助式密碼管理活動類型
 
-下列活動類型會出現在 [自助式密碼管理] 稽核事件類別中。  以下每一項的說明。
+下列活動類型的 hello 會出現在 hello**自助密碼管理**稽核事件類別目錄。  以下每一項的說明。
 
-* [**封鎖自助式密碼重設**](#activity-type-blocked-from-self-service-password-reset) - 指出使用者在 24 小時內嘗試重設密碼、使用特定的閘道或驗證電話號碼，總計 5 次以上。
-* [**變更密碼 (自助式)**](#activity-type-change-password-self-service) - 指出使用者自願或被迫 (因為到期) 執行密碼變更。
-* [**重設密碼 (由系統管理員)**](#activity-type-reset-password-by-admin) - 指出系統管理員從 Azure 入口網站代表使用者執行密碼重設。
-* [**重設密碼 (自助式)**](#activity-type-reset-password-self-service) - 指出使用者已從 [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)成功重設其密碼。
-* [**自助式密碼重設流程活動進度**](#activity-type-self-serve-password-reset-flow-activity-progress) - 指出使用者在密碼重設過程中經過的每個特定步驟 (例如，通過特定的密碼重設驗證關卡)。
-* [**解除鎖定使用者帳戶 (自助式)**](#activity-type-unlock-user-account-self-service) - 指出使用者已使用 AD 帳戶解除鎖定而不重設功能，成功解除鎖定其 Active Directory 帳戶，而沒有從 [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)重設其密碼。
-* [**使用者已註冊自助式密碼重設**](#activity-type-user-registered-for-self-service-password-reset) - 指出使用者已根據目前指定的租用戶密碼重設原則，註冊所有必要的資訊，以便能夠重設其密碼。
+* [**自助式密碼重設封鎖**](#activity-type-blocked-from-self-service-password-reset) -表示使用者嘗試 tooreset 密碼，來使用特定的閘道，或驗證的電話號碼 5 個以上的 24 小時內的總時間。
+* [**變更密碼 （自助）** ](#activity-type-change-password-self-service) -指出使用者執行自願性質，或強制 (到期 tooexpiry) 密碼變更。
+* [**重設密碼 （由系統管理員）** ](#activity-type-reset-password-by-admin) -表示系統管理員執行密碼重設代表 hello Azure 入口網站的使用者。
+* [**重設密碼 （自助）** ](#activity-type-reset-password-self-service) -表示使用者已成功重設其密碼，從 hello [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)。
+* [**自助式密碼重設流程活動進度**](#activity-type-self-serve-password-reset-flow-activity-progress) -表示每個使用者就會繼續進行，（例如，傳遞特定的密碼重設驗證閘道） 的特定步驟一部分 hello 密碼重設程序。
+* [**解除鎖定使用者帳戶 （自助）** ](#activity-type-unlock-user-account-self-service) -表示使用者已成功解除其 Active Directory 帳戶鎖定而不重設其密碼，從 hello [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)使用hello AD 帳戶解除鎖定，而不重設功能。
+* [**使用者註冊自助密碼重設**](#activity-type-user-registered-for-self-service-password-reset) -表示使用者已註冊所有必要的 hello 資訊 toobe 無法 tooreset hello 根據其密碼目前指定的租用戶密碼重設原則。
 
 ### <a name="activity-type-blocked-from-self-service-password-reset"></a>活動類型︰封鎖自助式密碼重設
 
-下列清單詳細說明此活動︰
+hello 下列清單說明此活動，在詳細資料：
 
-* **活動描述** - 指出使用者在 24 小時內嘗試重設密碼、使用特定的閘道或驗證電話號碼，總計 5 次以上。
-* **活動執行者** - 已受節流控制而無法執行其他重設作業的使用者。 可能是使用者或系統管理員。
-* **活動目標** - 已受節流控制而無法執行其他重設作業的使用者。 可能是使用者或系統管理員。
+* **活動描述**– 表示使用者嘗試 tooreset 密碼，請使用特定的閘道，或驗證電話號碼 5 個以上的 24 小時內的總時間。
+* **活動執行者**-已執行其他節流的 hello 使用者重設作業。 可能是使用者或系統管理員。
+* **活動的目標**-已執行其他節流的 hello 使用者重設作業。 可能是使用者或系統管理員。
 * **允許的活動狀態**
-  * _成功_ - 指出使用者已受節流控制，在接下來 24 小時內無法執行任何額外的重設、嘗試任何額外的驗證方法，或驗證任何額外的電話號碼。
+  * _成功_-表示使用者已節流處理來自執行任何額外的重設，嘗試任何其他驗證方法，或驗證未來 24 小時內的任何其他的電話號碼 hello。
 * **活動狀態失敗原因** - 不適用
 
 ### <a name="activity-type-change-password-self-service"></a>活動類型：變更密碼 (自助式)
 
-下列清單詳細說明此活動︰
+hello 下列清單說明此活動，在詳細資料：
 
-* **活動描述** – 指出使用者自願或被迫 (因為到期) 執行密碼變更。
-* **活動執行者** - 已變更其密碼的使用者。 可能是使用者或系統管理員。
-* **活動目標** - 已變更其密碼的使用者。 可能是使用者或系統管理員。
+* **活動描述**– 指出使用者執行自願性質，或強制 (到期 tooexpiry) 密碼變更。
+* **活動執行者**-hello 使用者變更其密碼。 可能是使用者或系統管理員。
+* **活動的目標**-hello 使用者變更其密碼。 可能是使用者或系統管理員。
 * **允許的活動狀態**
   * _成功_ - 指出使用者已成功變更其密碼
-  * _失敗_ - 指出使用者變更其密碼失敗。 按一下此資料列可讓您查看 [活動狀態原因] 類別，以深入了解失敗發生的原因。
+  * _失敗_-表示使用者無法 toochange 他們的密碼。 按一下 hello 資料列可讓您 toosee hello**活動狀態原因**類別 toolearn 更多關於 hello 失敗發生的原因。
 * **活動狀態失敗原因** - 
-  * _FuzzyPolicyViolationInvalidPassword_ - 使用者選取的密碼自動被禁用，因為 Microsoft 的禁用密碼偵測功能發現此密碼太普通或太弱。
+  * _FuzzyPolicyViolationInvalidPassword_ -hello 使用者選取已自動禁用到期 tooMicrosoft 的禁用密碼偵測功能尋找 toobe 太常見或特別是弱式密碼。
 
 ### <a name="activity-type-reset-password-by-admin"></a>活動類型：重設密碼 (由系統管理員)
 
-下列清單詳細說明此活動︰
+hello 下列清單說明此活動，在詳細資料：
 
-* **活動描述** - 指出系統管理員從 Azure 入口網站代表使用者執行密碼重設。
-* **活動執行者** - 代表另一個使用者或系統管理員來執行密碼重設的系統管理員。 必須是全域管理員、密碼管理員、使用者管理員或技術服務管理員。
-* **活動目標** - 已重設密碼的使用者。 可能是使用者或不同的系統管理員。
+* **活動描述**– 表示系統管理員執行密碼重設代表 hello Azure 入口網站的使用者。
+* **活動執行者**-hello 系統管理員執行 hello 密碼重設代表另一個使用者或系統管理員。 必須是全域管理員、密碼管理員、使用者管理員或技術服務管理員。
+* **活動的目標**-hello 使用者重設其密碼。 可能是使用者或不同的系統管理員。
 * **允許的活動狀態**
   * _成功_ - 指出系統管理員已成功重設使用者的密碼
-  * _失敗_ - 指出系統管理員變更使用者的密碼失敗。 按一下此資料列可讓您查看 [活動狀態原因] 類別，以深入了解失敗發生的原因。
+  * _失敗_-表示系統管理員無法 toochange 使用者的密碼。 按一下 hello 資料列可讓您 toosee hello**活動狀態原因**類別 toolearn 更多關於 hello 失敗發生的原因。
 
 ### <a name="activity-type-reset-password-self-service"></a>活動類型：重設密碼 (自助式)
 
-下列清單詳細說明此活動︰
+hello 下列清單說明此活動，在詳細資料：
 
-* 活動描述 - 指出使用者已從 [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)成功重設其密碼。
-* **活動執行者** - 已重設其密碼的使用者。 可能是使用者或系統管理員。
-* **活動目標** - 已重設其密碼的使用者。 可能是使用者或系統管理員。
+* **活動描述**– 表示使用者已成功重設其密碼，從 hello [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)。
+* **活動執行者**-hello 使用者重設其密碼。 可能是使用者或系統管理員。
+* **活動的目標**-hello 使用者重設其密碼。 可能是使用者或系統管理員。
 * **允許的活動狀態**
   * _成功_ - 指出使用者已成功重設其密碼
-  * _失敗_ - 指出使用者重設其密碼失敗。 按一下此資料列可讓您查看 [活動狀態原因] 類別，以深入了解失敗發生的原因。
+  * _失敗_-表示使用者無法 tooreset 自己的密碼。 按一下 hello 資料列可讓您 toosee hello**活動狀態原因**類別 toolearn 更多關於 hello 失敗發生的原因。
 * **活動狀態失敗原因** -
-  * _FuzzyPolicyViolationInvalidPassword_ - 系統管理員選取的密碼自動被禁用，因為 Microsoft 的禁用密碼偵測功能發現此密碼太普通或太弱。
+  * _FuzzyPolicyViolationInvalidPassword_ -hello 系統管理員選取已自動禁用到期 tooMicrosoft 的禁用密碼偵測功能尋找 toobe 太常見或特別是弱式密碼。
 
 ### <a name="activity-type-self-serve-password-reset-flow-activity-progress"></a>活動類型：自助式密碼重設流程活動進度
 
-下列清單詳細說明此活動︰
+hello 下列清單說明此活動，在詳細資料：
 
-* **活動描述** - 指出使用者在密碼重設過程中經過的每個特定步驟 (例如，通過特定的密碼重設驗證關卡)。
-* **活動執行者** - 執行部分密碼重設流程的使用者。 可能是使用者或系統管理員。
-* **活動目標** - 執行部分密碼重設流程的使用者。 可能是使用者或系統管理員。
+* **活動描述**– 指出每個特定步驟，使用者就會繼續進行 （例如，傳遞特定的密碼重設驗證閘道） 一部分 hello 密碼重設程序。
+* **活動執行者**-執行 hello 密碼一部分的 hello 使用者重設流程。 可能是使用者或系統管理員。
+* **活動的目標**-執行 hello 密碼一部分的 hello 使用者重設流程。 可能是使用者或系統管理員。
 * **允許的活動狀態**
-  * _成功_ - 指出使用者已成功完成密碼重設流程的特定步驟。
-  * _失敗_ - 指出密碼重設流程的特定步驟失敗。 按一下此資料列可讓您查看 [活動狀態原因] 類別，以深入了解失敗發生的原因。
+  * _成功_-表示使用者已成功完成特定步驟的 hello 密碼重設流程。
+  * _失敗_-表示特定步驟的 hello 密碼重設失敗的流程。 按一下 hello 資料列可讓您 toosee hello**活動狀態原因**類別 toolearn 更多關於 hello 失敗發生的原因。
 * **允許的活動狀態原因**
   * 請參閱下表中的[所有允許的重設活動狀態原因](#allowed-values-for-details-column)
 
 ### <a name="activity-type-unlock-user-account-self-service"></a>活動類型：解除鎖定使用者帳戶 (自助式)
 
-下列清單詳細說明此活動︰
+hello 下列清單說明此活動，在詳細資料：
 
-* 活動描述 - 指出使用者已使用 AD 帳戶解除鎖定而不重設功能，成功解除鎖定其 Active Directory 帳戶，而沒有從 [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)重設其密碼。
-* **活動執行者** - 已解除鎖定帳戶但未重設其密碼的使用者。 可能是使用者或系統管理員。
-* **活動目標** - 已解除鎖定帳戶但未重設其密碼的使用者。 可能是使用者或系統管理員。
+* **活動描述**– 表示使用者已成功解除其 Active Directory 帳戶鎖定而不重設其密碼，從 hello [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)不重設使用 hello AD 帳戶解除鎖定功能。
+* **活動執行者**-hello 使用者解除鎖定其帳戶，而不重設其密碼。 可能是使用者或系統管理員。
+* **活動的目標**-hello 使用者解除鎖定其帳戶，而不重設其密碼。 可能是使用者或系統管理員。
 * **允許的活動狀態**
   * _成功_ - 指出使用者已成功解除鎖定其帳戶
-  * _失敗_ - 指出使用者解除鎖定帳戶失敗。 按一下此資料列可讓您查看 [活動狀態原因] 類別，以深入了解失敗發生的原因。
+  * _失敗_-表示使用者無法 toounlock 他們的帳戶。 按一下 hello 資料列可讓您 toosee hello**活動狀態原因**類別 toolearn 更多關於 hello 失敗發生的原因。
 
 ### <a name="activity-type-user-registered-for-self-service-password-reset"></a>活動類型︰使用者已註冊自助式密碼重設
 
-下列清單詳細說明此活動︰
+hello 下列清單說明此活動，在詳細資料：
 
-* **活動描述** - 指出使用者已根據目前指定的租用戶密碼重設原則，註冊所有必要的資訊，以便能夠重設其密碼。 
-* **活動執行者** - 已註冊密碼重設的使用者。 可能是使用者或系統管理員。
-* **活動目標** - 已註冊密碼重設的使用者。 可能是使用者或系統管理員。
+* **活動描述**– 表示使用者已註冊所有必要的 hello 資訊 toobe 無法 tooreset hello 根據其密碼目前指定的租用戶密碼重設原則。 
+* **活動執行者**-hello 使用者註冊密碼重設。 可能是使用者或系統管理員。
+* **活動的目標**-hello 使用者註冊密碼重設。 可能是使用者或系統管理員。
 * **允許的活動狀態**
-  * _成功_ - 指出使用者已根據目前的原則成功註冊密碼重設。 
-  * _失敗_ - 指出使用者註冊密碼重設失敗。 按一下此資料列可讓您查看 [活動狀態原因] 類別，以深入了解失敗發生的原因。 注意 - 這不表示使用者無法重設自己的密碼，只表示他們未完成註冊程序。 如果帳戶上有未驗證但正確的資料 (例如未驗證的電話號碼)，即使此電話號碼尚未驗證，仍然可用來重設密碼。 如需詳細資訊，請參閱[當使用者註冊時會發生什麼事？](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-learn-more#what-happens-when-a-user-registers)
+  * _成功_-表示使用者已成功註冊密碼重設根據 hello 目前原則。 
+  * _失敗_-指出使用者無法 tooregister 密碼重設。 按一下 hello 資料列可讓您 toosee hello**活動狀態原因**類別 toolearn 更多關於 hello 失敗發生的原因。 請注意-這不表示使用者已無法 tooreset 自己的密碼，只是它們未完成 hello 註冊程序。 如果正確 （例如電話號碼，不會驗證），其帳戶中沒有未驗證的資料即使它們未驗證這個電話號碼，他們仍然可以使用它 tooreset 他們的密碼。 如需詳細資訊，請參閱[當使用者註冊時會發生什麼事？](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-learn-more#what-happens-when-a-user-registers)
 
 ## <a name="next-steps"></a>後續步驟
 
-下列連結提供有關使用 Azure AD 重設密碼的其他資訊
+hello 下列連結提供有關密碼重設使用 Azure AD 的其他資訊
 
-* [使用者管理稽核記錄的捷徑](https://portal.azure.com/#blade/Microsoft_AAD_IAM/UserManagementMenuBlade/Audit) - 直接移至您租用戶的使用者管理稽核記錄
+* [快顯 toouser 管理稽核記錄檔](https://portal.azure.com/#blade/Microsoft_AAD_IAM/UserManagementMenuBlade/Audit)-請直接 tooyour 租用戶的使用者管理稽核記錄檔
 * [**快速入門**](active-directory-passwords-getting-started.md) - 開始執行 Azure AD 自助式密碼管理 
 * [**授權**](active-directory-passwords-licensing.md) - 設定 Azure AD 授權
-* [**資料**](active-directory-passwords-data.md) -了解所需的資料以及如何將它使用於密碼管理
-* [**推出**](active-directory-passwords-best-practices.md) - 使用此處提供的指引來規劃 SSPR 並將它部署至使用者
-* [**自訂**](active-directory-passwords-customize.md) - 為您的公司自訂 SSPR 體驗的外觀與風格。
-* [**技術性深入探討**](active-directory-passwords-how-it-works.md) - 深入探索以了解其運作方式
-* [**常見問題集**](active-directory-passwords-faq.md) - 如何？ 原因為何？ 何事？ 何地？ 何人？ 何時？ - -您一直想要詢問之問題的答案
-* [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何解決我們看到的 SSPR 常見問題
+* [**資料**](active-directory-passwords-data.md) -了解所需的 hello 資料及如何使用密碼管理
+* [**首度發行**](active-directory-passwords-best-practices.md) -計劃和部署 SSPR tooyour 使用者 hello 指引，請參閱
+* [**自訂**](active-directory-passwords-customize.md) -自訂的 hello SSPR 體驗您的公司 hello 外觀與風格。
+* [**技術的深入探討**](active-directory-passwords-how-it-works.md) -hello 帘 toounderstand 後方移它的運作方式
+* [**常見問題集**](active-directory-passwords-faq.md) - 如何？ 原因為何？ 何事？ 何地？ 何人？ 何時？ -回答您總是想 tooask tooquestions
+* [**疑難排解**](active-directory-passwords-troubleshoot.md) -了解如何 tooresolve 常見問題，我們會看到與 SSPR
 * [**原則**](active-directory-passwords-policy.md) - 了解並設定 Azure AD 密碼原則

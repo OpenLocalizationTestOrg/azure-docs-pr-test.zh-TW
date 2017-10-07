@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 自動化中測試 Runbook | Microsoft Docs"
-description: "在 Azure 自動化中發佈 Runbook 之前，您可以先加以測試，以確保 Runbook 能夠如預期般運作。  本文說明如何測試 Runbook 及檢視其輸出。"
+title: "Azure 自動化中 runbook aaaTesting |Microsoft 文件"
+description: "在 Azure 自動化中發佈 runbook 之前，您可以如預期般運作的 tooensure 對它進行測試。  本文說明如何 tootest runbook 並檢視其輸出。"
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/12/2016
 ms.author: magoedte;bwren
-ms.openlocfilehash: 5186eb8f1732d533cbceb397b4d8b5224ad773cd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8c531f702699d586f8215d4c171cb0ecf94732b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="testing-a-runbook-in-azure-automation"></a>在 Azure 自動化中測試 Runbook
-當您測試 Runbook 時， [草稿版本](automation-creating-importing-runbook.md#publishing-a-runbook) 會執行，而且它執行的任何動作都會完成。 不會建立任何工作歷程記錄，但 [測試輸出] 窗格中會顯示[輸出](automation-runbook-output-and-messages.md#output-stream)與[警告和錯誤](automation-runbook-output-and-messages.md#message-streams)串流。 只有將 [$VerbosePreference 變數](automation-runbook-output-and-messages.md#preference-variables)設為 Continue，傳送給[詳細資訊串流](automation-runbook-output-and-messages.md#message-streams)的訊息才會顯示在 [輸出] 窗格中。
+當您測試 runbook 時，hello[草稿版本](automation-creating-importing-runbook.md#publishing-a-runbook)執行並且完成之後，它會執行任何動作。 沒有工作歷程記錄會建立，但 hello[輸出](automation-runbook-output-and-messages.md#output-stream)和[警告和錯誤](automation-runbook-output-and-messages.md#message-streams)資料流會顯示在 hello 測試輸出窗格。 訊息 toohello [Verbose Stream](automation-runbook-output-and-messages.md#message-streams)才會顯示在輸出窗格 hello hello [$VerbosePreference 變數](automation-runbook-output-and-messages.md#preference-variables)tooContinue 設定。
 
-即使執行的是草稿版本，Runbook 仍會正常執行工作流程，並會針對環境中的資源執行任何動作。 因此，您只能在非生產資源中測試 Runbook。
+即使執行 hello 草稿版本時，hello runbook 仍然會正常執行 hello 工作流程，並針對執行任何動作資源 hello 環境中。 因此，您只能在非生產資源中測試 Runbook。
 
-測試每個 [Runbook 類型](automation-runbook-types.md) 的程序都相同，而且無論是在文字式編輯器或 Azure 入口網站的圖形化編輯器中進行測試，都沒有任何差別。  
+hello 程序 tootest 每個[的 runbook 類型](automation-runbook-types.md)hello 相同，而且會在測試 hello 文字編輯器與 hello hello Azure 入口網站中的圖形化編輯器之間沒有差異。  
 
-## <a name="to-test-a-runbook-in-the-azure-portal"></a>在 Azure 入口網站中測試 Runbook
-您可以在 Azure 入口網站中使用任何 [Runbook 類型](automation-runbook-types.md) 。
+## <a name="tootest-a-runbook-in-hello-azure-portal"></a>tootest hello Azure 入口網站中 runbook
+您可以使用任何[runbook 類型](automation-runbook-types.md)hello Azure 入口網站中。
 
-1. 您可以在[文字編輯器](automation-edit-textual-runbook.md)或[圖形化編輯器](automation-graphical-authoring-intro.md)中開啟 Runbook 的草稿版本。
-2. 按一下  [測試] 按鈕以開啟 [測試] 刀鋒視窗。
-3. 如果 Runbook 含有參數，這些參數會列在左窗格中，您可以在此提供值，以供測試使用。
-4. 如果您想要在[混合式 Runbook 背景工作](automation-hybrid-runbook-worker.md)上執行測試，則需將 [執行設定] 變更為 [混合式背景工作]，然後選取目標群組的名稱。  否則，請保留預設值 **Azure**，以便在雲端中執行測試。
-5. 按一下 [啟動]  按鈕以啟動測試。
-6. 如果 Runbook 是 [PowerShell 工作流程](automation-runbook-types.md#powershell-workflow-runbooks)或[圖形化](automation-runbook-types.md#graphical-runbooks) Runbook，則在測試過程中，您可以使用 [輸出] 窗格下方的按鈕來停止或暫停 Runbook。 暫停 Runbook 時，它會先完成目前的活動後才暫停。 Runbook 一旦暫停，您可以選擇停止或重新啟動。
-7. 您可以在 [輸出] 窗格中檢查 Runbook 的輸出。
+1. 在任一 hello hello runbook 開啟 hello 草稿版本[文字編輯器](automation-edit-textual-runbook.md)或[圖形化編輯器](automation-graphical-authoring-intro.md)。
+2. 按一下 hello**測試**按鈕 tooopen hello 測試刀鋒視窗。
+3. 如果 hello runbook 有參數，則會列出中，您可以在其中提供用於 hello 測試值 toobe hello 左窗格中。
+4. 如果您想 toorun hello 測試上[Hybrid Runbook Worker](automation-hybrid-runbook-worker.md)，然後變更**回合設定**太**Hybrid Worker**和選取 hello hello 目標群組名稱。  否則，請保留預設 hello **Azure** toorun hello 測試 hello 雲端中的。
+5. 按一下 hello**啟動**按鈕 toostart hello 測試。
+6. 如果 hello runbook [PowerShell 工作流程](automation-runbook-types.md#powershell-workflow-runbooks)或[圖形](automation-runbook-types.md#graphical-runbooks)，則您可以停止或暫停它時測試 hello 輸出窗格 下的 hello 按鈕。 當您暫停 hello runbook 時，它先完成 hello 目前活動再暫停。 Hello runbook 暫停後，您可以將它停止或重新啟動它。
+7. 檢查 hello hello [輸出] 窗格中的 hello runbook 的輸出。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要了解如何建立或匯入 Runbook，請參閱 [建立或匯入 Azure 自動化中的 Runbook](automation-creating-importing-runbook.md)
-* 若要深入了解圖形化編寫，請參閱 [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
-* 若要開始使用 PowerShell 工作流程 Runbook，請參閱 [我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
-* 若要深入了解設定 Runbok 以傳回狀態訊息和錯誤，包括建議的作法，請參閱 [Azure 自動化中的 Runbook 輸出和訊息](automation-runbook-output-and-messages.md)
+* 如何 toocreate 或匯入 runbook，請參閱的 toolearn[建立或匯入在 Azure 自動化 runbook](automation-creating-importing-runbook.md)
+* toolearn 詳細資料圖形化撰寫，請參閱[Azure 自動化中的圖形化撰寫](automation-graphical-authoring-intro.md)
+* tooget 開始使用 PowerShell 工作流程 runbook，請參閱[我的第一個 PowerShell 工作流程 runbook](automation-first-runbook-textual.md)
+* toolearn 進一步了解設定 runboks tooreturn 狀態訊息和錯誤，包括建議的做法，請參閱[Runbook 輸出和在 Azure 自動化中的訊息](automation-runbook-output-and-messages.md)
 

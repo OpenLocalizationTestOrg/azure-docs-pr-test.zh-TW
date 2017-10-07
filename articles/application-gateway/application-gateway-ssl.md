@@ -1,6 +1,6 @@
 ---
-title: "設定 SSL 卸載 - Azure 應用程式閘道 - PowerShell 傳統 | Microsoft Docs"
-description: "本文提供使用 Azure 傳統部署模型建立具有 SSL 卸載之應用程式閘道的指示。"
+title: "aaaConfigure SSL 卸載 Azure 應用程式閘道-PowerShell 傳統 |Microsoft 文件"
+description: "本文章提供應用程式閘道以 SSL 卸載使用 toocreate hello Azure 傳統部署模型的指示。"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
-ms.openlocfilehash: 2eba6fb24c11add12ac16d04d3445e19a3486216
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5cb128015747ed4b71802cf751c80b60634601a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-an-application-gateway-for-ssl-offload-by-using-the-classic-deployment-model"></a>使用傳統部署模型設定適用於 SSL 卸載的應用程式閘道
+# <a name="configure-an-application-gateway-for-ssl-offload-by-using-hello-classic-deployment-model"></a>設定 SSL 卸載的應用程式閘道使用 hello 傳統部署模型
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](application-gateway-ssl-portal.md)
@@ -28,34 +28,34 @@ ms.lasthandoff: 08/18/2017
 > * [Azure 傳統 PowerShell](application-gateway-ssl.md)
 > * [Azure CLI 2.0](application-gateway-ssl-cli.md)
 
-Azure 應用程式閘道可以設定為在閘道終止安全通訊端層 (SSL) 工作階段，以避免 Web 伺服陣列發生高成本的 SSL 解密工作。 SSL 卸載也可以簡化 Web 應用程式的前端伺服器設定和管理。
+Azure 應用程式閘道可以在 hello 閘道 tooavoid 昂貴 SSL 解密工作 toohappen hello web 伺服陣列設定的 tooterminate hello Secure Sockets Layer (SSL) 工作階段。 Hello 前端伺服器安裝並管理 hello web 應用程式，也可以簡化 SSL 卸載。
 
 ## <a name="before-you-begin"></a>開始之前
 
-1. 使用 Web Platform Installer 安裝最新版的 Azure PowerShell Cmdlet。 您可以從 **下載頁面** 的 [Windows PowerShell](https://azure.microsoft.com/downloads/)區段下載並安裝最新版本。
-2. 請確認您的運作中虛擬網路具有有效子網路。 請確定沒有虛擬機器或是雲端部署正在使用子網路。 應用程式閘道必須單獨位於虛擬網路子網路中。
-3. 您要設定來使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
+1. 使用 hello Web Platform Installer 安裝 hello hello Azure PowerShell cmdlet 的最新版本。 您可以從下載並安裝最新版本的 hello hello **Windows PowerShell**區段 hello[下載頁面](https://azure.microsoft.com/downloads/)。
+2. 請確認您的運作中虛擬網路具有有效子網路。 請確定沒有虛擬機器或雲端部署使用 hello 子網路。 hello 應用程式閘道必須單獨在虛擬網路子網路。
+3. 您設定 toouse hello 應用程式閘道的 hello 伺服器必須存在，或指派建立 hello 虛擬網路中，或是具有公用 IP/VIP 端點。
 
-若要在應用程式閘道上設定 SSL 卸載，請依列出的順序執行下列步驟：
+tooconfigure SSL 卸載應用程式閘道上，執行 hello hello 依列出的順序執行步驟：
 
 1. [建立應用程式閘道](#create-an-application-gateway)
 2. [上傳 SSL 憑證](#upload-ssl-certificates)
-3. [設定閘道](#configure-the-gateway)
-4. [設定閘道組態](#set-the-gateway-configuration)
-5. [啟動閘道](#start-the-gateway)
-6. [確認閘道狀態](#verify-the-gateway-status)
+3. [Hello 閘道設定](#configure-the-gateway)
+4. [設定 hello 閘道組態](#set-the-gateway-configuration)
+5. [啟動 hello 閘道](#start-the-gateway)
+6. [驗證 hello 閘道器狀態](#verify-the-gateway-status)
 
 ## <a name="create-an-application-gateway"></a>建立應用程式閘道
 
-若要建立閘道，請使用 `New-AzureApplicationGateway` Cmdlet，並以您自己的值來取代這些值。 此時還不會開始對閘道計費。 會在稍後的步驟中於成功啟動閘道之後開始計費。
+toocreate hello 閘道，使用 hello `New-AzureApplicationGateway` cmdlet，取代您自己 hello 值。 此時無法啟動的 hello 閘道計費。 計費開始在稍後步驟中，當 hello 閘道已順利啟動。
 
 ```powershell
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
 ```
 
-若要驗證已建立閘道，您可以使用 `Get-AzureApplicationGateway` Cmdlet。
+hello 閘道的 toovalidate 所建立，您可以使用 hello `Get-AzureApplicationGateway` cmdlet。
 
-在範例中，*Description*、*InstanceCount* 及 *GatewaySize* 是選用參數。 *InstanceCount* 的預設值是 2，且最大值是 10。 *GatewaySize* 的預設值是 Medium。 Small 和 Large 也是可用的值。 因為尚未啟動閘道，所以 VirtualIPs 和 DnsName 會顯示為空白。 閘道處於執行中狀態之後，就會建立這些值。
+在 hello 範例中，*描述*， *InstanceCount*，和*GatewaySize*是選擇性參數。 預設值的 hello *InstanceCount*為 2，最大值是 10。 預設值的 hello *GatewaySize*都是 Medium。 Small 和 Large 也是可用的值。 *如*和*DnsName*會顯示為空白，因為 hello 閘道尚未啟動。 執行中狀態的 hello hello 閘道之後，會建立這些值。
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -63,17 +63,17 @@ Get-AzureApplicationGateway AppGwTest
 
 ## <a name="upload-ssl-certificates"></a>上傳 SSL 憑證
 
-使用 `Add-AzureApplicationGatewaySslCertificate`，將伺服器憑證 (*pfx* 格式) 上傳至應用程式閘道。 憑證名稱是使用者選擇的名稱，而且必須在應用程式閘道中是唯一的。 應用程式閘道上的所有憑證管理作業會使用此名稱參考該憑證。
+使用`Add-AzureApplicationGatewaySslCertificate`tooupload hello 伺服器憑證中的*pfx*格式 toohello 應用程式閘道。 hello 憑證名稱是使用者所選名稱，而且必須是唯一在 hello 應用程式閘道中。 此憑證是參照的 tooby hello 應用程式閘道上的所有憑證管理作業的這個名稱。
 
-下列範例會顯示 Cmdlet，請將範例中的值取代為您自己的值。
+此下列範例顯示 hello cmdlet，在 hello 範例中的 hello 值取代為您自己。
 
 ```powershell
-Add-AzureApplicationGatewaySslCertificate  -Name AppGwTest -CertificateName GWCert -Password <password> -CertificateFile <full path to pfx file>
+Add-AzureApplicationGatewaySslCertificate  -Name AppGwTest -CertificateName GWCert -Password <password> -CertificateFile <full path toopfx file>
 ```
 
-接下來，驗證憑證上傳。 使用 `Get-AzureApplicationGatewayCertificate` Cmdlet。
+接下來，驗證 hello 憑證上傳。 使用 hello `Get-AzureApplicationGatewayCertificate` cmdlet。
 
-這個範例的第一行顯示 Cmdlet，後面接著輸出。
+這個範例會顯示 hello cmdlet hello 第一行，後面接著 hello 輸出。
 
 ```powershell
 Get-AzureApplicationGatewaySslCertificate AppGwTest
@@ -90,28 +90,28 @@ State..........: Provisioned
 ```
 
 > [!NOTE]
-> 憑證密碼必須由 4 到 12 個字元、字母或數字所組成。 不接受使用特殊字元。
+> hello 憑證密碼有 toobe 之間 4 too12 字元、 字母或數字。 不接受使用特殊字元。
 
-## <a name="configure-the-gateway"></a>設定閘道
+## <a name="configure-hello-gateway"></a>Hello 閘道設定
 
-應用程式閘道組態是由多個值所組成。 可以將值繫結在一起，以建構組態。
+應用程式閘道組態是由多個值所組成。 hello 值可以繫結在一起的 tooconstruct hello 組態。
 
-值如下：
+hello 的值如下：
 
-* **後端伺服器集區：** 後端伺服器的 IP 位址清單。 列出的 IP 位址應屬於虛擬網路子網路或是公用 IP/VIP。
-* **後端伺服器集區設定：** 每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。 這些設定會繫結至集區，並套用至集區內所有伺服器。
-* **前端連接埠：** 此連接埠是在應用程式閘道上開啟的公用連接埠。 流量會到達此連接埠，然後重新導向至其中一個後端伺服器。
-* **接聽程式：** 接聽程式具有前端連接埠、通訊協定 (Http 或 Https，這些值都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。
-* **規則：** 規則會繫結接聽程式和後端伺服器集區，並定義當流量到達特定接聽程式時，應該導向到哪個後端伺服器集區。 目前只支援 *基本* 規則。 *基本* 規則是循環配置資源的負載分配。
+* **後端伺服器集區：** hello hello 後端伺服器的 IP 位址清單。 列出 hello IP 位址應該是屬於 toohello 虛擬網路子網路，或應該是公用 IP/VIP。
+* **後端伺服器集區設定：** 每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。 這些設定會繫結的 tooa 集區，並套用的 tooall hello 集區內的伺服器。
+* **前端連接埠：**此連接埠是開啟 hello 應用程式閘道上的 hello 公用連接埠。 流量叫用這個連接埠，然後再取得重新導向 tooone 的 hello 後端伺服器。
+* **接聽程式：** hello 接聽程式有前端連接埠的通訊協定 （Http 或 Https，這些值會區分大小寫），與 hello 的 SSL 憑證名稱 （如果有設定 SSL 卸載）。
+* **規則：** hello 規則繫結 hello 接聽程式和 hello 後端伺服器集區，並定義哪一個後端伺服器集區 hello 流量應導向的 toowhen 配接器特定接聽程式。 目前，只有 hello*基本*規則支援。 hello*基本*規則是循環配置資源負載分佈。
 
 **其他組態注意事項**
 
-針對 SSL 憑證組態，**HttpListener** 中的通訊協定應該變更為 *Https* (區分大小寫)。 **SslCert** 元素會新增到 **HttpListener** 中，其值會設定為與上傳先前的 SSL 憑證一節中所使用的名稱相同。 前端連接埠應該更新為 443。
+SSL 憑證設定，如 hello 中的通訊協定**HttpListener**也應該變更*Https* （區分大小寫）。 hello **SslCert**太新增項目**HttpListener** hello 與值設定的 toohello hello 上傳之前 SSL 憑證 > 一節中所使用相同的名稱。 hello 前端連接埠應為更新的 too443。
 
-**啟用以 Cookie 為基礎的同質性**：您可以設定應用程式閘道，以確保來自用戶端工作階段的要求一律會導向至 Web 伺服陣列中的相同 VM。 此案例透過插入允許閘道適當導向流量的工作階段 Cookie 來完成。 若要啟用以 Cookie 為基礎的同質性，請在 **BackendHttpSettings** 元素中將 **CookieBasedAffinity** 設定為 *Enabled*。
+**tooenable cookie 為基礎的同質**： 應用程式閘道可以是來自用戶端工作階段的要求會導向的 toohello 設定的 tooensure hello web 伺服陣列中相同的 VM。 此案例中是由資料隱碼的工作階段 cookie，可讓 hello 閘道 toodirect 流量時，適當地完成。 tooenable cookie 架構親和性，設定**CookieBasedAffinity**太*啟用*在 hello **BackendHttpSettings**項目。
 
 建立組態物件或使用組態 XML 檔案，即可建構組態。
-若要使用組態 XML 檔案以建構組態，請使用下列範例：
+tooconstruct 您使用組態 XML 檔案的組態，請使用下列範例 hello:
 
 **組態 XML 範例**
 
@@ -162,20 +162,20 @@ State..........: Provisioned
 </ApplicationGatewayConfiguration>
 ```
 
-## <a name="set-the-gateway-configuration"></a>設定閘道組態
+## <a name="set-hello-gateway-configuration"></a>設定 hello 閘道組態
 
-接下來，您需要設定應用程式閘道。 您可以搭配組態物件或組態 XML 檔案來使用 `Set-AzureApplicationGatewayConfig` Cmdlet。
+接下來，您可以設定 hello 應用程式閘道。 您可以使用 hello`Set-AzureApplicationGatewayConfig`指令程式與組態的物件或設定 XML 檔案。
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile D:\config.xml
 ```
 
-## <a name="start-the-gateway"></a>啟動閘道
+## <a name="start-hello-gateway"></a>啟動 hello 閘道
 
-設定閘道之後，請使用 `Start-AzureApplicationGateway` Cmdlet 來啟動閘道。 成功啟動閘道之後，會開始應用程式閘道計費。
+一旦已設定 hello 閘道，使用 hello `Start-AzureApplicationGateway` cmdlet toostart hello 閘道。 在 hello 閘道已順利啟動後，就會開始計費，應用程式閘道。
 
 > [!NOTE]
-> `Start-AzureApplicationGateway` Cmdlet 最多可能需要 15 到 20 分鐘才能完成。
+> hello `Start-AzureApplicationGateway` cmdlet 可能會佔用 toofinish too15 20 分鐘。
 >
 >
 
@@ -183,11 +183,11 @@ Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile D:\config.xml
 Start-AzureApplicationGateway AppGwTest
 ```
 
-## <a name="verify-the-gateway-status"></a>確認閘道狀態
+## <a name="verify-hello-gateway-status"></a>驗證 hello 閘道器狀態
 
-使用 `Get-AzureApplicationGateway` Cmdlet 檢查閘道狀態。 如果上一個步驟中的 `Start-AzureApplicationGateway` 成功，則 *State* 應該是 Running，而且 *VirtualIPs* 和 *DnsName* 應該具備有效的輸入。
+使用 hello `Get-AzureApplicationGateway` hello 閘道 cmdlet toocheck hello 狀態。 如果`Start-AzureApplicationGateway`hello 先前步驟中，在成功*狀態*應執行和*如*和*DnsName*應該具有有效的項目。
 
-這個範例所示範的應用程式閘道已啟動、執行中並準備好要接受流量。
+這個範例會顯示應用程式閘道的執行中，已啟動，且準備好 tootake 流量。
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest

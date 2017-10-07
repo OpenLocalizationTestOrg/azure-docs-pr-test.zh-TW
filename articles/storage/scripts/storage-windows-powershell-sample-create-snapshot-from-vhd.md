@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 從 VHD 建立快照集以在短時間內建立多個相同的受控磁碟 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 從 VHD 建立快照集以在短時間內建立多個相同的受控磁碟"
+title: "aaaAzure PowerShell 指令碼範例為建立快照集 VHD toocreate 從多個受管理的相同磁碟在短時間內 |Microsoft 文件"
+description: "Azure PowerShell 指令碼範例-建立快照集 VHD toocreate 從多個受管理的相同磁碟在短時間內"
 services: virtual-machines-windows
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 06/05/2017
 ms.author: ramankum
-ms.openlocfilehash: 8588a33a1f0b4cce0059a40239301587cdc28920
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0a13e399b692f32b3772add39fe5b5c023808c5e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-snapshot-from-a-vhd-to-create-multiple-identical-managed-disks-in-small-amount-of-time-with-powershell"></a>使用 PowerShell 從 VHD 建立快照集以在短時間內建立多個相同的受控磁碟
+# <a name="create-a-snapshot-from-a-vhd-toocreate-multiple-identical-managed-disks-in-small-amount-of-time-with-powershell"></a>建立快照集 VHD toocreate 從多個受管理的相同磁碟小型一段時間內使用 PowerShell
 
-此指令碼會從相同或不同訂用帳戶的儲存體帳戶中的 VHD 檔案，建立快照集。 使用此指令碼將特製化 (非一般化/已執行過 sysprep) VHD 匯入到快照集，然後使用快照集在短時間內建立多個相同的受控磁碟。 此外，使用它將資料 VHD 匯入到快照集，然後使用快照集在短時間內建立多個受控磁碟。 
+此指令碼會從相同或不同訂用帳戶的儲存體帳戶中的 VHD 檔案，建立快照集。 使用此指令碼 tooimport 特製化 (無法一般化/執行過 sysprep) VHD tooa 快照集，然後再使用多個受管理的相同磁碟 hello 快照 toocreate 在短時間內。 此外，使用 tooimport 資料 VHD tooa 快照集，然後再使用多個受管理的磁碟 hello 快照 toocreate 在短時間內。 
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install.md)]
 
@@ -31,16 +31,16 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[main](../../../powershell_scripts/storage/create-snapshots-from-vhd-in-different-subscription/create-snapshots-from-vhd-in-different-subscription.ps1 "從 VHD 建立快照集")]
+[!code-powershell[main](../../../powershell_scripts/storage/create-snapshots-from-vhd-in-different-subscription/create-snapshots-from-vhd-in-different-subscription.ps1 "Create snapshot from VHD")]
 
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼使用下列命令從不同訂用帳戶的 VHD 建立受控磁碟。 下表中的每個命令都會連結至命令特定的文件。
+此指令碼會使用下列命令 toocreate 受管理的磁碟從不同的訂用帳戶中的 VHD。 Hello 資料表連結 toocommand 特定文件中的每個命令。
 
 | 命令 | 注意事項 |
 |---|---|
-| [New-AzureRmDiskConfig](/powershell/module/azurerm.compute/New-AzureRmDiskConfig) | 建立用於磁碟建立的磁碟組態。 其中包含儲存體類型、位置、儲存父代 VHD 之儲存體帳戶的資源識別碼，以及父代 VHD 的 VHD URI。 |
+| [New-AzureRmDiskConfig](/powershell/module/azurerm.compute/New-AzureRmDiskConfig) | 建立用於磁碟建立的磁碟組態。 它包含存放裝置類型、 位置、 hello hello 父 VHD 的儲存位置的儲存體帳戶的資源 Id 和 hello 父系 VHD 的 VHD URI。 |
 | [New-AzureRmDisk](/powershell/module/azurerm.compute/New-AzureRmDisk) | 使用當作參數傳遞的磁碟組態、磁碟名稱和資源群組名稱來建立磁碟。 |
 
 ## <a name="next-steps"></a>後續步驟
@@ -50,6 +50,6 @@ ms.lasthandoff: 08/03/2017
 
 [將受控磁碟連結為 OS 磁碟以建立虛擬機器](./../../virtual-machines/scripts/virtual-machines-windows-powershell-sample-create-vm-from-managed-os-disks.md?toc=%2fpowershell%2fmodule%2ftoc.json)
 
-如需有關 Azure PowerShell 模組的詳細資訊，請參閱 [Azure PowerShell 文件](/powershell/azure/overview)。
+如需有關 hello Azure PowerShell 模組的詳細資訊，請參閱[Azure PowerShell 文件](/powershell/azure/overview)。
 
-您可以在 [Azure Windows VM 文件](../../virtual-machines/windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中找到其他的虛擬機器 PowerShell 指令碼範例。
+其他虛擬機器的 PowerShell 指令碼範例可以在 hello [Azure Windows VM 文件](../../virtual-machines/windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。

@@ -1,5 +1,5 @@
 ---
-title: "Azure 轉送節點 API 概觀 | Microsoft Docs"
+title: "hello Azure 轉送節點 Api 的 aaaOverview |Microsoft 文件"
 description: "轉送節點 API 概觀"
 services: service-bus-relay
 documentationcenter: na
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/05/2017
 ms.author: sethm
-ms.openlocfilehash: 28526c05c7f364f0fcaaa362fc97857f850040ee
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d231acc854be0eaa965dec0229cf63b08ff27067
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="relay-hybrid-connections-node-api-overview"></a>轉送混合式連接節點 API 概觀
 
 ## <a name="overview"></a>概觀
 
-[`hyco-ws`](https://www.npmjs.com/package/hyco-ws) Azure 轉送混合式連線的節點封裝建置於並擴充 ['ws'](https://www.npmjs.com/package/ws) NPM 封裝。 此封裝重新匯出該基本封裝的所有匯出，並新增新的匯出，可啟用與 Azure 轉送服務混合式連線功能整合。 
+hello [ `hyco-ws` ](https://www.npmjs.com/package/hyco-ws) Azure 轉送混合式連接的節點封裝建立，並擴充 hello ['ws'](https://www.npmjs.com/package/ws) NPM 封裝。 此套件重新匯出所有都匯出的基底套件，並加入新的都匯出啟用與 hello Azure 轉送服務的混合式連線功能整合。 
 
-現有的應用程式 `require('ws')` 可以改為搭配使用這個套件與 `require('hyco-ws')`，這也會啟用混合式案例，其中應用程式可以從「防火牆內部」及透過混合式連線，在本機接聽 WebSocket 連線，全部都在相同的時間。
+現有的應用程式的`require('ws')`可以使用此封裝`require('hyco-ws')`相反地，它也可讓混合式案例中的應用程式可以接聽的 WebSocket 連線從本機 「 內部 hello 防火牆 」，並透過混合式連線的所有項目hello 相同的時間。
   
 ## <a name="documentation"></a>文件
 
-API [記載於主要的 'ws' 封裝中](https://github.com/websockets/ws/blob/master/doc/ws.md)。 本文說明此套件與該基準不同之處。 
+hello Api 均為[記載於 hello 主要的 'ws' 封裝](https://github.com/websockets/ws/blob/master/doc/ws.md)。 本文說明此套件與該基準不同之處。 
 
-基本封裝和此 ' hyco-ws' 之間的主要差異在於此 'hyco-ws' 新增了新的伺服器類別，透過 `require('hyco-ws').RelayedServer` 匯出，和一些協助程式方法。
+hello hello 基底套件和此 ' hyco-ws' 之間的主要差異是，它會將新的伺服器類別，透過匯出`require('hyco-ws').RelayedServer`，以及一些 helper 方法。
 
 ### <a name="package-helper-methods"></a>套件協助程式方法
 
-封裝匯出上有數個公用程式方法可供您參考，如下所示︰
+上都有數個公用程式方法 hello 匯出封裝，如下所示，您可以參考：
 
 ```JavaScript
 const WebSocket = require('hyco-ws');
@@ -47,7 +47,7 @@ listenUri = WebSocket.appendRelayToken(listenUri, 'ruleName', '...key...')
 
 ```
 
-協助程式方法適用於與此封裝搭配使用，但也可供節點伺服器用來啟用 web 或裝置用戶端以建立接聽程式或傳送程式。 伺服器會將內嵌短期權杖的 URI 傳遞給它們來使用這些方法。 這些 URI 也可以搭配使用一般不支援設定 WebSocket 信號交換之 HTTP 標頭的 WebSocket 堆疊。 將授權權杖內嵌至 URI 主要目的是為了支援這些程式庫外部使用方式案例。 
+hello helper 方法適用於這個封裝，但也會用於節點伺服器啟用 web 或裝置的用戶端 toocreate 接聽程式 」 或 「 寄件者。 hello 伺服器會使用這些方法傳遞這些內嵌存留較短的語彙基元的 Uri。 這些 Uri 也可以搭配常見的 WebSocket 堆疊 hello WebSocket 交握不支援設定 HTTP 標頭。 授權權杖嵌入的 hello 這些程式庫外部使用方式案例的主要目的是為了支援的 URI。 
 
 #### <a name="createrelaylistenuri"></a>createRelayListenUri
 
@@ -55,14 +55,14 @@ listenUri = WebSocket.appendRelayToken(listenUri, 'ruleName', '...key...')
 var uri = createRelayListenUri([namespaceName], [path], [[token]], [[id]])
 ```
 
-建立指定命名空間和路徑的有效 Azure 轉送混合式連線接聽程式 URI。 此 URI 便可搭配使用轉送版本的 WebSocketServer 類別。
+建立的有效 Azure 轉送混合式連接接聽程式的 URI hello 命名空間和路徑。 這個 URI 可以搭配 hello 轉送版的 hello WebSocketServer 類別。
 
-- `namespaceName` (必要) - 要使用的 Azure 轉送命名空間之網域限定名稱。
-- `path` (必要) - 該命名空間中現有的 Azure 轉送混合式連線名稱。
-- `token` (選用) - 內嵌在接聽程式 URI 的先前發行轉送存取權杖 (請參閱下列範例)。
+- `namespaceName`（必要）-hello hello Azure 轉送命名空間 toouse 網域限定名稱。
+- `path`（必要）-hello 該命名空間中現有的 Azure 轉送混合式連接的名稱。
+- `token`（選用）-先前發行的轉送存取權杖，內嵌在 hello 接聽程式的 URI （請參閱下列範例中的 hello）。
 - `id` (選用) - 可啟用端對端診斷追蹤要求的追蹤識別碼。
 
-`token` 值是選擇性的，且應該僅用於無法傳送 HTTP 標題與 WebSocket 交握作業時，在此情況下為 W3C WebSocket 堆疊。                  
+hello`token`選擇性值，應該只用於在不可能 toosend HTTP 標頭 hello WebSocket 信號交換期間，以及使用 hello W3C WebSocket 堆疊的 hello 案例。                  
 
 
 #### <a name="createrelaysenduri"></a>createRelaySendUri
@@ -71,14 +71,14 @@ var uri = createRelayListenUri([namespaceName], [path], [[token]], [[id]])
 var uri = createRelaySendUri([namespaceName], [path], [[token]], [[id]])
 ```
 
-建立指定命名空間和路徑的有效 Azure 轉送混合式連線傳送 URI。 這個 URI 可以搭配使用任何 WebSocket 用戶端。
+建立 hello 命名空間和路徑的有效 Azure 轉送混合式連接傳送的 URI。 這個 URI 可以搭配使用任何 WebSocket 用戶端。
 
-- `namespaceName` (必要) - 要使用的 Azure 轉送命名空間之網域限定名稱。
-- `path` (必要) - 該命名空間中現有的 Azure 轉送混合式連線名稱。
-- `token` (選用) - 內嵌在傳送 URI 的先前發行轉送存取權杖 (請參閱下列範例)。
+- `namespaceName`（必要）-hello hello Azure 轉送命名空間 toouse 網域限定名稱。
+- `path`（必要）-hello 該命名空間中現有的 Azure 轉送混合式連接的名稱。
+- `token`（選用）-會內嵌在 hello 先前發行的轉送存取權杖傳送 URI （請參閱下列範例中的 hello）。
 - `id` (選用) - 可啟用端對端診斷追蹤要求的追蹤識別碼。
 
-`token` 值是選擇性的，且應該僅用於無法傳送 HTTP 標題與 WebSocket 交握作業時，在此情況下為 W3C WebSocket 堆疊。                   
+hello`token`選擇性值，應該只用於在不可能 toosend HTTP 標頭 hello WebSocket 信號交換期間，以及使用 hello W3C WebSocket 堆疊的 hello 案例。                   
 
 
 #### <a name="createrelaytoken"></a>createRelayToken 
@@ -87,14 +87,14 @@ var uri = createRelaySendUri([namespaceName], [path], [[token]], [[id]])
 var token = createRelayToken([uri], [ruleName], [key], [[expirationSeconds]])
 ```
 
-建立指定目標 URI、SAS 規則和 SAS 規則金鑰的 Azure 轉送共用存取簽章 (SAS) 權杖，如果省略到期引數，則其從目前即刻起指定的秒數或一小時為有效。
+建立 Azure 轉送共用存取簽章 (SAS) 權杖 hello 指定目標 URI、 SAS 規則和適用於指定數字秒或一小時從目前的 hello 立即省略 hello 到期引數，如果 hello 的 SAS 規則索引鍵。
 
-- `uri` (必要) - 要發行權杖的 URI。 URI 會正規化為使用 HTTP 配置，且會移除查詢字串資訊。
-- `ruleName` (必要) - 指定 URI 所代表之實體或 URI 主機部分所代表之命名空間的 SAS 規則名稱。
-- `key` (必要) - SAS 規則的有效金鑰。 
-- `expirationSeconds` (選用) - 所產生權杖應過期前的秒數。 如果未指定，則預設值是 1 小時 (3600)。
+- `uri`（必要）-hello 的 hello 語彙基元為 toobe 發出的 URI。 hello URI 正規化的 toouse hello HTTP 配置，並不會移除查詢字串資訊。
+- `ruleName`（必要）-SAS 規則 hello 給定 URI，表示其中一個 hello 實體的名稱或 hello 命名空間所表示 hello URI 主機部分。
+- `key`（必要）-hello SAS 規則的有效索引鍵。 
+- `expirationSeconds`（選用）-將應過期 hello 數秒，直到 hello 產生語彙基元。 如果未指定，hello 預設會是 1 小時 (3600)。
 
-發行的權杖會授與指定持續時間與所指定之 SAS 規則相關聯的權限。
+hello 發出權杖會授與 hello hello 指定相關聯的權限指定持續時間的 hello 的 SAS 規則。
 
 #### <a name="appendrelaytoken"></a>appendRelayToken
 
@@ -102,13 +102,13 @@ var token = createRelayToken([uri], [ruleName], [key], [[expirationSeconds]])
 var uri = appendRelayToken([uri], [ruleName], [key], [[expirationSeconds]])
 ```
 
-此方法在功能上相當於先前所記載的 `createRelayToken` 方法，但傳回的權杖正確地附加至輸入 URI。
+這個方法是相同的功能 toohello`createRelayToken`方法之前，記載，但傳回 hello 語彙基元的正確附加的 toohello 輸入 URI。
 
 ### <a name="class-wsrelayedserver"></a>類別 ws.RelayedServer
 
-`hycows.RelayedServer` 類別是替代 `ws.Server` 類別，其不會接聽本機網路，但會委派接聽 Azure 轉送服務。
+hello`hycows.RelayedServer`類別是替代的 toohello`ws.Server`類別不會接聽 hello 區域網路，但委派接聽 toohello Azure 轉送服務。
 
-這兩個類別大部分是合約相容，也就是說使用 `ws.Server` 類別的現有應用程式可以輕鬆地變更為使用轉送的版本。 主要差異是在建構函式以及可用的選項中。
+hello 兩個類別都是大部分合約相容的也就是說，現有的應用程式使用 hello`ws.Server`類別可能很輕易就變更的 toouse hello 轉送版本。 hello 主要差異是 hello 建構函式中以及在 hello 可用的選項。
 
 #### <a name="constructor"></a>建構函式  
 
@@ -123,16 +123,16 @@ var wss = new server(
     });
 ```
 
-`RelayedServer` 建構函式支援與 `Server` 不同的一組引數，因為它並非獨立接聽程式，也不能內嵌到現有的 HTTP 接聽程式架構。 可用選項也較少，因為 WebSocket 管理多半會委派至轉送服務。
+hello`RelayedServer`建構函式支援一組不同的引數比 hello `Server`，因為它不是獨立的接聽程式或無法 toobe 內嵌至現有的 HTTP 接聽程式架構。 也有選項較少使用因為 hello WebSocket 管理大部分委派的 toohello 轉送服務。
 
 建構函式引數︰
 
-- `server` (必要) - 要接聽之混合式連線名稱的完整 URI，通常是使用 WebSocket.createRelayListenUri() 協助程式方法所建構。
-- `token` (必要) - 這個引數包含先前發行的權杖字串或可以呼叫以取得權杖字串的回呼函式。 回呼是慣用選項，因為它可讓權杖更新。
+- `server`（必要）-hello 完整的 URI 上的 toolisten，通常以 hello WebSocket.createRelayListenUri() helper 方法建構的混合式連接名稱。
+- `token`這個引數 （必要）-會保留先前發行的權杖字串或回呼函式可以呼叫 tooobtain 語彙基元字串。 hello 回撥選項，最好，因為它可讓更新權杖。
 
 #### <a name="events"></a>事件
 
-`RelayedServer` 執行個體會發出三個事件，可讓您處理傳入要求、建立連線，以及偵測錯誤狀況。 您必須訂閱 `connect` 事件以處理訊息。 
+`RelayedServer`執行個體發出三個事件，啟用您 toohandle 連入要求、 建立連接，以及偵測錯誤狀況。 您必須訂閱 toohello`connect`事件 toohandle 訊息。 
 
 ##### <a name="headers"></a>headers
 
@@ -140,7 +140,7 @@ var wss = new server(
 function(headers)
 ```
 
-接受連入連線前才會引發 `headers` 事件，讓修改標題傳送給用戶端。 
+hello`headers`之前已接受連入連線，請啟用 hello 標頭 toosend toohello 用戶端的修改，就會引發事件。 
 
 ##### <a name="connection"></a>connection
 
@@ -148,7 +148,7 @@ function(headers)
 function(socket)
 ```
 
-接受新的 WebSocket 連線時就會發出。 物件類型是 `ws.WebSocket`，與基本封裝相同。
+接受新的 WebSocket 連線時就會發出。 hello 物件屬於類型`ws.WebSocket`、 與 hello 基底套件相同。
 
 
 ##### <a name="error"></a>錯誤
@@ -157,11 +157,11 @@ function(socket)
 function(error)
 ```
 
-如果基礎伺服器發出錯誤，它會在這裡轉送。  
+如果 hello 基礎伺服器發出錯誤，它會在這裡轉送。  
 
 #### <a name="helpers"></a>協助程式
 
-若要簡化啟動轉送的伺服器，並立即訂閱連入連線，封裝會公開簡單的協助程式函式，也會在範例中使用，如下所示︰
+toosimplify 啟動轉送的伺服器後立即訂閱 tooincoming 連線 hello 封裝會公開簡單的 helper 函式，也會使用這個 hello 範例中，如下所示：
 
 ##### <a name="createrelayedlistener"></a>createRelayedListener
 
@@ -190,11 +190,11 @@ var wss = WebSocket.createRelayedServer(
 var server = createRelayedServer([options], [connectCallback] )
 ```
 
-這個方法會呼叫建構函式來建立 RelayedServer 的新執行個體，然後訂閱 'connection' 事件所提供的回呼。
+這個方法會呼叫 hello 建構函式 toocreate hello RelayedServer 的新執行個體，然後訂閱 hello 提供回呼 toohello 'connection' 事件。
  
 ##### <a name="relayedconnect"></a>relayedConnect
 
-只要鏡像函式中的 `createRelayedServer`協助程式，`relayedConnect` 會建立用戶端連線，並在產生的通訊端上訂閱 'open' 事件。
+只要鏡像 hello `createRelayedServer` helper 函式，在`relayedConnect`建立用戶端連線，並訂閱 hello 產生通訊端上的 toohello 'open' 事件。
 
 ```JavaScript
 var uri = WebSocket.createRelaySendUri(ns, path);
@@ -208,6 +208,6 @@ WebSocket.relayedConnect(
 ```
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解 Azure 轉送，請造訪下列連結：
+toolearn 深入了解 Azure 轉送，請前往下列連結：
 * [什麼是 Azure 轉送？](relay-what-is-it.md)
 * [可用的轉送 API](relay-api-overview.md)

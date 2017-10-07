@@ -1,5 +1,5 @@
 ---
-title: "Azure 資源健康狀態常見問題集 | Microsoft Docs"
+title: "aaaAzure 資源健全狀況常見問題集 |Microsoft 文件"
 description: "Azure 資源健康狀態的概觀"
 services: Resource health
 documentationcenter: dev-center-name
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: Supportability
 ms.date: 06/01/2016
 ms.author: BernardoAMunoz
-ms.openlocfilehash: 41522a85cac05304b3ae60c45b48920eefbe8f5c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c5cfa116340094ffb1d6d5b206a11d389a0305a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-resource-health-faq"></a>Azure 資源健康狀態常見問題集
-了解 Azure 資源健康狀態相關常見問題的答案。
+了解 hello 回答有關 Azure 資源健康情況的 toocommon 問題。
 
 ## <a name="frequently-asked-questions"></a>常見問題集
 * [何謂 Azure 資源健康狀態？](#what-is-azure-resource-health)
-* [資源健康狀態的目的為何？](#what-is-the-resource-health-intended-for)
+* [Hello 資源健全狀況的適用是？](#what-is-the-resource-health-intended-for)
 * [資源健康狀態會執行哪些健全狀況檢查？](#what-health-checks-are-performed-by-resource-health)
-* [每個健康情況所代表的意義為何？](#what-does-each-of-the-health-status-mean)
-* [不明狀態的意義為何？我的資源有什麼問題嗎？](#what-does-the-unknown-status-mean-is-something-wrong-with-my-resource)
+* [每個 hello 健全狀況狀態是什麼意思？](#what-does-each-of-the-health-status-mean)
+* [功能沒有 hello 未知的狀態標準嗎？我的資源有什麼問題嗎？](#what-does-the-unknown-status-mean-is-something-wrong-with-my-resource)
 * [如何取得無法使用的資源說明？](#how-can-i-get-help-for-a-resource-that-is-unavailable)
 * [資源健康狀態是否會區分依平台問題歸類為無法使用的案例與我所做的事情？](#does-resource-health-differentiate-between-unavailability-cased-by-platform-problems-versus-something-i-did)
 * [可以將資源健康狀態與我的監視工具進行整合嗎？](#can-i-integrate-resource-health-with-my-monitoring-tools)
@@ -36,64 +36,64 @@ ms.lasthandoff: 07/11/2017
 * [資源健康狀態是否適用於所有的資源類型？](#is-resource-health-available-for-all-resource-types)
 * [如果我的資源顯示無法使用，但我認為它可以使用，該怎麼辦？](#what-should-i-do-if-my-resource-is-showing-available-but-i-believe-it-is-not)
 * [資源健康狀態是否適用於所有的 Azure 區域？](#is-resource-health-available-for-all-azure-regions)
-* [資源健康狀態與服務健康情況儀表板或 Azure 入口網站服務通知有何不同？](#how-is-resource-health-different-from-the-service-health-dashboard-or-the-azure-portal-service-notifications)
-* [是否需要啟用每個資源的資源健康狀態？](#do-i-need-to-activate-resource-health-for-each-resource)
-* [我們是否需要為我的組織啟用資源健康狀態？](#do-we-need-to-enable-resource-health-for-my-organization)
+* [如何為資源健全狀況不同 hello 服務健全狀況儀表板或 hello Azure 入口網站服務通知？](#how-is-resource-health-different-from-the-service-health-dashboard-or-the-azure-portal-service-notifications)
+* [需要針對每個資源 tooactivate 資源健康情況嗎？](#do-i-need-to-activate-resource-health-for-each-resource)
+* [我們讓我的組織需要 tooenable 資源健全狀況？](#do-we-need-to-enable-resource-health-for-my-organization)
 * [是否可免費使用資源健康狀態？](#is-resource-health-available-free-of-charge)
-* [資源健康狀態所提供的建議有哪些？](#what-are-the-recommendations-that-resource-health-provides)
+* [提供資源健全狀況的 hello 建議有哪些？](#what-are-the-recommendations-that-resource-health-provides)
 
 
 ## <a name="what-is-azure-resource-health"></a>何謂 Azure 資源健康狀態？
-當 Azure 問題影響到您的資源健康狀態時，協助進行診斷並取得支援。 它會通知您資源的目前及過去的健康狀態，並協助您解決問題。 資源健康狀態會在您需要解決 Azure 服務問題時提供技術支援。  
+當 Azure 問題影響到您的資源健康狀態時，協助進行診斷並取得支援。 它會通知您有關 hello 目前和過去健康情況的資源，並協助您解決問題。 資源健康狀態會在您需要解決 Azure 服務問題時提供技術支援。  
 
-## <a name="what-is-the-resource-health-intended-for"></a>資源健康狀態的目的為何？
-一旦偵測到發生問題的資源後，資源健康狀態便可協助您診斷根本原因。 它會協助減輕問題，並在您需要 Azure 服務問題的詳細說明時提供技術支援。
+## <a name="what-is-hello-resource-health-intended-for"></a>Hello 資源健全狀況的適用是？
+一旦偵測到的問題與資源，資源健全狀況可協助您診斷 hello 根本原因。 它提供說明 toomitigate hello 問題和技術支援人員時需要更多說明 Azure 服務的問題。
 
 ## <a name="what-health-checks-are-performed-by-resource-health"></a>資源健康狀態會執行哪些健康情況檢查？
-資源健康狀態會根據[資源類型](resource-health-checks-resource-types.md)執行各種檢查。 這些檢查旨在實作三種類型的問題︰ 
+資源健全狀況執行各種檢查，根據 hello[資源類型](resource-health-checks-resource-types.md)。 這些檢查包括設計的 tooimplement 三種問題： 
 1. 未規劃的事件，例如未預期的主機重新開機
 2. 規劃的事件，例如排程的主機作業系統更新
 3. 使用者動作觸發的事件，例如使用者重新啟動虛擬機器
 
-## <a name="what-does-each-of-the-health-status-mean"></a>每個健全狀態所代表的意義為何？
+## <a name="what-does-each-of-hello-health-status-mean"></a>每個 hello 健全狀況狀態是什麼意思？
 有三個不同的健全狀態︰
-1. 可用︰Azure 平台沒有任何可能會影響此資源的已知問題
-2. 無法使用︰資源健康狀態偵測到會影響資源的問題
-3. 未知︰資源健康狀態無法判斷資源的健康情況，因為它已停止接收相關的資訊。 
+1. 可用： 沒有任何已知的問題中 hello 可能正影響此資源的 Azure 平台
+2. 無法使用： 資源健全狀況偵測到會影響 hello 資源的問題
+3. 未知： 資源健康情況無法判斷資源的 hello 健全狀況因為它已經停止接收其相關資訊。 
 
-## <a name="what-does-the-unknown-status-mean-is-something-wrong-with-my-resource"></a>不明狀態的意義為何？ 我的資源有什麼問題嗎？
-當資源健康狀態停止接收特定資源的相關資訊時，健全狀態會設定為未知。 儘管此狀態不是資源狀態的明確指示，如果您遇到問題，則可能表示 Azure 發生問題。
+## <a name="what-does-hello-unknown-status-mean-is-something-wrong-with-my-resource"></a>功能沒有 hello 未知的狀態標準嗎？ 我的資源有什麼問題嗎？
+hello 健全狀況狀態會設定 toounknown，當資源健全狀況會停止接收特定資源的相關資訊。 雖然這個狀態不是最終指示 hello 狀態 hello 資源，請在您遇到的問題，可能表示發生 Azure 的問題。
 
 ## <a name="how-can-i-get-help-for-a-resource-that-is-unavailable"></a>如何取得無法使用的資源說明？
-您可以從 [資源健康狀態] 刀鋒視窗提交支援要求。 當資源因為平台事件而無法使用時，您無需 Microsoft 的支援合約即可將要求開啟。
+您可以提交支援要求的 hello 資源健全狀況 刀鋒視窗。 Hello 資源無法使用時不需要支援合約與 Microsoft tooopen 要求因為平台事件。
 
 ## <a name="does-resource-health-differentiate-between-unavailability-cased-by-platform-problems-versus-something-i-did"></a>資源健康狀態是否會區分依平台問題歸類為無法使用的案例與我所做的事情？
-是，當資源無法使用時，資源健康狀態會識別下列其中一種類別內的根本原因︰ 
+[是]，資源無法使用時，資源健全狀況會識別其中一個類別中的 hello 根本原因： 
 1.  使用者啟動的動作
 2.  規劃的事件 
 3.  未規劃的事件
 
-在入口網站中，會使用藍色通知圖示來顯示使用者啟動的動作，而規劃與未規劃的事件則會使用紅色警告圖示來顯示。 [資源健康狀態概觀](Resource-health-overview.md)中會提供更多詳細資料。  
+在 hello 入口網站會顯示使用者起始動作使用藍色的通知圖示，而使用紅色警告圖示顯示計劃與非計劃的事件。 提供詳細資訊在 hello[資源健全狀況概觀](Resource-health-overview.md)。  
 
 ## <a name="can-i-integrate-resource-health-with-my-monitoring-tools"></a>可以將資源健康狀態與我的監視工具進行整合嗎？
-資源健康狀態是專為協助您診斷和解決會影響您資源的 Azure 服務問題所設計的服務。 雖然您可以使用資源健康狀態 API 以程式設計方式取得健全狀態，我們建議您使用計量來監視您的資源。 一旦偵測到問題後，資源健康狀態可協助您判斷根本原因，並引導您完成動作來解決這些問題。 若要深入了解如何使用計量來檢查您的資源，請瀏覽 [Azure 監視器](https://docs.microsoft.com/azure/monitoring-and-diagnostics/)。
+資源健全狀況是您診斷及降低 Azure 服務的問題會影響您的資源服務，其設計的 toohelp。 雖然您可以使用 hello 資源健全狀況 API tooprogrammatically 取得 hello 健全狀況狀態，我們建議使用度量 toomonitor 您的資源。 一旦偵測到問題時，資源健全狀況可協助您判斷 hello 根本原因，並引導您完成動作 tooaddress 它們。 請瀏覽[Azure 監視器](https://docs.microsoft.com/azure/monitoring-and-diagnostics/)toolearn 深入了解如何使用度量 toocheck 您的資源。
 
 ## <a name="where-do-i-find-resource-health"></a>哪裡可以找到資源健康狀態？
-登入 Azure 入口網站之後，您可以使用多種方式來存取資源健康狀態︰
-1. 瀏覽至您的資源。 在左側導覽中，按一下 [資源健康狀態]。
-2. 移至 [Azure 監視器] 刀鋒視窗。  在左側導覽中，按一下 [資源健康狀態]。
-3. 按一下入口網站右上角的問號，然後選取 [說明 + 支援]，即可將 [說明 + 支援] 刀鋒視窗開啟。 將刀鋒視窗開啟後，按一下 [資源健康狀態]
+在您登入 toohello Azure 入口網站之後，有多個方式可以存取資源健全狀況：
+1. 瀏覽 tooyour 資源。 在 hello 左側導覽中，按一下 **資源健全狀況**。
+2. 移 toohello Azure 監視器刀鋒視窗。  在 hello 左側導覽中，按一下 **資源健全狀況**。
+3. 開啟 hello**說明 + 支援**刀鋒視窗中按一下 hello 問號 hello 右上角的 hello 入口網站，然後選取 **說明 + 支援**。 一旦 hello 刀鋒視窗中開啟時，請按一下**資源健全狀況**
 
-您也可以使用資源健康狀態 API 取得資源的健康情況相關資訊。
+您也可以使用 hello 資源健全狀況 API tooobtain hello 健全狀況的資訊資源。
 
 ## <a name="is-resource-health-available-for-all-resource-types"></a>資源健康狀態是否適用於所有的資源類型？
-您可以在[這裡](resource-health-checks-resource-types.md)找到透過資源健康狀態支援的健康情況檢查和資源類型清單
+hello 健全狀況檢查和支援透過資源健全狀況的資源類型的清單可以找到[這裡](resource-health-checks-resource-types.md)
 
 ## <a name="what-should-i-do-if-my-resource-is-showing-available-but-i-believe-it-is-not"></a>如果我的資源顯示無法使用，但我認為它可以使用，該怎麼辦？
-檢查資源的健康情況時，您可以在健全狀態下面按一下 [報告不正確的健全狀態]。 提交報表之前，您可以選擇提供為何您認為目前健全狀態不正確的其他相關詳細資料。
+檢查資源的 hello 健全狀況下 hello 健全狀況狀態，, 您可以按一下 **報告不正確的健全狀況狀態**。 之前送出 hello 報表，您可以先 hello 選項提供您為何認為 hello 目前的健全狀況狀態不正確的其他詳細資料。
 
 ## <a name="is-resource-health-available-for-all-azure-regions"></a>資源健康狀態是否適用於所有的 Azure 區域？ 
-資源健康狀態可在所有 Azure 地區使用，除了下列區域︰
+資源健全狀況有跨所有 Azure geos，除了下列區域的 hello:
 * 美國政府維吉尼亞州
 * 美國政府愛荷華州
 * 美國 DoD 東部
@@ -103,27 +103,27 @@ ms.lasthandoff: 07/11/2017
 * 中國東部
 * 中國北部
 
-## <a name="how-is-resource-health-different-from-the-service-health-dashboard-or-the-azure-portal-service-notifications"></a>資源健康狀態與服務健康狀態儀表板或 Azure 入口網站服務通知有何不同？
-資源健康狀態可提供比 Azure 服務健康情況儀表板更明確的資訊。
+## <a name="how-is-resource-health-different-from-hello-service-health-dashboard-or-hello-azure-portal-service-notifications"></a>如何為資源健全狀況不同 hello 服務健全狀況儀表板或 hello Azure 入口網站服務通知？
+所提供的 hello Azure 服務健全狀況儀表板更特定的資源健全狀況所提供的 hello 資訊。
 
-[Azure 狀態](https://status.azure.com)和入口網站服務通知會通知您影響大規模客戶 (例如 Azure 區域) 的服務問題，而資源健康狀態會公開更多僅與特定資源相關的細微事件。 例如，如果主機意外重新啟動，資源健康狀態只會警示虛擬機器在該主機上執行的客戶。
+而[Azure 狀態](https://status.azure.com)和 hello 入口網站服務通知可通知您有關服務的問題會影響一組廣泛的客戶 （例如 Azure 地區）、 資源健全狀況公開才相關的更多細微性事件toohello 特定資源。 例如，如果主機意外重新啟動，資源健康狀態只會警示虛擬機器在該主機上執行的客戶。
 
-請務必注意，為了讓您可完整看到影響您資源的事件，資源健康狀態也會呈現諸如服務通知和服務健康情況儀表板中發佈的事件。
+它是重要的 toonotice 該 tooprovide 完成掌握事件影響您的資源，資源健全狀況也會提供諸如發行服務通知和 hello 服務健全狀況儀表板中的事件。
 
-## <a name="do-i-need-to-activate-resource-health-for-each-resource"></a>是否需要啟用每個資源的資源健康狀態？
+## <a name="do-i-need-tooactivate-resource-health-for-each-resource"></a>需要針對每個資源 tooactivate 資源健康情況嗎？
 否，健康情況資訊適用於可透過資源健康狀態提供的所有資源類型。 
 
-## <a name="do-we-need-to-enable-resource-health-for-my-organization"></a>我們是否需要為我的組織啟用資源健康狀態？
-不用。  不需要進行任何安裝程式即可在 Azure 入口網站內存取 Azure 資源健康狀態。
+## <a name="do-we-need-tooenable-resource-health-for-my-organization"></a>我們讓我的組織需要 tooenable 資源健全狀況？
+否。  Hello 不需要進行任何設定的 Azure 入口網站內存取 azure 資源健全狀況。
 
 ## <a name="is-resource-health-available-free-of-charge"></a>是否可免費使用資源健康狀態？
 是。  Azure 資源健康狀態是免費的。
 
-## <a name="what-are-the-recommendations-that-resource-health-provides"></a>資源健康狀態所提供的建議有哪些？
-根據健全狀態，資源健康狀態會為您提供建議，旨在讓您減少疑難排解所花費的時間。 針對可用的資源，建議著重於如何解決客戶會發生的最常見問題。 如果資源是因為 Azure 未規劃事件而無法使用，則會著重於在復原程序期間以及之後協助您。 
+## <a name="what-are-hello-recommendations-that-resource-health-provides"></a>提供資源健全狀況的 hello 建議有哪些？
+根據 hello 健全狀況狀態，資源健全狀況為您提供您所花費的疑難排解建議 hello 目標是減少 hello 時間。 如需可用的資源，hello 建議焦點放在 toosolve hello 最常見的問題客戶遇到的方式。 如果無法使用，因為在 hello 資源 tooan Azure 未規劃的事件，hello 焦點會在您的協助期間和之後 hello 復原程序。 
 
 ## <a name="next-steps"></a>後續步驟
 
-若要深入了解資源健康狀態，請參閱下列資源：
+請參閱這些資源 toolearn，深入了解資源健全狀況：
 -  [Azure 資源健康狀態概觀](Resource-health-overview.md)
 -  [可透過 Azure 資源健康狀態使用的資源類型和健康檢查](resource-health-checks-resource-types.md)

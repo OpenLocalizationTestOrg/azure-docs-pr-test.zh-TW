@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory v2.0 Android 應用程式 | Microsoft Docs"
-description: "如何建置可使用個人 Microsoft 帳戶及公司或學校帳戶登入使用者，並使用協力廠商程式庫呼叫圖形 API 的 Android 應用程式。"
+title: "aaaAzure Active Directory v2.0 Android 應用程式 |Microsoft 文件"
+description: "如何 toobuild Android 應用程式登入使用者使用個人 Microsoft 帳戶和工作或學校帳戶和呼叫 hello Graph API 透過協力廠商文件庫。"
 services: active-directory
 documentationcenter: 
 author: danieldobalian
@@ -15,58 +15,58 @@ ms.topic: article
 ms.date: 05/07/2017
 ms.author: dadobali
 ms.custom: aaddev
-ms.openlocfilehash: c0a5a818c61f7af7ff04bf890b54e8364f3b21b1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1dd40bd3bcea28c629abce09abaed66b38774162
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-sign-in-to-an-android-app-using-a-third-party-library-with-graph-api-using-the-v20-endpoint"></a>使用 v2.0 端點透過圖形 API 將登入新增至使用協力廠商程式庫的 Android 應用程式
-Microsoft 身分識別平台會使用開放式標準，例如 OAuth2 和 OpenID Connect。 開發人員可以使用任何想要的程式庫，來與我們的服務整合。 為了協助開發人員使用我們的平台搭配其他程式庫，我們撰寫了數篇逐步解說，示範如何設定協力廠商程式庫以連接到 Microsoft 身分識別平台。 大部分實作 [RFC6749 OAuth2 規格](https://tools.ietf.org/html/rfc6749) 的程式庫都能連接到 Microsoft 身分識別平台。
+# <a name="add-sign-in-tooan-android-app-using-a-third-party-library-with-graph-api-using-hello-v20-endpoint"></a>新增登入 tooan Android 應用程式使用 Graph API 使用 hello v2.0 端點使用協力廠商程式庫
+hello Microsoft 識別身分平台中使用 OAuth2 和 OpenID Connect 等的開放標準。 開發人員可以使用任何文件庫，他們想 toointegrate 與我們的服務。 toohelp 開發人員會使用我們的平台與其他程式庫，我們已經撰寫這個一個 toodemonstrate 像幾個逐步解說如何 tooconfigure 協力廠商程式庫 tooconnect toohello Microsoft 識別平台。 實作的大部分程式庫[hello RFC6749 OAuth2 規格](https://tools.ietf.org/html/rfc6749)可以連接 toohello Microsoft 識別平台。
 
-使用此篇逐步解說建立的應用程式，使用者可以使用圖形 API 來登入其組織，然後在組織中搜尋自己。
+這個逐步解說會建立 hello 應用程式，使用者可以登入 tootheir 組織，然後搜尋自行在組織中使用 hello Graph API。
 
-如果您是 OAuth2 或 OpenID Connect 新手，此範例組態可能不太適合您。 建議您閱讀 [2.0 通訊協定 - OAuth 2.0 授權碼流程](active-directory-v2-protocols-oauth-code.md)以瞭解背景。
-
-> [!NOTE]
-> 我們的平台中有些功能沒有採用 OAuth2 或 OpenID Connect 標準的運算式 (例如條件式存取和 Intune 原則管理)，所以會要求您使用開放原始碼 Microsoft Azure 身分識別程式庫。
-> 
-> 
-
-v2.0 端點並未支援所有的 Azure Active Directory 案例和功能。
+如果您是新 tooOAuth2 或 OpenID Connect，此範例組態中的許多可能不會有意義 tooyou。 建議您閱讀 [2.0 通訊協定 - OAuth 2.0 授權碼流程](active-directory-v2-protocols-oauth-code.md)以瞭解背景。
 
 > [!NOTE]
-> 若要判斷是否應該使用 v2.0 端點，請閱讀相關的 [v2.0 限制](active-directory-v2-limitations.md)。
+> 平台的 hello OAuth2 或 OpenID Connect 標準，例如條件式存取和 Intune 原則管理 中的運算式具有某些功能需要您 toouse 我們的開放原始碼 Microsoft Azure 身分識別的程式庫。
 > 
 > 
 
-## <a name="download-the-code-from-github"></a>從 GitHub 下載程式碼
-本教學課程的程式碼保留在 [GitHub](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2)。  若要遵循執行，您可以[用 .zip 格式下載應用程式的基本架構](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2/archive/skeleton.zip)，或複製基本架構：
+hello v2.0 端點不支援所有的 Azure Active Directory 的案例和功能。
+
+> [!NOTE]
+> toodetermine 如果應該使用 hello v2.0 端點，閱讀有關[v2.0 限制](active-directory-v2-limitations.md)。
+> 
+> 
+
+## <a name="download-hello-code-from-github"></a>從 GitHub 下載 hello 程式碼
+此教學課程中的 hello 程式碼會維護[GitHub 上](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2)。  您可以沿著 toofollow，[下載為.zip 的 hello 應用程式的基本架構](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2/archive/skeleton.zip)或再製 hello 基本架構：
 
 ```
 git clone --branch skeleton git@github.com:Azure-Samples/active-directory-android-native-oidcandroidlib-v2.git
 ```
 
-您也可以下載範例，並立即開始著手使用︰
+您也可以下載 hello 範例，並立即開始：
 
 ```
 git@github.com:Azure-Samples/active-directory-android-native-oidcandroidlib-v2.git
 ```
 
 ## <a name="register-an-app"></a>註冊應用程式
-在[應用程式註冊入口網站](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)建立新的應用程式，或遵循[如何註冊應用程式與 v2.0 端點](active-directory-v2-app-registration.md)的詳細步驟進行。  請確定：
+建立新的應用程式在 hello[應用程式註冊入口網站](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)，或遵循 hello 詳細的步驟，網址[如何 tooregister 應用程式，但 hello v2.0 端點](active-directory-v2-app-registration.md)。  請確定：
 
-* 複製所指派給您的「應用程式識別碼」  ，因為您很快就會用到。
-* 為您的應用程式新增 **行動** 平台。
+* 複製 hello**應用程式識別碼**這是指派的 tooyour 應用程式因為很快就需要它。
+* 新增 hello**行動**平台應用程式。
 
-> 注意︰應用程式註冊入口網站會提供 [重新導向 URI]  值。 不過，在此範例中，您必須使用 `https://login.microsoftonline.com/common/oauth2/nativeclient`的預設值。
+> 注意： hello 應用程式註冊入口網站提供**重新導向 URI**值。 不過，在此範例中必須使用 hello 預設值為`https://login.microsoftonline.com/common/oauth2/nativeclient`。
 > 
 > 
 
-## <a name="download-the-nxoauth2-third-party-library-and-create-a-workspace"></a>下載 NXOAuth2 協力廠商程式庫並建立工作區
-在此逐步解說中，您將使用 GitHub 中的 OIDCAndroidLib，這個以 Google 的 OpenID Connect 程式碼為基礎的 OAuth2 程式庫。 它會實作原生應用程式設定檔，並支援使用者的授權端點。 您需要上述各項，才能與 Microsoft 身分識別平台整合。
+## <a name="download-hello-nxoauth2-third-party-library-and-create-a-workspace"></a>下載 hello NXOAuth2 協力廠商程式庫，並建立工作區
+這個逐步解說中，您將使用 hello OIDCAndroidLib 從 GitHub，是根據 hello Google 的 OpenID Connect 的程式碼的 OAuth2 程式庫。 它會實作 hello 原生應用程式設定檔，並支援 hello 的 hello 使用者的授權端點。 這些是您將需要 toointegrate hello Microsoft 身分識別平台的所有 hello 項目時。
 
-將 OIDCAndroidLib 儲存機制複製到您的電腦。
+複製 hello OIDCAndroidLib 儲存機制 tooyour 電腦。
 
 ```
 git@github.com:kalemontes/OIDCAndroidLib.git
@@ -75,69 +75,69 @@ git@github.com:kalemontes/OIDCAndroidLib.git
 ![androidStudio](../media/active-directory-android-native-oidcandroidlib-v2/emotes-url.png)
 
 ## <a name="set-up-your-android-studio-environment"></a>設定您的 Android Studio 環境
-1. 建立新的 Android Studio 專案，並接受精靈中的預設值。
+1. 建立新的 Android Studio 專案，並接受 hello hello 精靈中的預設值。
    
     ![在 Android Studio 中建立新專案](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample1.PNG)
    
     ![目標 Android 裝置](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample2.PNG)
    
-    ![將活動加入行動裝置](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample3.PNG)
-2. 若要設定您的專案模組，請將複製的儲存機制移至專案位置。 您也可以先建立專案，然後將專案直接複製到專案位置。
+    ![加入活動 toomobile](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample3.PNG)
+2. tooset 您專案的模組，向上移動 hello 複製儲存機制 toohello 專案位置。 您可以也建立 hello 專案與然後複製它直接 toohello 專案位置。
    
     ![專案模組](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample4_1.PNG)
-3. 使用內容功能表，或使用 Ctrl+Alt+Maj+S 快速鍵，來開啟專案模組設定。
+3. 使用 [hello] 內容功能表或使用 hello Ctrl + Alt + Maj + S 捷徑，請開啟 hello 專案模組設定。
    
     ![專案模組設定](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample4.PNG)
-4. 因為您只想要專案容器設定，所以請移除預設的應用程式模組。
+4. 移除 hello 預設應用程式的模組，因為您只想 hello 專案容器設定。
    
-    ![預設應用程式模組](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample5.PNG)
-5. 從複製的儲存機制將模組匯入目前的專案。
+    ![hello 預設應用程式的模組](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample5.PNG)
+5. 匯入模組，從 hello 複製儲存機制 toohello 目前專案。
    
     ![匯入 gradle 專案](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample6.PNG)![建立新的模組網頁](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample7.PNG)
-6. 對 `oidlib-sample` 模組重複執行這些步驟。
-7. 檢查 `oidlib-sample` 模組上的 oidclib 相依性。
+6. 重複上述步驟 hello`oidlib-sample`模組。
+7. 檢查 hello oidclib 相依性 hello`oidlib-sample`模組。
    
-    ![oidlib-sample 模組的 oidclib 相依性](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample8.PNG)
+    ![oidclib hello oidlib 範例模組上的相依性](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample8.PNG)
 8. 按一下 [確定]  並等候 gradle 同步處理。
    
     您的 settings.gradle 應如下所示：
    
     ![settings.gradle 的螢幕擷取畫面](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample8_1.PNG)
-9. 建置範例應用程式，確定此範例可正確運作。
+9. 建置 hello 範例應用程式 toomake 確定正確地執行該 hello 範例。
    
-    您尚未能夠將此範例使用於 Azure Active Directory。 我們需要先設定一些端點。 這是為了確保在我們開始自訂範例應用程式前，Android Studio 沒有問題。
-10. 在 Android Studio 中建置 `oidlib-sample` 並當作目標執行。
+    您將不會無法 toouse 這與 Azure Active Directory 尚未。 我們需要 tooconfigure 部份端點第一次。 這是 tooensure 我們開始自訂 hello 範例應用程式之前，您不需要 Android Studio 問題。
+10. 建置並執行`oidlib-sample`做為在 Android Studio 中的 hello 目標。
     
     ![oidlib-sample 建置進度](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample9.png)
-11. 刪除從專案中移除模組時所留下的 `app ` 目錄，因為 Android Studio 會基於安全考量而不刪除它。
+11. 刪除 hello`app `時您 hello 模組從專案中移除 hello 因為 Android Studio 安全性並不會刪除它所保留的目錄。
     
-    ![包含應用程式目錄的檔案結構](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample12.PNG)
-12. 開啟 [編輯設定]  功能表，移除從專案中移除模組時所留下的執行組態。
+    ![包含 hello 應用程式目錄的檔案結構](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample12.PNG)
+12. 開啟 hello**編輯組態**hello 模組從 hello 專案中移除時，也左功能表 tooremove hello 執行設定。
     
     ![編輯設定功能表](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample10.PNG)
     ![執行應用程式設定](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample11.PNG)
 
-## <a name="configure-the-endpoints-of-the-sample"></a>設定範例的端點
-您現在已順利執行 `oidlib-sample`，讓我們編輯某些端點以便使用於 Azure Active Directory。
+## <a name="configure-hello-endpoints-of-hello-sample"></a>設定 hello 端點的 hello 範例
+既然您已擁有 hello`oidlib-sample`成功執行，讓編輯某些端點 tooget 這個與 Azure Active Directory 的工作。
 
-### <a name="configure-your-client-by-editing-the-oidcclientconfxml-file"></a>編輯 oidc_clientconf.xml 檔案來設定您的用戶端
-1. 因為您目前只使用 OAuth2 流量來取得權杖及呼叫圖形 API，所以將用戶端設定成只進行 OAuth2。 後面的範例中會示範 OIDC。
+### <a name="configure-your-client-by-editing-hello-oidcclientconfxml-file"></a>設定您的用戶端藉由編輯 hello oidc_clientconf.xml 檔案
+1. 因為您正在使用 OAuth2 流程只有 tooget 語彙基元，並呼叫 hello Graph API，設定 hello 用戶端 toodo OAuth2 只。 後面的範例中會示範 OIDC。
    
     ```xml
         <bool name="oidc_oauth2only">true</bool>
     ```
-2. 設定您從註冊入口網站收到的用戶端識別碼。
+2. 設定您所收到 hello 註冊入口網站的用戶端識別碼。
    
     ```xml
         <string name="oidc_clientId">86172f9d-a1ae-4348-aafa-7b3e5d1b36f5</string>
         <string name="oidc_clientSecret"></string>
     ```
-3. 如下所示來設定您的重新導向 URI。
+3. 下列設定以其中一個 hello 您重新導向 URI。
    
     ```xml
         <string name="oidc_redirectUrl">https://login.microsoftonline.com/common/oauth2/nativeclient</string>
     ```
-4. 設定您需要的範圍，以便存取 圖形 API。
+4. 設定您的範圍，您需要在順序 tooaccess hello Graph API。
    
     ```xml
         <string-array name="oidc_scopes">
@@ -147,13 +147,13 @@ git@github.com:kalemontes/OIDCAndroidLib.git
         </string-array>
     ```
 
-`oidc_scopes` 中的 `User.Read` 值可讓您讀取已登入使用者的基本設定檔。
-您可以在 [Microsoft Graph 權限範圍](https://graph.microsoft.io/docs/authorization/permission_scopes)，深入了解所有可用範圍。
+hello`User.Read`值`oidc_scopes`可讓您 tooread hello 基本設定檔 hello 登入的使用者。
+您可以進一步了解在的 hello 可用範圍[Microsoft Graph 權限範圍](https://graph.microsoft.io/docs/authorization/permission_scopes)。
 
 如果您想要 OpenID Connect 中有關 `openid` 或 `offline_access` 範圍的說明，請參閱 [2.0 通訊協定 - OAuth 2.0 授權碼流程](active-directory-v2-protocols-oauth-code.md)。
 
-### <a name="configure-your-client-endpoints-by-editing-the-oidcendpointsxml-file"></a>編輯 oidc_endpoints.xml 檔案來設定用戶端端點
-* 開啟 `oidc_endpoints.xml` 檔案並進行下列變更：
+### <a name="configure-your-client-endpoints-by-editing-hello-oidcendpointsxml-file"></a>編輯 hello oidc_endpoints.xml 檔案設定用戶端端點
+* 開啟 hello`oidc_endpoints.xml`檔案並製作 hello 下列變更：
   
     ```xml
     <!-- Stores OpenID Connect provider endpoints. -->
@@ -168,12 +168,12 @@ git@github.com:kalemontes/OIDCAndroidLib.git
 如果您使用 OAuth2 做為通訊協定，則不得變更這些端點。
 
 > [!NOTE]
-> Azure Active Directory 目前不支援 `userInfoEndpoint` 和 `revocationEndpoint` 的端點。 如果您保留這些預設的 example.com 值，您將會不時看到提醒，說明無法在此範例中使用這些值 :-)
+> hello 端點`userInfoEndpoint`和`revocationEndpoint`目前不支援 Azure Active directory。 如果您離開的 hello 預設 example.com 值，則您會收到它們都不在 hello 範例:-)
 > 
 > 
 
 ## <a name="configure-a-graph-api-call"></a>設定圖形 API 呼叫
-* 開啟 `HomeActivity.java` 檔案並進行下列變更：
+* 開啟 hello`HomeActivity.java`檔案並製作 hello 下列變更：
   
     ```Java
        //TODO: set your protected resource url
@@ -182,10 +182,10 @@ git@github.com:kalemontes/OIDCAndroidLib.git
 
 以下的簡單圖形 API 呼叫會傳回我們的資訊。
 
-這些全都是您要進行的變更。 執行 `oidlib-sample` 應用程式，然後按一下 [登入]。
+這些是您需要 toodo 所有 hello 變更。 執行 hello`oidlib-sample`應用程式，然後按一下**登入**。
 
-順利通過驗證後，請選取 [要求受保護的資源]  按鈕，以測試您對圖形 API 的呼叫。
+您已成功通過驗證之後，請選取 hello**要求受保護資源**按鈕 tootest 您呼叫 toohello Graph API。
 
 ## <a name="get-security-updates-for-our-product"></a>取得產品的安全性更新
-我們鼓勵您造訪 [安全性 TechCenter](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以收到有關安全性事件的通知。
+建議您 tooget 安全性事件通知所造訪 hello[資訊安全技術中心](https://technet.microsoft.com/security/dd252948)及訂閱 tooSecurity 諮詢警示。
 

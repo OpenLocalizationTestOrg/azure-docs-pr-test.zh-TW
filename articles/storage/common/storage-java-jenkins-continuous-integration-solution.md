@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 儲存體搭配 Jenkins 連續整合解決方案 | Microsoft Docs"
-description: "本教學課程說明如何使用 Azure Blob 服務作為 Jenkins 連續整合解決方案所建立之組建成品的存放庫。"
+title: "aaaUsing Azure 儲存體與 Jenkins 連續整合解決方案 |Microsoft 文件"
+description: "本教學課程顯示如何 toouse hello Azure blob 服務的儲存機制組建成品的 Jenkins 連續整合解決方案所建立。"
 services: storage
 documentationcenter: java
 author: seguler
@@ -14,25 +14,25 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 02/28/2017
 ms.author: seguler
-ms.openlocfilehash: 174ac449e803ed5327468a38ea7264cb9923a877
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 853c0c6c028596b3057bdc1dbbc59a9415c0fb77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-azure-storage-with-a-jenkins-continuous-integration-solution"></a>使用 Azure 儲存體搭配 Jenkins 連續整合解決方案
-## <a name="overview"></a>Overview
-下列資訊說明如何使用 Blob 儲存體，做為 Jenkins 連續整合 (CI) 解決方案所建立的組建構件儲存機制，或做為在組建程序中要使用之可下載檔案的來源。 您會發現這很實用的其中一種情況就是，當您在敏捷式開發環境中編寫程式碼 (使用 Java 或其他語言) 時，組建是根據連續整合來執行，而您需要一個存放庫來存放組建成品，以便能夠將這些成品分享給其他組織成員或客戶，或是維護封存等等。 另一種情況是當組建工作本身需要其他檔案時，例如，要隨組建輸入一起下載的相依性項目。
+## <a name="overview"></a>概觀
+hello 下列資訊會顯示 toouse Blob 儲存體組建成品的 Jenkins 連續整合 (CI) 解決方案，所建立的儲存機制，或做為來源 toobe 可下載檔案的建置流程中的使用方式。 Hello 案例，您會發現這很有用的其中一個是當您的撰寫語言敏捷式開發環境 （使用 Java 或其他語言） 中，組建正在根據持續的整合，而您需要您的組建成品儲存機制，讓您可以例如，與其他組織的成員，您的客戶分享，或保存。 另一種情況時，您的組建工作本身需要其他檔案，比方說，相依性 toodownload 做為部分 hello 建置輸入。
 
-在本教學課程中，您將使用由 Microsoft 所提供適用於 Jenkins CI 的 Azure 儲存體外掛程式。
+在此教學課程中您將使用 Azure 儲存體 Plugin hello Jenkins CI Microsoft 所提供的。
 
 ## <a name="overview-of-jenkins"></a>Jenkins 概觀
-Jenkins 透過讓開發人員輕鬆整合自己的程式碼變更，並會以自動且頻繁的方式產生組建，來實現軟體專案的連續整合，從而提升開發人員產能。 組建會分版本存在，而組建成品可以上傳至各種存放庫。 本主題將示範如何使用 Azure Blob 儲存體作為組建成品的存放庫。 其中也示範如何從 Azure Blob 儲存體下載相依性項目。
+Jenkins 軟體專案藉由允許開發人員 tooeasily 整合其程式碼變更和已啟用持續整合組建產生自動和常見問題，藉此增加 hello hello 開發人員的產能。 組建具有版本設定，而且組建的成品可以上傳的 toovarious 儲存機制。 本主題會顯示 toouse Azure blob 儲存體為 hello 組建成品的 hello 儲存機制的方式。 它也會顯示如何 toodownload 相依性，從 Azure blob 儲存體。
 
 如需 Jenkins 的詳細資訊，請參閱 [認識 Jenkins](https://wiki.jenkins-ci.org/display/JENKINS/Meet+Jenkins)(英文)。
 
-## <a name="benefits-of-using-the-blob-service"></a>使用 Blob 服務的優點
-使用 Blob 服務來裝載您敏捷式開發組建成品的優點包括：
+## <a name="benefits-of-using-hello-blob-service"></a>使用 hello Blob 服務的優點
+使用 hello Blob 服務 toohost 的優點包括您靈活的開發組建成品：
 
 * 組建成品和/或可下載相依性項目的高可用性。
 * 在您的 Jenkins CI 解決方案上傳組建成品時提供良好的效能。
@@ -40,53 +40,53 @@ Jenkins 透過讓開發人員輕鬆整合自己的程式碼變更，並會以自
 * 提供使用者存取原則控制，可以選擇匿名存取、期限型共用存取簽章存取、私用存取等。
 
 ## <a name="prerequisites"></a>必要條件
-若要使用 Blob 服務搭配 Jenkins CI 解決方案，您將需要下列項目：
+您將需要 hello toouse hello 下列 Blob 服務與 Jenkins CI 解決方案：
 
 * 一套 Jenkins 連續整合解決方案。
   
-    如果您目前沒有 Jenkins CI 解決方案，可以透過下列步驟執行 Jenkins CI 解決方案：
+    如果您目前沒有 Jenkins CI 解決方案，您可以執行使用下列技巧 hello 的 Jenkins CI 方案：
   
   1. 在已啟用 Java 的機器上，從 <http://jenkins-ci.org> 下載 jenkins.war。
-  2. 在命令提示字元中切換至包含 jenkins.war 的資料夾，然後執行：
+  2. 在命令提示字元，其中包含 jenkins.war 開啟的 toohello 資料夾，請執行：
      
       `java -jar jenkins.war`
 
-  3. 在瀏覽器中開啟 `http://localhost:8080/`。 這樣會開啟 Jenkins 儀表板，您將使用此儀表板來安裝及設定 Azure 儲存體外掛程式。
+  3. 在瀏覽器中開啟 `http://localhost:8080/`。 這會開啟 hello Jenkins 儀表板，您將使用 tooinstall 並設定 hello Azure 儲存體外掛程式。
      
-      雖然一般 Jenkins CI 解決方案會設定成以服務的形式執行，但對本教學課程來說，在命令列執行 Jenkins war 已經足夠。
+      一般的 Jenkins CI 解決方案會設定為服務 toorun，而在 hello 命令列執行 hello Jenkins war 將足以說明此教學課程。
 * 一個 Azure 帳戶。 您可以在 <http://www.azure.com> 註冊 Azure 帳戶。
-* 一個 Azure 儲存體帳戶。 如果您還沒有儲存體帳戶，可以使用 [建立儲存體帳戶](../common/storage-create-storage-account.md#create-a-storage-account)中的步驟建立一個帳戶。
-* 建議您熟悉 Jenkins CI 解決方案，但這並非必要，因為下列內容將使用一個基本範例來示範使用 Blob 服務作為 Jenkins CI 組建成品的存放庫時所需的步驟。
+* 一個 Azure 儲存體帳戶。 如果您還沒有儲存體帳戶，您可以建立一個使用 hello 步驟[建立儲存體帳戶](../common/storage-create-storage-account.md#create-a-storage-account)。
+* Hello Jenkins CI 解決方案的認識，建議使用但非必要、 hello 做為儲存機制使用 Jenkins CI hello Blob 服務時所需步驟的基本範例 tooshow hello 下列內容將會使用組建成品。
 
-## <a name="how-to-use-the-blob-service-with-jenkins-ci"></a>如何使用 Blob 服務搭配 Jenkins CI
-若要使用 Blob 服務搭配 Jenkins，您將要安裝 Azure 儲存體外掛程式、設定外掛程式來使用您的儲存體帳戶，然後建立一個會將您的組建成品上傳至您儲存體帳戶的建置後動作。 這些步驟將於下列各節中說明。
+## <a name="how-toouse-hello-blob-service-with-jenkins-ci"></a>Toouse hello 與 Jenkins CI 的 Blob 服務的方式
+jenkins toouse hello Blob 服務，您將需要 tooinstall hello Azure 儲存體外掛程式，設定 hello 外掛程式 toouse 儲存體帳戶，再建立建置後動作上傳組建成品 tooyour 儲存體帳戶。 在 hello 下列各節說明這些步驟。
 
-## <a name="how-to-install-the-azure-storage-plugin"></a>如何安裝 Azure 儲存體外掛程式
-1. 在 Jenkins 儀表板中，按一下 [Manage Jenkins] 。
-2. 在 [管理 Jenkins] 頁面中，按一下 [管理外掛程式]。
-3. 按一下 [Available]  索引標籤。
-4. 在 [構件上傳程式] 區段中，取核 [Microsoft Azure 儲存體外掛程式]。
+## <a name="how-tooinstall-hello-azure-storage-plugin"></a>如何 tooinstall hello Azure 儲存體外掛程式
+1. 在 hello Jenkins 儀表板內，按一下**管理 Jenkins**。
+2. 在 hello**管理 Jenkins**頁面上，按一下**管理外掛程式**。
+3. 按一下 hello**可用** 索引標籤。
+4. 在 hello**成品 Uploaders**區段中，按一下**Microsoft Azure 儲存體外掛程式**。
 5. 按一下 [直接安裝而不重新啟動] 或 [立即下載並於重新啟動後安裝]。
 6. 重新啟動 Jenkins。
 
-## <a name="how-to-configure-the-azure-storage-plugin-to-use-your-storage-account"></a>如何設定 Azure 儲存體外掛程式來使用您的儲存體帳戶
-1. 在 Jenkins 儀表板中，按一下 [Manage Jenkins] 。
-2. 在 [管理 Jenkins] 頁面中，按一下 [設定系統]。
-3. 在 [Microsoft Azure Storage Account Configuration]  區段中：
-   1. 輸入您的儲存體帳戶名稱，您可從 [Azure 入口網站](https://portal.azure.com)取得此名稱。
-   2. 輸入您的儲存體帳戶金鑰，這項資訊也可以從 [Azure 入口網站](https://portal.azure.com)取得。
-   3. 如果您使用的是公用 Azure 雲端，請在 [Blob Service Endpoint URL]  使用預設值。 如果您使用的是其他 Azure 雲端，請使用 [Azure 入口網站](https://portal.azure.com) 中為您儲存體帳戶所指定的端點。 
-   4. 按一下 [Validate storage credentials]  以驗證您的儲存體帳戶。 
-   5. [選用] 如果您有其他儲存體帳戶要提供給 Jenkins CI 使用，請按一下 [Add more Storage Accounts] 。
-   6. 按一下 [Save]  儲存您的設定。
+## <a name="how-tooconfigure-hello-azure-storage-plugin-toouse-your-storage-account"></a>如何 tooconfigure 會 hello Azure 儲存體外掛程式 toouse 儲存體帳戶
+1. 在 hello Jenkins 儀表板內，按一下**管理 Jenkins**。
+2. 在 hello**管理 Jenkins**頁面上，按一下**設定系統**。
+3. 在 hello **Microsoft Azure 儲存體帳戶設定**> 一節：
+   1. 輸入您儲存體帳戶名稱，您可以從 hello 取得[Azure 入口網站](https://portal.azure.com)。
+   2. 輸入儲存體帳戶金鑰，也可行，或是從 hello [Azure 入口網站](https://portal.azure.com)。
+   3. 使用預設值 hello **Blob 服務端點 URL**如果您使用 hello 公用 Azure 雲端。 如果您使用不同的 Azure 雲端，做為 hello 端點中指定的 hello [Azure 入口網站](https://portal.azure.com)儲存體帳戶。 
+   4. 按一下**驗證儲存體認證**toovalidate 儲存體帳戶。 
+   5. [選用]如果您想要製作可用 tooyour Jenkins CI 的其他儲存體帳戶，請按一下**新增更多的儲存體帳戶**。
+   6. 按一下**儲存**toosave 您的設定。
 
-## <a name="how-to-create-a-post-build-action-that-uploads-your-build-artifacts-to-your-storage-account"></a>如何建立會將您的組建成品上傳至您儲存體帳戶的建置後動作
-為了方便說明，首先，我們需要建立一個會建立數個檔案的工作，然後新增一個會將這些檔案上傳至您儲存體帳戶的建置後動作。
+## <a name="how-toocreate-a-post-build-action-that-uploads-your-build-artifacts-tooyour-storage-account"></a>如何 toocreate 上傳組建成品 tooyour 儲存體帳戶的建置後動作
+基於指令，首先我們需要 toocreate 的作業，將會建立數個檔案，然後再加入 hello 建置後動作 tooupload hello 檔案 tooyour 儲存體帳戶。
 
-1. 在 Jenkins 儀表板中，按一下 [新增項目] 。
-2. 將工作命名為 **MyJob**，按一下 [建立任意樣式的軟體專案]，然後按一下 [確定]。
-3. 在工作組態的 [Build] 區段中，按一下 [Add build step] 並選擇 [Execute Windows batch command]。
-4. 在 [Command] 中，使用下列命令：
+1. 在 hello Jenkins 儀表板內，按一下**新項目**。
+2. 名稱 hello 工作**存放至 MyJob**，按一下**建置釋放樣式軟體專案**，然後按一下**確定**。
+3. 在 hello**建置**> 一節的 hello 工作設定，請按一下**加入建置步驟**選擇**執行 Windows 的批次命令**。
+4. 在**命令**，使用下列命令的 hello:
 
     ```   
     md text
@@ -96,54 +96,54 @@ Jenkins 透過讓開發人員輕鬆整合自己的程式碼變更，並會以自
     time /t >> date.txt
     ```
 
-5. 在工作組態的 [建置後動作] 區段中，按一下 [新增建置後動作] 並選擇 [將構件上傳至 Azure Blob 儲存體]。
-6. 在 [儲存體帳戶名稱] 中，選取要使用的儲存體帳戶。
-7. 在 [容器名稱] 中，指定容器名稱。 (如果上傳組建成品時該容器尚未存在，將會建立該容器。)您可以使用環境變數，就這個範例而言，請輸入 **${JOB_NAME}** 作為容器名稱。
+5. 在 hello**建置後動作**> 一節的 hello 工作設定，請按一下**加入建置後動作**，然後選擇 **上傳成品 tooAzure Blob 儲存體**。
+6. 如**儲存體帳戶名稱**，選取 hello 儲存體帳戶 toouse。
+7. 如**容器名稱**，指定 hello 容器名稱。 （hello 容器將會建立如果它不存在時 hello 組建成品都會上傳）。您可以使用環境變數，因此此範例中輸入**${JOB_NAME}**為 hello 容器名稱。
    
     **秘訣**
    
-    在您為 [執行 Windows 批次命令] 輸入指令碼的 [命令] 區段底下有一個 Jenkins 所辨識環境變數的連結。 按一下該連結即可了解各環境變數名稱和描述。 請注意，含有特殊字元的環境變數 (例如 **BUILD_URL** 環境變數) 不能當做容器名稱或共同虛擬路徑。
-8. 在此範例中，請按一下 [Make new container public by default]。 (如果您想要使用私用容器，則需要建立共用存取簽章來允許存取。 這已超出本主題的範圍。 若要深入了解共用存取簽章，請參閱[使用共用存取簽章 (SAS)](../storage-dotnet-shared-access-signature-part-1.md)。)
-9. [選擇性] 如果您要在上傳組建成品之前清除容器的內容，請按一下 **Clean container before uploading** \(若不想清除容器的內容，請維持不核取)。
-10. 在 [List of Artifacts to upload]，輸入 **text/*.txt**。
+    以下 hello**命令**您用來輸入的指令碼的區段**執行 Windows 的批次命令**toohello Jenkins 所辨識的環境變數是一個連結。 按一下該連結 toolearn hello 環境變數名稱和描述。 請注意該環境變數包含特殊字元，例如 hello **BUILD_URL**環境變數，不允許做為容器名稱或一般的虛擬路徑。
+8. 在此範例中，請按一下 [Make new container public by default]。 （如果您想 toouse 私人容器，您必須 toocreate 共用的存取簽章 tooallow 存取。 這已超出本主題的 hello 範圍。 若要深入了解共用存取簽章，請參閱[使用共用存取簽章 (SAS)](../storage-dotnet-shared-access-signature-part-1.md)。)
+9. [選用]按一下**全新容器將上傳之前**如果您想 hello 容器 toobe 清理內容之前上傳組建成品 （它如果核取不想讓 hello 容器 tooclean hello 內容）。
+10. 如**的成品清單 tooupload**，輸入**文字 /*.txt**。
 11. 在 [上傳構件的常用虛擬路徑] 中，基於本教學課程的目的，輸入 **${BUILD\_ID}/${BUILD\_NUMBER}**。
-12. 按一下 [Save]  儲存您的設定。
-13. 在 Jenkins 儀表板中，按一下 [立即建置] 執行 **MyJob**。 檢查主控台輸出中的狀態。 當建置後動作開始上傳組建成品時，主控台輸出中將會包含 Azure 儲存體的狀態訊息。
-14. 順利完成作業時，您就可以開啟公用 Blob 來檢查組建成品。
-    1. 登入 [Azure 入口網站](https://portal.azure.com)。
+12. 按一下**儲存**toosave 您的設定。
+13. 在 hello Jenkins 儀表板中，按一下 **現在建置**toorun**存放至 MyJob**。 檢查 hello 主控台輸出的狀態。 Hello 建置後動作啟動 tooupload 組建成品時，將 hello 主控台輸出中包含 Azure 儲存體的狀態訊息。
+14. 成功完成時的 hello 作業，您可以藉由開啟 hello 公用 blob 檢查 hello 組建成品。
+    1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
     2. 按一下 [儲存體] 。
-    3. 按一下用於 Jenkins 的儲存體帳戶名稱。
+    3. 按一下您要用於 Jenkins hello 儲存體帳戶名稱。
     4. 按一下 [容器] 。
-    5. 按一下名為 **myjob**的容器，這是您建立 Jenkins 工作時所指派之工作名稱的小寫版本。 在 Azure 儲存體中，容器名稱和 Blob 名稱皆為小寫 (並且區分大小寫)。 在名為 **myjob** 之容器的 Blob 清單中，您應該會看到 **hello.txt** 和 **date.txt**。 請複製這些項目中任何一項的 URL，然後在瀏覽器中開啟它。 您會看到文字檔已上傳作為組建成品。
+    5. 按一下名為 hello 容器**存放至 myjob**，hello hello 作業的名稱建立 hello Jenkins 作業時，您指派小寫的版本。 在 Azure 儲存體中，容器名稱和 Blob 名稱皆為小寫 (並且區分大小寫)。 Hello hello 容器名稱的 blob 清單內**存放至 myjob**您應該會看到**hello.txt**和**date.txt**。 複製 hello URL 的任一項目，並在您的瀏覽器中開啟它。 組建成品，您會看到已上傳的 hello 文字檔案。
 
-每一工作只能建立一個將成品上傳至 Azure Blob 儲存體的建置後動作。 請注意，將成品上傳至 Azure Blob 儲存體的單一建置後動作可以在 [要上傳的構件清單] 內，使用分號作為分隔符號來指定不同的檔案 (包含萬用字元) 和檔案路徑。 例如，若 Jenkins 組建在您工作區的 **build** 資料夾中產生 JAR 檔和 TXT 檔，且您想將兩者都上傳至 Azure Blob 儲存體，請在 [要上傳的構件清單] 中使用下列值：build/.jar;build/.txt**\*\***。 您也可以使用雙冒號語法來指定要在 Blob 名稱內使用的路徑。 例如，若您想要在 Blob 路徑中使用 **binaries** 上傳 JAR，並在 Blob 路徑中使用 **notices** 上傳 TXT，請在 [List of Artifacts to upload] 中使用下列值：**build/\*.jar::binaries;build/\*.txt::notices**。
+每個作業，您可以建立只有一個上傳成品 tooAzure blob 儲存體的建置後動作。 請注意 hello 單一建置後動作 tooupload 成品 tooAzure blob 儲存體，可以指定不同的檔案 （包括萬用字元） 及路徑 toofiles 內**的成品清單 tooupload**使用分號作為分隔符號。 例如，如果您 Jenkins 組建產生 JAR 檔案和工作區中的 TXT 檔案**建置**資料夾，而您想 tooupload tooAzure blob 儲存體，用於 hello hello 下列**的成品清單 tooupload**值：**建置 /\*d，則為建置 /\*.txt**。 您也可以使用雙冒號語法 toospecify 路徑 toouse hello blob 名稱中。 例如，如果您想要上傳使用 hello （每瓶) tooget**二進位檔**hello blob 路徑和 hello TXT 檔案 tooget 中上傳使用**通知**hello blob 的路徑中，用於 hello 下列 hello **清單中的成品 tooupload**值：**建置 /\*。 jar::binaries; 建置 /\*。 txt::notices**。
 
-## <a name="how-to-create-a-build-step-that-downloads-from-azure-blob-storage"></a>如何建立從 Azure Blob 儲存體下載的組建步驟
-下列步驟示範如何設定從 Azure Blob 儲存體下載項目的組建步驟。 如果您要在組建中加入項目，例如您存放在 Azure Blob 儲存體中的 JAR，則這會很有用。
+## <a name="how-toocreate-a-build-step-that-downloads-from-azure-blob-storage"></a>如何 toocreate 的建置步驟，下載從 Azure blob 儲存體
+hello 下列步驟顯示如何 tooconfigure 組建從 Azure blob 儲存體中逐步 toodownload 項目。 這會是很有用，如果您想 tooinclude 項目在您的組建，例如，（每瓶)，您將保留在 Azure blob 儲存體。
 
-1. 在工作組態的 [Build] 區段中，按一下 [Add build step]，並選擇 [Download from Azure Blob storage]。
-2. 在 [儲存體帳戶名稱] 中，選取要使用的儲存體帳戶。
-3. 在 [容器名稱] 中，指定您要下載的 Blob 所在之容器的名稱。 您可以使用環境變數。
-4. 在 [Blob 名稱] 中，指定 Blob 名稱。 您可以使用環境變數。 另外，您也可以在指定 Blob 名稱的開頭字母之後，使用星號作為萬用字元。 例如，**project\*** 指定名稱開頭為 **project** 的所有 Blob。
-5. [選擇性] 在 [下載路徑] 中，指定在 Jenkins 機器上您要從 Azure Blob 儲存體下載檔案的路徑。 也可以使用環境變數 (如果您未提供 [下載路徑] 的值，則 Azure Blob 儲存體中的檔案會下載至工作的工作區。)
+1. 在 hello**建置**> 一節的 hello 工作設定，請按一下**加入建置步驟**選擇**從 Azure Blob 儲存體下載**。
+2. 如**儲存體帳戶名稱**，選取 hello 儲存體帳戶 toouse。
+3. 如**容器名稱**，指定 hello hello 容器具有您想要 toodownload hello blob 名稱。 您可以使用環境變數。
+4. 如**Blob 名稱**，指定 hello blob 名稱。 您可以使用環境變數。 此外，您可以使用星號，做為萬用字元指定 hello 初始代號的磁碟區的 hello blob 名稱之後。 例如，**project\*** 指定名稱開頭為 **project** 的所有 Blob。
+5. [選用]如**下載路徑**，指定您要從 Azure blob 儲存體 toodownload 檔案 hello Jenkins 機器上 hello 路徑。 也可以使用環境變數 (如果您未提供的值**下載路徑**，從 Azure blob 儲存體的 hello 檔案會下載的 toohello 作業的工作區。)
 
-如果您還有其他項目要從 Azure Blob 儲存體下載，您可以建立其他組建步驟。
+如果您想 toodownload 從 Azure blob 儲存體的其他項目，您可以建立額外的建置步驟。
 
-執行組建之後，您可以檢查組建記錄主控台輸出，或查看下載位置，了解是否已成功下載您想要的 Blob。  
+執行建置後，您可以檢查 hello 建置記錄主控台輸出，或查看您的下載位置，toosee 是否 hello 已成功下載您所預期的 blob。  
 
-## <a name="components-used-by-the-blob-service"></a>Blob 服務所使用的元件
-以下提供 Blob 服務元件的概觀。
+## <a name="components-used-by-hello-blob-service"></a>Hello Blob 服務所使用的元件
+hello 以下提供 hello Blob 服務元件的概觀。
 
-* **儲存體帳戶**：一律透過儲存體帳戶來存取 Azure 儲存體。 這是存取 blob 用的最高等級的命名空間。 帳戶可以包含不限數目的容器，只要它們的大小總計低於 100TB 即可。
+* **儲存體帳戶**： 所有存取的 tooAzure 是儲存體透過儲存體帳戶。 這是用於存取 blob 的 hello 命名空間的 hello 最高等級。 帳戶可以包含不限數目的容器，只要它們的大小總計低於 100TB 即可。
 * **容器**：容器提供一組 Blob 的群組。 所有 Blob 都必須放在容器中。 一個帳戶可以包含的容器不限數量。 容器可以儲存無限制的 Blob。
-* **Blob**：任何類型和大小的檔案。 Azure 儲存中可以儲存兩種 Blob：區塊 Blob 和分頁 Blob。 大部分檔案都是區塊 Blob。 單一區塊 Blob 的大小上限為 200GB。 本教學課程使用區塊 Blob。 分頁 Blob (另一種 Blob 類型) 的大小上限為 1TB，當檔案中的位元組範圍經常修改時，分頁 Blob 的效率較高。 如需關於 Blob 的詳細資訊，請參閱 [了解區塊 Blob、附加 Blob 及分頁 Blob](http://msdn.microsoft.com/library/azure/ee691964.aspx)。
-* **URL 格式**：可利用下列 URL 格式來定址 Blob：
+* **Blob**：任何類型和大小的檔案。 Azure 儲存中可以儲存兩種 Blob：區塊 Blob 和分頁 Blob。 大部分檔案都是區塊 Blob。 單一區塊 blob 可以是 up too200GB 的大小。 本教學課程使用區塊 Blob。 分頁 blob，另一種 blob 類型，可向上 too1TB 大小和更有效率的是檔案中的位元組範圍經常修改。 如需關於 Blob 的詳細資訊，請參閱 [了解區塊 Blob、附加 Blob 及分頁 Blob](http://msdn.microsoft.com/library/azure/ee691964.aspx)。
+* **URL 格式**： 使用 hello 下列 URL 格式來定址 Blob:
   
     `http://storageaccount.blob.core.windows.net/container_name/blob_name`
   
-    (上述格式適用於公用 Azure 雲端。 如果您使用其他 Azure 雲端，請使用 [Azure 入口網站](https://portal.azure.com)中的端點來判斷您的 URL 端點。)
+    （hello 上述格式，適用於 toohello 公用 Azure 雲端。 如果您使用不同的 Azure 雲端，使用 hello 端點內 hello [Azure 入口網站](https://portal.azure.com)toodetermine URL 端點。)
   
-    在上述格式中，`storageaccount` 代表您的儲存體帳戶名稱，`container_name` 代表您的容器名稱，而 `blob_name` 代表您的 Blob 名稱。 容器名稱中可以有多個路徑，這些路徑彼此以正斜線 **/**(英文)。 本教學課程中的範例容器名稱為 **MyJob**，使用的共同虛擬路徑則是 **${BUILD\_ID}/${BUILD\_NUMBER}**，產生的 Blob URL 格式如下：
+    上述的 hello 格式`storageaccount`代表 hello 您的儲存體帳戶名稱，`container_name`代表 hello 您的容器名稱，和`blob_name`代表 hello 您的 blob 名稱，分別。 內 hello 容器名稱，您可以有多個以正斜線，分隔的路徑 **/** 。 本教學課程中的 hello 範例容器名稱為**存放至 MyJob**，和**${建置\_識別碼} / ${建置\_數目}** hello 一般虛擬路徑，導致 hello blob 擁有使用Hello 下列表單的 URL:
   
     `http://example.blob.core.windows.net/myjob/2014-04-14_23-57-00/1/hello.txt`
 

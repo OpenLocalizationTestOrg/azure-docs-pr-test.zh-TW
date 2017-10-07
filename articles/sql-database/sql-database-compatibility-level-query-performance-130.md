@@ -1,6 +1,6 @@
 ---
-title: "資料庫相容性層級 130 - Azure SQL Database | Microsoft Docs"
-description: "在本文中，我們會探索以相容性層級 130 執行 Azure SQL Databse 的優點，並善用新查詢最佳化工具和查詢處理器功能的優點。 我們也會解決對現有 SQL 應用程式的查詢效能可能造成的副作用。"
+title: "aaaDatabase 相容性等級 130 的 Azure SQL Database |Microsoft 文件"
+description: "在本文中，我們將探索 hello 優勢的相容性層級 130，執行您的 Azure SQL Database 以及運用 hello 優點 hello 新查詢最佳化工具，查詢處理器功能。 我們也會解決 hello 可能副作用 hello hello 現有 SQL 應用程式的查詢效能。"
 services: sql-database
 documentationcenter: 
 author: alainlissoir
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: NA
 ms.topic: article
 ms.date: 08/08/2016
 ms.author: alainl
-ms.openlocfilehash: c08c0690df4f389416e4ed2e2df2dbb72d6fd567
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 25693c5f7b01405b7073fa7d4cc2833fbe125e2f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="improved-query-performance-with-compatibility-level-130-in-azure-sql-database"></a>改善 Azure SQL Database 中相容性層級 130 的查詢效能
-Azure SQL Database 會在許多不同的相容性層級上以透明方式執行數十萬個資料庫，對其所有客戶保留並保證對應 Microsoft SQL Server 版本的回溯相容性！
+Azure SQL Database 執行無障礙地數百個資料庫在許多不同的相容性層級，保留，並為所有客戶，以及確保 hello 回溯相容性 toohello 對應版本的 Microsoft SQL Server ！
 
-在本文中，我們會探索以相容性層級 130 執行 Azure SQL Databse 的優點，並善用新查詢最佳化工具和查詢處理器功能的優點。 我們也會解決對現有 SQL 應用程式的查詢效能可能造成的副作用。
+在本文中，我們將探索 hello 優勢的相容性層級 130，執行您的 Azure SQL Database 以及運用 hello 優點 hello 新查詢最佳化工具，查詢處理器功能。 我們也會解決 hello 可能副作用 hello hello 現有 SQL 應用程式的查詢效能。
 
-當作歷程記錄的提醒，預設相容性層級的 SQL 版本比對如下︰
+歷程記錄的提醒的 SQL 版本 toodefault 相容性層級的 hello 對齊方式如下：
 
 * 100：在 SQL Server 2008 和 Azure SQL Database V11 中。
 * 110：在 SQL Server 2012 和 Azure SQL Database V11 中。
@@ -34,13 +34,13 @@ Azure SQL Database 會在許多不同的相容性層級上以透明方式執行�
 * 130：在 SQL Server 2016 和 Azure SQL Database V12 中。
 
 > [!IMPORTANT]
-> 從 **2016 年 6 月中旬**開始，在 Azure SQL Database 中，**新建**資料庫的預設相容性層級會是 130 (而不是 120)。
+> 從開始**2016 年 6 月 mid**，在 Azure SQL Database，hello 預設相容性層級會 130 而不是 120 個**新建**資料庫。
 > 
-> 在 2016 年 6 月中旬前建立的資料庫將「不」  受影響，而且會維持其目前的相容性層級 (100、110 或 120)。 從 Azure SQL Database V11 版移轉到 V12 版的資料庫，其相容性層級會是 100 或 110。 
+> 在 2016 年 6 月中旬前建立的資料庫將「不」  受影響，而且會維持其目前的相容性層級 (100、110 或 120)。 從 Azure SQL Database 版本 V11 tooV12 移轉的資料庫都會有 100 或 110 的相容性層級。 
 > 
 
 ## <a name="about-compatibility-level-130"></a>關於相容性層級 130
-首先，如果想要知道資料庫目前的相容性層級，請執行下列 Transact-SQL 陳述式。
+首先，如果您想 tooknow hello 目前相容性層級的資料庫，執行下列 TRANSACT-SQL 陳述式的 hello。
 
 ```
 SELECT compatibility_level
@@ -49,13 +49,13 @@ SELECT compatibility_level
 ```
 
 
-在 **新建** 資料庫變更為層級 130 之前，讓我們透過一些非常基本的查詢範例來檢閱這項變更的相關資訊，並了解相關人員如何從中受益。
+在此變更之前就進行 toolevel 130**新**建立資料庫，讓我們檢閱這項變更是所有相關資訊，透過某些非常基本的查詢範例，並請參閱如何的任何人都可以從中受益。
 
-關聯式資料庫中的查詢處理可能非常複雜，以致大量的電算機科學和數學人員得以了解固有的設計選擇和行為。 本文件的內容已刻意簡化，以確保具有一些最基本技術背景的人員可以了解相容性層級變更的影響，並判斷其對於應用程式有何好處。
+關聯式資料庫中的查詢處理可能會很複雜，而且可能會 toolots 電腦科學和數學 toounderstand hello 固有的設計選項和行為。 本文件中，在 hello 內容已經過刻意簡化的 tooensure 某些最小的技術背景的任何人都可以用來了解 hello 影響 hello 相容性層級變更，並判斷它的優點的應用程式。
 
-我們快速看一下相容性層級 130 對資料表有何好處。  您可以在 [ALTER DATABASE 相容性層級 (Transact-SQL)](https://msdn.microsoft.com/library/bb510680.aspx)找到更多詳細資料，但簡短摘要如下︰
+讓我們先快速查看哪些 hello 相容性層級 130 會在 [hello] 資料表。  您可以在 [ALTER DATABASE 相容性層級 (Transact-SQL)](https://msdn.microsoft.com/library/bb510680.aspx)找到更多詳細資料，但簡短摘要如下︰
 
-* Insert-select 陳述式的 Insert 作業可以是多執行緒作業或可以有平行計劃，而這項作業之前是單一執行緒作業。
+* hello Insert select 陳述式的 Insert 作業可以是多執行緒或可以有平行計畫，而這項作業為單一執行緒之前。
 * 記憶體最佳化資料表和資料表變數查詢現在可以有平行計劃，而這項作業之前也是單一執行緒作業。
 * 記憶體最佳化資料表的統計資料現在可以取樣並會自動更新。 如需詳細資訊，請參閱 [Database Engine 新功能：In-Memory OLTP](https://msdn.microsoft.com/library/bb510411.aspx#InMemory) 。
 * 資料行存放區索引的批次模式和資料列模式變更
@@ -63,10 +63,10 @@ SELECT compatibility_level
   * 時間範圍彙總現在以批次模式運作，例如 TSQL LAG/LEAD 陳述式。
   * 具有多個不同子句的資料行存放區資料表會以批次模式進行查詢。
   * 在 DOP = 1 之下執行或具有序列計劃的查詢也會以批次模式執行。
-* 最後，基數估計改進實際上隨著相容性層級 120 出現，但如何您是在較低的相容性層級 (也就是 100 或 110) 執行，移到相容性層級 130 也會帶來這些改進，而這些改進也有益於您應用程式的查詢效能。
+* 最後，基數估計的改進實際上相容性層級 120，但如果您執行較低的相容性層級 （也就是 100 或 110）、 hello 移動 toocompatibility 層級 130 也將這些增強功能，以及有這些也可以獲得更佳應用程式的 hello 查詢的效能。
 
 ## <a name="practicing-compatibility-level-130"></a>演練相容性層級 130
-首先，我們要建立一些資料表、索引和隨機資料，以演練某些新功能。 TSQL 指令碼範例可以在 SQL Server 2016 底下或在 Azure SQL Database 底下執行。 不過，在建立 Azure SQL Database 時，務必至少選擇 P2 資料庫，因為您至少需要幾個核心才能允許多執行緒處理，並因而受益於這些功能。
+第一個我們得到一些資料表、 索引和建立隨機資料 toopractice 某些這些新功能。 SQL Server 2016 中，或 Azure SQL Database 下，可以執行 hello TSQL 指令碼範例。 不過，在建立 Azure SQL database 時，請確定您選擇在 hello 最小 P2 資料庫，因為您必須至少有幾個核心 tooallow 多執行緒處理，並因此受益於這些功能。
 
 ```
 -- Create a Premium P2 Database in Azure SQL Database
@@ -76,7 +76,7 @@ CREATE DATABASE MyTestDB
 GO
 
 -- Create 2 tables with a column store index on
--- the second one (only available on Premium databases)
+-- hello second one (only available on Premium databases)
 
 CREATE TABLE T_source
     (Color varchar(10), c1 bigint, c2 bigint);
@@ -104,10 +104,10 @@ GO 10
 ```
 
 
-我們現在來看一下相容性層級 130 隨附的一些查詢處理功能。
+現在，讓我們先尋找 toosome 即將相容性層級 130 的 hello 查詢處理功能。
 
 ## <a name="parallel-insert"></a>平行 INSERT
-執行下面的 TSQL 陳述式時會在相容性層級 120 和 130 之下執行 INSERT 作業，其分別在單一執行緒模型 (120) 和多執行緒模型 (130) 中執行 INSERT 作業。
+執行下列的 hello TSQL 陳述式執行 hello 相容性層級 120 和 130，它會在單一執行緒模型 (120)，並在多執行緒模型 (130) 中分別執行 hello 插入作業的插入作業。
 
 ```
 -- Parallel INSERT … SELECT … in heap or CCI
@@ -119,7 +119,7 @@ ALTER DATABASE MyTestDB
     SET COMPATIBILITY_LEVEL = 120;
 GO 
 
--- The INSERT part is in serial
+-- hello INSERT part is in serial
 
 INSERT t_target WITH (tablock)
     SELECT C1, COUNT(C2) * 10 * RAND()
@@ -131,7 +131,7 @@ ALTER DATABASE MyTestDB
     SET COMPATIBILITY_LEVEL = 130
 GO
 
--- The INSERT part is in parallel
+-- hello INSERT part is in parallel
 
 INSERT t_target WITH (tablock)
     SELECT C1, COUNT(C2) * 10 * RAND()
@@ -143,14 +143,14 @@ SET STATISTICS XML OFF;
 ```
 
 
-藉由要求實際查詢計劃、查看其圖形表示法或其 XML 內容，您即可判斷正在執行哪個基數估計函式。 查看圖 1 的並排計劃，我們可以清楚地看到資料行存放區 INSERT 作業從 120 中的序列執行變成 130 中的平行執行。 此外，請注意 130 計劃中的迭代器圖示變更顯示兩個平行箭號，這說明了迭代器現在的確是平行執行的這項事實。 如果您有大量 INSERT 作業要完成，平行執行 (已連結至您可對資料庫支配的核心數目) 的效果會更佳；視您的情況而言，速度最高可快 100 倍！
+藉由要求 hello hello 實際查詢計劃，查看其圖形表示法或其 XML 內容，您可以判斷哪一個函式會在播放的基數估計。 查看圖 1 中的 hello 計劃-並存，我們可以清楚地看到該 hello 插入的資料行存放區執行會進入從序列中 120 tooparallel 130。 另外請注意顯示兩個平行的箭號，說明現在 hello 迭代器執行的 hello 事實確實平行 hello 130 計劃中的 hello 變更的 hello 迭代器圖示。 如果您有大型的 INSERT 作業 toocomplete，hello 平行執行，連結的 toohello 您有在 hello 資料庫，供您使用的核心數目執行效能。向上 tooa 100 倍視情況 ！
 
-*圖 1︰INSERT 作業從序列執行變成在相容性層級 130 的平行執行。*
+*圖 1： 從相容性層級 130 的序列 tooparallel 插入作業變更。*
 
 ![圖 1](./media/sql-database-compatibility-level-query-performance-130/figure-1.jpg)
 
 ## <a name="serial-batch-mode"></a>序列批次模式
-同樣地，在處理資料列時移到相容性層級 130 即可進行批次模式處理。 第一，批次模式作業僅適用於您已備妥資料行存放區索引時。 第二，一個批次通常代表 ~900 個資料列，並使用針對多核心 CPU、較高記憶體輸送量最佳化的程式碼邏輯，而且盡可能直接運用資料行存放區的壓縮資料。 在這些條件之下，SQL Server 2016 一次可以處理 ~900 個資料列，而不是一次處理 1 個資料列，因此作業的整體額外成本現在是由整個批次分擔，進而降低各資料列的整體成本。 與資料行存放區壓縮結合的這個共用作業數量基本上可減少 SELECT 批次模式作業中的延遲。 您可以在 [資料行存放區索引指南](https://msdn.microsoft.com/library/gg492088.aspx)找到有關資料行存放區和批次模式的詳細資訊。
+同樣地，當處理資料列的資料移動 toocompatibility 層級 130 啟用批次模式處理。 第一，批次模式作業僅適用於您已備妥資料行存放區索引時。 第二，批次通常代表 ~ 900 個資料列，會使用針對多核心 CPU、 記憶體較高的輸送量最佳化的程式碼邏輯和直接利用 hello hello 盡可能的資料行存放區的壓縮的資料。 在這些情況中下, SQL Server 2016 可以同時發生，處理 ~ 900 的資料列，而不是在 hello 階段 1 個資料列，因此，hello hello 作業的整體額外負荷成本都現在共用 hello 整個批次，減少 hello 整體成本資料列。 此共用的作業基本上與 hello 資料行存放區壓縮結合量可減少選取的批次模式作業中的 hello 延遲。 關於 hello 資料行存放區尋找更多詳細資料和批次模式在[資料行存放區索引指南](https://msdn.microsoft.com/library/gg492088.aspx)。
 
 ```
 -- Serial batch mode execution
@@ -161,7 +161,7 @@ ALTER DATABASE MyTestDB
     SET COMPATIBILITY_LEVEL = 120;
 GO
 
--- The scan and aggregate are in row mode
+-- hello scan and aggregate are in row mode
 
 SELECT C1, COUNT (C2)
     FROM T_target
@@ -173,8 +173,8 @@ ALTER DATABASE MyTestDB
     SET COMPATIBILITY_LEVEL = 130;
 GO 
 
--- The scan and aggregate are in batch mode,
--- and force MAXDOP to 1 to show that batch mode
+-- hello scan and aggregate are in batch mode,
+-- and force MAXDOP too1 tooshow that batch mode
 -- also now works in serial mode.
 
 SELECT C1, COUNT(C2)
@@ -187,14 +187,14 @@ SET STATISTICS XML OFF;
 ```
 
 
-如下所見，觀察圖 2 的並排查詢計劃，我們可以看到處理模式已隨個相容性層級變更，因此，同時在兩個相容性層級執行查詢時，我們可以看到大部分的處理時間花費在資料列模式 (86%) (相較於已處理 2 個批次的批次模式 (14%))。 增加資料集，優點也會增加。
+為顯示下方，觀察 hello 查詢計劃-並存上圖 2 中，我們可以看到到 hello 處理模式已變更 hello 相容性層級，且其結果是，當執行 hello 查詢這兩個相容性層級中，我們可以看到大部分的 hello 處理時間花在資料列模式 （86%) 相較 toohello 批次模式 （14%)、 2 批次已處理的所在。 增加 hello 資料集，hello 權益會逐漸增加。
 
-*圖 2︰SELECT 作業從序列變成在相容性層級 130 的批次模式。*
+*圖 2： 從相容性層級 130 的序列 toobatch 模式選取作業的變更。*
 
 ![圖 2](./media/sql-database-compatibility-level-query-performance-130/figure-2.jpg)
 
 ## <a name="batch-mode-on-sort-execution"></a>排序執行的批次模式
-類似上述情況，但套用至排序作業後，從資料列模式 (相容性層級 120) 轉換為批次模式 (相容性層級 130) 可提升 SORT 作業的效能，其理由相同。
+從資料列模式 （相容性層級 120） toobatch 模式 （相容性層級 130） 的類似 toohello 上述項目，但套用的 tooa 排序作業，hello 轉換，改善 hello 效能 hello hello 的排序作業相同的原因。
 
 ```
 -- Batch mode on sort execution
@@ -205,7 +205,7 @@ ALTER DATABASE MyTestDB
     SET COMPATIBILITY_LEVEL = 120;
 GO
 
--- The scan and aggregate are in row mode
+-- hello scan and aggregate are in row mode
 
 SELECT C1, COUNT(C2)
     FROM T_target
@@ -218,8 +218,8 @@ ALTER DATABASE MyTestDB
     SET COMPATIBILITY_LEVEL = 130;
 GO
 
--- The scan and aggregate are in batch mode,
--- and force MAXDOP to 1 to show that batch mode
+-- hello scan and aggregate are in batch mode,
+-- and force MAXDOP too1 tooshow that batch mode
 -- also now works in serial mode.
 
 SELECT C1, COUNT(C2)
@@ -233,21 +233,21 @@ SET STATISTICS XML OFF;
 ```
 
 
-如圖 3 並排顯示，我們可以看到資料列模式的排序作業代表 81%的成本，而批次模式只代表 19% 的成本 (排序本身分別佔 81% 和 56%)。
+顯示由並行上圖 3，我們可以看到 hello 排序作業，資料列模式代表 81 hello 成本，而 hello 批次模式只代表 19 %hello 成本 （分別 81%和 56 %hello 排序本身上） 的百分比。
 
-*圖 3︰SORT 作業從資料列模式變成在相容性層級 130 的批次模式。*
+*圖 3： 從資料列 toobatch 模式相容性層級 130 排序作業變更。*
 
 ![圖 3](./media/sql-database-compatibility-level-query-performance-130/figure-3.png)
 
-很明顯地，這些範例只包含成千上萬個資料列，而在查看近來大部分 SQL Server 中可用的資料時，這算不了什麼。 只要針對數百萬個資料列進行預估，即可在執行的數分鐘內轉譯，而免除每天擱置您的工作負載本質。
+很明顯地，這些範例只包含數以萬計的資料列，這會是 nothing 近來查看大多數的 SQL Server 中可用的 hello 資料時。 相反地，只要專案數百萬列的這些，而且這可以轉譯在幾分鐘的時間可以節省運算暫止的工作負載的 hello 本質每天執行。
 
 ## <a name="cardinality-estimation-ce-improvements"></a>基數估計 (CE) 改進
-任何執行相容性層級 120 或更高層級的資料庫，將使用隨著 SQL Server 2014 引進的新基數估計功能。 基本上，基數估計用於根據估計的成本來判斷 SQL Server 將如何執行查詢的邏輯。 這項估計是使用來自與該查詢所牽涉物件相關聯的統計資料的輸入來計算。 實際上，概括來說，基數估計函式是資料列計數估計值，以及下列各項的相關資訊：值分佈、相異值計數，以及查詢中參考的資料表和物件內含的重複計數。 如果這些估計值錯誤，可能會因為授與的記憶體不足 (也就是 TempDB 溢出)、選取序列計劃執行 (而非平行計劃執行) 等等，而導致不必要的磁碟 I/O。 總而言之，不正確的估計值可能會導致查詢執行的整體效能降低。 另一方面，更完善的估計值、更精確的估計值會導致更好的查詢執行！
+使用 SQL Server 2014 引進，可讓任何資料庫相容性層級 120 或更新版本執行 hello 新的基數估計功能使用。 基本上，基數估計是使用 SQL server 將如何執行查詢，根據其估計的成本 toodetermine hello 邏輯。 使用來自該查詢中所涉及的物件相關聯的統計資料的輸入來計算 hello 估計。 實際上，在高層次，基數估計函數以及 hello 值分佈的 hello，相異值計數的相關資訊的資料列計數估計以及重複計數會包含在 hello 資料表和 hello 查詢中參考的物件。 Tooa 選取項目，透過平行序列計畫執行的計劃執行，tooname 一些或取得這些估計不正確，可能會導致 toounnecessary 磁碟 I/O，因為 tooinsufficient 記憶體授權 （也就是 TempDB 溢出）。 結束時，不正確的估計值可能會導致 tooan hello 執行查詢的整體效能降低。 在 hello 其他側邊、 更佳的估計值、 估計較為精確，潛在客戶 toobetter 查詢執行 ！
 
-如之前所述，查詢最佳化和評估值是複雜的事物，但如果您想要深入了解查詢計劃和基數估算器，您可以參考 [使用 SQL Server 2014 基數估計器來最佳化查詢計劃](https://msdn.microsoft.com/library/dn673537.aspx) 文件，以獲得深入說明。
+如前所述，查詢最佳化和評估複雜的主題、 但如果您想 toolearn 更多關於查詢計劃和基數估計工具，您可以參考 toohello 文件[最佳化您的查詢計劃 hello SQL Server 2014基數估計工具](https://msdn.microsoft.com/library/dn673537.aspx)的深入剖析。
 
 ## <a name="which-cardinality-estimation-do-you-currently-use"></a>您目前使用哪個基數估計？
-若要判斷您查詢是在哪個基數估計之下執行，只要使用以下的查詢範例即可。 請注意，第一個範例會在相容性層級 110 之下執行，暗示使用舊的基數估計函式。
+toodetermine 下執行查詢的基數估計，我們只使用 hello 查詢範例如下。 請注意，第一個範例會執行在相容性層級 110，意味著 hello 使用 hello 舊的基數估計函式。
 
 ```
 -- Old CE
@@ -267,13 +267,13 @@ SET STATISTICS XML OFF;
 ```
 
 
-執行完成後，按一下 XML 連結，並查看第一個迭代器的屬性，如下所示。 請注意，名為 CardinalityEstimationModelVersion 的屬性名稱目前設定為 70。 這並不表示資料庫相容性層級設定為 SQL Server 7.0 版 (如上面的 TSQL 陳述式所示，其設定於 110)，但值 70 只代表自 SQL Server 7.0 起可用的舊版基數估計功能，而直到 SQL Server 2014 (隨附相容性層級 120) 以後才有主要版本。
+完成執行之後，請按一下 hello XML 連結，並查看 hello hello 第一個迭代器的屬性，如下所示。 請注意呼叫目前設於 70 CardinalityEstimationModelVersion hello 屬性名稱。 並不表示 hello 資料庫相容性層級設定 （它設定為在上述的 hello TSQL 陳述式中可見的 110 上），toohello SQL Server 7.0 版，但 hello 值 70 只代表 hello 舊版基數估計功能自 SQL 起可用伺服器 7.0、 SQL Server 2014 （隨附於相容性層級為 120） 之前有沒有主要修訂。
 
-*圖 4：使用相容性層級 110 或更低層級時，CardinalityEstimationModelVersion 會設定為 70。*
+*圖 4: hello CardinalityEstimationModelVersion too70 時設定使用相容性層級為 110 或下方。*
 
 ![圖 4](./media/sql-database-compatibility-level-query-performance-130/figure-4.png)
 
-或者，您可以將相容性層級變更為 130，並使用設定為 NO 的 LEGACY_CARDINALITY_ESTIMATION 搭配 [ALTER DATABASE SCOPED CONFIGURATION](https://msdn.microsoft.com/library/mt629158.aspx) 來停止使用新的基數估計函式。 從基數估計函式的觀點來看，這與使用 110 完全相同，同時使用最新的查詢處理相容性層級。 這麼做，您就可以受益於最新相容性層級隨附的新查詢處理功能 (也就是批次模式，但必要時仍會依賴舊的基數估計功能。
+或者，您可以變更相容性層級 too130 hello，並使用 LEGACY_CARDINALITY_ESTIMATION 設定 tooON 與 hello 停用 hello 使用新的基數估計函式，hello [ALTER DATABASE SCOPED CONFIGURATION](https://msdn.microsoft.com/library/mt629158.aspx). 這會是完全 hello 與使用基數估計函式觀點來看，從 110 時使用 hello 最新查詢處理相容性層級相同。 這樣做，您就可以受益於 hello 新查詢處理來自 hello 最新相容性層級 （也就是批次模式） 的功能，但仍依賴 hello 舊的基數估計功能，如有必要。
 
 ```
 -- Old CE
@@ -298,7 +298,7 @@ SET STATISTICS XML OFF;
 ```
 
 
-只要移到相容性層級 120 或 130，即可啟用新的基數估計功能。 在這種情況下，預設 CardinalityEstimationModelVersion 便會跟著設定為 120 或 130，如下所示。
+只移動 toohello 相容性等級 120 或 130 啟用 hello 新的基數估計功能。 在這種情況下，too120 或下方的 做為可見 130，則會據以設定 hello 預設 CardinalityEstimationModelVersion。
 
 ```
 -- New CE
@@ -323,12 +323,12 @@ SET STATISTICS XML OFF;
 ```
 
 
-*圖 5：使用相容性層級 130 時，CardinalityEstimationModelVersion 會設定為 130。*
+*圖 5: hello CardinalityEstimationModelVersion too130 時設定使用 130 的相容性層級。*
 
 ![圖 5](./media/sql-database-compatibility-level-query-performance-130/figure-5.jpg)
 
-## <a name="witnessing-the-cardinality-estimation-differences"></a>見證基數估計差異
-現在，讓我們執行稍微複雜的查詢 (牽涉到包含一個 WHERE 子句及一些述詞的 INNER JOIN)，而且先查看舊基數估計函式的資料列計數估計值。
+## <a name="witnessing-hello-cardinality-estimation-differences"></a>Witnessing hello 基數估計差異
+現在，我們先執行稍微複雜查詢涉及 INNER JOIN 使用 WHERE 子句的部分述詞，並讓我們看看 hello 資料列計數估計 hello 舊的基數估計函數從第一次。
 
 ```
 -- Old CE row estimate with INNER JOIN and WHERE clause
@@ -359,13 +359,13 @@ SET STATISTICS XML OFF;
 ```
 
 
-有效地執行這項查詢會傳回 200,704 個資料列，而透過舊基數估計功能的資料列預估值宣告 194,284 個資料列。 很明顯地，如之前所述，這些資料列計數結果還是會視您執行先前範例的頻率而定，在每次執行時一再填入範例資料表。 顯然，除了資料表圖形、資料內容，以及此資料實際上彼此相互關聯的方式，查詢中的述詞也會影響的實際估計。
+有效地執行這項查詢會傳回 200,704 資料列，而 hello 與 hello 舊的基數估計功能的資料列估計宣告 194,284 資料列。 很明顯地，如上述，這些資料列計數結果也取決於頻率執行 hello 先前的範例，其中會填入 hello 不斷地在每次執行的範例資料表。 很明顯地，在查詢中的 hello 述詞也會有影響 hello 實際估計除了 hello 資料表形狀、 資料內容，和如何這項資料實際上相互關聯與彼此。
 
-*圖 6︰資料列計數估計值為 194,284 或與預期的 200,704 個資料列相差 6,000 個資料列。*
+*圖 6: hello 資料列計數估計超出 194,284 或 6000 的資料列從預期的 hello 200,704 資料列。*
 
 ![圖 6](./media/sql-database-compatibility-level-query-performance-130/figure-6.jpg)
 
-同樣地，我們現在使用新的基數估計功能執行相同的查詢。
+在 hello 同樣地，我們現在執行相同查詢搭配新的基數估計功能 hello hello。
 
 ```
 -- New CE row estimate with INNER JOIN and WHERE clause
@@ -396,39 +396,39 @@ SET STATISTICS XML OFF;
 ```
 
 
-看看下面，我們現在看到資料列估計值為 202,877，或更加接近且高於舊的基數估計。
+查看 hello 以下，我們現在看到該 hello 資料列估計為 202,877，或更為接近而且多於 hello 舊的基數估計。
 
-*圖 7︰資料列計數估計現在是 202,877，而不是 194,284。*
+*圖 7: hello 資料列計數估計現在是 202,877，而不是 194,284。*
 
 ![圖 7](./media/sql-database-compatibility-level-query-performance-130/figure-7.jpg)
 
-事實上，結果集為 200,704 個資料列 (但全都取決於您執行先前範例查詢的頻率，而更重要的是，因為 TSQL 使用 RAND() 陳述式，所以每次執行傳回的實際值會有所不同)。 因此，在此特殊範例中，新的基數估計在估計資料列數時的效果更好，因為 202,877 比 194,284 更接近 200,704！ 最後，如果您將 WHERE 子句變更為等號 (舉例來說，而非 “>”)，這可能會使新舊基數函式之間的估計值更加不同 (視您可以取得多少相符項目而定)。
+事實上，hello 結果集是 200,704 的資料列 （但都取決於您未執行頻率的 hello hello 查詢先前的範例，但更重要的是，hello TSQL 使用 hello rand （） 陳述式，因為 hello 傳回的實際值可能與一個執行 toohello 旁邊）。 因此，在此特定範例中，hello 新的基數估計會執行在估計 hello 的資料列數目，因為 202,877 更接近 too200，704，比 194,284 更好 ！ 最後，如果您變更 WHERE 子句述詞 tooequality hello (而非">"執行個體)，這可能會使 hello 評估 hello 舊與新的基數函式之間更不同，視多少相符記錄而定，您可以取得。
 
-很明顯地，在此情況下，與實際計數相差 ~6000 個資料列，在某些情況下並不代表大量資料。 現在，將此變換成跨數個資料表的數百萬個資料列和更複雜的查詢，而有時候估計值可能會相差數百萬個資料列，因此，挑選錯誤執行計畫，或要求授與的記憶體不足 (導致 TempDB 溢出和更多的 I/O) 的風險會高出許多。
+很明顯地，在此情況下，與實際計數相差 ~6000 個資料列，在某些情況下並不代表大量資料。 現在，跨數個資料表和更複雜的查詢，轉置的資料列的這個 toomillions 有時候 hello 估計還可以和關閉數百萬個資料列，因此，hello 挑選向上 hello 錯誤執行計畫，或要求記憶體不足，無法授與前置的風險tooTempDB 轉散，並因此多個 I/O，會高出許多。
 
-如果您有機會，請使用最典型的查詢和資料集來練習這項比較，並親自查看一些舊的和新的估計值受到多少影響，然而有些估計值可能只是變得與事實相差更遠，其他一些估計值可能只是更接近結果集中實際傳回的實際資料列計數。 這全都取決於您的查詢圖形、Azure SQL Database 特性、資料集的本質和大小，以及其相關的可用統計資料。 如果您剛建立 Azure SQL Database 執行個體，查詢最佳化工具必須從頭建立其知識，而不是重複使用先前查詢執行所構成的統計資料。 因此，估計值非常情境式，而且幾乎是每個伺服器和應用程式情況所特有。 這是要牢記在心的重要層面！
+如果您有機會 hello，練習這項比較最常見的查詢與資料集，並且親自體驗了多少有些 hello 舊和新估計受到影響，而某些可能就會變得關閉 hello 現實情況下，從更多或某些其他人只較接近 toohello 實際資料列計算實際 hello 結果集中傳回。 取決於它的所有查詢、 hello Azure SQL 資料庫特性、 hello 本質和 hello 大小的資料集和 hello 提供其相關的統計資料的 hello 圖形。 如果您剛剛建立您的 Azure SQL Database 執行個體、 hello 查詢最佳化工具會有 toobuild 了解，而不是重複使用的統計資料的 hello 先前查詢所做的重新執行。 因此，hello 估計是非常內容和幾乎特定 tooevery 伺服器和應用程式的情況。 它是在心的重要層面 tookeep ！
 
-## <a name="some-considerations-to-take-into-account"></a>需要考量的一些注意事項
-雖然大部分的工作負載受益於相容性層級 130，但是在您對生產環境採用此相容性層級之前，基本上有 3 個選項︰
+## <a name="some-considerations-tootake-into-account"></a>納入考量的一些考量 tootake
+雖然大部分的工作負載而獲益 hello 相容性層級 130 採用您的生產環境的 hello 相容性層級之前，您基本上會有 3 個選項：
 
-1. 請移到相容性層級 130，並查看如何執行動作。 如果您發現一些效能衰退，只要將相容性層級設回其原始層級，或保留 130，而且只讓基數估計回復到舊版模式 (如前文所述，這可獨力處理此問題)。
-2. 您可在類似的生產負載之下徹底測試現有的應用程式、進行微調，以及在正式推出前驗證效能。 若有任何問題，同上所述，您可以隨時回到原始的相容性層級，或只讓基數估計回復到舊版模式。
-3. 做為處理這些問題的最後一個選項，最新的方法是使用查詢存放區。 這是現今的建議選項！ 為了協助分析在相容性層級 120 或更低層級與相容性層級 130 之下的查詢，我們完全鼓勵您使用查詢存放區。 查詢存放區適用於最新版的 Azure SQL Database V12，而且其設計用來協助您進行查詢效能疑難排解。 將查詢存放區視為您的資料庫的飛行資料記錄器，其可收集和呈現關於所有查詢的詳細歷程記錄資訊。 這可減少診斷和解決問題所需的時間，進而大幅簡化效能鑑識。 如需詳細資訊，請參閱 [查詢存放區︰您的資料庫的飛行資料記錄器](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database/)。
+1. 您將 toocompatibility 層級 130，並查看項目執行的方式。 如果您注意到某些迴歸，您只設定 hello 相容性層級回復 tooits 原始的層級，或保留 130 和只反向 hello 基數估計回復 toohello 舊版模式 （以上所述，這單獨無法解決 hello 問題）。
+2. 您藉此徹底測試您現有的應用程式，類似的生產負載、 微調，以及驗證之前進行 tooproduction hello 效能。 若有任何問題，與上述相同可以永遠返回 toohello 原始相容性層級，或直接反向操作 hello 基數估計回復 toohello 傳統模式。
+3. 做為最後一個選項，以及 hello 最新的方式 tooaddress 這些問題，是 tooleverage hello 查詢存放區。 這是現今的建議選項！ tooassist hello 分析您的查詢，在相容性層級 120 或下方與 130，不建議您足夠 toouse 查詢存放區。 查詢存放區與 hello 最新版本的 Azure SQL Database V12，而且其設計目的是 toohelp 您的查詢效能的疑難排解。 將為您收集及呈現有關所有查詢的詳細歷程記錄資訊的資料庫的飛行資料記錄器視為 hello 查詢存放區。 這可大幅減少 hello 時間 toodiagnose 簡化效能鑑識調查並解決問題。 如需詳細資訊，請參閱 [查詢存放區︰您的資料庫的飛行資料記錄器](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database/)。
 
-概括而言，如果您已經有一組在相容性層級 120 或更低層級執行的資料庫，並規劃將其中一些資料庫移到 130，或因為您的工作負載自動佈建一些很快就會預設為 130 的新資料庫，請考慮下列各項︰
+在高層級，如果您已經有一組資料庫執行相容性層級 120 或以下，且計劃 toomove hello 其中部分 too130，或因為您的工作負載自動佈建的新資料庫將會很快就會由預設 too130 設定，請考慮hello 下列項目：
 
-* 在變更為生產環境中的新相容性層級之前，啟用查詢存放區。 如需詳細資訊，您可以參考 [變更資料庫相容性模式和使用查詢存放區](https://msdn.microsoft.com/library/bb895281.aspx) 。
-* 接下來，使用具代表性的資料和類似生產環境的查詢來測試所有重要工作負載，並且比較所經歷的效能與存放區所報告的效能。 如果您遇到一些效能衰退，您可以找出衰退的查詢存放區查詢，並使用查詢存放區提供的計畫強制選項 (也稱為計畫關聯)。 在這種情況下，您肯定會保持相容性層級 130，並使用查詢存放區的建議的先前查詢計畫。
-* 如果您想要運用 Azure SQL Database (執行 SQL Server 2016) 的新特性與功能，但很容易相容性層級 130 所帶來的變更所影響，則最後的手段是使用 ALTER DATABASE 陳述式，考慮讓相容性層級強制回到符合您的工作負載的層級。 但首先，請注意查詢存放區計畫關聯選項是最佳的選擇，因為不使用 130 基本上會保持在舊版 SQL Server 的功能層級。
-* 如果您有橫跨多個資料庫的多租用戶應用程式，則可能必須更新您的資料庫的佈建邏輯，以確保所有資料庫 (舊的和新佈建的) 的相容性層級都一致。 應用程式工作負載效能可能很容易受某些資料庫在不同相容性層級執行的這個事實所影響，因此，所有資料庫的相容性層級都必須一致，以便為所有的客戶提供相同的經驗。 請注意，這並非必要，實際上取決於您的應用程式受相容性層級影響的程度。
-* 最後，至於基數估計，就像變更相容性層級一樣，在投入生產之前，建議在新的條件之下測試您的生產工作負載，以判斷您的應用程式是否受益於基數估計的改進。
+* 在變更之前 toohello 新相容性層級在生產環境中的，啟用查詢存放區。 您可以使用參照太[變更 hello 資料庫相容性模式並使用 hello 查詢存放區](https://msdn.microsoft.com/library/bb895281.aspx)如需詳細資訊。
+* 接著，測試所有重要的工作負載使用具代表性的資料和類似實際執行環境和發生的比較 hello 效能及與查詢存放區所報告的查詢。 如果您遇到某些迴歸，您可以識別 hello 迴歸的查詢以 hello 查詢存放區，並使用 hello 計畫強制執行查詢存放區中的選項 （也稱為計畫釘選）。 在這種情況下，您針對保持 hello 相容性層級 130 並且 hello 先前的查詢計劃為 hello 查詢存放區的建議。
+* 如果您想 tooleverage 新特色與功能的 Azure SQL Database （這執行 SQL Server 2016），但是機密 toochanges 由 hello 相容性層級 130 的最後手段，您可以考慮強制 hello 相容性層級備份使用 ALTER DATABASE 陳述式來符合您的工作負載的 toohello 層級。 但首先，注意 hello 查詢存放區方案釘選 選項處於最佳選項，因為未使用 130 基本上保持在 hello 功能層級的較舊的 SQL Server 版本。
+* 如果您有跨越多個資料庫的多租用戶應用程式時，可能需要 tooupdate hello 佈建您的資料庫 tooensure 一致的相容性層級的邏輯，所有的資料庫;舊的和新佈建項目。 應用程式工作負載效能可能是有些資料庫執行不同的相容性層級的機密 toohello 事實，因此，可能需要的任何資料庫的相容性層級一致性 tooprovide hello 相同的順序所有跨 hello 面板中遇到 tooyour 客戶。 請注意，它不是託管，它其實取決於您的應用程式如何受到 hello 相容性層級。
+* 最後，有關 hello 基數估計一樣 hello 相容性層級，再繼續在生產環境中，變更它，如果您的應用程式受惠建議 tootest hello 新條件 toodetermine 下的您生產工作負載hello 基數估計的改進。
 
 ## <a name="conclusion"></a>結論
-使用 Azure SQL Database 以受益於所有的 SQL Server 2016 增強功能，可以明顯地改善查詢執行。 現狀正是如此！ 當然，如同任何新功能，必須執行適當的評估，才能判斷您的資料庫工作負載運作最佳的確切條件。 經驗顯示，大部分的工作負載至少應該在相容性層級 130 之下以透明的方式執行，同時利用新的查詢處理函式和新的基數估計。 實際上，總有一些例外狀況，而進行適當的審慎調查是很重要的評估，用來判斷您可以從這些增強功能獲益多少。 同樣地，查詢存放區對於執行這項工作很有幫助！
+使用 Azure SQL Database 所有 SQL Server 2016 增強 toobenefit 清楚可以改善查詢執行。 現狀正是如此！ 當然，任何新功能，像是正確評估必須完成的資料庫工作負載運作 hello 最佳 toodetermine hello 確切條件。 經驗顯示，大部分的工作負載所預期的 tooat 至少執行無障礙地相容性等級 130，同時利用新的查詢處理函式和新的基數估計。 所雖如此，實際上，總是會有一些例外狀況，以及執行適當的到期勤加注意的重要評估 toodetermine 多少您可以從這些增強功能獲益。 同樣地，hello 查詢存放區可以是大的幫助，在此情況下這項工作 ！
 
-隨著 SQL Azure 發展，您可以預見未來會有相容性層級 140。 在適當時機，我們會開始談論未來相容性層級 140 的願景，就像我們在此簡短討論相容性層級 130 的願景一樣。
+隨著 SQL Azure 的發展，您可以預期未來 hello 相容性層級 140。 在適當時機，我們會開始談論未來相容性層級 140 的願景，就像我們在此簡短討論相容性層級 130 的願景一樣。
 
-我們現在別忘了，從 2016 年 6 月開始，Azure SQL Database 會將新建資料庫的預設相容性層級從 120 變更為 130。 請留意！
+現在，我們不忘記，從 2016 年 6 月開始，Azure SQL Database，將變更 hello 預設相容性層級 120 too130 新建立的資料庫。 請留意！
 
 ## <a name="references"></a>參考
 * [Database Engine 新功能](https://msdn.microsoft.com/library/bb510411.aspx#InMemory)
@@ -436,7 +436,7 @@ SET STATISTICS XML OFF;
 * [ALTER DATABASE 相容性層級 (Transact-SQL)](https://msdn.microsoft.com/library/bb510680.aspx)
 * [ALTER DATABASE SCOPED CONFIGURATION](https://msdn.microsoft.com/library/mt629158.aspx)
 * [Azure SQL Database V12 的相容性層級 130](https://azure.microsoft.com/updates/compatibility-level-130-for-azure-sql-database-v12/)
-* [使用 SQL Server 2014 基數估計器 (CE) 來最佳化查詢計劃](https://msdn.microsoft.com/library/dn673537.aspx)
+* [最佳化查詢計劃您的 SQL Server 2014 的基數估計工具 hello 與](https://msdn.microsoft.com/library/dn673537.aspx)
 * [資料行存放區索引指南](https://msdn.microsoft.com/library/gg492088.aspx)
 * [落格︰改善 Azure SQL Database 中相容性層級 130 的查詢效能 (Alain Lissoir，2016 年 5 月 6 日)](https://blogs.msdn.microsoft.com/sqlserverstorageengine/2016/05/06/improved-query-performance-with-compatibility-level-130-in-azure-sql-database/)
 

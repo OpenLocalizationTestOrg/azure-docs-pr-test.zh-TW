@@ -1,6 +1,6 @@
 ---
-title: "如何使用 Xamarin 的 Blob 儲存體 | Microsoft Docs"
-description: "適用於 Xamarin 的 Azure 儲存體用戶端程式庫可讓開發人員使用其原生的使用者介面以建立 iOS、Android 和 Windows 市集應用程式。 本教學課程示範如何使用 Xamarin 來建立使用 Azure Blob 儲存體的應用程式。"
+title: "aaaHow toouse Xamarin 從 Blob 儲存體 |Microsoft 文件"
+description: "hello Xamarin 的 Azure 儲存體用戶端程式庫可讓開發人員 toocreate iOS、 Android 和 Windows 市集應用程式使用其原生使用者介面。 本教學課程示範如何 toouse Xamarin toocreate 使用 Azure Blob 儲存體的應用程式。"
 services: storage
 documentationcenter: xamarin
 author: michaelhauss
@@ -14,36 +14,36 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: michaelhauss
-ms.openlocfilehash: 5ff4d86082c03dcd7098743a984a97aa70232d1d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 688484fc560b5c89ed1692f5cbf5713aa8fc90a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-xamarin"></a>如何使用 Xamarin 的 Blob 儲存體
+# <a name="how-toouse-blob-storage-from-xamarin"></a>如何 toouse Xamarin 從 Blob 儲存體
 [!INCLUDE [storage-selector-blob-include](../../../includes/storage-selector-blob-include.md)]
 
-## <a name="overview"></a>Overview
-Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生的使用者介面以建立 iOS、Android 和 Windows 市集應用程式。 本教學課程會示範如何搭配 Xamarin 應用程式使用 Azure Blob 儲存體。 如果您想要深入了解 Azure 儲存體，在一頭栽進程式碼之前，請先參閱 [Microsoft Azure 儲存體簡介](../common/storage-introduction.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)。
+## <a name="overview"></a>概觀
+Xamarin 可讓開發人員 toouse 共用 C# 程式碼基底 toocreate iOS、 Android 和 Windows 市集應用程式使用其原生使用者介面。 本教學課程示範如何 toouse 與 Xamarin 應用程式的 Azure Blob 儲存體。 如果您想要深入了解 Azure 儲存體，toolearn 在探究 hello 程式碼之前，請參閱[簡介 tooMicrosoft Azure 儲存體](../common/storage-introduction.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)。
 
 [!INCLUDE [storage-create-account-include](../../../includes/storage-create-account-include.md)]
 
 [!INCLUDE [storage-mobile-authentication-guidance](../../../includes/storage-mobile-authentication-guidance.md)]
 
 ## <a name="create-a-new-xamarin-application"></a>建立新的 Xamarin 應用程式
-針對此教學課程，我們將建立以 Android、iOS 和 Windows 為目標的應用程式。 此應用程式只會建立容器，並將 blob 上傳到此容器。 我們將在 Windows 上使用 Visual Studio，但是在 macOS 上使用 Xamarin Studio 建立應用程式時，可以套用相同的做法。
+針對此教學課程，我們將建立以 Android、iOS 和 Windows 為目標的應用程式。 此應用程式只會建立容器，並將 blob 上傳到此容器。 我們將使用 Visual Studio 在 Windows 中，但 hello 建立 macOS 上使用 Xamarin Studio 的應用程式時，就可以套用相同 datacenter 的知識。
 
-請遵循下列步驟來建立應用程式：
+請遵循這些步驟 toocreate 您的應用程式：
 
 1. 下載並安裝 [Xamarin for Visual Studio](https://www.xamarin.com/download)(若您尚未這麼做)。
 2. 開啟 Visual Studio，建立一個空的應用程式 (原生可攜式)︰[檔案] > [新增] > [專案] > [跨平台] > [空的應用程式 (原生可攜式)]。
-3. 以滑鼠右鍵按一下 [方案總管] 窗格中的方案，然後選取 [管理方案的 NuGet 套件]。 搜尋 **WindowsAzure.Storage**，將最新穩定版安裝到您方案中的所有專案。
+3. 以滑鼠右鍵按一下方案 hello 方案總管 窗格中的，選取**管理方案的 NuGet 套件**。 搜尋**WindowsAzure.Storage**並安裝最新穩定版本 tooall 專案 hello 方案中。
 4. 建置並執行專案。
 
-您現在應該有一個應用程式，在您按一下按鈕時就會遞增計數器。
+您現在應該有 tooclick 遞增計數器的按鈕可讓您的應用程式。
 
 ## <a name="create-container-and-upload-blob"></a>建立容器並上傳 blob
-接下來，在您的 `(Portable)` 專案之下，將一些程式碼加入 `MyClass.cs`。 此程式碼會建立一個容器，並上傳 Blob 到此容器中。 `MyClass.cs` 看起來應該如下所示︰
+接下來，在您`(Portable)`專案中，您會加入一些程式碼太`MyClass.cs`。 此程式碼會建立一個容器，並上傳 Blob 到此容器中。 `MyClass.cs`看起來應該像 hello 下列：
 
 ```csharp
 using Microsoft.WindowsAzure.Storage;
@@ -63,28 +63,28 @@ namespace XamarinApp
             // Retrieve storage account from connection string.
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=your_account_name_here;AccountKey=your_account_key_here");
 
-            // Create the blob client.
+            // Create hello blob client.
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-            // Retrieve reference to a previously created container.
+            // Retrieve reference tooa previously created container.
             CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-            // Create the container if it doesn't already exist.
+            // Create hello container if it doesn't already exist.
             await container.CreateIfNotExistsAsync();
 
-            // Retrieve reference to a blob named "myblob".
+            // Retrieve reference tooa blob named "myblob".
             CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob");
 
-            // Create the "myblob" blob with the text "Hello, world!"
+            // Create hello "myblob" blob with hello text "Hello, world!"
             await blockBlob.UploadTextAsync("Hello, world!");
         }
     }
 }
 ```
 
-務必將 "your_account_name_here" 和 "your_account_key_here" 取代為您的實際帳戶名稱和帳戶金鑰。 
+請確定 tooreplace"your_account_name_here"和"your_account_key_here 」 與您實際的帳戶名稱和帳戶金鑰。 
 
-您的 iOS、Android 和 Windows Phone 專案都會有可攜式專案的參考，這表示您可以在單一位置撰寫所有的共用程式碼，而且可以在所有專案中使用該程式碼。 您現在可以將下列程式碼行加入每個專案，以開始利用：`MyClass.performBlobOperation()`
+所有專案都的參考 tooyour 可攜式專案-這表示您可以將所有共用的程式碼撰寫的其中一個您 iOS、 Android 和 Windows Phone 放置，並使用它在所有您的專案。 您現在可以新增下列一行程式碼 tooeach 專案 toostart 如何利用 hello:`MyClass.performBlobOperation()`
 
 ### <a name="xamarinappdroid--mainactivitycs"></a>XamarinApp.Droid > MainActivity.cs
 
@@ -104,11 +104,11 @@ namespace XamarinApp.Droid
         {
             base.OnCreate (bundle);
 
-            // Set our view from the "main" layout resource
+            // Set our view from hello "main" layout resource
             SetContentView (Resource.Layout.Main);
 
-            // Get our button from the layout resource,
-            // and attach an event to it
+            // Get our button from hello layout resource,
+            // and attach an event tooit
             Button button = FindViewById<Button> (Resource.Id.myButton);
 
             button.Click += delegate {
@@ -149,7 +149,7 @@ namespace XamarinApp.iOS
             public override async void ViewDidLoad ()
             {
                 base.ViewDidLoad ();
-                // Perform any additional setup after loading the view, typically from a nib.
+                // Perform any additional setup after loading hello view, typically from a nib.
                 Button.AccessibilityIdentifier = "myButton";
                 Button.TouchUpInside += delegate {
                     var title = string.Format ("{0} clicks!", count++);
@@ -175,12 +175,12 @@ namespace XamarinApp.iOS
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
+// hello Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
 namespace XamarinApp.WinPhone
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// An empty page that can be used on its own or navigated toowithin a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
@@ -194,10 +194,10 @@ namespace XamarinApp.WinPhone
         }
 
         /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
+        /// Invoked when this page is about toobe displayed in a Frame.
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
+        /// This parameter is typically used tooconfigure hello page.</param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             int count = 1;
@@ -210,18 +210,18 @@ namespace XamarinApp.WinPhone
             }
 
             /// <summary>
-            /// Invoked when this page is about to be displayed in a Frame.
+            /// Invoked when this page is about toobe displayed in a Frame.
             /// </summary>
             /// <param name="e">Event data that describes how this page was reached.
-            /// This parameter is typically used to configure the page.</param>
+            /// This parameter is typically used tooconfigure hello page.</param>
             protected override async void OnNavigatedTo(NavigationEventArgs e)
             {
                 // TODO: Prepare page for display here.
 
                 // TODO: If your application contains multiple pages, ensure that you are
-                // handling the hardware Back button by registering for the
+                // handling hello hardware Back button by registering for the
                 // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
-                // If you are using the NavigationHelper provided by some templates,
+                // If you are using hello NavigationHelper provided by some templates,
                 // this event is handled for you.
                 Button.Click += delegate {
                     var title = string.Format("{0} clicks!", count++);
@@ -235,13 +235,13 @@ namespace XamarinApp.WinPhone
 }
 ```
 
-## <a name="run-the-application"></a>執行應用程式
-您現在可以在 Android 或 Windows Phone 模擬器中執行這個應用程式。 您也可以在 iOS 模擬器中執行此應用程式，但這需要 Mac 作業系統。 如需具體的做法指示，請閱讀 [將 Visual Studio 連接到 Mac](https://developer.xamarin.com/guides/ios/getting_started/installation/windows/connecting-to-mac/)
+## <a name="run-hello-application"></a>執行 hello 應用程式
+您現在可以在 Android 或 Windows Phone 模擬器中執行這個應用程式。 您也可以在 iOS 模擬器中執行此應用程式，但這需要 Mac 作業系統。 如需有關如何 toodo，請閱讀 hello 文件的特定指示[連接 Visual Studio tooa Mac](https://developer.xamarin.com/guides/ios/getting_started/installation/windows/connecting-to-mac/)
 
-一旦您執行應用程式，它會在您的儲存體帳戶中建立 `mycontainer` 容器。 它應該包含 blob `myblob`，其具有文字 `Hello, world!`。 您可以使用 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)來驗證。
+一旦您執行您的應用程式時，它會建立 hello 容器`mycontainer`儲存體帳戶中。 它應該包含 hello blob `myblob`，其具有 hello 文字`Hello, world!`。 您可以驗證，請使用 hello [Microsoft Azure 儲存體總管](http://storageexplorer.com/)。
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已學會如何在使用 Azure 儲存體的 Xamarin 中建立跨平台的應用程式，尤其將焦點放在 Blob 儲存體中的一個案例中。 不過，除了 Blob 儲存體以外，您還可以處理更多，例如資料表、檔案和佇列儲存體。 若要深入了解，請參閱下列文章：
+在本教學課程中，您學到如何 toocreate 在 Xamarin 的跨平台應用程式使用 Azure 儲存體，特別將焦點放在 Blob 儲存體中的其中一個案例。 不過，除了 Blob 儲存體以外，您還可以處理更多，例如資料表、檔案和佇列儲存體。 請查看下列多個發行項 toolearn hello:
 
 * [以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)
 * [以 .NET 開始使用 Azure 表格儲存體](../../cosmos-db/table-storage-how-to-use-dotnet.md)
