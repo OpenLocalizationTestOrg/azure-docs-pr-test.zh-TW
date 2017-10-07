@@ -1,6 +1,6 @@
 ---
-title: "自訂 Azure 中的 Windows VM | Microsoft Docs"
-description: "了解如何使用自訂指令碼擴充功能和 Key Vault 來自訂 Azure 中的 Windows VM"
+title: "Azure 中的 Windows VM aaaCustomize |Microsoft 文件"
+description: "了解如何 toouse hello 自訂指令碼延伸和金鑰保存庫 toocustomize Windows Azure 中的 Vm"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,45 +16,45 @@ ms.workload: infrastructure
 ms.date: 08/11/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 3be58bf8afbcff018b2b0d69a0e08c2c9ab1fca7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c03b2bb6d70875134c63ea2fe4c2e2c1777c2188
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-customize-a-windows-virtual-machine-in-azure"></a>如何自訂 Azure 中的 Windows 虛擬機器
-若要以快速且一致的方式設定虛擬機器 (VM)，通常需要某種形式的自動化。 自訂 Windows VM 的常見方法是使用 [Windows 的自訂指令碼擴充功能](extensions-customscript.md)。 在本教學課程中，您將了解如何：
+# <a name="how-toocustomize-a-windows-virtual-machine-in-azure"></a>如何 toocustomize Azure 中的 Windows 虛擬機器
+通常需要快速且一致的方式，某種形式的自動化 tooconfigure 虛擬機器 (Vm)。 常見的方法 toocustomize Windows VM 是 toouse[自訂指令碼延伸的視窗](extensions-customscript.md)。 在本教學課程中，您了解如何：
 
 > [!div class="checklist"]
-> * 使用自訂指令碼擴充功能安裝 IIS
-> * 使用自訂指令碼擴充功能建立 VM
-> * 套用擴充功能之後檢視執行中的 IIS 網站
+> * 使用 hello 自訂指令碼擴充 tooinstall IIS
+> * 建立 VM 使用 hello 自訂指令碼擴充
+> * 套用 hello 延伸之後，檢視正在執行的 IIS 站台
 
-本教學課程需要 Azure PowerShell 模組 3.6 版或更新版本。 執行 ` Get-Module -ListAvailable AzureRM` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
+本教學課程需要 hello Azure PowerShell 模組版本 3.6 版或更新版本。 執行` Get-Module -ListAvailable AzureRM`toofind hello 版本。 如果您需要 tooupgrade，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
 
 ## <a name="custom-script-extension-overview"></a>自訂指令碼擴充功能概觀
-自訂指令碼擴充功能會在 Azure VM 上下載並執行指令碼。 此擴充功能適用於部署後組態、軟體安裝或其他任何組態/管理工作。 您可以從 Azure 儲存體或 GitHub 下載指令碼，或是在擴充功能執行階段將指令碼提供給 Azure 入口網站。
+hello 自訂指令碼擴充功能下載並在 Azure Vm 上執行指令碼。 此擴充功能適用於部署後組態、軟體安裝或其他任何組態/管理工作。 可以從 Azure 儲存體或 GitHub 下載指令碼，或提供 toohello 在執行階段的延伸模組的 Azure 入口網站。
 
-「自訂指令碼擴充功能」會與 Azure Resource Manager 範本整合，您也可以使用 Azure CLI、PowerShell、Azure 入口網站或「Azure 虛擬機器 REST API」來執行它。
+hello 自訂指令碼擴充功能與整合 Azure 資源管理員範本，並也可以執行使用 hello Azure CLI、 PowerShell、 Azure 入口網站或 hello Azure 虛擬機器 REST API。
 
-您可以搭配 Windows 和 Linux VM 使用自訂指令碼擴充功能。
+您可以使用 Windows 和 Linux Vm 建立 hello 自訂指令碼擴充。
 
 
 ## <a name="create-virtual-machine"></a>Create virtual machine
-建立 VM 之前，請先使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 來建立資源群組。 下列範例會在 EastUS 位置建立名為 myResourceGroupAutomate 的資源群組：
+建立 VM 之前，請先使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 來建立資源群組。 hello 下列範例會建立名為的資源群組*myResourceGroupAutomate*在 hello *EastUS*位置：
 
 ```powershell
 New-AzureRmResourceGroup -ResourceGroupName myResourceGroupAutomate -Location EastUS
 ```
 
-使用 [Get-credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) 來設定 VM 的系統管理員使用者名稱和密碼：
+設定系統管理員使用者名稱和密碼具有 hello Vm [Get-credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential):
 
 ```powershell
 $cred = Get-Credential
 ```
 
-現在您可以使用 [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm) 建立 VM。 下列範例會建立必要的虛擬網路元件、作業系統設定，然後建立名為 myVM 的 VM：
+現在您可以建立 hello 與 VM[新增 AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm)。 hello 下列範例會建立所需的 hello 虛擬網路的元件，hello 作業系統組態，然後建立名為的 VM *myVM*:
 
 ```powershell
 # Create a subnet configuration
@@ -128,11 +128,11 @@ Add-AzureRmVMNetworkInterface -Id $nic.Id
 New-AzureRmVM -ResourceGroupName myResourceGroupAutomate -Location EastUS -VM $vmConfig
 ```
 
-系統需要花幾分鐘的時間來建立資源和 VM。
+花幾分鐘，讓 hello 資源和 VM toobe 建立。
 
 
 ## <a name="automate-iis-install"></a>自動安裝 IIS
-使用 [Set-AzureRmVMExtension](/powershell/module/azurerm.compute/set-azurermvmextension) 來安裝自訂指令碼擴充功能。 擴充功能會執行 `powershell Add-WindowsFeature Web-Server` 以安裝 IIS Web 伺服器，然後更新 Default.htm 頁面以顯示 VM 的主機名稱：
+使用[組 AzureRmVMExtension](/powershell/module/azurerm.compute/set-azurermvmextension) tooinstall hello 自訂指令碼擴充。 hello 延伸模組執行`powershell Add-WindowsFeature Web-Server`tooinstall hello IIS 網頁伺服器，然後再更新 hello *Default.htm*頁面 tooshow hello 主機名稱的 hello VM:
 
 ```powershell
 Set-AzureRmVMExtension -ResourceGroupName myResourceGroupAutomate `
@@ -147,7 +147,7 @@ Set-AzureRmVMExtension -ResourceGroupName myResourceGroupAutomate `
 
 
 ## <a name="test-web-site"></a>測試網站
-使用 [Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress) 取得負載平衡器的公用 IP 位址。 下列範例會取得稍早建立的 myPublicIP IP 位址︰
+取得您的負載平衡器的 hello 公用 IP 位址[Get AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress)。 hello 下列範例會取得 IP 位址 hello *myPublicIP*稍早建立：
 
 ```powershell
 Get-AzureRmPublicIPAddress `
@@ -155,21 +155,21 @@ Get-AzureRmPublicIPAddress `
     -Name myPublicIP | select IpAddress
 ```
 
-接著，您可以在 Web 瀏覽器中輸入公用 IP 位址。 網站隨即顯示，包括負載平衡器分散流量之 VM 的主機名稱，如下列範例所示：
+然後，您就可以 tooa 網頁瀏覽器中輸入 hello 公用 IP 位址。 hello 網站將會顯示，包括 hello hello VM 主機名稱的 hello 負載平衡器分散流量 tooas hello 下列範例中：
 
 ![執行中的 IIS 網站](./media/tutorial-automate-vm-deployment/running-iis-website.png)
 
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您將 VM 上的 IIS 安裝自動化。 您已了解如何︰
+在本教學課程中，您可以自動化的 hello 在 VM 安裝 IIS。 您已了解如何︰
 
 > [!div class="checklist"]
-> * 使用自訂指令碼擴充功能安裝 IIS
-> * 使用自訂指令碼擴充功能建立 VM
-> * 套用擴充功能之後檢視執行中的 IIS 網站
+> * 使用 hello 自訂指令碼擴充 tooinstall IIS
+> * 建立 VM 使用 hello 自訂指令碼擴充
+> * 套用 hello 延伸之後，檢視正在執行的 IIS 站台
 
-前進至下一個教學課程，以了解如何建立自訂的 VM 映像。
+如何前進 toohello 下一個教學課程 toolearn toocreate 自訂 VM 映像。
 
 > [!div class="nextstepaction"]
 > [建立自訂的 VM 映像](./tutorial-custom-images.md)

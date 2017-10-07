@@ -1,5 +1,5 @@
 ---
-title: "備份 Azure Windows VM | Microsoft Docs"
+title: "aaaBackup Azure Windows Vm |Microsoft 文件 '"
 description: "使用 Azure 備份來備份並保護 Windows VM。"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
@@ -16,15 +16,15 @@ ms.workload: infrastructure
 ms.date: 07/27/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 8e58a2290e5034ef393f65cbcddb86e18cf4a6ec
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1cd3e1940a83aacd160cba3c8613b63b6f3c11d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="back-up-windows-virtual-machines-in-azure"></a>備份 Azure 中的 Windows 虛擬機器
 
-您可以定期建立備份以保護您的資料。 Azure 備份會建立復原點，並儲存在異地備援復原保存庫。 當您從復原點還原時，可以還原整個 VM 或只還原特定檔案。 本文說明如何將單一檔案還原成執行 Windows Server 和 IIS 的 VM。 如果您還沒有 VM 可以使用，請用 [Windows 快速入門](quick-create-portal.md)中的步驟建立一個。 在本教學課程中，您將了解如何：
+您可以定期建立備份以保護您的資料。 Azure 備份會建立復原點，並儲存在異地備援復原保存庫。 當您從復原點還原時，您可以還原 hello 整個 VM 或特定的檔案。 這篇文章說明如何 toorestore 單一檔案 tooa VM 執行 Windows Server 和 IIS。 如果您還沒有 VM toouse，您可以建立一個使用 hello [Windows 快速入門](quick-create-portal.md)。 在本教學課程中，您了解如何：
 
 > [!div class="checklist"]
 > * 建立 VM 的備份
@@ -36,60 +36,60 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="backup-overview"></a>備份概觀
 
-Azure 備份服務開始備份作業時，會觸發備份擴充功能以建立時間點快照集。 Azure 備份服務使用 VMSnapshot 擴充功能。 如果 VM 正在執行，會在第一次 VM 備份期間安裝此擴充功能。 如果 VM 未在執行中，則備份服務會擷取基礎儲存體的快照集 (因為 VM 停止時不會發生任何應用程式寫入)。
+當 hello Azure 備份服務啟動備份工作時，它就會觸發 hello 備用分機號碼 tootake 時間點快照集。 hello Azure 備份服務會使用 hello _VMSnapshot_延伸模組。 hello 延伸模組會安裝在第一個 VM 備份 hello hello VM 正在執行。 如果 hello 未執行 VM，hello Backup service 的快照 hello 基礎儲存體 （因為 VM 已停止的 hello 時，會不發生任何應用程式寫入）。
 
-當擷取 Windows VM 的快照集時，備份服務會與磁碟區陰影複製服務 (VSS) 協調，以取得虛擬機器磁碟一致的快照集。 Azure 備份服務擷取快照集之後，資料會傳輸至保存庫。 為了能更有效率，服務只會找出並傳輸自上次備份之後有變更的資料區塊。
+建立 Windows Vm 快照，hello 備份服務協調一致的快照集的 hello 虛擬機器的磁碟與 hello 磁碟區陰影複製服務 (VSS) tooget。 一旦 hello Azure 備份服務會擷取 hello 快照，hello 資料就是傳送的 toohello 保存庫。 toomaximize 效率 hello 服務識別，以及傳輸只 hello 的 hello 上一次備份之後變更資料的區塊。
 
-資料傳輸完畢後，系統會移除快照集並建立復原點。
+Hello 資料傳輸完成時，會移除 hello 快照集，並建立復原點。
 
 
 ## <a name="create-a-backup"></a>建立備份
-建立復原服務保存庫的簡單排程每日備份。 
+建立簡單排定每日備份 tooa 復原服務保存庫。 
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 在左邊的功能表上，選取 [虛擬機器]。 
-3. 從清單中選取要備份的 VM。
-4. 在 VM 刀鋒視窗的 [設定] 區段中，按一下 [備份]。 [啟用備份] 刀鋒視窗隨即開啟。
-5. 在 [復原服務保存庫] 中，按一下 [新建] 並提供新保存庫的名稱。 新保存庫已在與虛擬機器相同的資源群組和位置中建立。
-6. 按一下 [備份原則]。 在此範例中請保留預設值，按一下 [確定]。
-7. 在 [啟用備份] 刀鋒視窗上，按一下 [啟用備份]。 這會根據預設排程建立每日備份。
-10. 若要建立初始復原點，在 [備份] 刀鋒視窗中按一下 [立即備份]。
-11. 在 [立即備份] 刀鋒視窗上，按一下日曆圖示，使用日曆控制項選取此復原點保留的最後一天，然後按一下 [備份]。
-12. 在 VM 的 [備份] 刀鋒視窗中，您會看到已完成的復原點數目。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com/)。
+2. 在左側 hello hello 功能表中選取**虛擬機器**。 
+3. 從 hello 清單中，選取 VM tooback。
+4. 在 hello VM 刀鋒視窗中，在 hello**設定**區段中，按一下**備份**。 hello**啟用備份**刀鋒視窗隨即開啟。
+5. 在**復原服務保存庫**，按一下 **建立新**並提供 hello hello 新的保存庫名稱。 新的保存庫中建立 hello 相同資源群組及做為 hello 虛擬機器的位置。
+6. 按一下 [備份原則]。 此範例中，保留 hello 預設然後按一下**確定**。
+7. 在 hello**啟用備份**刀鋒視窗中，按一下 **啟用備份**。 這會建立根據 hello 預設排程每日備份。
+10. toocreate 初始的復原點，在 hello**備份**刀鋒視窗中按一下**備份現在**。
+11. 在 hello**立即備份**刀鋒視窗中，按一下 hello 行事曆圖示，請使用 hello 行事曆控制項 tooselect hello 最後一天，此復原點會保留下來，並按一下**備份**。
+12. 在 hello**備份**刀鋒視窗中的 VM，您會看到 hello 都已完成的復原點數目。
 
     ![復原點](./media/tutorial-backup-vms/backup-complete.png)
     
-第一次備份大約需要 20 分鐘的時間。 在備份完成之後，繼續進行本教學課程的下一個部分。
+hello 第一次備份大約需要 20 分鐘。 在您的備份完成之後，請繼續 toohello 本教學課程的下一個部分。
 
 ## <a name="recover-a-file"></a>復原檔案
 
-如果您不小心刪除或變更某個檔案，可以使用「檔案復原」從您的備份保存庫復原檔案。 檔案復原使用在 VM 上執行的指令碼，將復原點掛接為本機磁碟機。 這些磁碟機將保持掛接達 12 小時，讓您可以從復原點複製檔案，並將它們還原至 VM。  
+如果您不小心刪除或變更 tooa 檔案，您可以使用檔案復原 toorecover hello 檔案從您的備份保存庫。 檔案復原使用 hello VM 執行的指令碼為本機磁碟機 toomount hello 復原點。 這些磁碟機仍會掛接為 12 小時，讓您可以從 hello 復原點複製檔案並將它們還原 toohello VM。  
 
-在此範例中，我們會示範如何復原用於 IIS 預設網頁的影像檔案。 
+在此範例中，我們會示範如何 toorecover hello hello 預設 web 網頁中使用的 IIS 映像檔。 
 
-1. 開啟瀏覽器，連線到 VM 的 IP 位址，以顯示預設的 IIS 網頁。
+1. 開啟瀏覽器並連線 toohello hello VM tooshow hello 預設 IIS 頁面的 IP 位址。
 
     ![預設的 IIS 網頁](./media/tutorial-backup-vms/iis-working.png)
 
-2. 連線至 VM。
-3. 在 VM 上開啟 [檔案總管]，瀏覽至 \inetpub\wwwroot，刪除案 iisstart.png 檔。
-4. 在您的本機電腦上，重新整理瀏覽器，應該會看到預設 IIS 網頁上的影像已不存在。
+2. 連接 toohello VM。
+3. 開啟 hello VM，**檔案總管**和瀏覽 too\inetpub\wwwroot，然後刪除 hello 檔案**iisstart.png**。
+4. 在您的本機電腦上重新整理 hello 瀏覽器 toosee hello hello 預設 IIS 網頁上的映像，就會消失。
 
     ![預設的 IIS 網頁](./media/tutorial-backup-vms/iis-broken.png)
 
-5. 在您的本機電腦上，開啟新的索引標籤並前往 [Azure 入口網站](https://portal.azure.com)。
-6. 在左邊的功能表上，選取 [虛擬機器]，然後從清單中選取虛擬機器。
-8. 在 VM 刀鋒視窗的 [設定] 區段中，按一下 [備份]。 [備份] 刀鋒視窗隨即開啟。 
-9. 在刀鋒視窗頂端的功能表中，選取 [檔案復原]。 [檔案復原] 刀鋒視窗隨即開啟。
-10. 在 [步驟 1︰選取復原點] 中，從下拉式清單選取復原點。
-11. 在 [步驟 2：下載指令碼以瀏覽及復原檔案] 中，按一下 [下載執行檔] 按鈕。 將檔案儲存至您的 **Downloads** 資料夾。
-12. 在您的本機電腦上，開啟 [檔案總管] 並瀏覽至 **Downloads** 資料夾，複製下載的 .exe 檔案。 檔案名稱前面會加上您的 VM 名稱。 
-13. 在您的 VM 上 (透過 RDP 連線)，將 .exe 檔案貼到 VM 桌面上。 
-14. 瀏覽至 VM 桌面，按兩下 .exe 檔案。 這會啟動命令提示字元，並將復原點掛接為您可以存取的檔案共用。 當共用建立完成時，輸入 **q** 關閉命令提示字元。
-15. 在您的 VM 上，開啟[檔案總管] 並瀏覽至此檔案共用所使用的磁碟機代號。
-16. 瀏覽到 \inetpub\wwwroot，複製檔案共用中的 **iisstart.png**，並將它貼到 \inetpub\wwwroot。 例如，複製 F:\inetpub\wwwroot\iisstart.png，並將其貼到 c:\inetpub\wwwroot 以復原檔案。
-17. 在您的本機電腦上開啟瀏覽器索引標籤，您已連線到顯示 IIS 預設網頁之 VM 的 IP 位址。 按 CTRL + F5 重新整理瀏覽器頁面。 您現在應該會看到已還原的影像。
-18. 在您的本機電腦上，回到 Azure 入口網站的瀏覽器索引標籤，並在 [步驟 3︰在復原後取消掛接磁碟] 按一下 [取消掛接磁碟] 按鈕。 如果您忘記執行此步驟，與此掛接點的連線會在 12 小時後自動關閉。 在這 12 小時後，您必須下載新的指令碼來建立新的掛接點。
+5. 在您的本機電腦上開啟新索引標籤，然後移 hello hello [Azure 入口網站](https://portal.azure.com)。
+6. 在左側 hello hello 功能表中選取**虛擬機器**和選取 hello VM 表單 hello 清單。
+8. 在 hello VM 刀鋒視窗中，在 hello**設定**區段中，按一下**備份**。 hello**備份**刀鋒視窗隨即開啟。 
+9. 在 hello 在 hello hello 刀鋒視窗頂端的功能表中選取**檔案復原**。 hello**檔案復原**刀鋒視窗隨即開啟。
+10. 在**步驟 1： 選取的復原點**，從 hello 下拉式清單中選取的復原點。
+11. 在**步驟 2： 下載指令碼 toobrowse 並復原檔案**，按一下 hello**下載可執行檔** 按鈕。 儲存 hello 檔案 tooyour**下載**資料夾。
+12. 在您的本機電腦上開啟**檔案總管**並瀏覽 tooyour**下載**資料夾，然後複製 hello 下載.exe 檔案。 hello 檔案名稱的前置詞將可以是您 VM 的名稱。 
+13. 在您的 VM （透過 hello RDP 連線) 上貼上 hello.exe 檔案 toohello VM 的桌面。 
+14. 瀏覽您的 VM toohello 桌面並按兩下 hello.exe。 這會啟動命令提示字元，然後為您可以存取的檔案共用裝載 hello 復原點。 在完成時建立 hello 共用，請輸入**q** tooclose hello 命令提示字元。
+15. 在您的 VM 上開啟**檔案總管**並瀏覽 toohello hello 檔案共用所使用的磁碟機代號。
+16. 瀏覽 too\inetpub\wwwroot 和複製**iisstart.png** hello 檔案共用，並將它貼到 \inetpub\wwwroot。 例如，複製 F:\inetpub\wwwroot\iisstart.png，並將它貼到 c:\inetpub\wwwroot toorecover hello 檔案。
+17. 在您的本機電腦上開啟 hello 瀏覽器索引標籤，您連接 toohello hello VM 顯示 hello IIS 預設頁面的 IP 位址。 按 CTRL + F5 toorefresh hello 瀏覽器頁面。 您現在應該會看到該 hello 映像已還原。
+18. 在本機電腦，請返回 toohello 瀏覽器索引標籤的 hello Azure 入口網站，並在**步驟 3： 在復原之後卸載 hello 磁碟**按一下 hello**取消掛接磁碟**按鈕。 如果您忘記 toodo 此步驟中，hello 連接 toohello 掛接點在 12 小時後已自動關閉。 這些 12 小時之後，您需要 toodownload 新的指令碼 toocreate 新的掛接點。
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -101,7 +101,7 @@ Azure 備份服務開始備份作業時，會觸發備份擴充功能以建立�
 > * 排定每日備份
 > * 從備份還原檔案
 
-請前進到下一個教學課程，了解如何監視虛擬機器。
+前進 toohello 下一個教學課程的 toolearn 有關監視虛擬機器。
 
 > [!div class="nextstepaction"]
 > [監視虛擬機器](tutorial-monitoring.md)

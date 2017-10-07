@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中建立網路安全性群組 (傳統) - PowerShell | Microsoft Docs"
-description: "了解如何使用 PowerShell 以傳統模式建立和部署 NSG"
+title: "aaaCreate 網路中的安全性群組 （傳統） Azure-PowerShell |Microsoft 文件"
+description: "深入了解如何 toocreate 並在使用 PowerShell 的傳統模式中部署 Nsg"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
-ms.openlocfilehash: e3f84e4757e3854fc63e3069e179446174f0c0bd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 835097c9f23cdd551f97797e142c6c2a3c978cd8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-nsgs-classic-in-powershell"></a>如何在 PowerShell 中建立 NSG (傳統)
+# <a name="how-toocreate-nsgs-classic-in-powershell"></a>如何在 PowerShell 中的 （傳統） Nsg toocreate
 [!INCLUDE [virtual-networks-create-nsg-selectors-classic-include](../../includes/virtual-networks-create-nsg-selectors-classic-include.md)]
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-本文涵蓋之內容包括傳統部署模型。 您也可以 [在資源管理員部署模型中建立 NSG](virtual-networks-create-nsg-arm-ps.md)。
+本文涵蓋 hello 傳統部署模型。 您也可以[hello Resource Manager 部署模型中建立 Nsg](virtual-networks-create-nsg-arm-ps.md)。
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-以下的範例 PowerShell 命令會預期已根據上述案例建立簡單的環境。 如果您想要執行如本文件中所顯示的命令，請先 [建立 VNet](virtual-networks-create-vnet-classic-netcfg-ps.md)以建置測試環境。
+hello 範例 PowerShell 預期簡單的環境中已經建立下列命令會根據上面的 hello 案例。 如果您想 toorun hello 命令，因為它們會顯示在此文件，第一次建置 hello 測試環境[建立 VNet](virtual-networks-create-vnet-classic-netcfg-ps.md)。
 
-## <a name="how-to-create-the-nsg-for-the-front-end-subnet"></a>如何建立前端子網路的 NSG
-若要根據上述案例建立名為 **NSG-FrontEnd** 的 NSG，請依照下列步驟執行。
+## <a name="how-toocreate-hello-nsg-for-hello-front-end-subnet"></a>如何 toocreate hello NSG hello 前端子網路
+名為 NSG 名為的 toocreate **NSG 前端**根據上面的 hello 案例，請遵循下列 hello 步驟：
 
-1. 如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
+1. 如果您從未使用過 Azure PowerShell，請參閱[如何 tooInstall 和設定 Azure PowerShell](/powershell/azure/overview)並遵循 hello 指示所有 hello 方式 toohello 結束 toosign 至 Azure，然後選取您的訂用帳戶。
 2. 建立名為 **NSG-FrontEnd**的網路安全性群組。
    
         New-AzureNetworkSecurityGroup -Name "NSG-FrontEnd" -Location uswest `
@@ -49,7 +49,7 @@ ms.lasthandoff: 07/11/2017
         
         NSG-FrontEnd West US     Front end subnet NSG
 
-3. 建立允許從網際網路存取連接埠 3389 的安全性規則。
+3. 建立安全性規則，允許從 hello 網際網路 tooport 3389 的存取。
    
         Get-AzureNetworkSecurityGroup -Name "NSG-FrontEnd" `
         | Set-AzureNetworkSecurityRule -Name rdp-rule `
@@ -85,7 +85,7 @@ ms.lasthandoff: 07/11/2017
                    OUTBOUND                                                                                                      
                    DENY ALL OUTBOUND    65500     Deny     *               *             *                *              *
 
-1. 建立允許從網際網路存取連接埠 80 的安全性規則。
+1. 建立安全性規則，允許從 hello 網際網路 tooport 80 的存取。
    
         Get-AzureNetworkSecurityGroup -Name "NSG-FrontEnd" `
         | Set-AzureNetworkSecurityRule -Name web-rule `
@@ -123,7 +123,7 @@ ms.lasthandoff: 07/11/2017
                    OUTBOUND                                                                                                      
                    DENY ALL OUTBOUND    65500     Deny     *               *             *                *              *   
 
-## <a name="how-to-create-the-nsg-for-the-back-end-subnet"></a>如何建立後端子網路的 NSG
+## <a name="how-toocreate-hello-nsg-for-hello-back-end-subnet"></a>Hello 回 toocreate hello NSG 如何結束子網路
 1. 建立名為 **NSG-BackEnd**的網路安全性群組。
    
         New-AzureNetworkSecurityGroup -Name "NSG-BackEnd" -Location uswest `
@@ -134,7 +134,7 @@ ms.lasthandoff: 07/11/2017
         Name        Location   Label              
         
         NSG-BackEnd West US    Back end subnet NSG
-2. 建立允許從前端子網路存取連接埠 1433 (SQL Server 所使用的預設連接埠) 的安全性規則。
+2. 建立安全性規則，允許從 hello 前端子網路 tooport 1433 （預設通訊埠供 SQL Server） 的存取。
    
         Get-AzureNetworkSecurityGroup -Name "NSG-FrontEnd" `
         | Set-AzureNetworkSecurityRule -Name rdp-rule `
@@ -170,7 +170,7 @@ ms.lasthandoff: 07/11/2017
                    OUTBOUND                                                                                                      
                    DENY ALL OUTBOUND    65500     Deny     *               *             *                *              *      
 
-1. 建立封鎖從子網路存取網際網路的安全性規則。
+1. 建立封鎖從 hello 子網路 toohello 網際網路存取的安全性規則。
    
         Get-AzureNetworkSecurityGroup -Name "NSG-BackEnd" `
         | Set-AzureNetworkSecurityRule -Name block-internet `

@@ -1,6 +1,6 @@
 ---
-title: "了解 Azure Linux VM 的系統重新啟動 | Microsoft Docs"
-description: "列出可能導致 Linux VM 重新啟動的事件"
+title: "aaaUnderstand Azure Linux VM 的系統重新開機 |Microsoft 文件"
+description: "列出會導致 hello Linux VM tooreboot hello 事件"
 services: virtual-machines-linux
 documentationcenter: 
 author: genlin
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/24/2017
 ms.author: genli
-ms.openlocfilehash: 002968895d2ed2c6c3ed6dee052b0fdfcdf42d80
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 63cb2661e12d07c4418e48a5186abed18e853ecf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-a-system-reboot-for-azure-vm"></a>了解 Azure VM 的系統重新啟動
 

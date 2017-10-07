@@ -1,5 +1,5 @@
 ---
-title: "修改區域網路閘道 IP 位址前置詞和 VPN 閘道 IP 位址| Azure| PowerShell| Microsoft Docs"
+title: "修改 hello 區域網路閘道 IP 位址前置詞和 hello VPN 閘道 IP 位址 |Azure |PowerShell |Microsoft 文件"
 description: "本文逐步解說如何使用 PowerShell 來變更區域網路閘道的 IP 位址首碼"
 services: vpn-gateway
 documentationcenter: na
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/19/2017
 ms.author: cherylmc
-ms.openlocfilehash: 2a095b96a8c352abeca72640d37c0d629b447763
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1353598b39a97fae9bdb424505a5ae2560482654
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="modify-local-network-gateway-settings-using-powershell"></a>使用 PowerShell 修改區域網路閘道設定
 
-有時候區域網路閘道 AddressPrefix 或 GatewayIPAddress 的設定會變更。 本文將說明如何修改區域網路閘道設定。 您也可以從下列清單選取不同的選項來使用不同的方法修改這些設定：
+有時候您的本機網路閘道 AddressPrefix 或 GatewayIPAddress hello 設定變更。 本文章將示範如何 toomodify 您區域網路閘道的設定。 您也可以修改這些設定，使用另一個方法從 hello 下列清單中選取不同的選項：
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](vpn-gateway-modify-local-network-gateway-portal.md)
@@ -34,13 +34,13 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="before"></a>開始之前
 
-安裝最新版的 Azure Resource Manager PowerShell Cmdlet。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+安裝 hello hello Azure 資源管理員的 PowerShell 指令程式最新版本。 請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)如需安裝 hello PowerShell cmdlet 的詳細資訊。
 
 ## <a name="ipaddprefix"></a>修改 IP 位址首碼
 
 [!INCLUDE [vpn-gateway-modify-ip-prefix-rm](../../includes/vpn-gateway-modify-ip-prefix-rm-include.md)]
 
-## <a name="gwip"></a>修改閘道 IP 位址
+## <a name="gwip"></a>修改 hello 閘道 IP 位址
 
 [!INCLUDE [vpn-gateway-modify-lng-gateway-ip-rm](../../includes/vpn-gateway-modify-lng-gateway-ip-rm-include.md)]
 

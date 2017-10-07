@@ -16,37 +16,37 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 09/15/2016
 ms.author: hermannd
-ms.openlocfilehash: 05fb31007e1e4c2243f93169129ec5b2c93099e2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 57b58b8e07379eed5641f5f89d55b38f52c69e44
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="quickstart-manual-installation-of-single-instance-sap-hana-on-azure-vms"></a>快速入門：在 Azure VM 上手動安裝單一執行個體 SAP HANA
 ## <a name="introduction"></a>簡介
-當您手動安裝 SAP NetWeaver 7.5 和 SAP HANA 1.0 SP12 時，本指南可協助您在 Azure 虛擬機器 (VM) 上設定單一執行個體的 SAP HANA。 本指南的重點是在 Azure 上部署 SAP HANA。 它不會取代 SAP 文件。 
+當您手動安裝 SAP NetWeaver 7.5 和 SAP HANA 1.0 SP12 時，本指南可協助您在 Azure 虛擬機器 (VM) 上設定單一執行個體的 SAP HANA。 本指南的 hello 重點是在部署在 Azure 上 SAP HANA。 它不會取代 SAP 文件。 
 
 >[!Note]
 >本指南說明如何將 SAP HANA 部署到 Azure VM。 如需將 SAP HANA 部署至 HANA 大型執行個體上的資訊，請參閱[在 Azure 虛擬機器 (VM) 上使用 SAP](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/get-started)。
  
 ## <a name="prerequisites"></a>必要條件
 本指南假設您已熟悉如下的這類基礎結構即服務 (IaaS) 基本知識：
- * 如何透過 Azure 入口網站或 PowerShell 部署虛擬機器或虛擬網路。
- * Azure 跨平台命令列介面 (CLI)，包括使用 JavaScript 物件通知 (JSON) 範本的選項。
+ * 如何 toodeploy 虛擬機器或虛擬網路透過 hello Azure 入口網站或 PowerShell。
+ * hello Azure 跨平台命令列介面 (CLI)，包括 hello 選項 toouse JavaScript Object Notation (JSON) 範本。
 
 本指南也假設您已熟悉：
-* SAP HANA 與 SAP NetWeaver，以及如何加以內部部署安裝。
+* SAP HANA 及 SAP NetWeaver 和如何 tooinstall 它們在內部部署。
 * 安裝和操作 SAP HANA，以及在 Azure 上的 SAP 應用程式執行個體。
-* 下列概念和程序：
+* hello 下列概念和程序：
    * 在 Azure 上規劃 SAP 部署，包括 Azure 虛擬網路規劃和 Azure 儲存體使用方式。 請參閱 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/planning-guide)。
-   * 部署原則及在 Azure 中部署 VM 的方式。 請參閱[適用於 SAP 的 Azure 虛擬機器部署](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/deployment-guide)。
+   * 部署原則和方式 toodeploy Azure 中的 Vm。 請參閱[適用於 SAP 的 Azure 虛擬機器部署](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/deployment-guide)。
    * Azure 上的 SAP NetWeaver ASCS (ABAP SAP 中央服務)、SCS (SAP 中央服務)，以及 ERS (評估的收貨結算) 高可用性。 請參閱 [Azure VM 上的 SAP NetWeaver 高可用性](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/high-availability-guide)。
-   * 如何運用 Azure 上的 ASCS/SCS 多重 SID 安裝改善效率的詳細資料。 請參閱[建立 SAP NetWeaver 多 SID 組態](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/high-availability-multi-sid)。 
-   * Azure 中以 Linux 驅動的 VM 作為基礎執行 SAP NetWeaver 的準則。 請參閱[在 Microsoft Azure SUSE Linux VM 上執行 SAP NetWeaver](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/suse-quickstart)。 本指南提供 Azure VM 中 Linux 的特定設定，以及如何正確地將 Azure 儲存體磁碟連結至 Linux VM 的詳細資訊。
+   * 有關如何運用 ASCS/SCS 在 Azure 上的多重 SID 安裝 tooimprove 效率。 請參閱[建立 SAP NetWeaver 多 SID 組態](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/high-availability-multi-sid)。 
+   * Azure 中以 Linux 驅動的 VM 作為基礎執行 SAP NetWeaver 的準則。 請參閱[在 Microsoft Azure SUSE Linux VM 上執行 SAP NetWeaver](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/suse-quickstart)。 本指南提供在 Azure Vm 和詳細資料中的 Linux 特定設定 tooproperly 將 Azure 儲存體磁碟 tooLinux Vm 的連接。
 
 此時，SAP 僅認證 Azure VM 適用於 SAP HANA 相應增加設定。 尚未支援適合 SAP HANA 工作負載的相應放大設定。 針對相應增加組態案例中的 SAP HANA 高可用性，請參閱 [Azure 虛擬機器 (VM) 上 SAP HANA 的高可用性](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/sap-hana-high-availability)。
 
-如果您想要取得 SAP HANA 執行個體或 S/4HANA，或是在非常快速時間內部署的 BW/4HANA 系統，應該考慮使用 [SAP 雲端應用裝置程式庫](http://cal.sap.com)。 例如，您可以在[本指南](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/cal-s4h)中找到在 Azure 上透過 SAP CAL 部署 S/4HANA 系統的相關文件。 您只需要具有可以向 SAP 雲端應用裝置程式庫註冊的 Azure 訂用帳戶和 SAP 使用者。
+如果您搜尋 tooget SAP HANA 執行個體或 S/4HANA 或 BW/4HANA 系統部署在非常快速的時間，您應該考慮的 hello 使用量[SAP 雲端應用裝置程式庫](http://cal.sap.com)。 例如，您可以在[本指南](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/cal-s4h)中找到在 Azure 上透過 SAP CAL 部署 S/4HANA 系統的相關文件。 您只需要 toohave 是 Azure 訂用帳戶和 SAP 使用者可以向 SAP 雲端應用裝置程式庫。
 
 ## <a name="additional-resources"></a>其他資源
 ### <a name="sap-hana-backup"></a>SAP HANA 備份
@@ -56,10 +56,10 @@ ms.lasthandoff: 08/29/2017
 * [以儲存體快照集為基礎的 SAP HANA 備份](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/sap-hana-backup-storage-snapshots)
 
 ### <a name="sap-cloud-appliance-library"></a>SAP 雲端應用裝置程式庫
-如需使用 SAP 雲端應用裝置程式庫部署 S/4HANA 或 BW/4HANA 的資訊，請參閱[在 Microsoft Azure 上部署 SAP S/4HANA 或 BW/4HANA](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/cal-s4h)。
+如需使用 SAP 雲端應用裝置程式庫 toodeploy S/4HANA 或 BW/4HANA 資訊，請參閱[部署 SAP S/4HANA 或 Microsoft Azure 上的 BW/4HANA](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/cal-s4h)。
 
 ### <a name="sap-hana-supported-operating-systems"></a>SAP HANA 支援的作業系統
-如需 SAP HANA 支援作業系統的資訊，請參閱 [SAP 支援附註 #2235581 - SAP HANA︰支援的作業系統](https://launchpad.support.sap.com/#/notes/2235581/E)。 Azure VM 僅支援這些作業系統的其中一部份。 支援下列作業系統在 Azure 上部署 SAP HANA︰ 
+如需 SAP HANA 支援作業系統的資訊，請參閱 [SAP 支援附註 #2235581 - SAP HANA︰支援的作業系統](https://launchpad.support.sap.com/#/notes/2235581/E)。 Azure VM 僅支援這些作業系統的其中一部份。 hello 下列作業系統都支援的 toodeploy 在 Azure 上 SAP HANA: 
 
 * SUSE Linux Enterprise Server 12.x
 * Red Hat Enterprise Linux 7.2
@@ -84,367 +84,367 @@ ms.lasthandoff: 08/29/2017
 ### <a name="azure-vm-types"></a>Azure VM 類型
 與 SAP HANA 搭配使用的 Azure VM 類型與SAP 支援的工作負載情節，都記載於 [SAP 認證的 IaaS 平台](https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/iaas.html)。 
 
-經過 SAP 認證適用於 SAP NetWeaver 或 S/4HANA 應用程式層級的 Azure VM 類型，記載在 [SAP 附註 1928533 - Azure 上的 SAP 應用程式︰支援的產品和 Azure VM 類型](https://launchpad.support.sap.com/#/notes/1928533/E)。
+Azure VM 類型經過驗證的 SAP 適用於 SAP NetWeaver 或 hello S/4HANA 應用程式層會記載於[SAP 附註 1928533 Azure 上的 SAP 應用程式： 支援產品與 Azure VM 類型](https://launchpad.support.sap.com/#/notes/1928533/E)。
 
 >[!Note]
->只有 Azure Resource Manager 支援 SAP-Linux-Azure 整合，傳統部署模型並不支援。 
+>Azure 資源管理員，且 hello 傳統部署模型上才支援 SAP Linux Azure 整合。 
 
 ## <a name="manual-installation-of-sap-hana"></a>手動安裝 SAP HANA
-本指南說明如何在 Azure VM 上，以下列兩種不同方式手動安裝 SAP HANA：
+本指南說明如何 toomanually SAP HANA 上安裝 Azure Vm 中兩個不同的方式：
 
-* 在「安裝資料庫執行個體」步驟的分散式 NetWeaver 安裝過程中使用 SAP 軟體佈建管理員 (SWPM)
-* 使用 SAP HANA 資料庫生命週期管理員工具 HDBLCM，然後安裝 NetWeaver
+* 使用分散式 NetWeaver 安裝在 hello 安裝資料庫執行個體 」 的步驟一部分的 SAP 軟體佈建 Manager (SWPM)
+* 使用 hello SAP HANA 資料庫生命週期管理員工具 HDBLCM，，然後安裝 NetWeaver
 
-您也可以使用 SWPM 在單一 VM 中安裝所有元件 (SAP HANA、SAP 應用程式伺服器、ASCS 執行個體)，如本 [SAP HANA 部落格通知](https://blogs.saphana.com/2013/12/31/announcement-sap-hana-and-sap-netweaver-as-abap-deployed-on-one-server-is-generally-available/)所述。 這個選項並未於本快速入門指南中說明，但您必須納入考量的問題都一樣。
+您也可以使用 SWPM tooinstall 一個的單一 VM 中的所有元件 （SAP HANA、 hello SAP 應用程式伺服器和 hello ASCS 執行個體） 中所述[SAP HANA 部落格通知](https://blogs.saphana.com/2013/12/31/announcement-sap-hana-and-sap-netweaver-as-abap-deployed-on-one-server-is-generally-available/)。 這個選項不說明本快速入門指南中，但必須納入考量的問題是的 hello hello 相同。
 
-開始安裝之前，建議您先閱讀本指南稍後的＜準備 Azure VM 進行 SAP HANA 手動安裝＞一節。 當您只使用預設的 Azure VM 設定時，這樣做有助於避免數個可能發生的基本錯誤。
+開始安裝之前，我們建議您先閱讀 hello"準備 Azure Vm 的 SAP HANA 的手動安裝 」 一節稍後在本指南。 當您只使用預設的 Azure VM 設定時，這樣做有助於避免數個可能發生的基本錯誤。
 
 ## <a name="key-steps-for-sap-hana-installation-when-you-use-sap-swpm"></a>當您使用 SAP SWPM 時，SAP HANA 安裝的主要步驟
-本節會列出當您使用 SAP SWPM 執行分散式 SAP NetWeaver 7.5 安裝時，適用於手動、單一執行個體 SAP HANA 安裝的主要步驟。 本指南稍後會以螢幕擷取畫面形式更詳細說明個別步驟。
+當您使用 SAP SWPM tooperform 分散式的 SAP NetWeaver 7.5 安裝時，此區段會列出 hello 手動、 單一執行個體的 SAP HANA 安裝的主要步驟。 hello 個別步驟的更多詳細資料螢幕擷取畫面，稍後在本指南中說明。
 
 1. 建立包含這兩個測試 VM 的 Azure 虛擬網路。
-2. 根據 Azure Resource Manager 模型，在作業系統上 (在我們的範例中是 SUSE Linux Enterprise Server (SLES) 和 SLES for SAP Applications 12 SP1) 部署兩個 Azure VM。
-3. 將兩個 Azure 標準或進階儲存體磁碟連結至應用程式伺服器 VM (例如 75-GB 或 500-GB 的磁碟)。
-4. 將進階儲存體連結至 HANA DB 伺服器 VM。 如需詳細資訊，請參閱本指南稍後的＜磁碟設定＞一節。
-5. 根據大小或輸送量需求連接多個磁碟，然後在 VM 內部的 OS 層級，使用邏輯磁碟區管理或多個裝置的系統管理工具 (MDADM) 來建立等量磁碟區。
-6. 在連接的磁碟或邏輯磁碟區上建立 XFS 檔案系統。
-7. 在 OS 層級上掛接新的 XFS 檔案系統。 將一個檔案系統用於所有 SAP 軟體。 例如，將其他檔案系統用於 /sapmnt 目錄和備份。 在 SAP HANA DB 伺服器的進階儲存體磁碟上，將 XFS 檔案系統掛接為 /hana 和 /usr/sap。 您必須執行此程序，才能防止 Linux Azure VM 上不算大的根目錄檔案系統遭到填滿。
-8. 在 /etc/hosts 檔案中輸入測試 VM 的本機 IP 位址。
-9. 在 /etc/fstab 檔案中輸入 **nofail** 參數。
-10. 根據您使用的 Linux 作業系統版本，設定 Linux 核心參數。 如需詳細資訊，請參閱討論 HANA 的適當 SAP 附註，以及本指南的＜核心參數＞一節。
+2. 部署 hello 兩個 Azure Vm 的作業系統 （在本例中，SUSE Linux Enterprise Server (SLES) 和 SAP 應用程式 12 sp1 SLES），根據 toohello Azure 資源管理員的模型。
+3. 附加兩個 Azure 標準或高階儲存體磁碟 （例如，75 GB 或 500 GB 磁碟） toohello 應用程式伺服器 VM。
+4. 附加 premium 儲存體磁碟 toohello HANA DB 伺服器 VM。 如需詳細資訊，請參閱本指南稍後的 hello 磁碟 < 安裝 > 一節。
+5. 根據大小或輸送量需求，附加多個磁碟，然後再建立等量磁碟區在 hello 作業系統層級 hello VM 內使用邏輯磁碟區管理或多個裝置管理工具 (MDADM)。
+6. Hello 附加磁碟或邏輯磁碟區上建立 XFS 檔案系統。
+7. 掛接 hello 新 XFS 檔案系統 hello 作業系統層級。 使用所有的 hello SAP 軟體的一個檔案系統。 使用例如 hello hello /sapmnt 目錄和備份，其他檔案系統。 Hello SAP HANA 資料庫在伺服器上，將 hello XFS 檔案系統掛接 /hana 以及 /usr/sap hello 高階儲存體磁碟。 此程序是必要的 tooprevent hello 根檔案系統，這並不是大型 Linux 的 Azure Vm 上填滿。
+8. 輸入 hello /etc/hosts hosts 檔案中的 hello 測試 Vm 的 hello 本機 IP 位址。
+9. 輸入 hello **nofail** hello /etc/hosts fstab 檔案中的參數。
+10. 設定 Linux 核心參數，根據您使用 toohello Linux 作業系統版本。 如需詳細資訊，請參閱 hello 適當 SAP 附註會討論 HANA hello 本指南的 < 核心參數 > 一節。
 11. 新增交換空間。
-12. (選擇性) 在測試 VM 上安裝圖形化桌面。 否則，請使用遠端 SAPinst 安裝。
-13. 從 SAP Service Marketplace 下載 SAP 軟體。
-14. 在應用程式伺服器 VM 上安裝 SAP ASCS 執行個體。
-15. 使用 NFS，在測試 VM 之間共用 /sapmnt 目錄。 應用程式伺服器 VM 為 NFS 伺服器。
-16. 在 DB 伺服器 VM 上，使用 SWPM 來安裝資料庫執行個體 (包括 HANA)。
-17. 在應用程式伺服器 VM 上，安裝主要應用程式伺服器 (PAS)。
+12. （選擇性） 在 hello 測試 Vm 上安裝圖形化的桌面。 否則，請使用遠端 SAPinst 安裝。
+13. 從 hello SAP 服務 Marketplace 下載 hello SAP 軟體。
+14. Hello 應用程式伺服器 VM 上安裝 hello SAP ASCS 執行個體。
+15. Hello 之間共用 hello /sapmnt 目錄使用 NFS 測試 Vm。 hello NFS 伺服器 hello 應用程式伺服器 VM。
+16. 安裝 hello 資料庫執行個體，包括 HANA、 使用 SWPM hello DB 伺服器 VM 上。
+17. Hello 應用程式伺服器 VM 上安裝 hello 主應用程式伺服器 (PAS)。
 18. 啟動 SAP 管理主控台 (SAP MC)。 例如，連線到 SAP GUI 或 HANA Studio。
 
 ## <a name="key-steps-for-sap-hana-installation-when-you-use-hdblcm"></a>當您使用 HDBLCM 時，SAP HANA 安裝的主要步驟
-本節會列出當您使用 SAP HDBLCM 執行分散式 SAP NetWeaver 7.5 安裝時，適用於手動、單一執行個體 SAP HANA 安裝的主要步驟。 整份指南會以螢幕擷取畫面形式更詳細說明個別步驟。
+當您使用 SAP HDBLCM tooperform 分散式的 SAP NetWeaver 7.5 安裝時，此區段會列出 hello 手動、 單一執行個體的 SAP HANA 安裝的主要步驟。 hello 個別步驟的更多詳細資料螢幕擷取畫面，本指南中說明。
 
 1. 建立包含這兩個測試 VM 的 Azure 虛擬網路。
-2. 根據 Azure Resource Manager 模型，在作業系統上 (在我們的範例中是 SLES 和 SLES for SAP Applications 12 SP1) 部署兩個 Azure VM。
-3. 將兩個 Azure 標準或進階儲存體磁碟連結至應用程式伺服器 VM (例如 75-GB 或 500-GB 的磁碟)。
-4. 將進階儲存體連結至 HANA DB 伺服器 VM。 如需詳細資訊，請參閱本指南稍後的＜磁碟設定＞一節。
-5. 根據大小或輸送量需求連接多個磁碟，然後在 VM 內部的 OS 層級，使用邏輯磁碟區管理或多個裝置的系統管理工具 (MDADM) 來建立等量磁碟區。
-6. 在連接的磁碟或邏輯磁碟區上建立 XFS 檔案系統。
-7. 在 OS 層級上掛接新的 XFS 檔案系統。 將一個檔案系統用於所有 SAP 軟體，並將另一個檔案系統用於 /sapmnt 目錄 (舉例說明) 及備份。 在 SAP HANA DB 伺服器的進階儲存體磁碟上，將 XFS 檔案系統掛接為 /hana 和 /usr/sap。 您必須執行此程序，以協助防止 Linux Azure VM 上不算大的根目錄檔案系統遭到填滿。
-8. 在 /etc/hosts 檔案中輸入測試 VM 的本機 IP 位址。
-9. 在 /etc/fstab 檔案中輸入 **nofail** 參數。
-10. 根據您使用的 Linux 作業系統版本，設定核心參數。 如需詳細資訊，請參閱討論 HANA 的適當 SAP 附註，以及本指南的＜核心參數＞一節。
+2. 將兩個 Azure Vm （在本例中，SLES 和 SLES SAP 應用程式 12 sp1） 作業系統部署，根據 toohello Azure 資源管理員的模型。
+3. 附加兩個 Azure 標準或高階儲存體磁碟 （例如，75 GB 或 500 GB 磁碟） toohello 應用程式伺服器 VM。
+4. 附加 premium 儲存體磁碟 toohello HANA DB 伺服器 VM。 如需詳細資訊，請參閱本指南稍後的 hello 磁碟 < 安裝 > 一節。
+5. 根據大小或輸送量需求，附加多個磁碟，並使用在 hello OS hello VM 內的層級的邏輯磁碟區管理或多個裝置管理工具 (MDADM) 來建立等量磁碟區。
+6. Hello 附加磁碟或邏輯磁碟區上建立 XFS 檔案系統。
+7. 掛接 hello 新 XFS 檔案系統 hello 作業系統層級。 使用一個檔案系統的所有 hello SAP 軟體，並使用 hello 另一個則用於 hello /sapmnt 目錄和備份，例如。 Hello SAP HANA 資料庫在伺服器上，將 hello XFS 檔案系統掛接 /hana 以及 /usr/sap hello 高階儲存體磁碟。 此程序是必要 toohelp 防止 hello 根檔案系統，它不是大型 Linux 的 Azure Vm 上，填滿。
+8. 輸入 hello /etc/hosts hosts 檔案中的 hello 測試 Vm 的 hello 本機 IP 位址。
+9. 輸入 hello **nofail** hello /etc/hosts fstab 檔案中的參數。
+10. 設定核心參數，根據您使用 toohello Linux 作業系統版本。 如需詳細資訊，請參閱 hello 適當 SAP 附註會討論 HANA hello 本指南的 < 核心參數 > 一節。
 11. 新增交換空間。
-12. (選擇性) 在測試 VM 上安裝圖形化桌面。 否則，請使用遠端 SAPinst 安裝。
-13. 從 SAP Service Marketplace 下載 SAP 軟體。
-14. 在 HANA DB 伺服器 VM 上，建立群組識別碼為 1001 的群組 "sapsys"。
-15. 使用 HANA 資料庫生命週期管理員 (HDBLCM)，在 DB 伺服器 VM 上安裝 SAP HANA。
-16. 在應用程式伺服器 VM 上安裝 SAP ASCS 執行個體。
-17. 使用 NFS，在測試 VM 之間共用 /sapmnt 目錄。 應用程式伺服器 VM 為 NFS 伺服器。
-18. 在 HANA DB 伺服器 VM 上，使用 SWPM 安裝資料庫執行個體 (包括 HANA)。
-19. 在應用程式伺服器 VM 上，安裝主要應用程式伺服器 (PAS)。
+12. （選擇性） 在 hello 測試 Vm 上安裝圖形化的桌面。 否則，請使用遠端 SAPinst 安裝。
+13. 從 hello SAP 服務 Marketplace 下載 hello SAP 軟體。
+14. 建立群組，sapsys，與群組識別碼 1001 hello HANA 資料庫伺服器 VM 上。
+15. 使用 HANA 資料庫生命週期管理員 (HDBLCM) hello DB 伺服器 VM 上安裝 SAP HANA。
+16. Hello 應用程式伺服器 VM 上安裝 hello SAP ASCS 執行個體。
+17. Hello 之間共用 hello /sapmnt 目錄使用 NFS 測試 Vm。 hello NFS 伺服器 hello 應用程式伺服器 VM。
+18. 安裝 hello 資料庫執行個體，包括 HANA、 使用 SWPM hello HANA 資料庫伺服器 VM 上。
+19. Hello 應用程式伺服器 VM 上安裝 hello 主應用程式伺服器 (PAS)。
 20. 啟動 SAP MC。 透過 SAP GUI 或 HANA Studio 連線。
 
 ## <a name="preparing-azure-vms-for-a-manual-installation-of-sap-hana"></a>準備 Azure VM 以便手動安裝 SAP HANA
-本節包含下列主題：
+本章節涵蓋下列主題中的 hello:
 
 * OS 更新
 * 磁碟設定
 * 核心參數
 * 檔案系統
-* /etc/hosts 檔案
-* /etc/fstab 檔案
+* hello /etc/hosts 主機檔案
+* hello /etc/hosts fstab 檔案
 
 ### <a name="os-updates"></a>OS 更新
-請先檢查 Linux 作業系統更新和修正程式，然後再安裝其他軟體。 安裝修補程式可能讓您避免呼叫支援人員。
+請先檢查 Linux 作業系統更新和修正程式，然後再安裝其他軟體。 藉由安裝修補程式時，您可能會無法 tooavoid 呼叫 toohello 的技術支援。
 
 請確定您是使用︰
 * 適用於 SAP 應用程式的 SUSE Linux Enterprise Server。
 * 適用於 SAP 應用程式的 Red Hat Enterprise Linux 或適用於 SAP HANA 的 Red Hat Enterprise Linux。 
 
-可以透過 Linux 廠商提供的 Linux 訂用帳戶登錄 OS 部署 (如果您還沒這樣做)。 請注意，SUSE 具有適用於 SAP 應用程式的 OS 映像，已經包含服務且會自動註冊。
+如果您還沒有這麼做，您的 Linux 訂閱 hello Linux 廠商登錄 hello 作業系統部署。 請注意，SUSE 具有適用於 SAP 應用程式的 OS 映像，已經包含服務且會自動註冊。
 
-以下是使用 **zypper** 命令檢查 SUSE Linux 可用修補程式的範例：
+以下是檢查 for SUSE Linux 使用 hello 可用的修補程式的範例**zypper**命令：
 
  `sudo zypper list-patches`
 
-視問題的種類而定，修補程式會依分類和嚴重性歸類。 常用的分類值為：**security (安全性)**、**recommended (建議)**、**optional (選用)**、**feature (功能)**、**document (文件)** 或 **yast**。
+Hello 問題類型而定，依類別和嚴重性分類修補程式。 常用的分類值為：**security (安全性)**、**recommended (建議)**、**optional (選用)**、**feature (功能)**、**document (文件)** 或 **yast**。
 常用的嚴重性值為：**critical (嚴重)**、**important (重要)**、**moderate (中)**、**low (低)** 或 **unspecified (未指定)**。
 
-**Zypper** 命令只會尋找已安裝套件所需要的更新。 例如，您可以使用此命令：
+hello **zypper**命令看起來只 hello 更新，您已安裝的封裝需要。 例如，您可以使用此命令：
 
 `sudo zypper patch  --category=security,recommended --severity=critical,important`
 
-您可以新增 `--dry-run` 參數來測試更新，而不需實際更新系統。
+您可以加入 hello 參數`--dry-run`tootest hello 更新，而不需實際更新 hello 系統。
 
 
 ### <a name="disk-setup"></a>磁碟設定
-Azure 上 Linux VM 中的根目錄檔案系統有大小限制。 因此，必須將額外的磁碟空間連結至 Azure VM 才能執行 SAP。 若是 SAP 應用程式伺服器 Azure VM，使用 Azure 標準儲存體磁碟的使用量可能就已經夠用。 不過，若是 SAP HANA DBMS Azure VM，使用 Azure 進階儲存體磁碟用於生產與非生產實作的使用量是必要的。
+在 Azure 上的 Linux VM 中的 hello 根檔案系統有大小限制。 因此，它是必要的 tooattach 額外的磁碟空間 tooan Azure VM 執行 SAP。 Azure Vm SAP 應用程式伺服器，可能就已經夠用 hello 使用標準的 Azure 儲存體磁碟。 不過，對於 SAP HANA DBMS 的 Azure Vm，hello 使用 Azure 高階儲存體磁碟，生產環境和非生產實作是必要的。
 
-根據 [SAP HANA TDI 儲存體需求](https://www.sap.com/documents/2015/03/74cdb554-5a7c-0010-82c7-eda71af511fa.html)，建議使用下列的 Azure 進階儲存體組態︰ 
+根據 hello [SAP HANA TDI 存放裝置需求](https://www.sap.com/documents/2015/03/74cdb554-5a7c-0010-82c7-eda71af511fa.html)，建議 hello 下列 Azure 高階儲存體組態： 
 
 | VM SKU | RAM |  /hana/data 和 /hana/log <br /> 與 LVM 或 MDADM 等量 | HANA/shared | /root volume | /usr/sap |
 | --- | --- | --- | --- | --- | --- |
 | GS5 | 448 GB | 2 x P30 | 1 x P20 | 1 x P10 | 1 x P10 | 
 
-在建議的磁碟組態中，HANA 資料磁碟區和記錄磁碟區會放在相同的 Azure 進階儲存體磁碟中，而此種磁碟會與 LVM 或 MDADM 等量。 不需要定義任何 RAID 備援層級，因為 Azure 進階儲存體基於備援會保留磁碟的三個映像。 若要確定您設定足夠的儲存體，請參閱 [SAP HANA TDI 儲存體需求](https://www.sap.com/documents/2015/03/74cdb554-5a7c-0010-82c7-eda71af511fa.html)和 [SAP HANA Server 安裝與更新指南](http://help.sap.com/saphelp_hanaplatform/helpdata/en/4c/24d332a37b4a3caad3e634f9900a45/frameset.htm)。 也請考慮不同的 Azure 進階儲存體磁碟的不同虛擬硬碟 (VHD) 輸送量，如 [VM 高效能進階儲存體與受控磁碟](https://docs.microsoft.com/azure/storage/storage-premium-storage)中所述。 
+在 hello 建議的磁碟組態中，hello HANA 資料磁碟區與記錄檔磁碟區會放在相同設定的 Azure 高階儲存體磁碟會等量散佈 LVM 或 MDADM hello。 不需要 toodefine 任何 RAID 備援層級，因為 Azure 高階儲存體保持 hello 磁碟備援的三個映像。 toomake 確定您已設定足夠的儲存空間，請參閱 hello [SAP HANA TDI 存放裝置需求](https://www.sap.com/documents/2015/03/74cdb554-5a7c-0010-82c7-eda71af511fa.html)和[SAP HANA 伺服器安裝及更新指南](http://help.sap.com/saphelp_hanaplatform/helpdata/en/4c/24d332a37b4a3caad3e634f9900a45/frameset.htm)。 也請考慮 hello hello 的其他虛擬硬碟 (VHD) 輸送量磁碟區不同的 Azure 高階儲存體磁碟中所述[高效能高階儲存體和受管理的 Vm 磁碟](https://docs.microsoft.com/azure/storage/storage-premium-storage)。 
 
-您可以將額外的進階儲存體磁碟新增至 HANA DBMS VM，用於儲存資料庫或交易記錄備份。
+您可以加入更多的進階儲存體磁碟 toohello HANA DBMS Vm 來儲存資料庫或交易記錄備份。
 
-如需這兩個用於設定等量的主要工具詳細資訊，請參閱下列文章：
+如需 hello 兩個主要工具 tooconfigure 等量的詳細資訊，請參閱下列發行項的 hello:
 
 * [在 Linux 上設定軟體 RAID](../../linux/configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [設定 Azure 中 Linux VM 的 LVM](../../linux/configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-針對將磁碟連結至執行 Linux 客體 OS 的 Azure VM，如需詳細資訊請參閱[將磁碟新增至 Linux VM](../../linux/add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+如需有關附加磁碟 tooAzure Vm 執行 Linux 作為客體作業系統、 請參閱 <<c0> [ 新增磁碟 tooa Linux VM](../../linux/add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-Azure 進階儲存體可讓您定義磁碟快取模式。 針對存放 /hana/data 和 /hana/log 的等量集，應停用磁碟快取。 針對其他磁碟區 (磁碟)，快取模式應設為**唯讀**。
+Azure 高階儲存體可讓您 toodefine 磁碟快取模式。 持有 /hana/data 和 /hana/log hello 等量集，磁碟快取應該停用。 應該設定太的 hello 其他磁碟區 （磁碟），hello 快取模式**ReadOnly**。
 
 如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../../../storage/common/storage-premium-storage.md)。
 
-若要尋找用於建立 VM 的範例 JSON 範本，請移至 [Azure 快速入門範本 (英文)](https://github.com/Azure/azure-quickstart-templates)。
-vm-simple-sles 範本是基本的範本。 它包含儲存體區段與其他 100 GB 的資料磁碟。 此範本可用來當做基底。 您可以針對特定的組態採用範本。
+toofind 範例 JSON 範本建立的 Vm，跳過[Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates)。
+hello vm-簡單-sles 範本是基本的範本。 它包含儲存體區段與其他 100 GB 的資料磁碟。 此範本可用來當做基底。 您可以調整 hello 範本 tooyour 特定設定。
 
 >[!Note]
->請務必使用 UUID 來連結 Azure 儲存體磁碟，如[在 Microsoft Azure SUSE Linux VM 上執行 SAP NetWeaver](suse-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 中所述。
+>如中所述，使用 UUID 是重要的 tooattach hello Azure 儲存體磁碟[執行 SAP NetWeaver on Microsoft Azure SUSE Linux Vm](suse-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-在測試環境中，已將兩個 Azure 標準儲存體磁碟連接至 SAP 應用程式伺服器 VM，如下列螢幕擷取畫面所示。 其中一個磁碟用來儲存所有可供安裝的 SAP 軟體 (包括 NetWeaver 7.5、SAP GUI 和 SAP HANA)。 第二個磁碟確保有足夠的可用空間可用於其他需求 (例如，備份和測試資料)，以及要在所有屬於同一個 SAP 環境的 VM 之間共用的 /sapmnt 目錄 (也就是 SAP 設定檔)。
+在 hello 測試環境中，兩個標準的 Azure 儲存體中的磁碟附加的 toohello SAP 應用程式伺服器 VM，hello 下列螢幕擷取畫面所示。 一個磁碟儲存所有 hello SAP 軟體 （包括 NetWeaver 7.5，SAP GUI 與 SAP HANA） 安裝。 足夠的可用空間會是可用的其他需求 （例如，備份和測試資料），和相同的 SAP 版圖的 hello /sapmnt 目錄 （也就是 SAP 設定檔） toobe 隸屬 toohello 的所有 Vm 之間共用，同時能確保 hello 第二個磁碟。
 
 ![SAP HANA 應用程式伺服器的 [磁碟] 視窗，其中顯示兩個資料磁碟及其大小](./media/hana-get-started/image003.jpg)
 
 
 ### <a name="kernel-parameters"></a>核心參數
-SAP HANA 需要不屬於標準 Azure 資源庫映像且必須手動設定的特定 Linux 核心設定。 依據您是使用 SUSE 還是 Red Hat，參數可能不一樣。 稍早列出的 SAP 附註中提供關於這些參數的資訊。 在顯示的螢幕擷取畫面中，使用 SUSE Linux 12 SP1。 
+SAP HANA 需要特定 Linux 核心設定，這不是 hello 標準 Azure 資源庫映像的一部分，而且必須手動設定。 根據您是否使用 SUSE 或 Red Hat，hello 參數可能不同。 稍早所列的 hello SAP 附註會提供這些參數的相關資訊。 在 hello 螢幕擷取畫面所示，已用 SUSE Linux 12 SP1。 
 
-SLES for SAP Applications 12 GA 和 SLES for SAP Applications 12 SP1 具有一個可取代舊 **sapconf** 工具的新工具 **tuned-adm**。 **tuned-adm** 有特別的 SAP HANA 設定檔可供其使用。 若要針對 SAP HANA 調整系統，請輸入下列內容作為根使用者：
+SLES SAP 應用程式 12 GA 如和 SLES SAP 應用程式 12 sp1 有全新的工具、**微調 adm**，取代 hello 舊**sapconf**工具。 **tuned-adm** 有特別的 SAP HANA 設定檔可供其使用。 SAP hana tootune hello 系統以根使用者身分輸入 hello 下列：
 
    `tuned-adm profile sap-hana`
 
-如需有關 **tuned-adm** 的詳細資訊，請參閱[關於 tuned-adm 的 SUSE 文件](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/sles-for-sap-12-sp1.zip)。
+如需有關**微調 adm**，請參閱 hello [SUSE 文件中的有關微調 adm](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/sles-for-sap-12-sp1.zip)。
 
-在下列螢幕擷取畫面中，您可以看到 **tuned-adm** 如何根據必要的 SAP HANA 設定來變更 `transparent_hugepage` 和 `numa_balancing` 值。
+在下列螢幕擷取畫面的 hello，您可以查看如何**微調 adm**變更的 hello`transparent_hugepage`和`numa_balancing`值，根據 toohello 必要 SAP HANA 設定。
 
-![tuned-adm 工具會根據必要的 SAP HANA 設定來變更值](./media/hana-get-started/image005.jpg)
+![hello 微調 adm 工具根據 toorequired SAP HANA 設定的值變更。](./media/hana-get-started/image005.jpg)
 
-若要永久保留 SAP HANA 核心設定，請在 SLES 12 上使用 **grub2**。 如需 **grub2** 的詳細資訊，請移至 SUSE 文件的[＜組態檔結構＞](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/sles-for-sap-12-sp1.zip)一節。
+toomake hello SAP HANA 核心設定永久性的會使用**grub2** SLES 12 上。 如需有關**grub2**，go toohello[組態檔結構](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/sles-for-sap-12-sp1.zip)hello SUSE 文件的區段。
 
-下列螢幕擷取畫面顯示如何在組態檔中變更核心設定，然後使用 **grub2-mkconfig** 進行編譯：
+hello 下列螢幕擷取畫面顯示如何 hello 核心設定已變更 hello 組態檔中，以及接著編譯使用**grub2 mkconfig**:
 
-![在組態檔中變更核心設定，然後使用 grub2-mkconfig 進行編譯](./media/hana-get-started/image006.jpg)
+![Hello 組態檔中變更，並且使用 grub2 mkconfig 編譯的核心設定](./media/hana-get-started/image006.jpg)
 
-另一個選項是使用 YaST 和 [開機載入器] > [核心參數] 設定來變更這些設定：
+另一個選項是使用 YaST 和 hello toochange hello 設定**開機載入器** > **核心參數**設定：
 
-![YaST 開機載入器中的 [核心參數] 設定索引標籤](./media/hana-get-started/image007.jpg)
+![hello 核心參數設定 索引標籤中 YaST 開機載入器](./media/hana-get-started/image007.jpg)
 
 ### <a name="file-systems"></a>檔案系統
-下列螢幕擷取畫面顯示兩個檔案系統，這兩者均建立於這兩個連接之 Azure 標準儲存體磁碟上的 SAP 應用程式伺服器 VM 上。 這兩個檔案系統都屬 XFS 類型，且掛接至 /sapdata 和 /sapsoftware。
+hello 下列螢幕擷取畫面顯示 hello SAP 應用程式伺服器 VM 之上 hello 兩個連接標準的 Azure 儲存體磁碟所建立的兩個檔案系統。 這兩個檔案系統的型別 XFS 且已掛接太/sapdata 和 /sapsoftware。
 
-您不一定要使用這種方式來建構檔案系統。 您有其他選項可用來建構磁碟空間。 最重要的考量是防止根目錄檔案系統的可用空間用盡。
+它是不必要的 toostructure 以這種方式在檔案系統。 您必須建構 hello 磁碟空間的其他選項。 hello 最重要的考量是 tooprevent hello 根檔案系統的可用空間不足。
 
-![在 SAP 應用程式伺服器 VM 上建立兩個檔案系統](./media/hana-get-started/image008.jpg)
+![Hello SAP 應用程式伺服器 VM 上建立兩個檔案系統](./media/hana-get-started/image008.jpg)
 
-關於 SAP HANA DB VM，在資料庫安裝期間，當您使用 SAPinst (SWPM) 和**標準**安裝選項時，會在 /hana 和 /usr/sap 之下安裝所有東西。 SAP HANA 記錄備份的預設位置是在 /usr/sap 之下。 同樣地，因為必須防止根檔案系統的可用空間用盡，所以在使用 SWPM 安裝 SAP HANA 之前，請先確定 /hana 和 /usr/sap 之下有足夠的可用空間。
+關於 hello SAP HANA 資料庫 VM，資料庫在安裝期間，當您使用 SAPinst (SWPM) 和 hello**一般**安裝選項時，一切都已安裝 /hana 和 /usr/sap 底下。 hello hello SAP HANA 記錄備份的預設位置是在 /usr/sap 之下。 同樣地，因為它是重要的 tooprevent hello 根檔案系統的儲存空間不足，請確定有足夠的可用空間 /hana 和 /usr/sap 下再使用 SWPM 安裝 SAP HANA。
 
-如需 SAP HANA 的標準檔案系統配置說明，請參閱 [SAP HANA 伺服器安裝與更新指南 (英文)](http://help.sap.com/saphelp_hanaplatform/helpdata/en/4c/24d332a37b4a3caad3e634f9900a45/frameset.htm)。
+如需 hello 標準檔案系統配置的 SAP HANA 的說明，請參閱 hello [SAP HANA 伺服器安裝及更新指南](http://help.sap.com/saphelp_hanaplatform/helpdata/en/4c/24d332a37b4a3caad3e634f9900a45/frameset.htm)。
 
-![在 SAP 應用程式伺服器 VM 上建立的其他檔案系統](./media/hana-get-started/image009.jpg)
+![建立 hello SAP 應用程式伺服器 VM 上的其他檔案系統](./media/hana-get-started/image009.jpg)
 
-當您在標準 SLES/SLES for SAP Applications 12 Azure 資源庫映像上安裝 SAP NetWeaver 時，會顯示一則指出沒有交換空間的訊息，如下列螢幕擷取畫面所示。 若要關閉此訊息，您可以使用 **dd**、**mkswap** 和 **swapon** 手動新增分頁檔。 若要了解做法，請在 SUSE 文件的[＜使用 YaST Partitioner＞](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/sles-for-sap-12-sp1.zip)一節中搜尋「手動新增分頁檔」。
+當您在標準 SLES/SLES 的 SAP 應用程式 12 Azure 資源庫映像上安裝 SAP NetWeaver 時，會顯示訊息，指出沒有交換空間，如下列螢幕擷取畫面的 hello 中所示。 toodismiss 這個訊息，您可以使用，以手動新增分頁檔**dd**， **mkswap**，和**swapon**。 toolearn 作法，請搜尋 「 交換檔手動新增 「 在 hello[使用 hello YaST Partitioner](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/sles-for-sap-12-sp1.zip) hello SUSE 文件的區段。
 
-另一個選項是使用 Linux VM 代理程式設定交換空間。 如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南](../../linux/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+另一個選項是使用 hello Linux VM 代理程式 tooconfigure 交換空間。 如需詳細資訊，請參閱 hello [Azure Linux 代理程式使用者指南](../../linux/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ![指出沒有足夠交換空間的快顯訊息](./media/hana-get-started/image010.jpg)
 
 
-### <a name="the-etchosts-file"></a>/etc/hosts 檔案
-開始安裝 SAP 前，請確定在 /etc/hosts 檔案中包含 SAP VM 的主機名稱和 IP 位址。 在一個 Azure 虛擬網路內部署所有的 SAP VM，然後使用內部 IP 位址，如下所示：
+### <a name="hello-etchosts-file"></a>hello /etc/hosts 主機檔案
+啟動 tooinstall SAP 之前，請確定您包含 hello 主機名稱和 IP 位址的 hello SAP Vm hello /etc/hosts 檔案中。 將一個 Azure 虛擬網路內的所有 hello SAP Vm 都部署，然後使用 hello 內部 IP 位址，如下所示：
 
-![SAP VM 的主機名稱和 IP 位址會列於 /etc/hosts 檔案中](./media/hana-get-started/image011.jpg)
+![Hello /etc/hosts 檔案中列出的主機名稱和 IP 位址的 hello SAP Vm](./media/hana-get-started/image011.jpg)
 
-### <a name="the-etcfstab-file"></a>/etc/fstab 檔案
+### <a name="hello-etcfstab-file"></a>hello /etc/hosts fstab 檔案
 
-將 **nofail** 參數新增至 fstab 檔案很實用。 如此一來，如果磁碟發生錯誤，VM 不會在開機程序中停止回應。 但請記得，可能無法取得額外的磁碟空間，而且程序可能會填滿根目錄檔案系統。 如果遺失 /hana，SAP HANA 將無法啟動。
+它是很有幫助 tooadd hello **nofail**參數 toohello fstab 檔案。 如此一來，如果出錯 hello 磁碟 hello VM 不會不停止回應 hello 開機程序。 但是請記住，額外的磁碟空間可能無法使用，而且處理程序可能會填滿 hello 根檔案系統。 如果遺失 /hana，SAP HANA 將無法啟動。
 
-![將 nofail 參數新增至 fstab 檔案](./media/hana-get-started/image000c.jpg)
+![新增 hello nofail 參數 toohello fstab 檔案](./media/hana-get-started/image000c.jpg)
 
 ## <a name="graphical-gnome-desktop-on-sles-12sles-for-sap-applications-12"></a>SLES 12/SLES for SAP Applications 12 上的圖形化 GNOME 桌面
-本節包含下列主題：
+本章節涵蓋下列主題中的 hello:
 
-* 在 xrdp on SLES 12/SLES for SAP Applications 12 上安裝 GNOME 桌面和 xrdp
+* Hello GNOME 桌面和 xrdp 上安裝 SLES 12/SLES SAP 應用程式 12
 * 在 SLES 12/SLES for SAP Applications 12 上使用 Firefox 來執行以 Java 為基礎的 SAP MC
 
 您也可以使用替代項目，例如 Xterminal 或 VNC (不在本指南中說明)。
 
-### <a name="installing-the-gnome-desktop-and-xrdp-on-sles-12sles-for-sap-applications-12"></a>在 xrdp on SLES 12/SLES for SAP Applications 12 上安裝 GNOME 桌面和 xrdp
-如果您具備 Windows 背景，就可以輕鬆地在 SAP Linux VM 內，直接使用圖形化桌面來執行 Firefox、SAPinst、SAP GUI、SAP MC 或 HANA Studio，並從 Windows 電腦透過遠端桌面通訊協定 (RDP) 連線到 VM。 依貴公司關於將圖形化使用者介面新增到以 Linux 為基礎的生產環境與非生產環境系統之原則而定，您將需要在伺服器上安裝 GNOME。 若要在 Azure SLES 12/SLES for SAP Applications 12 VM 上安裝 GNOME 桌面：
+### <a name="installing-hello-gnome-desktop-and-xrdp-on-sles-12sles-for-sap-applications-12"></a>Hello GNOME 桌面和 xrdp 上安裝 SLES 12/SLES SAP 應用程式 12
+如果您有 Windows 背景時，可以輕鬆地使用直接在 hello SAP Linux Vm toorun Firefox、 SAPinst、 SAP GUI、 SAP MC 或 HANA Studio 中的圖形化桌面，並透過從 Windows 電腦的 hello 遠端桌面通訊協定 (RDP) 連線 toohello VM。 取決於您的公司原則，關於新增圖形化使用者介面 tooproduction 和非實際執行的 Linux 系統，您可能想 tooinstall GNOME 您伺服器上。 在 SAP 應用程式 12 VM Azure SLES 12/SLES tooinstall hello GNOME 桌面：
 
-1. 輸入下列命令 (例如在 PuTTY 視窗中) 來安裝 GNOME 桌面：
+1. 輸入下列命令 （例如，在 PuTTY 視窗） 中的 hello 安裝 hello GNOME 桌面：
 
    `zypper in -t pattern gnome-basic`
 
-2. 安裝 xrdp 以允許透過 RDP 連接到 VM：
+2. 安裝 xrdp tooallow 連接 toohello 透過 RDP 的 VM:
 
    `zypper in xrdp`
 
-3. 編輯 /etc/sysconfig/windowmanager，並將預設的視窗管理員設定為 GNOME：
+3. 編輯 /etc/sysconfig/windowmanager，並設定 hello 預設視窗管理員 tooGNOME︰
 
    `DEFAULT_WM="gnome"`
 
-4. 執行 **chkconfig** 以確保 xrdp 會在重新開機後自動啟動：
+4. 執行**chkconfig** toomake 確定該 xrdp 重新開機後自動啟動：
 
    `chkconfig -level 3 xrdp on`
 
-5. 如果發生 RDP 連線問題，請嘗試重新啟動 (例如，從 PuTTY 視窗)：
+5. 如果您擁有 hello RDP 連線的問題，請再試一次 toorestart （從 PuTTY 視窗，例如）：
 
    `/etc/xrdp/xrdp.sh restart`
 
-6. 如果上一個步驟中所述的 xrdp 重新啟動無法運作，請檢查 .pid 檔案：
+6. 如果 xrdp 重新啟動中所述 hello 上一個步驟無效，檢查.pid 檔案：
 
    `check /var/run` 
 
-   尋找 `xrdp.pid`。 如果找到的話，請將它移除，並嘗試重新啟動。
+   尋找 `xrdp.pid`。 如果找到的話，移除它，然後再試一次 toorestart。
 
 ### <a name="starting-sap-mc"></a>啟動 SAP MC
-在安裝 GNOME 桌面之後，在 Azure SLES 12/SLES for SAP Applications 12 VM 中執行時，從 Firefox 啟動圖形化以 Linux 為基礎的 SAP MC 可能會因為遺失 Java 瀏覽器外掛程式而顯示錯誤。
+安裝 hello GNOME 桌面之後，開始圖形 hello Firefox Azure SLES 12/SLES 中執行的 SAP 應用程式 12 VM 時從 Java 為基礎 SAP MC 可能會顯示錯誤因為 hello 遺漏 Java 瀏覽器外掛程式。
 
-啟動 SAP MC 的 URL 為 `<server>:5<instance_number>13`。
+SAP MC 是 hello URL toostart hello `<server>:5<instance_number>13`。
 
-如需詳細資訊，請參閱[啟動 Web 型 SAP 管理主控台 (英文)](https://help.sap.com/saphelp_nwce10/helpdata/en/48/6b7c6178dc4f93e10000000a42189d/frameset.htm)。
+如需詳細資訊，請參閱[起始 hello SAP 網頁型管理主控台](https://help.sap.com/saphelp_nwce10/helpdata/en/48/6b7c6178dc4f93e10000000a42189d/frameset.htm)。
 
-下列螢幕擷取畫面顯示遺失 Java 瀏覽器外掛程式時所顯示的錯誤訊息：
+hello 下列螢幕擷取畫面顯示 hello hello Java 瀏覽器外掛程式遺漏時所顯示的錯誤訊息：
 
 ![指出遺失 Java 瀏覽器外掛程式的錯誤訊息](./media/hana-get-started/image013.jpg)
 
-解決這個問題的其中一種方式，是使用 YaST 安裝遺失的外掛程式，如下列螢幕擷取畫面所示：
+其中一種方式 toosolve hello 問題是 tooinstall hello 缺少外掛程式使用 YaST，hello 下列螢幕擷取畫面所示：
 
-![使用 YaST 安裝遺失的外掛程式](./media/hana-get-started/image014.jpg)
+![使用 YaST tooinstall 缺少外掛程式](./media/hana-get-started/image014.jpg)
 
-當您重新輸入 SAP 管理主控台 URL 時，會出現訊息要求您啟用外掛程式：
+當您重新輸入 hello SAP 管理主控台 URL 時，出現下列訊息詢問您 tooactivate hello 外掛程式：
 
 ![要求啟用外掛程式的對話方塊](./media/hana-get-started/image015.jpg)
 
-您可能也會收到關於遺失檔案 (javafx.properties) 的錯誤訊息。 這與「適用於 SAP GUI 7.4 的 Oracle Java 1.8」的需求有關。 (請參閱 [SAP 附註 2059429](https://launchpad.support.sap.com/#/notes/2059424)。)IBM Java 版本或 SLES/SLES for SAP Applications 12 隨附的 openjdk 套件皆未包含所需的 javafx.properties 檔案。 解決方案是從 Oracle 下載 Java SE 8。
+您可能也會收到關於遺失檔案 (javafx.properties) 的錯誤訊息。 這是 Oracle Java 1.8 的 SAP GUI 7.4 相關的 toohello 需求。 (請參閱 [SAP 附註 2059429](https://launchpad.support.sap.com/#/notes/2059424)。)Hello IBM Java 版本都具有 SLES/SLES 所傳送的 SAP 應用程式 12 hello openjdk 封裝包括 hello 需要的 javafx.properties 檔案。 hello 方案是 toodownload，然後安裝 Oracle Java SE 8。
 
-如需與 OpenSUSE 上 openjdk 類似問題的相關資訊，請參閱討論區對話 [SAPGui 7.4 Java for openSUSE 42.1 Leap](https://scn.sap.com/thread/3908306)。
+OpenSUSE openjdk 類似問題的相關資訊，請參閱 hello 討論[openSUSE 42.1 的 SAPGui 7.4 Java Leap](https://scn.sap.com/thread/3908306)。
 
 ## <a name="manual-installation-of-sap-hana-swpm"></a>手動安裝 SAP HANA：SWPM
-本節中一系列的螢幕擷取畫面顯示當您使用 SWPM (SAPinst) 時，安裝 SAP NetWeaver 7.5 和 SAP HANA SP12 的主要步驟。 在 NetWeaver 7.5 安裝過程中，SWPM 也可將 HANA 資料庫安裝為單一執行個體。
+本節中的螢幕擷取畫面的 hello 數列會顯示 hello 安裝 SAP NetWeaver 7.5 和 SAP HANA SP12，當您使用 SWPM (SAPinst) 的關鍵步驟。 NetWeaver 7.5 安裝的一部分，SWPM 也可以安裝 hello HANA 資料庫的單一執行個體。
 
-在範例測試環境中，我們只安裝了一部進階商業應用程式程式設計 (ABAP) 應用程式伺服器。 如下列螢幕擷取畫面所示，我們使用了 [分散式系統] 選項，在一個 Azure VM 上安裝 ASCS 和主要應用程式伺服器執行個體，並在另一個 Azure VM 上安裝 SAP HANA 作為資料庫系統。
+在範例測試環境中，我們只安裝了一部進階商業應用程式程式設計 (ABAP) 應用程式伺服器。 Hello 下列螢幕擷取畫面所示，我們使用 hello**分散式系統**選項 tooinstall hello ASCS 和一個 Azure VM 與 SAP HANA 中的主要應用程式伺服器執行個體做為另一個 Azure VM 中的 hello 資料庫系統。
 
-![使用 [分散式系統] 選項安裝 ASCS 和主要應用程式伺服器執行個體](./media/hana-get-started/image012.jpg)
+![ASCS 和使用 hello 分散式系統選項來安裝主要應用程式伺服器執行個體](./media/hana-get-started/image012.jpg)
 
-將 ASCS 執行個體安裝於應用程式伺服器 VM 上，並在 SAP 管理主控台 (如下列螢幕擷取畫面所顯示) 中設定為「綠色」之後，必須將包含 SAP 設定檔目錄的 /sapmnt 目錄與 SAP HANA DB 伺服器 VM 共用。 DB 安裝步驟需要存取此資訊。 提供存取的最佳方式是使用可利用 YaST 設定的 NFS。
+Hello ASCS 執行個體安裝在 hello 應用程式伺服器 VM 上，而之後設定太 「 綠色 」 hello SAP 管理主控台 （如 hello 下列螢幕擷取畫面所示），在 hello /sapmnt 目錄 （包括 hello SAP 設定檔的目錄） 必須與共用 hello SAP HANA 資料庫伺服器 VM。 hello DB 安裝步驟需要存取 toothis 資訊。 toouse NFS 可設定使用 YaST hello 最佳方式 tooprovide 存取。
 
-![顯示 ASCS 執行個體已安裝於應用程式伺服器 VM 上並設定為「綠色」的 SAP 管理主控台](./media/hana-get-started/image016.jpg)
+![SAP 管理主控台顯示 hello ASCS 執行個體 hello 應用程式伺服器 VM 上安裝和設定太 「 綠色的"](./media/hana-get-started/image016.jpg)
 
-在應用程式伺服器 VM 上，應透過 NFS 使用 **rw** 和 **no_root_squash** 選項來共用 /sapmnt 目錄。 預設值為 **ro** 和 **root_squash**，這可能導致安裝資料庫執行個體時發生問題。
+在應用程式伺服器 VM hello、 hello/sapmnt 目錄應該透過 NFS 共用，使用 hello **rw**和**no_root_squash**選項。 hello 的預設值為**ro**和**root_squash**，這可能會導致 tooproblems，當您安裝 hello 資料庫執行個體。
 
-![透過 NFS 使用 rw 和 no_root_squash 選項共用 /sapmnt 目錄](./media/hana-get-started/image017b.jpg)
+![透過使用 hello rw 和 no_root_squash 選項共用透過 NFS hello /sapmnt 目錄](./media/hana-get-started/image017b.jpg)
 
-如下列螢幕擷取畫面所示，必須在 SAP HANA DB 伺服器 VM 上使用 **NFS 用戶端** (和 YaST)，來設定應用程式伺服器 VM 中的 /sapmnt 共用。
+如 hello 的下一個螢幕擷取畫面所示，從 hello 應用程式伺服器 VM 的 hello /sapmnt 共用必須設定 hello SAP HANA 資料庫伺服器 VM 上使用**NFS 用戶端**（和 YaST）。
 
-![使用 NFS 用戶端來設定 /sapmnt 共用](./media/hana-get-started/image018b.jpg)
+![設定使用 NFS 用戶端 hello /sapmnt 共用](./media/hana-get-started/image018b.jpg)
 
-為了如下列螢幕擷取畫面所示執行分散式 NetWeaver 7.5 安裝 (**資料庫執行個體**)，會登入 SAP HANA 資料庫伺服器 VM 並啟動 SWPM。
+分散式的 NetWeaver 7.5 tooperform 安裝 (**資料庫執行個體**)，下列螢幕擷取畫面所示的 hello，為登入 toohello SAP HANA 資料庫伺服器 VM 並啟動 SWPM。
 
-![登入 SAP HANA DB 伺服器 VM，然後啟動 SWPM，藉以安裝資料庫執行個體](./media/hana-get-started/image019.jpg)
+![安裝的資料庫執行個體，登入 toohello SAP HANA 資料庫伺服器 VM，然後啟動 SWPM](./media/hana-get-started/image019.jpg)
 
-選取**標準**安裝和安裝媒體的路徑之後，請輸入 DB SID、主機名稱、執行個體號碼及 DB 系統管理員密碼。
+選取後**一般**安裝與 hello 路徑 toohello 安裝媒體上，輸入 DB SID、 hello 主機名稱、 hello 執行個體數目和 hello DB 系統管理員密碼。
 
-![SAP HANA 資料庫系統管理員登入頁面](./media/hana-get-started/image035b.jpg)
+![hello SAP HANA 資料庫系統管理員登入頁面](./media/hana-get-started/image035b.jpg)
 
-輸入 DBACOCKPIT 結構描述的密碼：
+Hello DBACOCKPIT 結構描述，請輸入 hello 密碼：
 
-![DBACOCKPIT 結構描述的密碼輸入方塊](./media/hana-get-started/image036b.jpg)
+![hello DBACOCKPIT 結構描述的 hello 密碼項目方塊](./media/hana-get-started/image036b.jpg)
 
-輸入 SAPABAP1 結構描述密碼的問題：
+輸入 hello SAPABAP1 結構描述密碼問題：
 
-![輸入 SAPABAP1 結構描述密碼的問題](./media/hana-get-started/image037b.jpg)
+![輸入 hello SAPABAP1 結構描述密碼問題](./media/hana-get-started/image037b.jpg)
 
-完成每個工作之後，就會在 DB 安裝程序的每個階段旁邊顯示綠色核取記號。 訊息「執行...資料庫執行個體已完成。」隨即顯示。
+每個工作完成後，綠色的核取記號會顯示 hello DB 安裝程序的下一個 tooeach 階段。 hello 訊息 」 執行的...資料庫執行個體已完成。」隨即顯示。
 
 ![含有確認訊息的完成工作視窗](./media/hana-get-started/image023.jpg)
 
-安裝成功後，SAP 管理主控台也應該將 DB 執行個體顯示為「綠色」，並顯示完整的 SAP HANA 程序清單 (hdbindexserver、hdbcompileserver 等)。
+安裝成功後，hello SAP 管理主控台應該也會顯示 hello 與 「 綠色 」 的資料庫執行個體，並顯示 hello 的 SAP HANA 處理程序 （hdbindexserver、 hdbcompileserver，等等） 的完整清單。
 
 ![含有 SAP HANA 程序清單的 SAP 管理主控台視窗](./media/hana-get-started/image024.jpg)
 
-下列螢幕擷取畫面會顯示 SWPM 在 HANA 安裝期間於 /hana/shared 目錄下所建立的部分檔案結構。 因為沒有任何選項可指定不同的路徑，所以請務必在安裝 SAP HANA 之前，使用 SWPM 在 /hana 目錄之下掛接額外的磁碟空間。 這可以避免根檔案系統的可用空間不足。
+hello 下列螢幕擷取畫面顯示 hello 部分 hello SWPM hello HANA 安裝期間所建立的 hello /hana/shared 目錄下的檔案結構。 沒有任何選項 toospecify 不同的路徑，因為它是重要 toomount hello SAP HANA 安裝之前的 hello /hana 目錄下的額外磁碟空間使用 SWPM。 這樣可避免 hello 根檔案系統用完可用空間。
 
-![在 HANA 安裝期間建立 /hana/shared 目錄檔案結構](./media/hana-get-started/image025.jpg)
+![HANA 安裝期間建立的 hello /hana/shared 目錄檔案結構](./media/hana-get-started/image025.jpg)
 
-這個螢幕擷取畫面會顯示 /usr/sap 目錄的檔案結構：
+這個螢幕擷取畫面顯示 hello 檔案 hello /usr/sap 目錄結構：
 
-![/usr/sap 目錄檔案結構](./media/hana-get-started/image026.jpg)
+![hello /usr/sap 目錄檔案結構](./media/hana-get-started/image026.jpg)
 
-分散式 ABAP 安裝的最後一個步驟，是安裝主要應用程式伺服器執行個體：
+hello hello 分散式 ABAP 安裝最後一個步驟是 tooinstall hello 主要應用程式伺服器執行個體：
 
-![將主要應用程式伺服器執行個體顯示為最後一個步驟的 ABAP 安裝](./media/hana-get-started/image027b.jpg)
+![ABAP 安裝顯示主要的應用程式伺服器執行個體 hello 最後一個步驟](./media/hana-get-started/image027b.jpg)
 
-安裝主要應用程式伺服器執行個體和 SAP GUI 之後，使用 **DBA Cockpit** 交易來確認已正確完成 SAP HANA 安裝：
+Hello 主要應用程式伺服器執行個體和 SAP GUI 安裝之後，請使用 hello **DBA Cockpit** hello SAP HANA 安裝的交易 tooconfirm 已正確完成：
 
 ![確認安裝成功的 DBA Cockpit 視窗](./media/hana-get-started/image028b.jpg)
 
-在最後一個步驟中，您將需要先在 SAP 應用程式伺服器 VM 中安裝 HANA Studio，然後連線至 DB 伺服器 VM 上執行的 SAP HANA 執行個體：
+最後一個步驟中，您可能會想 toofirst 安裝 HANA Studio hello SAP 應用程式伺服器 VM，並再連線 toohello hello DB 伺服器 VM 執行的 SAP HANA 執行個體：
 
-![在 SAP 應用程式伺服器 VM 中安裝 SAP HANA Studio](./media/hana-get-started/image038b.jpg)
+![在 hello SAP 應用程式伺服器 VM 中安裝 SAP HANA Studio](./media/hana-get-started/image038b.jpg)
 
 ## <a name="manual-installation-of-sap-hana-hdblcm"></a>手動安裝 SAP HANA：HDBLCM
-除了使用 SWPM 在分散式安裝過程中安裝 SAP HANA 之外，您還能使用 HDBLCM，先獨立安裝 HANA。 例如，您接著可以安裝 SAP NetWeaver 7.5。 本節中的螢幕擷取畫面會顯示此程序的運作方式。
+在加法 tooinstalling 分散式安裝中使用 SWPM 一部分的 SAP HANA，您可以安裝 hello HANA 獨立首先，使用 HDBLCM。 例如，您接著可以安裝 SAP NetWeaver 7.5。 本節中的 hello 螢幕擷取畫面顯示此程序的運作方式。
 
-如需有關 HANA HDBLCM 工具的詳細資訊，請參閱：
+如需 hello HANA HDBLCM 工具的詳細資訊，請參閱：
 
-* [為您的工作選擇正確的 SAP HANA HDBLCM](https://help.sap.com/saphelp_hanaplatform/helpdata/en/68/5cff570bb745d48c0ab6d50123ca60/content.htm)
+* [選擇 hello 更正您工作的 SAP HANA HDBLCM](https://help.sap.com/saphelp_hanaplatform/helpdata/en/68/5cff570bb745d48c0ab6d50123ca60/content.htm)
 * [SAP HANA 生命週期管理工具](http://saphanatutorial.com/sap-hana-lifecycle-management-tools/)
 * [SAP HANA 伺服器安裝與更新指南](http://help.sap.com/hana/SAP_HANA_Server_Installation_Guide_en.pdf)
 
-為了避免 `\<HANA SID\>adm user` (由 HDBLCM 工具建立) 的預設群組識別碼設定發生問題，請在透過 HDBLCM 安裝 SAP HANA 之前，先使用群組識別碼 `1001` 定義名為 `sapsys` 的新群組：
+tooavoid 問題，預設值群組識別碼設定 hello `\<HANA SID\>adm user` （hello HDBLCM 工具所建立），定義新的群組稱為`sapsys`使用群組識別碼`1001`安裝 SAP HANA 透過 HDBLCM 之前：
 
 ![使用群組識別碼 1001 定義的新群組 "sapsys"](./media/hana-get-started/image030.jpg)
 
-當您第一次啟動 HDBLCM 時，會顯示簡易的開始功能表。 選取項目 1 [安裝新的系統]，如下列螢幕擷取畫面所示：
+當您第一次啟動 HDBLCM hello 時，會顯示簡單 [開始] 功能表。 選取的項目 1，**安裝新的系統**hello 下列螢幕擷取畫面所示：
 
-![HDBLCM 開始視窗中的 [安裝新的系統] 選項](./media/hana-get-started/image031.jpg)
+![Hello HDBLCM 開始視窗中的 [安裝新的系統] 選項](./media/hana-get-started/image031.jpg)
 
-下列螢幕擷取畫面顯示您先前選取的所有重要選項。
+hello 下列螢幕擷取畫面會顯示您先前選取所有 hello 金鑰選項。
 
 > [!IMPORTANT]
-> 針對 HANA 記錄和資料磁碟區命名的目錄以及安裝路徑 (此範例中的 /hana/shared) 不應為根目錄檔案系統的一部分。 這些目錄屬於連結至 VM 的 Azure 資料磁碟 (如＜磁碟安裝＞小節中所述)。 這個方法有助於避免根檔案系統的空間不足。 在下列螢幕擷取畫面中，您可以看到 HANA 系統管理員具有使用者識別碼 `1005`，並且屬於安裝前所定義的 `sapsys` 群組 (識別碼 `1001`)。
+> 目錄會在名為 HANA 記錄檔和資料磁碟區，以及 hello 安裝路徑 （hana/這個範例中為 shared） 和 /usr/sap，不應該 hello 根檔案系統的一部分。 這些目錄屬於 toohello Azure 資料磁碟所連接的 toohello VM （hello 磁碟 < 安裝 > 一節所述）。 這種方法可避免用完空間 hello 根檔案系統。 在下列螢幕擷取畫面的 hello，您可以看到該 hello HANA 系統管理員具有使用者 ID`1005`屬於 hello`sapsys`群組 (識別碼`1001`)，定義 hello 安裝之前。
 
 ![先前選取的所有重要 SAP HANA 元件清單](./media/hana-get-started/image032.jpg)
 
-您可以在 /etc/hosts passwd 目錄中檢查`\<HANA SID\>adm user` (下列螢幕擷取畫面中的 `azdadm`) 的詳細資料：
+您可以檢查 hello `\<HANA SID\>adm user` (`azdadm` hello 下列螢幕擷取畫面中) 中目錄 hello /etc/hosts passwd 詳細資料：
 
-![HANA \<HANA SID\>adm 使用者詳細資料會列於 /etc/passwd 目錄中](./media/hana-get-started/image033.jpg)
+![HANA \<HANA SID\>adm 使用者詳細資料列在 hello /etc/hosts passwd 目錄](./media/hana-get-started/image033.jpg)
 
-使用 HDBLCM 安裝 SAP HANA 之後，您就能在 SAP HANA Studio 中看見檔案結構，如下列螢幕擷取畫面所示。 尚未提供 SAPABAP1 結構描述 (其中包括所有的 SAP NetWeaver 資料表)。
+使用 HDBLCM 安裝 SAP HANA 之後，您可以看到在 SAP HANA Studio 中的 hello 檔案結構，hello 下列螢幕擷取畫面所示。 hello SAPABAP1 結構描述，其中包含所有 hello SAP NetWeaver 資料表，尚無法使用。
 
 ![SAP HANA Studio 中的 SAP HANA 檔案結構](./media/hana-get-started/image034.jpg)
 
-安裝 SAP HANA 之後，就能在其上安裝 SAP NetWeaver。 如下列螢幕擷取畫面所示，已使用 SWPM 來將安裝作為分散式安裝執行 (如上一節所述)。 當您使用 SWPM 安裝資料庫執行個體時，可以使用 HDBLCM 輸入相同的資料 (例如，主機名稱、HANA SID 和執行個體號碼)。 SWPM 接著會使用現有的 HANA 安裝，並加入多個結構描述。
+安裝 SAP HANA 之後，就能在其上安裝 SAP NetWeaver。 下列螢幕擷取畫面所示的 hello，為已做為分散式安裝使用 SWPM （如 hello 前一節中所述） 執行 hello 安裝。 當您使用 SWPM 安裝 hello 資料庫執行個體時，您會輸入 hello 使用 HDBLCM （例如，主機名稱、 HANA SID 和執行個體號碼） 相同的資料。 SWPM 然後使用 hello 現有 HANA 安裝，並加入更多結構描述。
 
 ![使用 SWPM 執行分散式安裝](./media/hana-get-started/image035b.jpg)
 
-下列螢幕擷取畫面會顯示 SWPM 安裝步驟，您可以在其中輸入 DBACOCKPIT 結構描述的相關資料：
+hello 下列螢幕擷取畫面顯示 hello SWPM 安裝步驟，您輸入 hello DBACOCKPIT 結構描述相關的資料：
 
-![輸入 DBACOCKPIT 結構描述資料的 SWPM 安裝步驟](./media/hana-get-started/image036b.jpg)
+![其中輸入 DBACOCKPIT 結構描述資料 hello SWPM 安裝步驟](./media/hana-get-started/image036b.jpg)
 
-輸入 SAPABAP1 結構描述的相關資料：
+輸入 hello SAPABAP1 結構描述相關的資料：
 
-![輸入 SAPABAP1 結構描述的相關資料](./media/hana-get-started/image037b.jpg)
+![輸入 hello SAPABAP1 結構描述相關的資料](./media/hana-get-started/image037b.jpg)
 
-完成 SWPM 資料庫執行個體安裝後，就能在 SAP HANA Studio 中看見 SAPABAP1 結構描述：
+Hello SWPM 資料庫執行個體安裝完成之後，您可以看到在 SAP HANA Studio 中的 hello SAPABAP1 結構描述：
 
-![SAP HANA Studio 中的 SAPABAP1 結構描述](./media/hana-get-started/image038b.jpg)
+![SAP HANA Studio 中的 hello SAPABAP1 結構描述](./media/hana-get-started/image038b.jpg)
 
-最後，在完成 SAP 應用程式伺服器和 SAP GUI 安裝後，您就能使用 **DBA Cockpit** 交易來驗證 HANA DB 執行個體：
+最後，hello SAP 應用程式伺服器和 SAP GUI 安裝完成之後，您可以確認 hello HANA 資料庫執行個體使用 hello **DBA Cockpit**交易：
 
-![使用 DBA Cockpit 來交易驗證 HANA DB 執行個體](./media/hana-get-started/image039b.jpg)
+![DBA Cockpit 交易 hello hello HANA 資料庫執行個體驗證](./media/hana-get-started/image039b.jpg)
 
 
 ## <a name="sap-software-downloads"></a>SAP 軟體下載
-您可以從 SAP Service Marketplace 下載軟體，如下列螢幕擷取畫面所示。
+您可以從 hello SAP 服務商場，下載軟體，hello 下列螢幕擷取畫面所示。
 
 下載適用於 Linux/HANA 的 NetWeaver 7.5：
 

@@ -1,5 +1,5 @@
 ---
-title: "Windows 虛擬機器概觀 |Microsoft 文件"
+title: "aaaWindows 虛擬機器概觀 |Microsoft 文件"
 description: "說明在 Azure 入口網站中的 Windows 虛擬機器概觀的內容"
 services: virtual-machines-windows
 author: sewatson
@@ -8,19 +8,19 @@ ms.service: virtual-machines-windows
 ms.topic: article
 ms.date: 04/27/2017
 ms.author: sewatson
-ms.openlocfilehash: 03b204d9970a3831543a03dfa08e2a4d8b274034
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1992c0715d39669565cf1754975d2d82b19d3b22
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-virtual-machines-documentation"></a>Windows 虛擬機器文件
 
-Azure Windows 虛擬機器使用 Windows Server 提供隨選、高度可調整、安全且虛擬化的基礎結構。 了解如何使用快速入門、教學課程和範例建立、設定、管理和調整 Windows VM。
+Azure Windows 虛擬機器使用 Windows Server 提供隨選、高度可調整、安全且虛擬化的基礎結構。 了解 toocreate，如何設定、 管理及調整 Windows Vm 與我們的快速入門中，教學課程和範例。
 
 ## <a name="5-minute-quickstarts"></a>5 分鐘快速入門
 
-了解如何在執行 Windows Server 2016 的虛擬機器中部署 IIS 網頁伺服器：
+深入了解如何在執行 Windows Server 2016 的虛擬機器內 toodeploy IIS web 伺服器：
 
 - [Azure 入口網站](/azure/virtual-machines/virtual-machines-windows-quick-create-portal?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 - [Azure PowerShell](/azure/virtual-machines/virtual-machines-windows-quick-create-powershell?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -28,7 +28,7 @@ Azure Windows 虛擬機器使用 Windows Server 提供隨選、高度可調整�
 
 ## <a name="step-by-step-tutorials"></a>逐步教學課程
 
-了解如何部署、 管理及監視 Windows Azure 上的 Vm。
+了解如何 toodeploy、 管理及監視 Windows Azure 上的 Vm。
 
 - [建立並管理 Windows VM](/azure/virtual-machines/windows/tutorial-manage-vm)
 - [建立和管理 VM 磁碟](/azure/virtual-machines/windows/tutorial-manage-data-disk)
@@ -51,12 +51,12 @@ Azure Windows 虛擬機器使用 Windows Server 提供隨選、高度可調整�
 
 ## <a name="samples"></a>範例
 
-將第一個應用程式部署至 Azure。
+部署您的第一個應用程式 tooAzure。
 
 - [Azure CLI](/azure/virtual-machines/virtual-machines-windows-cli-samples?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 - [Azure PowerShell](/azure/virtual-machines/virtual-machines-windows-powershell-samples?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="more"></a>更多資訊
 
-- [請瀏覽文件，以進一步了解](/azure/virtual-machines/windows/index)
+- [請瀏覽多個文件 toolearn](/azure/virtual-machines/windows/index)
 - [深入了解所有 Azure 服務](https://aka.ms/j3wr7y)

@@ -1,5 +1,5 @@
 ---
-title: "針對 Windows VM 部署-傳統進行疑難排解 | Microsoft Docs"
+title: "aaaTroubleshoot Windows VM 部署傳統 |Microsoft 文件"
 description: "針對在 Azure 中建立新 Windows 虛擬機器的傳統部署問題進行疑難排解"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: cjiang
-ms.openlocfilehash: 990914e3d9541e8574ce6ba0bf6c996cb394470a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aa12cb013a18e0572fbef8b7ea69106dd47c1fd9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-classic-deployment-issues-with-creating-a-new-windows-virtual-machine-in-azure"></a>針對在 Azure 中建立新 Windows 虛擬機器的傳統部署問題進行疑難排解
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-selectors](../../../../includes/virtual-machines-windows-troubleshoot-deployment-new-vm-selectors-include.md)]
@@ -27,66 +27,66 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-opening](../../../../includes/virtual-machines-troubleshoot-deployment-new-vm-opening-include.md)]
 
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需本文的 Resource Manager 版本，請參閱[這裡](../../virtual-machines-windows-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文件涵蓋使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。 如需這篇文章 hello 資源管理員版本，請參閱[這裡](../../virtual-machines-windows-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 [!INCLUDE [support-disclaimer](../../../../includes/support-disclaimer.md)]
 
 ## <a name="collect-audit-logs"></a>收集稽核記錄檔
-若要開始進行排解疑難，請收集稽核記錄，識別與問題相關的錯誤。
+troubleshooting，toostart 收集 hello 稽核記錄與 hello 問題相關聯的 tooidentify hello 錯誤。
 
-在 Azure 入口網站中，依序按一下 [瀏覽] > [虛擬機器] > 您的 Windows 虛擬機器 > [設定] > [稽核記錄檔]。
+在 hello Azure 入口網站，按一下 **瀏覽** > **虛擬機器** > *Windows 虛擬機器* >  **設定** > **稽核記錄檔**。
 
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-issue1](../../../../includes/virtual-machines-troubleshoot-deployment-new-vm-issue1-include.md)]
 
 [!INCLUDE [virtual-machines-windows-troubleshoot-deployment-new-vm-table](../../../../includes/virtual-machines-windows-troubleshoot-deployment-new-vm-table.md)]
 
-**Y：** 如果 OS 是一般化的 Windows，且上傳和 (或) 擷取它時使用的是一般化設定，就不會有任何錯誤。 同樣地，如果 OS 是特殊化的 Windows，且上傳和 (或) 擷取它時使用的是特殊化設定，就不會有任何錯誤。
+**Y:**如果 hello 作業系統是 Windows 一般化，而且它是上傳及/或所擷取的 hello 一般化設定，則不會有任何錯誤。 同樣地，如果 hello 作業系統是 Windows 的特製化，和它已上傳及/或所擷取的 hello 特製化的設定，則不會有任何錯誤。
 
 **上傳錯誤：**
 
-**N<sup>1</sup>：**如果作業系統是一般化的 Windows，但是以特殊化被上傳，就會發生佈建逾時錯誤，VM 會卡在 OOBE 畫面。
+**N<sup>1</sup>:**如果 hello 作業系統是 Windows 一般化，而且會當做上傳的特製化，就會以 VM 停駐在 hello OOBE 螢幕 hello 佈建的逾時錯誤。
 
-**N<sup>2</sup>：**如果作業系統是特殊化的 Windows，但是以一般化被上傳，就會發生佈建失敗錯誤，VM 會卡在 OOBE 畫面，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。
+**N<sup>2</sup>:**如果 hello 作業系統是 Windows 的特製化，和上傳為一般化，就會以 hello VM 停駐在 hello OOBE 畫面，因為 hello 新的 VM 正在執行與 hello 原始電腦的佈建失敗錯誤名稱、 使用者名稱和密碼。
 
 **解決方案：**
 
-若要解決這兩個錯誤，請上傳原始 VHD、可用的內部部署、以及與該 OS (一般化/特殊化) 相同的設定。 若要以一般化上傳，請務必先執行 sysprep。 如需詳細資訊，請參閱 [建立 Windows Server VHD 並上傳至 Azure](createupload-vhd.md) 。
+tooresolve 這兩個這些錯誤上, 傳 hello 原始 VHD，內部使用，與 hello 相同設定，與 hello OS （一般化/特製化）。 tooupload 為一般化，請記住 toorun sysprep 第一次。 請參閱[建立並上傳 Windows Server VHD tooAzure](createupload-vhd.md)如需詳細資訊。
 
 **擷取錯誤：**
 
-**N<sup>3</sup>：**如果作業系統是一般化的 Windows，但是以特殊化被擷取，就會發生佈建逾時錯誤，因為 VM 被標示為一般化而無法加以使用。
+**N<sup>3</sup>:**如果 hello 作業系統是 Windows 一般化，而且都擷取成特製化，就會發生佈建的逾時錯誤因為 hello 原始 VM 就無法使用為它標示為一般化。
 
-**N<sup>4</sup>：**如果作業系統是特殊化的 Windows，但是以一般化的方式擷取，就會發生佈建失敗錯誤，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。 此外，原始 VM 會因被標示為特殊化而無法供使用。
+**N<sup>4</sup>:**如果 hello 作業系統是 Windows 的特製化，和擷取為一般化，就會發生佈建的失敗錯誤，因為 hello 新的 VM 正在執行 hello 原始電腦名稱、 使用者名稱和密碼。 此外，hello 原始 VM 並未使用因為它已標示為特製化。
 
 **解決方案：**
 
-若要解決這兩個錯誤，請從入口網站中刪除目前的映像，然後使用與作業系統相同的設定 (一般化/特殊化) [從目前的 VHD 重新擷取映像](capture-image.md) 。
+tooresolve 這兩個這些錯誤，從 hello 入口網站中，刪除 hello 目前映像和[收復 hello 從目前的 Vhd](capture-image.md)與 hello 相同設定，與 hello OS （一般化/特製化）。
 
 ## <a name="issue-custom-gallery-marketplace-image-allocation-failure"></a>問題︰自訂/資源庫/Marketplace 映像；配置失敗
-當新的 VM 要求被傳送到沒有可用空間可處理要求、或不支援所要求的 VM 大小的叢集，便會發生此錯誤。 在相同的雲端服務中不可混合不同系列的 VM。 因此，如果您想要建立和您的雲端服務可支援大小不同的新 VM，計算要求將會失敗。
+會發生這個錯誤情況時傳送 hello 新的 VM 要求 tooa 叢集可能沒有可用的空間 tooaccommodate hello 要求，或無法支援所要求的 hello VM 大小。 不可能 toomix 不同序列 hello 中 Vm 的相同雲端服務。 因此如果您想 toocreate 比您的雲端服務可支援不同大小的新的 VM，hello 計算要求將會失敗。
 
-您可能會遇到因兩種情況造成的錯誤，取決於您用於建立新 VM 的雲端服務的條件約束。
+您可以根據 hello hello 雲端服務的條件約束使用 toocreate hello 新的 VM，您可能會遇到的其中兩個情況造成錯誤。
 
-**原因 1：** 雲端服務已釘選到特定叢集，或是連結到同質群組，因而釘選到所設計的特定叢集。 因此，系統會在裝載現有資源的相同叢集中，嘗試執行該同質群組中的新計算資源要求。 不過，同一叢集可能不支援要求的 VM 大小，或者可用空間不足，導致配置錯誤。 無論新的資源是透過新的雲端服務，或是透過現有的雲端服務來建立，都是如此。
+**原因 1:** hello 雲端服務是已釘選的 tooa 特定叢集，或者它是連結的 tooan 同質群組，並因此釘選的 tooa 特定群集的設計。 因此在該同質群組中，要求新的計算資源會嘗試在 hello 相同叢集 hello 現有資源的裝載位置。 不過，hello 相同叢集可能不支援 hello 要求的 VM 大小，或有可用空間不足，造成配置錯誤。 透過新的雲端服務或透過現有的雲端服務的 hello 新資源建立是否為 true。
 
 **解決方式 1：**
 
 * 建立新的雲端服務，並將它和區域或以區域為基礎的虛擬網路相關聯。
-* 在新的雲端服務中建立新 VM。
-  如果您在嘗試建立新的雲端服務時收到錯誤，請稍後再試一次，或變更雲端服務的區域。
+* Hello 新的雲端服務中建立新的 VM。
+  如果嘗試 toocreate 新的雲端服務時，您會收到錯誤，稍後再試一次，或變更 hello 雲端服務的 hello 地區。
 
 > [!IMPORTANT]
-> 如果您嘗試在現有的雲端服務中建立新的 VM，但無法建立，而您又必須為新的 VM 建立新的雲端服務，則可以選擇合併相同雲端服務中的所有 VM。 若要這樣做，請刪除現有雲端服務中的 VM，然後從它們位於新雲端服務中的磁碟重新擷取它們。 然而，請務必記得新的雲端服務將會有新的名稱和 VIP，因此您需要為所有目前將此資訊用於現有雲端服務的相依性更新該資訊。
+> 如果您嘗試 toocreate 中現有的雲端服務的新 VM，但無法，而且產生 toocreate 新的雲端服務，新的 vm，您可以選擇 tooconsolidate 您所有的 Vm 中 hello 相同雲端服務。 因此 toodo 刪除 hello 現有雲端服務中的 hello Vm，然後重新加以擷取其 hello 新的雲端服務中的磁碟。 不過，它是重要 tooremember，hello 新的雲端服務會有新名稱和 VIP，因此您需要 tooupdate 供所有目前使用這項資訊為 hello 現有雲端服務的 hello 相依性。
 > 
 > 
 
-**原因 2：** 雲端服務已經與連結到同質群組的虛擬網路關聯，因而釘選到所設計的特定叢集。 因此，系統會在裝載現有資源的相同叢集中，嘗試執行該同質群組中的所有新計算資源要求。 不過，同一叢集可能不支援要求的 VM 大小，或者可用空間不足，導致配置錯誤。 無論新的資源是透過新的雲端服務，或是透過現有的雲端服務來建立，都是如此。
+**原因 2:** hello 雲端服務可以是連結的 tooan 同質群組，所以它是已釘選的 tooa 所設計的特定叢集的虛擬網路相關聯。 相同叢集 hello 現有資源的裝載位置的 hello 因此會嘗試在該同質群組中的所有新計算資源要求。 不過，hello 相同叢集可能不支援 hello 要求的 VM 大小，或有可用空間不足，造成配置錯誤。 透過新的雲端服務或透過現有的雲端服務的 hello 新資源建立是否為 true。
 
 **解決方式 2：**
 
 * 建立新的區域虛擬網路。
-* 在新的虛擬網路中建立新 VM。
-* [連接您現有的虛擬網路](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/) 到新的虛擬網路。 深入了解 [區域虛擬網路](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/)。 此外，也可以 [將同質群組式虛擬網路移轉至區域虛擬網路](https://azure.microsoft.com/blog/2014/11/26/migrating-existing-services-to-regional-scope/)，然後建立新 VM。
+* 建立 hello hello 新的虛擬網路中的新 VM。
+* [您現有的虛擬網路連線](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/)toohello 新的虛擬網路。 深入了解 [區域虛擬網路](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/)。 或者，您可以[將同質群組為基礎的虛擬網路 tooa 地區虛擬網路移轉](https://azure.microsoft.com/blog/2014/11/26/migrating-existing-services-to-regional-scope/)，然後再建立 hello 新的 VM。
 
 ## <a name="next-steps"></a>後續步驟
 如果您在啟動已停止的 Windows VM，或重新調整 Azure 中現有的 Windows VM 大小時遇到問題，請參閱 [Troubleshoot classic deployment issues with restarting or resizing an existing Windows Virtual Machine in Azure (針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器大小的傳統部署問題進行疑難排解)](virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)。

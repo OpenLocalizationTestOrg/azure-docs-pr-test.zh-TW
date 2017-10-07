@@ -1,6 +1,6 @@
 ---
-title: "在 AAD 中針對 Windows 建立工作或學校身分識別 | Microsoft Docs"
-description: "了解如何在 Azure Active Directory 中建立與 Windows 虛擬機器搭配使用的工作或學校身分識別。"
+title: "aaaCreate AAD for Windows 中的工作或學校識別 |Microsoft 文件"
+description: "深入了解如何 toocreate 中 Azure Active Directory toouse 搭配 Windows 虛擬機器的工作或學校身分識別。"
 services: virtual-machines-windows
 documentationcenter: 
 author: squillace
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 08/23/2016
 ms.author: rasquill
-ms.openlocfilehash: 7694b959a384aaed213adc31e02debca31b7c131
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dd6e2381fd0aa503483aa786b36232e557729c4d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="creating-a-work-or-school-identity-in-azure-active-directory-to-use-with-windows-vms"></a>在 Azure Active Directory 中建立與 Windows VM 搭配使用的工作或學校身分識別
-如果您已建立個人 Azure 帳戶，或有個人 MSDN 訂用帳戶並已建立 Azure 帳戶來運用 MSDN Azure 點數 -- 即表示您已使用「Microsoft 帳戶」  身分識別建立它。 Azure 有許多很棒的功能 -- 例如 [資源群組範本](../../azure-resource-manager/resource-group-overview.md) -- 需要工作或學校帳戶 (由 Azure Active Directory 管理的身分識別) 才能運作。 幸運的是，預設的 Azure Active Directory 網域會提供您個人的 Azure 帳戶，讓您可以用來建立新的工作或學校帳戶，以搭配需要這類帳戶使用的 Azure 功能，因此您可以遵循下列指示來建立新的工作或學校帳戶。
+# <a name="creating-a-work-or-school-identity-in-azure-active-directory-toouse-with-windows-vms"></a>在 Windows Vm 與 Azure Active Directory toouse 中建立的工作或學校的身分識別
+如果您建立個人的 Azure 帳戶或具有個人的 MSDN 訂用帳戶並建立 hello MSDN Azure 信用額度-hello Azure 帳戶 tootake 利用使用*Microsoft 帳戶*識別 toocreate 它。 許多很棒的功能的 Azure--[資源群組範本](../../azure-resource-manager/resource-group-overview.md)是其中一個範例-需要工作或學校帳戶 （Azure Active Directory 管理的身分識別） toowork。 您可以遵循 hello 指示 toocreate 下方的 hello 您個人的 Azure 帳戶相關的最佳事項之一是，它隨附預設 Azure Active Directory 網域，您可以使用 toocreate 新的工作或學校的幸運的是，新的工作或學校帳戶您可以使用 Azure 功能需要它的帳戶。
 
-不過，最近的變更讓您可以使用[這裡](../../xplat-cli-connect.md)所述的 `azure login` 互動式登入方法，以任何類型的 Azure 帳戶來管理您的訂用帳戶。 您可以使用同樣的機制，或者可以遵循接下來的指示。 也可以 [在 Azure Active Directory 中建立與 Linux VM 搭配使用的工作或學校身分識別](../linux/create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+然而，最近的變更可讓可能 toomanage 訂用帳戶使用 hello 的 Azure 帳戶的任何類型`azure login`所述的互動式登入方法[這裡](../../xplat-cli-connect.md)。 您可以使用該機制，或您可以依照接下來的 hello 指示。 您也可以[建立工作或學校的身分識別中使用 Linux Vm 的 Azure Active Directory toouse](../linux/create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 

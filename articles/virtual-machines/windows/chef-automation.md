@@ -1,6 +1,6 @@
 ---
-title: "使用 Chef 的 Azure 虛擬機器部署 | Microsoft Docs"
-description: "了解如何使用 Chef 執行自動化的虛擬機器部署和設定 Microsoft Azure"
+title: "chef aaaAzure 虛擬機器部署 |Microsoft 文件"
+description: "了解 Chef toodo toouse 自動化虛擬機器部署和設定 Microsoft Azure 上的方式"
 services: virtual-machines-windows
 documentationcenter: 
 author: diegoviso
@@ -15,149 +15,149 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/30/2017
 ms.author: diviso
-ms.openlocfilehash: b6db0fbb4e0de896994954974ddcc39daad9c125
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c5ea98c673b2ee75dd4cedf27e50330af05230d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automating-azure-virtual-machine-deployment-with-chef"></a>使用 Chef 自動化 Azure 虛擬機器部署
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 Chef 是個很棒的工具，可提供自動化和所需狀態組態。
 
-在我們最新的雲端應用程式開發介面版本中，Chef 提供與 Azure 的緊密整合，您可以透過單一命令佈建和部署組態狀態。
+我們最新的雲端應用程式開發介面版本中，Chef 提供 Azure 與緊密整合，讓您 hello 能力 tooprovision 及部署的組態狀態，透過單一命令。
 
-在本文中，您將了解如何設定可佈建 Azure 虛擬機器的 Chef 環境，並逐步指導您建立原則或 “CookBook”，然後將此操作手冊部署到 Azure 虛擬機器中。
+在本文中，我們將示範如何 tooset 註冊您的 Chef 環境 tooprovision Azure 虛擬機器，並會逐步引導您建立原則或 「 操作手冊"，然後再部署這個操作手冊 tooan Azure 虛擬機器。
 
 讓我們開始吧！
 
 ## <a name="chef-basics"></a>Chef 基本概念
-開始之前，建議您檢閱 Chef 的基本概念。 您可以在 <a href="http://www.chef.io/chef" target="_blank">這裡</a> 找到有用資訊，建議您在嘗試進行本逐步解說之前，先快速閱讀此內容。 不過，在開始之前，我會先複習一下基本概念。
+在開始之前，建議您檢閱的 Chef hello 基本概念。 您可以在 <a href="http://www.chef.io/chef" target="_blank">這裡</a> 找到有用資訊，建議您在嘗試進行本逐步解說之前，先快速閱讀此內容。 我將在我們開始之前，不過複習 hello 基本概念。
 
-下圖說明高層級的 Chef 架構。
+hello 下列圖表描述 hello 高階 Chef 架構。
 
 ![][2]
 
 Chef 有三個主要的架構元件：Chef 伺服器、Chef 用戶端 (節點) 和 Chef 工作站。
 
-Chef 伺服器是我們的管理重點，Chef 伺服器包含兩個選項：代管解決方案或內部部署解決方案。 我們將使用代管解決方案。
+hello Chef Server 是我們的管理點，而且有兩個選項的 hello Chef Server： 託管的解決方案或內部部署方案。 我們將使用代管解決方案。
 
-Chef 用戶端 (節點)是位於您所管理之伺服器上的代理程式。
+hello Chef 用戶端 （節點） 是位於您所管理的 hello 伺服器 hello 代理程式。
 
-Chef 工作站是我們的系統管理工作站，我們可以在這裡建立原則並執行管理命令。 我們可以從 Chef 工作站執行管理基礎結構的 **knife** 命令。
+hello Chef 工作站是我們的系統管理工作站，我們建立我們的原則和執行我們的管理命令。 我們要執行 hello **knife**命令 hello Chef 工作站 toomanage 從我們的基礎結構。
 
-此外還有 “Cookbooks” 和 “Recipes” 的概念。 這些是我們有效定義並套用至服務的原則。
+另外還有 hello 概念"食譜 」 與 「 食譜 」。 這些都是有效我們定義及套用 tooour 伺服器 hello 原則。
 
-## <a name="preparing-the-workstation"></a>準備工作站
-首先準備工作站。 使用標準的 Windows 工作站。 我們需要建立可儲存組態檔和 cookbook 的目錄。
+## <a name="preparing-hello-workstation"></a>正在準備 hello 工作站
+首先，可讓準備 hello 工作站。 使用標準的 Windows 工作站。 我們的組態檔和操作手冊，我們需要 toocreate 目錄 toostore。
 
 首先，建立名為 C:\chef 的目錄。
 
 然後建立名為 c:\chef\cookbooks 的第二個目錄。
 
-我們現在必須下載 Azure 設定檔，以便 Chef 與 Azure 訂閱進行通訊。
+我們現在需要 toodownload 我們的 Azure 設定檔，Chef 可以與我們的 Azure 訂用帳戶進行通訊。
 
 <!--Download your publish settings from [here](https://manage.windowsazure.com/publishsettings/).-->
-使用 PowerShell Azure [Get-AzurePublishSettingsFile](https://docs.microsoft.com/en-us/powershell/module/azure/get-azurepublishsettingsfile?view=azuresmps-4.0.0) 命令來下載您的發佈設定。 
+下載您發行設定使用 PowerShell Azure hello [Get-azurepublishsettingsfile](https://docs.microsoft.com/en-us/powershell/module/azure/get-azurepublishsettingsfile?view=azuresmps-4.0.0)命令。 
 
-將發行設定檔儲存在 C:\chef 中。
+儲存 hello C:\chef 中的發行設定檔。
 
 ## <a name="creating-a-managed-chef-account"></a>建立受管理的 Chef 帳戶
 在 [這裡](https://manage.chef.io/signup)註冊代管的 Chef 帳戶。
 
-在註冊過程中，我們將要求您建立新的組織。
+在 hello 註冊過程中，您將會詢問 toocreate 新的組織。
 
 ![][3]
 
-建立組織後，請下載「入門套件」。
+一旦建立您的組織，下載 hello 入門套件。
 
 ![][4]
 
 > [!NOTE]
-> 如果您收到提示，警告您將重新設定金鑰，您可以繼續作業，因為我們尚未設定任何基礎結構。
+> 如果您收到提示，警告您，將會重設您的金鑰，因為我們不有尚未設定任何現有基礎結構，所以 tooproceed [確定]。
 > 
 > 
 
 此入門套件 zip 檔案包含您的組織組態檔和金鑰。
 
-## <a name="configuring-the-chef-workstation"></a>設定 Chef 工作站
-將 chef-starter.zip 的內容解壓縮到 C:\chef。
+## <a name="configuring-hello-chef-workstation"></a>設定 hello Chef 工作站
+擷取 hello chef starter.zip tooC:\chef hello 內容。
 
-將 chef-starter\chef-repo\.chef 下的所有檔案複製到您的 c:\chef 目錄。
+複製儲存 starter\chef chef 機制底下的所有檔案\.chef tooyour c:\chef 目錄。
 
-您的目錄現在看起來應該類似以下範例。
+您的目錄現在應該看起來類似下列範例中的 hello。
 
 ![][5]
 
-您現在應該會有 4 個檔案，包括 c:\chef 根目錄中的 Azure 發行檔案。
+您現在應該有四個檔案，包括 c:\chef hello 根目錄中的 hello Azure 發行檔案。
 
-PEM 檔案包含可進行通訊的組織和管理員私密金鑰，而 knife.rb檔案則包含 knife 組態。 我們將需要編輯 knife.rb 檔案。
+hello PEM 檔案包含您的組織和管理私密金鑰進行通訊，而 hello knife.rb 檔案包含 knife 組態。 我們需要 tooedit hello knife.rb 檔案。
 
-在您選擇的編輯器中開啟此檔案，並修改 “cookbook_path” (移除其路徑中的 /../)，因此它會顯示如下所示。
+在您選擇的編輯器中開啟 hello 檔案，並藉由移除 hello 修改 hello"cookbook_path"/...從中 hello 路徑，讓它出現如下所示。
 
     cookbook_path  ["#{current_dir}/cookbooks"]
 
-並新增下列反映 Azure 發行設定檔名稱的程式碼行。
+也新增 hello 下列程式行會將 hello 名稱反映您的 Azure 發行設定檔。
 
     knife[:azure_publish_settings_file] = "yourfilename.publishsettings"
 
-現在 knife.rb 檔案看起來應該會類似下列範例。
+Knife.rb 檔現在看起來應該類似下列範例的 toohello。
 
 ![][6]
 
-這幾行程式碼可確保 Knife 會參考 c:\chef\cookbooks 底下的 cookbooks 目錄，並在 Azure 作業期間使用 Azure 發行設定檔。
+Knife 參考 hello 下 c:\chef\cookbooks 的操作手冊目錄，而且也會使用我們的 Azure 發佈設定檔的 Azure 作業期間，可確保這些線條。
 
-## <a name="installing-the-chef-development-kit"></a>安裝 Chef 開發套件
-接下來 [下載並安裝](http://downloads.getchef.com/chef-dk/windows) ChefDK (Chef 開發套件) 以設定 Chef 工作站。
+## <a name="installing-hello-chef-development-kit"></a>安裝 hello Chef 開發套件
+下一步[下載並安裝](http://downloads.getchef.com/chef-dk/windows)hello ChefDK （Chef 開發套件） tooset Chef 工作站。
 
 ![][7]
 
-安裝在 c:\opscode 預設位置。 此安裝大約需要 10 分鐘的時間。
+安裝 c:\opscode hello 預設位置中。 此安裝大約需要 10 分鐘的時間。
 
 確認您的 PATH 變數包含 C:\opscode\chefdk\bin、C:\opscode\chefdk\embedded\bin、c:\users\yourusername\.chefdk\gem\ruby\2.0.0\bin 等項目
 
 如果沒有，請確定您已加入這些路徑 ！
 
-*請注意，路徑的順序很重要！* 如果您的 opscode 路徑順序不正確，則會出現問題。
+*請注意 hello 順序的 hello 路徑重要 ！* 如果 opscode 路徑不正確的順序 hello 會出現問題。
 
 在繼續之前，請重新啟動您的工作站。
 
-接下來，我們將安裝 Knife Azure 延伸模組。 這會以「Azure 外掛程式」的形式提供 Knife。
+接下來，我們將會安裝 hello Knife Azure 延伸模組。 這提供 Knife hello"Azure Plugin"。
 
-執行下列命令。
+執行下列命令的 hello。
 
     chef gem install knife-azure ––pre
 
 > [!NOTE]
-> -pre 引數可確保您會收到最新的 RC 版本 Knife Azure 外掛程式，該版本可讓您存取最新的 API 組合。
+> hello – 前置引數可確保您收到 hello RC 新版 hello Knife Azure 外掛程式可提供存取 toohello 一組最新的 Api。
 > 
 > 
 
-同時也可能安裝多個相依性。
+很少的相依性也會安裝在 hello 相同的時間。
 
 ![][8]
 
-若要確保一切都已正確設定，請執行下列命令。
+tooensure 一切都已正確設定，執行下列命令的 hello。
 
     knife azure image list
 
 如果一切都已正確設定，您會在捲動時看到可用的 Azure 映像清單。
 
-恭喜！ 工作站已設定！
+恭喜！ 設定工作站 hello ！
 
 ## <a name="creating-a-cookbook"></a>建立 Cookbook
-Chef 會使用 Cookbook 來定義一組您想在受管理的用戶端上執行的命令。 建立 Cookbook 非常簡單，我們可以使用 **chef generate cookbook** 命令來產生 Cookbook 範本。 我將呼叫我的 Cookbook Web 伺服器，因為我需要可自動部署 IIS 的原則。
+使用 Chef toodefine 操作手冊的一組命令，您會希望 tooexecute 您受管理的用戶端上。 建立操作手冊很簡單，我們 hello **chef 產生 cookbook**命令 toogenerate 我們 Cookbook 的範本。 我將呼叫我的 Cookbook Web 伺服器，因為我需要可自動部署 IIS 的原則。
 
-在 C:\Chef 目錄下，執行下列命令。
+C:\Chef 目錄執行下列命令的 hello。
 
     chef generate cookbook webserver
 
-這會在 C:\Chef\cookbooks\webserver 目錄下產生一組檔案。 我們現在需要定義一組需要 Chef 用戶端在受管理的虛擬機器上執行的命令。
+這會產生一組 hello 目錄 C:\Chef\cookbooks\webserver 下的檔案。 我們現在需要 toodefine hello 組我們受管理的虛擬機器上，我們都希望我們 Chef 用戶端 tooexecute 命令。
 
-這些命令會儲存在 default.rb. 檔案中在這個檔案中，請定義一組用來安裝 IIS、啟動 IIS 並將範本檔案複製到 wwwroot 資料夾的命令。
+hello 命令會儲存在 hello 檔案 default.rb。 在此檔案中，我會定義一組命令來安裝 IIS，啟動 IIS，並將範本檔案 toohello wwwroot 資料夾複製到。
 
-修改 C:\chef\cookbooks\webserver\recipes\default.rb 檔並加入下列幾行程式碼。
+修改 hello C:\chef\cookbooks\webserver\recipes\default.rb 檔案，並新增下列幾行 hello。
 
     powershell_script 'Install IIS' do
          action :run
@@ -173,55 +173,55 @@ Chef 會使用 Cookbook 來定義一組您想在受管理的用戶端上執行�
          rights :read, 'Everyone'
     end
 
-完成後，請儲存檔案。
+完成後，請儲存 hello 檔案。
 
 ## <a name="creating-a-template"></a>建立範本
-如先前所述，我們需要產生可作為 default.html 頁面的範本檔案。
+如先前所述，我們需要 toogenerate 用作我們 default.html 頁面的範本檔案。
 
-執行下列命令以產生範本。
+執行下列命令 toogenerate hello 範本 hello。
 
     chef generate template webserver Default.htm
 
-現在瀏覽至 C:\chef\cookbooks\webserver\templates\default\Default.htm.erb 檔案。 加入一些簡單的 "Hello World" HTML 程式碼來編輯檔案，然後儲存檔案。
+現在您可以瀏覽 toohello C:\chef\cookbooks\webserver\templates\default\Default.htm.erb 檔案。 編輯 hello 檔案加入一些簡單的"Hello World"HTML 程式碼，並儲存 hello 檔案。
 
-## <a name="upload-the-cookbook-to-the-chef-server"></a>將 Cookbook 上傳到 Chef 伺服器
-在此步驟中，我們會將在本機電腦上建立的 Cookbook 複本，上傳到 Chef 代管伺服器。 上傳後，Cookbook 便會出現在 [原則]  索引標籤底下。
+## <a name="upload-hello-cookbook-toohello-chef-server"></a>上傳 hello Cookbook toohello Chef Server
+在此步驟中，我們會 hello 我們建立了我們在本機電腦的操作手冊的複製，並將它上傳 toohello Chef 託管伺服器。 Hello 操作手冊上傳之後，會出現在 hello**原則** 索引標籤。
 
     knife cookbook upload webserver
 
 ![][9]
 
 ## <a name="deploy-a-virtual-machine-with-knife-azure"></a>使用 Knife Azure 部署虛擬機器
-我們現在要部署 Azure 虛擬機器，並套用 “Webserver” Cookbook，如此便會安裝 IIS Web 服務和預設網頁。
+我們現在將會部署 Azure 虛擬機器，並套用 hello 」 網頁伺服器 」 操作手冊，如此可安裝我們 IIS web 服務和預設 web 網頁。
 
-若要這樣做，請使用 **knife azure server create** 命令。
+在此順序 toodo，使用 hello **knife azure 伺服器建立**命令。
 
-接下來會顯示此命令的範例。
+在 [hello 命令的範例則顯示下一步]。
 
     knife azure server create --azure-dns-name 'diegotest01' --azure-vm-name 'testserver01' --azure-vm-size 'Small' --azure-storage-account 'portalvhdsxxxx' --bootstrap-protocol 'cloud-api' --azure-source-image 'a699494373c04fc0bc8f2bb1389d6106__Windows-Server-2012-Datacenter-201411.01-en.us-127GB.vhd' --azure-service-location 'Southeast Asia' --winrm-user azureuser --winrm-password 'myPassword123' --tcp-endpoints 80,3389 --r 'recipe[webserver]'
 
-這些參數一看就懂。 替換特定變數並執行。
+hello 參數都一目了然。 替換特定變數並執行。
 
 > [!NOTE]
-> 透過命令列，我還打算使用 -tcp-endpoints 參數將端點網路篩選器規則自動化。 我已經開放連接埠 80 和 3389 以供網頁和 RDP 工作階段存取。
+> 透過 hello hello 命令列，我也使用 hello – tcp 端點參數自動化端點網路篩選規則。 我已經開啟通訊埠 80 與 3389 tooprovide 存取 toomy 網頁以及 RDP 工作階段。
 > 
 > 
 
-執行命令後，前往 Azure 入口網站，您會看到已經開始佈建您的機器。
+一旦您執行 hello 命令，請移 toohello Azure 入口網站，您會看到您的電腦開始 tooprovision。
 
 ![][13]
 
-命令提示字元會顯示下一步。
+hello 命令提示字元會顯示下一步。
 
 ![][10]
 
-部署完成之後，我們應該能夠透過連接埠 80 連接到 Web 服務，因為我們使用 Knife Azure 命令佈建虛擬機器時已將此連接埠開啟。 由於此虛擬機器是我的雲端服務中唯一的虛擬機器，我要使用雲端服務 URL 來進行連接。
+Hello 部署完成之後，我們應該是可以 tooconnect toohello web 服務透過連接埠 80 我們佈建以 hello Knife Azure 指令 hello 虛擬機器時，我們已開啟 hello 連接埠。 因為此虛擬機器 hello 只有虛擬機器在我的雲端服務，我會將與 hello 雲端服務 url 來進行連接。
 
 ![][11]
 
 如您所見，我的 HTML 程式碼開始有點意思。
 
-別忘了我們也可以透過連接埠 3389，從 Azure 入口網站的 RDP 工作階段進行連線。
+別忘了我們也可以透過從 hello Azure 入口網站連接埠 3389 透過 RDP 工作階段連接。
 
 我希望這對您有所幫助！ 現在就開始使用 Azure 來體驗基礎結構即程式碼！
 

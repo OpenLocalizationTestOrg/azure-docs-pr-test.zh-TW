@@ -63,7 +63,7 @@
 ### [概觀和 Azure 組態](vpn-gateway-3rdparty-device-config-overview.md)
 ### [範例：Cisco ASA 裝置 (IKEv2/no BGP)](vpn-gateway-3rdparty-device-config-cisco-asa.md)
 ## 疑難排解
-### [驗證 VNet 的 VPN 輸送量](vpn-gateway-validate-throughput-to-vnet.md)
+### [驗證 VPN 輸送量 tooa VNet](vpn-gateway-validate-throughput-to-vnet.md)
 ### [社群建議的 VPN 或防火牆裝置設定](vpn-gateway-third-party-settings.md)
 ### [點對站連線問題](vpn-gateway-troubleshoot-vpn-point-to-site-connection-problems.md)
 ### [站對站連線會間歇性中斷](vpn-gateway-troubleshoot-site-to-site-disconnected-intermittently.md)

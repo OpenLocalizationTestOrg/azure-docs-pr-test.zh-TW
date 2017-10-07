@@ -7,8 +7,8 @@
 ## [容器](../../virtual-machines-windows-containers.md)
 
 # 開始使用
-## [使用入口網站建立 VM](tutorial.md)
-## [登入 VM](connect-logon.md)
+## [使用 hello 入口網站建立 VM](tutorial.md)
+## [登入 tooa VM](connect-logon.md)
 ## [安裝 Azure PowerShell](/powershell/azure/overview)
 ## [安裝 Azure CLI](../../../cli-install-nodejs.md)
 
@@ -20,9 +20,9 @@
 ### [使用 D: 作為資料磁碟](../../virtual-machines-windows-change-drive-letter.md)
 
 ## 網路
-### [如何設定端點](setup-endpoints.md)
+### [如何設定端點 tooset](setup-endpoints.md)
 ### [連接 VM 與 VNet 或雲端服務](connect-vms.md)
-### [將傳統 VNet 連接到 Resource Manager VNet](../../../vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md)
+### [連接傳統 Vnet tooResource 管理員 Vnet](../../../vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md)
 ### [建立負載平衡器](../../../load-balancer/load-balancer-get-started-internet-classic-portal.md)
 ### [使用 Azure PowerShell 管理 NSG](../../../virtual-network/virtual-networks-create-nsg-classic-ps.md)
 
@@ -38,17 +38,17 @@
 ### [Django Hello World Web 應用程式](python-django-web-app.md)
 
 ## 設定
-### [重設密碼或遠端桌面服務](../../virtual-machines-windows-reset-rdp.md)
+### [重設密碼或 hello 的遠端桌面服務](../../virtual-machines-windows-reset-rdp.md)
 ### [安裝和設定 Symantec Endpoint Protection](install-symantec.md)
 ### [安裝和設定 Trend Micro Deep Security as a Service](install-trend.md)
 ### [設定可用性設定組](configure-availability.md)
-### [對以傳統部署模型建立的 Windows VM 調整大小](resize-vm.md)
+### [調整 hello 傳統部署模型中建立 Windows VM 的大小](resize-vm.md)
 ### [維護](planned-maintenance-schedule.md)
 
 ## 管理
-### [從傳統移轉至 Resource Manager](../../virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
+### [從傳統 tooResource Manager 移轉](../../virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 ### [使用 Azure PowerShell 管理您的 VM](manage-psh.md)
-### [關於 VM 代理程式與擴充功能](agents-and-extensions.md)
+### [有關 hello VM 代理程式和延伸模組](agents-and-extensions.md)
 ### [管理 VM 擴充功能](manage-extensions.md)
 ### [VM 的自訂指令碼擴充功能](extensions-customscript.md)
 ### [將自訂資料插入 Azure VM](inject-custom-data.md)
@@ -64,10 +64,10 @@
 #### [自動調整資源](hpcpack-cluster-node-autogrowshrink.md)
 #### [管理計算節點](hpcpack-cluster-node-manage.md)
 #### [建立叢集](hpcpack-cluster-powershell-script.md)
-#### [設定叢集以執行 MPI 應用程式](hpcpack-rdma-cluster.md)
+#### [設定叢集 toorun MPI 應用程式](hpcpack-rdma-cluster.md)
 #### [執行 Excel 和 SOA 工作負載](../../virtual-machines-windows-excel-cluster-hpcpack.md)
-#### [使用 Marketplace 映像建立前端節點](../../virtual-machines-windows-hpcpack-cluster-headnode.md)
-#### [將內部部署的作業提交至 Azure](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md)
+#### [使用 Marketplace 映像建立 hello 前端節點](../../virtual-machines-windows-hpcpack-cluster-headnode.md)
+#### [提交從內部部署 tooAzure 工作](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md)
 ### [MongoDB](install-mongodb.md)
 ### [MySQL](mysql-2008r2.md)
 ### [Oracle](../../workloads/oracle/oracle-considerations.md)
@@ -78,11 +78,11 @@
 ## 疑難排解
 ### [遠端桌面連線](../../virtual-machines-windows-troubleshoot-rdp-connection.md)
 ####[遠端桌面連線問題的詳細疑難排解步驟](../../virtual-machines-windows-detailed-troubleshoot-rdp.md)
-### [應用程式存取](../../virtual-machines-windows-troubleshoot-app-connection.md)
+### [存取 tooan 應用程式](../../virtual-machines-windows-troubleshoot-app-connection.md)
 ### [在傳統部署中建立新 VM 的問題](troubleshoot-deployment-new-vm.md)
 ### [在傳統部署中重新啟動或調整現有 VM 大小的問題](virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)
 ### [重設遠端桌面通訊協定 (RDP) 密碼](reset-rdp.md)
-### [將虛擬硬碟附加至進行疑難排解的 VM](troubleshoot-recovery-disks-portal.md)
+### [連接虛擬硬碟 tootroubleshooting VM](troubleshoot-recovery-disks-portal.md)
 
 # 參考
 ## [PowerShell](/powershell/azure/overview)

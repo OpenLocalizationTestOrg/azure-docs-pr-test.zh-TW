@@ -1,6 +1,6 @@
 ---
-title: "準備要上傳至 Azure 的 Windows VHD | Microsoft Docs"
-description: "如何在上傳至 Azure 之前準備 Windows VHD 或 VHDX"
+title: "aaaPrepare Windows VHD tooupload tooAzure |Microsoft 文件"
+description: "如何上傳 tooAzure 之前 tooprepare Windows VHD 或 VHDX"
 services: virtual-machines-windows
 documentationcenter: 
 author: glimoli
@@ -15,90 +15,90 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/01/2017
 ms.author: genli
-ms.openlocfilehash: aa1cec2ef11da6aa8a8c4089be36994ab5f61682
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 530390e4c6a4f66ddfd4da23338f9bb3708c299f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="prepare-a-windows-vhd-or-vhdx-to-upload-to-azure"></a>準備 Windows VHD 或 VHDX 以上傳至 Azure
-將 Windows 虛擬機器 (VM) 從內部部署上傳至 Microsoft Azure 之前，您必須先準備虛擬硬碟 (VHD 或 VHDX)。 Azure 只支援採用 VHD 檔案格式且具有固定大小磁碟的第 1 代 VM。 允許的 VHD 大小上限為 1023 GB。 您可以將第 1 代 VM 從 VHDX 檔案系統轉換為 VHD，以及從動態擴充磁碟轉換為固定大小的磁碟。 但您無法變更 VM 的世代。 如需詳細資訊，請參閱[應該在 Hyper-V 中建立第 1 代還是第 2 代的 VM](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v) \(英文\)。
+# <a name="prepare-a-windows-vhd-or-vhdx-tooupload-tooazure"></a>準備 Windows VHD 或 VHDX tooupload tooAzure
+您上傳 Windows 虛擬機器 (VM) 從內部部署 tooMicrosoft Azure 之前，您必須準備 hello 虛擬硬碟 （VHD 或 VHDX）。 Azure 支援 hello VHD 檔案格式而且有固定大小的磁碟第 1 代 Vm。 hello 最大允許 hello VHD 為 1023 GB。 您可以將轉換層代 1 的 VM 從 hello VHDX 檔案系統 tooVHD 和 toofixed 大小動態擴充磁碟。 但您無法變更 VM 的世代。 如需詳細資訊，請參閱[應該在 Hyper-V 中建立第 1 代還是第 2 代的 VM](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v) \(英文\)。
 
-如需 Azure VM 支援原則的詳細資訊，請參閱[適用於 Microsoft Azure 虛擬機器的 Microsoft Server Software 支援](https://support.microsoft.com/help/2721672/microsoft-server-software-support-for-microsoft-azure-virtual-machines) \(機器翻譯\)。
+Azure vm hello 支援原則的相關資訊，請參閱[Microsoft 伺服器軟體支援的 Microsoft Azure Vm](https://support.microsoft.com/help/2721672/microsoft-server-software-support-for-microsoft-azure-virtual-machines)。
 
 > [!Note]
-> 本文中的指示適用於 64 位元版本的 Windows Server 2008 R2 或更新版本的 Windows Server 作業系統。 如需 Azure 中執行 32 位元版本的作業系統相關資訊，請參閱[在 Azure 虛擬機器中對 32 位元作業系統的支援](https://support.microsoft.com/help/4021388/support-for-32-bit-operating-systems-in-azure-virtual-machines) \(機器翻譯\)。
+> 本文章中的 hello 指示適用於 toohello 64 位元版本的 Windows Server 2008 R2 或更新版本的 Windows 伺服器作業系統。 如需 Azure 中執行 32 位元版本的作業系統相關資訊，請參閱[在 Azure 虛擬機器中對 32 位元作業系統的支援](https://support.microsoft.com/help/4021388/support-for-32-bit-operating-systems-in-azure-virtual-machines) \(機器翻譯\)。
 
-## <a name="convert-the-virtual-disk-to-vhd-and-fixed-size-disk"></a>將虛擬磁碟轉換成 VHD 及固定大小的磁碟 
-如果您需要將虛擬磁碟轉換為 Azure 所需的格式，請使用本節中的其中一種方法。 在執行虛擬磁碟轉換程序之前備份 VM ，並確定 Windows VHD 在本機伺服器上正常運作。 先解決 VM 本身的任何錯誤，然後嘗試轉換或上傳至 Azure。
+## <a name="convert-hello-virtual-disk-toovhd-and-fixed-size-disk"></a>轉換 hello 虛擬磁碟 tooVHD 和固定的大小磁碟 
+如果您需要 tooconvert 虛擬磁碟 toohello 所需格式 Azure 中，使用本節中的 hello 方法之一。 您執行 hello 虛擬磁碟轉換程序，並確定該 hello Windows VHD hello 本機伺服器運作正常之前，請備份 hello VM。 請解決所有錯誤 hello VM 本身內 tooconvert 再試一次，或將它上傳 tooAzure 之前。
 
-在轉換磁碟之後，建立會使用轉換磁碟的 VM。 啟動並登入 VM 以完成準備上傳 VM。
+在轉換 hello 磁碟之後，建立會使用轉換的 hello 磁碟的 VM。 啟動和登入 toohello VM toofinish hello VM 準備上傳。
 
 ### <a name="convert-disk-using-hyper-v-manager"></a>使用 HYPER-V 管理員轉換磁碟
-1. 開啟 Hyper-V 管理員，然後在左側選取您的本機電腦。 在電腦清單上方的功能表中，按一下 [動作] >  [編輯磁碟]。
-2. 在 [尋找虛擬硬碟] 畫面上，尋找並選取您的虛擬磁碟。
-3. 在 [選擇動作] 畫面上，接著選取 [轉換] 和 [下一步]。
-4. 如果您需要從 VHDX 進行轉換，選取 [VHD]，然後按 [下一步]
-5. 如果您需要從動態擴充磁碟進行轉換，選取 [固定大小]，然後按 [下一步]
-6. 尋找並選取用以儲存新 VHD 檔案的路徑。
+1. 開啟 HYPER-V 管理員，然後選取 本機電腦上 hello 左邊。 在 hello hello 電腦清單上方的功能表，按一下 **動作** > **編輯磁碟**。
+2. 在 hello**尋找虛擬硬碟**畫面上，找出並選取您的虛擬磁碟。
+3. 在 hello**選擇動作**畫面上，，然後選取**轉換**和**下一步**。
+4. 如果您需要從 VHDX tooconvert，選取**VHD** ，然後按一下**下一步**
+5. 如果您需要從動態擴充磁碟 tooconvert，選取**固定大小**，然後按一下**下一步**
+6. 找出並選取路徑 toosave hello 新 VHD 的檔案。
 7. 按一下 [完成] 。
 
 >[!NOTE]
->本文中的命令必須以提高權限的 PowerShell 工作階段來執行。
+>這篇文章中的 hello 命令必須以提高權限的 PowerShell 工作階段執行。
 
 ### <a name="convert-disk-by-using-powershell"></a>使用 PowerShell 轉換磁碟
-您可以在 Windows PowerShell 中使用 [Convert-VHD](http://technet.microsoft.com/library/hh848454.aspx) 命令來轉換虛擬磁碟。 當您啟動 PowerShell 時，選取 [以系統管理員身分執行]。 
+您可以將虛擬磁碟轉換使用 hello [CONVERT-VHD](http://technet.microsoft.com/library/hh848454.aspx) Windows PowerShell 命令。 當您啟動 PowerShell 時，選取 [以系統管理員身分執行]。 
 
-下列範例命令會從 VHDX 轉換至 VHD，以及從動態擴充磁碟轉換至固定大小的磁碟：
+hello 下列範例命令會將轉換從 VHDX tooVHD 及動態擴充磁碟 toofixed 大小：
 
 ```Powershell
 Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd -VHDType Fixed
 ```
-在這個命令中，使用您想要轉換的虛擬硬碟路徑取代 "-Path" 的值，並使用已轉換磁碟的新路徑和名稱取代 "-DestinationPath" 的值。
+此命令中取代 hello 值"-路徑"hello 路徑 toohello 虛擬硬碟，您想要 tooconvert 和 hello 值為"-DestinationPath"hello 新路徑和名稱 hello 轉換磁碟。
 
 ### <a name="convert-from-vmware-vmdk-disk-format"></a>從 VMware VMDK 磁碟格式進行轉換
-如果您的 Windows VM 映像是 [VMDK 檔案格式](https://en.wikipedia.org/wiki/VMDK)，使用 [Microsoft VM Converter](https://www.microsoft.com/download/details.aspx?id=42497) \(英文\) 將它轉換為 VHD。 如需詳細資訊，請參閱部落格文章：[如何將 VMware VMDK 轉換為 Hyper-V VHD](http://blogs.msdn.com/b/timomta/archive/2015/06/11/how-to-convert-a-vmware-vmdk-to-hyper-v-vhd.aspx) \(英文\)。
+如果您的 Windows VM 映像在 hello [VMDK 檔案格式](https://en.wikipedia.org/wiki/VMDK)，會將其轉換 tooa VHD 使用 hello [Microsoft VM 轉換器](https://www.microsoft.com/download/details.aspx?id=42497)。 如需詳細資訊，請參閱 hello 部落格文章[如何 tooConvert VMware VMDK tooHyper V VHD](http://blogs.msdn.com/b/timomta/archive/2015/06/11/how-to-convert-a-vmware-vmdk-to-hyper-v-vhd.aspx)。
 
 ## <a name="set-windows-configurations-for-azure"></a>設定適用於 Azure 的 Windows 設定
 
-在您計劃上傳至 Azure 的 VM 上，於下列步驟中，從[提升權限的命令提示字元視窗](https://technet.microsoft.com/library/cc947813.aspx)執行所有命令：
+在 hello 您計劃的 VM 上 tooupload tooAzure，執行所有的命令在 hello 下列步驟從[提升權限的命令提示字元視窗](https://technet.microsoft.com/library/cc947813.aspx):
 
-1. 在路由表上移除任何靜態持續路由：
+1. 移除任何持續性的靜態路由，在 hello 路由表：
    
-   * 若要檢視路由表，在命令提示字元視窗上執行 `route print`。
-   * 檢查 [持續路由]  區段。 如果有持續的路由，請使用 [route delete](https://technet.microsoft.com/library/cc739598.apx) 加以移除。
-2. 移除 WinHTTP Proxy：
+   * tooview hello 路由表執行`route print`hello 的命令提示字元。
+   * 檢查 hello**持續性路由**區段。 如果持續性的路由，請使用[路由刪除](https://technet.microsoft.com/library/cc739598.apx)tooremove 它。
+2. 移除 hello WinHTTP proxy:
    
     ```PowerShell
     netsh winhttp reset proxy
     ```
-3. 將磁碟 SAN 原則設為 [Onlineall](https://technet.microsoft.com/library/gg252636.aspx)。 
+3. 設定得 hello 磁碟 SAN 原則[Onlineall](https://technet.microsoft.com/library/gg252636.aspx)。 
    
     ```PowerShell
     diskpart 
     ```
-    在開啟的命令提示字元視窗中，輸入下列命令：
+    在 hello 開啟命令提示字元視窗中，輸入下列命令的 hello:
 
      ```DISKPART
     san policy=onlineall
     exit   
     ```
 
-4. 設定適用於 Windows 的國際標準時間 (UTC)，並將 Windows 時間 (w32time) 服務的啟動類型設為 [自動]：
+4. 設定適用於 Windows 的國際標準時間 (UTC) 時間和太 hello hello (w32time) 的 Windows 時間服務的啟動類型**自動**:
    
     ```PowerShell
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation' -name "RealTimeIsUniversal" 1 -Type DWord
 
     Set-Service -Name w32time -StartupType Auto
     ```
-5. 將電源設定檔設為 [高效能]：
+5. 設定 hello 電源設定檔 toohello**高效能**:
 
     ```PowerShell
     powercfg /setactive SCHEME_MIN
     ```
 
-## <a name="check-the-windows-services"></a>檢查 Windows 服務
-確定以下的每個 Windows 服務都已設為 **Windows 預設值**。 這些是必須設定來確定 VM 具有連線能力的服務最小數目。 若要重設啟動設定，請執行下列命令：
+## <a name="check-hello-windows-services"></a>檢查 hello Windows 服務
+請確定每個 hello 下列 Windows 服務已設定 toohello **Windows 預設值**。 這些是必須設定 toomake 確定該 hello VM 已連線的服務的 hello 最小的數字。 tooreset hello 啟動設定，請執行下列命令的 hello:
    
 ```PowerShell
 Set-Service -Name bfe -StartupType Auto
@@ -115,10 +115,10 @@ Set-Service -Name RemoteRegistry -StartupType Auto
 ```
 
 ## <a name="update-remote-desktop-registry-settings"></a>更新遠端桌面登錄設定
-確定已針對遠端桌面連線正確設定下列設定：
+請確定該 hello 下列設定已正確設定遠端桌面連線：
 
 >[!Note] 
->當您在這些步驟中執行 **Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services -name &lt;物件名稱&gt; &lt;值&gt;** 時，可能會收到一則錯誤訊息。 您可以放心地忽略該錯誤訊息。 它只是表示網域不是透過群組原則物件來推送該設定。
+>您可能會收到錯誤訊息，當您執行 hello **Set-itemproperty-路徑 ' HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal 服務-名稱&lt;物件名稱&gt;&lt;值&gt;**在這些步驟。 hello 錯誤訊息可以放心忽略。 這表示只有該 hello 網域不會將推送透過群組原則物件，該組態。
 >
 >
 
@@ -130,19 +130,19 @@ Set-Service -Name RemoteRegistry -StartupType Auto
     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -name "fDenyTSConnections" -Value 0 -Type DWord
     ```
    
-2. RDP 連接埠已正確設定 (預設連接埠 3389)：
+2. hello RDP 連接埠已正確設定時 （預設連接埠 3389）：
    
     ```PowerShell
    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\Winstations\RDP-Tcp' -name "PortNumber" 3389 -Type DWord
     ```
-    當您部署 VM 時，會針對連接埠 3389 建立預設規則。 如果您想要變更連接埠號碼，請在 Azure 中部署 VM 之後進行。
+    當您部署 VM 時，則會針對連接埠 3389 建立 hello 預設規則。 如果您想 toochange hello 連接埠號碼，可在動作 hello VM 部署在 Azure 中。
 
-3. 接聽程式正在每個網路介面中進行接聽：
+3. hello 接聽項接聽中的每個網路介面：
    
     ```PowerShell
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\Winstations\RDP-Tcp' -name "LanAdapter" 0 -Type DWord
    ```
-4. 設定 RDP 連線的網路層級驗證模式：
+4. 設定 hello hello RDP 連線的網路層級驗證模式：
    
     ```PowerShell
    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" 1 -Type DWord
@@ -152,7 +152,7 @@ Set-Service -Name RemoteRegistry -StartupType Auto
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "fAllowSecProtocolNegotiation" 1 -Type DWord
      ```
 
-5. 設定 Keep-Alive 值：
+5. 設定 hello 持續作用值：
     
     ```PowerShell
     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -name "KeepAliveEnable" 1 -Type DWord
@@ -166,25 +166,25 @@ Set-Service -Name RemoteRegistry -StartupType Auto
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\Winstations\RDP-Tcp' -name "fInheritReconnectSame" 1 -Type DWord
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\Winstations\RDP-Tcp' -name "fReconnectSame" 0 -Type DWord
     ```
-7. 並行連線數目的限制：
+7. 限制並行連線數目 hello:
     
     ```PowerShell
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\Winstations\RDP-Tcp' -name "MaxInstanceCount" 4294967295 -Type DWord
     ```
-8. 如果有任何自我簽署憑證繫結至 RDP 接聽程式，請移除它們：
+8. 如果有任何自我簽署的憑證繫結 toohello RDP 接聽程式，請將它們移除：
     
     ```PowerShell
     Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "SSLCertificateSHA1Hash"
     ```
-    這是為了確定您在部署 VM 時，一開始就能連線。 您也可以視需要，在 Azure 中部署 VM 之後的後續階段中檢閱這部分。
+    這是 toomake 確定當您部署的 hello VM 可以連接您在 hello 開頭。 您也可以檢閱這在稍後階段之後視需要在 Azure 中部署 VM 的 hello。
 
-9. 如果 VM 將為網域的一部分，請檢查下列所有設定，以確定不會還原先前設定。 以下為必須檢查的原則：
+9. 如果 hello VM 是網域的一部分，請檢查所有 hello 下列設定 toomake 確定 hello 先前的設定不會還原。 您必須核取的 hello 原則包括 hello 下列：
     
     - RDP 已啟用：
 
          電腦設定\原則\Windows 設定\系統管理範本\元件\遠端桌面服務\遠端桌面工作階段主機\連線：
          
-         **允許使用者使用遠端桌面服務從遠端連線**
+         **允許使用者 tooconnect 從遠端使用遠端桌面**
 
     - NLA 群組原則：
 
@@ -204,14 +204,14 @@ Set-Service -Name RemoteRegistry -StartupType Auto
         
         **自動重新連線**
 
-    - 限制連線數目的設定：
+    - Hello 的數目限制設定連線：
 
         電腦設定\原則\Windows 設定\系統管理範本\Windows 元件\遠端桌面服務\遠端桌面工作階段主機\連線： 
         
         **限制連線數目**
 
 ## <a name="configure-windows-firewall-rules"></a>設定 Windows 防火牆規則
-1. 在這三個設定檔 (網域、標準和公用) 上開啟 Windows 防火牆：
+1. 開啟 Windows 防火牆 （網域、 標準和公用） 的 hello 三個設定檔：
 
    ```PowerShell
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\services\SharedAccess\Parameters\FirewallPolicy\DomainProfile' -name "EnableFirewall" -Value 1 -Type DWord
@@ -219,26 +219,26 @@ Set-Service -Name RemoteRegistry -StartupType Auto
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\services\SharedAccess\Parameters\FirewallPolicy\Standardprofile' -name "EnableFirewall" -Value 1 -Type DWord
    ```
 
-2. 在 PowerShell 中執行下列命令，以允許 WinRM 透過這三種防火牆設定檔 (網域、私人和公用)，並啟用 PowerShell 遠端服務：
+2. 執行下列命令在 PowerShell tooallow WinRM 透過 hello 三個防火牆設定檔 （網域、 私人和公用） 中的 hello 和啟用 PowerShell 遠端服務的 hello:
    
    ```PowerShell
     Enable-PSRemoting -force
     netsh advfirewall firewall set rule dir=in name="Windows Remote Management (HTTP-In)" new enable=yes
     netsh advfirewall firewall set rule dir=in name="Windows Remote Management (HTTP-In)" new enable=yes
    ```
-3. 啟用下列防火牆規則以允許 RDP 流量 
+3. 啟用下列防火牆規則 tooallow hello RDP 流量 hello 
 
    ```PowerShell
     netsh advfirewall firewall set rule group="Remote Desktop" new enable=yes
    ```   
-4. 啟用檔案及印表機共用規則，讓 VM 可以在虛擬網路內回應 ping 命令：
+4. 啟用 hello 檔案和印表機共用規則 hello VM 可以回應 hello 虛擬網路內的 tooa ping 命令：
 
    ```PowerShell
     netsh advfirewall firewall set rule dir=in name="File and Printer Sharing (Echo Request - ICMPv4-In)" new enable=yes
    ``` 
-5. 如果 VM 將為網域的一部分，請檢查下列設定，以確定不會還原先前設定。 以下為必須檢查的 AD 原則：
+5. 如果 hello VM 是網域的一部分，請檢查下列設定 toomake 確定 hello 先前的設定不會還原 hello。 您必須核取的 hello AD 原則包括 hello 下列：
 
-    - 啟用 Windows 防火牆設定檔
+    - 啟用 hello Windows 防火牆設定檔
 
         電腦設定\原則\Windows 設定\系統管理範本\網路\網路連線\Windows 防火牆\網域設定檔\Windows 防火牆: **保護所有網路連線**
 
@@ -257,14 +257,14 @@ Set-Service -Name RemoteRegistry -StartupType Auto
         電腦設定\原則\Windows 設定\系統管理範本\網路\網路連線\Windows 防火牆\標準設定檔\Windows 防火牆: **允許 ICMP 例外**
 
 ## <a name="verify-vm-is-healthy-secure-and-accessible-with-rdp"></a>確認 VM 處於狀況良好、安全且可使用 RDP 存取 
-1. 若要確定磁碟是狀況良好且一致的，在下一個 VM 重新啟動時，執行檢查磁碟作業：
+1. 確定 hello 磁碟 toomake 是狀況良好且維持一致，在 hello 下次 VM 重新啟動執行檢查磁碟作業：
 
     ```PowerShell
     Chkdsk /f
     ```
-    請確定此報告會顯示全新且狀況良好的磁碟。
+    請確定 hello 報告會顯示清除且狀況良好的磁碟。
 
-2. 設定開機組態資料 (BCD) 設定。 
+2. 設定 hello 開機設定資料 (BCD) 設定。 
 
     > [!Note]
     > 請確定您是在提升權限的 CMD 視窗上執行這些命令，而**不是**在 PowerShell 上：
@@ -282,44 +282,44 @@ Set-Service -Name RemoteRegistry -StartupType Auto
    
    bcdedit /set {default} bootstatuspolicy IgnoreAllFailures
    ```
-3. 確認 Windows Management Instrumentation 存放庫是一致的。 若要執行此動作，請執行下列命令：
+3. 請確認該 hello Windows 管理 Instrumentations 存放庫是一致。 tooperform 下列命令，執行的 hello:
 
     ```PowerShell
     winmgmt /verifyrepository
     ```
-    如果存放庫損毀，請參閱 [WMI︰存放庫損毀，還是沒有損毀](https://blogs.technet.microsoft.com/askperf/2014/08/08/wmi-repository-corruption-or-not) \(英文\)。
+    如果 hello 儲存機制已損毀，請參閱[WMI： 資料庫損毀，或不](https://blogs.technet.microsoft.com/askperf/2014/08/08/wmi-repository-corruption-or-not)。
 
-4. 確定沒有任何其他應用程式使用連接埠 3389。 在 Azure 中，此連接埠是由 RDP 服務所使用。 您可以執行 **netstat anob** 來查看 VM 上使用了哪些連接埠：
+4. 請確定任何應用程式不使用 hello 連接埠 3389。 Hello RDP 服務在 Azure 中使用此連接埠。 您可以執行**netstat anob** toosee 使用的通訊埠是在 hello VM:
 
     ```PowerShell
     netstat -anob
     ```
 
-5. 如果您想要上傳的 Windows VHD 是一個網域控制站，則請遵循這些步驟：
+5. 如果您想 tooupload Windows VHD hello 網域控制站，然後執行下列步驟：
 
-    A. 遵循[這些額外的步驟](https://support.microsoft.com/kb/2904015)來準備磁碟。
+    A. 請遵循[這些額外的步驟](https://support.microsoft.com/kb/2904015)tooprepare hello 磁碟。
 
-    B. 確定您知道 DSRM 密碼，以防您必須在某個時間點於 DSRM 中啟動 VM。 您可能想要參考此連結來設定 [DSRM 密碼](https://technet.microsoft.com/library/cc754363(v=ws.11).aspx) \(英文\)。
+    B. 請確定您知道 hello DSRM 密碼，如果您有 DSRM toostart hello VM 在某個時間點。 您可能會想 toorefer toothis 連結 tooset hello [DSRM 密碼](https://technet.microsoft.com/library/cc754363(v=ws.11).aspx)。
 
-6. 確定您知道內建的系統管理員帳戶和密碼。 您可能想要重設目前的本機系統管理員密碼，並確定您可以使用此帳戶，透過 RDP 連線登入 Windows。 此存取權限會受到「允許透過遠端桌面服務登入」群組原則物件所控制。 您可以於下列位置的本機群組原則編輯器中檢視此物件：
+6. 請確定 hello 內建系統管理員帳戶和密碼已知 tooyou。 您可能想 tooreset hello 目前本機系統管理員密碼，並確定您可以透過 RDP 連線 hello tooWindows 中使用此帳戶 toosign。 此存取權限是由 hello 「 允許登入遠端桌面服務透過 「 群組原則物件所控制。 您可以在 hello 本機群組原則編輯器中檢視此物件下：
 
     電腦設定\Windows 設定\安全性設定\本機原則\使用者權限指派
 
-7. 請檢查下列 AD 原則，確定您並未封鎖透過 RDP 或來自網路的 RDP 存取：
+7. 請檢查下列 AD hello 原則 toomake 確定您不會封鎖您的 RDP 存取透過 RDP 或從 hello 網路：
 
-    - 電腦設定\Windows 設定\安全性設定\本機原則\使用者權限指派\拒絕從網路存取此電腦
+    - 電腦設定 \windows 設定 \ 安全性設定 \ 原則 \ 使用者權限 Assignment\Deny 存取 toothis 電腦從 hello 網路
 
     - 電腦設定\Windows 設定\安全性設定\本機原則\使用者權限指派\拒絕從遠端桌面服務登入
 
 
-8. 重新啟動 VM，以確保 Windows 仍然狀況良好，可使用 RDP 連線來達成。 此時，您可能想要在本機 Hyper-V 中建立 VM，以確定 VM 已完全啟動，然後測試是否可連線到 RDP。
+8. 確定 Windows 是仍狀況良好的重新啟動 hello VM toomake 可以達到使用 hello RDP 連接。 此時，您可能想在您本機 HYPER-V toomake 確定 hello VM 正在啟動完全 toocreate VM，然後測試是否可以連線的 RDP。
 
-9. 移除任何額外的傳輸驅動程式介面篩選，例如分析 TCP 封包的軟體或額外的防火牆。 您也可以視需要，在 Azure 中部署 VM 之後的後續階段中檢閱這部分。
+9. 移除任何額外的傳輸驅動程式介面篩選，例如分析 TCP 封包的軟體或額外的防火牆。 您也可以檢閱這在稍後階段之後視需要在 Azure 中部署 VM 的 hello。
 
-10. 解除安裝與實體元件或任何其他虛擬化技術相關的所有其他協力廠商軟體和驅動程式。
+10. 解除安裝任何其他第三方軟體及相關的 toophysical 元件或其他虛擬化技術的驅動程式。
 
 ### <a name="install-windows-updates"></a>安裝 Windows 更新
-理想的設定是**具有最新的電腦修補程式等級**。 如果這不可行，請確定已安裝下列更新：
+hello 的理想組態太**有在最新 hello hello 機器 hello 修補程式等級**。 如果不可行，請確定已安裝下列更新該 hello:
 
 |                       |                   |           |                                       最低檔案版本 x64       |                                      |                                      |                            |
 |-------------------------|-------------------|------------------------------------|---------------------------------------------|--------------------------------------|--------------------------------------|----------------------------|
@@ -352,51 +352,51 @@ Set-Service -Name RemoteRegistry -StartupType Auto
 |                         | win32k.sys        | 6.1.7601.23807 - KB4022719         | 6.2.9200.22168 - KB4022718                  | 6.3.9600.18698 - KB4022726           | 10.0.14393.594 - KB4022715           | -                          |
 |                         | rdpdd.dll         | 6.1.7601.23403 - KB3125574         | -                                           | -                                    | -                                    | -                          |
 |                         | rdpwd.sys         | 6.1.7601.23403 - KB3125574         | -                                           | -                                    | -                                    | -                          |
-| 安全性                | 預定 WannaCrypt | KB4012212                          | KB4012213                                   | KB4012213                            | KB4012606                            | KB4012606                  |
+| 安全性                | 到期 tooWannaCrypt | KB4012212                          | KB4012213                                   | KB4012213                            | KB4012606                            | KB4012606                  |
 |                         |                   |                                    | KB4012216                                   |                                      | KB4013198                            | KB4013198                  |
 |                         |                   | KB4012215                          | KB4012214                                   | KB4012216                            | KB4013429                            | KB4013429                  |
 |                         |                   |                                    | KB4012217                                   |                                      | KB4013429                            | KB4013429                  |
        
-### 使用 sysprep 的時機 <a id="step23"></a>    
+### 當 toouse sysprep<a id="step23"></a>    
 
-Sysprep 是您可執行來進行 Windows 安裝的程序，將重設系統安裝，且將藉由移除所有個人資料並重設數個元件來提供「全新體驗」。 如果您想要建立一個範本，以部署數個其他具有特定設定的 VM，通常會執行此動作。 這稱為**一般化映像**。
+Sysprep 是您可能會遇到將會重設 hello 安裝 hello 系統也會提供 「 全新 hello 體驗 」 移除所有的個人資料，以及重設數個元件的 windows 安裝程序。 您通常這樣如果您想 toocreate 範本，您可以用來部署數個其他的 Vm，有特定的設定。 這稱為**一般化映像**。
 
-但若您只想從一部磁碟建立一個 VM，就不需使用 sysprep。 在此情況下，您只需從所謂的**特殊化映像**建立 VM 即可。
+相反地，若要唯一 toocreate 其中一個 VM 從一個磁碟，您不需要 toouse sysprep。 在此情況下，您就可以建立從什麼 VM 就所謂的 hello**特製化映像**。
 
-如需如何從特殊化磁碟建立 VM 的詳細資訊，請參閱：
+如需有關如何 toocreate 將 VM 從專用的磁碟，請參閱：
 
 - [從特殊化磁碟建立 VM](create-vm-specialized.md)
 - [從特殊化 VHD 磁碟建立 VM](https://azure.microsoft.com/resources/templates/201-vm-specialized-vhd/)
 
-如果您想要建立一般化映像，就必須執行 sysprep。 如需 Sysprep 的詳細資訊，請參閱[如何使用 Sysprep：簡介](http://technet.microsoft.com/library/bb457073.aspx) \(英文\)。 
+如果您想 toocreate 一般化映像，您會需要 toorun sysprep。 如需 Sysprep 的詳細資訊，請參閱[如何 tooUse Sysprep： 簡介](http://technet.microsoft.com/library/bb457073.aspx)。 
 
-並非 Windows 電腦上安裝的每個角色或應用程式都支援這個一般化。 因此，在執行此程序之前，請先參閱下列文章，以確定 sysprep 支援該電腦的角色。 如需詳細資訊，請參閱[伺服器角色的 Sysprep 支援](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles) \(英文\)。
+並非 Windows 電腦上安裝的每個角色或應用程式都支援這個一般化。 之前在將您執行此程序，請參閱下列文章 toomake 確定 toohello 該電腦的該 hello 角色支援 sysprep。 如需詳細資訊，請參閱[伺服器角色的 Sysprep 支援](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles) \(英文\)。
 
-### <a name="steps-to-generalize-a-vhd"></a>將 VHD 一般化的步驟
+### <a name="steps-toogeneralize-a-vhd"></a>步驟 toogeneralize VHD
 
 >[!NOTE]
-> 當您執行 sysprep.exe 之後 (如下列步驟中所指定)，請關閉 VM，且在您於 Azure 中建立它的映像之前，不要再度開啟它。
+> 您當做下列步驟中所指定的 hello 執行 sysprep.exe 之後，關閉 hello VM，並請勿開啟它回直到您從它建立映像在 Azure 中。
 
-1. 登入 Windows VM。
+1. 登入 toohello Windows VM。
 2. 以系統管理員身分執行**命令提示字元**。 
-3. 將目錄切換至：**%windir%\system32\sysprep**，然後執行 **sysprep.exe**。
-3. 在 [系統準備工具] 對話方塊中，選取 [進入系統全新體驗 (OOBE)]，並確認已勾選 [一般化] 核取方塊。
+3. 若要變更 hello 目錄： **%windir%\system32\sysprep**，然後執行**sysprep.exe**。
+3. 在 hello**系統準備工具**對話方塊中，選取**進入系統的全新體驗 (OOBE)**，並確定該 hello**一般化**選取核取方塊。
 
     ![系統準備工具](media/prepare-for-upload-vhd-image/syspre.png)
 4. 在 [關機選項] 中選取 [關機]。
 5. 按一下 [確定] 。
-6. 當 Sysprep 完成時，關閉 VM。 不要使用**重新啟動**來關閉 VM。
-7. 現在已準備好上傳 VHD。 如需如何從一般化磁碟建立 VM 的詳細資訊，請參閱[將一般化 VHD 上傳，並使用它在 Azure 中建立新的 VM](sa-upload-generalized.md)。
+6. Sysprep 完成時，關閉 hello VM。 請勿使用**重新啟動**tooshut hello VM 關閉。
+7. Hello VHD 已準備好 toobe 上傳。 如需有關如何 toocreate 將 VM 從一般化磁碟，請參閱[一般化的 VHD 上傳，並在 Azure 中使用新的 Vm toocreate](sa-upload-generalized.md)。
 
 
 ## <a name="complete-recommended-configurations"></a>完成建議的設定
-下列設定不會影響 VHD 上傳。 不過，我們強烈建議您設定它們。
+下列設定的 hello 不會影響上傳 VHD。 不過，我們強烈建議您設定它們。
 
-* 安裝 [Azure VM 代理程式](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)。 然後您可以啟用 VM 擴充功能。 VM 擴充功能實作了您可能想要與 VM 搭配使用的大部分重要功能，例如重設密碼、設定 RDP 等功能。 如需詳細資訊，請參閱：
+* 安裝 hello [Azure Vm 代理程式](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)。 然後您可以啟用 VM 擴充功能。 hello VM 延伸模組實作大部分的 hello 重要功能，您可能會想 toouse 要與您的 Vm，例如，重設密碼、 設定 RDP，等等。 如需詳細資訊，請參閱：
 
     - [VM 代理程式與擴充功能 - 第 1 部分](https://azure.microsoft.com/blog/vm-agent-and-extensions-part-1/) \(英文\)
     - [VM 代理程式與擴充功能 - 第 2 部分](https://azure.microsoft.com/blog/vm-agent-and-extensions-part-2/) \(英文\)
-* 傾印記錄檔能幫助您進行 Windows 損毀問題的疑難排解。 啟用傾印記錄檔收集：
+* hello 傾印記錄檔可以是 Windows 損毀問題的疑難排解很有幫助。 啟用 hello 傾印記錄檔收集：
   
     ```PowerShell
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\CrashControl' -name "CrashDumpEnable" -Value "2" -Type DWord
@@ -408,7 +408,7 @@ Sysprep 是您可執行來進行 Windows 安裝的程序，將重設系統安裝
     New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps' -name "DumpType" -Value 2 -Type DWord
     Set-Service -Name WerSvc -StartupType Manual
     ```
-    如果您在本文的任一個程序步驟中收到任何錯誤，這表示登錄機碼已經存在。 在此情況下，請改用下列命令：
+    如果您收到本文章中步驟的任何 hello 程序期間所發生的任何錯誤，這表示相同的 hello 登錄機碼已存在。 在此情況下，使用 hello 改用下列命令：
 
     ```PowerShell
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\CrashControl' -name "CrashDumpEnable" -Value "2" -Type DWord
@@ -418,13 +418,13 @@ Sysprep 是您可執行來進行 Windows 安裝的程序，將重設系統安裝
     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps' -name "DumpType" -Value 2 -Type DWord
     Set-Service -Name WerSvc -StartupType Manual
     ```
-*  在 Azure 中建立 VM 之後，我們建議您將分頁檔放在「暫存磁碟機」磁碟區中，以改善效能。 您可以如下方式設定這部分：
+*  Hello VM 在 Azure 中建立之後，我們建議您將 hello 分頁檔放在 hello 「 暫存磁碟機 」 磁碟區 tooimprove 效能。 您可以如下方式設定這部分：
 
     ```PowerShell
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management' -name "PagingFiles" -Value "D:\pagefile"
     ```
-如果沒有任何資料磁碟連接到 VM，暫存磁碟機磁碟區的磁碟機代號通常是 "D"。 根據可用的磁碟機數目和您所進行的設定而定，這項指定可能不同。
+如果沒有任何資料磁碟附加的 toohello VM，hello 暫存磁碟機磁碟區的磁碟機代號通常是 「 D." 這項指定可能是根據 hello 數目可用的磁碟機和 hello 進行設定，而不同。
 
 ## <a name="next-steps"></a>後續步驟
-* [將 Windows VM 映像上傳至 Azure 供 Resource Manager 部署使用](upload-generalized-managed.md)
+* [上傳 Windows VM 映像 tooAzure 資源管理員部署](upload-generalized-managed.md)
 

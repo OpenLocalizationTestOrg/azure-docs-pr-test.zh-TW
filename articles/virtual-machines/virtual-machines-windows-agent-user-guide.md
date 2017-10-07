@@ -1,5 +1,5 @@
 ---
-title: "Azure 虛擬機器代理程式概觀 | Microsoft Docs"
+title: "aaaAzure 虛擬機器代理程式概觀 |Microsoft 文件"
 description: "Azure 虛擬機器代理程式概觀"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
@@ -15,45 +15,45 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 03/28/2017
 ms.author: nepeters
-ms.openlocfilehash: accfd5f0fec69175e584528ff9f6db66402cb89e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 178766925673419cd661dbb460b8427bbfaf54e7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-virtual-machine-agent-overview"></a>Azure 虛擬機器代理程式概觀
 
-「Microsoft Azure 虛擬機器代理程式」(VM 代理程式) 是安全的輕量型處理程序，可管理 VM 與「Azure 網狀架構控制器」的互動。 VM 代理程式已啟用主要角色並執行 Azure 虛擬機器擴充功能。 VM 擴充功能可啟用虛擬機器的部署後組態，例如安裝和設定軟體。 虛擬機器擴充功能也會啟用復原功能，例如重設虛擬機器的系統管理密碼。 若沒有 Azure VM 代理程式，便無法執行虛擬機器擴充功能。
+hello Microsoft Azure 虛擬機器代理程式 （VM 代理程式） 是安全的輕量型程序管理 VM 與 hello Azure 網狀架構控制器之間的互動。 hello VM 代理程式已啟用和執行 Azure 虛擬機器擴充功能的主要角色。 VM 擴充功能可啟用虛擬機器的部署後組態，例如安裝和設定軟體。 虛擬機器擴充功能也會啟用復原功能，例如，重設虛擬機器的 hello 系統管理密碼。 沒有 hello Azure VM 代理程式，就無法執行虛擬機器擴充功能。
 
-本文件詳述 Azure 虛擬機器代理程式的安裝、偵測及移除。
+本文件詳述安裝、 偵測和移除 hello Azure 虛擬機器代理程式。
 
-## <a name="install-the-vm-agent"></a>安裝 VM 代理程式
+## <a name="install-hello-vm-agent"></a>安裝 VM 代理程式 hello
 
 ### <a name="azure-gallery-image"></a>Azure 資源庫映像
 
-根據預設，Azure VM 代理程式會安裝於任何從 Azure 資源庫映像部署的 Windows 虛擬機器上。 經由入口網站、PowerShell、命令列介面或 Azure Resource Manager 範本部署 Azure 資源庫映像時，也會安裝 Azure VM 代理程式。 
+從 Azure 資源庫映像部署任何 Windows 虛擬機器上的預設會安裝 hello Azure VM 代理程式。 部署 Azure 資源庫映像從 hello 入口網站、 PowerShell、 命令列介面或 Azure 資源管理員範本，當 hello Azure VM 代理程式也會安裝。 
 
 ### <a name="manual-installation"></a>手動安裝
 
-Windows VM 代理程式可以使用 Windows Installer 套件來手動安裝。 建立會部署在 Azure 中的自訂虛擬機器映像時，可能需要手動安裝。 若要手動安裝 Windows VM 代理程式，請從這個位置下載 VM 代理程式安裝程式：[Windows Azure VM 代理程式下載](http://go.microsoft.com/fwlink/?LinkID=394789)。 
+hello Windows VM 代理程式可以使用 Windows installer 封裝來手動安裝。 建立會部署在 Azure 中的自訂虛擬機器映像時，可能需要手動安裝。 toomanually 安裝 hello Windows VM 代理程式，從這個位置下載 hello VM 代理程式安裝程式[Windows Azure VM 代理程式下載](http://go.microsoft.com/fwlink/?LinkID=394789)。 
 
-按兩下 Windows Installer 檔案即可安裝 VM 代理程式。 如需自動安裝 VM 代理程式，請執行下列命令。
+hello VM 代理程式可以按兩下 hello windows installer 檔案安裝。 自動或無人看管的 hello VM 代理程式安裝，執行下列命令的 hello。
 
 ```cmd
 msiexec.exe /i WindowsAzureVmAgent.2.7.1198.778.rd_art_stable.160617-1120.fre /quiet
 ```
 
-## <a name="detect-the-vm-agent"></a>偵測 VM 代理程式
+## <a name="detect-hello-vm-agent"></a>偵測 hello VM 代理程式
 
 ### <a name="powershell"></a>PowerShell
 
-Azure Resource Manager PowerShell 模組可以用來擷取 Azure 虛擬機器的相關資訊。 執行 `Get-AzureRmVM` 可傳回相當多的資訊，包括 Azure VM 代理程式的佈建狀態。
+hello Azure 資源管理員 PowerShell 模組可以是使用的 tooretrieve 資訊有關 Azure 虛擬機器。 執行`Get-AzureRmVM`傳回相當多的資訊包括 hello 佈建 hello Azure VM 代理程式的狀態。
 
 ```PowerShell
 Get-AzureRmVM
 ```
 
-以下只是 `Get-AzureRmVM` 輸出的子集。 請注意，`ProvisionVMAgent` 屬性會以巢狀方式置於 `OSProfile` 內，這個屬性可用來判斷 VM 代理程式是否已部署至虛擬機器。
+hello 以下是剛 hello 子集`Get-AzureRmVM`輸出。 請注意 hello`ProvisionVMAgent`屬性在巢狀`OSProfile`，這個屬性可以是使用的 toodetermine 如果 hello VM 代理程式已部署的 toohello 虛擬機器。
 
 ```PowerShell
 OSProfile                  :
@@ -64,7 +64,7 @@ OSProfile                  :
     EnableAutomaticUpdates : True
 ```
 
-下列指令碼可以用來傳回簡明的虛擬機器名稱清單和 VM 代理程式的狀態。
+下列指令碼的 hello 可以是使用的 tooreturn hello hello VM 代理程式狀態的虛擬機器名稱簡明清單。
 
 ```PowerShell
 $vms = Get-AzureRmVM
@@ -77,8 +77,8 @@ foreach ($vm in $vms) {
 
 ### <a name="manual-detection"></a>手動偵測
 
-記錄到 Windows Azure VM 時，工作管理員可用來檢查執行中的程序。 若要檢查 Azure VM 代理程式，請開啟 [工作管理員] > 按一下 [詳細資料] 索引標籤，然後尋找程序名稱 `WindowsAzureGuestAgent.exe`。 此程序的目前狀態表示已安裝 VM 代理程式。
+登入 Windows Azure VM tooa，工作管理員可以使用的 tooexamine 執行處理程序。 toocheck hello Azure VM 代理程式，開啟 [工作管理員 > 按一下 hello 詳細資料] 索引標籤，並尋找處理程序名稱`WindowsAzureGuestAgent.exe`。 此程序的 hello 存在表示該 hello VM 代理程式安裝。
 
-## <a name="upgrade-the-vm-agent"></a>升級 VM 代理程式
+## <a name="upgrade-hello-vm-agent"></a>升級 hello VM 代理程式
 
-適用於 Windows 的 Azure VM 代理程式會自動升級。 當新的虛擬機器部署至 Azure 時，這些機器會收到最新的 VM 代理程式。 自訂 VM 映像應進行手動更新，以包含新的 VM 代理程式。
+hello Azure VM 代理程式的 Windows 會自動升級。 由於新的虛擬機器是部署的 tooAzure，他們會收到 hello 最新的 VM 代理程式。 自訂 VM 映像應該手動更新的 tooinclude hello 新 VM 代理程式。
